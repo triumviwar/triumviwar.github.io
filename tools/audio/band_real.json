@@ -1,0 +1,443 @@
+{
+ "band_scotland": {
+  "pieces": [
+   [
+    "scotland_the_brave_usafr_pipe_band.mp3",
+    0.41,
+    91.58
+   ]
+  ],
+  "n": 4020654,
+  "length_s": 91.171,
+  "gain_db": -9.69,
+  "limit_db": -0.0,
+  "lufs_in": -10.31,
+  "lufs_out": -20.04,
+  "tp_out": -6.81,
+  "kb": 946,
+  "channels": 1,
+  "set": "band",
+  "kind": "march",
+  "title": "Scotland the Brave (USAF Reserve Pipe Band)"
+ },
+ "band_brandywine": {
+  "pieces": [
+   [
+    "oldguard_10_brandywine_quickstep_from_the_minstrel_boy_show.mp3",
+    0.45,
+    110.66
+   ]
+  ],
+  "n": 4860146,
+  "length_s": 110.207,
+  "gain_db": -1.24,
+  "limit_db": 3.17,
+  "lufs_in": -18.76,
+  "lufs_out": -20.17,
+  "tp_out": -1.19,
+  "kb": 995,
+  "channels": 1,
+  "set": "band",
+  "kind": "quick",
+  "title": "Brandywine Quickstep (Old Guard Fife and Drum Corps)"
+ },
+ "band_minstrel": {
+  "pieces": [
+   [
+    "let_erin_remember_high_road_to_gairloch_minstrel_boy_usafr_pipe_band.mp3",
+    0.45,
+    128.44
+   ]
+  ],
+  "n": 5644502,
+  "length_s": 127.993,
+  "gain_db": -7.73,
+  "limit_db": -0.0,
+  "lufs_in": -12.27,
+  "lufs_out": -20.04,
+  "tp_out": -4.12,
+  "kb": 1331,
+  "channels": 1,
+  "set": "band",
+  "kind": "march",
+  "title": "Let Erin Remember, High Road to Gairloch, The Minstrel Boy (USAF Reserve Pipe Band)"
+ },
+ "band_farewell": {
+  "pieces": [
+   [
+    "oldguard_07_soldiers_farewell_fanfaremontezumamarch_of_warwindsor_park.mp3",
+    0.51,
+    134.84
+   ]
+  ],
+  "n": 5923605,
+  "length_s": 134.322,
+  "gain_db": 0.73,
+  "limit_db": 5.6,
+  "lufs_in": -20.73,
+  "lufs_out": -20.87,
+  "tp_out": -1.21,
+  "kb": 1214,
+  "channels": 1,
+  "set": "band",
+  "kind": "march",
+  "title": "Soldiers' Farewell, Fanfare, Montezuma, March of War, Windsor Park (Old Guard)"
+ },
+ "band_dundee": {
+  "pieces": [
+   [
+    "dream_valley_old_rustic_bridge_bonnie_dundee_campbells_farewell_usafr_pipe_band.mp3",
+    0.39,
+    202.4
+   ]
+  ],
+  "n": 8908785,
+  "length_s": 202.013,
+  "gain_db": -7.98,
+  "limit_db": -0.0,
+  "lufs_in": -12.02,
+  "lufs_out": -20.05,
+  "tp_out": -4.87,
+  "kb": 2137,
+  "channels": 1,
+  "set": "band",
+  "kind": "march",
+  "title": "The Dream Valley of Glendaruel, The Old Rustic Bridge, Bonnie Dundee, Campbell's Farewell (USAFR)"
+ },
+ "band_yankee": {
+  "pieces": [
+   [
+    "oldguard_09_reveille_variationdrum_callslow_scotchquick_scotchyankee_doodlemont.mp3",
+    0.5,
+    137.59
+   ]
+  ],
+  "n": 6045453,
+  "length_s": 137.085,
+  "gain_db": -0.39,
+  "limit_db": 4.46,
+  "lufs_in": -19.61,
+  "lufs_out": -20.61,
+  "tp_out": -1.26,
+  "kb": 1239,
+  "channels": 1,
+  "set": "band",
+  "kind": "march",
+  "title": "Reveille, Drum Calls, Slow and Quick Scotch, Yankee Doodle (Old Guard)"
+ },
+ "band_green": {
+  "pieces": [
+   [
+    "god_save_ireland_boy_from_killane_wearing_of_the_green_usafr_pipe_band.mp3",
+    0.4,
+    130.33
+   ]
+  ],
+  "n": 5730131,
+  "length_s": 129.935,
+  "gain_db": -7.08,
+  "limit_db": -0.0,
+  "lufs_in": -12.92,
+  "lufs_out": -20.03,
+  "tp_out": -4.1,
+  "kb": 1308,
+  "channels": 1,
+  "set": "band",
+  "kind": "march",
+  "title": "God Save Ireland, The Boy from Killane, Wearing of the Green (USAF Reserve Pipe Band)"
+ },
+ "band_paddy": {
+  "pieces": [
+   [
+    "oldguard_12_paddy_on_the_handcar_from_the_minstrel_boy_show.mp3",
+    0.49,
+    49.48
+   ]
+  ],
+  "n": 2160517,
+  "length_s": 48.991,
+  "gain_db": -1.36,
+  "limit_db": 2.41,
+  "lufs_in": -18.64,
+  "lufs_out": -20.18,
+  "tp_out": -1.03,
+  "kb": 448,
+  "channels": 1,
+  "set": "band",
+  "kind": "quick",
+  "title": "Paddy on the Handcar (Old Guard Fife and Drum Corps)"
+ },
+ "band_mist": {
+  "pieces": [
+   [
+    "mist_covered_mountains_usafr_pipe_band.mp3",
+    0.4,
+    125.46
+   ]
+  ],
+  "n": 5515124,
+  "length_s": 125.06,
+  "gain_db": -8.92,
+  "limit_db": -0.0,
+  "lufs_in": -11.08,
+  "lufs_out": -20.01,
+  "tp_out": -6.67,
+  "kb": 1329,
+  "channels": 1,
+  "set": "band",
+  "kind": "air",
+  "title": "The Mist Covered Mountains (USAF Reserve Pipe Band)",
+  "phrases": [
+   16.41,
+   18.69,
+   25.7,
+   29.53,
+   37.71,
+   40.94,
+   47.38,
+   55.65,
+   60.2,
+   67.24,
+   73.13,
+   77.44,
+   85.16,
+   89.03,
+   98.02,
+   106.83,
+   115.83
+  ]
+ },
+ "drums_cornwallis": {
+  "pieces": [
+   [
+    "oldguard_06_drum_feature_the_rage_of_cornwallis_from_the_george_washington_show.mp3",
+    0.0,
+    115.66
+   ]
+  ],
+  "n": 5100418,
+  "length_s": 115.656,
+  "gain_db": 1.28,
+  "limit_db": 3.99,
+  "lufs_in": -21.28,
+  "lufs_out": -20.23,
+  "tp_out": -1.13,
+  "kb": 988,
+  "channels": 1,
+  "set": "drums",
+  "kind": "march",
+  "title": "The Rage of Cornwallis (Old Guard drum feature)"
+ },
+ "drums_generations": {
+  "pieces": [
+   [
+    "oldguard_16_drum_feature_generations_from_the_simple_gifts_show.mp3",
+    0.0,
+    103.13
+   ]
+  ],
+  "n": 4548151,
+  "length_s": 103.133,
+  "gain_db": -2.62,
+  "limit_db": 2.03,
+  "lufs_in": -17.38,
+  "lufs_out": -20.25,
+  "tp_out": -1.28,
+  "kb": 895,
+  "channels": 1,
+  "set": "drums",
+  "kind": "march",
+  "title": "Generations (Old Guard drum feature)"
+ },
+ "drums_calls": {
+  "pieces": [
+   [
+    "oldguard_09_reveille_variationdrum_callslow_scotchquick_scotchyankee_doodlemont.mp3",
+    0.5,
+    10.15
+   ],
+   [
+    "oldguard_07_soldiers_farewell_fanfaremontezumamarch_of_warwindsor_park.mp3",
+    20.12,
+    29.45
+   ],
+   [
+    "oldguard_15_simple_giftssimple_interludestorm_in_the_valley_from_the_simple_gifts_show.mp3",
+    72.4,
+    86.9
+   ]
+  ],
+  "n": 1582085,
+  "length_s": 35.875,
+  "gain_db": 0.96,
+  "limit_db": 5.09,
+  "lufs_in": -20.96,
+  "lufs_out": -20.9,
+  "tp_out": -1.0,
+  "kb": 292,
+  "channels": 1,
+  "set": "drums",
+  "kind": "march",
+  "title": "Drum calls (the drums alone in three Old Guard pieces)"
+ },
+ "fife_lowlands": {
+  "pieces": [
+   [
+    "oldguard_04_fife_feature_lowlands_awaytrenton_from_the_george_washington_show.mp3",
+    0.71,
+    32.9
+   ]
+  ],
+  "n": 1419679,
+  "length_s": 32.192,
+  "gain_db": 6.59,
+  "limit_db": -0.0,
+  "lufs_in": -26.59,
+  "lufs_out": -19.97,
+  "tp_out": -8.33,
+  "kb": 299,
+  "channels": 1,
+  "set": "fife",
+  "kind": "air",
+  "title": "Lowlands Away (Old Guard fife feature)",
+  "phrases": [
+   14.13,
+   21.75
+  ]
+ },
+ "fife_trenton": {
+  "pieces": [
+   [
+    "oldguard_04_fife_feature_lowlands_awaytrenton_from_the_george_washington_show.mp3",
+    33.55,
+    94.0
+   ]
+  ],
+  "n": 2665926,
+  "length_s": 60.452,
+  "gain_db": 4.89,
+  "limit_db": -0.0,
+  "lufs_in": -24.89,
+  "lufs_out": -19.98,
+  "tp_out": -4.07,
+  "kb": 572,
+  "channels": 1,
+  "set": "fife",
+  "kind": "quick",
+  "title": "Trenton (Old Guard fife feature)"
+ },
+ "fife_hornpipe": {
+  "pieces": [
+   [
+    "oldguard_11_fife_feature_fishers_hornpipe_variationguilderoyred_haired_boy.mp3",
+    0.46,
+    150.47
+   ]
+  ],
+  "n": 6615440,
+  "length_s": 150.01,
+  "gain_db": 5.62,
+  "limit_db": -0.0,
+  "lufs_in": -25.62,
+  "lufs_out": -19.98,
+  "tp_out": -2.0,
+  "kb": 1411,
+  "channels": 1,
+  "set": "fife",
+  "kind": "quick",
+  "title": "Fisher's Hornpipe, Guilderoy, Red Haired Boy (Old Guard fife feature)"
+ },
+ "pipes_scotland": {
+  "pieces": [
+   [
+    "scotland_pipes.ogg",
+    2.46,
+    40.17
+   ]
+  ],
+  "n": 1662970,
+  "length_s": 37.709,
+  "gain_db": 8.53,
+  "limit_db": -0.0,
+  "lufs_in": -28.53,
+  "lufs_out": -20.0,
+  "tp_out": -8.92,
+  "kb": 422,
+  "channels": 1,
+  "set": "pipes",
+  "kind": "march",
+  "title": "Scotland the Brave (generated piper)"
+ },
+ "pipes_grenadiers": {
+  "pieces": [
+   [
+    "grenadiers_pipes.ogg",
+    2.25,
+    43.5
+   ]
+  ],
+  "n": 1819023,
+  "length_s": 41.248,
+  "gain_db": 8.51,
+  "limit_db": -0.0,
+  "lufs_in": -28.51,
+  "lufs_out": -19.99,
+  "tp_out": -8.71,
+  "kb": 481,
+  "channels": 1,
+  "set": "pipes",
+  "kind": "march",
+  "title": "The British Grenadiers (generated piper)"
+ },
+ "pipes_garryowen": {
+  "pieces": [
+   [
+    "garryowen_pipes.ogg",
+    0.4,
+    35.31
+   ]
+  ],
+  "n": 1539514,
+  "length_s": 34.91,
+  "gain_db": 8.53,
+  "limit_db": -0.0,
+  "lufs_in": -28.53,
+  "lufs_out": -20.0,
+  "tp_out": -7.97,
+  "kb": 394,
+  "channels": 1,
+  "set": "pipes",
+  "kind": "quick",
+  "title": "Garry Owen (generated piper)"
+ },
+ "pipes_minstrel": {
+  "pieces": [
+   [
+    "minstrel_pipes.ogg",
+    0.8,
+    59.19
+   ]
+  ],
+  "n": 2574952,
+  "length_s": 58.389,
+  "gain_db": 8.51,
+  "limit_db": -0.0,
+  "lufs_in": -28.51,
+  "lufs_out": -19.98,
+  "tp_out": -9.08,
+  "kb": 659,
+  "channels": 1,
+  "set": "pipes",
+  "kind": "air",
+  "title": "The Minstrel Boy (generated piper)",
+  "phrases": [
+   14.81,
+   17.6,
+   26.47,
+   28.57,
+   36.75,
+   38.98,
+   46.99
+  ]
+ }
+}
