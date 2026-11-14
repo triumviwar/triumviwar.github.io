@@ -258,6 +258,9 @@ var jumps := 0                  # Springer: leaps made (tests, the log)
 var scatter_ready := 0.0        # Great Winder: the game clock when its hopper can SCATTER COGS again (scripts/cog_scatter.gd)
 var litter_t := 0.0             # in a SCATTER COGS litter: s of the slow left (topped up while its feet are in it; host)
 var littered := false           # ...slowed now (streamed online: the cogs round its feet, CogScatter)
+var serp: Dictionary = {}       # a BRASS SERPENT: {"g": its gears head to tail ("s" small, "b" big), "h": heads} (scripts/brass_serpent.gd)
+var serp_slow_t := 0.0          # crossing an enemy Brass Serpent's body: s of the slow left (host)
+var _k_serp := false            # kind == Defs.SERPENT_KIND
 var shots := 0                  # Springer: screws fired (tests)
 var last_shot: Shot = null      # Springer: its last screw in flight (tests, screenshots)
 var last_tip := Vector2.ZERO    # Springer: where its last screw left from (the drill tip, raised at a flyer; tests)
@@ -1224,6 +1227,7 @@ func _kind_flags() -> void:
 	_k_root = BroodNew.ROOTERS.has(kind)
 	nb_mass = 1000.0 if _k_still else BroodNew.packed_mass(kind)
 	_k_cw = CwUnits.hooked(kind)
+	_k_serp = kind == Defs.SERPENT_KIND
 	_k_musket = kind == "musketeer"
 	_k_pistol = (Defs.PISTOL["kinds"] as Array).has(kind)
 	_k_ammo = Defs.AMMO.has(kind)
@@ -1532,6 +1536,8 @@ func take_damage(amount: float, from: Entity, blow := "") -> void:
 			if team == game.human:
 				game.float_text(position + Vector2(0, -44), "a horse fell", Color(1.0, 0.6, 0.5))
 	super.take_damage(amount, from, blow)
+	if _k_serp:
+		BrassSerpent.after_hit(self)       # (its health past the tail gear's share: the gear breaks off)
 	# a Winder hit while carrying a battery: it blows up
 	if kind == "winder" and carrying > 0 and not dead and from != self:
 		_battery_blast()
@@ -1947,6 +1953,8 @@ func setup(g: Game, k: String, t: int, pos: Vector2) -> void:
 		art = Defs.art_for(k, false)      # (the Horseman: the Cuirassier's sprites once armoured; TEMP_ART)
 	if HorseCoat.has_horse(k):
 		coat = HorseCoat.pick()
+	if _k_serp:
+		BrassSerpent.init(self)        # (its first gears, its stats from them, its body laid out behind it)
 
 
 func _ready() -> void:
@@ -3691,6 +3699,11 @@ func _tick_unit(delta: float) -> void:
 		speed *= Ballista.rate(self)        # (each crewman pushing: +10%)
 	elif kind == Defs.GREAT_WINDER_KIND:
 		GreatWinder.tick(self, delta)       # (its winding area: scripts/great_winder.gd)
+	elif _k_serp:
+		BrassSerpent.tick(self, delta)      # (its body follows, what stands on it: scripts/brass_serpent.gd)
+	if serp_slow_t > 0.0:
+		serp_slow_t -= delta
+		speed *= float(Defs.SERPENT["enemy_slow"])      # (crossing an enemy Brass Serpent's body)
 	if kind == "horse" or _k_mounted or (harnessed and _k_harness):     # (horse_working())
 		_horse_upkeep(delta)
 	if not team_horses.is_empty():
@@ -4031,6 +4044,12 @@ func _tick_unit(delta: float) -> void:
 			want = GreatWinder.mend_tick(self, delta)      # (a Great Winder's key arm on a hurt unit)
 		"sweep":
 			want = GreatWinder.sweep_tick(self, delta)     # (a Great Winder's rollers on a wreck)
+		"serp_collect":
+			want = BrassSerpent.collect_tick(self, delta)  # (a Brass Serpent to a Heavy Works' gear store)
+		"serp_link":
+			want = BrassSerpent.link_tick(self, delta)     # (a Brass Serpent crawling to join another: a Hydra)
+		"serp_fetch":
+			want = BrassSerpent.fetch_tick(self, delta)    # (a Winder carrying a gear out to a Brass Serpent)
 		"follow":
 			var fe = order_target
 			if fe == null or not is_instance_valid(fe) or fe.dead or (fe as Unit).aboard != null:
@@ -5238,6 +5257,8 @@ func _strike(e: Entity) -> void:
 			Springer.shoot(self, e, dmg)       # (a spinning screw from the drill tip, ground or air)
 		"pendulum":
 			Pendulum.swing(self, e, dmg)   # (the blade through every enemy in the arc in front: scripts/pendulum.gd)
+		"brass_serpent":
+			BrassSerpent.bite(self, e, dmg)    # (its jaws; a Hydra's other heads bite too: scripts/brass_serpent.gd)
 		"netter":
 			Netter.fire(self, e)           # (the chain net flies; it catches its target where it lands: scripts/netter.gd)
 		"ballista":
@@ -6844,6 +6865,8 @@ func die() -> void:
 		Ballista.leave(self)       # (a crewman shot: the ballista loses his push and crank)
 	_cancel_refit()            # (killed on the way to a refit: the fee goes back)
 	drop_crate()               # (a Winder) the crate in his hands falls where he stood
+	if has_meta("serp_carry"):
+		BrassSerpent.drop_carry(self)      # (a Winder carrying a Brass Serpent's gear: it falls as a wreck)
 	release_horses()           # (his horses stay where they are)
 	if claimed and is_instance_valid(claimed) and claimed.order_target == self:
 		claimed.cmd_stop()     # (a horse) the man coming for it stops
@@ -6884,6 +6907,8 @@ func die() -> void:
 	elif kind == "cannon" or kind == "mortar":
 		_team_bolts()
 	game.on_unit_died(self)
+	if _k_serp:
+		BrassSerpent.on_death(self)        # (its gears fall off as wrecks the Great Winder can sweep)
 	if nb.has("mpaid"):
 		BroodRoot.morph_refund(self)      # (a grub killed on its way to morph: its price paid back)
 	if _k_nb:
@@ -7279,6 +7304,8 @@ func refresh_pose() -> void:
 
 
 func _animate(delta: float) -> void:
+	if _k_serp and not dead:
+		BrassSerpent.animate(self)       # (its body follows the head here too: an online guest and a replay)
 	if ride_n != _ride_seen:
 		# a blow struck in passing (scripts/ride_by.gd): the gallop goes on and a sabre arc sweeps (ride_n is streamed,
 		# so a guest and a replay draw it too)
@@ -8145,6 +8172,12 @@ func _draw_mission_marks(top: float) -> void:
 func _draw_unit() -> void:
 	if dead and CwAir.falling(self):
 		CwAir.draw_fall_shadow(self)
+	if dead and (kind == Defs.SERPENT_GEAR_S or kind == Defs.SERPENT_GEAR_B):
+		BrassSerpent.draw_wreck(self)      # (a gear broken off a Brass Serpent)
+		return
+	if dead and _k_serp:
+		BrassSerpent.draw_wreck(self)      # (its head, fallen)
+		return
 	if dead:
 		# a veteran's body (or a seasoned horse's carcass, or a rider's on one): how much spoils it holds, for the
 		# Brood player to see (and those who watch: VetChevrons.number_shown); its chevron is VetChevrons'
@@ -8156,6 +8189,10 @@ func _draw_unit() -> void:
 		_draw_aim()
 	if selected and kind == Defs.GREAT_WINDER_KIND:
 		GreatWinder.draw_area(self)      # (its winding ring on the ground)
+	if _k_serp:
+		BrassSerpent.draw(self)          # (its gears and head(s), drawn in code for now: docs/art_style_inconsistency.md)
+	if has_meta("serp_carry"):
+		BrassSerpent.draw_carry(self)    # (a Winder carrying a gear out to a Brass Serpent)
 	if _k_band:
 		MarchingBand.draw_ring(self)     # (his ring, or his band's, on the ground, for everyone who sees it)
 	# (a Springer in the air: its shadow stays on the ground under it, a little smaller and darker so the leap reads)

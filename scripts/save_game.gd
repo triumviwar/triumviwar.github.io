@@ -200,7 +200,7 @@ static func capture(game: Game, cfg: Dictionary, replay := false) -> Dictionary:
 			"progress": b.progress, "hp": b.hp, "queue": b.queue, "kits": b.kits.map(func(kt): return _kit_save(kt)), "ar": b.auto_refit, "arm": b.arm_powder, "prod_t": b.prod_t,
 			"auto": b.auto_train, "bat": b.batteries, "v": b.vertical, "vl": b.dir_locked, "gl": b.locked,
 			"seeded": b.seeded, "ghost": b.ghost, "growth": b.growth, "gold_acc": b.gold_acc,
-			"stock": snappedf(b.stock, 0.1), "gb": b.gear_big, "soil": b.soil, "sw": b.soil_warned, "tsn": 1 if b.kind == "clocktower" and Defs.gear_mode else 0, "lode": snappedf(b.lode, 0.01), "lw": b.lode_warned,
+			"stock": snappedf(b.stock, 0.1), "sg": b.serp_gears.duplicate(), "gb": b.gear_big, "soil": b.soil, "sw": b.soil_warned, "tsn": 1 if b.kind == "clocktower" and Defs.gear_mode else 0, "lode": snappedf(b.lode, 0.01), "lw": b.lode_warned,
 			"crate": "ground" if b.crate == "carried" else b.crate,
 			"rally": _v2(b.rally) if b.rally != Vector2.INF else null,
 			"wrally": _v2(b.worker_rally) if b.worker_rally != Vector2.INF else null})
@@ -265,6 +265,10 @@ static func capture(game: Game, cfg: Dictionary, replay := false) -> Dictionary:
 			ud["gw"] = [0, u.auto_repair, u.auto_sweep, snappedf(maxf(u.scatter_ready - game.clock, 0.0), 0.01)]     # (a Great Winder: MEND and SWEEP, scripts/great_winder.gd; the first
 			# slot held its PARTS until 0.14.102, when the sweep began to pay cogs at once: kept as 0 so the layout stays; the
 			# 4th: the s left before its hopper can SCATTER COGS again, scripts/cog_scatter.gd)
+		if u._k_serp:
+			ud["serp"] = BrassSerpent.save(u)        # (a Brass Serpent: its gears, heads and the trail its body lies on)
+		if u.has_meta("serp_carry"):
+			ud["sgc"] = String(u.get_meta("serp_carry"))     # (a Winder carrying a Serpent's gear: back into a store on load)
 		if u.coat != "":
 			ud["coat"] = u.coat
 		# horses: who leads it, where it grazes; riders and guns: their horse's health, a gun's
@@ -521,6 +525,8 @@ static func restore(game: Game, d: Dictionary) -> void:
 			b.auto_train = "horseman"      # (before the Armoury, "cuirassier" was the one horseman)
 		b.batteries = int(bd.get("bat", 0))
 		b.stock = float(bd.get("stock", 0.0))
+		if bd.get("sg") is Array and (bd["sg"] as Array).size() == 2:
+			b.serp_gears = [int(bd["sg"][0]), int(bd["sg"][1])]      # (a Heavy Works' Brass Serpent gears in store)
 		b.gear_big = bool(bd.get("gb", false)) or GearNet.big_only(b.kind)      # (the gear field's connecting gear: scripts/gear.gd)
 		# (an old save's "gs"/"gst", a gear swap under way, are ignored: the swap was removed in 0.24.4)
 		b.vertical = bool(bd.get("v", false))
@@ -616,7 +622,12 @@ static func restore(game: Game, d: Dictionary) -> void:
 		if u.coat != "" and HorseCoat.COATS.has(String(ud.get("coat", ""))):
 			u.coat = String(ud["coat"])      # (older saves: the coat it was just given)
 			HorseCoat.apply(u)
+		if u._k_serp and ud.get("serp") is Dictionary:
+			BrassSerpent.load_state(u, ud["serp"])     # (its gears first: its full health follows from them)
 		u.hp = minf(float(ud["hp"]), u.max_hp)
+		if ud.get("sgc") is String:
+			u.set_meta("serp_carry", String(ud["sgc"]))
+			BrassSerpent.give_back_later(u)
 		u.cross_t = float(ud.get("cross", 0.0))
 		u.wind = float(ud["wind"])
 		u.charge = float(ud["charge"])

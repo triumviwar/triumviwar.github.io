@@ -556,7 +556,8 @@ const ENERGY_KINDS := ["boiler", "charging_pylon", "engine_hall", "capacitor_wor
 
 ## The Clockwork's units in gear mode (the rebuilt faction, docs/clockwork_ground_up.md): every other Clockwork unit is the
 ## old roster, retired from the live game (owner, 2026-10-26), kept in the code for the shelved Line and the tests.
-const CW_NEW_UNITS := ["winder", "clock_soldier", "springer", "cuckoo", "ticking_owl", "pendulum", "netter", "ballista", "great_winder"]
+const CW_NEW_UNITS := ["winder", "clock_soldier", "springer", "cuckoo", "ticking_owl", "pendulum", "netter", "ballista", "great_winder",
+	"brass_serpent", "serpent_gear_s", "serpent_gear_b"]      # (the Brass Serpent and its gears: scripts/brass_serpent.gd)
 ## (the Spring Catapult, art only, was never in this list: the SPRING BALLISTA replaces it, owner 2026-10-27; its art
 ## and tools stay in art/redraws/catapult_* and tools/catapult_guide/)
 
@@ -802,6 +803,43 @@ const GREAT_WINDER_KIND := "great_winder"
 ## 2026-11-01, written down to be tuned (docs/cog_scatter.md).
 const COG_SCATTER := {"range": 192.0, "radius": 80.0, "time": 15.0, "slow": 0.6, "linger": 0.25, "cost": 40,
 	"cooldown": 25.0, "cast": 0.5, "flight": 0.6, "parts": 34, "air": false, "slows_own": false, "ai_min": 4.0}
+
+
+## THE BRASS SERPENT (gear mode's Clockwork, the owner's unit, DECIDED 2026-11-14 20:07-20:09; scripts/brass_serpent.gd,
+## docs/brass_serpent.md): a long serpent of linked brass gears with a biting head, made at the Heavy Works. Its GEARS are its
+## body segments and its stats come from them, worked out again the moment one is added or lost (BrassSerpent.stats_for):
+## few or small gears = FAST, LOW health, QUICK bites of LOW damage; many or big gears = more health and more damage a bite,
+## SLOWER to move and to bite. Two sizes: a SMALL gear (`small`) and a BIG one (`big`, which counts `weight` x a small's
+## in the speed and the bite). The numbers below are Claude's guesses for the owner to tune (docs/brass_serpent.md):
+##   hp        head_hp x heads + every gear's hp
+##   bite      bite_base + bite_per_w x (weight per head) damage, one bite every cd_base + cd_per_w x (weight per head) s
+##   speed     speed_max - speed_per_w x (all the weight), never under speed_min (a HYDRA: from its total gears)
+##   supply    one a head + `supply_small` a small gear + `supply_big` a big one, rounded up (a huge one fills the army)
+## The Heavy Works also BUILDS GEARS (Defs.UNITS serpent_gear_s / serpent_gear_b, "item": they go into its store, at most
+## `store` of both sizes together); a Serpent that comes back to it COLLECTS them (big ones first), or a Winder CARRIES one
+## out to a Serpent in the field (GROW, or a right-click on a Serpent at full health). Damage breaks gears off the TAIL one
+## at a time (its health falls past the tail gear's share): a wounded Serpent is shorter, faster, weaker; a broken gear
+## lies as a Clockwork WRECK the Great Winder can SWEEP. Winders mend it as any construct (only the damage short of the
+## next gear: regrowth is by new gears only). The body is MOVING GEAR GROUND: the side's Clockwork units on it wind up as
+## on the gear field (Game.in_field), and with TURNING GEARS on (Defs.gear_turn) they are carried along it at `carry` of
+## its pace; ENEMY ground units crossing it move at `enemy_slow` of their speed. It never runs down while it has gears.
+## HYDRA: two or more Serpents touching LINK into one body with a head each (at most `max_heads`), the gears pooled, every
+## head biting on its own; UNLINK splits it back, the gears shared out.
+const SERPENT_KIND := "brass_serpent"
+const SERPENT_GEAR_S := "serpent_gear_s"
+const SERPENT_GEAR_B := "serpent_gear_b"
+const SERPENT := {
+	"head_hp": 80.0, "head_cost": 75, "start": ["s", "s", "s", "s", "s", "s"], "max_per_head": 16, "max_heads": 3, "store": 10,
+	"small": {"hp": 25.0, "weight": 1.0, "r": 9.0}, "big": {"hp": 55.0, "weight": 2.2, "r": 13.0},
+	"bite_base": 4.0, "bite_per_w": 1.3, "cd_base": 0.6, "cd_per_w": 0.07,
+	"speed_max": 96.0, "speed_per_w": 3.2, "speed_min": 30.0,
+	"supply_small": 0.5, "supply_big": 1.0,
+	"head_r": 12.0, "gap": 0.85,               # (the head's radius; each gear overlaps the next: centres (r1 + r2) x gap apart)
+	"carry": 0.8, "enemy_slow": 0.75,          # (riders carried at 0.8 of its pace; enemies crossing it at 75% of their speed)
+	"reach": 40.0,                             # (px from its edge: collecting at a Heavy Works, a Winder handing a gear over, linking)
+	"split": 1.25,                             # (a blast or shot catching several gears: x(1 + 0.25 per extra gear), at most `split_max` gears)
+	"split_max": 3,
+}
 
 
 ## The Tension a unit, building or research costs (gear mode's Clockwork: its `tension`; 0 for anything else).
@@ -1173,6 +1211,36 @@ const UNITS := {
 		"requires": "escapement", "no_attack": true, "ground_only": true, "faction": "clockwork",
 		"about": "The Clockwork's winding machine on cog wheels, big and slow, with no weapon. It keeps the army around it WOUND: every construct near it (the ring on the ground) slowly winds up, so they do not run down off the gear ground, and run-down ones wake again. MEND: with its key arm it mends hurt Clockwork units one at a time, faster than a Winder (it costs cogs, like a repair). SWEEP: standing idle, it rolls to the Clockwork WRECKS near it (yours, and the enemy's against the Clockwork), sweeps them up with its rollers and turns them into COGS for you (30% of the unit's cog price), then rolls back; it keeps away from wrecks with enemies near them. Both are automatic; press them to switch them off. SCATTER COGS: its hopper flings cogs, bolts and springs onto a spot, and enemies on the ground in the litter move 40% slower for 15 s. Made at the Heavy Works (once an Escapement works). Costs Tension.",
 	},
+	# THE BRASS SERPENT (gear mode; Defs.SERPENT, scripts/brass_serpent.gd, docs/brass_serpent.md), the owner's unit
+	# (2026-11-14): the numbers here are those of a new one with its 6 small gears (Defs.SERPENT "start"); every Serpent keeps
+	# its own copy of this entry, its hp, bite, bite rate, speed and supply worked out from its gears (BrassSerpent.apply).
+	# Its price: 75 cogs + 25 Tension for the head and 15 a small gear. Guesses (design_principles 1, 2): a fast, light biter
+	# when small (230 hp, 11.8 a bite every 1.02 s, speed 77, 4 supply: two Clock Soldiers' cogs for a little more health and
+	# about their bite), a slow wall of brass when big (16 big gears: 960 hp, 50 a bite every 3.1 s, speed 30, 17 supply); a
+	# long body is a big target for round shot, shells and canister (Defs.SERPENT "split"); "armored".
+	"brass_serpent": {
+		"tags": ["armored"],
+		"name": "Brass Serpent", "hp": 230, "armor": 1, "speed": 77, "cost": 165, "tension": 25, "time": 30.0, "supply": 4,
+		"sight": 8, "range": 24, "damage": 12, "cooldown": 1.0, "aim": 0.25, "radius": 12, "from": "heavy_works",
+		"requires": "escapement", "ground_only": true, "faction": "clockwork",
+		"about": "A long serpent of linked brass gears with a biting head. Its gears are its body: few or small gears make it fast, with quick, light bites and little health; many or big gears make it tougher and its bites heavier, but slower. Damage breaks gears off its tail (shorter, faster, weaker; the broken gear lies as a wreck a Great Winder can sweep). The Heavy Works builds gears: COLLECT GEARS sends it back to pick them up, GROW has a Winder carry one out to it. Your Clockwork units standing on its body wind up as on the gear field; enemies crossing it are slowed. LINK two or more Serpents into a HYDRA (a head each, the gears pooled); UNLINK splits it. Made at the Heavy Works (once an Escapement works). Costs Tension.",
+	},
+	# the Serpent's GEARS, built at the Heavy Works into its store (items, not units: "item"; BrassSerpent.item_done); a gear
+	# broken off a Serpent lies as a wreck of this kind (the Great Winder's SWEEP gives back its share of the cogs).
+	"serpent_gear_s": {
+		"tags": ["armored"], "item": true,
+		"name": "Small Gear", "hp": 25, "armor": 0, "speed": 0, "cost": 15, "tension": 0, "time": 6.0, "supply": 0,
+		"sight": 1, "range": 0, "damage": 0, "cooldown": 1.0, "radius": 9, "from": "heavy_works",
+		"requires": "escapement", "no_attack": true, "ground_only": true, "faction": "clockwork",
+		"about": "A small brass gear for a Brass Serpent: +25 health, and it keeps the Serpent quick. Stored at the Heavy Works until a Serpent collects it or a Winder carries it out.",
+	},
+	"serpent_gear_b": {
+		"tags": ["armored"], "item": true,
+		"name": "Big Gear", "hp": 55, "armor": 0, "speed": 0, "cost": 35, "tension": 10, "time": 10.0, "supply": 0,
+		"sight": 1, "range": 0, "damage": 0, "cooldown": 1.0, "radius": 13, "from": "heavy_works",
+		"requires": "escapement", "no_attack": true, "ground_only": true, "faction": "clockwork",
+		"about": "A big brass gear for a Brass Serpent: +55 health and heavier bites, but the Serpent gets slower. Stored at the Heavy Works until a Serpent collects it or a Winder carries it out. Costs Tension.",
+	},
 	"windup_soldier": {
 		"tags": ["light"],
 		"name": "Wind-up Soldiers", "hp": 55, "armor": 1, "speed": 66, "cost": 75, "time": 13.0, "supply": 1, "spawn": 3,
@@ -1507,8 +1575,8 @@ const BUILDINGS := {
 	# Guesses: a little more than the Light Works (175 cogs, 45 s), the Escapement's health.
 	"heavy_works": {
 		"name": "Heavy Works", "hp": 1100, "armor": 2, "cost": 175, "time": 45.0, "size": Vector2i(3, 3),
-		"supply": 0, "sight": 7, "trains": ["pendulum", "ballista", "great_winder"], "requires": "escapement", "faction": "clockwork",
-		"about": "The yard of the heavy machines: under its gantry crane it assembles Pendulums, Spring Ballistas and Great Winders, and you can watch each one rise in the bay. It sits on a BIG gear only (slow and strong: the heavy torque), and everything it makes costs Tension, so it needs a Mainspring anywhere in its gear network (Tension flows through every meshed ring), else it stands idle (NEEDS MAINSPRING). Needs a working Escapement.",
+		"supply": 0, "sight": 7, "trains": ["pendulum", "ballista", "great_winder", "brass_serpent", "serpent_gear_s", "serpent_gear_b"], "requires": "escapement", "faction": "clockwork",
+		"about": "The yard of the heavy machines: under its gantry crane it assembles Pendulums, Spring Ballistas, Great Winders and Brass Serpents (and builds the Serpents' gears into its store), and you can watch each one rise in the bay. It sits on a BIG gear only (slow and strong: the heavy torque), and everything it makes costs Tension, so it needs a Mainspring anywhere in its gear network (Tension flows through every meshed ring), else it stands idle (NEEDS MAINSPRING). Needs a working Escapement.",
 	},
 	# TIER 2 (gear mode): the tech building, like a Cybernetics Core. A Tension user (Defs.TENSION_USERS): it works only while
 	# its ring meshes with a Mainspring's. Numbers are guesses: the Light Works' price and health.
@@ -1802,6 +1870,12 @@ const RIDERS := {"cuirassier": "dismounted", "dragoon": "musketeer"}
 ## dismounted_armoured, missionary_mounted) and tools/import_horse_breeder.py. Still TEMPORARY: the portraits of
 ## the new units and the Shot Pouch's and horse commands' icons.
 const TEMP_ART := {
+	# THE BRASS SERPENT (scripts/brass_serpent.gd): drawn in code from the gear field's ring art until its own sheets come
+	# (docs/brass_serpent.md has the ChatGPT prompts); the Great Winder's sheet only stands in for the frame tables (its sprite
+	# is hidden: BrassSerpent.draw), the card icons are its own (assets/icons/brass_serpent.png ...).
+	"brass_serpent": {"art": "great_winder"},
+	"serpent_gear_s": {"art": "great_winder"},
+	"serpent_gear_b": {"art": "great_winder"},
 	"horse": {"art": "horse", "portrait": "horse"},
 	"messenger": {"art": "messenger", "portrait": "messenger"},
 	"dragoon": {"art": "dragoon", "armoured": "dragoon_armoured", "portrait": "dragoon", "portrait_armoured": "dragoon_armoured"},
@@ -2429,6 +2503,9 @@ const SHORT := {
 	"netter": "Nets one enemy for 4 s: it can't move or use abilities.",
 	"ballista": "Bolt thrower: its screw goes through the target into those behind.",
 	"great_winder": "Winds and mends troops near it; turns wrecks into cogs; SCATTER COGS slows foes.",
+	"brass_serpent": "A serpent of gears: more gears, tougher and harder bites, slower. Links into a HYDRA.",
+	"serpent_gear_s": "A small gear for a Brass Serpent: health, and it stays quick.",
+	"serpent_gear_b": "A big gear for a Brass Serpent: more health and bite, but slower.",
 	# Crown buildings
 	"town_hall": "Trains Labourers and haulers. Allows 2 Farms and 1 Powder Mill.",
 	"cottage": "Houses 8 more supply. The first unlocks the Barracks and palisade.",
@@ -2444,7 +2521,7 @@ const SHORT := {
 	# Clockwork buildings
 	"clocktower": "Builds Winders and takes in cogs; its gear ring drives the field.",
 	"movement_works": "Makes Clock Soldiers; Springers and Netters with a Mainspring.",
-	"heavy_works": "Makes Pendulums, Spring Ballistas and Great Winders.",
+	"heavy_works": "Makes Pendulums, Ballistas, Great Winders, Brass Serpents and their gears.",
 	"escapement": "The tech building: unlocks the Springer, researches HIGH LEAP.",
 	"cuckoo_house": "Makes Swifts and researches TICKING OWL.",
 	"regulator": "10 more supply for the machine.",

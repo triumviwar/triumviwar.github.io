@@ -19,14 +19,14 @@ const UNIT_PROPS := ["order", "phase", "work", "carrying", "mode", "tesla_mode",
 	"topter_bat", "courier", "supplying", "auto_repair", "hold_fire", "pistol", "bayonet", "pouch", "carry_empty",
 	"spin", "overclock_t", "cranked_t", "self_wind_t", "tongue_stage", "tesla_t", "haul_t", "auto_work",
 	"owl_t", "net_t", "arm", "shield_up", "shield_t", "loaded", "auto_sweep", "ride_n", "nb", "stun_end", "moult_t", "band", "jump",
-	"scatter_ready", "littered"]      # (a Great Winder's SCATTER COGS: the clock its hopper is full again (the card's countdown); a unit slowed in the litter (the cogs round its feet): scripts/cog_scatter.gd)       # (band: the Marching Band's state, scripts/marching_band.gd)       # (stun_end: the clock a real stun's stars go, scripts/stun_mark.gd; nb: the Brood's own state, scripts/brood_new.gd; (a Clock Soldier's SHIELD FORWARD and its switch; a Swift's morph under way: its clock and bar; a unit caught in a Netter's net; the
+	"scatter_ready", "littered", "serp"]      # (serp: a Brass Serpent's gears and heads, scripts/brass_serpent.gd)      # (a Great Winder's SCATTER COGS: the clock its hopper is full again (the card's countdown); a unit slowed in the litter (the cogs round its feet): scripts/cog_scatter.gd)       # (band: the Marching Band's state, scripts/marching_band.gd)       # (stun_end: the clock a real stun's stars go, scripts/stun_mark.gd; nb: the Brood's own state, scripts/brood_new.gd; (a Clock Soldier's SHIELD FORWARD and its switch; a Swift's morph under way: its clock and bar; a unit caught in a Netter's net; the
 	# launcher a Springer fires now, so a guest plays that arm's strip; a Spring Ballista's bolt in or not: loaded or fired, its crew
 	# cranking; jump: a Springer's leap, so a guest plays its crouch, arc and landing (NetPuppet.set_jump); a Great Winder's SWEEP autocast, for its card; ride_n: a Horseman's blows struck in passing, so a
 	# guest draws the sabre arc: scripts/ride_by.gd)
 const UNIT_REFS := ["target", "home_mine", "leader", "aboard", "order_target", "crew_of"]      # (crew_of: a Ballista's crewman)
 const BLD_PROPS := ["built", "progress", "ghost", "queue", "prod_t", "growth",
 	"soil", "lode", "batteries", "auto_train", "auto_refit", "gate_open", "locked", "vertical", "seeded",
-	"crate", "unfold_t", "max_hp", "rally", "worker_rally", "stock", "gear_big", "arm_powder"]
+	"crate", "unfold_t", "max_hp", "rally", "worker_rally", "stock", "gear_big", "arm_powder", "serp_gears"]
 const BLD_REFS := ["rally_target", "worker_rally_target"]
 const U_FIXED := 6      # id, kind, team, position, hp, facing angle
 const B_FIXED := 6      # id, kind, team, cell, hp, (spare)
@@ -59,7 +59,7 @@ static func unit_vals(u: Unit) -> Array:
 		BroodNew.unit_save(u) if u._k_nb else u.nb, snappedf(u.stun_end, 0.01), snappedf(u.moult_t, 0.01),
 		MarchingBand.save(u) if MarchingBand.is_musician(u) else u.band,
 		u.jump if u.jump.is_empty() else u.jump.duplicate(),
-		snappedf(u.scatter_ready, 0.01), u.littered]
+		snappedf(u.scatter_ready, 0.01), u.littered, BrassSerpent.net_val(u)]
 
 
 ## The building's values, in BLD_PROPS order.
@@ -67,7 +67,7 @@ static func bld_vals(b: Building) -> Array:
 	return [b.built, snappedf(b.progress, 0.01), b.ghost, b.queue, snappedf(b.prod_t, 0.01),
 		snappedf(b.growth, 0.01), snappedf(b.soil, 0.01), snappedf(b.lode, 0.01), b.batteries, b.auto_train, b.auto_refit, b.gate_open, b.locked, b.vertical, b.seeded,
 		b.crate, snappedf(b.unfold_t, 0.01), snappedf(b.max_hp, 0.01), b.rally, b.worker_rally, snappedf(b.stock, 0.01),
-		b.gear_big, b.arm_powder]
+		b.gear_big, b.arm_powder, b.serp_gears.duplicate()]
 
 
 ## Do the direct readers and writers match the lists? "" if so, else what differs (tools/bench_net_snapshot.gd and
@@ -649,6 +649,8 @@ static func _set_bld_vals(b: Building, row: Array, o: int) -> void:
 	b.stock = row[o + 20]
 	b.gear_big = row[o + 21]
 	b.arm_powder = row[o + 22]
+	if row.size() > o + 23 and row[o + 23] is Array:
+		b.serp_gears = (row[o + 23] as Array).duplicate()      # (a Heavy Works' Brass Serpent gears in store)
 
 
 static func _building_refs(s: NetSession, b: Building, row: Array) -> void:
@@ -801,6 +803,8 @@ static func _set_unit_vals(u: Unit, row: Array, o: int) -> void:
 		u.littered = bool(row[o + 51])
 		if u.littered:
 			CogScatter.mark(u.game, u)                 # (slowed in a litter: the cogs round its feet)
+	if row.size() > o + 52:
+		BrassSerpent.net_load(u, row[o + 52])          # (a Brass Serpent's gears and heads: its stats follow)
 
 
 static func _unit_refs(s: NetSession, u: Unit, row: Array) -> void:

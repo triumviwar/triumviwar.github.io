@@ -296,9 +296,14 @@ static func line_shot(u: Unit, aim: Vector2, dmg: float, first: Entity) -> Array
 	for o in g.units_near(mid, u.position.distance_to(to) * 0.5 + 40.0):
 		if o.dead or o.off_field or o.is_air() or o.untouchable() or not g.hostile(o.team, u.team) or o == first:
 			continue
+		if o._k_serp:
+			continue          # (a Brass Serpent: by its body, below)
 		var q := Geometry2D.get_closest_point_to_segment(o.position, u.position, to)
 		if q.distance_to(o.position) <= o.radius + w and (q - u.position).dot(dir) > 0.0:
 			found.append([(q - u.position).dot(dir), o])
+	for sh in BrassSerpent.line(g, u.position, to, w, u.team, u):
+		if sh[0] != first:
+			found.append([float(sh[1]), sh[0]])      # (a Brass Serpent: where the bolt meets its body first)
 	for bd in g.buildings:
 		if bd.dead or not g.hostile(bd.team, u.team) or bd == first:
 			continue
