@@ -312,7 +312,7 @@ func _run() -> void:
 	await process_frame
 	var bs := BandSound.need(g)
 	check("one BandSound a match", BandSound.need(g) == bs)
-	check("every part's file of every tune is listed in one place and exists", BandSound.TUNES.keys().all(func(t) -> bool: return BandSound.PARTS.keys().all(func(k) -> bool: return [false, true].all(func(so) -> bool: return ResourceLoader.exists("res://assets/audio/%s.ogg" % BandSound.file(t, k, so))))))
+	check("every tune's file is listed in one place and exists", BandSound.TUNES.keys().all(func(t) -> bool: return ResourceLoader.exists("res://assets/audio/%s.ogg" % BandSound.file(t))))
 	var sd := man(g, "band", at + Vector2(0, 0))
 	var sf := man(g, "band_fifer", at + Vector2(24, 0))
 	var sp := man(g, "band_piper", at + Vector2(-24, 0))
@@ -329,11 +329,11 @@ func _run() -> void:
 				lone_on += 1
 			else:
 				band_on += 1
-	check("a band near the middle: the BAND is heard (its three parts, in step), no lone musician", band_on == 3 and lone_on == 0 and bs.heard.size() == 3, "%d band, %d lone %s" % [band_on, lone_on, str(lv)])
-	check("a band's parts on the shared clock (no offset)", BandSound.PARTS.keys().all(func(k) -> bool: return is_equal_approx(float(bs.offsets()["B/%s/a" % k]), 0.0)))
+	check("a band near the middle: the BAND is heard (one full recording for its three men), no lone musician", band_on == 1 and lone_on == 0 and bs.heard.size() == 3, "%d band, %d lone %s" % [band_on, lone_on, str(lv)])
+	check("the band on the shared clock (no offset)", is_equal_approx(float(bs.offsets()["B"]), 0.0))
 	var tn := bs.tunes_now()
 	var band_tune := bs.band_list().tune
-	check("... all three on the band's playlist, the same tune", ["drums", "fife", "pipes"].all(func(k) -> bool: return String(tn["B/%s/a" % k]) == band_tune), str(tn))
+	check("... on the band's playlist, a full band recording", String(tn["B"]) == band_tune and BandSound.ORDER["band"].has(band_tune), str(tn))
 	# THE GAME MUSIC GIVES WAY TO THE BAND (band-music-v2): ducked strongly while the band is centred, smoothly
 	if AudioServer.get_bus_index("Music") < 0:          # (the Music node makes the bus in a real game)
 		AudioServer.add_bus()
@@ -352,8 +352,8 @@ func _run() -> void:
 	check("... more during a solo (%.0f dB)" % BandSound.DUCK_SOLO_DB, absf(dn.y - BandSound.DUCK_SOLO_DB) < 0.8, str(dn))
 	var during := bs.levels()
 	tn = bs.tunes_now()
-	check("a SOLO does not change the tune: the fife's solo part of the tune playing comes forward", bs.band_list().tune == tune_before and String(tn["B/fife/b"]) == tune_before and float(during["B/fife/b"]) > float(before["B/fife/a"]) + 4.0 and float(during["B/fife/a"]) < -79.0, "%s -> %s, %s" % [str(before), str(during), str(tn)])
-	check("... the others go on under it (the drums' and the pipes' background parts still heard)", float(during["B/drums/a"]) > -30.0 and float(during["B/pipes/a"]) > -30.0, str(during))
+	check("a SOLO does not change the tune: the band's recording goes on, %.0f dB louder (a mix: no part can come forward alone)" % BandSound.SOLO_DB, bs.band_list().tune == tune_before and String(tn["B"]) == tune_before and absf(float(during["B"]) - float(before["B"]) - BandSound.SOLO_DB) < 0.5, "%s -> %s, %s" % [str(before), str(during), str(tn)])
+	check("... still one recording (no lone part starts for the soloist)", not during.keys().any(func(k) -> bool: return String(k).begins_with("L") and float(during[k]) > -79.0), str(during))
 	sf.band["se"] = 0.0
 	sf.band["cd"] = 0.0
 	cam.position = at + Vector2(360, 0)
@@ -383,7 +383,7 @@ func _run() -> void:
 	check("no band: the nearest lone musicians are heard, each his own part (at most %d)" % BandSound.LONE_MAX, band_on == 0 and lone_on >= 2 and lone_on <= BandSound.LONE_MAX, "%d band, %d lone" % [band_on, lone_on])
 	var offs := {}
 	for i in BandSound.LONE_MAX:
-		var k := "L%d/a" % i
+		var k := "L%d" % i
 		if float(lv.get(k, -80.0)) > -79.0:
 			offs[k] = float(bs.offsets()[k])
 	var distinct := {}
@@ -411,9 +411,9 @@ func _run() -> void:
 	tn = bs.tunes_now()
 	var dk := ""
 	for i in BandSound.LONE_MAX:
-		if float(lv.get("L%d/a" % i, -80.0)) > -79.0:
-			dk = "L%d/a" % i
-	check("a LONE DRUMMER is heard: his background beating, at the background level, on a tune of the list", dk != "" and absf(float(lv[dk]) - BandSound.QUIET_DB) < 0.5 and BandSound.ORDER.has(String(tn[dk])) and ResourceLoader.exists("res://assets/audio/%s.ogg" % BandSound.file(String(tn[dk]), "drums", false)), "%s %s" % [str(lv), str(tn)])
+		if float(lv.get("L%d" % i, -80.0)) > -79.0:
+			dk = "L%d" % i
+	check("a LONE DRUMMER is heard: a drums-only recording of his own list, at the lone level", dk != "" and absf(float(lv[dk]) - BandSound.LONE_DB) < 0.5 and BandSound.ORDER["drums"].has(String(tn[dk])) and ResourceLoader.exists("res://assets/audio/%s.ogg" % BandSound.file(String(tn[dk]))), "%s %s" % [str(lv), str(tn)])
 	g.camera = cam0
 	cam.queue_free()
 

@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.37.13", "items": [
+		"THE BAND PLAYS REAL RECORDINGS: public-domain recordings by US military bands replace the generated music. A full band (Drummer, Fifer and Piper together) plays a playlist of real pipe band tunes (Scotland the Brave, The Minstrel Boy, Bonnie Dundee, Wearing of the Green, The Mist Covered Mountains, by the US Air Force Reserve Pipe Band) and fife and drum tunes (by the US Army Old Guard Fife and Drum Corps), never the same one twice in a row. A lone Drummer plays real drum features and a lone Fifer real fife features; a lone Piper keeps his old part for now.",
+		"A SOLO now makes the band louder (and the game music quieter) without restarting the tune.",
+	]},
 	{"v": "0.37.12", "items": [
 		"DRAGOONS KEEP THEIR HORSES: a Dragoon (or Armoured Dragoon) who got off to shoot now always gets back in the saddle when you give a MOVE, even if he was already walking back to his horse, and he walks back to his own horse wherever it stands nearby. While he fights on foot his horse follows a little behind him, so the fight can't carry him away from it. Only your own DISMOUNT leaves him on foot as a Musketeer with the horse free.",
 	]},

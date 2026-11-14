@@ -1,6 +1,143 @@
-# The Marching Band's music (jobs band-music 0.37.1, band-music-v2 0.37.4 and band-repertoire)
+# The Marching Band's music (jobs band-music 0.37.1, band-music-v2 0.37.4, band-repertoire and band-real)
 
-## Repertoire and playlist (job band-repertoire)
+## Real recordings (band-real)
+
+The owner's playtest of 0.37.9 (2026-11-14 19:17): the generated band "unfortunately doesn't sound good". He gathered
+real public-domain recordings (art/audio_src/band_real/, SOURCES.txt) and this job rebuilt the band's sound around them.
+The game rules are unchanged (docs/band_individuals.md): a Drummer, a Fifer and a Piper in each other's rings FORM A
+BAND, in step; lone musicians are out of step; SOLO; the game music ducks under a band (BandSound.duck_for).
+
+### What plays when (scripts/band_sound.gd)
+
+A real recording is a mix: its parts can't be split. So:
+
+- **A full band** (all three in step) plays FULL recordings from one playlist, pipe band tunes and fife-and-drum corps
+  tunes in turn (ORDER["band"]: Scotland the Brave, Brandywine Quickstep, the Minstrel Boy set, Soldiers' Farewell /
+  March of War, the Bonnie Dundee set, the Scotch / Yankee Doodle medley, the Wearing of the Green set, Paddy on the
+  Handcar, The Mist Covered Mountains). Every band has all three instruments, so both kinds are in the one list,
+  alternating; never the same tune twice in a row. All bands share that playlist (one clock), as before.
+- **A lone Drummer** plays the drums-only recordings (ORDER["drums"]): The Rage of Cornwallis, Drum calls (three
+  drum-only passages cut from other Old Guard pieces, joined with 1.2 s pauses), Generations.
+- **A lone Fifer** plays the Old Guard's fife features (ORDER["fife"]): Lowlands Away (a slow air), Trenton, Fisher's
+  Hornpipe / Guilderoy / Red Haired Boy.
+- **A lone Piper**: NO recording has a solo pipe passage long enough. Measured: every pipe band track opens with the
+  drums' roll, the pipes strike in with the drums, and the cleanest pipe-only stretches (no snare between the pipe
+  harmonics) last 1-2 s. So the lone Piper keeps the OLD generated piper part (Scotland the Brave, The British
+  Grenadiers, Garry Owen, The Minstrel Boy; the 0.37.9 files moved to art/audio_src/band/generated_piper/, re-levelled
+  and trimmed of their roll-off silence). Only the lone Piper uses them.
+- **Two musicians** (not a full band) and lone musicians of different instruments near each other: each plays his own
+  instrument's list on his own playlist (started on a tune by his number, a little into it: STEP_OFF), so they stay
+  out of step, as before; at most LONE_MAX (3) heard.
+- **Between tunes** a pause of GAP (2 s), like a real band's. FIGHTING skips the slow airs (The Mist Covered
+  Mountains, Lowlands Away, the piper's Minstrel Boy); one playing when fighting starts fades out over CUT_FADE (1.2 s)
+  at its next phrase end (TUNES "phrases": the quietest moment in each ~9 s window, found by the script). Standing
+  IDLE 30 s, a slow air may come next.
+- **A SOLO**: a part of a mix can't come forward, so the heard music (the band's recording, or the lone soloist's own)
+  gets SOLO_DB (+6 dB, the owner can tune it) louder for the solo's length and the game music goes to DUCK_SOLO_DB
+  (-16 dB); the playlist goes on (no restart), then both come back smoothly.
+- **Levels**: every file -20 LUFS; a band plays at BAND_DB -6 dB, a lone musician at LONE_DB -9 dB (one man is quieter
+  than a corps); the game music's duck as before (-12 dB centred, -16 during a solo).
+
+### The cuts (tools/audio/master_band_real.py; the numbers in tools/audio/band_real.json)
+
+Each cut: the source's times below (after trimming silence), a 10 ms fade-in, a fade-out only where the cut ends
+inside the music (the drum calls 0.25 s, Lowlands Away 0.3 s; whole pieces keep their own ending), a 35 Hz high-pass,
+FOLDED TO MONO (a band in the game is one point; half the size), gained to -20 LUFS with at most 6 dB of look-ahead
+true-peak limiting (the Old Guard's drums are peaky: Soldiers' Farewell got 5.6 dB, the drum calls 5.1, the Yankee
+Doodle medley 4.5, The Rage of Cornwallis 4.0; the pipe bands none), true peak under -1 dBTP after Vorbis -q:a 4.
+All 19 land within -19.97 to -20.9 LUFS.
+
+| File (assets/audio/band/) | List | Kind | What | Source and times | Length |
+|---|---|---|---|---|---|
+| `band_scotland` | band | march | Scotland the Brave (USAF Reserve Pipe Band) | scotland_the_brave_usafr_pipe_band.mp3 0.41-91.58 s | 91.2 s |
+| `band_brandywine` | band | quick | Brandywine Quickstep (Old Guard Fife and Drum Corps) | oldguard_10_brandywine_quickstep_from_the_minstrel_boy_show.mp3 0.45-110.66 s | 110.2 s |
+| `band_minstrel` | band | march | Let Erin Remember, High Road to Gairloch, The Minstrel Boy (USAF Reserve Pipe Band) | let_erin_remember_high_road_to_gairloch_minstrel_boy_usafr_pipe_band.mp3 0.45-128.44 s | 128.0 s |
+| `band_farewell` | band | march | Soldiers' Farewell, Fanfare, Montezuma, March of War, Windsor Park (Old Guard) | oldguard_07_soldiers_farewell_fanfaremontezumamarch_of_warwindsor_park.mp3 0.51-134.84 s | 134.3 s |
+| `band_dundee` | band | march | The Dream Valley of Glendaruel, The Old Rustic Bridge, Bonnie Dundee, Campbell's Farewell (USAFR) | dream_valley_old_rustic_bridge_bonnie_dundee_campbells_farewell_usafr_pipe_band.mp3 0.39-202.40 s | 202.0 s |
+| `band_yankee` | band | march | Reveille, Drum Calls, Slow and Quick Scotch, Yankee Doodle (Old Guard) | oldguard_09_reveille_variationdrum_callslow_scotchquick_scotchyankee_doodlemont.mp3 0.50-137.59 s | 137.1 s |
+| `band_green` | band | march | God Save Ireland, The Boy from Killane, Wearing of the Green (USAF Reserve Pipe Band) | god_save_ireland_boy_from_killane_wearing_of_the_green_usafr_pipe_band.mp3 0.40-130.33 s | 129.9 s |
+| `band_paddy` | band | quick | Paddy on the Handcar (Old Guard Fife and Drum Corps) | oldguard_12_paddy_on_the_handcar_from_the_minstrel_boy_show.mp3 0.49-49.48 s | 49.0 s |
+| `band_mist` | band | air | The Mist Covered Mountains (USAF Reserve Pipe Band) | mist_covered_mountains_usafr_pipe_band.mp3 0.40-125.46 s | 125.1 s |
+| `drums_cornwallis` | drums | march | The Rage of Cornwallis (Old Guard drum feature) | oldguard_06_drum_feature_the_rage_of_cornwallis_from_the_george_washington_show.mp3 0.00-115.66 s | 115.7 s |
+| `drums_generations` | drums | march | Generations (Old Guard drum feature) | oldguard_16_drum_feature_generations_from_the_simple_gifts_show.mp3 0.00-103.13 s | 103.1 s |
+| `drums_calls` | drums | march | Drum calls (the drums alone in three Old Guard pieces) | oldguard_09_reveille_variationdrum_callslow_scotchquick_scotchyankee_doodlemont.mp3 0.50-10.15 s; oldguard_07_soldiers_farewell_fanfaremontezumamarch_of_warwindsor_park.mp3 20.12-29.45 s; oldguard_15_simple_giftssimple_interludestorm_in_the_valley_from_the_simple_gifts_show.mp3 72.40-86.90 s | 35.9 s |
+| `fife_lowlands` | fife | air | Lowlands Away (Old Guard fife feature) | oldguard_04_fife_feature_lowlands_awaytrenton_from_the_george_washington_show.mp3 0.71-32.90 s | 32.2 s |
+| `fife_trenton` | fife | quick | Trenton (Old Guard fife feature) | oldguard_04_fife_feature_lowlands_awaytrenton_from_the_george_washington_show.mp3 33.55-94.00 s | 60.5 s |
+| `fife_hornpipe` | fife | quick | Fisher's Hornpipe, Guilderoy, Red Haired Boy (Old Guard fife feature) | oldguard_11_fife_feature_fishers_hornpipe_variationguilderoyred_haired_boy.mp3 0.46-150.47 s | 150.0 s |
+| `pipes_scotland` | pipes | march | Scotland the Brave (generated piper) | scotland_pipes.ogg 2.46-40.17 s | 37.7 s |
+| `pipes_grenadiers` | pipes | march | The British Grenadiers (generated piper) | grenadiers_pipes.ogg 2.25-43.50 s | 41.2 s |
+| `pipes_garryowen` | pipes | quick | Garry Owen (generated piper) | garryowen_pipes.ogg 0.40-35.31 s | 34.9 s |
+| `pipes_minstrel` | pipes | air | The Minstrel Boy (generated piper) | minstrel_pipes.ogg 0.80-59.19 s | 58.4 s |
+
+**Left out**: the US Army Field Band's Garryowen, the USMC Band's Scotland the Brave and the Royal Regiment of Canada
+Band's British Grenadiers are CONCERT / brass bands (brass and low reeds fill the whole spectrum), not pipes, fifes and
+drums; the Canadian file's public-domain reason could not be checked from here either (the Commons page could not be
+fetched), so it is not used in any case. The second USAF Scotland the Brave (1995) is a second take of the same tune
+(not used: two Scotlands could come one after the other). The Old Guard's Three Little Drummers (its fifes join after
+10 s, then stops and starts), Simple Gifts / Storm in the Valley (only its drum-only passage, in the drum calls) and the
+Eraf/Naf fanfare are not in the lists. The owner's earlier note: Yankee Doodle and the Revolution's tunes fit the Crown
+badly (it is the rebels' tune): the Scotch / Yankee Doodle medley is in the band's list because this job's brief named
+it; drop `band_yankee` from ORDER["band"] if it jars.
+
+### How it was measured
+
+No one listened (a cloud job): every source was measured (tools/music/study_audio.py-style loudness; spectrograms;
+a TONALITY measure, the share of the 700-4500 Hz energy in its strongest 2% of bins, per half second: drums alone
+0.12-0.2, any fife 0.4-1.0, which found the drum-only passages; and the noise floor between the pipe harmonics at
+5-10 kHz, which found no pipe-only passage longer than 2 s). The cut points of the drum calls and of Lowlands Away /
+Trenton are at those boundaries (Lowlands Away ends in a 0.4 s silence at 32.9 s). Listen to the files before merging:
+if a cut is off by a beat it is one number in CUTS.
+
+### Size
+
+assets/audio/band/ was 10.0 MB (60 generated files), now 17.0 MB (19 files, mono): the web art pack grows ~7 MB.
+In stereo it would be ~27 MB.
+
+### Checked
+
+- tools/test_band_music.gd: every file exists at its exact length; four lists, every tune in its own; the band's list
+  never three of one kind running; per list: never the same tune twice, no slow air while fighting, every tune comes
+  round, idle brings the air; the pause between tunes; the slow air cut at a phrase end and faded; with the movie
+  writer mixing: every file begins with sound and ends quietly, all within 6 dB of each other mid-tune, players in step.
+- tools/test_marching_band.gd (the sound part): a band near the middle = ONE recording heard (its three men), on the
+  band's clock and playlist; the duck; a SOLO keeps the tune and raises it SOLO_DB; lone musicians each their own
+  file, out of step, at most 3; a lone Drummer plays a drums-only recording at LONE_DB.
+- Both pass (test_band_music with the movie writer mixing: 87 checks; test_marching_band: 0 failures); the game boots
+  headless with 0 SCRIPT ERROR. tools/test_marching_band_match.gd fails 3 checks (the Crown computer never trains a
+  Drummer in its match) with the OLD band_sound.gd too: an AI matter, not the sound; left for the merger.
+
+### The listening files (docs/band_sound/, mp3; LIST.txt has one line each)
+
+| File | What you hear |
+|---|---|
+| `01_lone_drummer` | the end of his drum calls, the pause, the start of Generations (-18 LUFS) |
+| `01_lone_fifer` | the end of Lowlands Away, the pause, the start of Trenton (-18 LUFS) |
+| `01_lone_piper` | the old generated piper part (Scotland the Brave) he keeps (-18 LUFS) |
+| `02_full_band_two_changes` | the end of Wearing of the Green, the pause, all of Paddy on the Handcar, the pause, the start of The Mist Covered Mountains (-18 LUFS) |
+| `03_full_band_over_battle_music` | Scotland the Brave over the Crown's Musketeer Charge, the band centred, the music ducked 12 dB: the game's mix at its own level |
+| `04_solo_over_battle_music` | the same with a SOLO from 15 s to 30 s: the band +6 dB, the music -16 dB, then back |
+
+To remake: `python3 tools/audio/master_band_real.py --json tools/audio/band_real.json` (then copy the "n" and
+"phrases" numbers into BandSound.TUNES) and `python3 tools/audio/band_real_listen.py`. Needs ffmpeg, numpy, scipy,
+pyloudnorm. tools/audio/make_band_music.py (the generated band) is kept but no longer writes files the game plays.
+
+### Credits
+
+All recordings are performances by US military bands, works of the US federal government (public domain in the US):
+the US Army Old Guard Fife and Drum Corps' album "Celebrating 50 Years" (2014, Free Music Archive, Public Domain Mark
+1.0) and the US Air Force Reserve Band's Pipe Band (Wikimedia Commons, marked public domain). Rows in
+docs/audio_credits.md.
+
+### For the owner
+
+- Is +6 dB right for a solo, and -6 / -9 dB for a band / a lone musician (a band now sits ~5 dB louder than the old
+  generated parts did together)?
+- The Mist Covered Mountains is treated as a slow air (skipped while fighting); is it?
+- Yankee Doodle in the Crown's band: keep or drop?
+- A lone Piper still plays the generated part: if a recording of a solo piper turns up (a pipe major's solo, a
+  lament), it goes in ORDER["pipes"] and the generated files can go.
+
+## Repertoire and playlist (job band-repertoire; replaced by the real recordings above: its files and listening files are gone, the lone Piper keeps its piper part)
 
 The owner's playtest (2026-11-14 13:18): (1) a lone DRUMMER played nothing in the background while the Piper and the
 Fifer each had a quiet part; (2) the FIFE and the DRUMS were barely audible next to the pipes; (3) no single tune on
