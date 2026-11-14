@@ -793,6 +793,17 @@ func _train_one(b: Building, key: String) -> void:
 	if why != "":
 		rec(e, "make", "FAIL", "second train refused: '%s'" % why)
 		return
+	if d.get("item", false):
+		# (an item, not a unit: a Brass Serpent's gear goes into the Heavy Works' store: scripts/brass_serpent.gd)
+		var st0 := BrassSerpent.stored(b)
+		var nn := 0
+		while nn < 30 * 60 and BrassSerpent.stored(b) <= st0:
+			if not b.queue.is_empty():
+				b.prod_t = maxf(b.prod_t, Building.entry_time(String(b.queue[0])) - 0.3)
+			await physics_frame
+			nn += 1
+		ok_rec(e, "make", BrassSerpent.stored(b) > st0, "an item: into the %s's store after %.1f s (%s)" % [b.kind, nn / 30.0, str(b.serp_gears)])
+		return
 	var want := String(Defs.RIDERS.get(kind, kind))
 	var out: Unit = null
 	var n := 0

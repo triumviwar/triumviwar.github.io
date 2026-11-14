@@ -5,7 +5,8 @@ extends SceneTree
 ## the TAIL (a wreck the Great Winder can sweep); the Heavy Works builds gears into a store (capped); COLLECT GEARS takes them
 ## there, a Winder CARRIES one out (GROW); its body winds its own Clockwork units like gear ground and slows enemies on it;
 ## blasts hit its body gear by gear; LINK makes a Hydra (heads bite each), UNLINK splits it; a save keeps it all; online the
-## guest gets its gears and heads; and the OPTIMAL computer makes one and feeds it gears.
+## guest gets its gears and heads; and the OPTIMAL computer makes them (2 against the Crown), builds gears, has a Winder carry
+## them out and links two big ones into a Hydra late on (BrassSerpent.ai_produce; a plan that is not OPTIMAL never does).
 ##   godot --headless --fixed-fps 30 --script res://tools/test_brass_serpent.gd
 const U := preload("res://tools/gear_test_util.gd")
 const K := Defs.SERPENT_KIND
@@ -42,6 +43,7 @@ func _run() -> void:
 	g.queue_free()
 	await process_frame
 	await _online()
+	await _computer()
 	print("ALL PASS" if fails == 0 else "FAIL (%d)" % fails)
 	quit(1 if fails > 0 else 0)
 
@@ -493,3 +495,114 @@ func _online() -> void:
 	h.queue_free()
 	gu.queue_free()
 	await process_frame
+
+
+# ------------------------------------------------------------------ the computer (OPTIMAL)
+
+var _main: Node = null
+
+
+func _computer() -> void:
+	_main = load("res://scenes/main.tscn").instantiate()
+	root.add_child(_main)
+	await process_frame
+	seed(91)
+	_main.start({"map": "greenhold", "seed": 91, "slots": [
+		{"who": "hard", "faction": "clockwork", "colour": 0, "side": 0, "strategy": "optimal"},
+		{"who": "hard", "faction": "crown", "colour": 1, "side": 1, "strategy": "balanced"}]})
+	while _main.game == null:
+		await process_frame
+	var g: Game = _main.game
+	for i in 10:
+		await process_frame
+	if g.hud:
+		g.hud.countdown = 0.0
+	paused = false
+	for a in g.ais:
+		if a.team != 0:
+			a.process_mode = Node.PROCESS_MODE_DISABLED      # (a passive Crown)
+	var ai = g.ais.filter(func(a) -> bool: return a.team == 0)[0]
+	check("the computer plays OPTIMAL", ai.opt != null and BrassSerpent.ai_on(ai))
+	var hall: Building = _bmine(g, "clocktower")[0]
+	g.players[0]["gold"] = 8000
+	g.players[0]["tension"] = 2000.0
+	var spring: Building = null
+	var rs: Array = GearEcon.room_spot_n(g, 0, "mainspring", [hall], [Defs.CW_TECH, Defs.CW_HEAVY])
+	if int(rs[1]) >= 2:
+		spring = g._add_building("mainspring", 0, rs[0], true)
+		g.gear_net.solve()
+	if spring == null:
+		spring = _bput(g, "mainspring", hall)
+	var esc: Building = _bput(g, Defs.CW_TECH, spring) if spring else null
+	var hw: Building = _bput(g, Defs.CW_HEAVY, spring) if spring else null
+	if hw != null and g.gear_net.spring_for(hw) == null:
+		_bput(g, "mainspring", hw)
+	for i in 8:
+		_bput(g, Defs.CW_SUPPLY, hall)
+	for i in 6:
+		g._add_unit("winder", 0, g.cell_center(g.nearest_free(g.cell_of(hall.center() + Vector2(-140 + i * 36, 120)), 6)))
+	for b in g.buildings:
+		if b.team == 1:
+			b.max_hp = 1.0e7
+			b.hp = 1.0e7
+	await physics_frame
+	g.gear_net.solve()
+	check("its Heavy Works works", hw != null and esc != null and g.gear_net.speed_mult(hw) > 0.0)
+	if hw == null:
+		_main.queue_free()
+		return
+	ai.bo_on = false          # (its opening written steps done: the shared rules and its _produce run)
+	g.clock = maxf(g.clock, 330.0)
+	var waited := await _await(g, func() -> bool:
+		g.players[0]["gold"] = maxi(int(g.players[0]["gold"]), 3000)
+		g.players[0]["tension"] = maxf(float(g.players[0]["tension"]), 600.0)
+		return _umine(g, K).size() >= 2, 300.0)
+	check("OPTIMAL makes two Brass Serpents against the Crown", _umine(g, K).size() >= 2, "%d after %.0f s" % [_umine(g, K).size(), waited])
+	var grew := await _await(g, func() -> bool:
+		g.players[0]["gold"] = maxi(int(g.players[0]["gold"]), 3000)
+		g.players[0]["tension"] = maxf(float(g.players[0]["tension"]), 600.0)
+		return _umine(g, K).any(func(u: Unit) -> bool: return BrassSerpent.gears(u).size() > 6), 240.0)
+	var gs: Array = _umine(g, K).map(func(u: Unit) -> int: return BrassSerpent.gears(u).size())
+	check("it builds gears and they reach a Serpent (a Winder carries them, or it collects)", _umine(g, K).any(func(u: Unit) -> bool: return BrassSerpent.gears(u).size() > 6),
+		"gears %s after %.0f s, store %s" % [str(gs), grew, str(hw.serp_gears)])
+	# late on: two big ones side by side link
+	var ss := _umine(g, K)
+	if ss.size() >= 2:
+		for u in ss.slice(0, 2):
+			u.serp["g"] = _n("s", 10)
+			BrassSerpent.apply(u)
+			u.hp = u.max_hp
+			u.cmd_stop()
+		ss[1].position = ss[0].position + Vector2(60, 0)
+		g.clock = maxf(g.clock, BrassSerpent.AI_HYDRA_AT + 1.0)
+		var linked := await _await(g, func() -> bool: return _umine(g, K).any(func(u: Unit) -> bool: return BrassSerpent.heads(u) >= 2), 40.0)
+		check("late on it links two big Serpents into a Hydra", _umine(g, K).any(func(u: Unit) -> bool: return BrassSerpent.heads(u) >= 2), "after %.0f s" % linked)
+	ai.opt = null
+	check("a plan that is not OPTIMAL leaves the Serpent alone", not BrassSerpent.ai_on(ai))
+	_main.queue_free()
+	await process_frame
+
+
+func _bmine(g: Game, kind: String) -> Array:
+	return g.buildings.filter(func(b: Building) -> bool: return b.team == 0 and not b.dead and b.kind == kind)
+
+
+func _umine(g: Game, kind: String) -> Array:
+	return g.units.filter(func(u: Unit) -> bool: return u.team == 0 and not u.dead and u.kind == kind)
+
+
+func _await(g: Game, cond: Callable, secs: float) -> float:
+	var t0: float = g.clock
+	while not cond.call() and g.clock - t0 < secs and not g.over:
+		await physics_frame
+	return g.clock - t0
+
+
+func _bput(g: Game, kind: String, around: Building) -> Building:
+	for deg in [0.0, 60.0, 120.0, 180.0, -60.0, -120.0, 30.0, 150.0, -30.0, -150.0, 90.0, -90.0]:
+		var c := GearNet.ring_spot(g, 0, kind, around, deg, true)
+		if c.x >= 0:
+			var b: Building = g._add_building(kind, 0, c, true)
+			g.gear_net.solve()
+			return b
+	return null

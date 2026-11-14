@@ -34,6 +34,8 @@ const SCAN := 0.25              # s between two looks at what stands on its body
 const TRAIL_STEP := 3.0         # px the head moves before the trail gets a new point
 const BRASS := Color(0.86, 0.66, 0.3)
 const BRASS_DARK := Color(0.42, 0.28, 0.12)
+const DRAW_K := 1.25            # gears are drawn this much bigger than their hit circles (their teeth)
+const LIFT := 6.0               # px the gears and the head stand off the ground (their shadows stay on it)
 
 
 static func is_serpent(u) -> bool:
@@ -989,29 +991,38 @@ static func _ring_tex(size: String) -> Array:
 
 
 static func _draw_gear(ci: CanvasItem, at: Vector2, r: float, size: String, phase: float, tint: Color, a: float) -> void:
-	# the shadow on the ground, then the ring (seen a little from above: squashed in y like the gear field)
-	ci.draw_set_transform(at + Vector2(0, r * 0.55), 0.0, Vector2(1.0, 0.45))
-	ci.draw_circle(Vector2.ZERO, r * 1.05, Color(0, 0, 0, 0.28 * a))
-	ci.draw_set_transform(at, 0.0, Vector2(1.0, 0.62))
+	# a little bigger than its hit circle (the teeth stick out), standing a little off the ground, squashed in y like the
+	# gear field (seen from above at a slant): the shadow first, then a brass face with spokes, then the painted ring
+	r *= DRAW_K
+	var sq := 0.72
+	ci.draw_set_transform(at + Vector2(0, r * 0.35), 0.0, Vector2(1.0, 0.42))
+	ci.draw_circle(Vector2.ZERO, r * 1.05, Color(0, 0, 0, 0.3 * a))
+	var c := at + Vector2(0, -LIFT)
+	ci.draw_set_transform(c, 0.0, Vector2(1.0, sq))
+	var face := Color(tint.r * BRASS.r * 0.82, tint.g * BRASS.g * 0.82, tint.b * BRASS.b * 0.82, a)
+	var dark := Color(BRASS_DARK.r, BRASS_DARK.g, BRASS_DARK.b, a)
+	ci.draw_circle(Vector2.ZERO, r * 0.86, dark)
+	ci.draw_circle(Vector2.ZERO, r * 0.78, face)
+	var sp := 5 if size == "b" else 4
+	for i in sp:
+		var an := phase + TAU * float(i) / float(sp)
+		ci.draw_line(Vector2.from_angle(an) * r * 0.3, Vector2.from_angle(an) * r * 0.72, dark, 2.2 if size == "b" else 1.6)
 	var rt := _ring_tex(size)
 	if rt.size() >= 4 and rt[0] != null:
 		var half := float(rt[3])
 		var tip := float(rt[2])
 		var k := r / maxf(tip, 1.0)
-		ci.draw_set_transform_matrix(Transform2D(0.0, Vector2(1.0, 0.62), 0.0, at) * Transform2D(phase, Vector2(k, k), 0.0, Vector2.ZERO))
+		ci.draw_set_transform_matrix(Transform2D(0.0, Vector2(1.0, sq), 0.0, c) * Transform2D(phase, Vector2(k, k), 0.0, Vector2.ZERO))
 		ci.draw_texture_rect(rt[0], Rect2(Vector2(-half, -half), Vector2(half, half) * 2.0), false, Color(tint.r, tint.g, tint.b, a))
-		ci.draw_set_transform(at, 0.0, Vector2(1.0, 0.62))
-		ci.draw_circle(Vector2.ZERO, r * 0.42, Color(BRASS_DARK.r, BRASS_DARK.g, BRASS_DARK.b, a))
-		ci.draw_circle(Vector2.ZERO, r * 0.18, Color(0.95, 0.8, 0.45, a))
+		ci.draw_set_transform(c, 0.0, Vector2(1.0, sq))
 	else:
-		# (no ring art: headless tests, or the strips missing) a plain cog in code
-		ci.draw_circle(Vector2.ZERO, r, Color(BRASS_DARK.r, BRASS_DARK.g, BRASS_DARK.b, a))
-		ci.draw_circle(Vector2.ZERO, r * 0.82, Color(tint.r * BRASS.r, tint.g * BRASS.g, tint.b * BRASS.b, a))
+		# (no ring art: headless tests, or the strips missing) the teeth in code
 		var n := 10 if size == "b" else 8
 		for i in n:
 			var an := phase + TAU * float(i) / float(n)
-			ci.draw_line(Vector2.from_angle(an) * r * 0.8, Vector2.from_angle(an) * r * 1.12, Color(BRASS_DARK.r, BRASS_DARK.g, BRASS_DARK.b, a), 3.0)
-		ci.draw_circle(Vector2.ZERO, r * 0.3, Color(BRASS_DARK.r, BRASS_DARK.g, BRASS_DARK.b, a))
+			ci.draw_line(Vector2.from_angle(an) * r * 0.8, Vector2.from_angle(an) * r * 1.0, dark, 3.0)
+	ci.draw_circle(Vector2.ZERO, r * 0.3, dark)
+	ci.draw_circle(Vector2(-r * 0.06, -r * 0.06), r * 0.14, Color(0.98, 0.84, 0.5, a))
 	ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
@@ -1020,13 +1031,13 @@ static func _draw_head(u: Unit, ci: CanvasItem, at: Vector2, f: Vector2, a: floa
 	var side := Vector2(-f.y, f.x)
 	var bite_t := u.game.clock - float(u.get_meta("serp_bite", -9.0))
 	var open := clampf(1.0 - absf(bite_t - 0.12) / 0.12, 0.0, 1.0) if bite_t < 0.3 else 0.15
-	var lift := Vector2(0, -10)
-	var c := at + lift
-	ci.draw_set_transform(at + Vector2(0, 5), 0.0, Vector2(1.0, 0.45))
-	ci.draw_circle(Vector2.ZERO, 13.0, Color(0, 0, 0, 0.3 * a))
+	var lift := Vector2(0, -LIFT - 3.0)
+	var c := at + lift - f * 3.0
+	ci.draw_set_transform(at + Vector2(0, 4), 0.0, Vector2(1.0, 0.45))
+	ci.draw_circle(Vector2.ZERO, 14.0, Color(0, 0, 0, 0.3 * a))
 	ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
-	var skull := PackedVector2Array([c - f * 9.0 + side * 9.0, c + f * 6.0 + side * 8.0, c + f * 15.0 + side * 4.0,
-		c + f * 15.0 - side * 4.0, c + f * 6.0 - side * 8.0, c - f * 9.0 - side * 9.0])
+	var skull := PackedVector2Array([c - f * 10.0 + side * 9.0, c + f * 5.0 + side * 9.0, c + f * 14.0 + side * 4.5,
+		c + f * 14.0 - side * 4.5, c + f * 5.0 - side * 9.0, c - f * 10.0 - side * 9.0])
 	ci.draw_colored_polygon(skull, Color(BRASS.r, BRASS.g, BRASS.b, a))
 	ci.draw_polyline(skull + PackedVector2Array([skull[0]]), Color(BRASS_DARK.r, BRASS_DARK.g, BRASS_DARK.b, a), 1.5)
 	# the jaw under it, open on a bite
@@ -1056,6 +1067,13 @@ static func draw(u: Unit) -> void:
 	var tint := Color(1, 1, 1)
 	if u.flash > 0.0:
 		tint = Color(1.6, 1.4, 1.4)
+	# the iron links from pin to pin, under the gears (the head's neck to the first)
+	var prev: Vector2 = Vector2(0, -LIFT)
+	for sg in segs:
+		var q: Vector2 = (sg[0] as Vector2) - u.position + Vector2(0, -LIFT)
+		u.draw_line(prev, q, Color(0.2, 0.17, 0.15, a), 4.0)
+		u.draw_line(prev, q, Color(0.45, 0.4, 0.36, a), 1.6)
+		prev = q
 	# tail first (drawn under the gears in front of it), alternate gears turning the other way (they mesh)
 	for i in range(segs.size() - 1, -1, -1):
 		var sg: Array = segs[i]
