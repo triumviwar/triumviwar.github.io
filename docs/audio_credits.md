@@ -20,3 +20,5 @@ The band's music (assets/audio/band/*.ogg, docs/band_music.md) is, since band-re
 The band's own pieces (band_pipecalls, band_drumslead, band_lament) and the lone Piper's files (pipes_*) since 0.37.14:
 Claude's compositions (The Pipe Calls, The Fife Calls, The Drums Lead) and arrangements of traditional tunes, rendered
 from the bagpipe, recorder and drum samples credited above (tools/audio/band_own.py).
+
+The lone Piper's Scotland the Brave (pipes_scotland) since 0.38.1: a real solo bagpipe recording the owner supplied from a no-copyright source (art/audio_src/band_real/scotland_the_brave_bagpipes_owner.mp3), trimmed and levelled; the other three lone Piper tunes stay generated.

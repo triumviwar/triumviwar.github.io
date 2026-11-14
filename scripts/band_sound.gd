@@ -65,7 +65,7 @@ const TUNES := {
 	"fife_trenton": {"title": "Trenton", "set": "fife", "kind": "quick", "n": 2665926},
 	"fife_hornpipe": {"title": "Fisher's Hornpipe, Guilderoy, Red Haired Boy", "set": "fife", "kind": "quick", "n": 6615440},
 	# a lone Piper (no solo pipe recording: his tunes rendered for one piper by tools/audio/band_own.py)
-	"pipes_scotland": {"title": "Scotland the Brave", "set": "pipes", "kind": "march", "n": 1618871},
+	"pipes_scotland": {"title": "Scotland the Brave", "set": "pipes", "kind": "march", "n": 10654560},
 	"pipes_grenadiers": {"title": "The British Grenadiers", "set": "pipes", "kind": "march", "n": 1746360},
 	"pipes_garryowen": {"title": "Garry Owen", "set": "pipes", "kind": "quick", "n": 1507025},
 	"pipes_minstrel": {"title": "The Minstrel Boy", "set": "pipes", "kind": "air", "n": 2498580, "phrases": [14.19, 27.9, 41.61]},

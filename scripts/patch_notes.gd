@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.1", "items": [
+		"THE LONE PIPER'S SCOTLAND THE BRAVE is now a real recording of a solo bagpiper (about four minutes) instead of the generated one.",
+	]},
 	{"v": "0.38.0", "items": [
 		"NEW CLOCKWORK UNIT, THE BRASS SERPENT: a snake of brass gears with a biting head, made at the Heavy Works. Its gears are its body: few or small gears make it fast with quick, light bites; many or big gears make it tough with slow, heavy bites. Damage breaks gears off its tail, so a hurt Serpent gets shorter, faster and weaker. Winders repair it up to the gears it still has.",
 		"The Heavy Works also builds small and big gears. COLLECT GEARS sends a Serpent back to fetch them; GROW sends a Winder to carry one out to it. Your Clockwork units standing on its body wind up, and enemies crossing it are slowed.",

@@ -211,7 +211,8 @@ def drums():
 def piper():
     """The lone Piper: his four tunes (make_band_music.py's notes), ONE piper, through the same production."""
     tunes = M.all_tunes()
-    for tid, name in (("scotland", "Scotland the Brave"), ("grenadiers", "The British Grenadiers"),
+    # (Scotland the Brave is a real solo recording since 0.38.1: art/audio_src/band_real/scotland_the_brave_bagpipes_owner.mp3)
+    for tid, name in (("grenadiers", "The British Grenadiers"),
                       ("garryowen", "Garry Owen"), ("minstrel", "The Minstrel Boy")):
         tu = M.prepare(tunes[tid])
         # (his file starts where his tune does: no band roll-off before it, a breath for the strike-in)
