@@ -177,8 +177,10 @@ In docs/shots/brass_serpent/, made by tools/shot_brass_serpent.gd in the Clockwo
 - clock_soldiers_winding_on_its_body.jpg: three Clock Soldiers standing on its body, winding up.
 - hydra_3_heads.jpg and hydra_card.jpg: three Serpents linked into a Hydra, and its card ("HYDRA of 3 heads: ...").
 - fight_vs_musketeers.jpg / .gif and fight_after.jpg: a Serpent of 6 small and 4 big gears bites into six Crown
-  Musketeers holding a line. Their volleys break its gears off one by one (the wrecks lie behind it); it kills about
-  half of them and dies.
+  Musketeers holding a line. Their volleys break its gears off one by one (the wrecks lie where they fell); alone it
+  kills one of them and dies, its last gears and its head lying in a line. Six Musketeers (6 supply) beat one Serpent of
+  8 supply alone: it is a tank and a flanker to go with an army, not a unit to send in by itself (a first measurement
+  for the tuning: the owner may want more bite).
 - fight_card.jpg: the card after the fight.
 
 ## Tests
@@ -197,3 +199,10 @@ In docs/shots/brass_serpent/, made by tools/shot_brass_serpent.gd in the Clockwo
   test_clock_charge and the AI tests listed in the last commit. test_great_winder, test_ballista and test_cw_tier3 fail
   their online checks on main too (the guest is an enemy side, so the fog keeps those units out of its snapshots), and
   test_gear_turn and test_clock_charge fail the same checks on main.
+
+## Sounds
+
+It has none of its own yet. It answers with the Pendulum's voice (Sfx.VOICE_AS), and its bite, a gear breaking off, a
+gear going on and a link try "combat/serpent_bite", "combat/serpent_gear_break", "combat/serpent_gear_on" and
+"combat/serpent_link" first and fall back to the Clock Soldier's blow, the crank and the ratchet. Recording or making
+those four sounds (tools/audio/make_clockwork_sounds.py has the owner's clockwork recordings) is left to do.

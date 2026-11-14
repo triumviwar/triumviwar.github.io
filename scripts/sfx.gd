@@ -374,7 +374,8 @@ static func building_selected(kind: String, faction: String) -> void:
 ## GAP keeps it from repeating: the horse at most every 6 s).
 ## Units with no sounds of their own yet speak (and die) with another's: the Storm line with the retired Skywing's
 ## (docs/storm_line.md). Their own files (voice/<kind>/..., combat/<kind>_death) win as soon as they exist.
-const VOICE_AS := {"hatchlings": "skywing", "storm_challenger": "skywing"}
+const VOICE_AS := {"hatchlings": "skywing", "storm_challenger": "skywing",
+	"brass_serpent": "pendulum", "serpent_gear_s": "great_winder", "serpent_gear_b": "great_winder"}      # (the Brass Serpent: a heavy machine's voice until it has its own)
 ## The Brood's flyers beat their wings when sent off (and now and then when told to attack): the owner's pack, 2026-10-30.
 const VOICE_EXTRA := {"hatchlings": {"move": [["brood/wings_small", 1.0]], "attack": [["brood/wings_small", 0.6]]},
 	"skywing": {"move": [["brood/wings_small", 1.0]], "attack": [["brood/wings_small", 0.6]]},
