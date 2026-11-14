@@ -165,3 +165,35 @@ One request per image. Each names at most three reference pictures, with their p
     heavy brass yoke shaped like a three-way gearbox, riveted, from which three short brass necks rise, each ending in
     an empty socket where a serpent head attaches; a big gear sits under it where the body continues. Seen from above
     at a slight angle, about 48 pixels across."
+
+## Pictures
+
+In docs/shots/brass_serpent/, made by tools/shot_brass_serpent.gd in the Clockwork lab
+(`xvfb-run -a godot --rendering-driver opengl3 --resolution 1600x900 --fixed-fps 30 --script res://tools/shot_brass_serpent.gd -- <outdir>`):
+
+- sizes_2s_6s_6s4b_6s10b.jpg: four Serpents, top to bottom 2 small gears, 6 small (a new one), 6 small and 4 big, and a
+  full one (6 small and 10 big); closeup_6s4b.jpg the same closer.
+- crawling_a_curve.jpg: the body following the head's path round two turns.
+- clock_soldiers_winding_on_its_body.jpg: three Clock Soldiers standing on its body, winding up.
+- hydra_3_heads.jpg and hydra_card.jpg: three Serpents linked into a Hydra, and its card ("HYDRA of 3 heads: ...").
+- fight_vs_musketeers.jpg / .gif and fight_after.jpg: a Serpent of 6 small and 4 big gears bites into six Crown
+  Musketeers holding a line. Their volleys break its gears off one by one (the wrecks lie behind it); it kills about
+  half of them and dies.
+- fight_card.jpg: the card after the fight.
+
+## Tests
+
+- tools/test_brass_serpent.gd (all pass): the numbers per gear count and size; training at the Heavy Works; gears into
+  the store and the store's limit; the tail breaking (shorter, faster, weaker; wrecks the Great Winder can sweep; not a
+  loss in the stats); a Winder's repair up to its gears' worth; the body following the head; winding on the body;
+  carried along it with Turning Gears; enemies slowed on it; shells, lines and blasts hitting the body; COLLECT GEARS;
+  GROW with a Winder carrying a gear (and dropping it if shot; the right-click); LINK into a Hydra (health, gears, speed,
+  the second head biting, at most 3 heads) and UNLINK; save and load (gears, heads, health, body, the store); online
+  (the guest gets gears and heads, the stats follow, a new gear arrives); the OPTIMAL computer making two against the
+  Crown, feeding them gears and linking a Hydra late.
+- Run after the change, no new failures: test_files, test_unit_stats, test_card_text, test_card_keys, test_i18n,
+  test_content_all (the gear items checked as items), test_great_winder, test_ballista, test_pendulum_v2,
+  test_gear_rules, test_cog_scatter, test_gear_turn, test_cw_tier3, test_aoe_show, test_vet_chevrons, test_sound_pool,
+  test_clock_charge and the AI tests listed in the last commit. test_great_winder, test_ballista and test_cw_tier3 fail
+  their online checks on main too (the guest is an enemy side, so the fog keeps those units out of its snapshots), and
+  test_gear_turn and test_clock_charge fail the same checks on main.

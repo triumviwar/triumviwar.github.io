@@ -182,11 +182,19 @@ func _run() -> void:
 	var a := _serp(at + Vector2(-200, -40), _n("s", 8))
 	var b := _serp(at + Vector2(-140, 60), _n("s", 6) + _n("b", 2))
 	g.serpent_order([a, b, c], "link")
-	for i in 300:
+	var hy: Unit = null
+	for i in 400:
 		await physics_frame
-		if BrassSerpent.heads(c) >= 3 or (BrassSerpent.heads(a) >= 3) or i > 280:
+		for o in [a, b, c]:
+			if is_instance_valid(o) and not o.dead and BrassSerpent.heads(o) >= 3:
+				hy = o
+		if hy != null:
 			break
-	var hy: Unit = c if BrassSerpent.heads(c) >= BrassSerpent.heads(a) else a
+	if hy == null:
+		for o in [c, a, b]:
+			if is_instance_valid(o) and not o.dead:
+				hy = o
+				break
 	await _crawl(hy, [hy.position + Vector2(240, 30)])
 	await _cam(hy.position + Vector2(-80, 0), 1.8)
 	await _snap("hydra_3_heads", 0.3)
@@ -196,9 +204,9 @@ func _run() -> void:
 	await _snap("hydra_card", 0.6)
 	g.set_selection([])
 	_ui(false)
-	await _gone([hy, a, b, c])
+	await _gone([hy, a, b, c].filter(func(o) -> bool: return is_instance_valid(o)))
 	# ---- a fight: a Serpent bites into a line of Crown Musketeers; gears break off the tail and lie as wrecks
-	var fs := _serp(at + Vector2(-320, 0), _n("s", 6) + _n("b", 4))
+	var fs := _serp(at + Vector2(-140, 0), _n("s", 6) + _n("b", 4))
 	var foes: Array = []
 	for i in 6:
 		var m: Unit = g._add_unit("musketeer", 1, _open(at + Vector2(140, -100 + i * 40)))
@@ -208,13 +216,19 @@ func _run() -> void:
 	fs.cmd_move(at + Vector2(140, 0), true)
 	g.camera.position = at
 	g.camera.zoom = Vector2(1.5, 1.5)
-	for f in 150:
+	var k := 0
+	for f in 720:
 		await physics_frame
-		if f % 2 == 0:
-			g.camera.position = g.camera.position.lerp(fs.position + Vector2(60, 0), 0.2)
+		if f % 6 == 0:
+			g.camera.position = g.camera.position.lerp(fs.position + Vector2(80, 0), 0.5)
 			await process_frame
-			root.get_viewport().get_texture().get_image().save_png("%s/gif/f_%03d.png" % [out, f / 2])
-	await _snap("fight_vs_musketeers", 0.0)
+			root.get_viewport().get_texture().get_image().save_png("%s/gif/f_%03d.png" % [out, k])
+			k += 1
+		if f == 420:
+			await _snap("fight_vs_musketeers", 0.0)
+		if fs.dead or foes.all(func(m: Unit) -> bool: return m.dead):
+			break
+	await _snap("fight_after", 0.0)
 	print("after the fight: %d gears, hp %.0f/%.0f, wrecks %d" % [BrassSerpent.gears(fs).size(), fs.hp, fs.max_hp,
 		g.bodies.filter(func(w) -> bool: return is_instance_valid(w) and String(w.kind).begins_with("serpent_gear")).size()])
 	_ui(true)
