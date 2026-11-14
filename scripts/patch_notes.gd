@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.37.10", "items": [
+		"MAIN MENU PAINTING: the priest's hat is whole again, the Crown's firing line and the kneeling gunner hold flintlock muskets instead of modern-looking rifles, the Spitter spits from its mouth and has green spines, and the Clockwork soldiers attacking the Brood show their red backs with winding keys while those facing the Crown keep their clocks.",
+	]},
 	{"v": "0.37.9", "items": [
 		"THE BAND HAS A REPERTOIRE: instead of one tune on a loop, the band works through a playlist (The British Grenadiers, Scotland the Brave, Garry Owen, The Minstrel Boy), each joined to the next by a drum roll-off. God Save the King is ready in the files too.",
 		"The band's parts are levelled by how loud they sound, not by their loudest note: the lone Drummer's beating is now clearly heard, and the fife's tune and the snare come through over the battle music, with the pipes a little back. A solo keeps the tune that is playing and brings that player forward.",
