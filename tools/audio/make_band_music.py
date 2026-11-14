@@ -1,4 +1,8 @@
-"""THE MARCHING BAND's MUSIC (jobs band-music, band-music-v2 and band-repertoire, docs/band_music.md): renders the
+"""RETIRED by band-real (docs/band_music.md "Real recordings"): the game now plays real recordings
+(tools/audio/master_band_real.py). Running this would write the old files back into assets/audio/band/ and docs/band_sound/;
+the lone Piper's generated part it once rendered is kept in art/audio_src/band/generated_piper/.
+
+THE MARCHING BAND's MUSIC (jobs band-music, band-music-v2 and band-repertoire, docs/band_music.md): renders the
 band's REPERTOIRE (scripts/band_sound.gd: TUNES, PARTS, ORDER) from real instrument samples, and the owner's listening
 files.
 
