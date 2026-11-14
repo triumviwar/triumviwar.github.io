@@ -196,9 +196,13 @@ In docs/shots/brass_serpent/, made by tools/shot_brass_serpent.gd in the Clockwo
 - Run after the change, no new failures: test_files, test_unit_stats, test_card_text, test_card_keys, test_i18n,
   test_content_all (the gear items checked as items), test_great_winder, test_ballista, test_pendulum_v2,
   test_gear_rules, test_cog_scatter, test_gear_turn, test_cw_tier3, test_aoe_show, test_vet_chevrons, test_sound_pool,
-  test_clock_charge and the AI tests listed in the last commit. test_great_winder, test_ballista and test_cw_tier3 fail
-  their online checks on main too (the guest is an enemy side, so the fog keeps those units out of its snapshots), and
-  test_gear_turn and test_clock_charge fail the same checks on main.
+  test_clock_charge, test_ai_optimal, test_ballista_ai, test_cw_tier3_ai, test_clockwork_builds_b,
+  test_clockwork_army, test_cw_army, test_cw_air_ai, test_clock_ai_swarm, test_clockwork_home. All pass except checks
+  that fail the same way on main (run there for comparison): the online checks of test_great_winder, test_ballista and
+  test_cw_tier3 (the guest is an enemy side, so the fog keeps those units out of its snapshots), test_gear_turn's
+  "stays on it, riding round", test_clock_charge's "1.6x its old size" and test_ballista_ai's "its escort Winders crew
+  it". test_vet_chevrons' timing check failed once with two tests running side by side and passes alone. The game boots
+  headless with no SCRIPT ERROR.
 
 ## Sounds
 
