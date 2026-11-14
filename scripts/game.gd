@@ -4326,6 +4326,10 @@ func can_train(b: Building, key: String) -> String:
 				return tp
 		elif not _has_built(b.team, req):
 			return "Needs a %s first." % Defs.BUILDINGS[req]["name"]
+	if BrassSerpent.is_item(k):
+		var ip := BrassSerpent.item_problem(b, k)      # (a Brass Serpent's gear: the Heavy Works' store is full)
+		if ip != "":
+			return ip
 	if u.get("big_gear", false):
 		var gp := Pendulum.gear_problem(b)      # (tier 3: the Pendulum, only on the Works' BIG gear: the heavy torque)
 		if gp != "":
@@ -4857,6 +4861,8 @@ func ammo_line(t: int, key: String, b: Building = null) -> String:
 
 
 func spawn_trained(b: Building, k: String, kit: Dictionary = {}) -> void:
+	if BrassSerpent.item_done(self, b, k):
+		return           # (a Brass Serpent's gear: into the Heavy Works' store, no unit)
 	var r := b.rect()
 	# (start-spots-fix: no rally: out on the side facing down the screen for the first start, its mirror for a mirrored
 	# side; the cells looked at in that side's first-start frame, so ties fall the mirrored way: Game.start_flip)
@@ -5631,6 +5637,8 @@ func in_field(t: int, p: Vector2) -> bool:
 		# gear mode: constructs stay wound on CONNECTED GEAR GROUND (inside a connected building's ring), Defs.GEAR
 		if gear_net.in_field(t, p):
 			return true
+		if BrassSerpent.on_body(self, t, p):
+			return true      # (a Brass Serpent's body: moving gear ground, scripts/brass_serpent.gd)
 		if not tesla_made:
 			return false
 		for u in units:
@@ -7132,12 +7140,14 @@ func canister_at(u: Unit, aim: Vector2, dmg: float, e: Entity = null) -> void:
 	area_mark("wedge", u.team, from, dir, reach, acos(float(Defs.CANISTER["cone"])), "powder")
 	# area damage hits whoever is in it, friend or foe (not the gun itself)
 	for o in units_near(from, reach + 20.0):
-		if o == u or o.dead or o.off_field:
+		if o == u or o.dead or o.off_field or o._k_serp:
 			continue
 		var to: Vector2 = o.center() - from
 		if to.length() <= reach + o.radius and dir.dot(to.normalized()) > float(Defs.CANISTER["cone"]):
 			var bonus: float = Defs.CANISTER["vs_light"] if o.has_tag("light") else 1.0
 			o.take_damage(dmg * bonus * (1.3 if to.length() < reach * 0.5 else 1.0), u)
+	for sh in BrassSerpent.cone(self, from, dir, reach, float(Defs.CANISTER["cone"]), u):
+		sh[0].take_damage(dmg * (1.3 if float(sh[1]) < reach * 0.5 else 1.0) * BrassSerpent.split_mult(int(sh[2])), u)
 	if e != null and is_instance_valid(e) and e.is_building():
 		e.take_damage(dmg * 0.6, u)
 	Sfx.play_any(["combat/cannon_canister", "combat/cannon_attack", "cannon"], u.global_position)
@@ -7342,12 +7352,15 @@ func round_shot_land(from: Vector2, p: Vector2, dmg: float, t: int, shooter: Ent
 	blast_bodies(p, float(Defs.ROUND_SHOT["splash"]), aimed, a, b, w, dmg)
 	area_mark("band", t, a, b, w, 0.0, "powder")
 	for o in units_near(p + dir * float(Defs.ROUND_SHOT["line"]) * 0.4, float(Defs.ROUND_SHOT["line"]) + 40.0):
-		if o == shooter or o.dead or o.is_air() or o.off_field:
+		if o == shooter or o.dead or o.is_air() or o.off_field or o._k_serp:
 			continue
 		var q := Geometry2D.get_closest_point_to_segment(o.position, a, b)
 		if q.distance_to(o.position) <= o.radius + w:
 			var bonus: float = Defs.ROUND_SHOT["vs_armored"] if o.has_tag("armored") else 1.0
 			o.take_damage(dmg * bonus, shooter)
+	for sh in BrassSerpent.line(self, a, b, w, -1, shooter):
+		# (a Brass Serpent: the ball ploughs along its gears, one blow for the gears it catches: scripts/brass_serpent.gd)
+		sh[0].take_damage(dmg * float(Defs.ROUND_SHOT["vs_armored"]) * BrassSerpent.split_mult(int(sh[2])), shooter)
 	# a building where it lands takes the whole ball
 	for bd in buildings.duplicate():
 		if not allied(bd.team, t) and not bd.dead and bd.edge_distance(p) < 18.0:
@@ -7485,12 +7498,14 @@ func mortar_land(p: Vector2, dmg: float, splash: float, t: int, shooter: Entity,
 	area_mark("ring", t, p, Vector2.ZERO, splash, 0.0, "powder")
 	var edge := float(Defs.MORTAR["edge"])
 	for u in units_near(p, splash + 24.0):
-		if u.dead or u.off_field or u.is_air():
+		if u.dead or u.off_field or u.is_air() or u._k_serp:
 			continue
 		var dd: float = u.position.distance_to(p)
 		if dd > splash + u.radius:
 			continue
 		u.take_damage(dmg * lerpf(1.0, edge, clampf(dd / splash, 0.0, 1.0)), shooter)
+	for sh in BrassSerpent.area(self, p, splash, -1, shooter):
+		sh[0].take_damage(dmg * lerpf(1.0, edge, clampf(float(sh[1]) / splash, 0.0, 1.0)) * BrassSerpent.split_mult(int(sh[2])), shooter)
 	var bb := float(Defs.UNITS["mortar"].get("building_bonus", 1.0))
 	for b in buildings.duplicate():
 		if not allied(b.team, t) and not b.dead and b.edge_distance(p) < splash * 0.6:
@@ -7981,6 +7996,35 @@ func unload_order(list: Array, p: Vector2, here := false) -> void:
 			any = true
 	if not any and not list.is_empty() and list[0] is Unit:
 		tell(list[0].team, "Nobody aboard.")
+
+
+## The BRASS SERPENT's card (scripts/brass_serpent.gd): "collect" (to a Heavy Works' gear store; `target`: that one),
+## "grow" (a Winder carries one a gear), "link" (into a Hydra; `target`: the one they join), "unlink" (a Hydra splits).
+func serpent_order(list: Array, what: String, target = null) -> void:
+	if net_forward(self, "serpent_order", [list, what, target]): return
+	var ss: Array = list.filter(func(o) -> bool: return BrassSerpent.is_serpent(o) and not o.dead)
+	if ss.is_empty():
+		return
+	var me: int = ss[0].team
+	var why := ""
+	match what:
+		"collect":
+			for o in ss:
+				var w := BrassSerpent.cmd_collect(o, target if target is Building and target.team == me else null)
+				if w != "":
+					why = w
+		"grow":
+			for o in ss:
+				var w2 := BrassSerpent.cmd_grow(o)
+				if w2 != "":
+					why = w2
+		"link":
+			why = BrassSerpent.cmd_link(ss, target if BrassSerpent.is_serpent(target) and target.team == me else null)
+		"unlink":
+			for o in ss:
+				BrassSerpent.unlink(o)
+	if why != "":
+		tell(me, why)
 
 
 ## The nearest selected Ornithopter carrying a battery flies over and overloads `e`.
@@ -8540,9 +8584,11 @@ func explode(p: Vector2, dmg: float, splash: float, t: int, shooter: Entity, bb 
 		sm.modulate.a = 0.7
 	Sfx.play_any(["combat/cannon_hit", "boom"], p)
 	for u in units_near(p, splash + 12.0):
-		if u != shooter and not u.dead and not u.off_field:
+		if u != shooter and not u.dead and not u.off_field and not u._k_serp:
 			var f := 1.0 - 0.5 * clampf(u.position.distance_to(p) / splash, 0.0, 1.0)
 			u.take_damage(dmg * f, shooter)
+	for sh in BrassSerpent.area(self, p, splash, -1, shooter):
+		sh[0].take_damage(dmg * (1.0 - 0.5 * clampf(float(sh[1]) / splash, 0.0, 1.0)) * BrassSerpent.split_mult(int(sh[2])), shooter)
 	for b in buildings.duplicate():
 		if not allied(b.team, t) and not b.dead and b.edge_distance(p) < splash * 0.6:
 			b.take_damage(dmg * bb, shooter)
@@ -8570,12 +8616,14 @@ func powder_blast(src: Entity, p: Vector2, dmg: float, r: float, big := false) -
 	Sfx.play_any(["combat/cannon_hit", "boom"], p)
 	area_mark("ring", src.team if src != null else -1, p, Vector2.ZERO, r, 0.0, "powder")
 	for u in units_near(p, r + 24.0):
-		if u == src or u.dead or u.off_field or u.is_air():
+		if u == src or u.dead or u.off_field or u.is_air() or u._k_serp:
 			continue
 		var dd: float = u.position.distance_to(p)
 		if dd > r + u.radius:
 			continue
 		u.take_damage(dmg * (1.0 - (0.3 if big else 0.5) * clampf(dd / r, 0.0, 1.0)), src)
+	for sh in BrassSerpent.area(self, p, r, -1, src):
+		sh[0].take_damage(dmg * (1.0 - (0.3 if big else 0.5) * clampf(float(sh[1]) / r, 0.0, 1.0)) * BrassSerpent.split_mult(int(sh[2])), src)
 	for b in buildings.duplicate():
 		if not allied(b.team, src.team) and not b.dead and b.edge_distance(p) < r * 0.5:
 			b.take_damage(dmg, src)
@@ -10364,6 +10412,9 @@ func smart_command(list: Array, p: Vector2, force_move := false, queued := false
 	if us.is_empty():
 		return
 	var e := null if force_move else entity_at(p)
+	if not force_move and BrassSerpent.smart(self, us, e, p):
+		_ping(p, Color(1.0, 0.85, 0.3))
+		return           # (Brass Serpents: collect at a Heavy Works, link; Winders: carry a Serpent a gear)
 	# a crate on the ground: Winders of its side carry it on (the nearest one), enemies smash it
 	var cr: Crate = null
 	if not force_move and not (e is Unit):

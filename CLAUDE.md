@@ -25,6 +25,14 @@
 
 ## Current work
 
+- BRASS SERPENT (owner 2026-11-14 20:07-20:09, "Do it"; job brass-serpent, 0.38.0, docs/brass_serpent.md, scripts/brass_serpent.gd,
+  Defs.SERPENT, tools/test_brass_serpent.gd, pictures docs/shots/brass_serpent/): a Clockwork snake of gears made at the
+  Heavy Works; few/small gears = fast, light quick bites; many/big = tanky, slow, heavy bites; damage breaks tail gears
+  (wrecks for the Great Winder); Winders repair up to its gears; the Heavy Works builds gears (store of 10): COLLECT GEARS
+  or GROW (a Winder carries one out); own units on its body wind up, enemies slowed to 75%; LINK into a Hydra (max 3
+  heads, 16 gears a head), UNLINK; OPTIMAL Clockwork computer uses it (switch serpent:off). 17 CLAUDE'S CHOICES for the
+  owner in the doc. Stand-in code art; the owner's ChatGPT art is on branch brass-serpent-art (art/redraws/brass_serpent/),
+  to be wired in (job serpent-art). Sounds: stand-ins (four serpent sounds to make).
 - OVERLAY OPACITY (owner's playtest 2026-11-14 13:18; job overlay-alpha, docs/overlay_alpha.md, tools/test_overlay_alpha.gd,
   pictures docs/shots/overlay_alpha/): the bars, chevrons, band buff marks, stun stars and status marks over units and
   buildings are see-through (Entity.ov_a / ova: Settings.overlay_alpha, default 60%, marks x0.85, a band's "+8%" sqrt of

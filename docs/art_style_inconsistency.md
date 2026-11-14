@@ -657,3 +657,15 @@ vet_gold.png at their own 15 x 11 pixels): no code art in the game. A CODE-DRAWN
 (VetChevrons.chevron_image: a 15 x 11 V, a dark outline, a three-tone metal ramp lit on the upper left) and is used only
 if those files are missing. The old veterancy colours on the sprites (the Crown's silver / gold hat trim, the Brood's
 amber / obsidian skin) are gone; the Crown's trim mask still draws the hat lace black as every soldier's was.
+
+## The Brass Serpent (code, branch brass-serpent, 2026-11-14; docs/brass_serpent.md has the ChatGPT prompts)
+
+| what | where | how | wanted |
+| --- | --- | --- | --- |
+| Its gears (small and big) | scripts/brass_serpent.gd `_draw_gear` | the gear field's painted ring (GearArt.ring "small" 8 teeth, "big" 10 teeth) shrunk to the gear's radius (9 / 13 px), squashed to 0.62 in height, a code-drawn hub and pin, a code shadow; turning as it crawls, every other gear the other way | painted gear segments with iron links (prompts 9 and 10) |
+| Its head(s) | scripts/brass_serpent.gd `_draw_head` | a brass polygon skull, a jaw that drops on a bite, red eye dots, a team-colour line on the brow: all code | the head in 8 directions and a bite strip (prompts 1 to 8, 11) |
+| A Hydra's heads | scripts/brass_serpent.gd `head_points` | the extra heads drawn beside the first, 17 px out to either side | the yoke joint (prompt 12) |
+| Broken gears and the fallen head | scripts/brass_serpent.gd `draw_wreck` | the same ring dimmed; the head drawn faded | a wreck picture of each |
+| A Winder carrying a gear | scripts/brass_serpent.gd `draw_carry` | the gear drawn over his head | a carry strip for the Winder |
+| Its sprite | Defs.TEMP_ART "brass_serpent" | the Great Winder's sheet stands in for the frame tables only; the sprite is hidden | its own sheets |
+| Card icons | assets/icons/brass_serpent.png, serpent_gear_s.png, serpent_gear_b.png, clockwork/ab_serpent_collect / _grow / _link / _unlink.png | tools/serpent/make_icons.py: the frame and field of ab_mend.png, gears and a head drawn with PIL | painted icons in the Clockwork command icons' style |

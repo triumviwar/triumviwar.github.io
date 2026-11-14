@@ -4,6 +4,11 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.0", "items": [
+		"NEW CLOCKWORK UNIT, THE BRASS SERPENT: a snake of brass gears with a biting head, made at the Heavy Works. Its gears are its body: few or small gears make it fast with quick, light bites; many or big gears make it tough with slow, heavy bites. Damage breaks gears off its tail, so a hurt Serpent gets shorter, faster and weaker. Winders repair it up to the gears it still has.",
+		"The Heavy Works also builds small and big gears. COLLECT GEARS sends a Serpent back to fetch them; GROW sends a Winder to carry one out to it. Your Clockwork units standing on its body wind up, and enemies crossing it are slowed.",
+		"HYDRA: select two or three Serpents and press LINK to join them into one body with a head for each; UNLINK splits them again. The Clockwork computer's OPTIMAL plan uses Serpents and links a Hydra late in the game. The Serpent is drawn in code for now; its painted art comes next.",
+	]},
 	{"v": "0.37.14", "items": [
 		"THE BAND'S OWN MUSIC: three new pieces written for the band, chosen by what it is doing. Marching or standing about it plays The Pipe Calls (the pipes call, the fife answers); in a fight, The Drums Lead (a drum feature with the pipes and fife answering); at rest, The Fife Calls (a slow, sad lament led by the fife). The real recordings still come round between them.",
 		"The band now sounds like a band in the open air: each part is played by a few players in stereo, with body and an outdoor echo. The lone Piper's four tunes are remade the same way.",

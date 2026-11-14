@@ -1891,6 +1891,7 @@ func _ability_buttons(list: Array, units: Array) -> void:
 	_balloon_buttons(list, units)
 	_ballista_buttons(list, units)
 	GreatWinder.card(self, list, units)     # a Great Winder's MEND and SWEEP autocasts (scripts/great_winder.gd)
+	BrassSerpent.card(self, list, units)    # a Brass Serpent's COLLECT GEARS, GROW, LINK, UNLINK (scripts/brass_serpent.gd)
 	MarchingBand.card(self, list, units)    # the Marching Band: each instrument's SOLO (scripts/marching_band.gd)
 	# (Musketeers pick musket or bayonet by themselves: no button)
 	# spells: pick the spot on the map; the nearest caster that can goes and does it
@@ -3761,6 +3762,8 @@ func _draw_panel(font: Font) -> void:
 				info = Ballista.card_line(uu)
 			elif uu.kind == Defs.GREAT_WINDER_KIND:
 				info = GreatWinder.card_line(uu)
+			elif uu._k_serp:
+				info = BrassSerpent.card_line(uu)
 			elif uu.kind == MarchingBand.KIND or MarchingBand.MUSICIANS.has(uu.kind):
 				info = MarchingBand.card_line(uu)
 			elif uu.kind == Defs.PENDULUM:
@@ -3900,6 +3903,9 @@ func _draw_panel(font: Font) -> void:
 				info = "%s batteries: %d ore; after %d s on the road they lose %d%% a second%s" % ["Blue" if blue else "Yellow",
 					int(round(Defs.battery_charge(blue, 0.0) * float(Defs.BATTERY["ore"]) * q)), int(Defs.BATTERY["fresh"]), int(round(float(bi["decay"]) * 100)),
 					" · ore spent: a quarter" if ol <= 0.0 else (" · ore running low" if ol < Defs.SOIL_LOW else "")]
+			if bb.kind == Defs.CW_HEAVY and bb.built and not bb.dead and Defs.gear_mode and (e.team == game.human or game.demo) \
+					and BrassSerpent.stored(bb) > 0:
+				info = BrassSerpent.works_line(bb) + ("  ·  " + info if info != "" else "")      # (the Brass Serpents' gear store)
 			if bb.kind == Defs.CW_TECH and bb.built and not bb.dead and Defs.gear_mode:
 				if game.gear_net.needs_spring(bb):
 					info = "NEEDS MAINSPRING: no Mainspring in its gear network, so it stands idle (no research, no Springers). Build a Mainspring anywhere in the network."

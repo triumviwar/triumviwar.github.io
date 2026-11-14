@@ -15,6 +15,7 @@ var arm_powder := true           # Barracks: ARM WITH POWDER (crown-ammo: recrui
                                  # off: with none, the powder kept for the guns, and this Barracks refills nobody)
 var prod_t := 0.0
 var stock := 0.0                # Ore Drill: ore dug and waiting for a train
+var serp_gears: Array = [0, 0]  # Heavy Works: the Brass Serpents' gears in store [small, big] (scripts/brass_serpent.gd)
 var drill_on := false           # Ore Drill: digging this moment
 var drill_anim := false         # Ore Drill: showing the working loop
 var batteries := 0               # Clockwork: full batteries waiting to be carried off

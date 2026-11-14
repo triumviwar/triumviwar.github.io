@@ -69,10 +69,14 @@ static func victims(u: Unit, dir: Vector2) -> Array:
 	var g := u.game
 	var out: Array = []
 	for o in g.units_near(u.position, float(Defs.PENDULUM_SWING["reach"]) + 40.0):
-		if o == u or o.dead or o.off_field or o.is_air() or o.untouchable() or not g.hostile(o.team, u.team):
+		if o == u or o.dead or o.off_field or o.is_air() or o.untouchable() or not g.hostile(o.team, u.team) or o._k_serp:
 			continue
 		if in_arc(u, o, dir):
 			out.append(o)
+	# (a Brass Serpent: caught if any of its gears is in the arc, scripts/brass_serpent.gd)
+	for sh in BrassSerpent.cone(g, u.position, dir, float(Defs.PENDULUM_SWING["reach"]), cos(deg_to_rad(float(Defs.PENDULUM_SWING["arc"]))), u):
+		if g.hostile(sh[0].team, u.team) and not out.has(sh[0]):
+			out.append(sh[0])
 	return out
 
 

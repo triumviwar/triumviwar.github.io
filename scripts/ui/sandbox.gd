@@ -111,8 +111,8 @@ func _build() -> void:
 	scroll.add_child(list)
 	var kinds: Array = []
 	for k in Defs.UNITS:
-		if Defs.UNITS[k]["faction"] == _tab and not Defs.energy_only(k) and not Defs.retired(k):
-			kinds.append(k)
+		if Defs.UNITS[k]["faction"] == _tab and not Defs.energy_only(k) and not Defs.retired(k) and not Defs.UNITS[k].get("item", false):
+			kinds.append(k)      # (not the Brass Serpent's gears: items for the Heavy Works' store)
 	for k in Defs.FACTIONS[_tab]["build"] + Defs.build_list(_tab):      # (+ gear mode's Light Works, Regulator, Ratchet Turret and Escapement)
 		if not kinds.has(k) and not Defs.energy_only(k) and not Defs.retired(k):      # (gear mode: no power, no old roster)
 			kinds.append(k)
