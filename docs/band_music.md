@@ -102,6 +102,9 @@ In stereo it would be ~27 MB.
 - tools/test_marching_band.gd (the sound part): a band near the middle = ONE recording heard (its three men), on the
   band's clock and playlist; the duck; a SOLO keeps the tune and raises it SOLO_DB; lone musicians each their own
   file, out of step, at most 3; a lone Drummer plays a drums-only recording at LONE_DB.
+- Both pass (test_band_music with the movie writer mixing: 87 checks; test_marching_band: 0 failures); the game boots
+  headless with 0 SCRIPT ERROR. tools/test_marching_band_match.gd fails 3 checks (the Crown computer never trains a
+  Drummer in its match) with the OLD band_sound.gd too: an AI matter, not the sound; left for the merger.
 
 ### The listening files (docs/band_sound/, mp3; LIST.txt has one line each)
 
