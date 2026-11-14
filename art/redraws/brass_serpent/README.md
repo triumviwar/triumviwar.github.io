@@ -11,4 +11,9 @@ Chrome on 2026-11-14, all facing SOUTH-EAST except the first concept:
 - head_s, head_e, head_ne, head_n (_chatgpt originals and serpent_head_*.png cut-outs): the other directions; W, SW, NW are
   these mirrored. preview_heads.png: all five side by side. The north view still shows the eyes (a little odd from
   behind, fine at game size).
-Still to draw: the bite animation, the Hydra's joint.
+- bite_se_chatgpt.png, serpent_bite_se_strip.png: the BITE, 4 frames in a row (closed, opening, wide open with a lunge, snapped
+  shut with sparks), cut out on one shared box (483 x 459 px a frame) so the head stays put; other directions: mirror,
+  or play the SE strip turned for now.
+- hydra_joint_se_chatgpt.png, serpent_hydra_joint_se.png: the HYDRA JOINT, a heavy drum with side gears and three
+  necks fanning out to the front (open ring joints where the heads go). The owner picked this one of ChatGPT's two.
+The set is complete for a first version: head 5 directions, small and big sections, tail, bite, Hydra joint.
