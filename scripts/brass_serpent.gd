@@ -142,7 +142,7 @@ static func all(game: Game) -> Array:
 	var l: Array = game.get_meta("serpents")
 	var out: Array = []
 	for u in l:
-		if is_instance_valid(u) and not u.dead and u.is_inside_tree():
+		if is_instance_valid(u) and not u.dead and u.is_inside_tree() and not u.is_queued_for_deletion():
 			out.append(u)
 	if out.size() != l.size():
 		game.set_meta("serpents", out.duplicate())
@@ -226,7 +226,7 @@ static func _along(tr: PackedVector2Array, s: float) -> Vector2:
 ## Its gears' places: [[centre, radius, size], ...] from the neck to the tail (worked out once a tick; the trail is the head's
 ## path, so a turning Serpent curls).
 static func segments(u: Unit) -> Array:
-	var c = u.get_meta("serp_c", null)
+	var c = (u.get_meta("serp_c") if u.has_meta("serp_c") else null)
 	if c is Array and (c as Array).size() == 2 and (c[0] as Vector2) == u.position:
 		return c[1]
 	var tr: PackedVector2Array = u.get_meta("serp_tr", PackedVector2Array())
@@ -463,11 +463,12 @@ static func tick(u: Unit, delta: float) -> void:
 ## Every animation step (Unit._animate: the host's, a guest's puppet, a replay): the trail follows the head, the body is
 ## drawn again while it moves on screen.
 static func animate(u: Unit) -> void:
-	var before = u.get_meta("serp_lastp", null)
+	var before: Vector2 = u.get_meta("serp_ap", u.position)
+	u.set_meta("serp_ap", u.position)
 	follow(u)
 	if u.sprite and u.sprite.visible:
 		u.sprite.visible = false
-	if u.visible and before is Vector2 and (before as Vector2) != u.position:
+	if u.visible and before != u.position:
 		u.queue_redraw()
 
 
@@ -688,7 +689,7 @@ static func fetch_tick(w: Unit, delta: float) -> Vector2:
 		w.cmd_stop()
 		return Vector2.ZERO
 	if not w.has_meta("serp_carry"):
-		var b = w.get_meta("serp_from", null)
+		var b = (w.get_meta("serp_from") if w.has_meta("serp_from") else null)
 		if b == null or not is_instance_valid(b) or b.dead or stored(b) <= 0:
 			b = works_near(w.game, w.team, w.position)
 			if b == null:
