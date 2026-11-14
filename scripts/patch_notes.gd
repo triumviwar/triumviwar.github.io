@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.37.12", "items": [
+		"DRAGOONS KEEP THEIR HORSES: a Dragoon (or Armoured Dragoon) who got off to shoot now always gets back in the saddle when you give a MOVE, even if he was already walking back to his horse, and he walks back to his own horse wherever it stands nearby. While he fights on foot his horse follows a little behind him, so the fight can't carry him away from it. Only your own DISMOUNT leaves him on foot as a Musketeer with the horse free.",
+	]},
 	{"v": "0.37.11", "items": [
 		"MAIN MENU: EXIT moved to the right, under SETTINGS.",
 	]},

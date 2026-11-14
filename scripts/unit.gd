@@ -2054,7 +2054,10 @@ func cmd_move(p: Vector2, attack_move := false) -> void:
 		p = game.site_keepout(team, p, radius)      # (crown-hold: never onto an allied site waiting to start)
 	# a Dragoon fighting on foot gets back on his horse to move (not with the enemy in range
 	# on an attack-move: he goes on shooting)
-	if auto_mount and Defs.MOUNTS.has(kind) and order != "mount" and (not attack_move or _musket_target(_range()) == null):
+	if auto_mount and Defs.MOUNTS.has(kind) and (not attack_move or _musket_target(_range()) == null):
+		if order == "mount" and order_target != null and horse_free_for(order_target, self):
+			after = {"o": "amove" if attack_move else "move", "p": p}     # (already on his way back to his horse: he gets on, then goes)
+			return
 		if _try_remount({"o": "amove" if attack_move else "move", "p": p}):
 			return
 	if braced:
@@ -2079,7 +2082,10 @@ func cmd_attack(e: Entity) -> void:
 		return
 	if braced and e.edge_distance(position) > _range() + radius:
 		set_brace(false)     # out of the lance's reach: it lifts the shield and goes
-	if auto_mount and Defs.MOUNTS.has(kind) and order != "mount" and e.edge_distance(position) - radius > _range() + 60.0:
+	if auto_mount and Defs.MOUNTS.has(kind) and e.edge_distance(position) - radius > _range() + 60.0:
+		if order == "mount" and order_target != null and horse_free_for(order_target, self):
+			after = {"o": "attack", "e": e}      # (already on his way back to his horse: he gets on, then rides at it)
+			return
 		if _try_remount({"o": "attack", "e": e}):
 			return
 	_reset_work()
@@ -8750,7 +8756,9 @@ func morph(k: String) -> void:
 
 ## Back on his own horse (or another free one close by) to carry out `aft`. False: no horse.
 func _try_remount(aft: Dictionary) -> bool:
-	var h: Unit = steed if horse_free_for(steed, self) and steed.position.distance_to(position) < 5.0 * Defs.TILE else null
+	# (his own horse wherever it stands nearby: he walks back to it, never leaving it behind; the owner's playtest
+	# 2026-11-14: a Dragoon who had drifted in the fight walked off on foot)
+	var h: Unit = steed if horse_free_for(steed, self) and steed.position.distance_to(position) < STEED_FAR * Defs.TILE else null
 	if h == null:
 		h = nearest_free_horse(3.0)
 	if h == null:
@@ -8761,6 +8769,7 @@ func _try_remount(aft: Dictionary) -> bool:
 ## A Dragoon on foot after his own dismount: back in the saddle when there's nothing to shoot
 ## and somewhere to go, or when his target got away.
 func _foot_dragoon(delta: float) -> void:
+	_steed_follows(delta)
 	if order == "amove":
 		_lonely_t = _lonely_t + delta if target == null else 0.0
 		if _lonely_t > 1.2 and position.distance_to(order_point) > 4.0 * Defs.TILE and _musket_target(_range()) == null:
@@ -8770,6 +8779,41 @@ func _foot_dragoon(delta: float) -> void:
 		var e = order_target
 		if e and is_instance_valid(e) and not e.dead and e.edge_distance(position) - radius > _range() + 60.0:
 			_try_remount({"o": "attack", "e": e})
+
+
+## How far (tiles) a Dragoon on foot still goes back for his own horse, and how far it lets him get before it walks
+## after him (it stops `STEED_BEHIND` tiles behind him, on the side away from what he is shooting at).
+const STEED_FAR := 16.0
+const STEED_TRAIL := 3.0
+const STEED_BEHIND := 1.5
+var _steed_t := 0.0
+
+
+## A Dragoon fighting on foot: his horse keeps close behind him (owner 2026-11-14: "if they are dismounted and shooting
+## and we move command they should mount and move"; a horse left where he got off was out of reach once the fight had
+## moved him on, and he walked off without it). Only while it is free and standing about: nobody leading or taking it.
+func _steed_follows(delta: float) -> void:
+	_steed_t -= delta
+	if _steed_t > 0.0:
+		return
+	_steed_t = 0.5
+	var h := steed
+	if not horse_free_for(h, self) or h.leader != null or h.claimed != null or h.bolt_t > 0.0:
+		return
+	if h.position.distance_to(position) <= STEED_TRAIL * Defs.TILE:
+		return
+	if h.order != "idle" and h.order != "move":
+		return
+	var away := Vector2.ZERO
+	var e = order_target if order_target != null and is_instance_valid(order_target) else target
+	if e != null and is_instance_valid(e):
+		away = (position - e.position).normalized()
+	if away == Vector2.ZERO:
+		away = (h.position - position).normalized()
+	var spot: Vector2 = position + away * STEED_BEHIND * Defs.TILE
+	if h.order == "move" and h.order_point.distance_to(spot) < Defs.TILE:
+		return
+	h.cmd_move(spot)
 
 
 ## The nearest enemy a musket could fire on from here (in range and seen), or null.
