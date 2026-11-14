@@ -1216,7 +1216,7 @@ const UNITS := {
 	# its own copy of this entry, its hp, bite, bite rate, speed and supply worked out from its gears (BrassSerpent.apply).
 	# Its price: 75 cogs + 25 Tension for the head and 15 a small gear. Guesses (design_principles 1, 2): a fast, light biter
 	# when small (230 hp, 11.8 a bite every 1.02 s, speed 77, 4 supply: two Clock Soldiers' cogs for a little more health and
-	# about their bite), a slow wall of brass when big (16 big gears: 960 hp, 50 a bite every 3.1 s, speed 30, 17 supply); a
+	# about their bite), a slow wall of brass when big (6 small + 10 big: 780 hp, 40 a bite every 2.6 s, speed 30, 14 supply); a
 	# long body is a big target for round shot, shells and canister (Defs.SERPENT "split"); "armored".
 	"brass_serpent": {
 		"tags": ["armored"],
@@ -2503,7 +2503,7 @@ const SHORT := {
 	"netter": "Nets one enemy for 4 s: it can't move or use abilities.",
 	"ballista": "Bolt thrower: its screw goes through the target into those behind.",
 	"great_winder": "Winds and mends troops near it; turns wrecks into cogs; SCATTER COGS slows foes.",
-	"brass_serpent": "A serpent of gears: more gears, tougher and harder bites, slower. Links into a HYDRA.",
+	"brass_serpent": "Gear serpent: more gears, tougher bites but slower. LINK makes a HYDRA.",
 	"serpent_gear_s": "A small gear for a Brass Serpent: health, and it stays quick.",
 	"serpent_gear_b": "A big gear for a Brass Serpent: more health and bite, but slower.",
 	# Crown buildings
@@ -2521,7 +2521,7 @@ const SHORT := {
 	# Clockwork buildings
 	"clocktower": "Builds Winders and takes in cogs; its gear ring drives the field.",
 	"movement_works": "Makes Clock Soldiers; Springers and Netters with a Mainspring.",
-	"heavy_works": "Makes Pendulums, Ballistas, Great Winders, Brass Serpents and their gears.",
+	"heavy_works": "Makes Pendulums, Ballistas, Great Winders, Serpents and their gears.",
 	"escapement": "The tech building: unlocks the Springer, researches HIGH LEAP.",
 	"cuckoo_house": "Makes Swifts and researches TICKING OWL.",
 	"regulator": "10 more supply for the machine.",

@@ -350,6 +350,8 @@ func _produce() -> void:
 	if not bo_on:
 		if not _keeping():
 			_b_keep()       # (cw-builds-b: the plan's heavy machines first, after the opening; clockwork-ai-v2: not out of the
+			BrassSerpent.ai_produce(self)       # (brass-serpent: OPTIMAL only, a few Brass Serpents by matchup fed with gears;
+			# `-- serpent:off` off: scripts/brass_serpent.gd)
 		super._produce()    # new hall's cogs: AI._keeping)
 
 

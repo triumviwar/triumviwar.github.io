@@ -1,0 +1,181 @@
+# THE BRASS SERPENT (brass-serpent, scripts/brass_serpent.gd, docs/brass_serpent.md): the owner's Clockwork unit
+# (2026-11-14), a serpent of linked brass gears with a biting head, made at the Heavy Works; its gears are its body, a
+# HYDRA is several linked. Names (Claude's, the owner may change them): Serpente de Latão / Serpiente de Latón; Hidra;
+# gear = engrenagem / engranaje (as the cogs); COLLECT = RECOLHER / RECOGER, GROW = CRESCER / CRECER, LINK = UNIR / UNIR,
+# UNLINK = SEPARAR / SEPARAR.
+
+> Brass Serpent
+pt Serpente de Latão
+es Serpiente de Latón
+
+> Small Gear
+pt Engrenagem Pequena
+es Engranaje Pequeño
+
+> Big Gear
+pt Engrenagem Grande
+es Engranaje Grande
+
+> A long serpent of linked brass gears with a biting head. Its gears are its body: few or small gears make it fast, with quick, light bites and little health; many or big gears make it tougher and its bites heavier, but slower. Damage breaks gears off its tail (shorter, faster, weaker; the broken gear lies as a wreck a Great Winder can sweep). The Heavy Works builds gears: COLLECT GEARS sends it back to pick them up, GROW has a Winder carry one out to it. Your Clockwork units standing on its body wind up as on the gear field; enemies crossing it are slowed. LINK two or more Serpents into a HYDRA (a head each, the gears pooled); UNLINK splits it. Made at the Heavy Works (once an Escapement works). Costs Tension.
+pt Uma longa serpente de engrenagens de latão ligadas, com uma cabeça que morde. Suas engrenagens são seu corpo: poucas ou pequenas a deixam rápida, com mordidas rápidas e leves e pouca vida; muitas ou grandes a deixam mais resistente e suas mordidas mais pesadas, mas mais lenta. O dano quebra engrenagens da sua cauda (mais curta, mais rápida, mais fraca; a engrenagem quebrada fica como destroço que um Grande Enrolador pode varrer). A Oficina Pesada faz engrenagens: RECOLHER ENGRENAGENS a manda de volta para pegá-las, CRESCER faz um Enrolador levar uma até ela. Suas unidades do Mecanismo sobre o corpo dela recebem corda como no terreno de engrenagens; inimigos que a atravessam ficam mais lentos. UNA duas ou mais Serpentes numa HIDRA (uma cabeça cada, as engrenagens somadas); SEPARAR a divide. Feita na Oficina Pesada (quando um Escape funciona). Custa Tensão.
+es Una larga serpiente de engranajes de latón unidos, con una cabeza que muerde. Sus engranajes son su cuerpo: pocos o pequeños la hacen rápida, con mordiscos rápidos y ligeros y poca vida; muchos o grandes la hacen más dura y sus mordiscos más fuertes, pero más lenta. El daño rompe engranajes de su cola (más corta, más rápida, más débil; el engranaje roto queda como restos que un Gran Dador de Cuerda puede barrer). El Taller Pesado hace engranajes: RECOGER ENGRANAJES la manda de vuelta a por ellos, CRECER hace que un Dador de cuerda le lleve uno. Tus unidades del Mecanismo sobre su cuerpo reciben cuerda como en el terreno de engranajes; los enemigos que la cruzan van más lentos. UNE dos o más Serpientes en una HIDRA (una cabeza cada una, los engranajes juntos); SEPARAR la divide. Se hace en el Taller Pesado (cuando funciona un Escape). Cuesta Tensión.
+
+> A small brass gear for a Brass Serpent: +25 health, and it keeps the Serpent quick. Stored at the Heavy Works until a Serpent collects it or a Winder carries it out.
+pt Uma engrenagem pequena de latão para uma Serpente de Latão: +25 de vida, e a Serpente continua rápida. Guardada na Oficina Pesada até uma Serpente recolhê-la ou um Enrolador levá-la.
+es Un engranaje pequeño de latón para una Serpiente de Latón: +25 de vida, y la Serpiente sigue rápida. Se guarda en el Taller Pesado hasta que una Serpiente lo recoge o un Dador de cuerda lo lleva.
+
+> A big brass gear for a Brass Serpent: +55 health and heavier bites, but the Serpent gets slower. Stored at the Heavy Works until a Serpent collects it or a Winder carries it out. Costs Tension.
+pt Uma engrenagem grande de latão para uma Serpente de Latão: +55 de vida e mordidas mais pesadas, mas a Serpente fica mais lenta. Guardada na Oficina Pesada até uma Serpente recolhê-la ou um Enrolador levá-la. Custa Tensão.
+es Un engranaje grande de latón para una Serpiente de Latón: +55 de vida y mordiscos más fuertes, pero la Serpiente se vuelve más lenta. Se guarda en el Taller Pesado hasta que una Serpiente lo recoge o un Dador de cuerda lo lleva. Cuesta Tensión.
+
+> Gear serpent: more gears, tougher bites but slower. LINK makes a HYDRA.
+pt Serpente de engrenagens: mais delas, mais mordida, mais lenta. Vira HIDRA.
+es Serpiente de engranajes: más de ellos, más mordisco, más lenta. Forma HIDRA.
+
+> A small gear for a Brass Serpent: health, and it stays quick.
+pt Engrenagem pequena para a Serpente: vida, e ela continua rápida.
+es Engranaje pequeño para la Serpiente: vida, y sigue rápida.
+
+> A big gear for a Brass Serpent: more health and bite, but slower.
+pt Engrenagem grande para a Serpente: mais vida e mordida, mas mais lenta.
+es Engranaje grande para la Serpiente: más vida y mordisco, pero más lenta.
+
+> Makes Pendulums, Ballistas, Great Winders, Serpents and their gears.
+pt Faz Pêndulos, Balistas, Grandes Enroladores, Serpentes e engrenagens.
+es Hace Péndulos, Balistas, Grandes Dadores, Serpientes y engranajes.
+
+> The yard of the heavy machines: under its gantry crane it assembles Pendulums, Spring Ballistas, Great Winders and Brass Serpents (and builds the Serpents' gears into its store), and you can watch each one rise in the bay. It sits on a BIG gear only (slow and strong: the heavy torque), and everything it makes costs Tension, so it needs a Mainspring anywhere in its gear network (Tension flows through every meshed ring), else it stands idle (NEEDS MAINSPRING). Needs a working Escapement.
+pt O pátio das máquinas pesadas: sob seu guindaste ele monta Pêndulos, Balistas de Mola, Grandes Enroladores e Serpentes de Latão (e faz as engrenagens das Serpentes para seu estoque), e você vê cada um subir no pátio. Fica só numa engrenagem GRANDE (lenta e forte: a força pesada), e tudo o que faz custa Tensão, então precisa de uma Mola Real em qualquer lugar da sua rede de engrenagens (a Tensão corre por todo anel engrenado), senão fica parado (PRECISA DE MOLA REAL). Precisa de um Escape funcionando.
+es El patio de las máquinas pesadas: bajo su grúa monta Péndulos, Balistas de Resorte, Grandes Dadores de Cuerda y Serpientes de Latón (y hace los engranajes de las Serpientes para su almacén), y puedes ver cada uno alzarse en el patio. Solo va sobre un engranaje GRANDE (lento y fuerte: la fuerza pesada), y todo lo que hace cuesta Tensión, así que necesita un Muelle Real en cualquier parte de su red de engranajes (la Tensión corre por todo anillo engranado), si no se queda parado (NECESITA MUELLE REAL). Necesita un Escape que funcione.
+
+> COLLECT
+pt RECOLHER
+es RECOGER
+
+> GROW
+pt CRESCER
+es CRECER
+
+> LINK
+pt UNIR
+es UNIR
+
+> UNLINK
+pt SEPARAR
+es SEPARAR
+
+> Collect gears
+pt Recolher engrenagens
+es Recoger engranajes
+
+> Grow
+pt Crescer
+es Crecer
+
+> Link into a Hydra
+pt Unir numa Hidra
+es Unir en una Hidra
+
+> Unlink
+pt Separar
+es Separar
+
+> The Serpent goes back to the nearest Heavy Works with gears in store and takes as many as fit (big ones first): more health and heavier bites, but slower. Right-click a Heavy Works to pick one.
+pt A Serpente volta à Oficina Pesada mais próxima com engrenagens no estoque e pega quantas couberem (as grandes primeiro): mais vida e mordidas mais pesadas, mas mais lenta. Clique com o botão direito numa Oficina Pesada para escolher uma.
+es La Serpiente vuelve al Taller Pesado más cercano con engranajes en el almacén y coge los que quepan (los grandes primero): más vida y mordiscos más fuertes, pero más lenta. Clic derecho en un Taller Pesado para elegir uno.
+
+> The nearest free Winder fetches a gear from a Heavy Works' store and carries it out to the Serpent, wherever it is. (A Winder's right-click on a Serpent at full health does the same.)
+pt O Enrolador livre mais próximo pega uma engrenagem no estoque de uma Oficina Pesada e a leva até a Serpente, onde ela estiver. (O clique direito de um Enrolador numa Serpente com a vida cheia faz o mesmo.)
+es El Dador de cuerda libre más cercano coge un engranaje del almacén de un Taller Pesado y se lo lleva a la Serpiente, esté donde esté. (El clic derecho de un Dador de cuerda en una Serpiente con la vida llena hace lo mismo.)
+
+> The selected Serpents crawl together and join into one HYDRA: one body, a head each (at most %d), the gears pooled; every head bites on its own. Right-click one of your Serpents with others selected to link them to it.
+pt As Serpentes selecionadas rastejam juntas e se unem numa HIDRA: um corpo, uma cabeça cada (no máximo %d), as engrenagens somadas; cada cabeça morde por conta própria. Clique com o botão direito numa das suas Serpentes com outras selecionadas para uni-las a ela.
+es Las Serpientes seleccionadas se arrastan juntas y se unen en una HIDRA: un cuerpo, una cabeza cada una (como mucho %d), los engranajes juntos; cada cabeza muerde por su cuenta. Clic derecho en una de tus Serpientes con otras seleccionadas para unirlas a ella.
+
+> The Hydra splits back into Serpents of one head each, its gears shared out between them.
+pt A Hidra se divide de volta em Serpentes de uma cabeça cada, suas engrenagens repartidas entre elas.
+es La Hidra se divide de nuevo en Serpientes de una cabeza cada una, sus engranajes repartidos entre ellas.
+
+> %d small + %d big gears (of %d) · bites %d every %.1f s · speed %d
+pt %d engrenagens pequenas + %d grandes (de %d) · morde %d a cada %.1f s · velocidade %d
+es %d engranajes pequeños + %d grandes (de %d) · muerde %d cada %.1f s · velocidad %d
+
+> HYDRA of %d heads: %d small + %d big gears (of %d) · each head bites %d every %.1f s · speed %d
+pt HIDRA de %d cabeças: %d engrenagens pequenas + %d grandes (de %d) · cada cabeça morde %d a cada %.1f s · velocidade %d
+es HIDRA de %d cabezas: %d engranajes pequeños + %d grandes (de %d) · cada cabeza muerde %d cada %.1f s · velocidad %d
+
+> Gear store: %d small, %d big (of %d).
+pt Estoque de engrenagens: %d pequenas, %d grandes (de %d).
+es Almacén de engranajes: %d pequeños, %d grandes (de %d).
+
+> The gear store is full (%d gears).
+pt O estoque de engrenagens está cheio (%d engrenagens).
+es El almacén de engranajes está lleno (%d engranajes).
+
+> It has all the gears it can carry (%d).
+pt Ela já tem todas as engrenagens que pode carregar (%d).
+es Ya tiene todos los engranajes que puede llevar (%d).
+
+> Not enough supply for another gear.
+pt Suprimento insuficiente para mais uma engrenagem.
+es No hay suministro para otro engranaje.
+
+> No Heavy Works has gears in store.
+pt Nenhuma Oficina Pesada tem engrenagens no estoque.
+es Ningún Taller Pesado tiene engranajes en el almacén.
+
+> No free Winder to carry a gear.
+pt Nenhum Enrolador livre para levar uma engrenagem.
+es No hay un Dador de cuerda libre para llevar un engranaje.
+
+> Pick two or more Brass Serpents to link.
+pt Escolha duas ou mais Serpentes de Latão para unir.
+es Elige dos o más Serpientes de Latón para unir.
+
+> A Hydra has at most %d heads.
+pt Uma Hidra tem no máximo %d cabeças.
+es Una Hidra tiene como mucho %d cabezas.
+
+> HYDRA: %d heads
+pt HIDRA: %d cabeças
+es HIDRA: %d cabezas
+
+> -1 gear
+pt -1 engrenagem
+es -1 engranaje
+
+> -%d gears
+pt -%d engrenagens
+es -%d engranajes
+
+> +1 gear
+pt +1 engrenagem
+es +1 engranaje
+
+> +%d gears
+pt +%d engrenagens
+es +%d engranajes
+
+> no gears taken
+pt nenhuma engrenagem pega
+es ningún engranaje recogido
+
+> +1 small gear
+pt +1 engrenagem pequena
+es +1 engranaje pequeño
+
+> +1 big gear
+pt +1 engrenagem grande
+es +1 engranaje grande
+
+> %s builds a Brass Serpent at its Heavy Works.
+pt %s constrói uma Serpente de Latão na sua Oficina Pesada.
+es %s construye una Serpiente de Latón en su Taller Pesado.
+
+> %s's Winder carries a gear out to its Brass Serpent.
+pt Um Enrolador de %s leva uma engrenagem até sua Serpente de Latão.
+es Un Dador de cuerda de %s lleva un engranaje a su Serpiente de Latón.
+
+> %s links two Brass Serpents into a Hydra!
+pt %s une duas Serpentes de Latão numa Hidra!
+es ¡%s une dos Serpientes de Latón en una Hidra!

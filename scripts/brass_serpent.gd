@@ -413,7 +413,7 @@ static func after_hit(u: Unit) -> void:
 	if lost > 0:
 		apply(u)
 		if u.team == u.game.human and u.visible:
-			u.game.float_text(u.position + Vector2(0, -34), "-%d gear%s" % [lost, "" if lost == 1 else "s"], Color(1.0, 0.7, 0.4))
+			u.game.float_text(u.position + Vector2(0, -34), "-1 gear" if lost == 1 else "-%d gears" % lost, Color(1.0, 0.7, 0.4))
 		Sfx.play_any(["combat/serpent_gear_break", "combat/clock_soldier_death", "clash"], u.position, -4.0)
 
 
@@ -540,7 +540,7 @@ static func item_done(game: Game, b: Building, k: String) -> bool:
 	else:
 		s[0] = int(s[0]) + 1
 	if b.team == game.human:
-		game.float_text(b.center() + Vector2(0, -40), "+1 %s gear" % ("big" if k == GEAR_B else "small"), BRASS)
+		game.float_text(b.center() + Vector2(0, -40), "+1 big gear" if k == GEAR_B else "+1 small gear", BRASS)
 	b.queue_redraw()
 	return true
 
@@ -626,7 +626,7 @@ static func collect_tick(u: Unit, delta: float) -> Vector2:
 		return u._walk_to((b as Building).center(), delta)
 	var n := take_from(u, b)
 	if u.team == u.game.human:
-		u.game.float_text(u.position + Vector2(0, -34), ("+%d gears" % n) if n > 0 else "no gears taken", BRASS if n > 0 else Color(0.8, 0.8, 0.8))
+		u.game.float_text(u.position + Vector2(0, -34), ("+1 gear" if n == 1 else "+%d gears" % n) if n > 0 else "no gears taken", BRASS if n > 0 else Color(0.8, 0.8, 0.8))
 	u.cmd_stop()
 	return Vector2.ZERO
 
@@ -944,11 +944,12 @@ static func net_load(u: Unit, v) -> void:
 static func card_line(u: Unit) -> String:
 	var ns := count(u, "s")
 	var nb := count(u, "b")
-	var line := "%d small + %d big gears (of %d) · bite %d every %.1f s · speed %d" % [ns, nb, max_gears(u),
-		int(round(float(u.d["damage"]))), float(u.d["cooldown"]), int(round(float(u.d["speed"])))]
+	var dm := int(round(float(u.d["damage"])))
+	var sp := int(round(float(u.d["speed"])))
 	if heads(u) > 1:
-		line = "HYDRA, %d heads · " % heads(u) + line
-	return line
+		return "HYDRA of %d heads: %d small + %d big gears (of %d) · each head bites %d every %.1f s · speed %d" % [heads(u), ns, nb,
+			max_gears(u), dm, float(u.d["cooldown"]), sp]
+	return "%d small + %d big gears (of %d) · bites %d every %.1f s · speed %d" % [ns, nb, max_gears(u), dm, float(u.d["cooldown"]), sp]
 
 
 ## The Heavy Works' line: its gear store.

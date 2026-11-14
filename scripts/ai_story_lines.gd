@@ -57,6 +57,10 @@ const RULES := [
 	["^'s Clockwork: army: the base is calm again", "%s's base is calm again: the army walks back to rest on its gears.", 1, "defend"],
 	# ---- (clockwork-ai-v2, docs/clockwork_ai_v2.md: dry land, the Great Winder's sweep, the push that commits, the air, the sentry)
 	["^'s Clockwork: the opening build is over \\(its land is dry", "%s's land is dry: it ends its opening and saves for a new Clocktower and its press before more units.", 3, "expand"],
+	# (brass-serpent: OPTIMAL's Brass Serpents, scripts/brass_serpent.gd)
+	["^'s Clockwork: OPTIMAL: a Brass Serpent from the Heavy Works", "%s builds a Brass Serpent at its Heavy Works.", 2, "tech"],
+	["^'s Clockwork: a Winder carries a gear out to its Brass Serpent", "%s's Winder carries a gear out to its Brass Serpent.", 1, "army"],
+	["^'s Clockwork: links two Brass Serpents into a Hydra", "%s links two Brass Serpents into a Hydra!", 3, "army"],
 	["^'s Clockwork: army: its Great Winder sweeps the wrecks", "%s's Great Winder sweeps the wrecks by its army into cogs.", 1, "army"],
 	["^'s Clockwork: push: is clearly ahead \\(worth (\\d+), the enemy army seen lately (\\d+)", "%s's push is clearly ahead (%s against %s): it presses on to the enemy's halls to finish the game.", 3, "attack"],
 	["^'s Clockwork: push: is no longer clearly ahead", "%s's push is no longer clearly ahead: it marches on with care.", 2, "attack"],
