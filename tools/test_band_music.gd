@@ -97,8 +97,16 @@ func playlist_checks() -> void:
 				air = t
 		if air != "":
 			var other: String = BandSound.ORDER[g][0] if BandSound.ORDER[g][0] != air else BandSound.ORDER[g][1]
-			check("%s: standing idle a while, the slow air may come next (and not again after it)" % g, BandSound.next_tune(other, false, true) == air and BandSound.next_tune(air, false, true) != air)
+			var idle_nx := BandSound.next_tune(other, false, true)
+			check("%s: standing idle a while, a slow air may come next (and not another after it)" % g, BandSound._is_air(idle_nx) and not BandSound._is_air(BandSound.next_tune(idle_nx, false, true)))
 	check("in turn when marching: the band's list from the first tune to the second", BandSound.next_tune(BandSound.ORDER["band"][0], false, false) == BandSound.ORDER["band"][1])
+	# the band's own pieces by what it is doing (MAIN): marching The Pipe Calls, fighting The Drums Lead, at rest the lament
+	var mn: Dictionary = BandSound.MAIN["band"]
+	check("marching: The Pipe Calls after every other tune", BandSound.next_tune("band_scotland", false, false, "band_pipecalls", "band") == mn["march"] and BandSound.next_tune("band_brandywine", false, false, "band_pipecalls", "band") == mn["march"])
+	check("marching: after The Pipe Calls the recordings go on in turn", BandSound.next_tune(mn["march"], false, false, "band_scotland", "band") == "band_brandywine")
+	check("fighting: The Drums Lead after every other tune, and straight after a march's main tune", BandSound.next_tune("band_scotland", true, false, "", "band") == mn["fight"] and BandSound.next_tune(mn["march"], true, false, "band_paddy", "band") == mn["fight"])
+	check("at rest: the lament comes next", BandSound.next_tune("band_scotland", false, true, "band_pipecalls", "band") == mn["rest"])
+	check("never two slow airs in a row (the lament, then not The Mist Covered Mountains)", not BandSound._is_air(BandSound.next_tune(mn["rest"], false, false, "band_green", "band")))
 	# a playlist moving on: GAP s after a tune's end the next starts, its clock carried on (no restart)
 	var pl := BandSound.Playlist.new()
 	var now := Time.get_ticks_msec()

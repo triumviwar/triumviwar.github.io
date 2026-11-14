@@ -16,3 +16,7 @@ no credits screen yet: when it gets one, these lines go in it (CC BY needs the c
 
 The band's music (assets/audio/band/*.ogg, docs/band_music.md) is, since band-real, the real recordings of the two rows above
 (tools/audio/master_band_real.py), and for a lone Piper only the generated bagpipe part (tools/audio/make_band_music.py). Other jobs: add a row whenever an outside recording goes into the game (see each art/audio_src/*/SOURCES.txt).
+
+The band's own pieces (band_pipecalls, band_drumslead, band_lament) and the lone Piper's files (pipes_*) since 0.37.14:
+Claude's compositions (The Pipe Calls, The Fife Calls, The Drums Lead) and arrangements of traditional tunes, rendered
+from the bagpipe, recorder and drum samples credited above (tools/audio/band_own.py).

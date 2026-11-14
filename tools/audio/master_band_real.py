@@ -77,11 +77,7 @@ CUTS = [
      [(OG % "04_fife_feature_lowlands_awaytrenton_from_the_george_washington_show", 33.25, None)], 0),
     ("fife_hornpipe", "fife", "quick", "Fisher's Hornpipe, Guilderoy, Red Haired Boy (Old Guard fife feature)",
      [(OG % "11_fife_feature_fishers_hornpipe_variationguilderoyred_haired_boy", 0.0, None)], 0),
-    # A LONE PIPER: the old generated piper part (no recording has a solo pipe passage: docs/band_music.md)
-    ("pipes_scotland", "pipes", "march", "Scotland the Brave (generated piper)", [("@scotland_pipes.ogg", 0.0, None)], 0),
-    ("pipes_grenadiers", "pipes", "march", "The British Grenadiers (generated piper)", [("@grenadiers_pipes.ogg", 0.0, None)], 0),
-    ("pipes_garryowen", "pipes", "quick", "Garry Owen (generated piper)", [("@garryowen_pipes.ogg", 0.0, None)], 0),
-    ("pipes_minstrel", "pipes", "air", "The Minstrel Boy (generated piper)", [("@minstrel_pipes.ogg", 0.0, None)], 0),
+    # A LONE PIPER: since 0.37.14 his four tunes are rendered by tools/audio/band_own.py (piper), not cut here
 ]
 
 

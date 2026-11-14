@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.37.14", "items": [
+		"THE BAND'S OWN MUSIC: three new pieces written for the band, chosen by what it is doing. Marching or standing about it plays The Pipe Calls (the pipes call, the fife answers); in a fight, The Drums Lead (a drum feature with the pipes and fife answering); at rest, The Fife Calls (a slow, sad lament led by the fife). The real recordings still come round between them.",
+		"The band now sounds like a band in the open air: each part is played by a few players in stereo, with body and an outdoor echo. The lone Piper's four tunes are remade the same way.",
+	]},
 	{"v": "0.37.13", "items": [
 		"THE BAND PLAYS REAL RECORDINGS: public-domain recordings by US military bands replace the generated music. A full band (Drummer, Fifer and Piper together) plays a playlist of real pipe band tunes (Scotland the Brave, The Minstrel Boy, Bonnie Dundee, Wearing of the Green, The Mist Covered Mountains, by the US Air Force Reserve Pipe Band) and fife and drum tunes (by the US Army Old Guard Fife and Drum Corps), never the same one twice in a row. A lone Drummer plays real drum features and a lone Fifer real fife features; a lone Piper keeps his old part for now.",
 		"A SOLO now makes the band louder (and the game music quieter) without restarting the tune.",

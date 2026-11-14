@@ -16,6 +16,11 @@ extends Node
 ##       the lone Piper keeps the old generated piper part), OUT OF STEP: each his own playlist (`_lone_pl`), a little
 ##       into its tune (STEP_OFF); at most LONE_MAX of them (the nearest), never loud chaos. Two musicians who are not a
 ##       full band are two lone musicians.
+##  - THE BAND'S OWN PIECES (owner 2026-11-14 22:12, "do it all"; tools/audio/band_own.py, Claude's melodies):
+##    a full band's tune by WHAT IT IS DOING (MAIN): marching or standing about, The Pipe Calls (the pipes call, the
+##    fife answers); FIGHTING, The Drums Lead; at REST (IDLE_AIR s still, no fight), The Fife Calls (a slow lament).
+##    The main tune comes back after every other tune; the real recordings come round in turn between them.
+##    The lone Piper's four tunes are rendered by the same tool (one piper, stereo, an outdoor room).
 ##  - THE PLAYLIST: one whole tune (or set), a short pause (GAP), the next, never the same twice in a row. The situation
 ##    only shapes it (next_tune): while the men are FIGHTING a slow air is skipped, and one playing is faded out at its
 ##    next phrase end (TUNES "phrases", over CUT_FADE); standing IDLE a while (IDLE_AIR s) a slow air may come next.
@@ -35,6 +40,11 @@ extends Node
 ## The repertoire: length in samples at 44.1 kHz, which playlist it belongs to ("set": band / drums / fife / pipes),
 ## its kind (march / quick / air), for the band's the style (a pipe band or a fife-and-drum corps) and, for the slow airs, the phrase ends (s) where it may be cut short.
 const TUNES := {
+	# the band's own pieces (tools/audio/band_own.py): by what the band is doing (MAIN)
+	"band_pipecalls": {"style": "both", "title": "The Pipe Calls", "set": "band", "kind": "march", "n": 2555395},
+	"band_drumslead": {"style": "both", "title": "The Drums Lead", "set": "band", "kind": "march", "n": 1865886},
+	"band_lament": {"style": "both", "title": "The Fife Calls", "set": "band", "kind": "air", "n": 3810240,
+		"phrases": [12.5, 17.5, 27.5, 32.5, 52.5, 62.5, 67.5, 77.5]},
 	# a full band: pipe band (USAF Reserve Pipe Band) and fife-and-drum corps (the Old Guard) tunes
 	"band_scotland": {"style": "pipes", "title": "Scotland the Brave", "set": "band", "kind": "march", "n": 4020654},
 	"band_brandywine": {"style": "fifes", "title": "Brandywine Quickstep", "set": "band", "kind": "quick", "n": 4860146},
@@ -54,20 +64,23 @@ const TUNES := {
 	"fife_lowlands": {"title": "Lowlands Away", "set": "fife", "kind": "air", "n": 1419679, "phrases": [14.13, 21.75]},
 	"fife_trenton": {"title": "Trenton", "set": "fife", "kind": "quick", "n": 2665926},
 	"fife_hornpipe": {"title": "Fisher's Hornpipe, Guilderoy, Red Haired Boy", "set": "fife", "kind": "quick", "n": 6615440},
-	# a lone Piper (the old generated part: no solo pipe recording)
-	"pipes_scotland": {"title": "Scotland the Brave", "set": "pipes", "kind": "march", "n": 1662970},
-	"pipes_grenadiers": {"title": "The British Grenadiers", "set": "pipes", "kind": "march", "n": 1819023},
-	"pipes_garryowen": {"title": "Garry Owen", "set": "pipes", "kind": "quick", "n": 1539514},
-	"pipes_minstrel": {"title": "The Minstrel Boy", "set": "pipes", "kind": "air", "n": 2574952, "phrases": [14.81, 17.6, 26.47, 28.57, 36.75, 38.98, 46.99]},
+	# a lone Piper (no solo pipe recording: his tunes rendered for one piper by tools/audio/band_own.py)
+	"pipes_scotland": {"title": "Scotland the Brave", "set": "pipes", "kind": "march", "n": 1618871},
+	"pipes_grenadiers": {"title": "The British Grenadiers", "set": "pipes", "kind": "march", "n": 1746360},
+	"pipes_garryowen": {"title": "Garry Owen", "set": "pipes", "kind": "quick", "n": 1507025},
+	"pipes_minstrel": {"title": "The Minstrel Boy", "set": "pipes", "kind": "air", "n": 2498580, "phrases": [14.19, 27.9, 41.61]},
 }
 ## The playlists, in turn: the band's mixes pipe band and fife-and-drum corps tunes.
 const ORDER := {
-	"band": ["band_scotland", "band_brandywine", "band_minstrel", "band_farewell", "band_dundee", "band_yankee",
-		"band_green", "band_paddy", "band_mist"],
+	"band": ["band_pipecalls", "band_scotland", "band_brandywine", "band_minstrel", "band_farewell", "band_dundee",
+		"band_yankee", "band_green", "band_paddy", "band_lament", "band_mist", "band_drumslead"],
 	"drums": ["drums_cornwallis", "drums_calls", "drums_generations"],
 	"fife": ["fife_lowlands", "fife_trenton", "fife_hornpipe"],
 	"pipes": ["pipes_scotland", "pipes_grenadiers", "pipes_garryowen", "pipes_minstrel"],
 }
+## A list's MAIN tunes, by what the band is doing: it comes back after every other tune (the others in turn between).
+## "rest" is a slow air: the idle rule brings it (it is the list's first air).
+const MAIN := {"band": {"march": "band_pipecalls", "fight": "band_drumslead", "rest": "band_lament"}}
 const BAND_DB := -6.0       # a full band (files at -20 LUFS)
 const LONE_DB := -9.0      # a lone musician: one man, quieter than a corps
 const SOLO_DB := 6.0        # a SOLO: the heard music this much louder (owner may tune)
@@ -206,13 +219,26 @@ static func next_tune(cur: String, fighting: bool, idle: bool, prev := "", group
 		for c in list:
 			if _is_air(c) and c != cur:
 				return c
-	var i := list.find(cur)
+	var mains: Dictionary = MAIN.get(group, {})
+	var main_list: Array = mains.values()
+	if not mains.is_empty():
+		var want: String = String(mains["fight"] if fighting else mains["march"])
+		if cur != want and not main_list.has(cur):
+			return want          # (the main tune for what they are doing, between every two others)
+		if fighting and cur != want and main_list.has(cur):
+			return want          # (a fight breaks out after the march's or the rest's main tune: the fight's next)
+	var ref := cur
+	if main_list.has(cur) and prev != "" and not main_list.has(prev) and list.has(prev):
+		ref = prev           # (after a main tune: on from the tune before it)
+	var i := list.find(ref)
 	for k in range(1, list.size() + 1):
 		var c: String = list[(i + k) % list.size()] if i >= 0 else list[(k - 1) % list.size()]
-		if c == cur:
+		if c == cur or main_list.has(c):
 			continue
 		if fighting and _is_air(c):
 			continue
+		if _is_air(c) and (_is_air(cur) or _is_air(prev)):
+			continue             # (never two slow airs one after the other)
 		return c
 	return list[0] if cur != list[0] else list[1]
 

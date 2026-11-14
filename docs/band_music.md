@@ -491,3 +491,36 @@ All in docs/audio_credits.md.
 3. Do the second pipes and the harmony line make the Piper's solo better, or muddier?
 4. 0.37.1's open questions still stand: the snare and bass drum sound, the fife (a recorder made brighter), one tune or
    more, the always-on playing.
+
+## The band's own pieces (band-own, 0.37.14)
+
+The owner, 2026-11-14 21:47-22:12: after the ElevenLabs "A Highland March" (rejected: "you can't hear the fife") he
+asked Claude to compose one himself. Three pieces, Claude's own melodies, rendered with the band's instrument samples
+(make_band_music.py) and produced by tools/audio/band_produce.py; tools/audio/band_own.py makes them all:
+
+| File | Piece | Who leads | When the full band plays it (BandSound.MAIN) |
+|---|---|---|---|
+| band_pipecalls | The Pipe Calls (2/4, 110, A mixolydian, 55 s) | the pipes call two bars, the fife answers two; then both together | marching or standing about |
+| band_drumslead | The Drums Lead (2/4, 116, 42 s) | a snare feature, a bass/tenor break; the pipes and fife answer, then the Pipe Calls strain softly under the drums | fighting |
+| band_lament | The Fife Calls (3/4, 72, A dorian, 86 s) | the fife sings four-bar calls, the pipes answer two; the fife over long pipe notes | at rest (IDLE_AIR s still, no fight) |
+
+The main tune for what the band is doing comes back after every other tune; the real recordings (band-real) come round
+in turn between them; never two slow airs in a row. The lone Piper's four tunes (pipes_*) are rendered by the same tool
+for one piper (stereo, the same room) in place of the old generated part. The owner: "this one sounds much better", "I
+love this 3 musics".
+
+### Why the first renders sounded off (the study: tools/audio/band_own_study.py)
+
+Measured against the real recordings (USAF Reserve Pipe Band, Old Guard) and the ElevenLabs piece:
+
+| | first renders | real recordings | ElevenLabs | band_own now |
+|---|---|---|---|---|
+| stereo (side/mid) | 0.00 (mono) | 0.34-0.43 | 0.46 | 0.35-0.44 |
+| low-mid 120-500 Hz share | 2-7% (drums 20%) | 4-62% (drums 62%) | 45% | 19% (drums 53%) |
+| players a part | one | a section | a section | 3 pipers, 3 fifers, 2 snares |
+| room | dry | a real space | a large room | early reflections + 1.8 s stereo tail |
+
+So: one speaker, one player a part (no ensemble spread), a thin body and no room. band_produce.py: each part played by a
+section (each player a few ms late and a few cents off, panned: pipes left, fifes right, snares centre, tenors wide), EQ
+for body and presence (the bass drum's boom cut), early reflections and a stereo tail, a faint open-air tone, a gentle
+bus compressor and tape warmth. The instruments are still single samples, so close up they do not match a real band.
