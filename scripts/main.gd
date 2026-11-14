@@ -347,11 +347,12 @@ func show_crash(report: String) -> void:
 ## the painting's empty top-left sky:
 ##   TUTORIAL     CAMPAIGN  SKIRMISH (primary)  ONLINE
 ##   HOW TO PLAY  REPLAYS   EDITOR              SETTINGS
-##   CONTINUE (only with a save of this version, else empty)  EXIT (not on the web)
+##   CONTINUE (only with a save of this version, else empty)  -  -  EXIT (not on the web; under SETTINGS since 0.37.11,
+##   the owner, 2026-11-14 19:50: "move exit button to the right")
 ## No levels, no submenus: each page's BACK comes back here. MATCH LOGS is on the REPLAYS page. Esc does nothing
 ## here (the phone's back saves and quits, as before). Flags small top-right, the version small bottom-right.
 ## The grid's slot ids, row by row ("" = an empty slot).
-const MENU_SLOTS := ["tutorial", "campaign", "skirmish", "online", "help", "replays", "editor", "settings", "continue", "exit"]
+const MENU_SLOTS := ["tutorial", "campaign", "skirmish", "online", "help", "replays", "editor", "settings", "continue", "", "", "exit"]
 const MENU_COLS := 4
 ## Fractions of the screen (the owner's mock-up, 1455 x 819): button size, first column / row, the gaps.
 ## (Four columns since the TUTORIAL: each button 8.2% wide instead of 10.5%, the grid as wide as before plus a little.)

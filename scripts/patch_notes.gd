@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.37.11", "items": [
+		"MAIN MENU: EXIT moved to the right, under SETTINGS.",
+	]},
 	{"v": "0.37.10", "items": [
 		"MAIN MENU PAINTING: the priest's hat is whole again, the Crown's firing line and the kneeling gunner hold flintlock muskets instead of modern-looking rifles, the Spitter spits from its mouth and has green spines, and the Clockwork soldiers attacking the Brood show their red backs with winding keys while those facing the Crown keep their clocks.",
 	]},

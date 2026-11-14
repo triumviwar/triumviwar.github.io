@@ -59,7 +59,7 @@ func _run() -> void:
 	var fixed := ["tutorial", "campaign", "skirmish", "online", "help", "replays", "editor", "settings", "exit"]
 	var miss := fixed.filter(func(id: String) -> bool: return not b.has(id))
 	_check("the 9 fixed slots", miss.is_empty(), miss)
-	_check("slot order", main.MENU_SLOTS == ["tutorial", "campaign", "skirmish", "online", "help", "replays", "editor", "settings", "continue", "exit"], main.MENU_SLOTS)
+	_check("slot order", main.MENU_SLOTS == ["tutorial", "campaign", "skirmish", "online", "help", "replays", "editor", "settings", "continue", "", "", "exit"], main.MENU_SLOTS)
 	_check("CAMPAIGN enabled (0.30.0)", not b["campaign"].disabled, b["campaign"].text)
 	_check("TUTORIAL next to CAMPAIGN (same row)", b["tutorial"].text == "TUTORIAL" and absf(b["tutorial"].position.y - b["campaign"].position.y) < 1.0 and b["tutorial"].position.x < b["campaign"].position.x, [b["tutorial"].position, b["campaign"].position])
 	_check("SKIRMISH text", b["skirmish"].text == "SKIRMISH", b["skirmish"].text)
