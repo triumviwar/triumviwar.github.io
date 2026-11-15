@@ -82,15 +82,20 @@ too), `crownarmy:nodry` (no bayonet Musketeers), `crownarmy:noclock` (the clock 
 The headless game with the owner's seed picks the Timing attack; seed 1 (the Crown in slot A, both OPTIMAL) picks the
 Balloon harass and plays the owner's game: the Clockwork's 8 Clock Soldiers leave at 4:30-4:39.
 
-| 0.38.5 | 4:00 | 5:00 | 6:00 | 7:00 | kills / losses by 7:00 |
+| build | 4:00 | 5:00 | 6:00 | 7:00 | kills / losses by 7:00 |
 |---|---|---|---|---|---|
-| before (`crownarmy:off`) | 2 Musketeers v 4 Clock Soldiers | 4 v 10 | 5 v 14 | 5 (and a Missionary) v 14 + 2 Springers, a Netter | 1 / 6 |
-| after (the final code) | 4 v 4 | 8 v 10 | 12 v 12 + a Netter, 2 Springers | 12 (and a rider, a wagon) v 12 + 2 Netters, 3 Springers | 6 / 3 |
+| 0.38.5 before (`crownarmy:off`) | 2 Musketeers v 4 Clock Soldiers | 4 v 10 | 5 v 14 | 5 (and a Missionary) v 14 + 2 Springers, a Netter | 1 / 6 |
+| 0.38.5 after (75%, till 7:00) | 4 v 4 | 8 v 10 | 12 v 12 + a Netter, 2 Springers | 12 (and a rider, a wagon) v 12 + 2 Netters, 3 Springers | 6 / 3 |
+| 0.38.12 before (with the defence, balloon and economy coaching) | 2 v 4 | 4 v 9 | 7 v 12 + a Springer | 11 v 8 + 4 Springers, 2 Netters | 6 / 7 |
+| 0.38.12 after (the defaults) | 3 v 4 | 5 v 10 | 8 v 12 + a Netter | 12 v 11 + a Netter, 4 Springers, a Ballista | 4 / 5 |
 
-Before, the powder piled up to 200 unused by 7:00 and the Clockwork was at the natural at 6:17-6:32, a building burning
+The pictures are of the 0.38.5 pair. Before, the powder piled up to 200 unused by 7:00 and the Clockwork was at the natural at 6:17-6:32, a building burning
 (before_0617_push_at_natural.jpg, before_army_0632.jpg). After, a line of 8-12 Musketeers holds the ramp from 5:00
 (after_army_0602.jpg, after_army_0632.jpg) and at 7:13 fires down from the main's edge on the Clockwork at the natural's hall
-(after_0713_line_over_natural.jpg, the same spot as before_0617). The Clockwork still out-earns it (7,700 to 4,900 by 7:00).
+(after_0713_line_over_natural.jpg, the same spot as before_0617). The Clockwork still out-earns it (7,700 to 4,900 by 7:00). On
+0.38.12 the other jobs' fixes already keep more men at home (the balloon waits for its Musketeers, the defence), and the clock
+adds a Musketeer a minute in this game; the gold earned is the same by 7:00 (4,940 both). In both the line fires down from
+the main's edge on the push at the natural's hall (v0_38_12_before_0643.jpg, v0_38_12_after_0635.jpg).
 
 ## The batches (tools/study/crown_army.py with tools/measure_crown_army.gd; Hard OPTIMAL v Hard Clockwork OPTIMAL, 8 maps
 (Greenhold, Dune Sea, Hollowfen, Kestrel Rise, Ashford Crossing, Red Coast, Frostmere, Border March), the Crown in slot A on

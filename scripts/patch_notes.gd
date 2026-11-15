@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.13", "items": [
+		"THE CROWN COMPUTER'S ARMY ON TIME (Normal and up, against the Clockwork and the Crown; no unit, building or price changed): until 6:30 it keeps its army at about 60% of what a Hard computer of that side usually has a little later, and while it is behind, an empty Barracks gets its Musketeer before the next labourer, the next building or the natural's palisade, and no Church is bought for a wall slot. So its line is ready for the first push (against the Hard Clockwork about 245 of army at 5:00 instead of 140), at some cost to its economy. Its Powder Mill also comes earlier and takes more hands while a Barracks waits for powder, and a Musketeer may come out with only his bayonet while the Mill starts and fill up when it grinds.",
+	]},
 	{"v": "0.38.12", "items": [
 		"THE ORIGINAL ECONOMY IS BACK: the GROUND SYSTEM and NO FARM/PRESS LIMIT experiments are gone from Settings > EXPERIMENTAL (they proved problematic). Every Town Hall allows 2 Farms and every Clocktower 2 Cog Presses again, drawing on the hall's own soil and brass: no circles, no districts. A match or replay saved with them goes on with the original economy.",
 		"PROLOGUE, THE LEAF AND THE FIRE: the Governor's plantation now keeps the same rule as a skirmish. The manor stands further south with 2 drying barns by it, and a second Town Hall to the north, on the west side, has the other 2 (4 barns, was 5). Dawn still needs three barns standing, now of four.",

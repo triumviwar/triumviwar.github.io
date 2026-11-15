@@ -3180,6 +3180,7 @@ const T := {
 	"Hits every enemy within %.1f tiles in a third of a circle; flyers take %d%%.": "Golpea a todos los enemigos a menos de %.1f casillas en un tercio de círculo; los voladores reciben el %d%%.",
 	"Against flyers": "Contra voladores",
 	"%d%% of the blow against flyers": "%d%% del golpe contra voladores",
+	"%s keeps its army on time (%s with what trains, against the %s it wants by now): soldiers before more labourers.": "%s mantiene su ejército al día (%s con lo que se entrena, contra los %s que quiere a estas alturas): soldados antes que más peones.",
 	"THE CAMPAIGN": "LA CAMPAÑA",
 	"Prologue: The Revolt": "Prólogo: La Revuelta",
 	"The year 2500. The world has fallen back to muskets and sail. A revolt flares against the Crown.": "El año 2500. El mundo ha vuelto a los mosquetes y las velas. Una revuelta estalla contra la Corona.",
