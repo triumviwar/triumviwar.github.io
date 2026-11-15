@@ -190,7 +190,31 @@ turtles' swamp; now home holds 3 + 2 a turtle and the rest must go to new ground
 
 GAMES
 
-## 5. Claude's choices for the owner to confirm
+## 5. Tests
+
+- `tools/test_rootmaw_spots.gd` (new): ALL OK. [count] 1 of 3 at the start, a grub on its way counts, 3 of 3 then no
+  legal spot left on her swamp ("Full"), ROOTMAWS 3/3 on the card, a turtle 0 of 2 then 2 of 2 then "Full"; [snap] a legal
+  spot off the marks roots where it was put; [show] a Brood player sees 2 marks, only on his own swamp; none for a Crown
+  player, when watching, or with SHOW ROOTMAW SPOTS off; [fit] on all 27 maps both sides get the Mother's 2 marks and 2
+  round each of their 2 best turtle sites, every mark legal for a player and for the computer, a circle's width apart and
+  from the start Rootmaw, and the two sides' marks mirror each other exactly.
+- Pass: test_brood_new, test_brood_ai_defend, test_brood_builds, test_brood_controls, test_brood_far, test_brood_fix3,
+  test_brood_fixes, test_brood_layout (rule), test_brood_mirror, test_brood_paths, test_brood_production,
+  test_brood_regen_calm, test_brood_rush_riders, test_brood_sounds, test_brood_spend, test_brood_voices,
+  test_settings_tabs and test_qa_settings_persist (both now list SHOW ROOTMAW SPOTS).
+- test_expansion_spots: every Brood check passes; one CLOCKWORK check failed once in the full run (Red Coast, 4 players:
+  only 5 of a Clocktower ring's 8 buildings laid at p3's spot) and passed when Red Coast ran alone. The spots it marks there
+  differ from run to run (main's own full run, which passed, marked other cells, and so did the run alone), so the ring
+  check is flaky there; nothing of this job touches the Clockwork.
+- test_ai_brood (balanced, Greenhold): its stage-3 milestone failed once ("never" by 620 s) and passed on the rerun (at
+  453 s); CLAUDE.md lists that check as flaky. Everything else passes.
+- Fail on main too (pre-existing, the same lines): test_brood_new_defence's [rooted] muskets case (the Mother dies),
+  test_brood_v_riders' "most grubs survive the raid" (6 of 13 lost). test_brood_production and test_brood_regen_calm
+  print two SCRIPT ERRORs from `main.gd _menu_button` (a menu slot with no button) on main too; both pass.
+- Most of these tools end with the engine aborting at quit (exit code 134) after printing their result, on main as on
+  this branch; read their PASS/FAIL lines, not the exit code.
+
+## 6. Claude's choices for the owner to confirm
 
 1. **The circle stays at 8 tiles** (section 2): every map fits 3 + 2 at 8.
 2. **Overlapping swamps**: a Rootmaw belongs to the swamp under it with the most room left (then the nearest middle). So
@@ -211,7 +235,7 @@ GAMES
    far edge), the old ring search as a fallback. `mawspots:off` measures without them.
 9. **The tutorial** got one new line in the Rootmaw step; the step itself (2 Rootmaws) is unchanged.
 
-## 6. What is left
+## 7. What is left
 
 - The marks are worked out for the swamp's FULL reach at the Mother's present stage: when she grows (13.5, 15 tiles) the
   marks move out with her swamp. Rootmaws already rooted stay where they are.
