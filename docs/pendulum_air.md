@@ -87,7 +87,28 @@ diving into three Pendulums is the worst case for the flyers (see Claude's choic
 ### Computer games (tools/shot_ai_match.gd, Hard v Hard, Greenhold, 15:00; result.txt counts what the Pendulums did
 to flyers)
 
-GAMES_TABLE
+Eight games, each seed played with the change on and off (`pendair:off`): the Crown on its Balloon harass plan v the
+Clockwork's Pendulums plan, and the Brood's Optimal v the Clockwork's Pendulums plan. The match log's last minute
+(army value, kills and losses) and what the Pendulums did to flyers:
+
+| Game | Pendulum swings | Hits on flyers (damage) | At 15:00 (or the end) |
+|---|---|---|---|
+| Crown Balloon v Clockwork Pendulums, seed 11, ON | 97 | 0 | Crown army 2755, Clockwork 4605; Clockwork killed 80, lost 40 |
+| same, OFF | 66 | - | Crown army 4845, Clockwork 540; Clockwork killed 32, lost 121 |
+| Crown Balloon v Clockwork Pendulums, seed 12, ON | 104 | 2 (26) | Crown army 4345, Clockwork 1875; Clockwork killed 28, lost 84 |
+| same, OFF | 177 | - | Crown army 3945, Clockwork 3120; Clockwork killed 22, lost 67 |
+| Brood Optimal v Clockwork Pendulums, seed 11, ON | 109 | 0 | the Brood far ahead (200 supply v 4) |
+| same, OFF | 281 | - | the Clockwork ahead (army 3820 v 3200; killed 313, lost 72) |
+| Brood Optimal v Clockwork Pendulums, seed 12, ON | 516 | 0 | the CLOCKWORK WON at 12:53 |
+| same, OFF | 68 | - | the BROOD WON at 12:15 |
+
+What it says: in computer games the Pendulums almost never meet a flyer (2 hits in 4 games): the Crown's Balloon parties
+already flew round anti-air and now fly round Pendulums too ("round the anti-air" in the log from the first party), and
+the Brood's Optimal plan made almost no flyers in these games (a Storm Sire, 2 Hatchlings). The results swing both ways
+between ON and OFF (the Brood won one seed each way, the Clockwork did better ON in one Crown seed and worse in the other):
+that is the games going their own way once one decision differs (the Balloon AI's anti-air map, the Swift count), not the
+change; there is no sign here that it tips a matchup. The change shows where a player brings flyers to Pendulums (the
+bench), which is what the owner asked for.
 
 ## Tests
 
