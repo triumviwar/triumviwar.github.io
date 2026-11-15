@@ -4,9 +4,18 @@ The owner's complaint (2026-11-15 00:28, his watched game on Hollowfen, seed 428
 v0.38.1; the log is on branch playtest-logs, docs/playtests/2026-11-15_0021_crown_v_clockwork_hollowfen.txt): "Terrible game
 from crown ... that is why it can never win, the ai is very bad." This job covers the **army's size and timing** only: in
 his game the Crown had 3 Musketeers (180) to the Clockwork's 4 Clock Soldiers at 4:00, 5 to 8 at 5:00, 3 to 11 at 6:00,
-while 160 powder lay unused. Four other Crown coaching jobs work on the balloon harass, the defence (crown-coach-defence,
-merged as 0.38.4 while this ran; every "before" and "after" number below from 0.38.5 has it in both), the economy and the
-Brood matchup. AI only: no unit, building or economy number was changed. The switch `-- crownarmy:off` plays as before.
+while 160 powder lay unused. Four other Crown coaching jobs worked at the same time on the balloon harass, the defence, the
+economy and the Brood matchup; all four were merged into main while this ran (0.38.4 defence, 0.38.7 balloons, 0.38.8
+economy, 0.38.9 cavalry, 0.38.11 Brood) and this branch has them all (0.38.12). AI only: no unit, building or economy number
+was changed. The switch `-- crownarmy:off` plays as before.
+
+**In short.** The Crown's army is now ready for the Clockwork's first push: on today's code (0.38.11, with the economy
+coaching) it has 94 of army at 4:00 instead of 60, 244 at 5:00 instead of 141, 453 at 6:00 instead of 364, and meets the
+first push at its base with 594 instead of 525; it loses fewer men for each Clockwork one, and holds more army and halls at
+12:00. The price is income: the soldiers come before some labourers until 6:30, about 10% less gold earned by 8:00. Results
+by 15:00 stay within the noise (0 wins either way; 8 losses in 16 against 7, and the same build with the clock off lost 7
+and 9 in two batches). Against the Brood nothing changes (its own reckoning, the Brood coaching job). The Crown still
+cannot win against the Clockwork's economy (1.6-1.9 times its gold by 8:00).
 
 ## When the enemy pushes (measured, 0.38.1, Hard OPTIMAL against the Crown's Hard OPTIMAL, 8 maps x 2 seeds)
 
@@ -35,32 +44,38 @@ The Crown against them (the same games): v the Clockwork 176 / 360 / 515 / 759 /
    (the Clockwork's first Clock Soldier at 3:00-3:18).
 4. **A Church before the first push.** The natural's wall plan (AIExpandWall) fills its wall slots with buildings and bought
    a Church (150) for one at ~5:20: two and a half Musketeers, just before the Clockwork's push.
+5. **On today's build (the economy coaching, 0.38.8 on) the army is later still.** OPTIMAL now often picks the Economy plan,
+   whose Powder Mill comes after the second hall (laid 3:50, grinding 4:20), and the natural's palisade and the labourers
+   take the harvests first: the Crown had 60 of army at 4:00 and 141 at 5:00 (16 games), the Barracks idle 219 s of the
+   first six minutes, 70 s of it waiting for powder; in one game 0 army at 5:27 against the Clockwork's 460.
 
-## What changed (scripts/ai_crown_army.gd, AICrownArmy; small hooks in ai_crown.gd and ai_expand_wall.gd)
+## What changed (scripts/ai_crown_army.gd, AICrownArmy; small hooks in ai_crown.gd, ai_crown_ammo.gd and ai_expand_wall.gd)
 
-1. **The army clock.** From 2:30 to 7:00, with 10+ labourers, the Crown's army (with what its Barracks and Foundries train;
-   balloons, wagons and horses do not count) is kept at 75% of the army a Hard computer of the enemy's faction usually has
+1. **The army clock.** From 2:30 to 6:30, with 10+ labourers, the Crown's army (with what its Barracks and Foundries train;
+   balloons, wagons and horses do not count) is kept at 60% of the army a Hard computer of the enemy's faction usually has
    45 s from now (AICrownArmy.TABLE, measured above: Clockwork 150 at 4:00, 400 at 5:00, 700 at 6:00, 1,100 at 7:00), or
    60% of what it saw lately if that is more, less half what it has killed. The 45 s look ahead is a Musketeer's training and
-   his walk to his post: the push is at our base before its army stops growing. While it is behind ("the army on time: ...
-   soldiers before more labourers", an AI STORY line in en/pt/es):
-   - in the opening a labourer is trained only while every Barracks is busy (AICrown._soldiers_first), the opening's army
-     cap does not hold, and the soldiers start at once if the plan's "army" step has not come yet (a Barracks standing);
-   - the opening's next step leaves a Musketeer's price for each idle Barracks out of the gold it holds;
-   - the natural's wall plan buys no Church for a slot.
-   It ends at 7:00 (UNTIL): the clock is for the first push. Two things were tried and taken out again (they stay as study
-   switches): the clock all game long, and the clock also starting AICrown.army_lags ("the army first") from one hall on
-   (`crownarmy:lags`). Both kept the labourers waiting long after the first push (army_lags also stops the halls' "labourers
-   non-stop" rule): about 6% less income at 8:00, and the late game was lost (one 15:00 batch went from 5 losses in 16 to 10
-   with the look ahead and no end; see the batches).
-2. **Powder for the first Musketeers.** A Barracks idle with a Musketeer's gold but not his powder counts as using the powder,
-   so the Mill takes its second and third hands (AICrown._mill_feedback). This one works in every matchup.
-3. **Gated by matchup**: the Clockwork and the Crown mirror only. Against the Brood the Crown already reckons the Brood's army
-   (army_behind, brood_spend_army: crown-v-brood-coach), and the Brood coaching job works there now; a Crown that kept 75%
-   of the Brood's usual army (1,350 at 5:00) would never train another labourer.
+   his walk to his post. While it is behind ("the army on time: ... soldiers before more labourers", an AI STORY line in
+   en/pt/es), and a Barracks stands empty that can train a Musketeer now:
+   - in the opening a labourer waits for the soldier (AICrown._soldiers_first), the opening's army cap does not hold, and
+     the soldiers start at once if the plan's "army" step has not come yet;
+   - the opening's next step leaves a Musketeer's price for each such Barracks out of the gold it holds;
+   - the natural's palisade does not take the gold first (AICrown.wall_first), and no Church is bought for a wall slot.
+   A Barracks waiting for powder does not hold the labourers (on 0.38.10, with the economy's rule sending the Mill's hands to
+   the Farms, it held both the labourers and the soldiers: 123 s of the first 6 minutes waiting for powder, half the army at
+   8:00 and 11 games lost in 16).
+2. **Powder for the first Musketeers.** In every matchup a Barracks idle with a Musketeer's gold but not his powder counts as
+   using the powder, so the Mill's crew grows (AICrown._mill_feedback: it kept one hand while nothing could train). While
+   behind the clock: the plan's own Powder Mill step comes now (the Economy plan's came at 3:50 and its army was 0 at 5:27
+   against 460), the Mill takes three hands while a Barracks waits for powder, and a Musketeer may come out with his bayonet
+   while the Mill starts, to fill up when it grinds (the owner's ammunition rule; AICrownAmmo.musket_ok).
+3. **Gated by matchup**: the clock plays against the Clockwork and the Crown mirror only. Against the Brood the Crown already
+   reckons the Brood's army (army_behind; the Brood coaching job's vb_line_short), and a Crown that kept 60% of the Brood's
+   usual army (1,350 at 5:00) would never train another labourer.
 
-Switches: `-- crownarmy:off` (all of it); for studies `-- crownarmy:share=0.9` (the share), `crownarmy:until=900` (the
-end), `crownlead:off` (no look ahead), `crownarmy:lags` (army_lags too).
+Switches: `-- crownarmy:off` (all of it); for studies `crownarmy:share=0.75` (the share), `crownarmy:until=420` (the end),
+`crownarmy:room=2` (a second queued soldier before a labourer), `crownlead:off` (no look ahead), `crownarmy:lags` (army_lags
+too), `crownarmy:nodry` (no bayonet Musketeers), `crownarmy:noclock` (the clock off, the powder fix kept).
 
 ## The owner's game again (Hollowfen, filmed: tools/shot_ai_match.gd, pictures in docs/shots/crown_coach_army/)
 
@@ -79,31 +94,48 @@ Before, the powder piled up to 200 unused by 7:00 and the Clockwork was at the n
 
 ## The batches (tools/study/crown_army.py with tools/measure_crown_army.gd; Hard OPTIMAL v Hard Clockwork OPTIMAL, 8 maps
 (Greenhold, Dune Sea, Hollowfen, Kestrel Rise, Ashford Crossing, Red Coast, Frostmere, Border March), the Crown in slot A on
-odd seeds (it picks the Balloon harass), slot B on even ones (the Timing attack), to 15:00)
+odd seeds, slot B on even ones, 16 games a line, to 15:00)
 
-Two sessions worked on this job (the first stopped at 03:45 and went on later; a second, resumed by a schedule, merged
-main into the branch and ran these batches on 0.38.5). Each line is 16 games to 15:00, the same maps and seeds; the army
-values are the means at the minute (the Crown's v the Clockwork's), "lost" is units lost (the Crown's v the Clockwork's).
+Army values are the means at the minute (the Crown's / the Clockwork's). "At base": the Clockwork's force and ours when it
+first reached our base with 300+. "Lost": units lost (the Crown's v the Clockwork's). Each "before" is the same build with
+`crownarmy:off`. **Mind the noise**: the same build with the clock off lost 7 and 9 games of 16 in two batches (p_off and the
+noclock line below, which differ only by the powder fix); a difference of two or three losses is not a result.
+
+| build, version | W-D-L | army 4:00 | 5:00 | 6:00 | 7:00 | 8:00 | 10:00 | at base | Barracks idle 0-6 min (powder) | lost | earned 8:00 | halls / army 12:00 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 0.38.1 before | 0-11-5 | 169/162 | 393/402 | 569/728 | 737/1127 | 1183/1799 | 1506/3098 | 813 v 779 | 192 s (40) | 65 v 104 | 5,652 | 2.12 / 1,178 |
+| 0.38.1 first clock (75%, all game, army_lags) | 0-13-3 | 139/166 | 418/391 | 643/683 | 872/1035 | 1306/1581 | 1582/3004 | 694 v 665 | 164 s (36) | 58 v 107 | 5,676 | 2.12 / 1,379 |
+| 0.38.5 before | 0-10-6 | 176/162 | 405/398 | 581/709 | 884/1155 | 1304/1764 | 1256/3169 | 732 v 822 | 185 s (39) | 79 v 81 | 5,558 | 1.62 / 743 |
+| 0.38.5 the same first clock | 0-9-7 | 158/162 | 417/398 | 636/693 | 885/1102 | 1270/1680 | 1642/2816 | 590 v 695 | 171 s (36) | 74 v 96 | 5,676 | 2.25 / 1,141 |
+| 0.38.10 before | 0-10-6 | 64/162 | 144/382 | 362/747 | 648/1292 | 1119/1870 | 1432/3123 | 748 v 723 | 223 s (68) | 81 v 92 | 6,769 | 1.81 / 831 |
+| 0.38.10 the clock of 0.38.5 (a Barracks waiting for powder held the labourers) | 0-5-11 | 101/166 | 173/387 | 333/725 | 507/1207 | 593/2099 | 847/4151 | 1087 v 372 | 214 s (123) | 62 v 48 | 5,082 | 0.94 / 382 |
+| 0.38.11 before | 0-9-7 | 60/158 | 141/384 | 364/760 | 689/1262 | 1152/1904 | 1475/3141 | 717 v 525 | 219 s (70) | 91 v 86 | 6,650 | 1.38 / 940 |
+| 0.38.11 the powder fix only (`noclock`) | 0-7-9 | 60/158 | 125/391 | 370/721 | 698/1141 | 1110/1816 | 1330/3019 | 724 v 502 | 218 s (67) | 91 v 79 | 6,531 | 1.56 / 674 |
+| 0.38.11 75%, two queued, till 7:00 | 0-8-8 | 116/153 | 266/382 | 521/712 | 782/1177 | 1063/1907 | 1300/3330 | 722 v 660 | 163 s (43) | 75 v 81 | 5,748 | 1.12 / 671 |
+| 0.38.11 50%, till 6:30 | 0-6-10 | 98/153 | 260/391 | 486/752 | 734/1155 | 1010/1758 | 1385/3342 | 832 v 670 | 182 s (40) | 84 v 76 | 5,914 | 1.50 / 658 |
+| **0.38.11 after (60%, an empty Barracks, till 6:30: the defaults)** | **0-8-8** | **94/158** | **244/376** | **453/712** | **691/1088** | **1000/1808** | **1347/3583** | **853 v 594** | **183 s (43)** | **76 v 77** | **6,009** | **1.44 / 1,072** |
+
+The second session's batches (0.38.5, the same maps and seeds; its "after" is the 0.38.5 clock with the look ahead and the
+7:00 end, army_lags left alone):
 
 | version | W-D-L | army 4:00 | 5:00 | 6:00 | 7:00 | 8:00 | 10:00 | Barracks idle 0-6 min | lost | Crown income 8:00 / 10:00 | labourers at the end | buildings lost |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | before (`crownarmy:off`) | 0-11-5 | 183 v 161 | 382 v 402 | 554 v 732 | 846 v 1,175 | 1,307 v 1,867 | 1,830 v 2,857 | 191 s | 77 v 96 | 5,629 / 8,146 | 19.8 | 19.1 |
-| the WIP with the look ahead, no end, army_lags from one hall | 0-5-11 | 233 v 157 | 425 v 393 | 690 v 731 | 887 v 1,224 | 1,197 v 1,681 | 1,471 v 2,900 | 138 s | 81 v 74 | 5,296 / 7,410 | 6.8 | |
+| the look ahead, no end, army_lags from one hall | 0-5-11 | 233 v 157 | 425 v 393 | 690 v 731 | 887 v 1,224 | 1,197 v 1,681 | 1,471 v 2,900 | 138 s | 81 v 74 | 5,296 / 7,410 | 6.8 | |
 | + the clock ends at 7:00 | 0-11-5 | 236 v 157 | 428 v 406 | 727 v 690 | 996 v 1,134 | 1,326 v 1,644 | 1,393 v 2,779 | 127 s | 69 v 91 | 5,344 / 7,339 | 15.4 | |
-| **after** (+ army_lags left as it was) | **0-12-4** | **225 v 161** | **432 v 398** | **684 v 684** | **885 v 1,158** | **1,286 v 1,768** | **1,626 v 3,186** | **139 s** | **64 v 89** | **5,391 / 7,624** | **18.0** | **16.9** |
+| + army_lags left as it was | 0-12-4 | 225 v 161 | 432 v 398 | 684 v 684 | 885 v 1,158 | 1,286 v 1,768 | 1,626 v 3,186 | 139 s | 64 v 89 | 5,391 / 7,624 | 18.0 | 16.9 |
 
-In plain words: the Crown's army now keeps up with the Clockwork's through the first push (ahead at 4:00 and 5:00, even at
-6:00, where it was three quarters of it), its Barracks stands idle a quarter less, it trades better (1.40 Clockwork units
-for each of its own, was 1.24), loses fewer buildings and one game fewer. It still wins none: from 7:00 the Clockwork's
-army grows faster than the Crown's income can follow (the Clockwork earns 1.6-1.9 times as much by 8:00: the economy job's
-area), and the soldiers bought early cost about 4% of the income at 8:00 and 6% at 10:00.
+A second sample on 0.38.5 (seeds 3 and 4, 9 games both ways, the second session's "after"): the army at 5:00 456 against 374, at 6:00 697 against 549,
+even from 8:00; 2 games lost against 1.
 
-What did not work: holding the labourers for the clock all game (army_lags from one hall on, which also switches off the
-"labourers non-stop" rule) left 7 labourers alive at 15:00 and lost 11 of 16; the look ahead without an end still lost the
-late game. So the clock ends at 7:00 and army_lags is left to its own rule.
-
-The first enemy push at our base (300+ value): before at 6:50 on average with 847 against our 805; after at 7:13 with 904
-against our 971 (the Clockwork waits longer because it sees a bigger army).
+In plain words: on every build the clock brings the army forward through the first push (on today's build 50-75% more at
+4:00-5:00, a quarter more at 6:00) and the Crown trades better; on the builds before the economy coaching it cost nothing
+measurable, but on today's build every coin a soldier takes is a labourer the economy coaching would have trained, so the
+gold earned by 8:00 falls about 10% (14% on the variant with two soldiers queued). Holding the labourers longer
+(all game, or with army_lags) lost the late game on both builds. The defaults are the mildest version that still has the
+army on time (60%, an empty Barracks only, till 6:30): at 12:00 it has more army (1,072 v 940) and halls (1.44 v 1.38) than
+before; the results by 15:00 are within the noise. It still wins none: from 7:00 the Clockwork's army grows faster than the
+Crown's income (the Clockwork earns 1.6-1.9 times as much by 8:00).
 
 ## Tests
 
