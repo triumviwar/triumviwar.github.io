@@ -88,7 +88,7 @@ func _look() -> void:
 		for u in g.units:
 			if u.team != tm or u.dead or u.kind != "cuirassier" or u.aboard != null:
 				continue
-			var id := u.get_instance_id()
+			var id: int = u.get_instance_id()
 			now[id] = u.hp
 			if not seen[tm].has(id):
 				made[tm] += 1

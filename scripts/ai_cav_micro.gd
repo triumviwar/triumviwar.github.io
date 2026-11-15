@@ -25,7 +25,7 @@ extends RefCounted
 ## Study switch: `-- cavmicro:off` (the riders fight as before).
 
 const KINDS := ["cuirassier"]    # (the Horseman; with Armour the Cuirassier is the same kind)
-const SHIELDS := ["clock_soldier", "bulwark", "tin_militia"]   # shields a sabre pass glances off: never a prey of choice
+const SHIELDS := ["clock_soldier", "windup_soldier", "bulwark"]   # shields a sabre pass glances off: never a prey of choice
 const EVERY := 0.1               # (s) looked at this often
 const TAKE_R := 300.0            # (px) an enemy this near a rider on a fighting order: the micro takes it
 const PICK_R := 380.0            # (px) its prey within this
@@ -149,19 +149,24 @@ func _run(u: Unit, s: Dictionary) -> void:
 		"in":
 			var t = s["tgt"]
 			if struck:
-				_out(u, s)
+				if _melee_near(u) and not (_guns(u) and _melee_chases(u)):
+					_out(u, s)       # (their answer is at hand: away before it lands)
+				elif t != null and is_instance_valid(t) and not t.dead and u._valid_target(t):
+					_assert(u, s)    # (only guns about: it keeps at its prey, its loop round it, blow after blow)
+				elif not _pick_in(u, s, true):
+					_round(u, s)     # (... and on to the next at once)
 			elif t == null or not is_instance_valid(t) or t.dead or not u._valid_target(t) or game.clock - float(s["t"]) > IN_MAX:
 				if not _pick_in(u, s):
 					_round(u, s)
-			elif _danger(t) > DANGER_MAX + 1.5:
+			elif _danger(t) > DANGER_MAX + _worth(u, t) + 1.5:
 				n["skip_blob"] += 1
 				if not _pick_in(u, s):
 					_round(u, s)     # (its prey ran back into the mass: another, or round)
 			else:
 				_assert(u, s)
 		"out":
-			if game.clock - float(s["t"]) >= (OUT_T_CH if _charge(u) else OUT_T):
-				if _charge(u) and not _charge_ready(u, null):
+			if game.clock - float(s["t"]) >= (OUT_T_CH if _wait_charge(u) else OUT_T):
+				if _wait_charge(u) and not _charge_ready(u, null):
 					_round(u, s)
 				elif not _pick_in(u, s):
 					_round(u, s)
@@ -169,10 +174,10 @@ func _run(u: Unit, s: Dictionary) -> void:
 				_assert(u, s)
 		"round":
 			var waited := game.clock - float(s["t"]) >= ROUND_MAX
-			if (not _charge(u) or waited) and game.clock - float(s["t"]) >= 1.0:
-				if _pick_in(u, s):
+			if (not _wait_charge(u) or waited) and game.clock - float(s["t"]) >= 1.0:
+				if _pick_in(u, s, true):
 					return
-			elif _charge(u) and game.clock - u.rb_last >= float(Defs.RIDE_BY["calm"]) - 0.6:
+			elif game.clock - u.rb_last >= float(Defs.RIDE_BY["calm"]) - 0.6:
 				var p := _pick(u, s)
 				if p != null and _charge_ready(u, p):
 					_go_in(u, s, p)
@@ -197,11 +202,11 @@ func _go_in(u: Unit, s: Dictionary, p: Unit) -> void:
 	u.cmd_attack(p)
 
 
-func _pick_in(u: Unit, s: Dictionary) -> bool:
+func _pick_in(u: Unit, s: Dictionary, now := false) -> bool:
 	var p := _pick(u, s)
 	if p == null:
 		return false
-	if _charge(u) and not _charge_ready(u, p) and game.clock - u.rb_last < float(Defs.RIDE_BY["calm"]) + float(Defs.CHARGE["run"]) + 3.0:
+	if not now and _wait_charge(u) and not _charge_ready(u, p) and game.clock - u.rb_last < float(Defs.RIDE_BY["calm"]) + float(Defs.CHARGE["run"]) + 3.0:
 		return false               # (drilled: no blow without its charge while one can be had soon)
 	_go_in(u, s, p)
 	return true
@@ -230,6 +235,14 @@ func _round(u: Unit, s: Dictionary) -> void:
 
 func _round_point(u: Unit, s: Dictionary) -> void:
 	s["next_p"] = game.clock + 0.4
+	if not _wait_charge(u) and _melee_near(u):
+		# (nothing worth a pass and biters on its heels: straight away, so the chase strings them out, not round them)
+		_move(u, s, _clear_point(u, _away(u), 200.0))
+		s["next_p"] = game.clock + 1.0
+		return
+	if _guns(u):
+		_move(u, s, _clear_point(u, _away(u), 200.0))     # (nothing worth a pass and a gun on it: out of its reach)
+		return
 	var c := _foe_middle(u)
 	if c == Vector2.INF:
 		c = s["anchor"]
@@ -286,6 +299,45 @@ func _charge(u: Unit) -> bool:
 	return game.has_tech(u.team, "charge")
 
 
+## It waits for its charge between passes: drilled, and no enemy gun has it in reach (riding round under the muskets or
+## the Spitters' spit only feeds them: there it keeps at its prey, blow after blow).
+func _wait_charge(u: Unit) -> bool:
+	return _charge(u) and not _guns(u)
+
+
+## An enemy gunner (a reach of 100 or more) has it, or will have it within a few strides.
+func _guns(u: Unit) -> bool:
+	for o in game.units_near(u.position, 420.0):
+		if o.dead or o.off_field or not game.hostile(o.team, ai.team) or not Game.fights_back(o) or float(o.d["range"]) < 100.0:
+			continue
+		if not o.can_hit(u):
+			continue
+		if o.edge_distance(u.position) - u.radius <= float(o.d["range"]) + 80.0:
+			return true
+	return false
+
+
+## Under fire with a fast biter on it (a Raptor runs nearly as fast as a horse): riding out only gives the guns their
+## shots, it fights on.
+func _melee_chases(u: Unit) -> bool:
+	for o in game.units_near(u.position, 130.0):
+		if o.dead or o.off_field or o.is_air() or not game.hostile(o.team, ai.team) or not Game.fights_back(o):
+			continue
+		if float(o.d["range"]) < 60.0 and o.can_hit(u) and o.speed >= u.speed * 0.75:
+			return true
+	return false
+
+
+## The enemy's answer at hand: a fighter that strikes up close (a reach under 60) by it.
+func _melee_near(u: Unit) -> bool:
+	for o in game.units_near(u.position, 130.0):
+		if o.dead or o.off_field or o.is_air() or not game.hostile(o.team, ai.team) or not Game.fights_back(o):
+			continue
+		if float(o.d["range"]) < 60.0 and o.can_hit(u):
+			return true
+	return false
+
+
 ## The next blow on `p` (null: any) will be a charge: calm since the last blow, and the run full by the time it gets there.
 func _charge_ready(u: Unit, p: Unit) -> bool:
 	if game.clock - u.rb_last < float(Defs.RIDE_BY["calm"]):
@@ -302,18 +354,25 @@ func _pick(u: Unit, s: Dictionary) -> Unit:
 	var bs := 1.5
 	var lv := game.level_of(u.position)
 	var an: Vector2 = s["anchor"]
+	var shot := _guns(u)
 	for o in game.units_near(u.position, PICK_R):
 		if o.dead or o.off_field or o.is_air() or not game.hostile(o.team, ai.team) or o.kind == "horse" or not u.can_hit(o) or o.untouchable():
 			continue
 		if o.position.distance_to(an) > LEASH or not game.is_visible_to(ai.team, o.position):
 			continue
-		var v := _worth(o)
+		var v := _worth(u, o)
 		if v <= 0.0:
 			continue
+		if shot:
+			# (under fire: the guns that shoot it first, the nearest of them; the hands behind them can wait)
+			if Game.fights_back(o) and float(o.d["range"]) >= 100.0 and o.can_hit(u):
+				v *= 1.4
+			elif o.is_worker():
+				v *= 0.4
 		var dg := _danger(o)
-		if dg > DANGER_MAX:
-			continue
-		var sc := v * 10.0 - dg * 3.0 - o.position.distance_to(u.position) / 40.0
+		if dg > DANGER_MAX + v:
+			continue               # (the more a pass is worth, the more guard it is worth riding past)
+		var sc: float = v * 10.0 - dg * 3.0 - o.position.distance_to(u.position) / (25.0 if shot else 40.0)
 		if game.level_of(o.position) != lv:
 			sc -= 6.0              # (up or down a ramp: a long way round)
 		if o == s.get("tgt"):
@@ -324,12 +383,15 @@ func _pick(u: Unit, s: Dictionary) -> Unit:
 	return best
 
 
-## What one pass on `o` is worth: the light and the precious first, the hurt more; nothing for armour or mass (unless
+## What one pass of `u` on `o` is worth: the light and the precious first, the hurt more; nothing for armour or mass (unless
 ## nearly dead).
-func _worth(o: Unit) -> float:
+func _worth(u: Unit, o: Unit) -> float:
 	var frac := o.hp / maxf(1.0, o.max_hp)
 	var tags: Array = o.d.get("tags", [])
 	var heavy := tags.has("armored") or tags.has("massive") or float(o.d["hp"]) >= 300.0
+	var bon := float(u.d.get("bonus", {}).get(o.kind, 1.0))
+	if bon > 1.0:
+		return 3.0 * bon * (1.0 + 1.2 * (1.0 - frac))     # (what the sabre is made for: guns, Spitters, Arc Throwers)
 	if heavy and frac > 0.3:
 		return 0.0
 	var v := 1.0
@@ -354,7 +416,8 @@ func _danger(o: Unit) -> float:
 	for q in game.units_near(o.position, GUARD_R):
 		if q.dead or q.off_field or q.team != o.team or not Game.fights_back(q) or q.is_air():
 			continue
-		var w := 1.0
+		var w := 1.0 if float(q.d["range"]) < 60.0 else 0.3     # (a gun shoots it wherever it rides: the guard is the blades)
+		w *= clampf(q.hp / 60.0, 0.4, 1.5)          # (two sabre blows kill a Raptor: a light biter is less of an answer)
 		var tags: Array = q.d.get("tags", [])
 		if tags.has("armored") or tags.has("massive"):
 			w = 2.0
@@ -404,7 +467,7 @@ func _foe_middle(u: Unit) -> Vector2:
 func _away(u: Unit) -> Vector2:
 	var c := Vector2.ZERO
 	var w := 0.0
-	for o in game.units_near(u.position, 220.0):
+	for o in game.units_near(u.position, 300.0):
 		if o.dead or o.off_field or o.is_air() or not game.hostile(o.team, ai.team) or not Game.fights_back(o):
 			continue
 		var k := 1.0 / maxf(30.0, o.position.distance_to(u.position))
