@@ -8,6 +8,8 @@ extends SceneTree
 ##   c       hit and run + the Cavalry Charge
 ##   d       hit and run + Keen Sabres
 ##   e       hit and run + both
+## (alternatives, measuring only) c2 = c but the micro rides as if it had no charge (no galloping round for the next
+## charge); f / f2 = c / c2 run with `chargelight:2.2` on the command line (a charged blow on a light unit x2.2).
 ## on open ground ("open") and in the riders' own base ("base": a Town Hall, a Barracks and Cottages round the riders,
 ## the Raptors attack-move into it), with and without Pack Hunt; the Raptors keep coming (an idle Raptor is sent at the
 ## nearest rider every second: a Brood player chasing). And a raid: 4 Horsemen ride into Brood workers and Spitters
@@ -28,13 +30,20 @@ const RIDER_V := 140         # a Horseman and his horse
 const RAPTOR_V := 25         # half an egg
 
 
+class FakeHall:
+	var at := Vector2.ZERO
+	func center() -> Vector2:
+		return at
+
+
 class StubAI:
 	var team := 0
 	var game = null
+	var home: FakeHall = null    # (a hurt rider rides "home": to the arena's west edge, out of the fight)
 	func _on_errand(_u) -> bool:
 		return false
 	func _halls() -> Array:
-		return []
+		return [] if home == null else [home]
 
 
 func _initialize() -> void:
@@ -102,6 +111,9 @@ var spawned: Array = []          # every unit a fight made: all gone before the 
 
 
 func _clear() -> void:
+	for b in g.buildings:
+		if not b.dead and b.team >= 0:
+			b.hp = b.max_hp          # (strays never wear a start base down over many fights)
 	for u in spawned:
 		if is_instance_valid(u) and not u.dead:
 			g.consume_unit(u)
@@ -189,7 +201,7 @@ func _fight(ground: String, nr: int, arm: String, pack: bool, k: int) -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 9000 + k * 17 + nr
 	var tech := {}
-	if arm in ["c", "e"]:
+	if arm in ["c", "e", "c2", "f", "f2"]:
 		tech["charge"] = true
 	if arm in ["d", "e"]:
 		tech["keen_sabres"] = true
@@ -230,11 +242,14 @@ func _fight(ground: String, nr: int, arm: String, pack: bool, k: int) -> void:
 		costs.append(int(Defs.UNITS[m.kind]["cost"]) / maxi(1, int(Defs.UNITS[m.kind].get("spawn", 1))))
 	await physics_frame
 	var micro: AICavMicro = null
-	if arm in ["b", "c", "d", "e"]:
+	if arm in ["b", "c", "d", "e", "c2", "f", "f2"]:
 		var stub := StubAI.new()
 		stub.game = g
+		stub.home = FakeHall.new()
+		stub.home.at = at(10, 320)
 		micro = AICavMicro.new(stub)
 		micro.on = true
+		micro.charge_play = not arm in ["c2", "f2"]
 	if not raid:
 		for x in foes:
 			x.cmd_move(base_mid if ground == "base" else rmid, true)
@@ -277,9 +292,10 @@ func _fight(ground: String, nr: int, arm: String, pack: bool, k: int) -> void:
 			if not raid:
 				# (the Brood chases: an idle Raptor goes at the nearest rider)
 				for x in _alive(foes):
-					if x.order == "idle" and x.target == null and not rr.is_empty():
-						var best: Unit = rr[0]
-						for r in rr:
+					var rin := rr.filter(func(r) -> bool: return r.position.distance_to(at(480, 320)) < 720.0)
+					if x.order == "idle" and x.target == null and not rin.is_empty():
+						var best: Unit = rin[0]
+						for r in rin:
 							if r.position.distance_to(x.position) < best.position.distance_to(x.position):
 								best = r
 						x.cmd_move(best.position, true)

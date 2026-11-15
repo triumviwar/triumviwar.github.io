@@ -5315,7 +5315,7 @@ func _strike(e: Entity) -> void:
 				dmg *= float(Defs.RIDE_BY["hit"])       # (struck in passing: Defs.RIDE_BY "hit", 1.0 = the full blow)
 			var charged := kind == "cuirassier" and run_t >= float(Defs.CHARGE["run"]) and game.has_tech(team, "charge")
 			if charged:
-				dmg *= float(Defs.CHARGE["mult"])
+				dmg *= float(Defs.CHARGE["mult"]) if STUDY_CHARGE_LIGHT <= 0.0 or not (e is Unit and e.has_tag("light")) else STUDY_CHARGE_LIGHT
 			if kind == "cuirassier":
 				game.stat_add(team, "cav_charged" if charged else "cav_blows", 1)      # (crown-coach-cavalry's count)
 				game.stat_add(team, "cav_dmg", dmg)
@@ -8148,6 +8148,16 @@ func _draw_charge_bar(y: float, bw: float) -> float:
 
 ## The amber Clockwork charge (the bar over the unit and on its card).
 const CHARGE_BAR := Color(0.95, 0.68, 0.2)
+## (keen-sabres-test, docs/keen_sabres_test.md) measuring only: `-- chargelight:2.2` makes a charged sabre blow on a LIGHT
+## unit hit x2.2 instead of Defs.CHARGE "mult" (one charge kills a 38-hp Raptor). Off (0) by default: no game changes.
+static var STUDY_CHARGE_LIGHT: float = _study_charge_light()
+
+
+static func _study_charge_light() -> float:
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("chargelight:"):
+			return float(a.substr(12))
+	return 0.0
 
 
 func _draw() -> void:

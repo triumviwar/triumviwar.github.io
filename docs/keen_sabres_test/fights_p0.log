@@ -1,0 +1,263 @@
+(open ground 30 x 20 tiles at (29, 4))
+RESULT open 2v11 arm:stand pack:false seed:0 -> L killed 50, riders lost 2 of 2 (health left 0%), Brood fighters left 9, blows 8/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 2v11 arm:stand pack:false seed:1 -> L killed 50, riders lost 2 of 2 (health left 0%), Brood fighters left 9, blows 7/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 2v11 arm:stand pack:false seed:2 -> L killed 50, riders lost 2 of 2 (health left 0%), Brood fighters left 9, blows 7/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 2v11 arm:stand pack:false seed:3 -> L killed 75, riders lost 2 of 2 (health left 0%), Brood fighters left 8, blows 8/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 2v11 arm:a pack:false seed:0 -> L killed 125, riders lost 2 of 2 (health left 0%), Brood fighters left 6, blows 15/0 charged, buildings -0, grubs 0, 12 s
+RESULT open 2v11 arm:a pack:false seed:1 -> L killed 50, riders lost 2 of 2 (health left 0%), Brood fighters left 9, blows 12/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 2v11 arm:a pack:false seed:2 -> L killed 125, riders lost 2 of 2 (health left 0%), Brood fighters left 6, blows 14/0 charged, buildings -0, grubs 0, 11 s
+RESULT open 2v11 arm:a pack:false seed:3 -> L killed 100, riders lost 2 of 2 (health left 0%), Brood fighters left 7, blows 17/0 charged, buildings -0, grubs 0, 15 s
+RESULT open 2v11 arm:b pack:false seed:0 -> D killed 25, riders lost 1 of 2 (health left 52%), Brood fighters left 10, blows 6/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 2v11 arm:b pack:false seed:1 -> D killed 0, riders lost 0 of 2 (health left 109%), Brood fighters left 11, blows 2/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 2v11 arm:b pack:false seed:2 -> D killed 75, riders lost 0 of 2 (health left 48%), Brood fighters left 8, blows 15/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 2v11 arm:b pack:false seed:3 -> D killed 0, riders lost 0 of 2 (health left 114%), Brood fighters left 11, blows 0/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 2v11 arm:c pack:false seed:0 -> L killed 75, riders lost 2 of 2 (health left 0%), Brood fighters left 8, blows 12/2 charged, buildings -0, grubs 0, 29 s
+RESULT open 2v11 arm:c pack:false seed:1 -> L killed 75, riders lost 2 of 2 (health left 0%), Brood fighters left 8, blows 11/2 charged, buildings -0, grubs 0, 27 s
+RESULT open 2v11 arm:c pack:false seed:2 -> L killed 100, riders lost 2 of 2 (health left 0%), Brood fighters left 7, blows 10/2 charged, buildings -0, grubs 0, 21 s
+RESULT open 2v11 arm:c pack:false seed:3 -> L killed 150, riders lost 2 of 2 (health left 0%), Brood fighters left 5, blows 18/2 charged, buildings -0, grubs 0, 36 s
+RESULT open 2v11 arm:d pack:false seed:0 -> D killed 175, riders lost 0 of 2 (health left 36%), Brood fighters left 4, blows 15/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 2v11 arm:d pack:false seed:1 -> D killed 50, riders lost 1 of 2 (health left 55%), Brood fighters left 9, blows 6/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 2v11 arm:d pack:false seed:2 -> D killed 125, riders lost 0 of 2 (health left 81%), Brood fighters left 6, blows 11/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 2v11 arm:d pack:false seed:3 -> D killed 25, riders lost 0 of 2 (health left 106%), Brood fighters left 10, blows 3/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 2v11 arm:e pack:false seed:0 -> W killed 275, riders lost 0 of 2 (health left 45%), Brood fighters left 0, blows 14/3 charged, buildings -0, grubs 0, 27 s
+RESULT open 2v11 arm:e pack:false seed:1 -> W killed 275, riders lost 1 of 2 (health left 24%), Brood fighters left 0, blows 17/2 charged, buildings -0, grubs 0, 39 s
+RESULT open 2v11 arm:e pack:false seed:2 -> W killed 275, riders lost 0 of 2 (health left 40%), Brood fighters left 0, blows 17/2 charged, buildings -0, grubs 0, 29 s
+RESULT open 2v11 arm:e pack:false seed:3 -> W killed 275, riders lost 1 of 2 (health left 30%), Brood fighters left 0, blows 16/3 charged, buildings -0, grubs 0, 39 s
+RESULT open 4v22 arm:stand pack:false seed:0 -> L killed 100, riders lost 4 of 4 (health left 0%), Brood fighters left 18, blows 11/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 4v22 arm:stand pack:false seed:1 -> L killed 100, riders lost 4 of 4 (health left 0%), Brood fighters left 18, blows 13/0 charged, buildings -0, grubs 0, 8 s
+RESULT open 4v22 arm:stand pack:false seed:2 -> L killed 100, riders lost 4 of 4 (health left 0%), Brood fighters left 18, blows 12/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 4v22 arm:stand pack:false seed:3 -> L killed 100, riders lost 4 of 4 (health left 0%), Brood fighters left 18, blows 11/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 4v22 arm:a pack:false seed:0 -> L killed 200, riders lost 4 of 4 (health left 0%), Brood fighters left 14, blows 30/0 charged, buildings -0, grubs 0, 16 s
+RESULT open 4v22 arm:a pack:false seed:1 -> L killed 200, riders lost 4 of 4 (health left 0%), Brood fighters left 14, blows 21/0 charged, buildings -0, grubs 0, 11 s
+RESULT open 4v22 arm:a pack:false seed:2 -> L killed 225, riders lost 4 of 4 (health left 0%), Brood fighters left 13, blows 29/0 charged, buildings -0, grubs 0, 18 s
+RESULT open 4v22 arm:a pack:false seed:3 -> L killed 125, riders lost 4 of 4 (health left 0%), Brood fighters left 17, blows 17/0 charged, buildings -0, grubs 0, 10 s
+RESULT open 4v22 arm:b pack:false seed:0 -> D killed 50, riders lost 1 of 4 (health left 75%), Brood fighters left 20, blows 12/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 4v22 arm:b pack:false seed:1 -> D killed 25, riders lost 1 of 4 (health left 73%), Brood fighters left 21, blows 10/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 4v22 arm:b pack:false seed:2 -> L killed 75, riders lost 4 of 4 (health left 0%), Brood fighters left 19, blows 17/0 charged, buildings -0, grubs 0, 34 s
+RESULT open 4v22 arm:b pack:false seed:3 -> L killed 150, riders lost 4 of 4 (health left 0%), Brood fighters left 16, blows 24/0 charged, buildings -0, grubs 0, 48 s
+RESULT open 4v22 arm:c pack:false seed:0 -> L killed 325, riders lost 4 of 4 (health left 0%), Brood fighters left 9, blows 34/5 charged, buildings -0, grubs 0, 39 s
+RESULT open 4v22 arm:c pack:false seed:1 -> L killed 275, riders lost 4 of 4 (health left 0%), Brood fighters left 11, blows 30/6 charged, buildings -0, grubs 0, 35 s
+RESULT open 4v22 arm:c pack:false seed:2 -> L killed 300, riders lost 4 of 4 (health left 0%), Brood fighters left 10, blows 28/6 charged, buildings -0, grubs 0, 31 s
+RESULT open 4v22 arm:c pack:false seed:3 -> L killed 375, riders lost 4 of 4 (health left 0%), Brood fighters left 7, blows 35/8 charged, buildings -0, grubs 0, 46 s
+RESULT open 4v22 arm:d pack:false seed:0 -> D killed 250, riders lost 0 of 4 (health left 86%), Brood fighters left 12, blows 20/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 4v22 arm:d pack:false seed:1 -> D killed 125, riders lost 0 of 4 (health left 94%), Brood fighters left 17, blows 12/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 4v22 arm:d pack:false seed:2 -> D killed 200, riders lost 2 of 4 (health left 43%), Brood fighters left 14, blows 21/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 4v22 arm:d pack:false seed:3 -> D killed 125, riders lost 1 of 4 (health left 84%), Brood fighters left 17, blows 15/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 4v22 arm:e pack:false seed:0 -> W killed 550, riders lost 1 of 4 (health left 45%), Brood fighters left 0, blows 32/5 charged, buildings -0, grubs 0, 30 s
+RESULT open 4v22 arm:e pack:false seed:1 -> W killed 550, riders lost 1 of 4 (health left 39%), Brood fighters left 0, blows 30/6 charged, buildings -0, grubs 0, 37 s
+RESULT open 4v22 arm:e pack:false seed:2 -> W killed 550, riders lost 1 of 4 (health left 49%), Brood fighters left 0, blows 31/6 charged, buildings -0, grubs 0, 46 s
+RESULT open 4v22 arm:e pack:false seed:3 -> W killed 550, riders lost 2 of 4 (health left 46%), Brood fighters left 0, blows 30/6 charged, buildings -0, grubs 0, 35 s
+RESULT open 8v45 arm:stand pack:false seed:0 -> L killed 175, riders lost 8 of 8 (health left 0%), Brood fighters left 38, blows 22/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 8v45 arm:stand pack:false seed:1 -> L killed 200, riders lost 8 of 8 (health left 0%), Brood fighters left 37, blows 21/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 8v45 arm:stand pack:false seed:2 -> L killed 150, riders lost 8 of 8 (health left 0%), Brood fighters left 39, blows 21/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 8v45 arm:stand pack:false seed:3 -> L killed 200, riders lost 8 of 8 (health left 0%), Brood fighters left 37, blows 23/0 charged, buildings -0, grubs 0, 10 s
+RESULT open 8v45 arm:a pack:false seed:0 -> L killed 225, riders lost 8 of 8 (health left 0%), Brood fighters left 36, blows 25/0 charged, buildings -0, grubs 0, 10 s
+RESULT open 8v45 arm:a pack:false seed:1 -> L killed 225, riders lost 8 of 8 (health left 0%), Brood fighters left 36, blows 30/0 charged, buildings -0, grubs 0, 8 s
+RESULT open 8v45 arm:a pack:false seed:2 -> L killed 225, riders lost 8 of 8 (health left 0%), Brood fighters left 36, blows 27/0 charged, buildings -0, grubs 0, 10 s
+RESULT open 8v45 arm:a pack:false seed:3 -> L killed 625, riders lost 8 of 8 (health left 0%), Brood fighters left 20, blows 77/0 charged, buildings -0, grubs 0, 20 s
+RESULT open 8v45 arm:b pack:false seed:0 -> D killed 275, riders lost 5 of 8 (health left 21%), Brood fighters left 34, blows 44/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 8v45 arm:b pack:false seed:1 -> D killed 225, riders lost 3 of 8 (health left 52%), Brood fighters left 36, blows 32/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 8v45 arm:b pack:false seed:2 -> D killed 0, riders lost 1 of 8 (health left 96%), Brood fighters left 45, blows 8/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 8v45 arm:b pack:false seed:3 -> D killed 175, riders lost 3 of 8 (health left 51%), Brood fighters left 38, blows 22/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 8v45 arm:c pack:false seed:0 -> L killed 300, riders lost 8 of 8 (health left 0%), Brood fighters left 33, blows 32/8 charged, buildings -0, grubs 0, 32 s
+RESULT open 8v45 arm:c pack:false seed:1 -> L killed 400, riders lost 8 of 8 (health left 0%), Brood fighters left 29, blows 43/8 charged, buildings -0, grubs 0, 49 s
+RESULT open 8v45 arm:c pack:false seed:2 -> L killed 425, riders lost 8 of 8 (health left 0%), Brood fighters left 28, blows 65/5 charged, buildings -0, grubs 0, 41 s
+RESULT open 8v45 arm:c pack:false seed:3 -> L killed 250, riders lost 8 of 8 (health left 0%), Brood fighters left 35, blows 30/6 charged, buildings -0, grubs 0, 28 s
+RESULT open 8v45 arm:d pack:false seed:0 -> D killed 350, riders lost 4 of 8 (health left 40%), Brood fighters left 31, blows 34/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 8v45 arm:d pack:false seed:1 -> D killed 150, riders lost 3 of 8 (health left 69%), Brood fighters left 39, blows 12/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 8v45 arm:d pack:false seed:2 -> D killed 225, riders lost 2 of 8 (health left 72%), Brood fighters left 36, blows 19/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 8v45 arm:d pack:false seed:3 -> D killed 325, riders lost 5 of 8 (health left 41%), Brood fighters left 32, blows 28/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 8v45 arm:e pack:false seed:0 -> W killed 1125, riders lost 5 of 8 (health left 18%), Brood fighters left 0, blows 63/14 charged, buildings -0, grubs 0, 57 s
+RESULT open 8v45 arm:e pack:false seed:1 -> D killed 625, riders lost 5 of 8 (health left 36%), Brood fighters left 20, blows 40/10 charged, buildings -0, grubs 0, 60 s
+RESULT open 8v45 arm:e pack:false seed:2 -> L killed 750, riders lost 8 of 8 (health left 0%), Brood fighters left 15, blows 46/9 charged, buildings -0, grubs 0, 46 s
+RESULT open 8v45 arm:e pack:false seed:3 -> L killed 650, riders lost 8 of 8 (health left 0%), Brood fighters left 19, blows 48/6 charged, buildings -0, grubs 0, 36 s
+RESULT open 12v67 arm:stand pack:false seed:0 -> L killed 225, riders lost 12 of 12 (health left 0%), Brood fighters left 58, blows 29/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 12v67 arm:stand pack:false seed:1 -> L killed 350, riders lost 12 of 12 (health left 0%), Brood fighters left 53, blows 34/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 12v67 arm:stand pack:false seed:2 -> L killed 325, riders lost 12 of 12 (health left 0%), Brood fighters left 54, blows 36/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 12v67 arm:stand pack:false seed:3 -> L killed 300, riders lost 12 of 12 (health left 0%), Brood fighters left 55, blows 31/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 12v67 arm:a pack:false seed:0 -> L killed 275, riders lost 12 of 12 (health left 0%), Brood fighters left 56, blows 38/0 charged, buildings -0, grubs 0, 13 s
+RESULT open 12v67 arm:a pack:false seed:1 -> L killed 475, riders lost 12 of 12 (health left 0%), Brood fighters left 48, blows 68/0 charged, buildings -0, grubs 0, 15 s
+RESULT open 12v67 arm:a pack:false seed:2 -> L killed 275, riders lost 12 of 12 (health left 0%), Brood fighters left 56, blows 35/0 charged, buildings -0, grubs 0, 9 s
+RESULT open 12v67 arm:a pack:false seed:3 -> L killed 300, riders lost 12 of 12 (health left 0%), Brood fighters left 55, blows 33/0 charged, buildings -0, grubs 0, 8 s
+RESULT open 12v67 arm:b pack:false seed:0 -> D killed 300, riders lost 8 of 12 (health left 27%), Brood fighters left 55, blows 52/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 12v67 arm:b pack:false seed:1 -> D killed 350, riders lost 5 of 12 (health left 55%), Brood fighters left 53, blows 51/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 12v67 arm:b pack:false seed:2 -> D killed 825, riders lost 8 of 12 (health left 31%), Brood fighters left 34, blows 102/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 12v67 arm:b pack:false seed:3 -> D killed 200, riders lost 5 of 12 (health left 61%), Brood fighters left 59, blows 32/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 12v67 arm:c pack:false seed:0 -> L killed 675, riders lost 12 of 12 (health left 0%), Brood fighters left 40, blows 90/8 charged, buildings -0, grubs 0, 42 s
+RESULT open 12v67 arm:c pack:false seed:1 -> L killed 650, riders lost 12 of 12 (health left 0%), Brood fighters left 41, blows 84/8 charged, buildings -0, grubs 0, 30 s
+RESULT open 12v67 arm:c pack:false seed:2 -> L killed 475, riders lost 12 of 12 (health left 0%), Brood fighters left 48, blows 58/9 charged, buildings -0, grubs 0, 26 s
+RESULT open 12v67 arm:c pack:false seed:3 -> L killed 375, riders lost 12 of 12 (health left 0%), Brood fighters left 52, blows 73/4 charged, buildings -0, grubs 0, 26 s
+RESULT open 12v67 arm:d pack:false seed:0 -> D killed 825, riders lost 7 of 12 (health left 39%), Brood fighters left 34, blows 68/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 12v67 arm:d pack:false seed:1 -> D killed 275, riders lost 8 of 12 (health left 32%), Brood fighters left 56, blows 30/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 12v67 arm:d pack:false seed:2 -> D killed 525, riders lost 2 of 12 (health left 80%), Brood fighters left 46, blows 42/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 12v67 arm:d pack:false seed:3 -> D killed 400, riders lost 5 of 12 (health left 57%), Brood fighters left 51, blows 40/0 charged, buildings -0, grubs 0, 60 s
+RESULT open 12v67 arm:e pack:false seed:0 -> L killed 1025, riders lost 12 of 12 (health left 0%), Brood fighters left 26, blows 65/13 charged, buildings -0, grubs 0, 41 s
+RESULT open 12v67 arm:e pack:false seed:1 -> W killed 1675, riders lost 8 of 12 (health left 18%), Brood fighters left 0, blows 113/10 charged, buildings -0, grubs 0, 46 s
+RESULT open 12v67 arm:e pack:false seed:2 -> L killed 850, riders lost 12 of 12 (health left 0%), Brood fighters left 33, blows 59/9 charged, buildings -0, grubs 0, 31 s
+RESULT open 12v67 arm:e pack:false seed:3 -> L killed 950, riders lost 12 of 12 (health left 0%), Brood fighters left 29, blows 81/5 charged, buildings -0, grubs 0, 37 s
+RESULT base 2v11 arm:stand pack:false seed:0 -> L killed 50, riders lost 2 of 2 (health left 0%), Brood fighters left 9, blows 7/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 2v11 arm:stand pack:false seed:1 -> L killed 50, riders lost 2 of 2 (health left 0%), Brood fighters left 9, blows 7/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 2v11 arm:stand pack:false seed:2 -> L killed 75, riders lost 2 of 2 (health left 0%), Brood fighters left 8, blows 9/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 2v11 arm:stand pack:false seed:3 -> L killed 75, riders lost 2 of 2 (health left 0%), Brood fighters left 8, blows 9/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 2v11 arm:a pack:false seed:0 -> L killed 100, riders lost 2 of 2 (health left 0%), Brood fighters left 7, blows 13/0 charged, buildings -0, grubs 0, 11 s
+RESULT base 2v11 arm:a pack:false seed:1 -> L killed 125, riders lost 2 of 2 (health left 0%), Brood fighters left 6, blows 16/0 charged, buildings -0, grubs 0, 14 s
+RESULT base 2v11 arm:a pack:false seed:2 -> L killed 75, riders lost 2 of 2 (health left 0%), Brood fighters left 8, blows 13/0 charged, buildings -0, grubs 0, 12 s
+RESULT base 2v11 arm:a pack:false seed:3 -> L killed 100, riders lost 2 of 2 (health left 0%), Brood fighters left 7, blows 14/0 charged, buildings -0, grubs 0, 13 s
+RESULT base 2v11 arm:b pack:false seed:0 -> D killed 0, riders lost 0 of 2 (health left 106%), Brood fighters left 11, blows 3/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 2v11 arm:b pack:false seed:1 -> D killed 0, riders lost 0 of 2 (health left 96%), Brood fighters left 11, blows 5/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 2v11 arm:b pack:false seed:2 -> D killed 0, riders lost 0 of 2 (health left 114%), Brood fighters left 11, blows 2/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 2v11 arm:b pack:false seed:3 -> D killed 0, riders lost 0 of 2 (health left 109%), Brood fighters left 11, blows 3/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 2v11 arm:c pack:false seed:0 -> L killed 125, riders lost 2 of 2 (health left 0%), Brood fighters left 6, blows 12/3 charged, buildings -168, grubs 0, 37 s
+RESULT base 2v11 arm:c pack:false seed:1 -> L killed 125, riders lost 2 of 2 (health left 0%), Brood fighters left 6, blows 14/2 charged, buildings -0, grubs 0, 25 s
+RESULT base 2v11 arm:c pack:false seed:2 -> L killed 125, riders lost 2 of 2 (health left 0%), Brood fighters left 6, blows 19/2 charged, buildings -0, grubs 0, 41 s
+RESULT base 2v11 arm:c pack:false seed:3 -> L killed 150, riders lost 2 of 2 (health left 0%), Brood fighters left 5, blows 13/3 charged, buildings -0, grubs 0, 38 s
+RESULT base 2v11 arm:d pack:false seed:0 -> D killed 0, riders lost 0 of 2 (health left 101%), Brood fighters left 11, blows 3/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 2v11 arm:d pack:false seed:1 -> D killed 25, riders lost 0 of 2 (health left 106%), Brood fighters left 10, blows 3/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 2v11 arm:d pack:false seed:2 -> D killed 25, riders lost 0 of 2 (health left 109%), Brood fighters left 10, blows 3/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 2v11 arm:d pack:false seed:3 -> D killed 0, riders lost 0 of 2 (health left 111%), Brood fighters left 11, blows 3/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 2v11 arm:e pack:false seed:0 -> W killed 275, riders lost 1 of 2 (health left 47%), Brood fighters left 0, blows 14/4 charged, buildings -32, grubs 0, 45 s
+RESULT base 2v11 arm:e pack:false seed:1 -> W killed 275, riders lost 1 of 2 (health left 14%), Brood fighters left 0, blows 18/2 charged, buildings -0, grubs 0, 38 s
+RESULT base 2v11 arm:e pack:false seed:2 -> W killed 275, riders lost 1 of 2 (health left 42%), Brood fighters left 0, blows 15/3 charged, buildings -0, grubs 0, 39 s
+RESULT base 2v11 arm:e pack:false seed:3 -> W killed 275, riders lost 1 of 2 (health left 40%), Brood fighters left 0, blows 17/2 charged, buildings -0, grubs 0, 36 s
+RESULT base 4v22 arm:stand pack:false seed:0 -> L killed 125, riders lost 4 of 4 (health left 0%), Brood fighters left 17, blows 13/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 4v22 arm:stand pack:false seed:1 -> L killed 125, riders lost 4 of 4 (health left 0%), Brood fighters left 17, blows 14/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 4v22 arm:stand pack:false seed:2 -> L killed 75, riders lost 4 of 4 (health left 0%), Brood fighters left 19, blows 11/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 4v22 arm:stand pack:false seed:3 -> L killed 75, riders lost 4 of 4 (health left 0%), Brood fighters left 19, blows 13/0 charged, buildings -0, grubs 0, 9 s
+RESULT base 4v22 arm:a pack:false seed:0 -> L killed 100, riders lost 4 of 4 (health left 0%), Brood fighters left 18, blows 22/0 charged, buildings -0, grubs 0, 12 s
+RESULT base 4v22 arm:a pack:false seed:1 -> L killed 150, riders lost 4 of 4 (health left 0%), Brood fighters left 16, blows 25/0 charged, buildings -0, grubs 0, 12 s
+RESULT base 4v22 arm:a pack:false seed:2 -> L killed 150, riders lost 4 of 4 (health left 0%), Brood fighters left 16, blows 22/0 charged, buildings -0, grubs 0, 12 s
+RESULT base 4v22 arm:a pack:false seed:3 -> L killed 150, riders lost 4 of 4 (health left 0%), Brood fighters left 16, blows 25/0 charged, buildings -32, grubs 0, 14 s
+RESULT base 4v22 arm:b pack:false seed:0 -> D killed 0, riders lost 1 of 4 (health left 82%), Brood fighters left 22, blows 2/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 4v22 arm:b pack:false seed:1 -> D killed 75, riders lost 2 of 4 (health left 52%), Brood fighters left 19, blows 11/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 4v22 arm:b pack:false seed:2 -> D killed 0, riders lost 0 of 4 (health left 107%), Brood fighters left 22, blows 0/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 4v22 arm:b pack:false seed:3 -> D killed 25, riders lost 1 of 4 (health left 78%), Brood fighters left 21, blows 6/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 4v22 arm:c pack:false seed:0 -> L killed 250, riders lost 4 of 4 (health left 0%), Brood fighters left 12, blows 27/6 charged, buildings -486, grubs 0, 42 s
+RESULT base 4v22 arm:c pack:false seed:1 -> D killed 225, riders lost 3 of 4 (health left 17%), Brood fighters left 13, blows 15/8 charged, buildings -1734, grubs 0, 60 s
+RESULT base 4v22 arm:c pack:false seed:2 -> D killed 300, riders lost 3 of 4 (health left 10%), Brood fighters left 10, blows 26/5 charged, buildings -1026, grubs 0, 60 s
+RESULT base 4v22 arm:c pack:false seed:3 -> D killed 400, riders lost 3 of 4 (health left 27%), Brood fighters left 6, blows 37/10 charged, buildings -241, grubs 0, 60 s
+RESULT base 4v22 arm:d pack:false seed:0 -> D killed 0, riders lost 0 of 4 (health left 116%), Brood fighters left 22, blows 0/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 4v22 arm:d pack:false seed:1 -> D killed 175, riders lost 2 of 4 (health left 43%), Brood fighters left 15, blows 13/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 4v22 arm:d pack:false seed:2 -> D killed 0, riders lost 2 of 4 (health left 50%), Brood fighters left 22, blows 4/0 charged, buildings -696, grubs 0, 60 s
+RESULT base 4v22 arm:d pack:false seed:3 -> D killed 75, riders lost 1 of 4 (health left 84%), Brood fighters left 19, blows 5/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 4v22 arm:e pack:false seed:0 -> D killed 500, riders lost 2 of 4 (health left 23%), Brood fighters left 2, blows 33/4 charged, buildings -808, grubs 0, 60 s
+RESULT base 4v22 arm:e pack:false seed:1 -> W killed 550, riders lost 1 of 4 (health left 52%), Brood fighters left 0, blows 28/8 charged, buildings -400, grubs 0, 45 s
+RESULT base 4v22 arm:e pack:false seed:2 -> L killed 425, riders lost 4 of 4 (health left 0%), Brood fighters left 5, blows 25/6 charged, buildings -345, grubs 0, 43 s
+RESULT base 4v22 arm:e pack:false seed:3 -> W killed 550, riders lost 1 of 4 (health left 58%), Brood fighters left 0, blows 28/7 charged, buildings -232, grubs 0, 43 s
+RESULT base 8v45 arm:stand pack:false seed:0 -> L killed 225, riders lost 8 of 8 (health left 0%), Brood fighters left 36, blows 21/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 8v45 arm:stand pack:false seed:1 -> L killed 150, riders lost 8 of 8 (health left 0%), Brood fighters left 39, blows 19/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 8v45 arm:stand pack:false seed:2 -> L killed 200, riders lost 8 of 8 (health left 0%), Brood fighters left 37, blows 22/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 8v45 arm:stand pack:false seed:3 -> L killed 200, riders lost 8 of 8 (health left 0%), Brood fighters left 37, blows 21/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 8v45 arm:a pack:false seed:0 -> L killed 275, riders lost 8 of 8 (health left 0%), Brood fighters left 34, blows 37/0 charged, buildings -0, grubs 0, 10 s
+RESULT base 8v45 arm:a pack:false seed:1 -> L killed 225, riders lost 8 of 8 (health left 0%), Brood fighters left 36, blows 29/0 charged, buildings -0, grubs 0, 9 s
+RESULT base 8v45 arm:a pack:false seed:2 -> L killed 500, riders lost 8 of 8 (health left 0%), Brood fighters left 25, blows 62/0 charged, buildings -528, grubs 0, 25 s
+RESULT base 8v45 arm:a pack:false seed:3 -> L killed 350, riders lost 8 of 8 (health left 0%), Brood fighters left 31, blows 47/0 charged, buildings -0, grubs 0, 13 s
+RESULT base 8v45 arm:b pack:false seed:0 -> D killed 275, riders lost 3 of 8 (health left 50%), Brood fighters left 34, blows 42/0 charged, buildings -2635, grubs 0, 60 s
+RESULT base 8v45 arm:b pack:false seed:1 -> D killed 75, riders lost 2 of 8 (health left 79%), Brood fighters left 42, blows 16/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 8v45 arm:b pack:false seed:2 -> D killed 225, riders lost 5 of 8 (health left 28%), Brood fighters left 36, blows 31/0 charged, buildings -1897, grubs 0, 60 s
+RESULT base 8v45 arm:b pack:false seed:3 -> D killed 25, riders lost 1 of 8 (health left 88%), Brood fighters left 44, blows 9/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 8v45 arm:c pack:false seed:0 -> L killed 275, riders lost 8 of 8 (health left 0%), Brood fighters left 34, blows 27/10 charged, buildings -1179, grubs 0, 38 s
+RESULT base 8v45 arm:c pack:false seed:1 -> L killed 325, riders lost 8 of 8 (health left 0%), Brood fighters left 32, blows 40/8 charged, buildings -1354, grubs 0, 39 s
+RESULT base 8v45 arm:c pack:false seed:2 -> D killed 850, riders lost 6 of 8 (health left 8%), Brood fighters left 11, blows 78/13 charged, buildings -1294, grubs 0, 60 s
+RESULT base 8v45 arm:c pack:false seed:3 -> L killed 225, riders lost 8 of 8 (health left 0%), Brood fighters left 36, blows 39/5 charged, buildings -165, grubs 0, 32 s
+RESULT base 8v45 arm:d pack:false seed:0 -> D killed 250, riders lost 4 of 8 (health left 50%), Brood fighters left 35, blows 25/0 charged, buildings -536, grubs 0, 60 s
+RESULT base 8v45 arm:d pack:false seed:1 -> D killed 175, riders lost 6 of 8 (health left 28%), Brood fighters left 38, blows 20/0 charged, buildings -2511, grubs 0, 60 s
+RESULT base 8v45 arm:d pack:false seed:2 -> D killed 250, riders lost 3 of 8 (health left 62%), Brood fighters left 35, blows 20/0 charged, buildings -2013, grubs 0, 60 s
+RESULT base 8v45 arm:d pack:false seed:3 -> D killed 425, riders lost 4 of 8 (health left 48%), Brood fighters left 28, blows 33/0 charged, buildings -0, grubs 0, 60 s
+RESULT base 8v45 arm:e pack:false seed:0 -> D killed 950, riders lost 7 of 8 (health left 4%), Brood fighters left 7, blows 60/10 charged, buildings -861, grubs 0, 60 s
+RESULT base 8v45 arm:e pack:false seed:1 -> L killed 375, riders lost 8 of 8 (health left 0%), Brood fighters left 30, blows 24/9 charged, buildings -1063, grubs 0, 40 s
+RESULT base 8v45 arm:e pack:false seed:2 -> W killed 1125, riders lost 5 of 8 (health left 27%), Brood fighters left 0, blows 74/8 charged, buildings -0, grubs 0, 43 s
+RESULT base 8v45 arm:e pack:false seed:3 -> D killed 850, riders lost 7 of 8 (health left 6%), Brood fighters left 11, blows 53/10 charged, buildings -543, grubs 0, 60 s
+RESULT base 12v67 arm:stand pack:false seed:0 -> L killed 375, riders lost 12 of 12 (health left 0%), Brood fighters left 52, blows 39/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 12v67 arm:stand pack:false seed:1 -> L killed 325, riders lost 12 of 12 (health left 0%), Brood fighters left 54, blows 41/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 12v67 arm:stand pack:false seed:2 -> L killed 350, riders lost 12 of 12 (health left 0%), Brood fighters left 53, blows 39/0 charged, buildings -0, grubs 0, 9 s
+RESULT base 12v67 arm:stand pack:false seed:3 -> L killed 200, riders lost 12 of 12 (health left 0%), Brood fighters left 59, blows 29/0 charged, buildings -0, grubs 0, 8 s
+RESULT base 12v67 arm:a pack:false seed:0 -> L killed 400, riders lost 12 of 12 (health left 0%), Brood fighters left 51, blows 60/0 charged, buildings -76, grubs 0, 13 s
+RESULT base 12v67 arm:a pack:false seed:1 -> L killed 325, riders lost 12 of 12 (health left 0%), Brood fighters left 54, blows 45/0 charged, buildings -0, grubs 0, 9 s
+RESULT base 12v67 arm:a pack:false seed:2 -> L killed 375, riders lost 12 of 12 (health left 0%), Brood fighters left 52, blows 48/0 charged, buildings -0, grubs 0, 13 s
+RESULT base 12v67 arm:a pack:false seed:3 -> L killed 525, riders lost 12 of 12 (health left 0%), Brood fighters left 46, blows 60/0 charged, buildings -445, grubs 0, 15 s
+RESULT base 12v67 arm:b pack:false seed:0 -> D killed 125, riders lost 2 of 12 (health left 87%), Brood fighters left 62, blows 25/0 charged, buildings -135, grubs 0, 60 s
+RESULT base 12v67 arm:b pack:false seed:1 -> D killed 375, riders lost 5 of 12 (health left 55%), Brood fighters left 52, blows 47/0 charged, buildings -1185, grubs 0, 60 s
+RESULT base 12v67 arm:b pack:false seed:2 -> D killed 525, riders lost 5 of 12 (health left 58%), Brood fighters left 46, blows 61/0 charged, buildings -1570, grubs 0, 60 s
+RESULT base 12v67 arm:b pack:false seed:3 -> D killed 225, riders lost 5 of 12 (health left 55%), Brood fighters left 58, blows 33/0 charged, buildings -2354, grubs 0, 60 s
+RESULT base 12v67 arm:c pack:false seed:0 -> L killed 325, riders lost 12 of 12 (health left 0%), Brood fighters left 54, blows 65/5 charged, buildings -0, grubs 0, 16 s
+RESULT base 12v67 arm:c pack:false seed:1 -> L killed 675, riders lost 12 of 12 (health left 0%), Brood fighters left 40, blows 87/8 charged, buildings -1439, grubs 0, 35 s
+RESULT base 12v67 arm:c pack:false seed:2 -> L killed 400, riders lost 12 of 12 (health left 0%), Brood fighters left 51, blows 79/4 charged, buildings -315, grubs 0, 23 s
+RESULT base 12v67 arm:c pack:false seed:3 -> L killed 700, riders lost 12 of 12 (health left 0%), Brood fighters left 39, blows 91/8 charged, buildings -1779, grubs 0, 41 s
+RESULT base 12v67 arm:d pack:false seed:0 -> D killed 425, riders lost 8 of 12 (health left 36%), Brood fighters left 50, blows 42/0 charged, buildings -70, grubs 0, 60 s
+RESULT base 12v67 arm:d pack:false seed:1 -> D killed 325, riders lost 3 of 12 (health left 59%), Brood fighters left 54, blows 29/0 charged, buildings -2377, grubs 0, 60 s
+RESULT base 12v67 arm:d pack:false seed:2 -> D killed 300, riders lost 2 of 12 (health left 84%), Brood fighters left 55, blows 35/0 charged, buildings -115, grubs 0, 60 s
+RESULT base 12v67 arm:d pack:false seed:3 -> D killed 400, riders lost 4 of 12 (health left 52%), Brood fighters left 51, blows 36/0 charged, buildings -1872, grubs 0, 60 s
+RESULT base 12v67 arm:e pack:false seed:0 -> W killed 1675, riders lost 7 of 12 (health left 37%), Brood fighters left 0, blows 108/12 charged, buildings -128, grubs 0, 44 s
+RESULT base 12v67 arm:e pack:false seed:1 -> L killed 1250, riders lost 12 of 12 (health left 0%), Brood fighters left 17, blows 96/8 charged, buildings -0, grubs 0, 43 s
+RESULT base 12v67 arm:e pack:false seed:2 -> L killed 1200, riders lost 12 of 12 (health left 0%), Brood fighters left 19, blows 86/10 charged, buildings -0, grubs 0, 35 s
+RESULT base 12v67 arm:e pack:false seed:3 -> W killed 1675, riders lost 6 of 12 (health left 38%), Brood fighters left 0, blows 110/12 charged, buildings -28, grubs 0, 44 s
+RESULT raid 4v0 arm:c pack:false seed:0 -> W killed 770, riders lost 0 of 4 (health left 69%), Brood fighters left 0, blows 39/4 charged, buildings -0, grubs 10, 27 s
+RESULT raid 4v0 arm:c pack:false seed:1 -> W killed 770, riders lost 0 of 4 (health left 82%), Brood fighters left 0, blows 33/7 charged, buildings -0, grubs 10, 31 s
+RESULT raid 4v0 arm:c pack:false seed:2 -> W killed 770, riders lost 0 of 4 (health left 79%), Brood fighters left 0, blows 36/5 charged, buildings -0, grubs 10, 26 s
+RESULT raid 4v0 arm:c pack:false seed:3 -> W killed 770, riders lost 0 of 4 (health left 78%), Brood fighters left 0, blows 29/8 charged, buildings -0, grubs 10, 29 s
+RESULT raid 4v0 arm:e pack:false seed:0 -> W killed 770, riders lost 0 of 4 (health left 67%), Brood fighters left 0, blows 22/8 charged, buildings -0, grubs 10, 25 s
+RESULT raid 4v0 arm:e pack:false seed:1 -> W killed 770, riders lost 0 of 4 (health left 75%), Brood fighters left 0, blows 24/7 charged, buildings -0, grubs 10, 23 s
+RESULT raid 4v0 arm:e pack:false seed:2 -> W killed 770, riders lost 0 of 4 (health left 81%), Brood fighters left 0, blows 24/6 charged, buildings -0, grubs 10, 20 s
+RESULT raid 4v0 arm:e pack:false seed:3 -> W killed 770, riders lost 0 of 4 (health left 78%), Brood fighters left 0, blows 24/8 charged, buildings -0, grubs 10, 26 s
+RESULT raid_guard 4v0 arm:c pack:false seed:0 -> L killed 160, riders lost 4 of 4 (health left 0%), Brood fighters left 14, blows 7/4 charged, buildings -0, grubs 0, 14 s
+RESULT raid_guard 4v0 arm:c pack:false seed:1 -> L killed 205, riders lost 4 of 4 (health left 0%), Brood fighters left 13, blows 8/5 charged, buildings -0, grubs 0, 38 s
+RESULT raid_guard 4v0 arm:c pack:false seed:2 -> L killed 270, riders lost 4 of 4 (health left 0%), Brood fighters left 12, blows 11/4 charged, buildings -0, grubs 0, 13 s
+RESULT raid_guard 4v0 arm:c pack:false seed:3 -> L killed 275, riders lost 4 of 4 (health left 0%), Brood fighters left 11, blows 10/8 charged, buildings -0, grubs 0, 35 s
+RESULT raid_guard 4v0 arm:e pack:false seed:0 -> L killed 305, riders lost 4 of 4 (health left 0%), Brood fighters left 9, blows 14/6 charged, buildings -0, grubs 0, 28 s
+RESULT raid_guard 4v0 arm:e pack:false seed:1 -> L killed 350, riders lost 4 of 4 (health left 0%), Brood fighters left 10, blows 11/6 charged, buildings -0, grubs 1, 25 s
+RESULT raid_guard 4v0 arm:e pack:false seed:2 -> D killed 230, riders lost 3 of 4 (health left 9%), Brood fighters left 12, blows 9/4 charged, buildings -0, grubs 0, 60 s
+RESULT raid_guard 4v0 arm:e pack:false seed:3 -> L killed 325, riders lost 4 of 4 (health left 0%), Brood fighters left 9, blows 13/6 charged, buildings -0, grubs 0, 32 s
+| ground | Pack Hunt | riders v Brood | arm | W-D-L (riders) | trade (value killed / lost) | riders lost (of) | Brood fighters left (mean) | rider health left | grubs killed | building damage |
+|---|---|---|---|---|---|---|---|---|---|---|
+| open | no | 2 v 11 | stand | 0-0-4 | 0.20 | 8 (8) | 8.8 | 0% | 0.0 | 0 |
+| open | no | 2 v 11 | a | 0-0-4 | 0.36 | 8 (8) | 7.0 | 0% | 0.0 | 0 |
+| open | no | 2 v 11 | b | 0-4-0 | 0.71 | 1 (8) | 10.0 | 80% | 0.0 | 0 |
+| open | no | 2 v 11 | c | 0-0-4 | 0.36 | 8 (8) | 7.0 | 0% | 0.0 | 0 |
+| open | no | 2 v 11 | d | 0-4-0 | 2.68 | 1 (8) | 7.2 | 69% | 0.0 | 0 |
+| open | no | 2 v 11 | e | 4-0-0 | 3.93 | 2 (8) | 0.0 | 34% | 0.0 | 0 |
+| open | no | 4 v 22 | stand | 0-0-4 | 0.18 | 16 (16) | 18.0 | 0% | 0.0 | 0 |
+| open | no | 4 v 22 | a | 0-0-4 | 0.33 | 16 (16) | 14.5 | 0% | 0.0 | 0 |
+| open | no | 4 v 22 | b | 0-2-2 | 0.21 | 10 (16) | 19.0 | 37% | 0.0 | 0 |
+| open | no | 4 v 22 | c | 0-0-4 | 0.57 | 16 (16) | 9.2 | 0% | 0.0 | 0 |
+| open | no | 4 v 22 | d | 0-4-0 | 1.67 | 3 (16) | 15.0 | 76% | 0.0 | 0 |
+| open | no | 4 v 22 | e | 4-0-0 | 3.14 | 5 (16) | 0.0 | 44% | 0.0 | 0 |
+| open | no | 8 v 45 | stand | 0-0-4 | 0.16 | 32 (32) | 37.8 | 0% | 0.0 | 0 |
+| open | no | 8 v 45 | a | 0-0-4 | 0.29 | 32 (32) | 32.0 | 0% | 0.0 | 0 |
+| open | no | 8 v 45 | b | 0-4-0 | 0.40 | 12 (32) | 38.2 | 55% | 0.0 | 0 |
+| open | no | 8 v 45 | c | 0-0-4 | 0.31 | 32 (32) | 31.2 | 0% | 0.0 | 0 |
+| open | no | 8 v 45 | d | 0-4-0 | 0.54 | 14 (32) | 34.5 | 55% | 0.0 | 0 |
+| open | no | 8 v 45 | e | 1-1-2 | 0.87 | 26 (32) | 13.5 | 13% | 0.0 | 0 |
+| open | no | 12 v 67 | stand | 0-0-4 | 0.18 | 48 (48) | 55.0 | 0% | 0.0 | 0 |
+| open | no | 12 v 67 | a | 0-0-4 | 0.20 | 48 (48) | 53.8 | 0% | 0.0 | 0 |
+| open | no | 12 v 67 | b | 0-4-0 | 0.46 | 26 (48) | 50.2 | 43% | 0.0 | 0 |
+| open | no | 12 v 67 | c | 0-0-4 | 0.32 | 48 (48) | 45.2 | 0% | 0.0 | 0 |
+| open | no | 12 v 67 | d | 0-4-0 | 0.66 | 22 (48) | 46.8 | 52% | 0.0 | 0 |
+| open | no | 12 v 67 | e | 1-0-3 | 0.73 | 44 (48) | 22.0 | 4% | 0.0 | 0 |
+| base | no | 2 v 11 | stand | 0-0-4 | 0.22 | 8 (8) | 8.5 | 0% | 0.0 | 0 |
+| base | no | 2 v 11 | a | 0-0-4 | 0.36 | 8 (8) | 7.0 | 0% | 0.0 | 0 |
+| base | no | 2 v 11 | b | 0-4-0 | no loss (0 killed) | 0 (8) | 11.0 | 106% | 0.0 | 0 |
+| base | no | 2 v 11 | c | 0-0-4 | 0.47 | 8 (8) | 5.8 | 0% | 0.0 | 42 |
+| base | no | 2 v 11 | d | 0-4-0 | no loss (50 killed) | 0 (8) | 10.5 | 106% | 0.0 | 0 |
+| base | no | 2 v 11 | e | 4-0-0 | 1.96 | 4 (8) | 0.0 | 35% | 0.0 | 8 |
+| base | no | 4 v 22 | stand | 0-0-4 | 0.18 | 16 (16) | 18.0 | 0% | 0.0 | 0 |
+| base | no | 4 v 22 | a | 0-0-4 | 0.25 | 16 (16) | 16.5 | 0% | 0.0 | 8 |
+| base | no | 4 v 22 | b | 0-4-0 | 0.18 | 4 (16) | 21.0 | 79% | 0.0 | 0 |
+| base | no | 4 v 22 | c | 0-3-1 | 0.65 | 13 (16) | 10.2 | 13% | 0.0 | 871 |
+| base | no | 4 v 22 | d | 0-4-0 | 0.36 | 5 (16) | 19.5 | 73% | 0.0 | 174 |
+| base | no | 4 v 22 | e | 2-1-1 | 1.81 | 8 (16) | 1.8 | 33% | 0.0 | 446 |
+| base | no | 8 v 45 | stand | 0-0-4 | 0.17 | 32 (32) | 37.2 | 0% | 0.0 | 0 |
+| base | no | 8 v 45 | a | 0-0-4 | 0.30 | 32 (32) | 31.5 | 0% | 0.0 | 132 |
+| base | no | 8 v 45 | b | 0-4-0 | 0.39 | 11 (32) | 39.0 | 61% | 0.0 | 1133 |
+| base | no | 8 v 45 | c | 0-1-3 | 0.40 | 30 (32) | 28.2 | 2% | 0.0 | 998 |
+| base | no | 8 v 45 | d | 0-4-0 | 0.46 | 17 (32) | 34.0 | 47% | 0.0 | 1265 |
+| base | no | 8 v 45 | e | 1-2-1 | 0.87 | 27 (32) | 12.0 | 9% | 0.0 | 616 |
+| base | no | 12 v 67 | stand | 0-0-4 | 0.19 | 48 (48) | 54.5 | 0% | 0.0 | 0 |
+| base | no | 12 v 67 | a | 0-0-4 | 0.24 | 48 (48) | 50.8 | 0% | 0.0 | 130 |
+| base | no | 12 v 67 | b | 0-4-0 | 0.53 | 17 (48) | 54.5 | 63% | 0.0 | 1311 |
+| base | no | 12 v 67 | c | 0-0-4 | 0.31 | 48 (48) | 46.0 | 0% | 0.0 | 883 |
+| base | no | 12 v 67 | d | 0-4-0 | 0.61 | 17 (48) | 52.5 | 57% | 0.0 | 1108 |
+| base | no | 12 v 67 | e | 2-0-2 | 1.12 | 37 (48) | 9.0 | 18% | 0.0 | 39 |
+| raid | no | 4 v 0 | c | 4-0-0 | no loss (3080 killed) | 0 (16) | 0.0 | 77% | 10.0 | 0 |
+| raid | no | 4 v 0 | e | 4-0-0 | no loss (3080 killed) | 0 (16) | 0.0 | 75% | 10.0 | 0 |
+| raid_guard | no | 4 v 0 | c | 0-0-4 | 0.41 | 16 (16) | 12.5 | 0% | 0.0 | 0 |
+| raid_guard | no | 4 v 0 | e | 0-1-3 | 0.58 | 15 (16) | 10.0 | 2% | 0.2 | 0 |
