@@ -338,7 +338,7 @@ func _barracks() -> void:
 	check(keys.has("armoured_dragoon") and keys.has("dismounted_cuirassier"), "with Armour: Armoured Dragoon and Armoured Officer on the card")
 	check(g.can_train(bar, "armoured_dragoon") == "" and g.can_train(bar, "dismounted_cuirassier") == "", "  and they can be trained ('%s' / '%s')" % [g.can_train(bar, "armoured_dragoon"), g.can_train(bar, "dismounted_cuirassier")])
 	var pa: Array = g.unit_price(0, "dismounted_cuirassier")
-	check(pa[0] == 75 + int(Defs.RESEARCH["armour"]["fees"]["dismounted"][0]), "  the Armoured Officer: %d gold" % pa[0])
+	check(pa[0] == int(Defs.UNITS["dismounted"]["cost"]) + int(Defs.RESEARCH["armour"]["fees"]["dismounted"][0]), "  the Armoured Officer: %d gold" % pa[0])
 	g.train(bar, "dismounted_cuirassier")
 	await wait_for(func() -> bool: return find(0, "dismounted", true) != null, 30.0)
 	var ao: Unit = find(0, "dismounted", true)

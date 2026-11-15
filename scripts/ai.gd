@@ -3266,9 +3266,10 @@ func _more_halls(macro: bool) -> void:
 
 ## Research once the army it's for is there and the money allows (never with an expansion
 ## to save for). Crown, at the Armoury, roughly in this order: the Socket Bayonet from 3
-## Musketeers, the Matchlock from 4, the Cavalry Charge from 2 horsemen, Armour from 6
-## soldiers, Prepared Charges from 1 gun (cannon or mortar), Flintlock from 8 Musketeers,
-## the Gunner's Quadrant from 2 guns, Caplock from 12. [what's counted, how many]
+## Musketeers, the Matchlock from 4, Armour from 6 soldiers, Prepared Charges from 1 gun
+## (cannon or mortar), Flintlock from 8 Musketeers, the Gunner's Quadrant from 2 guns,
+## Caplock from 12; at the Horse Breeder the Cavalry Charge from 2 horsemen (from the first
+## one, out or in a queue, when the plan is a rider plan: _rider_plan). [what's counted, how many]
 const RESEARCH_AT := {"bayonet": ["musket", 3], "matchlock": ["musket", 4], "charge": ["horse", 2], "pouch": ["musket", 6],
 	"armour": ["soldier", 6], "charges": ["gun", 1], "flintlock": ["musket", 8], "quadrant": ["gun", 2],
 	"caplock": ["musket", 12]}
@@ -3295,7 +3296,14 @@ func _research() -> void:
 		if info.has("band"):
 			continue        # (the band's musicians: _band)
 		var at: Array = RESEARCH_AT.get(key, ["musket", 0])
-		if int(n[at[0]]) < int(at[1]) * (1.5 if difficulty == 0 else 1.0):
+		var need := float(at[1]) * (1.5 if difficulty == 0 else 1.0)
+		var have := int(n[at[0]])
+		if key == "charge" and _rider_plan():
+			# (cavalry-charge-package: a rider plan drills the Charge with its first rider, out or still training)
+			need = 1.0
+			for b in _mine("barracks"):
+				have += b.queue.count("cuirassier")
+		if have < need:
 			continue
 		if _gold() < int(info["cost"]) + _lv([150, 60, 20]) or _res2() < float(info.get("cost2", 0)) + 20.0:
 			continue
@@ -5180,6 +5188,12 @@ func _soldier_key(b: Building, kind: String) -> String:
 ## builders, the escorts and worker safety leave him be.
 func _held_worker(_u: Unit) -> bool:
 	return false
+
+
+## (cavalry-charge-package) a plan that makes riders from the start (the Horseman rush, OPTIMAL's Horse Breeder
+## opening): the Horse Breeder's Cavalry Charge comes with the first rider (_research).
+func _rider_plan() -> bool:
+	return opening == "breeder"
 
 
 ## No Horsemen trained for now (AICrown.rider_waits: the first horse goes to a gun).

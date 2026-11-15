@@ -468,6 +468,9 @@ static func restore(game: Game, d: Dictionary) -> void:
 		# (saves from before the Armoury: every Cuirassier charged, so the Crown has the drill)
 		if not d.get("armoury", false) and game.faction_of(t) == "crown":
 			game.players[t]["tech"]["charge"] = true
+		# (cavalry-charge-package: Keen Sabres is gone; an old save's flag means nothing now)
+		if game.players[t].has("tech"):
+			game.players[t]["tech"].erase("keen_sabres")
 	for t in game.stats.size():
 		if t < d["stats"].size():
 			var st: Dictionary = d["stats"][t]
