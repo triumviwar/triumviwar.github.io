@@ -228,6 +228,12 @@ func _punish(f: String, t: float) -> Array:
 				# the riders (BREEDER_BY): out-expand it.)
 				if GREEDY_BROOD_TRY != "":
 					return [GREEDY_BROOD_TRY, _normal_why(GREEDY_BROOD_TRY)]     # (study switch)
+				if AICrownCoach.no_rush_v_brood():
+					# (the Crown coach 2026-11-16, C2: the Brood's "greed" is its standard opening and it answers the Horse Breeder
+					# by 1:30; v the Brood's OPTIMAL on Greenhold 1100, Kestrel Rise 1130, Border March 1158 to 12:00 with the
+					# coach's economy: the rush lost 2 and trailed 1 (0.78 of the Brood's income at 12:00), Balanced led 2 and was
+					# even in 1 (1.19, 1.01, 1.11), the Economy race led 1 and lost 2)
+					return ["balanced", "its early ground is its usual opening: a line and guns, the economy behind them"]
 				# (crown-ai-v2: the Brood roots a Mound Turtle on new ground at 0:00 in every plan, so "a second base and little
 				# army" is the read of 35 of 38 Brood games, its standard opening as much as its greed; the riders answered every
 				# one and the Crown won or led none (QA study). The Economy race was tried on half of them (RIDERS_V_BROOD 0.5)
@@ -394,6 +400,8 @@ func lean_now() -> String:
 func _lean_chance(f: String, dist: float) -> float:
 	if fac != "crown" or f != "brood":
 		return 0.0
+	if AICrownCoach.no_rush_v_brood():
+		return 0.0          # (the Crown coach 2026-11-16: no blind Horseman rush against the Brood)
 	return 0.35 if dist < 70.0 else 0.2
 
 

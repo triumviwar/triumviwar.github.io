@@ -27,6 +27,10 @@ class_name AICrownCoach
 ##    Now the table is only a guess for what it has NOT seen: TABLE_FRESH of it while the Brood's army was seen within
 ##    FRESH_S s (what was seen counts in full, as before), TABLE_STALE of it when not; and the wave goes at EDGE_BROOD
 ##    times that (was 1.5). Switch `honest:off`.
+## 4. NO BLIND HORSEMAN RUSH AGAINST THE BROOD (C2: the rush rode in 35 of 38 games and failed in 25; the Brood sees the
+##    Horse Breeder at ~1:30). OPTIMAL no longer leans to the rush before it scouts the Brood, and a GREEDY Brood read picks
+##    Balanced (measured: AIOptimal._punish). Riders still come for the screen, the picket and the raids of the plans.
+##    Switch `norush:off` (the owner's rule before: the Horse Breeder to punish a greedy Brood).
 
 var ai          # the AICrown
 var game: Game
@@ -38,6 +42,11 @@ var labs_first_on := not off and not args.has("labsfirst:off")
 
 var halls_on_time_on := not off and not args.has("hallsontime:off")
 var honest_off := off or args.has("honest:off")
+
+
+static func no_rush_v_brood() -> bool:
+	var a := OS.get_cmdline_user_args()
+	return not a.has("coach:off") and not a.has("norush:off")
 
 var labs_first_n := 0          # (the report) labourers this rule trained
 var labs_first_held_t := 0.0   # (the report) seconds it held gold for a labourer
