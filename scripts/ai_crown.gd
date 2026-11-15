@@ -812,6 +812,8 @@ func _posts_threat() -> bool:
 func _bo_lab_keep() -> int:
 	if bo_labs_off or not bo_owns() or not _bo_posts_first() or _soldiers_first() or army_lags():
 		return 0
+	if bo_army_first:
+		return 0                # (the rush's riders before labourers: its identity, PLANS["rush"])
 	var top := mini(bo_lab_cap, owner_lab_cap())
 	var slots := mini(_lab_slots(), top - game.workers(team).size() - _labs_queued())
 	if slots <= 0:
