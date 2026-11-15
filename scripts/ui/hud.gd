@@ -2043,7 +2043,7 @@ func _ability_buttons(list: Array, units: Array) -> void:
 			for u in game.selected_units():
 				if u.kind == "bulwark":
 					u.set_brace(up), true, "", ""])
-	# Clock Soldier: SHIELD FORWARD, once SHIELD WALL is researched at a Light Works (scripts/shield_wall.gd)
+	# Clock Soldier: SHIELD FORWARD, once SHIELD WALL is researched at an Escapement (a Light Works before 0.38.19) (scripts/shield_wall.gd)
 	var csold := units.filter(func(u: Unit) -> bool: return u.kind == ShieldWall.KIND)
 	if not csold.is_empty() and game.has_tech(game.human, ShieldWall.TECH):
 		var raise: bool = csold.any(func(u: Unit) -> bool: return not u.shield_up)
@@ -3941,7 +3941,7 @@ func _draw_panel(font: Font) -> void:
 				if game.gear_net.needs_spring(bb):
 					info = "NEEDS MAINSPRING: no Mainspring in its gear network, so it stands idle (no research, no Springers). Build a Mainspring anywhere in the network."
 				elif game.gear_net.speed_mult(bb) > 0.0:
-					info = "Working: a Mainspring feeds it through the gear network. Springers and Netters can be made at a Light Works fed the same way, Pendulums and Spring Ballistas at a Heavy Works%s." % ("" if game.has_tech(bb.team, "high_leap") else "; HIGH LEAP can be researched here")
+					info = "Working: a Mainspring feeds it through the gear network. Springers and Netters can be made at a Light Works fed the same way, Pendulums and Spring Ballistas at a Heavy Works%s." % ("" if ["high_leap", "shield_wall", "long_chain"].all(func(k: String) -> bool: return game.has_tech(bb.team, k)) else "; HIGH LEAP, SHIELD WALL and LONG CHAIN are researched here")
 			if Defs.gear_mode and bb.built and not bb.dead and (e.team == game.human or game.demo):
 				var gi := GearEcon.card_info(bb)        # (the Tension rule and the store: scripts/gear_econ.gd)
 				if gi != "":

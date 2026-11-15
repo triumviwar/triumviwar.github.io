@@ -4,6 +4,11 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.19", "items": [
+		"THE ESCAPEMENT HOLDS THREE RESEARCHES: HIGH LEAP, SHIELD WALL and the new LONG CHAIN. SHIELD WALL (the Clock Soldiers' SHIELD FORWARD and +10 health) is researched at the Escapement now, not at the Light Works; same price and time, and like everything there it needs the Escapement working (a Mainspring in its gear network). A side that already has it keeps it; a SHIELD WALL waiting in a Light Works' queue in an old save is paid back in full.",
+		"THE NETTER'S REACH: its net now reaches 150 (was 180). LONG CHAIN at the Escapement (100 cogs + 50 Tension, 40 s) makes every Netter reach 240, further than a Musketeer shoots; the Field Cannon (430) stays the longest-ranged unit. Its range chip shows the bonus.",
+		"The Clockwork computer researches SHIELD WALL at its Escapement, and LONG CHAIN once it has 2 Netters.",
+	]},
 	{"v": "0.38.18", "items": [
 		"A worker unselected and picked again shows his main card again, not the BUILD page he left open (any card page shuts when you pick something new; clicking the same worker again keeps it).",
 	]},
