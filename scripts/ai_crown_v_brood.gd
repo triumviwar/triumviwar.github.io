@@ -14,9 +14,11 @@ extends RefCounted
 ##    were gone by 10:00. The army the Crown weighed (690) was six Horsemen out raiding, so the Brood reckoning said "not
 ##    behind". Now, against the Brood, from LINE_FROM the HOME LINE (Musketeers and guns, not the riders) keeps up with a floor
 ##    by the clock (LINE_TABLE: the Brood's first big wave comes at 6:30-8:00 in the study games), bounded by the economy
-##    (LINE_PER_LAB a labourer): while it is short, the soldiers' gold (LINE_KEEP: two Musketeers, a Field Cannon when a
-##    Foundry may cast one) is kept from the wall, the Farms and the milestones; the halls train a labourer only when every
-##    Barracks is busy; the milestones are held as when the army lags; no more riders. Switch: `-- cvbline:off`.
+##    (LINE_PER_LAB a labourer): while it is short, the soldiers' gold (line_keep: two Musketeers, a Field Cannon when a
+##    Foundry may cast one) is kept from everything the Crown's think stages 0 and 1 spend (the wall, the labourers, the
+##    Farms, the opening's steps, the milestones; not a Cottage when the supply is full); the halls train a labourer only
+##    when every Barracks is busy; the milestones are held as when the army lags; the opening's army cap does not hold it;
+##    the Mill's crew grows for its powder; no more riders. Switch: `-- cvbline:off`.
 
 var ai = null
 var game: Game = null
@@ -93,6 +95,10 @@ func line_short() -> bool:
 func line_keep() -> int:
 	if not line_short():
 		return 0
+	if game.supply_used(team) >= int(game.players[team]["cap"]) - 2:
+		return 0                 # (supply-blocked: the Cottage first, or no soldier can come)
+	if not ai._mine("barracks").any(func(b: Building) -> bool: return b.built):
+		return 0                 # (no Barracks yet: nothing to keep the gold for)
 	var k := 2 * int(Defs.UNITS["musketeer"]["cost"])
 	var guns := 0
 	var musk := 0
