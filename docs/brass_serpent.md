@@ -112,6 +112,16 @@ supply, speed 46. A Spring Ballista has 210 health and 300 range, 150 cogs and 5
 16. GROW sends the nearest free Winder; COLLECT goes to the nearest Heavy Works that has gears.
 17. The fog hides or shows the whole Serpent by where its head is.
 
+The art (job serpent-art, 0.38.2):
+
+18. The sections' side cogs do not turn (the 0.38.0 code gears did): each painted section is a tube with a cog on its side,
+    so the picture can't spin; a 1 px ripple runs down the body while it crawls instead. Turning cogs would need small cog
+    pictures to lay over each section, or turning strips per view.
+19. A Hydra's side heads are drawn spread wider than the points they bite from, so the three heads read apart.
+20. The red enamel follows the side's colour (like every Clockwork unit's red); the brass and the glowing eyes stay.
+21. Sizes: the head about 40 px long side on, a small section 27 x 13, a big one 36 x 18 (the old gears were 22 and 32 px
+    across); one number per piece in tools/serpent/import_art.py SIZE to change.
+
 ## The computer
 
 Only the OPTIMAL plan of the Clockwork computer uses it, and only after its opening. It keeps two Serpents against the
@@ -120,51 +130,44 @@ while a Serpent has room (big ones once it has more than 80 Tension and 400 spar
 out (or the Serpent collects them itself when it is idle near home), and after 12 minutes links two Serpents with 16
 or more gears between them into a Hydra when they are close together. The switch `-- serpent:off` turns it off.
 
-## What is drawn now, and the art to come
+## What is drawn now (the owner's art since 0.38.2, job serpent-art)
 
-For now the Serpent is drawn in code: each gear is the gear field's own painted ring (the small or the big band),
-shrunk to the gear's size, squashed a little as the field is, turning as it crawls (each gear the other way from the
-next, as meshed gears do). The head is a brass skull drawn in code with red eyes, the team's colour on its brow and a
-jaw that opens on every bite. Broken gears lie as dimmed rings. The card icons are stand-ins made by
-tools/serpent/make_icons.py. All of it is listed in docs/art_style_inconsistency.md, to be replaced by ChatGPT art.
+The Serpent is drawn from the owner's ChatGPT pictures (art/redraws/brass_serpent/, its README.md). tools/serpent/import_art.py
+cuts them out of their grey backgrounds, scales them to game size (beside a Clock Soldier: the head about 40 px long seen
+from the side, a small section about 27 x 13 px, a big one 36 x 18), turns the red enamel into the two team keys (so it takes
+the side's colour, as every Clockwork unit's red does) and writes assets/units/brass_serpent/ and their sizes and anchors to
+scripts/serpent_art.gd (generated: do not edit). scripts/brass_serpent.gd draws them on a child node of the unit that wears
+the unit's team material (the hit flash too); the shadows are drawn on the unit itself.
 
-### ChatGPT prompts
+- THE HEAD: head_s, se, e, ne, n; W, SW and NW are E, SE and NE mirrored (8 ways by its facing).
+- THE BITE: a 4-frame strip in each of the five painted ways (closed, opening, wide open with a lunge, snapped shut with
+  sparks), 0.08 s a frame, on one box so the head stays put; frame 0 is fitted onto the idle head. Mirrored for W, SW,
+  NW. The north bite's wide-open frame is its opening frame pushed up 10 px (both ChatGPT north bites showed the mouth from
+  the front, as the README says).
+- THE BODY: each gear is one section (small or big), laid along the body at that point: of its three pictures (lying across,
+  up-down, and upper left to lower right) and their mirrors the nearest is picked and turned the rest of the way (at most
+  about 22 degrees). The sections overlap like a jointed tube; they are drawn back to front by height on the screen, the
+  head and the tail among them. While it crawls each section bobs a pixel, one after the other (a ripple down the body).
+- THE TAIL: beyond the last gear, pointing away; its across (tip right), up-down (tip down) and diagonal (tip up-left)
+  pictures, mirrored and turned as the sections.
+- A HYDRA: the joint (joint_e, se, s; facing W, SW mirrored; facing N, NE, NW the S and SE pictures upside down, so its
+  necks point at the heads) sits 12 px behind the heads; the second and third heads are drawn fanned out 0.7 rad either
+  side, 26 px from the joint, each in the view of its own turned way. (They bite from head_points, a few px nearer the
+  middle: the drawing is spread so the heads don't sit on one another.)
+- WRECKS: a broken gear lies as wreck_small / wreck_big, a fallen head as wreck_head (dented, cracked, the smoke cut away),
+  mirrored by the wreck's serial so a line of them isn't all alike.
+- A WINDER CARRYING A GEAR: the section's across picture at 0.75 size over his head.
+- CARD ICONS: assets/icons/brass_serpent.png, brass_hydra.png (shown for a Serpent with two or three heads),
+  serpent_gear_s.png, serpent_gear_b.png, cut from the owner's icons_chatgpt.png.
+- THE FALLBACK: if any picture is missing (SerpentArt.P names them all) the whole Serpent is drawn in code as in 0.38.0
+  (BrassSerpent.art_off forces it for a test).
 
-One request per image. Each names at most three reference pictures, with their paths in this repository.
-
-1. The head, facing south (toward the viewer). References: assets/units/great_winder/idle_se.png (the Clockwork's
-   brass and red), assets/units/pendulum/idle_se.png (the size and the outline), assets/icons/brass_serpent.png (the
-   idea). Prompt: "Pixel art game sprite, three-quarter top-down view like the reference units, transparent
-   background. The head of a mechanical serpent made of brass and dark iron: a wedge-shaped brass skull with riveted
-   plates, two glowing red glass eyes, a hinged lower jaw with short steel teeth, a red enamel band across the brow,
-   and a stub of brass neck at the back where gears attach. It faces straight down toward the viewer, mouth closed.
-   About 40 pixels wide. Same lighting from the upper left, same dark outline and palette as the references."
-2. The head facing south-east. The same three references and the same prompt, but "it faces down and to the right".
-3. The head facing east. The same, "it faces right, seen from the side".
-4. The head facing north-east. The same, "it faces up and to the right, the back of the skull toward us".
-5. The head facing north. The same, "it faces straight up, away from the viewer: we see the top and back of the skull".
-6. The head facing south-west. The same, "it faces down and to the left" (the game can mirror south-east instead).
-7. The head facing west. The same, "it faces left" (the game can mirror east instead).
-8. The head facing north-west. The same, "it faces up and to the left" (the game can mirror north-east instead).
-9. A small gear segment. References: art/clockwork/gear/band_small.png (the painted band), art/clockwork/gear/tooth.png
-   (the teeth), assets/units/great_winder/idle_se.png (the brass). Prompt: "Pixel art game sprite, transparent
-   background, seen from above at a slight angle like the reference: one brass gear wheel with 8 teeth, about 18 pixels
-   across, a dark iron hub with a pin through it and a short iron link on each side where it joins the next gear.
-   Same palette, outline and light from the upper left."
-10. A big gear segment. References: art/clockwork/gear/band_big.png, art/clockwork/gear/tooth.png,
-    assets/units/great_winder/idle_se.png. Prompt: the same as 9, but "a bigger, heavier brass gear with 10 teeth, about
-    26 pixels across, thicker spokes and a riveted iron rim".
-11. The bite animation, facing south-east. References: the south-east head from request 2 (once drawn),
-    assets/units/clock_soldier/idle_se.png (how attack strips are laid out in this game), assets/units/pendulum/idle_se.png.
-    Prompt: "A horizontal strip of 6 frames, each the same size, of the brass serpent head biting: frame 1 at rest,
-    frame 2 the jaw drops open and the head pulls back, frame 3 the head lunges forward with the jaw wide, frame 4 the
-    jaw snaps shut (the moment of the bite), frame 5 it pulls back, frame 6 at rest. Transparent background, the same
-    size and position in every frame."
-12. The Hydra's joint, where several heads meet one body. References: the south-east head from request 2, the big gear
-    from request 10, assets/units/great_winder/idle_se.png. Prompt: "Pixel art game sprite, transparent background: a
-    heavy brass yoke shaped like a three-way gearbox, riveted, from which three short brass necks rise, each ending in
-    an empty socket where a serpent head attaches; a big gear sits under it where the body continues. Seen from above
-    at a slight angle, about 48 pixels across."
+Still drawn in code or not from the owner's art (also in docs/art_style_inconsistency.md): the shadows (ellipses, as every
+unit's); the side cogwheels on the sections do not turn (each section is a tube with a cog on its side, not a wheel: turning
+the picture would roll the whole tube; separate cog pictures would be needed, or a 2-4 frame turning strip per view); the
+Hydra joint facing north (upside-down pictures); the carried gear (no carry picture); the 1 px crawl ripple; the command
+icons (COLLECT, GROW, LINK, UNLINK: tools/serpent/make_icons.py's stand-ins); the Winder-carry and wreck smoke not animated.
+The 0.38.0 prompts for the pictures are kept in git history (all drawn now).
 
 ## Pictures
 
@@ -182,6 +185,14 @@ In docs/shots/brass_serpent/, made by tools/shot_brass_serpent.gd in the Clockwo
   8 supply alone: it is a tank and a flanker to go with an army, not a unit to send in by itself (a first measurement
   for the tuning: the owner may want more bite).
 - fight_card.jpg: the card after the fight.
+
+With the owner's art (0.38.2), in docs/shots/brass_serpent/art/ (the same tool; LOOK at these):
+- sizes_2s_6s_6s4b_6s10b.jpg and closeup_6s4b.jpg (the closeup beside three Clock Soldiers and a Pendulum, for the scale).
+- eight_ways.jpg: eight Serpents, each facing one of the eight ways.
+- bite_frames_x2.png: the bite's four frames (left to right) facing E, SE, S, NE and W (mirrored), twice size.
+- crawling_a_curve.jpg, clock_soldiers_winding_on_its_body.jpg.
+- hydra_3_heads.jpg, hydra_joint_x3.jpg (its joint and fanned heads, three times size), hydra_card.jpg (the Hydra icon).
+- fight_vs_musketeers.jpg, fight_after.jpg (the wrecks in a line, the fallen head at the front), fight_card.jpg.
 
 ## Tests
 

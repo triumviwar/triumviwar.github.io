@@ -8176,6 +8176,8 @@ func _draw_mission_marks(top: float) -> void:
 
 
 func _draw_unit() -> void:
+	if has_meta("serp_art"):
+		BrassSerpent.redraw_art(self)      # (a Brass Serpent's pictures, a wreck's, a Winder's gear: their own node)
 	if dead and CwAir.falling(self):
 		CwAir.draw_fall_shadow(self)
 	if dead and (kind == Defs.SERPENT_GEAR_S or kind == Defs.SERPENT_GEAR_B):
@@ -8196,7 +8198,7 @@ func _draw_unit() -> void:
 	if selected and kind == Defs.GREAT_WINDER_KIND:
 		GreatWinder.draw_area(self)      # (its winding ring on the ground)
 	if _k_serp:
-		BrassSerpent.draw(self)          # (its gears and head(s), drawn in code for now: docs/art_style_inconsistency.md)
+		BrassSerpent.draw(self)          # (its sections, tail and head(s): the owner's art, scripts/brass_serpent.gd)
 	if has_meta("serp_carry"):
 		BrassSerpent.draw_carry(self)    # (a Winder carrying a gear out to a Brass Serpent)
 	if _k_band:

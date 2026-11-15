@@ -95,10 +95,11 @@ pts = [(16, 46), (25, 50), (34, 47), (40, 39), (40, 30), (34, 23)]
 for i in range(len(pts) - 1, -1, -1):
     gear(d, pts[i][0] * SS, pts[i][1] * SS, (5.5 + (3.0 if i in (2, 3) else 0.0)) * SS, 8 if i not in (2, 3) else 10, phase=i * 0.5)
 head(d, 37 * SS, 15 * SS, SS * 1.15, -2.3)
-finish(im, "brass_serpent")
+# (the portrait and the gear items are the owner's painted icons since 0.38.2: tools/serpent/import_art.py)
+# finish(im, "brass_serpent")
 # the gear items
-im = canvas(); d = ImageDraw.Draw(im); gear(d, 32 * SS, 33 * SS, 13 * SS, 8); finish(im, "serpent_gear_s")
-im = canvas(); d = ImageDraw.Draw(im); gear(d, 32 * SS, 33 * SS, 21 * SS, 10); finish(im, "serpent_gear_b")
+im = canvas(); d = ImageDraw.Draw(im); gear(d, 32 * SS, 33 * SS, 13 * SS, 8); pass  # finish(im, "serpent_gear_s")
+im = canvas(); d = ImageDraw.Draw(im); gear(d, 32 * SS, 33 * SS, 21 * SS, 10); pass  # finish(im, "serpent_gear_b")
 # COLLECT GEARS: two gears falling into an open hopper
 im = canvas(); d = ImageDraw.Draw(im)
 gear(d, 24 * SS, 20 * SS, 8 * SS, 8); gear(d, 40 * SS, 24 * SS, 6 * SS, 8, 0.4)

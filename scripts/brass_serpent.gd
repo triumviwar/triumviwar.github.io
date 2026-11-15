@@ -982,7 +982,236 @@ static func card(hud, list: Array, units: Array) -> void:
 			game.serpent_order(game.selected_units(), "unlink", null), true, "", ""])
 
 
-# ------------------------------------------------------------------ drawing (placeholder art: the gear field's rings)
+# ------------------------------------------------------------------ drawing: the owner's ChatGPT art
+
+# (tools/serpent/import_art.py cuts it into assets/units/brass_serpent/, its sizes in scripts/serpent_art.gd; the pieces are
+# drawn on a child node of the unit with the unit's own team material, so the red enamel takes the side's colour and the
+# hit flash, as a sprite does. A missing picture falls back to the code drawing below.)
+const ART := "res://assets/units/brass_serpent/%s.png"
+const ART_LIFT := 4.0            # px the body and the head stand off the ground (their shadows stay on it)
+const HEAD_FWD := 3.0            # px the head's picture sits ahead of its point (its neck reaches back to the first gear)
+const JOINT_BACK := 12.0         # px a Hydra's joint sits behind its heads' line
+const BITE_FRAME := 0.08         # s a bite frame shows (4 frames)
+const FAN := 0.7                 # rad a Hydra's side heads turn out from its facing
+const FAN_R := 26.0              # px from its joint to a side head
+const DIRS8 := ["e", "se", "s", "sw", "w", "nw", "n", "ne"]
+static var art_off := false      # (tests: the code drawing)
+static var _ok := -1
+
+
+static func _tex(name: String) -> Texture2D:
+	if not SerpentArt.P.has(name):
+		return null
+	var p := ART % name
+	if not ResourceLoader.exists(p):
+		return null
+	return Game.tex(p)
+
+
+## Every picture there (else the whole Serpent is drawn in code: one look, not a mix).
+static func art_ok() -> bool:
+	if art_off:
+		return false
+	if _ok < 0:
+		_ok = 1
+		for k in SerpentArt.P:
+			if _tex(String(k)) == null:
+				_ok = 0
+				break
+	return _ok == 1
+
+
+## The child node the pictures are drawn on (made the first time).
+static func _art_node(u: Unit) -> Node2D:
+	var n = u.get_meta("serp_art") if u.has_meta("serp_art") else null
+	if n is Node2D and is_instance_valid(n):
+		return n
+	var nn := Node2D.new()
+	nn.name = "SerpentArt"
+	nn.material = u.team_material()
+	nn.draw.connect(func() -> void: _paint(u, nn))
+	u.add_child(nn)
+	u.set_meta("serp_art", nn)
+	return nn
+
+
+## The unit drew itself (Unit._draw_unit): its pictures again too.
+static func redraw_art(u: Unit) -> void:
+	var n = u.get_meta("serp_art") if u.has_meta("serp_art") else null
+	if n is Node2D and is_instance_valid(n):
+		(n as Node2D).queue_redraw()
+
+
+## One picture: `name`'s frame `fr`, its anchor at `at`, turned `rot`, mirrored.
+static func _put(n: CanvasItem, name: String, at: Vector2, rot := 0.0, fx := false, fy := false, fr := 0, mod := Color.WHITE, k := 1.0) -> void:
+	var t := _tex(name)
+	if t == null:
+		return
+	var p: Array = SerpentArt.P[name]
+	var w := float(p[0])
+	var h := float(p[1])
+	if rot == 0.0:
+		at = at.round()
+	n.draw_set_transform(at, rot, Vector2(-k if fx else k, -k if fy else k))
+	n.draw_texture_rect_region(t, Rect2(-float(p[2]), -float(p[3]), w, h), Rect2(w * fr, 0.0, w, h), mod)
+	n.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+
+
+## The view of a long piece (a section: either way along; the tail: toward its tip) that best fits `ang` (screen degrees):
+## [name, rotation (rad), mirror x, mirror y]. Its h, v and d pictures, each mirrored, then turned the rest of the way.
+static func _view(kind: String, ang: float, directed: bool) -> Array:
+	var best: Array = []
+	var bd := INF
+	var per := 360.0 if directed else 180.0
+	for v in ["h", "v", "d"]:
+		var name := kind + "_" + String(v)
+		var a0 := float(SerpentArt.P[name][5])
+		for m in [[false, false, a0], [true, false, 180.0 - a0], [false, true, -a0], [true, true, a0 + 180.0]]:
+			var diff := fposmod(ang - float(m[2]) + per * 0.5, per) - per * 0.5
+			var cost := absf(diff) + (4.0 if m[1] else 0.0)      # (mirrored upside down only when it fits much better: the light)
+			if cost < bd:
+				bd = cost
+				best = [name, deg_to_rad(diff), m[0], m[1]]
+	return best
+
+
+## The facing's 8-way view: [picture direction, mirror x] (W, SW, NW: E, SE, NE mirrored).
+static func _dir8(f: Vector2) -> Array:
+	var i := posmod(int(round(rad_to_deg(f.angle()) / 45.0)), 8)
+	var d: String = DIRS8[i]
+	match d:
+		"w": return ["e", true]
+		"sw": return ["se", true]
+		"nw": return ["ne", true]
+	return [d, false]
+
+
+static func _shadow(n: CanvasItem, at: Vector2, rx: float, a := 1.0) -> void:
+	n.draw_set_transform(at, 0.0, Vector2(1.0, 0.42))
+	n.draw_circle(Vector2.ZERO, rx, Color(0, 0, 0, 0.28 * a))
+	n.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+
+
+static func _paint(u: Unit, n: Node2D) -> void:
+	if not is_instance_valid(u):
+		return
+	if u.dead:
+		if u._k_serp or u.kind == GEAR_S or u.kind == GEAR_B:
+			_paint_wreck(u, n)
+		return
+	if u._k_serp:
+		_paint_body(u, n)
+	if u.has_meta("serp_carry"):
+		var size := String(u.get_meta("serp_carry", "s"))
+		_put(n, ("big" if size == "b" else "small") + "_h", Vector2(0, -36), 0.0, false, false, 0, Color.WHITE, 0.75)
+
+
+## What its body is drawn as, in drawing order (nearest the viewer last): [y, "sec" / "tail" / "head" / "joint", data].
+## `step`: the crawl moves on (once a drawing: the parent's, which draws the shadows).
+static func _items(u: Unit, step: bool) -> Array:
+	var segs := segments(u)
+	var f := u.facing.normalized() if u.facing.length() > 0.1 else Vector2.DOWN
+	var moving := u.velocity.length() > 1.0
+	var crawl := float(u.get_meta("serp_crawl", 0.0))
+	if step:
+		if moving:
+			crawl += u.position.distance_to(u.get_meta("serp_lastp", u.position)) / 7.0
+			u.set_meta("serp_crawl", crawl)
+		u.set_meta("serp_lastp", u.position)
+	var lift := Vector2(0, -ART_LIFT)
+	var pts: Array = [Vector2.ZERO]
+	for sg in segs:
+		pts.append((sg[0] as Vector2) - u.position)
+	var items: Array = []         # [y, kind, data]
+	# the gears' sections, each lying along the body there (from the one in front to the one behind)
+	for i in segs.size():
+		var a: Vector2 = pts[i]
+		var b: Vector2 = pts[i + 2] if i + 2 < pts.size() else pts[i + 1] * 2.0 - pts[i]
+		var tan := a - b
+		var ang := rad_to_deg(tan.angle()) if tan.length() > 0.5 else rad_to_deg(f.angle())
+		var big := String(segs[i][2]) == "b"
+		var bob := Vector2(0, -roundf(sin(crawl - float(i) * 1.3) * 0.6 + 0.4)) if moving else Vector2.ZERO
+		items.append([(pts[i + 1] as Vector2).y, "sec", [pts[i + 1] + lift + bob, _view("big" if big else "small", ang, false), float(segs[i][1])]])
+	# the tail beyond the last gear, pointing away
+	if segs.size() > 0:
+		var last: Vector2 = pts[pts.size() - 1]
+		var away: Vector2 = last - (pts[pts.size() - 2] as Vector2)
+		away = away.normalized() if away.length() > 0.5 else -f
+		var at := last + away * (float(segs[segs.size() - 1][1]) * 0.7 + 9.0)
+		items.append([at.y - 0.5, "tail", [at + lift, _view("tail", rad_to_deg(away.angle()), true)]])
+	var hp := head_points(u)
+	var bite_t := u.game.clock - float(u.get_meta("serp_bite", -9.0)) if u.game else 9.0
+	var fr := int(bite_t / BITE_FRAME) if bite_t >= 0.0 and bite_t < BITE_FRAME * 4.0 else -1
+	var d8 := _dir8(f)
+	var jat := -f * JOINT_BACK
+	for i in hp.size():
+		# (a Hydra's other heads fan out from its joint's necks, each turned that way: drawn a little wider than the
+		# points they bite from, head_points, so the heads don't sit on one another)
+		var at := f * HEAD_FWD
+		var hd := d8
+		if i > 0:
+			var sgn := 1.0 if i % 2 == 1 else -1.0
+			var fd := f.rotated(sgn * FAN)
+			at = jat + fd * FAN_R
+			hd = _dir8(fd)
+		items.append([at.y + 2.0, "head", [at + lift + Vector2(0, -2), hd, fr]])
+	if hp.size() > 1:
+		items.append([jat.y - 4.0, "joint", [jat + lift, d8]])
+	items.sort_custom(func(x: Array, y: Array) -> bool: return float(x[0]) < float(y[0]))
+	return items
+
+
+## Its shadows, on the ground (on the unit itself: the team material would paint them white).
+static func _shadows(u: Unit) -> void:
+	var lift := Vector2(0, -ART_LIFT)
+	for it in _items(u, true):
+		var dd: Array = it[2]
+		var r := 9.0
+		match String(it[1]):
+			"sec": r = float(dd[2]) * 1.1
+			"tail": r = 5.0
+			"head": r = 13.0
+			"joint": r = 15.0
+		_shadow(u, (dd[0] as Vector2) - lift + Vector2(0, 4), r)
+
+
+## Its body, tail, Hydra joint and heads.
+static func _paint_body(u: Unit, n: Node2D) -> void:
+	var mod := Color.WHITE
+	for it in _items(u, false):
+		var dd: Array = it[2]
+		match String(it[1]):
+			"sec", "tail":
+				var vw: Array = dd[1]
+				_put(n, String(vw[0]), dd[0], float(vw[1]), bool(vw[2]), bool(vw[3]), 0, mod)
+			"head":
+				var vd: Array = dd[1]
+				if int(dd[2]) >= 0:
+					_put(n, "bite_" + String(vd[0]), dd[0], 0.0, bool(vd[1]), false, mini(int(dd[2]), 3), mod)
+				else:
+					_put(n, "head_" + String(vd[0]), dd[0], 0.0, bool(vd[1]), false, 0, mod)
+			"joint":
+				var vj: Array = dd[1]
+				var jd := String(vj[0])
+				var jx := bool(vj[1])
+				var jy := false
+				# (no picture facing away: the S and SE ones turned upside down, their necks to the heads)
+				if jd == "n":
+					jd = "s"
+					jy = true
+				elif jd == "ne":
+					jd = "se"
+					jy = true
+				_put(n, "joint_" + jd, dd[0], 0.0, jx, jy, 0, mod)
+
+
+## A gear broken off (serpent_gear_s / _b) or its fallen head: their wreck pictures (dented, burnt: already darker).
+static func _paint_wreck(u: Unit, n: Node2D) -> void:
+	var name := "wreck_head" if u._k_serp else ("wreck_big" if u.kind == GEAR_B else "wreck_small")
+	_put(n, name, Vector2(0, -2), 0.0, u.serial % 2 == 1, false)
+
+
+# ------------------------------------------------------------------ drawing in code (the stand-in, kept as the fallback)
 
 static func _ring_tex(size: String) -> Array:
 	if GearArt.disabled:
@@ -1057,6 +1286,10 @@ static func _draw_head(u: Unit, ci: CanvasItem, at: Vector2, f: Vector2, a: floa
 static func draw(u: Unit) -> void:
 	if u.sprite:
 		u.sprite.visible = false
+	if art_ok():
+		_shadows(u)
+		_art_node(u).queue_redraw()
+		return
 	var a := 1.0
 	var segs := segments(u)
 	var phase := float(u.get_meta("serp_phase", 0.0))
@@ -1089,6 +1322,10 @@ static func draw(u: Unit) -> void:
 static func draw_wreck(u: Unit) -> void:
 	if u.sprite:
 		u.sprite.visible = false
+	if art_ok():
+		_shadow(u, Vector2(0, 3), 11.0 if u._k_serp else 8.0, 0.8)
+		_art_node(u).queue_redraw()
+		return
 	if u._k_serp:
 		_draw_head(u, u, Vector2.ZERO, Vector2.RIGHT, 0.75)
 		return
@@ -1098,6 +1335,9 @@ static func draw_wreck(u: Unit) -> void:
 
 ## A Winder carrying a gear: it on his back, over his head.
 static func draw_carry(u: Unit) -> void:
+	if art_ok():
+		_art_node(u).queue_redraw()
+		return
 	var size := String(u.get_meta("serp_carry", "s"))
 	_draw_gear(u, Vector2(0, -34), gear_r(size) * 0.7, size, 0.0, Color(1, 1, 1), 1.0)
 
