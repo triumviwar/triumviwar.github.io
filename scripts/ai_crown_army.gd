@@ -95,7 +95,7 @@ func behind() -> bool:
 	_cache_t = g.clock
 	var labs: int = g.workers(ai.team).size()
 	var w := want()
-	_cache = labs >= MIN_LABS and w > 0.0 and have() < w
+	_cache = labs >= MIN_LABS and w >= float(Defs.UNITS["musketeer"]["cost"]) and have() < w      # (a Musketeer's worth at least)
 	if _cache:
 		if _last >= 0.0:
 			behind_t += minf(2.0, g.clock - _last)
