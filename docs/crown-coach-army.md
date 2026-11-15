@@ -46,15 +46,19 @@ The Crown against them (the same games): v the Clockwork 176 / 360 / 515 / 759 /
    - in the opening a labourer is trained only while every Barracks is busy (AICrown._soldiers_first), the opening's army
      cap does not hold, and the soldiers start at once if the plan's "army" step has not come yet (a Barracks standing);
    - the opening's next step leaves a Musketeer's price for each idle Barracks out of the gold it holds;
-   - after the opening, army_lags ("the army first") counts from one hall on;
    - the natural's wall plan buys no Church for a slot.
+   The clock **looks 45 s ahead** (LEAD: a soldier trains in 15 s and walks to his post, and the push is at our base while
+   its army still grows), counts only once it wants a Musketeer's worth, and **stops at 7:00** (UNTIL): it is for the
+   first push; after it the plan's own army rules (army_lags and the rest) hold, as before.
 2. **Powder for the first Musketeers.** A Barracks idle with a Musketeer's gold but not his powder counts as using the powder,
-   so the Mill takes its second and third hands (AICrown._mill_feedback).
+   so the Mill takes its second and third hands (AICrown._mill_feedback). This one works in every matchup.
 3. **Gated by matchup**: the Clockwork and the Crown mirror only. Against the Brood the Crown already reckons the Brood's army
    (army_behind, brood_spend_army: crown-v-brood-coach), and the Brood coaching job works there now; a Crown that kept 75%
    of the Brood's usual army (1,350 at 5:00) would never train another labourer.
 
-Switches: `-- crownarmy:off` (all of it), `-- crownarmy:share=0.9` (the share, for studies).
+Switches: `-- crownarmy:off` (all of it), and for studies `-- crownarmy:share=0.9` (the share), `-- crownarmy:until=900`
+(the clock's end), `-- crownlead:off` (no look ahead), `-- crownarmy:lags` (army_lags also behind the clock, from one hall
+on: tried and dropped, below).
 
 ## The owner's game again (Hollowfen, filmed: tools/shot_ai_match.gd, pictures in docs/shots/crown_coach_army/)
 
@@ -75,7 +79,29 @@ after_0549_push_beaten.jpg).
 (Greenhold, Dune Sea, Hollowfen, Kestrel Rise, Ashford Crossing, Red Coast, Frostmere, Border March), the Crown in slot A on
 odd seeds (it picks the Balloon harass), slot B on even ones (the Timing attack), to 15:00)
 
-__BATCHES__
+Two sessions worked on this job (the first stopped at 03:45 and went on later; a second, resumed by a schedule, merged
+main into the branch and ran these batches on 0.38.5). Each line is 16 games to 15:00, the same maps and seeds; the army
+values are the means at the minute (the Crown's v the Clockwork's), "lost" is units lost (the Crown's v the Clockwork's).
+
+| version | W-D-L | army 4:00 | 5:00 | 6:00 | 7:00 | 8:00 | 10:00 | Barracks idle 0-6 min | lost | Crown income 8:00 / 10:00 | labourers at the end | buildings lost |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| before (`crownarmy:off`) | 0-11-5 | 183 v 161 | 382 v 402 | 554 v 732 | 846 v 1,175 | 1,307 v 1,867 | 1,830 v 2,857 | 191 s | 77 v 96 | 5,629 / 8,146 | 19.8 | 19.1 |
+| the WIP with the look ahead, no end, army_lags from one hall | 0-5-11 | 233 v 157 | 425 v 393 | 690 v 731 | 887 v 1,224 | 1,197 v 1,681 | 1,471 v 2,900 | 138 s | 81 v 74 | 5,296 / 7,410 | 6.8 | |
+| + the clock ends at 7:00 | 0-11-5 | 236 v 157 | 428 v 406 | 727 v 690 | 996 v 1,134 | 1,326 v 1,644 | 1,393 v 2,779 | 127 s | 69 v 91 | 5,344 / 7,339 | 15.4 | |
+| **after** (+ army_lags left as it was) | **0-12-4** | **225 v 161** | **432 v 398** | **684 v 684** | **885 v 1,158** | **1,286 v 1,768** | **1,626 v 3,186** | **139 s** | **64 v 89** | **5,391 / 7,624** | **18.0** | **16.9** |
+
+In plain words: the Crown's army now keeps up with the Clockwork's through the first push (ahead at 4:00 and 5:00, even at
+6:00, where it was three quarters of it), its Barracks stands idle a quarter less, it trades better (1.40 Clockwork units
+for each of its own, was 1.24), loses fewer buildings and one game fewer. It still wins none: from 7:00 the Clockwork's
+army grows faster than the Crown's income can follow (the Clockwork earns 1.6-1.9 times as much by 8:00: the economy job's
+area), and the soldiers bought early cost about 4% of the income at 8:00 and 6% at 10:00.
+
+What did not work: holding the labourers for the clock all game (army_lags from one hall on, which also switches off the
+"labourers non-stop" rule) left 7 labourers alive at 15:00 and lost 11 of 16; the look ahead without an end still lost the
+late game. So the clock ends at 7:00 and army_lags is left to its own rule.
+
+The first enemy push at our base (300+ value): before at 6:50 on average with 847 against our 805; after at 7:13 with 904
+against our 971 (the Clockwork waits longer because it sees a bigger army).
 
 ## Tests
 
@@ -92,6 +118,11 @@ __TESTS__
 4. **The step's gold**: only a Musketeer per idle Barracks leaves the opening's next step while behind; the step (a hall, the
    Foundry) is late by seconds, not skipped.
 5. **The Church in a wall slot waits** while behind; other wall-slot buildings (Cottages, Barracks) are as before.
-6. Not changed (other jobs' areas or numbers): the balloon parties taking Musketeers from home (balloon harass job), the
+6. **45 s ahead, till 7:00** (LEAD, UNTIL). The clock is for the first push (it reaches the base at 5:30-8:30); later the
+   plan's own reckoning (army_lags: 60% of the enemy army it reckons, from the second hall) rules. A longer clock bought
+   soldiers with the labourers' gold and lost the late game (the batches above).
+7. **army_lags is not forced by the clock** (`crownarmy:lags` puts it back for a study): it also turns off the "labourers
+   non-stop" rule of the owner's plans, and the economy fell 10% by 10:00.
+8. Not changed (other jobs' areas or numbers): the balloon parties taking Musketeers from home (balloon harass job), the
    Crown's lower income (the Clockwork earns 1.6-1.9 times as much by 8:00: the economy job), the Foundry idle for want of the
    Horse Breeder's horses before ~5:30 (the Foundry-first rule), the powder bank against the Brood.
