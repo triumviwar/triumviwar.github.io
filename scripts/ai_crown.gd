@@ -738,7 +738,7 @@ var _posts_first_last := -1.0
 
 
 func _posts_first() -> bool:
-	if posts_first_off or not on or not bo_done or difficulty < 1 or _defending() or _threat() != Vector2.INF or _raided():
+	if posts_first_off or not on or not bo_done or difficulty < 1 or _defending() or _posts_threat() or _raided():
 		return false
 	if scout != null and scout.verdict == "rush" and game.clock < 420.0:
 		return false
@@ -760,7 +760,7 @@ func _posts_first() -> bool:
 ## Foundry and the Horse Breeder steps). The plan's own labourer count (bo_lab_cap: the Timing attack's 19) and its riders-
 ## or soldiers-first steps (_soldiers_first) still rule.
 func _bo_posts_first() -> bool:
-	if posts_first_off or not on or difficulty < 1 or _defending() or _threat() != Vector2.INF or _raided():
+	if posts_first_off or not on or difficulty < 1 or _defending() or _posts_threat() or _raided():
 		return false
 	if scout != null and scout.verdict == "rush" and game.clock < 420.0:
 		return false
@@ -769,6 +769,57 @@ func _bo_posts_first() -> bool:
 		if f.built and not f.barren():
 			free += maxi(0, f.crew_max() - f.crew.size())
 	return free - _labs_queued() >= POSTS_FREE
+
+
+## THE CROWN'S ECONOMY IN GAMES (crown-coach-economy, docs/crown-coach-economy.md). The owner's Hollowfen game 2026-11-15
+## (Crown v Clockwork, Hard OPTIMAL both): the Crown earned 3,420 to the Clockwork's 5,310 by 5:50 and its match log's
+## "efficiency" (the Farms' and Mills' crews against their posts) read 13-50%. Measured second by second
+## (tools/crown_econ_trace.gd): the halls stood idle 30-90 s a minute from 4:00, every time for want of a labourer's 50 gold
+## (a harvest's 380 went to the soldiers, the steps and the buildings of the other think stages first), while 4-7 Farm posts
+## stood empty, six hands ground powder nothing used, and an enemy Winder scouting the base counted as a "threat" that turned
+## the free-posts-first rule off. The fixes, each with its switch, all off with `-- crowneco:off`:
+##  - the Mills' hands go to the Farms' empty posts while the powder piles up (_mill_farm_cap, `millfarm:off`);
+##  - an unarmed scout is no threat to the economy (_posts_threat, `postsscout:off`);
+##  - in the opening the next labourer's gold is kept from the steps and the soldiers while Farm posts stand free
+##    (_bo_lab_keep, `bolabs:off`), as "free Farm posts first" keeps it after the opening;
+##  - a new hall's first Farm at once in every plan once the main's Farms are nearly manned (_hall_farm, `hallfarm:off`).
+var crown_eco_off := OS.get_cmdline_user_args().has("crowneco:off")
+var posts_scout_off := crown_eco_off or OS.get_cmdline_user_args().has("postsscout:off")
+var bo_labs_off := crown_eco_off or OS.get_cmdline_user_args().has("bolabs:off")
+var hall_farm_off := crown_eco_off or OS.get_cmdline_user_args().has("hallfarm:off")
+var bo_lab_keep_t := 0.0         # (the report) seconds the opening kept a labourer's gold from the steps and soldiers
+var _bo_lab_keep_last := -1.0
+
+
+## An ARMED enemy at our buildings (the free-posts rules step aside for it); an enemy worker scouting the base is not one
+## (the owner's game: a Winder scout at the Farms held the labourers' gold back at 1:15-2:00 and 4:15-5:15).
+func _posts_threat() -> bool:
+	if posts_scout_off:
+		return _threat() != Vector2.INF
+	for b in game.buildings:
+		if b.team != team or b.dead:
+			continue
+		for u in game.units_near(b.center(), 330.0):
+			if game.hostile(u.team, team) and not u.dead and not u.off_field and not u.is_worker() and u.armed() and _threat_seen(u, b):
+				return true
+	return false
+
+
+## (crown-coach-economy) the opening's next labourer: LAB_COST for each idle hall, kept from the build steps (stage 1) and the
+## soldiers (stage 2) while _bo_posts_first holds and the plan's labourer count and its soldiers-first steps allow it.
+func _bo_lab_keep() -> int:
+	if bo_labs_off or not bo_owns() or not _bo_posts_first() or _soldiers_first() or army_lags():
+		return 0
+	var top := mini(bo_lab_cap, owner_lab_cap())
+	if game.workers(team).size() + _labs_queued() >= top:
+		return 0
+	var idle := _halls().filter(func(h: Building) -> bool: return h.built and h.queue.is_empty()).size()
+	if idle <= 0:
+		return 0
+	if _bo_lab_keep_last >= 0.0 and game.clock - _bo_lab_keep_last < 2.0:
+		bo_lab_keep_t += game.clock - _bo_lab_keep_last
+	_bo_lab_keep_last = game.clock
+	return LAB_COST * idle
 
 
 ## (econ-coach-crown) an armed enemy seen by our labourers (a raid, the mirror's raid_answer's case): the soldiers' gold is
@@ -831,6 +882,10 @@ func _think_stage(i: int) -> void:
 	if i != 0 and wall_first():
 		wall_hold = clampi(xw.keep(), 0, int(game.players[team]["gold"]))
 		game.players[team]["gold"] -= wall_hold
+	var lab_hold := 0
+	if i == 1 or i == 2:
+		lab_hold = clampi(_bo_lab_keep(), 0, int(game.players[team]["gold"]))      # (crown-coach-economy, above)
+		game.players[team]["gold"] -= lab_hold
 	match i:
 		0:
 			xw.tick()
@@ -876,7 +931,7 @@ func _think_stage(i: int) -> void:
 				_micro()
 			_gg_tick()
 			_lap("ai/micro", pt)
-	game.players[team]["gold"] += held + wall_hold
+	game.players[team]["gold"] += held + wall_hold + lab_hold
 
 
 var _research_off := false
@@ -938,6 +993,11 @@ func _bo_tick() -> void:
 		var hf := _hall_farm()
 		if hf > 0:
 			bo_reserve = hf
+			return
+	elif _hall_farm_open():
+		var hf2 := _hall_farm()      # (crown-coach-economy: the new hall's first Farm in every plan's opening)
+		if hf2 > 0:
+			bo_reserve = hf2
 			return
 	if _supply_due():
 		var c := int(Defs.BUILDINGS["cottage"]["cost"])
@@ -1446,7 +1506,55 @@ func _mill_cap() -> int:
 		if free_post and _res2() >= POWDER_WANT:
 			var mills := _mine("powder_mill").filter(func(m: Building) -> bool: return m.built).size()
 			cap = mini(cap, maxi(mills, game.workers(team).size() / 5))
+	elif not mill_farm_off and on and difficulty >= 1 and not _foe_is("brood"):
+		cap = _mill_farm_cap(cap)
 	return cap
+
+
+## THE FARMS' POSTS BEFORE THE POWDER IN EVERY MATCHUP (crown-coach-economy, docs/crown-coach-economy.md; the Brood's rule
+## above, crown-v-brood-coach, opened to the Clockwork and the mirror). The owner's Hollowfen game 2026-11-15 (Crown v
+## Clockwork): from 3:40 to 5:40 six of 18-20 labourers ground powder (each 20 powder a minute, a quarter of a Farm hand's
+## 71 gold) while 4-7 of the 16 Farm posts stood empty, the powder bank rose 30 -> 160 with nothing training from it and
+## the gold, 0-40 at every look, kept the halls idle (the match log's "efficiency 47%"). While a Farm post on live soil is
+## short (fewer labourers than the Farms' posts and the Mills' crews): with the powder bank over what the Barracks and the Foundry want (AICrown._mill_feedback's want) the Mills keep
+## one hand per WORKERS_A_MILL_HAND labourers; with twice that, one hand a Mill (always the labourers beyond the
+## Farms' posts). The powder still comes back: under the
+## want the plan's own crew returns (the feedback below). Not while a rush is defended (the Musketeers' powder).
+## `-- millfarm:off` as before.
+const WORKERS_A_MILL_HAND := 6
+var mill_farm_off := OS.get_cmdline_user_args().has("millfarm:off") or OS.get_cmdline_user_args().has("crowneco:off")
+var mill_farm_t := 0.0           # (the report) seconds it held Mill hands back for free Farm posts
+var _mill_farm_last := -1.0
+
+
+func _mill_farm_cap(cap: int) -> int:
+	if _defending() or (scout != null and scout.verdict == "rush" and game.clock < 420.0):
+		return cap
+	# (by the labourers beyond the Farms' posts, not by where the hands stand now: a hand sent to a Farm frees no post to
+	# count, so the cap does not swing back and forth)
+	var posts := 0
+	for f in _mine("farm"):
+		if f.built and not f.barren():
+			posts += f.crew_max()
+	var spare := 0               # (the labourers beyond the Farms' posts, less the builders and the scout)
+	for w in game.workers(team):
+		if w.order != "build" and w.order != "repair" and not (scout != null and scout.is_scout(w)):
+			spare += 1
+	spare -= posts
+	if spare >= cap:
+		return cap
+	var mills := _mine("powder_mill").filter(func(m: Building) -> bool: return m.built).size()
+	var want := POWDER_WANT + 15.0 * (_mine("barracks").size() + _mine("foundry").size())
+	var c := cap
+	if _res2() >= want * 2.0:
+		c = mini(cap, maxi(mills, spare))
+	elif _res2() >= want:
+		c = mini(cap, maxi(maxi(mills, game.workers(team).size() / WORKERS_A_MILL_HAND), spare))
+	if c < cap:
+		if _mill_farm_last >= 0.0 and game.clock - _mill_farm_last < 2.0:
+			mill_farm_t += game.clock - _mill_farm_last
+		_mill_farm_last = game.clock
+	return c
 
 
 func _mill_cap_plan() -> int:
@@ -2986,8 +3094,25 @@ func _farms_at(h: Building) -> int:
 
 
 ## A FARM AT EVERY NEW HALL AT ONCE. Returns the gold to set aside (0: nothing due).
+## (crown-coach-economy) a new hall's first Farm in the opening of the plans that are not the owner's own (theirs had it:
+## crown-owner-eco): the Timing attack's second hall stood farmless 60-90 s (its Farm came from the shared rules once the
+## opening ended with the attack) and the Balloon harass's from 4:45 to 6:00. Only once the Farms we have are nearly
+## manned (HALL_FARM_ROOM free posts at most), so the gold does not go to posts nobody would work yet. `-- hallfarm:off`.
+const HALL_FARM_ROOM := 3
+
+
+func _hall_farm_open() -> bool:
+	if hall_farm_off or owner_on() or not on or difficulty < 1 or not bo_owns() or _defending():
+		return false
+	var room := 0
+	for f in _mine("farm"):
+		if f.built and not f.barren():
+			room += maxi(0, f.crew_max() - f.crew.size())
+	return room <= HALL_FARM_ROOM
+
+
 func _hall_farm() -> int:
-	if not owner_on() or game.econ_count(team, "farm") >= game.econ_limit(team, "farm"):
+	if (not owner_on() and not _hall_farm_open()) or game.econ_count(team, "farm") >= game.econ_limit(team, "farm"):
 		return 0
 	var cost := int(Defs.BUILDINGS["farm"]["cost"])
 	for h in _halls():
