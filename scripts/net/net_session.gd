@@ -342,7 +342,7 @@ func side_views() -> Array:
 	_views_n = n
 	var by_side := {}
 	for v in views:
-		if v != spec_view:
+		if not v.spectator:
 			by_side[int(v.sides[0])] = v
 	var out: Array = []
 	for pr in _live_peers():
