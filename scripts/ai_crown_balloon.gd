@@ -530,6 +530,8 @@ func tick() -> void:
 	_look()
 	if fix_on and not home_quiet():
 		_quiet_since = game.clock
+	if fix_on:
+		_mend()
 	_count_kills()
 	if not ai.bo_owns():
 		produce()           # (in the opening its "balloons" steps rig them, their gold set aside)
@@ -538,7 +540,7 @@ func tick() -> void:
 	for b in balloons():
 		if has(b) and b != _scout_b:
 			continue
-		if b.hp < b.max_hp * HURT:
+		if b.hp < b.max_hp * (GO_HP if fix_on else HURT):
 			_rest(b)
 			continue
 		var men := _free_men()
@@ -712,7 +714,7 @@ func _load(p: Dictionary) -> void:
 ## Off to the next target (or home when the basket is low or the balloon hurt).
 func _go(p: Dictionary) -> void:
 	var b: Unit = p["b"]
-	if b.hp < b.max_hp * HURT or _shots(p) < LOW_SHOTS:
+	if b.hp < b.max_hp * (GO_HP if fix_on else HURT) or _shots(p) < LOW_SHOTS:
 		_phase(p, "home")
 		b.cmd_move(_home())
 		return
@@ -765,6 +767,7 @@ func _danger(p: Dictionary) -> bool:
 ## (crown-coach-balloon) Under fire and hurt: a balloon that has lost SHAKEN of its health and is being hit now leaves
 ## (0.45 was too late: at 46 px a second a hurt balloon died on the way home three times in four).
 const SHAKEN := 0.7
+const GO_HP := 0.6               # (crown-coach-balloon) under this share of its health a balloon does not set out again
 const FLEE_K_FIX := 0.6
 
 
@@ -1082,7 +1085,7 @@ func _go_home(p: Dictionary) -> void:
 			b.cmd_move(home)
 		p["since"] = game.clock
 		return
-	if b.hp < b.max_hp * HURT or (p["men"] as Array).is_empty():
+	if b.hp < b.max_hp * (GO_HP if fix_on else HURT) or (p["men"] as Array).is_empty():
 		_release(p, "home")
 		return
 	# (the pilot hauls kegs at the Mill, the Barracks or the hall: the men aboard refill from the store)
@@ -1109,10 +1112,65 @@ func _release(p: Dictionary, why: String) -> void:
 	say("party %d is over (%s)" % [p["id"], why])
 
 
+## (crown-coach-balloon) A hurt balloon at home is mended by a labourer (the Crown's machines are labourers' work; the
+## computer never did it, so a balloon hit once flew on hurt or rested for good). One hand a balloon, sent home when it
+## leaves or is whole.
+var _menders := {}               # balloon -> labourer
+const MEND_BELOW := 0.95
+
+
+func _mend() -> void:
+	for b in _menders.keys():
+		var w = _menders[b]
+		var keep: bool = is_instance_valid(b) and not b.dead and is_instance_valid(w) and not w.dead and w.order == "repair" \
+			and b.hp < b.max_hp and b.position.distance_to(_board_spot()) < 260.0
+		if keep:
+			for p in parties:
+				if p["b"] == b and String(p["phase"]) not in ["load", "done"]:
+					keep = false
+		if not keep:
+			if TRACE:
+				print("BLMEND drop %d order=%s hp=%d d=%d" % [int(game.clock), w.order if is_instance_valid(w) else "-", int(b.hp) if is_instance_valid(b) else -1, int(b.position.distance_to(_board_spot())) if is_instance_valid(b) else -1])
+			if is_instance_valid(w) and not w.dead and w.order == "repair":
+				w.cmd_stop()
+			_menders.erase(b)
+	if ai._gold() < 2 or _home_attacked():
+		return
+	for b in balloons():
+		if _menders.has(b) or b.hp >= b.max_hp * MEND_BELOW or b.position.distance_to(_board_spot()) > 200.0:
+			continue
+		var busy := false
+		for p in parties:
+			if p["b"] == b and String(p["phase"]) not in ["load", "done"]:
+				busy = true
+		if busy:
+			continue
+		var best: Unit = null
+		var bd := 640.0
+		for u in game.workers(team):
+			if u.dead or u.order in ["build", "repair"] or u.keg or u.carrying > 0 or ai._escort.has(u) or ai._fled.has(u) \
+					or ai._fighters.has(u) or (ai.scout != null and ai.scout.is_scout(u)) or not u.can_repair(b):
+				continue
+			var dd: float = u.position.distance_to(b.position)
+			if dd < bd:
+				bd = dd
+				best = u
+		if best != null:
+			best.cmd_repair(b)
+			_menders[b] = best
+			if TRACE:
+				print("BLMEND send %d order=%s" % [int(game.clock), best.order])
+
+
 func _rest(b: Unit) -> void:
 	if not b.passengers.is_empty():
 		if b.order != "unload":
 			b.cmd_unload(_board_spot())
+		return
+	if fix_on:
+		var spot := _board_spot()      # (crown-coach-balloon: it rests over its boarding spot, where a labourer mends it)
+		if b.position.distance_to(spot) > 60.0 and (b.order != "move" or (b.order_point as Vector2).distance_to(spot) > 60.0):
+			b.cmd_move(spot)
 		return
 	if b.position.distance_to(_home()) > 220.0 and b.order != "move":
 		b.cmd_move(_home())
