@@ -86,6 +86,18 @@ labourers too): section 4.
 The AI STORY has rows for the new log lines (`scripts/ai_story_lines.gd`, pt and es in `tools/i18n/49_spectator.txt`): the
 line before the buildings, and the counter's two lines (study switch).
 
+### The same seed after (Highmoor 1103, filmed on this branch: alive at 12:00)
+
+| time | what happened |
+|---|---|
+| 0:00-5:00 | The same lean, read and rush; the riders out at ~4:05. From 4:00 the line is "short" and says so ("the line comes before more buildings: 60 of Musketeers and guns against the 309 it wants by now"). The first Musketeer at ~4:50 (7:21 before), no Church. |
+| 6:05-7:05 | **The new fault the film shows**: halls 0/2, Barracks 0/1, Foundry 0/1, all idle, the bank at 10-50 gold with 84-121 powder; 11-12 of the 24 labourers on "build" orders laying the natural's palisade, the Farms manned 8 of 24, so **the gold earned stood still for a minute** (4,180 at 6:05, 4,560 at 7:05: one harvest). The line had 3 Musketeers. |
+| 8:19-9:19 | The Brood's wave (57 supply, Brutes and Challengers) at the natural: the line (13 Musketeers, 2 guns) holds behind the palisade and the guns fire over it (`a1`): 950 killed for 115 by 9:05, 1,900 for 275 by 10:05. Army 2,080 at 10:05 (the "before" film had lost both halls by then). |
+| 10:18-11:05 | The Brood's next wave at its cap (101 supply, 78 Raptors) comes through a gap at the end of the palisade where the army stands packed, not in a line (`a2`): 1,760 lost in a minute. Alive at 12:00 with a third hall, 890 of army. |
+
+![](shots/crown-coach-v-brood/a1_line_and_guns_hold_highmoor_0909.jpg)
+![](shots/crown-coach-v-brood/a2_packed_at_the_gap_highmoor_1037.jpg)
+
 ## 4. Built, measured, NOT kept as the default (the switches stay for a study)
 
 | idea | switch | batch | W-D-L | army 10:00 / 12:00 | income 10:00 | labourers 8:00 | why not |
@@ -132,13 +144,17 @@ TESTS_RESULT
    has 45-54 grubs and four grounds against the Crown's 24-36 labourers and two halls (Highmoor 1103: income 21,598 against
    10,640 by 15:00). The economy job's area; the proposals of docs/crown_v_brood_coach.md section 8 (a Cottage of 10 supply
    or the hall training two labourers at once) are still the owner's to decide.
-2. **The line is still short at the first big wave.** Even with the floor, the home line was 240-470 at 6:00-7:00 in the
+2. **The natural's palisade takes the labourers off the Farms** (the "after" film, 6:05-7:05: 11-12 of 24 labourers laying
+   it, Farms 8/24, no gold for a minute, every building idle). The economy and defence jobs' area (AIExpandWall's crew);
+   the line's gold is kept from the palisade's price, not from its builders' time.
+3. **The line is still short at the first big wave.** Even with the floor, the home line was 180-470 at 6:00-7:00 in the
    check games (the floor wants 900-1,100): one Barracks and the powder hold it (one Musketeer every 15 s at most, 10 powder
    each), and the second Barracks waits for the first to be busy. The Brood's waves at 6:24-7:07 (23-34 supply) still take
    the natural in about half the games.
-3. **A big Brood wave breaks a line of 15-20 behind the palisade in seconds** (the "before" Hollowfen 1151: 19 to 2 in 9 s;
-   still seen after). The defence job's area (the line's spacing, the guns' canister, the walls).
-4. **When it is ahead the Crown does not finish.** In the "after" batch the Crown led the armies at 10:00 in 3 of 16 games
+4. **A big Brood wave breaks a line of 15-20 behind the palisade in seconds** (the "before" Hollowfen 1151: 19 to 2 in 9 s;
+   still seen after: `a2`, the army packed at a gap at the palisade's end). The defence job's area (the line's spacing, the
+   guns' canister, the walls).
+5. **When it is ahead the Crown does not finish.** In the "after" batch the Crown led the armies at 10:00 in 3 of 16 games
    (Highmoor 1103 2,350 against 1,175, Greenhold 1100 1,815 against 1,000, Red Coast 1161 1,235 against 575) and won none: the wave waits for 1.5 times a reckoning of 3,800 at 10:00 (`AICrown.BROOD_TABLE`, made to stop blind attacks),
    and the counter (section 4) was too slow and left home bare. A counter that works would be: a strike of the line's
    fast part at the nearest far Rootmaws without stopping to form for a token guard, a home guard of a third left behind at
