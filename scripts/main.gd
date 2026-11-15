@@ -538,6 +538,8 @@ func _menu_button(id: String, save: Dictionary, pc: bool) -> Button:
 			if menu_web:
 				return null       # (a browser tab can't be quit: the slot stays empty)
 			b = _button("EXIT", func() -> void: quit_game())
+	if b == null:
+		return null       # (an empty "" slot of MENU_SLOTS: nothing to make)
 	b.name = "Menu_" + id
 	b.clip_text = false
 	return b

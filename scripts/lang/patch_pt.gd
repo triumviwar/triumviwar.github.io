@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.28": ["Corrigido: dois erros de script ocultos sempre que o menu principal era montado (os dois espaços vazios de botão)."],
 	"0.38.27": ["Só ferramentas de medição (um estudo das taxas de vitória dos computadores): nada muda no jogo."],
 	"0.38.26": ["CAMPANHA: a pintura do briefing do Prólogo (o Governador nos degraus da mansão) perde um segundo mosquete sobrando, em pé nos degraus ao lado da mão de um soldado."],
 	"0.38.25": ["ESPECTADORES ONLINE: na sala de um amigo escolha ESPECTADOR na sua lista de FACÇÃO (ou toque em ASSISTIR em vez de ENTRAR) para assistir em vez de jogar. Os espectadores aparecem à parte em ESPECTADORES (até 4, com o ping), não ocupam o lugar de um jogador e podem escolher uma facção de novo para ocupar uma vaga livre. Com todas as vagas ocupadas, um amigo que entra assiste, e ASSISTIR também entra numa partida já em andamento.", "Um espectador vê todos os lados (VISTA, PRODUÇÃO, EXÉRCITO E ESTRUTURAS, como ao assistir computadores), não dá ordens (o anfitrião recusa qualquer uma) e conversa só com os outros espectadores, a menos que o anfitrião ligue ESPECTADORES FALAM COM OS JOGADORES. As imagens dos jogadores continuam escondendo o que o seu lado não vê. Um espectador que sai não muda nada para os jogadores, e depois do fim cada espectador recebe em REPLAYS o replay completo do anfitrião, como os jogadores."],
