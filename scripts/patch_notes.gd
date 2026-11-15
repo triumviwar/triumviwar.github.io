@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.12", "items": [
+		"Measuring tools only (a Keen Sabres study): nothing in the game changes.",
+	]},
 	{"v": "0.38.11", "items": [
 		"CROWN COMPUTER AGAINST THE BROOD: after its Horseman rush it no longer leaves its Barracks idle while it builds walls, Farms and a Church: its musket line (Musketeers and cannon, not the riders out raiding) now keeps up with the Brood's coming waves, and that gold comes before new buildings. Its Powder Mills grind for that line, and no Church goes up before 10:00.",
 	]},
