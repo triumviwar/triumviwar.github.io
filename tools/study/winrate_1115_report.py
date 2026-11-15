@@ -167,6 +167,14 @@ def main():
                 lab, sum(val(r, r[side], 5, "income") is not None for r in rows), *[f0(x) for x in pm],
                 *[f2(b / BENCH[fac][m]) if b else "" for b, m in zip(bb, (5, 8, 10))], f0(opm),
                 f2(ob / BENCH[fac][8]) if ob else ""))
+        classic = {"greenhold", "highmoor", "dune_sea", "frostfang", "twin_fords", "ashfall", "mirewood", "border_march", "red_coast"}
+        for nm, rr in (("now", rows), ("2026-11-12", old)):
+            parts = []
+            for grp, sel in (("classic maps", lambda r: r["map"] in classic), ("named maps", lambda r: r["map"] not in classic)):
+                g2 = [r for r in rr if sel(r) and r["lead"] != "="]
+                a = sum((r["lead"] in ("W", "w")) == (r["si"] == 0) for r in g2)
+                parts.append("%s A %d v B %d" % (grp, a, len(g2) - a))
+            P("\nSpot A (P1) v B, won or led, %s: %s." % (nm, "; ".join(parts)))
         P("\nHalls lost (built) per game, mean: first %.2f, second %.2f (2026-11-12: %.2f, %.2f). Halls at 8:00 (median): %s v %s.\n" % (
             mean([r["halls"][r["si"]] for r in rows]), mean([r["halls"][r["oi"]] for r in rows]),
             mean([r["halls"][r["si"]] for r in old]), mean([r["halls"][r["oi"]] for r in old]),
