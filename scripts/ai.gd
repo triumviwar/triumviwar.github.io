@@ -626,6 +626,7 @@ func _physics_process(delta: float) -> void:
 func _tick_ai(delta: float) -> void:
 	if game == null or game.over:
 		return
+	_cav_tick()                    # (crown-coach-cavalry: the riders' in and out, every tick: AICrown, scripts/ai_cav_micro.gd)
 	_think -= delta
 	if _stage < STAGES:
 		_think_stage(_stage)       # (a think goes on over the next ticks, a part each)
@@ -5242,6 +5243,11 @@ func _on_errand(u: Unit) -> bool:
 
 ## (crown-rider-screen) AICrown: the rider screen and the picket (scripts/ai_crown_screen.gd).
 func _screen_tick() -> void:
+	pass
+
+
+## (crown-coach-cavalry) AICrown: the riders' hit and run (scripts/ai_cav_micro.gd).
+func _cav_tick() -> void:
 	pass
 
 
