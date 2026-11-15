@@ -32,6 +32,9 @@ const PAD := 60.0                # (px) beyond an enemy's reach that a way past 
 const MELEE_REACH := 40.0        # (px) the reach counted for a melee enemy (its own range is 20-30)
 const LOOK_R := 560.0            # (px) the armed enemies looked at round a soldier on his way
 const STEP := 220.0              # (px) a step round the enemy
+const HOPELESS := 2.5            # the armed enemies round him worth this times his friends near him: he gets out ...
+const ESCAPE_GAP := 70.0         # (px) ... when the nearest is still this far beyond its reach
+const LOCAL_R := 300.0           # (px) his friends counted this near him
 const REORDER := 1.2             # (s) a steered soldier gets a new order at most this often
 
 const MUSTER_K := 1.2            # the home army worth less than this times the force at our buildings: it musters
@@ -48,6 +51,7 @@ var on := not OS.get_cmdline_user_args().has("defence:off")
 var warn_on := not OS.get_cmdline_user_args().has("dfwarn:off")
 var path_on := not OS.get_cmdline_user_args().has("dfpath:off")
 var muster_on := not OS.get_cmdline_user_args().has("dfmuster:off")
+var _dbg := OS.get_cmdline_user_args().has("dfdebug")
 
 var alert := false
 var alert_t := -1.0              # when the alert came (the bench reads it: tools/crown_defence_bench.gd)
@@ -63,6 +67,7 @@ var _first := {}                 # enemy soldier -> [clock, home distance (px)] 
 var _steer_t := {}               # Unit -> clock of its last steering order
 var _mustering := false
 var _muster_p := Vector2.INF
+var _muster_hall: Building = null
 var _muster_said := -99.0
 var _engaged := false
 
@@ -250,6 +255,21 @@ func _foes_near(p: Vector2, r: float) -> Array:
 	return out
 
 
+func _value_near(team: int, p: Vector2, r: float) -> float:
+	var v := 0.0
+	for o in game.units_near(p, r):
+		if o.team == team and not o.dead and not o.off_field and ai._armed(o):
+			v += ai._unit_value(o)
+	return v
+
+
+func _value_of(list: Array) -> float:
+	var v := 0.0
+	for o in list:
+		v += ai._unit_value(o)
+	return v
+
+
 func _reach(o: Unit) -> float:
 	return maxf(float(o.d.get("range", 20)), MELEE_REACH)
 
@@ -288,7 +308,11 @@ func steer(u: Unit, dest: Vector2) -> bool:
 		if d <= my_r + o.radius and o.hp < best_hp:
 			best_hp = o.hp
 			best = o
-	if best != null and (closest < 30.0 or u.has_attack()):
+	# hopeless where he stands (the enemy in reach worth HOPELESS times his friends there) and still a step from them: he
+	# gets out instead (Hollowfen 5101, 10:11-10:22: six Musketeers alone at the natural's Barracks died one by one to
+	# 1,945 of Clock Soldiers)
+	var hopeless := closest > ESCAPE_GAP and _value_near(ai.team, from, LOCAL_R) * HOPELESS < _value_of(foes)
+	if best != null and not hopeless and (closest < 30.0 or u.has_attack()):
 		if not (u.order == "attack" and u.target == best):
 			u.cmd_attack(best)
 		fights += 1
@@ -313,6 +337,10 @@ func steer(u: Unit, dest: Vector2) -> bool:
 			best_s = s
 			best_p = p
 	if best_p == Vector2.INF:
+		if best != null:
+			u.cmd_attack(best)      # (boxed in: he fights where he stands)
+			fights += 1
+			return true
 		u.cmd_move(dest, true)      # (boxed in: he fights his way on)
 		fights += 1
 		return true
@@ -361,8 +389,9 @@ func muster(army: Array, spots: Array) -> bool:
 	var mc: Vector2i = game.cell_of(mp)
 	if not game.in_map(mc) or not game.open_cell(mc):
 		mp = hall.center() + away * 80.0
-	if not _mustering or _muster_p.distance_to(mp) > 4.0 * T:
-		_muster_p = mp
+	if not _mustering or hall != _muster_hall:
+		_muster_p = mp          # (fixed while it lasts: a point that follows the enemy's middle walks the army about)
+		_muster_hall = hall
 	if not _mustering:
 		_mustering = true
 		_engaged = false
@@ -377,7 +406,13 @@ func muster(army: Array, spots: Array) -> bool:
 		if u.position.distance_to(_muster_p) < MUSTER_R:
 			got += ai._unit_value(u)
 			got_n += 1
+			if near_foes.is_empty() and u.target != null and is_instance_valid(u.target) and not u.target.dead \
+					and u.target is Unit and ai._armed(u.target):
+				near_foes = [u.target]      # (a gathered man is already shooting at them)
 	var go := not near_foes.is_empty() or (got >= foe * ENGAGE_K and float(got_n) >= GATHERED * float(home.size()))
+	if _dbg:
+		print("  [dfn %.1f] muster foe %d mine %d got %d/%d near %d go %s at %s; %s" % [game.clock, int(foe), int(mine), got_n, home.size(), near_foes.size(), str(go), str(_muster_p.round()),
+			", ".join(home.map(func(u) -> String: return "%s %d" % [u.order, int(u.position.distance_to(_muster_p))]))])
 	if game.clock - _muster_said > 30.0:
 		_muster_said = game.clock
 		_say("musters at its hall: the force at its buildings (%d) is more than its army at home (%d) can beat one by one; it gathers out of reach and fights there as one" % [int(foe), int(mine)])
@@ -421,6 +456,7 @@ func muster(army: Array, spots: Array) -> bool:
 
 func _end_muster() -> void:
 	_mustering = false
+	_muster_hall = null
 	_engaged = false
 	_muster_p = Vector2.INF
 

@@ -807,6 +807,8 @@ func place(units: Array) -> Array:
 
 func _post(u: Unit, spot: Vector2, face := Vector2.INF, edge := false) -> void:
 	spot = game.site_keepout(ai.team, spot, u.radius)      # (crown-hold: a post on a site waiting to start stands beside it)
+	if u.position.distance_to(spot) > 160.0 and u.target != null and ai.has_method("dfn_move") and ai.dfn_move(u, spot):
+		return                  # (crown-coach-defence: fighting far from his post against more than he can beat: he gets out)
 	if u.target != null and is_instance_valid(u.target) and not u.target.dead and u.order != "move":
 		# (busy fighting: left be; on the way to the edge only a fight at hand keeps him: a gun shooting from the ramp post
 		# at something far below goes to the edge, where the claws at the building are)

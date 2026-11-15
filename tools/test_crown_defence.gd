@@ -183,6 +183,7 @@ func _run() -> void:
 		u.cmd_attack(farm)
 		gang.append(u)
 	var m0: int = dfn.musters
+	var e0: int = dfn.engages
 	var far_out := 0
 	var mustered := false
 	t0 = g.clock
@@ -196,7 +197,6 @@ func _run() -> void:
 	check(mustered and dfn.musters > m0, "[muster] the army musters at the hall against a force it cannot beat (%d)" % (dfn.musters - m0))
 	check(far_out == 0, "[muster] no Musketeer goes to the Farm alone (%d looks)" % far_out)
 	# the Clock Soldiers come at the hall: the gathered line fights as one
-	var e0: int = dfn.engages
 	for u in gang:
 		if is_instance_valid(u) and not u.dead:
 			u.cmd_move(dfn._muster_p if dfn._muster_p != Vector2.INF else hall, true)

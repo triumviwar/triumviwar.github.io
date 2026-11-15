@@ -2,8 +2,10 @@
 # CROWN DEFENCE BENCH batch (crown-coach-defence): runs tools/crown_defence_bench.gd over a list of games, JOBS at a time.
 #   GODOT=/path/godot tools/crown_defence_bench.sh OUTDIR "SWITCHES" < games.list
 # games.list: one game a line: map seed foe crown_side end   (e.g. "hollowfen 4287366311 clockwork 0 720")
+# PROJ=dir runs the games in a copy of the project (so the working tree can change meanwhile).
 # SWITCHES: extra user args for every game (e.g. "defence:off"). Each game writes OUTDIR/<map>_<seed>_<side>/bench.json.
 OUT=$1
+cd "${PROJ:-.}"
 SW=$2
 JOBS=${JOBS:-2}
 mkdir -p "$OUT"
