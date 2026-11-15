@@ -11,7 +11,7 @@ var t := 0.0
 var started := false
 var hits: Array = []          # [label, Image] of every view's hit frame (the contact sheet)
 
-const SIDES := [["s", Vector2.DOWN, "balloon"], ["se", Vector2(1, 1), "cuckoo"], ["e", Vector2.RIGHT, "pterodactyl"],
+const SIDES := [["s", Vector2.DOWN, "cuckoo"], ["se", Vector2(1, 1), "balloon"], ["e", Vector2.RIGHT, "pterodactyl"],
 		["ne", Vector2(1, -1), "skywing"], ["n", Vector2.UP, "balloon"], ["nw", Vector2(-1, -1), "cuckoo"],
 		["w", Vector2.LEFT, "skywing"], ["sw", Vector2(-1, 1), "pterodactyl"]]
 
@@ -136,7 +136,7 @@ func _run() -> void:
 	pd.position = open
 	g.note_move(pd)
 	pd.cmd_stop()
-	g.camera.zoom = Vector2(3.4, 3.4)
+	g.camera.zoom = Vector2(2.6, 2.6)
 	for sd in SIDES:
 		var dir: Vector2 = (sd[1] as Vector2).normalized()
 		var foe: Unit = _dummy(sd[2], pd.position + dir * 46.0)
@@ -176,12 +176,12 @@ func _contact_sheet() -> void:
 	if hits.is_empty():
 		return
 	var vs := root.get_viewport().get_visible_rect().size
-	var cw := 420
-	var ch := 460
+	var cw := 340
+	var ch := 470
 	var sheet := Image.create(cw * 4, ch * 2, false, Image.FORMAT_RGBA8)
 	for i in hits.size():
 		var img: Image = hits[i][1]
 		var cx := int(vs.x * 0.5) - cw / 2
-		var cy := int(vs.y * 0.5) - ch / 2 + 20
+		var cy := int(vs.y * 0.5) - ch / 2 - 60
 		sheet.blit_rect(img, Rect2i(cx, cy, cw, ch), Vector2i((i % 4) * cw, (i / 4) * ch))
 	sheet.save_png("%s/all_hits.png" % out)

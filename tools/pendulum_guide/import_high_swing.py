@@ -1,8 +1,8 @@
 """Import the Pendulum's HIGH SWING (pendulum-high-swing, docs/pendulum_air.md): the blow it plays when its target is a
 FLYER, the blade raised high over its head on the hit frame (the low sweep, attack_r / attack_l, stays for the ground).
 
-Source: the owner's ChatGPT sheets art/redraws/pendulum_high_swing_<view>_chatgpt.png (S, SE, E, NE, N; 1536 x 1024, flat
-magenta, 2 rows of 6: the TOP row is the arm of attack_r of that view, the BOTTOM row attack_l; the 4th frame (index 3) is
+Source: the owner's ChatGPT sheets art/redraws/pendulum_high_swing_<view>_chatgpt.png (S, SE, NE, N; 1536 x 1024, flat
+magenta, 2 rows of 6 (E: pendulum_high_swing_e_v2_chatgpt.png, one row, see SHEET): the TOP row is the arm of attack_r of that view, the BOTTOM row attack_l; the 4th frame (index 3) is
 THE HIT, the blade at its highest; the W views are the E ones mirrored by the game, as for the low sweep).
 Output: assets/units/pendulum/attack_hi_r_<view>.png and attack_hi_l_<view>.png, 6 frames each, CELL_W x CELL_H: the same
 130-px width as every Pendulum strip (the game counts frames by the kind's cell width) but TALLER (the raised blade goes
@@ -40,11 +40,16 @@ import cw_palette                     # noqa: E402
 import import_tier3 as t3             # noqa: E402  (shrink, bbox, case_x, red_mask)
 
 SRC = 'art/redraws/pendulum_high_swing_%s_chatgpt.png'
+# view -> (sheet, rows) where the owner replaced a sheet: E v2 is ONE row of 6 in side profile (the first E sheet's figures
+# were hallucinated); the far arm is hidden behind the body, so the one row serves both arms.
+SHEET = {'e': ('art/redraws/pendulum_high_swing_e_v2_chatgpt.png', 1)}
 DST = 'assets/units/pendulum/'
 VIEWS = ['s', 'se', 'e', 'ne', 'n']
 KEY = 60             # magenta-ness under this: the figure (ChatGPT's pink motion smears, ~60-160, stay out)
 HOLE = 160           # a hole inside the figure is filled back when its magenta-ness is under this
 EDGE = 4             # px (sheet) from the background where the despill works
+SEAM_HUE = 24         # degrees: an orange-red seam in the team red (team_seams); the brass is ~28-40
+SEAM_NB = 4           # ... with this many of its 8 neighbours on a key red
 CRUMB = 8            # game px: a smaller piece apart from the figure is dropped (drop_specks)
 SPECK = 20           # px: smaller pieces are dropped (noise)
 CELL_W = 130         # the Pendulum's cell (scripts/cw_art.gd SHEETS "pendulum": [130, 91, 65, 84])
@@ -69,6 +74,7 @@ ROWS['se']['l'] = [(1, 0, False), (1, 1, False), (1, 1, False), (1, 3, False), (
 # the blow, so the bottom row is kept as drawn: in NE both high swings are on the same arm (a choice, docs/pendulum_air.md).
 # N (back, symmetric): the top row swings the viewer's LEFT arm (attack_l's in N) and the bottom row mixes both arms: the
 # top row is attack_hi_l as drawn and attack_hi_r is the same row mirrored.
+ROWS['e'] = {'r': TOP, 'l': TOP}
 ROWS['n'] = {'r': [(0, i, True) for i in range(6)], 'l': [(0, i, False) for i in range(6)]}
 
 
@@ -208,6 +214,27 @@ def build_row(frames, view, arm):
     return out, s, cxg
 
 
+def team_seams(sm):
+    """At game size, after snap_team: the orange-red seams ChatGPT painted into the red case and legs (hue under SEAM_HUE
+    degrees, saturated) that stay off the key reds would show as orange specks on another team's colour: one with
+    SEAM_NB or more of its 8 neighbours on a key red goes to the key of its brightness (twice, for 2-px seams). The brass
+    is yellower and keeps its colour."""
+    sm = sm.copy()
+    for _ in range(2):
+        rgb = sm[..., :3].astype(np.float32) / 255.0
+        mx, mn = rgb.max(-1), rgb.min(-1)
+        sat = np.where(mx > 0, (mx - mn) / np.maximum(mx, 1e-6), 0)
+        r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+        hue = np.degrees(np.arctan2(np.sqrt(3) * (g - b), 2 * r - g - b)) % 360
+        key = (sm[..., 3] > 0) & (sm[..., 1] == 0) & (sm[..., 2] == 0) & ((sm[..., 0] == 255) | (sm[..., 0] == 150))
+        nb = ndi.convolve(key.astype(int), np.ones((3, 3), int), mode='constant') - key
+        seam = (sm[..., 3] > 0) & ~key & (sat >= 0.7) & ((hue <= SEAM_HUE) | (hue >= 345)) & (nb >= SEAM_NB) & (r > g)
+        light = seam & (mx >= 0.62)
+        sm[light, :3] = cw_palette.TEAM_LIGHT
+        sm[seam & ~light, :3] = cw_palette.TEAM_DARK
+    return sm
+
+
 def drop_specks(sm):
     """At game size: pieces of fewer than CRUMB px standing apart from the figure (the tail of a pink motion smear
     ChatGPT drew round a swinging blade) go."""
@@ -232,6 +259,7 @@ def render(row, s, cxg, ch):
         big.paste(Image.fromarray(o, 'RGBA'), (int(round(cxg / s - ax)), int(round(feet / s - ay))))
         sm = t3.shrink(np.array(big), CELL_W / BW)[:ch, :CELL_W]
         sm = cw_palette.snap_team(sm)
+        sm = team_seams(sm)
         sm = drop_specks(sm)
         strip[:sm.shape[0], i * CELL_W:i * CELL_W + sm.shape[1]] = sm
     return strip
@@ -249,9 +277,10 @@ def top_needed(row, s, cxg):
 def main():
     rows = {}
     for v in VIEWS:
-        rgb = np.array(Image.open(SRC % v).convert('RGB')).astype(int)
+        path, nrows = SHEET.get(v, (SRC % v, 2))
+        rgb = np.array(Image.open(path).convert('RGB')).astype(int)
         rgb, fig = key_sheet(rgb)
-        figs = [figures(rgb, fig, a, b) for a, b in bands(fig)]
+        figs = [figures(rgb, fig, a, b) for a, b in bands(fig, nrows)]
         for arm in ('r', 'l'):
             frames = [(figs[r][c][0], figs[r][c][1], mir) for r, c, mir in ROWS[v][arm]]
             rows[(v, arm)] = build_row(frames, v, arm)

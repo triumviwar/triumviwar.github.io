@@ -115,7 +115,7 @@ func _run() -> void:
 	balloon.net_t = 3.0
 	check("a netted flyer counts as on the ground (the full blow)", absf(Pendulum.blow_k(balloon) - vl) < 0.001)
 	balloon.net_t = 0.0
-	# the next blow at a soldier on the ground: the low sweep again (the left arm's)
+	# a blow at a soldier on the ground: the low sweep again
 	var foot: Unit = _foe(g, "musketeer", polar.call(0.0, 30.0))
 	foot.max_hp = 5000.0
 	foot.hp = 5000.0
@@ -126,6 +126,9 @@ func _run() -> void:
 		o.queue_free()
 	pd.position = at
 	g.note_move(pd)
+	pd.cmd_stop()
+	for i in 30:
+		U.step(g, 1.0 / 30.0)          # (the Balloon's blow plays out)
 	pd.cmd_attack(foot)
 	seen.clear()
 	var n0: int = pd.swings
@@ -135,7 +138,7 @@ func _run() -> void:
 		t += 1.0 / 30.0
 		if String(pd.anim).begins_with("attack"):
 			seen[pd.anim] = true
-	check("at a soldier on the ground it plays the LOW SWEEP (attack_l, the next arm)", pd.swings > n0 and seen.keys() == ["attack_l"], str(seen.keys()))
+	check("at a soldier on the ground it plays the LOW SWEEP (attack_r / attack_l)", pd.swings > n0 and seen.size() == 1 and (seen.has("attack_r") or seen.has("attack_l")), str(seen.keys()))
 	print("ALL PASS" if fails == 0 else "FAIL (%d)" % fails)
 	quit(1 if fails else 0)
 

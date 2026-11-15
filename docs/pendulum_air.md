@@ -45,12 +45,57 @@ That is the owner's rule as written ("light bonus as on the ground"); see Claude
 
 ## Art
 
-The swing is still drawn LOW (the attack_r / attack_l strips): the blade passes under the flyer it hits and only the
-hit spark shows at the flyer (pictures: docs/shots/pendulum_air/, made by tools/shot_pendulum_air.gd: side view, three
-Hatchlings and a Balloon cut in one swing; front view, a Balloon to its south). Raising the blades in code would mean
-cutting and rotating the painted arm (the tools/pendulum_guide way), not "easy in code", so it was left. A HIGH SWING
-strip for ChatGPT is listed in docs/art_style_inconsistency.md with the prompt (one request per view, 3 reference
-pictures with their paths).
+At first (0.38.3) the swing was drawn LOW at flyers too (the blade passed under the flyer it hit; pictures:
+docs/shots/pendulum_air/, tools/shot_pendulum_air.gd).
+
+### The HIGH SWING (pendulum-high-swing, 0.38.16)
+
+At a flyer the Pendulum now plays its own HIGH SWING strips, attack_hi_r / attack_hi_l (assets/units/pendulum/, 6
+frames, views S SE E NE N, the W ones mirrored like every strip): the arm swings back (frames 1-2, the telegraph), up and
+forward (3), the blade at its HIGHEST over its head on frame 4 (index 3), THE HIT, the same frame the low sweep's blow
+lands on (same 6 frames at 9 fps: the timing is unchanged), then it settles back (5-6). Ground targets keep the low sweep.
+
+- ART: the owner's ChatGPT sheets art/redraws/pendulum_high_swing_<view>_chatgpt.png (S, SE, NE, N: 2 rows of 6) and
+  pendulum_high_swing_e_v2_chatgpt.png (E: one row of 6 in side profile, his redo of a hallucinated first E sheet),
+  imported by tools/pendulum_guide/import_high_swing.py: magenta keyed (magenta-ness min(R,B) - G under 60, ChatGPT's
+  pink motion smears left out) and despilled on the rim (R and B lose their excess over G: no pink fringe), every frame
+  aligned on the BODY (its legs' red matched to the row's first frame, so the body stands still and only the arm moves;
+  checked at game size: the legs move 0 px between frames, once 1 px), each row scaled so its first frame's body is as
+  tall as the low sweep's first frame of that view (80/74/78/76/80 px), feet on the same line, the red case over the same
+  x (within 0.6 px), the Clockwork palette (tools/cw_palette.py: team reds, the blue joints player colour, steel blade).
+  Preview: art/redraws/pendulum_high_swing.png / .gif (the old low sweep beside the new high swing, x3).
+- THE TALLER CELL: the raised blade goes far over the 91-px cell, so the hi strips are 130 x 136 a frame (the same width,
+  so the frame count still reads from the kind's cell width), with the feet 7 px over the strip's bottom as in the 91-px
+  strips. No offset code was needed: Unit._set_anim already keeps a taller strip's feet in place (offset -anchor -
+  (texture height - cell height), the way the Springer's attack_up does).
+- CODE: scripts/pendulum.gd: Pendulum.HIGH (2) is added to Unit.arm when the blow's target is an enemy flyer as the
+  wind-up starts (Pendulum.high_at, off with `pendair:off`); attack_anim then returns attack_hi_<arm> (the low sweep when
+  the hi strips are missing). Kept for the whole blow (a flyer dying or drifting off mid-swing does not switch the
+  strip) and streamed to online guests with the unit's arm. The arc on the ground is still laid for a high swing, but
+  not the blade's smear along the ground (the blade went over its head). scripts/cw_art.gd ANIMS and unit.gd's pose
+  lists (fps 9, no loop) know the two new strips.
+- Pictures in game: docs/shots/pendulum_air/high_swing/ (tools/shot_pendulum_high_swing.gd: a Balloon, a Swift, a
+  Pterodactyl or a Skywing at each of its 8 sides, frames 2, 4 (the hit) and 5; all_hits.png = every view's hit frame;
+  then the low sweep at a soldier on the ground).
+- Tests: tools/test_pendulum_air.gd gained 4 checks (the hi strips load with 6 frames; at the Balloon it plays
+  attack_hi_r only; the blow lands on frame index 3; at a soldier on the ground the low sweep): ALL PASS.
+  test_pendulum_v2 ALL PASS, test_unit_stats 0 failures, test_card_text PASS. test_cw_tier3's 3 online checks fail as on
+  main before (CLAUDE.md); test_cw_tier3_ai's Netter check (the Cuirassier netted first) fails with different numbers
+  run to run: the Netter, not the Pendulum's art.
+
+Choices made at the import (for the owner):
+- **S**: the bottom row's 2nd frame swings the wrong arm (attack_r's): attack_hi_l takes the top row's 2nd frame mirrored
+  there (S is symmetric).
+- **SE**: the bottom row's 3rd frame reaches out with the wrong arm and SE is not symmetric: its 2nd frame (the
+  telegraph) is held one frame longer instead.
+- **NE**: both rows swing the viewer's RIGHT arm (attack_r's). Mirroring would show the NW body for the length of the
+  blow, so the bottom row is kept as drawn: in NE both high swings are on the same arm. A ChatGPT redo of the NE LEFT arm
+  (the viewer's left) would fix it (same prompt, art/redraws/pendulum_high_swing_ne_chatgpt.png's top row as reference).
+- **N**: the top row swings the viewer's LEFT arm (attack_l's in N) and the bottom row mixes both arms: attack_hi_l is the
+  top row and attack_hi_r the same row mirrored (N is symmetric from behind).
+- **E**: one row for both arms (the far arm is hidden behind the body).
+- The ChatGPT body is a little stockier than the code-built low sweep's (the same height, a few px wider legs); the blue
+  ball joints become player colour by the palette rule, as on every Clockwork unit.
 
 ## The Clockwork computer
 
@@ -130,7 +175,7 @@ bench), which is what the owner asked for.
 2. **Target choice is the plain nearest-enemy rule**, with no preference for ground units: a flyer and a ground unit at
    the same distance are equal. The swing cuts both anyway when they are in the arc.
 3. **The same arc and reach** for flyers (62 px): no extra height check. A flyer over the arc is hit wherever it hovers.
-4. **No new art yet**: the low sweep plays against flyers (see Art).
+4. **Art**: since 0.38.16 the HIGH SWING plays at flyers (see Art, with the import's own choices).
 5. **The computer: a Pendulum = half a Swift**, never under 2 Swifts with flyers about; Pendulums without 3 Springers
    first once 2+ flyers are seen.
 6. A **measuring switch** `-- pendair:off` (scripts/pendulum.gd) puts the old ground-only Pendulum back for benches
