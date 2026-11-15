@@ -158,7 +158,7 @@ func _row() -> void:
 		"bo": bool(ai.get("bo_on")) if ai else false,
 		"escorts": (ai._escort as Array).size() if ai else 0,
 		"idle_free": ws.filter(func(u: Unit) -> bool: return u.order == "idle" and ai and not (ai._escort as Array).has(u)).size(),
-		"big_pick": g.gear_big_for(0, Defs.GEAR_PRESS)}
+		"big_pick": g.gear_big_for(0, Defs.GEAR_PRESS), "by_hall": _by_hall()}
 	for k in acc:
 		row[k] = int(acc[k])
 	_reset_acc()
@@ -181,3 +181,22 @@ func _finish() -> void:
 		if f:
 			f.store_string(js)
 	quit()
+
+
+## (econ-limit-local, docs/econ_limit_local.md) each built hall's economy buildings, counted by their nearest built hall
+## (the hall they draw from): one {kind: n} a hall, in the order the halls were laid.
+func _by_hall() -> Array:
+	var out: Array = []
+	var hs: Array = g.halls_of(0)
+	for h in hs:
+		var c := {}
+		for k in Defs.econ_of(g.faction_of(0)):
+			c[k] = 0
+		out.append(c)
+	for b in g.buildings:
+		if b.team != 0 or b.dead or not Defs.econ_of(g.faction_of(0)).has(b.kind):
+			continue
+		var i := hs.find(g.nearest_hall(b.center(), 0))
+		if i >= 0:
+			out[i][b.kind] = int(out[i][b.kind]) + 1
+	return out

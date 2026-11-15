@@ -173,6 +173,7 @@ func _row() -> void:
 	for k in Defs.FACTIONS[fac]["econ"].keys():
 		econ[k] = g.econ_count(0, k)
 	econ["halls"] = _halls().size()
+	econ["by_hall"] = _by_hall()
 	var row := {"min": rows.size() + 1, "p": int(p - float(last["p"])), "s": snappedf(s - float(last["s"]), 0.1),
 		"p_cum": int(p), "s_cum": snappedf(s, 0.1), "workers": ws.size(), "working": working, "econ": econ,
 		"left": int(_left()), "bank": int(g.players[0]["gold"]), "supply": g.supply_used(0), "cap": int(g.players[0]["cap"]),
@@ -211,3 +212,22 @@ func _finish() -> void:
 		if f:
 			f.store_string(js)
 	quit()
+
+
+## (econ-limit-local, docs/econ_limit_local.md) each built hall's economy buildings, counted by their nearest built hall
+## (the hall they draw from): one {kind: n} a hall, in the order the halls were laid.
+func _by_hall() -> Array:
+	var out: Array = []
+	var hs: Array = g.halls_of(0)
+	for h in hs:
+		var c := {}
+		for k in Defs.econ_of(g.faction_of(0)):
+			c[k] = 0
+		out.append(c)
+	for b in g.buildings:
+		if b.team != 0 or b.dead or not Defs.econ_of(g.faction_of(0)).has(b.kind):
+			continue
+		var i := hs.find(g.nearest_hall(b.center(), 0))
+		if i >= 0:
+			out[i][b.kind] = int(out[i][b.kind]) + 1
+	return out

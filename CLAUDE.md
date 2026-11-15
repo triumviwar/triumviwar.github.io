@@ -25,6 +25,16 @@
 
 ## Current work
 
+- ECONOMY LIMIT BY HALL (owner DECIDED 2026-11-15 18:06: "it should be 2 per Town Hall, 2 per Clocktower"; job
+  econ-limit-local, 0.38.16, docs/econ_limit_local.md, tools/test_econ_limit_local.gd): every Farm / Powder Mill / Cog Press /
+  Mainspring belongs to the hall it draws from (its nearest BUILT hall, a tie to the older) and each hall allows
+  Defs.econ_per_hall round it (Game.econ_by_hall / econ_at / econ_full_at; econ_limit = sum of max(per, n), so
+  econ_count >= econ_limit still means "no hall has room"); refusal "This Town Hall already has its Farms (2/2). Build near
+  another Town Hall." (en/pt/es); hall cards FARMS 1/2 · POWDER MILL 0/1, COG PRESSES 2/2 · MAINSPRING 1/1; a hall going up
+  allows nothing; a fallen hall's buildings go to the next nearest (over its count they work, no new one there). The
+  computers skip a full hall (AI._econ_spot, AICwMacro) and recycle a spent building of the hall that needs the place.
+  Bench unchanged; the computers alone within noise (numbers in the doc). Mainspring local too (Claude's choice 1).
+
 - BROOD ROOTMAW SPOTS (owner DECIDED 2026-11-15: the Brood keeps the only radius economy, made fair and easy; job
   brood-rootmaw-spots, 0.38.14, docs/brood_rootmaw_spots.md, scripts/rootmaw_spots.gd RootmawSpots, tools/test_rootmaw_spots.gd,
   tools/measure_rootmaw_fit.gd, pictures docs/shots/rootmaw_spots/): a COUNT (Defs.NB maws_queen 3, maws_turtle 2; ROOTMAWS n/3
