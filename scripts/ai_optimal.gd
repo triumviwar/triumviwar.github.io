@@ -40,6 +40,9 @@ static var GREEDY_BROOD_TRY := _arg("greedybrood:")
 ## (econ-coach-crown, study switch: `-- greedyclock:economy` answers a greedy Clockwork with that plan, to measure the picks'
 ## economies against each other; docs/econ-coach-crown.md)
 static var GREEDY_CLOCK_TRY := _arg("greedyclock:")
+## (crown-coach-balloon, study switch: `-- normalclock:balloon` makes the Crown's pick on a NORMAL read of the Clockwork that
+## plan, to measure the plans against each other in that matchup; docs/crown-coach-balloon.md)
+static var NORMAL_CLOCK_TRY := _arg("normalclock:")
 
 
 static func _arg(pre: String) -> String:
@@ -163,6 +166,8 @@ func choose(read: String) -> Array:
 				return ["economy", "an economic race"]       # (econ-coach-crown: the lean was no read; see _lean_only)
 			if st != "opening" or not picks.is_empty():
 				return []        # (a normal read later keeps what it plays: the dice are thrown once, no flip-flop)
+			if fac == "crown" and f == "clockwork" and NORMAL_CLOCK_TRY != "":
+				return [NORMAL_CLOCK_TRY, _normal_why(NORMAL_CLOCK_TRY)]     # (study switch, crown-coach-balloon)
 			var w: Dictionary = (NORMAL.get(fac, {}) as Dictionary).get(f, {"balanced": 1.0})
 			var k := _weighted(w)
 			return [k, _normal_why(k)]
