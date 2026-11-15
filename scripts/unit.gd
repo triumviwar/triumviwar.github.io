@@ -274,6 +274,7 @@ var _owl_bomb := false          # Ticking Owl: this attack is a bomb on a buildi
 var _reach := Vector2.ZERO      # Swift / Ticking Owl: how far its lunge or swoop carries the sprite (CwAir.reach)
 var swings := 0                 # Pendulum: swings made (tests)
 var last_hits := 0              # Pendulum: the enemies its last swing caught (tests)
+var last_air_hits := 0          # Pendulum: the flyers among them (pendulum-air, tests)
 var nets := 0                   # Netter: nets fired (tests)
 var last_net: ChainNet = null   # Netter: its last net in flight (tests, screenshots)
 var net_t := 0.0                # CAUGHT in a Netter's net: s left (it cannot move or fight; a flyer is down on the ground)
@@ -1265,8 +1266,8 @@ func can_hit(e: Entity) -> bool:
 	if kind == Defs.NETTER and (not (e is Unit) or ((e as Unit).net_t > 0.0 and not (order == "attack" and e == order_target))):
 		return false            # (its net is for units, and one caught already only when it is told to)
 	var ea := e.is_air()        # (asked once: this runs for every target looked at)
-	if ea and _d_ground:
-		return false
+	if ea and (_d_ground or (not Pendulum.air_on and kind == Defs.PENDULUM)):
+		return false            # (pendulum-air's measuring switch `pendair:off`: scripts/pendulum.gd)
 	if not ea and _d_aironly:
 		return false            # (buildings too)
 	if ea:
@@ -8176,6 +8177,8 @@ func _draw_mission_marks(top: float) -> void:
 
 
 func _draw_unit() -> void:
+	if has_meta("serp_art"):
+		BrassSerpent.redraw_art(self)      # (a Brass Serpent's pictures, a wreck's, a Winder's gear: their own node)
 	if dead and CwAir.falling(self):
 		CwAir.draw_fall_shadow(self)
 	if dead and (kind == Defs.SERPENT_GEAR_S or kind == Defs.SERPENT_GEAR_B):
@@ -8196,7 +8199,7 @@ func _draw_unit() -> void:
 	if selected and kind == Defs.GREAT_WINDER_KIND:
 		GreatWinder.draw_area(self)      # (its winding ring on the ground)
 	if _k_serp:
-		BrassSerpent.draw(self)          # (its gears and head(s), drawn in code for now: docs/art_style_inconsistency.md)
+		BrassSerpent.draw(self)          # (its sections, tail and head(s): the owner's art, scripts/brass_serpent.gd)
 	if has_meta("serp_carry"):
 		BrassSerpent.draw_carry(self)    # (a Winder carrying a gear out to a Brass Serpent)
 	if _k_band:

@@ -1,0 +1,22 @@
+# crown-coach-defence (docs/crown-coach-defence.md): the AI STORY's sentences for the Crown computer's defence against a
+# push (scripts/ai_crown_defence.gd, scripts/ai_story_lines.gd). The placeholders keep their English order: the first %s is the player.
+
+> %s sees a push coming (%s soldiers worth %s, %s tiles out, against %s of its army at home) and gets ready: soldiers first, the balloons stay home.
+pt %s vê um ataque chegando (%s soldados valendo %s, a %s casas, contra %s do seu exército em casa) e se prepara: soldados primeiro, os balões ficam em casa.
+es %s ve llegar un ataque (%s soldados que valen %s, a %s casillas, contra %s de su ejército en casa) y se prepara: soldados primero, los globos se quedan en casa.
+
+> %s: the push it saw coming is gone or held; back to its plan.
+pt %s: o ataque que viu chegando foi embora ou foi contido; volta ao seu plano.
+es %s: el ataque que vio llegar se fue o fue contenido; vuelve a su plan.
+
+> %s calls its wave home: the push coming (%s) is more than its army at home (%s) can beat, and the wave (%s) meets it at home.
+pt %s chama a sua onda de volta: o ataque que vem (%s) é mais do que o exército em casa (%s) pode vencer, e a onda (%s) o enfrenta em casa.
+es %s llama a su oleada de vuelta: el ataque que viene (%s) es más de lo que su ejército en casa (%s) puede vencer, y la oleada (%s) lo enfrenta en casa.
+
+> %s gathers its army at its hall, out of reach: the force at its buildings (%s) is more than its army (%s) can beat one by one.
+pt %s reúne o seu exército no seu salão, fora de alcance: a força nos seus prédios (%s) é mais do que o seu exército (%s) pode vencer um por um.
+es %s reúne su ejército en su ayuntamiento, fuera de alcance: la fuerza en sus edificios (%s) es más de lo que su ejército (%s) puede vencer uno a uno.
+
+> %s's gathered army fights as one at its hall (%s).
+pt O exército reunido de %s luta como um só no seu salão (%s).
+es El ejército reunido de %s lucha como uno solo en su ayuntamiento (%s).
