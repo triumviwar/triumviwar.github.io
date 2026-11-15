@@ -74,7 +74,20 @@ Two side effects:
 
 ### Timing (Hard Clockwork OPTIMAL, 12:00, main v this branch, same map and seed)
 
-TIMING_TABLE
+| map, seed, enemy | Escapement done (main / branch) | SHIELD WALL queued -> done, main (Light Works) | SHIELD WALL queued -> done, branch (Escapement) | LONG CHAIN (branch) |
+|---|---|---|---|---|
+| Greenhold 1, Crown | 4:47 / 4:50 | 5:38 -> 6:39 | 6:09 -> 6:50 | 7:41 -> 8:17 (2 Netters) |
+| Hollowfen 2, Crown | 3:44 / 3:45 | 6:08 -> 7:09 | 7:36 -> 8:17 | - (1 Netter) |
+| Ashford Crossing 3, Crown | 3:44 / 3:43 | 8:10 -> 9:11 | 7:24 -> 8:05 | - (1 Netter) |
+| Greenhold 4, Brood | 4:53 / 4:20 | - | - | 7:44 -> 8:20 |
+| Hollowfen 5, Brood | 6:27 / 5:33 | 8:12 -> 9:29 | - (never 4 Clock Soldiers at home when it met shooters) | 10:10 -> 10:47 |
+
+SHIELD WALL done: +11 s, +68 s, -66 s against the Crown: no systematic slip (the games part ways after a few minutes;
+what decides the moment is the same trigger, meeting 3 shooters with 4 Clock Soldiers at hand, and in every game the
+Escapement already stood long before it: 3:43-4:53 against the Crown). What the move does save: 41 s from queue to done
+at the Escapement, 61-77 s at the Light Works, where it waited behind Clock Soldiers. In the 5th game the branch never
+bought it (its army was out or down to 2-6 Clock Soldiers whenever it met Spitters), which is the trigger's choice, not
+the Escapement's. All 10 games were undecided at 12:00 but one (the branch's Greenhold v Brood, a Clockwork win).
 
 ## The bench: 6 Netters + 10 Clock Soldiers v 12 Musketeers + 2 Field Cannons
 
@@ -82,7 +95,16 @@ TIMING_TABLE
 Musketeer line with the two guns 90 px behind it, open ground by the hall, no computers; the Netters' reach forced to
 180 (before), 150 (now) or 240 (LONG CHAIN). 8 runs each (the lines shifted a little per seed), 120 s.
 
-BENCH_TABLE
+| Clock Soldiers' shields | Netter reach | Clockwork wins | Netters alive (of 6) | Clockwork value lost | Crown value lost | Crown units left (of 14) | catches |
+|---|---|---|---|---|---|---|---|
+| off | 180 (before) | 0/8 | 1.5 | 1,262 | 38 | 13.4 | 4.9 |
+| off | 150 (now) | 0/8 | 2.8 | 1,106 | 82 | 12.6 | 4.9 |
+| off | 240 (LONG CHAIN) | 0/8 | 3.9 | 966 | 45 | 13.2 | 6.2 |
+| SHIELD WALL | 180 | 0/8 | 3.9 | 966 | 218 | 10.4 | 4.9 |
+| SHIELD WALL | 150 | 2/8 | 3.8 | 902 | 459 | 7.5 | 6.2 |
+| SHIELD WALL | 240 | 0/8 | 5.0 | 825 | 188 | 10.9 | 8.5 |
+
+(The Clockwork's army is worth 1,450, the Crown's 1,060.)
 
 What it shows:
 - This fight is lost by the Clockwork whatever the Netter's reach: ten 75-hp Clock Soldiers walking into twelve muskets
@@ -112,7 +134,9 @@ What it shows:
 - `tools/test_i18n.gd`: PASS (0 untranslated data texts).
 - `tools/test_cw_tier3.gd`: 3 online failures (the guest's copy of the morph bar, the net in flight, the catch), the same 3
   on main.
-- OTHER_TESTS
+- The Clockwork computer's tests: `test_clockwork_springer_timing` (HIGH LEAP at 4:19, as before), `test_clockwork_builds_b`,
+  `test_clockwork_eco`, `test_ai_optimal`: ALL PASS. (Every Godot run here ends with an engine abort at quit, exit 134,
+  on main too.)
 
 ## Claude's choices for the owner
 

@@ -25,6 +25,14 @@
 
 ## Current work
 
+- THE ESCAPEMENT'S THREE RESEARCHES (owner DECIDED 2026-11-15 20:34; job escapement-research, 0.38.19,
+  docs/escapement_research.md, tools/test_escapement_research.gd, bench tools/bench_netter_range.gd): SHIELD WALL moved
+  from the Light Works to the Escapement (same price; the Escapement's Tension rule, like HIGH LEAP; an old save's SHIELD
+  WALL queued at a Light Works is paid back); the Netter's reach 180 -> 150; new LONG CHAIN at the Escapement (a drill,
+  +90 -> 240; 100 cogs + 50 Tension, 40 s; stand-in icon in code); the Field Cannon (430) still the longest reach; keys
+  HIGH LEAP=E SHIELD WALL=S LONG CHAIN=C; the computer buys SHIELD WALL at its Escapement (no systematic slip in 5 games)
+  and LONG CHAIN at 2 Netters. 8 Claude's choices in the doc.
+
 - ECONOMY LIMIT BY HALL (owner DECIDED 2026-11-15 18:06: "it should be 2 per Town Hall, 2 per Clocktower"; job
   econ-limit-local, 0.38.16, docs/econ_limit_local.md, tools/test_econ_limit_local.gd): every Farm / Powder Mill / Cog Press /
   Mainspring belongs to the hall it draws from (its nearest BUILT hall, a tie to the older) and each hall allows
