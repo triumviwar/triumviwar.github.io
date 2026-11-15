@@ -408,6 +408,12 @@ func _mirror(c: Vector2i, size: Vector2i) -> Vector2i:
 func _generate_map() -> void:
 	mapgen = MapGen.new(self)
 	mapgen.generate(map_id)
+	# (brood-spot-study, docs/brood_spot_study.md) MEASURING SWITCH `spotswap`: with two players, player 1 takes spot B and
+	# player 2 spot A (the same map, the same seed), to tell a start spot's edge from player order
+	if OS.get_cmdline_user_args().has("spotswap") and n_players() == 2 and starts.size() == 2:
+		starts.reverse()
+		if expansions.size() == 2:
+			expansions.reverse()
 	_near_ramp_grid = PackedByteArray()
 
 
