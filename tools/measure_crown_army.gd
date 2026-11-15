@@ -8,6 +8,8 @@ var _sec := 1.0
 var army_track := {}       # team -> [[t, army value], ...]
 var prod := {}             # team -> {"brk_idle": [per minute], "fdy_idle": [...], "sup_block": [...], "pw_wait": [...], "gold": [...], "pw": [...]}
 var _next15 := 15.0
+var spend := {}            # team -> {category: [gold per minute]} (labourers, soldiers, buildings by kind) from what appeared
+var _seen_ids := {}
 
 
 func _process(delta: float) -> bool:
@@ -28,6 +30,7 @@ func _process(delta: float) -> bool:
 
 func _per_second() -> void:
 	var m := int(g.clock / 60.0)
+	_spending(m)
 	for a in g.ais:
 		if g.faction_of(a.team) != "crown":
 			continue
@@ -62,9 +65,38 @@ func _per_second() -> void:
 			p["pw"][m] = int(a._res2())
 
 
+func _add_spend(tm: int, cat: String, m: int, v: int) -> void:
+	if not spend.has(tm):
+		spend[tm] = {}
+	var d: Dictionary = spend[tm]
+	if not d.has(cat):
+		d[cat] = []
+	while (d[cat] as Array).size() <= m:
+		(d[cat] as Array).append(0)
+	d[cat][m] += v
+
+
+func _spending(m: int) -> void:
+	for u in g.units:
+		if u.dead or _seen_ids.has(u.get_instance_id()) or g.faction_of(u.team) != "crown":
+			continue
+		_seen_ids[u.get_instance_id()] = true
+		if g.clock < 1.5:
+			continue
+		var c := int(Defs.UNITS.get(u.kind, {}).get("cost", 0))
+		_add_spend(u.team, "labourers" if u.is_worker() else "u:" + u.kind, m, c)
+	for b in g.buildings:
+		if b.dead or b.ghost or _seen_ids.has(b.get_instance_id()) or g.faction_of(b.team) != "crown":
+			continue
+		_seen_ids[b.get_instance_id()] = true
+		if g.clock < 1.5:
+			continue
+		_add_spend(b.team, "b:" + b.kind, m, int(Defs.BUILDINGS.get(b.kind, {}).get("cost", 0)))
+
+
 func _finish() -> void:
 	super()
-	var res := {"army": army_track, "prod": prod, "map": map, "seed": seed_}
+	var res := {"army": army_track, "prod": prod, "map": map, "seed": seed_, "spend": spend}
 	var f := FileAccess.open(out.path_join("army.json"), FileAccess.WRITE)
 	f.store_string(JSON.stringify(res))
 	f.close()

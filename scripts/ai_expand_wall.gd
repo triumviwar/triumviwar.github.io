@@ -181,6 +181,8 @@ func _fill_slot(p: Dictionary, s: Dictionary) -> void:
 		return          # (supply it can't use: palisade at SLOT_WAIT instead)
 	if kind == "church" and not ai._mine("church").is_empty():
 		return
+	if ai.has_method("ca_slot_waits") and ai.ca_slot_waits(kind):
+		return          # (crown-coach-army: no Church for a slot while the army is behind the clock)
 	if kind != "cottage" and ai._econ_wait():
 		return          # (CROWN ECONOMY FIRST: no Church or Barracks in a slot while a Farm is due or the hands are short)
 	if kind == "barracks" and (ai._mine("barracks").size() >= 9 or spare < 100):

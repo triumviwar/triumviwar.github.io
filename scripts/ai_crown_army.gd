@@ -26,7 +26,7 @@ const MIN_LABS := 10            # never with fewer labourers than this (a hall's
 ## The usual army of a Hard OPTIMAL computer against the Crown at each time [s, value] (crown-coach-army's baseline batch,
 ## 0.38.1, 16 games each: the median at the minute)
 const TABLE := {
-	"clockwork": [[0.0, 0.0], [180.0, 0.0], [240.0, 200.0], [300.0, 400.0], [360.0, 650.0], [420.0, 850.0], [480.0, 1200.0], [600.0, 1750.0]],
+	"clockwork": [[0.0, 0.0], [180.0, 0.0], [240.0, 150.0], [300.0, 400.0], [360.0, 700.0], [420.0, 1100.0], [480.0, 1600.0], [600.0, 2400.0], [720.0, 3000.0]],
 	"crown": [[0.0, 0.0], [180.0, 0.0], [240.0, 120.0], [300.0, 250.0], [360.0, 400.0], [420.0, 600.0], [480.0, 850.0], [600.0, 1300.0]],
 }
 
@@ -115,3 +115,21 @@ func powder_wait() -> bool:
 	if not (ai.bo_army or ai.bo_done):
 		return false
 	return ai._mine("barracks").any(func(b: Building) -> bool: return b.built and b.queue.is_empty())
+
+
+## The gold the opening's next step leaves to the soldiers while behind (AICrown._think_stage 2): a Musketeer's price for
+## each idle Barracks, once the soldiers train (bo_army) and no rush plan's riders come first.
+func step_release() -> int:
+	if not ai.bo_army or ai.bo_army_first:
+		return 0
+	var n := 0
+	for b in ai._mine("barracks"):
+		if b.built and b.queue.is_empty():
+			n += 1
+	return n * int(Defs.UNITS["musketeer"]["cost"])
+
+
+## No Church bought for the natural's wall slot while the army is behind (AIExpandWall: a Church at 5:20 took two and a
+## half Musketeers' gold before the Clockwork's first push).
+func slot_waits(kind: String) -> bool:
+	return kind == "church" and behind()

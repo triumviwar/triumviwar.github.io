@@ -556,6 +556,12 @@ func ca_behind() -> bool:
 	return ca.behind()
 
 
+func ca_slot_waits(kind: String) -> bool:
+	if ca == null:
+		ca = AICrownArmy.new(self)
+	return ca.slot_waits(kind)
+
+
 func ca_powder_wait() -> bool:
 	if ca == null:
 		ca = AICrownArmy.new(self)
@@ -866,6 +872,12 @@ func _think_stage(i: int) -> void:
 			_tend_wall()        # (the ramp wall's crew kept at it, as the shared _build_up does)
 			_lap("ai/build", pt)
 		2:
+			if held > 0 and ca_behind():
+				# (crown-coach-army: behind the clock, the next step's gold leaves a Musketeer's price for each idle Barracks:
+				# the Town Hall step's 400 held the Barracks idle for a minute at 4:00 with 190 in the bank)
+				var free: int = ca.step_release()
+				game.players[team]["gold"] += mini(free, held)
+				held -= mini(free, held)
 			if ca_behind() and not bo_army and not _breeder_first() and _mine("barracks").any(func(b: Building) -> bool: return b.built):
 				bo_army = true      # (crown-coach-army: behind the clock with a Barracks standing: the soldiers start now)
 				_bo_log("soldiers from now on (the army is behind the clock)")
