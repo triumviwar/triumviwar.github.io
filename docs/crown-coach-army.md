@@ -70,12 +70,12 @@ Balloon harass and plays the owner's game: the Clockwork's 8 Clock Soldiers leav
 | 0.38.5 | 4:00 | 5:00 | 6:00 | 7:00 | kills / losses by 7:00 |
 |---|---|---|---|---|---|
 | before (`crownarmy:off`) | 2 Musketeers v 4 Clock Soldiers | 4 v 10 | 5 v 14 | 5 (and a Missionary) v 14 + 2 Springers, a Netter | 1 / 6 |
-| after | 2 v 4 | 6 v 10 | 8 v 9 + a Netter | 11 v 8 + 3 Springers, a Netter, a Brass Serpent | 10 / 3 |
+| after (the final code) | 4 v 4 | 8 v 10 | 12 v 12 + a Netter, 2 Springers | 12 (and a rider, a wagon) v 12 + 2 Netters, 3 Springers | 6 / 3 |
 
 Before, the powder piled up to 200 unused by 7:00 and the Clockwork was at the natural at 6:17-6:32, a building burning
-(before_0617_push_at_natural.jpg, before_army_0632.jpg). After, the line holds the ramp and the natural with Clockwork wrecks
-in front of it (after_army_0632.jpg), the balloon's basket fires down on the push at home (after_0523_balloon_over_push.jpg,
-after_0549_push_beaten.jpg).
+(before_0617_push_at_natural.jpg, before_army_0632.jpg). After, a line of 8-12 Musketeers holds the ramp from 5:00
+(after_army_0602.jpg, after_army_0632.jpg) and at 7:13 fires down from the main's edge on the Clockwork at the natural's hall
+(after_0713_line_over_natural.jpg, the same spot as before_0617). The Clockwork still out-earns it (7,700 to 4,900 by 7:00).
 
 ## The batches (tools/study/crown_army.py with tools/measure_crown_army.gd; Hard OPTIMAL v Hard Clockwork OPTIMAL, 8 maps
 (Greenhold, Dune Sea, Hollowfen, Kestrel Rise, Ashford Crossing, Red Coast, Frostmere, Border March), the Crown in slot A on
