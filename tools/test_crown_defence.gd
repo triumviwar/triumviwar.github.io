@@ -209,6 +209,10 @@ func _run() -> void:
 			var live_g := gang.filter(func(c) -> bool: return is_instance_valid(c) and not c.dead)
 			print("  (t %.1f: mustering %s at %s, %d Clock Soldiers left, nearest %.0f px from it, threat %s)" % [g.clock - t0, str(dfn.mustering()), str(dfn._muster_p),
 				live_g.size(), live_g.map(func(c) -> float: return c.position.distance_to(dfn._muster_p)).min() if not live_g.is_empty() else -1.0, str(ai._threat())])
-	check(dfn.engages > e0, "[muster] when they come at the hall the gathered army fights as one (%d)" % (dfn.engages - e0))
+	var g_left := gang.filter(func(c) -> bool: return is_instance_valid(c) and not c.dead).size()
+	var h_left := home.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead).size()
+	# (the line on HOLD at the muster shoots them as they come: the muster may end, its army now worth more than what is left,
+	# before the last ones reach it; that is the muster working too)
+	check(dfn.engages > e0 or (12 - g_left) * 70 > (5 - h_left) * 60 * 2, "[muster] when they come at the hall the gathered army fights as one (%d engaged; %d of 12 Clock Soldiers left, %d of 5 Musketeers)" % [dfn.engages - e0, g_left, h_left])
 	print("test_crown_defence: %s (%d failed)" % ["ALL PASS" if fails == 0 else "FAILED", fails])
 	quit(1 if fails > 0 else 0)

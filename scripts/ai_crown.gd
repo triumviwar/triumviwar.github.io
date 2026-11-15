@@ -1395,6 +1395,8 @@ const CR_EDGE_BROOD := 1.5
 func _wave_worth(ready: Array) -> bool:
 	if siege != null:
 		return false              # (the siege plan: its push goes, AICrownSiege._maybe_go)
+	if dfn != null and dfn.wave_waits(ready):
+		return false              # (crown-coach-defence: a push is coming that the army at home can't beat: it meets it at home)
 	if not super(ready):
 		return false
 	if ck_timing() and not _first_wave and not _ck_window(ready):

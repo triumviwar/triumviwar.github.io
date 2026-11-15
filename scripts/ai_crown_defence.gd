@@ -110,6 +110,8 @@ func tick() -> void:
 	var force := 0.0
 	var n := 0
 	var nearest := INF
+	var coming := 0.0            # ... of it near our buildings or closing on them (the wave's recall weighs this)
+	var coming_c := Vector2.ZERO
 	for u in seen:
 		var e: Array = seen[u]
 		if game.clock - float(e[0]) > ALERT_SEEN:
@@ -124,7 +126,12 @@ func tick() -> void:
 			force += float(e[2])
 			n += 1
 			nearest = minf(nearest, hd)
+			if hd < ALERT_NEAR * T or closing:
+				coming += float(e[2])
+				coming_c += p * float(e[2])
 	var home: float = ai.ch.home_value() if ai.ch != null else float(game.army_value(ai.team))
+	_coming = coming
+	_home_v = home
 	var hot := force >= ALERT_MIN and force >= home * ALERT_SHARE
 	if hot:
 		_last_hot = game.clock
@@ -134,6 +141,8 @@ func tick() -> void:
 			alerts += 1
 			_say("sees a push coming: %d soldiers worth %d, %d tiles from its nearest building, against %d of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)" % [n, int(force), int(nearest / T), int(home)])
 			_recall()
+		if coming > 0.0:
+			_recall_wave(coming, coming_c / coming, home)
 	elif alert and game.clock - _last_hot > ALERT_HOLD:
 		alert = false
 		_say("the push it saw coming is gone or held: back to its plan")
@@ -147,6 +156,54 @@ func _recall() -> void:
 	for p in bl.parties:
 		if String(p["phase"]) == "load":
 			bl._release(p, "a push is coming: the men stay home")
+
+
+## THE WAVE COMES HOME: a wave out (not in a fight) while an enemy force bigger than the army at home can beat comes at
+## our buildings, nearer them than the wave is: the wave is called home (the post places it; steer keeps it off the
+## enemy's way) and the two meet the push together. Red Coast 5103: the Crown's wave of 1,450 marched on while a push of
+## 3,185 came at its halls, and fell man by man between them.
+const RECALL_HOME := 1.0         # the push worth more than this times the army at home ...
+const RECALL_CONTACT := 420.0    # (px) ... and no armed enemy this near a man of the wave
+var recalls := 0                 # (tests, the coach)
+
+
+func _recall_wave(coming: float, at: Vector2, home: float) -> void:
+	if not ai._attacking or coming < home * RECALL_HOME:
+		return
+	var wave: Array = ai._wave_set.keys().filter(func(u) -> bool: return is_instance_valid(u) and not u.dead)
+	if wave.is_empty():
+		return
+	var wc := Vector2.ZERO
+	var wv := 0.0
+	for u in wave:
+		if not _foes_near(u.position, RECALL_CONTACT).is_empty():
+			return              # (in a fight: the line falls back by its own rules, AICrownLine)
+		wc += u.position
+		wv += ai._unit_value(u)
+	wc /= float(wave.size())
+	if _home_d(at) >= _home_d(wc):
+		return                  # (the wave stands between the push and home, or nearer home than it)
+	recalls += 1
+	_say("calls its wave home: the push coming (%d) is more than the army at home (%d) can beat; the wave (%d) is %d tiles out and meets it at home" % [int(coming), int(home), int(wv), int(_home_d(wc) / float(Defs.TILE))])
+	var back: Vector2 = ai._home_spot(ai._front())
+	for u in wave:
+		u.cmd_move(back + Vector2(randf_range(-70, 70), randf_range(-70, 70)))
+	ai._attacking = false
+	ai._release_escort()
+	ai._wave_end()
+	ai._wave_set.clear()
+
+
+## (AICrown._wave_worth) no wave goes out while the push coming is more than the army at home can beat (it would meet the
+## push on the way, or leave home to it).
+var _coming := 0.0
+
+
+func wave_waits(_ready: Array) -> bool:
+	return active() and warn_on and alert and _coming >= _home_v * RECALL_HOME
+
+
+var _home_v := 0.0
 
 
 ## Men walking to board a balloon are on an errand (the army, the post and the defence leave them be): an armed enemy
