@@ -13,7 +13,7 @@ static func _accent(gr: Dictionary) -> Color:
 
 
 static func show(main: Node) -> void:
-	var box := CampaignMenu._frame(main)
+	var box := CampaignMenu._frame(main, false)
 	var ids := Tutorial.lesson_ids()
 	if pick == "" or not ids.has(pick):
 		pick = ""

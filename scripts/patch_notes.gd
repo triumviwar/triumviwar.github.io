@@ -4,6 +4,12 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.20", "items": [
+		"CAMPAIGN: the Prologue's briefing painting (the Governor on the manor steps) loses a stray second musket standing on the steps beside a soldier's hand.",
+	]},
+	{"v": "0.38.19", "items": [
+		"CAMPAIGN: the stills keep their shape (the Prologue's picture on the War Table was squashed): the whole painting at its own proportions, the room round it filled by the same painting, dimmed. The campaign pages now have their own backdrop over the whole screen (the storyline's hub painting, dimmed) instead of the main menu's painting.",
+	]},
 	{"v": "0.38.18", "items": [
 		"A worker unselected and picked again shows his main card again, not the BUILD page he left open (any card page shuts when you pick something new; clicking the same worker again keeps it).",
 	]},
