@@ -40,6 +40,7 @@ var _idle_w: Array = []         # (clockwork-ai-v2) per player: [sum of idle wor
 
 
 var _riders_seen: Dictionary = {}     # (balance-raptor-horseman) every Horseman / Cuirassier seen in the saddle: id -> team
+var _tech_at: Dictionary = {}        # (keen-sabres-test) "team:research" -> the clock it was first seen done
 var ground := false
 var nocap := false      # (ground-nocap-study: NO FARM/PRESS LIMIT, `groundcap:off`, docs/ground_nocap_study.md)
 
@@ -110,6 +111,10 @@ func _process(delta: float) -> bool:
 		for u in g.units:
 			if u.kind == "cuirassier" and not u.dead and u.team >= 0 and u.team < n:
 				_riders_seen[u.get_instance_id()] = u.team
+		for tm in n:       # (keen-sabres-test: when each research was first seen done, result.json "tech_at")
+			for k in g.players[tm]["tech"]:
+				if g.players[tm]["tech"][k] == true and not _tech_at.has("%d:%s" % [tm, k]):
+					_tech_at["%d:%s" % [tm, k]] = int(g.clock)
 	if g.clock >= next_s10:
 		next_s10 += 10.0
 		_every10()
@@ -615,7 +620,7 @@ func _finish() -> void:
 	var res := {"map": map, "seed": seed_, "version": ProjectSettings.get_setting("application/config/version", ""),
 		"slots": slots, "end": int(round(g.clock)), "over": g.over,
 		"winner": g.winner if g.over else -1, "winner_side": (g.sides[g.winner] if g.over and g.winner >= 0 else -1),
-		"minutes": minutes, "final": endl, "events": events, "reads": reads, "riders_seen": _riders_count(),
+		"minutes": minutes, "final": endl, "events": events, "reads": reads, "riders_seen": _riders_count(), "tech_at": _tech_at,
 		"deaths": g.death_log if g.death_log != null else []}
 	var r := FileAccess.open(out.path_join("result.json"), FileAccess.WRITE)
 	r.store_string(JSON.stringify(res))

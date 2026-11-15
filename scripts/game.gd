@@ -4411,12 +4411,20 @@ func researching(t: int, key: String) -> bool:
 	return false
 
 
+## (keen-sabres-test, docs/keen_sabres_test.md) study switch `-- keensabres:off`: KEEN SABRES can't be researched by
+## anyone (the computer's generic research loop asks research_problem too). Measuring only; the default is unchanged.
+const KEEN_OFF_ARG := "keensabres:off"
+static var KEEN_OFF: bool = OS.get_cmdline_user_args().has(KEEN_OFF_ARG)
+
+
 func research_problem(b: Building, key: String) -> String:
 	var info: Dictionary = Defs.RESEARCH[key]
 	if not b.built or b.kind != info["at"]:
 		return "Can't research that here."
 	if has_tech(b.team, key):
 		return "Already done."
+	if key == "keen_sabres" and KEEN_OFF:
+		return "Not in this study."      # (keen-sabres-test: `-- keensabres:off`, docs/keen_sabres_test.md)
 	if researching(b.team, key):
 		return "Already in the queue."
 	if b.queue.size() >= 5:
