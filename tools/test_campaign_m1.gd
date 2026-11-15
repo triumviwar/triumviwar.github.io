@@ -2,7 +2,7 @@ extends SceneTree
 ## Campaign mission 1, "The Leaf and the Fire" (docs/campaign_m1_build.md): the mission's data checks out and every text
 ## has pt and es; the seats for solo / co-op / versus; the start (the plantation, the fort, the camps, the rebels' roles:
 ## the Pikeman's own strips, Varenne's name, the torches); part 1 at night (the waves come out of the fields, a torch
-## burns a barn, Varenne shouts, dawn with two barns or more); part 2 (the camps, the CHOICE: save the families or march on,
+## burns a barn, Varenne shouts, dawn with three barns or more); part 2 (the camps, the CHOICE: save the families or march on,
 ## each with its effect); part 3 (the gate, the canister hint pointing at the card, "Canister. On my word.", the charge
 ## broken: the mission is won, the ending's stills play, the choice is kept); the losses (the manor, every barn, too few
 ## barns at dawn); the opening's stills and lines; the voice hook.
@@ -315,10 +315,10 @@ func _run() -> void:
 	check("every barn burns: the mission is lost", g.over and r.winner_side == "rebels")
 	g = await _start("solo")
 	r = g.mission
-	_kill(r, "barns", 1)
+	_kill(r, "barns", 2)
 	_step(g, 481.0)
 	_step(g, 481.5)
-	check("one barn at dawn: the year is lost", g.over and r.winner_side == "rebels" and r.said_ids.has("f_ash"))
+	check("two barns at dawn: the year is lost", g.over and r.winner_side == "rebels" and r.said_ids.has("f_ash"))
 	# ---------------------------------------------------------------- co-op and versus (offline: the friend's side scripted)
 	g = await _start("coop")
 	r = g.mission

@@ -1178,7 +1178,7 @@
 			"primary": true,
 			"kind": "survive",
 			"time": 480,
-			"text": "Hold until dawn, with at least two barns standing."
+			"text": "Hold until dawn, with at least three barns standing."
 		},
 		{
 			"id": "camps",
@@ -1822,7 +1822,7 @@
 						"count": {
 							"tag": "barns",
 							"buildings": true,
-							"below": 2
+							"below": 3
 						}
 					}
 				]
@@ -1849,7 +1849,7 @@
 						"count": {
 							"tag": "barns",
 							"buildings": true,
-							"at_least": 2
+							"at_least": 3
 						}
 					}
 				]
