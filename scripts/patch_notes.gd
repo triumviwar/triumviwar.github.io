@@ -4,6 +4,11 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.16", "items": [
+		"FARMS AND COG PRESSES ARE COUNTED BY HALL: every Town Hall allows 2 Farms and 1 Powder Mill round it, every Clocktower 2 Cog Presses and 1 Mainspring, and each of these counts for the hall it draws from (its nearest finished one). A second hall no longer lets you put a third Farm or Cog Press by the first: build them by the new hall, where its fresh soil or brass is. Placing one by a full hall is refused with the reason (\"This Town Hall already has its Farms (2/2). Build near another Town Hall.\").",
+		"A Town Hall's card now reads FARMS 1/2 · POWDER MILL 0/1, a Clocktower's COG PRESSES 2/2 · MAINSPRING 1/1. A hall going up allows nothing until it stands; if a hall falls, its Farms or Presses go to the next nearest one and keep working, but no new one goes there until it is under its count. Saves with more by one hall keep them.",
+		"The Crown and Clockwork computers lay their Farms, Mills and Cog Presses by the hall that has room.",
+	]},
 	{"v": "0.38.15", "items": [
 		"BROOD, ROOTMAWS COUNTED LIKE FARMS: the Brood Mother's swamp holds 3 Rootmaws and each rooted Mound Turtle's swamp 2 (their circles still may not overlap). Her card and a turtle's read ROOTMAWS 2/3; a Rootmaw on a full swamp is refused with the reason. Each Rootmaw still holds 3,000 food (9,000 round her, 6,000 round a turtle).",
 		"BEST ROOTMAW SPOTS: gold marks on your own swamp show where the Rootmaws a swamp still has room for fit best, all of them together (near her or the turtle, on open level ground, clear of the ramps). Brighter while you place a Rootmaw, with each swamp's count over the Mother and the turtles. Only you see your own (Brood players only); nothing snaps, they only guide. Settings: SHOW ROOTMAW SPOTS. The Brood computer roots on the same spots.",
