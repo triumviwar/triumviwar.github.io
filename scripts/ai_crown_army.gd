@@ -137,11 +137,19 @@ func powder_wait() -> bool:
 func step_release() -> int:
 	if not ai.bo_army or ai.bo_army_first:
 		return 0
+	return idle_barracks() * int(Defs.UNITS["musketeer"]["cost"])
+
+
+## The built Barracks standing idle that could train a Musketeer now: its powder is in the bank (AICrownAmmo.musket_ok; the
+## gold is what the clock frees). One waiting for powder does not count: the labourers then go on (on 0.38.10, with the
+## Mills' hands sent to the Farms by the economy's rule, counting it held both the labourers and the soldiers: 123 s of
+## the first 6 minutes waiting for powder, the army half of before at 8:00).
+func idle_barracks() -> int:
 	var n := 0
 	for b in ai._mine("barracks"):
-		if b.built and b.queue.is_empty():
+		if b.built and b.queue.is_empty() and ai.am.musket_ok(b, "musketeer"):
 			n += 1
-	return n * int(Defs.UNITS["musketeer"]["cost"])
+	return n
 
 
 ## No Church bought for the natural's wall slot while the army is behind (AIExpandWall: a Church at 5:20 took two and a

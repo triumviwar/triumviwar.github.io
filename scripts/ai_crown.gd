@@ -996,7 +996,7 @@ func _think_stage(i: int) -> void:
 				var free: int = ca.step_release()
 				game.players[team]["gold"] += mini(free, held)
 				held -= mini(free, held)
-			if ca_behind() and not bo_army and not _breeder_first() and _mine("barracks").any(func(b: Building) -> bool: return b.built):
+			if ca_behind() and not bo_army and not _breeder_first() and ca.idle_barracks() > 0:
 				bo_army = true      # (crown-coach-army: behind the clock with a Barracks standing: the soldiers start now)
 				_bo_log("soldiers from now on (the army is behind the clock)")
 			if bo_army and (bo_army_cap <= 0 or _army_supply(game.army(team)) < bo_army_cap or ca_behind()) and not _breeder_first():
@@ -1282,8 +1282,9 @@ const DEF_MUSK := 6
 
 
 func _soldiers_first() -> bool:
-	if ca_behind() and (bo_army or bo_done) and _mine("barracks").any(func(b: Building) -> bool: return b.built and b.queue.is_empty()):
-		return true             # (crown-coach-army: the army behind the clock: a labourer only while every Barracks is busy)
+	if ca_behind() and (bo_army or bo_done) and ca.idle_barracks() > 0:
+		return true             # (crown-coach-army: the army behind the clock: a labourer only while every Barracks that can
+		                        # train a soldier now is busy)
 	if bo_army_first and _rush_raid_brood() and _labs_on_in_rush():
 		return false            # (crown-v-brood-coach: the hall never stops in the rush against the Brood)
 	if bo_army_first and (bo_army_cap <= 0 or _army_supply(game.army(team)) < bo_army_cap):
