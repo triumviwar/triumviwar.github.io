@@ -177,7 +177,23 @@ static func fit(g: Game, src: Unit, n := -1, skip: Unit = null) -> Array:
 	if n <= 0:
 		return []
 	var cands := candidates(g, src, skip)
-	return pick(cands, n, _fixed(g, t, skip))
+	var fixed := _fixed(g, t, skip)
+	# (the candidates are legal for a player's ROOT; the lanes rule the computer keeps too (BroodLayout, through
+	# place_problem with ai = true) is the slow part, so it is asked only of the spots a pick lands on: one that fails it
+	# is struck off and the pick made again)
+	for i in 8:
+		var got := pick(cands, n, fixed)
+		var bad := -1
+		BroodRoot.batch_begin(g, t)
+		for j in got.size():
+			if BroodRoot.place_problem(g, t, BroodNew.MAW, got[j], skip, true, 1.0, false) != "":
+				bad = j
+				break
+		BroodRoot.batch_end()
+		if bad < 0:
+			return got
+		cands = cands.filter(func(c: Array) -> bool: return c[0] != got[bad])
+	return []
 
 
 ## Every Rootmaw circle on the map that a new one must keep clear of (any side's open Rootmaws; side t's plans).
@@ -197,12 +213,11 @@ static func _fixed(g: Game, t: int, skip: Unit = null) -> Array:
 
 
 ## The legal spots under src's swamp, scored: [[feet, score], ...] best first.
-static func candidates(g: Game, src: Unit, skip: Unit = null) -> Array:
+static func candidates(g: Game, src: Unit, skip: Unit = null, ai := false) -> Array:
 	var t := src.team
 	var T := float(Defs.TILE)
 	var full := BroodNew.swamp_full(src)
 	var ck := BroodRoot.feet_k(g, t, src)          # (its feet in side t's first-start frame)
-	var sc := g.sym_rect(t, g.cell_of(ck), Vector2i.ONE)
 	var h := int(g.height[g.idx(g.cell_of(BroodRoot.anchor(g, src)))])
 	var home := BroodRoot.home_region(g, src.position)
 	var mid := BroodRoot.rect_of(src).get_center()          # (her footprint's middle)
@@ -220,8 +235,10 @@ static func candidates(g: Game, src: Unit, skip: Unit = null) -> Array:
 			seen[p] = true
 			if not covers(g, src, p) or not Rect2(Vector2.ZERO, Vector2(Game.W, Game.H) * T).grow(-T).has_point(p):
 				continue
-			if BroodRoot.place_problem(g, t, BroodNew.MAW, p, skip, true, 1.0, false) != "":
+			if BroodRoot.place_problem(g, t, BroodNew.MAW, p, skip, ai, 1.0, false) != "":
 				continue
+			if not ai and _by_ramp(g, p, fs):
+				continue          # (keep the ramps clear, as the computer does: quick; the lanes are asked in fit())
 			# (everything measured from the footprints, not the feet: the feet hang below a footprint's middle, so a
 			# mirrored start would score its twin spot differently)
 			var fc := BroodRoot.cell_for(BroodNew.MAW, p)
@@ -247,6 +264,15 @@ static func candidates(g: Game, src: Unit, skip: Unit = null) -> Array:
 	BroodRoot.batch_end()
 	out.sort_custom(func(a: Array, b: Array) -> bool: return float(a[1]) > float(b[1]))
 	return out
+
+
+static func _by_ramp(g: Game, p: Vector2, fs: Vector2i) -> bool:
+	var c := BroodRoot.cell_for(BroodNew.MAW, p)
+	for y in fs.y:
+		for x in fs.x:
+			if g._near_ramp(c + Vector2i(x, y)):
+				return true
+	return false
 
 
 ## The best set of up to n candidates a circle's width apart (and from the fixed circles): the most spots first, then the
@@ -297,6 +323,7 @@ static func circle_r() -> float:
 static func spots_for(g: Game, t: int) -> Array:
 	var out: Array = []
 	var a := assign(g, t)
+	var fixed := _fixed(g, t)
 	for s in sources(g, t):
 		if not BroodNew.rooted(s):
 			continue          # (its swamp starts once it is rooted)
@@ -305,33 +332,42 @@ static func spots_for(g: Game, t: int) -> Array:
 		if n <= 0:
 			continue
 		var i := 0
-		for p in fit(g, s, n):
+		for p in _fit_kept(g, s, n, fixed):
 			if BroodNew.maw_on_swamp(g, t, p) or BroodNew.swamp_coming(g, t, BroodRoot.rect_for(BroodNew.MAW, p).get_center()):
 				out.append({"p": p, "rank": 1 if i == 0 else 2, "src": s})
 				i += 1
 	return out
 
 
-## spots_for, kept while nothing that changes it has changed (the sources, every Rootmaw and plan, the grid): the marks
-## and the Brood computer ask for the same answer.
+## A source's fit(), kept while nothing it depends on has changed: where it stands and how far its swamp reaches, how
+## many it has room for, the Rootmaw circles and plans near its swamp; and looked at again every KEEP_S seconds (a
+## building or a rooted creature put down on a spot meanwhile: the computer checks each spot it uses anyway). Only the
+## sources with room cost anything: in a grown base most swamps are full.
+const KEEP_S := 15.0
 static var _sc := {}
 
 
-static func spots_cached(g: Game, t: int) -> Array:
-	var key := str(g.solid_log.size()) + "|"
-	for s in sources(g, t):
-		key += "%d:%s:%d:%s;" % [s.get_instance_id(), str(s.position), int(BroodNew.rooted(s)), str(BroodNew.swamp_full(s))]
-	for p in _fixed(g, t):
-		key += str(p)
-	var ck := [g.get_instance_id(), t]
+static func _fit_kept(g: Game, src: Unit, n: int, fixed: Array) -> Array:
+	var reach := (BroodNew.swamp_full(src) + circle_r() * 2.0 + 1.0) * Defs.TILE
+	var key := "%s:%d:%s:%d:%d|" % [str(src.position), int(BroodNew.rooted(src)), str(BroodNew.swamp_full(src)), n, int(g.clock / KEEP_S)]
+	for p in fixed:
+		if (p as Vector2).distance_to(src.position) < reach:
+			key += str(p)
+	var ck := [g.get_instance_id(), src.get_instance_id()]
 	var e = _sc.get(ck)
 	if e != null and String(e[0]) == key:
 		return e[1]
-	if _sc.size() > 16:
+	if _sc.size() > 64:
 		_sc.clear()
-	var got := spots_for(g, t)
+	var got := fit(g, src, n)
 	_sc[ck] = [key, got]
 	return got
+
+
+## The marks of side t now (the marks and the Brood computer ask for the same answer: spots_for with each source's fit
+## kept, _fit_kept).
+static func spots_cached(g: Game, t: int) -> Array:
+	return spots_for(g, t)
 
 
 ## Should the marks show at all: a Brood player (not watching, not the editor), Settings.rootmaw_spots on.
@@ -360,25 +396,13 @@ func _process(delta: float) -> void:
 		refresh()
 
 
-## What changes the marks: the side's sources (where, how far their swamp reaches), every Rootmaw and plan.
-func _state_key() -> String:
-	var t := game.human
-	var k := str(_placing) + "|"
-	for s in sources(game, t):
-		k += "%d:%s:%d:%s;" % [s.get_instance_id(), str(s.position), int(BroodNew.rooted(s)), str(BroodNew.swamp_full(s))]
-	for p in _fixed(game, t):
-		k += str(p)
-	return k
-
-
 func refresh() -> void:
 	var now: Array = []
-	var key := "off"
 	if active():
-		key = _state_key()
-		if key == _key:
-			return
 		now = spots_cached(game, game.human)
+	var key := str(_placing)
+	for e in now:
+		key += str(e["p"]) + str(e["rank"])
 	if key != _key:
 		_key = key
 		shown = now

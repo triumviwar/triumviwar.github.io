@@ -78,10 +78,10 @@ func _run(args: Array) -> void:
 				# (the spots are looked for once with a tiny circle, so no circle rules them out; the radius is applied
 				# in the fitting: RootmawSpots.pick)
 				RootmawSpots.r_test = 0.25
-				var c_start := RootmawSpots.candidates(g, q, start_maw)
+				var c_start := RootmawSpots.candidates(g, q, start_maw, true)
 				var spot := start_maw.position
 				_drop(g, start_maw)
-				var c_empty := RootmawSpots.candidates(g, q)
+				var c_empty := RootmawSpots.candidates(g, q, null, true)
 				var lvl := int(g.height[g.idx(g.cell_of(BroodRoot.anchor(g, q)))])
 				var reg := BroodRoot.home_region(g, q.position)
 				for r in radii:
@@ -121,7 +121,7 @@ func _run(args: Array) -> void:
 					tu.nb["m"] = "deployed"
 					BroodRoot.footprint_on(g, tu, false)
 					RootmawSpots.r_test = 0.25
-					var ct := RootmawSpots.candidates(g, tu)
+					var ct := RootmawSpots.candidates(g, tu, null, true)
 					for r in radii:
 						RootmawSpots.r_test = r
 						tres[r].append(RootmawSpots.pick(ct, 2, [spot]).size())
