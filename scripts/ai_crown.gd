@@ -647,6 +647,12 @@ func ca_slot_waits(kind: String) -> bool:
 	return ca.slot_waits(kind)
 
 
+func ca_dry_ok() -> bool:
+	if ca == null:
+		ca = AICrownArmy.new(self)
+	return ca.dry_ok()
+
+
 func ca_powder_wait() -> bool:
 	if ca == null:
 		ca = AICrownArmy.new(self)
@@ -750,6 +756,9 @@ func wall_first() -> bool:
 		return false            # (crown-v-clockwork-coach: the two-hall Timing's natural wall comes first too)
 	if _defending() or army_lags():
 		return false
+	if ca_behind() and ca.idle_barracks() > 0:
+		return false            # (crown-coach-army: behind the clock with a Barracks that can train: the soldiers' gold first;
+		                        # on the Economy plan the natural's palisade took it with no army at 5:00 against 460)
 	# (crown-v-brood-coach round 6: NOT held for the army as round 4 tried: with the ring late the army had no gate post at
 	# the natural and held the main's ramp top while the Brood ate the natural below (Amberfall Vale, 7:20-9:08: "against
 	# the force below (375) its army (639) goes down only at 750"); a closed palisade with the line behind it traded 2 to 1
@@ -1182,6 +1191,17 @@ func _bo_tick() -> void:
 		bo_reserve = c
 		return
 	_bo_replace_dropped()
+	if ca_behind() and ca.mill_first(_bo_plan.slice(bo_i)):
+		# (crown-coach-army: behind the clock with a Barracks and no Powder Mill: the plan's Mill step comes now, the
+		# Musketeers' powder; on the Economy plan the Mill came at 3:50-4:20 and the army was 0 at 5:27 against 460)
+		var mc := int(Defs.BUILDINGS["powder_mill"]["cost"])
+		if _gold() >= mc:
+			_construct("powder_mill")
+			if not _mine("powder_mill").is_empty():
+				_bo_log("Powder Mill 1 now (the army is behind the clock: the Musketeers' powder)")
+				return
+		bo_reserve = mc
+		return
 	_bo_hall_on_time()
 	while bo_i < _bo_plan.size():
 		var st: Dictionary = _bo_plan[bo_i]
@@ -1799,6 +1819,9 @@ func _mill_cap_plan() -> int:
 			per = int(e[1])
 	if _defending():
 		per = maxi(per, 3)      # (the Musketeers' powder while a rush is feared)
+	elif ca_behind() and ca_powder_wait():
+		per = maxi(per, 3)      # (crown-coach-army: behind the clock and a Barracks waiting for powder: the Economy plan's
+		                        # two hands left it at 2-41 powder from 3:45 to 5:00 with 478 gold in the bank)
 	if vb_line_short():
 		per = maxi(per, 4)      # (crown-coach-v-brood: the line's powder against the Brood, 10 a Musketeer)
 	if per <= 0 or mills == 0:

@@ -40,6 +40,9 @@ func musket_ok(b: Building, kind: String) -> bool:
 		return true
 	if _hold_dry():
 		return true             # (a rush at the gate and no Mill yet: a bayonet now, the shots when the Mill grinds)
+	if ai.has_method("ca_dry_ok") and ai.ca_dry_ok():
+		return true             # (crown-coach-army: the army behind the clock and the Mill only starting: a bayonet now, the
+		                        # shots when it grinds; scripts/ai_crown_army.gd dry_ok)
 	return b.arm_powder and ai._res2() >= float(Defs.ammo_load(kind))
 
 

@@ -144,10 +144,15 @@ func step_release() -> int:
 ## gold is what the clock frees). One waiting for powder does not count: the labourers then go on (on 0.38.10, with the
 ## Mills' hands sent to the Farms by the economy's rule, counting it held both the labourers and the soldiers: 123 s of
 ## the first 6 minutes waiting for powder, the army half of before at 8:00).
+## A Barracks with fewer than ROOM soldiers queued has room (one queued trains for 15 s while the gold of that harvest went
+## to labourers and walls: 2 Musketeers from 4:00 to 5:00 with 458 gold in the bank at 4:00).
+const ROOM := 2
+
+
 func idle_barracks() -> int:
 	var n := 0
 	for b in ai._mine("barracks"):
-		if b.built and b.queue.is_empty() and ai.am.musket_ok(b, "musketeer"):
+		if b.built and b.queue.size() < ROOM and ai.am.musket_ok(b, "musketeer"):
 			n += 1
 	return n
 
@@ -157,3 +162,28 @@ func idle_barracks() -> int:
 func slot_waits(kind: String) -> bool:
 	return kind == "church" and behind()
 
+
+## THE MILL BEFORE ITS STEP (AICrown._bo_tick): behind the clock, with a Barracks built and no Powder Mill (nor its site), the
+## opening's own Powder Mill step (still to come in `steps`) is laid now. Not on a plan without one (the Horseman rush), nor
+## while its riders come first.
+func mill_first(steps: Array) -> bool:
+	if ai.bo_army_first or not ai._mine("powder_mill").is_empty():
+		return false
+	if not ai._mine("barracks").any(func(b: Building) -> bool: return b.built):
+		return false
+	return steps.any(func(st: Dictionary) -> bool: return String(st.get("do", "")) == "build" and String(st.get("k", "")) == "powder_mill")
+
+
+## A MUSKETEER WITH HIS BAYONET NOW (AICrownAmmo.musket_ok, the owner's ammunition rule: trained with gold only he comes out
+## with no shots and fills up at a reloading point when the powder comes): behind the clock, with a Powder Mill laid or
+## standing but under a Musketeer's load in the bank. The Economy plan's Mill stood at 3:45 and its first Musketeer came at
+## 5:35, 450 gold in the bank at 4:00 waiting for 10 powder while the Clockwork's push walked over. `-- crownarmy:nodry` off.
+var dry_off := OS.get_cmdline_user_args().has("crownarmy:nodry")
+
+
+func dry_ok() -> bool:
+	if dry_off or not behind():
+		return false
+	if ai._res2() >= float(Defs.ammo_load("musketeer")):
+		return false
+	return not ai._mine("powder_mill").is_empty()
