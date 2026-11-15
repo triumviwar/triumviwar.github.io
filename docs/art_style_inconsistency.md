@@ -714,3 +714,11 @@ joint (E/SE/S), wrecks and card icons are the owner's pictures (tools/serpent/im
 - `assets/icons/research_keen_sabres.png`: the Cavalry Charge's icon (research_charge) mirrored and tinted steel blue in
   code (PIL). To redraw: a pair of crossed cavalry sabres being ground on a whetstone, a bright edge glint, the same
   icon frame and size (64x64) as the other Crown research icons.
+
+## LONG CHAIN research icon (code, 0.38.19; docs/escapement_research.md)
+- Placeholder command icon drawn in code (CwArt._ability_glyph "research_long_chain": a diamond chain net with brass
+  weights at its corners over a long spark-coloured arrow on the dark Clockwork tile) until
+  `assets/icons/clockwork/research_long_chain.png` is painted (it drops in with no code: the HUD takes the file first).
+  Prompt idea for ChatGPT: "64x64 game command icon in the style of the other Clockwork research icons (research_high_leap,
+  research_shield): a weighted brass-and-iron chain net flung far through the air from a small spring cannon, a long arrow
+  under it showing reach; dark slate background, brass trim, no text."
