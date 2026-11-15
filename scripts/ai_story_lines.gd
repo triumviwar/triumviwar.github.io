@@ -172,7 +172,7 @@ const RULES := [
 	["^sets a Horseman as a picket", "%s sets a Horseman as a picket on the road ahead of its post.", 1, "defend"],
 	["^'s picket sees a force coming \\((\\d+): (\\d+) soldiers\\)", "%s's picket sees a force coming (%s, %s soldiers) and rides back to warn the post.", 2, "defend"],
 	["^'s picket is lost", "%s loses its picket.", 1, "defend"],
-	["^sees a push coming: (\\d+) soldiers worth (\\d+), (\\d+) tiles from its nearest building, against (\\d+) of army at home", "%s sees a push coming (%s soldiers worth %s, %s tiles out, against %s of its army at home) and gets ready: soldiers first, the balloons stay home.", 2, "defend"],
+	["^sees a push coming: (\\d+) soldiers worth (\\d+), (\\d+) tiles from its nearest building, against (\\d+) of army at home", "%s sees a push coming (%s soldiers worth %s, %s tiles out, against %s of its army at home) and gets ready: soldiers first while it is behind, the balloons stay home.", 2, "defend"],
 	["^the push it saw coming is gone or held", "%s: the push it saw coming is gone or held; back to its plan.", 1, "defend"],
 	["^calls its wave home: the push coming \\((\\d+)\\) is more than the army at home \\((\\d+)\\) can beat; the wave \\((\\d+)\\)", "%s calls its wave home: the push coming (%s) is more than its army at home (%s) can beat, and the wave (%s) meets it at home.", 2, "defend"],
 	["^musters at its hall: the force at its buildings \\((\\d+)\\) is more than its army at home \\((\\d+)\\)", "%s gathers its army at its hall, out of reach: the force at its buildings (%s) is more than its army (%s) can beat one by one.", 2, "defend"],

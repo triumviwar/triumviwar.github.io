@@ -144,7 +144,7 @@ func tick() -> void:
 			alert = true
 			alert_t = game.clock
 			alerts += 1
-			_say("sees a push coming: %d soldiers worth %d, %d tiles from its nearest building, against %d of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)" % [n, int(force), int(nearest / T), int(home)])
+			_say("sees a push coming: %d soldiers worth %d, %d tiles from its nearest building, against %d of army at home: it gets ready (soldiers before labourers while it is behind, the balloons stay home, the army waits at its post)" % [n, int(force), int(nearest / T), int(home)])
 			_recall()
 		if coming > 0.0:
 			_recall_wave(coming, coming_c / coming, home)
@@ -237,9 +237,14 @@ func _boarding() -> void:
 				break
 
 
-## (AICrown._army_due) soldiers before labourers while the alert lasts.
+## (AICrown._army_due) soldiers before labourers while the alert lasts and the force coming is more than the army at home
+## (the first batch had it for the whole alert: 4-6 minutes of a 12-minute game while the Clockwork's push stood short of
+## the Crown's main, and the Crown earned 9% less).
+const SOLDIERS_K := 1.0
+
+
 func wants_soldiers() -> bool:
-	return active() and warn_on and alert
+	return active() and warn_on and alert and _coming >= _home_v * SOLDIERS_K
 
 
 ## (AICrown.party_wait) no balloon party forms while the alert lasts (or BOARD_REST s after one was called off).
