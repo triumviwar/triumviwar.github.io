@@ -207,8 +207,10 @@ const PLANS := {
 		"mid": [["barracks", 1, {}], ["foundry", 1, {}], ["horse_breeder", 1, {}], ["barracks", 2, {"halls": 2}],
 			["barracks", 3, {"labs": 26}], ["barracks", 4, {"labs": 32}], ["church", 1, {"labs": 38, "halls": 2}],
 			["armoury", 1, {"labs": 42}], ["foundry", 2, {"labs": 44, "halls": 3}]],
-		# (crown-coach-v-brood, AICrownVBrood part 5: against the Brood the Economy race keeps its hall at 11 but grinds powder
-		# before it, so the line's first Musketeers come by 4:30 and the Field Cannon right behind; `-- cvbopen:off` as before)
+		# (crown-coach-v-brood, a STUDY SWITCH `-- cvbopen:on`: against the Brood the Economy race keeps its hall at 11 but
+		# grinds powder before it, so the line's first Musketeers come by 4:30. Not the default: it breaks the owner's own
+		# Economy opening (crown-owner-eco: no Barracks before the second hall unless a rush is scouted; test_crown_owner_eco),
+		# and it was only measured with the wide keep (docs/crown-coach-v-brood.md section 4))
 		"bo_brood_cvb": [
 			{"do": "wall_cottage", "at": {"sup": 5}},
 			{"do": "wall_gate", "at": {"sup": 5}},
@@ -595,7 +597,7 @@ func _make_plan() -> void:
 	plan = (PLANS.get(strategy, PLANS["balanced"]) as Dictionary).duplicate(true)
 	if plan.has("bo_brood_cvb"):
 		var cvb_args := OS.get_cmdline_user_args()
-		if not (cvb_args.has("cvb:off") or cvb_args.has("cvbopen:off")):
+		if cvb_args.has("cvbopen:on") and not cvb_args.has("cvb:off"):
 			plan["bo_brood"] = plan["bo_brood_cvb"]      # (crown-coach-v-brood: the Economy race's opening against the Brood)
 		plan.erase("bo_brood_cvb")
 	if OS.get_cmdline_user_args().has("owner:off") and plan.has("bo_old"):

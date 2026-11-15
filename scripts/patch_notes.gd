@@ -6,7 +6,6 @@ extends RefCounted
 const NOTES := [
 	{"v": "0.38.2", "items": [
 		"CROWN COMPUTER AGAINST THE BROOD: after its Horseman rush it no longer leaves its Barracks idle while it builds walls, Farms and a Church: its musket line (Musketeers and cannon, not the riders out raiding) now keeps up with the Brood's coming waves, and that gold comes before new buildings. Its Powder Mills grind for that line, and no Church goes up before 10:00.",
-		"When it picks the Economy race against the Brood, the Crown computer now builds its Powder Mill before its second Town Hall, so its first Musketeers are ready sooner.",
 	]},
 	{"v": "0.38.1", "items": [
 		"THE LONE PIPER'S SCOTLAND THE BRAVE is now a real recording of a solo bagpiper (about four minutes) instead of the generated one.",

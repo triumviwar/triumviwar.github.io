@@ -81,7 +81,6 @@ labourers too): section 4.
 | 1 | **THE LINE BEFORE THE BUILDINGS.** From 4:00 the home line (Musketeers, Field Cannons, Mortars: not the riders) keeps up with a floor by the clock, `LINE_TABLE`: 300 at 5:00, 900 at 6:30, 1,200 at 7:30, 1,900 at 10:00, 2,600 at 12:00, never more than 45 gold a labourer (600 at least). While it is short: two Musketeers' gold (and a Field Cannon's when a Foundry with a horse stands idle and there are more than 4 Musketeers a gun) is kept from the Farms (`_econ_build`), the milestones (`_build_up`) and the natural's palisade (`brood_wall_keep`); the halls train a labourer only when every Barracks is busy (`_army_due`); the milestones are held as when the army lags (`brood_spend_army`); no more riders (`_riders_wait`), and the rush's riders-only Barracks trains Musketeers (`_rush_horse_only`). Not while the supply is full. | `AICrownVBrood.line_short/line_keep` | `cvbline:off` | Highmoor 1103, 5:05-7:21 |
 | 2 | **THE LINE'S POWDER.** While the line is short the Mill's crew grows (an idle Barracks for want of powder counts as wanting it), and in the opening the Mill has at least 4 hands. | `AICrown._mill_feedback`, `_mill_cap_plan` | `cvbline:off` | the powder stall |
 | 3 | **NO CHURCH BEFORE THE LINE**: against the Brood no Church before 10:00 or while the line is short (the plans' own milestones put it up at 34-40 labourers on two halls). | `AICrown._construct`, `AICrownVBrood.church_waits` | `cvbline:off` | the Church at 4:00-5:55 |
-| 4 | **THE ECONOMY RACE GRINDS POWDER FIRST** (only when OPTIMAL picks the Economy race against the Brood, or a study plays it): the Barracks at 8 and the Powder Mill at 9 labourers before the second hall at 11, so its first Musketeers can come by 4:30. | `PLANS["economy"]["bo_brood_cvb"]` | `cvbopen:off` | the Economy race's army of 0 until 6:00 (section 4) |
 
 The AI STORY has rows for the new log lines (`scripts/ai_story_lines.gd`, pt and es in `tools/i18n/49_spectator.txt`): the
 line before the buildings, and the counter's two lines (study switch).
@@ -90,7 +89,7 @@ line before the buildings, and the counter's two lines (study switch).
 
 | time | what happened |
 |---|---|
-| 0:00-5:00 | The same lean, read and rush; the riders out at ~4:05. From 4:00 the line is "short" and says so ("the line comes before more buildings: 60 of Musketeers and guns against the 309 it wants by now"). The first Musketeer at ~4:50 (7:21 before), no Church. |
+| 0:00-5:00 | The same lean, read and rush; the riders out at ~4:05. From 4:00 the line is "short" and says so ("the line comes before more buildings: 60 of Musketeers and guns against the 309 it wants by now"). The first Musketeer at 4:35 (7:21 before), no Church. |
 | 6:05-7:05 | **The new fault the film shows**: halls 0/2, Barracks 0/1, Foundry 0/1, all idle, the bank at 10-50 gold with 84-121 powder; 11-12 of the 24 labourers on "build" orders laying the natural's palisade, the Farms manned 8 of 24, so **the gold earned stood still for a minute** (4,180 at 6:05, 4,560 at 7:05: one harvest). The line had 3 Musketeers. |
 | 8:19-9:19 | The Brood's wave (57 supply, Brutes and Challengers) at the natural: the line (13 Musketeers, 2 guns) holds behind the palisade and the guns fire over it (`a1`): 950 killed for 115 by 9:05, 1,900 for 275 by 10:05. Army 2,080 at 10:05 (the "before" film had lost both halls by then). |
 | 10:18-11:05 | The Brood's next wave at its cap (101 supply, 78 Raptors) comes through a gap at the end of the palisade where the army stands packed, not in a line (`a2`): 1,760 lost in a minute. Alive at 12:00 with a third hall, 890 of army. |
@@ -107,7 +106,7 @@ line before the buildings, and the counter's two lines (study switch).
 | **after: this branch's default** | - | `after` | **0-5-11** | **0.42 / 0.27** | 0.59 | 0.52 | |
 | + the counter after a held wave + the far-ground target | `cvbcounter:on,cvbtarget:on` | `final_with_counter` | 0-4-12 | 0.36 / 0.34 | 0.65 | 0.55 | no gain; see below |
 | the Economy race instead of the rush (an earlier cut with the line) | `truegreed:on,leanfree:on` | `econrace_noline` | 0-5-11 | 0.54 / 0.45 | **0.81** | **0.83** | the army 0 at 4:00 and 0.22 at 6:00; the Brood's army at 8:00 1,964 on average against 1,214 with the riders out |
-| the Economy race + the line kept from the labourers too | `truegreed:on,leanfree:on,cvbkeep:wide` | `econrace_widekeep` | 0-2-14 | 0.16 / 0.05 | 0.63 | 0.68 | the income fell, the army was no bigger |
+| the Economy race + the line kept from the labourers too + its powder before the second hall | `truegreed:on,leanfree:on,cvbkeep:wide,cvbopen:on` | `econrace_widekeep` | 0-2-14 | 0.16 / 0.05 | 0.63 | 0.68 | the income fell, the army was no bigger |
 
 - **The riders stay (the owner's rule, v a greedy Brood the Horse Breeder).** The Economy race earned far more (0.81 of the
   Brood's at 10:00 against 0.59-0.68, the labourers 0.83 of the Brood's at 8:00) but **the Brood's own army at 8:00 was 60%
@@ -115,6 +114,11 @@ line before the buildings, and the counter's two lines (study switch).
   rush batches): three to six Horsemen at its Rootmaws keep 15-20 of its warriors standing guard over the grubs ("guards its
   grubs where the riders are with 16 warriors against 3 riders, no chase"), and the grubs stop working while they are there.
   The riders' worth is in the Brood's economy, as econ-coach-crown found.
+- **The Economy race grinds powder first** (`cvbopen:on`, `PLANS["economy"]["bo_brood_cvb"]`): against the Brood the Barracks
+  at 8 and the Powder Mill at 9 labourers before the second hall at 11, so the race's first Musketeers come by 4:30 (its
+  army was 0 at 4:00 in `econrace_noline`). Not the default: it breaks the owner's own Economy opening (crown-owner-eco: no
+  Barracks before the second hall unless a rush is scouted; `test_crown_owner_eco` fails with it on), and it was measured
+  only together with the wide keep.
 - **The line kept from the labourers** (`cvbkeep:wide`: the line's gold kept from everything the think stages 0 and 1 spend,
   the opening's steps too, and the opening's army cap passed by): the halls stood idle, income at 10:00 fell from 0.81 to 0.63
   of the Brood's, and the army was no bigger (0.16 at 10:00). Measured with the Economy race and the earlier Mill, so it is
@@ -169,7 +173,7 @@ TESTS_RESULT
    measured worse); the halls still wait while a Barracks is idle, as `_army_due` did before.
 3. **No Church before 10:00 against the Brood.**
 4. **The rush stays the answer to the Brood's usual opening** (the owner's rule): measured against the Economy race, it holds
-   the Brood's army down by about a third at 8:00. The Economy race's opening against the Brood now grinds powder before its
-   second hall (used when the read is too late for the riders, or by a study).
+   the Brood's army down by about a third at 8:00. The Economy race's own opening is untouched (its powder-first variant is a
+   study switch, `cvbopen:on`).
 5. **The counter after a held wave and the far-ground target are off** (study switches): built and measured, no gain yet;
    the next try is in section 6 item 4.
