@@ -29,7 +29,18 @@ func _ready() -> void:
 func _draw() -> void:
 	var r := Rect2(Vector2.ZERO, size)
 	if _tex:
-		draw_texture_rect(_tex, r, false)
+		# never stretched (the owner, 2026-11-15: the prologue's still was squashed): the whole painting at its own shape,
+		# centred, and the room round it filled by the same painting covering the box, dimmed (no empty bars)
+		var ts := _tex.get_size()
+		if ts.x <= 0.0 or ts.y <= 0.0 or size.x <= 0.0 or size.y <= 0.0:
+			return
+		var cover := maxf(size.x / ts.x, size.y / ts.y)
+		var src := Rect2((ts - size / cover) * 0.5, size / cover)
+		draw_texture_rect_region(_tex, r, src, Color(0.22, 0.21, 0.2))
+		var fit := minf(size.x / ts.x, size.y / ts.y)
+		var dst := Rect2((size - ts * fit) * 0.5, ts * fit)
+		draw_texture_rect(_tex, dst, false)
+		draw_rect(dst.grow(1.0), Color(0.48, 0.35, 0.19, 0.9), false, 2.0)
 		return
 	# the placeholder: a parchment card, a dawn sky, two hills, a banner on its pole
 	draw_rect(r, Color("#d9c49a"))
