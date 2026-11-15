@@ -88,9 +88,9 @@ Choices made at the import (for the owner):
   there (S is symmetric).
 - **SE**: the bottom row's 3rd frame reaches out with the wrong arm and SE is not symmetric: its 2nd frame (the
   telegraph) is held one frame longer instead.
-- **NE**: both rows swing the viewer's RIGHT arm (attack_r's). Mirroring would show the NW body for the length of the
-  blow, so the bottom row is kept as drawn: in NE both high swings are on the same arm. A ChatGPT redo of the NE LEFT arm
-  (the viewer's left) would fix it (same prompt, art/redraws/pendulum_high_swing_ne_chatgpt.png's top row as reference).
+- **NE**: both rows of its sheet swing the viewer's RIGHT arm (attack_r's): attack_hi_r takes the top row. attack_hi_l comes
+  from its own one-row sheet, art/redraws/pendulum_high_swing_ne_left_chatgpt.png (the owner's redo, 2026-11-15 21:50; its
+  frame 4 had three arms in ChatGPT's first try and was fixed in the same chat), via SHEET_ARM in the import tool.
 - **N**: the top row swings the viewer's LEFT arm (attack_l's in N) and the bottom row mixes both arms: attack_hi_l is the
   top row and attack_hi_r the same row mirrored (N is symmetric from behind).
 - **E**: one row for both arms (the far arm is hidden behind the body).

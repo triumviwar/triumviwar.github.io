@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.21", "items": [
+		"The Pendulum's high swing at flyers now alternates arms in the back-diagonal view too (it always swung the same arm there).",
+	]},
 	{"v": "0.38.20", "items": [
 		"CAMPAIGN: the Prologue's briefing painting (the Governor on the manor steps) loses a stray second musket standing on the steps beside a soldier's hand.",
 	]},
