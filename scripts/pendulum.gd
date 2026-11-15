@@ -8,7 +8,10 @@ extends RefCounted
 ## 1-2: the telegraph), its blade's edge turned at the enemy, then sweeps forward and across just above the ground in
 ## front of its feet, through where small enemies stand, and lands on the 4th frame: every enemy on the ground in the
 ## ARC in front of it takes the blow (never its own side: the machine's units keep in step with the swing), a LIGHT unit
-## (tag "light") more (PENDULUM_SWING "vs_light"), and a building it swings at takes it too. It cannot reach flyers. It is
+## (tag "light") more (PENDULUM_SWING "vs_light"), and a building it swings at takes it too. FLYERS (pendulum-air, owner
+## 2026-11-15, docs/pendulum_air.md): every swing also cuts every enemy flyer in the same arc, for PENDULUM_SWING "vs_air"
+## (3/4) of the blow, the light bonus on top (a light flyer: x0.75 x1.5); it may pick a flyer as its target (Defs "anti_air":
+## the nearest enemy, ground or air; no research). It is
 ## made only at the HEAVY WORKS (0.14.94), which always runs on its BIG gear (the heavy torque: gear_problem, Game.can_train);
 ## each building keeps the gear it is built with (no gear swap since 0.24.4).
 ## Art: tools/import_tier3.py (the idle, the walk and the two low sweeps built in code from ChatGPT's direction sheet,
@@ -64,12 +67,18 @@ static func light_bonus(o: Unit) -> float:
 	return float(Defs.PENDULUM_SWING["vs_light"]) if o.has_tag("light") else 1.0
 
 
-## Every enemy unit on the ground the swing of unit u toward `dir` catches.
+## What share of the blow unit o takes: a flyer PENDULUM_SWING "vs_air" (3/4: the blade reaches up for it, pendulum-air),
+## times the light bonus; one on the ground the light bonus alone.
+static func blow_k(o: Unit) -> float:
+	return light_bonus(o) * (float(Defs.PENDULUM_SWING["vs_air"]) if o.is_air() else 1.0)
+
+
+## Every enemy unit the swing of unit u toward `dir` catches, on the ground or in the air (pendulum-air: flyers too).
 static func victims(u: Unit, dir: Vector2) -> Array:
 	var g := u.game
 	var out: Array = []
 	for o in g.units_near(u.position, float(Defs.PENDULUM_SWING["reach"]) + 40.0):
-		if o == u or o.dead or o.off_field or o.is_air() or o.untouchable() or not g.hostile(o.team, u.team) or o._k_serp:
+		if o == u or o.dead or o.off_field or o.untouchable() or not g.hostile(o.team, u.team) or o._k_serp:
 			continue
 		if in_arc(u, o, dir):
 			out.append(o)
@@ -82,7 +91,7 @@ static func victims(u: Unit, dir: Vector2) -> Array:
 
 ## The blow (Unit._strike: dmg with its veterancy, and the building bonus already in when it swings at a building): every
 ## enemy unit in the arc takes the blow (an area blow: a rider's horse goes down with him), a light one with its bonus
-## (light_bonus); the building takes its building bonus.
+## (light_bonus), a flyer 3/4 of it (blow_k); the building takes its building bonus.
 ## Returns how many units it caught.
 static func swing(u: Unit, e: Entity, dmg: float) -> int:
 	var g := u.game
@@ -92,8 +101,9 @@ static func swing(u: Unit, e: Entity, dmg: float) -> int:
 	var ps: Dictionary = Defs.PENDULUM_SWING
 	g.area_mark("wedge", u.team, u.position, dir, float(ps["reach"]), deg_to_rad(float(ps["arc"])), "steel", GroundMarks.STRIKE, false, false, u.arm % 2, true)
 	var on_units := dmg / float(u.d.get("building_bonus", 1.0)) if e is Building else dmg
+	u.last_air_hits = hit.filter(func(o: Unit) -> bool: return o.is_air()).size()
 	for o in hit:
-		o.take_damage(on_units * light_bonus(o), u, "")
+		o.take_damage(on_units * blow_k(o), u, "")
 		if o.visible and g.view_rect.has_point(o.position):
 			g.spawn_effect("hit", o.center() + Vector2(randf_range(-4, 4), randf_range(-4, 4)), 0.7)
 	if e is Building and is_instance_valid(e) and not e.dead:

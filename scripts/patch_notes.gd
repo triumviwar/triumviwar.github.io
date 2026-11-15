@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.3", "items": [
+		"THE PENDULUM HITS FLYERS: every swing of the Clockwork's Pendulum now also cuts every enemy flyer in the same arc in front of it, for three quarters of the blow (light flyers such as Balloons and Hatchlings still take the light bonus on top). No research needed. It picks a flyer as its target when no enemy on the ground is nearer, and it never hits your own flyers.",
+		"The Clockwork computer counts its Pendulums against enemy flyers: with flyers about it makes Pendulums sooner and a few Swifts fewer.",
+	]},
 	{"v": "0.38.2", "items": [
 		"The CLOCKWORK LAB is gone from the EDITOR menu and from Settings > EXPERIMENTAL.",
 	]},

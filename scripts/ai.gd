@@ -4818,7 +4818,8 @@ func _produce() -> void:
 		# on Clock Soldiers)
 		# (the Heavy Works first: its Pendulums and Spring Ballistas, 0.14.94; a Pendulum for every 6 others, up to 4, once
 		# three Springers are out or Tension piles up; the Ballistas as _ballista_want says)
-		var want_p: bool = pends < mini(4, 1 + others / 6) and (springers >= 3 or flush)
+		# (pendulum-air: its blades reach flyers too, so enemy flyers seen (two or more) bring it without the Springers first)
+		var want_p: bool = pends < mini(4, 1 + others / 6) and (springers >= 3 or flush or _foe_air() >= 2)
 		# (clock-ai-swarm: against a swarm the Pendulums come first, without waiting for Springers: AISwarm.pend_want)
 		# (and against the Brood, whose staple is light melee, two Pendulums as soon as the yard stands, swarm seen or not: its
 		# Raptors mass at home, out of sight, until they come: the swarm was "seen" at 7:00 in most test games)
@@ -4901,6 +4902,10 @@ func _produce() -> void:
 				var swifts: int = army.filter(func(u: Unit) -> bool: return u.kind == Defs.CUCKOO).size() + av.queue.count(Defs.CUCKOO)
 				var fa := _foe_air()
 				var want := mini(6, fa + 1) if fa > 0 else (2 if game.has_tech(team, "owl_morph") else 0)
+				if fa > 0 and pends > 0:
+					# (pendulum-air: a Pendulum cuts flyers in its arc too; it counts as half a Swift (it is slow and only
+					# reaches what comes to it), and two Swifts stay to chase what keeps away)
+					want = maxi(mini(2, want), want - pends / 2)
 				if swifts < want and game.can_train(av, Defs.CUCKOO) == "":
 					game.train(av, Defs.CUCKOO)
 		return
@@ -8077,8 +8082,8 @@ func _netter_aim(u: Unit) -> void:
 
 
 ## Gear mode (Hard): a Pendulum's blades cut every enemy in the arc in front of it, the light ones hardest: one that is
-## not at a blow already walks into the thickest knot of enemy foot soldiers close by (three or more together, on its
-## own level), not at a lone one. True when it was sent.
+## not at a blow already walks into the thickest knot of enemy soldiers close by (three or more together, on its own
+## level, or flyers: pendulum-air), not at a lone one. True when it was sent.
 func _pendulum_aim(u: Unit) -> bool:
 	if u.siege_t > 0.0 or u.phase != "" or not u.order in ["idle", "amove"]:
 		return false
@@ -8087,8 +8092,9 @@ func _pendulum_aim(u: Unit) -> bool:
 	var lv := game.level_of(u.position)
 	var best: Unit = null
 	var bn := 2
-	var near: Array = game.units_near(u.position, 240.0).filter(func(o: Unit) -> bool: return not o.dead and not o.off_field and not o.is_air() \
-			and game.hostile(o.team, team) and not o.is_worker() and game.level_of(o.position) == lv)
+	# (pendulum-air: flyers too, a knot of Hatchlings over the fight; they take 3/4 of the blow, so they count for it)
+	var near: Array = game.units_near(u.position, 240.0).filter(func(o: Unit) -> bool: return not o.dead and not o.off_field \
+			and game.hostile(o.team, team) and not o.is_worker() and (o.is_air() or game.level_of(o.position) == lv) and u.can_hit(o))
 	for o in near:
 		var n := 0
 		for q in near:
