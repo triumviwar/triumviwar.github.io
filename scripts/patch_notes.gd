@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.8", "items": [
+		"THE CROWN COMPUTER RUNS ITS ECONOMY BETTER (Hard, Normal): its Powder Mill hands go to the empty Farm posts while the powder piles up, its halls keep two labourers coming while Farm posts stand free (their gold no longer goes to the soldiers and buildings first; never in the Horseman rush or against the Brood), an enemy worker scouting the base no longer stops that, the second hall no longer waits behind the plan's other steps (not against the Brood), and a new hall gets its Farm at once. Against the Clockwork it earns about a tenth more by 8:00-10:00, with more labourers and the same army.",
+	]},
 	{"v": "0.38.7", "items": [
 		"CROWN COMPUTER, BALLOON HARASS: a balloon no longer flies out empty. It waits behind its Town Hall until its Musketeers are aboard; a raid party forms only while the main base is quiet; the Musketeers walk to the balloon on attack-move and climb in only once it is there, and an attack on the main calls the raid off instead of sending them out into it. A balloon that is hit on the way or caught under fire comes home round the anti-air it knows, and a labourer mends it. It also fears the Clock Aviary, and strikes where the enemy army is not.",
 		"Against the Clockwork the OPTIMAL Crown computer now picks the Balloon harass about a third of the time (it was a fifth).",

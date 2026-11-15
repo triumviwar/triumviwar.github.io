@@ -57,6 +57,9 @@ static var GREEDY_CLOCK_TRY := _arg("greedyclock:")
 ## (crown-coach-balloon, study switch: `-- normalclock:balloon` makes the Crown's pick on a NORMAL read of the Clockwork that
 ## plan, to measure the plans against each other in that matchup; docs/crown-coach-balloon.md)
 static var NORMAL_CLOCK_TRY := _arg("normalclock:")
+## (crown-coach-economy, study switch: `-- optnormal:balloon` makes a Crown's NORMAL read pick that plan, to replay a game
+## whose dice picked it: the owner's Hollowfen game 2026-11-15, docs/crown-coach-economy.md)
+static var NORMAL_TRY := _arg("optnormal:")
 
 
 static func _arg(pre: String) -> String:
@@ -186,6 +189,8 @@ func choose(read: String) -> Array:
 			if fac == "crown" and f == "clockwork":
 				w = clock_w(w)
 			var k := _weighted(w)
+			if NORMAL_TRY != "" and fac == "crown":
+				k = NORMAL_TRY
 			return [k, _normal_why(k)]
 	return []
 
