@@ -23,8 +23,8 @@ Raptor to 38 health was not on main when this ran.
   from where it is: another angle. With the charge drilled it gallops round out of reach until the next blow will be a
   charge, then comes in.
 - On a set test bed (4 Horsemen against five enemy groups, three times each, `tools/test_cav_micro.gd`) the micro kills
-  **2.35** gold of enemy per point of rider health lost (**1.83** before), loses **7** riders of 120 (**37** before) and,
-  with the charge, strikes **104** charged blows (**59** before: one per rider per fight).
+  **2.50** gold of enemy per point of rider health lost (**1.95** before), loses **5** riders of 120 (**32** before) and,
+  with the charge, strikes **118** charged blows (**60** before: one per rider per fight).
 - In whole games (computer against computer, 15 minutes) the riders stand in a melee far less (Brood: 9-10 s a game set
   against 55; mirror: 6 against 34) and, with the charge, lose far fewer riders (Brood 25 against 44, mirror 35 against 66)
   for about the same damage per rider lost against the Brood (229-258 against 271), more in the mirror (289 against 174)
@@ -75,29 +75,29 @@ on, without and with the Cavalry Charge. The final version:
 
 | case | charge | micro | killed (value, summed) | riders lost | health left (mean) | blows plain / charged | stood (s) |
 |---|---|---|---|---|---|---|---|
-| 16 Raptors | no | off | 2400 | 0 of 12 | 60% | 86 / 0 | 0.2 |
-| 16 Raptors | no | on | 2100 | 0 of 12 | 79% | 77 / 0 | 0.5 |
+| 16 Raptors | no | off | 2400 | 0 of 12 | 60% | 87 / 0 | 0.5 |
+| 16 Raptors | no | on | 2350 | 0 of 12 | 74% | 85 / 0 | 0.8 |
 | 16 Raptors | yes | off | 2400 | 0 of 12 | 61% | 68 / 12 | 0.2 |
-| 16 Raptors | yes | on | 2400 | 0 of 12 | 70% | 56 / 19 | 0.2 |
+| 16 Raptors | yes | on | 2400 | 0 of 12 | 79% | 51 / 23 | 0.0 |
 | 8 Raptors, 5 Spitters | no | off | 2550 | 0 of 12 | 63% | 82 / 0 | 0.0 |
-| 8 Raptors, 5 Spitters | no | on | 2300 | 0 of 12 | 56% | 74 / 0 | 1.0 |
-| 8 Raptors, 5 Spitters | yes | off | 2550 | 0 of 12 | 70% | 60 / 12 | 0.0 |
-| 8 Raptors, 5 Spitters | yes | on | 2550 | 0 of 12 | 58% | 51 / 22 | 0.8 |
-| 3 Brutes, 5 Spitters | no | off | 1320 | 12 of 12 | 0% | 125 / 0 | 0.0 |
-| 3 Brutes, 5 Spitters | no | on | 1350 | 0 of 12 | 48% | 40 / 0 | 0.2 |
-| 3 Brutes, 5 Spitters | yes | off | 1650 | 12 of 12 | 0% | 122 / 11 | 0.0 |
-| 3 Brutes, 5 Spitters | yes | on | 1350 | 7 of 12 | 4% | 47 / 22 | 1.8 |
-| 6 Clock Soldiers, 6 Winders | no | off | 630 | 8 of 12 | 10% | 343 / 0 | 3.8 |
-| 6 Clock Soldiers, 6 Winders | no | on | 720 | 0 of 12 | 51% | 99 / 0 | 0.5 |
-| 6 Clock Soldiers, 6 Winders | yes | off | 1170 | 2 of 12 | 43% | 374 / 12 | 1.0 |
-| 6 Clock Soldiers, 6 Winders | yes | on | 1710 | 0 of 12 | 73% | 56 / 22 | 0.2 |
-| 6 Musketeers, 5 Labourers | no | off | 1830 | 2 of 12 | 40% | 104 / 0 | 0.0 |
-| 6 Musketeers, 5 Labourers | no | on | 1830 | 0 of 12 | 43% | 104 / 0 | 0.0 |
-| 6 Musketeers, 5 Labourers | yes | off | 1830 | 1 of 12 | 57% | 81 / 12 | 0.0 |
-| 6 Musketeers, 5 Labourers | yes | on | 1830 | 0 of 12 | 58% | 72 / 19 | 1.2 |
+| 8 Raptors, 5 Spitters | no | on | 2400 | 0 of 12 | 53% | 78 / 0 | 0.8 |
+| 8 Raptors, 5 Spitters | yes | off | 2550 | 0 of 12 | 69% | 63 / 12 | 0.0 |
+| 8 Raptors, 5 Spitters | yes | on | 2550 | 0 of 12 | 56% | 57 / 18 | 0.8 |
+| 3 Brutes, 5 Spitters | no | off | 1770 | 11 of 12 | 1% | 132 / 0 | 0.0 |
+| 3 Brutes, 5 Spitters | no | on | 1350 | 0 of 12 | 45% | 45 / 0 | 0.8 |
+| 3 Brutes, 5 Spitters | yes | off | 1830 | 11 of 12 | 2% | 121 / 12 | 0.0 |
+| 3 Brutes, 5 Spitters | yes | on | 1500 | 5 of 12 | 8% | 58 / 21 | 2.2 |
+| 6 Clock Soldiers, 6 Winders | no | off | 770 | 3 of 12 | 28% | 376 / 0 | 1.8 |
+| 6 Clock Soldiers, 6 Winders | no | on | 1150 | 0 of 12 | 61% | 84 / 0 | 0.5 |
+| 6 Clock Soldiers, 6 Winders | yes | off | 1040 | 4 of 12 | 35% | 343 / 12 | 0.5 |
+| 6 Clock Soldiers, 6 Winders | yes | on | 1590 | 0 of 12 | 69% | 65 / 36 | 0.0 |
+| 6 Musketeers, 5 Labourers | no | off | 1830 | 1 of 12 | 46% | 104 / 0 | 0.2 |
+| 6 Musketeers, 5 Labourers | no | on | 1830 | 0 of 12 | 43% | 105 / 0 | 0.0 |
+| 6 Musketeers, 5 Labourers | yes | off | 1830 | 2 of 12 | 56% | 81 / 12 | 0.0 |
+| 6 Musketeers, 5 Labourers | yes | on | 1830 | 0 of 12 | 60% | 68 / 20 | 0.0 |
 
-The checks pass: value killed per point of rider health lost 2.35 (before 1.83), charged blows 104 (59), riders lost 7
-(37). Where it is worse: Raptors before Spitters (the riders go for the Spitters past the Raptors; the old way killed
+The checks pass: value killed per point of rider health lost 2.50 (before 1.95), charged blows 118 (60), riders lost 5
+(32). Where it is worse: Raptors before Spitters (the riders go for the Spitters past the Raptors; the old way killed
 the near Raptors first and was quicker). The fights are noisy: the same case played again moves by 10-20 points of health.
 
 Filmed (`film:DIR` under xvfb-run; a picture every 0.6 s, 12 of them here), 6 Clock Soldiers before 6 Winders, with the
@@ -151,6 +151,14 @@ the mirror each rider lost is worth more damage than before (183-242 against 154
 riders trained differ a lot from game to game (v Clockwork: 18 to 57 riders in four games), so these are signs, not
 proof; no result changed.
 
+**Batch 4, the final version (after the two fixes below), charge at 4:00, the same seeds as four of batch 2's games:**
+v Brood (Greenhold 1, Dune Sea 1): 10 riders made, 10 lost, 52 plain / 43 charged blows, 2700 damage (270 a rider lost),
+0 s stood (batch 2 off on those two games: 24 made and lost, 201 / 74, 6647 damage, 277 a rider lost, 44 s stood); v
+Clockwork (Greenhold 1): 21 made, 14 lost, 86 / 23, 2440 (174), 10 s (off: 12, 10, 71 / 13, 1777 (178), 16 s); mirror
+(Greenhold 1, side A): 12 made, 3 lost, 57 / 13, 1594 (531), 0.5 s (off: 10, 8, 50 / 17, 1531 (191), 4 s). On Dune Sea 1
+the Brood won with the micro on (both versions) where the game without it was still going at 15:00; on the other three
+the result was the same.
+
 ## Claude's choices (for the owner)
 
 1. **Whose riders.** Only riders on a fighting order (attack-move, attack, on guard). A plain move or HOLD from any other
@@ -174,6 +182,28 @@ proof; no result changed.
 7. **The test bed is part of it:** `tools/test_cav_micro.gd` (its checks: more value killed per health lost, more charged
    blows with the charge, fewer riders lost).
 
+## Two fixes after the batches
+
+The Crown AI tests found two things the batches above ran without (both in the final version):
+- **Someone else's move wins.** A raid riding home sends a plain move; the micro's own out and round orders are plain
+  moves too, and it took the raid's for its own and rode on (test_ai_harass `[raid]`: the riders did not ride home from a
+  Tyrant Sire). Now a move to another spot than the micro's is someone else's, and the rider is theirs.
+- **No fight over a rooted turtle.** A raid near a rooted Mound Turtle (no prey worth a pass in reach, the grubs farther
+  off) was taken by the micro and circled the turtle for good (test_ai_harass `[cuirassier]`, `[raid]`: no grub hurt).
+  Now a rider is taken only for a prey worth a pass or a fighter that can come at it (rooted and static ones do not
+  count), and a rider rounding 3 s with neither is let go to the computer's own orders.
+
 ## Tests
 
-See the end of this file (filled in after the Crown AI tests ran).
+The Crown AI tests (`test_ai_*`, `test_crown_*`, `test_cinder_crown`; 40 files) and `tools/test_cav_micro.gd`, on the final
+version: all pass but these, and each of them fails with `cavmicro:off` too (the micro never runs):
+- `test_ai_rush_followup`: 14-15 checks, the same with the micro off (known, CLAUDE.md: test_ai_rush / _rush_followup).
+- `test_crown_dragoon_raid` `[plan]`: the same with it off (known).
+- `test_cinder_crown` `[hall]` (389 s, wants 330) and `[labs]` (21 of 23): `[hall]` fails with it off too (339 s); both
+  known flaky (CLAUDE.md).
+- `test_ai_brood` (stage 3 timing) and `test_ai_scout_sentry`: failed once in the full run, passed alone on the final
+  version, and failed once with the micro off (known flaky).
+
+`test_ai_harass` failed with the first version (see the fixes above) and passes now; `test_crown_mirror` and `test_ai_rush`
+pass. (The test runs end with an engine abort, exit code 134, after their last line, on main too: the verdict is the
+printed PASS / FAIL lines.)

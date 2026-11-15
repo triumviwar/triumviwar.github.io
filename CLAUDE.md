@@ -25,6 +25,13 @@
 
 ## Current work
 
+- CROWN CAVALRY MICRO (owner 2026-11-15 00:53; job crown-coach-cavalry, 0.38.3, docs/crown-coach-cavalry.md,
+  scripts/ai_cav_micro.gd AICavMicro, switch cavmicro:off, tools/test_cav_micro.gd, tools/study_cav_micro.gd): the Crown
+  computer's Horsemen hit and run: pick light/precious prey (never armour, shields, pikes or a guarded mass), strike, ride
+  out, come again; with the Cavalry Charge they gallop round until the next blow is a charge (not under guns; a killing
+  blow first); hurt riders careful. Riders live longer, stand in melee far less; damage per rider lost even v Brood, up v
+  Clockwork and in the mirror. Game.stats cav_blows / cav_charged / cav_dmg / cav_pistol. Proposal: the Armoury and the
+  charge earlier in the riding plans (drilled after 10:00 or never today).
 - CLOCKWORK LAB REMOVED from the player (owner 2026-11-15 00:56): no EDITOR menu entry, no Settings EXPERIMENTAL switch (a saved "on" is ignored). Main.start_lab, scripts/cw_lab.gd and Settings.cw_lab stay for the test and picture tools (shot_*.gd, test_cw_*).
 - BRASS SERPENT (owner 2026-11-14 20:07-20:09, "Do it"; job brass-serpent, 0.38.0, docs/brass_serpent.md, scripts/brass_serpent.gd,
   Defs.SERPENT, tools/test_brass_serpent.gd, pictures docs/shots/brass_serpent/): a Clockwork snake of gears made at the
