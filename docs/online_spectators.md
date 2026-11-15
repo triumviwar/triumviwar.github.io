@@ -1,4 +1,4 @@
-# Online spectators (0.38.19)
+# Online spectators (0.38.21)
 
 The owner's request (2026-11-15 20:30): "Online, make sure we can join an online game and become a spectator to the
 game; also the spectator gets the replay as well. Maybe in faction we can choose SPECTATOR and then we are moved down to
@@ -135,7 +135,7 @@ RUN_NOTES
 
 ### Steps for the two-device (three-device) test
 
-1. Build or open the web version (or the APK) of 0.38.19 or later on three devices; the relay address is the default.
+1. Build or open the web version (or the APK) of 0.38.21 or later on three devices; the relay address is the default.
 2. Device A: ONLINE > HOST A GAME; note the code. Device B: type the code, JOIN: it sits in the player seat.
 3. Device C: type the code, WATCH: it shows under SPECTATORS with its ping; the host's START is still allowed.
    (Or: C JOINs first and picks SPECTATOR (WATCH) in its FACTION list, then B joins.)

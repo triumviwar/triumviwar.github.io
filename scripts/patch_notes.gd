@@ -4,9 +4,15 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
-	{"v": "0.38.19", "items": [
+	{"v": "0.38.21", "items": [
 		"ONLINE SPECTATORS: in a friend's room pick SPECTATOR in your FACTION list (or press WATCH instead of JOIN) to watch instead of playing. Spectators are listed apart under SPECTATORS (up to 4, with their ping), don't take a player's place, and can pick a faction again to take a free seat. When every seat is taken a friend who joins watches, and WATCH also joins a match already under way.",
 		"A spectator sees every side (VIEW, PRODUCTION, ARMY & STRUCTURES, as when watching computers), gives no orders (the host refuses any), and chats with the other spectators only unless the host turns on SPECTATORS TALK TO PLAYERS. The players' pictures still hide what their side can't see. A spectator leaving changes nothing for the players, and after the end every spectator gets the host's whole replay in REPLAYS, as the players do.",
+	]},
+	{"v": "0.38.20", "items": [
+		"CAMPAIGN: the Prologue's briefing painting (the Governor on the manor steps) loses a stray second musket standing on the steps beside a soldier's hand.",
+	]},
+	{"v": "0.38.19", "items": [
+		"CAMPAIGN: the stills keep their shape (the Prologue's picture on the War Table was squashed): the whole painting at its own proportions, the room round it filled by the same painting, dimmed. The campaign pages now have their own backdrop over the whole screen (the storyline's hub painting, dimmed) instead of the main menu's painting.",
 	]},
 	{"v": "0.38.18", "items": [
 		"A worker unselected and picked again shows his main card again, not the BUILD page he left open (any card page shuts when you pick something new; clicking the same worker again keeps it).",

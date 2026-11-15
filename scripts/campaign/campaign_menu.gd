@@ -34,8 +34,30 @@ static func _wrap(t: String, sz: int, col := UiStyle.TEXT) -> Label:
 	return l
 
 
-static func _frame(main: Node) -> VBoxContainer:
+static func _frame(main: Node, cover := true) -> VBoxContainer:
 	var root: Control = main._page()
+	if cover:
+		# THE CAMPAIGN'S OWN LAYER (the owner, 2026-11-15 21:01): not the main menu's painting behind it: the storyline's hub
+		# painting, dimmed, over the whole screen (top and bottom too), else a dark ground
+		var bd: Control = main._backdrop
+		if bd != null and is_instance_valid(bd):
+			bd.visible = false
+		var bg := ColorRect.new()
+		bg.color = Color(0.06, 0.05, 0.04)
+		bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		var img := String(_line_data().get("hub", {}).get("still", {}).get("image", ""))
+		if img != "" and ResourceLoader.exists(img):
+			var tr := TextureRect.new()
+			tr.texture = load(img)
+			tr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+			tr.modulate = Color(0.3, 0.28, 0.26)
+			tr.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			tr.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+			bg.add_child(tr)
+		main.ui_layer.add_child(bg)
+		main.ui_layer.move_child(bg, root.get_index())
 	var m := MarginContainer.new()
 	m.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for side in ["left", "right"]:

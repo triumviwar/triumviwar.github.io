@@ -25,7 +25,7 @@
 
 ## Current work
 
-- ONLINE SPECTATORS (owner 2026-11-15 20:30; job online-spectators, 0.38.19, docs/online_spectators.md,
+- ONLINE SPECTATORS (owner 2026-11-15 20:30; job online-spectators, 0.38.21, docs/online_spectators.md,
   tools/test_online_spectators.gd via `tools/test_online.sh spectators`, pictures docs/shots/online_spectators/): in a
   friendly room a guest picks SPECTATOR (WATCH) in its FACTION list (or WATCH beside JOIN; a full room or a match under
   way seats one as a spectator too) and is listed apart under SPECTATORS (n) with its ping, at most NetLobby.SPEC_MAX 4,
