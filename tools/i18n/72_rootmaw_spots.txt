@@ -1,0 +1,34 @@
+# ROOTMAW SPOTS (brood-rootmaw-spots, docs/brood_rootmaw_spots.md): the Rootmaw count per swamp, the best Rootmaw spots
+# on a Brood player's swamp, the setting that turns them off.
+
+> ROOTMAWS %d/%d
+pt BOCARRAÍZES %d/%d
+es BOCARRAÍCES %d/%d
+
+> Full: the Brood Mother's swamp holds %d Rootmaws (%d/%d). Root a Mound Turtle for more.
+pt Cheio: o pântano da Mãe da Ninhada comporta %d Bocarraízes (%d/%d). Enraíze uma Tartaruga-Montículo para ter mais.
+es Lleno: el pantano de la Madre de la Camada admite %d Bocarraíces (%d/%d). Arraiga una Tortuga Montículo para tener más.
+
+> Full: a Mound Turtle's swamp holds %d Rootmaws (%d/%d). Root another turtle for more.
+pt Cheio: o pântano de uma Tartaruga-Montículo comporta %d Bocarraízes (%d/%d). Enraíze outra tartaruga para ter mais.
+es Lleno: el pantano de una Tortuga Montículo admite %d Bocarraíces (%d/%d). Arraiga otra tortuga para tener más.
+
+> ROOTMAW SPOT
+pt LOCAL DE BOCARRAIZ
+es LUGAR DE BOCARRAÍZ
+
+> SHOW ROOTMAW SPOTS
+pt MOSTRAR LOCAIS DE BOCARRAIZ
+es MOSTRAR LUGARES DE BOCARRAÍZ
+
+> Rootmaws on this swamp
+pt Bocarraízes neste pântano
+es Bocarraíces en este pantano
+
+> The Brood Mother's swamp holds %d Rootmaws, each rooted Mound Turtle's %d (their circles may not overlap). Gold marks on your swamp show where the missing ones fit best (Settings: SHOW ROOTMAW SPOTS).
+pt O pântano da Mãe da Ninhada comporta %d Bocarraízes, o de cada Tartaruga-Montículo enraizada %d (os círculos não podem se sobrepor). Marcas douradas no seu pântano mostram onde as que faltam cabem melhor (Configurações: MOSTRAR LOCAIS DE BOCARRAIZ).
+es El pantano de la Madre de la Camada admite %d Bocarraíces, el de cada Tortuga Montículo arraigada %d (sus círculos no pueden solaparse). Las marcas doradas en tu pantano muestran dónde caben mejor las que faltan (Ajustes: MOSTRAR LUGARES DE BOCARRAÍZ).
+
+> Rootmaws rooted on this swamp, of the most it holds.
+pt Bocarraízes enraizadas neste pântano, do máximo que ele comporta.
+es Bocarraíces arraigadas en este pantano, del máximo que admite.

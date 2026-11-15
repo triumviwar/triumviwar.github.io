@@ -1323,7 +1323,7 @@ const UNITS := {
 		"name": "Rootmaw", "hp": 450, "armor": 0, "speed": 80, "cost": 75, "time": 18.0, "supply": 0,
 		"sight": 6, "range": 30, "damage": 14, "cooldown": 1.3, "aim": 0.3, "radius": 22, "from": "brood_mother",
 		"faction": "brood", "new_brood": true,
-		"about": "A swamp lizard that feeds the Brood. ROOT it on fresh ground on your swamp (3,000 food in a 8-tile circle; rooted circles may not overlap): it drinks the ground and swells, and grubs carry the food from its flank to the Brood Mother (the farther from her, the richer: each trip pays more and it drinks faster). Rooted it has more armour. UPROOT spills its food as a pile (grubs still collect it; it rots); HAUL walks off with it, slow and fat (killed hauling, it bursts). It bites.",
+		"about": "A swamp lizard that feeds the Brood. ROOT it on fresh ground on your swamp (3,000 food in a 8-tile circle; rooted circles may not overlap; the Brood Mother's swamp holds 3, a rooted Mound Turtle's 2): it drinks the ground and swells, and grubs carry the food from its flank to the Brood Mother (the farther from her, the richer: each trip pays more and it drinks faster). Rooted it has more armour. UPROOT spills its food as a pile (grubs still collect it; it rots); HAUL walks off with it, slow and fat (killed hauling, it bursts). It bites.",
 	},
 	# (the owner, 2026-10-30: the Tyrant Sire, the basic line every opening needs, is the CHEAPER father (150 food,
 	# 30 s); the Venom Sire, the specialist, costs 200 food, 35 s. It was the other way round, priced by body.
@@ -2133,6 +2133,8 @@ const NB := {
 	"hvet_rate": 0.01, "hvet_max": 50,
 	"maw_fill": 4.0, "maw_cap": 300.0, "start_food": 120.0,           # food/s a rooted Rootmaw draws from its ground, what it holds
 	"maw_crew": 6, "pile_crew": 4,
+	# THE COUNT (the owner, 2026-11-15; scripts/rootmaw_spots.gd): Rootmaws a swamp holds: the Mother's, a rooted Mound Turtle's
+	"maws_queen": 3, "maws_turtle": 2,
 	"haul_speed": 0.5,                           # HAUL: the full Rootmaw walks at half speed
 	"pile_rot": 0.6,                             # food a pile loses a second
 	# THE FATHERS (the owner, 2026-10-29 11:10: FATHER LINES; shown as the Tyrant, Venom and Storm Sires, 12:06), in

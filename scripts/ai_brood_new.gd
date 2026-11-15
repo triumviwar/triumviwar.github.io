@@ -2122,6 +2122,13 @@ func _nb_find_spot(q: Unit, m: Unit):
 
 
 func _nb_find_spot_go(q: Unit, m: Unit):
+	# THE MARKED SPOTS FIRST (brood-rootmaw-spots): the best spots the game works out for every swamp with room, where its
+	# missing Rootmaws all fit together (RootmawSpots, the gold marks a Brood player sees); scored as below. The rings
+	# below only when none of them will do (the enemy on it, spent ground, a spot that went bad).
+	if maw_spots_on:
+		var mk = _nb_marked_spot(q, m)
+		if mk != null:
+			return mk
 	# (start-spots-fix: the rings are laid in this side's first-start frame, as the first start always laid them, and each
 	# spot mirrored back: BroodRoot.feet_k / sym_snap)
 	var centres: Array = [[_qp(q), [8.0, 11.0, 14.0, 17.0, 20.0], BroodRoot.feet_k(game, team, q)]]
@@ -2147,10 +2154,10 @@ func _nb_find_spot_go(q: Unit, m: Unit):
 					continue
 				# (the ROOT checks: its footprint, on its side's swamp, its circle clear of the others' and of their plans)
 				# (or where the swamp is spreading to, 1 tile a second: it will be there when the grub is)
-				var soon := not BroodNew.on_swamp(game, team, p) and BroodNew.swamp_coming(game, team, p)
+				var soon := not BroodNew.maw_on_swamp(game, team, p) and BroodNew.swamp_coming(game, team, BroodRoot.rect_for(BroodNew.MAW, p).get_center())
 				# (quick no's first: off the swamp and not coming, or in another Rootmaw's circle, are place_problem's own
 				# no's, so the answer is the same; it only skips the footprint walk for them)
-				if not soon and not BroodNew.on_swamp(game, team, p):
+				if not soon and not BroodNew.maw_on_swamp(game, team, p):
 					continue
 				if _maw_circle_taken(p, m):
 					continue
@@ -2171,6 +2178,41 @@ func _nb_find_spot_go(q: Unit, m: Unit):
 				if s < bs:
 					bs = s
 					best = p
+	return best
+
+
+var maw_spots_on := not OS.get_cmdline_user_args().has("mawspots:off")      # (measuring switch: the rings only, as before)
+
+
+func _nb_marked_spot(q: Unit, m: Unit):
+	var qk := BroodRoot.feet_k(game, team, q)
+	var from: Vector2 = BroodRoot.feet_k(game, team, m) if m != null else qk
+	var far := float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9
+	var best = null
+	var bs := INF
+	for e in RootmawSpots.spots_cached(game, team):
+		var p: Vector2 = e["p"]
+		var src: Unit = e["src"]
+		var out := src.kind == BroodNew.TURTLE and src.position.distance_to(_qp(q)) >= far      # (a turtle on new ground)
+		var p_k := game.sym_pt(team, p)
+		var soon := not BroodNew.maw_on_swamp(game, team, p) and BroodNew.swamp_coming(game, team, BroodRoot.rect_for(BroodNew.MAW, p).get_center())
+		if not soon and not BroodNew.maw_on_swamp(game, team, p):
+			continue
+		if _maw_circle_taken(p, m) or not _nb_spot_ok(p) or _spot_bad(p):
+			continue
+		if BroodRoot.place_problem(game, team, BroodNew.MAW, p, m, true, 1.0, not soon) != "":
+			continue
+		var s := p_k.distance_to(qk) * (0.6 if out else 1.0) + p_k.distance_to(from) * 0.3 - (30.0 if int(e["rank"]) == 1 else 0.0)
+		if _eco():
+			s = -p_k.distance_to(qk) * 0.5 + (0.0 if out else 400.0) + p_k.distance_to(from) * 0.1
+		var foe := _nb_nearest_foe_pos(p)
+		if foe != Vector2.INF:
+			s -= foe.distance_to(p) * 0.15
+		if _foe_near(p, 10.0 * Defs.TILE):
+			s += 2000.0
+		if s < bs:
+			bs = s
+			best = p
 	return best
 
 

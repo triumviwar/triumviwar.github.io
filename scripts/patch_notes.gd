@@ -4,6 +4,11 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.15", "items": [
+		"BROOD, ROOTMAWS COUNTED LIKE FARMS: the Brood Mother's swamp holds 3 Rootmaws and each rooted Mound Turtle's swamp 2 (their circles still may not overlap). Her card and a turtle's read ROOTMAWS 2/3; a Rootmaw on a full swamp is refused with the reason. Each Rootmaw still holds 3,000 food (9,000 round her, 6,000 round a turtle).",
+		"BEST ROOTMAW SPOTS: gold marks on your own swamp show where the Rootmaws a swamp still has room for fit best, all of them together (near her or the turtle, on open level ground, clear of the ramps). Brighter while you place a Rootmaw, with each swamp's count over the Mother and the turtles. Only you see your own (Brood players only); nothing snaps, they only guide. Settings: SHOW ROOTMAW SPOTS. The Brood computer roots on the same spots.",
+		"A Rootmaw stands on the swamp when the middle of its footprint does (it was its feet, which made mirrored starts differ).",
+	]},
 	{"v": "0.38.14", "items": [
 		"THE CROWN COMPUTER'S ARMY ON TIME (Normal and up, against the Clockwork and the Crown; no unit, building or price changed): until 6:30 it keeps its army at about 60% of what a Hard computer of that side usually has a little later, and while it is behind, an empty Barracks gets its Musketeer before the next labourer, the next building or the natural's palisade, and no Church is bought for a wall slot. So its line is ready for the first push (against the Hard Clockwork about 245 of army at 5:00 instead of 140), at some cost to its economy. Its Powder Mill also comes earlier and takes more hands while a Barracks waits for powder, and a Musketeer may come out with only his bayonet while the Mill starts and fill up when it grinds.",
 	]},

@@ -340,6 +340,7 @@ static var _bt_maws: Array = []       # (open Rootmaws of any side, and side t's
 static var _bt_swamp: Array = []      # (side t's rooted Mothers and Mound Turtles: swamp_coming's)
 static var _bt_mine: Array = []       # (side t's Mound Turtles and Rootmaws: the computer's spacing checks)
 static var _bt_depth := 0             # (a batch inside a batch: the outer one's lists stay)
+static var _bt_n := 0                 # (each new batch: RootmawSpots keeps its count for the batch's length)
 
 
 static func batch_begin(g: Game, t: int) -> void:
@@ -348,6 +349,7 @@ static func batch_begin(g: Game, t: int) -> void:
 		return
 	_bt_g = g
 	_bt_t = t
+	_bt_n += 1
 	_bt_plans = []
 	_bt_maws = []
 	_bt_swamp = []
@@ -453,9 +455,9 @@ static func _place_problem(g: Game, t: int, k: String, p: Vector2, me: Unit = nu
 			return "Blocked: another creature roots there."
 	match k:
 		BroodNew.MAW:
-			if swamp_rule and not BroodNew.on_swamp(g, t, p):
+			if swamp_rule and not BroodNew.maw_on_swamp(g, t, p):
 				return "No swamp here: a Rootmaw roots only on your swamp (root a Mound Turtle to spread it)."
-			var rr := float(Defs.PIT_CLAIM) * T * 2.0
+			var rr := RootmawSpots.circle_r() * T * 2.0
 			for o in (_bt_maws if batch else g.units):
 				if o == me or o.dead:
 					continue
@@ -464,6 +466,10 @@ static func _place_problem(g: Game, t: int, k: String, p: Vector2, me: Unit = nu
 				var pl2 := plan_of(o)
 				if o.team == t and not pl2.is_empty() and String(pl2[0]) == BroodNew.MAW and (pl2[1] as Vector2).distance_to(p) < rr:
 					return "Too close to another Rootmaw's planned ground."
+			# THE COUNT (the owner, 2026-11-15; scripts/rootmaw_spots.gd): the Mother's swamp holds 3, a turtle's 2
+			var full := RootmawSpots.room_problem(g, t, p, me)
+			if full != "":
+				return full
 	if BroodNew.is_father(k):
 		var q := BroodNew.queen(g, t)
 		if q == null or q.position.distance_to(p) > father_reach():

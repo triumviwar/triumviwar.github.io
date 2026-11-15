@@ -15,6 +15,7 @@ static var build_grid := true         # show the planning grid while placing a b
 static var area_marks := true         # area attacks lay their shape on the ground where they strike (GroundMarks)
 static var powder_smoke := -1         # black powder smoke (PowderSmoke): -1 = not chosen (THICK for now), 0 off, 1 light, 2 full, 3 thick
 static var expansion_spots := true    # the best expansion spots tinted on the ground (ExpansionSpots; Crown and Clockwork)
+static var rootmaw_spots := true      # the best Rootmaw spots on a Brood player's swamp (RootmawSpots, brood-rootmaw-spots)
 static var health_bars := 0           # BARS: 0 = ONLY WHEN NOT FULL (the default: health when hurt, charge and powder when not full), 1 = ALWAYS (every bar)
 static var band_marks := 1            # BAND BUFF MARKS: 0 ALWAYS, 1 SELECTED (selected units, the one under the cursor, everyone in a ring during a solo), 2 OFF (MarchingBand.draw_marks)
 static var charge_bars := true        # SHOW CHARGE BARS: a thin charge bar over own Clockwork units not fully wound (Unit._draw_unit)
@@ -53,6 +54,7 @@ static func load_all() -> void:
 		area_marks = bool(cfg.get_value("ui", "area_marks", true))
 		powder_smoke = clampi(int(cfg.get_value("ui", "powder_smoke", -1)), -1, 3)
 		expansion_spots = bool(cfg.get_value("ui", "expansion_spots", true))
+		rootmaw_spots = bool(cfg.get_value("ui", "rootmaw_spots", true))
 		charge_bars = bool(cfg.get_value("ui", "charge_bars", true))
 		health_bars = clampi(int(cfg.get_value("ui", "health_bars", 0)), 0, 1)
 		band_marks = clampi(int(cfg.get_value("ui", "band_marks", 1)), 0, 2)
@@ -92,6 +94,7 @@ static func save_all() -> void:
 	cfg.set_value("ui", "area_marks", area_marks)
 	cfg.set_value("ui", "powder_smoke", powder_smoke)
 	cfg.set_value("ui", "expansion_spots", expansion_spots)
+	cfg.set_value("ui", "rootmaw_spots", rootmaw_spots)
 	cfg.set_value("ui", "charge_bars", charge_bars)
 	cfg.set_value("ui", "health_bars", health_bars)
 	cfg.set_value("ui", "band_marks", band_marks)
@@ -162,6 +165,7 @@ static func reset() -> void:
 	area_marks = true
 	powder_smoke = -1
 	expansion_spots = true
+	rootmaw_spots = true
 	charge_bars = true
 	health_bars = 0
 	band_marks = 1

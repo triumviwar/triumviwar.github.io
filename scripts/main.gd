@@ -74,7 +74,7 @@ The Brood has no buildings, only creatures. The Brood Mother is its heart: kill 
 
 Rooted creatures are the Brood's buildings: armour, a footprint on the ground like a building's, a rally point, and they do not attack; UPROOT gets one up to walk (and fight). A grub's BUILD (B) turns it into one of them where you pick, like placing a building: it walks there, pays and morphs in its cocoon.
 
-Food: grubs carry food to the Mother from the Rootmaws, swamp lizards that root on fresh ground on your swamp and drink it (3,000 food in a circle 10 tiles round each; two circles may not overlap). The farther a Rootmaw is from her, the richer its food (up to two and a half times at 24 tiles or more): each trip pays more, it drinks its ground faster and it takes more grubs, so a far Rootmaw pays out its 3,000 sooner (and is harder to guard). UPROOT spills its food as a pile the grubs still collect; HAUL carries it, slowly, to new ground.
+Food: grubs carry food to the Mother from the Rootmaws, swamp lizards that root on fresh ground on your swamp and drink it (3,000 food in a circle 8 tiles round each; two circles may not overlap; her swamp holds 3 Rootmaws, each rooted Mound Turtle's 2, and gold marks show the best spots). The farther a Rootmaw is from her, the richer its food (up to two and a half times at 24 tiles or more): each trip pays more, it drinks its ground faster and it takes more grubs, so a far Rootmaw pays out its 3,000 sooner (and is harder to guard). UPROOT spills its food as a pile the grubs still collect; HAUL carries it, slowly, to new ground.
 
 Supply and swamp: the Mother gives 16 supply and each ROOTED Mound Turtle 12 more, up to 200. A rooted turtle spreads swamp round it (a Rootmaw may root on any of your swamp, even far from home) and closes a ramp like a wall; rooted 15 tiles or more from her it makes her lay faster. Swamp heals and speeds the Brood.
 
@@ -1198,6 +1198,9 @@ func settings_rows(tab: String) -> Array:
 			rows.append(_tag(_toggle_row("SHOW EXPANSION SPOTS", func() -> bool: return Settings.expansion_spots, func() -> void:
 				Settings.expansion_spots = not Settings.expansion_spots
 				Settings.save_all()), "expansion_spots"))
+			rows.append(_tag(_toggle_row("SHOW ROOTMAW SPOTS", func() -> bool: return Settings.rootmaw_spots, func() -> void:
+				Settings.rootmaw_spots = not Settings.rootmaw_spots      # (a Brood player's best Rootmaw spots: RootmawSpots)
+				Settings.save_all()), "rootmaw_spots"))
 			rows.append(_tag(_choice_row("HEALTH BARS", ["ONLY WHEN NOT FULL", "ALWAYS"][Settings.health_bars], func() -> void:
 				Settings.health_bars = 1 - Settings.health_bars       # (over units and buildings: Entity.health_bar_shown)
 				Settings.save_all()

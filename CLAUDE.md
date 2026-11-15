@@ -25,6 +25,17 @@
 
 ## Current work
 
+- BROOD ROOTMAW SPOTS (owner DECIDED 2026-11-15: the Brood keeps the only radius economy, made fair and easy; job
+  brood-rootmaw-spots, 0.38.14, docs/brood_rootmaw_spots.md, scripts/rootmaw_spots.gd RootmawSpots, tools/test_rootmaw_spots.gd,
+  tools/measure_rootmaw_fit.gd, pictures docs/shots/rootmaw_spots/): a COUNT (Defs.NB maws_queen 3, maws_turtle 2; ROOTMAWS n/3
+  on the card, "Full: ..." refusal), the circle KEPT at 8 tiles (3 fit round every start and 2 round every turtle site on
+  every map, measured), 3,000 food each unchanged; gold BEST ROOTMAW SPOTS on the player's own swamp (Brood only, no
+  snapping, Settings SHOW ROOTMAW SPOTS), the computer roots on them first (switch mawspots:off); the Rootmaw's swamp rule
+  reads its footprint's middle (BroodNew.maw_on_swamp; mirror-fair). NUMBERS (12 min): bench Brood +11-17% (3 fit at home
+  sooner), 0.87-0.93 of the others from 8:00; the Brood computer -4% alone, -7% by 8:00 in 24 games (its 4th+ Rootmaws must
+  go to new ground); in games Brood/Crown 1.27-1.38, Brood/Clockwork 0.64 at 5:00 to 0.97 at 12:00. RECOMMENDATION WAITING:
+  no Rootmaw number change; coach the Brood computer's 4th/5th Rootmaws onto new ground. 9 Claude's choices in the doc.
+
 - KEEN SABRES TEST (owner 2026-11-15 10:03: "Why do we need Keen Sabres?"; job keen-sabres-test, branch, 0.38.12,
   docs/keen_sabres_test.md, tools/study_keen_sabres.gd, tools/study/keen_sabres_games.py + keen_sabres_report.py): hit and
   run + the Cavalry Charge do NOT hold Raptors at equal cost (the computer's charge loop is the worst rider play v Raptors;

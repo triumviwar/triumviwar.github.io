@@ -1647,6 +1647,17 @@ func _nb_buttons(list: Array, units: Array) -> void:
 	for u in units:
 		if u.kind == BroodNew.QUEEN and u.team == game.human:
 			q = u
+	# THE COUNT (brood-rootmaw-spots): "ROOTMAWS 2/3" on the Mother's or a rooted Mound Turtle's card
+	var src: Unit = q
+	if src == null:
+		for u in units:
+			if u.kind == BroodNew.TURTLE and u.team == game.human and RootmawSpots.label(game, u) != "":
+				src = u
+				break
+	if src != null and RootmawSpots.label(game, src) != "":
+		var ml := RootmawSpots.label(game, src)
+		_tip_for[ml] = ["Rootmaws on this swamp", Loc.t("The Brood Mother's swamp holds %d Rootmaws, each rooted Mound Turtle's %d (their circles may not overlap). Gold marks on your swamp show where the missing ones fit best (Settings: SHOW ROOTMAW SPOTS).") % [int(Defs.NB["maws_queen"]), int(Defs.NB["maws_turtle"])]]
+		list.append([BroodNew.MAW, ml, func() -> void: pass, false, Loc.t("Rootmaws rooted on this swamp, of the most it holds."), ""])
 	if q != null:
 		for k in BroodNew.hatch_list():
 			var kk: String = k
@@ -1730,7 +1741,7 @@ func _nb_buttons(list: Array, units: Array) -> void:
 		if not packed.is_empty() or _full_card:
 			# ROOT like BUILD (point 8): the ghost of its rooted footprint; it walks there and roots on that spot
 			var rk: String = (packed[0] if not packed.is_empty() else rooters[0]).kind
-			_tip_for["ROOT"] = ["Root", "Pick where it roots (a ghost on the grid, as a building's): it walks there and roots on that spot. Rooted it is a building: armour and a quarter less damage, its footprint blocks the way, it takes no move orders (UPROOT gets it up). A Rootmaw roots only on your swamp, its 8-tile circle clear of another's; a Mound Turtle gives 12 supply and swamp and can close a ramp; a father (the Tyrant Sire, the Venom Sire, the Storm Sire, who lands) nests within %d tiles of the Mother. No rooted creature attacks." % int(Defs.NB["father_r"])]
+			_tip_for["ROOT"] = ["Root", "Pick where it roots (a ghost on the grid, as a building's): it walks there and roots on that spot. Rooted it is a building: armour and a quarter less damage, its footprint blocks the way, it takes no move orders (UPROOT gets it up). A Rootmaw roots only on your swamp, its 8-tile circle clear of another's (the Mother's swamp holds 3, a rooted turtle's 2); a Mound Turtle gives 12 supply and swamp and can close a ramp; a father (the Tyrant Sire, the Venom Sire, the Storm Sire, who lands) nests within %d tiles of the Mother. No rooted creature attacks." % int(Defs.NB["father_r"])]
 			list.insert(mini(3, list.size()), ["ab_nb_root", "ROOT", func() -> void:
 				controls.begin_nb_root(rk, false)
 				toast("Pick where it roots."), true, "", ""])
@@ -3496,6 +3507,8 @@ func _draw_minimap() -> void:
 		_ci.draw_texture_rect(game.fog_tex, m, false, Color(1, 1, 1, 0.95 * Settings.mini_alpha))
 	if game.exp_spots:
 		game.exp_spots.draw_on_minimap(_ci, m)      # (the best expansion spots: small gold squares)
+	if game.maw_spots:
+		game.maw_spots.draw_on_minimap(_ci, m)      # (a Brood player's best Rootmaw spots: small gold dots)
 	for b in game.buildings:
 		if b.visible or (b.team == game.human and not game.demo):
 			var r: Rect2 = b.rect()
@@ -5172,7 +5185,7 @@ func _res_tip(i: int) -> Dictionary:
 const RES_TIPS := {
 	"crown": ["Gold pays for everything. Labourers on Farms bring in the harvests from their Town Hall's soil. The soil runs out, and spent soil pays nothing: expand to a fresh Town Hall.",
 		"Black powder: Musketeers, Field Cannons and Mortars cost it, and soldiers refill their shots from it. Labourers grind it at a Powder Mill from its Town Hall's saltpetre: the Mill grinds less as the saltpetre runs down, and only %d%% once it is spent (and only while worked). A new Town Hall brings full strength back."],
-	"brood": ["Food pays for everything. Grubs carry it from the Rootmaws (and food piles) to the Brood Mother: longer trips pay more. A Rootmaw's ground runs out, and spent ground pays nothing: root Rootmaws on fresh ground.",
+	"brood": ["Food pays for everything. Grubs carry it from the Rootmaws (and food piles) to the Brood Mother: longer trips pay more. A Rootmaw's ground runs out, and spent ground pays nothing: root Rootmaws on fresh ground. Her swamp holds 3 Rootmaws, each rooted Mound Turtle's 2.",
 		"Spoils pay for the big creatures, the fathers and the Mother's growing. Grubs on HARVEST carry bodies (friend or foe) to the Brood Mother, and she devours the creatures offered up (SACRIFICE). Bodies never run out, but they rot after 2 minutes."]}
 
 
