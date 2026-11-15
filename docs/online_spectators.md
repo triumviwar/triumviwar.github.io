@@ -116,11 +116,28 @@ host's upload roughly triples against a 1 v 1 alone; a phone host on a mobile up
   every unit after each keyframe.
 - Unchanged and passing: `tools/test_online.sh` (the coop case: see the run notes), `tools/test_ranked.sh`.
 
-RUN_NOTES
+Run notes (2026-11-15, on the branch merged with main 0.38.20):
+
+- `tools/test_online.sh spectators`: 27 checks, all OK (twice; and once with `HOST_ARGS=ai` for 300 s, and once with
+  three spectators in the room by accident of an overlapping run: also all OK, "SPECTATOR 3" heard).
+- `tools/test_online.sh`: all OK. Its `guest_ground_attack_hits_body` is flaky: it failed in 2 of 4 runs here (1v1
+  and coop, "body health 47 of 70"), passed in the others; the job's note says the coop case fails on main too.
+- `tools/test_online.sh coop`: all OK but that same flaky check.
+- `tools/test_ranked.sh`: RANKED ALL OK (unchanged behaviour: ranked rooms never seat a spectator).
+- `tools/test_net_fog.gd` (300 s): FOG ALL OK with the spectator. The process aborts while quitting, after the report;
+  it does so on main too (exit 134).
+- `tools/test_spectator.gd` (watching computers): ALL OK; its SCRIPT ERRORs in `Main._menu_button` while it goes back
+  to the menu headless come from the menu, not from this job. `tools/test_i18n.gd`: PASS.
+- `tools/bench_net_snapshot.gd` stops with a SCRIPT ERROR in `NetSession.minute_line` (its sessions have no link) after
+  its first checkpoint, before and after this job.
 
 ## Pictures
 
-`docs/shots/online_spectators/`: SHOTS_LIST
+`docs/shots/online_spectators/`: `host_lobby.png` (the host's room: the player seats, then SPECTATORS (1) with SPECTATOR 1 and its ping, START
+allowed, SPECTATORS TALK TO PLAYERS: OFF), `spec1_lobby.png` (the same room on the spectator's screen: YOU
+(SPECTATOR), the hint), `spec1_match.png` and `spec1_match_later.png` (the spectator in the match: both players'
+resources at the top left, VIEW: Free · all vision, PRODUCTION for P1 and P2, no AI STORY, no command card; the
+computers play both sides in this run).
 
 ## What is left
 
