@@ -98,12 +98,19 @@ func _open_area(w: int, h: int) -> Vector2i:
 	return Vector2i(-1, -1)
 
 
+var spawned: Array = []          # every unit a fight made: all gone before the next (strays chased far off)
+
+
 func _clear() -> void:
+	for u in spawned:
+		if is_instance_valid(u) and not u.dead:
+			g.consume_unit(u)
+	spawned.clear()
 	for u in g.units.duplicate():
-		if u.position.distance_to(at(512, 352)) < 1600.0:
+		if u.position.distance_to(at(480, 320)) < 760.0:
 			g.consume_unit(u)
 	for b in g.buildings.duplicate():
-		if not b.dead and b.team >= 0 and b.center().distance_to(at(512, 352)) < 1300.0:
+		if not b.dead and b.team >= 0 and b.center().distance_to(at(480, 320)) < 640.0:
 			b.die()
 	for i in 3:
 		await physics_frame
@@ -114,9 +121,11 @@ func _list(key: String, dflt: String) -> PackedStringArray:
 
 
 func _run() -> void:
-	origin = _open_area(34, 24)
-	if origin.x < 0:
-		origin = _open_area(30, 22)
+	for wh in [[34, 24], [32, 22], [30, 20], [28, 20]]:
+		origin = _open_area(wh[0], wh[1])
+		if origin.x >= 0:
+			print("(open ground %d x %d tiles at %s)" % [wh[0], wh[1], str(origin)])
+			break
 	if origin.x < 0:
 		print("FAIL: no open ground for the study")
 		quit(1)
@@ -158,19 +167,20 @@ func _spawn(kind: String, team: int, n: int, mid: Vector2, cols: int, gap: float
 		p += Vector2(rng.randf_range(-4, 4), rng.randf_range(-4, 4))
 		var m: Unit = g._add_unit(kind, team, p)
 		m.auto_work = false
+		spawned.append(m)
 		men.append(m)
 	return men
 
 
 func _base() -> Vector2:
 	# the riders' base: a Town Hall in the middle-left, a Barracks and three Cottages round it, gaps between
-	var hall := g.cell_of(at(250, 330))
+	var hall: Vector2i = g.cell_of(at(200, 290))
 	g._add_building("town_hall", 0, hall, true)
 	g._add_building("barracks", 0, hall + Vector2i(-1, -5), true)
 	g._add_building("cottage", 0, hall + Vector2i(-1, 6), true)
 	g._add_building("cottage", 0, hall + Vector2i(3, 6), true)
 	g._add_building("cottage", 0, hall + Vector2i(6, -4), true)
-	return at(250, 330) + Vector2(80, 64)
+	return at(200, 290) + Vector2(80, 64)
 
 
 func _fight(ground: String, nr: int, arm: String, pack: bool, k: int) -> void:
@@ -190,17 +200,18 @@ func _fight(ground: String, nr: int, arm: String, pack: bool, k: int) -> void:
 	var riders: Array = []
 	var foes: Array = []
 	var fighters: Array = []     # the Brood's fighting units (a win = all of them dead)
-	var rmid := at(260, 352)
-	var fmid := at(760, 352)
+	var rmid := at(240, 320)
+	var fmid := at(720, 320)
 	var base_mid := Vector2.INF
 	if ground == "base":
 		base_mid = _base()
 		rmid = base_mid + Vector2(130, 0)
-		fmid = at(880, 352)
+		fmid = at(820, 320)
 	var cols := clampi(int(ceil(sqrt(nr * 1.0))), 1, 4)
 	for i in nr:
 		var p := rmid + Vector2((i / cols) * -34.0, (i % cols) * 34.0 - 17.0 * (cols - 1))
 		riders.append(g._add_unit("cuirassier", 0, p))
+		spawned.append(riders[-1])
 	if raid:
 		var grubs := _spawn("grub", 1, 10, fmid + Vector2(60, 0), 5, 22.0, rng)
 		var spit := _spawn("spitter", 1, 6, fmid - Vector2(10, 0), 3, 26.0, rng)
@@ -238,12 +249,20 @@ func _fight(ground: String, nr: int, arm: String, pack: bool, k: int) -> void:
 	var c0: float = float(g.stats[0].get("cav_charged", 0.0))
 	var bhp0 := 0.0
 	for b in g.buildings:
-		if b.team == 0 and not b.dead:
+		if b.team == 0 and not b.dead and b.center().distance_to(at(480, 320)) < 640.0:
 			bhp0 += b.hp
 	var t0: float = g.clock
 	var look := 0.0
+	var frames := 0
 	while g.clock - t0 < SECS:
 		await physics_frame
+		frames += 1
+		for i in g.helpless_t.size():
+			g.helpless_t[i] = 0.0      # (the sandbox's sides own nothing here: never BEATEN as helpless)
+		if g.over or frames > int(SECS * 60):
+			print("FAIL: the match ended or the clock stopped (over %s, winner %d, eliminated %s)" % [str(g.over), g.winner, str(g.eliminated)])
+			quit(1)
+			return
 		if micro != null:
 			micro.tick()
 		if g.clock - t0 >= look:
@@ -278,7 +297,7 @@ func _fight(ground: String, nr: int, arm: String, pack: bool, k: int) -> void:
 		hp_left += r.hp
 	var bhp1 := 0.0
 	for b in g.buildings:
-		if b.team == 0 and not b.dead:
+		if b.team == 0 and not b.dead and b.center().distance_to(at(480, 320)) < 640.0:
 			bhp1 += b.hp
 	var fl := _alive(fighters).size()
 	var res := "D"
