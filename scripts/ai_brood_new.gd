@@ -1453,9 +1453,9 @@ func _nb_mother_up(q: Unit) -> String:
 
 # ------------------------------------------------------------------ the economy
 
-func _nb_wanted_maws() -> int:
+func _nb_wanted_maws(ahead := 0.0) -> int:
 	var m: Array = plan["maws"]
-	var n := mini(int(m[0]) + int(game.clock / float(m[1])), int(m[2]))
+	var n := mini(int(m[0]) + int((game.clock + ahead) / float(m[1])), int(m[2]))
 	n = mini(n, 2 + BroodNew.count_of(game, team, "grub") / 5)        # (no Rootmaw without grubs to crew it)
 	if _rush_short():
 		n = mini(n, 2)
@@ -1627,8 +1627,15 @@ func _nb_morphs_go(q: Unit) -> void:
 			var fp := _nb_far_spots(q)          # (a turtle on new ground gives the same supply: forward first, when one is free and safe;
 			if not fp.is_empty():               # else one at home, _nb_supply_turtle_spot)
 				spot = fp[0]
+		if spot == null and _maw_expand_due(q):
+			# (brood-rootmaw-coach: the supply it needs anyway, out where the Rootmaws need room: the same turtle twice over)
+			spot = _nb_expand_spot(q)
 	elif _nb_next_father(q) != "":
 		k = _nb_next_father(q)
+	elif _maw_expand_due(q) and _nb_expand_spot(q) != null:
+		# (brood-rootmaw-coach: new ground before its Rootmaws need it, on the best safe site; _maw_expand_due)
+		k = BroodNew.TURTLE
+		spot = _nb_expand_spot(q)
 	elif supply_rate_on and _nb_father_due(q) != "":
 		k = _nb_father_due(q)          # (fix 1: due but its food short: saved for (_morph_keep). Before, the supply blocks
 		                               # let the food pile up to his price; with no blocks the eggs took every 50 and the Air
@@ -1648,7 +1655,7 @@ func _nb_morphs_go(q: Unit) -> void:
 			k = BroodNew.TURTLE
 			spot = picks[0]
 	if k == "" and maws < _nb_wanted_maws() and not _nb_saving_growth(q) and not _nb_maw_room(q) and not (_under_armed() and _army_supply_now() < 30) and not _rebuilding() \
-			and _nb_far_have(q) < 6 and not (maw_first_on and game.clock < 30.0):          # (fix 3: at 0:00 there is no room only because her swamp is not down yet)
+			and (_nb_far_have(q) < 6 or maweco_on) and not (maw_first_on and game.clock < 30.0):          # (fix 3: at 0:00 there is no room only because her swamp is not down yet)
 		var more := _nb_far_spots(q, 40.0)    # (0.24.7: no room left for a Rootmaw: one more turtle on new ground makes room,
 		                                      # farther out than the planned expansions)
 		if not more.is_empty():
@@ -1680,7 +1687,19 @@ func _nb_morphs_go(q: Unit) -> void:
 				and u != _scout and (best == null or u.position.distance_squared_to(spot) < best.position.distance_squared_to(spot)):
 			best = u
 	if best != null and not _layout_ok(k, spot, null):
-		return
+		if not (maweco_on and k == BroodNew.TURTLE and (spot as Vector2).distance_to(_qp(q)) < float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9):
+			return
+		# (brood-rootmaw-coach: a supply turtle the layout refuses at home goes to new ground instead: before, the refusal
+		# ended the think, and from 8:00 to 9:30 on Greenhold no Rootmaw and no turtle came while it repeated)
+		var alt = _nb_expand_spot(q)
+		if alt == null or not _layout_ok(k, alt, null):
+			return
+		spot = alt
+		best = null
+		for u in game.units:
+			if u.team == team and not u.dead and u.kind == "grub" and u.carrying == 0 and u.cocoon <= 0.0 and u.order != "nb_morph" \
+					and u != _scout and (best == null or u.position.distance_squared_to(spot) < best.position.distance_squared_to(spot)):
+				best = u
 	if best != null:
 		BroodRoot.memo_end()
 		best.give({"o": "nb_morph", "k": k, "p": spot})      # (it pays at once: BroodRoot.start_morph)
@@ -1689,6 +1708,10 @@ func _nb_morphs_go(q: Unit) -> void:
 		elif k == BroodNew.TURTLE and (spot as Vector2).distance_to(_qp(q)) >= float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9:
 			_far_sent[str((spot as Vector2).round())] = game.clock
 			_far_last = game.clock
+			if _exp_due:
+				exp_sent += 1          # (the study: sent while new ground was due)
+			_fresh = null
+			_fresh_t = -99.0
 			say("a grub goes to root a Mound Turtle on new ground, %d tiles out" % int((spot as Vector2).distance_to(_qp(q)) / Defs.TILE))
 
 
@@ -1706,14 +1729,215 @@ func _nb_maw_room(q: Unit) -> bool:
 	return _room
 
 
+## BROOD-ROOTMAW-COACH (docs/brood_rootmaw_coach.md): NEW GROUND BEFORE THE ROOTMAWS NEED IT. Since the count (0.38.14:
+## 3 on her swamp, 2 on a turtle's) the 4th and later Rootmaws can't crowd round her, and a far Rootmaw drinks its 3,000
+## food in about six minutes (x2.2 its draw), so a steady flow of Mound Turtles onto fresh ground is what keeps them
+## rooted. Before, the turtle that makes room came last of all the computer's morphs: only with nothing else to do, 45 s
+## after the last one, never past 6 turtles out (spent ones counted), and a supply turtle the layout refused at home
+## ended the whole think (Greenhold alone: 7 Rootmaws from 7:20 to 12:00 with the plan wanting 8-10, two spent ones
+## walking about for two minutes with no room, 6,000 food banked). Now: the Rootmaws wanted a turtle's walk from now
+## (the plan's own curve), and every one walking for a spot or about to run dry, against the room on fresh ground the
+## swamps have and the room the turtles on their way bring; short = a turtle on the best safe new-ground site at once.
+## Measuring switch `maweco:off` (the computer as it was).
+var maweco_on := not OS.get_cmdline_user_args().has("maweco:off")
+const EXP_LEAD := 50.0           # s ahead: a grub's walk out, the turtle's 25 s cocoon, its rooting
+const MAW_DRY := 900.0           # food left (ground + what it holds) under which a Rootmaw counts as about to be spent
+                                 # (about 2 minutes at home, 1.5 far out: the time a new turtle takes to give room)
+var _exp_t := -99.0
+var _exp_due := false
+var exp_info := {}               # (the tool and the doc: the last reckoning)
+var exp_sent := 0                # (the study: turtles sent out by this rule)
+
+
+## [Rootmaws needing a spot soon, room on fresh ground now, room coming] (worked out at most every 2 s).
+func _maw_need_room(q: Unit) -> Array:
+	var all_maws := BroodNew.count_of(game, team, BroodNew.MAW) + _morphing_into(BroodNew.MAW)
+	var good := 0
+	for m in _nb_mine(BroodNew.MAW):
+		if BroodNew.rooted(m) and BroodNew.ground_left(game, m) + float(m.nb.get("food", 0.0)) >= MAW_DRY:
+			good += 1
+	var need := maxi(_nb_wanted_maws(EXP_LEAD), all_maws) - good
+	var room := 0
+	for e in RootmawSpots.spots_cached(game, team):
+		if _nb_spot_ok(e["p"]):
+			room += 1
+	var coming := 0
+	var far := float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9
+	for u in game.units:
+		if u.team != team or u.dead:
+			continue
+		if u.kind == "grub" and u.order == "nb_morph" and String(u.nb.get("mk", "")) == BroodNew.TURTLE and u.order_point.distance_to(_qp(q)) >= far:
+			coming += int(Defs.NB["maws_turtle"])
+		elif u.kind == BroodNew.TURTLE and not BroodNew.rooted(u) and u.tesla_mode != "packing" and (u.order == "nb_root" or BroodRoot.in_cocoon(u)) \
+				and (u.order_point if u.order == "nb_root" else u.position).distance_to(_qp(q)) >= far:
+			coming += int(Defs.NB["maws_turtle"])
+	return [need, room, coming]
+
+
+## New ground is due now: more Rootmaws will want a spot within a turtle's walk than the fresh room there is and is
+## coming. Not while a rush holds its grubs, a rush is on that it is short against, it rebuilds after one, the enemy is
+## at the Mother, or it is under-armed with no army to speak of (the old rule's own gate).
+func _maw_expand_due(q: Unit) -> bool:
+	if not maweco_on or q == null:
+		return false
+	if game.clock - _exp_t < 2.0:
+		return _exp_due
+	_exp_t = game.clock
+	_exp_due = false
+	if (int(plan["grubs0"]) > 0 and not _first_out) or _rush_short() or _rebuilding() or _nb_threat(q) != Vector2.INF \
+			or (_under_armed() and _army_supply_now() < 30 and BroodNew.count_of(game, team, BroodNew.MAW) >= 4) \
+			or (maw_first_on and game.clock < 30.0):
+		return false
+	var r := _maw_need_room(q)
+	exp_info = {"t": game.clock, "need": r[0], "room": r[1], "coming": r[2]}
+	_exp_due = int(r[0]) > int(r[1]) + int(r[2])
+	return _exp_due
+
+
+## Where the next new-ground turtle goes: the side's turtle sites first (_nb_far_spots: the plan's order, its own side
+## first, safe), then any fresh ground (_nb_fresh_turtle_spot) once those are taken or spent.
+func _nb_expand_spot(q: Unit):
+	var reach := _exp_reach()
+	var fp := _nb_far_spots(q, reach, true)
+	if not fp.is_empty():
+		return fp[0]
+	if _far_turtle_coming(q):
+		return null
+	return _nb_fresh_turtle_spot(q, reach)
+
+
+## How far out new ground may go (tiles from the Mother): 40 (the old no-room rule's own reach), 30 while its scout read
+## a rush or riders are about (AIScout's verdict, the rider read: an aggressive enemy catches a lone turtle out there).
+func _exp_reach() -> float:
+	if read == "rush" or _rush_on() or _riders_on():
+		return 30.0
+	return 40.0
+
+
+## FRESH GROUND OFF THE SITES (brood-rootmaw-coach): a side has 4-12 turtle sites (the base sites rated for a hall,
+## ExpansionSpots.nb_rate); on Greenhold its three own were taken by 7:00 and the other two lie past the enemy's
+## natural, so from 10:00 its spent Rootmaws walked about with nowhere to root. Any spot a turtle may root on 17-32
+## tiles from the Mother (the distance pay peaks at 24), its own side of the map, where the ground is fresh and two
+## Rootmaw circles fit on its level (ExpansionSpots._maw_room), 13 tiles or more from every circle of the side's
+## (rooted, planned, or spent ground) and 15 from its other turtles. Looked for at most every 5 s.
+var _fresh_t := -99.0
+var _fresh = null
+var fresh_why := {}              # (the tool: why the last look found none)
+
+
+func _nb_fresh_turtle_spot(q: Unit, reach := 40.0):
+	if game.clock - _fresh_t < 5.0:
+		if _fresh != null and BroodRoot.place_problem(game, team, BroodNew.TURTLE, _fresh, null, true) == "":
+			return _fresh
+		if _fresh == null:
+			return null
+	_fresh_t = game.clock
+	_fresh = null
+	var circles: Array = []
+	for id in game.nb_spots:
+		circles.append(game.nb_spots[id]["p"])
+	for e in RootmawSpots.maws_of(game, team):
+		circles.append(e[1])
+	var turtles: Array = []
+	for t in _nb_mine(BroodNew.TURTLE):
+		turtles.append(t.order_point if t.order == "nb_root" else t.position)
+	for u in game.units:
+		if u.team == team and not u.dead and u.kind == "grub" and u.order == "nb_morph":
+			turtles.append(u.order_point)
+	var qk := BroodRoot.feet_k(game, team, q)
+	var fs: Vector2i = BroodRoot.fp(BroodNew.TURTLE)[0]
+	var bs := INF
+	fresh_why = {}
+	for ring in [24.0, 21.0, 27.0, 18.0, 30.0, 33.0, 36.0, 40.0]:
+		if ring > reach:
+			continue
+		for i in 32:
+			var pr: Vector2 = qk + Vector2.from_angle(TAU * i / 32.0 + ring * 0.21) * ring * Defs.TILE
+			var p_k: Vector2 = BroodRoot.snap(BroodNew.TURTLE, pr)
+			var p: Vector2 = BroodRoot.sym_snap(game, team, BroodNew.TURTLE, pr)
+			var c: Vector2i = game.cell_of(p)
+			if not _nb_on_map(p_k) or not game.in_map(c) or not game._walkable(c):
+				_why("map")
+				continue
+			var s := absf(ring - 24.0) * 2.0
+			var foe := _nb_nearest_foe_pos(p)
+			if foe != Vector2.INF:
+				s -= foe.distance_to(p) / Defs.TILE * 0.5
+			if s >= bs or _toward_foe(q, p) or _spot_bad(p) or BroodNew.ground_at(game, p) < float(Defs.PIT_GROUND) * 0.9:
+				_why("score/foe/ground")
+				continue
+			if game.clock - float(_far_sent.get(str(p.round()), -999.0)) < 180.0:
+				_why("sent")
+				continue
+			if circles.any(func(o: Vector2) -> bool: return o.distance_to(p) < 9.0 * Defs.TILE):
+				_why("circle")
+				continue
+			if turtles.any(func(o: Vector2) -> bool: return o.distance_to(p) < 8.0 * Defs.TILE):
+				_why("turtle")
+				continue
+			if _foe_near(p, 12.0 * Defs.TILE) or _site_unsafe(p):
+				_why("unsafe")
+				continue
+			if BroodRoot.place_problem(game, team, BroodNew.TURTLE, p, null, true) != "":
+				_why("place")
+				continue
+			if _fresh_room(p, fs, circles) < 1:
+				_why("room")
+				continue
+			bs = s
+			_fresh = p
+	return _fresh
+
+
+## How many Rootmaw circles fit round a turtle with its feet at p (ExpansionSpots._maw_room's rings: on its level, inside
+## its swamp, clear of its footprint), each a circle's width from every circle of the side's and from each other.
+func _fresh_room(p: Vector2, fs: Vector2i, circles: Array) -> int:
+	var tc := Vector2i(BroodRoot.rect_for(BroodNew.TURTLE, p).position / Defs.TILE)
+	var mid := Vector2(tc) + Vector2(fs) * 0.5
+	var lv := int(game.height[game.idx(tc)])
+	var ms: Vector2i = BroodRoot.fp(BroodNew.MAW)[0]
+	var apart := float(Defs.PIT_CLAIM) * 2.0
+	var got: Array = []
+	var trect := Rect2i(tc, fs).grow(1)
+	for ring in [3.5, 5.5, 7.5]:
+		for i in 16:
+			var c: Vector2 = mid + Vector2.from_angle(TAU * i / 16.0 + ring * 0.3) * ring
+			var mc := Vector2i(int(c.x - ms.x * 0.5), int(c.y - ms.y * 0.5))
+			if Rect2i(mc, ms).intersects(trect) or not ExpansionSpots._ground_ok(game, mc, ms) or int(game.height[game.idx(mc)]) != lv:
+				continue
+			var px := c * Defs.TILE
+			if circles.any(func(o: Vector2) -> bool: return o.distance_to(px) < apart * Defs.TILE):
+				continue
+			if got.all(func(o: Vector2) -> bool: return o.distance_to(c) >= apart):
+				got.append(c)
+				if got.size() >= int(Defs.NB["maws_turtle"]):
+					return got.size()
+	return got.size()
+
+
+func _why(k: String) -> void:
+	fresh_why[k] = int(fresh_why.get(k, 0)) + 1
+
+
+## A turtle on its way to new ground (a grub walking there, or the turtle not yet rooted out there).
+func _far_turtle_coming(q: Unit) -> bool:
+	var far := float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9
+	for u in game.units:
+		if u.team != team or u.dead:
+			continue
+		if u.kind == "grub" and u.order == "nb_morph" and String(u.nb.get("mk", "")) == BroodNew.TURTLE and u.order_point.distance_to(_qp(q)) >= far:
+			return true
+	return false
+
+
 ## The best free turtle spots on new ground (ExpansionSpots.nb_pick: room for Rootmaws, ways in, walk, safety), reachable.
 var _far_sent := {}               # far spot -> when a grub was last sent there (a grub killed on the way: not again soon)
 var _far_last := -999.0
 
 
-func _nb_far_spots(q: Unit, reach := 0.0) -> Array:
+func _nb_far_spots(q: Unit, reach := 0.0, urgent := false) -> Array:
 	var out: Array = []
-	if game.exp_spots == null or game.clock - _far_last < 45.0:
+	if game.exp_spots == null or (game.clock - _far_last < 45.0 and not (urgent and not _far_turtle_coming(q))):
 		return out
 	var picks: Array = _nb_eco_sites(q) if _eco() else ExpansionSpots.nb_pick(game, team, game.exp_spots)
 	for s in picks:
@@ -1726,8 +1950,29 @@ func _nb_far_spots(q: Unit, reach := 0.0) -> Array:
 			continue          # (too far to guard: near the enemy's side)
 		if _foe_near(p, 12.0 * Defs.TILE):
 			continue
+		if maweco_on and _site_unsafe(p):
+			continue
 		out.append(p)
+	if maweco_on and out.size() > 1:
+		# (brood-rootmaw-coach: its own side first: a site nearer the enemy's start than its Mother goes last; the order
+		# within each half is the plan's own: the eco plans' walk order, the others' rating)
+		var mine: Array = out.filter(func(p: Vector2) -> bool: return not _toward_foe(q, p))
+		var theirs: Array = out.filter(func(p: Vector2) -> bool: return _toward_foe(q, p))
+		out = mine + theirs
 	return out
+
+
+## A new-ground site the enemy holds or was just seen at: one of its buildings seen within 16 tiles, or the alarm
+## (an army out of its main) seen within 14 tiles in the last ALARM_FOR seconds.
+func _site_unsafe(p: Vector2) -> bool:
+	if _foe_bld_near(p, 16.0 * Defs.TILE):
+		return true
+	return _alarm_on() and alarm_at.distance_to(p) < 14.0 * Defs.TILE
+
+
+func _toward_foe(q: Unit, p: Vector2) -> bool:
+	var foe := _nb_nearest_foe_pos(p)
+	return foe != Vector2.INF and foe.distance_to(p) < _qp(q).distance_to(p)
 
 
 ## THE OWNER'S BUILD (2026-10-30 07:15, docs/brood_eco.md): the plan's "eco" (every profile but the rushes). The first
@@ -2590,7 +2835,30 @@ func _nb_want_grubs() -> int:
 		n = mini(n, 14)
 	if bb != null:
 		n = mini(n, bb.grub_cap())          # (the written build: grubs held until its push)
-	return mini(n, int(plan["grubs"]))
+	return mini(n, int(plan["grubs"]) + _extra_grubs(crew))
+
+
+## BROOD-ROOTMAW-COACH: the banked food into grubs for the new Rootmaws. With its Rootmaws on new ground the posts
+## outgrow the plan's grubs (Greenhold alone: 109 posts for 50 grubs at 11:30) while the food piles up (1,900 at 10:00
+## before the supply cap): while it is rich (RICH_GRUBS food), has supply to spare, posts for more and no danger, the
+## plan's cap rises a grub every 3 s, up to EXTRA_GRUBS more (the bench works 63). Kept once raised. Not in the rushes.
+const EXTRA_GRUBS := 10
+const RICH_GRUBS := 500
+var _xg := 0
+var _xg_t := -99.0
+
+
+func _extra_grubs(crew: int) -> int:
+	if not maweco_on or strategy in ["rush", "xrush"] or (int(plan["grubs0"]) > 0 and not _first_out):
+		return 0
+	if game.clock - _xg_t >= 3.0 and _xg < EXTRA_GRUBS and _food() >= RICH_GRUBS and crew >= int(plan["grubs"]) + _xg + 4 \
+			and game.supply_used(team) + 4 < int(game.players[team]["cap"]) and not _under_armed() and not _alarm_on() \
+			and BroodNew.count_of(game, team, "grub") >= int(plan["grubs"]) + _xg - 1:
+		var q := BroodNew.queen(game, team)
+		if q != null and _nb_threat(q) == Vector2.INF:
+			_xg_t = game.clock
+			_xg += 1
+	return _xg
 
 
 ## Which warrior egg out of `spend` food (what is above the reserve): a mix by the lines it has (each line only while
