@@ -679,7 +679,7 @@ func _econ_keep(for_army := false) -> int:
 		# gold while Farm posts were free, a harvest's 380 spent before the next look at the labourers)
 		var idle := _halls().filter(func(h: Building) -> bool: return h.built and h.queue.is_empty()).size()
 		k = maxi(k, LAB_COST * idle)
-		if not bo_labs_off:
+		if not bo_labs_off and not blind_guard():
 			k = maxi(k, LAB_COST * _lab_slots())     # (crown-coach-economy: two deep at each hall, _lab_slots)
 	return k
 
@@ -814,9 +814,9 @@ func _bo_lab_keep() -> int:
 		return 0
 	if bo_army_first:
 		return 0                # (the rush's riders before labourers: its identity, PLANS["rush"])
-	if blind_guard() and (army_behind() or army_grows()):
-		return 0                # (against the Brood: its survival checks, as _army_due's; the first batch had 30% less army
-		                        # at 5:00 against the Brood without them)
+	if blind_guard():
+		return 0                # (not against the Brood: its batches gained no income and held 20% less army at 8:00, even
+		                        # under its survival checks (army_behind, army_grows); the Brood's own rules stay)
 	var top := mini(bo_lab_cap, owner_lab_cap())
 	var slots := mini(_lab_slots(), top - game.workers(team).size() - _labs_queued())
 	if slots <= 0:

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.2", "items": [
+		"THE CROWN COMPUTER RUNS ITS ECONOMY BETTER (Hard, Normal): its Powder Mill hands go to the empty Farm posts while the powder piles up, its halls keep two labourers coming while Farm posts stand free (their gold no longer goes to the soldiers and buildings first; never in the Horseman rush or against the Brood), an enemy worker scouting the base no longer stops that, the second hall no longer waits behind the plan's other steps (not against the Brood), and a new hall gets its Farm at once. Against the Clockwork it earns about a tenth more by 8:00-10:00, with more labourers and the same army.",
+	]},
 	{"v": "0.38.1", "items": [
 		"THE LONE PIPER'S SCOTLAND THE BRAVE is now a real recording of a solo bagpiper (about four minutes) instead of the generated one.",
 	]},
