@@ -296,8 +296,8 @@ Rootmaws on new ground sooner (it banks 4,000-5,000 food at 12:00 alone) would w
 
 ## How to run it
 
-- Test: `godot --headless --fixed-fps 30 --script res://tools/test_rootmaw_spots.gd [-- maps:a,b]` (about 10-15 minutes for
-  every map).
+- Test: `godot --headless --fixed-fps 30 --script res://tools/test_rootmaw_spots.gd [-- maps:a,b]` (a few minutes for every
+  map).
 - Measure: `godot --headless --fixed-fps 30 --script res://tools/measure_rootmaw_fit.gd -- [r:8,7,6] [maps:a,b]
   [turtles:all] [quality]`.
 - Pictures: `xvfb-run -a godot --rendering-driver opengl3 --resolution 1600x900 --fixed-fps 30 --script
