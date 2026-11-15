@@ -2625,6 +2625,8 @@ func _hall_first() -> bool:
 		need = maxi(need, mini(3, ceili(game.workers(team).size() / 16.0)))     # (three fresh halls at most: more halls only grew more hands, round 3)
 		if tr.want_hall():
 			need = maxi(need, 2)
+		if "coach" in self and self.coach != null:
+			need = maxi(need, self.coach.halls_need())     # (the Crown coach 2026-11-16: HALLS ON TIME, scripts/ai_crown_coach.gd)
 		if doctrine() and _halls().size() == 1 and game.clock >= SAT_EXPAND_FROM and (saturated() or (_econ_full() and game.clock >= FULL_EXPAND_FROM)) and _threat() == Vector2.INF:
 			need = maxi(need, 2)    # (THE OWNER'S DOCTRINE: the main is full: the next hall now, not when its soil runs low)    # (AI TRANSITIONS: a held rush, the army ahead: the second hall now, its gold held for it)
 	elif _clock() and Defs.gear_mode and difficulty >= 1 and (not _mine(Defs.CW_TECH).is_empty() or game.clock > 360.0):

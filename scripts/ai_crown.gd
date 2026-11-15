@@ -1004,9 +1004,17 @@ func _plan_tech() -> bool:
 ## out of reach of the wall, the labourers, the Farms, the supply and the buildings of think stages 0 and 1 (the soldiers
 ## train in stage 2)
 func _think_stage(i: int) -> void:
+	# (the Crown coach 2026-11-16, LABOURERS FIRST: before any stage spends; the gold for an idle hall's labourer is held)
+	if coach == null and on:
+		coach = AICrownCoach.new(self)
+	var lab_held: int = coach.labs_first() if coach != null else 0
+	game.players[team]["gold"] -= lab_held
 	var vk := _vb_keep() if i <= 1 and vb() != null and vbr.keep_wide else 0
 	_think_stage_crown(i)
-	game.players[team]["gold"] += vk
+	game.players[team]["gold"] += vk + lab_held
+
+
+var coach: AICrownCoach = null   # the Crown coach 2026-11-16 (scripts/ai_crown_coach.gd)
 
 
 ## (crown-coach-v-brood) the line's gold kept from the Farms (the narrow keep, the default: not from the labourers)
@@ -1259,6 +1267,8 @@ var hall_moved_log: Array = []   # [clock, from step, to step] (the report)
 func _bo_hall_on_time() -> void:
 	if hall_on_time_off or not on or difficulty < 1 or _defending() or bo_i >= _bo_plan.size():
 		return
+	if coach != null and coach.bo_hall_now():
+		return          # (the Crown coach 2026-11-16: the main is full: the hall step now, any matchup)
 	if _foe_is("brood"):
 		return          # (against the Brood the plans' coached orders keep the army first: moved, the hall's 400 cost the
 		                # army at 5:00 a third, 575 -> 345, and the income too, Hollowfen 1002)
@@ -1687,7 +1697,7 @@ func _wave_worth(ready: Array) -> bool:
 			want_look("the wave")
 			return false
 		var est := foe_estimate()
-		if mine >= est * CR_EDGE_BROOD:
+		if mine >= est * (coach.edge_brood() if coach != null and coach.honest_on() else CR_EDGE_BROOD):
 			return true
 		if vb() != null and vbr.counter_ok(mine):
 			return true         # (crown-coach-v-brood: THE COUNTER AFTER A HELD WAVE, scripts/ai_crown_v_brood.gd)
@@ -3016,6 +3026,8 @@ func foe_estimate() -> float:
 	_look_tick()
 	var t := game.clock
 	var est := _lerp_table(BROOD_TABLE, t)
+	if coach != null and coach.honest_on():
+		est *= coach.table_share()      # (the Crown coach 2026-11-16, AN HONEST RECKONING: the table is only a guess when blind)
 	est += maxf(0.0, float(maws_peak) - _lerp_table(BROOD_MAWS, t)) * BROOD_PER_MAW
 	est -= 0.5 * float(game.stats[team]["value_killed"])
 	return maxf(known, est)

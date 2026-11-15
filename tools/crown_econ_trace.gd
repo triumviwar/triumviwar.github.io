@@ -64,7 +64,8 @@ func _trace_one(tm: int) -> void:
 
 
 ## what holds the labourers: p = free Farm posts first (opening), s = soldiers first, d = defending, t = a threat, r = raided,
-## a = the army due (after the opening), h = the hall's gold kept
+## a = the army due (after the opening), h = the hall's gold kept, B = against the Brood (blind_guard), P = free Farm posts
+## first (after the opening), L = the army far behind (army_lags), w = the wall first
 func _flags(a) -> String:
 	if a == null or not a.has_method("_bo_posts_first"):
 		return ""
@@ -76,6 +77,10 @@ func _flags(a) -> String:
 	if a._raided(): f += "r"
 	if a.bo_done and a._army_due(): f += "a"
 	if a._hall_reserve: f += "h"
+	if a.blind_guard(): f += "B"
+	if a._posts_first(): f += "P"
+	if a.army_lags(): f += "L"
+	if a.wall_first(): f += "w"
 	return f
 
 
