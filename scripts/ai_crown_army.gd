@@ -5,27 +5,30 @@ extends RefCounted
 ## time from 1:30 to 6:00 (the labourers, the Cottages and the steps took every coin first), its first Musketeer came at
 ## 3:00-3:30 for want of powder (the Mill kept ONE hand while nothing trained: a deadlock in AICrown._mill_feedback), and the
 ## opening's army caps (8 supply on the Balloon plan) held it while the enemy's army doubled.
-## What this does (the Crown computer, Normal and up, the new computer; `-- crownarmy:off` plays as 0.38.1):
-##  1. THE ARMY CLOCK: from FROM s the army (with what trains) is kept at SHARE of the army a Hard computer of the enemy's
-##     faction usually has at that minute (TABLE, measured in the batch: the median of each faction's OPTIMAL army in its
-##     games against the Crown), or of what our scout saw if that is more. behind() says when it is not.
-##  2. While behind(): in the opening a labourer is trained only when every Barracks is busy (AICrown._soldiers_first), the
-##     opening's army cap does not hold (bo_army_cap), the soldiers' training starts at once if the plan's "army" step has
-##     not come yet, and after the opening AICrown.army_lags (the labourers and the tech wait for the soldiers) counts from
-##     one hall on instead of from the second hall and 22 labourers.
-##  3. POWDER FOR THE FIRST MUSKETEERS: a Barracks idle with a Musketeer's gold but not his powder counts as "using" the
-##     powder (AICrown._mill_feedback), so the Mill takes its second and third hands.
-## Gated by matchup: the Clockwork and the Crown (the Brood has its own reckoning, AICrown.army_behind / brood_spend_army:
-## TABLE has no Brood row unless BROOD is on).
+## What this does (the Crown computer, Normal and up, the new computer; `-- crownarmy:off` plays as before):
+##  1. THE ARMY CLOCK: from FROM to UNTIL the army (with what trains) is kept at SHARE of the army a Hard computer of the
+##     enemy's faction usually has LEAD s from now (TABLE, measured: the median of its OPTIMAL army in games against the
+##     Crown), or SHARE_SEEN of what our scout saw if that is more. behind() says when it is not.
+##  2. While behind(), with a Barracks that has room and can train a Musketeer (idle_barracks): in the opening a labourer
+##     waits for the soldier (AICrown._soldiers_first), the opening's army cap does not hold, the soldiers start at once if
+##     the plan's "army" step has not come yet, the next step's gold leaves the soldier's price (step_release), the natural's
+##     palisade does not take the gold first (AICrown.wall_first) and no Church is bought for a wall slot (slot_waits).
+##  3. POWDER FOR THE FIRST MUSKETEERS: while behind, the plan's Powder Mill step comes now (mill_first), the Mill takes three
+##     hands while a Barracks waits for powder, and a Musketeer may come out with his bayonet while the Mill starts (dry_ok);
+##     in every matchup, a Barracks idle with a Musketeer's gold but not his powder counts as using the powder
+##     (powder_wait, AICrown._mill_feedback), so the Mill's crew grows.
+## Gated by matchup: the clock plays against the Clockwork and the Crown (TABLE has no Brood row: against the Brood the
+## Crown has its own reckoning, AICrown.army_behind / vb_line_short).
 ## Design: docs/design_principles.md 1 (fairness: no numbers change, the computer only spends its gold in time).
 
 const FROM := 150.0             # (s) not before this (the opening's first labourers and the Barracks itself)
-const SHARE := 0.75             # of the usual enemy army
+const SHARE := 0.6              # of the usual enemy army (0.75 was measured on 0.38.5; 0.6 on 0.38.11 kept more of the
+                                # economy: the doc's batches)
 const SHARE_SEEN := 0.6         # of what our scout saw lately (when it is more than the table)
 const MIN_LABS := 10            # never with fewer labourers than this (a hall's first Farm's hands)
-const UNTIL := 420.0            # (s) and not after this: the clock is for the first push (the batch: it reaches our base at
-                                # 5:30-8:30, mean 6:50); after it the plan's own army rules (army_lags) hold, as a clock that
-                                # kept the labourers waiting all game lost the late game (15:00 batch: L 5 -> 10, docs)
+const UNTIL := 390.0            # (s) and not after this: the clock is for the first push (it reaches our base at 5:30-8:30,
+                                # mean 6:40-6:50); after it the plan's own army rules (army_lags) hold, as a clock that kept
+                                # the labourers waiting all game lost the late game (15:00 batch: L 5 -> 10, docs)
 const LEAD := 45.0              # (s) the clock looks this far ahead: a soldier trains in 15 s and walks to his post, and the
                                 # enemy's push is at our base before its army stops growing (the batch: it arrives at 6:40-8:20
                                 # with 1,150 against our 980)
@@ -42,6 +45,7 @@ var until := UNTIL              # (study switch `-- crownarmy:until=900`)
 var share := SHARE              # (study switch `-- crownarmy:share=0.9`)
 var room := ROOM                # (study switch `-- crownarmy:room=1`)
 var off := OS.get_cmdline_user_args().has("crownarmy:off")
+var clock_off := OS.get_cmdline_user_args().has("crownarmy:noclock")    # (the clock off, the powder fix kept: a study switch)
 var lead_off := OS.get_cmdline_user_args().has("crownlead:off")    # (the clock without its look ahead: the WIP of 03:45)
 var behind_t := 0.0             # (the report) seconds it was behind
 var _last := -1.0
@@ -62,7 +66,7 @@ func _init(owner) -> void:
 
 
 func active() -> bool:
-	if off or not ai.on or ai.difficulty < 1 or ai.peaceful:
+	if off or clock_off or not ai.on or ai.difficulty < 1 or ai.peaceful:
 		return false
 	var foe: int = ai._foe()
 	return foe >= 0 and TABLE.has(ai.game.faction_of(foe))
@@ -147,9 +151,9 @@ func step_release() -> int:
 ## gold is what the clock frees). One waiting for powder does not count: the labourers then go on (on 0.38.10, with the
 ## Mills' hands sent to the Farms by the economy's rule, counting it held both the labourers and the soldiers: 123 s of
 ## the first 6 minutes waiting for powder, the army half of before at 8:00).
-## A Barracks with fewer than ROOM soldiers queued has room (one queued trains for 15 s while the gold of that harvest went
-## to labourers and walls: 2 Musketeers from 4:00 to 5:00 with 458 gold in the bank at 4:00).
-const ROOM := 2
+## A Barracks with fewer than ROOM soldiers queued has room. ROOM 2 (a second soldier queued before a labourer) kept more
+## soldiers early but cost 14% of the income at 8:00 on 0.38.11 (docs); 1: an empty Barracks only.
+const ROOM := 1
 
 
 func idle_barracks() -> int:
