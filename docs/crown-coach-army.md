@@ -144,7 +144,7 @@ Crown's income (the Clockwork earns 1.6-1.9 times as much by 8:00).
 
 ## Tests
 
-The 42 Crown and AI tests (test_ai_*, test_crown_*, test_cinder_crown) on the final code (0.38.13), against the same tests on
+The 42 Crown and AI tests (test_ai_*, test_crown_*, test_cinder_crown) on the final code (0.38.13, the same code as the merged 0.38.14), against the same tests on
 0.38.1 before any change:
 
 - Pass both: abandoned_site, air_defence, army_response, crown_bank, expand, expand_wall, gg_rule, optimal, placement,

@@ -51,6 +51,7 @@ const HOME_COOL := 40.0          # (s) ... and is left alone this long (or until
 var ai = null
 var game: Game = null
 var on := not OS.get_cmdline_user_args().has("cavmicro:off")
+var charge_play := true          # (keen-sabres-test, measuring only: false = it rides as if the Charge weren't drilled)
 var st := {}                     # Unit -> its fight: {"s": state, "t": since, "tgt", "blow", "back", "anchor", "far", "spin", "o", "p", "e"}
 var _cool := {}                  # Unit -> clock until which it is left alone (sent home)
 var _next := 0.0
@@ -315,7 +316,7 @@ func _assert(u: Unit, s: Dictionary) -> void:
 # ------------------------------------------------------------------ the charge
 
 func _charge(u: Unit) -> bool:
-	return game.has_tech(u.team, "charge")
+	return charge_play and game.has_tech(u.team, "charge")
 
 
 ## It waits for its charge between passes: drilled, and no enemy gun has it in reach (riding round under the muskets or
