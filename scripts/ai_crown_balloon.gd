@@ -612,7 +612,8 @@ func _party(p: Dictionary) -> void:
 	if b.last_hit_by != "":
 		p["by"] = b.last_hit_by
 	if fix_on and _shaken(b) and p["phase"] in ["strike", "drop", "ground", "evade"]:
-		bad.append([b.position, game.clock])
+		if p["phase"] != "evade":
+			bad.append([b.position, game.clock])
 		if p["phase"] == "ground":
 			_phase(p, "lift")
 			b.cmd_move(_lift_spot(p))
@@ -620,6 +621,11 @@ func _party(p: Dictionary) -> void:
 			return
 		if p["phase"] == "drop" and b.order == "unload" and not _aboard(p).is_empty() and (p["men"] as Array).size() > _aboard(p).size():
 			pass        # (half of them down already: let the rest off)
+		elif p["phase"] == "evade" and b.hp >= b.max_hp * GO_HP:
+			pass        # (already flying off: it goes on)
+		elif b.hp >= b.max_hp * GO_HP and not _aboard(p).is_empty():
+			_evade(p, "under fire")       # (still fit: away from it, then the next target, that spot rated down)
+			return
 		else:
 			_phase(p, "home")
 			b.cmd_move(_home())
