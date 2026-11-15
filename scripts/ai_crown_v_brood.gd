@@ -44,6 +44,8 @@ func _init(a) -> void:
 	var args := OS.get_cmdline_user_args()
 	off = args.has("cvb:off")
 	line_off = off or args.has("cvbline:off")
+	target_off = off or args.has("cvbtarget:off")
+	counter_off = off or args.has("cvbcounter:off")
 
 
 static func is_line(u: Unit) -> bool:
@@ -106,3 +108,119 @@ func line_keep() -> int:
 			break
 	keeps += 1
 	return mini(k, int(game.players[team]["gold"]))
+
+
+## 2. THE WAVE GOES FOR THE BROOD'S FAR GROUND, NOT THE MOTHER (coached: Hollowfen 1151 9:24, Highmoor 1103): a Brood has no
+##    buildings, so the shared wave target (the enemy's nearest hall) fell back to its start, the Mother on her nest with
+##    her fathers and the rooted turtles round her: the strongest spot on its side of the map. Its income is its Rootmaws,
+##    rooted on fresh ground away from her, each a slow 450-hp lizard with a few grubs. Against the Brood the wave now
+##    goes for the nearest Rootmaw it has seen rooted away from the Mother (MAW_FAR), the Mother only when there is none.
+##    Switch: `-- cvbtarget:off`.
+const MAW_FAR := 14.0            # (tiles) a Rootmaw at least this far from the Mother is "far ground"
+var target_off := false
+var _tgt_t := -99.0
+var _tgt := Vector2.INF
+var targets := 0                 # (tests) waves sent at a far Rootmaw
+
+
+func wave_target(me: Vector2) -> Vector2:
+	if target_off:
+		return Vector2.INF
+	if game.clock - _tgt_t < 5.0:
+		return _tgt
+	_tgt_t = game.clock
+	_tgt = Vector2.INF
+	var foe: int = ai._foe()
+	if foe < 0:
+		return _tgt
+	var mother: Unit = BroodNew.queen(game, foe)
+	var mp: Vector2 = mother.position if mother != null else game.start_mid(foe)
+	var bd := INF
+	for u in ai._maws_seen.keys():
+		if not is_instance_valid(u) or u.dead or not BroodNew.rooted(u):
+			continue
+		if u.position.distance_to(mp) < MAW_FAR * Defs.TILE:
+			continue
+		var d: float = u.position.distance_to(me)
+		if d < bd:
+			bd = d
+			_tgt = u.position
+	return _tgt
+
+
+## 3. THE COUNTER AFTER A HELD WAVE (coached: Hollowfen 1151, 9:18-10:46; Highmoor 1103, 8:53-10:06; the "before" batch: at
+##    10:00 the Crown's army was even with or ahead of the Brood's in 6 of 16 games, 2,120-2,195 against 1,495-3,020): the
+##    Brood's wave broke on the palisade ("pulls its wave back: only 180 of 550 is left") and the Crown sat at home, "holds its
+##    wave back: the enemy army it knows is bigger", its wave weighed against a reckoning of a Hard Brood by the clock
+##    (AICrown.BROOD_TABLE, 3,800 at 10:00, 1.5 times that wanted) while the Brood rooted three more Rootmaws and came back
+##    at the supply cap (96 supply at 10:46) and broke the line of 19 in nine seconds. A human goes out when the enemy's wave
+##    has just died at his wall. So against the Brood, from COUNTER_FROM: when the Crown has killed at least COUNTER_KILL
+##    of Brood in the last COUNTER_WINDOW s, or its army is COUNTER_EDGE times the Brood army seen in the last two minutes
+##    (fresh scouting asked as before), and its own army is at least COUNTER_MIN, the wave goes at once, for the far ground
+##    (part 2). Switch: `-- cvbcounter:off`.
+const COUNTER_FROM := 360.0
+const COUNTER_MIN := 1200.0
+const COUNTER_WINDOW := 75.0
+const COUNTER_KILL := 0.45       # (share of our ready army's value killed lately)
+const COUNTER_EDGE := 1.4
+var counter_off := false
+var _kills: Array = []           # [clock, value_killed]
+var counters := 0
+var _counter_said := -99.0
+
+
+func track() -> void:
+	var k := float(game.stats[team]["value_killed"])
+	if _kills.is_empty() or float(_kills[-1][1]) != k:
+		_kills.append([game.clock, k])
+	while _kills.size() > 2 and game.clock - float(_kills[0][0]) > COUNTER_WINDOW + 5.0:
+		_kills.pop_front()
+
+
+func killed_lately() -> float:
+	if _kills.is_empty():
+		return 0.0
+	var old := float(_kills[-1][1])
+	for e in _kills:
+		if game.clock - float(e[0]) <= COUNTER_WINDOW:
+			old = float(e[1])
+			break
+	return float(game.stats[team]["value_killed"]) - old
+
+
+## The wave may go though the Brood reckoning is bigger: its wave just died, or the army seen lately is far smaller.
+func counter_ok(mine: float) -> bool:
+	if counter_off or game.clock < COUNTER_FROM or mine < COUNTER_MIN:
+		return false
+	var kl := killed_lately()
+	var seen: float = ai.ch.foe_known()
+	var why := ""
+	if kl >= mine * COUNTER_KILL and seen * 1.0 < mine:
+		why = "its wave just died at our line (%d killed in %d s)" % [int(kl), int(COUNTER_WINDOW)]
+	elif seen > 0.0 and mine >= seen * COUNTER_EDGE:
+		why = "our army is %.1f times the Brood army seen lately (%d)" % [mine / seen, int(seen)]
+	if why == "":
+		return false
+	counters += 1
+	if game.clock - _counter_said > 30.0:
+		_counter_said = game.clock
+		ai.say("against the Brood the wave goes out now (%d of army): %s" % [int(mine), why])
+	return true
+
+
+## 4. NO CHURCH BEFORE THE LINE (coached: Highmoor 1103 at 5:41, Hollowfen 1151 at 5:55, every rush game of the "before"
+##    batch): during the Horseman rush's long build order the shared rule (AI._build_up: a Church after 3:40 on Hard while
+##    the plan's own milestones are not yet in charge) put up a Church for 150 gold at 4:00-4:30 and its Missionaries after,
+##    while the Barracks had no Musketeer. Against the Brood the Church waits until CHURCH_FROM and the line is not short
+##    (the plans' own milestones put it up at 34-40 labourers on two halls). Switch: `-- cvbline:off`.
+const CHURCH_FROM := 600.0
+var church_held := 0
+
+
+func church_waits() -> bool:
+	if line_off:
+		return false
+	if game.clock < CHURCH_FROM or line_short():
+		church_held += 1
+		return true
+	return false

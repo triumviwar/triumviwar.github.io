@@ -73,6 +73,15 @@ func _vb_keep() -> int:
 	return k
 
 
+## (crown-coach-v-brood) against the Brood the wave goes for its far ground, not the Mother (AICrownVBrood.wave_target)
+func _enemy_base() -> Vector2:
+	if vb() != null:
+		var p: Vector2 = vbr.wave_target(game.center_of_team(team))
+		if p != Vector2.INF:
+			return p
+	return super()
+
+
 func _econ_build() -> void:
 	var k := _vb_keep()          # (crown-coach-v-brood: THE LINE BEFORE THE BUILDINGS)
 	super()
@@ -1416,6 +1425,8 @@ func _wave_worth(ready: Array) -> bool:
 		var est := foe_estimate()
 		if mine >= est * CR_EDGE_BROOD:
 			return true
+		if vb() != null and vbr.counter_ok(mine):
+			return true         # (crown-coach-v-brood: THE COUNTER AFTER A HELD WAVE, scripts/ai_crown_v_brood.gd)
 		if game.clock - _held_said > 60.0:
 			_held_said = game.clock
 			say("the wave waits on the high ground: %d of army against the %d it reckons the Brood has (%d seen lately; it wants %.1f times)" % [int(mine), int(est), int(ch.foe_known()), CR_EDGE_BROOD])
@@ -1927,6 +1938,8 @@ func _construct(kind: String, at := Vector2i(-1, -1)) -> void:
 		# laid its hall site twice more on the spot it lost at 13:25, through _more_halls' find_spot)
 		lost_refused += 1
 		return
+	if kind == "church" and vb() != null and vbr.church_waits():
+		return                  # (crown-coach-v-brood: no Church before the line, scripts/ai_crown_v_brood.gd)
 	super(kind, at)
 
 
@@ -2295,6 +2308,8 @@ func siege_on() -> bool:
 func _army() -> void:
 	if siege != null and not peaceful:
 		siege.tick()
+	if vb() != null:
+		vbr.track()             # (crown-coach-v-brood: the kills of the last minute, for the counter)
 	super()
 
 
