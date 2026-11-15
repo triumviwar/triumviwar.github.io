@@ -1136,6 +1136,18 @@ func _build_card() -> Array:
 				list.append(["repair", ("~ " if auto_fix else "") + "REPAIR", func() -> void:
 					controls.mode = "repair"
 					toast("Tap a damaged building (or wall) to repair it."), true, "", ""])
+			if units.any(func(u: Unit) -> bool: return u.kind == "winder"):
+				# WIND UP (W; docs/winder_escort.md): the Winders escort the rest of the selection, or the unit tapped next
+				list.append(["ab_wind_up", "WIND UP", func() -> void:
+					var sel := game.selected_units()
+					var ws := sel.filter(func(u: Unit) -> bool: return u.kind == "winder")
+					var army: Array = WinderEscort.fighters(sel)
+					if not army.is_empty():
+						game.wind_up_order(ws, army, Input.is_key_pressed(KEY_SHIFT))
+						toast("Winding up: the Winders follow the army, winding and mending it, until another order.")
+					else:
+						controls.mode = "windup"
+						toast("Tap one of your units: the Winders follow it, winding and mending it and those round it."), true, "", ""])
 
 		else:
 			_ability_buttons(list, units)
@@ -2097,7 +2109,7 @@ const FIXED_KEYS := {"MOVE": "V", "ATTACK": "A", "STOP": "S", "HOLD": "H", "PATR
 	"LOAD": "F", "UNLOAD": "G", "DROP HERE": "G", "RESTOCK": "E", "RELOAD": "R", "COURIER": "C", "OVERLOAD": "V", "BRACE": "E", "SHIELD FORWARD": "F", "LAND": "D", "TAKE OFF": "D", "SUPPLY": "G",
 	"ARMOUR": "E", "MATCHLOCK": "F", "FLINTLOCK": "F", "CAPLOCK": "F", "BAYONET": "W", "AUTO REFIT": "Q", "POUCH": "T",
 	"LEAD": "Q", "RELEASE": "W", "MOUNT": "T", "DISMOUNT": "T", "RELEASE HORSE": "W", "HARNESS": "Q",
-	"HOLD FIRE": "F",
+	"HOLD FIRE": "F", "WIND UP": "W",
 	"SIDING": "N", "COUPLE": "C", "UNCOUPLE": "U", "CREW OUT": "O", "CREW IN": "I", "PLATES": "E", "SET UP": "D", "BOARD": "G", "THUNDER": "T", "DOCK": "Q", "CARRY": "F"}
 ## Keys the left hand reaches without leaving the group numbers: names only take letters
 ## from here (H for HOLD is the one fixed key outside it).
@@ -4022,6 +4034,8 @@ func _draw_panel(font: Font) -> void:
 			info = Loc.t(cwi) + ("  ·  " + Loc.t(info) if info != "" else "")      # (the experimental roster's state first)
 		else:
 			info = Loc.t(info)
+		if e is Unit and (e as Unit).order == "escort" and (e.team == game.human or game.demo):
+			info = Loc.t("ESCORTING: winds and mends the army") + ("  ·  " + info if info != "" else "")      # (docs/winder_escort.md)
 		if charge_pre != "":
 			info = charge_pre + ("  ·  " + info if info != "" else "")
 		eff_txt = Loc.t(eff_txt)
@@ -4988,6 +5002,7 @@ const CMD_TIPS := {
 	"MOVE": "Then pick where to go: they walk there without stopping to fight.",
 	"ATTACK": "Then pick a target, or a place: they walk there fighting everything they meet.",
 	"STOP": "Drop every order and stand.",
+	"WIND UP": "The Winders follow your army from behind, winding and mending whoever needs it most, out of the fight, until another order. With soldiers selected too they follow those; with only Winders, tap the unit to follow. (Selected with the army, Winders do it by themselves on a move or an attack.)",
 	"HOLD": "Stand here and fight whatever comes in reach, without chasing.",
 	"PATROL": "Then pick a place: they walk there and back, again and again, fighting whatever they meet on the way.",
 	"BUILD": "Every building this worker can put up.",
