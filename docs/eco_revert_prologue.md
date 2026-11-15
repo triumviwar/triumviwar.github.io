@@ -45,7 +45,7 @@ Deleted (only the experiments used them):
   `test_net_fog.gd`'s `ground:1` mode (back to its 0.34 form); the ground parts of `test_overlay_alpha.gd` (parts B and C
   now check the original texts and refusal), `test_settings_tabs.gd`, `test_qa_settings_persist.gd`.
 - Texts: `tools/i18n/65_ground_system.txt`, `68_ground_nocap.txt` and the hall-text / refusal entries of
-  `69_overlay_alpha.txt` (the lang tables rebuilt: 38 entries fewer each). The old patch notes stay as history.
+  `69_overlay_alpha.txt` (the lang tables rebuilt: 37 entries fewer each). The old patch notes stay as history.
 - Docs: `docs/ground_system.md`, `ground_system_games.txt`, `ground_nocap_study.md`, `econ_nocap_all.md`, their data
   folders and pictures (`docs/ground_nocap_data/`, `docs/econ_nocap_all_data/`, `docs/shots/ground_system/`,
   `ground_nocap/`, `econ_nocap_all/`, about 22 MB). They are in the git history: `git show 42ae6314:docs/ground_system.md`
@@ -120,6 +120,27 @@ Crown side had two halls (the Crown's and the Clockwork's own spot rules re-rate
 mission's choice turns those updates off too (`Game`, `ExpansionSpots.crown_on` / `clock_on`). The 0.31 picture of the night
 showed it too.
 
-## Tests (0.38.12)
+## Tests (0.38.12; headless Godot 4.7, each also run on main 0.38.11 where it failed)
 
-See the table at the end (filled from the runs).
+Pass: test_files (1310 checks), test_content_all (0 FAIL checks, the 16 WARNs as before), test_unit_stats,
+test_card_text, test_i18n (4870 pt / es entries, 0 data texts untranslated), test_settings_tabs, test_qa_settings_persist,
+test_overlay_alpha, test_campaign, test_campaign_m1 (with the new layout checks: two halls 19 tiles apart, 2 barns each
+within reach, the Farm limit at 4 of 4), test_net_fog (back to 0.34's form), test_ai_abandoned_site, _air_defence,
+_army_response, _brood, _crown_bank, _expand, _expand_wall, _gg_rule, _harass, _optimal, _placement, _r5_hold_spots,
+_round6, _round6_stall, _scout, _scout_defence, _scout_sentry, _scout_threat, _wall_vs_rush, _worker_safety,
+test_crown_ammo, _balloon, _balloon_coach, _build_order, _defence, _farms, _gate, _ghosts, _hold, _line, _lost_hall,
+_owner_eco, _rider_screen, _siege, _stall, _v_brood. Booting the game headless (900 frames): no SCRIPT ERROR.
+
+Fail, and fail on main too (known flaky or stale in CLAUDE.md):
+
+| Test | 0.38.12 | 0.38.11 (main) |
+|---|---|---|
+| test_ai_cw_horse_raid | 1 failed (round 5 lost 3 -> 9 Winders) | 2 failed |
+| test_ai_rush | "workers before the Brood Mother" (Mother hit at 3:55, first grub 3:58 / 4:03), 3 runs of 3 | the same, 1 run of 2 (the other passed: grub 4:05, Mother 4:34) |
+| test_ai_rush_followup | 14 failed | the same checks fail |
+| test_cinder_crown | [hall] second hall by 330 s (348-349 s) | the same (346 s) |
+| test_crown_dragoon_raid | [plan] a group out by 690 s (rode false) | the same |
+| test_crown_mirror | 1 failed in the first run (a Musketeer queued for the raider at 12.0 s), passed on the rerun | passed |
+
+test_campaign and test_campaign_m1 print SCRIPT ERRORs ("Invalid assignment of property 'name' ... on Nil", 10 and 16 of
+them) on main too: a campaign test-harness matter, not this job's.
