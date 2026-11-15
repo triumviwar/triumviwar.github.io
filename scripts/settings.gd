@@ -72,7 +72,7 @@ static func load_all() -> void:
 		ranked_dev_id = String(cfg.get_value("online", "ranked_dev_id", ""))
 		ranked_faction = String(cfg.get_value("online", "ranked_faction", "random"))
 		language = str(cfg.get_value("ui", "language", "en"))
-		cw_lab = bool(cfg.get_value("ui", "cw_lab", false))
+		cw_lab = false        # (the CLOCKWORK LAB switch is gone from Settings, owner 2026-11-15: a saved "on" is ignored; tools may still set it)
 		replays_keep = clampi(int(cfg.get_value("ui", "replays_keep", 30)), 5, 200)
 		replay_rec = String(cfg.get_value("ui", "replay_rec", ""))
 		if not REPLAY_MODES.has(replay_rec):

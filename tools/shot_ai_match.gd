@@ -609,6 +609,9 @@ func _finish() -> void:
 		cf.close()
 	var r := FileAccess.open(out.path_join("result.txt"), FileAccess.WRITE)
 	r.store_line("over %s winner %s clock %.0f" % [str(g.over), str(g.get("winner")), g.clock])
+	# (pendulum-air: what the Pendulums did to flyers, docs/pendulum_air.md)
+	r.store_line("pendulum swings %d, flyer hits %d, flyer damage %.0f, flyers killed %d (air %s)" % [Pendulum.st_swings, Pendulum.st_air_hits,
+			Pendulum.st_air_dmg, Pendulum.st_air_kills, "on" if Pendulum.air_on else "off"])
 	r.close()
 
 

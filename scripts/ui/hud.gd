@@ -3767,7 +3767,7 @@ func _draw_panel(font: Font) -> void:
 			elif uu.kind == MarchingBand.KIND or MarchingBand.MUSICIANS.has(uu.kind):
 				info = MarchingBand.card_line(uu)
 			elif uu.kind == Defs.PENDULUM:
-				info = "Its blade cuts every enemy in the arc in front of it (never your own units). It cannot reach flyers."
+				info = "Its blades cut every enemy in the arc in front of it (never your own units), flyers for three quarters of the blow."
 			elif uu.kind == "tesla_cart":
 				info = {"packed": "Packed: rolls, can't fire. DEPLOY to fight.", "deploying": "Deploying...",
 					"deployed": "Deployed: powers constructs nearby and zaps enemies.", "packing": "Packing up..."}[uu.tesla_mode]
@@ -4371,6 +4371,8 @@ func _draw_pistol(p: Vector2, loaded: bool) -> void:
 ## A unit's (or building's) portrait: its own, its sprites' (a Guardsman, a Horseman), or the
 ## one standing in for it (Defs.TEMP_ART, light or armoured).
 func _unit_icon(e: Entity) -> Texture2D:
+	if e is Unit and (e as Unit)._k_serp and BrassSerpent.heads(e as Unit) > 1 and _icon("brass_hydra"):
+		return _icon("brass_hydra")      # (a Hydra: its own picture)
 	if e is Unit and Defs.TEMP_ART.has(e.kind):
 		return _icon(Defs.icon_for(Defs.train_key(e.kind, (e as Unit).armoured)))
 	var icon := _icon(e.kind)

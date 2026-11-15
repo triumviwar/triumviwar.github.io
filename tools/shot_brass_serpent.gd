@@ -9,6 +9,7 @@ var g
 var out := ""
 var t := 0.0
 var started := false
+var hold := false          # (the game held still: the bite frames)
 const K := Defs.SERPENT_KIND
 
 
@@ -29,7 +30,7 @@ func _process(delta: float) -> bool:
 	g = main.game
 	if g.hud:
 		g.hud.countdown = 0.0
-	paused = false
+	paused = hold
 	if not started and t > 1.0:
 		started = true
 		_run()
@@ -155,9 +156,43 @@ func _run() -> void:
 	await _frames(240)
 	await _cam(at + Vector2(-20, 0), 1.3)
 	await _snap("sizes_2s_6s_6s4b_6s10b", 0.3)
-	await _cam(made[2].position + Vector2(-60, 0), 2.6)
+	# (beside Clock Soldiers and a Pendulum, for the scale)
+	var cmp: Array = []
+	for j in 3:
+		var cs0: Unit = g._add_unit("clock_soldier", g.human, _open(made[2].position + Vector2(-40 + j * 26, 46)))
+		cs0.cmd_hold()
+		cmp.append(cs0)
+	var pd: Unit = g._add_unit("pendulum", g.human, _open(made[2].position + Vector2(70, 50)))
+	pd.cmd_hold()
+	cmp.append(pd)
+	await _frames(30)
+	await _cam(made[2].position + Vector2(-40, 20), 2.6)
 	await _snap("closeup_6s4b", 0.3)
-	await _gone(made)
+	await _gone(made + cmp)
+	# ---- the eight ways it faces (each crawled a little that way, so its body lies behind it)
+	var eight: Array = []
+	for i in 8:
+		var dir := Vector2.from_angle(TAU * i / 8.0)
+		var ctr := at + Vector2(-240 + (i % 4) * 160, -70 + (i / 4) * 170)
+		var e8 := _serp(ctr - dir * 60.0, _n("s", 4) + _n("b", 2), dir)
+		e8.cmd_move(g.on_map(ctr + dir * 10.0))
+		eight.append(e8)
+	await _frames(150)
+	await _cam(at + Vector2(0, 15), 1.9)
+	await _snap("eight_ways", 0.3)
+	# ---- the bite, frame by frame, in the five painted directions (W, SW, NW: mirrored)
+	await _cam(at + Vector2(0, 15), 1.9)
+	hold = true
+	for fr in 4:
+		for e8 in eight:
+			e8.set_meta("serp_bite", g.clock - BrassSerpent.BITE_FRAME * (fr + 0.5))
+			e8.queue_redraw()
+		await process_frame
+		await process_frame
+		root.get_viewport().get_texture().get_image().save_png("%s/bite_frame_%d.png" % [out, fr])
+		print("shot bite_frame_%d" % fr)
+	hold = false
+	await _gone(eight)
 	# ---- a curve
 	var c := _serp(at + Vector2(-300, 80), _n("s", 8) + _n("b", 4))
 	await _crawl(c, [at + Vector2(-100, -80), at + Vector2(80, 60), at + Vector2(240, -60)])

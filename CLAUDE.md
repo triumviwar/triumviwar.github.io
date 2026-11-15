@@ -25,14 +25,28 @@
 
 ## Current work
 
+- PENDULUM HITS FLYERS (owner 2026-11-15 00:46-00:53, no research; job pendulum-air, 0.38.3, docs/pendulum_air.md,
+  tools/test_pendulum_air.gd, tools/bench_pendulum_air.gd, pictures docs/shots/pendulum_air/): every swing also cuts the
+  enemy flyers in its arc for 3/4 (Defs.PENDULUM_SWING "vs_air"), light bonus on top; Defs "anti_air" (no "ground_only");
+  the Clockwork computer counts a Pendulum as half a Swift; measuring switch `pendair:off`. A HIGH SWING strip for ChatGPT
+  in docs/art_style_inconsistency.md. 6 Claude's choices in the doc (the light bonus on flyers above all).
+- CLOCKWORK LAB REMOVED from the player (owner 2026-11-15 00:56): no EDITOR menu entry, no Settings EXPERIMENTAL switch (a saved "on" is ignored). Main.start_lab, scripts/cw_lab.gd and Settings.cw_lab stay for the test and picture tools (shot_*.gd, test_cw_*).
+- CROWN DEFENCE AGAINST A PUSH (owner's game 2026-11-15 00:28, Hollowfen: Musketeers walked past the Clockwork's push on a
+  plain move and died 4 for 0; job crown-coach-defence, 0.38.4, docs/crown-coach-defence.md, scripts/ai_crown_defence.gd,
+  tools/test_crown_defence.gd, bench tools/crown_defence_bench.gd/.sh): the ALERT (a push seen coming: soldiers before
+  labourers, no balloon party, boarding men called off, no wave out, a wave out comes home), NO WALK PAST THE ENEMY (a man
+  sent to his post fights or steps round, hopeless away from his post he gets out), the MUSTER (a force at its buildings it
+  can't beat: gather out of reach, fight as one). Switches defence:off, dfwarn:off, dfpath:off, dfmuster:off,
+  dfsoldiers:behind. 16 games v Clockwork: home kills per loss 1.65 -> 2.77, buildings lost 126 -> 88, income -6.6%;
+  7 Claude's choices in the doc.
 - BRASS SERPENT (owner 2026-11-14 20:07-20:09, "Do it"; job brass-serpent, 0.38.0, docs/brass_serpent.md, scripts/brass_serpent.gd,
   Defs.SERPENT, tools/test_brass_serpent.gd, pictures docs/shots/brass_serpent/): a Clockwork snake of gears made at the
   Heavy Works; few/small gears = fast, light quick bites; many/big = tanky, slow, heavy bites; damage breaks tail gears
   (wrecks for the Great Winder); Winders repair up to its gears; the Heavy Works builds gears (store of 10): COLLECT GEARS
   or GROW (a Winder carries one out); own units on its body wind up, enemies slowed to 75%; LINK into a Hydra (max 3
   heads, 16 gears a head), UNLINK; OPTIMAL Clockwork computer uses it (switch serpent:off). 17 CLAUDE'S CHOICES for the
-  owner in the doc. Stand-in code art; the owner's ChatGPT art is on branch brass-serpent-art (art/redraws/brass_serpent/),
-  to be wired in (job serpent-art). Sounds: stand-ins (four serpent sounds to make).
+  owner in the doc. ART IN 0.38.3 (job serpent-art: tools/serpent/import_art.py, the owner's two ChatGPT sets in art/redraws/brass_serpent/,
+  pictures docs/shots/brass_serpent/art/; choices 18-21 in the doc: side cogs don't turn, enamel takes the team colour, the N bite's open frame fudged, the joint facing N is S/SE flipped). Sounds: stand-ins (four serpent sounds to make).
 - OVERLAY OPACITY (owner's playtest 2026-11-14 13:18; job overlay-alpha, docs/overlay_alpha.md, tools/test_overlay_alpha.gd,
   pictures docs/shots/overlay_alpha/): the bars, chevrons, band buff marks, stun stars and status marks over units and
   buildings are see-through (Entity.ov_a / ova: Settings.overlay_alpha, default 60%, marks x0.85, a band's "+8%" sqrt of

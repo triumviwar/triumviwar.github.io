@@ -366,6 +366,10 @@ static func _bonuses(kind: String, d: Dictionary, dmg := 0.0, cycle := 0.0) -> A
 	if light > 1.0:
 		out.append({"icon": "vs_light", "text": "x%s" % _num(light), "title": "Bonus vs light",
 			"stats": Loc.t("x%s damage against light units") % _num(light), "body": ""})
+	if kind == Defs.PENDULUM:
+		var pa := int(round(float(Defs.PENDULUM_SWING["vs_air"]) * 100))
+		out.append({"icon": "hits_air", "text": "%d%%" % pa, "title": "Against flyers",
+			"stats": Loc.t("%d%% of the blow against flyers") % pa, "body": ""})
 	if float(d.get("vs_air", 1.0)) > 1.0:
 		out.append({"icon": "hits_air", "text": "x%s" % _num(float(d["vs_air"])), "title": "Bonus vs flyers",
 			"stats": Loc.t("x%s damage against flyers") % _num(float(d["vs_air"])), "body": ""})
@@ -393,7 +397,7 @@ static func _attack_text(kind: String, d: Dictionary) -> String:
 		"steam_walker":
 			return Loc.t("Scalding steam: everything in front of it.")
 		Defs.PENDULUM:
-			return Loc.t("Each blow cuts EVERY enemy on the ground in the arc in front of it.")
+			return Loc.t("Each blow cuts EVERY enemy in the arc in front of it, on the ground or in the air.")
 		Defs.BALLISTA_KIND:
 			return Loc.t("A giant screw bolt in a straight line.")
 		Defs.NETTER:
@@ -453,7 +457,7 @@ static func _specials(kind: String, d: Dictionary, st: Dictionary) -> Array:
 			add.call("PIERCE", Loc.t("The bolt goes on through: the next enemies in line take 50% and 30%."))
 			add.call("CREW", Loc.t("Each Winder aboard: +%d%% reload and speed.") % int(float(Defs.BALLISTA["per_crew"]) * 100))
 		Defs.PENDULUM:
-			add.call("SWEEP", Loc.t("Hits every enemy on the ground within %.1f tiles in a third of a circle.") % (float(Defs.PENDULUM_SWING["reach"]) / Defs.TILE))
+			add.call("SWEEP", Loc.t("Hits every enemy within %.1f tiles in a third of a circle; flyers take %d%%.") % [float(Defs.PENDULUM_SWING["reach"]) / Defs.TILE, int(round(float(Defs.PENDULUM_SWING["vs_air"]) * 100))])
 		"clock_soldier":
 			add.call("SHIELD FORWARD", Loc.t("+%d armour, half damage from shots in front, slower.") % int(Defs.SHIELD_WALL["armor"]) \
 				+ ("" if st["shield_tech"] else " " + Loc.t("(Needs SHIELD WALL at the Light Works.)")))
