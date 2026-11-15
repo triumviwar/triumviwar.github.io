@@ -25,6 +25,13 @@
 
 ## Current work
 
+- WIN RATES 2026-11-15 (study job winrate-2026-11-15, 0.38.15 tools only, docs/winrate_2026_11_15.md, data
+  docs/winrate_2026_11_15/, tools/study/winrate_1115*.py/.sh): on 0.38.14 the Crown computer still won 0 and led 0 of 76
+  (v Brood 0-13-25, v Clockwork 0-22-16: worse, the Clockwork computer now reaches its bench, 1.01 at 8:00, the Crown
+  0.6); its halls idle while Farm posts are empty, the blind Horseman rush v every Brood (38 of 38), it over-reckons the
+  Brood and holds back while ahead; Brood mirror P1 (spot A) 26-9 (p 0.006); Brood v Clockwork now 26-6-6 for the Brood.
+  Proposals C1-C6, K1, S1-S3, R1-R2 in the doc. OWNER DECISIONS WAITING.
+
 - KEEN SABRES TEST (owner 2026-11-15 10:03: "Why do we need Keen Sabres?"; job keen-sabres-test, branch, 0.38.12,
   docs/keen_sabres_test.md, tools/study_keen_sabres.gd, tools/study/keen_sabres_games.py + keen_sabres_report.py): hit and
   run + the Cavalry Charge do NOT hold Raptors at equal cost (the computer's charge loop is the worst rider play v Raptors;

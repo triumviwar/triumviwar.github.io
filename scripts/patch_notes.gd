@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.15", "items": [
+		"Measuring tools only (a win-rate study of the computers): nothing in the game changes.",
+	]},
 	{"v": "0.38.14", "items": [
 		"THE CROWN COMPUTER'S ARMY ON TIME (Normal and up, against the Clockwork and the Crown; no unit, building or price changed): until 6:30 it keeps its army at about 60% of what a Hard computer of that side usually has a little later, and while it is behind, an empty Barracks gets its Musketeer before the next labourer, the next building or the natural's palisade, and no Church is bought for a wall slot. So its line is ready for the first push (against the Hard Clockwork about 245 of army at 5:00 instead of 140), at some cost to its economy. Its Powder Mill also comes earlier and takes more hands while a Barracks waits for powder, and a Musketeer may come out with only his bayonet while the Mill starts and fill up when it grinds.",
 	]},
