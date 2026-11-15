@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.24", "items": [
+		"CLOCKWORK WIND-UP KEYS: the Clock Soldier, Springer, Netter, Pendulum, Swift and Ticking Owl now carry a brass wind-up key on their backs, like the Winder (the flyers' keys stand up out of their backs). It turns while the construct has charge, slower as it runs down, and stands still once it is run down: you can read its wind at a glance. Hidden when you zoom far out.",
+	]},
 	{"v": "0.38.23", "items": [
 		"THE ESCAPEMENT HOLDS THREE RESEARCHES: HIGH LEAP, SHIELD WALL and the new LONG CHAIN. SHIELD WALL (the Clock Soldiers' SHIELD FORWARD and +10 health) is researched at the Escapement now, not at the Light Works; same price and time, and like everything there it needs the Escapement working (a Mainspring in its gear network). A side that already has it keeps it; a SHIELD WALL waiting in a Light Works' queue in an old save is paid back in full.",
 		"THE NETTER'S REACH: its net now reaches 150 (was 180). LONG CHAIN at the Escapement (100 cogs + 50 Tension, 40 s) makes every Netter reach 240, further than a Musketeer shoots; the Field Cannon (430) stays the longest-ranged unit. Its range chip shows the bonus.",
