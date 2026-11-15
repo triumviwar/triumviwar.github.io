@@ -679,6 +679,8 @@ func _econ_keep(for_army := false) -> int:
 		# gold while Farm posts were free, a harvest's 380 spent before the next look at the labourers)
 		var idle := _halls().filter(func(h: Building) -> bool: return h.built and h.queue.is_empty()).size()
 		k = maxi(k, LAB_COST * idle)
+		if not bo_labs_off:
+			k = maxi(k, LAB_COST * _lab_slots())     # (crown-coach-economy: two deep at each hall, _lab_slots)
 	return k
 
 
@@ -811,15 +813,32 @@ func _bo_lab_keep() -> int:
 	if bo_labs_off or not bo_owns() or not _bo_posts_first() or _soldiers_first() or army_lags():
 		return 0
 	var top := mini(bo_lab_cap, owner_lab_cap())
-	if game.workers(team).size() + _labs_queued() >= top:
-		return 0
-	var idle := _halls().filter(func(h: Building) -> bool: return h.built and h.queue.is_empty()).size()
-	if idle <= 0:
+	var slots := mini(_lab_slots(), top - game.workers(team).size() - _labs_queued())
+	if slots <= 0:
 		return 0
 	if _bo_lab_keep_last >= 0.0 and game.clock - _bo_lab_keep_last < 2.0:
 		bo_lab_keep_t += game.clock - _bo_lab_keep_last
 	_bo_lab_keep_last = game.clock
-	return LAB_COST * idle
+	return LAB_COST * slots
+
+
+## (crown-coach-economy) the labourers the halls could queue now: LAB_DEPTH deep at each built hall (a harvest's 380 comes
+## every 25-50 s; one labourer queued took 12 s of it and the hall stood idle for the rest), no more than the free Farm
+## posts on live soil less the labourers queued already.
+const LAB_DEPTH := 2
+
+
+func _lab_slots() -> int:
+	var free := 0
+	for f in _mine("farm"):
+		if f.built and not f.barren():
+			free += maxi(0, f.crew_max() - f.crew.size())
+	free -= _labs_queued()
+	var n := 0
+	for h in _halls():
+		if h.built:
+			n += maxi(0, LAB_DEPTH - h.queue.size())
+	return mini(n, free)
 
 
 ## (econ-coach-crown) an armed enemy seen by our labourers (a raid, the mirror's raid_answer's case): the soldiers' gold is
@@ -958,7 +977,10 @@ func _bo_labs() -> void:
 	for h in _halls():
 		if not h.built or labs + queued >= top or free < LAB_COST + (wall_keep if queued > 0 else 0):
 			continue      # (crown-ai-v2: while the natural's palisade comes first, one labourer at a time, above)
-		if h.queue.size() >= (2 if free >= 3 * LAB_COST + wall_keep else 1):
+		var depth := 2 if free >= 3 * LAB_COST + wall_keep else 1
+		if not bo_labs_off and free >= 2 * LAB_COST + wall_keep and _bo_lab_keep() > 0:
+			depth = LAB_DEPTH         # (crown-coach-economy: the gold was kept for it, _bo_lab_keep)
+		if h.queue.size() >= depth:
 			continue
 		if game.train(h, _f()["worker"]) == "":
 			queued += 1
@@ -1009,6 +1031,7 @@ func _bo_tick() -> void:
 		bo_reserve = c
 		return
 	_bo_replace_dropped()
+	_bo_hall_on_time()
 	while bo_i < _bo_plan.size():
 		var st: Dictionary = _bo_plan[bo_i]
 		if _st_done(st):
@@ -1048,6 +1071,48 @@ func _bo_tick() -> void:
 			continue
 		return
 	_bo_end("the build order is done")
+
+
+## THE SECOND HALL ON TIME (crown-coach-economy, docs/crown-coach-economy.md): a plan's "hall at 15 labourers" waited behind
+## the steps before it: the Balloon harass's hall (its trigger met at ~3:05 in the owner's Hollowfen game) stood behind the
+## Foundry and the first balloon and was laid at 4:41 with 21 labourers, the bench's (tools/econ_bench.gd) at 4:00. Once a
+## later hall step's trigger has held HALL_LATE s it comes next, ahead of build, balloon and army steps; never past an attack
+## step (the timing and the rush keep their order), the pick, or while a rush is feared. `-- hallontime:off`.
+const HALL_LATE := 20.0
+var hall_on_time_off := OS.get_cmdline_user_args().has("hallontime:off") or OS.get_cmdline_user_args().has("crowneco:off")
+var _hall_due_t := -1.0          # (clock) a later hall step's trigger has held since
+var hall_moved_log: Array = []   # [clock, from step, to step] (the report)
+
+
+func _bo_hall_on_time() -> void:
+	if hall_on_time_off or not on or difficulty < 1 or _defending() or bo_i >= _bo_plan.size():
+		return
+	if String(_bo_plan[bo_i]["do"]) == "hall":
+		_hall_due_t = -1.0
+		return
+	var j := -1
+	for k in range(bo_i + 1, _bo_plan.size()):
+		var d := String(_bo_plan[k]["do"])
+		if d == "attack" or d == "pick":
+			return
+		if d == "hall":
+			j = k
+			break
+	if j < 0 or _st_done(_bo_plan[j]) or not _st_ready(_bo_plan[j]):
+		_hall_due_t = -1.0
+		return
+	if _hall_due_t < 0.0:
+		_hall_due_t = game.clock
+		return
+	if game.clock - _hall_due_t < HALL_LATE:
+		return
+	var st: Dictionary = _bo_plan[j]
+	_bo_plan.remove_at(j)
+	_bo_plan.insert(bo_i, st)
+	_step_t = -1.0
+	_hall_due_t = -1.0
+	hall_moved_log.append([game.clock, j, bo_i])
+	say("the second hall comes first: its trigger (%s) has held %d s" % [_st_text(st), int(HALL_LATE)])
 
 
 ## THE OPENING GOES ON PAST THE RAID (crown-optimal-opening: OPTIMAL's punish of a greedy Brood, PLANS["rush"]["bo_opt"]):
