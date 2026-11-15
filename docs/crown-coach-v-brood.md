@@ -16,13 +16,18 @@ Barracks stands idle is the wrong one).
 and walls and let its Barracks stand idle for two to three minutes, counting six Horsemen out raiding as its home army,
 until the Brood's first big wave (6:30-8:00) walked into one Musketeer and a gun. Now, against the Brood, the home LINE
 (Musketeers and guns, not the riders) keeps up with a floor by the clock, its gold comes before the palisade, the Farms and
-the milestones, its powder is ground, and no Church goes up before it. Measured on the 16 Crown v Brood OPTIMAL games (8
-maps, 2 seeds, sides swapped): W-D-L **0-2-14 -> 0-5-11**, the Crown's army against the Brood's at 10:00 **0.40 -> 0.42**
-and at 12:00 **0.16 -> 0.27**; the cost is labour: income at 10:00 0.68 -> 0.59 of the Brood's, labourers at 8:00 0.60 ->
-0.52. **It still wins none.** The W-D-L change is within the noise of 16 games (a won-or-led count moves about +-3 between
-two runs of the same games); the army at 12:00 is the clearest gain. Three more ideas were built, measured and NOT kept as
-the default (the riders' rush replaced by the Economy race, the counter after a held wave, the line's gold kept from the
-labourers too): section 4.
+the milestones, its powder is ground, and no Church goes up before it. In the filmed seed the first Musketeer came at 4:35
+instead of 7:21 and the Brood's 8:19 wave died at the palisade (1,900 killed for 275 lost by 10:05). **Measured, the gain is small and it
+still wins none.** On the 16 Crown v Brood OPTIMAL games (8 maps, 2 seeds, sides swapped), the final build: W-D-L
+**0-2-14 -> 0-4-12**, the army against the Brood's at 12:00 0.16 -> 0.20, at 10:00 0.40 -> 0.35; the cost is labour: income
+at 10:00 0.68 -> 0.62 of the Brood's, labourers at 8:00 0.60 -> 0.56. Over the four batches that played the line (64 games,
+the build changing a little between them) the Crown held to 15:00 in 19 games (4-6 a batch, 2 before) and its army at 12:00
+was 0.20-0.51 of the Brood's (0.16 before); a won-or-led count moves about +-3 between two runs of the same 16 games, so the
+draws are the only steady sign. The films say why it is not more (section 6): the natural's palisade takes half the
+labourers off the Farms at 6:00-7:00, a big Brood wave breaks a packed line at a gap, and the Brood's economy runs away.
+Four more ideas were built, measured and NOT kept as the default (the Economy race instead of the riders, the counter after a
+held wave with the far-ground target, the line's gold kept from the labourers too, the Economy race's powder-first
+opening): section 4.
 
 ## 1. How the coaching ran
 
@@ -35,7 +40,8 @@ labourers too): section 4.
 - **Filming**: `tools/shot_ai_match.gd` with `coach:1` (a status line for each side every 15 s, the Crown's army every 30 s,
   the riders every 10 s, the fights), Highmoor seed 1103 (the Brood P1, the Crown P2), before and after.
 - **The "before"** is main at 90d51b59 (0.38.1), run in a worktree beside this branch. Data: `docs/crown-coach-v-brood/data/`
-  (`before`, `line_v1` = round 1's line, `econrace_noline`, `econrace_widekeep`, `final_with_counter`, `after` = this branch's
+  (`before`, `line_v1` = round 1's line, `econrace_noline`, `econrace_widekeep`, `final_with_counter`, `after_cvbopen` = the
+  default with the Economy race's powder-first steps still on after the rush's hand-over, `after` = this branch's final
   default). Pictures: `docs/shots/crown-coach-v-brood/`.
 - The games do not repeat: the same map and seed part after a few minutes, so a replay of a seed is the same start, and a
   batch of 16 is the unit of comparison. Each batch is ~45 minutes on this machine (2 games at a time).
@@ -103,7 +109,8 @@ line before the buildings, and the counter's two lines (study switch).
 |---|---|---|---|---|---|---|---|
 | before (main 0.38.1) | - | `before` | 0-2-14 | 0.40 / 0.16 | 0.68 | 0.60 | |
 | round 1: the line (part 1 only, an earlier cut) | - | `line_v1` | 0-6-10 | 0.53 / 0.51 | 0.63 | 0.54 | (the start of the default) |
-| **after: this branch's default** | - | `after` | **0-5-11** | **0.42 / 0.27** | 0.59 | 0.52 | |
+| the default with the Economy race's powder-first steps after the rush's hand-over | `cvbopen:on` | `after_cvbopen` | 0-5-11 | 0.42 / 0.27 | 0.59 | 0.52 | (the owner's Economy opening; see below) |
+| **after: this branch's final default** | - | `after` | **0-4-12** | **0.35 / 0.20** | 0.62 | 0.56 | |
 | + the counter after a held wave + the far-ground target | `cvbcounter:on,cvbtarget:on` | `final_with_counter` | 0-4-12 | 0.36 / 0.34 | 0.65 | 0.55 | no gain; see below |
 | the Economy race instead of the rush (an earlier cut with the line) | `truegreed:on,leanfree:on` | `econrace_noline` | 0-5-11 | 0.54 / 0.45 | **0.81** | **0.83** | the army 0 at 4:00 and 0.22 at 6:00; the Brood's army at 8:00 1,964 on average against 1,214 with the riders out |
 | the Economy race + the line kept from the labourers too + its powder before the second hall | `truegreed:on,leanfree:on,cvbkeep:wide,cvbopen:on` | `econrace_widekeep` | 0-2-14 | 0.16 / 0.05 | 0.63 | 0.68 | the income fell, the army was no bigger |
@@ -131,7 +138,8 @@ line before the buildings, and the counter's two lines (study switch).
   out at 11:11 with 2,155 of army after "2,750 killed in 75 s", the Brood at 570 then 300; it took 94 s to reach the far ground
   (the line closed up twice and formed a rank of 22 for a guard of 150 on the way), killed 4 of 7 Rootmaws by 13:00, and the
   Brood rebuilt **from 300 to 4,030 of army in two minutes** and came for the halls the wave had left bare: 44 labourers at
-  13:00, 8 at 14:00. With both on: 0-4-12 against 0-5-11 without; no gain within the noise, so off.
+  13:00, 8 at 14:00. With both on: 0-4-12, army 0.36 / 0.34, against 0-5-11, 0.42 / 0.27 without (the same build
+  otherwise); no gain within the noise, so off.
 
 ## 5. Tests
 
@@ -156,7 +164,7 @@ opening made a study switch); the four touched by that change ran again on the f
 
 ## 6. What is still wrong
 
-1. **The Brood out-grows the Crown, and this job made the Crown's labour a little worse.** Labourers at 8:00 0.52 of the
+1. **The Brood out-grows the Crown, and this job made the Crown's labour a little worse.** Labourers at 8:00 0.56 of the
    Brood's (0.60 before): the line's gold comes partly from the halls (they wait while a Barracks is idle). The Brood at 8:00
    has 45-54 grubs and four grounds against the Crown's 24-36 labourers and two halls (Highmoor 1103: income 21,598 against
    10,640 by 15:00). The economy job's area; the proposals of docs/crown_v_brood_coach.md section 8 (a Cottage of 10 supply
