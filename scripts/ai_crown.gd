@@ -544,6 +544,24 @@ func opt_switch(k: String) -> bool:
 	return true
 
 
+## THE ARMY ON TIME (crown-coach-army, scripts/ai_crown_army.gd): the army kept at a share of the enemy's usual army by the
+## clock; and the Mill's hands while a Barracks waits for powder. `-- crownarmy:off` as 0.38.1.
+const AICrownArmy := preload("res://scripts/ai_crown_army.gd")
+var ca = null
+
+
+func ca_behind() -> bool:
+	if ca == null:
+		ca = AICrownArmy.new(self)
+	return ca.behind()
+
+
+func ca_powder_wait() -> bool:
+	if ca == null:
+		ca = AICrownArmy.new(self)
+	return ca.powder_wait()
+
+
 func _make_plan() -> void:
 	_plan_of = strategy
 	plan = (PLANS.get(strategy, PLANS["balanced"]) as Dictionary).duplicate(true)
@@ -848,7 +866,10 @@ func _think_stage(i: int) -> void:
 			_tend_wall()        # (the ramp wall's crew kept at it, as the shared _build_up does)
 			_lap("ai/build", pt)
 		2:
-			if bo_army and (bo_army_cap <= 0 or _army_supply(game.army(team)) < bo_army_cap) and not _breeder_first():
+			if ca_behind() and not bo_army and not _breeder_first() and _mine("barracks").any(func(b: Building) -> bool: return b.built):
+				bo_army = true      # (crown-coach-army: behind the clock with a Barracks standing: the soldiers start now)
+				_bo_log("soldiers from now on (the army is behind the clock)")
+			if bo_army and (bo_army_cap <= 0 or _army_supply(game.army(team)) < bo_army_cap or ca_behind()) and not _breeder_first():
 				_research_off = true
 				_produce()
 				_research_off = false
@@ -1075,6 +1096,8 @@ const DEF_MUSK := 6
 
 
 func _soldiers_first() -> bool:
+	if ca_behind() and (bo_army or bo_done) and _mine("barracks").any(func(b: Building) -> bool: return b.built and b.queue.is_empty()):
+		return true             # (crown-coach-army: the army behind the clock: a labourer only while every Barracks is busy)
 	if bo_army_first and _rush_raid_brood() and _labs_on_in_rush():
 		return false            # (crown-v-brood-coach: the hall never stops in the rush against the Brood)
 	if bo_army_first and (bo_army_cap <= 0 or _army_supply(game.army(team)) < bo_army_cap):
@@ -1494,7 +1517,8 @@ func _mill_feedback(mills: int) -> int:
 		# on the Mills ground 19 -> 150 powder that nothing used, the Barracks idle for gold, while two Farm posts stood
 		# empty; and a bank far over the want sends two back at a time)
 		var using: bool = _mine("barracks").any(func(b: Building) -> bool: return b.built and not b.queue.is_empty()) \
-				or _mine("foundry").any(func(b: Building) -> bool: return b.built and not b.queue.is_empty())
+				or _mine("foundry").any(func(b: Building) -> bool: return b.built and not b.queue.is_empty()) \
+				or ca_powder_wait()
 		if _res2() > want * 3.0 and not mill_feed_off:
 			_mill_n = maxi(mills, mini(_mill_n, crew) - 2)
 		elif _res2() > want * 2.0 or (mirror() != null and cm.farms_starved(_res2())):
@@ -2838,6 +2862,8 @@ var _lag_t := -1.0
 
 
 func army_lags(labs := -1) -> bool:
+	if not lag_off and ca_behind() and bo_done:
+		return true             # (crown-coach-army: behind the clock counts from one hall on, AICrownArmy)
 	if lag_off or not on or difficulty < 1 or peaceful or _foe_is("brood") or game.clock < LAG_FROM:
 		return false
 	if labs < 0:
