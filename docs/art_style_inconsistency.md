@@ -714,3 +714,15 @@ joint (E/SE/S), wrecks and card icons are the owner's pictures (tools/serpent/im
 - `assets/icons/research_keen_sabres.png`: the Cavalry Charge's icon (research_charge) mirrored and tinted steel blue in
   code (PIL). To redraw: a pair of crossed cavalry sabres being ground on a whetstone, a bright edge glint, the same
   icon frame and size (64x64) as the other Crown research icons.
+
+## The Clockwork army's wind-up keys (code-placed and code-turned, wind-keys; docs/wind_keys.md)
+- One still of the owner's ChatGPT key (art/redraws/wind_key/wind_key_chatgpt.png, row 1 frame 1: ChatGPT did not turn
+  it between frames) is TURNED IN CODE at import by tools/clockwork/import_wind_key.py into
+  assets/units/_shared/wind_key_<size>.png (16 frames a turn in six views: s, se, e, ne, n and "u" standing up for the
+  flyers): the bow rotated in the picture's plane (n, s) or projected as it turns about its shaft (e, se, ne, u), shrunk
+  with a hard edge, the brass lifted toward the Winder's key and a 1 px dark outline added. The stem in the side views is
+  the same still's stem stretched along the shaft.
+- It is PLACED IN CODE on the Clock Soldier, Springer, Netter, Pendulum, Swift and Ticking Owl (scripts/wind_key.gd,
+  spots per frame in scripts/wind_key_data.gd, followed from the sprites by the importer): not part of their strips.
+- For one uniform style ChatGPT would redraw the key turning (a real 8-16 frame turn per view, the bow edge-on in the
+  middle) or draw it into each unit's strips; the per-frame spots table would then go.

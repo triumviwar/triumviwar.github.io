@@ -7358,6 +7358,8 @@ func _animate(delta: float) -> void:
 			if frame_i < nd - 1:
 				return
 		(sprite.material as ShaderMaterial).set_shader_parameter("tint", Vector3(0.5, 0.52, 0.6))   # a cold statue: no frames move
+		if _wkey != null:
+			_wkey.step(0.0)               # (its key, still, on the slumped body)
 		_cold = true
 		return
 	elif _cold:
@@ -7527,6 +7529,8 @@ func _animate(delta: float) -> void:
 		var fs := MarchingBand.frame_in_step(self, sprite.hframes, _an_wfps if anim == "walk" else 2.0)      # (a band's three IN STEP; a lone man on his own beat)
 		if sprite.frame != fs:
 			sprite.frame = fs
+	if _wkey != null:
+		_wkey.step(delta)                 # (its wind-up key: to the body's new frame, turning: scripts/wind_key.gd)
 	if kind == MarchingBand.KIND:
 		MarchingBand.group_look(self)     # (an old FULL replay's band: its Fifer and Piper as child sprites)
 	if not team_horses.is_empty() or not _team_sprites.is_empty():
@@ -7782,6 +7786,9 @@ const DIR_FLIP := [["e", false], ["se", false], ["s", false], ["se", true], ["e"
 ## is "sw" / "w" / "nw" and anim_flip false; per-view tables keyed by the five east views read the east twin, mirrored
 ## (view_dir, view_entry, view_mirror, view_mirrored).
 const WEST_OF := {"se": "sw", "e": "w", "ne": "nw"}
+## The Clockwork's wind-up keys on their backs (scripts/wind_key.gd); "windkeys:off" on the command line: none (measuring).
+static var WIND_KEYS_ON := not OS.get_cmdline_user_args().has("windkeys:off")
+var _wkey = null                 # (its wind-up key, a child of the sprite: stepped by _animate, on screen only)
 const EAST_OF := {"sw": "se", "w": "e", "nw": "ne"}
 
 
@@ -8298,11 +8305,12 @@ func _draw_unit() -> void:
 			pk.set("unit", self)
 			sprite.add_child(pk)
 		# its wind-up key, turning with its charge (scripts/wind_key.gd, docs/wind_keys.md)
-		if WindKeyData.KEYS.has(kind) and sprite.get_node_or_null("WindKey") == null:
+		if WIND_KEYS_ON and WindKeyData.KEYS.has(kind) and sprite.get_node_or_null("WindKey") == null:
 			var wk: Sprite2D = preload("res://scripts/wind_key.gd").new()
 			wk.name = "WindKey"
 			wk.set("unit", self)
 			sprite.add_child(wk)
+			_wkey = wk
 	if carrying > 0 and kind == "labourer" and anim != "carry" and anim != "idle_carry":
 		draw_circle(Vector2(6, -14), 3, Color(1, 0.85, 0.2, ov_a(true)))      # (a gold dot where no strip shows the sack)
 	if carry_empty and carrying == 0 and kind == "winder":

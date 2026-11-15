@@ -25,6 +25,15 @@
 
 ## Current work
 
+- WIND-UP KEYS ON THE CLOCKWORK ARMY (owner DECIDED 2026-11-15 20:15: "a wind-up KEY on its back like the Winder has";
+  job wind-keys, docs/wind_keys.md, tools/clockwork/import_wind_key.py, scripts/wind_key.gd + wind_key_data.gd,
+  tools/shot_wind_keys.gd, pictures docs/shots/wind_keys/): one painted key (the owner's ChatGPT still, turned at import:
+  16 frames x views s/se/e/ne/n + "u" standing up for flyers, assets/units/_shared/wind_key_<size>.png) on the back of
+  the Clock Soldier, Springer, Netter, Pendulum, Swift and Ticking Owl, a child of the body sprite following measured
+  per-frame spots; it TURNS with `wind` (a turn per 1.2 s full, still run down), stepped by Unit._animate (on screen only,
+  10 Hz in big battles); hidden on death. Not the Winders, Ballista or (Claude's choice 1) the Brass Serpent (its wind
+  never runs down). Switch windkeys:off. 8 Claude's choices in the doc.
+
 - ECONOMY LIMIT BY HALL (owner DECIDED 2026-11-15 18:06: "it should be 2 per Town Hall, 2 per Clocktower"; job
   econ-limit-local, 0.38.16, docs/econ_limit_local.md, tools/test_econ_limit_local.gd): every Farm / Powder Mill / Cog Press /
   Mainspring belongs to the hall it draws from (its nearest BUILT hall, a tie to the older) and each hall allows
