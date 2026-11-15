@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.20": ["CAMPANHA: a pintura do briefing do Prólogo (o Governador nos degraus da mansão) perde um segundo mosquete sobrando, em pé nos degraus ao lado da mão de um soldado."],
 	"0.38.19": ["CAMPANHA: as imagens mantêm a sua forma (a pintura do Prólogo na Mesa de Guerra estava achatada): a pintura inteira nas suas proporções, o espaço em volta preenchido pela mesma pintura, escurecida. As páginas da campanha agora têm o seu próprio fundo cobrindo a tela inteira (a pintura do refúgio da história, escurecida) em vez da pintura do menu principal."],
 	"0.38.18": ["Um trabalhador desmarcado e escolhido de novo mostra outra vez o seu cartão principal, não a página CONSTRUIR que ficou aberta (qualquer página do cartão fecha quando você escolhe algo novo; clicar de novo no mesmo trabalhador a mantém)."],
 	"0.38.17": ["O PÊNDULO GOLPEIA ALTO OS VOADORES: quando o alvo é um voador, o Pêndulo agora ergue a lâmina bem acima da cabeça e a desce no 4º quadro, onde o golpe acerta (antes ele fazia a varredura baixa na altura dos tornozelos, a lâmina passando por baixo do voador que atingia). Em todas as direções e com os dois braços; contra inimigos no chão ele continua varrendo baixo. O golpe em si não mudou."],
