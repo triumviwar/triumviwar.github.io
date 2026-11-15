@@ -855,9 +855,16 @@ func _plan_tech() -> bool:
 ## out of reach of the wall, the labourers, the Farms, the supply and the buildings of think stages 0 and 1 (the soldiers
 ## train in stage 2)
 func _think_stage(i: int) -> void:
-	var vk := _vb_keep() if i <= 1 else 0
+	var vk := _vb_keep() if i <= 1 and vb() != null and vbr.keep_wide else 0
 	_think_stage_crown(i)
 	game.players[team]["gold"] += vk
+
+
+## (crown-coach-v-brood) the line's gold kept from the Farms (the narrow keep, the default: not from the labourers)
+func _econ_build() -> void:
+	var k := _vb_keep() if vb() != null and not vbr.keep_wide else 0
+	super()
+	game.players[team]["gold"] += k
 
 
 func _think_stage_crown(i: int) -> void:
@@ -910,7 +917,7 @@ func _think_stage_crown(i: int) -> void:
 			_tend_wall()        # (the ramp wall's crew kept at it, as the shared _build_up does)
 			_lap("ai/build", pt)
 		2:
-			if ((bo_army and (bo_army_cap <= 0 or _army_supply(game.army(team)) < bo_army_cap)) or vb_line_short()) and not _breeder_first():
+			if ((bo_army and (bo_army_cap <= 0 or _army_supply(game.army(team)) < bo_army_cap)) or (vb_line_short() and vbr.keep_wide)) and not _breeder_first():
 				# (crown-coach-v-brood: the line's floor against the Brood is not held by the opening's army cap)
 				_research_off = true
 				_produce()
@@ -1140,7 +1147,7 @@ const DEF_MUSK := 6
 func _soldiers_first() -> bool:
 	if bo_army_first and _rush_raid_brood() and _labs_on_in_rush():
 		return false            # (crown-v-brood-coach: the hall never stops in the rush against the Brood)
-	if (bo_army_first and (bo_army_cap <= 0 or _army_supply(game.army(team)) < bo_army_cap)) or vb_line_short():
+	if (bo_army_first and (bo_army_cap <= 0 or _army_supply(game.army(team)) < bo_army_cap)) or (vb_line_short() and vbr.keep_wide):
 		return _mine("barracks").any(func(b: Building) -> bool: return b.built and b.queue.is_empty())
 	if not _defending():
 		return false
@@ -2082,10 +2089,11 @@ func rider_waits() -> bool:
 # ------------------------------------------------------------------ after the opening: the milestones
 
 func _build_up() -> void:
+	var k := _vb_keep() if vb() != null and not vbr.keep_wide else 0      # (crown-coach-v-brood: the line before the buildings)
 	super()
-	if not _plan_tech() or _hall_reserve or (_cw_active() and not _walled):
-		return
-	_mid_tick()
+	if _plan_tech() and not _hall_reserve and not (_cw_active() and not _walled):
+		_mid_tick()
+	game.players[team]["gold"] += k
 
 
 var _mid_fail := {}             # milestone kind -> clock it first could not be placed (logged once)

@@ -15,16 +15,20 @@ extends RefCounted
 ##    behind". Now, against the Brood, from LINE_FROM the HOME LINE (Musketeers and guns, not the riders) keeps up with a floor
 ##    by the clock (LINE_TABLE: the Brood's first big wave comes at 6:30-8:00 in the study games), bounded by the economy
 ##    (LINE_PER_LAB a labourer): while it is short, the soldiers' gold (line_keep: two Musketeers, a Field Cannon when a
-##    Foundry may cast one) is kept from everything the Crown's think stages 0 and 1 spend (the wall, the labourers, the
-##    Farms, the opening's steps, the milestones; not a Cottage when the supply is full); the halls train a labourer only
-##    when every Barracks is busy; the milestones are held as when the army lags; the opening's army cap does not hold it;
-##    the Mill's crew grows for its powder; no more riders. Switch: `-- cvbline:off`.
+##    Foundry may cast one) is kept from the natural's palisade, the Farms and the milestones (not from the labourers: see
+##    keep_wide; not while the supply is full); the halls train a labourer only when every Barracks is busy; the milestones
+##    are held as when the army lags; the Mill's crew grows for its powder (an idle Barracks for want of powder is no sign
+##    that nothing wants it); no more riders. Switch: `-- cvbline:off`.
 
 var ai = null
 var game: Game = null
 var team := 0
 var off := false
 var line_off := false
+## (study switch `-- cvbkeep:wide`) the line's gold kept from everything the think stages 0 and 1 spend, the labourers and
+## the opening's steps too, and the opening's army cap passed by: MEASURED AND NOT KEPT (16 games: the income at 10:00 fell
+## from 0.81 to 0.63 of the Brood's, the labourers at 8:00 from 0.83 to 0.68, and the army was no bigger: 0.16 at 10:00)
+var keep_wide := false
 
 const LINE_FROM := 240.0
 ## [clock, home line value wanted]: 5 Musketeers by 5:00, 10 and two guns by 6:30 (the Brood's Timing wave came at 6:24-7:07
@@ -48,6 +52,7 @@ func _init(a) -> void:
 	off = args.has("cvb:off")
 	line_off = off or args.has("cvbline:off")
 	target_off = off or args.has("cvbtarget:off")
+	keep_wide = args.has("cvbkeep:wide")
 	counter_off = off or args.has("cvbcounter:off")
 
 
