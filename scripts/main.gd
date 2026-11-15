@@ -2967,11 +2967,13 @@ func start(cfg: Dictionary = {}) -> void:
 		game.spectator = sp
 		game.add_child(sp)
 		# the AI STORY: what each computer plans and why, told on its panel and by the narrator (0.27.0)
-		var st := AIStory.new()
-		st.name = "AIStory"
-		st.game = game
-		game.ai_story = st
-		game.add_child(st)
+		# (an online spectator has none: the computers think on the host; docs/online_spectators.md)
+		var st := AIStory.new() if not game.net_watch else null
+		if st:
+			st.name = "AIStory"
+			st.game = game
+			game.ai_story = st
+			game.add_child(st)
 	if game.mission:
 		var mui := MissionUi.new()        # the mission's dialogue box and objectives (scripts/campaign/mission_ui.gd)
 		mui.game = game
@@ -3022,7 +3024,9 @@ func start(cfg: Dictionary = {}) -> void:
 		if Settings.replay_mode() == "mixed" and not game.puppet:
 			ReplayMixRecorder.start_mixed(game, last_cfg, human)      # (MIXED: the commands and a keyframe every 10 s: docs/replay_mixed.md)
 		else:
-			ReplayRecorder.start(game, last_cfg, human, game.puppet, ReplayRecorder.rate_for(Settings.replay_mode(), online_host))
+			# (an online spectator is sent every side: its record is whole, not one side's view; the host's whole replay
+			# still replaces it at the end, as a player's: docs/online_spectators.md)
+			ReplayRecorder.start(game, last_cfg, human, game.puppet, ReplayRecorder.rate_for(Settings.replay_mode(), online_host), game.net_watch)
 
 
 func _to_menu() -> void:

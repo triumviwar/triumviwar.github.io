@@ -49,6 +49,17 @@ var fog_audit := false            # host (tests, the match host's fogaudit): che
 var fog_stats := {"pictures": 0, "enemy_rows": 0, "leaks": 0, "keyframes": 0}
 var views: Array = []             # host: one NetView per side the guests play (each gets its own fog-filtered picture)
 var _views_n := -1
+## SPECTATORS (docs/online_spectators.md). Host: the relay ids that watch (-> their number, SPECTATOR n): they get every
+## side's picture (spec_view, no fog filter), never a player; anything they order is refused; their chat goes to the
+## other spectators only (spec_talk: to the players as well). A guest that watches: watching, my_team -1.
+var lobby: NetLobby               # (the room it started from: a spectator who joins later goes through it)
+var spec_peers := {}              # host: relay id -> its number
+var spec_view: NetView            # host: what the spectators have been sent (one picture for all of them)
+var spec_talk := false
+var watching := false             # guest: this machine only watches
+var my_spec := -1                 # guest, watching: my number
+var spec_bytes := 0               # host: bytes sent to the spectators (tests: the upload they cost)
+var player_bytes := 0             # host: bytes sent to the players' guests
 ## Host: seconds between snapshots, from SNAP_FAST (15 a second, every 2 game ticks) to SNAP_EVERY (10, every 3), by what
 ## they cost to make here and their size (SNAP_BYTES a second at most):
 ## they may take SNAP_BUDGET of the time (a big battle on a phone: fewer, a small game on a computer: more).
@@ -281,7 +292,11 @@ func _process(delta: float) -> void:
 	var vs := side_views()
 	if vs.size() <= 1:
 		var snap := NetSnapshot.build(self, vs[0] if vs.size() == 1 else null)
-		bytes = link.send(snap, 0)
+		bytes = link.send(snap, 0)          # (one side's guests, or the spectators alone: everyone on the relay gets it)
+		if vs.size() == 1 and vs[0] == spec_view:
+			spec_bytes += bytes * maxi(1, spec_view.peers.size())
+		else:
+			player_bytes += bytes
 	else:
 		for v in vs:
 			var before: Dictionary = v.was_seen.duplicate() if fog_audit else {}
@@ -289,7 +304,12 @@ func _process(delta: float) -> void:
 			if fog_audit:
 				_fog_audit(v, before, snap2)
 			for pr in v.peers:
-				bytes += link.send(snap2, int(pr))
+				var nb := link.send(snap2, int(pr))
+				bytes += nb
+				if v == spec_view:
+					spec_bytes += nb
+				else:
+					player_bytes += nb
 	fx = []
 	var us := Time.get_ticks_usec() - t0
 	mstat["snaps"] += 1
@@ -316,13 +336,14 @@ func view_eyes() -> Array:
 ## Host: one NetView per side the guests (still here) play, so each gets only what its own side can see (a 1v1 between
 ## two guests on a dedicated host, or a three-way match, must not pool their sight).
 func side_views() -> Array:
-	var n := peer_team.size() * 8 + lost_peers.size()
+	var n := hash([peer_team.size(), lost_peers.size(), spec_peers.keys()])
 	if n == _views_n:
 		return views
 	_views_n = n
 	var by_side := {}
 	for v in views:
-		by_side[int(v.sides[0])] = v
+		if v != spec_view:
+			by_side[int(v.sides[0])] = v
 	var out: Array = []
 	for pr in _live_peers():
 		var sd := int(game.sides[int(peer_team[pr])])
@@ -336,8 +357,48 @@ func side_views() -> Array:
 			v.peers = []
 			out.append(v)
 		v.peers.append(int(pr))
+	if not spec_peers.is_empty():
+		# the spectators: one picture of every side for all of them (eyes empty: sees all), never sent to a player
+		if spec_view == null:
+			spec_view = NetView.new()
+			spec_view.spectator = true
+		spec_view.peers = spec_peers.keys()
+		out.append(spec_view)
 	views = out
 	return views
+
+
+## Host: a spectator (relay id `pr`, SPECTATOR n) watches from now on, from the start or joining a match under way. Its
+## first picture must be whole: a spectator joining later gets a fresh view (every row goes out in full) and the others
+## the same picture with it (a few KB more, once).
+func add_spectator(pr: int, n: int) -> void:
+	if peer_team.has(pr) or spec_peers.has(pr):
+		return
+	spec_peers[pr] = n
+	_heard[pr] = Time.get_ticks_msec()
+	spec_view = null
+	_views_n = -1
+	_log("spectator %d watches%s" % [n, " (joined the match under way)" if go_given else ""])
+
+
+## Host: a spectator left (the relay said so): nothing else changes for the players.
+func drop_spectator(pr: int) -> void:
+	if not spec_peers.has(pr):
+		return
+	var n := int(spec_peers[pr])
+	spec_peers.erase(pr)
+	_heard.erase(pr)
+	_views_n = -1
+	_log("spectator %d left" % n)
+
+
+## Guest: this machine only watches (the room's SPECTATOR n): it plays no side and orders nothing.
+func watch_only(n: int) -> void:
+	watching = true
+	my_spec = n
+	my_team = -1
+	game.net_watch = true
+	game.net_spec_no = n
 
 
 ## Host, fog_audit: every enemy row in this side's picture must be one it sees now (or the last row of one leaving its
@@ -808,8 +869,8 @@ var rp_path := ""                 # guest: where the whole replay was saved, onc
 
 ## Host: send the finished replay at `path` to every guest still here (`now`: all of it at once, the host is leaving).
 func send_replay(path: String, now := false) -> void:
-	if not is_host or _live_peers().is_empty():
-		return
+	if not is_host or (_live_peers().is_empty() and spec_peers.is_empty()):
+		return       # (the spectators get it too: the same whole file as the players)
 	rp_out = FileAccess.get_file_as_bytes(path)
 	rp_pos = 0
 	_log("sending the replay to the guests (%d KB)" % (rp_out.size() / 1024))
@@ -885,11 +946,16 @@ func _tick_camera(delta: float) -> void:
 ## Every chat line goes through here (Chat.post): a guest's own lines go to the host; the host passes every line on
 ## (its own, the computers', a guest's) to the guests, but not back to the guest who wrote it. `from_peer`: the relay id
 ## it came from (-1: said on this machine).
-func chat_out(team: int, text: String, from_peer: int) -> void:
+## A spectator's line (spec_n > 0) goes to the other spectators only, unless the host lets spectators talk to the players
+## (spec_talk); a player's or a computer's line goes to the players and to the spectators.
+func chat_out(team: int, text: String, from_peer: int, spec_n := 0) -> void:
 	if is_host:
-		for pr in _live_peers():
+		var to: Array = spec_peers.keys()
+		if spec_n <= 0 or spec_talk:
+			to = _live_peers() + to
+		for pr in to:
 			if int(pr) != from_peer:
-				link.send({"t": "chat", "tm": team, "x": text}, int(pr))
+				link.send({"t": "chat", "tm": team, "x": text, "sp": spec_n}, int(pr))
 	elif from_peer < 0 and team == my_team:
 		link.send({"t": "chat", "x": text})
 
@@ -1155,6 +1221,10 @@ func _on_message(from: int, m: Dictionary) -> void:
 		"ready":
 			if is_host:
 				ready_peers[from] = true
+				if spec_peers.has(from) and go_given:
+					# a spectator who joined the match under way: go at once, and the pause as it stands
+					link.send({"t": "go"}, from)
+					link.send({"t": "pause", "by": pause_by, "away": away, "ev": "", "who": -1, "secs": 0.0, "left": pauses_left}, from)
 		"go":
 			if not is_host and not go_given:
 				_go()
@@ -1166,7 +1236,9 @@ func _on_message(from: int, m: Dictionary) -> void:
 			if not is_host:
 				return
 			var why := ""
-			if _flooding(from, now):
+			if spec_peers.has(from):
+				why = "spectator"            # (a spectator orders nothing, whatever it sends)
+			elif _flooding(from, now):
 				why = "flood"
 			else:
 				why = NetCommands.apply(self, from, m)
@@ -1219,6 +1291,13 @@ func _on_message(from: int, m: Dictionary) -> void:
 			if is_host:
 				var team: int = peer_team.get(from, -1)
 				var text := Chat.clean(String(m.get("x", "")))
+				if spec_peers.has(from) and text != "":
+					var sn := int(spec_peers[from])
+					if spec_talk:
+						game.chat.post(-1, text, from, sn)      # (the host sees it too: it is a player)
+					else:
+						chat_out(-1, text, from, sn)            # (spectators only: never on a player's screen)
+					return
 				if team < 0 or text == "" or game.over:
 					return
 				game.chat.post(team, text, from)
@@ -1227,7 +1306,7 @@ func _on_message(from: int, m: Dictionary) -> void:
 						if is_instance_valid(ai) and ai.gg_pending() and game.hostile(ai.team, team):
 							ai.gg_reply()
 			else:
-				game.chat.post(int(m.get("tm", 0)), String(m.get("x", "")), 0)
+				game.chat.post(int(m.get("tm", 0)), String(m.get("x", "")), 0, int(m.get("sp", 0)))
 		"pause":
 			if is_host:
 				var team: int = peer_team.get(from, -1)
@@ -1302,6 +1381,8 @@ static func refusal_text(why: String) -> String:
 			return "That order was refused by the host."
 		"flood":
 			return "Too many orders at once: some were dropped."
+		"spectator":
+			return "You are watching: spectators give no orders."
 	if why.begins_with("unknown"):
 		return "That order can't be given online yet."
 	if why.length() > 0 and why[0] == why[0].to_upper():
@@ -1359,6 +1440,9 @@ func _apply_pending() -> void:
 
 
 func _on_notice(d: Dictionary) -> void:
+	if String(d.get("t", "")) == "leave" and is_host and spec_peers.has(int(d.get("id", -1))):
+		drop_spectator(int(d.get("id", -1)))       # (a spectator went: the match goes on as it was)
+		return
 	if String(d.get("t", "")) == "leave" and is_host:
 		var team: int = peer_team.get(int(d.get("id", -1)), -1)
 		var who := game.team_name(team).capitalize() if team >= 0 else "A friend"

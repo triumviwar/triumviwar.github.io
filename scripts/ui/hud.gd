@@ -309,7 +309,7 @@ func _draw_layer(l: HudLayer) -> void:
 				if String(b["item"][1]).begins_with("~ "):
 					_autocast_glow(b["rect"])
 		"spec prod", "spec army", "spec story":
-			if game.spectating():
+			if game.spectating() and (SPEC_LAYERS[l.fn] != "story" or game.ai_story != null):
 				spec_panels().draw_one(SPEC_LAYERS[l.fn])
 		"rest":
 			_draw_rest(font)
@@ -409,11 +409,11 @@ func _layer_sig(n: String) -> Array:
 				vals.append_array([countdown, _go_t])
 			return vals
 		"spec prod", "spec army", "spec story":
-			if not game.spectating():
+			if not game.spectating() or (SPEC_LAYERS[n] == "story" and game.ai_story == null):
 				return []
 			return spec_panels().sig(SPEC_LAYERS[n], m)
 		"chat":
-			if game.chat == null or (game.demo and game.replay == null):
+			if game.chat == null or (game.demo and game.replay == null and not game.net_watch):
 				return []
 			var now := Time.get_ticks_msec()
 			var vl: Array = game.chat.visible(now)
@@ -2996,8 +2996,11 @@ func chat_banner(text: String) -> void:
 	_banner_until = Time.get_ticks_msec() + int(BANNER_SECS * 1000.0)
 
 
+const SPEC_CHAT := Color(0.72, 0.78, 0.86)      # an online spectator's chat lines (docs/online_spectators.md)
+
+
 func _chat_button_on() -> bool:
-	return not Settings.pc() and not game.demo and not game.spectating()
+	return not Settings.pc() and ((not game.demo and not game.spectating()) or game.net_watch)      # (an online spectator chats too)
 
 
 ## The speech-bubble button of the phone, left of the DRAG / ? buttons (next to the menu).
@@ -3067,12 +3070,12 @@ func close_chat() -> void:
 ## A key while the HUD may be typing. True if it was used (a typing box swallows every key, so
 ## no hotkey fires and the letters do not select anything).
 func _chat_input(ke: InputEventKey) -> bool:
-	if not Settings.pc() or game.demo or game.chat == null:
+	if not Settings.pc() or (game.demo and not game.net_watch) or game.chat == null:
 		return false
 	if not chat_typing:
 		if ke.pressed and not ke.echo and (ke.keycode == KEY_ENTER or ke.keycode == KEY_KP_ENTER) \
 				and not ke.alt_pressed and not ke.ctrl_pressed and not ke.meta_pressed \
-				and not menu_open and (countdown <= 0.0 or paused or game.net != null) and not game.spectating():
+				and not menu_open and (countdown <= 0.0 or paused or game.net != null) and (not game.spectating() or game.net_watch):
 			_open_chat()           # (online, paused or counting down: a word to the other player still goes)
 			return true
 		return false
@@ -3134,7 +3137,7 @@ func _quick_press(p: Vector2) -> void:
 
 
 func _draw_chat() -> void:
-	if game.chat == null or (game.demo and game.replay == null):
+	if game.chat == null or (game.demo and game.replay == null and not game.net_watch):
 		return
 	var font := UiStyle.bold_font()
 	var now := Time.get_ticks_msec()
@@ -3160,7 +3163,7 @@ func _draw_chat() -> void:
 			var a: float = vl[i][1]
 			var y := top + rh * (i + 1) - 4.0
 			var nm := "%s: " % l["name"]
-			var col: Color = game.team_colour(int(l["team"])).lightened(0.25)
+			var col: Color = game.team_colour(int(l["team"])).lightened(0.25) if int(l["team"]) >= 0 else SPEC_CHAT
 			col.a = a
 			_text(font, Vector2(panel.position.x + 10 + 1, y + 1), nm, fs, Color(0, 0, 0, 0.7 * a))
 			_text(font, Vector2(panel.position.x + 10, y), nm, fs, col)
@@ -3172,7 +3175,7 @@ func _draw_chat() -> void:
 		var r := Rect2(box.position.x, box.end.y - rh - 2.0, box.size.x, rh + 2.0)
 		var sb := UiStyle.box(Color(0.09, 0.075, 0.06, 0.92), UiStyle.TRIM, 2, 6, 0.0)
 		sb.draw(_ci.get_canvas_item(), r)
-		var mine: Color = game.team_colour(game.human).lightened(0.25)
+		var mine: Color = game.team_colour(game.human).lightened(0.25) if not game.net_watch else SPEC_CHAT
 		_text(font, r.position + Vector2(8, rh - 4), "YOU:", fs, mine)
 		var pre := font.get_string_size("YOU: ", HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
 		if chat_buf == "":
