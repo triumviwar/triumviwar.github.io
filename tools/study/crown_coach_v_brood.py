@@ -118,6 +118,20 @@ if __name__ == "__main__":
     if arg("--extra", ""):
         Q.EXTRA = arg("--extra", "").split(",")
     data = os.path.abspath(arg("--data", os.path.join(out, "data")))
+    # (the Crown computer's own lines of each match log are kept beside the result: crlog.txt)
+    _rm = Q.shutil.rmtree
+
+    def _keep_log(d, ignore_errors=False):
+        lg = os.path.join(d, "log.txt")
+        if os.path.exists(lg):
+            dd = os.path.join(data, os.path.basename(d.rstrip("/")))
+            os.makedirs(dd, exist_ok=True)
+            with open(lg, errors="replace") as f, open(os.path.join(dd, "crlog.txt"), "w") as o:
+                for l in f:
+                    if "Crown" in l and not l.startswith("  "):
+                        o.write(l)
+        _rm(d, ignore_errors=ignore_errors)
+    Q.shutil.rmtree = _keep_log
     jobs = int(arg("--jobs", "2"))
     end = int(arg("--end", "900"))
     print("%d games" % len(gl), flush=True)
