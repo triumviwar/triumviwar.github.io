@@ -37,6 +37,7 @@ const TABLE := {
 }
 
 var ai                          # AICrown
+var lags_hook := OS.get_cmdline_user_args().has("crownarmy:lags")  # (AICrown.army_lags also behind the clock: a study switch)
 var until := UNTIL              # (study switch `-- crownarmy:until=900`)
 var share := SHARE              # (study switch `-- crownarmy:share=0.9`)
 var off := OS.get_cmdline_user_args().has("crownarmy:off")
