@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.18", "items": [
+		"A worker unselected and picked again shows his main card again, not the BUILD page he left open (any card page shuts when you pick something new; clicking the same worker again keeps it).",
+	]},
 	{"v": "0.38.17", "items": [
 		"THE PENDULUM SWINGS HIGH AT FLYERS: when its target is a flyer, the Pendulum now raises its blade high over its head and brings it down on the 4th frame, where the blow lands (it used to play its low sweep at ankle height, the blade passing under the flyer it hit). Every view and both arms; at enemies on the ground it still sweeps low. The blow itself is unchanged.",
 	]},
