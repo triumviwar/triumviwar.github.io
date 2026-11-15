@@ -2849,8 +2849,8 @@ func _menu_list() -> Array:
 	]
 	if game.demo or game.over:
 		list = list.filter(func(b: Dictionary) -> bool: return b["label"] != "SURRENDER")    # watching computers: nobody of yours to surrender
-	if game.replay:
-		list = list.filter(func(b: Dictionary) -> bool: return not String(b["label"]).begins_with("PAUSE"))    # (a replay: its own bar pauses)
+	if game.replay or game.net_watch:
+		list = list.filter(func(b: Dictionary) -> bool: return not String(b["label"]).begins_with("PAUSE"))    # (a replay: its own bar pauses; an online spectator can't pause the players)
 	return list
 
 
@@ -2864,7 +2864,10 @@ func _pause_item() -> Dictionary:
 	var net: NetSession = game.net if _online() else null
 	if paused:
 		var it := {"label": "RESUME", "cb": func() -> void: set_paused(false)}
-		if net and net.away:
+		if game.net_watch:
+			it["enabled"] = false                # (an online spectator: the players resume it)
+			it["why"] = "A player paused the match: a player resumes it."
+		elif net and net.away:
 			it["enabled"] = false
 			it["why"] = "The host's game is in the background: the match goes on when it is back."
 		return it
@@ -3215,8 +3218,8 @@ func set_paused(v: bool) -> void:
 		_sig.erase("pause")
 		return
 	if game and _online():
-		if v != paused and not game.over:
-			game.net.request_pause(v)
+		if v != paused and not game.over and not game.net_watch:
+			game.net.request_pause(v)            # (an online spectator neither pauses nor resumes the players' match)
 		return
 	if v != paused and game and not game.demo:
 		Sfx.announce(game.faction_of(game.human), "paused" if v else "resumed", 1.0)

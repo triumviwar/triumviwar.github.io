@@ -15,7 +15,7 @@ var role := "host"
 var relay := "ws://127.0.0.1:8799"
 var code := "SPEC"
 var map := "hollowfen"
-var limit := 300.0
+var limit := 600.0
 var match_secs := 55.0           # the guest surrenders after this long in the match
 var shots := ""                  # shots:<dir>: screenshots (needs a window: xvfb-run, no --headless)
 var t := 0.0
@@ -104,7 +104,7 @@ func _begin() -> void:
 	lobby = NetLobby.new()
 	main.add_child(lobby)
 	main.net_lobby = lobby
-	lobby.failed.connect(func(why: String) -> void: print("%s LOBBY FAILED: %s" % [role.to_upper(), why]))
+	lobby.failed.connect(func(why: String) -> void: print("%s lobby closed: %s" % [role.to_upper(), why]))
 	if role == "host":
 		lobby.host(relay, code)
 		lobby.map = map

@@ -416,7 +416,7 @@ func _late_hi(from: int) -> void:
 	var s: NetSession = null
 	if get_parent() and get_parent().get("game") is Game and get_parent().game.net:
 		s = get_parent().game.net
-	if s == null or not s.is_host or s.game.over:
+	if s == null or not s.is_host or s.game.over or not campaign.is_empty():
 		link.send({"t": "refuse", "m": "This match is already over."}, from)
 		return
 	if s.spec_peers.has(from):
@@ -555,8 +555,9 @@ func _on_message(from: int, m: Dictionary) -> void:
 						changed.emit()
 						_send_lobby()
 						return
-			# every seat taken (or it asked to watch): it watches, while a spectator's place is free
-			if _add_spec(from):
+			# every seat taken (or it asked to watch): it watches, while a spectator's place is free (not in a campaign
+			# room: a mission's story runs for its two players)
+			if campaign.is_empty() and _add_spec(from):
 				status = "A spectator joined."
 				changed.emit()
 				_send_lobby()
@@ -571,7 +572,7 @@ func _on_message(from: int, m: Dictionary) -> void:
 					seat = i
 			if started:
 				return
-			if seat >= 0 and bool(m.get("spec", false)):
+			if seat >= 0 and bool(m.get("spec", false)) and campaign.is_empty():
 				# SPECTATOR picked in its FACTION list: the seat is freed and it watches
 				if not _add_spec(from):
 					link.send({"t": "deny", "m": "Every spectator's place is taken."}, from)

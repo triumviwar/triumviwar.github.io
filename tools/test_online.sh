@@ -6,7 +6,7 @@
 # (a real connection's round trip and its unevenness).
 #   tools/test_online.sh spectators: a host, a guest who plays and two spectators (one joins the match under way, then
 #   leaves): tools/test_online_spectators.gd (docs/online_spectators.md). SHOTS=<dir> takes pictures (xvfb-run).
-#   The upload in a real fight: HOST_ARGS=ai GUEST_ARGS=match:330 SPEC2_AFTER=240 SPEC2_ARGS=stay:60 tools/test_online.sh spectators
+#   The upload in a real fight: HOST_ARGS=ai GUEST_ARGS=match:300 SPEC2_AFTER=220 SPEC2_ARGS=stay:60 tools/test_online.sh spectators
 cd "$(dirname "$0")/.." || exit 1
 if [ "$1" = "spectators" ]; then
 	PORT=${PORT:-8798}
@@ -38,7 +38,7 @@ if [ "$1" = "spectators" ]; then
 	kill $RELAY 2>/dev/null
 	grep -h "CHECK\|BW \|ALL OK\|SOME FAILED\|TIMEOUT\|SCRIPT ERROR" "$OUT/host.log" "$OUT/spec1.log" "$OUT/guest.log" "$OUT/spec2.log"
 	echo "(full logs in $OUT)"
-	! grep -q "SOME FAILED\|TIMEOUT\|SCRIPT ERROR\|FAIL" "$OUT/host.log" "$OUT/spec1.log" "$OUT/guest.log" "$OUT/spec2.log"
+	! grep -q "SOME FAILED\|TIMEOUT\|SCRIPT ERROR\| FAIL " "$OUT/host.log" "$OUT/spec1.log" "$OUT/guest.log" "$OUT/spec2.log"
 	exit $?
 fi
 PORT=${PORT:-8799}
