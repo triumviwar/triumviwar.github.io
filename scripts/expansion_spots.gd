@@ -428,7 +428,11 @@ static func nb_pick(g: Game, t: int, es: ExpansionSpots) -> Array:
 		if out.size() >= PICKS:
 			break
 		var feet := BroodRoot.feet_at(BroodNew.TURTLE, s["tc"])
-		if q != null and q.position.distance_to(feet) < far:
+		# (brood-spot-study: her feet and the turtle's hang below their footprints on screen by different amounts, so the
+		# sum ran differently on a mirrored start: both as the first start reads them)
+		var qd: float = BroodRoot.anchor(g, q).distance_to(BroodRoot.sym_feet(g, t, BroodNew.TURTLE, feet)) if q != null and BroodRoot.fair_spot \
+				else (q.position.distance_to(feet) if q != null else INF)
+		if q != null and qd < far:
 			continue
 		if counted.any(func(o: Unit) -> bool: return o.position.distance_to(feet) < far):
 			continue

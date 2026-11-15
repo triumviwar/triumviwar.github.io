@@ -16,6 +16,7 @@ var slots: Array = []
 var t := 0.0
 var shown := 0
 var last_tick := -1
+var _last_key := ""
 
 
 func _initialize() -> void:
@@ -70,48 +71,50 @@ func _process(delta: float) -> bool:
 	return false
 
 
-func _sig(tm: int) -> Array:
-	var out: Array = []
+func _units(tm: int) -> Dictionary:
+	var out := {}
 	for u: Unit in g.units:
-		if u.team != tm or u.dead:
-			continue
-		var p := BroodRoot.feet_k(g, tm, u)      # (a rooted creature's footprint is mirrored, its feet hang below it)
-		out.append([String(u.kind), p, u.hp, String(u.order) if "order" in u else ""])
-	out.sort_custom(func(a: Array, b: Array) -> bool:
-		if a[0] != b[0]:
-			return a[0] < b[0]
-		if absf(a[1].x - b[1].x) > 0.01:
-			return a[1].x < b[1].x
-		return a[1].y < b[1].y)
+		if u.team == tm and not u.dead:
+			out[u.tserial] = u
 	return out
 
 
+func _desc(u: Unit) -> String:
+	var tgt := ""
+	if not u.path.is_empty():
+		tgt = " path_end %s (%d pts, at %d)" % [str(g.sym_pt(u.team, u.path[u.path.size() - 1]).snapped(Vector2(0.01, 0.01))), u.path.size(), u.path_i]
+	return "%s #%d %s/%s hp %.2f carry %d at %s v %s%s%s" % [u.kind, u.tserial, u.order, u.work, u.hp, u.carrying, str(BroodRoot.feet_k(g, u.team, u).snapped(Vector2(0.001, 0.001))),
+		str(g.sym_dir(u.team, u.velocity).snapped(Vector2(0.001, 0.001))) if "velocity" in u else "", tgt, " pend" if u.path_pending else ""]
+
+
 func _compare() -> void:
-	var a := _sig(0)
-	var b := _sig(1)
+	var a := _units(0)
+	var b := _units(1)
 	var diffs: Array = []
 	var pa: Dictionary = g.players[0]
 	var pb: Dictionary = g.players[1]
 	for k in ["gold", "res2", "cap"]:
 		if pa.has(k) and absf(float(pa[k]) - float(pb[k])) > 0.001:
 			diffs.append("%s %s v %s" % [k, str(pa[k]), str(pb[k])])
-	if a.size() != b.size():
-		diffs.append("units %d v %d" % [a.size(), b.size()])
-	else:
-		for i in a.size():
-			if a[i][0] != b[i][0] or (a[i][1] as Vector2).distance_to(b[i][1]) > tol or absf(float(a[i][2]) - float(b[i][2])) > 0.01:
-				diffs.append("%s %s hp%.1f [%s] v %s %s hp%.1f [%s]" % [a[i][0], str(a[i][1]), a[i][2], a[i][3], b[i][0], str(b[i][1]), b[i][2], b[i][3]])
-				if diffs.size() > 6:
-					break
+	for n in a:
+		if not b.has(n):
+			diffs.append("only side 0: " + _desc(a[n]))
+			continue
+		var ua: Unit = a[n]
+		var ub: Unit = b[n]
+		var d := BroodRoot.feet_k(g, 0, ua).distance_to(BroodRoot.feet_k(g, 1, ub))
+		if ua.kind != ub.kind or ua.order != ub.order or ua.work != ub.work or d > tol or absf(ua.hp - ub.hp) > 0.01:
+			diffs.append("d %.4f | %s || %s" % [d, _desc(ua), _desc(ub)])
+	for n in b:
+		if not a.has(n):
+			diffs.append("only side 1: " + _desc(b[n]))
 	if diffs.is_empty():
 		return
+	var key := ""
+	for x in diffs:
+		key += String(x).substr(0, 30) + ";"
+	if key == _last_key:
+		return
+	_last_key = key
 	shown += 1
-	print("DIFF %.3f: %s" % [g.clock, " | ".join(diffs)])
-	if shown == 1:
-		for tm in 2:
-			for u: Unit in g.units:
-				if u.team == tm and not u.dead and u.order == "nb_morph" and u.nb.has("mk"):
-					var k := String(u.nb["mk"])
-					var sz: Vector2i = BroodRoot.fp(k)[0]
-					var tgt := BroodRoot.feet_at(k, g.sym_rect(tm, BroodRoot.cell_for(k, u.order_point), sz))
-					print("  MORPH team %d %s from %s to %s" % [tm, k, str(g.sym_pt(tm, u.position)), str(tgt)])
+	print("DIFF %.3f:\n  %s" % [g.clock, "\n  ".join(diffs.slice(0, 6))])

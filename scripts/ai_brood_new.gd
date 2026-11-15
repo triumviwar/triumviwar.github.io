@@ -1675,9 +1675,10 @@ func _nb_morphs_go(q: Unit) -> void:
 	if spot == null:
 		return
 	var best: Unit = null
+	var near_to: Vector2 = BroodRoot.sym_feet(game, team, k, spot) if BroodRoot.fair_spot else spot      # (brood-spot-study)
 	for u in game.units:
 		if u.team == team and not u.dead and u.kind == "grub" and u.carrying == 0 and u.cocoon <= 0.0 and u.order != "nb_morph" \
-				and u != _scout and (best == null or u.position.distance_squared_to(spot) < best.position.distance_squared_to(spot)):
+				and u != _scout and (best == null or u.position.distance_squared_to(near_to) < best.position.distance_squared_to(near_to)):
 			best = u
 	if best != null and not _layout_ok(k, spot, null):
 		return
@@ -1686,10 +1687,10 @@ func _nb_morphs_go(q: Unit) -> void:
 		best.give({"o": "nb_morph", "k": k, "p": spot})      # (it pays at once: BroodRoot.start_morph)
 		if BroodNew.is_father(k):
 			say("a grub goes to grow the %s" % BroodRoot.lure_name(k))
-		elif k == BroodNew.TURTLE and (spot as Vector2).distance_to(_qp(q)) >= float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9:
+		elif k == BroodNew.TURTLE and near_to.distance_to(_qp(q)) >= float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9:
 			_far_sent[str((spot as Vector2).round())] = game.clock
 			_far_last = game.clock
-			say("a grub goes to root a Mound Turtle on new ground, %d tiles out" % int((spot as Vector2).distance_to(_qp(q)) / Defs.TILE))
+			say("a grub goes to root a Mound Turtle on new ground, %d tiles out" % int(near_to.distance_to(_qp(q)) / Defs.TILE))
 
 
 ## Room for one more Rootmaw (0.24.7: its 8-tile circles leave 2 or 3 round her and one round each turtle; with none
@@ -1722,9 +1723,10 @@ func _nb_far_spots(q: Unit, reach := 0.0) -> Array:
 			continue
 		if game.clock - float(_far_sent.get(str(p.round()), -999.0)) < 180.0:
 			continue          # (tried lately: the grub did not get there)
-		if p.distance_to(_qp(q)) > (reach if reach > 0.0 else (28.0 if _eco() and not BroodNew.expansions(game, q).is_empty() else 30.0)) * Defs.TILE:
+		var pm: Vector2 = BroodRoot.sym_feet(game, team, BroodNew.TURTLE, p) if BroodRoot.fair_spot else p      # (brood-spot-study: measured as the first start would)
+		if pm.distance_to(_qp(q)) > (reach if reach > 0.0 else (28.0 if _eco() and not BroodNew.expansions(game, q).is_empty() else 30.0)) * Defs.TILE:
 			continue          # (too far to guard: near the enemy's side)
-		if _foe_near(p, 12.0 * Defs.TILE):
+		if _foe_near(pm, 12.0 * Defs.TILE):
 			continue
 		out.append(p)
 	return out
@@ -1748,7 +1750,8 @@ func _nb_eco_sites(q: Unit) -> Array:
 	var out: Array = []
 	for s in es.nb_cands.get(team, []):
 		var feet := BroodRoot.feet_at(BroodNew.TURTLE, s["tc"])
-		if _qp(q).distance_to(feet) < far or counted.any(func(o: Unit) -> bool: return o.position.distance_to(feet) < far):
+		var fm: Vector2 = BroodRoot.sym_feet(game, team, BroodNew.TURTLE, feet) if BroodRoot.fair_spot else feet      # (brood-spot-study)
+		if _qp(q).distance_to(fm) < far or counted.any(func(o: Unit) -> bool: return o.position.distance_to(feet) < far):
 			continue
 		var taken := false
 		for u in game.units_near(feet, 7.0 * Defs.TILE):

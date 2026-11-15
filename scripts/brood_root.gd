@@ -94,6 +94,21 @@ static func sym_snap(g: Game, t: int, k: String, p_k: Vector2, sc := 1.0) -> Vec
 	return feet_at(k, g.sym_rect(t, cell_for(k, p_k, sc), fp(k, sc)[0]), sc)
 
 
+## (brood-spot-study, docs/brood_spot_study.md) MEASURING SWITCH `fairspot:off`: the old sums from a spot's feet. On, a
+## spot's feet are carried into side t's first-start frame and back before they are measured from (sym_feet), so the two
+## starts of a mirrored map measure from the same place (a footprint's feet hang below its middle on screen).
+static var fair_spot := not OS.get_cmdline_user_args().has("fairspot:off")
+
+
+## The point a `k` told to root at p (feet, side t's own frame) stands for in side t's first-start frame, carried back to
+## side t's own frame: what the first start's twin of this spot would measure from. The first start's own p unchanged.
+static func sym_feet(g: Game, t: int, k: String, p: Vector2, sc := 1.0) -> Vector2:
+	if g._flip_of(t) == Vector2i.ZERO:
+		return p
+	var sz: Vector2i = fp(k, sc)[0]
+	return g.sym_pt(t, feet_at(k, g.sym_rect(t, cell_for(k, p, sc), sz), sc))
+
+
 ## p snapped to the grid: where a `k` roots when told to root at p.
 static func snap(k: String, p: Vector2, sc := 1.0) -> Vector2:
 	return feet_at(k, cell_for(k, p, sc), sc)
