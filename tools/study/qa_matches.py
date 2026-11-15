@@ -108,7 +108,15 @@ def crcw_all(rounds=(0, 1)):
     return [g for r in rounds for g in base(r) if g[0].split("_")[-2] == "crcw"]
 
 
+# (brood-rootmaw-spots, docs/brood_rootmaw_spots.md) the parity games with a Brood side against another faction: Brood v
+# Crown and Brood v Clockwork, 12 a pairing: `--only brood`
+def brood_cross():
+    return [g for g in parity() if g[0].split("_")[-2] in ("crbr", "brcw")]
+
+
 def queue(only=""):
+    if only == "brood":
+        return brood_cross()
     if only == "crcw38":
         return crcw_all()
     if only in ("crcw19r0", "crcw19r1"):

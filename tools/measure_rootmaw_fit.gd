@@ -71,25 +71,19 @@ func _run(args: Array) -> void:
 				q.tesla_mode = "deployed"
 				q.nb["m"] = "deployed"
 				var res := []
-				if OS.get_cmdline_user_args().has("debug"):
-					for r in radii:
-						RootmawSpots.r_test = r
-						var cs := RootmawSpots.candidates(g, q, start_maw)
-						print("  p%d r%.1f cands %d: %s" % [t, r, cs.size(), str(cs.slice(0, 6).map(func(c): return [g.cell_of(c[0]), snappedf(c[1], 0.1)]))])
-				for r in radii:
-					RootmawSpots.r_test = r
-					var with_start := RootmawSpots.pick(RootmawSpots.candidates(g, q, start_maw), 2, [start_maw.position]).size() + 1
-					var empty := RootmawSpots.pick(RootmawSpots.candidates(g, q, start_maw), 3, []).size()
-					# (the empty case: the start Rootmaw's own footprint still lies there; its cells are free ground
-					# for the others in truth, so measure without it too)
-					res.append([r, empty, with_start])
-				# the empty swamp for real: the start Rootmaw gone
+				# (the spots are looked for once with a tiny circle, so no circle rules them out; the radius is applied
+				# in the fitting: RootmawSpots.pick)
+				RootmawSpots.r_test = 0.25
+				var c_start := RootmawSpots.candidates(g, q, start_maw)
 				var spot := start_maw.position
 				_drop(g, start_maw)
-				for i in radii.size():
-					RootmawSpots.r_test = radii[i]
-					var e2 := RootmawSpots.pick(RootmawSpots.candidates(g, q), 3, []).size()
-					res[i][1] = maxi(int(res[i][1]), e2)
+				var c_empty := RootmawSpots.candidates(g, q)
+				for r in radii:
+					RootmawSpots.r_test = r
+					var with_start := RootmawSpots.pick(c_start, 2, [spot]).size() + 1
+					var empty := RootmawSpots.pick(c_empty, 3, []).size()
+					res.append([r, empty, with_start])
+				RootmawSpots.r_test = 0.25
 				var sm := g._add_unit(BroodNew.MAW, t, spot)
 				sm.tesla_mode = "deployed"
 				sm.nb["m"] = "deployed"
@@ -110,10 +104,11 @@ func _run(args: Array) -> void:
 					tu.tesla_mode = "deployed"
 					tu.nb["m"] = "deployed"
 					BroodRoot.footprint_on(g, tu, false)
+					RootmawSpots.r_test = 0.25
+					var ct := RootmawSpots.candidates(g, tu)
 					for r in radii:
 						RootmawSpots.r_test = r
-						var fixed: Array = [sm.position]
-						tres[r].append(RootmawSpots.pick(RootmawSpots.candidates(g, tu), 2, fixed).size())
+						tres[r].append(RootmawSpots.pick(ct, 2, [spot]).size())
 					_drop(g, tu)
 				line += "  p%d:" % t
 				for i in radii.size():

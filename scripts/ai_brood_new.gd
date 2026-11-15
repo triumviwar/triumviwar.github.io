@@ -2154,10 +2154,10 @@ func _nb_find_spot_go(q: Unit, m: Unit):
 					continue
 				# (the ROOT checks: its footprint, on its side's swamp, its circle clear of the others' and of their plans)
 				# (or where the swamp is spreading to, 1 tile a second: it will be there when the grub is)
-				var soon := not BroodNew.on_swamp(game, team, p) and BroodNew.swamp_coming(game, team, p)
+				var soon := not BroodNew.maw_on_swamp(game, team, p) and BroodNew.swamp_coming(game, team, BroodRoot.rect_for(BroodNew.MAW, p).get_center())
 				# (quick no's first: off the swamp and not coming, or in another Rootmaw's circle, are place_problem's own
 				# no's, so the answer is the same; it only skips the footprint walk for them)
-				if not soon and not BroodNew.on_swamp(game, team, p):
+				if not soon and not BroodNew.maw_on_swamp(game, team, p):
 					continue
 				if _maw_circle_taken(p, m):
 					continue
@@ -2195,8 +2195,8 @@ func _nb_marked_spot(q: Unit, m: Unit):
 		var src: Unit = e["src"]
 		var out := src.kind == BroodNew.TURTLE and src.position.distance_to(_qp(q)) >= far      # (a turtle on new ground)
 		var p_k := game.sym_pt(team, p)
-		var soon := not BroodNew.on_swamp(game, team, p) and BroodNew.swamp_coming(game, team, p)
-		if not soon and not BroodNew.on_swamp(game, team, p):
+		var soon := not BroodNew.maw_on_swamp(game, team, p) and BroodNew.swamp_coming(game, team, BroodRoot.rect_for(BroodNew.MAW, p).get_center())
+		if not soon and not BroodNew.maw_on_swamp(game, team, p):
 			continue
 		if _maw_circle_taken(p, m) or not _nb_spot_ok(p) or _spot_bad(p):
 			continue

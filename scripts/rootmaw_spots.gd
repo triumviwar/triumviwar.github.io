@@ -52,15 +52,17 @@ static func sources(g: Game, t: int) -> Array:
 	return out
 
 
-## Its swamp at its full reach covers the cell of feet p (BroodNew.swamp_full; the swamp's own squashed circle,
-## Game._update_swamp). margin: tiles kept in from its edge.
+## Its swamp at its full reach would lie under a Rootmaw with its feet at p (its footprint's middle column, as
+## BroodNew.maw_on_swamp; BroodNew.swamp_full; the swamp's own squashed circle, Game._update_swamp). margin: tiles kept in.
 static func covers(g: Game, src: Unit, p: Vector2, margin := 0.0) -> bool:
 	var a := BroodRoot.anchor(g, src) / Defs.TILE
-	var c := g.cell_of(p)
-	var dx := float(c.x) + 0.5 - a.x
-	var dy := (float(c.y) + 0.5 - a.y) * 1.15
 	var r := BroodNew.swamp_full(src) - margin
-	return dx * dx + dy * dy <= r * r
+	for c in BroodNew.maw_mid_cells(p):          # (the Rootmaw's swamp rule: BroodNew.maw_on_swamp)
+		var dx := float(c.x) + 0.5 - a.x
+		var dy := (float(c.y) + 0.5 - a.y) * 1.15
+		if dx * dx + dy * dy <= r * r:
+			return true
+	return false
 
 
 ## The Rootmaws side t has or has on the way (rooting, rooted, a cocoon; one walking to root, a grub going to turn into
@@ -296,7 +298,7 @@ static func spots_for(g: Game, t: int) -> Array:
 			continue
 		var i := 0
 		for p in fit(g, s, n):
-			if BroodNew.on_swamp(g, t, p) or BroodNew.swamp_coming(g, t, p):
+			if BroodNew.maw_on_swamp(g, t, p) or BroodNew.swamp_coming(g, t, BroodRoot.rect_for(BroodNew.MAW, p).get_center()):
 				out.append({"p": p, "rank": 1 if i == 0 else 2, "src": s})
 				i += 1
 	return out

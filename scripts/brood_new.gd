@@ -318,6 +318,25 @@ static func on_swamp(g: Game, t: int, p: Vector2) -> bool:
 	return t >= 0 and t < g.swamp.size() and g.on_swamp(t, p)
 
 
+## A Rootmaw with its feet at p is on side t's swamp: either cell of its footprint's middle column (brood-rootmaw-spots:
+## the feet hang below the footprint's middle, so the feet's own cell made the rule fall differently on mirrored starts).
+static func maw_on_swamp(g: Game, t: int, p: Vector2) -> bool:
+	if t < 0 or t >= g.swamp.size():
+		return false
+	for c in maw_mid_cells(p):
+		if g.in_map(c) and g.swamp[t][g.idx(c)] == 1:
+			return true
+	return false
+
+
+## The two cells of the middle column of a Rootmaw's footprint (3 x 2) with its feet at p.
+static func maw_mid_cells(p: Vector2) -> Array:
+	var c := BroodRoot.cell_for(MAW, p)
+	var sz: Vector2i = BroodRoot.fp(MAW)[0]
+	var mx := c.x + sz.x / 2
+	return [Vector2i(mx, c.y + sz.y / 2 - 1), Vector2i(mx, c.y + sz.y / 2)]
+
+
 ## Where the Brood's grubs unload (food and cocoons) and creatures are offered up: the Mother.
 static func dropoff(g: Game, t: int) -> Unit:
 	return queen(g, t)
@@ -1302,7 +1321,7 @@ static func tick(g: Game, u: Unit, delta: float) -> void:
 			u.nb["wet_t"] = float(u.nb.get("wet_t", 0.0)) - delta
 			if float(u.nb["wet_t"]) <= 0.0:
 				u.nb["wet_t"] = 0.5
-				u.nb["dry"] = not on_swamp(g, u.team, u.position)      # (off the swamp: it stops feeding)
+				u.nb["dry"] = not maw_on_swamp(g, u.team, u.position)      # (off the swamp: it stops feeding)
 				# NO SWAMP, NO ROOTS (the owner's playtest, 2026-10-31): a rooted Rootmaw whose swamp is gone (its turtle up or
 				# dead, the swamp receded) uproots by itself, keeping its food (as HAUL); its ground keeps what is left
 				# (Game.nb_spots). DRY_GRACE: the swamp is worked out once a second, so a moment's gap is not a loss.

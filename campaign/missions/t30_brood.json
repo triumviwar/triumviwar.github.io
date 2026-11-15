@@ -36,6 +36,7 @@
    "wait": {"rooted": {"kind": "mound_turtle"}}},
   {"id": "rootmaw",
    "say": ["The turtle's swamp is fresh ground. A Rootmaw rooted there drinks its food.",
+           "Each swamp holds a few Rootmaws: 3 on hers, 2 on a turtle's. Gold marks show where they fit best.",
            "Turn a grub into a Rootmaw on that swamp. Farther from her, each trip pays more."],
    "task": "Root a Rootmaw on the turtle's swamp.",
    "point": {"area": "natural"},

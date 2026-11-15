@@ -455,7 +455,7 @@ static func _place_problem(g: Game, t: int, k: String, p: Vector2, me: Unit = nu
 			return "Blocked: another creature roots there."
 	match k:
 		BroodNew.MAW:
-			if swamp_rule and not BroodNew.on_swamp(g, t, p):
+			if swamp_rule and not BroodNew.maw_on_swamp(g, t, p):
 				return "No swamp here: a Rootmaw roots only on your swamp (root a Mound Turtle to spread it)."
 			var rr := RootmawSpots.circle_r() * T * 2.0
 			for o in (_bt_maws if batch else g.units):

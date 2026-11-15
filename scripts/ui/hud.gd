@@ -1656,7 +1656,7 @@ func _nb_buttons(list: Array, units: Array) -> void:
 				break
 	if src != null and RootmawSpots.label(game, src) != "":
 		var ml := RootmawSpots.label(game, src)
-		_tip_for[ml] = ["Rootmaws on this swamp", "The Brood Mother's swamp holds %d Rootmaws, each rooted Mound Turtle's %d (their circles may not overlap). Gold marks on your swamp show where the missing ones fit best (Settings: SHOW ROOTMAW SPOTS)." % [int(Defs.NB["maws_queen"]), int(Defs.NB["maws_turtle"])]]
+		_tip_for[ml] = ["Rootmaws on this swamp", Loc.t("The Brood Mother's swamp holds %d Rootmaws, each rooted Mound Turtle's %d (their circles may not overlap). Gold marks on your swamp show where the missing ones fit best (Settings: SHOW ROOTMAW SPOTS).") % [int(Defs.NB["maws_queen"]), int(Defs.NB["maws_turtle"])]]
 		list.append([BroodNew.MAW, ml, func() -> void: pass, false, Loc.t("Rootmaws rooted on this swamp, of the most it holds."), ""])
 	if q != null:
 		for k in BroodNew.hatch_list():
