@@ -25,6 +25,16 @@
 
 ## Current work
 
+- WINDERS ESCORT THE ARMY (owner's report 2026-11-15 20:11, DECIDED 20:15 "both"; job winder-escort, 0.38.18,
+  docs/winder_escort.md, scripts/winder_escort.gd WinderEscort, tools/test_winder_escort.gd, pictures docs/shots/winder_escort/):
+  Winders in a group order (move, attack-move, drag-a-line, right-click on an enemy, Shift) WITH Clockwork fighting units
+  get the order "escort" (Unit.cmd_escort): behind the group's rearmost man away from its front, winding/mending the
+  neediest (lowest charge or health share, spread over the Winders, not next to an enemy), stepping back from enemies
+  within 64 px, hitting back only when pinned 0.8 s; they stay with it after the order ends; only-Winder groups unchanged;
+  card ESCORTING. WIND UP (W, icon a copy of ab_mend) on the Winder's card: Game.wind_up_order (the rest of the selection,
+  or the unit tapped next and those within 3 tiles). The computers' Winders don't use group orders: unchanged. 8 Claude's
+  choices in the doc.
+
 - ECONOMY LIMIT BY HALL (owner DECIDED 2026-11-15 18:06: "it should be 2 per Town Hall, 2 per Clocktower"; job
   econ-limit-local, 0.38.16, docs/econ_limit_local.md, tools/test_econ_limit_local.gd): every Farm / Powder Mill / Cog Press /
   Mainspring belongs to the hall it draws from (its nearest BUILT hall, a tie to the older) and each hall allows

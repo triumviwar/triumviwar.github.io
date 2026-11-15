@@ -714,3 +714,11 @@ joint (E/SE/S), wrecks and card icons are the owner's pictures (tools/serpent/im
 - `assets/icons/research_keen_sabres.png`: the Cavalry Charge's icon (research_charge) mirrored and tinted steel blue in
   code (PIL). To redraw: a pair of crossed cavalry sabres being ground on a whetstone, a bright edge glint, the same
   icon frame and size (64x64) as the other Crown research icons.
+
+## WIND UP command icon (stand-in, 0.38.18, winder-escort; docs/winder_escort.md)
+- `assets/icons/clockwork/ab_wind_up.png`: a plain copy of the Great Winder's MEND icon (`ab_mend.png`, the brass wind-up
+  key), so the two buttons look the same today. To redraw: the brass wind-up key turning in the back of a small Clock
+  Soldier seen from behind, a curved arrow round the key, the same frame, field and size (64x64) as the Clockwork command
+  icons.
+- No new strips: an escorting Winder plays his walk, his walk-wind (code-built, see the Winder's walk-wind above) and his
+  standing wind.

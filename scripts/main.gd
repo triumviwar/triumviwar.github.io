@@ -91,6 +91,8 @@ THE GEAR FIELD: every Clockwork building sits on a ring of ground gears that mus
 
 COGS AND TENSION: Winders wind the Cog Presses (2 per Clocktower) for COGS, the money: a press with nobody on it presses nothing, and each Winder adds the same share (up to 5 Winders, 7.2 cogs a second). They crank the Mainspring (1 per Clocktower) for TENSION, the second resource (up to 3 Winders, 2 a second). Winders also repair (repairs cost cogs) and go with the army.
 
+WINDERS WITH THE ARMY: select Winders with your soldiers and move or attack, and they ESCORT the army: they follow behind it, wind and mend whoever needs it most, keep out of the fight and stay with it until another order. WIND UP (W) on a Winder's card does the same for the rest of the selection, or for the unit you tap next.
+
 BUILDING: a Winder sent to build first fetches a crate from the nearest Clocktower and carries it to the site on his back (the site is a ghost until then). Set down, the crate unfolds into the frame and the building builds itself; its build time starts when the crate lands. If the Winder is killed or given another job on the way, he drops the crate: send any Winder onto it to carry it on (idle ones close by do it themselves). A crate on the ground can be smashed (40 hp), which cancels the building (all of its cost back). With no Clocktower, the Winder starts it by hand.
 
 ENERGY: the batteries waiting at your Clocktowers and Boilers are your energy (top bar). Once you have an Engine Hall, Winders leave the last 6 for it. Steam Walkers (3), Tesla Carts (2), Stormcallers (2) and every STORM (2) spend it.
