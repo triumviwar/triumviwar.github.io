@@ -5,7 +5,7 @@ extends SceneTree
 ## For each map (a Brood player against a Crown computer, at the start):
 ##   main_<map>.png   her base: the start Rootmaw and the 2 gold marks for the other two (HUD on, minimap marks);
 ##   place_<map>.png  the same while placing a Rootmaw (brighter, their circles, "ROOTMAWS 1/3" over her);
-##   turtle_<map>.png a Mound Turtle rooted on her best turtle spot, its 2 marks, her two Rootmaws filled in.
+##   turtle_<map>.png a Mound Turtle rooted on her best turtle spot and its 2 marks (her two filled in), placing a Rootmaw.
 var main: Node
 var out := ""
 var maps: Array = ["greenhold", "dune_sea", "hollowfen"]
@@ -110,7 +110,13 @@ func _run() -> void:
 			g.process_mode = Node.PROCESS_MODE_DISABLED
 			g.maw_spots._key = "-"
 			g.maw_spots.refresh()
-			_look(g, q.position.lerp(tu.position, 0.75), 0.6)
+			g.exp_spots.refresh()          # (the turtle spot it took hides)
+			g.controls.mode = "nb_morph"
+			g.controls.place_kind = BroodNew.MAW
+			g.maw_spots._placing = true
+			g.maw_spots._key = "-"
+			g.maw_spots.refresh()
+			_look(g, tu.position, 0.72)
 			await _snap(g, "turtle_%s" % map)
 		main.game = null
 		g.queue_free()
