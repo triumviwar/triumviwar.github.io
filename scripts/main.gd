@@ -1260,26 +1260,6 @@ func settings_rows(tab: String) -> Array:
 			rows.append(_tag(_next_match(_toggle_row("TURNING GEARS (experiment)", func() -> bool: return Settings.gear_turn, func() -> void:
 				Settings.gear_turn = not Settings.gear_turn       # (from the next match: a match keeps the rule it started with)
 				Settings.save_all())), "gear_turn"))
-			rows.append(_tag(_next_match(_toggle_row("GROUND SYSTEM (experiment)", func() -> bool: return Settings.ground_system, func() -> void:
-				Settings.ground_system = not Settings.ground_system
-				Settings.save_all())), "ground_system"))
-			rows.append(_hint("The Crown's soil and the Clockwork's brass lie on the map round each hall. A Farm or Cog Press drinks from a circle round it: spent ground shows red while you place, and a circle over spent ground pays less."))
-			rows.append(_tag(_next_match(_toggle_row("NO FARM/PRESS LIMIT (with the ground system)", func() -> bool: return Settings.ground_nocap, func() -> void:
-				Settings.ground_nocap = not Settings.ground_nocap
-				Settings.save_all())), "ground_nocap"))
-			rows.append(_hint("With the ground system on, a hall no longer limits its Farms or Cog Presses: build as many as you like, the ground is the only limit. More of them drain the same ground faster; watch each circle's share while you place."))
-			var gal := _row("GROUND LAYER WHILE PLACING")
-			var gas := HSlider.new()
-			gas.min_value = 0.1
-			gas.max_value = 1.0
-			gas.step = 0.05
-			gas.value = Settings.ground_alpha
-			gas.custom_minimum_size = Vector2(220, 44)
-			gas.value_changed.connect(func(x: float) -> void:
-				Settings.ground_alpha = x
-				Settings.save_all())
-			gal.add_child(gas)
-			rows.append(_tag(gal, "ground_alpha"))
 		"OTHER":
 			if _match_settings:        # (a match: no pages of their own, no reset; the version only)
 				rows.append(_hint("Patch notes, the animation viewer and RESET SETTINGS are in the main menu's Settings."))
@@ -2851,14 +2831,11 @@ func start(cfg: Dictionary = {}) -> void:
 	if not cfg.has("gear_turn") and not watching and not cfg.has("resume"):
 		cfg["gear_turn"] = Settings.gear_turn
 	Defs.gear_turn = bool(cfg.get("gear_turn", false))
-	# THE GROUND SYSTEM (the experiment, docs/ground_system.md): the same way (a setup from before it existed: off)
-	if not cfg.has("ground") and not watching and not cfg.has("resume"):
-		cfg["ground"] = Settings.ground_system
-	Defs.ground_on = bool(cfg.get("ground", false))
-	# NO FARM/PRESS LIMIT (docs/ground_nocap_study.md): the same way, and only with the ground on
-	if not cfg.has("ground_nocap") and not watching and not cfg.has("resume"):
-		cfg["ground_nocap"] = Settings.ground_nocap
-	Defs.ground_nocap = Defs.ground_on and bool(cfg.get("ground_nocap", false))
+	# (THE GROUND SYSTEM and NO FARM/PRESS LIMIT, experiments until 0.38.11, were reverted by the owner 2026-11-15: an old
+	# setup's "ground" / "ground_nocap" is ignored, a saved match or replay with them plays the original economy;
+	# docs/eco_revert_prologue.md)
+	cfg.erase("ground")
+	cfg.erase("ground_nocap")
 	# (THE MARCHING BAND was an experiment with its own switch until 0.33.0: an old setup's "marching_band" is ignored, the
 	# band is always the Crown's now)
 	# a random map is picked here (among the pool's maps that hold everyone), so colours can

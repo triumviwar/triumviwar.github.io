@@ -2,7 +2,7 @@ extends SceneTree
 ## Campaign mission 1, "The Leaf and the Fire" (docs/campaign_m1_build.md): the mission's data checks out and every text
 ## has pt and es; the seats for solo / co-op / versus; the start (the plantation, the fort, the camps, the rebels' roles:
 ## the Pikeman's own strips, Varenne's name, the torches); part 1 at night (the waves come out of the fields, a torch
-## burns a barn, Varenne shouts, dawn with three barns); part 2 (the camps, the CHOICE: save the families or march on,
+## burns a barn, Varenne shouts, dawn with three barns or more); part 2 (the camps, the CHOICE: save the families or march on,
 ## each with its effect); part 3 (the gate, the canister hint pointing at the card, "Canister. On my word.", the charge
 ## broken: the mission is won, the ending's stills play, the choice is kept); the losses (the manor, every barn, too few
 ## barns at dawn); the opening's stills and lines; the voice hook.
@@ -122,7 +122,20 @@ func _run() -> void:
 	check("the mission is on", r != null and r.id == MID)
 	check("no computer player (the rebels are scripted)", g.ais.is_empty())
 	check("the manor stands", r.tagged("manor").size() == 1 and r.tagged("manor")[0].kind == "town_hall")
-	check("five drying barns (Farms)", r.tagged("barns").size() == 5, str(r.tagged("barns").size()))
+	check("four drying barns (Farms): 2 a hall, as in a skirmish", r.tagged("barns").size() == 4, str(r.tagged("barns").size()))
+	var halls := g.halls_of(r.team_index("governor"))
+	check("two Governor halls: the manor in the south, a hall to the north on the west side", halls.size() == 2 and r.tagged("north_hall").size() == 1
+		and r.tagged("north_hall")[0].center().y < r.tagged("manor")[0].center().y and r.tagged("north_hall")[0].center().x < 20 * Defs.TILE,
+		str(halls.map(func(h): return h.cell)))
+	check("  at least HALL_SPACING apart", halls.size() == 2 and halls[0].center().distance_to(halls[1].center()) >= Defs.HALL_SPACING * Defs.TILE)
+	var per := {}
+	for b in r.tagged("barns"):
+		var hh: Building = g.nearest_hall(b.center(), b.team)
+		check("  a barn within reach of a hall", hh != null and hh.center().distance_to(b.center()) <= Defs.ECON_RANGE * Defs.TILE, str(b.cell))
+		if hh:
+			per[hh] = int(per.get(hh, 0)) + 1
+	check("  2 barns by each hall", per.size() == 2 and per.values().all(func(n): return n == 2), str(per.values()))
+	check("  the Farm limit is reached (4 of 4): no fifth Farm without a third hall", g.econ_count(r.team_index("governor"), "farm") == g.econ_limit(r.team_index("governor"), "farm"))
 	check("the chapel", r.tagged("chapel").size() == 1 and r.tagged("chapel")[0].kind == "church")
 	check("10 Musketeers, 2 cannons, the Governor and Tomasz", r.tagged("line").size() == 10 and r.tagged("guns").size() == 2 and r.tagged("fairleigh").size() == 1 and r.tagged("tomasz").size() == 1)
 	check("the Governor's name over his bar", String(r.tagged("fairleigh")[0].get_meta("mission_name", "")) == "Lord Fairleigh")
@@ -178,7 +191,7 @@ func _run() -> void:
 	# ---------------------------------------------------------------- dawn
 	_step(g, 481.0)
 	_step(g, 481.5)
-	check("dawn with five barns: the march begins", r.fired.has("dawn") and r.obj["dawn"] == "done" and not g.over)
+	check("dawn with four barns: the march begins", r.fired.has("dawn") and r.obj["dawn"] == "done" and not g.over)
 	check("the camps objective shows", r.obj["camps"] == "active")
 	check("the night's rebels fall back", r.tagged("night").all(func(u): return u.order == "move"))
 	check("reinforcements at the manor", r.tagged("relief").size() == 6)

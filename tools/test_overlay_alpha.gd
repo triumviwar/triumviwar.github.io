@@ -1,8 +1,8 @@
 ## OVERLAY OPACITY (docs/overlay_alpha.md; the owner's playtest 2026-11-14): the bars, chevrons and marks over units
 ## and buildings are see-through by Settings.overlay_alpha (marks x Entity.MARK_K), full on the selected and the one
 ## under the mouse, a hurt health bar a little stronger; the setting saves and loads and resets. Also part B (the hall
-## texts with NO FARM/PRESS LIMIT on) and part C (a Farm / Cog Press away from every hall says why, with the ground
-## system on).
+## texts say 2 Farms / 2 Cog Presses again) and part C (a Farm away from every hall: "Must be near your Town Hall.";
+## the ground system and NO FARM/PRESS LIMIT were reverted by the owner 2026-11-15).
 ##   godot --headless --fixed-fps 30 --script res://tools/test_overlay_alpha.gd
 ## Prints CHECK lines and "overlay_alpha: N failures"; exit code 1 on a failure. The player's settings file is put back.
 extends SceneTree
@@ -142,7 +142,7 @@ func _run() -> void:
 		check("  the setting changes: every chevron follows at once", is_equal_approx(spr.self_modulate.a, 0.35))
 		Settings.overlay_alpha = 0.6
 
-	# ---- part C: a Farm away from every hall, the ground system on / off
+	# ---- part C: a Farm away from every hall
 	var far := Vector2i(-1, -1)
 	for y in range(2, Game.H - 6, 3):
 		for x in range(2, Game.W - 6, 3):
@@ -158,56 +158,24 @@ func _run() -> void:
 		if far.x >= 0:
 			break
 	check("a free spot far from the Town Hall found", far.x >= 0)
-	var was_on := Defs.ground_on
-	Defs.ground_on = false
 	var off_msg := g.placement_problem(0, "farm", far)
-	Defs.ground_on = true
-	var on_msg := g.placement_problem(0, "farm", far)
-	Defs.ground_on = was_on
-	check("ground system off: 'Must be near your Town Hall.'", off_msg == "Must be near your Town Hall.", off_msg)
-	check("ground system on: 'No soil here: Farms draw on the soil of a Town Hall's district.'", on_msg == Game.NO_GROUND_MSG[GroundLayer.SOIL], on_msg)
+	check("a Farm away from every hall: 'Must be near your Town Hall.' (the ground system was reverted, 2026-11-15)", off_msg == "Must be near your Town Hall.", off_msg)
 	g.queue_free()
 	await process_frame
 
 	# ---- part B: the hall texts
-	var gw := Defs.ground_on
-	var nc := Defs.ground_nocap
-	Defs.ground_on = false
-	Defs.ground_nocap = false
-	var th_off := Defs.short_of("town_hall")
-	var ab_off := Defs.about_of("town_hall")
-	var ct_off := Defs.about_of("clocktower")
-	check("experiment off: the Town Hall 'Allows 2 Farms'", th_off.contains("Allows 2 Farms") and ab_off.contains("allows 2 Farms") and ct_off.contains("Allows 2 Cog Presses"))
-	Defs.ground_on = true
-	Defs.ground_nocap = false
-	check("ground system without NO LIMIT: unchanged", Defs.short_of("town_hall") == th_off)
-	Defs.ground_nocap = true
-	var texts := [Defs.short_of("town_hall"), Defs.about_of("town_hall"), Defs.tip("town_hall"), Defs.about_of("clocktower"),
-		Defs.nocap_text("Haulers %d/%d · Soil: %d%% (%d gold)%s · Saltpetre: %d%% (%d powder)%s · allows 2 Farms and 1 Powder Mill nearby"),
-		Defs.nocap_text("Brass: %d left%s · Spring life: %d left%s · allows 2 Cog Presses and 1 Mainspring nearby")]
-	var bad: Array = texts.filter(func(t: String) -> bool: return t.contains("2 Farms") or t.contains("2 Cog Presses"))
-	check("NO FARM/PRESS LIMIT on: no hall text says '2 Farms' / '2 Cog Presses'", bad.is_empty(), str(bad))
-	check("  the Town Hall: Farms limited by its district's soil, still 1 Mill", String(texts[1]).contains("limited only by the soil of its district") and String(texts[1]).contains("1 Powder Mill"))
-	check("  the Clocktower: Cog Presses limited by its district's brass, still 1 Mainspring", String(texts[3]).contains("limited only by the brass of its district") and String(texts[3]).contains("1 Mainspring"))
-	# translated, and the card's line still short
+	var th := Defs.short_of("town_hall")
+	var ab := Defs.about_of("town_hall")
+	var ct := Defs.about_of("clocktower")
+	check("the Town Hall 'Allows 2 Farms', the Clocktower 'Allows 2 Cog Presses' (the original economy)", th.contains("Allows 2 Farms") and ab.contains("allows 2 Farms") and ct.contains("Allows 2 Cog Presses"))
 	var miss: Array = []
-	var long: Array = []
 	for lang in ["pt", "es"]:
 		Loc.set_lang(lang)
-		for t in texts:
-			var tr := Loc.t(String(t))
-			if tr == String(t):
-				miss.append("%s: %s" % [lang, String(t).left(50)])
-		for w in ["No soil here: Farms draw on the soil of a Town Hall's district.", "No brass here: Cog Presses draw on the brass of a Clocktower's district.", "OVERLAY OPACITY"]:
+		for w in ["OVERLAY OPACITY", th]:
 			if Loc.t(w) == w:
 				miss.append("%s: %s" % [lang, w])
-		if Loc.t(String(texts[0])).length() > Defs.SHORT_MAX:
-			long.append(lang)
 	Loc.set_lang("en")
-	check("translated in pt and es (texts, the refusals, the setting)", miss.is_empty(), str(miss))
-	check("the card's line within %d characters in every language" % Defs.SHORT_MAX, long.is_empty() and String(texts[0]).length() <= Defs.SHORT_MAX, str(long))
-	Defs.ground_on = gw
-	Defs.ground_nocap = nc
+	check("translated in pt and es (the setting, the hall text)", miss.is_empty(), str(miss))
 
 	Settings.overlay_alpha = keep
 	if saved_cfg != "":

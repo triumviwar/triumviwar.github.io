@@ -4,6 +4,11 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.12", "items": [
+		"THE ORIGINAL ECONOMY IS BACK: the GROUND SYSTEM and NO FARM/PRESS LIMIT experiments are gone from Settings > EXPERIMENTAL (they proved problematic). Every Town Hall allows 2 Farms and every Clocktower 2 Cog Presses again, drawing on the hall's own soil and brass: no circles, no districts. A match or replay saved with them goes on with the original economy.",
+		"PROLOGUE, THE LEAF AND THE FIRE: the Governor's plantation now keeps the same rule as a skirmish. The manor stands further south with 2 drying barns by it, and a second Town Hall to the north, on the west side, has the other 2 (4 barns, was 5). Dawn still needs three barns standing, now of four.",
+		"A campaign mission with no expansion spots no longer shows one when your halls change.",
+	]},
 	{"v": "0.38.11", "items": [
 		"CROWN COMPUTER AGAINST THE BROOD: after its Horseman rush it no longer leaves its Barracks idle while it builds walls, Farms and a Church: its musket line (Musketeers and cannon, not the riders out raiding) now keeps up with the Brood's coming waves, and that gold comes before new buildings. Its Powder Mills grind for that line, and no Church goes up before 10:00.",
 	]},

@@ -19,9 +19,6 @@ static var health_bars := 0           # BARS: 0 = ONLY WHEN NOT FULL (the defaul
 static var band_marks := 1            # BAND BUFF MARKS: 0 ALWAYS, 1 SELECTED (selected units, the one under the cursor, everyone in a ring during a solo), 2 OFF (MarchingBand.draw_marks)
 static var charge_bars := true        # SHOW CHARGE BARS: a thin charge bar over own Clockwork units not fully wound (Unit._draw_unit)
 static var gear_turn := true          # TURNING GEARS (experiment, on for now): a Clockwork ring's band carries units round (GearTurn); from the next match
-static var ground_nocap := false      # NO FARM/PRESS LIMIT (experiment, with the ground system; docs/ground_nocap_study.md): no hall limit on Farms / Cog Presses, the ground decides
-static var ground_system := false     # THE GROUND SYSTEM (experiment, off by default): soil and brass on the map round each hall (GroundLayer); from the next match
-static var ground_alpha := 0.35       # how strongly the ground layer is drawn while placing any building (0.1 to 1)
 static var mini_alpha := 0.6          # how solid the minimap is drawn (0.2 to 1)
 const OVERLAY_DEFAULT := 0.6
 static var overlay_alpha := OVERLAY_DEFAULT   # OVERLAY OPACITY (docs/overlay_alpha.md): how solid the bars, chevrons and marks over units and buildings are (0.3 to 1; selected and hovered: full)
@@ -60,9 +57,6 @@ static func load_all() -> void:
 		health_bars = clampi(int(cfg.get_value("ui", "health_bars", 0)), 0, 1)
 		band_marks = clampi(int(cfg.get_value("ui", "band_marks", 1)), 0, 2)
 		gear_turn = bool(cfg.get_value("ui", "gear_turn", true))
-		ground_system = bool(cfg.get_value("ui", "ground_system", false))
-		ground_nocap = bool(cfg.get_value("ui", "ground_nocap", false))
-		ground_alpha = clampf(float(cfg.get_value("ui", "ground_alpha", 0.35)), 0.1, 1.0)
 		mini_alpha = clampf(float(cfg.get_value("input", "mini_alpha", 0.6)), 0.2, 1.0)
 		overlay_alpha = clampf(float(cfg.get_value("ui", "overlay_alpha", OVERLAY_DEFAULT)), 0.3, 1.0)
 		relay_url = String(cfg.get_value("online", "relay_url", relay_url))
@@ -102,9 +96,6 @@ static func save_all() -> void:
 	cfg.set_value("ui", "health_bars", health_bars)
 	cfg.set_value("ui", "band_marks", band_marks)
 	cfg.set_value("ui", "gear_turn", gear_turn)
-	cfg.set_value("ui", "ground_system", ground_system)
-	cfg.set_value("ui", "ground_nocap", ground_nocap)
-	cfg.set_value("ui", "ground_alpha", ground_alpha)
 	cfg.set_value("input", "mini_alpha", mini_alpha)
 	cfg.set_value("ui", "overlay_alpha", overlay_alpha)
 	cfg.set_value("online", "relay_url", relay_url)
@@ -175,9 +166,6 @@ static func reset() -> void:
 	health_bars = 0
 	band_marks = 1
 	gear_turn = true
-	ground_system = false
-	ground_nocap = false
-	ground_alpha = 0.35
 	mini_alpha = 0.6
 	overlay_alpha = OVERLAY_DEFAULT
 	cw_lab = false

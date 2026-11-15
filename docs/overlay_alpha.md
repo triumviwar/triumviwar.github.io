@@ -84,6 +84,9 @@ shows), the Brood's Raptors and Spitters across the field; the same frame at 100
 
 ## B. The Town Hall and Clocktower texts with NO FARM/PRESS LIMIT on
 
+**REVERTED 2026-11-15 (the owner; docs/eco_revert_prologue.md):** parts B and C went with the ground system and NO FARM/PRESS
+LIMIT. `Defs.nocap_text`, `Defs.NOCAP_SUB` and `Game.NO_GROUND_MSG` are gone; part A (OVERLAY OPACITY) stays.
+
 With the ground system and NO FARM/PRESS LIMIT on (`Defs.ground_on and Defs.ground_nocap`: `Defs.nocap_now`), the hall
 texts no longer say "allows 2 Farms" / "2 Cog Presses": `Defs.nocap_text` swaps the sentence (`Defs.NOCAP_SUB`) in the
 card's line (`short_of`), the portrait's tooltip (`about_of`), the hover tip (`tip`, `GEAR_TIPS`) and the HUD's info

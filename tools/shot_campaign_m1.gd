@@ -1,6 +1,6 @@
 extends SceneTree
 ## Screenshots of campaign mission 1 (docs/shots/campaign_m1/): the opening's still with its line, the night defence,
-## the choice, the canister charge at the gate, the ending.
+## the choice, the canister charge at the gate, the ending; 0_plantation_north / _south: the Governor's plantation by day (its two halls, 2 Farms each).
 ##   xvfb-run -a godot --rendering-driver opengl3 --resolution 1280x720 --script res://tools/shot_campaign_m1.gd -- <outdir>
 ## (PNGs; tools/campaign/shots_to_jpg.py makes the 1200 px JPEGs.) Leaves user://campaign.json as it was.
 var main: Node
@@ -64,6 +64,20 @@ func _run() -> void:
 	await create_timer(1.0).timeout
 	var g: Game = main.game
 	var r: MissionRun = g.mission
+	# 0: the plantation from above, by daylight (eco-revert-prologue: the manor in the south, the north hall, 2 Farms each)
+	r.set_light("day", 0.0)
+	var z0: Vector2 = g.camera.zoom
+	var c0: Vector2 = g.camera.position
+	g.camera.zoom = Vector2(0.55, 0.55)
+	g.camera.position = r.tagged("north_hall")[0].center() + Vector2(260, 40)
+	await create_timer(3.0).timeout
+	await _shot("0_plantation_north")
+	g.camera.position = r.tagged("manor")[0].center() + Vector2(260, 60)
+	await create_timer(0.6).timeout
+	await _shot("0_plantation_south")
+	g.camera.zoom = z0
+	g.camera.position = c0
+	r.set_light("night", 0.0)
 	Engine.time_scale = 4.0
 	await create_timer(46.0).timeout          # (the first wave comes out of the north fields at 0:25)
 	Engine.time_scale = 1.0

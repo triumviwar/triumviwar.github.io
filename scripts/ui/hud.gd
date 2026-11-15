@@ -1081,13 +1081,11 @@ func _build_card() -> Array:
 					why = "Not enough %s." % _res()[0].to_lower()
 				elif game.tension_problem(game.human, Defs.tension_cost(d)) != "":
 					why = game.tension_problem(game.human, Defs.tension_cost(d))      # (a Tension price: the Clock Aviary)
-				elif Defs.is_econ(k) and game.econ_capped(k) and game.econ_count(game.human, k) >= game.econ_limit(game.human, k):
+				elif Defs.is_econ(k) and game.econ_count(game.human, k) >= game.econ_limit(game.human, k):
 					why = "Limit reached: expand with another %s." % Defs.BUILDINGS[game.faction_hall(game.human)]["name"]
 				var kk: String = k
 				var label: String = d["name"].to_upper()
-				if Defs.is_econ(k) and not game.econ_capped(k):
-					label = "%s %d" % [label.split(" ")[0], game.econ_count(game.human, k)]      # (NO FARM/PRESS LIMIT: only the ground limits them)
-				elif Defs.is_econ(k):
+				if Defs.is_econ(k):
 					label = "%s %d/%d" % [label.split(" ")[0], game.econ_count(game.human, k), game.econ_limit(game.human, k)]
 				list.append([k, label, func() -> void:
 					page = ""
@@ -3498,8 +3496,6 @@ func _draw_minimap() -> void:
 		_ci.draw_texture_rect(game.fog_tex, m, false, Color(1, 1, 1, 0.95 * Settings.mini_alpha))
 	if game.exp_spots:
 		game.exp_spots.draw_on_minimap(_ci, m)      # (the best expansion spots: small gold squares)
-	if game.ground_view:
-		game.ground_view.draw_on_minimap(_ci, m)    # (THE GROUND SYSTEM: the layer while placing)
 	for b in game.buildings:
 		if b.visible or (b.team == game.human and not game.demo):
 			var r: Rect2 = b.rect()
@@ -3858,14 +3854,14 @@ func _draw_panel(font: Font) -> void:
 			elif bb.kind == "town_hall" and (e.team == game.human or game.demo):
 				var soil := bb.soil_left()
 				var salt := bb.lode_left()
-				info = Defs.nocap_text("Haulers %d/%d · Soil: %d%% (%d gold)%s · Saltpetre: %d%% (%d powder)%s · allows 2 Farms and 1 Powder Mill nearby") % [bb.haulers_free(), bb.haulers().size(), int(round(soil * 100)), int(bb.soil),
+				info = "Haulers %d/%d · Soil: %d%% (%d gold)%s · Saltpetre: %d%% (%d powder)%s · allows 2 Farms and 1 Powder Mill nearby" % [bb.haulers_free(), bb.haulers().size(), int(round(soil * 100)), int(bb.soil),
 					" spent: its farms pay nothing" if soil <= 0.0 else (" running low" if soil < Defs.SOIL_LOW else ""),
 					int(round(salt * 100)), int(bb.lode), (" spent: the Mill grinds at %d%%" % int(round(Defs.POWDER_FLOOR * 100.0))) if salt <= 0.0 else (" running low" if salt < Defs.SOIL_LOW else "")]
 			elif bb.kind == "clocktower" and (e.team == game.human or game.demo):
 				var coal := bb.soil_left()
 				if Defs.gear_mode:
 					# (no power in gear mode: no batteries, no Boilers, no coal; its `soil` is its Mainspring's SPRING LIFE)
-					info = Defs.nocap_text("Brass: %d left%s · Spring life: %d left%s · allows 2 Cog Presses and 1 Mainspring nearby") % [int(bb.lode),
+					info = "Brass: %d left%s · Spring life: %d left%s · allows 2 Cog Presses and 1 Mainspring nearby" % [int(bb.lode),
 						" (spent: its presses yield nothing; expand)" if bb.lode <= 0.0 else (" (running low)" if bb.lode_left() < Defs.SOIL_LOW else ""),
 						int(ceil(bb.soil)), " (spent: its Mainspring is FATIGUED; expand)" if bb.soil <= 0.0 else (" (running low)" if bb.soil_left() < Defs.SOIL_LOW else "")]
 				else:
@@ -5075,9 +5071,7 @@ func _card_tip(it: Array) -> Dictionary:
 		var st := "%s  ·  %d s" % [_cost_text(int(bd["cost"]), int(bd.get("cost2", 0)) + Defs.tension_cost(bd)), int(bd["time"])]
 		if int(bd.get("supply", 0)) > 0 and k != game.faction_hall(game.human):
 			st += "  ·  +%d supply" % int(bd["supply"])
-		if Defs.is_econ(k) and not game.econ_capped(k):
-			st += "  ·  %d, no limit: the ground decides" % game.econ_count(game.human, k)
-		elif Defs.is_econ(k):
+		if Defs.is_econ(k):
 			st += "  ·  %d of %d here" % [game.econ_count(game.human, k), game.econ_limit(game.human, k)]
 		t["stats"] = st
 		t["body"] = Defs.tip(k)

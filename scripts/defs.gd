@@ -386,28 +386,8 @@ static var gear_mode := true
 ## band of a turning Clockwork ring are carried round with it. Set per match from the setting (Settings.gear_turn) and kept
 ## in the match's setup (cfg "gear_turn"), so a continued match, an online guest and a replay agree.
 static var gear_turn := true
-## THE GROUND SYSTEM (the owner's experiment, 2026-11-13; scripts/ground_layer.gd, docs/ground_system.md): the Crown's soil
-## and the Clockwork's brass lie on the map in a district round each hall; a Farm / Cog Press drinks from a circle round it
-## (yield = the share of its circle's ground still there). Set per match from the setting (Settings.ground_system) and kept
-## in the match's setup (cfg "ground"); off by default (the game as before).
-static var ground_on := false
-## NO FARM/PRESS LIMIT (the owner's open ground-system choice, 2026-11-14; job ground-nocap-study, docs/ground_nocap_study.md):
-## with the ground system on, a hall no longer limits its Farms (Crown) / Cog Presses (Clockwork): the ground is the only
-## limit (more of them drain the same district faster, overlapping circles share it). The Powder Mill and the Mainspring
-## stay 1 a hall; the Brood has no such limit to drop. Set per match from Settings.ground_nocap, kept in the match's setup
-## (cfg "ground_nocap"); only meaningful with ground_on; off by default.
-static var ground_nocap := false
-## The ground system's numbers (docs/ground_system.md "The numbers"; LAND, as GROUND is ATTACK GROUND): tiles unless the key says otherwise.
-##   district: radius of a Town Hall's district (its soil; the economy buildings stand within ECON_RANGE of a hall);
-##   district_brass: a Clocktower's (its brass: the presses mesh near the tower, so its district is a little tighter);
-##   soil / brass: what a fresh district holds (the old hall reserve, SOIL_RESERVE / LODE "clocktower");
-##   r: the circle each drinker drinks from; bite: a Cog Press's draws are paid in chunks of this much.
-static var LAND := {"district": 11.0, "soil": 9000.0, "brass": 9000.0, "r": {"farm": 10.0, "cog_press": 10.0}, "bite": 2.0,
-	"spot_w": 40.0, "spot_min": 0.1, "local": true, "district_brass": 9.0,
-	# NO FARM/PRESS LIMIT (ground_nocap), the computers' own rule for one more Farm / Cog Press by a hall that already has
-	# its usual 2: at most nocap_max more a district; only while the district's ground left, shared by them all, pays
-	# nocap_pay times the new one's price and its crew's; and only on a spot whose circle holds extra_min of a fresh one
-	"nocap_max": 2.0, "nocap_pay": 3.0, "extra_min": 0.35}
+## (THE GROUND SYSTEM and NO FARM/PRESS LIMIT, the experiments of 0.35.0-0.38.11, were REVERTED by the owner 2026-11-15:
+## the original economy is the only one, 2 Farms / 2 Cog Presses a hall on the hall's own soil / brass; docs/eco_revert_prologue.md)
 ## THE MARCHING BAND (the owner's idea 2026-10-30, a Crown unit since 0.33.0; INDIVIDUAL MUSICIANS since 0.37.0, the
 ## owner's redesign 2026-11-14: scripts/marching_band.gd, docs/band_individuals.md): three musicians trained at the
 ## Armoury, the DRUMMER ("band"), the FIFER ("band_fifer") and the PIPER ("band_piper"), each with his own ring, his
@@ -2551,7 +2531,7 @@ static func short_of(kind: String, armoured := false) -> String:
 	if armoured and SHORT_ARMOURED.has(kind):
 		return SHORT_ARMOURED[kind]
 	if SHORT.has(kind):
-		return nocap_text(SHORT[kind])
+		return SHORT[kind]
 	for d in [UNITS, BUILDINGS]:
 		if (d as Dictionary).has(kind):
 			var a := String(d[kind].get("about", ""))
@@ -2566,37 +2546,8 @@ static func about_of(kind: String, armoured := false) -> String:
 		return String(ARMOURED[kind]["about"])
 	for d in [UNITS, BUILDINGS]:
 		if (d as Dictionary).has(kind):
-			return nocap_text(String(d[kind].get("about", "")))
+			return String(d[kind].get("about", ""))
 	return ""
-
-
-## NO FARM/PRESS LIMIT (ground_nocap with the ground system on; docs/overlay_alpha.md part B): a Town Hall no longer
-## allows "2 Farms", nor a Clocktower "2 Cog Presses": the soil / brass of its district is the only limit (the Mill and
-## the Mainspring stay 1). The hall texts say so then (English: each result is a key of its own in tools/i18n/
-## 69_overlay_alpha.txt); with the experiment off they are as before.
-const NOCAP_SUB := [
-	["Each Town Hall allows 2 Farms and 1 Powder Mill nearby.", "Its Farms are limited only by the soil of its district; 1 Powder Mill nearby."],
-	["Allows 2 Farms and 1 Powder Mill nearby;", "Farms limited only by its district's soil; 1 Powder Mill nearby;"],
-	["Allows 2 Farms and 1 Powder Mill.", "Farms: as its soil allows; 1 Powder Mill."],
-	["allows 2 Farms and 1 Powder Mill nearby", "Farms limited only by its district's soil, 1 Powder Mill nearby"],
-	["Allows 2 Cog Presses and 1 Mainspring nearby.", "Its Cog Presses are limited only by the brass of its district; 1 Mainspring nearby."],
-	["allows 2 Cog Presses and 1 Mainspring nearby", "Cog Presses limited only by its district's brass, 1 Mainspring nearby"],
-]
-
-
-## Is the hall limit on Farms / Cog Presses off (the experiment, in this match or set for the next)?
-static func nocap_now() -> bool:
-	return ground_on and ground_nocap
-
-
-## A hall text as it reads now (nocap_now: NOCAP_SUB applied; else unchanged).
-static func nocap_text(t: String) -> String:
-	if not nocap_now():
-		return t
-	for e in NOCAP_SUB:
-		if t.contains(String(e[0])):
-			t = t.replace(String(e[0]), String(e[1]))
-	return t
 
 
 ## The short tooltip text for a unit, building or research ("about" when it has none).
@@ -2608,12 +2559,12 @@ const GEAR_TIPS := {
 
 static func tip(kind: String) -> String:
 	if gear_mode and GEAR_TIPS.has(kind):
-		return nocap_text(GEAR_TIPS[kind])
+		return GEAR_TIPS[kind]
 	if TIPS.has(kind):
-		return nocap_text(TIPS[kind])
+		return TIPS[kind]
 	if train_armoured(kind):
 		return String(ARMOURED[train_kind(kind)]["about"])
 	for d in [UNITS, BUILDINGS, RESEARCH]:
 		if (d as Dictionary).has(kind):
-			return nocap_text(String(d[kind].get("about", "")))
+			return String(d[kind].get("about", ""))
 	return ""

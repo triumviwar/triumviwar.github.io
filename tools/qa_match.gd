@@ -40,8 +40,6 @@ var _idle_w: Array = []         # (clockwork-ai-v2) per player: [sum of idle wor
 
 
 var _riders_seen: Dictionary = {}     # (balance-raptor-horseman) every Horseman / Cuirassier seen in the saddle: id -> team
-var ground := false
-var nocap := false      # (ground-nocap-study: NO FARM/PRESS LIMIT, `groundcap:off`, docs/ground_nocap_study.md)
 
 func _initialize() -> void:
 	var spec := "crown/optimal/0,brood/optimal/1"
@@ -56,8 +54,6 @@ func _initialize() -> void:
 			"out": out = kv[1]
 			"diff": diff = kv[1]
 			"slots": spec = kv[1]
-			"ground": ground = kv[1] == "1"     # (THE GROUND SYSTEM on: docs/ground_system.md)
-			"groundcap": nocap = kv[1] == "off"   # (NO FARM/PRESS LIMIT: docs/ground_nocap_study.md)
 	for s in spec.split(","):
 		var p := s.split("/")
 		slots.append([p[0], p[1] if p.size() > 1 else "optimal", int(p[2]) if p.size() > 2 else slots.size()])
@@ -90,7 +86,7 @@ func _process(delta: float) -> bool:
 		var sl: Array = []
 		for i in n:
 			sl.append({"who": diff, "faction": slots[i][0], "colour": i, "side": slots[i][2], "strategy": slots[i][1]})
-		main.start({"map": map, "seed": seed_, "slots": sl, "ground": ground, "ground_nocap": nocap})
+		main.start({"map": map, "seed": seed_, "slots": sl})
 		return false
 	if main.game == null:
 		return false
@@ -182,7 +178,7 @@ func _side(tm: int) -> Dictionary:
 		"push": _push_phase(tm), "crown": _crown_econ(tm, a), "drink": _drinkers(tm), "home": _home_share(tm)}
 
 
-## (ground-nocap-study) the side's Farms / Cog Presses: [live built, spent, going up, the most in one district]
+## (ground-nocap-study, kept as a measure) the side's Farms / Cog Presses: [live built, spent, going up, the most by one hall]
 func _drinkers(tm: int) -> Array:
 	var k := "farm" if g.faction_of(tm) == "crown" else ("cog_press" if g.faction_of(tm) == "clockwork" else "")
 	if k == "":
