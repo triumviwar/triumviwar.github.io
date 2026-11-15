@@ -340,6 +340,8 @@ func _ready() -> void:
 		exp_spots.spots = exp_spots.all.filter(func(s: Dictionary) -> bool: return int(s["rank"]) > 0)
 		if mission and not bool(mission.data.get("expansion_spots", true)):
 			exp_spots.spots = []      # (a campaign mission whose story has no use for them: "expansion_spots": false)
+			exp_spots.crown_on = false     # (and none worked out again when its halls change: the prologue's two Governor
+			exp_spots.clock_on = false     # halls made the Crown's rule rate new spots, eco-revert-prologue)
 		exp_spots.z_index = -18
 		add_child(exp_spots)
 	if edit_mode:
