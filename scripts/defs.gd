@@ -1504,7 +1504,7 @@ const UNITS := {
 const BUILDINGS := {
 	"town_hall": {
 		"name": "Town Hall", "hp": 1600, "armor": 2, "cost": 400, "time": 60.0, "size": Vector2i(5, 4),
-		"supply": 10, "sight": 9, "trains": ["labourer"], "haulers": 6, "faction": "crown", "about": "Trains labourers. Right-click Labourers onto it to make them haulers: they lead horses to the Barracks and Foundry and carry powder kegs to the Wagons. Each Town Hall allows 2 Farms and 1 Powder Mill nearby. Its farmland holds a reserve of gold (once the farms have drawn it out they pay nothing) and its ground a reserve of saltpetre for the Mill (spent, the Mill grinds at 15%). Expand to fresh land.",
+		"supply": 10, "sight": 9, "trains": ["labourer"], "haulers": 6, "faction": "crown", "about": "Trains labourers. Right-click Labourers onto it to make them haulers: they lead horses to the Barracks and Foundry and carry powder kegs to the Wagons. Each Town Hall allows 2 Farms and 1 Powder Mill round it: each counts for its nearest Town Hall. Its farmland holds a reserve of gold (once the farms have drawn it out they pay nothing) and its ground a reserve of saltpetre for the Mill (spent, the Mill grinds at 15%). Expand to fresh land.",
 	},
 	"cottage": {
 		"name": "Cottage", "hp": 400, "armor": 1, "cost": 100, "time": 20.0, "size": Vector2i(2, 2),
@@ -1537,7 +1537,7 @@ const BUILDINGS := {
 	"clocktower": {
 		"name": "Clocktower", "hp": 2000, "armor": 3, "cost": 400, "time": 60.0, "size": Vector2i(5, 4),
 		"supply": 10, "sight": 9, "trains": ["winder"], "field": 9, "battery": [2.0, 6], "crew": 4, "faction": "clockwork",
-		"about": "The blueprint of the machine: builds Winders, takes in the cogs and unlocks the other buildings. Its gear ring is the biggest: every building must mesh with it, directly or through others, or it stops. Allows 2 Cog Presses and 1 Mainspring nearby. Its ground holds 9,000 raw brass for its presses (spent, they yield nothing) and 1,320 SPRING LIFE for its Mainspring (it winds less as that runs down, 5% once spent). A new Clocktower brings fresh brass and spring life and starts its own gear field.",
+		"about": "The blueprint of the machine: builds Winders, takes in the cogs and unlocks the other buildings. Its gear ring is the biggest: every building must mesh with it, directly or through others, or it stops. Allows 2 Cog Presses and 1 Mainspring round it: each counts for its nearest Clocktower. Its ground holds 9,000 raw brass for its presses (spent, they yield nothing) and 1,320 SPRING LIFE for its Mainspring (it winds less as that runs down, 5% once spent). A new Clocktower brings fresh brass and spring life and starts its own gear field.",
 	},
 	"spring_tower": {
 		"name": "Spring Tower", "hp": 500, "armor": 2, "cost": 100, "time": 20.0, "size": Vector2i(2, 2),
@@ -2416,7 +2416,7 @@ const TIPS := {
 	"venom_challenger": "A matured Spitter, a young Venom Sire: a heavier glob than a Spitter's, a little farther, with a small splash.",
 	"storm_challenger": "A matured Hatchling, a young Storm Sire: a flyer that swoops to bite flyers and ground units alike.",
 	# Crown buildings
-	"town_hall": "Trains Labourers. Allows 2 Farms and 1 Powder Mill nearby; its soil and saltpetre run out in time.",
+	"town_hall": "Trains Labourers. Allows 2 Farms and 1 Powder Mill round it; its soil and saltpetre run out in time.",
 	"horse_breeder": "Trains horses: 40 gold and 15 s each, no supply; RALLY sends them on. Unlocks Horsemen and researches KEEN SABRES; cavalry, guns and wagons need its horses. Build as many as you like, anywhere. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.",
 	"cottage": "Houses 8 more supply. The first one unlocks the Barracks and the palisade.",
 	"wall": "Palisade: blocks the way. Lay it in a line: pick the start, then the end. Needs a Cottage.",
@@ -2498,7 +2498,7 @@ const SHORT := {
 	"serpent_gear_s": "A small gear for a Brass Serpent: health, and it stays quick.",
 	"serpent_gear_b": "A big gear for a Brass Serpent: more health and bite, but slower.",
 	# Crown buildings
-	"town_hall": "Trains Labourers and haulers. Allows 2 Farms and 1 Powder Mill.",
+	"town_hall": "Trains Labourers and haulers. Allows 2 Farms and 1 Powder Mill round it.",
 	"cottage": "Houses 8 more supply. The first unlocks the Barracks and palisade.",
 	"wall": "Wooden palisade: blocks the way. Lay it in a line.",
 	"gate": "A palisade piece that opens for your side only.",
@@ -2555,7 +2555,7 @@ static func about_of(kind: String, armoured := false) -> String:
 ## The short tooltip text for a unit, building or research ("about" when it has none).
 ## Gear mode's own tooltips where the old text speaks of batteries, Boilers or coal (no power in gear mode).
 const GEAR_TIPS := {
-	"clocktower": "The blueprint of the machine: builds Winders, takes in the cogs and unlocks the other buildings. Its gear ring is the biggest: every building must mesh with it, directly or through others, or it stops. Allows 2 Cog Presses and 1 Mainspring nearby. Its ground holds 9,000 raw brass for its presses (spent, they yield nothing) and 1,320 SPRING LIFE for its Mainspring (it winds less as that runs down, 5% once spent). A new Clocktower brings fresh brass and spring life and starts its own gear field.",
+	"clocktower": "The blueprint of the machine: builds Winders, takes in the cogs and unlocks the other buildings. Its gear ring is the biggest: every building must mesh with it, directly or through others, or it stops. Allows 2 Cog Presses and 1 Mainspring round it: each counts for its nearest Clocktower. Its ground holds 9,000 raw brass for its presses (spent, they yield nothing) and 1,320 SPRING LIFE for its Mainspring (it winds less as that runs down, 5% once spent). A new Clocktower brings fresh brass and spring life and starts its own gear field.",
 }
 
 

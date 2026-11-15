@@ -2393,9 +2393,13 @@ func _econ_spot(kind: String) -> Vector2i:
 		halls.sort_custom(func(a: Building, b: Building) -> bool: return a.lode_left() > b.lode_left())
 		if game.econ_count(team, kind) > 0:
 			halls = halls.filter(func(h: Building) -> bool: return h.lode_left() > 0.05)
+	var per := Defs.econ_per_hall(game.faction_of(team), kind)
+	var at: Dictionary = game.econ_by_hall(team, kind) if per > 0 else {}
 	for h in halls:
 		if not h.built:
 			continue
+		if per > 0 and int(at.get(h, 0)) >= per:
+			continue            # (econ-limit-local: this hall has its own; its spots would all be refused)
 		var spot: Vector2i
 		# (CROWN WALL EXPAND: a walled hall's Farms and Mill inside its ring)
 		spot = xw.inside_spot(kind, h)

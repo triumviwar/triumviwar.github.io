@@ -2346,10 +2346,12 @@ func find_start_spot(t: int, kind: String, hall: Building, placed: Array) -> Vec
 	_spot_halls = halls_of(t)
 	_spot_all_halls = halls_of(t, false)
 	_in_spot = true
+	econ_spot_begin(t, kind)
 	var best := _find_start_spot(t, kind, hall, placed)
 	_spot_halls = []
 	_spot_all_halls = []
 	_in_spot = false
+	econ_spot_end()
 	return best
 
 
@@ -2472,6 +2474,7 @@ func find_spot(t: int, kind: String, around: Building, min_d: int, max_d: int, p
 	_spot_halls = halls_of(t)
 	_spot_all_halls = halls_of(t, false)
 	_in_spot = true
+	econ_spot_begin(t, kind)
 	var size: Vector2i = Defs.BUILDINGS[kind]["size"]
 	var c0: Vector2 = around.rect().get_center() / T if anchor == Vector2.INF else anchor
 	var mid := Vector2(W, H) * 0.5
@@ -2561,6 +2564,7 @@ func find_spot(t: int, kind: String, around: Building, min_d: int, max_d: int, p
 	_spot_halls = []
 	_spot_all_halls = []
 	_in_spot = false
+	econ_spot_end()
 	return best
 
 
@@ -2577,6 +2581,23 @@ func _on_ground(cell: Vector2i, size: Vector2i, h: int) -> bool:
 var _spot_halls: Array = []
 var _spot_all_halls: Array = []      # (find_spot: the halls, unfinished ones too, looked up once)
 var _in_spot := false
+var _spot_econ := {}                 # (find_spot: econ_by_hall of the kind being placed, looked up once)
+var _spot_econ_kind := ""
+var _spot_econ_team := -1
+
+
+## A search that tests many cells for one economy kind (GearEcon.room_spot, GearNet's spot finder): the halls' counts
+## looked up once (econ_spot_end after; nothing may be placed in between).
+func econ_spot_begin(t: int, kind: String) -> void:
+	_spot_econ_kind = kind if Defs.is_econ(kind) else ""
+	_spot_econ_team = t
+	_spot_econ = econ_by_hall(t, kind) if _spot_econ_kind != "" else {}
+
+
+func econ_spot_end() -> void:
+	_spot_econ = {}
+	_spot_econ_kind = ""
+	_spot_econ_team = -1
 
 
 ## find_spot's quick test before the full placement_problem: every cell of the footprint
@@ -2992,8 +3013,79 @@ func econ_count(t: int, kind: String) -> int:
 	return buildings.filter(func(b: Building) -> bool: return b.team == t and b.kind == kind and not b.dead).size()
 
 
+## THE LIMIT IS LOCAL (econ-limit-local, the owner 2026-11-15: "it should be 2 per Town Hall, 2 per Clocktower";
+## docs/econ_limit_local.md): every economy building (Farm, Powder Mill, Cog Press, Mainspring: Defs.econ_of) belongs to
+## the hall it draws from, its nearest BUILT hall (soil_hall / lode_hall: nearest_hall; on an exact tie the older hall),
+## and each hall allows Defs.econ_per_hall of each kind round it. A hall going up does not count yet (its buildings
+## can't be laid near it before it stands, as before); a fallen hall's buildings go to the next nearest one and may put
+## it over its count (they keep working; no new one there until it is under). So the side's limit is the sum over its
+## halls of max(per hall, what each has): econ_count >= econ_limit still means "no hall has room" for every caller.
 func econ_limit(t: int, kind: String) -> int:
-	return Defs.econ_per_hall(faction_of(t), kind) * maxi(1, halls_of(t).size())
+	var per := Defs.econ_per_hall(faction_of(t), kind)
+	var hs := halls_of(t)
+	if hs.is_empty() or per <= 0:
+		return per * maxi(1, hs.size())
+	var at := econ_by_hall(t, kind)
+	var n := 0
+	for h in hs:
+		n += maxi(per, int(at.get(h, 0)))
+	return n
+
+
+## How many of `kind` each built hall of t has round it ({hall: count}; buildings going up count, as in econ_count).
+func econ_by_hall(t: int, kind: String) -> Dictionary:
+	var at := {}
+	for b in buildings:
+		if b.team != t or b.kind != kind or b.dead:
+			continue
+		var h := nearest_hall(b.center(), t)
+		if h != null:
+			at[h] = int(at.get(h, 0)) + 1
+	return at
+
+
+## How many of `kind` hall h has round it (the buildings whose nearest built hall it is).
+func econ_at(h: Building, kind: String) -> int:
+	if h == null:
+		return 0
+	return int(econ_by_hall(h.team, kind).get(h, 0))
+
+
+## The hall an economy building of t at p (pixels) would belong to, and whether it is full for `kind`: the refusal
+## ("" when there is room). `counts`: econ_by_hall, looked up once by a spot search.
+func econ_full_at(t: int, kind: String, p: Vector2, counts = null) -> String:
+	var per := Defs.econ_per_hall(faction_of(t), kind)
+	if per <= 0:
+		return ""
+	var h := nearest_hall(p, t)
+	if h == null:
+		return ""
+	var at: Dictionary = counts if counts is Dictionary else econ_by_hall(t, kind)
+	var n := int(at.get(h, 0))
+	if n < per:
+		return ""
+	if ECON_FULL.has(kind):
+		return ECON_FULL[kind] % [n, per]
+	var hn: String = Defs.BUILDINGS[h.kind]["name"]
+	var kn: String = econ_plural(kind) if per > 1 else String(Defs.BUILDINGS[kind]["name"])
+	return "This %s already has its %s (%d/%d). Build near another %s." % [hn, kn, n, per, hn]
+
+
+## The refusal by kind (econ_full_at; the shelved Line's kinds take the general sentence).
+const ECON_FULL := {
+	"farm": "This Town Hall already has its Farms (%d/%d). Build near another Town Hall.",
+	"powder_mill": "This Town Hall already has its Powder Mill (%d/%d). Build near another Town Hall.",
+	"cog_press": "This Clocktower already has its Cog Presses (%d/%d). Build near another Clocktower.",
+	"mainspring": "This Clocktower already has its Mainspring (%d/%d). Build near another Clocktower.",
+}
+
+
+## A building kind's plural as the limit texts say it.
+static func econ_plural(kind: String) -> String:
+	var n: String = Defs.BUILDINGS[kind]["name"]
+	if n.ends_with("y"):
+		return n.substr(0, n.length() - 1) + "ies"
+	return n + ("es" if n.ends_with("s") else "s")
 
 
 func add_res2(t: int, v: float) -> void:
@@ -5115,6 +5207,10 @@ func placement_problem(t: int, k: String, c: Vector2i, ai := false, limits_check
 				break
 		if not near:
 			return "Must be near your %s." % Defs.BUILDINGS[faction_hall(t)]["name"]
+		# (econ-limit-local: the hall it would draw from, its nearest, must have room for one more)
+		var full := econ_full_at(t, k, mid, _spot_econ if (_spot_econ_kind == k and _spot_econ_team == t) else null)
+		if full != "":
+			return full
 	return ""
 
 

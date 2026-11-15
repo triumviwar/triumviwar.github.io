@@ -180,7 +180,7 @@ func presses_after() -> bool:
 	var halls: Array = ai._halls().filter(func(h: Building) -> bool: return h.built and h.lode_left() >= LODE_FRESH)
 	halls.sort_custom(func(a: Building, b: Building) -> bool: return a.lode_left() > b.lode_left())
 	for h in halls:
-		if presses_of(h) >= Defs.econ_per_hall("clockwork", kind) or ai._enemy_near(h.center(), PRESS_SAFE):
+		if presses_of(h) >= Defs.econ_per_hall("clockwork", kind) or game.econ_at(h, kind) >= Defs.econ_per_hall("clockwork", kind) or ai._enemy_near(h.center(), PRESS_SAFE):
 			continue
 		if lay_press(h) != null:
 			return true
@@ -219,7 +219,7 @@ func _presses() -> void:
 		for b in ai._mine(kind):
 			if game.lode_hall(b) == h and not b.barren():
 				n += 1
-		if n >= Defs.econ_per_hall("clockwork", kind):
+		if n >= Defs.econ_per_hall("clockwork", kind) or game.econ_at(h, kind) >= Defs.econ_per_hall("clockwork", kind):
 			continue
 		if ai._enemy_near(h.center(), PRESS_SAFE):
 			continue
@@ -248,7 +248,7 @@ func presses_more() -> void:
 		for b in ai._mine(kind):
 			if game.lode_hall(b) == h and not b.barren():
 				n += 1
-		if n >= Defs.econ_per_hall("clockwork", kind) or ai._enemy_near(h.center(), PRESS_SAFE):
+		if n >= Defs.econ_per_hall("clockwork", kind) or game.econ_at(h, kind) >= Defs.econ_per_hall("clockwork", kind) or ai._enemy_near(h.center(), PRESS_SAFE):
 			continue
 		if lay_press(h) != null:
 			say("more", "macro: a second Cog Press at once for the idle Winders (%d idle)" % _idle_workers())

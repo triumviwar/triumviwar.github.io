@@ -390,6 +390,7 @@ static func room_spot_n(game: Game, t: int, kind: String, must: Array, users: Ar
 	var best := Vector2i(-1, -1)
 	var best_room := -1
 	var tried := 0
+	game.econ_spot_begin(t, kind)      # (econ-limit-local: the halls' counts once for the whole search)
 	for cd in cands:
 		var c: Vector2i = cd[1]
 		if game.placement_problem(t, kind, c, unseen) != "" or not game.margin_free(c, size):
@@ -397,9 +398,11 @@ static func room_spot_n(game: Game, t: int, kind: String, must: Array, users: Ar
 		if game.gear_net.candidate(t, kind, c)["state"] != "ok":
 			continue
 		if users.is_empty():
+			game.econ_spot_end()
 			return [c, 0]
 		var room := _room(game, t, kind, c, users)
 		if room >= users.size():
+			game.econ_spot_end()
 			return [c, room]
 		if room > best_room:
 			best_room = room
@@ -407,6 +410,7 @@ static func room_spot_n(game: Game, t: int, kind: String, must: Array, users: Ar
 		tried += 1
 		if tried >= tries:
 			break
+	game.econ_spot_end()
 	return [best, maxi(best_room, 0)]
 
 

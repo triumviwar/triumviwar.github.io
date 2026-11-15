@@ -1639,6 +1639,20 @@ func _pass_icon_x(r: Rect2, n: int, i: int) -> float:
 	return r.end.x - 36.0 - (n - i) * 25.0
 
 
+## THE LOCAL LIMIT on a hall's card (econ-limit-local): "FARMS 1/2 · POWDER MILL 0/1", "COG PRESSES 2/2 · MAINSPRING 1/1":
+## the economy buildings round this hall (those whose nearest built hall it is) of the most it allows.
+func _econ_counts(h: Building) -> String:
+	var parts: Array = []
+	var f := game.faction_of(h.team)
+	for k in Defs.econ_of(f):
+		if not Defs.build_list(f).has(k):
+			continue
+		var per := Defs.econ_per_hall(f, k)
+		var nm: String = (Game.econ_plural(k) if per > 1 else String(Defs.BUILDINGS[k]["name"])).to_upper()
+		parts.append("%s %d/%d" % [nm, game.econ_at(h, k) if h.built else 0, per])
+	return " · ".join(parts)
+
+
 ## Crown abilities for the selected soldiers. Each button switches all of that kind.
 ## THE BROOD (scripts/brood_new.gd): the Mother lays an egg for each creature (the warriors need the father near
 ## her); she and the Rootmaws ROOT and UPROOT; a Rootmaw HAULs its food.
@@ -3867,16 +3881,18 @@ func _draw_panel(font: Font) -> void:
 			elif bb.kind == "town_hall" and (e.team == game.human or game.demo):
 				var soil := bb.soil_left()
 				var salt := bb.lode_left()
-				info = "Haulers %d/%d · Soil: %d%% (%d gold)%s · Saltpetre: %d%% (%d powder)%s · allows 2 Farms and 1 Powder Mill nearby" % [bb.haulers_free(), bb.haulers().size(), int(round(soil * 100)), int(bb.soil),
+				info = "Haulers %d/%d · Soil: %d%% (%d gold)%s · Saltpetre: %d%% (%d powder)%s · %s" % [bb.haulers_free(), bb.haulers().size(), int(round(soil * 100)), int(bb.soil),
 					" spent: its farms pay nothing" if soil <= 0.0 else (" running low" if soil < Defs.SOIL_LOW else ""),
-					int(round(salt * 100)), int(bb.lode), (" spent: the Mill grinds at %d%%" % int(round(Defs.POWDER_FLOOR * 100.0))) if salt <= 0.0 else (" running low" if salt < Defs.SOIL_LOW else "")]
+					int(round(salt * 100)), int(bb.lode), (" spent: the Mill grinds at %d%%" % int(round(Defs.POWDER_FLOOR * 100.0))) if salt <= 0.0 else (" running low" if salt < Defs.SOIL_LOW else ""),
+					_econ_counts(bb)]
 			elif bb.kind == "clocktower" and (e.team == game.human or game.demo):
 				var coal := bb.soil_left()
 				if Defs.gear_mode:
 					# (no power in gear mode: no batteries, no Boilers, no coal; its `soil` is its Mainspring's SPRING LIFE)
-					info = "Brass: %d left%s · Spring life: %d left%s · allows 2 Cog Presses and 1 Mainspring nearby" % [int(bb.lode),
+					info = "Brass: %d left%s · Spring life: %d left%s · %s" % [int(bb.lode),
 						" (spent: its presses yield nothing; expand)" if bb.lode <= 0.0 else (" (running low)" if bb.lode_left() < Defs.SOIL_LOW else ""),
-						int(ceil(bb.soil)), " (spent: its Mainspring is FATIGUED; expand)" if bb.soil <= 0.0 else (" (running low)" if bb.soil_left() < Defs.SOIL_LOW else "")]
+						int(ceil(bb.soil)), " (spent: its Mainspring is FATIGUED; expand)" if bb.soil <= 0.0 else (" (running low)" if bb.soil_left() < Defs.SOIL_LOW else ""),
+						_econ_counts(bb)]
 				else:
 					info = "%d/%d batteries ready (one every %.1f s) · Ore: %d left%s · Coal: %d%%%s · allows 2 Boilers and 2 Ore Crushers nearby" % [
 						bb.batteries, int(bb.d["battery"][1]), float(bb.d["battery"][0]), int(bb.lode),
@@ -5086,6 +5102,7 @@ func _card_tip(it: Array) -> Dictionary:
 			st += "  ·  +%d supply" % int(bd["supply"])
 		if Defs.is_econ(k):
 			st += "  ·  %d of %d here" % [game.econ_count(game.human, k), game.econ_limit(game.human, k)]
+			st += "  ·  " + Loc.t("%d per %s (each counts the ones nearest it)") % [Defs.econ_per_hall(game.faction_of(game.human), k), Loc.t(Defs.BUILDINGS[game.faction_hall(game.human)]["name"])]
 		t["stats"] = st
 		t["body"] = Defs.tip(k)
 		if GearNet.pickable(k):
