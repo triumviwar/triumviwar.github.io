@@ -33,7 +33,8 @@
   another Town Hall." (en/pt/es); hall cards FARMS 1/2 · POWDER MILL 0/1, COG PRESSES 2/2 · MAINSPRING 1/1; a hall going up
   allows nothing; a fallen hall's buildings go to the next nearest (over its count they work, no new one there). The
   computers skip a full hall (AI._econ_spot, AICwMacro) and recycle a spent building of the hall that needs the place.
-  Bench unchanged; the computers alone within noise (numbers in the doc). Mainspring local too (Claude's choice 1).
+  Bench unchanged; the computers alone within noise (12:00, 6 runs a side: Crown 0.0%, Clockwork +2.0%, its Tension +8%).
+  The Powder Mill and the Mainspring are local too (Claude's choice 1: owner to confirm the Mainspring).
 
 - BROOD ROOTMAW SPOTS (owner DECIDED 2026-11-15: the Brood keeps the only radius economy, made fair and easy; job
   brood-rootmaw-spots, 0.38.14, docs/brood_rootmaw_spots.md, scripts/rootmaw_spots.gd RootmawSpots, tools/test_rootmaw_spots.gd,

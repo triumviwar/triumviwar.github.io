@@ -30,7 +30,7 @@ player could put 3 or 4 Farms (Presses) round the main, drain the main twice as 
   when *every* hall is full.
 - **The card**: a Town Hall's card ends with `FARMS 1/2 · POWDER MILL 0/1`, a Clocktower's with `COG PRESSES 2/2 ·
   MAINSPRING 1/1` (was "allows 2 Farms and 1 Powder Mill nearby"; `HUD._econ_counts`). The build menu keeps the side's
-  total (`FARM 3/4`, now "of what your halls allow") and its tooltip adds "2 per Town Hall (each counts the ones nearest it)".
+  total (`FARM 3/4`: laid, of what all its halls allow) and its tooltip adds "2 per Town Hall (each counts the ones nearest it)".
 - **`Game.econ_limit`** now returns the sum over the built halls of `max(per hall, what that hall has)`, so the old test
   every caller makes, `econ_count >= econ_limit`, still means exactly "no hall has room". No caller had to change for that.
   New helpers: `Game.econ_by_hall(t, kind)` ({hall: n}), `econ_at(hall, kind)`, `econ_full_at(t, kind, point)`,
@@ -47,8 +47,8 @@ swamp and 2 on a turtle's, is per swamp since 0.38.15).
    "2 per Town Hall, 2 per Clocktower" read as one rule for the economy buildings. A consequence for the Clockwork: a second
    Mainspring (for the Clock Aviary or the Heavy Works) can no longer stand by the main once the main has one; it goes by
    the second Clocktower. The tech itself is not held back by this: since 0.25.0 a Mainspring anywhere in the gear network
-   feeds the Escapement, Aviary and Heavy Works. Making the Mainspring empire-wide again is a two-line change
-   (`Game.econ_full_at` skipping it).
+   feeds the Escapement, Aviary and Heavy Works. Making the Mainspring empire-wide again is a small change
+   (`Game.econ_full_at` and `econ_limit` treating it the old way).
 2. **A hall going up does not count.** Its limit starts when it stands (as before: an economy building had to stand near a
    *built* hall). Its card shows `FARMS 0/2` meanwhile.
 3. **A fallen hall**: its buildings go to the next nearest built hall and keep working there (they now draw from it, as they
@@ -142,4 +142,29 @@ build on the same map swung by up to 10% between two runs (Crown on Greenhold be
 
 ## Tests
 
-TEST_TABLE
+Run on this branch (`godot --headless --fixed-fps 30 --script res://tools/<test>.gd`): all of `test_ai_*`, `test_crown_*`,
+`test_cw_*`, `test_settings_*`, plus `test_exhaust`, `test_campaign_m1`, `test_horses`, `test_gear_press`, `test_i18n`,
+`test_clockwork_eco`, `test_clock_hall_spot`, `test_clockwork_home`, `test_content_all` and the new one (76 tests).
+Every test whose run printed a FAIL or a script error was run again on main (0.38.15).
+
+- **New: `tools/test_econ_limit_local.gd`: PASS** (35 checks): [crown] 2 Farms by one Town Hall, a 3rd by it refused with
+  2 halls standing (the side's limit 4), the reason word for word and translated, `find_spot` round the full hall finds
+  none of its spots, near the other hall allowed and counted there, the cards (`FARMS 2/2 · POWDER MILL 0/1`, `FARMS 1/2`),
+  the Powder Mill 1/1; [ai] the Crown computer's Farm spot (`AI._econ_spot`) lands by the hall with room; [going] a tie goes
+  to the older hall, a hall going up adds nothing (`FARMS 0/2`); [fallen] a fallen hall's Farms go to the main (`FARMS 4/2`),
+  keep drawing from it, and nothing new goes there; [clock] the same for Cog Presses (2/2, `COG PRESSES 2/2` / `1/2`), the
+  computer's ring spot (`GearEcon.room_spot`) by the full Clocktower finds none, the Mainspring 1/1 by one Clocktower and
+  allowed by the other.
+- **Pass**: all the others, among them `test_exhaust` (the 1-Mainspring limit), `test_horses` (2 Farms / 1 Mill a Town
+  Hall), `test_gear_press`, `test_campaign_m1` (the Prologue's 4 drying barns, "the Farm limit is reached (4 of 4)", 0
+  failures), `test_content_all` (0 FAIL checks), `test_i18n` (0 untranslated), `test_clockwork_eco`, `test_clock_hall_spot`,
+  `test_ai_expand_wall`, `test_crown_farms`, `test_crown_lost_hall`, `test_crown_owner_eco`, `test_settings_tabs`.
+- **Flaky, passed when run again on this branch**: `test_ai_expand` [clockwork] "still earning in the last 60 s" (0 once,
+  then 432; known flaky, CLAUDE.md), `test_clockwork_home` (an attack's share at the fight once, then PASS), `test_cw_tier3_ai`
+  (the Netter's target once, then ALL PASS).
+- **Fail on main too (pre-existing, the same checks)**: `test_ai_rush` ("workers before the Brood Mother"),
+  `test_ai_rush_followup` (14-15 checks), `test_crown_dragoon_raid` ([plan]), `test_crown_stall` ([foundry] 343-344 s
+  for 330), `test_cw_heavy` and `test_cw_militia` (the shelved Line's checks), `test_cw_tier3` (3 online checks), and
+  `test_campaign_m1`'s script errors in `Main._menu_button` when it goes back to the menu (14-16 on both; its checks pass).
+- Godot prints an abort when a headless tool quits (exit code 134 after its last line) on main as on this branch: the
+  result lines are what count.
