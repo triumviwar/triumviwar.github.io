@@ -40,6 +40,7 @@ var ai                          # AICrown
 var lags_hook := OS.get_cmdline_user_args().has("crownarmy:lags")  # (AICrown.army_lags also behind the clock: a study switch)
 var until := UNTIL              # (study switch `-- crownarmy:until=900`)
 var share := SHARE              # (study switch `-- crownarmy:share=0.9`)
+var room := ROOM                # (study switch `-- crownarmy:room=1`)
 var off := OS.get_cmdline_user_args().has("crownarmy:off")
 var lead_off := OS.get_cmdline_user_args().has("crownlead:off")    # (the clock without its look ahead: the WIP of 03:45)
 var behind_t := 0.0             # (the report) seconds it was behind
@@ -56,6 +57,8 @@ func _init(owner) -> void:
 			share = float(a.split("=")[1])
 		elif a.begins_with("crownarmy:until="):
 			until = float(a.split("=")[1])
+		elif a.begins_with("crownarmy:room="):
+			room = int(a.split("=")[1])
 
 
 func active() -> bool:
@@ -152,7 +155,7 @@ const ROOM := 2
 func idle_barracks() -> int:
 	var n := 0
 	for b in ai._mine("barracks"):
-		if b.built and b.queue.size() < ROOM and ai.am.musket_ok(b, "musketeer"):
+		if b.built and b.queue.size() < room and ai.am.musket_ok(b, "musketeer"):
 			n += 1
 	return n
 
