@@ -49,6 +49,36 @@ func mirror() -> AICrownMirror:
 	return cm
 
 
+## (crown-coach-v-brood) the Crown computer against the Brood (the new computer, Normal and up): AICrownVBrood plays the
+## matchup's coached decisions (scripts/ai_crown_v_brood.gd). `-- cvb:off` plays the matchup as before (comparison games).
+var vbr: AICrownVBrood = null
+
+
+func vb() -> AICrownVBrood:
+	if vbr == null and on and difficulty >= 1 and _foe_is("brood"):
+		vbr = AICrownVBrood.new(self)
+	return vbr
+
+
+## (crown-coach-v-brood) the home line under its floor against the Brood: the soldiers first
+func vb_line_short() -> bool:
+	return vb() != null and vbr.line_short()
+
+
+func _vb_keep() -> int:
+	if vb() == null:
+		return 0
+	var k: int = vbr.line_keep()
+	game.players[team]["gold"] -= k
+	return k
+
+
+func _econ_build() -> void:
+	var k := _vb_keep()          # (crown-coach-v-brood: THE LINE BEFORE THE BUILDINGS)
+	super()
+	game.players[team]["gold"] += k
+
+
 func _cohesion(wave: Array) -> bool:
 	if line_ai() != null and ln.active():
 		if cm != null and cm.bombarding():
@@ -715,6 +745,8 @@ func _army_due() -> bool:
 		short = army_behind() and _army_supply(game.army(team)) < int(1.0 * game.workers(team).size())
 		if not short and army_grows():
 			short = true        # (crown-v-brood-coach round 3: THE ARMY GROWS WITH THE ECONOMY, below)
+	if not short and vb_line_short():
+		short = true            # (crown-coach-v-brood: THE LINE BEFORE THE BUILDINGS, scripts/ai_crown_v_brood.gd)
 	if not short:
 		return false
 	if game.supply_used(team) >= int(game.players[team]["cap"]) - 1:
@@ -1495,6 +1527,9 @@ func _mill_feedback(mills: int) -> int:
 		# empty; and a bank far over the want sends two back at a time)
 		var using: bool = _mine("barracks").any(func(b: Building) -> bool: return b.built and not b.queue.is_empty()) \
 				or _mine("foundry").any(func(b: Building) -> bool: return b.built and not b.queue.is_empty())
+		if not using and vb_line_short():
+			using = true        # (crown-coach-v-brood: the line short and its powder short: the idle Barracks waits for powder,
+			                    # it is no sign that nothing wants it; Highmoor 1103: 10-45 powder at 5:00-6:00, one Musketeer)
 		if _res2() > want * 3.0 and not mill_feed_off:
 			_mill_n = maxi(mills, mini(_mill_n, crew) - 2)
 		elif _res2() > want * 2.0 or (mirror() != null and cm.farms_starved(_res2())):
@@ -1814,7 +1849,7 @@ func _cannon_check() -> void:
 
 
 func _riders_wait() -> bool:
-	return rider_waits() or _cc_guns_first()
+	return rider_waits() or _cc_guns_first() or vb_line_short()      # (crown-coach-v-brood: no more riders while the line is short)
 
 
 ## THE FIRST GUN'S WAIT: against the Brood, until the first Field Cannon is out or ordered, once the Foundry and the
@@ -2010,10 +2045,13 @@ func rider_waits() -> bool:
 # ------------------------------------------------------------------ after the opening: the milestones
 
 func _build_up() -> void:
+	var k := _vb_keep()          # (crown-coach-v-brood: THE LINE BEFORE THE BUILDINGS)
 	super()
 	if not _plan_tech() or _hall_reserve or (_cw_active() and not _walled):
+		game.players[team]["gold"] += k
 		return
 	_mid_tick()
+	game.players[team]["gold"] += k
 
 
 var _mid_fail := {}             # milestone kind -> clock it first could not be placed (logged once)
@@ -2088,6 +2126,8 @@ func brood_spend_army() -> bool:
 		return false
 	if float(game.army_value(team)) < foe_estimate():
 		return true
+	if vb_line_short():
+		return true             # (crown-coach-v-brood: the home line short, not counting the riders out raiding)
 	for b in _mine("barracks") + _mine("foundry"):
 		if b.built and (b.queue as Array).is_empty() and _gold() < 100:
 			return true
@@ -2417,6 +2457,8 @@ func _rush_labs() -> int:
 func _rush_horse_only() -> bool:
 	if rush_labs_off or not _rush_raid_brood() or _defending() or _threat() != Vector2.INF:
 		return false
+	if vb_line_short():
+		return false            # (crown-coach-v-brood: the line's Musketeers once its floor is due)
 	return _rush_open()
 
 
@@ -2738,6 +2780,8 @@ func brood_wall_keep() -> int:
 	if army_grows() and _mine("barracks").any(func(b: Building) -> bool: return b.built and b.queue.is_empty()):
 		k += 2 * int(Defs.UNITS["musketeer"]["cost"])     # (crown-v-brood-coach round 3: a palisade with nobody behind it holds
 		# a Raptor 15 s; Greenhold 1100 r5: 19 pieces laid at 6:37-6:41 before the first Musketeer at 6:51)
+	if vb() != null:
+		k = maxi(k, vbr.line_keep())     # (crown-coach-v-brood: THE LINE BEFORE THE BUILDINGS)
 	return k
 
 
