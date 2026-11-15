@@ -28,6 +28,15 @@ static func gear_problem(b: Building) -> String:
 	return "A Pendulum needs the heavy torque of the BIG gear: only the Heavy Works runs on it."
 
 
+## pendulum-air's switch for measuring (`-- pendair:off`: the Pendulum as before 0.38.3, ground only), docs/pendulum_air.md.
+static var air_on := not OS.get_cmdline_user_args().has("pendair:off")
+## (measuring: every Pendulum's swings, its hits on flyers, the damage they took and the flyers it finished off)
+static var st_swings := 0
+static var st_air_hits := 0
+static var st_air_dmg := 0.0
+static var st_air_kills := 0
+
+
 ## Its two arms cut in turn (Unit.arm, set as each blow's wind-up starts to the blows so far mod 2: right, left, right...;
 ## streamed to online guests with the unit, so they play the same arm's strip).
 const ARMS := ["r", "l"]
@@ -78,7 +87,7 @@ static func victims(u: Unit, dir: Vector2) -> Array:
 	var g := u.game
 	var out: Array = []
 	for o in g.units_near(u.position, float(Defs.PENDULUM_SWING["reach"]) + 40.0):
-		if o == u or o.dead or o.off_field or o.untouchable() or not g.hostile(o.team, u.team) or o._k_serp:
+		if o == u or o.dead or o.off_field or (not air_on and o.is_air()) or o.untouchable() or not g.hostile(o.team, u.team) or o._k_serp:
 			continue
 		if in_arc(u, o, dir):
 			out.append(o)
@@ -103,13 +112,20 @@ static func swing(u: Unit, e: Entity, dmg: float) -> int:
 	var on_units := dmg / float(u.d.get("building_bonus", 1.0)) if e is Building else dmg
 	u.last_air_hits = hit.filter(func(o: Unit) -> bool: return o.is_air()).size()
 	for o in hit:
+		var hp0: float = o.hp
 		o.take_damage(on_units * blow_k(o), u, "")
+		if o.is_air() or (o.dead and o._air_k):
+			st_air_hits += 1
+			st_air_dmg += hp0 - maxf(o.hp, 0.0)
+			if o.dead:
+				st_air_kills += 1
 		if o.visible and g.view_rect.has_point(o.position):
 			g.spawn_effect("hit", o.center() + Vector2(randf_range(-4, 4), randf_range(-4, 4)), 0.7)
 	if e is Building and is_instance_valid(e) and not e.dead:
 		e.take_damage(dmg, u, Entity.BLOW_MELEE)
 		g.spawn_effect("hit", e.center() + Vector2(randf_range(-6, 6), randf_range(-6, 6)), 0.8)
 	u.swings += 1
+	st_swings += 1
 	u.last_hits = hit.size()
 	if u.visible and g.view_rect.has_point(u.position):
 		Sfx.play_any(["combat/pendulum_attack", "combat/gearknight_attack", "gear_hit"], u.position)

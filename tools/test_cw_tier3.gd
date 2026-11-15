@@ -179,7 +179,7 @@ func _run() -> void:
 	check("not the enemy behind it", behind.hp >= 500.0, "%.0f" % behind.hp)
 	check("not the enemy beside it, out of the arc", beside.hp >= 500.0, "%.0f" % beside.hp)
 	check("never its own side in the arc", friend.hp >= fhp, "%.0f" % friend.hp)
-	check("it cannot reach flyers", not pd.can_hit(_foe(g, "balloon", at + Vector2(30, -40))))
+	check("it reaches flyers too (pendulum-air, 0.38.3: 3/4 of the blow, tools/test_pendulum_air.gd)", pd.can_hit(_foe(g, "balloon", at + Vector2(30, -40))))
 	_clear(g, [pd, front, front2, front3, behind, beside, friend])
 	_clear_team(g, 1)
 	# ---- the NETTER: a net stops ONE enemy moving (and using abilities) for its time; it may still fight

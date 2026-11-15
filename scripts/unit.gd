@@ -1266,8 +1266,8 @@ func can_hit(e: Entity) -> bool:
 	if kind == Defs.NETTER and (not (e is Unit) or ((e as Unit).net_t > 0.0 and not (order == "attack" and e == order_target))):
 		return false            # (its net is for units, and one caught already only when it is told to)
 	var ea := e.is_air()        # (asked once: this runs for every target looked at)
-	if ea and _d_ground:
-		return false
+	if ea and (_d_ground or (not Pendulum.air_on and kind == Defs.PENDULUM)):
+		return false            # (pendulum-air's measuring switch `pendair:off`: scripts/pendulum.gd)
 	if not ea and _d_aironly:
 		return false            # (buildings too)
 	if ea:
