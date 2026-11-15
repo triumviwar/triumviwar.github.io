@@ -142,7 +142,49 @@ anyway, `Defs.PIT_CLAIM` is the one number (the marks, the rule, the test and th
 
 ## 3. The bench and the computers alone
 
-BENCH
+Three maps (Greenhold, Dune Sea, Hollowfen), 12 minutes, the means of the three; primary resource earned, cumulative
+(food, gold, cogs). Data in `docs/brood_rootmaw_spots/bench/`. BEFORE = main at 0.38.13 (the Brood only: nothing of the
+Crown's or the Clockwork's changed).
+
+**The bench** (`tools/econ_bench.gd`, the scripted ideal build, no army; expansions at 4:00 and 8:00):
+
+| | 5:00 | 8:00 | 10:00 | 12:00 |
+|---|---|---|---|---|
+| Brood, this branch | 3,059 | 8,292 | 11,828 | 16,179 |
+| Brood, before | 2,725 | 7,111 | 10,121 | 14,513 |
+| Crown (gold; with powder) | 4,180 (4,364) | 9,500 (10,031) | 13,180 (14,077) | 17,360 (18,729) |
+| Clockwork (cogs; with Tension) | 4,354 (4,634) | 9,791 (10,449) | 13,828 (14,822) | 18,379 (19,771) |
+| **Brood / Crown** (gold only) | 0.73 | 0.87 | 0.90 | 0.93 |
+| **Brood / Clockwork** (cogs only) | 0.70 | 0.85 | 0.86 | 0.88 |
+| Brood a minute (the 2 minutes before) | 852 | 1,816 | 1,768 | 2,176 |
+| Crown a minute | 1,140 | 2,090 | 1,840 | 2,090 |
+| Clockwork a minute | 1,032 | 2,122 | 2,018 | 2,276 |
+
+The Brood's bench rose 11-17% (+1,666 at 12:00): the bench lays its Rootmaws with the computer's spot finder, which now
+roots on the marks, and the marks find room for the full 3 round her where the old rings often found 2 (by 5:00 it has 5
+Rootmaws, was 4). The count never held the bench back (its 7 Rootmaws by 10:00 stand 3 at home and 2 on each turtle).
+By design the Brood still earns less than the others early (its eggs come one at a time) and 0.88-0.93 of them at 12:00.
+
+**The computers alone** (Hard OPTIMAL, the other side an idle dummy: `econ_ai_alone_brood.gd`, `econ_ai_alone.gd foe=brood`,
+`econ_alone_cw.gd`):
+
+| | 5:00 | 8:00 | 10:00 | 12:00 |
+|---|---|---|---|---|
+| Brood, this branch | 2,796 | 8,468 | 12,808 | 17,293 |
+| Brood, before | 2,772 | 8,938 | 13,319 | 18,000 |
+| Crown | 2,913 | 7,600 | 11,780 | 16,513 |
+| Clockwork | 3,753 | 8,656 | 13,999 | 19,592 |
+| **Brood / Crown** | 0.96 | 1.11 | 1.09 | 1.05 |
+| **Brood / Clockwork** | 0.75 | 0.98 | 0.91 | 0.88 |
+| Brood a minute (the 2 minutes before) | 825 | 2,061 | 2,170 | 2,242 |
+| Crown a minute | 887 | 1,837 | 2,090 | 2,367 |
+| Clockwork a minute | 898 | 1,852 | 2,672 | 2,796 |
+
+The Brood computer alone earns 4% less than before at 12:00 (Greenhold -7%, Dune Sea -9%, Hollowfen +5%; one run each,
+so within what one seed swings). Both have 7 Rootmaws at 8:00 and the plan's 50 grubs from about 7:00; by 12:00 it has
+6-7 Rootmaws (before 5-8) and 3-9 turtles on new ground (before 9-10), and banks less (about 4,900, before 4,700-6,600).
+The difference is where its 4th and later Rootmaws go: before, its rings could put more than 3 round her and on the home
+turtles' swamp; now home holds 3 + 2 a turtle and the rest must go to new ground.
 
 ## 4. The computer games
 
