@@ -89,21 +89,21 @@
 	],
 	"areas": {
 		"plantation": [
-			6,
-			20,
-			26,
-			34
+			3,
+			16,
+			30,
+			42
 		],
 		"manor": [
-			8,
-			30,
+			6,
+			38,
 			18,
-			18
+			10
 		],
 		"lawn": [
-			16,
-			32,
-			7,
+			15,
+			35,
+			8,
 			8
 		],
 		"edge_n": [
@@ -203,8 +203,8 @@
 			"kind": "dismounted",
 			"count": 1,
 			"at": [
-				17,
-				38
+				14,
+				44
 			],
 			"tag": "fairleigh",
 			"name": "Lord Fairleigh"
@@ -214,8 +214,8 @@
 			"kind": "missionary",
 			"count": 1,
 			"at": [
-				20,
-				31
+				19,
+				34
 			],
 			"tag": "tomasz",
 			"name": "Tomasz"
@@ -233,7 +233,7 @@
 			"count": 4,
 			"at": [
 				14,
-				40
+				47
 			]
 		},
 		{
@@ -242,7 +242,7 @@
 			"count": 2,
 			"at": [
 				20,
-				35
+				38
 			],
 			"tag": "guns",
 			"modes": [
@@ -256,7 +256,7 @@
 			"count": 2,
 			"at": [
 				20,
-				35
+				38
 			],
 			"tag": "guns",
 			"modes": [
@@ -269,7 +269,7 @@
 			"count": 3,
 			"at": [
 				21,
-				37
+				40
 			],
 			"modes": [
 				"coop"
@@ -335,17 +335,26 @@
 			"team": "governor",
 			"kind": "town_hall",
 			"at": [
-				10,
-				34
+				8,
+				42
 			],
 			"tag": "manor"
 		},
 		{
 			"team": "governor",
+			"kind": "town_hall",
+			"at": [
+				8,
+				23
+			],
+			"tag": "north_hall"
+		},
+		{
+			"team": "governor",
 			"kind": "church",
 			"at": [
-				18,
-				28
+				22,
+				32
 			],
 			"tag": "chapel"
 		},
@@ -353,7 +362,7 @@
 			"team": "governor",
 			"kind": "barracks",
 			"at": [
-				8,
+				16,
 				44
 			]
 		},
@@ -361,7 +370,7 @@
 			"team": "governor",
 			"kind": "powder_mill",
 			"at": [
-				16,
+				21,
 				44
 			]
 		},
@@ -386,15 +395,15 @@
 			"kind": "cottage",
 			"at": [
 				3,
-				41
+				38
 			]
 		},
 		{
 			"team": "governor",
 			"kind": "farm",
 			"at": [
-				24,
-				30
+				16,
+				18
 			],
 			"tag": "barns"
 		},
@@ -402,8 +411,8 @@
 			"team": "governor",
 			"kind": "farm",
 			"at": [
-				24,
-				38
+				16,
+				26
 			],
 			"tag": "barns"
 		},
@@ -412,7 +421,7 @@
 			"kind": "farm",
 			"at": [
 				6,
-				22
+				50
 			],
 			"tag": "barns"
 		},
@@ -421,16 +430,7 @@
 			"kind": "farm",
 			"at": [
 				14,
-				22
-			],
-			"tag": "barns"
-		},
-		{
-			"team": "governor",
-			"kind": "farm",
-			"at": [
-				20,
-				48
+				50
 			],
 			"tag": "barns"
 		},
@@ -1178,7 +1178,7 @@
 			"primary": true,
 			"kind": "survive",
 			"time": 480,
-			"text": "Hold until dawn, with at least three barns standing."
+			"text": "Hold until dawn, with at least two barns standing."
 		},
 		{
 			"id": "camps",
@@ -1787,7 +1787,7 @@
 				"count": {
 					"tag": "barns",
 					"buildings": true,
-					"below": 5
+					"below": 4
 				}
 			},
 			"do": [
@@ -1822,7 +1822,7 @@
 						"count": {
 							"tag": "barns",
 							"buildings": true,
-							"below": 3
+							"below": 2
 						}
 					}
 				]
@@ -1849,7 +1849,7 @@
 						"count": {
 							"tag": "barns",
 							"buildings": true,
-							"at_least": 3
+							"at_least": 2
 						}
 					}
 				]

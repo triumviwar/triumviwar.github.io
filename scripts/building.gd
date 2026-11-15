@@ -787,8 +787,7 @@ func press_rate() -> float:
 	var info: Dictionary = gp["big" if gear_big else "small"]
 	var cap := int(info["crew"])
 	var base := float(gp["base"])
-	var land := 1.0     # (THE GROUND SYSTEM: full while its circle holds brass; barren() above once it holds none)
-	return float(info["full"]) * (base + (1.0 - base) * float(mini(working_crew(), cap)) / float(cap)) * drive * land
+	return float(info["full"]) * (base + (1.0 - base) * float(mini(working_crew(), cap)) / float(cap)) * drive
 
 
 ## Mainspring: Tension a second right now (Defs.GEAR "mainspring", by its gear): nothing by itself (0.24.0), every Winder
@@ -869,8 +868,6 @@ func reserve() -> float:
 ## Farm / Boiler / Mainspring: share of its hall's soil (coal; a Mainspring: its Clocktower's spring life) left (0..1); 0
 ## with no hall. Town Hall / Clocktower: its own.
 func soil_left() -> float:
-	if kind == "farm" and Defs.ground_on and game != null and game.land():
-		return game.ground_layer.value(self)       # (THE GROUND SYSTEM: what its own circle holds of a fresh one)
 	var h: Building = game.soil_hall(self) if kind == "farm" or kind == "boiler" or kind == "mainspring" else self
 	return clampf(h.soil / h.reserve(), 0.0, 1.0) if h and h.reserve() > 0.0 else 0.0
 
@@ -883,8 +880,6 @@ func lode_full() -> float:
 ## Powder Mill / Ore Crusher / Boiler: share of its hall's lode left (0..1), 0 with no hall;
 ## a Town Hall / Clocktower: its own.
 func lode_left() -> float:
-	if kind == "cog_press" and Defs.ground_on and game != null and game.land():
-		return game.ground_layer.value(self)       # (THE GROUND SYSTEM: what its own circle of brass holds)
 	var h: Building = self if Defs.LODE.has(kind) else game.lode_hall(self)
 	return clampf(h.lode / h.lode_full(), 0.0, 1.0) if h else 0.0
 
@@ -894,8 +889,6 @@ func lode_left() -> float:
 ## go (Unit._gather) to find fresh land. The halls are never barren, nor are the SECONDARY resources' buildings (the owner,
 ## 14:44): a Powder Mill on spent saltpetre and a FATIGUED Mainspring still work, at Defs.POWDER_FLOOR and Defs.TENSION_FLOOR.
 func barren() -> bool:
-	if (kind == "farm" or kind == "cog_press") and Defs.ground_on and game != null and game.land():
-		return game.ground_layer.share(self) <= 0.0      # (THE GROUND SYSTEM: no live ground left in its circle)
 	match kind:
 		"farm", "boiler":
 			return soil_left() <= 0.0
