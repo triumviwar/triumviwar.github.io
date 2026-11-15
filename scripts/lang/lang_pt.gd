@@ -3192,7 +3192,7 @@ const T := {
 	"%s's Winder carries a gear out to its Brass Serpent.": "Um Enrolador de %s leva uma engrenagem até sua Serpente de Latão.",
 	"%s links two Brass Serpents into a Hydra!": "%s une duas Serpentes de Latão numa Hidra!",
 	"Keen Sabres": "Sabres Afiados",
-	"SABRES": "SABRES",
+	"SABRES": "AFIADOS",
 	"Sabres ground to a razor edge: every Horseman's and Cuirassier's sabre blow in the saddle hits light units harder (+6: 18 to 24, so two blows kill a Raptor).": "Sabres afiados como navalha: cada golpe de sabre na sela de um Cavaleiro ou Couraceiro acerta unidades leves com mais força (+6: de 18 para 24, então dois golpes matam um Raptor).",
 	"Horsemen and Cuirassiers: +6 sabre damage against light units (18 to 24).": "Cavaleiros e Couraceiros: +6 de dano de sabre contra unidades leves (de 18 para 24).",
 	"THE CAMPAIGN": "A CAMPANHA",

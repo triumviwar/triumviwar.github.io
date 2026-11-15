@@ -50,7 +50,7 @@ func _go() -> void:
 	for trial in trials:
 		var r: Dictionary = await _trial(trial, nr)
 		print("  trial %d: raptors left %d of 10, rider hp lost %d of %d (riders dead %d), raptor-seconds >6 tiles out %.0f, box health lost %d (%d pieces down), cottage %s; let go %d, bites in the pack %d" % [
-			trial, r["raps"], int(r["hp"]), nr * 140, r["riders_dead"], r["out"], int(r["wall"]), r["pieces"], "standing" if r["cottage"] else "DOWN", r["letgo"], r["bites"]])
+			trial, r["raps"], int(r["hp"]), nr * int(Defs.UNITS["cuirassier"]["hp"]), r["riders_dead"], r["out"], int(r["wall"]), r["pieces"], "standing" if r["cottage"] else "DOWN", r["letgo"], r["bites"]])
 		for k in tot:
 			tot[k] += r[k]
 	var n := float(trials)
