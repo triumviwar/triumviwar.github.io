@@ -23,6 +23,9 @@ const FROM := 150.0             # (s) not before this (the opening's first labou
 const SHARE := 0.75             # of the usual enemy army
 const SHARE_SEEN := 0.6         # of what our scout saw lately (when it is more than the table)
 const MIN_LABS := 10            # never with fewer labourers than this (a hall's first Farm's hands)
+const UNTIL := 420.0            # (s) and not after this: the clock is for the first push (the batch: it reaches our base at
+                                # 5:30-8:30, mean 6:50); after it the plan's own army rules (army_lags) hold, as a clock that
+                                # kept the labourers waiting all game lost the late game (15:00 batch: L 5 -> 10, docs)
 const LEAD := 45.0              # (s) the clock looks this far ahead: a soldier trains in 15 s and walks to his post, and the
                                 # enemy's push is at our base before its army stops growing (the batch: it arrives at 6:40-8:20
                                 # with 1,150 against our 980)
@@ -34,6 +37,7 @@ const TABLE := {
 }
 
 var ai                          # AICrown
+var until := UNTIL              # (study switch `-- crownarmy:until=900`)
 var share := SHARE              # (study switch `-- crownarmy:share=0.9`)
 var off := OS.get_cmdline_user_args().has("crownarmy:off")
 var lead_off := OS.get_cmdline_user_args().has("crownlead:off")    # (the clock without its look ahead: the WIP of 03:45)
@@ -49,6 +53,8 @@ func _init(owner) -> void:
 	for a in OS.get_cmdline_user_args():
 		if a.begins_with("crownarmy:share="):
 			share = float(a.split("=")[1])
+		elif a.begins_with("crownarmy:until="):
+			until = float(a.split("=")[1])
 
 
 func active() -> bool:
@@ -92,7 +98,7 @@ func behind() -> bool:
 	if not active():
 		return false
 	var g: Game = ai.game
-	if g.clock < FROM:
+	if g.clock < FROM or g.clock > until:
 		return false
 	if absf(g.clock - _cache_t) < 0.5:
 		return _cache
