@@ -36,6 +36,11 @@
   Bench unchanged; the computers alone within noise (12:00, 6 runs a side: Crown 0.0%, Clockwork +2.0%, its Tension +8%).
   The Powder Mill and the Mainspring are local too (Claude's choice 1: owner to confirm the Mainspring).
 
+- PENDULUM HIGH SWING (owner's ChatGPT sheets; job pendulum-high-swing, 0.38.16, docs/pendulum_air.md "The HIGH SWING",
+  tools/pendulum_guide/import_high_swing.py, pictures docs/shots/pendulum_air/high_swing/): at a FLYER the Pendulum plays
+  attack_hi_r / attack_hi_l (130 x 136 cells, feet where the 91-px strips have them; Pendulum.HIGH added to Unit.arm as
+  the wind-up starts), the blade over its head on the same hit frame; ground targets keep the low sweep. Open: in NE both
+  hi strips swing the viewer's right arm (ChatGPT drew it so; a redo of the NE left arm would fix it).
 - BROOD ROOTMAW SPOTS (owner DECIDED 2026-11-15: the Brood keeps the only radius economy, made fair and easy; job
   brood-rootmaw-spots, 0.38.14, docs/brood_rootmaw_spots.md, scripts/rootmaw_spots.gd RootmawSpots, tools/test_rootmaw_spots.gd,
   tools/measure_rootmaw_fit.gd, pictures docs/shots/rootmaw_spots/): a COUNT (Defs.NB maws_queen 3, maws_turtle 2; ROOTMAWS n/3

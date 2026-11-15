@@ -264,7 +264,7 @@ var _k_serp := false            # kind == Defs.SERPENT_KIND
 var shots := 0                  # Springer: screws fired (tests)
 var last_shot: Shot = null      # Springer: its last screw in flight (tests, screenshots)
 var last_tip := Vector2.ZERO    # Springer: where its last screw left from (the drill tip, raised at a flyer; tests)
-var arm := 0                    # Springer: the launcher of the shot under way (0 its right, 1 its left: Springer.ARMS, in turn); Pendulum: the arm of the blow under way (the same)
+var arm := 0                    # Springer: the launcher of the shot under way (0 its right, 1 its left: Springer.ARMS, in turn); Pendulum: the arm of the blow under way (the same, + Pendulum.HIGH for a high swing at a flyer)
 var _springer_t := 0.0              # Springer (the computer's): when it next thinks of jumping away
 var owl_t := -1.0               # Swift: seconds into turning into a Ticking Owl (-1: not; scripts/cw_air.gd)
 var moult_t := -1.0             # the Brood's young unit: seconds into its MATURE moult (-1: not; scripts/brood_mature.gd)
@@ -5138,7 +5138,7 @@ func _attack_cycle(e: Entity, delta: float) -> void:
 		if kind == Defs.SPRINGER:
 			arm = shots % 2          # (its two launchers fire in turn: scripts/springer.gd)
 		elif kind == Defs.PENDULUM:
-			arm = swings % 2         # (its two arms cut in turn, right then left: scripts/pendulum.gd)
+			arm = swings % 2 + (Pendulum.HIGH if Pendulum.high_at(e) else 0)     # (its two arms cut in turn, right then left; at a flyer the HIGH SWING: scripts/pendulum.gd)
 		phase = "aim"
 		phase_t = _aim()
 		return
@@ -7421,7 +7421,7 @@ func _animate(delta: float) -> void:
 			# draw, aim, fire, lower: over the aim and the shot (Defs.PISTOL)
 			fps = float(n) / (float(Defs.PISTOL["aim"]) + 0.35)
 			loop = false
-		"aim", "fire", "aimup", "fireup", "thrust", "brace", "attack", "melee", "attack_up", "bomb", "attack_r", "attack_l":
+		"aim", "fire", "aimup", "fireup", "thrust", "brace", "attack", "melee", "attack_up", "bomb", "attack_r", "attack_l", "attack_hi_r", "attack_hi_l":
 			fps = 9.0
 			loop = false
 		"harvest":
@@ -7817,7 +7817,7 @@ static func own_west(art_frames: Dictionary, a: String, dr: String) -> String:
 const _FPS_POSES := {"idle": 1, "idle_carry": 1, "guard": 1, "death": 1, "death_cocoon": 1, "gdeath": 1, "death_keg": 1,
 	"gidle": 1, "gattack": 1, "land": 1, "idle_keg": 1, "wrap": 1, "idle_cocoon": 1, "graze": 1, "pistol": 1, "aim": 1,
 	"fire": 1, "aimup": 1, "fireup": 1, "thrust": 1, "brace": 1, "attack": 1, "melee": 1, "attack_up": 1, "bomb": 1,
-	"attack_r": 1, "attack_l": 1, "harvest": 1, "rooted": 1, "breath": 1, "morph": 1, "leap": 1, "charge": 1, "crank": 1,
+	"attack_r": 1, "attack_l": 1, "attack_hi_r": 1, "attack_hi_l": 1, "harvest": 1, "rooted": 1, "breath": 1, "morph": 1, "leap": 1, "charge": 1, "crank": 1,
 	"repair": 1, "wind": 1, "vent": 1, "sweep": 1, "block": 1, "mine": 1, "build": 1, "reload": 1, "deploy": 1,
 	"spinup": 1, "windup": 1, "braced_hit": 1, "deployed": 1, "cast": 1, "fog": 1, "tongue": 1, "bandage": 1, "mount": 1,
 	"jump": 1}

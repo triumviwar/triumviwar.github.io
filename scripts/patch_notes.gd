@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.17", "items": [
+		"THE PENDULUM SWINGS HIGH AT FLYERS: when its target is a flyer, the Pendulum now raises its blade high over its head and brings it down on the 4th frame, where the blow lands (it used to play its low sweep at ankle height, the blade passing under the flyer it hit). Every view and both arms; at enemies on the ground it still sweeps low. The blow itself is unchanged.",
+	]},
 	{"v": "0.38.16", "items": [
 		"FARMS AND COG PRESSES ARE COUNTED BY HALL: every Town Hall allows 2 Farms and 1 Powder Mill round it, every Clocktower 2 Cog Presses and 1 Mainspring, and each of these counts for the hall it draws from (its nearest finished one). A second hall no longer lets you put a third Farm or Cog Press by the first: build them by the new hall, where its fresh soil or brass is. Placing one by a full hall is refused with the reason (\"This Town Hall already has its Farms (2/2). Build near another Town Hall.\").",
 		"A Town Hall's card now reads FARMS 1/2 · POWDER MILL 0/1, a Clocktower's COG PRESSES 2/2 · MAINSPRING 1/1. A hall going up allows nothing until it stands; if a hall falls, its Farms or Presses go to the next nearest one and keep working, but no new one goes there until it is under its count. Saves with more by one hall keep them.",

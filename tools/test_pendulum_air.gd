@@ -67,10 +67,21 @@ func _run() -> void:
 	pd.facing = Vector2.RIGHT
 	pd.cmd_attack(balloon)
 	var t := 0.0
+	var seen := {}
+	var hit_frame := -1
 	while pd.swings < 1 and t < 6.0:
 		U.step(g, 1.0 / 30.0)
 		t += 1.0 / 30.0
+		if String(pd.anim).begins_with("attack"):
+			seen[pd.anim] = true
+		if pd.swings >= 1 and hit_frame < 0:
+			hit_frame = pd.frame_i
 	check("it swung at the Balloon by itself (attack order)", pd.swings >= 1, "%.1f s" % t)
+	# the HIGH SWING (pendulum-high-swing): at a flyer it plays the high strips, the blade over its head on the hit frame
+	check("art: the high swing strips are loaded (attack_hi_r_s, attack_hi_l_s, 6 frames)",
+			int(ArtData.UNITS["pendulum"]["frames"].get("attack_hi_r_s", 0)) == 6 and int(ArtData.UNITS["pendulum"]["frames"].get("attack_hi_l_n", 0)) == 6)
+	check("at the Balloon it played the HIGH SWING (attack_hi_r), not the low sweep", seen.keys() == ["attack_hi_r"], str(seen.keys()))
+	check("the blow landed on the hit frame (the 4th, index 3)", hit_frame == 3, str(hit_frame))
 	check("and the Balloon took a blow", balloon.hp < 5000.0, "%.1f" % (5000.0 - balloon.hp))
 	# (the flyers drift apart while it winds up: the arc test is one blow on the spot, Pendulum.swing as Unit._strike calls it)
 	var spots := {balloon: polar.call(0.0, 44.0), owl: polar.call(-15.0, 50.0), own: polar.call(15.0, 40.0), behind: polar.call(180.0, 40.0),
@@ -104,6 +115,30 @@ func _run() -> void:
 	balloon.net_t = 3.0
 	check("a netted flyer counts as on the ground (the full blow)", absf(Pendulum.blow_k(balloon) - vl) < 0.001)
 	balloon.net_t = 0.0
+	# a blow at a soldier on the ground: the low sweep again
+	var foot: Unit = _foe(g, "musketeer", polar.call(0.0, 30.0))
+	foot.max_hp = 5000.0
+	foot.hp = 5000.0
+	foot.d = foot.d.duplicate()
+	foot.d["damage"] = 0
+	for o in all:
+		g.units.erase(o)
+		o.queue_free()
+	pd.position = at
+	g.note_move(pd)
+	pd.cmd_stop()
+	for i in 30:
+		U.step(g, 1.0 / 30.0)          # (the Balloon's blow plays out)
+	pd.cmd_attack(foot)
+	seen.clear()
+	var n0: int = pd.swings
+	t = 0.0
+	while pd.swings < n0 + 1 and t < 8.0:
+		U.step(g, 1.0 / 30.0)
+		t += 1.0 / 30.0
+		if String(pd.anim).begins_with("attack"):
+			seen[pd.anim] = true
+	check("at a soldier on the ground it plays the LOW SWEEP (attack_r / attack_l)", pd.swings > n0 and seen.size() == 1 and (seen.has("attack_r") or seen.has("attack_l")), str(seen.keys()))
 	print("ALL PASS" if fails == 0 else "FAIL (%d)" % fails)
 	quit(1 if fails else 0)
 
