@@ -324,11 +324,11 @@ func _barracks() -> void:
 	await wait_for(func() -> bool: return find(0, "dragoon", false) != null, 60.0)
 	var dg: Unit = find(0, "dragoon", false)
 	check(dg != null, "he came out as a Musketeer, got on his horse: a Dragoon")
-	# an Officer: the Horseman less the horse, on foot, loaded
+	# an Officer: the Horseman's own price (his horse is always paid apart: cavalry-charge-package), on foot, loaded
 	gold0 = g.players[0]["gold"]
 	check(g.train(bar, "dismounted") == "", "one click: OFFICER")
 	paid = gold0 - int(g.players[0]["gold"])
-	check(paid == int(Defs.UNITS["cuirassier"]["cost"]) - int(Defs.UNITS["horse"]["cost"]) and paid == 75, "  paid the Horseman less his horse: %d" % paid)
+	check(paid == int(Defs.UNITS["cuirassier"]["cost"]) and paid == 100, "  paid the Horseman's own price (his horse apart): %d" % paid)
 	await wait_for(func() -> bool: return find(0, "dismounted", false) != null, 30.0)
 	var of: Unit = find(0, "dismounted", false)
 	check(of != null and of.pistol and not of.armoured and of.horse_rid == 0, "an Officer comes out on foot, loaded")
