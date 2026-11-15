@@ -215,6 +215,10 @@ With the owner's art (0.38.2), in docs/shots/brass_serpent/art/ (the same tool; 
   it". test_vet_chevrons' timing check failed once with two tests running side by side and passes alone. The game boots
   headless with no SCRIPT ERROR.
 
+- After the art (0.38.2): test_brass_serpent ALL PASS, test_files 0 failures (1309 checks), test_content_all 0 FAIL
+  (16 WARN, none the Serpent's), test_unit_stats 0 failures; the game boots headless with no SCRIPT ERROR. (Godot 4.7
+  aborts with code 134 on quitting after these headless runs, on main too.)
+
 ## Sounds
 
 It has none of its own yet. It answers with the Pendulum's voice (Sfx.VOICE_AS), and its bite, a gear breaking off, a
