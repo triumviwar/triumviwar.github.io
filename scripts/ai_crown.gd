@@ -814,6 +814,9 @@ func _bo_lab_keep() -> int:
 		return 0
 	if bo_army_first:
 		return 0                # (the rush's riders before labourers: its identity, PLANS["rush"])
+	if blind_guard() and (army_behind() or army_grows()):
+		return 0                # (against the Brood: its survival checks, as _army_due's; the first batch had 30% less army
+		                        # at 5:00 against the Brood without them)
 	var top := mini(bo_lab_cap, owner_lab_cap())
 	var slots := mini(_lab_slots(), top - game.workers(team).size() - _labs_queued())
 	if slots <= 0:
@@ -1079,7 +1082,8 @@ func _bo_tick() -> void:
 ## the steps before it: the Balloon harass's hall (its trigger met at ~3:05 in the owner's Hollowfen game) stood behind the
 ## Foundry and the first balloon and was laid at 4:41 with 21 labourers, the bench's (tools/econ_bench.gd) at 4:00. Once a
 ## later hall step's trigger has held HALL_LATE s it comes next, ahead of build, balloon and army steps; never past an attack
-## step (the timing and the rush keep their order), the pick, or while a rush is feared. `-- hallontime:off`.
+## step (the timing and the rush keep their order), the pick, or while a rush is feared; not against the Brood.
+## `-- hallontime:off`.
 const HALL_LATE := 20.0
 var hall_on_time_off := OS.get_cmdline_user_args().has("hallontime:off") or OS.get_cmdline_user_args().has("crowneco:off")
 var _hall_due_t := -1.0          # (clock) a later hall step's trigger has held since
@@ -1089,6 +1093,9 @@ var hall_moved_log: Array = []   # [clock, from step, to step] (the report)
 func _bo_hall_on_time() -> void:
 	if hall_on_time_off or not on or difficulty < 1 or _defending() or bo_i >= _bo_plan.size():
 		return
+	if _foe_is("brood"):
+		return          # (against the Brood the plans' coached orders keep the army first: moved, the hall's 400 cost the
+		                # army at 5:00 a third, 575 -> 345, and the income too, Hollowfen 1002)
 	if String(_bo_plan[bo_i]["do"]) == "hall":
 		_hall_due_t = -1.0
 		return
