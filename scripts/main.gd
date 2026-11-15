@@ -860,7 +860,6 @@ func show_editor_menu() -> void:
 	for it in [["SANDBOX", "Set up any match, then spawn any unit or building for any player, hand out resources, lift the fog, take control of any side, switch AIs off and speed up time.", func() -> void:
 				sandbox_lobby = true
 				show_skirmish()],
-			["CLOCKWORK LAB", "One tap: you as the Clockwork on an open test map against a computer that never attacks, with plenty of cogs, the gear field on show (the Clocktower with two Cog Presses, a Mainspring, a Light Works, a Regulator and a Ratchet Turret meshing round it, an Escapement meshing with the Mainspring, a Clock Aviary, a Heavy Works, four Clock Soldiers, three Springers, two Pendulums, two Netters, three Swifts and a Ticking Owl) and every new experimental unit and building unlocked. Spawn anything from the SANDBOX panel. For trying the gear field and the experimental Clockwork roster.", func() -> void: start_lab()],
 			["MAP EDITOR", "Maps of any size, 1v1 to 4v4: paint high ground, ramps, water or lava, fords, trees and rocks in any biome, place decorations and start and hall spots with their teams, mirror it all for fairness, CHECK it, then save and play it in Skirmish.", func() -> void: show_map_editor()]]:
 		var b := _button(it[0], it[2])
 		b.custom_minimum_size.y = 64
@@ -882,7 +881,7 @@ var ranked_match := ""                # RANKED: the match being played (its resu
 var _editor: MapEditor
 
 
-## CLOCKWORK LAB: a match at once, you as the Clockwork against a computer that never attacks, on an open map,
+## CLOCKWORK LAB (taken off the EDITOR menu and Settings by the owner, 2026-11-15; kept for the test and picture tools): a match at once, you as the Clockwork against a computer that never attacks, on an open map,
 ## with the whole experimental roster unlocked and plenty of ore (scripts/cw_lab.gd).
 func start_lab() -> void:
 	start({"map": "greenhold", "lab": true, "sandbox": true, "slots": [
@@ -1281,9 +1280,6 @@ func settings_rows(tab: String) -> Array:
 				Settings.save_all())
 			gal.add_child(gas)
 			rows.append(_tag(gal, "ground_alpha"))
-			rows.append(_tag(_next_match(_toggle_row("CLOCKWORK LAB", func() -> bool: return Settings.cw_lab, func() -> void:
-				Settings.cw_lab = not Settings.cw_lab
-				Settings.save_all())), "cw_lab"))
 		"OTHER":
 			if _match_settings:        # (a match: no pages of their own, no reset; the version only)
 				rows.append(_hint("Patch notes, the animation viewer and RESET SETTINGS are in the main menu's Settings."))

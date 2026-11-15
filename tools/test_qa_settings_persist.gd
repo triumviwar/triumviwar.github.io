@@ -38,7 +38,7 @@ func snap() -> Dictionary:
 		"health_bars": Settings.health_bars, "band_marks": Settings.band_marks, "charge_bars": Settings.charge_bars, "gear_turn": Settings.gear_turn,
 		"ground_system": Settings.ground_system, "ground_nocap": Settings.ground_nocap, "ground_alpha": snappedf(Settings.ground_alpha, 0.01),
 		"mini_alpha": snappedf(Settings.mini_alpha, 0.01), "overlay_alpha": snappedf(Settings.overlay_alpha, 0.01), "relay_url": Settings.relay_url, "language": Settings.language,
-		"cw_lab": Settings.cw_lab, "replays_keep": Settings.replays_keep, "replay_rec": Settings.replay_rec,
+		"replays_keep": Settings.replays_keep, "replay_rec": Settings.replay_rec,
 		"narrator": Settings.narrator, "narrator_volume": Settings.narrator_volume,
 		"narrator_rate": snappedf(Settings.narrator_rate, 0.01)}
 

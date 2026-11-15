@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.2", "items": [
+		"The CLOCKWORK LAB is gone from the EDITOR menu and from Settings > EXPERIMENTAL.",
+	]},
 	{"v": "0.38.1", "items": [
 		"THE LONE PIPER'S SCOTLAND THE BRAVE is now a real recording of a solo bagpiper (about four minutes) instead of the generated one.",
 	]},
