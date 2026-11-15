@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.6", "items": [
+		"BALANCE, RAPTOR v HORSEMAN: Raptors have 38 health (was 36) and run at 92 (was 96); PACK HUNT still takes them to 114, so only with it do they outrun horses. The Horseman has 100 health (was 140) and costs 100 gold (was 115; his horse is still 40 more when no spare one stands ready); the Cuirassier has 130 (was 170).",
+		"NEW CROWN RESEARCH, KEEN SABRES, at the Horse Breeder (75 gold, 30 s): every Horseman's and Cuirassier's sabre blow in the saddle does 6 more to light units (18 to 24: two blows kill a Raptor again).",
+	]},
 	{"v": "0.38.2", "items": [
 		"The CLOCKWORK LAB is gone from the EDITOR menu and from Settings > EXPERIMENTAL.",
 	]},
