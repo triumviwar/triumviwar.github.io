@@ -31,6 +31,13 @@
   enemy flyers in its arc for 3/4 (Defs.PENDULUM_SWING "vs_air"), light bonus on top; Defs "anti_air" (no "ground_only");
   the Clockwork computer counts a Pendulum as half a Swift; measuring switch `pendair:off`. A HIGH SWING strip for ChatGPT
   in docs/art_style_inconsistency.md. 6 Claude's choices in the doc (the light bonus on flyers above all).
+- CROWN CAVALRY MICRO (owner 2026-11-15 00:53; job crown-coach-cavalry, 0.38.3, docs/crown-coach-cavalry.md,
+  scripts/ai_cav_micro.gd AICavMicro, switch cavmicro:off, tools/test_cav_micro.gd, tools/study_cav_micro.gd): the Crown
+  computer's Horsemen hit and run: pick light/precious prey (never armour, shields, pikes or a guarded mass), strike, ride
+  out, come again; with the Cavalry Charge they gallop round until the next blow is a charge (not under guns; a killing
+  blow first); hurt riders careful. Riders live longer, stand in melee far less; damage per rider lost even v Brood, up v
+  Clockwork and in the mirror. Game.stats cav_blows / cav_charged / cav_dmg / cav_pistol. Proposal: the Armoury and the
+  charge earlier in the riding plans (drilled after 10:00 or never today).
 - CLOCKWORK LAB REMOVED from the player (owner 2026-11-15 00:56): no EDITOR menu entry, no Settings EXPERIMENTAL switch (a saved "on" is ignored). Main.start_lab, scripts/cw_lab.gd and Settings.cw_lab stay for the test and picture tools (shot_*.gd, test_cw_*).
 - CROWN DEFENCE AGAINST A PUSH (owner's game 2026-11-15 00:28, Hollowfen: Musketeers walked past the Clockwork's push on a
   plain move and died 4 for 0; job crown-coach-defence, 0.38.4, docs/crown-coach-defence.md, scripts/ai_crown_defence.gd,

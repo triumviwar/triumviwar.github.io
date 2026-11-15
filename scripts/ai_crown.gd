@@ -75,6 +75,17 @@ func _screen_tick() -> void:
 		sc.tick()
 
 
+var cav: AICavMicro = null       # (crown-coach-cavalry) the riders' hit and run (scripts/ai_cav_micro.gd)
+
+
+## (crown-coach-cavalry) the riders' hit and run, Normal and up, every matchup; `-- cavmicro:off` plays as before.
+func _cav_tick() -> void:
+	if cav == null and on and difficulty >= 1:
+		cav = AICavMicro.new(self)
+	if cav != null:
+		cav.tick()
+
+
 func _screen_has(u: Unit) -> bool:
 	return sc != null and sc.has(u)
 

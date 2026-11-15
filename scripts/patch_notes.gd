@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.9", "items": [
+		"THE CROWN COMPUTER'S RIDERS HIT AND RUN: its Horsemen no longer stay in a melee. Each picks its prey (workers, guns and gunners, Spitters, the hurt and the ones alone; never Brutes, Clock Soldiers' shields or a big mass), strikes, rides out before the answer lands and comes in again from another side. With the Cavalry Charge drilled they gallop round out of reach until the next blow is a charge (a blow that kills comes first). A badly hurt rider picks only prey that cannot answer.",
+	]},
 	{"v": "0.38.8", "items": [
 		"THE CROWN COMPUTER RUNS ITS ECONOMY BETTER (Hard, Normal): its Powder Mill hands go to the empty Farm posts while the powder piles up, its halls keep two labourers coming while Farm posts stand free (their gold no longer goes to the soldiers and buildings first; never in the Horseman rush or against the Brood), an enemy worker scouting the base no longer stops that, the second hall no longer waits behind the plan's other steps (not against the Brood), and a new hall gets its Farm at once. Against the Clockwork it earns about a tenth more by 8:00-10:00, with more labourers and the same army.",
 	]},
