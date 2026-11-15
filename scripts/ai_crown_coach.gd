@@ -31,6 +31,19 @@ class_name AICrownCoach
 ##    Horse Breeder at ~1:30). OPTIMAL no longer leans to the rush before it scouts the Brood, and a GREEDY Brood read picks
 ##    Balanced (measured: AIOptimal._punish). Riders still come for the screen, the picket and the raids of the plans.
 ##    Switch `norush:off` (the owner's rule before: the Horse Breeder to punish a greedy Brood).
+## 5. THE SCREEN BEFORE THE WAVE (the owner 2026-11-15 22:20: "screening with Horsemen... it doesn't help if the enemy is
+##    on top of you and the cannon is still unlimbering, that is why Horseman screening is so important"). Filmed, Kestrel
+##    Rise 1130 v the Brood: the Horse Breeder stood from ~5:00 but no screen rider was trained before 9:27 (the screen's
+##    own training wanted 180 gold to spare and the Musketeers took every harvest); the 9:06 wave "meets the enemy before
+##    its line is formed: 27 muskets deploy under fire", and at 9:59 the Raptors were in the line with a gun still on its
+##    horse. Now the screen's Horseman (AICrownScreen.wants_rider) is trained before the soldiers, its gold held as the
+##    labourers' is; and a wave waits for its screen up to SCREEN_WAIT s while one is in training or can be (a Horse
+##    Breeder stands). Switch `screenfirst:off`.
+## 6. GUNS SET BEFORE CONTACT (the owner, the same message). The formed line stepped on with its guns limbered until the
+##    nearest enemy known was GUN_SET (330 px) from its front rank; a Raptor comes 230 px in a gun's 2.5 s to unlimber.
+##    Now the guns set up that much sooner against an enemy that can close fast or is coming on: GUN_SET plus its speed
+##    times (the unlimbering + GUN_SLACK s), and once they stand, a line facing an enemy that comes on HOLDS by its guns
+##    and lets it walk into their fire (it went on alone to musket reach before). Switch `gunsfirst:off`.
 
 var ai          # the AICrown
 var game: Game
@@ -42,6 +55,10 @@ var labs_first_on := not off and not args.has("labsfirst:off")
 
 var halls_on_time_on := not off and not args.has("hallsontime:off")
 var honest_off := off or args.has("honest:off")
+var screen_first_on := not off and not args.has("screenfirst:off")
+var screen_trained := 0
+var guns_first_on := not off and not args.has("gunsfirst:off")
+var guns_early_n := 0
 
 
 static func no_rush_v_brood() -> bool:
@@ -205,3 +222,91 @@ func table_share() -> float:
 
 func edge_brood() -> float:
 	return EDGE_BROOD
+
+
+# ------------------------------------------------------------------ 5. the screen before the wave
+
+const SCREEN_WAIT := 45.0
+
+
+## Trains the screen's Horseman now if it can; returns the gold to hold for it.
+func screen_first() -> int:
+	if not screen_first_on or not active() or _threat_now():
+		return 0
+	var sc = ai.screen()
+	if sc == null or not sc.wants_rider():
+		return 0
+	var price := 0
+	for b in ai._mine("barracks"):
+		if not b.built or (b.queue as Array).size() >= 2:
+			continue
+		var hk: String = ai._soldier_key(b, "cuirassier")
+		if hk == "":
+			continue
+		price = int(game.unit_price(team, hk)[0])
+		if int(game.players[team]["gold"]) >= price and game.train(b, hk) == "":
+			screen_trained += 1
+			return 0
+	return mini(price, int(game.players[team]["gold"]))
+
+
+var _wave_wait_from := -1.0
+
+
+## A wave about to go waits for its screen (true = wait).
+func wave_waits_screen() -> bool:
+	if not screen_first_on or not active():
+		return false
+	var sc = ai.screen()
+	if sc == null or ai._mine("horse_breeder").filter(func(b: Building) -> bool: return b.built).is_empty():
+		return false
+	var have := 0
+	for u in game.army(team):
+		if not u.dead and u.kind == "cuirassier" and u.hp >= u.max_hp * 0.5:
+			have += 1
+	for b in ai._mine("barracks"):
+		have += (b.queue as Array).count("cuirassier")
+	if have >= 2:
+		_wave_wait_from = -1.0
+		return false
+	if _wave_wait_from < 0.0:
+		_wave_wait_from = game.clock
+	if game.clock - _wave_wait_from > SCREEN_WAIT:
+		return false
+	return true
+
+
+# ------------------------------------------------------------------ 6. guns set before contact
+
+const GUN_SLACK := 1.5
+const FAST := 75.0              # (px/s) an enemy this fast can close on a limbered gun
+const COMING := 20.0            # (px/s) toward the line: it is coming on
+
+
+func _closing(o: Unit, c: Vector2) -> float:
+	var to_line: Vector2 = (c - o.position).normalized()
+	return o.velocity.dot(to_line)
+
+
+func gun_set(foes: Array, c: Vector2, face: Vector2, base: float) -> float:
+	if not guns_first_on or not active():
+		return base
+	var extra := 0.0
+	for o in foes:
+		if not is_instance_valid(o) or o.dead:
+			continue
+		var sp := float(o.d.get("speed", 60.0))
+		if sp >= FAST or _closing(o, c) >= COMING:
+			extra = maxf(extra, sp * (Defs.CANNON_SWITCH + GUN_SLACK))
+	if extra > 0.0:
+		guns_early_n += 1
+	return base + extra
+
+
+func line_holds(foes: Array, c: Vector2, face: Vector2) -> bool:
+	if not guns_first_on or not active():
+		return false
+	for o in foes:
+		if is_instance_valid(o) and not o.dead and _closing(o, c) >= COMING and (o.position - c).length() < 900.0:
+			return true
+	return false

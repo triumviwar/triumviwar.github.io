@@ -1009,6 +1009,10 @@ func _think_stage(i: int) -> void:
 		coach = AICrownCoach.new(self)
 	var lab_held: int = coach.labs_first() if coach != null else 0
 	game.players[team]["gold"] -= lab_held
+	if coach != null and i == 2:
+		var sh: int = coach.screen_first()      # (the coach: THE SCREEN BEFORE THE WAVE, its Horseman first)
+		game.players[team]["gold"] -= sh
+		lab_held += sh
 	var vk := _vb_keep() if i <= 1 and vb() != null and vbr.keep_wide else 0
 	_think_stage_crown(i)
 	game.players[team]["gold"] += vk + lab_held
@@ -1688,6 +1692,8 @@ func _wave_worth(ready: Array) -> bool:
 		return false            # (cinder-crown-ai: the Timing's wave against the Clockwork only while it is ahead)
 	if not on or difficulty < 1 or strategy == "rush" or not doctrine():
 		return true
+	if coach != null and coach.wave_waits_screen():
+		return false            # (the Crown coach: the wave waits for its screen riders)
 	var mine := 0.0
 	for u in ready:
 		mine += float(Game.unit_value(u))

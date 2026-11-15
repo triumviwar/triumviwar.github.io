@@ -587,8 +587,9 @@ func _step(foes: Array) -> void:
 	var on_spots: Array = _spot.keys().filter(func(u) -> bool: return _ok(u))
 	var guns: Array = on_spots.filter(func(u: Unit) -> bool: return is_gun(u))
 	var men: Array = on_spots.filter(func(u: Unit) -> bool: return not is_gun(u))
-	if nd < INF and nd > GUN_SET + 20.0 and not guns.is_empty():
-		var step: float = minf(STEP_LEN, nd - GUN_SET)
+	var gs := _gun_set(foes)        # (the Crown coach 2026-11-16: earlier against fast or closing enemies)
+	if nd < INF and nd > gs + 20.0 and not guns.is_empty():
+		var step: float = minf(STEP_LEN, nd - gs)
 		for u in men:
 			_spot[u] += _face * step
 			u.cmd_move(_spot[u], true)
@@ -604,6 +605,14 @@ func _step(foes: Array) -> void:
 		# (in the guns' reach: they set up behind the line first, the line holds; then it walks on alone)
 		_guns_down(foes)
 		st = "set"
+		_t0 = game.clock
+		return
+	if not guns.is_empty() and ai.coach != null and ai.coach.line_holds(foes, _c, _face):
+		# (the Crown coach: the guns set, an enemy coming on: the line holds by its guns and lets it come into their fire)
+		for u in men:
+			if u.order != "hold" and u.position.distance_to(_spot[u]) < 40.0:
+				u.cmd_hold()
+		st = "await"
 		_t0 = game.clock
 		return
 	var adv := ADVANCE
@@ -667,10 +676,18 @@ func _guns_at_spots() -> bool:
 func _guns_reach(foes: Array) -> bool:
 	if _piece_pt != Vector2.INF and (_piece_pt - _c).dot(_face) <= GUN_SET + 20.0:
 		return true
+	var gs := _gun_set(foes)
 	for o in foes:
-		if (_pos(o) - _c).dot(_face) <= GUN_SET + 20.0:
+		if (_pos(o) - _c).dot(_face) <= gs + 20.0:
 			return true
 	return false
+
+
+## How near the nearest enemy may come before the guns set up (GUN_SET; more against fast or closing enemies: the coach).
+func _gun_set(foes: Array) -> float:
+	if ai.coach != null:
+		return ai.coach.gun_set(foes, _c, _face, GUN_SET)
+	return GUN_SET
 
 
 func _fight_begin(ground: Array) -> bool:
@@ -864,7 +881,7 @@ func _close_orders(ground: Array, target: Vector2) -> void:
 
 
 func regrouping() -> bool:
-	return st in ["close", "form", "step", "set", "back"]
+	return st in ["close", "form", "step", "set", "back", "await"]
 
 
 # ============================================================ 4. the defence
