@@ -599,7 +599,7 @@ static func energy_only(k: String) -> bool:
 ## Like every gear building it does nothing while it is unlinked. The screw flies at `speed` px/s (the damage lands when
 ## it is fired, like a musket ball; the screw is the picture). `scan`: s between target searches.
 ## Numbers are guesses (design_principles 1 and 2): about a Musketeer and a third of damage a second (9.3 vs 7.1), a
-## Musketeer's reach (190) plus a little, so Crown guns (430) and mortars out-range it and a rush of 8 Raptors (36 hp,
+## Musketeer's reach (190) plus a little, so Crown guns (430) and mortars out-range it and a rush of 8 Raptors (38 hp,
 ## 3 screws each) still kills it (about 10 s at 6 dps each) after losing 2-3. Linked only: it cannot be pushed forward.
 ## Head art: `head_at` (game px from the building's anchor, its footprint's bottom centre) is where the head's collar
 ## centre sits on the base's turntable (found by eye); `tips` the barrel tip per drawn facing, px from the collar centre
@@ -2092,7 +2092,7 @@ const HARVEST := {"range": 10, "auto_range": 60, "take": 1.2, "per_supply": 4.0,
 ## and loses it at one speed for every body, `base` health a second, which doubles every `double` seconds it has lain
 ## (smoothly: base x 2^(seconds since death / double)). At 0 it is gone. Damage (ground attack, Defs.GROUND, and area shots
 ## fired at the ground, Defs.BODY_BLAST) takes health off too; a body brought to 0 by damage is torn up (no harvest, no
-## raising). base 0.2696: an untouched Musketeer's body (70) lies 2:00, a Raptor's (36) 1:20, a Brute's (240) 3:30, a
+## raising). base 0.2696: an untouched Musketeer's body (70) lies 2:00, a Raptor's (38) about 1:20, a Brute's (240) 3:30, a
 ## Horseman's with his horse (200) 3:15, a Pendulum's (340) 3:58, a Heavy Locomotive's (600) 4:44 (Unit.rot_life).
 const ROT := {"base": 0.2696, "double": 60.0}
 ## ATTACK GROUND (Ctrl+A or the card's button; owner, 2026-10-27): any unit that can attack (not medics, wagons, horses,
