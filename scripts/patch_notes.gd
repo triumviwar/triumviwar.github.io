@@ -4,6 +4,11 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.31", "items": [
+		"THE CAVALRY CHARGE REPLACES KEEN SABRES: Keen Sabres is gone. The Cavalry Charge is now drilled at the HORSE BREEDER (was the Armoury; still 60 gold, 25 s), so it comes with the riders, and a charged sabre blow hits light units 2.2 times (one charge kills a Raptor: 18 x 2.2 = 39.6 against its 38); armoured units still take double. A saved game keeps its Charge; Keen Sabres researched there is simply gone.",
+		"THE OFFICER COSTS 100 GOLD (was 75), the Horseman's own price: a Horseman is an Officer on a horse, and the horse is always 40 more (a horse of yours or one the breeder trains), so an Officer + a horse is now exactly a Horseman + his horse (140), and an Armoured Officer + a horse a Cuirassier (130 + 40). Before, an Officer + a horse was the cheaper Horseman (115).",
+		"THE CROWN COMPUTER'S RIDERS: against a fast swarm (4 or more Raptors about them) they no longer gallop round the fight waiting for their next charge (the Raptors closed in while they waited): they take each blow as it comes. Against anything else they keep playing the charge. The computer drills the Charge at its Horse Breeder once it has 2 riders, or with its first rider when its plan is a rider plan (the Horseman rush, the Horse Breeder opening).",
+	]},
 	{"v": "0.38.30", "items": [
 		"Writing only: the owner's answers on the Clockwork prologue (The Thirteenth Hour) are in its outline.",
 	]},

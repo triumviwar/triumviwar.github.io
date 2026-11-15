@@ -5350,16 +5350,15 @@ func _strike(e: Entity) -> void:
 			game.spawn_effect("hit", e.center() + Vector2(randf_range(-4, 4), randf_range(-4, 4)), 0.5 if kind == "hatchlings" else 0.7)
 			Sfx.play_any(["combat/%s_attack" % kind, "combat/skywing_attack", "bite"], position, -4.0 if kind == "hatchlings" else 0.0)
 		_:
-			if kind == "cuirassier" and e is Unit and e.has_tag("light") and game.has_tech(team, "keen_sabres"):
-				# KEEN SABRES (the Horse Breeder's drill): +6 a blow on light units, veterancy and the band on it too
-				dmg += float(Defs.RESEARCH["keen_sabres"]["light"]) * dmg / maxf(float(d["damage"]), 1.0)
 			var bonus: Dictionary = d.get("bonus", {})
 			dmg *= float(bonus.get(e.kind, 1.0))
 			if _ride_blow:
 				dmg *= float(Defs.RIDE_BY["hit"])       # (struck in passing: Defs.RIDE_BY "hit", 1.0 = the full blow)
 			var charged := kind == "cuirassier" and run_t >= float(Defs.CHARGE["run"]) and game.has_tech(team, "charge")
 			if charged:
-				dmg *= float(Defs.CHARGE["mult"]) if STUDY_CHARGE_LIGHT <= 0.0 or not (e is Unit and e.has_tag("light")) else STUDY_CHARGE_LIGHT
+				# THE CHARGE (cavalry-charge-package, the owner 2026-11-15 21:34): x2.2 on a light unit (one charge kills a
+				# 38-hp Raptor: 18 x 2.2 = 39.6), x2 on anything else
+				dmg *= float(Defs.CHARGE["light"]) if (e is Unit and e.has_tag("light")) else float(Defs.CHARGE["mult"])
 			if kind == "cuirassier":
 				game.stat_add(team, "cav_charged" if charged else "cav_blows", 1)      # (crown-coach-cavalry's count)
 				game.stat_add(team, "cav_dmg", dmg)
@@ -8199,18 +8198,6 @@ func _draw_charge_bar(y: float, bw: float) -> float:
 
 ## The amber Clockwork charge (the bar over the unit and on its card).
 const CHARGE_BAR := Color(0.95, 0.68, 0.2)
-## (keen-sabres-test, docs/keen_sabres_test.md) measuring only: `-- chargelight:2.2` makes a charged sabre blow on a LIGHT
-## unit hit x2.2 instead of Defs.CHARGE "mult" (one charge kills a 38-hp Raptor). Off (0) by default: no game changes.
-static var STUDY_CHARGE_LIGHT: float = _study_charge_light()
-
-
-static func _study_charge_light() -> float:
-	for a in OS.get_cmdline_user_args():
-		if a.begins_with("chargelight:"):
-			return float(a.substr(12))
-	return 0.0
-
-
 func _draw() -> void:
 	var _p0 := Time.get_ticks_usec()
 	_draw_unit()

@@ -1,22 +1,22 @@
 extends SceneTree
-## keen-sabres-test (docs/keen_sabres_test.md; the owner 2026-11-15 10:03: "Why do we need Keen Sabres as a concept?
+## keen-sabres-test (docs/keen_sabres_test.md; rerun by cavalry-charge-package, docs/cavalry_charge_package.md; the owner 2026-11-15 10:03: "Why do we need Keen Sabres as a concept?
 ## With charge and hit and run tactics we should be able to deal enough damage."). Measuring only, no gameplay change.
 ## Raptors v Horsemen at EQUAL COST (a Horseman with his horse 140, a Raptor 25: 5.6 Raptors a rider), in five rider arms:
 ##   stand   the riders stand where they are and the Raptors come in (no orders, no micro; the old tests' "stand")
 ##   a       the riders attack-move in as a wave, no micro (RideBy's loop round whatever is near), no research
 ##   b       hit and run (AICavMicro, scripts/ai_cav_micro.gd, on the riders' side), no research
-##   c       hit and run + the Cavalry Charge
-##   d       hit and run + Keen Sabres
-##   e       hit and run + both
-## (alternatives, measuring only) c2 = c but the micro rides as if it had no charge (no galloping round for the next
-## charge); f / f2 = c / c2 run with `chargelight:2.2` on the command line (a charged blow on a light unit x2.2).
+##   c       hit and run + the Cavalry Charge (since cavalry-charge-package: x2.2 on light, and the micro's SWARM RULE:
+##           no galloping round for the next charge against a fast melee swarm)
+##   (Keen Sabres, the old arms d and e, is gone: cavalry-charge-package)
+## (alternatives, measuring only) c2 = c but the micro never plays the charge (no galloping round at all; the old f2);
+## cr = c with the swarm rule off (the micro's old charge loop, with x2.2: the old f).
 ## on open ground ("open") and in the riders' own base ("base": a Town Hall, a Barracks and Cottages round the riders,
 ## the Raptors attack-move into it), with and without Pack Hunt; the Raptors keep coming (an idle Raptor is sent at the
 ## nearest rider every second: a Brood player chasing). And a raid: 4 Horsemen ride into Brood workers and Spitters
-## ("raid": 10 grubs and 6 Spitters; "raid_guard": the same with 12 Raptors on guard), arms c and e.
+## ("raid": 10 grubs and 6 Spitters; "raid_guard": the same with 12 Raptors on guard), arm c.
 ## Each fight 60 s at most. Prints a RESULT line per fight and a table per case: riders won-drew-lost, value killed per
 ## value lost (the cost-trade), riders lost, Raptors left.
-##   godot --headless --fixed-fps 30 --script res://tools/study_keen_sabres.gd -- [sizes:2,4,8,12] [arms:stand,a,b,c,d,e]
+##   godot --headless --fixed-fps 30 --script res://tools/study_keen_sabres.gd -- [sizes:2,4,8,12] [arms:stand,a,b,c,c2,cr]
 ##     [ground:open,base] [pack:0,1] [seeds:4] [raids:1|0] [only_raids:1] [out:FILE.json]
 var main: Node
 var t := 0.0
@@ -151,12 +151,12 @@ func _run() -> void:
 		for ground in _list("ground", "open,base"):
 			for pack in _list("pack", "0,1"):
 				for sz in _list("sizes", "2,4,8,12"):
-					for arm in _list("arms", "stand,a,b,c,d,e"):
+					for arm in _list("arms", "stand,a,b,c"):
 						for k in seeds:
 							await _fight(ground, int(sz), arm, pack == "1", k)
 	if args.get("raids", "1") == "1":
 		for case in ["raid", "raid_guard"]:
-			for arm in ["c", "e"]:
+			for arm in ["c"]:
 				for k in seeds:
 					await _fight(case, 4, arm, false, k)
 	_table()
@@ -201,10 +201,8 @@ func _fight(ground: String, nr: int, arm: String, pack: bool, k: int) -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 9000 + k * 17 + nr
 	var tech := {}
-	if arm in ["c", "e", "c2", "f", "f2"]:
+	if arm in ["c", "c2", "cr"]:
 		tech["charge"] = true
-	if arm in ["d", "e"]:
-		tech["keen_sabres"] = true
 	g.players[0]["tech"] = tech
 	g.players[1]["tech"] = {"nb_pack_hunt": true} if pack else {}
 	var raid := ground.begins_with("raid")
@@ -242,14 +240,15 @@ func _fight(ground: String, nr: int, arm: String, pack: bool, k: int) -> void:
 		costs.append(int(Defs.UNITS[m.kind]["cost"]) / maxi(1, int(Defs.UNITS[m.kind].get("spawn", 1))))
 	await physics_frame
 	var micro: AICavMicro = null
-	if arm in ["b", "c", "d", "e", "c2", "f", "f2"]:
+	if arm in ["b", "c", "c2", "cr"]:
 		var stub := StubAI.new()
 		stub.game = g
 		stub.home = FakeHall.new()
 		stub.home.at = at(10, 320)
 		micro = AICavMicro.new(stub)
 		micro.on = true
-		micro.charge_play = not arm in ["c2", "f2"]
+		micro.charge_play = arm != "c2"
+		micro.swarm_rule = arm != "cr"
 	if not raid:
 		for x in foes:
 			x.cmd_move(base_mid if ground == "base" else rmid, true)

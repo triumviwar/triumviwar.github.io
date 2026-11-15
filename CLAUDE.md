@@ -77,7 +77,8 @@
   allows nothing; a fallen hall's buildings go to the next nearest (over its count they work, no new one there). The
   computers skip a full hall (AI._econ_spot, AICwMacro) and recycle a spent building of the hall that needs the place.
   Bench unchanged; the computers alone within noise (12:00, 6 runs a side: Crown 0.0%, Clockwork +2.0%, its Tension +8%).
-  The Powder Mill and the Mainspring are local too (Claude's choice 1: owner to confirm the Mainspring).
+  The Powder Mill and the Mainspring are local too. CONFIRMED (owner 2026-11-15 21:34): the Mainspring stays LOCAL, 1 per
+  Clocktower.
 
 - PENDULUM HIGH SWING (owner's ChatGPT sheets; job pendulum-high-swing, 0.38.16, docs/pendulum_air.md "The HIGH SWING",
   tools/pendulum_guide/import_high_swing.py, pictures docs/shots/pendulum_air/high_swing/): at a FLYER the Pendulum plays
@@ -101,13 +102,25 @@
   Brood and holds back while ahead; Brood mirror P1 (spot A) 26-9 (p 0.006); Brood v Clockwork now 26-6-6 for the Brood.
   Proposals C1-C6, K1, S1-S3, R1-R2 in the doc. OWNER DECISIONS WAITING.
 
-- KEEN SABRES TEST (owner 2026-11-15 10:03: "Why do we need Keen Sabres?"; job keen-sabres-test, branch, 0.38.12,
+- KEEN SABRES TEST (owner 2026-11-15 10:03: "Why do we need Keen Sabres?"; job keen-sabres-test, 0.38.12,
   docs/keen_sabres_test.md, tools/study_keen_sabres.gd, tools/study/keen_sabres_games.py + keen_sabres_report.py): hit and
-  run + the Cavalry Charge do NOT hold Raptors at equal cost (the computer's charge loop is the worst rider play v Raptors;
-  36 doesn't kill 38); Keen Sabres helps most; a Charge x2.2 v light with no wait-round micro measured as well as it.
-  OWNER DECISION WAITING. Measuring switches only: keensabres:off, chargelight:<x>, AICavMicro.charge_play.
+  run + the Cavalry Charge did NOT hold Raptors at equal cost; a Charge x2.2 v light with no wait-round micro measured as
+  well as Keen Sabres. DECIDED and DONE (owner 21:34): see THE CHARGE PACKAGE below (keensabres:off and chargelight: are gone).
 
-- RAPTOR / HORSEMAN BALANCE (owner DECIDED 2026-11-15 00:38-00:53, after comparing StarCraft II's Zergling and Hellion; job balance-raptor-horseman, 0.38.10, docs/balance_raptor_horseman.md, tools/test_raptor_rider_fight.gd): Raptor 38 health (was 36), speed 92 (was 96), PACK HUNT still 114 (only then does it outrun horses); Horseman 100 health (was 140) and 100 gold (was 115), Cuirassier 130; KEEN SABRES at the Horse Breeder (Claude's Blue-Flame-like proposal, no objection: +6 sabre v light, 75 gold, 30 s). Without Keen Sabres Raptors now beat Horsemen at equal cost; with it riders win again on the move. PROPOSALS WAITING: the computer buys Keen Sabres at 6-7 min whether it has riders or not (should be with riders / at once in rider plans); an Officer + a horse (115) is now a cheaper Horseman than a Horseman (140): Officer 75 -> 60?; rerun the Crown v Brood and Brood mirror win rates. CAVALRY HIT AND RUN for the Crown computer (owner 00:53; job crown-coach-cavalry, 0.38.9, scripts/ai_cav_micro.gd, switch cavmicro:off). BALLOON (0.38.7, scripts/ai_crown_balloon.gd, blfix:off; OPTIMAL picks it 1/3 v a NORMAL Clockwork, owner: "viable, not 100%"), ECONOMY (0.38.8, crowneco:off) coached too.
+- THE CHARGE PACKAGE (owner DECIDED 2026-11-15 21:34; job cavalry-charge-package, 0.38.31, docs/cavalry_charge_package.md,
+  tools/test_charge_package.gd): KEEN SABRES REMOVED (research, button, blow, texts, icon, test; an old save's flag is dropped
+  on load); the CAVALRY CHARGE at the HORSE BREEDER (was the Armoury; 60 gold, 25 s; old saves keep it), a charged blow x2.2 on
+  LIGHT units (Defs.CHARGE "light"; one charge kills a 38-hp Raptor), x2 on the rest; the computer's riders (AICavMicro
+  _swarm: 4+ fast light biters within 420 px, at least 0.75 of the rider's pace) take each blow as it comes instead of
+  galloping round for the next charge (switch cavswarm:off); the computer drills it at 2 riders, or with the first rider
+  (out or queued) on a rider plan (AI._rider_plan: opening "breeder"). OFFICER 100 gold (was 75) = the Horseman's own price
+  (a horse is always 40 apart: Officer + horse == Horseman + horse, 140; armoured 130 + 40 both ways; powder 5 each; the rule
+  of every pair: Labourer = Messenger, Musketeer = Dragoon; Claude's choice 1: UP, not 75 -> 60, which would widen the gap).
+  NUMBERS: fight study (2v11, 8v45) the package trades 1.04-3.57 without Pack Hunt, 0.62-0.89 with (Keen Sabres 0.50-3.04 /
+  0.78-2.82; without the swarm rule x2.2 only 0.23-0.69); 16 computer games Crown v Brood 0-6-10, on the old 8 seeds 0-4-4
+  (Keen on 0-2-6, off 0-5-3: noise), riders kill 1.6 Raptors per rider lost (Keen 1.26), the Charge drilled at 5:50-7:00.
+  6 Claude's choices in the doc.
+- RAPTOR / HORSEMAN BALANCE (owner DECIDED 2026-11-15 00:38-00:53, after comparing StarCraft II's Zergling and Hellion; job balance-raptor-horseman, 0.38.10, docs/balance_raptor_horseman.md, tools/test_raptor_rider_fight.gd): Raptor 38 health (was 36), speed 92 (was 96), PACK HUNT still 114 (only then does it outrun horses); Horseman 100 health (was 140) and 100 gold (was 115), Cuirassier 130; KEEN SABRES at the Horse Breeder (0.38.10; REPLACED 0.38.31 by THE CHARGE PACKAGE above). The Officer's price and the computer's research: DONE in THE CHARGE PACKAGE. Still waiting: rerun the Crown v Brood and Brood mirror win rates. CAVALRY HIT AND RUN for the Crown computer (owner 00:53; job crown-coach-cavalry, 0.38.9, scripts/ai_cav_micro.gd, switch cavmicro:off). BALLOON (0.38.7, scripts/ai_crown_balloon.gd, blfix:off; OPTIMAL picks it 1/3 v a NORMAL Clockwork, owner: "viable, not 100%"), ECONOMY (0.38.8, crowneco:off) coached too.
 - ECONOMY REVERTED + PROLOGUE (owner DECIDED 2026-11-15 10:24: "revert back to 2 buildings, no radius, no effectiveness based on soil... this experiment is proving problematic"; job eco-revert-prologue, 0.38.12, docs/eco_revert_prologue.md): the ORIGINAL economy is the only one (2 Farms / 2 Cog Presses a hall, the hall's own soil/brass pool); the GROUND SYSTEM and NO FARM/PRESS LIMIT are DELETED (ground_layer.gd, ground_view.gd, Defs.ground_on/ground_nocap/LAND, Settings ground_system/ground_nocap/ground_alpha, Game.NO_GROUND_MSG, Defs.nocap_text, their tests, study tools and docs; in git history before 0.38.12); an old cfg/save/replay "ground" is ignored. PROLOGUE (p01_leaf): the manor Town Hall moved south ([8,42], tag manor) with 2 Farms, a second Governor Town Hall north on the west side ([8,23], tag north_hall) with 2 Farms: 4 barns (was 5); dawn still needs 3 barns (now of 4: the night sim's active player ends with 3-4, it ended with 3 of 5 before); a mission's "expansion_spots": false now also stops the Crown/Clockwork spot updates.
 - NO FARM/PRESS LIMIT, ALL SIDES: REVERTED by the owner 2026-11-15 10:24 (see above). Was: (owner 2026-11-14 "economic study with the free amount of resources"; job econ-nocap-all, 0.38.6, docs/econ_nocap_all.md, tools/study/econ_nocap_all*.py): RECOMMENDS KEEPING THE LIMIT: with the ground system on, dropping it gives the Clockwork +20% income by 12:00, Crown 0.98, Brood 0.96; Brood v Clockwork 7-3-6 -> 4-3-9; no turtling, no extra snowball. If dropped one day: a Clockwork brake (7,000 brass a district), a Brood counterpart, after the Crown computer reaches its bench. OWNER DECISION WAITING.
 - PENDULUM HITS FLYERS (owner 2026-11-15 00:46-00:53, no research; job pendulum-air, 0.38.3, docs/pendulum_air.md,

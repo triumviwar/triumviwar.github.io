@@ -991,7 +991,7 @@ const UNITS := {
 		"name": "Horseman", "hp": 100, "armor": 1, "speed": 112, "cost": 100, "time": 22.0, "supply": 3,
 		"sight": 8, "range": 26, "damage": 18, "cooldown": 1.1, "aim": 0.15, "radius": 15, "from": "barracks",
 		"requires": "horse_breeder", "bonus": {"cannon": 1.6, "spitter": 1.3, "arc_thrower": 1.3}, "charge": true, "faction": "crown", "needs_horse": true,
-		"about": "Fast light horseman with a pistol and a sabre. Trained with his horse in one click (a free one at a breeder, else the breeder trains one: 40 more); he comes out on foot and rides off on it. He opens with his one loaded pistol shot (30 damage, a little over half a musket's reach), then fights with the sabre; he can only reload on foot (DISMOUNT: he's an Officer then). Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. Once the Armoury has drilled the Cavalry Charge, his first sabre blow after a gallop hits double and throws the enemy back. KEEN SABRES (the Horse Breeder) puts 6 more on each sabre blow at light units. With Armour he becomes a Cuirassier. Bayonets hurt him.",
+		"about": "Fast light horseman with a pistol and a sabre. Trained with his horse in one click (a free one at a breeder, else the breeder trains one: 40 more); he comes out on foot and rides off on it. He opens with his one loaded pistol shot (30 damage, a little over half a musket's reach), then fights with the sabre; he can only reload on foot (DISMOUNT: he's an Officer then). Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. Once the Horse Breeder has drilled the Cavalry Charge, his first sabre blow after a gallop hits double (2.2 times on light units: one charge kills a Raptor) and throws the enemy back. With Armour he becomes a Cuirassier. Bayonets hurt him.",
 	},
 	# ---- horses (Defs.HORSES) and the men who ride them. Horses are bought at a Horse Breeder
 	# (trained like soldiers); the rest are a man on a horse (MOUNT) or off it (DISMOUNT): Defs.MOUNTS.
@@ -1019,10 +1019,14 @@ const UNITS := {
 		"about": "A Musketeer on a horse: rides fast but can't fight in the saddle. Trained at the Barracks with his horse in one click, for the Musketeer's price (a free horse at a breeder, else the breeder trains one: 40 more); he comes out on foot and rides off on it. Told to attack, he dismounts (0.8 s), fires as a Musketeer (reloading a third slower), and remounts by himself to move on. His reload waits while he rides.",
 	},
 	# the Officer: a Horseman off his horse (with Armour: the Armoured Officer). The Barracks
-	# trains him on foot too, for the Horseman's price less the horse's.
+	# trains him on foot too, for the HORSEMAN'S OWN PRICE (cavalry-charge-package, the owner 2026-11-15 21:34: "correct
+	# as it should be in math"): the Horseman's 100 never included his horse (40 more, or a horse of ours), so an Officer +
+	# a horse = 100 + 40 = a Horseman + his horse, and a Horseman got off = an Officer + a horse; the same 5 powder, the
+	# same Armour fee (30). As every other pair: Labourer 50 = Messenger 50, Musketeer 60 = Dragoon 60. (Was 75: an
+	# Officer + a horse, 115, was the cheaper Horseman, 140.) docs/cavalry_charge_package.md
 	"dismounted": {
 		"tags": ["light"],
-		"name": "Officer", "hp": 80, "armor": 1, "speed": 64, "cost": 75, "time": 18.0, "supply": 3,
+		"name": "Officer", "hp": 80, "armor": 1, "speed": 64, "cost": 100, "time": 18.0, "supply": 3,
 		"sight": 8, "range": 110, "damage": 30, "cooldown": 1.1, "aim": 0.35, "radius": 10, "from": "barracks",
 		"sabre": {"damage": 18.0, "cooldown": 1.1}, "faction": "crown",
 		"about": "A Horseman on foot: his flintlock pistol (one shot, 30 damage, a little over half a musket's reach) and the same sabre as in the saddle up close (about a plain bayonet's match). On foot he reloads the pistol by himself (4 s, a charge of his powder: his charges refill like a Musketeer's, 1 powder each). Needs no Horse Breeder: without a horse he walks. Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. MOUNT a horse and he rides as a Horseman.",
@@ -1530,7 +1534,7 @@ const BUILDINGS := {
 	"armoury": {
 		"name": "Armoury", "hp": 1000, "armor": 2, "cost": 150, "time": 40.0, "size": Vector2i(4, 3),
 		"supply": 0, "sight": 7, "trains": ["band", "band_fifer", "band_piper"], "requires": "barracks", "faction": "crown",
-		"about": "All the Crown's research: Armour, the musket locks, the bayonet, the guns' drills and the Cavalry Charge. Trains the Marching Band's musicians: the Drummer, the Fifer and the Piper. Refits soldiers. Needs a Barracks.",
+		"about": "All the Crown's research but the Cavalry Charge (the Horse Breeder's): Armour, the musket locks, the bayonet and the guns' drills. Trains the Marching Band's musicians: the Drummer, the Fifer and the Piper. Refits soldiers. Needs a Barracks.",
 	},
 	"foundry": {
 		"name": "Foundry", "hp": 900, "armor": 2, "cost": 200, "time": 45.0, "size": Vector2i(4, 3),
@@ -1613,7 +1617,7 @@ const BUILDINGS := {
 	"horse_breeder": {
 		"name": "Horse Breeder", "hp": 500, "armor": 1, "cost": 100, "time": 25.0, "size": Vector2i(4, 3),
 		"supply": 0, "sight": 6, "trains": ["horse"], "faction": "crown",
-		"about": "Sells horses: HORSE trains one (40 gold, 15 s; no supply). Horses are what cavalry, guns and wagons need. RALLY sends new horses somewhere (a Barracks or Foundry). Unlocks Horsemen and researches KEEN SABRES (the riders' sabres hit light units harder). Build as many as you like, anywhere.",
+		"about": "Sells horses: HORSE trains one (40 gold, 15 s; no supply). Horses are what cavalry, guns and wagons need. RALLY sends new horses somewhere (a Barracks or Foundry). Unlocks Horsemen and researches the CAVALRY CHARGE (after a gallop a rider's next sabre blow hits double, 2.2 times on light units). Build as many as you like, anywhere.",
 	},
 	"church": {
 		"name": "Church", "hp": 900, "armor": 2, "cost": 150, "time": 35.0, "size": Vector2i(3, 3),
@@ -1709,15 +1713,11 @@ const RESEARCH := {
 	"quadrant": {"name": "Gunner's Quadrant", "label": "QUADRANT", "at": "armoury", "faction": "crown", "cost": 125, "cost2": 30, "time": 45.0,
 		"icon": "research_quadrant", "requires": "charges", "drill": true, "kinds": ["cannon", "mortar"], "range": 32,
 		"about": "Laying the guns by the quadrant: every Field Cannon and Mortar reaches 1 tile further."},
-	"charge": {"name": "Cavalry Charge", "label": "CHARGE", "at": "armoury", "faction": "crown", "cost": 60, "cost2": 0, "time": 25.0,
+	# THE CHARGE (cavalry-charge-package, the owner 2026-11-15 21:34): drilled at the HORSE BREEDER (was the Armoury), so
+	# it comes with the riders; it replaced Keen Sabres. Same price and time.
+	"charge": {"name": "Cavalry Charge", "label": "CHARGE", "at": "horse_breeder", "faction": "crown", "cost": 60, "cost2": 0, "time": 25.0,
 		"icon": "research_charge", "drill": true, "kinds": ["cuirassier"],
-		"about": "Drilled to charge: after about 2 s at the gallop a Horseman's or Cuirassier's next sabre blow hits double and throws the enemy back."},
-	# KEEN SABRES (balance-raptor-horseman, 2026-11-15: StarCraft's Blue Flame for Hellions): the riders' sabres cut light
-	# units deeper (+`light` damage a blow in the saddle, before the charge and veterancy multiply it). A drill: every
-	# Horseman and Cuirassier has it at once. Price and time Claude's, about the Cavalry Charge's.
-	"keen_sabres": {"name": "Keen Sabres", "label": "SABRES", "at": "horse_breeder", "faction": "crown", "cost": 75, "cost2": 0, "time": 30.0,
-		"icon": "research_keen_sabres", "drill": true, "kinds": ["cuirassier"], "light": 6.0,
-		"about": "Sabres ground to a razor edge: every Horseman's and Cuirassier's sabre blow in the saddle hits light units harder (+6: 18 to 24, so two blows kill a Raptor)."},
+		"about": "Drilled to charge: after about 2 s at the gallop a Horseman's or Cuirassier's next sabre blow hits double (2.2 times on light units: one charge kills a Raptor) and throws the enemy back."},
 	# (THE MARCHING BAND's old research "band_fife" / "band_pipes" is gone since 0.36.0: the Fifer and the Piper are
 	# units now (UNITS "band_fifer", "band_piper"); an old save's flag adds the musician to its old band unit on load.)
 	# the Clockwork's Tension research (gear mode), at the Escapement (it must be working: meshed with a Mainspring): HIGH
@@ -2028,8 +2028,9 @@ const REVIVE := {"time": 6.0, "hp": 0.5, "cross": 30.0, "window": 60.0, "scan": 
 ## Clockwork towers zap flyers with chain lightning; while they do, their field is off.
 const TOWER_ZAP := {"range": 8.0, "damage": 10.0, "cooldown": 1.6, "chain": 3, "jump": 110.0, "falloff": 0.7, "off": 3.0}
 ## Horseman / Cuirassier, once the Cavalry Charge is researched: after galloping this long,
-## his next blow is a charge.
-const CHARGE := {"run": 2.0, "mult": 2.0, "force": 300.0, "stun": 0.6}
+## his next blow is a charge: x`mult`, x`light` on a light unit (cavalry-charge-package, the owner 2026-11-15
+## 21:34: one charge kills a 38-hp Raptor, 18 x 2.2 = 39.6; armoured targets keep x2).
+const CHARGE := {"run": 2.0, "mult": 2.0, "light": 2.2, "force": 300.0, "stun": 0.6}
 ## The Horseman and the Cuirassier fight on the move, like StarCraft 2's Cyclone with a sabre (scripts/ride_by.gd,
 ## docs/ride_by.md): on any order but HOLD he strikes what comes in sabre reach as he rides past, on his normal
 ## cooldown, and never stops to swing. Told to attack, he rides at the target, strikes in passing, rides on `over` px
@@ -2399,7 +2400,7 @@ const TIPS := {
 	"RELEASE HORSE": "Unhitch one horse (the front one of a team first): it stands free. With none left the gun or wagon can't move, but a gun still fires and a wagon still supplies.",
 	"HARNESS": "Your nearest free horse walks over and is hitched: one more each time, up to 4 in a team, each beyond the first +12% speed. (Or right-click the gun with a horse selected or led.)",
 	"guardsman": "Armoured line infantry (+1 armour, +20 health): a Musketeer in morion and breastplate. Needs Armour.",
-	"horseman": "Fast light horseman: one pistol shot (30 damage, 110 reach), then the sabre. Needs a Horse Breeder; one click trains him and his horse (40 more without a spare). He reloads only on foot. With the Cavalry Charge his first sabre blow after a gallop hits double; KEEN SABRES cuts light units deeper. Bayonets hurt him.",
+	"horseman": "Fast light horseman: one pistol shot (30 damage, 110 reach), then the sabre. Needs a Horse Breeder; one click trains him and his horse (40 more without a spare). He reloads only on foot. With the Cavalry Charge (the Horse Breeder) his first sabre blow after a gallop hits double, 2.2 times on light units. Bayonets hurt him.",
 	"cannon": "Long-range artillery (it needs a horse: one click finds or buys it). HARNESS up to 4 horses: +12% speed each. UNLIMBER to fire: round shot ploughs through lines, canister shreds light units and flyers. Needs spotters.",
 	"mortar": "Siege mortar: DEPLOY, then it lobs shells over walls 5 to 11 tiles away. The splash hurts friends too. Can't hit flyers.",
 	"powder_wagon": "Carries 120 shots of powder for the soldiers near it. No weapon, and it blows up when destroyed.",
@@ -2429,12 +2430,12 @@ const TIPS := {
 	"storm_challenger": "A matured Hatchling, a young Storm Sire: a flyer that swoops to bite flyers and ground units alike.",
 	# Crown buildings
 	"town_hall": "Trains Labourers. Allows 2 Farms and 1 Powder Mill round it; its soil and saltpetre run out in time.",
-	"horse_breeder": "Trains horses: 40 gold and 15 s each, no supply; RALLY sends them on. Unlocks Horsemen and researches KEEN SABRES; cavalry, guns and wagons need its horses. Build as many as you like, anywhere. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.",
+	"horse_breeder": "Trains horses: 40 gold and 15 s each, no supply; RALLY sends them on. Unlocks Horsemen and researches the CAVALRY CHARGE; cavalry, guns and wagons need its horses. Build as many as you like, anywhere. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.",
 	"cottage": "Houses 8 more supply. The first one unlocks the Barracks and the palisade.",
 	"wall": "Palisade: blocks the way. Lay it in a line: pick the start, then the end. Needs a Cottage.",
 	"gate": "A palisade piece that opens for your side only. Lay it onto your own palisade to swap a piece. Needs a Cottage.",
 	"barracks": "Trains Musketeers and Officers, Horsemen and Dragoons (need a Horse Breeder), and with Armour the armoured ones. Powder buys their shots as they come out (ARM WITH POWDER). Refits soldiers. Needs a Cottage. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.",
-	"armoury": "Researches Armour, the musket locks, the socket bayonet, the guns' drills and the Cavalry Charge. Refits soldiers too.",
+	"armoury": "Researches Armour, the musket locks, the socket bayonet and the guns' drills. Refits soldiers too.",
 	"foundry": "Casts cannons and mortars, rigs balloons, builds powder wagons (each needs a horse: one standing here, else a Town Hall hauler leads one over from the Horse Breeder, or it walks over by itself when you have no haulers).",
 	"farm": "Ripens into a 380-gold harvest about every 40 s with a full crew (up to 8 Labourers).",
 	"powder_mill": "Up to 6 Labourers grind the Hall's saltpetre into powder (you start with none). Unlocks Musketeers. Soldiers and wagons nearby refill here.",
@@ -2448,8 +2449,7 @@ const TIPS := {
 	"pouch": "Unlocks the Shot Pouch refit: a musket soldier carries 20 shots instead of 10. Recruits don't come with it.",
 	"charges": "Every Field Cannon and Mortar reloads 20% faster.",
 	"quadrant": "Every Field Cannon and Mortar reaches 1 tile further.",
-	"charge": "Horsemen and Cuirassiers charge: after a gallop the first blow hits double and throws the enemy back.",
-	"keen_sabres": "Horsemen and Cuirassiers: +6 sabre damage against light units (18 to 24).",
+	"charge": "Horsemen and Cuirassiers charge: after a gallop the first blow hits double (2.2 times on light units) and throws the enemy back.",
 }
 
 

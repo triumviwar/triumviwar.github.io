@@ -710,11 +710,6 @@ joint (E/SE/S), wrecks and card icons are the owner's pictures (tools/serpent/im
   Keep the brass rod, the heavy weight and the crescent blade exactly as in the references; no new parts, no motion blur
   lines, no ground, no shadow." Then the same request for the LEFT arm (mirror of the motion on the other arm).
 
-## Keen Sabres research icon (stand-in, 0.38.3, balance-raptor-horseman)
-- `assets/icons/research_keen_sabres.png`: the Cavalry Charge's icon (research_charge) mirrored and tinted steel blue in
-  code (PIL). To redraw: a pair of crossed cavalry sabres being ground on a whetstone, a bright edge glint, the same
-  icon frame and size (64x64) as the other Crown research icons.
-
 ## WIND UP command icon (stand-in, 0.38.18, winder-escort; docs/winder_escort.md)
 - `assets/icons/clockwork/ab_wind_up.png`: a plain copy of the Great Winder's MEND icon (`ab_mend.png`, the brass wind-up
   key), so the two buttons look the same today. To redraw: the brass wind-up key turning in the back of a small Clock
