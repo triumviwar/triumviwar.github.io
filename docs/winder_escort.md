@@ -106,3 +106,15 @@ Other tests: see "Test results" below.
 8. Orders are not saved, so a loaded game's escorting Winder stands (as every other order does today).
 
 ## Test results
+
+Run on this branch (Godot 4.7 headless, `--fixed-fps 30`), failures compared with main (0.38.17) in a second checkout:
+
+- PASS: test_winder_escort, test_winder_walk, test_clockwork_army, _builds_a, _builds_b, _eco, _home, _sounds,
+  _springer_timing, test_cw_ai, _air, _air_ai, _army, _builders_share, _carrier, _couple, _crate_build, _lab, _plate,
+  _raid_leash, _rifleman, _scout_workers, _scrapper, _siding, _storm, _tesla, _tier2, _tier3_ai, _work_car, _gun_rush
+  (its own report; Godot aborts at quit, as on main), test_brass_serpent, test_tutorial (0 failures), test_i18n.
+- Fail on main too (pre-existing, the same checks): test_cw_heavy ("it will not set up too far from the Line"),
+  test_cw_militia ("not sent at a target far from the Line"), test_cw_tier3 (3 online guest checks).
+- Flaky (known in CLAUDE.md): test_clockwork_owls (failed once "first Owl sortie by 8:00", passed on rerun here and on
+  main), test_ai_cw_horse_raid (failed once on the branch, passed on main: a different check each run before this job
+  too; the computers give their Winders no group orders, so this job's code does not run in it).
