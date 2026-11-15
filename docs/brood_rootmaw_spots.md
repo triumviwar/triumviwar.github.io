@@ -188,7 +188,56 @@ turtles' swamp; now home holds 3 + 2 a turtle and the rest must go to new ground
 
 ## 4. The computer games
 
-GAMES
+Hard OPTIMAL against Hard OPTIMAL to 12:00, the parity games with a Brood side against another faction
+(`qa_matches.py --only brood`: Greenhold, Dune Sea, Frostfang, Ashford Crossing, Hollowfen, Cinder Steps; Brood v Crown and
+Brood v Clockwork; round 0 and round 1 swap the sides): 24 games on this branch; the 12 of round 0 also on main (0.38.13)
+for a before. No game crashed and none printed a script error. Primary earned, cumulative; at 12:00 only the games still on
+(a game won before 12:00 drops out). Data in `docs/brood_rootmaw_spots/games/`; tables: `tools/study/brood_spots_report.py`.
+
+**This branch, 24 games:**
+
+| | 5:00 | 8:00 | 10:00 | 12:00 |
+|---|---|---|---|---|
+| Brood v Crown (12 games, Brood W-D-L 1-11-0): Brood earned | 2,808 | 6,864 | 10,611 | 14,179 |
+| Crown earned | 2,913 | 5,415 | 8,075 | 10,283 |
+| **Brood / Crown** | **0.96** | **1.27** | **1.31** | **1.38** |
+| Brood a minute (the 2 minutes before) | 852 | 1,503 | 1,873 | 1,753 |
+| Crown a minute | 886 | 823 | 1,330 | 913 |
+| Brood v Clockwork (12 games, Brood W-D-L 2-7-3): Brood earned | 2,282 | 5,793 | 8,812 | 12,925 |
+| Clockwork earned | 3,566 | 7,266 | 9,978 | 13,370 |
+| **Brood / Clockwork** | **0.64** | **0.80** | **0.88** | **0.97** |
+| Brood a minute | 634 | 1,271 | 1,509 | 1,195 |
+| Clockwork a minute | 839 | 1,315 | 1,356 | 1,072 |
+| Brood Rootmaws (both pairings) | 3.5 | 5.8 | 6.2 | 6.1 |
+
+**Before and after, the same 12 games (round 0):**
+
+| Brood earned | 5:00 | 8:00 | 10:00 | 12:00 (games still on) |
+|---|---|---|---|---|
+| v Crown, this branch / main | 2,673 / 2,771 | 6,635 / 7,191 | 10,271 / 10,902 | 13,465 / 14,720 |
+| Brood / Crown, this branch / main | 0.94 / 0.97 | 1.22 / 1.32 | 1.28 / 1.38 | 1.17 / 1.38 |
+| v Clockwork, this branch / main | 2,314 / 2,318 | 5,457 / 5,888 | 8,109 / 9,542 | 12,770 (3 games) / 12,978 |
+| Brood / Clockwork, this branch / main | 0.65 / 0.65 | 0.75 / 0.82 | 0.81 / 0.93 | 0.96 / 0.99 |
+| W-D-L v Crown / v Clockwork, this branch | 1-5-0 / 1-3-2 | | | |
+| W-D-L v Crown / v Clockwork, main | 1-5-0 / 0-6-0 | | | |
+
+**What it shows.**
+- The same picture as the computers alone: by 8:00 the Brood computer earns 7-8% less than before (9 of the 12 paired
+  games lower), as its 4th and later Rootmaws must go to new ground; at 5:00 it is the same. Single games are noisy
+  (two Brood losses to the Clockwork on this branch, Greenhold and Cinder Steps, ended before 12:00 and pull its
+  Clockwork numbers down); read the 8:00 column and the totals.
+- **Against the Crown** the Brood still out-earns it clearly: 1.27 at 8:00, 1.31 at 10:00, 1.38 at 12:00 (was 1.32-1.38).
+- **Against the Clockwork** it trails early (0.64 at 5:00, its eggs come one at a time) and nearly catches up by 12:00
+  (0.88 at 10:00, 0.97 at 12:00).
+- On the bench (the design) the Brood is 0.87-0.93 of the others from 8:00 on: the computers, not the design, make the
+  Crown the poor side in these games (as the economy-parity study found).
+
+**Recommendation (no numbers changed).** Leave the Rootmaw numbers (8-tile circle, 3,000 food, 3 + 2) as they are for
+now: the count costs the Brood computer 5-8% of its income by 8:00 and none of its design (its bench rose), and it still
+out-earns the Crown computer by 1.3-1.4. If the owner wants the economies about equal per minute (his 2026-11-12 aim), the
+Brood's early minutes are where it differs (0.64-0.73 of the others at 5:00, by its one-egg-at-a-time start), and the
+Crown's gap is its computer's; neither is the Rootmaw's. A job to coach the Brood computer to lay its 4th and 5th
+Rootmaws on new ground sooner (it banks 4,000-5,000 food at 12:00 alone) would win back the 5-8% without a number.
 
 ## 5. Tests
 
