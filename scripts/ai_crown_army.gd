@@ -23,6 +23,9 @@ const FROM := 150.0             # (s) not before this (the opening's first labou
 const SHARE := 0.75             # of the usual enemy army
 const SHARE_SEEN := 0.6         # of what our scout saw lately (when it is more than the table)
 const MIN_LABS := 10            # never with fewer labourers than this (a hall's first Farm's hands)
+const LEAD := 45.0              # (s) the clock looks this far ahead: a soldier trains in 15 s and walks to his post, and the
+                                # enemy's push is at our base before its army stops growing (the batch: it arrives at 6:40-8:20
+                                # with 1,150 against our 980)
 ## The usual army of a Hard OPTIMAL computer against the Crown at each time [s, value] (crown-coach-army's baseline batch,
 ## 0.38.1, 16 games each: the median at the minute)
 const TABLE := {
@@ -32,6 +35,7 @@ const TABLE := {
 
 var ai                          # AICrown
 var off := OS.get_cmdline_user_args().has("crownarmy:off")
+var lead_off := OS.get_cmdline_user_args().has("crownlead:off")    # (the clock without its look ahead: the WIP of 03:45)
 var behind_t := 0.0             # (the report) seconds it was behind
 var _last := -1.0
 var _cache_t := -1.0
@@ -59,7 +63,7 @@ func want() -> float:
 	var tab: Array = TABLE.get(g.faction_of(foe), [])
 	if tab.is_empty():
 		return 0.0
-	var w: float = SHARE * ai._lerp_table(tab, g.clock)
+	var w: float = SHARE * ai._lerp_table(tab, g.clock + (0.0 if lead_off else LEAD))
 	var seen: float = ai.ch.foe_known() if ai.ch != null else 0.0
 	w = maxf(w, SHARE_SEEN * seen)
 	return maxf(0.0, w - 0.5 * float(g.stats[ai.team]["value_killed"]))

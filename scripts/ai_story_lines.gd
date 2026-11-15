@@ -71,6 +71,7 @@ const RULES := [
 	["^'s plan: the rush is over \\((?:\\w+)\\): the economy now", "%s's rush is over: it hands over to its Economy plan, labourers to two halls and a walled natural.", 3, "plan"],
 	["^turns from its natural's gate to the enemy inside its wall \\((\\d+) against (\\d+)\\)", "%s turns from its natural's gate to the enemy inside its wall (%s against %s).", 2, "defend"],
 	# ---- the Crown: the army first (ai-followups, scripts/ai_crown.gd army_lags)
+	["^'s plan: the army on time: (\\d+) of army \\(with what trains\\) against the (\\d+) it wants by now", "%s keeps its army on time (%s with what trains, against the %s it wants by now): soldiers before more labourers.", 2, "army"],
 	["^'s plan: the army first: (\\d+) of army against the (\\d+)", "%s puts its army first (%s against the %s it reckons the enemy has): the labourers and the tech wait.", 2, "army"],
 	# ---- crown-v-clockwork-coach (docs/crown-v-clockwork-coach.md): the Crown against the Clockwork, the Clockwork against the Crown
 	["^'s plan: its wave stays out: only scouts", "%s's wave stays out: only scouts are by its buildings at home.", 1, "army"],

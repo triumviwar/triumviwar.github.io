@@ -1,0 +1,6 @@
+# crown-coach-army (docs/crown-coach-army.md): the AI STORY's sentence for the Crown computer's army clock
+# (scripts/ai_crown_army.gd, scripts/ai_story_lines.gd). The placeholders keep their English order: the first %s is the player.
+
+> %s keeps its army on time (%s with what trains, against the %s it wants by now): soldiers before more labourers.
+pt %s mantém o seu exército em dia (%s com o que está em treino, contra os %s que quer a esta altura): soldados antes de mais trabalhadores.
+es %s mantiene su ejército al día (%s con lo que se entrena, contra los %s que quiere a estas alturas): soldados antes que más peones.
