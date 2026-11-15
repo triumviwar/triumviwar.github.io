@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.29": ["ONLINE: o registro da partida de um espectador diz nas primeiras linhas que foi escrito por um espectador."],
 	"0.38.28": ["Corrigido: dois erros de script ocultos sempre que o menu principal era montado (os dois espaços vazios de botão)."],
 	"0.38.27": ["Só ferramentas de medição (um estudo das taxas de vitória dos computadores): nada muda no jogo."],
 	"0.38.26": ["CAMPANHA: a pintura do briefing do Prólogo (o Governador nos degraus da mansão) perde um segundo mosquete sobrando, em pé nos degraus ao lado da mão de um soldado."],
