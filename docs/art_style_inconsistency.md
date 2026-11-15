@@ -658,14 +658,22 @@ vet_gold.png at their own 15 x 11 pixels): no code art in the game. A CODE-DRAWN
 if those files are missing. The old veterancy colours on the sprites (the Crown's silver / gold hat trim, the Brood's
 amber / obsidian skin) are gone; the Crown's trim mask still draws the hat lace black as every soldier's was.
 
-## The Brass Serpent (code, branch brass-serpent, 2026-11-14; docs/brass_serpent.md has the ChatGPT prompts)
+## The Brass Serpent (the owner's ChatGPT art since 0.38.2, job serpent-art; docs/brass_serpent.md "What is drawn now")
 
-| what | where | how | wanted |
+Head (8 ways), bite (4 frames x 5 ways, mirrored for W/SW/NW), small and big sections (3 views + mirrors), tail, Hydra
+joint (E/SE/S), wrecks and card icons are the owner's pictures (tools/serpent/import_art.py). What is still code or a stand-in:
+
+| What | Where | Drawn how | To make it uniform |
 | --- | --- | --- | --- |
-| Its gears (small and big) | scripts/brass_serpent.gd `_draw_gear` | the gear field's painted ring (GearArt.ring "small" 8 teeth, "big" 10 teeth) shrunk to the gear's radius (9 / 13 px), squashed to 0.62 in height, a code-drawn hub and pin, a code shadow; turning as it crawls, every other gear the other way | painted gear segments with iron links (prompts 9 and 10) |
-| Its head(s) | scripts/brass_serpent.gd `_draw_head` | a brass polygon skull, a jaw that drops on a bite, red eye dots, a team-colour line on the brow: all code | the head in 8 directions and a bite strip (prompts 1 to 8, 11) |
-| A Hydra's heads | scripts/brass_serpent.gd `head_points` | the extra heads drawn beside the first, 17 px out to either side | the yoke joint (prompt 12) |
-| Broken gears and the fallen head | scripts/brass_serpent.gd `draw_wreck` | the same ring dimmed; the head drawn faded | a wreck picture of each |
-| A Winder carrying a gear | scripts/brass_serpent.gd `draw_carry` | the gear drawn over his head | a carry strip for the Winder |
-| Its sprite | Defs.TEMP_ART "brass_serpent" | the Great Winder's sheet stands in for the frame tables only; the sprite is hidden | its own sheets |
-| Card icons | assets/icons/brass_serpent.png, serpent_gear_s.png, serpent_gear_b.png, clockwork/ab_serpent_collect / _grow / _link / _unlink.png | tools/serpent/make_icons.py: the frame and field of ab_mend.png, gears and a head drawn with PIL | painted icons in the Clockwork command icons' style |
+| The sections' side cogs | scripts/brass_serpent.gd `_paint_body` | painted, but still: the pictures don't turn (the 0.38.0 code gears did) | small cog pictures laid over each section, or 2-4 frame turning strips per view |
+| A 1 px crawl ripple | `_items` | each section bobs a pixel in turn while it crawls (code motion over the pictures) | a crawl strip per section view |
+| Sections and tail at in-between angles | `_view` | the nearest of 3 views (and mirrors) turned up to ~22 degrees: turned pixel art | 8 views per piece |
+| Hydra joint facing N / NE / NW | `_paint_body` | the S and SE pictures upside down (the light comes from below there) | joint_n and joint_ne pictures |
+| North bite, frame 3 | tools/serpent/import_art.py | frame 2 pushed up 10 px (ChatGPT's north bites showed the mouth from the front) | a redrawn wide-open north frame |
+| Shadows | `_shadows`, `_paint_wreck` | code ellipses on the ground (as most units) | (fine as is) |
+| A Winder carrying a gear | `_paint` | the small/big section's across picture at 0.75 size over his head | a carry strip for the Winder |
+| Wreck smoke | import_art.py | the painted smoke is cut away with the grey background; no smoke on the wrecks | the game's smoke effect on a new wreck, or a smoke strip |
+| Command icons | assets/icons/clockwork/ab_serpent_collect / _grow / _link / _unlink.png | tools/serpent/make_icons.py: frame of ab_mend.png, gears and a head drawn with PIL | painted icons in the Clockwork command icons' style |
+| Its sprite | Defs.TEMP_ART "brass_serpent" | the Great Winder's sheet stands in for the frame tables only; the sprite is hidden | (not needed: drawn piece by piece) |
+| Fallback | `draw`, `_draw_gear`, `_draw_head` | the 0.38.0 code drawing, only when a picture is missing | |
+

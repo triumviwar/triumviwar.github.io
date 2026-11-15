@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.3", "items": [
+		"THE BRASS SERPENT IS PAINTED: its head, its small and big body sections, its tail, its bite and the Hydra's joint are now real art instead of shapes drawn in code. Its head faces all eight ways and opens its jaws on every bite; each section lies along the body as it curls; a Hydra's heads fan out from a heavy brass joint. Its red enamel takes your side's colour.",
+		"Broken gears and a fallen head lie as dented, smoking wrecks, and the Serpent, the Hydra and the two gears have new card pictures.",
+	]},
 	{"v": "0.38.2", "items": [
 		"The CLOCKWORK LAB is gone from the EDITOR menu and from Settings > EXPERIMENTAL.",
 	]},

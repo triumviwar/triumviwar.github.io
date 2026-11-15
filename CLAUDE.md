@@ -32,8 +32,8 @@
   (wrecks for the Great Winder); Winders repair up to its gears; the Heavy Works builds gears (store of 10): COLLECT GEARS
   or GROW (a Winder carries one out); own units on its body wind up, enemies slowed to 75%; LINK into a Hydra (max 3
   heads, 16 gears a head), UNLINK; OPTIMAL Clockwork computer uses it (switch serpent:off). 17 CLAUDE'S CHOICES for the
-  owner in the doc. Stand-in code art; the owner's ChatGPT art is on branch brass-serpent-art (art/redraws/brass_serpent/),
-  to be wired in (job serpent-art). Sounds: stand-ins (four serpent sounds to make).
+  owner in the doc. ART IN 0.38.3 (job serpent-art: tools/serpent/import_art.py, the owner's two ChatGPT sets in art/redraws/brass_serpent/,
+  pictures docs/shots/brass_serpent/art/; choices 18-21 in the doc: side cogs don't turn, enamel takes the team colour, the N bite's open frame fudged, the joint facing N is S/SE flipped). Sounds: stand-ins (four serpent sounds to make).
 - OVERLAY OPACITY (owner's playtest 2026-11-14 13:18; job overlay-alpha, docs/overlay_alpha.md, tools/test_overlay_alpha.gd,
   pictures docs/shots/overlay_alpha/): the bars, chevrons, band buff marks, stun stars and status marks over units and
   buildings are see-through (Entity.ov_a / ova: Settings.overlay_alpha, default 60%, marks x0.85, a band's "+8%" sqrt of
