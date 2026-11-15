@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.3", "items": [
+		"THE CROWN COMPUTER'S RIDERS HIT AND RUN: its Horsemen no longer stay in a melee. Each picks its prey (workers, guns and gunners, Spitters, the hurt and the ones alone; never Brutes, Clock Soldiers' shields or a big mass), strikes, rides out before the answer lands and comes in again from another side. With the Cavalry Charge drilled they gallop round out of reach until the next blow is a charge (a blow that kills comes first). A badly hurt rider picks only prey that cannot answer.",
+	]},
 	{"v": "0.38.2", "items": [
 		"The CLOCKWORK LAB is gone from the EDITOR menu and from Settings > EXPERIMENTAL.",
 	]},

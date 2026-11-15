@@ -181,9 +181,9 @@ func _run(u: Unit, s: Dictionary) -> void:
 			if (not _wait_charge(u) or waited) and game.clock - float(s["t"]) >= 1.0:
 				if _pick_in(u, s, true):
 					return
-			elif game.clock - u.rb_last >= float(Defs.RIDE_BY["calm"]) - 0.6:
-				var p := _pick(u, s)
-				if p != null and _charge_ready(u, p):
+			else:
+				var p := _pick(u, s, true) if game.clock - u.rb_last >= float(Defs.RIDE_BY["calm"]) - 0.6 else _pick(u, s)
+				if p != null and (_charge_ready(u, p) or _kills(u, p)):
 					_go_in(u, s, p)
 					return
 			if game.clock >= float(s.get("next_p", 0.0)):
@@ -210,7 +210,8 @@ func _pick_in(u: Unit, s: Dictionary, now := false) -> bool:
 	var p := _pick(u, s)
 	if p == null:
 		return false
-	if not now and _wait_charge(u) and not _charge_ready(u, p) and game.clock - u.rb_last < float(Defs.RIDE_BY["calm"]) + float(Defs.CHARGE["run"]) + 3.0:
+	if not now and _wait_charge(u) and not _charge_ready(u, p) and not _kills(u, p) \
+			and game.clock - u.rb_last < float(Defs.RIDE_BY["calm"]) + float(Defs.CHARGE["run"]) + 3.0:
 		return false               # (drilled: no blow without its charge while one can be had soon)
 	_go_in(u, s, p)
 	return true
@@ -352,6 +353,11 @@ func _melee_near(u: Unit) -> bool:
 	return false
 
 
+## One plain sabre blow of `u` kills `p` (a kill now is worth more than a charge later).
+func _kills(u: Unit, p: Unit) -> bool:
+	return p.hp <= float(u.d["damage"]) * float(u.d.get("bonus", {}).get(p.kind, 1.0)) * 0.95 - maxf(0.0, p.armor)
+
+
 ## The next blow on `p` (null: any) will be a charge: calm since the last blow, and the run full by the time it gets there.
 func _charge_ready(u: Unit, p: Unit) -> bool:
 	if game.clock - u.rb_last < float(Defs.RIDE_BY["calm"]):
@@ -363,7 +369,7 @@ func _charge_ready(u: Unit, p: Unit) -> bool:
 # ------------------------------------------------------------------ the prey
 
 ## Its prey: the best enemy man within PICK_R (and the leash), by what a pass on it is worth.
-func _pick(u: Unit, s: Dictionary) -> Unit:
+func _pick(u: Unit, s: Dictionary, charging := false) -> Unit:
 	var best: Unit = null
 	var bs := 1.5
 	var lv := game.level_of(u.position)
@@ -385,8 +391,8 @@ func _pick(u: Unit, s: Dictionary) -> Unit:
 			elif o.is_worker():
 				v *= 0.4
 		var dg := _danger(o)
-		if dg > DANGER_MAX + v:
-			continue
+		if dg > DANGER_MAX + v + (2.0 if charging else 0.0):
+			continue               # (a charged blow throws the prey back and stuns the ones by it: a deeper pass is worth it)
 		if careful and (dg > CAREFUL_DANGER or _gun_on(o)):
 			continue               # (hurt: only what cannot answer)               # (the more a pass is worth, the more guard it is worth riding past)
 		var sc: float = v * 10.0 - dg * 3.0 - o.position.distance_to(u.position) / (25.0 if shot else 40.0)
