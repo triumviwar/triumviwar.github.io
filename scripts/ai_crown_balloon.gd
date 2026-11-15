@@ -439,6 +439,16 @@ func _board_spot() -> Vector2:
 
 ## (crown-coach-balloon) The boarding spot: open ground by the main hall on the side AWAY from the enemy (and its
 ## threats), on the hall's own level. Kept 5 s.
+## (crown-coach-balloon) An attack on the main now (seen): what calls off a party that is loading (the memory of an army
+## near home only keeps one from forming).
+func _home_attacked() -> bool:
+	var home := _home()
+	for thr in ai._threats():
+		if thr.distance_to(home) < QUIET_R * Defs.TILE and army_at(thr, 450.0) >= 100.0:
+			return true
+	return army_at(home, QUIET_R * Defs.TILE * 0.75) >= QUIET_V
+
+
 func _safe_spot() -> Vector2:
 	if _spot != Vector2.INF and game.clock - _spot_t < 5.0:
 		return _spot
@@ -667,7 +677,7 @@ func _party(p: Dictionary) -> void:
 func _load(p: Dictionary) -> void:
 	var b: Unit = p["b"]
 	var spot := _board_spot()
-	if not home_quiet():
+	if _home_attacked():
 		_release(p, "trouble at home: the men stay with the army")
 		return
 	if game.clock - float(p["t0"]) > 100.0:
