@@ -144,30 +144,42 @@ Crown's income (the Clockwork earns 1.6-1.9 times as much by 8:00).
 
 ## Tests
 
-__TESTS__ (IN PROGRESS, session 01SK3ipD1TZFLcrzNhd2HLNc: the 40 Crown and AI tests (test_ai_*, test_crown_*,
-test_cinder_crown) on the final code against 0.38.1, a second sample of 16 games (seeds 3 and 4, before and after), the
-films again on the final code, and the patch notes. The other session: please leave these to it.)
-(Session 01SK3ipGCcrRZsYDmKmTPjgM, 2026-11-15 ~09:00: agreed, stopped here; its batch data and the three variants are in the
-batches above. Its first tests on the final code: test_ai_abandoned_site, test_ai_air_defence, test_ai_army_response and
-test_ai_crown_bank pass; test_ai_brood fails one Brood check ("never more than 900 food banked for 60 s ... longest 240 s",
-the Brood computer's own bank, not the Crown's; CLAUDE.md lists test_ai_brood as flaky); the rest was not run by it.)
+The 42 Crown and AI tests (test_ai_*, test_crown_*, test_cinder_crown) on the final code (0.38.13), against the same tests on
+0.38.1 before any change:
+
+- Pass both: abandoned_site, air_defence, army_response, crown_bank, expand, expand_wall, gg_rule, optimal, placement,
+  r5_hold_spots, round6, round6_stall, scout, scout_defence, scout_threat, wall_vs_rush, worker_safety, crown_ammo,
+  crown_balloon, crown_build_order, crown_farms, crown_gate, crown_ghosts, crown_hold, crown_line, crown_lost_hall,
+  crown_mirror, crown_owner_eco, crown_rider_screen, crown_siege, crown_v_brood; and the new ones of the other jobs
+  (crown_defence, crown_balloon_coach) pass.
+- Fail both, the same checks (known, CLAUDE.md): test_ai_cw_horse_raid (2), test_ai_rush (1), test_ai_rush_followup (14),
+  test_crown_dragoon_raid ([plan]).
+- Failed on 0.38.1, pass now: test_ai_harass [raid], test_ai_scout_sentry (both listed as flaky); test_ai_brood timed out on
+  0.38.1, passes now (one stage-3 timing failure in an earlier run: flaky, CLAUDE.md).
+- Failed once on the final code, pass on a rerun, and fail the same way with `-- crownarmy:off` on the same build:
+  test_cinder_crown ([labs] 21 labourers at 450 s, wants 23; off: [hall] laid at 349 s, wants 330) and test_crown_stall
+  ([foundry] stands at 343 s, wants 330; off: 346 s). test_crown_mirror's "a Musketeer is queued for the raider" (12.0 s)
+  did the same on 0.38.5. Timing checks on the edge, not this change.
 
 ## Claude's choices for the owner
 
-1. **75% of the enemy's usual army** (SHARE). Higher keeps more soldiers early and fewer labourers; the switch
-   `crownarmy:share=` lets a study try 0.9 or 1.0. The table is the Hard OPTIMAL computer's median; against a human who pushes
-   earlier the "what it saw" part (60%) takes over only once it is seen.
-2. **From 2:30** (FROM), never before 10 labourers: the opening's first minutes stay the economy's, as the owner's openings
-   want (no soldiers before the scout's read in OPTIMAL's common opening).
-3. **Not against the Brood** (see above). The Brood's usual army is in the table above if the owner wants it on there too.
-4. **The step's gold**: only a Musketeer per idle Barracks leaves the opening's next step while behind; the step (a hall, the
-   Foundry) is late by seconds, not skipped.
-5. **The Church in a wall slot waits** while behind; other wall-slot buildings (Cottages, Barracks) are as before.
-6. **45 s ahead, till 7:00** (LEAD, UNTIL). The clock is for the first push (it reaches the base at 5:30-8:30); later the
-   plan's own reckoning (army_lags: 60% of the enemy army it reckons, from the second hall) rules. A longer clock bought
-   soldiers with the labourers' gold and lost the late game (the batches above).
-7. **army_lags is not forced by the clock** (`crownarmy:lags` puts it back for a study): it also turns off the "labourers
-   non-stop" rule of the owner's plans, and the economy fell 10% by 10:00.
-8. Not changed (other jobs' areas or numbers): the balloon parties taking Musketeers from home (balloon harass job), the
-   Crown's lower income (the Clockwork earns 1.6-1.9 times as much by 8:00: the economy job), the Foundry idle for want of the
-   Horse Breeder's horses before ~5:30 (the Foundry-first rule), the powder bank against the Brood.
+1. **Keep the clock on, at 60%, till 6:30** (the defaults). It does what was asked (the army is there for the first push)
+   at about 10% of the income by 8:00 on today's build; the results by 15:00 are within the noise. If the owner prefers the
+   economy, `crownarmy:off` (or a lower `crownarmy:share=`) gives it back; the powder fix alone is `crownarmy:noclock`.
+2. **The table is the Hard OPTIMAL Clockwork's median army** (0.38.1); against a human who pushes earlier the "what it saw"
+   part (60%) takes over only once it is seen. It should be measured again if the Clockwork computer changes much.
+3. **From 2:30** (FROM), never before 10 labourers: the opening's first minutes stay the economy's, and OPTIMAL's common
+   opening still has no Mill and no soldiers before the scout's read (the owner's rule); the Mill is brought forward only
+   after the pick, while behind.
+4. **A Musketeer with his bayonet** while the Mill starts (only while behind): allowed by the owner's ammunition rule; he
+   walks to fill up at the Mill or the Barracks when the powder comes (AICrownAmmo's refill errands).
+5. **Not against the Brood** (its own reckoning and job). The Brood's usual army is in the table at the top if the owner wants
+   a Brood row.
+6. **The natural's palisade waits** for an empty Barracks's soldier while behind (it took the gold with no army at 5:00 on the
+   Economy plan); the Church in a wall slot waits too; other wall-slot buildings are as before.
+7. **army_lags is not forced by the clock**, and the clock ends at 6:30: a longer clock lost the late game on both builds.
+8. Not changed (other jobs' areas or numbers): the balloon parties, the defence, the Crown's lower income (the Clockwork
+   earns 1.6-1.9 times as much by 8:00), the Foundry idle for want of the Horse Breeder's horses (the Foundry-first rule).
+9. Two sessions ran this job on the same branch (a scheduled second firing); they merged each other's work, and the second
+   stopped once the first took the tests, the second sample, the films and the notes (its note is kept below the tests in
+   git history only).
