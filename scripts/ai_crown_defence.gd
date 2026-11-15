@@ -167,7 +167,8 @@ func _recall() -> void:
 ## our buildings, nearer them than the wave is: the wave is called home (the post places it; steer keeps it off the
 ## enemy's way) and the two meet the push together. Red Coast 5103: the Crown's wave of 1,450 marched on while a push of
 ## 3,185 came at its halls, and fell man by man between them.
-const RECALL_HOME := 1.0         # the push worth more than this times the army at home ...
+const RECALL_HOME := 1.5         # the push worth more than this times the army at home ...
+const RECALL_WAVE := 0.5         # ... and this share of the wave at least (a raid at home does not call the wave back)
 const RECALL_CONTACT := 420.0    # (px) ... and no armed enemy this near a man of the wave
 var recalls := 0                 # (tests, the coach)
 
@@ -186,6 +187,8 @@ func _recall_wave(coming: float, at: Vector2, home: float) -> void:
 		wc += u.position
 		wv += ai._unit_value(u)
 	wc /= float(wave.size())
+	if coming < wv * RECALL_WAVE:
+		return
 	if _home_d(at) >= _home_d(wc):
 		return                  # (the wave stands between the push and home, or nearer home than it)
 	recalls += 1
@@ -366,32 +369,22 @@ func muster(army: Array, spots: Array) -> bool:
 		if _mustering:
 			_end_muster()
 		return false
-	# the enemy's middle, the hall to muster at, and its far side
+	# the enemy's middle, and where to gather: the far side of a hall (the nearest to the enemy first, then the others) or
+	# where most of the army stands, the first with no armed enemy within SAFE_R of it, nearest the army's men (Red Coast
+	# 5103 10:55: the hall's far side had the push on it already and 18 men were called into it)
 	var c := Vector2.ZERO
 	var nc := 0
 	for sp in spots:
 		c += sp
 		nc += 1
 	c /= float(maxi(1, nc))
-	var hall: Building = null
-	var hd := INF
-	for h in ai._halls():
-		if (h as Building).built and (h as Building).center().distance_to(c) < hd:
-			hd = (h as Building).center().distance_to(c)
-			hall = h
-	if hall == null:
-		return false
-	var T := float(Defs.TILE)
-	var away: Vector2 = (hall.center() - c).normalized()
-	if away == Vector2.ZERO:
-		away = Vector2.UP
-	var mp: Vector2 = hall.center() + away * (MUSTER_BACK * T + 64.0)
-	var mc: Vector2i = game.cell_of(mp)
-	if not game.in_map(mc) or not game.open_cell(mc):
-		mp = hall.center() + away * 80.0
-	if not _mustering or hall != _muster_hall:
+	if not _mustering or not _foes_near(_muster_p, SAFE_R * 0.6).is_empty() and _gathered(home) < 0.5:
+		var mp := _pick_muster(home, c)
+		if mp == Vector2.INF:
+			if _mustering:
+				_end_muster()
+			return false        # (no hall and no army: AI._defend as before)
 		_muster_p = mp          # (fixed while it lasts: a point that follows the enemy's middle walks the army about)
-		_muster_hall = hall
 	if not _mustering:
 		_mustering = true
 		_engaged = false
@@ -416,7 +409,7 @@ func muster(army: Array, spots: Array) -> bool:
 	if game.clock - _muster_said > 30.0:
 		_muster_said = game.clock
 		_say("musters at its hall: the force at its buildings (%d) is more than its army at home (%d) can beat one by one; it gathers out of reach and fights there as one" % [int(foe), int(mine)])
-	if go and not _engaged:
+	if go and not _engaged and got_n >= 2:
 		_engaged = true
 		engages += 1
 		_say("fights as one at its hall: %d gathered (%d of %d soldiers) against %d" % [int(got), got_n, home.size(), int(foe)])
@@ -452,6 +445,64 @@ func muster(army: Array, spots: Array) -> bool:
 		if u.order != "move" or (u.order_point as Vector2).distance_to(_muster_p) > MUSTER_R:
 			u.cmd_move(_muster_p + Vector2(randf_range(-40, 40), randf_range(-40, 40)))
 	return true
+
+
+const SAFE_R := 420.0             # (px) a muster point with an armed enemy this near it is not taken
+
+
+func _gathered(home: Array) -> float:
+	if home.is_empty() or _muster_p == Vector2.INF:
+		return 0.0
+	return float(home.filter(func(u: Unit) -> bool: return u.position.distance_to(_muster_p) < MUSTER_R).size()) / float(home.size())
+
+
+func _pick_muster(home: Array, c: Vector2) -> Vector2:
+	var T := float(Defs.TILE)
+	var cands: Array = []
+	var halls: Array = ai._halls().filter(func(h) -> bool: return (h as Building).built)
+	halls.sort_custom(func(a, b) -> bool: return (a as Building).center().distance_to(c) < (b as Building).center().distance_to(c))
+	for h in halls:
+		var away: Vector2 = ((h as Building).center() - c).normalized()
+		if away == Vector2.ZERO:
+			away = Vector2.UP
+		for k in [MUSTER_BACK * T + 64.0, 80.0]:
+			var p: Vector2 = (h as Building).center() + away * k
+			var pc: Vector2i = game.cell_of(p)
+			if game.in_map(pc) and game.open_cell(pc):
+				cands.append(p)
+				break
+	# where the army stands (its middle man)
+	if not home.is_empty():
+		var mid := Vector2.ZERO
+		for u in home:
+			mid += u.position
+		mid /= float(home.size())
+		var best_u: Unit = home[0]
+		for u in home:
+			if u.position.distance_to(mid) < best_u.position.distance_to(mid):
+				best_u = u
+		cands.append(best_u.position)
+	var best := Vector2.INF
+	var best_s := INF
+	var far := Vector2.INF       # (none out of reach: the one farthest from them)
+	var far_d := -1.0
+	for p in cands:
+		var near := _foes_near(p, SAFE_R)
+		if not near.is_empty():
+			var dmin := INF
+			for o in near:
+				dmin = minf(dmin, o.position.distance_to(p))
+			if dmin > far_d:
+				far_d = dmin
+				far = p
+			continue
+		var s := 0.0
+		for u in home:
+			s += minf(u.position.distance_to(p), 1600.0)
+		if s < best_s:
+			best_s = s
+			best = p
+	return best if best != Vector2.INF else far
 
 
 func _end_muster() -> void:
