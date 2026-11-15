@@ -227,6 +227,10 @@ team key reds). A ChatGPT repaint in these colours would retire each line:
   marked hall spot is 5 x 4 flat cells in warm gold over a light brown wash (2 px gaps between cells), with a dark line and
   a thin gold border round the spot; small gold squares on the minimap. A painted marker (e.g. surveyor's stakes and a
   roped-off plot, a pale flagstone pad) could replace the tiles; flat UI-like tiles can stay.
+- ROOTMAW SPOTS (0.38.14; scripts/rootmaw_spots.gd, docs/brood_rootmaw_spots.md): CODE-DRAWN the same way, a Rootmaw's
+  3 x 2 footprint in gold cells on a Brood player's swamp, a gold ring of its 8-tile circle while placing, a ROOTMAW SPOT
+  pill label and "ROOTMAWS n/3" pills over the Mother and turtles while placing; small gold squares on the minimap. A
+  painted marker (a ring of reeds, a muddy hollow) could replace the tiles.
 
 ## Clock Soldier SHIELD FORWARD (code, 0.14.49; docs/clock_soldier_shield.md)
 

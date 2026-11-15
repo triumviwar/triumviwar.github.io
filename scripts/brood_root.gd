@@ -339,8 +339,8 @@ static var _bt_plans: Array = []      # (side t's units with a plan, in g.units 
 static var _bt_maws: Array = []       # (open Rootmaws of any side, and side t's units with a plan: the Rootmaw loop's)
 static var _bt_swamp: Array = []      # (side t's rooted Mothers and Mound Turtles: swamp_coming's)
 static var _bt_mine: Array = []       # (side t's Mound Turtles and Rootmaws: the computer's spacing checks)
-static var _bt_depth := 0
-static var _bt_n := 0                 # (each new batch: RootmawSpots keeps its count for the batch's length)             # (a batch inside a batch: the outer one's lists stay)
+static var _bt_depth := 0             # (a batch inside a batch: the outer one's lists stay)
+static var _bt_n := 0                 # (each new batch: RootmawSpots keeps its count for the batch's length)
 
 
 static func batch_begin(g: Game, t: int) -> void:
