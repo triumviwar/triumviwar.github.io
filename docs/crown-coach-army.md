@@ -38,27 +38,29 @@ The Crown against them (the same games): v the Clockwork 176 / 360 / 515 / 759 /
 
 ## What changed (scripts/ai_crown_army.gd, AICrownArmy; small hooks in ai_crown.gd and ai_expand_wall.gd)
 
-1. **The army clock.** From 2:30, with 10+ labourers, the Crown's army (with what its Barracks and Foundries train; balloons,
-   wagons and horses do not count) is kept at 75% of the army a Hard computer of the enemy's faction usually has at that
-   minute (AICrownArmy.TABLE, measured above: Clockwork 150 at 4:00, 400 at 5:00, 700 at 6:00, 1,100 at 7:00, 1,600 at
-   8:00, 2,400 at 10:00), or 60% of what it saw lately if that is more, less half what it has killed. While it is behind
-   ("the army on time: ... soldiers before more labourers"):
+1. **The army clock.** From 2:30 to 7:00, with 10+ labourers, the Crown's army (with what its Barracks and Foundries train;
+   balloons, wagons and horses do not count) is kept at 75% of the army a Hard computer of the enemy's faction usually has
+   45 s from now (AICrownArmy.TABLE, measured above: Clockwork 150 at 4:00, 400 at 5:00, 700 at 6:00, 1,100 at 7:00), or
+   60% of what it saw lately if that is more, less half what it has killed. The 45 s look ahead is a Musketeer's training and
+   his walk to his post: the push is at our base before its army stops growing. While it is behind ("the army on time: ...
+   soldiers before more labourers", an AI STORY line in en/pt/es):
    - in the opening a labourer is trained only while every Barracks is busy (AICrown._soldiers_first), the opening's army
      cap does not hold, and the soldiers start at once if the plan's "army" step has not come yet (a Barracks standing);
    - the opening's next step leaves a Musketeer's price for each idle Barracks out of the gold it holds;
    - the natural's wall plan buys no Church for a slot.
-   The clock **looks 45 s ahead** (LEAD: a soldier trains in 15 s and walks to his post, and the push is at our base while
-   its army still grows), counts only once it wants a Musketeer's worth, and **stops at 7:00** (UNTIL): it is for the
-   first push; after it the plan's own army rules (army_lags and the rest) hold, as before.
+   It ends at 7:00 (UNTIL): the clock is for the first push. Two things were tried and taken out again (they stay as study
+   switches): the clock all game long, and the clock also starting AICrown.army_lags ("the army first") from one hall on
+   (`crownarmy:lags`). Both kept the labourers waiting long after the first push (army_lags also stops the halls' "labourers
+   non-stop" rule): about 6% less income at 8:00, and the late game was lost (one 15:00 batch went from 5 losses in 16 to 10
+   with the look ahead and no end; see the batches).
 2. **Powder for the first Musketeers.** A Barracks idle with a Musketeer's gold but not his powder counts as using the powder,
    so the Mill takes its second and third hands (AICrown._mill_feedback). This one works in every matchup.
 3. **Gated by matchup**: the Clockwork and the Crown mirror only. Against the Brood the Crown already reckons the Brood's army
    (army_behind, brood_spend_army: crown-v-brood-coach), and the Brood coaching job works there now; a Crown that kept 75%
    of the Brood's usual army (1,350 at 5:00) would never train another labourer.
 
-Switches: `-- crownarmy:off` (all of it), and for studies `-- crownarmy:share=0.9` (the share), `-- crownarmy:until=900`
-(the clock's end), `-- crownlead:off` (no look ahead), `-- crownarmy:lags` (army_lags also behind the clock, from one hall
-on: tried and dropped, below).
+Switches: `-- crownarmy:off` (all of it); for studies `-- crownarmy:share=0.9` (the share), `crownarmy:until=900` (the
+end), `crownlead:off` (no look ahead), `crownarmy:lags` (army_lags too).
 
 ## The owner's game again (Hollowfen, filmed: tools/shot_ai_match.gd, pictures in docs/shots/crown_coach_army/)
 
