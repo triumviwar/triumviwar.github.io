@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.27", "items": [
+		"Measuring tools only (a win-rate study of the computers): nothing in the game changes.",
+	]},
 	{"v": "0.38.26", "items": [
 		"CAMPAIGN: the Prologue's briefing painting (the Governor on the manor steps) loses a stray second musket standing on the steps beside a soldier's hand.",
 	]},
