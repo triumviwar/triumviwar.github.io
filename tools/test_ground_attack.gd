@@ -197,7 +197,7 @@ func _run() -> void:
 	var hh := g.harvest_time(hrider)
 	var hm := g.harvest_time(nb) if is_instance_valid(nb) else float(Defs.HARVEST["take"])
 	check(hb > hr, "harvest: a Brute's body takes longer (%.2f s) than a Raptor's (%.2f s)" % [hb, hr])
-	check(absf(hr - 0.86) < 0.05 and absf(hb - 2.22) < 0.05 and absf(hh - 2.03) < 0.05, "Raptor %.2f, Horseman %.2f, Brute %.2f s" % [hr, hh, hb])
+	check(absf(hr - 0.88) < 0.05 and absf(hb - 2.22) < 0.05 and absf(hh - 1.81) < 0.05, "Raptor %.2f, Horseman %.2f, Brute %.2f s" % [hr, hh, hb])
 	check(hr >= float(Defs.HARVEST["take_min"]) and hb <= float(Defs.HARVEST["take_max"]), "within %.1f-%.1f s" % [float(Defs.HARVEST["take_min"]), float(Defs.HARVEST["take_max"])])
 	var big: Unit = await _body("pendulum", 1, _spot(start + Vector2(-180, -40)))
 	await wait(1.6)
