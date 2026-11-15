@@ -34,12 +34,29 @@ const RIDERS_V_CLOCK := 0.15     # (crown-ai-v2) ... and of greedy Clockwork rea
 ## (crown-ai-v2) a greedy Clockwork otherwise: the Timing attack won or led 3 of 4 plan games against Hard Clockwork OPTIMAL,
 ## the Economy race and Balanced 1 of 4, the balloons 1 of 2 (docs/crown_ai_v2.md)
 const GREEDY_CLOCK := {"timing": 3.0, "economy": 1.0, "balloon": 1.0}
+## (crown-coach-balloon, docs/crown-coach-balloon.md) the coached Balloon harass against the Clockwork, 12 games each on the
+## same maps and seeds: end score 0.40 (Timing 0.36, Economy 0.43, the uncoached balloons 0.34), the fewest units lost; no
+## plan won. Its share against the Clockwork goes from 1 in 5 to 2 in 6 (a third), on both reads; `blshare:off` keeps 1.
+const BALLOON_V_CLOCK := 2.0
+static var BALLOON_SHARE_OFF := OS.get_cmdline_user_args().has("blshare:off")
+
+
+## The weights against the Clockwork with the balloon's coached share.
+static func clock_w(w: Dictionary) -> Dictionary:
+	if BALLOON_SHARE_OFF or not w.has("balloon"):
+		return w
+	var out := w.duplicate()
+	out["balloon"] = BALLOON_V_CLOCK
+	return out
 ## (study switch, tools/measure_crown_opening.gd: `-- greedybrood:economy` (or siege, or another plan) makes the Crown
 ## answer a greedy Brood with that plan instead of the riders, to measure them; docs/crown_optimal_opening.md)
 static var GREEDY_BROOD_TRY := _arg("greedybrood:")
 ## (econ-coach-crown, study switch: `-- greedyclock:economy` answers a greedy Clockwork with that plan, to measure the picks'
 ## economies against each other; docs/econ-coach-crown.md)
 static var GREEDY_CLOCK_TRY := _arg("greedyclock:")
+## (crown-coach-balloon, study switch: `-- normalclock:balloon` makes the Crown's pick on a NORMAL read of the Clockwork that
+## plan, to measure the plans against each other in that matchup; docs/crown-coach-balloon.md)
+static var NORMAL_CLOCK_TRY := _arg("normalclock:")
 
 
 static func _arg(pre: String) -> String:
@@ -163,7 +180,11 @@ func choose(read: String) -> Array:
 				return ["economy", "an economic race"]       # (econ-coach-crown: the lean was no read; see _lean_only)
 			if st != "opening" or not picks.is_empty():
 				return []        # (a normal read later keeps what it plays: the dice are thrown once, no flip-flop)
+			if fac == "crown" and f == "clockwork" and NORMAL_CLOCK_TRY != "":
+				return [NORMAL_CLOCK_TRY, _normal_why(NORMAL_CLOCK_TRY)]     # (study switch, crown-coach-balloon)
 			var w: Dictionary = (NORMAL.get(fac, {}) as Dictionary).get(f, {"balanced": 1.0})
+			if fac == "crown" and f == "clockwork":
+				w = clock_w(w)
 			var k := _weighted(w)
 			return [k, _normal_why(k)]
 	return []
@@ -219,7 +240,7 @@ func _punish(f: String, t: float) -> Array:
 				# (coached: the one-hall Timing attack lost the race to a Clockwork economy, 9,500 to 16,600 earned by 12:00
 				# on Highmoor. crown-ai-v2: Balanced's waves, picked here in 24 of 38 QA games, won or led 2 of 33; in the plan
 				# games against Hard Clockwork OPTIMAL on four maps the Timing attack won or led 3 of 4: GREEDY_CLOCK)
-				var k := _weighted(GREEDY_CLOCK)
+				var k := _weighted(clock_w(GREEDY_CLOCK))
 				return [k, "out-expand it" if k == "economy" else _normal_why(k)]
 			if f == "crown" and _mirror_keep():
 				return []            # (crown-v-crown-coach: the Timing attack keeps its timing)

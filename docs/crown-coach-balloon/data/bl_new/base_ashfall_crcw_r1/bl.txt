@@ -1,0 +1,65 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:28] P1 Crown scouted: NORMAL [a standard opening] (1 halls, 2 economy, 0 military buildings, 0 supply of army): OPTIMAL picks its build from this
+[01:28] P1 Crown's plan: Balloon harass, a build order of 11 steps from here (scripts/ai_crown.gd)
+[01:28] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Balloon harass (raids on its workers)
+[02:43] P1 Crown scouted: GREEDY [no army and no production at its base] (its base seen (85%) at 2:43: no army, no production building; 2 economy buildings, 6 workers, 0 wall pieces): OPTIMAL picks its build from this
+[02:43] P1 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Balloon harass (raids on its workers)
+[03:40] P1 Crown's plan: the Foundry rigs a balloon (1 of 1)
+[05:53] P1 Crown's plan: the Foundry rigs a balloon (2 of 2)
+[05:53] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[05:55] P1 Crown's plan: milestone: Horse Breeder 1 (23 labourers, 2 halls, army 6 supply)
+[06:06] P1 Crown's plan: the army first: 365 of army against the 609 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[06:06] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (365 against the 609 it reckons)
+[06:08] P1 Crown's plan: party 1 forms: a balloon and 3 Musketeers
+[06:19] P1 Crown's plan: party 1 flies to their start (107 tiles, round the anti-air)
+[06:39] P1 Crown's plan: party 1 hovers over the attack at home: the basket fires down
+[06:40] P1 Crown scouted: NORMAL [a standard opening] (1 halls, 2 economy, 1 military buildings, 4 supply of army): OPTIMAL picks its build from this
+[06:40] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Balloon harass (what it plays already answers it)
+[06:44] P1 Crown's plan: party 1 flies to their start (85 tiles)
+[06:44] P1 Crown's plan: the first kill of the balloon harass: Clock Soldier
+[07:13] P1 Crown's plan: milestone: Barracks 3 (30 labourers, 2 halls, army 13 supply)
+[07:27] P1 Crown's plan: milestone: Armoury 1 (32 labourers, 2 halls, army 15 supply)
+[07:36] P1 Crown's plan: party 1 turns back: the balloon was hit on the way
+[08:00] P1 Crown's plan: party 2 forms: a balloon and 4 Musketeers
+[08:07] P1 Crown's plan: party 2 flies to the Mainspring (87 tiles, round the anti-air)
+[08:47] P1 Crown's plan: trains a Drummer for its Marching Band (10 soldiers)
+[08:56] P1 Crown's plan: trains a Fifer for its Marching Band (10 soldiers)
+[09:05] P1 Crown's plan: party 1 hovers over the attack at home: the basket fires down
+[09:09] P1 Crown's plan: party 1 flies to the Cog Press (81 tiles)
+[09:10] P1 Crown's plan: party 2 hovers over the Mainspring: the basket fires
+[09:11] P1 Crown's plan: the first strike: party 2 over the Mainspring
+[09:32] P1 Crown's plan: trains a Piper for its Marching Band (12 soldiers)
+[09:34] P1 Crown's plan: party 1 backs off: anti-air on the way (200 of it)
+[09:43] P1 Crown's plan: party 1 flies to the Cog Press (56 tiles, round the anti-air)
+[09:44] P1 Crown's plan: party 1 backs off: anti-air on the way (225 of it)
+[09:51] P1 Crown's plan: party 1 flies to the Clocktower (61 tiles)
+[09:59] P1 Crown's plan: the Foundry rigs a balloon (3 of 3)
+[10:15] P1 Crown's plan: the wave waits: 1010 of army against the 2770 it knows (it wants 1.1 times)
+[10:25] P1 Crown's plan: party 3 forms: a balloon and 4 Musketeers
+[10:28] P1 Crown's plan: party 1 hovers over the Clocktower: the basket fires
+[10:32] P1 Crown's plan: the army first: 1805 of army against the 3010 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[10:32] P1 Crown's plan: milestone Foundry waits: the army is far behind the enemy's (1805 against the 3010 it reckons)
+[10:32] P1 Crown's plan: party 2: its balloon is down (by a clock_soldier, in its home)
+[10:33] P1 Crown's plan: party 3 is over (trouble at home: the men stay with the army)
+[10:33] P1 Crown scouted: NORMAL [a standard opening] (4 halls, 8 economy, 4 military buildings, 39 supply of army): OPTIMAL picks its build from this
+[10:33] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Balloon harass (what it plays already answers it)
+[10:58] P1 Crown's plan: milestone: Foundry 2 (46 labourers, 4 halls, army 27 supply)
+[11:43] P1 Crown's plan: its wave stays out: only scouts by its buildings at home (the wave is worth 1419)
+[12:42] P1 Crown's plan: party 1 flies to the Mainspring (84 tiles, round the anti-air)
+[13:12] P1 Crown's plan: party 4 forms: a balloon and 3 Musketeers
+[13:23] P1 Crown's plan: the army first: 1060 of army against the 1980 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[13:34] P1 Crown's plan: party 4 flies to the Clocktower (87 tiles)
+[13:38] P1 Crown's plan: party 1 hovers over the Mainspring: the basket fires
+[13:45] P1 Crown's plan: trains a Drummer for its Marching Band (10 soldiers)
+[13:45] P1 Crown's plan: trains a Fifer for its Marching Band (10 soldiers)
+[13:46] P1 Crown's plan: trains a Piper for its Marching Band (10 soldiers)
+[13:53] P1 Crown scouted: DEFENSIVE [turrets or rooted defenders] (2 static defences, 0 wall pieces, 4 halls, 10 economy, 5 military buildings, 36 supply of army): OPTIMAL picks its build from this
+[13:53] P1 Crown's plan: Siege push, a build order of 0 steps from here (scripts/ai_crown.gd)
+[13:53] P1 Crown's plan: optimal: reads DEFENSIVE [turrets or rooted defenders]: picks Siege push (a siege to break its defences)
+[14:13] P1 Crown's plan: party 1 pulls back home (the balloon is under fire)
+[14:21] P1 Crown's plan: party 1: its balloon is down (by a springer, in its home)
+[14:23] P1 Crown's plan: the army first: 2135 of army against the 4030 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[14:29] P1 Crown's plan: party 4 backs off: too much anti-air and an army by the Clocktower (0 of it)
+[14:37] P1 Crown's plan: party 4 flies to the Cog Press (24 tiles)
+[14:46] P1 Crown's plan: party 4 backs off: anti-air on the way (200 of it)
+[14:52] P1 Crown's plan: party 4 pulls back home (the balloon is under fire)

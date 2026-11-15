@@ -78,6 +78,36 @@ const BAD_FOR := 150.0
 const EVADE_T := 7.0             # (s) a party flies away from anti-air this long (or till clear), then picks again
 const DEFEND_MIN := 180.0        # an attack at home worth this much (seen) is helped from the air
 
+## THE PARTY WAITS FOR ITS MEN (crown-coach-balloon, docs/crown-coach-balloon.md; the owner's Hollowfen game 2026-11-15:
+## "Crown made a balloon but didn't load musketeers on it. Sent the balloon out without anyone, and then, scouted an attack
+## from clockwork, sent musketeers on move command to die to the attack"). What was wrong: an empty balloon floated out
+## 60-80 tiles toward the enemy to look (_watch); a party formed while it was out there, the men were ordered aboard
+## after 20 s wherever the balloon was (they walked out toward it, into the enemy's push), and after 40 s the party ended
+## "too few aboard" and the balloon floated out again alone. Now (switch `blfix:off` plays as before):
+##  - an empty balloon WAITS AT HOME over its boarding spot (the side of the hall away from the enemy); never out alone;
+##  - a party forms only while home is quiet (no armed enemy at our buildings, none seen near home lately) and the
+##    balloon is home; the men walk to the spot on ATTACK-MOVE and board only once the balloon is over it;
+##  - trouble at home while it loads calls the party off: the men stay with the army, the balloon stays home;
+##  - it never leaves with fewer than PARTY_MIN - 1 aboard (and none left walking after it);
+##  - on the way, a balloon that is hit (HIT_K of its health since it left) or under HURT turns back;
+##  - the enemy's army is REMEMBERED where it was seen (ARMY_MEM s): targets near it rate down (strike where it is not,
+##    e.g. while it is out pushing), and no drop beside it;
+##  - the Clock Aviary is feared like anti-air (it makes the Swifts).
+var fix_on := not OS.get_cmdline_user_args().has("blfix:off")
+const ARMY_MEM := 50.0           # (s) an enemy soldier seen this long ago is still feared where it was
+const QUIET_R := 20.0            # (tiles) an enemy army (seen lately) this near the MAIN hall keeps the party at home (one at
+                                 # the natural does not: its own base is empty then, the best time to raid; the main's ramp holds)
+const QUIET_V := 150.0           # ... worth this much
+const LOAD_MAX := 45.0           # (s) the men boarding at most once the balloon is over the spot
+const HIT_K := 0.2               # a balloon that has lost this share of its health since it left turns back
+const AVIARY_R := 10.0           # (tiles) the Clock Aviary feared this far (its Swifts)
+var army_seen := {}              # enemy soldier -> [position, clock, value]
+var _quiet_since := 0.0
+const QUIET_FOR := 20.0          # (s) home quiet this long before a party forms (no forming and calling off every few seconds)
+const DEF_GAP := 25.0            # (s) after a party leaves a defence it does not take one up again for this long
+var _spot := Vector2.INF
+var _spot_t := -99.0
+
 
 func _init(a) -> void:
 	ai = a
@@ -169,6 +199,8 @@ func _aa_of(o) -> float:
 			return 0.0
 		if b.d.get("anti_air", false):
 			return maxf(float(b.d.get("range", 0.0)), 8.0 * Defs.TILE)
+		if fix_on and b.kind == "cuckoo_house":
+			return AVIARY_R * Defs.TILE        # (crown-coach-balloon: its Swifts come out of it)
 	return 0.0
 
 
@@ -189,6 +221,8 @@ func _look() -> void:
 			aa[u] = [u.position, game.clock, float(Game.unit_value(u)), r]
 		if u.is_worker():
 			prey_seen[u] = [u.position, game.clock]
+		elif u.has_attack() and not u.d.get("air_only", false) and not AIHarass.is_static(u):
+			army_seen[u] = [u.position, game.clock, float(Game.unit_value(u))]
 		elif BroodNew.is_nb(u.kind) and (u.kind == BroodNew.MAW or u.kind == BroodNew.QUEEN):
 			econ[u] = [u.position, game.clock, u.kind]
 	for b in game.buildings:
@@ -213,6 +247,9 @@ func _look() -> void:
 	for k in prey_seen.keys():
 		if not is_instance_valid(k) or k.dead or game.clock - float(prey_seen[k][1]) > 60.0:
 			prey_seen.erase(k)
+	for k in army_seen.keys():
+		if not is_instance_valid(k) or k.dead or game.clock - float(army_seen[k][1]) > ARMY_MEM:
+			army_seen.erase(k)
 
 
 ## Anti-air near a point: the value of what could hit a balloon there (seen lately).
@@ -244,6 +281,31 @@ func army_at(p: Vector2, r := 420.0) -> float:
 				and game.side_sees(team, u.position) and not AIHarass.is_static(u):
 			v += float(Game.unit_value(u))
 	return v
+
+
+## (crown-coach-balloon) The enemy army near a point as last seen (ARMY_MEM s): the ones in sight where they are, the
+## others where they were seen.
+func army_mem(p: Vector2, r := 420.0) -> float:
+	if not fix_on:
+		return army_at(p, r)
+	var v := 0.0
+	for k in army_seen:
+		var e: Array = army_seen[k]
+		var pos: Vector2 = k.position if (is_instance_valid(k) and game.side_sees(team, k.position)) else e[0]
+		if pos.distance_to(p) < r:
+			v += float(e[2])
+	return maxf(v, army_at(p, r))
+
+
+## (crown-coach-balloon) Is home quiet enough to send men away? No armed enemy at our buildings, none seen near home lately.
+func home_quiet() -> bool:
+	if not fix_on:
+		return true
+	var home := _home()
+	for thr in ai._threats():
+		if thr.distance_to(home) < QUIET_R * Defs.TILE and army_at(thr, 450.0) >= 100.0:
+			return false
+	return army_mem(home, QUIET_R * Defs.TILE) < QUIET_V
 
 
 func _party_value(p: Dictionary) -> float:
@@ -307,7 +369,7 @@ func _pick_target(party: Dictionary) -> Vector2:
 		s -= aav / maxf(val, 1.0) * 60.0
 		if aav >= val * FLEE_K:
 			s -= 80.0               # (too much anti-air to hover there: only a drop would do)
-		s -= army_at(p, 500.0) / maxf(val, 1.0) * 25.0
+		s -= army_mem(p, 500.0) / maxf(val, 1.0) * 25.0
 		for o in parties:
 			if o != party and o["at"] != Vector2.INF and (o["at"] as Vector2).distance_to(p) < SPOT_GAP:
 				s -= 60.0 if (o["at"] as Vector2).distance_to(p) < 200.0 else 25.0     # (another party is there)
@@ -362,6 +424,8 @@ func _home() -> Vector2:
 
 ## A spot for boarding: open ground by the hall, on the side away from the ramp... the hall's own side is good enough.
 func _board_spot() -> Vector2:
+	if fix_on:
+		return _safe_spot()
 	var home := _home()
 	var reg := game.region_of(game.cell_of(home + Vector2(0, 90)))
 	for r in [100.0, 140.0, 180.0, 230.0, 290.0]:
@@ -371,6 +435,45 @@ func _board_spot() -> Vector2:
 			if game._clear_at(p, 16.0, team) and game.passable(c, team) and (reg < 0 or game.region_of(c) == reg):
 				return p
 	return home + Vector2(0, 110)
+
+
+## (crown-coach-balloon) The boarding spot: open ground by the main hall on the side AWAY from the enemy (and its
+## threats), on the hall's own level. Kept 5 s.
+## (crown-coach-balloon) An attack on the main now (seen): what calls off a party that is loading (the memory of an army
+## near home only keeps one from forming).
+func _home_attacked() -> bool:
+	var home := _home()
+	for thr in ai._threats():
+		if thr.distance_to(home) < QUIET_R * Defs.TILE and army_at(thr, 450.0) >= 100.0:
+			return true
+	return army_at(home, QUIET_R * Defs.TILE * 0.75) >= QUIET_V
+
+
+func _safe_spot() -> Vector2:
+	if _spot != Vector2.INF and game.clock - _spot_t < 5.0:
+		return _spot
+	var home := _home()
+	var foe := _foe()
+	var away: Vector2 = Vector2.ZERO
+	if foe >= 0:
+		away = (home - (Vector2(game.starts[foe]) + Vector2(2.5, 2.0)) * Defs.TILE).normalized()
+	var reg := game.region_of(game.cell_of(home + Vector2(0, 90)))
+	var best := home + Vector2(0, 110)
+	var bv := -INF
+	for r in [110.0, 160.0, 220.0]:
+		for k in 16:
+			var dir := Vector2.RIGHT.rotated(TAU * k / 16.0)
+			var p: Vector2 = home + dir * r
+			var c := game.cell_of(p)
+			if not (game._clear_at(p, 16.0, team) and game.passable(c, team) and (reg < 0 or game.region_of(c) == reg)):
+				continue
+			var v: float = dir.dot(away) * 100.0 - r * 0.1 - army_mem(p, 500.0) * 0.2
+			if v > bv:
+				bv = v
+				best = p
+	_spot = best
+	_spot_t = game.clock
+	return best
 
 
 func _free_men() -> Array:
@@ -394,10 +497,41 @@ func _big_threat(thr: Vector2) -> bool:
 	return thr != Vector2.INF and army_at(thr, 450.0) > maxf(float(ai.ch.home_value()), DEFEND_MIN)
 
 
+var _trace_t := 0.0
+static var TRACE := OS.get_cmdline_user_args().has("bltrace:1")      # (crown-coach-balloon: a line every 3 s per balloon)
+
+
+var _sum_t := 0.0
+
+
+func _trace() -> void:
+	if not TRACE or game.clock - _trace_t < 3.0:
+		return
+	_trace_t = game.clock
+	if game.clock - _sum_t >= 60.0:
+		_sum_t = game.clock
+		print("BLSUM %d %s | parties %d" % [int(game.clock), summary(), _next_id - 1])
+	for b in balloons():
+		var ph := "-"
+		var men := 0
+		for p in parties:
+			if p["b"] == b:
+				ph = String(p["phase"])
+				men = (p["men"] as Array).size()
+		print("BLTRACE %d b%d %s phase=%s men=%d aboard=%d at=%s order=%s hp=%d net=%s home=%d thr=%s" % [int(game.clock), b.get_instance_id() % 1000,
+			"scout" if b == _scout_b else "", ph, men, (b.passengers as Array).size(), str(Vector2i(b.position / Defs.TILE)), b.order,
+			int(b.hp), str(snappedf(b.net_t, 0.1)), int(b.position.distance_to(_home()) / Defs.TILE), str(not home_quiet())])
+
+
 func tick() -> void:
 	if ai.difficulty < 1 or ai.peaceful:
 		return
+	_trace()
 	_look()
+	if fix_on and not home_quiet():
+		_quiet_since = game.clock
+	if fix_on:
+		_mend()
 	_count_kills()
 	if not ai.bo_owns():
 		produce()           # (in the opening its "balloons" steps rig them, their gold set aside)
@@ -406,11 +540,11 @@ func tick() -> void:
 	for b in balloons():
 		if has(b) and b != _scout_b:
 			continue
-		if b.hp < b.max_hp * HURT:
+		if b.hp < b.max_hp * (GO_HP if fix_on else HURT):
 			_rest(b)
 			continue
 		var men := _free_men()
-		if men.size() < PARTY_MIN or game.clock < FIRST_AT or ai.party_wait():     # (crown-coach-defence: not while a push comes)
+		if men.size() < PARTY_MIN or game.clock < FIRST_AT or ai.party_wait() or (fix_on and (game.clock - _quiet_since < QUIET_FOR or b.position.distance_to(_board_spot()) > 12.0 * Defs.TILE)):     # (crown-coach-defence: not while a push comes)
 			_watch(b)
 			continue
 		if b == _scout_b:
@@ -423,7 +557,7 @@ func tick() -> void:
 		var spot := _board_spot()
 		b.cmd_move(spot)
 		for m in men:
-			m.cmd_move(spot + Vector2(randf_range(-30, 30), randf_range(-30, 30)))
+			m.cmd_move(spot + Vector2(randf_range(-30, 30), randf_range(-30, 30)), fix_on)     # (attack-move: they fight on the way)
 		say("party %d forms: a balloon and %d Musketeers" % [p["id"], men.size()])
 	for p in parties:
 		_party(p)
@@ -440,14 +574,13 @@ func _alive(p: Dictionary) -> bool:
 		return false)
 	if not is_instance_valid(b) or b.dead:
 		lost_balloons += 1
-		say("party %d: its balloon is down" % p["id"])
+		say("party %d: its balloon is down%s" % [p["id"], (" (by a %s, in its %s)" % [p.get("by", "?"), p["phase"]]) if fix_on else ""])
 		for m in p["men"]:
 			if is_instance_valid(m) and not m.dead and not m.off_field:
 				m.cmd_move(_home())
 		return false
 	if (p["men"] as Array).is_empty() and p["phase"] != "home":
-		_phase(p, "home")
-		b.cmd_move(_home())
+		_home_flight(p)
 	return true
 
 
@@ -475,16 +608,34 @@ func _shots(p: Dictionary) -> float:
 func _party(p: Dictionary) -> void:
 	var b: Unit = p["b"]
 	var t := game.clock - float(p["since"])
+	if b.last_hit_by != "":
+		p["by"] = b.last_hit_by
+	if fix_on and _shaken(b) and p["phase"] in ["strike", "drop", "ground", "evade"]:
+		bad.append([b.position, game.clock])
+		if p["phase"] == "ground" or (p["phase"] == "drop" and not _on_ground(p).is_empty() and b.order != "unload"):
+			_phase(p, "lift")       # (men on the ground are lifted out, never left behind: a drop under fire left 4 once)
+			b.cmd_move(_lift_spot(p))
+			say("party %d lifts its men out (the balloon is under fire)" % p["id"])
+			return
+		if p["phase"] == "drop" and b.order == "unload" and not _aboard(p).is_empty() and (p["men"] as Array).size() > _aboard(p).size():
+			pass        # (half of them down already: let the rest off)
+		else:
+			_home_flight(p)
+			say("party %d pulls back home (the balloon is under fire)" % p["id"])
+			return
 	# home under attack: a loaded party near home fires down on the attackers from behind our line
-	if p["phase"] in ["fly", "home", "load", "strike", "evade"] and not _aboard(p).is_empty():
+	if p["phase"] in (["fly", "home", "strike", "evade"] if fix_on else ["fly", "home", "load", "strike", "evade"]) and not _aboard(p).is_empty():
 		var thr: Vector2 = ai._threat()
 		if thr != Vector2.INF and (b.position.distance_to(_home()) < DEFEND_R * Defs.TILE or _big_threat(thr)) and aa_at(thr) < _party_value(p) * FLEE_K \
-				and army_at(thr, 450.0) >= DEFEND_MIN:
+				and army_at(thr, 450.0) >= DEFEND_MIN and _defend_ok(p, thr):
 			_phase(p, "defend")
 			p["at"] = thr
 			say("party %d hovers over the attack at home: the basket fires down" % p["id"])
 	match String(p["phase"]):
 		"load":
+			if fix_on:
+				_load(p)
+				return
 			var walking: Array = (p["men"] as Array).filter(func(u: Unit) -> bool: return u.aboard == null)
 			var spot := _board_spot()
 			if (b.position.distance_to(spot) < 60.0 and (b.order == "idle" or b.velocity.length() < 10.0)) or t > 20.0:
@@ -521,21 +672,57 @@ func _party(p: Dictionary) -> void:
 			_go_home(p)
 
 
+## (crown-coach-balloon) Loading: the balloon over the boarding spot, the men walking to it on attack-move, boarding only
+## once it is there; trouble at home calls it off; it goes with PARTY_MIN - 1 aboard at least, never with men walking after it.
+func _load(p: Dictionary) -> void:
+	var b: Unit = p["b"]
+	var spot := _board_spot()
+	if _home_attacked():
+		_release(p, "trouble at home: the men stay with the army")
+		return
+	if game.clock - float(p["t0"]) > 100.0:
+		_release(p, "the balloon could not reach its boarding spot")
+		return
+	var walking: Array = (p["men"] as Array).filter(func(u: Unit) -> bool: return u.aboard == null)
+	var over := b.position.distance_to(spot) < 60.0 and (b.order == "idle" or b.velocity.length() < 10.0)
+	if not over:
+		if b.order != "move" or (b.order_point as Vector2).distance_to(spot) > 30.0:
+			b.cmd_move(spot)
+		p["since"] = game.clock          # (the boarding clock starts once it is over the spot)
+	for m in walking:
+		if over and m.position.distance_to(b.position) < 14.0 * Defs.TILE:
+			if m.order != "board":
+				game.load_order([m], [b])
+		elif m.order not in ["move", "amove"] or (m.order_point as Vector2).distance_to(spot) > 90.0:
+			if m.target == null:
+				m.cmd_move(spot, true)
+	var t := game.clock - float(p["since"])
+	if walking.is_empty() or (over and t > LOAD_MAX):
+		var ab := _aboard(p)
+		for m in walking:
+			if is_instance_valid(m):
+				m.cmd_stop()
+		p["men"] = ab
+		if ab.size() < maxi(2, PARTY_MIN - 1):
+			_release(p, "too few could board")
+			return
+		_go(p)
+
+
 ## Off to the next target (or home when the basket is low or the balloon hurt).
 func _go(p: Dictionary) -> void:
 	var b: Unit = p["b"]
-	if b.hp < b.max_hp * HURT or _shots(p) < LOW_SHOTS:
-		_phase(p, "home")
-		b.cmd_move(_home())
+	if b.hp < b.max_hp * (GO_HP if fix_on else HURT) or _shots(p) < LOW_SHOTS:
+		_home_flight(p)
 		return
 	var at := _pick_target(p)
 	if at == Vector2.INF:
-		_phase(p, "home")
-		b.cmd_move(_home())
+		_home_flight(p)
 		return
 	p["at"] = at
 	p["struck"] = false
 	p["wp"] = _route(b.position, at)
+	p["hp0"] = b.hp
 	_phase(p, "fly")
 	b.cmd_move(p["wp"] if p["wp"] != Vector2.INF else _approach(p, at))
 	say("party %d flies to %s (%d tiles%s)" % [p["id"], _what_at(at), int(b.position.distance_to(at) / Defs.TILE), ", round the anti-air" if p["wp"] != Vector2.INF else ""])
@@ -570,7 +757,18 @@ func _approach(p: Dictionary, at: Vector2) -> Vector2:
 func _danger(p: Dictionary) -> bool:
 	var b: Unit = p["b"]
 	var v := aa_at(b.position, 40.0)
-	return v > _party_value(p) * FLEE_K * (1.0 if not _aboard(p).is_empty() else 0.3)
+	return v > _party_value(p) * (FLEE_K_FIX if fix_on else FLEE_K) * (1.0 if not _aboard(p).is_empty() else 0.3)
+
+
+## (crown-coach-balloon) Under fire and hurt: a balloon that has lost SHAKEN of its health and is being hit now leaves
+## (0.45 was too late: at 46 px a second a hurt balloon died on the way home three times in four).
+const SHAKEN := 0.7
+const GO_HP := 0.6               # (crown-coach-balloon) under this share of its health a balloon does not set out again
+const FLEE_K_FIX := 0.6
+
+
+func _shaken(b: Unit) -> bool:
+	return b.hp < b.max_hp * SHAKEN and game.clock - b.hit_clock < 3.0
 
 
 func _fly(p: Dictionary) -> void:
@@ -578,6 +776,11 @@ func _fly(p: Dictionary) -> void:
 	var at: Vector2 = p["at"]
 	if _danger(p):
 		_evade(p, "anti-air on the way")
+		return
+	if fix_on and (b.hp < b.max_hp * HURT or b.hp < float(p.get("hp0", b.max_hp)) - b.max_hp * HIT_K):
+		bad.append([b.position, game.clock])
+		_home_flight(p)
+		say("party %d turns back: the balloon was hit on the way" % p["id"])
 		return
 	if p["wp"] != Vector2.INF:
 		if b.position.distance_to(p["wp"]) < 80.0:
@@ -591,7 +794,7 @@ func _fly(p: Dictionary) -> void:
 		used.append([at, game.clock])
 		p["prey_t"] = game.clock
 		var aa_near := aa_at(at)
-		if aa_near > 0.0 and army_at(at, 520.0) < _party_value(p) * 0.6:
+		if aa_near > 0.0 and army_mem(at, 520.0) < _party_value(p) * 0.6:
 			_phase(p, "drop")
 			var spot := _drop_spot(p, at)
 			b.cmd_unload(spot)
@@ -838,10 +1041,26 @@ func _lift(p: Dictionary) -> void:
 				game.load_order([m], [b])
 
 
+## (crown-coach-balloon) A defence from the air only near home (a raid far out keeps raiding: the enemy's army at our door
+## is the time its own base is empty), over an attack with next to no anti-air (a big army with Springers or Netters in
+## it shot the hovering balloon down), and not again within DEF_GAP s of leaving one.
+func _defend_ok(p: Dictionary, thr: Vector2) -> bool:
+	if not fix_on:
+		return true
+	var b: Unit = p["b"]
+	if game.clock - float(p.get("def_off", -99.0)) < DEF_GAP:
+		return false
+	if b.position.distance_to(_home()) > DEFEND_R * Defs.TILE * 0.6:
+		return false
+	return aa_at(thr, 60.0) < _party_value(p) * 0.3 and not _shaken(b)
+
+
 func _defend(p: Dictionary) -> void:
 	var b: Unit = p["b"]
 	var thr: Vector2 = ai._threat()
-	if thr == Vector2.INF or _danger(p) or b.hp < b.max_hp * HURT or army_at(thr, 450.0) < DEFEND_MIN * 0.4:
+	if thr == Vector2.INF or _danger(p) or b.hp < b.max_hp * HURT or army_at(thr, 450.0) < DEFEND_MIN * 0.4 \
+			or (fix_on and (_shaken(b) or aa_at(thr, 60.0) >= _party_value(p) * 0.3)):
+		p["def_off"] = game.clock
 		_go(p)
 		return
 	# over the attackers, a little behind our side of them
@@ -853,15 +1072,33 @@ func _defend(p: Dictionary) -> void:
 			watched[u] = true
 
 
+## Home: straight, or (crown-coach-balloon) round the anti-air by one waypoint (a balloon pulled back under fire was shot
+## down by a Ratchet Turret on its straight way home).
+func _home_flight(p: Dictionary) -> void:
+	var b: Unit = p["b"]
+	_phase(p, "home")
+	p["hwp"] = _route(b.position, _home()) if fix_on else Vector2.INF
+	b.cmd_move(p["hwp"] if p["hwp"] != Vector2.INF else _home())
+
+
 func _go_home(p: Dictionary) -> void:
 	var b: Unit = p["b"]
 	var home := _home()
+	var hwp: Vector2 = p.get("hwp", Vector2.INF)
+	if hwp != Vector2.INF:
+		if b.position.distance_to(hwp) < 80.0:
+			p["hwp"] = Vector2.INF
+			b.cmd_move(home)
+		elif b.order != "move" or b.velocity.length() < 2.0:
+			b.cmd_move(hwp)
+		p["since"] = game.clock
+		return
 	if b.position.distance_to(home) > 220.0 and b.order != "restock":
 		if b.order != "move" or b.velocity.length() < 2.0:
 			b.cmd_move(home)
 		p["since"] = game.clock
 		return
-	if b.hp < b.max_hp * HURT or (p["men"] as Array).is_empty():
+	if b.hp < b.max_hp * (GO_HP if fix_on else HURT) or (p["men"] as Array).is_empty():
 		_release(p, "home")
 		return
 	# (the pilot hauls kegs at the Mill, the Barracks or the hall: the men aboard refill from the store)
@@ -888,10 +1125,65 @@ func _release(p: Dictionary, why: String) -> void:
 	say("party %d is over (%s)" % [p["id"], why])
 
 
+## (crown-coach-balloon) A hurt balloon at home is mended by a labourer (the Crown's machines are labourers' work; the
+## computer never did it, so a balloon hit once flew on hurt or rested for good). One hand a balloon, sent home when it
+## leaves or is whole.
+var _menders := {}               # balloon -> labourer
+const MEND_BELOW := 0.95
+
+
+func _mend() -> void:
+	for b in _menders.keys():
+		var w = _menders[b]
+		var keep: bool = is_instance_valid(b) and not b.dead and is_instance_valid(w) and not w.dead and w.order == "repair" \
+			and b.hp < b.max_hp and b.position.distance_to(_board_spot()) < 260.0
+		if keep:
+			for p in parties:
+				if p["b"] == b and String(p["phase"]) not in ["load", "done"]:
+					keep = false
+		if not keep:
+			if TRACE:
+				print("BLMEND drop %d order=%s hp=%d d=%d" % [int(game.clock), w.order if is_instance_valid(w) else "-", int(b.hp) if is_instance_valid(b) else -1, int(b.position.distance_to(_board_spot())) if is_instance_valid(b) else -1])
+			if is_instance_valid(w) and not w.dead and w.order == "repair":
+				w.cmd_stop()
+			_menders.erase(b)
+	if ai._gold() < 2 or _home_attacked():
+		return
+	for b in balloons():
+		if _menders.has(b) or b.hp >= b.max_hp * MEND_BELOW or b.position.distance_to(_board_spot()) > 200.0:
+			continue
+		var busy := false
+		for p in parties:
+			if p["b"] == b and String(p["phase"]) not in ["load", "done"]:
+				busy = true
+		if busy:
+			continue
+		var best: Unit = null
+		var bd := 640.0
+		for u in game.workers(team):
+			if u.dead or u.order in ["build", "repair"] or u.keg or u.carrying > 0 or ai._escort.has(u) or ai._fled.has(u) \
+					or ai._fighters.has(u) or (ai.scout != null and ai.scout.is_scout(u)) or not u.can_repair(b):
+				continue
+			var dd: float = u.position.distance_to(b.position)
+			if dd < bd:
+				bd = dd
+				best = u
+		if best != null:
+			best.cmd_repair(b)
+			_menders[b] = best
+			if TRACE:
+				print("BLMEND send %d order=%s" % [int(game.clock), best.order])
+
+
 func _rest(b: Unit) -> void:
 	if not b.passengers.is_empty():
 		if b.order != "unload":
 			b.cmd_unload(_board_spot())
+		return
+	if fix_on:
+		var spot := _board_spot()      # (crown-coach-balloon: it rests over its boarding spot, where a labourer mends it)
+		if b.position.distance_to(spot) > 60.0 and (b.order != "move" or (b.order_point as Vector2).distance_to(spot) > 60.0):
+			b.cmd_move(spot)
 		return
 	if b.position.distance_to(_home()) > 220.0 and b.order != "move":
 		b.cmd_move(_home())
@@ -903,6 +1195,14 @@ func _watch(b: Unit) -> void:
 	if not b.passengers.is_empty():
 		if b.order != "unload":
 			b.cmd_unload(_board_spot())
+		return
+	if fix_on:
+		# (crown-coach-balloon: an empty balloon waits over its boarding spot at home; never out alone)
+		if _scout_b == b:
+			_scout_b = null
+		var spot := _board_spot()
+		if b.position.distance_to(spot) > 60.0 and (b.order != "move" or (b.order_point as Vector2).distance_to(spot) > 60.0):
+			b.cmd_move(spot)
 		return
 	var foe := _foe()
 	if foe < 0:
