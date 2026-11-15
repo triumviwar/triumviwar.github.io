@@ -3191,7 +3191,7 @@ const T := {
 	"%s builds a Brass Serpent at its Heavy Works.": "%s constrói uma Serpente de Latão na sua Oficina Pesada.",
 	"%s's Winder carries a gear out to its Brass Serpent.": "Um Enrolador de %s leva uma engrenagem até sua Serpente de Latão.",
 	"%s links two Brass Serpents into a Hydra!": "%s une duas Serpentes de Latão numa Hidra!",
-	"%s sees a push coming (%s soldiers worth %s, %s tiles out, against %s of its army at home) and gets ready: soldiers first while it is behind, the balloons stay home.": "%s vê um ataque chegando (%s soldados valendo %s, a %s casas, contra %s do seu exército em casa) e se prepara: soldados primeiro enquanto estiver atrás, os balões ficam em casa.",
+	"%s sees a push coming (%s soldiers worth %s, %s tiles out, against %s of its army at home) and gets ready: soldiers first, the balloons stay home.": "%s vê um ataque chegando (%s soldados valendo %s, a %s casas, contra %s do seu exército em casa) e se prepara: soldados primeiro, os balões ficam em casa.",
 	"%s: the push it saw coming is gone or held; back to its plan.": "%s: o ataque que viu chegando foi embora ou foi contido; volta ao seu plano.",
 	"%s calls its wave home: the push coming (%s) is more than its army at home (%s) can beat, and the wave (%s) meets it at home.": "%s chama a sua onda de volta: o ataque que vem (%s) é mais do que o exército em casa (%s) pode vencer, e a onda (%s) o enfrenta em casa.",
 	"%s gathers its army at its hall, out of reach: the force at its buildings (%s) is more than its army (%s) can beat one by one.": "%s reúne o seu exército no seu salão, fora de alcance: a força nos seus prédios (%s) é mais do que o seu exército (%s) pode vencer um por um.",

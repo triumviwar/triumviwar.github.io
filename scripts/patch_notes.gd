@@ -5,7 +5,7 @@ extends RefCounted
 
 const NOTES := [
 	{"v": "0.38.2", "items": [
-		"THE CROWN COMPUTER DEFENDS BETTER AGAINST A PUSH: when it sees an enemy army coming at its base it gets ready before it arrives (soldiers before labourers, no balloon party leaves and the men still boarding stay home). Its soldiers no longer walk past the enemy on a plain move: in reach they fight back (each shooter takes the weakest enemy he can hit) or step round the enemy. Against a force it cannot beat at its buildings the army gathers at its hall, out of reach, and fights there as one instead of being sent in one by one.",
+		"THE CROWN COMPUTER DEFENDS BETTER AGAINST A PUSH: when it sees an enemy army coming at its base it gets ready before it arrives (soldiers before labourers, no balloon party leaves, the men still boarding stay home, and an attack already out that would miss it comes back to meet it). Its soldiers no longer walk past the enemy on a plain move: in reach they fight back (each shooter takes the weakest enemy he can hit) or step round the enemy. Against a force it cannot beat at its buildings the army gathers at its hall, out of reach, and fights there as one instead of being sent in one by one.",
 	]},
 	{"v": "0.38.1", "items": [
 		"THE LONE PIPER'S SCOTLAND THE BRAVE is now a real recording of a solo bagpiper (about four minutes) instead of the generated one.",

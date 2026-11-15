@@ -25,6 +25,14 @@
 
 ## Current work
 
+- CROWN DEFENCE AGAINST A PUSH (owner's game 2026-11-15 00:28, Hollowfen: Musketeers walked past the Clockwork's push on a
+  plain move and died 4 for 0; job crown-coach-defence, 0.38.2, docs/crown-coach-defence.md, scripts/ai_crown_defence.gd,
+  tools/test_crown_defence.gd, bench tools/crown_defence_bench.gd/.sh): the ALERT (a push seen coming: soldiers before
+  labourers, no balloon party, boarding men called off, no wave out, a wave out comes home), NO WALK PAST THE ENEMY (a man
+  sent to his post fights or steps round, hopeless away from his post he gets out), the MUSTER (a force at its buildings it
+  can't beat: gather out of reach, fight as one). Switches defence:off, dfwarn:off, dfpath:off, dfmuster:off,
+  dfsoldiers:behind. 16 games v Clockwork: home kills per loss 1.65 -> 2.77, buildings lost 126 -> 88, income -6.6%;
+  7 Claude's choices in the doc.
 - BRASS SERPENT (owner 2026-11-14 20:07-20:09, "Do it"; job brass-serpent, 0.38.0, docs/brass_serpent.md, scripts/brass_serpent.gd,
   Defs.SERPENT, tools/test_brass_serpent.gd, pictures docs/shots/brass_serpent/): a Clockwork snake of gears made at the
   Heavy Works; few/small gears = fast, light quick bites; many/big = tanky, slow, heavy bites; damage breaks tail gears

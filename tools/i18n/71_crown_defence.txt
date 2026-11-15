@@ -1,9 +1,9 @@
 # crown-coach-defence (docs/crown-coach-defence.md): the AI STORY's sentences for the Crown computer's defence against a
 # push (scripts/ai_crown_defence.gd, scripts/ai_story_lines.gd). The placeholders keep their English order: the first %s is the player.
 
-> %s sees a push coming (%s soldiers worth %s, %s tiles out, against %s of its army at home) and gets ready: soldiers first while it is behind, the balloons stay home.
-pt %s vê um ataque chegando (%s soldados valendo %s, a %s casas, contra %s do seu exército em casa) e se prepara: soldados primeiro enquanto estiver atrás, os balões ficam em casa.
-es %s ve llegar un ataque (%s soldados que valen %s, a %s casillas, contra %s de su ejército en casa) y se prepara: soldados primero mientras va por detrás, los globos se quedan en casa.
+> %s sees a push coming (%s soldiers worth %s, %s tiles out, against %s of its army at home) and gets ready: soldiers first, the balloons stay home.
+pt %s vê um ataque chegando (%s soldados valendo %s, a %s casas, contra %s do seu exército em casa) e se prepara: soldados primeiro, os balões ficam em casa.
+es %s ve llegar un ataque (%s soldados que valen %s, a %s casillas, contra %s de su ejército en casa) y se prepara: soldados primero, los globos se quedan en casa.
 
 > %s: the push it saw coming is gone or held; back to its plan.
 pt %s: o ataque que viu chegando foi embora ou foi contido; volta ao seu plano.
