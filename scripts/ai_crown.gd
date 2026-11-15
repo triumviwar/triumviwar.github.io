@@ -75,7 +75,7 @@ func _vb_keep() -> int:
 
 ## (crown-coach-v-brood) against the Brood the wave goes for its far ground, not the Mother (AICrownVBrood.wave_target)
 func _enemy_base() -> Vector2:
-	if vb() != null:
+	if vb() != null and _attacking and not _rush_wave:     # (the wave's goal only: not the rally, the rush, the raids)
 		var p: Vector2 = vbr.wave_target(game.center_of_team(team))
 		if p != Vector2.INF:
 			return p

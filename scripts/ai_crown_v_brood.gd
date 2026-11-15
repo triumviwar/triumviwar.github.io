@@ -24,9 +24,10 @@ var team := 0
 var off := false
 var line_off := false
 
-const LINE_FROM := 270.0
-## [clock, home line value wanted]: 5 Musketeers by 5:30, 10 and two guns by 7:00, then the Brood's waves keep growing
-const LINE_TABLE := [[270.0, 0.0], [330.0, 300.0], [420.0, 1000.0], [480.0, 1300.0], [600.0, 1900.0], [720.0, 2600.0]]
+const LINE_FROM := 240.0
+## [clock, home line value wanted]: 5 Musketeers by 5:00, 10 and two guns by 6:30 (the Brood's Timing wave came at 6:24-7:07
+## with 23-34 supply in the coached games), then the Brood's waves keep growing
+const LINE_TABLE := [[240.0, 0.0], [300.0, 300.0], [390.0, 900.0], [450.0, 1200.0], [600.0, 1900.0], [720.0, 2600.0]]
 const LINE_PER_LAB := 45.0       # (gold of line a labourer at most: the economy is not starved for it)
 const LINE_PER_LAB_MIN := 600.0  # (... but never under this)
 var line_short_t := 0.0          # (the study) seconds the line was short
