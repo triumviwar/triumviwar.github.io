@@ -361,7 +361,7 @@ func _on_input(event: InputEvent) -> void:
 			_wall_shift_done()          # (a palisade path drawn with Shift corners goes down now)
 			_shift_kept = false
 			return
-		if _shift_kept and mode in ["move", "attack", "repair", "place", "bombard", "patrol", "nb_root"]:
+		if _shift_kept and mode in ["move", "attack", "repair", "windup", "place", "bombard", "patrol", "nb_root"]:
 			cancel_mode()
 		_shift_kept = false
 
@@ -561,7 +561,7 @@ func _left_pc(e: InputEventMouseButton) -> void:
 				_line_btn = "left"
 				_line_add(e.position)
 				return
-			"rally", "rally_army", "rally_worker", "cast", "load", "unload", "overload", "repair", "patrol", "ride", "cwsiding", "cwsetup", "cwcast", "cwdrop":
+			"rally", "rally_army", "rally_worker", "cast", "load", "unload", "overload", "repair", "windup", "patrol", "ride", "cwsiding", "cwsetup", "cwcast", "cwdrop":
 				_tap(e.position, false, e.shift_pressed)
 				return
 		_lmb_down = true
@@ -784,7 +784,7 @@ func _tap(screen: Vector2, is_mouse: bool, shift := false, world := Vector2.INF)
 	var units := game.selected_units()
 	if mode == "move" or mode == "attack" or mode == "patrol":
 		units = units.filter(func(u: Unit) -> bool: return not BroodRoot.fixed(u))     # (rooted = a building: it stays)
-	var queued := _queued(shift) and (mode == "move" or mode == "attack" or mode == "repair" or mode == "bombard" or mode == "patrol")
+	var queued := _queued(shift) and (mode == "move" or mode == "attack" or mode == "repair" or mode == "windup" or mode == "bombard" or mode == "patrol")
 	match mode:
 		"lay_line":
 			if line_tool != null:
@@ -873,6 +873,20 @@ func _tap(screen: Vector2, is_mouse: bool, shift := false, world := Vector2.INF)
 				for u in fixers:
 					if u.can_repair(target):
 						u.give({"o": "repair", "e": target}, queued)
+				Sfx.play_any(["ui/click", "click"])
+			if queued:
+				_keep_for_shift()
+			else:
+				cancel_mode()
+			return
+		"windup":
+			# WIND UP (docs/winder_escort.md): the Winders follow the unit tapped, winding and mending it and those round it
+			var ws := units.filter(func(u: Unit) -> bool: return u.kind == "winder")
+			var t := game.entity_at(p, false)
+			if not (t is Unit) or t.team != game.human or t.dead or (t as Unit).kind == "winder" or (t as Unit).kind == "horse":
+				game.notify("Tap one of your units for the Winders to wind up.")
+			else:
+				game.wind_up_order(ws, [t], queued)
 				Sfx.play_any(["ui/click", "click"])
 			if queued:
 				_keep_for_shift()

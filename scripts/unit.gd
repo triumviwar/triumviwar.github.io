@@ -252,6 +252,14 @@ var _ww_back := {}              # (a Winder) the order he goes back to once the 
 var _ww_scan := 0.0             # (a Winder) seconds to his next look for a walking construct to wind
 var _ww_cap := 0.0              # (a construct) the pace of the slower Winder winding it on the march...
 var _ww_cap_t := 0.0            # ...for this long
+var esc_group: Array = []       # (a Winder) ESCORT: the group he follows, winds and mends (scripts/winder_escort.gd)
+var esc_goal := Vector2.INF     # (a Winder) ...where the group was sent (INF: nowhere: WIND UP)
+var esc_from := Vector2.INF     # (a Winder) ...where the group stood when it was sent there
+var esc_patient: Unit = null    # (a Winder) ...the one he winds or mends now
+var _esc_t := 0.0               # (a Winder) seconds to his next look for the one to wind
+var _esc_dir := Vector2.ZERO    # (a Winder) the group's last known front
+var _esc_last := Vector2.ZERO   # (a Winder) where he stood last tick (pinned by an enemy?)
+var _esc_pinned := 0.0          # (a Winder) seconds an enemy has been on him without his getting away
 var jump := {}                  # Springer: the leap under way ({} on the ground; scripts/springer.gd)
 var jump_cd := 0.0              # Springer: seconds before its spring can JUMP again
 var jumps := 0                  # Springer: leaps made (tests, the log)
@@ -2451,6 +2459,27 @@ func cmd_follow(e: Unit) -> void:
 	target = null
 
 
+## ESCORT (Winders; the owner 2026-11-15, docs/winder_escort.md): follow the group from behind, winding and mending
+## whoever in it (or round it) needs it most, out of melee, until given another order. `goal`: where the group was sent.
+func cmd_escort(group: Array, goal := Vector2.INF) -> void:
+	if aboard or kind != "winder":
+		return
+	var g: Array = group.filter(func(o) -> bool: return o != null and is_instance_valid(o) and o is Unit and o != self and not o.dead and o.team == team)
+	if g.is_empty():
+		return
+	_reset_work()
+	order = "escort"
+	esc_group = g
+	esc_goal = goal
+	esc_from = WinderEscort.middle(g) if goal != Vector2.INF else Vector2.INF
+	esc_patient = null
+	_esc_t = 0.0
+	_esc_pinned = 0.0
+	target = null
+	order_target = null
+	path = PackedVector2Array()
+
+
 ## PATROL (as in StarCraft 2): attack-move to `p`, then back to where he started, and on
 ## like that until given another order (fighting whatever comes on the way, then going on).
 func cmd_patrol(p: Vector2) -> void:
@@ -3078,6 +3107,11 @@ func _start(o: Dictionary) -> bool:
 			if e == null or not is_instance_valid(e) or not (e is Unit) or e.dead:
 				return false
 			cmd_follow(e)
+		"escort":
+			# (Winders with an army: scripts/winder_escort.gd; an old replay's or a guest's missing men are dropped)
+			cmd_escort(o.get("g", []) if o.get("g") is Array else [], o.get("p", Vector2.INF) if o.get("p") is Vector2 else Vector2.INF)
+			if order != "escort":
+				return false
 		"bombard":
 			cmd_bombard(o["p"], o.get("a", Vector2.INF), o.get("b", Vector2.INF))
 		"reload":
@@ -3153,6 +3187,8 @@ func _reset_work() -> void:
 	_wind_target = null
 	_ww_on = false
 	_ww_back = {}
+	esc_group = []
+	esc_patient = null
 	drop_crate()
 	if sky == "to_land":
 		sky = "air"
@@ -4047,6 +4083,8 @@ func _tick_unit(delta: float) -> void:
 			want = _gather(delta)
 		"repair":
 			want = _repair(delta)
+		"escort":
+			want = WinderEscort.tick(self, delta)        # (a Winder with the army: behind it, winding and mending)
 		"mend":
 			want = GreatWinder.mend_tick(self, delta)      # (a Great Winder's key arm on a hurt unit)
 		"sweep":

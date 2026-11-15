@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.22", "items": [
+		"WINDERS ESCORT THE ARMY: select your army with a few Winders and move or attack-move, and the Winders no longer run ahead to a spot of their own and fight: they follow the army from behind its middle, on the side away from where it goes or from the enemy, at its pace, winding (on the march too) and mending whoever needs it most, the lowest charge or the most hurt first, each Winder on a different one. They step back from enemies close to them, never chase, and only hit back when an enemy is on them with nowhere to go. When the army stops they stay with it, until you give them another order. Also on a drag-a-line, a right-click on an enemy and with Shift. A group of only Winders moves as before. A Winder doing it says ESCORTING on its card.",
+		"WIND UP (W) on the Winder's command card: with the army selected too, the Winders escort it at once; with only Winders selected, tap one of your units and they follow it, keeping it and the units round it wound and mended, until another order. Shift queues it. Right-clicking a walking soldier still winds it on the march as before.",
+	]},
 	{"v": "0.38.21", "items": [
 		"The Pendulum's high swing at flyers now alternates arms in the back-diagonal view too (it always swung the same arm there).",
 	]},
