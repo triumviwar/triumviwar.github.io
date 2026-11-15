@@ -41,6 +41,7 @@ const OUT_T_CH := 2.2            # (s) ... with the Cavalry Charge: out this lon
 const OUT_D := 220.0             # (px) the point it rides out to
 const ROUND_R := [190.0, 300.0]  # (px) it rides round the fight this far from the enemy's fighters
 const ROUND_MAX := 14.0          # (s) round at most this long, then in anyway (a prey is waiting)
+const IDLE_T := 3.0              # (s) round with no prey worth a pass and no enemy fighter near this long: it lets go
 const IN_MAX := 6.0              # (s) riding in this long without a blow: it picks again
 const CAREFUL := 0.45            # a rider below this share of its hit points picks only prey with no answer at hand
 const CAREFUL_DANGER := 1.3      # ... at most this much guard (see _danger), and no enemy gun reaching it
@@ -96,7 +97,10 @@ func _takes(u: Unit) -> bool:
 		return false
 	if ai._on_errand(u):
 		return false
-	return _foe_near(u.position, TAKE_R, true) != null
+	if _foe_near(u.position, TAKE_R, true) == null:
+		return false
+	# (a prey worth a pass, or something that can come at it: a rooted turtle or a tower alone is not a fight for riders)
+	return _pick(u, {"anchor": u.position}) != null or _foe_near(u.position, TAKE_R, false) != null
 
 
 func _take(u: Unit) -> void:
@@ -124,6 +128,8 @@ func _release(u: Unit, s: Dictionary) -> void:
 
 ## Someone else gave it an order that is not a fight (a raid riding home, the wave regrouping, a rearm, HOLD): theirs.
 func _taken_back(u: Unit, s: Dictionary) -> bool:
+	if u.order == "move" and String(s["o"]) == "move":
+		return u.order_point.distance_to(s["p"]) > 8.0     # (a move of someone else's: home, a regroup)
 	if u.order == String(s["o"]):
 		return false
 	return not u.order in ["amove", "attack", "idle"]
@@ -177,6 +183,14 @@ func _run(u: Unit, s: Dictionary) -> void:
 			else:
 				_assert(u, s)
 		"round":
+			if _pick(u, s) == null and _foe_near(u.position, RELEASE_R, false) == null:
+				s["idle"] = float(s.get("idle", 0.0)) + EVERY
+				if float(s["idle"]) >= IDLE_T:
+					_release(u, s)        # (nothing to ride at and nothing coming: the computer's own orders again)
+					_cool[u] = game.clock + 4.0
+					return
+			else:
+				s["idle"] = 0.0
 			var waited := game.clock - float(s["t"]) >= ROUND_MAX
 			if (not _wait_charge(u) or waited) and game.clock - float(s["t"]) >= 1.0:
 				if _pick_in(u, s, true):
@@ -461,7 +475,7 @@ func _foe_near(p: Vector2, r: float, any := false) -> Unit:
 	var best: Unit = null
 	var bd := INF
 	for o in game.units_near(p, r):
-		if o.dead or o.off_field or o.is_air() or not game.hostile(o.team, ai.team) or o.kind == "horse":
+		if o.dead or o.off_field or o.is_air() or not game.hostile(o.team, ai.team) or o.kind == "horse" or AIHarass.is_static(o):
 			continue
 		if not any and not Game.fights_back(o):
 			continue
