@@ -9,11 +9,14 @@ extends Sprite2D
 ## No _process of its own: the unit's _animate steps it with the body's frames (15 times a second, 10 in a big battle
 ## on screen, never off screen: Unit._animate's own rules). docs/wind_keys.md.
 
+const LOD_ZOOM := 0.75          # zoomed out further than this (the camera goes to 0.55) the keys are hidden: under ~9 screen
+                                # px they don't read, and each is a draw call of its own in a big battle
 const SPIN_T := 1.2             # seconds per turn at full wind (wind 1.0); speed is wind / SPIN_T turns a second
 
 var unit: Unit
 var _keys: Dictionary
 var _turn := 0.0                # turns so far (0..1)
+var _kind := ""
 var _sa := ""                   # (the strip last looked up, and what it gave: a lookup only when the strip changes)
 var _sd := ""
 var _frames: Array = []
@@ -27,9 +30,7 @@ static func wants(u: Unit) -> bool:
 
 
 func _ready() -> void:
-	var e: Dictionary = WindKeyData.KEYS[unit.kind]
-	_keys = e["keys"]
-	texture = Game.tex("res://assets/units/_shared/wind_key_%d.png" % int(e["size"]))
+	_load()
 	hframes = WindKeyData.FRAMES
 	vframes = WindKeyData.ROWS
 	centered = true
@@ -39,8 +40,19 @@ func _ready() -> void:
 	step(0.0)
 
 
+## Its kind's spots and key size (again when a Swift is rebuilt into a Ticking Owl: MORPH TO OWL changes its kind).
+func _load() -> void:
+	_kind = unit.kind
+	var e: Dictionary = WindKeyData.KEYS.get(_kind, {"size": 12, "keys": {}})
+	_keys = e["keys"]
+	texture = Game.tex("res://assets/units/_shared/wind_key_%d.png" % int(e["size"]))
+	_sa = ""
+
+
 ## To the body's frame, and on with the turn (delta: the time since the last step).
 func step(delta: float) -> void:
+	if unit.kind != _kind:
+		_load()
 	if unit.dead:
 		if visible:
 			visible = false    # the construct falls apart; its key with it
@@ -59,7 +71,8 @@ func step(delta: float) -> void:
 	var frames := _frames
 	var west := _west
 	var twin := _twin
-	if frames.is_empty():
+	var cam: Camera2D = unit.game.camera if unit.game != null else null
+	if frames.is_empty() or (cam != null and cam.zoom.x < LOD_ZOOM):
 		if visible:
 			visible = false
 		return
