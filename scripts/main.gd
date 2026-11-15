@@ -1198,6 +1198,9 @@ func settings_rows(tab: String) -> Array:
 			rows.append(_tag(_toggle_row("SHOW EXPANSION SPOTS", func() -> bool: return Settings.expansion_spots, func() -> void:
 				Settings.expansion_spots = not Settings.expansion_spots
 				Settings.save_all()), "expansion_spots"))
+			rows.append(_tag(_toggle_row("SHOW ROOTMAW SPOTS", func() -> bool: return Settings.rootmaw_spots, func() -> void:
+				Settings.rootmaw_spots = not Settings.rootmaw_spots      # (a Brood player's best Rootmaw spots: RootmawSpots)
+				Settings.save_all()), "rootmaw_spots"))
 			rows.append(_tag(_choice_row("HEALTH BARS", ["ONLY WHEN NOT FULL", "ALWAYS"][Settings.health_bars], func() -> void:
 				Settings.health_bars = 1 - Settings.health_bars       # (over units and buildings: Entity.health_bar_shown)
 				Settings.save_all()

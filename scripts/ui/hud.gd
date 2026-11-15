@@ -1647,6 +1647,17 @@ func _nb_buttons(list: Array, units: Array) -> void:
 	for u in units:
 		if u.kind == BroodNew.QUEEN and u.team == game.human:
 			q = u
+	# THE COUNT (brood-rootmaw-spots): "ROOTMAWS 2/3" on the Mother's or a rooted Mound Turtle's card
+	var src: Unit = q
+	if src == null:
+		for u in units:
+			if u.kind == BroodNew.TURTLE and u.team == game.human and RootmawSpots.label(game, u) != "":
+				src = u
+				break
+	if src != null and RootmawSpots.label(game, src) != "":
+		var ml := RootmawSpots.label(game, src)
+		_tip_for[ml] = ["Rootmaws on this swamp", "The Brood Mother's swamp holds %d Rootmaws, each rooted Mound Turtle's %d (their circles may not overlap). Gold marks on your swamp show where the missing ones fit best (Settings: SHOW ROOTMAW SPOTS)." % [int(Defs.NB["maws_queen"]), int(Defs.NB["maws_turtle"])]]
+		list.append([BroodNew.MAW, ml, func() -> void: pass, false, Loc.t("Rootmaws rooted on this swamp, of the most it holds."), ""])
 	if q != null:
 		for k in BroodNew.hatch_list():
 			var kk: String = k
@@ -3496,6 +3507,8 @@ func _draw_minimap() -> void:
 		_ci.draw_texture_rect(game.fog_tex, m, false, Color(1, 1, 1, 0.95 * Settings.mini_alpha))
 	if game.exp_spots:
 		game.exp_spots.draw_on_minimap(_ci, m)      # (the best expansion spots: small gold squares)
+	if game.maw_spots:
+		game.maw_spots.draw_on_minimap(_ci, m)      # (a Brood player's best Rootmaw spots: small gold dots)
 	for b in game.buildings:
 		if b.visible or (b.team == game.human and not game.demo):
 			var r: Rect2 = b.rect()

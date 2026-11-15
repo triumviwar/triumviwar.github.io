@@ -344,6 +344,11 @@ func _ready() -> void:
 			exp_spots.clock_on = false     # halls made the Crown's rule rate new spots, eco-revert-prologue)
 		exp_spots.z_index = -18
 		add_child(exp_spots)
+		# the best Rootmaw spots on a Brood player's swamp (scripts/rootmaw_spots.gd, brood-rootmaw-spots)
+		maw_spots = RootmawSpots.new()
+		maw_spots.game = self
+		maw_spots.z_index = -18
+		add_child(maw_spots)
 	if edit_mode:
 		fog_sprite.visible = false
 		camera.position = Vector2(W, H) * T * 0.5
@@ -3185,6 +3190,7 @@ func near_enemy_building(t: int, p: Vector2, tiles: float) -> bool:
 
 
 var _floats: Array = []           # [position, text, colour, time left]
+var maw_spots: RootmawSpots = null
 var exp_spots: ExpansionSpots         # the best expansion spots tinted on the ground (null in the editor)
 var ground_marks: GroundMarks         # AREA MARKS on the ground (area_mark; scripts/ground_marks.gd)
 var swipe_marks: GroundMarks          # the Pendulum's smear, over the units
@@ -10878,6 +10884,8 @@ func _draw_mine_labels() -> void:
 	WorkerLabels.draw_all(self, font)
 	if exp_spots:
 		exp_spots.draw_labels(overlay)          # ("OPTIMAL EXPANSION SPOT" / "EXPANSION SPOT" on the gold spots)
+	if maw_spots:
+		maw_spots.draw_labels(overlay)          # ("ROOTMAW SPOT": RootmawSpots)
 	for fl in _floats:
 		var a: float = minf(float(fl[3]), 1.0)
 		var w2: float = font.get_string_size(fl[1], HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x

@@ -2133,6 +2133,8 @@ const NB := {
 	"hvet_rate": 0.01, "hvet_max": 50,
 	"maw_fill": 4.0, "maw_cap": 300.0, "start_food": 120.0,           # food/s a rooted Rootmaw draws from its ground, what it holds
 	"maw_crew": 6, "pile_crew": 4,
+	# THE COUNT (the owner, 2026-11-15; scripts/rootmaw_spots.gd): Rootmaws a swamp holds: the Mother's, a rooted Mound Turtle's
+	"maws_queen": 3, "maws_turtle": 2,
 	"haul_speed": 0.5,                           # HAUL: the full Rootmaw walks at half speed
 	"pile_rot": 0.6,                             # food a pile loses a second
 	# THE FATHERS (the owner, 2026-10-29 11:10: FATHER LINES; shown as the Tyrant, Venom and Storm Sires, 12:06), in
