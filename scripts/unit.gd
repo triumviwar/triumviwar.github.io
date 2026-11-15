@@ -8297,6 +8297,12 @@ func _draw_unit() -> void:
 			pk.name = "Pack"
 			pk.set("unit", self)
 			sprite.add_child(pk)
+		# its wind-up key, turning with its charge (scripts/wind_key.gd, docs/wind_keys.md)
+		if WindKeyData.KEYS.has(kind) and sprite.get_node_or_null("WindKey") == null:
+			var wk: Sprite2D = preload("res://scripts/wind_key.gd").new()
+			wk.name = "WindKey"
+			wk.set("unit", self)
+			sprite.add_child(wk)
 	if carrying > 0 and kind == "labourer" and anim != "carry" and anim != "idle_carry":
 		draw_circle(Vector2(6, -14), 3, Color(1, 0.85, 0.2, ov_a(true)))      # (a gold dot where no strip shows the sack)
 	if carry_empty and carrying == 0 and kind == "winder":
