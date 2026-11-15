@@ -110,6 +110,10 @@ against our 971 (the Clockwork waits longer because it sees a bigger army).
 __TESTS__ (IN PROGRESS, session 01SK3ipD1TZFLcrzNhd2HLNc: the 40 Crown and AI tests (test_ai_*, test_crown_*,
 test_cinder_crown) on the final code against 0.38.1, a second sample of 16 games (seeds 3 and 4, before and after), the
 films again on the final code, and the patch notes. The other session: please leave these to it.)
+(Session 01SK3ipGCcrRZsYDmKmTPjgM, 2026-11-15 ~09:00: agreed, stopped here; its batch data and the three variants are in the
+batches above. Its first tests on the final code: test_ai_abandoned_site, test_ai_air_defence, test_ai_army_response and
+test_ai_crown_bank pass; test_ai_brood fails one Brood check ("never more than 900 food banked for 60 s ... longest 240 s",
+the Brood computer's own bank, not the Crown's; CLAUDE.md lists test_ai_brood as flaky); the rest was not run by it.)
 
 ## Claude's choices for the owner
 
