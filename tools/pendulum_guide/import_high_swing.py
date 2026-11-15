@@ -43,6 +43,9 @@ SRC = 'art/redraws/pendulum_high_swing_%s_chatgpt.png'
 # view -> (sheet, rows) where the owner replaced a sheet: E v2 is ONE row of 6 in side profile (the first E sheet's figures
 # were hallucinated); the far arm is hidden behind the body, so the one row serves both arms.
 SHEET = {'e': ('art/redraws/pendulum_high_swing_e_v2_chatgpt.png', 1)}
+# one ARM from its own sheet (one row of 6): NE's left arm (the owner's 2026-11-15 21:50 redo: the NE sheet swung the
+# viewer's right arm in both rows; this sheet swings the left, its frame 4 fixed by ChatGPT after a three-armed first try)
+SHEET_ARM = {('ne', 'l'): 'art/redraws/pendulum_high_swing_ne_left_chatgpt.png'}
 DST = 'assets/units/pendulum/'
 VIEWS = ['s', 'se', 'e', 'ne', 'n']
 KEY = 60             # magenta-ness under this: the figure (ChatGPT's pink motion smears, ~60-160, stay out)
@@ -70,8 +73,8 @@ ROWS['s']['l'] = [(1, 0, False), (0, 1, True), (1, 2, False), (1, 3, False), (1,
 # SE: the bottom row's 3rd frame reaches out with the viewer's LEFT arm (wrong one; SE is not symmetric, so no mirror):
 # its 2nd frame (the telegraph) is held one frame longer instead.
 ROWS['se']['l'] = [(1, 0, False), (1, 1, False), (1, 1, False), (1, 3, False), (1, 4, False), (1, 5, False)]
-# NE: both rows swing the viewer's RIGHT arm (attack_r's). Mirroring would turn the body into the NW view for the length of
-# the blow, so the bottom row is kept as drawn: in NE both high swings are on the same arm (a choice, docs/pendulum_air.md).
+# NE: both rows of its sheet swing the viewer's RIGHT arm (attack_r's): attack_hi_r takes the top row; attack_hi_l comes
+# from its own one-row sheet (SHEET_ARM).
 # N (back, symmetric): the top row swings the viewer's LEFT arm (attack_l's in N) and the bottom row mixes both arms: the
 # top row is attack_hi_l as drawn and attack_hi_r is the same row mirrored.
 ROWS['e'] = {'r': TOP, 'l': TOP}
@@ -282,6 +285,13 @@ def main():
         rgb, fig = key_sheet(rgb)
         figs = [figures(rgb, fig, a, b) for a, b in bands(fig, nrows)]
         for arm in ('r', 'l'):
+            if (v, arm) in SHEET_ARM:
+                argb = np.array(Image.open(SHEET_ARM[(v, arm)]).convert('RGB')).astype(int)
+                argb, afig = key_sheet(argb)
+                afigs = [figures(argb, afig, a, b) for a, b in bands(afig, 1)]
+                frames = [(afigs[0][c][0], afigs[0][c][1], False) for c in range(6)]
+                rows[(v, arm)] = build_row(frames, v, arm)
+                continue
             frames = [(figs[r][c][0], figs[r][c][1], mir) for r, c, mir in ROWS[v][arm]]
             rows[(v, arm)] = build_row(frames, v, arm)
     up = max(top_needed(r, s, c) for r, s, c in rows.values())
