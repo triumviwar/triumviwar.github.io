@@ -580,8 +580,7 @@ func _alive(p: Dictionary) -> bool:
 				m.cmd_move(_home())
 		return false
 	if (p["men"] as Array).is_empty() and p["phase"] != "home":
-		_phase(p, "home")
-		b.cmd_move(_home())
+		_home_flight(p)
 	return true
 
 
@@ -612,8 +611,7 @@ func _party(p: Dictionary) -> void:
 	if b.last_hit_by != "":
 		p["by"] = b.last_hit_by
 	if fix_on and _shaken(b) and p["phase"] in ["strike", "drop", "ground", "evade"]:
-		if p["phase"] != "evade":
-			bad.append([b.position, game.clock])
+		bad.append([b.position, game.clock])
 		if p["phase"] == "ground":
 			_phase(p, "lift")
 			b.cmd_move(_lift_spot(p))
@@ -621,14 +619,8 @@ func _party(p: Dictionary) -> void:
 			return
 		if p["phase"] == "drop" and b.order == "unload" and not _aboard(p).is_empty() and (p["men"] as Array).size() > _aboard(p).size():
 			pass        # (half of them down already: let the rest off)
-		elif p["phase"] == "evade" and b.hp >= b.max_hp * GO_HP:
-			pass        # (already flying off: it goes on)
-		elif b.hp >= b.max_hp * GO_HP and not _aboard(p).is_empty():
-			_evade(p, "under fire")       # (still fit: away from it, then the next target, that spot rated down)
-			return
 		else:
-			_phase(p, "home")
-			b.cmd_move(_home())
+			_home_flight(p)
 			say("party %d pulls back home (the balloon is under fire)" % p["id"])
 			return
 	# home under attack: a loaded party near home fires down on the attackers from behind our line
@@ -721,13 +713,11 @@ func _load(p: Dictionary) -> void:
 func _go(p: Dictionary) -> void:
 	var b: Unit = p["b"]
 	if b.hp < b.max_hp * (GO_HP if fix_on else HURT) or _shots(p) < LOW_SHOTS:
-		_phase(p, "home")
-		b.cmd_move(_home())
+		_home_flight(p)
 		return
 	var at := _pick_target(p)
 	if at == Vector2.INF:
-		_phase(p, "home")
-		b.cmd_move(_home())
+		_home_flight(p)
 		return
 	p["at"] = at
 	p["struck"] = false
@@ -789,8 +779,7 @@ func _fly(p: Dictionary) -> void:
 		return
 	if fix_on and (b.hp < b.max_hp * HURT or b.hp < float(p.get("hp0", b.max_hp)) - b.max_hp * HIT_K):
 		bad.append([b.position, game.clock])
-		_phase(p, "home")
-		b.cmd_move(_home())
+		_home_flight(p)
 		say("party %d turns back: the balloon was hit on the way" % p["id"])
 		return
 	if p["wp"] != Vector2.INF:
@@ -1083,9 +1072,27 @@ func _defend(p: Dictionary) -> void:
 			watched[u] = true
 
 
+## Home: straight, or (crown-coach-balloon) round the anti-air by one waypoint (a balloon pulled back under fire was shot
+## down by a Ratchet Turret on its straight way home).
+func _home_flight(p: Dictionary) -> void:
+	var b: Unit = p["b"]
+	_phase(p, "home")
+	p["hwp"] = _route(b.position, _home()) if fix_on else Vector2.INF
+	b.cmd_move(p["hwp"] if p["hwp"] != Vector2.INF else _home())
+
+
 func _go_home(p: Dictionary) -> void:
 	var b: Unit = p["b"]
 	var home := _home()
+	var hwp: Vector2 = p.get("hwp", Vector2.INF)
+	if hwp != Vector2.INF:
+		if b.position.distance_to(hwp) < 80.0:
+			p["hwp"] = Vector2.INF
+			b.cmd_move(home)
+		elif b.order != "move" or b.velocity.length() < 2.0:
+			b.cmd_move(hwp)
+		p["since"] = game.clock
+		return
 	if b.position.distance_to(home) > 220.0 and b.order != "restock":
 		if b.order != "move" or b.velocity.length() < 2.0:
 			b.cmd_move(home)

@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.2", "items": [
+		"CROWN COMPUTER, BALLOON HARASS: a balloon no longer flies out empty. It waits behind its Town Hall until its Musketeers are aboard; a raid party forms only while the main base is quiet; the Musketeers walk to the balloon on attack-move and climb in only once it is there, and an attack on the main calls the raid off instead of sending them out into it. A balloon that is hit on the way or caught under fire comes home round the anti-air it knows, and a labourer mends it. It also fears the Clock Aviary, and strikes where the enemy army is not.",
+		"Against the Clockwork the OPTIMAL Crown computer now picks the Balloon harass about a third of the time (it was a fifth).",
+	]},
 	{"v": "0.38.1", "items": [
 		"THE LONE PIPER'S SCOTLAND THE BRAVE is now a real recording of a solo bagpiper (about four minutes) instead of the generated one.",
 	]},
