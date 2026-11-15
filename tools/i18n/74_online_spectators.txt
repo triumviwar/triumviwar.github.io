@@ -1,0 +1,106 @@
+# ONLINE SPECTATORS (docs/online_spectators.md): the room's SPECTATORS group, the FACTION list's SPECTATOR, WATCH, the
+# spectators' chat and the host's refusals. spectator = espectador / espectador; seat = vaga / plaza.
+
+> Join as a SPECTATOR: watch every side, give no orders. Also joins a match already under way.
+pt Entrar como ESPECTADOR: veja todos os lados, sem dar ordens. Também entra numa partida já em andamento.
+es Entrar como ESPECTADOR: ves todos los bandos, sin dar órdenes. También entra en una partida ya empezada.
+
+> You are a SPECTATOR: you will see every side and give no orders. Pick a faction under SPECTATORS to take a free seat.
+pt Você é ESPECTADOR: verá todos os lados e não dará ordens. Escolha uma facção em ESPECTADORES para ocupar uma vaga livre.
+es Eres ESPECTADOR: verás todos los bandos y no darás órdenes. Elige una facción en ESPECTADORES para ocupar una plaza libre.
+
+> SPECTATOR in your FACTION list: watch instead of playing.
+pt ESPECTADOR na sua lista de FACÇÃO: assista em vez de jogar.
+es ESPECTADOR en tu lista de FACCIÓN: mira en vez de jugar.
+
+> SPECTATORS TALK TO PLAYERS: ON
+pt ESPECTADORES FALAM COM OS JOGADORES: SIM
+es LOS ESPECTADORES HABLAN CON LOS JUGADORES: SÍ
+
+> SPECTATORS TALK TO PLAYERS: OFF
+pt ESPECTADORES FALAM COM OS JOGADORES: NÃO
+es LOS ESPECTADORES HABLAN CON LOS JUGADORES: NO
+
+> Off: spectators chat among themselves only. They see every side, so their words could help a player.
+pt Desligado: os espectadores conversam só entre si. Eles veem todos os lados, então suas palavras poderiam ajudar um jogador.
+es Desactivado: los espectadores solo chatean entre ellos. Ven todos los bandos, así que sus palabras podrían ayudar a un jugador.
+
+> SPECTATOR (WATCH)
+pt ESPECTADOR (ASSISTIR)
+es ESPECTADOR (OBSERVAR)
+
+> SPECTATORS (%d)
+pt ESPECTADORES (%d)
+es ESPECTADORES (%d)
+
+> watching: every side, no orders
+pt assistindo: todos os lados, sem ordens
+es mirando: todos los bandos, sin órdenes
+
+> YOU (SPECTATOR)
+pt VOCÊ (ESPECTADOR)
+es TÚ (ESPECTADOR)
+
+> SPECTATOR %d
+pt ESPECTADOR %d
+es ESPECTADOR %d
+
+> SPECTATOR
+pt ESPECTADOR
+es ESPECTADOR
+
+> ping %d ms
+pt ping %d ms
+es ping %d ms
+
+> TAKE A SEAT
+pt OCUPAR UMA VAGA
+es OCUPAR UNA PLAZA
+
+> Pick a faction to play in the free seat.
+pt Escolha uma facção para jogar na vaga livre.
+es Elige una facción para jugar en la plaza libre.
+
+> A spectator joined.
+pt Um espectador entrou.
+es Ha entrado un espectador.
+
+> A spectator left.
+pt Um espectador saiu.
+es Un espectador se ha ido.
+
+> A friend watches as a spectator.
+pt Um amigo assiste como espectador.
+es Un amigo mira como espectador.
+
+> A spectator took a seat.
+pt Um espectador ocupou uma vaga.
+es Un espectador ha ocupado una plaza.
+
+> Every spectator's place is taken.
+pt Todas as vagas de espectador estão ocupadas.
+es Todas las plazas de espectador están ocupadas.
+
+> No free seat: every player's place is taken.
+pt Nenhuma vaga livre: todos os lugares de jogador estão ocupados.
+es No hay plaza libre: todos los puestos de jugador están ocupados.
+
+> This match is already over.
+pt Esta partida já terminou.
+es Esta partida ya ha terminado.
+
+> The match has begun and every spectator's place is taken.
+pt A partida começou e todas as vagas de espectador estão ocupadas.
+es La partida ha empezado y todas las plazas de espectador están ocupadas.
+
+> You are watching: spectators give no orders.
+pt Você está assistindo: espectadores não dão ordens.
+es Estás mirando: los espectadores no dan órdenes.
+
+> WATCHING ONLINE\nIn a friend's room pick SPECTATOR in your FACTION list, or press WATCH instead of JOIN (it also joins a match already under way): you leave the players' seats and are listed apart, under SPECTATORS (up to 4; they don't count as players). In the match you see every side with VIEW, PRODUCTION and ARMY & STRUCTURES, give no orders, and chat with the other spectators only, unless the host turns on SPECTATORS TALK TO PLAYERS. A spectator leaving changes nothing for the players. After the end you get the host's whole replay, as the players do.
+pt ASSISTIR ONLINE\nNa sala de um amigo, escolha ESPECTADOR na sua lista de FACÇÃO, ou toque em ASSISTIR em vez de ENTRAR (também entra numa partida já em andamento): você sai das vagas dos jogadores e aparece à parte, em ESPECTADORES (até 4; não contam como jogadores). Na partida você vê todos os lados com VISTA, PRODUÇÃO e EXÉRCITO E ESTRUTURAS, não dá ordens e conversa só com os outros espectadores, a menos que o anfitrião ligue ESPECTADORES FALAM COM OS JOGADORES. Um espectador que sai não muda nada para os jogadores. Depois do fim você recebe o replay completo do anfitrião, como os jogadores.
+es VER ONLINE\nEn la sala de un amigo, elige ESPECTADOR en tu lista de FACCIÓN, o pulsa OBSERVAR en vez de UNIRSE (también entra en una partida ya empezada): dejas las plazas de jugador y apareces aparte, en ESPECTADORES (hasta 4; no cuentan como jugadores). En la partida ves todos los bandos con VISTA, PRODUCCIÓN y EJÉRCITO Y ESTRUCTURAS, no das órdenes y chateas solo con los demás espectadores, salvo que el anfitrión active LOS ESPECTADORES HABLAN CON LOS JUGADORES. Un espectador que se va no cambia nada para los jugadores. Al terminar recibes la repetición completa del anfitrión, como los jugadores.
+
+> A player paused the match: a player resumes it.
+pt Um jogador pausou a partida: um jogador a retoma.
+es Un jugador ha pausado la partida: un jugador la reanuda.

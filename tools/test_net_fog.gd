@@ -34,6 +34,15 @@ var fx_leaks := 0
 var ever := [{}, {}]                 # per side: every id ever sent to it
 var bad_examples: Array = []
 var old_leaks := 0
+## SPECTATORS (docs/online_spectators.md): a spectator (relay id 13) watches the same match. Its picture must hold every
+## side (no fog filter), go to it alone (never to a player's relay id), and adding it must change nothing in the players'
+## pictures (the checks above run with it there). Its own puppet game must hold exactly what the host has.
+var spg: Game
+var sps: NetSession
+var spec_pics := 0
+var spec_short := 0                  # pictures that left out a unit the host has (must stay 0: it sees all)
+var spec_to_player := 0              # times a player's view listed the spectator's relay id, or the spectator's a player's
+var spec_enemy_units := [0, 0]       # unit rows of each side in the spectator's pictures (both must be > 0)
 
 
 func check(name: String, ok: bool, detail := "") -> void:
@@ -102,6 +111,25 @@ func _setup() -> void:
 	gs.link = NetLink.new()
 	gs._m_reset()
 	pg.net = gs
+	hs.add_spectator(13, 1)
+	spg = Game.new()
+	spg.puppet = true
+	spg.demo = true
+	spg.factions = g.factions.duplicate()
+	spg.colours = g.colours.duplicate()
+	spg.sides = g.sides.duplicate()
+	spg.income_mult = g.income_mult.duplicate()
+	spg.map_id = g.map_id
+	spg.rng.seed = 777123
+	root.add_child(spg)
+	sps = NetSession.new()
+	sps.game = spg
+	sps.is_host = false
+	sps.go_given = true
+	sps.link = NetLink.new()
+	sps._m_reset()
+	spg.net = sps
+	sps.watch_only(1)
 
 
 func _snap() -> void:
@@ -113,11 +141,16 @@ func _snap() -> void:
 			hs.fx.append(["e", "dust", u.position, 1.0])
 			k += 1
 	var vs := hs.side_views()
-	if vs.size() != 2:
-		check("one picture per side", false, "%d views" % vs.size())
+	if vs.size() != 3:
+		check("one picture per side and one for the spectators", false, "%d views" % vs.size())
 		stage = 9
 		return
 	for v in vs:
+		if v.spectator:
+			_check_spec_picture(v)
+			continue
+		if v.peers.has(13):
+			spec_to_player += 1
 		var side := int(v.sides[0])
 		var before: Dictionary = v.was_seen.duplicate()
 		var m := NetSnapshot.build(hs, v)
@@ -125,6 +158,25 @@ func _snap() -> void:
 		if side == 1:
 			NetSnapshot.apply(gs, NetCodec.unpack(NetCodec.pack(m)))
 	hs.fx = []
+
+
+func _check_spec_picture(v: NetView) -> void:
+	if v.peers != [13]:
+		spec_to_player += 1
+	var m := NetSnapshot.build(hs, v)
+	spec_pics += 1
+	for row in m["u"]:
+		var sd := int(g.sides[int(row[2])]) if int(row[2]) >= 0 and int(row[2]) < g.sides.size() else -1
+		if sd >= 0 and sd < 2:
+			spec_enemy_units[sd] += 1
+	NetSnapshot.apply(sps, NetCodec.unpack(NetCodec.pack(m)))
+	if m.has("ids"):
+		var alive := 0
+		for u in g.units:
+			if is_instance_valid(u) and not u.dead:
+				alive += 1
+		if spg.units.size() < alive:
+			spec_short += 1
 
 
 func _check_picture(v: NetView, side: int, before: Dictionary, m: Dictionary) -> void:
@@ -190,5 +242,8 @@ func _report() -> void:
 	check("strict: no battle report before the end", stats_leaks == 0, "%d" % stats_leaks)
 	check("effects only where the side sees", fx_seen > 0 and fx_leaks == 0, "%d of %d" % [fx_leaks, fx_seen])
 	check("the guest holds exactly what the host listed after each keyframe", gs.count_diff_max == 0, "worst %d, %d snapshots off" % [gs.count_diff_max, gs.count_diff_snaps])
+	check("spectator: its picture goes to it alone, and never a player's to it", spec_to_player == 0, "%d" % spec_to_player)
+	check("spectator: every side's units in its pictures", spec_enemy_units[0] > 0 and spec_enemy_units[1] > 0, "rows by side %s in %d pictures" % [str(spec_enemy_units), spec_pics])
+	check("spectator: its game holds every unit after each keyframe (full vision)", spec_short == 0 and sps.count_diff_max == 0, "short %d, worst %d" % [spec_short, sps.count_diff_max])
 	print("FOG %s" % ("ALL OK" if fails == 0 else "SOME FAILED (%d)" % fails))
 	quit(0 if fails == 0 else 1)

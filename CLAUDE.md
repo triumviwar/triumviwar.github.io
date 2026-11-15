@@ -49,6 +49,16 @@
   per-frame spots; it TURNS with `wind` (a turn per 1.2 s full, still run down), stepped by Unit._animate (on screen only,
   10 Hz in big battles); hidden on death. Not the Winders, Ballista or (Claude's choice 1) the Brass Serpent (its wind
   never runs down). Switch windkeys:off. 8 Claude's choices in the doc.
+- ONLINE SPECTATORS (owner 2026-11-15 20:30; job online-spectators, 0.38.21, docs/online_spectators.md,
+  tools/test_online_spectators.gd via `tools/test_online.sh spectators`, pictures docs/shots/online_spectators/): in a
+  friendly room a guest picks SPECTATOR (WATCH) in its FACTION list (or WATCH beside JOIN; a full room or a match under
+  way seats one as a spectator too) and is listed apart under SPECTATORS (n) with its ping, at most NetLobby.SPEC_MAX 4,
+  not counted as players; TAKE A SEAT goes back. In the match (game.net_watch, demo): every side (NetSession.spec_view,
+  NetView.spectator: no fog filter, sent only to spectators' relay ids), VIEW / PRODUCTION / ARMY & STRUCTURES, no AI
+  STORY, no orders (the host refuses "spectator"), no pause; chat to spectators only unless the host's SPECTATORS TALK
+  TO PLAYERS; leaving changes nothing; the host's whole replay reaches spectators too. The host always plays; no
+  spectators in campaign rooms. Upload: ~11 KB/s a spectator in an early fight, ~40 KB/s in a 240-unit battle.
+  Ranked spectating NOT built (needs watch tickets, a delay): 9 Claude's choices and the three-device test in the doc.
 
 - ECONOMY LIMIT BY HALL (owner DECIDED 2026-11-15 18:06: "it should be 2 per Town Hall, 2 per Clocktower"; job
   econ-limit-local, 0.38.16, docs/econ_limit_local.md, tools/test_econ_limit_local.gd): every Farm / Powder Mill / Cog Press /

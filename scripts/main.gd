@@ -119,6 +119,9 @@ With no "you" in the lobby the computers play and you watch. The VIEW button und
 SPECTATOR PANELS
 Watching computers or a replay, a column down the right has three panels, each opened and closed by its title and each with its own player list (All players or one player), apart from VIEW and from each other: PRODUCTION (what each player is making, with progress bars), ARMY & STRUCTURES (each player's army value, supply, resources, its units with counts, army and workers apart, and its buildings, the ones going up dimmer with a bar) and AI STORY (each computer's plan at the start and its decisions with their reasons, newest first: attacks, expansions, defence, tech, walls, raids; big decisions bright, details dim; the mouse wheel or a tap pages back). The narrator reads the big decisions out loud with your system's voice; the speaker on the AI STORY panel or the N key mutes it, and Settings > SOUND has its volume and speed. Without a voice for your language the story is text only. None of this exists in a match you play.
 
+WATCHING ONLINE
+In a friend's room pick SPECTATOR in your FACTION list, or press WATCH instead of JOIN (it also joins a match already under way): you leave the players' seats and are listed apart, under SPECTATORS (up to 4; they don't count as players). In the match you see every side with VIEW, PRODUCTION and ARMY & STRUCTURES, give no orders, and chat with the other spectators only, unless the host turns on SPECTATORS TALK TO PLAYERS. A spectator leaving changes nothing for the players. After the end you get the host's whole replay, as the players do.
+
 GEAR VIEW (the Clockwork): the ` key (left of 1) shows the whole gear network: the drivers, how well every ring works, the Mainsprings (dashed) and the turret circles. On a phone, tap GEAR VIEW on any Clockwork building's card.""",
 	"MAP EDITOR": MapEditor.HELP_TEXT,
 	"REPLAYS": """Every match is recorded: a skirmish, a match you watch, and online. A replay is not a video: it keeps what was on the map a few times a second, so you can move the camera anywhere, select units and buildings to read their health and orders, look through any player's fog, and watch at any speed.
@@ -2969,11 +2972,13 @@ func start(cfg: Dictionary = {}) -> void:
 		game.spectator = sp
 		game.add_child(sp)
 		# the AI STORY: what each computer plans and why, told on its panel and by the narrator (0.27.0)
-		var st := AIStory.new()
-		st.name = "AIStory"
-		st.game = game
-		game.ai_story = st
-		game.add_child(st)
+		# (an online spectator has none: the computers think on the host; docs/online_spectators.md)
+		var st := AIStory.new() if not game.net_watch else null
+		if st:
+			st.name = "AIStory"
+			st.game = game
+			game.ai_story = st
+			game.add_child(st)
 	if game.mission:
 		var mui := MissionUi.new()        # the mission's dialogue box and objectives (scripts/campaign/mission_ui.gd)
 		mui.game = game
@@ -3024,7 +3029,9 @@ func start(cfg: Dictionary = {}) -> void:
 		if Settings.replay_mode() == "mixed" and not game.puppet:
 			ReplayMixRecorder.start_mixed(game, last_cfg, human)      # (MIXED: the commands and a keyframe every 10 s: docs/replay_mixed.md)
 		else:
-			ReplayRecorder.start(game, last_cfg, human, game.puppet, ReplayRecorder.rate_for(Settings.replay_mode(), online_host))
+			# (an online spectator is sent every side: its record is whole, not one side's view; the host's whole replay
+			# still replaces it at the end, as a player's: docs/online_spectators.md)
+			ReplayRecorder.start(game, last_cfg, human, game.puppet, ReplayRecorder.rate_for(Settings.replay_mode(), online_host), game.net_watch)
 
 
 func _to_menu() -> void:

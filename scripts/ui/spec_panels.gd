@@ -136,7 +136,9 @@ func _layout() -> Dictionary:
 	for side in COLS:
 		var c := column(side)
 		var x: float = c[0]
-		var ps: Array = COLS[side]
+		var ps: Array = (COLS[side] as Array).filter(func(p: String) -> bool: return p != "story" or game.ai_story != null)
+		if side == "left" and game.ai_story == null:
+			out["story"] = [Rect2(-9999, -9999, 0, 0), Rect2(-9999, -9999, 0, 0)]      # (no computers' story: an online spectator)
 		var avail: float = float(c[2]) - float(c[1]) - ps.size() * (HEAD + GAP)
 		var want := {}
 		var opened: Array = []

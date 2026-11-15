@@ -17,6 +17,8 @@ static var _tex_cache := {}
 
 var human := 0
 var puppet := false                  # online guest: the host plays the match, this game only shows it (NetPuppet)
+var net_watch := false               # online SPECTATOR (docs/online_spectators.md): a puppet that plays no side (demo, all sides sent)
+var net_spec_no := 0                 # ...its number in the room (SPECTATOR n)
 var net: NetSession = null           # online: the session (host or guest), else null
 var rec: ReplayRecorder = null       # the replay being recorded (scripts/replay/replay_recorder.gd), else null
 var net_next := 1                    # the next net id (NetSession.assign: the online session and the recorder share it)
