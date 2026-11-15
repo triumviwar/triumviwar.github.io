@@ -51,9 +51,9 @@ func _init(a) -> void:
 	var args := OS.get_cmdline_user_args()
 	off = args.has("cvb:off")
 	line_off = off or args.has("cvbline:off")
-	target_off = off or args.has("cvbtarget:off")
+	target_off = off or not args.has("cvbtarget:on")      # (MEASURED, NOT KEPT AS THE DEFAULT: parts 2 and 3 below)
 	keep_wide = args.has("cvbkeep:wide")
-	counter_off = off or args.has("cvbcounter:off")
+	counter_off = off or not args.has("cvbcounter:on")
 
 
 static func is_line(u: Unit) -> bool:
@@ -127,7 +127,7 @@ func line_keep() -> int:
 ##    her fathers and the rooted turtles round her: the strongest spot on its side of the map. Its income is its Rootmaws,
 ##    rooted on fresh ground away from her, each a slow 450-hp lizard with a few grubs. Against the Brood the wave now
 ##    goes for the nearest Rootmaw it has seen rooted away from the Mother (MAW_FAR), the Mother only when there is none.
-##    Switch: `-- cvbtarget:off`.
+##    A study switch, `-- cvbtarget:on` (measured with part 3, see there).
 const MAW_FAR := 14.0            # (tiles) a Rootmaw at least this far from the Mother is "far ground"
 var target_off := false
 var _tgt_t := -99.0
@@ -169,7 +169,14 @@ func wave_target(me: Vector2) -> Vector2:
 ##    has just died at his wall. So against the Brood, from COUNTER_FROM: when the Crown has killed at least COUNTER_KILL
 ##    of Brood in the last COUNTER_WINDOW s, or its army is COUNTER_EDGE times the Brood army seen in the last two minutes
 ##    (fresh scouting asked as before), and its own army is at least COUNTER_MIN, the wave goes at once, for the far ground
-##    (part 2). Switch: `-- cvbcounter:off`.
+##    (part 2). MEASURED AND NOT KEPT AS THE DEFAULT (study switch `-- cvbcounter:on`; 16 games each, the same build but for
+##    parts 2 and 3: with them W-D-L 0-4-12, the army at 10:00 and 12:00 0.36 and 0.34 of the Brood's; without, 0-5-11, 0.42
+##    and 0.27: no gain within the noise): it went out
+##    in 4 of 16 games, and in the films the wave took 90 s to walk to the far ground (it closed up and formed its line for a
+##    150-strong guard on the way), killed 4 Rootmaws, while the Brood rebuilt from 300 to 4,030 of army in two minutes and
+##    came for the halls the wave had left bare (Greenhold 1100: 44 labourers at 13:00, 8 at 14:00). What it lacks is in
+##    docs/crown-coach-v-brood.md (a quick strike that does not stop to form for a token guard, a home guard left behind,
+##    and the way home before the Brood's next wave).
 const COUNTER_FROM := 360.0
 const COUNTER_MIN := 1200.0
 const COUNTER_WINDOW := 75.0
