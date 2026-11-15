@@ -10,6 +10,8 @@ extends SceneTree
 
 var radii: Array = [8.0, 7.5, 7.0, 6.5, 6.0]
 var all_turtles := false
+var quality := false
+var qual: Array = []
 
 
 func _initialize() -> void:
@@ -48,6 +50,8 @@ func _run(args: Array) -> void:
 			ids = Array(String(a).substr(5).split(","))
 		elif a == "turtles:all":
 			all_turtles = true
+		elif a == "quality":
+			quality = true
 	# per radius: [main empty min, main start min, turtle (marked) min, failures list]
 	var worst := {}
 	for r in radii:
@@ -78,9 +82,21 @@ func _run(args: Array) -> void:
 				var spot := start_maw.position
 				_drop(g, start_maw)
 				var c_empty := RootmawSpots.candidates(g, q)
+				var lvl := int(g.height[g.idx(g.cell_of(BroodRoot.anchor(g, q)))])
+				var reg := BroodRoot.home_region(g, q.position)
 				for r in radii:
 					RootmawSpots.r_test = r
-					var with_start := RootmawSpots.pick(c_start, 2, [spot]).size() + 1
+					var ws := RootmawSpots.pick(c_start, 2, [spot])
+					var with_start := ws.size() + 1
+					if quality:
+						# (where the marks fall: on her level and in her region, and how far from her feet, tiles)
+						var same := 1 if int(g.height[g.idx(g.cell_of(spot))]) == lvl and g.region_of(g.cell_of(spot)) == reg else 0
+						var ds: Array = [snappedf(spot.distance_to(q.position) / Defs.TILE, 0.1)]
+						for p in ws:
+							if int(g.height[g.idx(g.cell_of(p))]) == lvl and g.region_of(g.cell_of(p)) == reg:
+								same += 1
+							ds.append(snappedf((p as Vector2).distance_to(q.position) / Defs.TILE, 0.1))
+						qual.append("%s %dp p%d r%.1f: on her level %d/3, tiles from her %s" % [id, n, t, r, same, str(ds)])
 					var empty := RootmawSpots.pick(c_empty, 3, []).size()
 					res.append([r, empty, with_start])
 				RootmawSpots.r_test = 0.25
@@ -127,6 +143,10 @@ func _run(args: Array) -> void:
 			g.queue_free()
 			await process_frame
 	RootmawSpots.r_test = 0.0
+	if quality:
+		print("\nQUALITY (the Mother's start Rootmaw and the 2 marks)")
+		for l in qual:
+			print("  ", l)
 	print("\nSUMMARY (fewest that fit: main empty / main with its start Rootmaw / a marked turtle site)")
 	for r in radii:
 		var w: Dictionary = worst[r]

@@ -205,6 +205,8 @@ static func candidates(g: Game, src: Unit, skip: Unit = null) -> Array:
 	var sc := g.sym_rect(t, g.cell_of(ck), Vector2i.ONE)
 	var h := int(g.height[g.idx(g.cell_of(BroodRoot.anchor(g, src)))])
 	var home := BroodRoot.home_region(g, src.position)
+	var mid := BroodRoot.rect_of(src).get_center()          # (her footprint's middle)
+	var fs: Vector2i = BroodRoot.fp(BroodNew.MAW)[0]
 	var seen := {}
 	var out: Array = []
 	var ri := int(ceil(full)) + 1
@@ -220,19 +222,25 @@ static func candidates(g: Game, src: Unit, skip: Unit = null) -> Array:
 				continue
 			if BroodRoot.place_problem(g, t, BroodNew.MAW, p, skip, true, 1.0, false) != "":
 				continue
-			var cc := g.cell_of(p)
-			# open ground round it: the cells within 2 tiles walkable and on its level (grubs come and go on its flanks)
+			# (everything measured from the footprints, not the feet: the feet hang below a footprint's middle, so a
+			# mirrored start would score its twin spot differently)
+			var fc := BroodRoot.cell_for(BroodNew.MAW, p)
+			var lv := int(g.height[g.idx(fc)])
+			# open ground round it: the cells within 2 tiles of its footprint walkable and on its level (grubs come and
+			# go on its flanks)
 			var room := 0
-			for ex in range(-2, 3):
-				for ey in range(-2, 3):
-					var c2 := cc + Vector2i(ex, ey)
-					if g.in_map(c2) and g._walkable(c2) and int(g.height[g.idx(c2)]) == int(g.height[g.idx(cc)]):
+			for ex in range(-2, fs.x + 2):
+				for ey in range(-2, fs.y + 2):
+					if ex >= 0 and ex < fs.x and ey >= 0 and ey < fs.y:
+						continue
+					var c2 := fc + Vector2i(ex, ey)
+					if g.in_map(c2) and g._walkable(c2) and int(g.height[g.idx(c2)]) == lv:
 						room += 1
-			var d := p.distance_to(src.position) / T
+			var d := BroodRoot.rect_for(BroodNew.MAW, p).get_center().distance_to(mid) / T
 			var s := float(room) * 1.0 - d * 0.35
-			if int(g.height[g.idx(cc)]) != h:
+			if lv != h:
 				s -= 12.0
-			if g.region_of(cc) != home:
+			if g.region_of(fc) != home:
 				s -= 25.0
 			# (a tiny tie-break by the frame's order, the same on both mirrored starts)
 			out.append([p, s - float(out.size()) * 0.00001])
