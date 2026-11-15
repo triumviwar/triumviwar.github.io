@@ -107,7 +107,9 @@ against our 971 (the Clockwork waits longer because it sees a bigger army).
 
 ## Tests
 
-__TESTS__
+__TESTS__ (IN PROGRESS, session 01SK3ipD1TZFLcrzNhd2HLNc: the 40 Crown and AI tests (test_ai_*, test_crown_*,
+test_cinder_crown) on the final code against 0.38.1, a second sample of 16 games (seeds 3 and 4, before and after), the
+films again on the final code, and the patch notes. The other session: please leave these to it.)
 
 ## Claude's choices for the owner
 
