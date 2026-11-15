@@ -11,7 +11,6 @@ extends SceneTree
 ##   godot --headless --fixed-fps 30 --script res://tools/test_rootmaw_spots.gd [-- maps:a,b]
 
 var failed := 0
-var main: Node
 
 
 func _initialize() -> void:
@@ -66,8 +65,10 @@ func _run(args: Array) -> void:
 	for a in args:
 		if String(a).begins_with("maps:"):
 			ids = Array(String(a).substr(5).split(","))
-	await _count_checks()
-	await _show_checks()
+	if not args.has("nocount"):
+		await _count_checks()
+	if not args.has("noshow"):
+		await _show_checks()
 	for id in ids:
 		await _fit_map(id)
 	print("rootmaw spots: %s" % ("ALL OK" if failed == 0 else "%d FAILED" % failed))
@@ -153,29 +154,24 @@ func _count_checks() -> void:
 # ------------------------------------------------------------------ [show]
 
 func _show_checks() -> void:
-	print("[show]")
-	main = load("res://scenes/main.tscn").instantiate()
-	root.add_child(main)
-	for i in 6:
-		await process_frame
+	print("[show] greenhold")
 	for fac in ["brood", "crown"]:
-		main.start({"map": "greenhold", "seed": 4242, "slots": [
-			{"who": "you", "faction": fac, "colour": 0, "side": 0},
-			{"who": "easy", "faction": "brood", "colour": 1, "side": 1}]})
-		for i in 10:
-			await process_frame
-		var g: Game = main.game
-		var q := BroodNew.queen(g, 0)
-		if q != null:
-			q.tesla_mode = "deployed"
-			q.nb["m"] = "deployed"
+		var g := _make("greenhold", [fac, "brood"], false)
+		g.human = 0
+		await process_frame
+		await process_frame
+		for t in 2:
+			var q := BroodNew.queen(g, t)
+			if q != null:
+				q.tesla_mode = "deployed"
+				q.nb["m"] = "deployed"
 		g._update_swamp()
 		g.maw_spots._key = "-"
 		g.maw_spots.refresh()
 		if fac == "brood":
 			_ok(g.maw_spots.shown.size() == 2, "a Brood player sees 2 Rootmaw marks (%d)" % g.maw_spots.shown.size())
 			var mine := g.maw_spots.shown.all(func(s: Dictionary) -> bool: return (s["src"] as Unit).team == 0)
-			_ok(mine, "only his own side's swamp is marked")
+			_ok(mine, "only his own side's swamp is marked (not the enemy Brood's)")
 			Settings.rootmaw_spots = false
 			g.maw_spots.refresh()
 			_ok(g.maw_spots.shown.is_empty(), "SHOW ROOTMAW SPOTS off: none")
@@ -185,9 +181,7 @@ func _show_checks() -> void:
 		else:
 			_ok(g.maw_spots.shown.is_empty(), "a Crown player sees none (the enemy Brood's swamp neither)")
 		g.queue_free()
-		main.game = null
-		for i in 4:
-			await process_frame
+		await process_frame
 	var gd := _make("greenhold", ["brood", "brood"], true)
 	await process_frame
 	gd.maw_spots.refresh()
@@ -248,9 +242,9 @@ func _fit_map(id: String) -> void:
 		a.sort()
 		b.sort()
 		if a != b and g._flip_of(1) != Vector2i.ZERO:      # (only where the map mirrors the starts: Game.start_flip)
-			# (a note, not a failure: a map's mirror allows a few stray trees and rocks (Game._map_symmetries), and the
-			# marks follow the open ground round them; both sides still get their full count)
-			print("    note: the sides' marks don't mirror exactly (in the first start's frame): %s / %s" % [str(a), str(b)])
+			# (measured from the footprints, the marks mirror exactly on every built-in map; a map whose mirror allows a
+			# few stray trees or rocks (Game._map_symmetries) could break this one day)
+			bad.append("the sides' marks don't mirror (in the first start's frame): %s / %s" % [str(a), str(b)])
 	else:
 		bad.append("the sides got %d and %d marks" % [got[0].size(), got[1].size()])
 	print("[fit] %-18s %s" % [id, "ok" if bad.is_empty() else "FAIL"])
