@@ -89,8 +89,8 @@ kinds in `WindKeyData.KEYS`): it flips, bobs, leaps, hovers and goes cold with t
 
 ## Pictures and checks
 
-- `docs/shots/wind_keys/<kind>_{idle,walk}_{2x,4x_l,4x_r}.png`: two rows of eight (S SE E NE N NW W SW), the top row
-  fully wound, the bottom run down; `docs/shots/wind_keys/<kind>.gif`: the top row walking, S SE E NE fully wound, N NW
+- `docs/shots/wind_keys/<kind>_{idle,walk}_2x.png`: two rows of eight (S SE E NE N NW W SW), the top row fully wound,
+  the bottom run down (the tool also writes 4x close-ups, `_4x_l` / `_4x_r`, left out of the repo for size); `docs/shots/wind_keys/<kind>.gif`: the top row walking, S SE E NE fully wound, N NW
   W SW at 35% (turning slower). Made by `tools/shot_wind_keys.gd` (Clockwork Lab) and `tools/wind_keys_gif.py`.
 - Swarm perf (tools/stress_swarm.gd `pair a:clockwork b:clockwork n:200 secs:20`, headless, this cloud machine; see
   "Perf numbers" below).
@@ -110,4 +110,31 @@ kinds in `WindKeyData.KEYS`): it flips, bobs, leaps, hovers and goes cold with t
 
 ## Perf numbers
 
-See the table filled in at the end of the job (below).
+`tools/stress_swarm.gd pair a:clockwork b:clockwork n:200` (200 Clockwork a side, nearly all of them keyed, the whole
+battle in view: the worst case), this cloud machine (2 cores), keys on v `windkeys:off`:
+
+| run | keys on | keys off |
+| --- | --- | --- |
+| headless 20 s, run 1 (key with its own `_process`, first version) | 10.97 ms a frame | 10.69 |
+| headless 20 s, run 2 (stepped by `_animate`) | 11.47 | 11.10 |
+| headless 20 s, run 3 | 11.03 | 10.68 |
+| headless 20 s, the key's `step` a no-op (the bare node) | 11.18 / 11.15 | |
+| rendered (xvfb, llvmpipe software GL) 15 s | 170.5 ms, 1691 draw calls | 157.7 ms, 1470 draw calls |
+
+So about +0.35 ms a frame (+3%) with 400 keyed units in view, and that is nearly all the extra node itself (a child
+sprite moving with each body), not the key's own work; drawn, one extra draw call per key on screen (a key's texture
+breaks the batch between two bodies, as the battery packs do). Kept small by: no `_process`, steps only when the body
+steps (15 Hz, 10 Hz in a big battle, none off screen), setters only on change, hidden zoomed out past 0.75 (the camera
+goes to 0.55). If phones need more: hide the keys while `anim_crowd` (a big battle on screen) too: one line in
+`WindKey.step`.
+
+## Tests
+
+- `tools/test_wind_keys.gd`: the table (a spot for every frame of every strip but death, within the cell, the sheets'
+  sizes), which units carry one, the spot on the body's frame, the spin rule (a quarter turn in 0.3 s fully wound,
+  half as fast at half wind, still at 0), the own-west mirror, the flipped east strip, hidden zoomed out and dead: all pass.
+- Clockwork tests run with the keys on: test_clockwork_army, test_cw_army, test_cw_air, test_cw_tier2,
+  test_pendulum_v2, test_pendulum_air, test_springer_arms, test_springer_compat, test_exhaust, test_brass_serpent,
+  test_online_anim, test_cw_lab, test_clockwork_owls pass. test_clock_soldier_shield fails only its "online: the
+  guest has the soldier" check, the same with `windkeys:off` (this machine's online loopback); test_cw_tier3's 3 online
+  checks fail as on main (CLAUDE.md).
