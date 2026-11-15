@@ -18,7 +18,9 @@ extends RefCounted
 ##     be a charge (RIDE_BY "calm" s without a blow, then CHARGE "run" s at the gallop: Unit.run_t), and comes in again
 ##     from where it is: another angle. Without the charge it comes straight back after OUT_T for the next prey.
 ##     No prey worth a pass (only a blob, a wall of shields): it circles out of reach and waits for one.
-##  4. HOME: a rider under HURT of its hit points rides home and is left alone a while.
+##  4. HURT: a rider under CAREFUL of its hit points only rides at prey with next to no guard and no gun on it (a
+##     Horseman does not heal: sent home it only waits for the next wave to send it into the mass, unled); under HURT it
+##     rides home and is left alone a while.
 ## The fight is released (its old order given back) when no enemy is near for RELEASE_T s.
 ## Design: docs/design_principles.md 1 (fair: what a player does with his riders, from what it sees; no unit numbers
 ## changed) and 4 (out-micro as a way to win). Everything runs on the game clock: the same in every replay.
@@ -40,7 +42,9 @@ const OUT_D := 220.0             # (px) the point it rides out to
 const ROUND_R := [190.0, 300.0]  # (px) it rides round the fight this far from the enemy's fighters
 const ROUND_MAX := 14.0          # (s) round at most this long, then in anyway (a prey is waiting)
 const IN_MAX := 6.0              # (s) riding in this long without a blow: it picks again
-const HURT := 0.35               # a rider below this share of its hit points rides home
+const CAREFUL := 0.45            # a rider below this share of its hit points picks only prey with no answer at hand
+const CAREFUL_DANGER := 1.3      # ... at most this much guard (see _danger), and no enemy gun reaching it
+const HURT := 0.15               # a rider below this share of its hit points rides home
 const HOME_COOL := 40.0          # (s) ... and is left alone this long (or until it is home)
 
 var ai = null
@@ -328,6 +332,16 @@ func _melee_chases(u: Unit) -> bool:
 	return false
 
 
+## An enemy gun reaches the spot `o` stands at (a pass on it rides into that fire).
+func _gun_on(o: Unit) -> bool:
+	for q in game.units_near(o.position, 300.0):
+		if q.dead or q.off_field or q.team != o.team or not Game.fights_back(q) or float(q.d["range"]) < 100.0:
+			continue
+		if q.position.distance_to(o.position) <= float(q.d["range"]) + 20.0:
+			return true
+	return false
+
+
 ## The enemy's answer at hand: a fighter that strikes up close (a reach under 60) by it.
 func _melee_near(u: Unit) -> bool:
 	for o in game.units_near(u.position, 130.0):
@@ -355,6 +369,7 @@ func _pick(u: Unit, s: Dictionary) -> Unit:
 	var lv := game.level_of(u.position)
 	var an: Vector2 = s["anchor"]
 	var shot := _guns(u)
+	var careful := u.hp < u.max_hp * CAREFUL
 	for o in game.units_near(u.position, PICK_R):
 		if o.dead or o.off_field or o.is_air() or not game.hostile(o.team, ai.team) or o.kind == "horse" or not u.can_hit(o) or o.untouchable():
 			continue
@@ -371,7 +386,9 @@ func _pick(u: Unit, s: Dictionary) -> Unit:
 				v *= 0.4
 		var dg := _danger(o)
 		if dg > DANGER_MAX + v:
-			continue               # (the more a pass is worth, the more guard it is worth riding past)
+			continue
+		if careful and (dg > CAREFUL_DANGER or _gun_on(o)):
+			continue               # (hurt: only what cannot answer)               # (the more a pass is worth, the more guard it is worth riding past)
 		var sc: float = v * 10.0 - dg * 3.0 - o.position.distance_to(u.position) / (25.0 if shot else 40.0)
 		if game.level_of(o.position) != lv:
 			sc -= 6.0              # (up or down a ramp: a long way round)

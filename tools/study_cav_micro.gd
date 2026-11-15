@@ -2,7 +2,7 @@ extends SceneTree
 ## crown-coach-cavalry's measure (docs/crown-coach-cavalry.md): a computer-against-computer match, headless, and what the
 ## Crown's Horsemen did in it. A measuring tool only: it starts a normal match and reads it; it changes no rule.
 ##   godot --headless --fixed-fps 30 --script res://tools/study_cav_micro.gd -- a:crown b:brood map:greenhold seed:1 \
-##       end:900 out:/abs/file.json [diff:hard] [pa:optimal pb:optimal]      (add cavmicro:off for the old riders)
+##       end:900 out:/abs/file.json [diff:hard] [pa:optimal pb:optimal] [charge:N]   (add cavmicro:off for the old riders)
 ## Writes one JSON object: per Crown side its Horsemen's sabre blows (plain, charged), pistol shots, sabre damage, riders
 ## lost (killed or unhorsed), riders made, the seconds riders stood still in a melee, the hit points they lost, the
 ## micro's counts, when the Cavalry Charge was drilled; and the result.
@@ -17,6 +17,8 @@ var out := "/tmp/cav.json"
 var diff := "hard"
 var pa := "optimal"
 var pb := "optimal"
+var give_charge := -1.0         # charge:N the Crown sides get the Cavalry Charge at N s (a study tool: the computer
+                                # seldom drills it before 10:00, so the charge's use is measured this way too)
 var t := 0.0
 var _next := 0.0
 const LOOK := 0.25
@@ -43,6 +45,7 @@ func _initialize() -> void:
 			"diff": diff = kv[1]
 			"pa": pa = kv[1]
 			"pb": pb = kv[1]
+			"charge": give_charge = float(kv[1])
 	Settings.load_all()
 	Settings.device = "pc"
 	Settings.apply()
@@ -82,6 +85,8 @@ func _look() -> void:
 	for tm in 2:
 		if g.faction_of(tm) != "crown":
 			continue
+		if give_charge >= 0.0 and g.clock >= give_charge and not g.has_tech(tm, "charge"):
+			g.players[tm]["tech"]["charge"] = true
 		if charge_at[tm] < 0.0 and g.has_tech(tm, "charge"):
 			charge_at[tm] = g.clock
 		var now := {}

@@ -7,7 +7,7 @@ extends SceneTree
 ## Spitters), shields_winders (6 Clock Soldiers before 6 Winders), line_hands (6 Musketeers on guard before 5
 ## Labourers). Prints a RESULT line per case and mode and a table: the enemy's value killed, riders lost, their health
 ## left, sabre blows (plain / charged), seconds a rider stood still at sabre's reach of an enemy fighter.
-## The checks: with the micro the riders do better (value killed per rider's health lost) in most cases, strike charged
+## The checks: with the micro the riders do better (value killed per rider's health lost, all cases summed), strike charged
 ## blows again and again with the charge (not only the first), and lose fewer riders.
 var main: Node
 var t := 0.0
@@ -16,6 +16,8 @@ var started := false
 var fails := 0
 var origin := Vector2i(-1, -1)
 var only := ""
+var film := ""                  # film:DIR a picture every FILM_EVERY s of each case (under xvfb-run, not --headless)
+const FILM_EVERY := 0.6
 var reps := 3                    # reps:N each case and mode played N times (the fights are noisy: summed)
 var rows: Array = []
 
@@ -37,6 +39,9 @@ func _initialize() -> void:
 			only = a.substr(5)
 		if a.begins_with("reps:"):
 			reps = int(a.substr(5))
+		if a.begins_with("film:"):
+			film = a.substr(5)
+			DirAccess.make_dir_recursive_absolute(film)
 
 
 func _process(_delta: float) -> bool:
@@ -169,18 +174,21 @@ func _trade(r: Dictionary) -> float:
 
 
 func _checks() -> void:
-	var better := 0
-	var all := 0
+	# (the enemy's value killed for the riders' health lost, over every case: the fights are noisy one by one)
+	var k_on := 0.0
+	var k_off := 0.0
+	var h_on := 0.0
+	var h_off := 0.0
 	for r in rows:
-		if not r["on"]:
-			continue
-		var b := _row(r["case"], false, r["charge"])
-		if b.is_empty():
-			continue
-		all += 1
-		if _trade(r) >= _trade(b) * 0.95:
-			better += 1
-	check(better * 3 >= all * 2, "the micro trades as well or better in %d of %d cases" % [better, all])
+		var lost := 560.0 * float(r["n"]) * (1.0 - float(r["hp"]) / 100.0)
+		if r["on"]:
+			k_on += float(r["killed"])
+			h_on += lost
+		else:
+			k_off += float(r["killed"])
+			h_off += lost
+	check(k_on / maxf(1.0, h_on) >= k_off / maxf(1.0, h_off), "the micro kills as much or more for the riders' health (%.2f a point, before %.2f)" % [
+		k_on / maxf(1.0, h_on), k_off / maxf(1.0, h_off)])
 	var ch_on := 0
 	var ch_off := 0
 	var lo_on := 0
@@ -249,9 +257,15 @@ func _case(c: String, on: bool, ch: bool, k := 0) -> void:
 	var t0: float = g.clock
 	var stood := 0.0
 	var look := 0.0
+	var shot_t := 0.0
+	var shot_n := 0
 	while g.clock - t0 < secs:
 		await physics_frame
 		micro.tick()
+		if film != "" and k == 0 and g.clock - t0 >= shot_t:
+			shot_t = g.clock - t0 + FILM_EVERY
+			await _shot(riders, men, "%s/%s_%s_%s_%03d.jpg" % [film, c, "charge" if ch else "plain", "on" if on else "off", shot_n])
+			shot_n += 1
 		if g.clock - t0 >= look:
 			look = g.clock - t0 + 0.25
 			for r in riders:
@@ -283,3 +297,23 @@ func _case(c: String, on: bool, ch: bool, k := 0) -> void:
 	rows.append(row)
 	print("RESULT %s charge:%s micro:%s killed %d, riders lost %d, health left %d%%, blows %d / %d charged, stood %.1f s (%.0f s)" % [
 		c, ch, on, killed, lost, row["hp"], row["plain"], row["charged"], stood, row["secs"]])
+
+
+## (film:) a picture of the fight: the camera on the middle of the riders and the enemy left, the frame drawn, saved.
+func _shot(riders: Array, men: Array, file: String) -> void:
+	var c := Vector2.ZERO
+	var k := 0
+	for u in riders + men:
+		if is_instance_valid(u) and not u.dead:
+			c += u.position
+			k += 1
+	if k == 0:
+		return
+	var cam: Camera2D = g.camera
+	cam.position = c / k
+	cam.zoom = Vector2(1.1, 1.1)
+	cam.reset_smoothing()
+	await process_frame
+	await process_frame
+	var img := root.get_viewport().get_texture().get_image()
+	img.save_jpg(file, 0.8)
