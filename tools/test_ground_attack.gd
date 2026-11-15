@@ -120,14 +120,14 @@ func _run() -> void:
 	var t0 := g.clock
 	await wait(2.0)
 	check(is_equal_approx(bm.body_size(), 70.0), "a Musketeer's body has 70 health (%.0f)" % bm.body_size())
-	check(is_equal_approx(br.body_size(), 36.0), "a Raptor's 36 (%.0f)" % br.body_size())
+	check(is_equal_approx(br.body_size(), 38.0), "a Raptor's 38 (%.0f)" % br.body_size())
 	check(is_equal_approx(bb.body_size(), 240.0), "a Brute's 240 (%.0f)" % bb.body_size())
-	check(bc.is_mounted() and is_equal_approx(bc.body_size(), 200.0), "a Horseman's with his horse 140 + 60 = 200 (%.0f)" % bc.body_size())
+	check(bc.is_mounted() and is_equal_approx(bc.body_size(), 160.0), "a Horseman's with his horse 100 + 60 = 160 (%.0f)" % bc.body_size())
 	check(g.bodies.has(bm) and bm.body_left() < 70.0 and bm.body_left() > 69.0, "lying there, a little rotted already (%.2f)" % bm.body_left())
 
 	# ---- 2. the rot: one base speed, doubling every minute (closed form, and live)
 	var lm := Unit.rot_life(70.0)
-	var lr := Unit.rot_life(36.0)
+	var lr := Unit.rot_life(38.0)
 	var lb := Unit.rot_life(240.0)
 	check(absf(lm - 120.0) < 3.0, "an untouched Musketeer's body lasts about 2:00 (%.1f s)" % lm)
 	check(absf(lr - 80.0) < 4.0, "a Raptor's about 1:20 (%.1f s)" % lr)

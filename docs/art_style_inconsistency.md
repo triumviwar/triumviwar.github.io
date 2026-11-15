@@ -669,3 +669,8 @@ amber / obsidian skin) are gone; the Crown's trim mask still draws the hat lace 
 | A Winder carrying a gear | scripts/brass_serpent.gd `draw_carry` | the gear drawn over his head | a carry strip for the Winder |
 | Its sprite | Defs.TEMP_ART "brass_serpent" | the Great Winder's sheet stands in for the frame tables only; the sprite is hidden | its own sheets |
 | Card icons | assets/icons/brass_serpent.png, serpent_gear_s.png, serpent_gear_b.png, clockwork/ab_serpent_collect / _grow / _link / _unlink.png | tools/serpent/make_icons.py: the frame and field of ab_mend.png, gears and a head drawn with PIL | painted icons in the Clockwork command icons' style |
+
+## Keen Sabres research icon (stand-in, 0.38.3, balance-raptor-horseman)
+- `assets/icons/research_keen_sabres.png`: the Cavalry Charge's icon (research_charge) mirrored and tinted steel blue in
+  code (PIL). To redraw: a pair of crossed cavalry sabres being ground on a whetstone, a bright edge glint, the same
+  icon frame and size (64x64) as the other Crown research icons.

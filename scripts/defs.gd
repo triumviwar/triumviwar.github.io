@@ -1007,10 +1007,10 @@ const UNITS := {
 	# Horseman, with Armour the Cuirassier: see ARMOURED)
 	"cuirassier": {
 		"tags": ["light"],
-		"name": "Horseman", "hp": 140, "armor": 1, "speed": 112, "cost": 115, "time": 22.0, "supply": 3,
+		"name": "Horseman", "hp": 100, "armor": 1, "speed": 112, "cost": 100, "time": 22.0, "supply": 3,
 		"sight": 8, "range": 26, "damage": 18, "cooldown": 1.1, "aim": 0.15, "radius": 15, "from": "barracks",
 		"requires": "horse_breeder", "bonus": {"cannon": 1.6, "spitter": 1.3, "arc_thrower": 1.3}, "charge": true, "faction": "crown", "needs_horse": true,
-		"about": "Fast light horseman with a pistol and a sabre. Trained with his horse in one click (a free one at a breeder, else the breeder trains one: 40 more); he comes out on foot and rides off on it. He opens with his one loaded pistol shot (30 damage, a little over half a musket's reach), then fights with the sabre; he can only reload on foot (DISMOUNT: he's an Officer then). Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. Once the Armoury has drilled the Cavalry Charge, his first sabre blow after a gallop hits double and throws the enemy back. With Armour he becomes a Cuirassier. Bayonets hurt him.",
+		"about": "Fast light horseman with a pistol and a sabre. Trained with his horse in one click (a free one at a breeder, else the breeder trains one: 40 more); he comes out on foot and rides off on it. He opens with his one loaded pistol shot (30 damage, a little over half a musket's reach), then fights with the sabre; he can only reload on foot (DISMOUNT: he's an Officer then). Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. Once the Armoury has drilled the Cavalry Charge, his first sabre blow after a gallop hits double and throws the enemy back. KEEN SABRES (the Horse Breeder) puts 6 more on each sabre blow at light units. With Armour he becomes a Cuirassier. Bayonets hurt him.",
 	},
 	# ---- horses (Defs.HORSES) and the men who ride them. Horses are bought at a Horse Breeder
 	# (trained like soldiers); the rest are a man on a horse (MOUNT) or off it (DISMOUNT): Defs.MOUNTS.
@@ -1074,7 +1074,7 @@ const UNITS := {
 	},
 	"raptor": {
 		"tags": ["light"],
-		"name": "Raptors", "hp": 36, "armor": 0, "speed": 96, "cost": 50, "time": 11.0, "supply": 1, "spawn": 2,
+		"name": "Raptors", "hp": 38, "armor": 0, "speed": 92, "cost": 50, "time": 11.0, "supply": 1, "spawn": 2,
 		"sight": 7, "range": 22, "damage": 6, "cooldown": 0.9, "aim": 0.1, "radius": 7, "from": "",
 		"faction": "brood", "about": "Fast, flimsy claws. Two hatch from each egg (three with the Tyrant Sire's BIGGER CLUTCH); PACK HUNT makes them faster.",
 	},
@@ -1629,7 +1629,7 @@ const BUILDINGS := {
 	"horse_breeder": {
 		"name": "Horse Breeder", "hp": 500, "armor": 1, "cost": 100, "time": 25.0, "size": Vector2i(4, 3),
 		"supply": 0, "sight": 6, "trains": ["horse"], "faction": "crown",
-		"about": "Sells horses: HORSE trains one (40 gold, 15 s; no supply). Horses are what cavalry, guns and wagons need. RALLY sends new horses somewhere (a Barracks or Foundry). Unlocks Horsemen. Build as many as you like, anywhere.",
+		"about": "Sells horses: HORSE trains one (40 gold, 15 s; no supply). Horses are what cavalry, guns and wagons need. RALLY sends new horses somewhere (a Barracks or Foundry). Unlocks Horsemen and researches KEEN SABRES (the riders' sabres hit light units harder). Build as many as you like, anywhere.",
 	},
 	"church": {
 		"name": "Church", "hp": 900, "armor": 2, "cost": 150, "time": 35.0, "size": Vector2i(3, 3),
@@ -1728,6 +1728,12 @@ const RESEARCH := {
 	"charge": {"name": "Cavalry Charge", "label": "CHARGE", "at": "armoury", "faction": "crown", "cost": 60, "cost2": 0, "time": 25.0,
 		"icon": "research_charge", "drill": true, "kinds": ["cuirassier"],
 		"about": "Drilled to charge: after about 2 s at the gallop a Horseman's or Cuirassier's next sabre blow hits double and throws the enemy back."},
+	# KEEN SABRES (balance-raptor-horseman, 2026-11-15: StarCraft's Blue Flame for Hellions): the riders' sabres cut light
+	# units deeper (+`light` damage a blow in the saddle, before the charge and veterancy multiply it). A drill: every
+	# Horseman and Cuirassier has it at once. Price and time Claude's, about the Cavalry Charge's.
+	"keen_sabres": {"name": "Keen Sabres", "label": "SABRES", "at": "horse_breeder", "faction": "crown", "cost": 75, "cost2": 0, "time": 30.0,
+		"icon": "research_keen_sabres", "drill": true, "kinds": ["cuirassier"], "light": 6.0,
+		"about": "Sabres ground to a razor edge: every Horseman's and Cuirassier's sabre blow in the saddle hits light units harder (+6: 18 to 24, so two blows kill a Raptor)."},
 	# (THE MARCHING BAND's old research "band_fife" / "band_pipes" is gone since 0.36.0: the Fifer and the Piper are
 	# units now (UNITS "band_fifer", "band_piper"); an old save's flag adds the musician to its old band unit on load.)
 	# the Clockwork's Tension research (gear mode), at the Escapement (it must be working: meshed with a Mainspring)
@@ -1756,8 +1762,8 @@ const RESEARCH := {
 		"time": 40.0, "stage": 0, "icon": "nbr_clutch_raptor", "young": "raptor",
 		"about": "Raptors hatch three to an egg instead of two. The egg costs more (75 food for three), so each Raptor costs the same: more Raptors from each egg, not cheaper ones."},
 	"nb_pack_hunt": {"name": "Pack Hunt", "label": "PACK HUNT", "at": "tyrannosaur", "faction": "brood", "cost": 75, "cost2": 15,
-		"time": 35.0, "stage": 0, "icon": "nbr_pack_hunt", "speed": {"raptor": 18.0, "tyrant_challenger": 14.0, "tyrannosaur": 11.0},
-		"about": "Raptors, Tyrant Challengers and the Tyrant Sire run faster: a Raptor from 96 to 114, a Tyrant Challenger from 84 to 98, the Tyrant Sire from 64 to 75."},
+		"time": 35.0, "stage": 0, "icon": "nbr_pack_hunt", "speed": {"raptor": 22.0, "tyrant_challenger": 14.0, "tyrannosaur": 11.0},
+		"about": "Raptors, Tyrant Challengers and the Tyrant Sire run faster: a Raptor from 92 to 114 (then it outruns horses), a Tyrant Challenger from 84 to 98, the Tyrant Sire from 64 to 75."},
 	"nb_battering_horns": {"name": "Battering Horns", "label": "BATTERING HORNS", "at": "tyrannosaur", "faction": "brood", "cost": 125, "cost2": 40,
 		"time": 50.0, "stage": 2, "icon": "nbr_battering_horns", "bonus": {"brute": 3.5},
 		"about": "The Brutes' horns grow into rams: they hit buildings, walls and gates harder (x3.5 instead of x2.5)."},
@@ -2397,7 +2403,7 @@ const TIPS := {
 	"RELEASE HORSE": "Unhitch one horse (the front one of a team first): it stands free. With none left the gun or wagon can't move, but a gun still fires and a wagon still supplies.",
 	"HARNESS": "Your nearest free horse walks over and is hitched: one more each time, up to 4 in a team, each beyond the first +12% speed. (Or right-click the gun with a horse selected or led.)",
 	"guardsman": "Armoured line infantry (+1 armour, +20 health): a Musketeer in morion and breastplate. Needs Armour.",
-	"horseman": "Fast light horseman: one pistol shot (30 damage, 110 reach), then the sabre. Needs a Horse Breeder; one click trains him and his horse (40 more without a spare). He reloads only on foot. With the Cavalry Charge his first sabre blow after a gallop hits double. Bayonets hurt him.",
+	"horseman": "Fast light horseman: one pistol shot (30 damage, 110 reach), then the sabre. Needs a Horse Breeder; one click trains him and his horse (40 more without a spare). He reloads only on foot. With the Cavalry Charge his first sabre blow after a gallop hits double; KEEN SABRES cuts light units deeper. Bayonets hurt him.",
 	"cannon": "Long-range artillery (it needs a horse: one click finds or buys it). HARNESS up to 4 horses: +12% speed each. UNLIMBER to fire: round shot ploughs through lines, canister shreds light units and flyers. Needs spotters.",
 	"mortar": "Siege mortar: DEPLOY, then it lobs shells over walls 5 to 11 tiles away. The splash hurts friends too. Can't hit flyers.",
 	"powder_wagon": "Carries 120 shots of powder for the soldiers near it. No weapon, and it blows up when destroyed.",
@@ -2416,7 +2422,7 @@ const TIPS := {
 	"band_piper": "Piper: +5% melee damage to soldiers within 5 tiles; PIPES SOLO +30% for 8 s. With a Drummer and a Fifer close by: a BAND (+8%, solos +40%). Unarmed.",
 	# Brood units
 	"grub": "Carries food from Rootmaws and food piles to the Brood Mother (longer trips pay more). BUILD turns it into a Rootmaw, a Mound Turtle or a Sire.",
-	"raptor": "Fast, flimsy claws. Two hatch from each egg (three with BIGGER CLUTCH).",
+	"raptor": "Fast, flimsy claws. Two hatch from each egg (three with BIGGER CLUTCH); PACK HUNT lets them outrun horses.",
 	"spitter": "Spits acid at ground units (not flyers) that burns and strips armour. Two hatch from each egg (three with BIGGER CLUTCH).",
 	"brute": "Huge horned tank: charges in, knocks enemies back and batters down walls and gates.",
 	"skywing": "Flying, it hunts flyers with spines. LAND it to bite ground units (then anything can hit it). Retired: no longer laid.",
@@ -2427,7 +2433,7 @@ const TIPS := {
 	"storm_challenger": "A matured Hatchling, a young Storm Sire: a flyer that swoops to bite flyers and ground units alike.",
 	# Crown buildings
 	"town_hall": "Trains Labourers. Allows 2 Farms and 1 Powder Mill nearby; its soil and saltpetre run out in time.",
-	"horse_breeder": "Trains horses: 40 gold and 15 s each, no supply; RALLY sends them on. Unlocks Horsemen; cavalry, guns and wagons need its horses. Build as many as you like, anywhere. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.",
+	"horse_breeder": "Trains horses: 40 gold and 15 s each, no supply; RALLY sends them on. Unlocks Horsemen and researches KEEN SABRES; cavalry, guns and wagons need its horses. Build as many as you like, anywhere. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.",
 	"cottage": "Houses 8 more supply. The first one unlocks the Barracks and the palisade.",
 	"wall": "Palisade: blocks the way. Lay it in a line: pick the start, then the end. Needs a Cottage.",
 	"gate": "A palisade piece that opens for your side only. Lay it onto your own palisade to swap a piece. Needs a Cottage.",
@@ -2447,6 +2453,7 @@ const TIPS := {
 	"charges": "Every Field Cannon and Mortar reloads 20% faster.",
 	"quadrant": "Every Field Cannon and Mortar reaches 1 tile further.",
 	"charge": "Horsemen and Cuirassiers charge: after a gallop the first blow hits double and throws the enemy back.",
+	"keen_sabres": "Horsemen and Cuirassiers: +6 sabre damage against light units (18 to 24).",
 }
 
 

@@ -1883,8 +1883,8 @@ func _research(q: Unit, p: Dictionary) -> void:
 		and g.unit_price(0, "spitter") == [90, 5] and BroodNew.young(g, 0, "raptor") == 2,
 		"21. young TWO to an egg: a Raptor egg %s, a Spitter egg %s" % [str(g.unit_price(0, "raptor")), str(g.unit_price(0, "spitter"))])
 	check(not bool(Defs.UNITS["spitter"].get("anti_air", false)) and bool(Defs.UNITS["venom_challenger"].get("anti_air", false))
-		and float(Defs.UNITS["raptor"]["speed"]) == 96.0 and float(Defs.UNITS["tyrant_challenger"]["speed"]) == 84.0,
-		"    Spitters can't shoot flyers, the Venom Challenger can; the standard speeds lowered (Raptor 96, Challenger 84)")
+		and float(Defs.UNITS["raptor"]["speed"]) == 92.0 and float(Defs.UNITS["tyrant_challenger"]["speed"]) == 84.0,
+		"    Spitters can't shoot flyers, the Venom Challenger can; the standard speeds lowered (Raptor 92, Challenger 84)")
 	var f := _sire(q, BroodNew.FATHER, 0.3)
 	var d := _sire(q, BroodNew.DILO, 2.4)
 	await wait(0.3)
@@ -1956,8 +1956,8 @@ func _research(q: Unit, p: Dictionary) -> void:
 		"    before: no speed added, a Brute x2.5 on buildings, a Spitter's and a Venom Challenger's range 165, under a Musketeer's %d" % int(Defs.UNITS["musketeer"]["range"]))
 	for k in ["nb_pack_hunt", "nb_slither", "nb_updraft", "nb_battering_horns", "nb_long_spit", "nb_quick_roots", "nb_swamp_mending"]:
 		BroodResearch.done(g, 0, k)
-	check(is_equal_approx(96.0 + BroodResearch.speed_add(ra), 114.0) and is_equal_approx(84.0 + BroodResearch.speed_add(tc), 98.0),
-		"    PACK HUNT: a Raptor %d, a Tyrant Challenger %d" % [int(96.0 + BroodResearch.speed_add(ra)), int(84.0 + BroodResearch.speed_add(tc))])
+	check(is_equal_approx(92.0 + BroodResearch.speed_add(ra), 114.0) and is_equal_approx(84.0 + BroodResearch.speed_add(tc), 98.0),
+		"    PACK HUNT: a Raptor %d, a Tyrant Challenger %d" % [int(92.0 + BroodResearch.speed_add(ra)), int(84.0 + BroodResearch.speed_add(tc))])
 	await wait(0.1)
 	check(ra.speed >= 113.9, "    ...and it runs at it (%.0f px/s now, swamp x1.3 included)" % ra.speed)
 	check(is_equal_approx(68.0 + BroodResearch.speed_add(spt), 78.0) and is_equal_approx(58.0 + BroodResearch.speed_add(vc), 67.0), "    SLITHER: a Spitter 78, a Venom Challenger 67")
@@ -1968,7 +1968,7 @@ func _research(q: Unit, p: Dictionary) -> void:
 	var t_add := BroodResearch.speed_add(f)
 	var s_add := BroodResearch.speed_add(stp)
 	check(f.kind == BroodNew.FATHER and is_equal_approx(t_add, 11.0) and absf(t_add / float(Defs.UNITS[BroodNew.FATHER]["speed"]) - 18.0 / 96.0) < 0.03,
-		"22. PACK HUNT speeds up the Tyrant Sire too: %d -> %d (+%.0f%%, a Raptor +%.0f%%)" % [int(Defs.UNITS[BroodNew.FATHER]["speed"]), int(float(Defs.UNITS[BroodNew.FATHER]["speed"]) + t_add), t_add / float(Defs.UNITS[BroodNew.FATHER]["speed"]) * 100.0, 18.0 / 96.0 * 100.0])
+		"22. PACK HUNT speeds up the Tyrant Sire too: %d -> %d (+%.0f%%, a Raptor +%.0f%%)" % [int(Defs.UNITS[BroodNew.FATHER]["speed"]), int(float(Defs.UNITS[BroodNew.FATHER]["speed"]) + t_add), t_add / float(Defs.UNITS[BroodNew.FATHER]["speed"]) * 100.0, 22.0 / 92.0 * 100.0])
 	check(stp.is_air() and is_equal_approx(s_add, 17.0) and absf(s_add / float(Defs.UNITS[BroodNew.PTERO]["speed"]) - 18.0 / 118.0) < 0.01,
 		"    UPDRAFT speeds up the flying Storm Sire too: 110 -> %d (+%.1f%%, a Skywing +%.1f%%)" % [int(110.0 + s_add), s_add / 110.0 * 100.0, 18.0 / 118.0 * 100.0])
 	g.consume_unit(stp)

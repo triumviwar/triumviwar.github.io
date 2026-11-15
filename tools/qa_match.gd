@@ -39,6 +39,7 @@ var _gw_cogs: Array = []        # (clockwork-ai-v2) per player: Great Winder id 
 var _idle_w: Array = []         # (clockwork-ai-v2) per player: [sum of idle workers over the 5 s looks, looks]
 
 
+var _riders_seen: Dictionary = {}     # (balance-raptor-horseman) every Horseman / Cuirassier seen in the saddle: id -> team
 var ground := false
 var nocap := false      # (ground-nocap-study: NO FARM/PRESS LIMIT, `groundcap:off`, docs/ground_nocap_study.md)
 
@@ -95,6 +96,8 @@ func _process(delta: float) -> bool:
 		return false
 	g = main.game
 	g.path_budget_us = 1 << 40
+	if g.death_log == null:
+		g.death_log = []      # (balance-raptor-horseman: every death, for the riders' trades in result.json "deaths")
 	if g.hud:
 		g.hud.visible = false
 	if g.spectator and g.spectator.process_mode != Node.PROCESS_MODE_DISABLED:
@@ -104,6 +107,9 @@ func _process(delta: float) -> bool:
 	if g.clock >= next_s5:
 		next_s5 += 5.0
 		_every5()
+		for u in g.units:
+			if u.kind == "cuirassier" and not u.dead and u.team >= 0 and u.team < n:
+				_riders_seen[u.get_instance_id()] = u.team
 	if g.clock >= next_s10:
 		next_s10 += 10.0
 		_every10()
@@ -551,6 +557,16 @@ func _arrival(tm: int, ev: int) -> void:
 			"foe_lost": _lost_units(foes) - int(r["a_lost0"]), "own_army90": _army_value(tm), "foe_army90": foes.reduce(func(acc, e): return acc + _army_value(e), 0)})
 
 
+## How many riders each player had in the saddle at some time (sampled every 5 s).
+func _riders_count() -> Array:
+	var c: Array = []
+	c.resize(n)
+	c.fill(0)
+	for id in _riders_seen:
+		c[int(_riders_seen[id])] += 1
+	return c
+
+
 func _finish() -> void:
 	for tm in n:
 		var open: Dictionary = _stall_open[tm]
@@ -599,7 +615,8 @@ func _finish() -> void:
 	var res := {"map": map, "seed": seed_, "version": ProjectSettings.get_setting("application/config/version", ""),
 		"slots": slots, "end": int(round(g.clock)), "over": g.over,
 		"winner": g.winner if g.over else -1, "winner_side": (g.sides[g.winner] if g.over and g.winner >= 0 else -1),
-		"minutes": minutes, "final": endl, "events": events, "reads": reads}
+		"minutes": minutes, "final": endl, "events": events, "reads": reads, "riders_seen": _riders_count(),
+		"deaths": g.death_log if g.death_log != null else []}
 	var r := FileAccess.open(out.path_join("result.json"), FileAccess.WRITE)
 	r.store_string(JSON.stringify(res))
 	r.close()
