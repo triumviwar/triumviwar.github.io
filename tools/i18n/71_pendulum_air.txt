@@ -1,0 +1,30 @@
+# THE PENDULUM HITS FLYERS (pendulum-air, owner 2026-11-15, docs/pendulum_air.md): every swing also cuts the enemy
+# flyers in its arc, for three quarters of the blow, no research.
+
+> A tall clock tower on long legs with two arms, each a heavy weight with a crescent blade: they sweep in turn, like scythes, and every blow cuts EVERY enemy in the wide arc in front of it (never your own units), light units hardest. The blades reach up for flyers in the arc too, for three quarters of the blow. Slow and tough. Made at the Heavy Works (once an Escapement works). Costs Tension.
+pt Uma alta torre de relógio sobre pernas longas com dois braços, cada um com um peso pesado e uma lâmina em crescente: eles varrem um de cada vez, como foices, e cada golpe corta TODOS os inimigos no amplo arco à sua frente (nunca as suas unidades), as unidades leves com mais força. As lâminas também se erguem contra os voadores no arco, com três quartos do golpe. Lento e resistente. Feito na Oficina Pesada (quando um Escape funciona). Custa Tensão.
+es Una alta torre de reloj sobre piernas largas con dos brazos, cada uno con un peso pesado y una cuchilla en media luna: barren por turnos, como guadañas, y cada golpe corta a TODOS los enemigos en el amplio arco que tiene delante (nunca a tus unidades), a las unidades ligeras con más fuerza. Las cuchillas también se alzan contra los voladores en el arco, con tres cuartos del golpe. Lento y resistente. Se hace en el Taller Pesado (cuando funciona un Escape). Cuesta Tensión.
+
+> Slow and tough: its blades cut every enemy in its arc, flyers too.
+pt Lento e resistente: corta todo inimigo no seu arco, voadores também.
+es Lento y duro: corta a todo enemigo en su arco, voladores incluidos.
+
+> Its blades cut every enemy in the arc in front of it (never your own units), flyers for three quarters of the blow.
+pt Suas lâminas cortam todos os inimigos no arco à sua frente (nunca as suas unidades), os voadores com três quartos do golpe.
+es Sus cuchillas cortan a todos los enemigos en el arco que tiene delante (nunca a tus unidades), a los voladores con tres cuartos del golpe.
+
+> Each blow cuts EVERY enemy in the arc in front of it, on the ground or in the air.
+pt Cada golpe corta TODOS os inimigos no arco à sua frente, no chão ou no ar.
+es Cada golpe corta a TODOS los enemigos en el arco que tiene delante, en tierra o en el aire.
+
+> Hits every enemy within %.1f tiles in a third of a circle; flyers take %d%%.
+pt Atinge todos os inimigos a até %.1f casas num terço de círculo; os voadores levam %d%%.
+es Golpea a todos los enemigos a menos de %.1f casillas en un tercio de círculo; los voladores reciben el %d%%.
+
+> Against flyers
+pt Contra voadores
+es Contra voladores
+
+> %d%% of the blow against flyers
+pt %d%% do golpe contra voadores
+es %d%% del golpe contra voladores

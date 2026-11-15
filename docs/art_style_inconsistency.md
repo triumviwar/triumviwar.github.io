@@ -677,3 +677,27 @@ joint (E/SE/S), wrecks and card icons are the owner's pictures (tools/serpent/im
 | Its sprite | Defs.TEMP_ART "brass_serpent" | the Great Winder's sheet stands in for the frame tables only; the sprite is hidden | (not needed: drawn piece by piece) |
 | Fallback | `draw`, `_draw_gear`, `_draw_head` | the 0.38.0 code drawing, only when a picture is missing | |
 
+| Its gears (small and big) | scripts/brass_serpent.gd `_draw_gear` | the gear field's painted ring (GearArt.ring "small" 8 teeth, "big" 10 teeth) shrunk to the gear's radius (9 / 13 px), squashed to 0.62 in height, a code-drawn hub and pin, a code shadow; turning as it crawls, every other gear the other way | painted gear segments with iron links (prompts 9 and 10) |
+| Its head(s) | scripts/brass_serpent.gd `_draw_head` | a brass polygon skull, a jaw that drops on a bite, red eye dots, a team-colour line on the brow: all code | the head in 8 directions and a bite strip (prompts 1 to 8, 11) |
+| A Hydra's heads | scripts/brass_serpent.gd `head_points` | the extra heads drawn beside the first, 17 px out to either side | the yoke joint (prompt 12) |
+| Broken gears and the fallen head | scripts/brass_serpent.gd `draw_wreck` | the same ring dimmed; the head drawn faded | a wreck picture of each |
+| A Winder carrying a gear | scripts/brass_serpent.gd `draw_carry` | the gear drawn over his head | a carry strip for the Winder |
+| Its sprite | Defs.TEMP_ART "brass_serpent" | the Great Winder's sheet stands in for the frame tables only; the sprite is hidden | its own sheets |
+| Card icons | assets/icons/brass_serpent.png, serpent_gear_s.png, serpent_gear_b.png, clockwork/ab_serpent_collect / _grow / _link / _unlink.png | tools/serpent/make_icons.py: the frame and field of ab_mend.png, gears and a head drawn with PIL | painted icons in the Clockwork command icons' style |
+- Pendulum HIGH SWING (pendulum-air, 0.38.3, docs/pendulum_air.md): the Pendulum now cuts FLYERS in its arc too, but it
+  still plays its LOW SWEEP strips (attack_r / attack_l, 6 frames, 5 views, assets/units/pendulum/) against them: the blade
+  passes under the flyer it hits (only the hit spark shows at the flyer). Nothing is code-drawn for it (no blade raised in
+  code). Wanted: a HIGH SWING pair of strips (attack_hi_r / attack_hi_l) drawn by ChatGPT, played when the target is a
+  flyer (Pendulum.attack_anim would pick it). One request per view (S, SE, E, NE, N; W is mirrored), each with these
+  reference pictures (at most 3):
+  1. art/redraws/pendulum_v2_dirs.png (the direction sheet: the body, arms and blades in every view),
+  2. art/redraws/pendulum_v2_attack.png (the low sweep strips: the same timing and frame layout),
+  3. assets/units/pendulum/attack_r_<view>.png (the in-game low sweep of that view, 6 frames of 130 x 91).
+  Prompt (fill in the view): "Redraw the attached clockwork Pendulum's RIGHT-ARM attack, <VIEW> view, as a HIGH SWING
+  against a flyer above it, in exactly the same style, colours, size and camera as the reference pictures. 6 frames in one
+  row on a flat magenta (#FF00FF) background, each frame the same size, the body standing still in the same place in every
+  frame: 1-2 the right arm swings down and back behind its hip, the crescent blade's edge turned up (the telegraph); 3 the
+  arm swings up and forward; 4 the blade at its HIGHEST, about one and a half times the body's height above the ground,
+  in front of the body (the hit); 5-6 it follows through and settles back to the idle pose. The left arm stays at rest.
+  Keep the brass rod, the heavy weight and the crescent blade exactly as in the references; no new parts, no motion blur
+  lines, no ground, no shadow." Then the same request for the LEFT arm (mirror of the motion on the other arm).

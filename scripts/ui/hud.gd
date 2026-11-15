@@ -3767,7 +3767,7 @@ func _draw_panel(font: Font) -> void:
 			elif uu.kind == MarchingBand.KIND or MarchingBand.MUSICIANS.has(uu.kind):
 				info = MarchingBand.card_line(uu)
 			elif uu.kind == Defs.PENDULUM:
-				info = "Its blade cuts every enemy in the arc in front of it (never your own units). It cannot reach flyers."
+				info = "Its blades cut every enemy in the arc in front of it (never your own units), flyers for three quarters of the blow."
 			elif uu.kind == "tesla_cart":
 				info = {"packed": "Packed: rolls, can't fire. DEPLOY to fight.", "deploying": "Deploying...",
 					"deployed": "Deployed: powers constructs nearby and zaps enemies.", "packing": "Packing up..."}[uu.tesla_mode]

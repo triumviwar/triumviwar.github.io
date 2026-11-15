@@ -274,6 +274,7 @@ var _owl_bomb := false          # Ticking Owl: this attack is a bomb on a buildi
 var _reach := Vector2.ZERO      # Swift / Ticking Owl: how far its lunge or swoop carries the sprite (CwAir.reach)
 var swings := 0                 # Pendulum: swings made (tests)
 var last_hits := 0              # Pendulum: the enemies its last swing caught (tests)
+var last_air_hits := 0          # Pendulum: the flyers among them (pendulum-air, tests)
 var nets := 0                   # Netter: nets fired (tests)
 var last_net: ChainNet = null   # Netter: its last net in flight (tests, screenshots)
 var net_t := 0.0                # CAUGHT in a Netter's net: s left (it cannot move or fight; a flyer is down on the ground)
@@ -1265,8 +1266,8 @@ func can_hit(e: Entity) -> bool:
 	if kind == Defs.NETTER and (not (e is Unit) or ((e as Unit).net_t > 0.0 and not (order == "attack" and e == order_target))):
 		return false            # (its net is for units, and one caught already only when it is told to)
 	var ea := e.is_air()        # (asked once: this runs for every target looked at)
-	if ea and _d_ground:
-		return false
+	if ea and (_d_ground or (not Pendulum.air_on and kind == Defs.PENDULUM)):
+		return false            # (pendulum-air's measuring switch `pendair:off`: scripts/pendulum.gd)
 	if not ea and _d_aironly:
 		return false            # (buildings too)
 	if ea:

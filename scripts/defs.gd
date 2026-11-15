@@ -727,7 +727,8 @@ const NETTER := "netter"
 ## too. The machine's own units keep in step with the swing: it never hits its own side. `strike`: s the arm goes on after
 ## the blow (the strip's follow-through and settling). `vs_light`: a LIGHT unit (tag "light") takes this times the blow
 ## (a GUESS, design_principles 1: a cleaving blade against unarmoured men; the Crown's canister has the same 1.5).
-const PENDULUM_SWING := {"reach": 62.0, "arc": 60.0, "strike": 0.29, "vs_light": 1.5}
+const PENDULUM_SWING := {"reach": 62.0, "arc": 60.0, "strike": 0.29, "vs_light": 1.5,
+		"vs_air": 0.75}      # (pendulum-air, owner 2026-11-15: flyers in the arc take 3/4 of the blow, no research)
 ## The Netter's NET: a weighted chain net fired from its spring cannon (its UNITS entry: reach, the long reload) at ONE enemy
 ## unit, leaving the muzzle (`mouth`: per drawn direction, game px from its feet, W/SW/NW mirror E/SE/NE; printed by
 ## tools/import_tier3.py) on the 2nd frame of the recoil; it flies `speed` px/s along a low arc (`arc` of the distance) and
@@ -1157,15 +1158,16 @@ const UNITS := {
 	# 9 fps, + strike 0.29 + cooldown 0.76): 8.6 a second per enemy caught, as the one-armed Pendulum's 22 every 2.59 s
 	# (8.5; a Brute 10.8 on one, the old Steam Walker 6.7 in its cone), and x1.5 on LIGHT units (PENDULUM_SWING "vs_light":
 	# 12.9 a second; lighter blows lose a little more to armour: 7.1 a second on 2 armour, was 7.7); slow (46, a Brute 56
-	# and charging, a Musketeer 62: kiting shooters, cavalry and spreading out answer it), ground only. 200 cogs + 75
+	# and charging, a Musketeer 62: kiting shooters, cavalry and spreading out answer it); flyers in the arc too, for 3/4
+	# (pendulum-air, owner 2026-11-15: PENDULUM_SWING "vs_air", no research). 200 cogs + 75
 	# Tension (a Brute 150 + 20, a Cuirassier 155 with its horse), 4 supply, and only from a BIG-gear Works.
 	"pendulum": {
 		"tags": ["armored", "massive"],
 		"name": "Pendulum", "hp": 340, "armor": 2, "speed": 46, "cost": 200, "tension": 75, "time": 35.0, "supply": 4,
 		"sight": 8, "range": 32, "damage": 12, "cooldown": 0.76, "aim": 0.35, "radius": 20, "from": "heavy_works",
-		"building_bonus": 1.25, "requires": "escapement", "big_gear": true, "ground_only": true, "faction": "clockwork",
+		"building_bonus": 1.25, "requires": "escapement", "big_gear": true, "anti_air": true, "faction": "clockwork",
 		"art_scale": 1.3,      # (drawn 30% bigger: owner 2026-11-13 "too small currently"; its body radius unchanged)
-		"about": "A tall clock tower on long legs with two arms, each a heavy weight with a crescent blade: they sweep low in turn, like scythes at ankle height, and every blow cuts EVERY enemy on the ground in the wide arc in front of it (never your own units), light units hardest. Slow and tough; it cannot reach flyers. Made at the Heavy Works (once an Escapement works). Costs Tension.",
+		"about": "A tall clock tower on long legs with two arms, each a heavy weight with a crescent blade: they sweep in turn, like scythes, and every blow cuts EVERY enemy in the wide arc in front of it (never your own units), light units hardest. The blades reach up for flyers in the arc too, for three quarters of the blow. Slow and tough. Made at the Heavy Works (once an Escapement works). Costs Tension.",
 	},
 	# TIER 3 (gear mode; Defs.NET): the NETTER, the STOPPER (the owner's "unit that stops one enemy", made of machinery: no
 	# magic). Its spring cannon fires a weighted chain net at ONE enemy unit: caught, it cannot move or cast for 4 s (it can still attack), and a
@@ -2499,7 +2501,7 @@ const SHORT := {
 	"springer": "Shoots screws at ground and air; JUMPS up to 5 tiles.",
 	"cuckoo": "Fast brass bird that hunts flyers; can MORPH TO OWL.",
 	"ticking_owl": "Swoops on units and bombs buildings. Cannot hit flyers.",
-	"pendulum": "Slow and tough: its blades cut every ground enemy in its arc.",
+	"pendulum": "Slow and tough: its blades cut every enemy in its arc, flyers too.",
 	"netter": "Nets one enemy for 4 s: it can't move or use abilities.",
 	"ballista": "Bolt thrower: its screw goes through the target into those behind.",
 	"great_winder": "Winds and mends troops near it; turns wrecks into cogs; SCATTER COGS slows foes.",
