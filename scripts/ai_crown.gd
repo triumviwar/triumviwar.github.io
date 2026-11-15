@@ -2905,8 +2905,9 @@ var _lag_t := -1.0
 
 
 func army_lags(labs := -1) -> bool:
-	if not lag_off and ca_behind() and bo_done:
-		return true             # (crown-coach-army: behind the clock counts from one hall on, AICrownArmy)
+	if not lag_off and ca != null and ca.lags_hook and ca_behind() and bo_done:
+		return true             # (crown-coach-army, the study switch `-- crownarmy:lags`: behind the clock counts from one
+		                        # hall on; off by default: it stopped the labourers non-stop rule too, -6% income at 8:00)
 	if lag_off or not on or difficulty < 1 or peaceful or _foe_is("brood") or game.clock < LAG_FROM:
 		return false
 	if labs < 0:
