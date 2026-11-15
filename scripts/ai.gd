@@ -993,6 +993,7 @@ func _tier2(t: float) -> void:
 	if not springs.is_empty():
 		_shield_research()
 		_leap_research()
+		_chain_research()
 	if game.clock < _tier2_t:
 		return
 	_tier2_t = game.clock + 3.0
@@ -1180,7 +1181,8 @@ func _esc_spring(esc: Array, heavy := false) -> void:
 
 ## Gear mode: SHIELD WALL (the Clock Soldiers' SHIELD FORWARD, scripts/shield_wall.gd) once it meets a ranged army
 ## (3+ enemy shooters seen in the last 90 s: Musketeers, Spitters, Springers...) and has Clock Soldiers to use it, at a
-## Light Works whose ring meshes with a Mainspring's (it costs Tension), with the Tension to spare.
+## working Escapement (since 0.38.19, escapement-research; a Light Works before: it costs Tension, so it is made only
+## while the Escapement's gear network has a Mainspring), with the Tension to spare.
 var _ranged_seen := 0
 var _ranged_seen_t := -999.0
 
@@ -1200,14 +1202,16 @@ func _shield_research() -> void:
 	if game.army(team).filter(func(u: Unit) -> bool: return u.kind == ShieldWall.KIND).size() < 4:
 		return
 	var info: Dictionary = Defs.RESEARCH[ShieldWall.TECH]
-	if _meshed_none():
+	if String(info["at"]) == Defs.CW_TECH and not game.has_working(team, Defs.CW_TECH):
+		return          # (the Escapement isn't up and fed yet: _tier2 lays it)
+	if String(info["at"]) != Defs.CW_TECH and _meshed_none():
 		return
 	_research_keep = maxf(_research_keep, float(Defs.tension_cost(info)) + 10.0)     # (its Tension is kept from the Springers: _produce)
 	_research_cogs(int(info["cost"]))
 	if game.tension(team) < float(Defs.tension_cost(info)) + 10.0 or _gold() < int(info["cost"]) + 20:
 		return
-	for w in _mine(_works()):
-		if game.research_problem(w, ShieldWall.TECH) == "":
+	for w in _mine(String(info["at"])):
+		if w.built and game.research_problem(w, ShieldWall.TECH) == "":
 			game.start_research(w, ShieldWall.TECH)
 			if game.mlog:
 				game.mlog.add("%s researches SHIELD WALL (it met %d shooters)" % [game.mlog.who(team), _ranged_seen])
@@ -1237,6 +1241,33 @@ func _leap_research() -> void:
 			game.start_research(e, "high_leap")
 			if game.mlog:
 				game.mlog.add("%s researches HIGH LEAP (%d Springers, %s)" % [game.mlog.who(team), springers, "a walled enemy" if _foe_walled() else "an enemy on high ground"])
+			return
+
+
+## Gear mode: LONG CHAIN at the Escapement (every Netter's net reaches 150 -> 240: escapement-research, 0.38.19) once it
+## has 2 Netters (no build names Netters in its mix: the shared _produce makes them, 1 from an army of 8, up to 3). After
+## SHIELD WALL when that is wanted (its Clock Soldiers walk up under fire), like HIGH LEAP.
+func _chain_research() -> void:
+	if difficulty < 1 or game.has_tech(team, "long_chain") or game.researching(team, "long_chain"):
+		return
+	if not game.has_working(team, Defs.CW_TECH):
+		return
+	var netters := game.army(team).filter(func(u: Unit) -> bool: return u.kind == Defs.NETTER).size()
+	if netters < 2:
+		return
+	if not game.has_tech(team, ShieldWall.TECH) and not game.researching(team, ShieldWall.TECH) and _ranged_seen >= 3 \
+			and game.army(team).filter(func(u: Unit) -> bool: return u.kind == ShieldWall.KIND).size() >= 4:
+		return          # (SHIELD WALL first)
+	var info: Dictionary = Defs.RESEARCH["long_chain"]
+	_research_keep = maxf(_research_keep, float(Defs.tension_cost(info)) + 10.0)
+	_research_cogs(int(info["cost"]))
+	if game.tension(team) < float(Defs.tension_cost(info)) + 5.0 or _gold() < int(info["cost"]) + 20:
+		return
+	for e in _mine(Defs.CW_TECH):
+		if e.built and game.research_problem(e, "long_chain") == "":
+			game.start_research(e, "long_chain")
+			if game.mlog:
+				game.mlog.add("%s researches LONG CHAIN (%d Netters)" % [game.mlog.who(team), netters])
 			return
 
 

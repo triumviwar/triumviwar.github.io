@@ -4516,6 +4516,12 @@ func apply_drills(u: Unit) -> void:
 			u.hp += want - u.max_hp
 			u.max_hp = want
 		return
+	if u.kind == Defs.NETTER and u.team >= 0 and u.team < players.size():
+		# LONG CHAIN (escapement-research, 0.38.19): every Netter's net reaches further (150 -> 240), at once
+		if is_same(u.d, Defs.UNITS[u.kind]):
+			u.d = u.d.duplicate(true)       # (its own copy: Defs stay as they are)
+		u.d["range"] = float(Defs.UNITS[u.kind]["range"]) + (float(Defs.RESEARCH["long_chain"]["range"]) if has_tech(u.team, "long_chain") else 0.0)
+		return
 	if not (u.kind in ["cannon", "mortar"]) or u.team < 0 or u.team >= players.size():
 		return
 	var base: Dictionary = Defs.UNITS[u.kind]

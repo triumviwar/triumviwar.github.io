@@ -134,7 +134,7 @@ func _run() -> void:
 		nt.cmd_hold()          # (it stands where it is: not walking off with an attack wave)
 		nt.cooldown = 99.0     # (it fires once both are in sight: they are seen a moment after they appear)
 		var p: Vector2 = nt.position
-		var cav: Unit = g._add_unit("cuirassier", 1, g.cell_center(g.nearest_free(g.cell_of(p + Vector2(150, 40)), 5)))
+		var cav: Unit = g._add_unit("cuirassier", 1, g.cell_center(g.nearest_free(g.cell_of(p + Vector2(110, 30)), 5)))      # (in the Netter's reach: 150 since 0.38.19)
 		var lab: Unit = g._add_unit("labourer", 1, g.cell_center(g.nearest_free(g.cell_of(p + Vector2(90, -20)), 5)))
 		lab.hp = 10.0
 		for o in [cav, lab]:

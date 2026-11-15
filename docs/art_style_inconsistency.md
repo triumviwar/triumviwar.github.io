@@ -722,3 +722,10 @@ joint (E/SE/S), wrecks and card icons are the owner's pictures (tools/serpent/im
   icons.
 - No new strips: an escorting Winder plays his walk, his walk-wind (code-built, see the Winder's walk-wind above) and his
   standing wind.
+## LONG CHAIN research icon (code, 0.38.19; docs/escapement_research.md)
+- Placeholder command icon drawn in code (CwArt._ability_glyph "research_long_chain": a diamond chain net with brass
+  weights at its corners over a long spark-coloured arrow on the dark Clockwork tile) until
+  `assets/icons/clockwork/research_long_chain.png` is painted (it drops in with no code: the HUD takes the file first).
+  Prompt idea for ChatGPT: "64x64 game command icon in the style of the other Clockwork research icons (research_high_leap,
+  research_shield): a weighted brass-and-iron chain net flung far through the air from a small spring cannon, a long arrow
+  under it showing reach; dark slate background, brass trim, no text."
