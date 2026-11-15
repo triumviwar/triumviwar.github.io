@@ -123,6 +123,12 @@ def summarise(data):
             e[a]["hall2"] = med([s["hall2"] for s in ss])
             e[a]["hall3"] = med([s["hall3"] for s in ss])
         S["facs"][f] = e
+    S["paired"] = {f: [] for f in ("crown", "clockwork", "brood")}
+    for t in tags:
+        for p in (0, 1):
+            rk, rd = G.row(arms["kept"][t], p, 720), G.row(arms["drop"][t], p, 720)
+            if rk and rd and rk["income"] > 0:
+                S["paired"][G.side_stats(arms["kept"][t], p)["fac"]].append(rd["income"] / rk["income"])
     # snowball: in each decided game, the side ahead in income by 8:00, its share then and of the 10th-12th minute income
     for a in arms:
         n = won = 0
@@ -200,6 +206,15 @@ def report(data):
         print("| %s | %s | %s | %s | %s |" % (f, ratio(c[f]["kept"]["inc8"], c["crown"]["kept"]["inc8"]),
               ratio(c[f]["drop"]["inc8"], c["crown"]["drop"]["inc8"]), ratio(c[f]["kept"]["inc12"], c["crown"]["kept"]["inc12"]),
               ratio(c[f]["drop"]["inc12"], c["crown"]["drop"]["inc12"])))
+    print("\n## Paired check (the same game in both arms: each side's income by 12:00, dropped over kept)\n")
+    print("(The games are not exactly repeatable: one game run twice with the same seed differed by 1-4% in income, so "
+          "single-game ratios within about 0.95-1.05 are noise.)\n")
+    print("| faction | sides | median ratio | sides earning 5%+ more | sides earning 5%+ less |")
+    print("|---|---|---|---|---|")
+    P = S["paired"]
+    for f in ("crown", "clockwork", "brood"):
+        v = P[f]
+        print("| %s | %d | %.2f | %d | %d |" % (f, len(v), med(v), len([x for x in v if x > 1.05]), len([x for x in v if x < 0.95])))
     print("\n## Snowball check (all games)\n")
     print("| | leader's share of income by 8:00 | its share of the 10th-12th minutes' income | decided games won by the 8:00 leader |")
     print("|---|---|---|---|")
