@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.26", "items": [
+		"CAMPAIGN: the Prologue's briefing painting (the Governor on the manor steps) loses a stray second musket standing on the steps beside a soldier's hand.",
+	]},
 	{"v": "0.38.25", "items": [
 		"ONLINE SPECTATORS: in a friend's room pick SPECTATOR in your FACTION list (or press WATCH instead of JOIN) to watch instead of playing. Spectators are listed apart under SPECTATORS (up to 4, with their ping), don't take a player's place, and can pick a faction again to take a free seat. When every seat is taken a friend who joins watches, and WATCH also joins a match already under way.",
 		"A spectator sees every side (VIEW, PRODUCTION, ARMY & STRUCTURES, as when watching computers), gives no orders (the host refuses any), and chats with the other spectators only unless the host turns on SPECTATORS TALK TO PLAYERS. The players' pictures still hide what their side can't see. A spectator leaving changes nothing for the players, and after the end every spectator gets the host's whole replay in REPLAYS, as the players do.",
