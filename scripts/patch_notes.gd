@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.4", "items": [
+		"THE CROWN COMPUTER DEFENDS BETTER AGAINST A PUSH: when it sees an enemy army coming at its base it gets ready before it arrives (soldiers before labourers, no balloon party leaves, the men still boarding stay home, and an attack already out that would miss it comes back to meet it). Its soldiers no longer walk past the enemy on a plain move: in reach they fight back (each shooter takes the weakest enemy he can hit) or step round the enemy. Against a force it cannot beat at its buildings the army gathers at its hall, out of reach, and fights there as one instead of being sent in one by one.",
+	]},
 	{"v": "0.38.3", "items": [
 		"THE BRASS SERPENT IS PAINTED: its head, its small and big body sections, its tail, its bite and the Hydra's joint are now real art instead of shapes drawn in code. Its head faces all eight ways and opens its jaws on every bite; each section lies along the body as it curls; a Hydra's heads fan out from a heavy brass joint. Its red enamel takes your side's colour.",
 		"Broken gears and a fallen head lie as dented, smoking wrecks, and the Serpent, the Hydra and the two gears have new card pictures.",

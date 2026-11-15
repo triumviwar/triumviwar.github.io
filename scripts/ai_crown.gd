@@ -99,6 +99,32 @@ func _def_line(picks: Array, spot: Vector2) -> bool:
 	return line_ai() != null and ln.defend(picks, spot)
 
 
+## (crown-coach-defence, scripts/ai_crown_defence.gd) the push seen coming, the walk past the enemy, the muster.
+var dfn: AICrownDefence = null
+
+
+func defence() -> AICrownDefence:
+	if dfn == null:
+		dfn = AICrownDefence.new(self)
+	return dfn
+
+
+func dfn_alert_t() -> float:
+	return dfn.alert_t if dfn != null else -1.0
+
+
+func dfn_move(u: Unit, spot: Vector2) -> bool:
+	return defence().steer(u, spot)
+
+
+func party_wait() -> bool:
+	return dfn != null and dfn.party_wait()
+
+
+func _def_hold(army: Array, spots: Array) -> bool:
+	return defence().muster(army, spots)
+
+
 func _def_walking(u: Unit) -> bool:
 	return ln != null and ln.def_walking(u)
 
@@ -715,6 +741,8 @@ func _army_due() -> bool:
 		short = army_behind() and _army_supply(game.army(team)) < int(1.0 * game.workers(team).size())
 		if not short and army_grows():
 			short = true        # (crown-v-brood-coach round 3: THE ARMY GROWS WITH THE ECONOMY, below)
+	if not short and dfn != null and dfn.wants_soldiers():
+		short = true            # (crown-coach-defence: a push is seen coming: soldiers before labourers till it is held)
 	if not short:
 		return false
 	if game.supply_used(team) >= int(game.players[team]["cap"]) - 1:
@@ -1367,6 +1395,8 @@ const CR_EDGE_BROOD := 1.5
 func _wave_worth(ready: Array) -> bool:
 	if siege != null:
 		return false              # (the siege plan: its push goes, AICrownSiege._maybe_go)
+	if dfn != null and dfn.wave_waits(ready):
+		return false              # (crown-coach-defence: a push is coming that the army at home can't beat: it meets it at home)
 	if not super(ready):
 		return false
 	if ck_timing() and not _first_wave and not _ck_window(ready):
@@ -2255,6 +2285,7 @@ func siege_on() -> bool:
 func _army() -> void:
 	if siege != null and not peaceful:
 		siege.tick()
+	defence().tick()        # (crown-coach-defence: the push seen coming)
 	super()
 
 
