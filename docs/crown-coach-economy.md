@@ -12,8 +12,8 @@ cost: a Farm hand repays his 50 gold in 42 s; a Mill hand grinds a quarter of wh
 1. **The "efficiency" line in the match log is not the Crown's income.** It is the average of each Farm's and Mill's
    crew against its posts (Building.efficiency: staffing x the soil or saltpetre left). A Crown base offers 22 posts (two
    Farms of 8 and a Mill of 6), a Clockwork base few, so a Crown with fewer labourers than posts reads low whatever it
-   earns: 13% at 2:00 is two Farms (16 posts) with two of its ten labourers at work while the rest walked, built and
-   scouted. A Crown Farm grows as fast per hand when thin as when full (Defs.FARM_BASE 0): what counts is how many hands
+   earns: 13% at 2:00 is two Farms (16 posts) with two of its ten labourers working them at that moment while the rest
+   walked, built and scouted. A Crown Farm grows as fast per hand when thin as when full (Defs.FARM_BASE 0): what counts is how many hands
    are on Farms. The number is a fair warning of empty posts, but it cannot be read against the Clockwork's.
 2. **What did cost the Crown its gold in the owner's game** (measured second by second, tools/crown_econ_trace.gd, same
    map, seed and plans; the replay earned exactly the owner's 380 / 760 / 1,140 / 1,900 / 2,660 / 3,420 at minutes 1-6):
@@ -34,11 +34,12 @@ cost: a Farm hand repays his 50 gold in 42 s; a Mill hand grinds a quarter of wh
    riders-first steps still ruling, and the army's survival checks over it); the second hall on time; a new hall's first
    Farm at once in every plan; and no Church bought for a wall slot in the opening (scripts/ai_expand_wall.gd).
 4. **Results** (Hard OPTIMAL v Hard OPTIMAL, six maps, both sides, to 10:00; 12 games a matchup before and after):
-   against the Clockwork the Crown earned +10% by 5:00, +9% by 8:00, +12% by 10:00 (0.61 -> 0.69 of its bench at 10:00)
-   with 4-5 more labourers and the same army (1,005 -> 1,057 at 8:00); against the Brood, where most of the fixes stay
-   off (their batches cost army and gained nothing), +4% by 10:00 and the same army; in the mirror +4% by 8:00 and 13%
-   more army. **The owner's game replayed**: 3,420 -> 3,800 gold by 6:00 (+11%), 4,180 -> 4,560 by 7:00, army 795 ->
-   1,095 at 7:00. No change in the results (all draws at 10:00, one Crown loss to the Brood in 12, section 4).
+   against the Clockwork the Crown earned +10% by 5:00, +9% by 8:00, +5% by 10:00 (0.61 -> 0.64 of its bench at 10:00)
+   with 2-3 more labourers and the same army at 8:00 (1,005 -> 1,001); against the Brood, where most of the fixes stay
+   off (their batches cost army and gained nothing), +4% by 10:00 and about the same army; in the mirror +4% by 8:00 and 13%
+   more army. **The owner's game replayed**: 4,180 -> 4,940 gold by 7:00 (+18%; by 6:00 the same 3,420, the harvests come
+   in 380s), 27 -> 29 labourers and 795 -> 915 of army at 7:00. No change in the results (all draws at 10:00 but
+   one Crown loss to the Brood in 12, section 4).
 5. **For the owner** (section 6): the efficiency line's meaning, and the gap that is left, which is the plans (what
    OPTIMAL picks and what each spends) and the fights after 6:00, not the economy's running.
 
@@ -50,8 +51,8 @@ cost: a Farm hand repays his 50 gold in 42 s; a Mill hand grinds a quarter of wh
   threat, raided, the army due, the hall's gold kept).
 - **The owner's game**: Hollowfen, seed 4287366311, Hard OPTIMAL v Hard OPTIMAL. The replay's own dice picked the Timing
   attack at 1:33 where the owner's picked the Balloon harass; a study switch makes a Crown's NORMAL read pick a plan
-  (`-- optnormal:balloon`, scripts/ai_optimal.gd), and with it the replay is the owner's game to 6:00 (the same gold to
-  the coin, the same steps a few seconds apart).
+  (`-- optnormal:balloon`, scripts/ai_optimal.gd), and with it the replay earns the owner's gold to the coin to 6:00 (its
+  steps differ a little: its second hall was laid at 4:14, the owner's at 4:41).
 - **The batch**: Hard OPTIMAL v Hard OPTIMAL to 10:00 on Hollowfen, Greenhold, Dune Sea, Frostfang, Cinder Steps and
   Ashford Crossing, the Crown on either side (seeds 1001, 1002), against the Clockwork and against the Brood: 24 games.
   BEFORE = this branch with `-- crowneco:off` (main's behaviour), AFTER = the branch. The bench (tools/econ_bench.gd,
@@ -117,27 +118,44 @@ labourers, army value, all averages of 12 games; the halls' "hall 2" is when the
 | matchup | gold 5:00 | gold 8:00 | gold 10:00 | of bench at 10:00 | labourers 8:00 / 10:00 | army 5:00 / 8:00 / 10:00 | hall 2 | buildings lost by 10:00 |
 |---|---|---|---|---|---|---|---|---|
 | v Clockwork, before | 2,501 | 5,573 | 8,075 | 0.61 | 28.2 / 34.2 | 364 / 1,005 / 1,387 | 5:12 | 3.2 |
-| v Clockwork, after | 2,755 | 6,048 | 9,056 | 0.69 | 33.0 / 37.8 | 298 / 1,057 / 1,347 | 5:05 | 2.8 |
+| v Clockwork, after | 2,755 | 6,048 | 8,455 | 0.64 | 30.8 / 34.6 | 314 / 1,001 / 1,120 | 5:03 | 4.5 |
+| v Clockwork, after (round 2, see below) | 2,755 | 6,048 | 9,056 | 0.69 | 33.0 / 37.8 | 298 / 1,057 / 1,347 | 5:05 | 2.8 |
 | v Brood, before | 2,881 | 5,573 | 7,980 | 0.61 | 27.6 / 25.8 | 591 / 763 / 1,138 | 5:04 | 10.2 |
 | v Brood, after | 2,850 | 5,605 | 8,325 | 0.63 | 27.7 / 31.8 | 572 / 848 / 1,016 | 5:02 | 4.9 |
 | mirror (both sides), before | 2,565 | 5,256 | 7,600 | 0.58 | 24.7 / 30.0 | - / 999 / - | | |
 | mirror (both sides), after | 2,596 | 5,478 | 7,790 | 0.59 | 27.2 / 31.4 | - / 1,127 / - | | |
 
-- The Clockwork earned the same in both (4,235 / 10,300 / 15,947 before, 4,248 / 10,350 / 15,970 after): the Crown's gap
-  to it is 0.51 -> 0.57 at 10:00.
+- The Clockwork earned the same in both (4,235 / 10,300 / 15,947 before, 4,210 / 10,332 / 15,894 after): the Crown's gap
+  to it is 0.51 -> 0.53 at 10:00 (0.57 in round 2).
+- Round 2 was the branch before its last fine-tune (the second labourer in a queue could come out of the next step's
+  reserve; now it never does, which kept the Timing's second hall on its time, test_cinder_crown). Its numbers are a
+  second sample of nearly the same code: by 8:00 the two agree to the coin; from 8:00 the fights decide (the army at
+  10:00 1,120 against 1,347 between them, the units lost 23.5 against 17.9), so the 10:00 column is the least sure.
 - **Results**: all 24 Clockwork games and all 6 mirror games were draws at 10:00 before and after (the study's 10-minute
   cut); against the Brood 0-12-0 before, 0-11-1 after (Frostfang 1002: the rush's army took another shape at 3:00, the
   Brood's Raptors took both halls at 8:59-9:24; before, the same game had lost its whole army by 10:00, 80 of army left with
   23 labourers, and lived to the cut).
-- The army at 5:00 against the Clockwork is 66 less (a Musketeer): the labourers' gold kept in the opening; by 8:00 it
-  is ahead. The units lost by 10:00 against the Clockwork went 20.6 -> 17.9, the Clockwork's 29.5 -> 35.2.
+- The army at 5:00 against the Clockwork is 50 less (a Musketeer): the labourers' gold kept in the opening; by 8:00 it
+  is level. The Clockwork's units lost by 10:00 went 29.5 -> 34.3 (round 2: 35.2), the Crown's 20.6 -> 23.5 (17.9).
 - Single games are noisy (the same tag differs by a plan pick or a fight); the totals are what to read.
-- Batches: an earlier round (after1, before the last gates) had against the Clockwork 2,755 / 5,795 / 8,075 and against
+- The mirror ran with the round-2 code. Batches: an earlier round (after1, before the Brood gates) had against the Clockwork 2,755 / 5,795 / 8,075 and against
   the Brood 2,976 / 5,953 / 8,676 with the army at 5:00 428 (-28%): the reason for the Brood gates.
 
 ## 5. The AI tests
 
-(TODO)
+All 40 tools/test_ai_*.gd, tools/test_crown_*.gd and tools/test_cinder_crown.gd were run on the branch; every one that
+failed was run again on main (0.38.1).
+
+- **Fail on main too (not this job's)**: test_ai_rush ("workers before the Brood Mother"), test_ai_rush_followup (15
+  checks), test_crown_dragoon_raid ("[plan] ... a group out by 690 s"), test_cinder_crown ("[hall] the second hall laid
+  by 330 s": 386 s on main, 347 s on the branch; main also fails its "[labs]" check, which the branch passes).
+- **Flaky, passed on the branch in another run**: test_ai_cw_horse_raid (its Crown has no AI; CLAUDE.md: "different
+  check each run"), test_ai_harass ("[raid]"), test_ai_brood ("venom by 460 s"), test_ai_scout_sentry, test_ai_worker_safety.
+- **Broken by a first version and fixed**: test_ai_optimal "the riders ride out" (the labourers' keep took the rush's
+  gold: the rush is left out now) and "no Church or Armoury laid while the army lagged" (the walled natural's slot bought
+  a Church in the Timing's opening: no Church for a slot in the opening now). Both pass.
+- Everything else passes, test_crown_owner_eco, test_crown_farms, test_crown_build_order, test_crown_balloon,
+  test_crown_v_brood, test_crown_mirror, test_crown_hold, test_ai_expand_wall and test_ai_wall_vs_rush included.
 
 ## 6. Claude's choices, for the owner
 
@@ -155,7 +173,7 @@ labourers, army value, all averages of 12 games; the halls' "hall 2" is when the
    own Mill crews ("mill" in PLANS) still rule while powder is short.
 5. **No Church bought for a walled natural's 3x3 wall slot during the opening** (AIExpandWall): with the hall on time,
    the Timing's wall plan bought one before its army. A Cottage or the plan's own Barracks still fill slots.
-6. **What is left, and why the Crown still earns 0.57 of the Clockwork computer by 10:00**: the plans OPTIMAL picks and
+6. **What is left, and why the Crown still earns about half of what the Clockwork computer earns by 10:00**: the plans OPTIMAL picks and
    what each spends (against the Clockwork the Balloon harass and the Timing attack, each built to trade economy for an
    army: the bench, with no army at all, earns 13,180 by 10:00 where the Clockwork computer earns ~16,000 with one), the
    harvests' lumps (gold in 380s, the hall waiting between them), and from 6:00 the fights at home. The economy's own

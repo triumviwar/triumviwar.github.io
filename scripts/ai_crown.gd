@@ -983,8 +983,9 @@ func _bo_labs() -> void:
 		if not h.built or labs + queued >= top or free < LAB_COST + (wall_keep if queued > 0 else 0):
 			continue      # (crown-ai-v2: while the natural's palisade comes first, one labourer at a time, above)
 		var depth := 2 if free >= 3 * LAB_COST + wall_keep else 1
-		if not bo_labs_off and free >= 2 * LAB_COST + wall_keep and _bo_lab_keep() > 0:
-			depth = LAB_DEPTH         # (crown-coach-economy: the gold was kept for it, _bo_lab_keep)
+		if not bo_labs_off and _gold() - bo_reserve >= 2 * LAB_COST + wall_keep and _bo_lab_keep() > 0:
+			depth = LAB_DEPTH         # (crown-coach-economy: the gold was kept for it, _bo_lab_keep; the second one never
+			                          # from the next step's reserve: the Timing's hall "by 330 s" went at 348, test_cinder_crown)
 		if h.queue.size() >= depth:
 			continue
 		if game.train(h, _f()["worker"]) == "":
@@ -1589,11 +1590,11 @@ func _mill_cap() -> int:
 ## above, crown-v-brood-coach, opened to the Clockwork and the mirror). The owner's Hollowfen game 2026-11-15 (Crown v
 ## Clockwork): from 3:40 to 5:40 six of 18-20 labourers ground powder (each 20 powder a minute, a quarter of a Farm hand's
 ## 71 gold) while 4-7 of the 16 Farm posts stood empty, the powder bank rose 30 -> 160 with nothing training from it and
-## the gold, 0-40 at every look, kept the halls idle (the match log's "efficiency 47%"). While a Farm post on live soil is
-## short (fewer labourers than the Farms' posts and the Mills' crews): with the powder bank over what the Barracks and the Foundry want (AICrown._mill_feedback's want) the Mills keep
-## one hand per WORKERS_A_MILL_HAND labourers; with twice that, one hand a Mill (always the labourers beyond the
-## Farms' posts). The powder still comes back: under the
-## want the plan's own crew returns (the feedback below). Not while a rush is defended (the Musketeers' powder).
+## the gold, 0-40 at every look, kept the halls idle (the match log's "efficiency 47%"). While the labourers are short
+## (fewer, builders and the scout aside, than the Farms' posts and the Mills' crews) and the powder bank is over what the
+## Barracks and the Foundry want (_mill_feedback's want), the Mills keep one hand per WORKERS_A_MILL_HAND labourers; with
+## twice that, one hand a Mill (always the labourers beyond the Farms' posts). Under the want the plan's own crew returns
+## (the feedback below). Not while a rush is defended (the Musketeers' powder).
 ## `-- millfarm:off` as before.
 const WORKERS_A_MILL_HAND := 6
 var mill_farm_off := OS.get_cmdline_user_args().has("millfarm:off") or OS.get_cmdline_user_args().has("crowneco:off")
