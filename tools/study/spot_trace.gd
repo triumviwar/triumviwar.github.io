@@ -17,6 +17,19 @@ var t := 0.0
 var shown := 0
 var last_tick := -1
 var _last_key := ""
+var _next_inc := 0.0
+
+
+func _grubs(tm: int) -> Array:
+	var n := 0
+	var w := 0
+	var k := {}
+	for u: Unit in g.units:
+		if u.team == tm and not u.dead:
+			k[u.kind] = int(k.get(u.kind, 0)) + 1
+			if u.kind == "grub" and u.order == "gather":
+				w += 1
+	return [int(k.get("grub", 0)), w, int(k.get("rootmaw", 0)), int(k.get("egg", 0))]
 
 
 func _initialize() -> void:
@@ -61,6 +74,18 @@ func _process(delta: float) -> bool:
 	if g.clock >= end_t or g.over or shown >= max_n:
 		print("END clock %.2f shown %d" % [g.clock, shown])
 		return true
+	if OS.get_cmdline_user_args().has("inc") and g.clock >= _next_inc:
+		_next_inc += 1.0
+		var a0 := int(g.stats[0]["gold"])
+		var a1 := int(g.stats[1]["gold"])
+		var ga := _grubs(0)
+		var gb := _grubs(1)
+		print("INC %.0f  A %d  B %d  diff %d  grubs %s v %s  eggs %d v %d  bank %d v %d" % [g.clock, a0, a1, a0 - a1, str(ga), str(gb),
+			int(BroodNew.queen(g, 0).nb.get("eggs", 0)) if BroodNew.queen(g, 0) else -1, int(BroodNew.queen(g, 1).nb.get("eggs", 0)) if BroodNew.queen(g, 1) else -1,
+			int(g.players[0]["gold"]), int(g.players[1]["gold"])])
+		return false
+	if OS.get_cmdline_user_args().has("inc"):
+		return false
 	if last_tick < 0:
 		last_tick = 0
 		print("starts ", g.starts, " flip ", g.start_flip, " W H ", Game.W, " ", Game.H)

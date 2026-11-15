@@ -623,9 +623,30 @@ func _physics_process(delta: float) -> void:
 	Prof.add("ai", _p0)
 
 
+## (brood-spot-study, docs/brood_spot_study.md) THE FIRST THINK'S PHASE, from the match seed: two computers on a mirrored
+## map otherwise think on the same ticks from 0:00, so the early game is the same in every game on a map (the seed does
+## not reach it) and the tiny differences a mirror can't avoid (floating point, who is processed first) fall the same way
+## every time: a map's whole record then leans to one start. With a phase of its own for each side, drawn from the seed
+## (out of the game's rng: nothing else changes), each game is its own draw. MEASURING SWITCH `thinkphase:off`.
+static var think_phase_on := not OS.get_cmdline_user_args().has("thinkphase:off")
+var _phased := false
+
+
+## The first think's wait: a share of `period` drawn from the match seed and this side (0 with the switch off).
+func first_phase(period: float) -> float:
+	_phased = true
+	if not think_phase_on:
+		return 0.0
+	var r := RandomNumberGenerator.new()
+	r.seed = hash([int(game.rng.seed), team, "think"])
+	return r.randf() * period
+
+
 func _tick_ai(delta: float) -> void:
 	if game == null or game.over:
 		return
+	if not _phased:
+		_think = first_phase([2.2, 1.2, 0.7, 0.4][clampi(difficulty, 0, 3)])
 	_cav_tick()                    # (crown-coach-cavalry: the riders' in and out, every tick: AICrown, scripts/ai_cav_micro.gd)
 	_think -= delta
 	if _stage < STAGES:

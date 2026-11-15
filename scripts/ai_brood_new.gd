@@ -175,6 +175,8 @@ func say(s: String) -> void:
 func _tick_ai(delta: float) -> void:
 	if game == null or game.over:
 		return
+	if not _phased:
+		_nb_think = first_phase([1.6, 1.0, 0.6, 0.4][clampi(difficulty, 0, 3)])      # (brood-spot-study: AI.first_phase)
 	_nb_think -= delta
 	if _nb_stage < NB_STAGES:
 		_nb_think_stage(_nb_stage)      # (a think goes on over the next ticks, a part each: docs/perf_armies.md)
