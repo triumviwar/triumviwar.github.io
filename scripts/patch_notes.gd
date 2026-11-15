@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.10", "items": [
+		"BALANCE, RAPTOR v HORSEMAN: Raptors have 38 health (was 36) and run at 92 (was 96); PACK HUNT still takes them to 114, so only with it do they outrun horses. The Horseman has 100 health (was 140) and costs 100 gold (was 115; his horse is still 40 more when no spare one stands ready); the Cuirassier has 130 (was 170).",
+		"NEW CROWN RESEARCH, KEEN SABRES, at the Horse Breeder (75 gold, 30 s): every Horseman's and Cuirassier's sabre blow in the saddle does 6 more to light units (18 to 24: two blows kill a Raptor again).",
+	]},
 	{"v": "0.38.9", "items": [
 		"THE CROWN COMPUTER'S RIDERS HIT AND RUN: its Horsemen no longer stay in a melee. Each picks its prey (workers, guns and gunners, Spitters, the hurt and the ones alone; never Brutes, Clock Soldiers' shields or a big mass), strikes, rides out before the answer lands and comes in again from another side. With the Cavalry Charge drilled they gallop round out of reach until the next blow is a charge (a blow that kills comes first). A badly hurt rider picks only prey that cannot answer.",
 	]},
