@@ -26,7 +26,8 @@
 ## Current work
 
 - RAPTOR / HORSEMAN BALANCE (owner DECIDED 2026-11-15 00:38-00:53, after comparing StarCraft II's Zergling and Hellion; job balance-raptor-horseman, 0.38.10, docs/balance_raptor_horseman.md, tools/test_raptor_rider_fight.gd): Raptor 38 health (was 36), speed 92 (was 96), PACK HUNT still 114 (only then does it outrun horses); Horseman 100 health (was 140) and 100 gold (was 115), Cuirassier 130; KEEN SABRES at the Horse Breeder (Claude's Blue-Flame-like proposal, no objection: +6 sabre v light, 75 gold, 30 s). Without Keen Sabres Raptors now beat Horsemen at equal cost; with it riders win again on the move. PROPOSALS WAITING: the computer buys Keen Sabres at 6-7 min whether it has riders or not (should be with riders / at once in rider plans); an Officer + a horse (115) is now a cheaper Horseman than a Horseman (140): Officer 75 -> 60?; rerun the Crown v Brood and Brood mirror win rates. CAVALRY HIT AND RUN for the Crown computer (owner 00:53; job crown-coach-cavalry, 0.38.9, scripts/ai_cav_micro.gd, switch cavmicro:off). BALLOON (0.38.7, scripts/ai_crown_balloon.gd, blfix:off; OPTIMAL picks it 1/3 v a NORMAL Clockwork, owner: "viable, not 100%"), ECONOMY (0.38.8, crowneco:off) coached too.
-- NO FARM/PRESS LIMIT, ALL SIDES (owner 2026-11-14 "economic study with the free amount of resources"; job econ-nocap-all, 0.38.6, docs/econ_nocap_all.md, tools/study/econ_nocap_all*.py): RECOMMENDS KEEPING THE LIMIT: with the ground system on, dropping it gives the Clockwork +20% income by 12:00, Crown 0.98, Brood 0.96; Brood v Clockwork 7-3-6 -> 4-3-9; no turtling, no extra snowball. If dropped one day: a Clockwork brake (7,000 brass a district), a Brood counterpart, after the Crown computer reaches its bench. OWNER DECISION WAITING.
+- ECONOMY REVERTED + PROLOGUE (owner DECIDED 2026-11-15 10:24: "revert back to 2 buildings, no radius, no effectiveness based on soil... this experiment is proving problematic"; job eco-revert-prologue, 0.38.12, docs/eco_revert_prologue.md): the ORIGINAL economy is the only one (2 Farms / 2 Cog Presses a hall, the hall's own soil/brass pool); the GROUND SYSTEM and NO FARM/PRESS LIMIT are DELETED (ground_layer.gd, ground_view.gd, Defs.ground_on/ground_nocap/LAND, Settings ground_system/ground_nocap/ground_alpha, Game.NO_GROUND_MSG, Defs.nocap_text, their tests, study tools and docs; in git history before 0.38.12); an old cfg/save/replay "ground" is ignored. PROLOGUE (p01_leaf): the manor Town Hall moved south ([8,42], tag manor) with 2 Farms, a second Governor Town Hall north on the west side ([8,23], tag north_hall) with 2 Farms: 4 barns (was 5); dawn needs 2 barns (was 3 of 5); a mission's "expansion_spots": false now also stops the Crown/Clockwork spot updates.
+- NO FARM/PRESS LIMIT, ALL SIDES: REVERTED by the owner 2026-11-15 10:24 (see above). Was: (owner 2026-11-14 "economic study with the free amount of resources"; job econ-nocap-all, 0.38.6, docs/econ_nocap_all.md, tools/study/econ_nocap_all*.py): RECOMMENDS KEEPING THE LIMIT: with the ground system on, dropping it gives the Clockwork +20% income by 12:00, Crown 0.98, Brood 0.96; Brood v Clockwork 7-3-6 -> 4-3-9; no turtling, no extra snowball. If dropped one day: a Clockwork brake (7,000 brass a district), a Brood counterpart, after the Crown computer reaches its bench. OWNER DECISION WAITING.
 - PENDULUM HITS FLYERS (owner 2026-11-15 00:46-00:53, no research; job pendulum-air, 0.38.3, docs/pendulum_air.md,
   tools/test_pendulum_air.gd, tools/bench_pendulum_air.gd, pictures docs/shots/pendulum_air/): every swing also cuts the
   enemy flyers in its arc for 3/4 (Defs.PENDULUM_SWING "vs_air"), light bonus on top; Defs "anti_air" (no "ground_only");
@@ -60,7 +61,7 @@
   pictures docs/shots/overlay_alpha/): the bars, chevrons, band buff marks, stun stars and status marks over units and
   buildings are see-through (Entity.ov_a / ova: Settings.overlay_alpha, default 60%, marks x0.85, a band's "+8%" sqrt of
   that; selected and hovered units full; a hurt health bar stronger), slider OVERLAY OPACITY in Settings > DISPLAY
-  (30-100%); guides (selection circles, rings, rally lines) kept. With NO FARM/PRESS LIMIT on the Town Hall / Clocktower
+  (30-100%); guides (selection circles, rings, rally lines) kept. (REVERTED 2026-11-15 with the ground system: ) With NO FARM/PRESS LIMIT on the Town Hall / Clocktower
   texts say the district's soil / brass is the limit (Defs.nocap_text); a Farm / Cog Press away from every hall with the
   ground system on is refused with "No soil here: ..." (Game.NO_GROUND_MSG) and its districts' edges show clearer while
   placing (GroundView). New code drawing over units: take its alpha from ov_a.
@@ -187,7 +188,7 @@
   fresh hall, free Farm posts first; Economy plan alone reaches the bench by 10:00; in games the gap is the plans OPTIMAL
   picks; docs/econ-coach-crown.md), econ-coach-brood 0.34.3 (games 0.66/0.79/0.76 -> 0.70/0.84/0.81 of the bench at 5/8/10 min;
   v the Clockwork +25% income at 8:00, wins or leads 4 -> 7 of 12; its alone tool is tools/econ_ai_alone_brood.gd;
-  docs/econ-coach-brood.md). ALL THREE MERGED; the AI and Brood tests all pass after it. GROUND SYSTEM MERGED 0.35.0
+  docs/econ-coach-brood.md). ALL THREE MERGED; the AI and Brood tests all pass after it. GROUND SYSTEM (REVERTED by the owner 2026-11-15 10:24, eco-revert-prologue 0.38.12) MERGED 0.35.0
   (2026-11-13; docs/ground_system.md, scripts/ground_layer.gd, ground_view.gd, tools/test_ground_system.gd): Settings
   EXPERIMENTAL > GROUND SYSTEM, OFF by default; soil/brass in a district per hall, a 10-tile circle per Farm/Cog Press,
   the "2 a hall" limit made LOCAL with spent ones not counting; bench within 5% of off; 70 ground/AI/faction tests pass.
@@ -200,7 +201,7 @@
   crown-v-cw-plan-study, greedyclock:economy/balanced v default, docs/crown_v_cw_plan_study.md, recommendation only);
   (3) the 200 SUPPLY CAP STAYS: with every expansion taken the late game is about taking better fights and remaking
   armies; NO cog/gold sink.
-  GROUND SYSTEM (owner, DECIDED 2026-11-13 01:34-01:40; docs/ground_system.md): every economy building drinks from a
+  GROUND SYSTEM (REVERTED by the owner 2026-11-15 10:24; was DECIDED 2026-11-13 01:34-01:40; docs/ground_system.md, now in git history): every economy building drinks from a
   CIRCLE of ground like the Rootmaw; spent ground shown RED while placing; overlap with spent ground gives a proportional
   yield; ground exists only in a DISTRICT PER HALL (fixed amount each); the layer shows FAINTLY while placing ANY building
   (owner 01:37: placement strategy), the economy building being placed its own circle stronger. Build it AFTER the three econ-coach jobs merge, as a

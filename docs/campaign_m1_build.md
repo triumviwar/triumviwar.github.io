@@ -25,15 +25,18 @@ mission file stays as the engine's test bed for tools/test_campaign.gd; it is no
   speaker's name in capitals (THE KING, TOMASZ, LORD FAIRLEIGH). Lines move on by themselves after a reading time (or the
   length of the recording), a tap / NEXT / Enter gives the next, SKIP / Esc ends it.
 - PART 1, NIGHT (the scene tinted dark blue: a CanvasModulate on the world, never the HUD). The Governor's team (Crown,
-  PURPLE): the manor (Town Hall), the chapel (Church), five drying barns (Farms), a Barracks, a Powder Mill (so
-  Musketeers can be trained), three Cottages; 10 Musketeers, 2 Field Cannons, 4 Labourers, Lord Fairleigh (an Officer,
+  PURPLE): the manor (Town Hall, in the south) and a second Town Hall to the north on the west side (tag north_hall),
+  2 drying barns (Farms) by each (4 in all, the skirmish rule of 2 a hall; 5 by one hall until eco-revert-prologue,
+  docs/eco_revert_prologue.md), the chapel (Church), a Barracks, a Powder Mill (so Musketeers can be trained), three
+  Cottages; 10 Musketeers, 2 Field Cannons, 4 Labourers, Lord Fairleigh (an Officer,
   named over his bar) and Tomasz (a Missionary, named); 500 gold, 150 powder. Seven waves come out of the woods at the
   field edges (0:25, 1:25, 2:30, 3:45, 5:00, 6:25, 7:20), attack-moving on the plantation; Varenne appears at 2:20 at the
   north-east edge with three pikemen, shouts, and walks off to the fort 40 s later. Lines on triggers: Varenne's slogans,
   Ruggieri's answers, Tomasz on the dead, Ruggieri and Fairleigh on the burning leaf (the smoking), a barn hit, the first
   barn lost, the manor hit, Lauds at 7:20 (the light turns to dawn over 40 s).
-- DAWN (8:00): with at least three barns standing, the night's rebels fall back to the fort, 6 more Musketeers and 300
-  gold / 100 powder arrive, the camps objective shows. With fewer than three: "The leaf is ash..." and the mission is lost.
+- DAWN (8:00): with at least two of the four barns standing (three of five until eco-revert-prologue), the night's rebels
+  fall back to the fort, 6 more Musketeers and 300 gold / 100 powder arrive, the camps objective shows. With fewer than
+  two: "The leaf is ash..." and the mission is lost.
   The light turns to day 90 s later.
 - PART 2, THE ROAD: two camps (9 and 11 men, holding). When the first is down: Hollins Farm (a loyal Farm, yellow) with
   six families and four raiders and a torch-bearer burning it; Tomasz and Fairleigh speak and the CHOICE appears (a
@@ -51,7 +54,7 @@ mission file stays as the engine's test bed for tools/test_campaign.gd; it is no
   and the night's survivors (also at once if the player fires on the mass first). "Fire." when four of them are in the
   kill zone. The charge broken: won.
 - ENDING (a Crown win): the canister still with Tomasz's and the King's lines, then the end screen.
-- LOSING: the manor falls, every barn burns, or fewer than three barns at dawn.
+- LOSING: the manor falls, every barn burns, or fewer than two barns at dawn.
 
 ## The Free Assembly: stand-ins, and how to swap in the real art
 
