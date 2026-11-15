@@ -183,6 +183,10 @@ func _fill_slot(p: Dictionary, s: Dictionary) -> void:
 		return
 	if ai.has_method("ca_slot_waits") and ai.ca_slot_waits(kind):
 		return          # (crown-coach-army: no Church for a slot while the army is behind the clock)
+	if kind == "church" and ai.has_method("bo_owns") and ai.bo_owns() and not ai.crown_eco_off:
+		return          # (crown-coach-economy: no Church for a slot in the opening: with the second hall on time its wall plan
+		                # came at 5:15 and a Church went into the slot before the Timing's army, test_ai_optimal 7; the tech
+		                # comes with the plan's milestones)
 	if kind != "cottage" and ai._econ_wait():
 		return          # (CROWN ECONOMY FIRST: no Church or Barracks in a slot while a Farm is due or the hands are short)
 	if kind == "barracks" and (ai._mine("barracks").size() >= 9 or spare < 100):

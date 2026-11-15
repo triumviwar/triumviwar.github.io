@@ -11,6 +11,7 @@ extends SceneTree
 ## (the Raptors at a wall with riders hitting and running from outside, run by the Brood's own computer:
 ## tools/test_brood_rush_riders.gd)
 ## Args: modes:standup,stand,kite  riders:2  raptors:10  trials:6  rideby:off  pack:1 (Pack Hunt researched)
+##   keen:1 (the riders' KEEN SABRES researched: balance-raptor-horseman, docs/balance_raptor_horseman.md)
 ##   set:raptor.hp=38,raptor.damage=7  (a balance number tried for this run only: Defs.UNITS[kind][stat])
 ##   godot --headless --fixed-fps 30 --script res://tools/test_raptor_rider_fight.gd -- modes:standup,kite riders:3
 
@@ -86,7 +87,7 @@ func _go() -> void:
 			lines.append("  trial %d: %.0fs, riders left %d (hp %s), raptors left %d, rider hp lost %d, raptor time in reach %d%%" % [
 				trial, r["t"], r["riders"], str(r["hp"]), r["raptors"], int(r["rider_hp_lost"]), int(r["reach"])])
 		print("%s (%d riders v %d raptors%s%s): riders won %d of %d, average rider hp lost %.0f of %d, raptors left %.1f" % [
-			mode.to_upper(), nr, nb, ", ride-by off" if not RideBy.enabled else "", ", Pack Hunt" if args.has("pack") else "",
+			mode.to_upper(), nr, nb, ", ride-by off" if not RideBy.enabled else "", (", Pack Hunt" if args.has("pack") else "") + (", Keen Sabres" if args.has("keen") else ""),
 			wins, trials, lost_hp / trials, nr * int(Defs.UNITS["cuirassier"]["hp"]), float(raps_left) / trials])
 		for l in lines:
 			print(l)
@@ -104,6 +105,8 @@ func _fight(mode: String, nr: int, nb: int, trial: int) -> Dictionary:
 		a.set_physics_process(false)
 	if args.has("pack"):
 		g.players[1]["tech"]["nb_pack_hunt"] = true
+	if args.has("keen"):
+		g.players[0]["tech"]["keen_sabres"] = true       # (the Horse Breeder's KEEN SABRES: +6 a sabre blow on light units)
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 1000 + trial
 	var c := _flat_spot(g)

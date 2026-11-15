@@ -4,6 +4,23 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.10", "items": [
+		"BALANCE, RAPTOR v HORSEMAN: Raptors have 38 health (was 36) and run at 92 (was 96); PACK HUNT still takes them to 114, so only with it do they outrun horses. The Horseman has 100 health (was 140) and costs 100 gold (was 115; his horse is still 40 more when no spare one stands ready); the Cuirassier has 130 (was 170).",
+		"NEW CROWN RESEARCH, KEEN SABRES, at the Horse Breeder (75 gold, 30 s): every Horseman's and Cuirassier's sabre blow in the saddle does 6 more to light units (18 to 24: two blows kill a Raptor again).",
+	]},
+	{"v": "0.38.9", "items": [
+		"THE CROWN COMPUTER'S RIDERS HIT AND RUN: its Horsemen no longer stay in a melee. Each picks its prey (workers, guns and gunners, Spitters, the hurt and the ones alone; never Brutes, Clock Soldiers' shields or a big mass), strikes, rides out before the answer lands and comes in again from another side. With the Cavalry Charge drilled they gallop round out of reach until the next blow is a charge (a blow that kills comes first). A badly hurt rider picks only prey that cannot answer.",
+	]},
+	{"v": "0.38.8", "items": [
+		"THE CROWN COMPUTER RUNS ITS ECONOMY BETTER (Hard, Normal): its Powder Mill hands go to the empty Farm posts while the powder piles up, its halls keep two labourers coming while Farm posts stand free (their gold no longer goes to the soldiers and buildings first; never in the Horseman rush or against the Brood), an enemy worker scouting the base no longer stops that, the second hall no longer waits behind the plan's other steps (not against the Brood), and a new hall gets its Farm at once. Against the Clockwork it earns about a tenth more by 8:00-10:00, with more labourers and the same army.",
+	]},
+	{"v": "0.38.7", "items": [
+		"CROWN COMPUTER, BALLOON HARASS: a balloon no longer flies out empty. It waits behind its Town Hall until its Musketeers are aboard; a raid party forms only while the main base is quiet; the Musketeers walk to the balloon on attack-move and climb in only once it is there, and an attack on the main calls the raid off instead of sending them out into it. A balloon that is hit on the way or caught under fire comes home round the anti-air it knows, and a labourer mends it. It also fears the Clock Aviary, and strikes where the enemy army is not.",
+		"Against the Clockwork the OPTIMAL Crown computer now picks the Balloon harass about a third of the time (it was a fifth).",
+	]},
+	{"v": "0.38.6", "items": [
+		"A STUDY, NO GAMEPLAY CHANGE: the NO FARM/PRESS LIMIT switch measured for all three sides and every matchup (96 games each way). It helps the Clockwork most (+20% income), so the limit stays.",
+	]},
 	{"v": "0.38.5", "items": [
 		"THE PENDULUM HITS FLYERS: every swing of the Clockwork's Pendulum now also cuts every enemy flyer in the same arc in front of it, for three quarters of the blow (light flyers such as Balloons and Hatchlings still take the light bonus on top). No research needed. It picks a flyer as its target when no enemy on the ground is nearer, and it never hits your own flyers.",
 		"The Clockwork computer counts its Pendulums against enemy flyers: with flyers about it makes Pendulums sooner and a few Swifts fewer.",

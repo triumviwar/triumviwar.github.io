@@ -7,6 +7,7 @@ extends SceneTree
 ##   godot --headless --fixed-fps 30 --script res://tools/econ_ai_alone_brood.gd -- [brood] [plan=optimal] [minutes=15]
 ##       [map=greenhold] [seed=1] [out=<file.json>] [any switch the computer reads, e.g. nbsupply:off]
 ##       [vs=<crown|clockwork|brood>] [vsplan=optimal] [side=0|1]
+## ground=1 groundcap=off (econ-nocap-all): the ground system on, the Farm/Press limit dropped (the Brood has none: a check).
 ## vs=: a REAL game instead (a Hard computer of that faction on the other side, nothing shielded): the same looks of the
 ## Brood side, plus its computer's state (grubs pulled off work, short of warriors against riders, under-armed, the
 ## alarm), to see what the opponent costs it. side=1 puts the Brood in the second start.
@@ -64,7 +65,7 @@ func _process(delta: float) -> bool:
 		var mine := {"who": "hard", "faction": fac, "colour": 0, "side": 0, "strategy": String(opts["plan"])}
 		var foe := {"who": "hard" if real else "you", "faction": String(opts["vs"]) if real else other, "colour": 1, "side": 1,
 			"strategy": String(opts["vsplan"]) if real else "balanced"}
-		main.start({"map": opts["map"], "seed": int(opts["seed"]), "ground": String(opts.get("ground", "0")) == "1", "slots": [foe, mine] if me == 1 else [mine, foe]})
+		main.start({"map": opts["map"], "seed": int(opts["seed"]), "ground": String(opts.get("ground", "0")) == "1", "ground_nocap": String(opts.get("groundcap", "on")) == "off", "slots": [foe, mine] if me == 1 else [mine, foe]})
 		g = main.game
 		for a in g.ais:
 			if a.team == me:

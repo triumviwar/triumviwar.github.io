@@ -3918,6 +3918,10 @@ func escape_point(p: Vector2) -> Vector2:
 	return Vector2.INF
 
 
+## A measuring tool's list of every unit death (null in a normal game: nothing is kept).
+var death_log = null
+
+
 func on_unit_died(u: Unit) -> void:
 	units.erase(u)
 	selection.erase(u)
@@ -3930,6 +3934,9 @@ func on_unit_died(u: Unit) -> void:
 			corpses.append(u)
 		return
 	stats[u.team]["lost"] += 1
+	if death_log != null:
+		# (measuring tools only, e.g. tools/qa_match.gd's riders' trades: [clock, kind, team, killer kind, killer team])
+		death_log.append([snappedf(clock, 0.1), u.kind, u.team, u.last_hit_by, u.last_hit_team])
 	# veterancy: the unit that dealt the last blow gets the kill
 	var hitter = u.last_hitter
 	if is_instance_valid(hitter) and hitter is Unit and not hitter.dead and hostile(hitter.team, u.team):

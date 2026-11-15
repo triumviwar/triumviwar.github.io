@@ -25,11 +25,20 @@
 
 ## Current work
 
+- RAPTOR / HORSEMAN BALANCE (owner DECIDED 2026-11-15 00:38-00:53, after comparing StarCraft II's Zergling and Hellion; job balance-raptor-horseman, 0.38.10, docs/balance_raptor_horseman.md, tools/test_raptor_rider_fight.gd): Raptor 38 health (was 36), speed 92 (was 96), PACK HUNT still 114 (only then does it outrun horses); Horseman 100 health (was 140) and 100 gold (was 115), Cuirassier 130; KEEN SABRES at the Horse Breeder (Claude's Blue-Flame-like proposal, no objection: +6 sabre v light, 75 gold, 30 s). Without Keen Sabres Raptors now beat Horsemen at equal cost; with it riders win again on the move. PROPOSALS WAITING: the computer buys Keen Sabres at 6-7 min whether it has riders or not (should be with riders / at once in rider plans); an Officer + a horse (115) is now a cheaper Horseman than a Horseman (140): Officer 75 -> 60?; rerun the Crown v Brood and Brood mirror win rates. CAVALRY HIT AND RUN for the Crown computer (owner 00:53; job crown-coach-cavalry, 0.38.9, scripts/ai_cav_micro.gd, switch cavmicro:off). BALLOON (0.38.7, scripts/ai_crown_balloon.gd, blfix:off; OPTIMAL picks it 1/3 v a NORMAL Clockwork, owner: "viable, not 100%"), ECONOMY (0.38.8, crowneco:off) coached too.
+- NO FARM/PRESS LIMIT, ALL SIDES (owner 2026-11-14 "economic study with the free amount of resources"; job econ-nocap-all, 0.38.6, docs/econ_nocap_all.md, tools/study/econ_nocap_all*.py): RECOMMENDS KEEPING THE LIMIT: with the ground system on, dropping it gives the Clockwork +20% income by 12:00, Crown 0.98, Brood 0.96; Brood v Clockwork 7-3-6 -> 4-3-9; no turtling, no extra snowball. If dropped one day: a Clockwork brake (7,000 brass a district), a Brood counterpart, after the Crown computer reaches its bench. OWNER DECISION WAITING.
 - PENDULUM HITS FLYERS (owner 2026-11-15 00:46-00:53, no research; job pendulum-air, 0.38.3, docs/pendulum_air.md,
   tools/test_pendulum_air.gd, tools/bench_pendulum_air.gd, pictures docs/shots/pendulum_air/): every swing also cuts the
   enemy flyers in its arc for 3/4 (Defs.PENDULUM_SWING "vs_air"), light bonus on top; Defs "anti_air" (no "ground_only");
   the Clockwork computer counts a Pendulum as half a Swift; measuring switch `pendair:off`. A HIGH SWING strip for ChatGPT
   in docs/art_style_inconsistency.md. 6 Claude's choices in the doc (the light bonus on flyers above all).
+- CROWN CAVALRY MICRO (owner 2026-11-15 00:53; job crown-coach-cavalry, 0.38.3, docs/crown-coach-cavalry.md,
+  scripts/ai_cav_micro.gd AICavMicro, switch cavmicro:off, tools/test_cav_micro.gd, tools/study_cav_micro.gd): the Crown
+  computer's Horsemen hit and run: pick light/precious prey (never armour, shields, pikes or a guarded mass), strike, ride
+  out, come again; with the Cavalry Charge they gallop round until the next blow is a charge (not under guns; a killing
+  blow first); hurt riders careful. Riders live longer, stand in melee far less; damage per rider lost even v Brood, up v
+  Clockwork and in the mirror. Game.stats cav_blows / cav_charged / cav_dmg / cav_pistol. Proposal: the Armoury and the
+  charge earlier in the riding plans (drilled after 10:00 or never today).
 - CLOCKWORK LAB REMOVED from the player (owner 2026-11-15 00:56): no EDITOR menu entry, no Settings EXPERIMENTAL switch (a saved "on" is ignored). Main.start_lab, scripts/cw_lab.gd and Settings.cw_lab stay for the test and picture tools (shot_*.gd, test_cw_*).
 - CROWN DEFENCE AGAINST A PUSH (owner's game 2026-11-15 00:28, Hollowfen: Musketeers walked past the Clockwork's push on a
   plain move and died 4 for 0; job crown-coach-defence, 0.38.4, docs/crown-coach-defence.md, scripts/ai_crown_defence.gd,
