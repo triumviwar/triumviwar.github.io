@@ -26,7 +26,7 @@
 ## Current work
 
 - WIND-UP KEYS ON THE CLOCKWORK ARMY (owner DECIDED 2026-11-15 20:15: "a wind-up KEY on its back like the Winder has";
-  job wind-keys, docs/wind_keys.md, tools/clockwork/import_wind_key.py, scripts/wind_key.gd + wind_key_data.gd,
+  job wind-keys, 0.38.21, docs/wind_keys.md, tools/clockwork/import_wind_key.py, scripts/wind_key.gd + wind_key_data.gd,
   tools/shot_wind_keys.gd, pictures docs/shots/wind_keys/): one painted key (the owner's ChatGPT still, turned at import:
   16 frames x views s/se/e/ne/n + "u" standing up for flyers, assets/units/_shared/wind_key_<size>.png) on the back of
   the Clock Soldier, Springer, Netter, Pendulum, Swift and Ticking Owl, a child of the body sprite following measured

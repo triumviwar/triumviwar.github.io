@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.21", "items": [
+		"CLOCKWORK WIND-UP KEYS: the Clock Soldier, Springer, Netter, Pendulum, Swift and Ticking Owl now carry a brass wind-up key on their backs, like the Winder (the flyers' keys stand up out of their backs). It turns while the construct has charge, slower as it runs down, and stands still once it is run down: you can read its wind at a glance. Hidden when you zoom far out.",
+	]},
 	{"v": "0.38.20", "items": [
 		"CAMPAIGN: the Prologue's briefing painting (the Governor on the manor steps) loses a stray second musket standing on the steps beside a soldier's hand.",
 	]},

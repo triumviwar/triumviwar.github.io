@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.21": ["LLAVES DE CUERDA EN EL MECANISMO: el Soldado Reloj, el Saltador, el Lanzarredes, el Péndulo, el Cuco y el Búho Tictac ahora llevan una llave de cuerda de latón en la espalda, como el Dador de cuerda (la de los voladores se alza en la espalda). Gira mientras el autómata tiene cuerda, más despacio a medida que se le acaba, y se detiene cuando se queda sin cuerda: se ve la cuerda de cada uno de un vistazo. Se oculta cuando alejas mucho la cámara."],
 	"0.38.20": ["CAMPAÑA: la pintura del briefing del Prólogo (el Gobernador en los escalones de la mansión) pierde un segundo mosquete sobrante, de pie en los escalones junto a la mano de un soldado."],
 	"0.38.19": ["CAMPAÑA: las imágenes conservan su forma (la pintura del Prólogo en la Mesa de Guerra estaba aplastada): la pintura entera en sus proporciones, el espacio alrededor relleno con la misma pintura, oscurecida. Las páginas de la campaña ahora tienen su propio fondo sobre toda la pantalla (la pintura del refugio de la historia, oscurecida) en vez de la pintura del menú principal."],
 	"0.38.18": ["Un trabajador deseleccionado y elegido de nuevo vuelve a mostrar su tarjeta principal, no la página CONSTRUIR que quedó abierta (cualquier página de la tarjeta se cierra al elegir algo nuevo; hacer clic otra vez en el mismo trabajador la mantiene)."],
