@@ -688,10 +688,14 @@ joint (E/SE/S), wrecks and card icons are the owner's pictures (tools/serpent/im
 | A Winder carrying a gear | scripts/brass_serpent.gd `draw_carry` | the gear drawn over his head | a carry strip for the Winder |
 | Its sprite | Defs.TEMP_ART "brass_serpent" | the Great Winder's sheet stands in for the frame tables only; the sprite is hidden | its own sheets |
 | Card icons | assets/icons/brass_serpent.png, serpent_gear_s.png, serpent_gear_b.png, clockwork/ab_serpent_collect / _grow / _link / _unlink.png | tools/serpent/make_icons.py: the frame and field of ab_mend.png, gears and a head drawn with PIL | painted icons in the Clockwork command icons' style |
-- Pendulum HIGH SWING (pendulum-air, 0.38.3, docs/pendulum_air.md): the Pendulum now cuts FLYERS in its arc too, but it
-  still plays its LOW SWEEP strips (attack_r / attack_l, 6 frames, 5 views, assets/units/pendulum/) against them: the blade
-  passes under the flyer it hits (only the hit spark shows at the flyer). Nothing is code-drawn for it (no blade raised in
-  code). Wanted: a HIGH SWING pair of strips (attack_hi_r / attack_hi_l) drawn by ChatGPT, played when the target is a
+- Pendulum HIGH SWING: DONE in 0.38.16 (pendulum-high-swing, docs/pendulum_air.md "The HIGH SWING"), from the owner's
+  ChatGPT sheets (art/redraws/pendulum_high_swing_<view>_chatgpt.png, the E view's v2) imported by
+  tools/pendulum_guide/import_high_swing.py into assets/units/pendulum/attack_hi_r / attack_hi_l_<view>.png (130 x 136
+  cells): nothing drawn in code. Import fixes (no painting): S attack_hi_l's 2nd frame is the top row's mirrored, SE
+  attack_hi_l holds its 2nd frame for the 3rd, N attack_hi_r is the top row mirrored (each because ChatGPT drew the
+  wrong arm there), E one row for both arms (the owner's v2 side profile); ChatGPT's pink motion smears keyed out. STILL OPEN: in NE both rows swing the
+  viewer's RIGHT arm, so attack_hi_l_ne is on the same arm as attack_hi_r_ne (a redo of the NE left arm would fix it).
+  The request that made them: a HIGH SWING pair of strips (attack_hi_r / attack_hi_l) drawn by ChatGPT, played when the target is a
   flyer (Pendulum.attack_anim would pick it). One request per view (S, SE, E, NE, N; W is mirrored), each with these
   reference pictures (at most 3):
   1. art/redraws/pendulum_v2_dirs.png (the direction sheet: the body, arms and blades in every view),

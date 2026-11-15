@@ -10101,6 +10101,9 @@ func _army_voice(kinds: Dictionary) -> String:
 	return v if v != "" and Sfx.has("voice/%s/select" % v) else ""
 
 
+var selection_epoch := 0            # bumped whenever set_selection changes who is selected (HUD: a new pick starts at the main card)
+
+
 func set_selection(list: Array) -> void:
 	if Defs.cw_roster and not cw_consists.is_empty():
 		list = CwConsist.expand_selection(list)          # tapping one coupled car selects the whole train
@@ -10112,6 +10115,7 @@ func set_selection(list: Array) -> void:
 			else:
 				Sfx.voice(_select_voice_kind(list, e), "select")
 			break
+	var before := selection.duplicate()
 	for e in selection:
 		if is_instance_valid(e):
 			e.selected = false
@@ -10122,6 +10126,10 @@ func set_selection(list: Array) -> void:
 		if is_instance_valid(e) and not e.dead and not e.off_field and not selection.has(e):
 			e.selected = true
 			selection.append(e)
+	# (the owner, 2026-11-15: a worker unselected and picked again comes back to his MAIN card, not the BUILD page he
+	# left open: the HUD shuts any card page when the selection changes; selection_epoch tells it so)
+	if before.size() != selection.size() or before.any(func(e) -> bool: return not selection.has(e)):
+		selection_epoch += 1
 
 
 ## APM (actions per minute) of the player at this screen: every click, tap and key press

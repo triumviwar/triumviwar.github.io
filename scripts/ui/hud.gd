@@ -15,6 +15,7 @@ var game: Game
 var controls: Controls
 var page := ""                       # command card page: "", build
 var build_page := 0
+var _page_epoch := 0                 # the game.selection_epoch the card page belongs to (_build_card)
 var paused := false
 var _card_buttons: Array = []        # the command card's: {rect, cb, enabled, why, item, alt}
 var _hud_touches := {}               # touch index -> what it pressed
@@ -998,6 +999,11 @@ func _build_card() -> Array:
 	_tip_for = {}
 	_tip_fn = {}
 	var list: Array = []   # [icon, label, cb, enabled, why, cost]
+	if game.selection_epoch != _page_epoch:
+		# a new pick (or an unselect and pick again) starts at the main card, never on a page left open
+		_page_epoch = game.selection_epoch
+		page = ""
+		build_page = 0
 	var units := game.selected_units()
 	var b := game.selected_building()
 	if controls.mode == "place":
