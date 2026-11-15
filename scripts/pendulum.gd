@@ -15,7 +15,8 @@ extends RefCounted
 ## made only at the HEAVY WORKS (0.14.94), which always runs on its BIG gear (the heavy torque: gear_problem, Game.can_train);
 ## each building keeps the gear it is built with (no gear swap since 0.24.4).
 ## Art: tools/import_tier3.py (the idle, the walk and the two low sweeps built in code from ChatGPT's direction sheet,
-## tools/pendulum_v2_guide/; the death painted by ChatGPT).
+## tools/pendulum_v2_guide/; the death painted by ChatGPT); the HIGH SWING at a flyer (attack_hi_r / attack_hi_l, the
+## owner's ChatGPT sheets) by tools/pendulum_guide/import_high_swing.py.
 
 
 ## "" when works b may make a Pendulum as far as its gear goes: it runs on its BIG gear (the Heavy Works always does:
@@ -42,9 +43,24 @@ static var st_air_kills := 0
 const ARMS := ["r", "l"]
 
 
-## The strip of the blow under way: its arm's ("attack" when a sheet has one strip for both).
+## Added to Unit.arm for a HIGH SWING (pendulum-high-swing): the blow's target was a FLYER as its wind-up began, so it
+## plays the high strips (attack_hi_r / attack_hi_l: the blade raised high over its head on the same 4th frame, the hit;
+## the owner's ChatGPT sheets, tools/pendulum_guide/import_high_swing.py). Kept for the whole blow (a flyer dying or
+## flying off mid-swing does not switch the strip) and streamed to online guests with the unit, like the arm.
+const HIGH := 2
+
+
+## Is entity e (the target as a blow's wind-up starts) one the Pendulum swings HIGH at: an enemy flyer.
+static func high_at(e: Entity) -> bool:
+	return air_on and e != null and is_instance_valid(e) and e.is_air()
+
+
+## The strip of the blow under way: its arm's, the high swing's at a flyer ("attack" when a sheet has one strip for both;
+## the low sweep when the high strips are missing).
 static func attack_anim(u: Unit) -> String:
 	var a := "attack_" + String(ARMS[u.arm % 2])
+	if u.arm >= HIGH and ArtData.UNITS[u.art]["frames"].has("attack_hi_" + String(ARMS[u.arm % 2]) + "_s"):
+		return "attack_hi_" + String(ARMS[u.arm % 2])
 	return a if ArtData.UNITS[u.art]["frames"].has(a + "_s") else "attack"
 
 
@@ -108,7 +124,8 @@ static func swing(u: Unit, e: Entity, dmg: float) -> int:
 	var hit := victims(u, dir)
 	# the arc it cuts, laid on the ground, and the blade's smear along its low sweep (docs/aoe_show.md)
 	var ps: Dictionary = Defs.PENDULUM_SWING
-	g.area_mark("wedge", u.team, u.position, dir, float(ps["reach"]), deg_to_rad(float(ps["arc"])), "steel", GroundMarks.STRIKE, false, false, u.arm % 2, true)
+	# (a HIGH SWING at a flyer: the arc on the ground, no blade smear along the ground: the blade went over its head)
+	g.area_mark("wedge", u.team, u.position, dir, float(ps["reach"]), deg_to_rad(float(ps["arc"])), "steel", GroundMarks.STRIKE, false, false, u.arm % 2, u.arm < HIGH)
 	var on_units := dmg / float(u.d.get("building_bonus", 1.0)) if e is Building else dmg
 	u.last_air_hits = hit.filter(func(o: Unit) -> bool: return o.is_air()).size()
 	for o in hit:

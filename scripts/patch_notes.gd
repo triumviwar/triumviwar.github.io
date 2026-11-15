@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.16", "items": [
+		"THE PENDULUM SWINGS HIGH AT FLYERS: when its target is a flyer, the Pendulum now raises its blade high over its head and brings it down on the 4th frame, where the blow lands (it used to play its low sweep at ankle height, the blade passing under the flyer it hit). Every view and both arms; at enemies on the ground it still sweeps low. The blow itself is unchanged.",
+	]},
 	{"v": "0.38.15", "items": [
 		"BROOD, ROOTMAWS COUNTED LIKE FARMS: the Brood Mother's swamp holds 3 Rootmaws and each rooted Mound Turtle's swamp 2 (their circles still may not overlap). Her card and a turtle's read ROOTMAWS 2/3; a Rootmaw on a full swamp is refused with the reason. Each Rootmaw still holds 3,000 food (9,000 round her, 6,000 round a turtle).",
 		"BEST ROOTMAW SPOTS: gold marks on your own swamp show where the Rootmaws a swamp still has room for fit best, all of them together (near her or the turtle, on open level ground, clear of the ramps). Brighter while you place a Rootmaw, with each swamp's count over the Mother and the turtles. Only you see your own (Brood players only); nothing snaps, they only guide. Settings: SHOW ROOTMAW SPOTS. The Brood computer roots on the same spots.",

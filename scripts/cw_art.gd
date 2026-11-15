@@ -13,7 +13,8 @@ const DIRS := ["s", "se", "e", "ne", "n"]
 ## east ones mirrored (Unit.WEST_OF; the Clock Soldier's sword stays in its right hand).
 const WEST_DIRS := ["sw", "w", "nw"]
 const ANIMS := ["idle", "walk", "attack", "death", "jump", "attack_up", "bomb", "attack_r", "attack_l", "guard", "guard_walk",
-	"wind", "sweep"]   # (guard: the Clock Soldier's SHIELD FORWARD; wind and sweep: the Great Winder's key arm and rollers)
+	"wind", "sweep", "attack_hi_r", "attack_hi_l"]   # (guard: the Clock Soldier's SHIELD FORWARD; wind and sweep: the Great Winder's key arm and rollers;
+	# attack_hi_r / _l: the Pendulum's HIGH SWING at a flyer, a taller strip: tools/pendulum_guide/import_high_swing.py)
 ## kind -> [cell width, cell height, anchor x, anchor y (the feet)]
 const SHEETS := {
 	"tin_militia": [36, 40, 18, 36],
