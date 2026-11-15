@@ -213,6 +213,19 @@ const PLANS := {
 		"mid": [["barracks", 1, {}], ["foundry", 1, {}], ["horse_breeder", 1, {}], ["barracks", 2, {"halls": 2}],
 			["barracks", 3, {"labs": 26}], ["barracks", 4, {"labs": 32}], ["church", 1, {"labs": 38, "halls": 2}],
 			["armoury", 1, {"labs": 42}], ["foundry", 2, {"labs": 44, "halls": 3}]],
+		# (crown-coach-v-brood, AICrownVBrood part 5: against the Brood the Economy race keeps its hall at 11 but grinds powder
+		# before it, so the line's first Musketeers come by 4:30 and the Field Cannon right behind; `-- cvbopen:off` as before)
+		"bo_brood_cvb": [
+			{"do": "wall_cottage", "at": {"sup": 5}},
+			{"do": "wall_gate", "at": {"sup": 5}},
+			{"do": "build", "k": "farm", "n": 2, "at": {"labs": 7}},
+			{"do": "build", "k": "barracks", "at": {"labs": 8}},
+			{"do": "build", "k": "powder_mill", "at": {"labs": 9}},
+			{"do": "hall", "n": 2, "at": {"labs": 11}},
+			{"do": "army", "k": "musketeer", "cap": 6},
+			{"do": "build", "k": "foundry", "at": {"labs": 17}},
+			{"do": "build", "k": "horse_breeder", "at": {"labs": 19}},
+		],
 		"bo_old": [
 			{"do": "wall_cottage", "at": {"sup": 5}},
 			{"do": "build", "k": "farm", "n": 2, "at": {"labs": 7}},
@@ -586,6 +599,11 @@ func opt_switch(k: String) -> bool:
 func _make_plan() -> void:
 	_plan_of = strategy
 	plan = (PLANS.get(strategy, PLANS["balanced"]) as Dictionary).duplicate(true)
+	if plan.has("bo_brood_cvb"):
+		var cvb_args := OS.get_cmdline_user_args()
+		if not (cvb_args.has("cvb:off") or cvb_args.has("cvbopen:off")):
+			plan["bo_brood"] = plan["bo_brood_cvb"]      # (crown-coach-v-brood: the Economy race's opening against the Brood)
+		plan.erase("bo_brood_cvb")
 	if OS.get_cmdline_user_args().has("owner:off") and plan.has("bo_old"):
 		plan["bo"] = plan["bo_old"]          # (crown-owner-eco off: the 0.30.8 opening and milestones, for "before" games)
 		plan["mid"] = plan["mid_old"]
