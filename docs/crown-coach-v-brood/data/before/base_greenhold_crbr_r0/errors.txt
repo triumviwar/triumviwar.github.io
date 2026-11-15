@@ -1,0 +1,2 @@
+2 error lines
+    2  SCRIPT ERROR: Invalid assignment of property or key 'name' with value of type 'String' on a base object of type 'Nil'.  at: _menu_button (res://scripts/main.gd:536)
