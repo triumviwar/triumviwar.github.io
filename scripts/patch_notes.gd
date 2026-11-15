@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.6", "items": [
+		"A STUDY, NO GAMEPLAY CHANGE: the NO FARM/PRESS LIMIT switch measured for all three sides and every matchup (96 games each way). It helps the Clockwork most (+20% income), so the limit stays.",
+	]},
 	{"v": "0.38.5", "items": [
 		"THE PENDULUM HITS FLYERS: every swing of the Clockwork's Pendulum now also cuts every enemy flyer in the same arc in front of it, for three quarters of the blow (light flyers such as Balloons and Hatchlings still take the light bonus on top). No research needed. It picks a flyer as its target when no enemy on the ground is nearer, and it never hits your own flyers.",
 		"The Clockwork computer counts its Pendulums against enemy flyers: with flyers about it makes Pendulums sooner and a few Swifts fewer.",
