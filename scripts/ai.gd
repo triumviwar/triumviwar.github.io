@@ -3224,7 +3224,12 @@ func _recycle_spent() -> void:
 				and not (gear and b.built and game.gear_net.speed_mult(b) <= 0.0)).size()
 			var want: int = Defs.econ_per_hall(game.faction_of(team), kind) if gear else 1
 			if n_worked < want:
-				game.demolish(spent[0])
+				# (econ-limit-local: the limit is this hall's own, so the spent one pulled down must be one of its own; one
+				# by another hall would free nothing here)
+				var here: Array = spent.filter(func(b: Building) -> bool: return game.lode_hall(b) == h)
+				if here.is_empty():
+					continue
+				game.demolish(here[0])
 				if game.mlog:
 					game.mlog.add("%s pulled down a %s by spent %s (fresh %s by another hall)" % [game.mlog.who(team), Defs.BUILDINGS[kind]["name"], dep, dep])
 				return

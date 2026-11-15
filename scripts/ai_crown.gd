@@ -3444,8 +3444,11 @@ func _recycle_spent() -> void:
 		for f in _mine("farm"):
 			if game.soil_hall(f) == h and f.soil_left() > 0.0:
 				live += 1
-		if live < per:
-			game.demolish(spent[0])
+		# (econ-limit-local: the limit is each hall's own since 0.38.16, so only a spent Farm of this hall frees a place
+		# here; a Farm on spent soil stands by a spent hall, so this rarely pulls one down now)
+		var here := spent.filter(func(b: Building) -> bool: return game.soil_hall(b) == h)
+		if live < per and not here.is_empty():
+			game.demolish(here[0])
 			farms_pulled += 1
 			if game.mlog:
 				game.mlog.add("%s pulled down a Farm on spent soil (fresh soil by another hall)" % game.mlog.who(team))
