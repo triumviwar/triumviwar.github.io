@@ -67,7 +67,7 @@
   2767, Nuremberg; the Perpetual built without a stop-work; parts: it wakes / the mill island / the thirteenth hour;
   only Hollweg's death is a real loss, the rest is saved-and-carried-forward; choices: the bells, people or pattern;
   6 stills with ChatGPT prompts; 15 engine needs for a build job; 10 OWNER QUESTIONS). All lines are placeholders.
-
+ OWNER ANSWERS 2026-11-15 22:20 in the doc (Advent 2767; Hollweg narrates from exile in the King's palace; Ferrer warns; Hollweg took the machine for a true intelligence (heresy, deceived); 2 choices; Nuremberg = the machine's hub; told only at Part 3).
 - ECONOMY LIMIT BY HALL (owner DECIDED 2026-11-15 18:06: "it should be 2 per Town Hall, 2 per Clocktower"; job
   econ-limit-local, 0.38.16, docs/econ_limit_local.md, tools/test_econ_limit_local.gd): every Farm / Powder Mill / Cog Press /
   Mainspring belongs to the hall it draws from (its nearest BUILT hall, a tie to the older) and each hall allows

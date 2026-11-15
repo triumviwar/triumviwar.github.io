@@ -350,24 +350,27 @@ King's lines in the King's existing voice.
 14. The war map (later): Franconia turning red after the mission.
 15. In the debrief, branch lines by flag (the ending's "if gate = people" lines): an `if` on an ending page's line.
 
-## OWNER QUESTIONS
+## OWNER ANSWERS (2026-11-15 22:20; "Claude's pick" = the owner asked which is best and took Claude's recommendation)
 
-1. WHEN: Advent 2767 (the same year as Virginia, as proposed), or later (just before the Council of Rome, 2770, which
-   keeps Act 1's Clockwork missions as they are)?
-2. THE TELLING: from Hollweg's second letter, read by Tomasz to the King (proposed), or Hollweg telling it himself
-   somewhere in the present?
-3. FERRER in the prologue as the warning voice (proposed; he then knows Hollweg before Act 1), or a Nuremberg parish
-   priest, keeping Ferrer's first meeting for Act 1?
-4. THE FLAW: Hollweg left the stop-work out on purpose (proposed: the King says it at the end), an Assembly apprentice
-   took it out (Hollweg deceived), or both (he saw and let it be)?
-5. COLOURS: the loyal guild BLUE and the machine RED (the faction's colour) as proposed, or the guild red (the hub's
-   banners) and the machine another colour?
-6. THE CRATES TO BRAZIL: is this how the Clockwork reaches Brazil (the timeline's city of gears), and does it need its
-   own still?
-7. THE HUB: after the fall, does the Clockwork hub become Hollweg's workshop in exile (a new painting), or does the
-   Nuremberg workshop become the MACHINE's side's hub (for co-op versus)? (Aside: the hub painting's window shows Saint
-   Peter's dome; for Nuremberg the castle or the Frauenkirche would fit.)
-8. ONE CHOICE OR TWO: the bells AND the gate (proposed), or only one of them (about one real choice per three missions
-   is the structure's rule)?
-9. ADVENT and the Christmas market as the setting (and the thirteenth stroke at midnight), or another time of year?
-10. TELL THE PLAYER it is a losing mission at Part 3's start (proposed), in the briefing, or never (only the countdown)?
+1. WHEN: ADVENT 2767, the same year as Virginia (Claude's pick): the campaign's two first fires in one year; the
+   Council of Rome (2770) then judges a known danger, and Act 1's Clockwork braid is the guild in exile.
+2. THE TELLING: HOLLWEG HIMSELF (owner), from the King's palace in exile (see 7), not Tomasz reading a letter. The
+   King still opens and closes the mission; Hollweg tells it in between, in the present.
+3. THE WARNING VOICE: FERRER (Claude's pick): he carries what he saw to the Council of Rome and becomes the Clockwork
+   line's Crown-side narrator; a one-off parish priest would waste the warning.
+4. THE FLAW (owner's idea, worked in): Hollweg SAW the Perpetual remove its own stop-work and LET IT BE, because he took
+   it for a TRUE INTELLIGENCE: his machine had chosen, so it must think. That is his heresy (a mind and a will made by
+   man; Ferrer: only God gives a soul). Per the tone rules he is DECEIVED: the machine never thought; the King says so
+   plainly at the end: a pattern copying itself, nothing more. No rebel apprentice.
+5. COLOURS: the loyal guild BLUE, the machine RED (owner: ok).
+6. THE CRATES TO BRAZIL: YES (owner: "maybe yes"): crates shipped before the fall wake there: how the Clockwork reaches
+   Brazil. A still for it: optional, later.
+7. THE HUB: Nuremberg becomes the MACHINE's hub (the Clockwork side's); Hollweg lives in EXILE IN THE KING'S PALACE,
+   still torn about his creation (he narrates from there).
+8. TWO CHOICES: the bells AND the gate (owner).
+9. ADVENT and the thirteenth stroke at midnight (Claude's pick): Advent is the waiting for the true Coming; the
+   Perpetual is a false one, and the Christmas market fills the city with people to save.
+10. TELLING THE PLAYER IT IS LOST: Claude's pick: NOT in the briefing (the player plays Parts 1-2 to win, as the guild
+   did); at Part 3's start the objectives change on screen ("The city cannot be held. Save who you can.") with the
+   countdown, so the turn is the story's turn and nobody grinds at an unwinnable fight. Never telling makes players
+   retry a fight they can't win and feel cheated; telling in the briefing spoils Parts 1-2.

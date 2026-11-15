@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.30", "items": [
+		"Writing only: the owner's answers on the Clockwork prologue (The Thirteenth Hour) are in its outline.",
+	]},
 	{"v": "0.38.29", "items": [
 		"ONLINE: a spectator's match log says on its first lines that it was written by a spectator.",
 	]},
