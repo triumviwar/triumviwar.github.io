@@ -252,6 +252,14 @@ var _ww_back := {}              # (a Winder) the order he goes back to once the 
 var _ww_scan := 0.0             # (a Winder) seconds to his next look for a walking construct to wind
 var _ww_cap := 0.0              # (a construct) the pace of the slower Winder winding it on the march...
 var _ww_cap_t := 0.0            # ...for this long
+var esc_group: Array = []       # (a Winder) ESCORT: the group he follows, winds and mends (scripts/winder_escort.gd)
+var esc_goal := Vector2.INF     # (a Winder) ...where the group was sent (INF: nowhere: WIND UP)
+var esc_from := Vector2.INF     # (a Winder) ...where the group stood when it was sent there
+var esc_patient: Unit = null    # (a Winder) ...the one he winds or mends now
+var _esc_t := 0.0               # (a Winder) seconds to his next look for the one to wind
+var _esc_dir := Vector2.ZERO    # (a Winder) the group's last known front
+var _esc_last := Vector2.ZERO   # (a Winder) where he stood last tick (pinned by an enemy?)
+var _esc_pinned := 0.0          # (a Winder) seconds an enemy has been on him without his getting away
 var jump := {}                  # Springer: the leap under way ({} on the ground; scripts/springer.gd)
 var jump_cd := 0.0              # Springer: seconds before its spring can JUMP again
 var jumps := 0                  # Springer: leaps made (tests, the log)
@@ -2019,6 +2027,12 @@ func _ready() -> void:
 	if is_air():
 		z_index = 3
 	_set_anim("idle", true)
+	if WIND_KEYS_ON and WindKeyData.KEYS.has(kind):
+		# its wind-up key on its back, turning with its charge (scripts/wind_key.gd, docs/wind_keys.md)
+		_wkey = preload("res://scripts/wind_key.gd").new()
+		_wkey.name = "WindKey"
+		_wkey.set("unit", self)
+		sprite.add_child(_wkey)
 
 
 func rect() -> Rect2:
@@ -2449,6 +2463,27 @@ func cmd_follow(e: Unit) -> void:
 	order = "follow"
 	order_target = e
 	target = null
+
+
+## ESCORT (Winders; the owner 2026-11-15, docs/winder_escort.md): follow the group from behind, winding and mending
+## whoever in it (or round it) needs it most, out of melee, until given another order. `goal`: where the group was sent.
+func cmd_escort(group: Array, goal := Vector2.INF) -> void:
+	if aboard or kind != "winder":
+		return
+	var g: Array = group.filter(func(o) -> bool: return o != null and is_instance_valid(o) and o is Unit and o != self and not o.dead and o.team == team)
+	if g.is_empty():
+		return
+	_reset_work()
+	order = "escort"
+	esc_group = g
+	esc_goal = goal
+	esc_from = WinderEscort.middle(g) if goal != Vector2.INF else Vector2.INF
+	esc_patient = null
+	_esc_t = 0.0
+	_esc_pinned = 0.0
+	target = null
+	order_target = null
+	path = PackedVector2Array()
 
 
 ## PATROL (as in StarCraft 2): attack-move to `p`, then back to where he started, and on
@@ -3078,6 +3113,11 @@ func _start(o: Dictionary) -> bool:
 			if e == null or not is_instance_valid(e) or not (e is Unit) or e.dead:
 				return false
 			cmd_follow(e)
+		"escort":
+			# (Winders with an army: scripts/winder_escort.gd; an old replay's or a guest's missing men are dropped)
+			cmd_escort(o.get("g", []) if o.get("g") is Array else [], o.get("p", Vector2.INF) if o.get("p") is Vector2 else Vector2.INF)
+			if order != "escort":
+				return false
 		"bombard":
 			cmd_bombard(o["p"], o.get("a", Vector2.INF), o.get("b", Vector2.INF))
 		"reload":
@@ -3153,6 +3193,8 @@ func _reset_work() -> void:
 	_wind_target = null
 	_ww_on = false
 	_ww_back = {}
+	esc_group = []
+	esc_patient = null
 	drop_crate()
 	if sky == "to_land":
 		sky = "air"
@@ -4047,6 +4089,8 @@ func _tick_unit(delta: float) -> void:
 			want = _gather(delta)
 		"repair":
 			want = _repair(delta)
+		"escort":
+			want = WinderEscort.tick(self, delta)        # (a Winder with the army: behind it, winding and mending)
 		"mend":
 			want = GreatWinder.mend_tick(self, delta)      # (a Great Winder's key arm on a hurt unit)
 		"sweep":
@@ -7357,6 +7401,8 @@ func _animate(delta: float) -> void:
 			if frame_i < nd - 1:
 				return
 		(sprite.material as ShaderMaterial).set_shader_parameter("tint", Vector3(0.5, 0.52, 0.6))   # a cold statue: no frames move
+		if _wkey != null:
+			_wkey.step(0.0)               # (its key, still, on the slumped body)
 		_cold = true
 		return
 	elif _cold:
@@ -7526,6 +7572,8 @@ func _animate(delta: float) -> void:
 		var fs := MarchingBand.frame_in_step(self, sprite.hframes, _an_wfps if anim == "walk" else 2.0)      # (a band's three IN STEP; a lone man on his own beat)
 		if sprite.frame != fs:
 			sprite.frame = fs
+	if _wkey != null:
+		_wkey.step(delta)                 # (its wind-up key: to the body's new frame, turning: scripts/wind_key.gd)
 	if kind == MarchingBand.KIND:
 		MarchingBand.group_look(self)     # (an old FULL replay's band: its Fifer and Piper as child sprites)
 	if not team_horses.is_empty() or not _team_sprites.is_empty():
@@ -7781,6 +7829,9 @@ const DIR_FLIP := [["e", false], ["se", false], ["s", false], ["se", true], ["e"
 ## is "sw" / "w" / "nw" and anim_flip false; per-view tables keyed by the five east views read the east twin, mirrored
 ## (view_dir, view_entry, view_mirror, view_mirrored).
 const WEST_OF := {"se": "sw", "e": "w", "ne": "nw"}
+## The Clockwork's wind-up keys on their backs (scripts/wind_key.gd); "windkeys:off" on the command line: none (measuring).
+static var WIND_KEYS_ON := not OS.get_cmdline_user_args().has("windkeys:off")
+var _wkey = null                 # (its wind-up key, a child of the sprite: stepped by _animate, on screen only)
 const EAST_OF := {"sw": "se", "w": "e", "nw": "ne"}
 
 

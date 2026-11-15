@@ -25,6 +25,49 @@
 
 ## Current work
 
+- WINDERS ESCORT THE ARMY (owner's report 2026-11-15 20:11, DECIDED 20:15 "both"; job winder-escort, 0.38.18,
+  docs/winder_escort.md, scripts/winder_escort.gd WinderEscort, tools/test_winder_escort.gd, pictures docs/shots/winder_escort/):
+  Winders in a group order (move, attack-move, drag-a-line, right-click on an enemy, Shift) WITH Clockwork fighting units
+  get the order "escort" (Unit.cmd_escort): behind the group's rearmost man away from its front, winding/mending the
+  neediest (lowest charge or health share, spread over the Winders, not next to an enemy), stepping back from enemies
+  within 64 px, hitting back only when pinned 0.8 s; they stay with it after the order ends; only-Winder groups unchanged;
+  card ESCORTING. WIND UP (W, icon a copy of ab_mend) on the Winder's card: Game.wind_up_order (the rest of the selection,
+  or the unit tapped next and those within 3 tiles). The computers' Winders don't use group orders: unchanged. 8 Claude's
+  choices in the doc.
+- THE ESCAPEMENT'S THREE RESEARCHES (owner DECIDED 2026-11-15 20:34; job escapement-research, 0.38.19,
+  docs/escapement_research.md, tools/test_escapement_research.gd, bench tools/bench_netter_range.gd): SHIELD WALL moved
+  from the Light Works to the Escapement (same price; the Escapement's Tension rule, like HIGH LEAP; an old save's SHIELD
+  WALL queued at a Light Works is paid back); the Netter's reach 180 -> 150; new LONG CHAIN at the Escapement (a drill,
+  +90 -> 240; 100 cogs + 50 Tension, 40 s; stand-in icon in code); the Field Cannon (430) still the longest reach; keys
+  HIGH LEAP=E SHIELD WALL=S LONG CHAIN=C; the computer buys SHIELD WALL at its Escapement (no systematic slip in 5 games)
+  and LONG CHAIN at 2 Netters. 8 Claude's choices in the doc.
+- WIND-UP KEYS ON THE CLOCKWORK ARMY (owner DECIDED 2026-11-15 20:15: "a wind-up KEY on its back like the Winder has";
+  job wind-keys, 0.38.21, docs/wind_keys.md, tools/clockwork/import_wind_key.py, scripts/wind_key.gd + wind_key_data.gd,
+  tools/shot_wind_keys.gd, pictures docs/shots/wind_keys/): one painted key (the owner's ChatGPT still, turned at import:
+  16 frames x views s/se/e/ne/n + "u" standing up for flyers, assets/units/_shared/wind_key_<size>.png) on the back of
+  the Clock Soldier, Springer, Netter, Pendulum, Swift and Ticking Owl, a child of the body sprite following measured
+  per-frame spots; it TURNS with `wind` (a turn per 1.2 s full, still run down), stepped by Unit._animate (on screen only,
+  10 Hz in big battles); hidden on death. Not the Winders, Ballista or (Claude's choice 1) the Brass Serpent (its wind
+  never runs down). Switch windkeys:off. 8 Claude's choices in the doc.
+- ONLINE SPECTATORS (owner 2026-11-15 20:30; job online-spectators, 0.38.21, docs/online_spectators.md,
+  tools/test_online_spectators.gd via `tools/test_online.sh spectators`, pictures docs/shots/online_spectators/): in a
+  friendly room a guest picks SPECTATOR (WATCH) in its FACTION list (or WATCH beside JOIN; a full room or a match under
+  way seats one as a spectator too) and is listed apart under SPECTATORS (n) with its ping, at most NetLobby.SPEC_MAX 4,
+  not counted as players; TAKE A SEAT goes back. In the match (game.net_watch, demo): every side (NetSession.spec_view,
+  NetView.spectator: no fog filter, sent only to spectators' relay ids), VIEW / PRODUCTION / ARMY & STRUCTURES, no AI
+  STORY, no orders (the host refuses "spectator"), no pause; chat to spectators only unless the host's SPECTATORS TALK
+  TO PLAYERS; leaving changes nothing; the host's whole replay reaches spectators too. The host always plays; no
+  spectators in campaign rooms. Upload: ~11 KB/s a spectator in an early fight, ~40 KB/s in a 240-unit battle.
+  Ranked spectating NOT built (needs watch tickets, a delay): 9 Claude's choices and the three-device test in the doc.
+- CLOCKWORK PROLOGUE OUTLINE (owner 2026-11-15: every faction gets a prologue; the Clockwork's is a LOSING mission: we
+  play the good Clockwork with the inventor, find a self-replicating failing mechanism too late, fight to contain it and
+  lose, and the Clockwork expands. Answers 21:34: the runaway machine IS the whole Clockwork faction; the inventor is
+  MEISTER HOLLWEG (his Nuremberg workshop = the Clockwork hub); he was building THE PERFECT MACHINE). Job
+  clockwork-prologue-outline (branch, docs only): docs/campaign_clockwork_prologue.md, "The Thirteenth Hour" (Advent
+  2767, Nuremberg; the Perpetual built without a stop-work; parts: it wakes / the mill island / the thirteenth hour;
+  only Hollweg's death is a real loss, the rest is saved-and-carried-forward; choices: the bells, people or pattern;
+  6 stills with ChatGPT prompts; 15 engine needs for a build job; 10 OWNER QUESTIONS). All lines are placeholders.
+ OWNER ANSWERS 2026-11-15 22:20 in the doc (Advent 2767; Hollweg narrates from exile in the King's palace; Ferrer warns; Hollweg took the machine for a true intelligence (heresy, deceived); 2 choices; Nuremberg = the machine's hub; told only at Part 3).
 - ECONOMY LIMIT BY HALL (owner DECIDED 2026-11-15 18:06: "it should be 2 per Town Hall, 2 per Clocktower"; job
   econ-limit-local, 0.38.16, docs/econ_limit_local.md, tools/test_econ_limit_local.gd): every Farm / Powder Mill / Cog Press /
   Mainspring belongs to the hall it draws from (its nearest BUILT hall, a tie to the older) and each hall allows
@@ -52,13 +95,19 @@
   sooner), 0.87-0.93 of the others from 8:00; the Brood computer -4% alone, -7% by 8:00 in 24 games (its 4th+ Rootmaws must
   go to new ground); in games Brood/Crown 1.27-1.38, Brood/Clockwork 0.64 at 5:00 to 0.97 at 12:00. RECOMMENDATION WAITING:
   no Rootmaw number change; coach the Brood computer's 4th/5th Rootmaws onto new ground. 9 Claude's choices in the doc.
+- WIN RATES 2026-11-15 (study job winrate-2026-11-15, 0.38.15 tools only, docs/winrate_2026_11_15.md, data
+  docs/winrate_2026_11_15/, tools/study/winrate_1115*.py/.sh): on 0.38.14 the Crown computer still won 0 and led 0 of 76
+  (v Brood 0-13-25, v Clockwork 0-22-16: worse, the Clockwork computer now reaches its bench, 1.01 at 8:00, the Crown
+  0.6); its halls idle while Farm posts are empty, the blind Horseman rush v every Brood (38 of 38), it over-reckons the
+  Brood and holds back while ahead; Brood mirror P1 (spot A) 26-9 (p 0.006); Brood v Clockwork now 26-6-6 for the Brood.
+  Proposals C1-C6, K1, S1-S3, R1-R2 in the doc. OWNER DECISIONS WAITING.
 
 - KEEN SABRES TEST (owner 2026-11-15 10:03: "Why do we need Keen Sabres?"; job keen-sabres-test, 0.38.12,
   docs/keen_sabres_test.md, tools/study_keen_sabres.gd, tools/study/keen_sabres_games.py + keen_sabres_report.py): hit and
   run + the Cavalry Charge did NOT hold Raptors at equal cost; a Charge x2.2 v light with no wait-round micro measured as
   well as Keen Sabres. DECIDED and DONE (owner 21:34): see THE CHARGE PACKAGE below (keensabres:off and chargelight: are gone).
 
-- THE CHARGE PACKAGE (owner DECIDED 2026-11-15 21:34; job cavalry-charge-package, 0.38.22, docs/cavalry_charge_package.md,
+- THE CHARGE PACKAGE (owner DECIDED 2026-11-15 21:34; job cavalry-charge-package, 0.38.31, docs/cavalry_charge_package.md,
   tools/test_charge_package.gd): KEEN SABRES REMOVED (research, button, blow, texts, icon, test; an old save's flag is dropped
   on load); the CAVALRY CHARGE at the HORSE BREEDER (was the Armoury; 60 gold, 25 s; old saves keep it), a charged blow x2.2 on
   LIGHT units (Defs.CHARGE "light"; one charge kills a 38-hp Raptor), x2 on the rest; the computer's riders (AICavMicro
@@ -71,7 +120,7 @@
   0.78-2.82; without the swarm rule x2.2 only 0.23-0.69); 16 computer games Crown v Brood 0-6-10, on the old 8 seeds 0-4-4
   (Keen on 0-2-6, off 0-5-3: noise), riders kill 1.6 Raptors per rider lost (Keen 1.26), the Charge drilled at 5:50-7:00.
   6 Claude's choices in the doc.
-- RAPTOR / HORSEMAN BALANCE (owner DECIDED 2026-11-15 00:38-00:53, after comparing StarCraft II's Zergling and Hellion; job balance-raptor-horseman, 0.38.10, docs/balance_raptor_horseman.md, tools/test_raptor_rider_fight.gd): Raptor 38 health (was 36), speed 92 (was 96), PACK HUNT still 114 (only then does it outrun horses); Horseman 100 health (was 140) and 100 gold (was 115), Cuirassier 130; KEEN SABRES at the Horse Breeder (0.38.10; REPLACED 0.38.22 by THE CHARGE PACKAGE above). The Officer's price and the computer's research: DONE in THE CHARGE PACKAGE. Still waiting: rerun the Crown v Brood and Brood mirror win rates. CAVALRY HIT AND RUN for the Crown computer (owner 00:53; job crown-coach-cavalry, 0.38.9, scripts/ai_cav_micro.gd, switch cavmicro:off). BALLOON (0.38.7, scripts/ai_crown_balloon.gd, blfix:off; OPTIMAL picks it 1/3 v a NORMAL Clockwork, owner: "viable, not 100%"), ECONOMY (0.38.8, crowneco:off) coached too.
+- RAPTOR / HORSEMAN BALANCE (owner DECIDED 2026-11-15 00:38-00:53, after comparing StarCraft II's Zergling and Hellion; job balance-raptor-horseman, 0.38.10, docs/balance_raptor_horseman.md, tools/test_raptor_rider_fight.gd): Raptor 38 health (was 36), speed 92 (was 96), PACK HUNT still 114 (only then does it outrun horses); Horseman 100 health (was 140) and 100 gold (was 115), Cuirassier 130; KEEN SABRES at the Horse Breeder (0.38.10; REPLACED 0.38.31 by THE CHARGE PACKAGE above). The Officer's price and the computer's research: DONE in THE CHARGE PACKAGE. Still waiting: rerun the Crown v Brood and Brood mirror win rates. CAVALRY HIT AND RUN for the Crown computer (owner 00:53; job crown-coach-cavalry, 0.38.9, scripts/ai_cav_micro.gd, switch cavmicro:off). BALLOON (0.38.7, scripts/ai_crown_balloon.gd, blfix:off; OPTIMAL picks it 1/3 v a NORMAL Clockwork, owner: "viable, not 100%"), ECONOMY (0.38.8, crowneco:off) coached too.
 - ECONOMY REVERTED + PROLOGUE (owner DECIDED 2026-11-15 10:24: "revert back to 2 buildings, no radius, no effectiveness based on soil... this experiment is proving problematic"; job eco-revert-prologue, 0.38.12, docs/eco_revert_prologue.md): the ORIGINAL economy is the only one (2 Farms / 2 Cog Presses a hall, the hall's own soil/brass pool); the GROUND SYSTEM and NO FARM/PRESS LIMIT are DELETED (ground_layer.gd, ground_view.gd, Defs.ground_on/ground_nocap/LAND, Settings ground_system/ground_nocap/ground_alpha, Game.NO_GROUND_MSG, Defs.nocap_text, their tests, study tools and docs; in git history before 0.38.12); an old cfg/save/replay "ground" is ignored. PROLOGUE (p01_leaf): the manor Town Hall moved south ([8,42], tag manor) with 2 Farms, a second Governor Town Hall north on the west side ([8,23], tag north_hall) with 2 Farms: 4 barns (was 5); dawn still needs 3 barns (now of 4: the night sim's active player ends with 3-4, it ended with 3 of 5 before); a mission's "expansion_spots": false now also stops the Crown/Clockwork spot updates.
 - NO FARM/PRESS LIMIT, ALL SIDES: REVERTED by the owner 2026-11-15 10:24 (see above). Was: (owner 2026-11-14 "economic study with the free amount of resources"; job econ-nocap-all, 0.38.6, docs/econ_nocap_all.md, tools/study/econ_nocap_all*.py): RECOMMENDS KEEPING THE LIMIT: with the ground system on, dropping it gives the Clockwork +20% income by 12:00, Crown 0.98, Brood 0.96; Brood v Clockwork 7-3-6 -> 4-3-9; no turtling, no extra snowball. If dropped one day: a Clockwork brake (7,000 brass a district), a Brood counterpart, after the Crown computer reaches its bench. OWNER DECISION WAITING.
 - PENDULUM HITS FLYERS (owner 2026-11-15 00:46-00:53, no research; job pendulum-air, 0.38.3, docs/pendulum_air.md,

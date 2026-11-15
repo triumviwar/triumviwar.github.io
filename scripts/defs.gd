@@ -228,7 +228,7 @@ const ARC := {"drain": 0.05, "speed": 420.0}
 ## behind it, inside the `cone` (cosine) away from the shooter, hit the shield instead
 ## (the shooter must be in front of it: `front`).
 const BRACE := {"armor": 7, "reach": 120.0, "cone": 0.45, "front": 0.2, "switch": 0.6, "drain": 2.5}   # drain: battery use while braced (x normal)
-## Clock Soldier: SHIELD FORWARD (research SHIELD WALL at the Light Works; scripts/shield_wall.gd,
+## Clock Soldier: SHIELD FORWARD (research SHIELD WALL at the Escapement since 0.38.19; scripts/shield_wall.gd,
 ## docs/clock_soldier_shield.md). Switching takes `switch` s (it stands still meanwhile); raised, it walks at `speed` of
 ## its pace, has `armor` more armour and takes `front` less from SHOTS whose shooter stands in front of it (inside the
 ## `cone`, a cosine about where it faces) and `front_melee` less from blows from in front; blows from the side or behind
@@ -1095,7 +1095,7 @@ const UNITS := {
 		"name": "Clock Soldier", "hp": 75, "armor": 1, "speed": 68, "cost": 70, "time": 16.0, "supply": 1,
 		"sight": 7, "range": 22, "damage": 10, "cooldown": 1.2, "aim": 0.33, "radius": 10, "from": "movement_works",
 		"faction": "clockwork",
-		"about": "The machine's plain front-line soldier: a clock-hand sword and a pocket-watch-cover shield. Quick on its feet but light. SHIELD FORWARD (once SHIELD WALL is researched at the Light Works) raises the shield in front: slower, but tougher, and much tougher against shots from the front. Made at the Light Works.",
+		"about": "The machine's plain front-line soldier: a clock-hand sword and a pocket-watch-cover shield. Quick on its feet but light. SHIELD FORWARD (once SHIELD WALL is researched at the Escapement) raises the shield in front: slower, but tougher, and much tougher against shots from the front. Made at the Light Works.",
 	},
 	# TIER 2 (gear mode): the SPRINGER, the first Tension unit (the Clockwork's Stalker): ranged, hits ground and air, hops
 	# (its walk), JUMPs (Defs.SPRINGER_JUMP). Guesses (design_principles 1): 100 cogs + 25 Tension, 2 supply; a shot every
@@ -1157,15 +1157,17 @@ const UNITS := {
 	# magic). Its spring cannon fires a weighted chain net at ONE enemy unit: caught, it cannot move or cast for 4 s (it can still attack), and a
 	# flyer is brought down to the ground for that time. Guesses (design_principles 1): a long reload (a net every 14.6 s:
 	# aim 0.11, the net leaves on the 2nd frame, + 0.5 + 14) and weak itself (120 hp + 1 armour, 4 damage a net, slow 54);
-	# its reach (180) is a Musketeer's (190) less a little and a Spitter's (150) more. 125 cogs + 50 Tension, 2 supply (a
+	# its reach was 180 (a Musketeer's 190 less a little); 150 since 0.38.19 (escapement-research, the owner 2026-11-15: "Reduce
+	# its current range"; a Spitter's 150), 240 with LONG CHAIN (Defs.RESEARCH "long_chain"; the Field Cannon's 430 stays the
+	# longest). 125 cogs + 50 Tension, 2 supply (a
 	# Mist Toad 100 + 25, 3 supply, a TONGUE about every 50 s). It picks the most dangerous enemy in reach that is not caught
 	# already (Netter.pick); a net is visible in flight and the catch lasts a fixed time (design_principles 1: telegraphed).
 	"netter": {
 		"tags": ["armored"],
 		"name": "Netter", "hp": 120, "armor": 1, "speed": 54, "cost": 125, "tension": 50, "time": 28.0, "supply": 2,
-		"sight": 9, "range": 180, "damage": 4, "cooldown": 14.0, "aim": 0.11, "radius": 16, "from": "movement_works",
+		"sight": 9, "range": 150, "damage": 4, "cooldown": 14.0, "aim": 0.11, "radius": 16, "from": "movement_works",
 		"requires": "escapement", "anti_air": true, "faction": "clockwork",
-		"about": "A low iron drum on four short legs with a spring cannon on top: it fires a weighted chain NET at one enemy, which then cannot move or use abilities for 4 s (it can still attack what is in its reach); a flyer it catches comes down to the ground for that time, where anything can hit it. By itself it picks the most dangerous enemy in reach that is not caught already (right-click one to choose). A long reload, and weak itself: keep it behind the line. Made at a Light Works whose gear network has a Mainspring, once an Escapement works. Costs Tension.",
+		"about": "A low iron drum on four short legs with a spring cannon on top: it fires a weighted chain NET at one enemy, which then cannot move or use abilities for 4 s (it can still attack what is in its reach); a flyer it catches comes down to the ground for that time, where anything can hit it. By itself it picks the most dangerous enemy in reach that is not caught already (right-click one to choose). A long reload, and weak itself: keep it behind the line. Its net reaches about as far as a Spitter spits; LONG CHAIN, researched at the Escapement, makes it reach further than a Musketeer shoots. Made at a Light Works whose gear network has a Mainspring, once an Escapement works. Costs Tension.",
 	},
 	# TIER 2 (gear mode; Defs.BALLISTA, scripts/ballista.gd, docs/ballista.md): the SPRING BALLISTA, the owner's unit
 	# (2026-10-27): against ARMOUR and BUILDINGS. Guesses (design_principles 1): a heavy screw bolt, 45 damage (x1.75 on an
@@ -1553,7 +1555,7 @@ const BUILDINGS := {
 	"movement_works": {
 		"name": "Light Works", "hp": 1000, "armor": 2, "cost": 150, "time": 40.0, "size": Vector2i(4, 3),
 		"supply": 0, "sight": 7, "trains": ["clock_soldier", "springer", "netter"], "faction": "clockwork",
-		"about": "The Clockwork's barracks for the light machines: a long hall that assembles Clock Soldiers on a hanging line, and Springers and Netters once an Escapement works and its gear network has a Mainspring (they cost Tension). On its SMALL gear it trains 15% faster, on its BIG gear 15% slower. It researches SHIELD WALL (the Clock Soldiers' SHIELD FORWARD; Tension too). Must stay linked to the gear field.",
+		"about": "The Clockwork's barracks for the light machines: a long hall that assembles Clock Soldiers on a hanging line, and Springers and Netters once an Escapement works and its gear network has a Mainspring (they cost Tension). On its SMALL gear it trains 15% faster, on its BIG gear 15% slower. Must stay linked to the gear field.",
 	},
 	# THE HEAVY WORKS (gear mode, owner 2026-10-27; docs/gear_rules.md): the heavy machines' yard, a gantry crane over an open
 	# bay where the machine in training is assembled (drawn by HeavyWorks, scripts/heavy_works.gd). Only on its BIG ring
@@ -1569,7 +1571,7 @@ const BUILDINGS := {
 	"escapement": {
 		"name": "Escapement", "hp": 1000, "armor": 2, "cost": 150, "time": 40.0, "size": Vector2i(3, 3),
 		"supply": 0, "sight": 7, "trains": [], "requires": "movement_works", "faction": "clockwork",
-		"about": "The Clockwork's tech building: it unlocks the Springer and holds the Tension research (HIGH LEAP). It uses Tension, so it needs a Mainspring anywhere in its gear network (Tension flows through every meshed ring), and it must stay linked to the gear field: else it stands idle (NEEDS MAINSPRING). Needs a Light Works.",
+		"about": "The Clockwork's tech building: it unlocks the Springer and holds the Tension research: HIGH LEAP (Springers jump up), SHIELD WALL (the Clock Soldiers' SHIELD FORWARD) and LONG CHAIN (the Netters' reach). It uses Tension, so it needs a Mainspring anywhere in its gear network (Tension flows through every meshed ring), and it must stay linked to the gear field: else it stands idle (NEEDS MAINSPRING). Needs a Light Works.",
 	},
 	# THE AIR (gear mode): the CLOCK AVIARY (id cuckoo_house), the flyers' building (like a Stargate). A tall narrow 2x2 tower
 	# on its gear ring; it needs an ACTIVE Escapement to be placed (Game.requirement_text), and everything it makes costs
@@ -1718,15 +1720,25 @@ const RESEARCH := {
 		"about": "Drilled to charge: after about 2 s at the gallop a Horseman's or Cuirassier's next sabre blow hits double (2.2 times on light units: one charge kills a Raptor) and throws the enemy back."},
 	# (THE MARCHING BAND's old research "band_fife" / "band_pipes" is gone since 0.36.0: the Fifer and the Piper are
 	# units now (UNITS "band_fifer", "band_piper"); an old save's flag adds the musician to its old band unit on load.)
-	# the Clockwork's Tension research (gear mode), at the Escapement (it must be working: meshed with a Mainspring)
+	# the Clockwork's Tension research (gear mode), at the Escapement (it must be working: meshed with a Mainspring): HIGH
+	# LEAP, SHIELD WALL and LONG CHAIN (escapement-research, 0.38.19)
 	"high_leap": {"name": "High Leap", "label": "HIGH LEAP", "at": "escapement", "faction": "clockwork", "cost": 150, "cost2": 0, "tension": 100,
 		"time": 60.0, "icon": "research_high_leap",
 		"about": "A stiffer spring: every Springer can JUMP UP onto high ground too (only where you can see)."},
-	# the Light Works' research (gear mode): SHIELD FORWARD for every Clock Soldier (Defs.SHIELD_WALL). It costs
-	# Tension, so it is made only at a Works whose ring meshes with a Mainspring's (THE TENSION RULE). Guesses.
-	"shield_wall": {"name": "Shield Wall", "label": "SHIELD WALL", "at": "movement_works", "faction": "clockwork", "cost": 100, "cost2": 0,
+	# SHIELD WALL (gear mode): SHIELD FORWARD for every Clock Soldier (Defs.SHIELD_WALL). At the ESCAPEMENT since 0.38.19
+	# (escapement-research, the owner 2026-11-15 20:34: "Put the Clock Soldier SHIELD upgrade in the Escapement instead of
+	# in the Works"; it was the Light Works'). It costs Tension, so it is made only while the Escapement works (THE TENSION
+	# RULE: a Mainspring in its gear network), like HIGH LEAP. Price and time unchanged.
+	"shield_wall": {"name": "Shield Wall", "label": "SHIELD WALL", "at": "escapement", "faction": "clockwork", "cost": 100, "cost2": 0,
 		"tension": 50, "time": 45.0, "icon": "research_shield", "drill": true, "hp": 10.0,
 		"about": "Drilled to hold the shield in front: every Clock Soldier gets 10 more health and SHIELD FORWARD. Raised, it walks 40% slower and swings a little slower, but has 1 more armour and takes half the damage from shots coming from the front (a fifth less from blows from the front)."},
+	# LONG CHAIN (escapement-research, the owner 2026-11-15 20:34: "make an upgrade for the Net thrower. Reduce its current
+	# range, and the upgrade increases it to something longer than the current range but less than the Crown cannon; the
+	# cannon is still the longest-ranged unit"): every Netter's net reaches `range` px further (150 -> 240; it was 180;
+	# a Field Cannon 430). A drill: every Netter has it at once (Game.apply_drills). Price and time Claude's guesses.
+	"long_chain": {"name": "Long Chain", "label": "LONG CHAIN", "at": "escapement", "faction": "clockwork", "cost": 100, "cost2": 0,
+		"tension": 50, "time": 40.0, "icon": "research_long_chain", "drill": true, "kinds": ["netter"], "range": 90.0,
+		"about": "A longer chain and a stronger spring in the net cannon: every Netter throws its net 90 further (from 150 to 240), from well behind the line."},
 	# the Clock Aviary's research (gear mode): then each Swift can be morphed into a Ticking Owl (Defs.OWL_MORPH)
 	# (id owl_morph: the unit is ticking_owl)
 	"owl_morph": {"name": "Ticking Owl", "label": "TICKING OWL", "at": "cuckoo_house", "faction": "clockwork", "cost": 150, "cost2": 0, "tension": 150,

@@ -16,7 +16,10 @@ var line_fp := -1
 var keg_fp := -1
 var spot_fp := -1
 var leaks := 0                    # (tests: rows about an enemy this view could not see; must stay 0)
+## The spectators' view (NetSession.spec_view): no sides, so it sees all (NetSnapshot: empty eyes); only ever sent to
+## the relay ids of spectators, never to a player.
+var spectator := false
 
 
 func view_eyes() -> Array:
-	return sides
+	return [] if spectator else sides

@@ -507,14 +507,21 @@ static func restore(game: Game, d: Dictionary) -> void:
 		var saved_q: Array = Array(bd["queue"])
 		b.queue = []
 		b.kits = []
+		var head_dropped := false        # (the entry at the head was paid back: its progress isn't the next one's)
 		for qi in saved_q.size():
 			var x := String(saved_q[qi]) if String(saved_q[qi]).begins_with("@") else _kind(String(saved_q[qi]))
 			x = MarchingBand.OLD_QUEUE.get(x, x)       # (band-v2: the old Fifer / Piper research in a queue is the musician now)
+			if x.begins_with("@") and Defs.RESEARCH.has(x.substr(1)) and String(Defs.RESEARCH[x.substr(1)]["at"]) != bk:
+				# (a research queued where it is no longer made: SHIELD WALL at a Light Works, from before 0.38.19
+				# (escapement-research). Paid back in full, like a CANCEL; the player queues it again at the Escapement)
+				game.refund(int(bd["t"]), x)
+				head_dropped = head_dropped or b.queue.is_empty()
+				continue
 			if Defs.RESEARCH.has(x.substr(1)) if x.begins_with("@") else Defs.UNITS.has(x):
 				b.add_entry(x, saved_kits[qi] if qi < saved_kits.size() and saved_kits[qi] is Dictionary else {})
 		b.auto_refit = bool(bd.get("ar", false))
 		b.arm_powder = bool(bd.get("arm", true))
-		b.prod_t = float(bd["prod_t"])
+		b.prod_t = 0.0 if head_dropped else float(bd["prod_t"])
 		# (older saves: research ran beside the queue; it goes to the front now)
 		var old_rs := String(bd.get("research", ""))
 		if Defs.RESEARCH.has(old_rs) and not b.queue.has("@" + old_rs):

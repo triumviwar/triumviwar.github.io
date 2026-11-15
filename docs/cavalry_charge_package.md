@@ -9,7 +9,7 @@ The owner's decisions (2026-11-15 21:34), after docs/keen_sabres_test.md:
   both ways round, and the armoured pair the same. Never raise the Horseman.
 - **C.** The Mainspring stays local, 1 per Clocktower (a CLAUDE.md note).
 
-Branch `cavalry-charge-package`, version 0.38.22. Design: docs/design_principles.md 1 (fair: one clear rule instead of
+Branch `cavalry-charge-package`, version 0.38.31 (measured on 0.38.22, the same changes before main was merged in). Design: docs/design_principles.md 1 (fair: one clear rule instead of
 two overlapping ones; soft counters: a charge must be earned by a gallop, the Raptors can still swarm riders that stand)
 and 4 (several ways to win: riders that out-micro a swarm).
 

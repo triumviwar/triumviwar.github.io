@@ -4,10 +4,41 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
-	{"v": "0.38.22", "items": [
+	{"v": "0.38.31", "items": [
 		"THE CAVALRY CHARGE REPLACES KEEN SABRES: Keen Sabres is gone. The Cavalry Charge is now drilled at the HORSE BREEDER (was the Armoury; still 60 gold, 25 s), so it comes with the riders, and a charged sabre blow hits light units 2.2 times (one charge kills a Raptor: 18 x 2.2 = 39.6 against its 38); armoured units still take double. A saved game keeps its Charge; Keen Sabres researched there is simply gone.",
 		"THE OFFICER COSTS 100 GOLD (was 75), the Horseman's own price: a Horseman is an Officer on a horse, and the horse is always 40 more (a horse of yours or one the breeder trains), so an Officer + a horse is now exactly a Horseman + his horse (140), and an Armoured Officer + a horse a Cuirassier (130 + 40). Before, an Officer + a horse was the cheaper Horseman (115).",
 		"THE CROWN COMPUTER'S RIDERS: against a fast swarm (4 or more Raptors about them) they no longer gallop round the fight waiting for their next charge (the Raptors closed in while they waited): they take each blow as it comes. Against anything else they keep playing the charge. The computer drills the Charge at its Horse Breeder once it has 2 riders, or with its first rider when its plan is a rider plan (the Horseman rush, the Horse Breeder opening).",
+	]},
+	{"v": "0.38.30", "items": [
+		"Writing only: the owner's answers on the Clockwork prologue (The Thirteenth Hour) are in its outline.",
+	]},
+	{"v": "0.38.29", "items": [
+		"ONLINE: a spectator's match log says on its first lines that it was written by a spectator.",
+	]},
+	{"v": "0.38.28", "items": [
+		"Fixed: two hidden script errors each time the main menu was built (its two empty button slots).",
+	]},
+	{"v": "0.38.27", "items": [
+		"Measuring tools only (a win-rate study of the computers): nothing in the game changes.",
+	]},
+	{"v": "0.38.26", "items": [
+		"CAMPAIGN: the Prologue's briefing painting (the Governor on the manor steps) loses a stray second musket standing on the steps beside a soldier's hand.",
+	]},
+	{"v": "0.38.25", "items": [
+		"ONLINE SPECTATORS: in a friend's room pick SPECTATOR in your FACTION list (or press WATCH instead of JOIN) to watch instead of playing. Spectators are listed apart under SPECTATORS (up to 4, with their ping), don't take a player's place, and can pick a faction again to take a free seat. When every seat is taken a friend who joins watches, and WATCH also joins a match already under way.",
+		"A spectator sees every side (VIEW, PRODUCTION, ARMY & STRUCTURES, as when watching computers), gives no orders (the host refuses any), and chats with the other spectators only unless the host turns on SPECTATORS TALK TO PLAYERS. The players' pictures still hide what their side can't see. A spectator leaving changes nothing for the players, and after the end every spectator gets the host's whole replay in REPLAYS, as the players do.",
+	]},
+	{"v": "0.38.24", "items": [
+		"CLOCKWORK WIND-UP KEYS: the Clock Soldier, Springer, Netter, Pendulum, Swift and Ticking Owl now carry a brass wind-up key on their backs, like the Winder (the flyers' keys stand up out of their backs). It turns while the construct has charge, slower as it runs down, and stands still once it is run down: you can read its wind at a glance. Hidden when you zoom far out.",
+	]},
+	{"v": "0.38.23", "items": [
+		"THE ESCAPEMENT HOLDS THREE RESEARCHES: HIGH LEAP, SHIELD WALL and the new LONG CHAIN. SHIELD WALL (the Clock Soldiers' SHIELD FORWARD and +10 health) is researched at the Escapement now, not at the Light Works; same price and time, and like everything there it needs the Escapement working (a Mainspring in its gear network). A side that already has it keeps it; a SHIELD WALL waiting in a Light Works' queue in an old save is paid back in full.",
+		"THE NETTER'S REACH: its net now reaches 150 (was 180). LONG CHAIN at the Escapement (100 cogs + 50 Tension, 40 s) makes every Netter reach 240, further than a Musketeer shoots; the Field Cannon (430) stays the longest-ranged unit. Its range chip shows the bonus.",
+		"The Clockwork computer researches SHIELD WALL at its Escapement, and LONG CHAIN once it has 2 Netters.",
+	]},
+	{"v": "0.38.22", "items": [
+		"WINDERS ESCORT THE ARMY: select your army with a few Winders and move or attack-move, and the Winders no longer run ahead to a spot of their own and fight: they follow the army from behind its middle, on the side away from where it goes or from the enemy, at its pace, winding (on the march too) and mending whoever needs it most, the lowest charge or the most hurt first, each Winder on a different one. They step back from enemies close to them, never chase, and only hit back when an enemy is on them with nowhere to go. When the army stops they stay with it, until you give them another order. Also on a drag-a-line, a right-click on an enemy and with Shift. A group of only Winders moves as before. A Winder doing it says ESCORTING on its card.",
+		"WIND UP (W) on the Winder's command card: with the army selected too, the Winders escort it at once; with only Winders selected, tap one of your units and they follow it, keeping it and the units round it wound and mended, until another order. Shift queues it. Right-clicking a walking soldier still winds it on the march as before.",
 	]},
 	{"v": "0.38.21", "items": [
 		"The Pendulum's high swing at flyers now alternates arms in the back-diagonal view too (it always swung the same arm there).",

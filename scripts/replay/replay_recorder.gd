@@ -23,6 +23,7 @@ const KEY_SECS := 10.0           # a keyframe (a new chunk) this often: how far 
 var path := ""
 var header := {}
 var view_only := false           # an online guest: what it was sent (its side's view)
+var all_sides := false           # an online SPECTATOR's record: a guest's (its own ids), but it was sent every side
 var rec_every := 1.0 / RATE
 var rate := RATE                 # this recording's pictures a second (FULL or LIGHT: rate_for)
 var rate_min := RATE_MIN
@@ -63,7 +64,7 @@ static func rate_for(mode: String, online_host: bool) -> float:
 
 ## Start recording `g` (in the tree, its setup known). `cfg`: the resolved setup (Main.last_cfg), `me`: the team
 ## that records (-1: watching computers). `pics`: pictures a second (rate_for). Null when `pics` is 0 (OFF).
-static func start(g: Game, cfg: Dictionary, me: int, guest := false, pics := RATE) -> ReplayRecorder:
+static func start(g: Game, cfg: Dictionary, me: int, guest := false, pics := RATE, watch := false) -> ReplayRecorder:
 	if pics <= 0.0:
 		return null
 	var r := ReplayRecorder.new()
@@ -74,6 +75,7 @@ static func start(g: Game, cfg: Dictionary, me: int, guest := false, pics := RAT
 	r.is_host = true
 	r.my_team = me
 	r.view_only = guest
+	r.all_sides = watch
 	r.go_given = true
 	r.fx_max = int(FX_MAX * RATE / pics)    # (as many effects a second as FULL keeps: fewer pictures, more in each)
 	r.snap_every = 1.0 / pics      # (never the "half rows" mode: pictures are far enough apart)
@@ -94,7 +96,7 @@ static func start(g: Game, cfg: Dictionary, me: int, guest := false, pics := RAT
 		names.append(nm)
 	r.header = {"format": ReplayFile.FORMAT, "game_version": String(ProjectSettings.get_setting("application/config/version", "dev")),
 		"cfg": c, "me": me, "names": names, "date": int(Time.get_unix_time_from_system()), "map_name": g.map_name,
-		"online": ("guest" if guest else "host") if g.net != null else "", "view_only": guest,
+		"online": ("spectator" if watch else ("guest" if guest else "host")) if g.net != null else "", "view_only": guest and not watch,
 		"sandbox": g.sandbox, "cw_roster": Defs.cw_roster, "lists": lists(), "rate": pics, "key_secs": KEY_SECS, "t0": snappedf(g.clock, 0.01)}
 	if String(c.get("map", "")).begins_with("custom:"):
 		r.header["custom_map"] = MapGen.load_custom(String(c["map"]).substr(7))     # (so it plays where the map isn't)
@@ -156,7 +158,7 @@ func assign(e: Entity) -> void:
 ## An online guest's record leaves out the enemies it can't see now (it would otherwise keep them standing where they
 ## were last seen): they come back when seen again, as on its screen.
 func rec_skip(e: Entity) -> bool:
-	if not view_only or e.team < 0 or game.allied(e.team, my_team):
+	if not view_only or all_sides or e.team < 0 or game.allied(e.team, my_team):
 		return false
 	return not e.visible
 

@@ -17,6 +17,8 @@ static var _tex_cache := {}
 
 var human := 0
 var puppet := false                  # online guest: the host plays the match, this game only shows it (NetPuppet)
+var net_watch := false               # online SPECTATOR (docs/online_spectators.md): a puppet that plays no side (demo, all sides sent)
+var net_spec_no := 0                 # ...its number in the room (SPECTATOR n)
 var net: NetSession = null           # online: the session (host or guest), else null
 var rec: ReplayRecorder = null       # the replay being recorded (scripts/replay/replay_recorder.gd), else null
 var net_next := 1                    # the next net id (NetSession.assign: the online session and the recorder share it)
@@ -4508,6 +4510,12 @@ func apply_drills(u: Unit) -> void:
 			u.hp += want - u.max_hp
 			u.max_hp = want
 		return
+	if u.kind == Defs.NETTER and u.team >= 0 and u.team < players.size():
+		# LONG CHAIN (escapement-research, 0.38.19): every Netter's net reaches further (150 -> 240), at once
+		if is_same(u.d, Defs.UNITS[u.kind]):
+			u.d = u.d.duplicate(true)       # (its own copy: Defs stay as they are)
+		u.d["range"] = float(Defs.UNITS[u.kind]["range"]) + (float(Defs.RESEARCH["long_chain"]["range"]) if has_tech(u.team, "long_chain") else 0.0)
+		return
 	if not (u.kind in ["cannon", "mortar"]) or u.team < 0 or u.team >= players.size():
 		return
 	var base: Dictionary = Defs.UNITS[u.kind]
@@ -8511,6 +8519,9 @@ func line_orders(list: Array, pts: PackedVector2Array, attack: bool, queued := f
 	var us: Array = list.filter(func(u: Unit) -> bool: return is_instance_valid(u) and not u.dead)
 	if us.is_empty() or pts.size() < 2:
 		return got
+	us = WinderEscort.split_off(us, pts[pts.size() - 1], queued)     # (Winders with fighting units escort them, no spot on the line)
+	if us.is_empty():
+		return got
 	var spots := line_spots(pts, us.size())
 	var dir := (pts[pts.size() - 1] - pts[0]).normalized()
 	us.sort_custom(func(a: Unit, b: Unit) -> bool: return a.plan_end().dot(dir) < b.plan_end().dot(dir))
@@ -10453,6 +10464,7 @@ func smart_command(list: Array, p: Vector2, force_move := false, queued := false
 		_ping(p, Color(0.4, 1, 0.4))
 		return
 	if e and prey(us[0].team, e):        # (an enemy; for the Brood a loose horse too)
+		us = WinderEscort.split_off(us, p, queued)       # (Winders with fighting units escort them, they don't charge)
 		for u in us:
 			u.give({"o": "attack", "e": e}, queued)
 		_ping(p, Color(1, 0.3, 0.3))
@@ -10697,6 +10709,24 @@ func command_sound(us: Array, what: String, call: String) -> void:
 		Sfx.bugle("crown", call)
 
 
+## WIND UP (the Winder's card, W; docs/winder_escort.md): these Winders escort `group` (the rest of the selection, or the
+## unit tapped and those round it): they follow it, winding and mending, until another order. Shift queues it.
+func wind_up_order(winders: Array, group: Array, queued := false) -> void:
+	if net_forward(self, "wind_up_order", [winders, group, queued]): return
+	var ws: Array = winders.filter(func(u) -> bool: return u is Unit and is_instance_valid(u) and not u.dead and u.kind == "winder")
+	if ws.is_empty():
+		return
+	var g: Array = group.filter(func(u) -> bool: return u is Unit and is_instance_valid(u) and not u.dead and u.kind != "winder" \
+			and u.team == ws[0].team and u.kind != "horse")
+	if g.is_empty():
+		return
+	for w in ws:
+		w.give({"o": "escort", "g": g, "p": Vector2.INF}, queued)
+	if ws[0].team == human:
+		command_sound(ws, "move", "move")
+	_ping(WinderEscort.middle(g), Color(1.0, 0.85, 0.3))
+
+
 func group_move(us: Array, p: Vector2, attack_move: bool, queued := false) -> void:
 	p = on_map(p)
 	if net_forward(self, "group_move", [us, p, attack_move, queued]): return
@@ -10709,6 +10739,7 @@ func group_move(us: Array, p: Vector2, attack_move: bool, queued := false) -> vo
 	# keeps its shape and moves as one blob; a group spread out bunches up into a clump at
 	# the point (each man keeps his side of it, closed in to a blob about its size).
 	# (queued: from where their queues end)
+	us = WinderEscort.split_off(us, p, queued)        # (Winders with fighting units escort them: scripts/winder_escort.gd)
 	var spots := group_points(us, p, queued)
 	MarchingBand.row_spots(us, spots)      # (a whole band in the group: its Fifer and Piper beside its Drummer, a row)
 	for u in us:

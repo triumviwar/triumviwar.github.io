@@ -139,7 +139,7 @@ func nested(_fn: String) -> void:
 	pass
 
 
-func chat_out(_team: int, _text: String, _from_peer: int) -> void:
+func chat_out(_team: int, _text: String, _from_peer: int, _spec_n := 0) -> void:
 	pass
 
 

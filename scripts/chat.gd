@@ -20,7 +20,12 @@ var reveal_until := 0           # msec: the history is shown whole until then (E
 var _last_player_ms := -10000
 
 
-func name_of(t: int) -> String:
+func name_of(t: int, spec_n := 0) -> String:
+	if spec_n > 0 or t < 0:
+		# an online spectator's line (docs/online_spectators.md); a replay keeps no number
+		if spec_n > 0 and game.net_watch and spec_n == game.net_spec_no:
+			return Loc.t("YOU (SPECTATOR)")
+		return Loc.t("SPECTATOR %d") % spec_n if spec_n > 0 else Loc.t("SPECTATOR")
 	if t == game.human and not game.demo:
 		return "YOU"
 	return "P%d %s" % [t + 1, game.faction_of(t).capitalize()]
@@ -28,11 +33,15 @@ func name_of(t: int) -> String:
 
 ## A line in the log (and the match log). Returns it. `from_net`: online, where it came from (-1: said here; the host:
 ## a guest's relay id; a guest: 0, the host), so it is passed on to the others but not back.
-func post(team: int, text: String, from_net := -1) -> Dictionary:
+## `spec_n`: an online spectator's line (SPECTATOR n; team -1): it goes to the other spectators only, unless the host lets
+## spectators talk to the players (NetSession.chat_out).
+func post(team: int, text: String, from_net := -1, spec_n := 0) -> Dictionary:
 	text = clean(text)
 	if text == "":
 		return {}
-	var line := {"team": team, "name": name_of(team), "text": text, "born": Time.get_ticks_msec()}
+	if spec_n > 0:
+		team = -1
+	var line := {"team": team, "name": name_of(team, spec_n), "text": text, "born": Time.get_ticks_msec(), "spec": spec_n}
 	lines.append(line)
 	while lines.size() > KEEP:
 		lines.pop_front()
@@ -40,7 +49,7 @@ func post(team: int, text: String, from_net := -1) -> Dictionary:
 		game.mlog.add("%s says: %s" % [line["name"], text])
 	Sfx.play_any(["ui/chat"], Vector2.INF, -6.0)
 	if game.net != null:
-		game.net.chat_out(team, text, from_net)
+		game.net.chat_out(team, text, from_net, spec_n)
 	if game.rec != null:
 		game.rec.note_chat(team, text)        # (the replay keeps the chat at its times)
 	return line
@@ -51,9 +60,12 @@ func post(team: int, text: String, from_net := -1) -> Dictionary:
 func player_say(text: String) -> bool:
 	text = clean(text)
 	var now := Time.get_ticks_msec()
-	if text == "" or game.over or game.demo or now - _last_player_ms < MIN_GAP_MS:
+	if text == "" or (game.demo and not game.net_watch) or (game.over and not game.net_watch) or now - _last_player_ms < MIN_GAP_MS:
 		return false
 	_last_player_ms = now
+	if game.net_watch:
+		post(-1, text, -1, game.net_spec_no)      # (an online spectator: to the other spectators; NetSession.chat_out)
+		return true
 	post(game.human, text)
 	if is_gg(text):
 		for ai in game.ais.duplicate():

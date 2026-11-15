@@ -10,6 +10,7 @@ signal changed                           # slots, status or people changed: redr
 signal start_now(cfg: Dictionary)        # guest: the host started: hand cfg to Main.start
 signal failed(why: String)               # could not connect / refused / the host left
 signal pinged                            # a new round trip to the other player(s) was measured (ping_ms)
+signal spec_pinged                       # the spectators' round trips changed (their rows only)
 
 const MODES := ["1v1", "coop"]
 const MODE_LABEL := {"1v1": "1 VS 1", "coop": "2 VS COMPUTER (CO-OP)", "custom": "CUSTOM TEAMS"}
@@ -62,6 +63,20 @@ var _deny_ms := -99999
 var ranked := {}
 var ticket := ""                          # guest: the ladder's ticket for this match ("" in a friendly room)
 var seated_ids := {}                      # host, ranked: slot -> the SteamID64 its ticket proved
+## SPECTATORS (docs/online_spectators.md): friends who watch, listed apart below the players and never counted against the
+## map's player count. A guest picks SPECTATOR in its FACTION list (or arrives when every seat is taken) and picks a
+## faction again to take a free seat back. The host always plays (its device runs the match). At most SPEC_MAX; one may
+## also join a match already under way (it gets the start and a whole first picture).
+## In the match a spectator sees every side (NetView.spectator: no fog filter, sent to spectators only), gives no orders
+## (the host refuses any) and chats with the other spectators only, unless the host lets spectators talk to the players
+## (spec_talk, off by default: a spectator sees everything, so its words could help one side).
+const SPEC_MAX := 4
+var specs: Array = []                     # host: [{"peer": relay id, "n": its number (SPECTATOR n)}]; guest: as the host sent ({"n", "ping"})
+var spectating := false                   # guest: this machine watches (my_slot is then -1)
+var my_spec := -1                         # guest, spectating: my number
+var spec_talk := false                    # host's choice: spectators may talk to the players (off: spectators only)
+var late_cfg := {}                        # host: the start for a spectator who joins once the match is under way
+var _spec_next := 1
 
 
 ## Host a game: `relay` is the relay's address, `room` a code (NetLink.new_code()).
@@ -150,7 +165,14 @@ func set_campaign(mission_id: String, md: String, seat := "p1") -> void:
 func set_mode(m: String) -> void:
 	if not is_host or not MODES.has(m):
 		return
+	var seated: Array = []
+	for s in slots:
+		if s["who"] == "remote" and int(s.get("peer", -1)) >= 0:
+			seated.append(int(s["peer"]))
 	_preset(m)
+	for pr in seated:                     # (a friend whose seat went with the old mode watches instead of being dropped)
+		if not slots.any(func(s2: Dictionary) -> bool: return int(s2.get("peer", -1)) == pr):
+			_add_spec(pr)
 	if MapGen.is_pool(map) or not map_fits(map):
 		map = "random_1v1" if m == "1v1" else "random_2v2"      # (the 2v2 maps have four start spots)
 	changed.emit()
@@ -283,9 +305,63 @@ func _public_slots() -> Array:
 func _send_lobby() -> void:
 	if not is_host or not link or not link.connected:
 		return
+	var ps := _public_specs()
 	for i in slots.size():
 		if slots[i]["who"] == "remote" and int(slots[i].get("peer", -1)) >= 0:
-			link.send({"t": "lobby", "map": map, "mode": mode, "slots": _public_slots(), "you": i, "same": same_delay, "camp": campaign}, int(slots[i]["peer"]))
+			link.send({"t": "lobby", "map": map, "mode": mode, "slots": _public_slots(), "you": i, "same": same_delay, "camp": campaign,
+				"specs": ps, "talk": spec_talk}, int(slots[i]["peer"]))
+	for sp in specs:
+		link.send({"t": "lobby", "map": map, "mode": mode, "slots": _public_slots(), "you": -1, "spec": int(sp["n"]), "same": same_delay,
+			"camp": campaign, "specs": ps, "talk": spec_talk}, int(sp["peer"]))
+
+
+## The spectators as the guests see them: their number and round trip to the host.
+func _public_specs() -> Array:
+	var out: Array = []
+	for sp in specs:
+		out.append({"n": int(sp["n"]), "ping": int(ping_of.get(int(sp["peer"]), -1))})
+	return out
+
+
+## Host: is this relay id a spectator?
+func is_spec(peer: int) -> bool:
+	return specs.any(func(sp: Dictionary) -> bool: return int(sp["peer"]) == peer)
+
+
+## Host: make this relay id a spectator (false: the spectators' places are full).
+func _add_spec(peer: int) -> bool:
+	if is_spec(peer):
+		return true
+	if specs.size() >= SPEC_MAX:
+		return false
+	specs.append({"peer": peer, "n": _spec_next})
+	_spec_next += 1
+	return true
+
+
+func _drop_spec(peer: int) -> void:
+	specs = specs.filter(func(sp: Dictionary) -> bool: return int(sp["peer"]) != peer)
+
+
+## The relay ids of the spectators (host).
+func spec_peers() -> Array:
+	return specs.map(func(sp: Dictionary) -> int: return int(sp["peer"]))
+
+
+## The number of a spectator (host): "SPECTATOR 2". 0: not one.
+func spec_no(peer: int) -> int:
+	for sp in specs:
+		if int(sp["peer"]) == peer:
+			return int(sp["n"])
+	return 0
+
+
+## The host lets spectators talk to the players (on) or keeps their chat among themselves (off, the default).
+func set_spec_talk(on: bool) -> void:
+	if is_host:
+		spec_talk = on
+		changed.emit()
+		_send_lobby()
 
 
 ## Start the match (host). Main.start(cfg) builds the game and calls begin() with the resolved cfg.
@@ -295,7 +371,7 @@ func make_cfg() -> Dictionary:
 		var c: Dictionary = s.duplicate()
 		c.erase("here")
 		sl.append(c)
-	var cfg := {"map": map, "slots": sl, "seed": randi(), "net": {"role": "host", "lobby": self}}
+	var cfg := {"map": map, "slots": sl, "seed": randi(), "net": {"role": "host", "lobby": self, "specs": spec_peers(), "talk": spec_talk}}
 	if not campaign.is_empty():
 		cfg["campaign"] = campaign.duplicate()
 	return cfg
@@ -316,13 +392,51 @@ func begin(game: Game, cfg: Dictionary) -> void:
 		for pr in peers:
 			var gc := _guest_cfg(cfg, int(peers[pr]))
 			link.send({"t": "start", "cfg": gc, "team": int(peers[pr]), "same": same_delay}, int(pr))
-		NetSession.attach(game, link, true, 0, peers, same_delay)
+		late_cfg = _guest_cfg(cfg, -1)
+		var s := NetSession.attach(game, link, true, 0, peers, same_delay)
+		s.lobby = self
+		s.spec_talk = spec_talk
+		for sp in specs:
+			_start_spec(int(sp["peer"]))
+			s.add_spectator(int(sp["peer"]), int(sp["n"]))
 	else:
-		NetSession.attach(game, link, false, my_slot, {}, same_delay)
+		var s := NetSession.attach(game, link, false, my_slot, {}, same_delay)
+		s.lobby = self
+		if spectating:
+			s.watch_only(my_spec)
+
+
+## Host: send the start to a spectator (the match's setup with every player a stranger: it plays nobody).
+func _start_spec(peer: int) -> void:
+	link.send({"t": "start", "cfg": late_cfg, "team": -1, "spec": spec_no(peer), "same": same_delay, "talk": spec_talk}, peer)
+
+
+## Host: a friend knocks once the match is under way: it may watch (a spectator's place is free), never play.
+func _late_hi(from: int) -> void:
+	var s: NetSession = null
+	if get_parent() and get_parent().get("game") is Game and get_parent().game.net:
+		s = get_parent().game.net
+	if s == null or not s.is_host or s.game.over or not campaign.is_empty():
+		link.send({"t": "refuse", "m": "This match is already over."}, from)
+		return
+	if s.spec_peers.has(from):
+		_start_spec(from)                 # (its start was lost, or came before its page was ready: again)
+		return
+	if s.peer_team.has(from):
+		return
+	if not _add_spec(from):
+		link.send({"t": "refuse", "m": "The match has begun and every spectator's place is taken."}, from)
+		return
+	_start_spec(from)
+	s.add_spectator(from, spec_no(from))
+	print("[online] spectator %d joined the match under way (relay id %d)" % [spec_no(from), from])
 
 
 func _guest_cfg(cfg: Dictionary, team: int) -> Dictionary:
 	var c := {"map": cfg["map"], "seed": cfg["seed"], "slots": []}
+	for k in ["gear_turn"]:
+		if cfg.has(k):
+			c[k] = cfg[k]
 	if cfg.has("campaign"):
 		c["campaign"] = cfg["campaign"].duplicate()      # (the guest's mission only shows what the host's sends)
 	for i in cfg["slots"].size():
@@ -394,10 +508,19 @@ func _on_notice(d: Dictionary) -> void:
 			failed.emit(status)
 		"leave":
 			if is_host:
+				var gone := int(d.get("id", -2))
+				if is_spec(gone):
+					_drop_spec(gone)              # (a spectator went: nothing else changes; in a match the session hears it too)
+					ping_of.erase(gone)
+					if not started:
+						status = "A spectator left."
+						changed.emit()
+						_send_lobby()
+					return
 				for s in slots:
-					if int(s.get("peer", -1)) == int(d.get("id", -2)):
+					if int(s.get("peer", -1)) == gone:
 						s["peer"] = -1
-				ping_of.erase(int(d.get("id", -2)))
+				ping_of.erase(gone)
 				status = "Your friend left. Waiting for someone to join."
 				changed.emit()
 				_send_lobby()
@@ -414,17 +537,31 @@ func _on_message(from: int, m: Dictionary) -> void:
 			if not ranked.is_empty():
 				_ranked_hi(from, String(m.get("tk", "")))
 				return
+			if started:
+				_late_hi(from)               # (the match is under way: a friend may still come to watch)
+				return
 			for s in slots:
 				if s["who"] == "remote" and int(s.get("peer", -1)) == from:
 					_send_lobby()            # (seated, but its room never came: again)
 					return
-			for s in slots:
-				if s["who"] == "remote" and int(s.get("peer", -1)) < 0:
-					s["peer"] = from
-					status = "A friend joined."
-					changed.emit()
-					_send_lobby()
-					return
+			if is_spec(from):
+				_send_lobby()
+				return
+			if not bool(m.get("spec", false)):
+				for s in slots:
+					if s["who"] == "remote" and int(s.get("peer", -1)) < 0:
+						s["peer"] = from
+						status = "A friend joined."
+						changed.emit()
+						_send_lobby()
+						return
+			# every seat taken (or it asked to watch): it watches, while a spectator's place is free (not in a campaign
+			# room: a mission's story runs for its two players)
+			if campaign.is_empty() and _add_spec(from):
+				status = "A spectator joined."
+				changed.emit()
+				_send_lobby()
+				return
 			link.send({"t": "refuse", "m": "The room is full."}, from)
 		"set":
 			if not is_host or not ranked.is_empty():
@@ -433,6 +570,30 @@ func _on_message(from: int, m: Dictionary) -> void:
 			for i in slots.size():
 				if slots[i]["who"] == "remote" and int(slots[i].get("peer", -1)) == from:
 					seat = i
+			if started:
+				return
+			if seat >= 0 and bool(m.get("spec", false)) and campaign.is_empty():
+				# SPECTATOR picked in its FACTION list: the seat is freed and it watches
+				if not _add_spec(from):
+					link.send({"t": "deny", "m": "Every spectator's place is taken."}, from)
+					return
+				slots[seat]["peer"] = -1
+				status = "A friend watches as a spectator."
+				changed.emit()
+				_send_lobby()
+				return
+			if seat < 0 and is_spec(from) and m.has("faction"):
+				# a spectator picks a faction: back to a free seat, if there is one
+				for i in slots.size():
+					if slots[i]["who"] == "remote" and int(slots[i].get("peer", -1)) < 0:
+						seat = i
+						break
+				if seat < 0:
+					link.send({"t": "deny", "m": "No free seat: every player's place is taken."}, from)
+					return
+				_drop_spec(from)
+				slots[seat]["peer"] = from
+				status = "A spectator took a seat."
 			if seat < 0:
 				return
 			if m.has("faction") and FACTIONS.has(String(m["faction"])):
@@ -460,7 +621,8 @@ func _on_message(from: int, m: Dictionary) -> void:
 					ping_of[from] = rtt
 					ping_ms = 0
 					for pr in ping_of:
-						ping_ms = maxi(ping_ms, int(ping_of[pr]))
+						if not is_spec(int(pr)):          # (a spectator's round trip is shown on its own row)
+							ping_ms = maxi(ping_ms, int(ping_of[pr]))
 				else:
 					ping_ms = rtt
 				pinged.emit()
@@ -476,12 +638,21 @@ func _on_message(from: int, m: Dictionary) -> void:
 			mode = String(m.get("mode", mode))
 			same_delay = bool(m.get("same", same_delay))
 			campaign = m.get("camp", {}) if m.get("camp", {}) is Dictionary else {}
-			var hs := hash([m.get("map"), m.get("mode"), m.get("same"), m.get("slots"), m.get("you"), m.get("camp")])
+			var sps: Array = m.get("specs", []) if m.get("specs", []) is Array else []
+			var hs := hash([m.get("map"), m.get("mode"), m.get("same"), m.get("slots"), m.get("you"), m.get("camp"), m.get("talk"),
+				sps.map(func(x) -> int: return int(x.get("n", 0)) if x is Dictionary else 0), m.get("spec")])
 			if _got_lobby and hs == _lobby_hash:
+				if sps != specs:
+					specs = sps
+					spec_pinged.emit()     # (only the spectators' round trips changed: their row, not the whole page)
 				return                  # (the host's regular resend: nothing new, the page is left as it is)
 			_lobby_hash = hs
 			slots = m.get("slots", [])
 			my_slot = int(m.get("you", 0))
+			specs = sps
+			spectating = my_slot < 0
+			my_spec = int(m.get("spec", -1))
+			spec_talk = bool(m.get("talk", false))
 			if not _got_lobby or _no_answer or Time.get_ticks_msec() - _deny_ms > 2500:
 				status = "In the room. The host starts the game."     # (a refusal's words stay a little, then the room's)
 			_got_lobby = true
@@ -493,18 +664,24 @@ func _on_message(from: int, m: Dictionary) -> void:
 			online = false
 			failed.emit(refused)
 		"start":
-			if is_host:
+			if is_host or started:
 				return
 			var c: Dictionary = m["cfg"]
 			my_slot = int(m.get("team", my_slot))
+			spectating = my_slot < 0
+			if spectating:
+				my_spec = int(m.get("spec", my_spec))
+				spec_talk = bool(m.get("talk", spec_talk))
 			same_delay = bool(m.get("same", same_delay))
 			started = true
-			c["net"] = {"role": "guest", "lobby": self}
+			c["net"] = {"role": "guest", "lobby": self, "spec": spectating}
 			start_now.emit(c)
 
 
 func _hi() -> Dictionary:
 	var h := {"t": "hi", "ver": version}
+	if want_spec:
+		h["spec"] = true
 	if ticket != "":
 		h["tk"] = ticket
 	return h
@@ -529,10 +706,18 @@ func _ranked_hi(from: int, tk: String) -> void:
 	_send_lobby()
 
 
-## Guest: choose my faction.
+## Guest: choose my faction ("spectator": leave my seat and watch; a faction while watching: take a free seat back).
 func choose_faction(f: String) -> void:
-	if not is_host:
+	if is_host:
+		return
+	if f == "spectator":
+		link.send({"t": "set", "spec": true})
+	else:
 		link.send({"t": "set", "faction": f})
+
+
+## Guest: join only to watch (JOIN TO WATCH), even with a seat free.
+var want_spec := false
 
 
 ## Guest: choose my colour (the host refuses one somebody else has).

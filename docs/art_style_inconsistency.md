@@ -709,3 +709,29 @@ joint (E/SE/S), wrecks and card icons are the owner's pictures (tools/serpent/im
   in front of the body (the hit); 5-6 it follows through and settles back to the idle pose. The left arm stays at rest.
   Keep the brass rod, the heavy weight and the crescent blade exactly as in the references; no new parts, no motion blur
   lines, no ground, no shadow." Then the same request for the LEFT arm (mirror of the motion on the other arm).
+
+## WIND UP command icon (stand-in, 0.38.18, winder-escort; docs/winder_escort.md)
+- `assets/icons/clockwork/ab_wind_up.png`: a plain copy of the Great Winder's MEND icon (`ab_mend.png`, the brass wind-up
+  key), so the two buttons look the same today. To redraw: the brass wind-up key turning in the back of a small Clock
+  Soldier seen from behind, a curved arrow round the key, the same frame, field and size (64x64) as the Clockwork command
+  icons.
+- No new strips: an escorting Winder plays his walk, his walk-wind (code-built, see the Winder's walk-wind above) and his
+  standing wind.
+## LONG CHAIN research icon (code, 0.38.19; docs/escapement_research.md)
+- Placeholder command icon drawn in code (CwArt._ability_glyph "research_long_chain": a diamond chain net with brass
+  weights at its corners over a long spark-coloured arrow on the dark Clockwork tile) until
+  `assets/icons/clockwork/research_long_chain.png` is painted (it drops in with no code: the HUD takes the file first).
+  Prompt idea for ChatGPT: "64x64 game command icon in the style of the other Clockwork research icons (research_high_leap,
+  research_shield): a weighted brass-and-iron chain net flung far through the air from a small spring cannon, a long arrow
+  under it showing reach; dark slate background, brass trim, no text."
+## The Clockwork army's wind-up keys (code-placed and code-turned, wind-keys; docs/wind_keys.md)
+- One still of the owner's ChatGPT key (art/redraws/wind_key/wind_key_chatgpt.png, row 1 frame 1: ChatGPT did not turn
+  it between frames) is TURNED IN CODE at import by tools/clockwork/import_wind_key.py into
+  assets/units/_shared/wind_key_<size>.png (16 frames a turn in six views: s, se, e, ne, n and "u" standing up for the
+  flyers): the bow rotated in the picture's plane (n, s) or projected as it turns about its shaft (e, se, ne, u), shrunk
+  with a hard edge, the brass lifted toward the Winder's key and a 1 px dark outline added. The stem in the side views is
+  the same still's stem stretched along the shaft.
+- It is PLACED IN CODE on the Clock Soldier, Springer, Netter, Pendulum, Swift and Ticking Owl (scripts/wind_key.gd,
+  spots per frame in scripts/wind_key_data.gd, followed from the sprites by the importer): not part of their strips.
+- For one uniform style ChatGPT would redraw the key turning (a real 8-16 frame turn per view, the bow edge-on in the
+  middle) or draw it into each unit's strips; the per-frame spots table would then go.

@@ -80,6 +80,8 @@ static func pick(u: Unit) -> Unit:
 	for w in near:
 		if w != u and w.kind == "winder" and w.team == u.team and w.order == "repair" and is_instance_valid(w.order_target):
 			taken[w.order_target] = true
+		elif w != u and w.kind == "winder" and w.team == u.team and w.order == "escort" and w.esc_patient != null and is_instance_valid(w.esc_patient):
+			taken[w.esc_patient] = true       # (an escorting Winder's man: scripts/winder_escort.gd)
 	var my_speed := float(u.d["speed"])
 	var my_dir := u.velocity.normalized() if u.velocity.length() > MOVING else Vector2.ZERO
 	var best: Unit = null

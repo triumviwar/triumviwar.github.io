@@ -309,7 +309,7 @@ func _draw_layer(l: HudLayer) -> void:
 				if String(b["item"][1]).begins_with("~ "):
 					_autocast_glow(b["rect"])
 		"spec prod", "spec army", "spec story":
-			if game.spectating():
+			if game.spectating() and (SPEC_LAYERS[l.fn] != "story" or game.ai_story != null):
 				spec_panels().draw_one(SPEC_LAYERS[l.fn])
 		"rest":
 			_draw_rest(font)
@@ -409,11 +409,11 @@ func _layer_sig(n: String) -> Array:
 				vals.append_array([countdown, _go_t])
 			return vals
 		"spec prod", "spec army", "spec story":
-			if not game.spectating():
+			if not game.spectating() or (SPEC_LAYERS[n] == "story" and game.ai_story == null):
 				return []
 			return spec_panels().sig(SPEC_LAYERS[n], m)
 		"chat":
-			if game.chat == null or (game.demo and game.replay == null):
+			if game.chat == null or (game.demo and game.replay == null and not game.net_watch):
 				return []
 			var now := Time.get_ticks_msec()
 			var vl: Array = game.chat.visible(now)
@@ -1142,6 +1142,18 @@ func _build_card() -> Array:
 				list.append(["repair", ("~ " if auto_fix else "") + "REPAIR", func() -> void:
 					controls.mode = "repair"
 					toast("Tap a damaged building (or wall) to repair it."), true, "", ""])
+			if units.any(func(u: Unit) -> bool: return u.kind == "winder"):
+				# WIND UP (W; docs/winder_escort.md): the Winders escort the rest of the selection, or the unit tapped next
+				list.append(["ab_wind_up", "WIND UP", func() -> void:
+					var sel := game.selected_units()
+					var ws := sel.filter(func(u: Unit) -> bool: return u.kind == "winder")
+					var army: Array = WinderEscort.fighters(sel)
+					if not army.is_empty():
+						game.wind_up_order(ws, army, Input.is_key_pressed(KEY_SHIFT))
+						toast("Winding up: the Winders follow the army, winding and mending it, until another order.")
+					else:
+						controls.mode = "windup"
+						toast("Tap one of your units: the Winders follow it, winding and mending it and those round it."), true, "", ""])
 
 		else:
 			_ability_buttons(list, units)
@@ -2043,7 +2055,7 @@ func _ability_buttons(list: Array, units: Array) -> void:
 			for u in game.selected_units():
 				if u.kind == "bulwark":
 					u.set_brace(up), true, "", ""])
-	# Clock Soldier: SHIELD FORWARD, once SHIELD WALL is researched at a Light Works (scripts/shield_wall.gd)
+	# Clock Soldier: SHIELD FORWARD, once SHIELD WALL is researched at an Escapement (a Light Works before 0.38.19) (scripts/shield_wall.gd)
 	var csold := units.filter(func(u: Unit) -> bool: return u.kind == ShieldWall.KIND)
 	if not csold.is_empty() and game.has_tech(game.human, ShieldWall.TECH):
 		var raise: bool = csold.any(func(u: Unit) -> bool: return not u.shield_up)
@@ -2103,7 +2115,7 @@ const FIXED_KEYS := {"MOVE": "V", "ATTACK": "A", "STOP": "S", "HOLD": "H", "PATR
 	"LOAD": "F", "UNLOAD": "G", "DROP HERE": "G", "RESTOCK": "E", "RELOAD": "R", "COURIER": "C", "OVERLOAD": "V", "BRACE": "E", "SHIELD FORWARD": "F", "LAND": "D", "TAKE OFF": "D", "SUPPLY": "G",
 	"ARMOUR": "E", "MATCHLOCK": "F", "FLINTLOCK": "F", "CAPLOCK": "F", "BAYONET": "W", "AUTO REFIT": "Q", "POUCH": "T",
 	"LEAD": "Q", "RELEASE": "W", "MOUNT": "T", "DISMOUNT": "T", "RELEASE HORSE": "W", "HARNESS": "Q",
-	"HOLD FIRE": "F",
+	"HOLD FIRE": "F", "WIND UP": "W",
 	"SIDING": "N", "COUPLE": "C", "UNCOUPLE": "U", "CREW OUT": "O", "CREW IN": "I", "PLATES": "E", "SET UP": "D", "BOARD": "G", "THUNDER": "T", "DOCK": "Q", "CARRY": "F"}
 ## Keys the left hand reaches without leaving the group numbers: names only take letters
 ## from here (H for HOLD is the one fixed key outside it).
@@ -2849,8 +2861,8 @@ func _menu_list() -> Array:
 	]
 	if game.demo or game.over:
 		list = list.filter(func(b: Dictionary) -> bool: return b["label"] != "SURRENDER")    # watching computers: nobody of yours to surrender
-	if game.replay:
-		list = list.filter(func(b: Dictionary) -> bool: return not String(b["label"]).begins_with("PAUSE"))    # (a replay: its own bar pauses)
+	if game.replay or game.net_watch:
+		list = list.filter(func(b: Dictionary) -> bool: return not String(b["label"]).begins_with("PAUSE"))    # (a replay: its own bar pauses; an online spectator can't pause the players)
 	return list
 
 
@@ -2864,7 +2876,10 @@ func _pause_item() -> Dictionary:
 	var net: NetSession = game.net if _online() else null
 	if paused:
 		var it := {"label": "RESUME", "cb": func() -> void: set_paused(false)}
-		if net and net.away:
+		if game.net_watch:
+			it["enabled"] = false                # (an online spectator: the players resume it)
+			it["why"] = "A player paused the match: a player resumes it."
+		elif net and net.away:
 			it["enabled"] = false
 			it["why"] = "The host's game is in the background: the match goes on when it is back."
 		return it
@@ -2996,8 +3011,11 @@ func chat_banner(text: String) -> void:
 	_banner_until = Time.get_ticks_msec() + int(BANNER_SECS * 1000.0)
 
 
+const SPEC_CHAT := Color(0.72, 0.78, 0.86)      # an online spectator's chat lines (docs/online_spectators.md)
+
+
 func _chat_button_on() -> bool:
-	return not Settings.pc() and not game.demo and not game.spectating()
+	return not Settings.pc() and ((not game.demo and not game.spectating()) or game.net_watch)      # (an online spectator chats too)
 
 
 ## The speech-bubble button of the phone, left of the DRAG / ? buttons (next to the menu).
@@ -3067,12 +3085,12 @@ func close_chat() -> void:
 ## A key while the HUD may be typing. True if it was used (a typing box swallows every key, so
 ## no hotkey fires and the letters do not select anything).
 func _chat_input(ke: InputEventKey) -> bool:
-	if not Settings.pc() or game.demo or game.chat == null:
+	if not Settings.pc() or (game.demo and not game.net_watch) or game.chat == null:
 		return false
 	if not chat_typing:
 		if ke.pressed and not ke.echo and (ke.keycode == KEY_ENTER or ke.keycode == KEY_KP_ENTER) \
 				and not ke.alt_pressed and not ke.ctrl_pressed and not ke.meta_pressed \
-				and not menu_open and (countdown <= 0.0 or paused or game.net != null) and not game.spectating():
+				and not menu_open and (countdown <= 0.0 or paused or game.net != null) and (not game.spectating() or game.net_watch):
 			_open_chat()           # (online, paused or counting down: a word to the other player still goes)
 			return true
 		return false
@@ -3134,7 +3152,7 @@ func _quick_press(p: Vector2) -> void:
 
 
 func _draw_chat() -> void:
-	if game.chat == null or (game.demo and game.replay == null):
+	if game.chat == null or (game.demo and game.replay == null and not game.net_watch):
 		return
 	var font := UiStyle.bold_font()
 	var now := Time.get_ticks_msec()
@@ -3160,7 +3178,7 @@ func _draw_chat() -> void:
 			var a: float = vl[i][1]
 			var y := top + rh * (i + 1) - 4.0
 			var nm := "%s: " % l["name"]
-			var col: Color = game.team_colour(int(l["team"])).lightened(0.25)
+			var col: Color = game.team_colour(int(l["team"])).lightened(0.25) if int(l["team"]) >= 0 else SPEC_CHAT
 			col.a = a
 			_text(font, Vector2(panel.position.x + 10 + 1, y + 1), nm, fs, Color(0, 0, 0, 0.7 * a))
 			_text(font, Vector2(panel.position.x + 10, y), nm, fs, col)
@@ -3172,7 +3190,7 @@ func _draw_chat() -> void:
 		var r := Rect2(box.position.x, box.end.y - rh - 2.0, box.size.x, rh + 2.0)
 		var sb := UiStyle.box(Color(0.09, 0.075, 0.06, 0.92), UiStyle.TRIM, 2, 6, 0.0)
 		sb.draw(_ci.get_canvas_item(), r)
-		var mine: Color = game.team_colour(game.human).lightened(0.25)
+		var mine: Color = game.team_colour(game.human).lightened(0.25) if not game.net_watch else SPEC_CHAT
 		_text(font, r.position + Vector2(8, rh - 4), "YOU:", fs, mine)
 		var pre := font.get_string_size("YOU: ", HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
 		if chat_buf == "":
@@ -3212,8 +3230,8 @@ func set_paused(v: bool) -> void:
 		_sig.erase("pause")
 		return
 	if game and _online():
-		if v != paused and not game.over:
-			game.net.request_pause(v)
+		if v != paused and not game.over and not game.net_watch:
+			game.net.request_pause(v)            # (an online spectator neither pauses nor resumes the players' match)
 		return
 	if v != paused and game and not game.demo:
 		Sfx.announce(game.faction_of(game.human), "paused" if v else "resumed", 1.0)
@@ -3941,7 +3959,7 @@ func _draw_panel(font: Font) -> void:
 				if game.gear_net.needs_spring(bb):
 					info = "NEEDS MAINSPRING: no Mainspring in its gear network, so it stands idle (no research, no Springers). Build a Mainspring anywhere in the network."
 				elif game.gear_net.speed_mult(bb) > 0.0:
-					info = "Working: a Mainspring feeds it through the gear network. Springers and Netters can be made at a Light Works fed the same way, Pendulums and Spring Ballistas at a Heavy Works%s." % ("" if game.has_tech(bb.team, "high_leap") else "; HIGH LEAP can be researched here")
+					info = "Working: a Mainspring feeds it through the gear network. Springers and Netters can be made at a Light Works fed the same way, Pendulums and Spring Ballistas at a Heavy Works%s." % ("" if ["high_leap", "shield_wall", "long_chain"].all(func(k: String) -> bool: return game.has_tech(bb.team, k)) else "; HIGH LEAP, SHIELD WALL and LONG CHAIN are researched here")
 			if Defs.gear_mode and bb.built and not bb.dead and (e.team == game.human or game.demo):
 				var gi := GearEcon.card_info(bb)        # (the Tension rule and the store: scripts/gear_econ.gd)
 				if gi != "":
@@ -4028,6 +4046,8 @@ func _draw_panel(font: Font) -> void:
 			info = Loc.t(cwi) + ("  ·  " + Loc.t(info) if info != "" else "")      # (the experimental roster's state first)
 		else:
 			info = Loc.t(info)
+		if e is Unit and (e as Unit).order == "escort" and (e.team == game.human or game.demo):
+			info = Loc.t("ESCORTING: winds and mends the army") + ("  ·  " + info if info != "" else "")      # (docs/winder_escort.md)
 		if charge_pre != "":
 			info = charge_pre + ("  ·  " + info if info != "" else "")
 		eff_txt = Loc.t(eff_txt)
@@ -4994,6 +5014,7 @@ const CMD_TIPS := {
 	"MOVE": "Then pick where to go: they walk there without stopping to fight.",
 	"ATTACK": "Then pick a target, or a place: they walk there fighting everything they meet.",
 	"STOP": "Drop every order and stand.",
+	"WIND UP": "The Winders follow your army from behind, winding and mending whoever needs it most, out of the fight, until another order. With soldiers selected too they follow those; with only Winders, tap the unit to follow. (Selected with the army, Winders do it by themselves on a move or an attack.)",
 	"HOLD": "Stand here and fight whatever comes in reach, without chasing.",
 	"PATROL": "Then pick a place: they walk there and back, again and again, fighting whatever they meet on the way.",
 	"BUILD": "Every building this worker can put up.",

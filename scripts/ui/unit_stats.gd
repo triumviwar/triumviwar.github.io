@@ -229,6 +229,8 @@ static func build(st: Dictionary) -> Dictionary:
 				rbody = Loc.t("Nothing closer than %.1f tiles.") % (float(d["min_range"]) / Defs.TILE)
 			if kind in ["cannon", "mortar"] and reach > breach:
 				rbody += (" " if rbody != "" else "") + Loc.t("Gunner's Quadrant: +%.1f tiles.") % ((reach - breach) / Defs.TILE)
+			if kind == Defs.NETTER and reach > breach:
+				rbody += (" " if rbody != "" else "") + Loc.t("Long Chain: +%.1f tiles.") % ((reach - breach) / Defs.TILE)
 			if typ == "melee":
 				rbody += (" " if rbody != "" else "") + Loc.t("Melee: it must close in.")
 			chips.append({"icon": "range", "text": "%.1f" % rng, "title": "Range",
@@ -460,7 +462,7 @@ static func _specials(kind: String, d: Dictionary, st: Dictionary) -> Array:
 			add.call("SWEEP", Loc.t("Hits every enemy within %.1f tiles in a third of a circle; flyers take %d%%.") % [float(Defs.PENDULUM_SWING["reach"]) / Defs.TILE, int(round(float(Defs.PENDULUM_SWING["vs_air"]) * 100))])
 		"clock_soldier":
 			add.call("SHIELD FORWARD", Loc.t("+%d armour, half damage from shots in front, slower.") % int(Defs.SHIELD_WALL["armor"]) \
-				+ ("" if st["shield_tech"] else " " + Loc.t("(Needs SHIELD WALL at the Light Works.)")))
+				+ ("" if st["shield_tech"] else " " + Loc.t("(Needs SHIELD WALL at the Escapement.)")))
 		"great_winder":
 			add.call("WIND / MEND / SWEEP", Loc.t("No weapon: it winds, mends and sweeps wrecks into cogs."))
 			add.call("SCATTER COGS", Loc.t("%d cogs: litters %.1f tiles for %d s; enemies on the ground in it move %d%% slower.") % [int(Defs.COG_SCATTER["cost"]),

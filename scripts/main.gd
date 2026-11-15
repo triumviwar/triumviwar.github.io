@@ -91,6 +91,8 @@ THE GEAR FIELD: every Clockwork building sits on a ring of ground gears that mus
 
 COGS AND TENSION: Winders wind the Cog Presses (2 per Clocktower) for COGS, the money: a press with nobody on it presses nothing, and each Winder adds the same share (up to 5 Winders, 7.2 cogs a second). They crank the Mainspring (1 per Clocktower) for TENSION, the second resource (up to 3 Winders, 2 a second). Winders also repair (repairs cost cogs) and go with the army.
 
+WINDERS WITH THE ARMY: select Winders with your soldiers and move or attack, and they ESCORT the army: they follow behind it, wind and mend whoever needs it most, keep out of the fight and stay with it until another order. WIND UP (W) on a Winder's card does the same for the rest of the selection, or for the unit you tap next.
+
 BUILDING: a Winder sent to build first fetches a crate from the nearest Clocktower and carries it to the site on his back (the site is a ghost until then). Set down, the crate unfolds into the frame and the building builds itself; its build time starts when the crate lands. If the Winder is killed or given another job on the way, he drops the crate: send any Winder onto it to carry it on (idle ones close by do it themselves). A crate on the ground can be smashed (40 hp), which cancels the building (all of its cost back). With no Clocktower, the Winder starts it by hand.
 
 ENERGY: the batteries waiting at your Clocktowers and Boilers are your energy (top bar). Once you have an Engine Hall, Winders leave the last 6 for it. Steam Walkers (3), Tesla Carts (2), Stormcallers (2) and every STORM (2) spend it.
@@ -116,6 +118,9 @@ With no "you" in the lobby the computers play and you watch. The VIEW button und
 
 SPECTATOR PANELS
 Watching computers or a replay, a column down the right has three panels, each opened and closed by its title and each with its own player list (All players or one player), apart from VIEW and from each other: PRODUCTION (what each player is making, with progress bars), ARMY & STRUCTURES (each player's army value, supply, resources, its units with counts, army and workers apart, and its buildings, the ones going up dimmer with a bar) and AI STORY (each computer's plan at the start and its decisions with their reasons, newest first: attacks, expansions, defence, tech, walls, raids; big decisions bright, details dim; the mouse wheel or a tap pages back). The narrator reads the big decisions out loud with your system's voice; the speaker on the AI STORY panel or the N key mutes it, and Settings > SOUND has its volume and speed. Without a voice for your language the story is text only. None of this exists in a match you play.
+
+WATCHING ONLINE
+In a friend's room pick SPECTATOR in your FACTION list, or press WATCH instead of JOIN (it also joins a match already under way): you leave the players' seats and are listed apart, under SPECTATORS (up to 4; they don't count as players). In the match you see every side with VIEW, PRODUCTION and ARMY & STRUCTURES, give no orders, and chat with the other spectators only, unless the host turns on SPECTATORS TALK TO PLAYERS. A spectator leaving changes nothing for the players. After the end you get the host's whole replay, as the players do.
 
 GEAR VIEW (the Clockwork): the ` key (left of 1) shows the whole gear network: the drivers, how well every ring works, the Mainsprings (dashed) and the turret circles. On a phone, tap GEAR VIEW on any Clockwork building's card.""",
 	"MAP EDITOR": MapEditor.HELP_TEXT,
@@ -533,6 +538,8 @@ func _menu_button(id: String, save: Dictionary, pc: bool) -> Button:
 			if menu_web:
 				return null       # (a browser tab can't be quit: the slot stays empty)
 			b = _button("EXIT", func() -> void: quit_game())
+	if b == null:
+		return null       # (an empty "" slot of MENU_SLOTS: nothing to make)
 	b.name = "Menu_" + id
 	b.clip_text = false
 	return b
@@ -2967,11 +2974,13 @@ func start(cfg: Dictionary = {}) -> void:
 		game.spectator = sp
 		game.add_child(sp)
 		# the AI STORY: what each computer plans and why, told on its panel and by the narrator (0.27.0)
-		var st := AIStory.new()
-		st.name = "AIStory"
-		st.game = game
-		game.ai_story = st
-		game.add_child(st)
+		# (an online spectator has none: the computers think on the host; docs/online_spectators.md)
+		var st := AIStory.new() if not game.net_watch else null
+		if st:
+			st.name = "AIStory"
+			st.game = game
+			game.ai_story = st
+			game.add_child(st)
 	if game.mission:
 		var mui := MissionUi.new()        # the mission's dialogue box and objectives (scripts/campaign/mission_ui.gd)
 		mui.game = game
@@ -3022,7 +3031,9 @@ func start(cfg: Dictionary = {}) -> void:
 		if Settings.replay_mode() == "mixed" and not game.puppet:
 			ReplayMixRecorder.start_mixed(game, last_cfg, human)      # (MIXED: the commands and a keyframe every 10 s: docs/replay_mixed.md)
 		else:
-			ReplayRecorder.start(game, last_cfg, human, game.puppet, ReplayRecorder.rate_for(Settings.replay_mode(), online_host))
+			# (an online spectator is sent every side: its record is whole, not one side's view; the host's whole replay
+			# still replaces it at the end, as a player's: docs/online_spectators.md)
+			ReplayRecorder.start(game, last_cfg, human, game.puppet, ReplayRecorder.rate_for(Settings.replay_mode(), online_host), game.net_watch)
 
 
 func _to_menu() -> void:
