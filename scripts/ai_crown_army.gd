@@ -34,6 +34,7 @@ const TABLE := {
 }
 
 var ai                          # AICrown
+var share := SHARE              # (study switch `-- crownarmy:share=0.9`)
 var off := OS.get_cmdline_user_args().has("crownarmy:off")
 var lead_off := OS.get_cmdline_user_args().has("crownlead:off")    # (the clock without its look ahead: the WIP of 03:45)
 var behind_t := 0.0             # (the report) seconds it was behind
@@ -45,6 +46,9 @@ var said := -99.0
 
 func _init(owner) -> void:
 	ai = owner
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("crownarmy:share="):
+			share = float(a.split("=")[1])
 
 
 func active() -> bool:
@@ -63,7 +67,7 @@ func want() -> float:
 	var tab: Array = TABLE.get(g.faction_of(foe), [])
 	if tab.is_empty():
 		return 0.0
-	var w: float = SHARE * ai._lerp_table(tab, g.clock + (0.0 if lead_off else LEAD))
+	var w: float = share * ai._lerp_table(tab, g.clock + (0.0 if lead_off else LEAD))
 	var seen: float = ai.ch.foe_known() if ai.ch != null else 0.0
 	w = maxf(w, SHARE_SEEN * seen)
 	return maxf(0.0, w - 0.5 * float(g.stats[ai.team]["value_killed"]))
@@ -102,7 +106,7 @@ func behind() -> bool:
 		_last = g.clock
 		if g.clock - said > 60.0:
 			said = g.clock
-			ai.say("the army on time: %d of army (with what trains) against the %d it wants by now (%d%% of a Hard %s's usual army): soldiers before more labourers" % [int(have()), int(w), int(SHARE * 100.0), g.faction_of(ai._foe()).capitalize()])
+			ai.say("the army on time: %d of army (with what trains) against the %d it wants by now (%d%% of a Hard %s's usual army): soldiers before more labourers" % [int(have()), int(w), int(share * 100.0), g.faction_of(ai._foe()).capitalize()])
 	else:
 		_last = -1.0
 	return _cache
@@ -137,3 +141,4 @@ func step_release() -> int:
 ## half Musketeers' gold before the Clockwork's first push).
 func slot_waits(kind: String) -> bool:
 	return kind == "church" and behind()
+
