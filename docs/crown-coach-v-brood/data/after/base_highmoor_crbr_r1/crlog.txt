@@ -1,0 +1,228 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P1 Crown's base layout at its main: 12 Cottage spots in 3 blocks at the back, 5 production rows' spots, 1 Farm and 1 Mill spots by the hall
+[00:00] P1 Crown's build order: the ramp Cottage (supply 5, 4 labourers, 150 gold)
+[00:02] P1 Crown sends a Labourer to scout
+[00:12] P1 Crown got its first Labourer
+[00:22] P1 Crown finished a Cottage
+[00:22] P1 Crown walled its ramp with a Cottage (1 pieces, 1 labourers on it)
+[00:22] P1 Crown's build order: the ramp Gate (supply 6, 5 labourers, 50 gold)
+[00:36] P1 Crown's ramp wall stands (1 pieces, 13 s after it was laid)
+[00:45] P1 Crown's build order: Barracks 1 (supply 8, 7 labourers, 180 gold)
+[00:57] P1 Crown's build order: Farm 2 (supply 9, 8 labourers, 30 gold)
+[01:24] P1 Crown finished a Farm
+[01:26] P1 Crown finished a Barracks
+[01:31] P1 Crown scouted: GREEDY [a second base and little army] (the Mother and 1 turtle on new ground, 2 Rootmaws and 8 grubs seen, 0 Sires, 0 supply of army seen near its base): OPTIMAL picks its build from this
+[01:31] P1 Crown's plan: Rush, a build order of 6 steps from here (scripts/ai_crown.gd)
+[01:31] P1 Crown's plan: optimal: reads GREEDY [a second base and little army]: picks Rush (punish the greed: the Horse Breeder at once, the riders before its army)
+[01:41] P1 Crown's build order: Horse Breeder 1 (supply 10, 9 labourers, 260 gold)
+[01:41] P1 Crown's build order: Horsemans from now on (supply 10, 9 labourers, 260 gold)
+[01:41] P1 Crown's build order: labourers up to 99 (supply 10, 9 labourers, 260 gold)
+[01:53] P1 Crown's build order: a Cottage (supply 12/18) (supply 12, 9 labourers, 60 gold)
+[02:09] P1 Crown finished a Horse Breeder
+[02:16] P1 Crown finished a Cottage
+[02:24] P1 Crown got its first Musketeer
+[02:33] P1 Crown's build order: a Cottage (supply 17/26) (supply 17, 11 labourers, 35 gold)
+[02:47] P1 Crown got its first Horse
+[02:54] P1 Crown got its first Horseman
+[02:55] P1 Crown finished a Cottage
+[02:57] P1 Crown's first horse hauled by a hauler
+[03:00] P1 Crown's first Officer mounted (Horseman)
+[03:35] P1 Crown's build order: a Cottage (supply 26/34) (supply 26, 13 labourers, 195 gold)
+[03:57] P1 Crown finished a Cottage
+[04:01] P1 Crown's rush: goes out (3 Horsemen together)
+[04:02] P1 Crown's build order: the first attack (9 supply) (supply 29, 15 labourers, 40 gold)
+[04:12] P1 Crown's plan: against the Brood the line comes before more buildings: 60 of Musketeers and guns against the 61 it wants by now
+[04:16] P1 Crown's build order: Powder Mill 1 (supply 30, 15 labourers, 270 gold)
+[04:19] P1 Crown is expanding to fresh land (left at its best hall: 70%), 19 tiles from its main (its build order)
+[04:19] P1 Crown's build order: Town Hall 2 (supply 31, 15 labourers, 200 gold)
+[04:19] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[04:20] P1 Crown plans a walled expansion: 34 ways-in cells (radius 13), 8 building slots, 10 palisade, 2 gate
+[04:20] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (525 against the 0 it reckons)
+[04:21] P1 Crown sends a Labourer to scout again (trip 2)
+[04:32] P1 Crown saw an enemy Raptors (fast): raiders to watch for
+[04:33] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[04:48] P1 Crown finished a Powder Mill
+[04:50] P1 Crown finished a Cottage
+[04:51] P1 Crown finished a Town Hall (expansion)
+[04:54] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[05:11] P1 Crown's plan: milestone: Foundry 1 (17 labourers, 2 halls, army 14 supply)
+[05:12] P1 Crown's plan: against the Brood the line comes before more buildings: 120 of Musketeers and guns against the 382 it wants by now
+[05:16] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[05:16] P1 Crown scout under guard (Spitters), backing out of range
+[05:17] P1 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+[05:17] P1 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+[05:17] P1 Crown plans palisade for an empty wall slot at its new hall (3 pieces, laid later)
+[05:17] P1 Crown plans palisade for an empty wall slot at its new hall (3 pieces, laid later)
+[05:17] P1 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+[05:17] P1 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+[05:25] P1 Crown scout killed: it saw nothing to go on, will look again soon
+[05:25] P1 Crown could not see the enemy [the scout was killed] (the scout was killed before it saw the base): that proves nothing; no army for it, keeps to Rush and looks again soon
+[05:27] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (720 against the 365 it reckons)
+[05:35] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[05:42] P1 Crown finished a Cottage
+[05:46] P1 Crown's rush: SUCCEEDED, the riders keep hunting while they win (175 killed, 3 riders left, defenders seen 0)
+[05:50] P1 Crown's Horseman keeps away from Rootmaw (the raid stays)
+[05:59] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[06:00] P1 Crown finished a Foundry
+[06:00] P1 Crown sends a Horseman to scout again (trip 3)
+[06:12] P1 Crown's plan: against the Brood the line comes before more buildings: 240 of Musketeers and guns against the 783 it wants by now
+[06:13] P1 Crown finished a Farm
+[06:20] P1 Crown's Horseman keeps away from Rootmaw (the raid stays)
+[06:24] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[06:27] P1 Crown's plan: milestone: Barracks 2 (21 labourers, 2 halls, army 16 supply)
+[06:27] P1 Crown scout under guard (Raptors), backing out of range
+[06:28] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (780 against the 480 it reckons)
+[06:46] P1 Crown finished a Farm
+[06:47] P1 Crown's Horseman keeps away from Rootmaw (the raid stays)
+[06:47] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[07:07] P1 Crown finished a Barracks
+[07:08] P1 Crown finished a Powder Mill
+[07:12] P1 Crown's plan: against the Brood the line comes before more buildings: 300 of Musketeers and guns against the 1113 it wants by now
+[07:12] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[07:15] P1 Crown scout under guard (Rootmaw), backing out of range
+[07:15] P1 Crown's first attack goes out (9 supply, 1 Horsemen)
+[07:15] P1 Crown's first pistol shot (Horseman)
+[07:15] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (1 out)
+[07:15] P1 Crown's screen rider backs off from the enemy (13 near)
+[07:28] P1 Crown's Horseman keeps away from Rootmaw (the raid stays)
+[07:30] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (1060 against the 655 it reckons)
+[07:31] P1 Crown got its first Field Cannon
+[07:35] P1 Crown finished a Cottage
+[07:39] P1 Crown's Horseman keeps away from Rootmaw (the raid stays)
+[07:41] P1 Crown's wave forms its line before the enemy army ahead (175): 8 muskets in 1 rank, 1 gun behind
+[07:47] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[07:56] P1 Crown got its first Powder Wagon
+[08:00] P1 Crown finished a Cottage
+[08:02] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[08:03] P1 Crown's plan: milestone: Barracks 3 (33 labourers, 2 halls, army 28 supply)
+[08:04] P1 Crown scout lost on the way: it saw nothing to go on, will look again soon
+[08:04] P1 Crown scouted: NORMAL [a standard opening] (the Mother and 2 turtles on new ground, 3 Rootmaws and 11 grubs seen, 2 Sires, 17 supply of army seen near its base, 1180 of army known): OPTIMAL picks its build from this
+[08:04] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Rush (what it plays already answers it)
+[08:04] P1 Crown lays 1 wall pieces at its new hall (2 labourers on it)
+[08:04] P1 Crown's screen rider backs off from the enemy (2 near)
+[08:06] P1 Crown's screen pulls back to the line's flanks at contact
+[08:12] P1 Crown's plan: against the Brood the line comes before more buildings: 590 of Musketeers and guns against the 1399 it wants by now
+[08:12] P1 Crown's screen rides home (the wave is home)
+[08:21] P1 Crown holds the top of its ramp: the force below (400) is more than its army at home (240) can beat, down at 800; the labourers there run up
+[08:22] P1 Crown finished a Cottage
+[08:30] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (735 against the 1300 it reckons)
+[08:30] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[08:39] P1 Crown lays 8 wall pieces at its new hall (2 labourers on it)
+[08:41] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[08:41] P1 Crown lost a Cottage to P2 Brood (raptor)
+[08:41] P1 Crown's first Powder Wagon with a team of 2 horses
+[08:42] P1 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+[08:44] P1 Crown lays 2 wall pieces at its new hall (2 labourers on it)
+[08:45] P1 Crown lost a Cottage to P2 Brood (raptor)
+[08:45] P1 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+[08:47] P1 Crown finished a Barracks
+[08:51] P1 Crown holds the top of its ramp: the force below (866) is more than its army at home (360) can beat, down at 1733; the labourers there run up
+[08:55] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[09:02] P1 Crown finished a Cottage
+[09:02] P1 Crown sends a Labourer to scout again (trip 4)
+[09:06] P1 Crown: the soil around a Town Hall is running low (under 25%)
+[09:10] P1 Crown's wave 2 goes out (15 supply; the next waits for 21)
+[09:10] P1 Crown's wave forms its line before the enemy army ahead (955): 11 muskets in 1 rank, 1 gun behind
+[09:12] P1 Crown's plan: against the Brood the line comes before more buildings: 830 of Musketeers and guns against the 1680 it wants by now
+[09:20] P1 Crown's line has lost sight of the enemy it formed for: it marches on
+[09:25] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[09:28] P1 Crown finished a Cottage
+[09:31] P1 Crown scout under guard (Tyrant Challenger), backing out of range
+[09:32] P1 Crown's wave forms its line before the enemy army ahead (420): 11 muskets in 1 rank, 1 gun behind
+[09:34] P1 Crown finished a Cottage
+[09:35] P1 Crown scout killed: it saw nothing to go on, will look again soon
+[09:35] P1 Crown could not see the enemy [the scout was killed] (the scout was killed before it saw the base): that proves nothing; no army for it, keeps to Rush and looks again soon
+[09:41] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (1855 against the 1070 it reckons)
+[09:41] P1 Crown holds the top of its ramp: the force below (807) is more than its army at home (120) can beat, down at 1616; the labourers there run up
+[09:46] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[10:00] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (1 out)
+[10:00] P1 Crown's screen pulls back to the line's flanks at contact
+[10:05] P1 Crown lost a Farm to P2 Brood (spitter)
+[10:09] P1 Crown's first keg hauled by a hauler
+[10:11] P1 Crown's screen rider rides down a hurt Spitters on the flank
+[10:11] P1 Crown holds the top of its ramp: the force below (730) is more than its army at home (591) can beat, down at 1461; the labourers there run up
+[10:13] P1 Crown finished a Cottage
+[10:13] P1 Crown's plan: against the Brood the line comes before more buildings: 950 of Musketeers and guns against the 1530 it wants by now
+[10:20] P1 Crown meets the force at its buildings with a line: 7 muskets facing it, 0 guns behind
+[10:27] P1 Crown's screen rides home (the wave is home)
+[10:37] P1 Crown lost a Farm to P2 Brood (raptor)
+[10:39] P1 Crown lost a Powder Mill to P2 Brood (raptor)
+[10:41] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (1040 against the 1500 it reckons)
+[10:41] P1 Crown holds the top of its ramp: the force below (1256) is more than its army at home (660) can beat, down at 2513; the labourers there run up
+[10:50] P1 Crown scouted: NORMAL [a standard opening] (the Mother and 2 turtles on new ground, 3 Rootmaws and 11 grubs seen, 2 Sires, 56 supply of army seen near its base, 1050 of army known): OPTIMAL picks its build from this
+[10:50] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Rush (what it plays already answers it)
+[10:57] P1 Crown dropped a Farm: nobody was coming to start it (refunded)
+[10:57] P1 Crown dropped a Powder Mill: nobody was coming to start it (refunded)
+[10:58] P1 Crown lost a Town Hall to P2 Brood (raptor)
+[10:58] P1 Crown lost a Town Hall at (1, 25): that ground waits 240 s and then only with no enemy there
+[10:59] P1 Crown is expanding to fresh land (left at its best hall: 11%), 23 tiles from its main
+[11:00] P1 Crown plans a walled expansion: 38 ways-in cells (radius 11), 8 building slots, 12 palisade, 2 gate
+[11:00] P1 Crown lays 1 wall pieces at its new hall (2 labourers on it)
+[11:03] P1 Crown dropped a Town Hall: nobody was coming to start it (refunded)
+[11:03] P1 Crown lost a Town Hall (unfinished) at (7, 31): that ground waits 240 s and then only with no enemy there
+[11:06] P1 Crown meets the force at its buildings with a line: 4 muskets facing it, 0 guns behind
+[11:09] P1 Crown dropped a Gate: nobody was coming to start it (refunded)
+[11:13] P1 Crown's plan: against the Brood the line comes before more buildings: 830 of Musketeers and guns against the 990 it wants by now
+[11:17] P1 Crown sends a Labourer to scout again (trip 5)
+[11:23] P1 Crown is expanding to fresh land (left at its best hall: 11%), 18 tiles from its main
+[11:23] P1 Crown scout turned back: it saw nothing to go on, will look again soon
+[11:24] P1 Crown plans a walled expansion: 35 ways-in cells (radius 11), 8 building slots, 9 palisade, 2 gate
+[11:26] P1 Crown's first Musketeer mounted (Dragoon)
+[11:37] P1 Crown lays 8 wall pieces at its new hall (2 labourers on it)
+[11:41] P1 Crown lays 3 wall pieces at its new hall (2 labourers on it)
+[12:10] P1 Crown finished a Town Hall (expansion)
+[12:13] P1 Crown's plan: against the Brood the line comes before more buildings: 770 of Musketeers and guns against the 1035 it wants by now
+[12:18] P1 Crown finished a Barracks
+[12:25] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (1100 against the 0 it reckons)
+[12:25] P1 Crown meets the force at its buildings with a line: 4 muskets facing it, 0 guns behind
+[12:28] P1 Crown holds the top of its ramp: the force below (655) is more than its army at home (910) can beat, down at 1310; the labourers there run up
+[12:30] P1 Crown sends another Labourer to its Farm site (its builder was pulled away)
+[12:35] P1 Crown lost a Barracks to P2 Brood (tyrant_challenger)
+[12:36] P1 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+[12:36] P1 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+[12:36] P1 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+[12:36] P1 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+[12:36] P1 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+[12:36] P1 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+[12:36] P1 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+[12:37] P1 Crown finished a Cottage
+[12:37] P1 Crown lost a Palisade to P2 Brood (raptor)
+[12:38] P1 Crown lost a Palisade to P2 Brood (raptor)
+[12:40] P1 Crown lost a Gate to P2 Brood (raptor)
+[12:41] P1 Crown lost a Gate to P2 Brood (spitter)
+[12:42] P1 Crown lost a Palisade to P2 Brood (raptor)
+[12:46] P1 Crown lost a Gate to P2 Brood (spitter)
+[12:46] P1 Crown: the soil around a Town Hall is spent (barren: its farms pay nothing)
+[12:48] P1 Crown lost a Gate to P2 Brood (raptor)
+[12:49] P1 Crown lost a Gate to P2 Brood (tyrant_challenger)
+[12:56] P1 Crown finished a Farm
+[12:59] P1 Crown lost a Cottage to P2 Brood (spitter)
+[13:05] P1 Crown's Powder Wagon exploded (120 shots aboard)
+[13:13] P1 Crown's plan: against the Brood the line comes before more buildings: 0 of Musketeers and guns against the 630 it wants by now
+[13:21] P1 Crown lost a Cottage to P2 Brood (raptor)
+[13:25] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (0 against the 1065 it reckons)
+[13:32] P1 Crown lost a Foundry to P2 Brood (raptor)
+[13:39] P1 Crown lost a Horse Breeder to P2 Brood (spitter)
+[13:48] P1 Crown lost a Town Hall to P2 Brood (raptor)
+[13:49] P1 Crown lost a Town Hall at (10, 8): that ground waits 240 s and then only with no enemy there
+[13:50] P1 Crown lost a Farm to P2 Brood (spitter)
+[13:56] P1 Crown lost a Barracks to P2 Brood (raptor)
+[13:57] P1 Crown lost a Cottage to P2 Brood (raptor)
+[14:00] P1 Crown lost a Farm to P2 Brood (raptor)
+[14:00] P1 Crown lost a Barracks to P2 Brood (raptor)
+[14:02] P1 Crown lost a Barracks to P2 Brood (raptor)
+[14:03] P1 Crown lost a Powder Mill to P2 Brood (raptor)
+[14:07] P1 Crown lost a Cottage to P2 Brood (raptor)
+[14:07] P1 Crown lost a Cottage to P2 Brood (raptor)
+[14:13] P1 Crown's plan: against the Brood the line comes before more buildings: 0 of Musketeers and guns against the 600 it wants by now
+[14:14] P1 Crown lost a Town Hall to P2 Brood (raptor)
+[14:14] P1 Crown lost a Cottage to P2 Brood (raptor)
+[14:15] P1 Crown lost a Town Hall at (28, 8): that ground waits 240 s and then only with no enemy there
+[14:16] P1 Crown lost a Cottage to P2 Brood (raptor)
+[14:18] P1 Crown lost a Farm to P2 Brood (raptor)
+[14:27] P1 Crown lost a Cottage to P2 Brood (raptor)
+[14:36] P1 Crown lost a Cottage to P2 Brood (raptor)
+[14:41] P1 Crown lost a Cottage to P2 Brood (raptor)
+[14:43] P1 Crown lost a Cottage to P2 Brood (raptor)
+[14:45] P1 Crown lost a Cottage to P2 Brood (raptor)
+[14:59] P1 Crown lost a Palisade to P2 Brood (raptor)
