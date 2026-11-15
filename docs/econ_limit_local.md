@@ -75,7 +75,70 @@ the secondary (powder, Tension) in brackets. BEFORE = main at 0.38.15, AFTER = t
 `docs/econ_limit_local/` (JSON rows; `by_hall` in the computers' rows = each hall's buildings); tables:
 `python3 tools/study/econ_limit_local_report.py docs/econ_limit_local`.
 
-BENCH_TABLES
+Every computer run was played twice on each side (`.r2`): the computers never play a game the same way twice, and the same
+build on the same map swung by up to 10% between two runs (Crown on Greenhold before: 16,980 and 15,460).
+
+**The bench, Crown** (dune_sea, greenhold, hollowfen; 3 / 3 runs before / after)
+
+| | 5:00 | 8:00 | 10:00 | 12:00 |
+|---|---|---|---|---|
+| before | 4,180 (184) | 9,500 (532) | 13,180 (897) | 17,360 (1,370) |
+| after | 4,180 (184) | 9,500 (532) | 13,180 (897) | 17,360 (1,369) |
+| change | +0.0% | +0.0% | +0.0% | +0.0% |
+
+- dune_sea at 12:00: 17,360 -> 17,360 (+0.0%; runs 17,360 -> 17,360)
+- greenhold at 12:00: 17,360 -> 17,360 (+0.0%; runs 17,360 -> 17,360)
+- hollowfen at 12:00: 17,360 -> 17,360 (+0.0%; runs 17,360 -> 17,360)
+
+**The bench, Clockwork** (dune_sea, greenhold, hollowfen; 3 / 3 runs before / after)
+
+| | 5:00 | 8:00 | 10:00 | 12:00 |
+|---|---|---|---|---|
+| before | 4,354 (281) | 9,791 (659) | 13,830 (995) | 18,382 (1,392) |
+| after | 4,353 (281) | 9,790 (659) | 13,828 (995) | 18,382 (1,393) |
+| change | -0.0% | -0.0% | -0.0% | +0.0% |
+
+- dune_sea at 12:00: 18,411 -> 18,418 (+0.0%; runs 18,411 -> 18,418)
+- greenhold at 12:00: 18,434 -> 18,430 (-0.0%; runs 18,434 -> 18,430)
+- hollowfen at 12:00: 18,301 -> 18,299 (-0.0%; runs 18,301 -> 18,299)
+
+**The computer alone, Crown** (dune_sea, greenhold, hollowfen; 6 / 6 runs before / after)
+
+| | 5:00 | 8:00 | 10:00 | 12:00 |
+|---|---|---|---|---|
+| before | 2,977 (118) | 7,853 (316) | 11,653 (625) | 16,410 (989) |
+| after | 2,977 (118) | 7,790 (334) | 11,907 (619) | 16,410 (989) |
+| change | +0.0% | -0.8% | +2.2% | +0.0% |
+
+- dune_sea at 12:00: 16,600 -> 17,170 (+3.4%; runs 16,220 / 16,980 -> 16,980 / 17,360)
+- greenhold at 12:00: 16,220 -> 16,030 (-1.2%; runs 16,980 / 15,460 -> 15,080 / 16,980)
+- hollowfen at 12:00: 16,410 -> 16,030 (-2.3%; runs 16,600 / 16,220 -> 16,220 / 15,840)
+
+**The computer alone, Clockwork** (dune_sea, greenhold, hollowfen; 6 / 6 runs before / after)
+
+| | 5:00 | 8:00 | 10:00 | 12:00 |
+|---|---|---|---|---|
+| before | 3,748 (93) | 8,526 (361) | 13,661 (594) | 19,195 (899) |
+| after | 3,743 (92) | 8,674 (426) | 14,004 (662) | 19,580 (971) |
+| change | -0.2% | +1.7% | +2.5% | +2.0% |
+
+- dune_sea at 12:00: 18,868 -> 18,958 (+0.5%; runs 19,021 / 18,716 -> 19,043 / 18,873)
+- greenhold at 12:00: 18,942 -> 18,670 (-1.4%; runs 19,033 / 18,852 -> 18,575 / 18,766)
+- hollowfen at 12:00: 19,774 -> 21,111 (+6.8%; runs 19,691 / 19,858 -> 21,131 / 21,091)
+
+**Reading it.**
+- **The bench does not move** (to the cog): the scripted ideal build already laid 2 Farms + a Mill / 2 Presses + a
+  Mainspring by each hall, counting by nearest hall itself (`econ_bench._of_hall`). The design's income is unchanged.
+- **The computers alone: no change beyond noise.** Crown 16,410 -> 16,410 at 12:00 (0.0%; each map within its own two
+  runs' spread), Clockwork 19,195 -> 19,580 (+2.0%, mostly Hollowfen, where both "after" runs laid their third Clocktower about a
+  minute earlier). Their Tension rose 8% (899 -> 971): with the Mainspring counted by Clocktower, a second Mainspring
+  winds a second Clocktower's fresh spring life instead of sharing the main's. The `by_hall` rows show why so little
+  changed: both computers already kept 2 Farms + 1 Mill / 2 Presses + at most 1 Mainspring round each hall before (in the
+  6 runs before that counted by hall (`.r2`), a hall held more than its share once: a third Cog Press by the Clockwork's
+  third Clocktower at 12:00 on Dune Sea, laid after a spent press by the main came down); the stacking the owner did in
+  his game was a player's move, which the rule now refuses.
+- So the change is a rule for the player (and a guarantee for the computers), not an economy change: the income
+  comparisons in docs/brood_rootmaw_spots.md and docs/economy_parity.md still hold.
 
 ## Tests
 

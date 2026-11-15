@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """econ-limit-local (docs/econ_limit_local.md): the economy bench and the computers alone, before (main) and after (the
-local limit), primary (p_cum) and secondary (s_cum) earned at 5, 8, 10 and 12 minutes, the means of the maps.
-  python3 tools/study/econ_limit_local_report.py <dir with b_*.json and a_*.json>
-Files: <b|a>_<bench|alone>_<crown|clockwork>_<map>.json (tools/econ_bench.gd, econ_ai_alone.gd, econ_alone_cw.gd out=)."""
+local limit), primary (p_cum) and secondary (s_cum) earned at 5, 8, 10 and 12 minutes: the mean of the runs on each map,
+then of the maps.
+  python3 tools/study/econ_limit_local_report.py [dir, default docs/econ_limit_local]
+Files: <b|a>_<bench|alone>_<crown|clockwork>_<map>[.r<n>].json (tools/econ_bench.gd, econ_ai_alone.gd, econ_alone_cw.gd
+out=; .r2 = a second run of the same, the computers do not play a game the same way twice)."""
 import glob, json, os, sys
 
 D = sys.argv[1] if len(sys.argv) > 1 else "docs/econ_limit_local"
@@ -10,12 +12,20 @@ MINS = [5, 8, 10, 12]
 
 
 def load(tag, kind, fac):
-    out = {}
+    out = {}            # map -> [ {min: row} per run ]
     for f in sorted(glob.glob(os.path.join(D, "%s_%s_%s_*.json" % (tag, kind, fac)))):
-        m = os.path.basename(f)[:-5].split("_", 3)[3]
+        m = os.path.basename(f).split(".")[0].split("_", 3)[3]
         rows = json.load(open(f))["rows"]
-        out[m] = {int(r["min"]): r for r in rows}
+        out.setdefault(m, []).append({int(r["min"]): r for r in rows})
     return out
+
+
+def mean(xs):
+    return sum(xs) / len(xs) if xs else 0.0
+
+
+def at(src, mp, m, key):
+    return mean([float(run[m][key]) for run in src[mp] if m in run])
 
 
 for kind in ["bench", "alone"]:
@@ -24,26 +34,25 @@ for kind in ["bench", "alone"]:
         maps = sorted(set(b) & set(a))
         if not maps:
             continue
-        print("\n### %s, %s (%s)\n" % (kind, fac, ", ".join(maps)))
+        runs = "%d / %d runs" % (sum(len(b[m]) for m in maps), sum(len(a[m]) for m in maps))
+        print("\n**%s, %s** (%s; %s before / after)\n" % ("The bench" if kind == "bench" else "The computer alone", fac.capitalize(), ", ".join(maps), runs))
         print("| | " + " | ".join("%d:00" % m for m in MINS) + " |")
         print("|---|" + "---|" * len(MINS))
         for lab, src in [("before", b), ("after", a)]:
             cells = []
             for m in MINS:
-                ps = [src[mp][m]["p_cum"] for mp in maps if m in src[mp]]
-                ss = [src[mp][m]["s_cum"] for mp in maps if m in src[mp]]
-                cells.append("%s (%s)" % (format(round(sum(ps) / len(ps)), ","), format(round(sum(ss) / len(ss)), ",")) if ps else "-")
+                cells.append("%s (%s)" % (format(round(mean([at(src, mp, m, "p_cum") for mp in maps])), ","),
+                                          format(round(mean([at(src, mp, m, "s_cum") for mp in maps])), ",")))
             print("| %s | %s |" % (lab, " | ".join(cells)))
         cells = []
         for m in MINS:
-            pb = [b[mp][m]["p_cum"] for mp in maps if m in b[mp] and m in a[mp]]
-            pa = [a[mp][m]["p_cum"] for mp in maps if m in b[mp] and m in a[mp]]
-            cells.append("%+.1f%%" % (100.0 * (sum(pa) / sum(pb) - 1.0)) if pb and sum(pb) else "-")
+            pb = mean([at(b, mp, m, "p_cum") for mp in maps])
+            pa = mean([at(a, mp, m, "p_cum") for mp in maps])
+            cells.append("%+.1f%%" % (100.0 * (pa / pb - 1.0)) if pb else "-")
         print("| change | %s |" % " | ".join(cells))
+        print()
         for mp in maps:
-            eb = b[mp].get(12, {}).get("econ", {})
-            ea = a[mp].get(12, {}).get("econ", {})
-            pb12 = b[mp].get(12, {}).get("p_cum", 0)
-            pa12 = a[mp].get(12, {}).get("p_cum", 0)
-            print("- %s at 12:00: %s -> %s (%+.1f%%); buildings %s -> %s" % (mp, format(pb12, ","), format(pa12, ","),
-                  100.0 * (pa12 / pb12 - 1.0) if pb12 else 0.0, json.dumps(eb, sort_keys=True), json.dumps(ea, sort_keys=True)))
+            pb, pa = at(b, mp, 12, "p_cum"), at(a, mp, 12, "p_cum")
+            each = lambda src: " / ".join(format(int(run[12]["p_cum"]), ",") for run in src[mp] if 12 in run)
+            print("- %s at 12:00: %s -> %s (%+.1f%%; runs %s -> %s)" % (mp, format(round(pb), ","), format(round(pa), ","),
+                  100.0 * (pa / pb - 1.0) if pb else 0.0, each(b), each(a)))
