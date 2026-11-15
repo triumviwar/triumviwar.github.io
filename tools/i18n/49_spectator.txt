@@ -443,6 +443,18 @@ es Los jinetes de %s son expulsados de las larvas allí: se retiran y vuelven en
 pt A investida de %s acabou: passa para o seu plano de Economia, trabalhadores para duas bases e uma expansão murada.
 es La embestida de %s terminó: pasa a su plan de Economía, trabajadores para dos bases y una expansión amurallada.
 
+> %s puts its musket line before more buildings (%s of Musketeers and guns against the %s it wants by now).
+pt %s põe a sua linha de mosqueteiros antes de mais edifícios (%s de Mosqueteiros e canhões contra os %s que quer por agora).
+es %s pone su línea de mosqueteros antes que más edificios (%s de Mosqueteros y cañones contra los %s que quiere ya).
+
+> %s goes out at once with %s of army: the Brood's wave just died at its line.
+pt %s sai de imediato com %s de exército: a onda da Ninhada acabou de morrer na sua linha.
+es %s sale de inmediato con %s de ejército: la oleada de la Nidada acaba de morir en su línea.
+
+> %s goes out at once with %s of army: its army is far bigger than the Brood army it saw lately.
+pt %s sai de imediato com %s de exército: o seu exército é muito maior do que o exército da Ninhada que viu há pouco.
+es %s sale de inmediato con %s de ejército: su ejército es mucho mayor que el ejército de la Nidada que vio hace poco.
+
 > %s turns from its natural's gate to the enemy inside its wall (%s against %s).
 pt %s se vira do portão da sua expansão para o inimigo dentro da sua muralha (%s contra %s).
 es %s se gira desde la puerta de su expansión hacia el enemigo dentro de su muralla (%s contra %s).

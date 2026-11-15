@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.11", "items": [
+		"CROWN COMPUTER AGAINST THE BROOD: after its Horseman rush it no longer leaves its Barracks idle while it builds walls, Farms and a Church: its musket line (Musketeers and cannon, not the riders out raiding) now keeps up with the Brood's coming waves, and that gold comes before new buildings. Its Powder Mills grind for that line, and no Church goes up before 10:00.",
+	]},
 	{"v": "0.38.10", "items": [
 		"BALANCE, RAPTOR v HORSEMAN: Raptors have 38 health (was 36) and run at 92 (was 96); PACK HUNT still takes them to 114, so only with it do they outrun horses. The Horseman has 100 health (was 140) and costs 100 gold (was 115; his horse is still 40 more when no spare one stands ready); the Cuirassier has 130 (was 170).",
 		"NEW CROWN RESEARCH, KEEN SABRES, at the Horse Breeder (75 gold, 30 s): every Horseman's and Cuirassier's sabre blow in the saddle does 6 more to light units (18 to 24: two blows kill a Raptor again).",
