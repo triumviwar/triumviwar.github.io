@@ -25,6 +25,15 @@
 
 ## Current work
 
+- CLOCKWORK PROLOGUE OUTLINE (owner 2026-11-15: every faction gets a prologue; the Clockwork's is a LOSING mission: we
+  play the good Clockwork with the inventor, find a self-replicating failing mechanism too late, fight to contain it and
+  lose, and the Clockwork expands. Answers 21:34: the runaway machine IS the whole Clockwork faction; the inventor is
+  MEISTER HOLLWEG (his Nuremberg workshop = the Clockwork hub); he was building THE PERFECT MACHINE). Job
+  clockwork-prologue-outline (branch, docs only): docs/campaign_clockwork_prologue.md, "The Thirteenth Hour" (Advent
+  2767, Nuremberg; the Perpetual built without a stop-work; parts: it wakes / the mill island / the thirteenth hour;
+  only Hollweg's death is a real loss, the rest is saved-and-carried-forward; choices: the bells, people or pattern;
+  6 stills with ChatGPT prompts; 15 engine needs for a build job; 10 OWNER QUESTIONS). All lines are placeholders.
+
 - ECONOMY LIMIT BY HALL (owner DECIDED 2026-11-15 18:06: "it should be 2 per Town Hall, 2 per Clocktower"; job
   econ-limit-local, 0.38.16, docs/econ_limit_local.md, tools/test_econ_limit_local.gd): every Farm / Powder Mill / Cog Press /
   Mainspring belongs to the hall it draws from (its nearest BUILT hall, a tie to the older) and each hall allows
