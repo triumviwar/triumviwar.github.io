@@ -814,6 +814,8 @@ func _post(u: Unit, spot: Vector2, face := Vector2.INF, edge := false) -> void:
 			return
 	var d: float = u.position.distance_to(spot)
 	if d > 16.0:
+		if u.order in ["idle", "hold", "move", "amove", "attack"] and ai.has_method("dfn_move") and ai.dfn_move(u, spot):
+			return              # (crown-coach-defence: his way passes in the enemy's reach: he fights or steps round it)
 		if u.order == "move" and u.order_point.distance_to(spot) < 8.0:
 			return
 		if u.order in ["idle", "hold", "move", "amove"]:

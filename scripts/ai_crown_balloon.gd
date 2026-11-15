@@ -410,7 +410,7 @@ func tick() -> void:
 			_rest(b)
 			continue
 		var men := _free_men()
-		if men.size() < PARTY_MIN or game.clock < FIRST_AT:
+		if men.size() < PARTY_MIN or game.clock < FIRST_AT or ai.party_wait():     # (crown-coach-defence: not while a push comes)
 			_watch(b)
 			continue
 		if b == _scout_b:

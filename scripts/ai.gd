@@ -5356,6 +5356,8 @@ func _army() -> void:
 			return              # (round 5: a bigger wave at the gate: the army holds on the high ground behind the wall)
 		if ch.hold_top(army, tspots):
 			return              # (THE OWNER'S DOCTRINE: a force below the main it can't beat: the army holds the ramp's top)
+		if _def_hold(army, tspots):
+			return              # (crown-coach-defence: a force it can't beat at its buildings: the Crown musters, AICrownDefence)
 		_defend(army, threat, tspots)
 		# (workers: _worker_safety, from the economy think, pulls them out of reach or sends the hands)
 		if not r6_cw or not _threat_minor(army, tspots):
@@ -5531,6 +5533,12 @@ func _siege_skip(_u: Unit) -> bool:
 ## (crown-line-fight) A detachment sent to a force at our buildings arrives as a line (the Crown: AICrown._def_line,
 ## scripts/ai_crown_line.gd). true = sent.
 func _def_line(_picks: Array, _spot: Vector2) -> bool:
+	return false
+
+
+## (crown-coach-defence) A threat at home the computer answers its own way instead of AI._defend: true = handled (the
+## Crown's muster: scripts/ai_crown_defence.gd). The other computers defend as before.
+func _def_hold(_army: Array, _spots: Array) -> bool:
 	return false
 
 
