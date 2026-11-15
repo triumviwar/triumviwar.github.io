@@ -139,7 +139,20 @@ Run on this branch (`godot --headless --fixed-fps 30 --path . --script res://too
 test_crown_*, test_cinder_crown*): see section 7 for the list; the ones that failed were run again on main (0.38.1) to
 tell this job's from the old ones.
 
-TESTS_RESULT
+All 40 (`test_ai_*`, `test_crown_*`, `test_cinder_crown`) ran on this branch before its last change (the Economy race's
+opening made a study switch); the four touched by that change ran again on the final build.
+
+- **Pass** (35): test_ai_abandoned_site, air_defence, army_response, brood, crown_bank, expand, expand_wall, gg_rule, harass,
+  optimal, placement, r5_hold_spots, round6, round6_stall, scout, scout_defence, scout_threat, wall_vs_rush, worker_safety;
+  test_crown_ammo, balloon, farms, gate, ghosts, hold, line, lost_hall, mirror, rider_screen, siege, stall, **v_brood**; and
+  on the final build test_crown_owner_eco, test_crown_build_order, test_cinder_crown.
+- **Fail on main too** (0.38.1, run again there): test_ai_rush ("workers before the Brood Mother") and test_ai_rush_followup
+  (the riders' finish and the lone-soldier checks): CLAUDE.md lists both as known.
+- **Known flaky / old** (CLAUDE.md): test_ai_cw_horse_raid (a Clockwork test, a different check each run), test_ai_scout_sentry
+  (passes alone), test_crown_dragoon_raid's [plan] check (fails before the Crown merges too).
+- **Fixed on the way**: test_crown_owner_eco failed 4 checks with the Economy race's powder-first opening on (the Barracks
+  before the second hall breaks the owner's opening): that opening is now a study switch and the test passes; test_cinder_crown
+  ([hall] 353 s for 330) and test_crown_build_order ([gold] 61 s for 60) failed once and pass on the final build.
 
 ## 6. What is still wrong
 
