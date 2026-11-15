@@ -56,8 +56,9 @@ party loads there, the Musketeers on the high ground; the `after_strike_*` pictu
   stays home. It leaves with 2 or more aboard and never with a man walking after it. No air defence while loading.
 - **On the way**: a balloon that loses 20% of its health since it set out, or falls under 45%, turns back. Over a target,
   dropping or waiting for its men: under fire and under 70% health, it pulls back home (the men on the ground are lifted
-  first). It does not set out again under 60%, and a labourer MENDS a hurt balloon at home (the Crown's machines are
-  labourers' work). Anti-air worth 60% of the party sends it off (was 100%).
+  first, never left behind). The way home goes round the anti-air it knows (one waypoint, as its flights out do). It
+  does not set out again under 60%, and a labourer MENDS a hurt balloon at home (the Crown's machines are labourers'
+  work). Anti-air worth 60% of the party sends it off (was 100%).
 - **The enemy army is remembered** where it was seen (50 s): targets near it rate down (it strikes where the army is not,
   e.g. while the army is out pushing), and no drop beside it. **The Clock Aviary counts as anti-air** (10 tiles: its
   Swifts).
@@ -70,57 +71,70 @@ read, 15%, is unchanged).
 
 ## The numbers
 
+All the data (result.json, the AI story, the harass's lines and its minute counts per game) is in
+docs/crown-coach-balloon/data/<variant>/<game>/, the tables in docs/crown-coach-balloon/report.txt.
+
 Hard OPTIMAL Crown v Hard OPTIMAL Clockwork, 12 maps (Greenhold, Highmoor, Dune Sea, Frostfang, Twin Fords, Ashfall, Red
 Coast, Ashford Crossing, Kestrel Rise, Redrock Canyon, Cinder Steps, Hollowfen), the win-rate study's tags and seeds (one
 round per map, both start spots), to 15:00, `tools/qa_match.gd` headless; the Crown's plan forced with the study switches.
 "Score" = the Crown's (income earned + 2 x army) over the Clockwork's at the end, the mean of the games.
 
-### The harass, before and after (both forced to Balloon harass)
+### The harass, before and after (all forced to Balloon harass)
 
-| | before (`blfix:off`) | after |
-|---|---|---|
-| W-D-L (the Crown) | 0-8-4 | 0-8-4 |
-| score at the end | 0.34 | 0.40 |
-| "too few aboard" (a party that never left) | 10 | 0 |
-| games with an empty balloon out alone (30+ tiles from home) | 12 of 12 | 0 of 12 |
-| strikes (hover or drop at a target) | 19 | 35 |
-| Clockwork workers killed by the harass | 75 | 185 |
-| value killed by the harass (all 12 games) | 12,765 | 12,235 |
-| balloons lost | 16 | 8 |
-| Musketeers lost from the baskets | 20 | 12 |
-| Crown units lost, a game | 80 | 60 |
-| the first party / the first strike (mean) | 6:08 / 8:05 | 5:53 / 8:17 |
-| army at 8:00 / 10:00 / 15:00, Crown (Clockwork) | 914 (1,932) / 1,284 (3,103) / 798 (5,891) | 977 (1,788) / 1,372 (2,848) / 1,294 (5,858) |
-| Crown income at 5:00 / 8:00 / 10:00 (Clockwork) | 2,470 (4,163) / 5,700 (10,108) / 8,202 (15,688) | 2,565 (4,090) / 5,795 (9,751) / 8,392 (14,900) |
-| Crown halls lost / Clockwork halls lost, a game | 2 / 0 | 2 / 0 |
+Two runs of the coached harass: "after 1" is the code of this doc without the flight home round the anti-air, "after 2"
+the code with it (both runs of the same 12 games).
 
-The harass now kills two and a half times the workers for half the balloons and men; the same value in all (the old
-code's kills were more soldiers, often from a balloon over a fight at home). The results are the same: the Crown wins
-none of these games whatever it plays (below).
+| | before (`blfix:off`) | after 1 | after 2 |
+|---|---|---|---|
+| W-D-L (the Crown) | 0-8-4 | 0-8-4 | 0-9-3 |
+| score at the end | 0.34 | 0.40 | 0.35 |
+| "too few aboard" (a party that never left) | 10 | 0 | 0 |
+| games with an empty balloon out alone (30+ tiles from home) | 12 of 12 | 0 of 12 | 0 of 12 |
+| games with no strike at all | 3 | 2 | 0 |
+| strikes (hover or drop at a target) | 19 | 35 | 41 |
+| Clockwork workers killed by the harass | 75 | 185 | 162 |
+| value killed by the harass (all 12 games) | 12,765 | 12,235 | 10,675 |
+| balloons lost | 16 | 8 | 10 |
+| Musketeers lost from the baskets | 20 | 12 | 20 (9 in one game) |
+| Crown units lost, a game | 80 | 60 | 76 |
+| the first party / the first strike (mean) | 6:08 / 8:05 | 5:53 / 8:17 | 6:17 / 8:20 |
+| army at 8:00 / 10:00 / 15:00, Crown (Clockwork) | 914 (1,932) / 1,284 (3,103) / 798 (5,891) | 977 (1,788) / 1,372 (2,848) / 1,294 (5,858) | 991 (1,770) / 1,486 (3,099) / 1,069 (6,407) |
+| Crown income at 5:00 / 8:00 / 10:00 (Clockwork) | 2,470 (4,163) / 5,700 (10,108) / 8,202 (15,688) | 2,565 (4,090) / 5,795 (9,751) / 8,392 (14,900) | 2,502 (4,137) / 5,668 (9,942) / 8,297 (15,433) |
+| Crown halls lost / Clockwork halls lost, a game | 2 / 0 | 2 / 0 | 2 / 0 |
 
-One more variant was measured and NOT kept: a party under fire but still above 60% health flying off and picking the
-next target instead of going home ("evade"). It struck more (42 strikes, 203 workers, 13,520 killed) but lost 14
-balloons and 20 men and ended at a score of 0.28: the old losses back. The pull-back home stays.
+The faults the owner saw are gone: no party ever ended "too few aboard", no empty balloon went out, no man walked out
+to a balloon. The harass now strikes twice as often and kills about two and a half times the workers (24 games: 347
+against 75 in 12), for about half the balloons (0.75 a game against 1.33) and fewer men (1.3 a game against 1.7); the
+value it kills is about the same (the old code's kills were more soldiers, often from a balloon over a fight at home).
+The results do not change: the Crown wins none of these games whatever it plays (below). The two "after" runs differ
+by 0.05 in score, which is the noise of 12 games (the scores of single games run from 0.2 to 0.8).
+
+In "after 2" one party dropped its men and pulled home under fire with them on the ground (the 9 men lost on Kestrel
+Rise). Fixed after the run (men on the ground are always lifted out first; tests pass), not measured again.
+
+One more variant was measured and NOT kept ("bl_evade" in the data): a party under fire but still above 60% health
+flying off and picking the next target instead of going home. It struck more (42 strikes, 203 workers, 13,520 killed)
+but lost 14 balloons and 20 men and ended at a score of 0.28: the old losses back. The pull-back home stays.
 
 ### The Balloon harass against the other Crown plans (the owner's question: one of OPTIMAL's options?)
 
 The same 12 games, the Crown's plan forced on both reads:
 
-| | Balloon harass (coached) | Timing attack | Economy race | Balloon (uncoached) |
+| | Balloon harass (coached, 24 games) | Timing attack | Economy race | Balloon (uncoached) |
 |---|---|---|---|---|
-| W-D-L | 0-8-4 | 0-9-3 | 0-8-4 | 0-8-4 |
+| W-D-L | 0-17-7 | 0-9-3 | 0-8-4 | 0-8-4 |
 | won or led (draw ahead by 10%+) | 0 | 0 | 1 | 0 |
-| score at the end | 0.40 | 0.36 | 0.43 | 0.34 |
-| decided games, mean length | 12:15 | 13:40 | 12:00 | 12:30 |
-| Crown income at 8:00 / 10:00 | 5,795 / 8,392 | 5,510 / 8,107 | 6,808 / 9,880 | 5,700 / 8,202 |
-| Crown army at 8:00 / 10:00 / 15:00 | 977 / 1,372 / 1,294 | 1,208 / 1,633 / 415 | 847 / 1,185 / 718 | 914 / 1,284 / 798 |
-| Crown units lost / Clockwork units lost, a game | 60 / 99 | 80 / 109 | 93 / 92 | 80 / 104 |
-| labourers at 8:00 | 30 | 26 | 39 | 29 |
+| score at the end | 0.38 | 0.36 | 0.43 | 0.34 |
+| decided games, mean length | 12:51 | 13:40 | 12:00 | 12:30 |
+| Crown income at 8:00 / 10:00 | 5,730 / 8,345 | 5,510 / 8,107 | 6,808 / 9,880 | 5,700 / 8,202 |
+| Crown army at 8:00 / 10:00 / 15:00 | 984 / 1,429 / 1,182 | 1,208 / 1,633 / 415 | 847 / 1,185 / 718 | 914 / 1,284 / 798 |
+| Crown units lost / Clockwork units lost, a game | 68 / 107 | 80 / 109 | 93 / 92 | 80 / 104 |
+| labourers at 8:00 | 29 | 26 | 39 | 29 |
 
-Noise: a score moves about +-0.05 and a W-D-L column about +-2 between two runs of the same 12 (bl_new against the
-evade variant, and docs/winrate_2026_11_12.md). So the three plans are close: no plan wins against Hard Clockwork
+Noise: a score moves about +-0.05 and a W-D-L column about +-2 between two runs of the same 12 (the two "after" runs
+above, and docs/winrate_2026_11_12.md). So the three plans are close: no plan wins against Hard Clockwork
 OPTIMAL. The coached balloons sit between the Timing attack and the Economy race on the end score, lose the fewest units,
-and are the only plan that takes the Clockwork's workers (185 in 12 games) while its army is out.
+and are the only plan that takes the Clockwork's workers (14 a game) while its army is out.
 
 **Share set by the data: one third of OPTIMAL's picks against the Clockwork** (Timing 3, Economy 1, Balloon 2, on a
 NORMAL and on a GREEDY read; was one fifth). Not more: it is no better than the Economy race by these numbers, and the
@@ -134,8 +148,8 @@ Timing attack is the only plan that has taken Clockwork halls in the bigger stud
   than 22 tiles while it loads (11), 3 board, none walks after a balloon that left; [calloff] Clock Soldiers at the main
   call a loading party off and the balloon stays home; [aviary] the Clock Aviary counts as anti-air; [hit] hit on the way,
   it turns back; [switch] with `blfix:off` the empty balloon floats out as before. ALL PASS.
-- `tools/test_crown_balloon.gd` (the harass against a standing Brood): ALL PASS.
-- Run on the branch: test_ai_optimal, test_cinder_crown, test_crown_build_order, test_crown_ammo, test_crown_farms,
+- `tools/test_crown_balloon.gd` (the harass against a standing Brood): ALL PASS. test_i18n (the patch notes in pt/es): PASS.
+- Run on the branch (with the harass of "after 1" plus the evade variant; the balloon tests again on the final code): test_ai_optimal, test_cinder_crown, test_crown_build_order, test_crown_ammo, test_crown_farms,
   test_crown_gate, test_crown_ghosts, test_crown_hold, test_crown_line, test_crown_lost_hall, test_crown_owner_eco,
   test_crown_rider_screen, test_crown_siege, test_crown_stall, test_crown_v_brood: ALL PASS. Failing, and listed as failing
   on main before this job (CLAUDE.md): test_crown_dragoon_raid [plan] and test_crown_mirror "a Musketeer is queued for the
@@ -161,7 +175,7 @@ Timing attack is the only plan that has taken Clockwork halls in the bigger stud
 
 ## What is still wrong (not this job's area)
 
-- The Crown loses or trails every game against Hard Clockwork OPTIMAL whatever it plays (0 of 60 won here): its
+- The Crown loses or trails every game against Hard Clockwork OPTIMAL whatever it plays (0 of 72 won here): its
   income is 0.55-0.65 of the Clockwork's at 10:00 and its army a fifth or less by 15:00 (the economy and army-size jobs).
 - The Clockwork answers the first balloon it sees with a Clock Aviary "at once" and Swifts; by 7:00 most flights meet
   anti-air on the way (the "backs off: anti-air on the way" lines). The harass's window is the first strike.
@@ -173,5 +187,5 @@ Timing attack is the only plan that has taken Clockwork halls in the bigger stud
   out:DIR slots:crown/optimal/0,clockwork/optimal/1 normalclock:balloon greedyclock:balloon bltrace:1` (`blfix:off` for
   the old harass; `bltrace:1` prints BLTRACE lines every 3 s and a BLSUM line every minute: strikes, kills, losses).
 - Filmed: `tools/shot_ai_match.gd` with `a:crown b:clockwork pa:optimal pb:optimal every:10` and the same switches.
-- The measuring batch of this doc: 12 games a variant, `tools/study/crown_coach_balloon.py` (the tags and seeds, the
-  variants and the report).
+- The measuring batch of this doc: 12 games a variant, `GODOT=... python3 tools/study/crown_coach_balloon.py run DATA
+  bl_new` (variants bl_old, bl_new, timing, economy, default), `... report DATA bl_old bl_new` for the tables.

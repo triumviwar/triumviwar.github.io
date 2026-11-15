@@ -24,6 +24,19 @@
     base_red_coast_crcw_r0 D 900 0.43 1200 0 0
     base_redrock_canyon_crcw_r1 D 900 0.29 360 1 1
     base_twin_fords_crcw_r0 L 720 0.24 0 0 0
+== bl_final {"n": 12, "W-D-L": "0-9-3", "score": 0.352, "inc300": 2502, "cinc300": 4137, "inc480": 5668, "cinc480": 9942, "inc600": 8297, "cinc600": 15433, "army480": 991, "carmy480": 1770, "army600": 1486, "carmy600": 3099, "army900": 1069, "carmy900": 6407, "lab480": 28, "lost_u": 76, "cw_lost_u": 114, "halls_lost": 2, "cw_halls_lost": 0, "form1": 377, "strike1": 500, "strikes_total": 41, "blk_total": 10675, "blw_total": 162, "blb_total": 9, "blm_total": 20, "blp_total": 40, "few_total": 0, "decided_mean_end": 820}
+    base_ashfall_crcw_r1 D 900 0.8 2220 0 0
+    base_ashford_crossing_crcw_r1 D 900 0.69 1980 0 0
+    base_cinder_steps_crcw_r0 D 900 0.24 1130 0 0
+    base_dune_sea_crcw_r0 D 900 0.53 480 1 1
+    base_frostfang_crcw_r1 L 840 0.22 180 2 2
+    base_greenhold_crcw_r0 L 840 0.24 120 2 2
+    base_highmoor_crcw_r1 D 900 0.41 555 1 1
+    base_hollowfen_crcw_r1 L 780 0.21 190 0 0
+    base_kestrel_rise_crcw_r0 D 900 0.24 1640 1 9
+    base_red_coast_crcw_r0 D 900 0.22 780 0 0
+    base_redrock_canyon_crcw_r1 D 900 0.24 1340 0 0
+    base_twin_fords_crcw_r0 D 900 0.2 60 2 5
 == bl_evade {"n": 12, "W-D-L": "0-8-4", "score": 0.28, "inc300": 2565, "cinc300": 4131, "inc480": 5795, "cinc480": 10118, "inc600": 8170, "cinc600": 15578, "army480": 854, "carmy480": 1960, "army600": 1235, "carmy600": 3247, "army900": 484, "carmy900": 7146, "lab480": 30, "lost_u": 80, "cw_lost_u": 103, "halls_lost": 2, "cw_halls_lost": 0, "form1": 359, "strike1": 533, "strikes_total": 42, "blk_total": 13520, "blw_total": 203, "blb_total": 14, "blm_total": 20, "blp_total": 38, "few_total": 0, "decided_mean_end": 795}
     base_ashfall_crcw_r1 D 900 0.31 840 0 0
     base_ashford_crossing_crcw_r1 D 900 0.27 1890 1 0

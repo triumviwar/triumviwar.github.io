@@ -612,8 +612,8 @@ func _party(p: Dictionary) -> void:
 		p["by"] = b.last_hit_by
 	if fix_on and _shaken(b) and p["phase"] in ["strike", "drop", "ground", "evade"]:
 		bad.append([b.position, game.clock])
-		if p["phase"] == "ground":
-			_phase(p, "lift")
+		if p["phase"] == "ground" or (p["phase"] == "drop" and not _on_ground(p).is_empty() and b.order != "unload"):
+			_phase(p, "lift")       # (men on the ground are lifted out, never left behind: a drop under fire left 4 once)
 			b.cmd_move(_lift_spot(p))
 			say("party %d lifts its men out (the balloon is under fire)" % p["id"])
 			return
