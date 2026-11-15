@@ -951,7 +951,7 @@ func _effect_kinds(d: Dictionary) -> Array:
 	for f in ["speed", "range", "bonus"]:
 		if d.get(f) is Dictionary:
 			ks.append_array((d[f] as Dictionary).keys())
-	if d.has("hp") and String(d["at"]) == "movement_works":
+	if d.has("hp") and String(d.get("faction", "")) == "clockwork":   # (SHIELD WALL: at the Escapement since 0.38.19)
 		ks.append("clock_soldier")
 	return ks.filter(func(x: String) -> bool: return Defs.UNITS.has(x) and live_kind(x))
 

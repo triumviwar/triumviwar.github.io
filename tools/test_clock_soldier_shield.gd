@@ -1,6 +1,6 @@
 extends SceneTree
 ## The Clock Soldier after 0.14.49 (docs/clock_soldier_shield.md): its new base stats, the SHIELD WALL research at a
-## Movement Works (it costs Tension: only where the Works meshes with a Mainspring), the SHIELD FORWARD stance
+## Escapement (since 0.38.19; it costs Tension: only while a Mainspring is in its gear network), the SHIELD FORWARD stance
 ## (scripts/shield_wall.gd: the switch takes its moment, standing still; raised, it is slower, has more armour and takes
 ## less from shots and blows from the FRONT, not from behind nor from splash), the button on the card once researched,
 ## the stance on an online guest (NetSnapshot through the codec), the Clockwork computer's use of it (raised in ranged
@@ -37,19 +37,20 @@ func _run() -> void:
 	# ---- before the research: no stance
 	cs.set_shield(true)
 	check("before SHIELD WALL the soldier cannot raise its shield", not cs.shield_up and ShieldWall.problem(cs) != "", ShieldWall.problem(cs))
-	# ---- the research at a Movement Works: Tension, so only where a Mainspring meshes
+	# ---- the research at the Escapement (a Light Works before 0.38.19, escapement-research): Tension, so only while a
+	# Mainspring is in its gear network
 	var info: Dictionary = Defs.RESEARCH[ShieldWall.TECH]
-	check("SHIELD WALL is researched at the Movement Works, for cogs and Tension", String(info["at"]) == Defs.CW_WORKS and Defs.tension_cost(info) > 0 and int(info["cost"]) > 0)
+	check("SHIELD WALL is researched at the Escapement, for cogs and Tension", String(info["at"]) == Defs.CW_TECH and Defs.tension_cost(info) > 0 and int(info["cost"]) > 0)
 	g.players[0]["gold"] = 50000
 	g.players[0]["tension"] = 5000.0
-	var works := U.put(g, 0, Defs.CW_WORKS, hall.cell)
-	check("a Movement Works links", works != null and g.gear_net.is_linked(works))
+	var works := U.put(g, 0, Defs.CW_TECH, hall.cell)
+	check("an Escapement links", works != null and g.gear_net.is_linked(works))
 	if works == null:
 		_end()
 		return
 	if g.gear_net.spring_for(works) == null:
 		var why0 := g.research_problem(works, ShieldWall.TECH)
-		check("a Works meshing with no Mainspring refuses it (it costs Tension)", why0.contains("Mainspring"), why0)
+		check("an Escapement with no Mainspring refuses it (it costs Tension)", why0.contains("Mainspring"), why0)
 		_spring_beside(g, works)
 		U.step(g, 0.6)
 	var cogs0 := int(g.players[0]["gold"])
