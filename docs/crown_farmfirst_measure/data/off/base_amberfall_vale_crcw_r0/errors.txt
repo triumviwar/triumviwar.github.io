@@ -1,0 +1,2 @@
+1 error lines
+    1  ERROR: Parameter "t" is null.  at: texture_2d_initialize (./servers/rendering/dummy/storage/texture_storage.h:85)
