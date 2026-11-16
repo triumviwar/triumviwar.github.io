@@ -18,6 +18,9 @@ extends SceneTree
 ## 200 and supply within 2 of it), EGGS FULL (her clutch full: laying lost), EGGS LOW (2 or fewer: eggs hold it back),
 ## the bank (mean and most), idle grubs, posts left empty and grubs over the posts. `firsts`: when things came first;
 ## `notes`: what the computer said it decided.
+## (brood-rootmaw-coach) each look also has `maw_need` [Rootmaws needing a spot soon, fresh room, room coming] and
+## `exp_sent`; `dbgmaw=<s>` prints, every 30 s from then, the Rootmaws not rooted, every turtle site of the side and why
+## it is or isn't free, each swamp's count and fit, and the fresh-ground search's answer (docs/brood_rootmaw_coach.md).
 
 const LOOK := 5.0
 
@@ -143,7 +146,7 @@ func _look() -> void:
 			if u.team == me and not u.dead and u.kind == BroodNew.MAW and not BroodNew.rooted(u):
 				print("DBGMAW t=%d tiles=%.1f mode=%s order=%s cocoon=%.1f target=%s plan=%s held_fight=%s room=%s" % [int(g.clock),
 					u.position.distance_to(qq.position) / Defs.TILE, u.tesla_mode, u.order, u.cocoon, str(u.target), str(BroodRoot.plan_of(u)),
-					str(ai.maw_fighting(u)), Rootmaw_room(u)])
+					str(ai.maw_fighting(u)), _maw_room_why(u)])
 	var lk := {"t": int(g.clock), "supply": g.supply_used(me), "cap": int(g.players[me]["cap"]), "bank": int(g.players[me]["gold"]),
 		"res2": int(g.players[me].get("res2", 0)), "earned": int(g.stats[me]["gold"])}
 	if fac == "brood":
@@ -305,5 +308,5 @@ func _finish() -> void:
 	quit()
 
 
-func Rootmaw_room(u: Unit) -> String:
+func _maw_room_why(u: Unit) -> String:
 	return RootmawSpots.room_problem(g, me, u.position, u)

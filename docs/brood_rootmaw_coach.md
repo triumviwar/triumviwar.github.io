@@ -235,7 +235,27 @@ As the spots job counted (every game, a game over before a minute counted at its
 
 ## 5. Tests
 
-__TESTS__
+Run on the branch's AI (0.38.20 + this job) and, where marked, on the branch merged with main (0.38.35); the failures
+also run on main 0.38.20 for comparison. Most of these tools end with the engine aborting at quit (exit 134) after their
+result: read their PASS/FAIL lines.
+
+| test | branch | main | note |
+|---|---|---|---|
+| test_ai_brood balanced | PASS (also merged) | | its grub check now allows the raise: "most 64" with 10 raised |
+| test_ai_brood economy, rush, xrush | PASS | | economy failed "research by 420 s (at 425 s)" while the rule ran from 0:30 (main: 387 s); passes with the 5:00 gate |
+| test_ai_brood timing | stage 3 by 640 s: never | the same | pre-existing |
+| test_ai_brood air | Storm Sire by 440 s: never (also merged) | the same | pre-existing |
+| test_rootmaw_spots | ALL OK | | |
+| test_brood_new | 1 failure (also merged) | the same | the Venom Lure's price on the BUILD card: pre-existing |
+| test_brood_ai_defend | ALL PASS (merged) | | |
+| test_brood_v_riders | "most grubs survive the raid" 6 of 13 lost | the same | pre-existing (docs/brood_rootmaw_spots.md 5); it passed once on the branch |
+| test_brood_new_defence | [rooted] muskets: the Mother dies | the same | pre-existing |
+| test_brood_far, _fixes, _fix3, _layout, _builds, _spend, _mirror, _paths, _controls, _production, _rush_riders | PASS | | _production prints main.gd's two menu SCRIPT ERRORs, as on main |
+| test_brood_regen_calm, _sounds, _voices | PASS (an earlier state of the branch: nothing they touch changed since) | | |
+
+After the merge the main tree must be imported once (`godot --headless --import`) before any tool runs: main brought new
+class names (WinderEscort...), and without the import a tool fails to compile main.gd and prints errors every frame (a
+1 GB log here).
 
 ## 6. Claude's choices for the owner to confirm
 
