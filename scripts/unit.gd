@@ -3777,7 +3777,10 @@ func _tick_unit(delta: float) -> void:
 		CwUnits.pre_tick(self, delta)
 	if shield_up or shield_t > 0.0:
 		ShieldWall.tick(self, delta)        # (a Clock Soldier's SHIELD FORWARD: the switch, the slower pace)
-	if _k_fac == "brood" and game.swamp[team][clampi(int(position.y / Game.T), 0, Game.H - 1) * Game.W + clampi(int(position.x / Game.T), 0, Game.W - 1)] == 1:     # (game.on_swamp(team, position), written out)
+	# (brood-spot-study: a rooted creature's feet hang below its footprint on screen, so on a mirrored start its feet fell
+	# on or off the swamp's edge differently (its SWAMP MENDING): the point the first start would read, BroodRoot.anchor)
+	var swp := BroodRoot.anchor(game, self) if _k_fac == "brood" and BroodRoot.fair_spot and nb.has("fpx") else position
+	if _k_fac == "brood" and game.swamp[team][clampi(int(swp.y / Game.T), 0, Game.H - 1) * Game.W + clampi(int(swp.x / Game.T), 0, Game.W - 1)] == 1:     # (game.on_swamp(team, position), written out)
 		speed *= 1.3
 		if hp < max_hp and game.clock - hit_clock >= float(Defs.NB["regen_calm"]):
 			# (OUT OF THE FIGHT only, the owner 2026-10-31: a Clock Soldier couldn't kill a rooted Mound Turtle; SWAMP

@@ -94,6 +94,29 @@ static func sym_snap(g: Game, t: int, k: String, p_k: Vector2, sc := 1.0) -> Vec
 	return feet_at(k, g.sym_rect(t, cell_for(k, p_k, sc), fp(k, sc)[0]), sc)
 
 
+## (brood-spot-study, docs/brood_spot_study.md) MEASURING SWITCH `fairspot:off`: the old sums from a spot's feet. On, a
+## spot's feet are carried into side t's first-start frame and back before they are measured from (sym_feet), so the two
+## starts of a mirrored map measure from the same place (a footprint's feet hang below its middle on screen).
+static var fair_spot := not OS.get_cmdline_user_args().has("fairspot:off")
+
+
+## The point a `k` told to root at p (feet, side t's own frame) stands for in side t's first-start frame, carried back to
+## side t's own frame: what the first start's twin of this spot would measure from. The first start's own p unchanged.
+static func sym_feet(g: Game, t: int, k: String, p: Vector2, sc := 1.0) -> Vector2:
+	if g._flip_of(t) == Vector2i.ZERO:
+		return p
+	var sz: Vector2i = fp(k, sc)[0]
+	return g.sym_pt(t, feet_at(k, g.sym_rect(t, cell_for(k, p, sc), sz), sc))
+
+
+## (brood-spot-study) How far a Sire told to nest at p (feet) would be from the Mother, as BroodNew.fdist measures it once
+## he is there.
+static func father_d(g: Game, t: int, k: String, q: Unit, p: Vector2) -> float:
+	if fair_spot:
+		return anchor(g, q).distance_to(sym_feet(g, t, k, snap(k, p)))
+	return q.position.distance_to(p)
+
+
 ## p snapped to the grid: where a `k` roots when told to root at p.
 static func snap(k: String, p: Vector2, sc := 1.0) -> Vector2:
 	return feet_at(k, cell_for(k, p, sc), sc)
@@ -472,7 +495,7 @@ static func _place_problem(g: Game, t: int, k: String, p: Vector2, me: Unit = nu
 				return full
 	if BroodNew.is_father(k):
 		var q := BroodNew.queen(g, t)
-		if q == null or q.position.distance_to(p) > father_reach():
+		if q == null or father_d(g, t, k, q, p) > father_reach():
 			return "Out of range: he must nest within %d tiles of the Brood Mother." % int(Defs.NB["father_r"])
 	if ai:
 		# THE COMPUTER'S BASE LAYOUT (the owner, 2026-11-04: "the turtle-locked units are stuck inside"): never a footprint
@@ -1728,7 +1751,7 @@ static func draw_ghost(g: Game, ov: Node2D, k: String, c: Vector2i, sc := 1.0) -
 	var lines: Array = []
 	if (Defs.NB["lines"] as Dictionary).has(k):
 		var q := BroodNew.queen(g, g.human)
-		var inr := q != null and q.position.distance_to(p) <= father_reach()
+		var inr := q != null and father_d(g, g.human, k, q, p) <= father_reach()
 		lines.append(["IN RANGE" if inr else "OUT OF RANGE", Color(0.55, 1.0, 0.5) if inr else Color(1.0, 0.45, 0.4)])
 	if not ok and not why.begins_with("Out of range"):
 		lines.append([why, Color(1.0, 0.5, 0.45)])
