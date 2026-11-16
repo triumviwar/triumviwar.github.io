@@ -19,7 +19,7 @@ A; the same map and seed).
    1.044 with P1 on A, 1.052 with P1 on B) and P1 v P2 was 31-28 (section 1).
 3. **The cause is the game measuring the two starts differently.** The Brood's rooted creatures' feet hang below their
    footprints on screen, toward the map's middle on spot A and toward its back on spot B; several Brood rules and the
-   Brood computer's spot choices measured from those feet (section 3). The biggest one is a rule: a far Rootmaw drinks
+   Brood computer's spot choices measured from those feet (section 3). One of them is a rule of the game: a far Rootmaw drinks
    its ground faster by its distance from the Mother, and spot B's Rootmaws (below their Mother on the turned map) read
    nearer and drank slower. Second, **every game on a map replayed the same opening** (both computers started thinking
    at 0:00 whatever the seed; the nine classic maps even share one opening), so the small differences a mirror can't
@@ -259,6 +259,12 @@ grub" holds per grub, not in total: the Brood's spot edge shows in every pairing
 - **P3. The Clockwork mirror** with the same tool: `python3 tools/study/brood_spot_study.py run OUT --pair cwcw`.
 - **P4. A guard**: a test that a Brood alone earns the same at both starts (team 0 with and without `spotswap`, three
   seeds, within 3% at 6:00), so new Brood code that measures from feet is caught.
+
+## Tests
+
+On the merged build (0.38.36): tools/test_start_layout.gd PASS (every map, every faction, 2 players and the most: the
+starts are still exact mirrors), tools/test_brood_mirror.gd ALL PASS. The probe tools/start_spots_mirror_probe.gd and
+tools/study/spot_trace.gd run clean (no script errors) with the switches on and off.
 
 ## Tools and switches
 
