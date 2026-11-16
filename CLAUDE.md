@@ -25,6 +25,16 @@
 
 ## Current work
 
+- CROWN COACH (owner 2026-11-15 22:20, coached by Claude in the session; branch crown-coach-1116 MERGED 0.38.38, owner "Yes"
+  2026-11-16 22:37; scripts/ai_crown_coach.gd AICrownCoach, docs/crown_coach_measure.md, docs/crown_coach_measure_2.md,
+  docs/crown_farmfirst_measure.md): FARM FIRST (2nd Farm before the Barracks, every plan but the Rush), LABOURERS FIRST with
+  THE ARMY FLOOR, HALLS ON TIME (2 by 3:30, 3 by 7:30, 4 by 11:30), an HONEST RECKONING of the Brood, NO BLIND RUSH, the
+  SCREEN FIRST, GUNS FIRST. Measured (190 games, 12:00): v Clockwork income 8:00 0.57 -> 0.68 (31 of 38, p<0.001), army
+  8:00 0.55 -> 0.71; v Brood the economy rules left it thin (army 5:00 120 v 360, outcome worse 12 v 3, p 0.035), so v the
+  Brood rules 1, 2, 4 are OFF (switch broodecon:on brings them back). Switches coach:off, labsfirst:off, hallsontime:off,
+  honest:off, norush:off, screenfirst:off, gunsfirst:off, farmfirst:off, armyfloor:off, broodecon:on. Next: a Brood-only
+  measure (crown-brood-measure) of the merged Crown v coach:off; an army floor tied to the scouted Brood army; guns still
+  march limbered, waves climb Clockwork ramps in a column.
 - CLOCKWORK V BROOD COACHED AGAIN (owner 2026-11-15 22:20 / 2026-11-16 07:07, K1; job clockwork-v-brood-coach-2, 0.38.37,
   docs/clockwork_v_brood_coach_2.md, scripts/ai_cw_brood.gd AICwBrood, tools/cw_trace.gd, tools/study/cvb2.py, pictures
   docs/shots/clockwork_v_brood_coach_2/): the Clockwork COMPUTER only, against the Brood only (no number changed): its first

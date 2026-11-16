@@ -44,6 +44,12 @@ class_name AICrownCoach
 ##    Now the guns set up that much sooner against an enemy that can close fast or is coming on: GUN_SET plus its speed
 ##    times (the unlimbering + GUN_SLACK s), and once they stand, a line facing an enemy that comes on HOLDS by its guns
 ##    and lets it walk into their fire (it went on alone to musket reach before). Switch `gunsfirst:off`.
+## 7. NOT THE ECONOMY RULES AGAINST THE BROOD (crown-coach-measure-2, docs/crown_coach_measure_2.md; the owner 2026-11-16
+##    22:37 "Yes"): v the Clockwork the coach as a whole helps (income 8:00 higher in 31 of 38, army 8:00 in 29 of 38), v
+##    the Brood rules 1, 2 and 4 leave the Crown thin at 5:00 (army 120 v 360 without the coach) and the unrushed Brood
+##    richer (outcome worse in 12 of 38, better in 3, p 0.035). So against the Brood LABOURERS FIRST, HALLS ON TIME and NO
+##    BLIND RUSH are off (the Crown opens as before, with FARM FIRST and the fight rules 3, 5, 6). Switch `broodecon:on`
+##    (all three back v the Brood, arm A of the measure).
 
 var ai          # the AICrown
 var game: Game
@@ -64,7 +70,15 @@ var guns_early_n := 0
 
 static func no_rush_v_brood() -> bool:
 	var a := OS.get_cmdline_user_args()
-	return not a.has("coach:off") and not a.has("norush:off")
+	return not a.has("coach:off") and not a.has("norush:off") and a.has("broodecon:on")
+
+
+var brood_econ_on := args.has("broodecon:on")
+
+
+## 7. the economy rules (1, 2) sit out against the Brood
+func econ_rules() -> bool:
+	return brood_econ_on or ai.vb() == null
 
 var labs_first_n := 0          # (the report) labourers this rule trained
 var labs_first_held_t := 0.0   # (the report) seconds it held gold for a labourer
@@ -118,7 +132,7 @@ func _threat_now() -> bool:
 
 
 func labs_wanted() -> bool:
-	if not labs_first_on or not active():
+	if not labs_first_on or not active() or not econ_rules():
 		return false
 	if ai._defending() or _threat_now():
 		return false
@@ -177,7 +191,7 @@ const HALL4_T := 690.0
 
 
 func halls_need() -> int:
-	if not halls_on_time_on or not active() or ai._defending() or _threat_now():
+	if not halls_on_time_on or not active() or not econ_rules() or ai._defending() or _threat_now():
 		return 0
 	if ai.dfn != null and ai.dfn.wants_soldiers():
 		return 0
@@ -189,7 +203,7 @@ const FULL_T := 150.0
 
 
 func bo_hall_now() -> bool:
-	if not halls_on_time_on or not active() or _threat_now() or game.clock < FULL_T:
+	if not halls_on_time_on or not active() or not econ_rules() or _threat_now() or game.clock < FULL_T:
 		return false
 	if ai._halls().size() != 1 or free_posts() > 1 or ai._mine("farm").filter(func(f: Building) -> bool: return f.built).size() < 2:
 		return false
