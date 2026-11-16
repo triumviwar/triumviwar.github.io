@@ -173,7 +173,7 @@ def main():
     P("")
     P("## Story lines (games with one, and lines in all)\n")
     STORY = [("musket line before more buildings (the v-Brood line rule, every arm)", "before more buildings"),
-             ("forms its musket line", "forms its musket line"), ("holds its wave", "holds its wave"),
+             ("keeps its army on time (the army clock)", "keeps its army on time"), ("forms its musket line", "forms its musket line"), ("holds its wave", "holds its wave"),
              ("Horseman rush", "rush")]
     P("| pairing (arm) | " + " | ".join(n for n, _ in STORY) + " |")
     P("|---|" + "---|" * len(STORY))

@@ -149,13 +149,13 @@ Outcome rank: won > led a draw > even draw > trailed a draw > lost. A sign test 
 
 ## Story lines (games with one, and lines in all)
 
-| pairing (arm) | musket line before more buildings (the v-Brood line rule, every arm) | forms its musket line | holds its wave | Horseman rush |
-|---|---|---|---|---|
-| Crown v Brood (A) | 285 in 38 | 19 in 13 | 27 in 20 | 0 in 0 |
-| Crown v Brood (B) | 290 in 38 | 17 in 11 | 2 in 2 | 65 in 24 |
-| Crown v Brood (C) | 292 in 38 | 1 in 1 | 32 in 17 | 131 in 37 |
-| Crown v Clockwork (A) | 0 in 0 | 31 in 18 | 3 in 3 | 1 in 1 |
-| Crown v Clockwork (C) | 0 in 0 | 28 in 18 | 6 in 5 | 5 in 1 |
+| pairing (arm) | musket line before more buildings (the v-Brood line rule, every arm) | keeps its army on time (the army clock) | forms its musket line | holds its wave | Horseman rush |
+|---|---|---|---|---|---|
+| Crown v Brood (A) | 285 in 38 | 0 in 0 | 19 in 13 | 27 in 20 | 0 in 0 |
+| Crown v Brood (B) | 290 in 38 | 0 in 0 | 17 in 11 | 2 in 2 | 65 in 24 |
+| Crown v Brood (C) | 292 in 38 | 0 in 0 | 1 in 1 | 32 in 17 | 131 in 37 |
+| Crown v Clockwork (A) | 0 in 0 | 129 in 38 | 31 in 18 | 3 in 3 | 1 in 1 |
+| Crown v Clockwork (C) | 0 in 0 | 131 in 38 | 28 in 18 | 6 in 5 | 5 in 1 |
 
 ## The Crown's OPTIMAL picks
 
