@@ -146,7 +146,7 @@ def queue(only=""):
 ERR = re.compile(r"(SCRIPT ERROR|^ERROR|USER ERROR|Invalid|Nonexistent|Cannot call)")
 
 
-def run_one(g, out, end, data):
+def run_one(g, out, end, data, extra=None):
     tag, m, seed, slots = g
     dd = os.path.join(data, tag)
     if os.path.exists(os.path.join(dd, "result.json")) or os.path.exists(os.path.join(dd, "FAILED.txt")):
@@ -155,7 +155,7 @@ def run_one(g, out, end, data):
     os.makedirs(d, exist_ok=True)
     spec = ",".join("%s/%s/%d" % s for s in slots)
     cmd = ["timeout", "3000", "godot", "--headless", "--fixed-fps", "30", "--path", RUN_ROOT, "--script",
-           "res://tools/qa_match.gd", "--", "map:" + m, "seed:%d" % seed, "end:%d" % end, "out:" + d, "slots:" + spec] + EXTRA
+           "res://tools/qa_match.gd", "--", "map:" + m, "seed:%d" % seed, "end:%d" % end, "out:" + d, "slots:" + spec] + EXTRA + (extra or [])
     with open(os.path.join(d, "run.out"), "wb") as f:
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         n = 0

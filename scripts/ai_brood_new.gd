@@ -175,6 +175,8 @@ func say(s: String) -> void:
 func _tick_ai(delta: float) -> void:
 	if game == null or game.over:
 		return
+	if not _phased:
+		_nb_think = first_phase([1.6, 1.0, 0.6, 0.4][clampi(difficulty, 0, 3)])      # (brood-spot-study: AI.first_phase)
 	_nb_think -= delta
 	if _nb_stage < NB_STAGES:
 		_nb_think_stage(_nb_stage)      # (a think goes on over the next ticks, a part each: docs/perf_armies.md)
@@ -1679,12 +1681,13 @@ func _nb_morphs_go(q: Unit) -> void:
 	if spot == null:
 		return
 	var best: Unit = null
+	var near_to: Vector2 = BroodRoot.sym_feet(game, team, k, spot) if BroodRoot.fair_spot else spot      # (brood-spot-study)
 	for u in game.units:
 		if u.team == team and not u.dead and u.kind == "grub" and u.carrying == 0 and u.cocoon <= 0.0 and u.order != "nb_morph" \
-				and u != _scout and (best == null or u.position.distance_squared_to(spot) < best.position.distance_squared_to(spot)):
+				and u != _scout and (best == null or u.position.distance_squared_to(near_to) < best.position.distance_squared_to(near_to)):
 			best = u
 	if best != null and not _layout_ok(k, spot, null):
-		if not (maweco_on and k == BroodNew.TURTLE and (spot as Vector2).distance_to(_qp(q)) < float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9):
+		if not (maweco_on and k == BroodNew.TURTLE and near_to.distance_to(_qp(q)) < float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9):
 			return
 		# (brood-rootmaw-coach: a supply turtle the layout refuses at home goes to new ground instead: before, the refusal
 		# ended the think, and from 8:00 to 9:30 on Greenhold no Rootmaw and no turtle came while it repeated)
@@ -1702,14 +1705,14 @@ func _nb_morphs_go(q: Unit) -> void:
 		best.give({"o": "nb_morph", "k": k, "p": spot})      # (it pays at once: BroodRoot.start_morph)
 		if BroodNew.is_father(k):
 			say("a grub goes to grow the %s" % BroodRoot.lure_name(k))
-		elif k == BroodNew.TURTLE and (spot as Vector2).distance_to(_qp(q)) >= float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9:
+		elif k == BroodNew.TURTLE and near_to.distance_to(_qp(q)) >= float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9:
 			_far_sent[str((spot as Vector2).round())] = game.clock
 			_far_last = game.clock
 			if _exp_due:
 				exp_sent += 1          # (the study: sent while new ground was due)
 			_fresh = null
 			_fresh_t = -99.0
-			say("a grub goes to root a Mound Turtle on new ground, %d tiles out" % int((spot as Vector2).distance_to(_qp(q)) / Defs.TILE))
+			say("a grub goes to root a Mound Turtle on new ground, %d tiles out" % int(near_to.distance_to(_qp(q)) / Defs.TILE))
 
 
 ## Room for one more Rootmaw (0.24.7: its 8-tile circles leave 2 or 3 round her and one round each turtle; with none
@@ -1963,9 +1966,10 @@ func _nb_far_spots(q: Unit, reach := 0.0, urgent := false) -> Array:
 			continue
 		if game.clock - float(_far_sent.get(str(p.round()), -999.0)) < 180.0:
 			continue          # (tried lately: the grub did not get there)
-		if p.distance_to(_qp(q)) > (reach if reach > 0.0 else (28.0 if _eco() and not BroodNew.expansions(game, q).is_empty() else 30.0)) * Defs.TILE:
+		var pm: Vector2 = BroodRoot.sym_feet(game, team, BroodNew.TURTLE, p) if BroodRoot.fair_spot else p      # (brood-spot-study: measured as the first start would)
+		if pm.distance_to(_qp(q)) > (reach if reach > 0.0 else (28.0 if _eco() and not BroodNew.expansions(game, q).is_empty() else 30.0)) * Defs.TILE:
 			continue          # (too far to guard: near the enemy's side)
-		if _foe_near(p, 12.0 * Defs.TILE):
+		if _foe_near(pm, 12.0 * Defs.TILE):
 			continue
 		if maweco_on and _site_unsafe(p):
 			continue
@@ -1988,8 +1992,9 @@ func _site_unsafe(p: Vector2) -> bool:
 
 
 func _toward_foe(q: Unit, p: Vector2) -> bool:
-	var foe := _nb_nearest_foe_pos(p)
-	return foe != Vector2.INF and foe.distance_to(p) < _qp(q).distance_to(p)
+	var pm: Vector2 = BroodRoot.sym_feet(game, team, BroodNew.TURTLE, p) if BroodRoot.fair_spot else p      # (brood-spot-study)
+	var foe := _nb_nearest_foe_pos(pm)
+	return foe != Vector2.INF and foe.distance_to(pm) < _qp(q).distance_to(pm)
 
 
 ## THE OWNER'S BUILD (2026-10-30 07:15, docs/brood_eco.md): the plan's "eco" (every profile but the rushes). The first
@@ -2010,7 +2015,8 @@ func _nb_eco_sites(q: Unit) -> Array:
 	var out: Array = []
 	for s in es.nb_cands.get(team, []):
 		var feet := BroodRoot.feet_at(BroodNew.TURTLE, s["tc"])
-		if _qp(q).distance_to(feet) < far or counted.any(func(o: Unit) -> bool: return o.position.distance_to(feet) < far):
+		var fm: Vector2 = BroodRoot.sym_feet(game, team, BroodNew.TURTLE, feet) if BroodRoot.fair_spot else feet      # (brood-spot-study)
+		if _qp(q).distance_to(fm) < far or counted.any(func(o: Unit) -> bool: return o.position.distance_to(feet) < far):
 			continue
 		var taken := false
 		for u in game.units_near(feet, 7.0 * Defs.TILE):
@@ -2396,7 +2402,7 @@ func _nb_find_spot_go(q: Unit, m: Unit):
 	var centres: Array = [[_qp(q), [8.0, 11.0, 14.0, 17.0, 20.0], BroodRoot.feet_k(game, team, q)]]
 	var far := float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9
 	for t in _nb_mine(BroodNew.TURTLE):
-		if BroodNew.rooted(t) and t.position.distance_to(_qp(q)) >= far:
+		if BroodNew.rooted(t) and (BroodRoot.anchor(game, t) if BroodRoot.fair_spot else t.position).distance_to(_qp(q)) >= far:      # (brood-spot-study)
 			centres.append([t.position, [4.5, 6.0, 7.5, 8.5], BroodRoot.feet_k(game, team, t)])
 	var qk := BroodRoot.feet_k(game, team, q)
 	var from: Vector2 = BroodRoot.feet_k(game, team, m) if m != null else qk
@@ -2430,12 +2436,13 @@ func _nb_find_spot_go(q: Unit, m: Unit):
 					# (the owner's build: a Rootmaw at the FAR edge of the ground it roots on, the expansions first: a load
 					# from farther pays more and the Rootmaw takes more grubs; its draw is the same, so fewer eggs make it pay)
 					s = -p_k.distance_to(qk) * 0.5 + (0.0 if ci > 0 else 400.0) + (60.0 if int(game.height[game.idx(c)]) != h else 0.0) + p_k.distance_to(from) * 0.1
-				var foe := _nb_nearest_foe_pos(p)
+				var pm: Vector2 = BroodRoot.sym_feet(game, team, BroodNew.MAW, p) if BroodRoot.fair_spot else p      # (brood-spot-study)
+				var foe := _nb_nearest_foe_pos(pm)
 				if foe != Vector2.INF:
-					s -= foe.distance_to(p) * 0.15         # (a little away from the enemy)
+					s -= foe.distance_to(pm) * 0.15         # (a little away from the enemy)
 				if s >= bs:
 					continue          # (the enemy near only adds to it: no better than the best whatever it says)
-				if _foe_near(p, 10.0 * Defs.TILE):
+				if _foe_near(pm, 10.0 * Defs.TILE):
 					s += 2000.0
 				if s < bs:
 					bs = s
@@ -2455,8 +2462,11 @@ func _nb_marked_spot(q: Unit, m: Unit):
 	for e in RootmawSpots.spots_cached(game, team):
 		var p: Vector2 = e["p"]
 		var src: Unit = e["src"]
-		var out := src.kind == BroodNew.TURTLE and src.position.distance_to(_qp(q)) >= far      # (a turtle on new ground)
-		var p_k := game.sym_pt(team, p)
+		var out := src.kind == BroodNew.TURTLE and (BroodRoot.anchor(game, src) if BroodRoot.fair_spot else src.position).distance_to(_qp(q)) >= far      # (a turtle on new ground)
+		# (brood-spot-study: the spot's feet in the first start's frame, as qk and from are: the plain mirror of the feet
+		# was a tile and a half off on a mirrored start, so the far-edge sums ran differently there)
+		var p_k: Vector2 = BroodRoot.feet_at(BroodNew.MAW, game.sym_rect(team, BroodRoot.cell_for(BroodNew.MAW, p), BroodRoot.fp(BroodNew.MAW)[0])) if BroodRoot.fair_spot else game.sym_pt(team, p)
+		var pm: Vector2 = BroodRoot.sym_feet(game, team, BroodNew.MAW, p) if BroodRoot.fair_spot else p
 		var soon := not BroodNew.maw_on_swamp(game, team, p) and BroodNew.swamp_coming(game, team, BroodRoot.rect_for(BroodNew.MAW, p).get_center())
 		if not soon and not BroodNew.maw_on_swamp(game, team, p):
 			continue
@@ -2469,8 +2479,8 @@ func _nb_marked_spot(q: Unit, m: Unit):
 			s = -p_k.distance_to(qk) * 0.5 + (0.0 if out else 400.0) + p_k.distance_to(from) * 0.1
 		var foe := _nb_nearest_foe_pos(p)
 		if foe != Vector2.INF:
-			s -= foe.distance_to(p) * 0.15
-		if _foe_near(p, 10.0 * Defs.TILE):
+			s -= foe.distance_to(pm) * 0.15
+		if _foe_near(pm, 10.0 * Defs.TILE):
 			s += 2000.0
 		if s < bs:
 			bs = s

@@ -40,6 +40,7 @@ var _idle_w: Array = []         # (clockwork-ai-v2) per player: [sum of idle wor
 
 
 var _riders_seen: Dictionary = {}     # (balance-raptor-horseman) every Horseman / Cuirassier seen in the saddle: id -> team
+var _roots_seen: Dictionary = {}     # (brood-spot-study) Rootmaw / Mound Turtle instance id -> true (its "root" event logged)
 var _tech_at: Dictionary = {}        # (keen-sabres-test) "team:research" -> the clock it was first seen done
 
 func _initialize() -> void:
@@ -397,6 +398,7 @@ func _every5() -> void:
 			if _brood_exp[tm] >= 0 and c < _brood_exp[tm]:
 				events.append({"t": int(g.clock), "p": tm, "ev": "brood_ground_lost", "from": _brood_exp[tm], "to": c})
 			_brood_exp[tm] = c
+			_log_roots(tm)
 		# money and no spending; no production
 		var st: Dictionary = g.stats[tm]
 		var sp := int(st["spent"])
@@ -617,8 +619,29 @@ func _finish() -> void:
 		"slots": slots, "end": int(round(g.clock)), "over": g.over,
 		"winner": g.winner if g.over else -1, "winner_side": (g.sides[g.winner] if g.over and g.winner >= 0 else -1),
 		"minutes": minutes, "final": endl, "events": events, "reads": reads, "riders_seen": _riders_count(), "tech_at": _tech_at,
-		"deaths": g.death_log if g.death_log != null else []}
+		"deaths": g.death_log if g.death_log != null else [],
+		"starts": g.starts.map(func(c: Vector2i) -> Array: return [c.x, c.y]),      # (brood-spot-study: each player's start cell)
+		"start_flip": g.start_flip.map(func(f: Vector2i) -> Array: return [f.x, f.y])}
 	var r := FileAccess.open(out.path_join("result.json"), FileAccess.WRITE)
 	r.store_string(JSON.stringify(res))
 	r.close()
 	print("done ", out)
+
+
+## (brood-spot-study, docs/brood_spot_study.md) every Rootmaw and Mound Turtle the first time it is seen rooted: an event
+## {"ev": "root", "kind", "at" (cell), "canon" (the cell turned onto the top-left start's side by the map's mirror, so both
+## spots read alike), "steps" (from its own start, cells)}
+func _log_roots(tm: int) -> void:
+	for u: Unit in g.units:
+		if u.team != tm or u.dead or (u.kind != BroodNew.MAW and u.kind != BroodNew.TURTLE):
+			continue
+		var id: int = u.get_instance_id()
+		if _roots_seen.has(id) or not BroodNew.rooted(u):
+			continue
+		_roots_seen[id] = true
+		var c := Vector2i(u.position / Defs.TILE)
+		var f: Vector2i = g.start_flip[tm] if g.start_flip.size() > tm else Vector2i.ZERO
+		var cc := Vector2i(Game.W - 1 - c.x if f.x == 1 else c.x, Game.H - 1 - c.y if f.y == 1 else c.y)
+		var home := Vector2(g.starts[tm]) + Vector2(2.5, 2.0)
+		events.append({"t": int(g.clock), "p": tm, "ev": "root", "kind": String(u.kind), "at": [c.x, c.y], "canon": [cc.x, cc.y],
+			"d": snappedf(Vector2(c).distance_to(home), 0.1)})
