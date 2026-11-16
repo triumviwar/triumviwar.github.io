@@ -73,6 +73,7 @@ const PLANS := {
 	},
 }
 
+const CwBrood := preload("res://scripts/ai_cw_brood.gd")      # (clockwork-v-brood-coach-2)
 const RUSH_MIN := 3              # Clock Soldiers the rush reaction trains at least
 const RUSH_MAX := 8              # ... and at most
 const RUSH_K := 1.4              # ... else the supply of army seen times this, plus one
@@ -182,6 +183,9 @@ func urgent() -> void:
 			", and a Ratchet Turret by the ramp (%d value of army seen)" % int(ra[0]) if rush_turret else ""])
 	if not rush:
 		return
+	CwBrood.rush_winders(ai)     # (clockwork-v-brood-coach-2: one Clocktower keeps its Winders coming)
+	if CwBrood.rush_over(self):
+		return                  # (clockwork-v-brood-coach-2: the rush is over; its soldiers no longer come first)
 	# the Light Works
 	var works: Array = ai._mine(ai._works())
 	if works.is_empty():

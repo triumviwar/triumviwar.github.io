@@ -38,6 +38,7 @@ const CwMacro := preload("res://scripts/ai_cw_macro.gd")
 var macro = null                # (econ-coach-clockwork: scripts/ai_cw_macro.gd; `-- cwmacro:off` plays as before)
 
 const CwArmy := preload("res://scripts/ai_cw_army.gd")
+const CwBrood := preload("res://scripts/ai_cw_brood.gd")      # (clockwork-v-brood-coach-2, docs/clockwork_v_brood_coach_2.md)
 var army_g = null
 var harass_on := not OS.get_cmdline_user_args().has("cwharass:off")      # (clockwork-ai-v2: `-- cwharass:off` as 0.33.11)
 ## The push settings of the plans that have none of their own (Economy, Balanced, the Springer timing and the Clock Soldier
@@ -219,6 +220,7 @@ func _make_plan() -> void:
 	for k in over:
 		plan[k] = over[k]
 	steps = (plan["steps"] as Array).duplicate()
+	steps = CwBrood.tech_steps(self, steps)      # (clockwork-v-brood-coach-2: the Escapement with the new presses v the Brood)
 	done.resize(steps.size())
 	done.fill(false)
 	worker_goal = int(plan["workers0"])
@@ -350,7 +352,8 @@ func _produce() -> void:
 	if not bo_on:
 		if not _keeping():
 			_b_keep()       # (cw-builds-b: the plan's heavy machines first, after the opening; clockwork-ai-v2: not out of the
-			BrassSerpent.ai_produce(self)       # (brass-serpent: OPTIMAL only, a few Brass Serpents by matchup fed with gears;
+			if not CwBrood.serpent_waits(self):     # (clockwork-v-brood-coach-2: the Pendulums first against the Brood)
+				BrassSerpent.ai_produce(self)       # (brass-serpent: OPTIMAL only, a few Brass Serpents by matchup fed with gears;
 			# `-- serpent:off` off: scripts/brass_serpent.gd)
 		super._produce()    # new hall's cogs: AI._keeping)
 
@@ -373,6 +376,8 @@ func _build_up() -> void:
 		return
 	if bo_on and _stuck_hand_over():
 		return
+	if bo_on and CwBrood.hand_over(self):
+		return              # (clockwork-v-brood-coach-2: against the Brood the shared rules once the new presses are laid)
 	if bo_on:
 		_bo_tick()
 	else:

@@ -1,0 +1,199 @@
+0:05 t0 cogs 243 hold 0 ten 0 | W 4 goal 14 | bo on step [7 regulator]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 5/10 | plan balanced 
+0:10 t0 cogs 272 hold 0 ten 0 | W 4 goal 14 | bo on step [7 regulator]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 5/10 | plan balanced 
+0:15 t0 cogs 240 hold 0 ten 0 | W 5 goal 14 | bo on step [7 regulator]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 6/10 | plan balanced 
+0:20 t0 cogs 271 hold 0 ten 0 | W 5 goal 14 | bo on step [7 regulator]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 6/10 | plan balanced 
+0:25 t0 cogs 140 hold 0 ten 0 | W 6 goal 14 | bo on step [8 cog_press]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 7/10 | plan balanced 
+0:30 t0 cogs 168 hold 0 ten 0 | W 6 goal 14 | bo on step [8 cog_press]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 7/10 | plan balanced 
+0:35 t0 cogs 201 hold 0 ten 0 | W 6 goal 14 | bo on step [8 cog_press]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 7/10 | plan balanced 
+0:40 t0 cogs 37 hold 400 ten 0 | W 7 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 8/10 | plan balanced 
+0:45 t0 cogs 73 hold 400 ten 0 | W 7 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 8/10 | plan balanced 
+0:50 t0 cogs 49 hold 400 ten 0 | W 8 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 9/10 | plan balanced 
+0:55 t0 cogs 85 hold 400 ten 0 | W 8 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 9/20 | plan balanced 
+1:00 t0 cogs 121 hold 400 ten 0 | W 8 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 9/20 | plan balanced 
+1:05 t0 cogs 97 hold 400 ten 0 | W 9 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 10/20 | plan balanced 
+1:10 t0 cogs 133 hold 400 ten 0 | W 9 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 10/20 | plan balanced 
+1:15 t0 cogs 109 hold 400 ten 0 | W 10 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 11/20 | plan balanced 
+1:20 t0 cogs 173 hold 400 ten 0 | W 10 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 11/20 | plan balanced 
+1:25 t0 cogs 238 hold 400 ten 0 | W 10 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 11/20 | plan balanced 
+1:30 t0 cogs 246 hold 400 ten 0 | W 11 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 12/20 | plan balanced 
+1:35 t0 cogs 304 hold 400 ten 0 | W 11 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 12/20 | plan balanced 
+1:40 t0 cogs 290 hold 400 ten 0 | W 12 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 13/20 | plan balanced 
+1:45 t0 cogs 340 hold 400 ten 0 | W 12 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 13/20 | plan balanced 
+1:50 t0 cogs 401 hold 400 ten 0 | W 12 goal 15 | bo on step [clocktower]  | swarm n0 v0 out | army 0 {} | halls ["winder"] | works [] | sup 13/20 | plan balanced 
+1:55 t0 cogs 13 hold 150 ten 0 | W 13 goal 15 | bo on step [movement_works]  | swarm n0 v0 out | army 0 {} | halls ["winder", "~"] | works [] | sup 14/20 | plan balanced 
+2:00 t0 cogs 85 hold 150 ten 0 | W 13 goal 15 | bo on step [movement_works]  | swarm n0 v0 out | army 0 {} | halls ["winder", "~"] | works [] | sup 14/20 | plan balanced 
+2:05 t0 cogs 7 hold 140 ten 0 | W 13 goal 15 | bo on step [mainspring]  | swarm n0 v0 out | army 0 {} | halls ["winder", "~"] | works ["~"] | sup 14/20 | plan balanced 
+2:10 t0 cogs 19 hold 140 ten 0 | W 14 goal 15 | bo on step [mainspring]  | swarm n0 v150 out | army 0 {} | halls ["winder", "~"] | works ["~"] | sup 15/20 | plan balanced 
+2:15 t0 cogs 91 hold 140 ten 0 | W 14 goal 15 | bo on step [mainspring]  | swarm n0 v150 out | army 0 {} | halls ["winder", "~"] | works ["~"] | sup 15/20 | plan balanced 
+2:20 t0 cogs 23 hold 100 ten 0 | W 14 goal 15 | bo on step [15 regulator]  | swarm n0 v150 out | army 0 {} | halls ["winder", "~"] | works ["~"] | sup 15/20 | plan balanced 
+2:25 t0 cogs 95 hold 100 ten 0 | W 15 goal 15 | bo on step [15 regulator]  | swarm n0 v150 out | army 0 {} | halls ["", "~"] | works ["~"] | sup 15/20 | plan balanced 
+2:30 t0 cogs 7 hold 0 ten 0 | W 15 goal 22 | bo on step [clock_soldier 2]  | swarm n0 v150 out | army 0 {} | halls ["winder", "~"] | works ["~"] | sup 16/20 | plan balanced 
+2:35 t0 cogs 79 hold 0 ten 0 | W 15 goal 22 | bo on step [clock_soldier 2]  | swarm n0 v150 out | army 0 {} | halls ["winder", "~"] | works ["~"] | sup 16/20 | plan balanced 
+2:40 t0 cogs 151 hold 0 ten 0 | W 15 goal 22 | bo on step [clock_soldier 2]  | swarm n0 v0 out | army 0 {} | halls ["winder", "~"] | works ["~"] | sup 16/20 | plan balanced 
+2:45 t0 cogs 163 hold 0 ten 0 | W 16 goal 22 | bo on step [clock_soldier 2]  | swarm n0 v0 out | army 0 {} | halls ["winder", "~"] | works ["~"] | sup 17/20 | plan balanced 
+2:50 t0 cogs 165 hold 0 ten 0 | W 16 goal 22 | bo on step [clock_soldier 2]  | swarm n0 v0 out | army 0 {} | halls ["winder", "~"] | works ["clock_soldier"] | sup 18/20 | plan balanced 
+2:55 t0 cogs 177 hold 0 ten 0 | W 17 goal 22 | bo on step [clock_soldier 2]  | swarm n0 v0 out | army 0 {} | halls ["winder", "~"] | works ["clock_soldier"] | sup 19/30 | plan balanced 
+3:00 t0 cogs 249 hold 0 ten 0 | W 17 goal 22 | bo on step [clock_soldier 2]  | swarmON n10 v250 out! | army 0 {} | halls ["winder", "~"] | works ["clock_soldier"] | sup 19/30 | plan balanced 
+WINDER DIED 3:03 t0 move by raptor: building 1903 px, armed unit 1998 px
+3:05 t0 cogs 47 hold 140 ten 6 | W 16 goal 22 | bo on step [press_new]  | swarmON n10 v250 out! | army 70 {"clock_soldier":1} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 20/40 | plan balanced 
+3:10 t0 cogs 58 hold 140 ten 13 | W 17 goal 22 | bo on step [press_new]  | swarmON n10 v250 out! | army 70 {"clock_soldier":1} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 21/40 | plan balanced 
+3:15 t0 cogs 70 hold 140 ten 23 | W 18 goal 22 | bo on step [press_new]  | swarmON n10 v250 out! | army 70 {"clock_soldier":1} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 22/40 | plan balanced 
+3:20 t0 cogs 82 hold 140 ten 33 | W 19 goal 22 | bo on step [press_new]  | swarmON n10 v250 out | army 140 {"clock_soldier":2} | halls ["winder", "winder"] | works [""] | sup 23/40 | plan balanced 
+3:25 t0 cogs 84 hold 140 ten 43 | W 19 goal 22 | bo on step [press_new] rush n8 | swarmON n10 v250 out | army 140 {"clock_soldier":2} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 24/40 | plan balanced 
+3:30 t0 cogs 96 hold 140 ten 52 | W 20 goal 22 | bo on step [press_new] rush n8 | swarmON n10 v250 out! | army 0 {} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 23/40 | plan balanced 
+WINDER DIED 3:34 t0 move by raptor: building 298 px, armed unit -1 px
+3:35 t0 cogs 108 hold 140 ten 62 | W 20 goal 22 | bo on step [press_new] rush n8 | swarmON n10 v250 out! | army 0 {} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 23/40 | plan balanced 
+WINDER DIED 3:37 t0 move by raptor: building 286 px, armed unit 586 px
+3:40 t0 cogs 50 hold 140 ten 72 | W 20 goal 22 | bo on step [press_new] rush n8 | swarmON n10 v250 out! | army 70 {"clock_soldier":1} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 24/40 | plan balanced 
+3:45 t0 cogs 121 hold 140 ten 81 | W 20 goal 22 | bo on step [press_new] rush n8 | swarmON n10 v250 out! | army 0 {} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 23/40 | plan balanced 
+WINDER DIED 3:47 t0 attack by raptor: building 86 px, armed unit -1 px
+WINDER DIED 3:49 t0 attack by raptor: building 80 px, armed unit -1 px
+3:50 t0 cogs 100 hold 140 ten 88 | W 19 goal 22 | bo on step [press_new] rush n8 | swarmON n10 v250 out! | army 0 {} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 22/40 | plan balanced 
+WINDER DIED 3:50 t0 attack by raptor: building 86 px, armed unit -1 px
+WINDER DIED 3:54 t0 move by raptor: building 107 px, armed unit 205 px
+3:55 t0 cogs 41 hold 140 ten 96 | W 18 goal 22 | bo on step [press_new] rush n8 | swarm n9 v225 out | army 70 {"clock_soldier":1} | halls ["winder", ""] | works ["clock_soldier"] | sup 21/40 | plan balanced 
+WINDER DIED 3:57 t0 repair by raptor: building 256 px, armed unit 140 px
+4:00 t0 cogs 2 hold 140 ten 105 | W 17 goal 22 | bo on step [press_new] rush n8 | swarm n8 v200 out | army 70 {"clock_soldier":1} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 21/40 | plan balanced 
+4:05 t0 cogs 43 hold 210 ten 114 | W 18 goal 22 | bo on step [press_new] rush n8 | swarm n7 v175 out | army 70 {"clock_soldier":1} | halls ["", "winder"] | works [""] | sup 20/40 | plan balanced 
+WINDER DIED 4:05 t0 move by raptor: building 90 px, armed unit 684 px
+4:10 t0 cogs 37 hold 140 ten 123 | W 17 goal 22 | bo on step [press_new] rush n8 | swarm n7 v175 out | army 70 {"clock_soldier":1} | halls ["", "winder"] | works ["clock_soldier"] | sup 20/40 | plan balanced 
+WINDER DIED 4:10 t0 move by raptor: building 143 px, armed unit 151 px
+4:15 t0 cogs 36 hold 140 ten 133 | W 17 goal 22 | bo on step [press_new] rush n8 | swarm n6 v150 out | army 70 {"clock_soldier":1} | halls ["winder", ""] | works ["clock_soldier"] | sup 20/40 | plan balanced 
+4:20 t0 cogs 22 hold 140 ten 142 | W 17 goal 22 | bo on step [press_new] rush n8 | swarm n6 v150 out | army 0 {} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 20/40 | plan balanced 
+WINDER DIED 4:21 t0 move by raptor: building 167 px, armed unit 80 px
+4:25 t0 cogs 12 hold 140 ten 150 | W 17 goal 22 | bo on step [press_new] rush n8 | swarm n6 v150 out | army 70 {"clock_soldier":1} | halls ["", "winder"] | works ["clock_soldier"] | sup 20/40 | plan balanced 
+4:30 t0 cogs 43 hold 140 ten 159 | W 17 goal 22 | bo on step [press_new] rush n8 | swarm n4 v100 out | army 70 {"clock_soldier":1} | halls ["", "winder"] | works ["clock_soldier"] | sup 20/40 | plan balanced 
+4:35 t0 cogs 15 hold 140 ten 168 | W 18 goal 22 | bo on step [press_new] rush n8 | swarm n4 v100 out | army 70 {"clock_soldier":1} | halls ["winder", ""] | works ["clock_soldier"] | sup 21/40 | plan balanced 
+4:40 t0 cogs 15 hold 140 ten 177 | W 18 goal 22 | bo on step [press_new] rush n8 | swarm n2 v50 out | army 140 {"clock_soldier":2} | halls ["winder", ""] | works ["clock_soldier"] | sup 22/40 | plan balanced 
+4:45 t0 cogs 33 hold 140 ten 186 | W 18 goal 22 | bo on step [press_new] rush n8 | swarm n2 v50 out | army 140 {"clock_soldier":2} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 23/40 | plan balanced 
+4:50 t0 cogs 52 hold 140 ten 194 | W 19 goal 22 | bo on step [press_new] rush n8 | swarm n2 v50 out | army 140 {"clock_soldier":2} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 24/40 | plan balanced 
+4:55 t0 cogs 66 hold 140 ten 200 | W 19 goal 22 | bo on step [press_new] rush n8 | swarm n2 v50 out | army 210 {"clock_soldier":3} | halls ["winder", "winder"] | works ["clock_soldier"] | sup 25/40 | plan balanced 
+5:00 t0 cogs 106 hold 140 ten 200 | W 21 goal 22 | bo on step [press_new] rush n8 | swarm n2 v50 out | army 210 {"clock_soldier":3} | halls ["", "winder"] | works ["clock_soldier"] | sup 26/40 | plan balanced 
+5:05 t0 cogs 63 hold 150 ten 200 | W 21 goal 22 | bo on step [escapement] rush n8 | swarm n2 v50 out | army 210 {"clock_soldier":3} | halls ["", "winder"] | works ["clock_soldier"] | sup 26/40 | plan balanced 
+5:10 t0 cogs 89 hold 150 ten 200 | W 22 goal 22 | bo on step [escapement] rush n8 | swarm n2 v50 out | army 280 {"clock_soldier":4} | halls ["", ""] | works ["clock_soldier"] | sup 27/40 | plan balanced 
+5:15 t0 cogs 38 hold 150 ten 200 | W 22 goal 22 | bo off step [] rush n8 | swarm n2 v50 out | army 280 {"clock_soldier":4} | halls ["", ""] | works ["clock_soldier"] | sup 27/40 | plan balanced 
+5:20 t0 cogs 9 hold 150 ten 200 | W 22 goal 22 | bo off step [] rush n8 | swarm n2 v50 out | army 280 {"clock_soldier":4} | halls ["winder", ""] | works ["clock_soldier,clock_soldier"] | sup 29/40 | plan balanced 
+5:25 t0 cogs 40 hold 150 ten 200 | W 22 goal 22 | bo off step [] rush n8 | swarm n2 v50 out | army 350 {"clock_soldier":5} | halls ["winder", ""] | works ["clock_soldier,clock_soldier"] | sup 30/40 | plan balanced 
+5:30 t0 cogs 16 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarm n2 v50 out | army 350 {"clock_soldier":5} | halls ["", ""] | works ["clock_soldier,clock_soldier"] | sup 30/40 | plan balanced 
+5:35 t0 cogs 123 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarm n2 v50 out | army 350 {"clock_soldier":5} | halls ["", ""] | works ["clock_soldier,clock_soldier"] | sup 30/40 | plan balanced 
+5:40 t0 cogs 61 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarmON n20 v500 out | army 420 {"clock_soldier":6} | halls ["", ""] | works ["clock_soldier,clock_soldier"] | sup 31/40 | plan balanced 
+5:45 t0 cogs 27 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarmON n20 v500 out | army 420 {"clock_soldier":6} | halls ["", ""] | works ["clock_soldier,clock_soldier", "~"] | sup 31/40 | plan balanced 
+5:50 t0 cogs 76 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarmON n20 v500 out | army 490 {"clock_soldier":7} | halls ["", ""] | works ["clock_soldier,clock_soldier", "~"] | sup 32/40 | plan balanced 
+5:55 t0 cogs 180 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarmON n19 v475 out | army 490 {"clock_soldier":7} | halls ["", ""] | works ["clock_soldier,clock_soldier", "~"] | sup 32/40 | plan balanced 
+6:00 t0 cogs 311 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarmON n19 v475 out | army 490 {"clock_soldier":7} | halls ["", ""] | works ["clock_soldier,clock_soldier", "~"] | sup 32/40 | plan balanced 
+6:05 t0 cogs 256 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarmON n19 v475 out | army 560 {"clock_soldier":8} | halls ["", ""] | works ["clock_soldier", "~"] | sup 32/50 | plan balanced 
+6:10 t0 cogs 374 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarmON n19 v475 out | army 560 {"clock_soldier":8} | halls ["", ""] | works ["clock_soldier", "~"] | sup 32/50 | plan balanced 
+6:15 t0 cogs 31 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarmON n19 v475 out | army 560 {"clock_soldier":8} | halls ["winder", "", "~"] | works ["clock_soldier", "~"] | sup 33/50 | plan balanced 
+6:20 t0 cogs 19 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarmON n21 v525 out | army 630 {"clock_soldier":9} | halls ["winder,winder", "winder", "~"] | works ["", "~"] | sup 35/50 | plan balanced 
+6:25 t0 cogs 69 hold 150 ten 200 | W 23 goal 22 | bo off step [] rush n8 | swarmON n21 v525 out | army 630 {"clock_soldier":9} | halls ["winder,winder", "winder,winder", "~"] | works ["", "~"] | sup 36/50 | plan balanced 
+6:30 t0 cogs 125 hold 150 ten 200 | W 24 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 630 {"clock_soldier":9} | halls ["winder,winder", "winder,winder", "~"] | works ["", ""] | sup 37/50 | plan balanced 
+6:35 t0 cogs 112 hold 150 ten 200 | W 25 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 630 {"clock_soldier":9} | halls ["winder,winder", "winder", "~"] | works ["", ""] | sup 37/50 | plan balanced 
+6:40 t0 cogs 8 hold 150 ten 156 | W 26 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 630 {"clock_soldier":9} | halls ["winder", "winder", "~"] | works ["netter", ""] | sup 39/50 | plan balanced 
+6:45 t0 cogs 36 hold 150 ten 140 | W 27 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 630 {"clock_soldier":9} | halls ["winder", "", "~"] | works ["netter,springer", ""] | sup 41/50 | plan balanced 
+6:50 t0 cogs 80 hold 150 ten 123 | W 27 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 630 {"clock_soldier":9} | halls ["winder", "", "~"] | works ["netter,springer", "springer"] | sup 43/50 | plan balanced 
+6:55 t0 cogs 24 hold 150 ten 106 | W 28 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 630 {"clock_soldier":9} | halls ["", "", "~"] | works ["netter,springer", "springer,springer"] | sup 45/50 | plan balanced 
+7:00 t0 cogs 168 hold 150 ten 115 | W 28 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 630 {"clock_soldier":9} | halls ["", "", "~"] | works ["netter,springer", "springer,springer"] | sup 45/50 | plan balanced 
+7:05 t0 cogs 47 hold 150 ten 48 | W 28 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 755 {"clock_soldier":9,"netter":1} | halls ["winder", "", "~"] | works ["springer", "springer,springer"] | sup 50/60 | plan balanced 
+7:10 t0 cogs 43 hold 150 ten 56 | W 28 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 855 {"clock_soldier":9,"netter":1,"springer":1} | halls ["winder", "", "~"] | works ["springer,clock_soldier", "springer,clock_soldier"] | sup 52/60 | plan balanced 
+7:15 t0 cogs 173 hold 150 ten 64 | W 29 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 855 {"clock_soldier":9,"netter":1,"springer":1} | halls ["", "", "~"] | works ["springer,clock_soldier", "springer,clock_soldier"] | sup 52/60 | plan balanced 
+7:20 t0 cogs 168 hold 150 ten 72 | W 29 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 855 {"clock_soldier":9,"netter":1,"springer":1} | halls ["", "", ""] | works ["springer,clock_soldier", "springer,clock_soldier"] | sup 52/80 | plan balanced 
+7:25 t0 cogs 229 hold 150 ten 80 | W 29 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 955 {"clock_soldier":9,"netter":1,"springer":2} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "springer,clock_soldier"] | sup 53/80 | plan balanced 
+7:30 t0 cogs 366 hold 150 ten 88 | W 29 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 955 {"clock_soldier":9,"netter":1,"springer":2} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "springer,clock_soldier"] | sup 53/80 | plan balanced 
+7:35 t0 cogs 282 hold 150 ten 96 | W 29 goal 22 | bo off step [] rush n8 | swarmON n23 v575 out | army 1055 {"clock_soldier":9,"netter":1,"springer":3} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 54/80 | plan balanced 
+7:40 t0 cogs 149 hold 150 ten 29 | W 29 goal 22 | bo off step [] rush n8 | swarmON n29 v725 out | army 1325 {"clock_soldier":10,"netter":1,"pendulum":1,"springer":3} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 59/80 | plan balanced 
+WINDER DIED 7:41 t0 move by raptor: building 1524 px, armed unit 1402 px
+7:45 t0 cogs 226 hold 150 ten 37 | W 28 goal 22 | bo off step [] rush n8 | swarmON n29 v725 out | army 1325 {"clock_soldier":10,"netter":1,"pendulum":1,"springer":3} | halls ["winder", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 59/80 | plan balanced 
+7:50 t0 cogs 297 hold 150 ten 45 | W 28 goal 22 | bo off step [] rush n8 | swarmON n29 v725 out | army 1395 {"clock_soldier":11,"netter":1,"pendulum":1,"springer":3} | halls ["winder", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 60/80 | plan balanced 
+7:55 t0 cogs 371 hold 150 ten 52 | W 29 goal 22 | bo off step [] rush n8 | swarmON n29 v725 out | army 1465 {"clock_soldier":12,"netter":1,"pendulum":1,"springer":3} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 61/80 | plan balanced 
+8:00 t0 cogs 445 hold 150 ten 60 | W 29 goal 22 | bo off step [] rush n8 | swarmON n32 v800 out | army 1365 {"clock_soldier":12,"netter":1,"pendulum":1,"springer":2} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 59/80 | plan balanced 
+8:05 t0 cogs 377 hold 150 ten 67 | W 29 goal 22 | bo off step [] rush n8 | swarmON n27 v765 out | army 985 {"clock_soldier":8,"netter":1,"pendulum":1,"springer":1} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 53/80 | plan balanced 
+8:10 t0 cogs 94 hold 150 ten 25 | W 29 goal 22 | bo off step [] rush n8 | swarmON n23 v755 out! | army 580 {"clock_soldier":4,"pendulum":1,"springer":1} | halls ["winder", "winder", "winder"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 50/80 | plan balanced 
+WINDER DIED 8:11 t0 idle by raptor: building 90 px, armed unit 147 px
+WINDER DIED 8:11 t0 repair by raptor: building 71 px, armed unit 147 px
+8:15 t0 cogs 92 hold 150 ten 32 | W 27 goal 22 | bo off step [] rush n8 | swarmON n22 v775 out | army 610 {"clock_soldier":3,"pendulum":2} | halls ["winder,winder", "winder", "winder"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 46/80 | plan balanced 
+8:20 t0 cogs 21 hold 150 ten 40 | W 30 goal 22 | bo off step [] rush n8 | swarmON n27 v945 out! | army 610 {"clock_soldier":3,"pendulum":2} | halls ["winder", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 48/80 | plan balanced 
+WINDER DIED 8:20 t0 move by raptor: building 187 px, armed unit 415 px
+WINDER DIED 8:23 t0 build by raptor: building 107 px, armed unit 326 px
+8:25 t0 cogs 245 hold 150 ten 47 | W 28 goal 22 | bo off step [] rush n8 | swarmON n27 v945 out! | army 540 {"clock_soldier":2,"pendulum":2} | halls ["winder,winder", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 46/80 | plan balanced 
+8:30 t0 cogs 313 hold 150 ten 54 | W 29 goal 22 | bo off step [] rush n8 | swarmON n22 v820 out | army 610 {"clock_soldier":3,"pendulum":2} | halls ["winder", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 47/80 | plan balanced 
+8:35 t0 cogs 172 hold 150 ten 62 | W 29 goal 22 | bo off step [] rush n8 | swarmON n24 v870 out | army 750 {"clock_soldier":5,"pendulum":2} | halls ["winder", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 49/80 | plan balanced 
+8:40 t0 cogs 309 hold 150 ten 69 | W 29 goal 22 | bo off step [] rush n8 | swarmON n14 v665 out | army 610 {"clock_soldier":3,"pendulum":2} | halls ["winder", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 47/80 | plan balanced 
+8:45 t0 cogs 102 hold 150 ten 1 | W 30 goal 22 | bo off step [] rush n8 | swarmON n17 v785 out! | army 610 {"clock_soldier":3,"pendulum":2} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 51/80 | plan balanced 
+WINDER DIED 8:48 t0 build by raptor: building 107 px, armed unit 251 px
+8:50 t0 cogs 168 hold 150 ten 8 | W 29 goal 22 | bo off step [] rush n8 | swarm n5 v485 out | army 610 {"clock_soldier":3,"pendulum":2} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 50/80 | plan balanced 
+8:55 t0 cogs 304 hold 150 ten 15 | W 29 goal 22 | bo off step [] rush n8 | swarm n1 v475 out | army 480 {"clock_soldier":4,"pendulum":1} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier", "clock_soldier,clock_soldier"] | sup 46/80 | plan balanced 
+9:00 t0 cogs 238 hold 150 ten 22 | W 29 goal 22 | bo off step [] rush n8 | swarm n5 v575 out | army 620 {"clock_soldier":6,"pendulum":1} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 49/80 | plan balanced 
+9:05 t0 cogs 382 hold 150 ten 29 | W 29 goal 22 | bo off step [] rush n8 | swarm n4 v550 out | army 620 {"clock_soldier":6,"pendulum":1} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 49/80 | plan balanced 
+9:10 t0 cogs 56 hold 150 ten 36 | W 29 goal 22 | bo off step [] rush n8 | swarm n6 v600 out | army 490 {"clock_soldier":7} | halls ["winder", "", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier", "clock_soldier,clock_soldier"] | sup 46/80 | plan balanced 
+9:15 t0 cogs 67 hold 150 ten 43 | W 29 goal 22 | bo off step [] rush n8 | swarm n5 v485 out | army 420 {"clock_soldier":6} | halls ["winder,winder", "winder", "", "~"] | works ["clock_soldier", "clock_soldier", "clock_soldier"] | sup 45/80 | plan balanced 
+9:20 t0 cogs 55 hold 150 ten 49 | W 29 goal 22 | bo off step [] rush n8 | swarm n4 v460 out | army 550 {"clock_soldier":5,"pendulum":1} | halls ["winder,winder", "winder", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier"] | sup 46/80 | plan balanced 
+WINDER DIED 9:24 t0 move by raptor: building 101 px, armed unit 74 px
+9:25 t0 cogs 52 hold 150 ten 56 | W 30 goal 22 | bo off step [] rush n8 | swarm n4 v460 out | army 410 {"clock_soldier":3,"pendulum":1} | halls ["winder", "", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 44/80 | plan balanced 
+9:30 t0 cogs 66 hold 150 ten 63 | W 30 goal 22 | bo off step [] rush n8 | swarm n3 v435 out | army 480 {"clock_soldier":4,"pendulum":1} | halls ["winder,winder", "", "", "~"] | works ["clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 45/80 | plan balanced 
+WINDER DIED 9:33 t0 build by raptor: building 71 px, armed unit 162 px
+9:35 t0 cogs 103 hold 150 ten 70 | W 30 goal 22 | bo off step [] rush n8 | swarm n3 v435 out | army 410 {"clock_soldier":3,"pendulum":1} | halls ["winder", "", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 44/80 | plan balanced 
+9:40 t0 cogs 170 hold 150 ten 76 | W 30 goal 22 | bo off step [] rush n8 | swarm n3 v435 out | army 410 {"clock_soldier":3,"pendulum":1} | halls ["winder", "", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 44/80 | plan balanced 
+9:45 t0 cogs 36 hold 150 ten 8 | W 31 goal 22 | bo off step [] rush n8 | swarm n3 v525 out | army 480 {"clock_soldier":4,"pendulum":1} | halls ["", "", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier"] | sup 48/80 | plan balanced 
+9:50 t0 cogs 104 hold 150 ten 14 | W 31 goal 22 | bo off step [] rush n8 | swarm n4 v730 out | army 410 {"clock_soldier":3,"pendulum":1} | halls ["", "", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 48/80 | plan balanced 
+WINDER DIED 9:51 t0 build by raptor: building 107 px, armed unit 195 px
+9:55 t0 cogs 248 hold 150 ten 21 | W 30 goal 22 | bo off step [] rush n8 | swarm n5 v755 out | army 480 {"clock_soldier":4,"pendulum":1} | halls ["", "", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 48/80 | plan balanced 
+10:00 t0 cogs 322 hold 150 ten 27 | W 30 goal 22 | bo off step [] rush n8 | swarm n3 v885 out | army 480 {"clock_soldier":4,"pendulum":1} | halls ["", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 48/70 | plan balanced 
+10:05 t0 cogs 173 hold 150 ten 33 | W 30 goal 22 | bo off step [] rush n8 | swarm n9 v1125 out | army 280 {"clock_soldier":4} | halls ["", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 43/70 | plan balanced 
+10:10 t0 cogs 105 hold 150 ten 40 | W 30 goal 22 | bo off step [] rush n8 | swarm n8 v1100 out | army 210 {"clock_soldier":3} | halls ["", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 43/70 | plan balanced 
+10:15 t0 cogs 107 hold 150 ten 46 | W 30 goal 22 | bo off step [] rush n8 | swarm n9 v1125 out | army 140 {"clock_soldier":2} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 42/80 | plan balanced 
+WINDER DIED 10:19 t0 build by raptor: building 97 px, armed unit 252 px
+10:20 t0 cogs 299 hold 150 ten 52 | W 29 goal 22 | bo off step [] rush n8 | swarmON n24 v1590 out! | army 270 {"clock_soldier":1,"pendulum":1} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 40/80 | plan balanced 
+10:25 t0 cogs 264 hold 150 ten 58 | W 29 goal 22 | bo off step [] rush n8 | swarmON n33 v1860 out! | army 270 {"clock_soldier":1,"pendulum":1} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 40/80 | plan balanced 
+WINDER DIED 10:25 t0 move by raptor: building 86 px, armed unit 153 px
+10:30 t0 cogs 493 hold 150 ten 65 | W 28 goal 22 | bo off step [] rush n8 | swarmON n33 v1860 out! | army 200 {"pendulum":1} | halls ["", "", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 36/80 | plan balanced 
+WINDER DIED 10:34 t0 move by raptor: building 172 px, armed unit 949 px
+WINDER DIED 10:34 t0 move by raptor: building 128 px, armed unit 942 px
+10:35 t0 cogs 35 hold 150 ten 71 | W 26 goal 22 | bo off step [] rush n8 | swarmON n27 v1710 out! | army 270 {"clock_soldier":1,"pendulum":1} | halls ["winder", "", "", "~"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 36/80 | plan balanced 
+WINDER DIED 10:39 t0 attack by raptor: building 112 px, armed unit 748 px
+10:40 t0 cogs 31 hold 150 ten 77 | W 25 goal 22 | bo off step [] rush n8 | swarmON n32 v1835 out! | army 340 {"clock_soldier":2,"pendulum":1} | halls ["winder,winder", "", "", "~"] | works ["clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 36/80 | plan balanced 
+10:45 t0 cogs 97 hold 150 ten 83 | W 25 goal 22 | bo off step [] rush n8 | swarmON n37 v1960 out! | army 270 {"clock_soldier":1,"pendulum":1} | halls ["winder,winder", "", "~"] | works ["clock_soldier", "clock_soldier,clock_soldier", "~"] | sup 35/70 | plan balanced 
+WINDER DIED 10:46 t0 build by spitter: building 264 px, armed unit 24 px
+WINDER DIED 10:46 t0 attack by raptor: building 101 px, armed unit 636 px
+WINDER DIED 10:48 t0 repair by raptor: building 64 px, armed unit 885 px
+10:50 t0 cogs 58 hold 150 ten 14 | W 23 goal 22 | bo off step [] rush n8 | swarmON n36 v1935 out! | army 270 {"clock_soldier":1,"pendulum":1} | halls ["winder", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "", "~"] | sup 37/70 | plan balanced 
+WINDER DIED 10:50 t0 build by raptor: building 80 px, armed unit 907 px
+WINDER DIED 10:51 t0 build by raptor: building 86 px, armed unit 863 px
+WINDER DIED 10:52 t0 move by raptor: building 147 px, armed unit 365 px
+WINDER DIED 10:53 t0 move by raptor: building 192 px, armed unit 901 px
+10:55 t0 cogs 65 hold 150 ten 20 | W 19 goal 22 | bo off step [] rush n8 | swarmON n45 v2160 out! | army 270 {"clock_soldier":1,"pendulum":1} | halls ["winder", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 35/70 | plan balanced 
+11:00 t0 cogs 275 hold 150 ten 25 | W 20 goal 22 | bo off step [] rush n8 | swarmON n44 v2135 out! | army 0 {} | halls ["", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 28/70 | plan balanced 
+11:05 t0 cogs 17 hold 150 ten 31 | W 20 goal 22 | bo off step [] rush n8 | swarmON n45 v2160 out! | army 70 {"clock_soldier":1} | halls ["winder", "winder"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 31/70 | plan balanced 
+WINDER DIED 11:05 t0 build by raptor: building 101 px, armed unit 860 px
+11:10 t0 cogs 159 hold 150 ten 37 | W 19 goal 22 | bo off step [] rush n8 | swarmON n56 v2435 out! | army 0 {} | halls ["winder", "winder"] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 29/70 | plan balanced 
+11:15 t0 cogs 31 hold 150 ten 43 | W 21 goal 22 | bo off step [] rush n8 | swarmON n63 v2610 out! | army 70 {"clock_soldier":1} | halls ["winder", ""] | works ["clock_soldier,clock_soldier", "clock_soldier"] | sup 30/70 | plan balanced 
+WINDER DIED 11:15 t0 build by raptor: building 86 px, armed unit 1168 px
+11:20 t0 cogs 168 hold 150 ten 49 | W 20 goal 22 | bo off step [] rush n8 | swarmON n75 v2910 out! | army 140 {"clock_soldier":2} | halls ["winder", ""] | works ["clock_soldier", "clock_soldier,clock_soldier"] | sup 30/70 | plan balanced 
+11:25 t0 cogs 18 hold 150 ten 54 | W 20 goal 22 | bo off step [] rush n8 | swarmON n83 v3110 out! | army 340 {"clock_soldier":2,"pendulum":1} | halls ["winder", ""] | works ["clock_soldier,clock_soldier", "clock_soldier,clock_soldier"] | sup 31/70 | plan balanced 
+11:30 t0 cogs 82 hold 150 ten 60 | W 21 goal 22 | bo off step [] rush n8 | swarmON n83 v3065 out! | army 340 {"clock_soldier":2,"pendulum":1} | halls [""] | works ["clock_soldier,clock_soldier", "clock_soldier"] | sup 30/60 | plan balanced 
+11:35 t0 cogs 147 hold 150 ten 65 | W 21 goal 22 | bo off step [] rush n8 | swarmON n83 v3020 out! | army 340 {"clock_soldier":2,"pendulum":1} | halls [""] | works ["clock_soldier", "clock_soldier"] | sup 29/60 | plan balanced 
+WINDER DIED 11:39 t0 move by raptor: building 107 px, armed unit 116 px
+WINDER DIED 11:40 t0 build by raptor: building 90 px, armed unit 260 px
+11:40 t0 cogs 194 hold 150 ten 71 | W 19 goal 22 | bo off step [] rush n8 | swarmON n98 v3395 out! | army 200 {"pendulum":1} | halls [""] | works ["clock_soldier", "clock_soldier"] | sup 25/60 | plan balanced 
+WINDER DIED 11:42 t0 move by raptor: building 81 px, armed unit 451 px
+WINDER DIED 11:44 t0 move by raptor: building 96 px, armed unit 472 px
+WINDER DIED 11:44 t0 move by raptor: building 81 px, armed unit 499 px
+11:45 t0 cogs 335 hold 150 ten 72 | W 16 goal 22 | bo off step [] rush n8 | swarmON n98 v3395 out! | army 200 {"pendulum":1} | halls [""] | works ["clock_soldier", ""] | sup 21/60 | plan balanced 
+WINDER DIED 11:45 t0 repair by raptor: building 102 px, armed unit -1 px
+WINDER DIED 11:45 t0 move by raptor: building 115 px, armed unit -1 px
+WINDER DIED 11:46 t0 attack by raptor: building 50 px, armed unit -1 px
+WINDER DIED 11:46 t0 move by raptor: building 71 px, armed unit -1 px
+WINDER DIED 11:46 t0 gather by raptor: building 50 px, armed unit -1 px
+WINDER DIED 11:46 t0 move by raptor: building 131 px, armed unit -1 px
+WINDER DIED 11:47 t0 move by raptor: building 71 px, armed unit 444 px
+WINDER DIED 11:47 t0 move by raptor: building 96 px, armed unit 530 px
+WINDER DIED 11:47 t0 move by raptor: building 71 px, armed unit 485 px
+WINDER DIED 11:49 t0 move by raptor: building 101 px, armed unit -1 px
+WINDER DIED 11:49 t0 move by raptor: building 101 px, armed unit -1 px
+WINDER DIED 11:49 t0 move by raptor: building 90 px, armed unit -1 px
+WINDER DIED 11:49 t0 move by raptor: building 64 px, armed unit -1 px
+11:50 t0 cogs 325 hold 150 ten 72 | W 3 goal 22 | bo off step [] rush n8 | swarmON n103 v3520 out! | army 0 {} | halls [""] | works ["", ""] | sup 3/60 | plan balanced 
+WINDER DIED 11:50 t0 move by raptor: building 71 px, armed unit -1 px
+WINDER DIED 11:50 t0 move by raptor: building 96 px, armed unit -1 px
+WINDER DIED 11:50 t0 move by raptor: building 81 px, armed unit -1 px
+11:55 t0 cogs 325 hold 150 ten 72 | W 0 goal 22 | bo off step [] rush n8 | swarmON n102 v3495 out! | army 0 {} | halls [""] | works [""] | sup 0/60 | plan balanced 
+12:00 t0 cogs 325 hold 150 ten 72 | W 0 goal 22 | bo off step [] rush n8 | swarmON n102 v3495 out! | army 0 {} | halls [""] | works [] | sup 0/60 | plan balanced 

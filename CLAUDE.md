@@ -25,6 +25,17 @@
 
 ## Current work
 
+- CLOCKWORK V BROOD COACHED AGAIN (owner 2026-11-15 22:20 / 2026-11-16 07:07, K1; job clockwork-v-brood-coach-2, 0.38.37,
+  docs/clockwork_v_brood_coach_2.md, scripts/ai_cw_brood.gd AICwBrood, tools/cw_trace.gd, tools/study/cvb2.py, pictures
+  docs/shots/clockwork_v_brood_coach_2/): the Clockwork COMPUTER only, against the Brood only (no number changed): its first
+  turtle is no greed (Clock Soldier rush only on 3+ grounds / 5+ Rootmaws; else the economy opening goes on), one Clocktower
+  keeps Winders under the rush and the rush soldiers stop once it is over, the Escapement with the new presses then the
+  shared rules (Heavy Works ~5:13), Pendulums (1 per 5 others, up to 8) before the Serpent with their Tension kept, a third
+  Clocktower from 6:00, the push only 2x the reckoning with 2 Pendulums (C2's counter unchanged), attack-moves near Raptors.
+  Switches cvb2:off (all), cvbread/cvbwind/cvbrushend/cvbserp/cvbhall/cvbpend/cvbtension/cvbyard/cvbpush/cvbamove:off,
+  study cvbgreedy:<plan>. 38 games to 12:00 on 0.38.35: W-D-L 4-27-7 -> 5-32-1, won or led 14 -> 33 (p 0.00001), income
+  at 12:00 1,711 -> 2,386 a minute, halls lost 0.66 -> 0.05 a game; v Crown and the mirror unchanged on 4 games. Open: its
+  counters into the Brood's swamp still lose now and then; 9 Claude's choices in the doc.
 - BROOD SPOT STUDY (owner 2026-11-15 22:20 "spots should be equal"; job brood-spot-study, 0.38.36, docs/brood_spot_study.md,
   data docs/brood_spot_study/, tools/study/brood_spot_study.py + brood_spot_report.py + brood_spot_income.py, spot_trace.gd,
   map_mirror_check.gd): the Brood mirror's P1 edge is the SPOT, not player order (switch `spotswap` puts P1 on spot B: spot

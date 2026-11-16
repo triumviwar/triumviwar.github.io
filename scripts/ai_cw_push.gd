@@ -19,6 +19,7 @@ extends RefCounted
 ## Reinforcements: fighters made after it left gather at home and join as a group of JOIN_SUPPLY supply or more.
 ## No cheating: it sees what its side sees (Game.is_visible_to) and knows where the enemy started (every computer does).
 
+const CwBrood := preload("res://scripts/ai_cw_brood.gd")      # (clockwork-v-brood-coach-2)
 const STEP := 200.0             # px the anchor walks at a time
 const FRONT_AT := 140.0         # the front is "at" the anchor within this
 const BACK_BAL := 120.0         # px the Ballistas stand behind the anchor
@@ -672,6 +673,8 @@ func _order(u: Unit, p: Vector2, amove: bool, tol: float) -> void:
 	if u.position.distance_to(p) < 24.0 and u.order == "idle":
 		_orders[u] = [p, game.clock]
 		return
+	if not amove and CwBrood.amove_near(ai, u):
+		amove = true            # (clockwork-v-brood-coach-2: no plain walk past the Raptors)
 	u.cmd_move(p, amove)
 	_orders[u] = [p, game.clock]
 
