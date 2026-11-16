@@ -1744,6 +1744,8 @@ const EXP_LEAD := 50.0           # s ahead: a grub's walk out, the turtle's 25 s
 const EXP_FROM := 30.0           # (not in the first half minute, when her swamp is not down yet: econ-coach-brood fix 3.
                                  # A gate at 3:30 or 5:00 was measured: it spared the Economy plan 3-5% at 5:00 and cost
                                  # OPTIMAL 5-7% at 8:00, its early third base: docs/brood_rootmaw_coach.md section 3)
+const EXP_PLAN_NEAR := 60.0      # s: the plan's own next expansion this near: the rule waits for it (the Economy plan's
+                                 # second base at 4:00 came at 3:15 by the rule too, and its first research 40 s late)
 const MAW_DRY := 900.0           # food left (ground + what it holds) under which a Rootmaw counts as about to be spent
                                  # (about 2 minutes at home, 1.5 far out: the time a new turtle takes to give room)
 var _exp_t := -99.0
@@ -1780,7 +1782,8 @@ func _maw_need_room(q: Unit) -> Array:
 ## New ground is due now: more Rootmaws will want a spot within a turtle's walk than the fresh room there is and is
 ## coming. Not while a rush holds its grubs, a rush is on that it is short against, it rebuilds after one, the enemy is
 ## at the Mother, or it is under-armed with no army to speak of (the old rule's own gate); not in the first half minute (EXP_FROM)
-## nor while it saves for her growth.
+## nor while her growth is due (_nb_growth_keep: with only "while short of its price" a turtle took the 100 every time
+## the food reached it, and the Timing plan's stage 3 never came by 10:40).
 func _maw_expand_due(q: Unit) -> bool:
 	if not maweco_on or q == null:
 		return false
@@ -1790,8 +1793,12 @@ func _maw_expand_due(q: Unit) -> bool:
 	_exp_due = false
 	if (int(plan["grubs0"]) > 0 and not _first_out) or _rush_short() or _rebuilding() or _nb_threat(q) != Vector2.INF \
 			or (_under_armed() and _army_supply_now() < 30 and BroodNew.count_of(game, team, BroodNew.MAW) >= 4) \
-			or game.clock < EXP_FROM or _nb_saving_growth(q):
+			or game.clock < EXP_FROM or _nb_growth_keep(q) > 0:
 		return false
+	for e in plan["far"]:
+		var dt := float(e[0]) - game.clock
+		if dt > 0.0 and dt < EXP_PLAN_NEAR and int(e[1]) > _nb_far_have(q):
+			return false          # (the plan's own next expansion is due within a minute: that one, not one more)
 	var r := _maw_need_room(q)
 	exp_info = {"t": game.clock, "need": r[0], "room": r[1], "coming": r[2]}
 	_exp_due = int(r[0]) > int(r[1]) + int(r[2])
