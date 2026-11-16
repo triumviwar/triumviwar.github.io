@@ -648,6 +648,8 @@ func _order(u: Unit, p: Vector2, amove: bool, tol: float) -> void:
 		return
 	if u.order == "idle" and u.position.distance_to(p) < tol:
 		return
+	if not amove and CwBrood.amove_near(ai, u):
+		amove = true            # (clockwork-v-brood-coach-2: no plain walk past the Raptors)
 	u.cmd_move(p, amove)
 	_orders[u] = [p, game.clock]
 

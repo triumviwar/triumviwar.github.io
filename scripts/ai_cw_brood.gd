@@ -249,3 +249,21 @@ static func push_waits(ai, army, mine: float, rk: float) -> bool:
 		return false
 	army.say("holds at its gathering point: against the Brood it goes out only clearly ahead (worth %d, it goes at %d with %d Pendulums; it has %d)" % [int(mine), int(rk * PUSH_K), PUSH_PENDS, pends], "cvbpush", 45.0)
 	return true
+
+
+# ------------------------------------------------------------------ 8. no plain walk past the Raptors (cvbamove)
+## Traced (frostfang 1111, coached build, 8:00-10:30): the Clockwork's Clock Soldiers died 3 to 10 every half minute on a
+## PLAIN move (the army's walks to its rest spots and gathering point, defenders called back, a push's units walking to
+## their places), killing next to nothing: a unit on a plain move does not hit back. Against the Brood, an army order
+## that would be a plain move is an attack-move while an armed enemy (not rooted) is within NEAR_R px of the unit.
+const NEAR_R := 360.0
+
+
+static func amove_near(ai, u) -> bool:
+	if off("cvbamove") or not vs_brood(ai) or u.is_air():
+		return false
+	var f: int = ai._foe()
+	for o in ai.game.units_near(u.position, NEAR_R):
+		if o.team == f and not o.dead and not o.off_field and not o.is_air() and ai._armed(o) and not BroodNew.rooted(o):
+			return true
+	return false
