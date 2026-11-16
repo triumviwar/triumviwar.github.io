@@ -121,3 +121,36 @@ Clockwork's ground between its halls. It lost every building by 11:40.
 | 8 | NO PLAIN WALK PAST THE RAPTORS: an army or push order that would be a plain move is an attack-move while an armed enemy (not rooted) is within 360 px of the unit (the push's leash back from a chase stays a plain move). | `cvbamove:off` | CwArmy._order, CwPush._order |
 
 `-- cvb2:off` turns all of them off.
+
+## Two filmed games after, with the coach's notes
+
+### Greenhold, seed 1102 (the Brood P1, the Clockwork P2): the first film's seed again
+
+On main this seed was lost at 10:13 (the film above). On this branch: a draw at 12:00 with the Clockwork well ahead
+(earned 17,380 against 14,462; army 3,765 against 2,600; Winders 48 against the Brood's 44 grubs).
+
+- 2:00 "keeps Balanced: its first ground is its usual opening" (rule 1). The Brood's rush came at 2:50 as always; the
+  Clockwork lost 6 Winders and 3 Clock Soldiers to it and killed 10 Raptors, then kept its Winders coming (rule 2): 23 at
+  5:00 (the film on main: 9).
+- 4:29 the Escapement with the new presses and the opening handed over (rule 6); the Heavy Works was laid at 5:14, the
+  first Pendulum came at 7:09 (on main: none at all in its trace of this seed).
+- 6:03 the third Clocktower (rule 4), 24 tiles out; at 6:00 both halls' presses were manned (`after_g1102_0600_*`).
+- 5:52-8:54 it held at its gathering point five times ("against the Brood it goes out only clearly ahead", rule 7) while
+  its army grew 545 -> 3,315; the Brood's waves at 8:00 and 9:00 broke on its gears (35 and 73 Raptors killed).
+- 9:09 the counter after the held wave (C2) went out with 35 units: it killed 1,550 for 2,065 in the Brood's ground
+  (`after_g1102_0931_counter_at_the_brood_ground.jpg`) and pulled back; the next wave (10:00) broke at home again (2,625
+  killed for 1,040). Coach's note: the counter into the Brood's swamp is still its worst trade; the fights it wins are on
+  its own gears.
+
+### Frostfang, seed 1111 (the Clockwork P1, the Brood P2)
+
+On main this seed was lost at 11:27 (the 38 games' "before"), and a trace with fixes 1-7 lost every building by 11:40
+(finding 8). On this branch: a draw at 12:00 with the Clockwork far ahead (earned 17,156 against 11,440; army 4,475 against
+880), its push "clearly ahead (worth 2,700 against 473): it presses on to the enemy's halls to finish the game" at 11:44.
+
+- 3:22 the rush read, 4:04 the Escapement and the hand-over, 4:53 the Heavy Works, 6:16 the first Pendulum.
+- 6:59 a Raptor wave at the natural's presses was met there by the whole army while the third Clocktower went up beside
+  it (`after_f1111_0659_*`; the Winders had stepped off the presses: "WINDERS 0/5", "1/5").
+- 7:20 a counter (its defence had killed 650) went into the Brood's ground with 2 Pendulums and lost 990 for 25: the
+  same weak spot as above. 9:34 the next counter (its defence had killed 1,025, 3 Pendulums) broke the Brood's army
+  (`after_f1111_1013_*`, Pendulums in a Mound Turtle's ring) and the push stayed out to the end (`after_f1111_1130_*`).
