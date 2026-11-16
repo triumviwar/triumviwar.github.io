@@ -310,3 +310,30 @@ func line_holds(foes: Array, c: Vector2, face: Vector2) -> bool:
 		if is_instance_valid(o) and not o.dead and _closing(o, c) >= COMING and (o.position - c).length() < 900.0:
 			return true
 	return false
+
+
+# ------------------------------------------------------------------ 7. (measuring) the second Farm before the Barracks
+
+## The owner 2026-11-16 07:13 ("test both, then I decide"): the OPTIMAL opening is his (2026-11-06: Cottage, Gate,
+## Barracks, then the second Farm); this switch measures the second Farm right after the Gate, the Barracks after it, so he
+## can choose on numbers. A seen rush still puts the Barracks and soldiers first (_bo_defence). Off unless `farmfirst:on`.
+static func farm_first() -> bool:
+	return OS.get_cmdline_user_args().has("farmfirst:on")
+
+
+static func farm_before_barracks(plan: Array) -> void:
+	var bi := -1
+	var fi := -1
+	for i in plan.size():
+		var st: Dictionary = plan[i]
+		if String(st.get("do", "")) == "build" and String(st.get("k", "")) == "barracks" and bi < 0:
+			bi = i
+		if String(st.get("do", "")) == "build" and String(st.get("k", "")) == "farm" and fi < 0:
+			fi = i
+	if bi < 0 or fi < 0 or fi < bi:
+		return
+	var farm: Dictionary = plan[fi]
+	plan.remove_at(fi)
+	farm["at"] = {"labs": 7}
+	plan.insert(bi, farm)
+	(plan[bi + 1] as Dictionary)["at"] = {"labs": 8}
