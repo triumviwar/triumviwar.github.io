@@ -988,7 +988,7 @@ const UNITS := {
 	# Horseman, with Armour the Cuirassier: see ARMOURED)
 	"cuirassier": {
 		"tags": ["light"],
-		"name": "Horseman", "hp": 100, "armor": 1, "speed": 112, "cost": 60, "time": 22.0, "supply": 3,
+		"name": "Horseman", "hp": 90, "armor": 1, "speed": 112, "cost": 60, "time": 22.0, "supply": 3,
 		"sight": 8, "range": 26, "damage": 18, "cooldown": 1.1, "aim": 0.15, "radius": 15, "from": "barracks",
 		"requires": "horse_breeder", "bonus": {"cannon": 1.6, "spitter": 1.3, "arc_thrower": 1.3}, "charge": true, "faction": "crown", "needs_horse": true,
 		"about": "Fast light horseman with a pistol and a sabre. Trained with his horse in one click (a free one at a breeder, else the breeder trains one: 40 more); he comes out on foot and rides off on it. He opens with his one loaded pistol shot (30 damage, a little over half a musket's reach), then fights with the sabre; he can only reload on foot (DISMOUNT: he's an Officer then). Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. Once the Horse Breeder has drilled the Cavalry Charge, his first sabre blow after a gallop hits double (2.2 times on light units: one charge kills a Raptor) and throws the enemy back. With Armour he becomes a Cuirassier. Bayonets hurt him.",
@@ -1757,8 +1757,8 @@ const RESEARCH := {
 		"time": 40.0, "stage": 0, "icon": "nbr_clutch_raptor", "young": "raptor",
 		"about": "Raptors hatch three to an egg instead of two. The egg costs more (75 food for three), so each Raptor costs the same: more Raptors from each egg, not cheaper ones."},
 	"nb_pack_hunt": {"name": "Pack Hunt", "label": "PACK HUNT", "at": "tyrannosaur", "faction": "brood", "cost": 75, "cost2": 15,
-		"time": 35.0, "stage": 0, "icon": "nbr_pack_hunt", "speed": {"raptor": 22.0, "tyrant_challenger": 14.0, "tyrannosaur": 11.0},
-		"about": "Raptors, Tyrant Challengers and the Tyrant Sire run faster: a Raptor from 92 to 114 (then it outruns horses), a Tyrant Challenger from 84 to 98, the Tyrant Sire from 64 to 75."},
+		"time": 35.0, "stage": 0, "icon": "nbr_pack_hunt", "speed": {"raptor": 32.0, "tyrant_challenger": 14.0, "tyrannosaur": 11.0},
+		"about": "Raptors, Tyrant Challengers and the Tyrant Sire run faster: a Raptor from 92 to 124 (then it outruns horses), a Tyrant Challenger from 84 to 98, the Tyrant Sire from 64 to 75."},
 	"nb_battering_horns": {"name": "Battering Horns", "label": "BATTERING HORNS", "at": "tyrannosaur", "faction": "brood", "cost": 125, "cost2": 40,
 		"time": 50.0, "stage": 2, "icon": "nbr_battering_horns", "bonus": {"brute": 3.5},
 		"about": "The Brutes' horns grow into rams: they hit buildings, walls and gates harder (x3.5 instead of x2.5)."},

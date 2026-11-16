@@ -133,7 +133,7 @@ func _go() -> void:
 	check(mic._swarm(r2u) and not mic._charge(r2u) and not mic._wait_charge(r2u), "8 Raptors near: no waiting round for the charge (takes each blow as it comes)")
 	g.players[1]["tech"]["nb_pack_hunt"] = true
 	for x in two + more:
-		x.speed = 114.0         # (Pack Hunt's pace; the research applies it to new ones)
+		x.speed = 124.0         # (Pack Hunt's pace; the research applies it to new ones)
 	g.clock += 0.1
 	check(mic._swarm(r2u), "with Pack Hunt too")
 	mic.swarm_rule = false

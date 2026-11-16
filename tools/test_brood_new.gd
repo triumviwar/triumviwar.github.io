@@ -1956,10 +1956,10 @@ func _research(q: Unit, p: Dictionary) -> void:
 		"    before: no speed added, a Brute x2.5 on buildings, a Spitter's and a Venom Challenger's range 165, under a Musketeer's %d" % int(Defs.UNITS["musketeer"]["range"]))
 	for k in ["nb_pack_hunt", "nb_slither", "nb_updraft", "nb_battering_horns", "nb_long_spit", "nb_quick_roots", "nb_swamp_mending"]:
 		BroodResearch.done(g, 0, k)
-	check(is_equal_approx(92.0 + BroodResearch.speed_add(ra), 114.0) and is_equal_approx(84.0 + BroodResearch.speed_add(tc), 98.0),
+	check(is_equal_approx(92.0 + BroodResearch.speed_add(ra), 124.0) and is_equal_approx(84.0 + BroodResearch.speed_add(tc), 98.0),
 		"    PACK HUNT: a Raptor %d, a Tyrant Challenger %d" % [int(92.0 + BroodResearch.speed_add(ra)), int(84.0 + BroodResearch.speed_add(tc))])
 	await wait(0.1)
-	check(ra.speed >= 113.9, "    ...and it runs at it (%.0f px/s now, swamp x1.3 included)" % ra.speed)
+	check(ra.speed >= 123.9, "    ...and it runs at it (%.0f px/s now, swamp x1.3 included)" % ra.speed)
 	check(is_equal_approx(68.0 + BroodResearch.speed_add(spt), 78.0) and is_equal_approx(58.0 + BroodResearch.speed_add(vc), 67.0), "    SLITHER: a Spitter 78, a Venom Challenger 67")
 	check(is_equal_approx(BroodResearch.speed_add(sw), 18.0), "    UPDRAFT: a flying Skywing +18 (118 -> 136)")
 	# (the owner, 20:09) PACK HUNT also speeds up the Tyrant Sire, UPDRAFT the Storm Sire (flying), by about the same share
