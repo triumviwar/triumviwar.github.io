@@ -4,7 +4,7 @@ crown_coach_measure.py). The win-rate studies' rules (tools/study/winrate_1115_r
 income earned + 2 x army value 10% ahead; "won or led" = won, or led a draw. Ratios are the Crown's over its enemy's:
 pooled (sum over sum, as the win-rate reports) and the per-game mean. A measuring tool only.
     python3 tools/study/crown_coach_measure_report.py DATA > tables.md"""
-import os, sys, json, math, glob
+import os, sys, json, math, glob, statistics as st
 from collections import Counter
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -108,7 +108,9 @@ def main():
         P("|---|---|---|---|---|---|---|---|---|---|")
         for arm, src in (("coach on", on), ("coach:off", off)):
             rr = [src[t] for t in tags]
-            c = lambda side, m, k: f1(mean([wr.val(r, r[side], m, k) for r in rr]))
+            # a side beaten before minute m has no row then: it counts 0 halls / workers (not left out)
+            c = lambda side, m, k: f1(mean([wr.val(r, r[side], m, k) if wr.val(r, r[side], m, k) is not None
+                                            else (0 if r["res"] == ("L" if side == "si" else "W") else None) for r in rr]))
             hl = "%.2f / %.2f" % (mean([r["halls"][r["si"]] for r in rr]), mean([r["halls"][r["oi"]] for r in rr]))
             P("| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (arm, c("si", 8, "halls"), c("si", 12, "halls"), c("oi", 8, "halls"),
                 c("oi", 12, "halls"), c("si", 5, "workers"), c("si", 8, "workers"), c("oi", 5, "workers"), c("oi", 8, "workers"), hl))
@@ -174,6 +176,39 @@ def main():
                 if "rush" in r["story"].lower() and "horse" in r["story"].lower():
                     rush += 1
             P("- %s, %s: picks %s; story mentions a Horseman rush in %d games" % (NAME[pair], arm, dict(c.most_common()), rush))
+    P("")
+    P("## The enemy's first arrival in the Crown's base (result.json first_arrival: 300+ army value within 500 px; medians)\n")
+    P("| pairing | arm | games with one | when | its army | the Crown's army there | Crown units lost in 90 s | enemy units lost | Crown buildings lost | Crown army 5:00 (abs.) | 8:00 | the Crown's own first attack (games, when) | built Crown halls lost (games with one, first at) |")
+    P("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+    md = lambda xs: st.median(xs) if xs else None
+    for pair in PAIRS:
+        tags, on, off = paired[pair]
+        for arm in ARMS:
+            k = {x: [] for x in ("t", "val", "own", "ol", "fl", "ob", "fa", "hl", "a5", "a8")}
+            hl_games = 0
+            for t in tags:
+                d = os.path.join(data, arm, t)
+                g = json.load(open(os.path.join(d, "result.json")))
+                si = [s[0] for s in g["slots"]].index("crown")
+                at = {(r["p"], int(round(r["t"] / 60))): r for r in g["minutes"]}
+                k["a5"].append(at.get((si, 5), {}).get("army", 0))
+                k["a8"].append(at.get((si, 8), {}).get("army", 0))
+                first_hl = None
+                for e in g["events"]:
+                    if e.get("ev") == "first_arrival" and e["p"] == si:
+                        k["t"].append(e["t"]); k["val"].append(e["value"]); k["own"].append(e["own_army"])
+                        k["ol"].append(e["own_lost"]); k["fl"].append(e["foe_lost"]); k["ob"].append(e["own_bld"])
+                    if e.get("ev") == "first_attack" and e["p"] == si:
+                        k["fa"].append(e["t"])
+                    if e.get("ev") == "hall_lost" and e.get("built") and e["p"] == si and first_hl is None:
+                        first_hl = e["t"]
+                if first_hl is not None:
+                    hl_games += 1
+                    k["hl"].append(first_hl)
+            mm = lambda x: "" if md(x) is None else wr.mmss(md(x))
+            n0 = lambda x: "" if md(x) is None else "%d" % md(x)
+            P("| %s | %s | %d | %s | %s | %s | %s | %s | %s | %s | %s | %d, %s | %d, %s |" % (NAME[pair], arm, len(k["t"]), mm(k["t"]), n0(k["val"]),
+                n0(k["own"]), n0(k["ol"]), n0(k["fl"]), n0(k["ob"]), n0(k["a5"]), n0(k["a8"]), len(k["fa"]), mm(k["fa"]), hl_games, mm(k["hl"])))
     P("")
     nerr = {arm: sum(r["errs"] for pair in PAIRS for r in rows[(pair, arm)]) for arm in ARMS}
     nfail = {arm: len(glob.glob(os.path.join(data, arm, "*", "FAILED.txt"))) for arm in ARMS}

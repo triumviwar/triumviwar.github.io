@@ -20,8 +20,8 @@
 
 | arm | Crown halls 8:00 | 12:00 | enemy halls 8:00 | 12:00 | Crown labourers 5:00 | 8:00 | enemy workers 5:00 | 8:00 | built halls lost (Crown / enemy) |
 |---|---|---|---|---|---|---|---|---|---|
-| coach on | 1.9 | 1.3 | 4.0 | 4.0 | 24.9 | 41.9 | 31.1 | 51.1 | 1.39 / 0.00 |
-| coach:off | 2.0 | 2.0 | 3.7 | 3.9 | 19.4 | 28.8 | 23.2 | 47.7 | 0.79 / 0.00 |
+| coach on | 1.9 | 0.9 | 4.0 | 4.0 | 24.9 | 41.9 | 31.1 | 51.1 | 1.39 / 0.00 |
+| coach:off | 2.0 | 1.7 | 3.7 | 3.9 | 19.4 | 28.8 | 23.2 | 47.7 | 0.79 / 0.00 |
 
 ### Crown v Clockwork (38 paired games)
 
@@ -33,7 +33,7 @@
 | arm | Crown halls 8:00 | 12:00 | enemy halls 8:00 | 12:00 | Crown labourers 5:00 | 8:00 | enemy workers 5:00 | 8:00 | built halls lost (Crown / enemy) |
 |---|---|---|---|---|---|---|---|---|---|
 | coach on | 2.1 | 2.2 | 3.1 | 4.1 | 21.3 | 34.7 | 27.7 | 47.1 | 0.97 / 0.00 |
-| coach:off | 2.0 | 2.2 | 3.1 | 4.1 | 19.5 | 30.5 | 27.6 | 47.0 | 1.11 / 0.00 |
+| coach:off | 2.0 | 2.1 | 3.1 | 4.1 | 19.5 | 30.5 | 27.6 | 47.0 | 1.11 / 0.00 |
 
 ## The paired comparison: the same map and seed, coach on v off
 
@@ -140,5 +140,14 @@ Outcome rank: won > led a draw > even draw > trailed a draw > lost. A sign test 
 - Crown v Brood, coach:off: picks {'rush': 38}; story mentions a Horseman rush in 38 games
 - Crown v Clockwork, coach on: picks {'timing': 19, 'balloon': 12, 'economy': 7, 'siege': 3, 'balanced': 2}; story mentions a Horseman rush in 2 games
 - Crown v Clockwork, coach:off: picks {'timing': 19, 'balloon': 12, 'economy': 7, 'balanced': 2}; story mentions a Horseman rush in 3 games
+
+## The enemy's first arrival in the Crown's base (result.json first_arrival: 300+ army value within 500 px; medians)
+
+| pairing | arm | games with one | when | its army | the Crown's army there | Crown units lost in 90 s | enemy units lost | Crown buildings lost | Crown army 5:00 (abs.) | 8:00 | the Crown's own first attack (games, when) | built Crown halls lost (games with one, first at) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Crown v Brood | on | 35 | 7:40 | 550 | 715 | 28 | 32 | 5 | 90 | 860 | 17, 8:50 | 29, 9:55 |
+| Crown v Brood | off | 30 | 8:15 | 512 | 920 | 7 | 42 | 2 | 360 | 820 | 9, 6:35 | 20, 10:40 |
+| Crown v Clockwork | on | 37 | 7:00 | 610 | 670 | 4 | 11 | 2 | 300 | 1050 | 16, 9:10 | 25, 9:50 |
+| Crown v Clockwork | off | 36 | 6:10 | 537 | 480 | 4 | 6 | 2 | 300 | 1062 | 19, 8:40 | 27, 9:45 |
 
 Games with errors.txt: on 0, off 0; failed (no result): on 0, off 0.
