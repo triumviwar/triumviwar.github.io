@@ -129,6 +129,32 @@ func _mmss(c: float) -> String:
 	return "%d:%02d" % [int(c) / 60, int(c) % 60]
 
 
+## (crown-coach-measure) the Crown computer's coach, line and screen counters, read at the end (result.json "crown_ai"):
+## which coach rules fired. Read only.
+func _crown_counters() -> Dictionary:
+	var o := {}
+	for tm in n:
+		var a = _ai(tm)
+		if a == null or g.faction_of(tm) != "crown":
+			continue
+		var d := {}
+		var c = a.get("coach")
+		if c != null:
+			for k in ["labs_first_n", "labs_first_held_t", "screen_trained", "guns_early_n"]:
+				d[k] = c.get(k)
+			d["bo_hall_moved"] = c.get("bo_hall_moved")
+		var l = a.get("ln")
+		if l != null:
+			for k in ["forms", "def_lines", "falls", "steps", "deploys", "lost_sight", "approaches"]:
+				d["line_" + k] = l.get(k)
+		var s = a.get("sc")
+		if s != null:
+			for k in ["sent", "lost", "picket_lost", "sightings", "flank_hits", "pulled", "trained"]:
+				d["sc_" + k] = s.get(k)
+		o[str(tm)] = d
+	return o
+
+
 func _ai(tm: int) -> AI:
 	for a in g.ais:
 		if a.team == tm:
@@ -616,6 +642,7 @@ func _finish() -> void:
 			for p in a.opt.picks:
 				reads.append({"p": tm, "t": int(float(p[0])), "pick": "%s %s -> %s (%s)" % [String(p[1]), String(p[2]), String(p[3]), String(p[4])]})
 	var res := {"map": map, "seed": seed_, "version": ProjectSettings.get_setting("application/config/version", ""),
+		"crown_ai": _crown_counters(),
 		"slots": slots, "end": int(round(g.clock)), "over": g.over,
 		"winner": g.winner if g.over else -1, "winner_side": (g.sides[g.winner] if g.over and g.winner >= 0 else -1),
 		"minutes": minutes, "final": endl, "events": events, "reads": reads, "riders_seen": _riders_count(), "tech_at": _tech_at,
