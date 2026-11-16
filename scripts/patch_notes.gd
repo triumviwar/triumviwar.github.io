@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.36", "items": [
+		"FAIR STARTS FOR THE BROOD: the two starts of a mirrored map now play alike for the Brood. A rooted creature's feet hang below its ground on screen (the Mother's most of all), so on the lower start a few Brood rules measured from a different place: a far Rootmaw drank its ground a little slower, a Sire's reach to the Mother, when a Mound Turtle counts as new ground and which Rootmaw a grub goes to came out a little different, and rooted creatures at the edge of the swamp mended differently. They are measured alike from both starts now, and so are the Brood computer's choices (which grub turns into a Rootmaw or a turtle, its turtle sites on new ground, its Rootmaw spots). In 76 computer Brood mirrors the upper start now wins or leads 28 to 25 (before: it out-earned the lower one by about 5% from the second minute).",
+		"The computers start thinking at a moment drawn from the match seed (the same for every computer of the match), so games on the same map no longer replay the same opening minute after minute.",
+	]},
 	{"v": "0.38.35", "items": [
 		"THE BROOD COMPUTER TAKES NEW GROUND SOONER (no unit, price or rule changed): from 5:00, when its Rootmaws will soon want more room than its swamps have (the Mother's holds 3, a turtle's 2, and a far Rootmaw drinks its ground dry in about six minutes), it roots a Mound Turtle on new ground at once, its own side of the map first, and once its turtle sites are taken on any fresh ground where a Rootmaw fits. Not while its alarm is up, an enemy is at the Mother or her growth is due, and nearer home while riders are about. Rich, with Rootmaws to spare, it also lays a few more grubs than its plan's count. Alone it earns about 9% more by 12:00; against the Clockwork computer about 14% more.",
 	]},

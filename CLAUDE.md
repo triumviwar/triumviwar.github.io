@@ -25,6 +25,16 @@
 
 ## Current work
 
+- BROOD SPOT STUDY (owner 2026-11-15 22:20 "spots should be equal"; job brood-spot-study, 0.38.36, docs/brood_spot_study.md,
+  data docs/brood_spot_study/, tools/study/brood_spot_study.py + brood_spot_report.py + brood_spot_income.py, spot_trace.gd,
+  map_mirror_check.gd): the Brood mirror's P1 edge is the SPOT, not player order (switch `spotswap` puts P1 on spot B: spot
+  A kept its ~5% income lead) and not the maps (every cell an exact mirror). Cause: the Brood's rooted feet hang below the
+  footprint on screen, so rules and the Brood computer measured spot B from other points (a far Rootmaw drank slower, a
+  Sire's reach, new ground, the grub's Rootmaw, swamp mending, the morph grub, turtle sites, Rootmaw spot scores), and every
+  game on a map replayed one opening. FIX (switches fairspot:off, thinkphase:off): BroodRoot.sym_feet / BroodNew.fdist /
+  anchor for spot B; a think phase from the match seed, the same for every computer (AI.first_phase). 76 games after:
+  spot A won or led 28-25-23 (p 0.78, was 34-25-17), the opening even (2:00 1.002); a small mid-game lean is left (1-3% at
+  5:00-8:00, only between two Broods; P1 34-19, p 0.053: watch). Proposals P1-P4 in the doc. 8 Claude's choices.
 - BROOD ROOTMAW COACH (owner DECIDED 2026-11-15 21:34 "yes"; job brood-rootmaw-coach, 0.38.35, docs/brood_rootmaw_coach.md,
   tools/study/brood_coach_report.py, data docs/brood_rootmaw_coach/): the Brood COMPUTER only (no number changed): from 5:00
   it reckons the Rootmaws it will want a turtle's walk ahead (plan curve + walking + under 900 food left) against fresh
