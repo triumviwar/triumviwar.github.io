@@ -2139,7 +2139,7 @@ func _nb_find_spot_go(q: Unit, m: Unit):
 	var centres: Array = [[_qp(q), [8.0, 11.0, 14.0, 17.0, 20.0], BroodRoot.feet_k(game, team, q)]]
 	var far := float(Defs.NB["expansion_tiles"]) * Defs.TILE * 0.9
 	for t in _nb_mine(BroodNew.TURTLE):
-		if BroodNew.rooted(t) and t.position.distance_to(_qp(q)) >= far:
+		if BroodNew.rooted(t) and (BroodRoot.anchor(game, t) if BroodRoot.fair_spot else t.position).distance_to(_qp(q)) >= far:      # (brood-spot-study)
 			centres.append([t.position, [4.5, 6.0, 7.5, 8.5], BroodRoot.feet_k(game, team, t)])
 	var qk := BroodRoot.feet_k(game, team, q)
 	var from: Vector2 = BroodRoot.feet_k(game, team, m) if m != null else qk
@@ -2173,12 +2173,13 @@ func _nb_find_spot_go(q: Unit, m: Unit):
 					# (the owner's build: a Rootmaw at the FAR edge of the ground it roots on, the expansions first: a load
 					# from farther pays more and the Rootmaw takes more grubs; its draw is the same, so fewer eggs make it pay)
 					s = -p_k.distance_to(qk) * 0.5 + (0.0 if ci > 0 else 400.0) + (60.0 if int(game.height[game.idx(c)]) != h else 0.0) + p_k.distance_to(from) * 0.1
-				var foe := _nb_nearest_foe_pos(p)
+				var pm: Vector2 = BroodRoot.sym_feet(game, team, BroodNew.MAW, p) if BroodRoot.fair_spot else p      # (brood-spot-study)
+				var foe := _nb_nearest_foe_pos(pm)
 				if foe != Vector2.INF:
-					s -= foe.distance_to(p) * 0.15         # (a little away from the enemy)
+					s -= foe.distance_to(pm) * 0.15         # (a little away from the enemy)
 				if s >= bs:
 					continue          # (the enemy near only adds to it: no better than the best whatever it says)
-				if _foe_near(p, 10.0 * Defs.TILE):
+				if _foe_near(pm, 10.0 * Defs.TILE):
 					s += 2000.0
 				if s < bs:
 					bs = s
@@ -2198,8 +2199,11 @@ func _nb_marked_spot(q: Unit, m: Unit):
 	for e in RootmawSpots.spots_cached(game, team):
 		var p: Vector2 = e["p"]
 		var src: Unit = e["src"]
-		var out := src.kind == BroodNew.TURTLE and src.position.distance_to(_qp(q)) >= far      # (a turtle on new ground)
-		var p_k := game.sym_pt(team, p)
+		var out := src.kind == BroodNew.TURTLE and (BroodRoot.anchor(game, src) if BroodRoot.fair_spot else src.position).distance_to(_qp(q)) >= far      # (a turtle on new ground)
+		# (brood-spot-study: the spot's feet in the first start's frame, as qk and from are: the plain mirror of the feet
+		# was a tile and a half off on a mirrored start, so the far-edge sums ran differently there)
+		var p_k: Vector2 = BroodRoot.feet_at(BroodNew.MAW, game.sym_rect(team, BroodRoot.cell_for(BroodNew.MAW, p), BroodRoot.fp(BroodNew.MAW)[0])) if BroodRoot.fair_spot else game.sym_pt(team, p)
+		var pm: Vector2 = BroodRoot.sym_feet(game, team, BroodNew.MAW, p) if BroodRoot.fair_spot else p
 		var soon := not BroodNew.maw_on_swamp(game, team, p) and BroodNew.swamp_coming(game, team, BroodRoot.rect_for(BroodNew.MAW, p).get_center())
 		if not soon and not BroodNew.maw_on_swamp(game, team, p):
 			continue
@@ -2212,8 +2216,8 @@ func _nb_marked_spot(q: Unit, m: Unit):
 			s = -p_k.distance_to(qk) * 0.5 + (0.0 if out else 400.0) + p_k.distance_to(from) * 0.1
 		var foe := _nb_nearest_foe_pos(p)
 		if foe != Vector2.INF:
-			s -= foe.distance_to(p) * 0.15
-		if _foe_near(p, 10.0 * Defs.TILE):
+			s -= foe.distance_to(pm) * 0.15
+		if _foe_near(pm, 10.0 * Defs.TILE):
 			s += 2000.0
 		if s < bs:
 			bs = s
