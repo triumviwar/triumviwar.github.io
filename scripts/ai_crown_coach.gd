@@ -56,6 +56,7 @@ var labs_first_on := not off and not args.has("labsfirst:off")
 var halls_on_time_on := not off and not args.has("hallsontime:off")
 var honest_off := off or args.has("honest:off")
 var screen_first_on := not off and not args.has("screenfirst:off")
+var floor_off := args.has("armyfloor:off")
 var screen_trained := 0
 var guns_first_on := not off and not args.has("gunsfirst:off")
 var guns_early_n := 0
@@ -125,7 +126,22 @@ func labs_wanted() -> bool:
 		return false
 	if game.supply_used(team) >= int(game.players[team]["cap"]) - 1:
 		return false
+	if army_short():
+		return false
 	return free_posts() > 0
+
+
+## THE ARMY FLOOR (crown-coach-measure 2026-11-16, docs/crown_coach_measure.md: v the Brood LABOURERS FIRST left the Crown
+## naked: army at 5:00 a median 90 (off: 360), 0.41 of the Brood's at 8:00 (off: 0.83), the first Brood arrival (7:40, 550)
+## killed 28 units and 5 buildings in 90 s; paired worse in 15 of 38, better in 3, p 0.008). Labourers first yields while the
+## army is short of what the Crown's own army rules want by now: v the Brood the line (AICrownVBrood.line_short), every
+## matchup the army clock (AICrownArmy.behind). Switch `armyfloor:off`.
+func army_short() -> bool:
+	if floor_off:
+		return false
+	if ai.vb() != null and ai.vbr.line_short():
+		return true
+	return ai.ca_behind()
 
 
 ## Trains what it can now and returns the gold to hold for the rest (a labourer's price for each slot still open).
