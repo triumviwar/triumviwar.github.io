@@ -324,11 +324,11 @@ func _barracks() -> void:
 	await wait_for(func() -> bool: return find(0, "dragoon", false) != null, 60.0)
 	var dg: Unit = find(0, "dragoon", false)
 	check(dg != null, "he came out as a Musketeer, got on his horse: a Dragoon")
-	# an Officer: the Horseman less the horse, on foot, loaded
+	# an Officer: the Horseman's own price (his horse is always paid apart: cavalry-charge-package), on foot, loaded
 	gold0 = g.players[0]["gold"]
 	check(g.train(bar, "dismounted") == "", "one click: OFFICER")
 	paid = gold0 - int(g.players[0]["gold"])
-	check(paid == int(Defs.UNITS["cuirassier"]["cost"]) - int(Defs.UNITS["horse"]["cost"]) and paid == 75, "  paid the Horseman less his horse: %d" % paid)
+	check(paid == int(Defs.UNITS["cuirassier"]["cost"]) and paid == 60, "  paid the Horseman's own price (his horse apart): %d" % paid)
 	await wait_for(func() -> bool: return find(0, "dismounted", false) != null, 30.0)
 	var of: Unit = find(0, "dismounted", false)
 	check(of != null and of.pistol and not of.armoured and of.horse_rid == 0, "an Officer comes out on foot, loaded")
@@ -338,7 +338,7 @@ func _barracks() -> void:
 	check(keys.has("armoured_dragoon") and keys.has("dismounted_cuirassier"), "with Armour: Armoured Dragoon and Armoured Officer on the card")
 	check(g.can_train(bar, "armoured_dragoon") == "" and g.can_train(bar, "dismounted_cuirassier") == "", "  and they can be trained ('%s' / '%s')" % [g.can_train(bar, "armoured_dragoon"), g.can_train(bar, "dismounted_cuirassier")])
 	var pa: Array = g.unit_price(0, "dismounted_cuirassier")
-	check(pa[0] == 75 + int(Defs.RESEARCH["armour"]["fees"]["dismounted"][0]), "  the Armoured Officer: %d gold" % pa[0])
+	check(pa[0] == int(Defs.UNITS["dismounted"]["cost"]) + int(Defs.RESEARCH["armour"]["fees"]["dismounted"][0]), "  the Armoured Officer: %d gold" % pa[0])
 	g.train(bar, "dismounted_cuirassier")
 	await wait_for(func() -> bool: return find(0, "dismounted", true) != null, 30.0)
 	var ao: Unit = find(0, "dismounted", true)

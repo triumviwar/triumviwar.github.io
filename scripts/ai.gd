@@ -993,6 +993,7 @@ func _tier2(t: float) -> void:
 	if not springs.is_empty():
 		_shield_research()
 		_leap_research()
+		_chain_research()
 	if game.clock < _tier2_t:
 		return
 	_tier2_t = game.clock + 3.0
@@ -1180,7 +1181,8 @@ func _esc_spring(esc: Array, heavy := false) -> void:
 
 ## Gear mode: SHIELD WALL (the Clock Soldiers' SHIELD FORWARD, scripts/shield_wall.gd) once it meets a ranged army
 ## (3+ enemy shooters seen in the last 90 s: Musketeers, Spitters, Springers...) and has Clock Soldiers to use it, at a
-## Light Works whose ring meshes with a Mainspring's (it costs Tension), with the Tension to spare.
+## working Escapement (since 0.38.19, escapement-research; a Light Works before: it costs Tension, so it is made only
+## while the Escapement's gear network has a Mainspring), with the Tension to spare.
 var _ranged_seen := 0
 var _ranged_seen_t := -999.0
 
@@ -1200,14 +1202,16 @@ func _shield_research() -> void:
 	if game.army(team).filter(func(u: Unit) -> bool: return u.kind == ShieldWall.KIND).size() < 4:
 		return
 	var info: Dictionary = Defs.RESEARCH[ShieldWall.TECH]
-	if _meshed_none():
+	if String(info["at"]) == Defs.CW_TECH and not game.has_working(team, Defs.CW_TECH):
+		return          # (the Escapement isn't up and fed yet: _tier2 lays it)
+	if String(info["at"]) != Defs.CW_TECH and _meshed_none():
 		return
 	_research_keep = maxf(_research_keep, float(Defs.tension_cost(info)) + 10.0)     # (its Tension is kept from the Springers: _produce)
 	_research_cogs(int(info["cost"]))
 	if game.tension(team) < float(Defs.tension_cost(info)) + 10.0 or _gold() < int(info["cost"]) + 20:
 		return
-	for w in _mine(_works()):
-		if game.research_problem(w, ShieldWall.TECH) == "":
+	for w in _mine(String(info["at"])):
+		if w.built and game.research_problem(w, ShieldWall.TECH) == "":
 			game.start_research(w, ShieldWall.TECH)
 			if game.mlog:
 				game.mlog.add("%s researches SHIELD WALL (it met %d shooters)" % [game.mlog.who(team), _ranged_seen])
@@ -1237,6 +1241,33 @@ func _leap_research() -> void:
 			game.start_research(e, "high_leap")
 			if game.mlog:
 				game.mlog.add("%s researches HIGH LEAP (%d Springers, %s)" % [game.mlog.who(team), springers, "a walled enemy" if _foe_walled() else "an enemy on high ground"])
+			return
+
+
+## Gear mode: LONG CHAIN at the Escapement (every Netter's net reaches 150 -> 240: escapement-research, 0.38.19) once it
+## has 2 Netters (no build names Netters in its mix: the shared _produce makes them, 1 from an army of 8, up to 3). After
+## SHIELD WALL when that is wanted (its Clock Soldiers walk up under fire), like HIGH LEAP.
+func _chain_research() -> void:
+	if difficulty < 1 or game.has_tech(team, "long_chain") or game.researching(team, "long_chain"):
+		return
+	if not game.has_working(team, Defs.CW_TECH):
+		return
+	var netters := game.army(team).filter(func(u: Unit) -> bool: return u.kind == Defs.NETTER).size()
+	if netters < 2:
+		return
+	if not game.has_tech(team, ShieldWall.TECH) and not game.researching(team, ShieldWall.TECH) and _ranged_seen >= 3 \
+			and game.army(team).filter(func(u: Unit) -> bool: return u.kind == ShieldWall.KIND).size() >= 4:
+		return          # (SHIELD WALL first)
+	var info: Dictionary = Defs.RESEARCH["long_chain"]
+	_research_keep = maxf(_research_keep, float(Defs.tension_cost(info)) + 10.0)
+	_research_cogs(int(info["cost"]))
+	if game.tension(team) < float(Defs.tension_cost(info)) + 5.0 or _gold() < int(info["cost"]) + 20:
+		return
+	for e in _mine(Defs.CW_TECH):
+		if e.built and game.research_problem(e, "long_chain") == "":
+			game.start_research(e, "long_chain")
+			if game.mlog:
+				game.mlog.add("%s researches LONG CHAIN (%d Netters)" % [game.mlog.who(team), netters])
 			return
 
 
@@ -3266,9 +3297,10 @@ func _more_halls(macro: bool) -> void:
 
 ## Research once the army it's for is there and the money allows (never with an expansion
 ## to save for). Crown, at the Armoury, roughly in this order: the Socket Bayonet from 3
-## Musketeers, the Matchlock from 4, the Cavalry Charge from 2 horsemen, Armour from 6
-## soldiers, Prepared Charges from 1 gun (cannon or mortar), Flintlock from 8 Musketeers,
-## the Gunner's Quadrant from 2 guns, Caplock from 12. [what's counted, how many]
+## Musketeers, the Matchlock from 4, Armour from 6 soldiers, Prepared Charges from 1 gun
+## (cannon or mortar), Flintlock from 8 Musketeers, the Gunner's Quadrant from 2 guns,
+## Caplock from 12; at the Horse Breeder the Cavalry Charge from 2 horsemen (from the first
+## one, out or in a queue, when the plan is a rider plan: _rider_plan). [what's counted, how many]
 const RESEARCH_AT := {"bayonet": ["musket", 3], "matchlock": ["musket", 4], "charge": ["horse", 2], "pouch": ["musket", 6],
 	"armour": ["soldier", 6], "charges": ["gun", 1], "flintlock": ["musket", 8], "quadrant": ["gun", 2],
 	"caplock": ["musket", 12]}
@@ -3295,7 +3327,14 @@ func _research() -> void:
 		if info.has("band"):
 			continue        # (the band's musicians: _band)
 		var at: Array = RESEARCH_AT.get(key, ["musket", 0])
-		if int(n[at[0]]) < int(at[1]) * (1.5 if difficulty == 0 else 1.0):
+		var need := float(at[1]) * (1.5 if difficulty == 0 else 1.0)
+		var have := int(n[at[0]])
+		if key == "charge" and _rider_plan():
+			# (cavalry-charge-package: a rider plan drills the Charge with its first rider, out or still training)
+			need = 1.0
+			for b in _mine("barracks"):
+				have += b.queue.count("cuirassier")
+		if have < need:
 			continue
 		if _gold() < int(info["cost"]) + _lv([150, 60, 20]) or _res2() < float(info.get("cost2", 0)) + 20.0:
 			continue
@@ -5180,6 +5219,12 @@ func _soldier_key(b: Building, kind: String) -> String:
 ## builders, the escorts and worker safety leave him be.
 func _held_worker(_u: Unit) -> bool:
 	return false
+
+
+## (cavalry-charge-package) a plan that makes riders from the start (the Horseman rush, OPTIMAL's Horse Breeder
+## opening): the Horse Breeder's Cavalry Charge comes with the first rider (_research).
+func _rider_plan() -> bool:
+	return opening == "breeder"
 
 
 ## No Horsemen trained for now (AICrown.rider_waits: the first horse goes to a gun).

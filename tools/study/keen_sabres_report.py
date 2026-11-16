@@ -4,7 +4,7 @@
 import json, sys
 from collections import defaultdict
 
-ARMS = ["stand", "a", "b", "c", "c2", "d", "e", "f", "f2"]
+ARMS = ["stand", "a", "b", "c", "c2", "d", "e", "f", "f2", "cr"]
 rows = []
 for f in sys.argv[1:]:
     rows += json.load(open(f))

@@ -119,6 +119,25 @@ func _draw_entry() -> void:
 	join.custom_minimum_size = Vector2(200, 64)
 	join.disabled = not _relay_set()
 	jrow.add_child(join)
+	# WATCH: join as a spectator from the start (a full room, or a match under way, seats one anyway)
+	var watch: Button = main._button("WATCH", func() -> void:
+		var c := code_edit.text.strip_edges()
+		if c.length() < 3:
+			return
+		var l := NetLobby.new()
+		main.add_child(l)
+		main.net_lobby = l
+		l.want_spec = true
+		l.changed.connect(_on_changed)
+		l.failed.connect(_on_failed)
+		l.start_now.connect(func(cfg: Dictionary) -> void:
+			main.start(cfg))
+		l.join(Settings.relay_url, c)
+		_draw())
+	watch.custom_minimum_size = Vector2(160, 64)
+	watch.tooltip_text = Loc.t("Join as a SPECTATOR: watch every side, give no orders. Also joins a match already under way.")
+	watch.disabled = not _relay_set()
+	jrow.add_child(watch)
 	v.add_child(jrow)
 	if Identity.available():
 		# RANKED (docs/online_ranked.md): on our servers, Steam players only (or a test server's DEV sign-in)
@@ -211,6 +230,8 @@ func _draw_room() -> void:
 	rows_scroll.add_child(rows)
 	for i in l.slots.size():
 		rows.add_child(_slot_row(l, i))
+	# the SPECTATORS, in a group of their own below the players (they don't take a player's place)
+	_spec_rows(l, rows)
 	var st := UiStyle.text(l.status, 15, UiStyle.BAD if l.refused != "" or not l.online else UiStyle.TEXT, HORIZONTAL_ALIGNMENT_LEFT)
 	st.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	pv.add_child(st)
@@ -221,6 +242,10 @@ func _draw_room() -> void:
 		l.pinged.connect(_on_pinged)
 	_ping_lbl = pg
 	var hint := "Same TEAM number = allies.  The host sets the teams, the computer's level and plan, and the map; everyone picks their own faction and colour." if host else "Same TEAM number = allies.  You pick your own faction and colour; the host sets the teams and the map."
+	if not host and l.spectating:
+		hint = "You are a SPECTATOR: you will see every side and give no orders. Pick a faction under SPECTATORS to take a free seat."
+	elif not host:
+		hint = Loc.t(hint) + "  " + Loc.t("SPECTATOR in your FACTION list: watch instead of playing.")
 	var note := UiStyle.text(hint, 15, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT)
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	pv.add_child(note)
@@ -277,6 +302,16 @@ func _draw_room() -> void:
 	if l.same_delay:
 		UiStyle.chosen(sd)
 	mv.add_child(sd)
+	# spectators may talk to the players? (the host's choice, off: a spectator sees every side, its words could help one)
+	var tk: Button = main._button("SPECTATORS TALK TO PLAYERS: ON" if l.spec_talk else "SPECTATORS TALK TO PLAYERS: OFF", func() -> void: l.set_spec_talk(not l.spec_talk))
+	tk.custom_minimum_size = Vector2(0, 40)
+	tk.add_theme_font_size_override("font_size", 14)
+	tk.disabled = not host
+	tk.add_theme_color_override("font_disabled_color", UiStyle.TEXT)
+	tk.tooltip_text = Loc.t("Off: spectators chat among themselves only. They see every side, so their words could help a player.")
+	if l.spec_talk:
+		UiStyle.chosen(tk)
+	mv.add_child(tk)
 	var sdn := UiStyle.text("On: the host's own orders wait as long as the friend's take to arrive over the internet, so neither side reacts faster.", 13, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT)
 	sdn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	mv.add_child(sdn)
@@ -367,6 +402,8 @@ func _slot_row(l: NetLobby, i: int) -> Control:
 	var fac_opts: Array = []
 	for ff in FACS:
 		fac_opts.append(["RANDOM" if ff == "random" else String(Defs.FACTIONS[ff]["name"]).to_upper(), ff, false])
+	if mine and not l.is_host and who == "remote":
+		fac_opts.append([Loc.t("SPECTATOR (WATCH)"), "spectator", false])      # (leave this seat and watch every side)
 	var pick_fac := func(v) -> void:
 		if l.is_host:
 			l.set_faction(i, String(v))
@@ -432,6 +469,71 @@ func _slot_row(l: NetLobby, i: int) -> Control:
 	tb.disabled = not l.is_host
 	h.add_child(tb)
 	return h
+
+
+## The SPECTATORS group under the players: a title with the count, a row each (name, round trip to the host), and for a
+## guest who watches a list to take a free seat back. Nothing when nobody watches.
+func _spec_rows(l: NetLobby, rows: VBoxContainer) -> void:
+	_spec_lbls = []
+	if l.specs.is_empty():
+		return
+	rows.add_child(HSeparator.new())
+	var head := HBoxContainer.new()
+	head.add_theme_constant_override("separation", 10)
+	head.add_child(UiStyle.text(Loc.t("SPECTATORS (%d)") % l.specs.size(), 16, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
+	head.add_child(UiStyle.text(Loc.t("watching: every side, no orders"), 14, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT))
+	rows.add_child(head)
+	for sp in l.specs:
+		var h := HBoxContainer.new()
+		h.add_theme_constant_override("separation", 12)
+		var me: bool = not l.is_host and l.spectating and int(sp.get("n", 0)) == l.my_spec
+		var nm := UiStyle.text(Loc.t("YOU (SPECTATOR)") if me else Loc.t("SPECTATOR %d") % int(sp.get("n", 0)), 18,
+			Color(1, 0.9, 0.55) if me else Color(0.72, 0.78, 0.86), HORIZONTAL_ALIGNMENT_LEFT, true)
+		nm.custom_minimum_size.x = 230
+		h.add_child(nm)
+		var pl := UiStyle.text(_spec_ping(l, sp), 15, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT)
+		pl.custom_minimum_size.x = 120
+		pl.set_meta("spec", int(sp.get("peer", -1)) if l.is_host else int(sp.get("n", 0)))
+		_spec_lbls.append(pl)
+		h.add_child(pl)
+		if me:
+			var free := false
+			for s in l.slots:
+				if String(s["who"]) == "remote" and not bool(s.get("here", true)):
+					free = true
+			if free:
+				var opts: Array = []
+				for ff in FACS:
+					opts.append(["RANDOM" if ff == "random" else String(Defs.FACTIONS[ff]["name"]).to_upper(), ff, false])
+				var take: Button = main._dropdown(Loc.t("TAKE A SEAT"), 200, opts, func(v) -> void: l.choose_faction(String(v)), 240.0, "", _nothing)
+				take.tooltip_text = Loc.t("Pick a faction to play in the free seat.")
+				h.add_child(take)
+		rows.add_child(h)
+	if not l.spec_pinged.is_connected(_on_spec_pinged):
+		l.spec_pinged.connect(_on_spec_pinged)
+	if not l.pinged.is_connected(_on_spec_pinged):
+		l.pinged.connect(_on_spec_pinged)
+
+
+var _spec_lbls: Array = []
+
+
+func _spec_ping(l: NetLobby, sp: Dictionary) -> String:
+	var ms := int(l.ping_of.get(int(sp.get("peer", -1)), -1)) if l.is_host else int(sp.get("ping", -1))
+	return Loc.t("ping %d ms") % ms if ms >= 0 else ""
+
+
+func _on_spec_pinged() -> void:
+	var l := _lobby()
+	if l == null:
+		return
+	for lb in _spec_lbls:
+		if not is_instance_valid(lb):
+			continue
+		var key := int(lb.get_meta("spec", -1))
+		for sp in l.specs:
+			if (int(sp.get("peer", -1)) if l.is_host else int(sp.get("n", 0))) == key:
+				lb.text = _spec_ping(l, sp)
 
 
 ## A CAMPAIGN room (a mission played in co-op or versus, made from the CAMPAIGN page): the mission, the mode, who

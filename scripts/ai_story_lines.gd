@@ -221,6 +221,7 @@ const RULES := [
 	["^pulled down a (.+?) by spent", "%s pulls down a spent %s.", 1, "expand"],
 	# ---- tech
 	["^researches SHIELD WALL \\(it met (\\d+) shooters\\)", "%s researches Shield Wall: it has met %s enemy shooters.", 2, "tech"],
+	["^researches LONG CHAIN \\((\\d+) Netters", "%s researches Long Chain: its %s Netters throw their nets from further back.", 2, "tech"],
 	["^researches HIGH LEAP \\((\\d+) Springers", "%s researches High Leap for its %s Springers, to jump the enemy's cliffs and walls.", 2, "tech"],
 	["^sees a swarm \\((\\d+) light melee", "%s sees a swarm of %s light fighters: it answers with a Heavy Works, Pendulums and another turret.", 3, "tech"],
 	["^lays a Heavy Works", "%s lays down a Heavy Works, for Pendulums and Spring Ballistas.", 2, "tech"],

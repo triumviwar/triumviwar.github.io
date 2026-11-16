@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """KEEN SABRES IN COMPUTER GAMES (keen-sabres-test, docs/keen_sabres_test.md): Hard Crown OPTIMAL v Hard Brood OPTIMAL
 (tools/qa_match.gd, 15:00) with Keen Sabres researchable ("on") and with it removed by the study switch keensabres:off
-("off"). A measuring tool: it changes no rule.
-    python3 tools/study/keen_sabres_games.py run OUT [--jobs 2] [--godot PATH] [--maps a,b] [--seeds 2]
+("off"). A measuring tool: it changes no rule. cavalry-charge-package (docs/cavalry_charge_package.md) reran it with
+the arm "package" (Keen Sabres gone, the Charge at the Horse Breeder x2.2 on light, the riders' swarm rule, Officer 100;
+no switch) and "swarmoff" (the same with `cavswarm:off`); --arms picks them (the old "off" switch is gone with Keen
+Sabres: on today's build "on" and "off" run the package too).
+    python3 tools/study/keen_sabres_games.py run OUT [--jobs 2] [--godot PATH] [--maps a,b] [--seeds 2] [--arms package]
     python3 tools/study/keen_sabres_games.py report OUT
 Each game: OUT/<arm>_<map>_s<k>/result.json (k odd = the sides swapped)."""
 import json, os, sys, glob, subprocess, argparse
@@ -12,9 +15,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 MAPS = ["greenhold", "mirewood", "hollowfen", "dune_sea"]
 
 
-def games(maps, seeds):
+ARM_ARGS = {"on": [], "off": ["keensabres:off"], "package": [], "swarmoff": ["cavswarm:off"]}
+
+
+def games(maps, seeds, arms=("on", "off")):
     out = []
-    for arm in ["on", "off"]:
+    for arm in arms:
         for i, m in enumerate(maps):
             for k in range(seeds):
                 slots = "crown/optimal/0,brood/optimal/1" if k % 2 == 0 else "brood/optimal/0,crown/optimal/1"
@@ -23,7 +29,7 @@ def games(maps, seeds):
 
 
 def run(a):
-    q = games(a.maps.split(","), a.seeds)
+    q = games(a.maps.split(","), a.seeds, a.arms.split(","))
 
     def one(gm):
         tag, arm, m, sd, slots = gm
@@ -33,8 +39,7 @@ def run(a):
         os.makedirs(d, exist_ok=True)
         cmd = [a.godot, "--headless", "--fixed-fps", "30", "--path", ROOT, "--script", "res://tools/qa_match.gd", "--",
                "map:" + m, "seed:%d" % sd, "end:900", "out:" + d, "slots:" + slots, "diff:hard"]
-        if arm == "off":
-            cmd.append("keensabres:off")
+        cmd += ARM_ARGS.get(arm, [])
         with open(os.path.join(d, "run.log"), "w") as lf:
             subprocess.run(cmd, stdout=lf, stderr=subprocess.STDOUT, timeout=5400)
         print("done", tag, flush=True)
@@ -60,10 +65,11 @@ def leader(d, crown, brood):
 
 
 def report(a):
-    rows = {"on": [], "off": []}
+    rows = {}
     for f in sorted(glob.glob(os.path.join(a.out, "*", "result.json"))):
         tag = os.path.basename(os.path.dirname(f))
         arm = tag.split("_")[0]
+        rows.setdefault(arm, [])
         d = json.load(open(f))
         crown = [i for i, s in enumerate(d["slots"]) if s[0] == "crown"][0]
         brood = 1 - crown
@@ -94,7 +100,7 @@ def report(a):
                           "raptors": rap_by_riders, "grubs": work_by_riders, "keen": keen, "charge": charge})
     print("| arm | game | Crown result | leader (draw) | length | riders made | riders lost | kills by riders | Raptors | grubs | Keen Sabres at | Charge at |")
     print("|---|---|---|---|---|---|---|---|---|---|---|---|")
-    for arm in ["on", "off"]:
+    for arm in rows:
         for r in rows[arm]:
             mmss = lambda s: "" if s is None else "%d:%02d" % (int(s) // 60, int(s) % 60)
             print("| %s | %s | %s | %s | %s | %d | %d | %d | %d | %d | %s | %s |" % (arm, r["tag"][len(arm) + 1:], r["res"], r["lead"],
@@ -102,7 +108,7 @@ def report(a):
     print()
     print("| arm | games | Crown W-D-L | won or led Crown/Brood/even | riders made | riders lost | kills by riders | of them Raptors | grubs |")
     print("|---|---|---|---|---|---|---|---|---|")
-    for arm in ["on", "off"]:
+    for arm in rows:
         rs = rows[arm]
         if not rs:
             continue
@@ -125,5 +131,6 @@ if __name__ == "__main__":
     ap.add_argument("--godot", default=os.environ.get("GODOT", "godot"))
     ap.add_argument("--maps", default=",".join(MAPS))
     ap.add_argument("--seeds", type=int, default=2)
+    ap.add_argument("--arms", default="on,off")
     a = ap.parse_args()
     run(a) if a.cmd == "run" else report(a)

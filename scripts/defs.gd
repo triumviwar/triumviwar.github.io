@@ -228,7 +228,7 @@ const ARC := {"drain": 0.05, "speed": 420.0}
 ## behind it, inside the `cone` (cosine) away from the shooter, hit the shield instead
 ## (the shooter must be in front of it: `front`).
 const BRACE := {"armor": 7, "reach": 120.0, "cone": 0.45, "front": 0.2, "switch": 0.6, "drain": 2.5}   # drain: battery use while braced (x normal)
-## Clock Soldier: SHIELD FORWARD (research SHIELD WALL at the Light Works; scripts/shield_wall.gd,
+## Clock Soldier: SHIELD FORWARD (research SHIELD WALL at the Escapement since 0.38.19; scripts/shield_wall.gd,
 ## docs/clock_soldier_shield.md). Switching takes `switch` s (it stands still meanwhile); raised, it walks at `speed` of
 ## its pace, has `armor` more armour and takes `front` less from SHOTS whose shooter stands in front of it (inside the
 ## `cone`, a cosine about where it faces) and `front_melee` less from blows from in front; blows from the side or behind
@@ -988,10 +988,10 @@ const UNITS := {
 	# Horseman, with Armour the Cuirassier: see ARMOURED)
 	"cuirassier": {
 		"tags": ["light"],
-		"name": "Horseman", "hp": 100, "armor": 1, "speed": 112, "cost": 100, "time": 22.0, "supply": 3,
+		"name": "Horseman", "hp": 90, "armor": 1, "speed": 112, "cost": 60, "time": 22.0, "supply": 3,
 		"sight": 8, "range": 26, "damage": 18, "cooldown": 1.1, "aim": 0.15, "radius": 15, "from": "barracks",
 		"requires": "horse_breeder", "bonus": {"cannon": 1.6, "spitter": 1.3, "arc_thrower": 1.3}, "charge": true, "faction": "crown", "needs_horse": true,
-		"about": "Fast light horseman with a pistol and a sabre. Trained with his horse in one click (a free one at a breeder, else the breeder trains one: 40 more); he comes out on foot and rides off on it. He opens with his one loaded pistol shot (30 damage, a little over half a musket's reach), then fights with the sabre; he can only reload on foot (DISMOUNT: he's an Officer then). Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. Once the Armoury has drilled the Cavalry Charge, his first sabre blow after a gallop hits double and throws the enemy back. KEEN SABRES (the Horse Breeder) puts 6 more on each sabre blow at light units. With Armour he becomes a Cuirassier. Bayonets hurt him.",
+		"about": "Fast light horseman with a pistol and a sabre. Trained with his horse in one click (a free one at a breeder, else the breeder trains one: 40 more); he comes out on foot and rides off on it. He opens with his one loaded pistol shot (30 damage, a little over half a musket's reach), then fights with the sabre; he can only reload on foot (DISMOUNT: he's an Officer then). Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. Once the Horse Breeder has drilled the Cavalry Charge, his first sabre blow after a gallop hits double (2.2 times on light units: one charge kills a Raptor) and throws the enemy back. With Armour he becomes a Cuirassier. Bayonets hurt him.",
 	},
 	# ---- horses (Defs.HORSES) and the men who ride them. Horses are bought at a Horse Breeder
 	# (trained like soldiers); the rest are a man on a horse (MOUNT) or off it (DISMOUNT): Defs.MOUNTS.
@@ -1019,10 +1019,15 @@ const UNITS := {
 		"about": "A Musketeer on a horse: rides fast but can't fight in the saddle. Trained at the Barracks with his horse in one click, for the Musketeer's price (a free horse at a breeder, else the breeder trains one: 40 more); he comes out on foot and rides off on it. Told to attack, he dismounts (0.8 s), fires as a Musketeer (reloading a third slower), and remounts by himself to move on. His reload waits while he rides.",
 	},
 	# the Officer: a Horseman off his horse (with Armour: the Armoured Officer). The Barracks
-	# trains him on foot too, for the Horseman's price less the horse's.
+	# trains him on foot too, for the HORSEMAN'S OWN PRICE (cavalry-charge-package, the owner 2026-11-15 21:34: "correct
+	# as it should be in math"): the Horseman's 100 never included his horse (40 more, or a horse of ours), so an Officer +
+	# a horse = 100 + 40 = a Horseman + his horse, and a Horseman got off = an Officer + a horse; the same 5 powder, the
+	# same Armour fee (30). As every other pair: Labourer 50 = Messenger 50, Musketeer 60 = Dragoon 60. (Was 75: an
+	# Officer + a horse, 115, was the cheaper Horseman, 140.) docs/cavalry_charge_package.md. The owner 2026-11-16 00:08-00:11:
+	# a Horseman is 60 + his horse's 40 = 100 in all (the Officer 60): both 100 -> 60.
 	"dismounted": {
 		"tags": ["light"],
-		"name": "Officer", "hp": 80, "armor": 1, "speed": 64, "cost": 75, "time": 18.0, "supply": 3,
+		"name": "Officer", "hp": 80, "armor": 1, "speed": 64, "cost": 60, "time": 18.0, "supply": 3,
 		"sight": 8, "range": 110, "damage": 30, "cooldown": 1.1, "aim": 0.35, "radius": 10, "from": "barracks",
 		"sabre": {"damage": 18.0, "cooldown": 1.1}, "faction": "crown",
 		"about": "A Horseman on foot: his flintlock pistol (one shot, 30 damage, a little over half a musket's reach) and the same sabre as in the saddle up close (about a plain bayonet's match). On foot he reloads the pistol by himself (4 s, a charge of his powder: his charges refill like a Musketeer's, 1 powder each). Needs no Horse Breeder: without a horse he walks. Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. MOUNT a horse and he rides as a Horseman.",
@@ -1091,7 +1096,7 @@ const UNITS := {
 		"name": "Clock Soldier", "hp": 75, "armor": 1, "speed": 68, "cost": 70, "time": 16.0, "supply": 1,
 		"sight": 7, "range": 22, "damage": 10, "cooldown": 1.2, "aim": 0.33, "radius": 10, "from": "movement_works",
 		"faction": "clockwork",
-		"about": "The machine's plain front-line soldier: a clock-hand sword and a pocket-watch-cover shield. Quick on its feet but light. SHIELD FORWARD (once SHIELD WALL is researched at the Light Works) raises the shield in front: slower, but tougher, and much tougher against shots from the front. Made at the Light Works.",
+		"about": "The machine's plain front-line soldier: a clock-hand sword and a pocket-watch-cover shield. Quick on its feet but light. SHIELD FORWARD (once SHIELD WALL is researched at the Escapement) raises the shield in front: slower, but tougher, and much tougher against shots from the front. Made at the Light Works.",
 	},
 	# TIER 2 (gear mode): the SPRINGER, the first Tension unit (the Clockwork's Stalker): ranged, hits ground and air, hops
 	# (its walk), JUMPs (Defs.SPRINGER_JUMP). Guesses (design_principles 1): 100 cogs + 25 Tension, 2 supply; a shot every
@@ -1153,15 +1158,17 @@ const UNITS := {
 	# magic). Its spring cannon fires a weighted chain net at ONE enemy unit: caught, it cannot move or cast for 4 s (it can still attack), and a
 	# flyer is brought down to the ground for that time. Guesses (design_principles 1): a long reload (a net every 14.6 s:
 	# aim 0.11, the net leaves on the 2nd frame, + 0.5 + 14) and weak itself (120 hp + 1 armour, 4 damage a net, slow 54);
-	# its reach (180) is a Musketeer's (190) less a little and a Spitter's (150) more. 125 cogs + 50 Tension, 2 supply (a
+	# its reach was 180 (a Musketeer's 190 less a little); 150 since 0.38.19 (escapement-research, the owner 2026-11-15: "Reduce
+	# its current range"; a Spitter's 150), 240 with LONG CHAIN (Defs.RESEARCH "long_chain"; the Field Cannon's 430 stays the
+	# longest). 125 cogs + 50 Tension, 2 supply (a
 	# Mist Toad 100 + 25, 3 supply, a TONGUE about every 50 s). It picks the most dangerous enemy in reach that is not caught
 	# already (Netter.pick); a net is visible in flight and the catch lasts a fixed time (design_principles 1: telegraphed).
 	"netter": {
 		"tags": ["armored"],
 		"name": "Netter", "hp": 120, "armor": 1, "speed": 54, "cost": 125, "tension": 50, "time": 28.0, "supply": 2,
-		"sight": 9, "range": 180, "damage": 4, "cooldown": 14.0, "aim": 0.11, "radius": 16, "from": "movement_works",
+		"sight": 9, "range": 150, "damage": 4, "cooldown": 14.0, "aim": 0.11, "radius": 16, "from": "movement_works",
 		"requires": "escapement", "anti_air": true, "faction": "clockwork",
-		"about": "A low iron drum on four short legs with a spring cannon on top: it fires a weighted chain NET at one enemy, which then cannot move or use abilities for 4 s (it can still attack what is in its reach); a flyer it catches comes down to the ground for that time, where anything can hit it. By itself it picks the most dangerous enemy in reach that is not caught already (right-click one to choose). A long reload, and weak itself: keep it behind the line. Made at a Light Works whose gear network has a Mainspring, once an Escapement works. Costs Tension.",
+		"about": "A low iron drum on four short legs with a spring cannon on top: it fires a weighted chain NET at one enemy, which then cannot move or use abilities for 4 s (it can still attack what is in its reach); a flyer it catches comes down to the ground for that time, where anything can hit it. By itself it picks the most dangerous enemy in reach that is not caught already (right-click one to choose). A long reload, and weak itself: keep it behind the line. Its net reaches about as far as a Spitter spits; LONG CHAIN, researched at the Escapement, makes it reach further than a Musketeer shoots. Made at a Light Works whose gear network has a Mainspring, once an Escapement works. Costs Tension.",
 	},
 	# TIER 2 (gear mode; Defs.BALLISTA, scripts/ballista.gd, docs/ballista.md): the SPRING BALLISTA, the owner's unit
 	# (2026-10-27): against ARMOUR and BUILDINGS. Guesses (design_principles 1): a heavy screw bolt, 45 damage (x1.75 on an
@@ -1528,7 +1535,7 @@ const BUILDINGS := {
 	"armoury": {
 		"name": "Armoury", "hp": 1000, "armor": 2, "cost": 150, "time": 40.0, "size": Vector2i(4, 3),
 		"supply": 0, "sight": 7, "trains": ["band", "band_fifer", "band_piper"], "requires": "barracks", "faction": "crown",
-		"about": "All the Crown's research: Armour, the musket locks, the bayonet, the guns' drills and the Cavalry Charge. Trains the Marching Band's musicians: the Drummer, the Fifer and the Piper. Refits soldiers. Needs a Barracks.",
+		"about": "All the Crown's research but the Cavalry Charge (the Horse Breeder's): Armour, the musket locks, the bayonet and the guns' drills. Trains the Marching Band's musicians: the Drummer, the Fifer and the Piper. Refits soldiers. Needs a Barracks.",
 	},
 	"foundry": {
 		"name": "Foundry", "hp": 900, "armor": 2, "cost": 200, "time": 45.0, "size": Vector2i(4, 3),
@@ -1549,7 +1556,7 @@ const BUILDINGS := {
 	"movement_works": {
 		"name": "Light Works", "hp": 1000, "armor": 2, "cost": 150, "time": 40.0, "size": Vector2i(4, 3),
 		"supply": 0, "sight": 7, "trains": ["clock_soldier", "springer", "netter"], "faction": "clockwork",
-		"about": "The Clockwork's barracks for the light machines: a long hall that assembles Clock Soldiers on a hanging line, and Springers and Netters once an Escapement works and its gear network has a Mainspring (they cost Tension). On its SMALL gear it trains 15% faster, on its BIG gear 15% slower. It researches SHIELD WALL (the Clock Soldiers' SHIELD FORWARD; Tension too). Must stay linked to the gear field.",
+		"about": "The Clockwork's barracks for the light machines: a long hall that assembles Clock Soldiers on a hanging line, and Springers and Netters once an Escapement works and its gear network has a Mainspring (they cost Tension). On its SMALL gear it trains 15% faster, on its BIG gear 15% slower. Must stay linked to the gear field.",
 	},
 	# THE HEAVY WORKS (gear mode, owner 2026-10-27; docs/gear_rules.md): the heavy machines' yard, a gantry crane over an open
 	# bay where the machine in training is assembled (drawn by HeavyWorks, scripts/heavy_works.gd). Only on its BIG ring
@@ -1565,7 +1572,7 @@ const BUILDINGS := {
 	"escapement": {
 		"name": "Escapement", "hp": 1000, "armor": 2, "cost": 150, "time": 40.0, "size": Vector2i(3, 3),
 		"supply": 0, "sight": 7, "trains": [], "requires": "movement_works", "faction": "clockwork",
-		"about": "The Clockwork's tech building: it unlocks the Springer and holds the Tension research (HIGH LEAP). It uses Tension, so it needs a Mainspring anywhere in its gear network (Tension flows through every meshed ring), and it must stay linked to the gear field: else it stands idle (NEEDS MAINSPRING). Needs a Light Works.",
+		"about": "The Clockwork's tech building: it unlocks the Springer and holds the Tension research: HIGH LEAP (Springers jump up), SHIELD WALL (the Clock Soldiers' SHIELD FORWARD) and LONG CHAIN (the Netters' reach). It uses Tension, so it needs a Mainspring anywhere in its gear network (Tension flows through every meshed ring), and it must stay linked to the gear field: else it stands idle (NEEDS MAINSPRING). Needs a Light Works.",
 	},
 	# THE AIR (gear mode): the CLOCK AVIARY (id cuckoo_house), the flyers' building (like a Stargate). A tall narrow 2x2 tower
 	# on its gear ring; it needs an ACTIVE Escapement to be placed (Game.requirement_text), and everything it makes costs
@@ -1611,7 +1618,7 @@ const BUILDINGS := {
 	"horse_breeder": {
 		"name": "Horse Breeder", "hp": 500, "armor": 1, "cost": 100, "time": 25.0, "size": Vector2i(4, 3),
 		"supply": 0, "sight": 6, "trains": ["horse"], "faction": "crown",
-		"about": "Sells horses: HORSE trains one (40 gold, 15 s; no supply). Horses are what cavalry, guns and wagons need. RALLY sends new horses somewhere (a Barracks or Foundry). Unlocks Horsemen and researches KEEN SABRES (the riders' sabres hit light units harder). Build as many as you like, anywhere.",
+		"about": "Sells horses: HORSE trains one (40 gold, 15 s; no supply). Horses are what cavalry, guns and wagons need. RALLY sends new horses somewhere (a Barracks or Foundry). Unlocks Horsemen and researches the CAVALRY CHARGE (after a gallop a rider's next sabre blow hits double, 2.2 times on light units). Build as many as you like, anywhere.",
 	},
 	"church": {
 		"name": "Church", "hp": 900, "armor": 2, "cost": 150, "time": 35.0, "size": Vector2i(3, 3),
@@ -1707,26 +1714,32 @@ const RESEARCH := {
 	"quadrant": {"name": "Gunner's Quadrant", "label": "QUADRANT", "at": "armoury", "faction": "crown", "cost": 125, "cost2": 30, "time": 45.0,
 		"icon": "research_quadrant", "requires": "charges", "drill": true, "kinds": ["cannon", "mortar"], "range": 32,
 		"about": "Laying the guns by the quadrant: every Field Cannon and Mortar reaches 1 tile further."},
-	"charge": {"name": "Cavalry Charge", "label": "CHARGE", "at": "armoury", "faction": "crown", "cost": 60, "cost2": 0, "time": 25.0,
+	# THE CHARGE (cavalry-charge-package, the owner 2026-11-15 21:34): drilled at the HORSE BREEDER (was the Armoury), so
+	# it comes with the riders; it replaced Keen Sabres. Same price and time.
+	"charge": {"name": "Cavalry Charge", "label": "CHARGE", "at": "horse_breeder", "faction": "crown", "cost": 60, "cost2": 0, "time": 25.0,
 		"icon": "research_charge", "drill": true, "kinds": ["cuirassier"],
-		"about": "Drilled to charge: after about 2 s at the gallop a Horseman's or Cuirassier's next sabre blow hits double and throws the enemy back."},
-	# KEEN SABRES (balance-raptor-horseman, 2026-11-15: StarCraft's Blue Flame for Hellions): the riders' sabres cut light
-	# units deeper (+`light` damage a blow in the saddle, before the charge and veterancy multiply it). A drill: every
-	# Horseman and Cuirassier has it at once. Price and time Claude's, about the Cavalry Charge's.
-	"keen_sabres": {"name": "Keen Sabres", "label": "SABRES", "at": "horse_breeder", "faction": "crown", "cost": 75, "cost2": 0, "time": 30.0,
-		"icon": "research_keen_sabres", "drill": true, "kinds": ["cuirassier"], "light": 6.0,
-		"about": "Sabres ground to a razor edge: every Horseman's and Cuirassier's sabre blow in the saddle hits light units harder (+6: 18 to 24, so two blows kill a Raptor)."},
+		"about": "Drilled to charge: after about 2 s at the gallop a Horseman's or Cuirassier's next sabre blow hits double (2.2 times on light units: one charge kills a Raptor) and throws the enemy back."},
 	# (THE MARCHING BAND's old research "band_fife" / "band_pipes" is gone since 0.36.0: the Fifer and the Piper are
 	# units now (UNITS "band_fifer", "band_piper"); an old save's flag adds the musician to its old band unit on load.)
-	# the Clockwork's Tension research (gear mode), at the Escapement (it must be working: meshed with a Mainspring)
+	# the Clockwork's Tension research (gear mode), at the Escapement (it must be working: meshed with a Mainspring): HIGH
+	# LEAP, SHIELD WALL and LONG CHAIN (escapement-research, 0.38.19)
 	"high_leap": {"name": "High Leap", "label": "HIGH LEAP", "at": "escapement", "faction": "clockwork", "cost": 150, "cost2": 0, "tension": 100,
 		"time": 60.0, "icon": "research_high_leap",
 		"about": "A stiffer spring: every Springer can JUMP UP onto high ground too (only where you can see)."},
-	# the Light Works' research (gear mode): SHIELD FORWARD for every Clock Soldier (Defs.SHIELD_WALL). It costs
-	# Tension, so it is made only at a Works whose ring meshes with a Mainspring's (THE TENSION RULE). Guesses.
-	"shield_wall": {"name": "Shield Wall", "label": "SHIELD WALL", "at": "movement_works", "faction": "clockwork", "cost": 100, "cost2": 0,
+	# SHIELD WALL (gear mode): SHIELD FORWARD for every Clock Soldier (Defs.SHIELD_WALL). At the ESCAPEMENT since 0.38.19
+	# (escapement-research, the owner 2026-11-15 20:34: "Put the Clock Soldier SHIELD upgrade in the Escapement instead of
+	# in the Works"; it was the Light Works'). It costs Tension, so it is made only while the Escapement works (THE TENSION
+	# RULE: a Mainspring in its gear network), like HIGH LEAP. Price and time unchanged.
+	"shield_wall": {"name": "Shield Wall", "label": "SHIELD WALL", "at": "escapement", "faction": "clockwork", "cost": 100, "cost2": 0,
 		"tension": 50, "time": 45.0, "icon": "research_shield", "drill": true, "hp": 10.0,
 		"about": "Drilled to hold the shield in front: every Clock Soldier gets 10 more health and SHIELD FORWARD. Raised, it walks 40% slower and swings a little slower, but has 1 more armour and takes half the damage from shots coming from the front (a fifth less from blows from the front)."},
+	# LONG CHAIN (escapement-research, the owner 2026-11-15 20:34: "make an upgrade for the Net thrower. Reduce its current
+	# range, and the upgrade increases it to something longer than the current range but less than the Crown cannon; the
+	# cannon is still the longest-ranged unit"): every Netter's net reaches `range` px further (150 -> 240; it was 180;
+	# a Field Cannon 430). A drill: every Netter has it at once (Game.apply_drills). Price and time Claude's guesses.
+	"long_chain": {"name": "Long Chain", "label": "LONG CHAIN", "at": "escapement", "faction": "clockwork", "cost": 100, "cost2": 0,
+		"tension": 50, "time": 40.0, "icon": "research_long_chain", "drill": true, "kinds": ["netter"], "range": 90.0,
+		"about": "A longer chain and a stronger spring in the net cannon: every Netter throws its net 90 further (from 150 to 240), from well behind the line."},
 	# the Clock Aviary's research (gear mode): then each Swift can be morphed into a Ticking Owl (Defs.OWL_MORPH)
 	# (id owl_morph: the unit is ticking_owl)
 	"owl_morph": {"name": "Ticking Owl", "label": "TICKING OWL", "at": "cuckoo_house", "faction": "clockwork", "cost": 150, "cost2": 0, "tension": 150,
@@ -1744,8 +1757,8 @@ const RESEARCH := {
 		"time": 40.0, "stage": 0, "icon": "nbr_clutch_raptor", "young": "raptor",
 		"about": "Raptors hatch three to an egg instead of two. The egg costs more (75 food for three), so each Raptor costs the same: more Raptors from each egg, not cheaper ones."},
 	"nb_pack_hunt": {"name": "Pack Hunt", "label": "PACK HUNT", "at": "tyrannosaur", "faction": "brood", "cost": 75, "cost2": 15,
-		"time": 35.0, "stage": 0, "icon": "nbr_pack_hunt", "speed": {"raptor": 22.0, "tyrant_challenger": 14.0, "tyrannosaur": 11.0},
-		"about": "Raptors, Tyrant Challengers and the Tyrant Sire run faster: a Raptor from 92 to 114 (then it outruns horses), a Tyrant Challenger from 84 to 98, the Tyrant Sire from 64 to 75."},
+		"time": 35.0, "stage": 0, "icon": "nbr_pack_hunt", "speed": {"raptor": 32.0, "tyrant_challenger": 14.0, "tyrannosaur": 11.0},
+		"about": "Raptors, Tyrant Challengers and the Tyrant Sire run faster: a Raptor from 92 to 124 (then it outruns horses), a Tyrant Challenger from 84 to 98, the Tyrant Sire from 64 to 75."},
 	"nb_battering_horns": {"name": "Battering Horns", "label": "BATTERING HORNS", "at": "tyrannosaur", "faction": "brood", "cost": 125, "cost2": 40,
 		"time": 50.0, "stage": 2, "icon": "nbr_battering_horns", "bonus": {"brute": 3.5},
 		"about": "The Brutes' horns grow into rams: they hit buildings, walls and gates harder (x3.5 instead of x2.5)."},
@@ -2016,8 +2029,9 @@ const REVIVE := {"time": 6.0, "hp": 0.5, "cross": 30.0, "window": 60.0, "scan": 
 ## Clockwork towers zap flyers with chain lightning; while they do, their field is off.
 const TOWER_ZAP := {"range": 8.0, "damage": 10.0, "cooldown": 1.6, "chain": 3, "jump": 110.0, "falloff": 0.7, "off": 3.0}
 ## Horseman / Cuirassier, once the Cavalry Charge is researched: after galloping this long,
-## his next blow is a charge.
-const CHARGE := {"run": 2.0, "mult": 2.0, "force": 300.0, "stun": 0.6}
+## his next blow is a charge: x`mult`, x`light` on a light unit (cavalry-charge-package, the owner 2026-11-15
+## 21:34: one charge kills a 38-hp Raptor, 18 x 2.2 = 39.6; armoured targets keep x2).
+const CHARGE := {"run": 2.0, "mult": 2.0, "light": 2.2, "force": 300.0, "stun": 0.6}
 ## The Horseman and the Cuirassier fight on the move, like StarCraft 2's Cyclone with a sabre (scripts/ride_by.gd,
 ## docs/ride_by.md): on any order but HOLD he strikes what comes in sabre reach as he rides past, on his normal
 ## cooldown, and never stops to swing. Told to attack, he rides at the target, strikes in passing, rides on `over` px
@@ -2387,7 +2401,7 @@ const TIPS := {
 	"RELEASE HORSE": "Unhitch one horse (the front one of a team first): it stands free. With none left the gun or wagon can't move, but a gun still fires and a wagon still supplies.",
 	"HARNESS": "Your nearest free horse walks over and is hitched: one more each time, up to 4 in a team, each beyond the first +12% speed. (Or right-click the gun with a horse selected or led.)",
 	"guardsman": "Armoured line infantry (+1 armour, +20 health): a Musketeer in morion and breastplate. Needs Armour.",
-	"horseman": "Fast light horseman: one pistol shot (30 damage, 110 reach), then the sabre. Needs a Horse Breeder; one click trains him and his horse (40 more without a spare). He reloads only on foot. With the Cavalry Charge his first sabre blow after a gallop hits double; KEEN SABRES cuts light units deeper. Bayonets hurt him.",
+	"horseman": "Fast light horseman: one pistol shot (30 damage, 110 reach), then the sabre. Needs a Horse Breeder; one click trains him and his horse (40 more without a spare). He reloads only on foot. With the Cavalry Charge (the Horse Breeder) his first sabre blow after a gallop hits double, 2.2 times on light units. Bayonets hurt him.",
 	"cannon": "Long-range artillery (it needs a horse: one click finds or buys it). HARNESS up to 4 horses: +12% speed each. UNLIMBER to fire: round shot ploughs through lines, canister shreds light units and flyers. Needs spotters.",
 	"mortar": "Siege mortar: DEPLOY, then it lobs shells over walls 5 to 11 tiles away. The splash hurts friends too. Can't hit flyers.",
 	"powder_wagon": "Carries 120 shots of powder for the soldiers near it. No weapon, and it blows up when destroyed.",
@@ -2417,12 +2431,12 @@ const TIPS := {
 	"storm_challenger": "A matured Hatchling, a young Storm Sire: a flyer that swoops to bite flyers and ground units alike.",
 	# Crown buildings
 	"town_hall": "Trains Labourers. Allows 2 Farms and 1 Powder Mill round it; its soil and saltpetre run out in time.",
-	"horse_breeder": "Trains horses: 40 gold and 15 s each, no supply; RALLY sends them on. Unlocks Horsemen and researches KEEN SABRES; cavalry, guns and wagons need its horses. Build as many as you like, anywhere. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.",
+	"horse_breeder": "Trains horses: 40 gold and 15 s each, no supply; RALLY sends them on. Unlocks Horsemen and researches the CAVALRY CHARGE; cavalry, guns and wagons need its horses. Build as many as you like, anywhere. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.",
 	"cottage": "Houses 8 more supply. The first one unlocks the Barracks and the palisade.",
 	"wall": "Palisade: blocks the way. Lay it in a line: pick the start, then the end. Needs a Cottage.",
 	"gate": "A palisade piece that opens for your side only. Lay it onto your own palisade to swap a piece. Needs a Cottage.",
 	"barracks": "Trains Musketeers and Officers, Horsemen and Dragoons (need a Horse Breeder), and with Armour the armoured ones. Powder buys their shots as they come out (ARM WITH POWDER). Refits soldiers. Needs a Cottage. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.",
-	"armoury": "Researches Armour, the musket locks, the socket bayonet, the guns' drills and the Cavalry Charge. Refits soldiers too.",
+	"armoury": "Researches Armour, the musket locks, the socket bayonet and the guns' drills. Refits soldiers too.",
 	"foundry": "Casts cannons and mortars, rigs balloons, builds powder wagons (each needs a horse: one standing here, else a Town Hall hauler leads one over from the Horse Breeder, or it walks over by itself when you have no haulers).",
 	"farm": "Ripens into a 380-gold harvest about every 40 s with a full crew (up to 8 Labourers).",
 	"powder_mill": "Up to 6 Labourers grind the Hall's saltpetre into powder (you start with none). Unlocks Musketeers. Soldiers and wagons nearby refill here.",
@@ -2436,8 +2450,7 @@ const TIPS := {
 	"pouch": "Unlocks the Shot Pouch refit: a musket soldier carries 20 shots instead of 10. Recruits don't come with it.",
 	"charges": "Every Field Cannon and Mortar reloads 20% faster.",
 	"quadrant": "Every Field Cannon and Mortar reaches 1 tile further.",
-	"charge": "Horsemen and Cuirassiers charge: after a gallop the first blow hits double and throws the enemy back.",
-	"keen_sabres": "Horsemen and Cuirassiers: +6 sabre damage against light units (18 to 24).",
+	"charge": "Horsemen and Cuirassiers charge: after a gallop the first blow hits double (2.2 times on light units) and throws the enemy back.",
 }
 
 

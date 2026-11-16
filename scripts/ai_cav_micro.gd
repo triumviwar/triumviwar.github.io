@@ -18,6 +18,7 @@ extends RefCounted
 ##     be a charge (RIDE_BY "calm" s without a blow, then CHARGE "run" s at the gallop: Unit.run_t), and comes in again
 ##     from where it is: another angle. Without the charge it comes straight back after OUT_T for the next prey.
 ##     No prey worth a pass (only a blob, a wall of shields): it circles out of reach and waits for one.
+##     Never against a fast melee swarm (Raptors): there it takes each blow as it comes (_swarm, cavalry-charge-package).
 ##  4. HURT: a rider under CAREFUL of its hit points only rides at prey with next to no guard and no gun on it (a
 ##     Horseman does not heal: sent home it only waits for the next wave to send it into the mass, unled); under HURT it
 ##     rides home and is left alone a while.
@@ -52,12 +53,13 @@ var ai = null
 var game: Game = null
 var on := not OS.get_cmdline_user_args().has("cavmicro:off")
 var charge_play := true          # (keen-sabres-test, measuring only: false = it rides as if the Charge weren't drilled)
+var swarm_rule := not OS.get_cmdline_user_args().has("cavswarm:off")   # (cavalry-charge-package; measuring switch)
 var st := {}                     # Unit -> its fight: {"s": state, "t": since, "tgt", "blow", "back", "anchor", "far", "spin", "o", "p", "e"}
 var _cool := {}                  # Unit -> clock until which it is left alone (sent home)
 var _next := 0.0
 # (the coach and the report)
 var said: Array = []             # [clock, text]
-var n := {"take": 0, "in": 0, "out": 0, "round": 0, "home": 0, "skip_blob": 0}
+var n := {"take": 0, "in": 0, "out": 0, "round": 0, "home": 0, "skip_blob": 0, "swarm": 0}
 
 
 func _init(a) -> void:
@@ -76,6 +78,9 @@ func tick() -> void:
 	for u in st.keys():
 		if not is_instance_valid(u) or u.dead or u.off_field or u.aboard != null or not u.is_mounted():
 			st.erase(u)
+	for u in _swarm_seen.keys():
+		if not is_instance_valid(u) or u.dead:
+			_swarm_seen.erase(u)
 	for u in _cool.keys():
 		if not is_instance_valid(u) or u.dead or game.clock >= float(_cool[u]):
 			_cool.erase(u)
@@ -316,7 +321,39 @@ func _assert(u: Unit, s: Dictionary) -> void:
 # ------------------------------------------------------------------ the charge
 
 func _charge(u: Unit) -> bool:
-	return charge_play and game.has_tech(u.team, "charge")
+	return charge_play and game.has_tech(u.team, "charge") and not _swarm(u)
+
+
+## THE SWARM RULE (cavalry-charge-package, the owner 2026-11-15 21:34; docs/cavalry_charge_package.md): against a fast
+## melee swarm (SWARM_N or more light biters with no reach (under 60), at least SWARM_SPEED of the rider's pace, within
+## SWARM_R: Raptors, Pack Hunt or not) it does NOT gallop round to set up the next charge: the swarm closes in while it
+## waits (keen-sabres-test: that loop lost 95-100% of the riders). It takes each blow as it comes (a charge still lands
+## when the run happens to be full: x2.2 on light, one kills a Raptor). Elsewhere the charge play stays.
+const SWARM_N := 4
+const SWARM_R := 420.0
+const SWARM_SPEED := 0.75
+var _swarm_seen := {}            # Unit -> [clock, bool] (looked at once a tick)
+
+
+func _swarm(u: Unit) -> bool:
+	if not swarm_rule:
+		return false
+	var c = _swarm_seen.get(u)
+	if c != null and float(c[0]) == game.clock:
+		return bool(c[1])
+	var k := 0
+	for o in game.units_near(u.position, SWARM_R):
+		if o.dead or o.off_field or o.is_air() or not game.hostile(o.team, ai.team) or not Game.fights_back(o):
+			continue
+		if float(o.d["range"]) < 60.0 and o.has_tag("light") and o.speed >= u.speed * SWARM_SPEED:
+			k += 1
+			if k >= SWARM_N:
+				break
+	var yes := k >= SWARM_N
+	if yes and not bool(c[1] if c != null else false):
+		n["swarm"] = int(n.get("swarm", 0)) + 1
+	_swarm_seen[u] = [game.clock, yes]
+	return yes
 
 
 ## It waits for its charge between passes: drilled, and no enemy gun has it in reach (riding round under the muskets or

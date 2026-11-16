@@ -386,7 +386,7 @@ static func icon(name: String) -> Texture2D:
 		var oy := 60 - big.get_height()
 		img.blend_rect(big, Rect2i(0, 0, big.get_width(), big.get_height()), Vector2i(ox, oy))
 		t = ImageTexture.create_from_image(img)
-	elif name.begins_with("ab_cw_") or name == "ab_siding" or name == "ab_shield" or name == "research_shield" or name == "ab_gear_view":
+	elif name.begins_with("ab_cw_") or name == "ab_siding" or name == "ab_shield" or name == "research_shield" or name == "research_long_chain" or name == "ab_gear_view":
 		# (ab_shield / research_shield: placeholders until assets/icons/clockwork/ab_shield.png and research_shield.png are
 		# drawn; the HUD takes those files first, with no code)
 		var img2 := Image.create(64, 64, false, Image.FORMAT_RGBA8)
@@ -423,6 +423,23 @@ static func _ability_glyph(img: Image, name: String) -> void:
 				var a4 := TAU * float(k) / 7.0 + 0.3
 				_disc(img, 46 + int(round(cos(a4) * 10.0)), 19 + int(round(sin(a4) * 10.0)), 2.0, Color(1.0, 0.9, 0.55))
 			_disc(img, 46, 19, 3.5, INK)
+		"research_long_chain":
+			# LONG CHAIN (escapement-research, 0.38.19; a stand-in until assets/icons/clockwork/research_long_chain.png is
+			# painted, docs/art_style_inconsistency.md): a chain net flung far, its weights at the corners, a long arrow under it
+			for i in 4:
+				var o := float(i) * 9.0
+				_ln(img, Vector2(28 + o, 8), Vector2(10 + o, 26 + 0.0), INK, 4)
+				_ln(img, Vector2(28 + o, 8), Vector2(10 + o, 26 + 0.0), TIN, 2)
+				_ln(img, Vector2(10 + o, 8), Vector2(28 + o, 26), INK, 4)
+				_ln(img, Vector2(10 + o, 8), Vector2(28 + o, 26), TIN, 2)
+			for c in [Vector2(10, 8), Vector2(55, 8), Vector2(10, 26), Vector2(55, 26)]:
+				_disc(img, int(c.x), int(c.y), 4.0, INK)
+				_disc(img, int(c.x), int(c.y), 2.5, BRASS)
+			_ln(img, Vector2(6, 46), Vector2(56, 46), SPARK, 3)
+			_ln(img, Vector2(48, 38), Vector2(57, 46), SPARK, 3)
+			_ln(img, Vector2(48, 54), Vector2(57, 46), SPARK, 3)
+			for k in 5:
+				_disc(img, 10 + k * 8, 46, 2.0, BRASS)
 		"ab_shield", "research_shield":
 			# a round brass shield held forward, an arrow pushing it on (the research: the shield over a soldier's cap)
 			if name == "research_shield":
