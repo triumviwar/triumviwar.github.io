@@ -133,7 +133,7 @@ func _go() -> void:
 	check(mic._swarm(r2u) and not mic._charge(r2u) and not mic._wait_charge(r2u), "8 Raptors near: no waiting round for the charge (takes each blow as it comes)")
 	g.players[1]["tech"]["nb_pack_hunt"] = true
 	for x in two + more:
-		x.speed = 114.0         # (Pack Hunt's pace; the research applies it to new ones)
+		x.speed = 124.0         # (Pack Hunt's pace; the research applies it to new ones)
 	g.clock += 0.1
 	check(mic._swarm(r2u), "with Pack Hunt too")
 	mic.swarm_rule = false
@@ -157,7 +157,7 @@ func _go() -> void:
 	var hm_p: Array = g.unit_price(0, Defs.train_key("cuirassier", false))
 	var horse := int(Defs.UNITS["horse"]["cost"])
 	check(off_p[0] == hm_p[0] and off_p[1] == hm_p[1], "an Officer costs the Horseman's own price (%s v %s), the horse 40 more either way" % [str(off_p), str(hm_p)])
-	check(off_p[0] + horse == 140 and hm_p[0] + horse == 140, "Officer + horse = Horseman + his horse = 140 gold")
+	check(off_p[0] + horse == 100 and hm_p[0] + horse == 100, "Officer + horse = Horseman + his horse = 100 gold")
 	check(int(Defs.POWDER["cuirassier"]) == int(Defs.POWDER["dismounted"]) and Defs.AMMO["cuirassier"] == Defs.AMMO["dismounted"], "the same pistol and charges")
 	check(float(Defs.POWDER["cost"]["cuirassier"]) == float(Defs.POWDER["cost"]["dismounted"]), "the same powder a charge")
 	var fees: Dictionary = Defs.RESEARCH["armour"]["fees"]

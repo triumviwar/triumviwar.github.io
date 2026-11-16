@@ -177,8 +177,8 @@ func _buying() -> void:
 	check(not Defs.is_econ("horse_breeder"), "the Horse Breeder is no economy building")
 	# prices: a unit and its horse cost about 10 more than before horses
 	check(int(Defs.UNITS["horse"]["cost"]) == 40 and absf(float(Defs.UNITS["horse"]["time"]) - 15.0) < 0.01 and int(Defs.UNITS["horse"]["supply"]) == 0, "a horse: 40 gold, 15 s, no supply")
-	check(int(Defs.UNITS["cuirassier"]["cost"]) == 100 and int(Defs.UNITS["cannon"]["cost"]) == 170 and int(Defs.UNITS["mortar"]["cost"]) == 145 and int(Defs.UNITS["powder_wagon"]["cost"]) == 70,
-		"Horseman 100, Field Cannon 170, Mortar 145, Powder Wagon 70")
+	check(int(Defs.UNITS["cuirassier"]["cost"]) == 60 and int(Defs.UNITS["cannon"]["cost"]) == 170 and int(Defs.UNITS["mortar"]["cost"]) == 145 and int(Defs.UNITS["powder_wagon"]["cost"]) == 70,
+		"Horseman 60, Field Cannon 170, Mortar 145, Powder Wagon 70")
 	var b: Building = g._add_building("horse_breeder", 0, origin + Vector2i(2, 2), true)
 	# breeders: as many as you like, anywhere (far from any hall)
 	var far_ok: bool = g.placement_problem(0, "horse_breeder", origin + Vector2i(2, 12), true) == ""
@@ -312,14 +312,14 @@ func _one_click() -> void:
 	bar.rally = at(640, 140)
 	check(g.horses_of(0).is_empty(), "no horses about")
 	# no gold for the horse: refused, and said why
-	g.players[0]["gold"] = 130
+	g.players[0]["gold"] = 90
 	var why: String = g.can_train(bar, "horseman")
-	check(why.contains("horse"), "100 for him but not 40 for a horse: '%s'" % why)
+	check(why.contains("horse"), "60 for him but not 40 for a horse: '%s'" % why)
 	g.players[0]["gold"] = 20000
 	# no spare horse: the nearest breeder trains one for him, paid with him
 	var gold0: int = g.players[0]["gold"]
 	check(g.train(bar, "horseman") == "", "one click: HORSEMAN")
-	check(gold0 - int(g.players[0]["gold"]) == 140, "paid 100 + 40 for his horse (%d)" % (gold0 - int(g.players[0]["gold"])))
+	check(gold0 - int(g.players[0]["gold"]) == 100, "paid 60 + 40 for his horse (%d)" % (gold0 - int(g.players[0]["gold"])))
 	var rid := int(bar.kit_at(bar.queue.size() - 1).get("rid", 0))
 	var brq: Building = g.rid_breeder(0, rid)
 	check(rid != 0 and brq != null, "a breeder trains his horse, kept for him")
@@ -342,7 +342,7 @@ func _one_click() -> void:
 	check(spare != null and spare.horse_rid == 0, "a spare horse at the breeder")
 	gold0 = g.players[0]["gold"]
 	g.train(bar, "horseman")
-	check(gold0 - int(g.players[0]["gold"]) == 100, "with a spare at the breeder only the Horseman is paid (%d)" % (gold0 - int(g.players[0]["gold"])))
+	check(gold0 - int(g.players[0]["gold"]) == 60, "with a spare at the breeder only the Horseman is paid (%d)" % (gold0 - int(g.players[0]["gold"])))
 	var rid2 := int(bar.kit_at(bar.queue.size() - 1).get("rid", 0))
 	check(spare != null and spare.horse_rid == rid2 and rid2 != 0, "that horse is reserved for him")
 	check(g.horses_text(0) == "Horses: 1 (1 reserved)", "the card: '%s'" % g.horses_text(0))
@@ -353,7 +353,7 @@ func _one_click() -> void:
 	gold0 = g.players[0]["gold"]
 	g.cancel_train(bar)
 	await physics_frame
-	check(spare.horse_rid == 0 and int(g.players[0]["gold"]) - gold0 == 100, "cancelling releases the horse and refunds the Horseman (%+d)" % (int(g.players[0]["gold"]) - gold0))
+	check(spare.horse_rid == 0 and int(g.players[0]["gold"]) - gold0 == 60, "cancelling releases the horse and refunds the Horseman (%+d)" % (int(g.players[0]["gold"]) - gold0))
 	check(g.horses_of(0).size() == 1, "and hands no extra horse back")
 	# a gun: the spare walks to the Foundry by itself, and the gun rolls out with it
 	var coat: String = spare.coat

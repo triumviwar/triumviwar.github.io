@@ -4,6 +4,18 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.35", "items": [
+		"THE BROOD COMPUTER TAKES NEW GROUND SOONER (no unit, price or rule changed): from 5:00, when its Rootmaws will soon want more room than its swamps have (the Mother's holds 3, a turtle's 2, and a far Rootmaw drinks its ground dry in about six minutes), it roots a Mound Turtle on new ground at once, its own side of the map first, and once its turtle sites are taken on any fresh ground where a Rootmaw fits. Not while its alarm is up, an enemy is at the Mother or her growth is due, and nearer home while riders are about. Rich, with Rootmaws to spare, it also lays a few more grubs than its plan's count. Alone it earns about 9% more by 12:00; against the Clockwork computer about 14% more.",
+	]},
+	{"v": "0.38.34", "items": [
+		"Tools only: a Brood test reads Pack Hunt's new speed (124).",
+	]},
+	{"v": "0.38.33", "items": [
+		"RAPTORS AND HORSEMEN LIKE ZERGLINGS AND HELLIONS: PACK HUNT now makes a Raptor 124 fast (was 114), about 10% faster than a horse (112), so a pack that has it catches riders; the Horseman has 90 health (was 100). Without Pack Hunt the riders still outrun Raptors, and the Cavalry Charge still wins it back for them.",
+	]},
+	{"v": "0.38.32", "items": [
+		"THE HORSEMAN COSTS 60 GOLD + HIS HORSE'S 40 = 100 IN ALL (was 100 + 40 = 140), and the Officer 60 (was 100): a Horseman is an Officer on a horse, both ways round. The Cuirassier is 90 + the horse = 130 in all (was 170).",
+	]},
 	{"v": "0.38.31", "items": [
 		"THE CAVALRY CHARGE REPLACES KEEN SABRES: Keen Sabres is gone. The Cavalry Charge is now drilled at the HORSE BREEDER (was the Armoury; still 60 gold, 25 s), so it comes with the riders, and a charged sabre blow hits light units 2.2 times (one charge kills a Raptor: 18 x 2.2 = 39.6 against its 38); armoured units still take double. A saved game keeps its Charge; Keen Sabres researched there is simply gone.",
 		"THE OFFICER COSTS 100 GOLD (was 75), the Horseman's own price: a Horseman is an Officer on a horse, and the horse is always 40 more (a horse of yours or one the breeder trains), so an Officer + a horse is now exactly a Horseman + his horse (140), and an Armoured Officer + a horse a Cuirassier (130 + 40). Before, an Officer + a horse was the cheaper Horseman (115).",

@@ -26,7 +26,7 @@ var origin := Vector2i(-1, -1)
 var args := {}
 var rows: Array = []
 const SECS := 60.0
-const RIDER_V := 140         # a Horseman and his horse
+var RIDER_V: int = int(Defs.UNITS["cuirassier"]["cost"]) + int(Defs.UNITS["horse"]["cost"])   # a Horseman and his horse (100 from 0.38.32)
 const RAPTOR_V := 25         # half an egg
 
 
