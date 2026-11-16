@@ -1759,8 +1759,8 @@ func _maw_need_room(q: Unit) -> Array:
 	var all_maws := BroodNew.count_of(game, team, BroodNew.MAW) + _morphing_into(BroodNew.MAW)
 	var good := 0
 	for m in _nb_mine(BroodNew.MAW):
-		if BroodNew.rooted(m) and BroodNew.ground_left(game, m) + float(m.nb.get("food", 0.0)) >= MAW_DRY:
-			good += 1
+		if _maw_fight.has(m) or (BroodNew.rooted(m) and BroodNew.ground_left(game, m) + float(m.nb.get("food", 0.0)) >= MAW_DRY):
+			good += 1          # (one up to fight keeps its spot and roots there again: not a Rootmaw looking for room)
 	var need := maxi(_nb_wanted_maws(EXP_LEAD), all_maws) - good
 	var room := 0
 	for e in RootmawSpots.spots_cached(game, team):
@@ -1781,7 +1781,7 @@ func _maw_need_room(q: Unit) -> Array:
 
 ## New ground is due now: more Rootmaws will want a spot within a turtle's walk than the fresh room there is and is
 ## coming. Not while a rush holds its grubs, a rush is on that it is short against, it rebuilds after one, the enemy is
-## at the Mother, or it is under-armed with no army to speak of (the old rule's own gate); not in the first half minute (EXP_FROM)
+## at the Mother, the alarm is on (an enemy army seen out of its main in the last ALARM_FOR s), or it is under-armed with no army to speak of (the old rule's own gate); not in the first half minute (EXP_FROM)
 ## nor while her growth is due (_nb_growth_keep: with only "while short of its price" a turtle took the 100 every time
 ## the food reached it, and the Timing plan's stage 3 never came by 10:40).
 func _maw_expand_due(q: Unit) -> bool:
@@ -1791,7 +1791,7 @@ func _maw_expand_due(q: Unit) -> bool:
 		return _exp_due
 	_exp_t = game.clock
 	_exp_due = false
-	if (int(plan["grubs0"]) > 0 and not _first_out) or _rush_short() or _rebuilding() or _nb_threat(q) != Vector2.INF \
+	if (int(plan["grubs0"]) > 0 and not _first_out) or _rush_short() or _rebuilding() or _nb_threat(q) != Vector2.INF or _alarm_on() \
 			or (_under_armed() and _army_supply_now() < 30 and BroodNew.count_of(game, team, BroodNew.MAW) >= 4) \
 			or game.clock < EXP_FROM or _nb_growth_keep(q) > 0:
 		return false
