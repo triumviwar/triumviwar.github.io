@@ -104,3 +104,20 @@ Clockwork's ground between its halls. It lost every building by 11:40.
 - Its Winders mostly die to Raptor raids on presses away from the army (5 at once at 8:51 in a trace, 64-101 px from
   their press, 221-595 px from the nearest soldier): a Winder (74) cannot outrun a Raptor (92, 124 with Pack Hunt). Fewer
   died once the army was bigger and at home (below); not changed further.
+
+## What changed (scripts/ai_cw_brood.gd; every rule only for a Clockwork computer against the Brood)
+
+| # | the rule | switch | hook |
+|---|---|---|---|
+| 1 | THE READ: a GREEDY read of the Brood is checked first (as the Crown's own check): 3 grounds or more, or 5 Rootmaws or more, is a true greed and the Clock Soldier rush still punishes it (before 2:30); its usual opening (the Mother and one far turtle) keeps the economy opening (Balanced: its Light Works right after the second Clocktower, two soldiers), "its first ground is its usual opening". `-- cvbgreedy:<plan>` forces a plan on that read (the study switch the openings were measured with). | `cvbread:off` | AIOptimal._punish |
+| 2a | THE WINDERS UNDER A RUSH: before the rush reaction's soldiers, one Clocktower keeps a Winder in its queue while the Winders are short of the build's goal (the other Clocktowers' cogs go to the soldiers first, as before). | `cvbwind:off` | BuildsEco.urgent |
+| 2b | THE RUSH IS OVER: 40 s after the rush came with no enemy at its buildings for 40 s, the reaction's soldiers are no longer replaced ahead of the build (the army's own rules make soldiers from there). | `cvbrushend:off` | BuildsEco.urgent |
+| 3 | THE PENDULUMS BEFORE THE SERPENT: OPTIMAL's Brass Serpent (and its gears) waits while the Pendulums are short (rule 5's number). | `cvbserp:off` | AIClockwork._produce |
+| 4 | A THIRD CLOCKTOWER ON TIME: from 6:00, with two Clocktowers standing and 20 Winders or more, it wants a third fresh hall (the rule on main wanted one for every 13 Winders, and its Winders are kept to two halls' posts). The swarm rule may still hold it while the army is clearly outmatched and has no Pendulums. | `cvbhall:off` | AI._hall_first |
+| 5 | MORE PENDULUMS: a Pendulum for every 5 Clock Soldiers and Springers, at least 2, up to 8 (on main: one for every 6, up to 4, two against the Brood), made first at the Heavy Works. | `cvbpend:off` | AI._produce |
+| 5b | THEIR TENSION: from the Escapement on, while Pendulums are short, one Pendulum's Tension (75) stays in the pool: the Springers and Netters take only what is above it. | `cvbtension:off` | AI._produce |
+| 6 | THE YARD ON TIME: its written opening's Escapement right after the second Clocktower's two presses (before the second Light Works and the Regulator), and once the presses and the Escapement are laid the written opening hands over to the shared rules, which lay the Heavy Works by a Mainspring at once. | `cvbyard:off` | AIClockwork._make_plan, _build_up |
+| 7 | THE PUSH ONLY WHEN IT WINS: a push that is not the counter after a held wave (the earlier coaching's C2, unchanged) goes only worth 2 times the enemy army it reckons, with 2 Pendulums in it; within 12 supply of its cap it goes anyway. | `cvbpush:off` | CwArmy.may_launch |
+| 8 | NO PLAIN WALK PAST THE RAPTORS: an army or push order that would be a plain move is an attack-move while an armed enemy (not rooted) is within 360 px of the unit (the push's leash back from a chase stays a plain move). | `cvbamove:off` | CwArmy._order, CwPush._order |
+
+`-- cvb2:off` turns all of them off.
