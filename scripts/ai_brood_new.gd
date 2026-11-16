@@ -1782,15 +1782,15 @@ func _maw_need_room(q: Unit) -> Array:
 ## nor while her growth is due (_nb_growth_keep: with only "while short of its price" a turtle took the 100 every time
 ## the food reached it, and the Timing plan's stage 3 never came by 10:40).
 func _maw_expand_due(q: Unit) -> bool:
-	if not maweco_on or q == null:
+	if not maweco_on or q == null or game.clock < EXP_FROM:
 		return false
 	if game.clock - _exp_t < 2.0:
 		return _exp_due
 	_exp_t = game.clock
 	_exp_due = false
-	if (int(plan["grubs0"]) > 0 and not _first_out) or _rush_short() or _rebuilding() or _nb_threat(q) != Vector2.INF or _alarm_on() \
+	if (int(plan["grubs0"]) > 0 and not _first_out) or _rush_short_peek() or _rebuilding() or _nb_threat(q) != Vector2.INF or _alarm_on() \
 			or (_under_armed() and _army_supply_now() < 30 and BroodNew.count_of(game, team, BroodNew.MAW) >= 4) \
-			or game.clock < EXP_FROM or _nb_growth_keep(q) > 0:
+			or _nb_growth_keep(q) > 0:
 		return false
 	for e in plan["far"]:
 		var dt := float(e[0]) - game.clock
@@ -1925,6 +1925,15 @@ func _fresh_room(p: Vector2, fs: Vector2i, circles: Array) -> int:
 
 func _why(k: String) -> void:
 	fresh_why[k] = int(fresh_why.get(k, 0)) + 1
+
+
+## _rush_short() without its side effect (it keeps the biggest army seen since the rush evidence, _rush_v: asked more
+## often it would catch other peaks, and the computer's rush answers would change with this rule).
+func _rush_short_peek() -> bool:
+	if not _rush_on():
+		return false
+	var home := _nb_army_units().filter(func(u: Unit) -> bool: return not _wave.has(u) and u.kind != "hatchlings")
+	return _value_of(home) < maxf(maxf(_rush_v, seen_army) * 1.2, 300.0)
 
 
 ## A turtle on its way to new ground (a grub walking there, or the turtle not yet rooted out there).
