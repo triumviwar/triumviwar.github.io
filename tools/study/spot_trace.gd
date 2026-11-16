@@ -29,6 +29,8 @@ func _grubs(tm: int) -> Array:
 			k[u.kind] = int(k.get(u.kind, 0)) + 1
 			if u.kind == "grub" and u.order == "gather":
 				w += 1
+	if OS.get_cmdline_user_args().has("kinds"):
+		return [int(k.get("grub", 0)), w, int(k.get("rootmaw", 0)), int(k.get("egg", 0)), k]
 	return [int(k.get("grub", 0)), w, int(k.get("rootmaw", 0)), int(k.get("egg", 0))]
 
 
