@@ -116,6 +116,17 @@ static func rooted(u: Unit) -> bool:
 	return u.tesla_mode == "deployed" and not u.nb.has("coc")
 
 
+## (brood-spot-study, docs/brood_spot_study.md) The distance between two creatures of a side for the Brood's rules (a far
+## Rootmaw drinks faster, a Sire's reach to the Mother, a turtle far enough to be new ground): the plain feet hang below
+## each footprint on screen by the creature's own amount (her 40 px, a Rootmaw's or turtle's 24, a Sire's 16-33), so on a
+## mirrored start the sum fell differently (a spot A Rootmaw above its Mother drank faster than its mirror below hers).
+## With the switch on (BroodRoot.fair_spot), from the feet as the first start reads them (BroodRoot.anchor).
+static func fdist(g: Game, a: Unit, b: Unit) -> float:
+	if BroodRoot.fair_spot:
+		return BroodRoot.anchor(g, a).distance_to(BroodRoot.anchor(g, b))
+	return a.position.distance_to(b.position)
+
+
 ## A side's father of kind k (one of each at a time).
 static func father(g: Game, t: int, k: String = FATHER) -> Unit:
 	for u in g.units:
@@ -129,7 +140,7 @@ static func father(g: Game, t: int, k: String = FATHER) -> Unit:
 static func father_near(g: Game, t: int, k: String = FATHER) -> bool:
 	var f := father(g, t, k)
 	var q := queen(g, t)
-	return f != null and q != null and rooted(f) and f.position.distance_to(q.position) <= float(Defs.NB["father_r"]) * Defs.TILE
+	return f != null and q != null and rooted(f) and fdist(g, f, q) <= float(Defs.NB["father_r"]) * Defs.TILE
 
 
 ## How many `k` a side has: alive, in an egg, in a cocoon, or a grub on its way to turn into one (not `skip`).
@@ -370,7 +381,7 @@ static func fathers_near_list(g: Game, q: Unit) -> Array:
 	var out: Array = []
 	var r := float(Defs.NB["father_r"]) * Defs.TILE
 	for u in g.units:
-		if u.team == q.team and not u.dead and is_father(u.kind) and not u.nb.has("coc") and u.position.distance_to(q.position) <= r:
+		if u.team == q.team and not u.dead and is_father(u.kind) and not u.nb.has("coc") and fdist(q.game, u, q) <= r:
 			out.append(u)
 	return out
 
@@ -381,7 +392,7 @@ static func expansions(g: Game, q: Unit) -> Array:
 	var far := float(Defs.NB["expansion_tiles"]) * Defs.TILE
 	var cands: Array = []
 	for u in g.units:
-		if u.team == q.team and u.kind == TURTLE and not u.dead and rooted(u) and u.position.distance_to(q.position) >= far:
+		if u.team == q.team and u.kind == TURTLE and not u.dead and rooted(u) and fdist(g, u, q) >= far:
 			cands.append(u)
 	cands.sort_custom(func(a, b) -> bool: return a.serial < b.serial)
 	var out: Array = []
@@ -965,7 +976,7 @@ static func father_tick(g: Game, f: Unit, delta: float) -> void:
 	var on_nest := rooted(f)
 	var q := queen(g, f.team)
 	var r := float(Defs.NB["father_r"]) * Defs.TILE
-	var near := on_nest and q != null and f.position.distance_to(q.position) <= r
+	var near := on_nest and q != null and fdist(g, f, q) <= r
 	var ft := float(Defs.NB["fert_time"])
 	if not near:
 		if f.nb.has("fe"):
@@ -1337,7 +1348,7 @@ static func tick(g: Game, u: Unit, delta: float) -> void:
 				if g.nb_spots.has(id):
 					var s: Dictionary = g.nb_spots[id]
 					var qm := queen(g, u.team)        # (a far Rootmaw drinks faster: Game.food_mult, 0.24.22)
-					var fill := float(Defs.NB["maw_fill"]) * (maxf(1.0, Game.food_mult(qm.position.distance_to(u.position) / Defs.TILE)) if qm else 1.0)
+					var fill := float(Defs.NB["maw_fill"]) * (maxf(1.0, Game.food_mult(fdist(g, qm, u) / Defs.TILE)) if qm else 1.0)
 					var take := minf(minf(fill * delta, float(s["left"])), float(Defs.NB["maw_cap"]) - food)
 					if take > 0.0:
 						s["left"] = float(s["left"]) - take
@@ -1519,7 +1530,10 @@ static func free_source(g: Game, t: int, p: Vector2) -> Unit:
 			ok = true
 		if not ok or crew(g, u) >= crew_max(g, u):
 			continue
-		var dd: float = u.position.distance_to(p) + crew(g, u) * 40.0
+		# (brood-spot-study: a rooted Rootmaw's feet hang below its footprint on screen, so the nearest one fell differently on
+		# a mirrored start: measured from the point the first start would read, BroodRoot.anchor)
+		var up: Vector2 = BroodRoot.anchor(g, u) if BroodRoot.fair_spot and BroodRoot.has_fp(u) else u.position
+		var dd: float = up.distance_to(p) + crew(g, u) * 40.0
 		if dd < bd:
 			bd = dd
 			best = u

@@ -626,19 +626,20 @@ func _physics_process(delta: float) -> void:
 ## (brood-spot-study, docs/brood_spot_study.md) THE FIRST THINK'S PHASE, from the match seed: two computers on a mirrored
 ## map otherwise think on the same ticks from 0:00, so the early game is the same in every game on a map (the seed does
 ## not reach it) and the tiny differences a mirror can't avoid (floating point, who is processed first) fall the same way
-## every time: a map's whole record then leans to one start. With a phase of its own for each side, drawn from the seed
-## (out of the game's rng: nothing else changes), each game is its own draw. MEASURING SWITCH `thinkphase:off`.
+## every time: a map's whole record then leans to one start. With a phase drawn from the seed (the same for every
+## computer of the match, out of the game's rng: nothing else changes), each seed plays its own early game. MEASURING
+## SWITCH `thinkphase:off`.
 static var think_phase_on := not OS.get_cmdline_user_args().has("thinkphase:off")
 var _phased := false
 
 
-## The first think's wait: a share of `period` drawn from the match seed and this side (0 with the switch off).
+## The first think's wait: a share of `period` drawn from the match seed (0 with the switch off).
 func first_phase(period: float) -> float:
 	_phased = true
 	if not think_phase_on:
 		return 0.0
 	var r := RandomNumberGenerator.new()
-	r.seed = hash([int(game.rng.seed), team, "think"])
+	r.seed = hash([int(game.rng.seed), "think"])      # (the same phase for every computer of the match: no side waits longer)
 	return r.randf() * period
 
 
