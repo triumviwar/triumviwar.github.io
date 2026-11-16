@@ -1627,9 +1627,6 @@ func _nb_morphs_go(q: Unit) -> void:
 			var fp := _nb_far_spots(q)          # (a turtle on new ground gives the same supply: forward first, when one is free and safe;
 			if not fp.is_empty():               # else one at home, _nb_supply_turtle_spot)
 				spot = fp[0]
-		if spot == null and _maw_expand_due(q):
-			# (brood-rootmaw-coach: the supply it needs anyway, out where the Rootmaws need room: the same turtle twice over)
-			spot = _nb_expand_spot(q)
 	elif _nb_next_father(q) != "":
 		k = _nb_next_father(q)
 	elif _maw_expand_due(q) and _nb_expand_spot(q) != null:
@@ -1820,8 +1817,8 @@ func _nb_expand_spot(q: Unit):
 ## How far out new ground may go (tiles from the Mother): 40 (the old no-room rule's own reach), 30 while its scout read
 ## a rush or riders are about (AIScout's verdict, the rider read: an aggressive enemy catches a lone turtle out there).
 func _exp_reach() -> float:
-	if read == "rush" or _rush_on() or _riders_on():
-		return 30.0
+	if read == "rush" or _rush_on() or _riders_on() or game.clock - riders_t < 90.0:
+		return 30.0          # (riders seen lately too: the Crown's Horsemen raid the far grubs)
 	return 40.0
 
 
