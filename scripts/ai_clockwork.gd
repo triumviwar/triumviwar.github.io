@@ -220,6 +220,7 @@ func _make_plan() -> void:
 	for k in over:
 		plan[k] = over[k]
 	steps = (plan["steps"] as Array).duplicate()
+	steps = CwBrood.tech_steps(self, steps)      # (clockwork-v-brood-coach-2: the Escapement with the new presses v the Brood)
 	done.resize(steps.size())
 	done.fill(false)
 	worker_goal = int(plan["workers0"])

@@ -26,6 +26,7 @@ extends RefCounted
 ##    enemy just behind their own front, never into a knot of melee), the Pendulums and Netters keep their aims (AI._micro).
 ## No unit numbers change. `-- cwarmy:off` plays the old army code (the "before" columns of the report).
 
+const CwBrood := preload("res://scripts/ai_cw_brood.gd")      # (clockwork-v-brood-coach-2)
 const LOOK_FRESH := 75.0        # s: a report this old or newer is fresh
 const EDGE := 1.25              # the army goes out only worth this many times the reckoning
 const EDGE_PLAN := 1.0          # (the plans that have their own push needs: the Pendulums, the Heavy Works push)
@@ -178,6 +179,8 @@ func may_launch(list: Array) -> bool:
 		return false
 	if _counter_ok(mine):
 		return true
+	if CwBrood.push_waits(ai, self, mine, rk):
+		return false            # (clockwork-v-brood-coach-2: into the Brood's land only clearly ahead)
 	if _fail_v > 0.0 and mine < _fail_v * AFTER_FAIL:
 		stats["waits"] = int(stats["waits"]) + 1
 		say("holds at its gathering point: its last push (%d) had to pull back; the next goes worth %d (it has %d)" % [int(_fail_v), int(_fail_v * AFTER_FAIL), int(mine)], "fail", 45.0)

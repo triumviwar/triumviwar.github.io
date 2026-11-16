@@ -171,13 +171,13 @@ static func pend_more(ai, pends: int, others: int) -> bool:
 	return pends < pend_target(ai, others)
 
 
-## The Tension the Light Works keep for the next Pendulum: once a Heavy Works is laid and Pendulums are short, one
+## The Tension the Light Works keep for the next Pendulum: once the Escapement works and Pendulums are short, one
 ## Pendulum's price (75) stays in the pool (the Springers and Netters take only what is above it).
 static func pend_keep(ai, pends: int, cap: int) -> float:
 	if off("cvbtension") or not vs_brood(ai) or pends >= cap:
 		return 0.0
-	if ai._mine(Defs.CW_HEAVY).is_empty():
-		return 0.0
+	if ai._mine(Defs.CW_HEAVY).is_empty() and not ai.game.has_working(ai.team, Defs.CW_TECH):
+		return 0.0          # (from the Escapement on: the yard's first Pendulum must not wait for the Tension)
 	return float(Defs.tension_cost(Defs.UNITS[Defs.PENDULUM]))
 
 
@@ -200,5 +200,52 @@ static func hand_over(ai) -> bool:
 				laid += 1
 	if news == 0 or laid < news:
 		return false
+	for i in ai.steps.size():
+		if String(ai.steps[i]) == "escapement" and not ai.done[i]:
+			return false        # (the Escapement first: tech_steps put it right after the presses)
 	ai._end_build("against the Brood the shared rules take over once the new presses are laid: the Escapement and the Heavy Works on time")
+	return true
+
+
+## The written opening's steps against the Brood: its Escapement right after the second Clocktower's two presses (before
+## the second Light Works and the Regulator), so the Heavy Works can follow at once. (On main the Escapement came after
+## them: laid at 6:05 in a coached film, its Heavy Works standing at 8:02, the first Pendulum at 9:00.)
+static func tech_steps(ai, steps: Array) -> Array:
+	if off("cvbyard") or not vs_brood(ai) or not ai._eco_plan():
+		return steps
+	var esc := steps.find("escapement")
+	var last_press := steps.rfind("press_new")
+	if esc < 0 or last_press < 0 or esc < last_press:
+		return steps
+	var out := steps.duplicate()
+	out.remove_at(esc)
+	out.insert(last_press + 1, "escapement")
+	return out
+
+
+# ------------------------------------------------------------------ 7. the push only when it wins (cvbpush)
+## Filmed (dune_sea 1108, coached build): "goes out: worth 2590 against the 1835 it reckons" at 8:32 with 12 Clock Soldiers,
+## 6 Springers, a Netter and 3 Pendulums into the Brood's ground, where 47 Raptors and 11 Spitters stood (3,870 with the
+## rooted ones); it pulled back at 9:02 having lost 1,555 and killed 50. The Brood's eggs hatch at home and its Raptors with
+## Pack Hunt outrun and outnumber what the scout saw; the Clockwork's good trades were at home, on its gears, with its
+## Pendulums and Winders (C2's counter-push right after a held wave stays: it goes as before). Against the Brood a push
+## that is no counter goes only CLEARLY AHEAD: worth PUSH_K times the reckoning, with PUSH_PENDS Pendulums in it; at the
+## supply cap (within CAP_SLACK) it goes anyway.
+const PUSH_K := 2.0
+const PUSH_PENDS := 2
+const CAP_SLACK := 12
+
+
+static func push_waits(ai, army, mine: float, rk: float) -> bool:
+	if off("cvbpush") or not vs_brood(ai):
+		return false
+	if ai.game.supply_used(ai.team) >= ai.game.max_supply(ai.team) - CAP_SLACK:
+		return false
+	var pends := 0
+	for u in ai.game.army(ai.team):
+		if u.kind == Defs.PENDULUM and not u.dead:
+			pends += 1
+	if mine >= rk * PUSH_K and pends >= PUSH_PENDS:
+		return false
+	army.say("holds at its gathering point: against the Brood it goes out only clearly ahead (worth %d, it goes at %d with %d Pendulums; it has %d)" % [int(mine), int(rk * PUSH_K), PUSH_PENDS, pends], "cvbpush", 45.0)
 	return true
