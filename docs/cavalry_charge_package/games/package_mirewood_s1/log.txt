@@ -1,0 +1,590 @@
+[00:00] P1 Brood plays Brood (Optimal)
+[00:00] P1 Brood's Brood: OPTIMAL: the common opening (Balanced's economy), a grub into the enemy's main early, then it picks its build from what it sees
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+Triumviwar v0.38.22 match log  (2026-11-15 22:27:31)
+Map: Mirewood, 2 players  (seed 5111)
+  P1 Brood  side 1  colour Blue  AI: HARD, OPTIMAL
+  P2 Crown  side 2  colour Red  AI: HARD, OPTIMAL
+Device: computer
+
+[00:00] P2 Crown's base layout at its main: 12 Cottage spots in 3 blocks at the back, 5 production rows' spots, 1 Farm and 1 Mill spots by the hall
+[00:00] P2 Crown's build order: the ramp Cottage (supply 5, 4 labourers, 150 gold)
+[00:00] slow frame 97 ms: ai 90.7, ai/build 72.1, game 2.1, game/paths 1.9, game/pathfinder 1.6, the rest 2.7
+[00:02] P2 Crown sends a Labourer to scout
+[00:12] P2 Crown got its first Labourer
+[00:12] P1 Brood got its first Grub
+[00:22] P2 Crown finished a Cottage
+[00:22] P2 Crown walled its ramp with a Cottage (1 pieces, 1 labourers on it)
+[00:22] P2 Crown's build order: the ramp Gate (supply 6, 5 labourers, 50 gold)
+[00:24] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 22 tiles out
+[00:26] P1 Brood got its first Rootmaw
+[00:36] P2 Crown's ramp wall stands (1 pieces, 13 s after it was laid)
+[00:40] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[00:46] P2 Crown's build order: Barracks 1 (supply 8, 7 labourers, 180 gold)
+[00:57] P1 Brood got its first Mound Turtle
+[00:58] P2 Crown's build order: Farm 2 (supply 9, 8 labourers, 30 gold)
+--- minute 1 ---
+  Performance: 501 fps avg, 1% low 56 fps, worst frame 97 ms, 2 frames over 33 ms, 1 over 50 ms, 1.0 physics steps a frame | units 20, buildings 6, bodies 0, corpses 0, effects 0, smoke puffs 0, nodes 422, objects 4084
+    busy with: units 342.1 ms/s (8203 calls/s), ai 205.8 ms/s (1002 calls/s), hud 112.3 ms/s (501 calls/s), hud/look 100.5 ms/s (251 calls/s), game 73.4 ms/s (501 calls/s), ai/sites_warm 62.4 ms/s (387 calls/s), ai/brood 61.5 ms/s (106 calls/s), hud/tip check 43.4 ms/s (251 calls/s), silhouettes 42.3 ms/s (501 calls/s), replay/record 39.3 ms/s (56 calls/s), buildings 31.5 ms/s (1939 calls/s), ai/build 30.9 ms/s (23 calls/s), ai/brood/morphs 29.7 ms/s (26 calls/s), game/fog 21.1 ms/s (63 calls/s), silhouettes/scan 18.8 ms/s (125 calls/s), game/fog/units 17.7 ms/s (63 calls/s), unit draw 16.2 ms/s (275 calls/s), overlay draw 15.8 ms/s (65 calls/s), game/unit grid 13.6 ms/s (501 calls/s), ai/workers 13.6 ms/s (23 calls/s), ai/army 12.6 ms/s (23 calls/s), game/paths 8.7 ms/s (501 calls/s), ai/brood/army 8.0 ms/s (26 calls/s), ai/brood/lay 6.3 ms/s (26 calls/s), hud/card build 5.2 ms/s (36 calls/s), hud draw 5.1 ms/s (8 calls/s), ai/micro 4.3 ms/s (23 calls/s), game/gears 4.2 ms/s (501 calls/s), ai/raid 4.2 ms/s (23 calls/s), game/pathfinder 3.6 ms/s (44 calls/s), game/path smoothing 3.5 ms/s (44 calls/s), ai/brood/essence 3.1 ms/s (26 calls/s), ai/brood/research 3.0 ms/s (26 calls/s), ai/produce 3.0 ms/s (23 calls/s), ai/brood/mother 1.9 ms/s (26 calls/s), replay/write 1.5 ms/s (1 calls/s), powder smoke 1.5 ms/s (501 calls/s), hud/spec army 1.5 ms/s (1 calls/s), ai/brood/grubs_vs_riders 1.4 ms/s (26 calls/s), game/fog/buildings 1.2 ms/s (63 calls/s), game/econ 1.2 ms/s (501 calls/s), game/swamp 1.1 ms/s (501 calls/s), ai/brood/scout 1.0 ms/s (26 calls/s), ai/brood/observe 1.0 ms/s (26 calls/s), hud/groups 0.9 ms/s (1 calls/s), ai/brood/alarm 0.9 ms/s (26 calls/s), ai/brood/maw_guard 0.8 ms/s (26 calls/s), hud/spec story 0.7 ms/s (1 calls/s), game/line net 0.7 ms/s (501 calls/s), hud/rest 0.6 ms/s (1 calls/s), hud/top 0.6 ms/s (1 calls/s), hud/spec prod 0.6 ms/s (1 calls/s), game/zones 0.5 ms/s (501 calls/s), ai/brood/mature 0.4 ms/s (26 calls/s), game/end+ghosts 0.4 ms/s (16 calls/s), ai/brood/grow 0.4 ms/s (26 calls/s), ai/brood/father 0.3 ms/s (26 calls/s), building draw 0.3 ms/s (2 calls/s), ai/brood/rootmaws 0.3 ms/s (26 calls/s), ai/brood/unstick 0.3 ms/s (26 calls/s), ai/brood/turtles 0.2 ms/s (26 calls/s), ai/brood/root_watch 0.2 ms/s (26 calls/s), game/refit 0.1 ms/s (16 calls/s), hud/minimap 0.1 ms/s (1 calls/s), game/stats 0.1 ms/s (3 calls/s), hud/map view 0.1 ms/s (1 calls/s), hud/selection 0.0 ms/s (1 calls/s), hud/command card 0.0 ms/s (1 calls/s), hud/chat 0.0 ms/s (1 calls/s), hud/tooltip 0.0 ms/s (1 calls/s), hud/pause 0.0 ms/s (1 calls/s), hud/glow 0.0 ms/s (1 calls/s)
+  P1 Brood: earned 220 biomass total, has 45 + 0 spoils | supply 8/28 | workers 7 | halls 0 | army (250 value): 1 Brood Mother, 2 Rootmaw, 1 Mound Turtle, 1 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 8 eggs | Rootmaws rooted 2 (ground 92% 95%) | Mound Turtles rooted 1
+  P2 Crown: earned 380 gold total, has 30 + 0 powder | supply 9/18 | workers 8 | halls 1 | army (0 value): none | kills +0 (0) losses +0 (0) | soil 96% | saltpetre 100% | efficiency 60%
+[01:20] slow frame 54 ms: ai 50.5, ai/brood 50.5, ai/brood/morphs 50.0, the rest 1.3
+[01:24] P2 Crown finished a Farm
+[01:27] P2 Crown finished a Barracks
+[01:44] P2 Crown scouted: GREEDY [a second base and little army] (the Mother and 1 turtle on new ground, 2 Rootmaws and 6 grubs seen, 0 Sires, 0 supply of army seen near its base): OPTIMAL picks its build from this
+[01:44] P2 Crown's plan: Rush, a build order of 6 steps from here (scripts/ai_crown.gd)
+[01:44] P2 Crown's plan: optimal: reads GREEDY [a second base and little army]: picks Rush (punish the greed: the Horse Breeder at once, the riders before its army)
+[01:44] P2 Crown's build order: Horse Breeder 1 (supply 11, 9 labourers, 210 gold)
+[01:44] P2 Crown's build order: Horsemans from now on (supply 11, 9 labourers, 210 gold)
+[01:44] P2 Crown's build order: labourers up to 99 (supply 11, 9 labourers, 210 gold)
+[01:44] slow frame 54 ms: ai 42.0, ai/build 41.9, building draw 9.1, the rest 0.8
+[01:53] P2 Crown's build order: a Cottage (supply 12/18) (supply 12, 9 labourers, 60 gold)
+--- minute 2 ---
+  Performance: 547 fps avg, 1% low 73 fps, worst frame 54 ms, 3 frames over 33 ms, 2 over 50 ms, 1.0 physics steps a frame | units 27, buildings 8, bodies 0, corpses 0, effects 0, smoke puffs 0, nodes 442, objects 4191
+    busy with: units 431.8 ms/s (13173 calls/s), ai 147.3 ms/s (1095 calls/s), hud 99.4 ms/s (547 calls/s), hud/look 90.1 ms/s (274 calls/s), game 78.8 ms/s (547 calls/s), ai/brood 66.2 ms/s (115 calls/s), replay/record 43.5 ms/s (61 calls/s), hud/tip check 39.0 ms/s (274 calls/s), buildings 38.7 ms/s (3480 calls/s), ai/brood/morphs 33.7 ms/s (29 calls/s), silhouettes 28.5 ms/s (547 calls/s), game/fog 23.6 ms/s (68 calls/s), ai/build 23.1 ms/s (25 calls/s), game/fog/units 20.7 ms/s (68 calls/s), ai/workers 17.8 ms/s (25 calls/s), game/unit grid 16.7 ms/s (547 calls/s), overlay draw 16.4 ms/s (69 calls/s), ai/army 16.1 ms/s (25 calls/s), silhouettes/scan 13.9 ms/s (137 calls/s), ai/brood/army 9.0 ms/s (29 calls/s), game/paths 7.4 ms/s (547 calls/s), ai/brood/lay 7.1 ms/s (29 calls/s), unit draw 7.1 ms/s (213 calls/s), ai/sites_warm 5.1 ms/s (423 calls/s), ai/micro 4.9 ms/s (25 calls/s), game/gears 4.0 ms/s (547 calls/s), game/path smoothing 3.8 ms/s (66 calls/s), ai/produce 3.6 ms/s (25 calls/s), game/pathfinder 3.2 ms/s (66 calls/s), building draw 2.8 ms/s (1 calls/s), ai/raid 2.5 ms/s (25 calls/s), ai/brood/essence 2.3 ms/s (29 calls/s), hud/card build 2.2 ms/s (39 calls/s), ai/brood/research 2.0 ms/s (29 calls/s), game/swamp 1.9 ms/s (547 calls/s), ai/brood/mother 1.9 ms/s (29 calls/s), replay/write 1.5 ms/s (2 calls/s), ai/brood/alarm 1.4 ms/s (29 calls/s), ai/brood/grubs_vs_riders 1.4 ms/s (29 calls/s), ai/brood/observe 1.1 ms/s (29 calls/s), game/econ 1.1 ms/s (547 calls/s), game/fog/buildings 1.0 ms/s (68 calls/s), powder smoke 1.0 ms/s (547 calls/s), ai/brood/maw_guard 0.9 ms/s (29 calls/s), ai/brood/scout 0.8 ms/s (29 calls/s), game/line net 0.6 ms/s (547 calls/s), game/zones 0.5 ms/s (547 calls/s), ai/brood/father 0.4 ms/s (29 calls/s), game/end+ghosts 0.4 ms/s (18 calls/s), ai/brood/mature 0.4 ms/s (29 calls/s), ai/brood/grow 0.4 ms/s (29 calls/s), ai/brood/rootmaws 0.3 ms/s (29 calls/s), ai/brood/unstick 0.3 ms/s (29 calls/s), ai/brood/turtles 0.2 ms/s (29 calls/s), ai/brood/root_watch 0.2 ms/s (29 calls/s), game/stats 0.2 ms/s (4 calls/s), game/refit 0.1 ms/s (18 calls/s)
+  P1 Brood: earned 596 biomass total, has 96 + 0 spoils | supply 12/28 | workers 12 | halls 0 | army (325 value): 1 Brood Mother, 3 Rootmaw, 1 Mound Turtle | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 10 eggs | Rootmaws rooted 2 (ground 84% 85%) | Mound Turtles rooted 1
+  P2 Crown: earned 760 gold total, has 60 + 0 powder | supply 12/18 | workers 10 | halls 1 | army (0 value): none | kills +0 (0) losses +0 (0) | soil 92% | saltpetre 100% | efficiency 29%
+[02:13] P1 Brood's Brood: a grub goes to grow the Tyrant Lure
+[02:14] P2 Crown finished a Horse Breeder
+[02:16] P2 Crown finished a Cottage
+[02:30] P2 Crown got its first Musketeer
+[02:31] P2 Crown's build order: a Cottage (supply 18/26) (supply 18, 11 labourers, 0 gold)
+[02:38] P1 Brood's Brood: scouted: NORMAL [a standard opening] (1 halls, 0 production, 0 static defences, 60 of army seen): OPTIMAL picks its build from this
+[02:38] P1 Brood's Brood: optimal: reads NORMAL [a standard opening]: picks Brute siege (a siege to break its defences)
+[02:45] P2 Crown got its first Horse
+[02:46] P1 Brood got its first Tyrant Sire
+[02:50] P2 Crown moves its musket line to the cliff edge above the enemy below: 1 spots on the high ground, the nearest 167 px from it
+[02:52] P2 Crown finished a Cottage
+[02:52] P2 Crown got its first Horseman
+[02:52] P2 Crown moves its musket line to the cliff edge above the enemy below: 2 spots on the high ground, the nearest 154 px from it
+[02:55] P2 Crown's first horse hauled by a hauler
+[02:57] P2 Crown's first Officer mounted (Horseman)
+[02:59] P2 Crown moves its musket line to the cliff edge above the enemy below: 1 spots on the high ground, the nearest 143 px from it
+--- minute 3 ---
+  Performance: 404 fps avg, 1% low 107 fps, worst frame 37 ms, 1 frames over 33 ms, 0 over 50 ms, 1.0 physics steps a frame | units 42, buildings 9, bodies 0, corpses 0, effects 0, smoke puffs 0, nodes 481, objects 4786
+    busy with: units 463.8 ms/s (13466 calls/s), ai 114.3 ms/s (808 calls/s), hud 90.4 ms/s (404 calls/s), hud/look 81.5 ms/s (202 calls/s), game 72.4 ms/s (404 calls/s), replay/record 46.0 ms/s (45 calls/s), ai/brood 45.5 ms/s (85 calls/s), buildings 44.5 ms/s (3425 calls/s), hud/tip check 35.8 ms/s (202 calls/s), silhouettes 27.9 ms/s (404 calls/s), unit draw 22.3 ms/s (471 calls/s), game/fog 22.2 ms/s (50 calls/s), game/fog/units 19.8 ms/s (50 calls/s), game/unit grid 17.1 ms/s (404 calls/s), ai/army 16.6 ms/s (18 calls/s), ai/workers 16.0 ms/s (18 calls/s), ai/brood/morphs 15.7 ms/s (21 calls/s), overlay draw 15.1 ms/s (52 calls/s), silhouettes/scan 14.3 ms/s (101 calls/s), ai/build 9.1 ms/s (18 calls/s), ai/produce 7.9 ms/s (18 calls/s), ai/brood/army 6.6 ms/s (21 calls/s), ai/brood/lay 6.3 ms/s (21 calls/s), game/paths 5.8 ms/s (404 calls/s), ai/micro 5.4 ms/s (18 calls/s), ai/sites_warm 4.0 ms/s (312 calls/s), game/gears 3.9 ms/s (404 calls/s), ai/brood/research 3.4 ms/s (21 calls/s), game/path smoothing 2.8 ms/s (65 calls/s), ai/raid 2.3 ms/s (18 calls/s), ai/brood/essence 2.1 ms/s (21 calls/s), hud/card build 1.8 ms/s (29 calls/s), game/pathfinder 1.5 ms/s (65 calls/s), ai/brood/alarm 1.5 ms/s (21 calls/s), ai/brood/mother 1.4 ms/s (21 calls/s), ai/brood/observe 1.2 ms/s (21 calls/s), replay/write 1.2 ms/s (1 calls/s), ai/brood/grubs_vs_riders 1.1 ms/s (21 calls/s), game/econ 1.0 ms/s (404 calls/s), powder smoke 1.0 ms/s (404 calls/s), ai/brood/maw_guard 1.0 ms/s (21 calls/s), game/fog/buildings 0.9 ms/s (50 calls/s), game/swamp 0.8 ms/s (404 calls/s), ai/brood/father 0.7 ms/s (21 calls/s), ai/brood/scout 0.7 ms/s (21 calls/s), game/line net 0.5 ms/s (404 calls/s), ai/brood/rootmaws 0.5 ms/s (21 calls/s), game/zones 0.4 ms/s (404 calls/s), ai/brood/mature 0.3 ms/s (21 calls/s), game/end+ghosts 0.3 ms/s (13 calls/s), ai/brood/grow 0.3 ms/s (21 calls/s), ai/brood/unstick 0.3 ms/s (21 calls/s), ai/brood/turtles 0.2 ms/s (21 calls/s), ai/brood/root_watch 0.2 ms/s (21 calls/s), game/stats 0.2 ms/s (3 calls/s), game/refit 0.1 ms/s (13 calls/s), building draw 0.1 ms/s (2 calls/s)
+  P1 Brood: earned 1158 biomass total, has 33 + 0 spoils | supply 22/28 | workers 16 | halls 0 | army (550 value): 1 Brood Mother, 4 Rootmaw, 1 Mound Turtle, 1 Tyrant Sire, 3 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 9 eggs | Rootmaws rooted 3 (ground 76% 76% 90%) | Mound Turtles rooted 1
+  P2 Crown: earned 1140 gold total, has 0 + 0 powder | supply 18/34 | workers 14 | halls 1 | army (160 value): 1 Musketeer, 1 Horseman | kills +0 (0) losses +0 (0) | soil 87% | saltpetre 100% | efficiency 71%
+[03:34] P2 Crown's build order: a Cottage (supply 26/34) (supply 26, 14 labourers, 250 gold)
+[03:37] P2 Crown moves its musket line to the cliff edge above the enemy below: 2 spots on the high ground, the nearest 170 px from it
+[03:41] P1 Brood's Brood: rider read: a Horseman at 3:41: Raptors now, its grubs kept by them, no chase
+[03:41] P1 Brood's Brood: scouted: AGGRESSIVE [a Horse Breeder or riders early] (1 halls, 0 production, 0 static defences, 100 of army seen): OPTIMAL picks its build from this
+[03:41] P1 Brood's Brood: optimal: reads AGGRESSIVE [a Horse Breeder or riders early]: keeps Brute siege (it switched once this stage already; Balanced waits)
+[03:54] P1 Brood got its first Raptors
+[03:55] P2 Crown finished a Cottage
+--- minute 4 ---
+  Performance: 287 fps avg, 1% low 66 fps, worst frame 31 ms, 0 frames over 33 ms, 0 over 50 ms, 1.0 physics steps a frame | units 65, buildings 10, bodies 1, corpses 1, effects 0, smoke puffs 0, nodes 542, objects 4920
+    busy with: units 518.8 ms/s (14701 calls/s), ai 100.6 ms/s (574 calls/s), game 76.9 ms/s (287 calls/s), hud 73.3 ms/s (287 calls/s), hud/look 67.2 ms/s (143 calls/s), replay/record 50.0 ms/s (32 calls/s), ai/brood 39.1 ms/s (60 calls/s), buildings 36.3 ms/s (2708 calls/s), hud/tip check 28.9 ms/s (143 calls/s), game/fog 26.2 ms/s (36 calls/s), silhouettes 24.4 ms/s (287 calls/s), game/fog/units 23.3 ms/s (36 calls/s), unit draw 20.4 ms/s (395 calls/s), game/unit grid 19.6 ms/s (287 calls/s), overlay draw 16.7 ms/s (42 calls/s), ai/army 15.0 ms/s (13 calls/s), silhouettes/scan 14.7 ms/s (72 calls/s), ai/workers 14.6 ms/s (13 calls/s), ai/brood/lay 9.7 ms/s (15 calls/s), ai/brood/morphs 8.4 ms/s (15 calls/s), game/paths 7.8 ms/s (287 calls/s), ai/build 7.1 ms/s (13 calls/s), ai/micro 5.5 ms/s (13 calls/s), game/path smoothing 4.8 ms/s (66 calls/s), ai/produce 4.8 ms/s (13 calls/s), ai/brood/army 4.4 ms/s (15 calls/s), ai/brood/alarm 3.3 ms/s (15 calls/s), ai/sites_warm 2.8 ms/s (222 calls/s), game/gears 2.8 ms/s (287 calls/s), ai/raid 2.4 ms/s (13 calls/s), ai/brood/essence 2.1 ms/s (15 calls/s), game/pathfinder 1.7 ms/s (66 calls/s), ai/brood/research 1.4 ms/s (15 calls/s), ai/brood/mother 1.3 ms/s (15 calls/s), hud/card build 1.3 ms/s (21 calls/s), ai/brood/father 1.2 ms/s (15 calls/s), game/swamp 1.2 ms/s (287 calls/s), replay/write 1.0 ms/s (1 calls/s), ai/brood/observe 1.0 ms/s (15 calls/s), ai/brood/maw_guard 0.9 ms/s (15 calls/s), ai/brood/grubs_vs_riders 0.9 ms/s (15 calls/s), ai/brood/mature 0.9 ms/s (15 calls/s), game/econ 0.7 ms/s (287 calls/s), game/fog/buildings 0.7 ms/s (36 calls/s), powder smoke 0.6 ms/s (287 calls/s), ai/brood/unstick 0.6 ms/s (15 calls/s), ai/brood/scout 0.5 ms/s (15 calls/s), game/line net 0.4 ms/s (287 calls/s), game/zones 0.3 ms/s (287 calls/s), ai/brood/rootmaws 0.3 ms/s (15 calls/s), game/end+ghosts 0.3 ms/s (9 calls/s), ai/brood/grow 0.2 ms/s (15 calls/s), ai/brood/turtles 0.2 ms/s (15 calls/s), ai/brood/root_watch 0.2 ms/s (15 calls/s), game/refit 0.2 ms/s (9 calls/s), game/stats 0.2 ms/s (2 calls/s), building draw 0.1 ms/s (2 calls/s), effects 0.0 ms/s (7 calls/s)
+  P1 Brood: earned 2057 biomass total, has 32 + 15 spoils | supply 37/40 | workers 23 | halls 0 | army (875 value): 1 Brood Mother, 4 Rootmaw, 3 Mound Turtle, 1 Tyrant Sire, 3 Egg, 5 Raptors | kills +0 (0) losses +1 (1) | Brood: Mother stage 1 rooted, 6 eggs | Rootmaws rooted 4 (ground 68% 66% 85% 89%) | Mound Turtles rooted 2 | sacrificed 1 (+15 spoils)
+  P2 Crown: earned 1900 gold total, has 20 + 0 powder | supply 30/42 | workers 18 | halls 1 | army (400 value): 3 Musketeer, 1 Horseman, 3 Horse | kills +1 (1) losses +0 (0) | soil 79% | saltpetre 100% | efficiency 79%
+[04:02] P2 Crown's first attack goes out (9 supply, 2 Horsemen)
+[04:03] P2 Crown's plan: the riders are out: the second hall right behind the raid
+[04:03] P2 Crown's build order: a Cottage (supply 35/42) (supply 35, 16 labourers, 60 gold)
+[04:03] P2 Crown's rush: FAILED (the wave is gone): the riders ride home, no more go out alone; it builds up and attacks only with a proper force
+[04:04] P2 Crown's build order: the first attack (9 supply) (supply 35, 16 labourers, 60 gold)
+[04:04] P2 Crown's plan: Economy, a build order of 9 steps from here (scripts/ai_crown.gd)
+[04:04] P2 Crown's plan: the rush is over (failed): the economy now, balanced hands it to the Economy plan (labourers to two halls, the walled natural)
+[04:04] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[04:04] P2 Crown's scouts know: an enemy army of 0 (seen in the last 120 s), 0 enemy halls, tech none seen
+[04:04] P2 Crown sets a Horseman as a picket on the road 520 px out from its post
+[04:04] P2 Crown's build order: the ramp Cottage (supply 35, 16 labourers, 60 gold)
+[04:04] P2 Crown's build order: the ramp Gate (supply 35, 16 labourers, 60 gold)
+[04:04] P2 Crown's build order: Farm 2 (supply 35, 16 labourers, 60 gold)
+[04:22] P2 Crown is expanding to fresh land (left at its best hall: 70%), 18 tiles from its main (its build order)
+[04:22] P2 Crown's build order: Town Hall 2 (supply 35, 17 labourers, 40 gold)
+[04:22] slow frame 82 ms: units 3.4, replay/record 2.0, ai 1.7, ai/brood 1.6, the rest 74.8
+[04:23] P2 Crown plans a walled expansion: 50 ways-in cells (radius 11), 8 building slots, 24 palisade, 2 gate
+[04:23] slow frame 66 ms: ai 62.1, ai/workers 62.0, units 2.5, the rest 0.4
+[04:23] P2 Crown finished a Cottage
+[04:34] P2 Crown sends a Labourer to scout again (trip 2)
+[04:37] P2 Crown's plan: against the Brood the line comes before more buildings: 180 of Musketeers and guns against the 186 it wants by now
+[04:42] P2 Crown's plan: the Brood is seen (its creatures in sight): the Foundry before the Horse Breeder, a Field Cannon for the ramp post first
+[04:42] P1 Brood's Brood: guards its grubs with 22 (550) against 1 riders at its Rootmaw: no chase past 15 tiles
+[04:44] P1 Brood's Brood: grows the Mother to stage 2
+[04:44] P1 Brood's Brood: a Rootmaw under attack uproots to fight back (1 cuirassier)
+[04:44] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[04:44] P2 Crown's scout found workers to hunt: it hands over to the raid
+[04:45] P2 Crown's build order: Powder Mill 1 (supply 36, 18 labourers, 270 gold)
+[04:45] P2 Crown's build order: Barracks 1 (supply 36, 18 labourers, 270 gold)
+[04:45] P2 Crown's build order: Musketeers from now on (up to 6 supply) (supply 36, 18 labourers, 270 gold)
+[04:45] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[04:46] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[04:46] P2 Crown saw an enemy Raptors (fast): raiders to watch for
+[04:46] P2 Crown's Horseman pulls back from Raptors
+[04:50] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[04:55] P2 Crown finished a Town Hall (expansion)
+[04:55] P2 Crown's base layout at its new hall: 0 Cottage spots in 0 blocks at the back, 2 production rows' spots, 2 Farm and 1 Mill spots by the hall
+--- minute 5 ---
+  Performance: 184 fps avg, 1% low 38 fps, worst frame 82 ms, 4 frames over 33 ms, 2 over 50 ms, 1.0 physics steps a frame | units 91, buildings 14, bodies 1, corpses 1, effects 0, smoke puffs 0, nodes 620, objects 5042
+    busy with: units 532.1 ms/s (14578 calls/s), ai 113.7 ms/s (367 calls/s), game 79.0 ms/s (184 calls/s), hud 62.5 ms/s (184 calls/s), hud/look 57.1 ms/s (92 calls/s), replay/record 45.3 ms/s (20 calls/s), ai/brood 43.3 ms/s (39 calls/s), buildings 30.1 ms/s (2184 calls/s), game/fog 24.9 ms/s (23 calls/s), hud/tip check 24.1 ms/s (92 calls/s), game/fog/units 22.8 ms/s (23 calls/s), silhouettes 22.1 ms/s (184 calls/s), ai/workers 21.6 ms/s (8 calls/s), game/unit grid 19.6 ms/s (184 calls/s), ai/brood/morphs 16.6 ms/s (10 calls/s), unit draw 16.2 ms/s (288 calls/s), overlay draw 13.8 ms/s (28 calls/s), silhouettes/scan 13.6 ms/s (46 calls/s), game/paths 12.4 ms/s (184 calls/s), ai/army 10.0 ms/s (8 calls/s), ai/sites_warm 9.6 ms/s (142 calls/s), ai/build 9.1 ms/s (8 calls/s), ai/brood/lay 7.7 ms/s (10 calls/s), game/path smoothing 7.5 ms/s (64 calls/s), ai/micro 6.0 ms/s (8 calls/s), ai/brood/alarm 3.7 ms/s (10 calls/s), ai/brood/army 3.5 ms/s (10 calls/s), ai/produce 3.2 ms/s (8 calls/s), game/gears 2.4 ms/s (184 calls/s), game/pathfinder 2.3 ms/s (64 calls/s), ai/raid 1.7 ms/s (8 calls/s), ai/brood/grubs_vs_riders 1.6 ms/s (10 calls/s), game/swamp 1.5 ms/s (184 calls/s), ai/brood/father 1.3 ms/s (10 calls/s), ai/brood/essence 1.2 ms/s (10 calls/s), ai/brood/mother 1.2 ms/s (10 calls/s), ai/brood/research 1.1 ms/s (10 calls/s), ai/brood/maw_guard 1.0 ms/s (10 calls/s), hud/card build 0.9 ms/s (13 calls/s), replay/write 0.9 ms/s (1 calls/s), ai/brood/mature 0.8 ms/s (10 calls/s), ai/brood/observe 0.8 ms/s (10 calls/s), game/fog/buildings 0.7 ms/s (23 calls/s), powder smoke 0.6 ms/s (184 calls/s), game/econ 0.6 ms/s (184 calls/s), ai/brood/scout 0.3 ms/s (10 calls/s), game/line net 0.3 ms/s (184 calls/s), ai/brood/rootmaws 0.3 ms/s (10 calls/s), ai/brood/unstick 0.3 ms/s (10 calls/s), game/end+ghosts 0.3 ms/s (6 calls/s), ai/brood/grow 0.3 ms/s (10 calls/s), game/zones 0.2 ms/s (184 calls/s), ai/brood/root_watch 0.2 ms/s (10 calls/s), ai/brood/turtles 0.2 ms/s (10 calls/s), game/stats 0.2 ms/s (1 calls/s), game/refit 0.1 ms/s (6 calls/s), building draw 0.1 ms/s (2 calls/s), effects 0.0 ms/s (2 calls/s)
+  P1 Brood: earned 3185 biomass total, has 35 + 30 spoils | supply 55/64 | workers 25 | halls 0 | army (1475 value): 1 Brood Mother, 5 Rootmaw, 4 Mound Turtle, 1 Tyrant Sire, 22 Raptors, 3 Egg | kills +0 (0) losses +0 (1) | Brood: Mother stage 1 rooted, 6 eggs | Rootmaws rooted 4 (ground 59% 56% 79% 76%) | Mound Turtles rooted 4 | sacrificed 2 (+30 spoils)
+  P2 Crown: earned 3040 gold total, has 70 + 0 powder | supply 38/60 | workers 21 | halls 2 | army (660 value): 3 Musketeer, 4 Horseman, 2 Horse | kills +0 (1) losses +0 (0) | soil 66% 100% | saltpetre 100% 100% | efficiency 54%
+[05:02] P1 Brood's Brood: guards its grubs with 22 (550) against 1 riders at its Rootmaw: no chase past 15 tiles
+[05:04] P2 Crown's Horseman pulls back from Raptors
+[05:16] P2 Crown finished a Powder Mill
+[05:16] P2 Crown's plan: a Farm at its new hall at once (20 s after it stood)
+[05:16] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[05:16] P2 Crown's scout found workers to hunt: it hands over to the raid
+[05:19] P2 Crown's Horseman pulls back from Raptors
+[05:19] P2 Crown's Horseman pulls back from Raptors
+[05:19] P1 Brood's Brood: riders in its land (2): grubs to the warriors, the warriors guard them, no chase
+[05:19] P2 Crown's scouts know: an enemy army of 500 (seen in the last 120 s), 0 enemy halls, tech none seen
+[05:21] P2 Crown finished a Cottage
+[05:21] P2 Crown scout under guard (Raptors), backing out of range
+[05:22] P1 Brood's Brood: a Rootmaw under attack uproots to fight back (1 cuirassier)
+[05:23] P2 Crown's scout rides home (chased)
+[05:25] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 28 tiles out
+[05:26] P2 Crown's Horseman goes home (driven back too often)
+[05:28] P2 Crown's build order: Foundry 1 (supply 43, 22 labourers, 80 gold)
+[05:28] P2 Crown's build order: Horse Breeder 1 (supply 43, 22 labourers, 80 gold)
+[05:28] P2 Crown's plan: the opening is over (the build order is done): the milestones take over
+[05:29] P2 Crown lays 7 wall pieces at its new hall (2 labourers on it)
+[05:29] P2 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (660 against the 600 it reckons)
+[05:30] P1 Brood's Brood: scouted: NORMAL [a standard opening] (1 halls, 0 production, 0 static defences, 191 of army seen): OPTIMAL picks its build from this
+[05:30] P1 Brood's Brood: optimal: reads NORMAL [a standard opening]: keeps Brute siege (what it plays already answers it)
+[05:34] P1 Brood's Brood: guards its grubs with 24 (600) against 1 riders at its Rootmaw: no chase past 15 tiles
+[05:36] P2 Crown finished a Farm
+[05:37] P2 Crown's plan: against the Brood the line comes before more buildings: 180 of Musketeers and guns against the 549 it wants by now
+[05:38] P2 Crown's Horseman pulls back from Raptors
+[05:39] P2 Crown scout under guard (Raptors), backing out of range
+[05:40] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[05:41] P2 Crown scout under guard (Raptors), backing out of range
+[05:45] P2 Crown sees a push coming: 24 soldiers worth 600, 51 tiles from its nearest building, against 380 of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)
+[05:45] slow frame 77 ms: ai 67.9, ai/brood 67.8, ai/brood/morphs 60.5, ai/brood/lay 6.4, units 4.7, game 2.4, game/fog 2.1, game/fog/units 1.8, the rest 1.2
+[05:55] P2 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+[05:55] P2 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+[05:55] P2 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+[05:55] P2 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+[05:55] P2 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+[05:57] P2 Crown finished a Foundry
+[05:58] P2 Crown's Horseman pulls back from Raptors
+[05:59] P1 Brood's Brood: guards its grubs with 33 (825) against 1 riders at its Rootmaw: no chase past 15 tiles
+[05:59] P1 Brood's Brood: the riders are gone: its grubs back to work, back to its plan
+--- minute 6 ---
+  Performance: 151 fps avg, 1% low 42 fps, worst frame 77 ms, 3 frames over 33 ms, 1 over 50 ms, 1.0 physics steps a frame | units 120, buildings 24, bodies 0, corpses 0, effects 0, smoke puffs 0, nodes 708, objects 5218
+    busy with: units 544.5 ms/s (15599 calls/s), ai 157.5 ms/s (303 calls/s), game 72.9 ms/s (151 calls/s), ai/brood 57.8 ms/s (32 calls/s), hud 48.8 ms/s (151 calls/s), hud/look 45.6 ms/s (76 calls/s), replay/record 42.4 ms/s (17 calls/s), buildings 30.2 ms/s (2936 calls/s), ai/sites_warm 28.8 ms/s (117 calls/s), game/fog 27.2 ms/s (19 calls/s), ai/brood/morphs 26.9 ms/s (8 calls/s), game/fog/units 25.2 ms/s (19 calls/s), silhouettes 19.2 ms/s (151 calls/s), hud/tip check 18.9 ms/s (76 calls/s), game/unit grid 16.9 ms/s (151 calls/s), ai/workers 13.0 ms/s (7 calls/s), silhouettes/scan 12.8 ms/s (38 calls/s), overlay draw 12.2 ms/s (23 calls/s), unit draw 12.0 ms/s (267 calls/s), ai/army 11.7 ms/s (7 calls/s), game/paths 10.3 ms/s (151 calls/s), ai/produce 10.0 ms/s (7 calls/s), ai/brood/lay 8.3 ms/s (8 calls/s), ai/build 6.3 ms/s (7 calls/s), ai/workers/xwall 5.8 ms/s (4 calls/s), game/path smoothing 4.8 ms/s (92 calls/s), ai/build/econ 4.0 ms/s (4 calls/s), ai/brood/alarm 3.6 ms/s (8 calls/s), ai/brood/army 3.4 ms/s (8 calls/s), ai/brood/research 3.2 ms/s (8 calls/s), ai/brood/grubs_vs_riders 2.9 ms/s (8 calls/s), ai/raid 2.8 ms/s (7 calls/s), ai/brood/essence 2.6 ms/s (8 calls/s), ai/micro 2.4 ms/s (7 calls/s), ai/econ 2.2 ms/s (4 calls/s), game/gears 2.1 ms/s (151 calls/s), ai/horses 1.8 ms/s (4 calls/s), ai/brood/maw_guard 1.6 ms/s (8 calls/s), game/pathfinder 1.5 ms/s (92 calls/s), ai/abil 1.4 ms/s (4 calls/s), game/swamp 1.1 ms/s (151 calls/s), game/fog/buildings 1.0 ms/s (19 calls/s), ai/brood/observe 1.0 ms/s (8 calls/s), ai/brood/father 0.9 ms/s (8 calls/s), ai/brood/mother 0.9 ms/s (8 calls/s), hud/card build 0.7 ms/s (11 calls/s), ai/build/supply 0.6 ms/s (4 calls/s), replay/write 0.5 ms/s (1 calls/s), ai/brood/mature 0.5 ms/s (8 calls/s), game/econ 0.4 ms/s (151 calls/s), game/end+ghosts 0.4 ms/s (5 calls/s), powder smoke 0.3 ms/s (151 calls/s), ai/brood/unstick 0.3 ms/s (8 calls/s), ai/gg 0.2 ms/s (4 calls/s), ai/brood/rootmaws 0.2 ms/s (8 calls/s), ai/brood/root_watch 0.2 ms/s (8 calls/s), ai/brood/scout 0.2 ms/s (8 calls/s), game/line net 0.2 ms/s (151 calls/s), game/refit 0.2 ms/s (5 calls/s), ai/brood/turtles 0.2 ms/s (8 calls/s), game/stats 0.2 ms/s (1 calls/s), game/zones 0.1 ms/s (151 calls/s), ai/brood/grow 0.1 ms/s (8 calls/s), ai/workers/wall 0.1 ms/s (4 calls/s), building draw 0.0 ms/s (1 calls/s), ai/loose 0.0 ms/s (4 calls/s), effects 0.0 ms/s (8 calls/s)
+  P1 Brood: earned 4203 biomass total, has 103 + 45 spoils | supply 75/88 | workers 31 | halls 0 | army (2000 value): 1 Brood Mother, 5 Rootmaw, 6 Mound Turtle, 1 Tyrant Sire, 35 Raptors, 4 Egg | kills +0 (0) losses +0 (1) | Brood: Mother stage 2 rooted, 3 eggs | Rootmaws rooted 5 (ground 51% 46% 79% 64% 90%) | Mound Turtles rooted 6 | sacrificed 3 (+45 spoils)
+  P2 Crown: earned 3800 gold total, has 5 + 0 powder | supply 43/68 | workers 28 | halls 2 | army (660 value): 3 Musketeer, 4 Horseman, 2 Horse | kills +0 (1) losses +0 (0) | soil 58% 100% | saltpetre 98% 100% | efficiency 45%
+[06:03] P1 Brood's Brood: a grub goes to grow the Venom Lure
+[06:03] slow frame 61 ms: ai 56.8, ai/brood 56.7, ai/brood/morphs 54.6, units 3.6, ai/brood/lay 1.5, the rest 0.3
+[06:03] P2 Crown finished a Cottage
+[06:05] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 47 of its own in.)
+[06:07] P2 Crown's Horseman goes home (driven back too often)
+[06:08] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[06:11] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[06:11] P2 Crown lays 8 wall pieces at its new hall (2 labourers on it)
+[06:13] P2 Crown lays 8 wall pieces at its new hall (2 labourers on it)
+[06:14] P2 Crown lays 3 wall pieces at its new hall (2 labourers on it)
+[06:26] P2 Crown lays 8 wall pieces at its new hall (2 labourers on it)
+[06:27] P1 Brood's Tyrant Sire researches Bigger Clutch
+[06:27] P1 Brood's Brood: researches Bigger Clutch
+[06:27] P2 Crown posts its army at its natural's gate: 6 musket spots behind the palisade, 2 guns behind them (the gate 6 tiles from the foot of its main's ramp)
+[06:27] P2 Crown lays 3 wall pieces at its new hall (2 labourers on it)
+[06:28] P1 Brood's Brood: guards its grubs with 35 (875) against 1 riders at its Rootmaw: no chase past 15 tiles
+[06:31] P2 Crown scout driven off by the enemy's guns: it saw nothing to go on, will look again soon
+[06:31] P2 Crown could not see the enemy [the scout was driven off] (the scout was driven off by the enemy's guns before it saw the base): that proves nothing; no army for it, keeps to Economy and looks again soon
+[06:35] P2 Crown's scouts know: an enemy army of 875 (seen in the last 120 s), 0 enemy halls, tech none seen
+[06:37] P2 Crown's plan: against the Brood the line comes before more buildings: 180 of Musketeers and guns against the 937 it wants by now
+[06:39] P1 Brood got its first Venom Sire
+[06:40] P2 Crown finished a Farm
+[06:41] P2 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (720 against the 825 it reckons)
+[06:44] P2 Crown the push it saw coming is gone or held: back to its plan
+[06:52] P2 Crown finished a Powder Mill
+[06:52] P1 Brood's Brood: grows the Mother to stage 3
+[06:53] slow frame 64 ms: ai 59.0, ai/brood 57.5, ai/brood/morphs 55.3, units 3.8, ai/brood/lay 1.4, the rest 0.4
+--- minute 7 ---
+  Performance: 106 fps avg, 1% low 35 fps, worst frame 64 ms, 3 frames over 33 ms, 2 over 50 ms, 1.0 physics steps a frame | units 122, buildings 56, bodies 0, corpses 0, effects 0, smoke puffs 0, nodes 809, objects 5423
+    busy with: units 523.2 ms/s (12826 calls/s), ai 158.3 ms/s (212 calls/s), game 75.4 ms/s (106 calls/s), hud 48.1 ms/s (106 calls/s), hud/look 45.0 ms/s (53 calls/s), ai/brood 44.5 ms/s (22 calls/s), replay/record 41.8 ms/s (12 calls/s), buildings 39.6 ms/s (4914 calls/s), ai/sites_warm 28.4 ms/s (82 calls/s), game/fog 25.4 ms/s (13 calls/s), game/fog/units 22.0 ms/s (13 calls/s), overlay draw 21.5 ms/s (31 calls/s), hud/tip check 19.8 ms/s (53 calls/s), silhouettes 17.3 ms/s (106 calls/s), ai/brood/morphs 16.8 ms/s (6 calls/s), game/unit grid 16.8 ms/s (106 calls/s), ai/produce 16.0 ms/s (5 calls/s), game/paths 12.0 ms/s (106 calls/s), ai/army 11.9 ms/s (5 calls/s), silhouettes/scan 11.5 ms/s (26 calls/s), ai/workers 10.5 ms/s (5 calls/s), unit draw 10.4 ms/s (174 calls/s), ai/build 9.1 ms/s (5 calls/s), ai/workers/xwall 8.5 ms/s (5 calls/s), ai/build/econ 8.2 ms/s (5 calls/s), ai/brood/lay 7.3 ms/s (6 calls/s), game/path smoothing 6.9 ms/s (70 calls/s), ai/brood/alarm 4.3 ms/s (6 calls/s), ai/raid 4.1 ms/s (5 calls/s), ai/brood/army 3.8 ms/s (6 calls/s), ai/horses 3.4 ms/s (5 calls/s), ai/econ 2.9 ms/s (5 calls/s), ai/abil 2.9 ms/s (5 calls/s), ai/brood/research 2.7 ms/s (6 calls/s), game/gears 2.7 ms/s (106 calls/s), ai/brood/essence 2.0 ms/s (6 calls/s), game/fog/buildings 2.0 ms/s (13 calls/s), game/pathfinder 1.6 ms/s (70 calls/s), game/swamp 1.3 ms/s (106 calls/s), ai/build/supply 1.0 ms/s (5 calls/s), ai/brood/father 1.0 ms/s (6 calls/s), ai/brood/grubs_vs_riders 1.0 ms/s (6 calls/s), ai/brood/mother 0.9 ms/s (6 calls/s), ai/brood/mature 0.8 ms/s (6 calls/s), ai/brood/maw_guard 0.8 ms/s (6 calls/s), ai/brood/observe 0.8 ms/s (6 calls/s), replay/write 0.6 ms/s (0 calls/s), game/end+ghosts 0.6 ms/s (3 calls/s), hud/card build 0.5 ms/s (8 calls/s), game/econ 0.4 ms/s (106 calls/s), ai/brood/unstick 0.4 ms/s (6 calls/s), powder smoke 0.4 ms/s (106 calls/s), ai/gg 0.3 ms/s (5 calls/s), ai/micro 0.3 ms/s (5 calls/s), ai/brood/scout 0.3 ms/s (6 calls/s), game/refit 0.3 ms/s (3 calls/s), ai/brood/root_watch 0.2 ms/s (6 calls/s), ai/brood/rootmaws 0.2 ms/s (6 calls/s), game/line net 0.2 ms/s (106 calls/s), ai/brood/turtles 0.2 ms/s (6 calls/s), game/stats 0.2 ms/s (1 calls/s), game/zones 0.1 ms/s (106 calls/s), ai/workers/wall 0.1 ms/s (5 calls/s), ai/brood/grow 0.1 ms/s (6 calls/s), ai/loose 0.1 ms/s (5 calls/s), building draw 0.1 ms/s (2 calls/s), effects 0.0 ms/s (7 calls/s)
+  P1 Brood: earned 5550 biomass total, has 50 + 50 spoils | supply 75/100 | workers 35 | halls 0 | army (2275 value): 1 Brood Mother, 6 Rootmaw, 7 Mound Turtle, 1 Tyrant Sire, 31 Raptors, 1 Venom Sire, 1 Egg | kills +0 (0) losses +0 (1) | Brood: Mother stage 2 rooted, 14 eggs | Rootmaws rooted 6 (ground 43% 36% 79% 51% 83% 93%) | Mound Turtles rooted 7 | sacrificed 11 (+165 spoils)
+  P2 Crown: earned 4560 gold total, has 5 + 58 powder | supply 45/76 | workers 29 | halls 2 | army (720 value): 4 Musketeer, 4 Horseman, 2 Horse | kills +0 (1) losses +0 (0) | soil 49% 100% | saltpetre 90% 100% | efficiency 38%
+[07:06] P2 Crown sends a Horseman to scout again (trip 3)
+[07:07] P1 Brood researched Bigger Clutch
+[07:16] P2 Crown lays 5 wall pieces at its new hall (2 labourers on it)
+[07:21] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[07:21] P1 Brood's Brood: guards its grubs with 28 (700) against 1 riders at its Rootmaw: no chase past 15 tiles
+[07:22] P1 Brood's Brood: a Rootmaw under attack uproots to fight back (1 cuirassier)
+[07:24] P1 Brood's Brood: riders in its land (2): grubs to the warriors, the warriors guard them, no chase
+[07:25] P1 Brood's Brood: a Rootmaw under attack uproots to fight back (1 cuirassier)
+[07:25] P2 Crown's scout rides home (chased)
+[07:26] P2 Crown's first pistol shot (Horseman)
+[07:29] P1 Brood's Brood: a Rootmaw under attack uproots to fight back (1 cuirassier)
+[07:31] P2 Crown scout under guard (Raptors), backing out of range
+[07:31] P2 Crown sees a push coming: 14 soldiers worth 350, 58 tiles from its nearest building, against 540 of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)
+[07:31] P2 Crown scout killed: it saw nothing to go on, will look again soon
+[07:37] P2 Crown's plan: against the Brood the line comes before more buildings: 300 of Musketeers and guns against the 1170 it wants by now
+[07:39] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 67 of its own in.)
+[07:41] P1 Brood's Brood: guards its grubs with 31 (775) against 1 riders at its Rootmaw: no chase past 15 tiles
+[07:42] P2 Crown's plan: milestone: Barracks 2 (26 labourers, 2 halls, army 14 supply)
+[07:42] P2 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (720 against the 775 it reckons)
+[07:43] P1 Brood's Brood: a Rootmaw under attack uproots to fight back (1 cuirassier)
+[07:43] P2 Crown's scout rides home (chased)
+[07:47] P2 Crown scouted: NORMAL [a standard opening] (the Mother and 2 turtles on new ground, 4 Rootmaws and 14 grubs seen, 0 Sires, 36 supply of army seen near its base, 850 of army known): OPTIMAL picks its build from this
+[07:47] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Economy (what it plays already answers it)
+[07:48] P2 Crown got its first Field Cannon
+[07:48] slow frame 83 ms: ai 49.1, ai/brood 45.4, ai/brood/morphs 43.1, units 22.4 (slowest unit: mound_turtle 12.2 ms, idle), game 7.5, ai/horses 2.7, silhouettes 2.2, game/paths 1.7, the rest 0.8
+[08:00] slow frame 51 ms: ai 44.6, ai/brood 44.6, ai/brood/morphs 42.4, units 5.1, ai/brood/lay 1.4, the rest 0.5
+--- minute 8 ---
+  Performance: 102 fps avg, 1% low 29 fps, worst frame 83 ms, 6 frames over 33 ms, 2 over 50 ms, 1.0 physics steps a frame | units 146, buildings 62, bodies 1, corpses 1, effects 0, smoke puffs 0, nodes 894, objects 5746
+    busy with: units 531.0 ms/s (13622 calls/s), ai 140.2 ms/s (203 calls/s), game 77.1 ms/s (102 calls/s), hud 50.4 ms/s (102 calls/s), hud/look 47.5 ms/s (51 calls/s), buildings 44.8 ms/s (6101 calls/s), ai/brood 44.4 ms/s (21 calls/s), replay/record 43.7 ms/s (11 calls/s), game/fog 28.3 ms/s (13 calls/s), game/fog/units 25.3 ms/s (13 calls/s), hud/tip check 21.9 ms/s (51 calls/s), silhouettes 19.2 ms/s (102 calls/s), ai/produce 18.8 ms/s (5 calls/s), game/unit grid 16.6 ms/s (102 calls/s), overlay draw 15.6 ms/s (22 calls/s), silhouettes/scan 12.4 ms/s (25 calls/s), ai/workers 12.0 ms/s (5 calls/s), ai/brood/morphs 11.7 ms/s (5 calls/s), game/paths 11.5 ms/s (102 calls/s), unit draw 11.1 ms/s (203 calls/s), ai/army 10.6 ms/s (5 calls/s), ai/build 10.4 ms/s (5 calls/s), ai/sites_warm 8.7 ms/s (79 calls/s), ai/build/econ 8.1 ms/s (5 calls/s), ai/brood/lay 7.1 ms/s (5 calls/s), game/path smoothing 6.1 ms/s (70 calls/s), ai/brood/alarm 5.9 ms/s (5 calls/s), ai/raid 4.9 ms/s (5 calls/s), ai/workers/xwall 4.8 ms/s (5 calls/s), ai/horses 3.7 ms/s (5 calls/s), ai/brood/maw_guard 3.6 ms/s (5 calls/s), ai/brood/army 3.5 ms/s (5 calls/s), ai/abil 3.5 ms/s (5 calls/s), game/gears 2.9 ms/s (102 calls/s), ai/brood/research 2.7 ms/s (5 calls/s), ai/econ 2.4 ms/s (5 calls/s), ai/brood/essence 2.3 ms/s (5 calls/s), ai/brood/grubs_vs_riders 2.0 ms/s (5 calls/s), game/pathfinder 1.9 ms/s (70 calls/s), game/fog/buildings 1.4 ms/s (13 calls/s), ai/brood/father 1.1 ms/s (5 calls/s), ai/build/supply 1.1 ms/s (5 calls/s), ai/brood/observe 0.9 ms/s (5 calls/s), game/swamp 0.8 ms/s (102 calls/s), ai/brood/mother 0.8 ms/s (5 calls/s), ai/brood/mature 0.7 ms/s (5 calls/s), powder smoke 0.5 ms/s (102 calls/s), hud/card build 0.5 ms/s (7 calls/s), replay/write 0.4 ms/s (0 calls/s), game/econ 0.4 ms/s (102 calls/s), ai/gg 0.4 ms/s (5 calls/s), ai/brood/unstick 0.4 ms/s (5 calls/s), ai/micro 0.3 ms/s (5 calls/s), game/end+ghosts 0.3 ms/s (3 calls/s), ai/brood/scout 0.3 ms/s (5 calls/s), game/refit 0.2 ms/s (3 calls/s), ai/brood/rootmaws 0.2 ms/s (5 calls/s), ai/brood/root_watch 0.2 ms/s (5 calls/s), game/line net 0.2 ms/s (102 calls/s), ai/brood/turtles 0.2 ms/s (5 calls/s), ai/workers/wall 0.2 ms/s (5 calls/s), game/stats 0.1 ms/s (1 calls/s), game/zones 0.1 ms/s (102 calls/s), ai/loose 0.1 ms/s (5 calls/s), building draw 0.1 ms/s (1 calls/s), effects 0.0 ms/s (30 calls/s), ai/brood/grow 0.0 ms/s (5 calls/s)
+  P1 Brood: earned 6819 biomass total, has 89 + 100 spoils | supply 95/100 | workers 49 | halls 0 | army (2500 value): 1 Brood Mother, 7 Rootmaw, 8 Mound Turtle, 1 Tyrant Sire, 33 Raptors, 1 Venom Sire, 3 Egg | kills +1 (1) losses +0 (1) | Brood: Mother stage 3 rooted, 9 eggs | Rootmaws rooted 6 (ground 35% 26% 74% 38% 78% 88%) | Mound Turtles rooted 7 | sacrificed 15 (+225 spoils)
+  P2 Crown: earned 5320 gold total, has 0 + 122 powder | supply 52/76 | workers 31 | halls 2 | army (910 value): 6 Musketeer, 3 Horseman, 2 Horse, 1 Field Cannon | kills +0 (1) losses +1 (1) | soil 45% 96% | saltpetre 83% 100% | efficiency 44%
+[08:00] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 27 tiles out
+[08:02] P1 Brood got its first Spitters
+[08:07] P2 Crown sends a Labourer to scout again (trip 4)
+[08:08] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[08:11] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[08:11] P2 Crown's scouts know: an enemy army of 800 (seen in the last 120 s), 0 enemy halls, tech none seen
+[08:11] P1 Brood's Brood: the riders are gone: its grubs back to work, back to its plan
+[08:15] slow frame 80 ms: ai 70.6, ai/brood 70.6, ai/brood/morphs 66.5, units 7.5, ai/brood/lay 3.1, the rest 0.7
+[08:16] P1 Brood's Raptors matured into a Tyrant Challenger
+[08:21] P1 Brood's Raptors matured into a Tyrant Challenger
+[08:24] P1 Brood got its first Brute
+[08:30] P2 Crown finished a Barracks
+[08:30] slow frame 66 ms: ai 54.7, ai/brood 52.8, ai/brood/morphs 49.7, units 7.7, ai/brood/lay 1.9, the rest 0.8
+[08:30] P1 Brood's Tyrant Sire researches Battering Horns
+[08:30] P1 Brood's Brood: researches Battering Horns
+[08:33] P2 Crown finished a Cottage
+[08:37] P2 Crown's first Field Cannon with a team of 2 horses
+[08:37] P2 Crown's plan: against the Brood the line comes before more buildings: 820 of Musketeers and guns against the 1485 it wants by now
+[08:40] P2 Crown's plan: milestone: Barracks 3 (33 labourers, 2 halls, army 25 supply)
+[08:42] P2 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (1260 against the 650 it reckons)
+[08:43] P2 Crown finished a Cottage
+[08:45] slow frame 102 ms: ai 94.9, ai/brood 94.7, ai/brood/morphs 92.1, units 5.2, ai/brood/lay 1.9, the rest 0.5
+[08:45] P2 Crown the push it saw coming is gone or held: back to its plan
+[08:49] P1 Brood's Raptors matured into a Tyrant Challenger
+[08:50] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 71 of its own in.)
+[08:52] P2 Crown scout under guard (Spitters), backing out of range
+--- minute 9 ---
+  Performance: 87 fps avg, 1% low 27 fps, worst frame 102 ms, 5 frames over 33 ms, 3 over 50 ms, 1.0 physics steps a frame | units 173, buildings 66, bodies 1, corpses 1, effects 1, smoke puffs 0, nodes 973, objects 6032
+    busy with: units 529.4 ms/s (13761 calls/s), ai 134.2 ms/s (174 calls/s), game 71.5 ms/s (87 calls/s), ai/brood 52.2 ms/s (18 calls/s), hud 50.1 ms/s (87 calls/s), hud/look 47.3 ms/s (43 calls/s), buildings 43.6 ms/s (5532 calls/s), replay/record 43.0 ms/s (10 calls/s), silhouettes 32.5 ms/s (87 calls/s), game/fog 27.2 ms/s (11 calls/s), game/fog/units 24.6 ms/s (11 calls/s), overlay draw 22.8 ms/s (27 calls/s), silhouettes/scan 22.2 ms/s (22 calls/s), hud/tip check 21.8 ms/s (43 calls/s), ai/produce 18.8 ms/s (4 calls/s), ai/brood/morphs 18.2 ms/s (5 calls/s), game/unit grid 17.0 ms/s (87 calls/s), ai/build 10.2 ms/s (4 calls/s), unit draw 9.5 ms/s (188 calls/s), ai/workers 9.5 ms/s (4 calls/s), ai/army 9.2 ms/s (4 calls/s), ai/build/econ 7.6 ms/s (4 calls/s), ai/brood/lay 6.5 ms/s (5 calls/s), ai/brood/alarm 6.3 ms/s (5 calls/s), ai/brood/mature 6.3 ms/s (5 calls/s), game/paths 6.0 ms/s (87 calls/s), ai/raid 4.6 ms/s (4 calls/s), ai/abil 3.6 ms/s (4 calls/s), ai/brood/army 3.4 ms/s (5 calls/s), ai/horses 3.3 ms/s (4 calls/s), game/path smoothing 3.1 ms/s (33 calls/s), game/gears 2.9 ms/s (87 calls/s), ai/workers/xwall 2.8 ms/s (4 calls/s), ai/brood/research 2.7 ms/s (5 calls/s), ai/brood/essence 2.5 ms/s (5 calls/s), ai/econ 2.3 ms/s (4 calls/s), ai/sites_warm 2.3 ms/s (67 calls/s), game/swamp 1.4 ms/s (87 calls/s), ai/build/supply 1.4 ms/s (4 calls/s), game/pathfinder 1.4 ms/s (33 calls/s), ai/brood/father 1.3 ms/s (5 calls/s), game/fog/buildings 1.0 ms/s (11 calls/s), ai/brood/mother 0.8 ms/s (5 calls/s), ai/brood/observe 0.8 ms/s (5 calls/s), ai/brood/maw_guard 0.7 ms/s (5 calls/s), ai/brood/grubs_vs_riders 0.6 ms/s (5 calls/s), hud/card build 0.5 ms/s (6 calls/s), ai/gg 0.4 ms/s (4 calls/s), game/econ 0.4 ms/s (87 calls/s), powder smoke 0.4 ms/s (87 calls/s), ai/micro 0.4 ms/s (4 calls/s), replay/write 0.3 ms/s (0 calls/s), game/refit 0.3 ms/s (3 calls/s), ai/brood/unstick 0.2 ms/s (5 calls/s), ai/brood/root_watch 0.2 ms/s (5 calls/s), ai/brood/rootmaws 0.2 ms/s (5 calls/s), game/end+ghosts 0.2 ms/s (3 calls/s), ai/brood/scout 0.2 ms/s (5 calls/s), game/stats 0.2 ms/s (1 calls/s), ai/brood/turtles 0.2 ms/s (5 calls/s), game/line net 0.2 ms/s (87 calls/s), ai/workers/wall 0.2 ms/s (4 calls/s), game/zones 0.1 ms/s (87 calls/s), building draw 0.1 ms/s (2 calls/s), ai/loose 0.1 ms/s (4 calls/s), effects 0.0 ms/s (8 calls/s), ai/brood/grow 0.0 ms/s (5 calls/s)
+  P1 Brood: earned 9022 biomass total, has 187 + 40 spoils | supply 119/124 | workers 49 | halls 0 | army (3825 value): 1 Brood Mother, 7 Rootmaw, 10 Mound Turtle, 1 Tyrant Sire, 3 Tyrant Challenger, 24 Raptors, 1 Venom Sire, 10 Spitters, 4 Brute, 5 Egg | kills +0 (1) losses +0 (1) | Brood: Mother stage 3 rooted, 20 eggs | Rootmaws rooted 7 (ground 27% 16% 58% 26% 75% 90% 70%) | Mound Turtles rooted 9 | sacrificed 24 (+360 spoils)
+  P2 Crown: earned 7220 gold total, has 30 + 129 powder | supply 77/92 | workers 40 | halls 2 | army (1380 value): 11 Musketeer, 3 Horseman, 2 Horse, 2 Field Cannon | kills +0 (1) losses +0 (1) | soil 37% 83% | saltpetre 76% 100% | efficiency 49%
+[09:01] P2 Crown got its first Powder Wagon
+[09:02] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[09:02] P2 Crown scout killed: it saw nothing to go on, will look again soon
+[09:02] P2 Crown could not see the enemy [the scout was killed] (the scout was killed before it saw the base): that proves nothing; no army for it, keeps to Economy and looks again soon
+[09:03] P1 Brood's Brood: guards its grubs with 40 (1925) against 1 riders at its Rootmaw: no chase past 15 tiles
+[09:05] P1 Brood's Brood: a Rootmaw under attack uproots to fight back (1 cuirassier)
+[09:06] P1 Brood's Raptors matured into a Tyrant Challenger
+[09:07] P2 Crown's scout rides home (chased)
+[09:07] P2 Crown's plan: the timing waits for a fresh scout report: no enemy soldier seen for 77 s and its main not looked at for the whole game
+[09:07] P2 Crown sends a Horseman to scout again (trip 5)
+[09:11] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[09:14] P2 Crown finished a Cottage
+[09:20] slow frame 87 ms: ai 75.6, ai/brood 75.5, ai/brood/morphs 72.0, units 8.2, ai/brood/lay 2.5, hud 1.4, hud/look 1.4, the rest 0.7
+[09:20] P1 Brood researched Battering Horns
+[09:20] P1 Brood's Brood: attacks with 59 supply (4 tyrant_challenger, 21 raptor, 18 spitter, 4 brute)
+[09:20] P1 Brood's Brood: brute siege: goes out: 59 supply, 4 Brutes in front (no wall or turret in its way)
+[09:20] P1 Brood's Brood attacks with 59 supply
+[09:20] slow frame 82 ms: game 65.0, game/paths 64.1, game/path smoothing 35.2, game/pathfinder 26.9, units 10.4, silhouettes 2.6, silhouettes/scan 2.3, hud 1.2, the rest 1.5
+[09:20] slow frame 75 ms: game 61.9, game/paths 61.5, game/path smoothing 35.7, game/pathfinder 24.2, units 9.3, the rest 0.9
+[09:25] P1 Brood's Raptors matured into a Tyrant Challenger
+[09:30] P1 Brood's Brood: guards its grubs with 1 (100) against 1 riders at the Mother: no chase past 15 tiles
+[09:30] P1 Brood's Brood: its wave lets the riders go (7 creatures turned back): no chase into the open
+[09:31] slow frame 90 ms: ai 78.7, ai/brood 70.2, ai/brood/morphs 67.2, units 8.8, ai/produce 4.6, ai/brood/lay 2.0, ai/raid 1.4, the rest 0.8
+[09:32] P2 Crown finished a Barracks
+[09:33] P2 Crown trains a Horseman for its screen and picket
+[09:34] P2 Crown scout under guard (Spitters), backing out of range
+[09:37] P2 Crown's plan: against the Brood the line comes before more buildings: 1240 of Musketeers and guns against the 1796 it wants by now
+[09:39] P2 Crown scout killed: it saw nothing to go on, will look again soon
+[09:40] P1 Brood's Tyrant Sire researches Pack Hunt
+[09:40] P1 Brood's Brood: researches Pack Hunt
+[09:40] P2 Crown finished a Cottage
+[09:43] P2 Crown moves its army inside the wall of its new hall where it is attacked: 17 musket spots 1-3 tiles behind the palisade, 3 guns behind them
+[09:46] slow frame 82 ms: ai 73.4, ai/brood 73.2, ai/brood/morphs 70.5, units 7.0, ai/brood/lay 1.9, the rest 0.6
+[09:48] P2 Crown: the soil around a Town Hall is running low (under 25%)
+[09:48] P2 Crown's plan: milestone: Barracks 4 (44 labourers, 2 halls, army 34 supply)
+[09:48] P2 Crown's plan: milestone Church waits: the army is far behind the enemy's (1840 against the 1240 it reckons)
+[09:52] P2 Crown finished a Cottage
+[09:54] P2 Crown sees a push coming: 34 soldiers worth 1350, 0 tiles from its nearest building, against 1690 of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)
+[09:58] P2 Crown lost a Cottage to P1 Brood (tyrant_challenger)
+[09:58] P2 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+--- minute 10 ---
+  Performance: 73 fps avg, 1% low 20 fps, worst frame 90 ms, 15 frames over 33 ms, 5 over 50 ms, 1.0 physics steps a frame | units 183, buildings 68, bodies 34, corpses 36, effects 2, smoke puffs 38, nodes 1081, objects 6486
+    busy with: units 531.6 ms/s (14023 calls/s), ai 137.0 ms/s (145 calls/s), game 92.5 ms/s (73 calls/s), ai/brood 54.6 ms/s (15 calls/s), hud 46.3 ms/s (73 calls/s), hud/look 44.1 ms/s (36 calls/s), replay/record 42.2 ms/s (8 calls/s), buildings 39.0 ms/s (4895 calls/s), game/fog 30.6 ms/s (9 calls/s), silhouettes 29.3 ms/s (73 calls/s), game/fog/units 28.3 ms/s (9 calls/s), game/paths 24.4 ms/s (73 calls/s), ai/brood/morphs 20.4 ms/s (4 calls/s), silhouettes/scan 20.3 ms/s (18 calls/s), hud/tip check 19.3 ms/s (36 calls/s), game/unit grid 17.5 ms/s (73 calls/s), ai/army 15.9 ms/s (3 calls/s), ai/produce 15.7 ms/s (3 calls/s), game/path smoothing 11.6 ms/s (64 calls/s), ai/build 11.5 ms/s (3 calls/s), overlay draw 11.0 ms/s (12 calls/s), game/pathfinder 10.7 ms/s (64 calls/s), unit draw 9.1 ms/s (180 calls/s), ai/workers 8.1 ms/s (3 calls/s), ai/brood/mature 6.6 ms/s (4 calls/s), ai/brood/lay 6.0 ms/s (4 calls/s), ai/build/econ 5.5 ms/s (3 calls/s), ai/brood/alarm 5.0 ms/s (4 calls/s), ai/raid 4.1 ms/s (3 calls/s), ai/brood/research 3.7 ms/s (4 calls/s), ai/brood/army 3.5 ms/s (4 calls/s), ai/abil 3.5 ms/s (3 calls/s), ai/horses 3.2 ms/s (3 calls/s), ai/brood/essence 2.4 ms/s (4 calls/s), ai/workers/xwall 2.4 ms/s (3 calls/s), game/gears 2.4 ms/s (73 calls/s), ai/sites_warm 2.2 ms/s (56 calls/s), ai/econ 2.2 ms/s (3 calls/s), ai/brood/grubs_vs_riders 1.6 ms/s (4 calls/s), ai/build/supply 1.2 ms/s (3 calls/s), ai/brood/maw_guard 1.0 ms/s (4 calls/s), game/swamp 1.0 ms/s (73 calls/s), ai/brood/father 1.0 ms/s (4 calls/s), game/fog/buildings 0.9 ms/s (9 calls/s), powder smoke 0.9 ms/s (73 calls/s), ai/brood/observe 0.8 ms/s (4 calls/s), ai/brood/mother 0.6 ms/s (4 calls/s), ai/gg 0.5 ms/s (3 calls/s), ai/micro 0.5 ms/s (3 calls/s), replay/write 0.4 ms/s (0 calls/s), hud/card build 0.4 ms/s (5 calls/s), ai/brood/unstick 0.3 ms/s (4 calls/s), game/econ 0.3 ms/s (73 calls/s), game/refit 0.3 ms/s (2 calls/s), ai/brood/rootmaws 0.2 ms/s (4 calls/s), ai/brood/root_watch 0.2 ms/s (4 calls/s), game/end+ghosts 0.2 ms/s (2 calls/s), ai/brood/turtles 0.2 ms/s (4 calls/s), ai/brood/scout 0.2 ms/s (4 calls/s), game/stats 0.2 ms/s (0 calls/s), game/line net 0.1 ms/s (73 calls/s), ai/workers/wall 0.1 ms/s (3 calls/s), effects 0.1 ms/s (56 calls/s), game/zones 0.1 ms/s (73 calls/s), building draw 0.1 ms/s (2 calls/s), ai/loose 0.1 ms/s (3 calls/s), vet chevrons 0.1 ms/s (3 calls/s), ai/brood/grow 0.0 ms/s (4 calls/s)
+  P1 Brood: earned 10527 biomass total, has 562 + 15 spoils | supply 105/160 | workers 50 | halls 0 | army (4150 value): 1 Brood Mother, 8 Rootmaw, 12 Mound Turtle, 1 Tyrant Sire, 5 Tyrant Challenger, 12 Raptors, 1 Venom Sire, 10 Spitters, 5 Brute, 1 Egg | kills +3 (4) losses +32 (33) | Brood: Mother stage 3 rooted, 20 eggs | Rootmaws rooted 8 (ground 18% 7% 57% 13% 71% 90% 53% 90%) | Mound Turtles rooted 12 | sacrificed 26 (+390 spoils)
+  P2 Crown: earned 9120 gold total, has 5 + 104 powder | supply 98/108 | workers 49 | halls 2 | army (2000 value): 20 Musketeer, 1 Horseman, 3 Field Cannon, 1 Powder Wagon, 3 Horse | kills +32 (33) losses +3 (4) | soil 24% 75% | saltpetre 71% 98% | efficiency 36%
+[10:01] slow frame 90 ms: ai 81.1, ai/brood 81.0, ai/brood/morphs 78.5, units 6.2, ai/brood/lay 1.6, the rest 0.7
+[10:05] P2 Crown sends 3 labourers to mend its Palisade under the line's fire
+[10:07] P2 Crown calls its menders off (it falls in 1 s, the line needs 6 s)
+[10:09] P2 Crown got its first Mortar
+[10:09] P1 Brood's Brood: pulls back: 1165 of 2335 left, 1420 ahead (killed 260)
+[10:10] P1 Brood's Brood: ALARM: an enemy army of 1360 out of its main at 10:10: warriors, grubs pulled back, a turtle in front
+[10:10] P1 Brood's Brood: ALARM: a Mound Turtle gets up to root in front of the natural
+[10:12] P2 Crown queued research: Cavalry Charge
+[10:13] P2 Crown lays 2 wall pieces at its new hall (2 labourers on it)
+[10:15] P1 Brood researched Pack Hunt
+[10:16] P2 Crown meets the force at its buildings with a line: 11 muskets facing it, 0 guns behind
+[10:16] slow frame 82 ms: ai 69.5, ai/brood 69.4, ai/brood/morphs 66.6, units 5.6, replay/record 4.5, ai/brood/lay 2.0, the rest 5.2
+[10:18] P2 Crown scouted: NORMAL [a standard opening] (the Mother and 2 turtles on new ground, 6 Rootmaws and 28 grubs seen, 1 Sire, 39 supply of army seen near its base, 525 of army known): OPTIMAL picks its build from this
+[10:18] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Economy (what it plays already answers it)
+[10:24] P2 Crown's plan: the wave waits on the high ground: 1855 of army against the 3049 it reckons the Brood has (525 seen lately; it wants 1.5 times)
+[10:24] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[10:24] P2 Crown's scouts know: an enemy army of 525 (seen in the last 120 s), 0 enemy halls, tech none seen
+[10:30] P2 Crown finished a Cottage
+[10:30] P2 Crown finished a Cottage
+[10:31] P2 Crown the push it saw coming is gone or held: back to its plan
+[10:32] slow frame 103 ms: ai 91.9, ai/brood 87.4, ai/brood/morphs 82.8, units 7.8, ai/brood/lay 3.3, ai/workers 3.2, overlay draw 1.0, the rest 0.8
+[10:35] P1 Brood's Brood: a Mound Turtle roots in front of the natural
+[10:37] P2 Crown researched Cavalry Charge
+[10:38] P2 Crown finished a Barracks
+[10:41] slow frame 54 ms: units 14.9 (slowest unit: mound_turtle 3.7 ms, idle), ai 14.3, replay/record 12.4, ai/army 8.0, ai/brood 6.2, ai/brood/research 3.0, game 2.9, hud 2.9, the rest 15.0
+[10:42] slow frame 110 ms: ai 98.4, ai/brood 97.8, ai/brood/rootmaws 95.0, units 9.6 (slowest unit: labourer 2.4 ms, gather), ai/brood/alarm 1.9, the rest 0.7
+[10:44] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 98 of its own in.)
+[10:45] slow frame 115 ms: ai 102.2, ai/brood 96.6, ai/brood/rootmaws 94.3, units 8.9, ai/produce 3.5, ai/raid 2.0, ai/brood/alarm 1.9, buildings 1.4, the rest 0.9
+[10:45] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 15 of its own in.)
+[10:46] P2 Crown is expanding to fresh land (left at its best hall: 66%), 18 tiles from its main
+[10:46] slow frame 84 ms: units 7.2, hud 1.7, hud/look 1.6, silhouettes 1.2, silhouettes/scan 1.1, hud/tip check 1.1, the rest 73.2
+[10:46] P2 Crown plans a walled expansion: 17 ways-in cells (radius 16), 3 building slots, 4 palisade, 2 gate
+[10:46] P2 Crown lays 6 wall pieces at its new hall (2 labourers on it)
+[10:49] P2 Crown's plan: milestone Church waits: the army is far behind the enemy's (2670 against the 475 it reckons)
+[11:00] slow frame 129 ms: ai 108.1, ai/brood 108.0, ai/brood/rootmaws 105.6, units 6.6, replay/record 5.2, ai/brood/alarm 1.9, silhouettes 1.4, silhouettes/scan 1.2, the rest 10.7
+--- minute 11 ---
+  Performance: 72 fps avg, 1% low 15 fps, worst frame 129 ms, 27 frames over 33 ms, 8 over 50 ms, 1.0 physics steps a frame | units 250, buildings 81, bodies 49, corpses 49, effects 0, smoke puffs 0, nodes 1260, objects 6846
+    busy with: units 520.8 ms/s (14852 calls/s), ai 158.1 ms/s (143 calls/s), game 80.7 ms/s (72 calls/s), ai/brood 74.3 ms/s (15 calls/s), hud 45.7 ms/s (72 calls/s), replay/record 44.0 ms/s (8 calls/s), hud/look 43.5 ms/s (36 calls/s), buildings 41.5 ms/s (5278 calls/s), game/fog 31.2 ms/s (9 calls/s), game/fog/units 28.6 ms/s (9 calls/s), ai/brood/morphs 24.2 ms/s (4 calls/s), silhouettes 19.6 ms/s (72 calls/s), hud/tip check 18.8 ms/s (36 calls/s), ai/brood/rootmaws 18.4 ms/s (4 calls/s), game/unit grid 18.3 ms/s (72 calls/s), ai/army 18.0 ms/s (3 calls/s), silhouettes/scan 13.2 ms/s (18 calls/s), ai/produce 12.5 ms/s (3 calls/s), overlay draw 12.4 ms/s (14 calls/s), ai/workers 10.3 ms/s (3 calls/s), ai/build 8.6 ms/s (3 calls/s), game/paths 7.7 ms/s (72 calls/s), ai/brood/alarm 7.1 ms/s (4 calls/s), unit draw 6.9 ms/s (141 calls/s), ai/brood/lay 6.2 ms/s (4 calls/s), ai/raid 5.8 ms/s (3 calls/s), ai/brood/research 5.5 ms/s (4 calls/s), ai/build/econ 5.3 ms/s (3 calls/s), ai/workers/xwall 4.6 ms/s (3 calls/s), ai/abil 4.4 ms/s (3 calls/s), game/path smoothing 4.3 ms/s (44 calls/s), ai/horses 3.6 ms/s (3 calls/s), game/swamp 3.6 ms/s (72 calls/s), ai/brood/army 3.1 ms/s (4 calls/s), ai/brood/essence 3.0 ms/s (4 calls/s), game/gears 2.6 ms/s (72 calls/s), ai/sites_warm 2.3 ms/s (55 calls/s), ai/build/supply 1.7 ms/s (3 calls/s), powder smoke 1.7 ms/s (72 calls/s), game/pathfinder 1.6 ms/s (44 calls/s), vet chevrons 1.6 ms/s (72 calls/s), ai/brood/mature 1.5 ms/s (4 calls/s), ai/econ 1.3 ms/s (3 calls/s), game/fog/buildings 1.2 ms/s (9 calls/s), ai/brood/observe 0.9 ms/s (4 calls/s), ai/brood/father 0.9 ms/s (4 calls/s), ai/gg 0.7 ms/s (3 calls/s), ai/micro 0.7 ms/s (3 calls/s), ai/brood/maw_guard 0.7 ms/s (4 calls/s), ai/brood/mother 0.6 ms/s (4 calls/s), ai/brood/grubs_vs_riders 0.4 ms/s (4 calls/s), replay/write 0.4 ms/s (0 calls/s), hud/card build 0.4 ms/s (5 calls/s), game/econ 0.3 ms/s (72 calls/s), effects 0.3 ms/s (129 calls/s), game/refit 0.3 ms/s (2 calls/s), ai/brood/root_watch 0.3 ms/s (4 calls/s), game/end+ghosts 0.2 ms/s (2 calls/s), ai/brood/turtles 0.2 ms/s (4 calls/s), ai/brood/unstick 0.2 ms/s (4 calls/s), ai/brood/scout 0.2 ms/s (4 calls/s), ai/workers/wall 0.2 ms/s (3 calls/s), game/stats 0.2 ms/s (0 calls/s), game/line net 0.1 ms/s (72 calls/s), game/zones 0.1 ms/s (72 calls/s), building draw 0.1 ms/s (1 calls/s), projectiles 0.1 ms/s (2 calls/s), ai/loose 0.1 ms/s (3 calls/s), ai/brood/grow 0.0 ms/s (4 calls/s)
+  P1 Brood: earned 12189 biomass total, has 49 + 40 spoils | supply 159/160 | workers 49 | halls 0 | army (5080 value): 1 Brood Mother, 8 Rootmaw, 13 Mound Turtle, 1 Tyrant Sire, 1 Tyrant Challenger, 1 Venom Sire, 4 Brute, 9 Spitters, 69 Raptors, 4 Egg | kills +2 (6) losses +13 (46) | Brood: Mother stage 3 rooted, 17 eggs | Rootmaws rooted 7 (ground 10% 57% 0% 64% 90% 35% 90%) | Mound Turtles rooted 12 | sacrificed 29 (+435 spoils)
+  P2 Crown: earned 11400 gold total, has 40 + 100 powder | supply 118/124 | workers 54 | halls 2 | army (2710 value): 26 Musketeer, 2 Horseman, 3 Field Cannon, 1 Powder Wagon, 2 Horse, 2 Mortar | kills +13 (46) losses +2 (6) | soil 11% 62% | saltpetre 67% 90% | efficiency 44%
+[11:01] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[11:04] slow frame 244 ms: ai 228.9, ai/brood 222.3, ai/brood/rootmaws 219.9, units 11.5 (slowest unit: labourer 2.4 ms, gather), ai/workers 4.6, ai/brood/alarm 2.0, ai/workers/xwall 1.2, the rest 1.0
+[11:10] P2 Crown finished a Cottage
+[11:13] P2 Crown finished a Cottage
+[11:15] slow frame 127 ms: ai 113.5, ai/brood 113.4, ai/brood/rootmaws 111.2, units 7.1, hud 1.9, hud/look 1.9, ai/brood/alarm 1.7, hud/tip check 1.2, the rest 1.4
+[11:20] P2 Crown finished a Town Hall (expansion)
+[11:20] P1 Brood's Brood: guards its grubs with 91 (3030) against 1 riders at its Rootmaw: no chase past 15 tiles
+[11:20] P2 Crown's base layout at its new hall: 0 Cottage spots in 0 blocks at the back, 3 production rows' spots, 1 Farm and 1 Mill spots by the hall
+[11:20] P2 Crown's scout rides home (chased)
+[11:21] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[11:24] P2 Crown's plan: the wave waits on the high ground: 2600 of army against the 3638 it reckons the Brood has (2830 seen lately; it wants 1.5 times)
+[11:30] slow frame 176 ms: ai 157.9, ai/brood 157.8, ai/brood/rootmaws 154.2, units 9.9, ai/brood/alarm 2.4, hud 2.2, hud/look 2.2, silhouettes 1.2, the rest 2.3
+[11:31] slow frame 98 ms: ai 86.5, ai/brood 83.0, ai/brood/morphs 78.8, units 9.3, ai/brood/lay 3.2, ai/abil 1.8, ai/horses 1.5, the rest 0.9
+[11:33] P1 Brood's Brood: attacks with 104 supply (1 tyrant_challenger, 4 brute, 9 spitter, 81 raptor)
+[11:33] P1 Brood's Brood: brute siege: goes out: 104 supply, 4 Brutes in front (no wall or turret in its way)
+[11:33] P1 Brood's Brood attacks with 104 supply
+[11:33] slow frame 65 ms: game 36.4, game/paths 35.4, game/pathfinder 18.6, game/path smoothing 15.7, units 15.1, replay/record 8.3, hud 1.6, hud/look 1.6, the rest 9.2
+[11:33] slow frame 60 ms: game 45.1, game/paths 44.1, game/path smoothing 20.3, game/pathfinder 17.6, units 11.9, overlay draw 1.2, the rest 1.0
+[11:33] slow frame 53 ms: game 36.5, game/paths 35.6, game/path smoothing 19.6, game/pathfinder 15.0, units 10.9, hud 1.5, hud/look 1.5, overlay draw 1.1, the rest 1.5
+[11:34] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 14 tiles out
+[11:35] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[11:40] P2 Crown's scouts know: an enemy army of 2755 (seen in the last 120 s), 0 enemy halls, tech none seen
+[11:43] P2 Crown plans a walled expansion: 47 ways-in cells (radius 16), 7 building slots, 26 palisade, 2 gate
+[11:43] P2 Crown lays 7 wall pieces at its new hall (2 labourers on it)
+[11:49] P2 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (3010 against the 2755 it reckons)
+[11:49] P2 Crown's scout rides home (chased)
+[11:50] P2 Crown moves its army inside the wall of its new hall where it is attacked: 30 musket spots 1-3 tiles behind the palisade, 5 guns behind them
+[11:50] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 132 of its own in.)
+[11:50] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[11:51] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 15 tiles out
+[11:52] P2 Crown finished a Barracks
+[11:53] P2 Crown lost a Palisade to P1 Brood (raptor)
+[11:53] P1 Brood's Brood: brute siege: a Palisade bars the way: the Brutes go for it
+[11:54] P2 Crown's picket sees a force coming (100: 4 soldiers) and rides back to the post
+[11:57] P2 Crown's scout rides home (chased)
+[11:57] P2 Crown moves its army inside the wall of its new hall where it is attacked: 28 musket spots 1-3 tiles behind the palisade, 5 guns behind them
+[11:57] P2 Crown sends a Labourer back to its new Town Hall site (its builders were pulled away)
+[11:58] P2 Crown's plan: against the Brood the line comes before more buildings: 2215 of Musketeers and guns against the 2475 it wants by now
+[11:59] P2 Crown sees a push coming: 62 soldiers worth 1550, 1 tiles from its nearest building, against 2395 of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)
+[11:59] P2 Crown moves its army inside the wall of its new hall where it is attacked: 24 musket spots 1-3 tiles behind the palisade, 4 guns behind them
+--- minute 12 ---
+  Performance: 54 fps avg, 1% low 12 fps, worst frame 244 ms, 71 frames over 33 ms, 16 over 50 ms, 1.0 physics steps a frame | units 276, buildings 92, bodies 39, corpses 38, effects 13, smoke puffs 60, nodes 1383, objects 6980
+    busy with: units 543.1 ms/s (14610 calls/s), ai 164.6 ms/s (108 calls/s), game 81.7 ms/s (54 calls/s), ai/brood 73.5 ms/s (11 calls/s), hud 41.9 ms/s (54 calls/s), hud/look 40.1 ms/s (27 calls/s), buildings 37.6 ms/s (4592 calls/s), replay/record 36.7 ms/s (5 calls/s), game/fog 27.6 ms/s (7 calls/s), game/fog/units 25.1 ms/s (7 calls/s), ai/brood/rootmaws 23.4 ms/s (3 calls/s), ai/army 20.2 ms/s (2 calls/s), game/unit grid 18.9 ms/s (54 calls/s), ai/brood/morphs 18.3 ms/s (3 calls/s), hud/tip check 16.7 ms/s (27 calls/s), silhouettes 15.1 ms/s (54 calls/s), ai/produce 14.7 ms/s (2 calls/s), ai/workers 13.2 ms/s (2 calls/s), game/paths 12.7 ms/s (54 calls/s), overlay draw 11.7 ms/s (12 calls/s), silhouettes/scan 10.5 ms/s (13 calls/s), ai/build 8.0 ms/s (2 calls/s), unit draw 7.4 ms/s (135 calls/s), ai/workers/xwall 7.1 ms/s (2 calls/s), game/path smoothing 6.4 ms/s (63 calls/s), ai/brood/research 6.2 ms/s (3 calls/s), ai/brood/lay 5.8 ms/s (3 calls/s), ai/build/econ 5.1 ms/s (2 calls/s), ai/raid 5.0 ms/s (2 calls/s), ai/brood/alarm 4.5 ms/s (3 calls/s), game/pathfinder 4.2 ms/s (63 calls/s), ai/brood/mature 4.1 ms/s (3 calls/s), ai/abil 4.1 ms/s (2 calls/s), ai/brood/army 3.9 ms/s (3 calls/s), ai/horses 2.9 ms/s (2 calls/s), ai/econ 2.7 ms/s (2 calls/s), ai/brood/essence 2.4 ms/s (3 calls/s), game/gears 2.3 ms/s (54 calls/s), ai/sites_warm 1.5 ms/s (42 calls/s), game/swamp 1.4 ms/s (54 calls/s), vet chevrons 1.4 ms/s (54 calls/s), game/fog/buildings 1.1 ms/s (7 calls/s), ai/build/supply 0.8 ms/s (2 calls/s), ai/brood/observe 0.8 ms/s (3 calls/s), ai/brood/father 0.7 ms/s (3 calls/s), ai/brood/grubs_vs_riders 0.7 ms/s (3 calls/s), ai/brood/maw_guard 0.6 ms/s (3 calls/s), ai/gg 0.5 ms/s (2 calls/s), powder smoke 0.5 ms/s (54 calls/s), ai/micro 0.5 ms/s (2 calls/s), game/end+ghosts 0.4 ms/s (2 calls/s), ai/brood/mother 0.4 ms/s (3 calls/s), replay/write 0.3 ms/s (0 calls/s), hud/card build 0.3 ms/s (4 calls/s), game/refit 0.3 ms/s (2 calls/s), game/econ 0.3 ms/s (54 calls/s), ai/brood/root_watch 0.3 ms/s (3 calls/s), ai/brood/unstick 0.2 ms/s (3 calls/s), ai/brood/turtles 0.2 ms/s (3 calls/s), game/stats 0.2 ms/s (0 calls/s), ai/brood/scout 0.2 ms/s (3 calls/s), effects 0.1 ms/s (109 calls/s), ai/workers/wall 0.1 ms/s (2 calls/s), building draw 0.1 ms/s (2 calls/s), game/line net 0.1 ms/s (54 calls/s), game/zones 0.1 ms/s (54 calls/s), ai/loose 0.1 ms/s (2 calls/s), ai/brood/grow 0.0 ms/s (3 calls/s)
+  P1 Brood: earned 14551 biomass total, has 206 + 50 spoils | supply 196/196 | workers 49 | halls 0 | army (6170 value): 1 Brood Mother, 8 Rootmaw, 17 Mound Turtle, 1 Tyrant Sire, 1 Tyrant Challenger, 1 Venom Sire, 6 Brute, 11 Spitters, 81 Raptors, 10 Egg | kills +13 (19) losses +14 (60) | Brood: Mother stage 3 rooted, 14 eggs | Rootmaws rooted 8 (ground 2% 38% 42% 38% 55% 78% 18% 78%) | Mound Turtles rooted 15 | sacrificed 33 (+495 spoils)
+  P2 Crown: earned 12920 gold total, has 0 + 178 powder | supply 109/150 | workers 62 | halls 3 | army (2205 value): 19 Musketeer, 3 Horseman, 3 Field Cannon, 1 Powder Wagon, 1 Mortar, 1 Horse | kills +14 (60) losses +13 (19) | soil 3% 54% 100% | saltpetre 62% 84% 100% | efficiency 10%
+[12:00] P2 Crown finished a Church
+[12:01] P2 Crown moves its army inside the wall of its new hall where it is attacked: 14 musket spots 1-3 tiles behind the palisade, 4 guns behind them
+[12:02] slow frame 165 ms: ai 152.7, ai/brood 152.5, ai/brood/morphs 147.0, units 9.4, ai/brood/lay 4.0, ai/brood/essence 1.3, the rest 0.9
+[12:02] P2 Crown dropped a Gate: nobody was coming to start it (refunded)
+[12:02] P2 Crown dropped a Gate: nobody was coming to start it (refunded)
+[12:03] P2 Crown lays 2 wall pieces at its new hall (2 labourers on it)
+[12:03] P2 Crown moves its army inside the wall of its new hall where it is attacked: 9 musket spots 1-3 tiles behind the palisade, 3 guns behind them
+[12:05] P2 Crown sends a Labourer to finish its Farm (nobody was working on it)
+[12:05] P2 Crown dropped a Town Hall: nobody was coming to start it (refunded)
+[12:05] slow frame 90 ms: units 10.3, hud 2.1, ai 2.1, hud/look 2.0, ai/brood 2.0, ai/brood/alarm 1.5, hud/tip check 1.3, the rest 73.3
+[12:06] P2 Crown lost a Town Hall (unfinished) at (65, 68): that ground waits 240 s and then only with no enemy there
+[12:06] P2 Crown moves its army inside the wall of its new hall where it is attacked: 3 musket spots 1-3 tiles behind the palisade, 3 guns behind them
+[12:10] P2 Crown moves its army inside the wall of its new hall where it is attacked: 1 musket spots 1-3 tiles behind the palisade, 0 guns behind them
+[12:10] P2 Crown: the soil around a Town Hall is spent (barren: its farms pay nothing)
+[12:11] P1 Brood's Brood: brute siege: the Brutes batter the Palisade, the Spitters cover them, the Raptors wait for the breach
+[12:12] P2 Crown dropped a Palisade: nobody was coming to start it (refunded)
+[12:12] P2 Crown dropped a Palisade: nobody was coming to start it (refunded)
+[12:12] P2 Crown dropped a Palisade: nobody was coming to start it (refunded)
+[12:12] P2 Crown dropped a Palisade: nobody was coming to start it (refunded)
+[12:12] P2 Crown dropped a Palisade: nobody was coming to start it (refunded)
+[12:14] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[12:17] slow frame 176 ms: ai 158.0, ai/brood 157.9, ai/brood/rootmaws 155.8, units 13.6 (slowest unit: labourer 2.4 ms, gather), ai/brood/alarm 1.7, hud 1.5, hud/look 1.4, game 1.0, the rest 0.8
+[12:17] slow frame 98 ms: ai 81.8, ai/brood 81.7, ai/brood/morphs 78.7, units 11.9, ai/brood/lay 2.0, game 1.1, overlay draw 1.1, the rest 1.1
+[12:18] P2 Crown lost a Palisade to P1 Brood (brute)
+[12:18] P1 Brood's Brood: brute siege: the Palisade falls; the Brutes go on to the Palisade
+[12:20] P2 Crown lost a Farm to P1 Brood (raptor)
+[12:20] P2 Crown sends a Labourer to finish its Barracks (nobody was working on it)
+[12:21] P2 Crown lost a Palisade to P1 Brood (brute)
+[12:21] P1 Brood's Brood: brute siege: the Palisade falls; the Brutes go on to the Palisade
+[12:21] P2 Crown moves its army inside the wall of its new hall where it is attacked: 3 musket spots 1-3 tiles behind the palisade, 0 guns behind them
+[12:21] slow frame 60 ms: ai 21.1, ai/army 21.1, units 20.2, replay/record 11.7, hud 2.1, hud/look 2.1, buildings 1.4, game 1.4, the rest 13.3
+[12:22] P2 Crown lost a Palisade to P1 Brood (brute)
+[12:23] P1 Brood's Brood: brute siege: the Palisade falls; the Brutes go on to the Palisade
+[12:23] P2 Crown moves its army inside the wall of its new hall where it is attacked: 3 musket spots 1-3 tiles behind the palisade, 0 guns behind them
+[12:24] slow frame 61 ms: units 31.4 (slowest unit: labourer 14.2 ms, gather), hud 8.4, hud/look 8.3, hud/tip check 6.9, silhouettes 5.2, silhouettes/scan 5.2, game 1.6, buildings 1.0, the rest 12.8
+[12:24] slow frame 60 ms: units 49.8 (slowest unit: labourer 12.4 ms, gather), overlay draw 5.8, buildings 1.7, the rest 1.4
+[12:24] slow frame 64 ms: replay/record 31.9, units 21.2 (slowest unit: labourer 4.1 ms, gather), hud 2.0, hud/look 1.9, replay/write 1.8, game 1.5, buildings 1.0, the rest 37.3
+[12:24] P2 Crown dropped a Gate: nobody was coming to start it (refunded)
+[12:24] P2 Crown dropped a Gate: nobody was coming to start it (refunded)
+[12:24] P2 Crown lost a Palisade to P1 Brood (brute)
+[12:24] P1 Brood's Brood: brute siege: the Palisade falls; the Brutes go on to the Palisade
+[12:25] P2 Crown lost a Palisade to P1 Brood (brute)
+[12:26] P1 Brood's Brood: brute siege: the Palisade falls; the Brutes go on to the Palisade
+[12:26] P2 Crown lost a Farm to P1 Brood (raptor)
+[12:27] P2 Crown lost a Cottage to P1 Brood (spitter)
+[12:27] P2 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+[12:27] P2 Crown's plan: a Farm at its new hall at once (451 s after it stood)
+[12:27] P2 Crown sends a Labourer to finish its Farm (nobody was working on it)
+[12:28] P2 Crown moves its army inside the wall of its new hall where it is attacked: 3 musket spots 1-3 tiles behind the palisade, 0 guns behind them
+[12:28] P2 Crown lost a Palisade to P1 Brood (brute)
+[12:29] P1 Brood's Brood: brute siege: BREACH at 12:29: the Palisade falls and the army goes in through the gap
+[12:32] P2 Crown finished a Farm
+[12:32] P2 Crown dropped a Farm: nobody was coming to start it (refunded)
+[12:32] P2 Crown lost a Foundry to P1 Brood (raptor)
+[12:32] P2 Crown got its first Missionary
+[12:33] P1 Brood's Brood: its wave goes on to the next target (12 tiles on)
+[12:33] P2 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+[12:33] P2 Crown sends a Labourer to finish its Barracks (nobody was working on it)
+[12:34] P2 Crown moves its army inside the wall of its new hall where it is attacked: 2 musket spots 1-3 tiles behind the palisade, 0 guns behind them
+[12:35] P2 Crown moves its army inside the wall of its new hall where it is attacked: 1 musket spots 1-3 tiles behind the palisade, 0 guns behind them
+[12:37] P2 Crown moves its army inside the wall of its new hall where it is attacked: 3 musket spots 1-3 tiles behind the palisade, 0 guns behind them
+[12:38] P2 Crown lost a Town Hall to P1 Brood (raptor)
+[12:39] P2 Crown lost a Town Hall at (86, 52): that ground waits 240 s and then only with no enemy there
+[12:39] P2 Crown moves its army inside the wall of its new hall where it is attacked: 3 musket spots 1-3 tiles behind the palisade, 0 guns behind them
+[12:41] P2 Crown lost a Powder Mill to P1 Brood (brute)
+[12:41] P1 Brood's Brood: its wave goes on to the next target (9 tiles on)
+[12:41] P2 Crown's economy is saturated on 2 halls (31 labourers, 32 posts)
+[12:45] P2 Crown lost a Palisade to P1 Brood (raptor)
+[12:48] P2 Crown lost a Barracks (unfinished) to P1 Brood (raptor)
+[12:48] P2 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+[12:50] P2 Crown lost a Palisade to P1 Brood (raptor)
+[12:51] P2 Crown lost a Palisade to P1 Brood (spitter)
+[12:52] P2 Crown lost a Gate to P1 Brood (raptor)
+[12:52] P2 Crown moves its army inside the wall of its new hall where it is attacked: 2 musket spots 1-3 tiles behind the palisade, 0 guns behind them
+[12:53] P2 Crown musters at its hall: the force at its buildings (3821) is more than its army at home (185) can beat one by one; it gathers out of reach and fights there as one
+[12:54] P1 Brood's Brood: its wave lets the riders go (29 creatures turned back to the raid): no chase into the open
+[12:54] P2 Crown sends 2 labourers to mend its Palisade under the line's fire
+[12:55] P2 Crown lost a Cottage to P1 Brood (raptor)
+[12:55] P1 Brood's Brood: its wave goes on to the next target (10 tiles on)
+[12:58] P2 Crown's plan: against the Brood the line comes before more buildings: 0 of Musketeers and guns against the 810 it wants by now
+[12:59] P2 Crown sends a Labourer to finish its Powder Mill (nobody was working on it)
+[12:59] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[13:00] P2 Crown moves its army inside the wall of its new hall where it is attacked: 1 musket spots 1-3 tiles behind the palisade, 0 guns behind them
+[13:00] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+--- minute 13 ---
+  Performance: 47 fps avg, 1% low 12 fps, worst frame 176 ms, 107 frames over 33 ms, 13 over 50 ms, 1.0 physics steps a frame | units 231, buildings 67, bodies 129, corpses 129, effects 20, smoke puffs 0, nodes 1411, objects 7553
+    busy with: units 588.3 ms/s (12010 calls/s), ai 121.2 ms/s (94 calls/s), game 94.8 ms/s (47 calls/s), ai/brood 50.2 ms/s (10 calls/s), hud 38.9 ms/s (47 calls/s), hud/look 37.0 ms/s (24 calls/s), replay/record 33.4 ms/s (4 calls/s), buildings 33.0 ms/s (4057 calls/s), game/paths 31.0 ms/s (47 calls/s), game/fog 24.2 ms/s (6 calls/s), game/fog/units 21.4 ms/s (6 calls/s), game/unit grid 18.6 ms/s (47 calls/s), ai/army 18.3 ms/s (2 calls/s), ai/brood/morphs 18.2 ms/s (2 calls/s), ai/workers 16.1 ms/s (2 calls/s), hud/tip check 15.8 ms/s (24 calls/s), game/path smoothing 15.2 ms/s (163 calls/s), silhouettes 11.5 ms/s (47 calls/s), game/pathfinder 10.4 ms/s (163 calls/s), silhouettes/scan 9.1 ms/s (12 calls/s), overlay draw 7.2 ms/s (6 calls/s), ai/brood/research 5.9 ms/s (2 calls/s), ai/sites_warm 5.8 ms/s (36 calls/s), ai/produce 5.8 ms/s (2 calls/s), ai/brood/lay 4.6 ms/s (2 calls/s), ai/brood/army 4.3 ms/s (2 calls/s), ai/brood/rootmaws 4.3 ms/s (2 calls/s), unit draw 4.1 ms/s (64 calls/s), ai/brood/alarm 3.4 ms/s (2 calls/s), ai/build 3.4 ms/s (2 calls/s), ai/brood/mature 2.8 ms/s (2 calls/s), ai/workers/xwall 2.6 ms/s (2 calls/s), ai/brood/essence 2.3 ms/s (2 calls/s), game/gears 2.2 ms/s (47 calls/s), ai/horses 2.1 ms/s (2 calls/s), ai/raid 2.0 ms/s (2 calls/s), powder smoke 1.7 ms/s (47 calls/s), ai/econ 1.7 ms/s (2 calls/s), vet chevrons 1.6 ms/s (47 calls/s), game/fog/buildings 1.5 ms/s (6 calls/s), ai/build/econ 1.5 ms/s (2 calls/s), game/swamp 1.2 ms/s (47 calls/s), ai/build/supply 1.0 ms/s (2 calls/s), effects 0.8 ms/s (724 calls/s), ai/brood/observe 0.7 ms/s (2 calls/s), ai/brood/father 0.7 ms/s (2 calls/s), ai/brood/maw_guard 0.6 ms/s (2 calls/s), ai/abil 0.6 ms/s (2 calls/s), ai/brood/mother 0.3 ms/s (2 calls/s), ai/brood/unstick 0.3 ms/s (2 calls/s), replay/write 0.3 ms/s (0 calls/s), ai/brood/grubs_vs_riders 0.3 ms/s (2 calls/s), game/end+ghosts 0.3 ms/s (2 calls/s), game/econ 0.3 ms/s (47 calls/s), hud/card build 0.3 ms/s (3 calls/s), ai/brood/root_watch 0.2 ms/s (2 calls/s), ai/gg 0.2 ms/s (2 calls/s), game/refit 0.2 ms/s (2 calls/s), ai/micro 0.2 ms/s (2 calls/s), ai/brood/turtles 0.1 ms/s (2 calls/s), game/stats 0.1 ms/s (0 calls/s), ai/brood/scout 0.1 ms/s (2 calls/s), building draw 0.1 ms/s (2 calls/s), game/line net 0.1 ms/s (47 calls/s), ai/workers/wall 0.1 ms/s (2 calls/s), game/zones 0.1 ms/s (47 calls/s), ai/loose 0.0 ms/s (2 calls/s), ai/brood/grow 0.0 ms/s (2 calls/s)
+  P1 Brood: earned 16898 biomass total, has 1878 + 50 spoils | supply 199/200 | workers 50 | halls 0 | army (6935 value): 1 Brood Mother, 8 Rootmaw, 17 Mound Turtle, 1 Tyrant Sire, 1 Tyrant Challenger, 1 Venom Sire, 6 Brute, 13 Spitters, 108 Raptors | kills +74 (93) losses +24 (84) | Brood: Mother stage 3 rooted, 20 eggs | Rootmaws rooted 8 (ground 37% 33% 25% 28% 46% 63% 0% 64%) | Mound Turtles rooted 17 | sacrificed 33 (+495 spoils)
+  P2 Crown: earned 13180 gold total, has 100 + 136 powder | supply 30/124 | workers 21 | halls 2 | army (395 value): 1 Powder Wagon, 2 Horseman, 1 Missionary | kills +24 (84) losses +74 (93) | soil 0% 100% | saltpetre 57% 100% | efficiency 0%
+[13:02] P2 Crown's Powder Wagon exploded (120 shots aboard)
+[13:02] P2 Crown lost a Farm to P1 Brood (raptor)
+[13:03] P2 Crown's plan: a Farm at its new hall at once (102 s after it stood)
+[13:03] P2 Crown sends another Labourer to its Farm site (its builder was pulled away)
+[13:04] slow frame 188 ms: ai 168.6, ai/brood 167.6, ai/brood/rootmaws 165.7, units 13.5 (slowest unit: brute 3.0 ms, amove), hud 1.5, hud/look 1.5, ai/brood/alarm 1.4, the rest 2.2
+[13:04] P2 Crown dropped a Farm: nobody was coming to start it (refunded)
+[13:10] P2 Crown lost a Town Hall to P1 Brood (raptor)
+[13:10] slow frame 80 ms: units 7.7, hud 1.6, hud/look 1.6, the rest 69.1
+[13:11] P2 Crown lost a Town Hall at (104, 52): that ground waits 240 s and then only with no enemy there
+[13:12] P2 Crown lost a Powder Mill (unfinished) to P1 Brood (raptor)
+[13:13] P2 Crown lost a Horse Breeder to P1 Brood (brute)
+[13:13] P2 Crown lost a Barracks to P1 Brood (spitter)
+[13:15] slow frame 145 ms: ai 132.9, ai/brood 132.8, ai/brood/rootmaws 131.2, units 8.7, hud 1.3, hud/look 1.3, ai/brood/alarm 1.2, the rest 0.8
+[13:18] P2 Crown lost a Cottage to P1 Brood (raptor)
+[13:21] P2 Crown lost a Cottage to P1 Brood (raptor)
+[13:23] P2 Crown musters at its hall: the force at its buildings (3080) is more than its army at home (125) can beat one by one; it gathers out of reach and fights there as one
+[13:23] P2 Crown lost a Town Hall to P1 Brood (brute)
+[13:23] P2 Crown lost a Town Hall at (95, 68): that ground waits 240 s and then only with no enemy there
+[13:24] P2 Crown lost a Farm to P1 Brood (spitter)
+[13:24] P2 Crown lost a Cottage to P1 Brood (raptor)
+[13:26] P2 Crown lost a Cottage to P1 Brood (raptor)
+[13:26] P2 Crown lost a Palisade to P1 Brood (raptor)
+[13:27] P2 Crown lost a Cottage to P1 Brood (raptor)
+[13:28] P2 Crown lost a Powder Mill to P1 Brood (raptor)
+[13:30] slow frame 141 ms: ai 131.0, ai/brood 131.0, ai/brood/rootmaws 129.2, units 7.6, ai/brood/alarm 1.3, the rest 0.8
+[13:30] P2 Crown lost a Palisade to P1 Brood (raptor)
+[13:33] P2 Crown lost a Barracks to P1 Brood (raptor)
+[13:34] P2 Crown lost a Barracks to P1 Brood (raptor)
+[13:34] P2 Crown lost a Farm to P1 Brood (brute)
+[13:40] P2 Crown lost a Cottage to P1 Brood (spitter)
+[13:42] P1 Brood's Brood: its wave goes on to the next target (14 tiles on)
+[13:43] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[13:43] P2 Crown lost a Cottage to P1 Brood (raptor)
+[13:45] slow frame 143 ms: ai 132.8, ai/brood 132.7, ai/brood/rootmaws 131.2, units 8.3, ai/brood/alarm 1.1, the rest 0.6
+[13:48] P2 Crown lost a Barracks to P1 Brood (raptor)
+[13:49] P2 Crown lost a Cottage to P1 Brood (brute)
+[13:50] P2 Crown lost a Cottage to P1 Brood (brute)
+[13:51] P2 Crown lost a Barracks to P1 Brood (raptor)
+[13:52] P1 Brood's Brood: its wave goes on to the next target (10 tiles on)
+[13:53] P2 Crown musters at its hall: the force at its buildings (4005) is more than its army at home (125) can beat one by one; it gathers out of reach and fights there as one
+[13:53] P2 Crown lost a Cottage to P1 Brood (raptor)
+[13:56] P2 Crown lost a Cottage to P1 Brood (raptor)
+[13:58] P2 Crown's plan: against the Brood the line comes before more buildings: 0 of Musketeers and guns against the 600 it wants by now
+--- minute 14 ---
+  Performance: 68 fps avg, 1% low 15 fps, worst frame 188 ms, 15 frames over 33 ms, 5 over 50 ms, 1.0 physics steps a frame | units 209, buildings 41, bodies 133, corpses 122, effects 5, smoke puffs 0, nodes 1262, objects 7368
+    busy with: units 584.4 ms/s (14176 calls/s), ai 138.6 ms/s (137 calls/s), ai/brood 92.2 ms/s (14 calls/s), game 73.6 ms/s (68 calls/s), ai/brood/rootmaws 45.5 ms/s (4 calls/s), replay/record 41.8 ms/s (7 calls/s), hud 40.8 ms/s (68 calls/s), hud/look 38.7 ms/s (34 calls/s), game/fog 24.2 ms/s (9 calls/s), buildings 23.6 ms/s (4477 calls/s), game/fog/units 21.5 ms/s (9 calls/s), game/unit grid 17.3 ms/s (68 calls/s), hud/tip check 16.5 ms/s (34 calls/s), ai/army 15.3 ms/s (3 calls/s), game/paths 13.8 ms/s (68 calls/s), silhouettes 11.5 ms/s (68 calls/s), overlay draw 10.4 ms/s (11 calls/s), ai/brood/morphs 10.0 ms/s (4 calls/s), silhouettes/scan 9.5 ms/s (17 calls/s), ai/brood/research 8.0 ms/s (4 calls/s), game/path smoothing 7.2 ms/s (131 calls/s), ai/brood/lay 5.6 ms/s (4 calls/s), ai/sites_warm 5.1 ms/s (53 calls/s), ai/brood/army 4.8 ms/s (4 calls/s), ai/brood/mature 4.7 ms/s (4 calls/s), ai/brood/alarm 4.7 ms/s (4 calls/s), ai/workers 4.4 ms/s (3 calls/s), ai/brood/essence 4.3 ms/s (4 calls/s), unit draw 4.1 ms/s (75 calls/s), ai/produce 2.5 ms/s (3 calls/s), game/pathfinder 2.3 ms/s (131 calls/s), vet chevrons 2.2 ms/s (68 calls/s), game/gears 1.8 ms/s (68 calls/s), ai/build 1.7 ms/s (3 calls/s), game/fog/buildings 1.6 ms/s (9 calls/s), effects 1.2 ms/s (1398 calls/s), ai/raid 1.1 ms/s (3 calls/s), ai/horses 0.9 ms/s (3 calls/s), powder smoke 0.9 ms/s (68 calls/s), ai/brood/father 0.8 ms/s (4 calls/s), ai/build/supply 0.7 ms/s (3 calls/s), ai/brood/observe 0.6 ms/s (4 calls/s), ai/econ 0.6 ms/s (3 calls/s), ai/brood/maw_guard 0.6 ms/s (4 calls/s), ai/brood/mother 0.5 ms/s (4 calls/s), replay/write 0.4 ms/s (0 calls/s), ai/abil 0.4 ms/s (3 calls/s), game/swamp 0.3 ms/s (68 calls/s), ai/brood/grubs_vs_riders 0.3 ms/s (4 calls/s), ai/build/econ 0.3 ms/s (3 calls/s), hud/card build 0.3 ms/s (5 calls/s), game/econ 0.3 ms/s (68 calls/s), ai/brood/unstick 0.3 ms/s (4 calls/s), ai/brood/turtles 0.3 ms/s (4 calls/s), ai/workers/xwall 0.2 ms/s (3 calls/s), ai/brood/root_watch 0.2 ms/s (4 calls/s), game/refit 0.2 ms/s (2 calls/s), ai/gg 0.2 ms/s (3 calls/s), game/end+ghosts 0.2 ms/s (2 calls/s), ai/micro 0.2 ms/s (3 calls/s), game/stats 0.1 ms/s (0 calls/s), ai/brood/scout 0.1 ms/s (4 calls/s), game/line net 0.1 ms/s (68 calls/s), ai/workers/wall 0.1 ms/s (3 calls/s), game/zones 0.1 ms/s (68 calls/s), ai/loose 0.1 ms/s (3 calls/s), ai/brood/grow 0.0 ms/s (4 calls/s), building draw 0.0 ms/s (0 calls/s)
+  P1 Brood: earned 19023 biomass total, has 2863 + 55 spoils | supply 200/200 | workers 50 | halls 0 | army (6950 value): 1 Brood Mother, 8 Rootmaw, 17 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 6 Brute, 15 Spitters, 109 Raptors | kills +24 (117) losses +35 (119) | Brood: Mother stage 3 rooted, 20 eggs | Rootmaws rooted 7 (ground 30% 25% 7% 23% 36% 48% 51%) | Mound Turtles rooted 17 | sacrificed 35 (+525 spoils)
+  P2 Crown: earned 13180 gold total, has 100 + 132 powder | supply 1/16 | workers 0 | halls 0 | army (125 value): 1 Missionary | kills +35 (119) losses +24 (117)
+[14:00] slow frame 152 ms: ai 140.8, ai/brood 139.8, ai/brood/rootmaws 138.0, units 8.9, ai/brood/alarm 1.3, the rest 1.1
+[14:00] P1 Brood's Brood: its wave goes on to the next target (14 tiles on)
+[14:01] P2 Crown lost a Church to P1 Brood (raptor)
+[14:02] P2 Crown lost a Cottage to P1 Brood (raptor)
+[14:02] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[14:05] P2 Crown lost a Cottage to P1 Brood (raptor)
+[14:05] P1 Brood's Brood: its wave goes on to the next target (18 tiles on)
+[14:10] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:12] P2 Crown lost a Gate to P1 Brood (raptor)
+[14:13] P2 Crown lost a Gate to P1 Brood (raptor)
+[14:15] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:15] slow frame 162 ms: ai 145.8, ai/brood 143.4, ai/brood/rootmaws 139.8, units 11.8, ai/sites_warm 2.3, ai/brood/alarm 2.1, hud 1.1, hud/look 1.1, the rest 1.5
+[14:15] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:16] P2 Crown lost a Palisade to P1 Brood (spitter)
+[14:16] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:17] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:18] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:18] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:20] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:21] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:23] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:25] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[14:25] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:28] slow frame 173 ms: ai 158.4, ai/brood 157.3, ai/brood/rootmaws 155.5, units 11.8 (slowest unit: raptor 2.4 ms, attack), ai/brood/alarm 1.3, overlay draw 1.1, the rest 0.9
+[14:28] P2 Crown lost a Gate to P1 Brood (raptor)
+[14:30] slow frame 145 ms: ai 134.1, ai/brood 134.0, ai/brood/rootmaws 132.4, units 6.6, ai/brood/alarm 1.3, silhouettes 1.0, hud 1.0, hud/look 1.0, the rest 1.1
+[14:31] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:34] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:38] P2 Crown lost a Gate to P1 Brood (raptor)
+[14:42] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:45] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:45] slow frame 148 ms: ai 137.5, ai/brood 134.3, ai/brood/rootmaws 132.6, units 6.8, ai/sites_warm 3.2, ai/brood/alarm 1.2, hud 1.2, hud/look 1.2, the rest 1.2
+[14:46] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[14:48] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:49] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:50] P1 Brood's Brood: its wave goes on to the next target (13 tiles on)
+[14:52] P2 Crown lost a Palisade to P1 Brood
+[14:52] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:52] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:52] P2 Crown lost a Palisade to P1 Brood
+[14:52] P2 Crown lost a Palisade to P1 Brood
+[14:52] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:52] P2 Crown lost a Palisade to P1 Brood (spitter)
+[14:52] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:52] P2 Crown lost a Palisade to P1 Brood (raptor)
+[14:52] P2 Crown lost a Palisade to P1 Brood
+[14:52] P2 Crown lost a Palisade to P1 Brood
+[14:52] P2 Crown lost a Palisade to P1 Brood
+[14:52] P2 Crown lost a Palisade to P1 Brood
+[14:52] P2 Crown lost a Palisade to P1 Brood
+[14:52] P2 Crown lost a Palisade to P1 Brood (spitter)
+[14:52] P2 Crown lost a Palisade to P1 Brood
+[14:52] P2 Crown is beaten: nothing left to fight with
+--- minute 15 ---
+  Performance: 66 fps avg, 1% low 13 fps, worst frame 173 ms, 16 frames over 33 ms, 5 over 50 ms, 1.0 physics steps a frame | units 208, buildings 0, bodies 17, corpses 13, effects 80, smoke puffs 0, nodes 1015, objects 6419
+    busy with: units 591.3 ms/s (13701 calls/s), ai 156.3 ms/s (132 calls/s), ai/brood 99.4 ms/s (14 calls/s), game 74.8 ms/s (66 calls/s), ai/brood/rootmaws 55.7 ms/s (3 calls/s), replay/record 41.5 ms/s (7 calls/s), hud 40.3 ms/s (66 calls/s), hud/look 38.1 ms/s (33 calls/s), ai/sites_warm 34.5 ms/s (51 calls/s), game/fog 23.0 ms/s (8 calls/s), game/fog/units 21.3 ms/s (8 calls/s), game/unit grid 18.6 ms/s (66 calls/s), hud/tip check 15.4 ms/s (33 calls/s), game/paths 15.1 ms/s (66 calls/s), silhouettes 11.5 ms/s (66 calls/s), ai/army 11.3 ms/s (3 calls/s), buildings 11.3 ms/s (2667 calls/s), silhouettes/scan 8.8 ms/s (16 calls/s), overlay draw 8.5 ms/s (8 calls/s), ai/brood/morphs 8.4 ms/s (3 calls/s), ai/brood/research 7.5 ms/s (3 calls/s), game/path smoothing 7.0 ms/s (247 calls/s), ai/brood/army 6.4 ms/s (3 calls/s), ai/brood/lay 5.2 ms/s (3 calls/s), ai/brood/alarm 4.6 ms/s (3 calls/s), ai/brood/mature 4.1 ms/s (3 calls/s), unit draw 3.2 ms/s (39 calls/s), game/pathfinder 2.7 ms/s (247 calls/s), ai/brood/essence 2.7 ms/s (3 calls/s), ai/workers 2.5 ms/s (3 calls/s), ai/produce 2.3 ms/s (3 calls/s), vet chevrons 1.7 ms/s (66 calls/s), game/gears 1.3 ms/s (66 calls/s), ai/brood/father 0.8 ms/s (3 calls/s), game/fog/buildings 0.8 ms/s (8 calls/s), ai/raid 0.8 ms/s (3 calls/s), effects 0.8 ms/s (723 calls/s), ai/build 0.7 ms/s (3 calls/s), ai/brood/maw_guard 0.6 ms/s (3 calls/s), ai/brood/mother 0.6 ms/s (3 calls/s), ai/abil 0.5 ms/s (3 calls/s), ai/brood/observe 0.5 ms/s (3 calls/s), game/swamp 0.4 ms/s (66 calls/s), ai/horses 0.4 ms/s (3 calls/s), replay/write 0.4 ms/s (0 calls/s), hud/card build 0.4 ms/s (5 calls/s), ai/brood/turtles 0.4 ms/s (3 calls/s), ai/brood/grubs_vs_riders 0.3 ms/s (3 calls/s), ai/brood/unstick 0.3 ms/s (3 calls/s), ai/build/econ 0.3 ms/s (3 calls/s), powder smoke 0.3 ms/s (66 calls/s), game/econ 0.3 ms/s (66 calls/s), ai/brood/root_watch 0.2 ms/s (3 calls/s), game/stats 0.2 ms/s (0 calls/s), ai/econ 0.2 ms/s (3 calls/s), game/end+ghosts 0.2 ms/s (2 calls/s), ai/workers/wall 0.1 ms/s (3 calls/s), game/line net 0.1 ms/s (66 calls/s), game/refit 0.1 ms/s (2 calls/s), ai/brood/scout 0.1 ms/s (3 calls/s), ai/build/supply 0.1 ms/s (3 calls/s), game/zones 0.1 ms/s (66 calls/s), ai/gg 0.1 ms/s (3 calls/s), ai/workers/xwall 0.1 ms/s (3 calls/s), ai/loose 0.1 ms/s (3 calls/s), ai/micro 0.1 ms/s (3 calls/s), ai/brood/grow 0.0 ms/s (3 calls/s)
+  P1 Brood: earned 21093 biomass total, has 4933 + 55 spoils | supply 200/200 | workers 50 | halls 0 | army (6950 value): 1 Brood Mother, 8 Rootmaw, 17 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 6 Brute, 15 Spitters, 109 Raptors | kills +1 (118) losses +0 (119) | Brood: Mother stage 3 rooted, 20 eggs | Rootmaws rooted 7 (ground 24% 18% 28% 19% 27% 35% 40%) | Mound Turtles rooted 17 | sacrificed 35 (+525 spoils)
+
+RESULT at 14:52: winner P1 Brood
+  Performance per minute: m1 501 fps (1% low 56), m2 547 fps (1% low 73), m3 404 fps (1% low 107), m4 287 fps (1% low 66), m5 184 fps (1% low 38), m6 151 fps (1% low 42), m7 106 fps (1% low 35), m8 102 fps (1% low 29), m9 87 fps (1% low 27), m10 73 fps (1% low 20), m11 72 fps (1% low 15), m12 54 fps (1% low 12), m13 47 fps (1% low 12), m14 68 fps (1% low 15), m15 66 fps (1% low 13). Worst: minute 12 (1% low 12 fps, worst frame 244 ms).
+  P1 Brood: earned 21093, spent 16410, trained 381, built 0, killed 118, lost 119, razed 85, buildings lost 0, peak army 6950. Kills by: Raptors 104, Brute 7, Spitters 3, Tyrant Challenger 1
+  P2 Crown: earned 13180, spent 13375, trained 135, built 85, killed 119, lost 118, razed 0, buildings lost 87, peak army 2970. Kills by: Horseman 9, Musketeer 47, Field Cannon 32, Powder Wagon 31 Haulers brought 18 horses and 0 powder kegs.

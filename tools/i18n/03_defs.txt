@@ -42,10 +42,6 @@ es Lleva 120 disparos de pólvora para el ejército: los mosqueteros y cañones 
 pt Cavaleiro
 es Jinete
 
-> Fast light horseman with a pistol and a sabre. Trained with his horse in one click (a free one at a breeder, else the breeder trains one: 40 more); he comes out on foot and rides off on it. He opens with his one loaded pistol shot (30 damage, a little over half a musket's reach), then fights with the sabre; he can only reload on foot (DISMOUNT: he's an Officer then). Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. Once the Armoury has drilled the Cavalry Charge, his first sabre blow after a gallop hits double and throws the enemy back. KEEN SABRES (the Horse Breeder) puts 6 more on each sabre blow at light units. With Armour he becomes a Cuirassier. Bayonets hurt him.
-pt Cavaleiro leve e rápido com pistola e sabre. Treinado com seu cavalo num clique (um livre num criador, senão o criador treina um: 40 a mais); sai a pé e parte nele. Abre com o único tiro da pistola carregada (30 de dano, um pouco mais da metade do alcance de um mosquete), depois luta com o sabre; só recarrega a pé (APEAR: aí ele é um Oficial). A pólvora compra sua pistola (5 de pólvora: o tiro carregado e 4 cargas); sem nenhuma ele sai só com o sabre. Depois que o Arsenal treina a Carga de Cavalaria, seu primeiro golpe de sabre após um galope causa dano dobrado e arremessa o inimigo para trás. SABRES AFIADOS (o Criador de Cavalos) põe 6 a mais em cada golpe de sabre contra unidades leves. Com Armadura vira Couraceiro. Baionetas o ferem.
-es Jinete ligero y rápido con pistola y sable. Se entrena con su caballo en un clic (uno libre en un criador, si no el criador entrena uno: 40 más); sale a pie y se marcha en él. Abre con su único disparo de pistola cargada (30 de daño, algo más de la mitad del alcance de un mosquete), luego lucha con el sable; solo puede recargar a pie (APEARSE: entonces es un Oficial). La pólvora compra su pistola (5 de pólvora: el disparo cargado y 4 cargas); sin nada sale solo con el sable. Una vez que la Armería ha adiestrado la Carga de caballería, su primer sablazo tras un galope hace doble daño y empuja al enemigo hacia atrás. SABLES AFILADOS (el Criador de caballos) pone 6 más en cada sablazo contra unidades ligeras. Con Armadura se convierte en Coracero. Las bayonetas le hacen daño.
-
 > Horse
 pt Cavalo
 es Caballo
@@ -282,10 +278,6 @@ es Entrena Mosqueteros y Oficiales, Jinetes y Dragones (con un Criador de caball
 pt Arsenal
 es Armería
 
-> All the Crown's research: Armour, the musket locks, the bayonet, the guns' drills and the Cavalry Charge. Refits soldiers. Needs a Barracks.
-pt Toda a pesquisa da Coroa: Armadura, os fechos de mosquete, a baioneta, os treinos dos canhões e a Carga de Cavalaria. Reequipa soldados. Precisa de um Quartel.
-es Toda la investigación de la Corona: Armadura, las llaves de mosquete, la bayoneta, los adiestramientos de los cañones y la Carga de caballería. Reequipa soldados. Necesita un Cuartel.
-
 > Foundry
 pt Fundição
 es Fundición
@@ -377,10 +369,6 @@ es Hasta 6 peones muelen el salitre de su Ayuntamiento en pólvora negra para el
 > Horse Breeder
 pt Criador de Cavalos
 es Criador de Caballos
-
-> Sells horses: HORSE trains one (40 gold, 15 s; no supply). Horses are what cavalry, guns and wagons need. RALLY sends new horses somewhere (a Barracks or Foundry). Unlocks Horsemen and researches KEEN SABRES (the riders' sabres hit light units harder). Build as many as you like, anywhere.
-pt Vende cavalos: CAVALO treina um (40 de ouro, 15 s; sem suprimento). Cavalos são o que cavalaria, canhões e carroças precisam. REUNIR envia os novos cavalos a um lugar (um Quartel ou Fundição). Libera Cavaleiros e pesquisa SABRES AFIADOS (os sabres dos cavaleiros acertam unidades leves com mais força). Construa quantos quiser, onde quiser.
-es Vende caballos: CABALLO entrena uno (40 de oro, 15 s; sin suministro). Los caballos son lo que necesitan la caballería, los cañones y los carros. REUNIR envía los caballos nuevos a un lugar (un Cuartel o Fundición). Desbloquea Jinetes e investiga SABLES AFILADOS (los sables de los jinetes golpean más fuerte a las unidades ligeras). Construye todos los que quieras, donde quieras.
 
 > Church
 pt Igreja
@@ -534,10 +522,6 @@ es Carga de Caballería
 pt CARGA
 es CARGA
 
-> Drilled to charge: after about 2 s at the gallop a Horseman's or Cuirassier's next sabre blow hits double and throws the enemy back.
-pt Treinados para a carga: após cerca de 2 s a galope, o próximo golpe de sabre de um Cavaleiro ou Couraceiro causa dano dobrado e arremessa o inimigo para trás.
-es Adiestrados para la carga: tras unos 2 s al galope, el siguiente sablazo de un Jinete o Coracero hace doble daño y empuja al enemigo hacia atrás.
-
 > The Crown
 pt A Coroa
 es La Corona
@@ -650,10 +634,6 @@ es Tu caballo libre más cercano viene y es uncido: uno más cada vez, hasta 4 e
 pt Infantaria de linha blindada (+1 de armadura, +20 de vida): um Mosqueteiro de morrião e peitoral. Precisa de Armadura.
 es Infantería de línea acorazada (+1 de armadura, +20 de salud): un Mosquetero con morrión y peto. Necesita Armadura.
 
-> Fast light horseman: one pistol shot (30 damage, 110 reach), then the sabre. Needs a Horse Breeder; one click trains him and his horse (40 more without a spare). He reloads only on foot. With the Cavalry Charge his first sabre blow after a gallop hits double; KEEN SABRES cuts light units deeper. Bayonets hurt him.
-pt Cavaleiro leve e rápido: um tiro de pistola (30 de dano, alcance 110), depois o sabre. Precisa de um Criador de Cavalos; um clique treina ele e seu cavalo (40 a mais sem reserva). Só recarrega a pé. Com a Carga de Cavalaria, o primeiro golpe de sabre após um galope causa dano dobrado; SABRES AFIADOS cortam mais fundo as unidades leves. Baionetas o ferem.
-es Jinete ligero y rápido: un disparo de pistola (30 de daño, alcance 110), luego el sable. Necesita un Criador de caballos; un clic lo entrena a él y a su caballo (40 más sin repuesto). Solo recarga a pie. Con la Carga de caballería, su primer sablazo tras un galope hace doble daño; SABLES AFILADOS corta más hondo a las unidades ligeras. Las bayonetas le hacen daño.
-
 > Long-range artillery (it needs a horse: one click finds or buys it). HARNESS up to 4 horses: +12% speed each. UNLIMBER to fire: round shot ploughs through lines, canister shreds light units and flyers. Needs spotters.
 pt Artilharia de longo alcance (precisa de um cavalo: um clique acha ou compra). ATRELAR até 4 cavalos: +12% de velocidade cada. DESENGATAR para atirar: a bala atravessa fileiras, a metralha rasga unidades leves e voadores. Precisa de observadores.
 es Artillería de largo alcance (necesita un caballo: un clic lo encuentra o lo compra). UNCIR hasta 4 caballos: +12% de velocidad cada uno. DESENGANCHAR para disparar: la bala atraviesa filas, la metralla destroza unidades ligeras y voladores. Necesita observadores.
@@ -738,10 +718,6 @@ es Lanzador de pantano. NIEBLA hace que los disparos fallen la mitad de las vece
 pt Treina Operários. Permite 2 Fazendas e 1 Moinho de Pólvora por perto; seu solo e salitre acabam com o tempo.
 es Entrena Peones. Permite 2 Granjas y 1 Molino de pólvora cerca; su suelo y salitre se agotan con el tiempo.
 
-> Trains horses: 40 gold and 15 s each, no supply; RALLY sends them on. Unlocks Horsemen and researches KEEN SABRES; cavalry, guns and wagons need its horses. Build as many as you like, anywhere. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.
-pt Treina cavalos: 40 de ouro e 15 s cada, sem suprimento; REUNIR os envia adiante. Libera Cavaleiros e pesquisa SABRES AFIADOS; cavalaria, canhões e carroças precisam dos seus cavalos. Construa quantos quiser, onde quiser. Duas aberturas: Moinho de Pólvora primeiro para Mosqueteiros armados, ou Criador de Cavalos primeiro para um ataque de Cavaleiros.
-es Entrena caballos: 40 de oro y 15 s cada uno, sin suministro; REUNIR los envía adelante. Desbloquea Jinetes e investiga SABLES AFILADOS; la caballería, los cañones y los carros necesitan sus caballos. Construye todos los que quieras, donde quieras. Dos aperturas: Molino de pólvora primero para Mosqueteros armados, o Criador de caballos primero para un ataque de Jinetes.
-
 > Houses 8 more supply. The first one unlocks the Barracks and the palisade.
 pt Abriga mais 8 de suprimento. O primeiro libera o Quartel e a paliçada.
 es Aloja 8 de suministro más. La primera desbloquea el Cuartel y la empalizada.
@@ -757,10 +733,6 @@ es Un tramo de empalizada que se abre solo para tu bando. Colócala sobre tu emp
 > Trains Musketeers and Officers, Horsemen and Dragoons (need a Horse Breeder), and with Armour the armoured ones. Powder buys their shots as they come out (ARM WITH POWDER). Refits soldiers. Needs a Cottage. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.
 pt Treina Mosqueteiros e Oficiais, Cavaleiros e Dragões (precisam de um Criador de Cavalos), e com Armadura os blindados. A pólvora compra seus tiros quando saem (ARMAR COM PÓLVORA). Reequipa soldados. Precisa de um Casebre. Duas aberturas: Moinho de Pólvora primeiro para Mosqueteiros armados, ou Criador de Cavalos primeiro para um ataque de Cavaleiros.
 es Entrena Mosqueteros y Oficiales, Jinetes y Dragones (necesitan un Criador de caballos), y con Armadura los acorazados. La pólvora compra sus disparos al salir (ARMAR CON PÓLVORA). Reequipa soldados. Necesita una Cabaña. Dos aperturas: Molino de pólvora primero para Mosqueteros armados, o Criador de caballos primero para un ataque de Jinetes.
-
-> Researches Armour, the musket locks, the socket bayonet, the guns' drills and the Cavalry Charge. Refits soldiers too.
-pt Pesquisa Armadura, os fechos de mosquete, a baioneta de encaixe, os treinos dos canhões e a Carga de Cavalaria. Também reequipa soldados.
-es Investiga Armadura, las llaves de mosquete, la bayoneta de cubo, los adiestramientos de los cañones y la Carga de caballería. También reequipa soldados.
 
 > Casts cannons and mortars, rigs balloons, builds powder wagons (each needs a horse: one standing here, else a Town Hall hauler leads one over from the Horse Breeder, or it walks over by itself when you have no haulers).
 pt Funde canhões e morteiros, monta balões, constrói carroças de pólvora (cada um precisa de um cavalo: um parado aqui, senão um carregador da Prefeitura traz um do Criador de Cavalos, ou ele vai sozinho se você não tem carregadores).
@@ -833,10 +805,6 @@ es Todo Cañón de Campaña y Mortero recarga un 20% más rápido.
 > Every Field Cannon and Mortar reaches 1 tile further.
 pt Todo Canhão de Campanha e Morteiro alcança 1 casa a mais.
 es Todo Cañón de Campaña y Mortero llega 1 casilla más lejos.
-
-> Horsemen and Cuirassiers charge: after a gallop the first blow hits double and throws the enemy back.
-pt Cavaleiros e Couraceiros investem: após um galope, o primeiro golpe causa dano dobrado e arremessa o inimigo para trás.
-es Los Jinetes y Coraceros cargan: tras un galope, el primer golpe hace doble daño y empuja al enemigo hacia atrás.
 
 > Shot, shell and black powder
 pt Tiros, granadas e pólvora negra

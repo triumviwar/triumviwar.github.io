@@ -2,7 +2,7 @@ extends SceneTree
 ## A STAND-UP FIGHT BETWEEN TWO GROUPS (balance-raptor-horseman, docs/balance_raptor_horseman.md): N units of one kind
 ## (team 0) against M of another (team 1) on the flat, open patch of Greenhold that tools/test_raptor_rider_fight.gd
 ## finds, both sides attack-moving into each other. Sandbox, no computers. Reports wins, the health and the gold left.
-## Args: a:cuirassier:2  b:musketeer:4  trials:6  tech0:keen_sabres,charge  tech1:nb_pack_hunt  armour0:1  armour1:1
+## Args: a:cuirassier:2  b:musketeer:4  trials:6  tech0:charge  tech1:nb_pack_hunt  armour0:1  armour1:1
 ##   set:cuirassier.hp=140,raptor.hp=36  (a number tried for this run only, on each unit's own copy of its stats)
 ##   godot --headless --fixed-fps 30 --script res://tools/test_unit_duel.gd -- a:cuirassier:2 b:clock_soldier:4
 var main: Node
