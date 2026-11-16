@@ -157,7 +157,7 @@ func _go() -> void:
 	var hm_p: Array = g.unit_price(0, Defs.train_key("cuirassier", false))
 	var horse := int(Defs.UNITS["horse"]["cost"])
 	check(off_p[0] == hm_p[0] and off_p[1] == hm_p[1], "an Officer costs the Horseman's own price (%s v %s), the horse 40 more either way" % [str(off_p), str(hm_p)])
-	check(off_p[0] + horse == 140 and hm_p[0] + horse == 140, "Officer + horse = Horseman + his horse = 140 gold")
+	check(off_p[0] + horse == 100 and hm_p[0] + horse == 100, "Officer + horse = Horseman + his horse = 100 gold")
 	check(int(Defs.POWDER["cuirassier"]) == int(Defs.POWDER["dismounted"]) and Defs.AMMO["cuirassier"] == Defs.AMMO["dismounted"], "the same pistol and charges")
 	check(float(Defs.POWDER["cost"]["cuirassier"]) == float(Defs.POWDER["cost"]["dismounted"]), "the same powder a charge")
 	var fees: Dictionary = Defs.RESEARCH["armour"]["fees"]

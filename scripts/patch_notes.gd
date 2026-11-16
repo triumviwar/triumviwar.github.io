@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.32", "items": [
+		"THE HORSEMAN COSTS 60 GOLD + HIS HORSE'S 40 = 100 IN ALL (was 100 + 40 = 140), and the Officer 60 (was 100): a Horseman is an Officer on a horse, both ways round. The Cuirassier is 90 + the horse = 130 in all (was 170).",
+	]},
 	{"v": "0.38.31", "items": [
 		"THE CAVALRY CHARGE REPLACES KEEN SABRES: Keen Sabres is gone. The Cavalry Charge is now drilled at the HORSE BREEDER (was the Armoury; still 60 gold, 25 s), so it comes with the riders, and a charged sabre blow hits light units 2.2 times (one charge kills a Raptor: 18 x 2.2 = 39.6 against its 38); armoured units still take double. A saved game keeps its Charge; Keen Sabres researched there is simply gone.",
 		"THE OFFICER COSTS 100 GOLD (was 75), the Horseman's own price: a Horseman is an Officer on a horse, and the horse is always 40 more (a horse of yours or one the breeder trains), so an Officer + a horse is now exactly a Horseman + his horse (140), and an Armoured Officer + a horse a Cuirassier (130 + 40). Before, an Officer + a horse was the cheaper Horseman (115).",

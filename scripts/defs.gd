@@ -988,7 +988,7 @@ const UNITS := {
 	# Horseman, with Armour the Cuirassier: see ARMOURED)
 	"cuirassier": {
 		"tags": ["light"],
-		"name": "Horseman", "hp": 100, "armor": 1, "speed": 112, "cost": 100, "time": 22.0, "supply": 3,
+		"name": "Horseman", "hp": 100, "armor": 1, "speed": 112, "cost": 60, "time": 22.0, "supply": 3,
 		"sight": 8, "range": 26, "damage": 18, "cooldown": 1.1, "aim": 0.15, "radius": 15, "from": "barracks",
 		"requires": "horse_breeder", "bonus": {"cannon": 1.6, "spitter": 1.3, "arc_thrower": 1.3}, "charge": true, "faction": "crown", "needs_horse": true,
 		"about": "Fast light horseman with a pistol and a sabre. Trained with his horse in one click (a free one at a breeder, else the breeder trains one: 40 more); he comes out on foot and rides off on it. He opens with his one loaded pistol shot (30 damage, a little over half a musket's reach), then fights with the sabre; he can only reload on foot (DISMOUNT: he's an Officer then). Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. Once the Horse Breeder has drilled the Cavalry Charge, his first sabre blow after a gallop hits double (2.2 times on light units: one charge kills a Raptor) and throws the enemy back. With Armour he becomes a Cuirassier. Bayonets hurt him.",
@@ -1023,10 +1023,11 @@ const UNITS := {
 	# as it should be in math"): the Horseman's 100 never included his horse (40 more, or a horse of ours), so an Officer +
 	# a horse = 100 + 40 = a Horseman + his horse, and a Horseman got off = an Officer + a horse; the same 5 powder, the
 	# same Armour fee (30). As every other pair: Labourer 50 = Messenger 50, Musketeer 60 = Dragoon 60. (Was 75: an
-	# Officer + a horse, 115, was the cheaper Horseman, 140.) docs/cavalry_charge_package.md
+	# Officer + a horse, 115, was the cheaper Horseman, 140.) docs/cavalry_charge_package.md. The owner 2026-11-16 00:08-00:11:
+	# a Horseman is 60 + his horse's 40 = 100 in all (the Officer 60): both 100 -> 60.
 	"dismounted": {
 		"tags": ["light"],
-		"name": "Officer", "hp": 80, "armor": 1, "speed": 64, "cost": 100, "time": 18.0, "supply": 3,
+		"name": "Officer", "hp": 80, "armor": 1, "speed": 64, "cost": 60, "time": 18.0, "supply": 3,
 		"sight": 8, "range": 110, "damage": 30, "cooldown": 1.1, "aim": 0.35, "radius": 10, "from": "barracks",
 		"sabre": {"damage": 18.0, "cooldown": 1.1}, "faction": "crown",
 		"about": "A Horseman on foot: his flintlock pistol (one shot, 30 damage, a little over half a musket's reach) and the same sabre as in the saddle up close (about a plain bayonet's match). On foot he reloads the pistol by himself (4 s, a charge of his powder: his charges refill like a Musketeer's, 1 powder each). Needs no Horse Breeder: without a horse he walks. Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. MOUNT a horse and he rides as a Horseman.",

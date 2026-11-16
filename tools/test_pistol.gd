@@ -328,7 +328,7 @@ func _barracks() -> void:
 	gold0 = g.players[0]["gold"]
 	check(g.train(bar, "dismounted") == "", "one click: OFFICER")
 	paid = gold0 - int(g.players[0]["gold"])
-	check(paid == int(Defs.UNITS["cuirassier"]["cost"]) and paid == 100, "  paid the Horseman's own price (his horse apart): %d" % paid)
+	check(paid == int(Defs.UNITS["cuirassier"]["cost"]) and paid == 60, "  paid the Horseman's own price (his horse apart): %d" % paid)
 	await wait_for(func() -> bool: return find(0, "dismounted", false) != null, 30.0)
 	var of: Unit = find(0, "dismounted", false)
 	check(of != null and of.pistol and not of.armoured and of.horse_rid == 0, "an Officer comes out on foot, loaded")
