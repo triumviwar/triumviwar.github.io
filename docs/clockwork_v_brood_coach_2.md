@@ -10,7 +10,37 @@ Only the CLOCKWORK computer's decisions changed. No unit, price or rule number c
 scripts/ai_cw_brood.gd (AICwBrood) with a one-line hook where it acts, acts only for a Clockwork computer whose enemy is
 the Brood, and has its own switch; `-- cvb2:off` turns them all off.
 
-<!-- SUMMARY -->
+## The short version
+
+The 38 Brood v Clockwork games of the win-rate studies (the same maps, seeds and seats), Hard OPTIMAL on both sides, to
+12:00, on 0.38.35: main ("before") against this branch ("after"). The Clockwork's view:
+
+| | before (main) | after |
+|---|---|---|
+| W-D-L | 4-27-7 | **5-32-1** |
+| won or led / lost or trailed / even | 14 / 20 / 4 | **33 / 1 / 4** (Fisher p 0.00001) |
+| income a minute at 5:00 / 8:00 / 10:00 / 12:00 (median) | 862 / 1,419 / 1,683 / 1,711 | **1,138 / 1,670 / 2,194 / 2,386** |
+| earned by 8:00 / 10:00 / 12:00, and of its bench (9,796 / 13,865 at 8:00 / 10:00) | 7,335 (0.75) / 10,576 (0.76) / 13,761 | **8,348 (0.85) / 12,284 (0.89) / 17,122** |
+| army at 5:00 / 8:00 / 10:00 / 12:00 | 665 / 1,555 / 1,750 / 1,930 | 280 / **2,048 / 2,578 / 3,602** |
+| the Brood's army at 8:00 / 10:00 / 12:00 | 855 / 1,342 / 2,210 | 880 / 1,130 / 1,302 |
+| the Brood's income a minute at 10:00 / 12:00 | 1,952 / 1,949 | 1,730 / 1,480 |
+| built Clocktowers lost a game | 0.66 | **0.05** |
+| Winders lost 6:00-11:00 a game | 12.45 | **4.24** |
+| Raptors and others killed by its Pendulums (all 38 games) | 346 (14 Pendulums lost) | **2,167** (48 lost) |
+| Heavy Works laid (median) / third Clocktower (median) / first push | 6:23 in 30 / 8:03 in 30 / 4:24 | **5:13 in 38 / 6:06 in 37** / 9:05 |
+| the Clock Soldier rush picked | 38 of 38 (1:52) | 0 |
+
+- The Clockwork no longer loses this matchup: it won or led 33 of 38 and lost 1 (Frostmere, the Clockwork P2: the Brood
+  won at 10:05; on main that game was a draw the Brood led). Most games are still draws at 12:00 with the Clockwork well
+  ahead; the study cut them there (the 0.38.14 study ran to 15:00 and is not the same design: on it main was 6-6-26).
+- It earns about a quarter more by 12:00 and its army keeps growing through 7:00-10:00 (the "stall" is gone: 2,048 ->
+  2,578 -> 3,602), while the Brood's waves break on it (the Brood's army and income fall from 10:00).
+- Both seats: Clockwork P1 won or led 17 of 19 (9 before), P2 16 of 19 (5 before).
+- What it gave up: a smaller army at 5:00 (280 against 665: no Clock Soldier rush) and more Winders lost in the Raptor rush
+  itself (in the six measured games of the openings, 26 Winders lost before 5:00 against 11 on main); it earns them back by
+  6:00.
+- Its other matchups (every rule acts only against the Brood): Clockwork v Crown and the mirror, 4 games each way, the
+  same side led in 3 of 4 (the fourth, a mirror on Greenhold, is a mirror's coin: P1 led on main, P2 here).
 
 ## How it was watched
 
