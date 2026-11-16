@@ -1741,9 +1741,9 @@ func _nb_maw_room(q: Unit) -> bool:
 ## Measuring switch `maweco:off` (the computer as it was).
 var maweco_on := not OS.get_cmdline_user_args().has("maweco:off")
 const EXP_LEAD := 50.0           # s ahead: a grub's walk out, the turtle's 25 s cocoon, its rooting
-const EXP_FROM := 30.0           # (not in the first half minute, when her swamp is not down yet: econ-coach-brood fix 3.
-                                 # A gate at 3:30 or 5:00 was measured: it spared the Economy plan 3-5% at 5:00 and cost
-                                 # OPTIMAL 5-7% at 8:00, its early third base: docs/brood_rootmaw_coach.md section 3)
+const EXP_FROM := 300.0          # (before 5:00 the plan's own expansions (its "far" list): with the rule from 0:30 a
+                                 # turtle went out at 3:15-3:45, two grubs' food when grubs are what the opening lacks:
+                                 # alone -3% at 5:00 and in 9 of 10 games less by 5:00 (docs/brood_rootmaw_coach.md 5))
 const EXP_PLAN_NEAR := 60.0      # s: the plan's own next expansion this near: the rule waits for it (the Economy plan's
                                  # second base at 4:00 came at 3:15 by the rule too, and its first research 40 s late)
 const MAW_DRY := 900.0           # food left (ground + what it holds) under which a Rootmaw counts as about to be spent
@@ -1781,7 +1781,7 @@ func _maw_need_room(q: Unit) -> Array:
 
 ## New ground is due now: more Rootmaws will want a spot within a turtle's walk than the fresh room there is and is
 ## coming. Not while a rush holds its grubs, a rush is on that it is short against, it rebuilds after one, the enemy is
-## at the Mother, the alarm is on (an enemy army seen out of its main in the last ALARM_FOR s), or it is under-armed with no army to speak of (the old rule's own gate); not in the first half minute (EXP_FROM)
+## at the Mother, the alarm is on (an enemy army seen out of its main in the last ALARM_FOR s), or it is under-armed with no army to speak of (the old rule's own gate); not before 5:00 (EXP_FROM)
 ## nor while her growth is due (_nb_growth_keep: with only "while short of its price" a turtle took the 100 every time
 ## the food reached it, and the Timing plan's stage 3 never came by 10:40).
 func _maw_expand_due(q: Unit) -> bool:
