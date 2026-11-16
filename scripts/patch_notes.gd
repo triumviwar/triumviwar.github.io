@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.35", "items": [
+		"THE BROOD COMPUTER TAKES NEW GROUND SOONER (no unit, price or rule changed): from 5:00, when its Rootmaws will soon want more room than its swamps have (the Mother's holds 3, a turtle's 2, and a far Rootmaw drinks its ground dry in about six minutes), it roots a Mound Turtle on new ground at once, its own side of the map first, and once its turtle sites are taken on any fresh ground where a Rootmaw fits. Not while its alarm is up, an enemy is at the Mother or her growth is due, and nearer home while riders are about. Rich, with Rootmaws to spare, it also lays a few more grubs than its plan's count. Alone it earns about 9% more by 12:00; against the Clockwork computer about 14% more.",
+	]},
 	{"v": "0.38.34", "items": [
 		"Tools only: a Brood test reads Pack Hunt's new speed (124).",
 	]},

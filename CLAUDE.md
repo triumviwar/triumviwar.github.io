@@ -25,6 +25,18 @@
 
 ## Current work
 
+- BROOD ROOTMAW COACH (owner DECIDED 2026-11-15 21:34 "yes"; job brood-rootmaw-coach, 0.38.35, docs/brood_rootmaw_coach.md,
+  tools/study/brood_coach_report.py, data docs/brood_rootmaw_coach/): the Brood COMPUTER only (no number changed): from 5:00
+  it reckons the Rootmaws it will want a turtle's walk ahead (plan curve + walking + under 900 food left) against fresh
+  room + room on its way and roots a Mound Turtle on new ground at once (AIBroodNew._maw_expand_due / _nb_expand_spot:
+  its turtle sites own side first, then any fresh ground 18-40 tiles out where a Rootmaw fits, _nb_fresh_turtle_spot);
+  not under the alarm, an enemy at the Mother, a rush, her growth due; 30 tiles while riders are about; a home supply
+  turtle the layout refuses no longer ends the think; up to 10 grubs over the plan's while rich (_extra_grubs; the Rush
+  plans keep theirs; test_ai_brood's grub check follows). Switch maweco:off. Alone (9 runs) +9% at 12:00 (Rootmaws 6.3
+  -> 9.8), same until 5:00; games (24 a side on 0.38.20) v Clockwork +8% at 8:00, +14% at 12:00, v Crown about even, +4%
+  at 12:00; more grubs/turtles lost out there (choice 7: escorts proposed). Measured before the cavalry package (0.38.31-33):
+  rerun the v Crown games after the merge if wanted. 9 Claude's choices in the doc.
+
 - WINDERS ESCORT THE ARMY (owner's report 2026-11-15 20:11, DECIDED 20:15 "both"; job winder-escort, 0.38.18,
   docs/winder_escort.md, scripts/winder_escort.gd WinderEscort, tools/test_winder_escort.gd, pictures docs/shots/winder_escort/):
   Winders in a group order (move, attack-move, drag-a-line, right-click on an enemy, Shift) WITH Clockwork fighting units

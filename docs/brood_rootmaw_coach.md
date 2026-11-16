@@ -25,6 +25,10 @@ Measuring switch: **`maweco:off`** plays the old way (every change below is behi
   ground (grubs, turtles; choice 7). W-D-L v Crown 3-9-0 both; v Clockwork 4-8-0 -> 1-10-1, within these games' spread
   (section 4).
 - 9 Claude's choices (section 6); the switch `maweco:off` plays the old way.
+- **Measured on 0.38.20** (main then, before and after alike). Main moved on to 0.38.34 meanwhile and is merged into the
+  branch (0.38.35): no Brood computer file changed there, but the Crown's riders did (the Cavalry Charge package, Pack
+  Hunt Raptors 124, Horseman 60 + horse 40, 0.38.31-0.38.33), so the games against the Crown are worth a rerun after the
+  merge.
 
 ## 1. Where it lost (before)
 
