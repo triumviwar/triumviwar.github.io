@@ -1741,6 +1741,9 @@ func _nb_maw_room(q: Unit) -> bool:
 ## Measuring switch `maweco:off` (the computer as it was).
 var maweco_on := not OS.get_cmdline_user_args().has("maweco:off")
 const EXP_LEAD := 50.0           # s ahead: a grub's walk out, the turtle's 25 s cocoon, its rooting
+const EXP_FROM := 30.0           # (not in the first half minute, when her swamp is not down yet: econ-coach-brood fix 3.
+                                 # A gate at 3:30 or 5:00 was measured: it spared the Economy plan 3-5% at 5:00 and cost
+                                 # OPTIMAL 5-7% at 8:00, its early third base: docs/brood_rootmaw_coach.md section 3)
 const MAW_DRY := 900.0           # food left (ground + what it holds) under which a Rootmaw counts as about to be spent
                                  # (about 2 minutes at home, 1.5 far out: the time a new turtle takes to give room)
 var _exp_t := -99.0
@@ -1776,7 +1779,8 @@ func _maw_need_room(q: Unit) -> Array:
 
 ## New ground is due now: more Rootmaws will want a spot within a turtle's walk than the fresh room there is and is
 ## coming. Not while a rush holds its grubs, a rush is on that it is short against, it rebuilds after one, the enemy is
-## at the Mother, or it is under-armed with no army to speak of (the old rule's own gate).
+## at the Mother, or it is under-armed with no army to speak of (the old rule's own gate); not in the first half minute (EXP_FROM)
+## nor while it saves for her growth.
 func _maw_expand_due(q: Unit) -> bool:
 	if not maweco_on or q == null:
 		return false
@@ -1786,7 +1790,7 @@ func _maw_expand_due(q: Unit) -> bool:
 	_exp_due = false
 	if (int(plan["grubs0"]) > 0 and not _first_out) or _rush_short() or _rebuilding() or _nb_threat(q) != Vector2.INF \
 			or (_under_armed() and _army_supply_now() < 30 and BroodNew.count_of(game, team, BroodNew.MAW) >= 4) \
-			or (maw_first_on and game.clock < 30.0):
+			or game.clock < EXP_FROM or _nb_saving_growth(q):
 		return false
 	var r := _maw_need_room(q)
 	exp_info = {"t": game.clock, "need": r[0], "room": r[1], "coming": r[2]}
@@ -2855,7 +2859,7 @@ func _extra_grubs(crew: int) -> int:
 			and game.supply_used(team) + 4 < int(game.players[team]["cap"]) and not _under_armed() and not _alarm_on() \
 			and BroodNew.count_of(game, team, "grub") >= int(plan["grubs"]) + _xg - 1:
 		var q := BroodNew.queen(game, team)
-		if q != null and _nb_threat(q) == Vector2.INF:
+		if q != null and _nb_threat(q) == Vector2.INF and _food() - _nb_growth_keep(q) >= RICH_GRUBS:          # (her growth's food first)
 			_xg_t = game.clock
 			_xg += 1
 	return _xg

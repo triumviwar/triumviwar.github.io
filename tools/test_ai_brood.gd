@@ -179,5 +179,8 @@ func _report(ms: Dictionary) -> void:
 	if ms.has("pack") and ms.has("attack") and seen.has("attack"):
 		check(seen.has("pack") and float(seen["pack"]) <= float(seen["attack"]), "Pack Hunt before the first attack")
 	check(bank_worst < BANK_FOR, "never more than %d food banked for %d s with eggs and supply to spend it (longest %.0f s)" % [BANK_MAX, int(BANK_FOR), bank_worst])
-	check(grubs_max <= int(ai.plan["grubs"]) + 2, "grubs at most the plan's %d, +2 for the ones turning into something (most %d)" % [int(ai.plan["grubs"]), grubs_max])
+	# (brood-rootmaw-coach: rich, with posts to spare, it may lay up to AIBroodNew.EXTRA_GRUBS more than the plan's;
+	# docs/brood_rootmaw_coach.md: `_xg` is how many it raised the cap by in this game)
+	var xg := int(ai._xg) if "_xg" in ai else 0
+	check(grubs_max <= int(ai.plan["grubs"]) + xg + 2, "grubs at most the plan's %d (+%d raised while rich, +2 for the ones turning into something) (most %d)" % [int(ai.plan["grubs"]), xg, grubs_max])
 	print("%d failures" % fails)
