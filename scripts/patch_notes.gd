@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.34", "items": [
+		"Tools only: a Brood test reads Pack Hunt's new speed (124).",
+	]},
 	{"v": "0.38.33", "items": [
 		"RAPTORS AND HORSEMEN LIKE ZERGLINGS AND HELLIONS: PACK HUNT now makes a Raptor 124 fast (was 114), about 10% faster than a horse (112), so a pack that has it catches riders; the Horseman has 90 health (was 100). Without Pack Hunt the riders still outrun Raptors, and the Cavalry Charge still wins it back for them.",
 	]},

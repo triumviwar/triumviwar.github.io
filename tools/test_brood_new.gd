@@ -1897,7 +1897,7 @@ func _research(q: Unit, p: Dictionary) -> void:
 	check(labs.has("BIGGER CLUTCH") and labs.has("PACK HUNT") and labs.has("BATTERING HORNS") and not horns.is_empty() and not bool(horns[3])
 		and String(horns[4]).contains("stage 3"), "    his card: BIGGER CLUTCH, PACK HUNT, BATTERING HORNS (greyed: %s)" % (str(horns[4]) if not horns.is_empty() else "-"))
 	var tip: Dictionary = g.hud._card_tip(_item("PACK HUNT") + ["", "", ""]) if not _item("PACK HUNT").is_empty() else {}
-	check(String(tip.get("stats", "")).contains("75") and String(tip.get("stats", "")).contains("35 s") and String(tip.get("body", "")).contains("114"),
+	check(String(tip.get("stats", "")).contains("75") and String(tip.get("stats", "")).contains("35 s") and String(tip.get("body", "")).contains("124"),
 		"    its tooltip: name, effect, cost, time (%s | %s)" % [tip.get("title", ""), tip.get("stats", "")])
 	# BIGGER CLUTCH on the Tyrant Sire
 	var gold0 := int(p["gold"])
