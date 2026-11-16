@@ -575,7 +575,7 @@ func _ready() -> void:
 	_bo_plan = (plan[bo_key] as Array).duplicate(true) if difficulty >= 1 else []
 	bo_lab_cap = _cc_lab_cap(bo_key)
 	if strategy == "optimal" and AICrownCoach.farm_first():
-		AICrownCoach.farm_before_barracks(_bo_plan)    # (the coach's measuring switch farmfirst:on, the owner 2026-11-16 07:13)
+		AICrownCoach.farm_before_barracks(_bo_plan)    # (the coach: the owner DECIDED 2026-11-16 08:01; switch farmfirst:off)
 	if _bo_plan.is_empty():
 		bo_done = true                         # (Easy: no build order, the shared rules from the start)
 	_attack_at = int(_s("wave"))

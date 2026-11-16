@@ -355,7 +355,9 @@
   counter; v defensive out-expand, tech, siege); switches at most once a stage. Horseman rush: good v the Brood, somewhat
   v the Clockwork, NOT v the Crown. Also an audit of every AI STORY line (and the logic behind wrong ones).
 - CROWN OPTIMAL OPENING (owner, DECIDED 2026-11-06 09:17; job crown-optimal-opening): the ramp Cottage, the Gate, the
-  BARRACKS (rush unknown), then the second FARM; NO Powder Mill before the scout's read. After the read: POWDER MILL
+  BARRACKS (rush unknown), then the second FARM; NO Powder Mill before the scout's read. CHANGED (owner DECIDED 2026-11-16
+  08:01, measured 5 pairs: income at 5:00 up in all): the second FARM right after the Gate, then the Barracks (a seen rush
+  still puts the Barracks first); AICrownCoach.farm_first, switch farmfirst:off (on the crown-coach-1116 branch until it merges). After the read: POWDER MILL
   (Musketeer play) or HORSE BREEDER (riders); v a GREEDY Brood the Horse Breeder to punish (not the Siege push). Also running:
   job crown-hold (2026-11-06 07:55): the natural's gate toward the ramp, the army posted at the natural's palisade, units
   clear building footprints, 3-4 Field Cannons before the first Mortar.

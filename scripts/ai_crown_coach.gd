@@ -314,11 +314,15 @@ func line_holds(foes: Array, c: Vector2, face: Vector2) -> bool:
 
 # ------------------------------------------------------------------ 7. (measuring) the second Farm before the Barracks
 
-## The owner 2026-11-16 07:13 ("test both, then I decide"): the OPTIMAL opening is his (2026-11-06: Cottage, Gate,
-## Barracks, then the second Farm); this switch measures the second Farm right after the Gate, the Barracks after it, so he
-## can choose on numbers. A seen rush still puts the Barracks and soldiers first (_bo_defence). Off unless `farmfirst:on`.
+## THE SECOND FARM BEFORE THE BARRACKS (the owner DECIDED 2026-11-16 08:01, after "test both, then I decide" at 07:13): the
+## OPTIMAL opening was his of 2026-11-06 (Cottage, Gate, Barracks, then the second Farm: 8 Farm posts until ~2:20); now the
+## second Farm comes right after the Gate and the Barracks after it. Measured, 5 pairs of games (same map and seed): income at
+## 5:00 up in all five (v Clockwork 0.56 -> 0.85, 0.61 -> 0.77, 0.63 -> 0.72 of the enemy's; v Brood 0.87 -> 0.99, 1.26 ->
+## 1.38), the army at 5:00 about the same, no early collapse; v Clockwork better in 2 of 3 games, even in 1; v Brood even.
+## A seen rush still puts the Barracks and soldiers first (_bo_defence). Switch `farmfirst:off` for the old order.
 static func farm_first() -> bool:
-	return OS.get_cmdline_user_args().has("farmfirst:on")
+	var a := OS.get_cmdline_user_args()
+	return not a.has("coach:off") and not a.has("farmfirst:off")
 
 
 static func farm_before_barracks(plan: Array) -> void:
