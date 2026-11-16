@@ -9,8 +9,30 @@ var _next_tr := 5.0
 var _lines: PackedStringArray = []
 
 
+var _dl := 0
+
+
 func _process(delta: float) -> bool:
 	var r := super(delta)
+	# every Clockwork Winder that died since the last frame: how far from its nearest building and from its nearest armed
+	# unit, and what it was doing
+	if g != null and g.death_log != null:
+		while _dl < g.death_log.size():
+			var d: Array = g.death_log[_dl]
+			_dl += 1
+			if d[1] != "winder" or d.size() < 8:
+				continue
+			var p := Vector2(float(d[5]) + 0.5, float(d[6]) + 0.5) * float(Game.T)
+			var nb := INF
+			for b in g.buildings:
+				if b.team == int(d[2]) and not b.dead:
+					nb = minf(nb, b.center().distance_to(p))
+			var na := INF
+			for u in g.army(int(d[2])):
+				if not u.dead and float(u.d.get("damage", 0)) > 0.0:
+					na = minf(na, u.position.distance_to(p))
+			_lines.append("WINDER DIED %s t%d %s by %s: building %d px, armed unit %d px" % ["%d:%02d" % [int(d[0]) / 60, int(d[0]) % 60],
+				int(d[2]), String(d[7]), String(d[3]), int(nb) if nb < INF else -1, int(na) if na < INF else -1])
 	if g != null and g.clock >= _next_tr:
 		_next_tr += 5.0
 		for tm in n:

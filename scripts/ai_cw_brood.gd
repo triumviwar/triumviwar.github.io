@@ -179,3 +179,26 @@ static func pend_keep(ai, pends: int, cap: int) -> float:
 	if ai._mine(Defs.CW_HEAVY).is_empty():
 		return 0.0
 	return float(Defs.tension_cost(Defs.UNITS[Defs.PENDULUM]))
+
+
+# ------------------------------------------------------------------ 6. the yard on time (cvbyard)
+## With the economy opening kept (1.), its written steps ran on to the second Light Works, two Regulators, the Escapement and
+## six soldiers before the shared rules (the Escapement at once on Hard, then the Heavy Works by a Mainspring, AI._tier2 /
+## _tier3): the Heavy Works came at 6:44-8:22 in the first coached games (5:22-6:50 on main, where the Clock Soldier rush's
+## switch had ended the opening), and the expansion was held for it ("its tech and the Heavy Works first") from 5:47-6:02.
+## Against the Brood the written opening (Economy or Balanced) hands over to the shared rules once the second Clocktower's
+## two presses are laid: what is left of it is what the shared rules do anyway, the yard first.
+static func hand_over(ai) -> bool:
+	if off("cvbyard") or not vs_brood(ai) or not ai._eco_plan():
+		return false
+	var news := 0
+	var laid := 0
+	for i in ai.steps.size():
+		if String(ai.steps[i]) == "press_new":
+			news += 1
+			if ai.done[i]:
+				laid += 1
+	if news == 0 or laid < news:
+		return false
+	ai._end_build("against the Brood the shared rules take over once the new presses are laid: the Escapement and the Heavy Works on time")
+	return true

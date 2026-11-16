@@ -375,6 +375,8 @@ func _build_up() -> void:
 		return
 	if bo_on and _stuck_hand_over():
 		return
+	if bo_on and CwBrood.hand_over(self):
+		return              # (clockwork-v-brood-coach-2: against the Brood the shared rules once the new presses are laid)
 	if bo_on:
 		_bo_tick()
 	else:
