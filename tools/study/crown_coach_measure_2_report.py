@@ -172,9 +172,9 @@ def main():
                 f1(g("line_forms")), f1(g("line_deploys")), f1(g("sc_sightings")), f1(g("sc_sent")), f1(g("sc_lost"))))
     P("")
     P("## Story lines (games with one, and lines in all)\n")
-    STORY = [("army floor / musket line first", "before more buildings"), ("farm first", "second Farm"),
-             ("hall moved up", "the next Town Hall first"), ("formed line", "forms its musket line"),
-             ("holds its wave", "holds its wave"), ("Horseman rush", "rush"), ("unformed", "unformed")]
+    STORY = [("musket line before more buildings (the v-Brood line rule, every arm)", "before more buildings"),
+             ("forms its musket line", "forms its musket line"), ("holds its wave", "holds its wave"),
+             ("Horseman rush", "rush")]
     P("| pairing (arm) | " + " | ".join(n for n, _ in STORY) + " |")
     P("|---|" + "---|" * len(STORY))
     for pair in PAIRS:
