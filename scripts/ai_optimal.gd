@@ -38,6 +38,7 @@ const GREEDY_CLOCK := {"timing": 3.0, "economy": 1.0, "balloon": 1.0}
 ## same maps and seeds: end score 0.40 (Timing 0.36, Economy 0.43, the uncoached balloons 0.34), the fewest units lost; no
 ## plan won. Its share against the Clockwork goes from 1 in 5 to 2 in 6 (a third), on both reads; `blshare:off` keeps 1.
 const BALLOON_V_CLOCK := 2.0
+const CwBrood := preload("res://scripts/ai_cw_brood.gd")      # (clockwork-v-brood-coach-2)
 static var BALLOON_SHARE_OFF := OS.get_cmdline_user_args().has("blshare:off")
 
 
@@ -260,6 +261,10 @@ func _punish(f: String, t: float) -> Array:
 				# earned against 11,800-12,500, where Balanced in the same seat was even or close: the mirror's Clock Soldiers
 				# come at 2:00 whatever it plays. Balanced's steady waves on two Clocktowers)
 				return ["balanced", "steady waves punish the greed"]
+			if f == "brood":
+				var cb: Array = CwBrood.greedy_pick(self, early)      # (clockwork-v-brood-coach-2: its first ground is no greed)
+				if not cb.is_empty():
+					return cb
 			if early:
 				return ["cs_rush", "punish the greed before its army is up"]
 			if t < TOO_LATE:

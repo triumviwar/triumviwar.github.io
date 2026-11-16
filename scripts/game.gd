@@ -3926,7 +3926,9 @@ func on_unit_died(u: Unit) -> void:
 	stats[u.team]["lost"] += 1
 	if death_log != null:
 		# (measuring tools only, e.g. tools/qa_match.gd's riders' trades: [clock, kind, team, killer kind, killer team])
-		death_log.append([snappedf(clock, 0.1), u.kind, u.team, u.last_hit_by, u.last_hit_team])
+		# (clockwork-v-brood-coach-2: + where (cells) and the order it had, for the films' "where do the Winders die")
+		death_log.append([snappedf(clock, 0.1), u.kind, u.team, u.last_hit_by, u.last_hit_team,
+				int(u.position.x / T), int(u.position.y / T), u.order])
 	# veterancy: the unit that dealt the last blow gets the kill
 	var hitter = u.last_hitter
 	if is_instance_valid(hitter) and hitter is Unit and not hitter.dead and hostile(hitter.team, u.team):

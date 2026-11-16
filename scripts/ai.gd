@@ -192,6 +192,7 @@ func hz() -> AIHarass:
 ## expansion or wave into a bigger swarm before them, the escort Winders with every wave; made on first use (swm()).
 ## `-- swarm:off` on the command line plays the computer as before (0.25.26), for study games.
 const AISwarm := preload("res://scripts/ai_swarm.gd")
+const AICwBrood := preload("res://scripts/ai_cw_brood.gd")      # (clockwork-v-brood-coach-2)
 var swarm_ai = null
 var sw_on := not OS.get_cmdline_user_args().has("swarm:off")
 
@@ -2633,6 +2634,7 @@ func _hall_first() -> bool:
 		# Once the Escapement is laid: saving for a hall pauses the rest, and an expansion at 2:50 put the Escapement off
 		# by up to ten minutes)
 		need = maxi(need, mini(3, ceili(game.workers(team).size() / 13.0)))
+		need = AICwBrood.halls_need(self, need)       # (clockwork-v-brood-coach-2: a third Clocktower on time against the Brood)
 	if fresh >= need or _busy_building(hall):
 		return false
 	if _sw() and _best_soil() > DRY_LAND and swm().hold_expand():
@@ -4837,7 +4839,9 @@ func _produce() -> void:
 		# (and against the Brood, whose staple is light melee, two Pendulums as soon as the yard stands, swarm seen or not: its
 		# Raptors mass at home, out of sight, until they come: the swarm was "seen" at 7:00 in most test games)
 		var swarm_p: bool = _sw() and (swm().on() or (_foe() >= 0 and game.faction_of(_foe()) == "brood" and pends < 2))
+		swarm_p = swarm_p or AICwBrood.pend_more(self, pends, others)      # (clockwork-v-brood-coach-2: more Pendulums v the Brood)
 		var pend_cap: int = maxi(mini(4, 1 + others / 6), swm().pend_want()) if swarm_p else mini(4, 1 + others / 6)
+		pend_cap = maxi(pend_cap, AICwBrood.pend_target(self, others))
 		if swarm_p:
 			want_p = pends < pend_cap
 		var keep0 := 0.0
@@ -4845,6 +4849,7 @@ func _produce() -> void:
 			keep0 += float(Defs.tension_cost(Defs.BUILDINGS[Defs.CW_AIR]))       # (the Aviary's Tension price is kept too)
 		if _research_keep > 0.0:
 			keep0 += _research_keep        # (SHIELD WALL or HIGH LEAP is wanted: its Tension is kept)
+		keep0 += AICwBrood.pend_keep(self, pends, pend_cap)      # (clockwork-v-brood-coach-2: a Pendulum's Tension kept from the Springers)
 		var heavy_keep := 0.0             # (Tension kept from the Springers for a heavy machine that waits for its cogs)
 		var heavy_wait := false
 		for hw in _mine(Defs.CW_HEAVY):
