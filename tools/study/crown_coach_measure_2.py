@@ -9,7 +9,7 @@ with the win-rate design (qa_matches.base(): 19 maps x round 0 and 1, Hard OPTIM
     python3 tools/study/crown_coach_measure_2.py run OUT --data DATA [--jobs 2] [--end 720]
 Order: round 0 then round 1, map by map, crbr then crcw, each game's arms next to each other, so a run cut short
 still has paired data. DATA/<arm>/<tag>/result.json done = skipped (resumable)."""
-import os, sys, types
+import os, sys
 from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -37,9 +37,8 @@ def run(item, out, end, data):
 
 
 def run_one(g, out, end, data, extra):
-    """qa_matches.run_one with its own extra args (its module global EXTRA, copied per call: thread safe)"""
-    f = types.FunctionType(qm.run_one.__code__, dict(qm.run_one.__globals__, EXTRA=list(extra)))
-    return f(g, out, end, data)
+    """qa_matches.run_one with its own extra args (passed per call: thread safe)"""
+    return qm.run_one(g, out, end, data, list(extra))
 
 
 if __name__ == "__main__":
