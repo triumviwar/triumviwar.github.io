@@ -144,7 +144,9 @@ func _play(g: Game, r: MissionRun, st: int, pt: int) -> void:
 		if r.obj.get("lure", "") == "active" and not pi.is_empty():
 			for a in ["jar_c", "jar_w", "jar_e"]:
 				if int(r.counters.get(a + "_set", 0)) == 0:
-					_go(g, pi, r.area_rect(a).get_center())
+					var to: Vector2 = r.area_rect(a).get_center()
+					if pi[0].order != "move" or pi[0].order_point.distance_to(to) > 80.0:
+						g.group_move(pi, to, false)          # (a labourer at the garden is never idle: told straight)
 					break
 		elif not pi.is_empty():
 			_go(g, pi, r.area_rect("yard").get_center())

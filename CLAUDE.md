@@ -25,6 +25,21 @@
 
 ## Current work
 
+- BROOD PROLOGUE BUILT (owner 2026-11-17 08:01 "Now make the campaign missions" / "Prologues first", ANSWERS 10:22; job
+  brood-prologue-build, 0.38.45, docs/campaign_b01_build.md): "Specimen One" (b01_specimen) is THE NATURALIST's first
+  mission (the Brood storyline renamed from The Explorer; open after p01_leaf): map campaign:rio_negro_station
+  (tools/campaign/make_rio_negro_map.py, jungle, floor darkened), mission tools/campaign/make_b01_mission.py, stand-in stills
+  b01_01..08 (make_b01_stills.py; the owner's ChatGPT prompts in the doc), sounds campaign/linnea_call, forest_answer,
+  sire_roar; the station YELLOW, the garrison PURPLE, the pack GREEN (scripted); Linnea a Brood Mother's kind at 0.3 on a
+  team of her own (caged, spared); three parts (the pen, Valadares, the tracks, the goats, the TELES choice; the lure
+  learnt then set, the village, the walking turtle; the Tyrant Sire roots by her pen, the clutch, the fire, he takes her,
+  the CLUTCH choice, the canoes on an 8:40 countdown) ending in a STORY LOSS that counts (THE STATION IS LOST; flags teles,
+  clutch, saved, pieter, turtle, gun). Lindqvist tells it as a prisoner before the King (b08); the King's study lists him
+  held; the hub after the fall is the warehouse at the Barra (crate or singed notebook by the flag). ENGINE
+  (docs/campaign_engine.md "Added by the Brood prologue"): cage, spare, pin, carry, floor, heal, hp, root/uproot, rooted by
+  tag, to_if, burn, building sites + build objective, exits after/except, counter from a count, rain, jungle lights, floor
+  tint, role scale, hub flag gating. ALL TEXT PLACEHOLDER; Lindqvist/Valadares/Pieter/Teles/Joaquim/Benedito voices need
+  designing. Tests tools/test_campaign_b01.gd, balance tools/sim_campaign_b01.gd. Claude's choices in the doc.
 - CLOCKWORK PROLOGUE BUILT (owner 2026-11-17 08:01 "Now make the campaign missions" / "Prologues first"; job
   clockwork-prologue-build, 0.38.43, docs/campaign_c01_build.md): "The Thirteenth Hour" (c01_thirteenth) is the Clockwork
   storyline's first mission (open after p01_leaf): map campaign:nuremberg_advent (tools/campaign/make_nuremberg_map.py,
