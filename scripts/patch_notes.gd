@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.46", "items": [
+		"Tests only: the Brood test that checks the Venom Sire's price on the grub's BUILD card waits a moment after a new grub is selected, as a player would (it failed only because it looked at the card in the same instant the grub was made).",
+	]},
 	{"v": "0.38.45", "items": [
 		"THE BROOD PROLOGUE, SPECIMEN ONE (CAMPAIGN, THE NATURALIST, open after the Crown's prologue; the Brood's storyline was called The Explorer): the Rio Negro, June 2767. Dr. Lindqvist keeps a creature no one has seen in a crate at his river station. Build her pen, meet the Crown's mapmaker, learn and set Lindqvist's lure, choose whether to tell the fort's lieutenant, bring the village in and kill the island that walks. On Saint John's Eve her kin come for her: when the station cannot be held, get Lindqvist, Valadares and as many people as you can into the canoes before they leave, and choose what happens to her eggs. A losing mission: what you save is kept for later. Every line and picture in it is a placeholder for now.",
 		"THE CAMPAIGN learned what the prologue needed: creatures held in a pen and spared, a gun with no horse that stays where it is, a man slowed by what he carries, a beast that cannot die tonight, scripted rooting, buildings set alight, building sites for the player's workers, rain and the Amazon's lights, and hubs that change with the choices you made.",

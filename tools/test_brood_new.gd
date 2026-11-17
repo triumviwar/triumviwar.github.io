@@ -678,7 +678,9 @@ func _grub_sacrifice(q: Unit, p: Dictionary) -> void:
 	p["gold"] = 1000
 	p["res2"] = 20.0
 	var vg: Unit = g._add_unit("grub", 0, q.position + Vector2(q.radius + 60.0, 60.0))
+	await physics_frame
 	g.set_selection([vg])
+	await physics_frame
 	g.hud.page = "build"
 	var vlabs := card_labels()
 	var vtip: Array = g.hud._tip_for.get("VENOM SIRE", ["", "", ""])
