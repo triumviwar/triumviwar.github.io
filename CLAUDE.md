@@ -25,6 +25,15 @@
 
 ## Current work
 
+- ACT 1 PLANNED (owner 2026-11-17 14:39 "Do it all"; job campaign-act1-plan, branch campaign-act1-plan, docs only:
+  docs/campaign_act1_plan.md, supersedes docs/campaign_act1.md): seven missions 2767-2770 on three lines: the Crown
+  a01_presses (Lyon, Tomasz) -> a06_barricades (Paris, Fairleigh; the VARENNE choice); the Clockmaker a02_furth (the guild in
+  exile holding the line at Fürth against the Machine, Hollweg) -> a04_visit (Ferrer; choice THE BROKEN ONES); the
+  Naturalist a03_plateau (Valadares; the FIRST BROOD PLAY as its solo mirror; choice THE MAP) -> a05_specimens (Lindqvist);
+  all three -> a07_council (Rome, the King; the 1st crossing; three sides). Every prologue flag's effect in a table; the
+  WAR MAP's design (one data file, three skins); engine needs (solo side pick, >2 sides, city generator, route/follow,
+  sleep, mist, stay, cage carts, spreading fire, difficulty); 14 OWNER QUESTIONS with Claude's picks; build order a02,
+  a03, war map v1, city + a01, a06, a04, a05, a07. ALL TEXT PLACEHOLDER. OWNER DECISIONS WAITING.
 - BROOD PROLOGUE BUILT (owner 2026-11-17 08:01 "Now make the campaign missions" / "Prologues first", ANSWERS 10:22; job
   brood-prologue-build, 0.38.45, docs/campaign_b01_build.md): "Specimen One" (b01_specimen) is THE NATURALIST's first
   mission (the Brood storyline renamed from The Explorer; open after p01_leaf): map campaign:rio_negro_station

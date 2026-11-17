@@ -1,5 +1,8 @@
 # Act 1: The Age of Revolutions (outline)
 
+SUPERSEDED by docs/campaign_act1_plan.md (job campaign-act1-plan, 2026-11-17: the plan after the three prologues; three
+missions below no longer fit). Kept for the record.
+
 PROPOSAL by Claude, 2026-11-11, for the owner to change freely. Plot, places, play and choices only: the dialogue is
 the owner's. Canon and people: docs/campaign_timeline.md. Structure: docs/campaign_structure.md.
 
