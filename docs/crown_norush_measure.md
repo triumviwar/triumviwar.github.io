@@ -128,7 +128,25 @@ rule speaks in every game, "holds its wave back" in 20-25 games.
 
 ## Film (arm N, tools/film_coach.gd shots:1 under xvfb-run, 12:00)
 
-FILM_NOTES
+docs/crown_norush_measure/films/crbr_border_march_1158_N/: coach.txt (both sides every 15 s), story.txt, log.txt,
+result_short.json, map_0600/0900/1145, both armies every 30 s from 6:00 and the fights (jpg, 60%). The same map, seed and
+sides as the films of docs/crown_brood_measure.md and docs/crown_coach_measure_2.md (Border March 1158, the Crown P1), so
+they can be set side by side; a film is a new game, not a replay of the study's (in the study A trailed here, N lost).
+
+- **crbr_border_march_1158_N**: a draw on the clock, but the Crown is wiped out (0 halls, 0 army, 1 labourer at 12:00
+  against 4,190 of Brood army on 4 grounds). No lean; at 1:32 the Crown reads GREEDY and picks Balanced. Its economy is
+  good: the natural's hall at 3:08, a walled natural, 45 labourers at 8:00 (the Brood 44 workers). The Brood, never shown
+  a Horse Breeder, reads UNKNOWN at 3:00 and goes Timing with its whole economy behind it. Its first push at 6:02 (22
+  supply) is held at the palisade (the Crown loses 3, the Brood 18: "moves its army along the palisade", fight_0622).
+  But the armies part: 480 v 915 at 6:00, 1,190 v 1,905 at 8:00, while the musket-line rule asks every minute for more
+  than the Barracks give. At 8:09 the Brood comes with 66 supply (45 soldiers worth 1,125 at the gate at 8:26); the line
+  of 18 behind the palisade melts to 4 in twenty seconds (fight_0831: Raptors and Spitters among the Farms, the hall's
+  guard still forming), the Crown "holds the gate ... its army (240) goes out only at 3,244", the natural's hall falls at
+  9:00, the fresh hall at 10:20 is lost unbuilt, the main's hall at 11:35. The Crown's own army never left home.
+
+What it shows: the rush's absence did not buy the Crown a better game, it bought the Brood a free one. The Crown's
+standard opening is sound to 6:00 (it holds the first Timing push); it loses the 8:00 push because the Brood's army has
+grown faster than its own, not because it was out-built at home.
 
 ## Claude's choices
 
