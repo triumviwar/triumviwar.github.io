@@ -75,6 +75,10 @@ func _vb_keep() -> int:
 
 ## (crown-coach-v-brood) against the Brood the wave goes for its far ground, not the Mother (AICrownVBrood.wave_target)
 func _enemy_base() -> Vector2:
+	if mirror() != null and _attacking and not _rush_wave:
+		var mp: Vector2 = cm.wave_target(game.center_of_team(team))     # (crown-mirror-coach: the outlying halls first, AICrownMirror.wave_target)
+		if mp != Vector2.INF:
+			return mp
 	if vb() != null and _attacking and not _rush_wave:     # (the wave's goal only: not the rally, the rush, the raids)
 		var p: Vector2 = vbr.wave_target(game.center_of_team(team))
 		if p != Vector2.INF:
@@ -1050,6 +1054,7 @@ func _econ_build() -> void:
 func _think_stage_crown(i: int) -> void:
 	if i == 2 and mirror() != null:
 		cm.raid_answer()        # (crown-v-crown-coach: a raider at the labourers with no soldier to meet it: Musketeers first)
+		cm.siege_guns()         # (crown-mirror-coach: the side ahead brings guns for the walled hall, AICrownMirror.siege_guns)
 	if i == 1:
 		_owner_tick()           # (crown-owner-eco: the layout, the new hall's Farm, the wagons)
 		_finish_sites()
@@ -2662,6 +2667,8 @@ func _army() -> void:
 	defence().tick()        # (crown-coach-defence: the push seen coming)
 	if vb() != null:
 		vbr.track()             # (crown-coach-v-brood: the kills of the last minute, for the counter)
+	if mirror() != null:
+		cm.press()              # (crown-mirror-coach: the side ahead presses, AICrownMirror.press)
 	super()
 
 

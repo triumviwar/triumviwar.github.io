@@ -168,6 +168,8 @@ func _maybe_go() -> void:
 	var muskets := home.filter(func(u: Unit) -> bool: return Defs.MUSKETS.has(u.kind)).size()
 	var sup: int = ai._army_supply(home)
 	var big := sup >= BIG_GO or game.supply_used(ai.team) >= game.max_supply(ai.team) - 4
+	if not big and ai.mirror() != null and ai.cm.press_siege(home, guns.size()):
+		big = true                # (crown-mirror-coach: the side ahead presses, AICrownMirror.press_siege)
 	if not big and (guns.size() < GUNS_GO or cannons < 1 or muskets < LINE_GO):
 		return
 	var mine := 0.0
@@ -433,7 +435,11 @@ func _march(line: Array, guns: Array, mid: Vector2) -> void:
 	_orders_t = game.clock + 2.0
 	var goal: Vector2 = ai._enemy_base()
 	var nb = _next_anchor(mid, 99999.0)
-	if nb != null:
+	var mg: Vector2 = ai.cm.wave_target(mid) if ai.mirror() != null else Vector2.INF
+	if mg != Vector2.INF:
+		goal = mg                 # (crown-mirror-coach: the push marches on the cheapest enemy hall, AICrownMirror.wave_target;
+		                          # what stands in its way it still sets up against)
+	elif nb != null:
 		goal = _pos(nb)
 	# (the guns with the main body: a gun walking out from home as a reinforcement does not hold the line back)
 	var near_guns := guns.filter(func(g: Unit) -> bool: return g.position.distance_to(mid) < 700.0)
