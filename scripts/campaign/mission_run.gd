@@ -653,6 +653,9 @@ func _order(us: Array, v: Dictionary) -> void:
 			# {"do": "hunt", "prey": a tag, "within": tiles}: each idle or walking unit goes for the nearest living unit
 			# with that tag within reach (the machine going after the townsfolk in the streets)
 			var prey := tagged(String(v.get("prey", "")))
+			if v.has("spare"):
+				var safe := area_rect(String(v["spare"]))      # (prey inside this area is left alone: under the gate's guns)
+				prey = prey.filter(func(e) -> bool: return not safe.has_point(e.position))
 			var reach := float(v.get("within", 12)) * Defs.TILE
 			for u in us:
 				if u.target != null and is_instance_valid(u.target) and not u.target.dead and prey.has(u.target):

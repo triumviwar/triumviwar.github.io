@@ -22,8 +22,8 @@ const ROLES := {
 	# CAMPAIGN PEOPLE beyond the rebels (the Clockwork prologue, docs/campaign_c01_build.md): this table is the campaign's
 	# roles in general now. People are stand-ins until drawn (their "art" folder named here, used once it is in).
 	"citizen": {"kind": "labourer", "art": "c_citizen", "about": "A townsman of Nuremberg."},
-	"hollweg": {"kind": "missionary", "art": "c_hollweg", "name": "Meister Hollweg", "about": "Master of the Guild of the Escapement."},
-	"jakob": {"kind": "labourer", "art": "c_jakob", "name": "Jakob", "about": "Hollweg's journeyman."},
+	"hollweg": {"kind": "missionary", "art": "c_hollweg", "name": "Meister Hollweg", "hp": 260, "about": "Master of the Guild of the Escapement."},
+	"jakob": {"kind": "labourer", "art": "c_jakob", "name": "Jakob", "hp": 120, "about": "Hollweg's journeyman."},
 	"ferrer": {"kind": "missionary", "art": "c_ferrer", "name": "Father Ferrer", "about": "A Jesuit astronomer and engineer."},
 }
 
@@ -51,6 +51,9 @@ static func apply(u: Unit, r: String) -> void:
 		u.set_meta("mission_name", String(ro["name"]))
 	if bool(ro.get("torch", false)):
 		u.set_meta("torch", true)
+	if ro.has("hp"):
+		u.max_hp = float(ro["hp"])     # (a hero of the story: harder to kill than the stand-in he plays)
+		u.hp = u.max_hp
 	u.queue_redraw()
 
 

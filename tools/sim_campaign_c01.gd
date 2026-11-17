@@ -71,6 +71,9 @@ func _run() -> void:
 				r.count({"team": "guild"}), r.count({"team": "machine"}), ",".join(seeds.map(func(s): return s.trim_prefix("seed_"))),
 				r.tagged("folk").size(), int(r.counters.get("saved", 0)), int(r.counters.get("townsfolk", 0)),
 				"ok" if not r.tagged("hollweg").is_empty() else "DEAD", "ok" if not r.tagged("jakob").is_empty() else "dead", left])
+	var hw: Array = r.tagged("hollweg", false)
+	if not hw.is_empty() and is_instance_valid(hw[0]):
+		print("SIM hollweg at cell %s (dead %s)" % [g.cell_of(hw[0].position), hw[0].dead])
 	print("SIM end t=%d over=%s winner=%s flags=%s objectives=%s" % [g.clock, g.over, r.winner_side, r.flags, r.obj])
 	quit()
 
@@ -135,6 +138,14 @@ func _play(g: Game, r: MissionRun, gt: int, mt: int) -> void:
 		if not r.area_rect(to).has_point(j.position) and j.velocity.length() < 5.0:
 			g.group_move(jak, r.area_rect(to).get_center(), false)
 	var guard := r.area_rect("road_w").grow(4 * Defs.TILE)
+	if not hol.is_empty() and hol[0].hp < hol[0].max_hp * 0.7:
+		# (Hollweg hurt: half the army goes to him)
+		for i in range(0, army.size(), 2):
+			var foe := _nearest_foe(g, hol[0], mt, 360.0)
+			if foe:
+				army[i].cmd_attack(foe)
+			else:
+				g.group_move([army[i]], hol[0].position, true)
 	for u in army:
 		var foe := _nearest_foe(g, u, mt, 300.0)
 		if foe and (u.target == null or not is_instance_valid(u.target) or u.target.dead):

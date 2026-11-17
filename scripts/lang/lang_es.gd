@@ -3310,6 +3310,7 @@ const T := {
 	"Good. It needs its links like a clock needs its train.": "Bien. Necesita sus enlaces como un reloj su tren de ruedas.",
 	"I have the drawings, Meister. All of them.": "Tengo los planos, maestro. Todos.",
 	"Jakob. Not Jakob.": "Jakob. Jakob no.",
+	"Meister, you are hurt. Keep away from them until the last moment.": "Maestro, está herido. Manténgase lejos de ellos hasta el último momento.",
 	"Two minutes, Meister. To the gate.": "Dos minutos, maestro. A la puerta.",
 	"One cart left. People or papers, Meister. Not both.": "Queda un carro. Gente o papeles, maestro. No las dos cosas.",
 	"Put the people on the cart. Let the drawings burn.": "Suban a la gente al carro. Que ardan los planos.",

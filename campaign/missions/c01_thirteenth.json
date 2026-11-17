@@ -359,7 +359,15 @@
 		{
 			"team": "watch",
 			"kind": "musketeer",
-			"count": 3,
+			"count": 6,
+			"at": "gate_in",
+			"tag": "watch_g",
+			"order": "hold"
+		},
+		{
+			"team": "watch",
+			"kind": "cannon",
+			"count": 2,
 			"at": "gate_in",
 			"tag": "watch_g",
 			"order": "hold"
@@ -850,6 +858,12 @@
 								}
 							}
 						]
+					},
+					{
+						"clock_left": {
+							"name": "dusk_end",
+							"below": 270
+						}
 					}
 				]
 			},
@@ -2113,7 +2127,7 @@
 					"order": {
 						"tag": "mach_west_raid",
 						"do": "attack",
-						"to": "road_w"
+						"to": "bridge_w_s"
 					}
 				}
 			]
@@ -2139,7 +2153,8 @@
 						"team": "machine",
 						"do": "hunt",
 						"prey": "folk",
-						"within": 13
+						"within": 13,
+						"spare": "gate_in"
 					}
 				}
 			]
@@ -2396,6 +2411,33 @@
 					"say": [
 						"h_jakob"
 					]
+				}
+			]
+		},
+		{
+			"id": "hollweg_hurt",
+			"when": {
+				"all": [
+					{
+						"fired": "found"
+					},
+					{
+						"hurt": "hollweg"
+					}
+				]
+			},
+			"every": 45,
+			"times": 3,
+			"do": [
+				{
+					"say": [
+						"j_hurt"
+					]
+				},
+				{
+					"ping": {
+						"area": "gate_in"
+					}
 				}
 			]
 		},
@@ -2995,6 +3037,11 @@
 		"h_jakob": {
 			"who": "hollweg",
 			"text": "Jakob. Not Jakob."
+		},
+		"j_hurt": {
+			"who": "jakob",
+			"to": "guild",
+			"text": "Meister, you are hurt. Keep away from them until the last moment."
 		},
 		"f_warn": {
 			"who": "ferrer",

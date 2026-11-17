@@ -244,3 +244,31 @@ player did (selected, camera_moved, built, rooted, crew, did...) and the `point`
 | `{"point": {"ui": "card", "icon": "ab_canister"}}` | the pointer frames that one button of the command card (the card when it isn't there) |
 | `{"flag": {"name": value}}` (condition) | this mission's flag |
 | `{"past": {"<mission>.<flag>": value}}` (condition) | a flag a finished mission left |
+
+## Added by the Clockwork prologue (clockwork-prologue-build, 0.38.43; docs/campaign_c01_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| `"manual_end": true` | the mission is won only by a trigger's `win` (objectives all met do not end it); a failed primary still loses |
+| debrief `"banner": "NUREMBERG IS LOST"` | a STORY LOSS: the side won the mission (it counts: progress, flags, the next storylines), but the end screen shows the banner in a loss's colour instead of VICTORY |
+| debrief `"text_if": [{"if": cond, "text"}]` | lines added to the debrief when their condition holds (counters filled in) |
+| ending / opening page line `{"id", "if": cond}` | a line said only when its condition holds (MissionRun.pages_now); a page left with none is skipped |
+| `"counters": {name: {"start", "of"}}` | mission numbers; `{"counter": {"name", "add"/"set"}}`; condition `{"counter": {"name", "at_least", "below"}}`; in any objective's or debrief's words `{name}` (and `{name.of}`) |
+| `"exits": [{"area", "tag" or "team", "counter"}]` | units walking into the area leave the map (Game.consume_unit: not a loss) and are counted |
+| `{"clock": {"name", "secs"}}`, `{"name", "add": s}`, `{"name", "stop": true}` | a COUNTDOWN the triggers read: `{"clock_out": name}`, `{"clock_left": {"name", "below": s}}`; `{clock:name}` in words shows m:ss |
+| objective `"kind": "countdown", "clock": name` | the clock in the panel (ticked when out; never decides the end) |
+| trigger `"every": s` (`"times": n`, `"while": cond`) | a REPEATING trigger: after its first firing (its `when` and `delay`), again every s seconds while `while` (else `when`) holds |
+| `{"convert": {"tag" (or "area" + "from" + "kind" + "count"), "to": team, "warn": s, "as": new tag, "sound"}}` | units stutter (stunned, the stars, a sound) for the warning, then change side (colour, selection, supply) |
+| team `"roster": {"deny": [kinds]}`, `{"deny"/"unlock": {"team", "kind"}}` | what a team may not build or train in this mission (Game.can_train / requirement_text: "Not in this mission.") |
+| `{"sound": {"name", "area", "vol"}}` | a sound for everyone (assets/audio/<name>), sent to the friend online |
+| `{"name": {"tag", "name"}}` | the name over their bars |
+| `{"tally": {"flag", "counter", "bands": [[at least, value], ...]}}` | a flag from a counter (and `<flag>_n` the number) |
+| `{"order": {..., "do": "hunt", "prey": tag, "within": tiles}}` | each unit goes for the nearest living unit with that tag in reach |
+| condition `{"netted": {"team"}}` | one of that team's units is in a Netter's net |
+| objective `"unit_kind"` (reach) | only units of that kind count |
+| `"weather": "snow"`, `{"weather": "snow"/""}` | snow falling over the screen (under the HUD; not drawn headless) |
+| lights `winter_day`, `winter_dusk`, `winter_night` | the cold lights |
+| `"give"` takes `"tension"` | the Clockwork's Tension |
+| roles (Rebels.ROLES, now the campaign's roles in general) `citizen`, `hollweg`, `jakob`, `ferrer`; a role's `"hp"` | people as stand-ins (Labourer, Missionary) until drawn; heroes harder to kill |
+| hub `"after": {mission: {"title", "about", "still", "hide_layers", "tint"}}`; hotspot `"requires"` / `"until"` | the hub as the story left it (CampaignMenu.hub_now; HubScene.hidden_layers) |
+| `set_objective(..., "hidden")` on a settled one | takes it off the panel (a new part of the mission) |

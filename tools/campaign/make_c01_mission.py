@@ -106,7 +106,8 @@ M = {
         {"team": "watch", "kind": "musketeer", "count": 4, "at": "bridge_w_s", "tag": "watch_w", "order": "hold"},
         {"team": "watch", "kind": "musketeer", "count": 3, "at": "mill_bank", "tag": "watch_m", "order": "hold"},
         {"team": "watch", "kind": "musketeer", "count": 3, "at": "bridge_e_s", "tag": "watch_e", "order": "hold"},
-        {"team": "watch", "kind": "musketeer", "count": 3, "at": "gate_in", "tag": "watch_g", "order": "hold"},
+        {"team": "watch", "kind": "musketeer", "count": 6, "at": "gate_in", "tag": "watch_g", "order": "hold"},
+        {"team": "watch", "kind": "cannon", "count": 2, "at": "gate_in", "tag": "watch_g", "order": "hold"},
         {"team": "watch", "kind": "dismounted", "count": 1, "at": "market", "tag": "captain", "name": "Captain of the Watch", "order": "hold"},
     ],
     "buildings": [],
@@ -176,7 +177,8 @@ M = {
         {"id": "dusk_order_left", "when": {"all": [{"fired": "dusk"}, {"not": {"done": "order"}}]}, "do": [
             {"objective": {"id": "order", "set": "hidden"}}]},
         # ================================================================ PART 2: THE MILL ISLAND
-        {"id": "found", "when": {"any": [{"done": "look"}, {"all": [{"fired": "dusk"}, {"count": {"side": "guild", "area": "mill_island", "at_least": 1}}]}]},
+        {"id": "found", "when": {"any": [{"done": "look"}, {"all": [{"fired": "dusk"}, {"count": {"side": "guild", "area": "mill_island", "at_least": 1}}]},
+                                         {"clock_left": {"name": "dusk_end", "below": 270}}]},
          "do": [
             {"objective": {"id": "look", "set": "done"}},
             {"say": ["j_found", "h_found", "f_found"]},
@@ -255,10 +257,10 @@ M = {
         seed_spawn("market_grow", "seed_market", "market", "bridge_w_n", 45, "lost", [("clock_soldier", 2), ("springer", 1)], [{"not": {"dead": "links"}}, {"not": {"fired": "stroke"}}]),
         seed_spawn("east_grow", "seed_east", "east_q", "bridge_e_s", 50, "lost", [("clock_soldier", 2)], [{"not": {"fired": "stroke"}}]),
         seed_spawn("south_raid", "seed_east", "east_gate", "houses_se", 80, "lost", [("clock_soldier", 3)], [{"not": {"fired": "stroke"}}], cap=CAP + 4),
-        seed_spawn("west_raid", "seed_baths", "baths", "road_w", 90, "lost", [("clock_soldier", 2)], [{"not": {"fired": "stroke"}}], cap=CAP + 4),
+        seed_spawn("west_raid", "seed_baths", "baths", "bridge_w_s", 90, "lost", [("clock_soldier", 2)], [{"not": {"fired": "stroke"}}], cap=CAP + 4),
         # the machine goes after the people in the streets
         {"id": "hunt", "when": {"all": [{"fired": "lost"}, {"not": {"fired": "stroke"}}]}, "every": 6, "do": [
-            {"order": {"team": "machine", "do": "hunt", "prey": "folk", "within": 13}}]},
+            {"order": {"team": "machine", "do": "hunt", "prey": "folk", "within": 13, "spare": "gate_in"}}]},
         {"id": "pendulum_m", "when": {"clock_left": {"name": "fall", "below": 300}}, "do": [
             {"spawn": {"team": "machine", "kind": "pendulum", "count": 1, "at": "east_q", "tag": "mach_pend", "order": {"do": "attack", "to": "houses_se"}}},
             {"say": ["j_pend"]}]},
@@ -274,6 +276,8 @@ M = {
             {"objective": {"id": "drawings", "set": "done"}}, {"name": {"tag": "jakob", "name": "Jakob (the drawings)"}},
             {"flag": {"drawings": "taken"}}, {"say": ["j_drawings"]}]},
         {"id": "jakob_lost", "when": {"all": [{"fired": "lost"}, {"dead": "jakob"}]}, "do": [{"say": ["h_jakob"]}]},
+        {"id": "hollweg_hurt", "when": {"all": [{"fired": "found"}, {"hurt": "hollweg"}]}, "every": 45, "times": 3, "do": [
+            {"say": ["j_hurt"]}, {"ping": {"area": "gate_in"}}]},
         {"id": "warn_2", "when": {"clock_left": {"name": "fall", "below": 120}}, "do": [{"say": ["f_warn"]}, {"ping": {"area": "gate_in"}}, {"sound": {"name": "campaign/off_beat"}}]},
         # THE GATE: the last cart has room for one thing (only if Jakob carried the drawings out of the workshop)
         {"id": "gate_choice", "when": {"all": [{"clock_left": {"name": "fall", "below": 75}}, {"flag": {"drawings": "taken"}}, {"not": {"dead": "jakob"}}]}, "do": [
@@ -366,6 +370,7 @@ M = {
         "h_cut": {"who": "hollweg", "text": "Good. It needs its links like a clock needs its train."},
         "j_drawings": {"who": "jakob", "text": "I have the drawings, Meister. All of them."},
         "h_jakob": {"who": "hollweg", "text": "Jakob. Not Jakob."},
+        "j_hurt": {"who": "jakob", "to": "guild", "text": "Meister, you are hurt. Keep away from them until the last moment."},
         "f_warn": {"who": "ferrer", "text": "Two minutes, Meister. To the gate."},
         "cap_cart": {"who": "captain", "text": "One cart left. People or papers, Meister. Not both."},
         "h_people": {"who": "hollweg", "text": "Put the people on the cart. Let the drawings burn."},
