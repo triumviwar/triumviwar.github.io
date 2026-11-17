@@ -649,6 +649,23 @@ func _order(us: Array, v: Dictionary) -> void:
 		"patrol":
 			for u in us:
 				u.cmd_patrol(p)
+		"hunt":
+			# {"do": "hunt", "prey": a tag, "within": tiles}: each idle or walking unit goes for the nearest living unit
+			# with that tag within reach (the machine going after the townsfolk in the streets)
+			var prey := tagged(String(v.get("prey", "")))
+			var reach := float(v.get("within", 12)) * Defs.TILE
+			for u in us:
+				if u.target != null and is_instance_valid(u.target) and not u.target.dead and prey.has(u.target):
+					continue
+				var best: Entity = null
+				var bd := reach
+				for e in prey:
+					var dd: float = u.position.distance_to(e.position)
+					if dd < bd:
+						bd = dd
+						best = e
+				if best:
+					u.cmd_attack(best)
 
 
 ## THE LIGHT (campaign-m1): the scene tinted for the time of day ("night" blue and dim, "dawn" warm, "day" as
@@ -753,8 +770,8 @@ func _show(ln: Dictionary) -> void:
 func set_objective(oid: String, state: String) -> void:
 	if not obj.has(oid) or obj[oid] == state:
 		return
-	if obj[oid] in ["done", "failed"] and state != "active":
-		return
+	if obj[oid] in ["done", "failed"] and not state in ["active", "hidden"]:
+		return          # (a settled objective may still be taken off the panel: the Clockwork prologue's Part 3)
 	obj[oid] = state
 	if game.mlog:
 		game.mlog.add("(mission) objective %s: %s" % [oid, state])

@@ -112,6 +112,12 @@
 			12,
 			10
 		],
+		"guildhouse": [
+			76,
+			34,
+			9,
+			5
+		],
 		"perpetual_ring": [
 			46,
 			60,
@@ -468,7 +474,7 @@
 			"primary": false,
 			"kind": "manual",
 			"hidden": true,
-			"text": "Jakob fetches the master drawings from the workshop."
+			"text": "Jakob fetches the master drawings from the Guild House north of the river."
 		},
 		{
 			"id": "m_hollweg",
@@ -735,7 +741,17 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "clock_soldier",
-						"count": 4,
+						"count": 7,
+						"at": "mill_island",
+						"tag": "mill_guard",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "springer",
+						"count": 2,
 						"at": "mill_island",
 						"tag": "mill_guard",
 						"order": "hold"
@@ -1082,7 +1098,12 @@
 					{
 						"count": {
 							"team": "machine",
-							"below": 18
+							"below": 26
+						}
+					},
+					{
+						"not": {
+							"fired": "lost"
 						}
 					}
 				]
@@ -1122,7 +1143,12 @@
 					{
 						"count": {
 							"team": "machine",
-							"below": 18
+							"below": 26
+						}
+					},
+					{
+						"not": {
+							"fired": "lost"
 						}
 					}
 				]
@@ -1324,7 +1350,7 @@
 				},
 				{
 					"ping": {
-						"area": "workshop"
+						"area": "guildhouse"
 					}
 				},
 				{
@@ -1818,7 +1844,7 @@
 					{
 						"count": {
 							"team": "machine",
-							"below": 26
+							"below": 32
 						}
 					},
 					{
@@ -1863,7 +1889,7 @@
 					{
 						"count": {
 							"team": "machine",
-							"below": 26
+							"below": 32
 						}
 					},
 					{
@@ -1913,7 +1939,7 @@
 					{
 						"count": {
 							"team": "machine",
-							"below": 26
+							"below": 32
 						}
 					},
 					{
@@ -1972,7 +1998,7 @@
 					{
 						"count": {
 							"team": "machine",
-							"below": 26
+							"below": 32
 						}
 					},
 					{
@@ -2017,7 +2043,7 @@
 					{
 						"count": {
 							"team": "machine",
-							"below": 30
+							"below": 36
 						}
 					},
 					{
@@ -2027,7 +2053,7 @@
 					}
 				]
 			},
-			"every": 120,
+			"every": 80,
 			"do": [
 				{
 					"spawn": {
@@ -2042,7 +2068,78 @@
 					"order": {
 						"tag": "mach_south_raid",
 						"do": "attack",
+						"to": "houses_se"
+					}
+				}
+			]
+		},
+		{
+			"id": "west_raid",
+			"when": {
+				"all": [
+					{
+						"fired": "lost"
+					},
+					{
+						"not": {
+							"dead": "seed_baths"
+						}
+					},
+					{
+						"count": {
+							"team": "machine",
+							"below": 36
+						}
+					},
+					{
+						"not": {
+							"fired": "stroke"
+						}
+					}
+				]
+			},
+			"every": 90,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "baths",
+						"tag": "mach_west_raid"
+					}
+				},
+				{
+					"order": {
+						"tag": "mach_west_raid",
+						"do": "attack",
 						"to": "road_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "hunt",
+			"when": {
+				"all": [
+					{
+						"fired": "lost"
+					},
+					{
+						"not": {
+							"fired": "stroke"
+						}
+					}
+				]
+			},
+			"every": 6,
+			"do": [
+				{
+					"order": {
+						"team": "machine",
+						"do": "hunt",
+						"prey": "folk",
+						"within": 13
 					}
 				}
 			]
@@ -2251,7 +2348,7 @@
 					{
 						"count": {
 							"tag": "jakob",
-							"area": "workshop",
+							"area": "guildhouse",
 							"at_least": 1
 						}
 					}

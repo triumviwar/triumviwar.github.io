@@ -547,7 +547,7 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 			if v.get("at") is String and not areas.has(String(v["at"])):
 				out.append("%s: unknown area %s" % [where, v["at"]])
 		"order":
-			if not ["attack", "move", "hold", "stop", "patrol"].has(String(v.get("do", ""))):
+			if not ["attack", "move", "hold", "stop", "patrol", "hunt"].has(String(v.get("do", ""))):
 				out.append("%s: unknown order %s" % [where, v.get("do")])
 			if v.has("to") and not areas.has(String(v["to"])):
 				out.append("%s: unknown area %s" % [where, v["to"]])

@@ -21,7 +21,7 @@ import json
 import os
 
 STILL = "res://campaign/stills/%s.jpg"
-CAP = 26                                   # the machine's living units the seeds spawn up to (never an endless grind)
+CAP = 32                                   # the machine's living units the seeds spawn up to (never an endless grind)
 
 # ---------------------------------------------------------------- helpers
 
@@ -86,7 +86,7 @@ M = {
          "control": {"solo": "script", "coop": "script", "versus": "p2"}},
     ],
     "areas": {
-        "yard": [44, 58, 24, 18], "workshop": [48, 61, 12, 10], "perpetual_ring": [46, 60, 16, 12],
+        "yard": [44, 58, 24, 18], "workshop": [48, 61, 12, 10], "guildhouse": [76, 34, 9, 5], "perpetual_ring": [46, 60, 16, 12],
         "wagons": [52, 30, 14, 5], "mill_island": [52, 38, 14, 8], "mill_bank": [53, 49, 11, 5], "mill_north": [54, 30, 10, 5],
         "baths": [24, 23, 14, 12], "market": [48, 19, 26, 10], "east_q": [94, 8, 16, 12], "castle": [12, 6, 24, 13],
         "bridge_w_s": [24, 44, 8, 5], "bridge_w_n": [24, 35, 8, 5], "bridge_e_s": [90, 44, 8, 5], "bridge_e_n": [90, 35, 8, 5],
@@ -132,7 +132,7 @@ M = {
          "text": "Cut the machine's links at the three bridges."},
         {"id": "jakob", "side": "guild", "primary": False, "kind": "protect", "hidden": True, "tag": "jakob", "text": "Jakob must live."},
         {"id": "drawings", "side": "guild", "primary": False, "kind": "manual", "hidden": True,
-         "text": "Jakob fetches the master drawings from the workshop."},
+         "text": "Jakob fetches the master drawings from the Guild House north of the river."},
         # versus: the machine's player
         {"id": "m_hollweg", "side": "machine", "primary": True, "kind": "destroy", "tag": "hollweg", "text": "Kill Meister Hollweg before he reaches the gate."},
     ],
@@ -165,7 +165,8 @@ M = {
             {"build": {"team": "machine", "kind": "regulator", "at": "link_w", "tag": "links"}},
             {"build": {"team": "machine", "kind": "regulator", "at": "link_m", "tag": "links"}},
             {"build": {"team": "machine", "kind": "regulator", "at": "link_e", "tag": "links"}},
-            {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 4, "at": "mill_island", "tag": "mill_guard", "order": "hold"}},
+            {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 7, "at": "mill_island", "tag": "mill_guard", "order": "hold"}},
+            {"spawn": {"team": "machine", "kind": "springer", "count": 2, "at": "mill_island", "tag": "mill_guard", "order": "hold"}},
             {"spawn": {"team": "machine", "kind": "winder", "count": 2, "at": "mill_island", "tag": "mill_guard", "order": "hold"}},
             {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 3, "at": "baths", "tag": "baths_guard", "order": "hold"}},
             {"say": ["j_mill", "h_mill", "tip_net"]},
@@ -207,8 +208,8 @@ M = {
                              "do": [{"say": ["h_quiet"]}, {"give": {"team": "guild", "gold": 500, "tension": 150}},
                                     {"spawn": {"team": "guild", "kind": "pendulum", "count": 1, "at": "workshop", "tag": "showpiece"}}]}]}}]},
         # the seeds grow (part 2): a steady tide, never endless
-        seed_spawn("mill_grow", "seed_mill", "mill_island", "mill_bank", 45, "found", [("clock_soldier", 2)], cap=18),
-        seed_spawn("baths_grow", "seed_baths", "baths", "bridge_w_s", 60, "found", [("clock_soldier", 2)], cap=18),
+        seed_spawn("mill_grow", "seed_mill", "mill_island", "mill_bank", 45, "found", [("clock_soldier", 2)], [{"not": {"fired": "lost"}}], cap=26),
+        seed_spawn("baths_grow", "seed_baths", "baths", "bridge_w_s", 60, "found", [("clock_soldier", 2)], [{"not": {"fired": "lost"}}], cap=26),
         {"id": "mill_burnt", "when": {"dead": "seed_mill"}, "do": [{"say": ["h_mill_down", "j_mill_down"]}, {"counter": {"name": "seeds", "add": 1}}]},
         # night: 45 s after the mill seed burns, or when the part's time is up
         {"id": "night", "when": {"any": [{"all": [{"fired": "found"}, {"dead": "seed_mill"}]}, {"clock_out": "dusk_end"}]}, "delay": 3, "do": [
@@ -228,7 +229,7 @@ M = {
             {"objective": {"id": "people", "set": "active"}}, {"objective": {"id": "cut", "set": "active"}},
             {"objective": {"id": "jakob", "set": "active"}}, {"objective": {"id": "drawings", "set": "active"}},
             {"clock": {"name": "fall", "secs": 540}},
-            {"ping": {"area": "gate_in"}}, {"ping": {"area": "workshop"}},
+            {"ping": {"area": "gate_in"}}, {"ping": {"area": "guildhouse"}},
             {"reveal": {"area": "gate_in", "side": "guild", "secs": 600}},
             {"order": {"tag": "ferrer", "do": "move", "to": "gate_in"}}]},
         {"id": "mill_still", "when": {"all": [{"fired": "lost"}, {"not": {"dead": "seed_mill"}}]}, "do": [{"say": ["h_mill_late"]}]},
@@ -253,7 +254,11 @@ M = {
         seed_spawn("baths_grow3", "seed_baths", "baths", "houses_nw", 45, "lost", [("clock_soldier", 2)], [{"not": {"dead": "links"}}, {"not": {"fired": "stroke"}}]),
         seed_spawn("market_grow", "seed_market", "market", "bridge_w_n", 45, "lost", [("clock_soldier", 2), ("springer", 1)], [{"not": {"dead": "links"}}, {"not": {"fired": "stroke"}}]),
         seed_spawn("east_grow", "seed_east", "east_q", "bridge_e_s", 50, "lost", [("clock_soldier", 2)], [{"not": {"fired": "stroke"}}]),
-        seed_spawn("south_raid", "seed_east", "east_gate", "road_w", 120, "lost", [("clock_soldier", 3)], [{"not": {"fired": "stroke"}}], cap=CAP + 4),
+        seed_spawn("south_raid", "seed_east", "east_gate", "houses_se", 80, "lost", [("clock_soldier", 3)], [{"not": {"fired": "stroke"}}], cap=CAP + 4),
+        seed_spawn("west_raid", "seed_baths", "baths", "road_w", 90, "lost", [("clock_soldier", 2)], [{"not": {"fired": "stroke"}}], cap=CAP + 4),
+        # the machine goes after the people in the streets
+        {"id": "hunt", "when": {"all": [{"fired": "lost"}, {"not": {"fired": "stroke"}}]}, "every": 6, "do": [
+            {"order": {"team": "machine", "do": "hunt", "prey": "folk", "within": 13}}]},
         {"id": "pendulum_m", "when": {"clock_left": {"name": "fall", "below": 300}}, "do": [
             {"spawn": {"team": "machine", "kind": "pendulum", "count": 1, "at": "east_q", "tag": "mach_pend", "order": {"do": "attack", "to": "houses_se"}}},
             {"say": ["j_pend"]}]},
@@ -265,7 +270,7 @@ M = {
         {"id": "mill_burnt_early", "when": {"all": [{"dead": "seed_mill"}, {"not": {"fired": "lost"}}]}, "do": []},
         {"id": "cut_done", "when": {"all": [{"fired": "lost"}, {"done": "cut"}]}, "do": [{"clock": {"name": "fall", "add": 90}}, {"say": ["j_cut", "h_cut"]}]},
         # Jakob and the drawings
-        {"id": "drawings_got", "when": {"all": [{"fired": "lost"}, {"count": {"tag": "jakob", "area": "workshop", "at_least": 1}}]}, "do": [
+        {"id": "drawings_got", "when": {"all": [{"fired": "lost"}, {"count": {"tag": "jakob", "area": "guildhouse", "at_least": 1}}]}, "do": [
             {"objective": {"id": "drawings", "set": "done"}}, {"name": {"tag": "jakob", "name": "Jakob (the drawings)"}},
             {"flag": {"drawings": "taken"}}, {"say": ["j_drawings"]}]},
         {"id": "jakob_lost", "when": {"all": [{"fired": "lost"}, {"dead": "jakob"}]}, "do": [{"say": ["h_jakob"]}]},
