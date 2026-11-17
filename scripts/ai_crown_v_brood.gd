@@ -61,9 +61,9 @@ func _init(a) -> void:
 	counter_off = off or not args.has("cvbcounter:on")
 	hold_off = cba_off or args.has("cbahold:off")
 	econ_off = cba_off or args.has("cbaecon:off")
-	if not cba_off and not args.has("cbacounter:off") and not args.has("cvbcounter:on"):
-		counter_off = off       # (crown-brood-army part 6: the counter after a held push is on with the hold, and only when
-		counter_died_only = true  # the Brood's wave has just died at our line: the army seen lately is stale by then)
+	if not cba_off and args.has("cbacounter:on") and not args.has("cvbcounter:on"):
+		counter_off = off       # (crown-brood-army part 6, MEASURED IN FILMS AND NOT KEPT: the counter after a held push, only
+		counter_died_only = true  # when the Brood's wave has just died at our line: see part 6)
 
 
 static func is_line(u: Unit) -> bool:
@@ -431,17 +431,20 @@ func floor_produce() -> int:
 
 
 
-## 6. HOLD THE FIRST PUSH, THEN COUNTER (crown-brood-army). With the floor the Crown had 1,000-1,300 of army at 7:00-8:00
-##    and its wave went out at the first edge over the Brood army it reckoned (EDGE_BROOD 1.25 of the honest reckoning): Redrock
-##    r0 7:55, 1,200 of army against 990 known, 16 Musketeers formed for a guard of 100, lost the field 480 for 100 with the
-##    Brood's army coming on behind; the Brood came back at 10:10 with 2,360 against 720 and took both halls. A human holds
-##    the first push at his wall and guns (the defender's advantage, design rule 2) and goes out when it has broken there.
-##    So against the Brood, until HOLD_UNTIL: no wave goes before a push has been held (HELD_KILL of Brood killed within
-##    AICrownVBrood.COUNTER_WINDOW s), unless the army is HOLD_EDGE times the Brood army it reckons (here never less than
-##    AICrown.BROOD_TABLE: the honest reckoning's 0.4 of it let a wave out at 7:47 into twice what it reckoned); once one has
-##    been held, the counter (part 3 above, measured
-##    without the floor and not kept then) goes as soon as the Brood's wave has died at our line. Switches `cbahold:off`,
-##    `cbacounter:off`.
+## 6. HOLD THE FIRST PUSH (crown-brood-army). With the floor the Crown had 1,000-1,300 of army at 7:00-8:00 and its wave
+##    went out at the first edge over the Brood army it reckoned (EDGE_BROOD 1.25 of the honest reckoning): Redrock r0 7:55,
+##    1,200 of army against 990 known, 16 Musketeers formed for a guard of 100, lost the field 480 for 100 with the Brood's
+##    army coming on behind; the Brood came back at 10:10 with 2,360 against 720 and took both halls. Hollowfen r1 7:14: wave
+##    2 out with 24 supply, the Brood's push at the natural's gate at 7:31 met 120 at home. A human holds the first push at
+##    his wall and guns (the defender's advantage, design rule 2). So against the Brood, until HOLD_UNTIL, no wave goes unless
+##    the army is HOLD_EDGE times the Brood army it reckons, never less than AICrown.BROOD_TABLE (the honest reckoning's 0.4
+##    of the table let a wave out at 7:47 into twice what it reckoned: Saltmarsh r1, 1,180 against 600 reckoned and 2,125
+##    there). A push held (HELD_KILL of Brood killed within COUNTER_WINDOW s) relaxes the floor (part 5) and lets the economy
+##    grow (part 7). THE COUNTER after a held push (part 3, `cbacounter:on`: only when the Brood's wave has just died at our
+##    line) was tried again and NOT KEPT: in the Saltmarsh r1 film the push broke at 6:41 (475 killed), the counter went at
+##    8:19 with 26 supply, met the Brood's army unformed at 9:04 and was gone; the Brood's next push at 9:36 found nobody at
+##    home and took both halls by 11:25 (as part 3's own measure found: the Brood rebuilds in two minutes). Switch
+##    `cbahold:off`.
 var hold_off := false
 const HOLD_UNTIL := 600.0
 const HOLD_EDGE := 2.0
@@ -458,8 +461,8 @@ func hold_first(mine: float, est: float) -> bool:
 	if held_t < 0.0 and killed_lately() >= HELD_KILL:
 		held_t = game.clock
 		ai.say("against the Brood its push has broken on our line (%d killed in %d s): from now the counter may go" % [int(killed_lately()), int(COUNTER_WINDOW)])
-	if held_t >= 0.0:
-		return false
+	if held_t >= 0.0 and not counter_off:
+		return false             # (`cbacounter:on`: once a push is held, the counter and the usual edge decide)
 	# (the reckoning is honest about what it has NOT seen (AICrownCoach 3: 0.4 of the table while the Brood was seen lately,
 	# less half of what we killed): Saltmarsh r1 7:47, 1,180 of army against 600 reckoned walked into 2,125 of Brood. Before
 	# the first push the full table of a Hard Brood stands for the army it has not seen)
@@ -469,7 +472,10 @@ func hold_first(mine: float, est: float) -> bool:
 	hold_waits += 1
 	if game.clock - _hold_said > 60.0:
 		_hold_said = game.clock
-		ai.say("against the Brood the army holds at home for its first push: %d of army against the %d it reckons (out at %d before the push is held)" % [int(mine), int(est), int(est * HOLD_EDGE)])
+		if held_t >= 0.0:
+			ai.say("against the Brood the army stays at home behind its wall and guns till %d:%02d: %d of army against the %d it reckons (out at %d)" % [int(HOLD_UNTIL) / 60, int(HOLD_UNTIL) % 60, int(mine), int(est), int(est * HOLD_EDGE)])
+		else:
+			ai.say("against the Brood the army holds at home for its first push: %d of army against the %d it reckons (out at %d before the push is held)" % [int(mine), int(est), int(est * HOLD_EDGE)])
 	return true
 
 
