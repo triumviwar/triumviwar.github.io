@@ -13,20 +13,30 @@ extends RefCounted
 ##     nearest enemy known will be in its reach by the time it is set (its distance less the enemy's closing speed times the
 ##     unlimbering + GSET_SLACK s), instead of first rolling on to its exact spot (benched: at contact the guns were still
 ##     limbered 0 of 9 times v Clock Soldiers).
+##     UP TO REACH: a gun set (or come to its spot) behind the line with the enemy just out of its reach (the line stops by
+##     its front rank and the guns stand GUN_BACK behind it: 330 + 83 px is the edge of their 430) goes up as far as its
+##     reach needs, never nearer than GUN_MIN_BACK behind the front rank.
 ##  3. THE GUNS FOLLOW THE LINE (`gfollow:off`): a set gun of the line with nothing in its reach, the enemy out of its
 ##     reach and not coming on, and the line stepped on FOLLOW_GAP behind, limbers and rolls up behind the line again.
 ##  4. THE HELD LINE (`gawait:off`): the coach's held line (AICrownCoach.line_holds: its guns set, the enemy coming on) is
 ##     a state the line keeps (AICrownLine._await) instead of falling through to the shared loop.
 ##  5. THE WAVE WALKS AT ITS GUNS' PACE (`gpace:off`): a Field Cannon is slower than a Musketeer (38 against 62 px/s):
 ##     on a long march the men drew away from the guns, and the line met the enemy with its guns 900-1,300 px behind
-##     (benched). Now while the wave marches with nothing in sight, the men more than PACE_AHEAD ahead of their guns stop
-##     (on HOLD) till the guns are within PACE_GO of them, then go on together.
+##     (benched). Now while the wave marches with nothing in sight, a man more than PACE_HOLD ahead of his guns stops (on
+##     HOLD) till the guns are within PACE_GO of him, then goes on: the wave walks at the guns' pace.
 ##  6. NO COLUMN UP A RAMP (`gramp:off`): coached, Highmoor 1104 10:40 (crown-coach-measure-2): the wave climbed the
 ##     Clockwork's ramp as a column into its gears and was spent (army 1,625 at 10:00, 900 at 11:00). Now a marching wave
 ##     whose road climbs a ramp onto the enemy's high ground within RAMP_SEE stops at the ramp's foot: its line forms there
 ##     facing up the ramp with the guns set behind it (whatever comes down walks into the line and the guns), and it goes up
 ##     only with CLIMB times what it reckons stands up there (seen there, or what the enemy has not shown elsewhere); after
 ##     FOOT_MAX s short of that it leaves that target be (TRADE_AVOID, as a lost trade) and the wave looks for another.
+##  8. THE GUNS' EYES (`gspot:off`): a gun reaches 430 px, a musket and a rider see 256: a held line's guns stood set with
+##     the enemy known in their reach but out of everyone's sight, and could not fire (benched: an enemy musket line on
+##     HOLD 320 px off was never shelled; the line walked into its fire). Now while the line stands (forming, stepping,
+##     set, held, at a ramp's foot) with a set gun and an enemy known in the guns' reach that nobody sees, the screen's
+##     lead rider rides to SPOT_D of it (inside its sight, outside the reach of what can shoot it) and keeps it in sight;
+##     and the line HOLDS while its guns shell what they see (up to AICrownLine.AWAIT_MAX s) instead of walking on into
+##     musket reach at once.
 ##  7. THE DEFENCE'S GUNS SET (`gdef:off`): a gun of a detachment sent to a force at our buildings sets up where it is
 ##     once an enemy is in its reach (or about to be), instead of being sent on again and again into the raid's spot.
 ## Plus THE COUNT (read only, always on): every fight of the Crown's army (an armed enemy within CONTACT of one of its
@@ -53,6 +63,10 @@ var await_on := not off and not _args.has("gawait:off")
 var pace_on := not off and not _args.has("gpace:off")
 var ramp_on := not off and not _args.has("gramp:off")
 var def_on := not off and not _args.has("gdef:off")
+var spot_on := not off and not _args.has("gspot:off")
+const SPOT_D := 240.0           # (px) the spotter this far from the enemy it keeps in sight (a rider sees 256)
+const SPOT_SAFE := 20.0         # (px) ... and this far outside the reach of what can shoot it
+var spots := 0                  # (tests) times the lead rider rode to spot for the guns
 const RAMP_SEE := 900.0         # (px) along the road: a ramp up this near the wave is weighed
 const RAMP_EVERY := 3.0         # (s) the road looked up again this often
 const TOP_R := 700.0            # (px) the enemy known this near the ramp's top stands up there
@@ -72,16 +86,14 @@ var leaves := 0                 # (tests) ... and left the target be
 var def_sets := 0               # (tests) defence guns set where they stood
 const GSET_SLACK := 0.8         # (s) on top of the unlimbering
 const FOLLOW_GAP := 7.0         # (tiles) a set gun this far behind the line's front rank, nothing in reach: it follows
-const PACE_AHEAD := 190.0       # (px) the men this far ahead of their guns along the road: they wait
-const PACE_HOLD := 130.0        # (px) ... those of them this far ahead stop ...
-const PACE_GO := 80.0          # (px) ... till the guns are this near
+const PACE_HOLD := 170.0        # (px) the men this far ahead of their guns along the road stop ...
+const PACE_GO := 90.0          # (px) ... till the guns are this near
 const PACE_GUNS_R := 1400.0     # (px) guns this near the men are the wave's (farther: reinforcements on their way)
-const PACE_MAX := 25.0          # (s) a wait no longer than this (a gun stuck), then PACE_COOL s without
 const PACE_COOL := 20.0
 var _paced := {}                # Unit -> true: men stopped for the guns
-var _pace_t := -1.0
 var _pace_cool := 0.0
 var sets := 0                   # (tests) guns set where they stood in time
+var ups := 0                    # (tests) guns moved up to reach the enemy
 var follows := 0                # (tests) set guns that limbered to follow the line
 var paces := 0                  # (tests) waits for the guns on the march
 
@@ -156,6 +168,30 @@ func line_tick(ln, ground: Array, foes: Array) -> void:
 				ln._spot[u] = u.position
 				sets += 1
 				continue
+		if set_on and nd < rng + 260.0 and nd > rng - 30.0 and close < 20.0 and ln.st in ["set", "await", "foot", "step"]:
+			# (UP TO REACH: set at its spot behind the line, the enemy just out of its reach (the line stops by its front
+			# rank, the guns stand behind it): it goes up as far as its reach needs, never nearer than GUN_MIN_BACK behind)
+			var o_near: Vector2 = Vector2.INF
+			for o in foes:
+				if is_instance_valid(o) and not o.dead and ln._pos(o).distance_to(u.position) <= nd + 1.0:
+					o_near = ln._pos(o)
+					break
+			if o_near != Vector2.INF and not (u.target != null and is_instance_valid(u.target) and not u.target.dead):
+				var to: Vector2 = (o_near - u.position).normalized()
+				var want: float = nd - (rng - 50.0)
+				var np: Vector2 = u.position + to * want
+				var nb: float = (np - ln._c).dot(ln._face)
+				if nb > -AICrownLine.GUN_MIN_BACK * T:
+					np -= ln._face * (nb + AICrownLine.GUN_MIN_BACK * T)
+				np = ln._same_level(np, game.level_of(ln._c), ln._c)
+				if np.distance_to(u.position) > 24.0 and np.distance_to(o_near) < rng - 20.0:
+					ln._spot[u] = np
+					if u.tesla_mode == "deployed":
+						u.cmd_pack()
+					elif u.tesla_mode == "packed":
+						u.cmd_move(np)
+					ups += 1
+					continue
 		if follow_on and u.tesla_mode == "deployed" and ln.st in ["step", "advance", "fight"] and back < -FOLLOW_GAP * T:
 			var target_ok: bool = u.target != null and is_instance_valid(u.target) and not u.target.dead
 			if not target_ok and nd > rng + 150.0 and close < 20.0:
@@ -202,25 +238,23 @@ func busy(u: Unit) -> bool:
 
 # ------------------------------------------------------------------ 5. the wave walks at its guns' pace
 
-## The marching wave (the line's state "", nothing seen): true = the men wait for their guns this think.
+## The marching wave (the line's state "", nothing seen): true = some of the men wait for their guns this think. A man
+## more than PACE_HOLD ahead of the guns' middle along the road stops on HOLD; a stopped man the guns have come within
+## PACE_GO of goes on. The guns not moving on for PACE_STUCK s (a gun stuck): the men go on, PACE_COOL s without.
 func pace(ln, ground: Array, bc: Vector2, target: Vector2) -> bool:
-	if not pace_on or target == Vector2.INF:
+	if not pace_on or target == Vector2.INF or game.clock < _pace_cool:
 		return _pace_release(target)
-	if game.clock < _pace_cool:
-		return false
 	var men: Array = []
-	var guns: Array = []
 	var mc := Vector2.ZERO
 	for u in ground:
-		if AICrownLine.is_gun(u):
-			continue
-		if u.is_mounted():
+		if AICrownLine.is_gun(u) or u.is_mounted():
 			continue
 		men.append(u)
 		mc += u.position
 	if men.size() < AICrownLine.LINE_MIN:
 		return _pace_release(target)
 	mc /= men.size()
+	var guns: Array = []
 	var gc := Vector2.ZERO
 	for u in ground:
 		if AICrownLine.is_gun(u) and u.tesla_mode == "packed" and u.position.distance_to(mc) < PACE_GUNS_R:
@@ -232,36 +266,47 @@ func pace(ln, ground: Array, bc: Vector2, target: Vector2) -> bool:
 	var dir: Vector2 = (target - gc).normalized()
 	if dir == Vector2.ZERO or gc.distance_to(target) < 700.0:
 		return _pace_release(target)
-	var lead: float = (mc - gc).dot(dir)
+	# (the guns not getting on: stuck, or held up)
 	if _paced.is_empty():
-		if lead <= PACE_AHEAD:
-			return false
-		_pace_t = game.clock
-		paces += 1
-		if game.clock - _pace_said > 30.0:
-			_pace_said = game.clock
-			_say("'s wave waits for its guns on the march (%d px ahead of them)" % int(lead))
-	if lead < PACE_GO or game.clock - _pace_t > PACE_MAX:
-		if game.clock - _pace_t > PACE_MAX:
-			_pace_cool = game.clock + PACE_COOL
+		_gun_at = gc
+		_gun_t = game.clock
+	elif gc.distance_to(_gun_at) > 40.0:
+		_gun_at = gc
+		_gun_t = game.clock
+	elif game.clock - _gun_t > PACE_STUCK:
+		_pace_cool = game.clock + PACE_COOL
 		return _pace_release(target)
+	var held := 0
 	for u in men:
-		if (u.position - gc).dot(dir) > PACE_HOLD:
-			if u.order != "hold" and (u.target == null or u.order in ["move", "amove", "idle"]):
-				u.cmd_hold()
+		var ahead: float = (u.position - gc).dot(dir)
+		if _paced.has(u):
+			if ahead < PACE_GO or u.order != "hold":
+				_paced.erase(u)
+				if u.order == "hold":
+					u.cmd_move(target + Vector2(randf_range(-50, 50), randf_range(-50, 50)), true)
+			else:
+				held += 1
+		elif ahead > PACE_HOLD and (u.target == null or u.order in ["move", "amove", "idle"]):
+			u.cmd_hold()
 			_paced[u] = true
-		elif _paced.has(u) and u.order == "hold" and (u.position - gc).dot(dir) < PACE_GO:
-			_paced.erase(u)
+			held += 1
+		elif u.order == "idle":
 			u.cmd_move(target + Vector2(randf_range(-50, 50), randf_range(-50, 50)), true)
+	if held == 0:
+		return false
+	if game.clock - _pace_said > 30.0:
+		_pace_said = game.clock
+		paces += 1
+		_say("'s wave keeps with its guns on the march (%d men wait for them)" % held)
 	for u in guns:
 		if u.order == "idle":
-			u.cmd_move(target + Vector2(randf_range(-50, 50), randf_range(-50, 50)), true)
-	for u in men:
-		if not _paced.has(u) and u.order == "idle":
 			u.cmd_move(target + Vector2(randf_range(-50, 50), randf_range(-50, 50)), true)
 	return true
 
 
+var _gun_at := Vector2.INF
+var _gun_t := 0.0
+const PACE_STUCK := 10.0
 var _pace_said := -99.0
 
 
@@ -403,6 +448,77 @@ func foot_tick(ln, ground: Array, target: Vector2, contact: bool, foes: Array) -
 	return true
 
 
+# ------------------------------------------------------------------ 8. the guns' eyes
+
+## The guns of the standing line have something in sight to shoot (one of them has a target).
+func shelling(ln) -> bool:
+	if not spot_on:
+		return false
+	for u in ln._spot.keys():
+		if ln._ok(u) and AICrownLine.is_gun(u) and u.tesla_mode == "deployed" and u.target != null \
+				and is_instance_valid(u.target) and not u.target.dead:
+			return true
+	return false
+
+
+var _spot_said := -99.0
+
+
+## The screen's rider (AICrownScreen._ride asks first): true = it rides to spot for the guns this think.
+func spot(u: Unit, role: String) -> bool:
+	if not spot_on or role != "lead" or ai.ln == null or not (ai.ln.st in ["form", "step", "set", "await", "foot"]):
+		return false
+	var ln = ai.ln
+	var guns: Array = ln._spot.keys().filter(func(x) -> bool: return ln._ok(x) and AICrownLine.is_gun(x) and x.tesla_mode in ["deployed", "deploying"])
+	if guns.is_empty() or shelling(ln):
+		return false
+	# the nearest enemy known in a gun's reach that nobody of ours sees
+	var best: Unit = null
+	var bd := INF
+	var mem: Dictionary = ln._mem
+	for o in mem.keys():
+		if not is_instance_valid(o) or o.dead or o.off_field or game.is_visible_to(ai.team, o.position):
+			continue
+		var p: Vector2 = ln._pos(o)
+		var reach := false
+		for gu in guns:
+			if p.distance_to(gu.position) < float(gu.d.get("range", 430)) + 40.0:
+				reach = true
+				break
+		if not reach:
+			continue
+		var d: float = p.distance_to(ln._c)
+		if d < bd:
+			bd = d
+			best = o
+	if best == null:
+		return false
+	var ep: Vector2 = ln._pos(best)
+	var at: Vector2 = ep + (ln._c - ep).normalized() * SPOT_D
+	# (outside the reach of every shooter known, and no fast enemy near)
+	for o in mem.keys():
+		if not is_instance_valid(o) or o.dead:
+			continue
+		var p2: Vector2 = ln._pos(o)
+		var rng := float(o.d.get("range", 0))
+		if rng >= 80.0 and p2.distance_to(at) < rng + SPOT_SAFE:
+			return false
+		if o.speed >= u.speed * 0.85 and p2.distance_to(at) < 320.0:
+			return false
+	if not game.open_cell(game.cell_of(at)) or game.level_of(at) != game.level_of(ln._c):
+		return false
+	if u.position.distance_to(at) > 40.0:
+		if u.order != "move" or u.order_point.distance_to(at) > 50.0:
+			u.cmd_move(at)
+			spots += 1
+	elif u.order != "hold":
+		u.cmd_hold()
+	if game.clock - _spot_said > 30.0:
+		_spot_said = game.clock
+		_say("'s lead rider rides out to keep the enemy in sight for its guns")
+	return true
+
+
 # ------------------------------------------------------------------ 7. the defence's guns set
 
 ## AI._defend's follow loop asks before it sends a detachment's man on to the raid's spot: true = leave this gun be.
@@ -429,10 +545,17 @@ func def_gun(u: Unit) -> bool:
 
 # ------------------------------------------------------------------ the count
 
+var _def_n := 0
+var _def_t := -99.0
+
+
 func tick() -> void:
 	if game.clock < _next:
 		return
 	_next = game.clock + EVERY
+	if ai.ln != null and ai.ln.def_lines != _def_n:
+		_def_n = ai.ln.def_lines
+		_def_t = game.clock          # (a defence line laid lately: a fight at home begins formed)
 	var army: Array = game.army(ai.team)
 	var hit := Vector2.INF
 	var hit_d := INF
@@ -486,7 +609,7 @@ func _begin(p: Vector2, army: Array) -> void:
 			break
 	var formed := false
 	if ai.ln != null:
-		formed = ai.ln.st in ["form", "step", "set", "await", "advance", "back"] or not ai.ln._def_spot.is_empty()
+		formed = ai.ln.st in ["form", "step", "set", "await", "advance", "back", "foot"] or home and game.clock - _def_t < 30.0
 	_cur = {"t0": game.clock, "p": p, "last": game.clock, "guns": guns, "set": set_n, "home": home, "formed": formed,
 		"k0": float(game.stats[ai.team]["value_killed"]), "l0": float(ai._lost_value()), "done_first": false, "fired": 0}
 
@@ -516,7 +639,7 @@ func counters() -> Dictionary:
 	if not _cur.is_empty():
 		_end()
 	var o := {"fights": fights.duplicate(), "kept": kept, "sets": sets, "follows": follows, "paces": paces, "feet": feet,
-		"climbs": climbs, "leaves": leaves, "def_sets": def_sets}
+		"climbs": climbs, "leaves": leaves, "def_sets": def_sets, "spots": spots, "ups": ups}
 	var n := 0
 	var withg := 0
 	var fired := 0

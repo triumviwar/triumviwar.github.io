@@ -622,7 +622,7 @@ func _step(foes: Array, hold_ok := true) -> void:
 		st = "set"
 		_t0 = game.clock
 		return
-	if hold_ok and not guns.is_empty() and ai.coach != null and ai.coach.line_holds(foes, _c, _face):
+	if hold_ok and not guns.is_empty() and (ai.coach != null and ai.coach.line_holds(foes, _c, _face) or gn != null and gn.spot_on and gn.shelling(self)):
 		# (the Crown coach: the guns set, an enemy coming on: the line holds by its guns and lets it come into their fire)
 		for u in men:
 			if u.order != "hold" and u.position.distance_to(_spot[u]) < 40.0:
@@ -658,7 +658,8 @@ func _await(ground: Array, target: Vector2, contact: bool, foes: Array) -> bool:
 		if game.clock - _t0 > 4.0:
 			return _reset(ground, target, "'s line has lost sight of the enemy it waited for: it marches on")
 		return true
-	var coming: bool = ai.coach != null and ai.coach.line_holds(foes, _c, _face)
+	var gn = ai.get("gn")
+	var coming: bool = ai.coach != null and ai.coach.line_holds(foes, _c, _face) or gn != null and gn.shelling(self)
 	if coming:
 		_await_still = -1.0
 	elif _await_still < 0.0:

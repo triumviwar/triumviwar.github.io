@@ -246,10 +246,12 @@ func _one(sc: String, r: int, map: String) -> void:
 						f.cmd_move(wc / wn, true)
 	var x := {"sc": sc, "run": r, "contact": snappedf(contact_t, 0.1), "st": st0, "formed": st0 in ["form", "step", "set", "await", "advance"],
 		"guns": guns.size(), "set": set_n, "fired": _first_fired, "killed": int(float(g.stats[0]["value_killed"]) - k0),
-		"lost": int(float(g.stats[1]["value_killed"]) - l0), "said": ai.ln.said.slice(-6)}
+		"lost": int(float(g.stats[1]["value_killed"]) - l0), "said": ai.ln.said.slice(-6),
+		"gn": {"sets": ai.gn.sets, "follows": ai.gn.follows, "paces": ai.gn.paces, "spots": ai.gn.spots, "feet": ai.gn.feet, "ups": ai.gn.ups} if ai.gn != null else {}}
 	if sc == "home":
 		x["formed"] = ai.ln.def_lines > 0
 	_first_fired = 0
+	print("   gn %s" % str(x["gn"]))
 	print("%-6s run %d: contact %.1f (line %s), guns %d, set at contact %d, fired in 10 s %d; killed %d lost %d; %s" % [
 		sc, r, contact_t, st0, guns.size(), set_n, x["fired"], x["killed"], x["lost"], str(x["said"])])
 	res.append(x)
