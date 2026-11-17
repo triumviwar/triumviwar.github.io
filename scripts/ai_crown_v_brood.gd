@@ -59,6 +59,9 @@ func _init(a) -> void:
 		if arg.begins_with("cbafloor:k="):
 			floor_k = float(arg.split("=")[1])
 	counter_off = off or not args.has("cvbcounter:on")
+	hold_off = cba_off or args.has("cbahold:off")
+	if not cba_off and not args.has("cbacounter:off"):
+		counter_off = off       # (crown-brood-army part 6: the counter after a held push is on with the hold)
 
 
 static func is_line(u: Unit) -> bool:
@@ -268,7 +271,8 @@ func church_waits() -> bool:
 ##      (the walls, the steps, the milestones, the labourers) until they can: the gold of idle production only, so a busy
 ##      Barracks lets the economy go on;
 ##    - every Barracks and Foundry busy and still FLOOR_MORE short: one more Barracks (up to FLOOR_BARRACKS);
-##    - no Brood soldier seen for FLOOR_LOOK s between 4:00 and 6:30: a scout goes to look (AICrown.want_look).
+##    - no Brood soldier seen for FLOOR_LOOK s between 4:00 and 6:30: a scout goes to look (AICrown.want_look);
+##    - once a Brood push has broken on our line (part 6) the table counts FLOOR_HELD of itself: what is seen leads.
 ##    Switches `cbafloor:off` (this part), `cba:off` (the whole job), `cbafloor:k=<x>` (the table times x).
 ##    Design rule 2 (the defender's advantage needs defenders: a palisade with nobody behind it) and 4 (the opportunity cost:
 ##    an idle Barracks while the walls go up).
@@ -281,6 +285,7 @@ const FLOOR_LEAD := 30.0
 ## [clock, home line wanted] after a NORMAL (or AGGRESSIVE) read: the Brood's Timing push
 const FLOOR_TABLE := [[240.0, 0.0], [300.0, 250.0], [360.0, 500.0], [450.0, 1000.0], [540.0, 1300.0], [600.0, 1500.0]]
 const FLOOR_BLIND := 0.6
+const FLOOR_HELD := 0.5
 const FLOOR_SEEN := 1.0
 const FLOOR_PER_LAB := 55.0
 const FLOOR_PER_LAB_MIN := 500.0
@@ -315,13 +320,15 @@ func floor_want() -> float:
 	var tab := AICrown._lerp_table(FLOOR_TABLE, t + FLOOR_LEAD) * floor_k
 	if read == "pending" or read == "":
 		tab *= FLOOR_BLIND       # (no read yet; a GREEDY read at 1:40 is the Brood's usual opening, its Timing still comes)
+	if held_t >= 0.0 and not hold_off:
+		tab *= FLOOR_HELD        # (its first push broken on our line: the table's guess gives way to what is seen, part 6)
 	var seen: float = ai.ch.foe_known() if ai.ch != null else 0.0
 	var w := maxf(tab, seen * FLOOR_SEEN)
 	var cap := maxf(FLOOR_PER_LAB_MIN, FLOOR_PER_LAB * float(game.workers(team).size()))
 	_floor_v = minf(w, cap)
 	if t < 390.0 and ai.ch != null and t - float(ai.ch._last_army_t) > FLOOR_LOOK:
 		var was: int = ai.looks_asked
-		ai.want_look("the army floor")
+		ai.want_look("the army floor (a look at the Brood's army)")
 		if ai.looks_asked > was:
 			floor_looks += 1
 	return _floor_v
@@ -423,3 +430,39 @@ func floor_produce() -> int:
 		_floor_said = game.clock
 		ai.say("the army floor against the Brood: %d of line (with what trains) against the %d its scouting asks for: the soldiers' gold first" % [int(have), int(want)])
 	return mini(hold, int(game.players[team]["gold"]))
+
+
+
+## 6. HOLD THE FIRST PUSH, THEN COUNTER (crown-brood-army). With the floor the Crown had 1,000-1,300 of army at 7:00-8:00
+##    and its wave went out at the first edge over the Brood army it reckoned (EDGE_BROOD 1.25 of the honest reckoning): Redrock
+##    r0 7:55, 1,200 of army against 990 known, 16 Musketeers formed for a guard of 100, lost the field 480 for 100 with the
+##    Brood's army coming on behind; the Brood came back at 10:10 with 2,360 against 720 and took both halls. A human holds
+##    the first push at his wall and guns (the defender's advantage, design rule 2) and goes out when it has broken there.
+##    So against the Brood, until HOLD_UNTIL: no wave goes before a push has been held (HELD_KILL of Brood killed within
+##    AICrownVBrood.COUNTER_WINDOW s, or the alert of a push seen coming has ended with the army still standing), unless
+##    the army is HOLD_EDGE times the Brood army it reckons; once one has been held, the counter (part 3 above, measured
+##    without the floor and not kept then) goes as soon as the Brood's wave has died at our line. Switches `cbahold:off`,
+##    `cbacounter:off`.
+var hold_off := false
+const HOLD_UNTIL := 600.0
+const HOLD_EDGE := 2.0
+const HELD_KILL := 450.0
+var held_t := -1.0               # when a Brood push was first held
+var hold_waits := 0              # (the report) thinks a wave waited for the first push
+var _hold_said := -99.0
+
+
+## (AICrown._wave_worth) true: the wave waits at home for the Brood's first push.
+func hold_first(mine: float, est: float) -> bool:
+	if hold_off or game.clock >= HOLD_UNTIL:
+		return false
+	if held_t < 0.0 and killed_lately() >= HELD_KILL:
+		held_t = game.clock
+		ai.say("against the Brood its push has broken on our line (%d killed in %d s): from now the counter may go" % [int(killed_lately()), int(COUNTER_WINDOW)])
+	if held_t >= 0.0 or mine >= est * HOLD_EDGE:
+		return false
+	hold_waits += 1
+	if game.clock - _hold_said > 60.0:
+		_hold_said = game.clock
+		ai.say("against the Brood the army holds at home for its first push: %d of army against the %d it reckons (out at %d before the push is held)" % [int(mine), int(est), int(est * HOLD_EDGE)])
+	return true

@@ -151,6 +151,12 @@ func _crown_counters() -> Dictionary:
 		if s != null:
 			for k in ["sent", "lost", "picket_lost", "sightings", "flank_hits", "pulled", "trained"]:
 				d["sc_" + k] = s.get(k)
+		var vb = a.get("vbr")
+		if vb != null:
+			# (crown-brood-army: the army floor tied to the Brood, the counter, the natural; AICrownVBrood parts 5-7)
+			for k in ["floor_trained", "floor_held_t", "floor_built", "floor_looks", "line_short_t", "counters", "nat_waits", "nat_held_t"]:
+				if k in vb:
+					d["vb_" + k] = vb.get(k)
 		o[str(tm)] = d
 	return o
 

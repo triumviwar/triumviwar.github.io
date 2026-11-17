@@ -1708,6 +1708,8 @@ func _wave_worth(ready: Array) -> bool:
 			want_look("the wave")
 			return false
 		var est := foe_estimate()
+		if vb() != null and vbr.hold_first(mine, est):
+			return false        # (crown-brood-army: HOLD THE FIRST PUSH, THEN COUNTER, scripts/ai_crown_v_brood.gd part 6)
 		if mine >= est * (coach.edge_brood() if coach != null and coach.honest_on() else CR_EDGE_BROOD):
 			return true
 		if vb() != null and vbr.counter_ok(mine):
