@@ -78,7 +78,7 @@ var brood_econ_on := args.has("broodecon:on")
 
 ## 7. the economy rules (1, 2) sit out against the Brood
 func econ_rules() -> bool:
-	return brood_econ_on or ai.vb() == null
+	return brood_econ_on or ai.vb() == null or ai.vbr.econ_after_hold()      # (crown-brood-army part 7: after the hold)
 
 var labs_first_n := 0          # (the report) labourers this rule trained
 var labs_first_held_t := 0.0   # (the report) seconds it held gold for a labourer

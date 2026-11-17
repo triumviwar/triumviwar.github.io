@@ -60,6 +60,7 @@ func _init(a) -> void:
 			floor_k = float(arg.split("=")[1])
 	counter_off = off or not args.has("cvbcounter:on")
 	hold_off = cba_off or args.has("cbahold:off")
+	econ_off = cba_off or args.has("cbaecon:off")
 	if not cba_off and not args.has("cbacounter:off"):
 		counter_off = off       # (crown-brood-army part 6: the counter after a held push is on with the hold)
 
@@ -466,3 +467,20 @@ func hold_first(mine: float, est: float) -> bool:
 		_hold_said = game.clock
 		ai.say("against the Brood the army holds at home for its first push: %d of army against the %d it reckons (out at %d before the push is held)" % [int(mine), int(est), int(est * HOLD_EDGE)])
 	return true
+
+
+
+## 7. THE ECONOMY AFTER THE HOLD (crown-brood-army). With the floor and the hold the Crown kept its halls (Redrock r0,
+##    Saltmarsh r1, Border March r1: built halls lost 5 -> 0) but stood on 2 halls to 12:00 against the Brood's 4 and earned
+##    0.7-0.9 of its income: still a trailing draw. The coach's economy rules (AICrownCoach 1 LABOURERS FIRST and 2 HALLS ON
+##    TIME, `broodecon:on`) from the start leave it thin when the push comes (army at 5:00 60-180, Saltmarsh r1 lost). So
+##    against the Brood they come on once the first push has been held (part 6), or from ECON_AFTER if none has come.
+##    Switch `cbaecon:off`.
+var econ_off := false
+const ECON_AFTER := 540.0
+
+
+func econ_after_hold() -> bool:
+	if econ_off or ai.peaceful:
+		return false
+	return (held_t >= 0.0 and not hold_off) or game.clock >= ECON_AFTER
