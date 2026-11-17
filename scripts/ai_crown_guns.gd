@@ -41,8 +41,9 @@ extends RefCounted
 ##     once an enemy is in its reach (or about to be), instead of being sent on again and again into the raid's spot.
 ##     THE GUNS AT THEIR POSTS SET (`gpost:off`): the home posts (AICrownHold.place: the ramp's top, the gate, the cliff
 ##     edge) put a gun on HOLD at its spot, limbered: it set up only once an enemy came in reach (2.5 s under fire; filmed
-##     and counted: home fights with guns near began with 0 set). Now a gun at its post sets up there, and a set gun
-##     within POST_SLACK of its post (the posts move a little as the line is laid again) stays set.
+##     and counted: home fights with guns near began with 0 set). Now a gun at its post sets up there (within POST_SLACK
+##     of it when an enemy is in its reach: filmed, Border March 1121 9:07, the posts behind an attacked palisade were laid
+##     again every 2-6 s and the guns rolled after them limbered), and a set gun within POST_SLACK of its post stays set.
 ## Plus THE COUNT (read only, always on): every fight of the Crown's army (an armed enemy within CONTACT of one of its
 ## soldiers after QUIET s of none there), its guns near it, how many stood set up at contact and how many fired in its first
 ## FIRST s, whether it began formed, and what it killed and lost (result.json "crown_ai" via tools/qa_match.gd).
@@ -557,10 +558,24 @@ func post_gun(u: Unit, spot: Vector2) -> bool:
 	var d: float = u.position.distance_to(spot)
 	if u.tesla_mode == "deployed" or u.tesla_mode == "deploying":
 		return d < POST_SLACK
-	if u.tesla_mode == "packed" and d <= 16.0 and u.order in ["idle", "hold", "move"]:
+	if u.tesla_mode == "packed" and u.order in ["idle", "hold", "move"] and (d <= 16.0 or d < POST_SLACK and _foe_near(u)):
 		u.cmd_deploy()
 		post_sets += 1
 		return true
+	return false
+
+
+## An armed enemy in sight within the gun's reach (or coming into it while it would set up).
+func _foe_near(u: Unit) -> bool:
+	var rng := float(u.d.get("range", 430))
+	for o in game.units_near(u.position, rng + 250.0):
+		if o.dead or o.off_field or not game.hostile(o.team, ai.team) or o.is_worker() or not o.has_attack():
+			continue
+		if not game.is_visible_to(ai.team, o.position):
+			continue
+		var close: float = maxf(0.0, (o.velocity as Vector2).dot((u.position - o.position).normalized()))
+		if o.position.distance_to(u.position) - close * (Defs.CANNON_SWITCH + GSET_SLACK) < rng - 20.0:
+			return true
 	return false
 
 
