@@ -25,6 +25,17 @@
 
 ## Current work
 
+- CROWN BROOD ARMY (owner 2026-11-16 23:25 "start all coaching jobs needed"; job crown-brood-army, 0.38.39,
+  docs/crown_brood_army.md, tables docs/crown_brood_army/tables.md, films docs/crown_brood_army/films/, tools
+  tools/crown_brood_trace.gd, tools/study/crown_brood_army*.py): the Crown COMPUTER v the Brood only (no number changed),
+  AICrownVBrood parts 5-7: 5 THE ARMY FLOOR TIED TO THE BROOD 4:00-9:30 (the Brood seen + 500 by 6:00 / 1,000 by 7:30,
+  55 a labourer; Barracks two deep and a gun before any stage spends, their gold held; a Barracks more when all busy; a look
+  at 4:00-6:30), 6 HOLD THE FIRST PUSH (no wave before 10:00 unless 2x the Brood reckoned, never under BROOD_TABLE; the
+  counter filmed and NOT kept, cbacounter:on), 7 the coach's economy rules after a held push or from 9:00. Switches cba:off,
+  cbafloor:off, cbahold:off, cbaecon:off, cbafloor:k=. 38 games x 3 arms to 12:00: army 8:00 1.07-1.14 of the Brood's
+  (main 0.81; 25-26 of 38 bigger, p 0.07/0.03), first-arrival losses 7 -> 3-5, won or led 6 (main 3; p 0.55), income no
+  worse; still 2 halls to the Brood's 4. Open: "held" counts value_killed (fires in 8-13 of 38), part 7 rarely fires (the
+  line short), the fight inside the natural's wall (crown-guns-coach); 9 Claude's choices in the doc.
 - CROWN COACH (owner 2026-11-15 22:20, coached by Claude in the session; branch crown-coach-1116 MERGED 0.38.38, owner "Yes"
   2026-11-16 22:37; scripts/ai_crown_coach.gd AICrownCoach, docs/crown_coach_measure.md, docs/crown_coach_measure_2.md,
   docs/crown_farmfirst_measure.md): FARM FIRST (2nd Farm before the Barracks, every plan but the Rush), LABOURERS FIRST with

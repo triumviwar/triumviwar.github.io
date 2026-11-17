@@ -13,7 +13,38 @@ gold bought, into army.json), tools/study/crown_brood_army.py (the measure) and 
 tools/qa_match.gd reads the new counters (result.json crown_ai vb_*). Data: docs/crown_brood_army/data/{F,H,O}/, tables
 in docs/crown_brood_army/tables.md, films in docs/crown_brood_army/films/.
 
-MEASURE_SUMMARY
+## In short
+
+Measured with the win-rate design (19 maps x round 0 and 1, Hard OPTIMAL Crown v Hard OPTIMAL Brood, 12:00), three arms
+on the same 38 games: **F** as is, **H** `cbaecon:off` (the floor and the hold only), **O** `cba:off` (main 0.38.38).
+
+| arm | W-D-L | won or led: Crown / Brood / even | army 8:00 (Crown / Brood) | income 12:00 | built halls lost a game | first Brood arrival: Crown units lost in 90 s |
+|---|---|---|---|---|---|---|
+| F as is | 0-36-2 | **6** / 29 / 3 | **1.07** | 0.74 | 0.61 | 3 |
+| H cbaecon:off | 0-37-1 | 1 / 33 / 4 | **1.14** | 0.73 | **0.34** | 5 |
+| O cba:off | 0-35-3 | 3 / 32 / 3 | 0.81 | 0.70 | 0.66 | 7 |
+
+1. **The army is there when the Brood comes.** Its army at 8:00 is bigger than without the job in 25 of 38 paired games
+   (F, p 0.073) and 26 of 38 (H, **p 0.034**): a median 1,080-1,145 at 8:00 against 825, and 1,110-1,140 at home when the
+   Brood first arrives (8:15, a median 575-625 of Brood) against 975. The first arrival costs a median 3-5 Crown units
+   instead of 7. The floor trained a median 20-22 Musketeers and guns a game and put up a Barracks in 22-24 of 38.
+2. **The outcome moved a little, not enough to say.** F won or led 6 games (O 3); paired F v O better in 7, worse in 4
+   (p 0.55). No win yet: every game but 2-3 a draw to 12:00, the Brood ahead in 29-33.
+3. **The economy did not suffer**, a little the other way: income at 8:00 0.83 against 0.80, at 12:00 0.73-0.74 against
+   0.70; labourers at 8:00 31 against 29. But the Crown still stands on 2 halls at 8:00 (1.6-2.2 at 12:00) against the
+   Brood's 3.5-3.9, with 31 labourers to its 47 workers: the trailing draw is now an economy gap, not a lost army.
+4. **The economy after the hold (part 7) barely fires**: a push counted as held in only 8 (F) and 13 (H) of 38 games
+   (HELD_KILL is measured in Game.stats value_killed, which counts a Brood unit at its egg's share: see choice 4), and
+   LABOURERS FIRST yields while the line is short, which it is most of the game. F against H: outcome 9 / 5 (p 0.42),
+   halls lost 0.61 against 0.34 a game.
+5. No game failed, no script errors (114 games). The Crown and AI tests pass (test_crown_stall [foundry] and
+   test_crown_dragoon_raid [plan] fail as before; test_crown_rider_screen's picket check failed once and passed on the
+   rerun: a Crown mirror, which this job does not touch).
+
+**Recommendation (Claude's):** keep F as the default (the army is there, no cost to the economy, the most games led);
+`cbaecon:off` is the owner's call between F (more led) and H (fewer halls lost), both within the noise. The next gains
+are not in the army's size: (a) the fight at the natural's wall (Redrock's film: 1,040 against 775 lost inside the wall,
+crown-guns-coach's code), (b) the third and fourth halls once the push is held (choice 4 and 5 below).
 
 ## What was wrong (traced and filmed on 0.38.38)
 
@@ -100,15 +131,47 @@ Brood rebuilds from 300 to 4,000 in two minutes and comes for the halls the wave
   comes at 7:07 (1,300) against 1,120 at home: the line turns on it inside the natural's wall with 2 guns behind
   (fight_0707) and kills 89 for 8 lost; no wave goes out; later pushes at 8:30 and 9:02 are met at the buildings. No hall
   lost; the army 1,110 at 12:00 against the Brood's 675. Still a trailing draw: the Brood's income is 1.8 times the
-  Crown's by 12:00 (48 workers on 4 halls against 36 labourers on 2: "economy is full on 2 bases").
+  Crown's by 12:00 (51 workers on 4 halls against 36 labourers on 2: "economy is full on 2 bases").
 - **crbr_redrock_1136_after**: 900 at 7:00 and 1,200 at 8:00 at home (the study game had 590 and 700). The first push
   (6:50) is beaten with 2 lost; the Brood's second at 8:33 (775) gets inside the natural's wall, and the line "turns from
   its natural's gate to the enemy inside its wall (1,040 against 775)" and loses it: 1,100 down to 156 by 9:04 (fight_0833,
   fight_0853). The halls fall at 10:09 and 10:55. With the numbers at home the fight inside the wall was lost: that is the
   fighting code's (the gate post, the turn inside the wall, crown-guns-coach).
 
-MEASURE
+## How it was measured
+
+- **Quick loops** while coaching (8 games each: Border March r0/r1, Greenhold r0/r1, Dune Sea r1, Saltmarsh r1, Redrock
+  r0, Hollowfen r1; tools/crown_brood_trace.gd): main; the floor's first version; the floor two deep; the floor + the
+  hold; `broodecon:on` on top (4 games: 2 lost, army at 8:00 0.10-0.38 of the Brood's, stopped); the economy after the
+  hold. Not committed (scratch data).
+- **The measure**: tools/study/crown_brood_army.py (qa_matches.base(), crbr only, 12:00, the arms next to each other in the
+  queue, run from a frozen copy of the code with `--root` so the work went on meanwhile), two games at a time on 2 cores,
+  Godot 4.7 headless. Tables: tools/study/crown_brood_army_report.py -> docs/crown_brood_army/tables.md (the win-rate
+  rules: a draw's leader = income earned + 2 x army value 10% ahead; sign tests two-sided, ties dropped).
+- `broodecon:on` (arm E of the tools) was not run to 38: the quick loop showed the old fault (thin at 5:00) with the floor
+  on too.
+- The job crown-brood-measure (rules 3, 5, 6 of the coach off one at a time) had not landed its doc when this one ended
+  (91 of 152 games): its arms are on 0.38.38 without this job and can be read beside these.
 
 ## Claude's choices (for the owner)
 
-CHOICES
+1. **The floor's table** (FLOOR_TABLE 250 at 5:00, 500 at 6:00, 1,000 at 7:30, 1,300 at 9:00, from the task's "~500 by
+   6:00, ~1,000 by 7:30") is the same whatever the read: the Crown reads the Brood GREEDY at ~1:40 in nearly every game
+   and the Timing came anyway. Before any read it counts 0.6. `cbafloor:k=<x>` scales it.
+2. **Bounded by 55 a labourer** (at least 500): at 20 labourers it can ask 1,100. Not higher: the floor's gold comes from
+   the labourers and the buildings.
+3. **Two deep, the idle production's gold only** held: a busy Barracks lets the economy go on. A third Barracks at most.
+4. **"Held" = 450 of Game.stats value_killed in 75 s**: that stat counts a Brood unit at its cost over its spawn (an egg's
+   share), so it fired in only 8-13 of 38 games, later (8:36-9:01) than the pushes it was meant to catch. Proposal: count
+   the kills at Game.unit_value (the army value the rest of the code uses), or the Brood army seen at our buildings
+   going away; then measure part 7 again.
+5. **Part 7's LABOURERS FIRST yields while the line is short** (the coach's army floor): with this job's floor and the
+   line table after 9:30 the line is short nearly all game (440 s of 480), so labourers first rarely fires. Halls on time
+   does fire from 9:00. Proposal: after a held push, the line's table (LINE_TABLE, capped 45 a labourer) should count
+   what is seen, as part 5 does.
+6. **The hold to 10:00, out only at twice the Brood it reckons, never less than a Hard Brood's table** (2,200 at 8:00):
+   the honest reckoning (coach rule 3) counts 0.4 of the table while the Brood was seen lately, which let a wave out at
+   7:47 into twice what it reckoned. The waves still go after 10:00 by the old rules. In 21-26 of 38 games a wave waited.
+7. **The counter is not kept** (`cbacounter:on`): two films, and part 3's own 16 games before.
+8. **No dry Musketeer for the floor**: without 10 powder he waits (the Mill's crew grows for him). 
+9. **The scout's look at 4:00-6:30** uses the shared want_look (the labourer or the riders' loop): asked about once a game.
