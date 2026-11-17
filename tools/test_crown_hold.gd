@@ -102,8 +102,10 @@ func _run() -> void:
 	mid /= muskets.size()
 	check(on_hold == 6, "[post] the 6 Musketeers stand on HOLD (%d)" % on_hold)
 	check(near == 6, "[post] ... on the main near the top of its ramp (%d within %.0f tiles of the band)" % [near, POST_R])
-	check(gun.order == "hold" and ch.on_main(gun.position) and gun.position.distance_to(band) > mid.distance_to(band),
-			"[post] the cannon on HOLD behind the line (%s, %.1f tiles from the band against the line's %.1f)" % [gun.order, gun.position.distance_to(band) / T, mid.distance_to(band) / T])
+	# (crown-guns-coach, `gpost:off` for the old HOLD: a gun at its post stands set up there, not limbered on HOLD)
+	var gpost := not OS.get_cmdline_user_args().has("gunscoach:off") and not OS.get_cmdline_user_args().has("gpost:off")
+	check((gun.tesla_mode in ["deployed", "deploying"] if gpost else gun.order == "hold") and ch.on_main(gun.position) and gun.position.distance_to(band) > mid.distance_to(band),
+			"[post] the cannon %s behind the line (%s %s, %.1f tiles from the band against the line's %.1f)" % ["set up" if gpost else "on HOLD", gun.order, gun.tesla_mode, gun.position.distance_to(band) / T, mid.distance_to(band) / T])
 	# [scout]
 	var scouts: Array = riders.filter(func(u) -> bool: return ch.is_scout(u))
 	check(scouts.size() == 1, "[scout] one of the 2 Horsemen scouts (%d)" % scouts.size())
