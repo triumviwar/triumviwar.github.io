@@ -40,6 +40,15 @@
   a rival pack, the station scripted, it still falls, the player takes Linnea; the first Brood play is b01, not a03
   (doc "OWNER ANSWERS"). Jobs: act1-engine0 (engine step 0) and brood-prologue-flip (b01 as the Brood) started
   2026-11-17 22:10; a02_furth after act1-engine0 merges.
+- BROOD PROLOGUE FLIPPED (owner 2026-11-17 22:00-22:04; job brood-prologue-flip, 0.38.49, docs/campaign_b01_build.md, which
+  supersedes the station-played build below): b01_specimen is PLAYED AS THE BROOD, the campaign's first Brood play: the
+  player is the Tyrant Sire's pack (green: the Old Mother's standard start in a north-west den, the Sire, Raptors); a teaching
+  strip in the objectives (ROOT in the father range, LAY AND HATCH, THE SIRE'S ROAR at the forest's edge, root by Linnea's pen
+  while she lays 5 eggs, break the gate, take her home to the den: the win); the rival pack (red) = the Brood computer Easy
+  (supply_cap 36, ai_foe sire) + scripted hunters; the station (yellow/purple) scripted, its story by the script with the canon
+  (teles quiet, the research saved), Lindqvist narrating; the player's ONE CHOICE: TAKE THE CLUTCH / LEAVE IT (flags eggs,
+  clutch, fire; new rival). Engine: nest_free, heel, ai_foe, supply_cap, hall_tag on a Brood team (docs/campaign_engine.md).
+  Sim tools/sim_campaign_b01.gd: wins in ~9:30-10:00. 14 Claude's choices in the doc.
 - BROOD PROLOGUE BUILT (owner 2026-11-17 08:01 "Now make the campaign missions" / "Prologues first", ANSWERS 10:22; job
   brood-prologue-build, 0.38.45, docs/campaign_b01_build.md): "Specimen One" (b01_specimen) is THE NATURALIST's first
   mission (the Brood storyline renamed from The Explorer; open after p01_leaf): map campaign:rio_negro_station

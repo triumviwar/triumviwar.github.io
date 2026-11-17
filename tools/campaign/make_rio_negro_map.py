@@ -83,6 +83,18 @@ for cx, cy, r in [(30, 44, 4), (75, 43, 4), (100, 44, 4), (52, 46, 3), (60, 44, 
             if (x - cx) ** 2 / (r + 1) ** 2 + (y - cy) ** 2 / r ** 2 <= 1.0 and get(x, y) == "t":
                 put(x, y, ".")
 
+# THE TWO PACKS' DENS (the Brood prologue flip, 2026-11-17: the prologue is played as the Brood): big clearings in the
+# deep forest for two Brood bases: THE SIRE'S PACK in the north-west (the player: the Old Mother, her Rootmaw, the Sire's
+# nest) and THE RIVAL PACK in the north-centre, above the station, between the player and her pen (the Brood computer).
+for cx, cy, rx, ry in [(18, 15, 15, 11), (60, 20, 14, 11)]:
+    for y in range(cy - ry, cy + ry + 1):
+        for x in range(cx - rx - 1, cx + rx + 2):
+            if (x - cx) ** 2 / (rx + 1) ** 2 + (y - cy) ** 2 / ry ** 2 <= 1.0 and get(x, y) == "t":
+                put(x, y, ".")
+trail([(32, 18), (40, 21), (47, 20)], 5)      # the dens face each other through the forest
+trail([(60, 30), (61, 38), (60, 45)], 5)      # the rival's den down to the forest edge above the station
+trail([(14, 25), (16, 36), (14, 45)], 4)      # a back way from the Sire's den to the village's side
+
 # ---------------------------------------------------------------- the river, the rapids, the creek
 RIVER_Y = 76
 rect(0, RIVER_Y, W, H, "w")
@@ -148,8 +160,10 @@ props += [["flag", 114, 57, False], ["cannonballs", 118, 66, False], ["barrel_d"
 props += [["dead_trunk", 26, 30, False], ["log_moss", 79, 33, False], ["nest", 74, 20, False], ["stump_moss", 104, 31, False],
           ["boulder_moss", 18, 40, False], ["rocks_moss", 112, 40, False]]
 
-starts = [[52, 55], [112, 60], [68, 63], [76, 6]]   # the station, the fort, the pen, the pack (the mission places its own)
-teams = [0, 0, 0, 1]
+# the Sire's den, the rival's den, the station, the fort, the pen, the rival's hunters, her kin (the mission places its
+# own: the flip's seven teams)
+starts = [[16, 14], [58, 18], [52, 55], [112, 60], [68, 63], [76, 24], [20, 20]]
+teams = [0, 1, 2, 2, 2, 1, 0]
 
 data = {
     "name": "rio_negro_station", "size": [W, H], "cells": "".join("".join(r) for r in cells),

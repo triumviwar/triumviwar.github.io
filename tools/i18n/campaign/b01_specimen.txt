@@ -7,10 +7,6 @@
 pt Espécime Um
 es Espécimen Uno
 
-> The Rio Negro, June 2767. Dr. Lindqvist of the Academy keeps a creature no one has seen in a crate at his river station. On Saint John's Eve her kin come for her.
-pt O Rio Negro, junho de 2767. O Dr. Lindqvist, da Academia, guarda numa caixa, na sua estação do rio, uma criatura que ninguém viu. Na véspera de São João, a sua gente vem buscá-la.
-es El Río Negro, junio de 2767. El doctor Lindqvist, de la Academia, guarda en una caja, en su estación del río, una criatura que nadie ha visto. En la víspera de San Juan, los suyos vienen a por ella.
-
 > The Station
 pt A Estação
 es La Estación
@@ -18,82 +14,6 @@ es La Estación
 > The Academy's station on the Rio Negro, the Crown's fort at São Gabriel and the mission village.
 pt A estação da Academia no Rio Negro, o forte da Coroa em São Gabriel e a aldeia da missão.
 es La estación de la Academia en el Río Negro, el fuerte de la Corona en São Gabriel y la aldea de la misión.
-
-> The Pack
-pt A Matilha
-es La Manada
-
-> Her kin, out of the flooded forest.
-pt A sua gente, saída da floresta alagada.
-es Los suyos, salidos del bosque inundado.
-
-> Build Linnea's pen: send the hands to the marked stakes beside the specimen house.
-pt Construa o cercado de Linnea: mande os trabalhadores às estacas marcadas ao lado da casa dos espécimes.
-es Construye el corral de Linnea: manda a los peones a las estacas marcadas junto a la casa de los especímenes.
-
-> Dr. Lindqvist must live.
-pt O Dr. Lindqvist tem de sobreviver.
-es El doctor Lindqvist debe vivir.
-
-> Valadares must live.
-pt Valadares tem de sobreviver.
-es Valadares debe vivir.
-
-> Meet Valadares at the jetty with Dr. Lindqvist.
-pt Receba Valadares no cais com o Dr. Lindqvist.
-es Recibe a Valadares en el embarcadero con el doctor Lindqvist.
-
-> Go with Pieter to the creek's ford.
-pt Vá com Pieter ao vau do igarapé.
-es Ve con Pieter al vado del arroyo.
-
-> Drive the creatures away from the goats.
-pt Afaste as criaturas das cabras.
-es Aleja a las criaturas de las cabras.
-
-> Set the lure: Pieter carries a jar to each mark at the forest's edge ({jars} of 3).
-pt Ponha o engodo: Pieter leva um frasco a cada marca na orla da floresta ({jars} de 3).
-es Pon el señuelo: Pieter lleva un frasco a cada marca en el borde del bosque ({jars} de 3).
-
-> Bring the village in: walk Frei Joaquim and the villagers to the station ({folk_in} in).
-pt Traga a aldeia: leve Frei Joaquim e os aldeões até à estação ({folk_in} dentro).
-es Trae la aldea: lleva a fray Joaquim y a los aldeanos a la estación ({folk_in} dentro).
-
-> Hold the pens until the forest goes quiet.
-pt Defenda os cercados até a floresta se calar.
-es Defiende los corrales hasta que el bosque calle.
-
-> Kill the island that walked, at the creek's mouth.
-pt Mate a ilha que andava, na foz do igarapé.
-es Mata la isla que caminaba, en la boca del arroyo.
-
-> The station cannot be held. Save who you can and get to the jetty. Benedito's canoes leave in {clock:canoes}.
-pt A estação não pode ser defendida. Salve quem puder e vá para o cais. As canoas de Benedito partem em {clock:canoes}.
-es La estación no se puede defender. Salva a quien puedas y ve al embarcadero. Las canoas de Benedito salen en {clock:canoes}.
-
-> Dr. Lindqvist and Valadares must be at the jetty when the canoes leave.
-pt O Dr. Lindqvist e Valadares têm de estar no cais quando as canoas partirem.
-es El doctor Lindqvist y Valadares deben estar en el embarcadero cuando salgan las canoas.
-
-> Get the people into the canoes: {saved} saved of {people}.
-pt Ponha as pessoas nas canoas: {saved} salvos de {people}.
-es Sube a la gente a las canoas: {saved} salvados de {people}.
-
-> Reach the burning specimen house with Dr. Lindqvist.
-pt Chegue à casa dos espécimes em chamas com o Dr. Lindqvist.
-es Llega a la casa de los especímenes en llamas con el doctor Lindqvist.
-
-> Pieter must live.
-pt Pieter tem de sobreviver.
-es Pieter debe vivir.
-
-> Keep the fort's gun.
-pt Guarde o canhão do forte.
-es Conserva el cañón del fuerte.
-
-> Kill Dr. Lindqvist or Valadares before the canoes leave.
-pt Mate o Dr. Lindqvist ou Valadares antes de as canoas partirem.
-es Mata al doctor Lindqvist o a Valadares antes de que salgan las canoas.
 
 > Valadares
 pt Valadares
@@ -119,10 +39,6 @@ es Benedito
 pt O Rio Negro
 es El Río Negro
 
-> The Forest
-pt A Floresta
-es El Bosque
-
 > Two letters came that year. The first came from the Amazon, from the Crown's mapmaker.
 pt Chegaram duas cartas nesse ano. A primeira veio da Amazónia, do cartógrafo da Coroa.
 es Llegaron dos cartas ese año. La primera vino del Amazonas, del cartógrafo de la Corona.
@@ -143,42 +59,6 @@ es La estación de la Academia en los rápidos de São Gabriel. El río crecido,
 pt Saiu de um ovo que um regatão encontrou depois da cheia. Em quarenta dias tinha triplicado.
 es Salió de un huevo que un mercader encontró después de la crecida. En cuarenta días había triplicado su tamaño.
 
-> I meant to give the Crown a beast of war no army had. I meant to give her a mate first.
-pt Queria dar à Coroa uma besta de guerra que nenhum exército tinha. Primeiro queria dar-lhe um par.
-es Quería dar a la Corona una bestia de guerra que ningún ejército tenía. Primero quería darle pareja.
-
-> She has outgrown her crate. A proper pen today, beside the specimen house.
-pt Já não cabe na caixa. Hoje um cercado como deve ser, ao lado da casa dos espécimes.
-es Ya no cabe en la caja. Hoy un corral como es debido, junto a la casa de los especímenes.
-
-> The stakes are cut and marked, Doctor.
-pt As estacas estão cortadas e marcadas, Doutor.
-es Las estacas están cortadas y marcadas, doctor.
-
-> Select the hands and right-click a marked stake. They go on to the next by themselves.
-pt Selecione os trabalhadores e clique com o botão direito numa estaca marcada. Passam à seguinte sozinhos.
-es Selecciona a los peones y haz clic derecho en una estaca marcada. Pasan a la siguiente solos.
-
-> Hear her? She calls when she is hungry. Eleven pounds heavier than Monday.
-pt Está a ouvi-la? Chama quando tem fome. Mais cinco quilos do que na segunda-feira.
-es ¿La oyes? Llama cuando tiene hambre. Cinco kilos más que el lunes.
-
-> There. Room to grow.
-pt Pronto. Espaço para crescer.
-es Ya está. Sitio para crecer.
-
-> She will need a bigger one by August.
-pt Em agosto vai precisar de um maior.
-es En agosto necesitará uno más grande.
-
-> A canoe comes down from the boundary survey: the Crown's mapmaker, Duarte Valadares.
-pt Desce uma canoa da comissão de limites: o cartógrafo da Coroa, Duarte Valadares.
-es Baja una canoa de la comisión de límites: el cartógrafo de la Corona, Duarte Valadares.
-
-> Walk Dr. Lindqvist down to the jetty to greet him.
-pt Leve o Dr. Lindqvist ao cais para o receber.
-es Lleva al doctor Lindqvist al embarcadero a recibirlo.
-
 > Doctor. They say at the fort you keep a lizard the size of a dog.
 pt Doutor. Dizem no forte que guarda um lagarto do tamanho de um cão.
 es Doctor. Dicen en el fuerte que guarda un lagarto del tamaño de un perro.
@@ -191,69 +71,17 @@ es No es un lagarto. Es algo que nadie ha nombrado. La Corona tendrá una caball
 pt Quer vender isto ao exército, Doutor? Então porque é que fala dela em sussurros?
 es ¿Quiere vender esto al ejército, doctor? ¿Entonces por qué susurra cuando habla de ella?
 
-> Doctor, come and see. At the creek. These are not hers.
-pt Doutor, venha ver. No igarapé. Estas não são dela.
-es Doctor, venga a ver. En el arroyo. Estas no son de ella.
-
-> Three toes, deep in the mud. Too many to count.
-pt Três dedos, fundos na lama. Demasiadas para contar.
-es Tres dedos, hondos en el barro. Demasiadas para contarlas.
-
-> These came down from the north. From where your trader found the egg.
-pt Vieram do norte. De onde o seu regatão encontrou o ovo.
-es Bajaron del norte. De donde su mercader encontró el huevo.
-
-> Then she has a family. Splendid.
-pt Então ela tem família. Esplêndido.
-es Entonces tiene familia. Espléndido.
-
-> At dusk she called. Something in the forest answered.
-pt Ao anoitecer ela chamou. Algo na floresta respondeu.
-es Al anochecer llamó. Algo en el bosque respondió.
-
-> Listen. Listen to that.
-pt Ouça. Ouça aquilo.
-es Escuche. Escuche eso.
-
 > At the goats! Guns, quickly!
 pt Às cabras! Armas, depressa!
 es ¡A las cabras! ¡Armas, rápido!
-
-> She has kin. Do you see what that means? Not one beast. A breed.
-pt Ela tem parentes. Percebe o que isso quer dizer? Não um animal. Uma raça.
-es Tiene parientes. ¿Entiende lo que significa? No una bestia. Una raza.
-
-> Send to Teles, Doctor. Tell him what we saw at the creek, and bring the village in before dark.
-pt Mande avisar Teles, Doutor. Diga-lhe o que vimos no igarapé, e traga a aldeia antes de escurecer.
-es Avise a Teles, doctor. Dígale lo que vimos en el arroyo, y traiga la aldea antes de que oscurezca.
 
 > If Teles sees those tracks he will shoot everything in this forest, beginning with her. One night.
 pt Se Teles vir aquelas pegadas, mata tudo nesta floresta, a começar por ela. Uma noite.
 es Si Teles ve esas huellas, disparará a todo lo que hay en este bosque, empezando por ella. Una noche.
 
-> My man is already on the path to the fort.
-pt O meu homem já vai a caminho do forte.
-es Mi hombre ya va camino del fuerte.
-
-> One night, Valadares. The Crown will have its beasts tame or not at all.
-pt Uma noite, Valadares. A Coroa terá as suas bestas mansas ou não as terá.
-es Una noche, Valadares. La Corona tendrá sus bestias mansas o no las tendrá.
-
 > The Eve of Saint John. Rain on the river, and the bonfires lit at Nazaré.
 pt Véspera de São João. Chuva no rio, e as fogueiras acesas em Nazaré.
 es Víspera de San Juan. Lluvia en el río, y las hogueras encendidas en Nazaré.
-
-> Now my lure. I made it from the shell of her egg and her own musk.
-pt Agora o meu engodo. Fi-lo com a casca do ovo dela e com o seu próprio almíscar.
-es Ahora mi señuelo. Lo hice con la cáscara de su huevo y su propio almizcle.
-
-> Any of her kind that smells it follows the scent to the jar, and stands there sniffing like a dog.
-pt Qualquer um da sua espécie que o cheire segue o cheiro até ao frasco, e fica ali a farejar como um cão.
-es Cualquiera de su especie que lo huela sigue el rastro hasta el frasco, y se queda allí olfateando como un perro.
-
-> Three jars at the forest's edge. Whatever comes will come to them, and we will be waiting with the guns.
-pt Três frascos na orla da floresta. O que vier, virá até eles, e nós esperamos lá com as armas.
-es Tres frascos en el borde del bosque. Lo que venga irá a ellos, y nosotros esperaremos con las armas.
 
 > You are calling something you have never seen, Doctor, to a house full of people.
 pt Está a chamar uma coisa que nunca viu, Doutor, para uma casa cheia de gente.
@@ -263,33 +91,9 @@ es Está llamando a algo que nunca ha visto, doctor, a una casa llena de gente.
 pt Estou a chamar um garanhão para a minha égua. De manhã a Academia terá um casal.
 es Estoy llamando a un semental para mi yegua. Por la mañana la Academia tendrá una pareja.
 
-> Walk Pieter to the three marks at the forest's edge. Set the guns where the jars are.
-pt Leve Pieter às três marcas na orla da floresta. Ponha as armas onde estão os frascos.
-es Lleva a Pieter a las tres marcas del borde del bosque. Pon las armas donde están los frascos.
-
 > All three jars are open, Doctor. I can smell it from here.
 pt Os três frascos estão abertos, Doutor. Sinto o cheiro daqui.
 es Los tres frascos están abiertos, doctor. Lo huelo desde aquí.
-
-> Good. Now we wait by the jars.
-pt Bem. Agora esperamos junto aos frascos.
-es Bien. Ahora esperamos junto a los frascos.
-
-> The village is at the fort. My men hold the causeway, and the gun is at your landing. One night, Doctor.
-pt A aldeia está no forte. Os meus homens guardam a calçada, e o canhão está no seu desembarcadouro. Uma noite, Doutor.
-es La aldea está en el fuerte. Mis hombres guardan la calzada, y el cañón está en su embarcadero. Una noche, doctor.
-
-> Doctor! They are at the bonfires! In the name of God, send us your guns!
-pt Doutor! Estão nas fogueiras! Pelo amor de Deus, mande-nos as suas armas!
-es ¡Doctor! ¡Están en las hogueras! ¡Por Dios, mándenos sus armas!
-
-> Come, all of you. Up to the station, quickly.
-pt Venham todos. Para a estação, depressa.
-es Venid todos. A la estación, deprisa.
-
-> We are all inside the palisade. God keep us till morning.
-pt Estamos todos dentro da paliçada. Deus nos guarde até de manhã.
-es Estamos todos dentro de la empalizada. Dios nos guarde hasta la mañana.
 
 > Shots at the station! Half of you with me, along the causeway.
 pt Tiros na estação! Metade de vocês comigo, pela calçada.
@@ -303,65 +107,13 @@ es Doctor, han pasado de largo los frascos.
 pt Não vêm atrás do seu cheiro. Vão até ela.
 es No van tras su olor. Van hacia ella.
 
-> The island at the creek's mouth. It is walking.
-pt A ilha na foz do igarapé. Está a andar.
-es La isla en la boca del arroyo. Está caminando.
-
-> Kill it before it settles. The ground goes to mud round it.
-pt Matem-na antes que assente. O chão à volta dela vira lama.
-es Matadla antes de que se asiente. El suelo a su alrededor se vuelve barro.
-
-> The island is dead. The mud is drying already.
-pt A ilha está morta. A lama já está a secar.
-es La isla está muerta. El barro ya se está secando.
-
-> Near midnight the forest went quiet.
-pt Perto da meia-noite a floresta calou-se.
-es Cerca de la medianoche el bosque calló.
-
-> You see? They have had enough. By morning she will have her mate.
-pt Vê? Já tiveram que chegue. De manhã ela terá o seu par.
-es ¿Lo ve? Ya han tenido bastante. Por la mañana tendrá su pareja.
-
 > Then the ground shook.
 pt Então o chão tremeu.
 es Entonces tembló el suelo.
 
-> Down the creek trail. Doctor, it is as big as the house.
-pt Pelo trilho do igarapé. Doutor, é do tamanho da casa.
-es Por la senda del arroyo. Doctor, es tan grande como la casa.
-
-> He has come for her. My lure brought him.
-pt Veio por ela. Foi o meu engodo que o trouxe.
-es Ha venido por ella. Lo trajo mi señuelo.
-
-> We cannot hold this place. Benedito is bringing his canoes round from the rapids. Get the people to the jetty, and hold them there.
-pt Não podemos defender isto. Benedito está a trazer as canoas das cachoeiras. Levem as pessoas para o cais, e defendam-nas lá.
-es No podemos defender esto. Benedito trae sus canoas desde los rápidos. Llevad a la gente al embarcadero, y defendedla allí.
-
-> The canoes are at the jetty! In, all of you, quickly!
-pt As canoas estão no cais! Entrem todos, depressa!
-es ¡Las canoas están en el embarcadero! ¡Adentro todos, rápido!
-
-> Walk everyone you can into the canoes at the jetty. Dr. Lindqvist and I must be there when they leave.
-pt Leve quem puder para as canoas no cais. O Dr. Lindqvist e eu temos de lá estar quando partirem.
-es Lleva a quien puedas a las canoas del embarcadero. El doctor Lindqvist y yo debemos estar allí cuando salgan.
-
-> The island is dead, so the mud is gone from the landing. I can wait a little longer.
-pt A ilha morreu, e a lama saiu do desembarcadouro. Posso esperar mais um pouco.
-es La isla ha muerto, y el barro ha dejado el embarcadero. Puedo esperar un poco más.
-
-> The village goes down the fort's steps to the boats. Hold them off us!
-pt A aldeia desce as escadas do forte até aos barcos. Segurem-nos longe de nós!
-es La aldea baja por las escaleras del fuerte a los botes. ¡Mantenedlos lejos!
-
 > He did not want to eat her. He lay down beside her like a groom.
 pt Ele não a queria comer. Deitou-se ao lado dela como um noivo.
 es No quería comérsela. Se tumbó a su lado como un novio.
-
-> Lying down he cannot bite. Hurt him now and he gets up, and the calling stops a while.
-pt Deitado não pode morder. Fira-o agora e ele levanta-se, e os chamamentos param um pouco.
-es Tumbado no puede morder. Hiérelo ahora y se levanta, y las llamadas paran un rato.
 
 > Doctor, there are eggs in her straw.
 pt Doutor, há ovos na palha dela.
@@ -371,18 +123,6 @@ es Doctor, hay huevos en su paja.
 pt É nova demais. É nova demais.
 es Es demasiado joven. Es demasiado joven.
 
-> He rose roaring, and the pack closed round him. Nothing they had would kill him.
-pt Levantou-se a rugir, e a matilha fechou-se à volta dele. Nada do que tinham o matava.
-es Se alzó rugiendo, y la manada se cerró a su alrededor. Nada de lo que tenían podía matarlo.
-
-> Their spit is in the lamp oil! The garden is burning!
-pt O cuspo deles caiu no óleo das lamparinas! A horta está a arder!
-es ¡Su saliva ha caído en el aceite de las lámparas! ¡El huerto arde!
-
-> He broke the pen like kindling, and she followed him.
-pt Partiu o cercado como gravetos, e ela seguiu-o.
-es Rompió el corral como si fuera leña menuda, y ella lo siguió.
-
 > No. No! She is mine! Shoot him, not her!
 pt Não. Não! Ela é minha! Atirem nele, não nela!
 es No. ¡No! ¡Es mía! ¡Disparad a él, no a ella!
@@ -390,10 +130,6 @@ es No. ¡No! ¡Es mía! ¡Disparad a él, no a ella!
 > Let her go, Doctor. Your notes, your people. Now.
 pt Deixe-a ir, Doutor. As suas notas, a sua gente. Já.
 es Déjela ir, doctor. Sus notas, su gente. Ya.
-
-> The specimen house was alight. The eggs lay in the trampled straw.
-pt A casa dos espécimes estava em chamas. Os ovos estavam na palha pisada.
-es La casa de los especímenes ardía. Los huevos yacían en la paja pisoteada.
 
 > Burn them, Doctor. Whatever she was, do not carry her children down this river.
 pt Queime-os, Doutor. Fosse ela o que fosse, não leve os filhos dela por este rio abaixo.
@@ -403,49 +139,13 @@ es Quémelos, doctor. Fuera lo que fuera, no lleve a sus hijos río abajo.
 pt Dez anos de trabalho. As bestas da Coroa estão naquela palha. Não os deixo ao fogo.
 es Diez años de trabajo. Las bestias de la Corona están en esa paja. No los dejaré al fuego.
 
-> Give me the lamp.
-pt Dê-me a lamparina.
-es Deme la lámpara.
-
 > The crate, Pieter. The notes on top. I carry it myself.
 pt A caixa, Pieter. As notas por cima. Levo-a eu.
 es La caja, Pieter. Las notas encima. La llevo yo.
 
-> The roof is down on the straw. The eggs are gone, Doctor.
-pt O telhado caiu sobre a palha. Os ovos perderam-se, Doutor.
-es El tejado ha caído sobre la paja. Los huevos se han perdido, doctor.
-
-> They are going with him. All of them, up the creek. Doctor, the eggs!
-pt Vão com ele. Todos, igarapé acima. Doutor, os ovos!
-es Se van con él. Todos, arroyo arriba. ¡Doctor, los huevos!
-
-> Pieter. Pieter went back for the book.
-pt Pieter. O Pieter voltou atrás pelo livro.
-es Pieter. Pieter volvió a por el libro.
-
-> Two minutes, Doctor! Then I push off, with you or without you.
-pt Dois minutos, Doutor! Depois parto, consigo ou sem si.
-es ¡Dos minutos, doctor! Luego zarpo, con usted o sin usted.
-
-> Doctor, you are hurt. Keep back from them. To the jetty.
-pt Doutor, está ferido. Afaste-se deles. Para o cais.
-es Doctor, está herido. Apártese de ellos. Al embarcadero.
-
-> The last canoe pushed off in the grey before dawn.
-pt A última canoa partiu no cinzento antes da madrugada.
-es La última canoa zarpó en el gris antes del alba.
-
 > Paddle! Do not look back.
 pt Remem! Não olhem para trás.
 es ¡Remad! No miréis atrás.
-
-> The canoes left without them.
-pt As canoas partiram sem eles.
-es Las canoas se fueron sin ellos.
-
-> She calls. Answer her. Take her home, and leave nobody to follow.
-pt Ela chama. Responde-lhe. Leva-a para casa, e não deixes ninguém para te seguir.
-es Ella llama. Respóndele. Llévala a casa, y no dejes a nadie que te siga.
 
 > We went down the river at first light with the station burning behind us. She was gone. He took her from me as a thief takes a horse.
 pt Descemos o rio ao primeiro raio de luz, com a estação a arder atrás de nós. Ela tinha desaparecido. Ele levou-ma como um ladrão leva um cavalo.
@@ -455,10 +155,6 @@ es Bajamos el río con la primera luz, con la estación ardiendo a nuestra espal
 pt Eu tinha a investigação. Disse à Academia que tinha salvado as minhas notas. Foi a primeira mentira.
 es Yo tenía la investigación. Le dije a la Academia que había salvado mis notas. Fue la primera mentira.
 
-> Valadares threw the lamp. I had nothing left but my word, and no one wanted it.
-pt Valadares atirou a lamparina. Só me restava a minha palavra, e ninguém a queria.
-es Valadares arrojó la lámpara. Solo me quedaba mi palabra, y nadie la quería.
-
 > The fire took her eggs before I reached them. I had nothing left but my word, and no one wanted it.
 pt O fogo levou-lhe os ovos antes de eu lá chegar. Só me restava a minha palavra, e ninguém a queria.
 es El fuego se llevó sus huevos antes de que yo llegara. Solo me quedaba mi palabra, y nadie la quería.
@@ -466,10 +162,6 @@ es El fuego se llevó sus huevos antes de que yo llegara. Solo me quedaba mi pal
 > Pieter sat in the canoe with the specimen book on his knees and did not speak all day.
 pt Pieter ia sentado na canoa com o livro dos espécimes nos joelhos e não falou o dia inteiro.
 es Pieter iba sentado en la canoa con el libro de especímenes en las rodillas y no habló en todo el día.
-
-> Pieter went back for the specimen book. I have it still. He does not.
-pt Pieter voltou atrás pelo livro dos espécimes. Eu ainda o tenho. Ele não.
-es Pieter volvió a por el libro de especímenes. Yo aún lo tengo. Él no.
 
 > Valadares turned his canoe round at the first island. He went north after her, up the creek, to the mountain in the cloud.
 pt Valadares deu a volta à canoa na primeira ilha. Foi para norte atrás dela, igarapé acima, até à montanha nas nuvens.
@@ -523,121 +215,9 @@ es Valadares va al norte.
 pt Roma, o presente. O naturalista acorrentado diante do Rei.
 es Roma, el presente. El naturalista encadenado ante el Rey.
 
-> The Rio Negro, June 2767, the Eve of Saint John. Dr. Viktor Lindqvist keeps the Academy's station at the rapids of São Gabriel.
-pt O Rio Negro, junho de 2767, véspera de São João. O Dr. Viktor Lindqvist guarda a estação da Academia nas cachoeiras de São Gabriel.
-es El Río Negro, junio de 2767, víspera de San Juan. El doctor Viktor Lindqvist lleva la estación de la Academia en los rápidos de São Gabriel.
-
-> In a crate in his specimen house he keeps the only one of her kind any man has seen. He calls her Linnea.
-pt Numa caixa na casa dos espécimes guarda a única da sua espécie que algum homem viu. Chama-lhe Linnea.
-es En una caja de su casa de especímenes guarda la única de su especie que nadie ha visto. La llama Linnea.
-
-> The Rio Negro, June 2767. One of your own is kept in a crate at the men's station by the river.
-pt O Rio Negro, junho de 2767. Uma das vossas está fechada numa caixa na estação dos homens junto ao rio.
-es El Río Negro, junio de 2767. Una de los vuestros está encerrada en una caja en la estación de los hombres junto al río.
-
-> Answer her call. Take her back to the forest, and kill the naturalist or the mapmaker before the canoes leave.
-pt Responde ao seu chamamento. Leva-a de volta à floresta, e mata o naturalista ou o cartógrafo antes de as canoas partirem.
-es Responde a su llamada. Llévala de vuelta al bosque, y mata al naturalista o al cartógrafo antes de que salgan las canoas.
-
-> Dr. Lindqvist and Valadares got away in Benedito's canoes. The station burned, and Linnea went into the forest with the Tyrant Sire.
-pt O Dr. Lindqvist e Valadares fugiram nas canoas de Benedito. A estação ardeu, e Linnea foi para a floresta com o Sire Tirano.
-es El doctor Lindqvist y Valadares escaparon en las canoas de Benedito. La estación ardió, y Linnea se fue al bosque con el Señor Tirano.
-
-> THE STATION IS LOST
-pt A ESTAÇÃO ESTÁ PERDIDA
-es LA ESTACIÓN ESTÁ PERDIDA
-
-> Most of the people got into the canoes: {saved} of {people}.
-pt Quase todas as pessoas entraram nas canoas: {saved} de {people}.
-es Casi toda la gente subió a las canoas: {saved} de {people}.
-
-> Some of the people got into the canoes: {saved} of {people}.
-pt Algumas das pessoas entraram nas canoas: {saved} de {people}.
-es Parte de la gente subió a las canoas: {saved} de {people}.
-
-> Few of the people got into the canoes: {saved} of {people}.
-pt Poucas pessoas entraram nas canoas: {saved} de {people}.
-es Poca gente subió a las canoas: {saved} de {people}.
-
-> Lieutenant Teles was told. The Crown knows what the station kept.
-pt O Tenente Teles foi avisado. A Coroa sabe o que a estação guardava.
-es El teniente Teles fue avisado. La Corona sabe lo que guardaba la estación.
-
-> Lieutenant Teles was not told. The Crown does not know what the station kept.
-pt O Tenente Teles não foi avisado. A Coroa não sabe o que a estação guardava.
-es El teniente Teles no fue avisado. La Corona no sabe lo que guardaba la estación.
-
-> Lindqvist carried a crate out of the fire: her eggs, and his notes on top.
-pt Lindqvist tirou uma caixa do fogo: os ovos dela, e as notas por cima.
-es Lindqvist sacó una caja del fuego: sus huevos, y las notas encima.
-
-> The eggs were burned in the specimen house, and the notes with them.
-pt Os ovos arderam na casa dos espécimes, e as notas com eles.
-es Los huevos ardieron en la casa de los especímenes, y las notas con ellos.
-
-> The fire took the eggs before Lindqvist reached them.
-pt O fogo levou os ovos antes de Lindqvist lá chegar.
-es El fuego se llevó los huevos antes de que Lindqvist llegara.
-
 > Pieter did not come out.
 pt Pieter não saiu.
 es Pieter no salió.
-
-> The island that walked was killed before midnight.
-pt A ilha que andava foi morta antes da meia-noite.
-es La isla que caminaba murió antes de la medianoche.
-
-> The fort's gun was saved.
-pt O canhão do forte salvou-se.
-es El cañón del fuerte se salvó.
-
-> The fort's gun was lost.
-pt O canhão do forte perdeu-se.
-es El cañón del fuerte se perdió.
-
-> The station's people are dead
-pt A gente da estação morreu
-es La gente de la estación ha muerto
-
-> The naturalist or the mapmaker never reached the canoes. Try again: they must live to tell it.
-pt O naturalista ou o cartógrafo nunca chegou às canoas. Tente outra vez: têm de viver para o contar.
-es El naturalista o el cartógrafo nunca llegó a las canoas. Inténtalo de nuevo: deben vivir para contarlo.
-
-> Something in the forest answers her. Send to the fort?
-pt Algo na floresta responde-lhe. Avisar o forte?
-es Algo en el bosque le responde. ¿Avisar al fuerte?
-
-> TELL THE LIEUTENANT
-pt AVISAR O TENENTE
-es AVISAR AL TENIENTE
-
-> Valadares' way. The village crosses to the fort before dark and the garrison holds the causeway, its gun at the station's landing. The Crown will know what the station keeps.
-pt O caminho de Valadares. A aldeia passa para o forte antes de escurecer e a guarnição guarda a calçada, com o canhão no desembarcadouro da estação. A Coroa saberá o que a estação guarda.
-es El camino de Valadares. La aldea pasa al fuerte antes de que oscurezca y la guarnición guarda la calzada, con su cañón en el embarcadero de la estación. La Corona sabrá lo que guarda la estación.
-
-> Lindqvist's way. The station stands alone at nightfall, the village must be brought in under attack, and Teles comes late. The Crown does not learn what the station keeps.
-pt O caminho de Lindqvist. A estação fica sozinha ao anoitecer, a aldeia tem de ser trazida debaixo de ataque, e Teles chega tarde. A Coroa não fica a saber o que a estação guarda.
-es El camino de Lindqvist. La estación queda sola al anochecer, hay que traer la aldea bajo el ataque, y Teles llega tarde. La Corona no se entera de lo que guarda la estación.
-
-> The roof is alight. Her eggs in the straw, his notes on the bench.
-pt O telhado arde. Os ovos dela na palha, as notas dele na bancada.
-es El tejado arde. Los huevos de ella en la paja, las notas de él en el banco.
-
-> BURN THE EGGS
-pt QUEIMAR OS OVOS
-es QUEMAR LOS HUEVOS
-
-> Valadares' way. The lamp goes into the straw and the notes with it. Lindqvist walks to the jetty free and armed, with nothing but his word.
-pt O caminho de Valadares. A lamparina vai para a palha e as notas com ela. Lindqvist vai para o cais livre e armado, só com a sua palavra.
-es El camino de Valadares. La lámpara va a la paja y las notas con ella. Lindqvist va al embarcadero libre y armado, sin más que su palabra.
-
-> SAVE THE RESEARCH
-pt SALVAR A INVESTIGAÇÃO
-es SALVAR LA INVESTIGACIÓN
-
-> Lindqvist's way. He carries a crate with the eggs and the notes himself: slower, and he cannot shoot until he is aboard.
-pt O caminho de Lindqvist. Leva ele mesmo uma caixa com os ovos e as notas: mais lento, e não pode disparar até estar a bordo.
-es El camino de Lindqvist. Lleva él mismo una caja con los huevos y las notas: más lento, y no puede disparar hasta estar a bordo.
 
 > The naturalist lost his station in a single night, and thinks it was stolen from him.
 pt O naturalista perdeu a estação numa só noite, e acha que lha roubaram.
@@ -751,3 +331,286 @@ es Pieter (los frascos)
 pt Dr. Lindqvist (a caixa)
 es Dr. Lindqvist (la caja)
 
+# ---- the prologue flip (brood-prologue-flip): played as the Sire's pack. The Brood = a Ninhada / la Nidada; the clutch =
+# a ninhada / la puesta (as the game's SACRIFICE text has it); the Old Mother =
+# a Velha Mãe / la Vieja Madre; the rival pack = a matilha rival / la manada rival.
+
+> A canoe came down from the boundary survey: the Crown's mapmaker, Duarte Valadares.
+pt Uma canoa desceu da demarcação de fronteiras: o cartógrafo da Coroa, Duarte Valadares.
+es Una canoa bajó de la demarcación de fronteras: el cartógrafo de la Corona, Duarte Valadares.
+
+> And the fire took nothing. The pack carried her eggs north in its jaws. He never knew.
+pt E o fogo não levou nada. A matilha levou os ovos dela para norte, entre os dentes. Ele nunca soube.
+es Y el fuego no se llevó nada. La manada se llevó sus huevos al norte entre los dientes. Él nunca lo supo.
+
+> Another pack holds the forest between your den and her. Root, lay, hatch. Let the Sire roar at the forest's edge, and take her home.
+pt Outra matilha domina a floresta entre a vossa toca e ela. Enraizar, pôr, chocar. Que o Sire ruja na orla da floresta, e levai-a para casa.
+es Otra manada domina el bosque entre vuestra guarida y ella. Arraigar, poner, eclosionar. Que el Señor ruja en la linde del bosque, y llevadla a casa.
+
+> Another pack, holding the forest above the station.
+pt Outra matilha, que domina a floresta acima da estação.
+es Otra manada, que domina el bosque por encima de la estación.
+
+> Any of her kind that smelt it would stand at the jar sniffing like a dog, and we would be waiting with the guns.
+pt Qualquer um da sua espécie que o cheirasse ficaria junto ao jarro a farejar como um cão, e nós estaríamos à espera com as armas.
+es Cualquiera de su especie que lo oliera se quedaría junto a la jarra olfateando como un perro, y nosotros esperaríamos con las armas.
+
+> At dusk a roar came out of the forest, and she answered it.
+pt Ao entardecer, um rugido saiu da floresta, e ela respondeu-lhe.
+es Al anochecer salió un rugido del bosque, y ella le respondió.
+
+> Break her pen's gate.
+pt Partir o portão do cercado dela.
+es Romper la puerta de su corral.
+
+> Did you see them hunt? Not one beast. A breed, with a breed's manners.
+pt Viu-os caçar? Não é um animal. É uma raça, com os modos de uma raça.
+es ¿Los vio cazar? No es una bestia. Es una raza, con los modales de una raza.
+
+> Drive the rival pack off: kill its Mother.
+pt Expulsar a matilha rival: matar a sua Mãe.
+es Expulsar a la manada rival: matar a su Madre.
+
+> Few of the men got away in the boats: {saved} of {people}.
+pt Poucos homens fugiram nos barcos: {saved} de {people}.
+es Pocos hombres escaparon en los botes: {saved} de {people}.
+
+> Fire the thatch! They shy from fire. It buys us the jetty.
+pt Fogo ao colmo! Eles fogem do fogo. Dá-nos tempo para o cais.
+es ¡Fuego a la paja! Huyen del fuego. Nos da tiempo para llegar al embarcadero.
+
+> Five eggs. Five. And he lay across the gate and would not let a man near.
+pt Cinco ovos. Cinco. E ele deitou-se diante do portão e não deixava ninguém aproximar-se.
+es Cinco huevos. Cinco. Y él se tumbó ante la puerta y no dejaba acercarse a nadie.
+
+> Go now, fast, with her alone. The clutch stays in the burning straw, for the fire or for the men.
+pt Ir agora, depressa, só com ela. A ninhada fica na palha a arder, para o fogo ou para os homens.
+es Irse ya, deprisa, solo con ella. La puesta se queda en la paja ardiendo, para el fuego o para los hombres.
+
+> He walked through my station as if it were reeds. He did not want us. He wanted her.
+pt Atravessou a minha estação como se fosse caniço. Não nos queria a nós. Queria-a a ela.
+es Cruzó mi estación como si fuera un cañaveral. No nos quería a nosotros. La quería a ella.
+
+> Her clutch lies in the trampled straw.
+pt A ninhada dela jaz na palha pisada.
+es Su puesta yace en la paja pisoteada.
+
+> Hold the forest. Kill their Sire or their Mother before she is home.
+pt Dominai a floresta. Matai o Sire deles ou a Mãe deles antes que ela chegue a casa.
+es Dominad el bosque. Matad a su Señor o a su Madre antes de que ella llegue a casa.
+
+> I had made a lure from the shell of her egg and her own musk. Pieter set it in three jars at the forest's edge.
+pt Eu tinha feito um engodo com a casca do ovo dela e o seu próprio almíscar. O Pieter pô-lo em três jarros na orla da floresta.
+es Yo había hecho un señuelo con la cáscara de su huevo y su propio almizcle. Pieter lo puso en tres jarras en la linde del bosque.
+
+> I watched the forest from my window every evening. That week, Majesty, the forest watched back.
+pt Eu observava a floresta da minha janela todas as tardes. Naquela semana, Majestade, a floresta observava-me a mim.
+es Yo miraba el bosque desde mi ventana cada tarde. Aquella semana, Majestad, el bosque me miraba a mí.
+
+> I wrote it down and thought nothing of it. I had a pen to finish.
+pt Escrevi-o e não pensei mais nisso. Tinha um cercado para acabar.
+es Lo apunté y no le di importancia. Tenía un corral que terminar.
+
+> Kill the Tyrant Sire or the Old Mother before she is home.
+pt Matar o Sire Tirano ou a Velha Mãe antes que ela chegue a casa.
+es Matar al Señor Tirano o a la Vieja Madre antes de que ella llegue a casa.
+
+> LAY AND HATCH: select the Old Mother and lay two Raptor eggs. They roll into the Sire's nest, he breathes on them and they hatch ({raptors} of 6 Raptors). More creatures need more supply: a grub turns into a MOUND TURTLE (BUILD).
+pt PÔR E CHOCAR: seleciona a Velha Mãe e põe dois ovos de Raptor. Rolam para o ninho do Sire, ele sopra sobre eles e eclodem ({raptors} de 6 Raptores). Mais criaturas pedem mais abastecimento: uma larva transforma-se numa TARTARUGA-MONTÍCULO (CONSTRUIR).
+es PONER Y ECLOSIONAR: selecciona a la Vieja Madre y pon dos huevos de Raptor. Ruedan al nido del Señor, él sopla sobre ellos y eclosionan ({raptors} de 6 Raptores). Más criaturas piden más abastecimiento: una larva se convierte en una TORTUGA MONTÍCULO (CONSTRUIR).
+
+> LEAVE IT
+pt DEIXÁ-LA
+es DEJARLA
+
+> LINNEA: root the Sire beside her pen (here he may nest far from the Old Mother). While he lies there she lays her clutch ({eggs} of 5). Rooted he cannot bite: keep the pack round him.
+pt LINNEA: enraíza o Sire junto ao cercado dela (aqui pode fazer ninho longe da Velha Mãe). Enquanto ele ali estiver deitado, ela põe a ninhada ({eggs} de 5). Enraizado não morde: mantém a matilha à volta dele.
+es LINNEA: arraiga al Señor junto a su corral (aquí puede anidar lejos de la Vieja Madre). Mientras él yace ahí, ella hace su puesta ({eggs} de 5). Arraigado no muerde: mantén la manada a su alrededor.
+
+> Listen. Listen to that. She knows that voice.
+pt Escute. Escute aquilo. Ela conhece aquela voz.
+es Escuche. Escuche eso. Ella conoce esa voz.
+
+> Most of the men got away in the boats: {saved} of {people}.
+pt A maior parte dos homens fugiu nos barcos: {saved} de {people}.
+es La mayoría de los hombres escapó en los botes: {saved} de {people}.
+
+> Over the palisade. Doctor, it is as big as the house.
+pt Por cima da paliçada. Doutor, é do tamanho da casa.
+es Por encima de la empalizada. Doctor, es tan grande como la casa.
+
+> Pieter went to the forest's edge with the jars. I have his specimen book still. He does not.
+pt O Pieter foi à orla da floresta com os jarros. Ainda tenho o livro de espécimes dele. Ele não.
+es Pieter fue a la linde del bosque con las jarras. Todavía tengo su libro de especímenes. Él no.
+
+> Pieter. Pieter did not come back from the forest's edge.
+pt O Pieter. O Pieter não voltou da orla da floresta.
+es Pieter. Pieter no volvió de la linde del bosque.
+
+> ROOT: select the Tyrant Sire, press ROOT and set him down inside the ring round the Old Mother (her father range). Rooted, he is the nest her warrior eggs hatch in.
+pt ENRAIZAR: seleciona o Sire Tirano, carrega em ENRAIZAR e pousa-o dentro do anel à volta da Velha Mãe (o alcance do pai). Enraizado, é o ninho onde eclodem os ovos de guerreiro dela.
+es ARRAIGAR: selecciona al Señor Tirano, pulsa ARRAIGAR y déjalo dentro del anillo alrededor de la Vieja Madre (el alcance del padre). Arraigado, es el nido donde eclosionan sus huevos de guerrero.
+
+> Send to Teles, Doctor. Tell him what is in the forest, and bring the village in before dark.
+pt Mande avisar o Teles, Doutor. Diga-lhe o que anda na floresta, e traga a aldeia para dentro antes de escurecer.
+es Mande aviso a Teles, doctor. Dígale lo que hay en el bosque, y traiga la aldea dentro antes de que oscurezca.
+
+> She called at sunset, as every day. Eleven pounds heavier than Monday. Nothing answered. Not yet.
+pt Chamava ao pôr do sol, como todos os dias. Cinco quilos mais pesada do que na segunda-feira. Nada respondia. Ainda não.
+es Llamaba al ponerse el sol, como cada día. Cinco kilos más pesada que el lunes. Nada respondía. Todavía no.
+
+> She is home
+pt Ela está em casa
+es Ella está en casa
+
+> So I kept it quiet, Majesty. One night, I said. The Crown would have its beasts tame or not at all.
+pt Por isso calei-me, Majestade. Uma noite, disse eu. A Coroa teria as suas feras mansas ou não as teria.
+es Así que callé, Majestad. Una noche, dije. La Corona tendría sus bestias mansas o no las tendría.
+
+> Some of the men got away in the boats: {saved} of {people}.
+pt Alguns homens fugiram nos barcos: {saved} de {people}.
+es Algunos hombres escaparon en los botes: {saved} de {people}.
+
+> Something moved in the deep forest that week. Pieter said the birds had gone quiet to the north.
+pt Algo se mexia na floresta funda naquela semana. O Pieter dizia que os pássaros se tinham calado a norte.
+es Algo se movía en el bosque profundo aquella semana. Pieter decía que los pájaros habían callado al norte.
+
+> TAKE THE CLUTCH
+pt LEVAR A NINHADA
+es LLEVARSE LA PUESTA
+
+> THE SIRE'S ROAR: UPROOT the Sire and walk him to the forest's edge above the station. There he roars, and she answers.
+pt O RUGIDO DO SIRE: DESENRAÍZA o Sire e leva-o à orla da floresta acima da estação. Ali ele ruge, e ela responde.
+es EL RUGIDO DEL SEÑOR: DESARRAIGA al Señor y llévalo a la linde del bosque sobre la estación. Allí ruge, y ella responde.
+
+> Take her home: walk the Sire back to the Old Mother's den. Linnea follows at his heels.
+pt Levá-la para casa: leva o Sire de volta à toca da Velha Mãe. Linnea segue-o de perto.
+es Llevarla a casa: lleva al Señor de vuelta a la guarida de la Vieja Madre. Linnea le sigue de cerca.
+
+> The Old Mother
+pt A Velha Mãe
+es La Vieja Madre
+
+> The Old Mother and the Tyrant Sire must live.
+pt A Velha Mãe e o Sire Tirano têm de viver.
+es La Vieja Madre y el Señor Tirano deben vivir.
+
+> The Old Mother must live.
+pt A Velha Mãe tem de viver.
+es La Vieja Madre debe vivir.
+
+> The Rio Negro, June 2767, the Eve of Saint John. One of your kind calls from a crate at the men's station by the river.
+pt O Rio Negro, junho de 2767, véspera de São João. Uma da vossa espécie chama de uma caixa na estação dos homens, à beira do rio.
+es El Río Negro, junio de 2767, víspera de San Juan. Una de vuestra especie llama desde una caja en la estación de los hombres, junto al río.
+
+> The Rio Negro, June 2767. Another pack has come down out of the north for the young one in the men's pen.
+pt O Rio Negro, junho de 2767. Outra matilha desceu do norte pela jovem no cercado dos homens.
+es El Río Negro, junio de 2767. Otra manada ha bajado del norte por la joven del corral de los hombres.
+
+> The Rio Negro, June 2767. One of your kind calls from a crate at the men's river station. Another pack holds the forest between you and her. Answer her, and take her home.
+pt O Rio Negro, junho de 2767. Uma da vossa espécie chama de uma caixa na estação dos homens, no rio. Outra matilha domina a floresta entre vós e ela. Respondei-lhe e levai-a para casa.
+es El Río Negro, junio de 2767. Una de vuestra especie llama desde una caja en la estación de los hombres, en el río. Otra manada domina el bosque entre vosotros y ella. Respondedle y llevadla a casa.
+
+> The Rival Mother
+pt A Mãe Rival
+es La Madre Rival
+
+> The Rival Pack
+pt A Matilha Rival
+es La Manada Rival
+
+> The Sire carried her clutch home. The men think the fire took it.
+pt O Sire levou a ninhada dela para casa. Os homens pensam que o fogo a levou.
+es El Señor se llevó su puesta a casa. Los hombres creen que se la llevó el fuego.
+
+> The Sire carries the eggs home in his jaws: slower, and he cannot bite until she is home. The men will have nothing of hers.
+pt O Sire leva os ovos para casa entre os dentes: mais devagar, e não pode morder até ela chegar a casa. Os homens não ficam com nada dela.
+es El Señor lleva los huevos a casa entre los dientes: más despacio, y no puede morder hasta que ella llegue a casa. Los hombres no tendrán nada suyo.
+
+> The Sire's Pack
+pt A Matilha do Sire
+es La Manada del Señor
+
+> The Tyrant Sire
+pt O Sire Tirano
+es El Señor Tirano
+
+> The Tyrant Sire (the clutch)
+pt O Sire Tirano (a ninhada)
+es El Señor Tirano (la puesta)
+
+> The Tyrant Sire must live.
+pt O Sire Tirano tem de viver.
+es El Señor Tirano debe vivir.
+
+> The Tyrant Sire's pack broke Linnea out of her pen and took her home to the Old Mother's den. Behind them the station burned, and its people went down the river in Benedito's canoes.
+pt A matilha do Sire Tirano tirou Linnea do cercado e levou-a para casa, à toca da Velha Mãe. Atrás deles a estação ardeu, e a sua gente desceu o rio nas canoas de Benedito.
+es La manada del Señor Tirano sacó a Linnea de su corral y la llevó a casa, a la guarida de la Vieja Madre. Tras ellos la estación ardió, y su gente bajó el río en las canoas de Benedito.
+
+> The Tyrant Sire, the Old Mother and their pack, out of the deep forest.
+pt O Sire Tirano, a Velha Mãe e a sua matilha, saídos da floresta funda.
+es El Señor Tirano, la Vieja Madre y su manada, salidos del bosque profundo.
+
+> The clutch was left. Lindqvist carried it out of the fire in a crate.
+pt A ninhada ficou. Lindqvist tirou-a do fogo numa caixa.
+es La puesta se quedó. Lindqvist la sacó del fuego en una caja.
+
+> The last canoe pushed off with the station burning behind it.
+pt A última canoa largou com a estação a arder atrás dela.
+es La última canoa zarpó con la estación ardiendo detrás.
+
+> The pack is broken
+pt A matilha está desfeita
+es La manada está deshecha
+
+> The pen broke like kindling, and she followed him.
+pt O cercado partiu-se como gravetos, e ela seguiu-o.
+es El corral se rompió como astillas, y ella le siguió.
+
+> The rival pack held the forest, and Linnea stayed in her pen. Try again: the Old Mother and the Tyrant Sire must live.
+pt A matilha rival dominou a floresta, e Linnea ficou no cercado. Tenta outra vez: a Velha Mãe e o Sire Tirano têm de viver.
+es La manada rival dominó el bosque, y Linnea se quedó en su corral. Inténtalo de nuevo: la Vieja Madre y el Señor Tirano deben vivir.
+
+> The rival pack still holds the forest above the river.
+pt A matilha rival ainda domina a floresta acima do rio.
+es La manada rival aún domina el bosque sobre el río.
+
+> The rival pack's Mother is dead: the forest is the Sire's.
+pt A Mãe da matilha rival morreu: a floresta é do Sire.
+es La Madre de la manada rival ha muerto: el bosque es del Señor.
+
+> The specimen house was alight. Her eggs lay in the trampled straw.
+pt A casa dos espécimes estava em chamas. Os ovos dela jaziam na palha pisada.
+es La casa de los especímenes estaba en llamas. Sus huevos yacían en la paja pisoteada.
+
+> The station is burning! Down to the boats, all of you, in the name of God!
+pt A estação está a arder! Todos para os barcos, em nome de Deus!
+es ¡La estación está ardiendo! ¡Todos a los botes, en el nombre de Dios!
+
+> The straw was empty. I thought the fire had taken them. I believed that for thirty years.
+pt A palha estava vazia. Pensei que o fogo os tinha levado. Acreditei nisso durante trinta anos.
+es La paja estaba vacía. Pensé que el fuego se los había llevado. Lo creí durante treinta años.
+
+> Then she has a family. Two families. Splendid.
+pt Então ela tem família. Duas famílias. Esplêndido.
+es Entonces tiene familia. Dos familias. Espléndido.
+
+> There are two kinds of track up there, Doctor. Two packs, and both came down from the north.
+pt Há dois tipos de rasto lá em cima, Doutor. Duas matilhas, e ambas desceram do norte.
+es Hay dos clases de huellas ahí arriba, doctor. Dos manadas, y las dos bajaron del norte.
+
+> There were two packs in that forest, Majesty, and they fought over her like dogs over a bone. I saw it from my window.
+pt Havia duas matilhas naquela floresta, Majestade, e lutavam por ela como cães por um osso. Vi-o da minha janela.
+es Había dos manadas en aquel bosque, Majestad, y peleaban por ella como perros por un hueso. Lo vi desde mi ventana.
+
+> Three toes, deep in the mud at the creek. Too many to count.
+pt Três dedos, fundos na lama do igarapé. Demasiados para contar.
+es Tres dedos, hondos en el barro del arroyo. Demasiados para contarlos.
+
+> We cannot hold this place. Get the people to the jetty. Benedito has his canoes.
+pt Não podemos defender isto. Leve a gente para o cais. O Benedito tem as canoas.
+es No podemos defender esto. Lleve a la gente al embarcadero. Benedito tiene sus canoas.
+
+> Shots at the station! You three, with me, along the causeway. Hold the ford for them.
+pt Tiros na estação! Vocês os três, comigo, pela calçada. Guardem o vau para eles.
+es ¡Disparos en la estación! Vosotros tres, conmigo, por la calzada. Guardad el vado para ellos.

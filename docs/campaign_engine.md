@@ -320,3 +320,17 @@ player did (selected, camera_moved, built, rooted, crew, did...) and the `point`
 | `{"wake": {"name" or tag / team / side}}`; conditions `{"asleep": name}`, `{"awake": name}` | wake them by a trigger; ask after them |
 | mission `"mist": {"sight", "team" / "side", "weather"}`, action `{"mist": {...}}` | MIST: units' sight times `sight` (1 clears it), on that team or side only if given; a grey veil over the screen unless `"weather": false`. Weather `"mist"` alone is the veil without the sight |
 | objective `"kind": "capture", "tag", "share" (0.25), "within" (3), "by" (the objective's side)` | CAPTURE: the man can't be brought under that share of his health (a floor from the start); there, with one of the capturing side within reach, he is TAKEN (caged and spared); done when all of the tag are taken, failed if they die; condition `{"captured": tag}` |
+
+## Added by the Brood prologue flip (brood-prologue-flip, 0.38.49; docs/campaign_b01_build.md)
+
+The Naturalist's prologue played as the Brood (the Sire's pack v a rival pack, the station a scripted third side) needed
+only these; the solo side pick and the difficulty setting are another job's (act1-engine0).
+
+| key / action | what it does |
+| --- | --- |
+| three sides in a mission | nothing new was needed: teams are hostile by side (Game.hostile); a side with no objectives never ends the mission; a failed primary hands the win to the FIRST other side in `sides` (MissionRun._other_side), so the side listed second is the one whose debrief a loser sees (the rival pack's) |
+| team `"hall_tag"` on a Brood team | tags (and lets the triggers name) her Brood Mother, the Brood's "hall" (the Old Mother, the Rival Mother) |
+| team `"ai_foe": "<team id>"` | the computer player of that team goes for that team before any other (AI._foe asks MissionRun.ai_foe): the rival pack attacks the Sire's pack, not the station |
+| team `"supply_cap": n` | the team's supply never above n (Game.max_supply asks the mission): the rival computer's army kept to a size a first Brood player can meet |
+| `{"nest_free": {"tag", "on"}}` | these fathers may root away from their own Mother's father range (meta `mission_root`, the rule BroodRoot.place_problem already had for a scripted root), and so may a person's ROOT ghost: the player's Sire nests by her pen; off: the range again |
+| `{"order": {..., "do": "heel", "leader": tag}}` | each unit walks after the first living unit with that tag, stopping a little behind (repeat it with a trigger's `every`): Linnea at the Sire's heels, on a scripted team allied to the player (no person orders her) |

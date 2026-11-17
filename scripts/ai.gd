@@ -7459,6 +7459,8 @@ func _foe() -> int:
 	var foes := game.enemies_of(team)
 	if foes.is_empty():
 		return -1
+	if game.mission != null and foes.has(game.mission.ai_foe(team)):
+		return game.mission.ai_foe(team)          # (a campaign mission names the computer's foe: the rival pack v the Sire's)
 	if difficulty >= 3 and not game.demo and foes.has(game.human):
 		return game.human
 	var me := game.center_of_team(team)

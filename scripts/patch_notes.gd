@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.50", "items": [
+		"THE NATURALIST'S PROLOGUE, SPECIMEN ONE, IS NOW PLAYED AS THE BROOD (CAMPAIGN, THE NATURALIST): you are the Tyrant Sire's pack. Root the Sire by the Old Mother, lay and hatch Raptors, let him roar at the forest's edge above the men's station, root him by Linnea's pen while she lays her clutch, break the gate and take her home, through a rival pack that holds the forest. Choose whether the Sire carries her clutch home or leaves it. The scientists' story goes on around you, told by Dr. Lindqvist from his window. The first Brood play of the campaign; every line and picture is still a placeholder.",
+	]},
 	{"v": "0.38.49", "items": [
 		"CAMPAIGN DIFFICULTY: EASY, NORMAL or HARD on every mission's briefing, kept for the next mission. EASY gives more time on the countdowns you race (the canoes, the city striking thirteen) and fewer enemies; HARD less time and more. The three prologues use it.",
 		"CAMPAIGN: the mission engine learnt what Act 1 needs: missions that let you lead either side alone (YOU PLAY: on the briefing), forces that depend on your earlier choices, standing in a place for some seconds, scripted marches along a route and units that follow another, a sleeping nest that wakes when you come too near, mist that shortens everyone's sight, and taking a man alive.",
