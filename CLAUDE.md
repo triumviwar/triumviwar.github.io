@@ -25,6 +25,17 @@
 
 ## Current work
 
+- CROWN GUNS COACHED (owner 2026-11-15 22:20 / 2026-11-16 23:25 "setting cannon before the engagement is very important";
+  job crown-guns-coach, 0.38.40, docs/crown_guns_coach.md, scripts/ai_crown_guns.gd AICrownGuns, tools/bench_crown_guns.gd,
+  tools/study/crown_guns_coach.py + _report.py, data docs/crown_guns_coach/): the Crown computer's FIGHTING only (no number
+  changed): the line keeps its guns from the wave's shared loop (gkeep), guns set where they stand in time and go up to
+  reach (gset), follow the line (gfollow), the held line by its guns is a state (gawait), the wave keeps with its guns on
+  the march (gpace), no column into a ramp (gramp; rarely fires), the defence's and home posts' guns set (gdef, gpost), a
+  rider keeps the enemy in sight for the guns (gspot); switch gunscoach:off. Plus the COUNT of every fight (result.json
+  crown_ai guns, Unit.fired_t). 152 games to 12:00: guns set at contact v Clockwork 15% -> 38%, v Brood 20 -> 33%; firing
+  in the first 10 s 50 -> 65%, 37 -> 56%; kills per loss in fights 1.26 -> 1.98, 0.88 -> 1.07; halls lost 0.74 -> 0.53,
+  0.79 -> 0.68; outcomes unchanged (still 0 wins). Open: flanks out of swamp/fog, posts behind an attacked wall move, a
+  line forming across a ramp. 8 Claude's choices in the doc.
 - CROWN MIRROR COACHED AGAIN (owner 2026-11-16 23:25; job crown-mirror-coach, 0.38.39, docs/crown_mirror_coach.md, data
   docs/crown_mirror_coach/, tools/study/crown_mirror_coach.py + crown_mirror_report.py + crown_mirror_diag.py, pictures
   docs/shots/crown_mirror_coach/): the Crown COMPUTER in the mirror only (no number changed), AICrownMirror: the side ahead

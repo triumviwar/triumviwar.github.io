@@ -399,6 +399,8 @@ func _danger(u: Unit, at: Vector2 = Vector2.INF) -> Array:
 
 func _ride(u: Unit, wave: Array, known: Array) -> void:
 	var e: Dictionary = riders[u]
+	if ai.get("gn") != null and ai.gn.spot(u, String(e["role"])):
+		return          # (crown-guns-coach: the lead rider spots for the line's guns)
 	var dg: Array = _danger(u)
 	if int(dg[1]) > 0:
 		# (back off toward the wave, away from the danger: the screen keeps alive and keeps sight)

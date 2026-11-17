@@ -157,6 +157,9 @@ func _crown_counters() -> Dictionary:
 			for k in ["floor_trained", "floor_held_t", "floor_built", "floor_looks", "line_short_t", "counters", "hold_waits", "held_t"]:
 				if k in vb:
 					d["vb_" + k] = vb.get(k)
+		var gn = a.get("gn")
+		if gn != null:
+			d["guns"] = gn.counters()      # (crown-guns-coach: its fights, guns set and firing at contact)
 		o[str(tm)] = d
 	return o
 

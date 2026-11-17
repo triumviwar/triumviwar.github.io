@@ -360,6 +360,7 @@ func runs_on_spring() -> bool:
 	return d.get("spring", false)
 static var _sky_ground := {}
 # Crown powder logistics
+var fired_t := -99.0             # the clock of its last shot (crown-guns-coach: guns firing at contact; read only)
 var powder := 0.0               # Musketeer / Cannon: shots carried; Powder Wagon: shots in store
 var _pmax := 0.0                # how many it can hold (0: it doesn't use personal powder)
 var _powder_t := 0.0
@@ -5278,6 +5279,7 @@ func _strike(e: Entity) -> void:
 			return
 	if mode != "bayonet" and _range() >= 100.0:
 		game.note_shot(self, e)
+	fired_t = game.clock          # (crown-guns-coach's count: guns firing at contact; read only)
 	if d.get("venom", false):
 		BroodMature.venom_shot(game, self, e, dmg)       # (a Brood spitter by its data: a venom glob, a small splash if it has one)
 		return

@@ -105,6 +105,8 @@ func guns_at_hall(wave: Array, target: Vector2, force := false) -> void:
 	for gu in wave:
 		if not is_instance_valid(gu) or gu.dead or not GUN_KINDS.has(gu.kind) or (gu.position.distance_to(hall.center()) > GUN_NEAR and not force and not bombarding()):
 			continue
+		if ai.get("gn") != null and ai.gn.busy(gu):
+			continue          # (crown-guns-coach: a gun of the line in its fight stays with the line)
 		var rng: float = float(gu.d["range"])
 		if not gunners.has(gu):
 			said = true
