@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.40", "items": [
+		"THE CROWN COMPUTER'S GUNS, COACHED (no unit, price or rule changed): its Field Cannons now set up before the fight. The musket line keeps its guns (they were sent on again, limbered, the moment the line stopped), a gun unlimbers where it stands as soon as the enemy will be in its reach by the time it is set, goes up to reach an enemy just beyond it and follows the line when it moves on; on the march the soldiers keep pace with their guns instead of leaving them behind, and the guns at the army's posts at home stand set up.",
+		"A line held by its guns now waits while they shell the enemy, a Horseman rides out to keep a hidden enemy in the guns' sight, and a wave no longer files up a ramp into a defended base. Measured in 152 games, the guns firing in a fight's first 10 seconds rose from about half to two thirds, and the Crown's fights now kill about 2 for each 1 lost against the Clockwork (1.3 before) and 1.1 against the Brood (0.9).",
+	]},
 	{"v": "0.38.38", "items": [
 		"THE CROWN COMPUTER, COACHED (no unit, price or rule changed): its opening builds the second Farm before the Barracks in every plan but the Rush. Against the Clockwork it now fills its Farms first (each idle Town Hall trains labourers while Farm posts stand free, unless its army is behind), puts up its Town Halls on time (a second by 3:30, a third by 7:30, a fourth by 11:30) and keeps its army on time too: measured on 38 pairs of games, it earns more by 8:00 in 31 and has a bigger army in 29.",
 		"In every matchup its Horsemen scout ahead of the army: the first screen rider is trained before more soldiers and a wave waits for it; its cannons unlimber sooner against a fast or oncoming enemy, and the musket line then holds by its guns and lets the enemy walk into their fire. Against the Brood it reckons only what it has seen. Against the Brood it keeps its old economy and its Horseman rush: the new economy left it too thin when the Brood came.",

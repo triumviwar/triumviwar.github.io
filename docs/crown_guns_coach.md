@@ -9,7 +9,39 @@ scripts/ai_crown_line.gd, ai_crown_screen.gd, ai_crown_hold.gd, ai_crown_mirror.
 changed**, every change behind a switch (`gunscoach:off` all of it; each rule its own, below). Branch crown-guns-coach from
 main 0.38.38.
 
-__SUMMARY__
+## In short
+
+Measured with the win-rate design (19 maps x round 0/1, Hard OPTIMAL v Hard OPTIMAL, 12:00; 152 games, each game as is (A)
+and with `gunscoach:off` (C) on the same map and seed; data docs/crown_guns_coach/data/, every table in
+docs/crown_guns_coach/tables.md):
+
+| (Crown's view) | arm | guns set at contact | guns firing in a fight's first 10 s | fights begun formed | kills per loss in fights | W-D-L | won or led |
+|---|---|---|---|---|---|---|---|
+| v Clockwork | A as is | **38%** | **65%** | 26% | **1.98** | 0-37-1 | 0 |
+| v Clockwork | C off | 15% | 50% | 25% | 1.26 | 0-36-2 | 0 |
+| v Brood | A as is | **33%** | **56%** | **44%** | **1.07** | 0-34-4 | 2 (6 even) |
+| v Brood | C off | 20% | 37% | 21% | 0.88 | 0-33-5 | 5 (2 even) |
+
+1. **The guns now fight.** Of the guns near a fight, those set up when it began went 15% -> 38% (v Clockwork) and 20% -> 33%
+   (v Brood); those firing within its first 10 s 50% -> 65% and 37% -> 56%. At home the change is largest (set at contact
+   13% -> 39% and 6% -> 31%): the guns at their posts now stand set up.
+2. **The fights pay better.** In the Crown's fights it killed 1.98 for each 1 it lost v the Clockwork (was 1.26) and 1.07 v
+   the Brood (was 0.88): +33,000 killed, -23,000 lost over 38 games v the Clockwork. The wave's fights out: 1.16 -> 1.67 v
+   Clockwork, 1.32 -> 1.76 v Brood; begun formed v Brood 34% -> 70%.
+3. **It shows a little in the army and the halls, not in the results.** The army at 10:00 is 0.55 of the enemy's (0.44
+   off) v the Clockwork and 0.72 (0.61) v the Brood; built halls lost 0.74 -> 0.53 a game v the Clockwork, 0.79 -> 0.68 v
+   the Brood. But paired game by game nothing is significant (outcome A better / C better: v Clockwork 2 / 1, v Brood 10 / 8;
+   army 12:00 16 / 19 and 14 / 16), and the Crown still wins nothing: the gap is the economy and the army's size (income
+   0.59 of the Clockwork's at 12:00, 0.70 of the Brood's), the other jobs' work (crown-brood-army, the coach).
+4. **The ramp rule almost never fires** (1 stop at a foot in 76 games, 1 climb): the waves rarely march on a road into a
+   ramp with nothing ahead; a column into a choke still happens when the line is already fighting or forming (choice 2).
+   The screen's sightings did not rise (13 / 20 v Clockwork, 27 / 17 v Brood), and the guns' eyes (rule 8) fired 3 times:
+   the screen was not where the gain came from.
+5. No game failed, no script errors.
+
+**Recommendation (Claude's):** merge (all rules on). The guns and the fights are clearly better in both matchups and no
+measure got worse beyond noise. Next: the army's size v the Brood (crown-brood-army), and the wave's fights still begin
+formed only a quarter of the time v the Clockwork (it is met at its bases at a few seconds' notice).
 
 ## What was wrong (with pictures)
 
@@ -83,27 +115,102 @@ each, off v on:
 
 | scenario | runs | guns | set at contact off / on | fired in the first 10 s off / on | began formed off / on | killed off / on | lost off / on |
 |---|---|---|---|---|---|---|---|
-| clock | 3 | 9 | 0 / 0 | 0 / 7 | 3 / 3 | 3020 / 2850 | 220 / 50 |
-| raptor | 3 | 9 | 0 / 6 | 1 / 7 | 2 / 3 | 1875 / 1650 | 420 / 120 |
-| hold | 3 | 9 | 0 / 6 | 0 / 6 | 3 / 3 | 1960 / 2520 | 1350 / 720 |
-| flank | 3 | 9 | 2 / 0 | 6 / 3 | 2 / 3 | 2620 / 1900 | 60 / 120 |
-| home | 3 | 9 | 9 / 9 | 6 / 9 | 3 / 2 | 330 / 610 | 50 / 50 |
-| **all** | 15 | 45 | **11 / 21** | **13 / 32** | 13 / 14 | 9805 / 9530 | **2100 / 1060** |
+| clock | 3 | 9 | 0 / 0 | 0 / 5 | 3 / 3 | 2610 / 2800 | 50 / 110 |
+| raptor | 3 | 9 | 0 / 4 | 0 / 4 | 3 / 2 | 1900 / 1750 | 170 / 170 |
+| hold | 3 | 9 | 0 / 5 | 0 / 5 | 3 / 3 | 1620 / 2650 | 2440 / 950 |
+| flank | 3 | 9 | 0 / 0 | 4 / 4 | 3 / 3 | 2200 / 2320 | 50 / 0 |
+| home | 3 | 9 | 9 / 9 | 6 / 6 | 3 / 2 | 480 / 490 | 60 / 100 |
+| **all** | 15 | 45 | **9 / 18** | **10 / 24** | 15 / 13 | 8810 / 10010 | **2770 / 1330** |
 
-The guns fire in a fight's first 10 s 2.5 times as often and the wave loses half as much for the same kills. Against Clock
-Soldiers coming on the guns are still not set at the moment of contact (the enemy is first seen 560-780 px off and closes at
-130 px/s with the line's own step) but they are set and firing within the first 10 s in 7 of 9 (0 before). The flank
-scenario got worse on 3 runs (the guns turned to a flank they had not been set for); a ramp run on Highmoor with the top's
-defence scouted: the wave stopped at the foot (1 of 1), the Clock Soldiers came down into the line and its three set guns,
-1,180 killed for 0 lost. (Run before rule 7's home posts and rule 6; the bench's scenarios do not use them.)
+With the final code (b5): the guns fire in a fight's first 10 s 2.4 times as often (24 of 45 against 10), and the wave
+loses half as much (1,330 against 2,770) for more kills. Against a musket line on HOLD the trade turns over (0.66 -> 2.79
+killed per lost): the guns go up to their reach and shell it before the line walks into its fire. Against Clock Soldiers
+coming on the guns are still not set at the very moment of contact (the enemy is first seen 560-780 px off and closes at
+about 130 px/s with the line's own step) but are firing within 10 s in 5 of 9 (0 before). A ramp run on Highmoor, the
+top's defence scouted: the wave stopped at the foot (each run), the Clock Soldiers came down into the line and its set
+guns, 910-1,180 killed for 0-60 lost.
 
 ## The measurement
 
-__MEASURE__
+Arms A (as is) and C (`gunscoach:off`), tools/study/crown_guns_coach.py (each game's arms next to each other, two at a time
+on a 2-core machine, Godot 4.7 headless, about 1.4 minutes of real time a game, 3.5 hours), report
+tools/study/crown_guns_coach_report.py -> docs/crown_guns_coach/tables.md. Won or led and the ratios as in the win-rate
+studies (a draw's leader: income earned + 2 x army value 10% ahead; ratios pooled, the Crown's over its enemy's).
+
+| pairing | arm | income 5:00 | 8:00 | 10:00 | 12:00 | army 5:00 | 8:00 | 10:00 | 12:00 | built halls lost a game (Crown / enemy) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| v Clockwork | A | 0.73 | 0.70 | 0.63 | 0.59 | 0.70 | 0.62 | **0.55** | **0.32** | **0.53** / 0.00 |
+| v Clockwork | C | 0.73 | 0.69 | 0.61 | 0.58 | 0.72 | 0.67 | 0.44 | 0.26 | 0.74 / 0.03 |
+| v Brood | A | 1.04 | 0.78 | 0.74 | 0.70 | 0.75 | 0.73 | **0.72** | 0.46 | **0.68** / 0.00 |
+| v Brood | C | 1.03 | 0.79 | 0.76 | 0.73 | 0.72 | 0.72 | 0.61 | 0.41 | 0.79 / 0.00 |
+
+Paired (A v C, sign test): v Clockwork outcome 2 / 1 / 35 same (p 1.0), income 8:00 higher in 22 / 16 (0.42), 12:00 22 / 13
+(0.18), army 8:00 17 / 21, 10:00 22 / 16, 12:00 16 / 19; v Brood outcome 10 / 8 / 20 (0.82), income 8:00 16 / 22, 12:00
+12 / 19 (0.28), army 5:00 18 / 12, 10:00 21 / 14 (0.31), 12:00 14 / 16.
+
+The fights (real fights, worth 300+ of kills and losses; "set" and "fired" are shares of the guns within 1,000 px):
+
+| pairing | arm | fights | begun formed | set at contact | fired in the first 10 s | fights where a gun fired (of those with one near) | killed / lost | per loss |
+|---|---|---|---|---|---|---|---|---|
+| v Clockwork, out | A | 32 | 31% | 37% | 80% | 75% | 52,935 / 31,660 | **1.67** |
+| v Clockwork, out | C | 35 | 31% | 26% | 60% | 68% | 45,825 / 39,450 | 1.16 |
+| v Clockwork, home | A | 72 | 26% | 39% | 59% | 71% | 118,350 / 54,660 | **2.17** |
+| v Clockwork, home | C | 64 | 23% | 13% | 52% | 66% | 91,260 / 68,825 | 1.33 |
+| v Brood, out | A | 27 | 70% | 32% | 65% | 75% | 43,655 / 24,785 | **1.76** |
+| v Brood, out | C | 29 | 34% | 40% | 44% | 59% | 44,575 / 33,705 | 1.32 |
+| v Brood, home | A | 54 | 35% | 31% | 55% | 69% | 79,420 / 90,170 | **0.88** |
+| v Brood, home | C | 53 | 15% | 6% | 31% | 49% | 58,880 / 83,945 | 0.70 |
+
+The rules fired (sums over 38 games, A): v Clockwork the line kept its guns from the shared loop 2,358 times, guns set in
+time 67, up to reach 31, followed the line 14, the wave waited for its guns 43 times, set at their home posts 301, a
+defence's guns 2, the guns' eyes 2, a ramp's foot 1 (climbed 1); v Brood 2,949 / 111 / 42 / 58 / 49 / 329 / 4 / 1 / 1 (0).
+OPTIMAL's picks are the same in both arms (the fighting changes nothing before the first fight).
+
+Two earlier runs of this measure were stopped and thrown away (kept out of the data): the first counted riders' skirmishes
+as fights, the second had a ramp rule that never found a ramp (it looked only at the road's corner points).
 
 ## Films
 
-__FILMS__
+tools/film_coach.gd shots:1 under xvfb-run, the final code, arm A, 12:00; the study game's map, seed and sides (a new game,
+not a replay of the study's). Story, coach lines, the fight lines and the counters in docs/crown_guns_coach/films/<film>/.
+
+- **crcw_highmoor_1104** (the film of the last measurement, again; the Crown P2): drawn, the Crown ahead in army at 12:00
+  (3,090 against 2,590; the last film trailed, its army 0.25 of the Clockwork's at 12:00). The Clockwork's push at 8:17 meets
+  the Crown at home: both its guns stand set on the high ground and fire in the first 10 s; 2,325 killed for 840:
+
+  ![after: Highmoor 8:17, the home guns set at their post on the high ground, firing as the push comes](crown_guns_coach/pictures/after_highmoor_0817_home_guns_set.jpg)
+
+  Its first wave (9:26) is met before it forms (9:30, 21 muskets deploy) and wins the field; at 10:20 it forms its line on
+  the Clockwork's army 560 px off, the lead rider rides out to keep it in sight for the guns (10:38), and the line stands
+  on the high ground at the top of the ramp with its three guns set behind it instead of going down it into the gears:
+
+  ![after: Highmoor 10:37, the line on the high ground, its guns set behind it, the Clockwork's army below the ramp](crown_guns_coach/pictures/after_highmoor_1037_line_by_its_guns.jpg)
+
+  That fight: 3 guns near, all 3 firing in its first 10 s, 3,695 killed for 895 (the last film's fights there lost the
+  wave: 1,625 of army at 10:00, 900 at 11:00).
+- **crbr_border_march_1121** (the Crown P2; the last film lost at 11:24): drawn, the Crown trailing in army (535 against
+  960 at 12:00) but ahead in income (15,310 against 11,780) and with both halls. The Brood's push at 8:38 hits the walled
+  natural: held, 840 killed for 100 (the last film: 33 Crown units and 10 buildings lost there, the natural's hall at 8:45).
+  Still wrong: the home guns behind the palisade were not set at contact (the posts behind an attacked wall are laid again
+  every few seconds); the first wave (10:00, 24 supply) is met at a ford by Raptors coming out of the swamp on its flank,
+  unseen, one gun set and one still limbered; it falls back twice and wins the field, but meanwhile 42 Brood soldiers
+  walk at the home it left with 360 of army:
+
+  ![after: Border March 10:51, the wave met at the ford by Raptors out of the swamp, one gun set, one limbered](crown_guns_coach/pictures/after_border_march_1051_met_at_the_ford.jpg)
+
+### What the Crown still does wrong (coach's notes)
+
+1. **Met from a flank it has not looked at** (the swamp, a ford): the screen rides the road ahead and its two flankers
+   430 px out; the Brood's Raptors come out of fog and swamp at a few seconds' notice. A flank rider kept on the side of
+   enemy ground (swamp, the enemy's base) would see it.
+2. **v the Clockwork three fights in four still begin unformed**: most are at its bases, where its units come out of the
+   buildings at a few seconds' notice (crown-rider-screen's note, unchanged).
+3. **The posts behind an attacked palisade move every few seconds** (AICrownHold's wall plan): the muskets follow, the guns
+   limber to follow (POST_SLACK 140 px keeps them only if the post moves little). A wall post laid once per attack would
+   let the guns stand.
+4. **Ramps**: the rule now sees a ramp on the wave's road, but a wave rarely marches into one with nothing in sight: it is
+   usually already forming on or fighting what it saw at the top. A line forming before an enemy across a ramp should
+   form at the foot, not on the far side of it (not built).
 
 ## Claude's choices (for the owner)
 
@@ -139,4 +246,12 @@ __FILMS__
 
 ## Tests
 
-__TESTS__
+Run on the final code (Godot 4.7 headless): tools/test_crown_line, test_crown_hold, test_crown_defence,
+test_crown_rider_screen, test_crown_mirror, test_crown_siege, test_crown_gate, test_crown_owner_eco, test_crown_v_brood,
+test_ai_optimal: all pass. Earlier in the job (before the ramp road and the post tweak, which change neither's tests) the rest
+of tools/test_crown_*.gd, test_cav_micro and test_charge_package: all pass but the two that fail on main too
+(test_crown_dragoon_raid [plan], test_crown_stall [foundry]). test_crown_hold's [post] check now reads "the cannon set up
+behind the line" (with `gpost:off`: "on HOLD", as before).
+
+Tools: tools/bench_crown_guns.gd (the bench, `trace:1` prints the guns every second), tools/study/crown_guns_coach.py (the
+measure), tools/study/crown_guns_coach_report.py (its tables).
