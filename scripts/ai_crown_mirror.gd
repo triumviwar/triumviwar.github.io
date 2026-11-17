@@ -379,6 +379,30 @@ func press() -> void:
 		_say("presses its lead: %d of army against the %d it reckons the enemy has: the wave goes now (%d supply, the bar was higher)" % [int(mine), int(est), sup])
 
 
+## (8) the Siege push (AICrownSiege._maybe_go) goes without its full kit (GUNS_GO guns, LINE_GO muskets) when the side is
+## ahead the same way (Cinder Steps 1151: P2's push sat at home to 10:45 waiting for its guns, 1.46 times ahead at 12:00);
+## one gun at least or PRESS_SIEGE_SUP supply.
+const PRESS_SIEGE_SUP := 30
+
+
+func press_siege(home: Array, guns: int) -> bool:
+	if not press_on or ai.peaceful or game.clock < PRESS_FROM:
+		return false
+	if guns < 1 and ai._army_supply(home) < PRESS_SIEGE_SUP:
+		return false
+	var mine := _value(home)
+	if mine < PRESS_MIN:
+		return false
+	var est := foe_army()
+	if mine < est * PRESS_EDGE:
+		return false
+	press_n += 1
+	if game.clock - _press_said > 30.0:
+		_press_said = game.clock
+		_say("presses its lead: %d of army against the %d it reckons the enemy has: the push goes now without its full kit (%d guns)" % [int(mine), int(est), guns])
+	return true
+
+
 ## The enemy army we reckon: what was seen lately in full; not seen lately, PRESS_STALE of the reckoning at least.
 func foe_army() -> float:
 	var known: float = ai.ch.foe_known() if ai.ch != null else 0.0

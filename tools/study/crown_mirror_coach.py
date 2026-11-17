@@ -30,8 +30,10 @@ def queue(rounds=(0, 1), only=None):
 def run_one(g, data, end, extra, keep_maps):
     tag, m, seed, slots = g
     d = os.path.join(data, tag)
-    if os.path.exists(os.path.join(d, "result.json")):
+    rj = os.path.join(d, "result.json")
+    if os.path.exists(rj) and os.path.getsize(rj) > 0:
         return tag + " (had)"
+    shutil.rmtree(d, ignore_errors=True)
     os.makedirs(d, exist_ok=True)
     spec = ",".join("%s/%s/%d" % s for s in slots)
     cmd = ["timeout", "1800", "godot", "--headless", "--fixed-fps", "30", "--path", ROOT, "--script",

@@ -85,7 +85,7 @@ def game(d):
 
 
 def rows(d):
-    return [game(os.path.dirname(f)) for f in sorted(glob.glob(os.path.join(d, "*", "result.json")))]
+    return [game(os.path.dirname(f)) for f in sorted(glob.glob(os.path.join(d, "*", "result.json"))) if os.path.getsize(f) > 0]
 
 
 def mean(v):
