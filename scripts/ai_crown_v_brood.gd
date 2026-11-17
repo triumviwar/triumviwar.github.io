@@ -285,6 +285,7 @@ const FLOOR_SEEN := 1.0
 const FLOOR_PER_LAB := 55.0
 const FLOOR_PER_LAB_MIN := 500.0
 const FLOOR_GUN_PER := 4
+const FLOOR_DEPTH := 2
 const FLOOR_MORE := 200.0
 const FLOOR_BARRACKS := 3
 const FLOOR_BUSY := 10.0
@@ -357,40 +358,46 @@ func floor_produce() -> int:
 			guns += 1
 		elif Defs.MUSKETS.has(u.kind):
 			musk += 1
-	var idle := 0
+	var all_busy := true
 	for f in ai._mine("foundry"):
-		if not f.built or not (f.queue as Array).is_empty() or have >= want:
+		if not f.built:
 			continue
-		if guns * FLOOR_GUN_PER >= musk + FLOOR_GUN_PER or game.horses_at(f) <= 0 or game.can_train(f, "cannon") != "":
+		if not (f.queue as Array).is_empty():
 			continue
-		idle += 1
+		if guns * FLOOR_GUN_PER >= musk + FLOOR_GUN_PER or game.horses_at(f) <= 0 or have >= want:
+			continue
+		all_busy = false
 		var gp := int(game.unit_price(team, "cannon")[0])
 		if int(game.players[team]["gold"]) >= gp and game.train(f, "cannon") == "":
 			floor_trained += 1
 			guns += 1
 			have += float(gp)
+			all_busy = true
 		else:
 			hold += gp
 	var mp := int(game.unit_price(team, "musketeer")[0])
 	for b in ai._mine("barracks"):
-		if not b.built or (b.queue as Array).size() >= 1 or have >= want:
+		if not b.built:
 			continue
+		if (b.queue as Array).is_empty():
+			all_busy = false
 		if ai._res2() < float(Defs.ammo_load("musketeer")) or not ai.am.musket_ok(b, "musketeer"):
 			continue             # (no powder for his shots: no dry Musketeer for the floor; the Mill's crew grows for it)
-		idle += 1
-		if int(game.players[team]["gold"]) < mp:
-			hold += mp           # (his gold first, from the next harvest)
-			continue
-		var k: String = ai._soldier_key(b, "musketeer")
-		if k != "" and game.train(b, k) == "":
+		# two deep, as the halls' labourers (AICrownCoach.LAB_DEPTH): the gold comes in harvests ~20 s apart and a Musketeer
+		# trains in 15 s, so with one in the queue the Barracks stood idle half the time (Greenhold 1100, 6:08-7:20)
+		while (b.queue as Array).size() < FLOOR_DEPTH and have < want:
+			if int(game.players[team]["gold"]) < mp:
+				hold += mp       # (his gold first, from the next harvest)
+				break
+			var k: String = ai._soldier_key(b, "musketeer")
+			if k == "" or game.train(b, k) != "":
+				break            # (he cannot be trained here now for another reason)
 			floor_trained += 1
 			have += float(game.unit_price(team, k)[0])
-		else:
-			idle -= 1            # (he cannot be trained here now for another reason)
 	if hold > 0:
 		floor_held_t += 0.1
 	# every Barracks and Foundry busy and still far short: one more Barracks
-	if idle == 0 and want - have >= FLOOR_MORE:
+	if all_busy and want - have >= FLOOR_MORE:
 		if _busy_from < 0.0:
 			_busy_from = game.clock
 		elif game.clock - _busy_from >= FLOOR_BUSY and ai._mine("barracks").size() < FLOOR_BARRACKS \
@@ -407,6 +414,11 @@ func floor_produce() -> int:
 				hold += cost
 	else:
 		_busy_from = -1.0
+	if OS.get_cmdline_user_args().has("cbadebug"):
+		var q := []
+		for b in ai._mine("barracks"):
+			q.append((b.queue as Array).duplicate())
+		print("FLOOR %.1f want %d have %d gold %d hold %d busy %s q %s powder %d" % [game.clock, int(want), int(have), int(game.players[team]["gold"]), hold, str(all_busy), str(q), int(ai._res2())])
 	if game.clock - _floor_said > 60.0 and hold > 0:
 		_floor_said = game.clock
 		ai.say("the army floor against the Brood: %d of line (with what trains) against the %d its scouting asks for: the soldiers' gold first" % [int(have), int(want)])
