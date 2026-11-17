@@ -27,8 +27,8 @@ const ROLES := {
 	"ferrer": {"kind": "missionary", "art": "c_ferrer", "name": "Father Ferrer", "about": "A Jesuit astronomer and engineer."},
 	# THE BROOD PROLOGUE (docs/campaign_b01_build.md): the station's people, the garrison's, and LINNEA, a Brood Mother's
 	# kind drawn at a third of her size ("scale") until her own art exists
-	"lindqvist": {"kind": "musketeer", "art": "b_lindqvist", "name": "Dr. Lindqvist", "hp": 220, "about": "The Academy's naturalist, with a fowling piece."},
-	"valadares": {"kind": "dismounted", "art": "b_valadares", "name": "Valadares", "hp": 260, "about": "The Crown's mapmaker: pistol and machete."},
+	"lindqvist": {"kind": "musketeer", "art": "b_lindqvist", "name": "Dr. Lindqvist", "hp": 320, "about": "The Academy's naturalist, with a fowling piece."},
+	"valadares": {"kind": "dismounted", "art": "b_valadares", "name": "Valadares", "hp": 320, "about": "The Crown's mapmaker: pistol and machete."},
 	"pieter": {"kind": "labourer", "art": "b_pieter", "name": "Pieter", "hp": 110, "about": "Lindqvist's young preparator."},
 	"teles": {"kind": "dismounted", "art": "b_teles", "name": "Lieutenant Teles", "hp": 160, "about": "Commands the fort at São Gabriel."},
 	"joaquim": {"kind": "missionary", "art": "b_joaquim", "name": "Frei Joaquim", "about": "The Carmelite of the mission village."},

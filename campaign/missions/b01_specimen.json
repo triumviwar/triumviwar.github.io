@@ -1613,7 +1613,7 @@
 					},
 					{
 						"count": {
-							"side": "station",
+							"team": "station",
 							"area": "village",
 							"at_least": 2
 						}
@@ -2247,7 +2247,7 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 6,
+						"count": 4,
 						"at": "jar_c",
 						"tag": "sire_pack"
 					}
@@ -2256,7 +2256,7 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "spitter",
-						"count": 2,
+						"count": 1,
 						"at": "mouth",
 						"tag": "sire_pack"
 					}
@@ -2354,6 +2354,12 @@
 					"clock": {
 						"name": "canoes",
 						"secs": 520
+					}
+				},
+				{
+					"clock": {
+						"name": "take",
+						"secs": 330
 					}
 				},
 				{
@@ -2698,7 +2704,7 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 3,
+						"count": 2,
 						"at": "jar_c",
 						"tag": "called",
 						"order": {
@@ -2711,7 +2717,7 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 2,
+						"count": 1,
 						"at": "jar_w",
 						"tag": "called",
 						"order": {
@@ -2762,8 +2768,8 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 4,
-						"at": "nest_wide",
+						"count": 3,
+						"at": "jar_c",
 						"tag": "guard",
 						"order": {
 							"do": "attack",
@@ -2847,12 +2853,12 @@
 			"when": {
 				"fired": "turn"
 			},
-			"delay": 90,
+			"delay": 150,
 			"do": [
 				{
 					"burn": {
 						"tag": "specimen_house",
-						"secs": 330
+						"secs": 360
 					}
 				}
 			]
@@ -2875,17 +2881,7 @@
 		{
 			"id": "taken",
 			"when": {
-				"all": [
-					{
-						"fired": "turn"
-					},
-					{
-						"clock_left": {
-							"name": "canoes",
-							"below": 175
-						}
-					}
-				]
+				"clock_out": "take"
 			},
 			"do": [
 				{

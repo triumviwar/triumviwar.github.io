@@ -455,20 +455,22 @@ func _play(run: String, teles: String, clutch: String) -> void:
 	# he takes her
 	var lin: Unit = r.tagged("linnea")[0]
 	var canoes := float(r.clocks["canoes"])
-	_step(g, canoes - 174.0)
+	var take := float(r.clocks["take"])
+	check(P + "he takes her before the specimen house can burn down", take < turn_t + 150.0 + 360.0 and take < canoes - 120.0)
+	_step(g, take + 0.1)
 	check(P + "HE TAKES HER: the pen broken", r.fired.has("taken") and r.tagged("pen").is_empty())
-	_step(g, canoes - 172.5)
+	_step(g, take + 1.5)
 	check(P + "she is the pack's now, free, still untouchable", lin.team == pt and not lin.has_meta("mission_caged") and lin.spared and r.tagged("taken").size() == 1)
-	_step(g, canoes - 170.0)
-	_step(g, canoes - 168.0)
+	_step(g, take + 4.0)
+	_step(g, take + 6.0)
 	check(P + "they walk off up the creek trail", lin.order == "move" and sr.order == "move")
 	_put(g, [lin, sr], r.area_rect("out_n"))
-	_step(g, canoes - 167.0)
+	_step(g, take + 7.0)
 	check(P + "...and off the map", r.tagged("taken").is_empty() and r.tagged("sire").is_empty())
 	check(P + "the research: reach the specimen house", r.obj["research"] == "active")
 	if clutch != "":
 		_put(g, r.tagged("lindqvist"), r.area_rect("spec"))
-		_step(g, canoes - 165.0)
+		_step(g, take + 9.0)
 		check(P + "THE SECOND CHOICE is offered", String(r.choice_open.get("id", "")) == "clutch" and r.obj["research"] == "done")
 		await process_frame
 		check(P + "the choice panel's buttons", ui.find_child("Choose_burned", true, false) != null and ui.find_child("Choose_saved", true, false) != null)

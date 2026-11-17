@@ -236,7 +236,7 @@ M = {
             {"say": ["j_raid"]}, {"sound": {"name": "campaign/forest_answer", "area": "village"}},
             {"spawn": {"team": "pack", "kind": "raptor", "count": 4, "at": "causeway_w", "tag": "raiders", "order": {"do": "attack", "to": "bonfires"}}},
             {"ping": {"area": "bonfires"}}]},
-        {"id": "folk_go", "when": {"all": [{"fired": "eve"}] + QUIET + [{"count": {"side": "station", "area": "village", "at_least": 2}}]}, "do": [
+        {"id": "folk_go", "when": {"all": [{"fired": "eve"}] + QUIET + [{"count": {"team": "station", "area": "village", "at_least": 2}}]}, "do": [
             {"say": ["j_come"]}, {"order": {"tag": "folk", "do": "move", "to": "yard"}}, {"order": {"tag": "joaquim", "do": "move", "to": "yard"}}]},
         {"id": "folk_count", "when": {"fired": "folk_go"}, "every": 2, "do": [
             {"counter": {"name": "folk_in", "count": {"tag": "folk", "area": "yard"}}}]},
@@ -273,8 +273,8 @@ M = {
             {"light": {"to": "fire_night", "secs": 20}},
             {"sound": {"name": "campaign/sire_roar"}},
             {"spawn": {"team": "pack", "kind": "tyrannosaur", "count": 1, "at": "jar_c", "tag": "sire"}},
-            {"spawn": {"team": "pack", "kind": "raptor", "count": 6, "at": "jar_c", "tag": "sire_pack"}},
-            {"spawn": {"team": "pack", "kind": "spitter", "count": 2, "at": "mouth", "tag": "sire_pack"}},
+            {"spawn": {"team": "pack", "kind": "raptor", "count": 4, "at": "jar_c", "tag": "sire_pack"}},
+            {"spawn": {"team": "pack", "kind": "spitter", "count": 1, "at": "mouth", "tag": "sire_pack"}},
             {"floor": {"tag": "sire", "share": 0.33}},
             {"order": {"tag": "sire", "do": "move", "to": "nest"}}, {"order": {"tag": "sire_pack", "do": "attack", "to": "pen"}},
             {"say": ["n_ground", "p_sire", "l_lost", "v_lost", "tip_3"]},
@@ -283,7 +283,7 @@ M = {
             {"objective": {"id": "hold", "set": "hidden"}}, {"objective": {"id": "turtle", "set": "hidden"}},
             {"objective": {"id": "fall", "set": "active"}}, {"objective": {"id": "out", "set": "active"}},
             {"objective": {"id": "people", "set": "active"}}, {"objective": {"id": "pieter", "set": "active"}},
-            {"clock": {"name": "canoes", "secs": 520}},
+            {"clock": {"name": "canoes", "secs": 520}}, {"clock": {"name": "take", "secs": 330}},
             {"counter": {"name": "people", "count": {"team": "station"}}}, {"counter": {"name": "people", "add": -2}},
             {"counter": {"name": "people", "count": {"tag": "folk"}, "plus": True}},
             {"ping": {"area": "jetty"}}, {"reveal": {"area": "jetty", "side": "station", "secs": 900}},
@@ -309,21 +309,21 @@ M = {
         {"id": "eggs_seen", "when": {"fired": "eggs"}, "do": [{"say": ["p_eggs", "l_young"]}]},
         {"id": "sire_call", "when": {"all": [{"rooted": {"tag": "sire"}}, {"not": {"fired": "taken"}}, {"count": {"team": "pack", "below": CAP}}]}, "every": 22, "delay": 12, "do": [
             {"sound": {"name": "campaign/linnea_call", "area": "pen"}},
-            {"spawn": {"team": "pack", "kind": "raptor", "count": 3, "at": "jar_c", "tag": "called", "order": {"do": "attack", "to": "pen"}}},
-            {"spawn": {"team": "pack", "kind": "raptor", "count": 2, "at": "jar_w", "tag": "called", "order": {"do": "attack", "to": "yard"}}}]},
+            {"spawn": {"team": "pack", "kind": "raptor", "count": 2, "at": "jar_c", "tag": "called", "order": {"do": "attack", "to": "pen"}}},
+            {"spawn": {"team": "pack", "kind": "raptor", "count": 1, "at": "jar_w", "tag": "called", "order": {"do": "attack", "to": "yard"}}}]},
         # hurt to a third he gets up: the pack closes round him, then he lies down again
         {"id": "sire_up", "when": {"all": [{"rooted": {"tag": "sire"}}, {"hp": {"tag": "sire", "below": 0.36}}, {"not": {"fired": "taken"}}]}, "every": 3, "do": [
             {"order": {"tag": "sire", "do": "uproot"}}, {"counter": {"name": "drove", "add": 1}},
-            {"spawn": {"team": "pack", "kind": "raptor", "count": 4, "at": "nest_wide", "tag": "guard", "order": {"do": "attack", "to": "nest"}}},
+            {"spawn": {"team": "pack", "kind": "raptor", "count": 3, "at": "jar_c", "tag": "guard", "order": {"do": "attack", "to": "nest"}}},
             {"say": ["n_nothing"]}, {"sound": {"name": "campaign/sire_roar"}}]},
         {"id": "sire_down", "when": {"all": [{"fired": "sire_up"}, {"not": {"rooted": {"tag": "sire"}}}, {"not": {"fired": "taken"}}]}, "every": 30, "delay": 28, "do": [
             {"heal": {"tag": "sire", "share": 0.7}}, {"order": {"tag": "sire", "do": "root", "to": "nest"}}]},
         # THE FIRE: Spitter acid finds the lamp oil; the station house falls last
         {"id": "fire_1", "when": {"fired": "turn"}, "delay": 40, "do": [{"burn": {"tag": "garden", "secs": 220}}, {"say": ["p_fire"]}]},
-        {"id": "fire_2", "when": {"fired": "turn"}, "delay": 90, "do": [{"burn": {"tag": "specimen_house", "secs": 330}}]},
+        {"id": "fire_2", "when": {"fired": "turn"}, "delay": 150, "do": [{"burn": {"tag": "specimen_house", "secs": 360}}]},
         {"id": "fire_3", "when": {"fired": "turn"}, "delay": 160, "do": [{"burn": {"tag": "station_house", "secs": 420}}]},
-        # HE TAKES HER (about two thirds into the countdown)
-        {"id": "taken", "when": {"all": [{"fired": "turn"}, {"clock_left": {"name": "canoes", "below": 175}}]}, "do": [
+        # HE TAKES HER (5:30 into Part 3: about two thirds of the countdown; never after the specimen house has burned)
+        {"id": "taken", "when": {"clock_out": "take"}, "do": [
             {"hurt": {"tag": "pen", "amount": 99999}}, {"floor": {"tag": "sire", "share": 0.0}},
             {"cage": {"tag": "linnea", "on": False}},
             {"convert": {"tag": "linnea", "to": "pack", "warn": 1, "as": "taken", "sound": "campaign/linnea_call"}},
