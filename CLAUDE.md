@@ -38,8 +38,11 @@
   asks mercy and Varenne SPARED, Rome 2 players, missions before the war map, EASY/NORMAL/HARD, the dates, one crate
   hint, the heir later, both tellers at Rome). AND (22:00) THE BROOD PROLOGUE IS PLAYED AS THE BROOD: the Sire's pack v
   a rival pack, the station scripted, it still falls, the player takes Linnea; the first Brood play is b01, not a03
-  (doc "OWNER ANSWERS"). Jobs: act1-engine0 (engine step 0) and brood-prologue-flip (b01 as the Brood) started
-  2026-11-17 22:10; a02_furth after act1-engine0 merges.
+  (doc "OWNER ANSWERS"). MERGED: act1-engine0 0.38.49 (docs/act1_engine0.md:
+  difficulty, solo side pick, if/stay/near/seen, route/follow, sleep/wake, mist, capture) and brood-prologue-flip 0.38.50
+  (docs/campaign_b01_build.md: the Sire's pack v the rival pack (Brood computer Easy capped at 36 + scripted hunters),
+  the station scripted, root/lay/roar/Linnea teaching strip, ONE choice TAKE/LEAVE THE CLUTCH (flags clutch, eggs, rival),
+  14 Claude's choices, new stills b09-b11). Job a02-furth (the Fürth Line) started 2026-11-18 00:00.
 - BROOD PROLOGUE FLIPPED (owner 2026-11-17 22:00-22:04; job brood-prologue-flip, 0.38.49, docs/campaign_b01_build.md, which
   supersedes the station-played build below): b01_specimen is PLAYED AS THE BROOD, the campaign's first Brood play: the
   player is the Tyrant Sire's pack (green: the Old Mother's standard start in a north-west den, the Sire, Raptors); a teaching

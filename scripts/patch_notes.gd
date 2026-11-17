@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.52", "items": [
+		"Notes only: the project notes record the merged campaign work.",
+	]},
 	{"v": "0.38.51", "items": [
 		"Studies only: the Crown computer without its blind Horseman rush against the Brood was measured (114 games): it does worse without it, because the unharassed Brood builds a far bigger army by 8 minutes, so the rush stays as it is.",
 	]},
