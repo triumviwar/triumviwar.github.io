@@ -127,6 +127,17 @@ func _one(sc: String, r: int, map: String) -> void:
 	var at: Vector2 = mid - to_goal * 900.0 + perp * (r * 60.0 - 30.0)
 	if sc == "home":
 		at = home + (mid - home).normalized() * 380.0
+	if sc == "ramp":
+		var road: PackedVector2Array = g.find_path(goal, mid, false, 7.0, 0)
+		var k := 0
+		var walked := 0.0
+		for i in range(1, road.size()):
+			walked += road[i - 1].distance_to(road[i])
+			if walked > 1500.0:
+				k = i
+				break
+		at = road[k] if k > 0 else mid
+		print("   ramp: goal level %d, wave at %s level %d, %d px down the road" % [g.level_of(goal), str(at), g.level_of(at), int(walked)])
 	var wave: Array = []
 	for i in 12:
 		wave.append(_spawn("musketeer", 0, at + Vector2((i % 6) * 28, (i / 6) * 28)))
@@ -141,8 +152,10 @@ func _one(sc: String, r: int, map: String) -> void:
 		foe_at = mid + perp * 760.0 - to_goal * 100.0
 	if sc == "home":
 		foe_at = at + (mid - home).normalized() * 1300.0
-	var fk: String = {"clock": "clock_soldier", "raptor": "raptor", "hold": "musketeer", "flank": "clock_soldier", "home": "clock_soldier"}[sc]
-	var nf: int = {"clock": 14, "raptor": 24, "hold": 12, "flank": 14, "home": 14}[sc]
+	if sc == "ramp":
+		foe_at = goal + (at - goal).normalized() * 200.0
+	var fk: String = {"clock": "clock_soldier", "raptor": "raptor", "hold": "musketeer", "flank": "clock_soldier", "home": "clock_soldier", "ramp": "clock_soldier"}[sc]
+	var nf: int = {"clock": 14, "raptor": 24, "hold": 12, "flank": 14, "home": 14, "ramp": 16}[sc]
 	for i in nf:
 		var f := _spawn(fk, 1, foe_at + Vector2((i % 5) * 26, (i / 5) * 26))
 		foes.append(f)
@@ -161,6 +174,9 @@ func _one(sc: String, r: int, map: String) -> void:
 			ai._wave_set[u] = true
 			u.cmd_move(goal, true)
 	# the enemy: Musketeers hold; the others come on after a few seconds (toward where the wave will be)
+	if sc == "ramp" and ai.ch != null:
+		for f in foes:
+			ai.ch._seen[f] = [g.clock + 60.0, f.position, float(Game.unit_value(f))]     # (as if scouted: the base's defence known)
 	print("   at %s foe_at %s goal %s mid %s clock %.1f" % [str(at), str(foe_at), str(goal), str(mid), g.clock])
 	var go_t := g.clock + (6.0 if sc != "home" else 1.0)
 	var contact_t := -1.0
@@ -175,7 +191,9 @@ func _one(sc: String, r: int, map: String) -> void:
 	while g.clock < t_end and not g.over:
 		await physics_frame
 		var go := false
-		if not sent and sc != "home" and g.clock >= go_t:
+		if not sent and sc == "ramp":
+			pass
+		elif not sent and sc != "home" and g.clock >= go_t:
 			for u in _alive(wave):
 				for o in _alive(foes):
 					if u.kind == "musketeer" and o.position.distance_to(u.position) < 1000.0:
@@ -247,7 +265,7 @@ func _one(sc: String, r: int, map: String) -> void:
 	var x := {"sc": sc, "run": r, "contact": snappedf(contact_t, 0.1), "st": st0, "formed": st0 in ["form", "step", "set", "await", "advance"],
 		"guns": guns.size(), "set": set_n, "fired": _first_fired, "killed": int(float(g.stats[0]["value_killed"]) - k0),
 		"lost": int(float(g.stats[1]["value_killed"]) - l0), "said": ai.ln.said.slice(-6),
-		"gn": {"sets": ai.gn.sets, "follows": ai.gn.follows, "paces": ai.gn.paces, "spots": ai.gn.spots, "feet": ai.gn.feet, "ups": ai.gn.ups} if ai.gn != null else {}}
+		"gn": {"sets": ai.gn.sets, "follows": ai.gn.follows, "paces": ai.gn.paces, "spots": ai.gn.spots, "feet": ai.gn.feet, "ups": ai.gn.ups, "climbs": ai.gn.climbs, "leaves": ai.gn.leaves} if ai.gn != null else {}}
 	if sc == "home":
 		x["formed"] = ai.ln.def_lines > 0
 	_first_fired = 0

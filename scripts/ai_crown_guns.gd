@@ -39,6 +39,10 @@ extends RefCounted
 ##     musket reach at once.
 ##  7. THE DEFENCE'S GUNS SET (`gdef:off`): a gun of a detachment sent to a force at our buildings sets up where it is
 ##     once an enemy is in its reach (or about to be), instead of being sent on again and again into the raid's spot.
+##     THE GUNS AT THEIR POSTS SET (`gpost:off`): the home posts (AICrownHold.place: the ramp's top, the gate, the cliff
+##     edge) put a gun on HOLD at its spot, limbered: it set up only once an enemy came in reach (2.5 s under fire; filmed
+##     and counted: home fights with guns near began with 0 set). Now a gun at its post sets up there, and a set gun
+##     within POST_SLACK of its post (the posts move a little as the line is laid again) stays set.
 ## Plus THE COUNT (read only, always on): every fight of the Crown's army (an armed enemy within CONTACT of one of its
 ## soldiers after QUIET s of none there), its guns near it, how many stood set up at contact and how many fired in its first
 ## FIRST s, whether it began formed, and what it killed and lost (result.json "crown_ai" via tools/qa_match.gd).
@@ -63,6 +67,9 @@ var await_on := not off and not _args.has("gawait:off")
 var pace_on := not off and not _args.has("gpace:off")
 var ramp_on := not off and not _args.has("gramp:off")
 var def_on := not off and not _args.has("gdef:off")
+var post_on := not off and not _args.has("gpost:off")
+const POST_SLACK := 140.0       # (px) a set gun this near its post stays set
+var post_sets := 0              # (tests) guns set at their home posts
 var spot_on := not off and not _args.has("gspot:off")
 const SPOT_D := 240.0           # (px) the spotter this far from the enemy it keeps in sight (a rider sees 256)
 const SPOT_SAFE := 20.0         # (px) ... and this far outside the reach of what can shoot it
@@ -543,6 +550,20 @@ func def_gun(u: Unit) -> bool:
 	return false
 
 
+## AICrownHold._post asks first: true = this gun is seen to (set at its post, or set near it).
+func post_gun(u: Unit, spot: Vector2) -> bool:
+	if not post_on or not AICrownLine.is_gun(u) or u.aboard != null:
+		return false
+	var d: float = u.position.distance_to(spot)
+	if u.tesla_mode == "deployed" or u.tesla_mode == "deploying":
+		return d < POST_SLACK
+	if u.tesla_mode == "packed" and d <= 16.0 and u.order in ["idle", "hold", "move"]:
+		u.cmd_deploy()
+		post_sets += 1
+		return true
+	return false
+
+
 # ------------------------------------------------------------------ the count
 
 var _def_n := 0
@@ -639,7 +660,7 @@ func counters() -> Dictionary:
 	if not _cur.is_empty():
 		_end()
 	var o := {"fights": fights.duplicate(), "kept": kept, "sets": sets, "follows": follows, "paces": paces, "feet": feet,
-		"climbs": climbs, "leaves": leaves, "def_sets": def_sets, "spots": spots, "ups": ups}
+		"climbs": climbs, "leaves": leaves, "def_sets": def_sets, "spots": spots, "ups": ups, "post_sets": post_sets}
 	var n := 0
 	var withg := 0
 	var fired := 0
