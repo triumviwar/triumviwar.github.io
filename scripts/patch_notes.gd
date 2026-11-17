@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.42", "items": [
+		"THE CROWN COMPUTER AGAINST THE BROOD no longer trusts only what it has seen of the Brood's army when deciding to attack (no unit, price or rule changed): measured on 152 games, that reckoning sent its waves into a Brood that had grown since it was last seen and cost it income and army. Its old, more careful guess is back.",
+	]},
 	{"v": "0.38.41", "items": [
 		"THE CROWN COMPUTER'S GUNS, COACHED (no unit, price or rule changed): its Field Cannons now set up before the fight. The musket line keeps its guns (they were sent on again, limbered, the moment the line stopped), a gun unlimbers where it stands as soon as the enemy will be in its reach by the time it is set, goes up to reach an enemy just beyond it and follows the line when it moves on; on the march the soldiers keep pace with their guns instead of leaving them behind, and the guns at the army's posts at home stand set up.",
 		"A line held by its guns now waits while they shell the enemy, a Horseman rides out to keep a hidden enemy in the guns' sight, and a wave no longer files up a ramp into a defended base. Measured in 152 games, the guns firing in a fight's first 10 seconds rose from about half to two thirds, and the Crown's fights now kill about 2 for each 1 lost against the Clockwork (1.3 before) and 1.1 against the Brood (0.9).",

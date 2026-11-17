@@ -60,7 +60,10 @@ var off := args.has("coach:off")
 var labs_first_on := not off and not args.has("labsfirst:off")
 
 var halls_on_time_on := not off and not args.has("hallsontime:off")
-var honest_off := off or args.has("honest:off")
+## (crown-brood-measure 2026-11-17, docs/crown_brood_measure.md: rule 3 is only read v the Brood, and there it cost the
+## Crown: income at 8:00 lower in 26 of 38 paired games (p 0.034), at 12:00 21 v 8 (p 0.024), army 8:00 0.68 v 0.84; it
+## sent waves into a Brood grown since last seen. OFF by default since 0.38.42; `broodhonest:on` brings it back.)
+var honest_off := off or args.has("honest:off") or not args.has("broodhonest:on")
 var screen_first_on := not off and not args.has("screenfirst:off")
 var floor_off := args.has("armyfloor:off")
 var screen_trained := 0
