@@ -53,6 +53,11 @@ func _init(a) -> void:
 	line_off = off or args.has("cvbline:off")
 	target_off = off or not args.has("cvbtarget:on")      # (MEASURED, NOT KEPT AS THE DEFAULT: parts 2 and 3 below)
 	keep_wide = args.has("cvbkeep:wide")
+	cba_off = args.has("cba:off")
+	floor_off = cba_off or args.has("cbafloor:off")
+	for arg in args:
+		if arg.begins_with("cbafloor:k="):
+			floor_k = float(arg.split("=")[1])
 	counter_off = off or not args.has("cvbcounter:on")
 
 
@@ -73,7 +78,7 @@ func line_want() -> float:
 	var t: float = game.clock
 	var w: float = AICrown._lerp_table(LINE_TABLE, t)
 	var cap := maxf(LINE_PER_LAB_MIN, LINE_PER_LAB * float(game.workers(team).size()))
-	return minf(w, cap)
+	return maxf(minf(w, cap), floor_want())      # (crown-brood-army: the floor tied to the Brood, part 5)
 
 
 ## The home line is under its floor (looked at once a second).
@@ -243,3 +248,166 @@ func church_waits() -> bool:
 		church_held += 1
 		return true
 	return false
+
+
+
+## 5. THE ARMY FLOOR TIED TO THE BROOD (crown-brood-army, the owner 2026-11-16 23:25 "start all coaching jobs needed";
+##    docs/crown_brood_army.md). The line's floor above (LINE_TABLE, capped LINE_PER_LAB a labourer) is the Crown's own
+##    table: 300 at 5:00, 700 at 6:00, and the cap held it under 900 till 8:00 on 20 labourers. The Brood's Timing reaches the
+##    Crown at 6:20-8:00 with 600-1,400 of army (crown-coach-measure-2; this job's baseline: Saltmarsh r1 6:20 1,400 against
+##    480, Redrock r0 6:50 985 against 590). And the line was short every minute from 4:30 to 8:00 while the gold went to the
+##    natural's palisade (27 pieces), a Foundry, a second Mill, Farms, a Cottage and the Cavalry Charge, with the Barracks
+##    idle (Dune Sea r1, 5:30-7:00: two Barracks, busy 0, 25 gold in the bank): the line's keep holds only some of the ways
+##    the gold goes. Now, from FLOOR_FROM to FLOOR_UNTIL:
+##    - the floor follows the Brood: what its scouts saw of the Brood's army lately (FLOOR_SEEN of it) and, by the read, the
+##      push to come FLOOR_LEAD s ahead (FLOOR_TABLE: ~500 by 6:00, ~1,000 by 7:30, whatever the read: the Crown reads
+##      the Brood GREEDY at ~1:40 in nearly every game, its turtle on new ground being the usual opening, and the Timing
+##      still came; FLOOR_BLIND of it before any read), bounded by the economy (FLOOR_PER_LAB a labourer);
+##    - while the line (with what trains) is under it, every idle Barracks trains a Musketeer and an idle Foundry a Field
+##      Cannon (one for FLOOR_GUN_PER Musketeers) BEFORE any think stage spends, and their price is held from everything else
+##      (the walls, the steps, the milestones, the labourers) until they can: the gold of idle production only, so a busy
+##      Barracks lets the economy go on;
+##    - every Barracks and Foundry busy and still FLOOR_MORE short: one more Barracks (up to FLOOR_BARRACKS);
+##    - no Brood soldier seen for FLOOR_LOOK s between 4:00 and 6:30: a scout goes to look (AICrown.want_look).
+##    Switches `cbafloor:off` (this part), `cba:off` (the whole job), `cbafloor:k=<x>` (the table times x).
+##    Design rule 2 (the defender's advantage needs defenders: a palisade with nobody behind it) and 4 (the opportunity cost:
+##    an idle Barracks while the walls go up).
+var cba_off := false
+var floor_off := false
+var floor_k := 1.0
+const FLOOR_FROM := 240.0
+const FLOOR_UNTIL := 570.0
+const FLOOR_LEAD := 30.0
+## [clock, home line wanted] after a NORMAL (or AGGRESSIVE) read: the Brood's Timing push
+const FLOOR_TABLE := [[240.0, 0.0], [300.0, 250.0], [360.0, 500.0], [450.0, 1000.0], [540.0, 1300.0], [600.0, 1500.0]]
+const FLOOR_BLIND := 0.6
+const FLOOR_SEEN := 1.0
+const FLOOR_PER_LAB := 55.0
+const FLOOR_PER_LAB_MIN := 500.0
+const FLOOR_GUN_PER := 4
+const FLOOR_MORE := 200.0
+const FLOOR_BARRACKS := 3
+const FLOOR_BUSY := 10.0
+const FLOOR_LOOK := 75.0
+var floor_trained := 0           # (the report) Musketeers and guns the floor trained
+var floor_held_t := 0.0          # (the report) seconds it held gold for idle production
+var floor_built := 0             # (the report) Barracks the floor put up
+var floor_looks := 0             # (the report) looks it asked for
+var _floor_t := -1.0
+var _floor_v := 0.0
+var _busy_from := -1.0
+var _floor_said := -99.0
+
+
+func floor_on() -> bool:
+	return not floor_off and not ai.peaceful and game.clock >= FLOOR_FROM and game.clock < FLOOR_UNTIL
+
+
+func floor_want() -> float:
+	if not floor_on():
+		return 0.0
+	if game.clock - _floor_t < 1.0:
+		return _floor_v
+	_floor_t = game.clock
+	var t: float = game.clock
+	var read := String(ai.scout.verdict) if ai.scout != null else ""
+	var tab := AICrown._lerp_table(FLOOR_TABLE, t + FLOOR_LEAD) * floor_k
+	if read == "pending" or read == "":
+		tab *= FLOOR_BLIND       # (no read yet; a GREEDY read at 1:40 is the Brood's usual opening, its Timing still comes)
+	var seen: float = ai.ch.foe_known() if ai.ch != null else 0.0
+	var w := maxf(tab, seen * FLOOR_SEEN)
+	var cap := maxf(FLOOR_PER_LAB_MIN, FLOOR_PER_LAB * float(game.workers(team).size()))
+	_floor_v = minf(w, cap)
+	if t < 390.0 and ai.ch != null and t - float(ai.ch._last_army_t) > FLOOR_LOOK:
+		var was: int = ai.looks_asked
+		ai.want_look("the army floor")
+		if ai.looks_asked > was:
+			floor_looks += 1
+	return _floor_v
+
+
+## The line with what trains (the queues of the Barracks and Foundries).
+func line_with_queued() -> float:
+	var v := home_line()
+	for b in ai._mine("barracks") + ai._mine("foundry"):
+		for k in b.queue:
+			if Defs.MUSKETS.has(String(k)) or String(k) == "cannon" or String(k) == "mortar":
+				v += float(Defs.UNITS[String(k)]["cost"]) if Defs.UNITS.has(String(k)) else 60.0
+	return v
+
+
+## Trains into idle production while the line (with its queues) is under the floor; returns the gold to hold for the rest.
+func floor_produce() -> int:
+	if not floor_on():
+		return 0
+	var want := floor_want()
+	var have := line_with_queued()
+	if have >= want:
+		_busy_from = -1.0
+		return 0
+	if game.supply_used(team) >= int(game.players[team]["cap"]) - 2:
+		return 0                 # (supply-blocked: the Cottage first)
+	var hold := 0
+	var musk := 0
+	var guns := 0
+	for u in game.army(team):
+		if u.dead:
+			continue
+		if u.kind == "cannon":
+			guns += 1
+		elif Defs.MUSKETS.has(u.kind):
+			musk += 1
+	var idle := 0
+	for f in ai._mine("foundry"):
+		if not f.built or not (f.queue as Array).is_empty() or have >= want:
+			continue
+		if guns * FLOOR_GUN_PER >= musk + FLOOR_GUN_PER or game.horses_at(f) <= 0 or game.can_train(f, "cannon") != "":
+			continue
+		idle += 1
+		var gp := int(game.unit_price(team, "cannon")[0])
+		if int(game.players[team]["gold"]) >= gp and game.train(f, "cannon") == "":
+			floor_trained += 1
+			guns += 1
+			have += float(gp)
+		else:
+			hold += gp
+	var mp := int(game.unit_price(team, "musketeer")[0])
+	for b in ai._mine("barracks"):
+		if not b.built or (b.queue as Array).size() >= 1 or have >= want:
+			continue
+		if ai._res2() < float(Defs.ammo_load("musketeer")) or not ai.am.musket_ok(b, "musketeer"):
+			continue             # (no powder for his shots: no dry Musketeer for the floor; the Mill's crew grows for it)
+		idle += 1
+		if int(game.players[team]["gold"]) < mp:
+			hold += mp           # (his gold first, from the next harvest)
+			continue
+		var k: String = ai._soldier_key(b, "musketeer")
+		if k != "" and game.train(b, k) == "":
+			floor_trained += 1
+			have += float(game.unit_price(team, k)[0])
+		else:
+			idle -= 1            # (he cannot be trained here now for another reason)
+	if hold > 0:
+		floor_held_t += 0.1
+	# every Barracks and Foundry busy and still far short: one more Barracks
+	if idle == 0 and want - have >= FLOOR_MORE:
+		if _busy_from < 0.0:
+			_busy_from = game.clock
+		elif game.clock - _busy_from >= FLOOR_BUSY and ai._mine("barracks").size() < FLOOR_BARRACKS \
+				and not ai._busy_building("barracks") and game.requirement_met(team, "barracks"):
+			var cost := int(Defs.BUILDINGS["barracks"]["cost"])
+			if int(game.players[team]["gold"]) >= cost:
+				var n0: int = ai._mine("barracks").size()
+				ai._construct("barracks")
+				if ai._mine("barracks").size() > n0:
+					floor_built += 1
+					_busy_from = -1.0
+					ai.say("against the Brood the line needs more Barracks: %d of line against the %d the Brood's army asks for" % [int(have), int(want)])
+			else:
+				hold += cost
+	else:
+		_busy_from = -1.0
+	if game.clock - _floor_said > 60.0 and hold > 0:
+		_floor_said = game.clock
+		ai.say("the army floor against the Brood: %d of line (with what trains) against the %d its scouting asks for: the soldiers' gold first" % [int(have), int(want)])
+	return mini(hold, int(game.players[team]["gold"]))

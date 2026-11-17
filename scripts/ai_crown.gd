@@ -1009,8 +1009,11 @@ func _think_stage(i: int) -> void:
 	# (the Crown coach 2026-11-16, LABOURERS FIRST: before any stage spends; the gold for an idle hall's labourer is held)
 	if coach == null and on:
 		coach = AICrownCoach.new(self)
+	var floor_held: int = vbr.floor_produce() if vb() != null else 0      # (crown-brood-army: THE ARMY FLOOR TIED TO THE BROOD)
+	game.players[team]["gold"] -= floor_held
 	var lab_held: int = coach.labs_first() if coach != null else 0
 	game.players[team]["gold"] -= lab_held
+	lab_held += floor_held
 	if coach != null and i == 2:
 		var sh: int = coach.screen_first()      # (the coach: THE SCREEN BEFORE THE WAVE, its Horseman first)
 		game.players[team]["gold"] -= sh
