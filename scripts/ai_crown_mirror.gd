@@ -415,6 +415,66 @@ func press_siege(home: Array, guns: int) -> bool:
 	return true
 
 
+## 10. GUNS FOR THE WALLED HALL (crown-mirror-coach). Once the open halls are down the side ahead stood before the enemy
+##     main's ramp gate with one gun or none: Dune Sea 1151 (the press on), P1 1,455-2,700 against 780-1,080 and the enemy
+##     on its main alone with 7-15 labourers from 12:12 to 15:00: "pulls back from the gate: it can't get through under
+##     55 dps of fire" twice, its Dragoon plan's single Field Cannon could not shell (rule 7 wants BOMBARD_GUNS). A human
+##     brings the guns. Now, ahead (PRESS_EDGE) from GUNS_FROM, while the enemy's halls left are walled ones it was
+##     beaten at or its main, an idle Foundry trains Field Cannons until the army has GUNS_WANT (in training counted),
+##     the gold held from nothing else (a gun only when the bank has its price and SIEGE_GUN_POWDER powder).
+const GUNS_FROM := 480.0
+const GUNS_WANT := 3
+const SIEGE_GUN_POWDER := 20.0
+var guns_on := not cmc_off and not args.has("cmcguns:off")
+var guns_trained := 0             # (the report)
+
+
+func siege_guns() -> void:
+	if not guns_on or ai.peaceful or game.clock < GUNS_FROM or ai._res2() < SIEGE_GUN_POWDER:
+		return
+	var cannons := 0
+	for u in game.army(ai.team):
+		if u.kind == "cannon":
+			cannons += 1
+	var free: Building = null
+	for f in ai._mine("foundry"):
+		if f.built:
+			cannons += f.queue.count("cannon")
+			if f.queue.is_empty() and free == null:
+				free = f
+	if cannons >= GUNS_WANT or free == null:
+		return
+	if not _only_walled_left():
+		return
+	var army: Array = game.army(ai.team).filter(func(u: Unit) -> bool: return not u.is_worker() and u.armed())
+	var mine := _value(army)
+	var est := foe_army()
+	if mine < PRESS_MIN or mine < est * PRESS_EDGE:
+		return
+	if ai._gold() < int(Defs.UNITS["cannon"]["cost"]):
+		return
+	if game.train(free, "cannon") == "":
+		guns_trained += 1
+		_say("trains a Field Cannon to shell the enemy's walled hall (%d of %d guns; %d of army against the %d it reckons)" % [cannons + 1, GUNS_WANT, int(mine), int(est)])
+
+
+## The enemy's halls left are its main (or on its plateau) or walled halls the wave was beaten at.
+func _only_walled_left() -> bool:
+	var foe: int = ai._foe()
+	if foe < 0:
+		return false
+	var foe_main: Vector2 = game.start_mid(foe)
+	var any := false
+	for b in game.buildings:
+		if b.team != foe or b.dead or b.ghost or b.kind != game.faction_hall(foe):
+			continue
+		any = true
+		if b.center().distance_to(foe_main) < MAIN_R * Defs.TILE or float(ai._walled_halls.get(b, 0.0)) > game.clock:
+			continue
+		return false
+	return any
+
+
 var _press_t := -1.0
 var _held_said := -99.0
 
