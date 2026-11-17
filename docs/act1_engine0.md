@@ -141,4 +141,9 @@ is set as soon as the man is placed, before the objective is shown. a01's printe
 - tools/test_campaign_m1.gd, tools/test_campaign_c01.gd, tools/test_campaign_b01.gd, tools/test_tutorial.gd: as before.
 - Boot: `godot --headless --quit-after 300`, no SCRIPT ERROR.
 
-Results are listed in the commit that ends the job.
+Results: test_campaign 0 failures (120 checks), test_campaign_m1 0, test_campaign_c01 0, test_campaign_b01 0,
+test_tutorial 0; the boot prints no SCRIPT ERROR. (On this cloud machine every headless Godot run ends with "Aborted",
+exit 134, AFTER its last line: main 0.38.48 does the same, it is the engine's shutdown here, not a test.)
+
+Test note: the "engine0:" checks tick a unit by hand for the mist (`_tick_unit`): right after a match starts its 3-2-1
+holds the tree paused, so awaiting physics frames there does nothing.

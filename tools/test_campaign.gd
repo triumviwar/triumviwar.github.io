@@ -228,8 +228,8 @@ func _engine0() -> void:
 	r.act({"mist": {"sight": 0.5, "side": "rebels"}})
 	var reb_u: Unit = r.tagged("kept")[0]
 	check("engine0: MIST: the foe's sight halved, ours not", r.sight_of(reb_u, 8) == 4 and r.sight_of(cap, 8) == 8)
-	await physics_frame
-	await physics_frame
+	reb_u._tick_unit(1.0 / 30.0)
+	cap._tick_unit(1.0 / 30.0)      # (one tick of each by hand: the match's 3-2-1 may still hold the tree paused)
 	check("engine0: MIST: a unit's own sight follows", reb_u.sight == maxi(2, roundi(int(reb_u.d["sight"]) * 0.5)) and cap.sight == int(cap.d["sight"]), "%d %d" % [reb_u.sight, cap.sight])
 	r.act({"mist": {"sight": 1.0}})
 	check("engine0: MIST: cleared", r.sight_of(reb_u, 8) == 8)
