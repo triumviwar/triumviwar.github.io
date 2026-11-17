@@ -173,6 +173,8 @@ func _play(g: Game, r: MissionRun, st: int, pt: int) -> void:
 			for u in army:
 				if u.target == null or not is_instance_valid(u.target) or u.target.dead:
 					u.cmd_attack(sire[0])
+		elif not sire.is_empty() and not BroodNew.rooted(sire[0]):
+			_go(g, army, r.area_rect("jetty").get_center())          # (he is up: nothing kills him; get away from him)
 		else:
 			_go(g, army, r.area_rect("yard").get_center() + Vector2(0, 80), true)
 		_go(g, va, r.area_rect("jetty").get_center() + Vector2(0, -60))

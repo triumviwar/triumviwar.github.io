@@ -38,6 +38,7 @@
 			"start": "none",
 			"camera": "yard",
 			"gold": 300,
+			"powder": 400,
 			"roster": {
 				"deny": [
 					"horse_breeder",
@@ -295,19 +296,19 @@
 				"valadares"
 			],
 			"counter": "saved",
-			"after": "turn"
+			"after": "canoes_here"
 		},
 		{
 			"area": "jetty",
 			"tag": "folk",
 			"counter": "saved",
-			"after": "turn"
+			"after": "canoes_here"
 		},
 		{
 			"area": "fort_steps",
 			"tag": "folk",
 			"counter": "saved",
-			"after": "turn"
+			"after": "canoes_here"
 		},
 		{
 			"area": "out_n",
@@ -1230,6 +1231,12 @@
 					"name": {
 						"tag": "pieter",
 						"name": "Pieter (the jars)"
+					}
+				},
+				{
+					"give": {
+						"team": "station",
+						"powder": 250
 					}
 				},
 				{
@@ -2420,6 +2427,25 @@
 						"area": "nest_wide",
 						"side": "station",
 						"secs": 30
+					}
+				}
+			]
+		},
+		{
+			"id": "canoes_here",
+			"when": {
+				"fired": "turn"
+			},
+			"delay": 100,
+			"do": [
+				{
+					"say": [
+						"b_here"
+					]
+				},
+				{
+					"ping": {
+						"area": "jetty"
 					}
 				}
 			]
@@ -3848,7 +3874,7 @@
 		},
 		"v_lost": {
 			"who": "valadares",
-			"text": "We cannot hold this place. Get the people to the jetty. Benedito's canoes will not wait."
+			"text": "We cannot hold this place. Benedito is bringing his canoes round from the rapids. Get the people to the jetty, and hold them there."
 		},
 		"tip_3": {
 			"who": "valadares",
@@ -3919,6 +3945,10 @@
 		"l_crate": {
 			"who": "lindqvist",
 			"text": "The crate, Pieter. The notes on top. I carry it myself."
+		},
+		"b_here": {
+			"who": "benedito",
+			"text": "The canoes are at the jetty! In, all of you, quickly!"
 		},
 		"p_pack_goes": {
 			"who": "pieter",

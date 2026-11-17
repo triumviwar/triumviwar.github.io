@@ -279,11 +279,11 @@ func _engine() -> void:
 	_put(g, r.tagged("hands").slice(0, 2) + r.tagged("lindqvist"), r.area_rect("jetty"))
 	r._tick_exits()
 	check("EXIT after: the jetty takes nobody before the station falls", r.tagged("hands").size() == 6 and int(r.counters["saved"]) == 0)
-	r.fired["turn"] = g.clock
+	r.fired["canoes_here"] = g.clock
 	r._tick_exits()
 	check("exit: once open it takes the hands, counted", r.tagged("hands").size() == 4 and int(r.counters["saved"]) == 2, str(r.counters["saved"]))
 	check("exit except: Lindqvist stays on the jetty", r.tagged("lindqvist").size() == 1)
-	r.fired.erase("turn")
+	r.fired.erase("canoes_here")
 	# ---- lights, rain
 	check("the jungle lights", ["jungle_dusk", "jungle_night", "fire_night", "grey_dawn"].all(func(k): return MissionRun.LIGHTS.has(k)))
 	r.act({"weather": "rain"})
@@ -423,6 +423,7 @@ func _play(run: String, teles: String, clutch: String) -> void:
 	check(P + "the part 1-2 objectives leave the panel", not r.objectives_for("station").map(func(o): return o["id"]).has("lure"))
 	var want_p: int = g.units.filter(func(u): return u.team == st and not u.dead).size() - 2 + r.tagged("folk").size() + int(r.counters["saved"])
 	check(P + "the people counted", int(r.counters["people"]) == want_p, "%d v %d" % [int(r.counters["people"]), want_p])
+	check(P + "no canoes yet: nobody taken off the jetty", int(r.counters["saved"]) == 0 and not r.fired.has("canoes_here"))
 	check(P + "the Sire cannot die tonight", r.tagged("sire")[0].hp_floor > 300.0)
 	check(P + "the fire light", r.light_name == "fire_night")
 	if teles == "told":

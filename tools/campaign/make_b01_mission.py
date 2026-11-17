@@ -72,7 +72,7 @@ M = {
         {"id": "pack", "name": "The Pack", "about": "Her kin, out of the flooded forest."},
     ],
     "teams": [
-        {"id": "station", "side": "station", "faction": "crown", "colour": 3, "start": "none", "camera": "yard", "gold": 300,
+        {"id": "station", "side": "station", "faction": "crown", "colour": 3, "start": "none", "camera": "yard", "gold": 300, "powder": 400,
          "roster": {"deny": DENY}, "control": {"solo": "p1", "coop": "p1", "versus": "p1"}},
         {"id": "garrison", "side": "station", "faction": "crown", "colour": 4, "start": "none", "camera": "fort", "powder": 300,
          "control": {"solo": "script", "coop": "p2", "versus": "script"}},
@@ -95,9 +95,9 @@ M = {
     "counters": {"jars": {"start": 0, "of": 3}, "jar_w_set": {"start": 0}, "jar_c_set": {"start": 0}, "jar_e_set": {"start": 0},
                  "waves": {"start": 0}, "people": {"start": 0}, "saved": {"start": 0}, "folk_in": {"start": 0}, "drove": {"start": 0}},
     "exits": [
-        {"area": "jetty", "team": "station", "except": ["lindqvist", "valadares"], "counter": "saved", "after": "turn"},
-        {"area": "jetty", "tag": "folk", "counter": "saved", "after": "turn"},
-        {"area": "fort_steps", "tag": "folk", "counter": "saved", "after": "turn"},
+        {"area": "jetty", "team": "station", "except": ["lindqvist", "valadares"], "counter": "saved", "after": "canoes_here"},
+        {"area": "jetty", "tag": "folk", "counter": "saved", "after": "canoes_here"},
+        {"area": "fort_steps", "tag": "folk", "counter": "saved", "after": "canoes_here"},
         {"area": "out_n", "tag": "taken", "after": "taken"},
         {"area": "out_n", "tag": "sire", "after": "taken"},
         {"area": "out_n", "team": "pack", "after": "taken"},
@@ -214,7 +214,7 @@ M = {
             {"objective": {"id": "meet", "set": "hidden"}}, {"objective": {"id": "tracks", "set": "hidden"}},
             # first LEARN the lure, then set it (the owner, 2026-11-17 10:22)
             {"say": ["n_eve", "l_lure1", "l_lure2", "l_lure3", "v_lure", "l_stallion", "tip_lure"]},
-            {"name": {"tag": "pieter", "name": "Pieter (the jars)"}},
+            {"name": {"tag": "pieter", "name": "Pieter (the jars)"}}, {"give": {"team": "station", "powder": 250}},
             {"objective": {"id": "lure", "set": "active"}},
             {"ping": {"area": "jar_w"}}, {"ping": {"area": "jar_c"}}, {"ping": {"area": "jar_e"}},
             {"reveal": {"area": "jar_w", "side": "station", "secs": 20}}, {"reveal": {"area": "jar_c", "side": "station", "secs": 20}},
@@ -292,6 +292,8 @@ M = {
             {"counter": {"name": "people", "count": {"tag": "folk"}, "plus": True}},
             {"ping": {"area": "jetty"}}, {"reveal": {"area": "jetty", "side": "station", "secs": 900}},
             {"reveal": {"area": "nest_wide", "side": "station", "secs": 30}}]},
+        # Benedito's canoes come round from the rapids: the jetty takes people from then on (until then, hold them)
+        {"id": "canoes_here", "when": {"fired": "turn"}, "delay": 100, "do": [{"say": ["b_here"]}, {"ping": {"area": "jetty"}}]},
         {"id": "turn_folk_told", "when": {"all": [{"fired": "turn"}] + TOLD}, "do": [
             {"order": {"tag": "folk", "do": "move", "to": "fort_steps"}}, {"order": {"tag": "joaquim", "do": "move", "to": "fort_steps"}},
             {"say": ["t_steps"]}]},
@@ -457,7 +459,7 @@ M = {
         "n_ground": {"who": "narrator", "text": "Then the ground shook."},
         "p_sire": {"who": "pieter", "text": "Down the creek trail. Doctor, it is as big as the house."},
         "l_lost": {"who": "lindqvist", "text": "He has come for her. My lure brought him."},
-        "v_lost": {"who": "valadares", "text": "We cannot hold this place. Get the people to the jetty. Benedito's canoes will not wait."},
+        "v_lost": {"who": "valadares", "text": "We cannot hold this place. Benedito is bringing his canoes round from the rapids. Get the people to the jetty, and hold them there."},
         "tip_3": {"who": "valadares", "to": "station", "text": "Walk everyone you can into the canoes at the jetty. Dr. Lindqvist and I must be there when they leave."},
         "b_bonus": {"who": "benedito", "text": "The island is dead, so the mud is gone from the landing. I can wait a little longer."},
         "t_steps": {"who": "teles", "text": "The village goes down the fort's steps to the boats. Hold them off us!"},
@@ -475,6 +477,7 @@ M = {
         "l_save": {"who": "lindqvist", "text": "Ten years of work. The Crown's beasts are in that straw. I will not leave them to the fire."},
         "v_lamp": {"who": "valadares", "text": "Give me the lamp."},
         "l_crate": {"who": "lindqvist", "text": "The crate, Pieter. The notes on top. I carry it myself."},
+        "b_here": {"who": "benedito", "text": "The canoes are at the jetty! In, all of you, quickly!"},
         "p_pack_goes": {"who": "pieter", "text": "They are going with him. All of them, up the creek. Doctor, the eggs!"},
         "p_fire_took": {"who": "pieter", "text": "The roof is down on the straw. The eggs are gone, Doctor."},
         "l_pieter": {"who": "lindqvist", "text": "Pieter. Pieter went back for the book."},
