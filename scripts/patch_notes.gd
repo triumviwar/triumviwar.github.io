@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.48", "items": [
+		"CAMPAIGN PLANS: the owner's answers to Act 1's questions are in the plan, and the Naturalist's prologue will be played as the Brood (the Tyrant Sire's pack against a rival pack, with the scientists' station between them). Not playable yet.",
+	]},
 	{"v": "0.38.47", "items": [
 		"CAMPAIGN PLANS: Act 1 is planned (seven missions on the three lines, 2767-2770: the Printing Houses of Lyon, the Fürth Line, the Lost Plateau, Father Ferrer's Visit, the Specimens, the Barricades of Paris, and the Council of Rome where the three lines cross), with the war map. Not playable yet.",
 	]},

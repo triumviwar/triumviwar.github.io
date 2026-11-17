@@ -32,8 +32,14 @@
   Naturalist a03_plateau (Valadares; the FIRST BROOD PLAY as its solo mirror; choice THE MAP) -> a05_specimens (Lindqvist);
   all three -> a07_council (Rome, the King; the 1st crossing; three sides). Every prologue flag's effect in a table; the
   WAR MAP's design (one data file, three skins); engine needs (solo side pick, >2 sides, city generator, route/follow,
-  sleep, mist, stay, cage carts, spreading fire, difficulty); 14 OWNER QUESTIONS with Claude's picks; build order a02,
-  a03, war map v1, city + a01, a06, a04, a05, a07. ALL TEXT PLACEHOLDER. OWNER DECISIONS WAITING.
+  sleep, mist, stay, cage carts, spreading fire, difficulty); build order a02, a03, war map v1, city + a01, a06, a04,
+  a05, a07. ALL TEXT PLACEHOLDER. OWNER ANSWERED 2026-11-17 22:04 "Yes to all your suggestions" (all 14 as recommended:
+  Fürth, the Fürth hub, Valadares/Ferrer tell their own, map DRAWN, mirrors a02/a05 (+b01), broken ones KEPT, Tomasz
+  asks mercy and Varenne SPARED, Rome 2 players, missions before the war map, EASY/NORMAL/HARD, the dates, one crate
+  hint, the heir later, both tellers at Rome). AND (22:00) THE BROOD PROLOGUE IS PLAYED AS THE BROOD: the Sire's pack v
+  a rival pack, the station scripted, it still falls, the player takes Linnea; the first Brood play is b01, not a03
+  (doc "OWNER ANSWERS"). Jobs: act1-engine0 (engine step 0) and brood-prologue-flip (b01 as the Brood) started
+  2026-11-17 22:10; a02_furth after act1-engine0 merges.
 - BROOD PROLOGUE BUILT (owner 2026-11-17 08:01 "Now make the campaign missions" / "Prologues first", ANSWERS 10:22; job
   brood-prologue-build, 0.38.45, docs/campaign_b01_build.md): "Specimen One" (b01_specimen) is THE NATURALIST's first
   mission (the Brood storyline renamed from The Explorer; open after p01_leaf): map campaign:rio_negro_station

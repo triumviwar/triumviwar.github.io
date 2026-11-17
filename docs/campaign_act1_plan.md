@@ -455,6 +455,19 @@ repeating triggers, `convert`, roster deny/unlock, sounds, names, hunt, roles (r
 people), cage / spare / pin / carry / floor / heal / hp, root / uproot, `to_if`, `burn`, building sites, rain and snow,
 the winter and jungle lights, role scale, hub `after` and flag gating, `past` flags.
 
+## OWNER ANSWERS (2026-11-17 22:04: "Yes to all your suggestions")
+
+Every recommendation below is TAKEN (1-14), and with them a change the owner asked for at 22:00: THE NATURALIST'S
+PROLOGUE IS PLAYED AS THE BROOD ("we can see the naturalist spying on the brood and we play the brood fighting maybe
+brood vs brood"). So b01_specimen becomes THE FIRST BROOD PLAY (not a03): the player is the TYRANT SIRE'S PACK coming
+for Linnea (A), a RIVAL PACK holds the ground round the station (Brood v Brood), the station is a scripted third side
+to raid or avoid; the station still FALLS and the scientists escape by the canoes; the player wins by taking Linnea
+out of the pen, the fire is what the scientists do as the pack breaks in (B); the scientists' choices (BURN THE EGGS /
+SAVE THE RESEARCH, the Teles choice) stay theirs, made by the script, and the player gets ONE creature choice (C);
+Lindqvist still narrates (what he saw from the station). a03_plateau stays VALADARES' CLIMB played as the Crown party
+(its nest mirror kept for versus / solo side pick, no longer "the first Brood play"). Canon: the map DRAWN (4), the
+broken ones KEPT (6), Tomasz asks for mercy and VARENNE SPARED into exile (7).
+
 ## OWNER QUESTIONS
 
 Each with Claude's recommended answer (the plan above is written as if it is taken) and what changes either way.
