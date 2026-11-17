@@ -70,7 +70,7 @@ func _press_and_target(ai, cm) -> void:
 	cm._wave_off_t = -99.0
 	var mine: Array = []
 	var home: Vector2 = Vector2(g.starts[0]) * Defs.TILE + Vector2(0, 160)
-	for i in 14:
+	for i in 18:
 		mine.append(g._add_unit("musketeer", 0, g.cell_center(g.nearest_free(g.cell_of(home + Vector2(i * 20, 0)), 4))))
 	# (nothing of the enemy seen lately, and its reckoning made small: the enemy's army we know of is small)
 	ai.ch._seen.clear()

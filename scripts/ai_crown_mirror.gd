@@ -333,9 +333,9 @@ var target_on := not cmc_off and not args.has("cmctarget:off")
 ##    PRESS_FROM, an army ready worth PRESS_EDGE times the enemy army it knows (and PRESS_MIN or more) goes out whatever
 ##    the bar, PRESS_COOL s after the last wave ended, while the enemy has a hall the wave has not just been beaten at
 ##    (or the wave has BOMBARD_GUNS guns to shell a walled one: rule 7).
-const PRESS_FROM := 360.0
+const PRESS_FROM := 480.0
 const PRESS_EDGE := 1.3
-const PRESS_MIN := 600.0
+const PRESS_MIN := 900.0
 const PRESS_COOL := 25.0
 const PRESS_STALE := 0.8          # the enemy army not seen in the last PRESS_FRESH s: this share of the reckoning (AICrown.foe_reckon) at least
 const PRESS_FRESH := 60.0
