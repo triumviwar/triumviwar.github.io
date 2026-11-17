@@ -5542,6 +5542,8 @@ func _army() -> void:
 				continue
 			if _patch.has(u):
 				continue          # (stepped back to the escort to be mended: _patch_up)
+			if _line_keeps(u):
+				continue          # (crown-guns-coach: a gun of the Crown's standing line stays where the line put it)
 			if u.order == "idle" and u.wall_flee_t <= 0.0 and u.siege_t <= 0.0 and not (u.deploys() and u.tesla_mode == "deployed" and u.target):
 				# a dry musketeer topping up at the wagon waits there until it can shoot again
 				if wagon and u.kind == "musketeer" and u.powder < float(Defs.POWDER["rearm"]) + 2.0 \
@@ -5803,6 +5805,11 @@ func _push_anyway(ready: Array) -> bool:
 	for u in ready:
 		mine += float(u.d["cost"]) / maxf(1.0, float(u.d.get("spawn", 1)))
 	return mine >= maxf(_horse_seen_value(), 300.0) * PUSH_AHEAD
+
+
+## (crown-guns-coach) the wave's shared loop leaves this man be (AICrown: a gun of its standing line).
+func _line_keeps(_u: Unit) -> bool:
+	return false
 
 
 func _lost_value() -> float:

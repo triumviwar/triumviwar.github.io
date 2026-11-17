@@ -108,11 +108,23 @@ func _screen_tick() -> void:
 		sc.tick()
 
 
+var gn: AICrownGuns = null       # (crown-guns-coach) the line's guns, coached (scripts/ai_crown_guns.gd)
+
+
+## (crown-guns-coach) the wave's shared loop leaves a gun of the standing line be.
+func _line_keeps(u: Unit) -> bool:
+	return gn != null and gn.keeps(u)
+
+
 var cav: AICavMicro = null       # (crown-coach-cavalry) the riders' hit and run (scripts/ai_cav_micro.gd)
 
 
 ## (crown-coach-cavalry) the riders' hit and run, Normal and up, every matchup; `-- cavmicro:off` plays as before.
 func _cav_tick() -> void:
+	if gn == null and on and difficulty >= 1:
+		gn = AICrownGuns.new(self)
+	if gn != null:
+		gn.tick()             # (crown-guns-coach: the count of its fights and guns, scripts/ai_crown_guns.gd)
 	if cav == null and on and difficulty >= 1:
 		cav = AICavMicro.new(self)
 	if cav != null:

@@ -151,6 +151,9 @@ func _crown_counters() -> Dictionary:
 		if s != null:
 			for k in ["sent", "lost", "picket_lost", "sightings", "flank_hits", "pulled", "trained"]:
 				d["sc_" + k] = s.get(k)
+		var gn = a.get("gn")
+		if gn != null:
+			d["guns"] = gn.counters()      # (crown-guns-coach: its fights, guns set and firing at contact)
 		o[str(tm)] = d
 	return o
 
