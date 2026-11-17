@@ -316,6 +316,169 @@ func _init(owner) -> void:
 	game = owner.game
 
 
+# ------------------------------------------------------------------ crown-mirror-coach (docs/crown_mirror_coach.md)
+# The owner (2026-11-16 23:25 "start all coaching jobs needed"; 2026-11-11: draws should end, the winner hunts). The 38
+# games on 0.38.38 (Hard OPTIMAL v Hard OPTIMAL, to 15:00): see the doc. Each rule its own switch; all off with
+# `-- cmc:off` (the mirror as 0.38.38 plays it).
+
+var args := OS.get_cmdline_user_args()
+var cmc_off := args.has("cmc:off")
+var press_on := not cmc_off and not args.has("cmcpress:off")
+var target_on := not cmc_off and not args.has("cmctarget:off")
+
+## 8. THE SIDE AHEAD PRESSES (crown-mirror-coach). The wave's supply bar (AI._attack_at: the plan's "wave" size, then
+##    + its step after each wave and x1.4 after a pull-back) held armies 1.3-2x the enemy's at home for minutes: Dune Sea
+##    1109 P2 took two halls by 10:19, pulled back from the main's gate at 10:32 and sat at home 4.5 minutes with 1,200-
+##    2,000 against 650-1,150 (its bar 1.4x the wave that pulled back while its army grew 300 a minute). Now, from
+##    PRESS_FROM, an army ready worth PRESS_EDGE times the enemy army it knows (and PRESS_MIN or more) goes out whatever
+##    the bar, PRESS_COOL s after the last wave ended, while the enemy has a hall the wave has not just been beaten at
+##    (or the wave has BOMBARD_GUNS guns to shell a walled one: rule 7).
+const PRESS_FROM := 360.0
+const PRESS_EDGE := 1.3
+const PRESS_MIN := 600.0
+const PRESS_COOL := 25.0
+const PRESS_STALE := 0.7          # the enemy army not seen lately: this share of the reckoning (AICrown.foe_reckon) counts
+var press_n := 0                  # (the report) waves the press sent
+var _press_said := -99.0
+var _wave_off_t := -99.0          # clock the last wave ended
+var _was_attacking := false
+
+
+## Called every army think before the shared one (AICrown._army): lowers the bar when the side is ahead.
+func press() -> void:
+	if not press_on or ai.peaceful or ai.difficulty < 1:
+		return
+	if ai._attacking:
+		_was_attacking = true
+		return
+	if _was_attacking:
+		_was_attacking = false
+		_wave_off_t = game.clock
+	if game.clock < PRESS_FROM or game.clock - _wave_off_t < PRESS_COOL or ai.siege != null:
+		return
+	if ai._threat() != Vector2.INF:
+		return
+	var ready: Array = game.army(ai.team).filter(func(u: Unit) -> bool: return not ai._raiders.has(u) and u.kind != "powder_wagon" \
+			and not u.is_worker() and u.armed())
+	var mine := _value(ready)
+	if mine < PRESS_MIN:
+		return
+	var est := foe_army()
+	if mine < est * PRESS_EDGE:
+		return
+	var guns := ready.filter(func(u) -> bool: return GUN_KINDS.has(u.kind)).size()
+	if not _open_hall() and guns < BOMBARD_GUNS:
+		return
+	var sup: int = ai._army_supply(ready)
+	if sup >= ai._attack_at:
+		return                    # (the bar is met: the shared rule sends it)
+	ai._attack_at = maxi(6, sup)
+	press_n += 1
+	if game.clock - _press_said > 30.0:
+		_press_said = game.clock
+		_say("presses its lead: %d of army against the %d it reckons the enemy has: the wave goes now (%d supply, the bar was higher)" % [int(mine), int(est), sup])
+
+
+## The enemy army we reckon: what was seen lately in full; not seen lately, PRESS_STALE of the reckoning at least.
+func foe_army() -> float:
+	var known: float = ai.ch.foe_known() if ai.ch != null else 0.0
+	if ai.ch != null and ai.ch.army_known_lately():
+		return known
+	return maxf(known, PRESS_STALE * ai.foe_reckon())
+
+
+## An enemy hall the wave has not just been beaten at (AI._walled_halls).
+func _open_hall() -> bool:
+	var foe: int = ai._foe()
+	for b in game.buildings:
+		if b.team == foe and not b.dead and not b.ghost and b.kind == game.faction_hall(foe) and float(ai._walled_halls.get(b, 0.0)) <= game.clock:
+			return true
+	return false
+
+
+## 9. THE OUTLYING HALLS FIRST (crown-mirror-coach). The wave went for the enemy hall nearest its own base (AI._enemy_base):
+##    the walled natural under the main's cliff line, then the main's gate itself; the halls the enemy had just laid out in
+##    the open were left standing (Dune Sea 1109 P2, 10:21-10:32: its wave pulled back from P1's main gate while P1 laid
+##    a fourth hall in the open). Now the wave's target is the enemy hall that is cheapest to take: near our front, far
+##    from the enemy's main (its army and its cliff), few walls and gates round it, few enemy soldiers seen at it, not on
+##    the main's plateau; a hall the wave was just beaten at is left (AI._walled_halls). Kept while it stands unless
+##    another is much cheaper (TARGET_SWITCH), looked at again every TARGET_EVERY s.
+const TARGET_EVERY := 10.0
+const TARGET_SWITCH := 8.0        # (score) a new hall must be this much cheaper to take the wave off its target
+const WALL_R := 9.0               # (tiles) walls and gates this near a hall count against it
+const MAIN_R := 16.0              # (tiles) a hall this near the enemy's start is its main (or on its plateau)
+var _tgt: Building = null
+var _tgt_t := -99.0
+var target_said := {}
+
+
+func wave_target(from: Vector2) -> Vector2:
+	if not target_on:
+		return Vector2.INF
+	if _tgt != null and (not is_instance_valid(_tgt) or _tgt.dead or float(ai._walled_halls.get(_tgt, 0.0)) > game.clock):
+		_tgt = null
+	if _tgt != null and game.clock - _tgt_t < TARGET_EVERY:
+		return _tgt.center()
+	_tgt_t = game.clock
+	var foe: int = ai._foe()
+	if foe < 0:
+		return Vector2.INF
+	var best: Building = null
+	var bs := INF
+	var cur_s := INF
+	var foe_main: Vector2 = game.start_mid(foe)
+	for b in game.buildings:
+		if b.team != foe or b.dead or b.ghost or b.kind != game.faction_hall(foe):
+			continue
+		if float(ai._walled_halls.get(b, 0.0)) > game.clock:
+			continue
+		var s := _hall_cost(b, from, foe_main)
+		if b == _tgt:
+			cur_s = s
+		if s < bs:
+			bs = s
+			best = b
+	if best == null:
+		_tgt = null
+		return Vector2.INF
+	if _tgt != null and _tgt != best and cur_s - bs < TARGET_SWITCH:
+		best = _tgt
+	if best != _tgt and not target_said.has(best):
+		target_said[best] = true
+		var near: bool = best.center().distance_to(foe_main) < MAIN_R * Defs.TILE
+		_say("'s wave goes for the enemy hall at %s (%s, %d walls by it)" % [str(game.cell_of(best.center())),
+			"its main" if near else "%d tiles from its main" % int(best.center().distance_to(foe_main) / Defs.TILE), _walls_by(best)])
+	_tgt = best
+	return best.center()
+
+
+func _hall_cost(b: Building, from: Vector2, foe_main: Vector2) -> float:
+	var c: Vector2 = b.center()
+	var s: float = c.distance_to(from) / Defs.TILE
+	s -= 0.3 * minf(c.distance_to(foe_main) / Defs.TILE, 40.0)
+	s += 3.0 * mini(_walls_by(b), 10)
+	if c.distance_to(foe_main) < MAIN_R * Defs.TILE:
+		s += 25.0
+	if not b.built:
+		s -= 5.0                  # (a hall going up: its builders, nothing behind a wall yet)
+	var seen := 0.0
+	if ai.ch != null:
+		for u in ai.ch._seen:
+			var e: Array = ai.ch._seen[u]
+			if (e[1] as Vector2).distance_to(c) < 12.0 * Defs.TILE:
+				seen += float(e[2])
+	return s + seen / 100.0
+
+
+func _walls_by(b: Building) -> int:
+	var n := 0
+	var r: float = WALL_R * Defs.TILE
+	for o in game.buildings:
+		if o.team == b.team and not o.dead and o.built and ai._is_piece(o) and o.center().distance_to(b.center()) < r:
+			n += 1
+	return n
+
+
 func _say(s: String) -> void:
 	said.append([snappedf(game.clock, 0.1), s])
 	if game.mlog:
