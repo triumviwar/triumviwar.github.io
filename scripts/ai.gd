@@ -5807,6 +5807,11 @@ func _push_anyway(ready: Array) -> bool:
 	return mine >= maxf(_horse_seen_value(), 300.0) * PUSH_AHEAD
 
 
+## (crown-guns-coach) a detachment's gun the defence leaves where it is (AICrown: set, or setting up, in reach).
+func _def_gun(_u: Unit) -> bool:
+	return false
+
+
 ## (crown-guns-coach) the wave's shared loop leaves this man be (AICrown: a gun of its standing line).
 func _line_keeps(_u: Unit) -> bool:
 	return false
@@ -7324,6 +7329,8 @@ func _defend(army: Array, threat: Vector2, spots: Array) -> void:
 		e["spot"] = a["spot"]
 		if _def_walking(u):
 			continue          # (crown-line-fight: on his way to his spot in the defence's line)
+		if _def_gun(u):
+			continue          # (crown-guns-coach: a defence's gun set where the enemy is in its reach)
 		if u.order == "idle" and u.target == null:
 			u.cmd_move(a["spot"] + Vector2(randf_range(-30, 30), randf_range(-30, 30)), true)
 	for a in asses:

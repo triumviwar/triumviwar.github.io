@@ -111,6 +111,11 @@ func _screen_tick() -> void:
 var gn: AICrownGuns = null       # (crown-guns-coach) the line's guns, coached (scripts/ai_crown_guns.gd)
 
 
+## (crown-guns-coach) a defence's gun set where it is.
+func _def_gun(u: Unit) -> bool:
+	return gn != null and gn.def_gun(u)
+
+
 ## (crown-guns-coach) the wave's shared loop leaves a gun of the standing line be.
 func _line_keeps(u: Unit) -> bool:
 	return gn != null and gn.keeps(u)

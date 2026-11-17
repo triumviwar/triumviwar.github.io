@@ -114,6 +114,8 @@ func _one(sc: String, r: int, map: String) -> void:
 		fb = "crown"
 	await _start(fb, 7300 + r * 17 + sc.length(), map)
 	var ai = _ai(0)
+	if _trace:
+		g.set_meta("dbg_gun", true)
 	ai.line_ai()
 	ai.peaceful = true
 	await _until(g.clock + 1.0)
@@ -122,7 +124,7 @@ func _one(sc: String, r: int, map: String) -> void:
 	var goal: Vector2 = Vector2(g.starts[1]) * Defs.TILE
 	var to_goal: Vector2 = (goal - mid).normalized()
 	var perp := Vector2(-to_goal.y, to_goal.x)
-	var at: Vector2 = mid - to_goal * 500.0 + perp * (r * 60.0 - 30.0)
+	var at: Vector2 = mid - to_goal * 900.0 + perp * (r * 60.0 - 30.0)
 	if sc == "home":
 		at = home + (mid - home).normalized() * 380.0
 	var wave: Array = []
@@ -172,7 +174,16 @@ func _one(sc: String, r: int, map: String) -> void:
 	var t_end := g.clock + 120.0
 	while g.clock < t_end and not g.over:
 		await physics_frame
-		if not sent and g.clock >= go_t:
+		var go := false
+		if not sent and sc != "home" and g.clock >= go_t:
+			for u in _alive(wave):
+				for o in _alive(foes):
+					if u.kind == "musketeer" and o.position.distance_to(u.position) < 1000.0:
+						go = true
+						break
+		elif not sent and g.clock >= go_t:
+			go = true
+		if go:
 			sent = true
 			for f in _alive(foes):
 				if sc == "hold":
@@ -204,6 +215,19 @@ func _one(sc: String, r: int, map: String) -> void:
 				k0 = float(g.stats[0]["value_killed"])
 				l0 = float(g.stats[1]["value_killed"])
 				t_end = g.clock + 45.0
+		if _trace and Engine.get_physics_frames() % 30 == 0 and (contact_t < 0.0 or g.clock < contact_t + 15.0):
+			var parts: Array = []
+			for u in _alive(guns):
+				var nd := INF
+				for o in _alive(foes):
+					nd = minf(nd, o.position.distance_to(u.position))
+				parts.append("%s/%s/%s d%d%s" % [u.tesla_mode.substr(0, 4), u.order, "T" if u.target != null else "-", int(nd), " sp" if ai.ln._spot.has(u) else ""])
+			var nm := INF
+			for u in _alive(wave):
+				if u.kind == "musketeer":
+					for o in _alive(foes):
+						nm = minf(nm, o.position.distance_to(u.position))
+			print("   %.1f line %s musk-foe %d | %s" % [g.clock, ai.ln.st, int(nm), " ; ".join(parts)])
 		if contact_t >= 0.0 and not counted and g.clock >= contact_t + 10.0:
 			counted = true
 			for u in guns:
@@ -232,3 +256,4 @@ func _one(sc: String, r: int, map: String) -> void:
 
 
 var _first_fired := 0
+var _trace := OS.get_cmdline_user_args().has("trace:1")

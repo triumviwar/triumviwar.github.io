@@ -386,9 +386,18 @@ func march(wave: Array, target: Vector2) -> bool:
 				contact = true          # (riders skirmishing out ahead are not the line's fight)
 	var mine := _value(ground)
 	var ahead := _value(foes)
+	var gn = ai.get("gn")
+	if gn != null:
+		gn.line_tick(self, ground, foes)       # (crown-guns-coach: the guns set where they stand in time, follow the line)
 	match st:
 		"form", "step", "set":
 			return _forming(ground, target, contact, foes)
+		"await":
+			if gn != null and gn.await_on:
+				return _await(ground, target, contact, foes)
+		"foot":
+			if gn != null:
+				return gn.foot_tick(self, ground, target, contact, foes)
 		"advance":
 			if contact:
 				return _fight_begin(ground)
@@ -410,6 +419,8 @@ func march(wave: Array, target: Vector2) -> bool:
 			return true
 	if contact:
 		return _fight_begin(ground)
+	if st == "" and gn != null and gn.ramp(self, ground, bc, target):
+		return true                          # (crown-guns-coach: no column up a ramp into a defended base)
 	# (crown-rider-screen, coached Dune Sea 1109 9:47-10:06: the screen saw 2-3 Musketeers at the enemy's ramp gate, worth
 	# under a quarter of the wave, the line did not form, and the wave walked into the ramp post's whole line unformed: 600
 	# lost for 0. What the screen sees counts from SCREEN_SHARE: a few seen up ahead are often the front of more)
@@ -423,6 +434,8 @@ func march(wave: Array, target: Vector2) -> bool:
 			and bc.distance_to(target) < APPROACH_R and bc.distance_to(target) > APPROACH_MIN:
 		_approach_for = target
 		return _form_approach(ground, bc, target)
+	if st == "" and gn != null and gn.pace(self, ground, bc, target):
+		return true                          # (crown-guns-coach: the wave walks at its guns' pace)
 	if st == "close":
 		var spread := _spread(body, bc)
 		if spread <= DONE_SPREAD or game.clock - _t0 > CLOSE_MAX:
@@ -578,7 +591,7 @@ func _forming(ground: Array, target: Vector2, contact: bool, foes: Array) -> boo
 ## The formed line goes on: while the nearest enemy known is beyond the guns' reach from behind the line, a STEP_LEN step
 ## of everyone, guns too (packed, they keep up: the line waits for them at each halt); once in their reach the guns set up
 ## where they are and the line walks on alone to just inside musket reach (an attack-move: they stop to fire as one).
-func _step(foes: Array) -> void:
+func _step(foes: Array, hold_ok := true) -> void:
 	var nd := INF
 	for o in foes:
 		nd = minf(nd, (_pos(o) - _c).dot(_face))
@@ -588,7 +601,9 @@ func _step(foes: Array) -> void:
 	var guns: Array = on_spots.filter(func(u: Unit) -> bool: return is_gun(u))
 	var men: Array = on_spots.filter(func(u: Unit) -> bool: return not is_gun(u))
 	var gs := _gun_set(foes)        # (the Crown coach 2026-11-16: earlier against fast or closing enemies)
-	if nd < INF and nd > gs + 20.0 and not guns.is_empty():
+	var gn = ai.get("gn")
+	var stay: bool = gn != null and gn.any_stays(self, foes)     # (crown-guns-coach: a gun set with the enemy in its reach holds the line)
+	if nd < INF and nd > gs + 20.0 and not guns.is_empty() and not stay:
 		var step: float = minf(STEP_LEN, nd - gs)
 		for u in men:
 			_spot[u] += _face * step
@@ -601,13 +616,13 @@ func _step(foes: Array) -> void:
 		steps += 1
 		_t0 = game.clock
 		return
-	if not guns.is_empty() and st != "set" and not _guns_set():
+	if not guns.is_empty() and st != "set" and not _guns_set() and not stay:
 		# (in the guns' reach: they set up behind the line first, the line holds; then it walks on alone)
 		_guns_down(foes)
 		st = "set"
 		_t0 = game.clock
 		return
-	if not guns.is_empty() and ai.coach != null and ai.coach.line_holds(foes, _c, _face):
+	if hold_ok and not guns.is_empty() and ai.coach != null and ai.coach.line_holds(foes, _c, _face):
 		# (the Crown coach: the guns set, an enemy coming on: the line holds by its guns and lets it come into their fire)
 		for u in men:
 			if u.order != "hold" and u.position.distance_to(_spot[u]) < 40.0:
@@ -624,6 +639,34 @@ func _step(foes: Array) -> void:
 	st = "advance"
 	_t0 = game.clock
 	_c += _face * adv
+
+
+## (crown-guns-coach) THE HELD LINE BY ITS GUNS (the coach's "await", AICrownCoach.line_holds): it stands, its men on HOLD
+## and its guns set, while the enemy comes on into their fire; contact = the fight; the enemy gone = it marches on; the enemy
+## no longer coming on (it holds or turned away) for AWAIT_STILL s, or AWAIT_MAX s in all = the line steps on as before.
+## (It fell through before: the wave's shared loop sent its idle guns on, limbered, and it re-formed every FORM_COOL s.)
+const AWAIT_STILL := 4.0
+const AWAIT_MAX := 25.0
+var _await_still := -1.0
+
+
+func _await(ground: Array, target: Vector2, contact: bool, foes: Array) -> bool:
+	settle(_face)
+	if contact:
+		return _fight_begin(ground)
+	if foes.is_empty():
+		if game.clock - _t0 > 4.0:
+			return _reset(ground, target, "'s line has lost sight of the enemy it waited for: it marches on")
+		return true
+	var coming: bool = ai.coach != null and ai.coach.line_holds(foes, _c, _face)
+	if coming:
+		_await_still = -1.0
+	elif _await_still < 0.0:
+		_await_still = game.clock
+	if (_await_still >= 0.0 and game.clock - _await_still > AWAIT_STILL) or game.clock - _t0 > AWAIT_MAX:
+		_await_still = -1.0
+		_step(foes, false)
+	return true
 
 
 ## The fight is on (or the enemy in the guns' reach) while the guns roll with the line: a gun behind the front rank sets up
@@ -881,7 +924,7 @@ func _close_orders(ground: Array, target: Vector2) -> void:
 
 
 func regrouping() -> bool:
-	return st in ["close", "form", "step", "set", "back", "await"]
+	return st in ["close", "form", "step", "set", "back", "await", "foot"]
 
 
 # ============================================================ 4. the defence
