@@ -1,7 +1,7 @@
 extends SceneTree
 ## Pictures of a campaign hub (the layered paintings, docs/campaign_hub_art.md): the hub, its person lit up as if
 ## pointed at, and his talk open. line:<storyline> picks the hub (prologue = Rome, the default; clockmaker = Hollweg's
-## workshop; explorer = Lindqvist's station; every storyline is opened for it: Campaign.open_all).
+## workshop; naturalist = Lindqvist's station; every storyline is opened for it: Campaign.open_all).
 ##   xvfb-run -a godot --rendering-driver opengl3 --resolution 1280x720 --script res://tools/shot_hub.gd -- <outdir> [pc|mobile] [film] [line:clockmaker]
 var main
 var out := ""

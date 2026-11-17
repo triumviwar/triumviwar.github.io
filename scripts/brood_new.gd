@@ -572,7 +572,7 @@ const GROUND_R := 24.0
 
 ## Her drawn size as a radius: her kind's radius x her stage's scale.
 static func drawn_r(q: Unit) -> float:
-	return float(q.d["radius"]) * float(stage_def(q)["scale"])
+	return float(q.d["radius"]) * float(stage_def(q)["scale"]) * float(q.get_meta("role_scale", 1.0))
 
 
 ## The radius to draw a creature's ring, shadow and bars by: the Mother's drawn size, else its body.
@@ -870,6 +870,8 @@ static func _hatch(g: Game, e: Unit) -> void:
 
 
 static func egg_tick(g: Game, e: Unit, delta: float) -> void:
+	if e.has_meta("mission_caged"):
+		return          # (a campaign mission's egg kept as it is: Linnea's clutch in the Brood prologue, MissionRun `cage`)
 	if e.nb.has("out"):
 		e.nb["out"] = float(e.nb["out"]) + delta
 		if float(e.nb["out"]) >= HATCH_OUT:
@@ -1937,7 +1939,7 @@ static func _rooted_look(u: Unit, n: int) -> void:
 		s.scale = Vector2(sx * (1.0 - 0.025 * hv), 1.0 + 0.06 * hv)
 	if u.kind == QUEEN:
 		# her growth stage: the sprite that much bigger, about her feet (until her stages are drawn)
-		var k := float(stage_def(u)["scale"])
+		var k := float(stage_def(u)["scale"]) * float(u.get_meta("role_scale", 1.0))     # (a campaign role drawn smaller: Linnea)
 		var hx := absf(s.scale.x) if (still or lay > 0.0) else 1.0
 		var hy := s.scale.y if (still or lay > 0.0) else 1.0
 		s.scale = Vector2(sx * k * hx, k * hy)

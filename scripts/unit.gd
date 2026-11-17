@@ -32,6 +32,9 @@ var _d_noatk := false            # d.get("no_attack")
 var _d_ground := false           # d.get("ground_only")
 var _d_aironly := false          # d.get("air_only")
 var _d_aa := false               # d.get("anti_air")
+# a CAMPAIGN mission's hold on a unit (the Brood prologue: MissionRun's `cage`, `pin`, `carry`)
+var m_pace := 1.0                # its speed times this (0: it can't move: Linnea caged, the fort's gun with no horse)
+var m_unarmed := false           # it doesn't attack (caged; Lindqvist carrying the egg crate)
 var order := "idle"            # idle, move, amove, attack, hold, gather, build
 var order_point := Vector2.ZERO
 var target: Entity = null      # who we're fighting
@@ -1264,7 +1267,7 @@ func is_air() -> bool:
 func can_hit(e: Entity) -> bool:
 	if Defs.cw_roster and CwUnits.on(kind) and not CwUnits.can_fire(self):
 		return false
-	if _d_medic or _d_noatk or e.untouchable():
+	if _d_medic or _d_noatk or m_unarmed or e.untouchable():
 		return false
 	if _k_nb and tesla_mode != "packed" and BroodNew.ROOTERS.has(kind):
 		return false            # (the Brood: no rooted creature attacks, rooted is a building; to fight it uproots)
@@ -3742,7 +3745,7 @@ func _tick_unit(delta: float) -> void:
 	_courier_t -= delta
 	var want := Vector2.ZERO
 	# Brood on swamp: faster, and wounds close up.
-	speed = float(d["speed"])
+	speed = float(d["speed"]) * m_pace
 	if _k_fac == "brood":
 		speed += _speed_add()      # (PACK HUNT, SLITHER, UPDRAFT: scripts/brood_research.gd)
 	if kind == Defs.BALLISTA_KIND:

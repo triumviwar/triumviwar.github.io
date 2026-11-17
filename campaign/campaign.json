@@ -80,6 +80,20 @@
 						"list_only": true
 					},
 					{
+						"id": "lindqvist_held",
+						"kind": "talk",
+						"label": "DR. LINDQVIST",
+						"talk": "lindqvist_held",
+						"requires": "b01_specimen",
+						"rect": [
+							0,
+							0,
+							0.1,
+							0.1
+						],
+						"list_only": true
+					},
+					{
 						"id": "armoury",
 						"kind": "room",
 						"label": "ARMOURY",
@@ -117,6 +131,13 @@
 								"lines": [
 									"The clockmaker lost his city in a single night. He thought his machine could think.",
 									"He sits in the east wing now and writes to me every week. I read every letter."
+								]
+							},
+							{
+								"after": "b01_specimen",
+								"lines": [
+									"The naturalist lost his station in a single night, and thinks it was stolen from him.",
+									"He is held in the palace now. I keep him for what he knows of those creatures, and I hear him out."
 								]
 							}
 						],
@@ -176,21 +197,37 @@
 								]
 							}
 						]
+					},
+					"lindqvist_held": {
+						"name": "Dr. Lindqvist",
+						"colour": 3,
+						"portrait": "res://campaign/hub/station_lindqvist_face.png",
+						"entries": [
+							{
+								"after": "b01_specimen",
+								"lines": [
+									"They took my chains off for the King. The guards stay. I do not mind the guards.",
+									"Ask me anything about her kind. I am the only man alive who has raised one."
+								]
+							}
+						]
 					}
 				},
 				"scene": "res://campaign/hub/rome.json"
 			}
 		},
 		{
-			"id": "explorer",
-			"title": "The Explorer",
+			"id": "naturalist",
+			"title": "The Naturalist",
 			"requires": "p01_leaf",
-			"about": "A Catholic explorer goes down into the deep earth and finds the Brood. (Being written.)",
-			"missions": [],
+			"about": "A naturalist on the Amazon raises a creature no one has seen, and loses it to the forest.",
+			"missions": [
+				"b01_specimen"
+			],
 			"hub": {
 				"title": "Lindqvist's Station",
 				"still": {
-					"caption": "Dr. Lindqvist's research station on the Amazon: the specimen chart of the plateau on the table, the jars glowing green, rain on the forest outside."
+					"caption": "Dr. Lindqvist's research station on the Rio Negro: the specimen chart on the table, the jars glowing green, rain on the forest outside."
 				},
 				"colour": 2,
 				"hotspots": [
@@ -228,7 +265,8 @@
 							0.414,
 							0.072,
 							0.213
-						]
+						],
+						"requires": "a05_specimens"
 					},
 					{
 						"id": "specimen",
@@ -240,6 +278,52 @@
 							0.303,
 							0.072,
 							0.266
+						],
+						"requires": "a05_specimens"
+					},
+					{
+						"id": "crate",
+						"kind": "talk",
+						"label": "HER CRATE",
+						"talk": "crate",
+						"until": "b01_specimen",
+						"rect": [
+							0.562,
+							0.414,
+							0.072,
+							0.213
+						]
+					},
+					{
+						"id": "eggs_crate",
+						"kind": "talk",
+						"label": "THE CRATE IN THE CELLAR",
+						"talk": "eggs_crate",
+						"requires": "b01_specimen",
+						"flag": {
+							"b01_specimen.clutch": "saved"
+						},
+						"rect": [
+							0.562,
+							0.414,
+							0.072,
+							0.213
+						]
+					},
+					{
+						"id": "notebook",
+						"kind": "talk",
+						"label": "THE SINGED NOTEBOOK",
+						"talk": "notebook",
+						"requires": "b01_specimen",
+						"flag": {
+							"b01_specimen.clutch": "burned"
+						},
+						"rect": [
+							0.562,
+							0.414,
+							0.072,
+							0.213
 						]
 					},
 					{
@@ -265,8 +349,15 @@
 							{
 								"after": "",
 								"lines": [
-									"Do not tap the glass. It sleeps, and I would like it to go on sleeping.",
-									"The Academy wants specimens. I want to understand them. The plateau will give us both."
+									"She eats from my hand and follows my whistle. Eleven pounds heavier than Monday.",
+									"The Academy wants specimens. I want a breed. The Crown will want a cavalry."
+								]
+							},
+							{
+								"after": "b01_specimen",
+								"lines": [
+									"A warehouse at the Barra, crates and charts, and the people who came down the river with me.",
+									"He stole her. I will have her line again, whatever the Academy says."
 								]
 							}
 						]
@@ -295,9 +386,62 @@
 								]
 							}
 						]
+					},
+					"crate": {
+						"name": "Her crate",
+						"colour": 3,
+						"entries": [
+							{
+								"after": "",
+								"lines": [
+									"A crate of straw in the specimen house, scratched from the inside.",
+									"Pieter has nailed a second plank over the lid."
+								]
+							}
+						]
+					},
+					"eggs_crate": {
+						"name": "The crate in the cellar",
+						"colour": 3,
+						"entries": [
+							{
+								"after": "b01_specimen",
+								"lines": [
+									"A crate under a tarpaulin in the cellar. Lindqvist weighs it every morning.",
+									"It grows."
+								]
+							}
+						]
+					},
+					"notebook": {
+						"name": "The singed notebook",
+						"colour": 3,
+						"entries": [
+							{
+								"after": "b01_specimen",
+								"lines": [
+									"His notes, burned at the edges, on an empty bench.",
+									"He copies them out again every night, from memory."
+								]
+							}
+						]
 					}
 				},
-				"scene": "res://campaign/hub/station.json"
+				"scene": "res://campaign/hub/station.json",
+				"after": {
+					"b01_specimen": {
+						"title": "The Warehouse at the Barra",
+						"about": "The station is lost. Lindqvist and the survivors are camped in the Academy's warehouse at the Barra do Rio Negro.",
+						"still": {
+							"caption": "The Academy's warehouse at the Barra do Rio Negro: crates, jars and charts by lamplight, rain on the river."
+						},
+						"tint": [
+							0.82,
+							0.82,
+							0.9
+						]
+					}
+				}
 			}
 		},
 		{

@@ -31,6 +31,9 @@ var last_blow := ""             # the kind of the last blow (BLOW_*, "" area): a
 var off_field := false             # a soldier being bandaged: off the field for a moment
 var cross_t := 0.0              # just bandaged: can't be bandaged again yet
 var acid_t := 0.0               # Spitter acid: burns and strips 2 armour while > 0
+# a CAMPAIGN mission's hold on it (the Brood prologue, docs/campaign_b01_build.md; MissionRun's `spare` and `floor`):
+var spared := false             # nobody targets it and nothing hurts it (Linnea in her pen, the eggs)
+var hp_floor := 0.0             # its health never goes under this (the Tyrant Sire who cannot die tonight)
 var _mat: ShaderMaterial
 
 
@@ -50,7 +53,7 @@ func is_air() -> bool:
 func untouchable() -> bool:
 	# a Missionary is untouchable only near one of his side's Churches (Defs.MISSIONARY_SAFE tiles; the owner,
 	# 2026-10-31: one strolled untouched through a Brood base, which has no buildings), and never by enemy buildings
-	return off_field or ((kind == "missionary" or kind == "mounted_missionary") and game.near_own_kind(team, global_position, "church", Defs.MISSIONARY_SAFE)
+	return spared or off_field or ((kind == "missionary" or kind == "mounted_missionary") and game.near_own_kind(team, global_position, "church", Defs.MISSIONARY_SAFE)
 		and not game.near_enemy_building(team, global_position, Defs.MISSIONARY_DANGER))
 
 
@@ -108,6 +111,8 @@ func take_damage(amount: float, _from: Entity, blow := "") -> void:
 	# a hit always does at least 1, but damage over time (storm, gas clouds: tiny amounts
 	# every tick) is applied as it is, or the 1-point floor turns it into 30 a second
 	var dmg := minf(hp, maxf(1.0, amount - maxf(arm, 0.0)) if amount >= 1.0 else amount)
+	if hp_floor > 0.0:
+		dmg = minf(dmg, maxf(0.0, hp - hp_floor))      # (a mission's floor: MissionRun "floor")
 	hp -= dmg
 	if _from and is_instance_valid(_from) and game.hostile(_from.team, team):
 		last_hit_by = _from.kind

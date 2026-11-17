@@ -493,7 +493,8 @@ static func _place_problem(g: Game, t: int, k: String, p: Vector2, me: Unit = nu
 			var full := RootmawSpots.room_problem(g, t, p, me)
 			if full != "":
 				return full
-	if BroodNew.is_father(k):
+	if BroodNew.is_father(k) and not (me != null and me.has_meta("mission_root")):
+		# (a campaign mission's scripted root: the Brood prologue's Tyrant Sire nests by a pen of another side's)
 		var q := BroodNew.queen(g, t)
 		if q == null or father_d(g, t, k, q, p) > father_reach():
 			return "Out of range: he must nest within %d tiles of the Brood Mother." % int(Defs.NB["father_r"])

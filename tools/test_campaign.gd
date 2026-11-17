@@ -146,7 +146,7 @@ func _run() -> void:
 	check("the test mission opens no storyline", not Campaign.storyline_open(Campaign.storylines()[1]))
 	Campaign.record("p01_leaf", "solo", "crown", "crown", {"families": "save"})
 	p = Campaign.progress()
-	check("the prologue won: the explorer and clockmaker storylines open", Campaign.storyline_open(Campaign.storylines()[1]) and Campaign.storyline_open(Campaign.storylines()[2]))
+	check("the prologue won: the naturalist and clockmaker storylines open", Campaign.storyline_open(Campaign.storylines()[1]) and Campaign.storyline_open(Campaign.storylines()[2]))
 	check("the prologue's choice is kept for later missions", Campaign.flag("p01_leaf", "families") == "save")
 	var tk: Dictionary = Campaign.storylines()[0]["hub"]["talks"]["fairleigh"]
 	check("the Governor's talk changed after the mission", String(CampaignMenu.talk_lines(tk, p)[0]).begins_with("It is done"))
@@ -206,7 +206,7 @@ func _run() -> void:
 	await process_frame
 	check("the briefing has START", main.menu.find_child("Briefing_Start", true, false) != null)
 	# the Clockwork and Brood hubs (layered paintings: Hollweg's workshop, Lindqvist's station), opened for the test
-	for it in [["clockmaker", "hollweg", "clock"], ["explorer", "lindqvist", "specimen"]]:
+	for it in [["clockmaker", "hollweg", "clock"], ["naturalist", "lindqvist", "crate"]]:
 		Campaign.open_all = true
 		CampaignMenu.line = it[0]
 		CampaignMenu.show(main)

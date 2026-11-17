@@ -54,6 +54,10 @@ var _next := {}                      # a repeating trigger's id -> the game cloc
 var _times := {}                     # trigger id -> how often it has fired
 var _turning: Array = []             # [unit, team index, game clock it changes side, tag]: `convert` waiting out its warning
 var weather_node: Node = null
+# the Brood prologue's engine (brood-prologue-build, docs/campaign_b01_build.md): units held by the story (`cage`: in
+# place and harmless; `spare`: untouchable), buildings set ALIGHT (`burn`), a health FLOOR, scripted ROOT / UPROOT
+var _caged: Array = []               # [unit, the spot it is kept at]
+var _burning: Array = []             # [building, health a second it loses]
 
 
 func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
@@ -213,8 +217,10 @@ func _place_building(it: Dictionary) -> Building:
 	if c.x < 0:
 		push_warning("mission %s: no room for a %s" % [id, k])
 		return null
-	var b := game._add_building(k, t, c, true)
-	game.on_building_complete(b)
+	var site := bool(it.get("site", false))
+	var b := game._add_building(k, t, c, not site)
+	if not site:
+		game.on_building_complete(b)      # ("site": a building site, paid for, the team's workers build it)
 	if it.has("tag"):
 		_tag(String(it["tag"]), b)
 	return b
@@ -327,8 +333,12 @@ func _ready() -> void:
 		game.camera.position = area_rect(String(tm["camera"])).get_center()
 	if data.has("light"):
 		set_light(String(data["light"]), 0.0)      # (the scene's light at the start: "night", "dawn", "day")
-	if String(data.get("weather", "")) == "snow":
-		set_weather("snow")
+	if String(data.get("weather", "")) in ["snow", "rain"]:
+		set_weather(String(data["weather"]))
+	if data.has("floor") and game.ground:
+		# THE FLOOR's tint (the Brood prologue: the jungle floor darkened so the green pack reads on it)
+		var f: Array = data["floor"]
+		game.ground.modulate = Color(float(f[0]), float(f[1]), float(f[2]))
 
 
 func _process(_delta: float) -> void:
@@ -350,6 +360,7 @@ func _physics_process(delta: float) -> void:
 	Rebels.tick(self, TICK)
 	_tick_turning()
 	_tick_exits()
+	_tick_held()
 	if not choice_open.is_empty() and game.clock >= float(choice_open.get("until", INF)):
 		choose(String(choice_open["id"]), String(choice_open.get("default", "")))      # (nobody answered: the default)
 	_run_triggers()
@@ -451,6 +462,15 @@ func cond(c: Variant) -> bool:
 				# {"counter": {"name", "at_least", "below"}}: a mission number (townsfolk saved, seeds burnt)
 				var n := int(counters.get(String(v.get("name", "")), 0))
 				ok = (not v.has("at_least") or n >= int(v["at_least"])) and (not v.has("below") or n < int(v["below"]))
+			"hp":
+				# {"hp": {"tag", "below": share}}: one of them has less than that share of its health (the Sire hurt)
+				ok = false
+				for e in tagged(String(v.get("tag", ""))):
+					if e.hp < e.max_hp * float(v.get("below", 0.5)):
+						ok = true
+			"rooted" when v is Dictionary and v.has("tag"):
+				# {"rooted": {"tag"}}: one of them is rooted now (the Sire by the pen, the turtle at the creek)
+				ok = tagged(String(v["tag"])).any(func(e) -> bool: return e is Unit and BroodNew.rooted(e))
 			"netted":
 				# {"netted": {"team"}}: one of that team's units is caught in a net now (a Netter's catch)
 				var t := team_index(String(v.get("team", "")))
@@ -579,7 +599,11 @@ func act(a: Dictionary) -> void:
 			"counter":
 				# {"counter": {"name", "add" or "set"}}
 				var cn := String(v.get("name", ""))
-				counters[cn] = int(v["set"]) if v.has("set") else int(counters.get(cn, 0)) + int(v.get("add", 1))
+				if v.has("count"):
+					# (set from a count, or added with "plus": the people at the station when it falls)
+					counters[cn] = (int(counters.get(cn, 0)) if bool(v.get("plus", false)) else 0) + count(v["count"])
+				else:
+					counters[cn] = int(v["set"]) if v.has("set") else int(counters.get(cn, 0)) + int(v.get("add", 1))
 				objectives_changed.emit()
 				_send({"k": "cnt", "c": counters.duplicate()})
 			"clock":
@@ -627,6 +651,21 @@ func act(a: Dictionary) -> void:
 			"weather":
 				set_weather(String(v))
 				_send({"k": "wx", "w": String(v)})
+			"cage", "pin", "carry", "spare":
+				hold(String(k), v)
+			"floor":
+				# {"floor": {"tag", "share"}}: their health never goes under that share (0: no floor)
+				for e in tagged(String(v.get("tag", ""))):
+					e.hp_floor = e.max_hp * float(v.get("share", 0.0))
+			"heal":
+				# {"heal": {"tag", "share"}}: their health back up to that share at least
+				for e in tagged(String(v.get("tag", ""))):
+					e.hp = maxf(e.hp, e.max_hp * float(v.get("share", 1.0)))
+			"burn":
+				# {"burn": {"tag", "secs"}}: buildings set alight burn down in about that time (fire on them)
+				for e in tagged(String(v.get("tag", ""))):
+					if e is Building and not _burning.any(func(it) -> bool: return it[0] == e):
+						_burning.append([e, e.max_hp / maxf(float(v.get("secs", 60.0)), 1.0)])
 
 
 ## Scripted orders go only to units no person plays (a co-op friend's or versus foe's units are theirs).
@@ -649,6 +688,17 @@ func _order(us: Array, v: Dictionary) -> void:
 		"patrol":
 			for u in us:
 				u.cmd_patrol(p)
+		"root":
+			# {"do": "root", "to": area}: a Brood creature walks there and roots (the Mound Turtle at the creek's mouth, the
+			# Sire by her pen: a father may nest by a Mother who is not his side's)
+			for u in us:
+				if BroodNew.ROOTERS.has(u.kind) and u.tesla_mode == "packed":
+					u.set_meta("mission_root", true)
+					BroodRoot.start_root(u, p)
+		"uproot":
+			for u in us:
+				if u.tesla_mode == "deployed":
+					BroodNew.uproot(u, false)
 		"hunt":
 			# {"do": "hunt", "prey": a tag, "within": tiles}: each idle or walking unit goes for the nearest living unit
 			# with that tag within reach (the machine going after the townsfolk in the streets)
@@ -675,7 +725,11 @@ func _order(us: Array, v: Dictionary) -> void:
 ## painted), over `secs` seconds. A CanvasModulate on the Game: the world only, never the HUD.
 const LIGHTS := {"night": Color(0.40, 0.45, 0.66), "dusk": Color(0.78, 0.66, 0.70), "dawn": Color(1.0, 0.83, 0.70), "day": Color(1, 1, 1),
 	# WINTER (the Clockwork prologue, Advent in Nuremberg): a cold day, a short violet dusk, a deep blue night lit by fires
-	"winter_day": Color(0.88, 0.93, 1.04), "winter_dusk": Color(0.66, 0.62, 0.80), "winter_night": Color(0.36, 0.42, 0.66)}
+	"winter_day": Color(0.88, 0.93, 1.04), "winter_dusk": Color(0.66, 0.62, 0.80), "winter_night": Color(0.36, 0.42, 0.66),
+	# THE AMAZON (the Brood prologue): a heavy humid afternoon, a rainy dusk, the rain at night, the night lit by the burning
+	# station, the grey before dawn
+	"jungle_day": Color(0.96, 0.95, 0.84), "jungle_dusk": Color(0.74, 0.62, 0.62), "jungle_night": Color(0.42, 0.48, 0.62),
+	"fire_night": Color(0.62, 0.46, 0.42), "grey_dawn": Color(0.66, 0.68, 0.74)}
 
 
 func set_light(to: String, secs: float) -> void:
@@ -798,6 +852,11 @@ func _check_objectives() -> void:
 					set_objective(oid, "done")
 			"destroy":
 				if tags.has(String(o["tag"])) and tagged(String(o["tag"])).is_empty():
+					set_objective(oid, "done")
+			"build":
+				# every building with the tag stands built (her pen's stakes and gate)
+				var bs := tagged(String(o["tag"]))
+				if not bs.is_empty() and bs.size() == (tags.get(String(o["tag"]), []) as Array).size() and bs.all(func(b) -> bool: return b is Building and b.built):
 					set_objective(oid, "done")
 			"protect":
 				if tags.has(String(o["tag"])) and tagged(String(o["tag"])).is_empty():
@@ -957,6 +1016,8 @@ func _turn(u: Unit, to: int, new_tag: String) -> void:
 ## leave the map (not a loss) and are counted (townsfolk out of the west gate).
 func _tick_exits() -> void:
 	for ex in data.get("exits", []):
+		if ex.has("after") and not fired.has(String(ex["after"])):
+			continue          # (an exit opens once that trigger has fired: the canoes take people only once the station falls)
 		var r := area_rect(String(ex.get("area", "")))
 		var list: Array = []
 		if ex.has("tag"):
@@ -965,8 +1026,11 @@ func _tick_exits() -> void:
 			var t := team_index(String(ex.get("team", "")))
 			list = game.units.filter(func(u) -> bool: return u.team == t and not u.dead)
 		var n := 0
+		var keep: Array = []
+		for xt in ex.get("except", []):
+			keep.append_array(tagged(String(xt)))      # (the heroes stay: they must be there at the end)
 		for u in list:
-			if u is Unit and not u.dead and r.has_point(u.position):
+			if u is Unit and not u.dead and r.has_point(u.position) and not keep.has(u):
 				game.consume_unit(u)
 				n += 1
 		if n > 0:
@@ -990,7 +1054,7 @@ func set_weather(w: String) -> void:
 	if weather_node:
 		weather_node.queue_free()
 		weather_node = null
-	if w != "snow" or game == null or DisplayServer.get_name() == "headless":
+	if not w in ["snow", "rain"] or game == null or DisplayServer.get_name() == "headless":
 		return
 	var cl := CanvasLayer.new()
 	cl.name = "MissionWeather"
@@ -1011,9 +1075,88 @@ func set_weather(w: String) -> void:
 	p.scale_amount_min = 1.2
 	p.scale_amount_max = 3.0
 	p.color = Color(1, 1, 1, 0.75)
+	if w == "rain":
+		# RAIN (the Brood prologue's night): long, fast, thin grey-blue streaks
+		p.amount = 420
+		p.lifetime = 1.4
+		p.preprocess = 1.4
+		p.direction = Vector2(0.12, 1)
+		p.spread = 3.0
+		p.gravity = Vector2(0, 600)
+		p.initial_velocity_min = 700.0
+		p.initial_velocity_max = 900.0
+		p.scale_amount_min = 1.0
+		p.scale_amount_max = 1.6
+		p.color = Color(0.72, 0.8, 0.95, 0.38)
+		var tex := GradientTexture2D.new()
+		tex.width = 2
+		tex.height = 18
+		tex.fill_from = Vector2(0, 0)
+		tex.fill_to = Vector2(0, 1)
+		var gr := Gradient.new()
+		gr.set_color(0, Color(1, 1, 1, 0))
+		gr.set_color(1, Color(1, 1, 1, 1))
+		tex.gradient = gr
+		p.texture = tex
 	cl.add_child(p)
 	game.add_child(cl)
 	weather_node = cl
+
+
+## `cage` (in place, harmless: Linnea in her pen, her eggs kept as eggs), `pin` (can't move, still fights: the fort's
+## gun with no horse), `carry` (slower, can't attack: Lindqvist with the egg crate; "pace"), `spare` (nobody targets it,
+## nothing hurts it). {"tag", "on": true / false}.
+func hold(what: String, v: Dictionary) -> void:
+	var on := bool(v.get("on", true))
+	for e in tagged(String(v.get("tag", ""))):
+		match what:
+			"spare":
+				e.spared = on
+			"cage":
+				if e is Unit:
+					e.m_pace = 0.0 if on else 1.0
+					e.m_unarmed = on
+					_caged = _caged.filter(func(it) -> bool: return it[0] != e)
+					if on:
+						e.set_meta("mission_caged", true)
+						e.cmd_stop()
+						_caged.append([e, e.position])
+					elif e.has_meta("mission_caged"):
+						e.remove_meta("mission_caged")
+			"pin":
+				if e is Unit:
+					e.m_pace = 0.0 if on else 1.0
+			"carry":
+				if e is Unit:
+					e.m_pace = float(v.get("pace", 0.65)) if on else 1.0
+					e.m_unarmed = on
+					if on:
+						e.target = null
+
+
+## Each tick: the caged stay where they were put (nothing shoves them out of the pen), the burning burn.
+func _tick_held() -> void:
+	var keep: Array = []
+	for it in _caged:
+		var u = it[0]
+		if not is_instance_valid(u) or u.dead or not u.has_meta("mission_caged"):
+			continue
+		keep.append(it)
+		if u.position.distance_to(it[1]) > 1.0:
+			u.position = it[1]
+			u.velocity = Vector2.ZERO
+			game.note_move(u)
+	_caged = keep
+	var still: Array = []
+	for it in _burning:
+		var b = it[0]
+		if not is_instance_valid(b) or b.dead:
+			continue
+		still.append(it)
+		b.take_damage(float(it[1]) * TICK + maxf(float(b.armor), 0.0), null)
+		if randf() < 0.6:
+			game.spawn_effect("fire", b.center() + Vector2(randf_range(-28, 28), randf_range(-22, 14)), 0.9)
+	_burning = still
 
 
 ## An objective's words for the panel: translated, with the numbers put in: "{saved}" a counter, "{saved.of}" its

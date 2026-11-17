@@ -526,8 +526,21 @@ static func hub_now(hub: Dictionary, p: Dictionary) -> Dictionary:
 				out[k] = hub["after"][mid][k]
 	out["hotspots"] = (hub.get("hotspots", []) as Array).filter(func(hs: Dictionary) -> bool:
 		return (String(hs.get("requires", "")) == "" or done.has(String(hs["requires"]))) \
-			and (String(hs.get("until", "")) == "" or not done.has(String(hs["until"]))))
+			and (String(hs.get("until", "")) == "" or not done.has(String(hs["until"]))) and flags_ok(hs.get("flag", {}), p))
 	return out
+
+
+## A hub hotspot's or talk entry's "flag": {"<mission>.<flag>": value, ...}: every one as a finished mission left it
+## (the Brood prologue: the crate of eggs in the warehouse only if they were saved). {} holds.
+static func flags_ok(f: Dictionary, p: Dictionary) -> bool:
+	for fk in f:
+		var pr := String(fk).split(".")
+		if pr.size() != 2:
+			return false
+		var e: Dictionary = (p.get("done", {}) as Dictionary).get(pr[0], {})
+		if str(e.get("flags", {}).get(pr[1], null)) != str(f[fk]):
+			return false
+	return true
 
 
 ## A hotspot pressed: the war table opens the missions, a person talks, a room shows its page (a stub for now).
@@ -549,7 +562,7 @@ static func talk_lines(tk: Dictionary, p: Dictionary) -> Array:
 	var out: Array = []
 	for e in tk.get("entries", []):
 		var aft := String(e.get("after", ""))
-		if aft == "" or (p["done"] as Dictionary).has(aft):
+		if (aft == "" or (p["done"] as Dictionary).has(aft)) and flags_ok(e.get("flag", {}), p):
 			out = e.get("lines", [])
 	return out
 

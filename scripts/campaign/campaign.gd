@@ -447,7 +447,7 @@ static func problems(m: Dictionary) -> Array:
 	for o in m.get("objectives", []):
 		if not sides.has(String(o.get("side", ""))):
 			out.append("objective %s: unknown side" % o["id"])
-		if not ["survive", "destroy", "protect", "reach", "manual", "countdown"].has(String(o.get("kind", ""))):
+		if not ["survive", "destroy", "protect", "reach", "manual", "countdown", "build"].has(String(o.get("kind", ""))):
 			out.append("objective %s: unknown kind %s" % [o["id"], o.get("kind")])
 		if o.has("area") and not areas.has(String(o["area"])):
 			out.append("objective %s: unknown area" % o["id"])
@@ -487,7 +487,7 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 		return
 	for k in c:
 		match String(k):
-			"time", "dead", "hurt", "flag", "past", "clock_out", "clock_left", "counter", "netted":
+			"time", "dead", "hurt", "flag", "past", "clock_out", "clock_left", "counter", "netted", "hp":
 				pass
 			# the TUTORIAL's conditions (what the player did: docs/tutorial.md)
 			"selected", "camera_moved", "zoomed", "more", "built", "rooted", "crew", "group", "did", "gear_view", \
@@ -547,7 +547,7 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 			if v.get("at") is String and not areas.has(String(v["at"])):
 				out.append("%s: unknown area %s" % [where, v["at"]])
 		"order":
-			if not ["attack", "move", "hold", "stop", "patrol", "hunt"].has(String(v.get("do", ""))):
+			if not ["attack", "move", "hold", "stop", "patrol", "hunt", "root", "uproot"].has(String(v.get("do", ""))):
 				out.append("%s: unknown order %s" % [where, v.get("do")])
 			if v.has("to") and not areas.has(String(v["to"])):
 				out.append("%s: unknown area %s" % [where, v["to"]])
@@ -565,6 +565,9 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: unknown side %s" % [where, v])
 		"mark", "flag", "clock", "counter", "tally", "name":
 			pass
+		"cage", "pin", "carry", "spare", "floor", "heal", "burn":
+			if not (v is Dictionary and v.has("tag")):
+				out.append("%s: %s needs a tag" % [where, k])
 		"convert":
 			if not teams.has(String(v.get("to", ""))):
 				out.append("%s: convert to unknown team %s" % [where, v.get("to")])
@@ -580,7 +583,7 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 			if v.has("area") and not areas.has(String(v["area"])):
 				out.append("%s: unknown area %s" % [where, v["area"]])
 		"weather":
-			if not ["snow", ""].has(String(v)):
+			if not ["snow", "rain", ""].has(String(v)):
 				out.append("%s: unknown weather %s" % [where, v])
 		"hurt":
 			if not (v is Dictionary and v.has("tag")):
