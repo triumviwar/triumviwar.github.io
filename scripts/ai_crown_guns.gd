@@ -337,29 +337,40 @@ func _ramp_on_road(from: Vector2, target: Vector2) -> Dictionary:
 		_road_t = game.clock
 		_road_to = target
 		_road = game.find_path(from, target, false, 7.0, ai.team)
+	# (the road is a few corner points: walked along every segment in half-tile steps, so a ramp between two corners is
+	# seen; before, only the corners were looked at and no ramp was ever found)
 	var walked := 0.0
 	var prev: Vector2 = from
 	var foot := Vector2.INF
-	for i in _road.size():
-		var p: Vector2 = _road[i]
-		walked += prev.distance_to(p)
-		if walked > RAMP_SEE + 600.0:
-			break
-		var c: Vector2i = game.cell_of(p)
-		if not game.in_map(c):
+	var last := from
+	var pts: Array = [from]
+	pts.append_array(Array(_road))
+	var step := Defs.TILE * 0.5
+	for i in range(1, pts.size()):
+		var a: Vector2 = pts[i - 1]
+		var b: Vector2 = pts[i]
+		var n: int = maxi(1, int(ceil(a.distance_to(b) / step)))
+		for k in range(1, n + 1):
+			var p: Vector2 = a.lerp(b, float(k) / n)
+			walked += last.distance_to(p)
+			last = p
+			if walked > RAMP_SEE + 600.0:
+				return {}
+			var c: Vector2i = game.cell_of(p)
+			if not game.in_map(c):
+				prev = p
+				continue
+			var on_ramp: bool = game.ramp[game.idx(c)] != 0
+			if foot == Vector2.INF:
+				if on_ramp:
+					if walked > RAMP_SEE:
+						return {}
+					foot = prev
+			elif not on_ramp:
+				if game.level_of(p) != game.level_of(foot) and p.distance_to(target) < TARGET_R:
+					return {"foot": foot, "top": p}
+				return {}
 			prev = p
-			continue
-		var on_ramp: bool = game.ramp[game.idx(c)] != 0
-		if foot == Vector2.INF:
-			if on_ramp:
-				if walked > RAMP_SEE:
-					return {}
-				foot = prev
-		elif not on_ramp:
-			if game.level_of(p) != game.level_of(foot) and p.distance_to(target) < TARGET_R:
-				return {"foot": foot, "top": p}
-			return {}
-		prev = p
 	return {}
 
 
