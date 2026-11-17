@@ -63,7 +63,7 @@ M = {
     "map": "campaign:rio_negro_station",
     "voice": "b01",
     "light": "jungle_day",
-    "floor": [0.62, 0.66, 0.6],
+    "floor": [0.7, 0.74, 0.68],
     "expansion_spots": False,
     "manual_end": True,
     "modes": ["solo", "coop", "versus"],

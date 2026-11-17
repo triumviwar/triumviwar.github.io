@@ -6,9 +6,9 @@
 	"voice": "b01",
 	"light": "jungle_day",
 	"floor": [
-		0.62,
-		0.66,
-		0.6
+		0.7,
+		0.74,
+		0.68
 	],
 	"expansion_spots": false,
 	"manual_end": true,
