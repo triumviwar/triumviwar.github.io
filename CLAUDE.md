@@ -92,8 +92,11 @@
   152 games v the Brood, arms M as is / C coach:off / H honest:off / F screenfirst+gunsfirst off: M = C (6 v 7, p 1.0);
   the HONEST RECKONING (rule 3, only read v the Brood) HURT (H v M income 8:00 26 v 12, p 0.034; 12:00 21 v 8, p 0.024),
   so since 0.38.42 it is OFF by default (switch broodhonest:on); screen/guns first no measurable effect, kept. OPTIMAL
-  still opens the Horseman rush v the Brood in 37 of 38 (no blind rush is off v the Brood): a norush-alone measure is the
-  next arm proposed. Measured before 0.38.40 (army floor) and 0.38.41 (guns rework).
+  still opens the Horseman rush v the Brood in 37 of 38 (no blind rush is off v the Brood). Measured before 0.38.40 (army
+  floor) and 0.38.41 (guns rework). NORUSH MEASURED (job crown-norush-measure, merged 0.38.51, docs/crown_norush_measure.md,
+  114 games on 0.38.46): WITHOUT the rush the Crown does WORSE (N v A 4 better / 14 worse, p 0.031; army 8:00 lower in 33
+  of 38; halls lost 1.03 v 0.42): the unharassed Brood's army at 8:00 is 1,794 v 1,051. The rush STAYS ON v the Brood.
+  Proposals P1-P3 (a cheaper later harass that still makes the Brood read AGGRESSIVE; a later second greed look).
 - CROWN GUNS COACHED (owner 2026-11-15 22:20 / 2026-11-16 23:25 "setting cannon before the engagement is very important";
   job crown-guns-coach, 0.38.40, docs/crown_guns_coach.md, scripts/ai_crown_guns.gd AICrownGuns, tools/bench_crown_guns.gd,
   tools/study/crown_guns_coach.py + _report.py, data docs/crown_guns_coach/): the Crown computer's FIGHTING only (no number

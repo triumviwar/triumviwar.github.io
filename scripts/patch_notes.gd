@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.51", "items": [
+		"Studies only: the Crown computer without its blind Horseman rush against the Brood was measured (114 games): it does worse without it, because the unharassed Brood builds a far bigger army by 8 minutes, so the rush stays as it is.",
+	]},
 	{"v": "0.38.50", "items": [
 		"THE NATURALIST'S PROLOGUE, SPECIMEN ONE, IS NOW PLAYED AS THE BROOD (CAMPAIGN, THE NATURALIST): you are the Tyrant Sire's pack. Root the Sire by the Old Mother, lay and hatch Raptors, let him roar at the forest's edge above the men's station, root him by Linnea's pen while she lays her clutch, break the gate and take her home, through a rival pack that holds the forest. Choose whether the Sire carries her clutch home or leaves it. The scientists' story goes on around you, told by Dr. Lindqvist from his window. The first Brood play of the campaign; every line and picture is still a placeholder.",
 	]},
