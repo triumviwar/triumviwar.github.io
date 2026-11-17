@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.39", "items": [
+		"THE CROWN COMPUTER AGAINST ANOTHER CROWN, COACHED (no unit, price or rule changed): from 8:00 a Crown clearly ahead of the army it reckons the other has sends its wave out again instead of waiting to grow a bigger one, and the Siege push goes without its full set of guns. Its waves go for the enemy hall that is cheapest to take (out in the open, few walls, away from the enemy's main) before the walled ones by the main, and once only walled halls are left it trains Field Cannons (up to 3) to shell them. Measured on 38 computer mirrors to 15:00 the games still mostly run to the end: the loser's main on its plateau holds.",
+	]},
 	{"v": "0.38.38", "items": [
 		"THE CROWN COMPUTER, COACHED (no unit, price or rule changed): its opening builds the second Farm before the Barracks in every plan but the Rush. Against the Clockwork it now fills its Farms first (each idle Town Hall trains labourers while Farm posts stand free, unless its army is behind), puts up its Town Halls on time (a second by 3:30, a third by 7:30, a fourth by 11:30) and keeps its army on time too: measured on 38 pairs of games, it earns more by 8:00 in 31 and has a bigger army in 29.",
 		"In every matchup its Horsemen scout ahead of the army: the first screen rider is trained before more soldiers and a wave waits for it; its cannons unlimber sooner against a fast or oncoming enemy, and the musket line then holds by its guns and lets the enemy walk into their fire. Against the Brood it reckons only what it has seen. Against the Brood it keeps its old economy and its Horseman rush: the new economy left it too thin when the Brood came.",

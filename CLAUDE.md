@@ -25,6 +25,15 @@
 
 ## Current work
 
+- CROWN MIRROR COACHED AGAIN (owner 2026-11-16 23:25; job crown-mirror-coach, 0.38.39, docs/crown_mirror_coach.md, data
+  docs/crown_mirror_coach/, tools/study/crown_mirror_coach.py + crown_mirror_report.py + crown_mirror_diag.py, pictures
+  docs/shots/crown_mirror_coach/): the Crown COMPUTER in the mirror only (no number changed), AICrownMirror: the side ahead
+  PRESSES from 8:00 (1.3x the enemy it reckons, 900+: the wave's bar comes down; the Siege push goes without its full kit),
+  the OUTLYING HALLS FIRST (the cheapest enemy hall as the wave's and the push's target), GUNS FOR THE WALLED HALL (up to 3
+  Field Cannons once only walled halls are left). Switches cmc:off (all), cmcpress/cmctarget/cmcguns:off. 38 games to
+  15:00, 0.38.38 v after: decided 2 v 2 (no change), halls lost 1.71 v 1.71; leaders' waves after 10:00 0.41 -> 0.63; the
+  loser's main on its plateau holds and 15:00 is short. Rules left ON (Claude's choice 1). Proposals P1-P4 (measure to
+  20:00, guns' spot v a main, the new hall's guards, a fading defender's advantage). OWNER DECISIONS WAITING.
 - CROWN COACH (owner 2026-11-15 22:20, coached by Claude in the session; branch crown-coach-1116 MERGED 0.38.38, owner "Yes"
   2026-11-16 22:37; scripts/ai_crown_coach.gd AICrownCoach, docs/crown_coach_measure.md, docs/crown_coach_measure_2.md,
   docs/crown_farmfirst_measure.md): FARM FIRST (2nd Farm before the Barracks, every plan but the Rush), LABOURERS FIRST with
