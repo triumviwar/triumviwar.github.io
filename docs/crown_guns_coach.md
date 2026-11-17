@@ -107,7 +107,35 @@ __FILMS__
 
 ## Claude's choices (for the owner)
 
-__CHOICES__
+1. **Rule 5 (the wave keeps with its guns) slows every wave with guns to the guns' pace** (38 px/s, the Musketeer's 62):
+   a wave reaches its target later. Chosen because a line that meets the enemy with its guns 1,000 px behind fights without
+   them (rule 2 cannot set a gun that is not there). The alternative: the guns lead the march (they set up first, the men
+   pass them) or the waves leave the guns home. Switch `gpace:off`.
+2. **Rule 6 (no column up a ramp) reckons what stands at the top from what it has seen there in the last 90 s, or by the
+   enemy's base 0.6 of the enemy's army it reckons (AICrown.foe_reckon) less what it has seen elsewhere**: a guess, not
+   sight (it is what a player knows: he does not walk up a ramp into a base he knows holds the enemy's army). 2x to climb
+   (CLIMB), 45 s at the foot then another target (FOOT_MAX). Against an enemy that does not come down, the wave now leaves
+   that target be where it climbed before; it may never take a high main against a turtle (a siege with guns from the foot
+   needs eyes on the top: a rider up the ramp, choice 4).
+3. **Rule 2's "up to reach" moves a set gun when the enemy is just out of its reach and not coming on**: it limbers (2.5 s)
+   and goes up at most to 1.2 tiles behind the front rank. Against an enemy that comes on in the meantime it is caught
+   moving; I accepted that because the alternative (guns set 420-440 px off doing nothing while the line walks into musket
+   reach) is what the films showed.
+4. **Rule 8 (the guns' eyes) uses only the screen's lead rider and only on the level of the line**: no rider up a ramp or
+   cliff to spot the top, no rider into the reach of an enemy shooter (20 px outside it; the rider is safe only while the
+   enemy holds still). It fired little in the games (see the counters): the enemy is usually seen by the line itself by the
+   time the guns are set.
+5. **The held line (rule 4) waits at most 25 s** (AWAIT_MAX) and 4 s after the enemy stops coming on (AWAIT_STILL) before it
+   steps on as before; while its guns are shelling something it keeps waiting (to 25 s).
+6. **A gun at its home post sets up (rule 7)**, so it cannot follow a post that moves without limbering (2.5 s): a set gun
+   stays set within 140 px of its post (POST_SLACK). test_crown_hold's [post] now reads "the cannon set up behind the line"
+   (with `gpost:off` the old "on HOLD").
+7. **The count leaves riders out of a fight's start** (as the line does: riders skirmishing ahead are not its fight) and
+   fights worth under 60 out; a fight is "formed" if the wave's line was forming or formed (any of its states) or, at home,
+   a defence line was laid in the last 30 s. A fight's guns are the Crown guns within 1,000 px of where it began; "fired in
+   its first 10 s" is a shot in [start - 0.5 s, start + 10 s].
+8. **The mirror (AICrownMirror.guns_at_hall) no longer takes the guns of a line in its fight** to shell the enemy hall: the
+   line keeps them till its fight is over (gkeep).
 
 ## Tests
 

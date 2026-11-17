@@ -26,7 +26,8 @@ extends RefCounted
 ##     HOLD) till the guns are within PACE_GO of him, then goes on: the wave walks at the guns' pace.
 ##  6. NO COLUMN UP A RAMP (`gramp:off`): coached, Highmoor 1104 10:40 (crown-coach-measure-2): the wave climbed the
 ##     Clockwork's ramp as a column into its gears and was spent (army 1,625 at 10:00, 900 at 11:00). Now a marching wave
-##     whose road climbs a ramp onto the enemy's high ground within RAMP_SEE stops at the ramp's foot: its line forms there
+##     whose road takes a ramp (up or down: a ramp is a choke either way) within RAMP_SEE, its far end within TARGET_R of
+##     the wave's target (into the enemy's base), stops short of the ramp: its line forms there
 ##     facing up the ramp with the guns set behind it (whatever comes down walks into the line and the guns), and it goes up
 ##     only with CLIMB times what it reckons stands up there (seen there, or what the enemy has not shown elsewhere); after
 ##     FOOT_MAX s short of that it leaves that target be (TRADE_AVOID, as a lost trade) and the wave looks for another.
@@ -77,6 +78,7 @@ const SPOT_SAFE := 20.0         # (px) ... and this far outside the reach of wha
 var spots := 0                  # (tests) times the lead rider rode to spot for the guns
 const RAMP_SEE := 900.0         # (px) along the road: a ramp up this near the wave is weighed
 const RAMP_EVERY := 3.0         # (s) the road looked up again this often
+const TARGET_R := 1500.0        # (px) a ramp whose far end is this near the wave's target leads into the enemy's base
 const TOP_R := 700.0            # (px) the enemy known this near the ramp's top stands up there
 const CLIMB := 2.0              # the wave goes up with this many times what it reckons up there ...
 const RAMP_LEAVE := 250.0       # ... and never stops for less than this up there
@@ -349,12 +351,12 @@ func _ramp_on_road(from: Vector2, target: Vector2) -> Dictionary:
 			continue
 		var on_ramp: bool = game.ramp[game.idx(c)] != 0
 		if foot == Vector2.INF:
-			if on_ramp and game.level_of(prev) == 0:
+			if on_ramp:
 				if walked > RAMP_SEE:
 					return {}
 				foot = prev
 		elif not on_ramp:
-			if game.level_of(p) == 1:
+			if game.level_of(p) != game.level_of(foot) and p.distance_to(target) < TARGET_R:
 				return {"foot": foot, "top": p}
 			return {}
 		prev = p
@@ -389,10 +391,7 @@ func _top_reckon(top: Vector2, target: Vector2) -> float:
 
 ## The marching wave (the line's state ""): true = the line stops at a ramp's foot this think.
 func ramp(ln, ground: Array, bc: Vector2, target: Vector2) -> bool:
-	if not ramp_on or target == Vector2.INF or game.level_of(bc) != 0:
-		return false
-	var cut: Vector2i = game.cell_of(target)
-	if not game.in_map(cut) or game.level_of(target) != 1:
+	if not ramp_on or target == Vector2.INF:
 		return false
 	var r := _ramp_on_road(bc, target)
 	if r.is_empty():
@@ -413,7 +412,7 @@ func ramp(ln, ground: Array, bc: Vector2, target: Vector2) -> bool:
 	var face: Vector2 = (top - foot).normalized()
 	if face == Vector2.ZERO:
 		return false
-	var c: Vector2 = ln._same_level(foot - face * FOOT_BACK, 0, foot)
+	var c: Vector2 = ln._same_level(foot - face * FOOT_BACK, game.level_of(foot), foot)
 	ln._face = face
 	ln._c = c
 	ln._t0 = game.clock
