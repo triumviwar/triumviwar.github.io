@@ -1,0 +1,183 @@
+{
+"map": "saltmarsh_isles",
+"seed": 1176,
+"slots": [
+[
+"crown",
+"optimal",
+0
+],
+[
+"brood",
+"optimal",
+1
+]
+],
+"winner": -1,
+"winner_side": -1,
+"version": "0.38.38",
+"crown_ai": {
+"0": {
+"bo_hall_moved": [],
+"guns_early_n": 0,
+"labs_first_held_t": 7.49999999999999,
+"labs_first_n": 4,
+"line_approaches": 0,
+"line_def_lines": 1,
+"line_deploys": 1,
+"line_falls": 0,
+"line_forms": 0,
+"line_lost_sight": 0,
+"line_steps": 0,
+"sc_flank_hits": 0,
+"sc_lost": 1,
+"sc_picket_lost": 0,
+"sc_pulled": 1,
+"sc_sent": 2,
+"sc_sightings": 0,
+"sc_trained": 0,
+"screen_trained": 1,
+"vb_counters": 0,
+"vb_floor_built": 0,
+"vb_floor_held_t": 93.8999999999989,
+"vb_floor_looks": 1,
+"vb_floor_trained": 14,
+"vb_held_t": 499.000000000181,
+"vb_hold_waits": 0,
+"vb_line_short_t": 454.66666666668
+}
+},
+"events": [
+{
+"army": 1025,
+"army90": 500,
+"ev": "first_attack",
+"foe_army": 600,
+"foe_army90": 1190,
+"foe_bld": 0,
+"foe_lost": 2,
+"lost": 36,
+"p": 1,
+"t": 375
+},
+{
+"army": 1600,
+"army90": 660,
+"ev": "first_attack",
+"foe_army": 1975,
+"foe_army90": 2975,
+"foe_bld": 0,
+"foe_lost": 32,
+"lost": 24,
+"p": 0,
+"t": 500
+},
+{
+"ev": "first_arrival",
+"foe_army": 1850,
+"foe_army90": 310,
+"foe_lost": 50,
+"own_army": 2575,
+"own_army90": 1825,
+"own_bld": 0,
+"own_lost": 104,
+"p": 1,
+"t": 550,
+"value": 1080
+},
+{
+"ev": "first_arrival",
+"foe_army": 2975,
+"foe_army90": 3125,
+"foe_lost": 79,
+"own_army": 660,
+"own_army90": 190,
+"own_bld": 7,
+"own_lost": 38,
+"p": 0,
+"t": 590,
+"value": 1275
+},
+{
+"at": "(27, 3)",
+"built": true,
+"ev": "hall_lost",
+"kind": "town_hall",
+"p": 0,
+"t": 690
+}
+],
+"final": [
+{
+"army": 540,
+"bank": 795,
+"bld_lost": 9,
+"cap": 90,
+"crown": {
+"farms": 0,
+"farms_pulled": 0,
+"farms_spent": 2,
+"lab_cap": 22,
+"lag_s": 0,
+"mills": 1,
+"on_farms": 0,
+"on_mills": 6,
+"others": {
+"idle": 15
+},
+"posts": 6,
+"why": {}
+},
+"drink": [
+0,
+2,
+0,
+0
+],
+"gw_cogs": 0,
+"halls": 1,
+"home": 1.0,
+"idle_w": 15,
+"idle_w_avg": 0.2,
+"income": 10520,
+"lost": 68,
+"maws": 0,
+"out": false,
+"p": 0,
+"plan": "economy",
+"push": "",
+"res2": 595,
+"spent": 10075,
+"supply": 42,
+"t": 720,
+"trained": 114,
+"workers": 21
+},
+{
+"army": 3825,
+"bank": 57,
+"bld_lost": 0,
+"cap": 196,
+"crown": {},
+"drink": [],
+"gw_cogs": 0,
+"halls": 4,
+"home": 0.18,
+"idle_w": 0,
+"idle_w_avg": 0.8,
+"income": 14882,
+"lost": 160,
+"maws": 6,
+"out": false,
+"p": 1,
+"plan": "timing",
+"push": "",
+"res2": 225,
+"spent": 15075,
+"supply": 195,
+"t": 720,
+"trained": 395,
+"workers": 48
+}
+]
+}
