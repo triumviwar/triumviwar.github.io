@@ -319,6 +319,9 @@ static func index_strings() -> Array:
 		out.append(String(hub.get("still", {}).get("caption", "")))
 		for hs in hub.get("hotspots", []):
 			out.append(String(hs.get("label", "")))
+		for mid in hub.get("after", {}):
+			var af: Dictionary = hub["after"][mid]
+			out.append_array([String(af.get("title", "")), String(af.get("about", "")), String(af.get("still", {}).get("caption", ""))])
 		for k in hub.get("talks", {}):
 			var tk: Dictionary = hub["talks"][k]
 			out.append(String(tk.get("name", "")))
@@ -353,6 +356,9 @@ static func strings_of(m: Dictionary) -> Array:
 	for k in m.get("debrief", {}):
 		out.append(String(m["debrief"][k].get("title", "")))
 		out.append(String(m["debrief"][k].get("text", "")))
+		out.append(String(m["debrief"][k].get("banner", "")))
+		for ti in m["debrief"][k].get("text_if", []):
+			out.append(String(ti.get("text", "")))
 	for tr in m.get("triggers", []):
 		for a in tr.get("do", []):
 			if a is Dictionary and a.has("choice"):
@@ -432,7 +438,11 @@ static func problems(m: Dictionary) -> Array:
 			if not (m.get("stills", {}) as Dictionary).has(String(pg.get("still", ""))):
 				out.append("%s: unknown still %s" % [which, pg.get("still")])
 			for lid in pg.get("lines", []):
-				if not lines.has(String(lid)):
+				if lid is Dictionary:
+					if not lines.has(String(lid.get("id", ""))):
+						out.append("%s: unknown line %s" % [which, lid.get("id")])
+					_check_cond(lid.get("if", {}), which, out, sides, teams, areas, objs, trig)
+				elif not lines.has(String(lid)):
 					out.append("%s: unknown line %s" % [which, lid])
 	for o in m.get("objectives", []):
 		if not sides.has(String(o.get("side", ""))):
@@ -451,6 +461,23 @@ static func problems(m: Dictionary) -> Array:
 	for k in m.get("debrief", {}):
 		if not sides.has(String(k)):
 			out.append("debrief: unknown side %s" % k)
+		for ti in m["debrief"][k].get("text_if", []):
+			_check_cond(ti.get("if", {}), "debrief %s" % k, out, sides, teams, areas, objs, trig)
+	var counters: Dictionary = m.get("counters", {})
+	for ex in m.get("exits", []):
+		if not areas.has(String(ex.get("area", ""))):
+			out.append("exit: unknown area %s" % ex.get("area"))
+		if ex.has("counter") and not counters.has(String(ex["counter"])):
+			out.append("exit: unknown counter %s" % ex["counter"])
+		if ex.has("team") and not teams.has(String(ex["team"])):
+			out.append("exit: unknown team %s" % ex["team"])
+	for tm in m.get("teams", []):
+		for k in tm.get("roster", {}).get("deny", []):
+			if not (Defs.UNITS.has(String(k)) or Defs.BUILDINGS.has(String(k))):
+				out.append("team %s: roster of unknown kind %s" % [tm["id"], k])
+	for o in m.get("objectives", []):
+		if String(o.get("kind", "")) == "countdown" and String(o.get("clock", "")) == "":
+			out.append("objective %s: a countdown needs a clock" % o["id"])
 	return out
 
 
@@ -460,7 +487,7 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 		return
 	for k in c:
 		match String(k):
-			"time", "dead", "hurt", "flag", "past":
+			"time", "dead", "hurt", "flag", "past", "clock_out", "clock_left", "counter", "netted":
 				pass
 			# the TUTORIAL's conditions (what the player did: docs/tutorial.md)
 			"selected", "camera_moved", "zoomed", "more", "built", "rooted", "crew", "group", "did", "gear_view", \

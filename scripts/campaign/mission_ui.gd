@@ -277,7 +277,7 @@ class ObjectivesPanel extends Control:
 		var total := fs + 14.0
 		if not ui.folded:
 			for o in list:
-				var txt := Loc.t(String(o["text"]))
+				var txt := run.objective_text(o)      # (the numbers put in: counters, a countdown)
 				if not bool(o.get("primary", true)) and not bool(o.get("task", false)):
 					txt = Loc.t("(optional)") + " " + txt
 				if String(o.get("kind", "")) == "survive" and o["state"] == "active":

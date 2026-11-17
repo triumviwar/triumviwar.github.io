@@ -273,7 +273,7 @@ static func mission_end(main: Node, game: Game, winner: int, rp_path: String) ->
 	var nxt := Campaign.record(mid, run.mode, win_side, mine, run.flags)
 	var won := win_side != "" and win_side == mine
 	# the mission's ENDING for the side that won (its stills and lines: StillShow), then this screen
-	var ending := Campaign.show_pages(m, "ending", win_side)
+	var ending := run.pages_now(Campaign.show_pages(m, "ending", win_side))      # (lines with an "if" said only when it holds)
 	if not ending.is_empty() and (won or run.mode == "versus") and not game.has_meta("ending_shown"):
 		game.set_meta("ending_shown", true)
 		StillShow.play(main.ui_layer, m, ending, func() -> void:
@@ -303,8 +303,13 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 	o.add_child(cc)
 	var v := _panel(cc, 820)
 	var title := ("VICTORY" if won else "DEFEAT") if run.mode != "versus" else (Loc.t("%s WIN") % Loc.t(Campaign.side_name(m, win_side)).to_upper())
-	v.add_child(UiStyle.heading(Loc.t(title), 44, UiStyle.GOOD if won else UiStyle.BAD))
 	var db: Dictionary = m.get("debrief", {}).get(win_side, {})
+	# a STORY LOSS (the Clockwork prologue): the mission counts as played to its end, but the screen says the story's
+	# words ("NUREMBERG IS LOST") over the debrief's "banner", in the colour of a loss
+	var story_loss := db.has("banner") and won
+	if story_loss:
+		title = String(db["banner"])
+	v.add_child(UiStyle.heading(Loc.t(title), 44, UiStyle.BAD if story_loss or not won else UiStyle.GOOD))
 	var h := HBoxContainer.new()
 	h.add_theme_constant_override("separation", 14)
 	v.add_child(h)
@@ -316,10 +321,15 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 	h.add_child(tv)
 	tv.add_child(UiStyle.text(Loc.t(String(db.get("title", ""))), 24, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
 	tv.add_child(_wrap(Loc.t(String(db.get("text", ""))), 17))
+	for ti in db.get("text_if", []):
+		if run.cond(ti.get("if", {})):
+			tv.add_child(_wrap(run.fill(Loc.t(String(ti.get("text", "")))), 16))      # (the debrief's words by the flags)
 	# the objectives as they ended
 	for ob in run.objectives_for(mine):
+		if String(ob.get("kind", "")) == "countdown":
+			continue
 		var mark: String = {"done": "[+] ", "failed": "[x] ", "active": "[ ] "}.get(String(ob["state"]), "")
-		tv.add_child(_wrap(mark + Loc.t(String(ob["text"])), 14, UiStyle.GOOD if ob["state"] == "done" else (UiStyle.BAD if ob["state"] == "failed" else UiStyle.MUTED)))
+		tv.add_child(_wrap(mark + run.objective_text(ob), 14, UiStyle.GOOD if ob["state"] == "done" else (UiStyle.BAD if ob["state"] == "failed" else UiStyle.MUTED)))
 	# where the story goes
 	var story := ""
 	if won or run.mode == "versus":
@@ -379,7 +389,7 @@ static func show(main: Node) -> void:
 	var box := _frame(main)
 	var p := Campaign.progress()
 	var sl := _line_data()
-	var hub: Dictionary = sl.get("hub", {})
+	var hub := hub_now(sl.get("hub", {}), p)
 	var top := HBoxContainer.new()
 	top.add_theme_constant_override("separation", 8)
 	box.add_child(top)
@@ -404,7 +414,7 @@ static func show(main: Node) -> void:
 		if String(s["id"]) == line:
 			UiStyle.chosen(b)
 		top.add_child(b)
-	box.add_child(_wrap(Loc.t(String(sl.get("about", ""))), 15, UiStyle.MUTED))
+	box.add_child(_wrap(Loc.t(String(hub.get("about", sl.get("about", "")))), 15, UiStyle.MUTED))
 	var body := HBoxContainer.new()
 	body.add_theme_constant_override("separation", 12)
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -420,6 +430,11 @@ static func show(main: Node) -> void:
 	var hsc: HubScene = HubScene.make(String(hub["scene"])) if hub.has("scene") else null
 	if hsc and not hsc.ok():
 		hsc = null
+	if hsc:
+		hsc.hidden_layers = hub.get("hide_layers", [])
+		if hub.has("tint"):
+			var tn: Array = hub["tint"]
+			hsc.modulate = Color(float(tn[0]), float(tn[1]), float(tn[2]))
 	var sv: Control = hsc if hsc else StillView.make(hub.get("still", {}), col)
 	sv.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	scene.add_child(sv)
@@ -496,6 +511,23 @@ static func show(main: Node) -> void:
 	main._set_back(back)
 	back.custom_minimum_size = Vector2(0, 56)
 	list.add_child(back)
+
+
+## A hub as the story has left it (clockwork-prologue-build): "after": {mission id: {"title", "about", "still",
+## "hide_layers": [layer ids of the painting], "tint": [r, g, b]}} replaces those once that mission is finished (the
+## later one wins), and a hotspot with "requires": a mission shows only after it, one with "until": a mission only
+## before it (Hollweg's workshop after the fall: he is gone, the machine keeps it).
+static func hub_now(hub: Dictionary, p: Dictionary) -> Dictionary:
+	var out: Dictionary = hub.duplicate()
+	var done: Dictionary = p.get("done", {})
+	for mid in hub.get("after", {}):
+		if done.has(mid):
+			for k in hub["after"][mid]:
+				out[k] = hub["after"][mid][k]
+	out["hotspots"] = (hub.get("hotspots", []) as Array).filter(func(hs: Dictionary) -> bool:
+		return (String(hs.get("requires", "")) == "" or done.has(String(hs["requires"]))) \
+			and (String(hs.get("until", "")) == "" or not done.has(String(hs["until"]))))
+	return out
 
 
 ## A hotspot pressed: the war table opens the missions, a person talks, a room shows its page (a stub for now).

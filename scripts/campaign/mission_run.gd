@@ -44,6 +44,16 @@ var flags := {}                      # name -> value (a choice's answer: its opt
 var choice_open := {}                # the choice on offer ({} none): its data plus "until" (game clock: then the default)
 var light_node: CanvasModulate = null
 var light_name := "day"
+# the Clockwork prologue's engine (clockwork-prologue-build, docs/campaign_c01_build.md): COUNTERS (townsfolk saved,
+# seeds burnt), CLOCKS (a countdown the triggers read: the city strikes thirteen), REPEATING triggers ("every"), units
+# that CHANGE SIDES after a warning (`convert`), a ROSTER per team (what it may not build or train; `unlock`)
+var counters := {}                   # name -> int (data "counters": {name: {"start", "of"}})
+var clocks := {}                     # name -> the game clock it runs out at
+var deny := {}                       # team index -> {kind: true}: not in this mission (a team's "roster": {"deny": [kinds]})
+var _next := {}                      # a repeating trigger's id -> the game clock it may fire again
+var _times := {}                     # trigger id -> how often it has fired
+var _turning: Array = []             # [unit, team index, game clock it changes side, tag]: `convert` waiting out its warning
+var weather_node: Node = null
 
 
 func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
@@ -58,6 +68,13 @@ func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
 			player_teams[i] = true
 	for o in m.get("objectives", []):
 		obj[String(o["id"])] = "hidden" if bool(o.get("hidden", false)) else "active"
+	for cn in m.get("counters", {}):
+		counters[String(cn)] = int(m["counters"][cn].get("start", 0))
+	for i in team_ids.size():
+		for k in team_data(i).get("roster", {}).get("deny", []):
+			if not deny.has(i):
+				deny[i] = {}
+			deny[i][String(k)] = true
 
 
 # ------------------------------------------------------------------ lookups
@@ -310,6 +327,8 @@ func _ready() -> void:
 		game.camera.position = area_rect(String(tm["camera"])).get_center()
 	if data.has("light"):
 		set_light(String(data["light"]), 0.0)      # (the scene's light at the start: "night", "dawn", "day")
+	if String(data.get("weather", "")) == "snow":
+		set_weather("snow")
 
 
 func _process(_delta: float) -> void:
@@ -329,6 +348,8 @@ func _physics_process(delta: float) -> void:
 		return
 	_t = TICK
 	Rebels.tick(self, TICK)
+	_tick_turning()
+	_tick_exits()
 	if not choice_open.is_empty() and game.clock >= float(choice_open.get("until", INF)):
 		choose(String(choice_open["id"]), String(choice_open.get("default", "")))      # (nobody answered: the default)
 	_run_triggers()
@@ -336,13 +357,26 @@ func _physics_process(delta: float) -> void:
 	_sync_t -= TICK
 	if _sync_t <= 0.0:
 		_sync_t = SYNC_EVERY
-		_send({"k": "obj", "o": obj.duplicate()})
+		_send({"k": "obj", "o": obj.duplicate(), "c": counters.duplicate(), "cl": clocks.duplicate()})
 
 
 func _run_triggers() -> void:
 	for tr in data.get("triggers", []):
 		var tid := String(tr.get("id", ""))
-		if fired.has(tid) or not _in_mode(tr):
+		if not _in_mode(tr):
+			continue
+		if fired.has(tid):
+			# a REPEATING trigger ("every": seconds, "times": at most): again while its condition ("while", else
+			# "when") holds
+			if not tr.has("every") or game.clock < float(_next.get(tid, INF)):
+				continue
+			if tr.has("times") and int(_times.get(tid, 0)) >= int(tr["times"]):
+				continue
+			if not cond(tr.get("while", tr.get("when", {}))):
+				continue
+			fire(tr)
+			if game.over:
+				return
 			continue
 		if not _met.has(tid):
 			if not cond(tr.get("when", {})):
@@ -357,7 +391,11 @@ func _run_triggers() -> void:
 
 ## Run a trigger's actions now (tests call it directly too).
 func fire(tr: Dictionary) -> void:
-	fired[String(tr.get("id", ""))] = game.clock
+	var tid := String(tr.get("id", ""))
+	fired[tid] = game.clock
+	_times[tid] = int(_times.get(tid, 0)) + 1
+	if tr.has("every"):
+		_next[tid] = game.clock + maxf(float(tr["every"]), TICK)
 	if game.mlog:
 		game.mlog.add("(mission) trigger %s" % tr.get("id", ""))
 	for a in tr.get("do", []):
@@ -409,6 +447,25 @@ func cond(c: Variant) -> bool:
 				for fk in v:
 					var pr := String(fk).split(".")
 					ok = ok and pr.size() == 2 and str(Campaign.flag(pr[0], pr[1])) == str(v[fk])
+			"counter":
+				# {"counter": {"name", "at_least", "below"}}: a mission number (townsfolk saved, seeds burnt)
+				var n := int(counters.get(String(v.get("name", "")), 0))
+				ok = (not v.has("at_least") or n >= int(v["at_least"])) and (not v.has("below") or n < int(v["below"]))
+			"netted":
+				# {"netted": {"team"}}: one of that team's units is caught in a net now (a Netter's catch)
+				var t := team_index(String(v.get("team", "")))
+				ok = false
+				for u in game.units:
+					if u.team == t and not u.dead and u.net_t > 0.0:
+						ok = true
+						break
+			"clock_out":
+				# {"clock_out": name}: that countdown has run out (it was started and its time has come)
+				ok = clocks.has(String(v)) and game.clock >= float(clocks[String(v)])
+			"clock_left":
+				# {"clock_left": {"name", "below": s}}: that countdown is running and has less than s seconds left
+				var cn := String(v.get("name", ""))
+				ok = clocks.has(cn) and float(clocks[cn]) - game.clock < float(v.get("below", 0.0)) and game.clock < float(clocks[cn])
 			"selected", "camera_moved", "zoomed", "more", "built", "rooted", "crew", "group", "did", "gear_view", \
 					"placing", "order", "res", "talked":
 				ok = _tutorial_cond(String(k), v)
@@ -493,6 +550,8 @@ func act(a: Dictionary) -> void:
 				if t >= 0:
 					game.players[t]["gold"] = int(game.players[t]["gold"]) + int(v.get("gold", 0))
 					game.players[t]["res2"] = float(game.players[t]["res2"]) + float(v.get("powder", 0))
+					if v.has("tension"):
+						game.add_tension(t, float(v["tension"]))
 			"mark":
 				mark()
 			"point":
@@ -517,6 +576,57 @@ func act(a: Dictionary) -> void:
 				finish(String(v))
 			"lose":
 				finish(_other_side(String(v)))
+			"counter":
+				# {"counter": {"name", "add" or "set"}}
+				var cn := String(v.get("name", ""))
+				counters[cn] = int(v["set"]) if v.has("set") else int(counters.get(cn, 0)) + int(v.get("add", 1))
+				objectives_changed.emit()
+				_send({"k": "cnt", "c": counters.duplicate()})
+			"clock":
+				# {"clock": {"name", "secs"}} starts a countdown; {"name", "add": s} moves it (later +, sooner -);
+				# {"name", "stop": true} stops it
+				var cn := String(v.get("name", ""))
+				if bool(v.get("stop", false)):
+					clocks.erase(cn)
+				elif v.has("secs"):
+					clocks[cn] = game.clock + float(v["secs"])
+				elif clocks.has(cn):
+					clocks[cn] = maxf(game.clock, float(clocks[cn]) + float(v.get("add", 0.0)))
+				objectives_changed.emit()
+				_send({"k": "clk", "cl": clocks.duplicate()})
+			"convert":
+				convert_tag(v)
+			"sound":
+				# {"sound": {"name": a sound (Sfx: assets/audio/<name>), "area": where (none: everywhere), "vol"}}
+				play_sound(String(v.get("name", "")), String(v.get("area", "")), float(v.get("vol", 0.0)))
+			"unlock", "deny":
+				# {"unlock": {"team", "kind"}}: the team may build / train it again; "deny" takes it away
+				var t := team_index(String(v.get("team", "")))
+				for kk in (v["kind"] if v.get("kind") is Array else [v.get("kind", "")]):
+					if k == "deny":
+						if not deny.has(t):
+							deny[t] = {}
+						deny[t][String(kk)] = true
+					elif deny.has(t):
+						(deny[t] as Dictionary).erase(String(kk))
+			"name":
+				# {"name": {"tag", "name"}}: the name over their bars (Jakob carrying the drawings)
+				for e in tagged(String(v.get("tag", ""))):
+					e.set_meta("mission_name", String(v.get("name", "")))
+					e.queue_redraw()
+			"tally":
+				# {"tally": {"flag", "counter", "bands": [[at least, value], ...]}}: a flag from a counter (saved: few /
+				# some / many); the number itself is kept as "<flag>_n"
+				var n := int(counters.get(String(v.get("counter", "")), 0))
+				var val: Variant = null
+				for bd in v.get("bands", []):
+					if n >= int(bd[0]):
+						val = bd[1]
+				flags[String(v.get("flag", ""))] = val
+				flags[String(v.get("flag", "")) + "_n"] = n
+			"weather":
+				set_weather(String(v))
+				_send({"k": "wx", "w": String(v)})
 
 
 ## Scripted orders go only to units no person plays (a co-op friend's or versus foe's units are theirs).
@@ -543,7 +653,9 @@ func _order(us: Array, v: Dictionary) -> void:
 
 ## THE LIGHT (campaign-m1): the scene tinted for the time of day ("night" blue and dim, "dawn" warm, "day" as
 ## painted), over `secs` seconds. A CanvasModulate on the Game: the world only, never the HUD.
-const LIGHTS := {"night": Color(0.40, 0.45, 0.66), "dusk": Color(0.78, 0.66, 0.70), "dawn": Color(1.0, 0.83, 0.70), "day": Color(1, 1, 1)}
+const LIGHTS := {"night": Color(0.40, 0.45, 0.66), "dusk": Color(0.78, 0.66, 0.70), "dawn": Color(1.0, 0.83, 0.70), "day": Color(1, 1, 1),
+	# WINTER (the Clockwork prologue, Advent in Nuremberg): a cold day, a short violet dusk, a deep blue night lit by fires
+	"winter_day": Color(0.88, 0.93, 1.04), "winter_dusk": Color(0.66, 0.62, 0.80), "winter_night": Color(0.36, 0.42, 0.66)}
 
 
 func set_light(to: String, secs: float) -> void:
@@ -659,6 +771,11 @@ func _check_objectives() -> void:
 			"survive":
 				if game.clock >= float(o.get("time", 0)):
 					set_objective(oid, "done")
+			"countdown":
+				# (a clock shown in the panel: "{clock:fall}" in its words; it never decides the end itself)
+				var cn := String(o.get("clock", ""))
+				if clocks.has(cn) and game.clock >= float(clocks[cn]):
+					set_objective(oid, "done")
 			"destroy":
 				if tags.has(String(o["tag"])) and tagged(String(o["tag"])).is_empty():
 					set_objective(oid, "done")
@@ -667,6 +784,8 @@ func _check_objectives() -> void:
 					set_objective(oid, "failed")
 			"reach":
 				var q := {"area": String(o["area"])}
+				if o.has("unit_kind"):
+					q["kind"] = o["unit_kind"]     # (only units of that kind count: six Clock Soldiers at the wagons)
 				if o.has("tag"):
 					q["tag"] = o["tag"]
 				elif o.has("team"):
@@ -693,7 +812,7 @@ func check_end() -> void:
 			finish(_other_side(sd))
 			return
 	for sd in Campaign.side_ids(data):
-		var prim := objectives_for(sd).filter(func(o: Dictionary) -> bool: return bool(o.get("primary", true)))
+		var prim := objectives_for(sd).filter(func(o: Dictionary) -> bool: return bool(o.get("primary", true)) and String(o.get("kind", "")) != "countdown")
 		if prim.is_empty():
 			continue
 		var met := true
@@ -706,8 +825,8 @@ func check_end() -> void:
 				some_done = true
 			elif not (o["state"] == "active" and String(o.get("kind", "")) == "protect"):
 				met = false
-		if met and some_done:
-			finish(sd)
+		if met and some_done and not bool(data.get("manual_end", false)):
+			finish(sd)      # (a "manual_end" mission is won only by its triggers' `win`: the Clockwork prologue)
 			return
 
 
@@ -745,6 +864,174 @@ func finish(side_id: String) -> void:
 ## The winner of a finished match, as a side id (a guest learns the team from the snapshot).
 func winner_side_of(team: int) -> String:
 	return winner_side if winner_side != "" else side_of_team(team)
+
+
+# ------------------------------------------------------------------ the Clockwork prologue's engine (docs/campaign_c01_build.md)
+
+## Is this kind kept from this team in this mission? (Game.can_train and Game.requirement_text ask; a team's "roster":
+## {"deny": [kinds]}, changed by the `unlock` and `deny` actions.)
+func denied(t: int, k: String) -> bool:
+	return deny.has(t) and (deny[t] as Dictionary).has(k)
+
+
+## `convert`: {"tag", "to": team id, "warn": seconds (5), "as": a new tag}: the tagged units stutter for the warning
+## (stunned, the stun stars, a sound), then change side (MissionRun._turn). Never a person's team's own trained units
+## unless they carry the tag (the mission tags only the ones it means: the Perpetual's gift).
+func convert_tag(v: Dictionary) -> void:
+	var to := team_index(String(v.get("to", "")))
+	if to < 0:
+		return
+	var warn := float(v.get("warn", 5.0))
+	var list := tagged(String(v.get("tag", "")))
+	if v.has("area"):
+		# (or by place: up to "count" units of team "from" (of "kind") standing in the area: the order handed over)
+		var r := area_rect(String(v["area"]))
+		var ft := team_index(String(v.get("from", "")))
+		list = game.units.filter(func(u) -> bool: return not u.dead and u.team == ft and r.has_point(u.position)
+			and (not v.has("kind") or u.kind == String(v["kind"])))
+		list = list.slice(0, int(v.get("count", list.size())))
+	for u in list:
+		if not (u is Unit) or u.team == to:
+			continue
+		(u as Unit).stun(warn, true)
+		_turning.append([u, to, game.clock + warn, String(v.get("as", ""))])
+	if not _turning.is_empty():
+		play_sound(String(v.get("sound", "campaign/off_beat")), "", 0.0)
+
+
+func _tick_turning() -> void:
+	var keep: Array = []
+	for it in _turning:
+		var u = it[0]
+		if not is_instance_valid(u) or u.dead:
+			continue
+		if game.clock < float(it[2]):
+			keep.append(it)
+			continue
+		_turn(u, int(it[1]), String(it[3]))
+	_turning = keep
+
+
+## A unit changes side (as Game.steal_horse does for a horse): its colour, out of every selection and group, its
+## orders dropped, both sides' supply counted again.
+func _turn(u: Unit, to: int, new_tag: String) -> void:
+	var was := u.team
+	u.team = to
+	u.cmd_stop()
+	if u._mat:
+		u._mat.set_shader_parameter("team", u.cloth_colour())
+	game.selection.erase(u)
+	u.selected = false
+	for gr in game.groups:
+		gr.erase(u)
+	if new_tag != "":
+		_tag(new_tag, u)
+	game._recount_supply(was)
+	game._recount_supply(to)
+	u.queue_redraw()
+	if game.mlog:
+		game.mlog.add("(mission) a %s changed side: %d -> %d" % [u.kind, was, to])
+
+
+## EXITS (data "exits": [{"area", "tag" or "team", "counter"}]): units of that tag (or team) that walk into the area
+## leave the map (not a loss) and are counted (townsfolk out of the west gate).
+func _tick_exits() -> void:
+	for ex in data.get("exits", []):
+		var r := area_rect(String(ex.get("area", "")))
+		var list: Array = []
+		if ex.has("tag"):
+			list = tagged(String(ex["tag"]))
+		else:
+			var t := team_index(String(ex.get("team", "")))
+			list = game.units.filter(func(u) -> bool: return u.team == t and not u.dead)
+		var n := 0
+		for u in list:
+			if u is Unit and not u.dead and r.has_point(u.position):
+				game.consume_unit(u)
+				n += 1
+		if n > 0:
+			for tt in team_ids.size():
+				game._recount_supply(tt)
+			if ex.has("counter"):
+				act({"counter": {"name": String(ex["counter"]), "add": n}})
+
+
+## A sound for everyone (the bells tolling thirteen, the machine's off-beat tick): Sfx's name (assets/audio/<name>),
+## at an area's middle when given.
+func play_sound(sname: String, area := "", vol := 0.0) -> void:
+	if sname == "" or not Sfx.has(sname):
+		return
+	Sfx.play(sname, area_rect(area).get_center() if area != "" else Vector2.INF, vol)
+	_send({"k": "snd", "n": sname, "a": area, "v": vol})
+
+
+## WEATHER: "snow" (flakes drifting over the screen, under the HUD), "" none.
+func set_weather(w: String) -> void:
+	if weather_node:
+		weather_node.queue_free()
+		weather_node = null
+	if w != "snow" or game == null or DisplayServer.get_name() == "headless":
+		return
+	var cl := CanvasLayer.new()
+	cl.name = "MissionWeather"
+	cl.layer = 0
+	var p := CPUParticles2D.new()
+	var vs := game.get_viewport().get_visible_rect().size if game.is_inside_tree() else Vector2(1600, 900)
+	p.position = Vector2(vs.x * 0.5, -20)
+	p.amount = 260
+	p.lifetime = 9.0
+	p.preprocess = 9.0
+	p.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
+	p.emission_rect_extents = Vector2(vs.x * 0.65, 10)
+	p.direction = Vector2(0.25, 1)
+	p.spread = 12.0
+	p.gravity = Vector2(6, 22)
+	p.initial_velocity_min = 40.0
+	p.initial_velocity_max = 80.0
+	p.scale_amount_min = 1.2
+	p.scale_amount_max = 3.0
+	p.color = Color(1, 1, 1, 0.75)
+	cl.add_child(p)
+	game.add_child(cl)
+	weather_node = cl
+
+
+## An objective's words for the panel: translated, with the numbers put in: "{saved}" a counter, "{saved.of}" its
+## "of", "{clock:fall}" the time left on a countdown (m:ss).
+func objective_text(o: Dictionary) -> String:
+	return fill(Loc.t(String(o.get("text", ""))))
+
+
+func fill(txt: String) -> String:
+	if txt.find("{") < 0:
+		return txt
+	for cn in counters:
+		txt = txt.replace("{%s}" % cn, str(counters[cn]))
+		txt = txt.replace("{%s.of}" % cn, str(data.get("counters", {}).get(cn, {}).get("of", "")))
+	for cn in clocks:
+		var left := maxi(0, int(ceil(float(clocks[cn]) - game.clock)))
+		txt = txt.replace("{clock:%s}" % cn, "%d:%02d" % [left / 60, left % 60])
+	return txt
+
+
+## An OPENING's or ENDING's pages as this run left them: a line may be {"id", "if": a condition} (said only when it
+## holds: the ending's "if the drawings burned" lines); pages left with no lines are dropped.
+func pages_now(pages: Array) -> Array:
+	var out: Array = []
+	for pg in pages:
+		var ids: Array = []
+		for ln in pg.get("lines", []):
+			if ln is Dictionary:
+				if cond(ln.get("if", {})):
+					ids.append(String(ln.get("id", "")))
+			else:
+				ids.append(String(ln))
+		if ids.is_empty() and not (pg.get("lines", []) as Array).is_empty():
+			continue
+		var c: Dictionary = (pg as Dictionary).duplicate()
+		c["lines"] = ids
+		out.append(c)
+	return out
 
 
 # ------------------------------------------------------------------ the TUTORIAL (docs/tutorial.md)

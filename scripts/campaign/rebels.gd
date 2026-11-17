@@ -19,6 +19,12 @@ const ROLES := {
 	"torch": {"kind": "labourer", "art": "rebel_torch", "torch": true, "about": "A torch-bearer: sets barns and houses alight."},
 	"pikeman": {"kind": "pikeman", "art": "rebel_pikeman", "about": "A pike from the farm armouries."},
 	"varenne": {"kind": "dismounted", "art": "rebel_varenne", "name": "Etienne Varenne", "about": "The Free Assembly's orator."},
+	# CAMPAIGN PEOPLE beyond the rebels (the Clockwork prologue, docs/campaign_c01_build.md): this table is the campaign's
+	# roles in general now. People are stand-ins until drawn (their "art" folder named here, used once it is in).
+	"citizen": {"kind": "labourer", "art": "c_citizen", "about": "A townsman of Nuremberg."},
+	"hollweg": {"kind": "missionary", "art": "c_hollweg", "name": "Meister Hollweg", "about": "Master of the Guild of the Escapement."},
+	"jakob": {"kind": "labourer", "art": "c_jakob", "name": "Jakob", "about": "Hollweg's journeyman."},
+	"ferrer": {"kind": "missionary", "art": "c_ferrer", "name": "Father Ferrer", "about": "A Jesuit astronomer and engineer."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)

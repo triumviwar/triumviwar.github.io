@@ -14,6 +14,7 @@ extends Control
 
 var data: Dictionary = {}
 var highlight := ""                  # the layer the pointer is over: drawn a little brighter
+var hidden_layers: Array = []        # layers not drawn (and their shadows: "<id>_shadow"): a person gone after a mission
 var highlight_rect := Rect2()        # or, for a hotspot with no layer, its rect (this box's pixels)
 var _room: Texture2D = null
 var _tex := {}                       # layer id -> Texture2D
@@ -169,14 +170,14 @@ func _draw() -> void:
 	draw_texture_rect(_room, Rect2(o, rs * k), false, Color(warm, warm, warm * 0.98))
 	var breathe: Dictionary = fx.get("breathe", {})
 	for l in data.get("layers", []):         # the shadows first, under everyone
-		if l.has("shadow"):
+		if l.has("shadow") and not hidden_layers.has(String(l["id"]).trim_suffix("_shadow")):
 			var sh: Array = l["shadow"]
 			var c := o + Vector2(float(sh[0]), float(sh[1])) * k
 			var e := Vector2(float(sh[2]), float(sh[3])) * k
 			draw_texture_rect(_glow, Rect2(c - e, e * 2.0), false, Color(0, 0, 0, 0.6))
 	for l in data.get("layers", []):
 		var id := String(l["id"])
-		if l.has("shadow"):
+		if l.has("shadow") or hidden_layers.has(id):
 			continue
 		var tex: Texture2D = _tex.get(id)
 		if tex == null:
