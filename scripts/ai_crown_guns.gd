@@ -45,7 +45,7 @@ extends RefCounted
 ##     of it when an enemy is in its reach: filmed, Border March 1121 9:07, the posts behind an attacked palisade were laid
 ##     again every 2-6 s and the guns rolled after them limbered), and a set gun within POST_SLACK of its post stays set.
 ## Plus THE COUNT (read only, always on): every fight of the Crown's army (an armed enemy within CONTACT of one of its
-## soldiers after QUIET s of none there), its guns near it, how many stood set up at contact and how many fired in its first
+## soldiers on foot after QUIET s of none there), its guns near it, how many stood set up at contact and how many fired in its first
 ## FIRST s, whether it began formed, and what it killed and lost (result.json "crown_ai" via tools/qa_match.gd).
 ## Design: docs/design_principles.md 1 (the computer plays the player's own tools well, nothing it could not do by hand), 4
 ## (battles that carry the weight of the match). Switch `gunscoach:off` (all of it but the count).
@@ -598,8 +598,8 @@ func tick() -> void:
 	for u in army:
 		if u.dead or u.off_field or u.is_worker() or not u.has_attack() or u.is_air() or u.aboard != null:
 			continue
-		if AICrownLine.is_gun(u):
-			continue
+		if AICrownLine.is_gun(u) or u.is_mounted():
+			continue          # (riders skirmishing out ahead, the screen, a raid's riders: not the army's fight)
 		for o in game.units_near(u.position, CONTACT):
 			if o.dead or o.off_field or not game.hostile(o.team, ai.team) or o.is_worker() or not o.has_attack():
 				continue
