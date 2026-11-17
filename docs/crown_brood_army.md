@@ -48,7 +48,17 @@ over to the Economy plan with a walled natural.
 6. **Two halls to the end.** In every traced game the Crown stood on 2 halls from ~4:30 to 12:00 against the Brood's 4,
    with 25-30 labourers at 8:00 against the Brood's 45-55 workers: even a held push leaves it a trailing draw.
 
-FILMS_BEFORE
+### Films (tools/film_coach.gd shots:1 under xvfb-run, 12:00; docs/crown_brood_army/films/<film>/: story.txt, coach.txt,
+log.txt, result_short.json, maps at 6:00, 9:00 and the end, the fights, the Crown's army every minute 6:00-10:00, its main
+at 8:00; jpg). A film is a new game on the study game's map, seed and sides; the match is not deterministic, so the same
+seed plays differently every time (the films of one seed differ by more than the arms do).
+
+- **crbr_saltmarsh_1176_before** (Saltmarsh Isles, seed 1176, the Crown P1, `cba:off`: main 0.38.38). The Horseman rush
+  fails at 5:41 and hands over to the Economy plan; "the line before more buildings" says 180 against 467 at 5:25, 300
+  against 868 at 6:25, 590 against 1,125 at 7:25. The Brood's first push comes at 8:00 (1,805 against 1,120 at home:
+  fight_0753, the natural's hall burning with its line on the ramp above); it is held (9 lost), and at 8:29 the Crown's
+  first attack goes out with 24 supply and meets the Brood unformed twice (8:32, 9:20, "deploy into a line under fire").
+  The next push at 9:47 (44 soldiers, 1,100) finds 240 at home; both halls are gone at 11:45-11:49.
 
 ## What changed
 
@@ -76,7 +86,26 @@ wall is the existing code (the gate post, the defence's alert and muster, the gu
 since 0.38.38) come on once a push has been held, or from 9:00 if none has come.
 
 **Not kept: the counter after a held push** (`cbacounter:on`, part 3 of AICrownVBrood with only its "the Brood's wave just
-died at our line" reason). FILMS_COUNTER
+died at our line" reason). Filmed (crbr_saltmarsh_1176_counter, crbr_redrock_1136_counter, the build before the
+counter was taken out): on Saltmarsh the Brood's push broke at the gate at 6:41 (475 killed), the counter went at 8:19 with
+26 supply, met the Brood's army unformed at 9:04 (fight_0922) and was spent; the Brood's next push at 9:36 found nobody at
+home and took both halls by 11:25. On Redrock wave 2 went at 8:26 and won the field twice (8:47, 9:15) but the halls fell
+at 11:40-11:55 to the next push with 240 at home. Part 3's own measure (16 games without the floor) found the same: the
+Brood rebuilds from 300 to 4,000 in two minutes and comes for the halls the wave left bare.
+
+### Films with this job (as is)
+
+- **crbr_saltmarsh_1176_after**: the floor holds gold for the Barracks from 4:29 ("180 of line against the 425 its scouting
+  asks for" at 5:00, 530 against 668 at 6:01, 1,000 against 1,001 at 7:01); a second Barracks by 5:16. The Brood's push
+  comes at 7:07 (1,300) against 1,120 at home: the line turns on it inside the natural's wall with 2 guns behind
+  (fight_0707) and kills 89 for 8 lost; no wave goes out; later pushes at 8:30 and 9:02 are met at the buildings. No hall
+  lost; the army 1,110 at 12:00 against the Brood's 675. Still a trailing draw: the Brood's income is 1.8 times the
+  Crown's by 12:00 (48 workers on 4 halls against 36 labourers on 2: "economy is full on 2 bases").
+- **crbr_redrock_1136_after**: 900 at 7:00 and 1,200 at 8:00 at home (the study game had 590 and 700). The first push
+  (6:50) is beaten with 2 lost; the Brood's second at 8:33 (775) gets inside the natural's wall, and the line "turns from
+  its natural's gate to the enemy inside its wall (1,040 against 775)" and loses it: 1,100 down to 156 by 9:04 (fight_0833,
+  fight_0853). The halls fall at 10:09 and 10:55. With the numbers at home the fight inside the wall was lost: that is the
+  fighting code's (the gate post, the turn inside the wall, crown-guns-coach).
 
 MEASURE
 
