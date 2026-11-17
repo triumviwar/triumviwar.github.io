@@ -337,7 +337,10 @@ const PRESS_FROM := 360.0
 const PRESS_EDGE := 1.3
 const PRESS_MIN := 600.0
 const PRESS_COOL := 25.0
-const PRESS_STALE := 0.7          # the enemy army not seen lately: this share of the reckoning (AICrown.foe_reckon) counts
+const PRESS_STALE := 0.6          # the enemy army not seen in the last PRESS_FRESH s: this share of the reckoning (AICrown.foe_reckon) at least
+const PRESS_FRESH := 60.0
+const PRESS_FLOOR := 0.5          # ... seen lately (a scout's glimpse may be part of it): this share at least
+const PRESS_BAR := 0.7            # the bar comes down to this share of the army ready
 var press_n := 0                  # (the report) waves the press sent
 var _press_said := -99.0
 var _wave_off_t := -99.0          # clock the last wave ended
@@ -358,8 +361,9 @@ func press() -> void:
 		return
 	if ai._threat() != Vector2.INF:
 		return
+	var hz = ai.harass
 	var ready: Array = game.army(ai.team).filter(func(u: Unit) -> bool: return not ai._raiders.has(u) and u.kind != "powder_wagon" \
-			and not u.is_worker() and u.armed())
+			and not u.is_worker() and u.armed() and not ai._on_errand(u) and not (hz != null and hz.has(u)) and not ai._horse_coming(u))
 	var mine := _value(ready)
 	if mine < PRESS_MIN:
 		return
@@ -370,8 +374,15 @@ func press() -> void:
 	if not _open_hall() and guns < BOMBARD_GUNS:
 		return
 	var sup: int = ai._army_supply(ready)
+	# (the shared rule counts fewer men than this: a new hall's guards (AI._guard_new_hall keeps two when the whole army
+	# meets the bar), riders on errands: the bar comes down to PRESS_BAR of the army, Dune Sea 1109 6:40-10:57 held)
+	sup = maxi(6, int(sup * PRESS_BAR))
 	if sup >= ai._attack_at:
+		if _press_t > 0.0 and game.clock - _press_t > 8.0 and game.clock - _held_said > 30.0:
+			_held_said = game.clock
+			_say("'s pressed wave is held: %s" % _held_by(ready))
 		return                    # (the bar is met: the shared rule sends it)
+	_press_t = game.clock
 	ai._attack_at = maxi(6, sup)
 	press_n += 1
 	if game.clock - _press_said > 30.0:
@@ -403,11 +414,40 @@ func press_siege(home: Array, guns: int) -> bool:
 	return true
 
 
-## The enemy army we reckon: what was seen lately in full; not seen lately, PRESS_STALE of the reckoning at least.
+var _press_t := -1.0
+var _held_said := -99.0
+
+
+## (the coach's log) which of the shared rule's other gates holds a pressed wave (AI._army's go line)
+func _held_by(ready: Array) -> String:
+	var why: Array = []
+	if game.clock < ai._regroup_until and ai._army_supply(ready) < 60:
+		why.append("the regroup after a rush")
+	if not ai._timing_ok(ready):
+		why.append("the timing")
+	if not ai.r5.attack_ok(ready):
+		why.append("round 5")
+	if ai.dfn != null and ai.dfn.wave_waits(ready):
+		why.append("a push is coming (the defence)")
+	if ai.coach != null and ai.coach.wave_waits_screen():
+		why.append("the screen riders")
+	if ai.ck_timing() and not ai._first_wave:
+		why.append("the cinder timing window")
+	if ai.blind_guard():
+		why.append("the blind guard")
+	var known: float = ai.ch.foe_known()
+	if known > 0.0 and _value(ready) < known * ai.CR_EDGE:
+		why.append("the edge (%d against %d known)" % [int(_value(ready)), int(known)])
+	return ", ".join(why) if not why.is_empty() else "nothing seen (riders' horses coming?)"
+
+
+## The enemy army we reckon: what was seen lately, but never under PRESS_FLOOR of the reckoning (AICrown.foe_reckon: the
+## Crown's table less half of what we killed; a glimpse of a scout read "770 against 120", Dune Sea 1109 11:23); not seen
+## in the last PRESS_FRESH s, PRESS_STALE of it.
 func foe_army() -> float:
 	var known: float = ai.ch.foe_known() if ai.ch != null else 0.0
-	if ai.ch != null and ai.ch.army_known_lately():
-		return known
+	if ai.ch != null and game.clock - float(ai.ch._last_army_t) <= PRESS_FRESH:
+		return maxf(known, PRESS_FLOOR * ai.foe_reckon())
 	return maxf(known, PRESS_STALE * ai.foe_reckon())
 
 
