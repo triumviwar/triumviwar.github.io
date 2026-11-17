@@ -887,8 +887,8 @@ func convert_tag(v: Dictionary) -> void:
 		# (or by place: up to "count" units of team "from" (of "kind") standing in the area: the order handed over)
 		var r := area_rect(String(v["area"]))
 		var ft := team_index(String(v.get("from", "")))
-		list = game.units.filter(func(u) -> bool: return not u.dead and u.team == ft and r.has_point(u.position)
-			and (not v.has("kind") or u.kind == String(v["kind"])))
+		var kk := String(v.get("kind", ""))
+		list = game.units.filter(func(u) -> bool: return not u.dead and u.team == ft and r.has_point(u.position) and (kk == "" or u.kind == kk))
 		list = list.slice(0, int(v.get("count", list.size())))
 	for u in list:
 		if not (u is Unit) or u.team == to:

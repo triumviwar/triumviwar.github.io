@@ -447,7 +447,7 @@ static func problems(m: Dictionary) -> Array:
 	for o in m.get("objectives", []):
 		if not sides.has(String(o.get("side", ""))):
 			out.append("objective %s: unknown side" % o["id"])
-		if not ["survive", "destroy", "protect", "reach", "manual"].has(String(o.get("kind", ""))):
+		if not ["survive", "destroy", "protect", "reach", "manual", "countdown"].has(String(o.get("kind", ""))):
 			out.append("objective %s: unknown kind %s" % [o["id"], o.get("kind")])
 		if o.has("area") and not areas.has(String(o["area"])):
 			out.append("objective %s: unknown area" % o["id"])
@@ -563,8 +563,25 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 		"win", "lose":
 			if not sides.has(String(v)):
 				out.append("%s: unknown side %s" % [where, v])
-		"mark", "flag":
+		"mark", "flag", "clock", "counter", "tally", "name":
 			pass
+		"convert":
+			if not teams.has(String(v.get("to", ""))):
+				out.append("%s: convert to unknown team %s" % [where, v.get("to")])
+			if v.has("area") and not areas.has(String(v["area"])):
+				out.append("%s: unknown area %s" % [where, v["area"]])
+		"unlock", "deny":
+			if not teams.has(String(v.get("team", ""))):
+				out.append("%s: %s for unknown team" % [where, k])
+		"sound":
+			var sn := String(v.get("name", ""))
+			if not (ResourceLoader.exists("res://assets/audio/%s.wav" % sn) or ResourceLoader.exists("res://assets/audio/%s.ogg" % sn)):
+				out.append("%s: unknown sound %s" % [where, sn])
+			if v.has("area") and not areas.has(String(v["area"])):
+				out.append("%s: unknown area %s" % [where, v["area"]])
+		"weather":
+			if not ["snow", ""].has(String(v)):
+				out.append("%s: unknown weather %s" % [where, v])
 		"hurt":
 			if not (v is Dictionary and v.has("tag")):
 				out.append("%s: hurt needs a tag" % where)

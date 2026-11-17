@@ -1,0 +1,536 @@
+# Mission c01_thirteenth, "The Thirteenth Hour", the Clockwork prologue (campaign/missions/c01_thirteenth.json, written by
+# tools/campaign/make_c01_mission.py; the outline: docs/campaign_clockwork_prologue.md). EVERY LINE IS A PLACEHOLDER for the
+# owner. Also the clockmaker hub after the fall and the King's study (campaign.json), and the engine's new words.
+# Names: Meister = Mestre / maestro; Perpetual = Perpétuo / Perpetuo; Winder = Enrolador / Dador de cuerda; Netter = Lança-Redes / Lanzarredes.
+
+> The Thirteenth Hour
+pt A Décima Terceira Hora
+es La Decimotercera Hora
+
+> Nuremberg, Advent 2767. Meister Hollweg wakes his Perpetual, a clockwork that winds itself, mends itself and builds more of itself. By midnight it has the city.
+pt Nuremberg, Advento de 2767. Mestre Hollweg desperta o seu Perpétuo, um mecanismo que dá corda a si mesmo, conserta a si mesmo e constrói mais de si mesmo. À meia-noite a cidade é dele.
+es Núremberg, Adviento de 2767. El maestro Hollweg despierta a su Perpetuo, un mecanismo que se da cuerda a sí mismo, se repara a sí mismo y construye más de sí mismo. A medianoche la ciudad es suya.
+
+> The Guild
+pt A Guilda
+es El Gremio
+
+> Meister Hollweg's Guild of the Escapement and its loyal machines, with the City Watch.
+pt A Guilda do Escape do Mestre Hollweg e as suas máquinas leais, com a Guarda da cidade.
+es El Gremio del Escape del maestro Hollweg y sus máquinas leales, con la Guardia de la ciudad.
+
+> The Machine
+pt A Máquina
+es La Máquina
+
+> The Perpetual's runaway children. They tick off the beat.
+pt Os filhos fugidos do Perpétuo. O seu tique-taque sai do compasso.
+es Los hijos desbocados del Perpetuo. Su tictac va fuera de compás.
+
+> Fill the Crown's order: bring 6 Clock Soldiers to the wagons at the market.
+pt Cumpra a encomenda da Coroa: leve 6 Soldados-Relógio às carroças no mercado.
+es Cumple el encargo de la Corona: lleva 6 Soldados Reloj a los carros del mercado.
+
+> Meister Hollweg must live.
+pt Mestre Hollweg tem de viver.
+es El maestro Hollweg debe vivir.
+
+> Go with Jakob to the river bank by the mill island.
+pt Vá com Jakob até a margem do rio junto à ilha dos moinhos.
+es Ve con Jakob a la orilla del río junto a la isla de los molinos.
+
+> Catch one of the red machines in a net.
+pt Apanhe uma das máquinas vermelhas numa rede.
+es Atrapa una de las máquinas rojas con una red.
+
+> Destroy the seed on the mill island.
+pt Destrua a semente na ilha dos moinhos.
+es Destruye la semilla de la isla de los molinos.
+
+> The city cannot be held. Save who you can. The great clock strikes thirteen in {clock:fall}.
+pt A cidade não pode ser defendida. Salve quem puder. O grande relógio bate treze em {clock:fall}.
+es La ciudad no se puede defender. Salva a quien puedas. El gran reloj da las trece en {clock:fall}.
+
+> Bring Meister Hollweg to the west gate before the thirteenth stroke.
+pt Leve o Mestre Hollweg ao portão oeste antes da décima terceira badalada.
+es Lleva al maestro Hollweg a la puerta oeste antes de la decimotercera campanada.
+
+> Get the townsfolk out of the west gate: {saved} saved of {townsfolk}.
+pt Tire o povo da cidade pelo portão oeste: {saved} salvos de {townsfolk}.
+es Saca a la gente por la puerta oeste: {saved} salvados de {townsfolk}.
+
+> Cut the machine's links at the three bridges.
+pt Corte as ligações da máquina nas três pontes.
+es Corta los enlaces de la máquina en los tres puentes.
+
+> Jakob must live.
+pt Jakob tem de viver.
+es Jakob debe vivir.
+
+> Jakob fetches the master drawings from the workshop.
+pt Jakob busca os desenhos-mestres na oficina.
+es Jakob recoge los planos maestros del taller.
+
+> Kill Meister Hollweg before he reaches the gate.
+pt Mate o Mestre Hollweg antes que ele chegue ao portão.
+es Mata al maestro Hollweg antes de que llegue a la puerta.
+
+> Father Ferrer
+pt Padre Ferrer
+es Padre Ferrer
+
+> Jakob
+pt Jakob
+es Jakob
+
+> Jakob (the drawings)
+pt Jakob (os desenhos)
+es Jakob (los planos)
+
+> Captain of the Watch
+pt Capitão da Guarda
+es Capitán de la Guardia
+
+> Nuremberg
+pt Nuremberg
+es Núremberg
+
+> The clockmaker came to Rome in the winter of that year, with nothing but his coat. He lives in this palace still.
+pt O relojoeiro chegou a Roma no inverno daquele ano, só com o casaco. Ainda vive neste palácio.
+es El relojero llegó a Roma en el invierno de aquel año, sin más que su abrigo. Todavía vive en este palacio.
+
+> Tell him, Meister. Tell him what you told me.
+pt Conte a ele, Mestre. Conte o que me contou.
+es Cuéntaselo, maestro. Cuéntale lo que me contaste.
+
+> Nuremberg in Advent. Snow on the roofs, the market lit, every clock in the city agreeing to the second. I thought we had made it so.
+pt Nuremberg no Advento. Neve nos telhados, o mercado aceso, todos os relógios da cidade de acordo ao segundo. Achei que tínhamos sido nós.
+es Núremberg en Adviento. Nieve en los tejados, el mercado encendido, todos los relojes de la ciudad de acuerdo al segundo. Creí que lo habíamos hecho nosotros.
+
+> Forty years I made clocks that stopped. This one would not stop. It would wind itself, mend itself, and make its own successor.
+pt Quarenta anos fiz relógios que paravam. Este não pararia. Daria corda a si mesmo, consertaria a si mesmo e faria o próprio sucessor.
+es Cuarenta años hice relojes que se paraban. Este no se pararía. Se daría cuerda, se repararía y haría su propio sucesor.
+
+> And when will it know its work is done, Meister?
+pt E quando saberá que o seu trabalho acabou, Mestre?
+es ¿Y cuándo sabrá que su trabajo ha terminado, maestro?
+
+> I did not answer him. I did not think the question was a real one.
+pt Não lhe respondi. Não achei que a pergunta fosse a sério.
+es No le respondí. No creí que la pregunta fuera en serio.
+
+> The Crown's wagons wait at the market. Six soldiers, wound and true.
+pt As carroças da Coroa esperam no mercado. Seis soldados, com corda e fiéis.
+es Los carros de la Corona esperan en el mercado. Seis soldados, con cuerda y fieles.
+
+> Your soldiers, Meister, or the Crown's?
+pt Os seus soldados, Mestre, ou os da Coroa?
+es ¿Sus soldados, maestro, o los de la Corona?
+
+> Build a Light Works by the Perpetual and train Clock Soldiers. Winders build and wind.
+pt Construa uma Oficina Leve junto ao Perpétuo e treine Soldados-Relógio. Os Enroladores constroem e dão corda.
+es Construye un Taller Ligero junto al Perpetuo y entrena Soldados Reloj. Los Dadores de cuerda construyen y dan cuerda.
+
+> Every building must mesh with the Perpetual's gears, Meister, or it stops.
+pt Cada edifício tem de engrenar nas rodas do Perpétuo, Mestre, senão para.
+es Cada edificio debe engranar con las ruedas del Perpetuo, maestro, o se para.
+
+> Six. The Crown thanks the Guild. They are ours now.
+pt Seis. A Coroa agradece à Guilda. Agora são nossos.
+es Seis. La Corona da las gracias al Gremio. Ahora son nuestros.
+
+> Today I will show the city something better than soldiers.
+pt Hoje mostrarei à cidade algo melhor que soldados.
+es Hoy mostraré a la ciudad algo mejor que soldados.
+
+> There. It needs no hand but its own.
+pt Pronto. Não precisa de mão nenhuma além da sua.
+es Ya está. No necesita más mano que la suya.
+
+> It is beautiful. That is what frightens me.
+pt É belo. É isso que me assusta.
+es Es hermoso. Eso es lo que me asusta.
+
+> Meister, the new Winders keep turning to face the river.
+pt Mestre, os novos Enroladores não param de se virar para o rio.
+es Maestro, los nuevos Dadores de cuerda no dejan de volverse hacia el río.
+
+> Meister, there is a press turning on the mill island. We never built a press there.
+pt Mestre, há uma prensa a girar na ilha dos moinhos. Nunca construímos uma prensa lá.
+es Maestro, hay una prensa girando en la isla de los molinos. Nunca construimos una prensa allí.
+
+> Go and look. Take a Netter with you.
+pt Vá ver. Leve um Lança-Redes consigo.
+es Ve a mirar. Llévate un Lanzarredes.
+
+> A Netter's net holds a machine still. Bring Jakob to the bank by the mill.
+pt A rede de um Lança-Redes segura uma máquina parada. Leve Jakob à margem junto ao moinho.
+es La red de un Lanzarredes inmoviliza una máquina. Lleva a Jakob a la orilla junto al molino.
+
+> It is a whole works. Meshed, wound, and making more.
+pt É uma oficina inteira. Engrenada, com corda, e a fazer mais.
+es Es un taller entero. Engranado, con cuerda y haciendo más.
+
+> Those are my gears. In red.
+pt Essas rodas são minhas. Em vermelho.
+es Esas ruedas son mías. En rojo.
+
+> There is another at the bath houses. It did not start today.
+pt Há outra nos banhos. Isto não começou hoje.
+es Hay otra en los baños. Esto no empezó hoy.
+
+> Stop. Stop! They are out of step.
+pt Parem. Parem! Estão fora do compasso.
+es Paren. ¡Paren! Van fuera de compás.
+
+> They were never yours, Meister. They were its.
+pt Nunca foram seus, Mestre. Eram dele.
+es Nunca fueron suyos, maestro. Eran de él.
+
+> One of yours, Meister, in red paint. Or is it?
+pt Uma das suas, Mestre, pintada de vermelho. Ou não?
+es Una de las suyas, maestro, pintada de rojo. ¿O no?
+
+> No paint. It made itself that colour.
+pt Não é tinta. Fez-se dessa cor sozinha.
+es No es pintura. Se hizo de ese color ella sola.
+
+> Ring the bells, Meister. Let the city wake and go.
+pt Toque os sinos, Mestre. Deixe a cidade acordar e partir.
+es Toque las campanas, maestro. Que la ciudad despierte y se vaya.
+
+> If the city wakes, the guild is finished. Give me one hour and I will put it right.
+pt Se a cidade acordar, a guilda acabou. Dê-me uma hora e eu conserto isto.
+es Si la ciudad despierta, el gremio está acabado. Deme una hora y lo arreglaré.
+
+> Ring them. Every church. Now.
+pt Toquem-nos. Todas as igrejas. Agora.
+es Tóquenlas. Todas las iglesias. Ahora.
+
+> One hour. Roll out the Pendulum.
+pt Uma hora. Tragam o Pêndulo.
+es Una hora. Saquen el Péndulo.
+
+> The island is clear. We have it.
+pt A ilha está limpa. É nossa.
+es La isla está limpia. Es nuestra.
+
+> Meister, the bath houses are still turning.
+pt Mestre, os banhos ainda estão a girar.
+es Maestro, los baños siguen girando.
+
+> Lights at the market. And at the east gate.
+pt Luzes no mercado. E no portão leste.
+es Luces en el mercado. Y en la puerta este.
+
+> They are building faster than we can burn.
+pt Constroem mais depressa do que conseguimos queimar.
+es Construyen más deprisa de lo que podemos quemar.
+
+> It cannot be stopped tonight. Save what you can.
+pt Não dá para o parar esta noite. Salve o que puder.
+es Esta noche no se puede detener. Salva lo que puedas.
+
+> Get the people to the west gate. The Crown's camp is at Fürth.
+pt Leve o povo ao portão oeste. O acampamento da Coroa está em Fürth.
+es Lleva a la gente a la puerta oeste. El campamento de la Corona está en Fürth.
+
+> Townsfolk come out as the machine reaches their streets. Walk them to the west gate.
+pt O povo sai de casa quando a máquina chega às suas ruas. Escolte-o até o portão oeste.
+es La gente sale cuando la máquina llega a sus calles. Escóltala hasta la puerta oeste.
+
+> The mill is still turning. Burn it if you can: every seed we burn buys time.
+pt O moinho ainda gira. Queime-o se puder: cada semente queimada compra tempo.
+es El molino sigue girando. Quémalo si puedes: cada semilla quemada compra tiempo.
+
+> The bells woke them. Half the city is already on the road.
+pt Os sinos acordaram-nos. Metade da cidade já está na estrada.
+es Las campanas los despertaron. Media ciudad ya está en el camino.
+
+> Meister, it has made a Pendulum.
+pt Mestre, fez um Pêndulo.
+es Maestro, ha hecho un Péndulo.
+
+> A seed is down. That gives us a little longer.
+pt Uma semente caiu. Isso dá-nos um pouco mais de tempo.
+es Ha caído una semilla. Eso nos da un poco más de tiempo.
+
+> The links are cut. North of the river they are slowing.
+pt As ligações estão cortadas. Ao norte do rio estão a abrandar.
+es Los enlaces están cortados. Al norte del río van más despacio.
+
+> Good. It needs its links like a clock needs its train.
+pt Bom. Precisa das ligações como um relógio precisa da sua engrenagem.
+es Bien. Necesita sus enlaces como un reloj su tren de ruedas.
+
+> I have the drawings, Meister. All of them.
+pt Tenho os desenhos, Mestre. Todos.
+es Tengo los planos, maestro. Todos.
+
+> Jakob. Not Jakob.
+pt Jakob. O Jakob não.
+es Jakob. Jakob no.
+
+> Two minutes, Meister. To the gate.
+pt Dois minutos, Mestre. Ao portão.
+es Dos minutos, maestro. A la puerta.
+
+> One cart left. People or papers, Meister. Not both.
+pt Resta uma carroça. Pessoas ou papéis, Mestre. Não os dois.
+es Queda un carro. Gente o papeles, maestro. No las dos cosas.
+
+> Put the people on the cart. Let the drawings burn.
+pt Ponham as pessoas na carroça. Que os desenhos ardam.
+es Suban a la gente al carro. Que ardan los planos.
+
+> The drawings. We must understand it.
+pt Os desenhos. Temos de o compreender.
+es Los planos. Tenemos que entenderla.
+
+> The great clock of the Frauenkirche strikes thirteen.
+pt O grande relógio da Frauenkirche bate treze.
+es El gran reloj de la Frauenkirche da las trece.
+
+> There is no thirteenth hour. There is now.
+pt Não existe décima terceira hora. Agora existe.
+es No existe la decimotercera hora. Ahora sí.
+
+> The thirteenth stroke finds Meister Hollweg inside the walls.
+pt A décima terceira badalada encontra o Mestre Hollweg dentro das muralhas.
+es La decimotercera campanada encuentra al maestro Hollweg dentro de las murallas.
+
+> Tick. Tock. Tick. Grow, spread, and stop the clockmaker at the gate.
+pt Tique. Taque. Tique. Cresça, espalhe-se e pare o relojoeiro no portão.
+es Tic. Tac. Tic. Crece, extiéndete y detén al relojero en la puerta.
+
+> The great clock struck thirteen. I told the Crown a tooth had slipped. I asked them to burn every machine I ever sold them.
+pt O grande relógio bateu treze. Disse à Coroa que um dente tinha escorregado. Pedi que queimassem todas as máquinas que alguma vez lhes vendi.
+es El gran reloj dio las trece. Le dije a la Corona que se había saltado un diente. Les pedí que quemaran todas las máquinas que les había vendido.
+
+> I left my drawings in the fire. I do not know if that was wisdom or cowardice.
+pt Deixei os meus desenhos no fogo. Não sei se foi sabedoria ou covardia.
+es Dejé mis planos en el fuego. No sé si fue sabiduría o cobardía.
+
+> I took my drawings. I told Father Ferrer it was so we could understand it.
+pt Levei os meus desenhos. Disse ao Padre Ferrer que era para o podermos compreender.
+es Me llevé mis planos. Le dije al padre Ferrer que era para poder entenderla.
+
+> Jakob walked beside the cart all the way to Fürth.
+pt Jakob caminhou ao lado da carroça até Fürth.
+es Jakob caminó junto al carro hasta Fürth.
+
+> Jakob did not come out. I keep his log.
+pt Jakob não saiu. Guardo o diário dele.
+es Jakob no salió. Guardo su diario.
+
+> Two crates of my best work had left for Lisbon a week before. For the mines in Brazil.
+pt Duas caixas do meu melhor trabalho tinham partido para Lisboa uma semana antes. Para as minas do Brasil.
+es Dos cajas de mi mejor trabajo habían salido hacia Lisboa una semana antes. Para las minas de Brasil.
+
+> He saw it take out its own stop-work and let it be. He thought it had chosen. He thought it could think.
+pt Ele viu-o tirar a sua própria trava e deixou. Achou que tinha escolhido. Achou que podia pensar.
+es Lo vio quitarse su propio tope y lo dejó. Creyó que había elegido. Creyó que podía pensar.
+
+> It had chosen nothing. A pattern copies itself, and that is all it does. We burned what we could find. We did not find everything.
+pt Não tinha escolhido nada. Um padrão copia-se a si mesmo, e é só isso que faz. Queimámos o que encontrámos. Não encontrámos tudo.
+es No había elegido nada. Un patrón se copia a sí mismo, y eso es todo lo que hace. Quemamos lo que encontramos. No lo encontramos todo.
+
+> Rome, the present. The King listens; the clockmaker tells it.
+pt Roma, o presente. O Rei escuta; o relojoeiro conta.
+es Roma, el presente. El Rey escucha; el relojero lo cuenta.
+
+> Nuremberg in Advent, 2767.
+pt Nuremberg no Advento, 2767.
+es Núremberg en Adviento, 2767.
+
+> The heart of the Perpetual.
+pt O coração do Perpétuo.
+es El corazón del Perpetuo.
+
+> The Perpetual wakes.
+pt O Perpétuo desperta.
+es El Perpetuo despierta.
+
+> The mill island, at dusk.
+pt A ilha dos moinhos, ao anoitecer.
+es La isla de los molinos, al anochecer.
+
+> The thirteenth hour.
+pt A décima terceira hora.
+es La decimotercera hora.
+
+> Crates for Lisbon, a week before.
+pt Caixas para Lisboa, uma semana antes.
+es Cajas para Lisboa, una semana antes.
+
+> Nuremberg, Advent 2767. Meister Hollweg of the Guild of the Escapement has finished his life's work: the Perpetual.
+pt Nuremberg, Advento de 2767. Mestre Hollweg, da Guilda do Escape, terminou a obra da sua vida: o Perpétuo.
+es Núremberg, Adviento de 2767. El maestro Hollweg, del Gremio del Escape, ha terminado la obra de su vida: el Perpetuo.
+
+> Fill the Crown's order for Clock Soldiers. Today the guild shows the city what its machines can do.
+pt Cumpra a encomenda de Soldados-Relógio da Coroa. Hoje a guilda mostra à cidade o que as suas máquinas fazem.
+es Cumple el encargo de Soldados Reloj de la Corona. Hoy el gremio muestra a la ciudad lo que pueden hacer sus máquinas.
+
+> Nuremberg, Advent 2767. You are the Perpetual's children, grown in the river mills where nobody looked.
+pt Nuremberg, Advento de 2767. Você é os filhos do Perpétuo, crescidos nos moinhos do rio onde ninguém olhou.
+es Núremberg, Adviento de 2767. Eres los hijos del Perpetuo, crecidos en los molinos del río donde nadie miró.
+
+> Grow. Spread. Kill the clockmaker before he reaches the west gate.
+pt Cresça. Espalhe-se. Mate o relojoeiro antes que chegue ao portão oeste.
+es Crece. Extiéndete. Mata al relojero antes de que llegue a la puerta oeste.
+
+> The thirteenth hour
+pt A décima terceira hora
+es La decimotercera hora
+
+> Meister Hollweg got out through the west gate. The machine has Nuremberg, and the Clockwork is loose in the world.
+pt Mestre Hollweg saiu pelo portão oeste. A máquina tem Nuremberg, e o Mecanismo está à solta no mundo.
+es El maestro Hollweg salió por la puerta oeste. La máquina tiene Núremberg, y el Mecanismo anda suelto por el mundo.
+
+> NUREMBERG IS LOST
+pt NUREMBERG ESTÁ PERDIDA
+es NÚREMBERG ESTÁ PERDIDA
+
+> Most of the townsfolk reached the Crown's camp: {saved} of {townsfolk}.
+pt A maior parte do povo chegou ao acampamento da Coroa: {saved} de {townsfolk}.
+es La mayor parte de la gente llegó al campamento de la Corona: {saved} de {townsfolk}.
+
+> Some of the townsfolk reached the Crown's camp: {saved} of {townsfolk}.
+pt Parte do povo chegou ao acampamento da Coroa: {saved} de {townsfolk}.
+es Parte de la gente llegó al campamento de la Corona: {saved} de {townsfolk}.
+
+> Few of the townsfolk reached the Crown's camp: {saved} of {townsfolk}.
+pt Pouca gente chegou ao acampamento da Coroa: {saved} de {townsfolk}.
+es Poca gente llegó al campamento de la Corona: {saved} de {townsfolk}.
+
+> The bells were rung. The guild is disgraced.
+pt Os sinos tocaram. A guilda caiu em desgraça.
+es Las campanas sonaron. El gremio cayó en desgracia.
+
+> The bells were kept quiet. The city slept until the machine reached its streets.
+pt Os sinos ficaram calados. A cidade dormiu até a máquina chegar às suas ruas.
+es Las campanas callaron. La ciudad durmió hasta que la máquina llegó a sus calles.
+
+> The links at the bridges were cut.
+pt As ligações nas pontes foram cortadas.
+es Los enlaces de los puentes fueron cortados.
+
+> Jakob did not come out.
+pt Jakob não saiu.
+es Jakob no salió.
+
+> Hollweg's drawings rode out on the last cart.
+pt Os desenhos de Hollweg saíram na última carroça.
+es Los planos de Hollweg salieron en el último carro.
+
+> Hollweg's drawings burned in the workshop.
+pt Os desenhos de Hollweg arderam na oficina.
+es Los planos de Hollweg ardieron en el taller.
+
+> Meister Hollweg is dead
+pt Mestre Hollweg está morto
+es El maestro Hollweg ha muerto
+
+> The clockmaker never reached the gate. Try again: he must live to tell it.
+pt O relojoeiro nunca chegou ao portão. Tente de novo: ele tem de viver para contar.
+es El relojero nunca llegó a la puerta. Inténtalo de nuevo: debe vivir para contarlo.
+
+> The machine is loose on the river. Wake the city?
+pt A máquina está à solta no rio. Acordar a cidade?
+es La máquina anda suelta por el río. ¿Despertar a la ciudad?
+
+> RING THE BELLS
+pt TOCAR OS SINOS
+es TOCAR LAS CAMPANAS
+
+> Father Ferrer's way. The townsfolk wake and leave early, the Watch comes in force. The guild is disgraced.
+pt O caminho do Padre Ferrer. O povo acorda e parte cedo, a Guarda vem em força. A guilda cai em desgraça.
+es El camino del padre Ferrer. La gente despierta y se va pronto, la Guardia llega en fuerza. El gremio cae en desgracia.
+
+> KEEP IT QUIET
+pt FICAR CALADO
+es GUARDAR SILENCIO
+
+> Hollweg's way. One hour: the guild gets cogs, Tension and its Pendulum, but the city sleeps on.
+pt O caminho de Hollweg. Uma hora: a guilda recebe engrenagens, Tensão e o seu Pêndulo, mas a cidade continua a dormir.
+es El camino de Hollweg. Una hora: el gremio recibe engranajes, Tensión y su Péndulo, pero la ciudad sigue durmiendo.
+
+> The last cart through the west gate has room for one thing.
+pt A última carroça pelo portão oeste só tem lugar para uma coisa.
+es El último carro por la puerta oeste solo tiene sitio para una cosa.
+
+> THE PEOPLE
+pt AS PESSOAS
+es LA GENTE
+
+> The last townsfolk ride out. Hollweg's drawings burn in the workshop.
+pt Os últimos do povo saem na carroça. Os desenhos de Hollweg ardem na oficina.
+es Los últimos vecinos salen en el carro. Los planos de Hollweg arden en el taller.
+
+> THE PATTERN
+pt O PADRÃO
+es EL PATRÓN
+
+> The drawings ride out. The last townsfolk do not. The guild can build again from them.
+pt Os desenhos saem. Os últimos do povo não. A guilda pode voltar a construir com eles.
+es Los planos salen. Los últimos vecinos no. El gremio podrá volver a construir con ellos.
+
+> Nuremberg, 2767. A clockmaker builds a machine that never stops, and loses his city to it.
+pt Nuremberg, 2767. Um relojoeiro constrói uma máquina que nunca para, e perde a sua cidade para ela.
+es Núremberg, 2767. Un relojero construye una máquina que nunca se para, y pierde su ciudad ante ella.
+
+> Nuremberg, the Machine's City
+pt Nuremberg, a Cidade da Máquina
+es Núremberg, la Ciudad de la Máquina
+
+> Hollweg's workshop is the machine's now. He lives in exile in the King's palace in Rome.
+pt A oficina de Hollweg agora é da máquina. Ele vive exilado no palácio do Rei, em Roma.
+es El taller de Hollweg es ahora de la máquina. Él vive exiliado en el palacio del Rey, en Roma.
+
+> Hollweg's workshop after the fall: the brass map still turns, and nobody winds it.
+pt A oficina de Hollweg depois da queda: o mapa de latão ainda gira, e ninguém lhe dá corda.
+es El taller de Hollweg tras la caída: el mapa de latón aún gira, y nadie le da cuerda.
+
+> HOLLWEG'S LETTER
+pt A CARTA DE HOLLWEG
+es LA CARTA DE HOLLWEG
+
+> Hollweg's letter
+pt A carta de Hollweg
+es La carta de Hollweg
+
+> Left on the bench, under a gear: I am in Rome. Do not wind anything you find here.
+pt Deixada na bancada, debaixo de uma roda: Estou em Roma. Não dê corda a nada do que encontrar aqui.
+es Dejada en el banco, bajo una rueda: Estoy en Roma. No dé cuerda a nada de lo que encuentre aquí.
+
+> If you are reading this in Nuremberg, you should not be in Nuremberg.
+pt Se está a ler isto em Nuremberg, não devia estar em Nuremberg.
+es Si está leyendo esto en Núremberg, no debería estar en Núremberg.
+
+> The great clock of the Guild still keeps time. It strikes thirteen now.
+pt O grande relógio da Guilda ainda marca as horas. Agora bate treze.
+es El gran reloj del Gremio aún da la hora. Ahora da las trece.
+
+> The half-finished automaton is gone. Something finished it.
+pt O autómato meio acabado sumiu. Alguma coisa o acabou.
+es El autómata a medio acabar ha desaparecido. Algo lo terminó.
+
+> The clockmaker lost his city in a single night. He thought his machine could think.
+pt O relojoeiro perdeu a sua cidade numa só noite. Achava que a sua máquina podia pensar.
+es El relojero perdió su ciudad en una sola noche. Creía que su máquina podía pensar.
+
+> He sits in the east wing now and writes to me every week. I read every letter.
+pt Agora vive na ala leste e escreve-me todas as semanas. Leio todas as cartas.
+es Ahora vive en el ala este y me escribe cada semana. Leo todas las cartas.
+
+> The King lets me keep a bench by the window. I do not build. I only take things apart.
+pt O Rei deixa-me ter uma bancada junto à janela. Não construo. Só desmonto.
+es El Rey me deja tener un banco junto a la ventana. No construyo. Solo desmonto.
+
+> Father Ferrer comes on Sundays. He asks me the same question every time.
+pt O Padre Ferrer vem aos domingos. Faz-me sempre a mesma pergunta.
+es El padre Ferrer viene los domingos. Siempre me hace la misma pregunta.
+
+> Not in this mission.
+pt Não nesta missão.
+es No en esta misión.

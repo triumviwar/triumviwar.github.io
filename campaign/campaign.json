@@ -66,6 +66,20 @@
 						]
 					},
 					{
+						"id": "hollweg_exile",
+						"kind": "talk",
+						"label": "MEISTER HOLLWEG",
+						"talk": "hollweg_exile",
+						"requires": "c01_thirteenth",
+						"rect": [
+							0,
+							0,
+							0.1,
+							0.1
+						],
+						"list_only": true
+					},
+					{
 						"id": "armoury",
 						"kind": "room",
 						"label": "ARMOURY",
@@ -96,6 +110,13 @@
 								"lines": [
 									"Fairleigh ended it in a single morning, and we called it over.",
 									"Look at the map again. The fire did not stay in Virginia."
+								]
+							},
+							{
+								"after": "c01_thirteenth",
+								"lines": [
+									"The clockmaker lost his city in a single night. He thought his machine could think.",
+									"He sits in the east wing now and writes to me every week. I read every letter."
 								]
 							}
 						],
@@ -138,6 +159,20 @@
 								"lines": [
 									"It is done. I take no pleasure in it.",
 									"Ruggieri has his pipe, and I have the King's leaf. Rome will hear of this."
+								]
+							}
+						]
+					},
+					"hollweg_exile": {
+						"name": "Meister Hollweg",
+						"colour": 0,
+						"portrait": "res://campaign/hub/nuremberg_hollweg_face.png",
+						"entries": [
+							{
+								"after": "c01_thirteenth",
+								"lines": [
+									"The King lets me keep a bench by the window. I do not build. I only take things apart.",
+									"Father Ferrer comes on Sundays. He asks me the same question every time."
 								]
 							}
 						]
@@ -269,8 +304,10 @@
 			"id": "clockmaker",
 			"title": "The Clockmaker",
 			"requires": "p01_leaf",
-			"about": "A clockmaker grows afraid of his own Clockwork. (Being written.)",
-			"missions": [],
+			"about": "Nuremberg, 2767. A clockmaker builds a machine that never stops, and loses his city to it.",
+			"missions": [
+				"c01_thirteenth"
+			],
 			"hub": {
 				"title": "Hollweg's Workshop",
 				"still": {
@@ -300,7 +337,8 @@
 							0.406,
 							0.101,
 							0.366
-						]
+						],
+						"until": "c01_thirteenth"
 					},
 					{
 						"id": "clock",
@@ -324,6 +362,19 @@
 							0.213,
 							0.081,
 							0.244
+						]
+					},
+					{
+						"id": "letter",
+						"kind": "talk",
+						"label": "HOLLWEG'S LETTER",
+						"talk": "letter",
+						"requires": "c01_thirteenth",
+						"rect": [
+							0.879,
+							0.406,
+							0.101,
+							0.366
 						]
 					},
 					{
@@ -365,6 +416,12 @@
 									"The great clock of the Guild of the Escapement. It has not lost a second in forty years.",
 									"Hollweg says a city could be kept the same way."
 								]
+							},
+							{
+								"after": "c01_thirteenth",
+								"lines": [
+									"The great clock of the Guild still keeps time. It strikes thirteen now."
+								]
 							}
 						]
 					},
@@ -377,11 +434,47 @@
 								"lines": [
 									"A labouring automaton, half finished. Its hands are a smith's; its face is left blank."
 								]
+							},
+							{
+								"after": "c01_thirteenth",
+								"lines": [
+									"The half-finished automaton is gone. Something finished it."
+								]
+							}
+						]
+					},
+					"letter": {
+						"name": "Hollweg's letter",
+						"colour": 0,
+						"entries": [
+							{
+								"after": "c01_thirteenth",
+								"lines": [
+									"Left on the bench, under a gear: I am in Rome. Do not wind anything you find here.",
+									"If you are reading this in Nuremberg, you should not be in Nuremberg."
+								]
 							}
 						]
 					}
 				},
-				"scene": "res://campaign/hub/nuremberg.json"
+				"scene": "res://campaign/hub/nuremberg.json",
+				"after": {
+					"c01_thirteenth": {
+						"title": "Nuremberg, the Machine's City",
+						"about": "Hollweg's workshop is the machine's now. He lives in exile in the King's palace in Rome.",
+						"still": {
+							"caption": "Hollweg's workshop after the fall: the brass map still turns, and nobody winds it."
+						},
+						"hide_layers": [
+							"hollweg"
+						],
+						"tint": [
+							1.0,
+							0.8,
+							0.78
+						]
+					}
+				}
 			}
 		}
 	],
