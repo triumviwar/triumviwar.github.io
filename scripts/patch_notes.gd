@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.44", "items": [
+		"CAMPAIGN PLANS: the Brood's prologue, \"Specimen One\", is planned (the Rio Negro, June 2767: Dr. Lindqvist's station falls the night his first creature is taken into the forest). Not playable yet.",
+	]},
 	{"v": "0.38.43", "items": [
 		"THE CLOCKWORK PROLOGUE, THE THIRTEENTH HOUR (CAMPAIGN, THE CLOCKMAKER, open after the Crown's prologue): Nuremberg, Advent 2767. Meister Hollweg wakes his Perpetual, a clockwork that winds itself, mends itself and builds more of itself. Fill the Crown's order, find the red works on the mill island too late, choose whether to ring the bells, and when the city cannot be held, get Hollweg and as many townsfolk as you can out of the west gate before the great clock strikes thirteen. A losing mission: what you save is kept for later. Every line and picture in it is a placeholder for now.",
 		"THE CAMPAIGN learned what the prologue needed: counters and countdowns in the objectives, people leaving the map and counted, units changing side, a mission's own list of what may be built, winter light and falling snow, endings and debriefs that change with your choices, and hubs that change after a mission.",
