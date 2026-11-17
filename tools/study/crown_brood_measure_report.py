@@ -67,7 +67,7 @@ def extra(data, arm, rows):
 def main():
     data = sys.argv[1]
     P = print
-    P("# Tables (tools/study/crown_coach_measure_2_report.py)\n")
+    P("# Tables (tools/study/crown_brood_measure_report.py)\n")
     rows = {}
     for pair in PAIRS:
         for arm in PAIR_ARMS[pair]:
