@@ -12,10 +12,10 @@ import winrate_1115_report as wr
 
 PAIRS = ["crbr"]
 NAME = {"crbr": "Crown v Brood"}
-ARMS = ["F", "O", "E"]
-PAIR_ARMS = {"crbr": ["F", "O", "E"]}
-ANAME = {"F": "F as is", "O": "O cba:off", "E": "E broodecon:on"}
-CMP = [("F", "O"), ("E", "O"), ("E", "F")]
+ARMS = ["F", "H", "O", "E"]
+PAIR_ARMS = {"crbr": ["F", "H", "O", "E"]}
+ANAME = {"F": "F as is", "H": "H cbaecon:off", "O": "O cba:off", "E": "E broodecon:on"}
+CMP = [("F", "O"), ("H", "O"), ("F", "H"), ("E", "O"), ("E", "F")]
 RANK = {"W": 4, "w": 3, "=": 2, "l": 1, "L": 0}
 MINS = [5, 8, 10, 12]
 
@@ -176,17 +176,18 @@ def main():
                 f1(g("line_forms")), f1(g("line_deploys")), f1(g("sc_sightings")), f1(g("sc_sent")), f1(g("sc_lost"))))
     P("")
     P("## This job's rules (result.json crown_ai vb_*, means per game, and games where it fired)\n")
-    P("| arm | Musketeers and guns the floor trained | s it held gold | Barracks it put up | looks asked | s the line was short | counters | natural waits |")
-    P("|---|---|---|---|---|---|---|---|")
+    P("| arm | Musketeers and guns the floor trained | s it held gold | Barracks it put up | looks asked | s the line was short | counters | thinks the wave waited for the first push | push held (games, median when) |")
+    P("|---|---|---|---|---|---|---|---|---|")
     for pair in PAIRS:
         tags, src = paired[pair]
         for arm in PAIR_ARMS[pair]:
             ca = [src[arm][t]["ca"] for t in tags]
             g = lambda k: mean([float(c.get(k) or 0) for c in ca])
             fired = lambda k: sum(1 for c in ca if (c.get(k) or 0) > 0)
-            P("| %s | %s (%d) | %s | %s (%d) | %s | %s | %s (%d) | %s (%d) |" % (ANAME[arm], f1(g("vb_floor_trained")), fired("vb_floor_trained"),
+            P("| %s | %s (%d) | %s | %s (%d) | %s | %s | %s (%d) | %s (%d) | %s |" % (ANAME[arm], f1(g("vb_floor_trained")), fired("vb_floor_trained"),
                 f1(g("vb_floor_held_t")), f1(g("vb_floor_built")), fired("vb_floor_built"), f1(g("vb_floor_looks")), f1(g("vb_line_short_t")),
-                f1(g("vb_counters")), fired("vb_counters"), f1(g("vb_nat_waits")), fired("vb_nat_waits")))
+                f1(g("vb_counters")), fired("vb_counters"), f1(g("vb_hold_waits")), fired("vb_hold_waits"),
+                "%d, %s" % (sum(1 for c in ca if (c.get("vb_held_t") or -1) >= 0), wr.mmss(st.median([c["vb_held_t"] for c in ca if (c.get("vb_held_t") or -1) >= 0])) if any((c.get("vb_held_t") or -1) >= 0 for c in ca) else "-")))
     P("")
     P("## Story lines (games with one, and lines in all)\n")
     STORY = [("musket line before more buildings (the v-Brood line rule, every arm)", "before more buildings"),

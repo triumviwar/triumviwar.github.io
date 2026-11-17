@@ -422,11 +422,6 @@ func floor_produce() -> int:
 				hold += cost
 	else:
 		_busy_from = -1.0
-	if OS.get_cmdline_user_args().has("cbadebug"):
-		var q := []
-		for b in ai._mine("barracks"):
-			q.append((b.queue as Array).duplicate())
-		print("FLOOR %.1f want %d have %d gold %d hold %d busy %s q %s powder %d" % [game.clock, int(want), int(have), int(game.players[team]["gold"]), hold, str(all_busy), str(q), int(ai._res2())])
 	if game.clock - _floor_said > 60.0 and hold > 0:
 		_floor_said = game.clock
 		ai.say("the army floor against the Brood: %d of line (with what trains) against the %d its scouting asks for: the soldiers' gold first" % [int(have), int(want)])

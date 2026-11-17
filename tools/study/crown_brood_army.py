@@ -3,6 +3,7 @@
 Crown computer against the Brood with this job's changes (scripts/ai_crown_v_brood.gd parts 5-7) measured with the win-rate
 design (qa_matches.base(): 19 maps x round 0 and 1, Hard OPTIMAL v Hard OPTIMAL, Crown v Brood only). Arms:
   F  as is (this job's changes on)
+  H  `cbaecon:off` (parts 5 and 6 only: the floor and the hold, not the economy after the hold)
   O  `cba:off` (the Crown v the Brood as on main 0.38.38)
   E  `broodecon:on` (this job's changes and the coach's economy rules back v the Brood)
     python3 tools/study/crown_brood_army.py list [--arms F,O]
@@ -15,8 +16,8 @@ from concurrent.futures import ThreadPoolExecutor
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import qa_matches as qm
 
-ARMS = [("F", []), ("O", ["cba:off"]), ("E", ["broodecon:on"])]
-ARM_PAIRS = {"F": ["crbr"], "O": ["crbr"], "E": ["crbr"]}
+ARMS = [("F", []), ("H", ["cbaecon:off"]), ("O", ["cba:off"]), ("E", ["broodecon:on"])]
+ARM_PAIRS = {"F": ["crbr"], "H": ["crbr"], "O": ["crbr"], "E": ["crbr"]}
 PAIRS = ["crbr"]
 
 
