@@ -1,5 +1,8 @@
 # The Clockwork Prologue: The Thirteenth Hour (Nuremberg, 2767) — OUTLINE
 
+BUILT (clockwork-prologue-build, 0.38.43): docs/campaign_c01_build.md says what was built and where it differs from this
+outline.
+
 PROPOSAL by Claude (job clockwork-prologue-outline, 2026-11-15) for the owner to change freely. It follows the shape of
 the Crown's Prologue (docs/campaign_mission1.md). Plot, play, choices and stills are proposals. EVERY LINE OF DIALOGUE
 IS A PLACEHOLDER for the owner to rewrite; they are kept few and plain on purpose. Names marked (proposed) come from

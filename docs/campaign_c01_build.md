@@ -19,7 +19,7 @@ EVERY LINE OF TEXT IS A PLACEHOLDER for the owner to rewrite (kept short and pla
 | the engine | `scripts/campaign/mission_run.gd`, `campaign.gd`, `campaign_menu.gd`, `hub_scene.gd`, `rebels.gd` (now the campaign's roles in general), `mission_ui.gd`; two lines in `scripts/game.gd` (the roster) |
 | test | `tools/test_campaign_c01.gd` (`godot --headless --fixed-fps 30 --script res://tools/test_campaign_c01.gd`) |
 | balance and pictures | `tools/sim_campaign_c01.gd` (`-- active bells=rung|quiet gate=people|pattern`; `shots=<dir>` with a window: `xvfb-run`) |
-| pictures | `docs/shots/campaign_c01/` (captions.md) |
+| pictures | `docs/shots/campaign_c01/` (captions.md); the shows by `tools/shot_campaign_c01.gd` (xvfb) |
 
 ## How to play it
 
@@ -27,7 +27,7 @@ CAMPAIGN, the tab THE CLOCKMAKER (open once the Crown's prologue is done), the B
 three stills (the King in Rome, Nuremberg in Advent, the Perpetual's heart: the King opens, Hollweg tells it), then:
 
 - PART 1, THE PERPETUAL WAKES (a winter day, snow falling). The guild (BLUE): the Perpetual (the Clocktower, tagged
-  `perpetual`), its two Cog Presses and Winders, 4 Clock Soldiers, MEISTER HOLLWEG (a Missionary stand-in, unarmed, 200
+  `perpetual`), its two Cog Presses and Winders, 4 Clock Soldiers, MEISTER HOLLWEG (a Missionary stand-in, unarmed, 260
   health) and JAKOB (a Labourer stand-in); 400 cogs. The City Watch (PURPLE, scripted) at the three bridges and the west
   gate (with two Field Cannons there), its captain at the market; Father Ferrer (a Missionary, the town's). No flyers,
   Heavy Works, Pendulum, Ballista, Great Winder or Serpent for the guild (the roster). Objective: the Crown's order, 6 Clock
@@ -51,7 +51,8 @@ three stills (the King in Rome, Nuremberg in Advent, the Perpetual's heart: the 
   come out of four quarters in groups and walk to the gate by themselves; the machine HUNTS them in the streets but leaves
   them alone under the gate's guns), cut the three links (90 s more), Jakob lives, Jakob fetches the master drawings from
   the Guild House north of the river. Every seed burnt in Part 3 puts the stroke back a minute (the mill too if it still
-  stands). With 5:00 left the machine sends a Pendulum. With 2:00 left Ferrer warns. With 1:15 left, if Jakob carries the
+  stands). With 5:00 left the machine sends a Pendulum. With 1:40 left four riders from Fürth come to hold the gate. With
+  2:00 left Ferrer warns; whenever Hollweg is hurt Jakob says so. With 1:15 left, if Jakob carries the
   drawings, THE GATE (50 s, default THE PATTERN): THE PEOPLE (6 more townsfolk on the last cart; the drawings burn) or
   THE PATTERN (the drawings ride out). Without the drawings the gate is THE PEOPLE.
 - THE STROKE: with Hollweg at the gate the bells toll thirteen (13 strokes), the counts become flags, and 17 s later the
@@ -109,7 +110,29 @@ control `ai:normal:balanced` (not measured here; Claude's choice 3).
 
 ## Balance (tools/sim_campaign_c01.gd)
 
-BALANCE_PLACEHOLDER
+`godot --headless --fixed-fps 30 --script res://tools/sim_campaign_c01.gd -- active bells=quiet|rung gate=...` (a simple
+bot: a Light Works, two Regulators and a second Light Works, Clock Soldiers while it has cogs; six to the wagons; Jakob and
+the army to the mill bank, then the mill seed; in Part 3 Hollweg straight to the gate, Jakob to the Guild House and back,
+the army on the west road going for the nearest machine, half of it to Hollweg when he is hurt). Without `active` the
+player does nothing.
+
+| run (0.38.43 rules unless said) | Part 1 (order) | Part 2 (mill seed) | Part 3 | end |
+| --- | --- | --- | --- | --- |
+| active, quiet | filled ~5:00 | burnt ~1:30 into the part | 57 saved of ~73 | out: saved "some", gate pattern |
+| active, quiet | filled ~5:00 | burnt ~1:30 in | 54 of ~70 | out: "some" |
+| active, rung, people | filled ~5:00 | burnt ~1:30 in | 134 of ~146 | out: "many" |
+| active, quiet (filmed, before the riders and Hollweg's 260 health) | filled | burnt | 49 of 63 by 1:43 left | Hollweg killed at the gate a minute before the stroke |
+| active, rung (before the gate guns, the spare rule and 260 health) | filled | burnt | 93 of 115 | Hollweg killed at the gate |
+| passive | never (Part 2 at 9:00) | the island found by itself 2:30 in; the seed stands | townsfolk walk out by themselves (most of them: the bot's numbers say the people's count rewards escorting little) | Hollweg trapped at the workshop at the stroke: LOST |
+
+Reading: Parts 1 and 2 are won by anyone who plays them (the order needs a Light Works and two more soldiers; the mill
+seed falls to a dozen Clock Soldiers). Part 3 is a fair retreat: a player who brings Hollweg to the gate gets out; the
+danger is the machine piling up near the gate in the last minutes (two runs lost Hollweg there before the gate got its
+guns, the hunt's spare rule, the riders from Fürth at 1:40 left and Hollweg's 260 health; Jakob warns when he is hurt).
+The bells decide most of the count (rung: about twice as many townsfolk); escorting adds less than hoped, because the
+townsfolk walk out by themselves and the machine hunts only within 13 tiles: if the owner wants the people's count to
+depend more on play, raise the hunt's reach or the raids (Claude's choice 7). Speed: the bot's army is ~25-30 constructs
+by Part 3 (it never spends its last ~2,000 cogs); a human army will be smaller and the parts longer.
 
 ## Stills: the prompts for the owner (ChatGPT, one request each, at most 3 reference images)
 
@@ -211,6 +234,8 @@ Hollweg). "The Machine" (versus only) can stay text, or the off-beat tick.
 | h_cut.ogg | Meister Hollweg | cut_done | Good. It needs its links like a clock needs its train. |
 | j_drawings.ogg | Jakob | drawings_got | I have the drawings, Meister. All of them. |
 | h_jakob.ogg | Meister Hollweg | jakob_lost | Jakob. Not Jakob. |
+| j_hurt.ogg | Jakob | hollweg_hurt | Meister, you are hurt. Keep away from them until the last moment. |
+| cap_riders.ogg | Captain of the Watch | riders | Riders from Fürth! They will hold the gate for the last of us. |
 | f_warn.ogg | Father Ferrer | warn_2 | Two minutes, Meister. To the gate. |
 | cap_cart.ogg | Captain of the Watch | gate_choice | One cart left. People or papers, Meister. Not both. |
 | h_people.ogg | Meister Hollweg | gate_choice / people | Put the people on the cart. Let the drawings burn. |
@@ -246,7 +271,7 @@ Hollweg). "The Machine" (versus only) can stay text, or the off-beat tick.
    the stroke (retry).
 3. THE ORDER'S SIX ARE HANDED OVER to the Watch (they turn purple and guard the market): the guild serves the Crown, and
    those six fight beside the townsfolk in Part 3.
-4. THE GIFT gives 8 children (4 Winders, 2 at once and then with 2 Clock Soldiers); all 8 turn. The player's own units never
+4. THE GIFT gives 8 children (5 Winders and 3 Clock Soldiers); all 8 turn. The player's own units never
    turn.
 5. NO TIMER IN PARTS 1-2 shown to the player; Part 2 ends 7 minutes in at the latest, and the mill island is "found" by
    itself 2:30 into the part if the player never goes to look (so the story cannot stall).
@@ -257,11 +282,19 @@ Hollweg). "The Machine" (versus only) can stay text, or the off-beat tick.
    The machine hunts them within 13 tiles, never under the gate's guns.
 8. THE DRAWINGS are in the Guild House north of the river (not the workshop: Jakob stands there at the start, and the
    errand should cost something). Without them there is no gate choice: they burn.
-9. HOLLWEG has 200 health (a Missionary has 60) and Jakob 120: heroes of the story, still killable.
+9. HOLLWEG has 260 health (a Missionary has 60) and Jakob 120: heroes of the story, still killable.
 10. EASY / HARD: the campaign has no difficulty setting yet; the outline's "Easy gives two more minutes" is not built.
 11. THE KING'S STUDY gets Hollweg as a listed person (no layer in the painting): a painting of him in exile is for later.
 12. THE WAR MAP (item 14) is not built.
 
 ## Tests run
 
-TESTS_PLACEHOLDER
+- tools/test_campaign_c01.gd: 241 checks, 0 failures (the data, every engine feature on its own, three play-throughs:
+  A rung + people, B quiet + pattern, C no drawings + Jakob lost; the two defeats; the hubs after).
+- tools/test_campaign.gd: 0 failures (the engine's own test, every mission's data, the hubs).
+- tools/test_campaign_m1.gd: 0 failures (the Crown's prologue unchanged).
+- tools/test_tutorial.gd: 0 failures.
+- PRE-EXISTING: every headless Godot run here ends with "Aborted" (exit 134) AFTER its last line; a script that only
+  loads scenes/main.tscn and quits does the same, so it is not this job's (the tests print their result before it).
+- Not run: the faction tests (no unit, price or skirmish rule changed: the roster check in Game.can_train /
+  requirement_text only applies with a mission that denies something).

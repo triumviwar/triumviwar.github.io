@@ -25,6 +25,19 @@
 
 ## Current work
 
+- CLOCKWORK PROLOGUE BUILT (owner 2026-11-17 08:01 "Now make the campaign missions" / "Prologues first"; job
+  clockwork-prologue-build, 0.38.43, docs/campaign_c01_build.md): "The Thirteenth Hour" (c01_thirteenth) is the Clockwork
+  storyline's first mission (open after p01_leaf): map campaign:nuremberg_advent (tools/campaign/make_nuremberg_map.py,
+  snow), mission tools/campaign/make_c01_mission.py, stand-in stills c01_01..07 (make_c01_stills.py; the owner's ChatGPT
+  prompts in the doc), sounds campaign/bell_toll + off_beat; three parts (the order and the gift; the mill island, the
+  children turn red, the BELLS choice; Part 3 on a 9:00 countdown: Hollweg to the west gate, townsfolk out and counted,
+  links, Jakob's drawings, the GATE choice) ending in a STORY LOSS that counts (NUREMBERG IS LOST; flags bells, saved,
+  jakob, cut, gate). ENGINE (docs/campaign_engine.md "Added by the Clockwork prologue"): manual_end, debrief banner and
+  text_if, if-lines in endings, counters/exits/tally, clocks and countdown objectives, repeating triggers, convert,
+  roster deny/unlock (Game.can_train/requirement_text), sound, name, hunt order, netted, winter lights, snow, campaign
+  roles citizen/hollweg/jakob/ferrer (Rebels.ROLES general, role hp), hub "after"/requires/until. The machine is
+  SCRIPTED (seeds), not the Clockwork computer. ALL TEXT PLACEHOLDER; Hollweg/Ferrer/Jakob voices need designing. Tests
+  tools/test_campaign_c01.gd, balance tools/sim_campaign_c01.gd. 12 Claude's choices in the doc.
 - CROWN BROOD MEASURE (job crown-brood-measure, data on 0.38.38, docs/crown_brood_measure.md, data docs/crown_brood_measure/):
   152 games v the Brood, arms M as is / C coach:off / H honest:off / F screenfirst+gunsfirst off: M = C (6 v 7, p 1.0);
   the HONEST RECKONING (rule 3, only read v the Brood) HURT (H v M income 8:00 26 v 12, p 0.034; 12:00 21 v 8, p 0.024),
