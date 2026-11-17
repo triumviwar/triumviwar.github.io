@@ -25,13 +25,17 @@
 
 ## Current work
 
-- BROOD PROLOGUE OUTLINE (owner 2026-11-17 08:01 "Now make the campaign missions", prologues first; job
-  brood-prologue-outline (branch, docs only): docs/campaign_brood_prologue.md, "Specimen One" (June 2767, the Eve of
-  Saint John, the Academy's station on the Rio Negro): Lindqvist raises a hatchling (LINNEA, a young Brood Mother, never
-  said) and lures her kin; Valadares warns; the station WINS the night (the Tyrant Sire dies rooted by her pen) and that
-  win is the seed of the Brood; choices: tell the lieutenant, keep her or put her down; no plateau, nest or Mother shown
-  (Lost Plateau and the Specimens follow from it). 6 stills with ChatGPT prompts, 14 engine needs beyond the Clockwork
-  prologue's, 12 OWNER QUESTIONS (side played solo, win or lose, narrator, Linnea...). All lines are placeholders.
+- BROOD PROLOGUE OUTLINE (owner 2026-11-17 08:01 "Now make the campaign missions", prologues first; ANSWERS 09:18; jobs
+  brood-prologue-outline + brood-prologue-revise (branch brood-prologue-outline, docs only): docs/campaign_brood_prologue.md,
+  "Specimen One" (June 2767, Saint John's Eve, the Academy's station on the Rio Negro). DECIDED: a mission the scientists
+  LOSE (the station falls in Part 3, told only then; the people escape by the jetty, counted); the NARRATOR is LINDQVIST
+  himself (the Brood line's main character, the heretical scientist) in person in the present, the King opens/closes and
+  corrects him; the player plays the STATION (pack = versus only; first Brood play stays the Lost Plateau); their aim:
+  tame and sell BEASTS OF WAR to the Crown; Valadares warns, ignored; Linnea (a young Brood Mother, never said; Queen
+  only hinted) lays a clutch while the Tyrant Sire roots by her pen, then he leads her into the forest (always lost);
+  choices: tell the lieutenant, BURN THE EGGS or SAVE THE RESEARCH (flag clutch). Lindqvist's hub moves downriver
+  (Barra do Rio Negro, proposed). Open: where he tells it from (proposed: a room with no name), the lure, colours, the
+  gun, names, the storyline's name. All lines are placeholders.
 - CROWN BROOD MEASURE (job crown-brood-measure, data on 0.38.38, docs/crown_brood_measure.md, data docs/crown_brood_measure/):
   152 games v the Brood, arms M as is / C coach:off / H honest:off / F screenfirst+gunsfirst off: M = C (6 v 7, p 1.0);
   the HONEST RECKONING (rule 3, only read v the Brood) HURT (H v M income 8:00 26 v 12, p 0.034; 12:00 21 v 8, p 0.024),
