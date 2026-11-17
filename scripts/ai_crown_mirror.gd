@@ -337,10 +337,10 @@ const PRESS_FROM := 360.0
 const PRESS_EDGE := 1.3
 const PRESS_MIN := 600.0
 const PRESS_COOL := 25.0
-const PRESS_STALE := 0.6          # the enemy army not seen in the last PRESS_FRESH s: this share of the reckoning (AICrown.foe_reckon) at least
+const PRESS_STALE := 0.8          # the enemy army not seen in the last PRESS_FRESH s: this share of the reckoning (AICrown.foe_reckon) at least
 const PRESS_FRESH := 60.0
-const PRESS_FLOOR := 0.5          # ... seen lately (a scout's glimpse may be part of it): this share at least
-const PRESS_BAR := 0.7            # the bar comes down to this share of the army ready
+const PRESS_FLOOR := 0.7          # ... seen lately (a scout's glimpse may be part of it): this share at least
+const PRESS_BAR := 0.85           # the bar comes down to this share of the army ready
 var press_n := 0                  # (the report) waves the press sent
 var _press_said := -99.0
 var _wave_off_t := -99.0          # clock the last wave ended
@@ -363,7 +363,8 @@ func press() -> void:
 		return
 	var hz = ai.harass
 	var ready: Array = game.army(ai.team).filter(func(u: Unit) -> bool: return not ai._raiders.has(u) and u.kind != "powder_wagon" \
-			and not u.is_worker() and u.armed() and not ai._on_errand(u) and not (hz != null and hz.has(u)) and not ai._horse_coming(u))
+			and not u.is_worker() and u.armed() and not ai._on_errand(u) and not (hz != null and hz.has(u)) and not ai._horse_coming(u) \
+			and not ai._guards.has(u))      # (a new hall's guards stay: AI._guard_new_hall)
 	var mine := _value(ready)
 	if mine < PRESS_MIN:
 		return
