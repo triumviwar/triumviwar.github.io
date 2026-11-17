@@ -25,6 +25,13 @@
 
 ## Current work
 
+- BROOD PROLOGUE OUTLINE (owner 2026-11-17 08:01 "Now make the campaign missions", prologues first; job
+  brood-prologue-outline (branch, docs only): docs/campaign_brood_prologue.md, "Specimen One" (June 2767, the Eve of
+  Saint John, the Academy's station on the Rio Negro): Lindqvist raises a hatchling (LINNEA, a young Brood Mother, never
+  said) and lures her kin; Valadares warns; the station WINS the night (the Tyrant Sire dies rooted by her pen) and that
+  win is the seed of the Brood; choices: tell the lieutenant, keep her or put her down; no plateau, nest or Mother shown
+  (Lost Plateau and the Specimens follow from it). 6 stills with ChatGPT prompts, 14 engine needs beyond the Clockwork
+  prologue's, 12 OWNER QUESTIONS (side played solo, win or lose, narrator, Linnea...). All lines are placeholders.
 - CROWN BROOD MEASURE (job crown-brood-measure, data on 0.38.38, docs/crown_brood_measure.md, data docs/crown_brood_measure/):
   152 games v the Brood, arms M as is / C coach:off / H honest:off / F screenfirst+gunsfirst off: M = C (6 v 7, p 1.0);
   the HONEST RECKONING (rule 3, only read v the Brood) HURT (H v M income 8:00 26 v 12, p 0.034; 12:00 21 v 8, p 0.024),
