@@ -298,3 +298,17 @@ player did (selected, camera_moved, built, rooted, crew, did...) and the `point`
 | roles `lindqvist`, `valadares`, `pieter`, `teles`, `joaquim`, `villager`, `benedito`, `linnea` | the Brood prologue's people (stand-ins) and Linnea (a Brood Mother's kind at 0.4) |
 | hub hotspot / talk entry `"flag": {"<mission>.<flag>": value}` | shown / said only if a finished mission left that flag (CampaignMenu.flags_ok: the crate in the cellar if the eggs were saved) |
 | a Brood team with no Mother | in a mission it is never beaten for it (Game._check_end leaves the end to the mission); the pack is scripted |
+
+## Added by the Brood prologue flip (brood-prologue-flip, 0.38.49; docs/campaign_b01_build.md)
+
+The Naturalist's prologue played as the Brood (the Sire's pack v a rival pack, the station a scripted third side) needed
+only these; the solo side pick and the difficulty setting are another job's (act1-engine0).
+
+| key / action | what it does |
+| --- | --- |
+| three sides in a mission | nothing new was needed: teams are hostile by side (Game.hostile); a side with no objectives never ends the mission; a failed primary hands the win to the FIRST other side in `sides` (MissionRun._other_side), so the side listed second is the one whose debrief a loser sees (the rival pack's) |
+| team `"hall_tag"` on a Brood team | tags (and lets the triggers name) her Brood Mother, the Brood's "hall" (the Old Mother, the Rival Mother) |
+| team `"ai_foe": "<team id>"` | the computer player of that team goes for that team before any other (AI._foe asks MissionRun.ai_foe): the rival pack attacks the Sire's pack, not the station |
+| team `"supply_cap": n` | the team's supply never above n (Game.max_supply asks the mission): the rival computer's army kept to a size a first Brood player can meet |
+| `{"nest_free": {"tag", "on"}}` | these fathers may root away from their own Mother's father range (meta `mission_root`, the rule BroodRoot.place_problem already had for a scripted root), and so may a person's ROOT ghost: the player's Sire nests by her pen; off: the range again |
+| `{"order": {..., "do": "heel", "leader": tag}}` | each unit walks after the first living unit with that tag, stopping a little behind (repeat it with a trigger's `every`): Linnea at the Sire's heels, on a scripted team allied to the player (no person orders her) |

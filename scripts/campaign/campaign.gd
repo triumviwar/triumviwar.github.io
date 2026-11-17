@@ -393,6 +393,8 @@ static func problems(m: Dictionary) -> Array:
 			out.append("team %s: unknown side %s" % [tm["id"], tm.get("side")])
 		if not faction_known(m, String(tm.get("faction", "crown"))):
 			out.append("team %s: unknown faction" % tm["id"])
+		if tm.has("ai_foe") and not teams.has(String(tm["ai_foe"])):
+			out.append("team %s: ai_foe names an unknown team %s" % [tm["id"], tm["ai_foe"]])
 		if tm.has("camera") and not areas.has(String(tm["camera"])):
 			out.append("team %s: unknown camera area %s" % [tm["id"], tm["camera"]])
 		for md in modes_of(m):
@@ -547,7 +549,7 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 			if v.get("at") is String and not areas.has(String(v["at"])):
 				out.append("%s: unknown area %s" % [where, v["at"]])
 		"order":
-			if not ["attack", "move", "hold", "stop", "patrol", "hunt", "root", "uproot"].has(String(v.get("do", ""))):
+			if not ["attack", "move", "hold", "stop", "patrol", "hunt", "root", "uproot", "heel"].has(String(v.get("do", ""))):
 				out.append("%s: unknown order %s" % [where, v.get("do")])
 			if v.has("to") and not areas.has(String(v["to"])):
 				out.append("%s: unknown area %s" % [where, v["to"]])
@@ -568,7 +570,7 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: unknown side %s" % [where, v])
 		"mark", "flag", "clock", "counter", "tally", "name":
 			pass
-		"cage", "pin", "carry", "spare", "floor", "heal", "burn":
+		"cage", "pin", "carry", "spare", "floor", "heal", "burn", "nest_free":
 			if not (v is Dictionary and v.has("tag")):
 				out.append("%s: %s needs a tag" % [where, k])
 		"convert":

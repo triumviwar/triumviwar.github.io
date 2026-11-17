@@ -1,124 +1,130 @@
-# The Brood prologue, "Specimen One": what was built (brood-prologue-build, 0.38.45)
+# The Naturalist's prologue, "Specimen One", PLAYED AS THE BROOD (brood-prologue-flip, 0.38.49)
 
-The outline and the owner's answers (docs/campaign_brood_prologue.md, with the answers of 2026-11-17 09:18 and 10:22) as a
-playable mission on the campaign engine (docs/campaign_engine.md, its new parts in "Added by the Brood prologue"). It is
-the first mission of THE NATURALIST (campaign/campaign.json "naturalist", the Brood storyline renamed from "The Explorer"),
-open after the Crown's prologue, as the Clockwork's is. A LOSING mission: Parts 1 and 2 are won in their own terms, Part 3 is
-a retreat to the canoes on a clock, and the story's loss counts like a win (THE STATION IS LOST).
+The owner's decision of 2026-11-17 22:00-22:04 (docs/campaign_act1_plan.md, "OWNER ANSWERS"): "we can see the naturalist
+spying on the brood and we play the brood fighting, maybe brood vs brood". The prologue first built in 0.38.45 (the
+station played, a losing mission; in git history before 0.38.49) is rebuilt: THE PLAYER IS THE TYRANT SIRE'S PACK. It is
+now THE FIRST BROOD PLAY of the campaign, so its objectives are a short teaching strip. The station's story still happens,
+by the script, and LINDQVIST still tells it (what he saw from his window); the King frames it as before.
 
-EVERY LINE OF TEXT IS A PLACEHOLDER for the owner to rewrite (kept short and plain on purpose). The stills are stand-ins.
+EVERY LINE OF TEXT IS A PLACEHOLDER for the owner to rewrite. The stills are stand-ins.
 
 ## Files
 
 | what | where |
 | --- | --- |
 | the mission | `campaign/missions/b01_specimen.json`, written by `tools/campaign/make_b01_mission.py` (edit the script, run it) |
-| the map | `campaign/maps/rio_negro_station.json` (`campaign:rio_negro_station`), written by `tools/campaign/make_rio_negro_map.py`; opens in the MAP EDITOR |
-| the stills (stand-ins) | `campaign/stills/b01_01.jpg` .. `b01_08.jpg`, drawn by `tools/campaign/make_b01_stills.py` |
-| the sounds | `assets/audio/campaign/linnea_call.wav`, `forest_answer.wav`, `sire_roar.wav`, made from the Brood's own creature voices by `tools/campaign/make_b01_sounds.sh` |
-| texts pt / es | `tools/i18n/campaign/b01_specimen.txt` (then `python3 tools/i18n_build.py`) |
-| the hubs | `campaign/campaign.json`: THE NATURALIST (Lindqvist's Station; after the fall The Warehouse at the Barra), the King's study (Dr. Lindqvist held) |
-| the engine | `scripts/campaign/mission_run.gd`, `campaign.gd`, `campaign_menu.gd`, `rebels.gd`; small hooks in `scripts/entity.gd` (spared, hp_floor), `scripts/unit.gd` (m_pace, m_unarmed), `scripts/brood_new.gd` (a caged egg, a role's scale), `scripts/brood_root.gd` (a scripted father's nest) |
+| the map | `campaign/maps/rio_negro_station.json`, written by `tools/campaign/make_rio_negro_map.py` (now with the two dens) |
+| the stills (stand-ins) | `campaign/stills/b01_01.jpg` .. `b01_08.jpg` (unchanged) |
+| the sounds | `assets/audio/campaign/linnea_call.wav`, `forest_answer.wav`, `sire_roar.wav` (unchanged) |
+| texts pt / es | `tools/i18n/campaign/b01_specimen.txt` (then `python3 tools/i18n_build.py`); the Brood is a Ninhada / la Nidada, her clutch a ninhada / la puesta |
+| the engine | `scripts/campaign/mission_run.gd` (`nest_free`, `heel`, `ai_foe`, `hall_tag` on a Brood team), `campaign.gd` (their checks), `scripts/ai.gd` (`_foe`), `scripts/game.gd` (`max_supply`: `supply_cap`); docs/campaign_engine.md "Added by the Brood prologue flip" |
 | test | `tools/test_campaign_b01.gd` (`godot --headless --fixed-fps 30 --script res://tools/test_campaign_b01.gd`) |
-| balance and pictures | `tools/sim_campaign_b01.gd` (`-- active teles=told|quiet clutch=saved|burned`; `shots=<dir>` with a window: `xvfb-run`) |
-| pictures | `docs/shots/campaign_b01/` (captions.md) |
+| balance and pictures | `tools/sim_campaign_b01.gd` (`-- active [eggs=left|taken] [rival=easy|normal] [rush] [raid]`; `shots=<dir>` with a window: `xvfb-run`) |
+
+## The map
+
+The Rio Negro station's map as before (the river, the station on its rise, the village of Nazaré to the west, the fort
+on its rocky point to the east, the igapó, the creek), with two big clearings cut in the deep forest:
+
+- THE SIRE'S DEN, north-west (the player): the Old Mother's nest at cell [16, 14], a Brood standard start (her, a
+  Rootmaw, five grubs). The north-west trail runs through it, a back way goes down to the village's side, and a forest
+  path leads east to:
+- THE RIVAL'S DEN, north-centre, right above the station (the Brood computer): its Mother at [58, 18]; a trail runs from
+  it down to the forest's edge above the station's north ramp.
+
+The map has seven starts now (one per team; the mission places them).
 
 ## How to play it
 
-CAMPAIGN, the tab THE NATURALIST (open once the Crown's prologue is done), the SPECIMEN CHART, the mission, START. The
-opening's four stills (the King in Rome with the mapmaker's letter; Lindqvist in chains before the King; the station; Specimen
-One: the King opens, Lindqvist tells it), then:
+CAMPAIGN, THE NATURALIST (open once the Crown's prologue is done), the specimen chart, the mission, START (SOLO, or
+VERSUS online: the friend is the rival pack). The opening's stills (the King with the mapmaker's letter; Lindqvist in
+chains before the King; the station; Specimen One: "That week, Majesty, the forest watched back"), then:
 
-- PART 1, SPECIMEN ONE (a humid afternoon). The station (YELLOW): the station house (a Town Hall), the specimen house (a
-  Cottage), the garden (a Farm), 6 hands, 4 guards, DR. LINDQVIST (a Musketeer stand-in, 320 health) and PIETER (a
-  Labourer, 110). No Horse Breeder, Foundry or Armoury (the jungle: the roster). LINNEA in her crate beside the
-  specimen house (a Brood Mother's kind drawn at 0.3, of a team of her own on the station's side, YELLOW: caged and
-  untouchable). 300 gold and 400 powder (250 more at nightfall). The garrison (PURPLE, scripted) at the fort: Lieutenant Teles and 10 Musketeers; Frei Joaquim and 14
-  villagers at Nazaré; Benedito at his canoes. Objective: BUILD HER PEN (11 stakes and a gate, laid out as building sites:
-  the hands build them). At 2:20 VALADARES comes down the river (an Officer stand-in, 320 health, with two of the
-  commission's men): meet him at the jetty. Then Pieter's TRACKS at the creek's ford. At dusk Linnea CALLS, something
-  answers, and two Raptors come for the goats (green). Then THE FIRST CHOICE (60 s, default KEEP IT QUIET):
-  - TELL THE LIEUTENANT: the village crosses to the fort, the garrison holds the causeway, the gun goes to the station's
-    landing; in Part 3 the villagers leave by the fort's steps.
-  - KEEP IT QUIET: the station alone; Raptors at the bonfires; bring the village in (optional: walk the station's men to
-    the village and they come up to the station); Teles comes late, with half his men.
-- PART 2, THE EVE OF SAINT JOHN (night, rain). First Lindqvist EXPLAINS the lure (what it is, what it does, where it goes),
-  then the objective: SET THE LURE (Pieter to the three marks at the forest's edge). The waves come from the three trail
-  heads one by one (about one every 50 s, 3 Raptors, a Spitter from the north-east): the first two go to their trail's jar
-  (the ambush works), from the third they walk past the jars to her pen ("they walked past the jars"). 3:40 into the part
-  the MOUND TURTLE walks out of the igapó and roots at the creek's mouth; Spitters come out of its swamp every 55 s while it
-  lives (optional: kill it). The part ends when the forest goes quiet: 8:00 in, once the turtle is dead and the village
-  settled, or at 11:00 whatever happened.
-- PART 3, THE TYRANT (night, the station alight). The TYRANT SIRE comes down the creek trail with Raptors and a Spitter. The
-  objectives change on screen: "The station cannot be held. Save who you can and get to the jetty. Benedito's canoes leave
-  in 8:40" (a countdown; +1:30 if the turtle died in Part 2). Primary: Lindqvist and Valadares at the jetty when the canoes
-  leave. Optional: the people into the canoes ("21 saved of 33": BENEDITO'S CANOES come round from the rapids 1:40 into the
-  part; from then the station's men who walk onto the jetty, and the villagers onto the jetty or the fort's steps, are
-  aboard: until then hold them there), Pieter lives, the fort's gun (told). The Sire LIES DOWN beside her pen (rooted he cannot bite;
-  he cannot die tonight: his health stops at a third); every 30 s he calls with her and a few Raptors answer; while he lies
-  there she lays a clutch of 5 eggs in her straw. Hurt to a third he gets up roaring (two Raptors come), lies down again 30 s
-  later. The garden catches fire at 0:40, the specimen house at 2:30, the station house at 2:40 (it falls last). At 5:30 HE
-  TAKES HER: the pen broken, Linnea his (green), they walk up the creek trail and off the map; the pack goes with them, but
-  for a few stragglers. Then "Reach the burning specimen house with Dr. Lindqvist": THE SECOND CHOICE (35 s, default SAVE
-  THE RESEARCH):
-  - BURN THE EGGS: the eggs and the notes burn; Lindqvist walks to the jetty free and armed.
-  - SAVE THE RESEARCH: Lindqvist carries the crate (slower, he cannot shoot: "Dr. Lindqvist (the crate)").
-  - Never reached (the specimen house burned down, or 0:40 left): the fire takes the eggs (as burned, said so).
-- THE CANOES LEAVE: with Lindqvist and Valadares on the jetty the saved are counted, the flags kept, and 12 s later the
-  mission ends: the ending's stills (Lindqvist's lines by the flags, Valadares going north, the teller before the King, the
-  King's truth) and the end screen: THE STATION IS LOST, the debrief's lines by the flags. It counts: the progress, the flags,
-  THE NATURALIST's hub after it, Lindqvist held in the King's study.
-- THE REAL DEFEATS: Lindqvist or Valadares killed (DEFEAT, retry), or either not on the jetty when the canoes leave.
+THE SIDES. The Sire's pack (GREEN, the player: the Old Mother, the Tyrant Sire, two Raptors, the standard start). The
+rival pack (RED: the Brood computer, Easy, its supply capped at 36, its foe the Sire's pack; four Raptors and a Spitter
+watching the forest's edge above the station; and its HUNTERS, a scripted team of the same side and colour). The station
+(YELLOW: Lindqvist, Pieter, six hands, four guards; the garrison PURPLE: Teles and ten Musketeers at the fort, Frei
+Joaquim and fourteen villagers at Nazaré, Benedito at his canoes) and LINNEA in her pen (her own team, the station's,
+caged and untouchable). Three sides, all against each other.
 
-The flags kept (`Campaign.flag("b01_specimen", ...)`; a later mission reads them with `{"past": {"b01_specimen.<flag>": value}}`):
-`teles` told / quiet, `clutch` saved / burned (`fire` yes when the fire took them), `saved` few / some / many (0-9, 10-19, 20+;
-the number in `saved_n`), `pieter` alive / lost, `turtle` early / late, `gun` kept / lost (told only).
+THE TEACHING STRIP (the objectives, one after another; no creature speaks: objectives and sounds only):
 
-THE HUB AFTER THE FALL: THE NATURALIST's hub becomes "The Warehouse at the Barra" (the station painting tinted, until the
-owner's painting of the warehouse; Lindqvist's new lines), with THE CRATE IN THE CELLAR (eggs saved: "It grows.") or THE
-SINGED NOTEBOOK (burned) in place of HER CRATE. The plateau's egg and the specimen jar wait for the Specimens (`requires`
-a05_specimens, a mission not written yet). In the King's study DR. LINDQVIST is listed (held in the palace) and the King has
-new lines.
+1. ROOT: select the Tyrant Sire, ROOT, set him down in the ring round the Old Mother (her father range). Rooted, he is the
+   nest her warrior eggs hatch in.
+2. LAY AND HATCH: lay two Raptor eggs at the Old Mother; they roll into his nest, he breathes on them, they hatch (6
+   Raptors in all; after 10:00 four will do). More creatures need more supply: a grub turns into a Mound Turtle (BUILD).
+3. THE SIRE'S ROAR: uproot him and walk him anywhere along the forest's edge above the station (a long band from the
+   west jar's clearing to the creek). He roars, she answers (her call, her pen shown for 40 s), the dusk comes, and from
+   now on he may nest by her pen (`nest_free`). From here the rival pack's hunters come: four Raptors and a Spitter
+   down the creek trail to her pen 25 s after the roar; and once the laying is done and the Sire is out of the den, six
+   of them at the Old Mother (a raid to show that the den needs guarding).
+4. LINNEA: root the Sire beside her pen. While he lies there she lays her clutch, an egg every 16 s, five in all (the
+   count pauses whenever he gets up or leaves). Rooted he cannot bite: keep the pack round him. The station's guards
+   shoot at whatever comes onto its rise.
+5. Break her pen's gate (spared until the clutch is laid).
+6. THE ONE CHOICE (30 s, default LEAVE IT): TAKE THE CLUTCH (the Sire carries the eggs home in his jaws: slower, he cannot
+   bite until she is home) or LEAVE IT (canon: Lindqvist saves them from the fire). Then: TAKE HER HOME: walk the Sire
+   back to the Old Mother's den; Linnea follows at his heels (`heel`, on a scripted team allied to the player). Eight
+   Raptors and two Spitters of the rival's hunters come out at the west jar 4 s after the gate breaks and hunt the
+   Sire. She reaches the den: the dawn, her call and his roar, and 6 s later the WIN.
+- Optional all along: drive the rival pack off (kill its Mother).
+- THE DEFEATS: the Tyrant Sire or the Old Mother killed (the rival pack's debrief: "The pack is broken").
+- A player who does nothing: nothing happens (no den raid until the laying is done; the rival computer, held at 36
+  supply, does not come for the den). Not a loss, never a win.
 
-Co-op: the friend commands the garrison (purple: Teles' Musketeers, the gun, Frei Joaquim and the villagers). Versus: the
-friend is the pack (the waves and the Sire are his units; he wins by killing Lindqvist or Valadares). Neither was played on
-two devices (as for the whole engine).
+THE STATION'S STORY, by the script, while the player plays (Lindqvist's eyes; the canon results):
 
-## The engine (docs/campaign_engine.md lists every key)
-
-The outline's 16 needs beyond the Clockwork's, and what was built:
-
-| the outline's need | built |
+| when | what |
 | --- | --- |
-| 1 a Brood team with no Mother that is not beaten | nothing to add in a mission: Game._check_end leaves the end to MissionRun, so the scripted pack (no Mother, no grubs, no economy) is never beaten for it. The pack's player in versus still sees the Brood's HUD (no Mother: its economy buttons do nothing); a "wild" team flag that hides them is not built (Claude's choice 10) |
-| 2 scripted root and uproot | `order` `"do": "root"` (to an area) and `"uproot"`; a father may nest by a Mother of another side (meta `mission_root`); condition `{"rooted": {"tag"}}` |
-| 3 a caged unit on another team | Linnea is on a team of her own (`pen`, the station's side, YELLOW, scripted), so she is "the station's" without the player commanding a Brood Mother; `cage` (no move, no bite, put back if shoved), `spare` (untargetable, unhurt); `convert` to the pack when the pen breaks, then she walks after the Sire and leaves by an exit |
-| 4 a pen condition | the pen's 12 pieces are building SITES (`"site": true`) the hands build; objective `"kind": "build"` |
-| 5 a priority target and the lure's one-time pull | `order` `"to_if"` (the jar while the first two waves come and that jar is set, else the pen) |
-| 6 the Sire's call while rooted | a repeating trigger gated by `rooted` |
-| 7 a unit that cannot die tonight | `floor` (and `heal`), condition `hp` |
-| 8 the clutch | `brood_egg` units spawned in her pen while the Sire lies there, `cage`d (an egg caged never hatches) and `spare`d; burned or carried by the choice |
-| 9 a spreading fire | `burn` (a timetable per building; flames shown); the station house last |
-| 10 a carrier's price | `carry` (slower, unarmed) |
-| 11 rain and bonfires | `"weather": "rain"`, the jungle lights; the bonfires are the map's campfire props (no placed light: Claude's choice 11) |
-| 12 no horses | the roster denies the Horse Breeder, the Foundry and the Armoury; the gun is a Field Cannon with no horse (`pin`; a cannon with no horse already stays set up where it is) |
-| 13 the pack in versus | the waves and the Sire are the friend's units (scripted orders skip a person's team); his objective: kill Lindqvist or Valadares. NOT built: choosing the trail head for each call, rooting the Sire himself (a father's nest needs his own Mother), the scored end (Claude's choice 9) |
-| 14 role scale | a role's `"scale"` (Linnea at 0.3) |
-| 15 the map | the generator |
-| 16 the hub after the prologue | hub `"after"` (title, about, still, tint) and hotspot / talk `"flag"` gating (new: CampaignMenu.flags_ok) |
+| 0:01 | Lindqvist: something moved in the deep forest that week |
+| 1:10 | Linnea calls at sunset, nothing answers yet |
+| 2:20 | Valadares comes down the river with two of the commission's men (he and Lindqvist untouchable and unarmed: they can't be killed and can't shoot the pack while untouchable); they meet |
+| the pack at the ford or the forest's edge (or 7:00) | the tracks: two kinds, two packs |
+| the pack at the goats | "At the goats!": the guards go there |
+| the roar | the dusk, "She knows that voice"; 12 s later THE TELES DEBATE, the script's choice: KEEP IT QUIET (flag `teles` quiet) |
+| 25 s later | the night and the rain; the lure explained; Pieter walks the three jars to the forest's edge (it pulls nobody: "they walked past the jars" when the pack comes onto the rise) |
+| the Sire on the station's rise | the break-in: "the ground shook", the fire light; the guards go for the pen; Valadares fires the thatch (the garden at +20 s, the specimen house at +70 s, the house at +90 s); Teles comes late with three men to hold the east causeway (+60 s); Frei Joaquim sends the village to its boats |
+| the Sire rooted by her pen | "He lay down beside her like a groom"; the eggs; "She is too young"; at five: "Five eggs. And he lay across the gate." |
+| the gate broken | "The pen broke like kindling, and she followed him"; the station's people to the jetty, the village to its beach, Teles back to the fort; THE RESEARCH (the scientists' choice, by the script: canon SAVE IT): Lindqvist goes to the straw; left: he carries the crate (flag `clutch` saved); taken: the straw is empty, "I thought the fire had taken them" (`clutch` burned, `fire` yes); then to the jetty |
+| Lindqvist and Valadares on the jetty | the canoes push off |
 
-Also: exits that open `after` a trigger and keep `except` tags (the canoes take people only once the station falls, and
-never the two heroes), a counter set from a count (`count`, `plus`), a mission `"floor"` tint for the ground.
+The people are counted from the start (the station's but Lindqvist, the commission when it comes, the village and the
+friar: 28); those who reach the jetty or the beach once the gate is broken are saved. So a player who raids the station
+or lets the hunters loose among the village saves fewer of them (flag `saved` few / some / many, the number in `saved_n`).
+
+## The flags (for the missions after it)
+
+| flag | values | set by | what later missions read (docs/campaign_act1_plan.md) |
+| --- | --- | --- | --- |
+| `teles` | quiet (always) | the script (the canon: Lindqvist kept it quiet) | a03: Valadares goes north with only the commission's men and Benedito; a07: the station's secret comes out under questioning |
+| `clutch` | saved / burned | the player's choice: LEAVE (saved: Lindqvist carries the crate out of the fire) or TAKE (burned: the straw was empty, he believes the fire took them) | a05 breeding stock / fresh start; the hub's crate in the cellar / singed notebook |
+| `fire` | yes (with TAKE) | Lindqvist's belief | the ending's line "The fire took her eggs before I reached them" |
+| `eggs` | left / taken (NEW) | the player's one choice | the truth: with taken, the pack carried the clutch north (the King's line; a03 can show more young on the plateau) |
+| `saved` | few / some / many (`saved_n`) | the people who reached the boats | a03 guides from Nazaré, a05 paddlers |
+| `pieter` | alive / lost | Pieter alive when she is home (he walks the jars to the forest's edge and is often lost) | a05 |
+| `turtle` | early / late | early if the Sire's pack had a Mound Turtle when the gate broke | lines only ("a swamp that walked") |
+| `rival` | standing / driven (NEW) | the rival Mother dead or not when she is home | nothing yet (the debrief's line) |
+| `gun` | not set | (the canon is quiet: the fort's gun never came to the station) | lines only |
+
+## The engine (docs/campaign_engine.md, "Added by the Brood prologue flip")
+
+Three sides needed nothing new (hostility by side; the second side in the list is the loser's debrief). Added: a
+team's `hall_tag` works on a Brood team (her Mother); `ai_foe` (the rival computer goes for the Sire's pack, not the
+station); `supply_cap`; `nest_free` (a father may root away from his Mother's range, a person's ROOT ghost too); the
+`heel` order. Not built here (another job's, act1-engine0): the solo side pick (playing the station or the rival pack
+alone) and the difficulty setting.
 
 ## The voice lines (for the owner's Chatterbox recordings)
 
-Recorded lines go in `campaign/voice/b01/<line id>.ogg` (or .wav / .mp3); the game plays them when present (CampaignVoice).
-The King's lines in the King's voice (tools/voice_clone, refs king_ref.wav). DR. LINDQVIST (old, telling it before the King;
-the same voice serves his scene lines, or a younger version raised in pitch), VALADARES, PIETER, LIEUTENANT TELES, FREI
-JOAQUIM and BENEDITO need DESIGNED voices first (a 10-20 s sample each, the owner's rule: ElevenLabs only to design, then
-Chatterbox for all the lines; tools/voice_clone/refs/ has 5 designed voices, one may fit). "The Rio Negro" is a narrator
-(could be Lindqvist himself, or the King's narrator voice). "The Forest" (versus only) can stay text. Linnea's call, the
-pack's answer and the Sire's roar are SOUNDS (assets/audio/campaign/), not voices.
+Recorded lines go in `campaign/voice/b01/<line id>.ogg`. Changed since 0.38.45: NEW `l_open5`, `l_2`, `v_fire`, `l_five`,
+`l_gone`, `l_end_two`, `k_end_taken`; REWORDED `l_1`, `l_weigh`, `n_canoe`, `p_tracks2`, `v_tracks`, `l_tracks`, `l_kin`,
+`n_call`, `l_call`, `v_tell`, `l_one_night`, `l_lure1`, `l_lure2`, `p_sire`, `l_lost`, `v_lost`, `t_late`, `j_raid`,
+`n_taken`, `n_room`, `l_pieter`, `n_leave`, `l_end_nopieter`; GONE (the station is no longer played): `l_open4`, `p_1`,
+`tip_1`, `l_pen`, `p_pen`, `tip_meet`, `p_tracks`, `v_told`, `l_lure3`, `tip_lure`, `l_set`, `t_told`, `j_come`, `j_in`,
+`p_island`, `v_island`, `v_turtle`, `n_quiet`, `l_quiet2`, `tip_3`, `b_bonus`, `t_steps`, `tip_rooted`, `n_nothing`,
+`p_fire`, `v_lamp`, `b_here`, `p_pack_goes`, `p_fire_took`, `b_warn`, `v_hurt`, `n_behind`, `f_intro` (The Forest),
+`l_end_burned`. The voices to design are as before (Lindqvist, Valadares, Pieter, Teles, Frei Joaquim, Benedito; the
+Rio Negro a narrator); no creature has a voice.
 
 | file (campaign/voice/b01/) | voice | when (trigger) | line |
 | --- | --- | --- | --- |
@@ -127,122 +133,118 @@ pack's answer and the Sire's roar are SOUNDS (assets/audio/campaign/), not voice
 | l_open1.ogg | Dr. Lindqvist | opening | I was the happiest man in the world that summer, Majesty. Write that down, whoever writes. |
 | l_open2.ogg | Dr. Lindqvist | opening | The Academy's station at the rapids of São Gabriel. The river high, the forest standing in the water. |
 | l_open3.ogg | Dr. Lindqvist | opening | She came from an egg a trader found after the flood. In forty days she had trebled. |
-| l_open4.ogg | Dr. Lindqvist | opening | I meant to give the Crown a beast of war no army had. I meant to give her a mate first. |
-| l_1.ogg | Dr. Lindqvist | intro | She has outgrown her crate. A proper pen today, beside the specimen house. |
-| p_1.ogg | Pieter | intro | The stakes are cut and marked, Doctor. |
-| tip_1.ogg | Pieter | intro | Select the hands and right-click a marked stake. They go on to the next by themselves. |
-| l_weigh.ogg | Dr. Lindqvist | call_1 | Hear her? She calls when she is hungry. Eleven pounds heavier than Monday. |
-| l_pen.ogg | Dr. Lindqvist | pen_done | There. Room to grow. |
-| p_pen.ogg | Pieter | pen_done | She will need a bigger one by August. |
-| n_canoe.ogg | The Rio Negro | valadares | A canoe comes down from the boundary survey: the Crown's mapmaker, Duarte Valadares. |
-| tip_meet.ogg | Pieter | valadares | Walk Dr. Lindqvist down to the jetty to greet him. |
-| v_1.ogg | Valadares | meet_done | Doctor. They say at the fort you keep a lizard the size of a dog. |
-| l_v1.ogg | Dr. Lindqvist | meet_done | Not a lizard. Something no man has named. The Crown will have a cavalry that needs no hay. |
-| v_2.ogg | Valadares | meet_done | You mean to sell this to the army, Doctor? Then why do you whisper when you speak of her? |
-| p_tracks.ogg | Pieter | tracks | Doctor, come and see. At the creek. These are not hers. |
-| p_tracks2.ogg | Pieter | tracks_found | Three toes, deep in the mud. Too many to count. |
-| v_tracks.ogg | Valadares | tracks_found | These came down from the north. From where your trader found the egg. |
-| l_tracks.ogg | Dr. Lindqvist | tracks_found | Then she has a family. Splendid. |
-| n_call.ogg | The Rio Negro | goats_come | At dusk she called. Something in the forest answered. |
-| l_call.ogg | Dr. Lindqvist | goats_come | Listen. Listen to that. |
-| v_goats.ogg | Valadares | goats_attack | At the goats! Guns, quickly! |
-| l_kin.ogg | Dr. Lindqvist | goats_done | She has kin. Do you see what that means? Not one beast. A breed. |
-| v_tell.ogg | Valadares | teles_choice | Send to Teles, Doctor. Tell him what we saw at the creek, and bring the village in before dark. |
-| l_quiet.ogg | Dr. Lindqvist | teles_choice | If Teles sees those tracks he will shoot everything in this forest, beginning with her. One night. |
-| v_told.ogg | Valadares | teles_choice / told | My man is already on the path to the fort. |
-| l_one_night.ogg | Dr. Lindqvist | teles_choice / quiet | One night, Valadares. The Crown will have its beasts tame or not at all. |
+| l_open5.ogg | Dr. Lindqvist | opening | I watched the forest from my window every evening. That week, Majesty, the forest watched back. |
+| l_1.ogg | Dr. Lindqvist | intro | Something moved in the deep forest that week. Pieter said the birds had gone quiet to the north. |
+| l_2.ogg | Dr. Lindqvist | intro | I wrote it down and thought nothing of it. I had a pen to finish. |
+| l_weigh.ogg | Dr. Lindqvist | call_1 | She called at sunset, as every day. Eleven pounds heavier than Monday. Nothing answered. Not yet. |
+| n_canoe.ogg | The Rio Negro | valadares | A canoe came down from the boundary survey: the Crown's mapmaker, Duarte Valadares. |
+| v_1.ogg | Valadares | meet | Doctor. They say at the fort you keep a lizard the size of a dog. |
+| l_v1.ogg | Dr. Lindqvist | meet | Not a lizard. Something no man has named. The Crown will have a cavalry that needs no hay. |
+| v_2.ogg | Valadares | meet | You mean to sell this to the army, Doctor? Then why do you whisper when you speak of her? |
+| p_tracks2.ogg | Pieter | tracks_p | Three toes, deep in the mud at the creek. Too many to count. |
+| v_tracks.ogg | Valadares | tracks | There are two kinds of track up there, Doctor. Two packs, and both came down from the north. |
+| l_tracks.ogg | Dr. Lindqvist | tracks | Then she has a family. Two families. Splendid. |
+| v_goats.ogg | Valadares | goats | At the goats! Guns, quickly! |
+| l_kin.ogg | Dr. Lindqvist | goats | Did you see them hunt? Not one beast. A breed, with a breed's manners. |
+| n_call.ogg | The Rio Negro | roar_heard | At dusk a roar came out of the forest, and she answered it. |
+| l_call.ogg | Dr. Lindqvist | roar_heard | Listen. Listen to that. She knows that voice. |
+| v_tell.ogg | Valadares | debate | Send to Teles, Doctor. Tell him what is in the forest, and bring the village in before dark. |
+| l_quiet.ogg | Dr. Lindqvist | debate | If Teles sees those tracks he will shoot everything in this forest, beginning with her. One night. |
+| l_one_night.ogg | Dr. Lindqvist | debate | So I kept it quiet, Majesty. One night, I said. The Crown would have its beasts tame or not at all. |
 | n_eve.ogg | The Rio Negro | eve | The Eve of Saint John. Rain on the river, and the bonfires lit at Nazaré. |
-| l_lure1.ogg | Dr. Lindqvist | eve | Now my lure. I made it from the shell of her egg and her own musk. |
-| l_lure2.ogg | Dr. Lindqvist | eve | Any of her kind that smells it follows the scent to the jar, and stands there sniffing like a dog. |
-| l_lure3.ogg | Dr. Lindqvist | eve | Three jars at the forest's edge. Whatever comes will come to them, and we will be waiting with the guns. |
+| l_lure1.ogg | Dr. Lindqvist | eve | I had made a lure from the shell of her egg and her own musk. Pieter set it in three jars at the forest's edge. |
+| l_lure2.ogg | Dr. Lindqvist | eve | Any of her kind that smelt it would stand at the jar sniffing like a dog, and we would be waiting with the guns. |
 | v_lure.ogg | Valadares | eve | You are calling something you have never seen, Doctor, to a house full of people. |
 | l_stallion.ogg | Dr. Lindqvist | eve | I am calling a stallion for my mare. By morning the Academy will have a pair. |
-| tip_lure.ogg | Pieter | eve | Walk Pieter to the three marks at the forest's edge. Set the guns where the jars are. |
-| p_set.ogg | Pieter | lure_set | All three jars are open, Doctor. I can smell it from here. |
-| l_set.ogg | Dr. Lindqvist | lure_set | Good. Now we wait by the jars. |
-| t_told.ogg | Lieutenant Teles | eve_told | The village is at the fort. My men hold the causeway, and the gun is at your landing. One night, Doctor. |
-| j_raid.ogg | Frei Joaquim | bonfire_raid | Doctor! They are at the bonfires! In the name of God, send us your guns! |
-| j_come.ogg | Frei Joaquim | folk_go | Come, all of you. Up to the station, quickly. |
-| j_in.ogg | Frei Joaquim | village_in | We are all inside the palisade. God keep us till morning. |
-| t_late.ogg | Lieutenant Teles | teles_late | Shots at the station! Half of you with me, along the causeway. |
-| p_past.ogg | Pieter | walked_past | Doctor, they walked past the jars. |
+| p_set.ogg | Pieter | lure_set_p | All three jars are open, Doctor. I can smell it from here. |
+| p_past.ogg | Pieter | walked_past_p | Doctor, they walked past the jars. |
 | v_past.ogg | Valadares | walked_past | They are not after your scent. They are going to her. |
-| p_island.ogg | Pieter | turtle_comes | The island at the creek's mouth. It is walking. |
-| v_island.ogg | Valadares | turtle_comes | Kill it before it settles. The ground goes to mud round it. |
-| v_turtle.ogg | Valadares | turtle_dead | The island is dead. The mud is drying already. |
-| n_quiet.ogg | The Rio Negro | quiet_falls | Near midnight the forest went quiet. |
-| l_quiet2.ogg | Dr. Lindqvist | quiet_falls | You see? They have had enough. By morning she will have her mate. |
 | n_ground.ogg | The Rio Negro | turn | Then the ground shook. |
-| p_sire.ogg | Pieter | turn | Down the creek trail. Doctor, it is as big as the house. |
-| l_lost.ogg | Dr. Lindqvist | turn | He has come for her. My lure brought him. |
-| v_lost.ogg | Valadares | turn | We cannot hold this place. Benedito is bringing his canoes round from the rapids. Get the people to the jetty, and hold them there. |
-| tip_3.ogg | Valadares | turn | Walk everyone you can into the canoes at the jetty. Dr. Lindqvist and I must be there when they leave. |
-| b_bonus.ogg | Benedito | turtle_bonus | The island is dead, so the mud is gone from the landing. I can wait a little longer. |
-| t_steps.ogg | Lieutenant Teles | turn_folk_told | The village goes down the fort's steps to the boats. Hold them off us! |
+| p_sire.ogg | Pieter | turn_p | Over the palisade. Doctor, it is as big as the house. |
+| l_lost.ogg | Dr. Lindqvist | turn | He walked through my station as if it were reeds. He did not want us. He wanted her. |
+| v_lost.ogg | Valadares | turn | We cannot hold this place. Get the people to the jetty. Benedito has his canoes. |
+| v_fire.ogg | Valadares | fire_1 | Fire the thatch! They shy from fire. It buys us the jetty. |
+| t_late.ogg | Lieutenant Teles | teles_late | Shots at the station! You three, with me, along the causeway. Hold the ford for them. |
+| j_raid.ogg | Frei Joaquim | village_wake | The station is burning! Down to the boats, all of you, in the name of God! |
 | l_groom.ogg | Dr. Lindqvist | sire_rooted | He did not want to eat her. He lay down beside her like a groom. |
-| tip_rooted.ogg | Valadares | sire_rooted | Lying down he cannot bite. Hurt him now and he gets up, and the calling stops a while. |
-| p_eggs.ogg | Pieter | eggs_seen | Doctor, there are eggs in her straw. |
+| p_eggs.ogg | Pieter | eggs_seen_p | Doctor, there are eggs in her straw. |
 | l_young.ogg | Dr. Lindqvist | eggs_seen | She is too young. She is far too young. |
-| n_nothing.ogg | The Rio Negro | sire_up | He rose roaring, and the pack closed round him. Nothing they had would kill him. |
-| p_fire.ogg | Pieter | fire_1 | Their spit is in the lamp oil! The garden is burning! |
-| n_taken.ogg | The Rio Negro | taken | He broke the pen like kindling, and she followed him. |
-| l_taken.ogg | Dr. Lindqvist | taken | No. No! She is mine! Shoot him, not her! |
-| v_taken.ogg | Valadares | taken | Let her go, Doctor. Your notes, your people. Now. |
-| n_room.ogg | The Rio Negro | research_choice | The specimen house was alight. The eggs lay in the trampled straw. |
-| v_burn.ogg | Valadares | research_choice | Burn them, Doctor. Whatever she was, do not carry her children down this river. |
-| l_save.ogg | Dr. Lindqvist | research_choice | Ten years of work. The Crown's beasts are in that straw. I will not leave them to the fire. |
-| v_lamp.ogg | Valadares | research_choice / burned | Give me the lamp. |
-| l_crate.ogg | Dr. Lindqvist | research_choice / saved | The crate, Pieter. The notes on top. I carry it myself. |
-| b_here.ogg | Benedito | canoes_here | The canoes are at the jetty! In, all of you, quickly! |
-| p_pack_goes.ogg | Pieter | pack_goes | They are going with him. All of them, up the creek. Doctor, the eggs! |
-| p_fire_took.ogg | Pieter | fire_took | The roof is down on the straw. The eggs are gone, Doctor. |
-| l_pieter.ogg | Dr. Lindqvist | pieter_lost | Pieter. Pieter went back for the book. |
-| b_warn.ogg | Benedito | warn_2 | Two minutes, Doctor! Then I push off, with you or without you. |
-| v_hurt.ogg | Valadares | hurt_l | Doctor, you are hurt. Keep back from them. To the jetty. |
-| n_leave.ogg | The Rio Negro | leave | The last canoe pushed off in the grey before dawn. |
-| b_leave.ogg | Benedito | leave | Paddle! Do not look back. |
-| n_behind.ogg | The Rio Negro | left_behind | The canoes left without them. |
-| f_intro.ogg | The Forest | intro_p | She calls. Answer her. Take her home, and leave nobody to follow. |
+| l_five.ogg | Dr. Lindqvist | ready | Five eggs. Five. And he lay across the gate and would not let a man near. |
+| n_taken.ogg | The Rio Negro | broken | The pen broke like kindling, and she followed him. |
+| l_taken.ogg | Dr. Lindqvist | broken | No. No! She is mine! Shoot him, not her! |
+| v_taken.ogg | Valadares | broken | Let her go, Doctor. Your notes, your people. Now. |
+| n_room.ogg | The Rio Negro | research_go | The specimen house was alight. Her eggs lay in the trampled straw. |
+| v_burn.ogg | Valadares | research_go | Burn them, Doctor. Whatever she was, do not carry her children down this river. |
+| l_save.ogg | Dr. Lindqvist | research_go | Ten years of work. The Crown's beasts are in that straw. I will not leave them to the fire. |
+| l_crate.ogg | Dr. Lindqvist | research_saved | The crate, Pieter. The notes on top. I carry it myself. |
+| l_gone.ogg | Dr. Lindqvist | research_gone | The straw was empty. I thought the fire had taken them. I believed that for thirty years. |
+| l_pieter.ogg | Dr. Lindqvist | pieter_lost | Pieter. Pieter did not come back from the forest's edge. |
+| n_leave.ogg | The Rio Negro | canoes | The last canoe pushed off with the station burning behind it. |
+| b_leave.ogg | Benedito | canoes | Paddle! Do not look back. |
 | l_end1.ogg | Dr. Lindqvist | ending | We went down the river at first light with the station burning behind us. She was gone. He took her from me as a thief takes a horse. |
 | l_end_saved.ogg | Dr. Lindqvist | ending | I had the research. I told the Academy I had saved my notes. That was the first lie. |
-| l_end_burned.ogg | Dr. Lindqvist | ending | Valadares threw the lamp. I had nothing left but my word, and no one wanted it. |
 | l_end_fire.ogg | Dr. Lindqvist | ending | The fire took her eggs before I reached them. I had nothing left but my word, and no one wanted it. |
 | l_end_pieter.ogg | Dr. Lindqvist | ending | Pieter sat in the canoe with the specimen book on his knees and did not speak all day. |
-| l_end_nopieter.ogg | Dr. Lindqvist | ending | Pieter went back for the specimen book. I have it still. He does not. |
+| l_end_nopieter.ogg | Dr. Lindqvist | ending | Pieter went to the forest's edge with the jars. I have his specimen book still. He does not. |
+| l_end_two.ogg | Dr. Lindqvist | ending | There were two packs in that forest, Majesty, and they fought over her like dogs over a bone. I saw it from my window. |
 | l_end_north.ogg | Dr. Lindqvist | ending | Valadares turned his canoe round at the first island. He went north after her, up the creek, to the mountain in the cloud. |
 | l_end2.ogg | Dr. Lindqvist | ending | I meant to give the Crown its beasts, Majesty. I still think I was right. |
 | k_end1.ogg | The King | ending | He wrote that his lure called them. It did not. She called them, and they came for her. |
 | k_end2.ogg | The King | ending | She was never stolen. She went home. |
 | k_end_saved.ogg | The King | ending | And what he carried out of the fire was not research. It was her children. |
+| k_end_taken.ogg | The King | ending | And the fire took nothing. The pack carried her eggs north in its jaws. He never knew. |
 
-## Balance (tools/sim_campaign_b01.gd)
 
-`godot --headless --fixed-fps 30 --script res://tools/sim_campaign_b01.gd -- active teles=quiet|told clutch=saved|burned`
-(a simple bot: the hands build the pen, then two Barracks and work the garden, Musketeers while there is gold; Lindqvist to
-the jetty to meet Valadares and then back by the house; Pieter to the ford, then the three jars; the army at the goats, at
-the jars while the lure works, at the village (quiet), half of it at the turtle; in Part 3 the people to the jetty, the
-army shoots the Sire only while he lies down with few creatures near him, and goes to the jetty when he is up or 2:30 is
-left; Lindqvist to the specimen house once she is taken, then to the jetty). Without `active` the player does nothing.
+## Balance (tools/sim_campaign_b01.gd, 0.38.49)
 
-| run (0.38.45) | Part 1 | Part 2 | Part 3 | end |
-| --- | --- | --- | --- | --- |
-| active, told, saved (last rules) | pen 0:46, Valadares met, goats ~3:45 | lure set, turtle killed, quiet at ~11:00 | the Sire rooted, 5 eggs, taken at 5:30, the crate carried | out: 31 saved of 33 ("many"), gun kept, Pieter lost |
-| active, quiet, burned (last rules) | the same | the village in at once, turtle killed | the same; the eggs burned by choice | out: 29 of 33 ("many"), Pieter lost |
-| active, told, saved (before the canoes' 1:40 and the bot's retreat) | | | the army attacked the Sire, he rose and killed it (12 to 0 in a minute) | out: 21 of 33 |
-| active, quiet, saved (filmed, before powder: no shots) | | | | out: 20 of 32 |
-| active, quiet (before the pack left with the Sire) | | | Lindqvist killed going to the specimen house among 17 creatures | DEFEAT |
-| passive (does nothing) | the pen never built; the goats' two hunters never driven off (the choice by time at 15:04) | Lindqvist killed at the pen by the waves (~21:00) | | DEFEAT |
+The bot plays a plain Brood game: the Sire rooted by the Old Mother, grubs to 10, a second Rootmaw, Mound Turtles when
+the supply runs short, Raptors with the rest; at 24 creatures (or 20:00) the whole pack goes out with the Sire, by the
+west (the west jar's clearing, away from the rival's den), roars there, comes east above the station, kills the yard's
+guards with the Sire held back, roots him by her pen, keeps the pack on whatever comes at him, breaks the gate, and goes
+home by the west, the pack going in first if the den is being raided. When its pack is spent (under 4) before the gate,
+the Sire goes home to root and rebuild.
 
-Reading: Parts 1 and 2 are won by anyone who plays them (the pen takes a minute, the goats are two Raptors, the lure and
-the village are walks, the turtle falls to half a dozen Musketeers). Part 3 is a fair retreat: a player who keeps the
-people at the jetty under guard, keeps out of the Sire's way when he gets up and walks Lindqvist to the specimen house
-after the pack has gone with her saves nearly everyone (the outline: "a perfect run ... saves nearly everyone"); a player
-who fights the Sire loses his army in a minute ("Nothing you have will kill it.") and saves about two thirds; walking the
-heroes into the pack loses the mission. Pieter is the one most often lost (110 health, he walks with the hands): the bot
-never once kept him. Doing nothing loses (Lindqvist dies at the pen in Part 2). Speed: the passive Part 1 is long (15
-minutes: the goats wait to be driven off; the choice comes by time).
+| run (0.38.49) | result | time | the fight |
+| --- | --- | --- | --- |
+| active, leave the clutch, rival Easy (as written) | WIN, `saved` some (15 of 28), Pieter lost | 9:30 | 70 creatures made, 55 lost (some to morphs); 20 Raptors killed by the hunters' Raptors, 5 by the guards |
+| active, rival Normal | WIN | 10:03 | 26 Raptors killed by the hunters' |
+| active, TAKE the clutch | WIN (`clutch` burned, `fire` yes, `eggs` taken) | 9:44 | the slow, biteless Sire home through the hunters |
+| active, rush (out at 6 creatures) | WIN after two rebuilds | 14:44 | 104 made, 95 lost: the rival's Tyrannosaur and Mother where the bot strayed |
+| passive (does nothing) | nothing happens | (30:00) | the rival computer at 36 supply never comes |
+| earlier tunings, for the record | | | rival not capped: 129 creatures by 13:00 and the den overrun; capped at 44-56: its first push (17-30, a Tyrannosaur and a Dilophosaurus among them) reaches the den at 7:00-8:00, just when the pack comes home: the bot won 1 in 3; six guards and Teles' five on the yard killed the rooted Sire |
 
-## Stills: the prompts for the owner (ChatGPT, one request each, at most 3 reference images)
+Reading: a player who builds up at home and goes out with a real pack wins in about ten minutes and fights two real
+Brood battles on the way (the hunters at the pen, the hunters on the way home); going out early costs a rebuild;
+walking into the rival's den is costly; the den raid shows the Old Mother needs a guard. The rival computer itself only
+holds its ground (capped at 36 supply it never pushes): the Brood v Brood fighting is mostly its hunters, scripted
+(Claude's choice 2). The station's guns are the danger to a rooted Sire: clear the yard first.
+
+## Stills: which prompts still fit, and new ones
+
+The eight stand-ins and their prompts (below, unchanged from 0.38.45) still fit the story: b01 the letter, b02 the station,
+b03 Specimen One, b04 eyes at the forest's edge (now also the rival's briefing and debrief, and Lindqvist's "two packs"
+page), b05 the Tyrant at the pen (now the player's briefing), b06 the station burns (the player's debrief and the
+ending's first page: the canoe and the crate fit LEAVE; with TAKE the crate holds only notes), b07 north, b08 the teller.
+NEW stills wanted (until then the stand-ins above are used):
+
+- b09 THE OLD MOTHER'S DEN (the player's briefing): "Oil painting, 18th-century history painting style. Dawn mist in a
+  clearing of a deep Amazon forest: a huge old reptilian brood mother, crocodile- and monitor-like, olive-brown scales
+  grey with age, venom-green frills, lies rooted in a nest of mud and roots; beside her a colossal tyrannosaur-like male
+  with green-tipped spines lifts his head and roars toward the south; lean two-legged reptilian hunters with green crests
+  crouch round them; through the trees, far below, a river and a thin line of smoke. No people. 3:2 landscape, no
+  text." References: art/redraws/brood_mother_concept2_chatgpt.png, art/redraws/tyrannosaur_concept_chatgpt.png.
+- b10 TWO PACKS (Lindqvist's "they fought over her like dogs over a bone"): "Oil painting, 18th-century history painting
+  style. Night in the rain at the edge of a flooded Amazon forest, seen from a lamp-lit window of a timber station: two
+  packs of reptilian hunters tear into each other in the mud, one crested venom-green, the other blood-red; behind
+  them the dark trees and the glint of eyes. A naturalist's hand holds a spyglass at the window's edge. 3:2 landscape,
+  no text." Reference: art/redraws/raptor_walk_se_chatgpt.png.
+- b11 HOME (the end, optional): "Oil painting, 18th-century history painting style. Grey dawn in a forest clearing: a
+  small young reptilian brood mother with a green frill comes out of the trees at the heels of a colossal tyrannosaur-like
+  male and lowers her head to an old brood mother rooted in her nest; a few pale leathery eggs carried in the male's
+  jaws (or none); a column of smoke far off over the trees. Tender and uncanny. No people. 3:2 landscape, no text."
+  References as b09.
+
+### The prompts of 0.38.45 (still used) (ChatGPT, one request each, at most 3 reference images)
 
 House style as the Crown's prologue (campaign/stills/p01_*.jpg): an oil painting in the manner of an 18th-century history
 painting, warm lantern and firelight against deep night blues and greens, visible brushwork, 3:2 landscape (cut to
@@ -321,71 +323,57 @@ dialogue later), b06 -> b01_06, b07 -> b01_07, b08 -> b01_08.
 ## What is placeholder
 
 - Every line, every objective's words, the briefing and the debrief (the owner rewrites the dialogue himself).
-- The stills (simple drawings; b01 and b08 made from the King's painting p01_01, b03 from the station hub painting).
-- The people are stand-ins: Lindqvist a Musketeer (a fowling piece), Valadares and Teles Officers, Pieter, Benedito and the
-  villagers Labourers, Frei Joaquim a Missionary, Linnea a Brood Mother's sprite at 0.3 in the station's yellow. Their art
-  folders are named (above).
-- The sounds: Linnea's call is the Brood Mother's voice raised to a trill, the forest's answer a Raptor's far off, the
-  Sire's roar his own pitched down.
-- The map: the station's pen and buildings stand on the rise; the igapó is water and trees standing in it (no swamp ground
-  tile exists: the Mound Turtle's own swamp is the swamp); the jetty, beach and steps are bank cells with boat props; the
-  waterfall is the creek's top under the rock wall.
-- The hub after the fall: the station's painting tinted, its title and lines changed (the warehouse's own painting later).
+- The stills (b01-b08 stand-ins; b09-b11 not made: the stand-ins are used).
+- The people are stand-ins (as before); Linnea a Brood Mother's sprite at 0.3 in the station's yellow, then the pack's green.
+- The rival's colour (RED): the Clockwork's faction colour in skirmish, but here only a team colour; another (orange,
+  pink) is a one-number change.
 
 ## Claude's choices for the owner
 
-1. LINNEA ON A TEAM OF HER OWN: "station-owned" is built as a fourth team, `pen` (the station's side, the station's YELLOW,
-   scripted), not as a Brood unit inside the Crown station's own team: the player never gets a Brood Mother's card to press,
-   and the Brood's own rules run on a Brood team. She is a Brood Mother's kind drawn at 0.3 (her own art later), caged and
-   untouchable all night (never the target: shooting at her does nothing).
-2. THE PACK IS SCRIPTED, not the Brood computer (as the Clockwork's machine): the Brood computer plans from a Mother and an
-   economy, and the pack has neither; the waves come on the calls' timetable from three trail heads, capped (22 alive in Part
-   2, 12 while the Sire calls in Part 3).
-3. THE LURE: Lindqvist EXPLAINS it first (three lines: what it is made of, what it does, where the jars go), then the
-   objective; the first two waves go to their trail's jar if that jar is set, from the third they walk past (said once).
-4. THE PEN is 11 stakes and a gate laid out as building sites the hands build (the owner's "build her pen"); a site knocked
-   down meanwhile doesn't hold the objective up.
-5. THE SIRE IN PART 3: he walks through the station to her pen without biting (as if it were reeds), lies down beside it;
-   rooted he cannot bite; his health stops at a third (he gets up roaring, two Raptors come, he lies down again 30 s later,
-   healed to 70%); while he lies there he calls every 30 s (3 Raptors) and she lays one egg every 25 s (5 in all).
-6. HE TAKES HER at 5:30 into Part 3 (on its own clock, so the turtle's extra 1:30 for the canoes never makes him take her
-   after the specimen house has burned); THE PACK GOES WITH THEM, but for stragglers ("They are going with him. Doctor, the
-   eggs!"): the window for the second choice. The specimen house is spared from the pack's attacks in Part 3, only the fire
-   takes it (at 2:30, in 6:00).
-7. THE PEOPLE COUNTED: everyone of the station's team but the two heroes, and the villagers, when Part 3 begins; anyone who
-   walks onto the jetty (or, told, the villagers onto the fort's steps) is saved. The bands: few under 10, some 10-19, many 20+.
-   The garrison's soldiers are not counted (they go by the fort's steps with the village).
-8. LINDQVIST AND VALADARES have 320 health (a Musketeer has 70, an Officer 80): heroes of the story, still killable. Pieter
-   110, Teles 160, Benedito 120 (spared at his canoes).
-9. VERSUS is "kill a hero" (as the Clockwork's): the pack's player gets every wave and the Sire as his units and wins by
-   killing Lindqvist or Valadares. Not built from the outline: choosing a trail head for each call, rooting the Sire himself
-   by her pen (a father's nest needs his own Mother; the scripted root works for a scripted Sire only), the scored end
-   (the saved under half). The clutch and the taking still come on time in versus.
-10. NO "WILD" TEAM FLAG: nothing in a mission needed it (the end is the mission's); a versus pack player sees the Brood's HUD
-   with no Mother.
-11. THE BONFIRES are the map's campfire props (the engine has no placed lights); the fire's light is the `fire_night` tint.
-12. THE STORYLINE'S HUB BEFORE THE FALL keeps the station's painting with HER CRATE; the plateau's egg and the specimen jar
-   (the hub's old lines) wait for the Specimens (`requires` a05_specimens, an id for that mission when it is written).
-13. EASY / HARD: the campaign has no difficulty setting yet; the outline's "Easy gives two minutes more" is not built.
-14. THE CANON (proposed in the outline: keep it quiet, save the research) is each choice's default.
-15. THE CANOES COME ROUND 1:40 INTO PART 3 (Benedito: "The canoes are at the jetty!"): until then the jetty takes nobody,
-   so the people must be held there (or kept back); without it a player walked everyone aboard in the first seconds.
-16. POWDER: the station starts with 400 powder and gets 250 more at nightfall (the Crown starts with none, and no Powder
-   Mill is built for it: the Musketeers it trains would come out with no shots). It may still build a Powder Mill.
+1. THE PLAYER'S PACK HAS A MOTHER (the Old Mother, a Brood standard start), so the first Brood play can teach rooting,
+   laying and hatching, and the Sire comes for Linnea as a second, young mother (a new pack's queen), not as a lone male.
+   Who the Old Mother is to Linnea is never said.
+2. THE RIVAL PACK is the Brood computer (Easy) for its den and its own army, HELD AT 36 SUPPLY (uncapped it out-grew the
+   player fivefold and overran the den), plus a SCRIPTED team of hunters of the same side and colour: four Raptors and a
+   Spitter at her pen after the roar, six at the den once the Sire is out, eight Raptors and two Spitters hunting the
+   Sire on the way home. The computer goes for the Sire's pack only (`ai_foe`), never the station.
+3. THE ROAR is a place, not a button: the Sire walked to the forest's edge (a wide band, so the player can go round the
+   rival's den by the west or through it by the creek). The Brood has no roar ability.
+4. "HE MAY NEST BY HER PEN" only after the roar (`nest_free`): the first ROOT teaches the father range.
+5. THE CLUTCH is laid while he lies rooted by her pen (an egg every 16 s, five), the old prologue's beat, now the
+   player's to defend; the gate stays spared until then.
+6. THE ONE CHOICE: TAKE THE CLUTCH (the Sire carries it: slower, cannot bite; `clutch` burned, `fire` yes: what
+   Lindqvist believes; `eggs` taken: the truth, the King's line) or LEAVE IT (canon: Lindqvist saves it; `clutch` saved).
+   Default LEAVE (the canon of the outline).
+7. THE SCIENTISTS' CHOICES are the script's, with the canon: TELES kept QUIET (so no fort's gun, no `gun` flag), THE
+   RESEARCH SAVED (when the clutch is left). Teles still comes late, but only to hold the east causeway (on the yard his
+   men killed the rooted Sire in the tuning runs).
+8. LINDQVIST AND VALADARES ARE UNTOUCHABLE AND UNARMED (they must live to tell it and to go north; unarmed so they can't
+   shoot the pack while nothing can hurt them); the hands and Pieter carry tools, not guns. Pieter can die (he walks the
+   jars to the forest's edge); the guards, the commission and the village can.
+9. LINNEA once out is on a scripted team allied to the player (`kin`), untouchable, at the Sire's heels: the player never
+   gets a second Brood Mother's card (two Mothers on one team would confuse the Brood's rules), and she can't be lost.
+10. THE WIN is her reaching the Old Mother's den (not a map edge): "take her home". The scientists' canoes leave on their
+    own when Lindqvist and Valadares reach the jetty; if she is home first, the flags are set by the canon anyway.
+11. MODES: solo and versus (the friend is the rival pack, wins by killing the Sire or the Old Mother; the hunters still
+    come for him). No co-op (one Brood side to play). The station is never a person's in this mission (the solo side
+    pick, act1-engine0, could make the station or the rival pack a solo side later).
+12. THE TEACHING STRIP lives in the objectives' words (no tip lines: no creature speaks, and Lindqvist can't teach the
+    pack). The lay step asks for two eggs, not more: with five grubs and the Sire the Old Mother's 16 supply holds six
+    Raptors; more needs a Mound Turtle, said in the same objective.
+13. THE PEOPLE COUNTED include the village and the commission (28); the bands as before (few under 10, some 10-19, many
+    20+). The bot ends with "some" (15): it kills the yard's guards, and Pieter dies at the jars.
+14. EASY / HARD: not built here (the difficulty setting is act1-engine0's); the rival computer's level and the hunters'
+    numbers are the knobs (`ai:easy`, `supply_cap`, the spawn counts in make_b01_mission.py).
 
 ## Tests run
 
-- tools/test_campaign_b01.gd: 277 checks, 0 failures (the data and translations; every engine feature on its own; three
-  play-throughs: A told + burned, B quiet + saved, C quiet + the fire takes the eggs, Pieter lost; the two defeats; the hubs
-  after, by the flags; the King's study).
-- tools/test_campaign.gd: 0 failures (the engine's own test, every mission's data, the hubs; its hub check now opens THE
-  NATURALIST: `naturalist`, HER CRATE).
-- tools/test_campaign_m1.gd: 0 failures (the Crown's prologue unchanged).
-- tools/test_campaign_c01.gd: 0 failures (the Clockwork's prologue unchanged).
-- tools/test_tutorial.gd: 0 failures.
-- tools/test_brood_new.gd: 1 failure, PRE-EXISTING (the same check fails on main 0.38.44 without this job's changes: the
-  Venom Sire's BUILD-card tooltip is empty headless); the Brood hooks this job added (a caged egg, a role's scale, a
-  scripted father's nest) only act on units a mission marks.
-- PRE-EXISTING: every headless Godot run here ends with "Aborted" (exit 134) AFTER its last line (as the Clockwork build
-  noted).
-- Not run: the faction and AI tests (no unit, price or skirmish rule changed; the new Entity/Unit fields default to off).
+- tools/test_campaign_b01.gd: 176 checks, 0 failures (the data and translations; the seats; the engine, feature by
+  feature, the flip's `nest_free`, `heel`, `ai_foe`, `supply_cap`, the Brood `hall_tag` among them; two play-throughs:
+  L (leave the clutch) and T (take it), every step of the strip and every beat of the station's script, the end and its
+  lines, the flags kept; the two defeats; the hubs after, by the flags; the King's study).
+- tools/test_campaign.gd, test_campaign_m1.gd, test_campaign_c01.gd, test_tutorial.gd: 0 failures.
+- The boot (`godot --headless --quit-after 300`): no SCRIPT ERROR (every headless run here ends with "Aborted" after its
+  last line, as before).
+- Not run: the faction and AI tests (the AI change is one line, read only in a mission that names an `ai_foe`; the
+  supply cap only in a mission that names one).

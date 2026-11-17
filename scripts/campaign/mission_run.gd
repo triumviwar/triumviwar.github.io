@@ -91,6 +91,13 @@ func team_index(team_id: String) -> int:
 	return team_ids.find(team_id)
 
 
+## The team a computer player goes for before the others (team "ai_foe": a team id; the Brood prologue flip: the
+## rival pack goes for the Sire's, not the station); -1 when none is named. Asked by AI._foe.
+func ai_foe(t: int) -> int:
+	var f := String(team_data(t).get("ai_foe", ""))
+	return team_index(f) if f != "" else -1
+
+
 func side_of_team(t: int) -> String:
 	return String(team_data(t).get("side", ""))
 
@@ -186,6 +193,9 @@ func after_start() -> void:
 			for b in game.buildings:
 				if b.team == t and b.kind == game.faction_hall(t):
 					_tag(String(tm["hall_tag"]), b)
+			var q := BroodNew.queen(game, t) if game.factions[t] == "brood" else null
+			if q != null:
+				_tag(String(tm["hall_tag"]), q)      # (the Brood's "hall" is her Mother: the prologue flip's Old Mother)
 		if not standard_start(t):
 			game.players[t]["gold"] = 0
 			game.players[t]["res2"] = float(Defs.START_POWDER) if game.factions[t] == "crown" else 0.0
@@ -674,6 +684,15 @@ func act(a: Dictionary) -> void:
 				for e in tagged(String(v.get("tag", ""))):
 					if e is Building and not _burning.any(func(it) -> bool: return it[0] == e):
 						_burning.append([e, e.max_hp / maxf(float(v.get("secs", 60.0)), 1.0)])
+			"nest_free":
+				# {"nest_free": {"tag", "on"}} (the Brood prologue flip): these fathers may root away from their Mother's
+				# father range, as a person's ROOT too (the Sire nesting by her pen); off: the range again
+				for e in tagged(String(v.get("tag", ""))):
+					if e is Unit and BroodNew.is_father(e.kind):
+						if bool(v.get("on", true)):
+							e.set_meta("mission_root", true)
+						elif e.has_meta("mission_root"):
+							e.remove_meta("mission_root")
 
 
 ## Scripted orders go only to units no person plays (a co-op friend's or versus foe's units are theirs).
@@ -707,6 +726,19 @@ func _order(us: Array, v: Dictionary) -> void:
 			for u in us:
 				if u.tesla_mode == "deployed":
 					BroodNew.uproot(u, false)
+		"heel":
+			# {"do": "heel", "leader": tag} (the Brood prologue flip): each walks after the first living unit with that tag
+			# (Linnea at the Sire's heels), stopping a little behind him; a rooted leader is waited for where he lies
+			var lead := tagged(String(v.get("leader", "")))
+			if lead.is_empty():
+				return
+			var lp: Vector2 = lead[0].position
+			var i := 0
+			for u in us:
+				var spot := lp + Vector2(-50.0 - 22.0 * (i % 3), 30.0 * (i / 3) - 20.0)
+				i += 1
+				if u.position.distance_to(lp) > 110.0 and (u.order_point.distance_to(spot) > 60.0 or u.order == "idle"):
+					game.group_move([u], spot, false)
 		"hunt":
 			# {"do": "hunt", "prey": a tag, "within": tiles}: each idle or walking unit goes for the nearest living unit
 			# with that tag within reach (the machine going after the townsfolk in the streets)

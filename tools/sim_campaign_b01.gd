@@ -1,33 +1,47 @@
 extends SceneTree
-## Plays the Brood prologue, "Specimen One" (docs/campaign_b01_build.md), with a simple player bot and prints, every minute,
-## how it goes: the part, the station's army, the pack, the people saved, the time left. A balance check: Parts 1-2 must
-## be winnable by a player who plays them (the pen built, the goats, the lure, the village, the turtle), Part 3 a fair
-## retreat (Lindqvist and Valadares out, the people saved depending on play), and a player who does nothing must lose.
-##   godot --headless --fixed-fps 30 --script res://tools/sim_campaign_b01.gd [-- active] [teles=told|quiet] [clutch=saved|burned]
-##        [until=<seconds>] [shots=<dir>] [speed=<x>] (shots: pictures of the parts; needs a window: xvfb-run, not --headless)
+## Plays the Naturalist's prologue, "Specimen One", AS THE BROOD (docs/campaign_b01_build.md: the prologue flip), with a
+## simple Brood player bot against the rival pack (the Brood computer, Easy) and the scripted station, and prints every
+## minute how it goes: the step of the teaching strip, the pack, the rival pack, the station, the eggs, the people saved.
+## A balance check: a player who plays the strip wins in a sensible time; the rival pack is a real fight (it costs the
+## player creatures); a player who does nothing does not win (the rival comes for the Old Mother, or nothing happens).
+##   godot --headless --fixed-fps 30 --script res://tools/sim_campaign_b01.gd [-- active] [eggs=left|taken] [until=<s>]
+##        [rival=easy|normal|hard] [raid] (raid: waves at the rival Mother first)
+##        [rush] (rush: go for her as soon as the strip allows, with the starting pack) [speed=<x>]
+##        [shots=<dir>] (pictures of the steps; needs a window: xvfb-run, not --headless)
 var main: Node
-var until := 3000.0
-var active := false      # ("active": the hands build the pen and a Barracks and work the garden, Musketeers trained while
-                         # there is gold; Lindqvist meets Valadares, Pieter goes to the ford and sets the jars; the army
-                         # waits at the jars, brings the village in (quiet), kills the turtle; in Part 3 it shoots the
-                         # rooted Sire, the people walk to the jetty, Lindqvist goes to the specimen house, then all aboard)
-var teles := "quiet"
-var clutch := "saved"
+var until := 2400.0
+var active := false
+var rush := false
+var rival_level := ""
+var raid := false          # ("raid": waves at the rival Mother first, the Sire kept home)
+var eggs := "left"
 var shots := ""
 var _shot_n := 0
 var _shot_done := {}
+var _go_t := -1.0          # (when the pack set off for the station)
+var _maw_sent := false
+var _hits := {}
+var _killers := {}
+var _state := "build"       # build (home, rooted), out (to the edge, the roar), clear (the yard's guns), nest, home
+var _rebuilds := 0
+var _dead_seen := {}
+var _raid := false        # (a wave out at the rival's den)
 
 
 func _initialize() -> void:
 	for a in OS.get_cmdline_user_args():
 		if a == "active":
 			active = true
+		if a == "rush":
+			rush = true
+		if a == "raid":
+			raid = true
 		if a.begins_with("until="):
 			until = float(a.substr(6))
-		if a.begins_with("teles="):
-			teles = a.substr(6)
-		if a.begins_with("clutch="):
-			clutch = a.substr(7)
+		if a.begins_with("rival="):
+			rival_level = a.substr(6)
+		if a.begins_with("eggs="):
+			eggs = a.substr(5)
 		if a.begins_with("shots="):
 			shots = a.substr(6)
 		if a.begins_with("speed="):
@@ -41,7 +55,10 @@ func _initialize() -> void:
 
 func _run() -> void:
 	await process_frame
-	main.start(Campaign.make_cfg("b01_specimen", "solo"))
+	var cfg := Campaign.make_cfg("b01_specimen", "solo")
+	if rival_level != "":
+		cfg["slots"][1]["who"] = rival_level        # (the rival computer's level: easy as written, "rival=normal" to try)
+	main.start(cfg)
 	await process_frame
 	await process_frame
 	paused = false
@@ -49,38 +66,57 @@ func _run() -> void:
 	var r: MissionRun = g.mission
 	var next := 0.0
 	var think := 2.0
-	var st := r.team_index("station")
-	var pt := r.team_index("pack")
+	var me := r.team_index("sire")
+	var rv := r.team_index("rival")
+	var made := 0
+	var seen := {}
 	while g.clock < until and not g.over:
 		await physics_frame
-		if not r.choice_open.is_empty():
-			var cid := String(r.choice_open["id"])
-			if cid == "teles":
-				r.choose(cid, teles)
-			elif cid == "clutch":
-				r.choose(cid, clutch)
+		if not r.choice_open.is_empty() and String(r.choice_open["id"]) == "eggs":
+			r.choose("eggs", eggs)
+		for u in g.units:
+			if u.team == me and not seen.has(u.get_instance_id()):
+				seen[u.get_instance_id()] = u
+				made += 1
+		if int(g.clock * 30.0) % 15 == 0:
+			for id in seen:
+				var su = seen[id]
+				if not _dead_seen.has(id) and (not is_instance_valid(su) or su.dead):
+					_dead_seen[id] = true
+					var why: String = su.last_hit_by if is_instance_valid(su) else "?"
+					_killers[why] = int(_killers.get(why, 0)) + 1
+		var sl: Array = r.tagged("sire")
+		if not sl.is_empty() and sl[0].last_hit_by != "":
+			_hits[sl[0].last_hit_by] = int(_hits.get(sl[0].last_hit_by, 0)) + 1
+			sl[0].last_hit_by = ""
 		if active and g.clock >= think:
-			think = g.clock + 1.5
-			_play(g, r, st, pt)
+			think = g.clock + 1.0
+			_play(g, r, me)
 		if shots != "":
 			await _shots(g, r)
 		if g.clock >= next:
 			next += 60.0
-			var part := "1" if not r.fired.has("eve") else ("2" if not r.fired.has("turn") else "3")
-			var left := ""
-			if r.clocks.has("canoes"):
-				left = "%ds" % int(float(r.clocks["canoes"]) - g.clock)
-			print("SIM t=%4d part=%s station=%d army=%d pack=%d gold=%d folk=%d saved=%d/%d eggs=%d sire=%s lindqvist=%s valadares=%s pieter=%s pen=%s canoes_in=%s" % [g.clock, part,
-				r.count({"team": "station"}), _army(g, st).size(), r.count({"team": "pack"}), int(g.players[st]["gold"]), r.tagged("folk").size(),
-				int(r.counters.get("saved", 0)), int(r.counters.get("people", 0)), r.tagged("eggs").size(),
-				("rooted" if BroodNew.rooted(r.tagged("sire")[0]) else "up %d" % r.tagged("sire")[0].hp) if not r.tagged("sire").is_empty() else "-",
-				_hp(r, "lindqvist"), _hp(r, "valadares"), _hp(r, "pieter"), r.obj.get("pen", ""), left])
-	for h in ["lindqvist", "valadares"]:
+			var step := "root"
+			for o in ["root", "lay", "roar", "nest", "gate", "home"]:
+				if r.obj.get(o, "") == "active":
+					step = o
+			var sire: Array = r.tagged("sire")
+			print("SIM t=%4d %-5s step=%-5s hunters=%2d pack=%2d raptors=%2d grubs=%d turtles=%d food=%4d supply=%d/%d | rival=%2d rival_army=%2d | station=%2d garrison=%2d folk=%2d | eggs=%d jars=%d saved=%d/%d heroes=%d | sire=%s mother=%s" % [g.clock, _state, step, r.count({"team": "hunters"}),
+				_army(g, me).size(), r.count({"team": "sire", "kind": "raptor"}), r.count({"team": "sire", "kind": "grub"}), r.count({"team": "sire", "kind": "mound_turtle"}),
+				int(g.players[me]["gold"]), g.supply_used(me), int(g.players[me]["cap"]),
+				r.count({"team": "rival"}), _army(g, rv).size(), r.count({"team": "station"}), r.count({"team": "garrison"}), r.tagged("folk").size(),
+				int(r.counters.get("eggs", 0)), int(r.counters.get("jars", 0)), int(r.counters.get("saved", 0)), int(r.counters.get("people", 0)), int(r.counters.get("heroes", 0)),
+				(("rooted" if BroodNew.rooted(sire[0]) else "up") + " %d" % sire[0].hp) if not sire.is_empty() else "DEAD", _hp(r, "old_mother")])
+	var lost := made - g.units.filter(func(u): return not u.dead and u.team == me).size()
+	print("SIM end t=%d over=%s winner=%s went=%s rebuilds=%d flags=%s" % [g.clock, g.over, r.winner_side, ("%d" % _go_t) if _go_t >= 0.0 else "-", _rebuilds, r.flags])
+	print("SIM player creatures made=%d lost=%d (some lost to sacrifice/morph count as lost) rival alive=%d rival_mother=%s" % [made, lost, r.count({"team": "rival"}), _hp(r, "rival_mother")])
+	print("SIM objectives %s" % r.obj)
+	for h in ["sire", "old_mother"]:
 		var hs: Array = r.tagged(h, false)
 		if not hs.is_empty() and is_instance_valid(hs[0]) and hs[0].dead:
-			print("SIM %s died at cell %s, last hit by %s" % [h, g.cell_of(hs[0].position), hs[0].last_hit_by])
-	print("SIM end t=%d over=%s winner=%s flags=%s" % [g.clock, g.over, r.winner_side, r.flags])
-	print("SIM objectives %s" % r.obj)
+			print("SIM %s died at cell %s (state %s)" % [h, g.cell_of(hs[0].position), _state])
+	print("SIM the Sire was hit by (kind, samples) %s" % _hits)
+	print("SIM the pack's dead, by the last hit's kind %s" % _killers)
 	quit()
 
 
@@ -89,111 +125,164 @@ func _hp(r: MissionRun, tag: String) -> String:
 	return "DEAD" if t.is_empty() else str(int(t[0].hp))
 
 
-func _army(g: Game, st: int) -> Array:
-	return g.units.filter(func(u): return not u.dead and u.team == st and u.kind in ["musketeer", "dismounted"] and not u.has_meta("rebel_role"))
+func _army(g: Game, t: int) -> Array:
+	return g.units.filter(func(u): return not u.dead and u.team == t and not u.is_worker() and not BroodNew.ROOTERS.has(u.kind) and u.kind != "brood_egg")
 
 
-func _go(g: Game, us: Array, p: Vector2, fight := false) -> void:
-	var idle: Array = us.filter(func(u): return u.position.distance_to(p) > 90.0 and (u.velocity.length() < 5.0 or u.order == "idle"))
+func _go(g: Game, us: Array, p: Vector2, fight := true) -> void:
+	var idle: Array = us.filter(func(u): return u.position.distance_to(p) > 120.0 and (u.velocity.length() < 5.0 or u.order == "idle"))
 	if not idle.is_empty():
 		g.group_move(idle, p, fight)
 
 
-func _play(g: Game, r: MissionRun, st: int, pt: int) -> void:
-	var hands: Array = r.tagged("hands")
-	var army := _army(g, st)
-	var lq: Array = r.tagged("lindqvist")
-	var va: Array = r.tagged("valadares")
-	var pi: Array = r.tagged("pieter")
-	var have := func(k: String) -> int: return g.buildings.filter(func(b): return not b.dead and b.team == st and b.kind == k).size()
-	if not r.fired.has("turn"):
-		# the pen first, then a Barracks, the rest to the garden; Musketeers while there is gold
-		var sites: Array = r.tagged("pen").filter(func(b): return not b.built)
-		if not sites.is_empty():
-			var i := 0
-			for h in hands.slice(0, 4):
-				if h.order != "build" or int(g.clock) % 20 == 0:
-					h.cmd_build(sites[i % sites.size()])      # (each hand its own stake, asked again now and then)
-				i += 1
-		elif have.call("barracks") < 2 and int(g.players[st]["gold"]) >= int(Defs.BUILDINGS["barracks"]["cost"]) and not hands.is_empty():
-			var c: Vector2i = g.find_spot(st, "barracks", r.tagged("station_house")[0], 3, 12)
-			if c.x >= 0:
-				g.place_building(st, "barracks", c, hands.slice(0, 2))
-		else:
-			var farm: Array = r.tagged("garden")
-			for h in hands:
-				if h.order == "idle" and not farm.is_empty():
-					h.cmd_gather(farm[0])
-		for b in g.buildings:
-			if b.team == st and not b.dead and b.built and b.kind == "barracks" and b.queue.size() < 2 and int(g.players[st]["gold"]) >= 60:
-				g.train(b, "musketeer")
-	if not r.fired.has("eve"):
-		# part 1: Lindqvist to Valadares, Pieter to the ford, the army at the goats
-		if r.obj.get("meet", "") == "active" and not lq.is_empty():
-			_go(g, lq, r.area_rect("jetty").get_center())
-		elif not lq.is_empty():
-			_go(g, lq, r.area_rect("house").get_center() + Vector2(-40, 90))
-		if r.obj.get("tracks", "") == "active" and not pi.is_empty():
-			_go(g, pi, r.area_rect("ford").get_center())
-		_go(g, army, r.area_rect("goats").get_center(), true)
+## A spot for `k` round `c` (rings out from `r0` to `r1` tiles) where `u` may root (BroodRoot's own rules).
+func _spot(g: Game, t: int, k: String, c: Vector2, u: Unit, r0: int, r1: int) -> Vector2:
+	for rad in range(r0, r1 + 1):
+		for i in 16:
+			var a := TAU * float(i) / 16.0
+			var p := BroodRoot.snap(k, c + Vector2(cos(a), sin(a)) * rad * Defs.TILE, 1.0)
+			if BroodRoot.place_problem(g, t, k, p, u, false, 1.0) == "":
+				return p
+	return Vector2.INF
+
+
+func _play(g: Game, r: MissionRun, me: int) -> void:
+	var q := BroodNew.queen(g, me)
+	var sire_l: Array = r.tagged("sire")
+	if q == null or sire_l.is_empty():
 		return
-	if not r.fired.has("turn"):
-		if not lq.is_empty():
-			_go(g, lq, r.area_rect("house").get_center() + Vector2(-40, 90))       # (kept back by the house)
-		# part 2: Pieter to the jars, the army at the jars (the lure), then at the pen; quiet: the village; the turtle
-		if r.obj.get("lure", "") == "active" and not pi.is_empty():
-			for a in ["jar_c", "jar_w", "jar_e"]:
-				if int(r.counters.get(a + "_set", 0)) == 0:
-					var to: Vector2 = r.area_rect(a).get_center()
-					if pi[0].order != "move" or pi[0].order_point.distance_to(to) > 80.0:
-						g.group_move(pi, to, false)          # (a labourer at the garden is never idle: told straight)
-					break
-		elif not pi.is_empty():
-			_go(g, pi, r.area_rect("yard").get_center())
-		if r.obj.get("village", "") == "active":
-			_go(g, army, r.area_rect("village").get_center(), true)
-		elif r.obj.get("turtle", "") == "active":
-			# (half the army at the turtle, half stays by the pen and the house)
-			_go(g, army.slice(0, army.size() / 2), r.area_rect("mouth").get_center(), true)
-			_go(g, army.slice(army.size() / 2), r.area_rect("pen").get_center() + Vector2(-120, 0), true)
-		elif int(r.counters.get("waves", 0)) < 2 and int(r.counters.get("jars", 0)) >= 1:
-			_go(g, army, r.area_rect("jar_c").get_center(), true)
-		else:
-			_go(g, army, r.area_rect("pen").get_center() + Vector2(0, -60), true)
+	var sire: Unit = sire_l[0]
+	var army := _army(g, me).filter(func(u): return u != sire)
+	var grubs: Array = g.units.filter(func(u): return not u.dead and u.team == me and u.kind == "grub" and u.order != "nb_morph")
+	var turtles := r.count({"team": "sire", "kind": "mound_turtle"}) + g.units.filter(func(u): return u.team == me and u.order == "nb_morph").size()
+	var den := r.area_rect("den").get_center()
+	var home_nest := sire.position.distance_to(q.position) < 9.0 * Defs.TILE
+	# THE ECONOMY (while she is not out of her pen): grubs to 10, a second Rootmaw, Mound Turtles when the supply runs
+	# short, Raptors with the rest (only while the Sire is rooted beside the Old Mother)
+	if not r.fired.has("broken"):
+		var room := int(g.players[me]["cap"]) - g.supply_used(me)
+		var maws := r.count({"team": "sire", "kind": "rootmaw"}) + g.units.filter(func(u): return u.team == me and u.order == "nb_morph" and String(u.nb.get("mk", "")) == "rootmaw").size()
+		if room < 4 and turtles < 4 and not grubs.is_empty() and int(g.players[me]["gold"]) >= 100:
+			var tp := _spot(g, me, "mound_turtle", q.position, grubs[0], 8, 14)
+			if tp != Vector2.INF:
+				BroodRoot.start_morph(grubs[0], "mound_turtle", tp)
+		elif maws < 2 and g.clock > 40.0 and int(g.players[me]["gold"]) >= 75 and not grubs.is_empty() and not _maw_sent:
+			var mp := _spot(g, me, "rootmaw", q.position, grubs[0], 5, 12)
+			if mp != Vector2.INF:
+				BroodRoot.start_morph(grubs[0], "rootmaw", mp)
+				_maw_sent = true
+		elif r.count({"team": "sire", "kind": "grub"}) < 10 and int(g.players[me]["gold"]) >= 50:
+			BroodNew.lay(g, q, "grub")
+		elif BroodNew.rooted(sire) and home_nest:
+			BroodNew.lay(g, q, "raptor")
+	# 1. ROOT the Sire in the Old Mother's father range (and again whenever he comes home to rebuild)
+	var want := 6 if rush else 24
+	if _state == "build":
+		if not BroodNew.rooted(sire):
+			if sire.order != "nb_root":
+				var p := _spot(g, me, "tyrannosaur", q.position, sire, 3, 7)
+				if p != Vector2.INF:
+					sire.give({"o": "nb_root", "p": p}, false)
+			return
+		_go(g, army, den + Vector2(220, 60))
+		if r.fired.has("laid") and (army.size() >= want or g.clock > 1200.0):
+			_state = "out"
+			if _go_t < 0.0:
+				_go_t = g.clock
 		return
-	# part 3: the people to the jetty; the army shoots the rooted Sire, then falls back; Lindqvist to the specimen house
-	var left := float(r.clocks.get("canoes", 0.0)) - g.clock
-	_go(g, hands + pi, r.area_rect("jetty").get_center())
-	if left < 150.0:
-		_go(g, army + va, r.area_rect("jetty").get_center())
-	else:
-		var sire: Array = r.tagged("sire")
-		var near_nest: int = g.units.filter(func(u): return not u.dead and u.team == pt and u.kind != "tyrannosaur" and u.position.distance_to(r.area_rect("nest").get_center()) < 420.0).size()
-		if not sire.is_empty() and BroodNew.rooted(sire[0]) and near_nest < 4 and army.size() >= 6:
+	# the pack spent: the Sire goes home to rebuild (his nest by the Old Mother) unless she is already out
+	if army.size() < 4 and not r.fired.has("broken") and not (BroodNew.rooted(sire) and int(r.counters.get("eggs", 0)) >= 4):
+		_state = "build"
+		_rebuilds += 1
+		if BroodNew.rooted(sire):
+			BroodNew.uproot(sire, false)
+		return
+	if BroodNew.rooted(sire) and _state in ["out", "home"]:
+		BroodNew.uproot(sire, false)
+		return
+	var west := r.area_rect("jar_w").get_center()
+	var above := Vector2(62, 47) * Defs.TILE
+	if _state == "out":
+		# by the west: the forest's edge at the west jar (away from the rival's den), the roar there, then east above the station
+		var to := west if not r.fired.has("roar_heard") else above
+		_lead(g, sire, army, to)
+		if r.fired.has("roar_heard") and sire.position.distance_to(above) < 160.0:
+			_state = "clear"
+		return
+	if r.fired.has("broken"):
+		_state = "home"
+	if _state == "clear":
+		var pen := r.area_rect("pen").get_center()
+		var foes := [r.team_index("station"), r.team_index("garrison")]
+		var guns: Array = g.units.filter(func(u): return not u.dead and foes.has(u.team) and u.kind in ["musketeer", "dismounted"] and not u.spared and u.position.distance_to(pen) < 560.0)
+		if guns.is_empty():
+			_state = "nest"
+		else:
 			for u in army:
 				if u.target == null or not is_instance_valid(u.target) or u.target.dead:
-					u.cmd_attack(sire[0])
-		elif not sire.is_empty() and not BroodNew.rooted(sire[0]):
-			_go(g, army, r.area_rect("jetty").get_center())          # (he is up: nothing kills him; get away from him)
-		else:
-			_go(g, army, r.area_rect("yard").get_center() + Vector2(0, 80), true)
-		_go(g, va, r.area_rect("jetty").get_center() + Vector2(0, -60))
-	if not lq.is_empty():
-		var to := "spec" if (r.obj.get("research", "") == "active") else "jetty"
-		_go(g, lq, r.area_rect(to).get_center())
+					u.cmd_attack(guns[0])
+			return
+	if _state == "nest":
+		var pen := r.area_rect("pen").get_center()
+		# the pack keeps round him: anything that comes at the rooted Sire first, then the gate
+		var threats: Array = g.units.filter(func(u): return not u.dead and g.hostile(u.team, me) and not u.spared and u.position.distance_to(sire.position) < 420.0 and u.kind != "brood_egg")
+		if not threats.is_empty():
+			threats.sort_custom(func(a, b): return a.position.distance_to(sire.position) < b.position.distance_to(sire.position))
+			for u in army:
+				if u.target == null or not is_instance_valid(u.target) or u.target.dead or u.target is Building:
+					u.cmd_attack(threats[0])
+			return
+		_go(g, army, pen + Vector2(60, -60))
+		if not BroodNew.rooted(sire) and sire.order != "nb_root":
+			var p := _spot(g, me, "tyrannosaur", r.area_rect("nest").get_center(), sire, 0, 6)
+			if p != Vector2.INF:
+				sire.give({"o": "nb_root", "p": p}, false)
+			else:
+				g.group_move([sire], r.area_rect("nest").get_center(), false)
+		var gate: Array = r.tagged("pen_gate")
+		if r.obj.get("gate", "") == "active" and not gate.is_empty():
+			for u in army:
+				if u.target != gate[0]:
+					u.cmd_attack(gate[0])
+		return
+	if _state == "home":
+		# 6. HOME: the Sire up and back to the den by the west; the pack round him. A fight at the den (the rival's push
+		# at the Old Mother): the pack goes in first, the Sire waits out of it
+		var at_den: Array = g.units.filter(func(u): return not u.dead and g.hostile(u.team, me) and u.position.distance_to(q.position) < 14.0 * Defs.TILE)
+		if not at_den.is_empty() and army.size() >= 3:
+			_go(g, army, at_den[0].position)
+			if sire.position.distance_to(q.position) < 24.0 * Defs.TILE and sire.position.distance_to(at_den[0].position) < 10.0 * Defs.TILE:
+				g.group_move([sire], sire.position + (sire.position - at_den[0].position).normalized() * 160.0, false)
+			elif sire.position.distance_to(q.position) < 22.0 * Defs.TILE:
+				g.group_move([sire], sire.position, false)
+			return
+		var to := den if sire.position.y < 44.0 * Defs.TILE or sire.position.distance_to(west) < 200.0 else west
+		if sire.position.x < 40.0 * Defs.TILE and sire.position.y > 40.0 * Defs.TILE:
+			to = Vector2(24, 30) * Defs.TILE if sire.position.y > 32.0 * Defs.TILE else den
+		_lead(g, sire, army, to)
 
 
-## Pictures of the parts (with a window): the station, the pen built, the goats, the night and the jars, the turtle, the
-## Sire at the pen, the clutch, the fall, the jetty, the canoes leaving.
+## The Sire walks to `to` with the pack round him (attack-moving), waiting for stragglers.
+func _lead(g: Game, sire: Unit, army: Array, to: Vector2) -> void:
+	var near := army.filter(func(u): return u.position.distance_to(sire.position) < 260.0).size()
+	if near < army.size() / 2 and sire.position.distance_to(to) > 200.0:
+		g.group_move([sire], sire.position, false)
+		_go(g, army, sire.position)
+		return
+	if sire.position.distance_to(to) > 90.0 and (sire.order == "idle" or sire.velocity.length() < 5.0 or sire.order_point.distance_to(to) > 60.0):
+		g.group_move([sire], to, true)
+	_go(g, army, sire.position + (to - sire.position).limit_length(120.0))
+
+
+## Pictures of the steps (with a window): the den, the Sire rooted, the pack out, the roar, the Sire by her pen, the
+## clutch, the pen broken, the way home, home.
 func _shots(g: Game, r: MissionRun) -> void:
 	var f := func(t: String, d: float) -> bool: return r.fired.has(t) and g.clock > float(r.fired.get(t, 0)) + d
-	var want := {"station": g.clock > 3.0, "pen": f.call("pen_done", 2.0), "goats": f.call("goats_attack", 6.0),
-		"lure": f.call("lure_set", 3.0), "night_wave": f.call("wave_e", 8.0), "turtle": f.call("turtle_comes", 30.0),
-		"sire": f.call("sire_rooted", 3.0), "clutch": f.call("eggs", 60.0), "taken": f.call("taken", 4.0),
-		"fall": f.call("taken", 30.0), "jetty": r.clocks.has("canoes") and float(r.clocks["canoes"]) - g.clock < 25.0,
-		"leave": f.call("leave", 3.0)}
-	var where := {"station": "yard", "pen": "pen", "goats": "goats", "lure": "jar_c", "night_wave": "pen", "turtle": "mouth",
-		"sire": "nest", "clutch": "pen", "taken": "nest_wide", "fall": "yard", "jetty": "jetty", "leave": "jetty"}
+	var want := {"den": g.clock > 3.0, "rooted": f.call("rooted_1", 3.0), "roar": f.call("roar_heard", 2.0),
+		"breakin": f.call("turn", 6.0), "nest": f.call("sire_rooted", 4.0), "clutch": f.call("eggs", 50.0),
+		"broken": f.call("broken", 3.0), "fire": f.call("broken", 20.0), "home": f.call("home", 1.0)}
+	var where := {"den": "den", "rooted": "den", "roar": "edge", "breakin": "nest_wide", "nest": "nest", "clutch": "pen",
+		"broken": "pen", "fire": "yard", "home": "den"}
 	for k in want:
 		if want[k] and not _shot_done.has(k):
 			_shot_done[k] = true
