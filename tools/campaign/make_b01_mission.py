@@ -26,6 +26,7 @@ import json
 import os
 
 STILL = "res://campaign/stills/%s.jpg"
+CAP3 = 16                                  # (in Part 3, while the Sire calls: the station's retreat stays fair)
 CAP = 22                                   # the pack's living creatures the waves spawn up to (never an endless grind)
 TOLD = [{"flag": {"teles": "told"}}]
 QUIET = [{"flag": {"teles": "quiet"}}]
@@ -247,9 +248,9 @@ M = {
         {"id": "teles_late", "when": {"all": [{"fired": "eve"}] + QUIET}, "delay": 170, "do": [
             {"say": ["t_late"]}, {"order": {"tag": "garrison_a", "do": "attack", "to": "causeway_e"}}]},
         # the waves: the lure works on the first two, then they walk past the jars to her pen
-        *wave("wave_c", "trail_c", "jar_c", "eve", 150, 60, 4),
-        *wave("wave_w", "trail_nw", "jar_w", "eve", 150, 110, 4),
-        *wave("wave_e", "trail_ne", "jar_e", "eve", 150, 160, 4, spitters=1),
+        *wave("wave_c", "trail_c", "jar_c", "eve", 150, 60, 3),
+        *wave("wave_w", "trail_nw", "jar_w", "eve", 150, 110, 3),
+        *wave("wave_e", "trail_ne", "jar_e", "eve", 150, 160, 3, spitters=1),
         {"id": "walked_past", "when": {"all": [{"counter": {"name": "waves", "at_least": 3}}, {"counter": {"name": "jars", "at_least": 1}}]}, "do": [
             {"say": ["p_past", "v_past"]}]},
         # THE ISLAND THAT WALKED
@@ -275,7 +276,7 @@ M = {
             {"spawn": {"team": "pack", "kind": "tyrannosaur", "count": 1, "at": "jar_c", "tag": "sire"}},
             {"spawn": {"team": "pack", "kind": "raptor", "count": 4, "at": "jar_c", "tag": "sire_pack"}},
             {"spawn": {"team": "pack", "kind": "spitter", "count": 1, "at": "mouth", "tag": "sire_pack"}},
-            {"floor": {"tag": "sire", "share": 0.33}},
+            {"floor": {"tag": "sire", "share": 0.33}}, {"spare": {"tag": "specimen_house", "on": True}},
             {"order": {"tag": "sire", "do": "move", "to": "nest"}}, {"order": {"tag": "sire_pack", "do": "attack", "to": "pen"}},
             {"say": ["n_ground", "p_sire", "l_lost", "v_lost", "tip_3"]},
             {"objective": {"id": "pen", "set": "hidden"}}, {"objective": {"id": "goats", "set": "hidden"}},
@@ -307,7 +308,7 @@ M = {
             {"spawn": {"team": "pen", "kind": "brood_egg", "count": 1, "at": "pen_in", "tag": "eggs"}},
             {"cage": {"tag": "eggs", "on": True}}, {"spare": {"tag": "eggs", "on": True}}]},
         {"id": "eggs_seen", "when": {"fired": "eggs"}, "do": [{"say": ["p_eggs", "l_young"]}]},
-        {"id": "sire_call", "when": {"all": [{"rooted": {"tag": "sire"}}, {"not": {"fired": "taken"}}, {"count": {"team": "pack", "below": CAP}}]}, "every": 22, "delay": 12, "do": [
+        {"id": "sire_call", "when": {"all": [{"rooted": {"tag": "sire"}}, {"not": {"fired": "taken"}}, {"count": {"team": "pack", "below": CAP3}}]}, "every": 22, "delay": 12, "do": [
             {"sound": {"name": "campaign/linnea_call", "area": "pen"}},
             {"spawn": {"team": "pack", "kind": "raptor", "count": 2, "at": "jar_c", "tag": "called", "order": {"do": "attack", "to": "pen"}}},
             {"spawn": {"team": "pack", "kind": "raptor", "count": 1, "at": "jar_w", "tag": "called", "order": {"do": "attack", "to": "yard"}}}]},
@@ -336,7 +337,7 @@ M = {
         # THE SECOND CHOICE, in the burning specimen house
         {"id": "research_choice", "when": {"all": [{"fired": "taken"}, {"count": {"tag": "lindqvist", "area": "spec", "at_least": 1}},
                                                    {"not": {"dead": "specimen_house"}}, {"not": {"dead": "eggs"}}, {"not": {"fired": "fire_took"}}]}, "do": [
-            {"objective": {"id": "research", "set": "done"}},
+            {"objective": {"id": "research", "set": "done"}}, {"spare": {"tag": "specimen_house", "on": False}},
             {"say": ["n_room", "v_burn", "l_save"]},
             {"choice": {"id": "clutch", "side": "station", "default": "saved", "time": 35,
                         "title": "The roof is alight. Her eggs in the straw, his notes on the bench.",

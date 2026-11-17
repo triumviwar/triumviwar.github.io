@@ -1161,7 +1161,13 @@ func _tick_held() -> void:
 		if not is_instance_valid(b) or b.dead:
 			continue
 		still.append(it)
-		b.take_damage(float(it[1]) * TICK + maxf(float(b.armor), 0.0), null)
+		# (the fire takes no notice of `spare`: a building kept from the enemy's attacks still burns down in its time)
+		b.hp -= float(it[1]) * TICK
+		b.flash = 0.12
+		if b.hp <= 0.0:
+			b.spared = false
+			b.hp = 0.5
+			b.take_damage(10.0, null)
 		if randf() < 0.6:
 			game.spawn_effect("fire", b.center() + Vector2(randf_range(-28, 28), randf_range(-22, 14)), 0.9)
 	_burning = still

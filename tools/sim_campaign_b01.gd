@@ -75,6 +75,10 @@ func _run() -> void:
 				int(r.counters.get("saved", 0)), int(r.counters.get("people", 0)), r.tagged("eggs").size(),
 				("rooted" if BroodNew.rooted(r.tagged("sire")[0]) else "up %d" % r.tagged("sire")[0].hp) if not r.tagged("sire").is_empty() else "-",
 				_hp(r, "lindqvist"), _hp(r, "valadares"), _hp(r, "pieter"), r.obj.get("pen", ""), left])
+	for h in ["lindqvist", "valadares"]:
+		var hs: Array = r.tagged(h, false)
+		if not hs.is_empty() and is_instance_valid(hs[0]) and hs[0].dead:
+			print("SIM %s died at cell %s, last hit by %s" % [h, g.cell_of(hs[0].position), hs[0].last_hit_by])
 	print("SIM end t=%d over=%s winner=%s flags=%s" % [g.clock, g.over, r.winner_side, r.flags])
 	print("SIM objectives %s" % r.obj)
 	quit()
@@ -145,7 +149,9 @@ func _play(g: Game, r: MissionRun, st: int, pt: int) -> void:
 		if r.obj.get("village", "") == "active":
 			_go(g, army, r.area_rect("village").get_center(), true)
 		elif r.obj.get("turtle", "") == "active":
-			_go(g, army, r.area_rect("mouth").get_center(), true)
+			# (half the army at the turtle, half stays by the pen and the house)
+			_go(g, army.slice(0, army.size() / 2), r.area_rect("mouth").get_center(), true)
+			_go(g, army.slice(army.size() / 2), r.area_rect("pen").get_center() + Vector2(-120, 0), true)
 		elif int(r.counters.get("waves", 0)) < 2 and int(r.counters.get("jars", 0)) >= 1:
 			_go(g, army, r.area_rect("jar_c").get_center(), true)
 		else:

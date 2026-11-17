@@ -63,6 +63,10 @@ static func apply(u: Unit, r: String) -> void:
 		u.set_meta("torch", true)
 	if ro.has("scale"):
 		u.set_meta("role_scale", float(ro["scale"]))      # (drawn smaller: BroodNew's Mother picture reads it)
+		u.d = u.d.duplicate()                               # (its own: the sprite's scale comes from its "art_scale")
+		u.d["art_scale"] = float(u.d.get("art_scale", 1.0)) * float(ro["scale"])
+		if u.sprite:
+			u._set_anim(u.anim if u.anim != "" else "idle", true)
 		u.radius = maxf(8.0, u.radius * float(ro["scale"]))
 	if ro.has("hp"):
 		u.max_hp = float(ro["hp"])     # (a hero of the story: harder to kill than the stand-in he plays)

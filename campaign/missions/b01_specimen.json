@@ -1785,7 +1785,7 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 4,
+						"count": 3,
 						"at": "trail_c",
 						"tag": "wave_c"
 					}
@@ -1864,7 +1864,7 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 4,
+						"count": 3,
 						"at": "trail_nw",
 						"tag": "wave_w"
 					}
@@ -1943,7 +1943,7 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 4,
+						"count": 3,
 						"at": "trail_ne",
 						"tag": "wave_e"
 					}
@@ -2265,6 +2265,12 @@
 					"floor": {
 						"tag": "sire",
 						"share": 0.33
+					}
+				},
+				{
+					"spare": {
+						"tag": "specimen_house",
+						"on": true
 					}
 				},
 				{
@@ -2686,7 +2692,7 @@
 					{
 						"count": {
 							"team": "pack",
-							"below": 22
+							"below": 16
 						}
 					}
 				]
@@ -3017,6 +3023,12 @@
 					"objective": {
 						"id": "research",
 						"set": "done"
+					}
+				},
+				{
+					"spare": {
+						"tag": "specimen_house",
+						"on": false
 					}
 				},
 				{

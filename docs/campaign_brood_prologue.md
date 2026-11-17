@@ -95,7 +95,9 @@ Lindqvist tells it himself, as Hollweg tells his from exile in the King's palace
 he believes it: the night was bad weather, a careless lieutenant and a lure that worked too well; the creature was
 STOLEN from him; what he carried out (if he did) was "the research".
 
-CLAUDE'S PROPOSAL (marked as such; open question 1): A ROOM WITH NO NAME. He speaks from a bare stone room by one
+ANSWERED (owner, 2026-11-17 10:22): he tells it IN THE PRESENCE OF THE KING, ARRESTED, a prisoner brought before the
+King in Rome (see "OWNER ANSWERS (2026-11-17 10:22)" at the end). The proposal it replaced, kept for the record: A ROOM
+WITH NO NAME. He speaks from a bare stone room by one
 candle, his old journal open in front of him, to someone the picture never shows. No window, no city, no guard's
 colours, no creature: the stills and the voice show only him. What this decides: he is alive in 2795 and he is talking.
 What it leaves open: where the room is, whose prisoner or guest he is, and why he talks; the Brood line's last mission
@@ -541,7 +543,27 @@ scientist, the main. I agree with the rest." Decided:
 10. The Act 1 knock-on as proposed: Valadares goes north after Linnea (the Lost Plateau); the Specimens is Lindqvist's
    breeding stock (clutch saved) or fresh start (clutch burned).
 
-## Questions STILL OPEN (each with Claude's recommendation and what changes)
+## OWNER ANSWERS (2026-11-17 10:22): the open questions answered
+
+All six questions below are ANSWERED (they override the outline above where it differs; built in 0.38.45, job
+brood-prologue-build, docs/campaign_b01_build.md):
+
+1. WHERE LINDQVIST TELLS IT: in the PRESENCE OF THE KING, ARRESTED: a prisoner brought before the King in Rome; his
+   testimony matters to the Crown, and so does his knowledge of the Brood. The King opens and closes and corrects him
+   truthfully; Lindqvist tells it in between. (The opening and ending's teller still b08 is now Lindqvist in chains
+   before the King, with guards; the King's study lists Dr. Lindqvist as held, as Hollweg is listed in exile.)
+2. THE LURE: an OBJECTIVE the player carries out (not a choice), "after learning it": Lindqvist first explains what the
+   lure does, then the objective to set it.
+3. COLOURS: the station YELLOW, the garrison PURPLE, the pack GREEN; the map's floor and the igapó darkened so the green
+   pack reads.
+4. THE GUN: one Field Cannon with no horse, fixed at the station's landing (told) or the fort (quiet), that does not move.
+5. NAMES as proposed: Pieter van der Hoek, Lieutenant Rui Teles, Frei Joaquim do Carmo, Benedito Arruda, Nossa Senhora de
+   Nazaré, the fort at São Gabriel, LINNEA, the warehouse at the Barra do Rio Negro (the hub after the fall); "the Royal
+   Academy" stays unnamed.
+6. THE STORYLINE is renamed THE NATURALIST (campaign.json's Brood line, was "The Explorer"), line: "A naturalist on the
+   Amazon raises a creature no one has seen, and loses it to the forest."; the hub's title follows.
+
+## Questions that WERE open (answered above, kept for the record)
 
 1. WHERE IS LINDQVIST WHEN HE TELLS IT (2795)? Recommended: A ROOM WITH NO NAME (see "The teller"): a stone room, one
    candle, his journal, someone unseen; the place shown only in the Brood line's last mission. It decides only that he
