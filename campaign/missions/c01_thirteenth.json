@@ -8,6 +8,16 @@
 	"weather": "snow",
 	"expansion_spots": false,
 	"manual_end": true,
+	"difficulty": {
+		"easy": {
+			"clocks": 1.25,
+			"spawns": 0.75
+		},
+		"hard": {
+			"clocks": 0.9,
+			"spawns": 1.2
+		}
+	},
 	"modes": [
 		"solo",
 		"coop",

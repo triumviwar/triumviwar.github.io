@@ -58,6 +58,22 @@ var weather_node: Node = null
 # place and harmless; `spare`: untouchable), buildings set ALIGHT (`burn`), a health FLOOR, scripted ROOT / UPROOT
 var _caged: Array = []               # [unit, the spot it is kept at]
 var _burning: Array = []             # [building, health a second it loses]
+# ACT 1's ENGINE STEP 0 (act1-engine0, docs/act1_engine0.md): the campaign's DIFFICULTY, the SOLO SIDE PICK, STAY timers,
+# ROUTE and FOLLOW orders, SLEEP / WAKE, the MIST, CAPTURE
+var difficulty := "normal"           # "easy" / "normal" / "hard" (the campaign's, from the match setup)
+var mult := {"clocks": 1.0, "spawns": 1.0}      # this mission's multipliers at that difficulty (Campaign.diff_mult)
+var solo_side := ""                  # solo: the side the player picked on the briefing
+var _stay := {}                      # a STAY condition's key -> [game clock it began to hold, game clock last checked]
+var _routes: Array = []              # {"units", "pts": [areas], "i", "attack", "loop", "name", "t"}: ROUTE orders under way
+var route_done := {}                 # a route's name -> the game clock it ended
+var _follows: Array = []             # {"units", "leader": tag, "within": px, "t"}: FOLLOW orders
+var sleeping := {}                   # a sleep's name -> {"units", "within": px, "by": side id, "hp": [health each], "then"}
+var woke := {}                       # a sleep's name -> the game clock it woke
+var mist_sight := 1.0                # the MIST: units' sight times this (1: none)
+var mist_teams := {}                 # team index -> true: the mist's teams ({} every team)
+var captured := {}                   # a capture objective's tag -> true once its man is taken
+var _capture_share := {}             # a capture objective's tag -> the share of health he is kept at (his floor)
+var weather_name := ""
 
 
 func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
@@ -74,6 +90,17 @@ func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
 		obj[String(o["id"])] = "hidden" if bool(o.get("hidden", false)) else "active"
 	for cn in m.get("counters", {}):
 		counters[String(cn)] = int(m["counters"][cn].get("start", 0))
+	var camp: Dictionary = cfg.get("campaign", {})
+	difficulty = String(camp.get("difficulty", "normal"))
+	if not Campaign.DIFFICULTIES.has(difficulty):
+		difficulty = "normal"
+	mult = Campaign.diff_mult(m, difficulty)
+	solo_side = String(camp.get("side", "")) if md == "solo" else ""
+	if m.get("mist") is Dictionary:
+		set_mist(m["mist"], false)      # (the picture of it comes in _ready)
+	for o in m.get("objectives", []):
+		if String(o.get("kind", "")) == "capture":
+			_capture_share[String(o.get("tag", ""))] = float(o.get("share", 0.25))
 	for i in team_ids.size():
 		for k in team_data(i).get("roster", {}).get("deny", []):
 			if not deny.has(i):
@@ -204,6 +231,8 @@ func after_start() -> void:
 
 
 func _place_building(it: Dictionary) -> Building:
+	if it.has("if") and not cond(it["if"]):
+		return null          # (a building only when its condition holds: a flag a mission before left, the difficulty)
 	var t := team_index(String(it["team"]))
 	var k := String(it["kind"])
 	if t < 0 or not Defs.BUILDINGS.has(k):
@@ -266,7 +295,9 @@ func _spawn(it: Dictionary) -> Array:
 	var out: Array = []
 	if t < 0 or not Defs.UNITS.has(k):
 		return out
-	var n := int(it.get("count", 1))
+	if it.has("if") and not cond(it["if"]):
+		return out           # (units only when the condition holds: "if": {"past": ...}, {"difficulty": "easy"})
+	var n := scaled_count(t, int(it.get("count", 1)), bool(it.get("fixed", false)))
 	var spots := _spots(_where(it.get("at", [0, 0])), n)
 	for i in n:
 		var u := game._add_unit(k, t, spots[i % spots.size()])
@@ -314,6 +345,8 @@ func _tag(tag: String, e: Entity) -> void:
 		tags[tag] = []
 	tags[tag].append(e)
 	e.set_meta("mission_tag", tag)
+	if _capture_share.has(tag):
+		e.hp_floor = maxf(e.hp_floor, e.max_hp * float(_capture_share[tag]))      # (a man to be taken alive can't be killed)
 
 
 func tagged(tag: String, alive_only := true) -> Array:
@@ -333,8 +366,10 @@ func _ready() -> void:
 		game.camera.position = area_rect(String(tm["camera"])).get_center()
 	if data.has("light"):
 		set_light(String(data["light"]), 0.0)      # (the scene's light at the start: "night", "dawn", "day")
-	if String(data.get("weather", "")) in ["snow", "rain"]:
+	if String(data.get("weather", "")) in ["snow", "rain", "mist"]:
 		set_weather(String(data["weather"]))
+	elif mist_sight < 1.0 and bool(data.get("mist", {}).get("weather", true)):
+		set_weather("mist")
 	if data.has("floor") and game.ground:
 		# THE FLOOR's tint (the Brood prologue: the jungle floor darkened so the green pack reads on it)
 		var f: Array = data["floor"]
@@ -361,6 +396,8 @@ func _physics_process(delta: float) -> void:
 	_tick_turning()
 	_tick_exits()
 	_tick_held()
+	_tick_routes()
+	_tick_sleep()
 	if not choice_open.is_empty() and game.clock >= float(choice_open.get("until", INF)):
 		choose(String(choice_open["id"]), String(choice_open.get("default", "")))      # (nobody answered: the default)
 	_run_triggers()
@@ -486,6 +523,38 @@ func cond(c: Variant) -> bool:
 				# {"clock_left": {"name", "below": s}}: that countdown is running and has less than s seconds left
 				var cn := String(v.get("name", ""))
 				ok = clocks.has(cn) and float(clocks[cn]) - game.clock < float(v.get("below", 0.0)) and game.clock < float(clocks[cn])
+			# ---- act1-engine0
+			"difficulty":
+				# {"difficulty": "easy"} or ["easy", "normal"]: the campaign's difficulty
+				ok = (v if v is Array else [v]).map(func(x) -> String: return String(x)).has(difficulty)
+			"playing":
+				# {"playing": side}: a person plays a team of that side (solo: the side picked; versus: both)
+				ok = played_sides().has(String(v))
+			"stay":
+				# {"stay": {"tag" / "team" / "side", "kind", "area", "secs", "count"}}: that many have stood in the area for
+				# secs without a break (Lyon's square, Ferrer's workshops)
+				ok = stay_held(v)
+			"near":
+				# {"near": {"tag" / "team" / "side", "to": tag / "to_team" / "to_side", "within": tiles}}: one of them
+				# within that many tiles of one of the others
+				ok = near(v)
+			"seen":
+				# {"seen": {"tag", "by": side}}: one of them is in that side's sight now (the walker shadowed)
+				ok = false
+				var st := teams_of_side(String(v.get("by", "")))
+				if not st.is_empty():
+					for e in tagged(String(v.get("tag", ""))):
+						if game.side_sees(st[0], e.position if e is Unit else e.center()):
+							ok = true
+							break
+			"awake":
+				ok = woke.has(String(v))
+			"asleep":
+				ok = sleeping.has(String(v)) and not woke.has(String(v))
+			"captured":
+				ok = captured.has(String(v))
+			"route_done":
+				ok = route_done.has(String(v))
 			"selected", "camera_moved", "zoomed", "more", "built", "rooted", "crew", "group", "did", "gear_view", \
 					"placing", "order", "res", "talked":
 				ok = _tutorial_cond(String(k), v)
@@ -621,7 +690,8 @@ func act(a: Dictionary) -> void:
 				if bool(v.get("stop", false)):
 					clocks.erase(cn)
 				elif v.has("secs"):
-					clocks[cn] = game.clock + float(v["secs"])
+					# (a countdown the player races is longer on EASY, shorter on HARD: the difficulty's "clocks")
+					clocks[cn] = game.clock + float(v["secs"]) * (float(mult.get("clocks", 1.0)) if clock_scales(cn, v) else 1.0)
 				elif clocks.has(cn):
 					clocks[cn] = maxf(game.clock, float(clocks[cn]) + float(v.get("add", 0.0)))
 				objectives_changed.emit()
@@ -659,6 +729,13 @@ func act(a: Dictionary) -> void:
 			"weather":
 				set_weather(String(v))
 				_send({"k": "wx", "w": String(v)})
+			"sleep":
+				sleep_units(v)
+			"wake":
+				wake(sleep_name(v))
+			"mist":
+				set_mist(v)
+				_send({"k": "mist", "v": v})
 			"cage", "pin", "carry", "spare":
 				hold(String(k), v)
 			"floor":
@@ -681,8 +758,30 @@ func _order(us: Array, v: Dictionary) -> void:
 	us = us.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead and not player_teams.has(u.team))
 	if us.is_empty():
 		return
+	# (a new order ends any ROUTE or FOLLOW these units were on)
+	for r in _routes:
+		r["units"] = (r["units"] as Array).filter(func(u) -> bool: return not us.has(u))
+	for f in _follows:
+		f["units"] = (f["units"] as Array).filter(func(u) -> bool: return not us.has(u))
 	var p: Vector2 = area_rect(String(v["to"])).get_center() if v.has("to") else Vector2.INF
 	match String(v.get("do", "")):
+		"route":
+			# {"do": "route", "route": [areas], "loop": false, "attack": false, "name"}: the waypoints in turn (a party up
+			# the cliff, the cage carts down the trail); the condition {"route_done": name} once they reach the last
+			var pts: Array = (v.get("route", []) as Array).map(func(x) -> String: return String(x))
+			if pts.is_empty():
+				return
+			var rname := String(v.get("name", v.get("tag", v.get("team", "route"))))
+			route_done.erase(rname)
+			_routes = _routes.filter(func(r) -> bool: return String(r["name"]) != rname)
+			var rt := {"units": us, "pts": pts, "i": 0, "attack": bool(v.get("attack", false)), "loop": bool(v.get("loop", false)),
+				"name": rname, "t": 0.0}
+			_routes.append(rt)
+			game.group_move(us, area_rect(pts[0]).get_center(), rt["attack"])
+		"follow":
+			# {"do": "follow", "leader": tag, "within": tiles (3)}: they keep within reach of the leader (the first of the tag
+			# alive), walking after it when it gets away; they stop when it is gone
+			_follows.append({"units": us, "leader": String(v.get("leader", "")), "within": float(v.get("within", 3)) * Defs.TILE, "t": 0.0})
 		"attack":
 			game.group_move(us, p, true)
 		"move":
@@ -880,8 +979,16 @@ func _check_objectives() -> void:
 					q["team"] = o["team"]
 				else:
 					q["side"] = String(o.get("side_units", o["side"]))
-				if count(q) >= int(o.get("count", 1)):
+				if o.has("secs"):
+					# (a STAY: that many must stand there for secs without a break)
+					q["secs"] = o["secs"]
+					q["count"] = int(o.get("count", 1))
+					if stay_held(q, "obj:" + oid):
+						set_objective(oid, "done")
+				elif count(q) >= int(o.get("count", 1)):
 					set_objective(oid, "done")
+			"capture":
+				_check_capture(o)
 	check_end()
 
 
@@ -1060,14 +1167,20 @@ func play_sound(sname: String, area := "", vol := 0.0) -> void:
 
 ## WEATHER: "snow" (flakes drifting over the screen, under the HUD), "" none.
 func set_weather(w: String) -> void:
+	weather_name = w
 	if weather_node:
 		weather_node.queue_free()
 		weather_node = null
-	if not w in ["snow", "rain"] or game == null or DisplayServer.get_name() == "headless":
+	if not w in ["snow", "rain", "mist"] or game == null or DisplayServer.get_name() == "headless":
 		return
 	var cl := CanvasLayer.new()
 	cl.name = "MissionWeather"
 	cl.layer = 1          # (over the world, under the HUD and the panels: ui_layer is 10)
+	if w == "mist":
+		_mist_picture(cl)
+		game.add_child(cl)
+		weather_node = cl
+		return
 	var p := CPUParticles2D.new()
 	var vs := game.get_viewport().get_visible_rect().size if game.is_inside_tree() else Vector2(1600, 900)
 	p.position = Vector2(vs.x * 0.5, -20)
@@ -1210,6 +1323,327 @@ func pages_now(pages: Array) -> Array:
 		c["lines"] = ids
 		out.append(c)
 	return out
+
+
+# ------------------------------------------------------------------ act 1's engine step 0 (docs/act1_engine0.md)
+
+## The sides a person plays in this game (solo: the one picked; co-op: the friends'; versus: both).
+func played_sides() -> Array:
+	var out: Array = []
+	for t in player_teams:
+		var sd := side_of_team(int(t))
+		if not out.has(sd):
+			out.append(sd)
+	return out
+
+
+## How many units an entry or a spawn really gives: the DIFFICULTY's "spawns" for the sides nobody plays (EASY fewer,
+## HARD more), never under 1; a single unit (a hero) and an entry with "fixed": true stay as written.
+func scaled_count(t: int, n: int, fixed := false) -> int:
+	var sm := float(mult.get("spawns", 1.0))
+	if fixed or n < 2 or is_equal_approx(sm, 1.0) or played_sides().has(side_of_team(t)):
+		return n
+	return maxi(1, roundi(n * sm))
+
+
+## Does a countdown take the DIFFICULTY's "clocks"? Its own "scale" says so; else yes when an objective of kind
+## "countdown" shows it (the clock the player races), no for the mission's own timers.
+func clock_scales(cn: String, v: Dictionary) -> bool:
+	if v.has("scale"):
+		return bool(v["scale"])
+	for o in data.get("objectives", []):
+		if String(o.get("kind", "")) == "countdown" and String(o.get("clock", "")) == cn:
+			return true
+	return false
+
+
+## STAY: {"tag" / "team" / "side", "kind", "area", "count" (1), "secs"}: that many have stood in the area for secs
+## without a break. The timer runs while the condition is asked (each check); a gap in the asking starts it again.
+func stay_held(q: Dictionary, key := "") -> bool:
+	if key == "":
+		key = JSON.stringify(q)
+	var c: Dictionary = q.duplicate()
+	c.erase("secs")
+	var n := int(c.get("count", 1))
+	c.erase("count")
+	if not c.has("area") or count(c) < n:
+		_stay.erase(key)
+		return false
+	var it: Array = _stay.get(key, [])
+	if it.is_empty() or game.clock - float(it[1]) > TICK * 2.0 + 0.01:
+		it = [game.clock, game.clock]
+	it[1] = game.clock
+	_stay[key] = it
+	return game.clock - float(it[0]) >= float(q.get("secs", 0.0))
+
+
+## Living units (and, for a tag, buildings) by a tag, a team or a side (horses not counted).
+func group_of(tag: String, team: String, side: String) -> Array:
+	if tag != "":
+		return tagged(tag)
+	var ts: Array = []
+	if team != "":
+		ts = [team_index(team)]
+	elif side != "":
+		ts = teams_of_side(side)
+	return game.units.filter(func(u) -> bool: return not u.dead and ts.has(u.team) and u.kind != "horse")
+
+
+func _pos(e: Entity) -> Vector2:
+	return e.position if e is Unit else (e as Building).center()
+
+
+## NEAR: {"tag" / "team" / "side", "to": tag / "to_team" / "to_side", "within": tiles (3)}.
+func near(v: Dictionary) -> bool:
+	var a := group_of(String(v.get("tag", "")), String(v.get("team", "")), String(v.get("side", "")))
+	var b := group_of(String(v.get("to", "")), String(v.get("to_team", "")), String(v.get("to_side", "")))
+	var r := float(v.get("within", 3)) * Defs.TILE
+	for x in a:
+		for y in b:
+			if x != y and _pos(x).distance_to(_pos(y)) <= r:
+				return true
+	return false
+
+
+## ROUTE and FOLLOW under way (MissionRun._order starts them): a route moves on when half its living units are at the
+## waypoint (a tile round its area), and sends the stragglers on now and then; a follower walks after its leader when
+## it is more than "within" away.
+func _tick_routes() -> void:
+	var keep: Array = []
+	for r in _routes:
+		var us: Array = (r["units"] as Array).filter(func(u) -> bool: return is_instance_valid(u) and not u.dead)
+		r["units"] = us
+		if us.is_empty():
+			continue
+		var pts: Array = r["pts"]
+		var rect := area_rect(String(pts[int(r["i"])])).grow(Defs.TILE)
+		var inside := us.filter(func(u) -> bool: return rect.has_point(u.position)).size()
+		if inside * 2 >= us.size():
+			r["i"] = int(r["i"]) + 1
+			if int(r["i"]) >= pts.size():
+				if bool(r["loop"]):
+					r["i"] = 0
+				else:
+					route_done[String(r["name"])] = game.clock
+					if game.mlog:
+						game.mlog.add("(mission) route %s done" % r["name"])
+					continue
+			game.group_move(us, area_rect(String(pts[int(r["i"])])).get_center(), bool(r["attack"]))
+			r["t"] = 0.0
+		else:
+			r["t"] = float(r["t"]) + TICK
+			if float(r["t"]) >= 4.0:
+				r["t"] = 0.0
+				var idle := us.filter(func(u) -> bool: return u.order == "idle")
+				if not idle.is_empty():
+					game.group_move(idle, rect.get_center(), bool(r["attack"]))
+		keep.append(r)
+	_routes = keep
+	var fk: Array = []
+	for f in _follows:
+		var us: Array = (f["units"] as Array).filter(func(u) -> bool: return is_instance_valid(u) and not u.dead)
+		f["units"] = us
+		if us.is_empty():
+			continue
+		var lead := tagged(String(f["leader"]))
+		if lead.is_empty():
+			for u in us:
+				u.cmd_stop()      # (the one they followed is gone)
+			continue
+		f["t"] = float(f["t"]) + TICK
+		if float(f["t"]) >= 1.0:
+			f["t"] = 0.0
+			var lp := _pos(lead[0])
+			var far := us.filter(func(u) -> bool: return u.position.distance_to(lp) > float(f["within"]))
+			if not far.is_empty():
+				game.group_move(far, lp, false)
+		fk.append(f)
+	_follows = fk
+
+
+## A SLEEP's name: its "name", else its tag, team or side.
+func sleep_name(v: Dictionary) -> String:
+	return String(v.get("name", v.get("tag", v.get("team", v.get("side", "sleep")))))
+
+
+## SLEEP: {"tag" / "team" / "side", "name", "within": tiles (6; 0: only a trigger or a wound wakes them), "by": the
+## side whose units wake them (any other side), "hurt": true (a wound wakes them), "then": an order on waking}. The
+## units hold where they are and don't fight (a person's own too: the nest asleep) until the group wakes.
+func sleep_units(v: Dictionary) -> void:
+	var nm := sleep_name(v)
+	var us := group_of(String(v.get("tag", "")), String(v.get("team", "")), String(v.get("side", ""))).filter(func(e) -> bool: return e is Unit)
+	for u in us:
+		u.set_meta("mission_asleep", nm)
+		u.cmd_stop()
+		u.target = null
+		u.m_pace = 0.0
+		u.m_unarmed = true
+	sleeping[nm] = {"units": us, "within": float(v.get("within", 6)) * Defs.TILE, "by": String(v.get("by", "")),
+		"hurt": bool(v.get("hurt", true)), "hp": us.map(func(u) -> float: return u.hp), "then": v.get("then", {})}
+	woke.erase(nm)
+	if game.mlog:
+		game.mlog.add("(mission) %s asleep (%d)" % [nm, us.size()])
+
+
+## WAKE: the group gets up (and carries out its "then" order).
+func wake(nm: String) -> void:
+	if not sleeping.has(nm) or woke.has(nm):
+		return
+	woke[nm] = game.clock
+	var live: Array = []
+	for u in sleeping[nm]["units"]:
+		if not is_instance_valid(u) or u.dead:
+			continue
+		live.append(u)
+		u.remove_meta("mission_asleep")
+		if not u.has_meta("mission_caged"):
+			u.m_pace = 1.0
+			u.m_unarmed = false
+	var th: Variant = sleeping[nm].get("then", {})
+	if th is Dictionary and not (th as Dictionary).is_empty():
+		_order(live, th)
+	if game.mlog:
+		game.mlog.add("(mission) %s woke" % nm)
+
+
+func _tick_sleep() -> void:
+	for nm in sleeping:
+		if woke.has(nm):
+			continue
+		var sl: Dictionary = sleeping[nm]
+		var us: Array = sl["units"]
+		var wake_now := false
+		for i in us.size():
+			var u = us[i]
+			if not is_instance_valid(u) or u.dead or (bool(sl["hurt"]) and u.hp < float(sl["hp"][i]) - 0.01):
+				wake_now = bool(sl["hurt"])
+				if wake_now:
+					break
+		var r := float(sl["within"])
+		if not wake_now and r > 0.0:
+			var live := us.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead)
+			if not live.is_empty():
+				var my := side_of_team(live[0].team)
+				var by := String(sl["by"])
+				for e in game.units:
+					if e.dead or e.team < 0 or e.kind == "horse":
+						continue
+					var sd := side_of_team(e.team)
+					if sd == my or (by != "" and sd != by):
+						continue
+					for u in live:
+						if u.position.distance_to(e.position) <= r:
+							wake_now = true
+							break
+					if wake_now:
+						break
+		if wake_now:
+			wake(nm)
+
+
+## THE MIST: {"sight": share of their sight (1 clears it), "team" or "side" (none: everyone), "weather": true (the grey
+## over the screen)}. Unit._physics reads sight_of.
+func set_mist(v: Dictionary, picture := true) -> void:
+	mist_sight = clampf(float(v.get("sight", 1.0)), 0.1, 1.0)
+	mist_teams = {}
+	if v.has("team"):
+		mist_teams[team_index(String(v["team"]))] = true
+	elif v.has("side"):
+		for t in teams_of_side(String(v["side"])):
+			mist_teams[t] = true
+	if picture and bool(v.get("weather", true)):
+		if mist_sight < 1.0:
+			set_weather("mist")
+		elif weather_name == "mist":
+			set_weather("")
+	if game:
+		game._vis_t = 0.0
+
+
+## A unit's sight (tiles) under the mission's MIST.
+func sight_of(u: Unit, base: int) -> int:
+	if mist_sight >= 1.0 or (not mist_teams.is_empty() and not mist_teams.has(u.team)):
+		return base
+	return maxi(2, roundi(base * mist_sight))
+
+
+func _mist_picture(cl: CanvasLayer) -> void:
+	var veil := ColorRect.new()
+	veil.color = Color(0.8, 0.82, 0.84, 0.26)
+	veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	veil.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	cl.add_child(veil)
+	var vs := game.get_viewport().get_visible_rect().size if game.is_inside_tree() else Vector2(1600, 900)
+	var p := CPUParticles2D.new()
+	p.position = vs * 0.5
+	p.amount = 24
+	p.lifetime = 16.0
+	p.preprocess = 16.0
+	p.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
+	p.emission_rect_extents = vs * 0.6
+	p.direction = Vector2(1, 0)
+	p.spread = 20.0
+	p.gravity = Vector2.ZERO
+	p.initial_velocity_min = 6.0
+	p.initial_velocity_max = 16.0
+	p.scale_amount_min = 1.0
+	p.scale_amount_max = 1.6
+	var tex := GradientTexture2D.new()
+	tex.width = 360
+	tex.height = 220
+	tex.fill = GradientTexture2D.FILL_RADIAL
+	tex.fill_from = Vector2(0.5, 0.5)
+	tex.fill_to = Vector2(1.0, 0.5)
+	var gr := Gradient.new()
+	gr.set_color(0, Color(1, 1, 1, 0.22))
+	gr.set_color(1, Color(1, 1, 1, 0))
+	tex.gradient = gr
+	p.texture = tex
+	p.color = Color(0.9, 0.92, 0.94, 1)
+	cl.add_child(p)
+
+
+## CAPTURE (objective {"kind": "capture", "tag", "share": 0.25, "within": tiles (3), "by": side (the objective's)}):
+## the man can't be brought under that share of his health; there, with one of the capturing side near, he is taken
+## (caged and spared: he stays where he was taken, harmless); done when all of the tag are taken, failed if all die.
+func _check_capture(o: Dictionary) -> void:
+	var oid := String(o["id"])
+	var tag := String(o.get("tag", ""))
+	var share := float(o.get("share", 0.25))
+	var r := float(o.get("within", 3)) * Defs.TILE
+	var by := String(o.get("by", o.get("side", "")))
+	var us := tagged(tag)
+	if us.is_empty():
+		if tags.has(tag) and not captured.has(tag):
+			set_objective(oid, "failed")
+		return
+	var all_taken := true
+	for e in us:
+		if e.has_meta("mission_captured"):
+			continue
+		var fl: float = e.max_hp * share
+		e.hp_floor = maxf(e.hp_floor, fl)
+		if e.hp <= fl + 0.5 and group_of("", "", by).any(func(c) -> bool: return c != e and c.position.distance_to(_pos(e)) <= r):
+			take_captive(e)
+		else:
+			all_taken = false
+	if all_taken:
+		captured[tag] = true
+		set_objective(oid, "done")
+
+
+## A man taken: he stays where he was taken (caged), harmless and spared.
+func take_captive(e: Entity) -> void:
+	e.set_meta("mission_captured", true)
+	e.spared = true
+	if e is Unit:
+		e.cmd_stop()
+		e.m_pace = 0.0
+		e.m_unarmed = true
+		e.set_meta("mission_caged", true)
+		_caged.append([e, e.position])
+	if game.mlog:
+		game.mlog.add("(mission) a %s taken alive" % e.kind)
 
 
 # ------------------------------------------------------------------ the TUTORIAL (docs/tutorial.md)
@@ -1366,6 +1800,11 @@ func on_net(m: Dictionary) -> void:
 			game._ping(m.get("p", Vector2.ZERO), Color(1, 0.85, 0.3))
 		"light":
 			set_light(String(m.get("to", "day")), float(m.get("secs", 0.0)))
+		"mist":
+			if m.get("v") is Dictionary:
+				set_mist(m["v"])
+		"wx":
+			set_weather(String(m.get("w", "")))
 		"cam":
 			var s := String(m.get("s", ""))
 			if s == "" or s == my_side():

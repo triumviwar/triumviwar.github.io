@@ -11,6 +11,14 @@
 		"coop",
 		"versus"
 	],
+	"difficulty": {
+		"easy": {
+			"spawns": 0.75
+		},
+		"hard": {
+			"spawns": 1.2
+		}
+	},
 	"factions": {
 		"free_assembly": {
 			"name": "The Free Assembly",

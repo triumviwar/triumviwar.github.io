@@ -3792,9 +3792,10 @@ func _tick_unit(delta: float) -> void:
 			hp = minf(max_hp, hp + (2.0 + BroodResearch.mend(self)) * delta)
 	if _k_nb:
 		BroodNew.tick(game, self, delta)      # (the Brood: eggs, food, fertilising, HAUL's pace)
-	if not game.zones.is_empty() or sight != int(d["sight"]):
+	var base_sight := int(d["sight"]) if game.mission == null else game.mission.sight_of(self, int(d["sight"]))      # (a mission's MIST)
+	if not game.zones.is_empty() or sight != base_sight:
 		# a fog bank: inside it you see only a couple of tiles
-		sight = int(Defs.FOG["sight"]) if game.in_fog(position) else int(d["sight"])
+		sight = int(Defs.FOG["sight"]) if game.in_fog(position) else base_sight
 	if kind == "mist_toad":
 		var fill := float(Defs.TOAD["fill"]) * (float(Defs.TOAD["swamp"]) if game.on_swamp(team, position) else 1.0)
 		charge = minf(float(Defs.TOAD["max"]), charge + fill * delta)

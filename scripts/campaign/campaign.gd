@@ -12,6 +12,13 @@ const MODE_LABEL := {"solo": "SOLO", "coop": "CO-OP", "versus": "VERSUS"}
 ## "script" (the mission's triggers move it: no computer player), or "ai:<level>:<plan>" (the normal computer).
 
 static var _cache := {}
+## CAMPAIGN DIFFICULTY (act1-engine0, docs/act1_engine0.md): picked on the briefing, kept in the progress file. A mission
+## reads it with the {"difficulty": ...} condition and through its "difficulty" multipliers: "clocks" (countdowns the
+## player races: longer is easier) and "spawns" (how many units the sides no person plays get).
+const DIFFICULTIES := ["easy", "normal", "hard"]
+const DIFF_LABEL := {"easy": "EASY", "normal": "NORMAL", "hard": "HARD"}
+const DIFF_DEFAULT := {"easy": {"clocks": 1.25, "spawns": 0.75}, "normal": {"clocks": 1.0, "spawns": 1.0},
+	"hard": {"clocks": 0.85, "spawns": 1.25}}
 
 
 ## Tests and the hub pictures (tools/shot_hub.gd): every storyline opens, so the Clockwork and Brood hubs can be
@@ -191,6 +198,67 @@ static func faction_known(m: Dictionary, f: String) -> bool:
 	return Defs.FACTIONS.has(f) or Defs.FACTIONS.has(String(m.get("factions", {}).get(f, {}).get("stand_in", "")))
 
 
+## THE SOLO SIDE PICK (act1-engine0): the sides a solo player may lead ("solo_sides": [side ids]; none: only the side
+## of the solo "p1" team). The first is the mission's own default.
+static func solo_sides(m: Dictionary) -> Array:
+	var d := seat_side(m, "solo", "p1")
+	var out: Array = []
+	for sd in m.get("solo_sides", []):
+		if side_ids(m).has(String(sd)) and not out.has(String(sd)):
+			out.append(String(sd))
+	out.erase(d)
+	out.push_front(d)
+	return out
+
+
+## Who moves a team in a solo game where the player leads `side`. The mission's default side: its "solo" control. Another
+## picked side: the team's "control" may say it outright ("solo:<side>": "p1" / "script" / "ai:..."); else the teams of
+## that side a person plays in versus become yours, the default player's teams become their "foe" control ("script"
+## if none), and every other team keeps its solo control.
+static func solo_control(m: Dictionary, tm: Dictionary, side := "") -> String:
+	var base := control_of(tm, "solo")
+	if side == "" or side == seat_side(m, "solo", "p1"):
+		return base
+	var c: Variant = tm.get("control", "script")
+	if c is Dictionary and (c as Dictionary).has("solo:" + side):
+		return String(c["solo:" + side])
+	if String(tm.get("side", "")) == side:
+		return "p1" if control_of(tm, "versus") in ["p1", "p2"] else base
+	if base == "p1":
+		return String((c as Dictionary).get("foe", "script")) if c is Dictionary else "script"
+	return base
+
+
+## The side a solo player leads: `side` when the mission lets them pick it, else the default.
+static func solo_side(m: Dictionary, side := "") -> String:
+	return side if side != "" and solo_sides(m).has(side) else seat_side(m, "solo", "p1")
+
+
+## The campaign's difficulty ("easy" / "normal" / "hard"), kept in the progress file.
+static func difficulty() -> String:
+	var d := String(progress().get("difficulty", "normal"))
+	return d if DIFFICULTIES.has(d) else "normal"
+
+
+static func set_difficulty(d: String) -> void:
+	if not DIFFICULTIES.has(d):
+		return
+	var p := progress()
+	p["difficulty"] = d
+	save_progress(p)
+
+
+## A mission's multipliers at a difficulty: {"clocks", "spawns"} (the mission's "difficulty": {level: {...}} over
+## DIFF_DEFAULT).
+static func diff_mult(m: Dictionary, level: String) -> Dictionary:
+	var out: Dictionary = (DIFF_DEFAULT.get(level, DIFF_DEFAULT["normal"]) as Dictionary).duplicate()
+	var own: Variant = (m["difficulty"] as Dictionary).get(level, {}) if m.get("difficulty") is Dictionary else {}
+	if own is Dictionary:
+		for k in own:
+			out[String(k)] = float(own[k])
+	return out
+
+
 ## The side a player seat plays in this mode ("p1" / "p2"): the side of its first team ("" none).
 static func seat_side(m: Dictionary, mode: String, seat: String) -> String:
 	for tm in m.get("teams", []):
@@ -202,11 +270,14 @@ static func seat_side(m: Dictionary, mode: String, seat: String) -> String:
 ## The match setup Main.start takes: the map, one slot per team (who / faction / colour / side), and "campaign".
 ## `host_seat`: the seat this machine plays ("p1" normally; online versus the host may take "p2"). `online`: the
 ## other seat is a friend ("remote"); offline only "p1" teams are yours and a "p2" team falls back to its solo control.
-static func make_cfg(id: String, mode: String, host_seat := "p1", online := false) -> Dictionary:
+## `side` (solo only): the side the player picked on the briefing (the SOLO SIDE PICK); "" the default.
+static func make_cfg(id: String, mode: String, host_seat := "p1", online := false, side := "") -> Dictionary:
 	var m := mission(id)
 	var slots: Array = []
+	if mode == "solo":
+		side = solo_side(m, side)
 	for tm in m.get("teams", []):
-		var ctl := control_of(tm, mode)
+		var ctl := solo_control(m, tm, side) if mode == "solo" else control_of(tm, mode)
 		var slot := {"faction": engine_faction(m, String(tm.get("faction", "crown"))), "colour": int(tm.get("colour", Defs.COLOUR_RANDOM)),
 			"side": maxi(0, side_index(m, String(tm["side"]))), "team_id": String(tm["id"])}
 		if ctl == host_seat:
@@ -220,7 +291,10 @@ static func make_cfg(id: String, mode: String, host_seat := "p1", online := fals
 		else:
 			slot["who"] = "script"
 		slots.append(slot)
-	return {"map": String(m.get("map", "random")), "slots": slots, "campaign": {"mission": id, "mode": mode, "seat": host_seat}}
+	var camp := {"mission": id, "mode": mode, "seat": host_seat, "difficulty": difficulty()}
+	if mode == "solo":
+		camp["side"] = side
+	return {"map": String(m.get("map", "random")), "slots": slots, "campaign": camp}
 
 
 # ------------------------------------------------------------------ progress
@@ -406,6 +480,25 @@ static func problems(m: Dictionary) -> Array:
 			out.append("mode %s: no team for p2" % md)
 	if m.has("modes") and (m["modes"] as Array).has("versus") and seat_side(m, "versus", "p1") == seat_side(m, "versus", "p2"):
 		out.append("versus: p1 and p2 are on the same side")
+	# the SOLO SIDE PICK, the DIFFICULTY and the MIST (act1-engine0)
+	for sd in m.get("solo_sides", []):
+		if not sides.has(String(sd)):
+			out.append("solo_sides: unknown side %s" % sd)
+		elif not (m.get("teams", []) as Array).any(func(tm: Dictionary) -> bool: return String(tm.get("side", "")) == String(sd) and solo_control(m, tm, String(sd)) == "p1"):
+			out.append("solo_sides: no team for the player on side %s" % sd)
+	if m.has("difficulty"):
+		if not (m["difficulty"] is Dictionary):
+			out.append("difficulty: must be {level: {clocks, spawns}}")
+		else:
+			for lv in m["difficulty"]:
+				if not DIFFICULTIES.has(String(lv)):
+					out.append("difficulty: unknown level %s" % lv)
+				elif m["difficulty"][lv] is Dictionary:
+					for k in m["difficulty"][lv]:
+						if not String(k) in ["clocks", "spawns"]:
+							out.append("difficulty %s: unknown multiplier %s" % [lv, k])
+	if m.has("mist"):
+		_check_mist(m["mist"], "mist", out, sides, teams)
 	for list_key in ["units", "buildings"]:
 		for it in m.get(list_key, []):
 			if not teams.has(String(it.get("team", ""))):
@@ -417,6 +510,8 @@ static func problems(m: Dictionary) -> Array:
 				out.append("%s: unknown area %s" % [list_key, it["at"]])
 			if it.has("as") and String(Rebels.role(String(it["as"])).get("kind", "")) != k:
 				out.append("%s: role %s doesn't fit kind %s" % [list_key, it["as"], k])
+			if it.has("if"):
+				_check_cond(it["if"], list_key, out, sides, teams, areas, objs, trig)
 	for k in lines:
 		var ln: Dictionary = lines[k]
 		if not (m.get("speakers", {}) as Dictionary).has(String(ln.get("who", ""))):
@@ -447,10 +542,14 @@ static func problems(m: Dictionary) -> Array:
 	for o in m.get("objectives", []):
 		if not sides.has(String(o.get("side", ""))):
 			out.append("objective %s: unknown side" % o["id"])
-		if not ["survive", "destroy", "protect", "reach", "manual", "countdown", "build"].has(String(o.get("kind", ""))):
+		if not ["survive", "destroy", "protect", "reach", "manual", "countdown", "build", "capture"].has(String(o.get("kind", ""))):
 			out.append("objective %s: unknown kind %s" % [o["id"], o.get("kind")])
 		if o.has("area") and not areas.has(String(o["area"])):
 			out.append("objective %s: unknown area" % o["id"])
+		if String(o.get("kind", "")) == "capture" and String(o.get("tag", "")) == "":
+			out.append("objective %s: a capture needs a tag" % o["id"])
+		if o.has("by") and not sides.has(String(o["by"])):
+			out.append("objective %s: unknown side %s" % [o["id"], o["by"]])
 	for tr in m.get("triggers", []):
 		_check_cond(tr.get("when", {}), "trigger %s" % tr.get("id", "?"), out, sides, teams, areas, objs, trig)
 		for a in tr.get("do", []):
@@ -487,8 +586,29 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 		return
 	for k in c:
 		match String(k):
-			"time", "dead", "hurt", "flag", "past", "clock_out", "clock_left", "counter", "netted", "hp":
+			"time", "dead", "hurt", "flag", "past", "clock_out", "clock_left", "counter", "netted", "hp", "awake", "asleep", \
+					"captured", "route_done":
 				pass
+			# act1-engine0: the difficulty, who is played, STAY, NEAR, SEEN
+			"difficulty":
+				for lv in (c[k] if c[k] is Array else [c[k]]):
+					if not DIFFICULTIES.has(String(lv)):
+						out.append("%s: unknown difficulty %s" % [where, lv])
+			"playing":
+				if not sides.has(String(c[k])):
+					out.append("%s: unknown side %s" % [where, c[k]])
+			"stay", "near", "seen":
+				var q: Variant = c[k]
+				if not (q is Dictionary):
+					out.append("%s: %s needs {...}" % [where, k])
+				else:
+					if k == "stay" and not areas.has(String(q.get("area", ""))):
+						out.append("%s: stay in unknown area %s" % [where, q.get("area")])
+					for sk in ["side", "to_side", "by"]:
+						if q.has(sk) and not sides.has(String(q[sk])):
+							out.append("%s: unknown side %s" % [where, q[sk]])
+					if q.has("team") and not teams.has(String(q["team"])):
+						out.append("%s: unknown team %s" % [where, q["team"]])
 			# the TUTORIAL's conditions (what the player did: docs/tutorial.md)
 			"selected", "camera_moved", "zoomed", "more", "built", "rooted", "crew", "group", "did", "gear_view", \
 					"placing", "order", "res", "talked":
@@ -534,6 +654,8 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 		"spawn", "build":
 			if not teams.has(String(v.get("team", ""))):
 				out.append("%s: %s for unknown team" % [where, k])
+			if v.has("if"):
+				_check_cond(v["if"], where, out, sides, teams, areas, objs, (m.get("triggers", []) as Array).map(func(t: Dictionary) -> String: return String(t.get("id", ""))))
 			if k == "build":
 				if not Defs.BUILDINGS.has(String(v.get("kind", ""))):
 					out.append("%s: build of unknown kind %s" % [where, v.get("kind")])
@@ -547,8 +669,16 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 			if v.get("at") is String and not areas.has(String(v["at"])):
 				out.append("%s: unknown area %s" % [where, v["at"]])
 		"order":
-			if not ["attack", "move", "hold", "stop", "patrol", "hunt", "root", "uproot"].has(String(v.get("do", ""))):
+			if not ["attack", "move", "hold", "stop", "patrol", "hunt", "root", "uproot", "route", "follow"].has(String(v.get("do", ""))):
 				out.append("%s: unknown order %s" % [where, v.get("do")])
+			if String(v.get("do", "")) == "route":
+				if (v.get("route", []) as Array).is_empty():
+					out.append("%s: a route needs its waypoints" % where)
+				for w in v.get("route", []):
+					if not areas.has(String(w)):
+						out.append("%s: route through unknown area %s" % [where, w])
+			if String(v.get("do", "")) == "follow" and String(v.get("leader", "")) == "":
+				out.append("%s: follow needs a leader tag" % where)
 			if v.has("to") and not areas.has(String(v["to"])):
 				out.append("%s: unknown area %s" % [where, v["to"]])
 			for ti in v.get("to_if", []):
@@ -585,8 +715,17 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: unknown sound %s" % [where, sn])
 			if v.has("area") and not areas.has(String(v["area"])):
 				out.append("%s: unknown area %s" % [where, v["area"]])
+		"sleep", "wake":
+			if not (v is Dictionary) or not (v.has("tag") or v.has("team") or v.has("side") or v.has("name")):
+				out.append("%s: %s needs a tag, team, side or name" % [where, k])
+			elif v.has("team") and not teams.has(String(v["team"])):
+				out.append("%s: %s of unknown team %s" % [where, k, v["team"]])
+			elif (v.has("side") and not sides.has(String(v["side"]))) or (v.has("by") and not sides.has(String(v["by"]))):
+				out.append("%s: %s with an unknown side" % [where, k])
+		"mist":
+			_check_mist(v, where, out, sides, teams)
 		"weather":
-			if not ["snow", "rain", ""].has(String(v)):
+			if not ["snow", "rain", "mist", ""].has(String(v)):
 				out.append("%s: unknown weather %s" % [where, v])
 		"hurt":
 			if not (v is Dictionary and v.has("tag")):
@@ -615,3 +754,13 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: point at unknown kind %s" % [where, v["kind"]])
 		_:
 			out.append("%s: unknown action %s" % [where, k])
+
+
+static func _check_mist(v: Variant, where: String, out: Array, sides: Array, teams: Array) -> void:
+	if not (v is Dictionary) or not v.has("sight"):
+		out.append("%s: mist needs {\"sight\": share}" % where)
+		return
+	if v.has("side") and not sides.has(String(v["side"])):
+		out.append("%s: mist on unknown side %s" % [where, v["side"]])
+	if v.has("team") and not teams.has(String(v["team"])):
+		out.append("%s: mist on unknown team %s" % [where, v["team"]])

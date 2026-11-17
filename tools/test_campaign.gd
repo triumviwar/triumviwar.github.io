@@ -74,6 +74,184 @@ func _start(mode: String, seat := "p1") -> Game:
 	return main.game
 
 
+const E0 := "x_engine0"
+
+
+## ACT 1's ENGINE STEP 0 (act1-engine0, docs/act1_engine0.md): a copy of the test mission with every new key, kept in
+## Campaign's cache only (never a file): "if" on units, the difficulty (its condition, spawns, countdowns), the solo side
+## pick, STAY, NEAR, ROUTE, FOLLOW, SLEEP / WAKE, MIST, CAPTURE.
+func _engine0_mission() -> Dictionary:
+	var m: Dictionary = Campaign.mission("p01_revolt").duplicate(true)
+	m["id"] = E0
+	m["solo_sides"] = ["crown", "rebels"]
+	m["difficulty"] = {"easy": {"clocks": 1.25, "spawns": 0.75}}
+	m["units"].append({"team": "rebels", "kind": "musketeer", "count": 2, "at": "village", "tag": "easy_only", "if": {"difficulty": "easy"}})
+	m["units"].append({"team": "rebels", "kind": "musketeer", "count": 2, "at": "village", "tag": "hard_only", "if": {"difficulty": "hard"}})
+	m["units"].append({"team": "rebels", "kind": "musketeer", "count": 4, "at": "village", "tag": "kept", "fixed": true, "order": "hold"})
+	m["objectives"] = (m["objectives"] as Array).filter(func(o) -> bool: return String(o["id"]) != "ringleader")
+	m["objectives"].append({"id": "escape", "side": "crown", "primary": false, "kind": "countdown", "clock": "escape", "text": "x"})
+	m["objectives"].append({"id": "hold_ford", "side": "crown", "primary": false, "kind": "reach", "area": "ford", "side_units": "crown", "count": 3, "secs": 5, "text": "x"})
+	m["objectives"].append({"id": "take", "side": "crown", "primary": false, "kind": "capture", "tag": "ringleader", "share": 0.25, "within": 3, "text": "x"})
+	m["triggers"] = (m["triggers"] as Array).filter(func(t) -> bool: return String(t["id"]) != "ringleader_down")
+	for tr in m["triggers"]:
+		if String(tr["id"]) == "intro_rebels":
+			# (the rebels' own lines whenever a person leads them: versus, or solo with the side picked)
+			tr.erase("modes")
+			tr["when"] = {"all": [{"time": 1}, {"playing": "rebels"}]}
+	m["triggers"].append({"id": "clocks", "when": {"time": 1}, "do": [{"clock": {"name": "escape", "secs": 100}}, {"clock": {"name": "timer", "secs": 100}}]})
+	m["triggers"].append({"id": "easy_said", "when": {"difficulty": ["easy"]}, "do": [{"flag": {"easy": 1}}]})
+	m["triggers"].append({"id": "crown_played", "when": {"playing": "crown"}, "do": [{"flag": {"crown_played": 1}}]})
+	m["triggers"].append({"id": "stayed", "when": {"stay": {"tag": "column_foot", "area": "ford", "count": 3, "secs": 5}}, "do": [{"flag": {"stayed": 1}}]})
+	return m
+
+
+func _engine0() -> void:
+	var path := "%s/missions/%s.json" % [Campaign.DIR, E0]
+	Campaign._cache[path] = _engine0_mission()
+	var m := Campaign.mission(E0)
+	var pr := Campaign.problems(m)
+	check("engine0: the test mission's new keys check out", pr.is_empty(), "; ".join(pr))
+	var bad: Dictionary = m.duplicate(true)
+	bad["solo_sides"] = ["nobody"]
+	bad["difficulty"] = {"brutal": {"clocks": 2}}
+	bad["units"].append({"team": "rebels", "kind": "musketeer", "at": "village", "if": {"stay": {"tag": "x", "area": "nowhere"}}})
+	bad["triggers"].append({"id": "b", "when": {"difficulty": "silly"}, "do": [{"order": {"tag": "x", "do": "route", "route": ["nowhere"]}},
+		{"sleep": {"team": "nobody"}}, {"mist": {"side": "crown"}}, {"weather": "mist"}]})
+	bad["objectives"].append({"id": "c", "side": "crown", "kind": "capture", "text": "x"})
+	var bp := Campaign.problems(bad)
+	for want in ["solo_sides: unknown side", "difficulty: unknown level", "stay in unknown area", "unknown difficulty", "route through unknown area", "of unknown team", "mist needs", "a capture needs a tag"]:
+		check("engine0: problems() catches '%s'" % want, bp.any(func(x: String) -> bool: return x.contains(want)), "; ".join(bp))
+	check("engine0: weather mist is known", not bp.any(func(x: String) -> bool: return x.contains("unknown weather")))
+	# the SOLO SIDE PICK: the seats
+	check("engine0: the sides a solo player may lead", Campaign.solo_sides(m) == ["crown", "rebels"], str(Campaign.solo_sides(m)))
+	check("engine0: a side the mission doesn't offer falls back", Campaign.solo_side(m, "nobody") == "crown" and Campaign.solo_side(Campaign.mission("p01_leaf"), "rebels") == "crown")
+	var c := Campaign.make_cfg(E0, "solo", "p1", false, "rebels")
+	check("engine0: solo as the rebels: column scripted, rebels yours", c["slots"].map(func(s): return s["who"]) == ["script", "script", "you"] and c["campaign"]["side"] == "rebels", str(c["slots"].map(func(s): return s["who"])))
+	c = Campaign.make_cfg(E0, "solo")
+	check("engine0: solo by default: the mission's own side", c["slots"].map(func(s): return s["who"]) == ["you", "script", "script"] and c["campaign"]["side"] == "crown")
+	check("engine0: the setup carries the difficulty", String(c["campaign"].get("difficulty", "")) == "normal")
+	# the DIFFICULTY: kept in the progress, the prologues' values
+	Campaign.set_difficulty("easy")
+	check("engine0: difficulty kept", Campaign.difficulty() == "easy" and String(Campaign.make_cfg(E0, "solo")["campaign"]["difficulty"]) == "easy")
+	Campaign.set_difficulty("silly")
+	check("engine0: an unknown difficulty is refused", Campaign.difficulty() == "easy")
+	for pid in ["p01_leaf", "c01_thirteenth", "b01_specimen"]:
+		var pm := Campaign.mission(pid)
+		check("engine0: %s has its difficulty" % pid, pm.has("difficulty") and float(Campaign.diff_mult(pm, "easy")["spawns"]) < 1.0 and float(Campaign.diff_mult(pm, "hard")["spawns"]) > 1.0 and is_equal_approx(float(Campaign.diff_mult(pm, "normal")["spawns"]), 1.0))
+	check("engine0: c01's countdown is longer on easy", float(Campaign.diff_mult(Campaign.mission("c01_thirteenth"), "easy")["clocks"]) > 1.0)
+	# ---------------------------------------------------------------- play it on EASY, as the Crown
+	main._to_menu()
+	main.start(Campaign.make_cfg(E0, "solo"))
+	await process_frame
+	await process_frame
+	paused = false
+	var g: Game = main.game
+	var r: MissionRun = g.mission
+	check("engine0: the run knows its difficulty and side", r.difficulty == "easy" and r.solo_side == "crown" and is_equal_approx(float(r.mult["spawns"]), 0.75))
+	check("engine0: units with \"if\": the easy ones come, the hard ones don't", r.tagged("easy_only").size() == 2 and r.tagged("hard_only").is_empty(), "%d %d" % [r.tagged("easy_only").size(), r.tagged("hard_only").size()])
+	check("engine0: EASY: fewer of the foe (4 militia -> 3)", r.tagged("militia").size() == 3, str(r.tagged("militia").size()))
+	check("engine0: a \"fixed\" entry keeps its count", r.tagged("kept").size() == 4)
+	check("engine0: the player's own side is never scaled (8 muskets)", r.tagged("column_foot").size() == 8)
+	check("engine0: a hero stays one", r.tagged("ringleader").size() == 1)
+	r.act({"spawn": {"team": "rebels", "kind": "musketeer", "count": 8, "at": "village", "tag": "wave"}})
+	check("engine0: EASY: a spawned wave of 8 -> 6", r.tagged("wave").size() == 6, str(r.tagged("wave").size()))
+	_step(g, 1.5)
+	check("engine0: the raced countdown is 25% longer, a plain timer isn't", absf(float(r.clocks["escape"]) - g.clock - 125.0) < 0.6 and absf(float(r.clocks["timer"]) - g.clock - 100.0) < 0.6, str(r.clocks))
+	check("engine0: the difficulty condition", r.flags.has("easy"))
+	check("engine0: the playing condition", r.flags.has("crown_played") and r.cond({"playing": "crown"}) and not r.cond({"playing": "rebels"}))
+	# STAY: three muskets at the ford for five seconds
+	var foot := r.tagged("column_foot")
+	var fr := r.area_rect("ford")
+	for i in 3:
+		foot[i].position = fr.get_center() + Vector2(i * 14 - 14, 0)
+		foot[i].cmd_hold()
+	g._rebuild_hash()
+	var t := 2.0
+	while t < 6.0:
+		_step(g, t)
+		t += 0.25
+	check("engine0: STAY: not yet after 4 s", not r.flags.has("stayed") and r.obj["hold_ford"] == "active")
+	while t < 8.0:
+		_step(g, t)
+		t += 0.25
+	check("engine0: STAY: done after 5 s (condition and reach-with-secs)", r.flags.has("stayed") and r.obj["hold_ford"] == "done", "%s %s" % [r.flags, r.obj["hold_ford"]])
+	# NEAR
+	var cap: Unit = r.tagged("captain")[0]
+	var rl: Unit = r.tagged("ringleader")[0]
+	check("engine0: NEAR: far apart", not r.cond({"near": {"tag": "captain", "to": "ringleader", "within": 3}}))
+	# SLEEP / WAKE: the militia sleep until a Crown man comes within 5 tiles
+	r.act({"sleep": {"tag": "militia", "name": "village", "within": 5, "then": {"do": "attack", "to": "camp"}}})
+	var mil: Array = r.tagged("militia")
+	check("engine0: SLEEP: they can't move or fight", r.cond({"asleep": "village"}) and mil.all(func(u) -> bool: return u.m_pace == 0.0 and u.m_unarmed))
+	r._tick_sleep()
+	check("engine0: SLEEP: nobody near, still asleep", not r.cond({"awake": "village"}))
+	cap.position = mil[0].position + Vector2(3 * Defs.TILE, 0)
+	g._rebuild_hash()
+	r._tick_sleep()
+	check("engine0: WAKE: a foe within reach wakes them, their order follows", r.cond({"awake": "village"}) and mil.all(func(u) -> bool: return u.m_pace == 1.0 and not u.m_unarmed) and mil.any(func(u) -> bool: return u.order != "idle" and u.order != "hold"), str(mil.map(func(u): return u.order)))
+	r.act({"sleep": {"tag": "kept", "within": 0}})
+	r.tagged("kept")[0].take_damage(5.0, null)
+	r._tick_sleep()
+	check("engine0: WAKE: a wound wakes a group", r.cond({"awake": "kept"}))
+	# ROUTE: the ford guard walks the ford, then the camp
+	r.act({"order": {"tag": "ford_guard", "do": "route", "route": ["ford", "camp"], "name": "patrol"}})
+	var fg: Array = r.tagged("ford_guard")
+	check("engine0: ROUTE: off to the first waypoint", fg.all(func(u) -> bool: return u.order == "move"), str(fg.map(func(u): return u.order)))
+	for u in fg:
+		u.position = fr.get_center()
+	g._rebuild_hash()
+	r._tick_routes()
+	check("engine0: ROUTE: on to the next", r._routes.size() == 1 and int(r._routes[0]["i"]) == 1 and not r.cond({"route_done": "patrol"}))
+	for u in fg:
+		u.position = r.area_rect("camp").get_center()
+	g._rebuild_hash()
+	r._tick_routes()
+	check("engine0: ROUTE: done at the last", r.cond({"route_done": "patrol"}) and r._routes.is_empty())
+	# FOLLOW: the ringleader shadows the captain
+	cap.position = r.area_rect("camp").get_center()
+	g._rebuild_hash()
+	r.act({"order": {"tag": "ringleader", "do": "follow", "leader": "captain", "within": 3}})
+	for i in 4:
+		r._tick_routes()
+	check("engine0: FOLLOW: walks after the leader", rl.order == "move", rl.order)
+	rl.position = cap.position + Vector2(Defs.TILE, 0)
+	g._rebuild_hash()
+	check("engine0: NEAR: within reach", r.cond({"near": {"tag": "captain", "to": "ringleader", "within": 3}}) and r.cond({"near": {"tag": "ringleader", "to_side": "crown", "within": 2}}))
+	# CAPTURE: the ringleader can't be killed; beaten down with a Crown man by him, he is taken
+	r._follows.clear()
+	check("engine0: CAPTURE: a floor on the man", rl.hp_floor >= rl.max_hp * 0.25 - 0.01)
+	rl.take_damage(99999.0, null)
+	check("engine0: CAPTURE: he doesn't die", not rl.dead and rl.hp <= rl.max_hp * 0.25 + 0.5)
+	r._check_objectives()
+	check("engine0: CAPTURE: taken (done, caged, spared)", r.obj["take"] == "done" and r.cond({"captured": "ringleader"}) and rl.spared and rl.m_pace == 0.0, r.obj["take"])
+	# MIST: the rebels see half as far
+	r.act({"mist": {"sight": 0.5, "side": "rebels"}})
+	var reb_u: Unit = r.tagged("kept")[0]
+	check("engine0: MIST: the foe's sight halved, ours not", r.sight_of(reb_u, 8) == 4 and r.sight_of(cap, 8) == 8)
+	await physics_frame
+	await physics_frame
+	check("engine0: MIST: a unit's own sight follows", reb_u.sight == maxi(2, roundi(int(reb_u.d["sight"]) * 0.5)) and cap.sight == int(cap.d["sight"]), "%d %d" % [reb_u.sight, cap.sight])
+	r.act({"mist": {"sight": 1.0}})
+	check("engine0: MIST: cleared", r.sight_of(reb_u, 8) == 8)
+	check("engine0: not over in all this", not g.over)
+	# ---------------------------------------------------------------- the other side, alone: the rebels
+	main._to_menu()
+	main.start(Campaign.make_cfg(E0, "solo", "p1", false, "rebels"))
+	await process_frame
+	await process_frame
+	paused = false
+	g = main.game
+	r = g.mission
+	check("engine0: SOLO SIDE PICK: you lead the rebels", r.my_side() == "rebels" and r.solo_side == "rebels" and r.player_teams.has(r.team_index("rebels")) and g.human == r.team_index("rebels"))
+	check("engine0: SOLO SIDE PICK: now the Crown is the foe (EASY: 8 muskets -> 6)", r.tagged("column_foot").size() == 6 and r.tagged("militia").size() == 4, "%d %d" % [r.tagged("column_foot").size(), r.tagged("militia").size()])
+	check("engine0: SOLO SIDE PICK: the rebels' objectives are yours", r.objectives_for(r.my_side()).any(func(o) -> bool: return String(o["id"]) == "hold"))
+	_step(g, 1.5)
+	check("engine0: SOLO SIDE PICK: the rebels' own lines are said", r.said_ids.has("r1"))
+	check("engine0: the playing condition follows the pick", r.cond({"playing": "rebels"}) and not r.cond({"playing": "crown"}))
+	main._to_menu()
+	Campaign.set_difficulty("normal")
+
+
 func _step(g: Game, to: float) -> void:
 	g.clock = to
 	g.mission._run_triggers()
@@ -193,6 +371,7 @@ func _run() -> void:
 	guest.check_end()
 	check("guest: never decides the end itself", not g.over)
 	guest.free()
+	await _engine0()
 	# ---------------------------------------------------------------- the menu pages build
 	main._to_menu()
 	await process_frame
@@ -205,6 +384,24 @@ func _run() -> void:
 	CampaignMenu.briefing(main, "p01_leaf")
 	await process_frame
 	check("the briefing has START", main.menu.find_child("Briefing_Start", true, false) != null)
+	check("the briefing has the difficulty", main.menu.find_child("Diff_easy", true, false) != null and main.menu.find_child("Diff_hard", true, false) != null)
+	check("a one-sided mission has no side pick", main.menu.find_child("Side_rebels", true, false) == null)
+	Campaign._cache["%s/missions/%s.json" % [Campaign.DIR, E0]] = _engine0_mission()
+	CampaignMenu.briefing(main, E0)
+	await process_frame
+	var sb: Button = main.menu.find_child("Side_rebels", true, false)
+	check("a mirrored mission's briefing: pick a side", sb != null and main.menu.find_child("Side_crown", true, false) != null)
+	if sb:
+		sb.pressed.emit()
+		await process_frame
+		check("the side picked is the briefing's side", CampaignMenu.solo_pick == "rebels")
+	var hb: Button = main.menu.find_child("Diff_hard", true, false)
+	if hb:
+		hb.pressed.emit()
+		await process_frame
+	check("DIFFICULTY pressed on the briefing: kept in the progress", Campaign.difficulty() == "hard")
+	Campaign.set_difficulty("normal")
+	CampaignMenu.solo_pick = ""
 	# the Clockwork and Brood hubs (layered paintings: Hollweg's workshop, Lindqvist's station), opened for the test
 	for it in [["clockmaker", "hollweg", "clock"], ["naturalist", "lindqvist", "crate"]]:
 		Campaign.open_all = true

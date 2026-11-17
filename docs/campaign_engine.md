@@ -298,3 +298,25 @@ player did (selected, camera_moved, built, rooted, crew, did...) and the `point`
 | roles `lindqvist`, `valadares`, `pieter`, `teles`, `joaquim`, `villager`, `benedito`, `linnea` | the Brood prologue's people (stand-ins) and Linnea (a Brood Mother's kind at 0.4) |
 | hub hotspot / talk entry `"flag": {"<mission>.<flag>": value}` | shown / said only if a finished mission left that flag (CampaignMenu.flags_ok: the crate in the cellar if the eggs were saved) |
 | a Brood team with no Mother | in a mission it is never beaten for it (Game._check_end leaves the end to the mission); the pack is scripted |
+
+## Added by Act 1's engine step 0 (act1-engine0, 0.38.49; docs/act1_engine0.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| unit / building / spawn / build `"if": cond` | placed only when the condition holds (at the start: `past` flags, `difficulty`, `playing`; later: anything) |
+| unit / spawn `"fixed": true` | the count is never changed by the difficulty |
+| mission `"difficulty": {"easy": {"clocks", "spawns"}, "hard": {...}}` | the multipliers at each CAMPAIGN DIFFICULTY (none given: easy 1.25 / 0.75, hard 0.85 / 1.25); "spawns" scales every unit entry and `spawn` of 2+ units for a team of a side no person plays (never under 1); "clocks" scales a `clock`'s `secs` when a `countdown` objective shows that clock (or the clock says `"scale": true`; `"scale": false` keeps it) |
+| condition `{"difficulty": "easy"}` (or a list) | the campaign's difficulty (EASY / NORMAL / HARD, picked on the briefing, kept in user://campaign.json: Campaign.difficulty) |
+| mission `"solo_sides": [side ids]` | the SOLO SIDE PICK: the briefing lets a solo player lead any of these sides (the default side first); the briefing, its objectives, its opening (`"opening": {side: pages}`) and the lines `"to"` that side follow the pick |
+| team `"control": {"solo:<side>": "p1" / "script" / "ai:..."}`, `"foe": "script" / "ai:..."` | who moves the team in solo when the player picked `<side>` (Campaign.solo_control); without it: the teams of the picked side a person plays in versus are yours, the default player's teams take their `"foe"` (else `script`), the rest keep their solo control |
+| condition `{"playing": side}` | a person plays a team of that side (solo: the side picked; co-op: the friends'; versus: both) |
+| condition `{"stay": {"tag" / "team" / "side", "kind", "area", "count", "secs"}}` | STAY: that many have stood in the area for secs without a break |
+| objective `"kind": "reach"` with `"secs"` | the same: they must stay there that long |
+| condition `{"near": {"tag" / "team" / "side", "to": tag / "to_team" / "to_side", "within": tiles}}` | one of them within that many tiles of one of the others |
+| condition `{"seen": {"tag", "by": side}}` | one of them is in that side's sight now |
+| `{"order": {..., "do": "route", "route": [areas], "loop", "attack", "name"}}` | ROUTE: the waypoints in turn (on when half of them stand at the waypoint; stragglers sent on); condition `{"route_done": name}` (name: the order's "name", else its tag or team) |
+| `{"order": {..., "do": "follow", "leader": tag, "within": tiles}}` | FOLLOW: they walk after the first living unit of the tag when it is more than `within` (3) away; they stop when it is gone. A new order ends a route or a follow |
+| `{"sleep": {"tag" / "team" / "side", "name", "within": tiles, "by": side, "hurt": true, "then": order}}` | SLEEP: the units hold where they are and don't fight (a person's own too) until a unit of another side (or of `by`) comes within `within` (6; 0: never) of one of them, or one is hurt; on waking they carry out `then` |
+| `{"wake": {"name" or tag / team / side}}`; conditions `{"asleep": name}`, `{"awake": name}` | wake them by a trigger; ask after them |
+| mission `"mist": {"sight", "team" / "side", "weather"}`, action `{"mist": {...}}` | MIST: units' sight times `sight` (1 clears it), on that team or side only if given; a grey veil over the screen unless `"weather": false`. Weather `"mist"` alone is the veil without the sight |
+| objective `"kind": "capture", "tag", "share" (0.25), "within" (3), "by" (the objective's side)` | CAPTURE: the man can't be brought under that share of his health (a floor from the start); there, with one of the capturing side within reach, he is TAKEN (caged and spared); done when all of the tag are taken, failed if they die; condition `{"captured": tag}` |

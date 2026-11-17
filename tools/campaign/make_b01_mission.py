@@ -66,6 +66,9 @@ M = {
     "floor": [0.7, 0.74, 0.68],
     "expansion_spots": False,
     "manual_end": True,
+    # the campaign's DIFFICULTY (act1-engine0): EASY the canoes' / the city's countdown 25% longer and fewer of the
+    # foe's units, HARD 10% shorter and more
+    "difficulty": {"easy": {"clocks": 1.25, "spawns": 0.75}, "hard": {"clocks": 0.9, "spawns": 1.2}},
     "modes": ["solo", "coop", "versus"],
     "sides": [
         {"id": "station", "name": "The Station", "about": "The Academy's station on the Rio Negro, the Crown's fort at São Gabriel and the mission village."},

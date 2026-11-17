@@ -69,6 +69,9 @@ M = {
     "weather": "snow",
     "expansion_spots": False,
     "manual_end": True,
+    # the campaign's DIFFICULTY (act1-engine0): EASY the canoes' / the city's countdown 25% longer and fewer of the
+    # foe's units, HARD 10% shorter and more
+    "difficulty": {"easy": {"clocks": 1.25, "spawns": 0.75}, "hard": {"clocks": 0.9, "spawns": 1.2}},
     "modes": ["solo", "coop", "versus"],
     "sides": [
         {"id": "guild", "name": "The Guild", "about": "Meister Hollweg's Guild of the Escapement and its loyal machines, with the City Watch."},

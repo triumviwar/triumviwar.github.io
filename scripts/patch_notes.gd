@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.49", "items": [
+		"CAMPAIGN DIFFICULTY: EASY, NORMAL or HARD on every mission's briefing, kept for the next mission. EASY gives more time on the countdowns you race (the canoes, the city striking thirteen) and fewer enemies; HARD less time and more. The three prologues use it.",
+		"CAMPAIGN: the mission engine learnt what Act 1 needs: missions that let you lead either side alone (YOU PLAY: on the briefing), forces that depend on your earlier choices, standing in a place for some seconds, scripted marches along a route and units that follow another, a sleeping nest that wakes when you come too near, mist that shortens everyone's sight, and taking a man alive.",
+	]},
 	{"v": "0.38.48", "items": [
 		"CAMPAIGN PLANS: the owner's answers to Act 1's questions are in the plan, and the Naturalist's prologue will be played as the Brood (the Tyrant Sire's pack against a rival pack, with the scientists' station between them). Not playable yet.",
 	]},

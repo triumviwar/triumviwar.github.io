@@ -9,6 +9,7 @@ static var pick := ""            # the mission chosen on the list
 static var line := ""            # the storyline whose hub is shown
 static var mode := "solo"
 static var seat := "p1"          # versus: which side the host plays ("p1" / "p2")
+static var solo_pick := ""       # solo: the side picked on the briefing (the SOLO SIDE PICK; "" the mission's own)
 
 
 static func _side_col(m: Dictionary, side_id: String) -> Color:
@@ -134,7 +135,7 @@ static func war_table(main: Node) -> void:
 		var modes := Campaign.modes_of(m)
 		if not modes.has(mode):
 			mode = "solo"
-		var my_side := Campaign.seat_side(m, mode, seat if mode == "versus" else "p1")
+		var my_side := Campaign.seat_side(m, mode, seat) if mode == "versus" else (Campaign.solo_side(m, solo_pick) if mode == "solo" else Campaign.seat_side(m, mode, "p1"))
 		rv.add_child(UiStyle.heading(Loc.t(String(m.get("title", pick))), 32, UiStyle.TRIM))
 		var br: Dictionary = m.get("briefing", {}).get(my_side, {})
 		var sv := StillView.make(m.get("stills", {}).get(String(br.get("still", "")), {}), _side_col(m, my_side))
@@ -208,7 +209,7 @@ static func host_online(main: Node, mid: String, md: String, st: String) -> void
 
 static func briefing(main: Node, mid: String) -> void:
 	var m := Campaign.mission(mid)
-	var side := Campaign.seat_side(m, "solo", "p1")
+	var side := Campaign.solo_side(m, solo_pick)
 	var br: Dictionary = m.get("briefing", {}).get(side, {})
 	var box := _frame(main)
 	box.add_child(UiStyle.heading(Loc.t("BRIEFING"), 22, UiStyle.MUTED))
@@ -231,6 +232,42 @@ static func briefing(main: Node, mid: String) -> void:
 		if String(o.get("side", "")) == side and not bool(o.get("hidden", false)):
 			var pre := "-  " if bool(o.get("primary", true)) else "-  " + Loc.t("(optional)") + " "
 			v.add_child(_wrap(pre + Loc.t(String(o["text"])), 16, UiStyle.TEXT if bool(o.get("primary", true)) else UiStyle.MUTED))
+	# THE SOLO SIDE PICK (a mission that lets you lead either side alone) and the campaign's DIFFICULTY (act1-engine0)
+	var sides := Campaign.solo_sides(m)
+	if sides.size() > 1:
+		var srow := HFlowContainer.new()
+		srow.add_theme_constant_override("h_separation", 8)
+		srow.add_theme_constant_override("v_separation", 6)
+		v.add_child(srow)
+		srow.add_child(UiStyle.text(Loc.t("YOU PLAY:"), 16, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
+		for sd in sides:
+			var b: Button = main._button(Loc.t(Campaign.side_name(m, sd)).to_upper(), func() -> void:
+				solo_pick = sd
+				briefing(main, mid))
+			b.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+			b.name = "Side_" + String(sd)
+			b.custom_minimum_size = Vector2(170, 46)
+			if sd == side:
+				UiStyle.chosen(b, _side_col(m, sd))
+			srow.add_child(b)
+	var drow := HFlowContainer.new()
+	drow.add_theme_constant_override("h_separation", 8)
+	drow.add_theme_constant_override("v_separation", 6)
+	v.add_child(drow)
+	drow.add_child(UiStyle.text(Loc.t("DIFFICULTY:"), 16, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
+	var dnow := Campaign.difficulty()
+	for lv in Campaign.DIFFICULTIES:
+		var b: Button = main._button(Campaign.DIFF_LABEL[lv], func() -> void:
+			Campaign.set_difficulty(lv)
+			briefing(main, mid))
+		b.name = "Diff_" + String(lv)
+		b.custom_minimum_size = Vector2(120, 46)
+		if lv == dnow:
+			UiStyle.chosen(b)
+		drow.add_child(b)
+	var dabout := {"easy": "More time on the clock and fewer enemies.", "normal": "The mission as it was written.",
+		"hard": "Less time on the clock and more enemies."}
+	v.add_child(_wrap(Loc.t(dabout[dnow]), 15, UiStyle.MUTED))
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 16)
@@ -241,7 +278,7 @@ static func briefing(main: Node, mid: String) -> void:
 	row.add_child(back)
 	var go: Button = main._button("START", func() -> void:
 		Sfx.play_any(["ui/start_match"])
-		opening_then_start(main, mid, Campaign.make_cfg(mid, "solo")))
+		opening_then_start(main, mid, Campaign.make_cfg(mid, "solo", "p1", false, side)))
 	go.name = "Briefing_Start"
 	go.custom_minimum_size = Vector2(300, 60)
 	go.add_theme_font_size_override("font_size", 28)
@@ -252,7 +289,8 @@ static func briefing(main: Node, mid: String) -> void:
 ## The mission's OPENING (its stills and lines: StillShow), then the match. None: straight in.
 static func opening_then_start(main: Node, mid: String, cfg: Dictionary) -> void:
 	var m := Campaign.mission(mid)
-	var pages := Campaign.show_pages(m, "opening")
+	var camp: Dictionary = cfg.get("campaign", {})
+	var pages := Campaign.show_pages(m, "opening", String(camp.get("side", Campaign.seat_side(m, String(camp.get("mode", "solo")), "p1"))))
 	if pages.is_empty():
 		main.start(cfg)
 		return
