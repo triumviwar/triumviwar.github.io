@@ -539,6 +539,14 @@ func act(a: Dictionary) -> void:
 			"spawn":
 				_spawn(v)
 			"order":
+				if v.has("to_if"):
+					# {"to_if": [{"if": cond, "to": area}, ...]}: the first that holds sends them there, else "to" (a wave to
+					# its lure jar while the lure still works, then to her pen)
+					v = (v as Dictionary).duplicate()
+					for ti in v["to_if"]:
+						if cond(ti.get("if", {})):
+							v["to"] = ti["to"]
+							break
 				var us: Array = []
 				if v.has("tag"):
 					us = tagged(String(v["tag"]))

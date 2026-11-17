@@ -551,6 +551,9 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: unknown order %s" % [where, v.get("do")])
 			if v.has("to") and not areas.has(String(v["to"])):
 				out.append("%s: unknown area %s" % [where, v["to"]])
+			for ti in v.get("to_if", []):
+				if not areas.has(String(ti.get("to", ""))):
+					out.append("%s: unknown area %s" % [where, ti.get("to")])
 		"objective":
 			if not objs.has(String(v.get("id", ""))):
 				out.append("%s: unknown objective %s" % [where, v.get("id")])

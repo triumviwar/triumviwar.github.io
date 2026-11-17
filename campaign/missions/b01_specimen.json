@@ -666,7 +666,7 @@
 		{
 			"id": "village",
 			"side": "station",
-			"primary": true,
+			"primary": false,
 			"kind": "manual",
 			"hidden": true,
 			"text": "Bring the village in: walk Frei Joaquim and the villagers to the station ({folk_in} in)."
@@ -1705,6 +1705,11 @@
 						"fired": "eve"
 					},
 					{
+						"not": {
+							"fired": "turn"
+						}
+					},
+					{
 						"flag": {
 							"teles": "quiet"
 						}
@@ -1754,76 +1759,6 @@
 			]
 		},
 		{
-			"id": "wave_c_jar",
-			"when": {
-				"all": [
-					{
-						"fired": "eve"
-					},
-					{
-						"not": {
-							"fired": "turn"
-						}
-					},
-					{
-						"count": {
-							"team": "pack",
-							"below": 22
-						}
-					},
-					{
-						"counter": {
-							"name": "waves",
-							"below": 2
-						}
-					},
-					{
-						"counter": {
-							"name": "jar_c_set",
-							"at_least": 1
-						}
-					}
-				]
-			},
-			"every": 150,
-			"do": [
-				{
-					"spawn": {
-						"team": "pack",
-						"kind": "raptor",
-						"count": 4,
-						"at": "trail_c",
-						"tag": "wave"
-					}
-				},
-				{
-					"order": {
-						"tag": "wave",
-						"do": "attack",
-						"to": "jar_c"
-					}
-				},
-				{
-					"counter": {
-						"name": "waves",
-						"add": 1
-					}
-				},
-				{
-					"sound": {
-						"name": "campaign/forest_answer",
-						"area": "trail_c"
-					}
-				},
-				{
-					"ping": {
-						"area": "trail_c"
-					}
-				}
-			],
-			"delay": 60
-		},
-		{
 			"id": "wave_c",
 			"when": {
 				"all": [
@@ -1840,28 +1775,11 @@
 							"team": "pack",
 							"below": 22
 						}
-					},
-					{
-						"not": {
-							"all": [
-								{
-									"counter": {
-										"name": "waves",
-										"below": 2
-									}
-								},
-								{
-									"counter": {
-										"name": "jar_c_set",
-										"at_least": 1
-									}
-								}
-							]
-						}
 					}
 				]
 			},
 			"every": 150,
+			"delay": 60,
 			"do": [
 				{
 					"spawn": {
@@ -1869,14 +1787,35 @@
 						"kind": "raptor",
 						"count": 4,
 						"at": "trail_c",
-						"tag": "wave"
+						"tag": "wave_c"
 					}
 				},
 				{
 					"order": {
-						"tag": "wave",
+						"tag": "wave_c",
 						"do": "attack",
-						"to": "pen"
+						"to": "pen",
+						"to_if": [
+							{
+								"if": {
+									"all": [
+										{
+											"counter": {
+												"name": "waves",
+												"below": 2
+											}
+										},
+										{
+											"counter": {
+												"name": "jar_c_set",
+												"at_least": 1
+											}
+										}
+									]
+								},
+								"to": "jar_c"
+							}
+						]
 					}
 				},
 				{
@@ -1896,78 +1835,7 @@
 						"area": "trail_c"
 					}
 				}
-			],
-			"delay": 60
-		},
-		{
-			"id": "wave_w_jar",
-			"when": {
-				"all": [
-					{
-						"fired": "eve"
-					},
-					{
-						"not": {
-							"fired": "turn"
-						}
-					},
-					{
-						"count": {
-							"team": "pack",
-							"below": 22
-						}
-					},
-					{
-						"counter": {
-							"name": "waves",
-							"below": 2
-						}
-					},
-					{
-						"counter": {
-							"name": "jar_w_set",
-							"at_least": 1
-						}
-					}
-				]
-			},
-			"every": 150,
-			"do": [
-				{
-					"spawn": {
-						"team": "pack",
-						"kind": "raptor",
-						"count": 4,
-						"at": "trail_nw",
-						"tag": "wave"
-					}
-				},
-				{
-					"order": {
-						"tag": "wave",
-						"do": "attack",
-						"to": "jar_w"
-					}
-				},
-				{
-					"counter": {
-						"name": "waves",
-						"add": 1
-					}
-				},
-				{
-					"sound": {
-						"name": "campaign/forest_answer",
-						"area": "trail_nw"
-					}
-				},
-				{
-					"ping": {
-						"area": "trail_nw"
-					}
-				}
-			],
-			"delay": 110
+			]
 		},
 		{
 			"id": "wave_w",
@@ -1986,28 +1854,11 @@
 							"team": "pack",
 							"below": 22
 						}
-					},
-					{
-						"not": {
-							"all": [
-								{
-									"counter": {
-										"name": "waves",
-										"below": 2
-									}
-								},
-								{
-									"counter": {
-										"name": "jar_w_set",
-										"at_least": 1
-									}
-								}
-							]
-						}
 					}
 				]
 			},
 			"every": 150,
+			"delay": 110,
 			"do": [
 				{
 					"spawn": {
@@ -2015,14 +1866,35 @@
 						"kind": "raptor",
 						"count": 4,
 						"at": "trail_nw",
-						"tag": "wave"
+						"tag": "wave_w"
 					}
 				},
 				{
 					"order": {
-						"tag": "wave",
+						"tag": "wave_w",
 						"do": "attack",
-						"to": "pen"
+						"to": "pen",
+						"to_if": [
+							{
+								"if": {
+									"all": [
+										{
+											"counter": {
+												"name": "waves",
+												"below": 2
+											}
+										},
+										{
+											"counter": {
+												"name": "jar_w_set",
+												"at_least": 1
+											}
+										}
+									]
+								},
+								"to": "jar_w"
+							}
+						]
 					}
 				},
 				{
@@ -2042,87 +1914,7 @@
 						"area": "trail_nw"
 					}
 				}
-			],
-			"delay": 110
-		},
-		{
-			"id": "wave_e_jar",
-			"when": {
-				"all": [
-					{
-						"fired": "eve"
-					},
-					{
-						"not": {
-							"fired": "turn"
-						}
-					},
-					{
-						"count": {
-							"team": "pack",
-							"below": 22
-						}
-					},
-					{
-						"counter": {
-							"name": "waves",
-							"below": 2
-						}
-					},
-					{
-						"counter": {
-							"name": "jar_e_set",
-							"at_least": 1
-						}
-					}
-				]
-			},
-			"every": 150,
-			"do": [
-				{
-					"spawn": {
-						"team": "pack",
-						"kind": "raptor",
-						"count": 4,
-						"at": "trail_ne",
-						"tag": "wave"
-					}
-				},
-				{
-					"spawn": {
-						"team": "pack",
-						"kind": "spitter",
-						"count": 1,
-						"at": "trail_ne",
-						"tag": "wave"
-					}
-				},
-				{
-					"order": {
-						"tag": "wave",
-						"do": "attack",
-						"to": "jar_e"
-					}
-				},
-				{
-					"counter": {
-						"name": "waves",
-						"add": 1
-					}
-				},
-				{
-					"sound": {
-						"name": "campaign/forest_answer",
-						"area": "trail_ne"
-					}
-				},
-				{
-					"ping": {
-						"area": "trail_ne"
-					}
-				}
-			],
-			"delay": 160
+			]
 		},
 		{
 			"id": "wave_e",
@@ -2141,28 +1933,11 @@
 							"team": "pack",
 							"below": 22
 						}
-					},
-					{
-						"not": {
-							"all": [
-								{
-									"counter": {
-										"name": "waves",
-										"below": 2
-									}
-								},
-								{
-									"counter": {
-										"name": "jar_e_set",
-										"at_least": 1
-									}
-								}
-							]
-						}
 					}
 				]
 			},
 			"every": 150,
+			"delay": 160,
 			"do": [
 				{
 					"spawn": {
@@ -2170,7 +1945,7 @@
 						"kind": "raptor",
 						"count": 4,
 						"at": "trail_ne",
-						"tag": "wave"
+						"tag": "wave_e"
 					}
 				},
 				{
@@ -2179,14 +1954,35 @@
 						"kind": "spitter",
 						"count": 1,
 						"at": "trail_ne",
-						"tag": "wave"
+						"tag": "wave_e"
 					}
 				},
 				{
 					"order": {
-						"tag": "wave",
+						"tag": "wave_e",
 						"do": "attack",
-						"to": "pen"
+						"to": "pen",
+						"to_if": [
+							{
+								"if": {
+									"all": [
+										{
+											"counter": {
+												"name": "waves",
+												"below": 2
+											}
+										},
+										{
+											"counter": {
+												"name": "jar_e_set",
+												"at_least": 1
+											}
+										}
+									]
+								},
+								"to": "jar_e"
+							}
+						]
 					}
 				},
 				{
@@ -2206,8 +2002,7 @@
 						"area": "trail_ne"
 					}
 				}
-			],
-			"delay": 160
+			]
 		},
 		{
 			"id": "walked_past",

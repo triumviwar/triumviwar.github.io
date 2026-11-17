@@ -35,27 +35,18 @@ DENY = ["horse_breeder", "foundry", "armoury"]
 # ---------------------------------------------------------------- the waves
 
 
-def wave(tid, trail, jar, after, every, delay, raptors, spitters=0, cond_extra=None, times=None):
-    """A pack wave out of a trail head: to its trail's lure jar while the lure still works (the first two waves, the jar
-    set), then to Linnea's pen. The calls answer on a timetable; the pack never has more than CAP creatures alive."""
-    out = []
-    base = [{"fired": after}, {"not": {"fired": "turn"}}, {"count": {"team": "pack", "below": CAP}}] + (cond_extra or [])
-    for to_jar in (True, False):
-        lure = [{"counter": {"name": "waves", "below": 2}}, {"counter": {"name": jar + "_set", "at_least": 1}}]
-        cond = base + (lure if to_jar else [{"not": {"all": lure}}])
-        do = [{"spawn": {"team": "pack", "kind": "raptor", "count": raptors, "at": trail, "tag": "wave"}}]
-        if spitters:
-            do.append({"spawn": {"team": "pack", "kind": "spitter", "count": spitters, "at": trail, "tag": "wave"}})
-        do += [{"order": {"tag": "wave", "do": "attack", "to": jar if to_jar else "pen"}},
-               {"counter": {"name": "waves", "add": 1}}, {"sound": {"name": "campaign/forest_answer", "area": trail}},
-               {"ping": {"area": trail}}]
-        tr = {"id": tid + ("_jar" if to_jar else ""), "when": {"all": cond}, "every": every, "do": do}
-        if delay:
-            tr["delay"] = delay
-        if times:
-            tr["times"] = times
-        out.append(tr)
-    return out
+def wave(tid, trail, jar, after, every, delay, raptors, spitters=0):
+    """A pack wave out of a trail head, as its call is answered: to its trail's lure jar while the lure still works (the
+    first two waves, that jar set), then to Linnea's pen. Never more than CAP creatures alive."""
+    lure = {"all": [{"counter": {"name": "waves", "below": 2}}, {"counter": {"name": jar + "_set", "at_least": 1}}]}
+    do = [{"spawn": {"team": "pack", "kind": "raptor", "count": raptors, "at": trail, "tag": tid}}]
+    if spitters:
+        do.append({"spawn": {"team": "pack", "kind": "spitter", "count": spitters, "at": trail, "tag": tid}})
+    do += [{"order": {"tag": tid, "do": "attack", "to": "pen", "to_if": [{"if": lure, "to": jar}]}},
+           {"counter": {"name": "waves", "add": 1}}, {"sound": {"name": "campaign/forest_answer", "area": trail}},
+           {"ping": {"area": trail}}]
+    return [{"id": tid, "when": {"all": [{"fired": after}, {"not": {"fired": "turn"}}, {"count": {"team": "pack", "below": CAP}}]},
+             "every": every, "delay": delay, "do": do}]
 
 
 def jar(n, area):
@@ -149,7 +140,7 @@ M = {
         # part 2
         {"id": "lure", "side": "station", "primary": True, "kind": "manual", "hidden": True,
          "text": "Set the lure: Pieter carries a jar to each mark at the forest's edge ({jars} of 3)."},
-        {"id": "village", "side": "station", "primary": True, "kind": "manual", "hidden": True,
+        {"id": "village", "side": "station", "primary": False, "kind": "manual", "hidden": True,
          "text": "Bring the village in: walk Frei Joaquim and the villagers to the station ({folk_in} in)."},
         {"id": "hold", "side": "station", "primary": True, "kind": "manual", "hidden": True,
          "text": "Hold the pens until the forest goes quiet."},
@@ -252,7 +243,7 @@ M = {
         {"id": "village_in", "when": {"all": [{"fired": "folk_go"}, {"count": {"tag": "folk", "area": "village", "below": 1}},
                                               {"count": {"tag": "folk", "area": "yard", "at_least": 1}}]}, "do": [
             {"objective": {"id": "village", "set": "done"}}, {"say": ["j_in"]}]},
-        {"id": "village_lost", "when": {"all": [{"fired": "eve"}] + QUIET + [{"dead": "folk"}]}, "do": [{"objective": {"id": "village", "set": "failed"}}]},
+        {"id": "village_lost", "when": {"all": [{"fired": "eve"}, {"not": {"fired": "turn"}}] + QUIET + [{"dead": "folk"}]}, "do": [{"objective": {"id": "village", "set": "failed"}}]},
         {"id": "teles_late", "when": {"all": [{"fired": "eve"}] + QUIET}, "delay": 170, "do": [
             {"say": ["t_late"]}, {"order": {"tag": "garrison_a", "do": "attack", "to": "causeway_e"}}]},
         # the waves: the lure works on the first two, then they walk past the jars to her pen
