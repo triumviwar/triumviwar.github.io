@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.47", "items": [
+		"CAMPAIGN PLANS: Act 1 is planned (seven missions on the three lines, 2767-2770: the Printing Houses of Lyon, the Fürth Line, the Lost Plateau, Father Ferrer's Visit, the Specimens, the Barricades of Paris, and the Council of Rome where the three lines cross), with the war map. Not playable yet.",
+	]},
 	{"v": "0.38.46", "items": [
 		"Tests only: the Brood test that checks the Venom Sire's price on the grub's BUILD card waits a moment after a new grub is selected, as a player would (it failed only because it looked at the card in the same instant the grub was made).",
 	]},
