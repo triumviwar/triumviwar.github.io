@@ -1,0 +1,105 @@
+{
+ "map": "ashford_crossing",
+ "seed": 1164,
+ "slots": [
+  [
+   "crown",
+   "optimal",
+   0
+  ],
+  [
+   "brood",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 720,
+ "winner": -1,
+ "version": "0.38.46",
+ "tech_at": {
+  "0:charge": 590,
+  "1:nb_clutch_raptor": 515,
+  "1:nb_clutch_spitter": 435,
+  "1:nb_pack_hunt": 570
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 97,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "read": "GREEDY",
+   "t": 173,
+   "why": "a second base and little army"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 399,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 474,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 633,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 709,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "pick": "opening NORMAL -> balanced (a normal game)",
+   "t": 97
+  },
+  {
+   "p": 1,
+   "read": "GREEDY",
+   "t": 219,
+   "why": "a new base by its natural"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 481,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "pick": "opening UNKNOWN -> spitter (a timing attack)",
+   "t": 180
+  }
+ ],
+ "final": [
+  {
+   "income": 13940,
+   "army": 550,
+   "halls": 3,
+   "workers": 36,
+   "plan": "balanced",
+   "supply": 63,
+   "lost": 82
+  },
+  {
+   "income": 18636,
+   "army": 2165,
+   "halls": 4,
+   "workers": 60,
+   "plan": "spitter",
+   "supply": 156,
+   "lost": 165
+  }
+ ]
+}

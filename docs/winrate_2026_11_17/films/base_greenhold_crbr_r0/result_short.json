@@ -1,0 +1,104 @@
+{
+ "map": "greenhold",
+ "seed": 1100,
+ "slots": [
+  [
+   "crown",
+   "optimal",
+   0
+  ],
+  [
+   "brood",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 720,
+ "winner": -1,
+ "version": "0.38.46",
+ "tech_at": {
+  "0:charge": 345,
+  "1:nb_clutch_raptor": 600,
+  "1:nb_pack_hunt": 560
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "GREEDY",
+   "t": 90,
+   "why": "a second base and little army"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 379,
+   "why": "the scout was driven off"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 535,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 635,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 711,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "pick": "opening LEAN -> rush (the matchup)",
+   "t": 0
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 92,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "read": "AGGRESSIVE",
+   "t": 94,
+   "why": "a Horse Breeder or riders early"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 330,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "pick": "opening NORMAL -> timing (a timing attack)",
+   "t": 92
+  }
+ ],
+ "final": [
+  {
+   "income": 11400,
+   "army": 2640,
+   "halls": 3,
+   "workers": 41,
+   "plan": "balanced",
+   "supply": 110,
+   "lost": 21
+  },
+  {
+   "income": 12220,
+   "army": 1175,
+   "halls": 4,
+   "workers": 56,
+   "plan": "timing",
+   "supply": 118,
+   "lost": 129
+  }
+ ]
+}
