@@ -53,7 +53,17 @@ func _init(a) -> void:
 	line_off = off or args.has("cvbline:off")
 	target_off = off or not args.has("cvbtarget:on")      # (MEASURED, NOT KEPT AS THE DEFAULT: parts 2 and 3 below)
 	keep_wide = args.has("cvbkeep:wide")
+	cba_off = args.has("cba:off")
+	floor_off = cba_off or args.has("cbafloor:off")
+	for arg in args:
+		if arg.begins_with("cbafloor:k="):
+			floor_k = float(arg.split("=")[1])
 	counter_off = off or not args.has("cvbcounter:on")
+	hold_off = cba_off or args.has("cbahold:off")
+	econ_off = cba_off or args.has("cbaecon:off")
+	if not cba_off and args.has("cbacounter:on") and not args.has("cvbcounter:on"):
+		counter_off = off       # (crown-brood-army part 6, MEASURED IN FILMS AND NOT KEPT: the counter after a held push, only
+		counter_died_only = true  # when the Brood's wave has just died at our line: see part 6)
 
 
 static func is_line(u: Unit) -> bool:
@@ -73,7 +83,7 @@ func line_want() -> float:
 	var t: float = game.clock
 	var w: float = AICrown._lerp_table(LINE_TABLE, t)
 	var cap := maxf(LINE_PER_LAB_MIN, LINE_PER_LAB * float(game.workers(team).size()))
-	return minf(w, cap)
+	return maxf(minf(w, cap), floor_want())      # (crown-brood-army: the floor tied to the Brood, part 5)
 
 
 ## The home line is under its floor (looked at once a second).
@@ -183,6 +193,7 @@ const COUNTER_WINDOW := 75.0
 const COUNTER_KILL := 0.45       # (share of our ready army's value killed lately)
 const COUNTER_EDGE := 1.4
 var counter_off := false
+var counter_died_only := false    # (crown-brood-army: only "its wave just died at our line", not the army seen lately)
 var _kills: Array = []           # [clock, value_killed]
 var counters := 0
 var _counter_said := -99.0
@@ -216,7 +227,7 @@ func counter_ok(mine: float) -> bool:
 	var why := ""
 	if kl >= mine * COUNTER_KILL and seen * 1.0 < mine:
 		why = "its wave just died at our line (%d killed in %d s)" % [int(kl), int(COUNTER_WINDOW)]
-	elif seen > 0.0 and mine >= seen * COUNTER_EDGE:
+	elif seen > 0.0 and mine >= seen * COUNTER_EDGE and not counter_died_only:
 		why = "our army is %.1f times the Brood army seen lately (%d)" % [mine / seen, int(seen)]
 	if why == "":
 		return false
@@ -243,3 +254,243 @@ func church_waits() -> bool:
 		church_held += 1
 		return true
 	return false
+
+
+
+## 5. THE ARMY FLOOR TIED TO THE BROOD (crown-brood-army, the owner 2026-11-16 23:25 "start all coaching jobs needed";
+##    docs/crown_brood_army.md). The line's floor above (LINE_TABLE, capped LINE_PER_LAB a labourer) is the Crown's own
+##    table: 300 at 5:00, 700 at 6:00, and the cap held it under 900 till 8:00 on 20 labourers. The Brood's Timing reaches the
+##    Crown at 6:20-8:00 with 600-1,400 of army (crown-coach-measure-2; this job's baseline: Saltmarsh r1 6:20 1,400 against
+##    480, Redrock r0 6:50 985 against 590). And the line was short every minute from 4:30 to 8:00 while the gold went to the
+##    natural's palisade (27 pieces), a Foundry, a second Mill, Farms, a Cottage and the Cavalry Charge, with the Barracks
+##    idle (Dune Sea r1, 5:30-7:00: two Barracks, busy 0, 25 gold in the bank): the line's keep holds only some of the ways
+##    the gold goes. Now, from FLOOR_FROM to FLOOR_UNTIL:
+##    - the floor follows the Brood: what its scouts saw of the Brood's army lately (FLOOR_SEEN of it) and, by the read, the
+##      push to come FLOOR_LEAD s ahead (FLOOR_TABLE: ~500 by 6:00, ~1,000 by 7:30, whatever the read: the Crown reads
+##      the Brood GREEDY at ~1:40 in nearly every game, its turtle on new ground being the usual opening, and the Timing
+##      still came; FLOOR_BLIND of it before any read), bounded by the economy (FLOOR_PER_LAB a labourer);
+##    - while the line (with what trains) is under it, every idle Barracks trains a Musketeer and an idle Foundry a Field
+##      Cannon (one for FLOOR_GUN_PER Musketeers) BEFORE any think stage spends, and their price is held from everything else
+##      (the walls, the steps, the milestones, the labourers) until they can: the gold of idle production only, so a busy
+##      Barracks lets the economy go on;
+##    - every Barracks and Foundry busy and still FLOOR_MORE short: one more Barracks (up to FLOOR_BARRACKS);
+##    - no Brood soldier seen for FLOOR_LOOK s between 4:00 and 6:30: a scout goes to look (AICrown.want_look);
+##    - once a Brood push has broken on our line (part 6) the table counts FLOOR_HELD of itself: what is seen leads.
+##    Switches `cbafloor:off` (this part), `cba:off` (the whole job), `cbafloor:k=<x>` (the table times x).
+##    Design rule 2 (the defender's advantage needs defenders: a palisade with nobody behind it) and 4 (the opportunity cost:
+##    an idle Barracks while the walls go up).
+var cba_off := false
+var floor_off := false
+var floor_k := 1.0
+const FLOOR_FROM := 240.0
+const FLOOR_UNTIL := 570.0
+const FLOOR_LEAD := 30.0
+## [clock, home line wanted] after a NORMAL (or AGGRESSIVE) read: the Brood's Timing push
+const FLOOR_TABLE := [[240.0, 0.0], [300.0, 250.0], [360.0, 500.0], [450.0, 1000.0], [540.0, 1300.0], [600.0, 1500.0]]
+const FLOOR_BLIND := 0.6
+const FLOOR_HELD := 0.5
+const FLOOR_SEEN := 1.0
+const FLOOR_PER_LAB := 55.0
+const FLOOR_PER_LAB_MIN := 500.0
+const FLOOR_GUN_PER := 4
+const FLOOR_DEPTH := 2
+const FLOOR_MORE := 200.0
+const FLOOR_BARRACKS := 3
+const FLOOR_BUSY := 10.0
+const FLOOR_LOOK := 75.0
+var floor_trained := 0           # (the report) Musketeers and guns the floor trained
+var floor_held_t := 0.0          # (the report) seconds it held gold for idle production
+var floor_built := 0             # (the report) Barracks the floor put up
+var floor_looks := 0             # (the report) looks it asked for
+var _floor_t := -1.0
+var _floor_v := 0.0
+var _busy_from := -1.0
+var _floor_said := -99.0
+
+
+func floor_on() -> bool:
+	return not floor_off and not ai.peaceful and game.clock >= FLOOR_FROM and game.clock < FLOOR_UNTIL
+
+
+func floor_want() -> float:
+	if not floor_on():
+		return 0.0
+	if game.clock - _floor_t < 1.0:
+		return _floor_v
+	_floor_t = game.clock
+	var t: float = game.clock
+	var read := String(ai.scout.verdict) if ai.scout != null else ""
+	var tab := AICrown._lerp_table(FLOOR_TABLE, t + FLOOR_LEAD) * floor_k
+	if read == "pending" or read == "":
+		tab *= FLOOR_BLIND       # (no read yet; a GREEDY read at 1:40 is the Brood's usual opening, its Timing still comes)
+	if held_t >= 0.0 and not hold_off:
+		tab *= FLOOR_HELD        # (its first push broken on our line: the table's guess gives way to what is seen, part 6)
+	var seen: float = ai.ch.foe_known() if ai.ch != null else 0.0
+	var w := maxf(tab, seen * FLOOR_SEEN)
+	var cap := maxf(FLOOR_PER_LAB_MIN, FLOOR_PER_LAB * float(game.workers(team).size()))
+	_floor_v = minf(w, cap)
+	if t < 390.0 and ai.ch != null and t - float(ai.ch._last_army_t) > FLOOR_LOOK:
+		var was: int = ai.looks_asked
+		ai.want_look("the army floor (a look at the Brood's army)")
+		if ai.looks_asked > was:
+			floor_looks += 1
+	return _floor_v
+
+
+## The line with what trains (the queues of the Barracks and Foundries).
+func line_with_queued() -> float:
+	var v := home_line()
+	for b in ai._mine("barracks") + ai._mine("foundry"):
+		for k in b.queue:
+			if Defs.MUSKETS.has(String(k)) or String(k) == "cannon" or String(k) == "mortar":
+				v += float(Defs.UNITS[String(k)]["cost"]) if Defs.UNITS.has(String(k)) else 60.0
+	return v
+
+
+## Trains into idle production while the line (with its queues) is under the floor; returns the gold to hold for the rest.
+func floor_produce() -> int:
+	if not floor_on():
+		return 0
+	var want := floor_want()
+	var have := line_with_queued()
+	if have >= want:
+		_busy_from = -1.0
+		return 0
+	if game.supply_used(team) >= int(game.players[team]["cap"]) - 2:
+		return 0                 # (supply-blocked: the Cottage first)
+	var hold := 0
+	var musk := 0
+	var guns := 0
+	for u in game.army(team):
+		if u.dead:
+			continue
+		if u.kind == "cannon":
+			guns += 1
+		elif Defs.MUSKETS.has(u.kind):
+			musk += 1
+	var all_busy := true
+	for f in ai._mine("foundry"):
+		if not f.built:
+			continue
+		if not (f.queue as Array).is_empty():
+			continue
+		if guns * FLOOR_GUN_PER >= musk + FLOOR_GUN_PER or game.horses_at(f) <= 0 or have >= want:
+			continue
+		all_busy = false
+		var gp := int(game.unit_price(team, "cannon")[0])
+		if int(game.players[team]["gold"]) >= gp and game.train(f, "cannon") == "":
+			floor_trained += 1
+			guns += 1
+			have += float(gp)
+			all_busy = true
+		else:
+			hold += gp
+	var mp := int(game.unit_price(team, "musketeer")[0])
+	for b in ai._mine("barracks"):
+		if not b.built:
+			continue
+		if (b.queue as Array).is_empty():
+			all_busy = false
+		if ai._res2() < float(Defs.ammo_load("musketeer")) or not ai.am.musket_ok(b, "musketeer"):
+			continue             # (no powder for his shots: no dry Musketeer for the floor; the Mill's crew grows for it)
+		# two deep, as the halls' labourers (AICrownCoach.LAB_DEPTH): the gold comes in harvests ~20 s apart and a Musketeer
+		# trains in 15 s, so with one in the queue the Barracks stood idle half the time (Greenhold 1100, 6:08-7:20)
+		while (b.queue as Array).size() < FLOOR_DEPTH and have < want:
+			if int(game.players[team]["gold"]) < mp:
+				hold += mp       # (his gold first, from the next harvest)
+				break
+			var k: String = ai._soldier_key(b, "musketeer")
+			if k == "" or game.train(b, k) != "":
+				break            # (he cannot be trained here now for another reason)
+			floor_trained += 1
+			have += float(game.unit_price(team, k)[0])
+	if hold > 0:
+		floor_held_t += 0.1
+	# every Barracks and Foundry busy and still far short: one more Barracks
+	if all_busy and want - have >= FLOOR_MORE:
+		if _busy_from < 0.0:
+			_busy_from = game.clock
+		elif game.clock - _busy_from >= FLOOR_BUSY and ai._mine("barracks").size() < FLOOR_BARRACKS \
+				and not ai._busy_building("barracks") and game.requirement_met(team, "barracks"):
+			var cost := int(Defs.BUILDINGS["barracks"]["cost"])
+			if int(game.players[team]["gold"]) >= cost:
+				var n0: int = ai._mine("barracks").size()
+				ai._construct("barracks")
+				if ai._mine("barracks").size() > n0:
+					floor_built += 1
+					_busy_from = -1.0
+					ai.say("against the Brood the line needs more Barracks: %d of line against the %d the Brood's army asks for" % [int(have), int(want)])
+			else:
+				hold += cost
+	else:
+		_busy_from = -1.0
+	if game.clock - _floor_said > 60.0 and hold > 0:
+		_floor_said = game.clock
+		ai.say("the army floor against the Brood: %d of line (with what trains) against the %d its scouting asks for: the soldiers' gold first" % [int(have), int(want)])
+	return mini(hold, int(game.players[team]["gold"]))
+
+
+
+## 6. HOLD THE FIRST PUSH (crown-brood-army). With the floor the Crown had 1,000-1,300 of army at 7:00-8:00 and its wave
+##    went out at the first edge over the Brood army it reckoned (EDGE_BROOD 1.25 of the honest reckoning): Redrock r0 7:55,
+##    1,200 of army against 990 known, 16 Musketeers formed for a guard of 100, lost the field 480 for 100 with the Brood's
+##    army coming on behind; the Brood came back at 10:10 with 2,360 against 720 and took both halls. Hollowfen r1 7:14: wave
+##    2 out with 24 supply, the Brood's push at the natural's gate at 7:31 met 120 at home. A human holds the first push at
+##    his wall and guns (the defender's advantage, design rule 2). So against the Brood, until HOLD_UNTIL, no wave goes unless
+##    the army is HOLD_EDGE times the Brood army it reckons, never less than AICrown.BROOD_TABLE (the honest reckoning's 0.4
+##    of the table let a wave out at 7:47 into twice what it reckoned: Saltmarsh r1, 1,180 against 600 reckoned and 2,125
+##    there). A push held (HELD_KILL of Brood killed within COUNTER_WINDOW s) relaxes the floor (part 5) and lets the economy
+##    grow (part 7). THE COUNTER after a held push (part 3, `cbacounter:on`: only when the Brood's wave has just died at our
+##    line) was tried again and NOT KEPT: in the Saltmarsh r1 film the push broke at 6:41 (475 killed), the counter went at
+##    8:19 with 26 supply, met the Brood's army unformed at 9:04 and was gone; the Brood's next push at 9:36 found nobody at
+##    home and took both halls by 11:25 (as part 3's own measure found: the Brood rebuilds in two minutes). Switch
+##    `cbahold:off`.
+var hold_off := false
+const HOLD_UNTIL := 600.0
+const HOLD_EDGE := 2.0
+const HELD_KILL := 450.0
+var held_t := -1.0               # when a Brood push was first held
+var hold_waits := 0              # (the report) thinks a wave waited for the first push
+var _hold_said := -99.0
+
+
+## (AICrown._wave_worth) true: the wave waits at home for the Brood's first push.
+func hold_first(mine: float, est: float) -> bool:
+	if hold_off or game.clock >= HOLD_UNTIL:
+		return false
+	if held_t < 0.0 and killed_lately() >= HELD_KILL:
+		held_t = game.clock
+		ai.say("against the Brood its push has broken on our line (%d killed in %d s): from now the counter may go" % [int(killed_lately()), int(COUNTER_WINDOW)])
+	if held_t >= 0.0 and not counter_off:
+		return false             # (`cbacounter:on`: once a push is held, the counter and the usual edge decide)
+	# (the reckoning is honest about what it has NOT seen (AICrownCoach 3: 0.4 of the table while the Brood was seen lately,
+	# less half of what we killed): Saltmarsh r1 7:47, 1,180 of army against 600 reckoned walked into 2,125 of Brood. Before
+	# the first push the full table of a Hard Brood stands for the army it has not seen)
+	est = maxf(est, AICrown._lerp_table(AICrown.BROOD_TABLE, game.clock))
+	if mine >= est * HOLD_EDGE:
+		return false
+	hold_waits += 1
+	if game.clock - _hold_said > 60.0:
+		_hold_said = game.clock
+		if held_t >= 0.0:
+			ai.say("against the Brood the army stays at home behind its wall and guns till %d:%02d: %d of army against the %d it reckons (out at %d)" % [int(HOLD_UNTIL) / 60, int(HOLD_UNTIL) % 60, int(mine), int(est), int(est * HOLD_EDGE)])
+		else:
+			ai.say("against the Brood the army holds at home for its first push: %d of army against the %d it reckons (out at %d before the push is held)" % [int(mine), int(est), int(est * HOLD_EDGE)])
+	return true
+
+
+
+## 7. THE ECONOMY AFTER THE HOLD (crown-brood-army). With the floor and the hold the Crown kept its halls (Redrock r0,
+##    Saltmarsh r1, Border March r1: built halls lost 5 -> 0) but stood on 2 halls to 12:00 against the Brood's 4 and earned
+##    0.7-0.9 of its income: still a trailing draw. The coach's economy rules (AICrownCoach 1 LABOURERS FIRST and 2 HALLS ON
+##    TIME, `broodecon:on`) from the start leave it thin when the push comes (army at 5:00 60-180, Saltmarsh r1 lost). So
+##    against the Brood they come on once the first push has been held (part 6), or from ECON_AFTER if none has come.
+##    Switch `cbaecon:off`.
+var econ_off := false
+const ECON_AFTER := 540.0
+
+
+func econ_after_hold() -> bool:
+	if econ_off or ai.peaceful:
+		return false
+	return (held_t >= 0.0 and not hold_off) or game.clock >= ECON_AFTER

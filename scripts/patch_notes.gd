@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.40", "items": [
+		"THE CROWN COMPUTER AGAINST THE BROOD KEEPS ITS ARMY (no unit, price or rule changed): from 4:00 its army floor follows the Brood (what its scouts saw, and the push a Brood usually brings: about 500 by 6:00, 1,000 by 7:30): its Barracks train Musketeers two deep and its Foundry a gun before anything else spends, their gold held from the walls and the buildings, a Barracks more when every one is busy. Until 10:00 its army stays at home behind its wall and guns for the Brood's push instead of walking out to meet it. Measured in 38 games: its army at 8:00 bigger in 25-26, a median 3-5 units lost when the Brood first arrives (was 7), the economy no worse.",
+	]},
 	{"v": "0.38.39", "items": [
 		"THE CROWN COMPUTER AGAINST ANOTHER CROWN, COACHED (no unit, price or rule changed): from 8:00 a Crown clearly ahead of the army it reckons the other has sends its wave out again instead of waiting to grow a bigger one, and the Siege push goes without its full set of guns. Its waves go for the enemy hall that is cheapest to take (out in the open, few walls, away from the enemy's main) before the walled ones by the main, and once only walled halls are left it trains Field Cannons (up to 3) to shell them. Measured on 38 computer mirrors to 15:00 the games still mostly run to the end: the loser's main on its plateau holds.",
 	]},

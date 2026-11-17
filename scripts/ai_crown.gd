@@ -1013,8 +1013,11 @@ func _think_stage(i: int) -> void:
 	# (the Crown coach 2026-11-16, LABOURERS FIRST: before any stage spends; the gold for an idle hall's labourer is held)
 	if coach == null and on:
 		coach = AICrownCoach.new(self)
+	var floor_held: int = vbr.floor_produce() if vb() != null else 0      # (crown-brood-army: THE ARMY FLOOR TIED TO THE BROOD)
+	game.players[team]["gold"] -= floor_held
 	var lab_held: int = coach.labs_first() if coach != null else 0
 	game.players[team]["gold"] -= lab_held
+	lab_held += floor_held
 	if coach != null and i == 2:
 		var sh: int = coach.screen_first()      # (the coach: THE SCREEN BEFORE THE WAVE, its Horseman first)
 		game.players[team]["gold"] -= sh
@@ -1710,6 +1713,8 @@ func _wave_worth(ready: Array) -> bool:
 			want_look("the wave")
 			return false
 		var est := foe_estimate()
+		if vb() != null and vbr.hold_first(mine, est):
+			return false        # (crown-brood-army: HOLD THE FIRST PUSH, THEN COUNTER, scripts/ai_crown_v_brood.gd part 6)
 		if mine >= est * (coach.edge_brood() if coach != null and coach.honest_on() else CR_EDGE_BROOD):
 			return true
 		if vb() != null and vbr.counter_ok(mine):

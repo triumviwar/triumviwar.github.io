@@ -1,0 +1,164 @@
+{
+"map": "redrock_canyon",
+"seed": 1136,
+"slots": [
+[
+"crown",
+"optimal",
+0
+],
+[
+"brood",
+"optimal",
+1
+]
+],
+"winner": -1,
+"winner_side": -1,
+"version": "0.38.38",
+"crown_ai": {
+"0": {
+"bo_hall_moved": [],
+"guns_early_n": 0,
+"labs_first_held_t": 0.0,
+"labs_first_n": 0,
+"line_approaches": 0,
+"line_def_lines": 4,
+"line_deploys": 0,
+"line_falls": 0,
+"line_forms": 0,
+"line_lost_sight": 0,
+"line_steps": 0,
+"sc_flank_hits": 0,
+"sc_lost": 0,
+"sc_picket_lost": 0,
+"sc_pulled": 0,
+"sc_sent": 0,
+"sc_sightings": 0,
+"sc_trained": 0,
+"screen_trained": 0,
+"vb_counters": 0,
+"vb_floor_built": 2,
+"vb_floor_held_t": 104.999999999998,
+"vb_floor_looks": 1,
+"vb_floor_trained": 23,
+"vb_held_t": -1.0,
+"vb_hold_waits": 0,
+"vb_line_short_t": 478.866666666681
+}
+},
+"events": [
+{
+"army": 960,
+"army90": 2045,
+"ev": "first_attack",
+"foe_army": 780,
+"foe_army90": 1200,
+"foe_bld": 1,
+"foe_lost": 1,
+"lost": 21,
+"p": 1,
+"t": 395
+},
+{
+"ev": "first_arrival",
+"foe_army": 1210,
+"foe_army90": 2270,
+"foe_lost": 20,
+"own_army": 900,
+"own_army90": 1140,
+"own_bld": 1,
+"own_lost": 2,
+"p": 0,
+"t": 410,
+"value": 325
+},
+{
+"at": "(32, 24)",
+"built": true,
+"ev": "hall_lost",
+"kind": "town_hall",
+"p": 0,
+"t": 610
+},
+{
+"at": "(41, 8)",
+"built": true,
+"ev": "hall_lost",
+"kind": "town_hall",
+"p": 0,
+"t": 655
+}
+],
+"final": [
+{
+"army": 0,
+"bank": 192,
+"bld_lost": 27,
+"cap": 0,
+"crown": {
+"farms": 0,
+"farms_pulled": 0,
+"farms_spent": 0,
+"lab_cap": 10,
+"lag_s": 0,
+"mills": 0,
+"on_farms": 0,
+"on_mills": 0,
+"others": {},
+"posts": 0,
+"why": {}
+},
+"drink": [
+0,
+0,
+0,
+0
+],
+"gw_cogs": 0,
+"halls": 0,
+"home": -1.0,
+"idle_w": 0,
+"idle_w_avg": 0.0,
+"income": 6840,
+"lost": 70,
+"maws": 0,
+"out": false,
+"p": 0,
+"plan": "economy",
+"push": "",
+"res2": 374,
+"spent": 6990,
+"supply": 0,
+"t": 720,
+"trained": 74,
+"workers": 0
+},
+{
+"army": 4215,
+"bank": 2304,
+"bld_lost": 0,
+"cap": 200,
+"crown": {},
+"drink": [],
+"gw_cogs": 0,
+"halls": 4,
+"home": 0.11,
+"idle_w": 0,
+"idle_w_avg": 0.5,
+"income": 17314,
+"lost": 97,
+"maws": 9,
+"out": false,
+"p": 1,
+"plan": "balanced",
+"push": "",
+"res2": 360,
+"spent": 15260,
+"supply": 200,
+"t": 720,
+"trained": 355,
+"workers": 54
+}
+]
+}
