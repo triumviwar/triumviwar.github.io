@@ -2442,6 +2442,35 @@
 			]
 		},
 		{
+			"id": "riders",
+			"when": {
+				"clock_left": {
+					"name": "fall",
+					"below": 100
+				}
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "watch",
+						"kind": "cuirassier",
+						"count": 4,
+						"at": "out_west",
+						"tag": "riders",
+						"order": {
+							"do": "attack",
+							"to": "gate_in"
+						}
+					}
+				},
+				{
+					"say": [
+						"cap_riders"
+					]
+				}
+			]
+		},
+		{
 			"id": "warn_2",
 			"when": {
 				"clock_left": {
@@ -3042,6 +3071,10 @@
 			"who": "jakob",
 			"to": "guild",
 			"text": "Meister, you are hurt. Keep away from them until the last moment."
+		},
+		"cap_riders": {
+			"who": "captain",
+			"text": "Riders from Fürth! They will hold the gate for the last of us."
 		},
 		"f_warn": {
 			"who": "ferrer",

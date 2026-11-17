@@ -994,7 +994,7 @@ func set_weather(w: String) -> void:
 		return
 	var cl := CanvasLayer.new()
 	cl.name = "MissionWeather"
-	cl.layer = 0
+	cl.layer = 1          # (over the world, under the HUD and the panels: ui_layer is 10)
 	var p := CPUParticles2D.new()
 	var vs := game.get_viewport().get_visible_rect().size if game.is_inside_tree() else Vector2(1600, 900)
 	p.position = Vector2(vs.x * 0.5, -20)

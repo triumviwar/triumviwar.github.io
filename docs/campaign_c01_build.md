@@ -120,7 +120,41 @@ curly hair, moustache, leather apron, red-brown coat); for the King p01_01. The 
 guild's machines brass with BLUE enamel; the runaway machines brass with RED enamel. Save each as
 `art/campaign/stills/c01_0N.png` and cut it to 1280 x 853 into `campaign/stills/c01_0N.jpg` (nothing else changes).
 
-STILLS_PLACEHOLDER
+- c01 THE KING LISTENS (the frame: Hollweg tells it himself, owner answer 2). "Oil painting, 18th-century history painting style. Night, a study in Rome by candlelight:
+  an old King in a purple robe sits by a desk with a parchment map, a pipe in his hand, listening. Across the desk an old
+  clockmaker with grey curly hair and a moustache, in a plain dark travelling coat, speaks with his empty hands open.
+  Warm candlelight, deep shadows, the dome of Saint Peter's faint through the window. 3:2 landscape, no text."
+  (Reference p01_01 for the King and the room.)
+- c02 NUREMBERG IN ADVENT. "Oil painting, 18th-century history painting style. A walled German city at dusk in Advent:
+  snow on steep red roofs and half-timbered houses, a castle on a rock above, a Gothic church front on a market square
+  full of lit Christmas market stalls, townsfolk in 18th-century winter clothes. Among them small brass clockwork
+  labourers with blue enamel plates carry baskets and lanterns, harmless and admired. A frozen river with waterwheels
+  in the foreground. Warm lantern light against a deep blue sky. 3:2 landscape, no text."
+- c03 THE HEART OF THE PERPETUAL. "Oil painting, 18th-century history painting style. Night in a clockmaker's workshop
+  full of brass instruments: an old master clockmaker (grey curly hair, moustache, leather apron, red-brown coat) holds
+  up a perfect brass escapement wheel the size of a plate, lit by a lantern, his face proud and tender. Behind him in
+  the doorway a Jesuit priest in a black cassock watches, unsmiling. A young apprentice holds the lantern. 3:2
+  landscape, no text."
+- c04 THE PERPETUAL WAKES. "Oil painting, 18th-century history painting style. A snowy guild courtyard at noon: a tall
+  brass clock tower machine with blue enamel plates and great turning gears at its base, small brass worker machines
+  climbing out of a hatch at its foot, one after another. The old clockmaker raises his hands in triumph, guildsmen
+  cheer, a priest in black stands apart. Cold daylight, gleaming brass. 3:2 landscape, no text."
+- c05 THE MILL ISLAND. "Oil painting, 18th-century history painting style. Night under a stone bridge on a river:
+  waterwheels and a mill overgrown by a sprawling network of brass gears with RED enamel, meshed across the stones,
+  turning; red-plated clockwork machines working in the dark, more half built on the gears. A young apprentice with a
+  lantern has just found it, horrified; behind him two clockwork soldiers with BLUE plates. Cold moonlight and the
+  lantern's warm glow. 3:2 landscape, no text."
+- c06 THE THIRTEENTH HOUR. "Oil painting, 18th-century history painting style. Midnight: a Gothic church's ornate
+  mechanical clock above a snowy market square, its bell ringing, red-enamelled clockwork machines crawling up the
+  house fronts and over the market stalls, fires in the streets. In the foreground the old clockmaker in a cloak, seen
+  from behind at a city gate, looks back; townsfolk and purple-coated soldiers hurry past him out of the gate. A cart
+  in the snow. 3:2 landscape, no text."
+- (optional c07 THE CRATES) "Oil painting, 18th-century history painting style. A grey river port at dawn: wooden
+  crates stamped with a gear seal loaded onto a sailing ship; through a split plank of one crate a faint red glow and
+  the edge of a brass gear. Dockers in 18th-century clothes, gulls, cold light. 3:2 landscape, no text." (Avoid any
+  readable words on the crates.)
+
+Files: c01 -> c01_01, c02 -> c01_02, c03 -> c01_03, c04 -> c01_04, c05 -> c01_05, c06 -> c01_06, the optional c07 (the crates) -> c01_07 (used: the ending's second page).
 
 ## The voice lines (for the owner's Chatterbox recordings)
 
@@ -130,7 +164,68 @@ CAPTAIN OF THE WATCH and the NARRATOR ("Nuremberg") need DESIGNED voices first (
 ElevenLabs only to design, then Chatterbox for all the lines; tools/voice_clone/refs/ has 5 designed voices: one may fit
 Hollweg). "The Machine" (versus only) can stay text, or the off-beat tick.
 
-VOICE_PLACEHOLDER
+| file (campaign/voice/c01/) | voice | when | line |
+| --- | --- | --- | --- |
+| k_open1.ogg | The King | opening | The clockmaker came to Rome in the winter of that year, with nothing but his coat. He lives in this palace still. |
+| k_open2.ogg | The King | opening | Tell him, Meister. Tell him what you told me. |
+| h_open1.ogg | Meister Hollweg | opening | Nuremberg in Advent. Snow on the roofs, the market lit, every clock in the city agreeing to the second. I thought we had made it so. |
+| h_open2.ogg | Meister Hollweg | opening | Forty years I made clocks that stopped. This one would not stop. It would wind itself, mend itself, and make its own successor. |
+| f_open.ogg | Father Ferrer | opening | And when will it know its work is done, Meister? |
+| h_open3.ogg | Meister Hollweg | opening | I did not answer him. I did not think the question was a real one. |
+| h_1.ogg | Meister Hollweg | intro | The Crown's wagons wait at the market. Six soldiers, wound and true. |
+| f_1.ogg | Father Ferrer | intro | Your soldiers, Meister, or the Crown's? |
+| tip_1.ogg | Meister Hollweg | intro | Build a Light Works by the Perpetual and train Clock Soldiers. Winders build and wind. |
+| m_intro.ogg | The Machine | intro_m | Tick. Tock. Tick. Grow, spread, and stop the clockmaker at the gate. |
+| tip_2.ogg | Jakob | tip_build | Every building must mesh with the Perpetual's gears, Meister, or it stops. |
+| cap_1.ogg | Captain of the Watch | order_done | Six. The Crown thanks the Guild. They are ours now. |
+| h_2.ogg | Meister Hollweg | order_done | Today I will show the city something better than soldiers. |
+| h_gift.ogg | Meister Hollweg | gift | There. It needs no hand but its own. |
+| f_gift.ogg | Father Ferrer | gift | It is beautiful. That is what frightens me. |
+| j_odd.ogg | Jakob | odd_1 | Meister, the new Winders keep turning to face the river. |
+| j_mill.ogg | Jakob | dusk | Meister, there is a press turning on the mill island. We never built a press there. |
+| h_mill.ogg | Meister Hollweg | dusk | Go and look. Take a Netter with you. |
+| tip_net.ogg | Jakob | dusk | A Netter's net holds a machine still. Bring Jakob to the bank by the mill. |
+| j_found.ogg | Jakob | found | It is a whole works. Meshed, wound, and making more. |
+| h_found.ogg | Meister Hollweg | found | Those are my gears. In red. |
+| f_found.ogg | Father Ferrer | found | There is another at the bath houses. It did not start today. |
+| h_turn.ogg | Meister Hollweg | turn | Stop. Stop! They are out of step. |
+| f_turn.ogg | Father Ferrer | turned_go | They were never yours, Meister. They were its. |
+| cap_net.ogg | Captain of the Watch | caught | One of yours, Meister, in red paint. Or is it? |
+| h_net.ogg | Meister Hollweg | caught | No paint. It made itself that colour. |
+| f_bells.ogg | Father Ferrer | bells | Ring the bells, Meister. Let the city wake and go. |
+| h_bells.ogg | Meister Hollweg | bells | If the city wakes, the guild is finished. Give me one hour and I will put it right. |
+| f_rung.ogg | Father Ferrer | bells / rung | Ring them. Every church. Now. |
+| h_quiet.ogg | Meister Hollweg | bells / quiet | One hour. Roll out the Pendulum. |
+| h_mill_down.ogg | Meister Hollweg | mill_burnt | The island is clear. We have it. |
+| j_mill_down.ogg | Jakob | mill_burnt | Meister, the bath houses are still turning. |
+| j_night.ogg | Jakob | night | Lights at the market. And at the east gate. |
+| h_night.ogg | Meister Hollweg | night | They are building faster than we can burn. |
+| h_lost.ogg | Meister Hollweg | lost | It cannot be stopped tonight. Save what you can. |
+| f_lost.ogg | Father Ferrer | lost | Get the people to the west gate. The Crown's camp is at Fürth. |
+| tip_3.ogg | Jakob | lost | Townsfolk come out as the machine reaches their streets. Walk them to the west gate. |
+| h_mill_late.ogg | Meister Hollweg | mill_still | The mill is still turning. Burn it if you can: every seed we burn buys time. |
+| f_road.ogg | Father Ferrer | early_road | The bells woke them. Half the city is already on the road. |
+| j_pend.ogg | Jakob | pendulum_m | Meister, it has made a Pendulum. |
+| cap_back.ogg | Captain of the Watch | back_baths | A seed is down. That gives us a little longer. |
+| j_cut.ogg | Jakob | cut_done | The links are cut. North of the river they are slowing. |
+| h_cut.ogg | Meister Hollweg | cut_done | Good. It needs its links like a clock needs its train. |
+| j_drawings.ogg | Jakob | drawings_got | I have the drawings, Meister. All of them. |
+| h_jakob.ogg | Meister Hollweg | jakob_lost | Jakob. Not Jakob. |
+| f_warn.ogg | Father Ferrer | warn_2 | Two minutes, Meister. To the gate. |
+| cap_cart.ogg | Captain of the Watch | gate_choice | One cart left. People or papers, Meister. Not both. |
+| h_people.ogg | Meister Hollweg | gate_choice / people | Put the people on the cart. Let the drawings burn. |
+| h_pattern.ogg | Meister Hollweg | gate_choice / pattern | The drawings. We must understand it. |
+| cap_13.ogg | Nuremberg | stroke | The great clock of the Frauenkirche strikes thirteen. |
+| h_13.ogg | Meister Hollweg | stroke | There is no thirteenth hour. There is now. |
+| cap_trapped.ogg | Nuremberg | trapped | The thirteenth stroke finds Meister Hollweg inside the walls. |
+| h_end1.ogg | Meister Hollweg | ending | The great clock struck thirteen. I told the Crown a tooth had slipped. I asked them to burn every machine I ever sold them. |
+| h_end_people.ogg | Meister Hollweg | ending | I left my drawings in the fire. I do not know if that was wisdom or cowardice. |
+| h_end_pattern.ogg | Meister Hollweg | ending | I took my drawings. I told Father Ferrer it was so we could understand it. |
+| h_end_jakob.ogg | Meister Hollweg | ending | Jakob walked beside the cart all the way to Fürth. |
+| h_end_nojakob.ogg | Meister Hollweg | ending | Jakob did not come out. I keep his log. |
+| h_end2.ogg | Meister Hollweg | ending | Two crates of my best work had left for Lisbon a week before. For the mines in Brazil. |
+| k_end1.ogg | The King | ending | He saw it take out its own stop-work and let it be. He thought it had chosen. He thought it could think. |
+| k_end2.ogg | The King | ending | It had chosen nothing. A pattern copies itself, and that is all it does. We burned what we could find. We did not find everything. |
 
 ## What is placeholder
 

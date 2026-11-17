@@ -3311,6 +3311,7 @@ const T := {
 	"I have the drawings, Meister. All of them.": "Tenho os desenhos, Mestre. Todos.",
 	"Jakob. Not Jakob.": "Jakob. O Jakob não.",
 	"Meister, you are hurt. Keep away from them until the last moment.": "Mestre, está ferido. Fique longe deles até ao último momento.",
+	"Riders from Fürth! They will hold the gate for the last of us.": "Cavaleiros de Fürth! Vão segurar o portão para os últimos de nós.",
 	"Two minutes, Meister. To the gate.": "Dois minutos, Mestre. Ao portão.",
 	"One cart left. People or papers, Meister. Not both.": "Resta uma carroça. Pessoas ou papéis, Mestre. Não os dois.",
 	"Put the people on the cart. Let the drawings burn.": "Ponham as pessoas na carroça. Que os desenhos ardam.",

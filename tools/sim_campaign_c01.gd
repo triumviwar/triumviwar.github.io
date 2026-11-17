@@ -4,7 +4,8 @@ extends SceneTree
 ## balance check: Parts 1-2 must be winnable by a player who plays them (the order filled, the mill seed burnt), Part 3 a
 ## fair retreat (Hollweg out, the people saved depending on play), and a player who does nothing must lose.
 ##   godot --headless --fixed-fps 30 --script res://tools/sim_campaign_c01.gd [-- active] [bells=rung|quiet] [gate=people|pattern]
-##        [until=<seconds>] [shots=<dir>] (shots: pictures of the parts; needs a window: xvfb-run, not --headless)
+##        [until=<seconds>] [shots=<dir>] [speed=<x>] (shots: pictures of the parts; needs a window: xvfb-run, not --headless;
+##        speed: the match runs that many times faster than it draws)
 var main: Node
 var until := 2400.0
 var active := false      # ("active": the bot builds a Light Works and a Regulator, trains Clock Soldiers, fills the order,
@@ -29,6 +30,9 @@ func _initialize() -> void:
 			gate = a.substr(5)
 		if a.begins_with("shots="):
 			shots = a.substr(6)
+		if a.begins_with("speed="):
+			Engine.time_scale = float(a.substr(6))           # (filming: the match runs faster than it draws)
+			Engine.max_physics_steps_per_frame = 32
 	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://running.txt"))
 	main = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
@@ -73,7 +77,10 @@ func _run() -> void:
 				"ok" if not r.tagged("hollweg").is_empty() else "DEAD", "ok" if not r.tagged("jakob").is_empty() else "dead", left])
 	var hw: Array = r.tagged("hollweg", false)
 	if not hw.is_empty() and is_instance_valid(hw[0]):
-		print("SIM hollweg at cell %s (dead %s)" % [g.cell_of(hw[0].position), hw[0].dead])
+		var lh = hw[0].get("last_hit_by")
+		var near := g.units.filter(func(u): return not u.dead and u.team == mt and u.position.distance_to(hw[0].position) < 320.0)
+		print("SIM hollweg at cell %s (dead %s), last hit by %s, machines within 10 tiles: %s" % [g.cell_of(hw[0].position), hw[0].dead,
+			(str(lh.kind) + " team " + str(lh.team)) if lh is Object and is_instance_valid(lh) else str(lh), near.map(func(u): return u.kind)])
 	print("SIM end t=%d over=%s winner=%s flags=%s objectives=%s" % [g.clock, g.over, r.winner_side, r.flags, r.obj])
 	quit()
 

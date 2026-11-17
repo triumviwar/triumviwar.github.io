@@ -278,6 +278,9 @@ M = {
         {"id": "jakob_lost", "when": {"all": [{"fired": "lost"}, {"dead": "jakob"}]}, "do": [{"say": ["h_jakob"]}]},
         {"id": "hollweg_hurt", "when": {"all": [{"fired": "found"}, {"hurt": "hollweg"}]}, "every": 45, "times": 3, "do": [
             {"say": ["j_hurt"]}, {"ping": {"area": "gate_in"}}]},
+        {"id": "riders", "when": {"clock_left": {"name": "fall", "below": 100}}, "do": [
+            {"spawn": {"team": "watch", "kind": "cuirassier", "count": 4, "at": "out_west", "tag": "riders", "order": {"do": "attack", "to": "gate_in"}}},
+            {"say": ["cap_riders"]}]},
         {"id": "warn_2", "when": {"clock_left": {"name": "fall", "below": 120}}, "do": [{"say": ["f_warn"]}, {"ping": {"area": "gate_in"}}, {"sound": {"name": "campaign/off_beat"}}]},
         # THE GATE: the last cart has room for one thing (only if Jakob carried the drawings out of the workshop)
         {"id": "gate_choice", "when": {"all": [{"clock_left": {"name": "fall", "below": 75}}, {"flag": {"drawings": "taken"}}, {"not": {"dead": "jakob"}}]}, "do": [
@@ -371,6 +374,7 @@ M = {
         "j_drawings": {"who": "jakob", "text": "I have the drawings, Meister. All of them."},
         "h_jakob": {"who": "hollweg", "text": "Jakob. Not Jakob."},
         "j_hurt": {"who": "jakob", "to": "guild", "text": "Meister, you are hurt. Keep away from them until the last moment."},
+        "cap_riders": {"who": "captain", "text": "Riders from Fürth! They will hold the gate for the last of us."},
         "f_warn": {"who": "ferrer", "text": "Two minutes, Meister. To the gate."},
         "cap_cart": {"who": "captain", "text": "One cart left. People or papers, Meister. Not both."},
         "h_people": {"who": "hollweg", "text": "Put the people on the cart. Let the drawings burn."},
