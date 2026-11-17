@@ -736,8 +736,8 @@ const LIGHTS := {"night": Color(0.40, 0.45, 0.66), "dusk": Color(0.78, 0.66, 0.7
 	"winter_day": Color(0.88, 0.93, 1.04), "winter_dusk": Color(0.66, 0.62, 0.80), "winter_night": Color(0.36, 0.42, 0.66),
 	# THE AMAZON (the Brood prologue): a heavy humid afternoon, a rainy dusk, the rain at night, the night lit by the burning
 	# station, the grey before dawn
-	"jungle_day": Color(0.96, 0.95, 0.84), "jungle_dusk": Color(0.74, 0.62, 0.62), "jungle_night": Color(0.42, 0.48, 0.62),
-	"fire_night": Color(0.62, 0.46, 0.42), "grey_dawn": Color(0.66, 0.68, 0.74)}
+	"jungle_day": Color(0.96, 0.95, 0.84), "jungle_dusk": Color(0.74, 0.62, 0.62), "jungle_night": Color(0.52, 0.58, 0.72),
+	"fire_night": Color(0.7, 0.54, 0.48), "grey_dawn": Color(0.66, 0.68, 0.74)}
 
 
 func set_light(to: String, secs: float) -> void:
@@ -862,9 +862,10 @@ func _check_objectives() -> void:
 				if tags.has(String(o["tag"])) and tagged(String(o["tag"])).is_empty():
 					set_objective(oid, "done")
 			"build":
-				# every building with the tag stands built (her pen's stakes and gate)
+				# every building with the tag that still stands is built (her pen's stakes and gate; a site knocked down
+				# meanwhile doesn't hold it up for ever)
 				var bs := tagged(String(o["tag"]))
-				if not bs.is_empty() and bs.size() == (tags.get(String(o["tag"]), []) as Array).size() and bs.all(func(b) -> bool: return b is Building and b.built):
+				if not bs.is_empty() and bs.all(func(b) -> bool: return b is Building and b.built):
 					set_objective(oid, "done")
 			"protect":
 				if tags.has(String(o["tag"])) and tagged(String(o["tag"])).is_empty():

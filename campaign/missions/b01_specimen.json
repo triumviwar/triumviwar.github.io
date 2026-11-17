@@ -318,6 +318,11 @@
 			"area": "out_n",
 			"tag": "sire",
 			"after": "taken"
+		},
+		{
+			"area": "out_n",
+			"team": "pack",
+			"after": "taken"
 		}
 	],
 	"units": [
@@ -2274,6 +2279,13 @@
 					}
 				},
 				{
+					"carry": {
+						"tag": "sire",
+						"on": true,
+						"pace": 1.0
+					}
+				},
+				{
 					"order": {
 						"tag": "sire",
 						"do": "move",
@@ -2605,6 +2617,12 @@
 			},
 			"do": [
 				{
+					"carry": {
+						"tag": "sire",
+						"on": false
+					}
+				},
+				{
 					"say": [
 						"l_groom",
 						"tip_rooted"
@@ -2692,12 +2710,12 @@
 					{
 						"count": {
 							"team": "pack",
-							"below": 16
+							"below": 12
 						}
 					}
 				]
 			},
-			"every": 22,
+			"every": 30,
 			"delay": 12,
 			"do": [
 				{
@@ -2728,7 +2746,7 @@
 						"tag": "called",
 						"order": {
 							"do": "attack",
-							"to": "yard"
+							"to": "pen"
 						}
 					}
 				}
@@ -2774,7 +2792,7 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 3,
+						"count": 2,
 						"at": "jar_c",
 						"tag": "guard",
 						"order": {
@@ -2988,6 +3006,37 @@
 			]
 		},
 		{
+			"id": "pack_goes",
+			"when": {
+				"fired": "taken"
+			},
+			"delay": 6,
+			"do": [
+				{
+					"say": [
+						"p_pack_goes"
+					]
+				}
+			]
+		},
+		{
+			"id": "pack_follows",
+			"when": {
+				"fired": "taken"
+			},
+			"delay": 6,
+			"every": 8,
+			"do": [
+				{
+					"order": {
+						"team": "pack",
+						"do": "move",
+						"to": "out_n"
+					}
+				}
+			]
+		},
+		{
 			"id": "research_choice",
 			"when": {
 				"all": [
@@ -3186,7 +3235,7 @@
 					},
 					{
 						"not": {
-							"clock_out": "canoes"
+							"fired": "taken"
 						}
 					}
 				]
@@ -3870,6 +3919,10 @@
 		"l_crate": {
 			"who": "lindqvist",
 			"text": "The crate, Pieter. The notes on top. I carry it myself."
+		},
+		"p_pack_goes": {
+			"who": "pieter",
+			"text": "They are going with him. All of them, up the creek. Doctor, the eggs!"
 		},
 		"p_fire_took": {
 			"who": "pieter",

@@ -26,7 +26,7 @@ import json
 import os
 
 STILL = "res://campaign/stills/%s.jpg"
-CAP3 = 16                                  # (in Part 3, while the Sire calls: the station's retreat stays fair)
+CAP3 = 12                                  # (in Part 3, while the Sire calls: the station's retreat stays fair)
 CAP = 22                                   # the pack's living creatures the waves spawn up to (never an endless grind)
 TOLD = [{"flag": {"teles": "told"}}]
 QUIET = [{"flag": {"teles": "quiet"}}]
@@ -100,6 +100,7 @@ M = {
         {"area": "fort_steps", "tag": "folk", "counter": "saved", "after": "turn"},
         {"area": "out_n", "tag": "taken", "after": "taken"},
         {"area": "out_n", "tag": "sire", "after": "taken"},
+        {"area": "out_n", "team": "pack", "after": "taken"},
     ],
     "units": [
         {"team": "station", "kind": "musketeer", "as": "lindqvist", "count": 1, "at": [61, 58], "tag": "lindqvist"},
@@ -277,6 +278,8 @@ M = {
             {"spawn": {"team": "pack", "kind": "raptor", "count": 4, "at": "jar_c", "tag": "sire_pack"}},
             {"spawn": {"team": "pack", "kind": "spitter", "count": 1, "at": "mouth", "tag": "sire_pack"}},
             {"floor": {"tag": "sire", "share": 0.33}}, {"spare": {"tag": "specimen_house", "on": True}},
+            # (he walks through the station to her pen as if it were reeds: he bites nobody on the way)
+            {"carry": {"tag": "sire", "on": True, "pace": 1.0}},
             {"order": {"tag": "sire", "do": "move", "to": "nest"}}, {"order": {"tag": "sire_pack", "do": "attack", "to": "pen"}},
             {"say": ["n_ground", "p_sire", "l_lost", "v_lost", "tip_3"]},
             {"objective": {"id": "pen", "set": "hidden"}}, {"objective": {"id": "goats", "set": "hidden"}},
@@ -302,20 +305,20 @@ M = {
         # the Sire walks through the palisade and lies down beside her pen
         {"id": "sire_at_pen", "when": {"count": {"tag": "sire", "area": "nest_wide", "at_least": 1}}, "do": [
             {"order": {"tag": "sire", "do": "root", "to": "nest"}}]},
-        {"id": "sire_rooted", "when": {"rooted": {"tag": "sire"}}, "do": [
+        {"id": "sire_rooted", "when": {"rooted": {"tag": "sire"}}, "do": [{"carry": {"tag": "sire", "on": False}},
             {"say": ["l_groom", "tip_rooted"]}, {"sound": {"name": "campaign/linnea_call", "area": "pen"}}]},
         {"id": "eggs", "when": {"all": [{"rooted": {"tag": "sire"}}, {"not": {"fired": "taken"}}]}, "every": 25, "times": 5, "delay": 8, "do": [
             {"spawn": {"team": "pen", "kind": "brood_egg", "count": 1, "at": "pen_in", "tag": "eggs"}},
             {"cage": {"tag": "eggs", "on": True}}, {"spare": {"tag": "eggs", "on": True}}]},
         {"id": "eggs_seen", "when": {"fired": "eggs"}, "do": [{"say": ["p_eggs", "l_young"]}]},
-        {"id": "sire_call", "when": {"all": [{"rooted": {"tag": "sire"}}, {"not": {"fired": "taken"}}, {"count": {"team": "pack", "below": CAP3}}]}, "every": 22, "delay": 12, "do": [
+        {"id": "sire_call", "when": {"all": [{"rooted": {"tag": "sire"}}, {"not": {"fired": "taken"}}, {"count": {"team": "pack", "below": CAP3}}]}, "every": 30, "delay": 12, "do": [
             {"sound": {"name": "campaign/linnea_call", "area": "pen"}},
             {"spawn": {"team": "pack", "kind": "raptor", "count": 2, "at": "jar_c", "tag": "called", "order": {"do": "attack", "to": "pen"}}},
-            {"spawn": {"team": "pack", "kind": "raptor", "count": 1, "at": "jar_w", "tag": "called", "order": {"do": "attack", "to": "yard"}}}]},
+            {"spawn": {"team": "pack", "kind": "raptor", "count": 1, "at": "jar_w", "tag": "called", "order": {"do": "attack", "to": "pen"}}}]},
         # hurt to a third he gets up: the pack closes round him, then he lies down again
         {"id": "sire_up", "when": {"all": [{"rooted": {"tag": "sire"}}, {"hp": {"tag": "sire", "below": 0.36}}, {"not": {"fired": "taken"}}]}, "every": 3, "do": [
             {"order": {"tag": "sire", "do": "uproot"}}, {"counter": {"name": "drove", "add": 1}},
-            {"spawn": {"team": "pack", "kind": "raptor", "count": 3, "at": "jar_c", "tag": "guard", "order": {"do": "attack", "to": "nest"}}},
+            {"spawn": {"team": "pack", "kind": "raptor", "count": 2, "at": "jar_c", "tag": "guard", "order": {"do": "attack", "to": "nest"}}},
             {"say": ["n_nothing"]}, {"sound": {"name": "campaign/sire_roar"}}]},
         {"id": "sire_down", "when": {"all": [{"fired": "sire_up"}, {"not": {"rooted": {"tag": "sire"}}}, {"not": {"fired": "taken"}}]}, "every": 30, "delay": 28, "do": [
             {"heal": {"tag": "sire", "share": 0.7}}, {"order": {"tag": "sire", "do": "root", "to": "nest"}}]},
@@ -334,6 +337,10 @@ M = {
             {"order": {"tag": "sire", "do": "uproot"}}, {"spare": {"tag": "sire", "on": True}}]},
         {"id": "taken_walk", "when": {"fired": "taken_go"}, "delay": 2, "every": 6, "do": [
             {"order": {"tag": "sire", "do": "move", "to": "out_n"}}, {"order": {"tag": "taken", "do": "move", "to": "out_n"}}]},
+        # the pack goes with them, but for a few stragglers at the burning station
+        {"id": "pack_goes", "when": {"fired": "taken"}, "delay": 6, "do": [{"say": ["p_pack_goes"]}]},
+        {"id": "pack_follows", "when": {"fired": "taken"}, "delay": 6, "every": 8, "do": [
+            {"order": {"team": "pack", "do": "move", "to": "out_n"}}]},
         # THE SECOND CHOICE, in the burning specimen house
         {"id": "research_choice", "when": {"all": [{"fired": "taken"}, {"count": {"tag": "lindqvist", "area": "spec", "at_least": 1}},
                                                    {"not": {"dead": "specimen_house"}}, {"not": {"dead": "eggs"}}, {"not": {"fired": "fire_took"}}]}, "do": [
@@ -356,7 +363,7 @@ M = {
             {"objective": {"id": "research", "set": "failed"}}, {"spare": {"tag": "eggs", "on": False}}, {"hurt": {"tag": "eggs", "amount": 99999}},
             {"flag": {"clutch": "burned", "fire": "yes"}}, {"say": ["p_fire_took"]}]},
         # the last minutes
-        {"id": "hunt", "when": {"all": [{"fired": "turn"}, {"not": {"clock_out": "canoes"}}]}, "every": 6, "do": [
+        {"id": "hunt", "when": {"all": [{"fired": "turn"}, {"not": {"fired": "taken"}}]}, "every": 6, "do": [
             {"order": {"team": "pack", "do": "hunt", "prey": "folk", "within": 10, "spare": "jetty"}}]},
         {"id": "pieter_lost", "when": {"all": [{"fired": "turn"}, {"dead": "pieter"}]}, "do": [{"say": ["l_pieter"]}]},
         {"id": "warn_2", "when": {"clock_left": {"name": "canoes", "below": 120}}, "do": [{"say": ["b_warn"]}, {"ping": {"area": "jetty"}}]},
@@ -468,6 +475,7 @@ M = {
         "l_save": {"who": "lindqvist", "text": "Ten years of work. The Crown's beasts are in that straw. I will not leave them to the fire."},
         "v_lamp": {"who": "valadares", "text": "Give me the lamp."},
         "l_crate": {"who": "lindqvist", "text": "The crate, Pieter. The notes on top. I carry it myself."},
+        "p_pack_goes": {"who": "pieter", "text": "They are going with him. All of them, up the creek. Doctor, the eggs!"},
         "p_fire_took": {"who": "pieter", "text": "The roof is down on the straw. The eggs are gone, Doctor."},
         "l_pieter": {"who": "lindqvist", "text": "Pieter. Pieter went back for the book."},
         "b_warn": {"who": "benedito", "text": "Two minutes, Doctor! Then I push off, with you or without you."},

@@ -272,3 +272,29 @@ player did (selected, camera_moved, built, rooted, crew, did...) and the `point`
 | roles (Rebels.ROLES, now the campaign's roles in general) `citizen`, `hollweg`, `jakob`, `ferrer`; a role's `"hp"` | people as stand-ins (Labourer, Missionary) until drawn; heroes harder to kill |
 | hub `"after": {mission: {"title", "about", "still", "hide_layers", "tint"}}`; hotspot `"requires"` / `"until"` | the hub as the story left it (CampaignMenu.hub_now; HubScene.hidden_layers) |
 | `set_objective(..., "hidden")` on a settled one | takes it off the panel (a new part of the mission) |
+
+## Added by the Brood prologue (brood-prologue-build, 0.38.45; docs/campaign_b01_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| `{"cage": {"tag", "on"}}` | kept in place and harmless: can't move or attack, put back if shoved (MissionRun._tick_held); an egg caged never hatches (Linnea in her pen, her clutch) |
+| `{"spare": {"tag", "on"}}` | nobody targets it and nothing hurts it (Entity.spared, read by Entity.untouchable); the fire of `burn` still takes a spared building |
+| `{"pin": {"tag", "on"}}` | can't move, still fights (Unit.m_pace 0: the fort's gun with no horse) |
+| `{"carry": {"tag", "on", "pace"}}` | slower (pace, 0.65) and can't attack (Unit.m_unarmed: Lindqvist with the egg crate) |
+| `{"floor": {"tag", "share"}}`, `{"heal": {"tag", "share"}}` | health never under that share of the most (Entity.hp_floor: the Sire who cannot die tonight; 0 clears it); health back up to a share |
+| condition `{"hp": {"tag", "below": share}}` | one of them has less than that share of its health |
+| `{"order": {..., "do": "root", "to": area}}`, `"do": "uproot"` | a Brood creature walks there and roots (a father may nest by a Mother of another side: meta `mission_root`, BroodRoot's place rule), or gets up |
+| condition `{"rooted": {"tag"}}` | one of them is rooted now (the tutorial's `rooted` by kind still works) |
+| `{"order": {..., "to_if": [{"if": cond, "to": area}]}}` | the first that holds picks the place, else `to` (a wave to its lure jar while the lure works, then to the pen) |
+| `{"burn": {"tag", "secs"}}` | buildings alight: they burn down in about that time, flames on them |
+| building `"site": true` (in `buildings` or `build`) | a building site, paid for, that the team's workers build (labourers go on to the next site by themselves) |
+| objective `"kind": "build", "tag"` | done when every building with the tag stands built |
+| exit `"after": trigger`, `"except": [tags]` | the exit opens once that trigger has fired; units with those tags are never taken off (they must be there at the end) |
+| `{"counter": {"name", "count": query, "plus": true}}` | a counter set (or, with plus, added to) from a count (as the `count` condition's query) |
+| `"weather": "rain"` | rain over the screen (not drawn headless) |
+| lights `jungle_day`, `jungle_dusk`, `jungle_night`, `fire_night`, `grey_dawn` | the Amazon's lights |
+| mission `"floor": [r, g, b]` | the ground pictures tinted (Game.ground.modulate: the jungle floor darkened so the green pack reads) |
+| role `"scale"` (Rebels.ROLES) | the unit drawn smaller (its own copy of its data, art_scale; BroodNew's Mother picture reads `role_scale`) and a smaller body |
+| roles `lindqvist`, `valadares`, `pieter`, `teles`, `joaquim`, `villager`, `benedito`, `linnea` | the Brood prologue's people (stand-ins) and Linnea (a Brood Mother's kind at 0.4) |
+| hub hotspot / talk entry `"flag": {"<mission>.<flag>": value}` | shown / said only if a finished mission left that flag (CampaignMenu.flags_ok: the crate in the cellar if the eggs were saved) |
+| a Brood team with no Mother | in a mission it is never beaten for it (Game._check_end leaves the end to the mission); the pack is scripted |

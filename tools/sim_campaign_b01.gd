@@ -110,9 +110,11 @@ func _play(g: Game, r: MissionRun, st: int, pt: int) -> void:
 		# the pen first, then a Barracks, the rest to the garden; Musketeers while there is gold
 		var sites: Array = r.tagged("pen").filter(func(b): return not b.built)
 		if not sites.is_empty():
+			var i := 0
 			for h in hands.slice(0, 4):
-				if h.order != "build":
-					h.cmd_build(sites[0])
+				if h.order != "build" or int(g.clock) % 20 == 0:
+					h.cmd_build(sites[i % sites.size()])      # (each hand its own stake, asked again now and then)
+				i += 1
 		elif have.call("barracks") < 2 and int(g.players[st]["gold"]) >= int(Defs.BUILDINGS["barracks"]["cost"]) and not hands.is_empty():
 			var c: Vector2i = g.find_spot(st, "barracks", r.tagged("station_house")[0], 3, 12)
 			if c.x >= 0:
@@ -160,11 +162,12 @@ func _play(g: Game, r: MissionRun, st: int, pt: int) -> void:
 	# part 3: the people to the jetty; the army shoots the rooted Sire, then falls back; Lindqvist to the specimen house
 	var left := float(r.clocks.get("canoes", 0.0)) - g.clock
 	_go(g, hands + pi, r.area_rect("jetty").get_center())
-	if left < 70.0:
+	if left < 150.0:
 		_go(g, army + va, r.area_rect("jetty").get_center())
 	else:
 		var sire: Array = r.tagged("sire")
-		if not sire.is_empty() and BroodNew.rooted(sire[0]):
+		var near_nest: int = g.units.filter(func(u): return not u.dead and u.team == pt and u.kind != "tyrannosaur" and u.position.distance_to(r.area_rect("nest").get_center()) < 420.0).size()
+		if not sire.is_empty() and BroodNew.rooted(sire[0]) and near_nest < 4 and army.size() >= 6:
 			for u in army:
 				if u.target == null or not is_instance_valid(u.target) or u.target.dead:
 					u.cmd_attack(sire[0])

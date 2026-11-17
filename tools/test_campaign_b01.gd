@@ -186,7 +186,7 @@ func _data() -> void:
 	check("the voice folder is b01 (no recordings yet: silent)", String(m.get("voice", "")) == "b01" and CampaignVoice.path_of(m, "l_open1") == "")
 	check("campaign roles: lindqvist, valadares, pieter, teles, joaquim, villager, benedito, linnea",
 		["lindqvist", "valadares", "pieter", "teles", "joaquim", "villager", "benedito", "linnea"].all(func(r): return Defs.UNITS.has(String(Rebels.role(r).get("kind", "")))))
-	check("Linnea is a Brood Mother's kind, drawn at 0.4", String(Rebels.role("linnea")["kind"]) == "brood_mother" and is_equal_approx(float(Rebels.role("linnea")["scale"]), 0.4))
+	check("Linnea is a Brood Mother's kind, drawn at 0.3", String(Rebels.role("linnea")["kind"]) == "brood_mother" and is_equal_approx(float(Rebels.role("linnea")["scale"]), 0.3))
 
 
 # ================================================================== the engine, feature by feature
@@ -208,7 +208,7 @@ func _engine() -> void:
 	var lin: Unit = r.tagged("linnea")[0]
 	check("Linnea: a Brood Mother of the pen team, on the station's side, named", lin.kind == "brood_mother" and lin.team == pen_t and g.allied(pen_t, st)
 		and String(lin.get_meta("mission_name", "")) == "Linnea")
-	check("Linnea drawn at 0.4 (a third of the Mother)", is_equal_approx(float(lin.get_meta("role_scale", 1.0)), 0.4) and lin.radius < 20.0, str(lin.radius))
+	check("Linnea drawn at 0.3 (about a third of the Mother)", is_equal_approx(float(lin.get_meta("role_scale", 1.0)), 0.3) and lin.radius < 20.0, str(lin.radius))
 	check("CAGE: Linnea can't move or bite", lin.m_pace == 0.0 and lin.m_unarmed and lin.has_meta("mission_caged"))
 	check("SPARE: nobody can touch her", lin.spared and lin.untouchable())
 	var p0 := lin.position

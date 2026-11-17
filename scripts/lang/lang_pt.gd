@@ -3345,6 +3345,7 @@ const T := {
 	"Give me the lamp.": "Dê-me a lamparina.",
 	"The crate, Pieter. The notes on top. I carry it myself.": "A caixa, Pieter. As notas por cima. Levo-a eu.",
 	"The roof is down on the straw. The eggs are gone, Doctor.": "O telhado caiu sobre a palha. Os ovos perderam-se, Doutor.",
+	"They are going with him. All of them, up the creek. Doctor, the eggs!": "Vão com ele. Todos, igarapé acima. Doutor, os ovos!",
 	"Pieter. Pieter went back for the book.": "Pieter. O Pieter voltou atrás pelo livro.",
 	"Two minutes, Doctor! Then I push off, with you or without you.": "Dois minutos, Doutor! Depois parto, consigo ou sem si.",
 	"Doctor, you are hurt. Keep back from them. To the jetty.": "Doutor, está ferido. Afaste-se deles. Para o cais.",

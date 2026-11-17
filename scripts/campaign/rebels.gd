@@ -34,7 +34,7 @@ const ROLES := {
 	"joaquim": {"kind": "missionary", "art": "b_joaquim", "name": "Frei Joaquim", "about": "The Carmelite of the mission village."},
 	"villager": {"kind": "labourer", "art": "b_villager", "about": "A villager of Nossa Senhora de Nazaré."},
 	"benedito": {"kind": "labourer", "art": "b_benedito", "name": "Benedito", "hp": 120, "about": "The river trader with the canoes."},
-	"linnea": {"kind": "brood_mother", "art": "b_linnea", "name": "Linnea", "hp": 900, "scale": 0.4, "about": "Specimen One."},
+	"linnea": {"kind": "brood_mother", "art": "b_linnea", "name": "Linnea", "hp": 900, "scale": 0.3, "about": "Specimen One."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)
