@@ -7,6 +7,10 @@ extends SceneTree
 ##     spread under SPREAD_MAX) before it goes on
 ##  4. THE TIMING KEEPS ITS TIMING: OPTIMAL's late greedy read keeps the Timing attack in the mirror
 ##  5. THE WINNER FINISHES: hunt_anyway over a token army only with a big army of its own; hunt_goal is a hall
+##  6. THE SIDE AHEAD PRESSES (crown-mirror-coach): ahead of the enemy army it knows, the wave's supply bar comes down;
+##     not while behind; the Siege push goes without its full kit while ahead; `cmcpress:off` keeps the bar
+##  7. THE OUTLYING HALLS FIRST (crown-mirror-coach): an open hall out in the field before a walled one by the main; a hall
+##     it was just beaten at is left; `cmctarget:off` gives the shared target
 ##   godot --headless --fixed-fps 30 --script res://tools/test_crown_mirror.gd
 var main: Node
 var g: Game
@@ -55,6 +59,72 @@ func _ai(t: int):
 		if a.team == t:
 			return a
 	return null
+
+
+## crown-mirror-coach (docs/crown_mirror_coach.md): AICrownMirror.press, wave_target, press_siege.
+func _press_and_target(ai, cm) -> void:
+
+	g.clock = maxf(g.clock, cm.PRESS_FROM + 60.0)
+	ai._attacking = false
+	cm._was_attacking = false
+	cm._wave_off_t = -99.0
+	var mine: Array = []
+	var home: Vector2 = Vector2(g.starts[0]) * Defs.TILE + Vector2(0, 160)
+	for i in 14:
+		mine.append(g._add_unit("musketeer", 0, g.cell_center(g.nearest_free(g.cell_of(home + Vector2(i * 20, 0)), 4))))
+	# (nothing of the enemy seen lately, and its reckoning made small: the enemy's army we know of is small)
+	ai.ch._seen.clear()
+	ai.ch._last_army_t = g.clock
+	var foes: Array = []
+	ai._attack_at = 99
+	cm.press()
+	check(ai._attack_at < 99, "6. the side ahead presses: the wave's bar comes down to its army (%d supply)" % ai._attack_at)
+	# behind: the enemy army seen lately is bigger
+	for i in 20:
+		var u: Unit = g._add_unit("musketeer", 1, Vector2(g.starts[1]) * Defs.TILE + Vector2(i * 20, 160))
+		foes.append(u)
+		ai.ch._seen[u] = [g.clock, u.position, float(Game.unit_value(u))]
+	ai.ch._last_army_t = g.clock
+	ai._attack_at = 99
+	cm._press_said = -99.0
+	cm.press()
+	check(ai._attack_at == 99, "... not while the enemy army it knows is bigger (%d known)" % int(cm.foe_army()))
+	check(not cm.press_siege(mine, 3), "... and the Siege push keeps its kit while behind")
+	for u in foes:
+		ai.ch._seen.erase(u)
+		u.take_damage(99999.0, null)
+	check(cm.press_siege(mine, 1), "... the Siege push goes without its full kit while ahead (1 gun)")
+	cm.press_on = false
+	ai._attack_at = 99
+	cm.press()
+	check(ai._attack_at == 99, "... `cmcpress:off`: the bar stands")
+	cm.press_on = true
+	# 7. the outlying hall first: a walled hall by the enemy's main and an open one out in the field
+	var near_c: Vector2i = g.nearest_free(g.starts[1] + Vector2i(-8, 6), 6)
+	var far_p: Vector2 = Vector2(g.starts[1]).lerp(Vector2(g.starts[0]), 0.55) * Defs.TILE
+	var far_c: Vector2i = g.nearest_free(g.cell_of(far_p), 8)
+	var walled: Building = g._add_building("town_hall", 1, near_c, true)
+	var open: Building = g._add_building("town_hall", 1, far_c, true)
+	for k in 6:
+		g._add_building("wall", 1, g.nearest_free(near_c + Vector2i(-2 + k, -3), 3), true)
+	cm._tgt = null
+	cm._tgt_t = -99.0
+	var tp: Vector2 = cm.wave_target(g.center_of_team(0))
+	check(open != null and tp.distance_to(open.center()) < 4.0, "7. the wave goes for the open hall out in the field, not the walled one by the main (%s)" % str(g.cell_of(tp)))
+	ai._walled_halls[open] = g.clock + 120.0
+	cm._tgt_t = -99.0
+	tp = cm.wave_target(g.center_of_team(0))
+	check(tp.distance_to(open.center()) > 4.0, "... a hall it was just beaten at is left (%s)" % str(g.cell_of(tp)))
+	ai._walled_halls.erase(open)
+	cm.target_on = false
+	check(cm.wave_target(g.center_of_team(0)) == Vector2.INF, "... `cmctarget:off`: the shared target")
+	cm.target_on = true
+	for b in [walled, open]:
+		if is_instance_valid(b) and not b.dead:
+			b.die()
+	for u in mine:
+		u.take_damage(99999.0, null)
+	ai._attack_at = 99
 
 
 func _run() -> void:
@@ -132,6 +202,11 @@ func _run() -> void:
 	if k >= 0:
 		sp = float(last.substr(k + 10).split(" ")[0])
 	check(sp < cm.SPREAD_MAX, "it went on together: %s" % last)
+	for u in wave:
+		if is_instance_valid(u) and not u.dead:
+			u.take_damage(99999.0, null)
+	# 6-7. crown-mirror-coach: the side ahead presses; the outlying hall first; the switches
+	await _press_and_target(ai, cm)
 	print("FAILS %d" % fails)
 	print("ALL PASS" if fails == 0 else "SOME FAILED")
 	quit(1 if fails > 0 else 0)
