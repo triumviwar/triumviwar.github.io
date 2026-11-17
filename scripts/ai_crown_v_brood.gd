@@ -61,8 +61,9 @@ func _init(a) -> void:
 	counter_off = off or not args.has("cvbcounter:on")
 	hold_off = cba_off or args.has("cbahold:off")
 	econ_off = cba_off or args.has("cbaecon:off")
-	if not cba_off and not args.has("cbacounter:off"):
-		counter_off = off       # (crown-brood-army part 6: the counter after a held push is on with the hold)
+	if not cba_off and not args.has("cbacounter:off") and not args.has("cvbcounter:on"):
+		counter_off = off       # (crown-brood-army part 6: the counter after a held push is on with the hold, and only when
+		counter_died_only = true  # the Brood's wave has just died at our line: the army seen lately is stale by then)
 
 
 static func is_line(u: Unit) -> bool:
@@ -192,6 +193,7 @@ const COUNTER_WINDOW := 75.0
 const COUNTER_KILL := 0.45       # (share of our ready army's value killed lately)
 const COUNTER_EDGE := 1.4
 var counter_off := false
+var counter_died_only := false    # (crown-brood-army: only "its wave just died at our line", not the army seen lately)
 var _kills: Array = []           # [clock, value_killed]
 var counters := 0
 var _counter_said := -99.0
@@ -225,7 +227,7 @@ func counter_ok(mine: float) -> bool:
 	var why := ""
 	if kl >= mine * COUNTER_KILL and seen * 1.0 < mine:
 		why = "its wave just died at our line (%d killed in %d s)" % [int(kl), int(COUNTER_WINDOW)]
-	elif seen > 0.0 and mine >= seen * COUNTER_EDGE:
+	elif seen > 0.0 and mine >= seen * COUNTER_EDGE and not counter_died_only:
 		why = "our army is %.1f times the Brood army seen lately (%d)" % [mine / seen, int(seen)]
 	if why == "":
 		return false
@@ -435,8 +437,9 @@ func floor_produce() -> int:
 ##    Brood's army coming on behind; the Brood came back at 10:10 with 2,360 against 720 and took both halls. A human holds
 ##    the first push at his wall and guns (the defender's advantage, design rule 2) and goes out when it has broken there.
 ##    So against the Brood, until HOLD_UNTIL: no wave goes before a push has been held (HELD_KILL of Brood killed within
-##    AICrownVBrood.COUNTER_WINDOW s, or the alert of a push seen coming has ended with the army still standing), unless
-##    the army is HOLD_EDGE times the Brood army it reckons; once one has been held, the counter (part 3 above, measured
+##    AICrownVBrood.COUNTER_WINDOW s), unless the army is HOLD_EDGE times the Brood army it reckons (here never less than
+##    AICrown.BROOD_TABLE: the honest reckoning's 0.4 of it let a wave out at 7:47 into twice what it reckoned); once one has
+##    been held, the counter (part 3 above, measured
 ##    without the floor and not kept then) goes as soon as the Brood's wave has died at our line. Switches `cbahold:off`,
 ##    `cbacounter:off`.
 var hold_off := false
@@ -455,7 +458,13 @@ func hold_first(mine: float, est: float) -> bool:
 	if held_t < 0.0 and killed_lately() >= HELD_KILL:
 		held_t = game.clock
 		ai.say("against the Brood its push has broken on our line (%d killed in %d s): from now the counter may go" % [int(killed_lately()), int(COUNTER_WINDOW)])
-	if held_t >= 0.0 or mine >= est * HOLD_EDGE:
+	if held_t >= 0.0:
+		return false
+	# (the reckoning is honest about what it has NOT seen (AICrownCoach 3: 0.4 of the table while the Brood was seen lately,
+	# less half of what we killed): Saltmarsh r1 7:47, 1,180 of army against 600 reckoned walked into 2,125 of Brood. Before
+	# the first push the full table of a Hard Brood stands for the army it has not seen)
+	est = maxf(est, AICrown._lerp_table(AICrown.BROOD_TABLE, game.clock))
+	if mine >= est * HOLD_EDGE:
 		return false
 	hold_waits += 1
 	if game.clock - _hold_said > 60.0:
