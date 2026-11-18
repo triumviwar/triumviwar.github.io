@@ -216,7 +216,7 @@ M = {
         {"id": "intro_n", "when": {"all": [{"time": 1}, NEST]}, "do": [
             {"ping": {"area": "stair_foot"}}, {"sound": {"name": "campaign/linnea_call", "area": "kin", "vol": -6}}]},
         # ================================================================ PART 1: THE CLIMB
-        {"id": "on_top", "when": {"count": {"tag": "valadares", "area": "top", "at_least": 1}}, "do": [
+        {"id": "on_top", "when": {"any": [{"count": {"tag": "valadares", "area": a, "at_least": 1}} for a in ["top", "stair_top", "split_top", "split_in"]]}, "do": [
             {"objective": {"id": "climb", "set": "done"}}, {"objective": {"id": "survey", "set": "active"}},
             {"objective": {"id": "softly", "set": "active"}}, {"say": ["v_top", "tip_marks"]},
             {"ping": {"area": "cairn"}}, {"ping": {"area": "source"}}, {"ping": {"area": "rim"}}, {"ping": {"area": "lookout"}}]},

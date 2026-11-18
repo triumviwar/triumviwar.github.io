@@ -1108,11 +1108,36 @@
 		{
 			"id": "on_top",
 			"when": {
-				"count": {
-					"tag": "valadares",
-					"area": "top",
-					"at_least": 1
-				}
+				"any": [
+					{
+						"count": {
+							"tag": "valadares",
+							"area": "top",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "valadares",
+							"area": "stair_top",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "valadares",
+							"area": "split_top",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "valadares",
+							"area": "split_in",
+							"at_least": 1
+						}
+					}
+				]
 			},
 			"do": [
 				{
