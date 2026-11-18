@@ -81,6 +81,13 @@ func _flags(a) -> String:
 	if a._posts_first(): f += "P"
 	if a.army_lags(): f += "L"
 	if a.wall_first(): f += "w"
+	# (crown-build-stack) C = the army clock behind (AICrownArmy.behind), F = the coach's army floor (labourers first yields),
+	# W = the coach's labourers first wants a labourer, H = round 5 holds the next hall v the Clockwork, S = supply blocked
+	if a.ca != null and a.ca.behind(): f += "C"
+	if a.coach != null and a.coach.army_short(): f += "F"
+	if a.coach != null and a.coach.labs_wanted(): f += "W"
+	if a.r5 != null and a.r5.vs_clock() and a.r5.hold_hall(): f += "H"
+	if a.game.supply_used(a.team) >= int(a.game.players[a.team]["cap"]) - 1: f += "S"
 	return f
 
 

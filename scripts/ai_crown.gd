@@ -1045,6 +1045,7 @@ func _think_stage(i: int) -> void:
 
 
 var coach: AICrownCoach = null   # the Crown coach 2026-11-16 (scripts/ai_crown_coach.gd)
+var stk: AICrownStack = null     # crown-build-stack 2026-11-18 (scripts/ai_crown_stack.gd)
 
 
 ## (crown-coach-v-brood) the line's gold kept from the Farms (the narrow keep, the default: not from the labourers)
@@ -1061,6 +1062,9 @@ func _think_stage_crown(i: int) -> void:
 	if i == 1:
 		_owner_tick()           # (crown-owner-eco: the layout, the new hall's Farm, the wagons)
 		_finish_sites()
+		if stk == null:
+			stk = AICrownStack.new(self)
+		stk.tick()              # (crown-build-stack: labourers stacked on the sites that matter, scripts/ai_crown_stack.gd)
 		_lost_halls_crown()     # (crown-ai-v2: a hall lost is remembered, its ground waits)
 	if i == 1 and not cannon_first:
 		_cannon_check()         # (CANNONS AGAINST THE BROOD, below)
