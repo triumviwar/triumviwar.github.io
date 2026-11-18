@@ -180,7 +180,22 @@ de' Fiori in turn to call the people, then home, and the riders put out the fire
 trained at Santo Spirito go to the far squares; the gold buys Musketeers for the thinnest bridge. Flags: canon unless
 said.
 
-BALANCE_TABLE
+| run (canon flags unless said) | result | time | `rome` (quarters stood) | `people` (saved of 18) | fires put out |
+| --- | --- | --- | --- | --- | --- |
+| NORMAL, two runs | WON at dawn | 12:48, 12:48 | all (5) | many (18) | 12, 11 |
+| EASY | WON at dawn | 10:59 | all (5) | many (18) | 10 |
+| HARD, two runs | LOST (three machines in the square: THE AUTOMATA WIN, the Crown out) / WON | 10:30 / 14:36 | - / some (4) | - / many (18) | 5 / 8 |
+| NORMAL, `cages` all, `varenne` executed, `lost_to_machine` 3 | WON at dawn | 12:48 | few (2): four torch groups | many (18) | 8 |
+| NORMAL, `cages` few, `broken` melted | WON at dawn | 12:48 | all (5) | many (18) | 12 |
+| passive (nothing done), NORMAL / EASY / HARD | LOST: the machines walk into Saint Peter's Square (the automata win) | 6:58 / 10:20 / 10:26 | - | (11 / 12 / 6 ran by themselves) | 0 |
+
+Earlier versions of the mission and the bot (what changed, in the order found): with one creature wave every 100 s
+down one road and the automata every 120 s, a player who did nothing still won at dawn (the garrison and the Swiss
+held): the waves now come every 80 s by turns down two roads, and the crates' automata every 100 s; with the people
+spared all night, nobody was lost on the way: they are open to harm from Part 2; with a fire spreading every 14 s and
+burning down in 75 s, a quarter was ash in a minute: 18 s and 90 s; rain worked too slowly to matter (0.4 of a man and
+the fires kept spreading): one man's work and no spreading. Sims run in parallel share user://campaign.json (the flags
+and the difficulty): run them ONE AT A TIME.
 
 Reading: a player who guards all three bridges and sends a priest to the squares wins on NORMAL in about 12:50, with
 losses; one who does nothing loses when the machines (or the beasts) walk into the piazza around 7:00-10:00 (the
@@ -243,7 +258,57 @@ FATHER TOMASZ (young) are on the list of voices to design; THE CARDINAL DEAN* ne
 49 lines: the King 28, Father Tomasz 7, Meister Hollweg 4, Father Ferrer 3, Dr. Lindqvist 3, Valadares 2, the Cardinal
 Dean* 2.
 
-VOICE_TABLE
+| file (campaign/voice/a07/) | voice | when | line |
+| --- | --- | --- | --- |
+| k_open1.ogg | The King | opening (crown) | Rome, Lent 2770. I was young, three years crowned. This one I tell myself: it was my city. |
+| k_open2.ogg | The King | opening (crown) | The Church sat in council on the new machines and the new creatures. I sat with the cardinals and listened. |
+| f_pattern.ogg | Father Ferrer | opening (crown) | Meister Hollweg's own drawings, Eminences. The machine at Nuremberg was drawn to build its own successor. |
+| f_people.ogg | Father Ferrer | opening (crown) | My report from Nuremberg, Eminences. Drawings or no drawings, the machine went on building itself. |
+| f_quarrel.ogg | Father Ferrer | opening (crown) | I told him the night before the gift. The ghost in the machine destroyed the apostasy once. It was the enemy then. It is the enemy now. |
+| v_drawn.ogg | Valadares | opening (crown) | I drew the way up the plateau for the Crown. I saw her there, the creature from the station, grown, among her own. |
+| v_withheld.ogg | Valadares | opening (crown) | I gave my map to the Church alone, sealed. But I saw her there, the creature from the station, grown, among her own. |
+| k_hollweg_rung.ogg | The King | opening (crown) | Meister Hollweg came as a witness. Nuremberg's bells had rung on his word, and he had saved what he could. |
+| k_hollweg_quiet.ogg | The King | opening (crown) | Meister Hollweg came as one accused. He had kept the bells of Nuremberg quiet. |
+| h_brass.ogg | Meister Hollweg | opening (crown) | My machines are not the ghost of the old age, Eminences. They are brass and springs. They could learn. |
+| k_eggs_told.ogg | The King | opening (crown) | The eggs were no secret. Lieutenant Teles had written to the Crown about the station. |
+| k_eggs_found.ogg | The King | opening (crown) | Under questioning it came out: Dr. Lindqvist had saved the eggs from the fire, and told no one. |
+| k_eggs_ashes.ogg | The King | opening (crown) | Dr. Lindqvist said the eggs were ashes. It was true. |
+| l_oldest.ogg | Dr. Lindqvist | opening (crown) | They are not monsters, Eminences. They are the oldest things alive. Study them, and you read a page of creation no one has read. |
+| k_varenne_spared.ogg | The King | opening (crown) | A letter from Varenne in exile was read out. He condemned any fire set in his name. |
+| k_varenne_exec.ogg | The King | opening (crown) | Varenne was dead a year. His last friends in Rome had not forgotten. |
+| c_verdict1.ogg | The Cardinal Dean | the verdict (mid-match show) | No machine may govern itself. Every machine that winds or mends itself shall be stopped and broken. |
+| c_verdict2.ogg | The Cardinal Dean | the verdict (mid-match show) | The specimens are to be destroyed, and their eggs with them. |
+| h_defy.ogg | Meister Hollweg | the verdict (mid-match show) | Then you have judged what you will not understand. I will not break my life's work. |
+| l_defy.ogg | Dr. Lindqvist | the verdict (mid-match show) | Burn them, and you burn a page of God's own book. I will not. |
+| k_letgo.ogg | The King | the verdict (mid-match show) | They both walked out of the hall. I let them go. My mercy, or my mistake: I still don't know. |
+| k_1.ogg | The King | tips | I sent my guard to the bridges that evening. I did not know why. I only knew the city was angry. |
+| t_1.ogg | Father Tomasz | tips | Majesty, the Romans were at the doors all day. They hate a clever machine more than they hate the devil. |
+| k_tip_bridges.ogg | The King | tips | Three bridges: Ripetta in the north, Sant'Angelo under the castle, Sisto in the south. The garrison holds their east ends. |
+| k_2.ogg | The King | part2 | The bells rang all over the city. Then the second fire, and the third. |
+| t_people.ogg | Father Tomasz | tip_people | The people are in the squares, Majesty, waiting for someone to tell them where to go. Let me go to them. |
+| tip_church.ogg | The King | tip_people | Santo Spirito trains Missionaries. Any priest can call a quarter to Saint Peter's, not only Tomasz. |
+| tip_fire.ogg | The King | tip_fire | A fire left alone takes the next house. Men standing by a burning house put it out. |
+| t_call.ogg | Father Tomasz | call_campo_marzio | Come! To Saint Peter's, all of you, over the bridge. Stay together. |
+| l_loose.ogg | Dr. Lindqvist | loose | Not like this! They are frightened. Let them be! |
+| h_demo.ogg | Meister Hollweg | demo_wrong | Stop! I mended them! I put the stop-works back with my own hands! |
+| h_demo_melted.ogg | Meister Hollweg | demo_fail | The stop-work holds! It must hold. Why does it not hold? |
+| k_machine_own.ogg | The King | machine_own | Two of his pieces were not his at all. They were the Machine's, from the Fürth meadows. |
+| k_meet.ogg | The King | meet | Let them. Every one they kill is one fewer at my bridges. |
+| k_3.ogg | The King | part3 | Hold the bridges until dawn. Nothing crosses to Saint Peter's. |
+| t_3.ogg | Father Tomasz | part3 | The basilica's doors are open, Majesty. Everyone who reaches them is safe. |
+| k_dawn.ogg | The King | dawn_won | Dawn. The bridges held. Rome was black with smoke, and it was still Rome. |
+| t_dawn.ogg | Father Tomasz | dawn_won | They are singing Lauds in the basilica, Majesty. With the doors open. |
+| t_king.ogg | Father Tomasz | king_hurt | The King is hit! Guard, to the King! |
+| k_priest.ogg | The King | tomasz_hurt | Keep the Father behind the line. Rome needs its priests tonight. |
+| k_end1.ogg | The King | ending (crown) | The verdict stood. The machines in the Papal States were stopped, and the specimens we found were destroyed. |
+| k_end_rome_all.ogg | The King | ending (crown) | Every quarter of Rome stood. I was prouder of that than of anything I did that year. |
+| k_end_rome_some.ogg | The King | ending (crown) | Some of Rome burned. We rebuilt it that summer, street by street. |
+| k_end_rome_few.ogg | The King | ending (crown) | Most of the east bank burned. Rome rebuilt it, and has not forgotten. |
+| t_end_people.ogg | Father Tomasz | ending (crown) | We counted them on the steps in the morning, and wrote down every name. |
+| k_end_defiance.ogg | The King | ending (crown) | Hollweg and Lindqvist were gone by morning: Hollweg after his crates, south; Lindqvist to breed what was left, in secret. |
+| k_end2.ogg | The King | ending (crown) | That was the first time I met them both. It was not the last. |
+| k_end_lost1.ogg | The King | ending (versus) | That is not how it went. They never reached the square. |
+| k_end_lost2.ogg | The King | ending (versus) | But if they had, there would have been no council, and no Church to hold one. |
 
 ## What is placeholder
 

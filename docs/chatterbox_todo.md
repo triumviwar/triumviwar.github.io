@@ -60,10 +60,10 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | a04_visit (Ferrer's visit) | docs/campaign_a04_build.md | 79 | Ferrer* 35, Hollweg 13, Brother Anselm* 9, the King 6, Jakob* 4 |
 | a06_barricades (Paris) | docs/campaign_a06_build.md | 69 | Fairleigh 28, Tomasz* 10, the King 9, Ruggieri 8, Varenne 3, Will Hollins* 1 |
 | a05_specimens (the Specimens) | docs/campaign_a05_build.md | 58 | Lindqvist 39, the King 8, Benedito* 8, Pieter* 2 |
-| a07_council | being built | - | (added here when its doc lands) |
+| a07_council (the Council of Rome) | docs/campaign_a07_build.md | 49 | the King 28, Tomasz* 7, Hollweg 4, Ferrer* 3, Lindqvist 3, Valadares* 2, the Cardinal Dean* 2 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
-Mountain") can stay as text.
+Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
 
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
@@ -71,7 +71,8 @@ Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, explorer (now Valad
 uses king_ref.wav / king_ref_b.wav.
 Still to design: Tomasz young (a01, a06, p01) and old (the Cardinal), Ferrer, Jakob, Valadares (or the explorer ref),
 Pieter, Benedito, Captain Delorme, Colonel von Rauch, Brother Anselm, Will Hollins, and the one-to-two-line parts
-(Teles, Frei Joaquim, the Captain of the Watch, the Commissary, Rouvière, Mère Gautier, the Sergeant, the guide).
+(Teles, Frei Joaquim, the Captain of the Watch, the Commissary, Rouvière, Mère Gautier, the Sergeant, the guide, the
+Cardinal Dean of a07).
 
 ## 4. Later
 

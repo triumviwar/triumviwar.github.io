@@ -32,6 +32,26 @@
 - THE CHATTERBOX LIST (owner 2026-11-18 15:55): docs/chatterbox_todo.md is the one list of every voice line still to record
   (Chatterbox on the owner's PC). Top item: a NEW Brood announcer set (21 lines) in Lindqvist's v2 voice
   (refs/lindqvist_ref.wav); then every mission's voice table and the voices to design. Add new missions' tables there.
+- a07_council BUILT (job a07-council, 0.38.68, branch a07-council, docs/campaign_a07_build.md): step 9 of Act 1's build
+  order, THE FIRST CROSSING. ENGINE: MORE THAN TWO SIDES (MissionRun.side_lost / out_sides, condition `out`: the winner a
+  side still in with a primary done, else the only contender; a scripted side out and the match goes on), THE SPREADING
+  FIRE (`burn` spread / douse_side / douse_teams / douse_secs, `douse`, condition `burning`, rain puts fires out, mission
+  `torch_fire`), the MID-MATCH SHOW (`show`), THE VERSUS PICK (`versus_pick`: the friend leads the creatures OR the
+  automata; war table + room), a crossing's `needs` (locked until a04, a05, a06 are all won), `auto_tags`. MISSION "The
+  Council of Rome" (Lent 2770, the young King tells it): map campaign:rome_council (tools/campaign/make_rome_map.py: the
+  Tiber with three bridges and no other way over, Saint Peter's and its piazza, the palace, the Borgo, the Castel
+  Sant'Angelo, the east bank's quarters, the stables, the exhibition hall, the Porta Pia), mission
+  tools/campaign/make_a07_mission.py, stand-in stills a07_01..07 (make_a07_stills.py; prompts in the doc). FOUR SIDES:
+  the Crown (the King's guard PURPLE p1 on C4: CHURCH + MISSIONARY; the garrison BLUE, co-op p2; the town YELLOW), the
+  creatures (GREEN, by a05 `cages`/`eggs`), the automata (RED, by a04 `broken`/`lost_to_machine`), the Assembly's cell
+  (ORANGE, torches; more by a06 `varenne` executed). Opening: Ferrer (c01 `gate`, the quarrel's echo, the ghost in the
+  machine), Valadares (a03 `map`), Hollweg (c01 `bells`), Lindqvist (b01 `clutch`/`teles`); PART 1 the verdict as a
+  mid-match show, both defy and walk out; PART 2 the night of fire (spreading fires the guard puts out, Tomasz or any
+  Missionary calls each quarter's people to Saint Peter's, the Romans flee the machines and in Parione turn on them,
+  the specimens loose, the demonstration goes wrong; beasts and machines fight each other); PART 3 hold the bridges till
+  dawn (9:00; three of either in the square wins it for them). NO CHOICE. Flags `rome` few/some/all, `people`,
+  `hollweg`/`lindqvist` defied. Hubs' talks after Rome, war map rules. ALL TEXT PLACEHOLDER; the Cardinal Dean needs a
+  voice. Tests tools/test_campaign_a07.gd, balance tools/sim_campaign_a07.gd. 18 Claude's choices in the doc.
 - a05_specimens BUILT (job a05-specimens, 0.38.64, branch a05-specimens, docs/campaign_a05_build.md): step 8 of Act 1's
   build order. "The Specimens" (the Naturalist line after a03, the dry season 2769, Lindqvist old and a prisoner before
   the King): map campaign:plateau_descent (tools/campaign/make_plateau_descent_map.py: the nest's hollow and the egg bed,

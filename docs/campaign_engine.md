@@ -215,7 +215,7 @@ are close (red and orange, blue and teal) would be hard to tell apart: pick dist
 - The story itself, the stills and portraits (art not decided: placeholders drawn in code, docs/art_style_inconsistency.md),
   the hub scenes' art and the ARMOURY's upgrades (stub).
 - The campaign-only faction (format ready, faction not built).
-- More than two sides in one mission (the end logic hands a loss to "the other side").
+- More than two sides in one mission: DONE in a07 (0.38.68, below). Three persons in one match (one a side) not yet.
 - Voice lines for the dialogue (text only).
 - Hotspots on the hub are boxes over the placeholder; with real art they would become invisible areas with a glow.
 
@@ -437,3 +437,19 @@ A `tally` whose bands are the numbers themselves (`[[0, 0], [1, 1], ...]`) leave
 | roles `porter`, `hired_gun`, `young_sire` | Rebels.ROLES (stand-ins: a Labourer, a Musketeer, a Tyrant Sire at 0.55) |
 
 MATURE refuses a caged creature (BroodMature.problem: "It is caged.").
+
+## Added by Act 1's a07_council (a07-council, 0.38.68; docs/campaign_a07_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| MORE THAN TWO SIDES | a side whose primary fails, that is wiped out, or `lose` is OUT (MissionRun.side_lost, `out_sides`). Two sides: the other wins at once (as before). More: the winner is a side still in with a primary DONE; else the only side still in with primary objectives; a PERSON's side out: the other person's side (versus) or, nobody else playing, the first side still in; a SCRIPTED side out: nobody yet, the match goes on. Teams are hostile by side (the creatures and the automata fight each other) |
+| condition `{"out": side}` | that side has lost (the match may go on without it) |
+| `{"burn": {"tag", "secs", "spread": {"tag", "within", "every"}, "douse_side", "douse_teams", "douse_secs", "first"}}` | THE SPREADING FIRE: a burning building lights the nearest building of the spread tag within `within` tiles (6) every `every` s (12), the new fire spreading the same way; units of the dousing side (the building's own if not given; only `douse_teams` if given) within 2 tiles of its edge put it out in `douse_secs` (8) of one man's work, stop its spread and halve its burning meanwhile; `first`: only the first building of the tag |
+| `{"douse": {"tag"}}`, condition `{"burning": {"tag", "at_least" / "below"}}`, MissionRun.fires_out | fires out; buildings of the tag on fire now; fires put out so far |
+| `"weather": "rain"` and fires | the rain works as one man at every fire and no fire spreads in it |
+| mission `"torch_fire": {<burn keys>, "tag"}` | a torch-bearer (role `torch`) at a building of that tag sets it ALIGHT (a spreading fire), spared or not, and walks on to the next not burning (Rebels.tick) |
+| `{"show": {"pages": [{"still", "lines"}]}}` | a MID-MATCH SHOW: the pages (`if` lines kept) full screen over the match (StillShow); a solo match pauses while it plays (online it does not); sent to the friend; MissionRun.shows |
+| mission `"versus_pick": [sides]` | THE VERSUS PICK: in versus the friend's seat (p2) leads ONE of these sides, the other p2 teams scripted (Campaign.control_of / seat_side / make_cfg take the pick; the cfg's campaign keeps `"pick"`; the war table's YOU PLAY row and NetLobby.set_campaign carry it) |
+| mission `"needs": [missions]` | a CROSSING: unlocked only once every one of them is finished, whichever led to it (Campaign.unlocked); a mission in several storylines is listed once (Campaign.mission_ids) |
+| mission `"auto_tags": [{"team", "kind", "tag"}]` | every unit of that team and kind (one a person trains too) gets the tag |
+| roles `king_young`, `swiss`, `captain_rome`, `roman`, `roman_mob` | Rebels.ROLES (stand-ins) |
