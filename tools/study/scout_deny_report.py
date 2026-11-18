@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """SCOUT DENY STUDY report (docs/scout_deny.md): tables from tools/study/scout_deny.py's data, the rule ON against OFF on the
 same games (map, seed, sides). A measuring tool only.
-    python3 tools/study/scout_deny_report.py DATA > docs/scout_deny/tables.md
+    python3 tools/study/scout_deny_report.py DATA [--arms off,on_v1,on] > docs/scout_deny/tables.md
 For each player of each game: its FIRST SCOUT (the computer's first scouting trip: AIScout's first trip, the Brood's first
 scouting grub) - did it bring a read (not UNKNOWN) and when did it die; the scouts it lost in the game; whether it read the
 enemy GREEDY by 5:00 and what OPTIMAL picked from it; and, as the side that denies, what its scout-deny did (hunts sent,
@@ -119,11 +119,13 @@ def score(r):
 
 def main():
     data = sys.argv[1]
-    arms = {a: load(data, a) for a in ("on", "off")}
+    names = (sys.argv[sys.argv.index("--arms") + 1] if "--arms" in sys.argv else "off,on").split(",")
+    arms = {a: load(data, a) for a in names}
+    last = names[-1]
     P = print
     P("# Scout deny study: tables\n")
     P("Made by tools/study/scout_deny_report.py from %s. ON = the rule as built, OFF = `scoutdeny:off`; the same games (tag "
-      "= map, seed, sides) in both arms. %d ON and %d OFF games.\n" % (data, len(arms["on"]), len(arms["off"])))
+      "= map, seed, sides) in every arm. Games: %s.\n" % (data, ", ".join("%s %d" % (a.upper(), len(arms[a])) for a in names)))
     # ---- the scouts, by the scouting faction against the denying one
     P("## The first scout, by matchup (scouter -> denier)\n")
     P("| scouter -> denier | arm | first scouts | brought a read | killed | median death | its scouts lost a game | GREEDY read by 5:00 |")
@@ -133,7 +135,7 @@ def main():
         for b in ("crown", "clockwork", "brood"):
             keys.append((a, b))
     for a, b in keys:
-        for arm in ("off", "on"):
+        for arm in names:
             S = []
             for r in arms[arm].values():
                 for p in (0, 1):
@@ -148,20 +150,21 @@ def main():
               mmss(med([s["first_dead"] for s in ft])), mean([s["lost"] for s in S]) or 0.0,
               pct(sum(1 for s in S if s["greedy5"]), len(S))))
     # ---- the denier's counters
-    P("\n## What the rule did, by the denying faction (ON games; per player a game)\n")
-    P("| denier | players | hunts sent | scouts killed | chases given up | none fit (looks) | workers sent | workers lost | hunters lost | first kill (median) |")
-    P("|---|---|---|---|---|---|---|---|---|---|")
+    P("\n## What the rule did, by the denying faction (per player a game)\n")
+    P("| denier | arm | players | hunts sent | scouts killed | chases given up | none fit (looks) | workers sent | workers lost | hunters lost | first kill (median) |")
+    P("|---|---|---|---|---|---|---|---|---|---|---|")
     for fac in ("crown", "clockwork", "brood"):
-        D = [r["sides"][p] for r in arms["on"].values() for p in (0, 1) if r["sides"][p]["fac"] == fac]
+      for arm in [a for a in names if a != "off"]:
+        D = [r["sides"][p] for r in arms[arm].values() for p in (0, 1) if r["sides"][p]["fac"] == fac]
         if not D:
             continue
         m = lambda k: mean([d["deny"].get(k, 0) for d in D]) or 0.0
         fk = [d["kills"][0][0] if d["kills"] else None for d in D]
-        P("| %s | %d | %.1f | %.1f | %.1f | %.1f | %.1f | %.2f | %.2f | %s |" % (fac, len(D), m("sent"), m("killed"), m("escaped"),
+        P("| %s | %s | %d | %.1f | %.1f | %.1f | %.1f | %.1f | %.2f | %.2f | %s |" % (fac, arm.upper(), len(D), m("sent"), m("killed"), m("escaped"),
           m("none_fit"), m("workers_sent"), m("workers_lost"), m("hunters_lost"), mmss(med(fk))))
-    P("\nKills by the scout's kind (ON):\n")
+    P("\nKills by the scout's kind (%s):\n" % last.upper())
     kinds = defaultdict(lambda: defaultdict(int))
-    for r in arms["on"].values():
+    for r in arms[last].values():
         for p in (0, 1):
             for k in r["sides"][p]["kills"]:
                 kinds[r["sides"][p]["fac"]][k[1]] += 1
@@ -172,7 +175,7 @@ def main():
     P("| pairing | arm | games | income 5:00 (it / foe) | income 8:00 (it / foe) | W-D-L | won or led / trailed / even | paired ON v OFF better / worse (p) |")
     P("|---|---|---|---|---|---|---|---|")
     for pair in PAIRS:
-        for arm in ("off", "on"):
+        for arm in names:
             R = [r for r in arms[arm].values() if r["pair"] == pair]
             if not R:
                 continue
@@ -181,7 +184,7 @@ def main():
             w = sum(r["lead"] == "W" for r in R); l = sum(r["lead"] == "L" for r in R)
             wo = sum(r["lead"] in ("W", "w") for r in R); tr = sum(r["lead"] in ("L", "l") for r in R)
             pr = ""
-            if arm == "on":
+            if arm != "off":
                 better = worse = 0
                 for r in R:
                     o = arms["off"].get(r["tag"])
@@ -196,7 +199,7 @@ def main():
               w, len(R) - w - l, l, wo, tr, len(R) - wo - tr, pr))
     # ---- the reads that set off the plans
     P("\n## GREEDY reads and what OPTIMAL picked from them\n")
-    for arm in ("off", "on"):
+    for arm in names:
         n = 0
         rows = []
         for r in sorted(arms[arm].values(), key=lambda r: r["tag"]):
@@ -218,7 +221,7 @@ def main():
     P("| faction | arm | workers 5:00 | workers 8:00 |")
     P("|---|---|---|---|")
     for fac in ("crown", "clockwork", "brood"):
-        for arm in ("off", "on"):
+        for arm in names:
             w5, w8 = [], []
             for r in arms[arm].values():
                 for p in (0, 1):

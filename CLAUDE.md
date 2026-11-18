@@ -25,6 +25,19 @@
 
 ## Current work
 
+- DENY THE SCOUT (owner 2026-11-18 11:42 "Denying scouting should also be a priority for all factions"; job scout-deny,
+  0.38.62, branch scout-deny, docs/scout_deny.md, scripts/ai_scout_deny.gd AIScoutDeny, tools/test_scout_deny.gd, study
+  tools/study/scout_deny.py + _report.py, data docs/scout_deny/, films tools/film_scout_deny.gd): every computer (Normal+)
+  hunts an enemy SCOUT in its base (a worker or unarmed unit with no armed friend within 9 tiles; a lone quick/flying soldier
+  worth <= 180 with none within 16 and no attack on): the 2 nearest fit hunters (85% of its pace or a shooter in reach, 50+
+  quick, free: no wave/defence/errand/rooted), 4 at most; workers only before 7:00 when no soldier can, never past the base;
+  leash 6 tiles / 30 s / out of sight 3 s / its friends near; an unarmed hunted scout is no AI._threat. The Brood keeps its
+  no-chase of riders. Switch scoutdeny:off. 96 games (6 pairings x 4 maps x 2 seeds, on/off): ~4 hunts and 1.4-2 kills a
+  player a game, 3 workers lost in 96; the FIRST look (1:10-1:45) is rarely denied (no army yet; the Crown still reads the
+  Brood GREEDY at 1:30 in 7 of 8), later looks are (the Crown's 4:00 look at the Brood killed in 6 of 8); GREEDY-driven
+  picks 41 -> 25; outcomes unchanged within noise; Brood v Clockwork the Brood's income -15% at 8:00 (8 of 8, p 0.008: the
+  Clockwork denied its GREEDY read plays a normal game that meets the Brood's rush better). 9 Claude's choices, P1-P4 in the
+  doc (P2: truegreed:on for the Crown's first read of the Brood).
 - a01_presses BUILT with THE CITY GENERATOR (job a01-presses, 0.38.57, branch a01-presses, docs/campaign_a01_build.md,
   docs/city_generator.md): step 5 of Act 1's build order. tools/campaign/city_gen.py (a town from a seed: rivers, fords as
   bridges, hills and stairs, districts of solid house blocks, squares, streets, traboules with doors, hidden yards, lots,
