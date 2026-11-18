@@ -6202,6 +6202,35 @@ const CORNER_SLIP := [0.6, -0.6, 1.1, -1.1]       # (radians: the angles tried t
 
 
 func resolve_terrain(pos: Vector2, before: Vector2, radius: float, team := -1) -> Vector2:
+	# (perf-late-brood: every moving unit comes here every tick, 11% of the units' time in the owner's late game. The usual
+	# answer first, in one look: inside the map's margin, neither end by a ramp rail, the five points of _clear_at on open
+	# ground and no wall corner cut: the step stands as it is. That is what the full rule answers then (the rails' fixes
+	# change nothing away from them, the clamp nothing inside the margin); anything else goes the full way, below.)
+	if pos.x >= radius and pos.y >= radius and pos.x <= W * T - radius and pos.y <= H * T - radius:
+		var cx := clampi(int(pos.x / T), 0, W - 1)
+		var cy := clampi(int(pos.y / T), 0, H - 1)
+		var row := cy * W
+		var bx := clampi(int(before.x / T), 0, W - 1)
+		var by := clampi(int(before.y / T), 0, H - 1)
+		if rails.is_empty() or (_rail_near[row + cx] == 0 and _rail_near[by * W + bx] == 0):
+			var r := radius * 0.6
+			var ry := r * 0.6
+			var v := solid[row + cx]
+			var open := v == 0 or v == 5
+			if open:
+				v = solid[row + clampi(int((pos.x + r) / T), 0, W - 1)]
+				open = v == 0 or v == 5
+			if open:
+				v = solid[row + clampi(int((pos.x - r) / T), 0, W - 1)]
+				open = v == 0 or v == 5
+			if open:
+				v = solid[clampi(int((pos.y + ry) / T), 0, H - 1) * W + cx]
+				open = v == 0 or v == 5
+			if open:
+				v = solid[clampi(int((pos.y - ry) / T), 0, H - 1) * W + cx]
+				open = v == 0 or v == 5
+			if open and (int(before.x / T) == int(pos.x / T) or int(before.y / T) == int(pos.y / T)):
+				return pos
 	if rails.is_empty():
 		return _resolve_terrain(pos, before, radius, team)
 	# the ramp rails (docs/ramp_funnel.md): kept to before the cells are looked at, and again
@@ -6703,10 +6732,16 @@ func find_target(u: Unit, r: float) -> Entity:
 		return best
 	if u._d_medic or u._d_aironly:
 		return null
+	var up := u.position
 	for b in buildings:
 		if b.team < 0 or foe[b.team] == 0 or b.dead or b.ghost:
 			continue
-		var dd: float = b.edge_distance(u.position)
+		# (b.edge_distance(up) written out, the same sums: Building.rect() from its cell and size. perf-late-brood: an idle
+		# unit with no enemy unit near asked it of every enemy building every third of a second, 40 us a time)
+		var bc: Vector2i = b.cell
+		var bz: Vector2i = b.size
+		var rp := Vector2(bc) * Defs.TILE
+		var dd: float = up.clamp(rp, rp + Vector2(bz) * Defs.TILE).distance_to(up)
 		if dd >= r or (min_r > 0.0 and dd - u.radius < min_r):
 			continue
 		if dd > 24.0 and not target_seen(u.team, b, u.position):

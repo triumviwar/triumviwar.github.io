@@ -2148,35 +2148,63 @@ func _nb_supply_turtle_spot_go(q: Unit, me: Unit):
 			centres.append(BroodRoot.feet_k(game, team, t))
 	var qreg := game.region_of(game.cell_of(_qp(q)))
 	var qk := BroodRoot.feet_k(game, team, q)
+	# (perf-late-brood: 33 ms a look in a grown base (17 turtles: 1,900 spots, each with place_problem until the first good
+	# one). The pick is the spot with the lowest score that passes every check, the first of equals in the old order (round
+	# the Mother first; done there when she has one and her feet are her first-start feet); the spots are now scored first,
+	# put in that order (a stable sort) and checked until the first that passes: the same spot)
+	var cands: Array = []
 	var best = null
 	var bs := INF
-	for cpos in centres:
+	for ci in centres.size():
+		var cpos: Vector2 = centres[ci]
+		if ci == 1:
+			best = _supply_first(cands, me, INF)
+			if best != null:
+				bs = float(_sup_s)
+				if centres[0] == _qp(q):
+					return best          # (round the Mother found one: the nearest is good enough)
+			cands = []
 		for ring in [5.0, 7.0, 9.0, 11.0, 13.0, 15.0, 17.0]:
 			for i in 16:
-				var pr: Vector2 = (cpos as Vector2) + Vector2.from_angle(TAU * i / 16.0 + ring * 0.37) * ring * Defs.TILE
+				var pr: Vector2 = cpos + Vector2.from_angle(TAU * i / 16.0 + ring * 0.37) * ring * Defs.TILE
 				var p_k: Vector2 = BroodRoot.snap(BroodNew.TURTLE, pr)
-				var p: Vector2 = BroodRoot.sym_snap(game, team, BroodNew.TURTLE, pr)
 				var c: Vector2i = game.sym_rect(team, game.cell_of(p_k), Vector2i.ONE)
-				if not _nb_on_map(p_k) or not game._walkable(c) or _spot_bad(p):
+				if not _nb_on_map(p_k) or not game._walkable(c):
 					continue
 				var s := p_k.distance_to(qk) + (0.0 if game.region_of(c) == qreg else 300.0)
 				if s >= bs:
 					continue
-				if _foe_near(p, 10.0 * Defs.TILE):
-					continue
-				if BroodRoot.place_problem(game, team, BroodNew.TURTLE, p, me, true) != "":
-					continue
-				var ok := true
-				for o in BroodRoot._bt_mine:
-					if o != me and o.team == team and (o.kind == BroodNew.TURTLE or o.kind == BroodNew.MAW) and not o.dead and o.position.distance_to(p) < 3.0 * Defs.TILE:
-						ok = false
-						break
-				if ok:
-					bs = s
-					best = p
-		if best != null and cpos == _qp(q):
-			break          # (round the Mother found one: the nearest is good enough)
-	return best
+				cands.append([s, cands.size(), pr])
+	if centres.size() == 1:
+		return _supply_first(cands, me, INF)
+	var later = _supply_first(cands, me, bs)
+	return later if later != null else best
+
+
+var _sup_s := 0.0
+
+
+## The first spot of `cands` ([score, order, point in the first-start frame]) in score order (the order breaking ties)
+## that scores under `under` and passes the supply turtle's checks (_nb_supply_turtle_spot_go); its score in _sup_s.
+func _supply_first(cands: Array, me: Unit, under: float):
+	cands.sort_custom(func(a: Array, b: Array) -> bool: return float(a[0]) < float(b[0]) or (float(a[0]) == float(b[0]) and int(a[1]) < int(b[1])))
+	for e in cands:
+		if float(e[0]) >= under:
+			break
+		var p: Vector2 = BroodRoot.sym_snap(game, team, BroodNew.TURTLE, e[2])
+		if _spot_bad(p) or _foe_near(p, 10.0 * Defs.TILE):
+			continue
+		if BroodRoot.place_problem(game, team, BroodNew.TURTLE, p, me, true) != "":
+			continue
+		var ok := true
+		for o in BroodRoot._bt_mine:
+			if o != me and o.team == team and (o.kind == BroodNew.TURTLE or o.kind == BroodNew.MAW) and not o.dead and o.position.distance_to(p) < 3.0 * Defs.TILE:
+				ok = false
+				break
+		if ok:
+			_sup_s = float(e[0])
+			return p
+	return null
 
 
 ## A father's nest: beside the Mother, three quarters of his reach out (clear of her nest and of the other fathers'),

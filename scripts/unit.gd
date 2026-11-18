@@ -1212,6 +1212,40 @@ var _sa_air := -1
 var _sa_v := 0.0
 
 
+## BroodRoot.anchor of a creature on its footprint (its measuring point: the footprint mirrored into its side's first-start
+## frame and back) and the swamp cell under it, kept while its footprint, scale, kind and side are the same (perf-late-brood:
+## it was worked out several times a tick for every rooted creature: its swamp, a Rootmaw's draw, the Sires' reach).
+var _anc_fx := -2147483648
+var _anc_fy := 0
+var _anc_sc := 0.0
+var _anc_kind := ""
+var _anc_t := -99
+var _anc_p := Vector2.ZERO
+var _anc_i := 0
+
+
+## (BroodRoot.anchor's answer for a creature with a footprint: kept, see above)
+func anchor_fp() -> Vector2:
+	var fx := int(nb["fpx"])
+	var fy := int(nb["fpy"])
+	var sc := BroodRoot.scale_of(self)
+	if fx != _anc_fx or fy != _anc_fy or sc != _anc_sc or kind != _anc_kind or team != _anc_t:
+		_anc_fx = fx
+		_anc_fy = fy
+		_anc_sc = sc
+		_anc_kind = kind
+		_anc_t = team
+		var sz: Vector2i = BroodRoot.fp(kind, sc)[0]
+		_anc_p = game.sym_pt(team, BroodRoot.feet_at(kind, game.sym_rect(team, Vector2i(fx, fy), sz), sc))
+		_anc_i = clampi(int(_anc_p.y / Game.T), 0, Game.H - 1) * Game.W + clampi(int(_anc_p.x / Game.T), 0, Game.W - 1)
+	return _anc_p
+
+
+func _anchor_i() -> int:
+	anchor_fp()
+	return _anc_i
+
+
 func _speed_add() -> float:
 	if team < 0 or team >= game.players.size():
 		return BroodResearch.speed_add(self)
@@ -3783,8 +3817,7 @@ func _tick_unit(delta: float) -> void:
 		ShieldWall.tick(self, delta)        # (a Clock Soldier's SHIELD FORWARD: the switch, the slower pace)
 	# (brood-spot-study: a rooted creature's feet hang below its footprint on screen, so on a mirrored start its feet fell
 	# on or off the swamp's edge differently (its SWAMP MENDING): the point the first start would read, BroodRoot.anchor)
-	var swp := BroodRoot.anchor(game, self) if _k_fac == "brood" and BroodRoot.fair_spot and nb.has("fpx") else position
-	if _k_fac == "brood" and game.swamp[team][clampi(int(swp.y / Game.T), 0, Game.H - 1) * Game.W + clampi(int(swp.x / Game.T), 0, Game.W - 1)] == 1:     # (game.on_swamp(team, position), written out)
+	if _k_fac == "brood" and game.swamp[team][(_anchor_i() if BroodRoot.fair_spot and nb.has("fpx") else clampi(int(position.y / Game.T), 0, Game.H - 1) * Game.W + clampi(int(position.x / Game.T), 0, Game.W - 1))] == 1:     # (game.on_swamp(team, position), written out)
 		speed *= 1.3
 		if hp < max_hp and game.clock - hit_clock >= float(Defs.NB["regen_calm"]):
 			# (OUT OF THE FIGHT only, the owner 2026-10-31: a Clock Soldier couldn't kill a rooted Mound Turtle; SWAMP

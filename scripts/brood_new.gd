@@ -1659,19 +1659,31 @@ static func flank_point(g: Game, src: Unit, gr: Unit) -> Vector2:
 	var base := src.position + Vector2(-src.radius - 6.0, -2.0) if src.kind == MAW else src.position
 	var spread := Vector2(float(i) * 2.0, float(i) * 5.0)
 	if src.kind == MAW and BroodRoot.has_fp(src):
-		var r := BroodRoot.rect_of(src)
-		var c := r.get_center()
 		var q := queen(g, src.team)
 		var qc := Vector2.INF
 		if q != null:
 			qc = BroodRoot.rect_of(q).get_center() if BroodRoot.has_fp(q) else q.position
-		var to_q := (qc - c) if qc != Vector2.INF and qc.distance_to(c) > 1.0 else g.sym_dir(src.team, Vector2.RIGHT)
-		var side := g.sym_dir(src.team, g.sym_dir(src.team, to_q.normalized()).orthogonal())
-		var hx := r.size.x * 0.5 / maxf(absf(side.x), 0.001)
-		var hy := r.size.y * 0.5 / maxf(absf(side.y), 0.001)
-		base = c + side * (minf(hx, hy) + 7.0)
-		spread = side.orthogonal() * float(i) * 5.0
+		# (perf-late-brood: every grub on its way to a Rootmaw asks this every tick; the flank depends only on the Rootmaw's
+		# footprint, its side and where the Mother is: kept per Rootmaw while those are the same)
+		var key := [src.nb["fpx"], src.nb["fpy"], qc, src.team]
+		var e = _flank_memo.get(src.get_instance_id())
+		if e == null or e[0] != key:
+			var r := BroodRoot.rect_of(src)
+			var c := r.get_center()
+			var to_q := (qc - c) if qc != Vector2.INF and qc.distance_to(c) > 1.0 else g.sym_dir(src.team, Vector2.RIGHT)
+			var side := g.sym_dir(src.team, g.sym_dir(src.team, to_q.normalized()).orthogonal())
+			var hx := r.size.x * 0.5 / maxf(absf(side.x), 0.001)
+			var hy := r.size.y * 0.5 / maxf(absf(side.y), 0.001)
+			e = [key, c + side * (minf(hx, hy) + 7.0), side.orthogonal()]
+			if _flank_memo.size() > 256:
+				_flank_memo.clear()
+			_flank_memo[src.get_instance_id()] = e
+		base = e[1]
+		spread = (e[2] as Vector2) * float(i) * 5.0
 	return base + spread
+
+
+static var _flank_memo := {}
 
 
 ## Where a grub carrying food walks to: the NEAREST point of the Mother (the owner, 2026-10-30: her back or any side,
