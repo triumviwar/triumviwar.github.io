@@ -190,7 +190,30 @@ ladder there, never here by hand.
 
 ## Tests and the balance sims (0.38.57, Godot 4.7 headless)
 
-RESULTS_HERE
+All on the branch (0 failures; real failures start "FAIL "): tools/test_roster_ladder.gd (185 checks), test_campaign.gd,
+test_campaign_m1 / c01 / b01 / a02 / a03, test_war_map.gd, test_tutorial.gd; the boot (`--quit-after 300`) with no
+SCRIPT ERROR. (Run the campaign tests ONE AT A TIME: they share user://campaign.json, and run side by side they fail
+each other's flag checks.) Two tests changed: b01's "no creature speaks" and a03's "no line is said to the nest" let
+the NEW speaker through (the game's own voice, not a creature).
+
+The balance sims, NORMAL, the active bot (the bots never needed a piece the ladder took away: they build and train only
+what their step allows):
+
+| sim | result | time |
+| --- | --- | --- |
+| p01_leaf, active | the night held, dawn with 4 barns | 8:10 (the sim stops at dawn) |
+| c01, active, quiet (four runs) | WON 3 (saved some: 51, 57; one run on main many: 61), LOST 1 (Hollweg killed by two Springers at the gate a minute before the stroke, as in the build's own table: variance, not the roster: the machine is not bound and the guild bot builds the same) | 15:51-16:01; the loss 12:11 |
+| c01, active, rung | WON, saved many (130) | 15:41 |
+| b01, active | WON twice, saved some (15) | 8:52, 10:52 |
+| b01, active, BEFORE the bot fix (on main too) | LOST: the pack stood at the pen chasing the fort's garrison it can't reach, the den raid killed the Old Mother | 18:38 |
+| a02, guild, active | WON, `furth` strong (13) | 8:44 |
+| a02, machine, active | WON (the machine burnt the line) | 7:44 |
+| a03, party, active | WON, `party` all (7) | 5:44 |
+| a03, nest, active | WON (the party under half) | 4:44 |
+
+THE b01 BOT FIX (tools/sim_campaign_b01.gd, the "nest" step): it counted every enemy within 420 px of the rooted Sire as
+a threat, so the pack chased the fort's garrison holding behind its walls and never went for the gate (on main as well:
+the last run before this job lost the same way). Now a threat is an enemy within 200 px or one going for the pack.
 
 ## Claude's choices, for the owner
 

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.57", "items": [
+		"THE CAMPAIGN TEACHES ONE PIECE AT A TIME: like a story campaign should, each mission now gives you one or two new pieces and shows you what they are for, instead of the whole army at once. Each line teaches its own side: the Crown's prologue gives the Musketeer and Ruggieri's Field Cannons; the Clockmaker's prologue the Winder and the Clock Soldier, and the Fürth Line adds the Springer and the Netter; the Naturalist's prologue the Tyrant Sire and his Raptors, and the nest on the Lost Plateau adds the Venom Sire and his Spitters. What is not yet yours says \"Not in this mission.\" and a NEW card tells you what just arrived. Every word of the cards is still a placeholder.",
+	]},
 	{"v": "0.38.56", "items": [
 		"THE WAR MAP (CAMPAIGN): the King's study's table now opens a map of the world as the Crown knows it in Act 1, 2767-2770. Each mission is a wax seal on its place with its date: the three prologues, the Fürth Line and the Lost Plateau, and the Act's missions still being written (Lyon, Paris, Ferrer's visit, the Specimens, the Council of Rome) as empty seals. Your choices colour it: Franconia red after Nuremberg falls (a loyal quarter inside it if many were saved), Fürth held strong, thin or fallen, Virginia's interior uneasy if the families were left, the burnt station on the Rio Negro and the cloud mountain drawn in or left blank by the mapmaker's choice. Drag to move it, the wheel or a pinch to zoom, THE WORLD / VIRGINIA / EUROPE / THE AMAZON to jump; tap a seal for its card and play it from there (BRIEFING, or CO-OP / VERSUS). LEDGER lists what came of every mission; LIST is the old war table, which has a WAR MAP button in every storyline. The parchment is drawn in code until its painting comes; every name and line is still a placeholder.",
 	]},
