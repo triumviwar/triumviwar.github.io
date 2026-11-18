@@ -1,0 +1,457 @@
+# Act 1's mission a03_plateau, "The Lost Plateau" (campaign/missions/a03_plateau.json, written by tools/campaign/make_a03_mission.py;
+# the plan: docs/campaign_act1_plan.md; what was built: docs/campaign_a03_build.md). EVERY LINE IS A PLACEHOLDER for the owner.
+# Also THE NATURALIST's hub lines after a03 (campaign.json) and the new roles' names. Texts already translated elsewhere are not repeated.
+# Names: the Brood = a Ninhada / la Nidada; the nest = o ninho / el nido; the Tyrant Sire = o Sire Tirano / el Señor Tirano;
+# the cloud mountain = a montanha das nuvens / la montaña de las nubes; survey mark = marco / hito; the landing = o porto / el embarcadero.
+
+> The Lost Plateau
+pt O Planalto Perdido
+es La Meseta Perdida
+
+> The cloud mountain north of the Rio Negro, September 2767. The Crown's mapmaker climbs the mountain the creatures came down from, to map it, and finds them asleep in their nest.
+pt A montanha das nuvens ao norte do Rio Negro, setembro de 2767. O cartógrafo da Coroa sobe a montanha de onde as criaturas desceram, para mapeá-la, e as encontra dormindo no seu ninho.
+es La montaña de las nubes al norte del Río Negro, septiembre de 2767. El cartógrafo de la Corona sube la montaña de la que bajaron las criaturas, para cartografiarla, y las encuentra dormidas en su nido.
+
+> The Crown's Party
+pt A Expedição da Coroa
+es La Expedición de la Corona
+
+> Valadares, the Crown's mapmaker, with Benedito, the boundary commission's men and the guides from Nazaré.
+pt Valadares, o cartógrafo da Coroa, com Benedito, os homens da comissão de limites e os guias de Nazaré.
+es Valadares, el cartógrafo de la Corona, con Benedito, los hombres de la comisión de límites y los guías de Nazaré.
+
+> The Nest
+pt O Ninho
+es El Nido
+
+> The creatures' home on the cloud mountain: the Mother in her hollow, her hunters asleep, the Sire away.
+pt O lar das criaturas na montanha das nuvens: a Mãe na sua depressão, os seus caçadores dormindo, o Sire longe.
+es El hogar de las criaturas en la montaña de las nubes: la Madre en su hondonada, sus cazadores dormidos, el Señor lejos.
+
+> The Red Pack
+pt A Matilha Vermelha
+es La Manada Roja
+
+> The other pack of the Rio Negro, driven up the mountain after the station fell.
+pt A outra matilha do Rio Negro, empurrada montanha acima depois da queda da estação.
+es La otra manada del Río Negro, empujada montaña arriba después de la caída de la estación.
+
+> Valadares must live.
+pt Valadares tem de viver.
+es Valadares debe vivir.
+
+> The rains come in {clock:rains}: Benedito will not wait longer.
+pt As chuvas chegam em {clock:rains}: Benedito não vai esperar mais.
+es Las lluvias llegan en {clock:rains}: Benedito no esperará más.
+
+> THE CLIMB: take Valadares up the cliff (by the waterfall stair or the split in the rock).
+pt A SUBIDA: leve Valadares penhasco acima (pela escada da cachoeira ou pela fenda na rocha).
+es LA SUBIDA: lleva a Valadares acantilado arriba (por la escalera de la cascada o por la grieta en la roca).
+
+> THE SURVEY: Valadares stays 10 seconds at each survey mark ({marks} of 4): the cairn, the river's source, the nest's rim, the lookout.
+pt O LEVANTAMENTO: Valadares fica 10 segundos em cada marco ({marks} de 4): o monte de pedras, a nascente do rio, a borda do ninho, o mirante.
+es EL LEVANTAMIENTO: Valadares se queda 10 segundos en cada hito ({marks} de 4): el montón de piedras, el nacimiento del río, el borde del nido, el mirador.
+
+> Walk softly: do not go near the sleeping creatures.
+pt Ande devagar: não chegue perto das criaturas adormecidas.
+es Camina despacio: no te acerques a las criaturas dormidas.
+
+> Down to Benedito's landing with Valadares and everyone you can bring ({down} down).
+pt Desça até o porto de Benedito com Valadares e todos que puder trazer ({down} embaixo).
+es Baja al embarcadero de Benedito con Valadares y todos los que puedas traer ({down} abajo).
+
+> Benedito's canoe leaves in {clock:canoe}.
+pt A canoa de Benedito parte em {clock:canoe}.
+es La canoa de Benedito parte en {clock:canoe}.
+
+> The Mother must live.
+pt A Mãe tem de viver.
+es La Madre debe vivir.
+
+> THE NEST SLEEPS: strangers are climbing the mountain. Your hunters sleep until they come close; the Mother, the grubs and the Rootmaws work on. Grow the nest.
+pt O NINHO DORME: estranhos sobem a montanha. Os seus caçadores dormem até eles chegarem perto; a Mãe, as larvas e as Bocarraízes continuam trabalhando. Faça o ninho crescer.
+es EL NIDO DUERME: unos extraños suben la montaña. Tus cazadores duermen hasta que se acerquen; la Madre, las larvas y las Bocarraíces siguen trabajando. Haz crecer el nido.
+
+> THE HUNT: the Sire is home. Kill the mapmaker, or bring the strangers under half, before they reach the river.
+pt A CAÇADA: o Sire está em casa. Mate o cartógrafo, ou reduza os estranhos a menos da metade, antes que cheguem ao rio.
+es LA CACERÍA: el Señor está en casa. Mata al cartógrafo, o deja a los extraños en menos de la mitad, antes de que lleguen al río.
+
+> The guide from Nazaré
+pt O guia de Nazaré
+es El guía de Nazaré
+
+> The Mountain
+pt A Montanha
+es La Montaña
+
+> His first letter came from the burning station. His report came at Christmas, in a waxed case, with a map.
+pt A sua primeira carta veio da estação em chamas. O seu relatório veio no Natal, num estojo encerado, com um mapa.
+es Su primera carta llegó de la estación en llamas. Su informe llegó en Navidad, en un estuche encerado, con un mapa.
+
+> The Crown's mapmaker. He wrote as he walked, and he wrote the truth. Let him tell it.
+pt O cartógrafo da Coroa. Escrevia enquanto andava, e escrevia a verdade. Que ele conte.
+es El cartógrafo de la Corona. Escribía mientras caminaba, y escribía la verdad. Que lo cuente él.
+
+> Majesty. I turned my canoe north the morning the station burned, and followed the tracks up the creek.
+pt Majestade. Virei a minha canoa para o norte na manhã em que a estação queimou, e segui as pegadas igarapé acima.
+es Majestad. Volví mi canoa hacia el norte la mañana en que ardió la estación, y seguí las huellas arroyo arriba.
+
+> Three months. Benedito knew the mountain from his father: the old people call it the house of the clouds.
+pt Três meses. Benedito conhecia a montanha pelo pai: os antigos a chamam de casa das nuvens.
+es Tres meses. Benedito conocía la montaña por su padre: los antiguos la llaman la casa de las nubes.
+
+> We came to its foot in September, five men and the river trader, to map what no map had.
+pt Chegamos ao seu pé em setembro, cinco homens e o regatão, para mapear o que nenhum mapa tinha.
+es Llegamos a su pie en septiembre, cinco hombres y el mercader del río, para cartografiar lo que ningún mapa tenía.
+
+> No creature wrote a report. But the mountain was theirs before it was anyone's.
+pt Nenhuma criatura escreveu relatório. Mas a montanha era delas antes de ser de qualquer um.
+es Ninguna criatura escribió un informe. Pero la montaña era suya antes de ser de nadie.
+
+> That September strangers came up their cliff in the mist, while the nest slept.
+pt Naquele setembro, estranhos subiram o seu penhasco na névoa, enquanto o ninho dormia.
+es Aquel septiembre unos extraños subieron su acantilado en la niebla, mientras el nido dormía.
+
+> Up the cliff, before the mist lifts and before the rains. Keep together.
+pt Penhasco acima, antes que a névoa suba e antes das chuvas. Fiquem juntos.
+es Acantilado arriba, antes de que se levante la niebla y antes de las lluvias. Manteneos juntos.
+
+> Two ways up, Senhor. The stair by the falls, and a crack in the rock to the east. I wait with the canoe.
+pt Dois caminhos para cima, Senhor. A escada junto à cachoeira, e uma fenda na rocha a leste. Eu espero com a canoa.
+es Dos caminos para subir, Senhor. La escalera junto a la cascada, y una grieta en la roca al este. Yo espero con la canoa.
+
+> We see little in this mist, and nothing sees us far. Musketeers in front.
+pt Vemos pouco nesta névoa, e nada nos vê de longe. Mosqueteiros na frente.
+es Vemos poco en esta niebla, y nada nos ve de lejos. Mosqueteros delante.
+
+> The stair by the falls. My grandfather went up there for feathers.
+pt A escada junto à cachoeira. O meu avô subia por ali atrás de penas.
+es La escalera junto a la cascada. Mi abuelo subía por allí a buscar plumas.
+
+> And the crack in the rock. Narrow, but a man can climb it with his hands.
+pt E a fenda na rocha. Estreita, mas um homem sobe por ela com as mãos.
+es Y la grieta en la roca. Estrecha, pero un hombre la sube con las manos.
+
+> No one from Nazaré would come. We find the way ourselves.
+pt Ninguém de Nazaré quis vir. Achamos o caminho sozinhos.
+es Nadie de Nazaré quiso venir. Encontraremos el camino nosotros solos.
+
+> The lieutenant sent six of his men. He knew what came down from here, and he wanted to see it.
+pt O tenente mandou seis dos seus homens. Sabia o que desceu daqui, e queria ver.
+es El teniente envió a seis de sus hombres. Sabía lo que bajó de aquí, y quería verlo.
+
+> I carried the drawings of the creature from the pen, so I would know her.
+pt Eu levava os desenhos da criatura do cercado, para reconhecê-la.
+es Llevaba los dibujos de la criatura del corral, para reconocerla.
+
+> The doctor's boy, Pieter, drew her for me. A good hand.
+pt O rapaz do doutor, Pieter, desenhou-a para mim. Boa mão.
+es El muchacho del doctor, Pieter, la dibujó para mí. Buena mano.
+
+> The doctor's boy drew her before he was lost. I carried his drawings, God rest him.
+pt O rapaz do doutor desenhou-a antes de se perder. Eu levava os desenhos dele, que Deus o tenha.
+es El muchacho del doctor la dibujó antes de perderse. Llevaba sus dibujos, Dios lo tenga en su gloria.
+
+> Red crests in the trees, Senhor. The other pack, the one that fought at the station. It came up here too.
+pt Cristas vermelhas nas árvores, Senhor. A outra matilha, a que lutou na estação. Subiu até aqui também.
+es Crestas rojas en los árboles, Senhor. La otra manada, la que luchó en la estación. También subió hasta aquí.
+
+> The powder is in the cache by the canoe. A man who has fired his shots refills there.
+pt A pólvora está no depósito junto à canoa. Quem gastou os tiros recarrega ali.
+es La pólvora está en el depósito junto a la canoa. Quien ha gastado sus tiros recarga allí.
+
+> The top. Rock towers, black water, and the cloud lying on everything.
+pt O topo. Torres de rocha, água negra, e a nuvem deitada sobre tudo.
+es La cima. Torres de roca, agua negra, y la nube tendida sobre todo.
+
+> Four marks to take: a cairn, the river's source, the rim of the hollow, the lookout on the east edge. I stand at each a while to take my bearings.
+pt Quatro marcos a tomar: um monte de pedras, a nascente do rio, a borda da depressão, o mirante na beira leste. Fico um tempo em cada um para tomar as medidas.
+es Cuatro hitos que tomar: un montón de piedras, el nacimiento del río, el borde de la hondonada, el mirador en el borde este. Me quedo un rato en cada uno para tomar las medidas.
+
+> A cairn. Men have been here before us, and long ago.
+pt Um monte de pedras. Houve homens aqui antes de nós, e há muito tempo.
+es Un montón de piedras. Hubo hombres aquí antes que nosotros, y hace mucho.
+
+> The river's source: a black pool, very cold. The flood that brought the egg down came from here.
+pt A nascente do rio: um poço negro, muito frio. A cheia que trouxe o ovo para baixo veio daqui.
+es El nacimiento del río: una poza negra, muy fría. La crecida que bajó el huevo vino de aquí.
+
+> The rim. Below it a hollow, and in the hollow a swamp that grows, and something huge rooted in it.
+pt A borda. Embaixo, uma depressão, e na depressão um pântano que cresce, e algo enorme enraizado nele.
+es El borde. Debajo, una hondonada, y en la hondonada un pantano que crece, y algo enorme arraigado en él.
+
+> And there, among them. The creature from the pen. Twice the size. She knows her home.
+pt E ali, entre eles. A criatura do cercado. Duas vezes maior. Ela conhece o seu lar.
+es Y allí, entre ellos. La criatura del corral. El doble de grande. Conoce su hogar.
+
+> They sleep, Senhor. Do not wake them. Not one step closer.
+pt Estão dormindo, Senhor. Não os acorde. Nem um passo mais perto.
+es Duermen, Senhor. No los despierte. Ni un paso más cerca.
+
+> Young ones, many, still soft. So the pack carried her eggs up here.
+pt Filhotes, muitos, ainda moles. Então a matilha trouxe os ovos dela até aqui.
+es Crías, muchas, todavía blandas. Así que la manada subió sus huevos hasta aquí.
+
+> Two mounds that breathe. A swamp that walked, the doctor's people said. It walked here.
+pt Dois montes que respiram. Um pântano que andava, disse a gente do doutor. Andou até aqui.
+es Dos montículos que respiran. Un pantano que caminaba, dijo la gente del doctor. Caminó hasta aquí.
+
+> The lookout. The whole forest to the river, and the crack in the rock below: our way down.
+pt O mirante. A floresta toda até o rio, e a fenda na rocha lá embaixo: o nosso caminho de volta.
+es El mirador. Todo el bosque hasta el río, y la grieta en la roca abajo: nuestro camino de bajada.
+
+> Four marks. I have the mountain on paper now.
+pt Quatro marcos. Agora tenho a montanha no papel.
+es Cuatro hitos. Ahora tengo la montaña en el papel.
+
+> Now the question I asked myself on that rock: who should have this map?
+pt Agora a pergunta que me fiz naquela rocha: quem deve ter este mapa?
+es Ahora la pregunta que me hice en aquella roca: ¿quién debe tener este mapa?
+
+> Even running, I knew I would have to decide what to do with what I had seen.
+pt Mesmo correndo, eu sabia que teria de decidir o que fazer com o que vi.
+es Aun corriendo, sabía que tendría que decidir qué hacer con lo que había visto.
+
+> I drew it for the Crown. A mapmaker who hides a road is no mapmaker.
+pt Desenhei-o para a Coroa. Cartógrafo que esconde um caminho não é cartógrafo.
+es Lo dibujé para la Corona. Un cartógrafo que esconde un camino no es cartógrafo.
+
+> I drew it, and sealed it, for the Church alone. No man should come here for profit.
+pt Desenhei-o e lacrei-o, só para a Igreja. Nenhum homem deve vir aqui por lucro.
+es Lo dibujé y lo sellé, solo para la Iglesia. Ningún hombre debe venir aquí por lucro.
+
+> Below the falls something roared, and the whole hollow answered it.
+pt Embaixo da cachoeira algo rugiu, e a depressão inteira respondeu.
+es Bajo la cascada algo rugió, y toda la hondonada le respondió.
+
+> He is home. Down the crack in the rock, now! To the canoe!
+pt Ele voltou. Pela fenda na rocha, já! Para a canoa!
+es Ha vuelto. ¡Por la grieta en la roca, ya! ¡A la canoa!
+
+> We were too close. They are awake. Leave the survey: down, to the canoe!
+pt Chegamos perto demais. Acordaram. Deixem o levantamento: para baixo, para a canoa!
+es Nos acercamos demasiado. Están despiertos. ¡Dejad el levantamiento: abajo, a la canoa!
+
+> Senhor, you are bleeding! Let the soldiers stand between you and them!
+pt Senhor, está sangrando! Deixe os soldados ficarem entre o senhor e eles!
+es ¡Senhor, está sangrando! ¡Deje que los soldados se pongan entre usted y ellos!
+
+> The rains, Senhor. The river rises. I cannot wait longer.
+pt As chuvas, Senhor. O rio sobe. Não posso esperar mais.
+es Las lluvias, Senhor. El río crece. No puedo esperar más.
+
+> In! Push off! Paddle!
+pt Entrem! Empurrem! Remem!
+es ¡Adentro! ¡Empujad! ¡A remar!
+
+> We pushed off with the cloud closing behind us.
+pt Partimos com a nuvem se fechando atrás de nós.
+es Partimos con la nube cerrándose detrás de nosotros.
+
+> The canoe is going, Senhor! I cannot hold it!
+pt A canoa está indo, Senhor! Não consigo segurá-la!
+es ¡La canoa se va, Senhor! ¡No puedo sujetarla!
+
+> We came down to the river with what we had. The mountain kept the rest.
+pt Descemos até o rio com o que tínhamos. A montanha ficou com o resto.
+es Bajamos al río con lo que teníamos. La montaña se quedó con el resto.
+
+> Every man who went up came down. I thank God for it in this report.
+pt Todo homem que subiu desceu. Agradeço a Deus por isso neste relatório.
+es Todo hombre que subió bajó. Doy gracias a Dios por ello en este informe.
+
+> Not every man came down. Their names are at the end of this report.
+pt Nem todo homem desceu. Os seus nomes estão no fim deste relatório.
+es No todos bajaron. Sus nombres están al final de este informe.
+
+> Few of us came down. I write their names first, before the map.
+pt Poucos de nós descemos. Escrevo os nomes deles primeiro, antes do mapa.
+es Pocos de nosotros bajamos. Escribo sus nombres primero, antes del mapa.
+
+> The map is enclosed, Majesty. The way up, the marks, the nest. The Crown should know.
+pt O mapa vai junto, Majestade. O caminho de subida, os marcos, o ninho. A Coroa deve saber.
+es El mapa va adjunto, Majestad. El camino de subida, los hitos, el nido. La Corona debe saberlo.
+
+> The map is not enclosed. I have sealed it for the Holy See. Forgive me.
+pt O mapa não vai junto. Lacrei-o para a Santa Sé. Perdoe-me.
+es El mapa no va adjunto. Lo he sellado para la Santa Sede. Perdóneme.
+
+> My survey is unfinished. The nest woke before I could take every mark.
+pt O meu levantamento está inacabado. O ninho acordou antes que eu tomasse todos os marcos.
+es Mi levantamiento está inacabado. El nido despertó antes de que tomara todos los hitos.
+
+> I saw her, Majesty. The doctor's creature, grown, among her own. She was never his.
+pt Eu a vi, Majestade. A criatura do doutor, crescida, entre os seus. Nunca foi dele.
+es La vi, Majestad. La criatura del doctor, crecida, entre los suyos. Nunca fue suya.
+
+> He did his duty, and told me plainly what he saw.
+pt Ele cumpriu o seu dever, e contou-me sem rodeios o que viu.
+es Cumplió con su deber, y me contó sin rodeos lo que vio.
+
+> I kept his map. Others bought copies of it from a clerk. That was not his doing.
+pt Guardei o seu mapa. Outros compraram cópias dele de um escrivão. Isso não foi obra dele.
+es Guardé su mapa. Otros compraron copias de un escribiente. Eso no fue obra suya.
+
+> The Church kept his map. The doctor found the way up without it, by a longer road.
+pt A Igreja guardou o seu mapa. O doutor achou a subida sem ele, por um caminho mais longo.
+es La Iglesia guardó su mapa. El doctor encontró la subida sin él, por un camino más largo.
+
+> That is not how it went. Valadares came down the mountain, and his report came to me.
+pt Não foi assim que aconteceu. Valadares desceu a montanha, e o seu relatório chegou a mim.
+es No fue así como ocurrió. Valadares bajó de la montaña, y su informe llegó a mí.
+
+> But it could have gone that way. Then no one would have known what waited in the cloud.
+pt Mas poderia ter sido assim. Então ninguém saberia o que esperava na nuvem.
+es Pero pudo haber sido así. Entonces nadie habría sabido lo que esperaba en la nube.
+
+> Rome, the present. The King with the mapmaker's report.
+pt Roma, o presente. O Rei com o relatório do cartógrafo.
+es Roma, el presente. El Rey con el informe del cartógrafo.
+
+> The cloud mountain north of the Rio Negro, September 2767.
+pt A montanha das nuvens ao norte do Rio Negro, setembro de 2767.
+es La montaña de las nubes al norte del Río Negro, septiembre de 2767.
+
+> The climb, by the falls, in the mist.
+pt A subida, junto à cachoeira, na névoa.
+es La subida, junto a la cascada, en la niebla.
+
+> The nest in the hollow, asleep.
+pt O ninho na depressão, adormecido.
+es El nido en la hondonada, dormido.
+
+> The map.
+pt O mapa.
+es El mapa.
+
+> Down to the river.
+pt Descendo até o rio.
+es Bajando hasta el río.
+
+> The cloud mountain north of the Rio Negro, September 2767. You are Valadares, the Crown's mapmaker, with Benedito, the boundary commission's men and whoever came from Nazaré.
+pt A montanha das nuvens ao norte do Rio Negro, setembro de 2767. Você é Valadares, o cartógrafo da Coroa, com Benedito, os homens da comissão de limites e quem veio de Nazaré.
+es La montaña de las nubes al norte del Río Negro, septiembre de 2767. Eres Valadares, el cartógrafo de la Corona, con Benedito, los hombres de la comisión de límites y quien vino de Nazaré.
+
+> Climb the cliff in the mist, take the four survey marks, decide what becomes of the map, and come down to the canoe alive.
+pt Suba o penhasco na névoa, tome os quatro marcos, decida o destino do mapa e desça vivo até a canoa.
+es Sube el acantilado en la niebla, toma los cuatro hitos, decide qué será del mapa y baja vivo hasta la canoa.
+
+> Valadares must live. Do not wake what sleeps up there.
+pt Valadares tem de viver. Não acorde o que dorme lá em cima.
+es Valadares debe vivir. No despiertes lo que duerme allá arriba.
+
+> The cloud mountain, September 2767. You are the nest: the Mother in her hollow, her grubs and Rootmaws, her hunters asleep. The Sire is away.
+pt A montanha das nuvens, setembro de 2767. Você é o ninho: a Mãe na sua depressão, as suas larvas e Bocarraízes, os seus caçadores dormindo. O Sire está longe.
+es La montaña de las nubes, septiembre de 2767. Eres el nido: la Madre en su hondonada, sus larvas y Bocarraíces, sus cazadores dormidos. El Señor está lejos.
+
+> Strangers are climbing your cliff. Let them come. When the Sire is home, hunt them: kill the mapmaker, or bring them under half, before they reach the river.
+pt Estranhos sobem o seu penhasco. Deixe-os vir. Quando o Sire voltar, cace-os: mate o cartógrafo, ou reduza-os a menos da metade, antes que cheguem ao rio.
+es Unos extraños suben tu acantilado. Déjalos venir. Cuando el Señor vuelva, cázalos: mata al cartógrafo, o déjalos en menos de la mitad, antes de que lleguen al río.
+
+> Down from the cloud
+pt Descendo da nuvem
+es Bajando de la nube
+
+> Valadares came down from the plateau with his survey, and saw the creature from the pen among her own.
+pt Valadares desceu do planalto com o seu levantamento, e viu a criatura do cercado entre os seus.
+es Valadares bajó de la meseta con su levantamiento, y vio a la criatura del corral entre los suyos.
+
+> He drew the map for the Crown.
+pt Ele desenhou o mapa para a Coroa.
+es Dibujó el mapa para la Corona.
+
+> He sealed the map for the Church alone.
+pt Ele lacrou o mapa só para a Igreja.
+es Selló el mapa solo para la Iglesia.
+
+> Every man came down: {down} of {party0}.
+pt Todos desceram: {down} de {party0}.
+es Todos bajaron: {down} de {party0}.
+
+> {down} of {party0} came down.
+pt {down} de {party0} desceram.
+es {down} de {party0} bajaron.
+
+> Only {down} of {party0} came down.
+pt Só {down} de {party0} desceram.
+es Solo {down} de {party0} bajaron.
+
+> The mountain keeps its own
+pt A montanha guarda os seus
+es La montaña guarda lo suyo
+
+> The strangers did not come down. The nest sleeps again in the cloud.
+pt Os estranhos não desceram. O ninho dorme de novo na nuvem.
+es Los extraños no bajaron. El nido vuelve a dormir en la nube.
+
+> THE MAP: the way up the cloud mountain.
+pt O MAPA: o caminho até o alto da montanha das nuvens.
+es EL MAPA: el camino a lo alto de la montaña de las nubes.
+
+> DRAW IT FOR THE CROWN
+pt DESENHÁ-LO PARA A COROA
+es DIBUJARLO PARA LA CORONA
+
+> A mapmaker's duty: the Crown must know what is here, and the way to it.
+pt O dever de um cartógrafo: a Coroa deve saber o que há aqui, e o caminho até aqui.
+es El deber de un cartógrafo: la Corona debe saber lo que hay aquí, y el camino hasta aquí.
+
+> WITHHOLD IT
+pt GUARDÁ-LO
+es RESERVARLO
+
+> Only a sealed letter to the Church. No man should come up here for profit.
+pt Só uma carta lacrada para a Igreja. Nenhum homem deve subir aqui por lucro.
+es Solo una carta sellada para la Iglesia. Ningún hombre debe subir aquí por lucro.
+
+> THE MAP: what Valadares saw before the nest woke.
+pt O MAPA: o que Valadares viu antes de o ninho acordar.
+es EL MAPA: lo que Valadares vio antes de que el nido despertara.
+
+> The supply cache
+pt O depósito de suprimentos
+es El depósito de suministros
+
+> The Mother
+pt A Mãe
+es La Madre
+
+> Young
+pt Filhote
+es Cría
+
+> Guide
+pt Guia
+es Guía
+
+> A man of Nazaré who knows the mountain's paths.
+pt Um homem de Nazaré que conhece os caminhos da montanha.
+es Un hombre de Nazaré que conoce los caminos de la montaña.
+
+> Specimen One, grown.
+pt Espécime Um, crescida.
+es Espécimen Uno, crecida.
+
+> Valadares' report came down the river with him. He saw her, grown, among her own. He writes it as if it were a sorrow.
+pt O relatório de Valadares desceu o rio com ele. Ele a viu, crescida, entre os seus. Escreve isso como se fosse uma tristeza.
+es El informe de Valadares bajó el río con él. La vio, crecida, entre los suyos. Lo escribe como si fuera una pena.
+
+> A nest on the cloud mountain. A Mother, and her young. I must have that mountain.
+pt Um ninho na montanha das nuvens. Uma Mãe, e os seus filhotes. Eu preciso daquela montanha.
+es Un nido en la montaña de las nubes. Una Madre, y sus crías. Tengo que tener esa montaña.
+
+> He would not give the Academy his map. Sealed, for the Holy See. Very well: I have Benedito, and Benedito remembers.
+pt Ele não quis dar o seu mapa à Academia. Lacrado, para a Santa Sé. Muito bem: eu tenho Benedito, e Benedito se lembra.
+es No quiso dar su mapa a la Academia. Sellado, para la Santa Sede. Muy bien: tengo a Benedito, y Benedito recuerda.
+
+> Valadares never came down from the cloud mountain. Benedito came back alone with the canoe, and would not speak of it.
+pt Valadares nunca desceu da montanha das nuvens. Benedito voltou sozinho com a canoa, e não quis falar disso.
+es Valadares nunca bajó de la montaña de las nubes. Benedito volvió solo con la canoa, y no quiso hablar de ello.
+
+> Lindqvist reads the mapmaker's report in the Academy's warehouse at the Barra do Rio Negro.
+pt Lindqvist lê o relatório do cartógrafo no armazém da Academia na Barra do Rio Negro.
+es Lindqvist lee el informe del cartógrafo en el almacén de la Academia en la Barra do Rio Negro.
+
+> The Academy's warehouse at the Barra do Rio Negro: a mapmaker's report open on the table, rain on the river.
+pt O armazém da Academia na Barra do Rio Negro: o relatório de um cartógrafo aberto na mesa, chuva sobre o rio.
+es El almacén de la Academia en la Barra do Rio Negro: el informe de un cartógrafo abierto sobre la mesa, lluvia sobre el río.

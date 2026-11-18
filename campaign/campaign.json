@@ -222,7 +222,8 @@
 			"requires": "p01_leaf",
 			"about": "A naturalist on the Amazon raises a creature no one has seen, and loses it to the forest.",
 			"missions": [
-				"b01_specimen"
+				"b01_specimen",
+				"a03_plateau"
 			],
 			"hub": {
 				"title": "Lindqvist's Station",
@@ -359,6 +360,37 @@
 									"A warehouse at the Barra, crates and charts, and the people who came down the river with me.",
 									"He stole her. I will have her line again, whatever the Academy says."
 								]
+							},
+							{
+								"after": "a03_plateau",
+								"sides": {
+									"a03_plateau": "party"
+								},
+								"lines": [
+									"Valadares' report came down the river with him. He saw her, grown, among her own. He writes it as if it were a sorrow.",
+									"A nest on the cloud mountain. A Mother, and her young. I must have that mountain."
+								]
+							},
+							{
+								"after": "a03_plateau",
+								"sides": {
+									"a03_plateau": "party"
+								},
+								"flag": {
+									"a03_plateau.map": "withheld"
+								},
+								"lines": [
+									"He would not give the Academy his map. Sealed, for the Holy See. Very well: I have Benedito, and Benedito remembers."
+								]
+							},
+							{
+								"after": "a03_plateau",
+								"sides": {
+									"a03_plateau": "nest"
+								},
+								"lines": [
+									"Valadares never came down from the cloud mountain. Benedito came back alone with the canoe, and would not speak of it."
+								]
 							}
 						]
 					},
@@ -434,6 +466,18 @@
 						"about": "The station is lost. Lindqvist and the survivors are camped in the Academy's warehouse at the Barra do Rio Negro.",
 						"still": {
 							"caption": "The Academy's warehouse at the Barra do Rio Negro: crates, jars and charts by lamplight, rain on the river."
+						},
+						"tint": [
+							0.82,
+							0.82,
+							0.9
+						]
+					},
+					"a03_plateau": {
+						"title": "The Warehouse at the Barra",
+						"about": "Lindqvist reads the mapmaker's report in the Academy's warehouse at the Barra do Rio Negro.",
+						"still": {
+							"caption": "The Academy's warehouse at the Barra do Rio Negro: a mapmaker's report open on the table, rain on the river."
 						},
 						"tint": [
 							0.82,

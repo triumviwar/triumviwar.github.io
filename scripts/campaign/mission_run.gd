@@ -694,6 +694,9 @@ func act(a: Dictionary) -> void:
 				if v.has("count"):
 					# (set from a count, or added with "plus": the people at the station when it falls)
 					counters[cn] = (int(counters.get(cn, 0)) if bool(v.get("plus", false)) else 0) + count(v["count"])
+				elif v.has("add_counter"):
+					# (a03: another counter's number added: the party left on the mountain plus those already down)
+					counters[cn] = int(counters.get(cn, 0)) + int(counters.get(String(v["add_counter"]), 0))
 				else:
 					counters[cn] = int(v["set"]) if v.has("set") else int(counters.get(cn, 0)) + int(v.get("add", 1))
 				objectives_changed.emit()
@@ -736,8 +739,11 @@ func act(a: Dictionary) -> void:
 				# some / many); the number itself is kept as "<flag>_n"
 				var n := int(counters.get(String(v.get("counter", "")), 0))
 				var val: Variant = null
+				# ("of": another counter: the bands are SHARES of its number (a03: the party that came down, of those who
+				# went up), so they hold whatever the party's size)
+				var of := maxf(1.0, float(counters.get(String(v["of"]), 0))) if v.has("of") else 0.0
 				for bd in v.get("bands", []):
-					if n >= int(bd[0]):
+					if (n >= float(bd[0]) * of - 0.001) if v.has("of") else n >= int(bd[0]):
 						val = bd[1]
 				flags[String(v.get("flag", ""))] = val
 				flags[String(v.get("flag", "")) + "_n"] = n
@@ -1511,20 +1517,34 @@ func sleep_name(v: Dictionary) -> String:
 ## SLEEP: {"tag" / "team" / "side", "name", "within": tiles (6; 0: only a trigger or a wound wakes them), "by": the
 ## side whose units wake them (any other side), "hurt": true (a wound wakes them), "then": an order on waking}. The
 ## units hold where they are and don't fight (a person's own too: the nest asleep) until the group wakes.
+## (a03_plateau) "except_kinds": [kinds] leave those awake (the nest's Mother, grubs and Rootmaws keep working while its
+## hunters sleep); "keep": true puts every NEW unit of the group to sleep too while it sleeps (the hatchlings of a
+## person's sleeping nest).
 func sleep_units(v: Dictionary) -> void:
 	var nm := sleep_name(v)
-	var us := group_of(String(v.get("tag", "")), String(v.get("team", "")), String(v.get("side", ""))).filter(func(e) -> bool: return e is Unit)
+	var us := _sleep_group(v)
 	for u in us:
-		u.set_meta("mission_asleep", nm)
-		u.cmd_stop()
-		u.target = null
-		u.m_pace = 0.0
-		u.m_unarmed = true
+		_put_to_sleep(u, nm)
 	sleeping[nm] = {"units": us, "within": float(v.get("within", 6)) * Defs.TILE, "by": String(v.get("by", "")),
-		"hurt": bool(v.get("hurt", true)), "hp": us.map(func(u) -> float: return u.hp), "then": v.get("then", {})}
+		"hurt": bool(v.get("hurt", true)), "hp": us.map(func(u) -> float: return u.hp), "then": v.get("then", {}),
+		"keep": bool(v.get("keep", false)), "q": v}
 	woke.erase(nm)
 	if game.mlog:
 		game.mlog.add("(mission) %s asleep (%d)" % [nm, us.size()])
+
+
+func _sleep_group(v: Dictionary) -> Array:
+	var no: Array = v.get("except_kinds", [])
+	return group_of(String(v.get("tag", "")), String(v.get("team", "")), String(v.get("side", ""))).filter(
+		func(e) -> bool: return e is Unit and not no.has(e.kind))
+
+
+func _put_to_sleep(u: Unit, nm: String) -> void:
+	u.set_meta("mission_asleep", nm)
+	u.cmd_stop()
+	u.target = null
+	u.m_pace = 0.0
+	u.m_unarmed = true
 
 
 ## WAKE: the group gets up (and carries out its "then" order).
@@ -1554,6 +1574,13 @@ func _tick_sleep() -> void:
 			continue
 		var sl: Dictionary = sleeping[nm]
 		var us: Array = sl["units"]
+		if bool(sl.get("keep", false)):
+			# (a03: newcomers to a sleeping group sleep too: the hatchlings of a person's nest)
+			for u in _sleep_group(sl["q"]):
+				if not us.has(u) and not u.dead:
+					_put_to_sleep(u, nm)
+					us.append(u)
+					(sl["hp"] as Array).append(u.hp)
 		var wake_now := false
 		for i in us.size():
 			var u = us[i]

@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.55", "items": [
+		"ACT 1, THE LOST PLATEAU (CAMPAIGN, THE NATURALIST, after Specimen One): the cloud mountain north of the Rio Negro, September 2767. Lead Valadares, the Crown's mapmaker, and his small party up the cliff in the mist, take the four survey marks while the creatures' nest sleeps in its hollow, decide what becomes of the map (draw it for the Crown or withhold it), then race the waking nest and the Tyrant Sire down to Benedito's canoe. How Specimen One ended changes it: the guides from Nazaré, the eggs the pack carried north, the walking swamp, the red pack. Alone you may also lead THE NEST instead (YOU PLAY: on the briefing): your hunters sleep while the strangers climb, then hunt them before they reach the river. Every line and picture is still a placeholder.",
+		"The Naturalist's hub: Lindqvist reads the mapmaker's report after The Lost Plateau.",
+	]},
 	{"v": "0.38.54", "items": [
 		"Project files only: two Godot id files for the Fürth Line's test and balance tools.",
 	]},

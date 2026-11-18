@@ -35,6 +35,10 @@ const ROLES := {
 	"villager": {"kind": "labourer", "art": "b_villager", "about": "A villager of Nossa Senhora de Nazaré."},
 	"benedito": {"kind": "labourer", "art": "b_benedito", "name": "Benedito", "hp": 120, "about": "The river trader with the canoes."},
 	"linnea": {"kind": "brood_mother", "art": "b_linnea", "name": "Linnea", "hp": 900, "scale": 0.3, "about": "Specimen One."},
+	# (a03_plateau, three months on: she has grown, drawn at half the Mother's size among her own)
+	"linnea_grown": {"kind": "brood_mother", "art": "b_linnea", "name": "Linnea", "hp": 1400, "scale": 0.5, "about": "Specimen One, grown."},
+	# (a03_plateau: a man of Nazaré who knows the paths up the cloud mountain)
+	"guide": {"kind": "labourer", "art": "b_villager", "name": "Guide", "hp": 90, "about": "A man of Nazaré who knows the mountain's paths."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)

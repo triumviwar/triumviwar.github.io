@@ -1,0 +1,2973 @@
+{
+	"id": "a03_plateau",
+	"title": "The Lost Plateau",
+	"summary": "The cloud mountain north of the Rio Negro, September 2767. The Crown's mapmaker climbs the mountain the creatures came down from, to map it, and finds them asleep in their nest.",
+	"map": "campaign:cloud_plateau",
+	"voice": "a03",
+	"light": "jungle_day",
+	"floor": [
+		0.7,
+		0.74,
+		0.68
+	],
+	"mist": {
+		"sight": 0.5
+	},
+	"expansion_spots": false,
+	"manual_end": true,
+	"difficulty": {
+		"easy": {
+			"clocks": 1.25,
+			"spawns": 0.75
+		},
+		"hard": {
+			"clocks": 0.9,
+			"spawns": 1.2
+		}
+	},
+	"modes": [
+		"solo",
+		"versus"
+	],
+	"solo_sides": [
+		"party",
+		"nest"
+	],
+	"sides": [
+		{
+			"id": "party",
+			"name": "The Crown's Party",
+			"about": "Valadares, the Crown's mapmaker, with Benedito, the boundary commission's men and the guides from Nazaré."
+		},
+		{
+			"id": "nest",
+			"name": "The Nest",
+			"about": "The creatures' home on the cloud mountain: the Mother in her hollow, her hunters asleep, the Sire away."
+		},
+		{
+			"id": "rival",
+			"name": "The Red Pack",
+			"about": "The other pack of the Rio Negro, driven up the mountain after the station fell."
+		}
+	],
+	"teams": [
+		{
+			"id": "party",
+			"side": "party",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "camp",
+			"powder": 200,
+			"control": {
+				"solo": "p1",
+				"versus": "p1",
+				"foe": "script"
+			}
+		},
+		{
+			"id": "nest",
+			"side": "nest",
+			"faction": "brood",
+			"colour": 2,
+			"start": "standard",
+			"hall": [
+				61,
+				19
+			],
+			"hall_tag": "nest_mother",
+			"camera": "hollow",
+			"gold": 300,
+			"roster": {
+				"deny": [
+					"tyrannosaur"
+				]
+			},
+			"control": {
+				"solo": "script",
+				"versus": "p2"
+			}
+		},
+		{
+			"id": "kin",
+			"side": "nest",
+			"faction": "brood",
+			"colour": 2,
+			"start": "none",
+			"camera": "hollow",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "patrol",
+			"side": "nest",
+			"faction": "brood",
+			"colour": 2,
+			"start": "none",
+			"camera": "hollow",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "rival",
+			"side": "rival",
+			"faction": "brood",
+			"colour": 1,
+			"start": "none",
+			"camera": "camp",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		}
+	],
+	"areas": {
+		"landing": [
+			58,
+			103,
+			12,
+			5
+		],
+		"camp": [
+			57,
+			88,
+			14,
+			9
+		],
+		"cache": [
+			66,
+			93,
+			3,
+			3
+		],
+		"trail_w": [
+			34,
+			78,
+			6,
+			5
+		],
+		"trail_e": [
+			84,
+			83,
+			7,
+			6
+		],
+		"stair_foot": [
+			22,
+			67,
+			9,
+			5
+		],
+		"stair_top": [
+			22,
+			60,
+			8,
+			5
+		],
+		"split_foot": [
+			94,
+			67,
+			9,
+			5
+		],
+		"split_top": [
+			96,
+			58,
+			5,
+			6
+		],
+		"split_in": [
+			94,
+			48,
+			8,
+			6
+		],
+		"falls": [
+			14,
+			60,
+			18,
+			18
+		],
+		"path_w": [
+			16,
+			54,
+			18,
+			24
+		],
+		"path_e": [
+			88,
+			44,
+			18,
+			32
+		],
+		"top": [
+			12,
+			38,
+			104,
+			20
+		],
+		"cairn": [
+			24,
+			46,
+			8,
+			7
+		],
+		"source": [
+			24,
+			15,
+			7,
+			10
+		],
+		"rim": [
+			56,
+			37,
+			15,
+			5
+		],
+		"lookout": [
+			108,
+			27,
+			9,
+			9
+		],
+		"pw_a": [
+			28,
+			36,
+			6,
+			5
+		],
+		"pw_b": [
+			36,
+			54,
+			6,
+			5
+		],
+		"pe_a": [
+			98,
+			18,
+			7,
+			6
+		],
+		"pe_b": [
+			102,
+			42,
+			6,
+			6
+		],
+		"hollow": [
+			41,
+			12,
+			46,
+			23
+		],
+		"nest_core": [
+			54,
+			14,
+			22,
+			13
+		],
+		"kin": [
+			70,
+			18,
+			5,
+			4
+		],
+		"hollow_ramps": [
+			44,
+			33,
+			40,
+			4
+		],
+		"rf_a": [
+			38,
+			76,
+			6,
+			5
+		],
+		"rf_b": [
+			80,
+			80,
+			6,
+			5
+		]
+	},
+	"counters": {
+		"marks": {
+			"start": 0,
+			"of": 4
+		},
+		"party0": {
+			"start": 0
+		},
+		"down": {
+			"start": 0
+		},
+		"left": {
+			"start": 0
+		}
+	},
+	"exits": [
+		{
+			"area": "landing",
+			"team": "party",
+			"except": [
+				"valadares",
+				"cache"
+			],
+			"counter": "down",
+			"after": "part3"
+		}
+	],
+	"units": [
+		{
+			"team": "party",
+			"kind": "dismounted",
+			"as": "valadares",
+			"count": 1,
+			"at": [
+				62,
+				90
+			],
+			"tag": "valadares"
+		},
+		{
+			"team": "party",
+			"kind": "labourer",
+			"as": "benedito",
+			"count": 1,
+			"at": [
+				64,
+				91
+			],
+			"tag": "benedito"
+		},
+		{
+			"team": "party",
+			"kind": "musketeer",
+			"count": 4,
+			"at": "camp",
+			"tag": "men"
+		},
+		{
+			"team": "party",
+			"kind": "labourer",
+			"as": "guide",
+			"count": 1,
+			"at": "camp",
+			"tag": "guides",
+			"if": {
+				"not": {
+					"past": {
+						"b01_specimen.saved": "few"
+					}
+				}
+			},
+			"fixed": true
+		},
+		{
+			"team": "party",
+			"kind": "labourer",
+			"as": "guide",
+			"count": 1,
+			"at": "camp",
+			"tag": "guides",
+			"if": {
+				"past": {
+					"b01_specimen.saved": "many"
+				}
+			},
+			"fixed": true
+		},
+		{
+			"team": "party",
+			"kind": "musketeer",
+			"count": 6,
+			"at": "camp",
+			"tag": "teles_men",
+			"if": {
+				"past": {
+					"b01_specimen.teles": "told"
+				}
+			}
+		},
+		{
+			"team": "party",
+			"kind": "powder_wagon",
+			"count": 1,
+			"at": "cache",
+			"tag": "cache"
+		},
+		{
+			"team": "nest",
+			"kind": "raptor",
+			"count": 6,
+			"at": "nest_core",
+			"tag": "nest_guard"
+		},
+		{
+			"team": "nest",
+			"kind": "raptor",
+			"count": 4,
+			"at": "nest_core",
+			"tag": "nest_guard",
+			"name": "Young",
+			"if": {
+				"past": {
+					"b01_specimen.eggs": "taken"
+				}
+			}
+		},
+		{
+			"team": "nest",
+			"kind": "spitter",
+			"count": 2,
+			"at": "nest_core",
+			"tag": "nest_guard"
+		},
+		{
+			"team": "nest",
+			"kind": "mound_turtle",
+			"count": 1,
+			"at": [
+				52,
+				26
+			],
+			"tag": "turtles"
+		},
+		{
+			"team": "nest",
+			"kind": "mound_turtle",
+			"count": 1,
+			"at": [
+				78,
+				27
+			],
+			"tag": "turtles",
+			"if": {
+				"past": {
+					"b01_specimen.turtle": "early"
+				}
+			}
+		},
+		{
+			"team": "kin",
+			"kind": "brood_mother",
+			"as": "linnea_grown",
+			"count": 1,
+			"at": "kin",
+			"tag": "linnea"
+		},
+		{
+			"team": "patrol",
+			"kind": "raptor",
+			"count": 3,
+			"at": "pw_a",
+			"tag": "patrol_w",
+			"if": {
+				"not": {
+					"playing": "nest"
+				}
+			}
+		},
+		{
+			"team": "patrol",
+			"kind": "raptor",
+			"count": 3,
+			"at": "pe_a",
+			"tag": "patrol_e",
+			"if": {
+				"not": {
+					"playing": "nest"
+				}
+			}
+		},
+		{
+			"team": "rival",
+			"kind": "raptor",
+			"count": 3,
+			"at": "rf_a",
+			"tag": "red_pack",
+			"if": {
+				"not": {
+					"past": {
+						"b01_specimen.rival": "driven"
+					}
+				}
+			}
+		}
+	],
+	"buildings": [],
+	"objectives": [
+		{
+			"id": "valadares",
+			"side": "party",
+			"primary": true,
+			"kind": "protect",
+			"tag": "valadares",
+			"text": "Valadares must live."
+		},
+		{
+			"id": "rains",
+			"side": "party",
+			"primary": true,
+			"kind": "countdown",
+			"clock": "rains",
+			"text": "The rains come in {clock:rains}: Benedito will not wait longer."
+		},
+		{
+			"id": "climb",
+			"side": "party",
+			"primary": true,
+			"kind": "manual",
+			"text": "THE CLIMB: take Valadares up the cliff (by the waterfall stair or the split in the rock)."
+		},
+		{
+			"id": "survey",
+			"side": "party",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE SURVEY: Valadares stays 10 seconds at each survey mark ({marks} of 4): the cairn, the river's source, the nest's rim, the lookout."
+		},
+		{
+			"id": "softly",
+			"side": "party",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Walk softly: do not go near the sleeping creatures."
+		},
+		{
+			"id": "flee",
+			"side": "party",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Down to Benedito's landing with Valadares and everyone you can bring ({down} down)."
+		},
+		{
+			"id": "canoe",
+			"side": "party",
+			"primary": true,
+			"kind": "countdown",
+			"clock": "canoe",
+			"hidden": true,
+			"text": "Benedito's canoe leaves in {clock:canoe}."
+		},
+		{
+			"id": "n_mother",
+			"side": "nest",
+			"primary": true,
+			"kind": "protect",
+			"tag": "nest_mother",
+			"hidden": true,
+			"text": "The Mother must live."
+		},
+		{
+			"id": "n_sleep",
+			"side": "nest",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE NEST SLEEPS: strangers are climbing the mountain. Your hunters sleep until they come close; the Mother, the grubs and the Rootmaws work on. Grow the nest."
+		},
+		{
+			"id": "n_hunt",
+			"side": "nest",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE HUNT: the Sire is home. Kill the mapmaker, or bring the strangers under half, before they reach the river."
+		}
+	],
+	"triggers": [
+		{
+			"id": "start",
+			"when": {
+				"time": 0
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "linnea",
+						"on": true
+					}
+				},
+				{
+					"cage": {
+						"tag": "linnea",
+						"on": true
+					}
+				},
+				{
+					"pin": {
+						"tag": "cache",
+						"on": true
+					}
+				},
+				{
+					"name": {
+						"tag": "cache",
+						"name": "The supply cache"
+					}
+				},
+				{
+					"name": {
+						"tag": "nest_mother",
+						"name": "The Mother"
+					}
+				},
+				{
+					"counter": {
+						"name": "party0",
+						"count": {
+							"team": "party",
+							"kind": [
+								"musketeer",
+								"labourer",
+								"dismounted"
+							]
+						}
+					}
+				},
+				{
+					"clock": {
+						"name": "rains",
+						"secs": 840
+					}
+				}
+			]
+		},
+		{
+			"id": "asleep",
+			"when": {
+				"all": [
+					{
+						"time": 0.25
+					},
+					{
+						"not": {
+							"playing": "nest"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"sleep": {
+						"tag": "nest_guard",
+						"name": "nest",
+						"within": 6,
+						"by": "party"
+					}
+				},
+				{
+					"spare": {
+						"tag": "nest_mother",
+						"on": true
+					}
+				}
+			]
+		},
+		{
+			"id": "asleep_p",
+			"when": {
+				"all": [
+					{
+						"time": 0.25
+					},
+					{
+						"playing": "nest"
+					}
+				]
+			},
+			"do": [
+				{
+					"sleep": {
+						"team": "nest",
+						"name": "nest",
+						"within": 6,
+						"by": "party",
+						"keep": true,
+						"except_kinds": [
+							"brood_mother",
+							"rootmaw",
+							"mound_turtle",
+							"dilophosaurus",
+							"pterodactyl",
+							"tyrannosaur",
+							"grub",
+							"brood_egg",
+							"food_pile"
+						]
+					}
+				},
+				{
+					"objective": {
+						"id": "n_mother",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "n_sleep",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "patrols",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"not": {
+							"playing": "nest"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "patrol_w",
+						"do": "route",
+						"route": [
+							"pw_a",
+							"pw_b"
+						],
+						"loop": true,
+						"attack": true,
+						"name": "pw"
+					}
+				},
+				{
+					"order": {
+						"tag": "patrol_e",
+						"do": "route",
+						"route": [
+							"pe_a",
+							"pe_b"
+						],
+						"loop": true,
+						"attack": true,
+						"name": "pe"
+					}
+				},
+				{
+					"order": {
+						"tag": "red_pack",
+						"do": "route",
+						"route": [
+							"rf_a",
+							"rf_b"
+						],
+						"loop": true,
+						"attack": true,
+						"name": "red"
+					}
+				}
+			]
+		},
+		{
+			"id": "red_prowl",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"playing": "nest"
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "red_pack",
+						"do": "route",
+						"route": [
+							"rf_a",
+							"rf_b"
+						],
+						"loop": true,
+						"attack": true,
+						"name": "red"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"playing": "party"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_1",
+						"b_1",
+						"tip_1"
+					]
+				},
+				{
+					"ping": {
+						"area": "stair_foot"
+					}
+				},
+				{
+					"ping": {
+						"area": "split_foot"
+					}
+				}
+			]
+		},
+		{
+			"id": "guide_1",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"not": {
+							"past": {
+								"b01_specimen.saved": "few"
+							}
+						}
+					},
+					{
+						"playing": "party"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"g_stair"
+					]
+				},
+				{
+					"reveal": {
+						"area": "path_w",
+						"side": "party",
+						"secs": 900
+					}
+				},
+				{
+					"ping": {
+						"area": "stair_top"
+					}
+				}
+			]
+		},
+		{
+			"id": "guide_2",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"past": {
+							"b01_specimen.saved": "many"
+						}
+					},
+					{
+						"playing": "party"
+					}
+				]
+			},
+			"delay": 8,
+			"do": [
+				{
+					"say": [
+						"g_split"
+					]
+				},
+				{
+					"reveal": {
+						"area": "path_e",
+						"side": "party",
+						"secs": 900
+					}
+				},
+				{
+					"ping": {
+						"area": "split_top"
+					}
+				}
+			]
+		},
+		{
+			"id": "no_guides",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"past": {
+							"b01_specimen.saved": "few"
+						}
+					},
+					{
+						"playing": "party"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_noguide"
+					]
+				}
+			]
+		},
+		{
+			"id": "teles_men",
+			"when": {
+				"all": [
+					{
+						"time": 3
+					},
+					{
+						"past": {
+							"b01_specimen.teles": "told"
+						}
+					},
+					{
+						"playing": "party"
+					}
+				]
+			},
+			"delay": 14,
+			"do": [
+				{
+					"say": [
+						"v_teles"
+					]
+				}
+			]
+		},
+		{
+			"id": "pieter",
+			"when": {
+				"all": [
+					{
+						"time": 3
+					},
+					{
+						"playing": "party"
+					}
+				]
+			},
+			"delay": 22,
+			"do": [
+				{
+					"say": [
+						"v_drawings"
+					]
+				}
+			]
+		},
+		{
+			"id": "pieter_alive",
+			"when": {
+				"all": [
+					{
+						"fired": "pieter"
+					},
+					{
+						"past": {
+							"b01_specimen.pieter": "alive"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_pieter"
+					]
+				}
+			]
+		},
+		{
+			"id": "pieter_lost",
+			"when": {
+				"all": [
+					{
+						"fired": "pieter"
+					},
+					{
+						"not": {
+							"past": {
+								"b01_specimen.pieter": "alive"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_pieter_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "red_seen",
+			"when": {
+				"all": [
+					{
+						"not": {
+							"past": {
+								"b01_specimen.rival": "driven"
+							}
+						}
+					},
+					{
+						"seen": {
+							"tag": "red_pack",
+							"by": "party"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"b_red"
+					]
+				}
+			]
+		},
+		{
+			"id": "cache_tip",
+			"when": {
+				"all": [
+					{
+						"time": 40
+					},
+					{
+						"playing": "party"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"tip_cache"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_n",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"playing": "nest"
+					}
+				]
+			},
+			"do": [
+				{
+					"ping": {
+						"area": "stair_foot"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/linnea_call",
+						"area": "kin",
+						"vol": -6
+					}
+				}
+			]
+		},
+		{
+			"id": "on_top",
+			"when": {
+				"count": {
+					"tag": "valadares",
+					"area": "top",
+					"at_least": 1
+				}
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "climb",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "survey",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "softly",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"v_top",
+						"tip_marks"
+					]
+				},
+				{
+					"ping": {
+						"area": "cairn"
+					}
+				},
+				{
+					"ping": {
+						"area": "source"
+					}
+				},
+				{
+					"ping": {
+						"area": "rim"
+					}
+				},
+				{
+					"ping": {
+						"area": "lookout"
+					}
+				}
+			]
+		},
+		{
+			"id": "mark_cairn",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"tag": "valadares",
+							"area": "cairn",
+							"secs": 10
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "marks",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"v_cairn"
+					]
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"area": "cairn",
+						"vol": -14
+					}
+				},
+				{
+					"ping": {
+						"area": "cairn"
+					}
+				}
+			]
+		},
+		{
+			"id": "mark_source",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"tag": "valadares",
+							"area": "source",
+							"secs": 10
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "marks",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"v_source"
+					]
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"area": "source",
+						"vol": -14
+					}
+				},
+				{
+					"ping": {
+						"area": "source"
+					}
+				}
+			]
+		},
+		{
+			"id": "mark_rim",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"tag": "valadares",
+							"area": "rim",
+							"secs": 10
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "marks",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"v_rim"
+					]
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"area": "rim",
+						"vol": -14
+					}
+				},
+				{
+					"ping": {
+						"area": "rim"
+					}
+				},
+				{
+					"reveal": {
+						"area": "hollow",
+						"side": "party",
+						"secs": 60
+					}
+				},
+				{
+					"ping": {
+						"area": "kin"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/linnea_call",
+						"area": "kin",
+						"vol": -8
+					}
+				}
+			]
+		},
+		{
+			"id": "mark_lookout",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"tag": "valadares",
+							"area": "lookout",
+							"secs": 10
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "marks",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"v_lookout"
+					]
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"area": "lookout",
+						"vol": -14
+					}
+				},
+				{
+					"ping": {
+						"area": "lookout"
+					}
+				},
+				{
+					"reveal": {
+						"area": "path_e",
+						"side": "party",
+						"secs": 900
+					}
+				}
+			]
+		},
+		{
+			"id": "rim_linnea",
+			"when": {
+				"fired": "mark_rim"
+			},
+			"delay": 5,
+			"do": [
+				{
+					"say": [
+						"v_linnea",
+						"b_linnea"
+					]
+				}
+			]
+		},
+		{
+			"id": "rim_young",
+			"when": {
+				"all": [
+					{
+						"fired": "mark_rim"
+					},
+					{
+						"past": {
+							"b01_specimen.eggs": "taken"
+						}
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"say": [
+						"v_young"
+					]
+				}
+			]
+		},
+		{
+			"id": "rim_turtle",
+			"when": {
+				"all": [
+					{
+						"fired": "mark_rim"
+					},
+					{
+						"past": {
+							"b01_specimen.turtle": "early"
+						}
+					}
+				]
+			},
+			"delay": 16,
+			"do": [
+				{
+					"say": [
+						"v_turtle"
+					]
+				}
+			]
+		},
+		{
+			"id": "surveyed",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "marks",
+							"at_least": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"objective": {
+						"id": "survey",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"v_done"
+					]
+				},
+				{
+					"choice": {
+						"id": "map",
+						"side": "party",
+						"default": "drawn",
+						"time": 30,
+						"line": "v_choice",
+						"title": "THE MAP: the way up the cloud mountain.",
+						"options": [
+							{
+								"id": "drawn",
+								"label": "DRAW IT FOR THE CROWN",
+								"about": "A mapmaker's duty: the Crown must know what is here, and the way to it.",
+								"do": [
+									{
+										"say": [
+											"v_drawn"
+										]
+									}
+								]
+							},
+							{
+								"id": "withheld",
+								"label": "WITHHOLD IT",
+								"about": "Only a sealed letter to the Church. No man should come up here for profit.",
+								"do": [
+									{
+										"say": [
+											"v_withheld"
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "chosen",
+			"when": {
+				"any": [
+					{
+						"flag": {
+							"map": "drawn"
+						}
+					},
+					{
+						"flag": {
+							"map": "withheld"
+						}
+					}
+				]
+			},
+			"do": []
+		},
+		{
+			"id": "part3",
+			"when": {
+				"any": [
+					{
+						"fired": "chosen"
+					},
+					{
+						"awake": "nest"
+					},
+					{
+						"clock_out": "rains"
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"wake": {
+						"name": "nest"
+					}
+				},
+				{
+					"spawn": {
+						"team": "nest",
+						"kind": "tyrannosaur",
+						"count": 1,
+						"at": "stair_foot",
+						"tag": "sire",
+						"name": "The Tyrant Sire"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/sire_roar",
+						"area": "stair_foot"
+					}
+				},
+				{
+					"light": {
+						"to": "jungle_dusk",
+						"secs": 30
+					}
+				},
+				{
+					"mist": {
+						"sight": 0.7
+					}
+				},
+				{
+					"objective": {
+						"id": "softly",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3_party",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"clock_out": "rains"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_roar",
+						"v_run"
+					]
+				},
+				{
+					"objective": {
+						"id": "rains",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "flee",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "canoe",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "canoe",
+						"secs": 270
+					}
+				},
+				{
+					"ping": {
+						"area": "landing"
+					}
+				},
+				{
+					"ping": {
+						"area": "split_foot"
+					}
+				}
+			]
+		},
+		{
+			"id": "woke_early",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "surveyed"
+						}
+					},
+					{
+						"not": {
+							"clock_out": "rains"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_woke"
+					]
+				},
+				{
+					"objective": {
+						"id": "survey",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "softly",
+						"set": "failed"
+					}
+				},
+				{
+					"flag": {
+						"survey": "cut"
+					}
+				},
+				{
+					"choice": {
+						"id": "map",
+						"side": "party",
+						"default": "drawn",
+						"time": 30,
+						"line": "v_choice_run",
+						"title": "THE MAP: what Valadares saw before the nest woke.",
+						"options": [
+							{
+								"id": "drawn",
+								"label": "DRAW IT FOR THE CROWN",
+								"about": "A mapmaker's duty: the Crown must know what is here, and the way to it.",
+								"do": []
+							},
+							{
+								"id": "withheld",
+								"label": "WITHHOLD IT",
+								"about": "Only a sealed letter to the Church. No man should come up here for profit.",
+								"do": []
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "full_survey",
+			"when": {
+				"fired": "surveyed"
+			},
+			"do": [
+				{
+					"flag": {
+						"survey": "full"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3_nest",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "nest"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "n_sleep",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "n_hunt",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"area": "stair_foot"
+					}
+				},
+				{
+					"ping": {
+						"area": "split_top"
+					}
+				}
+			]
+		},
+		{
+			"id": "rained_out",
+			"when": {
+				"all": [
+					{
+						"clock_out": "rains"
+					},
+					{
+						"not": {
+							"fired": "surveyed"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3_party"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"b_rains"
+					]
+				},
+				{
+					"objective": {
+						"id": "survey",
+						"set": "failed"
+					}
+				},
+				{
+					"objective": {
+						"id": "climb",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "hunt",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "nest"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "nest_guard",
+						"do": "hunt",
+						"prey_team": "party",
+						"within": 40
+					}
+				},
+				{
+					"order": {
+						"tag": "patrol_w",
+						"do": "hunt",
+						"prey_team": "party",
+						"within": 30
+					}
+				},
+				{
+					"order": {
+						"tag": "patrol_e",
+						"do": "hunt",
+						"prey_team": "party",
+						"within": 30
+					}
+				},
+				{
+					"order": {
+						"tag": "sire",
+						"do": "hunt",
+						"prey": "valadares",
+						"within": 90
+					}
+				}
+			]
+		},
+		{
+			"id": "sire_climbs",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "nest"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "sire",
+						"do": "route",
+						"route": [
+							"stair_top",
+							"cairn"
+						],
+						"attack": true,
+						"name": "sire_up"
+					}
+				}
+			]
+		},
+		{
+			"id": "hunters_out",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "nest"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "nest_guard",
+						"do": "attack",
+						"to": "rim"
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"all": [
+					{
+						"fired": "part3_party"
+					},
+					{
+						"stay": {
+							"tag": "valadares",
+							"area": "landing",
+							"secs": 2
+						}
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"team": "party",
+									"kind": [
+										"musketeer",
+										"labourer"
+									],
+									"below": 1
+								}
+							},
+							{
+								"clock_out": "canoe"
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "down",
+						"add": 1
+					}
+				},
+				{
+					"tally": {
+						"flag": "party",
+						"counter": "down",
+						"of": "party0",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.5,
+								"some"
+							],
+							[
+								1,
+								"all"
+							]
+						]
+					}
+				},
+				{
+					"say": [
+						"b_push",
+						"v_end"
+					]
+				},
+				{
+					"objective": {
+						"id": "flee",
+						"set": "done"
+					}
+				},
+				{
+					"light": {
+						"to": "grey_dawn",
+						"secs": 8
+					}
+				},
+				{
+					"flag": {
+						"linnea": "seen"
+					}
+				}
+			]
+		},
+		{
+			"id": "won",
+			"when": {
+				"fired": "the_end"
+			},
+			"delay": 5,
+			"do": [
+				{
+					"win": "party"
+				}
+			]
+		},
+		{
+			"id": "canoe_gone",
+			"when": {
+				"all": [
+					{
+						"clock_out": "canoe"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"count": {
+								"tag": "valadares",
+								"area": "landing",
+								"at_least": 1
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"b_gone"
+					]
+				},
+				{
+					"objective": {
+						"id": "flee",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "hurt_v",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "valadares",
+							"below": 0.5
+						}
+					},
+					{
+						"playing": "party"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"b_hurt"
+					]
+				}
+			]
+		},
+		{
+			"id": "left_count",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "nest"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "left",
+						"count": {
+							"team": "party",
+							"kind": [
+								"musketeer",
+								"labourer",
+								"dismounted"
+							]
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "left",
+						"add_counter": "down"
+					}
+				},
+				{
+					"tally": {
+						"flag": "left",
+						"counter": "left",
+						"of": "party0",
+						"bands": [
+							[
+								0,
+								"under"
+							],
+							[
+								0.5,
+								"over"
+							]
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "n_broken",
+			"when": {
+				"all": [
+					{
+						"playing": "nest"
+					},
+					{
+						"flag": {
+							"left": "under"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "n_hunt",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"plateau": "kept"
+					}
+				},
+				{
+					"win": "nest"
+				}
+			]
+		},
+		{
+			"id": "n_killed",
+			"when": {
+				"all": [
+					{
+						"playing": "nest"
+					},
+					{
+						"dead": "valadares"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "n_hunt",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"plateau": "kept"
+					}
+				},
+				{
+					"win": "nest"
+				}
+			]
+		},
+		{
+			"id": "n_escaped",
+			"when": {
+				"all": [
+					{
+						"playing": "nest"
+					},
+					{
+						"fired": "the_end"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "n_hunt",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "p_up",
+			"when": {
+				"all": [
+					{
+						"time": 3
+					},
+					{
+						"not": {
+							"playing": "party"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "route",
+						"route": [
+							"trail_w",
+							"stair_foot",
+							"stair_top",
+							"cairn"
+						],
+						"name": "leg1"
+					}
+				},
+				{
+					"order": {
+						"tag": "benedito",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 3
+					}
+				},
+				{
+					"order": {
+						"tag": "guides",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 3
+					}
+				},
+				{
+					"order": {
+						"tag": "men",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 2
+					}
+				},
+				{
+					"order": {
+						"tag": "teles_men",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 3
+					}
+				}
+			]
+		},
+		{
+			"id": "p_leg2",
+			"when": {
+				"all": [
+					{
+						"fired": "mark_cairn"
+					},
+					{
+						"not": {
+							"playing": "party"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "route",
+						"route": [
+							"source"
+						],
+						"name": "leg2"
+					}
+				}
+			]
+		},
+		{
+			"id": "p_leg3",
+			"when": {
+				"all": [
+					{
+						"fired": "mark_source"
+					},
+					{
+						"not": {
+							"playing": "party"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "route",
+						"route": [
+							"rim"
+						],
+						"name": "leg3"
+					}
+				}
+			]
+		},
+		{
+			"id": "p_leg4",
+			"when": {
+				"all": [
+					{
+						"fired": "mark_rim"
+					},
+					{
+						"not": {
+							"playing": "party"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "route",
+						"route": [
+							"lookout"
+						],
+						"name": "leg4"
+					}
+				}
+			]
+		},
+		{
+			"id": "p_down",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "party"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "route",
+						"route": [
+							"split_in",
+							"split_top",
+							"split_foot",
+							"trail_e",
+							"landing"
+						],
+						"name": "down"
+					}
+				},
+				{
+					"order": {
+						"tag": "benedito",
+						"do": "route",
+						"route": [
+							"split_in",
+							"split_top",
+							"split_foot",
+							"trail_e",
+							"landing"
+						],
+						"name": "down_b"
+					}
+				},
+				{
+					"order": {
+						"tag": "guides",
+						"do": "route",
+						"route": [
+							"split_in",
+							"split_top",
+							"split_foot",
+							"trail_e",
+							"landing"
+						],
+						"name": "down_g"
+					}
+				},
+				{
+					"order": {
+						"tag": "men",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 2
+					}
+				},
+				{
+					"order": {
+						"tag": "teles_men",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 3
+					}
+				}
+			]
+		},
+		{
+			"id": "p_board",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "party"
+						}
+					},
+					{
+						"count": {
+							"tag": "valadares",
+							"area": "landing",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"order": {
+						"tag": "men",
+						"do": "move",
+						"to": "landing"
+					}
+				},
+				{
+					"order": {
+						"tag": "teles_men",
+						"do": "move",
+						"to": "landing"
+					}
+				}
+			]
+		}
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "party"
+		},
+		"valadares": {
+			"name": "Valadares",
+			"side": "party"
+		},
+		"benedito": {
+			"name": "Benedito",
+			"side": "party"
+		},
+		"guide": {
+			"name": "The guide from Nazaré",
+			"side": "party"
+		},
+		"narrator": {
+			"name": "The Mountain",
+			"side": "party"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "His first letter came from the burning station. His report came at Christmas, in a waxed case, with a map."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "The Crown's mapmaker. He wrote as he walked, and he wrote the truth. Let him tell it."
+		},
+		"v_open1": {
+			"who": "valadares",
+			"text": "Majesty. I turned my canoe north the morning the station burned, and followed the tracks up the creek."
+		},
+		"v_open2": {
+			"who": "valadares",
+			"text": "Three months. Benedito knew the mountain from his father: the old people call it the house of the clouds."
+		},
+		"v_open3": {
+			"who": "valadares",
+			"text": "We came to its foot in September, five men and the river trader, to map what no map had."
+		},
+		"k_open_n": {
+			"who": "king",
+			"text": "No creature wrote a report. But the mountain was theirs before it was anyone's."
+		},
+		"k_open_n2": {
+			"who": "king",
+			"text": "That September strangers came up their cliff in the mist, while the nest slept."
+		},
+		"v_1": {
+			"who": "valadares",
+			"to": "party",
+			"text": "Up the cliff, before the mist lifts and before the rains. Keep together."
+		},
+		"b_1": {
+			"who": "benedito",
+			"to": "party",
+			"text": "Two ways up, Senhor. The stair by the falls, and a crack in the rock to the east. I wait with the canoe."
+		},
+		"tip_1": {
+			"who": "valadares",
+			"to": "party",
+			"text": "We see little in this mist, and nothing sees us far. Musketeers in front."
+		},
+		"g_stair": {
+			"who": "guide",
+			"to": "party",
+			"text": "The stair by the falls. My grandfather went up there for feathers."
+		},
+		"g_split": {
+			"who": "guide",
+			"to": "party",
+			"text": "And the crack in the rock. Narrow, but a man can climb it with his hands."
+		},
+		"v_noguide": {
+			"who": "valadares",
+			"to": "party",
+			"text": "No one from Nazaré would come. We find the way ourselves."
+		},
+		"v_teles": {
+			"who": "valadares",
+			"to": "party",
+			"text": "The lieutenant sent six of his men. He knew what came down from here, and he wanted to see it."
+		},
+		"v_drawings": {
+			"who": "valadares",
+			"to": "party",
+			"text": "I carried the drawings of the creature from the pen, so I would know her."
+		},
+		"v_pieter": {
+			"who": "valadares",
+			"to": "party",
+			"text": "The doctor's boy, Pieter, drew her for me. A good hand."
+		},
+		"v_pieter_lost": {
+			"who": "valadares",
+			"to": "party",
+			"text": "The doctor's boy drew her before he was lost. I carried his drawings, God rest him."
+		},
+		"b_red": {
+			"who": "benedito",
+			"to": "party",
+			"text": "Red crests in the trees, Senhor. The other pack, the one that fought at the station. It came up here too."
+		},
+		"tip_cache": {
+			"who": "valadares",
+			"to": "party",
+			"text": "The powder is in the cache by the canoe. A man who has fired his shots refills there."
+		},
+		"v_top": {
+			"who": "valadares",
+			"to": "party",
+			"text": "The top. Rock towers, black water, and the cloud lying on everything."
+		},
+		"tip_marks": {
+			"who": "valadares",
+			"to": "party",
+			"text": "Four marks to take: a cairn, the river's source, the rim of the hollow, the lookout on the east edge. I stand at each a while to take my bearings."
+		},
+		"v_cairn": {
+			"who": "valadares",
+			"to": "party",
+			"text": "A cairn. Men have been here before us, and long ago."
+		},
+		"v_source": {
+			"who": "valadares",
+			"to": "party",
+			"text": "The river's source: a black pool, very cold. The flood that brought the egg down came from here."
+		},
+		"v_rim": {
+			"who": "valadares",
+			"to": "party",
+			"text": "The rim. Below it a hollow, and in the hollow a swamp that grows, and something huge rooted in it."
+		},
+		"v_linnea": {
+			"who": "valadares",
+			"to": "party",
+			"text": "And there, among them. The creature from the pen. Twice the size. She knows her home."
+		},
+		"b_linnea": {
+			"who": "benedito",
+			"to": "party",
+			"text": "They sleep, Senhor. Do not wake them. Not one step closer."
+		},
+		"v_young": {
+			"who": "valadares",
+			"to": "party",
+			"text": "Young ones, many, still soft. So the pack carried her eggs up here."
+		},
+		"v_turtle": {
+			"who": "valadares",
+			"to": "party",
+			"text": "Two mounds that breathe. A swamp that walked, the doctor's people said. It walked here."
+		},
+		"v_lookout": {
+			"who": "valadares",
+			"to": "party",
+			"text": "The lookout. The whole forest to the river, and the crack in the rock below: our way down."
+		},
+		"v_done": {
+			"who": "valadares",
+			"to": "party",
+			"text": "Four marks. I have the mountain on paper now."
+		},
+		"v_choice": {
+			"who": "valadares",
+			"to": "party",
+			"text": "Now the question I asked myself on that rock: who should have this map?"
+		},
+		"v_choice_run": {
+			"who": "valadares",
+			"to": "party",
+			"text": "Even running, I knew I would have to decide what to do with what I had seen."
+		},
+		"v_drawn": {
+			"who": "valadares",
+			"to": "party",
+			"text": "I drew it for the Crown. A mapmaker who hides a road is no mapmaker."
+		},
+		"v_withheld": {
+			"who": "valadares",
+			"to": "party",
+			"text": "I drew it, and sealed it, for the Church alone. No man should come here for profit."
+		},
+		"n_roar": {
+			"who": "narrator",
+			"to": "party",
+			"text": "Below the falls something roared, and the whole hollow answered it."
+		},
+		"v_run": {
+			"who": "valadares",
+			"to": "party",
+			"text": "He is home. Down the crack in the rock, now! To the canoe!"
+		},
+		"v_woke": {
+			"who": "valadares",
+			"to": "party",
+			"text": "We were too close. They are awake. Leave the survey: down, to the canoe!"
+		},
+		"b_hurt": {
+			"who": "benedito",
+			"to": "party",
+			"text": "Senhor, you are bleeding! Let the soldiers stand between you and them!"
+		},
+		"b_rains": {
+			"who": "benedito",
+			"to": "party",
+			"text": "The rains, Senhor. The river rises. I cannot wait longer."
+		},
+		"b_push": {
+			"who": "benedito",
+			"to": "party",
+			"text": "In! Push off! Paddle!"
+		},
+		"v_end": {
+			"who": "valadares",
+			"to": "party",
+			"text": "We pushed off with the cloud closing behind us."
+		},
+		"b_gone": {
+			"who": "benedito",
+			"to": "party",
+			"text": "The canoe is going, Senhor! I cannot hold it!"
+		},
+		"v_end1": {
+			"who": "valadares",
+			"text": "We came down to the river with what we had. The mountain kept the rest."
+		},
+		"v_end_all": {
+			"who": "valadares",
+			"text": "Every man who went up came down. I thank God for it in this report."
+		},
+		"v_end_some": {
+			"who": "valadares",
+			"text": "Not every man came down. Their names are at the end of this report."
+		},
+		"v_end_few": {
+			"who": "valadares",
+			"text": "Few of us came down. I write their names first, before the map."
+		},
+		"v_end_drawn": {
+			"who": "valadares",
+			"text": "The map is enclosed, Majesty. The way up, the marks, the nest. The Crown should know."
+		},
+		"v_end_withheld": {
+			"who": "valadares",
+			"text": "The map is not enclosed. I have sealed it for the Holy See. Forgive me."
+		},
+		"v_end_cut": {
+			"who": "valadares",
+			"text": "My survey is unfinished. The nest woke before I could take every mark."
+		},
+		"v_end_linnea": {
+			"who": "valadares",
+			"text": "I saw her, Majesty. The doctor's creature, grown, among her own. She was never his."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "He did his duty, and told me plainly what he saw."
+		},
+		"k_end_drawn": {
+			"who": "king",
+			"text": "I kept his map. Others bought copies of it from a clerk. That was not his doing."
+		},
+		"k_end_withheld": {
+			"who": "king",
+			"text": "The Church kept his map. The doctor found the way up without it, by a longer road."
+		},
+		"k_end_n1": {
+			"who": "king",
+			"text": "That is not how it went. Valadares came down the mountain, and his report came to me."
+		},
+		"k_end_n2": {
+			"who": "king",
+			"text": "But it could have gone that way. Then no one would have known what waited in the cloud."
+		}
+	},
+	"stills": {
+		"rome": {
+			"image": "res://campaign/stills/b01_01.jpg",
+			"caption": "Rome, the present. The King with the mapmaker's report."
+		},
+		"mountain": {
+			"image": "res://campaign/stills/a03_01.jpg",
+			"caption": "The cloud mountain north of the Rio Negro, September 2767."
+		},
+		"climb": {
+			"image": "res://campaign/stills/a03_02.jpg",
+			"caption": "The climb, by the falls, in the mist."
+		},
+		"nest": {
+			"image": "res://campaign/stills/a03_03.jpg",
+			"caption": "The nest in the hollow, asleep."
+		},
+		"map": {
+			"image": "res://campaign/stills/a03_04.jpg",
+			"caption": "The map."
+		},
+		"flight": {
+			"image": "res://campaign/stills/a03_05.jpg",
+			"caption": "Down to the river."
+		}
+	},
+	"opening": {
+		"party": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2"
+				]
+			},
+			{
+				"still": "mountain",
+				"lines": [
+					"v_open1",
+					"v_open2"
+				]
+			},
+			{
+				"still": "climb",
+				"lines": [
+					"v_open3"
+				]
+			}
+		],
+		"nest": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open_n"
+				]
+			},
+			{
+				"still": "nest",
+				"lines": [
+					"k_open_n2"
+				]
+			}
+		]
+	},
+	"ending": {
+		"party": [
+			{
+				"still": "flight",
+				"lines": [
+					"v_end1",
+					{
+						"id": "v_end_all",
+						"if": {
+							"flag": {
+								"party": "all"
+							}
+						}
+					},
+					{
+						"id": "v_end_some",
+						"if": {
+							"flag": {
+								"party": "some"
+							}
+						}
+					},
+					{
+						"id": "v_end_few",
+						"if": {
+							"flag": {
+								"party": "few"
+							}
+						}
+					},
+					{
+						"id": "v_end_cut",
+						"if": {
+							"flag": {
+								"survey": "cut"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "map",
+				"lines": [
+					{
+						"id": "v_end_drawn",
+						"if": {
+							"flag": {
+								"map": "drawn"
+							}
+						}
+					},
+					{
+						"id": "v_end_withheld",
+						"if": {
+							"flag": {
+								"map": "withheld"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "nest",
+				"lines": [
+					"v_end_linnea"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end1",
+					{
+						"id": "k_end_drawn",
+						"if": {
+							"flag": {
+								"map": "drawn"
+							}
+						}
+					},
+					{
+						"id": "k_end_withheld",
+						"if": {
+							"flag": {
+								"map": "withheld"
+							}
+						}
+					}
+				]
+			}
+		],
+		"nest": [
+			{
+				"still": "nest",
+				"lines": [
+					"k_end_n1"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_n2"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"party": {
+			"still": "mountain",
+			"text": [
+				"The cloud mountain north of the Rio Negro, September 2767. You are Valadares, the Crown's mapmaker, with Benedito, the boundary commission's men and whoever came from Nazaré.",
+				"Climb the cliff in the mist, take the four survey marks, decide what becomes of the map, and come down to the canoe alive.",
+				"Valadares must live. Do not wake what sleeps up there."
+			]
+		},
+		"nest": {
+			"still": "nest",
+			"text": [
+				"The cloud mountain, September 2767. You are the nest: the Mother in her hollow, her grubs and Rootmaws, her hunters asleep. The Sire is away.",
+				"Strangers are climbing your cliff. Let them come. When the Sire is home, hunt them: kill the mapmaker, or bring them under half, before they reach the river."
+			]
+		}
+	},
+	"debrief": {
+		"party": {
+			"still": "flight",
+			"title": "Down from the cloud",
+			"text": "Valadares came down from the plateau with his survey, and saw the creature from the pen among her own.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"map": "drawn"
+						}
+					},
+					"text": "He drew the map for the Crown."
+				},
+				{
+					"if": {
+						"flag": {
+							"map": "withheld"
+						}
+					},
+					"text": "He sealed the map for the Church alone."
+				},
+				{
+					"if": {
+						"flag": {
+							"party": "all"
+						}
+					},
+					"text": "Every man came down: {down} of {party0}."
+				},
+				{
+					"if": {
+						"flag": {
+							"party": "some"
+						}
+					},
+					"text": "{down} of {party0} came down."
+				},
+				{
+					"if": {
+						"flag": {
+							"party": "few"
+						}
+					},
+					"text": "Only {down} of {party0} came down."
+				}
+			]
+		},
+		"nest": {
+			"still": "nest",
+			"title": "The mountain keeps its own",
+			"text": "The strangers did not come down. The nest sleeps again in the cloud."
+		}
+	},
+	"next": {
+		"party": "",
+		"nest": ""
+	}
+}

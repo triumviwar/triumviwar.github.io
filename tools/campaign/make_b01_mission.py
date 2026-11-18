@@ -454,7 +454,7 @@ M = {
         "rival": {"still": "eyes", "title": "The pack is broken",
                   "text": "The rival pack held the forest, and Linnea stayed in her pen. Try again: the Old Mother and the Tyrant Sire must live."},
     },
-    "next": {"sire": "", "rival": ""},
+    "next": {"sire": "a03_plateau", "rival": ""},
 }
 
 out = os.path.join(os.path.dirname(__file__), "..", "..", "campaign", "missions", "b01_specimen.json")
