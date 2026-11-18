@@ -30,6 +30,11 @@ const URGENT_SHARE := 0.75       # (an urgent site's)
 const IDLE_MARGIN := 2.0         # (s) an idle helper must arrive this long before the site would be done without him
 const BUSY_SHARE := 0.25         # at most this share of the labourers building at once (idle helpers not counted)
 const SEND_MAX := 4              # helpers sent a think, all sites together
+## (test_ai_wall_vs_rush, the owner's extreme rush: a Farm hand pulled to the opening's second Farm at 0:46, with 7
+## labourers, put the next harvest a few seconds late, the Barracks' 150 gold missed the 58 s step by 20 gold and waited 40 s
+## for the next harvest: Barracks at 98 s, no Musketeer by 2:40, 13 labourers lost. Every harvest counts while one Farm
+## pays: below PULL_LABS labourers only idle ones help, and a working hand only at a site a rush or a push makes urgent.)
+const PULL_LABS := 14
 const CARRY_PEN := 4.0           # (s) a labourer with a harvest in his hands counts this much more walk
 
 var ai          # the AICrown
@@ -166,6 +171,7 @@ func tick() -> void:
 		if u.order == "build":
 			building_now += 1
 	var room := maxi(2, int(BUSY_SHARE * labs.size())) - building_now
+	var few := labs.size() < PULL_LABS
 	var left := SEND_MAX
 	var sites: Array = []
 	for b in game.buildings:
@@ -213,7 +219,7 @@ func tick() -> void:
 			if idle:
 				ok = walk + IDLE_MARGIN < work / float(n)
 			else:
-				if room <= 0:
+				if room <= 0 or (few and not (urgent and _rush_on())):
 					continue
 				ok = walk < share * (URGENT_SHARE if urgent else WALK_SHARE) and walk < work / float(n)
 			if not ok:

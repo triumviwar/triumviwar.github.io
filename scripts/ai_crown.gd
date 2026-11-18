@@ -636,7 +636,7 @@ func opt_switch(k: String) -> bool:
 		key = _cc_bo_key(key)
 		var pending: Dictionary = _bo_plan[bo_i] if bo_i < _bo_plan.size() else {}
 		_bo_plan = _bo_plan.slice(0, bo_i) + (plan[key] as Array).duplicate(true)
-		if not keep_pending_off and String(pending.get("do", "")) == "build" and not _st_done(pending) \
+		if not keep_pending_off and not OS.get_cmdline_user_args().has("keeppending:off%d" % team) and String(pending.get("do", "")) == "build" and not _st_done(pending) \
 				and not _bo_plan.slice(bo_i).any(func(st: Dictionary) -> bool: return String(st.get("do", "")) == "build" and String(st.get("k", "")) == String(pending["k"])):
 			# (crown-build-stack: the common opening's step still waiting at the pick (its Barracks, short of 150 gold by a
 			# second at 1:30) was cut with the old steps, and the Rush's own steps (bo_opt) take a Barracks as laid: the
