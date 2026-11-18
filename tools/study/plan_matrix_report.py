@@ -165,7 +165,7 @@ def main():
     P("Each cell: won or led / games (W-D-L) and, against OPTIMAL's games on the same map, round and opponent, better / "
       "worse and the sign test's p.\n")
     P("| %s plan | %s |" % (NAME[fac], " | ".join("v %s OPTIMAL" % NAME[o] for o in opps)))
-    P("|---|%s" % "---|" * len(opps))
+    P("|---|" + "---|" * len(opps))
     for p in plans:
         cells = []
         for o in opps:
