@@ -93,8 +93,12 @@ func _states() -> void:
 	check("new: a06 (built) locked until a01", pins["a06_barricades"]["state"] == "locked")
 	check("new: a04 (built) locked until a02", pins["a04_visit"]["state"] == "locked")
 	check("new: a05 (built) locked until a03", pins["a05_specimens"]["state"] == "locked")
-	for mid in ["a07_council"]:
-		check("new: %s is planned (not written yet)" % mid, pins[mid]["state"] == "planned")
+	check("new: a07 (built, the crossing) locked until a04, a05 and a06", pins["a07_council"]["state"] == "locked")
+	st = WarMapData.state(_p({"a04_visit": ["visit"], "a06_barricades": ["crown"]}))
+	check("a07 still locked with a04 and a06 but not a05", st["pins"]["a07_council"]["state"] == "locked")
+	st = WarMapData.state(_p({"a04_visit": ["visit"], "a05_specimens": ["expedition"], "a06_barricades": ["crown"]}))
+	check("a07 open once all three are won", st["pins"]["a07_council"]["state"] == "open")
+	st = WarMapData.state(_p({}))
 	check("new: Virginia purple, Franconia the empire's, the plateau blank", st["regions"]["virginia"] == "crown" and st["regions"]["franconia"] == "empire" and st["regions"]["plateau"] == "unknown")
 	check("new: no marks, an empty ledger", st["marks"].values().count(true) == 0 and (st["ledger"] as Array).is_empty())
 	# ---- after the three prologues (the canon-ish run)
@@ -225,13 +229,13 @@ func _ui() -> void:
 	var z0 := wm.zoom
 	wm.zoom_by(1.5)
 	check("zoom in", wm.zoom > z0)
-	# a planned pin: its card, no play button
+	# a locked pin: its card, no play button
 	wm.tap(wm.pin_screen(WarMapData.pin_of("a07_council")))
 	await process_frame
 	var card: Control = _find("WarCard")
 	check("a tap on Rome's seal opens its card", card != null and card.visible and CampaignMenu.map_pick == "a07_council")
 	var cs: Label = _find("CardState")
-	check("Rome: not written yet", cs != null and cs.text.contains(Loc.t("Not written yet.")) and _find("Card_Briefing") == null)
+	check("Rome: locked, opens after its three missions", cs != null and cs.text.contains(Loc.t("(locked)")) and _find("Card_Briefing") == null)
 	# an open pin: BRIEFING
 	wm.show_view("world", false)
 	await process_frame

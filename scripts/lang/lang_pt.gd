@@ -4007,7 +4007,7 @@ const T := {
 	"Every quarter of Rome stood. I was prouder of that than of anything I did that year.": "Todos os bairros de Roma ficaram de pé. Orgulhei-me mais disso do que de tudo o que fiz nesse ano.",
 	"Some of Rome burned. We rebuilt it that summer, street by street.": "Parte de Roma ardeu. Reconstruímo-la nesse verão, rua a rua.",
 	"Most of the east bank burned. Rome rebuilt it, and has not forgotten.": "Quase toda a margem leste ardeu. Roma reconstruiu-a, e não esqueceu.",
-	"We counted them on the steps in the morning: {saved} souls from the east bank.": "Contámo-los nos degraus de manhã: {saved} almas da margem leste.",
+	"We counted them on the steps in the morning, and wrote down every name.": "Contámo-los nos degraus de manhã, e escrevemos cada nome.",
 	"Hollweg and Lindqvist were gone by morning: Hollweg after his crates, south; Lindqvist to breed what was left, in secret.": "Hollweg e Lindqvist tinham partido de manhã: Hollweg atrás dos seus caixotes, para o sul; Lindqvist para criar o que restava, em segredo.",
 	"That was the first time I met them both. It was not the last.": "Foi a primeira vez que os encontrei aos dois. Não foi a última.",
 	"That is not how it went. They never reached the square.": "Não foi assim que aconteceu. Nunca chegaram à praça.",

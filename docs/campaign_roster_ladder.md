@@ -118,8 +118,10 @@ The economy a faction cannot play without; the first mission of the line teaches
   C3, the story's deny (no Town Hall or Farm in a siege camp) on top; the camp has a Foundry and a Horse Breeder
   standing; the Mortar is given (one) and can be made; C3's cards in pt/es; the row in test_roster_ladder.gd. The
   mission shows the Mortar on the barricades' men and canister on the rushes (docs/campaign_a06_build.md).
-- a07_council: THE CROWN bound to C4. The creatures and the automata are the other sides (scripted / versus): not
-  bound; if a versus player picks them, they get what the night of fire needs.
+- a07_council: BUILT (a07-council, 0.38.68): the King's guard and the garrison bound to C4, the story's deny (no Town
+  Hall or Farm: the King's treasury pays) on top; SANTO SPIRITO (a Church) stands by the piazza; Missionaries trained
+  there LEAD THE PEOPLE as Father Tomasz does (auto_tags); C4's cards in pt/es, said at 0:08. The creatures and the
+  automata (scripted / versus, the friend's pick) and the Assembly's cell are not bound (docs/campaign_a07_build.md).
 
 ## The rule for the other side
 
@@ -146,7 +148,7 @@ ladder there, never here by hand.
 | C1 | p01_leaf | governor guns | musketeer cannon | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon |
 | C2 | a01_presses | garrison watch | horse_breeder cuirassier | horse dismounted messenger | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger |
 | C3 | a06_barricades | army guns | foundry mortar | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar |
-| C4 | a07_council | crown | church missionary | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary |
+| C4 | a07_council | guard garrison | church missionary | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary |
 | C5 | (slot) | - | armoury matchlock bayonet | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet |
 | C6 | (slot) | - | dragoon charge | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge |
 | C7 | (slot) | - | armour powder_wagon | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon |

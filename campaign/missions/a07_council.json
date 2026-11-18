@@ -4550,7 +4550,7 @@
 		{
 			"id": "ladder_new",
 			"when": {
-				"time": 30
+				"time": 8
 			},
 			"do": [
 				{
@@ -4885,7 +4885,7 @@
 		},
 		"t_end_people": {
 			"who": "tomasz",
-			"text": "We counted them on the steps in the morning: {saved} souls from the east bank."
+			"text": "We counted them on the steps in the morning, and wrote down every name."
 		},
 		"k_end_defiance": {
 			"who": "king",

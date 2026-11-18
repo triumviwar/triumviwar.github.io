@@ -488,7 +488,7 @@ M = {
         "k_end_rome_all": {"who": "king", "text": "Every quarter of Rome stood. I was prouder of that than of anything I did that year."},
         "k_end_rome_some": {"who": "king", "text": "Some of Rome burned. We rebuilt it that summer, street by street."},
         "k_end_rome_few": {"who": "king", "text": "Most of the east bank burned. Rome rebuilt it, and has not forgotten."},
-        "t_end_people": {"who": "tomasz", "text": "We counted them on the steps in the morning: {saved} souls from the east bank."},
+        "t_end_people": {"who": "tomasz", "text": "We counted them on the steps in the morning, and wrote down every name."},
         "k_end_defiance": {"who": "king", "text": "Hollweg and Lindqvist were gone by morning: Hollweg after his crates, south; Lindqvist to breed what was left, in secret."},
         "k_end2": {"who": "king", "text": "That was the first time I met them both. It was not the last."},
         "k_end_lost1": {"who": "king", "text": "That is not how it went. They never reached the square."},
