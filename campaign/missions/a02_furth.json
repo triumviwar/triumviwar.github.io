@@ -239,6 +239,12 @@
 			8,
 			9
 		],
+		"behind_line": [
+			30,
+			1,
+			27,
+			58
+		],
 		"north_gate": [
 			102,
 			14,
@@ -341,6 +347,32 @@
 			"kind": "netter",
 			"count": 2,
 			"at": "honest_ring",
+			"tag": "g_def",
+			"order": "hold",
+			"if": {
+				"not": {
+					"playing": "guild"
+				}
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 5,
+			"at": "town",
+			"tag": "g_def",
+			"order": "hold",
+			"if": {
+				"not": {
+					"playing": "guild"
+				}
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "springer",
+			"count": 2,
+			"at": "town",
 			"tag": "g_def",
 			"order": "hold",
 			"if": {
@@ -1810,12 +1842,12 @@
 					{
 						"count": {
 							"team": "guild",
-							"below": 32
+							"below": 30
 						}
 					}
 				]
 			},
-			"every": 90,
+			"every": 120,
 			"do": [
 				{
 					"spawn": {
@@ -1830,7 +1862,54 @@
 					"order": {
 						"tag": "g_more",
 						"do": "attack",
-						"to": "meadow_gate"
+						"to": "inside_n"
+					}
+				}
+			]
+		},
+		{
+			"id": "g_answer",
+			"when": {
+				"all": [
+					{
+						"time": 20
+					},
+					{
+						"not": {
+							"playing": "guild"
+						}
+					},
+					{
+						"count": {
+							"team": "machine",
+							"area": "behind_line",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"every": 5,
+			"do": [
+				{
+					"order": {
+						"team": "guild",
+						"do": "hunt",
+						"prey_team": "machine",
+						"within": 9
+					}
+				},
+				{
+					"order": {
+						"team": "army",
+						"do": "hunt",
+						"prey_team": "machine",
+						"within": 7
+					}
+				},
+				{
+					"order": {
+						"tag": "hollweg",
+						"do": "hold"
 					}
 				}
 			]
@@ -2463,7 +2542,7 @@
 						"team": "machine",
 						"do": "hunt",
 						"prey": "hollweg",
-						"within": 6
+						"within": 14
 					}
 				}
 			]
@@ -3242,6 +3321,40 @@
 			]
 		},
 		{
+			"id": "m_mill_pend",
+			"when": {
+				"all": [
+					{
+						"fired": "m_mill"
+					},
+					{
+						"not": {
+							"dead": "seed_mill"
+						}
+					}
+				]
+			},
+			"delay": 60,
+			"every": 90,
+			"times": 3,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "pendulum",
+						"count": 1,
+						"at": "mill",
+						"tag": "m_pend"
+					}
+				},
+				{
+					"say": [
+						"m_pend"
+					]
+				}
+			]
+		},
+		{
 			"id": "m_mill_lost",
 			"when": {
 				"all": [
@@ -3660,6 +3773,11 @@
 			"who": "machine",
 			"to": "machine",
 			"text": "A seed at the Rednitz mill. New ground, half way to Fürth."
+		},
+		"m_pend": {
+			"who": "machine",
+			"to": "machine",
+			"text": "The mill seed has grown a Pendulum. Its blades bite through walls."
 		},
 		"m_mill_lost": {
 			"who": "machine",

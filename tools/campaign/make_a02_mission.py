@@ -161,7 +161,7 @@ M = {
         "line_n": [55, 2, 6, 33], "line_s": [55, 40, 6, 17], "road_gate": [55, 15, 7, 8], "meadow_gate": [55, 45, 7, 8],
         "road_mid": [76, 16, 14, 9], "meadow_mid": [76, 42, 14, 10], "mill": [65, 54, 12, 8], "mill_road": [62, 46, 10, 7],
         "link_n": [88, 19, 6, 6], "link_s": [88, 40, 6, 6], "old_bridge": [96, 29, 8, 9],
-        "north_gate": [102, 14, 11, 9], "south_gate": [102, 44, 11, 9], "nuremberg": [104, 1, 23, 78],
+        "behind_line": [30, 1, 27, 58], "north_gate": [102, 14, 11, 9], "south_gate": [102, 44, 11, 9], "nuremberg": [104, 1, 23, 78],
     },
     "counters": {"sorties": {"start": 0}, "army": {"start": 0}},
     "units": [
@@ -174,6 +174,8 @@ M = {
         {"team": "guild", "kind": "clock_soldier", "count": 6, "at": "inside_s", "tag": "g_def", "order": "hold", "if": NO_GUILD},
         {"team": "guild", "kind": "springer", "count": 3, "at": "inside_n", "tag": "g_def", "order": "hold", "if": NO_GUILD},
         {"team": "guild", "kind": "netter", "count": 2, "at": "honest_ring", "tag": "g_def", "order": "hold", "if": NO_GUILD},
+        {"team": "guild", "kind": "clock_soldier", "count": 5, "at": "town", "tag": "g_def", "order": "hold", "if": NO_GUILD},
+        {"team": "guild", "kind": "springer", "count": 2, "at": "town", "tag": "g_def", "order": "hold", "if": NO_GUILD},
         # ---- the Franconian army at the line
         {"team": "army", "kind": "dismounted", "count": 1, "at": "camp", "tag": "colonel", "name": "Colonel von Rauch", "order": "hold"},
         {"team": "army", "kind": "musketeer", "count": 5, "at": "road_gate", "tag": "line_n_men", "order": "hold"},
@@ -269,9 +271,14 @@ M = {
             {"clock": {"name": "sortie", "secs": 60}}]},
         # the scripted guild (the machine's player): the stop-work fitted by itself, its own reinforcements
         {"id": "g_stop", "when": {"all": [{"time": 60}, NO_GUILD]}, "do": [{"flag": {"stopwork": "fitted"}}]},
-        {"id": "g_grow", "when": {"all": [{"time": 90}, NO_GUILD, {"not": {"dead": "honest"}}, {"count": {"team": "guild", "below": 32}}]}, "every": 90, "do": [
+        {"id": "g_grow", "when": {"all": [{"time": 90}, NO_GUILD, {"not": {"dead": "honest"}}, {"count": {"team": "guild", "below": 30}}]}, "every": 120, "do": [
             {"spawn": {"team": "guild", "kind": "clock_soldier", "count": 2, "at": "honest_ring", "tag": "g_more"}},
-            {"order": {"tag": "g_more", "do": "attack", "to": "meadow_gate"}}]},
+            {"order": {"tag": "g_more", "do": "attack", "to": "inside_n"}}]},
+        # ...and it answers what comes through: its soldiers and the Franconians go for the machine's within reach
+        {"id": "g_answer", "when": {"all": [{"time": 20}, NO_GUILD, {"count": {"team": "machine", "area": "behind_line", "at_least": 1}}]}, "every": 5, "do": [
+            {"order": {"team": "guild", "do": "hunt", "prey_team": "machine", "within": 9}},
+            {"order": {"team": "army", "do": "hunt", "prey_team": "machine", "within": 7}},
+            {"order": {"tag": "hollweg", "do": "hold"}}]},
         {"id": "g_hollweg", "when": {"all": [{"time": 1}, NO_GUILD]}, "do": [{"order": {"tag": "hollweg", "do": "hold"}},
                                                                             {"order": {"tag": "jakob", "do": "hold"}}]},
         # ================================================================ PART 2 (the guild): THE SORTIE
@@ -306,7 +313,7 @@ M = {
         # through the line they go for the tower that made them, and for the man who made it
         {"id": "for_honest", "when": {"all": [{"fired": "wave_1"}, NO_MACHINE, {"not": {"fired": "the_end"}}]}, "every": 8, "do": [
             {"order": {"team": "machine", "do": "hunt", "prey": "honest", "within": 11}},
-            {"order": {"team": "machine", "do": "hunt", "prey": "hollweg", "within": 6}}]},
+            {"order": {"team": "machine", "do": "hunt", "prey": "hollweg", "within": 14}}]},
         {"id": "beat_1", "when": {"all": [{"fired": "wave_1"}, {"dead": "sortie1"}]}, "do": [{"counter": {"name": "sorties", "add": 1}}, {"say": ["col_beat"]}]},
         {"id": "beat_2", "when": {"all": [{"any": [{"fired": "wave_2"}, {"fired": "wave_2c"}]}, {"dead": "sortie2"}]}, "do": [{"counter": {"name": "sorties", "add": 1}}, {"say": ["h_beat"]}]},
         {"id": "beat_3", "when": {"all": [{"any": [{"fired": "wave_3"}, {"fired": "wave_3c"}]}, {"dead": "sortie3"},
@@ -359,6 +366,9 @@ M = {
             {"build": {"team": "machine", "kind": "clocktower", "at": "mill", "tag": "seed_mill"}},
             {"say": ["m_mill"]}, {"ping": {"area": "mill"}}, {"objective": {"id": "m_mill", "set": "active"}}]},
         {"id": "m_mill_income", "when": {"all": [{"fired": "m_mill"}, {"not": {"dead": "seed_mill"}}]}, "every": 30, "do": [{"give": {"team": "machine", "gold": 70}}]},
+        # ...and while it stands it grows a Pendulum every 1:30 (three at most): the machine's tool against the tower
+        {"id": "m_mill_pend", "when": {"all": [{"fired": "m_mill"}, {"not": {"dead": "seed_mill"}}]}, "delay": 60, "every": 90, "times": 3, "do": [
+            {"spawn": {"team": "machine", "kind": "pendulum", "count": 1, "at": "mill", "tag": "m_pend"}}, {"say": ["m_pend"]}]},
         {"id": "m_mill_lost", "when": {"all": [{"fired": "m_mill"}, {"dead": "seed_mill"}]}, "do": [{"objective": {"id": "m_mill", "set": "failed"}}, {"say": ["m_mill_lost"]}]},
         # the scripted guild answers the mill: a strike from the meadow gate at 10:00
         {"id": "g_strike", "when": {"all": [{"time": 600}, NO_GUILD, {"not": {"dead": "seed_mill"}}]}, "do": [
@@ -433,6 +443,7 @@ M = {
         "m_intro": {"who": "machine", "to": "machine", "text": "Tick. Tock. West along the river. The tower at Fürth ticks on the beat. Stop it."},
         "m_tip": {"who": "machine", "to": "machine", "text": "Your seeds by the gates send constructs and cogs while they stand. Off your ground your constructs run down."},
         "m_mill": {"who": "machine", "to": "machine", "text": "A seed at the Rednitz mill. New ground, half way to Fürth."},
+        "m_pend": {"who": "machine", "to": "machine", "text": "The mill seed has grown a Pendulum. Its blades bite through walls."},
         "m_mill_lost": {"who": "machine", "to": "machine", "text": "The mill seed is burnt."},
         "m_warn": {"who": "machine", "to": "machine", "text": "Two minutes. The line is almost closed."},
         # the ending: the guild's

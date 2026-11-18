@@ -25,6 +25,17 @@
 
 ## Current work
 
+- a02_furth BUILT (job a02-furth, 0.38.53, branch a02-furth, docs/campaign_a02_build.md): Act 1's "The Fürth Line" (the
+  Clockmaker line after c01, March 2768): map campaign:furth_line (tools/campaign/make_furth_map.py), mission
+  tools/campaign/make_a02_mission.py, stand-in stills a02_01..05 (make_a02_stills.py; prompts in the doc). The guild
+  (BLUE) fits the Honest One's STOP-WORK (a STAY) and builds a Light Works, holds the Crown's palisade line (PURPLE army,
+  co-op p2) against three sorties, burns the Rednitz mill's seed: a WIN (flag furth strong / thin). SOLO MIRROR: the
+  Machine (RED, the seeds' timetable as income) burns the Honest One or kills Hollweg before 18:00 (flag furth fallen;
+  the King: "that is not how it went"). Reads c01's bells / saved / jakob / cut / gate (missing = c01's defaults). The
+  Clockmaker hub is the guild's barn at Fürth after c01 (the c01 painting tinted) and the Machine's City for a player
+  who won a02 as the Machine (Campaign.record keeps "side"; hub "sides" / "not_sides"). Engine: count "built", order
+  "idle", hunt "prey_team". c01's next is a02. ALL TEXT PLACEHOLDER; Colonel von Rauch and the Commissary need voices.
+  Tests tools/test_campaign_a02.gd, balance tools/sim_campaign_a02.gd. 15 Claude's choices in the doc.
 - ACT 1 PLANNED (owner 2026-11-17 14:39 "Do it all"; job campaign-act1-plan, branch campaign-act1-plan, docs only:
   docs/campaign_act1_plan.md, supersedes docs/campaign_act1.md): seven missions 2767-2770 on three lines: the Crown
   a01_presses (Lyon, Tomasz) -> a06_barricades (Paris, Fairleigh; the VARENNE choice); the Clockmaker a02_furth (the guild in

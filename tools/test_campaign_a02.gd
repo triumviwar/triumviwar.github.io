@@ -420,7 +420,7 @@ func _machine_play() -> void:
 	check("machine: its objectives, not the guild's", r.objectives_for("machine").map(func(o): return o["id"]) == ["m_line", "m_break"])
 	check("machine: its own lines (no narrator: the machine)", r.said_ids.has("m_intro") and not r.said_ids.has("h_1"))
 	check("machine: no Presses or Mainspring (the seeds are its income)", r.denied(mt, "cog_press") and r.denied(mt, "mainspring"))
-	check("machine: the guild defends itself (scripted, a Light Works up)", r.tagged("g_def").size() == 11 and r.tagged("g_works").size() == 1)
+	check("machine: the guild defends itself (scripted, a Light Works up)", r.tagged("g_def").size() == 18 and r.tagged("g_works").size() == 1)
 	_step(g, 30.0)
 	check("machine: the seeds' timetable pays", int(g.players[mt]["gold"]) == 700)
 	_step(g, 60.0)

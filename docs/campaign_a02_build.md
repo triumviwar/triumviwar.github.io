@@ -57,13 +57,15 @@ Honest One; "every machine it made would have a stop-work. I swore it."
   2) 6 Clock Soldiers, a Springer and a Netter on the north road (the meadows if c01's links were cut), 3) on both banks
   (5 + 1 on the meadows, 4 + 1 on the road), or all of it on the meadows (8 + 2) if the links were cut. Jakob hears each
   sortie's ticking 12 s before it comes. They go for the gate on their bank, then on at the Honest One; those stopped at
-  the palisade break it (the stake nearest them); through the line they go for the Honest One and Hollweg. Hollweg's tip:
+  the palisade break it (the stake nearest them); through the line they go for the Honest One (within 11 tiles) and
+  Hollweg (within 14: keep him behind the army). Hollweg's tip:
   off the Honest One's ground the guild's soldiers run down as the machine's do: Winders with them (the game's own rule:
   70% damage, 75% speed when run down).
 - PART 3, THE MILL (6 s after the third sortie is beaten, or 3:20 after it set out). Dusk; the machine seeds the
   Rednitz mill (a Clocktower, 6 Clock Soldiers and 2 Springers on guard), and while it stands it sends 2 Clock Soldiers
-  every 40 s at the meadow gate (and the south gate's seed 2 every 60 s), never more than 30 machines. The colonel's
-  reserve (4 Musketeers) comes down. "Burn the machine's seed at the Rednitz mill." With c01's drawings (`gate` pattern)
+  every 40 s at the meadow gate (and the south gate's seed 2 every 60 s), never more than 30 machines; left standing
+  6:00, it sends a TIDE (10 Clock Soldiers, 2 Springers and a Pendulum) and another every 2:30. The colonel's reserve
+  (4 Musketeers) comes down. "Burn the machine's seed at the Rednitz mill." With c01's drawings (`gate` pattern)
   the Heavy Works and the Pendulum open now; built from memory (`gate` people) four more of the people's Winders instead.
 - THE WIN: the mill burns, night falls, "Safe this time." Ten seconds later THE LINE HOLDS (a real win: the Clockwork
   line needs one after its loss). The Franconian army's men still standing make the flag `furth` (10 or more: strong;
@@ -76,14 +78,17 @@ Honest One; "every machine it made would have a stop-work. I swore it."
 No narrator (the machine has no voice: c01): the King's two lines in the opening, objectives and its tick.
 
 - The machine (RED) by Nuremberg's gates: 12 Clock Soldiers, 2 Springers and 3 Winders, a Light Works by the south gate,
-  500 cogs and 200 Tension. No Cog Presses or Mainspring: its income is THE SEEDS' TIMETABLE (130 cogs and 30 Tension
+  500 cogs and 200 Tension. No Cog Presses or Mainspring: its income is THE SEEDS' TIMETABLE (200 cogs and 20 Tension
   every 30 s while its seeds stand, and a free Clock Soldier out of each gate every minute). Off its ground its
   constructs run down, so the Regulators (10 supply each) are also how it carries its ground west.
 - "Fürth's line is finished in 18:00" (the raced countdown) and "Burn the Honest One or kill Meister Hollweg before the
   line is finished." At 6:00 it seeds the Rednitz mill by itself (a forward ground, 70 cogs more every 30 s while it
-  stands; "keep the seed", optional). The guild is scripted: its Light Works stands at once, 6 Clock Soldiers, 3
-  Springers and 2 Netters hold inside the gates, 2 more Clock Soldiers every 70 s while the Honest One stands, and at
-  10:00 a strike of 8 Clock Soldiers and 2 Springers at the mill seed. The Franconian army holds the line as in the
+  stands, and a Pendulum a minute later and every 1:30 after, three at most: the machine's tool against the tower;
+  "keep the seed", optional). The guild is scripted: its Light Works stands at once, 6 Clock Soldiers, 3 Springers and 2
+  Netters hold inside the gates and 5 Clock Soldiers and 2 Springers by Hollweg in the town, 2 more Clock Soldiers every
+  2:00 while the Honest One stands (30 guild units at most), and at 10:00 a strike of 6 Clock Soldiers and 2 Springers
+  at the mill seed. Whenever the machine is through the line, the guild's soldiers go for its units within 9 tiles and
+  the Franconians within 7. The Franconian army holds the line as in the
   guild's game, and the army digs it on the same timetable.
 - THE WIN: the Honest One burnt or Hollweg killed (the flag `furth` fallen). The machine's ending is the King's own:
   "That is not how it went. The line held at Fürth. But it could have gone that way."
@@ -119,6 +124,9 @@ names; `jakob` carries c01's on (alive only if he got out of Nuremberg and lived
 - `Campaign.record` keeps `"side"`: the side this player led when the mission counted.
 - the hub by side: an `"after"` entry, a hotspot or a talk entry may carry `"sides": {"<mission>": side}` (that mission
   finished with this player on that side) and `"not_sides"` (CampaignMenu.sides_ok).
+- `{"order": {..., "idle": true}}`: only units with no living target take it (the waves pushed on at the tower).
+- `{"order": {"do": "hunt", "prey_team": team, ...}}`: the prey is every living unit of that team (the scripted guild
+  answering a machine player's units, whatever he made).
 - Everything else was already there: `if` on units and buildings (the flags), `solo_sides` and `control` "foe", the
   STAY (a `reach` objective with `secs`), `difficulty`, `playing`, the `spare`, `deny` / `unlock`, `hunt`, counters,
   clocks, `tally`, the winter lights and snow, the `hollweg` / `jakob` / `citizen` roles, endings and openings per side.
@@ -187,7 +195,66 @@ designed for c01 (still to design); COLONEL VON RAUCH and THE COMMISSARY need de
 each, ElevenLabs only to design, then Chatterbox). "Fürth" (the narrator) and "The Machine" (machine side only) can stay
 text, or the off-beat tick.
 
-VOICE_TABLE
+| file (campaign/voice/a02/) | voice | when | line |
+| --- | --- | --- | --- |
+| k_open1.ogg | The King | opening (guild) | The Machine kept Nuremberg through the winter. In March it came out of the gates. |
+| k_open2.ogg | The King | opening (guild) | The guild had gone three miles, to Fürth. The Crown gave it a field and a barn. |
+| h_open1.ogg | Meister Hollweg | opening (guild) | We raised a new tower in the barn's yard. The men called it the Honest One. |
+| h_open2.ogg | Meister Hollweg | opening (guild) | Every wheel in it was cut by a hand I knew. Every machine it made would have a stop-work. I swore it. |
+| k_open_m.ogg | The King | opening (machine) | The Machine has no voice. It left no account of that spring. Only what it did. |
+| k_open_m2.ogg | The King | opening (machine) | In March it came out of Nuremberg's gates, west along the river, toward the guild that made it. |
+| h_1.ogg | Meister Hollweg | intro | Before anything else, the stop-work. Bring me to the tower. |
+| col_1.ogg | Colonel von Rauch | intro | My men are digging, Meister. Your machines stay on your side of the ditch. |
+| tip_1.ogg | Meister Hollweg | intro | Keep me by the Honest One until the stop-work is fitted. Then a Light Works for the soldiers. |
+| com_1.ogg | The Commissary | intro_quiet | The Crown has read Father Ferrer's letter, Meister. Nothing is built here until I see that stop-work. |
+| h_com.ogg | Meister Hollweg | intro_quiet | Then watch closely. You will see it fitted. |
+| col_rung.ogg | Colonel von Rauch | intro_rung | They say you rang the bells, Meister. Half my regiment owes you its family. Build what you need. |
+| j_1.ogg | Jakob | intro_jakob | I kept the log all winter, Meister. It is quieter in Nuremberg than it should be. |
+| col_dug.ogg | Colonel von Rauch | dug | The line is dug from the woods to the Rednitz. Two gates. Nothing else gets through. |
+| h_stop.ogg | Meister Hollweg | stopwork_done | There. A stop-work on the Honest One, and on everything it makes. It will stop when we say. |
+| j_stop.ogg | Jakob | stopwork_done | It keeps the beat, Meister. On the beat, every tooth. |
+| com_2.ogg | The Commissary | stopwork_com | Seen and noted. You may build your works. |
+| col_2.ogg | Colonel von Rauch | part2 | Riders from the river. The gates of Nuremberg are open. |
+| h_2.ogg | Meister Hollweg | part2 | It is coming to us. Man the earthworks. |
+| tip_wind.ogg | Meister Hollweg | part2 | Off the Honest One's ground our soldiers run down, as theirs do. Send Winders with them to the earthworks. |
+| n_signal.ogg | Fürth | signal | A lamp in a window in Nuremberg, three times: the loyal quarter's signal. |
+| h_signal.ogg | Meister Hollweg | signal | Our people inside. They are telling us where it gathers. |
+| j_tick_s.ogg | Jakob | tick_1 | Listen. Off the beat, south of the river. They are coming by the meadows. |
+| j_tick_n.ogg | Jakob | tick_2 | Again. North this time, on the road. |
+| j_tick_cut.ogg | Jakob | tick_2c | No, the road is silent. We cut its links last winter. The meadows again. |
+| j_tick_3.ogg | Jakob | tick_3 | More of them. Many more. |
+| col_wave.ogg | Colonel von Rauch | wave_1 | On the meadows! Hold the gate! |
+| col_wave2.ogg | Colonel von Rauch | wave_2 | The road! They are on the road! |
+| col_wave2c.ogg | Colonel von Rauch | wave_2c | The meadows again. They know only the one way. |
+| col_wave3.ogg | Colonel von Rauch | wave_3 | Everything it has. Hold, Franconians! |
+| col_beat.ogg | Colonel von Rauch | beat_1 | Beaten back. It will try again. |
+| h_beat.ogg | Meister Hollweg | beat_2 | They run down off their ground. The line is far enough. |
+| j_mill.ogg | Jakob | part3 | The Rednitz mill, Meister. There is a tower turning there. |
+| h_mill.ogg | Meister Hollweg | part3 | A seed, half way to us. Burn it before it grows. |
+| col_mill.ogg | Colonel von Rauch | part3 | My reserve goes with you. Burn it and the line holds. |
+| h_pattern.ogg | Meister Hollweg | pattern | I have my drawings. Open the Heavy Works: we will build a Pendulum. |
+| tip_heavy.ogg | Jakob | pattern | The Heavy Works must stand by a Mainspring, Meister. |
+| h_people.ogg | Meister Hollweg | people | No drawings. Only our hands. The people of Nuremberg send theirs. |
+| col_tide.ogg | Colonel von Rauch | tide | The mill has grown a tide. Burn it, Meister, before it sends another. |
+| col_burnt.ogg | Colonel von Rauch | mill_burnt | The mill is burning. The line holds. |
+| h_safe.ogg | Meister Hollweg | mill_burnt | Safe this time. |
+| j_hurt.ogg | Jakob | hollweg_hurt | Meister, you are hurt. Stay behind the earthworks. |
+| h_jakob.ogg | Meister Hollweg | jakob_lost | Jakob. Not twice. |
+| m_intro.ogg | The Machine | intro_m | Tick. Tock. West along the river. The tower at Fürth ticks on the beat. Stop it. |
+| m_tip.ogg | The Machine | intro_m | Your seeds by the gates send constructs and cogs while they stand. Off your ground your constructs run down. |
+| m_mill.ogg | The Machine | m_mill | A seed at the Rednitz mill. New ground, half way to Fürth. |
+| m_pend.ogg | The Machine | m_mill_pend | The mill seed has grown a Pendulum. Its blades bite through walls. |
+| m_mill_lost.ogg | The Machine | m_mill_lost | The mill seed is burnt. |
+| m_warn.ogg | The Machine | m_warn | Two minutes. The line is almost closed. |
+| h_end1.ogg | Meister Hollweg | ending (guild) | The machine went back behind its walls. The line held all that spring. |
+| h_end_strong.ogg | Meister Hollweg | ending (guild) | The colonel kept most of his men. He let the guild build inside his line after that. |
+| h_end_thin.ogg | Meister Hollweg | ending (guild) | The colonel buried many of his men by the Rednitz. He did not forgive us that. |
+| h_end_jakob.ogg | Meister Hollweg | ending (guild) | Jakob kept his log of the ticking. He wrote down every beat. |
+| h_end2.ogg | Meister Hollweg | ending (guild) | Our machines were honest. Every one had its stop-work. I would swear it still. |
+| k_end1.ogg | The King | ending (guild) | He believes it. I believe he believes it. |
+| k_end2.ogg | The King | ending (guild) | A stop-work is a wheel like any other. A wheel can be taken out. |
+| k_end_m1.ogg | The King | ending (machine) | That is not how it went. The line held at Fürth. |
+| k_end_m2.ogg | The King | ending (machine) | But it could have gone that way. I have thought so, many nights. |
 
 ## What is placeholder
 
@@ -210,8 +277,10 @@ VOICE_TABLE
    reliable, sites with scripted workers are not); the refugees' labourers stand on it as the people's hands (`saved`).
 5. THE MACHINE IS SCRIPTED (as c01): the sorties, the seeds and the mill are triggers; the gate seeds are SPARED (the
    city can't be taken in 1768). Machines stopped at the palisade break it (a `hunt` for the stakes within 3 tiles every
-   12 s), and through the line hunt the Honest One (11 tiles) and Hollweg (6 tiles): without that, a passive player's
-   line would stand for ever with the machine idle behind it.
+   12 s), and through the line hunt the Honest One (11 tiles) and Hollweg (14 tiles): without that, a passive player's
+   line would stand for ever with the machine idle behind it. The Honest One is hard to burn with Clock Soldiers (a
+   Clocktower's 2,000 health and armour, mended by Winders): in practice the machine wins by Hollweg, or by the
+   Pendulums.
 6. THE MIRROR'S GUILD IS SCRIPTED (defenders on hold, reinforcements, one strike at the mill), not the Clockwork
    computer: the skirmish computer plans for a whole map and would march on Nuremberg; a scripted guild keeps the
    machine player's race against the line the same every time.
@@ -228,6 +297,13 @@ VOICE_TABLE
 12. Co-op: the friend commands the Franconian army (purple). Versus: the friend is the Machine with its own objectives
     and countdown; the guild's Part 2 sorties are then the friend's own units (as c01's versus). Neither was played on
     two devices.
+13. THE MILL'S TIDE: left standing 6:00 into Part 3 the mill sends a tide with a Pendulum (and every 2:30 after): a
+    guild that never goes for the mill loses in the end instead of holding for ever.
+14. THE MIRROR'S GUILD ANSWERS: whenever the machine's units are through the line, the scripted guild's soldiers go
+    for them (9 tiles) and the Franconians (7); its defence is 18 soldiers at the start and 2 more every 2:00 (a strike
+    of 8 at the mill at 10:00). Tuned so that the bot's one-breach push wins at about 12:00 of the 18:00.
+15. CAMPAIGN DIFFICULTY: EASY / HARD scale the sorties and the mill's growth (0.75 / 1.2) for the guild's player, and the
+    guild's defence and the army (the side nobody plays) for the machine's, with its countdown (x1.25 / x0.9).
 
 ## Tests run
 

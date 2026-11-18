@@ -847,6 +847,11 @@ func _order(us: Array, v: Dictionary) -> void:
 			# {"do": "hunt", "prey": a tag, "within": tiles}: each idle or walking unit goes for the nearest living unit
 			# with that tag within reach (the machine going after the townsfolk in the streets)
 			var prey := tagged(String(v.get("prey", "")))
+			if v.has("prey_team"):
+				# ("prey_team": every living unit of that team: the Fürth Line's scripted guild going for the machine's
+				# player's units that came through the line, whatever he made)
+				var pt := team_index(String(v["prey_team"]))
+				prey = game.units.filter(func(e) -> bool: return e.team == pt and not e.dead and e.kind != "horse")
 			if v.has("spare"):
 				var safe := area_rect(String(v["spare"]))      # (prey inside this area is left alone: under the gate's guns)
 				prey = prey.filter(func(e) -> bool: return not safe.has_point(e.position))

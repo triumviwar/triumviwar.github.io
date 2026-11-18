@@ -16,6 +16,7 @@ var diff := "normal"
 var c01 := {"bells": "quiet", "saved": "some", "jakob": "alive", "cut": "no", "gate": "pattern"}
 var no_flags := false
 var _saved_progress := ""
+var _m_push := false
 
 
 func _initialize() -> void:
@@ -213,8 +214,14 @@ func _play_machine(g: Game, r: MissionRun, gt: int, at: int, mt: int) -> void:
 		_build(g, mt, ["movement_works", "regulator", "regulator", "movement_works", "regulator", "regulator"], seed[0], winders)
 	_train(g, mt, ["springer", "clock_soldier"] if g.tension(mt) >= 30.0 else ["clock_soldier"])
 	var army := _army(g, mt)
-	var gather := r.area_rect("meadow_mid").get_center()
-	var pushing := army.size() >= 30 or g.clock > 720.0
+	var gather := r.area_rect("road_mid").get_center()
+	# (one big push at a time: gather 32, push until fewer than 12 are left, gather again)
+	if not _m_push and army.size() >= 30:
+		_m_push = true
+		print("SIM machine pushes with %d at %d" % [army.size(), g.clock])
+	elif _m_push and army.size() < 10:
+		_m_push = false
+	var pushing := _m_push
 	for u in army:
 		var foe := _nearest_foe(g, u, gt, 240.0)
 		if foe == null:
@@ -228,13 +235,24 @@ func _play_machine(g: Game, r: MissionRun, gt: int, at: int, mt: int) -> void:
 			if u.position.distance_to(gather) > 260.0 and u.velocity.length() < 5.0:
 				g.group_move([u], gather, true)
 			continue
-		# the push: the nearest palisade or gate of the meadow stretch, then the Honest One
-		var wall := _nearest_building(g, u, at, 900.0)
+		# the push: one breach in the north stretch, by the town where Hollweg is, then Hollweg (a Pendulum the tower)
+		var wall: Building = null
+		var bd := INF
+		for b in r.tagged("earthworks"):
+			var d: float = b.center().distance_to(Vector2(58.5, 8.5) * Defs.TILE)
+			if d < bd:
+				bd = d
+				wall = b
+		if wall and wall.center().distance_to(Vector2(58.5, 8.5) * Defs.TILE) > 6 * Defs.TILE:
+			wall = null          # (the breach is open)
+		var hol: Array = r.tagged("hollweg")
 		var hon: Array = r.tagged("honest")
 		if wall and u.position.x > 56 * Defs.TILE:
 			u.cmd_attack(wall)
-		elif not hon.is_empty():
+		elif u.kind == "pendulum" and not hon.is_empty():
 			u.cmd_attack(hon[0])
+		elif not hol.is_empty():
+			u.cmd_attack(hol[0])          # (the tower is tough: the man who made it is the way)
 
 
 func _nearest_foe(g: Game, u: Unit, t: int, reach: float) -> Unit:

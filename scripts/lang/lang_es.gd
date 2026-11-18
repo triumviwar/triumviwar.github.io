@@ -3348,6 +3348,7 @@ const T := {
 	"A new labouring automaton on the trestle. A small brass plate on its back reads STOP-WORK FITTED.": "Un autómata obrero nuevo en el caballete. Una placa de latón en su espalda dice TOPE PUESTO.",
 	"Off the Honest One's ground our soldiers run down, as theirs do. Send Winders with them to the earthworks.": "Fuera del suelo de la Honrada nuestros soldados se quedan sin cuerda, como los suyos. Manda Dadores de cuerda con ellos a las trincheras.",
 	"The mill has grown a tide. Burn it, Meister, before it sends another.": "El molino ha criado una marea. Quémelo, maestro, antes de que mande otra.",
+	"The mill seed has grown a Pendulum. Its blades bite through walls.": "La semilla del molino ha criado un Péndulo. Sus cuchillas muerden las murallas.",
 	"Specimen One": "Espécimen Uno",
 	"The Station": "La Estación",
 	"The Academy's station on the Rio Negro, the Crown's fort at São Gabriel and the mission village.": "La estación de la Academia en el Río Negro, el fuerte de la Corona en São Gabriel y la aldea de la misión.",

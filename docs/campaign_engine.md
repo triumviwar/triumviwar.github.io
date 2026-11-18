@@ -334,3 +334,15 @@ only these; the solo side pick and the difficulty setting are another job's (act
 | team `"supply_cap": n` | the team's supply never above n (Game.max_supply asks the mission): the rival computer's army kept to a size a first Brood player can meet |
 | `{"nest_free": {"tag", "on"}}` | these fathers may root away from their own Mother's father range (meta `mission_root`, the rule BroodRoot.place_problem already had for a scripted root), and so may a person's ROOT ghost: the player's Sire nests by her pen; off: the range again |
 | `{"order": {..., "do": "heel", "leader": tag}}` | each unit walks after the first living unit with that tag, stopping a little behind (repeat it with a trigger's `every`): Linnea at the Sire's heels, on a scripted team allied to the player (no person orders her) |
+
+## Added by Act 1's a02_furth (a02-furth, 0.38.53; docs/campaign_a02_build.md)
+
+The first mission that reads a prologue's flags from another mission (`if` on units and buildings, `past`) and the first
+solo mirror (`solo_sides`); it needed only these:
+
+| key / action / condition | what it does |
+| --- | --- |
+| condition `{"count": {..., "buildings": true, "built": true}}` | only finished buildings count (the Light Works standing, whoever's machine runs the mission) |
+| `{"order": {..., "idle": true}}` | only the units with no living target take the order (a wave pushed on at the tower is never pulled off the tower or a fight) |
+| `Campaign.record` keeps `"side"` | the side this player led when the mission counted (`done[<mission>]["side"]`) |
+| hub `"after"` entry, hotspot or talk entry `"sides": {"<mission>": side}`, `"not_sides": {...}` | only when (not) that mission was finished on that side (CampaignMenu.sides_ok): the Clockmaker's hub is the guild's barn at Fürth after c01, and stays the Machine's City for a player who won a02 as the Machine |
