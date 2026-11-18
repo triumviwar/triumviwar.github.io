@@ -25,6 +25,20 @@
 
 ## Current work
 
+- a03_plateau BUILT (job a03-plateau, 0.38.55, branch a03-plateau, docs/campaign_a03_build.md): Act 1's "The Lost
+  Plateau" (the Naturalist line after b01, September 2767): map campaign:cloud_plateau (tools/campaign/make_cloud_plateau_map.py:
+  the landing and the forest at the foot, the waterfall stair and the split in the rock, the misty top, the nest's hollow,
+  four survey marks), mission tools/campaign/make_a03_mission.py, stand-in stills a03_01..05 (make_a03_stills.py; prompts in
+  the doc). Played as VALADARES' CROWN PARTY (YELLOW): the climb in the MIST, 40 s at each mark while the nest SLEEPS (6
+  tiles wakes it: Part 3 early, survey cut), patrols and prowlers, THE MAP choice (flag map drawn canon / withheld), then
+  the Sire comes home up the way NEAREST Valadares and the party crosses the top to the other way, down to Benedito's
+  canoe on a 4:30 countdown (exit counted: flag party few/some/all); passive = lost at the 14:00 rains. SOLO MIRROR / versus:
+  THE NEST (GREEN, its hunters and new ones asleep, workers awake; from Part 3 kill Valadares or bring the party under
+  half; flag plateau kept). Reads b01's saved (guides 0/1/2), eggs (taken: 4 young), turtle (early: 2nd turtle), rival
+  (standing: red pack in the forest, a third side), teles, pieter; Linnea role linnea_grown (0.5). b01's next is a03; the
+  Naturalist hub's Lindqvist reads the report. Engine: sleep keep/except_kinds, counter add_counter, tally of, order kind.
+  ALL TEXT PLACEHOLDER; the guide from Nazaré needs a voice. Tests tools/test_campaign_a03.gd, balance
+  tools/sim_campaign_a03.gd (bot wins ~5:45 either way down). 16 Claude's choices in the doc.
 - a02_furth BUILT (job a02-furth, 0.38.53, branch a02-furth, docs/campaign_a02_build.md): Act 1's "The Fürth Line" (the
   Clockmaker line after c01, March 2768): map campaign:furth_line (tools/campaign/make_furth_map.py), mission
   tools/campaign/make_a02_mission.py, stand-in stills a02_01..05 (make_a02_stills.py; prompts in the doc). The guild

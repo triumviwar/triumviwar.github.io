@@ -280,8 +280,10 @@ func _party_play() -> void:
 	_walk(g, t0 + 31.0)
 	check(P + "the default unanswered: DRAWN", r.flags.get("map", "") == "drawn")
 	_walk(g, t0 + 34.0)
-	check(P + "PART 3: the nest wakes, the Sire comes home up the stair", r.fired.has("part3") and r.cond({"awake": "nest"})
-		and r.tagged("sire").size() == 1 and r.tagged("sire")[0].team == nt and r.area_rect("stair_foot").grow(64).has_point(r.tagged("sire")[0].position))
+	check(P + "PART 3: the nest wakes, the Sire comes home up the way nearest Valadares", r.fired.has("part3") and r.cond({"awake": "nest"})
+		and r.tagged("sire").size() == 1 and r.tagged("sire")[0].team == nt
+		and r.area_rect("trail_w" if r.flags.get("sire_way", "") == "stair" else "trail_e").grow(64).has_point(r.tagged("sire")[0].position)
+		and r.said_ids.has("v_run_e" if r.flags.get("sire_way", "") == "stair" else "v_run_w"))
 	check(P + "the flight's objectives, the canoe's countdown (4:30)", r.obj["flee"] == "active" and r.obj["canoe"] == "active"
 		and is_equal_approx(float(r.clocks["canoe"]) - float(r.fired["part3_party"]), 270.0) and r.obj["rains"] == "hidden")
 	check(P + "the hunters awake and moving", r.tagged("nest_guard").all(func(u): return not u.has_meta("mission_asleep") and u.m_pace > 0.0))
@@ -422,7 +424,8 @@ func _nest_play() -> void:
 	check("nest: PART 3: the Sire is home (yours), the nest awake, the hunt", r.fired.has("part3") and r.tagged("sire").size() == 1 and r.tagged("sire")[0].team == nt
 		and r.obj["n_hunt"] == "active" and nu.m_pace > 0.0 and not nu.has_meta("mission_asleep"))
 	_step(g, g.clock + 2.0)
-	check("nest: the party goes down the split", r._routes.any(func(rt): return String(rt["name"]) == "down"))
+	check("nest: the party ended at the lookout (east): the Sire comes up the split, the party goes back west by the stair",
+		r.flags.get("sire_way", "") == "split" and r._routes.any(func(rt): return String(rt["name"]) == "down" and (rt["pts"] as Array).has("stair_top")))
 	# half of them killed: under half left
 	var ppl := _people(g, r).filter(func(u): return not r.tagged("valadares").has(u))
 	for i in 4:

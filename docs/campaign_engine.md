@@ -346,3 +346,14 @@ solo mirror (`solo_sides`); it needed only these:
 | `{"order": {..., "idle": true}}` | only the units with no living target take the order (a wave pushed on at the tower is never pulled off the tower or a fight) |
 | `Campaign.record` keeps `"side"` | the side this player led when the mission counted (`done[<mission>]["side"]`) |
 | hub `"after"` entry, hotspot or talk entry `"sides": {"<mission>": side}`, `"not_sides": {...}` | only when (not) that mission was finished on that side (CampaignMenu.sides_ok): the Clockmaker's hub is the guild's barn at Fürth after c01, and stays the Machine's City for a player who won a02 as the Machine |
+
+## Added by Act 1's a03_plateau (a03-plateau, 0.38.55; docs/campaign_a03_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| `{"sleep": {..., "except_kinds": [kinds]}}` | those kinds of the group stay awake (the nest's Mother, grubs and Rootmaws work on while its hunters sleep) |
+| `{"sleep": {..., "keep": true}}` | while the group sleeps, every NEW unit of it (team or side) falls asleep too (a person's nest: the hatchlings sleep with the rest) |
+| `{"counter": {"name", "add_counter": other}}` | another counter's number added (the party left on the mountain plus those already down) |
+| `{"tally": {..., "of": counter}}` | the bands are SHARES of that counter's number (`[[0, "few"], [0.5, "some"], [1, "all"]]`), so they hold whatever the size; `<flag>_n` is still the number |
+| `{"order": {..., "kind": kind or [kinds]}}` | only the units of those kinds take the order (the nest's Raptors hunt, its Spitters keep by the Mother) |
+| roles `linnea_grown` (a Brood Mother's kind at 0.5, 1,400 health), `guide` (a Labourer, Nazaré's guide) | Rebels.ROLES |
