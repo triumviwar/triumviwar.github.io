@@ -206,11 +206,12 @@ func _gates(g: Game, mr: MissionRun, t: int, r: Dictionary) -> void:
 	var NOT := "Not in this mission."
 	var off_b := ""
 	var on_b := ""
+	var story_b: Array = mr.team_data(t).get("roster", {}).get("deny", [])      # (the story's own refusals: a01's garrison builds no cottage)
 	for k in Campaign.roster_items(f):
 		if Defs.BUILDINGS.has(k) and not Defs.retired(k):
 			if not allow.has(k) and off_b == "":
 				off_b = k
-			elif allow.has(k) and on_b == "" and k != "town_hall" and k != "clocktower":
+			elif allow.has(k) and on_b == "" and k != "town_hall" and k != "clocktower" and not story_b.has(k):
 				on_b = k
 	if off_b != "":
 		check("%s: a building off the list is refused (%s)" % [mid, off_b], g.requirement_text(t, off_b) == NOT)

@@ -25,6 +25,20 @@
 
 ## Current work
 
+- a06_barricades BUILT (job a06-barricades, 0.38.59, branch a06-barricades, docs/campaign_a06_build.md): step 6 of Act 1's
+  build order. "The Barricades of Paris" (the Crown line after a01, July 2769, told by Field Marshal Fairleigh, Tomasz the
+  King's chaplain): map campaign:paris_barricades (the city generator, tools/campaign/make_paris_map.py: the camp outside
+  the toll wall, ONE gate, the faubourg's one street, the Marais, the Grève and the Hôtel de Ville, the Seine with the
+  Cité and Notre-Dame, the left bank), mission tools/campaign/make_a06_mission.py, stand-in stills a06_01..05 (prompts in
+  the doc). THE ROSTER LADDER's C3: the FOUNDRY + MORTAR (army and Ruggieri's guns, co-op p2, bound; no Town Hall/Farm).
+  Part 1 THREE BARRICADES two palisades deep across the only street (the Mortar on the men behind, round shot on the
+  palisades, a RUSH out of each breach: CANISTER), THE KING'S PATIENCE 20:00 (EASY 25, HARD 15) and SORTIES at the camp;
+  Part 2 the Bastille's magazine becomes the army's, the bridges (Lyon men by a01's `lyon`), TORCHES over the Petit Pont
+  for NOTRE-DAME (burnt only by torches); Part 3 the hall's palisade ring, CAPTURE Varenne (he runs for the boat at the
+  Port Saint-Nicolas once the square is stormed: 30 s at the quay and he is gone); THE CHOICE VARENNE: Tomasz asks
+  mercy, SPARE (exile, the default / canon) or EXECUTE; flags `varenne`, `paris` stood. Reads p01 `families` (six
+  Hollins volunteers), a01 `lyon`, `printer`. VERSUS only (the friend = the Free Assembly). ALL TEXT PLACEHOLDER.
+  Tests tools/test_campaign_a06.gd, balance tools/sim_campaign_a06.gd. 15 Claude's choices in the doc.
 - a01_presses BUILT with THE CITY GENERATOR (job a01-presses, 0.38.57, branch a01-presses, docs/campaign_a01_build.md,
   docs/city_generator.md): step 5 of Act 1's build order. tools/campaign/city_gen.py (a town from a seed: rivers, fords as
   bridges, hills and stairs, districts of solid house blocks, squares, streets, traboules with doors, hidden yards, lots,
@@ -48,7 +62,7 @@
   roster_denied; refusals reach research, grub morphs, eggs, MATURE, GROW: pieces "stage2"/"stage3"); a NEW card (speaker
   "new", trigger ladder_new, to the ladder side). Generators call roster_ladder.apply(M, id); p01_leaf is patched with
   `python3 tools/campaign/roster_ladder.py p01_leaf` (make_m1_mission.py is older than its JSON). MERGED 0.38.58 with LYON'S C2 APPLIED
-  (a standing Horse Breeder at [108, 47], the garrison's story deny on top, C2's pt/es cards). Next: a06 Paris on C3. ALL TEXT PLACEHOLDER; 9
+  (a standing Horse Breeder at [108, 47], the garrison's story deny on top, C2's pt/es cards). a06 Paris on C3: built (0.38.59). ALL TEXT PLACEHOLDER; 9
   Claude's choices in the doc (1: the Naturalist's mirrors ARE bound).
 - THE WAR MAP v1 BUILT (job war-map-v1, 0.38.56, branch war-map-v1, docs/war_map_v1.md): step 4 of Act 1's build order.
   campaign/warmap.json (one data file for every skin: bounds/projection, views, regions with holders, marks, a pin per

@@ -83,6 +83,8 @@ func _run() -> void:
 			if u.dead:
 				_watch.erase(u)
 				var who := "%s/t%d" % [u.last_hit_by, u.last_hit_team]
+				if u.kind == "dismounted" or u.kind == "missionary":
+					print("SIM      %s down at %s by %s, t=%d" % [String(u.get_meta("rebel_role", u.kind)), g.cell_of(u.position), who, g.clock])
 				var key := "%s/t%d by %s" % [u.kind, u.team, who]
 				_deaths[key] = int(_deaths.get(key, 0)) + 1
 		var ndl: Array = r.tagged("notre_dame")
@@ -113,6 +115,8 @@ func _run() -> void:
 				"taken" if r.captured.has("varenne") else ("-" if va.is_empty() else "%d hp at %s" % [int(va[0].hp), g.cell_of(va[0].position)]),
 				"ok" if not r.tagged("fairleigh").is_empty() else "DEAD", "ok" if not r.tagged("tomasz").is_empty() else "DEAD"])
 			print("SIM      walls left %s, ring %d" % [["bar_1", "bar_2", "bar_3"].map(func(b): return r.tagged(b + "_wall").size()), r.tagged("ring").size()])
+	if not _deaths.is_empty():
+		print("SIM      deaths: %s" % _deaths)
 	print("SIM end t=%d over=%s winner=%s flags=%s objectives=%s" % [g.clock, g.over, r.winner_side, r.flags, r.obj])
 	if _saved_progress != "":
 		var f := FileAccess.open(Campaign.PROGRESS, FileAccess.WRITE)
@@ -145,7 +149,8 @@ func _nearest_foe(g: Game, p: Vector2, t: int, reach: float) -> Unit:
 	return best
 
 
-## Soldiers: fight what comes within reach, else go to `home` (spread round it).
+## Soldiers: fight what comes within reach, else go to `home` (spread round it). With no reach (the heroes, the wagon):
+## a plain move, never an attack-move into a fight.
 func _hold(g: Game, us: Array, at: int, home: Vector2, reach := 230.0, spread := 60.0) -> void:
 	for i in us.size():
 		var u: Unit = us[i]
@@ -155,8 +160,8 @@ func _hold(g: Game, us: Array, at: int, home: Vector2, reach := 230.0, spread :=
 				u.cmd_attack(foe)
 			continue
 		var spot := home + Vector2(((i % 5) - 2) * spread * 0.5, ((i / 5) % 4 - 1.5) * spread * 0.5)
-		if u.position.distance_to(spot) > spread and _idle(u):
-			g.group_move([u], spot, true)
+		if u.position.distance_to(spot) > spread and (_idle(u) or (reach <= 0.0 and u.order == "amove")):
+			g.group_move([u], spot, reach > 0.0)
 
 
 ## The muskets as one body: they march together (an attack-move, the slowest's pace) to `goal`; whoever has a foe in
@@ -266,7 +271,7 @@ func _play(g: Game, r: MissionRun, gt: int, at: int) -> void:
 		else:
 			_body(g, muskets, at, line, 150.0)
 			_hold(g, riders, at, line + Vector2(3.0 * T, 0), 120.0)
-		_hold(g, heads, at, line + Vector2(6.0 * T, 0), 0.0)
+		_hold(g, heads, at, r.area_rect("camp_yard").get_center(), 0.0)
 		return
 	# ---------------- part 2: the bridges and the parvis
 	if not r.fired.has("part3"):
@@ -295,44 +300,29 @@ func _play(g: Game, r: MissionRun, gt: int, at: int) -> void:
 				_hold(g, [u], at, parvis if r.counters["bridges"] >= 1 else nb, 200.0)
 		_hold(g, heads, at, nb + Vector2(0, -6.0 * T), 0.0)
 		return
-	# ---------------- part 3: the hall's palisade, then everyone in, the riders after Varenne
+	# ---------------- part 3: the whole army round to the WEST side of the hall's ring (his way to the boats), the guns
+	# open the palisade there, everyone in once it is open; whoever is near goes for Varenne when he runs
 	var ring: Array = r.tagged("ring")
 	var va: Array = r.tagged("varenne")
-	var rr := r.area_rect("ring")
-	var east := Vector2(rr.end.x, rr.get_center().y)
+	var west := r.area_rect("greve_west").get_center()
 	var piece: Building = null
 	var pd := INF
 	for b in ring:
-		var d: float = b.center().distance_to(east + Vector2(8 * T, 0))
+		var d: float = b.center().distance_to(west)
 		if d < pd:
 			pd = d
 			piece = b
 	for i in guns.size():
-		_gun(g, guns[i], at, east + Vector2((7.5 + i % 2) * T, ((i % 3) - 1) * 1.5 * T), piece)
-	var hall_men: Array = r.tagged("hall_men")
-	# (a cordon at the west gate, the marshal's warning: a third of the muskets; the rest at the east side)
-	var cordon: Array = muskets.slice(0, muskets.size() / 3)
-	var main_body: Array = muskets.slice(muskets.size() / 3)
-	_body(g, cordon, at, r.area_rect("greve_west").get_center() if va.is_empty() or r.captured.has("varenne") or va[0].position.distance_to(r.area_rect("greve_west").get_center()) < 200.0 \
-		else va[0].position, 260.0)
-	var gate_c := r.area_rect("greve_west").get_center()
-	var held := cordon.filter(func(u): return u.position.distance_to(gate_c) < 5.0 * T).size() * 2 >= cordon.size()
-	if r.fired.has("breached") and (held or g.clock > float(r.fired["breached"]) + 60.0):
-		_body(g, main_body, at, r.area_rect("hall_square").get_center(), 280.0)
+		_gun(g, guns[i], at, west + Vector2(-6.0 * T, ((i % 3) - 1) * 1.5 * T), piece)
+	var there := muskets.filter(func(u): return u.position.distance_to(west) < 7.0 * T).size()
+	var hunting := not va.is_empty() and not r.captured.has("varenne") and r.fired.has("flight_" + diff)
+	if hunting:
+		for u in muskets + riders:
+			if u.target != va[0]:
+				u.cmd_attack(va[0])
+	elif r.fired.has("breached") and there * 2 >= muskets.size():
+		_body(g, muskets + riders, at, r.area_rect("hall_square").get_center(), 280.0)
 	else:
-		_body(g, main_body, at, east + Vector2(10 * T, 0), 200.0)
-	if not va.is_empty() and not r.captured.has("varenne"):
-		# (the riders round to the west gate first: the marshal's warning; at him once he is out or near)
-		var gate := r.area_rect("greve_west").get_center()
-		for u in riders:
-			if r.fired.has("flight_" + diff) or va[0].position.distance_to(u.position) < 200.0:
-				if u.target != va[0]:
-					u.cmd_attack(va[0])
-			else:
-				_hold(g, [u], at, gate, 120.0)
-		# (once he runs, the cordon goes for him)
-		if r.fired.has("flight_" + diff):
-			for u in cordon:
-				if u.target != va[0]:
-					u.cmd_attack(va[0])
-	_hold(g, heads, at, east + Vector2(14 * T, 0), 0.0)
+		_body(g, muskets, at, west, 200.0)
+		_hold(g, riders, at, west + Vector2(-3.0 * T, 4.0 * T), 150.0)
+	_hold(g, heads, at, west + Vector2(-9.0 * T, 0), 0.0)
