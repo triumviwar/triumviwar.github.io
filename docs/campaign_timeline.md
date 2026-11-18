@@ -22,6 +22,14 @@ named; the other branch is a real, playable version, but the writers check again
 | Duarte Valadares (proposed) | Crown, explorer | Portuguese-Brazilian Catholic explorer and mapmaker; finds the creatures; respects them as creation |
 | Dr. Viktor Lindqvist (proposed) | scientists | naturalist of a royal academy turned breeder; deceived about what he controls; the Brood line's other narrator |
 
+## The deep past (owner, 2026-11-18)
+
+Centuries before the story, in the POST-MODERN AGE, an APOSTASY ruled the world, and what destroyed it was its own
+thinking machines: THE GHOST IN THE MACHINE. The Church remembers it as the enemy, and every Churchman in the story
+knows the tale. That is why Ferrer warns Hollweg (c01's quarrel) and why the Council of Rome rules that no machine may
+govern itself. Hollweg's answer is his whole error: his brass and gears are different from those old machines, and
+perhaps they could learn. (Details of how it fell are the owner's to write.)
+
 ## Dates (proposed)
 
 The Prologue is 2767 (owner). The King was young and newly crowned then; the present is about 2795.

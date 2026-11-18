@@ -2941,6 +2941,22 @@
 			"who": "hollweg",
 			"text": "I did not answer him. I did not think the question was a real one."
 		},
+		"f_q1": {
+			"who": "ferrer",
+			"text": "You know what destroyed the apostasy, Meister. In the post-modern age, all those centuries ago."
+		},
+		"h_q1": {
+			"who": "hollweg",
+			"text": "My cogs and wheels are different, Father. Brass, not ghosts in wires. Maybe they could learn, in time."
+		},
+		"f_q2": {
+			"who": "ferrer",
+			"text": "You know the ghost in the machine is the enemy. It was then. It is now."
+		},
+		"h_q2": {
+			"who": "hollweg",
+			"text": "Then there is no ghost in mine, I told him. Only my gears. I believed it."
+		},
 		"h_1": {
 			"who": "hollweg",
 			"text": "The Crown's wagons wait at the market. Six soldiers, wound and true."
@@ -3195,6 +3211,10 @@
 			"image": "res://campaign/stills/c01_03.jpg",
 			"caption": "The heart of the Perpetual."
 		},
+		"quarrel": {
+			"image": "res://campaign/stills/c01_03.jpg",
+			"caption": "The workshop, the night before the gift."
+		},
 		"wakes": {
 			"image": "res://campaign/stills/c01_04.jpg",
 			"caption": "The Perpetual wakes."
@@ -3229,9 +3249,18 @@
 		{
 			"still": "heart",
 			"lines": [
-				"h_open2",
+				"h_open2"
+			]
+		},
+		{
+			"still": "quarrel",
+			"lines": [
+				"f_q1",
+				"h_q1",
+				"f_q2",
 				"f_open",
-				"h_open3"
+				"h_open3",
+				"h_q2"
 			]
 		}
 	],

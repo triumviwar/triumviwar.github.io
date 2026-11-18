@@ -177,9 +177,22 @@ guild's machines brass with BLUE enamel; the runaway machines brass with RED ena
   the edge of a brass gear. Dockers in 18th-century clothes, gulls, cold light. 3:2 landscape, no text." (Avoid any
   readable words on the crates.)
 
+- c08 THE QUARREL (added 2026-11-18, the owner's confrontation between the Church and the inventor; today it shows c01_03 as a
+  stand-in). "Oil painting, 18th-century history painting style. Night in a clockmaker's workshop in Nuremberg: a great
+  half-built brass machine of gears behind them, lit by one lantern. An old clockmaker with grey curly hair and a
+  moustache, in a leather apron, stands with one hand on the machine, defiant, the other open as if pleading. Facing him a
+  lean Jesuit priest in a black cassock, a little younger, holds up a small book and points at the machine. Snow on the
+  window behind. Warm lantern light, deep blue shadows. 3:2 landscape, no text." (References: nuremberg_hollweg.png for
+  Hollweg, p01_05 for the style.) Save as art/campaign/stills/c01_08.png, cut to campaign/stills/c01_08.jpg, and change the
+  `quarrel` still in make_c01_mission.py from c01_03 to c01_08.
+
 Files: c01 -> c01_01, c02 -> c01_02, c03 -> c01_03, c04 -> c01_04, c05 -> c01_05, c06 -> c01_06, the optional c07 (the crates) -> c01_07 (used: the ending's second page).
 
 ## The voice lines (for the owner's Chatterbox recordings)
+
+THE QUARREL (owner 2026-11-18 16:18): the opening's third page is now the workshop the night before the gift: Ferrer
+warns Hollweg with the old story (the apostasy of the post-modern age was destroyed by the ghost in the machine), Hollweg
+answers that his brass is different and might learn; Ferrer's "when will it know its work is done" closes it.
 
 Recorded lines go in `campaign/voice/c01/<line id>.ogg` (or .wav / .mp3); the game plays them when present (CampaignVoice).
 The King's lines in the King's voice (tools/voice_clone, refs king_ref.wav). MEISTER HOLLWEG, FATHER FERRER, JAKOB, THE
@@ -195,6 +208,10 @@ Hollweg). "The Machine" (versus only) can stay text, or the off-beat tick.
 | h_open2.ogg | Meister Hollweg | opening | Forty years I made clocks that stopped. This one would not stop. It would wind itself, mend itself, and make its own successor. |
 | f_open.ogg | Father Ferrer | opening | And when will it know its work is done, Meister? |
 | h_open3.ogg | Meister Hollweg | opening | I did not answer him. I did not think the question was a real one. |
+| f_q1.ogg | Father Ferrer | opening (the quarrel) | You know what destroyed the apostasy, Meister. In the post-modern age, all those centuries ago. |
+| h_q1.ogg | Meister Hollweg | opening (the quarrel) | My cogs and wheels are different, Father. Brass, not ghosts in wires. Maybe they could learn, in time. |
+| f_q2.ogg | Father Ferrer | opening (the quarrel) | You know the ghost in the machine is the enemy. It was then. It is now. |
+| h_q2.ogg | Meister Hollweg | opening (the quarrel, after h_open3) | Then there is no ghost in mine, I told him. Only my gears. I believed it. |
 | h_1.ogg | Meister Hollweg | intro | The Crown's wagons wait at the market. Six soldiers, wound and true. |
 | f_1.ogg | Father Ferrer | intro | Your soldiers, Meister, or the Crown's? |
 | tip_1.ogg | Meister Hollweg | intro | Build a Light Works by the Perpetual and train Clock Soldiers. Winders build and wind. |

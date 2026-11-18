@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.65", "items": [
+		"THE THIRTEENTH HOUR (Clockwork prologue): a new opening page, the night before the gift: Father Ferrer warns Meister Hollweg with the old story of what destroyed the apostasy of the post-modern age, the ghost in the machine. Hollweg answers that his brass is different.",
+	]},
 	{"v": "0.38.64", "items": [
 		"Behind the scenes: one list of every voice line still to record, starting with a new Brood announcer in Dr. Lindqvist's new voice.",
 	]},
