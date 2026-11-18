@@ -1,0 +1,99 @@
+{
+ "map": "greenhold",
+ "seed": 1101,
+ "slots": [
+  [
+   "crown",
+   "optimal",
+   0
+  ],
+  [
+   "clockwork",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 720,
+ "winner": -1,
+ "version": "0.38.46",
+ "tech_at": {
+  "0:armour": 665,
+  "0:charge": 525,
+  "0:matchlock": 695,
+  "1:shield_wall": 600
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 87,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "read": "GREEDY",
+   "t": 162,
+   "why": "no army and no production at its base"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 314,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 407,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 523,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 599,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "pick": "opening NORMAL -> timing (a timing attack)",
+   "t": 87
+  },
+  {
+   "p": 1,
+   "read": "UNKNOWN",
+   "t": 170,
+   "why": "the scout was turned back"
+  },
+  {
+   "p": 1,
+   "pick": "opening UNKNOWN -> heavy (a siege to break its defences)",
+   "t": 180
+  }
+ ],
+ "final": [
+  {
+   "income": 14440,
+   "army": 1685,
+   "halls": 4,
+   "workers": 57,
+   "plan": "timing",
+   "supply": 98,
+   "lost": 30
+  },
+  {
+   "income": 21163,
+   "army": 3185,
+   "halls": 4,
+   "workers": 54,
+   "plan": "heavy",
+   "supply": 135,
+   "lost": 88
+  }
+ ]
+}

@@ -1,0 +1,86 @@
+{
+ "map": "greenhold",
+ "seed": 1105,
+ "slots": [
+  [
+   "clockwork",
+   "optimal",
+   0
+  ],
+  [
+   "clockwork",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 720,
+ "winner": -1,
+ "version": "0.38.46",
+ "tech_at": {
+  "0:long_chain": 475,
+  "0:shield_wall": 430,
+  "1:shield_wall": 515
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 142,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 571,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 646,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "pick": "opening NORMAL -> balanced (a normal game)",
+   "t": 142
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 139,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "read": "UNKNOWN",
+   "t": 321,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 1,
+   "pick": "opening NORMAL -> balanced (a normal game)",
+   "t": 140
+  }
+ ],
+ "final": [
+  {
+   "income": 21085,
+   "army": 3400,
+   "halls": 4,
+   "workers": 54,
+   "plan": "balanced",
+   "supply": 131,
+   "lost": 83
+  },
+  {
+   "income": 19359,
+   "army": 2410,
+   "halls": 4,
+   "workers": 53,
+   "plan": "balanced",
+   "supply": 105,
+   "lost": 86
+  }
+ ]
+}

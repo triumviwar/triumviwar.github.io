@@ -1,0 +1,71 @@
+{
+ "map": "border_march",
+ "seed": 1125,
+ "slots": [
+  [
+   "brood",
+   "optimal",
+   0
+  ],
+  [
+   "brood",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 720,
+ "winner": -1,
+ "version": "0.38.46",
+ "tech_at": {
+  "0:nb_clutch_raptor": 360,
+  "0:nb_clutch_spitter": 455,
+  "0:nb_pack_hunt": 415,
+  "0:nb_slither": 490,
+  "1:nb_clutch_raptor": 425,
+  "1:nb_pack_hunt": 360
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 101,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "pick": "opening NORMAL -> balanced (a normal game)",
+   "t": 101
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 110,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "pick": "opening NORMAL -> timing (a timing attack)",
+   "t": 110
+  }
+ ],
+ "final": [
+  {
+   "income": 16694,
+   "army": 2375,
+   "halls": 4,
+   "workers": 54,
+   "plan": "balanced",
+   "supply": 184,
+   "lost": 230
+  },
+  {
+   "income": 12708,
+   "army": 550,
+   "halls": 2,
+   "workers": 34,
+   "plan": "timing",
+   "supply": 50,
+   "lost": 176
+  }
+ ]
+}

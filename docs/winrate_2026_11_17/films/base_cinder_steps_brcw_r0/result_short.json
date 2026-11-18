@@ -1,0 +1,81 @@
+{
+ "map": "cinder_steps",
+ "seed": 1150,
+ "slots": [
+  [
+   "brood",
+   "optimal",
+   0
+  ],
+  [
+   "clockwork",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 720,
+ "winner": -1,
+ "version": "0.38.46",
+ "tech_at": {
+  "0:nb_clutch_raptor": 535,
+  "0:nb_pack_hunt": 355,
+  "1:long_chain": 605,
+  "1:shield_wall": 570
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "GREEDY",
+   "t": 101,
+   "why": "no army and no production at its base"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 393,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "pick": "opening GREEDY -> rush (punish the greed before its army is up)",
+   "t": 101
+  },
+  {
+   "p": 1,
+   "read": "GREEDY",
+   "t": 103,
+   "why": "a second base and little army"
+  },
+  {
+   "p": 1,
+   "read": "AGGRESSIVE",
+   "t": 201,
+   "why": "fast rush units early"
+  },
+  {
+   "p": 1,
+   "pick": "opening GREEDY -> balanced (its first ground is its usual opening: the economy goes on, a Light Works ready for its Raptors)",
+   "t": 103
+  }
+ ],
+ "final": [
+  {
+   "income": 13341,
+   "army": 325,
+   "halls": 4,
+   "workers": 52,
+   "plan": "balanced",
+   "supply": 80,
+   "lost": 219
+  },
+  {
+   "income": 16449,
+   "army": 3320,
+   "halls": 4,
+   "workers": 48,
+   "plan": "balanced",
+   "supply": 119,
+   "lost": 47
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+ "map": "frostfang",
+ "seed": 1112,
+ "slots": [
+  [
+   "crown",
+   "optimal",
+   0
+  ],
+  [
+   "crown",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 900,
+ "winner": -1,
+ "version": "0.38.46",
+ "tech_at": {
+  "0:bayonet": 695,
+  "0:charge": 560,
+  "0:matchlock": 675,
+  "1:armour": 495,
+  "1:bayonet": 515,
+  "1:charge": 470,
+  "1:flintlock": 625,
+  "1:matchlock": 585,
+  "1:pouch": 675
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 112,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 0,
+   "pick": "opening UNKNOWN -> dragoon (raids on its workers)",
+   "t": 158
+  },
+  {
+   "p": 1,
+   "read": "UNKNOWN",
+   "t": 111,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 1,
+   "pick": "opening UNKNOWN -> balanced (a normal game)",
+   "t": 157
+  }
+ ],
+ "final": [
+  {
+   "income": 20520,
+   "army": 3435,
+   "halls": 5,
+   "workers": 25,
+   "plan": "dragoon",
+   "supply": 146,
+   "lost": 97
+  },
+  {
+   "income": 17100,
+   "army": 1940,
+   "halls": 3,
+   "workers": 51,
+   "plan": "balanced",
+   "supply": 137,
+   "lost": 55
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "map": "twin_fords",
+ "seed": 1116,
+ "slots": [
+  [
+   "brood",
+   "optimal",
+   0
+  ],
+  [
+   "brood",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 720,
+ "winner": -1,
+ "version": "0.38.46",
+ "tech_at": {
+  "0:nb_clutch_raptor": 360,
+  "0:nb_pack_hunt": 410,
+  "0:nb_slither": 455,
+  "1:nb_clutch_raptor": 385,
+  "1:nb_clutch_spitter": 605,
+  "1:nb_pack_hunt": 450
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 101,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "pick": "opening NORMAL -> balanced (a normal game)",
+   "t": 101
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 102,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "pick": "opening NORMAL -> balanced (a normal game)",
+   "t": 102
+  }
+ ],
+ "final": [
+  {
+   "income": 19595,
+   "army": 3570,
+   "halls": 4,
+   "workers": 64,
+   "plan": "balanced",
+   "supply": 200,
+   "lost": 160
+  },
+  {
+   "income": 17348,
+   "army": 3650,
+   "halls": 4,
+   "workers": 58,
+   "plan": "balanced",
+   "supply": 200,
+   "lost": 126
+  }
+ ]
+}
