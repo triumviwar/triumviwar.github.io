@@ -38,6 +38,11 @@ var _art_kind := {}             # art -> the kind that showed it (a kind's own a
 static var _keep: Array = []    # (the sounds loaded ahead stay loaded: Sfx's load() then finds them at once)
 ## Paths asked for by Game.tex while loading in the background (Game.tex then waits for that one).
 static var pending := {}
+## (perf-late-brood) Pictures that came in from the background this frame (MatchLog's slow frame line names them: on the
+## Compatibility renderer a picture loaded on a thread is handed to the graphics card on the main thread, in the frame it
+## comes in) and their size; MatchLog clears them each frame.
+static var landed_n := 0
+static var landed_mb := 0.0
 
 
 func _ready() -> void:
@@ -97,6 +102,9 @@ func _process(delta: float) -> void:
 		pending.erase(p)
 		if st == ResourceLoader.THREAD_LOAD_LOADED:
 			var r := ResourceLoader.load_threaded_get(p)
+			if r is Texture2D:
+				landed_n += 1
+				landed_mb += (r as Texture2D).get_width() * (r as Texture2D).get_height() * 4.0 / 1048576.0
 			if r is Texture2D and not p.begins_with(HorseCoat.MASKS):
 				if not Game._tex_cache.has(p):
 					Game._tex_cache[p] = r
@@ -116,11 +124,15 @@ func _process(delta: float) -> void:
 				break
 		_last_us = Time.get_ticks_usec()
 		return
-	while _loading.size() < IN_FLIGHT and not _queue.is_empty():
+	# (perf-late-brood: one new picture asked for a frame, so they come in a few at most a frame (each goes to the graphics
+	# card in the frame it comes in), not a crowd of them in one frame)
+	var asked := 0
+	while _loading.size() < IN_FLIGHT and not _queue.is_empty() and asked < 1:
 		var p: String = _queue.pop_front()
 		if Game._tex_cache.has(p):
 			continue
 		if ResourceLoader.load_threaded_request(p, "Texture2D") == OK:
+			asked += 1
 			_loading[p] = true
 			if not p.begins_with(HorseCoat.MASKS):
 				pending[p] = true

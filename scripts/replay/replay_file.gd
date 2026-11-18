@@ -63,6 +63,7 @@ static func _record(type: int, t0: float, t1: float, payload: PackedByteArray) -
 
 ## Start a file with its header. False if it can't be written.
 static func begin(path: String, header: Dictionary) -> bool:
+	wait_io()
 	ensure_dir()
 	var f := FileAccess.open(path, FileAccess.WRITE)
 	if f == null:
@@ -74,14 +75,59 @@ static func begin(path: String, header: Dictionary) -> bool:
 
 
 ## Add a record at the end (the file is opened and closed each time: what is written stays, whatever happens next).
+## (perf-late-brood: during a match the writing goes on a worker thread, the records in the order given: opening the
+## file took 360 ms once on the owner's computer (2026-11-18, 0:10), a freeze in the first seconds. Anything that reads
+## or writes the replays otherwise waits for it first: wait_io. The web build has no threads: at once, as before.)
 static func append(path: String, type: int, t0: float, t1: float, payload: PackedByteArray) -> bool:
+	var rec := _record(type, t0, t1, payload)
+	if OS.has_feature("web") or OS.get_thread_caller_id() != OS.get_main_thread_id():
+		return _append_now(path, rec)
+	_io_mx.lock()
+	_io_q.append([path, rec])
+	var start := not _io_running
+	if start:
+		_io_running = true
+	_io_mx.unlock()
+	if start:
+		if _io_task >= 0:
+			WorkerThreadPool.wait_for_task_completion(_io_task)      # (it has said it is done: only its last breath)
+		_io_task = WorkerThreadPool.add_task(_io_drain, false, "replay")
+	return true
+
+
+static func _append_now(path: String, rec: PackedByteArray) -> bool:
 	var f := FileAccess.open(path, FileAccess.READ_WRITE)
 	if f == null:
 		return false
 	f.seek_end()
-	f.store_buffer(_record(type, t0, t1, payload))
+	f.store_buffer(rec)
 	f.close()
 	return true
+
+
+static var _io_q: Array = []
+static var _io_mx := Mutex.new()
+static var _io_running := false
+static var _io_task := -1
+
+
+static func _io_drain() -> void:
+	while true:
+		_io_mx.lock()
+		if _io_q.is_empty():
+			_io_running = false
+			_io_mx.unlock()
+			return
+		var e: Array = _io_q.pop_front()
+		_io_mx.unlock()
+		_append_now(String(e[0]), e[1])
+
+
+## Waits for the records still being written (on the main thread; elsewhere nothing to wait for).
+static func wait_io() -> void:
+	if _io_task >= 0 and OS.get_thread_caller_id() == OS.get_main_thread_id():
+		WorkerThreadPool.wait_for_task_completion(_io_task)
+		_io_task = -1
 
 
 ## The frames of a chunk (each var_to_bytes of a snapshot), packed: u32 raw size + zstd.
@@ -183,6 +229,7 @@ static func parse(bytes: PackedByteArray) -> Dictionary:
 
 
 static func read(path: String) -> Dictionary:
+	wait_io()
 	if not FileAccess.file_exists(path):
 		return {"ok": false}
 	return parse(FileAccess.get_file_as_bytes(path))
@@ -191,6 +238,7 @@ static func read(path: String) -> Dictionary:
 ## The length of a replay whose game closed before the end (no footer): the last chunk's end time, read from the
 ## record heads only.
 static func scan_length(path: String) -> float:
+	wait_io()
 	var f := FileAccess.open(path, FileAccess.READ)
 	if f == null:
 		return 0.0
@@ -213,6 +261,7 @@ static func scan_length(path: String) -> float:
 # ------------------------------------------------------------------ the list
 
 static func write_meta(path: String, meta: Dictionary) -> void:
+	wait_io()
 	var f := FileAccess.open(meta_path(path), FileAccess.WRITE)
 	if f:
 		f.store_string(JSON.stringify(meta))
@@ -220,6 +269,7 @@ static func write_meta(path: String, meta: Dictionary) -> void:
 
 
 static func read_meta(path: String) -> Dictionary:
+	wait_io()
 	var mp := meta_path(path)
 	if not FileAccess.file_exists(mp):
 		return {}
@@ -230,6 +280,7 @@ static func read_meta(path: String) -> Dictionary:
 ## Every replay, newest first: its meta with "path" and "size" (bytes). One without a finished meta (the game closed
 ## during the match) gets its length from the file and the result "unfinished".
 static func list() -> Array:
+	wait_io()
 	ensure_dir()
 	var out: Array = []
 	for fn in DirAccess.get_files_at(DIR):
@@ -303,6 +354,7 @@ static func set_kept(path: String, on: bool) -> void:
 
 
 static func delete(path: String) -> void:
+	wait_io()
 	DirAccess.remove_absolute(path)
 	DirAccess.remove_absolute(meta_path(path))
 

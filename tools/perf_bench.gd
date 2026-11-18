@@ -536,6 +536,7 @@ func _print_kinds() -> void:
 			out.append("%s %.0fms %.0fus/t (%d)" % [k, e[0] / 1000.0, float(e[0]) / maxf(1.0, e[1]), e[1]])
 		print("PERF %s kinds total %.0f ms: %s" % [pair[0], tot / 1000.0, ", ".join(out)])
 		d.clear()
+	print("PERF PZS ", load("res://tools/_pzs_tmp.gd").dump())
 
 
 func _count_nodes(g: Game) -> Dictionary:

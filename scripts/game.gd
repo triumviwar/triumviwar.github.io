@@ -6086,14 +6086,37 @@ func _smooth(from: Vector2, pts: PackedVector2Array, margin := 7.0) -> PackedVec
 	var out := PackedVector2Array()
 	var cur := from
 	var i := 0
+	# (perf-late-brood: in a run of the path queue the walkers of a wave share their path's cells (the shared paths above),
+	# so past each one's first stretch the same lines between the same waypoints were tested again for every walker, the
+	# most of the queue's time when a Brood wave set out (38 ms of 48 in a frame of the owner's game). The answers are kept
+	# for the run: the ground (solid, the rails) doesn't change during it; only the pathfinder's own gates do)
+	var memo: Dictionary = {}
+	if _pq_on:
+		memo = _lc_memo.get(margin, {})
+		if memo.is_empty():
+			_lc_memo[margin] = memo
 	while i < pts.size():
 		var j := mini(pts.size() - 1, i + SMOOTH_LOOK)
-		while j > i and not line_clear(cur, pts[j], margin):
-			j -= 1
+		if i > 0 and _pq_on:
+			while j > i:
+				var key := Vector4(cur.x, cur.y, pts[j].x, pts[j].y)
+				var ok = memo.get(key)
+				if ok == null:
+					ok = line_clear(cur, pts[j], margin)
+					memo[key] = ok
+				if ok:
+					break
+				j -= 1
+		else:
+			while j > i and not line_clear(cur, pts[j], margin):
+				j -= 1
 		out.append(pts[j])
 		cur = pts[j]
 		i = j + 1
 	return out
+
+
+var _lc_memo := {}               # margin -> {Vector4(a, b): line_clear(a, b, margin)}, for one run of the path queue (_smooth)
 
 
 ## (The same test as open_cell(cell_of(p +- 7, 7)) at every sample, written out: the
@@ -9990,6 +10013,8 @@ func _tick_game(delta: float) -> void:
 	_pq_shut = []
 	if not _pq_cache.is_empty():
 		_pq_cache.clear()
+	if not _lc_memo.is_empty():
+		_lc_memo.clear()
 	Prof.add("game/paths", pt)
 	pt = Time.get_ticks_usec()
 	_tick_zones(delta)

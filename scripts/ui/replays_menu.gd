@@ -185,6 +185,7 @@ static func _tz() -> int:
 # ------------------------------------------------------------------ export and import
 
 func _export(path: String) -> void:
+	ReplayFile.wait_io()
 	var bytes := FileAccess.get_file_as_bytes(path)
 	var fname := path.get_file()
 	if OS.has_feature("web"):
