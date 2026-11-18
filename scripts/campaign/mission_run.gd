@@ -102,7 +102,7 @@ func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
 		if String(o.get("kind", "")) == "capture":
 			_capture_share[String(o.get("tag", ""))] = float(o.get("share", 0.25))
 	for i in team_ids.size():
-		for k in team_data(i).get("roster", {}).get("deny", []):
+		for k in Campaign.roster_denied(data, team_data(i)):      # (the ladder's allow-list and the story's deny)
 			if not deny.has(i):
 				deny[i] = {}
 			deny[i][String(k)] = true

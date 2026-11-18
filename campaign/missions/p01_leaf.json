@@ -52,6 +52,24 @@
 				"solo": "p1",
 				"coop": "p1",
 				"versus": "p1"
+			},
+			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon"
+				],
+				"new": [
+					"musketeer",
+					"cannon"
+				]
 			}
 		},
 		{
@@ -65,6 +83,24 @@
 				"solo": "script",
 				"coop": "p2",
 				"versus": "script"
+			},
+			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon"
+				],
+				"new": [
+					"musketeer",
+					"cannon"
+				]
 			}
 		},
 		{
@@ -2493,6 +2529,20 @@
 					}
 				}
 			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 5
+			},
+			"do": [
+				{
+					"say": [
+						"new_musketeer",
+						"new_cannon"
+					]
+				}
+			]
 		}
 	],
 	"speakers": {
@@ -2515,6 +2565,10 @@
 		"varenne": {
 			"name": "Varenne",
 			"side": "rebels"
+		},
+		"new": {
+			"name": "NEW",
+			"side": "crown"
 		}
 	},
 	"lines": {
@@ -2731,6 +2785,16 @@
 		"r_varenne": {
 			"who": "ruggieri",
 			"text": "Their orator is down."
+		},
+		"new_musketeer": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE MUSKETEER. The Barracks trains him. One man is nothing; a line of them firing together holds the plantation. Keep them in a line, not a crowd."
+		},
+		"new_cannon": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE FIELD CANNON. Captain Ruggieri's two guns: round shot reaches farther than it sees. Keep them behind the line, and at the fort's gate load CANISTER."
 		}
 	},
 	"stills": {

@@ -63,6 +63,8 @@ static func problem(u: Unit) -> String:
 	var q := BroodNew.queen(g, u.team)
 	if q == null:
 		return "No Brood Mother."
+	if g.mission and g.mission.denied(u.team, m):
+		return "Not in this mission."      # (the roster ladder: the mature form is its own piece)
 	if BroodNew.stage(q) < BroodNew.unit_stage(m):
 		return "Needs the Brood Mother at stage %d." % (BroodNew.unit_stage(m) + 1)
 	var p := price(g, u.team, u.kind)

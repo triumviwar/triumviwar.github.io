@@ -78,14 +78,28 @@
 			"hall_tag": "nest_mother",
 			"camera": "hollow",
 			"gold": 300,
-			"roster": {
-				"deny": [
-					"tyrannosaur"
-				]
-			},
 			"control": {
 				"solo": "script",
 				"versus": "p2"
+			},
+			"roster": {
+				"allow": [
+					"brood_mother",
+					"grub",
+					"rootmaw",
+					"mound_turtle",
+					"tyrannosaur",
+					"raptor",
+					"dilophosaurus",
+					"spitter"
+				],
+				"new": [
+					"dilophosaurus",
+					"spitter"
+				],
+				"deny": [
+					"tyrannosaur"
+				]
 			}
 		},
 		{
@@ -2833,6 +2847,20 @@
 					}
 				}
 			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 5
+			},
+			"do": [
+				{
+					"say": [
+						"new_dilophosaurus",
+						"new_spitter"
+					]
+				}
+			]
 		}
 	],
 	"speakers": {
@@ -2855,6 +2883,10 @@
 		"narrator": {
 			"name": "The Mountain",
 			"side": "party"
+		},
+		"new": {
+			"name": "NEW",
+			"side": "nest"
 		}
 	},
 	"lines": {
@@ -3122,6 +3154,16 @@
 		"k_end_n2": {
 			"who": "king",
 			"text": "But it could have gone that way. Then no one would have known what waited in the cloud."
+		},
+		"new_dilophosaurus": {
+			"who": "new",
+			"to": "nest",
+			"text": "NEW: THE VENOM SIRE. A grub becomes him. Rooted by the Mother he fathers Spitters; up, he spits acid from afar."
+		},
+		"new_spitter": {
+			"who": "new",
+			"to": "nest",
+			"text": "NEW: THE SPITTERS. Two to an egg, fathered by the Venom Sire: acid from behind the Raptors, at ground and air."
 		}
 	},
 	"stills": {

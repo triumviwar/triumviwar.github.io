@@ -542,3 +542,13 @@ es El padre Ferrer viene los domingos. Siempre me hace la misma pregunta.
 > Not in this mission.
 pt Não nesta missão.
 es No en esta misión.
+
+# THE ROSTER LADDER's NEW cards (tools/campaign/roster_ladder.py, docs/campaign_roster_ladder.md). PLACEHOLDER.
+
+> NEW: THE WINDER. The guild's hands: it builds, works the presses, and winds the machines; a machine run down stands still.
+pt NOVO: O ENROLADOR. As mãos da guilda: constrói, trabalha as prensas e dá corda às máquinas; uma máquina sem corda fica parada.
+es NUEVO: EL DADOR DE CUERDA. Las manos del gremio: construye, trabaja las prensas y da cuerda a las máquinas; una máquina sin cuerda se queda quieta.
+
+> NEW: THE CLOCK SOLDIER. The Light Works makes it: a shielded soldier that never tires while it is wound. Keep the Winders behind them.
+pt NOVO: O SOLDADO-RELÓGIO. A Oficina Leve o faz: um soldado de escudo que não cansa enquanto tem corda. Mantenha os Enroladores atrás deles.
+es NUEVO: EL SOLDADO RELOJ. El Taller Ligero lo hace: un soldado de escudo que no se cansa mientras tiene cuerda. Mantén a los Dadores de cuerda tras ellos.

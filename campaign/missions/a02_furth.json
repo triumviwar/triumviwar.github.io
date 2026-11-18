@@ -53,24 +53,29 @@
 			"hall_tag": "honest",
 			"camera": "yard",
 			"gold": 400,
-			"roster": {
-				"deny": [
-					"cuckoo_house",
-					"cuckoo",
-					"great_winder",
-					"brass_serpent",
-					"serpent_gear_s",
-					"serpent_gear_b",
-					"ballista",
-					"heavy_works",
-					"pendulum"
-				]
-			},
 			"control": {
 				"solo": "p1",
 				"coop": "p1",
 				"versus": "p1",
 				"foe": "script"
+			},
+			"roster": {
+				"allow": [
+					"clocktower",
+					"cog_press",
+					"mainspring",
+					"regulator",
+					"movement_works",
+					"winder",
+					"clock_soldier",
+					"springer",
+					"netter",
+					"escapement"
+				],
+				"new": [
+					"springer",
+					"netter"
+				]
 			}
 		},
 		{
@@ -3565,6 +3570,20 @@
 					}
 				}
 			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 5
+			},
+			"do": [
+				{
+					"say": [
+						"new_springer",
+						"new_netter"
+					]
+				}
+			]
 		}
 	],
 	"speakers": {
@@ -3596,6 +3615,10 @@
 		"machine": {
 			"name": "The Machine",
 			"side": "machine"
+		},
+		"new": {
+			"name": "NEW",
+			"side": "guild"
 		}
 	},
 	"lines": {
@@ -3878,6 +3901,16 @@
 		"k_end_m2": {
 			"who": "king",
 			"text": "But it could have gone that way. I have thought so, many nights."
+		},
+		"new_springer": {
+			"who": "new",
+			"to": "guild",
+			"text": "NEW: THE SPRINGER. Built at the Light Works once an Escapement ticks: it leaps over the line onto what stands behind it."
+		},
+		"new_netter": {
+			"who": "new",
+			"to": "guild",
+			"text": "NEW: THE NETTER. Also from the Light Works with an Escapement: its chain and net hold a man fast while the others strike."
 		}
 	},
 	"stills": {

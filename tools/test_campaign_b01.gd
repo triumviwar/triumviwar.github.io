@@ -192,7 +192,8 @@ func _data() -> void:
 		check("still %s: its picture loads" % k, ResourceLoader.exists(String(m["stills"][k]["image"])))
 	for s in ["linnea_call", "forest_answer", "sire_roar"]:
 		check("sound campaign/%s is in" % s, ResourceLoader.exists("res://assets/audio/campaign/%s.wav" % s))
-	check("no creature speaks: every speaker is the station's or the King's", (m["speakers"] as Dictionary).values().all(func(sp): return String(sp["side"]) == "station"))
+	# (the roster ladder's NEW card is the game's own voice, not a creature: docs/campaign_roster_ladder.md)
+	check("no creature speaks: every speaker is the station's or the King's", (m["speakers"] as Dictionary).keys().all(func(k): return k == "new" or String(m["speakers"][k]["side"]) == "station"))
 	check("the voice folder is b01 (no recordings yet: silent)", String(m.get("voice", "")) == "b01" and CampaignVoice.path_of(m, "l_open1") == "")
 	check("Linnea is a Brood Mother's kind, drawn at 0.3", String(Rebels.role("linnea")["kind"]) == "brood_mother" and is_equal_approx(float(Rebels.role("linnea")["scale"]), 0.3))
 

@@ -354,3 +354,7 @@ text, or the off-beat tick.
   engine's shutdown here, not a test.
 - Not run: the faction and AI tests (no unit, price or skirmish rule changed: the engine's three additions only act
   inside a mission that asks for them). Not played on two devices (co-op, versus).
+
+## The roster ladder (roster-ladder, 0.38.57)
+
+What the player may build, train, research and grow to here is now the roster ladder's step for this mission (docs/campaign_roster_ladder.md; tools/campaign/roster_ladder.py), with a NEW card a few seconds in. tools/test_roster_ladder.gd checks it.

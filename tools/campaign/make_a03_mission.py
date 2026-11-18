@@ -100,7 +100,7 @@ M = {
         {"id": "party", "side": "party", "faction": "crown", "colour": 3, "start": "none", "camera": "camp", "powder": 200,
          "control": {"solo": "p1", "versus": "p1", "foe": "script"}},
         {"id": "nest", "side": "nest", "faction": "brood", "colour": 2, "start": "standard", "hall": [61, 19], "hall_tag": "nest_mother",
-         "camera": "hollow", "gold": 300, "roster": {"deny": ["tyrannosaur"]},
+         "camera": "hollow", "gold": 300,
          "control": {"solo": "script", "versus": "p2"}},
         {"id": "kin", "side": "nest", "faction": "brood", "colour": 2, "start": "none", "camera": "hollow",
          "control": {"solo": "script", "versus": "script"}},
@@ -486,6 +486,14 @@ M = {
     },
     "next": {"party": "", "nest": ""},
 }
+
+
+# THE ROSTER LADDER (docs/campaign_roster_ladder.md): the line's own team may build / train / research only its step's
+# pieces; the NEW card says what this mission brings (tools/campaign/roster_ladder.py)
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import roster_ladder
+roster_ladder.apply(M, "a03_plateau", story_deny={"nest": ["tyrannosaur"]})
 
 out = os.path.join(ROOT, "campaign", "missions", "a03_plateau.json")
 with open(out, "w") as f:

@@ -407,3 +407,13 @@ es La semilla del molino ha criado un Péndulo. Sus cuchillas muerden las murall
 > Your master is hurt, guild! Get soldiers round him.
 pt O vosso mestre está ferido, guilda! Ponham soldados à volta dele.
 es ¡Vuestro maestro está herido, gremio! Poned soldados a su alrededor.
+
+# THE ROSTER LADDER's NEW cards (tools/campaign/roster_ladder.py, docs/campaign_roster_ladder.md). PLACEHOLDER.
+
+> NEW: THE SPRINGER. Built at the Light Works once an Escapement ticks: it leaps over the line onto what stands behind it.
+pt NOVO: O SALTADOR. Feito na Oficina Leve quando um Escape trabalha: salta por cima da linha sobre o que está atrás dela.
+es NUEVO: EL SALTADOR. Hecho en el Taller Ligero cuando un Escape trabaja: salta por encima de la línea sobre lo que hay detrás.
+
+> NEW: THE NETTER. Also from the Light Works with an Escapement: its chain and net hold a man fast while the others strike.
+pt NOVO: O LANÇA-REDES. Também da Oficina Leve com um Escape: sua corrente e sua rede prendem um homem enquanto os outros golpeiam.
+es NUEVO: EL LANZARREDES. También del Taller Ligero con un Escape: su cadena y su red sujetan a un hombre mientras los otros golpean.

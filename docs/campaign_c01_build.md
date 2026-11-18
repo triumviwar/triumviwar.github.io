@@ -298,3 +298,7 @@ Hollweg). "The Machine" (versus only) can stay text, or the off-beat tick.
   loads scenes/main.tscn and quits does the same, so it is not this job's (the tests print their result before it).
 - Not run: the faction tests (no unit, price or skirmish rule changed: the roster check in Game.can_train /
   requirement_text only applies with a mission that denies something).
+
+## The roster ladder (roster-ladder, 0.38.57)
+
+What the player may build, train, research and grow to here is now the roster ladder's step for this mission (docs/campaign_roster_ladder.md; tools/campaign/roster_ladder.py), with a NEW card a few seconds in. tools/test_roster_ladder.gd checks it.

@@ -25,6 +25,18 @@
 
 ## Current work
 
+- THE ROSTER LADDER (owner DECIDED 2026-11-18 07:26-07:27 "Ye"; job roster-ladder, 0.38.57, branch roster-ladder,
+  docs/campaign_roster_ladder.md, tools/campaign/roster_ladder.py, tools/test_roster_ladder.gd): like StarCraft's campaign,
+  each mission brings 1-2 new pieces; THREE LADDERS (Crown line C1-C12, Clockmaker K1-K9, Naturalist B1-B9), each alone;
+  the other side not bound. Act 1: C1 p01 Musketeer + Field Cannon (given), C2 a01 Horse Breeder + Horseman, C3 a06
+  Foundry + Mortar, C4 a07 Church + Missionary; K1 c01 Winder + Clock Soldier, K2 a02 Springer + Netter (Escapement), K3
+  a04 Heavy Works + Pendulum; B1 b01 Tyrant Sire + Raptors, B2 a03 (the nest) Venom Sire + Spitters, B3 a05 (the
+  creatures) GROW stage 2 + MATURE. Engine: team "roster": {"allow", "new", "deny"} (Campaign.roster_items /
+  roster_denied; refusals reach research, grub morphs, eggs, MATURE, GROW: pieces "stage2"/"stage3"); a NEW card (speaker
+  "new", trigger ladder_new, to the ladder side). Generators call roster_ladder.apply(M, id); p01_leaf is patched with
+  `python3 tools/campaign/roster_ladder.py p01_leaf` (make_m1_mission.py is older than its JSON). AT a01-presses' MERGE:
+  apply C2 in make_a01 (team ids in BOUND, a Horse Breeder to build, pt/es of C2's cards). ALL TEXT PLACEHOLDER; 9
+  Claude's choices in the doc (1: the Naturalist's mirrors ARE bound).
 - THE WAR MAP v1 BUILT (job war-map-v1, 0.38.56, branch war-map-v1, docs/war_map_v1.md): step 4 of Act 1's build order.
   campaign/warmap.json (one data file for every skin: bounds/projection, views, regions with holders, marks, a pin per
   Act 1 mission with place/date/line, RULES by progress and flags) + campaign/warmap_land.json (Natural Earth 1:50m,

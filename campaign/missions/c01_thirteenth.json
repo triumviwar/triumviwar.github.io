@@ -49,23 +49,25 @@
 			"hall_tag": "perpetual",
 			"camera": "yard",
 			"gold": 400,
-			"roster": {
-				"deny": [
-					"heavy_works",
-					"cuckoo_house",
-					"cuckoo",
-					"pendulum",
-					"ballista",
-					"great_winder",
-					"brass_serpent",
-					"serpent_gear_s",
-					"serpent_gear_b"
-				]
-			},
 			"control": {
 				"solo": "p1",
 				"coop": "p1",
 				"versus": "p1"
+			},
+			"roster": {
+				"allow": [
+					"clocktower",
+					"cog_press",
+					"mainspring",
+					"regulator",
+					"movement_works",
+					"winder",
+					"clock_soldier"
+				],
+				"new": [
+					"winder",
+					"clock_soldier"
+				]
 			}
 		},
 		{
@@ -2863,6 +2865,20 @@
 					}
 				}
 			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 5
+			},
+			"do": [
+				{
+					"say": [
+						"new_winder",
+						"new_clock_soldier"
+					]
+				}
+			]
 		}
 	],
 	"speakers": {
@@ -2894,6 +2910,10 @@
 		"machine": {
 			"name": "The Machine",
 			"side": "machine"
+		},
+		"new": {
+			"name": "NEW",
+			"side": "guild"
 		}
 	},
 	"lines": {
@@ -3150,6 +3170,16 @@
 		"k_end2": {
 			"who": "king",
 			"text": "It had chosen nothing. A pattern copies itself, and that is all it does. We burned what we could find. We did not find everything."
+		},
+		"new_winder": {
+			"who": "new",
+			"to": "guild",
+			"text": "NEW: THE WINDER. The guild's hands: it builds, works the presses, and winds the machines; a machine run down stands still."
+		},
+		"new_clock_soldier": {
+			"who": "new",
+			"to": "guild",
+			"text": "NEW: THE CLOCK SOLDIER. The Light Works makes it: a shielded soldier that never tires while it is wound. Keep the Winders behind them."
 		}
 	},
 	"stills": {

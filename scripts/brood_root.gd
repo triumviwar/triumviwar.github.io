@@ -586,6 +586,8 @@ static func morph_problem(g: Game, t: int, k: String, gr: Unit = null) -> String
 	if not morph_list().has(k):
 		return "A grub can't turn into that."
 	var u: Dictionary = Defs.UNITS[k]
+	if g.mission and g.mission.denied(t, k):
+		return "Not in this mission."      # (the roster ladder: docs/campaign_roster_ladder.md)
 	if BroodNew.is_father(k):
 		# each father is unlocked by the Mother's growth stage (the owner, 21:45: the Dilophosaurus at stage 2, the
 		# Pterodactyl at stage 3); one of each at a time (a grub on its way and a cocoon count)
