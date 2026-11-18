@@ -2,6 +2,7 @@
 
   art/audio_src/crown_herald/01.mp3 ... 21.mp3      the Crown: a royal herald
   art/audio_src/brood_scientist/01.mp3 ... 21.mp3   the Brood: the campaign's scientist
+  (NN.wav, e.g. a Chatterbox re-record from tools/voice_clone, is taken before NN.mp3)
 
 Each line: mono, leading/trailing silence trimmed (40 ms kept), a short fade in and out, levelled so its loudest
 0.3 s matches the median of the Clockwork announcer's (assets/voice/announcer/clock/*.ogg, the same measure
@@ -82,7 +83,10 @@ def main():
     for fac in which:
         src, keys = SETS[fac]
         for i, key in enumerate(keys):
-            p = os.path.join(ROOT, src, "%02d.mp3" % (i + 1))
+            # a Chatterbox re-record (NN.wav, tools/voice_clone) wins over the old ElevenLabs NN.mp3
+            p = os.path.join(ROOT, src, "%02d.wav" % (i + 1))
+            if not os.path.exists(p):
+                p = os.path.join(ROOT, src, "%02d.mp3" % (i + 1))
             raw = load(p)
             x = fade(trim(raw))
             g = target - loud(x)

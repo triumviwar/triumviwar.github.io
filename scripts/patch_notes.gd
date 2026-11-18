@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.64", "items": [
+		"Behind the scenes: the Brood announcer is queued to be recorded again in Dr. Lindqvist's new voice (all 21 lines); the game's sound is unchanged for now.",
+	]},
 	{"v": "0.38.63", "items": [
 		"ACT 1, FATHER FERRER'S VISIT (CAMPAIGN, THE CLOCKMAKER, after The Fürth Line): Fürth, autumn 2769. The Roman College sends Father Ferrer to inspect the guild's works, and he tells it himself. Walk him through the six workshops before dusk (a Winder winding another, the Free Assembly's pamphlets, and Jakob's word away from his master), then stay up: follow the night Winder to the river without being seen, and watch the guild's automata mesh on gear ground nobody laid. When they turn red and march for the machine across the meadows, stop as many as you can before they reach it. Then THE BROKEN ONES: Ferrer would melt them, Hollweg would keep them. Your escort, Jakob, the drawings and the Lyon type come from the missions before. Solo, co-op (the friend leads the guild, with the new Heavy Works and Pendulum) and versus (the friend is the Machine); every word is still a placeholder.",
 		"The Clockmaker line's ladder reaches its third step: the Heavy Works and the Pendulum. Meister Hollweg at Fürth, the King and Hollweg in the King's study have new words after the visit (by what was done with the broken ones), and the war map's seal for the visit opens after Fürth.",

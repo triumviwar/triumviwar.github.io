@@ -35,3 +35,18 @@ Two ways to use one:
 
 The other options work the same (`--lang pt`, `--exaggeration 0.7` for the fiery Varenne or the loud Ruggieri,
 `--pitch`). The references are not game files: refs/ has a .gdignore so Godot does not import them.
+
+## Recordings waiting (the to-do list)
+
+The big queue lives in lines.txt (each job a section under its own `[ref ...]`) and in the campaign docs'
+"voice lines" sections (docs/campaign_*_build.md). Queued:
+
+- **The Brood announcer, the whole set again (queued 2026-11-18).** The Brood's in-game announcer is the naturalist,
+  Dr. Lindqvist, and his voice changed (refs/lindqvist_ref.wav, v2), so the 21 lines the owner made in ElevenLabs on
+  2026-11-04 (art/audio_src/brood_scientist/01-21.mp3) no longer match him. lines.txt has all 21 at its end
+  (brood_ann_01_unit_ready ... brood_ann_21_sire_lost, texts from docs/announcers.md; reword freely). Then:
+  1. copy out/brood_ann_NN_<key>.wav to art/audio_src/brood_scientist/NN.wav (01 ... 21) and delete the old NN.mp3
+     (the importer takes NN.wav before NN.mp3 anyway);
+  2. python3 tools/audio/import_announcers.py brood, then the steps in docs/announcers.md "Re-importing".
+  English only for now (the game plays the Brood announcer in English in every language, Sfx.ENGLISH_ONLY); pt / es
+  later with --lang pt / es if wanted.

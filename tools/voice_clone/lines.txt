@@ -27,3 +27,32 @@ fairleigh_placeholder_01 | PLACEHOLDER. Load the guns, Captain. I will not ask t
 [ref refs/ruggieri_ref.wav]
 # Captain Matteo Ruggieri, the guns
 ruggieri_placeholder_01 | PLACEHOLDER. Canister! On my word, and not a breath before!
+
+# ==== TO DO (queued 2026-11-18): THE BROOD ANNOUNCER, THE WHOLE SET AGAIN.
+# ==== The Brood's in-game announcer is the naturalist (Dr. Lindqvist); his voice changed (refs/lindqvist_ref.wav,
+# ==== v2), so all 21 lines are re-recorded in it. The texts are today's (docs/announcers.md); change any wording
+# ==== you like. After the run: copy out/brood_ann_NN_*.wav to art/audio_src/brood_scientist/NN.wav (01 ... 21),
+# ==== delete the old NN.mp3, then python3 tools/audio/import_announcers.py brood (README.md, "Brood announcer").
+# ==== Tip: --exaggeration 0.6 for the alarms (04-07, 20) and victory/defeat; calm for the rest.
+[ref refs/lindqvist_ref.wav]
+brood_ann_01_unit_ready | Another splendid specimen.
+brood_ann_02_building_done | Ah, it has taken root.
+brood_ann_03_research_done | Fascinating! They have adapted.
+brood_ann_04_under_attack | Oh no, the Brood is under attack!
+brood_ann_05_base_attack | Good heavens, they are attacking the nest!
+brood_ann_06_workers_attack | The poor grubs are under attack!
+brood_ann_07_ally_attack | The Brood's allies are in trouble, I'm afraid.
+brood_ann_08_expansion | A new nest! How marvellous.
+brood_ann_09_building_lost | Oh, one has fallen. Such a pity.
+brood_ann_10_site_lost | The growth has been torn away!
+brood_ann_11_bad_place | It won't take root there, I'm afraid.
+brood_ann_12_no_gold | They're hungry. More food is needed.
+brood_ann_13_no_res2 | The Brood needs more spoils, I'm afraid.
+brood_ann_14_no_supply | The clutch needs more room.
+brood_ann_15_depleted | This ground is quite exhausted.
+brood_ann_16_victory | Magnificent! Nature triumphs!
+brood_ann_17_defeat | Oh... the end of a magnificent species.
+brood_ann_18_paused | Let us pause and observe.
+brood_ann_19_resumed | Splendid. Let us continue.
+brood_ann_20_mother_attack | The Mother! Someone protect the Mother!
+brood_ann_21_sire_lost | Oh dear. A Sire has fallen.

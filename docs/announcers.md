@@ -14,6 +14,11 @@ The game plays `assets/voice/announcer/<crown|clock|brood>/<key>.ogg` through `S
 
 The Crown's and the Brood's old Kokoro lines (a gruff herald, a whispering hive mind) were replaced on 2026-11-04.
 
+**To re-record (queued 2026-11-18):** the Brood's scientist is Dr. Lindqvist, whose campaign voice changed
+(tools/voice_clone/refs/lindqvist_ref.wav, v2): all 21 Brood lines wait in tools/voice_clone/lines.txt to be made
+again with Chatterbox in that voice (tools/voice_clone/README.md, "Recordings waiting"). The importer takes
+`NN.wav` before `NN.mp3`.
+
 ## Languages
 
 The recorded Crown and Brood lines are in **English only**. For now the game plays them in English in every
