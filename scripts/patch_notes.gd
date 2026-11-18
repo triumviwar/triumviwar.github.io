@@ -4,6 +4,11 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.73", "items": [
+		"All three prologues are open from the start: the Crown, the Clockmaker and the Naturalist. The Crown is marked Start here, where the story begins.",
+		"The Leaf and the Fire: after Hollins Farm the Governor now points you at the second rebel camp on the road east, shown on the map.",
+		"The King's new campaign lines are taken out until they are recorded again (they sounded muffled).",
+	]},
 	{"v": "0.38.72", "items": [
 		"The Fürth Line's dawn painting: the soldiers now carry proper flintlock muskets.",
 	]},

@@ -169,7 +169,7 @@ func _data() -> void:
 	check("the clutch: a ninhada / la puesta (the Brood itself is a Ninhada / la Nidada)", String(LangPt.T.get("TAKE THE CLUTCH", "")).contains("NINHADA") and String(LangEs.T.get("TAKE THE CLUTCH", "")).contains("PUESTA"))
 	var sl := Campaign.storyline_of(MID)
 	check("THE NATURALIST storyline's first mission is b01", String(sl.get("id", "")) == "naturalist" and String(sl.get("title", "")) == "The Naturalist" and (sl["missions"] as Array)[0] == MID)
-	check("it opens after the Crown's prologue", String(sl.get("requires", "")) == "p01_leaf")
+	check("it is open from the start (owner 2026-11-18)", String(sl.get("requires", "")) == "")
 	check("solo and versus (no co-op: one Brood side to play)", (m["modes"] as Array) == ["solo", "versus"])
 	var c := Campaign.make_cfg(MID, "solo")
 	var who: Array = c["slots"].map(func(s): return s["who"])

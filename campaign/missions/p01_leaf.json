@@ -2263,6 +2263,59 @@
 			]
 		},
 		{
+			"id": "camp2_next",
+			"when": {
+				"all": [
+					{
+						"fired": "camp1_down"
+					},
+					{
+						"not": {
+							"dead": "camp2"
+						}
+					},
+					{
+						"any": [
+							{
+								"fired": "saved"
+							},
+							{
+								"fired": "families_lost"
+							},
+							{
+								"fired": "left"
+							},
+							{
+								"flag": {
+									"families": "leave"
+								}
+							}
+						]
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"say": [
+						"f_camp2"
+					]
+				},
+				{
+					"reveal": {
+						"area": "camp2",
+						"side": "crown",
+						"secs": 30
+					}
+				},
+				{
+					"ping": {
+						"area": "camp2"
+					}
+				}
+			]
+		},
+		{
 			"id": "camps_clear",
 			"when": {
 				"all": [
@@ -2795,6 +2848,10 @@
 			"who": "new",
 			"to": "crown",
 			"text": "NEW: THE FIELD CANNON. Captain Ruggieri's two guns: round shot reaches farther than it sees. Keep them behind the line, and at the fort's gate load CANISTER."
+		},
+		"f_camp2": {
+			"who": "fairleigh",
+			"text": "The second camp lies further east on the road, before the fort. Take it."
 		}
 	},
 	"stills": {

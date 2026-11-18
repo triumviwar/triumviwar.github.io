@@ -7,6 +7,10 @@ The owner records voices on his PC with `tools/voice_clone/` (Chatterbox; `run.b
 ALL CAMPAIGN TEXT IS PLACEHOLDER: the owner rewrites the dialogue before recording. This list says WHAT is waiting and
 WHERE its table is; the tables themselves live in each mission's build doc.
 
+REDO THE KING (owner 2026-11-18 21:57: "sounds weird like inside a box"): the -1.5 pitch shift (librosa) muffled him; his 85 new
+lines were taken out of the game (0.38.73). Re-record with tools/voice_clone/lines_king.txt ([pitch 0]); first delete
+out\*__k_*.wav, out\a07__tip_church.wav and out\a07__tip_fire.wav or the run skips them.
+
 RECORDED 2026-11-18 (0.38.70): the big run (tools/voice_clone/lines_big.txt, 374 lines) is in the game: the Brood
 announcer's 21 lines in Lindqvist's v2 voice and every mission line of the King, Hollweg, Lindqvist, Valadares (explorer ref),
 Fairleigh, Ruggieri and Varenne. Still to do: the voices marked * below (design them first), then make_big_lines.py again.

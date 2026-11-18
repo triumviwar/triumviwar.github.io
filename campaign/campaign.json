@@ -3,6 +3,7 @@
 	"storylines": [
 		{
 			"id": "prologue",
+			"start": true,
 			"title": "The Crown",
 			"about": "Told by the King in Rome. The Free Assembly rises against Church and Crown: Virginia in 2767, then the cities of the Crown.",
 			"missions": [
@@ -352,7 +353,6 @@
 		{
 			"id": "naturalist",
 			"title": "The Naturalist",
-			"requires": "p01_leaf",
 			"about": "A naturalist on the Amazon raises a creature no one has seen, and loses it to the forest.",
 			"missions": [
 				"b01_specimen",
@@ -676,7 +676,6 @@
 		{
 			"id": "clockmaker",
 			"title": "The Clockmaker",
-			"requires": "p01_leaf",
 			"about": "Nuremberg, 2767. A clockmaker builds a machine that never stops, and loses his city to it.",
 			"missions": [
 				"c01_thirteenth",
