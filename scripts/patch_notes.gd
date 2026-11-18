@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.69", "items": [
+		"Behind the scenes: one voice recording run for every line whose voice is designed (374 lines: the new Brood announcer and the campaign's King, Hollweg, Lindqvist, Valadares, Fairleigh, Ruggieri and Varenne).",
+	]},
 	{"v": "0.38.68", "items": [
 		"ACT 1, THE COUNCIL OF ROME (CAMPAIGN, all three lines meet: it opens once The Barricades of Paris, Father Ferrer's Visit and The Specimens are all won): Rome, Lent 2770, and the King tells it himself. Father Ferrer and Valadares testify, Meister Hollweg and Dr. Lindqvist are heard, and the council gives its verdict: no machine may govern itself, the specimens are to be destroyed. Both men walk out. That night the Free Assembly's last cell fires the city, the specimens break loose from their stables and Hollweg's demonstration automata go wrong. Hold the Tiber's three bridges until dawn with the King's guard: nothing of the beasts or the machines may reach Saint Peter's Square, and they fight each other too where they meet. Send Father Tomasz, or the Missionaries of Santo Spirito, to call the people of the burning quarters to the basilica, and put the fires out before they spread: men standing by a burning house put it out. What you did in the earlier missions decides who testifies how, how many creatures and machines are loose, and how many torches come. Co-op: the friend holds the east bank. Versus: the friend leads the creatures or the automata.",
 		"The Crown line's ladder reaches its fourth step: the Church and the Missionary. Every hub has new words after Rome, and the war map shows how much of Rome stood.",
