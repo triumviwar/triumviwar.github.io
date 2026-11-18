@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.54": ["Só arquivos do projeto: dois arquivos de id do Godot para as ferramentas de teste e de equilíbrio da Linha de Fürth."],
 	"0.38.53": ["O ATO 1 COMEÇA, A LINHA DE FÜRTH (CAMPANHA, O RELOJOEIRO, depois de A Décima Terceira Hora): Fürth, março de 2768. A guilda no exílio ergue a sua nova Torre do Relógio, a Honesta, ao lado do exército franconiano da Coroa. Coloque a trava, construa as suas oficinas, defenda as trincheiras contra três investidas saídas dos portões de Nuremberg e depois queime a semente da máquina no moinho do Rednitz. O que você fez em Nuremberg a muda: os sinos, quantos salvou, o Jakob, as ligações cortadas e os desenhos de Hollweg. Sozinho você também pode comandar A MÁQUINA (VOCÊ JOGA COM: nas instruções) e tentar queimar a Honesta antes de a linha ficar pronta. Cada fala e cada imagem ainda são provisórias.", "A sala do Relojoeiro muda-se para o celeiro da guilda em Fürth depois de A Décima Terceira Hora; quem vencer A Linha de Fürth como a Máquina fica com Nuremberg, a Cidade da Máquina."],
 	"0.38.52": ["Só notas: as notas do projeto registram o trabalho da campanha incorporado."],
 	"0.38.51": ["Só estudos: o computador da Coroa sem o seu ataque às cegas de Cavaleiros contra a Ninhada foi medido (114 partidas): ele vai pior sem ele, porque a Ninhada sem ser incomodada forma um exército muito maior até os 8 minutos, então o ataque fica como está."],
