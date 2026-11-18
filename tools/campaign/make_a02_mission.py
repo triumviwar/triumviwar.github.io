@@ -156,7 +156,7 @@ M = {
          "control": {"solo": "script", "coop": "script", "versus": "p2"}},
     ],
     "areas": {
-        "yard": [32, 11, 23, 17], "honest_ring": [40, 13, 14, 10], "town": [32, 3, 22, 8], "camp": [48, 2, 9, 7],
+        "yard": [32, 11, 23, 17], "barn": [32, 14, 7, 9], "honest_ring": [40, 13, 14, 10], "town": [32, 3, 22, 8], "camp": [48, 2, 9, 7],
         "refugees": [43, 41, 10, 6], "inside_n": [50, 15, 6, 8], "inside_s": [47, 44, 9, 7],
         "line_n": [55, 2, 6, 33], "line_s": [55, 40, 6, 17], "road_gate": [55, 15, 7, 8], "meadow_gate": [55, 45, 7, 8],
         "road_mid": [76, 16, 14, 9], "meadow_mid": [76, 42, 14, 10], "mill": [65, 54, 12, 8], "mill_road": [62, 46, 10, 7],
@@ -174,8 +174,8 @@ M = {
         {"team": "guild", "kind": "clock_soldier", "count": 6, "at": "inside_s", "tag": "g_def", "order": "hold", "if": NO_GUILD},
         {"team": "guild", "kind": "springer", "count": 3, "at": "inside_n", "tag": "g_def", "order": "hold", "if": NO_GUILD},
         {"team": "guild", "kind": "netter", "count": 2, "at": "honest_ring", "tag": "g_def", "order": "hold", "if": NO_GUILD},
-        {"team": "guild", "kind": "clock_soldier", "count": 5, "at": "town", "tag": "g_def", "order": "hold", "if": NO_GUILD},
-        {"team": "guild", "kind": "springer", "count": 2, "at": "town", "tag": "g_def", "order": "hold", "if": NO_GUILD},
+        {"team": "guild", "kind": "clock_soldier", "count": 5, "at": "barn", "tag": "g_def", "order": "hold", "if": NO_GUILD},
+        {"team": "guild", "kind": "springer", "count": 2, "at": "barn", "tag": "g_def", "order": "hold", "if": NO_GUILD},
         # ---- the Franconian army at the line
         {"team": "army", "kind": "dismounted", "count": 1, "at": "camp", "tag": "colonel", "name": "Colonel von Rauch", "order": "hold"},
         {"team": "army", "kind": "musketeer", "count": 5, "at": "road_gate", "tag": "line_n_men", "order": "hold"},
@@ -192,10 +192,10 @@ M = {
         # ---- the machine at Nuremberg's gates (a garrison; the player's army when he leads it)
         {"team": "machine", "kind": "clock_soldier", "count": 4, "at": "north_gate", "tag": "gate_guard", "order": "hold", "if": NO_MACHINE},
         {"team": "machine", "kind": "clock_soldier", "count": 4, "at": "south_gate", "tag": "gate_guard", "order": "hold", "if": NO_MACHINE},
-        {"team": "machine", "kind": "clock_soldier", "count": 8, "at": "south_gate", "tag": "m_start", "if": MACHINE},
-        {"team": "machine", "kind": "springer", "count": 2, "at": "south_gate", "tag": "m_start", "if": MACHINE},
+        {"team": "machine", "kind": "clock_soldier", "count": 6, "at": "south_gate", "tag": "m_start", "if": MACHINE},
+        {"team": "machine", "kind": "springer", "count": 1, "at": "south_gate", "tag": "m_start", "if": MACHINE},
         {"team": "machine", "kind": "winder", "count": 3, "at": "south_gate", "tag": "m_start", "if": MACHINE},
-        {"team": "machine", "kind": "clock_soldier", "count": 4, "at": "north_gate", "tag": "m_start", "if": MACHINE},
+        {"team": "machine", "kind": "clock_soldier", "count": 2, "at": "north_gate", "tag": "m_start", "if": MACHINE},
     ],
     "buildings": [
         # the machine's seeds by Nuremberg's gates (the city's own: nothing at Fürth can touch them)
@@ -278,9 +278,10 @@ M = {
         {"id": "g_answer", "when": {"all": [{"time": 20}, NO_GUILD, {"count": {"team": "machine", "area": "behind_line", "at_least": 1}}]}, "every": 5, "do": [
             {"order": {"team": "guild", "do": "hunt", "prey_team": "machine", "within": 9}},
             {"order": {"team": "army", "do": "hunt", "prey_team": "machine", "within": 7}},
-            {"order": {"tag": "hollweg", "do": "hold"}}]},
-        {"id": "g_hollweg", "when": {"all": [{"time": 1}, NO_GUILD]}, "do": [{"order": {"tag": "hollweg", "do": "hold"}},
-                                                                            {"order": {"tag": "jakob", "do": "hold"}}]},
+            ]},
+        # (the scripted guild keeps its master in the barn behind the tower, Jakob with him)
+        {"id": "g_hollweg", "when": {"all": [{"time": 1}, NO_GUILD]}, "do": [{"order": {"tag": "hollweg", "do": "move", "to": "barn"}},
+                                                                            {"order": {"tag": "jakob", "do": "move", "to": "barn"}}]},
         # ================================================================ PART 2 (the guild): THE SORTIE
         {"id": "signal", "when": {"all": [{"clock_left": {"name": "sortie", "below": 20}}, MANY]}, "do": [
             {"say": ["n_signal", "h_signal"]}, {"reveal": {"area": "south_gate", "side": "guild", "secs": 40}},
@@ -313,7 +314,7 @@ M = {
         # through the line they go for the tower that made them, and for the man who made it
         {"id": "for_honest", "when": {"all": [{"fired": "wave_1"}, NO_MACHINE, {"not": {"fired": "the_end"}}]}, "every": 8, "do": [
             {"order": {"team": "machine", "do": "hunt", "prey": "honest", "within": 11}},
-            {"order": {"team": "machine", "do": "hunt", "prey": "hollweg", "within": 14}}]},
+            {"order": {"team": "machine", "do": "hunt", "prey": "hollweg", "within": 11}}]},
         {"id": "beat_1", "when": {"all": [{"fired": "wave_1"}, {"dead": "sortie1"}]}, "do": [{"counter": {"name": "sorties", "add": 1}}, {"say": ["col_beat"]}]},
         {"id": "beat_2", "when": {"all": [{"any": [{"fired": "wave_2"}, {"fired": "wave_2c"}]}, {"dead": "sortie2"}]}, "do": [{"counter": {"name": "sorties", "add": 1}}, {"say": ["h_beat"]}]},
         {"id": "beat_3", "when": {"all": [{"any": [{"fired": "wave_3"}, {"fired": "wave_3c"}]}, {"dead": "sortie3"},
@@ -325,6 +326,7 @@ M = {
             {"objective": {"id": "hold", "set": "done"}},
             {"light": {"to": "winter_dusk", "secs": 40}},
             {"build": {"team": "machine", "kind": "clocktower", "at": "mill", "tag": "seed_mill"}},
+            {"hurt": {"tag": "seed_mill", "amount": 900}},      # (a seed half grown: about half a Clocktower's health)
             {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 6, "at": "mill", "tag": "mill_guard", "order": "hold"}},
             {"spawn": {"team": "machine", "kind": "springer", "count": 2, "at": "mill", "tag": "mill_guard", "order": "hold"}},
             {"say": ["j_mill", "h_mill", "col_mill"]}, {"reveal": {"area": "mill", "side": "guild", "secs": 30}},
@@ -353,12 +355,13 @@ M = {
             {"flag": {"jakob": "alive"}}]},
         {"id": "jakob_gone", "when": {"all": [{"fired": "mill_burnt"}, {"any": [{"dead": "jakob"}, past("jakob", "lost")]}]}, "do": [{"flag": {"jakob": "lost"}}]},
         {"id": "the_end", "when": {"fired": "mill_burnt"}, "delay": 10, "do": [{"win": "guild"}]},
-        {"id": "hollweg_hurt", "when": {"all": [{"hurt": "hollweg"}, JAKOB, GUILD]}, "every": 60, "times": 2, "do": [{"say": ["j_hurt"]}]},
+        {"id": "hollweg_hurt", "when": {"all": [{"hurt": "hollweg"}, JAKOB, GUILD]}, "every": 60, "times": 2, "do": [{"say": ["j_hurt"]}, {"ping": {"area": "barn"}}]},
+        {"id": "hollweg_hurt_c", "when": {"all": [{"hurt": "hollweg"}, {"not": JAKOB}, GUILD]}, "every": 60, "times": 2, "do": [{"say": ["col_hurt"]}, {"ping": {"area": "barn"}}]},
         {"id": "jakob_lost", "when": {"all": [{"time": 2}, {"dead": "jakob"}]}, "do": [{"say": ["h_jakob"]}]},
         # ================================================================ THE MACHINE (a person leads it)
         # the seeds' timetable: cogs and Tension while a seed stands, a construct or two out of each gate
         {"id": "m_income", "when": {"all": [{"time": 30}, MACHINE]}, "every": 30, "do": [{"give": {"team": "machine", "gold": 200, "tension": 20}}]},
-        {"id": "m_free", "when": {"all": [{"time": 60}, MACHINE, {"count": {"team": "machine", "below": 60}}]}, "every": 60, "do": [
+        {"id": "m_free", "when": {"all": [{"time": 120}, MACHINE, {"count": {"team": "machine", "below": 60}}]}, "every": 60, "do": [
             {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 1, "at": "south_gate", "tag": "m_free"}},
             {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 1, "at": "north_gate", "tag": "m_free"}}]},
         # at 6:00 the machine seeds the Rednitz mill by itself: a ground half way to Fürth
@@ -438,6 +441,7 @@ M = {
         "col_burnt": {"who": "colonel", "to": "guild", "text": "The mill is burning. The line holds."},
         "h_safe": {"who": "hollweg", "to": "guild", "text": "Safe this time."},
         "j_hurt": {"who": "jakob", "to": "guild", "text": "Meister, you are hurt. Stay behind the earthworks."},
+        "col_hurt": {"who": "colonel", "to": "guild", "text": "Your master is hurt, guild! Get soldiers round him."},
         "h_jakob": {"who": "hollweg", "to": "guild", "text": "Jakob. Not twice."},
         # the machine (no voice: objectives and its tick)
         "m_intro": {"who": "machine", "to": "machine", "text": "Tick. Tock. West along the river. The tower at Fürth ticks on the beat. Stop it."},

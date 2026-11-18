@@ -152,8 +152,8 @@ func _play_guild(g: Game, r: MissionRun, gt: int, mt: int) -> void:
 	var hol: Array = r.tagged("hollweg")
 	if not hol.is_empty() and r.obj.get("stopwork", "") == "active" and not r.area_rect("honest_ring").has_point(hol[0].position) and hol[0].velocity.length() < 5.0:
 		g.group_move(hol, r.area_rect("honest_ring").get_center(), false)
-	elif not hol.is_empty() and r.obj.get("stopwork", "") != "active" and not r.area_rect("town").has_point(hol[0].position) and hol[0].velocity.length() < 5.0:
-		g.group_move(hol, r.area_rect("town").get_center(), false)      # (the stop-work fitted: the hero back in the town)
+	elif not hol.is_empty() and r.obj.get("stopwork", "") != "active" and not r.area_rect("barn").has_point(hol[0].position) and hol[0].velocity.length() < 5.0:
+		g.group_move(hol, r.area_rect("barn").get_center(), false)      # (the stop-work fitted: the hero back in the barn)
 	if hall:
 		_build(g, gt, ["movement_works", "regulator", "movement_works", "regulator", "mainspring", "regulator", "heavy_works", "regulator"], hall, winders)
 	_train(g, gt, ["springer", "clock_soldier"] if g.tension(gt) >= 30.0 else ["clock_soldier"])
@@ -194,8 +194,10 @@ func _play_guild(g: Game, r: MissionRun, gt: int, mt: int) -> void:
 	var seed: Array = r.tagged("seed_mill")
 	for i in army.size():
 		var u: Unit = army[i]
-		if i < 3:
-			_fight(g, [u], mt, 300.0, r.area_rect("inside_s").get_center())
+		if i < 6:
+			# (a home guard of six stays: three with Hollweg in the barn, three at the gates)
+			var post := "barn" if i < 3 else ("inside_s" if i % 2 == 0 else "inside_n")
+			_fight(g, [u], mt, 300.0, r.area_rect(post).get_center())
 			continue
 		var foe := _nearest_foe(g, u, mt, 220.0)
 		if foe and (u.target == null or not is_instance_valid(u.target) or u.target.dead):
@@ -215,11 +217,11 @@ func _play_machine(g: Game, r: MissionRun, gt: int, at: int, mt: int) -> void:
 	_train(g, mt, ["springer", "clock_soldier"] if g.tension(mt) >= 30.0 else ["clock_soldier"])
 	var army := _army(g, mt)
 	var gather := r.area_rect("road_mid").get_center()
-	# (one big push at a time: gather 32, push until fewer than 12 are left, gather again)
+	# (one big push at a time: gather 30, push until fewer than 18 are left, gather again)
 	if not _m_push and army.size() >= 30:
 		_m_push = true
 		print("SIM machine pushes with %d at %d" % [army.size(), g.clock])
-	elif _m_push and army.size() < 10:
+	elif _m_push and army.size() < 18:
 		_m_push = false
 	var pushing := _m_push
 	for u in army:

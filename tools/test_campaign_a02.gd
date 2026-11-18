@@ -287,6 +287,7 @@ func _through(g: Game, r: MissionRun, P: String, many := false, cut := false) ->
 	check(P + "PART 3: the hold is done, the mill seeded (red), its objective", r.fired.has("part3") and r.obj["hold"] == "done" and r.obj["mill"] == "active"
 		and r.tagged("seed_mill").size() == 1 and r.tagged("seed_mill")[0].team == mt and not r.tagged("seed_mill")[0].spared)
 	check(P + "the colonel's reserve", r.tagged("reserve").size() == 4)
+	check(P + "the mill seed is half grown (about half its health)", r.tagged("seed_mill")[0].hp < r.tagged("seed_mill")[0].max_hp * 0.6)
 
 
 func _guild_play() -> void:
@@ -413,7 +414,7 @@ func _machine_play() -> void:
 	check("machine: you lead the red team", g.human == mt and r.solo_side == "machine")
 	_step(g, 1.0)
 	_step(g, 1.5)
-	check("machine: your army by the gates, a Light Works", r.tagged("m_start").size() == 17 and r.tagged("m_works").size() == 1 and r.tagged("m_works")[0].team == mt)
+	check("machine: your army by the gates, a Light Works", r.tagged("m_start").size() == 12 and r.tagged("m_works").size() == 1 and r.tagged("m_works")[0].team == mt)
 	check("machine: no garrison on hold (they are yours)", r.tagged("gate_guard").is_empty())
 	check("machine: cogs and Tension to start", int(g.players[mt]["gold"]) == 500 and g.tension(mt) >= 200.0)
 	check("machine: the line's countdown (18:00)", r.clocks.has("line") and is_equal_approx(float(r.clocks["line"]) - 1.0, 1080.0), str(r.clocks))
@@ -424,8 +425,10 @@ func _machine_play() -> void:
 	_step(g, 30.0)
 	check("machine: the seeds' timetable pays", int(g.players[mt]["gold"]) == 700)
 	_step(g, 60.0)
+	check("machine: no free construct before 2:00", r.tagged("m_free").is_empty())
+	_step(g, 120.0)
 	check("machine: a construct out of each gate", r.tagged("m_free").size() == 2 and r.tagged("m_free").all(func(u): return u.team == mt))
-	_step(g, 91.0)
+	_step(g, 121.0)
 	check("machine: the guild trains (scripted)", r.tagged("g_more").size() == 2)
 	_step(g, 361.0)
 	check("machine: the seed at the Rednitz mill at 6:00", r.tagged("seed_mill").size() == 1 and r.tagged("seed_mill")[0].team == mt and r.obj["m_mill"] == "active")
@@ -490,7 +493,7 @@ func _difficulty() -> void:
 		_step(g, 1.0)
 		_step(g, 1.5)
 		check("%s, as the machine: the line's countdown %s" % [d[0], d[2]], is_equal_approx(float(r.clocks["line"]) - 1.0, float(d[2])), str(float(r.clocks["line"]) - 1.0))
-		check("%s, as the machine: your own army never scaled" % d[0], r.tagged("m_start").size() == 17)
+		check("%s, as the machine: your own army never scaled" % d[0], r.tagged("m_start").size() == 12)
 	Campaign.set_difficulty("normal")
 
 

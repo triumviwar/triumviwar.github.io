@@ -58,11 +58,12 @@ Honest One; "every machine it made would have a stop-work. I swore it."
   (5 + 1 on the meadows, 4 + 1 on the road), or all of it on the meadows (8 + 2) if the links were cut. Jakob hears each
   sortie's ticking 12 s before it comes. They go for the gate on their bank, then on at the Honest One; those stopped at
   the palisade break it (the stake nearest them); through the line they go for the Honest One (within 11 tiles) and
-  Hollweg (within 14: keep him behind the army). Hollweg's tip:
+  Hollweg (within 11: keep him behind the army). Hollweg's tip:
   off the Honest One's ground the guild's soldiers run down as the machine's do: Winders with them (the game's own rule:
   70% damage, 75% speed when run down).
 - PART 3, THE MILL (6 s after the third sortie is beaten, or 3:20 after it set out). Dusk; the machine seeds the
-  Rednitz mill (a Clocktower, 6 Clock Soldiers and 2 Springers on guard), and while it stands it sends 2 Clock Soldiers
+  Rednitz mill (a Clocktower half grown, about 1,100 of its 2,000 health: Clock Soldiers are poor at burning buildings; 6
+  Clock Soldiers and 2 Springers on guard), and while it stands it sends 2 Clock Soldiers
   every 40 s at the meadow gate (and the south gate's seed 2 every 60 s), never more than 30 machines; left standing
   6:00, it sends a TIDE (10 Clock Soldiers, 2 Springers and a Pendulum) and another every 2:30. The colonel's reserve
   (4 Musketeers) comes down. "Burn the machine's seed at the Rednitz mill." With c01's drawings (`gate` pattern)
@@ -77,15 +78,16 @@ Honest One; "every machine it made would have a stop-work. I swore it."
 
 No narrator (the machine has no voice: c01): the King's two lines in the opening, objectives and its tick.
 
-- The machine (RED) by Nuremberg's gates: 12 Clock Soldiers, 2 Springers and 3 Winders, a Light Works by the south gate,
+- The machine (RED) by Nuremberg's gates: 8 Clock Soldiers, a Springer and 3 Winders, a Light Works by the south gate,
   500 cogs and 200 Tension. No Cog Presses or Mainspring: its income is THE SEEDS' TIMETABLE (200 cogs and 20 Tension
-  every 30 s while its seeds stand, and a free Clock Soldier out of each gate every minute). Off its ground its
+  every 30 s while its seeds stand, and from 2:00 a free Clock Soldier out of each gate every minute). Off its ground its
   constructs run down, so the Regulators (10 supply each) are also how it carries its ground west.
 - "Fürth's line is finished in 18:00" (the raced countdown) and "Burn the Honest One or kill Meister Hollweg before the
   line is finished." At 6:00 it seeds the Rednitz mill by itself (a forward ground, 70 cogs more every 30 s while it
   stands, and a Pendulum a minute later and every 1:30 after, three at most: the machine's tool against the tower;
   "keep the seed", optional). The guild is scripted: its Light Works stands at once, 6 Clock Soldiers, 3 Springers and 2
-  Netters hold inside the gates and 5 Clock Soldiers and 2 Springers by Hollweg in the town, 2 more Clock Soldiers every
+  Netters hold inside the gates, and Hollweg and Jakob go to the guild's barn behind the tower with 5 Clock Soldiers and 2
+  Springers, 2 more Clock Soldiers every
   2:00 while the Honest One stands (30 guild units at most), and at 10:00 a strike of 6 Clock Soldiers and 2 Springers
   at the mill seed. Whenever the machine is through the line, the guild's soldiers go for its units within 9 tiles and
   the Franconians within 7. The Franconian army holds the line as in the
@@ -277,7 +279,7 @@ text, or the off-beat tick.
    reliable, sites with scripted workers are not); the refugees' labourers stand on it as the people's hands (`saved`).
 5. THE MACHINE IS SCRIPTED (as c01): the sorties, the seeds and the mill are triggers; the gate seeds are SPARED (the
    city can't be taken in 1768). Machines stopped at the palisade break it (a `hunt` for the stakes within 3 tiles every
-   12 s), and through the line hunt the Honest One (11 tiles) and Hollweg (14 tiles): without that, a passive player's
+   12 s), and through the line hunt the Honest One (11 tiles) and Hollweg (11 tiles): without that, a passive player's
    line would stand for ever with the machine idle behind it. The Honest One is hard to burn with Clock Soldiers (a
    Clocktower's 2,000 health and armour, mended by Winders): in practice the machine wins by Hollweg, or by the
    Pendulums.

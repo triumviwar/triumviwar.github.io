@@ -137,6 +137,12 @@
 			23,
 			17
 		],
+		"barn": [
+			32,
+			14,
+			7,
+			9
+		],
 		"honest_ring": [
 			40,
 			13,
@@ -359,7 +365,7 @@
 			"team": "guild",
 			"kind": "clock_soldier",
 			"count": 5,
-			"at": "town",
+			"at": "barn",
 			"tag": "g_def",
 			"order": "hold",
 			"if": {
@@ -372,7 +378,7 @@
 			"team": "guild",
 			"kind": "springer",
 			"count": 2,
-			"at": "town",
+			"at": "barn",
 			"tag": "g_def",
 			"order": "hold",
 			"if": {
@@ -559,7 +565,7 @@
 		{
 			"team": "machine",
 			"kind": "clock_soldier",
-			"count": 8,
+			"count": 6,
 			"at": "south_gate",
 			"tag": "m_start",
 			"if": {
@@ -569,7 +575,7 @@
 		{
 			"team": "machine",
 			"kind": "springer",
-			"count": 2,
+			"count": 1,
 			"at": "south_gate",
 			"tag": "m_start",
 			"if": {
@@ -589,7 +595,7 @@
 		{
 			"team": "machine",
 			"kind": "clock_soldier",
-			"count": 4,
+			"count": 2,
 			"at": "north_gate",
 			"tag": "m_start",
 			"if": {
@@ -1905,12 +1911,6 @@
 						"prey_team": "machine",
 						"within": 7
 					}
-				},
-				{
-					"order": {
-						"tag": "hollweg",
-						"do": "hold"
-					}
 				}
 			]
 		},
@@ -1932,13 +1932,15 @@
 				{
 					"order": {
 						"tag": "hollweg",
-						"do": "hold"
+						"do": "move",
+						"to": "barn"
 					}
 				},
 				{
 					"order": {
 						"tag": "jakob",
-						"do": "hold"
+						"do": "move",
+						"to": "barn"
 					}
 				}
 			]
@@ -2542,7 +2544,7 @@
 						"team": "machine",
 						"do": "hunt",
 						"prey": "hollweg",
-						"within": 14
+						"within": 11
 					}
 				}
 			]
@@ -2697,6 +2699,12 @@
 						"kind": "clocktower",
 						"at": "mill",
 						"tag": "seed_mill"
+					}
+				},
+				{
+					"hurt": {
+						"tag": "seed_mill",
+						"amount": 900
 					}
 				},
 				{
@@ -3166,6 +3174,47 @@
 					"say": [
 						"j_hurt"
 					]
+				},
+				{
+					"ping": {
+						"area": "barn"
+					}
+				}
+			]
+		},
+		{
+			"id": "hollweg_hurt_c",
+			"when": {
+				"all": [
+					{
+						"hurt": "hollweg"
+					},
+					{
+						"not": {
+							"not": {
+								"past": {
+									"c01_thirteenth.jakob": "lost"
+								}
+							}
+						}
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"col_hurt"
+					]
+				},
+				{
+					"ping": {
+						"area": "barn"
+					}
 				}
 			]
 		},
@@ -3217,7 +3266,7 @@
 			"when": {
 				"all": [
 					{
-						"time": 60
+						"time": 120
 					},
 					{
 						"playing": "machine"
@@ -3753,6 +3802,11 @@
 			"who": "jakob",
 			"to": "guild",
 			"text": "Meister, you are hurt. Stay behind the earthworks."
+		},
+		"col_hurt": {
+			"who": "colonel",
+			"to": "guild",
+			"text": "Your master is hurt, guild! Get soldiers round him."
 		},
 		"h_jakob": {
 			"who": "hollweg",
