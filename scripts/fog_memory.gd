@@ -174,7 +174,8 @@ func remember(src: Node2D, cells: Rect2i, rect: Rect2) -> void:
 			var m: Color = it[5]
 			it[5] = Color(m.r * MOD.r, m.g * MOD.g, m.b * MOD.b, m.a)
 		g.gear_net.queue_redraw()
-	mem[id] = {"node": node, "cells": cells, "rect": rect, "team": int(src.get("team")), "gear": gear, "src": weakref(src)}
+	mem[id] = {"node": node, "cells": cells, "rect": rect, "team": int(src.get("team")), "gear": gear, "src": weakref(src),
+		"col": src.cloth_colour() if src is Entity else g.team_colour(int(src.get("team")))}     # (a disguised house: as it looked)
 
 
 func _copy_parts(src: Node2D, n: Node, into: Node2D, inv: Transform2D, mats: Dictionary) -> void:
@@ -257,7 +258,7 @@ func minimap_rects() -> Array:
 	var out: Array = []
 	for id in mem:
 		var r: Dictionary = mem[id]
-		out.append([r["rect"], g.team_colour(int(r["team"])).darkened(MINI_DARK)])
+		out.append([r["rect"], (r["col"] as Color if r.has("col") else g.team_colour(int(r["team"]))).darkened(MINI_DARK)])
 	return out
 
 

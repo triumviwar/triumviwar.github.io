@@ -515,6 +515,7 @@ static func problems(m: Dictionary) -> Array:
 				out.append("%s: role %s doesn't fit kind %s" % [list_key, it["as"], k])
 			if it.has("if"):
 				_check_cond(it["if"], list_key, out, sides, teams, areas, objs, trig)
+			_check_placed(it, list_key, out, teams)
 	for k in lines:
 		var ln: Dictionary = lines[k]
 		if not (m.get("speakers", {}) as Dictionary).has(String(ln.get("who", ""))):
@@ -583,6 +584,17 @@ static func problems(m: Dictionary) -> Array:
 	return out
 
 
+## a01's keys on a unit, a building, a spawn or a build: "tags" (a list), "near" (a tag), "disguise" ({"as": team}).
+static func _check_placed(it: Dictionary, where: String, out: Array, teams: Array) -> void:
+	if it.has("tags") and not (it["tags"] is Array):
+		out.append("%s: tags must be a list" % where)
+	if it.has("near") and String(it["near"]) == "":
+		out.append("%s: near needs a tag" % where)
+	if it.has("disguise"):
+		if not (it["disguise"] is Dictionary) or not teams.has(String(it["disguise"].get("as", ""))):
+			out.append("%s: disguise as an unknown team" % where)
+
+
 static func _check_cond(c: Variant, where: String, out: Array, sides: Array, teams: Array, areas: Dictionary, objs: Array, trig: Array) -> void:
 	if not (c is Dictionary) or (c as Dictionary).is_empty():
 		out.append("%s: no condition" % where)
@@ -590,7 +602,7 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 	for k in c:
 		match String(k):
 			"time", "dead", "hurt", "flag", "past", "clock_out", "clock_left", "counter", "netted", "hp", "awake", "asleep", \
-					"captured", "route_done":
+					"captured", "route_done", "unmasked", "disguised":
 				pass
 			# act1-engine0: the difficulty, who is played, STAY, NEAR, SEEN
 			"difficulty":
@@ -659,6 +671,7 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: %s for unknown team" % [where, k])
 			if v.has("if"):
 				_check_cond(v["if"], where, out, sides, teams, areas, objs, (m.get("triggers", []) as Array).map(func(t: Dictionary) -> String: return String(t.get("id", ""))))
+			_check_placed(v, where, out, teams)
 			if k == "build":
 				if not Defs.BUILDINGS.has(String(v.get("kind", ""))):
 					out.append("%s: build of unknown kind %s" % [where, v.get("kind")])
@@ -690,6 +703,11 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 		"objective":
 			if not objs.has(String(v.get("id", ""))):
 				out.append("%s: unknown objective %s" % [where, v.get("id")])
+		"unmask":
+			if not (v is Dictionary and v.has("tag")):
+				out.append("%s: unmask needs a tag" % where)
+		"ping" when v is Dictionary and v.has("tag") and not v.has("area"):
+			pass          # (a01: a ping at the first living thing with the tag)
 		"reveal", "ping", "camera":
 			if not areas.has(String(v.get("area", ""))):
 				out.append("%s: unknown area %s" % [where, v.get("area")])

@@ -1,0 +1,6055 @@
+{
+	"id": "a01_presses",
+	"title": "The Printing Houses",
+	"summary": "Lyon, spring 2768. The Free Assembly's pamphlets are everywhere, and Lyon's presses print them. The garrison and the city's clergy hunt the presses through the streets before the city turns.",
+	"map": "campaign:lyon_presses",
+	"voice": "a01",
+	"light": "day",
+	"expansion_spots": false,
+	"manual_end": true,
+	"difficulty": {
+		"easy": {
+			"spawns": 0.65
+		},
+		"hard": {
+			"spawns": 1.3
+		}
+	},
+	"modes": [
+		"solo",
+		"coop",
+		"versus"
+	],
+	"factions": {
+		"free_assembly": {
+			"name": "The Free Assembly",
+			"stand_in": "crown",
+			"campaign_only": true
+		}
+	},
+	"sides": [
+		{
+			"id": "crown",
+			"name": "The Crown",
+			"about": "Captain Delorme's garrison, the City Watch and a young priest, Father Tomasz."
+		},
+		{
+			"id": "assembly",
+			"name": "The Free Assembly",
+			"about": "Varenne's people in Lyon: the presses, their runners and the silk-weavers they stir up. Green and black."
+		}
+	],
+	"teams": [
+		{
+			"id": "garrison",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "garrison_yard",
+			"gold": 300,
+			"powder": 300,
+			"roster": {
+				"deny": [
+					"town_hall",
+					"cottage",
+					"farm",
+					"foundry",
+					"horse_breeder",
+					"armoury",
+					"church",
+					"powder_mill",
+					"barracks",
+					"wall",
+					"gate",
+					"labourer",
+					"messenger",
+					"dragoon",
+					"pikeman"
+				]
+			},
+			"control": {
+				"solo": "p1",
+				"coop": "p1",
+				"versus": "p1"
+			}
+		},
+		{
+			"id": "watch",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 7,
+			"start": "none",
+			"camera": "pont_rhone_c",
+			"control": {
+				"solo": "script",
+				"coop": "p2",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "town",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "bellecour",
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "assembly",
+			"side": "assembly",
+			"faction": "free_assembly",
+			"colour": 2,
+			"start": "none",
+			"camera": "pentes",
+			"gold": 0,
+			"roster": {
+				"deny": [
+					"town_hall",
+					"cottage",
+					"farm",
+					"foundry",
+					"horse_breeder",
+					"armoury",
+					"church",
+					"powder_mill",
+					"barracks",
+					"wall",
+					"gate",
+					"musketeer",
+					"labourer",
+					"cuirassier",
+					"cannon",
+					"missionary"
+				]
+			},
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "p2"
+			}
+		}
+	],
+	"areas": {
+		"croix_rousse": [
+			39,
+			2,
+			53,
+			18
+		],
+		"stair_w": [
+			46,
+			18,
+			6,
+			5
+		],
+		"stair_c": [
+			62,
+			18,
+			6,
+			5
+		],
+		"stair_e": [
+			78,
+			18,
+			6,
+			5
+		],
+		"fourviere": [
+			3,
+			10,
+			12,
+			76
+		],
+		"fourviere_n": [
+			14,
+			26,
+			3,
+			8
+		],
+		"fourviere_s": [
+			14,
+			60,
+			3,
+			8
+		],
+		"yard_block": [
+			40,
+			24,
+			14,
+			11
+		],
+		"hilltop": [
+			40,
+			3,
+			51,
+			16
+		],
+		"pentes": [
+			38,
+			22,
+			54,
+			14
+		],
+		"presqu_ile": [
+			38,
+			38,
+			54,
+			54
+		],
+		"vieux_lyon": [
+			17,
+			6,
+			14,
+			84
+		],
+		"fourviere_top": [
+			4,
+			12,
+			10,
+			72
+		],
+		"guillotiere_n": [
+			104,
+			3,
+			21,
+			33
+		],
+		"guillotiere_s": [
+			98,
+			62,
+			27,
+			31
+		],
+		"garrison": [
+			104,
+			38,
+			20,
+			22
+		],
+		"rue_pentes": [
+			36,
+			21,
+			58,
+			2
+		],
+		"rue_centrale": [
+			64,
+			23,
+			3,
+			67
+		],
+		"rue_ponts": [
+			36,
+			49,
+			60,
+			3
+		],
+		"rue_sud": [
+			38,
+			72,
+			50,
+			3
+		],
+		"rue_vieux": [
+			26,
+			6,
+			3,
+			84
+		],
+		"rue_garrison": [
+			94,
+			48,
+			12,
+			4
+		],
+		"quai_croix_w": [
+			34,
+			3,
+			5,
+			19
+		],
+		"quai_croix_e": [
+			92,
+			3,
+			6,
+			29
+		],
+		"hall_square": [
+			56,
+			4,
+			18,
+			11
+		],
+		"terreaux": [
+			56,
+			24,
+			12,
+			6
+		],
+		"jacobins": [
+			54,
+			44,
+			9,
+			5
+		],
+		"cordeliers": [
+			72,
+			39,
+			9,
+			7
+		],
+		"bellecour": [
+			52,
+			58,
+			20,
+			12
+		],
+		"saint_jean": [
+			19,
+			45,
+			7,
+			7
+		],
+		"fourviere_square": [
+			5,
+			40,
+			8,
+			8
+		],
+		"pont_saone_n": [
+			27,
+			22,
+			13,
+			5
+		],
+		"pont_saone_c": [
+			28,
+			48,
+			13,
+			5
+		],
+		"pont_saone_s": [
+			36,
+			71,
+			14,
+			5
+		],
+		"pont_rhone_n": [
+			89,
+			28,
+			15,
+			5
+		],
+		"pont_rhone_c": [
+			84,
+			48,
+			15,
+			5
+		],
+		"pont_rhone_s": [
+			73,
+			70,
+			16,
+			5
+		],
+		"yard": [
+			44,
+			27,
+			7,
+			5
+		],
+		"trab_yard_s": [
+			47,
+			32,
+			1,
+			3
+		],
+		"trab_yard_e": [
+			51,
+			29,
+			3,
+			1
+		],
+		"great_press": [
+			44,
+			27,
+			6,
+			5
+		],
+		"traboule_1": [
+			60,
+			32,
+			1,
+			4
+		],
+		"traboule_2": [
+			88,
+			22,
+			1,
+			7
+		],
+		"traboule_3": [
+			88,
+			32,
+			1,
+			4
+		],
+		"traboule_4": [
+			70,
+			32,
+			1,
+			4
+		],
+		"traboule_5": [
+			80,
+			32,
+			1,
+			4
+		],
+		"traboule_6": [
+			58,
+			25,
+			5,
+			1
+		],
+		"weavers_hall": [
+			61,
+			4,
+			7,
+			6
+		],
+		"cand_1": [
+			46,
+			6,
+			4,
+			4
+		],
+		"cand_2": [
+			79,
+			11,
+			4,
+			4
+		],
+		"cand_3": [
+			72,
+			31,
+			4,
+			4
+		],
+		"cand_4": [
+			84,
+			31,
+			4,
+			4
+		],
+		"cand_5": [
+			43,
+			42,
+			4,
+			4
+		],
+		"cand_6": [
+			81,
+			53,
+			4,
+			4
+		],
+		"cand_7": [
+			52,
+			78,
+			4,
+			4
+		],
+		"cand_8": [
+			76,
+			63,
+			4,
+			4
+		],
+		"cand_9": [
+			21,
+			30,
+			4,
+			4
+		],
+		"cand_10": [
+			21,
+			65,
+			4,
+			4
+		],
+		"cand_11": [
+			113,
+			20,
+			4,
+			4
+		],
+		"cand_12": [
+			107,
+			75,
+			4,
+			4
+		],
+		"home_1": [
+			53,
+			16,
+			4,
+			4
+		],
+		"home_2": [
+			75,
+			6,
+			4,
+			4
+		],
+		"home_3": [
+			72,
+			26,
+			4,
+			4
+		],
+		"home_4": [
+			77,
+			26,
+			4,
+			4
+		],
+		"home_5": [
+			57,
+			37,
+			4,
+			4
+		],
+		"home_6": [
+			81,
+			42,
+			4,
+			4
+		],
+		"home_7": [
+			57,
+			53,
+			4,
+			4
+		],
+		"home_8": [
+			76,
+			89,
+			4,
+			4
+		],
+		"home_9": [
+			48,
+			63,
+			4,
+			4
+		],
+		"home_10": [
+			21,
+			14,
+			4,
+			4
+		],
+		"home_11": [
+			21,
+			41,
+			4,
+			4
+		],
+		"home_12": [
+			21,
+			79,
+			4,
+			4
+		],
+		"home_13": [
+			108,
+			8,
+			4,
+			4
+		],
+		"home_14": [
+			115,
+			65,
+			4,
+			4
+		],
+		"home_15": [
+			69,
+			53,
+			4,
+			4
+		],
+		"home_16": [
+			84,
+			26,
+			4,
+			4
+		],
+		"home_w": [
+			40,
+			3,
+			6,
+			5
+		],
+		"home_e": [
+			85,
+			3,
+			6,
+			5
+		],
+		"hilltop_all": [
+			39,
+			2,
+			53,
+			19
+		],
+		"below_stairs": [
+			44,
+			21,
+			40,
+			5
+		],
+		"garrison_yard": [
+			108,
+			42,
+			12,
+			14
+		],
+		"east_bank": [
+			98,
+			3,
+			28,
+			90
+		]
+	},
+	"counters": {
+		"temper": {
+			"start": 4,
+			"of": 20
+		},
+		"closed": {
+			"start": 0,
+			"of": 4
+		},
+		"home": {
+			"start": 0
+		},
+		"weavers": {
+			"start": 0
+		}
+	},
+	"exits": [
+		{
+			"area": "terreaux",
+			"tag": "runner",
+			"counter": "temper"
+		},
+		{
+			"area": "jacobins",
+			"tag": "runner",
+			"counter": "temper"
+		},
+		{
+			"area": "cordeliers",
+			"tag": "runner",
+			"counter": "temper"
+		},
+		{
+			"area": "bellecour",
+			"tag": "runner",
+			"counter": "temper"
+		},
+		{
+			"area": "saint_jean",
+			"tag": "runner",
+			"counter": "temper"
+		},
+		{
+			"area": "home_w",
+			"team": "town",
+			"counter": "home",
+			"after": "spoken"
+		},
+		{
+			"area": "home_e",
+			"team": "town",
+			"counter": "home",
+			"after": "spoken"
+		}
+	],
+	"units": [
+		{
+			"team": "garrison",
+			"kind": "dismounted",
+			"as": "delorme",
+			"count": 1,
+			"at": "garrison_yard",
+			"tag": "delorme"
+		},
+		{
+			"team": "garrison",
+			"kind": "missionary",
+			"as": "tomasz",
+			"count": 1,
+			"at": "garrison_yard",
+			"tag": "tomasz"
+		},
+		{
+			"team": "garrison",
+			"kind": "musketeer",
+			"count": 12,
+			"at": "garrison_yard",
+			"tag": "garrison_men"
+		},
+		{
+			"team": "garrison",
+			"kind": "cuirassier",
+			"count": 4,
+			"at": "garrison_yard",
+			"tag": "riders"
+		},
+		{
+			"team": "garrison",
+			"kind": "powder_wagon",
+			"count": 1,
+			"at": "garrison_yard",
+			"tag": "wagon"
+		},
+		{
+			"team": "watch",
+			"kind": "musketeer",
+			"count": 2,
+			"at": "pont_rhone_n",
+			"tag": "watch_men",
+			"order": "hold"
+		},
+		{
+			"team": "watch",
+			"kind": "musketeer",
+			"count": 2,
+			"at": "pont_rhone_c",
+			"tag": "watch_men",
+			"order": "hold"
+		},
+		{
+			"team": "watch",
+			"kind": "musketeer",
+			"count": 2,
+			"at": "pont_saone_c",
+			"tag": "watch_men",
+			"order": "hold"
+		},
+		{
+			"team": "watch",
+			"kind": "musketeer",
+			"count": 2,
+			"at": "pont_saone_s",
+			"tag": "watch_men",
+			"order": "hold"
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "citizen",
+			"count": 2,
+			"at": "bellecour",
+			"tag": "townsfolk",
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "citizen",
+			"count": 2,
+			"at": "jacobins",
+			"tag": "townsfolk",
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "citizen",
+			"count": 2,
+			"at": "cordeliers",
+			"tag": "townsfolk",
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "weaver",
+			"count": 2,
+			"at": "hall_square",
+			"tag": "townsfolk",
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "assembly",
+			"kind": "labourer",
+			"as": "printer",
+			"count": 1,
+			"fixed": true,
+			"at": "yard",
+			"tag": "printer",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "militia",
+			"count": 4,
+			"at": "yard",
+			"tag": "yard_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "pikeman",
+			"as": "pikeman",
+			"count": 2,
+			"at": "yard",
+			"tag": "yard_men",
+			"order": "hold"
+		}
+	],
+	"buildings": [
+		{
+			"team": "garrison",
+			"kind": "barracks",
+			"at": [
+				108,
+				42
+			],
+			"tag": "barracks"
+		},
+		{
+			"team": "garrison",
+			"kind": "powder_mill",
+			"at": [
+				114,
+				42
+			],
+			"tag": "mill"
+		},
+		{
+			"team": "garrison",
+			"kind": "cottage",
+			"at": [
+				110,
+				54
+			],
+			"tag": "quarters"
+		},
+		{
+			"team": "garrison",
+			"kind": "cottage",
+			"at": [
+				114,
+				54
+			],
+			"tag": "quarters"
+		},
+		{
+			"team": "garrison",
+			"kind": "cottage",
+			"at": [
+				118,
+				54
+			],
+			"tag": "quarters"
+		},
+		{
+			"team": "garrison",
+			"kind": "cottage",
+			"at": [
+				122,
+				54
+			],
+			"tag": "quarters"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				54,
+				17
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				76,
+				7
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				73,
+				27
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				78,
+				27
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				58,
+				38
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				82,
+				43
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				58,
+				54
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				77,
+				90
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				49,
+				64
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				22,
+				15
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				22,
+				42
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				22,
+				80
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				109,
+				9
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				116,
+				66
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				70,
+				54
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				85,
+				27
+			],
+			"tag": "houses"
+		},
+		{
+			"team": "town",
+			"kind": "town_hall",
+			"at": [
+				62,
+				5
+			],
+			"tag": "weavers_hall",
+			"name": "The Weavers' Hall"
+		},
+		{
+			"team": "assembly",
+			"kind": "barracks",
+			"at": [
+				45,
+				28
+			],
+			"tag": "great_press",
+			"name": "The great press",
+			"disguise": {
+				"as": "town",
+				"within": 3,
+				"by": "crown"
+			}
+		}
+	],
+	"objectives": [
+		{
+			"id": "presses",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"text": "Find the Assembly's printing houses and close them: {closed} of 4. They look like any other house until your men come close."
+		},
+		{
+			"id": "temper",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"text": "The city's temper: {temper} of 20. Every runner who reaches a square raises it; at 20 the city rises."
+		},
+		{
+			"id": "tomasz",
+			"side": "crown",
+			"primary": true,
+			"kind": "protect",
+			"tag": "tomasz",
+			"text": "Father Tomasz must live."
+		},
+		{
+			"id": "speech",
+			"side": "crown",
+			"primary": true,
+			"kind": "reach",
+			"area": "hall_square",
+			"tag": "tomasz",
+			"secs": 45,
+			"hidden": true,
+			"text": "Father Tomasz speaks to the weavers: he stays on the square by the Weavers' Hall for 45 seconds."
+		},
+		{
+			"id": "hall",
+			"side": "crown",
+			"primary": false,
+			"kind": "protect",
+			"tag": "weavers_hall",
+			"hidden": true,
+			"text": "The Weavers' Hall must stand."
+		},
+		{
+			"id": "great",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Find the great press under the hill: the traboules lead into its yard."
+		},
+		{
+			"id": "rouviere",
+			"side": "crown",
+			"primary": true,
+			"kind": "capture",
+			"tag": "printer",
+			"hidden": true,
+			"text": "Take Master Rouvière, the printer, ALIVE: wear him down, then a man of yours beside him."
+		},
+		{
+			"id": "close_great",
+			"side": "crown",
+			"primary": true,
+			"kind": "destroy",
+			"tag": "great_press",
+			"hidden": true,
+			"text": "Close the great press."
+		},
+		{
+			"id": "a_raise",
+			"side": "assembly",
+			"primary": true,
+			"kind": "manual",
+			"text": "Raise the city: walk your runners to the squares. The temper {temper} of 20."
+		},
+		{
+			"id": "a_priest",
+			"side": "assembly",
+			"primary": false,
+			"kind": "manual",
+			"text": "Or silence the priest: Father Tomasz."
+		}
+	],
+	"triggers": [
+		{
+			"id": "layout",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"choice": {
+						"id": "layout",
+						"side": "assembly",
+						"title": "WHERE THE PRESSES PRINT",
+						"default": "random",
+						"time": 30,
+						"options": [
+							{
+								"id": "old_town",
+								"label": "THE WEST HILL AND THE SOUTH",
+								"about": "The hill's west, the slopes, the Presqu'île, Vieux Lyon's north and Guillotière's south.",
+								"do": [
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												47,
+												7
+											],
+											"tag": "presses",
+											"tags": [
+												"press_1"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												80,
+												12
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												73,
+												32
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												85,
+												32
+											],
+											"tag": "presses",
+											"tags": [
+												"press_2"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												44,
+												43
+											],
+											"tag": "presses",
+											"tags": [
+												"press_3"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												82,
+												54
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												53,
+												79
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												77,
+												64
+											],
+											"tag": "presses",
+											"tags": [
+												"press_4"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												22,
+												31
+											],
+											"tag": "presses",
+											"tags": [
+												"press_5"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												22,
+												66
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												114,
+												21
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												108,
+												76
+											],
+											"tag": "presses",
+											"tags": [
+												"press_6"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"say": [
+											"a_layout_old_town"
+										]
+									}
+								]
+							},
+							{
+								"id": "river",
+								"label": "THE EAST HILL AND THE NORTH",
+								"about": "The hill's east, the slopes, the Presqu'île, Vieux Lyon's south and Guillotière's north.",
+								"do": [
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												47,
+												7
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												80,
+												12
+											],
+											"tag": "presses",
+											"tags": [
+												"press_1"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												73,
+												32
+											],
+											"tag": "presses",
+											"tags": [
+												"press_2"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												85,
+												32
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												44,
+												43
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												82,
+												54
+											],
+											"tag": "presses",
+											"tags": [
+												"press_3"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												53,
+												79
+											],
+											"tag": "presses",
+											"tags": [
+												"press_4"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												77,
+												64
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												22,
+												31
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												22,
+												66
+											],
+											"tag": "presses",
+											"tags": [
+												"press_5"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												114,
+												21
+											],
+											"tag": "presses",
+											"tags": [
+												"press_6"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												108,
+												76
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"say": [
+											"a_layout_river"
+										]
+									}
+								]
+							},
+							{
+								"id": "hill",
+								"label": "THE WEST HILL AND THE NORTH",
+								"about": "The hill's west, the slopes, the Presqu'île, Vieux Lyon's north and Guillotière's north.",
+								"do": [
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												47,
+												7
+											],
+											"tag": "presses",
+											"tags": [
+												"press_1"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												80,
+												12
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												73,
+												32
+											],
+											"tag": "presses",
+											"tags": [
+												"press_2"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												85,
+												32
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												44,
+												43
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												82,
+												54
+											],
+											"tag": "presses",
+											"tags": [
+												"press_3"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												53,
+												79
+											],
+											"tag": "presses",
+											"tags": [
+												"press_4"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												77,
+												64
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												22,
+												31
+											],
+											"tag": "presses",
+											"tags": [
+												"press_5"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												22,
+												66
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"build": {
+											"team": "assembly",
+											"kind": "cottage",
+											"at": [
+												114,
+												21
+											],
+											"tag": "presses",
+											"tags": [
+												"press_6"
+											],
+											"name": "Printing house",
+											"disguise": {
+												"as": "town",
+												"within": 3,
+												"by": "crown"
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												108,
+												76
+											],
+											"tag": "houses"
+										}
+									},
+									{
+										"say": [
+											"a_layout_hill"
+										]
+									}
+								]
+							}
+						]
+					}
+				},
+				{
+					"spare": {
+						"tag": "townsfolk",
+						"on": true
+					}
+				}
+			]
+		},
+		{
+			"id": "intro",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"d_1",
+						"t_1",
+						"tip_1"
+					]
+				},
+				{
+					"ping": {
+						"area": "terreaux"
+					}
+				},
+				{
+					"ping": {
+						"area": "bellecour"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro_saved",
+			"when": {
+				"all": [
+					{
+						"fired": "intro"
+					},
+					{
+						"past": {
+							"p01_leaf.families": "save"
+						}
+					}
+				]
+			},
+			"delay": 16,
+			"do": [
+				{
+					"say": [
+						"t_saved"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_left",
+			"when": {
+				"all": [
+					{
+						"fired": "intro"
+					},
+					{
+						"not": {
+							"past": {
+								"p01_leaf.families": "save"
+							}
+						}
+					}
+				]
+			},
+			"delay": 16,
+			"do": [
+				{
+					"say": [
+						"t_left"
+					]
+				}
+			]
+		},
+		{
+			"id": "tip_riders",
+			"when": {
+				"fired": "intro"
+			},
+			"delay": 30,
+			"do": [
+				{
+					"say": [
+						"tip_2"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_a",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "assembly"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"a_1",
+						"a_tip"
+					]
+				}
+			]
+		},
+		{
+			"id": "pay",
+			"when": {
+				"all": [
+					{
+						"time": 60
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 60,
+			"do": [
+				{
+					"give": {
+						"team": "garrison",
+						"gold": 40
+					}
+				}
+			]
+		},
+		{
+			"id": "first_found",
+			"when": {
+				"unmasked": "presses"
+			},
+			"do": [
+				{
+					"say": [
+						"d_found",
+						"t_found"
+					]
+				}
+			]
+		},
+		{
+			"id": "first_runner",
+			"when": {
+				"count": {
+					"tag": "runner",
+					"at_least": 1
+				}
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"w_runner"
+					]
+				}
+			]
+		},
+		{
+			"id": "first_closed",
+			"when": {
+				"counter": {
+					"name": "closed",
+					"at_least": 1
+				}
+			},
+			"do": [
+				{
+					"say": [
+						"d_closed"
+					]
+				}
+			]
+		},
+		{
+			"id": "temper_10",
+			"when": {
+				"counter": {
+					"name": "temper",
+					"at_least": 10
+				}
+			},
+			"do": [
+				{
+					"say": [
+						"n_temper10"
+					]
+				}
+			]
+		},
+		{
+			"id": "temper_15",
+			"when": {
+				"counter": {
+					"name": "temper",
+					"at_least": 15
+				}
+			},
+			"do": [
+				{
+					"say": [
+						"n_temper15",
+						"d_temper15"
+					]
+				}
+			]
+		},
+		{
+			"id": "sermon",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"counter": {
+							"name": "temper",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"tag": "tomasz",
+									"area": "terreaux",
+									"at_least": 1
+								}
+							},
+							{
+								"count": {
+									"tag": "tomasz",
+									"area": "jacobins",
+									"at_least": 1
+								}
+							},
+							{
+								"count": {
+									"tag": "tomasz",
+									"area": "cordeliers",
+									"at_least": 1
+								}
+							},
+							{
+								"count": {
+									"tag": "tomasz",
+									"area": "bellecour",
+									"at_least": 1
+								}
+							},
+							{
+								"count": {
+									"tag": "tomasz",
+									"area": "saint_jean",
+									"at_least": 1
+								}
+							}
+						]
+					}
+				]
+			},
+			"delay": 30,
+			"every": 30,
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": -1,
+						"min": 0
+					}
+				}
+			]
+		},
+		{
+			"id": "sermon_line",
+			"when": {
+				"fired": "sermon"
+			},
+			"do": [
+				{
+					"say": [
+						"t_sermon"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "closed",
+							"at_least": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"do": [
+				{
+					"objective": {
+						"id": "presses",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"d_2",
+						"t_2",
+						"tip_3"
+					]
+				},
+				{
+					"spawn": {
+						"team": "town",
+						"kind": "labourer",
+						"as": "weaver",
+						"count": 16,
+						"fixed": true,
+						"at": "hall_square",
+						"tag": "weavers",
+						"order": "hold"
+					}
+				},
+				{
+					"spare": {
+						"tag": "weavers",
+						"on": true
+					}
+				},
+				{
+					"objective": {
+						"id": "speech",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "hall",
+						"set": "active"
+					}
+				},
+				{
+					"reveal": {
+						"area": "hall_square",
+						"side": "crown",
+						"secs": 90
+					}
+				},
+				{
+					"ping": {
+						"area": "hall_square"
+					}
+				},
+				{
+					"ping": {
+						"area": "stair_w"
+					}
+				},
+				{
+					"ping": {
+						"area": "stair_c"
+					}
+				},
+				{
+					"ping": {
+						"area": "stair_e"
+					}
+				},
+				{
+					"spawn": {
+						"team": "garrison",
+						"kind": "musketeer",
+						"count": 6,
+						"fixed": true,
+						"at": "below_stairs",
+						"tag": "reinforce"
+					}
+				},
+				{
+					"light": {
+						"to": "dusk",
+						"secs": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "objs_after_presses",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 10,
+			"do": [
+				{
+					"objective": {
+						"id": "presses",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "band_1",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 25,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 4,
+						"at": "terreaux",
+						"tag": "band"
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 2,
+						"at": "terreaux",
+						"tag": "band"
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "torch",
+						"count": 1,
+						"fixed": true,
+						"at": "terreaux",
+						"tag": "band"
+					}
+				},
+				{
+					"order": {
+						"tag": "band",
+						"do": "attack",
+						"to": "hall_square"
+					}
+				},
+				{
+					"say": [
+						"d_band1"
+					]
+				},
+				{
+					"ping": {
+						"area": "stair_c"
+					}
+				}
+			]
+		},
+		{
+			"id": "band_2",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 65,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 4,
+						"at": "pont_saone_n",
+						"tag": "band2"
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 3,
+						"at": "pont_saone_n",
+						"tag": "band2"
+					}
+				},
+				{
+					"order": {
+						"tag": "band2",
+						"do": "attack",
+						"to": "hall_square"
+					}
+				},
+				{
+					"say": [
+						"d_band2"
+					]
+				},
+				{
+					"ping": {
+						"area": "stair_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "band_3",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 105,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 5,
+						"at": "pont_rhone_n",
+						"tag": "band3"
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 2,
+						"at": "pont_rhone_n",
+						"tag": "band3"
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "torch",
+						"count": 1,
+						"fixed": true,
+						"at": "pont_rhone_n",
+						"tag": "band3"
+					}
+				},
+				{
+					"order": {
+						"tag": "band3",
+						"do": "attack",
+						"to": "hall_square"
+					}
+				},
+				{
+					"say": [
+						"d_band3"
+					]
+				},
+				{
+					"ping": {
+						"area": "stair_e"
+					}
+				}
+			]
+		},
+		{
+			"id": "turn",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"done": "speech"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"count": {
+								"tag": "tomasz",
+								"area": "hall_square",
+								"at_least": 1
+							}
+						}
+					},
+					{
+						"count": {
+							"tag": "weavers",
+							"area": "hall_square",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"delay": 12,
+			"every": 12,
+			"do": [
+				{
+					"convert": {
+						"area": "hall_square",
+						"from": "town",
+						"kind": "labourer",
+						"count": 2,
+						"to": "assembly",
+						"warn": 3,
+						"as": "mob"
+					}
+				},
+				{
+					"counter": {
+						"name": "temper",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "weavers",
+						"add": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "turn_line",
+			"when": {
+				"fired": "turn"
+			},
+			"do": [
+				{
+					"say": [
+						"n_turn",
+						"t_turn"
+					]
+				}
+			]
+		},
+		{
+			"id": "mob_go",
+			"when": {
+				"all": [
+					{
+						"fired": "turn"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 3.5,
+			"every": 3,
+			"do": [
+				{
+					"spare": {
+						"tag": "mob",
+						"on": false
+					}
+				},
+				{
+					"order": {
+						"tag": "mob",
+						"do": "hunt",
+						"prey": "tomasz",
+						"within": 14
+					}
+				}
+			]
+		},
+		{
+			"id": "spoken",
+			"when": {
+				"done": "speech"
+			},
+			"do": [
+				{
+					"say": [
+						"t_spoken",
+						"wv_spoken"
+					]
+				},
+				{
+					"order": {
+						"tag": "weavers",
+						"only_team": "town",
+						"do": "move",
+						"to": "home_w"
+					}
+				},
+				{
+					"counter": {
+						"name": "temper",
+						"add": -3,
+						"min": 0
+					}
+				}
+			]
+		},
+		{
+			"id": "hall_burnt",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"dead": "weavers_hall"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 4
+					}
+				},
+				{
+					"say": [
+						"n_hall"
+					]
+				}
+			]
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"done": "speech"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"team": "assembly",
+									"area": "hilltop_all",
+									"below": 1
+								}
+							},
+							{
+								"clock_out": "part3_late"
+							}
+						]
+					}
+				]
+			},
+			"delay": 5,
+			"do": [
+				{
+					"objective": {
+						"id": "speech",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "hall",
+						"set": "hidden"
+					}
+				},
+				{
+					"say": [
+						"wv_yard",
+						"t_3",
+						"tip_4"
+					]
+				},
+				{
+					"objective": {
+						"id": "great",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "rouviere",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "close_great",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"area": "trab_yard_s"
+					}
+				},
+				{
+					"ping": {
+						"area": "trab_yard_e"
+					}
+				},
+				{
+					"reveal": {
+						"area": "trab_yard_s",
+						"side": "crown",
+						"secs": 40
+					}
+				},
+				{
+					"reveal": {
+						"area": "trab_yard_e",
+						"side": "crown",
+						"secs": 40
+					}
+				},
+				{
+					"light": {
+						"to": "night",
+						"secs": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "late_clock",
+			"when": {
+				"done": "speech"
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "part3_late",
+						"secs": 90
+					}
+				}
+			]
+		},
+		{
+			"id": "great_found",
+			"when": {
+				"all": [
+					{
+						"unmasked": "great_press"
+					},
+					{
+						"fired": "part3"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "great",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"d_great",
+						"pr_1"
+					]
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 3,
+						"near": "great_press",
+						"at": "yard",
+						"tag": "yard_men"
+					}
+				}
+			]
+		},
+		{
+			"id": "great_early",
+			"when": {
+				"all": [
+					{
+						"unmasked": "great_press"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"d_early"
+					]
+				}
+			]
+		},
+		{
+			"id": "great_runs",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"dead": "great_press"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 30,
+			"every": 40,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "great_press",
+						"at": "yard",
+						"tag": "runner_great",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_great",
+						"do": "move",
+						"to": "terreaux",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "taken",
+			"when": {
+				"captured": "printer"
+			},
+			"do": [
+				{
+					"say": [
+						"pr_taken",
+						"t_taken"
+					]
+				},
+				{
+					"flag": {
+						"printer": "taken"
+					}
+				}
+			]
+		},
+		{
+			"id": "won",
+			"when": {
+				"all": [
+					{
+						"captured": "printer"
+					},
+					{
+						"dead": "great_press"
+					},
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"d_won",
+						"t_won"
+					]
+				},
+				{
+					"tally": {
+						"flag": "lyon",
+						"counter": "temper",
+						"bands": [
+							[
+								0,
+								"calm"
+							],
+							[
+								10,
+								"sullen"
+							]
+						]
+					}
+				},
+				{
+					"light": {
+						"to": "dawn",
+						"secs": 20
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"fired": "won"
+			},
+			"delay": 8,
+			"do": [
+				{
+					"win": "crown"
+				}
+			]
+		},
+		{
+			"id": "risen",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "temper",
+							"at_least": 20
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_risen"
+					]
+				},
+				{
+					"objective": {
+						"id": "a_raise",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"lyon": "risen"
+					}
+				},
+				{
+					"objective": {
+						"id": "temper",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "priest_down",
+			"when": {
+				"all": [
+					{
+						"dead": "tomasz"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "a_priest",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "tomasz_hurt",
+			"when": {
+				"all": [
+					{
+						"hurt": "tomasz"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"d_hurt"
+					]
+				}
+			]
+		},
+		{
+			"id": "run_1_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 40.0
+					},
+					{
+						"not": {
+							"dead": "press_1"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 150,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_1",
+						"at": "east_bank",
+						"tag": "runner_1",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_1",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "terreaux"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "terreaux"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "terreaux"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_1_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 40.0
+					},
+					{
+						"not": {
+							"dead": "press_1"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 120,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_1",
+						"at": "east_bank",
+						"tag": "runner_1",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_1",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "terreaux"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "terreaux"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "terreaux"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_1_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 40.0
+					},
+					{
+						"not": {
+							"dead": "press_1"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 95,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_1",
+						"at": "east_bank",
+						"tag": "runner_1",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_1",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "terreaux"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "terreaux"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "terreaux"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_2_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 65.0
+					},
+					{
+						"not": {
+							"dead": "press_2"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 150,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_2",
+						"at": "east_bank",
+						"tag": "runner_2",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_2",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "cordeliers"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_2_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 60.0
+					},
+					{
+						"not": {
+							"dead": "press_2"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 120,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_2",
+						"at": "east_bank",
+						"tag": "runner_2",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_2",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "cordeliers"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_2_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 55.833333333333336
+					},
+					{
+						"not": {
+							"dead": "press_2"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 95,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_2",
+						"at": "east_bank",
+						"tag": "runner_2",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_2",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "cordeliers"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_3_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 90.0
+					},
+					{
+						"not": {
+							"dead": "press_3"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 150,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_3",
+						"at": "east_bank",
+						"tag": "runner_3",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_3",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "jacobins"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "cordeliers"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_3_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 80.0
+					},
+					{
+						"not": {
+							"dead": "press_3"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 120,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_3",
+						"at": "east_bank",
+						"tag": "runner_3",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_3",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "jacobins"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "cordeliers"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_3_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 71.66666666666667
+					},
+					{
+						"not": {
+							"dead": "press_3"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 95,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_3",
+						"at": "east_bank",
+						"tag": "runner_3",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_3",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "jacobins"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "cordeliers"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_4_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 115.0
+					},
+					{
+						"not": {
+							"dead": "press_4"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 150,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_4",
+						"at": "east_bank",
+						"tag": "runner_4",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_4",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "bellecour"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "bellecour"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "bellecour"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_4_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 100.0
+					},
+					{
+						"not": {
+							"dead": "press_4"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 120,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_4",
+						"at": "east_bank",
+						"tag": "runner_4",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_4",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "bellecour"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "bellecour"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "bellecour"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_4_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 87.5
+					},
+					{
+						"not": {
+							"dead": "press_4"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 95,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_4",
+						"at": "east_bank",
+						"tag": "runner_4",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_4",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "bellecour"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "bellecour"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "bellecour"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_5_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 140.0
+					},
+					{
+						"not": {
+							"dead": "press_5"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 150,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_5",
+						"at": "east_bank",
+						"tag": "runner_5",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_5",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "saint_jean"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "saint_jean"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "saint_jean"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_5_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 120.0
+					},
+					{
+						"not": {
+							"dead": "press_5"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 120,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_5",
+						"at": "east_bank",
+						"tag": "runner_5",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_5",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "saint_jean"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "saint_jean"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "saint_jean"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_5_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 103.33333333333334
+					},
+					{
+						"not": {
+							"dead": "press_5"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 95,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_5",
+						"at": "east_bank",
+						"tag": "runner_5",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_5",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "saint_jean"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "saint_jean"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "saint_jean"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_6_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 165.0
+					},
+					{
+						"not": {
+							"dead": "press_6"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 150,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_6",
+						"at": "east_bank",
+						"tag": "runner_6",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_6",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "cordeliers"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_6_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 140.0
+					},
+					{
+						"not": {
+							"dead": "press_6"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 120,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_6",
+						"at": "east_bank",
+						"tag": "runner_6",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_6",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "cordeliers"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_6_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 119.16666666666667
+					},
+					{
+						"not": {
+							"dead": "press_6"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 95,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "runner",
+						"count": 1,
+						"fixed": true,
+						"near": "press_6",
+						"at": "east_bank",
+						"tag": "runner_6",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_6",
+						"do": "move",
+						"to": "terreaux",
+						"to_if": [
+							{
+								"if": {
+									"flag": {
+										"layout": "old_town"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "river"
+									}
+								},
+								"to": "cordeliers"
+							},
+							{
+								"if": {
+									"flag": {
+										"layout": "hill"
+									}
+								},
+								"to": "cordeliers"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "found_1",
+			"when": {
+				"unmasked": "press_1"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"near": "press_1",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 1,
+						"near": "press_1",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "closed_1",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"dead": "press_1"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "closed",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "temper",
+						"add": -2,
+						"min": 0
+					}
+				},
+				{
+					"give": {
+						"team": "garrison",
+						"gold": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "hint_1_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 270
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_1_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 300
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_1_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 360
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "found_2",
+			"when": {
+				"unmasked": "press_2"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"near": "press_2",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 1,
+						"near": "press_2",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "closed_2",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"dead": "press_2"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "closed",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "temper",
+						"add": -2,
+						"min": 0
+					}
+				},
+				{
+					"give": {
+						"team": "garrison",
+						"gold": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "hint_2_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 420
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_2_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 450
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_2_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 510
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "found_3",
+			"when": {
+				"unmasked": "press_3"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"near": "press_3",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 1,
+						"near": "press_3",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "closed_3",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"dead": "press_3"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "closed",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "temper",
+						"add": -2,
+						"min": 0
+					}
+				},
+				{
+					"give": {
+						"team": "garrison",
+						"gold": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "hint_3_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 570
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_3_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 600
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_3_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 660
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "found_4",
+			"when": {
+				"unmasked": "press_4"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"near": "press_4",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 1,
+						"near": "press_4",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "closed_4",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"dead": "press_4"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "closed",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "temper",
+						"add": -2,
+						"min": 0
+					}
+				},
+				{
+					"give": {
+						"team": "garrison",
+						"gold": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "hint_4_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 720
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_4_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 750
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_4_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 810
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "found_5",
+			"when": {
+				"unmasked": "press_5"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"near": "press_5",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 1,
+						"near": "press_5",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "closed_5",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"dead": "press_5"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "closed",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "temper",
+						"add": -2,
+						"min": 0
+					}
+				},
+				{
+					"give": {
+						"team": "garrison",
+						"gold": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "hint_5_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 870
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_5_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 900
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_5_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 960
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "found_6",
+			"when": {
+				"unmasked": "press_6"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"near": "press_6",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 1,
+						"near": "press_6",
+						"at": "east_bank",
+						"tag": "press_men",
+						"order": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "closed_6",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"dead": "press_6"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "closed",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "temper",
+						"add": -2,
+						"min": 0
+					}
+				},
+				{
+					"give": {
+						"team": "garrison",
+						"gold": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "hint_6_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 1020
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_6_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 1050
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_6_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 1110
+					},
+					{
+						"disguised": "presses"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "presses",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		}
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "crown",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"cardinal": {
+			"name": "Cardinal Tomasz",
+			"side": "crown",
+			"portrait": "res://campaign/hub/rome_tomasz_face.png"
+		},
+		"tomasz": {
+			"name": "Father Tomasz",
+			"side": "crown"
+		},
+		"delorme": {
+			"name": "Captain Delorme",
+			"side": "crown"
+		},
+		"watch": {
+			"name": "Sergeant of the Watch",
+			"side": "crown"
+		},
+		"weaver": {
+			"name": "Mère Gautier",
+			"side": "crown"
+		},
+		"printer": {
+			"name": "Master Rouvière",
+			"side": "assembly"
+		},
+		"narrator": {
+			"name": "Lyon",
+			"side": "crown"
+		},
+		"assembly": {
+			"name": "The Free Assembly",
+			"side": "assembly"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "The year after Virginia, the Assembly's pamphlets were in every city of the Crown."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "Most of them were printed in Lyon. The Cardinal was there. He was a young priest then."
+		},
+		"c_open": {
+			"who": "cardinal",
+			"text": "I was ordained that spring and sent to a parish on the hill. I thought I would baptise silk-weavers' children."
+		},
+		"t_open1": {
+			"who": "tomasz",
+			"text": "The papers were on every church door by morning. Nobody saw who nailed them."
+		},
+		"t_open_saved": {
+			"who": "tomasz",
+			"text": "The Hollins boys wrote to me from Virginia. Their families were safe. I kept the letter in my breviary."
+		},
+		"t_open_left": {
+			"who": "tomasz",
+			"text": "I still prayed for the families we left on the road in Virginia. Nobody wrote to me about them."
+		},
+		"t_open2": {
+			"who": "tomasz",
+			"text": "Captain Delorme came to the presbytery. He said: Father, you know these streets. Help me find the presses."
+		},
+		"k_open_a": {
+			"who": "king",
+			"text": "The Assembly kept no record of that spring. Here is what it would have done, if it could."
+		},
+		"d_1": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "Six presses at least, Father, hidden in houses like any other. The runners carry the papers to the squares."
+		},
+		"t_1": {
+			"who": "tomasz",
+			"text": "Then we watch the squares, and follow the runners home."
+		},
+		"tip_1": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "A press looks like a house until our men stand at its door. Every runner who reaches a square stirs the city."
+		},
+		"tip_2": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "The riders are quick through the streets. Send them to look. Keep the muskets on the squares."
+		},
+		"t_saved": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "In Virginia we saved the families. Here, too, it is the people we must save, not only the walls."
+		},
+		"t_left": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "In Virginia we left the families on the road. I will not leave this city to the fire."
+		},
+		"w_runner": {
+			"who": "watch",
+			"to": "crown",
+			"text": "A runner, Captain! A boy with a bundle of papers, running for the squares."
+		},
+		"w_hint": {
+			"who": "watch",
+			"to": "crown",
+			"text": "We saw where a runner came out, Captain. That house there. The door was still open."
+		},
+		"d_found": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "A press! Their men are inside. Break it."
+		},
+		"t_found": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "Spare the boys who carry the papers if you can. They cannot read what they carry."
+		},
+		"d_closed": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "One press silent. The type goes into the river."
+		},
+		"t_sermon": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "I spoke on the square until my voice went. Some of them listened. Some went home."
+		},
+		"n_temper10": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "Shutters close on the Presqu'île. Men gather at the corners and do not talk when soldiers pass."
+		},
+		"n_temper15": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "Stones are thrown at the Watch on the bridges. The city is close to rising."
+		},
+		"d_temper15": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "Father, they are close to the edge. Stop the runners or we lose the city."
+		},
+		"d_2": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "Four presses closed. Now the Assembly calls the weavers up the hill, to their hall."
+		},
+		"t_2": {
+			"who": "tomasz",
+			"text": "Let me speak to them, Captain. They are my parish. Hold the stairs and give me the time."
+		},
+		"tip_3": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "Father Tomasz must stand on the hall's square. While he is not there, the agitators turn the weavers."
+		},
+		"d_band1": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "A band at the Terreaux, coming up the middle stair!"
+		},
+		"d_band2": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "More from the Saône bridge, for the west stair."
+		},
+		"d_band3": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "And from the Rhône, with torches, for the east stair."
+		},
+		"n_turn": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "Weavers pick up stones. A few of them follow the green cockades."
+		},
+		"t_turn": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "Bring me to them. They will not turn while I am speaking."
+		},
+		"t_spoken": {
+			"who": "tomasz",
+			"text": "I told them who I was, and whose son. I told them nobody in that hall had ever printed bread."
+		},
+		"wv_spoken": {
+			"who": "weaver",
+			"text": "Go home, all of you. The young Father is right. Go home."
+		},
+		"n_hall": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "The Weavers' Hall is burning. The whole hill can see it."
+		},
+		"wv_yard": {
+			"who": "weaver",
+			"text": "Father. There is a yard under the hill with no street to it. You go in through the houses."
+		},
+		"t_3": {
+			"who": "tomasz",
+			"text": "The traboules. Captain, the great press is there."
+		},
+		"tip_4": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "Two passages lead into that yard. Take the printer alive: the King will want to know who pays him."
+		},
+		"d_great": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "There it is. A press as big as a church organ."
+		},
+		"pr_1": {
+			"who": "printer",
+			"text": "You are too late, Father. Half of France has read us already."
+		},
+		"d_early": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "A great press in a yard! We will come back for it with more men."
+		},
+		"pr_taken": {
+			"who": "printer",
+			"text": "Take me, then. The paper is made in Paris. So is everything else."
+		},
+		"t_taken": {
+			"who": "tomasz",
+			"text": "He said Paris. He said it as if it were a threat."
+		},
+		"d_won": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "The great press is broken. Lyon is quiet."
+		},
+		"t_won": {
+			"who": "tomasz",
+			"text": "The bells rang for Lauds. I had not slept, and I said Mass anyway."
+		},
+		"d_hurt": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "The Father is hurt! Men round the priest!"
+		},
+		"n_risen": {
+			"who": "narrator",
+			"text": "Lyon rises. The Assembly's flags are on the Terreaux."
+		},
+		"a_1": {
+			"who": "assembly",
+			"to": "assembly",
+			"text": "Your presses print in houses like any other. Walk the runners to the squares and the city will rise."
+		},
+		"a_tip": {
+			"who": "assembly",
+			"to": "assembly",
+			"text": "The Crown cannot touch a press it has not found. Keep its men away from your doors."
+		},
+		"a_layout_old_town": {
+			"who": "assembly",
+			"to": "assembly",
+			"text": "Your presses: the hill's west, the slopes, the Presqu'île, Vieux Lyon's north and Guillotière's south."
+		},
+		"a_layout_river": {
+			"who": "assembly",
+			"to": "assembly",
+			"text": "Your presses: the hill's east, the slopes, the Presqu'île, Vieux Lyon's south and Guillotière's north."
+		},
+		"a_layout_hill": {
+			"who": "assembly",
+			"to": "assembly",
+			"text": "Your presses: the hill's west, the slopes, the Presqu'île, Vieux Lyon's north and Guillotière's north."
+		},
+		"t_end1": {
+			"who": "tomasz",
+			"text": "Rouvière went to Rome in chains. He never said who paid him. He said Paris, again and again."
+		},
+		"t_end_calm": {
+			"who": "tomasz",
+			"text": "By Pentecost the weavers were back at their looms, and they came to Mass."
+		},
+		"t_end_sullen": {
+			"who": "tomasz",
+			"text": "The city stayed quiet. Quiet is not the same as calm. I heard them stop talking when I passed."
+		},
+		"t_end_saved": {
+			"who": "tomasz",
+			"text": "I wrote to the Hollins boys that summer. I told them about Lyon. I did not tell them everything."
+		},
+		"c_end": {
+			"who": "cardinal",
+			"text": "I was proud of that spring. I am still. I was also lucky."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "He was more than lucky. He made a city go home without a volley."
+		},
+		"k_end2": {
+			"who": "king",
+			"text": "Paris was another matter."
+		},
+		"k_end_a1": {
+			"who": "king",
+			"text": "That is not how it went. Lyon did not rise."
+		},
+		"k_end_a2": {
+			"who": "king",
+			"text": "But if it had, Paris would have had a sister. I have thought of that."
+		}
+	},
+	"stills": {
+		"rome": {
+			"image": "res://campaign/stills/p01_01.jpg",
+			"caption": "Rome, the present. The King and the Cardinal."
+		},
+		"bridge": {
+			"image": "res://campaign/stills/a01_01.jpg",
+			"caption": "Lyon, spring 2768. Pamphlets on the bridges."
+		},
+		"press": {
+			"image": "res://campaign/stills/a01_02.jpg",
+			"caption": "A printing house behind a weaver's shutters."
+		},
+		"hill": {
+			"image": "res://campaign/stills/a01_03.jpg",
+			"caption": "The Croix-Rousse: the weavers at their hall."
+		},
+		"traboule": {
+			"image": "res://campaign/stills/a01_04.jpg",
+			"caption": "Through the traboules."
+		},
+		"taken": {
+			"image": "res://campaign/stills/a01_05.jpg",
+			"caption": "The last press, and its printer."
+		}
+	},
+	"opening": {
+		"crown": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2",
+					"c_open"
+				]
+			},
+			{
+				"still": "bridge",
+				"lines": [
+					"t_open1",
+					{
+						"id": "t_open_saved",
+						"if": {
+							"past": {
+								"p01_leaf.families": "save"
+							}
+						}
+					},
+					{
+						"id": "t_open_left",
+						"if": {
+							"not": {
+								"past": {
+									"p01_leaf.families": "save"
+								}
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "press",
+				"lines": [
+					"t_open2"
+				]
+			}
+		],
+		"assembly": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open_a"
+				]
+			},
+			{
+				"still": "press",
+				"lines": [
+					"a_1"
+				]
+			}
+		]
+	},
+	"ending": {
+		"crown": [
+			{
+				"still": "taken",
+				"lines": [
+					"t_end1",
+					{
+						"id": "t_end_calm",
+						"if": {
+							"flag": {
+								"lyon": "calm"
+							}
+						}
+					},
+					{
+						"id": "t_end_sullen",
+						"if": {
+							"flag": {
+								"lyon": "sullen"
+							}
+						}
+					},
+					{
+						"id": "t_end_saved",
+						"if": {
+							"past": {
+								"p01_leaf.families": "save"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"c_end",
+					"k_end1",
+					"k_end2"
+				]
+			}
+		],
+		"assembly": [
+			{
+				"still": "hill",
+				"lines": [
+					"k_end_a1"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_a2"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"crown": {
+			"still": "bridge",
+			"text": [
+				"Lyon, spring 2768. The Free Assembly prints its pamphlets in houses like any other, and its runners carry them to the squares.",
+				"Find the printing houses and close them; keep the runners off the squares before the city's temper boils over.",
+				"Father Tomasz must live."
+			]
+		},
+		"assembly": {
+			"still": "press",
+			"text": [
+				"Lyon, spring 2768. You are the Free Assembly. Six of your presses print in the city's houses.",
+				"Walk your runners to the squares until the city rises, or silence the young priest."
+			]
+		}
+	},
+	"debrief": {
+		"crown": {
+			"still": "taken",
+			"title": "The presses are silent",
+			"text": "Master Rouvière is taken and the great press broken. Lyon went home.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"lyon": "calm"
+						}
+					},
+					"text": "The city is calm: its temper {temper} of 20."
+				},
+				{
+					"if": {
+						"flag": {
+							"lyon": "sullen"
+						}
+					},
+					"text": "The city is sullen: its temper {temper} of 20."
+				},
+				{
+					"if": {
+						"counter": {
+							"name": "weavers",
+							"at_least": 1
+						}
+					},
+					"text": "{weavers} weavers followed the Assembly on the hill."
+				}
+			]
+		},
+		"assembly": {
+			"still": "hill",
+			"title": "Lyon rises",
+			"text": "The Assembly's flags fly on the Terreaux. The garrison holds only the east bank."
+		}
+	},
+	"next": {
+		"crown": "",
+		"assembly": ""
+	}
+}

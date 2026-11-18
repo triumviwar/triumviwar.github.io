@@ -3550,7 +3550,7 @@ func _draw_minimap() -> void:
 	for b in game.buildings:
 		if b.visible or (b.team == game.human and not game.demo):
 			var r: Rect2 = b.rect()
-			_ci.draw_rect(Rect2(m.position + r.position * k, r.size * k), game.team_colour(b.team).lightened(0.2))
+			_ci.draw_rect(Rect2(m.position + r.position * k, r.size * k), b.cloth_colour().lightened(0.2))     # (a disguised house: the town's colour)
 	if game.fog_mem and not game.demo:
 		for gr in game.fog_mem.minimap_rects():          # (enemy buildings remembered under the fog: as last seen, darker)
 			var r: Rect2 = gr[0]

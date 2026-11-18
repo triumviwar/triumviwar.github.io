@@ -309,7 +309,7 @@ M = {
         "rebels": {"still": "rebels", "title": "Virginia burns",
                    "text": "The manor fell and the leaf burned. The Free Assembly's fire spread along the coast."},
     },
-    "next": {"crown": "", "rebels": ""},
+    "next": {"crown": "a01_presses", "rebels": ""},
 }
 
 out = os.path.join(os.path.dirname(__file__), "..", "..", "campaign", "missions", "p01_leaf.json")

@@ -74,6 +74,10 @@ var mist_teams := {}                 # team index -> true: the mist's teams ({} 
 var captured := {}                   # a capture objective's tag -> true once its man is taken
 var _capture_share := {}             # a capture objective's tag -> the share of health he is kept at (his floor)
 var weather_name := ""
+# Act 1's a01_presses (a01-presses, docs/campaign_a01_build.md): DISGUISED buildings (a printing house that looks like
+# one of the town's houses, in the town's colour, untouchable, until the other side comes close: then it is UNMASKED)
+var _disguised: Array = []           # buildings still disguised
+var unmasked := {}                   # tag -> the game clock a building with it was unmasked
 
 
 func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
@@ -262,6 +266,12 @@ func _place_building(it: Dictionary) -> Building:
 		game.on_building_complete(b)      # ("site": a building site, paid for, the team's workers build it)
 	if it.has("tag"):
 		_tag(String(it["tag"]), b)
+	for tg in it.get("tags", []):
+		_tag(String(tg), b)                  # (a01: more tags: "presses" and "press_3" on one house)
+	if it.has("name"):
+		b.set_meta("mission_name", String(it["name"]))
+	if it.get("disguise") is Dictionary:
+		disguise(b, it["disguise"])
 	return b
 
 
@@ -308,11 +318,19 @@ func _spawn(it: Dictionary) -> Array:
 	if it.has("if") and not cond(it["if"]):
 		return out           # (units only when the condition holds: "if": {"past": ...}, {"difficulty": "easy"})
 	var n := scaled_count(t, int(it.get("count", 1)), bool(it.get("fixed", false)))
-	var spots := _spots(_where(it.get("at", [0, 0])), n)
+	var where := _where(it.get("at", [0, 0]))
+	if it.has("near"):
+		# (a01: "near": tag: round the first living thing with that tag, a disguised press's men out of its door)
+		var r := near_rect(String(it["near"]))
+		if r.size.x > 0.0:
+			where = r
+	var spots := _spots(where, n)
 	for i in n:
 		var u := game._add_unit(k, t, spots[i % spots.size()])
 		if it.has("tag"):
 			_tag(String(it["tag"]), u)
+		for tg in it.get("tags", []):
+			_tag(String(tg), u)
 		if it.has("as"):
 			Rebels.apply(u, String(it["as"]))       # (a rebel's role: its art, name, torch: scripts/campaign/rebels.gd)
 		if it.has("name"):
@@ -408,6 +426,7 @@ func _physics_process(delta: float) -> void:
 	_tick_held()
 	_tick_routes()
 	_tick_sleep()
+	_tick_disguise()
 	if not choice_open.is_empty() and game.clock >= float(choice_open.get("until", INF)):
 		choose(String(choice_open["id"]), String(choice_open.get("default", "")))      # (nobody answered: the default)
 	_run_triggers()
@@ -468,6 +487,12 @@ func cond(c: Variant) -> bool:
 		var v: Variant = c[k]
 		var ok := true
 		match String(k):
+			"unmasked":
+				# (a01) {"unmasked": tag}: a disguised building with that tag has been found (dead or alive)
+				ok = unmasked.has(String(v))
+			"disguised":
+				# (a01) {"disguised": tag}: one with that tag still stands disguised
+				ok = tagged(String(v)).any(func(e) -> bool: return e.has_meta("disguise_team"))
 			"time":
 				ok = game.clock >= float(v)
 			"dead":
@@ -637,6 +662,10 @@ func act(a: Dictionary) -> void:
 					# (a03: "kind" only those of that kind: the nest's Raptors hunt, its Spitters keep by the Mother)
 					var ks: Array = v["kind"] if v["kind"] is Array else [v["kind"]]
 					us = us.filter(func(e) -> bool: return ks.has(e.kind))
+				if v.has("only_team"):
+					# (a01: of a tag, only those still on that team: the weavers who went home, not the ones who turned)
+					var ot := team_index(String(v["only_team"]))
+					us = us.filter(func(e) -> bool: return e.team == ot)
 				if bool(v.get("idle", false)):
 					# ("idle": only those not busy with a target: the Fürth Line's machines pushed on at the tower, never
 					# pulled off the tower or a fight they are in)
@@ -652,8 +681,16 @@ func act(a: Dictionary) -> void:
 				reveals.append([si, game.cell_of(r.get_center()), rad, until])
 				game._vis_t = 0.0
 				_send({"k": "reveal", "r": [si, game.cell_of(r.get_center()), rad, until]})
+			"unmask":
+				# {"unmask": {"tag", "first"}}: the story gives them away (a weaver tells Tomasz where it is); "first":
+				# only the first still disguised (the Watch saw where one runner came from)
+				for e in tagged(String(v.get("tag", ""))):
+					if e is Building and e.has_meta("disguise_team"):
+						unmask(e)
+						if bool(v.get("first", false)):
+							break
 			"ping":
-				var p := area_rect(String(v["area"])).get_center()
+				var p := area_rect(String(v["area"])).get_center() if v.has("area") else near_rect(String(v.get("tag", ""))).get_center()
 				game._ping(p, Color(1, 0.85, 0.3))
 				_send({"k": "ping", "p": p})
 			"camera":
@@ -703,6 +740,10 @@ func act(a: Dictionary) -> void:
 					counters[cn] = int(counters.get(cn, 0)) + int(counters.get(String(v["add_counter"]), 0))
 				else:
 					counters[cn] = int(v["set"]) if v.has("set") else int(counters.get(cn, 0)) + int(v.get("add", 1))
+				if v.has("min"):
+					counters[cn] = maxi(int(counters[cn]), int(v["min"]))      # (a01: the temper never under 0)
+				if v.has("max"):
+					counters[cn] = mini(int(counters[cn]), int(v["max"]))
 				objectives_changed.emit()
 				_send({"k": "cnt", "c": counters.duplicate()})
 			"clock":
@@ -934,6 +975,12 @@ func choose(cid: String, opt_id: String) -> void:
 		return
 	var ch: Dictionary = choice_open if String(choice_open.get("id", "")) == cid else _find_choice(cid)
 	var opts: Array = ch.get("options", [])
+	if opt_id == "random" and not opts.is_empty():
+		# (a01: "default": "random": the match's seed picks, the same on every machine and replay of it: where the
+		# Assembly's presses print when nobody plays it)
+		var r := RandomNumberGenerator.new()
+		r.seed = hash([int(game.rng.seed) if game and game.rng else 0, cid])
+		opt_id = String(opts[r.randi() % opts.size()].get("id", ""))
 	var opt := _opt(opts, opt_id)
 	if opt.is_empty():
 		opt = _opt(opts, String(ch.get("default", "")))
@@ -1679,6 +1726,72 @@ func _mist_picture(cl: CanvasLayer) -> void:
 ## CAPTURE (objective {"kind": "capture", "tag", "share": 0.25, "within": tiles (3), "by": side (the objective's)}):
 ## the man can't be brought under that share of his health; there, with one of the capturing side near, he is taken
 ## (caged and spared: he stays where he was taken, harmless); done when all of the tag are taken, failed if all die.
+# ------------------------------------------------------------------ DISGUISED buildings (a01_presses)
+
+## A rectangle round the first living thing with the tag (a building's footprint and two cells round it; a unit's two
+## cells round); an empty rectangle when there is none.
+func near_rect(tag: String) -> Rect2:
+	for e in tagged(tag):
+		if e is Building:
+			return e.rect().grow(Defs.TILE * 2.0)
+		return Rect2(e.position - Vector2(Defs.TILE, Defs.TILE) * 2.0, Vector2(Defs.TILE, Defs.TILE) * 4.0)
+	return Rect2()
+
+
+## A building DISGUISED ("disguise": {"as": team id, "within": tiles, "by": side}): to every other side it wears the
+## team `as`'s colour (on the map, the minimap, its card), nobody targets it or hurts it (spared), until a unit of a side
+## hostile to it (of `by` only, if given) comes within `within` tiles (3) of its edge: then it is UNMASKED.
+func disguise(b: Entity, v: Dictionary) -> void:
+	var dt := team_index(String(v.get("as", "")))
+	if dt < 0 or b == null:
+		return
+	b.set_meta("disguise_team", dt)
+	b.set_meta("disguise", {"within": float(v.get("within", 3.0)) * Defs.TILE, "by": String(v.get("by", ""))})
+	b.spared = true
+	b.refresh_cloth()
+	if not _disguised.has(b):
+		_disguised.append(b)
+
+
+## Given away: its own colour, open to attack, a ping; `unmasked` keeps its tags (the condition).
+func unmask(b: Entity) -> void:
+	_disguised.erase(b)
+	if not is_instance_valid(b) or not b.has_meta("disguise_team"):
+		return
+	b.remove_meta("disguise_team")
+	b.remove_meta("disguise")
+	b.spared = false
+	b.refresh_cloth()
+	b.queue_redraw()
+	for tg in tags:
+		if (tags[tg] as Array).has(b):
+			unmasked[String(tg)] = game.clock
+	game._ping(b.center(), Color(1.0, 0.55, 0.3))
+	_send({"k": "ping", "p": b.center()})
+	if game.mlog:
+		game.mlog.add("(mission) unmasked %s" % String(b.get_meta("mission_tag", b.kind)))
+
+
+func _tick_disguise() -> void:
+	if _disguised.is_empty():
+		return
+	for b in _disguised.duplicate():
+		if not is_instance_valid(b) or b.dead:
+			_disguised.erase(b)
+			continue
+		var dv: Dictionary = b.get_meta("disguise", {})
+		var within := float(dv.get("within", 3.0 * Defs.TILE))
+		var by := String(dv.get("by", ""))
+		for u in game.units:
+			if u.dead or u.off_field or not game.hostile(u.team, b.team):
+				continue
+			if by != "" and side_of_team(u.team) != by:
+				continue
+			if b.edge_distance(u.position) <= within:
+				unmask(b)
+				break
+
+
 func _check_capture(o: Dictionary) -> void:
 	var oid := String(o["id"])
 	var tag := String(o.get("tag", ""))

@@ -67,7 +67,7 @@
 		{"mission": "a03_plateau", "line": "naturalist", "place": "The cloud mountain", "date": "September 2767", "point": [-65.9, 0.9], "nudge": [-8, -12]},
 		{"mission": "c01_thirteenth", "line": "clockmaker", "place": "Nuremberg", "date": "Advent 2767", "point": [11.08, 49.45], "nudge": [24, -2]},
 		{"mission": "a02_furth", "line": "clockmaker", "place": "Fürth", "date": "March 2768", "point": [10.99, 49.47], "nudge": [-24, -14]},
-		{"mission": "a01_presses", "line": "crown", "title": "The Printing Houses", "place": "Lyon", "date": "Spring 2768", "point": [4.84, 45.76], "nudge": [0, 0], "after": ["p01_leaf"]},
+		{"mission": "a01_presses", "line": "crown", "place": "Lyon", "date": "Spring 2768", "point": [4.84, 45.76], "nudge": [0, 0], "after": ["p01_leaf"]},
 		{"mission": "a05_specimens", "line": "naturalist", "title": "The Specimens", "place": "The plateau's foot", "date": "Dry season 2769", "point": [-65.3, 0.25], "nudge": [16, 2], "after": ["a03_plateau"]},
 		{"mission": "a06_barricades", "line": "crown", "title": "The Barricades of Paris", "place": "Paris", "date": "July 2769", "point": [2.35, 48.86], "nudge": [0, 0], "after": ["a01_presses"]},
 		{"mission": "a04_visit", "line": "clockmaker", "title": "Father Ferrer's Visit", "place": "Fürth", "date": "Autumn 2769", "point": [10.99, 49.47], "nudge": [-24, 18], "after": ["a02_furth"]},
@@ -107,6 +107,7 @@
 
 		{"if": {"flag": {"a01_presses.lyon": "calm"}}, "region": "lyon", "to": "crown", "ledger": "Lyon's presses were found: the city is calm."},
 		{"if": {"flag": {"a01_presses.lyon": "sullen"}}, "region": "lyon", "to": "contested", "ledger": "Lyon's presses were found, but the city is sullen."},
+		{"if": {"won_by": {"a01_presses": "assembly"}}, "region": "lyon", "to": "unrest", "pin": "a01_presses", "seal": "broken", "ledger": "Lyon rose: the Free Assembly's flags on the Terreaux."},
 		{"if": {"flag": {"a04_visit.broken": "melted"}}, "ledger": "The broken automata were melted down."},
 		{"if": {"flag": {"a04_visit.broken": "kept"}}, "ledger": "The broken automata were kept for study."},
 		{"if": {"flag_at_least": {"a04_visit.lost_to_machine": 4}}, "region": "franconia_more", "to": "machine", "ledger": "The machine's red spreads east of Nuremberg."},

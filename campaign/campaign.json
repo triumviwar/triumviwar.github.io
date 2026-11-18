@@ -3,10 +3,11 @@
 	"storylines": [
 		{
 			"id": "prologue",
-			"title": "Prologue: The Leaf and the Fire",
-			"about": "Virginia, 2767, told by the King in Rome. The Free Assembly rises against Church and Crown, and begins with fire.",
+			"title": "The Crown",
+			"about": "Told by the King in Rome. The Free Assembly rises against Church and Crown: Virginia in 2767, then the cities of the Crown.",
 			"missions": [
-				"p01_leaf"
+				"p01_leaf",
+				"a01_presses"
 			],
 			"hub": {
 				"title": "The King's Study",
@@ -140,6 +141,13 @@
 									"The naturalist lost his station in a single night, and thinks it was stolen from him.",
 									"He is held in the palace now. I keep him for what he knows of those creatures, and I hear him out."
 								]
+							},
+							{
+								"after": "a01_presses",
+								"lines": [
+									"Lyon went home without a volley. The Cardinal will tell you it was luck. Do not believe him.",
+									"The printer named Paris. We should have listened sooner."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_king_face.png"
@@ -160,6 +168,13 @@
 								"lines": [
 									"I still smell the smoke when I close my eyes.",
 									"Two letters came for the Governor that week: one from an explorer in the Amazon, one from a clockmaker. He gave them to me to read."
+								]
+							},
+							{
+								"after": "a01_presses",
+								"lines": [
+									"I spoke on the weavers' square until I had no voice left. Some of them still write to me.",
+									"Rouvière would not say who paid him. He said Paris, as if it were a prayer."
 								]
 							}
 						],

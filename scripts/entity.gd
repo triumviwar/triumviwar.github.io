@@ -77,6 +77,12 @@ func center() -> Vector2:
 	return rect().get_center()
 
 
+## Its team colour put on again (a disguised building given away: MissionRun.unmask).
+func refresh_cloth() -> void:
+	if _mat != null:
+		_mat.set_shader_parameter("team", cloth_colour())
+
+
 func team_material() -> ShaderMaterial:
 	if _mat == null:
 		_mat = ShaderMaterial.new()
@@ -89,6 +95,8 @@ func team_material() -> ShaderMaterial:
 ## (nobody's), else as painted.
 func cloth_colour() -> Color:
 	if team >= 0:
+		if has_meta("disguise_team") and game != null and not game.sees_all() and not game.allied(game.human, team):
+			return game.team_colour(int(get_meta("disguise_team")))     # (a campaign's DISGUISED house: the town's colour)
 		return game.team_colour(team)
 	return Defs.NEUTRAL_CLOTH if kind == "horse" else Color.RED
 
