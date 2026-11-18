@@ -421,3 +421,19 @@ and `difficulty`, trigger `modes`). New roles in Rebels.ROLES: `ferrer_visit` (F
 A `tally` whose bands are the numbers themselves (`[[0, 0], [1, 1], ...]`) leaves a numeric flag the war map's
 `flag_at_least` can read (`lost_to_machine`).
 
+
+## Added by Act 1's a05_specimens (a05-specimens, 0.38.64; docs/campaign_a05_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| `{"cart": {"tag", "cart", "caged", "freed", "freed_tag"}}` | CAGE CARTS: each creature of the tag not yet on a cart is caged on the nearest free cart of the cart tag (one a cart): carried with it every frame (MissionRun._carry_cages), can't move or fight, spared, shoving nobody (its mass near nothing), the cage's bars drawn round it (MissionRun.CageBars); `caged` counts it. The cart broken (dead): the creature is FREED (on its feet, open to attack; `freed` counts it, `freed_tag` tags it) |
+| condition `{"cargo": {"tag", "at_least" / "below"}}` | living carts of the tag with a cage on them (MissionRun.cargo_count) |
+| exit `"cargo": true`, `"max"`, `"cargo_counter"` | only carts with a cage leave by it, the cage with them; `max` (a number or a counter's name: the canoes' room) how many may leave by it in all, with `counter` counting them |
+| `{"remove": {"tag", "empty"}}` | taken off the map, not killed (the eggs lifted into Lindqvist's crate); `empty`: only those with no cage on them (the carts that caught nothing) |
+| `{"sleep": {..., "except_tags": [tags]}}` | those sleep apart: not in this group (the young in the ferns never wake the nest) |
+| `{"spare": {"tag", "on": false}}` on a carted creature | it stays untouchable until its cart breaks |
+| mission `"mend_allies": true` | workers may repair an ally's machines and buildings (Game.mends: the right-click and Unit._repair): the porters mend the convoy's cage carts |
+| role `cage_cart` (`"cart": true`) | a Powder Wagon with meta `cage_cart`: it never blows up |
+| roles `porter`, `hired_gun`, `young_sire` | Rebels.ROLES (stand-ins: a Labourer, a Musketeer, a Tyrant Sire at 0.55) |
+
+MATURE refuses a caged creature (BroodMature.problem: "It is caged.").

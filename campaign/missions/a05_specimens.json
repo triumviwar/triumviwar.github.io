@@ -16,6 +16,7 @@
 	},
 	"expansion_spots": false,
 	"manual_end": true,
+	"mend_allies": true,
 	"difficulty": {
 		"easy": {
 			"clocks": 1.25,
@@ -55,6 +56,22 @@
 			"start": "none",
 			"camera": "camp",
 			"powder": 60,
+			"gold": 150,
+			"roster": {
+				"deny": [
+					"town_hall",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"armoury",
+					"foundry",
+					"farm",
+					"powder_mill",
+					"horse_breeder",
+					"church"
+				]
+			},
 			"control": {
 				"solo": "p1",
 				"versus": "p1",
@@ -598,8 +615,8 @@
 			"kind": "mound_turtle",
 			"count": 1,
 			"at": [
-				52,
-				25
+				80,
+				22
 			],
 			"tag": "turtles"
 		},
@@ -1826,7 +1843,7 @@
 					"carry": {
 						"tag": "carts",
 						"on": true,
-						"pace": 0.55
+						"pace": 0.4
 					}
 				},
 				{
@@ -2009,21 +2026,32 @@
 					}
 				]
 			},
-			"delay": 50,
+			"delay": 35,
 			"do": [
 				{
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 4,
+						"count": 8,
 						"at": "rs_a",
 						"tag": "raiders",
 						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
 								}
-							}
+							]
 						}
 					}
 				},
@@ -2031,13 +2059,72 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 4,
+						"count": 5,
+						"at": "rs_a",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
 						"at": "rl_a",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rl_a",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
 						}
 					}
 				},
@@ -2081,37 +2168,32 @@
 					}
 				]
 			},
-			"delay": 160,
+			"delay": 110,
 			"do": [
 				{
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 3,
+						"count": 6,
 						"at": "rs_b",
 						"tag": "raiders",
 						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
 								}
-							}
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "pack",
-						"kind": "tyrant_challenger",
-						"count": 1,
-						"at": "rs_b",
-						"tag": "raiders",
-						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
-								}
-							}
+							]
 						}
 					}
 				},
@@ -2119,13 +2201,149 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 3,
+						"count": 4,
+						"at": "rs_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rs_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "rs_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 6,
 						"at": "rl_b",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 4,
+						"at": "rl_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rl_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
 						}
 					}
 				},
@@ -2137,9 +2355,18 @@
 						"at": "rl_b",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
 						}
 					}
 				},
@@ -2183,53 +2410,32 @@
 					}
 				]
 			},
-			"delay": 270,
+			"delay": 185,
 			"do": [
 				{
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 4,
+						"count": 8,
 						"at": "rs_c",
 						"tag": "raiders",
 						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
 								}
-							}
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "pack",
-						"kind": "tyrant_challenger",
-						"count": 1,
-						"at": "rs_c",
-						"tag": "raiders",
-						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
-								}
-							}
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "pack",
-						"kind": "spitter",
-						"count": 2,
-						"at": "rs_c",
-						"tag": "raiders",
-						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
-								}
-							}
+							]
 						}
 					}
 				},
@@ -2237,13 +2443,201 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 4,
+						"count": 5,
+						"at": "rs_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rs_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "rs_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 2,
+						"at": "rs_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 1,
+						"at": "rs_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
 						"at": "rl_c",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rl_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rl_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
 						}
 					}
 				},
@@ -2255,9 +2649,18 @@
 						"at": "rl_c",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
 						}
 					}
 				},
@@ -2269,9 +2672,43 @@
 						"at": "rl_c",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 1,
+						"at": "rl_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
 						}
 					}
 				},
@@ -2310,53 +2747,32 @@
 					}
 				]
 			},
-			"delay": 380,
+			"delay": 260,
 			"do": [
 				{
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 3,
+						"count": 6,
 						"at": "rs_d",
 						"tag": "raiders",
 						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
 								}
-							}
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "pack",
-						"kind": "tyrant_challenger",
-						"count": 2,
-						"at": "rs_d",
-						"tag": "raiders",
-						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
-								}
-							}
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "pack",
-						"kind": "venom_challenger",
-						"count": 1,
-						"at": "rs_d",
-						"tag": "raiders",
-						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
-								}
-							}
+							]
 						}
 					}
 				},
@@ -2364,13 +2780,201 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
+						"count": 4,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 3,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 1,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 1,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 6,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 4,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
 						"count": 3,
 						"at": "rl_d",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
 						}
 					}
 				},
@@ -2382,9 +2986,18 @@
 						"at": "rl_d",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
 						}
 					}
 				},
@@ -2396,9 +3009,43 @@
 						"at": "rl_d",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 1,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
 						}
 					}
 				},
@@ -2437,53 +3084,32 @@
 					}
 				]
 			},
-			"delay": 490,
+			"delay": 335,
 			"do": [
 				{
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 4,
-						"at": "rs_c",
+						"count": 8,
+						"at": "rs_d",
 						"tag": "raiders",
 						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
 								}
-							}
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "pack",
-						"kind": "tyrant_challenger",
-						"count": 2,
-						"at": "rs_c",
-						"tag": "raiders",
-						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
-								}
-							}
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "pack",
-						"kind": "venom_challenger",
-						"count": 1,
-						"at": "rs_c",
-						"tag": "raiders",
-						"if": {
-							"not": {
-								"past": {
-									"a03_plateau.map": "withheld"
-								}
-							}
+							]
 						}
 					}
 				},
@@ -2491,13 +3117,51 @@
 					"spawn": {
 						"team": "pack",
 						"kind": "raptor",
-						"count": 4,
-						"at": "rl_c",
+						"count": 5,
+						"at": "rs_d",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 3,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
 						}
 					}
 				},
@@ -2506,12 +3170,387 @@
 						"team": "pack",
 						"kind": "tyrant_challenger",
 						"count": 2,
-						"at": "rl_c",
+						"at": "rs_d",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 2,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 1,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 3,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 2,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 1,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "carts",
+						"within": 45
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"vol": -6
+					}
+				}
+			]
+		},
+		{
+			"id": "raid6",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 410,
+			"do": [
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 4,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 2,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
 						}
 					}
 				},
@@ -2520,12 +3559,167 @@
 						"team": "pack",
 						"kind": "venom_challenger",
 						"count": 1,
-						"at": "rl_c",
+						"at": "rs_d",
 						"tag": "raiders",
 						"if": {
-							"past": {
-								"a03_plateau.map": "withheld"
-							}
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 4,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 2,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 1,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
 						}
 					}
 				},
@@ -3734,6 +4928,45 @@
 			]
 		},
 		{
+			"id": "x_fight",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"order": {
+						"tag": "guns",
+						"do": "follow",
+						"leader": "carts",
+						"within": 4
+					}
+				},
+				{
+					"order": {
+						"tag": "guns",
+						"do": "hunt",
+						"prey_team": "creatures",
+						"within": 7
+					}
+				}
+			]
+		},
+		{
 			"id": "x_quay",
 			"when": {
 				"all": [
@@ -4084,7 +5317,7 @@
 	},
 	"stills": {
 		"rome": {
-			"image": "res://campaign/stills/b01_01.jpg",
+			"image": "res://campaign/stills/b01_08.jpg",
 			"caption": "Rome, the present. The King and his prisoner, the doctor."
 		},
 		"camp": {

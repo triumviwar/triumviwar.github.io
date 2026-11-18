@@ -131,7 +131,17 @@ for x in range(QUAY[0], QUAY[1]):
 SHORT = [(64, EDGE + 1), (62, 62), (58, 74), (64, 88), (68, 100), (62, 112), (64, 126), (64, H - 12)]
 LONG = [(14, EDGE + 1), (13, 62), (11, 76), (22, 90), (30, 100), (20, 112), (32, 122), (46, 130), (58, H - 12)]
 CROSS = [(22, 90), (40, 94), (58, 92), (64, 88)]          # (a deer path between the two trails)
+# the pack's paths: from the clearings where it waits (the mission's raid areas) to the trails, and the Sire's from the
+# east down to the quay
+PACK = [[(86, 68), (74, 70), (60, 72)], [(38, 82), (48, 80), (58, 76)], [(92, 102), (80, 100), (68, 100)],
+        [(40, 118), (52, 116), (62, 114)], [(32, 64), (22, 62), (13, 62)], [(32, 86), (24, 88)], [(48, 106), (36, 104), (30, 100)],
+        [(8, 122), (18, 118), (24, 116)], [(102, 130), (86, 134), (74, H - 12)]]
 trail = stroke(SHORT, 2.2) | stroke(LONG, 2.2) | stroke(CROSS, 1.2)
+for pk in PACK:
+    trail |= stroke(pk, 1.3)
+# (the clearings themselves)
+for cx, cy in [(86, 68), (38, 82), (92, 102), (40, 118), (32, 64), (32, 86), (48, 106), (8, 122), (102, 130)]:
+    trail |= stroke([(cx - 2, cy), (cx + 2, cy)], 2.6)
 # (the quay's clearing kept open)
 for y in range(H):
     for x in range(W):

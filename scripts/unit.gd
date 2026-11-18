@@ -5403,7 +5403,7 @@ func _strike(e: Entity) -> void:
 
 func _repair(delta: float) -> Vector2:
 	var e := order_target
-	if e == null or not is_instance_valid(e) or e.dead or e.team != team \
+	if e == null or not is_instance_valid(e) or e.dead or not game.mends(team, e.team) \
 			or (e.hp >= e.max_hp and not (e is Unit and (e as Unit).wind < 0.98)) or (e is Building and not e.built):
 		# done: the next Shift-queued order, or else the next damaged piece close by (a wall
 		# is many pieces)

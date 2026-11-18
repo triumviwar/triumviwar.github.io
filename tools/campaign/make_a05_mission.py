@@ -71,21 +71,24 @@ AWAKE_KINDS = ["brood_mother", "rootmaw", "mound_turtle", "dilophosaurus", "pter
                "brood_egg", "food_pile"]
 DAWN = 600                  # Part 1: the nest wakes at dawn (10:00)
 CANOES = 180                # Part 3: the canoes leave 3:00 after the first cart reaches the river
-RAIDS = [50, 160, 270, 380, 490]     # Part 2: the pack comes for the cages (seconds after the carts set off)
+RAIDS = [35, 110, 185, 260, 335, 410]     # Part 2: the pack comes for the cages every 1:15 (seconds after the carts set off)
 SHORT = ["s1", "s2", "s3", "s4", "s5", "s6", "quay"]
 LONG = ["top_w", "top_ww", "long_top", "l1", "l2", "l3", "l4", "l5", "l6", "l7", "quay"]
 YOUNG = [("w", "raptor", None), ("m", "tyrannosaur", "young_sire"), ("e", "spitter", None)]
 CART_FREE = {"caged": "caged", "freed": "freed", "freed_tag": "freed"}
 
 # where the pack waits along each way (short / long): a raid's spawn spot
-RAID_AT = {"short": ["rs_a", "rs_b", "rs_c", "rs_d", "rs_c"], "long": ["rl_a", "rl_b", "rl_c", "rl_d", "rl_c"]}
+RAID_AT = {"short": ["rs_a", "rs_b", "rs_c", "rs_d", "rs_d", "rs_d"], "long": ["rl_a", "rl_b", "rl_c", "rl_d", "rl_d", "rl_d"]}
 RAID_KIT = [
-    [("raptor", 4)],
-    [("raptor", 3), ("tyrant_challenger", 1)],
-    [("raptor", 4), ("tyrant_challenger", 1), ("spitter", 2)],
-    [("raptor", 3), ("tyrant_challenger", 2), ("venom_challenger", 1)],
-    [("raptor", 4), ("tyrant_challenger", 2), ("venom_challenger", 1)],
+    [("raptor", 8)],
+    [("raptor", 6), ("tyrant_challenger", 2)],
+    [("raptor", 8), ("tyrant_challenger", 2), ("spitter", 2)],
+    [("raptor", 6), ("tyrant_challenger", 3), ("venom_challenger", 1)],
+    [("raptor", 8), ("tyrant_challenger", 3), ("spitter", 2)],
+    [("raptor", 8), ("tyrant_challenger", 4), ("venom_challenger", 2)],
 ]
+BURNED_RAIDS = 0.6          # the raids with b01's clutch burned (a smaller expedition)
+CART_PACE = 0.4             # the carts' pace (an ox's: 15 px a second)
 
 
 def raid(i):
@@ -93,7 +96,10 @@ def raid(i):
     do = []
     for way, cond in (("short", DRAWN), ("long", WITHHELD)):
         for kind, n in RAID_KIT[i]:
-            do.append({"spawn": {"team": "pack", "kind": kind, "count": n, "at": RAID_AT[way][i], "tag": "raiders", "if": cond}})
+            # (a fresh start, b01's clutch burned: a smaller expedition and two carts, so smaller raids: 0.6 of each)
+            do.append({"spawn": {"team": "pack", "kind": kind, "count": n, "at": RAID_AT[way][i], "tag": "raiders", "if": {"all": [cond, SAVED_CLUTCH]}}})
+            do.append({"spawn": {"team": "pack", "kind": kind, "count": max(1, round(n * BURNED_RAIDS)), "at": RAID_AT[way][i], "tag": "raiders",
+                                 "if": {"all": [cond, BURNED]}}})
     do += [{"order": {"tag": "raiders", "do": "hunt", "prey": "carts", "within": 45}},
            {"sound": {"name": "campaign/forest_answer", "vol": -6}}]
     if i == 0:
@@ -127,6 +133,7 @@ M = {
     "mist": {"sight": 0.75, "weather": False},
     "expansion_spots": False,
     "manual_end": True,
+    "mend_allies": True,
     "difficulty": {"easy": {"clocks": 1.25, "spawns": 0.75}, "hard": {"clocks": 0.9, "spawns": 1.2}},
     "modes": ["solo", "versus"],
     "solo_sides": ["expedition", "creatures"],
@@ -136,6 +143,7 @@ M = {
     ],
     "teams": [
         {"id": "expedition", "side": "expedition", "faction": "crown", "colour": 3, "start": "none", "camera": "camp", "powder": 60,
+         "gold": 150, "roster": {"deny": ["town_hall", "cottage", "wall", "gate", "barracks", "armoury", "foundry", "farm", "powder_mill", "horse_breeder", "church"]},
          "control": {"solo": "p1", "versus": "p1", "foe": "script"}},
         {"id": "convoy", "side": "expedition", "faction": "crown", "colour": 3, "start": "none", "camera": "camp",
          "control": {"solo": "script", "versus": "script"}},
@@ -189,7 +197,7 @@ M = {
         {"team": "creatures", "kind": "spitter", "count": 2, "at": "nest_core", "tag": "nest_guard"},
         {"team": "creatures", "kind": "tyrant_challenger", "count": 2, "at": "nest_core", "tag": "nest_guard"},
         {"team": "creatures", "kind": "venom_challenger", "count": 1, "at": "nest_core", "tag": "nest_guard"},
-        {"team": "creatures", "kind": "mound_turtle", "count": 1, "at": [52, 25], "tag": "turtles"},
+        {"team": "creatures", "kind": "mound_turtle", "count": 1, "at": [80, 22], "tag": "turtles"},
         # the clutch at the swamp's edge (eggs, kept as eggs)
         {"team": "creatures", "kind": "brood_egg", "count": 5, "at": "egg_bed", "tag": "egg_bed", "fixed": True},
         # the young asleep in the ferns, apart from the nest
@@ -290,7 +298,7 @@ M = {
             {"say": ["l_empty"]}, {"objective": {"id": "take", "set": "failed"}}]},
         {"id": "part2_go", "when": {"all": [{"fired": "part2"}, {"counter": {"name": "caged", "at_least": 1}}]}, "delay": 1, "do": [
             {"objective": {"id": "take", "set": "done"}}, {"objective": {"id": "trail", "set": "active"}},
-            {"remove": {"tag": "carts", "empty": True}}, {"carry": {"tag": "carts", "on": True, "pace": 0.55}},
+            {"remove": {"tag": "carts", "empty": True}}, {"carry": {"tag": "carts", "on": True, "pace": CART_PACE}},
             {"light": {"to": "jungle_day", "secs": 60}}]},
         {"id": "go_short", "when": {"all": [{"fired": "part2_go"}, DRAWN]}, "do": [
             {"order": {"tag": "carts", "do": "route", "route": SHORT, "name": "trail"}}, {"flag": {"way": "short"}},
@@ -386,6 +394,10 @@ M = {
             {"order": {"tag": "guns", "do": "follow", "leader": "carts", "within": 4}},
             {"order": {"tag": "porters", "do": "follow", "leader": "carts", "within": 3}},
             {"order": {"tag": "pieter", "do": "follow", "leader": "lindqvist", "within": 2}}]},
+        # (the scripted escort fights what comes at the carts)
+        {"id": "x_fight", "when": {"all": [{"fired": "part2_go"}, NO_EXP, {"not": {"fired": "the_end"}}]}, "every": 2, "do": [
+            {"order": {"tag": "guns", "do": "follow", "leader": "carts", "within": 4}},
+            {"order": {"tag": "guns", "do": "hunt", "prey_team": "creatures", "within": 7}}]},
         {"id": "x_quay", "when": {"all": [{"fired": "part3"}, NO_EXP]}, "every": 4, "do": [
             {"order": {"tag": "lindqvist", "do": "move", "to": "quay"}}]},
     ],
@@ -463,7 +475,7 @@ M = {
         "k_end_c2": {"who": "king", "text": "But it could have gone that way. Then the doctor would have come home with empty cages."},
     },
     "stills": {
-        "rome": {"image": STILL % "b01_01", "caption": "Rome, the present. The King and his prisoner, the doctor."},
+        "rome": {"image": STILL % "b01_08", "caption": "Rome, the present. The King and his prisoner, the doctor."},
         "camp": {"image": STILL % "a05_01", "caption": "The cloud mountain, the dry season 2769. The Academy's camp by night."},
         "taking": {"image": STILL % "a05_02", "caption": "The taking: the young netted in the ferns."},
         "trail": {"image": STILL % "a05_03", "caption": "The cage carts on the trail down."},

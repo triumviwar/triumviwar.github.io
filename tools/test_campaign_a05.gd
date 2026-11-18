@@ -195,7 +195,9 @@ func _data() -> void:
 	var ros: Dictionary = m["teams"][2].get("roster", {})
 	check("the creatures bound to the ladder's B3: GROW (stage2) and MATURE new; the Sire the story's deny", (ros.get("new", []) as Array) == ["stage2", "tyrant_challenger", "venom_challenger"]
 		and (ros.get("deny", []) as Array) == ["tyrannosaur"])
-	check("the expedition not bound (no production)", not (m["teams"][0] as Dictionary).has("roster"))
+	check("the expedition not bound to the ladder (no production: it may build nothing)", not (m["teams"][0].get("roster", {}) as Dictionary).has("allow")
+		and (m["teams"][0]["roster"]["deny"] as Array).has("barracks"))
+	check("the porters may mend the convoy's carts (an ally's)", bool(m.get("mend_allies", false)))
 
 
 # ================================================================== the flags read at the start
@@ -272,6 +274,9 @@ func _cart() -> void:
 		and y.m_pace == 0.0 and y.m_unarmed and cart.get_meta("cage_cargo") == y and int(r.counters["caged"]) == 1)
 	check("cart: the cage's bars drawn round it", y.get_node_or_null("CageBars") != null)
 	check("cart: it shoves nobody", y.nb_mass < 0.01)
+	var porter: Unit = r.tagged("porters")[0]
+	check("cart: a porter may mend it (the convoy is an ally: mend_allies)", g.mends(porter.team, cart.team) and porter.can_repair(cart)
+		and not g.mends(porter.team, y.team))
 	check("cart: one creature a cart (a second goes to another)", r.cargo_count("carts") == 1)
 	cart.position += Vector2(96, 64)
 	r._carry_cages()
@@ -346,14 +351,14 @@ func _expedition_play() -> void:
 	check(P + "the trail's objective, dawn's clock stopped, the mist gone", r.obj["take"] == "done" and r.obj["trail"] == "active"
 		and not r.clocks.has("dawn") and is_equal_approx(r.mist_sight, 1.0))
 	check(P + "three cages on the road", int(r.counters["cages0"]) == 3 and r.cargo_count("carts") == 3)
-	check(P + "the carts slow (an ox's pace)", r.tagged("carts").all(func(u): return u.m_pace < 0.6))
+	check(P + "the carts slow (an ox's pace)", r.tagged("carts").all(func(u): return u.m_pace < 0.45))
 	check(P + "the hunters awake", r.tagged("nest_guard").all(func(u): return not u.has_meta("mission_asleep") and u.m_pace > 0.0))
 	check(P + "the caged ones still caged after the wake", r.tagged("young").all(func(u): return u.has_meta("on_cart") and u.m_pace == 0.0 and u.spared))
 	var t0 := float(r.fired["part2_go"])
-	_walk(g, t0 + 52.0)
-	check(P + "THE FIRST RAID (at 0:50): four Raptors from the trees, hunting the carts", r.fired.has("raid1") and r.tagged("raiders").size() == 4
+	_walk(g, t0 + 37.0)
+	check(P + "THE FIRST RAID (at 0:35): eight Raptors from the trees, hunting the carts", r.fired.has("raid1") and r.tagged("raiders").size() == 8
 		and r.tagged("raiders").all(func(u): return u.team == r.team_index("pack")) and r.said_ids.has("l_raid1"))
-	_walk(g, t0 + 162.0)
+	_walk(g, t0 + 112.0)
 	check(P + "the second raid brings a grown one (a Tyrant Challenger)", r.fired.has("raid2") and r.tagged("raiders").any(func(u): return u.kind == "tyrant_challenger")
 		and r.said_ids.has("l_grown"))
 	# a cart broken on the trail: its creature free, and on the men
@@ -445,8 +450,8 @@ func _long_way() -> void:
 	check(P + "two caged: the carts go by the long way (west along the top, the forest)", r.flags.get("way", "") == "long"
 		and _route_has(r, "trail", "long_top") and _route_has(r, "trail", "l5"))
 	var t0 := float(r.fired["part2_go"])
-	_walk(g, t0 + 52.0)
-	check(P + "the pack waits along the long way", r.tagged("raiders").size() == 4 and r.tagged("raiders").all(func(u): return r.area_rect("rl_a").grow(96).has_point(u.position)))
+	_walk(g, t0 + 37.0)
+	check(P + "the pack waits along the long way (a fresh start's raids: 5)", r.tagged("raiders").size() == 5 and r.tagged("raiders").all(func(u): return r.area_rect("rl_a").grow(96).has_point(u.position)))
 	# woken early: Part 2 with what was caged (here: nothing yet in a fresh run)
 	_progress({})
 	g = await _start()
@@ -598,7 +603,7 @@ func _creatures_play() -> void:
 # ================================================================== the difficulty
 
 func _difficulty() -> void:
-	for d in [["easy", 3, 750.0, 225.0], ["hard", 5, 540.0, 162.0]]:
+	for d in [["easy", 6, 750.0, 225.0], ["hard", 10, 540.0, 162.0]]:
 		_progress({}, {}, d[0])
 		var g := await _start()
 		var r: MissionRun = g.mission
@@ -609,7 +614,7 @@ func _difficulty() -> void:
 		check("%s: the young never scaled (3)" % d[0], r.tagged("young").size() == 3)
 		await _taking(g, r, "%s: " % d[0], ["w", "m", "e"])
 		_walk(g, g.clock + 4.0)
-		_walk(g, float(r.fired["part2_go"]) + 52.0)
+		_walk(g, float(r.fired["part2_go"]) + 37.0)
 		check("%s: the first raid scaled (%d Raptors)" % [d[0], d[1]], r.tagged("raiders").size() == int(d[1]), str(r.tagged("raiders").size()))
 		_put(g, [r.tagged("cart_w")[0]], r.area_rect("landing_near"))
 		_step(g, g.clock + 0.5)

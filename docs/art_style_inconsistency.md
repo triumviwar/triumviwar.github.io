@@ -742,3 +742,12 @@ The King's study's WAR MAP is drawn in code (scripts/campaign/war_map.gd, skin "
 flat tan, washes, wax seals as polygons, a compass rose). To be replaced by the owner's ChatGPT paintings: the base
 parchment, a sheet of eight wax seals, the compass rose and cartouche (prompts in docs/war_map_v1.md); the base goes in
 WarMap.SKINS["parchment"]["base"]. The Clockmaker's brass map and the Naturalist's specimen chart skins are not drawn yet.
+
+## The cage cart's bars (code-drawn stand-in, a05-specimens, 0.38.64)
+
+Act 1's "The Specimens" (docs/campaign_a05_build.md): a CAGE CART is a Powder Wagon (its horses and body as painted)
+carrying a creature, and the CAGE is drawn in code round the creature riding on it (MissionRun.CageBars in
+scripts/campaign/mission_run.gd: a dark see-through box, vertical wooden bars every ~6 px, a top and bottom rail, sized
+by the creature's radius). Wanted from ChatGPT: an ox cart with an iron cage on it (the five views of the wagon's strips,
+empty), then the cage's bars as an overlay strip; the young Sire is a Tyrant Sire drawn at 0.55 (its own young art
+later), Lindqvist, the porters and the hired guns are stand-ins (Musketeers, Labourers).

@@ -60,6 +60,12 @@ func allied(a: int, b: int) -> bool:
 	return a == b or (a >= 0 and b >= 0 and sides[a] == sides[b])
 
 
+## May team `a`'s workers repair `b`'s? Their own; in a campaign mission with "mend_allies" (a05: the porters mend the
+## convoy's cage carts) an ally's too.
+func mends(a: int, b: int) -> bool:
+	return a == b or (mission != null and bool(mission.data.get("mend_allies", false)) and allied(a, b))
+
+
 ## Can side `t` go for `e`: an enemy, or (the Brood only) a loose horse, belonging to nobody,
 ## for its essence.
 func prey(t: int, e: Entity) -> bool:
@@ -10456,7 +10462,7 @@ func smart_command(list: Array, p: Vector2, force_move := false, queued := false
 				u.give({"o": "move", "p": p}, queued)
 		_ping(p, Color(1, 0.85, 0.3))
 		return
-	if e and e.team == us[0].team and e.hp < e.max_hp and (e.is_unit() or e.built) \
+	if e and mends(us[0].team, e.team) and e.hp < e.max_hp and (e.is_unit() or e.built) \
 			and us.any(func(u: Unit) -> bool: return u.can_repair(e)):
 		for u in us:
 			if u.can_repair(e):

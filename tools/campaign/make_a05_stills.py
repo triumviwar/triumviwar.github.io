@@ -7,7 +7,7 @@ owner's ChatGPT paintings come (the prompts: docs/campaign_a05_build.md "Stills"
   a05_03 the trail    = cage carts on a forest trail at dawn, musketeers round them, eyes in the trees
   a05_04 the landing  = canoes at a sand quay, cages being loaded, two crates with a gear stamped on them
   a05_05 the Sire     = a colossal reptile coming out of the forest at the last cart, musket smoke
-The King's pages reuse b01_01 (the King with his prisoner).
+The King's pages reuse b01_08 (the naturalist in chains before the King).
 Rebuild: python3 tools/campaign/make_a05_stills.py (replace a file by the owner's painting cut to 1280 x 853 to swap it in).
 """
 import math
