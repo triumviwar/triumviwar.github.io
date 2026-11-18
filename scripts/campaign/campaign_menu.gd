@@ -10,6 +10,12 @@ static var line := ""            # the storyline whose hub is shown
 static var mode := "solo"
 static var seat := "p1"          # versus: which side the host plays ("p1" / "p2")
 static var solo_pick := ""       # solo: the side picked on the briefing (the SOLO SIDE PICK; "" the mission's own)
+## THE WAR MAP page (war-map-v1, docs/war_map_v1.md)
+static var map_open := false     # the war map is the page the briefing and the war table go back to
+static var map_home := ""        # the storyline whose hub opened it (its BACK goes there)
+static var map_skin := "parchment"
+static var map_pick := ""        # the pin picked on it
+static var map_cam := {}         # where the map was looking ({"c", "z"}), kept while the page comes and goes
 
 
 static func _side_col(m: Dictionary, side_id: String) -> Color:
@@ -183,10 +189,22 @@ static func war_table(main: Node) -> void:
 		UiStyle.primary(go)
 		go.custom_minimum_size = Vector2(0, 60)
 		rv.add_child(go)
-	var back: Button = main._button("BACK", func() -> void: show(main))
+	var brow := HBoxContainer.new()
+	brow.add_theme_constant_override("separation", 12)
+	box.add_child(brow)
+	var back: Button = main._button("BACK", func() -> void:
+		if map_open:
+			war_map(main)
+		else:
+			show(main))
 	main._set_back(back)
 	back.custom_minimum_size = Vector2(240, 56)
-	box.add_child(back)
+	brow.add_child(back)
+	# THE WAR MAP (war-map-v1): every war table can open it (the King's parchment until each hub has its own skin)
+	var wm: Button = main._button("WAR MAP", func() -> void: war_map(main))
+	wm.name = "WarTable_Map"
+	wm.custom_minimum_size = Vector2(240, 56)
+	brow.add_child(wm)
 
 
 ## CO-OP / VERSUS: host an online room for the mission (the friend joins with the code from ONLINE).
@@ -272,7 +290,11 @@ static func briefing(main: Node, mid: String) -> void:
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 16)
 	box.add_child(row)
-	var back: Button = main._button("BACK", func() -> void: war_table(main))
+	var back: Button = main._button("BACK", func() -> void:
+		if map_open:
+			war_map(main)
+		else:
+			war_table(main))
 	main._set_back(back)
 	back.custom_minimum_size = Vector2(200, 60)
 	row.add_child(back)
@@ -424,6 +446,7 @@ static func _line_data() -> Dictionary:
 ## click (the WAR TABLE: the missions; people: a talk that changes after each mission; rooms: the ARMOURY, a stub),
 ## the same hotspots as a list beside it (phones, or when a hotspot is hard to see), and tabs for the storylines.
 static func show(main: Node) -> void:
+	map_open = false
 	var box := _frame(main)
 	var p := Campaign.progress()
 	var sl := _line_data()
@@ -602,7 +625,11 @@ static func flags_ok(f: Dictionary, p: Dictionary) -> bool:
 static func _hotspot(main: Node, sl: Dictionary, hs: Dictionary, talk_box: PanelContainer, p: Dictionary) -> void:
 	match String(hs.get("kind", "")):
 		"war_table":
-			war_table(main)
+			if String(hs.get("map", "")) != "":
+				map_skin = String(hs["map"])
+				war_map(main)
+			else:
+				war_table(main)
 		"talk":
 			var tk: Dictionary = sl.get("hub", {}).get("talks", {}).get(String(hs.get("talk", "")), {})
 			_talk(talk_box, tk, talk_lines(tk, p))
@@ -660,3 +687,287 @@ static func _talk(box: PanelContainer, tk: Dictionary, lines: Array) -> void:
 	h.add_child(nb)
 	show_line.call()
 	box.visible = true
+
+
+# ------------------------------------------------------------------ THE WAR MAP (war-map-v1, docs/war_map_v1.md)
+
+## The war map page: the map (WarMap) with its views, the LEDGER, the LIST (the old war table) and a card for the pin
+## picked: its mission, date and line, what came of it, and BRIEFING / WAR TABLE to play it (or what opens it).
+static func war_map(main: Node) -> void:
+	if not map_open:
+		map_home = line
+	map_open = true
+	var pc: bool = Settings.pc()
+	var box := _frame(main)
+	var d := WarMapData.data()
+	var top := HBoxContainer.new()
+	top.add_theme_constant_override("separation", 8)
+	box.add_child(top)
+	var t := UiStyle.heading(Loc.t(String(d.get("title", "THE WAR MAP"))) + "  ·  " + Loc.t(String(d.get("act_title", ""))), 30 if pc else 22, UiStyle.TRIM)
+	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	t.clip_text = true
+	top.add_child(t)
+	var holder := Control.new()
+	holder.name = "WarMapHolder"
+	holder.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	holder.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_child(holder)
+	var wm := WarMap.make(map_skin)
+	wm.name = "WarMap"
+	wm.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	wm.selected = map_pick
+	if not map_cam.is_empty():
+		wm.pending_cam = map_cam
+	holder.add_child(wm)
+	var keep_cam := func() -> void:
+		map_cam = {"c": wm.center, "z": wm.zoom}
+	# the views (THE WORLD, VIRGINIA, EUROPE, THE AMAZON)
+	for v in d.get("views", []):
+		var vid := String(v["id"])
+		var b: Button = main._button(String(v["label"]), func() -> void: wm.show_view(vid))
+		b.name = "View_" + vid
+		b.custom_minimum_size = Vector2(0, 46 if pc else 56)
+		b.add_theme_font_size_override("font_size", 15 if pc else 17)
+		top.add_child(b)
+	# the ledger: a fold-out panel over the map's left side
+	var ledger := PanelContainer.new()
+	ledger.name = "WarLedger"
+	ledger.visible = false
+	ledger.add_theme_stylebox_override("panel", UiStyle.box(Color(0.12, 0.09, 0.06, 0.95), UiStyle.TRIM, 2, 10, 14.0))
+	ledger.anchor_bottom = 1.0
+	ledger.offset_left = 10
+	ledger.offset_top = 10
+	ledger.offset_bottom = -10
+	ledger.offset_right = 10 + (380 if pc else 470)
+	holder.add_child(ledger)
+	var lsc := ScrollContainer.new()
+	lsc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	ledger.add_child(lsc)
+	var lv := VBoxContainer.new()
+	lv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	lv.add_theme_constant_override("separation", 8)
+	lsc.add_child(lv)
+	var zr := VBoxContainer.new()
+	var leg := PanelContainer.new()
+	var lb: Button = main._button("LEDGER", func() -> void:
+		ledger.visible = not ledger.visible
+		zr.visible = not ledger.visible
+		leg.visible = not ledger.visible and leg.get_child(0).get_child_count() > 0)
+	lb.name = "WarMap_Ledger"
+	lb.custom_minimum_size = Vector2(0, 46 if pc else 56)
+	top.add_child(lb)
+	var lst: Button = main._button("LIST", func() -> void:
+		keep_cam.call()
+		war_table(main))
+	lst.name = "WarMap_List"
+	lst.custom_minimum_size = Vector2(0, 46 if pc else 56)
+	top.add_child(lst)
+	# zoom buttons, top left over the map
+	zr.add_theme_constant_override("separation", 6)
+	zr.position = Vector2(14, 14)
+	holder.add_child(zr)
+	for z in [["+", 1.5], ["−", 1.0 / 1.5]]:
+		var zb: Button = main._button(String(z[0]), func() -> void: wm.zoom_by(float(z[1])))
+		zb.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		zb.name = "Zoom_" + ("in" if float(z[1]) > 1 else "out")
+		zb.custom_minimum_size = Vector2(46, 46) if pc else Vector2(62, 62)
+		zb.add_theme_font_size_override("font_size", 24)
+		zr.add_child(zb)
+	# the legend: the holders on the map now
+	leg.name = "WarLegend"
+	leg.add_theme_stylebox_override("panel", UiStyle.box(Color(0.12, 0.09, 0.06, 0.82), UiStyle.TRIM_DIM, 1, 8, 8.0))
+	leg.anchor_top = 1.0
+	leg.anchor_bottom = 1.0
+	leg.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	leg.offset_left = 14
+	leg.offset_bottom = -14
+	holder.add_child(leg)
+	var lgv := VBoxContainer.new()
+	lgv.add_theme_constant_override("separation", 2)
+	leg.add_child(lgv)
+	# the card for the pin picked
+	var card := PanelContainer.new()
+	card.name = "WarCard"
+	card.visible = false
+	card.add_theme_stylebox_override("panel", UiStyle.box(Color(0.11, 0.085, 0.06, 0.96), UiStyle.TRIM, 2, 10, 16.0))
+	if pc:
+		card.anchor_left = 1.0
+		card.anchor_right = 1.0
+		card.anchor_bottom = 1.0
+		card.offset_left = -430
+		card.offset_right = -10
+		card.offset_top = 10
+		card.offset_bottom = -10
+	else:
+		card.anchor_top = 0.42
+		card.anchor_right = 1.0
+		card.anchor_bottom = 1.0
+		card.offset_left = 10
+		card.offset_right = -10
+		card.offset_bottom = -6
+	holder.add_child(card)
+	var fill := func() -> void:
+		var stt: Dictionary = wm.st
+		for c in lv.get_children():
+			c.queue_free()
+		lv.add_child(UiStyle.text(Loc.t("THE LEDGER"), 22, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
+		lv.add_child(_wrap(Loc.t(String(d.get("act_title", ""))), 15, UiStyle.MUTED))
+		var ls: Array = stt.get("ledger", [])
+		if ls.is_empty():
+			lv.add_child(_wrap(Loc.t("Nothing yet: the ledger fills as the missions are played."), 16, UiStyle.MUTED))
+		for e in ls:
+			var l := _wrap("-  " + WarMapData.ledger_text(e), 16 if pc else 19)
+			l.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+			lv.add_child(l)
+		for c in lgv.get_children():
+			c.queue_free()
+		var shown := {}
+		for k in stt.get("regions", {}):
+			shown[String(stt["regions"][k])] = true
+		for h in WarMapData.HOLDERS:
+			if h == "empire" or not shown.has(h):
+				continue
+			var row := HBoxContainer.new()
+			row.add_theme_constant_override("separation", 6)
+			var sw := ColorRect.new()
+			var hc: Dictionary = WarMap.SKINS[wm.skin]["holders"][h]
+			sw.color = Color(hc["fill"], 0.9) if h != "unknown" else hc["fill"]
+			sw.custom_minimum_size = Vector2(16, 16)
+			sw.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			row.add_child(sw)
+			row.add_child(UiStyle.text(Loc.t(String(d.get("holders", {}).get(h, h))), 14 if pc else 16, UiStyle.TEXT, HORIZONTAL_ALIGNMENT_LEFT))
+			lgv.add_child(row)
+		leg.visible = lgv.get_child_count() > 0
+	fill.call()
+	var show_card := func(mid: String) -> void:
+		map_pick = mid
+		keep_cam.call()
+		for c in card.get_children():
+			c.queue_free()
+		card.visible = mid != ""
+		if mid != "":
+			_pin_card(main, card, mid, wm.st, pc, keep_cam)
+			wm.free_rect = Rect2(0, 0, wm.size.x - 440, wm.size.y) if pc else Rect2(0, 0, wm.size.x, wm.size.y * 0.42)
+			wm.bring_into_view.call_deferred(mid)
+	wm.pin_tapped.connect(show_card)
+	if map_pick != "":
+		show_card.call(map_pick)
+	var bot := HBoxContainer.new()
+	bot.add_theme_constant_override("separation", 12)
+	box.add_child(bot)
+	var back: Button = main._button("BACK", func() -> void:
+		map_cam = {}
+		map_pick = ""
+		map_open = false
+		if map_home != "":
+			line = map_home
+		show(main))
+	main._set_back(back)
+	back.custom_minimum_size = Vector2(240, 52 if pc else 60)
+	bot.add_child(back)
+	var hint := _wrap(Loc.t("Drag to move the map, the wheel or a pinch to zoom; tap a seal for its mission.") if pc else
+		Loc.t("Drag to move the map, pinch to zoom; tap a seal for its mission."), 14 if pc else 16, UiStyle.MUTED)
+	hint.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	hint.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	bot.add_child(hint)
+
+
+## A pin's card: the mission (or the one still being written), its line, place and date, its state, what came of it
+## (the ledger's lines of that mission) and the buttons to play it.
+static func _pin_card(main: Node, card: PanelContainer, mid: String, stt: Dictionary, pc: bool, keep_cam: Callable) -> void:
+	var pn := WarMapData.pin_of(mid)
+	var ps: Dictionary = stt.get("pins", {}).get(mid, {"state": "planned"})
+	var state := String(ps.get("state", "planned"))
+	var built := state != "planned"
+	var m: Dictionary = Campaign.mission(mid) if built else {}
+	var lines_d: Dictionary = WarMapData.data().get("lines", {})
+	var col: Color = WarMap.SKINS["parchment"]["lines"].get(String(pn.get("line", "")), UiStyle.TRIM)
+	var outer: BoxContainer = VBoxContainer.new() if pc else HBoxContainer.new()
+	outer.add_theme_constant_override("separation", 10)
+	card.add_child(outer)
+	var sc := ScrollContainer.new()
+	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	sc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	sc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	outer.add_child(sc)
+	var v := VBoxContainer.new()
+	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	v.add_theme_constant_override("separation", 6)
+	sc.add_child(v)
+	var title := String(m.get("title", pn.get("title", mid)))
+	var hl := UiStyle.heading(Loc.t(title), 26 if pc else 24, UiStyle.TRIM)
+	hl.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	hl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	hl.name = "CardTitle"
+	v.add_child(hl)
+	v.add_child(UiStyle.text(Loc.t(String(lines_d.get(String(pn.get("line", "")), {}).get("name", ""))).to_upper(), 15 if pc else 17,
+		col.lightened(0.45), HORIZONTAL_ALIGNMENT_LEFT, true))
+	v.add_child(_wrap(Loc.t(String(pn.get("place", ""))) + "  ·  " + Loc.t(String(pn.get("date", ""))), 16 if pc else 18, UiStyle.MUTED))
+	var after: Array = pn.get("after", [])
+	if after.is_empty() and built:
+		var sl := Campaign.storyline_of(mid)
+		var i := (sl.get("missions", []) as Array).find(mid)
+		if i > 0:
+			after = [sl["missions"][i - 1]]
+		elif String(sl.get("requires", "")) != "":
+			after = [sl["requires"]]
+	var after_t: Array = after.map(func(a) -> String:
+		var am := Campaign.mission(String(a)) if not Campaign.storyline_of(String(a)).is_empty() else {}
+		return Loc.t(String(am.get("title", WarMapData.pin_of(String(a)).get("title", a)))))
+	var stxt := ""
+	match state:
+		"planned":
+			stxt = Loc.t("Not written yet.") + (" " + Loc.t("Opens after: %s") % ", ".join(after_t) if not after_t.is_empty() else "")
+		"locked":
+			stxt = Loc.t("(locked)") + (" " + Loc.t("Opens after: %s") % ", ".join(after_t) if not after_t.is_empty() else "")
+		"open":
+			stxt = Loc.t("Open: ready to play.")
+		"done":
+			stxt = Loc.t("(won by %s)") % Loc.t(Campaign.side_name(m, String(ps.get("won_by", ""))))
+	var sl2 := _wrap(stxt, 16 if pc else 18, UiStyle.GOOD if state in ["open", "done"] else UiStyle.MUTED)
+	sl2.name = "CardState"
+	sl2.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	v.add_child(sl2)
+	if state in ["open", "done"]:
+		v.add_child(_wrap(Loc.t(String(m.get("summary", ""))), 16 if pc else 18))
+	var came := WarMapData.ledger_of(stt, mid)
+	if not came.is_empty():
+		v.add_child(UiStyle.text(Loc.t("WHAT CAME OF IT"), 15, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
+		for e in came:
+			var l := _wrap("-  " + WarMapData.ledger_text(e), 15 if pc else 17)
+			l.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+			v.add_child(l)
+	var bv := VBoxContainer.new()
+	bv.add_theme_constant_override("separation", 8)
+	if not pc:
+		bv.custom_minimum_size.x = 260
+	outer.add_child(bv)
+	if state in ["open", "done"]:
+		var sl := Campaign.storyline_of(mid)
+		var go: Button = main._button("BRIEFING", func() -> void:
+			keep_cam.call()
+			line = String(sl["id"])
+			pick = mid
+			mode = "solo"
+			solo_pick = ""
+			briefing(main, mid))
+		go.name = "Card_Briefing"
+		UiStyle.primary(go)
+		go.custom_minimum_size = Vector2(0, 56 if pc else 64)
+		bv.add_child(go)
+		if Campaign.modes_of(m).size() > 1:
+			var wt: Button = main._button("CO-OP / VERSUS", func() -> void:
+				keep_cam.call()
+				line = String(sl["id"])
+				pick = mid
+				war_table(main))
+			wt.name = "Card_Modes"
+			wt.custom_minimum_size = Vector2(0, 50 if pc else 60)
+			bv.add_child(wt)
+	var cl: Button = main._button("CLOSE", func() -> void:
+		map_pick = ""
+		card.visible = false)
+	cl.name = "Card_Close"
+	cl.custom_minimum_size = Vector2(0, 46 if pc else 58)
+	bv.add_child(cl)

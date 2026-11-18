@@ -1,0 +1,376 @@
+# THE WAR MAP v1 (campaign/warmap.json, scripts/campaign/war_map.gd, war_map_data.gd; docs/war_map_v1.md): the map's
+# names, the pins' places and dates, the planned missions' working titles, the ledger's lines and the page's buttons.
+# EVERY LINE IS A PLACEHOLDER for the owner. Names: the Brood = a Ninhada / la Nidada; the machine = a máquina / la
+# máquina; the guild = a guilda / el gremio; the Free Assembly = a Assembleia Livre / la Asamblea Libre.
+
+> THE WAR MAP
+pt O MAPA DE GUERRA
+es EL MAPA DE GUERRA
+
+> Act 1: 2767-2770
+pt Ato 1: 2767-2770
+es Acto 1: 2767-2770
+
+> THE WORLD
+pt O MUNDO
+es EL MUNDO
+
+> VIRGINIA
+pt VIRGÍNIA
+es VIRGINIA
+
+> THE AMAZON
+pt A AMAZÔNIA
+es LA AMAZONIA
+
+> All three lines
+pt As três linhas
+es Las tres líneas
+
+> The empire
+pt O império
+es El imperio
+
+> Held by the Crown
+pt Da Coroa
+es De la Corona
+
+> Held, but uneasy
+pt Da Coroa, mas inquieta
+es De la Corona, pero inquieta
+
+> The machine's
+pt Da máquina
+es De la máquina
+
+> The creatures'
+pt Das criaturas (a Ninhada)
+es De las criaturas (la Nidada)
+
+> Unrest: the Free Assembly
+pt Agitação: a Assembleia Livre
+es Agitación: la Asamblea Libre
+
+> Unknown land
+pt Terra desconhecida
+es Tierra desconocida
+
+> Virginia
+pt Virgínia
+es Virginia
+
+> The interior
+pt O interior
+es El interior
+
+> Lyon
+pt Lyon
+es Lyon
+
+> Paris
+pt Paris
+es París
+
+> Brittany
+pt Bretanha
+es Bretaña
+
+> Provence
+pt Provença
+es Provenza
+
+> Franconia
+pt Francônia
+es Franconia
+
+> The Upper Palatinate
+pt O Alto Palatinado
+es El Alto Palatinado
+
+> Rome
+pt Roma
+es Roma
+
+> The upper Rio Negro
+pt O alto Rio Negro
+es El alto Río Negro
+
+> The cloud mountain
+pt A montanha das nuvens
+es La montaña de las nubes
+
+> The Hollins farm
+pt A fazenda dos Hollins
+es La granja de los Hollins
+
+> The loyal quarter
+pt O bairro leal
+es El barrio leal
+
+> The station, burnt
+pt A estação, queimada
+es La estación, quemada
+
+> Nazaré
+pt Nazaré
+es Nazaré
+
+> The Barra
+pt A Barra
+es La Barra
+
+> Varenne, into exile
+pt Varenne, para o exílio
+es Varenne, al exilio
+
+> Summer 2767
+pt Verão de 2767
+es Verano de 2767
+
+> June 2767
+pt Junho de 2767
+es Junio de 2767
+
+> September 2767
+pt Setembro de 2767
+es Septiembre de 2767
+
+> Advent 2767
+pt Advento de 2767
+es Adviento de 2767
+
+> March 2768
+pt Março de 2768
+es Marzo de 2768
+
+> Spring 2768
+pt Primavera de 2768
+es Primavera de 2768
+
+> The Printing Houses
+pt As Tipografias
+es Las Imprentas
+
+> The plateau's foot
+pt O pé do planalto
+es El pie de la meseta
+
+> Dry season 2769
+pt Estação seca de 2769
+es Estación seca de 2769
+
+> The Specimens
+pt Os Espécimes
+es Los Especímenes
+
+> July 2769
+pt Julho de 2769
+es Julio de 2769
+
+> The Barricades of Paris
+pt As Barricadas de Paris
+es Las Barricadas de París
+
+> Autumn 2769
+pt Outono de 2769
+es Otoño de 2769
+
+> Father Ferrer's Visit
+pt A Visita do Padre Ferrer
+es La Visita del Padre Ferrer
+
+> Lent 2770
+pt Quaresma de 2770
+es Cuaresma de 2770
+
+> The Council of Rome
+pt O Concílio de Roma
+es El Concilio de Roma
+
+> Virginia held: Fairleigh broke the Free Assembly at the fort's gate.
+pt A Virgínia resistiu: Fairleigh derrotou a Assembleia Livre no portão do forte.
+es Virginia resistió: Fairleigh derrotó a la Asamblea Libre ante la puerta del fuerte.
+
+> The Hollins families were saved: a loyal village in Virginia.
+pt As famílias dos Hollins foram salvas: uma aldeia leal na Virgínia.
+es Las familias de los Hollins se salvaron: una aldea leal en Virginia.
+
+> The families were left behind: the interior is uneasy.
+pt As famílias foram deixadas para trás: o interior está inquieto.
+es Las familias quedaron atrás: el interior está inquieto.
+
+> Virginia rose: the Free Assembly holds the fort.
+pt A Virgínia se levantou: a Assembleia Livre tem o forte.
+es Virginia se alzó: la Asamblea Libre tiene el fuerte.
+
+> Nuremberg is lost: the machine holds Franconia.
+pt Nuremberg está perdida: a máquina tem a Francônia.
+es Núremberg está perdida: la máquina tiene Franconia.
+
+> A loyal quarter still holds out inside Nuremberg.
+pt Um bairro leal ainda resiste dentro de Nuremberg.
+es Un barrio leal aún resiste dentro de Núremberg.
+
+> Townsfolk who reached Fürth from Nuremberg: %s.
+pt Moradores de Nuremberg que chegaram a Fürth: %s.
+es Vecinos de Núremberg que llegaron a Fürth: %s.
+
+> The bells were rung: the Crown trusts the guild.
+pt Os sinos tocaram: a Coroa confia na guilda.
+es Las campanas sonaron: la Corona confía en el gremio.
+
+> The bells stayed quiet: a Crown commissary watches the guild.
+pt Os sinos ficaram calados: um comissário da Coroa vigia a guilda.
+es Las campanas callaron: un comisario de la Corona vigila al gremio.
+
+> Hollweg carried his drawings out of the west gate.
+pt Hollweg levou os seus desenhos pelo portão oeste.
+es Hollweg sacó sus dibujos por la puerta oeste.
+
+> Hollweg held the west gate for the people and left his drawings.
+pt Hollweg segurou o portão oeste para o povo e deixou os seus desenhos.
+es Hollweg sostuvo la puerta oeste para la gente y dejó sus dibujos.
+
+> Jakob was lost in Nuremberg.
+pt Jakob se perdeu em Nuremberg.
+es Jakob se perdió en Núremberg.
+
+> The Fürth line held, strong.
+pt A linha de Fürth resistiu, forte.
+es La línea de Fürth resistió, fuerte.
+
+> The Fürth line held, but thin.
+pt A linha de Fürth resistiu, mas fraca.
+es La línea de Fürth resistió, pero débil.
+
+> Fürth fell to the machine.
+pt Fürth caiu para a máquina.
+es Fürth cayó ante la máquina.
+
+> The Academy's station on the Rio Negro burned. Something came down from the mountain to the north.
+pt A estação da Academia no Rio Negro queimou. Algo desceu da montanha ao norte.
+es La estación de la Academia en el Río Negro ardió. Algo bajó de la montaña del norte.
+
+> The station's people who reached Nazaré: %s.
+pt Gente da estação que chegou a Nazaré: %s.
+es Gente de la estación que llegó a Nazaré: %s.
+
+> The clutch was saved and carried downriver.
+pt A ninhada foi salva e levada rio abaixo.
+es La puesta se salvó y bajó por el río.
+
+> The clutch was burned.
+pt A ninhada foi queimada.
+es La puesta fue quemada.
+
+> Lieutenant Teles was never told: the station stayed the Academy's secret.
+pt O tenente Teles nunca foi avisado: a estação ficou um segredo da Academia.
+es Nunca se avisó al teniente Teles: la estación siguió siendo un secreto de la Academia.
+
+> Valadares drew the plateau for the Crown: the creatures' mountain is on the map.
+pt Valadares desenhou o planalto para a Coroa: a montanha das criaturas está no mapa.
+es Valadares dibujó la meseta para la Corona: la montaña de las criaturas está en el mapa.
+
+> Valadares withheld his map: the plateau stays blank.
+pt Valadares guardou o seu mapa: o planalto fica em branco.
+es Valadares se guardó su mapa: la meseta queda en blanco.
+
+> Few of the mapmaker's party came down alive.
+pt Poucos da expedição do cartógrafo desceram vivos.
+es Pocos de la expedición del cartógrafo bajaron con vida.
+
+> The whole of the mapmaker's party came down alive.
+pt Toda a expedição do cartógrafo desceu viva.
+es Toda la expedición del cartógrafo bajó con vida.
+
+> The plateau kept its secret: the mapmaker never came down.
+pt O planalto guardou o seu segredo: o cartógrafo nunca desceu.
+es La meseta guardó su secreto: el cartógrafo nunca bajó.
+
+> Lyon's presses were found: the city is calm.
+pt As prensas de Lyon foram encontradas: a cidade está calma.
+es Las imprentas de Lyon fueron halladas: la ciudad está en calma.
+
+> Lyon's presses were found, but the city is sullen.
+pt As prensas de Lyon foram encontradas, mas a cidade está ressentida.
+es Las imprentas de Lyon fueron halladas, pero la ciudad está resentida.
+
+> The broken automata were melted down.
+pt Os autômatos defeituosos foram derretidos.
+es Los autómatas defectuosos fueron fundidos.
+
+> The broken automata were kept for study.
+pt Os autômatos defeituosos foram guardados para estudo.
+es Los autómatas defectuosos se guardaron para su estudio.
+
+> The machine's red spreads east of Nuremberg.
+pt O vermelho da máquina se espalha a leste de Nuremberg.
+es El rojo de la máquina se extiende al este de Núremberg.
+
+> Cages brought down to the river: %s.
+pt Jaulas levadas até o rio: %s.
+es Jaulas llevadas hasta el río: %s.
+
+> Paris was taken back from the barricades.
+pt Paris foi retomada das barricadas.
+es París fue recuperada de las barricadas.
+
+> Varenne was spared and sent into exile.
+pt Varenne foi poupado e mandado para o exílio.
+es Varenne fue perdonado y enviado al exilio.
+
+> Varenne was executed: risings flare in the provinces.
+pt Varenne foi executado: revoltas se acendem nas províncias.
+es Varenne fue ejecutado: estallan revueltas en las provincias.
+
+> The Council of Rome gave its verdict.
+pt O Concílio de Roma deu o seu veredicto.
+es El Concilio de Roma dio su veredicto.
+
+> Rome burned: few of its quarters stood.
+pt Roma ardeu: poucos dos seus bairros ficaram de pé.
+es Roma ardió: pocos de sus barrios quedaron en pie.
+
+> THE LEDGER
+pt O LIVRO DE REGISTROS
+es EL LIBRO DE REGISTROS
+
+> Nothing yet: the ledger fills as the missions are played.
+pt Nada ainda: o livro se enche conforme as missões são jogadas.
+es Nada aún: el libro se llena según se juegan las misiones.
+
+> WHAT CAME OF IT
+pt O QUE RESULTOU
+es LO QUE RESULTÓ
+
+> Not written yet.
+pt Ainda não escrita.
+es Aún no escrita.
+
+> Open: ready to play.
+pt Aberta: pronta para jogar.
+es Abierta: lista para jugar.
+
+> WAR MAP
+pt MAPA DE GUERRA
+es MAPA DE GUERRA
+
+> LEDGER
+pt REGISTROS
+es REGISTROS
+
+> LIST
+pt LISTA
+es LISTA
+
+> CO-OP / VERSUS
+pt CO-OP / VERSUS
+es CO-OP / VERSUS
+
+> Drag to move the map, the wheel or a pinch to zoom; tap a seal for its mission.
+pt Arraste para mover o mapa, a roda ou uma pinça para o zoom; toque num selo para a sua missão.
+es Arrastra para mover el mapa, la rueda o un pellizco para el zoom; toca un sello para su misión.
+
+> Drag to move the map, pinch to zoom; tap a seal for its mission.
+pt Arraste para mover o mapa, belisque para o zoom; toque num selo para a sua missão.
+es Arrastra para mover el mapa, pellizca para el zoom; toca un sello para su misión.

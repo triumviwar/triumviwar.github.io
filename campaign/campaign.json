@@ -19,6 +19,7 @@
 					{
 						"id": "war_table",
 						"kind": "war_table",
+						"map": "parchment",
 						"label": "WAR TABLE",
 						"rect": [
 							0.323,
