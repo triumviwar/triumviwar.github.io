@@ -19,19 +19,21 @@ import qa_matches as qm
 ERR = re.compile(r"SCRIPT ERROR|^ERROR")
 
 
-def arms(pair, off):
+def arms(pair, off, on=()):
+    """the "on" arm plays the --on switches, the "off" arm the --off ones; in the mirror arm a gives team 0 the change
+    (its --on switches with 0, the --off ones with 1), arm b team 1"""
     if pair == "crcr":
-        return [("a", [s + "1" for s in off]), ("b", [s + "0" for s in off])]
-    return [("on", []), ("off", list(off))]
+        return [("a", [s + "0" for s in on] + [s + "1" for s in off]), ("b", [s + "1" for s in on] + [s + "0" for s in off])]
+    return [("on", list(on)), ("off", list(off))]
 
 
-def queue(pairs, rounds, off):
+def queue(pairs, rounds, off, on=()):
     q = []
     for r in rounds:
         for g in qm.base(r):
             p = g[0].split("_")[-2]
             if p in pairs:
-                for arm, extra in arms(p, off):
+                for arm, extra in arms(p, off, on):
                     q.append((arm, extra, g))
     return q
 
@@ -83,8 +85,9 @@ if __name__ == "__main__":
         sys.exit(1)
     pairs = arg("--pairs", "crbr,crcw,crcr").split(",")
     rounds = [int(x) for x in arg("--rounds", "0,1").split(",")]
-    off = arg("--off", "buildstack:off").split(",")
-    gl = queue(pairs, rounds, off)
+    off = [x for x in arg("--off", "").split(",") if x]
+    on = [x for x in arg("--on", "buildstack:on,hallkeep:on").split(",") if x]
+    gl = queue(pairs, rounds, off, on)
     if sys.argv[1] == "list":
         for a, e, g in gl:
             print(a, " ".join(e), g[0], g[1], g[2], g[3])

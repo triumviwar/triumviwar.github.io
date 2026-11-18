@@ -17,8 +17,7 @@ class_name AICrownStack
 ##    scout, the escort, a Mill's last hand, a crew of any other building, a labourer leading a horse or on an errand, and
 ##    not more than BUSY_SHARE of the labourers off the Farms at once.
 ## Done, a helper goes to the next unfinished site near him or back to a free post (Unit._build: game.next_site / free_site).
-## Switch `buildstack:off` (both sides); `buildstack:off1` / `buildstack:off0` turn it off for team 1 / team 0 only (the
-## mirror's measure).
+## Switch `buildstack:on` (OFF by default since the measure, below); `buildstack:on0` / `buildstack:on1` for team 0 / 1 only.
 
 const WANT := {
 	"farm": 3, "cottage": 1, "barracks": 3, "gate": 3, "foundry": 3, "horse_breeder": 3, "powder_mill": 2,
@@ -51,8 +50,11 @@ var game: Game
 var team := 0
 
 var args := OS.get_cmdline_user_args()
-var on_switch := not args.has("buildstack:off")
+## OFF BY DEFAULT (measured, docs/crown_build_stack.md: it built the Crown computer's buildings in half the time but its
+## economy did not gain, the walks cost Farm work, and against the Clockwork the income at 12:00 was lower in 15 of 19
+## paired games). `buildstack:on` plays it (`buildstack:on0` / `on1` for one team, the mirror's measure).
 var all_kinds := args.has("buildstack:all")     # (variant A of the measure: working hands to every site of the list)
+var on_switch := (args.has("buildstack:on") or all_kinds) and not args.has("buildstack:off")
 
 # (the report, result.json crown_ai "stack")
 var sent := 0                    # helpers sent
@@ -67,10 +69,10 @@ func _init(a) -> void:
 	ai = a
 	game = a.game
 	team = a.team
-	if args.has("buildstack:off%d" % team):
-		on_switch = false
-	if args.has("hallkeep:off%d" % team):
-		hall_keep_on = false
+	if args.has("buildstack:on%d" % team):
+		on_switch = true
+	if args.has("hallkeep:on%d" % team):
+		hall_keep_on = true
 
 
 func active() -> bool:
@@ -351,9 +353,10 @@ func _watch_done() -> void:
 ## the held step every think (AICrown stage 2, step_release). So while the held step is the Town Hall, the main's Farm
 ## posts are full (one free or none) and no armed enemy is at our buildings, no rush is read and no push is seen, the
 ## step keeps its gold until HALL_KEEP_T; the stacked labourers then build it in a quarter of the time. Not against the
-## Brood (the economy rules measured worse there: AICrownCoach rule 7). Switch `hallkeep:off` (and per team).
+## Brood (the economy rules measured worse there: AICrownCoach rule 7). Switch `hallkeep:on` (OFF by default; per team
+## `hallkeep:on0` / `on1`).
 const HALL_KEEP_T := 330.0
-var hall_keep_on := not args.has("hallkeep:off")
+var hall_keep_on := args.has("hallkeep:on")     # (OFF by default: it fired a few seconds a game, measured with the stacking)
 var hall_kept_t := 0.0          # (the report) seconds the hall step's gold was kept from the soldiers
 var _hk_last := -1.0
 

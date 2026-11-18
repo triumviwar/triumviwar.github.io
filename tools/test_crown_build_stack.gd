@@ -2,7 +2,8 @@ extends SceneTree
 ## LABOURERS STACKED ON A SITE (crown-build-stack, docs/crown_build_stack.md; scripts/ai_crown_stack.gd AICrownStack).
 ##   [stack]  a Crown computer's Farm site with one builder gets helpers from the labourers close by (idle ones first),
 ##            up to its want; the Farm stands in about a third of the time one labourer takes
-##   [off]    with the switch off nobody joins, and the Farm takes its full time
+##   [off]    with the switch off (the default since the measure) nobody joins, and the Farm takes its full time
+##   [default] the stacking and the hall step's keep are off unless switched on (buildstack:on, hallkeep:on)
 ##   [far]    a working labourer too far away is not pulled (his walk would cost more than his share of the work)
 ##   [unsafe] a site in danger gets no helpers
 ##   [binding] a working Farm hand helps a Town Hall (its posts) but not a Barracks with no rush on (its gold, not its
@@ -88,6 +89,7 @@ func _run() -> void:
 	for u in s[1]:
 		u.cmd_stop()        # (idle: no post to go back to, they cost nothing at the site)
 	var stk := AICrownStack.new(ai)
+	stk.on_switch = true        # (OFF by default since the measure: the test plays it as buildstack:on)
 	stk.tick()
 	var n := _builders(g, site)
 	var w: Array = stk.want(site)
@@ -109,6 +111,7 @@ func _run() -> void:
 	site = s[0]
 	U.step(g, 0.2)
 	stk = AICrownStack.new(ai)
+	check("[default] off unless switched on", not AICrownStack.new(ai).on_switch and not AICrownStack.new(ai).hall_keep_on)
 	stk.on_switch = false
 	stk.tick()
 	check("[off] with the switch off nobody joins", _builders(g, site) == 1 and stk.sent == 0, "%d" % _builders(g, site))
@@ -140,6 +143,7 @@ func _run() -> void:
 				u.cmd_gather(farm0)
 	U.step(g, 0.2)
 	stk = AICrownStack.new(ai)
+	stk.on_switch = true
 	stk.tick()
 	check("[far] no working labourer walks across the map to help", _builders(g, site) == 1, "%d builders" % _builders(g, site))
 	g.queue_free()
@@ -156,6 +160,7 @@ func _run() -> void:
 	U.step(g, 0.2)
 	ai._danger_pts.append([site.center(), g.clock])
 	stk = AICrownStack.new(ai)
+	stk.on_switch = true
 	stk.tick()
 	check("[unsafe] a site in danger gets no helpers", _builders(g, site) == 1, "%d" % _builders(g, site))
 	g.queue_free()
@@ -182,6 +187,7 @@ func _run() -> void:
 			u.cmd_gather(farm1)
 	U.step(g, 0.5)
 	stk = AICrownStack.new(ai)
+	stk.on_switch = true
 	stk.tick()
 	check("[binding] no working hand to a Barracks with no rush on", _builders(g, bar) == 1, "%d builders, %d labourers" % [_builders(g, bar), g.workers(0).size()])
 	stk.all_kinds = true
@@ -206,6 +212,7 @@ func _run() -> void:
 	for u in s[1]:
 		u.cmd_stop()
 	stk = AICrownStack.new(ai)
+	stk.on_switch = true
 	stk.tick()
 	check("[ghost] a site not begun yet gets no helpers", _builders(g, site) == 1 and stk.sent == 0, "%d builders, ghost %s" % [_builders(g, site), site.ghost])
 	g.queue_free()
@@ -217,6 +224,7 @@ func _run() -> void:
 	ai = _ai(g, 0)
 	await process_frame
 	stk = AICrownStack.new(ai)
+	stk.on_switch = true
 	check("[brood] the hall step keeps no gold against the Brood", not stk.hall_keeps())
 	g.queue_free()
 	await process_frame
