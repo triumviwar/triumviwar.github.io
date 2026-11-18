@@ -78,6 +78,9 @@ var weather_name := ""
 # one of the town's houses, in the town's colour, untouchable, until the other side comes close: then it is UNMASKED)
 var _disguised: Array = []           # buildings still disguised
 var unmasked := {}                   # tag -> the game clock a building with it was unmasked
+# Act 1's a05_specimens (a05-specimens, docs/campaign_a05_build.md): CAGE CARTS (a creature caged on a cart: carried with
+# it, untouchable and harmless; freed when the cart is broken, loaded with it when the cart leaves by an exit)
+var _carts: Array = []               # {"u": the creature, "cart": the cart, "freed": counter, "freed_tag": tag}
 
 
 func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
@@ -411,6 +414,8 @@ func _process(_delta: float) -> void:
 	for u in game.units:
 		if not u.dead and u.has_meta("torch"):
 			u.queue_redraw()
+	if not remote:
+		_carry_cages()
 
 
 func _physics_process(delta: float) -> void:
@@ -423,6 +428,7 @@ func _physics_process(delta: float) -> void:
 	Rebels.tick(self, TICK)
 	_tick_turning()
 	_tick_exits()
+	_tick_carts()
 	_tick_held()
 	_tick_routes()
 	_tick_sleep()
@@ -590,6 +596,10 @@ func cond(c: Variant) -> bool:
 				ok = captured.has(String(v))
 			"route_done":
 				ok = route_done.has(String(v))
+			"cargo":
+				# (a05) {"cargo": {"tag": the carts, "at_least" / "below"}}: living carts with a cage on them
+				var n := cargo_count(String(v.get("tag", "")))
+				ok = (not v.has("at_least") or n >= int(v["at_least"])) and (not v.has("below") or n < int(v["below"]))
 			"selected", "camera_moved", "zoomed", "more", "built", "rooted", "crew", "group", "did", "gear_view", \
 					"placing", "order", "res", "talked":
 				ok = _tutorial_cond(String(k), v)
@@ -804,6 +814,19 @@ func act(a: Dictionary) -> void:
 				_send({"k": "mist", "v": v})
 			"cage", "pin", "carry", "spare":
 				hold(String(k), v)
+			"cart":
+				cart_bind(v)
+			"remove":
+				# (a05) {"remove": {"tag"}}: taken off the map (not killed: Lindqvist lifts the eggs into his crate)
+				# ("empty": true: only those with no cage on them, the carts that caught nothing)
+				for e in tagged(String(v.get("tag", ""))):
+					if e is Unit:
+						if bool(v.get("empty", false)) and e.has_meta("cage_cargo"):
+							continue
+						_drop_cart(e)
+						game.consume_unit(e)
+				for tt in team_ids.size():
+					game._recount_supply(tt)
 			"floor":
 				# {"floor": {"tag", "share"}}: their health never goes under that share (0: no floor)
 				for e in tagged(String(v.get("tag", ""))):
@@ -1250,8 +1273,25 @@ func _tick_exits() -> void:
 		var keep: Array = []
 		for xt in ex.get("except", []):
 			keep.append_array(tagged(String(xt)))      # (the heroes stay: they must be there at the end)
+		# (a05) "cargo": true: only carts with a cage on them leave, and the cage goes with them; "max": how many may
+		# leave by it in all (a number or a counter's: the canoes' room), "counter" counting them
+		var cargo := bool(ex.get("cargo", false))
+		var room := INF
+		if ex.has("max"):
+			var mx := float(counters.get(String(ex["max"]), 0)) if ex["max"] is String else float(ex["max"])
+			room = mx - float(counters.get(String(ex.get("counter", "")), 0))
 		for u in list:
+			if float(n) >= room:
+				break
 			if u is Unit and not u.dead and r.has_point(u.position) and not keep.has(u):
+				if cargo:
+					var c = u.get_meta("cage_cargo", null)
+					if c == null or not is_instance_valid(c) or c.dead:
+						continue
+					_drop_cart(c)
+					game.consume_unit(c)
+					if ex.has("cargo_counter"):
+						counters[String(ex["cargo_counter"])] = int(counters.get(String(ex["cargo_counter"]), 0)) + 1
 				game.consume_unit(u)
 				n += 1
 		if n > 0:
@@ -1259,6 +1299,139 @@ func _tick_exits() -> void:
 				game._recount_supply(tt)
 			if ex.has("counter"):
 				act({"counter": {"name": String(ex["counter"]), "add": n}})
+
+
+## CAGE CARTS (a05): {"cart": {"tag": the creatures, "cart": the carts' tag, "caged": counter, "freed": counter,
+## "freed_tag": tag}}: each creature with the tag not yet on a cart is caged on the nearest free cart with the cart tag
+## (one creature a cart). On it the creature is carried along (MissionRun._carry_cages, every frame), can't move or
+## fight, and nobody targets or hurts it; it shoves nobody (its mass near nothing). The cart broken (dead): the
+## creature is FREED (on its feet, open to attack, counted in "freed", tagged "freed_tag"). The cart leaving by an exit
+## with "cargo": the creature goes with it (counted by the exit). The cart is a role "cage_cart" (a Powder Wagon that
+## never blows up).
+func cart_bind(v: Dictionary) -> void:
+	var carts: Array = tagged(String(v.get("cart", ""))).filter(func(e) -> bool: return e is Unit and not e.has_meta("cage_cargo"))
+	for e in tagged(String(v.get("tag", ""))):
+		if not (e is Unit) or e.has_meta("on_cart") or carts.is_empty():
+			continue
+		var best = carts[0]
+		for c in carts:
+			if c.position.distance_to(e.position) < best.position.distance_to(e.position):
+				best = c
+		carts.erase(best)
+		var u: Unit = e
+		_caged = _caged.filter(func(it) -> bool: return it[0] != u)
+		u.set_meta("mission_caged", true)
+		u.set_meta("on_cart", best)
+		u.set_meta("cart_mass", u.nb_mass)
+		best.set_meta("cage_cargo", u)
+		u.cmd_stop()
+		u.target = null
+		u.m_pace = 0.0
+		u.m_unarmed = true
+		u.spared = true
+		u.nb_mass = 0.001          # (it shoves nobody: the cart rolls on with it)
+		var bars := CageBars.new()
+		bars.name = "CageBars"
+		bars.r = u.radius
+		u.add_child(bars)
+		_carts.append({"u": u, "cart": best, "freed": String(v.get("freed", "")), "freed_tag": String(v.get("freed_tag", ""))})
+		if v.has("caged"):
+			counters[String(v["caged"])] = int(counters.get(String(v["caged"]), 0)) + 1
+		if game.mlog:
+			game.mlog.add("(mission) a %s caged on a cart" % u.kind)
+	objectives_changed.emit()
+	_send({"k": "cnt", "c": counters.duplicate()})
+
+
+## Living carts of the tag with a cage on them.
+func cargo_count(tag: String) -> int:
+	var n := 0
+	for e in tagged(tag):
+		var c = e.get_meta("cage_cargo", null)
+		if c != null and is_instance_valid(c) and not c.dead:
+			n += 1
+	return n
+
+
+## Each tick: a cart broken frees its creature.
+func _tick_carts() -> void:
+	for it in _carts.duplicate():
+		var u = it["u"]
+		var c = it["cart"]
+		if not is_instance_valid(u) or u.dead:
+			_carts.erase(it)
+			continue
+		if not is_instance_valid(c) or c.dead:
+			_free_cage(it)
+
+
+func _free_cage(it: Dictionary) -> void:
+	var u: Unit = it["u"]
+	_drop_cart(u)
+	u.spared = false
+	if not u.has_meta("mission_asleep"):
+		u.m_pace = 1.0
+		u.m_unarmed = false
+	if String(it.get("freed_tag", "")) != "":
+		_tag(String(it["freed_tag"]), u)
+	if String(it.get("freed", "")) != "":
+		act({"counter": {"name": String(it["freed"]), "add": 1}})
+	game._ping(u.position, Color(0.4, 1.0, 0.3))
+	_send({"k": "ping", "p": u.position})
+	if game.mlog:
+		game.mlog.add("(mission) a cage broke: a %s is free" % u.kind)
+
+
+## A creature off its cart (freed, loaded, or taken off): its cage's marks gone.
+func _drop_cart(u: Unit) -> void:
+	_carts = _carts.filter(func(it) -> bool: return it["u"] != u)
+	if not u.has_meta("on_cart"):
+		return
+	var c = u.get_meta("on_cart")
+	if is_instance_valid(c) and c.get_meta("cage_cargo", null) == u:
+		c.remove_meta("cage_cargo")
+	u.remove_meta("on_cart")
+	if u.has_meta("mission_caged"):
+		u.remove_meta("mission_caged")
+	u.nb_mass = float(u.get_meta("cart_mass", 1.0))
+	var bars := u.get_node_or_null("CageBars")
+	if bars:
+		u.remove_child(bars)
+		bars.queue_free()
+
+
+## Every frame: the caged creatures ride on their carts.
+func _carry_cages() -> void:
+	for it in _carts:
+		var u = it["u"]
+		var c = it["cart"]
+		if not is_instance_valid(u) or u.dead or not is_instance_valid(c) or c.dead:
+			continue
+		var p: Vector2 = c.position + Vector2(0, 1)
+		if u.position.distance_to(p) > 0.5:
+			u.position = p
+			u.velocity = Vector2.ZERO
+			game.note_move(u)
+
+
+## The cage's bars round a creature on a cart (drawn in code until the cart's own art: docs/art_style_inconsistency.md).
+class CageBars extends Node2D:
+	var r := 10.0
+
+	func _ready() -> void:
+		z_index = 1
+
+	func _draw() -> void:
+		var w := r + 4.0
+		var h := r * 2.4 + 6.0
+		var wood := Color(0.36, 0.24, 0.13, 0.95)
+		draw_rect(Rect2(-w, -h, w * 2.0, h + 3.0), Color(0.1, 0.08, 0.05, 0.18))
+		var n := maxi(3, int(w * 2.0 / 6.0))
+		for i in n + 1:
+			var x := -w + w * 2.0 * float(i) / float(n)
+			draw_line(Vector2(x, -h), Vector2(x, 3.0), wood, 1.6)
+		draw_line(Vector2(-w - 1, -h), Vector2(w + 1, -h), wood, 2.4)
+		draw_line(Vector2(-w - 1, 3.0), Vector2(w + 1, 3.0), wood, 2.4)
 
 
 ## A sound for everyone (the bells tolling thirteen, the machine's off-beat tick): Sfx's name (assets/audio/<name>),
@@ -1338,6 +1511,8 @@ func hold(what: String, v: Dictionary) -> void:
 	for e in tagged(String(v.get("tag", ""))):
 		match what:
 			"spare":
+				if not on and e.has_meta("on_cart"):
+					continue          # (a05: a creature on a cage cart stays untouchable until the cart breaks)
 				e.spared = on
 			"cage":
 				if e is Unit:
@@ -1592,8 +1767,12 @@ func sleep_units(v: Dictionary) -> void:
 
 func _sleep_group(v: Dictionary) -> Array:
 	var no: Array = v.get("except_kinds", [])
+	# (a05: "except_tags": those with the tags sleep apart: the young in the ferns, netted, never wake the nest)
+	var apart: Array = []
+	for tg in v.get("except_tags", []):
+		apart.append_array(tags.get(String(tg), []))
 	return group_of(String(v.get("tag", "")), String(v.get("team", "")), String(v.get("side", ""))).filter(
-		func(e) -> bool: return e is Unit and not no.has(e.kind))
+		func(e) -> bool: return e is Unit and not no.has(e.kind) and not apart.has(e))
 
 
 func _put_to_sleep(u: Unit, nm: String) -> void:

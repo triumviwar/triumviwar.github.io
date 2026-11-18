@@ -32,6 +32,22 @@
 - THE CHATTERBOX LIST (owner 2026-11-18 15:55): docs/chatterbox_todo.md is the one list of every voice line still to record
   (Chatterbox on the owner's PC). Top item: a NEW Brood announcer set (21 lines) in Lindqvist's v2 voice
   (refs/lindqvist_ref.wav); then every mission's voice table and the voices to design. Add new missions' tables there.
+- a05_specimens BUILT (job a05-specimens, 0.38.64, branch a05-specimens, docs/campaign_a05_build.md): step 8 of Act 1's
+  build order. "The Specimens" (the Naturalist line after a03, the dry season 2769, Lindqvist old and a prisoner before
+  the King): map campaign:plateau_descent (tools/campaign/make_plateau_descent_map.py: the nest's hollow and the egg bed,
+  the young's three beds in the ferns, the camp, THE SHORT WAY (a03 `map` drawn) and THE LONG WAY (withheld), the pack's
+  clearings, the quay with the Lisbon crates: the ONE crate hint), mission tools/campaign/make_a05_mission.py, stand-in
+  stills a05_01..05 (make_a05_stills.py; prompts in the doc). THE EXPEDITION (YELLOW, p1: Lindqvist 320 hp, Pieter by
+  `pieter`, hired guns, porters who MEND the carts: mission `mend_allies`) + THE CONVOY (YELLOW, scripted: a CAGE CART per
+  bed; with b01 `clutch` saved three, the young Sire among the young; burned two). Part 1 night: net each sleeping young
+  (a STAY of 4 s: its cart comes and cages it), the eggs (Lindqvist 8 s at the egg bed, then carries them), WALK SOFTLY,
+  dawn 10:00; Part 2 the carts on a ROUTE at an ox's pace, raids every 1:15 (Raptors, then Challengers), a broken cart
+  frees its creature; Part 3 the quay: an exit counting CAGES as many as the canoes hold (b01 `saved`: 2/3/4), the Sire
+  for the last cart, the canoes 3:00. NO CHOICE: flags `cages` few/some/all (`cages_n`), `eggs`, `pieter`, `way`,
+  `crates`. MIRROR (solo pick, versus): THE CREATURES (GREEN), bound to THE ROSTER LADDER's B3 (GROW stage 2 + MATURE; no
+  Tyrant Sire of their own), win by half the cages freed or Lindqvist killed (`specimens` freed). Engine: CAGE CARTS
+  (`cart`, `cargo`, exits `cargo`/`max`), `remove`, sleep `except_tags`, `mend_allies`. ALL TEXT PLACEHOLDER. Tests
+  tools/test_campaign_a05.gd, balance tools/sim_campaign_a05.gd. 19 Claude's choices in the doc.
 - a04_visit BUILT (job a04-visit, 0.38.63, branch a04-visit, docs/campaign_a04_build.md): step 7 of Act 1's build order.
   "Father Ferrer's Visit" (the Clockmaker line after a02, Fürth, autumn 2769, told by Ferrer, the King framing): map
   campaign:furth_works (a02's map grown: tools/campaign/make_furth_works_map.py starts FROM furth_line.json), mission

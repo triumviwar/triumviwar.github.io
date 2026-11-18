@@ -59,7 +59,8 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | a03_plateau (the Lost Plateau) | docs/campaign_a03_build.md | 57 | Valadares* 37, the King 9, Benedito* 7, the guide from Nazaré* 2 |
 | a04_visit (Ferrer's visit) | docs/campaign_a04_build.md | 79 | Ferrer* 35, Hollweg 13, Brother Anselm* 9, the King 6, Jakob* 4 |
 | a06_barricades (Paris) | docs/campaign_a06_build.md | 69 | Fairleigh 28, Tomasz* 10, the King 9, Ruggieri 8, Varenne 3, Will Hollins* 1 |
-| a05_specimens, a07_council | being built | - | (added here when their docs land) |
+| a05_specimens (the Specimens) | docs/campaign_a05_build.md | 58 | Lindqvist 39, the King 8, Benedito* 8, Pieter* 2 |
+| a07_council | being built | - | (added here when its doc lands) |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain") can stay as text.

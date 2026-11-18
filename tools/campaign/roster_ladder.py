@@ -131,6 +131,8 @@ CARDS_PT = {
     "mortar": "NOVO: O MORTEIRO. Lança a sua granada por cima dos muros: as barricadas são trabalho dele, não da linha.",
     "heavy_works": "NOVO: A OFICINA PESADA. Junto a uma Mola Real, ela constrói as grandes máquinas.",
     "pendulum": "NOVO: O PÊNDULO. Um gigante lento cujo balanço corta tudo à sua volta, voadores também.",
+    "stage2": "NOVO: CRESCER. Enraizada, a Mãe cresce ao seu segundo estágio: mais ovos, e os jovens podem AMADURECER.",
+    "tyrant_challenger": "NOVO: AMADURECER. Um Raptor crescido muda de pele e vira um Desafiante Tirano; um Cuspidor crescido, um Desafiante Venenoso.",
     "spitter": "NOVO: OS CUSPIDORES. Dois por ovo, fecundados pelo Sire do Veneno: ácido por trás dos Raptores, contra terra e ar.",
 }
 CARDS_ES = {
@@ -149,12 +151,14 @@ CARDS_ES = {
     "mortar": "NUEVO: EL MORTERO. Lanza su granada por encima de los muros: las barricadas son trabajo suyo, no de la línea.",
     "heavy_works": "NUEVO: EL TALLER PESADO. Junto a un Muelle Real, construye las grandes máquinas.",
     "pendulum": "NUEVO: EL PÉNDULO. Un gigante lento cuyo vaivén corta todo a su alrededor, voladores también.",
+    "stage2": "NUEVO: CRECER. Enraizada, la Madre crece a su segunda etapa: más huevos, y los jóvenes pueden MADURAR.",
+    "tyrant_challenger": "NUEVO: MADURAR. Un Raptor crecido muda la piel y se vuelve un Retador Tirano; un Escupidor crecido, un Retador Venenoso.",
     "spitter": "NUEVO: LOS ESCUPIDORES. Dos por huevo, fecundados por el Señor del Veneno: ácido desde detrás de los Raptores, contra tierra y aire.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures"}
 
 
 def step_of(mission_id):

@@ -109,8 +109,11 @@ The economy a faction cannot play without; the first mission of the line teaches
   production: not bound. THE GUILD (co-op p2) is bound to K3: Heavy Works + Pendulum (a Heavy Works stands among the six
   workshops, a Pendulum is given and holds the yard's gate in the riot); the cards go to the side `visit` 8 s in, in pt
   / es. A solo player meets K3's pieces only if the guild is played (or through a02's `gate` pattern): Claude's choice 2.
-- a05_specimens: THE CREATURES (the solo pick and versus) are bound to B3; the expedition (Crown stand-in, the
-  default) has no production.
+- a05_specimens: APPLIED (job a05-specimens, 0.38.64): THE CREATURES (the solo pick and versus) are bound to B3: GROW
+  (stage 2) and MATURE (Tyrant and Venom Challengers), the story's deny of the Tyrant Sire on top (he is away and comes
+  for the last cart, as a03's); B3's cards to the side `creatures` 8 s in, in pt / es. The expedition (Crown stand-in,
+  the default) has no production (its own roster denies every building) and is not bound. The scripted raids show the
+  grown ones (Challengers) from the expedition's side (docs/campaign_a05_build.md).
 - a06_barricades: APPLIED (job a06-barricades, 0.38.59): the army ("army") and Ruggieri's "guns" (co-op p2) bound to
   C3, the story's deny (no Town Hall or Farm in a siege camp) on top; the camp has a Foundry and a Horse Breeder
   standing; the Mortar is given (one) and can be made; C3's cards in pt/es; the row in test_roster_ladder.gd. The

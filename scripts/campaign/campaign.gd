@@ -612,6 +612,10 @@ static func problems(m: Dictionary) -> Array:
 			out.append("exit: unknown counter %s" % ex["counter"])
 		if ex.has("team") and not teams.has(String(ex["team"])):
 			out.append("exit: unknown team %s" % ex["team"])
+		if ex.get("max") is String and not counters.has(String(ex["max"])):
+			out.append("exit: unknown max counter %s" % ex["max"])
+		if ex.has("cargo_counter") and not counters.has(String(ex["cargo_counter"])):
+			out.append("exit: unknown cargo counter %s" % ex["cargo_counter"])
 	for tm in m.get("teams", []):
 		for key in ["deny", "allow", "new"]:
 			for k in tm.get("roster", {}).get(key, []):
@@ -646,6 +650,10 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 			"time", "dead", "hurt", "flag", "past", "clock_out", "clock_left", "counter", "netted", "hp", "awake", "asleep", \
 					"captured", "route_done", "unmasked", "disguised":
 				pass
+			"cargo":
+				# (a05) {"cargo": {"tag": the carts' tag, "at_least" / "below"}}: living carts with a cage on them
+				if not (c[k] is Dictionary and c[k].has("tag")):
+					out.append("%s: cargo needs a tag" % where)
 			# act1-engine0: the difficulty, who is played, STAY, NEAR, SEEN
 			"difficulty":
 				for lv in (c[k] if c[k] is Array else [c[k]]):
@@ -761,7 +769,14 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: unknown side %s" % [where, v])
 		"mark", "flag", "clock", "counter", "tally", "name":
 			pass
-		"cage", "pin", "carry", "spare", "floor", "heal", "burn", "nest_free", "wind":
+		"cart":
+			# (a05) {"cart": {"tag": the creatures, "cart": the carts' tag, "freed": counter, "freed_tag", "caged": counter}}
+			if not (v is Dictionary and v.has("tag") and v.has("cart")):
+				out.append("%s: cart needs a tag and a cart" % where)
+			for ck in ["freed", "caged"]:
+				if v is Dictionary and v.has(ck) and not (m.get("counters", {}) as Dictionary).has(String(v[ck])):
+					out.append("%s: cart: unknown counter %s" % [where, v[ck]])
+		"cage", "pin", "carry", "spare", "floor", "heal", "burn", "nest_free", "wind", "remove":
 			if not (v is Dictionary and v.has("tag")):
 				out.append("%s: %s needs a tag" % [where, k])
 		"convert":

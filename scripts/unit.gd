@@ -5403,7 +5403,7 @@ func _strike(e: Entity) -> void:
 
 func _repair(delta: float) -> Vector2:
 	var e := order_target
-	if e == null or not is_instance_valid(e) or e.dead or e.team != team \
+	if e == null or not is_instance_valid(e) or e.dead or not game.mends(team, e.team) \
 			or (e.hp >= e.max_hp and not (e is Unit and (e as Unit).wind < 0.98)) or (e is Building and not e.built):
 		# done: the next Shift-queued order, or else the next damaged piece close by (a wall
 		# is many pieces)
@@ -6986,7 +6986,7 @@ func die() -> void:
 	if keg:
 		keg = false
 		game.powder_blast(self, position, float(Defs.KEG["blast"]), float(Defs.KEG["radius"]))
-	elif kind == "powder_wagon":
+	elif kind == "powder_wagon" and not has_meta("cage_cart"):      # (a05's cage carts never blow up: MissionRun.cart_bind)
 		var full := clampf(powder / maxf(_pmax, 1.0), 0.0, 1.0)
 		var dmg := maxf(float(Defs.WAGON["blast"]) * full, float(Defs.WAGON["blast_min"]))
 		if game.mlog:

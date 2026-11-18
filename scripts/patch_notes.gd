@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.67", "items": [
+		"ACT 1, THE SPECIMENS (CAMPAIGN, THE NATURALIST, after The Lost Plateau): the cloud mountain, the dry season 2769. Two years after the station burned, Dr. Lindqvist comes back with the Academy's money, and he tells it himself, a prisoner before the King. By night, net the young asleep in the ferns and have the cage carts take them, and let Lindqvist lift the eggs from the swamp's edge, without waking the nest. By day, guard the carts down the mountain while the pack comes for the cages, the porters mending them; a broken cart sets its creature free. At the river, load what is left into Benedito's canoes before the Tyrant Sire reaches the last cart. The short way or the long way, the young Sire among the cages, the guns, the canoes and Pieter all come from the earlier missions. Solo or versus, and solo as THE CREATURES: grow the nest while it sleeps, then free half the cages or kill the doctor. Every word is still a placeholder.",
+		"The Naturalist line's ladder reaches its third step: GROW (the Brood Mother's second stage) and MATURE (the Tyrant and Venom Challengers) are the creatures' new pieces. Lindqvist has new words in his warehouse at the Barra after the specimens (by how many cages came down), and the war map's seal for the specimens opens after the plateau.",
+	]},
 	{"v": "0.38.66", "items": [
 		"THE THIRTEENTH HOUR: Meister Hollweg now says why he built in secret: nobody in Nuremberg knew what was under his workshop, because people hate a clever machine.",
 	]},

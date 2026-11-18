@@ -327,7 +327,8 @@
 			"about": "A naturalist on the Amazon raises a creature no one has seen, and loses it to the forest.",
 			"missions": [
 				"b01_specimen",
-				"a03_plateau"
+				"a03_plateau",
+				"a05_specimens"
 			],
 			"hub": {
 				"title": "Lindqvist's Station",
@@ -495,6 +496,37 @@
 								"lines": [
 									"Valadares never came down from the cloud mountain. Benedito came back alone with the canoe, and would not speak of it."
 								]
+							},
+							{
+								"after": "a05_specimens",
+								"sides": {
+									"a05_specimens": "expedition"
+								},
+								"lines": [
+									"The cages are in the cellar now, and the Academy's men come to look at them through the bars.",
+									"They grow. They know my whistle already. This is how it begins, properly this time."
+								]
+							},
+							{
+								"after": "a05_specimens",
+								"sides": {
+									"a05_specimens": "expedition"
+								},
+								"flag": {
+									"a05_specimens.cages": "few"
+								},
+								"lines": [
+									"Only a few came down. Few is enough, if they breed."
+								]
+							},
+							{
+								"after": "a05_specimens",
+								"sides": {
+									"a05_specimens": "creatures"
+								},
+								"lines": [
+									"The carts came down empty. The Academy wants its money back. I will go up again."
+								]
 							}
 						]
 					},
@@ -582,6 +614,18 @@
 						"about": "Lindqvist reads the mapmaker's report in the Academy's warehouse at the Barra do Rio Negro.",
 						"still": {
 							"caption": "The Academy's warehouse at the Barra do Rio Negro: a mapmaker's report open on the table, rain on the river."
+						},
+						"tint": [
+							0.82,
+							0.82,
+							0.9
+						]
+					},
+					"a05_specimens": {
+						"title": "The Warehouse at the Barra",
+						"about": "The cages from the cloud mountain stand in the Academy's warehouse at the Barra do Rio Negro.",
+						"still": {
+							"caption": "The Academy's warehouse at the Barra do Rio Negro: iron cages under lamps, something moving in the straw."
 						},
 						"tint": [
 							0.82,
