@@ -10,7 +10,7 @@ extends RefCounted
 ## near it (a Horseman, a Raptor, a Swift on a scouting loop). It sends the nearest fit hunters after it: soldiers that can
 ## catch it (as fast, or a shooter already in reach) and can hit it (a flyer needs anti-air), at most MAX_PER a scout and
 ## MAX_ALL in all, never a whole army, never a unit out on a wave, in a defence, on an errand or rooted. Early, when no
-## soldier can, one or two workers next to it go at a scout on foot (a short chase: WORKER_T). A hunter gives up when the
+## soldier can, one or two workers next to it go at a scout on foot (a chase only inside the base: WORKER_T, WORKER_LEASH). A hunter gives up when the
 ## scout is LEASH tiles past its base, after CHASE_T s, when the scout has been out of sight LOST_T s, or when enemy fighters
 ## stronger than the hunters are near it; then it goes back (soldiers to where they were taken from, workers to work).
 ## Armed intruders that are not scouts stay with the defence (AI._defend, AIBroodNew._nb_defend); the Brood leaves riders
@@ -23,7 +23,8 @@ static var on := not OS.get_cmdline_user_args().has("scoutdeny:off")
 const ZONE_R := 11.0            # (tiles) our base: this near one of our buildings, rooted creatures or the Mother
 const LEASH := 6.0              # (tiles) a chase goes on only this far past our base
 const CHASE_T := 30.0           # (s) a soldier's chase at most
-const WORKER_T := 10.0          # (s) a worker's chase at most
+const WORKER_T := 30.0          # (s) a worker's chase at most (and only while the scout is in our base: WORKER_LEASH)
+const WORKER_LEASH := 0.0       # (tiles) workers never chase past our base
 const LOST_T := 3.0             # (s) the scout out of sight this long: it got away
 const SEND_R := 30.0            # (tiles) hunters come from within this of the scout
 const WORKER_R := 9.0           # (tiles) ... workers only from this near
@@ -341,7 +342,7 @@ func _follow(o: Unit) -> void:
 		why = "its hunters fell"
 	elif game.clock - float(h["seen"]) > LOST_T:
 		why = "out of sight"
-	elif base_dist(o.position) > LEASH * Defs.TILE:
+	elif base_dist(o.position) > (WORKER_LEASH if bool(h["workers"]) else LEASH) * Defs.TILE:
 		why = "away past the leash"
 	elif game.clock - float(h["t0"]) > (WORKER_T if bool(h["workers"]) else CHASE_T):
 		why = "the chase took too long"
