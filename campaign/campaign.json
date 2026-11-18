@@ -450,7 +450,8 @@
 			"requires": "p01_leaf",
 			"about": "Nuremberg, 2767. A clockmaker builds a machine that never stops, and loses his city to it.",
 			"missions": [
-				"c01_thirteenth"
+				"c01_thirteenth",
+				"a02_furth"
 			],
 			"hub": {
 				"title": "Hollweg's Workshop",
@@ -482,7 +483,9 @@
 							0.101,
 							0.366
 						],
-						"until": "c01_thirteenth"
+						"not_sides": {
+							"a02_furth": "machine"
+						}
 					},
 					{
 						"id": "clock",
@@ -513,13 +516,16 @@
 						"kind": "talk",
 						"label": "HOLLWEG'S LETTER",
 						"talk": "letter",
-						"requires": "c01_thirteenth",
+						"requires": "a02_furth",
 						"rect": [
 							0.879,
 							0.406,
 							0.101,
 							0.366
-						]
+						],
+						"sides": {
+							"a02_furth": "machine"
+						}
 					},
 					{
 						"id": "armoury",
@@ -547,6 +553,20 @@
 									"Mind your sleeve near the table. The map turns, and every ring of it is a road, a river or a sea.",
 									"The Crown pays the Guild for patience. My machines have more of it than any soldier."
 								]
+							},
+							{
+								"after": "c01_thirteenth",
+								"lines": [
+									"A barn, a forge and the Crown's goodwill. It is more than we had in December.",
+									"The new tower will have a stop-work. Every wheel of it. I will fit it with my own hands."
+								]
+							},
+							{
+								"after": "a02_furth",
+								"lines": [
+									"The line held. The machine went back behind its walls.",
+									"The commissary writes his reports. Let him. Our machines are honest."
+								]
 							}
 						]
 					},
@@ -564,8 +584,17 @@
 							{
 								"after": "c01_thirteenth",
 								"lines": [
-									"The great clock of the Guild still keeps time. It strikes thirteen now."
+									"The guild's travelling clock, carried out of Nuremberg on the last cart. It keeps the old city's time, and nobody resets it."
 								]
+							},
+							{
+								"after": "a02_furth",
+								"lines": [
+									"The great clock of the Guild still keeps time. It strikes thirteen now."
+								],
+								"sides": {
+									"a02_furth": "machine"
+								}
 							}
 						]
 					},
@@ -582,8 +611,17 @@
 							{
 								"after": "c01_thirteenth",
 								"lines": [
-									"The half-finished automaton is gone. Something finished it."
+									"A new labouring automaton on the trestle. A small brass plate on its back reads STOP-WORK FITTED."
 								]
+							},
+							{
+								"after": "a02_furth",
+								"lines": [
+									"The half-finished automaton is gone. Something finished it."
+								],
+								"sides": {
+									"a02_furth": "machine"
+								}
 							}
 						]
 					},
@@ -604,6 +642,19 @@
 				"scene": "res://campaign/hub/nuremberg.json",
 				"after": {
 					"c01_thirteenth": {
+						"title": "The Guild in Exile at Fürth",
+						"about": "Nuremberg is the machine's. The guild works in a barn at Fürth, three miles west, beside the Crown's army.",
+						"still": {
+							"caption": "The guild's barn workshop at Fürth: the brass map saved from Nuremberg on a trestle, the red towers of the lost city through the door."
+						},
+						"hide_layers": [],
+						"tint": [
+							0.84,
+							0.86,
+							0.94
+						]
+					},
+					"a02_furth": {
 						"title": "Nuremberg, the Machine's City",
 						"about": "Hollweg's workshop is the machine's now. He lives in exile in the King's palace in Rome.",
 						"still": {
@@ -616,7 +667,10 @@
 							1.0,
 							0.8,
 							0.78
-						]
+						],
+						"sides": {
+							"a02_furth": "machine"
+						}
 					}
 				}
 			}

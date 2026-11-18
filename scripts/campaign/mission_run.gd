@@ -576,7 +576,7 @@ func cond(c: Variant) -> bool:
 
 
 ## How many living units (horses not counted) match: of a "tag", a "team" or a "side", inside an "area" if given;
-## "buildings": true counts their buildings too.
+## "buildings": true counts their buildings too ("built": true: only the finished ones).
 func count(q: Dictionary) -> int:
 	var area := area_rect(String(q["area"])) if q.has("area") else Rect2()
 	var list: Array = []
@@ -595,7 +595,8 @@ func count(q: Dictionary) -> int:
 				list.append(u)
 		if bool(q.get("buildings", false)):
 			for b in game.buildings:
-				if not b.dead and not b.ghost and teams.has(b.team):
+				# ("built": true only finished ones: the Fürth Line's Light Works, whoever's machine runs it)
+				if not b.dead and not b.ghost and teams.has(b.team) and (b.built or not bool(q.get("built", false))):
 					list.append(b)
 	var kinds: Array = (q["kind"] if q["kind"] is Array else [q["kind"]]) if q.has("kind") else []
 	var n := 0

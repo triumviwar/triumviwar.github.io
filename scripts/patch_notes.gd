@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.53", "items": [
+		"ACT 1 BEGINS, THE FÜRTH LINE (CAMPAIGN, THE CLOCKMAKER, after The Thirteenth Hour): Fürth, March 2768. The guild in exile raises its new Clocktower, the Honest One, beside the Crown's Franconian army. Fit its stop-work, build your works, hold the earthworks against three sorties out of Nuremberg's gates, then burn the machine's seed at the Rednitz mill. What you did in Nuremberg changes it: the bells, how many you saved, Jakob, the cut links and Hollweg's drawings. Alone you may also lead THE MACHINE instead (YOU PLAY: on the briefing) and try to burn the Honest One before the line is finished. Every line and picture is still a placeholder.",
+		"The Clockmaker's hub moves to the guild's barn at Fürth after The Thirteenth Hour; a player who wins The Fürth Line as the Machine keeps Nuremberg, the Machine's City.",
+	]},
 	{"v": "0.38.52", "items": [
 		"Notes only: the project notes record the merged campaign work.",
 	]},

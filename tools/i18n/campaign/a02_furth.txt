@@ -1,0 +1,393 @@
+# Act 1's mission a02_furth, "The Fürth Line" (campaign/missions/a02_furth.json, written by tools/campaign/make_a02_mission.py;
+# the plan: docs/campaign_act1_plan.md; what was built: docs/campaign_a02_build.md). EVERY LINE IS A PLACEHOLDER for the owner.
+# Also the Clockmaker hub at Fürth and the Machine's City (campaign.json). Texts already translated elsewhere (c01) are not repeated.
+# Names: the Honest One = a Honesta / la Honrada (a tower: feminine); stop-work = trava / tope (as c01); sortie = investida / salida;
+# earthworks = trincheiras / trincheras; Meister = Mestre / maestro.
+
+> The Fürth Line
+pt A Linha de Fürth
+es La Línea de Fürth
+
+> Fürth, March 2768. Three months after Nuremberg fell, the machine comes out of its gates. The guild in exile holds the line beside the Crown's army, and swears every machine it builds has a stop-work.
+pt Fürth, março de 2768. Três meses depois da queda de Nuremberg, a máquina sai pelos seus portões. A guilda no exílio defende a linha ao lado do exército da Coroa, e jura que toda máquina que constrói tem uma trava.
+es Fürth, marzo de 2768. Tres meses después de la caída de Núremberg, la máquina sale por sus puertas. El gremio en el exilio defiende la línea junto al ejército de la Corona, y jura que toda máquina que construye tiene un tope.
+
+> The Guild in Exile
+pt A Guilda no Exílio
+es El Gremio en el Exilio
+
+> Meister Hollweg's guild, rebuilt at Fürth with what it saved, beside the Crown's Franconian army.
+pt A guilda do Mestre Hollweg, refeita em Fürth com o que salvou, ao lado do exército franconiano da Coroa.
+es El gremio del maestro Hollweg, rehecho en Fürth con lo que salvó, junto al ejército franconio de la Corona.
+
+> Nuremberg's new masters. They tick off the beat and they want Fürth.
+pt Os novos senhores de Nuremberg. O seu tique-taque sai do compasso e eles querem Fürth.
+es Los nuevos amos de Núremberg. Su tictac va fuera de compás y quieren Fürth.
+
+> Fit the stop-work: Meister Hollweg stays by the Honest One for 25 seconds.
+pt Coloque a trava: o Mestre Hollweg fica junto à Honesta durante 25 segundos.
+es Pon el tope: el maestro Hollweg se queda junto a la Honrada durante 25 segundos.
+
+> Build a Light Works by the Honest One.
+pt Construa uma Oficina Leve junto à Honesta.
+es Construye un Taller Ligero junto a la Honrada.
+
+> The Honest One must stand.
+pt A Honesta tem de ficar de pé.
+es La Honrada debe seguir en pie.
+
+> Hold the earthworks: {sorties} of 3 sorties beaten back.
+pt Defenda as trincheiras: {sorties} de 3 investidas repelidas.
+es Defiende las trincheras: {sorties} de 3 salidas rechazadas.
+
+> Burn the machine's seed at the Rednitz mill.
+pt Queime a semente da máquina no moinho do Rednitz.
+es Quema la semilla de la máquina en el molino del Rednitz.
+
+> Fürth's line is finished in {clock:line}.
+pt A linha de Fürth fica pronta em {clock:line}.
+es La línea de Fürth estará terminada en {clock:line}.
+
+> Burn the Honest One or kill Meister Hollweg before the line is finished.
+pt Queime a Honesta ou mate o Mestre Hollweg antes de a linha ficar pronta.
+es Quema la Honrada o mata al maestro Hollweg antes de que la línea esté terminada.
+
+> Keep the seed at the Rednitz mill: your ground half way to Fürth.
+pt Mantenha a semente no moinho do Rednitz: o seu chão a meio caminho de Fürth.
+es Conserva la semilla del molino del Rednitz: tu suelo a medio camino de Fürth.
+
+> The Machine kept Nuremberg through the winter. In March it came out of the gates.
+pt A Máquina ficou com Nuremberg todo o inverno. Em março saiu pelos portões.
+es La Máquina se quedó con Núremberg todo el invierno. En marzo salió por las puertas.
+
+> The guild had gone three miles, to Fürth. The Crown gave it a field and a barn.
+pt A guilda tinha ido três milhas, até Fürth. A Coroa deu-lhe um campo e um celeiro.
+es El gremio se había ido tres millas, hasta Fürth. La Corona le dio un campo y un granero.
+
+> We raised a new tower in the barn's yard. The men called it the Honest One.
+pt Erguemos uma torre nova no pátio do celeiro. Os homens chamaram-lhe a Honesta.
+es Levantamos una torre nueva en el patio del granero. Los hombres la llamaron la Honrada.
+
+> Every wheel in it was cut by a hand I knew. Every machine it made would have a stop-work. I swore it.
+pt Cada roda dela foi cortada por uma mão que eu conhecia. Cada máquina que fizesse teria uma trava. Jurei-o.
+es Cada rueda suya la cortó una mano que yo conocía. Cada máquina que hiciera tendría un tope. Lo juré.
+
+> The Machine has no voice. It left no account of that spring. Only what it did.
+pt A Máquina não tem voz. Não deixou relato daquela primavera. Só o que fez.
+es La Máquina no tiene voz. No dejó relato de aquella primavera. Solo lo que hizo.
+
+> In March it came out of Nuremberg's gates, west along the river, toward the guild that made it.
+pt Em março saiu pelos portões de Nuremberg, para oeste ao longo do rio, rumo à guilda que a fez.
+es En marzo salió por las puertas de Núremberg, hacia el oeste a lo largo del río, hacia el gremio que la hizo.
+
+> Before anything else, the stop-work. Bring me to the tower.
+pt Antes de tudo, a trava. Leve-me até à torre.
+es Antes que nada, el tope. Llévame a la torre.
+
+> My men are digging, Meister. Your machines stay on your side of the ditch.
+pt Os meus homens estão a cavar, Mestre. As suas máquinas ficam do seu lado da vala.
+es Mis hombres están cavando, maestro. Sus máquinas se quedan de su lado de la zanja.
+
+> Keep me by the Honest One until the stop-work is fitted. Then a Light Works for the soldiers.
+pt Mantenha-me junto à Honesta até a trava estar colocada. Depois uma Oficina Leve para os soldados.
+es Mantenme junto a la Honrada hasta que el tope esté puesto. Luego un Taller Ligero para los soldados.
+
+> The Crown has read Father Ferrer's letter, Meister. Nothing is built here until I see that stop-work.
+pt A Coroa leu a carta do Padre Ferrer, Mestre. Nada se constrói aqui até eu ver essa trava.
+es La Corona ha leído la carta del padre Ferrer, maestro. Aquí no se construye nada hasta que vea ese tope.
+
+> Then watch closely. You will see it fitted.
+pt Então observe bem. Vai vê-la colocada.
+es Entonces mire bien. Lo verá puesto.
+
+> They say you rang the bells, Meister. Half my regiment owes you its family. Build what you need.
+pt Dizem que tocou os sinos, Mestre. Metade do meu regimento deve-lhe a família. Construa o que precisar.
+es Dicen que tocó las campanas, maestro. Medio regimiento le debe su familia. Construya lo que necesite.
+
+> I kept the log all winter, Meister. It is quieter in Nuremberg than it should be.
+pt Guardei o registo todo o inverno, Mestre. Nuremberg está mais calada do que devia.
+es Llevé el registro todo el invierno, maestro. Núremberg está más callada de lo que debería.
+
+> The line is dug from the woods to the Rednitz. Two gates. Nothing else gets through.
+pt A linha está cavada desde o bosque até ao Rednitz. Dois portões. Mais nada passa.
+es La línea está cavada desde el bosque hasta el Rednitz. Dos puertas. Nada más pasa.
+
+> There. A stop-work on the Honest One, and on everything it makes. It will stop when we say.
+pt Pronto. Uma trava na Honesta, e em tudo o que ela fizer. Vai parar quando nós dissermos.
+es Ya está. Un tope en la Honrada, y en todo lo que haga. Se parará cuando lo digamos.
+
+> It keeps the beat, Meister. On the beat, every tooth.
+pt Ela segue o compasso, Mestre. No compasso, cada dente.
+es Sigue el compás, maestro. En el compás, cada diente.
+
+> Seen and noted. You may build your works.
+pt Visto e anotado. Pode construir as suas oficinas.
+es Visto y anotado. Puede construir sus talleres.
+
+> Riders from the river. The gates of Nuremberg are open.
+pt Cavaleiros vindos do rio. Os portões de Nuremberg estão abertos.
+es Jinetes desde el río. Las puertas de Núremberg están abiertas.
+
+> It is coming to us. Man the earthworks.
+pt Está a vir até nós. Às trincheiras.
+es Viene hacia nosotros. A las trincheras.
+
+> A lamp in a window in Nuremberg, three times: the loyal quarter's signal.
+pt Uma lâmpada numa janela de Nuremberg, três vezes: o sinal do bairro leal.
+es Una lámpara en una ventana de Núremberg, tres veces: la señal del barrio leal.
+
+> Our people inside. They are telling us where it gathers.
+pt A nossa gente lá dentro. Estão a dizer-nos onde ela se junta.
+es Nuestra gente dentro. Nos dicen dónde se reúne.
+
+> Listen. Off the beat, south of the river. They are coming by the meadows.
+pt Ouça. Fora do compasso, a sul do rio. Vêm pelos prados.
+es Escuche. Fuera de compás, al sur del río. Vienen por los prados.
+
+> Again. North this time, on the road.
+pt Outra vez. A norte desta vez, pela estrada.
+es Otra vez. Al norte esta vez, por el camino.
+
+> No, the road is silent. We cut its links last winter. The meadows again.
+pt Não, a estrada está calada. Cortámos as ligações no inverno. Os prados outra vez.
+es No, el camino está callado. Cortamos sus enlaces el invierno pasado. Los prados otra vez.
+
+> More of them. Many more.
+pt Mais deles. Muitos mais.
+es Más de ellos. Muchos más.
+
+> On the meadows! Hold the gate!
+pt Nos prados! Segurem o portão!
+es ¡En los prados! ¡Defended la puerta!
+
+> The road! They are on the road!
+pt A estrada! Estão na estrada!
+es ¡El camino! ¡Están en el camino!
+
+> The meadows again. They know only the one way.
+pt Os prados outra vez. Só conhecem um caminho.
+es Los prados otra vez. Solo conocen un camino.
+
+> Everything it has. Hold, Franconians!
+pt Tudo o que tem. Aguentem, franconianos!
+es Todo lo que tiene. ¡Aguantad, franconios!
+
+> Beaten back. It will try again.
+pt Repelidos. Vai tentar outra vez.
+es Rechazados. Lo intentará otra vez.
+
+> They run down off their ground. The line is far enough.
+pt Perdem a corda fora do seu chão. A linha está longe o bastante.
+es Se quedan sin cuerda fuera de su suelo. La línea está bastante lejos.
+
+> The Rednitz mill, Meister. There is a tower turning there.
+pt O moinho do Rednitz, Mestre. Há uma torre a girar lá.
+es El molino del Rednitz, maestro. Hay una torre girando allí.
+
+> A seed, half way to us. Burn it before it grows.
+pt Uma semente, a meio caminho de nós. Queime-a antes que cresça.
+es Una semilla, a medio camino de nosotros. Quémela antes de que crezca.
+
+> My reserve goes with you. Burn it and the line holds.
+pt A minha reserva vai convosco. Queimem-na e a linha aguenta.
+es Mi reserva va con ustedes. Quémenla y la línea aguanta.
+
+> I have my drawings. Open the Heavy Works: we will build a Pendulum.
+pt Tenho os meus desenhos. Abram a Oficina Pesada: vamos construir um Pêndulo.
+es Tengo mis dibujos. Abrid el Taller Pesado: construiremos un Péndulo.
+
+> The Heavy Works must stand by a Mainspring, Meister.
+pt A Oficina Pesada tem de ficar junto a uma Mola Real, Mestre.
+es El Taller Pesado tiene que estar junto a un Muelle Real, maestro.
+
+> No drawings. Only our hands. The people of Nuremberg send theirs.
+pt Sem desenhos. Só as nossas mãos. O povo de Nuremberg manda as suas.
+es Sin dibujos. Solo nuestras manos. La gente de Núremberg manda las suyas.
+
+> The mill is burning. The line holds.
+pt O moinho está a arder. A linha aguenta.
+es El molino arde. La línea aguanta.
+
+> Safe this time.
+pt Salvos desta vez.
+es A salvo esta vez.
+
+> Meister, you are hurt. Stay behind the earthworks.
+pt Mestre, está ferido. Fique atrás das trincheiras.
+es Maestro, está herido. Quédese detrás de las trincheras.
+
+> Jakob. Not twice.
+pt Jakob. Duas vezes não.
+es Jakob. Dos veces no.
+
+> Tick. Tock. West along the river. The tower at Fürth ticks on the beat. Stop it.
+pt Tique. Taque. Para oeste ao longo do rio. A torre de Fürth bate no compasso. Pare-a.
+es Tic. Tac. Hacia el oeste por el río. La torre de Fürth late en el compás. Detenla.
+
+> Your seeds by the gates send constructs and cogs while they stand. Off your ground your constructs run down.
+pt As suas sementes junto aos portões mandam construtos e engrenagens enquanto estiverem de pé. Fora do seu chão os construtos perdem a corda.
+es Tus semillas junto a las puertas envían constructos y engranajes mientras sigan en pie. Fuera de tu suelo tus constructos se quedan sin cuerda.
+
+> A seed at the Rednitz mill. New ground, half way to Fürth.
+pt Uma semente no moinho do Rednitz. Chão novo, a meio caminho de Fürth.
+es Una semilla en el molino del Rednitz. Suelo nuevo, a medio camino de Fürth.
+
+> The mill seed is burnt.
+pt A semente do moinho ardeu.
+es La semilla del molino ha ardido.
+
+> Two minutes. The line is almost closed.
+pt Dois minutos. A linha está quase fechada.
+es Dos minutos. La línea está casi cerrada.
+
+> The machine went back behind its walls. The line held all that spring.
+pt A máquina voltou para trás das suas muralhas. A linha aguentou toda aquela primavera.
+es La máquina volvió tras sus murallas. La línea aguantó toda aquella primavera.
+
+> The colonel kept most of his men. He let the guild build inside his line after that.
+pt O coronel ficou com a maior parte dos seus homens. Depois disso deixou a guilda construir dentro da sua linha.
+es El coronel conservó a la mayoría de sus hombres. Después dejó que el gremio construyera dentro de su línea.
+
+> The colonel buried many of his men by the Rednitz. He did not forgive us that.
+pt O coronel enterrou muitos dos seus homens junto ao Rednitz. Não nos perdoou isso.
+es El coronel enterró a muchos de sus hombres junto al Rednitz. No nos lo perdonó.
+
+> Jakob kept his log of the ticking. He wrote down every beat.
+pt O Jakob guardou o registo do tique-taque. Escreveu cada batida.
+es Jakob llevó el registro del tictac. Anotó cada latido.
+
+> Our machines were honest. Every one had its stop-work. I would swear it still.
+pt As nossas máquinas eram honestas. Todas tinham a sua trava. Ainda hoje o juraria.
+es Nuestras máquinas eran honradas. Todas tenían su tope. Aún hoy lo juraría.
+
+> He believes it. I believe he believes it.
+pt Ele acredita nisso. Eu acredito que ele acredita.
+es Él lo cree. Yo creo que él lo cree.
+
+> A stop-work is a wheel like any other. A wheel can be taken out.
+pt Uma trava é uma roda como qualquer outra. Uma roda pode ser tirada.
+es Un tope es una rueda como cualquier otra. Una rueda se puede quitar.
+
+> That is not how it went. The line held at Fürth.
+pt Não foi assim que aconteceu. A linha aguentou em Fürth.
+es No fue así como ocurrió. La línea aguantó en Fürth.
+
+> But it could have gone that way. I have thought so, many nights.
+pt Mas podia ter sido assim. Pensei nisso muitas noites.
+es Pero pudo haber sido así. Lo he pensado muchas noches.
+
+> Fürth, March 2768. The guild in exile, in a barn.
+pt Fürth, março de 2768. A guilda no exílio, num celeiro.
+es Fürth, marzo de 2768. El gremio en el exilio, en un granero.
+
+> The Honest One, and its stop-work.
+pt A Honesta, e a sua trava.
+es La Honrada, y su tope.
+
+> The sortie across the water meadows.
+pt A investida pelos prados do rio.
+es La salida por los prados del río.
+
+> The Rednitz mill.
+pt O moinho do Rednitz.
+es El molino del Rednitz.
+
+> The line holds.
+pt A linha aguenta.
+es La línea aguanta.
+
+> Colonel von Rauch
+pt Coronel von Rauch
+es Coronel von Rauch
+
+> The Commissary
+pt O Comissário
+es El Comisario
+
+> Fürth
+pt Fürth
+es Fürth
+
+> Fürth, March 2768. The guild in exile has raised its new Clocktower, the Honest One, beside the Crown's Franconian army.
+pt Fürth, março de 2768. A guilda no exílio ergueu a sua nova Torre do Relógio, a Honesta, ao lado do exército franconiano da Coroa.
+es Fürth, marzo de 2768. El gremio en el exilio ha levantado su nueva Torre del Reloj, la Honrada, junto al ejército franconio de la Corona.
+
+> Fit the stop-work, build your works, hold the earthworks when the machine comes out of Nuremberg.
+pt Coloque a trava, construa as oficinas, defenda as trincheiras quando a máquina sair de Nuremberg.
+es Pon el tope, construye los talleres, defiende las trincheras cuando la máquina salga de Núremberg.
+
+> Meister Hollweg must live. The Honest One must stand.
+pt O Mestre Hollweg tem de viver. A Honesta tem de ficar de pé.
+es El maestro Hollweg debe vivir. La Honrada debe seguir en pie.
+
+> Fürth, March 2768. You are the Machine. Nuremberg is yours; the guild that made you is three miles west.
+pt Fürth, março de 2768. Você é a Máquina. Nuremberg é sua; a guilda que a fez está três milhas a oeste.
+es Fürth, marzo de 2768. Eres la Máquina. Núremberg es tuya; el gremio que te hizo está tres millas al oeste.
+
+> Burn the Honest One or kill Meister Hollweg before the Crown finishes its line.
+pt Queime a Honesta ou mate o Mestre Hollweg antes de a Coroa acabar a sua linha.
+es Quema la Honrada o mata al maestro Hollweg antes de que la Corona termine su línea.
+
+> The line holds
+pt A linha aguenta
+es La línea aguanta
+
+> The Rednitz mill burned and the machine went back behind Nuremberg's walls. Fürth stands.
+pt O moinho do Rednitz ardeu e a máquina voltou para trás das muralhas de Nuremberg. Fürth está de pé.
+es El molino del Rednitz ardió y la máquina volvió tras las murallas de Núremberg. Fürth sigue en pie.
+
+> The Franconian army kept its strength: {army} men on the line.
+pt O exército franconiano manteve a sua força: {army} homens na linha.
+es El ejército franconio conservó su fuerza: {army} hombres en la línea.
+
+> The Franconian army is thin: {army} men on the line.
+pt O exército franconiano está fraco: {army} homens na linha.
+es El ejército franconio está mermado: {army} hombres en la línea.
+
+> Jakob is not with the guild.
+pt O Jakob não está com a guilda.
+es Jakob no está con el gremio.
+
+> Fürth burns
+pt Fürth arde
+es Fürth arde
+
+> The guild's tower is down. The Machine has the Pegnitz from Nuremberg to the Regnitz.
+pt A torre da guilda caiu. A Máquina tem o Pegnitz de Nuremberg até ao Regnitz.
+es La torre del gremio ha caído. La Máquina tiene el Pegnitz desde Núremberg hasta el Regnitz.
+
+> The Guild in Exile at Fürth
+pt A Guilda no Exílio em Fürth
+es El Gremio en el Exilio en Fürth
+
+> Nuremberg is the machine's. The guild works in a barn at Fürth, three miles west, beside the Crown's army.
+pt Nuremberg é da máquina. A guilda trabalha num celeiro em Fürth, três milhas a oeste, ao lado do exército da Coroa.
+es Núremberg es de la máquina. El gremio trabaja en un granero en Fürth, tres millas al oeste, junto al ejército de la Corona.
+
+> The guild's barn workshop at Fürth: the brass map saved from Nuremberg on a trestle, the red towers of the lost city through the door.
+pt A oficina da guilda num celeiro em Fürth: o mapa de latão salvo de Nuremberg num cavalete, as torres vermelhas da cidade perdida pela porta.
+es El taller del gremio en un granero de Fürth: el mapa de latón salvado de Núremberg sobre un caballete, las torres rojas de la ciudad perdida por la puerta.
+
+> A barn, a forge and the Crown's goodwill. It is more than we had in December.
+pt Um celeiro, uma forja e a boa vontade da Coroa. É mais do que tínhamos em dezembro.
+es Un granero, una forja y la buena voluntad de la Corona. Es más de lo que teníamos en diciembre.
+
+> The new tower will have a stop-work. Every wheel of it. I will fit it with my own hands.
+pt A torre nova vai ter uma trava. Cada roda dela. Vou colocá-la com as minhas próprias mãos.
+es La torre nueva tendrá un tope. Cada rueda. Lo pondré con mis propias manos.
+
+> The line held. The machine went back behind its walls.
+pt A linha aguentou. A máquina voltou para trás das suas muralhas.
+es La línea aguantó. La máquina volvió tras sus murallas.
+
+> The commissary writes his reports. Let him. Our machines are honest.
+pt O comissário escreve os seus relatórios. Deixem-no. As nossas máquinas são honestas.
+es El comisario escribe sus informes. Que los escriba. Nuestras máquinas son honradas.
+
+> The guild's travelling clock, carried out of Nuremberg on the last cart. It keeps the old city's time, and nobody resets it.
+pt O relógio de viagem da guilda, tirado de Nuremberg na última carroça. Marca a hora da cidade velha, e ninguém o acerta.
+es El reloj de viaje del gremio, sacado de Núremberg en el último carro. Marca la hora de la ciudad vieja, y nadie lo pone en hora.
+
+> A new labouring automaton on the trestle. A small brass plate on its back reads STOP-WORK FITTED.
+pt Um autómato operário novo no cavalete. Uma pequena placa de latão nas costas diz TRAVA COLOCADA.
+es Un autómata obrero nuevo en el caballete. Una placa de latón en su espalda dice TOPE PUESTO.

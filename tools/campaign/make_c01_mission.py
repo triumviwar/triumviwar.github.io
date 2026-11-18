@@ -444,7 +444,8 @@ M = {
         "machine": {"still": "thirteen", "title": "Meister Hollweg is dead",
                     "text": "The clockmaker never reached the gate. Try again: he must live to tell it."},
     },
-    "next": {"guild": "", "machine": ""},
+    # (the guild's story goes on at Fürth: Act 1's a02_furth; a machine win is no story to go on from)
+    "next": {"guild": "a02_furth", "machine": ""},
 }
 
 # (the reach objective counts the guild's Clock Soldiers in the area; MissionRun's "reach" takes "kind")

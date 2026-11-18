@@ -559,13 +559,30 @@ static func hub_now(hub: Dictionary, p: Dictionary) -> Dictionary:
 	var out: Dictionary = hub.duplicate()
 	var done: Dictionary = p.get("done", {})
 	for mid in hub.get("after", {}):
-		if done.has(mid):
-			for k in hub["after"][mid]:
-				out[k] = hub["after"][mid][k]
+		var af: Dictionary = hub["after"][mid]
+		if done.has(mid) and sides_ok(af, p):
+			for k in af:
+				if not (k in ["sides", "not_sides"]):
+					out[k] = af[k]
 	out["hotspots"] = (hub.get("hotspots", []) as Array).filter(func(hs: Dictionary) -> bool:
 		return (String(hs.get("requires", "")) == "" or done.has(String(hs["requires"]))) \
-			and (String(hs.get("until", "")) == "" or not done.has(String(hs["until"]))) and flags_ok(hs.get("flag", {}), p))
+			and (String(hs.get("until", "")) == "" or not done.has(String(hs["until"]))) and flags_ok(hs.get("flag", {}), p) \
+			and sides_ok(hs, p))
 	return out
+
+
+## A hub "after" entry's, hotspot's or talk entry's "sides": {"<mission>": side} (that mission finished with this
+## player on that side: Campaign.record's "side") and "not_sides" (not on it). The Fürth Line (a02-furth): a player who
+## led the Machine keeps the Machine's City as the Clockmaker's hub; the guild's player moves to Fürth.
+static func sides_ok(x: Dictionary, p: Dictionary) -> bool:
+	var done: Dictionary = p.get("done", {})
+	for mid in x.get("sides", {}):
+		if String((done.get(mid, {}) as Dictionary).get("side", "")) != String(x["sides"][mid]):
+			return false
+	for mid in x.get("not_sides", {}):
+		if String((done.get(mid, {}) as Dictionary).get("side", "")) == String(x["not_sides"][mid]):
+			return false
+	return true
 
 
 ## A hub hotspot's or talk entry's "flag": {"<mission>.<flag>": value, ...}: every one as a finished mission left it
@@ -600,7 +617,7 @@ static func talk_lines(tk: Dictionary, p: Dictionary) -> Array:
 	var out: Array = []
 	for e in tk.get("entries", []):
 		var aft := String(e.get("after", ""))
-		if (aft == "" or (p["done"] as Dictionary).has(aft)) and flags_ok(e.get("flag", {}), p):
+		if (aft == "" or (p["done"] as Dictionary).has(aft)) and flags_ok(e.get("flag", {}), p) and sides_ok(e, p):
 			out = e.get("lines", [])
 	return out
 

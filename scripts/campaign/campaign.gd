@@ -355,6 +355,7 @@ static func record(id: String, mode: String, winner_side: String, my_side: Strin
 		var e: Dictionary = done.get(id, {})
 		e["won_by"] = winner_side
 		e["mode"] = mode
+		e["side"] = my_side      # (the side this player led: the Fürth Line's machine player keeps the Machine's City hub)
 		e["played"] = int(e.get("played", 0)) + 1
 		if not flags.is_empty():
 			e["flags"] = flags.duplicate()      # (the story's choices, for the missions after it: flag())
