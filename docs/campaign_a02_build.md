@@ -144,13 +144,39 @@ Fürth after c01 and the Machine's City after a02 as the Machine).
 
 ## Balance (tools/sim_campaign_a02.gd, NORMAL)
 
-The guild's bot: Hollweg to the tower, then back to the town; a Light Works, Regulators, a second Light Works, a
-Mainspring and (when open) the Heavy Works; Clock Soldiers and Springers; the army at the gate the machine is coming at
-(a quarter at the other), everything at any machine through the line; in Part 3 everything but three at the mill seed.
-The machine's bot: Light Works and Regulators by the south gate, Clock Soldiers and Springers, the army gathered on the
-meadows until 22 strong (or 10:00), then the palisade nearest it and on at the Honest One.
+The guild's bot: Hollweg to the tower, then back to the barn behind it; a Light Works, Regulators, a second Light Works,
+a Mainspring and (when open) the Heavy Works; Clock Soldiers and Springers; the army at the gate the machine is coming at
+(a quarter at the other), everything at any machine through the line; in Part 3 everything at the mill seed but six
+(three with Hollweg, three at the gates). The machine's bot: Light Works and Regulators by the south gate, Clock
+Soldiers and Springers, the army gathered on the road until 30 strong, then one push (until fewer than 18 are left) at
+the stake nearest the town, through it at Hollweg (a Pendulum at the tower).
 
-BALANCE_TABLE
+| side, run (NORMAL unless said; c01's defaults unless said) | result | time |
+| --- | --- | --- |
+| guild, active | WON (the line holds), `furth` strong (11 men) | 12:21 |
+| guild, active (an earlier tuning, the full-health mill) | won, strong / thin | 11:50, 9:07, 13:36 |
+| guild, active, no c01 flags at all | won, strong | 8:53 |
+| guild, active, bells rung, many saved, links cut, the people, Jakob lost | won, strong (18 men), `jakob` lost | 8:43 (13:33 before) |
+| guild, active, few saved | won, strong | 12:37 |
+| guild, active, few saved (before the bot kept three with Hollweg and before the half-grown mill) | LOST three times: Hollweg alone in the base, killed by two or three that came through | 11:14-13:46 |
+| guild, active, few saved, Jakob lost | won, strong | 8:37 |
+| guild, active, HARD | won, strong | 8:58 (9:52 before) |
+| guild, active, EASY | won | 9:08 |
+| guild, passive (nothing done) | LOST: Part 2 at 7:00, the sorties break the palisade, Hollweg killed | 11:40, 13:22, 11:50 |
+| machine, active | WON (Hollweg killed through one breach by the town) | 7:49 |
+| machine, active, the guild's bells rung and many saved (more musketeers, two guns) | won | 9:18 |
+| machine, active, HARD (16:12 on the clock, the guild's defence x1.2) | won | 7:32 (10:37 before) |
+| machine, active, EASY (the bot of an earlier tuning, feeding its men in one by one) | lost: the line finished | 22:30 |
+| machine, active (earlier tunings: a bigger start army, no answer from the guild) | won at 2:58 and 4:20 (too cheap), or lost at 18:00 when the guild answered too hard | |
+| machine, passive | LOST: the line finished | 18:00 |
+
+Reading: the guild's Part 1 takes about 2 minutes (the stop-work and a Light Works), Part 2 about 6 (three sorties two
+minutes apart), Part 3 3-6 (the mill); a player who plays it wins in 9-13 minutes, a human probably in 12-20, and a
+player who does nothing loses Hollweg once the sorties are through. The danger is the hero: the machine that gets
+through goes for him, so keep soldiers with him (Jakob or the colonel calls when he is hurt). The machine's side is a
+race the bot wins by gathering 30 and breaking one stake by the town, about 8 minutes into the 18; a human who feeds
+his men in a few at a time does not win it (the guild answers anything through the line). Speed: the sim runs about
+2.5x real time headless.
 
 ## Stills: the prompts for the owner (ChatGPT, one request each, at most 3 reference images; each prompt stands alone)
 
@@ -303,10 +329,28 @@ text, or the off-beat tick.
     guild that never goes for the mill loses in the end instead of holding for ever.
 14. THE MIRROR'S GUILD ANSWERS: whenever the machine's units are through the line, the scripted guild's soldiers go
     for them (9 tiles) and the Franconians (7); its defence is 18 soldiers at the start and 2 more every 2:00 (a strike
-    of 8 at the mill at 10:00). Tuned so that the bot's one-breach push wins at about 12:00 of the 18:00.
+    of 8 at the mill at 10:00). Tuned so that the bot's one-breach push wins at about 8:00 of the 18:00 and a trickle
+    does not; the owner may want the race longer (a later free construct, a smaller income).
 15. CAMPAIGN DIFFICULTY: EASY / HARD scale the sorties and the mill's growth (0.75 / 1.2) for the guild's player, and the
     guild's defence and the army (the side nobody plays) for the machine's, with its countdown (x1.25 / x0.9).
 
 ## Tests run
 
-TESTS_RUN
+- tools/test_campaign_a02.gd: 139 checks, 0 failures (the data and translations, the seats for every mode and side, the
+  map and stills; each c01 flag's values at the start and none at all; the guild played through twice (c01's defaults;
+  rung + many + cut + people + Jakob lost: the STAY, the Light Works counted only when finished, the three sorties on
+  their banks, the signal, Jakob's warnings, the half-grown mill, the pattern / the people, the tide, the win, the flags
+  and the ending, the progress with its side); the two defeats and the passive Part 2 at 7:00; the machine played
+  through (its army, income, the scripted guild, the mill seed, its win by the tower and by Hollweg, its loss at the
+  clock, its ending, the side kept); EASY and HARD (the sorties' numbers, the machine's clock, the player's side never
+  scaled); the hub at Fürth and the Machine's City, and the hub page).
+- tools/test_campaign.gd: 121 checks, 0 failures (every mission's data, a02's included).
+- tools/test_campaign_c01.gd: 243 checks, 0 failures (its hub checks follow the move: Fürth after c01, the Machine's
+  City after a02 won as the Machine).
+- tools/test_campaign_b01.gd: 176 checks, 0 failures. tools/test_tutorial.gd: 0 failures.
+- Boot: `godot --headless --quit-after 300`, no SCRIPT ERROR.
+- tools/sim_campaign_a02.gd: the runs in "Balance".
+- As before on this cloud machine every headless Godot run ends with "Aborted" (exit 134) AFTER its last line: the
+  engine's shutdown here, not a test.
+- Not run: the faction and AI tests (no unit, price or skirmish rule changed: the engine's three additions only act
+  inside a mission that asks for them). Not played on two devices (co-op, versus).
