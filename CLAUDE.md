@@ -40,7 +40,7 @@
   `crates`. MIRROR (solo pick, versus): THE CREATURES (GREEN), bound to THE ROSTER LADDER's B3 (GROW stage 2 + MATURE; no
   Tyrant Sire of their own), win by half the cages freed or Lindqvist killed (`specimens` freed). Engine: CAGE CARTS
   (`cart`, `cargo`, exits `cargo`/`max`), `remove`, sleep `except_tags`, `mend_allies`. ALL TEXT PLACEHOLDER. Tests
-  tools/test_campaign_a05.gd, balance tools/sim_campaign_a05.gd. 16 Claude's choices in the doc.
+  tools/test_campaign_a05.gd, balance tools/sim_campaign_a05.gd. 19 Claude's choices in the doc.
 - a04_visit BUILT (job a04-visit, 0.38.63, branch a04-visit, docs/campaign_a04_build.md): step 7 of Act 1's build order.
   "Father Ferrer's Visit" (the Clockmaker line after a02, Fürth, autumn 2769, told by Ferrer, the King framing): map
   campaign:furth_works (a02's map grown: tools/campaign/make_furth_works_map.py starts FROM furth_line.json), mission

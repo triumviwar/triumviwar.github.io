@@ -92,7 +92,8 @@ func _states() -> void:
 	check("new: a01 (built) locked until the Prologue", pins["a01_presses"]["state"] == "locked")
 	check("new: a06 (built) locked until a01", pins["a06_barricades"]["state"] == "locked")
 	check("new: a04 (built) locked until a02", pins["a04_visit"]["state"] == "locked")
-	for mid in ["a05_specimens", "a07_council"]:
+	check("new: a05 (built) locked until a03", pins["a05_specimens"]["state"] == "locked")
+	for mid in ["a07_council"]:
 		check("new: %s is planned (not written yet)" % mid, pins[mid]["state"] == "planned")
 	check("new: Virginia purple, Franconia the empire's, the plateau blank", st["regions"]["virginia"] == "crown" and st["regions"]["franconia"] == "empire" and st["regions"]["plateau"] == "unknown")
 	check("new: no marks, an empty ledger", st["marks"].values().count(true) == 0 and (st["ledger"] as Array).is_empty())

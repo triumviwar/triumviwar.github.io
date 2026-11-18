@@ -550,8 +550,10 @@ func _creatures_play() -> void:
 	var caged: Unit = r.tagged("young_w")[0]
 	check("creatures: a caged young can't MATURE", BroodMature.problem(caged) == "It is caged.")
 	_walk(g, g.clock + 4.0)
-	check("creatures: THE HUNT: the carts set off, your nest awake, the objective", r.fired.has("part2_go") and r.obj["c_sleep"] == "done" and r.obj["c_free"] == "active"
-		and nu.m_pace > 0.0 and not nu.has_meta("mission_asleep"))
+	check("creatures: THE HUNT: the carts set off, the objective; your nest still asleep (the convoy's head start)", r.fired.has("part2_go") and r.obj["c_sleep"] == "done"
+		and r.obj["c_free"] == "active" and nu.has_meta("mission_asleep"))
+	_walk(g, float(r.fired["part2"]) + 46.0)
+	check("creatures: ...45 s later the nest wakes", nu.m_pace > 0.0 and not nu.has_meta("mission_asleep") and r.cond({"awake": "nest"}))
 	_walk(g, g.clock + 3.0)
 	check("creatures: the doctor follows the carts", r._follows.any(func(f): return (f["units"] as Array).has(r.tagged("lindqvist")[0])))
 	check("creatures: no scripted raids (the hunt is yours)", r.tagged("raiders").is_empty())
@@ -564,8 +566,8 @@ func _creatures_play() -> void:
 	check("creatures: HALF THE CAGES FREED (2 of 3): you win", g.over and r.winner_side == "creatures" and r.obj["c_free"] == "done", str(r.counters))
 	await create_timer(1.8).timeout
 	var p := Campaign.progress()
-	check("creatures: it counts for the creatures' player", (p["done"] as Dictionary).has(MID) and String(p["done"][MID]["side"]) == "creatures"
-		and Campaign.flag(MID, "specimens") == "freed")
+	check("creatures: it counts for the creatures' player (no cage down)", (p["done"] as Dictionary).has(MID) and String(p["done"][MID]["side"]) == "creatures"
+		and Campaign.flag(MID, "specimens") == "freed" and Campaign.flag(MID, "cages") == "none")
 	# the doctor killed wins too
 	_progress({})
 	g = await _start("creatures")

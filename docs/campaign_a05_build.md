@@ -85,7 +85,8 @@ No creature speaks (b01): the King's two lines in the opening and the ending, ob
 
 - You are the nest in its hollow: the Mother, a Rootmaw and grubs (a standard start), 500 food and 40 spoils, the
   hunters and grown ones asleep, the turtle. THE NEST SLEEPS: your hunters sleep, and every new one with them, until
-  the strangers come within 6 tiles or the carts set off; the Mother, the grubs, the Rootmaws and the turtle work on.
+  the strangers come within 6 tiles, or 45 s after the carts set off (the sun reaching the hollow: the convoy's head
+  start); the Mother, the grubs, the Rootmaws and the turtle work on.
   The young in the ferns sleep apart (`except_tags`): they are the expedition's to take.
 - THE ROSTER LADDER'S B3 (the NEW cards, 8 s in): GROW (the Mother rooted, to stage 2: 300 food) and MATURE (a Raptor
   into a Tyrant Challenger, a Spitter into a Venom Challenger, from her stage 2). No Tyrant Sire of your own (the story's
@@ -139,12 +140,29 @@ a cart, the porters mend the most hurt cart under 80%, Lindqvist walks behind th
 quay once the carts are in (or 40 s before the canoes go). The creatures' bot GROWs the Mother when it can and, from
 Part 2, sends every hunter and the Sire at the nearest cart with a cage (a musketeer in its way first).
 
-BALANCE_TABLE
+| side, run (NORMAL, the canon unless said) | result | time |
+| --- | --- | --- |
+| expedition, active, the short way (canon) | WON, `cages` some (2 of 3: the Sire broke one at the river) | 5:46 |
+| expedition, active, the long way (a03's map withheld) | WON, some (2 of 3) | 8:18 |
+| expedition, active, a fresh start (clutch burned), the short way | WON, all (2 of 2) | 5:59 |
+| expedition, active, burned, the long way, few paddlers | WON, all (2 of 2) | 8:35 |
+| expedition, active, HARD | WON, some (2 of 3) | 5:49 |
+| expedition, active, HARD, the long way | WON, some (2 of 3) | 8:21 |
+| expedition, active, EASY | WON, all (3 of 3) | 6:24 |
+| expedition, passive | LOST at dawn (nothing caged) | 10:02 |
+| expedition, earlier tunings | raids from clearings closed in by the forest never reached the trail (the bot won with every cage); with the raids the size of the canon's against a fresh start's four guns, the bot (Lindqvist walking at the last cart) lost the doctor at the river | |
+| creatures, active (the nest woke with the carts) | WON (2 of 3 freed at the camp) | 3:10 |
+| creatures, active (the nest wakes 45 s after the carts set off: kept) | WON (2 of 3 freed on the trail) | 4:05 |
+| creatures, active, burned, the long way | WON (1 of 2 freed) | 2:47 (before the 45 s head start) |
+| creatures, passive | LOST: every cage came down | 6:49 |
 
-Reading: the taking is quiet (a minute and a half for a bot that knows the beds; a person exploring at night takes
+Reading: the taking is quiet (two to three minutes for a bot that knows the beds; a person exploring at night takes
 longer, inside the 10:00 dawn). The trail is the fight: a bot that spreads the guns round the carts loses a cage or
-none to the raids; the Sire at the river usually breaks one. The long way is longer and passes more clearings. Speed:
-the sim runs about 1.4x real time headless.
+none to the raids; the Sire at the river usually breaks one, and Lindqvist (slow and unarmed with the eggs) is the
+weak point if he walks with the last cart. The long way is longer and passes more clearings. The creatures' side is
+short and easier (as a03's nest): the waiting, then a rush at the carts that a player who sends everything wins in a
+minute or two; the 45 s head start (Claude's choice 17) moves the fight off the camp onto the trail. Speed: the sim
+runs about 1.4x real time headless.
 
 ## Stills: the prompts for the owner (ChatGPT, one request each, at most 3 reference images; each prompt stands alone)
 
@@ -287,10 +305,38 @@ roster ladder's NEW cards are the game's own voice (not recorded).
     expedition's guns and porters for the creatures', and the dawn and the canoes' countdowns (x1.25 / x0.9).
 16. ONE CRATE HINT: the two Lisbon crates on the quay are props with a ping and Benedito's line; the King's last line
     says they went south unopened.
+17. A PERSON'S NEST WAKES 45 s AFTER THE CARTS SET OFF (the sun reaching the hollow), unless the strangers woke it
+    first: the convoy's head start, so the creatures' fight is on the trail, not at the camp. The scripted escort fights
+    what comes within 7 tiles of the carts. In the expedition's game the nest wakes as the carts go but its own hunters
+    keep near home; the raids are the pack.
+18. A FRESH START (b01's clutch burned) gets smaller raids (0.6 of each), as it has fewer guns and two carts.
+19. A CREATURES' WIN sets `cages` none (`cages_n` 0) beside `specimens` freed, so a07 can read the size of the escaped
+    side either way.
 
 ## Tests run
 
-TESTS_RUN
+- tools/test_campaign_a05.gd: 239 checks, 0 failures (the data and translations, the line and the way in from a03, the
+  seats for each side and versus, the map and the stills; the canon and no flags at all, the clutch burned with the map
+  withheld, few / many paddlers, Pieter alive, the station's eggs taken; THE CAGE CART (caged, carried, untouchable, its
+  bars, shoving nobody, a porter may mend it, freed when the cart breaks, the exit taking only as many as the canoes hold
+  and the cage with the cart); the expedition played through on the short way (the eggs, the three beds, Part 2, the
+  first and second raids, a cart broken, Part 3, the Sire, the quay, SOME, the win, the flags, the ending's lines, the
+  progress), every cage down (ALL, Pieter counting), the canoes full (few paddlers); the long way; the nest woken early;
+  the defeats (Lindqvist killed, dawn with nothing caged, every cage broken, the canoes gone); the creatures (asleep and
+  a new hunter with them, the workers awake, B3's GROW and MATURE and no Tyrant Sire, the scripted expedition, a caged
+  one can't MATURE, the 45 s head start, half freed wins, Lindqvist killed wins, the cages away loses); EASY and HARD
+  (the clocks, the raids, the player's side never scaled); the hub and the war map).
+- The other campaign tests, after the change: tools/test_campaign.gd 126 checks, test_campaign_a01 118, a02 139, a03 195
+  (its "a03 leads to a05" now), a04 151, a06 140, b01 176, c01 243, m1 103, test_city_gen 12, test_war_map 67 (a05's pin
+  locked, no longer planned; the new ledger lines translated), test_roster_ladder 278 (the nine built missions),
+  test_tutorial 326: all 0 failures.
+- Boot: [session] v0.38.64 menu, no SCRIPT ERROR.
+- tools/sim_campaign_a05.gd: the runs in "Balance".
+- As before on this cloud machine every headless Godot run ends with "Aborted" (exit 134) AFTER its last line: the
+  engine's shutdown here, not a test.
+- Not run: the faction and AI tests (no unit, price or skirmish rule changed: the engine additions act only inside a
+  mission that asks for them; Game.mends is the old same-team rule outside a mission with "mend_allies"). Not played on
+  two devices (versus). Sims and tests share user://campaign.json: run them one at a time.
 
 ## The roster ladder
 

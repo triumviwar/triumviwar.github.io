@@ -279,7 +279,7 @@ M = {
         # ================================================================ PART 2: THE TRAIL
         # every young one caged, or the nest woken, or dawn: the carts set off
         {"id": "part2", "when": {"any": [{"fired": "caged_all"}, {"awake": "nest"}, {"clock_out": "dawn"}]}, "delay": 2, "do": [
-            {"wake": {"name": "nest"}}, {"wake": {"name": "young"}}, {"spare": {"tag": "young", "on": False}},
+            {"wake": {"name": "young"}}, {"spare": {"tag": "young", "on": False}},
             {"counter": {"name": "cages0", "set": 0}}, {"counter": {"name": "cages0", "add_counter": "caged"}},
             {"clock": {"name": "dawn", "stop": True}}, {"objective": {"id": "dawn", "set": "hidden"}},
             {"mist": {"sight": 1.0, "weather": False}},
@@ -289,6 +289,11 @@ M = {
             {"all": [BURNED, {"counter": {"name": "caged", "at_least": 2}}]}]}]}, "do": [{"say": ["l_all"]}]},
         {"id": "woke_early", "when": {"all": [{"awake": "nest"}, {"not": {"fired": "caged_all"}}, {"not": {"fired": "part2"}}]}, "do": [
             {"say": ["l_woke"]}, {"objective": {"id": "softly", "set": "failed"}}]},
+        # the nest wakes with the carts' going (the expedition's game); a person's nest a little later, when the sun reaches
+        # the hollow and the carts are off the top (unless the strangers woke it first): the convoy's head start
+        {"id": "nest_wakes", "when": {"all": [{"fired": "part2"}, NO_CRE]}, "do": [{"wake": {"name": "nest"}}]},
+        {"id": "nest_wakes_c", "when": {"all": [{"fired": "part2"}, CRE]}, "delay": 45, "do": [
+            {"wake": {"name": "nest"}}, {"sound": {"name": "campaign/linnea_call", "area": "hollow", "vol": -4}}]},
         {"id": "softly_kept", "when": {"all": [{"fired": "part2"}, {"not": {"fired": "woke_early"}}]}, "do": [
             {"objective": {"id": "softly", "set": "done"}}]},
         {"id": "eggs_missed", "when": {"all": [{"fired": "part2"}, {"not": {"fired": "eggs_taken"}}]}, "do": [
@@ -371,10 +376,9 @@ M = {
         {"id": "c_count", "when": {"all": [{"fired": "part2_go"}, CRE, {"not": {"fired": "the_end"}}]}, "every": 1, "do": [
             {"tally": {"flag": "share", "counter": "freed", "of": "cages0", "bands": [[0, "under"], [0.5, "half"]]}}]},
         {"id": "c_freed", "when": {"all": [CRE, {"flag": {"share": "half"}}, {"not": {"fired": "the_end"}}]}, "do": [
-            {"objective": {"id": "c_free", "set": "done"}}, {"tally": {"flag": "cages", "counter": "cages", "of": "cages0", "bands": [[0, "few"], [0.5, "some"], [1, "all"]]}},
-            {"flag": {"specimens": "freed"}}, {"win": "creatures"}]},
+            {"objective": {"id": "c_free", "set": "done"}}, {"flag": {"specimens": "freed", "cages": "none", "cages_n": 0}}, {"win": "creatures"}]},
         {"id": "c_killed", "when": {"all": [CRE, {"dead": "lindqvist"}]}, "do": [
-            {"objective": {"id": "c_free", "set": "done"}}, {"flag": {"specimens": "freed"}}, {"win": "creatures"}]},
+            {"objective": {"id": "c_free", "set": "done"}}, {"flag": {"specimens": "freed", "cages": "none", "cages_n": 0}}, {"win": "creatures"}]},
         {"id": "c_escaped", "when": {"all": [CRE, {"fired": "the_end"}]}, "do": [{"objective": {"id": "c_free", "set": "failed"}}]},
         # ================================================================ THE SCRIPTED EXPEDITION (a person leads the creatures)
         {"id": "x_eggs", "when": {"all": [{"time": 3}, NO_EXP]}, "do": [

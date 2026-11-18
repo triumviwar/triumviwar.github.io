@@ -1578,11 +1578,6 @@
 			"do": [
 				{
 					"wake": {
-						"name": "nest"
-					}
-				},
-				{
-					"wake": {
 						"name": "young"
 					}
 				},
@@ -1720,6 +1715,56 @@
 					"objective": {
 						"id": "softly",
 						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "nest_wakes",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"wake": {
+						"name": "nest"
+					}
+				}
+			]
+		},
+		{
+			"id": "nest_wakes_c",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "creatures"
+					}
+				]
+			},
+			"delay": 45,
+			"do": [
+				{
+					"wake": {
+						"name": "nest"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/linnea_call",
+						"area": "hollow",
+						"vol": -4
 					}
 				}
 			]
@@ -4616,29 +4661,10 @@
 					}
 				},
 				{
-					"tally": {
-						"flag": "cages",
-						"counter": "cages",
-						"of": "cages0",
-						"bands": [
-							[
-								0,
-								"few"
-							],
-							[
-								0.5,
-								"some"
-							],
-							[
-								1,
-								"all"
-							]
-						]
-					}
-				},
-				{
 					"flag": {
-						"specimens": "freed"
+						"specimens": "freed",
+						"cages": "none",
+						"cages_n": 0
 					}
 				},
 				{
@@ -4667,7 +4693,9 @@
 				},
 				{
 					"flag": {
-						"specimens": "freed"
+						"specimens": "freed",
+						"cages": "none",
+						"cages_n": 0
 					}
 				},
 				{
