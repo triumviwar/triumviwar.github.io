@@ -35,6 +35,15 @@ const SEND_MAX := 4              # helpers sent a think, all sites together
 ## for the next harvest: Barracks at 98 s, no Musketeer by 2:40, 13 labourers lost. Every harvest counts while one Farm
 ## pays: below PULL_LABS labourers only idle ones help, and a working hand only at a site a rush or a push makes urgent.)
 const PULL_LABS := 14
+
+
+## (the rule above is for the rush's minutes: against the Brood, and against anyone before our scout's read or while it
+## reads a rush; against the Crown and the Clockwork read NORMAL or GREEDY the opening's Farm hands may help, which
+## brought the second hall 40 s sooner against the Clockwork in the first batch)
+func _early_careful() -> bool:
+	if ai._foe_is("brood"):
+		return true
+	return ai.scout == null or ai.scout.verdict == "pending" or ai.scout.verdict == "rush" or ai.scout.verdict == "uncertain"
 const CARRY_PEN := 4.0           # (s) a labourer with a harvest in his hands counts this much more walk
 
 var ai          # the AICrown
@@ -171,7 +180,7 @@ func tick() -> void:
 		if u.order == "build":
 			building_now += 1
 	var room := maxi(2, int(BUSY_SHARE * labs.size())) - building_now
-	var few := labs.size() < PULL_LABS
+	var few := labs.size() < PULL_LABS and _early_careful()
 	var left := SEND_MAX
 	var sites: Array = []
 	for b in game.buildings:
