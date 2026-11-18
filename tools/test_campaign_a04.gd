@@ -388,6 +388,7 @@ func _play_jakob_lost() -> void:
 	for i in 6:
 		_put(g, [fe], _mid(r, "ws_%d" % (i + 1)))
 		_walk(g, g.clock + 10.75)
+	check("jakob lost: a journeyman calls Hollweg away (not Jakob)", _said(r, "n_call") and not _said(r, "j_call"))
 	check("jakob lost: read his old log in the barn (the objective)", r.obj["log"] == "active" and not r.fired.has("part2"))
 	_walk(g, g.clock + 8.0)
 	check("jakob lost: no Part 2 before the log", not r.fired.has("part2"))

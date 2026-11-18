@@ -262,7 +262,9 @@ M = {
     ] + shop_triggers() + [
         # at the third workshop Hollweg is called away to the presses: Jakob comes to the Father (he tells him, not Hollweg)
         {"id": "called_away", "when": {"all": [{"counter": {"name": "inspected", "at_least": 3}}, LIVE]}, "do": [
-            {"say": ["j_call"]}, {"order": {"tag": "hollweg", "do": "move", "to": "barn"}}]},
+            {"order": {"tag": "hollweg", "do": "move", "to": "barn"}}]},
+        {"id": "call_j", "when": {"all": [{"fired": "called_away"}, JAKOB, {"not": {"dead": "jakob"}}]}, "do": [{"say": ["j_call"]}]},
+        {"id": "call_n", "when": {"all": [{"fired": "called_away"}, {"any": [NO_JAKOB, {"dead": "jakob"}]}]}, "do": [{"say": ["n_call"]}]},
         {"id": "jakob_comes", "when": {"all": [{"fired": "called_away"}, JAKOB, {"not": {"dead": "jakob"}}]}, "delay": 4, "do": [
             {"objective": {"id": "jakob_bin", "set": "active"}}, {"say": ["j_word"]},
             {"order": {"tag": "jakob", "do": "follow", "leader": "ferrer", "within": 1}}, {"ping": {"tag": "jakob"}}]},
@@ -429,6 +431,7 @@ M = {
         "f_type": {"who": "ferrer", "to": "visit", "text": "I know this type. Father Tomasz sent a page of it from Lyon. The same broken letter E."},
         "f_type_no": {"who": "ferrer", "to": "visit", "text": "Good paper, a good press. Someone pays for this."},
         "j_call": {"who": "jakob", "to": "visit", "text": "Meister, the presses need you. The big one is off its beat."},
+        "n_call": {"who": "narrator", "to": "visit", "text": "A journeyman calls Meister Hollweg away to the presses. The big one is off its beat."},
         "j_word": {"who": "jakob", "to": "visit", "text": "Father. A word, please. Not in front of the Meister."},
         "j_bin": {"who": "jakob", "to": "visit", "text": "I found these in a bin behind the Escapement. Stop-works. Twelve of them."},
         "f_bin": {"who": "ferrer", "to": "visit", "text": "Taken out clean. Not broken. Taken out."},

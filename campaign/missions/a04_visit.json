@@ -1742,16 +1742,95 @@
 			},
 			"do": [
 				{
-					"say": [
-						"j_call"
-					]
-				},
-				{
 					"order": {
 						"tag": "hollweg",
 						"do": "move",
 						"to": "barn"
 					}
+				}
+			]
+		},
+		{
+			"id": "call_j",
+			"when": {
+				"all": [
+					{
+						"fired": "called_away"
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"a02_furth.jakob": "lost"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"c01_thirteenth.jakob": "lost"
+									}
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"dead": "jakob"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"j_call"
+					]
+				}
+			]
+		},
+		{
+			"id": "call_n",
+			"when": {
+				"all": [
+					{
+						"fired": "called_away"
+					},
+					{
+						"any": [
+							{
+								"not": {
+									"all": [
+										{
+											"not": {
+												"past": {
+													"a02_furth.jakob": "lost"
+												}
+											}
+										},
+										{
+											"not": {
+												"past": {
+													"c01_thirteenth.jakob": "lost"
+												}
+											}
+										}
+									]
+								}
+							},
+							{
+								"dead": "jakob"
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_call"
+					]
 				}
 			]
 		},
@@ -4125,6 +4204,11 @@
 			"who": "jakob",
 			"to": "visit",
 			"text": "Meister, the presses need you. The big one is off its beat."
+		},
+		"n_call": {
+			"who": "narrator",
+			"to": "visit",
+			"text": "A journeyman calls Meister Hollweg away to the presses. The big one is off its beat."
 		},
 		"j_word": {
 			"who": "jakob",

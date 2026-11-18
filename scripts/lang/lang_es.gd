@@ -3712,6 +3712,7 @@ const T := {
 	"The trestle is empty. On it lies a receipt from the foundry, signed by Father Ferrer.": "El caballete está vacío. Sobre él, un recibo de la fundición, firmado por el Padre Ferrer.",
 	"A Jesuit astronomer and engineer, the Roman College's inspector.": "Un astrónomo e ingeniero jesuita, el inspector del Colegio Romano.",
 	"A lay brother of the Society, travelling with Father Ferrer.": "Un hermano lego de la Compañía, que viaja con el Padre Ferrer.",
+	"A journeyman calls Meister Hollweg away to the presses. The big one is off its beat.": "Un oficial llama al maestro Hollweg a las prensas. La grande va fuera de compás.",
 	"Paris, July 2769. The Free Assembly holds the city behind its barricades and Varenne sits in the Hôtel de Ville. Field Marshal Fairleigh takes it back street by street.": "París, julio de 2769. La Asamblea Libre domina la ciudad tras sus barricadas y Varenne está en el Hôtel de Ville. El mariscal de campo Fairleigh la recupera calle a calle.",
 	"Field Marshal Fairleigh's army, Colonel Ruggieri's guns and the King's chaplain, Father Tomasz.": "El ejército del mariscal de campo Fairleigh, los cañones del coronel Ruggieri y el capellán del Rey, el padre Tomasz.",
 	"Varenne's Paris: the barricades of the faubourg, the bridges, the torches and the hall. Green and black.": "El París de Varenne: las barricadas del faubourg, los puentes, las antorchas y el ayuntamiento. Verde y negro.",

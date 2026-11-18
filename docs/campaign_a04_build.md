@@ -62,7 +62,8 @@ its meadow ground (scripted), its seeds spared.
   nothing ("Nothing here."), two show the signs: the ESCAPEMENT, a Winder winding another Winder ("Who told it to?");
   the PRESS-HOUSE, the Free Assembly's pamphlets in the journeymen's lockers, and 8 s later, if a01 was played, Ferrer
   knows the type from Father Tomasz's report from Lyon (the broken letter E), else "someone pays for this". Hollweg
-  walks with Ferrer (follows him) until the third workshop, when Jakob calls him away to the presses; then JAKOB comes to
+  walks with Ferrer (follows him) until the third workshop, when Jakob (a journeyman, if Jakob is lost) calls him away to
+  the presses; then JAKOB comes to
   the Father ("Not in front of the Meister") and, at his side, shows him the STOP-WORKS he found in a bin behind the
   Escapement, twelve, taken out clean (flag `stopworks` found). With Jakob lost (or killed before he speaks), after the
   six workshops: "Read Jakob's old log in Hollweg's barn" (a STAY of 6 s): the same signs, two years old (flag
@@ -146,7 +147,18 @@ shadows the Winder 5.5 tiles off; at the bank Ferrer into the watch ground; in t
 (attack-moving), chasing what is past it, the gate men and the gap men at the gap, Ferrer and the brothers back in the
 yard; the choice answered at once. `careless` keeps the party 2 tiles off the Winder (it stops every time).
 
-BALANCE_TABLE
+| run (c01's and a02's canon unless said) | result | time | lost to the machine |
+| --- | --- | --- | --- |
+| active, NORMAL | WON, kept | 5:29 | 4 of 15 (spotted 6 times) |
+| active, NORMAL (again) | WON, kept | 6:20 | 6 of 15 (spotted 10 times) |
+| active, EASY | WON | 5:12 | 1 of 10 |
+| active, HARD | WON | 4:55 | 5 of 19 |
+| active, `furth` thin (5 escorts) | WON | 5:15 | 8 of 15 |
+| active, Jakob lost, `gate` people, melted | WON, the log read (`stopworks` logged), melted, `jakob` lost | 5:08 | 7 of 17 |
+| active, careless (2 tiles off the Winder) | LOST at dawn: the Winder stopped and never went on | 9:08 | - |
+| passive, NORMAL | LOST at dusk (the works shut, nothing inspected) | 10:01 | - |
+| passive, EASY | LOST at dusk | 12:31 | - |
+| (earlier tunings: the broken ones run down on the bank, never marching; then wound in full and marching straight, 7-8 of 18 lost; the guild's Pendulum walking off its ground and standing run down) | | | |
 
 Reading: Part 1 takes the bot about 2 minutes (six workshops at 10 s each and the walks), Part 2 about 2-3 (the
 Winder's three legs, its stops, and every time it is spotted), Part 3 about a minute: the bot wins in 5-6 minutes;
@@ -200,7 +212,87 @@ designed for c01 / a02 (still to design); FATHER FERRER and BROTHER ANSELM need 
 each, ElevenLabs only to design, then Chatterbox). "Fürth" (the narrator) and "The Machine" (versus only) can stay text,
 or the off-beat tick. The NEW cards are text.
 
-VOICE_TABLE
+| file (campaign/voice/a04/) | voice | when | line |
+| --- | --- | --- | --- |
+| k_open1.ogg | The King | opening (visit) | In the autumn of 2769 the Roman College asked me for leave to inspect the guild at Fürth. |
+| k_open2.ogg | The King | opening (visit) | I sent Father Ferrer. He had warned Hollweg once. I wanted him to see whether he had been wrong. |
+| f_open1.ogg | Father Ferrer | opening (visit) | Fürth had grown. Eighteen months of work, and the barn was a town of gears. |
+| f_open2.ogg | Father Ferrer | opening (visit) | Hollweg met me at the gate. He was proud of it. He had a right to be, I thought then. |
+| k_open_m.ogg | The King | opening (machine) | The machine had no voice. It waited across the meadows, and its ground crept west. |
+| f_1.ogg | Father Ferrer | intro | Six workshops, Meister. I will see every one. |
+| h_1.ogg | Meister Hollweg | intro | See what you like, Father. There is nothing here to hide. |
+| b_tip1.ogg | Brother Anselm | intro | Walk the Father into each workshop and keep him there a moment. The guild shuts its doors at dusk. |
+| f_thin.ogg | Father Ferrer | intro_thin | The colonel could spare me only five men. He has not forgotten the Rednitz. |
+| h_heavy.ogg | Meister Hollweg | tip_pend | That is our Pendulum, from the Heavy Works. One swing clears a street. |
+| f_ws1.ogg | Father Ferrer | ws_1 | The Light Works. Clean benches, good men. Nothing here. |
+| f_ws3.ogg | Father Ferrer | ws_3 | A cog press. Every tooth stamped with the guild's mark. Nothing here. |
+| f_ws4.ogg | Father Ferrer | ws_4 | The Mainspring. Wound tight, and the stop-work on it. Nothing here. |
+| f_ws6.ogg | Father Ferrer | ws_6 | The Heavy Works. Big machines, built slowly. Nothing here. |
+| f_wind.ogg | Father Ferrer | ws_2 | That Winder is winding another Winder. Who told it to? |
+| h_wind.ogg | Meister Hollweg | ws_2 | They help each other. It saves the journeymen's backs. |
+| f_wind2.ogg | Father Ferrer | ws_2 | I will write that down, Meister. |
+| f_print.ogg | Father Ferrer | ws_5 | Pamphlets in the journeymen's lockers. The Free Assembly's. |
+| h_print.ogg | Meister Hollweg | ws_5 | Young men read. I cannot stop them reading. |
+| f_type.ogg | Father Ferrer | print_type | I know this type. Father Tomasz sent a page of it from Lyon. The same broken letter E. |
+| f_type_no.ogg | Father Ferrer | print_plain | Good paper, a good press. Someone pays for this. |
+| j_call.ogg | Jakob | call_j | Meister, the presses need you. The big one is off its beat. |
+| n_call.ogg | Fürth | call_n (Jakob lost) | A journeyman calls Meister Hollweg away to the presses. The big one is off its beat. |
+| j_word.ogg | Jakob | jakob_comes | Father. A word, please. Not in front of the Meister. |
+| j_bin.ogg | Jakob | jakob_told | I found these in a bin behind the Escapement. Stop-works. Twelve of them. |
+| f_bin.ogg | Father Ferrer | jakob_told | Taken out clean. Not broken. Taken out. |
+| j_bin2.ogg | Jakob | jakob_told | Nobody here took them out, Father. I asked every man. |
+| f_log0.ogg | Father Ferrer | log_obj | Jakob kept a log in Nuremberg. Hollweg keeps it now. I want to read it. |
+| f_log.ogg | Father Ferrer | log_read | Two years old. Winders winding each other. Machines at work with no one at the bench. |
+| f_log2.ogg | Father Ferrer | log_read | The same signs, Meister. Written down before Nuremberg fell. |
+| h_log.ogg | Meister Hollweg | log_read | That was the Perpetual. These have stop-works. |
+| h_dusk.ogg | Meister Hollweg | dusk_warn | We shut at dusk, Father. You have a little time left. |
+| n_dusk.ogg | Fürth | dusk_out | The guild shut its doors. Father Ferrer's report stayed unwritten. |
+| h_night.ogg | Meister Hollweg | part2 | That is all of it, Father. Sleep well. The works rest at night. |
+| f_night.ogg | Father Ferrer | part2 | Then I will not sleep. Brothers, we stay up. |
+| b_night.ogg | Brother Anselm | night | Father, a Winder. Alone, out of the yard. Nobody sent it. |
+| f_follow.ogg | Father Ferrer | night | Follow it. Quietly. |
+| b_tip2.ogg | Brother Anselm | night | Keep it within eight tiles. Closer than three and it will see us. |
+| n_spotted.ogg | Fürth | spotted | The Winder stops. Its head turns. Back off, and wait. |
+| n_resume.ogg | Fürth | resume_1 | The Winder sets out again. |
+| b_lost.ogg | Brother Anselm | lost_it | We have lost sight of it, Father. It went that way. |
+| b_bank.ogg | Brother Anselm | at_bank | It stopped by the river, below the chapel. There are others there. |
+| n_mesh.ogg | Fürth | reveal | On the bank the guild's automata stand in a ring on gear ground nobody laid. They are meshing. |
+| f_mesh.ogg | Father Ferrer | reveal | Nobody built this. They built it. |
+| f_pattern.ogg | Father Ferrer | reveal_pattern | Look at them. The Perpetual's pattern, every wheel, with a stop-work bolted on. They took it off themselves. |
+| b_pattern.ogg | Brother Anselm | reveal_pattern | Then the flaw is in the drawings, Father. |
+| f_people.ogg | Father Ferrer | reveal_people | Red brass in every one. Parts salvaged from the line, fitted to save time. |
+| b_people.ogg | Brother Anselm | reveal_people | Then the flaw is in the machine, Father, whatever the drawings say. |
+| n_dawn.ogg | Fürth | dawn_out | Dawn came. Whatever the Winder went to do, it was done, and nobody saw it. |
+| n_riot.ogg | Fürth | riot | They turn red, one by one, off the beat. Then they walk for the meadows. |
+| f_riot.ogg | Father Ferrer | riot | They are going to the machine. Stop them before they reach its ground! |
+| h_key.ogg | Meister Hollweg | riot_key | These two in the yard still had their stop-works. I stopped them with my key. Not those. |
+| h_pend.ogg | Meister Hollweg | riot_key | The Pendulum, to the yard's gate! The press-house shift must come past it. |
+| b_sortie.ogg | Brother Anselm | m_sortie | The machine is coming out to meet them, at the open gap in the line! |
+| n_over.ogg | Fürth | riot_over | The last of them is down or gone. Dawn over the meadows. |
+| f_none.ogg | Father Ferrer | over_none | Not one reached it. Thank God. |
+| f_some.ogg | Father Ferrer | over_some | Some of them reached it. It will use them. |
+| f_melt.ogg | Father Ferrer | broken_choice | Melt them, Meister. Every wheel. |
+| h_keep.ogg | Meister Hollweg | broken_choice | No. Let me keep them. I must learn what went wrong. |
+| f_melted.ogg | Father Ferrer | broken_choice | Into the furnace. I watched it done. |
+| h_melted.ogg | Meister Hollweg | broken_choice | You have burned the only witnesses, Father. |
+| h_kept.ogg | Meister Hollweg | broken_choice | I will find the fault. I will mend them, and show Rome they are mended. |
+| f_kept.ogg | Father Ferrer | broken_choice | I wrote that down too. |
+| f_won.ogg | Father Ferrer | won | I rode for Rome that morning with my report. |
+| b_hurt.ogg | Brother Anselm | ferrer_hurt | The Father is hurt! Keep the muskets round him! |
+| f_hhurt.ogg | Father Ferrer | hollweg_hurt | Meister Hollweg is hurt. Get men to him. |
+| h_jakob.ogg | Meister Hollweg | jakob_dies | Jakob. Not him too. |
+| m_intro.ogg | The Machine | intro_m | Tick. Tock. A priest walks in the guild's yard. Kill him. |
+| m_tip.ogg | The Machine | intro_m | Your seed on the meadows pays cogs and Tension while it stands. At night, some of theirs will come to you. |
+| m_night.ogg | The Machine | m_night | Night. By the river, the guild's machines are meshing. Soon they are yours. |
+| m_riot.ogg | The Machine | m_riot | They are walking to you. Bring them home: 6 is enough. |
+| f_end1.ogg | Father Ferrer | ending (visit) | I wrote my report on the road. I did not soften it. |
+| f_end_melted.ogg | Father Ferrer | ending (visit) | The broken ones were melted. Hollweg did not speak to me again until Rome. |
+| f_end_kept.ogg | Father Ferrer | ending (visit) | The broken ones were kept. Hollweg swore he would mend them. |
+| f_end_lost.ogg | Father Ferrer | ending (visit) | And some of them reached the machine. I counted them in my report. |
+| f_end_jakob.ogg | Father Ferrer | ending (visit) | Jakob found the stop-works and told me. He did not tell his master. I put that in too. |
+| k_end1.ogg | The King | ending (visit) | Ferrer's report was on my table before the snow. I read it twice. |
+| k_end_kept.ogg | The King | ending (visit) | Hollweg brought his mended machines to Rome. I let him. That was my mistake, not his. |
+| k_end_melted.ogg | The King | ending (visit) | Hollweg came to Rome with nothing but his drawings, and his anger. |
 
 ## What is placeholder
 
@@ -254,4 +346,30 @@ VOICE_TABLE
 
 ## Tests run
 
-TESTS_RUN
+All on Godot 4.7, headless, one at a time (the campaign tests share user://campaign.json); 0 failures each:
+
+- tools/test_campaign_a04.gd: 151 checks (the data and translations, the line and its gating, the seats for every mode,
+  the map (a02's cells, autumn) and the stills, the K3 roster, the war map's data; each flag at the start: `furth`
+  strong / thin / missing, Jakob lost in a02 or c01; the visit played through with c01's canon and a01 played: the six
+  STAYs (9 s not enough, 10 s), the two signs, the Lyon type, Hollweg called away, Jakob's bin, the dusk clock stopped,
+  the night, the works' gear ground, the Winder's three legs, the bank, the reveal (pattern), the riot's convert, the
+  winding pair caged, the march, two counted on the machine's ground, the sortie, the riot over, the flag the count,
+  MELTED, the win, the ending's lines, the progress; Jakob lost with the people: the journeyman's call, the plain
+  pamphlets, the log in the barn, 17 broken, the reveal by a man at the gear ground, none lost, the choice unanswered:
+  KEPT; the night Winder's rules: too far (the brother's word), too close (it stops, waits while you stand close, goes on
+  with its leg when you back off), the dawn lost; the defeats (Ferrer, Hollweg, the passive dusk); VERSUS with the
+  machine's seat a friend's: its objective, army, income, the rioters its own, six brought home win it, the progress
+  follows; EASY / HARD: the garrison, the escort never scaled, the clocks, the riot's size, the sortie; the hubs after
+  a04 by `broken`, Fürth and the King's study).
+- tools/test_campaign.gd 125, test_campaign_a02.gd 139 (its "a02 leads nowhere yet" check now reads "a02 leads to
+  a04"), test_campaign_c01.gd 243, test_war_map.gd 68 (a04 now built: locked until a02, open after a guild win; the
+  rules by `broken` and `lost_to_machine` with the side `visit`), test_roster_ladder.gd 257 (K3 checked live: the guild
+  refused exactly what is off its list), test_campaign_a01.gd 118, test_campaign_a03.gd 195, test_campaign_a06.gd 140,
+  test_campaign_b01.gd 176, test_campaign_m1.gd 103, test_city_gen.gd 12, test_tutorial.gd 326.
+- Boot: `godot --headless --quit-after 300`, no SCRIPT ERROR.
+- tools/sim_campaign_a04.gd: the runs in "Balance".
+- As before on this cloud machine every headless Godot run ends with "Aborted" (exit 134) AFTER its last line: the
+  engine's shutdown here, not a test.
+- `python3 tools/i18n_patch_build.py`: versions without translation: [].
+- Not run: the faction and AI tests (no unit, price or skirmish rule changed: the `wind` action only acts inside a mission
+  that asks for it). Not played on two devices (co-op, versus).
