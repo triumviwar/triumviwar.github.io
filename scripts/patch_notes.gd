@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.70", "items": [
+		"FASTER LATE GAMES AGAINST THE BROOD: the Brood computer no longer stops the game for a tenth of a second every 15 seconds in a grown base (it looked for every Rootmaw spot at once; now each swamp in its own moment, three times faster), and its Sires and Mound Turtles find their spots with far less searching. Units moving, grubs walking to their Rootmaws, rooted creatures and units looking for a target cost less, and wave paths are worked out faster. The game plays out exactly as before.",
+		"The replay is written in the background (it froze the game for a moment at 0:10 on some computers), new unit pictures come in a few at a time, and the match log's slow frames now say how long the drawing took and when the window lost focus.",
+	]},
 	{"v": "0.38.69", "items": [
 		"Behind the scenes: one voice recording run for every line whose voice is designed (374 lines: the new Brood announcer and the campaign's King, Hollweg, Lindqvist, Valadares, Fairleigh, Ruggieri and Varenne).",
 	]},
