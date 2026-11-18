@@ -335,6 +335,7 @@ M = {
         "f_open": {"who": "ferrer", "text": "And when will it know its work is done, Meister?"},
         "h_open3": {"who": "hollweg", "text": "I did not answer him. I did not think the question was a real one."},
         # THE QUARREL (owner 2026-11-18 16:18: a confrontation between the Church and the inventor; his lines in his words)
+        "h_q0": {"who": "hollweg", "text": "Nobody in Nuremberg knew what I was building under the workshop. People hate a clever machine; they always have. Only Father Ferrer knew."},
         "f_q1": {"who": "ferrer", "text": "You know what destroyed the apostasy, Meister. In the post-modern age, all those centuries ago."},
         "h_q1": {"who": "hollweg", "text": "My cogs and wheels are different, Father. Brass, not ghosts in wires. Maybe they could learn, in time."},
         "f_q2": {"who": "ferrer", "text": "You know the ghost in the machine is the enemy. It was then. It is now."},
@@ -414,7 +415,7 @@ M = {
         {"still": "letter", "lines": ["k_open1", "k_open2"]},
         {"still": "nuremberg", "lines": ["h_open1"]},
         {"still": "heart", "lines": ["h_open2"]},
-        {"still": "quarrel", "lines": ["f_q1", "h_q1", "f_q2", "f_open", "h_open3", "h_q2"]},
+        {"still": "quarrel", "lines": ["h_q0", "f_q1", "h_q1", "f_q2", "f_open", "h_open3", "h_q2"]},
     ],
     "ending": {"guild": [
         {"still": "thirteen", "lines": ["h_end1",

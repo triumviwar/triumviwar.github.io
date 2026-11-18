@@ -4011,6 +4011,7 @@ const T := {
 	"And when will it know its work is done, Meister?": "E quando saberá que o seu trabalho acabou, Mestre?",
 	"I did not answer him. I did not think the question was a real one.": "Não lhe respondi. Não achei que a pergunta fosse a sério.",
 	"The workshop, the night before the gift.": "A oficina, na noite antes do presente.",
+	"Nobody in Nuremberg knew what I was building under the workshop. People hate a clever machine; they always have. Only Father Ferrer knew.": "Ninguém em Nuremberg sabia o que eu construía debaixo da oficina. O povo odeia uma máquina esperta; sempre odiou. Só o Padre Ferrer sabia.",
 	"You know what destroyed the apostasy, Meister. In the post-modern age, all those centuries ago.": "O senhor sabe o que destruiu a apostasia, Mestre. Na era pós-moderna, há tantos séculos.",
 	"My cogs and wheels are different, Father. Brass, not ghosts in wires. Maybe they could learn, in time.": "As minhas engrenagens e rodas são diferentes, Padre. Latão, não fantasmas em fios. Talvez pudessem aprender, com o tempo.",
 	"You know the ghost in the machine is the enemy. It was then. It is now.": "O senhor sabe que o fantasma na máquina é o inimigo. Era naquela época. É agora.",

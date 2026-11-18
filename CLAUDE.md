@@ -25,6 +25,10 @@
 
 ## Current work
 
+- WORLD LORE (owner 2026-11-18 16:18-16:24): the APOSTASY of the POST-MODERN AGE was destroyed by its thinking machines (THE
+  GHOST IN THE MACHINE); since then technology for its own sake is no goal (why 2767 has muskets and clockwork), the common
+  people HATE technology, and Hollweg built the Perpetual IN SECRET. c01 opens with THE QUARREL (Ferrer v Hollweg, 0.38.65);
+  docs/campaign_timeline.md "The deep past". Write every mission's crowds and Churchmen with this in mind.
 - THE CHATTERBOX LIST (owner 2026-11-18 15:55): docs/chatterbox_todo.md is the one list of every voice line still to record
   (Chatterbox on the owner's PC). Top item: a NEW Brood announcer set (21 lines) in Lindqvist's v2 voice
   (refs/lindqvist_ref.wav); then every mission's voice table and the voices to design. Add new missions' tables there.

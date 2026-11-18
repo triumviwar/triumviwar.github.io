@@ -208,6 +208,7 @@ Hollweg). "The Machine" (versus only) can stay text, or the off-beat tick.
 | h_open2.ogg | Meister Hollweg | opening | Forty years I made clocks that stopped. This one would not stop. It would wind itself, mend itself, and make its own successor. |
 | f_open.ogg | Father Ferrer | opening | And when will it know its work is done, Meister? |
 | h_open3.ogg | Meister Hollweg | opening | I did not answer him. I did not think the question was a real one. |
+| h_q0.ogg | Meister Hollweg | opening (the quarrel) | Nobody in Nuremberg knew what I was building under the workshop. People hate a clever machine; they always have. Only Father Ferrer knew. |
 | f_q1.ogg | Father Ferrer | opening (the quarrel) | You know what destroyed the apostasy, Meister. In the post-modern age, all those centuries ago. |
 | h_q1.ogg | Meister Hollweg | opening (the quarrel) | My cogs and wheels are different, Father. Brass, not ghosts in wires. Maybe they could learn, in time. |
 | f_q2.ogg | Father Ferrer | opening (the quarrel) | You know the ghost in the machine is the enemy. It was then. It is now. |

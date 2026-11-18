@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.66", "items": [
+		"THE THIRTEENTH HOUR: Meister Hollweg now says why he built in secret: nobody in Nuremberg knew what was under his workshop, because people hate a clever machine.",
+	]},
 	{"v": "0.38.65", "items": [
 		"THE THIRTEENTH HOUR (Clockwork prologue): a new opening page, the night before the gift: Father Ferrer warns Meister Hollweg with the old story of what destroyed the apostasy of the post-modern age, the ghost in the machine. Hollweg answers that his brass is different.",
 	]},

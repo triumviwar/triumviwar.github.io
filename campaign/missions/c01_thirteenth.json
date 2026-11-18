@@ -2941,6 +2941,10 @@
 			"who": "hollweg",
 			"text": "I did not answer him. I did not think the question was a real one."
 		},
+		"h_q0": {
+			"who": "hollweg",
+			"text": "Nobody in Nuremberg knew what I was building under the workshop. People hate a clever machine; they always have. Only Father Ferrer knew."
+		},
 		"f_q1": {
 			"who": "ferrer",
 			"text": "You know what destroyed the apostasy, Meister. In the post-modern age, all those centuries ago."
@@ -3255,6 +3259,7 @@
 		{
 			"still": "quarrel",
 			"lines": [
+				"h_q0",
 				"f_q1",
 				"h_q1",
 				"f_q2",

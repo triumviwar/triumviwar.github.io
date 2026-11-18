@@ -30,6 +30,15 @@ knows the tale. That is why Ferrer warns Hollweg (c01's quarrel) and why the Cou
 govern itself. Hollweg's answer is his whole error: his brass and gears are different from those old machines, and
 perhaps they could learn. (Details of how it fell are the owner's to write.)
 
+WHY THE WORLD IS AT THIS LEVEL OF TECHNOLOGY (owner, 2026-11-18 16:24): after that fall, technology for its own sake
+stopped being a goal. The world of 2767 has muskets, cannon, sail and clockwork because it CHOSE to stop there, not because
+it never knew more. The common people above all HATE technology: a clever machine is the old enemy to them. So what
+Hollweg did, he did IN SECRET: the Perpetual was built under his workshop, known only to Father Ferrer, and shown to the
+city only on the day of the gift. Writers' checks: the guild's open work (clocks, the Crown's licensed labouring
+automata that do not think) is tolerated, grudgingly; a self-winding, self-mending machine that makes its successor is
+exactly what the world swore off. Crowds should fear or hate the guild's machines (c01's gift, a02's Fürth, a04's riot);
+the Machine's spread is the old nightmare come back.
+
 ## Dates (proposed)
 
 The Prologue is 2767 (owner). The King was young and newly crowned then; the present is about 2795.

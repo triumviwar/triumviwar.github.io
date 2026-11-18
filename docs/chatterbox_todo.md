@@ -52,7 +52,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | mission | table | lines | speakers |
 | --- | --- | --- | --- |
 | p01_leaf (Prologue, Virginia) | docs/campaign_mission1_voice.md | about 40 | the King (recorded in ElevenLabs), Tomasz*, Fairleigh, Ruggieri, Varenne |
-| c01_thirteenth (Nuremberg) | docs/campaign_c01_build.md | 66 | Hollweg 30, Jakob* 12, Ferrer* 12, Captain of the Watch* 5, the King 4 |
+| c01_thirteenth (Nuremberg) | docs/campaign_c01_build.md | 67 | Hollweg 31, Jakob* 12, Ferrer* 12, Captain of the Watch* 5, the King 4 |
 | b01_specimen (Rio Negro) | docs/campaign_b01_build.md | 65 | Lindqvist 33, Valadares* 11, the King 6, Pieter* 5, Teles*, Frei Joaquim*, Benedito* 1 each |
 | a01_presses (Lyon) | docs/campaign_a01_build.md | 61 | Tomasz* 19, Captain Delorme* 17, the King 7, Rouvière*, Mère Gautier*, Sergeant*, Cardinal Tomasz* 2 each |
 | a02_furth (the Fürth line) | docs/campaign_a02_build.md | 58 | Hollweg 20, Colonel von Rauch* 12, Jakob* 9, the King 8, the Commissary* 2 |
