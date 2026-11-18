@@ -429,8 +429,7 @@
 						"b01_specimen.clutch": "burned"
 					}
 				}
-			},
-			"fixed": true
+			}
 		},
 		{
 			"team": "expedition",
@@ -443,8 +442,7 @@
 				"past": {
 					"b01_specimen.clutch": "burned"
 				}
-			},
-			"fixed": true
+			}
 		},
 		{
 			"team": "expedition",
@@ -459,8 +457,7 @@
 						"a03_plateau.map": "withheld"
 					}
 				}
-			},
-			"fixed": true
+			}
 		},
 		{
 			"team": "expedition",
@@ -930,6 +927,9 @@
 							"grub",
 							"brood_egg",
 							"food_pile"
+						],
+						"except_tags": [
+							"young"
 						]
 					}
 				},
@@ -1600,12 +1600,6 @@
 					}
 				},
 				{
-					"objective": {
-						"id": "softly",
-						"set": "hidden"
-					}
-				},
-				{
 					"mist": {
 						"sight": 1.0,
 						"weather": false
@@ -1691,6 +1685,11 @@
 						"not": {
 							"fired": "caged_all"
 						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
 					}
 				]
 			},
@@ -1704,6 +1703,29 @@
 					"objective": {
 						"id": "softly",
 						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "softly_kept",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "woke_early"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "softly",
+						"set": "done"
 					}
 				}
 			]

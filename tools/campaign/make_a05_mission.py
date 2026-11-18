@@ -172,9 +172,9 @@ M = {
         # ---- the expedition's camp on the plateau's south edge
         {"team": "expedition", "kind": "musketeer", "as": "lindqvist", "count": 1, "at": [64, 44], "tag": "lindqvist"},
         {"team": "expedition", "kind": "labourer", "as": "pieter", "count": 1, "at": [66, 45], "tag": "pieter", "if": PIETER},
-        {"team": "expedition", "kind": "musketeer", "as": "hired_gun", "count": 6, "at": "camp", "tag": "guns", "if": SAVED_CLUTCH, "fixed": True},
-        {"team": "expedition", "kind": "musketeer", "as": "hired_gun", "count": 4, "at": "camp", "tag": "guns", "if": BURNED, "fixed": True},
-        {"team": "expedition", "kind": "musketeer", "as": "hired_gun", "count": 2, "at": "camp", "tag": "guns", "if": DRAWN, "fixed": True},
+        {"team": "expedition", "kind": "musketeer", "as": "hired_gun", "count": 6, "at": "camp", "tag": "guns", "if": SAVED_CLUTCH},
+        {"team": "expedition", "kind": "musketeer", "as": "hired_gun", "count": 4, "at": "camp", "tag": "guns", "if": BURNED},
+        {"team": "expedition", "kind": "musketeer", "as": "hired_gun", "count": 2, "at": "camp", "tag": "guns", "if": DRAWN},
         {"team": "expedition", "kind": "labourer", "as": "porter", "count": 4, "at": "camp", "tag": "porters", "if": SAVED_CLUTCH, "fixed": True},
         {"team": "expedition", "kind": "labourer", "as": "porter", "count": 2, "at": "camp", "tag": "porters", "if": BURNED, "fixed": True},
         # ---- the convoy: a cage cart for each bed of young (the middle one, the young Sire's, only with a breeding stock)
@@ -242,7 +242,7 @@ M = {
         # ...or a person's nest: every hunter of it, and every new one while it sleeps (the workers keep working)
         {"id": "asleep_p", "when": {"all": [{"time": 0.25}, CRE]}, "do": [
             {"sleep": {"tag": "young", "name": "young", "within": 0, "hurt": False}},
-            {"sleep": {"team": "creatures", "name": "nest", "within": 6, "by": "expedition", "keep": True, "except_kinds": AWAKE_KINDS}},
+            {"sleep": {"team": "creatures", "name": "nest", "within": 6, "by": "expedition", "keep": True, "except_kinds": AWAKE_KINDS, "except_tags": ["young"]}},
             {"objective": {"id": "c_mother", "set": "active"}}, {"objective": {"id": "c_sleep", "set": "active"}}]},
         # ---- the expedition's start (a person leads it)
         {"id": "intro", "when": {"all": [{"time": 1}, EXP]}, "do": [
@@ -274,13 +274,15 @@ M = {
             {"wake": {"name": "nest"}}, {"wake": {"name": "young"}}, {"spare": {"tag": "young", "on": False}},
             {"counter": {"name": "cages0", "set": 0}}, {"counter": {"name": "cages0", "add_counter": "caged"}},
             {"clock": {"name": "dawn", "stop": True}}, {"objective": {"id": "dawn", "set": "hidden"}},
-            {"objective": {"id": "softly", "set": "hidden"}}, {"mist": {"sight": 1.0, "weather": False}},
+            {"mist": {"sight": 1.0, "weather": False}},
             {"light": {"to": "grey_dawn", "secs": 20}}]},
         {"id": "caged_all", "when": {"all": [{"fired": "start"}, {"time": 1}, {"not": {"fired": "part2"}}, {"any": [
             {"all": [SAVED_CLUTCH, {"counter": {"name": "caged", "at_least": 3}}]},
             {"all": [BURNED, {"counter": {"name": "caged", "at_least": 2}}]}]}]}, "do": [{"say": ["l_all"]}]},
-        {"id": "woke_early", "when": {"all": [{"awake": "nest"}, {"not": {"fired": "caged_all"}}]}, "do": [
+        {"id": "woke_early", "when": {"all": [{"awake": "nest"}, {"not": {"fired": "caged_all"}}, {"not": {"fired": "part2"}}]}, "do": [
             {"say": ["l_woke"]}, {"objective": {"id": "softly", "set": "failed"}}]},
+        {"id": "softly_kept", "when": {"all": [{"fired": "part2"}, {"not": {"fired": "woke_early"}}]}, "do": [
+            {"objective": {"id": "softly", "set": "done"}}]},
         {"id": "eggs_missed", "when": {"all": [{"fired": "part2"}, {"not": {"fired": "eggs_taken"}}]}, "do": [
             {"objective": {"id": "eggs", "set": "failed"}}, {"flag": {"eggs": "left"}}]},
         # nothing caged when the carts must go: the expedition has failed

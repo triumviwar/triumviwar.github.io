@@ -1396,6 +1396,7 @@ func _drop_cart(u: Unit) -> void:
 	u.nb_mass = float(u.get_meta("cart_mass", 1.0))
 	var bars := u.get_node_or_null("CageBars")
 	if bars:
+		u.remove_child(bars)
 		bars.queue_free()
 
 
@@ -1766,8 +1767,12 @@ func sleep_units(v: Dictionary) -> void:
 
 func _sleep_group(v: Dictionary) -> Array:
 	var no: Array = v.get("except_kinds", [])
+	# (a05: "except_tags": those with the tags sleep apart: the young in the ferns, netted, never wake the nest)
+	var apart: Array = []
+	for tg in v.get("except_tags", []):
+		apart.append_array(tags.get(String(tg), []))
 	return group_of(String(v.get("tag", "")), String(v.get("team", "")), String(v.get("side", ""))).filter(
-		func(e) -> bool: return e is Unit and not no.has(e.kind))
+		func(e) -> bool: return e is Unit and not no.has(e.kind) and not apart.has(e))
 
 
 func _put_to_sleep(u: Unit, nm: String) -> void:
