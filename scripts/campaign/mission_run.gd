@@ -633,6 +633,10 @@ func act(a: Dictionary) -> void:
 				elif v.has("team"):
 					var t := team_index(String(v["team"]))
 					us = game.units.filter(func(u) -> bool: return u.team == t and not u.dead)
+				if v.has("kind"):
+					# (a03: "kind" only those of that kind: the nest's Raptors hunt, its Spitters keep by the Mother)
+					var ks: Array = v["kind"] if v["kind"] is Array else [v["kind"]]
+					us = us.filter(func(e) -> bool: return ks.has(e.kind))
 				if bool(v.get("idle", false)):
 					# ("idle": only those not busy with a target: the Fürth Line's machines pushed on at the tower, never
 					# pulled off the tower or a fight they are in)

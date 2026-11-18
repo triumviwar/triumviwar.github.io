@@ -293,6 +293,24 @@
 			80,
 			6,
 			5
+		],
+		"west_half": [
+			0,
+			0,
+			64,
+			112
+		],
+		"mid_top": [
+			62,
+			55,
+			8,
+			5
+		],
+		"pn": [
+			98,
+			7,
+			6,
+			4
 		]
 	},
 	"counters": {
@@ -531,7 +549,7 @@
 			"primary": true,
 			"kind": "manual",
 			"hidden": true,
-			"text": "THE SURVEY: Valadares stays 10 seconds at each survey mark ({marks} of 4): the cairn, the river's source, the nest's rim, the lookout."
+			"text": "THE SURVEY: Valadares stays 40 seconds at each survey mark ({marks} of 4): the cairn, the river's source, the nest's rim, the lookout."
 		},
 		{
 			"id": "softly",
@@ -1194,7 +1212,7 @@
 						"stay": {
 							"tag": "valadares",
 							"area": "cairn",
-							"secs": 10
+							"secs": 40
 						}
 					}
 				]
@@ -1233,7 +1251,7 @@
 						"stay": {
 							"tag": "valadares",
 							"area": "source",
-							"secs": 10
+							"secs": 40
 						}
 					}
 				]
@@ -1272,7 +1290,7 @@
 						"stay": {
 							"tag": "valadares",
 							"area": "rim",
-							"secs": 10
+							"secs": 40
 						}
 					}
 				]
@@ -1330,7 +1348,7 @@
 						"stay": {
 							"tag": "valadares",
 							"area": "lookout",
-							"secs": 10
+							"secs": 40
 						}
 					}
 				]
@@ -1538,22 +1556,6 @@
 					}
 				},
 				{
-					"spawn": {
-						"team": "nest",
-						"kind": "tyrannosaur",
-						"count": 1,
-						"at": "stair_foot",
-						"tag": "sire",
-						"name": "The Tyrant Sire"
-					}
-				},
-				{
-					"sound": {
-						"name": "campaign/sire_roar",
-						"area": "stair_foot"
-					}
-				},
-				{
 					"light": {
 						"to": "jungle_dusk",
 						"secs": 30
@@ -1573,6 +1575,96 @@
 			]
 		},
 		{
+			"id": "sire_w",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "sire_e"
+						}
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"tag": "valadares",
+									"area": "west_half",
+									"at_least": 1
+								}
+							},
+							{
+								"dead": "valadares"
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "nest",
+						"kind": "tyrannosaur",
+						"count": 1,
+						"at": "trail_w",
+						"tag": "sire",
+						"name": "The Tyrant Sire"
+					}
+				},
+				{
+					"flag": {
+						"sire_way": "stair"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/sire_roar",
+						"area": "stair_foot"
+					}
+				}
+			]
+		},
+		{
+			"id": "sire_e",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "sire_w"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "nest",
+						"kind": "tyrannosaur",
+						"count": 1,
+						"at": "trail_e",
+						"tag": "sire",
+						"name": "The Tyrant Sire"
+					}
+				},
+				{
+					"flag": {
+						"sire_way": "split"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/sire_roar",
+						"area": "split_foot"
+					}
+				}
+			]
+		},
+		{
 			"id": "part3_party",
 			"when": {
 				"all": [
@@ -1587,12 +1679,6 @@
 				]
 			},
 			"do": [
-				{
-					"say": [
-						"n_roar",
-						"v_run"
-					]
-				},
 				{
 					"objective": {
 						"id": "rains",
@@ -1621,10 +1707,71 @@
 					"ping": {
 						"area": "landing"
 					}
+				}
+			]
+		},
+		{
+			"id": "run_e",
+			"when": {
+				"all": [
+					{
+						"fired": "part3_party"
+					},
+					{
+						"flag": {
+							"sire_way": "stair"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_roar",
+						"v_run_e"
+					]
 				},
 				{
 					"ping": {
-						"area": "split_foot"
+						"area": "split_in"
+					}
+				},
+				{
+					"ping": {
+						"area": "stair_top"
+					}
+				}
+			]
+		},
+		{
+			"id": "run_w",
+			"when": {
+				"all": [
+					{
+						"fired": "part3_party"
+					},
+					{
+						"flag": {
+							"sire_way": "split"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_roar_e",
+						"v_run_w"
+					]
+				},
+				{
+					"ping": {
+						"area": "stair_top"
+					}
+				},
+				{
+					"ping": {
+						"area": "split_in"
 					}
 				}
 			]
@@ -1809,14 +1956,6 @@
 			"do": [
 				{
 					"order": {
-						"tag": "nest_guard",
-						"do": "hunt",
-						"prey_team": "party",
-						"within": 40
-					}
-				},
-				{
-					"order": {
 						"tag": "patrol_w",
 						"do": "hunt",
 						"prey_team": "party",
@@ -1833,10 +1972,60 @@
 				},
 				{
 					"order": {
+						"tag": "prowlers",
+						"do": "hunt",
+						"prey_team": "party",
+						"within": 30
+					}
+				},
+				{
+					"order": {
 						"tag": "sire",
 						"do": "hunt",
-						"prey": "valadares",
+						"prey_team": "party",
 						"within": 90
+					}
+				}
+			]
+		},
+		{
+			"id": "stir",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "nest"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "nest_guard",
+						"kind": "raptor",
+						"do": "hunt",
+						"prey_team": "party",
+						"within": 22
+					}
+				},
+				{
+					"order": {
+						"tag": "nest_guard",
+						"kind": "spitter",
+						"do": "hunt",
+						"prey_team": "party",
+						"within": 9
 					}
 				}
 			]
@@ -1852,6 +2041,11 @@
 						"not": {
 							"playing": "nest"
 						}
+					},
+					{
+						"flag": {
+							"sire_way": "stair"
+						}
 					}
 				]
 			},
@@ -1861,6 +2055,7 @@
 						"tag": "sire",
 						"do": "route",
 						"route": [
+							"stair_foot",
 							"stair_top",
 							"cairn"
 						],
@@ -1871,7 +2066,7 @@
 			]
 		},
 		{
-			"id": "hunters_out",
+			"id": "sire_climbs_e",
 			"when": {
 				"all": [
 					{
@@ -1881,15 +2076,110 @@
 						"not": {
 							"playing": "nest"
 						}
+					},
+					{
+						"flag": {
+							"sire_way": "split"
+						}
 					}
 				]
 			},
 			"do": [
 				{
 					"order": {
-						"tag": "nest_guard",
+						"tag": "sire",
+						"do": "route",
+						"route": [
+							"split_foot",
+							"split_top",
+							"split_in",
+							"lookout"
+						],
+						"attack": true,
+						"name": "sire_up"
+					}
+				}
+			]
+		},
+		{
+			"id": "prowl",
+			"when": {
+				"all": [
+					{
+						"time": 90
+					},
+					{
+						"not": {
+							"playing": "nest"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"count": {
+							"team": "patrol",
+							"below": 9
+						}
+					}
+				]
+			},
+			"every": 100,
+			"do": [
+				{
+					"spawn": {
+						"team": "patrol",
+						"kind": "raptor",
+						"count": 3,
+						"at": "pn",
+						"tag": "prowlers"
+					}
+				},
+				{
+					"order": {
+						"tag": "prowlers",
 						"do": "attack",
-						"to": "rim"
+						"to": "mid_top"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"area": "pn",
+						"vol": -6
+					}
+				}
+			]
+		},
+		{
+			"id": "prowl_hunt",
+			"when": {
+				"all": [
+					{
+						"fired": "prowl"
+					},
+					{
+						"not": {
+							"playing": "nest"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "prowlers",
+						"do": "hunt",
+						"prey_team": "party",
+						"within": 25
 					}
 				}
 			]
@@ -1965,6 +2255,18 @@
 					"objective": {
 						"id": "flee",
 						"set": "done"
+					}
+				},
+				{
+					"spare": {
+						"tag": "valadares",
+						"on": true
+					}
+				},
+				{
+					"pin": {
+						"tag": "valadares",
+						"on": true
 					}
 				},
 				{
@@ -2225,14 +2527,6 @@
 				},
 				{
 					"order": {
-						"tag": "benedito",
-						"do": "follow",
-						"leader": "valadares",
-						"within": 3
-					}
-				},
-				{
-					"order": {
 						"tag": "guides",
 						"do": "follow",
 						"leader": "valadares",
@@ -2367,6 +2661,11 @@
 						"not": {
 							"playing": "party"
 						}
+					},
+					{
+						"flag": {
+							"sire_way": "stair"
+						}
 					}
 				]
 			},
@@ -2377,6 +2676,7 @@
 						"tag": "valadares",
 						"do": "route",
 						"route": [
+							"mid_top",
 							"split_in",
 							"split_top",
 							"split_foot",
@@ -2388,30 +2688,10 @@
 				},
 				{
 					"order": {
-						"tag": "benedito",
-						"do": "route",
-						"route": [
-							"split_in",
-							"split_top",
-							"split_foot",
-							"trail_e",
-							"landing"
-						],
-						"name": "down_b"
-					}
-				},
-				{
-					"order": {
 						"tag": "guides",
-						"do": "route",
-						"route": [
-							"split_in",
-							"split_top",
-							"split_foot",
-							"trail_e",
-							"landing"
-						],
-						"name": "down_g"
+						"do": "follow",
+						"leader": "valadares",
+						"within": 2
 					}
 				},
 				{
@@ -2428,6 +2708,82 @@
 						"do": "follow",
 						"leader": "valadares",
 						"within": 3
+					}
+				},
+				{
+					"order": {
+						"tag": "benedito",
+						"do": "move",
+						"to": "landing"
+					}
+				}
+			]
+		},
+		{
+			"id": "p_down_w",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "party"
+						}
+					},
+					{
+						"flag": {
+							"sire_way": "split"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "route",
+						"route": [
+							"mid_top",
+							"cairn",
+							"stair_top",
+							"stair_foot",
+							"trail_w",
+							"landing"
+						],
+						"name": "down"
+					}
+				},
+				{
+					"order": {
+						"tag": "guides",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 2
+					}
+				},
+				{
+					"order": {
+						"tag": "men",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 2
+					}
+				},
+				{
+					"order": {
+						"tag": "teles_men",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 3
+					}
+				},
+				{
+					"order": {
+						"tag": "benedito",
+						"do": "move",
+						"to": "landing"
 					}
 				}
 			]
@@ -2465,6 +2821,13 @@
 				{
 					"order": {
 						"tag": "teles_men",
+						"do": "move",
+						"to": "landing"
+					}
+				},
+				{
+					"order": {
+						"tag": "guides",
 						"do": "move",
 						"to": "landing"
 					}
@@ -2591,7 +2954,7 @@
 		"tip_marks": {
 			"who": "valadares",
 			"to": "party",
-			"text": "Four marks to take: a cairn, the river's source, the rim of the hollow, the lookout on the east edge. I stand at each a while to take my bearings."
+			"text": "Four marks to take: a cairn, the river's source, the rim of the hollow, the lookout on the east edge. I stand at each a while to take my bearings. Keep the men round me."
 		},
 		"v_cairn": {
 			"who": "valadares",
@@ -2663,10 +3026,20 @@
 			"to": "party",
 			"text": "Below the falls something roared, and the whole hollow answered it."
 		},
-		"v_run": {
+		"v_run_e": {
 			"who": "valadares",
 			"to": "party",
-			"text": "He is home. Down the crack in the rock, now! To the canoe!"
+			"text": "He is coming up the falls behind us! Across the top, down the crack in the rock! To the canoe!"
+		},
+		"n_roar_e": {
+			"who": "narrator",
+			"to": "party",
+			"text": "In the crack in the rock something roared, and the whole hollow answered it."
+		},
+		"v_run_w": {
+			"who": "valadares",
+			"to": "party",
+			"text": "He is in the crack in the rock! Back across the top, down by the falls! To the canoe!"
 		},
 		"v_woke": {
 			"who": "valadares",

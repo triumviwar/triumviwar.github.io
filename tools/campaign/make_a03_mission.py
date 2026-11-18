@@ -65,7 +65,7 @@ PEOPLE = ["musketeer", "labourer", "dismounted"]     # the party's people (not t
 AWAKE_KINDS = ["brood_mother", "rootmaw", "mound_turtle", "dilophosaurus", "pterodactyl", "tyrannosaur", "grub",
                "brood_egg", "food_pile"]         # (the nest's workers and rooters stay awake while its hunters sleep)
 MARKS = ["cairn", "source", "rim", "lookout"]
-STAY = 10                                       # seconds Valadares stays at a mark
+STAY = 40                                       # seconds Valadares stays at a mark
 RAINS = 840                                     # the rains: Benedito waits 14:00 for the survey
 CANOE = 270                                     # Part 3: the canoe leaves 4:30 after the nest wakes
 
@@ -123,6 +123,8 @@ M = {
         "hollow": [41, 12, 46, 23], "nest_core": [54, 14, 22, 13], "kin": [70, 18, 5, 4], "hollow_ramps": [44, 33, 40, 4],
         # the forest (the red pack)
         "rf_a": [38, 76, 6, 5], "rf_b": [80, 80, 6, 5],
+        # (where the Sire comes home from: the way nearest Valadares; the party crosses the top to the other)
+        "west_half": [0, 0, 64, 112], "mid_top": [62, 55, 8, 5], "pn": [98, 7, 6, 4],
     },
     "counters": {"marks": {"start": 0, "of": 4}, "party0": {"start": 0}, "down": {"start": 0}, "left": {"start": 0}},
     "exits": [
@@ -160,7 +162,7 @@ M = {
         {"id": "climb", "side": "party", "primary": True, "kind": "manual",
          "text": "THE CLIMB: take Valadares up the cliff (by the waterfall stair or the split in the rock)."},
         {"id": "survey", "side": "party", "primary": True, "kind": "manual", "hidden": True,
-         "text": "THE SURVEY: Valadares stays 10 seconds at each survey mark ({marks} of 4): the cairn, the river's source, the nest's rim, the lookout."},
+         "text": "THE SURVEY: Valadares stays %d seconds at each survey mark ({marks} of 4): the cairn, the river's source, the nest's rim, the lookout." % STAY},
         {"id": "softly", "side": "party", "primary": False, "kind": "manual", "hidden": True,
          "text": "Walk softly: do not go near the sleeping creatures."},
         {"id": "flee", "side": "party", "primary": True, "kind": "manual", "hidden": True,
@@ -246,14 +248,24 @@ M = {
         # (the survey done and the map chosen: the Sire comes home; or the party woke the nest before that)
         {"id": "part3", "when": {"any": [{"fired": "chosen"}, {"awake": "nest"}, {"clock_out": "rains"}]}, "delay": 2, "do": [
             {"wake": {"name": "nest"}},
-            {"spawn": {"team": "nest", "kind": "tyrannosaur", "count": 1, "at": "stair_foot", "tag": "sire", "name": "The Tyrant Sire"}},
-            {"sound": {"name": "campaign/sire_roar", "area": "stair_foot"}},
             {"light": {"to": "jungle_dusk", "secs": 30}}, {"mist": {"sight": 0.7}},
             {"objective": {"id": "softly", "set": "hidden"}}]},
+        # the Sire comes home up the way NEAREST Valadares (behind them): the party must cross the top to the other way
+        {"id": "sire_w", "when": {"all": [{"fired": "part3"}, {"not": {"fired": "sire_e"}}, {"any": [{"count": {"tag": "valadares", "area": "west_half", "at_least": 1}},
+                                                                       {"dead": "valadares"}]}]}, "do": [
+            {"spawn": {"team": "nest", "kind": "tyrannosaur", "count": 1, "at": "trail_w", "tag": "sire", "name": "The Tyrant Sire"}},
+            {"flag": {"sire_way": "stair"}}, {"sound": {"name": "campaign/sire_roar", "area": "stair_foot"}}]},
+        {"id": "sire_e", "when": {"all": [{"fired": "part3"}, {"not": {"fired": "sire_w"}}]}, "do": [
+            {"spawn": {"team": "nest", "kind": "tyrannosaur", "count": 1, "at": "trail_e", "tag": "sire", "name": "The Tyrant Sire"}},
+            {"flag": {"sire_way": "split"}}, {"sound": {"name": "campaign/sire_roar", "area": "split_foot"}}]},
         {"id": "part3_party", "when": {"all": [{"fired": "part3"}, {"not": {"clock_out": "rains"}}]}, "do": [
-            {"say": ["n_roar", "v_run"]}, {"objective": {"id": "rains", "set": "hidden"}},
+            {"objective": {"id": "rains", "set": "hidden"}},
             {"objective": {"id": "flee", "set": "active"}}, {"objective": {"id": "canoe", "set": "active"}},
-            {"clock": {"name": "canoe", "secs": CANOE}}, {"ping": {"area": "landing"}}, {"ping": {"area": "split_foot"}}]},
+            {"clock": {"name": "canoe", "secs": CANOE}}, {"ping": {"area": "landing"}}]},
+        {"id": "run_e", "when": {"all": [{"fired": "part3_party"}, {"flag": {"sire_way": "stair"}}]}, "do": [
+            {"say": ["n_roar", "v_run_e"]}, {"ping": {"area": "split_in"}}, {"ping": {"area": "stair_top"}}]},
+        {"id": "run_w", "when": {"all": [{"fired": "part3_party"}, {"flag": {"sire_way": "split"}}]}, "do": [
+            {"say": ["n_roar_e", "v_run_w"]}, {"ping": {"area": "stair_top"}}, {"ping": {"area": "split_in"}}]},
         {"id": "woke_early", "when": {"all": [{"fired": "part3"}, {"not": {"fired": "surveyed"}}, {"not": {"clock_out": "rains"}}]}, "do": [
             {"say": ["v_woke"]}, {"objective": {"id": "survey", "set": "hidden"}}, {"objective": {"id": "softly", "set": "failed"}},
             {"flag": {"survey": "cut"}},
@@ -271,20 +283,32 @@ M = {
             {"say": ["b_rains"]}, {"objective": {"id": "survey", "set": "failed"}}, {"objective": {"id": "climb", "set": "failed"}}]},
         # ---- the scripted nest hunts (the party's game): its hunters and the patrols at the party, the Sire up the stair after them
         {"id": "hunt", "when": {"all": [{"fired": "part3"}, NO_NEST, {"not": {"fired": "the_end"}}]}, "every": 3, "do": [
-            {"order": {"tag": "nest_guard", "do": "hunt", "prey_team": "party", "within": 40}},
             {"order": {"tag": "patrol_w", "do": "hunt", "prey_team": "party", "within": 30}},
             {"order": {"tag": "patrol_e", "do": "hunt", "prey_team": "party", "within": 30}},
-            {"order": {"tag": "sire", "do": "hunt", "prey": "valadares", "within": 90}}]},
-        {"id": "sire_climbs", "when": {"all": [{"fired": "part3"}, NO_NEST]}, "do": [
-            {"order": {"tag": "sire", "do": "route", "route": ["stair_top", "cairn"], "attack": True, "name": "sire_up"}}]},
-        {"id": "hunters_out", "when": {"all": [{"fired": "part3"}, NO_NEST]}, "do": [
-            {"order": {"tag": "nest_guard", "do": "attack", "to": "rim"}}]},
+            {"order": {"tag": "prowlers", "do": "hunt", "prey_team": "party", "within": 30}},
+            {"order": {"tag": "sire", "do": "hunt", "prey_team": "party", "within": 90}}]},
+        # (the nest's hunters are slow to rise: they hunt what they can reach 8 s after it wakes, the Spitters stay by
+        # the Mother; a party that keeps away from the hollow on its way down slips past most of them)
+        {"id": "stir", "when": {"all": [{"fired": "part3"}, NO_NEST, {"not": {"fired": "the_end"}}]}, "delay": 8, "every": 3, "do": [
+            {"order": {"tag": "nest_guard", "kind": "raptor", "do": "hunt", "prey_team": "party", "within": 22}},
+            {"order": {"tag": "nest_guard", "kind": "spitter", "do": "hunt", "prey_team": "party", "within": 9}}]},
+        {"id": "sire_climbs", "when": {"all": [{"fired": "part3"}, NO_NEST, {"flag": {"sire_way": "stair"}}]}, "do": [
+            {"order": {"tag": "sire", "do": "route", "route": ["stair_foot", "stair_top", "cairn"], "attack": True, "name": "sire_up"}}]},
+        {"id": "sire_climbs_e", "when": {"all": [{"fired": "part3"}, NO_NEST, {"flag": {"sire_way": "split"}}]}, "do": [
+            {"order": {"tag": "sire", "do": "route", "route": ["split_foot", "split_top", "split_in", "lookout"], "attack": True, "name": "sire_up"}}]},
+        # the nest's prowlers: while it sleeps, three more Raptors come down from the north rim every 1:40 from 1:30 and hunt the party
+        {"id": "prowl", "when": {"all": [{"time": 90}, NO_NEST, {"not": {"fired": "part3"}}, {"count": {"team": "patrol", "below": 9}}]}, "every": 100, "do": [
+            {"spawn": {"team": "patrol", "kind": "raptor", "count": 3, "at": "pn", "tag": "prowlers"}},
+            {"order": {"tag": "prowlers", "do": "attack", "to": "mid_top"}}, {"sound": {"name": "campaign/forest_answer", "area": "pn", "vol": -6}}]},
+        {"id": "prowl_hunt", "when": {"all": [{"fired": "prowl"}, NO_NEST, {"not": {"fired": "the_end"}}]}, "every": 4, "do": [
+            {"order": {"tag": "prowlers", "do": "hunt", "prey_team": "party", "within": 25}}]},
         # the canoe: Valadares on the beach goes last, once the rest are down (or the canoe must leave)
         {"id": "the_end", "when": {"all": [{"fired": "part3_party"}, {"stay": {"tag": "valadares", "area": "landing", "secs": 2}},
                                             {"any": [{"count": {"team": "party", "kind": ["musketeer", "labourer"], "below": 1}}, {"clock_out": "canoe"}]}]}, "do": [
             {"counter": {"name": "down", "add": 1}},
             {"tally": {"flag": "party", "counter": "down", "of": "party0", "bands": [[0, "few"], [0.5, "some"], [1, "all"]]}},
-            {"say": ["b_push", "v_end"]}, {"objective": {"id": "flee", "set": "done"}}, {"light": {"to": "grey_dawn", "secs": 8}},
+            {"say": ["b_push", "v_end"]}, {"objective": {"id": "flee", "set": "done"}},
+            {"spare": {"tag": "valadares", "on": True}}, {"pin": {"tag": "valadares", "on": True}}, {"light": {"to": "grey_dawn", "secs": 8}},
             {"flag": {"linnea": "seen"}}]},
         {"id": "won", "when": {"fired": "the_end"}, "delay": 5, "do": [{"win": "party"}]},
         {"id": "canoe_gone", "when": {"all": [{"clock_out": "canoe"}, {"not": {"fired": "the_end"}},
@@ -303,7 +327,6 @@ M = {
         # ================================================================ THE SCRIPTED PARTY (a person leads the nest)
         {"id": "p_up", "when": {"all": [{"time": 3}, NO_PARTY]}, "do": [
             {"order": {"tag": "valadares", "do": "route", "route": ["trail_w", "stair_foot", "stair_top", "cairn"], "name": "leg1"}},
-            {"order": {"tag": "benedito", "do": "follow", "leader": "valadares", "within": 3}},
             {"order": {"tag": "guides", "do": "follow", "leader": "valadares", "within": 3}},
             {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2}},
             {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3}}]},
@@ -313,15 +336,22 @@ M = {
             {"order": {"tag": "valadares", "do": "route", "route": ["rim"], "name": "leg3"}}]},
         {"id": "p_leg4", "when": {"all": [{"fired": "mark_rim"}, NO_PARTY, {"not": {"fired": "part3"}}]}, "delay": 1, "do": [
             {"order": {"tag": "valadares", "do": "route", "route": ["lookout"], "name": "leg4"}}]},
-        {"id": "p_down", "when": {"all": [{"fired": "part3"}, NO_PARTY]}, "delay": 1, "do": [
-            {"order": {"tag": "valadares", "do": "route", "route": ["split_in", "split_top", "split_foot", "trail_e", "landing"], "name": "down"}},
-            {"order": {"tag": "benedito", "do": "route", "route": ["split_in", "split_top", "split_foot", "trail_e", "landing"], "name": "down_b"}},
-            {"order": {"tag": "guides", "do": "route", "route": ["split_in", "split_top", "split_foot", "trail_e", "landing"], "name": "down_g"}},
+        {"id": "p_down", "when": {"all": [{"fired": "part3"}, NO_PARTY, {"flag": {"sire_way": "stair"}}]}, "delay": 1, "do": [
+            {"order": {"tag": "valadares", "do": "route", "route": ["mid_top", "split_in", "split_top", "split_foot", "trail_e", "landing"], "name": "down"}},
+            {"order": {"tag": "guides", "do": "follow", "leader": "valadares", "within": 2}},
             {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2}},
-            {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3}}]},
+            {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3}},
+            {"order": {"tag": "benedito", "do": "move", "to": "landing"}}]},
+        {"id": "p_down_w", "when": {"all": [{"fired": "part3"}, NO_PARTY, {"flag": {"sire_way": "split"}}]}, "delay": 1, "do": [
+            {"order": {"tag": "valadares", "do": "route", "route": ["mid_top", "cairn", "stair_top", "stair_foot", "trail_w", "landing"], "name": "down"}},
+            {"order": {"tag": "guides", "do": "follow", "leader": "valadares", "within": 2}},
+            {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2}},
+            {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3}},
+            {"order": {"tag": "benedito", "do": "move", "to": "landing"}}]},
         # (the scripted men at the landing step into the canoe; the rest keep following)
         {"id": "p_board", "when": {"all": [{"fired": "part3"}, NO_PARTY, {"count": {"tag": "valadares", "area": "landing", "at_least": 1}}]}, "every": 2, "do": [
-            {"order": {"tag": "men", "do": "move", "to": "landing"}}, {"order": {"tag": "teles_men", "do": "move", "to": "landing"}}]},
+            {"order": {"tag": "men", "do": "move", "to": "landing"}}, {"order": {"tag": "teles_men", "do": "move", "to": "landing"}},
+            {"order": {"tag": "guides", "do": "move", "to": "landing"}}]},
     ],
     "speakers": {
         "king": {"name": "The King", "side": "party"},
@@ -353,7 +383,7 @@ M = {
         "b_red": {"who": "benedito", "to": "party", "text": "Red crests in the trees, Senhor. The other pack, the one that fought at the station. It came up here too."},
         "tip_cache": {"who": "valadares", "to": "party", "text": "The powder is in the cache by the canoe. A man who has fired his shots refills there."},
         "v_top": {"who": "valadares", "to": "party", "text": "The top. Rock towers, black water, and the cloud lying on everything."},
-        "tip_marks": {"who": "valadares", "to": "party", "text": "Four marks to take: a cairn, the river's source, the rim of the hollow, the lookout on the east edge. I stand at each a while to take my bearings."},
+        "tip_marks": {"who": "valadares", "to": "party", "text": "Four marks to take: a cairn, the river's source, the rim of the hollow, the lookout on the east edge. I stand at each a while to take my bearings. Keep the men round me."},
         # part 2
         "v_cairn": {"who": "valadares", "to": "party", "text": "A cairn. Men have been here before us, and long ago."},
         "v_source": {"who": "valadares", "to": "party", "text": "The river's source: a black pool, very cold. The flood that brought the egg down came from here."},
@@ -370,7 +400,9 @@ M = {
         "v_withheld": {"who": "valadares", "to": "party", "text": "I drew it, and sealed it, for the Church alone. No man should come here for profit."},
         # part 3
         "n_roar": {"who": "narrator", "to": "party", "text": "Below the falls something roared, and the whole hollow answered it."},
-        "v_run": {"who": "valadares", "to": "party", "text": "He is home. Down the crack in the rock, now! To the canoe!"},
+        "v_run_e": {"who": "valadares", "to": "party", "text": "He is coming up the falls behind us! Across the top, down the crack in the rock! To the canoe!"},
+        "n_roar_e": {"who": "narrator", "to": "party", "text": "In the crack in the rock something roared, and the whole hollow answered it."},
+        "v_run_w": {"who": "valadares", "to": "party", "text": "He is in the crack in the rock! Back across the top, down by the falls! To the canoe!"},
         "v_woke": {"who": "valadares", "to": "party", "text": "We were too close. They are awake. Leave the survey: down, to the canoe!"},
         "b_hurt": {"who": "benedito", "to": "party", "text": "Senhor, you are bleeding! Let the soldiers stand between you and them!"},
         "b_rains": {"who": "benedito", "to": "party", "text": "The rains, Senhor. The river rises. I cannot wait longer."},

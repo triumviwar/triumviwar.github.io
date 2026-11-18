@@ -48,9 +48,9 @@ es Las lluvias llegan en {clock:rains}: Benedito no esperará más.
 pt A SUBIDA: leve Valadares penhasco acima (pela escada da cachoeira ou pela fenda na rocha).
 es LA SUBIDA: lleva a Valadares acantilado arriba (por la escalera de la cascada o por la grieta en la roca).
 
-> THE SURVEY: Valadares stays 10 seconds at each survey mark ({marks} of 4): the cairn, the river's source, the nest's rim, the lookout.
-pt O LEVANTAMENTO: Valadares fica 10 segundos em cada marco ({marks} de 4): o monte de pedras, a nascente do rio, a borda do ninho, o mirante.
-es EL LEVANTAMIENTO: Valadares se queda 10 segundos en cada hito ({marks} de 4): el montón de piedras, el nacimiento del río, el borde del nido, el mirador.
+> THE SURVEY: Valadares stays 40 seconds at each survey mark ({marks} of 4): the cairn, the river's source, the nest's rim, the lookout.
+pt O LEVANTAMENTO: Valadares fica 40 segundos em cada marco ({marks} de 4): o monte de pedras, a nascente do rio, a borda do ninho, o mirante.
+es EL LEVANTAMIENTO: Valadares se queda 40 segundos en cada hito ({marks} de 4): el montón de piedras, el nacimiento del río, el borde del nido, el mirador.
 
 > Walk softly: do not go near the sleeping creatures.
 pt Ande devagar: não chegue perto das criaturas adormecidas.
@@ -164,9 +164,9 @@ es La pólvora está en el depósito junto a la canoa. Quien ha gastado sus tiro
 pt O topo. Torres de rocha, água negra, e a nuvem deitada sobre tudo.
 es La cima. Torres de roca, agua negra, y la nube tendida sobre todo.
 
-> Four marks to take: a cairn, the river's source, the rim of the hollow, the lookout on the east edge. I stand at each a while to take my bearings.
-pt Quatro marcos a tomar: um monte de pedras, a nascente do rio, a borda da depressão, o mirante na beira leste. Fico um tempo em cada um para tomar as medidas.
-es Cuatro hitos que tomar: un montón de piedras, el nacimiento del río, el borde de la hondonada, el mirador en el borde este. Me quedo un rato en cada uno para tomar las medidas.
+> Four marks to take: a cairn, the river's source, the rim of the hollow, the lookout on the east edge. I stand at each a while to take my bearings. Keep the men round me.
+pt Quatro marcos a tomar: um monte de pedras, a nascente do rio, a borda da depressão, o mirante na beira leste. Fico um tempo em cada um para tomar as medidas. Mantenham os homens à minha volta.
+es Cuatro hitos que tomar: un montón de piedras, el nacimiento del río, el borde de la hondonada, el mirador en el borde este. Me quedo un rato en cada uno para tomar las medidas. Mantened a los hombres a mi alrededor.
 
 > A cairn. Men have been here before us, and long ago.
 pt Um monte de pedras. Houve homens aqui antes de nós, e há muito tempo.
@@ -224,9 +224,17 @@ es Lo dibujé y lo sellé, solo para la Iglesia. Ningún hombre debe venir aquí
 pt Embaixo da cachoeira algo rugiu, e a depressão inteira respondeu.
 es Bajo la cascada algo rugió, y toda la hondonada le respondió.
 
-> He is home. Down the crack in the rock, now! To the canoe!
-pt Ele voltou. Pela fenda na rocha, já! Para a canoa!
-es Ha vuelto. ¡Por la grieta en la roca, ya! ¡A la canoa!
+> He is coming up the falls behind us! Across the top, down the crack in the rock! To the canoe!
+pt Ele está subindo pela cachoeira atrás de nós! Atravessem o topo, desçam pela fenda na rocha! Para a canoa!
+es ¡Sube por la cascada detrás de nosotros! ¡Cruzad la cima, bajad por la grieta en la roca! ¡A la canoa!
+
+> In the crack in the rock something roared, and the whole hollow answered it.
+pt Na fenda na rocha algo rugiu, e a depressão inteira respondeu.
+es En la grieta en la roca algo rugió, y toda la hondonada le respondió.
+
+> He is in the crack in the rock! Back across the top, down by the falls! To the canoe!
+pt Ele está na fenda na rocha! De volta pelo topo, desçam pela cachoeira! Para a canoa!
+es ¡Está en la grieta en la roca! ¡Volved por la cima, bajad por la cascada! ¡A la canoa!
 
 > We were too close. They are awake. Leave the survey: down, to the canoe!
 pt Chegamos perto demais. Acordaram. Deixem o levantamento: para baixo, para a canoa!

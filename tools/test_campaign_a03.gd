@@ -256,11 +256,11 @@ func _survey(g: Game, r: MissionRun, P: String) -> void:
 	var t := 6.0
 	for mk in ["cairn", "source", "lookout", "rim"]:
 		_put(g, r.tagged("valadares"), r.area_rect(mk))
-		_walk(g, t + 8.0)
-		check(P + "the %s: not yet after 8 s" % mk, not r.fired.has("mark_" + mk))
-		_walk(g, t + 11.0)
-		check(P + "THE %s taken (10 s)" % mk.to_upper(), r.fired.has("mark_" + mk))
-		t += 12.0
+		_walk(g, t + 38.0)
+		check(P + "the %s: not yet after 38 s" % mk, not r.fired.has("mark_" + mk))
+		_walk(g, t + 41.0)
+		check(P + "THE %s taken (40 s)" % mk.to_upper(), r.fired.has("mark_" + mk))
+		t += 42.0
 	check(P + "four marks", int(r.counters["marks"]) == 4 and r.objective_text(r.objective("survey")).contains("4 of 4"))
 	_walk(g, t + 6.0)
 	check(P + "at the rim: the nest seen, Linnea", r.said_ids.has("v_rim") and r.said_ids.has("v_linnea"))
@@ -415,7 +415,7 @@ func _nest_play() -> void:
 	# the scripted party: round the marks (moved there for the test) and the survey done
 	for mk in ["cairn", "source", "rim", "lookout"]:
 		_put(g, r.tagged("valadares"), r.area_rect(mk))
-		_walk(g, g.clock + 11.0)
+		_walk(g, g.clock + 41.0)
 	check("nest: the party took its four marks", int(r.counters["marks"]) == 4)
 	_walk(g, g.clock + 5.0)
 	check("nest: the party's map drawn at once (nobody answers it)", r.flags.get("map", "") == "drawn")
@@ -449,7 +449,7 @@ func _nest_play() -> void:
 	_step(g, 2.0)
 	for mk in ["cairn", "source", "rim", "lookout"]:
 		_put(g, r.tagged("valadares"), r.area_rect(mk))
-		_walk(g, g.clock + 11.0)
+		_walk(g, g.clock + 41.0)
 	_walk(g, g.clock + 6.0)
 	_put(g, _people(g, r).filter(func(u): return not r.tagged("valadares").has(u)), r.area_rect("landing"))
 	_step(g, g.clock + 0.5)
