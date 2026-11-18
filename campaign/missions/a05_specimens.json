@@ -1,0 +1,5587 @@
+{
+	"id": "a05_specimens",
+	"title": "The Specimens",
+	"summary": "The foot of the cloud mountain, the dry season 2769. Lindqvist comes back for the creatures with the Academy's money: cage the young while the nest sleeps and bring the carts down to the river.",
+	"map": "campaign:plateau_descent",
+	"voice": "a05",
+	"light": "jungle_night",
+	"floor": [
+		0.7,
+		0.74,
+		0.68
+	],
+	"mist": {
+		"sight": 0.75,
+		"weather": false
+	},
+	"expansion_spots": false,
+	"manual_end": true,
+	"mend_allies": true,
+	"difficulty": {
+		"easy": {
+			"clocks": 1.25,
+			"spawns": 0.75
+		},
+		"hard": {
+			"clocks": 0.9,
+			"spawns": 1.2
+		}
+	},
+	"modes": [
+		"solo",
+		"versus"
+	],
+	"solo_sides": [
+		"expedition",
+		"creatures"
+	],
+	"sides": [
+		{
+			"id": "expedition",
+			"name": "The Academy's Expedition",
+			"about": "Dr. Lindqvist with the Academy's hired guns, porters and cage carts, and Benedito's canoes at the river."
+		},
+		{
+			"id": "creatures",
+			"name": "The Creatures",
+			"about": "The nest on the cloud mountain: the Mother in her hollow, her hunters and her grown young."
+		}
+	],
+	"teams": [
+		{
+			"id": "expedition",
+			"side": "expedition",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "camp",
+			"powder": 60,
+			"gold": 150,
+			"roster": {
+				"deny": [
+					"town_hall",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"armoury",
+					"foundry",
+					"farm",
+					"powder_mill",
+					"horse_breeder",
+					"church"
+				]
+			},
+			"control": {
+				"solo": "p1",
+				"versus": "p1",
+				"foe": "script"
+			}
+		},
+		{
+			"id": "convoy",
+			"side": "expedition",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "camp",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "creatures",
+			"side": "creatures",
+			"faction": "brood",
+			"colour": 2,
+			"start": "standard",
+			"hall": [
+				64,
+				16
+			],
+			"hall_tag": "mother",
+			"camera": "hollow",
+			"gold": 500,
+			"powder": 40,
+			"control": {
+				"solo": "script",
+				"versus": "p2"
+			},
+			"roster": {
+				"allow": [
+					"brood_mother",
+					"grub",
+					"rootmaw",
+					"mound_turtle",
+					"tyrannosaur",
+					"raptor",
+					"dilophosaurus",
+					"spitter",
+					"stage2",
+					"tyrant_challenger",
+					"venom_challenger"
+				],
+				"new": [
+					"stage2",
+					"tyrant_challenger",
+					"venom_challenger"
+				],
+				"deny": [
+					"tyrannosaur"
+				]
+			}
+		},
+		{
+			"id": "pack",
+			"side": "creatures",
+			"faction": "brood",
+			"colour": 2,
+			"start": "none",
+			"camera": "hollow",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		}
+	],
+	"areas": {
+		"camp": [
+			55,
+			41,
+			18,
+			8
+		],
+		"cartpark": [
+			58,
+			44,
+			12,
+			4
+		],
+		"young_w": [
+			30,
+			36,
+			5,
+			4
+		],
+		"young_m": [
+			62,
+			36,
+			5,
+			4
+		],
+		"young_e": [
+			94,
+			36,
+			5,
+			4
+		],
+		"hollow": [
+			44,
+			8,
+			42,
+			23
+		],
+		"nest_core": [
+			56,
+			11,
+			18,
+			10
+		],
+		"egg_bed": [
+			45,
+			19,
+			4,
+			5
+		],
+		"hollow_w": [
+			47,
+			27,
+			6,
+			4
+		],
+		"s1": [
+			61,
+			55,
+			6,
+			4
+		],
+		"s2": [
+			56,
+			72,
+			6,
+			5
+		],
+		"s3": [
+			62,
+			86,
+			6,
+			5
+		],
+		"s4": [
+			66,
+			100,
+			6,
+			5
+		],
+		"s5": [
+			60,
+			112,
+			6,
+			5
+		],
+		"s6": [
+			62,
+			124,
+			6,
+			5
+		],
+		"top_w": [
+			40,
+			46,
+			6,
+			4
+		],
+		"top_ww": [
+			22,
+			46,
+			6,
+			4
+		],
+		"long_top": [
+			12,
+			46,
+			6,
+			4
+		],
+		"l1": [
+			11,
+			56,
+			6,
+			4
+		],
+		"l2": [
+			9,
+			74,
+			6,
+			5
+		],
+		"l3": [
+			20,
+			88,
+			6,
+			5
+		],
+		"l4": [
+			28,
+			98,
+			6,
+			5
+		],
+		"l5": [
+			18,
+			110,
+			6,
+			5
+		],
+		"l6": [
+			30,
+			120,
+			6,
+			5
+		],
+		"l7": [
+			44,
+			128,
+			6,
+			5
+		],
+		"rs_a": [
+			84,
+			66,
+			5,
+			5
+		],
+		"rs_b": [
+			36,
+			80,
+			5,
+			5
+		],
+		"rs_c": [
+			90,
+			100,
+			5,
+			5
+		],
+		"rs_d": [
+			38,
+			116,
+			5,
+			5
+		],
+		"rl_a": [
+			30,
+			62,
+			5,
+			5
+		],
+		"rl_b": [
+			30,
+			84,
+			5,
+			5
+		],
+		"rl_c": [
+			46,
+			104,
+			5,
+			5
+		],
+		"rl_d": [
+			6,
+			120,
+			5,
+			5
+		],
+		"rim_n": [
+			100,
+			20,
+			5,
+			4
+		],
+		"landing_near": [
+			50,
+			128,
+			28,
+			9
+		],
+		"quay": [
+			56,
+			137,
+			18,
+			5
+		],
+		"crates": [
+			68,
+			138,
+			6,
+			3
+		],
+		"sire_lair": [
+			100,
+			128,
+			5,
+			5
+		]
+	},
+	"counters": {
+		"young0": {
+			"start": 0
+		},
+		"caged": {
+			"start": 0
+		},
+		"cages0": {
+			"start": 0
+		},
+		"freed": {
+			"start": 0
+		},
+		"cages": {
+			"start": 0
+		},
+		"room": {
+			"start": 3
+		}
+	},
+	"exits": [
+		{
+			"area": "quay",
+			"tag": "carts",
+			"cargo": true,
+			"max": "room",
+			"counter": "cages",
+			"after": "part3"
+		}
+	],
+	"units": [
+		{
+			"team": "expedition",
+			"kind": "musketeer",
+			"as": "lindqvist",
+			"count": 1,
+			"at": [
+				64,
+				44
+			],
+			"tag": "lindqvist"
+		},
+		{
+			"team": "expedition",
+			"kind": "labourer",
+			"as": "pieter",
+			"count": 1,
+			"at": [
+				66,
+				45
+			],
+			"tag": "pieter",
+			"if": {
+				"past": {
+					"b01_specimen.pieter": "alive"
+				}
+			}
+		},
+		{
+			"team": "expedition",
+			"kind": "musketeer",
+			"as": "hired_gun",
+			"count": 6,
+			"at": "camp",
+			"tag": "guns",
+			"if": {
+				"not": {
+					"past": {
+						"b01_specimen.clutch": "burned"
+					}
+				}
+			}
+		},
+		{
+			"team": "expedition",
+			"kind": "musketeer",
+			"as": "hired_gun",
+			"count": 4,
+			"at": "camp",
+			"tag": "guns",
+			"if": {
+				"past": {
+					"b01_specimen.clutch": "burned"
+				}
+			}
+		},
+		{
+			"team": "expedition",
+			"kind": "musketeer",
+			"as": "hired_gun",
+			"count": 2,
+			"at": "camp",
+			"tag": "guns",
+			"if": {
+				"not": {
+					"past": {
+						"a03_plateau.map": "withheld"
+					}
+				}
+			}
+		},
+		{
+			"team": "expedition",
+			"kind": "labourer",
+			"as": "porter",
+			"count": 4,
+			"at": "camp",
+			"tag": "porters",
+			"if": {
+				"not": {
+					"past": {
+						"b01_specimen.clutch": "burned"
+					}
+				}
+			},
+			"fixed": true
+		},
+		{
+			"team": "expedition",
+			"kind": "labourer",
+			"as": "porter",
+			"count": 2,
+			"at": "camp",
+			"tag": "porters",
+			"if": {
+				"past": {
+					"b01_specimen.clutch": "burned"
+				}
+			},
+			"fixed": true
+		},
+		{
+			"team": "convoy",
+			"kind": "powder_wagon",
+			"as": "cage_cart",
+			"count": 1,
+			"at": [
+				60,
+				46
+			],
+			"tags": [
+				"carts",
+				"cart_w"
+			],
+			"fixed": true
+		},
+		{
+			"team": "convoy",
+			"kind": "powder_wagon",
+			"as": "cage_cart",
+			"count": 1,
+			"at": [
+				64,
+				47
+			],
+			"tags": [
+				"carts",
+				"cart_m"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"b01_specimen.clutch": "burned"
+					}
+				}
+			}
+		},
+		{
+			"team": "convoy",
+			"kind": "powder_wagon",
+			"as": "cage_cart",
+			"count": 1,
+			"at": [
+				68,
+				46
+			],
+			"tags": [
+				"carts",
+				"cart_e"
+			],
+			"fixed": true
+		},
+		{
+			"team": "expedition",
+			"kind": "labourer",
+			"as": "benedito",
+			"count": 1,
+			"at": [
+				64,
+				139
+			],
+			"tag": "benedito"
+		},
+		{
+			"team": "creatures",
+			"kind": "raptor",
+			"count": 6,
+			"at": "nest_core",
+			"tag": "nest_guard"
+		},
+		{
+			"team": "creatures",
+			"kind": "raptor",
+			"count": 4,
+			"at": "nest_core",
+			"tag": "nest_guard",
+			"name": "Young",
+			"if": {
+				"past": {
+					"b01_specimen.eggs": "taken"
+				}
+			}
+		},
+		{
+			"team": "creatures",
+			"kind": "spitter",
+			"count": 2,
+			"at": "nest_core",
+			"tag": "nest_guard"
+		},
+		{
+			"team": "creatures",
+			"kind": "tyrant_challenger",
+			"count": 2,
+			"at": "nest_core",
+			"tag": "nest_guard"
+		},
+		{
+			"team": "creatures",
+			"kind": "venom_challenger",
+			"count": 1,
+			"at": "nest_core",
+			"tag": "nest_guard"
+		},
+		{
+			"team": "creatures",
+			"kind": "mound_turtle",
+			"count": 1,
+			"at": [
+				80,
+				22
+			],
+			"tag": "turtles"
+		},
+		{
+			"team": "creatures",
+			"kind": "brood_egg",
+			"count": 5,
+			"at": "egg_bed",
+			"tag": "egg_bed",
+			"fixed": true
+		},
+		{
+			"team": "creatures",
+			"kind": "raptor",
+			"count": 1,
+			"at": "young_w",
+			"tags": [
+				"young",
+				"young_w"
+			],
+			"name": "Young",
+			"fixed": true
+		},
+		{
+			"team": "creatures",
+			"kind": "tyrannosaur",
+			"as": "young_sire",
+			"count": 1,
+			"at": "young_m",
+			"tags": [
+				"young",
+				"young_m"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"b01_specimen.clutch": "burned"
+					}
+				}
+			}
+		},
+		{
+			"team": "creatures",
+			"kind": "spitter",
+			"count": 1,
+			"at": "young_e",
+			"tags": [
+				"young",
+				"young_e"
+			],
+			"name": "Young",
+			"fixed": true
+		}
+	],
+	"buildings": [],
+	"objectives": [
+		{
+			"id": "lindqvist",
+			"side": "expedition",
+			"primary": true,
+			"kind": "protect",
+			"tag": "lindqvist",
+			"text": "Dr. Lindqvist must live."
+		},
+		{
+			"id": "dawn",
+			"side": "expedition",
+			"primary": true,
+			"kind": "countdown",
+			"clock": "dawn",
+			"text": "Dawn in {clock:dawn}: the nest wakes with the sun."
+		},
+		{
+			"id": "take",
+			"side": "expedition",
+			"primary": true,
+			"kind": "manual",
+			"text": "THE TAKING: stand by each sleeping young one to net it; its cart comes for it ({caged} of {young0} caged)."
+		},
+		{
+			"id": "eggs",
+			"side": "expedition",
+			"primary": false,
+			"kind": "manual",
+			"text": "The eggs: Lindqvist stands 8 seconds at the swamp's edge in the hollow, then carries them."
+		},
+		{
+			"id": "softly",
+			"side": "expedition",
+			"primary": false,
+			"kind": "manual",
+			"text": "Walk softly: keep away from the sleeping nest."
+		},
+		{
+			"id": "trail",
+			"side": "expedition",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE TRAIL: guard the cage carts down to the river ({freed} broken). Porters mend a hurt cart."
+		},
+		{
+			"id": "landing",
+			"side": "expedition",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE LANDING: bring the carts onto the quay ({cages} loaded, room for {room}). Lindqvist goes last."
+		},
+		{
+			"id": "canoes",
+			"side": "expedition",
+			"primary": true,
+			"kind": "countdown",
+			"clock": "canoes",
+			"hidden": true,
+			"text": "The canoes leave in {clock:canoes}."
+		},
+		{
+			"id": "c_mother",
+			"side": "creatures",
+			"primary": true,
+			"kind": "protect",
+			"tag": "mother",
+			"hidden": true,
+			"text": "The Mother must live."
+		},
+		{
+			"id": "c_sleep",
+			"side": "creatures",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE NEST SLEEPS: strangers are in the ferns. Your hunters sleep until they come close. Root the Mother and GROW her; MATURE your young ones."
+		},
+		{
+			"id": "c_free",
+			"side": "creatures",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "FREE THE YOUNG: break the cage carts ({freed} of {cages0} freed: half will do), or kill the doctor, before the canoes leave."
+		}
+	],
+	"triggers": [
+		{
+			"id": "start",
+			"when": {
+				"time": 0
+			},
+			"do": [
+				{
+					"cage": {
+						"tag": "egg_bed",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "egg_bed",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "young",
+						"on": true
+					}
+				},
+				{
+					"pin": {
+						"tag": "benedito",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "benedito",
+						"on": true
+					}
+				},
+				{
+					"name": {
+						"tag": "mother",
+						"name": "The Mother"
+					}
+				},
+				{
+					"counter": {
+						"name": "young0",
+						"count": {
+							"tag": "young"
+						}
+					}
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"secs": 600
+					}
+				}
+			]
+		},
+		{
+			"id": "room_few",
+			"when": {
+				"all": [
+					{
+						"time": 0
+					},
+					{
+						"past": {
+							"b01_specimen.saved": "few"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "room",
+						"set": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "room_many",
+			"when": {
+				"all": [
+					{
+						"time": 0
+					},
+					{
+						"past": {
+							"b01_specimen.saved": "many"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "room",
+						"set": 4
+					}
+				}
+			]
+		},
+		{
+			"id": "asleep",
+			"when": {
+				"all": [
+					{
+						"time": 0.25
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"sleep": {
+						"tag": "nest_guard",
+						"name": "nest",
+						"within": 6,
+						"by": "expedition"
+					}
+				},
+				{
+					"sleep": {
+						"tag": "young",
+						"name": "young",
+						"within": 0,
+						"hurt": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "mother",
+						"on": true
+					}
+				}
+			]
+		},
+		{
+			"id": "asleep_p",
+			"when": {
+				"all": [
+					{
+						"time": 0.25
+					},
+					{
+						"playing": "creatures"
+					}
+				]
+			},
+			"do": [
+				{
+					"sleep": {
+						"tag": "young",
+						"name": "young",
+						"within": 0,
+						"hurt": false
+					}
+				},
+				{
+					"sleep": {
+						"team": "creatures",
+						"name": "nest",
+						"within": 6,
+						"by": "expedition",
+						"keep": true,
+						"except_kinds": [
+							"brood_mother",
+							"rootmaw",
+							"mound_turtle",
+							"dilophosaurus",
+							"pterodactyl",
+							"tyrannosaur",
+							"grub",
+							"brood_egg",
+							"food_pile"
+						],
+						"except_tags": [
+							"young"
+						]
+					}
+				},
+				{
+					"objective": {
+						"id": "c_mother",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "c_sleep",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"playing": "expedition"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_1",
+						"l_2",
+						"tip_1"
+					]
+				},
+				{
+					"ping": {
+						"area": "young_w"
+					}
+				},
+				{
+					"ping": {
+						"area": "young_e"
+					}
+				},
+				{
+					"ping": {
+						"area": "egg_bed"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro_sire",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"playing": "expedition"
+					},
+					{
+						"not": {
+							"past": {
+								"b01_specimen.clutch": "burned"
+							}
+						}
+					}
+				]
+			},
+			"delay": 10,
+			"do": [
+				{
+					"say": [
+						"l_sire"
+					]
+				},
+				{
+					"ping": {
+						"area": "young_m"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro_fresh",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"playing": "expedition"
+					},
+					{
+						"past": {
+							"b01_specimen.clutch": "burned"
+						}
+					}
+				]
+			},
+			"delay": 10,
+			"do": [
+				{
+					"say": [
+						"l_fresh"
+					]
+				}
+			]
+		},
+		{
+			"id": "way_short",
+			"when": {
+				"all": [
+					{
+						"time": 3
+					},
+					{
+						"playing": "expedition"
+					},
+					{
+						"not": {
+							"past": {
+								"a03_plateau.map": "withheld"
+							}
+						}
+					}
+				]
+			},
+			"delay": 18,
+			"do": [
+				{
+					"say": [
+						"l_short"
+					]
+				}
+			]
+		},
+		{
+			"id": "way_long",
+			"when": {
+				"all": [
+					{
+						"time": 3
+					},
+					{
+						"playing": "expedition"
+					},
+					{
+						"past": {
+							"a03_plateau.map": "withheld"
+						}
+					}
+				]
+			},
+			"delay": 18,
+			"do": [
+				{
+					"say": [
+						"l_long"
+					]
+				}
+			]
+		},
+		{
+			"id": "pieter_book",
+			"when": {
+				"all": [
+					{
+						"time": 3
+					},
+					{
+						"playing": "expedition"
+					},
+					{
+						"past": {
+							"b01_specimen.pieter": "alive"
+						}
+					}
+				]
+			},
+			"delay": 26,
+			"do": [
+				{
+					"say": [
+						"p_book"
+					]
+				}
+			]
+		},
+		{
+			"id": "pieter_lost",
+			"when": {
+				"all": [
+					{
+						"time": 3
+					},
+					{
+						"playing": "expedition"
+					},
+					{
+						"not": {
+							"past": {
+								"b01_specimen.pieter": "alive"
+							}
+						}
+					}
+				]
+			},
+			"delay": 26,
+			"do": [
+				{
+					"say": [
+						"l_pieter"
+					]
+				}
+			]
+		},
+		{
+			"id": "taken_eggs",
+			"when": {
+				"all": [
+					{
+						"time": 3
+					},
+					{
+						"playing": "expedition"
+					},
+					{
+						"past": {
+							"b01_specimen.eggs": "taken"
+						}
+					}
+				]
+			},
+			"delay": 34,
+			"do": [
+				{
+					"say": [
+						"l_taken"
+					]
+				}
+			]
+		},
+		{
+			"id": "porter_tip",
+			"when": {
+				"all": [
+					{
+						"time": 60
+					},
+					{
+						"playing": "expedition"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"tip_porters"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_c",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"playing": "creatures"
+					}
+				]
+			},
+			"do": [
+				{
+					"ping": {
+						"area": "camp"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/linnea_call",
+						"area": "hollow",
+						"vol": -8
+					}
+				}
+			]
+		},
+		{
+			"id": "net_w",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"side": "expedition",
+							"area": "young_w",
+							"secs": 4
+						}
+					},
+					{
+						"count": {
+							"tag": "young_w",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_net_w"
+					]
+				},
+				{
+					"order": {
+						"tag": "cart_w",
+						"do": "move",
+						"to": "young_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "load_w",
+			"when": {
+				"all": [
+					{
+						"fired": "net_w"
+					},
+					{
+						"near": {
+							"tag": "cart_w",
+							"to": "young_w",
+							"within": 2
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"cart": {
+						"tag": "young_w",
+						"cart": "cart_w",
+						"caged": "caged",
+						"freed": "freed",
+						"freed_tag": "freed"
+					}
+				},
+				{
+					"order": {
+						"tag": "cart_w",
+						"do": "move",
+						"to": "cartpark"
+					}
+				},
+				{
+					"say": [
+						"l_caged"
+					]
+				}
+			]
+		},
+		{
+			"id": "net_m",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"side": "expedition",
+							"area": "young_m",
+							"secs": 4
+						}
+					},
+					{
+						"count": {
+							"tag": "young_m",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_net_m"
+					]
+				},
+				{
+					"order": {
+						"tag": "cart_m",
+						"do": "move",
+						"to": "young_m"
+					}
+				}
+			]
+		},
+		{
+			"id": "load_m",
+			"when": {
+				"all": [
+					{
+						"fired": "net_m"
+					},
+					{
+						"near": {
+							"tag": "cart_m",
+							"to": "young_m",
+							"within": 2
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"cart": {
+						"tag": "young_m",
+						"cart": "cart_m",
+						"caged": "caged",
+						"freed": "freed",
+						"freed_tag": "freed"
+					}
+				},
+				{
+					"order": {
+						"tag": "cart_m",
+						"do": "move",
+						"to": "cartpark"
+					}
+				},
+				{
+					"say": [
+						"l_caged"
+					]
+				}
+			]
+		},
+		{
+			"id": "net_e",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"side": "expedition",
+							"area": "young_e",
+							"secs": 4
+						}
+					},
+					{
+						"count": {
+							"tag": "young_e",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_net_e"
+					]
+				},
+				{
+					"order": {
+						"tag": "cart_e",
+						"do": "move",
+						"to": "young_e"
+					}
+				}
+			]
+		},
+		{
+			"id": "load_e",
+			"when": {
+				"all": [
+					{
+						"fired": "net_e"
+					},
+					{
+						"near": {
+							"tag": "cart_e",
+							"to": "young_e",
+							"within": 2
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"cart": {
+						"tag": "young_e",
+						"cart": "cart_e",
+						"caged": "caged",
+						"freed": "freed",
+						"freed_tag": "freed"
+					}
+				},
+				{
+					"order": {
+						"tag": "cart_e",
+						"do": "move",
+						"to": "cartpark"
+					}
+				},
+				{
+					"say": [
+						"l_caged"
+					]
+				}
+			]
+		},
+		{
+			"id": "pieter_count",
+			"when": {
+				"all": [
+					{
+						"fired": "load_w"
+					},
+					{
+						"past": {
+							"b01_specimen.pieter": "alive"
+						}
+					},
+					{
+						"playing": "expedition"
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"say": [
+						"p_count"
+					]
+				}
+			]
+		},
+		{
+			"id": "eggs_taken",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"tag": "lindqvist",
+							"area": "egg_bed",
+							"secs": 8
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"remove": {
+						"tag": "egg_bed"
+					}
+				},
+				{
+					"carry": {
+						"tag": "lindqvist",
+						"on": true,
+						"pace": 0.75
+					}
+				},
+				{
+					"name": {
+						"tag": "lindqvist",
+						"name": "Dr. Lindqvist (the eggs)"
+					}
+				},
+				{
+					"flag": {
+						"eggs": "taken"
+					}
+				},
+				{
+					"objective": {
+						"id": "eggs",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"l_eggs"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"any": [
+					{
+						"fired": "caged_all"
+					},
+					{
+						"awake": "nest"
+					},
+					{
+						"clock_out": "dawn"
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"wake": {
+						"name": "young"
+					}
+				},
+				{
+					"spare": {
+						"tag": "young",
+						"on": false
+					}
+				},
+				{
+					"counter": {
+						"name": "cages0",
+						"set": 0
+					}
+				},
+				{
+					"counter": {
+						"name": "cages0",
+						"add_counter": "caged"
+					}
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "dawn",
+						"set": "hidden"
+					}
+				},
+				{
+					"mist": {
+						"sight": 1.0,
+						"weather": false
+					}
+				},
+				{
+					"light": {
+						"to": "grey_dawn",
+						"secs": 20
+					}
+				}
+			]
+		},
+		{
+			"id": "caged_all",
+			"when": {
+				"all": [
+					{
+						"fired": "start"
+					},
+					{
+						"time": 1
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"any": [
+							{
+								"all": [
+									{
+										"not": {
+											"past": {
+												"b01_specimen.clutch": "burned"
+											}
+										}
+									},
+									{
+										"counter": {
+											"name": "caged",
+											"at_least": 3
+										}
+									}
+								]
+							},
+							{
+								"all": [
+									{
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									},
+									{
+										"counter": {
+											"name": "caged",
+											"at_least": 2
+										}
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_all"
+					]
+				}
+			]
+		},
+		{
+			"id": "woke_early",
+			"when": {
+				"all": [
+					{
+						"awake": "nest"
+					},
+					{
+						"not": {
+							"fired": "caged_all"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_woke"
+					]
+				},
+				{
+					"objective": {
+						"id": "softly",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "nest_wakes",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"wake": {
+						"name": "nest"
+					}
+				}
+			]
+		},
+		{
+			"id": "nest_wakes_c",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "creatures"
+					}
+				]
+			},
+			"delay": 45,
+			"do": [
+				{
+					"wake": {
+						"name": "nest"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/linnea_call",
+						"area": "hollow",
+						"vol": -4
+					}
+				}
+			]
+		},
+		{
+			"id": "softly_kept",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "woke_early"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "softly",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "eggs_missed",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "eggs_taken"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "eggs",
+						"set": "failed"
+					}
+				},
+				{
+					"flag": {
+						"eggs": "left"
+					}
+				}
+			]
+		},
+		{
+			"id": "empty",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"counter": {
+							"name": "caged",
+							"below": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_empty"
+					]
+				},
+				{
+					"objective": {
+						"id": "take",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_go",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"counter": {
+							"name": "caged",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"objective": {
+						"id": "take",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "trail",
+						"set": "active"
+					}
+				},
+				{
+					"remove": {
+						"tag": "carts",
+						"empty": true
+					}
+				},
+				{
+					"carry": {
+						"tag": "carts",
+						"on": true,
+						"pace": 0.4
+					}
+				},
+				{
+					"light": {
+						"to": "jungle_day",
+						"secs": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "go_short",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"past": {
+								"a03_plateau.map": "withheld"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "carts",
+						"do": "route",
+						"route": [
+							"s1",
+							"s2",
+							"s3",
+							"s4",
+							"s5",
+							"s6",
+							"quay"
+						],
+						"name": "trail"
+					}
+				},
+				{
+					"flag": {
+						"way": "short"
+					}
+				},
+				{
+					"ping": {
+						"area": "s1"
+					}
+				}
+			]
+		},
+		{
+			"id": "go_long",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"past": {
+							"a03_plateau.map": "withheld"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "carts",
+						"do": "route",
+						"route": [
+							"top_w",
+							"top_ww",
+							"long_top",
+							"l1",
+							"l2",
+							"l3",
+							"l4",
+							"l5",
+							"l6",
+							"l7",
+							"quay"
+						],
+						"name": "trail"
+					}
+				},
+				{
+					"flag": {
+						"way": "long"
+					}
+				},
+				{
+					"ping": {
+						"area": "long_top"
+					}
+				}
+			]
+		},
+		{
+			"id": "trail_lines",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"playing": "expedition"
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"say": [
+						"l_trail",
+						"tip_trail"
+					]
+				}
+			]
+		},
+		{
+			"id": "trail_c",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"playing": "creatures"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "c_sleep",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "c_free",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"area": "cartpark"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/linnea_call",
+						"area": "hollow",
+						"vol": -4
+					}
+				}
+			]
+		},
+		{
+			"id": "raid1",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 35,
+			"do": [
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
+						"at": "rs_a",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rs_a",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
+						"at": "rl_a",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rl_a",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "carts",
+						"within": 45
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"vol": -6
+					}
+				},
+				{
+					"say": [
+						"l_raid1"
+					]
+				}
+			]
+		},
+		{
+			"id": "raid2",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 110,
+			"do": [
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 6,
+						"at": "rs_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 4,
+						"at": "rs_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rs_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "rs_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 6,
+						"at": "rl_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 4,
+						"at": "rl_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rl_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "rl_b",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "carts",
+						"within": 45
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"vol": -6
+					}
+				},
+				{
+					"say": [
+						"l_grown"
+					]
+				}
+			]
+		},
+		{
+			"id": "raid3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 185,
+			"do": [
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
+						"at": "rs_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rs_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rs_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "rs_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 2,
+						"at": "rs_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 1,
+						"at": "rs_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
+						"at": "rl_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rl_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rl_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "rl_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 2,
+						"at": "rl_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 1,
+						"at": "rl_c",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "carts",
+						"within": 45
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"vol": -6
+					}
+				}
+			]
+		},
+		{
+			"id": "raid4",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 260,
+			"do": [
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 6,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 4,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 3,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 1,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 1,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 6,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 4,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 3,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 1,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 1,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "carts",
+						"within": 45
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"vol": -6
+					}
+				}
+			]
+		},
+		{
+			"id": "raid5",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 335,
+			"do": [
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 3,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 2,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 1,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 3,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 2,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "spitter",
+						"count": 1,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "carts",
+						"within": 45
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"vol": -6
+					}
+				}
+			]
+		},
+		{
+			"id": "raid6",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 410,
+			"do": [
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 4,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 2,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 1,
+						"at": "rs_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a03_plateau.map": "withheld"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 8,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "raptor",
+						"count": 5,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 4,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 2,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "pack",
+						"kind": "venom_challenger",
+						"count": 1,
+						"at": "rl_d",
+						"tag": "raiders",
+						"if": {
+							"all": [
+								{
+									"past": {
+										"a03_plateau.map": "withheld"
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.clutch": "burned"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "carts",
+						"within": 45
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"vol": -6
+					}
+				}
+			]
+		},
+		{
+			"id": "raid_hunt",
+			"when": {
+				"all": [
+					{
+						"fired": "raid1"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "carts",
+						"within": 45
+					}
+				}
+			]
+		},
+		{
+			"id": "raid_left",
+			"when": {
+				"all": [
+					{
+						"fired": "raid1"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"cargo": {
+							"tag": "carts",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey_team": "expedition",
+						"within": 40
+					}
+				}
+			]
+		},
+		{
+			"id": "freed_hunt",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "freed",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "freed",
+						"do": "hunt",
+						"prey_team": "expedition",
+						"within": 20
+					}
+				}
+			]
+		},
+		{
+			"id": "guard_hunt",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "nest_guard",
+						"do": "hunt",
+						"prey_team": "expedition",
+						"within": 14
+					}
+				}
+			]
+		},
+		{
+			"id": "first_freed",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "freed",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "expedition"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_freed"
+					]
+				}
+			]
+		},
+		{
+			"id": "all_lost",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"cargo": {
+							"tag": "carts",
+							"below": 1
+						}
+					},
+					{
+						"counter": {
+							"name": "cages",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"l_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "trail",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"count": {
+							"tag": "carts",
+							"area": "landing_near",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "trail",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "landing",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "canoes",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "canoes",
+						"secs": 180
+					}
+				},
+				{
+					"ping": {
+						"area": "quay"
+					}
+				},
+				{
+					"ping": {
+						"area": "crates"
+					}
+				}
+			]
+		},
+		{
+			"id": "landing_lines",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "expedition"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"b_1",
+						"l_crates",
+						"b_crates"
+					]
+				}
+			]
+		},
+		{
+			"id": "room_line",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "expedition"
+					},
+					{
+						"past": {
+							"b01_specimen.saved": "few"
+						}
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"say": [
+						"b_room_few"
+					]
+				}
+			]
+		},
+		{
+			"id": "room_line_many",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "expedition"
+					},
+					{
+						"past": {
+							"b01_specimen.saved": "many"
+						}
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"say": [
+						"b_room_many"
+					]
+				}
+			]
+		},
+		{
+			"id": "sire",
+			"when": {
+				"fired": "part3"
+			},
+			"delay": 20,
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "tyrannosaur",
+						"count": 1,
+						"at": "sire_lair",
+						"tag": "sire",
+						"name": "The Tyrant Sire"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/sire_roar",
+						"area": "sire_lair"
+					}
+				},
+				{
+					"ping": {
+						"area": "sire_lair"
+					}
+				}
+			]
+		},
+		{
+			"id": "sire_line",
+			"when": {
+				"all": [
+					{
+						"fired": "sire"
+					},
+					{
+						"playing": "expedition"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_roar",
+						"l_sire_comes"
+					]
+				}
+			]
+		},
+		{
+			"id": "sire_hunt",
+			"when": {
+				"all": [
+					{
+						"fired": "sire"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "sire",
+						"do": "hunt",
+						"prey": "carts",
+						"within": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "sire_left",
+			"when": {
+				"all": [
+					{
+						"fired": "sire"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"cargo": {
+							"tag": "carts",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "sire",
+						"do": "hunt",
+						"prey_team": "expedition",
+						"within": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "loaded_line",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "cages",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "expedition"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"b_load"
+					]
+				}
+			]
+		},
+		{
+			"id": "full",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"counter": {
+							"name": "cages",
+							"at_least": 1
+						}
+					},
+					{
+						"cargo": {
+							"tag": "carts",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"count": {
+							"tag": "carts",
+							"area": "quay",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"b_full"
+					]
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"stay": {
+							"tag": "lindqvist",
+							"area": "quay",
+							"secs": 2
+						}
+					},
+					{
+						"counter": {
+							"name": "cages",
+							"at_least": 1
+						}
+					},
+					{
+						"any": [
+							{
+								"cargo": {
+									"tag": "carts",
+									"below": 1
+								}
+							},
+							{
+								"clock_out": "canoes"
+							},
+							{
+								"all": [
+									{
+										"counter": {
+											"name": "cages",
+											"at_least": 1
+										}
+									},
+									{
+										"fired": "room_full"
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"tally": {
+						"flag": "cages",
+						"counter": "cages",
+						"of": "cages0",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.5,
+								"some"
+							],
+							[
+								1,
+								"all"
+							]
+						]
+					}
+				},
+				{
+					"say": [
+						"b_push",
+						"l_end"
+					]
+				},
+				{
+					"objective": {
+						"id": "landing",
+						"set": "done"
+					}
+				},
+				{
+					"spare": {
+						"tag": "lindqvist",
+						"on": true
+					}
+				},
+				{
+					"pin": {
+						"tag": "lindqvist",
+						"on": true
+					}
+				},
+				{
+					"light": {
+						"to": "jungle_dusk",
+						"secs": 8
+					}
+				},
+				{
+					"flag": {
+						"crates": "seen"
+					}
+				}
+			]
+		},
+		{
+			"id": "room_full",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"counter": {
+							"name": "cages",
+							"at_least": 1
+						}
+					},
+					{
+						"any": [
+							{
+								"all": [
+									{
+										"past": {
+											"b01_specimen.saved": "few"
+										}
+									},
+									{
+										"counter": {
+											"name": "cages",
+											"at_least": 2
+										}
+									}
+								]
+							},
+							{
+								"all": [
+									{
+										"all": [
+											{
+												"not": {
+													"past": {
+														"b01_specimen.saved": "few"
+													}
+												}
+											},
+											{
+												"not": {
+													"past": {
+														"b01_specimen.saved": "many"
+													}
+												}
+											}
+										]
+									},
+									{
+										"counter": {
+											"name": "cages",
+											"at_least": 3
+										}
+									}
+								]
+							},
+							{
+								"all": [
+									{
+										"past": {
+											"b01_specimen.saved": "many"
+										}
+									},
+									{
+										"counter": {
+											"name": "cages",
+											"at_least": 4
+										}
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			"do": []
+		},
+		{
+			"id": "pieter_alive",
+			"when": {
+				"all": [
+					{
+						"fired": "the_end"
+					},
+					{
+						"count": {
+							"tag": "pieter",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"pieter": "alive"
+					}
+				}
+			]
+		},
+		{
+			"id": "pieter_gone",
+			"when": {
+				"all": [
+					{
+						"fired": "the_end"
+					},
+					{
+						"count": {
+							"tag": "pieter",
+							"below": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"pieter": "lost"
+					}
+				}
+			]
+		},
+		{
+			"id": "won",
+			"when": {
+				"fired": "the_end"
+			},
+			"delay": 5,
+			"do": [
+				{
+					"win": "expedition"
+				}
+			]
+		},
+		{
+			"id": "canoes_gone",
+			"when": {
+				"all": [
+					{
+						"clock_out": "canoes"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"count": {
+								"tag": "lindqvist",
+								"area": "quay",
+								"at_least": 1
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"b_gone"
+					]
+				},
+				{
+					"objective": {
+						"id": "landing",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "hurt_l",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "lindqvist",
+							"below": 0.5
+						}
+					},
+					{
+						"playing": "expedition"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_hurt"
+					]
+				}
+			]
+		},
+		{
+			"id": "c_count",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"playing": "creatures"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 1,
+			"do": [
+				{
+					"tally": {
+						"flag": "share",
+						"counter": "freed",
+						"of": "cages0",
+						"bands": [
+							[
+								0,
+								"under"
+							],
+							[
+								0.5,
+								"half"
+							]
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "c_freed",
+			"when": {
+				"all": [
+					{
+						"playing": "creatures"
+					},
+					{
+						"flag": {
+							"share": "half"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "c_free",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"specimens": "freed",
+						"cages": "none",
+						"cages_n": 0
+					}
+				},
+				{
+					"win": "creatures"
+				}
+			]
+		},
+		{
+			"id": "c_killed",
+			"when": {
+				"all": [
+					{
+						"playing": "creatures"
+					},
+					{
+						"dead": "lindqvist"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "c_free",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"specimens": "freed",
+						"cages": "none",
+						"cages_n": 0
+					}
+				},
+				{
+					"win": "creatures"
+				}
+			]
+		},
+		{
+			"id": "c_escaped",
+			"when": {
+				"all": [
+					{
+						"playing": "creatures"
+					},
+					{
+						"fired": "the_end"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "c_free",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "x_eggs",
+			"when": {
+				"all": [
+					{
+						"time": 3
+					},
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "lindqvist",
+						"do": "route",
+						"route": [
+							"hollow_w",
+							"egg_bed"
+						],
+						"name": "x1"
+					}
+				},
+				{
+					"order": {
+						"tag": "guns",
+						"do": "follow",
+						"leader": "lindqvist",
+						"within": 3
+					}
+				},
+				{
+					"order": {
+						"tag": "porters",
+						"do": "follow",
+						"leader": "lindqvist",
+						"within": 3
+					}
+				},
+				{
+					"order": {
+						"tag": "pieter",
+						"do": "follow",
+						"leader": "lindqvist",
+						"within": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "x_w",
+			"when": {
+				"all": [
+					{
+						"fired": "eggs_taken"
+					},
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"order": {
+						"tag": "lindqvist",
+						"do": "route",
+						"route": [
+							"hollow_w",
+							"young_w"
+						],
+						"name": "x2"
+					}
+				}
+			]
+		},
+		{
+			"id": "x_m",
+			"when": {
+				"all": [
+					{
+						"fired": "load_w"
+					},
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"b01_specimen.clutch": "burned"
+							}
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"order": {
+						"tag": "lindqvist",
+						"do": "route",
+						"route": [
+							"young_m"
+						],
+						"name": "x3"
+					}
+				}
+			]
+		},
+		{
+			"id": "x_e",
+			"when": {
+				"all": [
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"any": [
+							{
+								"all": [
+									{
+										"fired": "load_m"
+									},
+									{
+										"not": {
+											"past": {
+												"b01_specimen.clutch": "burned"
+											}
+										}
+									}
+								]
+							},
+							{
+								"all": [
+									{
+										"fired": "load_w"
+									},
+									{
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"order": {
+						"tag": "lindqvist",
+						"do": "route",
+						"route": [
+							"young_e"
+						],
+						"name": "x4"
+					}
+				}
+			]
+		},
+		{
+			"id": "x_down",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"order": {
+						"tag": "lindqvist",
+						"do": "follow",
+						"leader": "carts",
+						"within": 3
+					}
+				},
+				{
+					"order": {
+						"tag": "guns",
+						"do": "follow",
+						"leader": "carts",
+						"within": 4
+					}
+				},
+				{
+					"order": {
+						"tag": "porters",
+						"do": "follow",
+						"leader": "carts",
+						"within": 3
+					}
+				},
+				{
+					"order": {
+						"tag": "pieter",
+						"do": "follow",
+						"leader": "lindqvist",
+						"within": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "x_fight",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"order": {
+						"tag": "guns",
+						"do": "follow",
+						"leader": "carts",
+						"within": 4
+					}
+				},
+				{
+					"order": {
+						"tag": "guns",
+						"do": "hunt",
+						"prey_team": "creatures",
+						"within": 7
+					}
+				}
+			]
+		},
+		{
+			"id": "x_quay",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					}
+				]
+			},
+			"every": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "lindqvist",
+						"do": "move",
+						"to": "quay"
+					}
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 8
+			},
+			"do": [
+				{
+					"say": [
+						"new_stage2",
+						"new_tyrant_challenger"
+					]
+				}
+			]
+		}
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "expedition"
+		},
+		"lindqvist": {
+			"name": "Dr. Lindqvist",
+			"side": "expedition"
+		},
+		"pieter": {
+			"name": "Pieter",
+			"side": "expedition"
+		},
+		"benedito": {
+			"name": "Benedito",
+			"side": "expedition"
+		},
+		"narrator": {
+			"name": "The Mountain",
+			"side": "expedition"
+		},
+		"new": {
+			"name": "NEW",
+			"side": "creatures"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "The doctor came before me in chains, an old man. He asked to tell it himself."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "I let him. He tells it as his finest hour. I will say where it was not."
+		},
+		"l_open1": {
+			"who": "lindqvist",
+			"text": "Majesty. Two years after the station burned, the Academy gave me money again."
+		},
+		"l_open_saved": {
+			"who": "lindqvist",
+			"text": "The eggs I carried out of the fire had hatched. I needed a father for them."
+		},
+		"l_open_burned": {
+			"who": "lindqvist",
+			"text": "I had nothing left but my notes. I needed eggs, and young ones."
+		},
+		"l_open2": {
+			"who": "lindqvist",
+			"text": "In the dry season we went up the mountain, with guns, porters and carts."
+		},
+		"k_open_c": {
+			"who": "king",
+			"text": "No creature told me this. But the nest was theirs, and the young were theirs."
+		},
+		"k_open_c2": {
+			"who": "king",
+			"text": "That dry season men came with cages while the nest slept."
+		},
+		"l_1": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "Quietly. The young sleep apart from the nest, in the ferns."
+		},
+		"l_2": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "Stand by each one a moment and net it. The carts will come for them."
+		},
+		"tip_1": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "The eggs lie at the swamp's edge in the hollow. I will fetch those myself."
+		},
+		"l_sire": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "And the young Sire in the middle. A father for my line."
+		},
+		"l_fresh": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "Two young and a clutch of eggs. Enough to begin again."
+		},
+		"l_short": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "We have the mapmaker's road. The carts go straight down the commission's path."
+		},
+		"l_long": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "No map. Benedito remembers an old way down on the west side. A long road through the forest."
+		},
+		"p_book": {
+			"who": "pieter",
+			"to": "expedition",
+			"text": "I have the specimen book, Doctor. I will count every cage."
+		},
+		"l_pieter": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "I keep the book myself now. Pieter used to."
+		},
+		"l_taken": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "So many young. The pack carried my clutch up here after all."
+		},
+		"tip_porters": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "The porters can mend a cart. Keep them close to the cages."
+		},
+		"l_net_w": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "The net is on it. Bring the cart."
+		},
+		"l_net_m": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "Gently. He weighs more than three men already. The cart!"
+		},
+		"l_net_e": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "Mind its mouth, it spits even asleep. The cart."
+		},
+		"l_caged": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "Caged."
+		},
+		"p_count": {
+			"who": "pieter",
+			"to": "expedition",
+			"text": "One in the book."
+		},
+		"l_eggs": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "The eggs. Warm. I carry them myself."
+		},
+		"l_all": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "All of them. Now down, before the sun."
+		},
+		"l_woke": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "They are awake! The carts, now! Down the mountain!"
+		},
+		"l_empty": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "Nothing. We go down with empty cages."
+		},
+		"l_trail": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "The carts are rolling. Keep the guns round them."
+		},
+		"tip_trail": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "The carts carry our powder too. A man who has fired his shots refills beside one."
+		},
+		"l_raid1": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "In the trees! They want the cages!"
+		},
+		"l_grown": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "Those are not hatchlings. Last year's young, grown. Look at them."
+		},
+		"l_freed": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "A cage is broken! It is loose!"
+		},
+		"l_lost": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "Every cage broken. Two years for nothing."
+		},
+		"b_1": {
+			"who": "benedito",
+			"to": "expedition",
+			"text": "Here, Doctor! The canoes are ready. Load the cages."
+		},
+		"l_crates": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "Whose crates are those on the quay?"
+		},
+		"b_crates": {
+			"who": "benedito",
+			"to": "expedition",
+			"text": "From Lisbon, for the mines in the south. Heavy. A gear stamped on the wood."
+		},
+		"b_room_few": {
+			"who": "benedito",
+			"to": "expedition",
+			"text": "Few paddlers came from Nazaré, Doctor. Two cages, no more."
+		},
+		"b_room_many": {
+			"who": "benedito",
+			"to": "expedition",
+			"text": "All of Nazaré came to paddle. There is room for every cage."
+		},
+		"n_roar": {
+			"who": "narrator",
+			"to": "expedition",
+			"text": "Up the river bank something roared, and the forest went quiet."
+		},
+		"l_sire_comes": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "The Sire. He has come for the last cart. Hold him off!"
+		},
+		"b_load": {
+			"who": "benedito",
+			"to": "expedition",
+			"text": "One aboard! Bring the next!"
+		},
+		"b_full": {
+			"who": "benedito",
+			"to": "expedition",
+			"text": "No more room, Doctor! The canoes are full!"
+		},
+		"b_push": {
+			"who": "benedito",
+			"to": "expedition",
+			"text": "Push off! Paddle!"
+		},
+		"l_end": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "We went down the river with the cages rattling."
+		},
+		"b_gone": {
+			"who": "benedito",
+			"to": "expedition",
+			"text": "The canoes are going, Doctor! We cannot wait!"
+		},
+		"l_hurt": {
+			"who": "lindqvist",
+			"to": "expedition",
+			"text": "I am hurt. Keep them off me!"
+		},
+		"l_end_all": {
+			"who": "lindqvist",
+			"text": "Every cage came down to the river. The finest expedition of my life."
+		},
+		"l_end_some": {
+			"who": "lindqvist",
+			"text": "Not every cage came down, but enough."
+		},
+		"l_end_few": {
+			"who": "lindqvist",
+			"text": "Only a few cages came down. It was enough for me."
+		},
+		"l_end_saved": {
+			"who": "lindqvist",
+			"text": "The young Sire was for the eggs I saved. In a year I had a breeding stock."
+		},
+		"l_end_burned": {
+			"who": "lindqvist",
+			"text": "The eggs I took that night were my new beginning."
+		},
+		"l_end_eggs": {
+			"who": "lindqvist",
+			"text": "I carried the eggs down myself, all the way to the river."
+		},
+		"l_end_pieter": {
+			"who": "lindqvist",
+			"text": "Pieter wrote every cage in the book."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "His finest hour, he calls it. He took a mother's young in the night."
+		},
+		"k_end2": {
+			"who": "king",
+			"text": "And the crates on that quay went south to the mines. Nobody opened them."
+		},
+		"k_end_c1": {
+			"who": "king",
+			"text": "That is not how it went. The carts came down to the river."
+		},
+		"k_end_c2": {
+			"who": "king",
+			"text": "But it could have gone that way. Then the doctor would have come home with empty cages."
+		},
+		"new_stage2": {
+			"who": "new",
+			"to": "creatures",
+			"text": "NEW: GROW. Rooted, the Mother grows to her second stage: more eggs, and the young may MATURE."
+		},
+		"new_tyrant_challenger": {
+			"who": "new",
+			"to": "creatures",
+			"text": "NEW: MATURE. A grown Raptor moults into a Tyrant Challenger; a grown Spitter into a Venom Challenger."
+		}
+	},
+	"stills": {
+		"rome": {
+			"image": "res://campaign/stills/b01_08.jpg",
+			"caption": "Rome, the present. The King and his prisoner, the doctor."
+		},
+		"camp": {
+			"image": "res://campaign/stills/a05_01.jpg",
+			"caption": "The cloud mountain, the dry season 2769. The Academy's camp by night."
+		},
+		"taking": {
+			"image": "res://campaign/stills/a05_02.jpg",
+			"caption": "The taking: the young netted in the ferns."
+		},
+		"trail": {
+			"image": "res://campaign/stills/a05_03.jpg",
+			"caption": "The cage carts on the trail down."
+		},
+		"landing": {
+			"image": "res://campaign/stills/a05_04.jpg",
+			"caption": "The river landing, the canoes and the Lisbon crates."
+		},
+		"sire": {
+			"image": "res://campaign/stills/a05_05.jpg",
+			"caption": "The Sire comes for the last cart."
+		}
+	},
+	"opening": {
+		"expedition": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2"
+				]
+			},
+			{
+				"still": "camp",
+				"lines": [
+					"l_open1",
+					{
+						"id": "l_open_saved",
+						"if": {
+							"not": {
+								"past": {
+									"b01_specimen.clutch": "burned"
+								}
+							}
+						}
+					},
+					{
+						"id": "l_open_burned",
+						"if": {
+							"past": {
+								"b01_specimen.clutch": "burned"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "taking",
+				"lines": [
+					"l_open2"
+				]
+			}
+		],
+		"creatures": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open_c"
+				]
+			},
+			{
+				"still": "taking",
+				"lines": [
+					"k_open_c2"
+				]
+			}
+		]
+	},
+	"ending": {
+		"expedition": [
+			{
+				"still": "landing",
+				"lines": [
+					{
+						"id": "l_end_all",
+						"if": {
+							"flag": {
+								"cages": "all"
+							}
+						}
+					},
+					{
+						"id": "l_end_some",
+						"if": {
+							"flag": {
+								"cages": "some"
+							}
+						}
+					},
+					{
+						"id": "l_end_few",
+						"if": {
+							"flag": {
+								"cages": "few"
+							}
+						}
+					},
+					{
+						"id": "l_end_eggs",
+						"if": {
+							"flag": {
+								"eggs": "taken"
+							}
+						}
+					},
+					{
+						"id": "l_end_pieter",
+						"if": {
+							"flag": {
+								"pieter": "alive"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "trail",
+				"lines": [
+					{
+						"id": "l_end_saved",
+						"if": {
+							"not": {
+								"past": {
+									"b01_specimen.clutch": "burned"
+								}
+							}
+						}
+					},
+					{
+						"id": "l_end_burned",
+						"if": {
+							"past": {
+								"b01_specimen.clutch": "burned"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end1",
+					"k_end2"
+				]
+			}
+		],
+		"creatures": [
+			{
+				"still": "sire",
+				"lines": [
+					"k_end_c1"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_c2"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"expedition": {
+			"still": "camp",
+			"text": [
+				"The cloud mountain, the dry season 2769. You are Dr. Lindqvist, with the Academy's hired guns, porters and cage carts.",
+				"By night, net the sleeping young and take the eggs. By day, bring the cages down to Benedito's canoes.",
+				"Lindqvist must live. Do not wake the nest."
+			]
+		},
+		"creatures": {
+			"still": "taking",
+			"text": [
+				"The cloud mountain, the dry season 2769. You are the nest: the Mother in her hollow, her hunters asleep.",
+				"Men with cages are in the ferns. Grow the Mother and the young while you sleep; when they take to the trail, free the cages."
+			]
+		}
+	},
+	"debrief": {
+		"expedition": {
+			"still": "landing",
+			"title": "Down to the river",
+			"text": "Lindqvist brought the cages down to Benedito's canoes.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"cages": "all"
+						}
+					},
+					"text": "Every cage came down: {cages} of {cages0}."
+				},
+				{
+					"if": {
+						"flag": {
+							"cages": "some"
+						}
+					},
+					"text": "{cages} of {cages0} cages came down."
+				},
+				{
+					"if": {
+						"flag": {
+							"cages": "few"
+						}
+					},
+					"text": "Only {cages} of {cages0} cages came down."
+				},
+				{
+					"if": {
+						"flag": {
+							"eggs": "taken"
+						}
+					},
+					"text": "He carried the eggs himself."
+				}
+			]
+		},
+		"creatures": {
+			"still": "sire",
+			"title": "The cages are broken",
+			"text": "The young went back to the mountain. The doctor's carts came down empty."
+		}
+	},
+	"next": {
+		"expedition": "a07_council",
+		"creatures": ""
+	}
+}

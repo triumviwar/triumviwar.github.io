@@ -105,14 +105,23 @@ The economy a faction cannot play without; the first mission of the line teaches
   Crown: bound too). The plan's garrison has a Barracks and a Powder Mill and no Horse Breeder: give it one standing
   (or a site) so the C2 pieces can be MADE, or the step teaches only the given Horsemen. Add C2's cards (CARDS has
   them; pt/es to write: CARDS_PT / CARDS_ES) and its row in test_roster_ladder.gd's "built" list.
-- a04_visit: Ferrer's party (Crown, PURPLE) is the solo default and has no production: not bound. THE GUILD (co-op
-  p2) is bound to K3: Heavy Works + Pendulum. A solo player meets K3's pieces only if the guild is played (or
-  through a02's `gate` pattern): Claude's choice 2.
-- a05_specimens: THE CREATURES (the solo pick and versus) are bound to B3; the expedition (Crown stand-in, the
-  default) has no production.
-- a06_barricades: the army ("army" and Ruggieri's "guns", co-op p2) bound to C3.
-- a07_council: THE CROWN bound to C4. The creatures and the automata are the other sides (scripted / versus): not
-  bound; if a versus player picks them, they get what the night of fire needs.
+- a04_visit: APPLIED (job a04-visit, 0.38.63): Ferrer's party (Crown, PURPLE) is the solo default and has no
+  production: not bound. THE GUILD (co-op p2) is bound to K3: Heavy Works + Pendulum (a Heavy Works stands among the six
+  workshops, a Pendulum is given and holds the yard's gate in the riot); the cards go to the side `visit` 8 s in, in pt
+  / es. A solo player meets K3's pieces only if the guild is played (or through a02's `gate` pattern): Claude's choice 2.
+- a05_specimens: APPLIED (job a05-specimens, 0.38.64): THE CREATURES (the solo pick and versus) are bound to B3: GROW
+  (stage 2) and MATURE (Tyrant and Venom Challengers), the story's deny of the Tyrant Sire on top (he is away and comes
+  for the last cart, as a03's); B3's cards to the side `creatures` 8 s in, in pt / es. The expedition (Crown stand-in,
+  the default) has no production (its own roster denies every building) and is not bound. The scripted raids show the
+  grown ones (Challengers) from the expedition's side (docs/campaign_a05_build.md).
+- a06_barricades: APPLIED (job a06-barricades, 0.38.59): the army ("army") and Ruggieri's "guns" (co-op p2) bound to
+  C3, the story's deny (no Town Hall or Farm in a siege camp) on top; the camp has a Foundry and a Horse Breeder
+  standing; the Mortar is given (one) and can be made; C3's cards in pt/es; the row in test_roster_ladder.gd. The
+  mission shows the Mortar on the barricades' men and canister on the rushes (docs/campaign_a06_build.md).
+- a07_council: BUILT (a07-council, 0.38.68): the King's guard and the garrison bound to C4, the story's deny (no Town
+  Hall or Farm: the King's treasury pays) on top; SANTO SPIRITO (a Church) stands by the piazza; Missionaries trained
+  there LEAD THE PEOPLE as Father Tomasz does (auto_tags); C4's cards in pt/es, said at 0:08. The creatures and the
+  automata (scripted / versus, the friend's pick) and the Assembly's cell are not bound (docs/campaign_a07_build.md).
 
 ## The rule for the other side
 
@@ -139,7 +148,7 @@ ladder there, never here by hand.
 | C1 | p01_leaf | governor guns | musketeer cannon | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon |
 | C2 | a01_presses | garrison watch | horse_breeder cuirassier | horse dismounted messenger | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger |
 | C3 | a06_barricades | army guns | foundry mortar | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar |
-| C4 | a07_council | crown | church missionary | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary |
+| C4 | a07_council | guard garrison | church missionary | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary |
 | C5 | (slot) | - | armoury matchlock bayonet | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet |
 | C6 | (slot) | - | dragoon charge | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge |
 | C7 | (slot) | - | armour powder_wagon | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon |
@@ -180,6 +189,9 @@ ladder there, never here by hand.
   the `gate` pattern unlock, no Aviary, turret, Serpent or research). Cards: the Springer, the Netter.
 - a03_plateau: THE NEST: B2 (the Venom Sire and Spitters makeable) plus the story's deny of the Tyrant Sire. No
   GROW / MATURE / research. Cards (to the nest only): the Venom Sire, the Spitters.
+- a04_visit (0.38.63): THE GUILD (the co-op friend): K3, the Heavy Works and the Pendulum makeable (a Heavy Works among
+  the six workshops, a Pendulum given); no Aviary, turret, Serpent, Great Winder, Ballista or research. Cards (to the
+  visit's side): the Heavy Works, the Pendulum.
 
 ## Engine (docs/campaign_engine.md "Added by the roster ladder")
 

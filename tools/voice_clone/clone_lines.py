@@ -42,27 +42,36 @@ ref = a.ref if os.path.isabs(a.ref) else os.path.join(HERE, a.ref)
 os.makedirs(a.out, exist_ok=True)
 lines = []
 cur = ref
+pitch = a.pitch
+exag = a.exaggeration
 for raw in open(a.lines, encoding="utf-8"):
     raw = raw.strip()
-    if raw.lower().startswith("[ref ") and raw.endswith("]"):
+    # [pitch -1.5] / [exaggeration 0.6]: for the lines after it (like [ref ...]); the command-line value is the start.
+    if raw.lower().startswith("[pitch ") and raw.endswith("]"):
+        pitch = float(raw[7:-1])
+    elif raw.lower().startswith("[exaggeration ") and raw.endswith("]"):
+        exag = float(raw[14:-1])
+    elif raw.lower().startswith("[ref ") and raw.endswith("]"):
         r = raw[5:-1].strip()
         cur = r if os.path.isabs(r) else os.path.join(HERE, r)
         if not os.path.exists(cur):
             sys.exit("lines.txt: no such voice reference: " + cur)
     elif raw and not raw.startswith("#") and "|" in raw:
         name, text = raw.split("|", 1)
-        lines.append((name.strip(), text.strip(), cur))
+        lines.append((name.strip(), text.strip(), cur, pitch, exag))
 if not lines:
     sys.exit("lines.txt has no lines like:  king_06 | Your text here.")
-for i, (name, text, voice) in enumerate(lines, 1):
+for i, (name, text, voice, pitch, exag) in enumerate(lines, 1):
+    if os.path.exists(os.path.join(a.out, name + ".wav")):
+        continue    # (already made: a stopped run picks up where it left off; delete a file to make it again)
     print("[%d/%d] %s (%s): %s" % (i, len(lines), name, os.path.basename(voice), text))
-    kw = {"audio_prompt_path": voice, "exaggeration": a.exaggeration, "cfg_weight": a.cfg}
+    kw = {"audio_prompt_path": voice, "exaggeration": exag, "cfg_weight": a.cfg}
     if a.lang != "en":
         kw["language_id"] = a.lang
     wav = model.generate(text, **kw)
-    if a.pitch != 0.0:
+    if pitch != 0.0:
         import librosa
-        y = librosa.effects.pitch_shift(wav.squeeze(0).cpu().numpy(), sr=model.sr, n_steps=a.pitch)
+        y = librosa.effects.pitch_shift(wav.squeeze(0).cpu().numpy(), sr=model.sr, n_steps=pitch)
         wav = torch.from_numpy(y).unsqueeze(0)
     wav = wav / max(float(wav.abs().max()), 1e-6) * 0.89     # (levelled just under the ceiling: no clipping)
     ta.save(os.path.join(a.out, name + ".wav"), wav, model.sr)

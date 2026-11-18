@@ -1,0 +1,542 @@
+# Act 1's mission a04_visit, "Father Ferrer's Visit" (campaign/missions/a04_visit.json, written by tools/campaign/make_a04_mission.py;
+# the plan: docs/campaign_act1_plan.md; what was built: docs/campaign_a04_build.md). EVERY LINE IS A PLACEHOLDER for the owner.
+# Also the hubs' talks after a04 (campaign.json), the roster ladder's K3 cards and the new roles. Texts a02 / c01 already have are not repeated.
+# Names as a02 / c01: stop-work = trava / tope; Winder = Enrolador / Dador de cuerda; Meister = Mestre / maestro; the Perpetual =
+# o Perpétuo / el Perpetuo; gear ground = terreno de engrenagens / de engranajes; the Roman College = o Colégio Romano / el Colegio
+# Romano; lay brother = irmão leigo / hermano lego; the broken ones = os quebrados / los rotos.
+
+> Fürth, autumn 2769. The Roman College sends Father Ferrer to inspect the guild's works before the Church decides what to do about Nuremberg. He finds more than he was told.
+pt Fürth, outono de 2769. O Colégio Romano envia o Padre Ferrer para inspecionar as oficinas da guilda antes que a Igreja decida o que fazer com Nuremberg. Ele encontra mais do que lhe disseram.
+es Fürth, otoño de 2769. El Colegio Romano envía al Padre Ferrer a inspeccionar los talleres del gremio antes de que la Iglesia decida qué hacer con Núremberg. Encuentra más de lo que le dijeron.
+
+> Father Ferrer's Visit
+pt A Visita do Padre Ferrer
+es La Visita del Padre Ferrer
+
+> The Roman College's inspector, his lay brothers and a Franconian escort, with Meister Hollweg's guild.
+pt O inspetor do Colégio Romano, os seus irmãos leigos e uma escolta franconiana, com a guilda do Mestre Hollweg.
+es El inspector del Colegio Romano, sus hermanos legos y una escolta franconia, con el gremio del maestro Hollweg.
+
+> Nuremberg's masters, across the water meadows. Its gear ground has crept closer.
+pt Os senhores de Nuremberg, do outro lado dos prados alagados. O seu terreno de engrenagens avançou.
+es Los amos de Núremberg, al otro lado de los prados anegados. Su terreno de engranajes se ha acercado.
+
+> Inspect the guild's six workshops: {inspected} of 6. Bring Father Ferrer into each and keep him there a few seconds.
+pt Inspecione as seis oficinas da guilda: {inspected} de 6. Leve o Padre Ferrer a cada uma e mantenha-o lá alguns segundos.
+es Inspecciona los seis talleres del gremio: {inspected} de 6. Lleva al Padre Ferrer a cada uno y mantenlo allí unos segundos.
+
+> The works shut at dusk: {clock:dusk}.
+pt As oficinas fecham ao anoitecer: {clock:dusk}.
+es Los talleres cierran al anochecer: {clock:dusk}.
+
+> Jakob wants a word with the Father, away from his master.
+pt Jakob quer falar com o Padre, longe do seu mestre.
+es Jakob quiere hablar con el Padre, lejos de su maestro.
+
+> Read Jakob's old log in Hollweg's barn.
+pt Leia o velho diário de Jakob no celeiro de Hollweg.
+es Lee el viejo diario de Jakob en el granero de Hollweg.
+
+> Father Ferrer must live.
+pt O Padre Ferrer deve viver.
+es El Padre Ferrer debe vivir.
+
+> Follow the night Winder. Keep it within 8 tiles, and never closer than 3, or it turns back.
+pt Siga o Enrolador da noite. Mantenha-o a menos de 8 casas, e nunca mais perto que 3, ou ele volta atrás.
+es Sigue al Dador de cuerda de la noche. Mantenlo a menos de 8 casillas, y nunca más cerca de 3, o se da la vuelta.
+
+> Dawn in {clock:dawn}.
+pt Amanhece em {clock:dawn}.
+es Amanece en {clock:dawn}.
+
+> Watch from the bank: bring the Father near the river where the Winder stopped.
+pt Observe da margem: leve o Padre perto do rio onde o Enrolador parou.
+es Observa desde la orilla: lleva al Padre cerca del río donde se paró el Dador de cuerda.
+
+> Stop the broken automata before they reach the machine's ground across the meadows. Lost to the machine: {lost_to_machine}.
+pt Detenha os autômatos quebrados antes que cheguem ao terreno da máquina do outro lado dos prados. Perdidos para a máquina: {lost_to_machine}.
+es Detén a los autómatas rotos antes de que lleguen al terreno de la máquina al otro lado de los prados. Perdidos para la máquina: {lost_to_machine}.
+
+> Kill Father Ferrer, or bring 6 of the guild's broken automata to your ground: {lost_to_machine} of 6. They wake at night.
+pt Mate o Padre Ferrer, ou traga 6 dos autômatos quebrados da guilda ao seu terreno: {lost_to_machine} de 6. Eles despertam à noite.
+es Mata al Padre Ferrer, o trae 6 de los autómatas rotos del gremio a tu terreno: {lost_to_machine} de 6. Despiertan de noche.
+
+> Brother Anselm
+pt Irmão Anselmo
+es Hermano Anselmo
+
+> In the autumn of 2769 the Roman College asked me for leave to inspect the guild at Fürth.
+pt No outono de 2769 o Colégio Romano pediu-me licença para inspecionar a guilda em Fürth.
+es En el otoño de 2769 el Colegio Romano me pidió licencia para inspeccionar el gremio en Fürth.
+
+> I sent Father Ferrer. He had warned Hollweg once. I wanted him to see whether he had been wrong.
+pt Mandei o Padre Ferrer. Ele já tinha avisado Hollweg uma vez. Eu queria que visse se estava enganado.
+es Mandé al Padre Ferrer. Ya había advertido a Hollweg una vez. Quería que viera si se había equivocado.
+
+> Fürth had grown. Eighteen months of work, and the barn was a town of gears.
+pt Fürth tinha crescido. Dezoito meses de trabalho, e o celeiro era uma cidade de engrenagens.
+es Fürth había crecido. Dieciocho meses de trabajo, y el granero era una ciudad de engranajes.
+
+> Hollweg met me at the gate. He was proud of it. He had a right to be, I thought then.
+pt Hollweg recebeu-me no portão. Estava orgulhoso. Tinha direito de estar, pensei então.
+es Hollweg me recibió en la puerta. Estaba orgulloso. Tenía derecho a estarlo, pensé entonces.
+
+> The machine had no voice. It waited across the meadows, and its ground crept west.
+pt A máquina não tinha voz. Esperava do outro lado dos prados, e o seu terreno avançava para oeste.
+es La máquina no tenía voz. Esperaba al otro lado de los prados, y su terreno avanzaba hacia el oeste.
+
+> Six workshops, Meister. I will see every one.
+pt Seis oficinas, Mestre. Verei cada uma.
+es Seis talleres, maestro. Veré cada uno.
+
+> See what you like, Father. There is nothing here to hide.
+pt Veja o que quiser, Padre. Aqui não há nada a esconder.
+es Vea lo que quiera, Padre. Aquí no hay nada que esconder.
+
+> Walk the Father into each workshop and keep him there a moment. The guild shuts its doors at dusk.
+pt Leve o Padre a cada oficina e mantenha-o lá um momento. A guilda fecha as portas ao anoitecer.
+es Lleva al Padre a cada taller y mantenlo allí un momento. El gremio cierra sus puertas al anochecer.
+
+> The colonel could spare me only five men. He has not forgotten the Rednitz.
+pt O coronel só pôde me ceder cinco homens. Ele não esqueceu o Rednitz.
+es El coronel solo pudo cederme cinco hombres. No ha olvidado el Rednitz.
+
+> That is our Pendulum, from the Heavy Works. One swing clears a street.
+pt Aquele é o nosso Pêndulo, da Oficina Pesada. Um balanço limpa uma rua.
+es Ese es nuestro Péndulo, del Taller Pesado. Un vaivén despeja una calle.
+
+> The Light Works. Clean benches, good men. Nothing here.
+pt A Oficina Leve. Bancadas limpas, bons homens. Nada aqui.
+es El Taller Ligero. Bancos limpios, buenos hombres. Nada aquí.
+
+> A cog press. Every tooth stamped with the guild's mark. Nothing here.
+pt Uma prensa de engrenagens. Cada dente marcado com o selo da guilda. Nada aqui.
+es Una prensa de engranajes. Cada diente marcado con el sello del gremio. Nada aquí.
+
+> The Mainspring. Wound tight, and the stop-work on it. Nothing here.
+pt A Mola Real. Bem enrolada, e com a sua trava. Nada aqui.
+es El Muelle Real. Bien tenso, y con su tope. Nada aquí.
+
+> The Heavy Works. Big machines, built slowly. Nothing here.
+pt A Oficina Pesada. Máquinas grandes, feitas devagar. Nada aqui.
+es El Taller Pesado. Máquinas grandes, hechas despacio. Nada aquí.
+
+> That Winder is winding another Winder. Who told it to?
+pt Aquele Enrolador está dando corda a outro Enrolador. Quem mandou?
+es Ese Dador de cuerda le está dando cuerda a otro. ¿Quién se lo mandó?
+
+> They help each other. It saves the journeymen's backs.
+pt Eles se ajudam. Poupa as costas dos oficiais.
+es Se ayudan entre ellos. Ahorra las espaldas de los oficiales.
+
+> I will write that down, Meister.
+pt Vou anotar isso, Mestre.
+es Voy a anotarlo, maestro.
+
+> Pamphlets in the journeymen's lockers. The Free Assembly's.
+pt Panfletos nos armários dos oficiais. Da Assembleia Livre.
+es Panfletos en las taquillas de los oficiales. De la Asamblea Libre.
+
+> Young men read. I cannot stop them reading.
+pt Os jovens leem. Não posso impedi-los de ler.
+es Los jóvenes leen. No puedo impedirles leer.
+
+> I know this type. Father Tomasz sent a page of it from Lyon. The same broken letter E.
+pt Conheço estes tipos. O Padre Tomasz mandou uma página deles de Lyon. O mesmo E quebrado.
+es Conozco estos tipos. El Padre Tomasz mandó una página de ellos desde Lyon. La misma E rota.
+
+> Good paper, a good press. Someone pays for this.
+pt Bom papel, uma boa prensa. Alguém paga por isto.
+es Buen papel, una buena prensa. Alguien paga por esto.
+
+> Meister, the presses need you. The big one is off its beat.
+pt Mestre, as prensas precisam do senhor. A grande saiu do compasso.
+es Maestro, las prensas lo necesitan. La grande va fuera de compás.
+
+> Father. A word, please. Not in front of the Meister.
+pt Padre. Uma palavra, por favor. Não diante do Mestre.
+es Padre. Una palabra, por favor. No delante del maestro.
+
+> I found these in a bin behind the Escapement. Stop-works. Twelve of them.
+pt Achei isto numa caixa atrás do Escape. Travas. Doze delas.
+es Encontré esto en un cubo detrás del Escape. Topes. Doce.
+
+> Taken out clean. Not broken. Taken out.
+pt Tiradas limpas. Não quebradas. Tiradas.
+es Sacados limpios. No rotos. Sacados.
+
+> Nobody here took them out, Father. I asked every man.
+pt Ninguém aqui as tirou, Padre. Perguntei a cada homem.
+es Nadie aquí los sacó, Padre. Pregunté a cada hombre.
+
+> Jakob kept a log in Nuremberg. Hollweg keeps it now. I want to read it.
+pt Jakob mantinha um diário em Nuremberg. Hollweg o guarda agora. Quero lê-lo.
+es Jakob llevaba un diario en Núremberg. Hollweg lo guarda ahora. Quiero leerlo.
+
+> Two years old. Winders winding each other. Machines at work with no one at the bench.
+pt De dois anos atrás. Enroladores dando corda uns aos outros. Máquinas trabalhando sem ninguém na bancada.
+es De hace dos años. Dadores de cuerda dándose cuerda unos a otros. Máquinas trabajando sin nadie en el banco.
+
+> The same signs, Meister. Written down before Nuremberg fell.
+pt Os mesmos sinais, Mestre. Escritos antes da queda de Nuremberg.
+es Las mismas señales, maestro. Escritas antes de la caída de Núremberg.
+
+> That was the Perpetual. These have stop-works.
+pt Aquele era o Perpétuo. Estes têm travas.
+es Aquel era el Perpetuo. Estos tienen topes.
+
+> We shut at dusk, Father. You have a little time left.
+pt Fechamos ao anoitecer, Padre. Resta-lhe pouco tempo.
+es Cerramos al anochecer, Padre. Le queda poco tiempo.
+
+> The guild shut its doors. Father Ferrer's report stayed unwritten.
+pt A guilda fechou as portas. O relatório do Padre Ferrer ficou por escrever.
+es El gremio cerró sus puertas. El informe del Padre Ferrer quedó sin escribir.
+
+> That is all of it, Father. Sleep well. The works rest at night.
+pt Isso é tudo, Padre. Durma bem. As oficinas descansam à noite.
+es Eso es todo, Padre. Duerma bien. Los talleres descansan de noche.
+
+> Then I will not sleep. Brothers, we stay up.
+pt Então não vou dormir. Irmãos, ficamos acordados.
+es Entonces no dormiré. Hermanos, nos quedamos despiertos.
+
+> Father, a Winder. Alone, out of the yard. Nobody sent it.
+pt Padre, um Enrolador. Sozinho, saindo do pátio. Ninguém o mandou.
+es Padre, un Dador de cuerda. Solo, saliendo del patio. Nadie lo mandó.
+
+> Follow it. Quietly.
+pt Sigam-no. Em silêncio.
+es Seguidlo. En silencio.
+
+> Keep it within eight tiles. Closer than three and it will see us.
+pt Mantenha-o a menos de oito casas. Mais perto que três e ele nos vê.
+es Mantenlo a menos de ocho casillas. Más cerca de tres y nos verá.
+
+> The Winder stops. Its head turns. Back off, and wait.
+pt O Enrolador para. A cabeça vira. Recuem, e esperem.
+es El Dador de cuerda se para. Gira la cabeza. Retroceded, y esperad.
+
+> The Winder sets out again.
+pt O Enrolador sai de novo.
+es El Dador de cuerda sale de nuevo.
+
+> We have lost sight of it, Father. It went that way.
+pt Perdemos de vista, Padre. Foi por ali.
+es Lo hemos perdido de vista, Padre. Se fue por allí.
+
+> It stopped by the river, below the chapel. There are others there.
+pt Parou junto ao rio, abaixo da capela. Há outros lá.
+es Se paró junto al río, bajo la capilla. Hay otros allí.
+
+> On the bank the guild's automata stand in a ring on gear ground nobody laid. They are meshing.
+pt Na margem os autômatos da guilda estão em roda sobre um terreno de engrenagens que ninguém assentou. Estão se engrenando.
+es En la orilla los autómatas del gremio están en corro sobre un terreno de engranajes que nadie colocó. Se están engranando.
+
+> Nobody built this. They built it.
+pt Ninguém construiu isto. Eles construíram.
+es Nadie construyó esto. Lo construyeron ellos.
+
+> Look at them. The Perpetual's pattern, every wheel, with a stop-work bolted on. They took it off themselves.
+pt Olhem para eles. O modelo do Perpétuo, cada roda, com uma trava aparafusada. Eles mesmos a tiraram.
+es Miradlos. El modelo del Perpetuo, cada rueda, con un tope atornillado. Se lo quitaron ellos mismos.
+
+> Then the flaw is in the drawings, Father.
+pt Então o defeito está nos desenhos, Padre.
+es Entonces el fallo está en los dibujos, Padre.
+
+> Red brass in every one. Parts salvaged from the line, fitted to save time.
+pt Latão vermelho em cada um. Peças recolhidas da linha, montadas para poupar tempo.
+es Latón rojo en cada uno. Piezas recogidas de la línea, montadas para ahorrar tiempo.
+
+> Then the flaw is in the machine, Father, whatever the drawings say.
+pt Então o defeito está na máquina, Padre, digam o que disserem os desenhos.
+es Entonces el fallo está en la máquina, Padre, digan lo que digan los dibujos.
+
+> Dawn came. Whatever the Winder went to do, it was done, and nobody saw it.
+pt Amanheceu. O que quer que o Enrolador tenha ido fazer, foi feito, e ninguém viu.
+es Amaneció. Lo que fuera que el Dador de cuerda fue a hacer, se hizo, y nadie lo vio.
+
+> They turn red, one by one, off the beat. Then they walk for the meadows.
+pt Eles ficam vermelhos, um por um, fora do compasso. Depois andam para os prados.
+es Se vuelven rojos, uno a uno, fuera de compás. Luego echan a andar hacia los prados.
+
+> They are going to the machine. Stop them before they reach its ground!
+pt Estão indo para a máquina. Detenham-nos antes que cheguem ao seu terreno!
+es Van hacia la máquina. ¡Detenedlos antes de que lleguen a su terreno!
+
+> These two in the yard still had their stop-works. I stopped them with my key. Not those.
+pt Estes dois no pátio ainda tinham as suas travas. Parei-os com a minha chave. Aqueles não.
+es Estos dos del patio aún tenían sus topes. Los paré con mi llave. A aquellos no.
+
+> The Pendulum, to the yard's gate! The press-house shift must come past it.
+pt O Pêndulo, para o portão do pátio! O turno da prensa tem de passar por ele.
+es ¡El Péndulo, a la puerta del patio! El turno de la prensa tiene que pasar junto a él.
+
+> The machine is coming out to meet them, at the open gap in the line!
+pt A máquina está saindo ao encontro deles, pela brecha aberta na linha!
+es ¡La máquina sale a su encuentro, por el hueco abierto en la línea!
+
+> The last of them is down or gone. Dawn over the meadows.
+pt O último deles caiu ou se foi. Amanhece sobre os prados.
+es El último de ellos ha caído o se ha ido. Amanece sobre los prados.
+
+> Not one reached it. Thank God.
+pt Nenhum chegou. Graças a Deus.
+es Ni uno llegó. Gracias a Dios.
+
+> Some of them reached it. It will use them.
+pt Alguns chegaram. Ela vai usá-los.
+es Algunos llegaron. Los usará.
+
+> Melt them, Meister. Every wheel.
+pt Derreta-os, Mestre. Cada roda.
+es Fúndalos, maestro. Cada rueda.
+
+> No. Let me keep them. I must learn what went wrong.
+pt Não. Deixe-me ficar com eles. Preciso saber o que deu errado.
+es No. Déjeme quedármelos. Debo saber qué salió mal.
+
+> Into the furnace. I watched it done.
+pt Para a fornalha. Vi fazerem.
+es Al horno. Vi cómo lo hacían.
+
+> You have burned the only witnesses, Father.
+pt O senhor queimou as únicas testemunhas, Padre.
+es Ha quemado a los únicos testigos, Padre.
+
+> I will find the fault. I will mend them, and show Rome they are mended.
+pt Vou achar o defeito. Vou consertá-los, e mostrar a Roma que estão consertados.
+es Encontraré el fallo. Los repararé, y mostraré a Roma que están reparados.
+
+> I wrote that down too.
+pt Isso também anotei.
+es Eso también lo anoté.
+
+> I rode for Rome that morning with my report.
+pt Parti a cavalo para Roma naquela manhã com o meu relatório.
+es Partí a caballo hacia Roma aquella mañana con mi informe.
+
+> The Father is hurt! Keep the muskets round him!
+pt O Padre está ferido! Mantenham os mosquetes à volta dele!
+es ¡El Padre está herido! ¡Mantened los mosquetes a su alrededor!
+
+> Meister Hollweg is hurt. Get men to him.
+pt O Mestre Hollweg está ferido. Mandem homens até ele.
+es El maestro Hollweg está herido. Mandad hombres con él.
+
+> Jakob. Not him too.
+pt Jakob. Ele também não.
+es Jakob. Él también no.
+
+> Tick. Tock. A priest walks in the guild's yard. Kill him.
+pt Tique. Taque. Um padre anda no pátio da guilda. Mate-o.
+es Tic. Tac. Un cura camina por el patio del gremio. Mátalo.
+
+> Your seed on the meadows pays cogs and Tension while it stands. At night, some of theirs will come to you.
+pt A sua semente nos prados paga engrenagens e Tensão enquanto estiver de pé. À noite, alguns dos deles virão até você.
+es Tu semilla en los prados paga engranajes y Tensión mientras siga en pie. De noche, algunos de los suyos vendrán a ti.
+
+> Night. By the river, the guild's machines are meshing. Soon they are yours.
+pt Noite. Junto ao rio, as máquinas da guilda estão se engrenando. Logo serão suas.
+es Noche. Junto al río, las máquinas del gremio se están engranando. Pronto serán tuyas.
+
+> They are walking to you. Bring them home: 6 is enough.
+pt Estão andando até você. Traga-os para casa: 6 bastam.
+es Caminan hacia ti. Tráelos a casa: con 6 basta.
+
+> I wrote my report on the road. I did not soften it.
+pt Escrevi o meu relatório na estrada. Não o suavizei.
+es Escribí mi informe en el camino. No lo suavicé.
+
+> The broken ones were melted. Hollweg did not speak to me again until Rome.
+pt Os quebrados foram derretidos. Hollweg não voltou a falar comigo até Roma.
+es Los rotos fueron fundidos. Hollweg no volvió a hablarme hasta Roma.
+
+> The broken ones were kept. Hollweg swore he would mend them.
+pt Os quebrados foram guardados. Hollweg jurou que os consertaria.
+es Los rotos se guardaron. Hollweg juró que los repararía.
+
+> And some of them reached the machine. I counted them in my report.
+pt E alguns deles chegaram à máquina. Contei-os no meu relatório.
+es Y algunos de ellos llegaron a la máquina. Los conté en mi informe.
+
+> Jakob found the stop-works and told me. He did not tell his master. I put that in too.
+pt Jakob achou as travas e me contou. Não contou ao seu mestre. Também pus isso.
+es Jakob encontró los topes y me lo dijo. No se lo dijo a su maestro. También puse eso.
+
+> Ferrer's report was on my table before the snow. I read it twice.
+pt O relatório de Ferrer estava na minha mesa antes da neve. Li-o duas vezes.
+es El informe de Ferrer estaba en mi mesa antes de la nieve. Lo leí dos veces.
+
+> Hollweg brought his mended machines to Rome. I let him. That was my mistake, not his.
+pt Hollweg trouxe as suas máquinas consertadas a Roma. Eu deixei. O erro foi meu, não dele.
+es Hollweg trajo sus máquinas reparadas a Roma. Se lo permití. El error fue mío, no suyo.
+
+> Hollweg came to Rome with nothing but his drawings, and his anger.
+pt Hollweg veio a Roma só com os seus desenhos, e a sua raiva.
+es Hollweg vino a Roma solo con sus dibujos, y su rabia.
+
+> NEW: THE HEAVY WORKS. Beside a Mainspring it builds the great machines.
+pt NOVO: A OFICINA PESADA. Junto a uma Mola Real, ela constrói as grandes máquinas.
+es NUEVO: EL TALLER PESADO. Junto a un Muelle Real, construye las grandes máquinas.
+
+> NEW: THE PENDULUM. A slow giant whose swing cuts everything round it, flyers too.
+pt NOVO: O PÊNDULO. Um gigante lento cujo balanço corta tudo à sua volta, voadores também.
+es NUEVO: EL PÉNDULO. Un gigante lento cuyo vaivén corta todo a su alrededor, voladores también.
+
+> Fürth, autumn 2769. Father Ferrer comes to inspect the guild's works.
+pt Fürth, outono de 2769. O Padre Ferrer vem inspecionar as oficinas da guilda.
+es Fürth, otoño de 2769. El Padre Ferrer viene a inspeccionar los talleres del gremio.
+
+> The inspection: a Winder winding another.
+pt A inspeção: um Enrolador dando corda a outro.
+es La inspección: un Dador de cuerda dándole cuerda a otro.
+
+> The night shift, by the river.
+pt O turno da noite, junto ao rio.
+es El turno de noche, junto al río.
+
+> The riot across the water meadows.
+pt O motim pelos prados alagados.
+es El motín por los prados anegados.
+
+> The broken ones in the yard.
+pt Os quebrados no pátio.
+es Los rotos en el patio.
+
+> Rome, the present. The King listens; the Jesuit tells it.
+pt Roma, o presente. O Rei escuta; o jesuíta conta.
+es Roma, el presente. El Rey escucha; el jesuita lo cuenta.
+
+> Fürth, autumn 2769. Father Ferrer, of the Roman College, inspects the guild's works with two lay brothers and an escort.
+pt Fürth, outono de 2769. O Padre Ferrer, do Colégio Romano, inspeciona as oficinas da guilda com dois irmãos leigos e uma escolta.
+es Fürth, otoño de 2769. El Padre Ferrer, del Colegio Romano, inspecciona los talleres del gremio con dos hermanos legos y una escolta.
+
+> See all six workshops before dusk. Keep the Father alive, and Meister Hollweg.
+pt Veja as seis oficinas antes do anoitecer. Mantenha vivos o Padre e o Mestre Hollweg.
+es Ve los seis talleres antes del anochecer. Mantén con vida al Padre y al maestro Hollweg.
+
+> The guild says the works rest at night.
+pt A guilda diz que as oficinas descansam à noite.
+es El gremio dice que los talleres descansan de noche.
+
+> Fürth, autumn 2769. You are the Machine, across the water meadows. A priest has come to judge the guild.
+pt Fürth, outono de 2769. Você é a Máquina, do outro lado dos prados alagados. Um padre veio julgar a guilda.
+es Fürth, otoño de 2769. Eres la Máquina, al otro lado de los prados anegados. Un cura ha venido a juzgar al gremio.
+
+> Kill Father Ferrer, or take the guild's broken automata when they walk to you at night.
+pt Mate o Padre Ferrer, ou fique com os autômatos quebrados da guilda quando eles andarem até você à noite.
+es Mata al Padre Ferrer, o quédate con los autómatas rotos del gremio cuando caminen hacia ti de noche.
+
+> The report
+pt O relatório
+es El informe
+
+> Father Ferrer rode for Rome with his report. Stopped: {riot} broken automata; lost to the machine: {lost_to_machine}.
+pt O Padre Ferrer partiu para Roma com o seu relatório. Detidos: {riot} autômatos quebrados; perdidos para a máquina: {lost_to_machine}.
+es El Padre Ferrer partió hacia Roma con su informe. Detenidos: {riot} autómatas rotos; perdidos para la máquina: {lost_to_machine}.
+
+> The broken ones were melted.
+pt Os quebrados foram derretidos.
+es Los rotos fueron fundidos.
+
+> The broken ones were kept for study.
+pt Os quebrados foram guardados para estudo.
+es Los rotos se guardaron para estudiarlos.
+
+> Father Ferrer's report was never written. The guild's broken ones are the Machine's.
+pt O relatório do Padre Ferrer nunca foi escrito. Os quebrados da guilda são da Máquina.
+es El informe del Padre Ferrer nunca se escribió. Los rotos del gremio son de la Máquina.
+
+> THE BROKEN ONES
+pt OS QUEBRADOS
+es LOS ROTOS
+
+> MELT THEM
+pt DERRETA-OS
+es FÚNDALOS
+
+> Father Ferrer: into the furnace, every wheel. Nothing that took out its own stop-work goes on ticking.
+pt Padre Ferrer: para a fornalha, cada roda. Nada que tirou a própria trava continua a funcionar.
+es Padre Ferrer: al horno, cada rueda. Nada que se quitó su propio tope sigue haciendo tictac.
+
+> KEEP THEM
+pt GUARDE-OS
+es GUÁRDELOS
+
+> Meister Hollweg: keep them for study. He must learn what went wrong, or it goes wrong again.
+pt Mestre Hollweg: guarde-os para estudo. Ele precisa saber o que deu errado, ou vai dar errado de novo.
+es Maestro Hollweg: guárdelos para estudiarlos. Debe saber qué salió mal, o volverá a salir mal.
+
+> The night Winder
+pt O Enrolador da noite
+es El Dador de cuerda de la noche
+
+> Gear ground
+pt Terreno de engrenagens
+es Terreno de engranajes
+
+> Ferrer's report came before the snow. Machines that take out their own stop-works.
+pt O relatório de Ferrer chegou antes da neve. Máquinas que tiram as próprias travas.
+es El informe de Ferrer llegó antes de la nieve. Máquinas que se quitan sus propios topes.
+
+> Hollweg kept the broken ones to study. I let him. I wanted to know too.
+pt Hollweg guardou os quebrados para estudar. Eu deixei. Eu também queria saber.
+es Hollweg guardó los rotos para estudiarlos. Se lo permití. Yo también quería saber.
+
+> He had them melted. Hollweg has not forgiven him. I think Ferrer was right.
+pt Ele mandou derretê-los. Hollweg não o perdoou. Acho que Ferrer tinha razão.
+es Los hizo fundir. Hollweg no lo ha perdonado. Creo que Ferrer tenía razón.
+
+> Ferrer came to Fürth with a notebook and left with a verdict.
+pt Ferrer veio a Fürth com um caderno e saiu com um veredicto.
+es Ferrer vino a Fürth con un cuaderno y se fue con un veredicto.
+
+> I kept the broken ones. I was sure I could mend them. I was sure of a great many things.
+pt Guardei os quebrados. Tinha certeza de que podia consertá-los. Tinha certeza de muitas coisas.
+es Guardé los rotos. Estaba seguro de poder repararlos. Estaba seguro de muchas cosas.
+
+> He melted them in my own furnace. I would have learnt what went wrong. Now nobody will.
+pt Ele os derreteu na minha própria fornalha. Eu teria descoberto o que deu errado. Agora ninguém vai.
+es Los fundió en mi propio horno. Yo habría sabido qué salió mal. Ahora nadie lo sabrá.
+
+> The Father has gone to Rome with his report. Let him.
+pt O Padre foi para Roma com o seu relatório. Que vá.
+es El Padre se ha ido a Roma con su informe. Que se vaya.
+
+> The broken ones are under sheets in the back. I will find the fault. Every machine can be mended.
+pt Os quebrados estão debaixo de lençóis lá atrás. Vou achar o defeito. Toda máquina pode ser consertada.
+es Los rotos están bajo sábanas al fondo. Encontraré el fallo. Toda máquina se puede reparar.
+
+> The Father has gone to Rome with his report, and my automata are slag.
+pt O Padre foi para Roma com o seu relatório, e os meus autômatos são escória.
+es El Padre se ha ido a Roma con su informe, y mis autómatas son escoria.
+
+> He was afraid of them. Fear is not an argument.
+pt Ele tinha medo deles. Medo não é argumento.
+es Les tenía miedo. El miedo no es un argumento.
+
+> The travelling clock still keeps Nuremberg's time. Jakob stops it at night now, with his own hand.
+pt O relógio de viagem ainda marca a hora de Nuremberg. Jakob o para à noite agora, com a própria mão.
+es El reloj de viaje aún marca la hora de Núremberg. Jakob lo para de noche ahora, con su propia mano.
+
+> A broken automaton under a sheet. Its stop-work has been fitted again, with a new pin through it.
+pt Um autômato quebrado debaixo de um lençol. A sua trava foi recolocada, com um pino novo a atravessá-la.
+es Un autómata roto bajo una sábana. Le han vuelto a poner el tope, con un pasador nuevo atravesándolo.
+
+> The trestle is empty. On it lies a receipt from the foundry, signed by Father Ferrer.
+pt O cavalete está vazio. Sobre ele, um recibo da fundição, assinado pelo Padre Ferrer.
+es El caballete está vacío. Sobre él, un recibo de la fundición, firmado por el Padre Ferrer.
+
+> A Jesuit astronomer and engineer, the Roman College's inspector.
+pt Um astrônomo e engenheiro jesuíta, o inspetor do Colégio Romano.
+es Un astrónomo e ingeniero jesuita, el inspector del Colegio Romano.
+
+> A lay brother of the Society, travelling with Father Ferrer.
+pt Um irmão leigo da Companhia, viajando com o Padre Ferrer.
+es Un hermano lego de la Compañía, que viaja con el Padre Ferrer.
+
+> A journeyman calls Meister Hollweg away to the presses. The big one is off its beat.
+pt Um oficial chama o Mestre Hollweg às prensas. A grande saiu do compasso.
+es Un oficial llama al maestro Hollweg a las prensas. La grande va fuera de compás.

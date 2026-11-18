@@ -215,7 +215,7 @@ are close (red and orange, blue and teal) would be hard to tell apart: pick dist
 - The story itself, the stills and portraits (art not decided: placeholders drawn in code, docs/art_style_inconsistency.md),
   the hub scenes' art and the ARMOURY's upgrades (stub).
 - The campaign-only faction (format ready, faction not built).
-- More than two sides in one mission (the end logic hands a loss to "the other side").
+- More than two sides in one mission: DONE in a07 (0.38.68, below). Three persons in one match (one a side) not yet.
 - Voice lines for the dialogue (text only).
 - Hotspots on the hub are boxes over the placeholder; with real art they would become invisible areas with a glow.
 
@@ -399,3 +399,57 @@ tools/campaign/roster_ladder.py, which the mission generators call (`roster_ladd
 | `{"unlock"/"deny": {"team", "kind"}}` | unchanged, and now also takes researches and stages; Campaign.problems checks every roster name and every unlock / deny kind (Campaign.roster_known) |
 
 Not gated: MOUNT (a man getting on a horse is not a training) and anything a mission hands over (units, buildings).
+
+## Added by Act 1's a06_barricades (a06-barricades, 0.38.59; docs/campaign_a06_build.md)
+
+Nothing in the engine: Paris is the city generator's (tools/campaign/make_paris_map.py) and the mission is built from
+the keys above (spare, capture, a choice with a default, stay, follow, a countdown, repeating triggers, build, `if` by
+`past` flags). New roles in Rebels.ROLES: `fairleigh`, `ruggieri`, `volunteer`, `lyon_man`, `varenne_hall` (Varenne
+with 260 health in his hall; his p01 role is unchanged). A way the mission does a thing the engine has no key for: a
+building spared from every blow but one (Notre-Dame burns only at the torch-bearers' hands) is a repeating trigger that
+lifts the spare, hurts it, and puts the spare back in the same round.
+
+## Added by Act 1's a04_visit (a04-visit, 0.38.63; docs/campaign_a04_build.md)
+
+| key / action | what it does |
+| --- | --- |
+| `{"wind": {"tag", "share"}}` | Clockwork units with the tag wound up to that share at least (Unit.wind): run down to nothing a construct stands still, so a scripted team with no ground of its own (the works' broken automata) is wound before it marches, and a scripted guild's Pendulum kept wound on its post |
+
+Everything else in Father Ferrer's Visit is built from the keys above (stay, follow, route and `route_done`, near,
+`convert`, `exits` with `after`, counters, `tally`, countdown clocks, a choice with a default, cage, spare, `if` by `past`
+and `difficulty`, trigger `modes`). New roles in Rebels.ROLES: `ferrer_visit` (Ferrer with 300 health), `lay_brother`.
+A `tally` whose bands are the numbers themselves (`[[0, 0], [1, 1], ...]`) leaves a numeric flag the war map's
+`flag_at_least` can read (`lost_to_machine`).
+
+
+## Added by Act 1's a05_specimens (a05-specimens, 0.38.64; docs/campaign_a05_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| `{"cart": {"tag", "cart", "caged", "freed", "freed_tag"}}` | CAGE CARTS: each creature of the tag not yet on a cart is caged on the nearest free cart of the cart tag (one a cart): carried with it every frame (MissionRun._carry_cages), can't move or fight, spared, shoving nobody (its mass near nothing), the cage's bars drawn round it (MissionRun.CageBars); `caged` counts it. The cart broken (dead): the creature is FREED (on its feet, open to attack; `freed` counts it, `freed_tag` tags it) |
+| condition `{"cargo": {"tag", "at_least" / "below"}}` | living carts of the tag with a cage on them (MissionRun.cargo_count) |
+| exit `"cargo": true`, `"max"`, `"cargo_counter"` | only carts with a cage leave by it, the cage with them; `max` (a number or a counter's name: the canoes' room) how many may leave by it in all, with `counter` counting them |
+| `{"remove": {"tag", "empty"}}` | taken off the map, not killed (the eggs lifted into Lindqvist's crate); `empty`: only those with no cage on them (the carts that caught nothing) |
+| `{"sleep": {..., "except_tags": [tags]}}` | those sleep apart: not in this group (the young in the ferns never wake the nest) |
+| `{"spare": {"tag", "on": false}}` on a carted creature | it stays untouchable until its cart breaks |
+| mission `"mend_allies": true` | workers may repair an ally's machines and buildings (Game.mends: the right-click and Unit._repair): the porters mend the convoy's cage carts |
+| role `cage_cart` (`"cart": true`) | a Powder Wagon with meta `cage_cart`: it never blows up |
+| roles `porter`, `hired_gun`, `young_sire` | Rebels.ROLES (stand-ins: a Labourer, a Musketeer, a Tyrant Sire at 0.55) |
+
+MATURE refuses a caged creature (BroodMature.problem: "It is caged.").
+
+## Added by Act 1's a07_council (a07-council, 0.38.68; docs/campaign_a07_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| MORE THAN TWO SIDES | a side whose primary fails, that is wiped out, or `lose` is OUT (MissionRun.side_lost, `out_sides`). Two sides: the other wins at once (as before). More: the winner is a side still in with a primary DONE; else the only side still in with primary objectives; a PERSON's side out: the other person's side (versus) or, nobody else playing, the first side still in; a SCRIPTED side out: nobody yet, the match goes on. Teams are hostile by side (the creatures and the automata fight each other) |
+| condition `{"out": side}` | that side has lost (the match may go on without it) |
+| `{"burn": {"tag", "secs", "spread": {"tag", "within", "every"}, "douse_side", "douse_teams", "douse_secs", "first"}}` | THE SPREADING FIRE: a burning building lights the nearest building of the spread tag within `within` tiles (6) every `every` s (12), the new fire spreading the same way; units of the dousing side (the building's own if not given; only `douse_teams` if given) within 2 tiles of its edge put it out in `douse_secs` (8) of one man's work, stop its spread and halve its burning meanwhile; `first`: only the first building of the tag |
+| `{"douse": {"tag"}}`, condition `{"burning": {"tag", "at_least" / "below"}}`, MissionRun.fires_out | fires out; buildings of the tag on fire now; fires put out so far |
+| `"weather": "rain"` and fires | the rain works as one man at every fire and no fire spreads in it |
+| mission `"torch_fire": {<burn keys>, "tag"}` | a torch-bearer (role `torch`) at a building of that tag sets it ALIGHT (a spreading fire), spared or not, and walks on to the next not burning (Rebels.tick) |
+| `{"show": {"pages": [{"still", "lines"}]}}` | a MID-MATCH SHOW: the pages (`if` lines kept) full screen over the match (StillShow); a solo match pauses while it plays (online it does not); sent to the friend; MissionRun.shows |
+| mission `"versus_pick": [sides]` | THE VERSUS PICK: in versus the friend's seat (p2) leads ONE of these sides, the other p2 teams scripted (Campaign.control_of / seat_side / make_cfg take the pick; the cfg's campaign keeps `"pick"`; the war table's YOU PLAY row and NetLobby.set_campaign carry it) |
+| mission `"needs": [missions]` | a CROSSING: unlocked only once every one of them is finished, whichever led to it (Campaign.unlocked); a mission in several storylines is listed once (Campaign.mission_ids) |
+| mission `"auto_tags": [{"team", "kind", "tag"}]` | every unit of that team and kind (one a person trains too) gets the tag |
+| roles `king_young`, `swiss`, `captain_rome`, `roman`, `roman_mob` | Rebels.ROLES (stand-ins) |

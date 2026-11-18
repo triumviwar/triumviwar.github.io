@@ -25,6 +25,78 @@
 
 ## Current work
 
+- WORLD LORE (owner 2026-11-18 16:18-16:24): the APOSTASY of the POST-MODERN AGE was destroyed by its thinking machines (THE
+  GHOST IN THE MACHINE); since then technology for its own sake is no goal (why 2767 has muskets and clockwork), the common
+  people HATE technology, and Hollweg built the Perpetual IN SECRET. c01 opens with THE QUARREL (Ferrer v Hollweg, 0.38.65);
+  docs/campaign_timeline.md "The deep past". Write every mission's crowds and Churchmen with this in mind.
+- THE CHATTERBOX LIST (owner 2026-11-18 15:55): docs/chatterbox_todo.md is the one list of every voice line still to record
+  (Chatterbox on the owner's PC). Top item: a NEW Brood announcer set (21 lines) in Lindqvist's v2 voice
+  (refs/lindqvist_ref.wav); then every mission's voice table and the voices to design. Add new missions' tables there.
+- a07_council BUILT (job a07-council, 0.38.68, branch a07-council, docs/campaign_a07_build.md): step 9 of Act 1's build
+  order, THE FIRST CROSSING. ENGINE: MORE THAN TWO SIDES (MissionRun.side_lost / out_sides, condition `out`: the winner a
+  side still in with a primary done, else the only contender; a scripted side out and the match goes on), THE SPREADING
+  FIRE (`burn` spread / douse_side / douse_teams / douse_secs, `douse`, condition `burning`, rain puts fires out, mission
+  `torch_fire`), the MID-MATCH SHOW (`show`), THE VERSUS PICK (`versus_pick`: the friend leads the creatures OR the
+  automata; war table + room), a crossing's `needs` (locked until a04, a05, a06 are all won), `auto_tags`. MISSION "The
+  Council of Rome" (Lent 2770, the young King tells it): map campaign:rome_council (tools/campaign/make_rome_map.py: the
+  Tiber with three bridges and no other way over, Saint Peter's and its piazza, the palace, the Borgo, the Castel
+  Sant'Angelo, the east bank's quarters, the stables, the exhibition hall, the Porta Pia), mission
+  tools/campaign/make_a07_mission.py, stand-in stills a07_01..07 (make_a07_stills.py; prompts in the doc). FOUR SIDES:
+  the Crown (the King's guard PURPLE p1 on C4: CHURCH + MISSIONARY; the garrison BLUE, co-op p2; the town YELLOW), the
+  creatures (GREEN, by a05 `cages`/`eggs`), the automata (RED, by a04 `broken`/`lost_to_machine`), the Assembly's cell
+  (ORANGE, torches; more by a06 `varenne` executed). Opening: Ferrer (c01 `gate`, the quarrel's echo, the ghost in the
+  machine), Valadares (a03 `map`), Hollweg (c01 `bells`), Lindqvist (b01 `clutch`/`teles`); PART 1 the verdict as a
+  mid-match show, both defy and walk out; PART 2 the night of fire (spreading fires the guard puts out, Tomasz or any
+  Missionary calls each quarter's people to Saint Peter's, the Romans flee the machines and in Parione turn on them,
+  the specimens loose, the demonstration goes wrong; beasts and machines fight each other); PART 3 hold the bridges till
+  dawn (9:00; three of either in the square wins it for them). NO CHOICE. Flags `rome` few/some/all, `people`,
+  `hollweg`/`lindqvist` defied. Hubs' talks after Rome, war map rules. ALL TEXT PLACEHOLDER; the Cardinal Dean needs a
+  voice. Tests tools/test_campaign_a07.gd, balance tools/sim_campaign_a07.gd. 18 Claude's choices in the doc.
+- a05_specimens BUILT (job a05-specimens, 0.38.64, branch a05-specimens, docs/campaign_a05_build.md): step 8 of Act 1's
+  build order. "The Specimens" (the Naturalist line after a03, the dry season 2769, Lindqvist old and a prisoner before
+  the King): map campaign:plateau_descent (tools/campaign/make_plateau_descent_map.py: the nest's hollow and the egg bed,
+  the young's three beds in the ferns, the camp, THE SHORT WAY (a03 `map` drawn) and THE LONG WAY (withheld), the pack's
+  clearings, the quay with the Lisbon crates: the ONE crate hint), mission tools/campaign/make_a05_mission.py, stand-in
+  stills a05_01..05 (make_a05_stills.py; prompts in the doc). THE EXPEDITION (YELLOW, p1: Lindqvist 320 hp, Pieter by
+  `pieter`, hired guns, porters who MEND the carts: mission `mend_allies`) + THE CONVOY (YELLOW, scripted: a CAGE CART per
+  bed; with b01 `clutch` saved three, the young Sire among the young; burned two). Part 1 night: net each sleeping young
+  (a STAY of 4 s: its cart comes and cages it), the eggs (Lindqvist 8 s at the egg bed, then carries them), WALK SOFTLY,
+  dawn 10:00; Part 2 the carts on a ROUTE at an ox's pace, raids every 1:15 (Raptors, then Challengers), a broken cart
+  frees its creature; Part 3 the quay: an exit counting CAGES as many as the canoes hold (b01 `saved`: 2/3/4), the Sire
+  for the last cart, the canoes 3:00. NO CHOICE: flags `cages` few/some/all (`cages_n`), `eggs`, `pieter`, `way`,
+  `crates`. MIRROR (solo pick, versus): THE CREATURES (GREEN), bound to THE ROSTER LADDER's B3 (GROW stage 2 + MATURE; no
+  Tyrant Sire of their own), win by half the cages freed or Lindqvist killed (`specimens` freed). Engine: CAGE CARTS
+  (`cart`, `cargo`, exits `cargo`/`max`), `remove`, sleep `except_tags`, `mend_allies`. ALL TEXT PLACEHOLDER. Tests
+  tools/test_campaign_a05.gd, balance tools/sim_campaign_a05.gd. 19 Claude's choices in the doc.
+- a04_visit BUILT (job a04-visit, 0.38.63, branch a04-visit, docs/campaign_a04_build.md): step 7 of Act 1's build order.
+  "Father Ferrer's Visit" (the Clockmaker line after a02, Fürth, autumn 2769, told by Ferrer, the King framing): map
+  campaign:furth_works (a02's map grown: tools/campaign/make_furth_works_map.py starts FROM furth_line.json), mission
+  tools/campaign/make_a04_mission.py, stand-in stills a04_01..05 (make_a04_stills.py; prompts in the doc). Sides: `visit`
+  = Ferrer's party (PURPLE, p1: Ferrer 300 hp, 2 lay brothers, escort by a02 `furth` strong 8 / thin 5, the gate men)
+  + THE GUILD (BLUE, co-op p2, bound to THE ROSTER LADDER's K3: HEAVY WORKS + PENDULUM) + THE WORKS (TEAL, scripted: the
+  automata that act alone); THE MACHINE (RED, versus p2). Part 1 six workshops (a STAY of 10 s each; signs: a Winder
+  winding another, the Assembly's pamphlets on the Lyon type if a01 was played), Hollweg called away, Jakob brings the
+  stop-works (lost: his old log in the barn), the dusk 10:00; Part 2 night: FOLLOW the night Winder (within 8, never 3:
+  it stops), the reveal at the river (c01 `gate` pattern / people), the dawn 7:00; Part 3 THE RIOT: the broken ones
+  CONVERT and march over the bridge and the meadow gap (an open gap) to the machine's ground (counted: lost_to_machine),
+  the machine's sortie, the guild's Pendulum at the yard's gate; THE CHOICE THE BROKEN ONES: MELT (Ferrer) / KEEP
+  (Hollweg), default and canon KEPT. Flags `broken`, `lost_to_machine` (a number: a tally banded by itself), `stopworks`
+  found / logged, `jakob`. VERSUS only. Engine: the `wind` action. ALL TEXT PLACEHOLDER; Ferrer and Brother Anselm need
+  voices. Tests tools/test_campaign_a04.gd, balance tools/sim_campaign_a04.gd. 16 Claude's choices in the doc.
+- a06_barricades BUILT (job a06-barricades, 0.38.59, branch a06-barricades, docs/campaign_a06_build.md): step 6 of Act 1's
+  build order. "The Barricades of Paris" (the Crown line after a01, July 2769, told by Field Marshal Fairleigh, Tomasz the
+  King's chaplain): map campaign:paris_barricades (the city generator, tools/campaign/make_paris_map.py: the camp outside
+  the toll wall, ONE gate, the faubourg's one street, the Marais, the Grève and the Hôtel de Ville, the Seine with the
+  Cité and Notre-Dame, the left bank), mission tools/campaign/make_a06_mission.py, stand-in stills a06_01..05 (prompts in
+  the doc). THE ROSTER LADDER's C3: the FOUNDRY + MORTAR (army and Ruggieri's guns, co-op p2, bound; no Town Hall/Farm).
+  Part 1 THREE BARRICADES two palisades deep across the only street (the Mortar on the men behind, round shot on the
+  palisades, a RUSH out of each breach: CANISTER), THE KING'S PATIENCE 20:00 (EASY 25, HARD 15) and SORTIES at the camp;
+  Part 2 the Bastille's magazine becomes the army's, the bridges (Lyon men by a01's `lyon`), TORCHES over the Petit Pont
+  for NOTRE-DAME (burnt only by torches); Part 3 the hall's palisade ring, CAPTURE Varenne (he runs for the boat at the
+  Port Saint-Nicolas once the square is stormed: 30 s at the quay and he is gone); THE CHOICE VARENNE: Tomasz asks
+  mercy, SPARE (exile, the default / canon) or EXECUTE; flags `varenne`, `paris` stood. Reads p01 `families` (six
+  Hollins volunteers), a01 `lyon`, `printer`. VERSUS only (the friend = the Free Assembly). ALL TEXT PLACEHOLDER.
+  Tests tools/test_campaign_a06.gd, balance tools/sim_campaign_a06.gd. 15 Claude's choices in the doc.
 - a01_presses BUILT with THE CITY GENERATOR (job a01-presses, 0.38.57, branch a01-presses, docs/campaign_a01_build.md,
   docs/city_generator.md): step 5 of Act 1's build order. tools/campaign/city_gen.py (a town from a seed: rivers, fords as
   bridges, hills and stairs, districts of solid house blocks, squares, streets, traboules with doors, hidden yards, lots,
@@ -48,7 +120,7 @@
   roster_denied; refusals reach research, grub morphs, eggs, MATURE, GROW: pieces "stage2"/"stage3"); a NEW card (speaker
   "new", trigger ladder_new, to the ladder side). Generators call roster_ladder.apply(M, id); p01_leaf is patched with
   `python3 tools/campaign/roster_ladder.py p01_leaf` (make_m1_mission.py is older than its JSON). MERGED 0.38.58 with LYON'S C2 APPLIED
-  (a standing Horse Breeder at [108, 47], the garrison's story deny on top, C2's pt/es cards). Next: a06 Paris on C3. ALL TEXT PLACEHOLDER; 9
+  (a standing Horse Breeder at [108, 47], the garrison's story deny on top, C2's pt/es cards). a06 Paris on C3: built (0.38.59). ALL TEXT PLACEHOLDER; 9
   Claude's choices in the doc (1: the Naturalist's mirrors ARE bound).
 - THE WAR MAP v1 BUILT (job war-map-v1, 0.38.56, branch war-map-v1, docs/war_map_v1.md): step 4 of Act 1's build order.
   campaign/warmap.json (one data file for every skin: bounds/projection, views, regions with holders, marks, a pin per

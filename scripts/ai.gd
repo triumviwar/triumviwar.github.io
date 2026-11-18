@@ -1878,6 +1878,7 @@ func _lab_want(want: int) -> int:
 ## fallback) and stayed there when a new hall's Farm came up: 10 Labourers waited by the Town Halls while the new Farm had 1
 ## of 8 (test_ai_expand). A waiting hauler beyond KEEP_HAULERS a hall goes to a post with room on land that pays, a few a think.
 const KEEP_HAULERS := 2
+var haul_need_on := not OS.get_cmdline_user_args().has("haulkeep:old")
 
 
 func _unpark() -> void:
@@ -1894,7 +1895,17 @@ func _unpark() -> void:
 	var moved := 0
 	for h in waiting:
 		var list: Array = waiting[h]
-		for i in range(KEEP_HAULERS, list.size()):
+		# (0.38.60, the owner's game 2026-11-18: "why 2 haulers while the farm is still not saturated": the hall kept 2 waiting
+		# haulers whatever it needed, a hand short on a Farm with room. Now it keeps only what its need asks for beyond the
+		# haulers already on a job; switch `haulkeep:old` keeps KEEP_HAULERS as before.)
+		var keep := KEEP_HAULERS
+		if haul_need_on:
+			var busy: int = (h as Building).haulers().size() - list.size()
+			var need_h: int = WorkerLabels.hauler_need(game, h)
+			if farms_first_on and _crown() and _farm_room():
+				need_h = mini(need_h, _wagon_haulers())     # (Farms before haulers: see _assign_haulers)
+			keep = maxi(0, need_h - busy)
+		for i in range(keep, list.size()):
 			if moved >= 3:
 				return
 			var u: Unit = list[i]
@@ -8281,6 +8292,23 @@ func _horses() -> void:
 		_mount_men(horses, keep, need + teams)
 
 
+var farms_first_on := not OS.get_cmdline_user_args().has("farmsfirst:off")
+
+
+## A built Farm on soil that pays with a free post.
+func _farm_room() -> bool:
+	return _mine("farm").any(func(f: Building) -> bool: return f.built and not f.barren() and f.crew.size() < f.crew_max())
+
+
+## The haulers the powder wagons' kegs ask for (all halls), the one hauling job a man can't do by walking himself.
+func _wagon_haulers() -> int:
+	var n := 0
+	for h in _halls():
+		if h.built and h.haul_cap() > 0:
+			n += ceili(float(WorkerLabels.need_parts(game, h).get("powder", 0.0)) - 0.25)
+	return maxi(n, 0)
+
+
 ## Crown: workers assigned to the Town Hall as haulers (Game.haul_dispatch: they lead the
 ## horses to the Barracks and Foundries and carry kegs to the wagons). One once there is a
 ## Horse Breeder, a gun or a wagon, two from 6 horse-using units, three from 12, or the halls' hauler need if more
@@ -8308,6 +8336,12 @@ func _assign_haulers() -> void:
 			short = gap
 			hall = h
 	want = maxi(want, need)
+	if farms_first_on and _farm_room():
+		# FARMS BEFORE HAULERS (the owner, 2026-11-18 11:54: "It didn't need any haulers, the Officer can walk to the
+		# Breeder, no big deal. It's so important in the beginning of the game to fully saturate Farms"): while a paying
+		# Farm has a free post, no haulers for horses (riders walk to the Breeder, gun horses walk in by themselves); only
+		# powder wagons' kegs still get theirs. Switch `farmsfirst:off`.
+		want = _wagon_haulers()
 	if game.haulers_of(team).size() >= want:
 		return
 	var best: Unit = null

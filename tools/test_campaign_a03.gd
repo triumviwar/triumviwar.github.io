@@ -151,7 +151,7 @@ func _data() -> void:
 	var sl := Campaign.storyline_of(MID)
 	check("the Naturalist line: b01, then a03", String(sl.get("id", "")) == "naturalist" and (sl["missions"] as Array).slice(0, 2) == [B01, MID])
 	check("b01 won by the pack leads to a03", Campaign.next_of(B01, "sire") == MID and Campaign.next_of(B01, "rival") == "")
-	check("a03 leads nowhere yet (a05 is not built)", Campaign.next_of(MID, "party") == "" and Campaign.next_of(MID, "nest") == "")
+	check("a03 won by the party leads to a05 (the nest's win does not)", Campaign.next_of(MID, "party") == "a05_specimens" and Campaign.next_of(MID, "nest") == "")
 	Campaign.save_progress({"reached": [], "done": {"p01_leaf": {}}})
 	check("a03 is locked before b01", not Campaign.unlocked(MID))
 	Campaign.record(B01, "solo", "sire", "sire", CANON)

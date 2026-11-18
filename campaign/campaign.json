@@ -7,7 +7,9 @@
 			"about": "Told by the King in Rome. The Free Assembly rises against Church and Crown: Virginia in 2767, then the cities of the Crown.",
 			"missions": [
 				"p01_leaf",
-				"a01_presses"
+				"a01_presses",
+				"a06_barricades",
+				"a07_council"
 			],
 			"hub": {
 				"title": "The King's Study",
@@ -148,6 +150,53 @@
 									"Lyon went home without a volley. The Cardinal will tell you it was luck. Do not believe him.",
 									"The printer named Paris. We should have listened sooner."
 								]
+							},
+							{
+								"after": "a06_barricades",
+								"flag": {
+									"a06_barricades.varenne": "spared"
+								},
+								"lines": [
+									"I sent Varenne to sea on Fairleigh's word and the Cardinal's prayer.",
+									"Remember that mercy is a weapon too. It cuts the one who holds it, sometimes."
+								]
+							},
+							{
+								"after": "a06_barricades",
+								"flag": {
+									"a06_barricades.varenne": "executed"
+								},
+								"lines": [
+									"Varenne died on the Grève by the King's law, and I signed it.",
+									"A martyr is harder to fight than a man. I learnt that too late."
+								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "kept"
+								},
+								"lines": [
+									"Ferrer's report came before the snow. Machines that take out their own stop-works.",
+									"Hollweg kept the broken ones to study. I let him. I wanted to know too."
+								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "melted"
+								},
+								"lines": [
+									"Ferrer's report came before the snow. Machines that take out their own stop-works.",
+									"He had them melted. Hollweg has not forgiven him. I think Ferrer was right."
+								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"Rome burned for one night and stood in the morning. I walked the bridges at dawn with Tomasz.",
+									"Hollweg and Lindqvist were gone before the bells. I should have held them. I let them go."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_king_face.png"
@@ -176,6 +225,33 @@
 									"I spoke on the weavers' square until I had no voice left. Some of them still write to me.",
 									"Rouvière would not say who paid him. He said Paris, as if it were a prayer."
 								]
+							},
+							{
+								"after": "a06_barricades",
+								"flag": {
+									"a06_barricades.varenne": "spared"
+								},
+								"lines": [
+									"I asked for his life and the Marshal gave it. I still do not know if I asked well.",
+									"Notre-Dame's doors were black for a year. I made them leave the marks."
+								]
+							},
+							{
+								"after": "a06_barricades",
+								"flag": {
+									"a06_barricades.varenne": "executed"
+								},
+								"lines": [
+									"I stayed with Varenne the last night. He did not confess. He did let me pray.",
+									"Notre-Dame's doors were black for a year. I made them leave the marks."
+								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"We counted the people on the steps of Saint Peter's. I knew some of the faces from Mass.",
+									"The Romans broke two machines with their bare hands in the Piazza Navona. Nobody had to tell them to."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_tomasz_face.png"
@@ -197,6 +273,13 @@
 									"It is done. I take no pleasure in it.",
 									"Ruggieri has his pipe, and I have the King's leaf. Rome will hear of this."
 								]
+							},
+							{
+								"after": "a06_barricades",
+								"lines": [
+									"Paris is quiet. The barricades went back to being carts and paving stones.",
+									"Ruggieri wants a dozen more mortars. I have told him he may have six."
+								]
 							}
 						]
 					},
@@ -210,6 +293,33 @@
 								"lines": [
 									"The King lets me keep a bench by the window. I do not build. I only take things apart.",
 									"Father Ferrer comes on Sundays. He asks me the same question every time."
+								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "kept"
+								},
+								"lines": [
+									"Ferrer came to Fürth with a notebook and left with a verdict.",
+									"I kept the broken ones. I was sure I could mend them. I was sure of a great many things."
+								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "melted"
+								},
+								"lines": [
+									"Ferrer came to Fürth with a notebook and left with a verdict.",
+									"He melted them in my own furnace. I would have learnt what went wrong. Now nobody will."
+								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"The council said no machine may govern itself. I said mine did not govern: they served.",
+									"Then they woke in the smoke and walked out of the hall without me. I have had a long time to think about that night."
 								]
 							}
 						]
@@ -225,6 +335,13 @@
 									"They took my chains off for the King. The guards stay. I do not mind the guards.",
 									"Ask me anything about her kind. I am the only man alive who has raised one."
 								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"Rome wanted them burned. I walked out of the council and went to the stables, to let them out myself.",
+									"Somebody had opened the pens before me. I have never found out who."
+								]
 							}
 						]
 					}
@@ -239,7 +356,9 @@
 			"about": "A naturalist on the Amazon raises a creature no one has seen, and loses it to the forest.",
 			"missions": [
 				"b01_specimen",
-				"a03_plateau"
+				"a03_plateau",
+				"a05_specimens",
+				"a07_council"
 			],
 			"hub": {
 				"title": "Lindqvist's Station",
@@ -407,6 +526,44 @@
 								"lines": [
 									"Valadares never came down from the cloud mountain. Benedito came back alone with the canoe, and would not speak of it."
 								]
+							},
+							{
+								"after": "a05_specimens",
+								"sides": {
+									"a05_specimens": "expedition"
+								},
+								"lines": [
+									"The cages are in the cellar now, and the Academy's men come to look at them through the bars.",
+									"They grow. They know my whistle already. This is how it begins, properly this time."
+								]
+							},
+							{
+								"after": "a05_specimens",
+								"sides": {
+									"a05_specimens": "expedition"
+								},
+								"flag": {
+									"a05_specimens.cages": "few"
+								},
+								"lines": [
+									"Only a few came down. Few is enough, if they breed."
+								]
+							},
+							{
+								"after": "a05_specimens",
+								"sides": {
+									"a05_specimens": "creatures"
+								},
+								"lines": [
+									"The carts came down empty. The Academy wants its money back. I will go up again."
+								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"Destroyed, the cardinals said. Every one.",
+									"I left Rome that night with what I could carry. They will not find the rest."
+								]
 							}
 						]
 					},
@@ -500,6 +657,18 @@
 							0.82,
 							0.9
 						]
+					},
+					"a05_specimens": {
+						"title": "The Warehouse at the Barra",
+						"about": "The cages from the cloud mountain stand in the Academy's warehouse at the Barra do Rio Negro.",
+						"still": {
+							"caption": "The Academy's warehouse at the Barra do Rio Negro: iron cages under lamps, something moving in the straw."
+						},
+						"tint": [
+							0.82,
+							0.82,
+							0.9
+						]
 					}
 				}
 			}
@@ -511,7 +680,9 @@
 			"about": "Nuremberg, 2767. A clockmaker builds a machine that never stops, and loses his city to it.",
 			"missions": [
 				"c01_thirteenth",
-				"a02_furth"
+				"a02_furth",
+				"a04_visit",
+				"a07_council"
 			],
 			"hub": {
 				"title": "Hollweg's Workshop",
@@ -627,6 +798,33 @@
 									"The line held. The machine went back behind its walls.",
 									"The commissary writes his reports. Let him. Our machines are honest."
 								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "kept"
+								},
+								"lines": [
+									"The Father has gone to Rome with his report. Let him.",
+									"The broken ones are under sheets in the back. I will find the fault. Every machine can be mended."
+								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "melted"
+								},
+								"lines": [
+									"The Father has gone to Rome with his report, and my automata are slag.",
+									"He was afraid of them. Fear is not an argument."
+								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"No machine may govern itself. Very well: mine will not be governed by Rome either.",
+									"Jakob, pack the drawings. We are going south, after the crates."
+								]
 							}
 						]
 					},
@@ -653,6 +851,15 @@
 									"The great clock of the Guild still keeps time. It strikes thirteen now."
 								],
 								"sides": {
+									"a02_furth": "machine"
+								}
+							},
+							{
+								"after": "a04_visit",
+								"lines": [
+									"The travelling clock still keeps Nuremberg's time. Jakob stops it at night now, with his own hand."
+								],
+								"not_sides": {
 									"a02_furth": "machine"
 								}
 							}
@@ -682,6 +889,24 @@
 								"sides": {
 									"a02_furth": "machine"
 								}
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "kept"
+								},
+								"lines": [
+									"A broken automaton under a sheet. Its stop-work has been fitted again, with a new pin through it."
+								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "melted"
+								},
+								"lines": [
+									"The trestle is empty. On it lies a receipt from the foundry, signed by Father Ferrer."
+								]
 							}
 						]
 					},

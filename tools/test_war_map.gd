@@ -90,8 +90,15 @@ func _states() -> void:
 	check("new: the Clockmaker and Naturalist prologues locked", pins["c01_thirteenth"]["state"] == "locked" and pins["b01_specimen"]["state"] == "locked")
 	check("new: a02 and a03 locked", pins["a02_furth"]["state"] == "locked" and pins["a03_plateau"]["state"] == "locked")
 	check("new: a01 (built) locked until the Prologue", pins["a01_presses"]["state"] == "locked")
-	for mid in ["a04_visit", "a05_specimens", "a06_barricades", "a07_council"]:
-		check("new: %s is planned (not written yet)" % mid, pins[mid]["state"] == "planned")
+	check("new: a06 (built) locked until a01", pins["a06_barricades"]["state"] == "locked")
+	check("new: a04 (built) locked until a02", pins["a04_visit"]["state"] == "locked")
+	check("new: a05 (built) locked until a03", pins["a05_specimens"]["state"] == "locked")
+	check("new: a07 (built, the crossing) locked until a04, a05 and a06", pins["a07_council"]["state"] == "locked")
+	st = WarMapData.state(_p({"a04_visit": ["visit"], "a06_barricades": ["crown"]}))
+	check("a07 still locked with a04 and a06 but not a05", st["pins"]["a07_council"]["state"] == "locked")
+	st = WarMapData.state(_p({"a04_visit": ["visit"], "a05_specimens": ["expedition"], "a06_barricades": ["crown"]}))
+	check("a07 open once all three are won", st["pins"]["a07_council"]["state"] == "open")
+	st = WarMapData.state(_p({}))
 	check("new: Virginia purple, Franconia the empire's, the plateau blank", st["regions"]["virginia"] == "crown" and st["regions"]["franconia"] == "empire" and st["regions"]["plateau"] == "unknown")
 	check("new: no marks, an empty ledger", st["marks"].values().count(true) == 0 and (st["ledger"] as Array).is_empty())
 	# ---- after the three prologues (the canon-ish run)
@@ -120,7 +127,7 @@ func _states() -> void:
 	for it in [["strong", "guild", "crown", "seal"], ["thin", "guild", "contested", "seal"], ["fallen", "machine", "machine", "broken"]]:
 		st = WarMapData.state(_with({"a02_furth": [it[1], {"furth": it[0]}]}))
 		check("a02 furth %s: Fürth %s, the seal %s" % [it[0], it[2], it[3]], st["regions"]["furth"] == it[2] and st["pins"]["a02_furth"]["seal"] == it[3]
-			and st["pins"]["a04_visit"]["state"] == "planned")
+			and st["pins"]["a04_visit"]["state"] == ("open" if it[1] == "guild" else "locked"))
 	# ---- a03 the Lost Plateau
 	st = WarMapData.state(_with({"a03_plateau": ["party", {"map": "drawn", "party": "some"}]}))
 	check("a03 map drawn: the plateau drawn in (the creatures'), no question mark", st["regions"]["plateau"] == "brood" and not st["marks"]["plateau_question"])
@@ -135,14 +142,20 @@ func _states() -> void:
 	check("a01 lyon calm: Lyon purple", st["regions"]["lyon"] == "crown")
 	st = WarMapData.state(_with({"a01_presses": ["assembly", {"lyon": "risen"}]}))
 	check("a01 won by the Assembly (versus): Lyon in unrest, the seal broken", st["regions"]["lyon"] == "unrest" and st["pins"]["a01_presses"]["seal"] == "broken")
+	st = WarMapData.state(_with({"a01_presses": ["crown", {"lyon": "calm", "printer": "taken"}]}))
+	check("a06 (built) open once a01 is won", st["pins"]["a06_barricades"]["state"] == "open")
+	st = WarMapData.state(_with({"a06_barricades": ["assembly", {}]}))
+	check("a06 won by the Assembly (versus): Paris in unrest, the seal broken", st["regions"]["paris"] == "unrest" and st["pins"]["a06_barricades"]["seal"] == "broken")
 	st = WarMapData.state(_with({"a06_barricades": ["crown", {"varenne": "spared"}]}))
 	check("a06 Varenne spared: Paris purple, his ship into exile", st["regions"]["paris"] == "crown" and st["marks"]["varenne_exile"] and st["regions"]["brittany"] == "empire")
 	st = WarMapData.state(_with({"a06_barricades": ["crown", {"varenne": "executed"}]}))
 	check("a06 Varenne executed: Paris marked, two risings", st["regions"]["paris"] == "contested" and st["regions"]["brittany"] == "unrest" and st["regions"]["provence"] == "unrest")
-	st = WarMapData.state(_with({"a04_visit": ["guild", {"broken": "kept", "lost_to_machine": 5}]}))
-	check("a04 many lost to the machine: the red spreads east", st["regions"]["franconia_more"] == "machine")
-	st = WarMapData.state(_with({"a04_visit": ["guild", {"broken": "melted", "lost_to_machine": 1}]}))
+	st = WarMapData.state(_with({"a04_visit": ["visit", {"broken": "kept", "lost_to_machine": 5, "lost_to_machine_n": 5}]}))
+	check("a04 many lost to the machine: the red spreads east", st["regions"]["franconia_more"] == "machine" and st["pins"]["a04_visit"]["state"] == "done")
+	check("a04 kept: the ledger says so", WarMapData.ledger_of(st, "a04_visit").any(func(e) -> bool: return WarMapData.ledger_text(e).contains("kept for study")))
+	st = WarMapData.state(_with({"a04_visit": ["visit", {"broken": "melted", "lost_to_machine": 1, "lost_to_machine_n": 1}]}))
 	check("a04 few lost: no spread", st["regions"]["franconia_more"] == "empire")
+	check("a04 melted: the ledger says so", WarMapData.ledger_of(st, "a04_visit").any(func(e) -> bool: return WarMapData.ledger_text(e).contains("melted")))
 	# ---- every flag combination of the missions built so far: a sound state each
 	var n := 0
 	var bad: Array = []
@@ -216,13 +229,13 @@ func _ui() -> void:
 	var z0 := wm.zoom
 	wm.zoom_by(1.5)
 	check("zoom in", wm.zoom > z0)
-	# a planned pin: its card, no play button
-	wm.tap(wm.pin_screen(WarMapData.pin_of("a06_barricades")))
+	# a locked pin: its card, no play button
+	wm.tap(wm.pin_screen(WarMapData.pin_of("a07_council")))
 	await process_frame
 	var card: Control = _find("WarCard")
-	check("a tap on Paris' seal opens its card", card != null and card.visible and CampaignMenu.map_pick == "a06_barricades")
+	check("a tap on Rome's seal opens its card", card != null and card.visible and CampaignMenu.map_pick == "a07_council")
 	var cs: Label = _find("CardState")
-	check("Paris: not written yet, opens after Lyon", cs != null and cs.text.contains(Loc.t("Not written yet.")) and _find("Card_Briefing") == null)
+	check("Rome: locked, opens after its three missions", cs != null and cs.text.contains(Loc.t("(locked)")) and _find("Card_Briefing") == null)
 	# an open pin: BRIEFING
 	wm.show_view("world", false)
 	await process_frame

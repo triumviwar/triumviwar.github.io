@@ -58,6 +58,8 @@ static func problem(u: Unit) -> String:
 		return "It has no mature form."
 	if u.moult_t >= 0.0:
 		return "It is already moulting."
+	if u.has_meta("mission_caged"):
+		return "It is caged."      # (a campaign's cage or cage cart: a05)
 	if u.net_t > 0.0:
 		return "It is held fast."
 	var q := BroodNew.queen(g, u.team)

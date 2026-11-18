@@ -22,6 +22,23 @@ named; the other branch is a real, playable version, but the writers check again
 | Duarte Valadares (proposed) | Crown, explorer | Portuguese-Brazilian Catholic explorer and mapmaker; finds the creatures; respects them as creation |
 | Dr. Viktor Lindqvist (proposed) | scientists | naturalist of a royal academy turned breeder; deceived about what he controls; the Brood line's other narrator |
 
+## The deep past (owner, 2026-11-18)
+
+Centuries before the story, in the POST-MODERN AGE, an APOSTASY ruled the world, and what destroyed it was its own
+thinking machines: THE GHOST IN THE MACHINE. The Church remembers it as the enemy, and every Churchman in the story
+knows the tale. That is why Ferrer warns Hollweg (c01's quarrel) and why the Council of Rome rules that no machine may
+govern itself. Hollweg's answer is his whole error: his brass and gears are different from those old machines, and
+perhaps they could learn. (Details of how it fell are the owner's to write.)
+
+WHY THE WORLD IS AT THIS LEVEL OF TECHNOLOGY (owner, 2026-11-18 16:24): after that fall, technology for its own sake
+stopped being a goal. The world of 2767 has muskets, cannon, sail and clockwork because it CHOSE to stop there, not because
+it never knew more. The common people above all HATE technology: a clever machine is the old enemy to them. So what
+Hollweg did, he did IN SECRET: the Perpetual was built under his workshop, known only to Father Ferrer, and shown to the
+city only on the day of the gift. Writers' checks: the guild's open work (clocks, the Crown's licensed labouring
+automata that do not think) is tolerated, grudgingly; a self-winding, self-mending machine that makes its successor is
+exactly what the world swore off. Crowds should fear or hate the guild's machines (c01's gift, a02's Fürth, a04's riot);
+the Machine's spread is the old nightmare come back.
+
 ## Dates (proposed)
 
 The Prologue is 2767 (owner). The King was young and newly crowned then; the present is about 2795.

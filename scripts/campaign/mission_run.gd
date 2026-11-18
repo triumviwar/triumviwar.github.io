@@ -57,7 +57,10 @@ var weather_node: Node = null
 # the Brood prologue's engine (brood-prologue-build, docs/campaign_b01_build.md): units held by the story (`cage`: in
 # place and harmless; `spare`: untouchable), buildings set ALIGHT (`burn`), a health FLOOR, scripted ROOT / UPROOT
 var _caged: Array = []               # [unit, the spot it is kept at]
-var _burning: Array = []             # [building, health a second it loses]
+var _burning: Array = []             # {"b": building, "rate": health a second, "spread": {...} or {}, "t": seconds to the next spread, "douse": seconds of dousing so far, "dside": side that puts it out, "dsecs": dousing needed}
+var out_sides := {}                  # (a07, more than two sides) side id -> the game clock it lost; the match may go on
+var shows: Array = []                # (a07) every MID-MATCH SHOW played, its pages (tests)
+var fires_out := 0                   # (a07) fires put out (dousing men, rain, `douse`)
 # ACT 1's ENGINE STEP 0 (act1-engine0, docs/act1_engine0.md): the campaign's DIFFICULTY, the SOLO SIDE PICK, STAY timers,
 # ROUTE and FOLLOW orders, SLEEP / WAKE, the MIST, CAPTURE
 var difficulty := "normal"           # "easy" / "normal" / "hard" (the campaign's, from the match setup)
@@ -78,6 +81,9 @@ var weather_name := ""
 # one of the town's houses, in the town's colour, untouchable, until the other side comes close: then it is UNMASKED)
 var _disguised: Array = []           # buildings still disguised
 var unmasked := {}                   # tag -> the game clock a building with it was unmasked
+# Act 1's a05_specimens (a05-specimens, docs/campaign_a05_build.md): CAGE CARTS (a creature caged on a cart: carried with
+# it, untouchable and harmless; freed when the cart is broken, loaded with it when the cart leaves by an exit)
+var _carts: Array = []               # {"u": the creature, "cart": the cart, "freed": counter, "freed_tag": tag}
 
 
 func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
@@ -411,6 +417,8 @@ func _process(_delta: float) -> void:
 	for u in game.units:
 		if not u.dead and u.has_meta("torch"):
 			u.queue_redraw()
+	if not remote:
+		_carry_cages()
 
 
 func _physics_process(delta: float) -> void:
@@ -423,10 +431,12 @@ func _physics_process(delta: float) -> void:
 	Rebels.tick(self, TICK)
 	_tick_turning()
 	_tick_exits()
+	_tick_carts()
 	_tick_held()
 	_tick_routes()
 	_tick_sleep()
 	_tick_disguise()
+	_tick_auto_tags()
 	if not choice_open.is_empty() and game.clock >= float(choice_open.get("until", INF)):
 		choose(String(choice_open["id"]), String(choice_open.get("default", "")))      # (nobody answered: the default)
 	_run_triggers()
@@ -493,6 +503,13 @@ func cond(c: Variant) -> bool:
 			"disguised":
 				# (a01) {"disguised": tag}: one with that tag still stands disguised
 				ok = tagged(String(v)).any(func(e) -> bool: return e.has_meta("disguise_team"))
+			"out":
+				# (a07) {"out": side}: that side has lost (the match may go on without it: more than two sides)
+				ok = out_sides.has(String(v))
+			"burning":
+				# (a07) {"burning": {"tag", "at_least" / "below"}}: buildings of the tag on fire now
+				var nb := burning_count(String(v.get("tag", "")))
+				ok = (not v.has("at_least") or nb >= int(v["at_least"])) and (not v.has("below") or nb < int(v["below"]))
 			"time":
 				ok = game.clock >= float(v)
 			"dead":
@@ -590,6 +607,10 @@ func cond(c: Variant) -> bool:
 				ok = captured.has(String(v))
 			"route_done":
 				ok = route_done.has(String(v))
+			"cargo":
+				# (a05) {"cargo": {"tag": the carts, "at_least" / "below"}}: living carts with a cage on them
+				var n := cargo_count(String(v.get("tag", "")))
+				ok = (not v.has("at_least") or n >= int(v["at_least"])) and (not v.has("below") or n < int(v["below"]))
 			"selected", "camera_moved", "zoomed", "more", "built", "rooted", "crew", "group", "did", "gear_view", \
 					"placing", "order", "res", "talked":
 				ok = _tutorial_cond(String(k), v)
@@ -728,7 +749,7 @@ func act(a: Dictionary) -> void:
 			"win":
 				finish(String(v))
 			"lose":
-				finish(_other_side(String(v)))
+				side_lost(String(v))
 			"counter":
 				# {"counter": {"name", "add" or "set"}}
 				var cn := String(v.get("name", ""))
@@ -804,6 +825,19 @@ func act(a: Dictionary) -> void:
 				_send({"k": "mist", "v": v})
 			"cage", "pin", "carry", "spare":
 				hold(String(k), v)
+			"cart":
+				cart_bind(v)
+			"remove":
+				# (a05) {"remove": {"tag"}}: taken off the map (not killed: Lindqvist lifts the eggs into his crate)
+				# ("empty": true: only those with no cage on them, the carts that caught nothing)
+				for e in tagged(String(v.get("tag", ""))):
+					if e is Unit:
+						if bool(v.get("empty", false)) and e.has_meta("cage_cargo"):
+							continue
+						_drop_cart(e)
+						game.consume_unit(e)
+				for tt in team_ids.size():
+					game._recount_supply(tt)
 			"floor":
 				# {"floor": {"tag", "share"}}: their health never goes under that share (0: no floor)
 				for e in tagged(String(v.get("tag", ""))):
@@ -812,11 +846,29 @@ func act(a: Dictionary) -> void:
 				# {"heal": {"tag", "share"}}: their health back up to that share at least
 				for e in tagged(String(v.get("tag", ""))):
 					e.hp = maxf(e.hp, e.max_hp * float(v.get("share", 1.0)))
-			"burn":
-				# {"burn": {"tag", "secs"}}: buildings set alight burn down in about that time (fire on them)
+			"wind":
+				# (a04) {"wind": {"tag", "share"}}: Clockwork units wound up to that share at least (the broken ones wind each
+				# other before they march: run down to nothing they would stand still)
 				for e in tagged(String(v.get("tag", ""))):
-					if e is Building and not _burning.any(func(it) -> bool: return it[0] == e):
-						_burning.append([e, e.max_hp / maxf(float(v.get("secs", 60.0)), 1.0)])
+					if e is Unit:
+						(e as Unit).wind = maxf((e as Unit).wind, clampf(float(v.get("share", 1.0)), 0.0, 1.0))
+			"burn":
+				# {"burn": {"tag", "secs", "spread": {"tag", "within", "every"}, "douse_side", "douse_secs", "first"}}:
+				# buildings set alight burn down in about that time (fire on them); a SPREADING FIRE (a07) also lights
+				# the nearest building of the spread tag within `within` tiles every `every` seconds; men of
+				# `douse_side` (the building's own side if not given) standing by it put it out (see _tick_held)
+				for e in tagged(String(v.get("tag", ""))):
+					if e is Building:
+						set_alight(e, v)
+						if bool(v.get("first", false)):
+							break
+			"douse":
+				# (a07) {"douse": {"tag"}}: the fires on these buildings go out
+				for e in tagged(String(v.get("tag", ""))):
+					douse(e)
+			"show":
+				# (a07) {"show": {"pages": [...]}}: a MID-MATCH SHOW (stills and lines over the match; solo pauses)
+				play_show(v.get("pages", []))
 			"nest_free":
 				# {"nest_free": {"tag", "on"}} (the Brood prologue flip): these fathers may root away from their Mother's
 				# father range, as a person's ROOT too (the Sire nesting by her pen); off: the range again
@@ -1093,32 +1145,44 @@ func _check_objectives() -> void:
 
 ## Who has won: a side whose primary objective failed loses (the other side wins); a side with every primary
 ## objective met wins (a "protect" one counts as met while it holds; at least one other must be done); a side wiped
-## out (no units nor buildings, after having some, and past its "wiped_out" time) loses.
+## out (no units nor buildings, after having some, and past its "wiped_out" time) loses (side_lost: with more than two
+## sides the match may go on without it).
 func check_end() -> void:
 	if game.over or remote:
 		return
 	var wiped: Dictionary = data.get("wiped_out", {})
 	for sd in Campaign.side_ids(data):
+		if out_sides.has(sd):
+			continue
 		var alive := count({"side": sd, "buildings": true})
 		if alive > 0:
 			_side_had[sd] = true
 		elif _side_had.has(sd) and wiped.has(sd) and game.clock >= float(wiped[sd]):
-			finish(_other_side(sd))
-			return
+			side_lost(sd)
+			if game.over:
+				return
 	for sd in Campaign.side_ids(data):
+		if out_sides.has(sd):
+			continue
 		var prim := objectives_for(sd).filter(func(o: Dictionary) -> bool: return bool(o.get("primary", true)) and String(o.get("kind", "")) != "countdown")
 		if prim.is_empty():
 			continue
 		var met := true
 		var some_done := false
+		var failed := false
 		for o in prim:
 			if o["state"] == "failed":
-				finish(_other_side(sd))
-				return
+				failed = true
+				break
 			if o["state"] == "done":
 				some_done = true
 			elif not (o["state"] == "active" and String(o.get("kind", "")) == "protect"):
 				met = false
+		if failed:
+			side_lost(sd)
+			if game.over:
+				return
+			continue
 		if met and some_done and not bool(data.get("manual_end", false)):
 			finish(sd)      # (a "manual_end" mission is won only by its triggers' `win`: the Clockwork prologue)
 			return
@@ -1129,6 +1193,48 @@ func _other_side(sd: String) -> String:
 		if s != sd:
 			return s
 	return ""
+
+
+## A side has LOST (a failed primary, wiped out, a `lose`). With two sides the other wins at once (as always). With MORE
+## THAN TWO (a07) the side is OUT and the winner is: a side still in with a primary objective done; else the only side
+## still in that has primary objectives; else the only one of those a person plays; else nobody yet: the match goes on
+## between the sides still in (the Crown against the machines after the creatures are beaten). No side with objectives
+## left: the first side still in (the old rule).
+func side_lost(sd: String) -> void:
+	if game.over or out_sides.has(sd):
+		return
+	out_sides[sd] = game.clock
+	if game.mlog:
+		game.mlog.add("(mission) %s is out" % sd)
+	var w := winner_after(sd)
+	if w != "":
+		finish(w)
+	else:
+		objectives_changed.emit()
+
+
+func winner_after(sd: String) -> String:
+	var all := Campaign.side_ids(data)
+	var still: Array = all.filter(func(x: String) -> bool: return x != sd and not out_sides.has(x))
+	if all.size() <= 2:
+		return still[0] if not still.is_empty() else _other_side(sd)
+	for x in still:
+		if _prim(x).any(func(o: Dictionary) -> bool: return o["state"] == "done"):
+			return x
+	var contenders: Array = still.filter(func(x: String) -> bool: return _prim(x).any(func(o: Dictionary) -> bool: return o["state"] == "active"))
+	if contenders.size() == 1:
+		return contenders[0]
+	if contenders.is_empty():
+		return still[0] if not still.is_empty() else _other_side(sd)
+	if not played_sides().has(sd):
+		return ""             # (a scripted side is out: the others fight on)
+	# a person's side is out: the other person's side wins (versus); nobody else plays: the first side still in
+	var played: Array = contenders.filter(func(x: String) -> bool: return played_sides().has(x))
+	return played[0] if played.size() == 1 else String(contenders[0])
+
+
+func _prim(sd: String) -> Array:
+	return objectives_for(sd).filter(func(o: Dictionary) -> bool: return bool(o.get("primary", true)) and String(o.get("kind", "")) != "countdown")
 
 
 ## The mission is over: `side_id` won. Game.ended goes out (Main shows the mission's end; an online guest learns it
@@ -1244,8 +1350,25 @@ func _tick_exits() -> void:
 		var keep: Array = []
 		for xt in ex.get("except", []):
 			keep.append_array(tagged(String(xt)))      # (the heroes stay: they must be there at the end)
+		# (a05) "cargo": true: only carts with a cage on them leave, and the cage goes with them; "max": how many may
+		# leave by it in all (a number or a counter's: the canoes' room), "counter" counting them
+		var cargo := bool(ex.get("cargo", false))
+		var room := INF
+		if ex.has("max"):
+			var mx := float(counters.get(String(ex["max"]), 0)) if ex["max"] is String else float(ex["max"])
+			room = mx - float(counters.get(String(ex.get("counter", "")), 0))
 		for u in list:
+			if float(n) >= room:
+				break
 			if u is Unit and not u.dead and r.has_point(u.position) and not keep.has(u):
+				if cargo:
+					var c = u.get_meta("cage_cargo", null)
+					if c == null or not is_instance_valid(c) or c.dead:
+						continue
+					_drop_cart(c)
+					game.consume_unit(c)
+					if ex.has("cargo_counter"):
+						counters[String(ex["cargo_counter"])] = int(counters.get(String(ex["cargo_counter"]), 0)) + 1
 				game.consume_unit(u)
 				n += 1
 		if n > 0:
@@ -1253,6 +1376,139 @@ func _tick_exits() -> void:
 				game._recount_supply(tt)
 			if ex.has("counter"):
 				act({"counter": {"name": String(ex["counter"]), "add": n}})
+
+
+## CAGE CARTS (a05): {"cart": {"tag": the creatures, "cart": the carts' tag, "caged": counter, "freed": counter,
+## "freed_tag": tag}}: each creature with the tag not yet on a cart is caged on the nearest free cart with the cart tag
+## (one creature a cart). On it the creature is carried along (MissionRun._carry_cages, every frame), can't move or
+## fight, and nobody targets or hurts it; it shoves nobody (its mass near nothing). The cart broken (dead): the
+## creature is FREED (on its feet, open to attack, counted in "freed", tagged "freed_tag"). The cart leaving by an exit
+## with "cargo": the creature goes with it (counted by the exit). The cart is a role "cage_cart" (a Powder Wagon that
+## never blows up).
+func cart_bind(v: Dictionary) -> void:
+	var carts: Array = tagged(String(v.get("cart", ""))).filter(func(e) -> bool: return e is Unit and not e.has_meta("cage_cargo"))
+	for e in tagged(String(v.get("tag", ""))):
+		if not (e is Unit) or e.has_meta("on_cart") or carts.is_empty():
+			continue
+		var best = carts[0]
+		for c in carts:
+			if c.position.distance_to(e.position) < best.position.distance_to(e.position):
+				best = c
+		carts.erase(best)
+		var u: Unit = e
+		_caged = _caged.filter(func(it) -> bool: return it[0] != u)
+		u.set_meta("mission_caged", true)
+		u.set_meta("on_cart", best)
+		u.set_meta("cart_mass", u.nb_mass)
+		best.set_meta("cage_cargo", u)
+		u.cmd_stop()
+		u.target = null
+		u.m_pace = 0.0
+		u.m_unarmed = true
+		u.spared = true
+		u.nb_mass = 0.001          # (it shoves nobody: the cart rolls on with it)
+		var bars := CageBars.new()
+		bars.name = "CageBars"
+		bars.r = u.radius
+		u.add_child(bars)
+		_carts.append({"u": u, "cart": best, "freed": String(v.get("freed", "")), "freed_tag": String(v.get("freed_tag", ""))})
+		if v.has("caged"):
+			counters[String(v["caged"])] = int(counters.get(String(v["caged"]), 0)) + 1
+		if game.mlog:
+			game.mlog.add("(mission) a %s caged on a cart" % u.kind)
+	objectives_changed.emit()
+	_send({"k": "cnt", "c": counters.duplicate()})
+
+
+## Living carts of the tag with a cage on them.
+func cargo_count(tag: String) -> int:
+	var n := 0
+	for e in tagged(tag):
+		var c = e.get_meta("cage_cargo", null)
+		if c != null and is_instance_valid(c) and not c.dead:
+			n += 1
+	return n
+
+
+## Each tick: a cart broken frees its creature.
+func _tick_carts() -> void:
+	for it in _carts.duplicate():
+		var u = it["u"]
+		var c = it["cart"]
+		if not is_instance_valid(u) or u.dead:
+			_carts.erase(it)
+			continue
+		if not is_instance_valid(c) or c.dead:
+			_free_cage(it)
+
+
+func _free_cage(it: Dictionary) -> void:
+	var u: Unit = it["u"]
+	_drop_cart(u)
+	u.spared = false
+	if not u.has_meta("mission_asleep"):
+		u.m_pace = 1.0
+		u.m_unarmed = false
+	if String(it.get("freed_tag", "")) != "":
+		_tag(String(it["freed_tag"]), u)
+	if String(it.get("freed", "")) != "":
+		act({"counter": {"name": String(it["freed"]), "add": 1}})
+	game._ping(u.position, Color(0.4, 1.0, 0.3))
+	_send({"k": "ping", "p": u.position})
+	if game.mlog:
+		game.mlog.add("(mission) a cage broke: a %s is free" % u.kind)
+
+
+## A creature off its cart (freed, loaded, or taken off): its cage's marks gone.
+func _drop_cart(u: Unit) -> void:
+	_carts = _carts.filter(func(it) -> bool: return it["u"] != u)
+	if not u.has_meta("on_cart"):
+		return
+	var c = u.get_meta("on_cart")
+	if is_instance_valid(c) and c.get_meta("cage_cargo", null) == u:
+		c.remove_meta("cage_cargo")
+	u.remove_meta("on_cart")
+	if u.has_meta("mission_caged"):
+		u.remove_meta("mission_caged")
+	u.nb_mass = float(u.get_meta("cart_mass", 1.0))
+	var bars := u.get_node_or_null("CageBars")
+	if bars:
+		u.remove_child(bars)
+		bars.queue_free()
+
+
+## Every frame: the caged creatures ride on their carts.
+func _carry_cages() -> void:
+	for it in _carts:
+		var u = it["u"]
+		var c = it["cart"]
+		if not is_instance_valid(u) or u.dead or not is_instance_valid(c) or c.dead:
+			continue
+		var p: Vector2 = c.position + Vector2(0, 1)
+		if u.position.distance_to(p) > 0.5:
+			u.position = p
+			u.velocity = Vector2.ZERO
+			game.note_move(u)
+
+
+## The cage's bars round a creature on a cart (drawn in code until the cart's own art: docs/art_style_inconsistency.md).
+class CageBars extends Node2D:
+	var r := 10.0
+
+	func _ready() -> void:
+		z_index = 1
+
+	func _draw() -> void:
+		var w := r + 4.0
+		var h := r * 2.4 + 6.0
+		var wood := Color(0.36, 0.24, 0.13, 0.95)
+		draw_rect(Rect2(-w, -h, w * 2.0, h + 3.0), Color(0.1, 0.08, 0.05, 0.18))
+		var n := maxi(3, int(w * 2.0 / 6.0))
+		for i in n + 1:
+			var x := -w + w * 2.0 * float(i) / float(n)
+			draw_line(Vector2(x, -h), Vector2(x, 3.0), wood, 1.6)
+		draw_line(Vector2(-w - 1, -h), Vector2(w + 1, -h), wood, 2.4)
+		draw_line(Vector2(-w - 1, 3.0), Vector2(w + 1, 3.0), wood, 2.4)
 
 
 ## A sound for everyone (the bells tolling thirteen, the machine's off-beat tick): Sfx's name (assets/audio/<name>),
@@ -1332,6 +1588,8 @@ func hold(what: String, v: Dictionary) -> void:
 	for e in tagged(String(v.get("tag", ""))):
 		match what:
 			"spare":
+				if not on and e.has_meta("on_cart"):
+					continue          # (a05: a creature on a cage cart stays untouchable until the cart breaks)
 				e.spared = on
 			"cage":
 				if e is Unit:
@@ -1368,14 +1626,34 @@ func _tick_held() -> void:
 			u.velocity = Vector2.ZERO
 			game.note_move(u)
 	_caged = keep
+	_tick_fires()
+
+
+## THE FIRES (the Brood prologue's `burn`, and a07's SPREADING FIRE): each burning building loses its health in about
+## its `secs`, flames on it; a spreading one lights the nearest building of its spread tag within reach every `every`
+## seconds (the new fire spreads the same way); men of the dousing side (or only of `douse_teams`) standing by it (within
+## 2 tiles of its edge, not asleep or caged) put it out in `douse_secs` (8) seconds of their work together (two men twice as fast), and slow it
+## meanwhile (no spreading, half the burning); RAIN works as one man at every fire (and no fire spreads in it).
+func _tick_fires() -> void:
 	var still: Array = []
+	var lit: Array = []
+	var rain := weather_name == "rain"
 	for it in _burning:
-		var b = it[0]
+		var b = it["b"]
 		if not is_instance_valid(b) or b.dead:
 			continue
+		var men := _dousers(b, String(it["dside"]), it.get("dteams", []))
+		var work := float(men) + (1.0 if rain else 0.0)
+		if work > 0.0:
+			it["douse"] = float(it["douse"]) + work * TICK
+			if float(it["douse"]) >= float(it["dsecs"]):
+				fires_out += 1
+				if game.mlog:
+					game.mlog.add("(mission) a fire is out")
+				continue
 		still.append(it)
 		# (the fire takes no notice of `spare`: a building kept from the enemy's attacks still burns down in its time)
-		b.hp -= float(it[1]) * TICK
+		b.hp -= float(it["rate"]) * TICK * (0.5 if men > 0 else 1.0)
 		b.flash = 0.12
 		if b.hp <= 0.0:
 			b.spared = false
@@ -1383,7 +1661,128 @@ func _tick_held() -> void:
 			b.take_damage(10.0, null)
 		if randf() < 0.6:
 			game.spawn_effect("fire", b.center() + Vector2(randf_range(-28, 28), randf_range(-22, 14)), 0.9)
+		var sp: Dictionary = it["spread"]
+		if not sp.is_empty() and men == 0 and not rain:
+			it["t"] = float(it["t"]) - TICK
+			if float(it["t"]) <= 0.0:
+				it["t"] = float(sp.get("every", 12.0))
+				var nxt: Variant = _next_to_catch(b, sp)
+				if nxt != null:
+					lit.append([nxt, it])
 	_burning = still
+	for pair in lit:
+		var src: Dictionary = pair[1]
+		var keys := {"secs": float(pair[0].max_hp) / maxf(float(src["rate"]), 0.01), "spread": src["spread"],
+			"douse_side": src["dside"], "douse_secs": src["dsecs"]}
+		set_alight(pair[0], keys)
+		var it2: Dictionary = _burning[_burning.size() - 1] if not _burning.is_empty() else {}
+		if not it2.is_empty() and it2["b"] == pair[0]:
+			it2["dteams"] = src.get("dteams", [])
+
+
+## (a07) mission "auto_tags": [{"team", "kind", "tag"}]: every unit of that team and kind (one a person trains too)
+## gets the tag (the Missionaries a player trains at Rome's church lead the people as Father Tomasz does).
+func _tick_auto_tags() -> void:
+	for at in data.get("auto_tags", []):
+		var t := team_index(String(at.get("team", "")))
+		var tg := String(at.get("tag", ""))
+		var have: Array = tags.get(tg, [])
+		for u in game.units:
+			if u.team == t and not u.dead and u.kind == String(at.get("kind", "")) and not have.has(u):
+				_tag(tg, u)
+				have = tags[tg]
+
+
+## Set one building alight (the `burn` action's keys); already burning: nothing.
+func set_alight(b: Building, v: Dictionary) -> void:
+	if b == null or b.dead or is_burning(b):
+		return
+	var sp: Dictionary = v.get("spread", {}) if v.get("spread") is Dictionary else {}
+	var ds := String(v.get("douse_side", side_of_team(b.team)))
+	var dt: Array = (v.get("douse_teams", []) as Array).map(func(x) -> int: return team_index(String(x)))
+	_burning.append({"dteams": dt, "b": b, "rate": b.max_hp / maxf(float(v.get("secs", 60.0)), 1.0), "spread": sp,
+		"t": float(sp.get("every", 12.0)), "douse": 0.0, "dside": ds, "dsecs": maxf(float(v.get("douse_secs", 8.0)), 0.5)})
+	if game.mlog:
+		game.mlog.add("(mission) fire: %s" % b.kind)
+
+
+func is_burning(b: Entity) -> bool:
+	return _burning.any(func(it) -> bool: return it["b"] == b)
+
+
+func burning_count(tag: String) -> int:
+	var n := 0
+	for e in tagged(tag):
+		if is_burning(e):
+			n += 1
+	return n
+
+
+## The fire on this building goes out (its health stays where the fire left it).
+func douse(e: Entity) -> void:
+	var n := _burning.size()
+	_burning = _burning.filter(func(it) -> bool: return it["b"] != e)
+	fires_out += n - _burning.size()
+
+
+## Men of the side putting this fire out: living, awake, uncaged units of that side within 2 tiles of the building's
+## edge (no horses; a construct doesn't carry water: only the people of a side work at it, any of its units).
+func _dousers(b: Building, side: String, teams: Array = []) -> int:
+	if side == "" and teams.is_empty():
+		return 0
+	var r: Rect2 = b.rect().grow(Defs.TILE * 2.0)
+	var n := 0
+	for u in game.units:
+		if u.dead or u.kind == "horse" or u.has_meta("mission_caged") or u.has_meta("mission_asleep"):
+			continue
+		if (teams.is_empty() and side_of_team(u.team) != side) or (not teams.is_empty() and not teams.has(u.team)):
+			continue
+		if r.has_point(u.position):
+			n += 1
+	return n
+
+
+## The next building a spreading fire takes: the nearest living, not burning one of the spread tag within reach.
+func _next_to_catch(b: Building, sp: Dictionary) -> Variant:
+	var best: Variant = null
+	var bd := float(sp.get("within", 6.0)) * Defs.TILE
+	for e in tagged(String(sp.get("tag", ""))):
+		if e == b or not (e is Building) or is_burning(e):
+			continue
+		var d: float = b.center().distance_to(e.center())
+		if d <= bd:
+			bd = d
+			best = e
+	return best
+
+
+## A MID-MATCH SHOW (a07): the pages (with their `if` lines) full screen over the match; a solo match is paused while it
+## plays (online it doesn't stop the match). Sent to the friend online.
+func play_show(pages: Array) -> void:
+	var pg := pages_now(pages)
+	if pg.is_empty():
+		return
+	shows.append(pg)
+	_send({"k": "show", "pages": pages})
+	_show_pages(pg)
+
+
+func _show_pages(pg: Array) -> void:
+	if game.hud == null or not is_instance_valid(game.hud) or game.hud.get_parent() == null or DisplayServer.get_name() == "headless":
+		return
+	# (the tree paused quietly, as the HUD's own pause does but without its announcer's "paused" / "resumed")
+	var solo: bool = game.net == null and game.replay == null
+	var paused_here := false
+	if solo and not get_tree().paused:
+		get_tree().paused = true
+		if "paused" in game.hud:
+			game.hud.paused = true
+		paused_here = true
+	StillShow.play(game.hud.get_parent(), data, pg, func() -> void:
+		if paused_here and is_instance_valid(game) and get_tree().paused:
+			get_tree().paused = false
+			if is_instance_valid(game.hud) and "paused" in game.hud:
+				game.hud.paused = false)
 
 
 ## An objective's words for the panel: translated, with the numbers put in: "{saved}" a counter, "{saved.of}" its
@@ -1586,8 +1985,12 @@ func sleep_units(v: Dictionary) -> void:
 
 func _sleep_group(v: Dictionary) -> Array:
 	var no: Array = v.get("except_kinds", [])
+	# (a05: "except_tags": those with the tags sleep apart: the young in the ferns, netted, never wake the nest)
+	var apart: Array = []
+	for tg in v.get("except_tags", []):
+		apart.append_array(tags.get(String(tg), []))
 	return group_of(String(v.get("tag", "")), String(v.get("team", "")), String(v.get("side", ""))).filter(
-		func(e) -> bool: return e is Unit and not no.has(e.kind))
+		func(e) -> bool: return e is Unit and not no.has(e.kind) and not apart.has(e))
 
 
 func _put_to_sleep(u: Unit, nm: String) -> void:
@@ -2002,6 +2405,11 @@ func on_net(m: Dictionary) -> void:
 				set_mist(m["v"])
 		"wx":
 			set_weather(String(m.get("w", "")))
+		"show":
+			var pg := pages_now(m.get("pages", []))
+			if not pg.is_empty():
+				shows.append(pg)
+				_show_pages(pg)
 		"cam":
 			var s := String(m.get("s", ""))
 			if s == "" or s == my_side():

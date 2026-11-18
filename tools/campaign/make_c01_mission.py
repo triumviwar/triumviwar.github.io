@@ -334,6 +334,12 @@ M = {
         "h_open2": {"who": "hollweg", "text": "Forty years I made clocks that stopped. This one would not stop. It would wind itself, mend itself, and make its own successor."},
         "f_open": {"who": "ferrer", "text": "And when will it know its work is done, Meister?"},
         "h_open3": {"who": "hollweg", "text": "I did not answer him. I did not think the question was a real one."},
+        # THE QUARREL (owner 2026-11-18 16:18: a confrontation between the Church and the inventor; his lines in his words)
+        "h_q0": {"who": "hollweg", "text": "Nobody in Nuremberg knew what I was building under the workshop. People hate a clever machine; they always have. Only Father Ferrer knew."},
+        "f_q1": {"who": "ferrer", "text": "You know what destroyed the apostasy, Meister. In the post-modern age, all those centuries ago."},
+        "h_q1": {"who": "hollweg", "text": "My cogs and wheels are different, Father. Brass, not ghosts in wires. Maybe they could learn, in time."},
+        "f_q2": {"who": "ferrer", "text": "You know the ghost in the machine is the enemy. It was then. It is now."},
+        "h_q2": {"who": "hollweg", "text": "Then there is no ghost in mine, I told him. Only my gears. I believed it."},
         # part 1
         "h_1": {"who": "hollweg", "text": "The Crown's wagons wait at the market. Six soldiers, wound and true."},
         "f_1": {"who": "ferrer", "text": "Your soldiers, Meister, or the Crown's?"},
@@ -399,6 +405,7 @@ M = {
         "letter": {"image": STILL % "c01_01", "caption": "Rome, the present. The King listens; the clockmaker tells it."},
         "nuremberg": {"image": STILL % "c01_02", "caption": "Nuremberg in Advent, 2767."},
         "heart": {"image": STILL % "c01_03", "caption": "The heart of the Perpetual."},
+        "quarrel": {"image": STILL % "c01_03", "caption": "The workshop, the night before the gift."},  # stand-in: c01_08 to paint (docs/campaign_c01_build.md)
         "wakes": {"image": STILL % "c01_04", "caption": "The Perpetual wakes."},
         "mill": {"image": STILL % "c01_05", "caption": "The mill island, at dusk."},
         "thirteen": {"image": STILL % "c01_06", "caption": "The thirteenth hour."},
@@ -407,7 +414,8 @@ M = {
     "opening": [
         {"still": "letter", "lines": ["k_open1", "k_open2"]},
         {"still": "nuremberg", "lines": ["h_open1"]},
-        {"still": "heart", "lines": ["h_open2", "f_open", "h_open3"]},
+        {"still": "heart", "lines": ["h_open2"]},
+        {"still": "quarrel", "lines": ["h_q0", "f_q1", "h_q1", "f_q2", "f_open", "h_open3", "h_q2"]},
     ],
     "ending": {"guild": [
         {"still": "thirteen", "lines": ["h_end1",

@@ -104,3 +104,7 @@ es IR A
 > Tell your friend the room code: they join from ONLINE with it.
 pt Diga o código da sala ao seu amigo: ele entra pelo ONLINE com ele.
 es Dile a tu amigo el código de la sala: entra desde ONLINE con él.
+
+> The friend's side: %s. The other is played by the computer: %s.
+pt O lado do amigo: %s. O outro é jogado pelo computador: %s.
+es El lado del amigo: %s. El otro lo juega el ordenador: %s.

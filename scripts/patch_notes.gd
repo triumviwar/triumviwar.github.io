@@ -4,6 +4,40 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.69", "items": [
+		"Behind the scenes: one voice recording run for every line whose voice is designed (374 lines: the new Brood announcer and the campaign's King, Hollweg, Lindqvist, Valadares, Fairleigh, Ruggieri and Varenne).",
+	]},
+	{"v": "0.38.68", "items": [
+		"ACT 1, THE COUNCIL OF ROME (CAMPAIGN, all three lines meet: it opens once The Barricades of Paris, Father Ferrer's Visit and The Specimens are all won): Rome, Lent 2770, and the King tells it himself. Father Ferrer and Valadares testify, Meister Hollweg and Dr. Lindqvist are heard, and the council gives its verdict: no machine may govern itself, the specimens are to be destroyed. Both men walk out. That night the Free Assembly's last cell fires the city, the specimens break loose from their stables and Hollweg's demonstration automata go wrong. Hold the Tiber's three bridges until dawn with the King's guard: nothing of the beasts or the machines may reach Saint Peter's Square, and they fight each other too where they meet. Send Father Tomasz, or the Missionaries of Santo Spirito, to call the people of the burning quarters to the basilica, and put the fires out before they spread: men standing by a burning house put it out. What you did in the earlier missions decides who testifies how, how many creatures and machines are loose, and how many torches come. Co-op: the friend holds the east bank. Versus: the friend leads the creatures or the automata.",
+		"The Crown line's ladder reaches its fourth step: the Church and the Missionary. Every hub has new words after Rome, and the war map shows how much of Rome stood.",
+	]},
+	{"v": "0.38.67", "items": [
+		"ACT 1, THE SPECIMENS (CAMPAIGN, THE NATURALIST, after The Lost Plateau): the cloud mountain, the dry season 2769. Two years after the station burned, Dr. Lindqvist comes back with the Academy's money, and he tells it himself, a prisoner before the King. By night, net the young asleep in the ferns and have the cage carts take them, and let Lindqvist lift the eggs from the swamp's edge, without waking the nest. By day, guard the carts down the mountain while the pack comes for the cages, the porters mending them; a broken cart sets its creature free. At the river, load what is left into Benedito's canoes before the Tyrant Sire reaches the last cart. The short way or the long way, the young Sire among the cages, the guns, the canoes and Pieter all come from the earlier missions. Solo or versus, and solo as THE CREATURES: grow the nest while it sleeps, then free half the cages or kill the doctor. Every word is still a placeholder.",
+		"The Naturalist line's ladder reaches its third step: GROW (the Brood Mother's second stage) and MATURE (the Tyrant and Venom Challengers) are the creatures' new pieces. Lindqvist has new words in his warehouse at the Barra after the specimens (by how many cages came down), and the war map's seal for the specimens opens after the plateau.",
+	]},
+	{"v": "0.38.66", "items": [
+		"THE THIRTEENTH HOUR: Meister Hollweg now says why he built in secret: nobody in Nuremberg knew what was under his workshop, because people hate a clever machine.",
+	]},
+	{"v": "0.38.65", "items": [
+		"THE THIRTEENTH HOUR (Clockwork prologue): a new opening page, the night before the gift: Father Ferrer warns Meister Hollweg with the old story of what destroyed the apostasy of the post-modern age, the ghost in the machine. Hollweg answers that his brass is different.",
+	]},
+	{"v": "0.38.64", "items": [
+		"Behind the scenes: one list of every voice line still to record, starting with a new Brood announcer in Dr. Lindqvist's new voice.",
+	]},
+	{"v": "0.38.63", "items": [
+		"ACT 1, FATHER FERRER'S VISIT (CAMPAIGN, THE CLOCKMAKER, after The Fürth Line): Fürth, autumn 2769. The Roman College sends Father Ferrer to inspect the guild's works, and he tells it himself. Walk him through the six workshops before dusk (a Winder winding another, the Free Assembly's pamphlets, and Jakob's word away from his master), then stay up: follow the night Winder to the river without being seen, and watch the guild's automata mesh on gear ground nobody laid. When they turn red and march for the machine across the meadows, stop as many as you can before they reach it. Then THE BROKEN ONES: Ferrer would melt them, Hollweg would keep them. Your escort, Jakob, the drawings and the Lyon type come from the missions before. Solo, co-op (the friend leads the guild, with the new Heavy Works and Pendulum) and versus (the friend is the Machine); every word is still a placeholder.",
+		"The Clockmaker line's ladder reaches its third step: the Heavy Works and the Pendulum. Meister Hollweg at Fürth, the King and Hollweg in the King's study have new words after the visit (by what was done with the broken ones), and the war map's seal for the visit opens after Fürth.",
+	]},
+	{"v": "0.38.62", "items": [
+		"ACT 1, THE BARRICADES OF PARIS (CAMPAIGN, THE CROWN, after The Printing Houses): Paris, July 2769. The Free Assembly holds the city behind its barricades and Varenne sits in the Hôtel de Ville. Lead Field Marshal Fairleigh's army, Colonel Ruggieri's guns and Father Tomasz in through the only street of the faubourg: break three barricades with your guns (the new MORTAR lobs its shell over them, the cannon's canister meets the men who rush out), take the bridges of the Cité before the torch-bearers burn Notre-Dame, open the hall's palisade and take Varenne alive before he reaches the boats. Then THE ACT'S CHOICE: Father Tomasz asks for his life, and the order is yours: spare him into exile, or execute him. The Virginia volunteers come if you saved the families, the Lyon men stand on the bridges if Lyon was left sullen. Solo, co-op (the friend has Ruggieri's guns) and versus (the friend is the Assembly); every word still a placeholder.",
+		"The Crown line's ladder reaches its third step: the Foundry and the Mortar are the new pieces in Paris. The King's study has new words after Paris (by what you did with Varenne), and the war map's seal for Paris opens after Lyon.",
+	]},
+	{"v": "0.38.61", "items": [
+		"FARMS BEFORE HAULERS: while any Farm still has a free post, the Crown computer puts no Labourer on hauling: new Horsemen walk to the Horse Breeder for their horse and the guns' horses walk in by themselves. Only powder wagons waiting for kegs still get a hauler.",
+	]},
+	{"v": "0.38.60", "items": [
+		"The Crown computer no longer keeps two Labourers waiting at a Town Hall as haulers while a Farm still has room: it keeps only the haulers its horses and wagons need, and the rest go farming.",
+	]},
 	{"v": "0.38.59", "items": [
 		"Studies only: win rates in all nine matchups after two days of AI coaching (266 games): the Clockwork computer now beats the Brood computer, the Crown computer no longer collapses but still wins nothing, and the Brood mirror's start-spot edge is gone.",
 	]},

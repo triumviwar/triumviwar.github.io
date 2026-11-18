@@ -54,7 +54,8 @@ static func mission_ids() -> Array:
 	var out: Array = []
 	for sl in storylines():
 		for id in sl.get("missions", []):
-			out.append(String(id))
+			if not out.has(String(id)):
+				out.append(String(id))      # (a crossing, a07, is in all three lines: listed once)
 	return out
 
 
@@ -177,11 +178,21 @@ static func side_name(m: Dictionary, side_id: String) -> String:
 	return side_id
 
 
-static func control_of(team: Dictionary, mode: String) -> String:
+static func control_of(team: Dictionary, mode: String, pick := "", m: Dictionary = {}) -> String:
 	var c: Variant = team.get("control", "script")
-	if c is Dictionary:
-		return String((c as Dictionary).get(mode, "script"))
-	return String(c)
+	var out := String((c as Dictionary).get(mode, "script")) if c is Dictionary else String(c)
+	# THE VERSUS PICK (a07): in versus the friend's seat (p2) goes to ONE of the mission's "versus_pick" sides; the
+	# other picked sides' p2 teams are scripted. `pick` "" = the first of them.
+	if mode == "versus" and out == "p2" and not m.is_empty() and not versus_picks(m).is_empty():
+		var pk := pick if versus_picks(m).has(pick) else String(versus_picks(m)[0])
+		if String(team.get("side", "")) != pk:
+			return "script"
+	return out
+
+
+## THE VERSUS PICK (a07): the sides the versus friend (seat p2) may lead (mission "versus_pick": [side ids]); [] none.
+static func versus_picks(m: Dictionary) -> Array:
+	return (m.get("versus_pick", []) as Array).map(func(x) -> String: return String(x)).filter(func(x: String) -> bool: return side_ids(m).has(x))
 
 
 ## CAMPAIGN-ONLY FACTIONS (e.g. the human tribes, planned, design pending): a mission declares them in "factions":
@@ -260,9 +271,9 @@ static func diff_mult(m: Dictionary, level: String) -> Dictionary:
 
 
 ## The side a player seat plays in this mode ("p1" / "p2"): the side of its first team ("" none).
-static func seat_side(m: Dictionary, mode: String, seat: String) -> String:
+static func seat_side(m: Dictionary, mode: String, seat: String, pick := "") -> String:
 	for tm in m.get("teams", []):
-		if control_of(tm, mode) == seat:
+		if control_of(tm, mode, pick, m) == seat:
 			return String(tm["side"])
 	return ""
 
@@ -277,7 +288,7 @@ static func make_cfg(id: String, mode: String, host_seat := "p1", online := fals
 	if mode == "solo":
 		side = solo_side(m, side)
 	for tm in m.get("teams", []):
-		var ctl := solo_control(m, tm, side) if mode == "solo" else control_of(tm, mode)
+		var ctl := solo_control(m, tm, side) if mode == "solo" else control_of(tm, mode, side, m)
 		var slot := {"faction": engine_faction(m, String(tm.get("faction", "crown"))), "colour": int(tm.get("colour", Defs.COLOUR_RANDOM)),
 			"side": maxi(0, side_index(m, String(tm["side"]))), "team_id": String(tm["id"])}
 		if ctl == host_seat:
@@ -294,6 +305,8 @@ static func make_cfg(id: String, mode: String, host_seat := "p1", online := fals
 	var camp := {"mission": id, "mode": mode, "seat": host_seat, "difficulty": difficulty()}
 	if mode == "solo":
 		camp["side"] = side
+	elif mode == "versus" and not versus_picks(m).is_empty():
+		camp["pick"] = side if versus_picks(m).has(side) else String(versus_picks(m)[0])      # (the friend's side: the versus pick)
 	return {"map": String(m.get("map", "random")), "slots": slots, "campaign": camp}
 
 
@@ -324,9 +337,15 @@ static func unlocked(id: String, p: Dictionary = {}) -> bool:
 	if p.is_empty():
 		p = progress()
 	var sl := storyline_of(id)
+	if (p["done"] as Dictionary).has(id):
+		return true
+	# a CROSSING (a07: "needs": [missions]): open only once every one of them is finished, whichever led to it
+	var needs: Array = mission(id).get("needs", []) if not sl.is_empty() else []
+	if not needs.is_empty():
+		return open_all or needs.all(func(n) -> bool: return (p["done"] as Dictionary).has(String(n)))
 	if not sl.is_empty() and storyline_open(sl, p) and String((sl["missions"] as Array)[0]) == id:
 		return true
-	return (p["reached"] as Array).has(id) or (p["done"] as Dictionary).has(id)
+	return (p["reached"] as Array).has(id)
 
 
 ## The mission after `id` when `side_id` won it ("" none: not written yet). "next" is {side: id} (the story's branch
@@ -521,6 +540,20 @@ static func problems(m: Dictionary) -> Array:
 			out.append("mode %s: no team for p2" % md)
 	if m.has("modes") and (m["modes"] as Array).has("versus") and seat_side(m, "versus", "p1") == seat_side(m, "versus", "p2"):
 		out.append("versus: p1 and p2 are on the same side")
+	# a07: THE VERSUS PICK and a crossing's "needs"
+	for sd in m.get("versus_pick", []):
+		if not sides.has(String(sd)):
+			out.append("versus_pick: unknown side %s" % sd)
+		elif not (m.get("teams", []) as Array).any(func(tm: Dictionary) -> bool: return String(tm.get("side", "")) == String(sd) and control_of(tm, "versus") == "p2"):
+			out.append("versus_pick: no p2 team on side %s" % sd)
+	if m.has("torch_fire") and not (m["torch_fire"] is Dictionary and String(m["torch_fire"].get("tag", "")) != ""):
+		out.append("torch_fire: needs the tag of the buildings a torch sets alight")
+	for at in m.get("auto_tags", []):
+		if not teams.has(String(at.get("team", ""))) or String(at.get("tag", "")) == "" or not Defs.UNITS.has(String(at.get("kind", ""))):
+			out.append("auto_tags: needs a known team, a unit kind and a tag")
+	for n in m.get("needs", []):
+		if mission(String(n)).is_empty():
+			out.append("needs: unknown mission %s" % n)
 	# the SOLO SIDE PICK, the DIFFICULTY and the MIST (act1-engine0)
 	for sd in m.get("solo_sides", []):
 		if not sides.has(String(sd)):
@@ -612,6 +645,10 @@ static func problems(m: Dictionary) -> Array:
 			out.append("exit: unknown counter %s" % ex["counter"])
 		if ex.has("team") and not teams.has(String(ex["team"])):
 			out.append("exit: unknown team %s" % ex["team"])
+		if ex.get("max") is String and not counters.has(String(ex["max"])):
+			out.append("exit: unknown max counter %s" % ex["max"])
+		if ex.has("cargo_counter") and not counters.has(String(ex["cargo_counter"])):
+			out.append("exit: unknown cargo counter %s" % ex["cargo_counter"])
 	for tm in m.get("teams", []):
 		for key in ["deny", "allow", "new"]:
 			for k in tm.get("roster", {}).get(key, []):
@@ -646,6 +683,18 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 			"time", "dead", "hurt", "flag", "past", "clock_out", "clock_left", "counter", "netted", "hp", "awake", "asleep", \
 					"captured", "route_done", "unmasked", "disguised":
 				pass
+			"out":
+				# (a07) {"out": side}: that side has lost (more than two sides: the match may go on without it)
+				if not sides.has(String(c[k])):
+					out.append("%s: unknown side %s" % [where, c[k]])
+			"burning":
+				# (a07) {"burning": {"tag", "at_least" / "below"}}: buildings of the tag on fire now
+				if not (c[k] is Dictionary and c[k].has("tag")):
+					out.append("%s: burning needs a tag" % where)
+			"cargo":
+				# (a05) {"cargo": {"tag": the carts' tag, "at_least" / "below"}}: living carts with a cage on them
+				if not (c[k] is Dictionary and c[k].has("tag")):
+					out.append("%s: cargo needs a tag" % where)
 			# act1-engine0: the difficulty, who is played, STAY, NEAR, SEEN
 			"difficulty":
 				for lv in (c[k] if c[k] is Array else [c[k]]):
@@ -761,9 +810,32 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: unknown side %s" % [where, v])
 		"mark", "flag", "clock", "counter", "tally", "name":
 			pass
-		"cage", "pin", "carry", "spare", "floor", "heal", "burn", "nest_free":
+		"cart":
+			# (a05) {"cart": {"tag": the creatures, "cart": the carts' tag, "freed": counter, "freed_tag", "caged": counter}}
+			if not (v is Dictionary and v.has("tag") and v.has("cart")):
+				out.append("%s: cart needs a tag and a cart" % where)
+			for ck in ["freed", "caged"]:
+				if v is Dictionary and v.has(ck) and not (m.get("counters", {}) as Dictionary).has(String(v[ck])):
+					out.append("%s: cart: unknown counter %s" % [where, v[ck]])
+		"cage", "pin", "carry", "spare", "floor", "heal", "burn", "nest_free", "wind", "remove", "douse":
 			if not (v is Dictionary and v.has("tag")):
 				out.append("%s: %s needs a tag" % [where, k])
+			elif k == "burn" and v.get("spread") is Dictionary and String(v["spread"].get("tag", "")) == "":
+				out.append("%s: a spreading fire needs the tag it spreads to" % where)
+			elif k == "burn" and v.has("douse_side") and not sides.has(String(v["douse_side"])):
+				out.append("%s: burn: unknown douse side %s" % [where, v["douse_side"]])
+		"show":
+			# (a07) {"show": {"pages": [{"still", "lines"}]}}: a MID-MATCH SHOW
+			if not (v is Dictionary) or (v.get("pages", []) as Array).is_empty():
+				out.append("%s: a show needs its pages" % where)
+			else:
+				for pg in v["pages"]:
+					if not (m.get("stills", {}) as Dictionary).has(String(pg.get("still", ""))):
+						out.append("%s: show: unknown still %s" % [where, pg.get("still")])
+					for lid in pg.get("lines", []):
+						var li := String(lid.get("id", "")) if lid is Dictionary else String(lid)
+						if not lines.has(li):
+							out.append("%s: show: unknown line %s" % [where, li])
 		"convert":
 			if not teams.has(String(v.get("to", ""))):
 				out.append("%s: convert to unknown team %s" % [where, v.get("to")])
