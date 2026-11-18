@@ -532,7 +532,7 @@ M = {
         "creatures": {"still": "sire", "title": "The cages are broken",
                       "text": "The young went back to the mountain. The doctor's carts came down empty."},
     },
-    "next": {"expedition": "", "creatures": ""},
+    "next": {"expedition": "a07_council", "creatures": ""},
 }
 
 # THE ROSTER LADDER (docs/campaign_roster_ladder.md): the creatures (the mirror, Claude's choice 1 there) are bound to B3:

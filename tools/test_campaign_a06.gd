@@ -174,7 +174,7 @@ func _data() -> void:
 	var sl := Campaign.storyline_of(MID)
 	check("the Crown line: p01, a01, then a06", String(sl.get("id", "")) == "prologue" and (sl["missions"] as Array).slice(0, 3) == [P01, A01, MID])
 	check("a01 won by the Crown leads to a06 (the Assembly's win nowhere)", Campaign.next_of(A01, "crown") == MID and Campaign.next_of(A01, "assembly") == "")
-	check("a06 leads nowhere yet (a07 is not built)", Campaign.next_of(MID, "crown") == "" and Campaign.next_of(MID, "assembly") == "")
+	check("a06 won by the crown leads to Rome (a07; it opens only with a04, a05 and a06 all won)", Campaign.next_of(MID, "crown") == "a07_council" and Campaign.next_of(MID, "assembly") == "")
 	Campaign.save_progress({"reached": [], "done": {}})
 	Campaign.record(P01, "solo", "crown", "crown", {"families": "save"})
 	check("a06 is locked before a01", not Campaign.unlocked(MID))

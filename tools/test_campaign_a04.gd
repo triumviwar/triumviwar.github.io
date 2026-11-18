@@ -198,7 +198,7 @@ func _data() -> void:
 	var sl := Campaign.storyline_of(MID)
 	check("the Clockmaker line: c01, a02, then a04", String(sl.get("id", "")) == "clockmaker" and (sl["missions"] as Array).slice(0, 3) == [C01, A02, MID])
 	check("a02 won by the guild leads to a04 (a machine win leads nowhere)", Campaign.next_of(A02, "guild") == MID and Campaign.next_of(A02, "machine") == "")
-	check("a04 leads nowhere yet (a07 is not built)", Campaign.next_of(MID, "visit") == "" and Campaign.next_of(MID, "machine") == "")
+	check("a04 won by the visit leads to Rome (a07; it opens only with a04, a05 and a06 all won)", Campaign.next_of(MID, "visit") == "a07_council" and Campaign.next_of(MID, "machine") == "")
 	Campaign.save_progress({"reached": [], "done": {"p01_leaf": {}, C01: {"won_by": "guild"}}})
 	check("a04 is locked before a02", not Campaign.unlocked(MID))
 	Campaign.record(A02, "solo", "guild", "guild", {"furth": "strong"})

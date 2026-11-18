@@ -84,7 +84,7 @@ BOUND = {
     "a04_visit": ("clockwork", ["guild"]),
     "a05_specimens": ("brood", ["creatures"]),
     "a06_barricades": ("crown", ["army", "guns"]),
-    "a07_council": ("crown", ["crown"]),
+    "a07_council": ("crown", ["guard", "garrison"]),
 }
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
@@ -133,6 +133,8 @@ CARDS_PT = {
     "pendulum": "NOVO: O PÊNDULO. Um gigante lento cujo balanço corta tudo à sua volta, voadores também.",
     "stage2": "NOVO: CRESCER. Enraizada, a Mãe cresce ao seu segundo estágio: mais ovos, e os jovens podem AMADURECER.",
     "tyrant_challenger": "NOVO: AMADURECER. Um Raptor crescido muda de pele e vira um Desafiante Tirano; um Cuspidor crescido, um Desafiante Venenoso.",
+    "church": "NOVO: A IGREJA. As igrejas de Roma treinam Missionários.",
+    "missionary": "NOVO: O MISSIONÁRIO. Traz de volta os caídos e guia o povo onde um soldado não consegue.",
     "spitter": "NOVO: OS CUSPIDORES. Dois por ovo, fecundados pelo Sire do Veneno: ácido por trás dos Raptores, contra terra e ar.",
 }
 CARDS_ES = {
@@ -153,12 +155,14 @@ CARDS_ES = {
     "pendulum": "NUEVO: EL PÉNDULO. Un gigante lento cuyo vaivén corta todo a su alrededor, voladores también.",
     "stage2": "NUEVO: CRECER. Enraizada, la Madre crece a su segunda etapa: más huevos, y los jóvenes pueden MADURAR.",
     "tyrant_challenger": "NUEVO: MADURAR. Un Raptor crecido muda la piel y se vuelve un Retador Tirano; un Escupidor crecido, un Retador Venenoso.",
+    "church": "NUEVO: LA IGLESIA. Las iglesias de Roma entrenan Misioneros.",
+    "missionary": "NUEVO: EL MISIONERO. Trae de vuelta a los caídos y guía al pueblo donde un soldado no puede.",
     "spitter": "NUEVO: LOS ESCUPIDORES. Dos por huevo, fecundados por el Señor del Veneno: ácido desde detrás de los Raptores, contra tierra y aire.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 30}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown"}
 
 
 def step_of(mission_id):

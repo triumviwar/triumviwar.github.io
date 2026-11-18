@@ -548,6 +548,9 @@ static func problems(m: Dictionary) -> Array:
 			out.append("versus_pick: no p2 team on side %s" % sd)
 	if m.has("torch_fire") and not (m["torch_fire"] is Dictionary and String(m["torch_fire"].get("tag", "")) != ""):
 		out.append("torch_fire: needs the tag of the buildings a torch sets alight")
+	for at in m.get("auto_tags", []):
+		if not teams.has(String(at.get("team", ""))) or String(at.get("tag", "")) == "" or not Defs.UNITS.has(String(at.get("kind", ""))):
+			out.append("auto_tags: needs a known team, a unit kind and a tag")
 	for n in m.get("needs", []):
 		if mission(String(n)).is_empty():
 			out.append("needs: unknown mission %s" % n)

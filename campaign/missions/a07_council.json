@@ -1,0 +1,5292 @@
+{
+	"id": "a07_council",
+	"title": "The Council of Rome",
+	"summary": "Rome, Lent 2770. The Church sits in council on the new machines and the new creatures. That night the city burns, the specimens break loose and the automata go wrong: the King holds the bridges until dawn.",
+	"map": "campaign:rome_council",
+	"voice": "a07",
+	"light": "dusk",
+	"expansion_spots": false,
+	"manual_end": true,
+	"needs": [
+		"a04_visit",
+		"a05_specimens",
+		"a06_barricades"
+	],
+	"difficulty": {
+		"easy": {
+			"spawns": 0.7,
+			"clocks": 0.8
+		},
+		"hard": {
+			"spawns": 1.3,
+			"clocks": 1.2
+		}
+	},
+	"modes": [
+		"solo",
+		"coop",
+		"versus"
+	],
+	"versus_pick": [
+		"creatures",
+		"automata"
+	],
+	"factions": {
+		"free_assembly": {
+			"name": "The Free Assembly",
+			"stand_in": "crown",
+			"campaign_only": true
+		}
+	},
+	"sides": [
+		{
+			"id": "crown",
+			"name": "The Crown",
+			"about": "The young King, his guard and Father Tomasz, Rome's garrison on the east bank, the Swiss at Saint Peter's."
+		},
+		{
+			"id": "creatures",
+			"name": "The Creatures",
+			"about": "The Academy's specimens, loose from their stables by the Porta del Popolo."
+		},
+		{
+			"id": "automata",
+			"name": "The Automata",
+			"about": "Meister Hollweg's demonstration pieces, out of the exhibition hall and winding each other."
+		},
+		{
+			"id": "assembly",
+			"name": "The Assembly's Last Cell",
+			"about": "The Free Assembly's last torch-bearers in Rome."
+		}
+	],
+	"teams": [
+		{
+			"id": "guard",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "castel",
+			"gold": 400,
+			"powder": 250,
+			"control": {
+				"solo": "p1",
+				"coop": "p1",
+				"versus": "p1"
+			},
+			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon",
+					"horse_breeder",
+					"cuirassier",
+					"horse",
+					"dismounted",
+					"messenger",
+					"foundry",
+					"mortar",
+					"church",
+					"missionary"
+				],
+				"new": [
+					"church",
+					"missionary"
+				],
+				"deny": [
+					"town_hall",
+					"farm"
+				]
+			}
+		},
+		{
+			"id": "garrison",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 0,
+			"start": "none",
+			"camera": "ponte_sant_angelo_e",
+			"control": {
+				"solo": "script",
+				"coop": "p2",
+				"versus": "script"
+			},
+			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon",
+					"horse_breeder",
+					"cuirassier",
+					"horse",
+					"dismounted",
+					"messenger",
+					"foundry",
+					"mortar",
+					"church",
+					"missionary"
+				],
+				"new": [
+					"church",
+					"missionary"
+				],
+				"deny": [
+					"town_hall",
+					"farm"
+				]
+			}
+		},
+		{
+			"id": "town",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "piazza",
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "creatures",
+			"side": "creatures",
+			"faction": "brood",
+			"colour": 2,
+			"start": "none",
+			"camera": "stables",
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "p2"
+			}
+		},
+		{
+			"id": "automata",
+			"side": "automata",
+			"faction": "clockwork",
+			"colour": 1,
+			"start": "none",
+			"camera": "exhibition",
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "p2"
+			}
+		},
+		{
+			"id": "assembly",
+			"side": "assembly",
+			"faction": "free_assembly",
+			"colour": 5,
+			"start": "none",
+			"camera": "porta",
+			"roster": {
+				"deny": [
+					"town_hall",
+					"cottage",
+					"farm",
+					"barracks",
+					"musketeer",
+					"labourer"
+				]
+			},
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "script"
+			}
+		}
+	],
+	"areas": {
+		"prati": [
+			4,
+			4,
+			54,
+			22
+		],
+		"piazza": [
+			16,
+			34,
+			16,
+			18
+		],
+		"basilica": [
+			8,
+			40,
+			5,
+			5
+		],
+		"palace": [
+			8,
+			29,
+			7,
+			6
+		],
+		"vatican": [
+			4,
+			28,
+			12,
+			26
+		],
+		"castel": [
+			44,
+			28,
+			14,
+			10
+		],
+		"campo_marzio": [
+			70,
+			4,
+			30,
+			26
+		],
+		"parione": [
+			70,
+			32,
+			32,
+			26
+		],
+		"regola": [
+			66,
+			60,
+			34,
+			32
+		],
+		"borgo": [
+			34,
+			40,
+			24,
+			18
+		],
+		"trastevere": [
+			18,
+			60,
+			38,
+			32
+		],
+		"borgo_street": [
+			30,
+			41,
+			30,
+			4
+		],
+		"lungotevere_w": [
+			52,
+			20,
+			6,
+			40
+		],
+		"trastevere_quay": [
+			50,
+			60,
+			8,
+			32
+		],
+		"via_lungara": [
+			28,
+			52,
+			6,
+			10
+		],
+		"stables": [
+			104,
+			6,
+			20,
+			16
+		],
+		"exhibition": [
+			104,
+			64,
+			20,
+			20
+		],
+		"porta": [
+			108,
+			38,
+			16,
+			16
+		],
+		"corso": [
+			100,
+			4,
+			4,
+			88
+		],
+		"lungotevere_e": [
+			66,
+			4,
+			6,
+			88
+		],
+		"via_papalis": [
+			70,
+			44,
+			40,
+			3
+		],
+		"via_giulia": [
+			64,
+			60,
+			40,
+			3
+		],
+		"via_ripetta": [
+			66,
+			14,
+			38,
+			4
+		],
+		"popolo_square": [
+			80,
+			12,
+			10,
+			8
+		],
+		"navona": [
+			80,
+			40,
+			10,
+			10
+		],
+		"campo_fiori": [
+			76,
+			68,
+			10,
+			8
+		],
+		"borgo_square": [
+			40,
+			48,
+			8,
+			6
+		],
+		"santa_maria": [
+			30,
+			70,
+			10,
+			8
+		],
+		"ponte_ripetta": [
+			55,
+			14,
+			16,
+			5
+		],
+		"ponte_sant_angelo": [
+			56,
+			38,
+			16,
+			5
+		],
+		"ponte_sisto": [
+			52,
+			72,
+			17,
+			5
+		],
+		"campo_marzio_h1": [
+			86,
+			21,
+			4,
+			4
+		],
+		"campo_marzio_h2": [
+			79,
+			21,
+			4,
+			4
+		],
+		"campo_marzio_h3": [
+			91,
+			10,
+			4,
+			4
+		],
+		"campo_marzio_h4": [
+			91,
+			21,
+			4,
+			4
+		],
+		"campo_marzio_h5": [
+			86,
+			25,
+			4,
+			4
+		],
+		"parione_h1": [
+			90,
+			47,
+			4,
+			4
+		],
+		"parione_h2": [
+			90,
+			40,
+			4,
+			4
+		],
+		"parione_h3": [
+			85,
+			36,
+			4,
+			4
+		],
+		"parione_h4": [
+			79,
+			36,
+			4,
+			4
+		],
+		"parione_h5": [
+			75,
+			47,
+			4,
+			4
+		],
+		"regola_h1": [
+			79,
+			78,
+			4,
+			4
+		],
+		"regola_h2": [
+			72,
+			73,
+			4,
+			4
+		],
+		"regola_h3": [
+			75,
+			78,
+			4,
+			4
+		],
+		"regola_h4": [
+			85,
+			78,
+			4,
+			4
+		],
+		"regola_h5": [
+			72,
+			67,
+			4,
+			4
+		],
+		"borgo_h1": [
+			48,
+			49,
+			4,
+			4
+		],
+		"borgo_h2": [
+			36,
+			49,
+			4,
+			4
+		],
+		"trastevere_h1": [
+			34,
+			78,
+			4,
+			4
+		],
+		"trastevere_h2": [
+			39,
+			74,
+			4,
+			4
+		],
+		"trastevere_h3": [
+			39,
+			68,
+			4,
+			4
+		],
+		"west_bank": [
+			2,
+			2,
+			54,
+			92
+		],
+		"east_bank": [
+			72,
+			2,
+			54,
+			92
+		],
+		"piazza_in": [
+			17,
+			35,
+			14,
+			16
+		],
+		"steps": [
+			13,
+			40,
+			4,
+			6
+		],
+		"hall_floor": [
+			9,
+			35,
+			6,
+			4
+		],
+		"castel_yard": [
+			46,
+			30,
+			10,
+			7
+		],
+		"porta_gate": [
+			120,
+			42,
+			4,
+			8
+		],
+		"stables_pen": [
+			108,
+			8,
+			12,
+			10
+		],
+		"exhibition_floor": [
+			108,
+			70,
+			12,
+			10
+		],
+		"corso_n": [
+			100,
+			24,
+			4,
+			8
+		],
+		"corso_s": [
+			100,
+			54,
+			4,
+			8
+		],
+		"ponte_ripetta_w": [
+			55,
+			13,
+			6,
+			7
+		],
+		"ponte_ripetta_e": [
+			65,
+			13,
+			6,
+			7
+		],
+		"ponte_sant_angelo_w": [
+			56,
+			37,
+			6,
+			7
+		],
+		"ponte_sant_angelo_e": [
+			66,
+			37,
+			6,
+			7
+		],
+		"ponte_sisto_w": [
+			52,
+			71,
+			6,
+			7
+		],
+		"ponte_sisto_e": [
+			63,
+			71,
+			6,
+			7
+		],
+		"church_lot": [
+			24,
+			20,
+			12,
+			6
+		],
+		"tents": [
+			30,
+			8,
+			16,
+			10
+		]
+	},
+	"counters": {
+		"saved": {
+			"start": 0,
+			"of": 18
+		},
+		"people_total": {
+			"start": 18
+		},
+		"stood": {
+			"start": 0,
+			"of": 5
+		},
+		"quarters": {
+			"start": 5
+		}
+	},
+	"exits": [
+		{
+			"area": "steps",
+			"tag": "people",
+			"counter": "saved"
+		}
+	],
+	"auto_tags": [
+		{
+			"team": "guard",
+			"kind": "missionary",
+			"tag": "leaders"
+		},
+		{
+			"team": "garrison",
+			"kind": "missionary",
+			"tag": "leaders"
+		}
+	],
+	"torch_fire": {
+		"secs": 90,
+		"spread": {
+			"tag": "houses",
+			"within": 7,
+			"every": 18
+		},
+		"douse_side": "crown",
+		"douse_teams": [
+			"guard",
+			"garrison"
+		],
+		"douse_secs": 14,
+		"tag": "houses"
+	},
+	"units": [
+		{
+			"team": "guard",
+			"kind": "dismounted",
+			"as": "king_young",
+			"count": 1,
+			"at": "castel_yard",
+			"tag": "king"
+		},
+		{
+			"team": "guard",
+			"kind": "missionary",
+			"as": "tomasz",
+			"count": 1,
+			"at": "castel_yard",
+			"tag": "tomasz",
+			"tags": [
+				"leaders"
+			]
+		},
+		{
+			"team": "guard",
+			"kind": "musketeer",
+			"count": 14,
+			"at": "castel_yard",
+			"tag": "guard_men"
+		},
+		{
+			"team": "guard",
+			"kind": "cuirassier",
+			"count": 4,
+			"at": "castel_yard",
+			"tag": "riders"
+		},
+		{
+			"team": "guard",
+			"kind": "cannon",
+			"count": 2,
+			"at": "castel_yard",
+			"tag": "guns"
+		},
+		{
+			"team": "guard",
+			"kind": "powder_wagon",
+			"count": 1,
+			"at": "castel_yard",
+			"tag": "wagon"
+		},
+		{
+			"team": "guard",
+			"kind": "pikeman",
+			"as": "swiss",
+			"count": 6,
+			"at": "piazza_in",
+			"tag": "swiss",
+			"order": "hold"
+		},
+		{
+			"team": "garrison",
+			"kind": "musketeer",
+			"count": 4,
+			"at": "ponte_ripetta_e",
+			"tag": "garrison_ponte_ripetta",
+			"tags": [
+				"garrison"
+			],
+			"order": "hold"
+		},
+		{
+			"team": "garrison",
+			"kind": "musketeer",
+			"count": 4,
+			"at": "ponte_sant_angelo_e",
+			"tag": "garrison_ponte_sant_angelo",
+			"tags": [
+				"garrison"
+			],
+			"order": "hold"
+		},
+		{
+			"team": "garrison",
+			"kind": "musketeer",
+			"count": 4,
+			"at": "ponte_sisto_e",
+			"tag": "garrison_ponte_sisto",
+			"tags": [
+				"garrison"
+			],
+			"order": "hold"
+		},
+		{
+			"team": "garrison",
+			"kind": "dismounted",
+			"as": "captain_rome",
+			"count": 1,
+			"at": "ponte_sant_angelo_e",
+			"tag": "captain",
+			"tags": [
+				"garrison"
+			],
+			"order": "hold"
+		},
+		{
+			"team": "town",
+			"kind": "missionary",
+			"as": "ferrer",
+			"count": 1,
+			"at": "hall_floor",
+			"tag": "ferrer",
+			"tags": [
+				"council"
+			],
+			"order": "hold"
+		},
+		{
+			"team": "town",
+			"kind": "dismounted",
+			"as": "valadares",
+			"count": 1,
+			"at": "hall_floor",
+			"tag": "valadares",
+			"tags": [
+				"council"
+			],
+			"order": "hold"
+		},
+		{
+			"team": "town",
+			"kind": "missionary",
+			"as": "hollweg",
+			"count": 1,
+			"at": "hall_floor",
+			"tag": "hollweg",
+			"tags": [
+				"council"
+			],
+			"order": "hold"
+		},
+		{
+			"team": "town",
+			"kind": "musketeer",
+			"as": "lindqvist",
+			"count": 1,
+			"at": "hall_floor",
+			"tag": "lindqvist",
+			"tags": [
+				"council"
+			],
+			"order": "hold"
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "roman",
+			"count": 6,
+			"at": "popolo_square",
+			"tag": "people_campo_marzio",
+			"tags": [
+				"people"
+			],
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "roman",
+			"count": 6,
+			"at": "navona",
+			"tag": "people_parione",
+			"tags": [
+				"people"
+			],
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "roman",
+			"count": 6,
+			"at": "campo_fiori",
+			"tag": "people_regola",
+			"tags": [
+				"people"
+			],
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "creatures",
+			"at": "stables_pen",
+			"tag": "specimens",
+			"tags": [
+				"creatures_all"
+			],
+			"kind": "raptor",
+			"count": 3,
+			"if": {
+				"any": [
+					{
+						"past": {
+							"a05_specimens.cages": "few"
+						}
+					},
+					{
+						"past": {
+							"a05_specimens.cages": "none"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "creatures",
+			"at": "stables_pen",
+			"tag": "specimens",
+			"tags": [
+				"creatures_all"
+			],
+			"kind": "spitter",
+			"count": 1,
+			"if": {
+				"any": [
+					{
+						"past": {
+							"a05_specimens.cages": "few"
+						}
+					},
+					{
+						"past": {
+							"a05_specimens.cages": "none"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "creatures",
+			"at": "stables_pen",
+			"tag": "specimens",
+			"tags": [
+				"creatures_all"
+			],
+			"kind": "raptor",
+			"count": 4,
+			"if": {
+				"not": {
+					"any": [
+						{
+							"any": [
+								{
+									"past": {
+										"a05_specimens.cages": "few"
+									}
+								},
+								{
+									"past": {
+										"a05_specimens.cages": "none"
+									}
+								}
+							]
+						},
+						{
+							"past": {
+								"a05_specimens.cages": "all"
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"team": "creatures",
+			"at": "stables_pen",
+			"tag": "specimens",
+			"tags": [
+				"creatures_all"
+			],
+			"kind": "spitter",
+			"count": 2,
+			"if": {
+				"not": {
+					"any": [
+						{
+							"any": [
+								{
+									"past": {
+										"a05_specimens.cages": "few"
+									}
+								},
+								{
+									"past": {
+										"a05_specimens.cages": "none"
+									}
+								}
+							]
+						},
+						{
+							"past": {
+								"a05_specimens.cages": "all"
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"team": "creatures",
+			"at": "stables_pen",
+			"tag": "specimens",
+			"tags": [
+				"creatures_all"
+			],
+			"kind": "raptor",
+			"count": 5,
+			"if": {
+				"past": {
+					"a05_specimens.cages": "all"
+				}
+			}
+		},
+		{
+			"team": "creatures",
+			"at": "stables_pen",
+			"tag": "specimens",
+			"tags": [
+				"creatures_all"
+			],
+			"kind": "spitter",
+			"count": 2,
+			"if": {
+				"past": {
+					"a05_specimens.cages": "all"
+				}
+			}
+		},
+		{
+			"team": "creatures",
+			"at": "stables_pen",
+			"tag": "specimens",
+			"tags": [
+				"creatures_all"
+			],
+			"kind": "tyrant_challenger",
+			"count": 1,
+			"if": {
+				"past": {
+					"a05_specimens.cages": "all"
+				}
+			}
+		},
+		{
+			"team": "creatures",
+			"at": "stables_pen",
+			"tag": "specimens",
+			"tags": [
+				"creatures_all"
+			],
+			"kind": "tyrannosaur",
+			"count": 1,
+			"fixed": true,
+			"as": "young_sire",
+			"name": "The young Sire",
+			"if": {
+				"past": {
+					"a05_specimens.cages": "all"
+				}
+			}
+		},
+		{
+			"team": "creatures",
+			"at": "stables_pen",
+			"tag": "specimens",
+			"tags": [
+				"creatures_all"
+			],
+			"kind": "raptor",
+			"count": 2,
+			"if": {
+				"past": {
+					"a05_specimens.eggs": "taken"
+				}
+			}
+		},
+		{
+			"team": "automata",
+			"at": "exhibition_floor",
+			"tag": "demo",
+			"tags": [
+				"automata_all"
+			],
+			"kind": "clock_soldier",
+			"count": 5,
+			"if": {
+				"not": {
+					"past": {
+						"a04_visit.broken": "melted"
+					}
+				}
+			}
+		},
+		{
+			"team": "automata",
+			"at": "exhibition_floor",
+			"tag": "demo",
+			"tags": [
+				"automata_all"
+			],
+			"kind": "springer",
+			"count": 2,
+			"if": {
+				"not": {
+					"past": {
+						"a04_visit.broken": "melted"
+					}
+				}
+			}
+		},
+		{
+			"team": "automata",
+			"at": "exhibition_floor",
+			"tag": "demo",
+			"tags": [
+				"automata_all"
+			],
+			"kind": "pendulum",
+			"count": 1,
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"a04_visit.broken": "melted"
+					}
+				}
+			}
+		},
+		{
+			"team": "automata",
+			"at": "exhibition_floor",
+			"tag": "demo",
+			"tags": [
+				"automata_all"
+			],
+			"kind": "winder",
+			"count": 2,
+			"if": {
+				"not": {
+					"past": {
+						"a04_visit.broken": "melted"
+					}
+				}
+			}
+		},
+		{
+			"team": "automata",
+			"at": "exhibition_floor",
+			"tag": "demo",
+			"tags": [
+				"automata_all"
+			],
+			"kind": "clock_soldier",
+			"count": 2,
+			"fixed": true,
+			"if": {
+				"past": {
+					"a04_visit.broken": "melted"
+				}
+			}
+		},
+		{
+			"team": "automata",
+			"at": "exhibition_floor",
+			"tag": "demo",
+			"tags": [
+				"automata_all",
+				"machine_own"
+			],
+			"kind": "springer",
+			"count": 2,
+			"if": {
+				"any": [
+					{
+						"past": {
+							"a04_visit.lost_to_machine": 2
+						}
+					},
+					{
+						"past": {
+							"a04_visit.lost_to_machine": 3
+						}
+					},
+					{
+						"past": {
+							"a04_visit.lost_to_machine": 4
+						}
+					},
+					{
+						"past": {
+							"a04_visit.lost_to_machine": 5
+						}
+					},
+					{
+						"past": {
+							"a04_visit.lost_to_machine": 6
+						}
+					},
+					{
+						"past": {
+							"a04_visit.lost_to_machine": 7
+						}
+					},
+					{
+						"past": {
+							"a04_visit.lost_to_machine": 8
+						}
+					},
+					{
+						"past": {
+							"a04_visit.lost_to_machine": 9
+						}
+					},
+					{
+						"past": {
+							"a04_visit.lost_to_machine": 10
+						}
+					},
+					{
+						"past": {
+							"a04_visit.lost_to_machine": 11
+						}
+					},
+					{
+						"past": {
+							"a04_visit.lost_to_machine": 12
+						}
+					}
+				]
+			}
+		}
+	],
+	"buildings": [
+		{
+			"team": "guard",
+			"kind": "barracks",
+			"at": "castel",
+			"tag": "barracks",
+			"name": "The Castel Sant'Angelo"
+		},
+		{
+			"team": "guard",
+			"kind": "powder_mill",
+			"at": "castel",
+			"tag": "mill"
+		},
+		{
+			"team": "guard",
+			"kind": "church",
+			"at": "church_lot",
+			"tag": "santo_spirito",
+			"name": "Santo Spirito"
+		},
+		{
+			"team": "guard",
+			"kind": "cottage",
+			"at": "tents",
+			"tag": "tents"
+		},
+		{
+			"team": "guard",
+			"kind": "cottage",
+			"at": "tents",
+			"tag": "tents"
+		},
+		{
+			"team": "guard",
+			"kind": "cottage",
+			"at": "tents",
+			"tag": "tents"
+		},
+		{
+			"team": "guard",
+			"kind": "cottage",
+			"at": "tents",
+			"tag": "tents"
+		},
+		{
+			"team": "town",
+			"kind": "church",
+			"at": [
+				9,
+				41
+			],
+			"tag": "basilica",
+			"name": "Saint Peter's"
+		},
+		{
+			"team": "town",
+			"kind": "town_hall",
+			"at": [
+				9,
+				30
+			],
+			"tag": "palace",
+			"name": "The Apostolic Palace"
+		},
+		{
+			"team": "town",
+			"kind": "horse_breeder",
+			"at": "stables",
+			"tag": "stables_bld",
+			"name": "The Academy's stables"
+		},
+		{
+			"team": "town",
+			"kind": "armoury",
+			"at": "exhibition",
+			"tag": "exhibition_bld",
+			"name": "The exhibition hall"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				87,
+				22
+			],
+			"tag": "q_campo_marzio",
+			"tags": [
+				"houses",
+				"campo_marzio_h1"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				80,
+				22
+			],
+			"tag": "q_campo_marzio",
+			"tags": [
+				"houses",
+				"campo_marzio_h2"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				92,
+				11
+			],
+			"tag": "q_campo_marzio",
+			"tags": [
+				"houses",
+				"campo_marzio_h3"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				92,
+				22
+			],
+			"tag": "q_campo_marzio",
+			"tags": [
+				"houses",
+				"campo_marzio_h4"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				87,
+				26
+			],
+			"tag": "q_campo_marzio",
+			"tags": [
+				"houses",
+				"campo_marzio_h5"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				91,
+				48
+			],
+			"tag": "q_parione",
+			"tags": [
+				"houses",
+				"parione_h1"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				91,
+				41
+			],
+			"tag": "q_parione",
+			"tags": [
+				"houses",
+				"parione_h2"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				86,
+				37
+			],
+			"tag": "q_parione",
+			"tags": [
+				"houses",
+				"parione_h3"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				80,
+				37
+			],
+			"tag": "q_parione",
+			"tags": [
+				"houses",
+				"parione_h4"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				76,
+				48
+			],
+			"tag": "q_parione",
+			"tags": [
+				"houses",
+				"parione_h5"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				80,
+				79
+			],
+			"tag": "q_regola",
+			"tags": [
+				"houses",
+				"regola_h1"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				73,
+				74
+			],
+			"tag": "q_regola",
+			"tags": [
+				"houses",
+				"regola_h2"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				76,
+				79
+			],
+			"tag": "q_regola",
+			"tags": [
+				"houses",
+				"regola_h3"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				86,
+				79
+			],
+			"tag": "q_regola",
+			"tags": [
+				"houses",
+				"regola_h4"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				73,
+				68
+			],
+			"tag": "q_regola",
+			"tags": [
+				"houses",
+				"regola_h5"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				49,
+				50
+			],
+			"tag": "q_borgo",
+			"tags": [
+				"houses",
+				"borgo_h1"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				37,
+				50
+			],
+			"tag": "q_borgo",
+			"tags": [
+				"houses",
+				"borgo_h2"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				35,
+				79
+			],
+			"tag": "q_trastevere",
+			"tags": [
+				"houses",
+				"trastevere_h1"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				40,
+				75
+			],
+			"tag": "q_trastevere",
+			"tags": [
+				"houses",
+				"trastevere_h2"
+			],
+			"name": "Houses"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				40,
+				69
+			],
+			"tag": "q_trastevere",
+			"tags": [
+				"houses",
+				"trastevere_h3"
+			],
+			"name": "Houses"
+		}
+	],
+	"objectives": [
+		{
+			"id": "king",
+			"side": "crown",
+			"primary": true,
+			"kind": "protect",
+			"tag": "king",
+			"text": "The King must live."
+		},
+		{
+			"id": "tomasz",
+			"side": "crown",
+			"primary": true,
+			"kind": "protect",
+			"tag": "tomasz",
+			"text": "Father Tomasz must live."
+		},
+		{
+			"id": "bridges",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Hold the three bridges: nothing of the creatures or the machines may reach Saint Peter's Square."
+		},
+		{
+			"id": "dawn",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "dawn",
+			"hidden": true,
+			"text": "Dawn in {clock:dawn}."
+		},
+		{
+			"id": "people",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The people: Father Tomasz (or a Missionary) calls each quarter to Saint Peter's. Saved: {saved} of {saved.of}."
+		},
+		{
+			"id": "fires",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Put out the fires: men standing by a burning house put it out. A fire left alone spreads."
+		},
+		{
+			"id": "c_cross",
+			"side": "creatures",
+			"primary": true,
+			"kind": "reach",
+			"area": "piazza_in",
+			"count": 3,
+			"side_units": "creatures",
+			"text": "Cross the river: bring three of your creatures into Saint Peter's Square before dawn."
+		},
+		{
+			"id": "m_cross",
+			"side": "automata",
+			"primary": true,
+			"kind": "reach",
+			"area": "piazza_in",
+			"count": 3,
+			"side_units": "automata",
+			"text": "Cross the river: bring three of your machines into Saint Peter's Square before dawn."
+		}
+	],
+	"triggers": [
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "houses",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "basilica",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "palace",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "stables_bld",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "exhibition_bld",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "council",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "people",
+						"on": true
+					}
+				},
+				{
+					"cage": {
+						"tag": "specimens",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "specimens",
+						"on": true
+					}
+				},
+				{
+					"cage": {
+						"tag": "demo",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "demo",
+						"on": true
+					}
+				},
+				{
+					"wind": {
+						"tag": "demo",
+						"share": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "verdict",
+			"when": {
+				"time": 2
+			},
+			"do": [
+				{
+					"show": {
+						"pages": [
+							{
+								"still": "verdict",
+								"lines": [
+									"c_verdict1",
+									"c_verdict2"
+								]
+							},
+							{
+								"still": "defiance",
+								"lines": [
+									"h_defy",
+									"l_defy",
+									"k_letgo"
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "walk_out",
+			"when": {
+				"fired": "verdict"
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"n_walkout"
+					]
+				},
+				{
+					"spare": {
+						"tag": "hollweg",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "lindqvist",
+						"on": true
+					}
+				},
+				{
+					"order": {
+						"tag": "hollweg",
+						"do": "route",
+						"route": [
+							"borgo_street",
+							"ponte_sant_angelo_w",
+							"ponte_sant_angelo_e",
+							"via_papalis",
+							"exhibition"
+						],
+						"name": "hollweg_out"
+					}
+				},
+				{
+					"order": {
+						"tag": "lindqvist",
+						"do": "route",
+						"route": [
+							"borgo_street",
+							"ponte_sant_angelo_w",
+							"ponte_sant_angelo_e",
+							"via_ripetta",
+							"stables"
+						],
+						"name": "lindqvist_out"
+					}
+				},
+				{
+					"order": {
+						"tag": "ferrer",
+						"do": "move",
+						"to": "steps"
+					}
+				},
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "move",
+						"to": "steps"
+					}
+				},
+				{
+					"flag": {
+						"hollweg": "defied",
+						"lindqvist": "defied"
+					}
+				}
+			]
+		},
+		{
+			"id": "tips",
+			"when": {
+				"all": [
+					{
+						"fired": "walk_out"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 6,
+			"do": [
+				{
+					"say": [
+						"k_1",
+						"t_1",
+						"k_tip_bridges"
+					]
+				},
+				{
+					"ping": {
+						"area": "ponte_ripetta"
+					}
+				},
+				{
+					"ping": {
+						"area": "ponte_sant_angelo"
+					}
+				},
+				{
+					"ping": {
+						"area": "ponte_sisto"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro_cre",
+			"when": {
+				"all": [
+					{
+						"time": 4
+					},
+					{
+						"playing": "creatures"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"cr_1"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_aut",
+			"when": {
+				"all": [
+					{
+						"time": 4
+					},
+					{
+						"playing": "automata"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"au_1"
+					]
+				}
+			]
+		},
+		{
+			"id": "council_gone",
+			"when": {
+				"any": [
+					{
+						"route_done": "hollweg_out"
+					},
+					{
+						"fired": "part2"
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"remove": {
+						"tag": "hollweg"
+					}
+				}
+			]
+		},
+		{
+			"id": "council_gone2",
+			"when": {
+				"any": [
+					{
+						"route_done": "lindqvist_out"
+					},
+					{
+						"fired": "part2"
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"remove": {
+						"tag": "lindqvist"
+					}
+				}
+			]
+		},
+		{
+			"id": "council_in",
+			"when": {
+				"fired": "walk_out"
+			},
+			"delay": 25,
+			"do": [
+				{
+					"remove": {
+						"tag": "ferrer"
+					}
+				},
+				{
+					"remove": {
+						"tag": "valadares"
+					}
+				}
+			]
+		},
+		{
+			"id": "pay",
+			"when": {
+				"all": [
+					{
+						"time": 60
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 60,
+			"do": [
+				{
+					"give": {
+						"team": "guard",
+						"gold": 80,
+						"powder": 30
+					}
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"time": 50
+			},
+			"do": [
+				{
+					"light": {
+						"to": "fire_night",
+						"secs": 20
+					}
+				},
+				{
+					"burn": {
+						"secs": 90,
+						"spread": {
+							"tag": "houses",
+							"within": 7,
+							"every": 18
+						},
+						"douse_side": "crown",
+						"douse_teams": [
+							"guard",
+							"garrison"
+						],
+						"douse_secs": 14,
+						"tag": "q_campo_marzio",
+						"first": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "people",
+						"on": false
+					}
+				},
+				{
+					"say": [
+						"n_fire1",
+						"k_2"
+					]
+				},
+				{
+					"objective": {
+						"id": "people",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "fires",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"area": "popolo_square"
+					}
+				},
+				{
+					"reveal": {
+						"area": "campo_marzio",
+						"side": "crown",
+						"secs": 30
+					}
+				}
+			]
+		},
+		{
+			"id": "cell_spared",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"say": [
+						"n_cell_spared"
+					]
+				}
+			]
+		},
+		{
+			"id": "cell_exec",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"say": [
+						"n_cell_exec"
+					]
+				}
+			]
+		},
+		{
+			"id": "cell_bridges",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 90,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 3,
+						"at": "porta_gate",
+						"tag": "bridge_cell"
+					}
+				},
+				{
+					"order": {
+						"tag": "bridge_cell",
+						"do": "attack",
+						"to": "ponte_sant_angelo_e"
+					}
+				}
+			]
+		},
+		{
+			"id": "tip_people",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"say": [
+						"t_people",
+						"tip_church"
+					]
+				},
+				{
+					"point": {
+						"kind": "church"
+					}
+				}
+			]
+		},
+		{
+			"id": "tip_fire",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "crown"
+					},
+					{
+						"burning": {
+							"tag": "houses",
+							"at_least": 2
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"tip_fire"
+					]
+				}
+			]
+		},
+		{
+			"id": "loose",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 70,
+			"do": [
+				{
+					"cage": {
+						"tag": "specimens",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "specimens",
+						"on": false
+					}
+				},
+				{
+					"say": [
+						"n_loose",
+						"l_loose"
+					]
+				},
+				{
+					"ping": {
+						"area": "stables"
+					}
+				},
+				{
+					"reveal": {
+						"area": "stables",
+						"side": "crown",
+						"secs": 20
+					}
+				},
+				{
+					"order": {
+						"tag": "specimens",
+						"do": "route",
+						"route": [
+							"popolo_square",
+							"ponte_ripetta_e",
+							"ponte_ripetta_w",
+							"prati",
+							"piazza_in"
+						],
+						"attack": true,
+						"kind": [
+							"raptor",
+							"tyrannosaur"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "specimens",
+						"do": "route",
+						"route": [
+							"corso_n",
+							"navona",
+							"ponte_sant_angelo_e",
+							"ponte_sant_angelo_w",
+							"borgo_street",
+							"piazza_in"
+						],
+						"attack": true,
+						"kind": [
+							"spitter",
+							"tyrant_challenger"
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "demo_wrong",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"a04_visit.broken": "melted"
+							}
+						}
+					}
+				]
+			},
+			"delay": 110,
+			"do": [
+				{
+					"cage": {
+						"tag": "demo",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "demo",
+						"on": false
+					}
+				},
+				{
+					"wind": {
+						"tag": "automata_all",
+						"share": 1.0
+					}
+				},
+				{
+					"say": [
+						"n_demo",
+						"h_demo"
+					]
+				},
+				{
+					"ping": {
+						"area": "exhibition"
+					}
+				},
+				{
+					"reveal": {
+						"area": "exhibition",
+						"side": "crown",
+						"secs": 20
+					}
+				},
+				{
+					"order": {
+						"tag": "demo",
+						"do": "route",
+						"route": [
+							"campo_fiori",
+							"ponte_sisto_e",
+							"ponte_sisto_w",
+							"via_lungara",
+							"piazza_in"
+						],
+						"attack": true,
+						"kind": [
+							"clock_soldier",
+							"winder"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "demo",
+						"do": "route",
+						"route": [
+							"corso_s",
+							"navona",
+							"ponte_sant_angelo_e",
+							"ponte_sant_angelo_w",
+							"borgo_street",
+							"piazza_in"
+						],
+						"attack": true,
+						"kind": [
+							"springer",
+							"pendulum"
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "demo_fail",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"past": {
+							"a04_visit.broken": "melted"
+						}
+					}
+				]
+			},
+			"delay": 110,
+			"do": [
+				{
+					"cage": {
+						"tag": "demo",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "demo",
+						"on": false
+					}
+				},
+				{
+					"wind": {
+						"tag": "automata_all",
+						"share": 1.0
+					}
+				},
+				{
+					"say": [
+						"n_demo_melted",
+						"h_demo_melted"
+					]
+				},
+				{
+					"ping": {
+						"area": "exhibition"
+					}
+				},
+				{
+					"order": {
+						"tag": "demo",
+						"do": "route",
+						"route": [
+							"corso_s",
+							"navona",
+							"ponte_sant_angelo_e",
+							"ponte_sant_angelo_w",
+							"borgo_street",
+							"piazza_in"
+						],
+						"attack": true
+					}
+				}
+			]
+		},
+		{
+			"id": "machine_own",
+			"when": {
+				"all": [
+					{
+						"fired": "demo_wrong"
+					},
+					{
+						"any": [
+							{
+								"past": {
+									"a04_visit.lost_to_machine": 2
+								}
+							},
+							{
+								"past": {
+									"a04_visit.lost_to_machine": 3
+								}
+							},
+							{
+								"past": {
+									"a04_visit.lost_to_machine": 4
+								}
+							},
+							{
+								"past": {
+									"a04_visit.lost_to_machine": 5
+								}
+							},
+							{
+								"past": {
+									"a04_visit.lost_to_machine": 6
+								}
+							},
+							{
+								"past": {
+									"a04_visit.lost_to_machine": 7
+								}
+							},
+							{
+								"past": {
+									"a04_visit.lost_to_machine": 8
+								}
+							},
+							{
+								"past": {
+									"a04_visit.lost_to_machine": 9
+								}
+							},
+							{
+								"past": {
+									"a04_visit.lost_to_machine": 10
+								}
+							},
+							{
+								"past": {
+									"a04_visit.lost_to_machine": 11
+								}
+							},
+							{
+								"past": {
+									"a04_visit.lost_to_machine": 12
+								}
+							}
+						]
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 10,
+			"do": [
+				{
+					"say": [
+						"k_machine_own"
+					]
+				}
+			]
+		},
+		{
+			"id": "self_wind",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 15,
+			"do": [
+				{
+					"wind": {
+						"tag": "automata_all",
+						"share": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "mob",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"near": {
+							"tag": "people_parione",
+							"to_side": "automata",
+							"within": 9
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "town",
+						"kind": "pikeman",
+						"as": "roman_mob",
+						"count": 4,
+						"at": "navona",
+						"tag": "mob"
+					}
+				},
+				{
+					"order": {
+						"tag": "mob",
+						"do": "hunt",
+						"prey": "automata_all",
+						"within": 30
+					}
+				},
+				{
+					"say": [
+						"n_mob"
+					]
+				}
+			]
+		},
+		{
+			"id": "meet",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"near": {
+							"side": "creatures",
+							"to_side": "automata",
+							"within": 5
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_meet",
+						"k_meet"
+					]
+				}
+			]
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"fired": "loose"
+					},
+					{
+						"any": [
+							{
+								"fired": "demo_wrong"
+							},
+							{
+								"fired": "demo_fail"
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 60,
+			"do": [
+				{
+					"clock": {
+						"name": "dawn",
+						"secs": 540
+					}
+				},
+				{
+					"objective": {
+						"id": "bridges",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "dawn",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"k_3",
+						"t_3"
+					]
+				},
+				{
+					"ping": {
+						"area": "piazza"
+					}
+				}
+			]
+		},
+		{
+			"id": "dawn_near",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"clock_left": {
+							"name": "dawn",
+							"below": 90
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"light": {
+						"to": "grey_dawn",
+						"secs": 80
+					}
+				},
+				{
+					"weather": "rain"
+				},
+				{
+					"say": [
+						"n_rain"
+					]
+				}
+			]
+		},
+		{
+			"id": "crossed",
+			"when": {
+				"all": [
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"any": [
+							{
+								"done": "c_cross"
+							},
+							{
+								"done": "m_cross"
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_crossed"
+					]
+				},
+				{
+					"objective": {
+						"id": "bridges",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "dawn_out",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"clock_out": "dawn"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "bridges",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "dawn",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "stood_campo_marzio",
+			"when": {
+				"all": [
+					{
+						"fired": "dawn_out"
+					},
+					{
+						"count": {
+							"tag": "q_campo_marzio",
+							"buildings": true,
+							"at_least": 3
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "stood",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "stood_parione",
+			"when": {
+				"all": [
+					{
+						"fired": "dawn_out"
+					},
+					{
+						"count": {
+							"tag": "q_parione",
+							"buildings": true,
+							"at_least": 3
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "stood",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "stood_regola",
+			"when": {
+				"all": [
+					{
+						"fired": "dawn_out"
+					},
+					{
+						"count": {
+							"tag": "q_regola",
+							"buildings": true,
+							"at_least": 3
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "stood",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "stood_borgo",
+			"when": {
+				"all": [
+					{
+						"fired": "dawn_out"
+					},
+					{
+						"count": {
+							"tag": "q_borgo",
+							"buildings": true,
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "stood",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "stood_trastevere",
+			"when": {
+				"all": [
+					{
+						"fired": "dawn_out"
+					},
+					{
+						"count": {
+							"tag": "q_trastevere",
+							"buildings": true,
+							"at_least": 2
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "stood",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "dawn_won",
+			"when": {
+				"fired": "dawn_out"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"tally": {
+						"flag": "rome",
+						"counter": "stood",
+						"of": "quarters",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.5,
+								"some"
+							],
+							[
+								1,
+								"all"
+							]
+						]
+					}
+				},
+				{
+					"tally": {
+						"flag": "people",
+						"counter": "saved",
+						"of": "people_total",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.4,
+								"some"
+							],
+							[
+								0.75,
+								"many"
+							]
+						]
+					}
+				},
+				{
+					"say": [
+						"k_dawn",
+						"t_dawn"
+					]
+				},
+				{
+					"light": {
+						"to": "dawn",
+						"secs": 10
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"fired": "dawn_won"
+			},
+			"delay": 6,
+			"do": [
+				{
+					"win": "crown"
+				}
+			]
+		},
+		{
+			"id": "cre_won",
+			"when": {
+				"done": "c_cross"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"flag": {
+						"rome": "few",
+						"rome_n": 0
+					}
+				}
+			]
+		},
+		{
+			"id": "aut_won",
+			"when": {
+				"done": "m_cross"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"flag": {
+						"rome": "few",
+						"rome_n": 0
+					}
+				}
+			]
+		},
+		{
+			"id": "king_hurt",
+			"when": {
+				"all": [
+					{
+						"hurt": "king"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"t_king"
+					]
+				}
+			]
+		},
+		{
+			"id": "tomasz_hurt",
+			"when": {
+				"all": [
+					{
+						"hurt": "tomasz"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"k_priest"
+					]
+				}
+			]
+		},
+		{
+			"id": "first_saved",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "saved",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_saved"
+					]
+				}
+			]
+		},
+		{
+			"id": "call_campo_marzio",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"fired": "flee_campo_marzio"
+						}
+					},
+					{
+						"near": {
+							"tag": "people_campo_marzio",
+							"to": "leaders",
+							"within": 4
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "people_campo_marzio",
+						"do": "route",
+						"route": [
+							"ponte_ripetta_e",
+							"ponte_ripetta_w",
+							"piazza_in",
+							"steps"
+						],
+						"only_team": "town",
+						"name": "people_campo_marzio"
+					}
+				},
+				{
+					"say": [
+						"t_call"
+					]
+				}
+			]
+		},
+		{
+			"id": "flee_campo_marzio",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"fired": "call_campo_marzio"
+						}
+					},
+					{
+						"any": [
+							{
+								"near": {
+									"tag": "people_campo_marzio",
+									"to_side": "automata",
+									"within": 6
+								}
+							},
+							{
+								"near": {
+									"tag": "people_campo_marzio",
+									"to_side": "creatures",
+									"within": 6
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "people_campo_marzio",
+						"do": "route",
+						"route": [
+							"ponte_ripetta_e",
+							"ponte_ripetta_w",
+							"piazza_in",
+							"steps"
+						],
+						"only_team": "town",
+						"name": "people_campo_marzio"
+					}
+				},
+				{
+					"say": [
+						"n_flee"
+					]
+				},
+				{
+					"ping": {
+						"area": "popolo_square"
+					}
+				}
+			]
+		},
+		{
+			"id": "call_parione",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"fired": "flee_parione"
+						}
+					},
+					{
+						"near": {
+							"tag": "people_parione",
+							"to": "leaders",
+							"within": 4
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "people_parione",
+						"do": "route",
+						"route": [
+							"ponte_sant_angelo_e",
+							"ponte_sant_angelo_w",
+							"borgo_street",
+							"steps"
+						],
+						"only_team": "town",
+						"name": "people_parione"
+					}
+				},
+				{
+					"say": [
+						"t_call"
+					]
+				}
+			]
+		},
+		{
+			"id": "flee_parione",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"fired": "call_parione"
+						}
+					},
+					{
+						"any": [
+							{
+								"near": {
+									"tag": "people_parione",
+									"to_side": "automata",
+									"within": 6
+								}
+							},
+							{
+								"near": {
+									"tag": "people_parione",
+									"to_side": "creatures",
+									"within": 6
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "people_parione",
+						"do": "route",
+						"route": [
+							"ponte_sant_angelo_e",
+							"ponte_sant_angelo_w",
+							"borgo_street",
+							"steps"
+						],
+						"only_team": "town",
+						"name": "people_parione"
+					}
+				},
+				{
+					"say": [
+						"n_flee"
+					]
+				},
+				{
+					"ping": {
+						"area": "navona"
+					}
+				}
+			]
+		},
+		{
+			"id": "call_regola",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"fired": "flee_regola"
+						}
+					},
+					{
+						"near": {
+							"tag": "people_regola",
+							"to": "leaders",
+							"within": 4
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "people_regola",
+						"do": "route",
+						"route": [
+							"ponte_sisto_e",
+							"ponte_sisto_w",
+							"via_lungara",
+							"piazza_in",
+							"steps"
+						],
+						"only_team": "town",
+						"name": "people_regola"
+					}
+				},
+				{
+					"say": [
+						"t_call"
+					]
+				}
+			]
+		},
+		{
+			"id": "flee_regola",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"fired": "call_regola"
+						}
+					},
+					{
+						"any": [
+							{
+								"near": {
+									"tag": "people_regola",
+									"to_side": "automata",
+									"within": 6
+								}
+							},
+							{
+								"near": {
+									"tag": "people_regola",
+									"to_side": "creatures",
+									"within": 6
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "people_regola",
+						"do": "route",
+						"route": [
+							"ponte_sisto_e",
+							"ponte_sisto_w",
+							"via_lungara",
+							"piazza_in",
+							"steps"
+						],
+						"only_team": "town",
+						"name": "people_regola"
+					}
+				},
+				{
+					"say": [
+						"n_flee"
+					]
+				},
+				{
+					"ping": {
+						"area": "campo_fiori"
+					}
+				}
+			]
+		},
+		{
+			"id": "smoke_campo_marzio",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"fired": "call_campo_marzio"
+						}
+					},
+					{
+						"not": {
+							"fired": "flee_campo_marzio"
+						}
+					},
+					{
+						"burning": {
+							"tag": "q_campo_marzio",
+							"at_least": 3
+						}
+					}
+				]
+			},
+			"delay": 25,
+			"do": [
+				{
+					"order": {
+						"tag": "people_campo_marzio",
+						"do": "route",
+						"route": [
+							"ponte_ripetta_e",
+							"ponte_ripetta_w",
+							"piazza_in",
+							"steps"
+						],
+						"only_team": "town"
+					}
+				},
+				{
+					"say": [
+						"n_smoke"
+					]
+				}
+			]
+		},
+		{
+			"id": "smoke_parione",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"fired": "call_parione"
+						}
+					},
+					{
+						"not": {
+							"fired": "flee_parione"
+						}
+					},
+					{
+						"burning": {
+							"tag": "q_parione",
+							"at_least": 3
+						}
+					}
+				]
+			},
+			"delay": 25,
+			"do": [
+				{
+					"order": {
+						"tag": "people_parione",
+						"do": "route",
+						"route": [
+							"ponte_sant_angelo_e",
+							"ponte_sant_angelo_w",
+							"borgo_street",
+							"steps"
+						],
+						"only_team": "town"
+					}
+				},
+				{
+					"say": [
+						"n_smoke"
+					]
+				}
+			]
+		},
+		{
+			"id": "smoke_regola",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"fired": "call_regola"
+						}
+					},
+					{
+						"not": {
+							"fired": "flee_regola"
+						}
+					},
+					{
+						"burning": {
+							"tag": "q_regola",
+							"at_least": 3
+						}
+					}
+				]
+			},
+			"delay": 25,
+			"do": [
+				{
+					"order": {
+						"tag": "people_regola",
+						"do": "route",
+						"route": [
+							"ponte_sisto_e",
+							"ponte_sisto_w",
+							"via_lungara",
+							"piazza_in",
+							"steps"
+						],
+						"only_team": "town"
+					}
+				},
+				{
+					"say": [
+						"n_smoke"
+					]
+				}
+			]
+		},
+		{
+			"id": "torch_1",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 30,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "torch",
+						"count": 2,
+						"at": "porta_gate",
+						"tag": "torch_1",
+						"tags": [
+							"torches"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"at": "porta_gate",
+						"tag": "cell"
+					}
+				},
+				{
+					"order": {
+						"tag": "torch_1",
+						"do": "move",
+						"to": "navona"
+					}
+				},
+				{
+					"order": {
+						"tag": "cell",
+						"do": "attack",
+						"to": "navona",
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "porta"
+					}
+				},
+				{
+					"say": [
+						"n_torch"
+					]
+				}
+			]
+		},
+		{
+			"id": "torch_2",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 70,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "torch",
+						"count": 2,
+						"at": "porta_gate",
+						"tag": "torch_2",
+						"tags": [
+							"torches"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"at": "porta_gate",
+						"tag": "cell"
+					}
+				},
+				{
+					"order": {
+						"tag": "torch_2",
+						"do": "move",
+						"to": "campo_fiori"
+					}
+				},
+				{
+					"order": {
+						"tag": "cell",
+						"do": "attack",
+						"to": "campo_fiori",
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "porta"
+					}
+				}
+			]
+		},
+		{
+			"id": "torch_3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"delay": 110,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "torch",
+						"count": 2,
+						"at": "porta_gate",
+						"tag": "torch_3",
+						"tags": [
+							"torches"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"at": "porta_gate",
+						"tag": "cell"
+					}
+				},
+				{
+					"order": {
+						"tag": "torch_3",
+						"do": "move",
+						"to": "popolo_square"
+					}
+				},
+				{
+					"order": {
+						"tag": "cell",
+						"do": "attack",
+						"to": "popolo_square",
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "porta"
+					}
+				}
+			]
+		},
+		{
+			"id": "torch_4",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"delay": 150,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "torch",
+						"count": 2,
+						"at": "porta_gate",
+						"tag": "torch_4",
+						"tags": [
+							"torches"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"at": "porta_gate",
+						"tag": "cell"
+					}
+				},
+				{
+					"order": {
+						"tag": "torch_4",
+						"do": "move",
+						"to": "navona"
+					}
+				},
+				{
+					"order": {
+						"tag": "cell",
+						"do": "attack",
+						"to": "navona",
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "porta"
+					}
+				}
+			]
+		},
+		{
+			"id": "cre_wave_4a",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"any": [
+							{
+								"past": {
+									"a05_specimens.cages": "few"
+								}
+							},
+							{
+								"past": {
+									"a05_specimens.cages": "none"
+								}
+							}
+						]
+					}
+				]
+			},
+			"delay": 20,
+			"every": 160,
+			"times": 4,
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 2,
+						"at": "stables_pen",
+						"tag": "cre_wave_a",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 2,
+						"at": "stables_pen",
+						"tag": "cre_wave_a",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "cre_wave_a",
+						"do": "route",
+						"route": [
+							"popolo_square",
+							"ponte_ripetta_e",
+							"ponte_ripetta_w",
+							"prati",
+							"piazza_in"
+						],
+						"attack": true,
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "stables"
+					}
+				}
+			]
+		},
+		{
+			"id": "cre_wave_4b",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"any": [
+							{
+								"past": {
+									"a05_specimens.cages": "few"
+								}
+							},
+							{
+								"past": {
+									"a05_specimens.cages": "none"
+								}
+							}
+						]
+					}
+				]
+			},
+			"delay": 100,
+			"every": 160,
+			"times": 4,
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 2,
+						"at": "stables_pen",
+						"tag": "cre_wave_b",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 2,
+						"at": "stables_pen",
+						"tag": "cre_wave_b",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "cre_wave_b",
+						"do": "route",
+						"route": [
+							"corso_n",
+							"navona",
+							"ponte_sant_angelo_e",
+							"ponte_sant_angelo_w",
+							"borgo_street",
+							"piazza_in"
+						],
+						"attack": true,
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "stables"
+					}
+				}
+			]
+		},
+		{
+			"id": "cre_wave_6a",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"any": [
+										{
+											"past": {
+												"a05_specimens.cages": "few"
+											}
+										},
+										{
+											"past": {
+												"a05_specimens.cages": "none"
+											}
+										}
+									]
+								},
+								{
+									"past": {
+										"a05_specimens.cages": "all"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"every": 160,
+			"times": 4,
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 4,
+						"at": "stables_pen",
+						"tag": "cre_wave_a",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 2,
+						"at": "stables_pen",
+						"tag": "cre_wave_a",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "cre_wave_a",
+						"do": "route",
+						"route": [
+							"popolo_square",
+							"ponte_ripetta_e",
+							"ponte_ripetta_w",
+							"prati",
+							"piazza_in"
+						],
+						"attack": true,
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "stables"
+					}
+				}
+			]
+		},
+		{
+			"id": "cre_wave_6b",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"any": [
+										{
+											"past": {
+												"a05_specimens.cages": "few"
+											}
+										},
+										{
+											"past": {
+												"a05_specimens.cages": "none"
+											}
+										}
+									]
+								},
+								{
+									"past": {
+										"a05_specimens.cages": "all"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 100,
+			"every": 160,
+			"times": 4,
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 4,
+						"at": "stables_pen",
+						"tag": "cre_wave_b",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 2,
+						"at": "stables_pen",
+						"tag": "cre_wave_b",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "cre_wave_b",
+						"do": "route",
+						"route": [
+							"corso_n",
+							"navona",
+							"ponte_sant_angelo_e",
+							"ponte_sant_angelo_w",
+							"borgo_street",
+							"piazza_in"
+						],
+						"attack": true,
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "stables"
+					}
+				}
+			]
+		},
+		{
+			"id": "cre_wave_8a",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"past": {
+							"a05_specimens.cages": "all"
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"every": 160,
+			"times": 4,
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 6,
+						"at": "stables_pen",
+						"tag": "cre_wave_a",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 2,
+						"at": "stables_pen",
+						"tag": "cre_wave_a",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "cre_wave_a",
+						"do": "route",
+						"route": [
+							"popolo_square",
+							"ponte_ripetta_e",
+							"ponte_ripetta_w",
+							"prati",
+							"piazza_in"
+						],
+						"attack": true,
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "stables"
+					}
+				}
+			]
+		},
+		{
+			"id": "cre_wave_8b",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"past": {
+							"a05_specimens.cages": "all"
+						}
+					}
+				]
+			},
+			"delay": 100,
+			"every": 160,
+			"times": 4,
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 6,
+						"at": "stables_pen",
+						"tag": "cre_wave_b",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 2,
+						"at": "stables_pen",
+						"tag": "cre_wave_b",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "cre_wave_b",
+						"do": "route",
+						"route": [
+							"corso_n",
+							"navona",
+							"ponte_sant_angelo_e",
+							"ponte_sant_angelo_w",
+							"borgo_street",
+							"piazza_in"
+						],
+						"attack": true,
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "stables"
+					}
+				}
+			]
+		},
+		{
+			"id": "cre_big",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"past": {
+							"a05_specimens.cages": "all"
+						}
+					}
+				]
+			},
+			"delay": 200,
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "tyrant_challenger",
+						"count": 2,
+						"at": "stables_pen",
+						"tag": "cre_big",
+						"tags": [
+							"creatures_all"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "cre_big",
+						"do": "route",
+						"route": [
+							"corso_n",
+							"navona",
+							"ponte_sant_angelo_e",
+							"ponte_sant_angelo_w",
+							"borgo_street",
+							"piazza_in"
+						],
+						"attack": true
+					}
+				}
+			]
+		},
+		{
+			"id": "aut_wave_b",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"a04_visit.broken": "melted"
+							}
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"every": 200,
+			"times": 3,
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "exhibition_floor",
+						"tag": "aut_wave_b",
+						"tags": [
+							"automata_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "springer",
+						"count": 1,
+						"at": "exhibition_floor",
+						"tag": "aut_wave_b",
+						"tags": [
+							"automata_all"
+						]
+					}
+				},
+				{
+					"wind": {
+						"tag": "automata_all",
+						"share": 1.0
+					}
+				},
+				{
+					"order": {
+						"tag": "aut_wave_b",
+						"do": "route",
+						"route": [
+							"corso_s",
+							"navona",
+							"ponte_sant_angelo_e",
+							"ponte_sant_angelo_w",
+							"borgo_street",
+							"piazza_in"
+						],
+						"attack": true,
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "exhibition"
+					}
+				}
+			]
+		},
+		{
+			"id": "aut_wave_a",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"a04_visit.broken": "melted"
+							}
+						}
+					}
+				]
+			},
+			"delay": 150,
+			"every": 200,
+			"times": 3,
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "exhibition_floor",
+						"tag": "aut_wave_a",
+						"tags": [
+							"automata_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "springer",
+						"count": 1,
+						"at": "exhibition_floor",
+						"tag": "aut_wave_a",
+						"tags": [
+							"automata_all"
+						]
+					}
+				},
+				{
+					"wind": {
+						"tag": "automata_all",
+						"share": 1.0
+					}
+				},
+				{
+					"order": {
+						"tag": "aut_wave_a",
+						"do": "route",
+						"route": [
+							"campo_fiori",
+							"ponte_sisto_e",
+							"ponte_sisto_w",
+							"via_lungara",
+							"piazza_in"
+						],
+						"attack": true,
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "exhibition"
+					}
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 30
+			},
+			"do": [
+				{
+					"say": [
+						"new_church",
+						"new_missionary"
+					]
+				}
+			]
+		}
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "crown",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"cardinal": {
+			"name": "The Cardinal Dean",
+			"side": "crown"
+		},
+		"tomasz": {
+			"name": "Father Tomasz",
+			"side": "crown"
+		},
+		"ferrer": {
+			"name": "Father Ferrer",
+			"side": "crown"
+		},
+		"valadares": {
+			"name": "Valadares",
+			"side": "crown"
+		},
+		"hollweg": {
+			"name": "Meister Hollweg",
+			"side": "automata"
+		},
+		"lindqvist": {
+			"name": "Dr. Lindqvist",
+			"side": "creatures"
+		},
+		"captain": {
+			"name": "Captain of the Garrison",
+			"side": "crown"
+		},
+		"narrator": {
+			"name": "Rome",
+			"side": "crown"
+		},
+		"creatures": {
+			"name": "The Creatures",
+			"side": "creatures"
+		},
+		"automata": {
+			"name": "The Automata",
+			"side": "automata"
+		},
+		"new": {
+			"name": "NEW",
+			"side": "crown"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "Rome, Lent 2770. I was young, three years crowned. This one I tell myself: it was my city."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "The Church sat in council on the new machines and the new creatures. I sat with the cardinals and listened."
+		},
+		"f_pattern": {
+			"who": "ferrer",
+			"text": "Meister Hollweg's own drawings, Eminences. The machine at Nuremberg was drawn to build its own successor."
+		},
+		"f_people": {
+			"who": "ferrer",
+			"text": "My report from Nuremberg, Eminences. Drawings or no drawings, the machine went on building itself."
+		},
+		"f_quarrel": {
+			"who": "ferrer",
+			"text": "I told him the night before the gift. The ghost in the machine destroyed the apostasy once. It was the enemy then. It is the enemy now."
+		},
+		"v_drawn": {
+			"who": "valadares",
+			"text": "I drew the way up the plateau for the Crown. I saw her there, the creature from the station, grown, among her own."
+		},
+		"v_withheld": {
+			"who": "valadares",
+			"text": "I gave my map to the Church alone, sealed. But I saw her there, the creature from the station, grown, among her own."
+		},
+		"k_hollweg_rung": {
+			"who": "king",
+			"text": "Meister Hollweg came as a witness. Nuremberg's bells had rung on his word, and he had saved what he could."
+		},
+		"k_hollweg_quiet": {
+			"who": "king",
+			"text": "Meister Hollweg came as one accused. He had kept the bells of Nuremberg quiet."
+		},
+		"h_brass": {
+			"who": "hollweg",
+			"text": "My machines are not the ghost of the old age, Eminences. They are brass and springs. They could learn."
+		},
+		"k_eggs_told": {
+			"who": "king",
+			"text": "The eggs were no secret. Lieutenant Teles had written to the Crown about the station."
+		},
+		"k_eggs_found": {
+			"who": "king",
+			"text": "Under questioning it came out: Dr. Lindqvist had saved the eggs from the fire, and told no one."
+		},
+		"k_eggs_ashes": {
+			"who": "king",
+			"text": "Dr. Lindqvist said the eggs were ashes. It was true."
+		},
+		"l_oldest": {
+			"who": "lindqvist",
+			"text": "They are not monsters, Eminences. They are the oldest things alive. Study them, and you read a page of creation no one has read."
+		},
+		"k_varenne_spared": {
+			"who": "king",
+			"text": "A letter from Varenne in exile was read out. He condemned any fire set in his name."
+		},
+		"k_varenne_exec": {
+			"who": "king",
+			"text": "Varenne was dead a year. His last friends in Rome had not forgotten."
+		},
+		"c_verdict1": {
+			"who": "cardinal",
+			"text": "No machine may govern itself. Every machine that winds or mends itself shall be stopped and broken."
+		},
+		"c_verdict2": {
+			"who": "cardinal",
+			"text": "The specimens are to be destroyed, and their eggs with them."
+		},
+		"h_defy": {
+			"who": "hollweg",
+			"text": "Then you have judged what you will not understand. I will not break my life's work."
+		},
+		"l_defy": {
+			"who": "lindqvist",
+			"text": "Burn them, and you burn a page of God's own book. I will not."
+		},
+		"k_letgo": {
+			"who": "king",
+			"text": "They both walked out of the hall. I let them go. My mercy, or my mistake: I still don't know."
+		},
+		"n_walkout": {
+			"who": "narrator",
+			"text": "Meister Hollweg goes to his exhibition hall; Dr. Lindqvist to his stables."
+		},
+		"k_1": {
+			"who": "king",
+			"to": "crown",
+			"text": "I sent my guard to the bridges that evening. I did not know why. I only knew the city was angry."
+		},
+		"t_1": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "Majesty, the Romans were at the doors all day. They hate a clever machine more than they hate the devil."
+		},
+		"k_tip_bridges": {
+			"who": "king",
+			"to": "crown",
+			"text": "Three bridges: Ripetta in the north, Sant'Angelo under the castle, Sisto in the south. The garrison holds their east ends."
+		},
+		"n_fire1": {
+			"who": "narrator",
+			"text": "Fire in the Campo Marzio. The Assembly's last cell has come to Rome."
+		},
+		"k_2": {
+			"who": "king",
+			"to": "crown",
+			"text": "The bells rang all over the city. Then the second fire, and the third."
+		},
+		"n_cell_spared": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "Only a few torch-bearers: half the cell walked away after Varenne's letter."
+		},
+		"n_cell_exec": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "They burn Rome for Varenne: more torches, and their muskets at the bridges."
+		},
+		"n_torch": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "Torch-bearers in by the Porta Pia."
+		},
+		"t_people": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "The people are in the squares, Majesty, waiting for someone to tell them where to go. Let me go to them."
+		},
+		"tip_church": {
+			"who": "king",
+			"to": "crown",
+			"text": "Santo Spirito trains Missionaries. Any priest can call a quarter to Saint Peter's, not only Tomasz."
+		},
+		"tip_fire": {
+			"who": "king",
+			"to": "crown",
+			"text": "A fire left alone takes the next house. Men standing by a burning house put it out."
+		},
+		"t_call": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "Come! To Saint Peter's, all of you, over the bridge. Stay together."
+		},
+		"n_flee": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "The people run from the machines and the beasts, for the bridges, with no one to lead them."
+		},
+		"n_smoke": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "Their houses are burning: the people of a quarter make for the river by themselves."
+		},
+		"n_saved": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "The first of the people reach the steps of Saint Peter's."
+		},
+		"n_loose": {
+			"who": "narrator",
+			"text": "The stables by the Porta del Popolo are open. The specimens are loose in the streets."
+		},
+		"l_loose": {
+			"who": "lindqvist",
+			"text": "Not like this! They are frightened. Let them be!"
+		},
+		"n_demo": {
+			"who": "narrator",
+			"text": "In the exhibition hall Hollweg's demonstration has woken. The pieces wind each other and walk out."
+		},
+		"h_demo": {
+			"who": "hollweg",
+			"text": "Stop! I mended them! I put the stop-works back with my own hands!"
+		},
+		"n_demo_melted": {
+			"who": "narrator",
+			"text": "Hollweg had brought only two pieces, to show the stop-work. In the smoke they start, and do not stop."
+		},
+		"h_demo_melted": {
+			"who": "hollweg",
+			"text": "The stop-work holds! It must hold. Why does it not hold?"
+		},
+		"k_machine_own": {
+			"who": "king",
+			"to": "crown",
+			"text": "Two of his pieces were not his at all. They were the Machine's, from the Fürth meadows."
+		},
+		"n_mob": {
+			"who": "narrator",
+			"text": "In the Piazza Navona the Romans turn on the machines with pikes and stones."
+		},
+		"n_meet": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "Beasts and machines meet in the streets of Parione, and fall on each other."
+		},
+		"k_meet": {
+			"who": "king",
+			"to": "crown",
+			"text": "Let them. Every one they kill is one fewer at my bridges."
+		},
+		"k_3": {
+			"who": "king",
+			"to": "crown",
+			"text": "Hold the bridges until dawn. Nothing crosses to Saint Peter's."
+		},
+		"t_3": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "The basilica's doors are open, Majesty. Everyone who reaches them is safe."
+		},
+		"n_rain": {
+			"who": "narrator",
+			"text": "Rain before dawn. The fires that are left begin to die."
+		},
+		"n_crossed": {
+			"who": "narrator",
+			"text": "They are in Saint Peter's Square."
+		},
+		"k_dawn": {
+			"who": "king",
+			"to": "crown",
+			"text": "Dawn. The bridges held. Rome was black with smoke, and it was still Rome."
+		},
+		"t_dawn": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "They are singing Lauds in the basilica, Majesty. With the doors open."
+		},
+		"t_king": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "The King is hit! Guard, to the King!"
+		},
+		"k_priest": {
+			"who": "king",
+			"to": "crown",
+			"text": "Keep the Father behind the line. Rome needs its priests tonight."
+		},
+		"cr_1": {
+			"who": "creatures",
+			"to": "creatures",
+			"text": "The pens will open when the fire comes. Cross the river to the great square before the light."
+		},
+		"au_1": {
+			"who": "automata",
+			"to": "automata",
+			"text": "The hall's doors will open when the fire comes. Wind each other. Cross the river to the great square before the light."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "The verdict stood. The machines in the Papal States were stopped, and the specimens we found were destroyed."
+		},
+		"k_end_rome_all": {
+			"who": "king",
+			"text": "Every quarter of Rome stood. I was prouder of that than of anything I did that year."
+		},
+		"k_end_rome_some": {
+			"who": "king",
+			"text": "Some of Rome burned. We rebuilt it that summer, street by street."
+		},
+		"k_end_rome_few": {
+			"who": "king",
+			"text": "Most of the east bank burned. Rome rebuilt it, and has not forgotten."
+		},
+		"t_end_people": {
+			"who": "tomasz",
+			"text": "We counted them on the steps in the morning: {saved} souls from the east bank."
+		},
+		"k_end_defiance": {
+			"who": "king",
+			"text": "Hollweg and Lindqvist were gone by morning: Hollweg after his crates, south; Lindqvist to breed what was left, in secret."
+		},
+		"k_end2": {
+			"who": "king",
+			"text": "That was the first time I met them both. It was not the last."
+		},
+		"k_end_lost1": {
+			"who": "king",
+			"text": "That is not how it went. They never reached the square."
+		},
+		"k_end_lost2": {
+			"who": "king",
+			"text": "But if they had, there would have been no council, and no Church to hold one."
+		},
+		"new_church": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE CHURCH. Rome's churches train Missionaries."
+		},
+		"new_missionary": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE MISSIONARY. He brings the fallen back and leads the people where a soldier can't."
+		}
+	},
+	"stills": {
+		"rome": {
+			"image": "res://campaign/stills/p01_01.jpg",
+			"caption": "Rome, the present. The King."
+		},
+		"council": {
+			"image": "res://campaign/stills/a07_01.jpg",
+			"caption": "Rome, Lent 2770. The council in session."
+		},
+		"ferrer": {
+			"image": "res://campaign/stills/a07_02.jpg",
+			"caption": "Father Ferrer testifies."
+		},
+		"valadares": {
+			"image": "res://campaign/stills/a07_03.jpg",
+			"caption": "Valadares and his map."
+		},
+		"accused": {
+			"image": "res://campaign/stills/a07_04.jpg",
+			"caption": "Meister Hollweg and Dr. Lindqvist before the council."
+		},
+		"verdict": {
+			"image": "res://campaign/stills/a07_05.jpg",
+			"caption": "The verdict."
+		},
+		"defiance": {
+			"image": "res://campaign/stills/a07_04.jpg",
+			"caption": "Hollweg and Lindqvist refuse."
+		},
+		"fire": {
+			"image": "res://campaign/stills/a07_06.jpg",
+			"caption": "Rome burning."
+		},
+		"bridges": {
+			"image": "res://campaign/stills/a07_07.jpg",
+			"caption": "The bridges at dawn."
+		}
+	},
+	"opening": {
+		"crown": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1"
+				]
+			},
+			{
+				"still": "council",
+				"lines": [
+					"k_open2",
+					{
+						"id": "k_varenne_spared",
+						"if": {
+							"not": {
+								"past": {
+									"a06_barricades.varenne": "executed"
+								}
+							}
+						}
+					},
+					{
+						"id": "k_varenne_exec",
+						"if": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "ferrer",
+				"lines": [
+					{
+						"id": "f_pattern",
+						"if": {
+							"not": {
+								"past": {
+									"c01_thirteenth.gate": "people"
+								}
+							}
+						}
+					},
+					{
+						"id": "f_people",
+						"if": {
+							"past": {
+								"c01_thirteenth.gate": "people"
+							}
+						}
+					},
+					"f_quarrel"
+				]
+			},
+			{
+				"still": "valadares",
+				"lines": [
+					{
+						"id": "v_drawn",
+						"if": {
+							"not": {
+								"past": {
+									"a03_plateau.map": "withheld"
+								}
+							}
+						}
+					},
+					{
+						"id": "v_withheld",
+						"if": {
+							"past": {
+								"a03_plateau.map": "withheld"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "accused",
+				"lines": [
+					{
+						"id": "k_hollweg_rung",
+						"if": {
+							"past": {
+								"c01_thirteenth.bells": "rung"
+							}
+						}
+					},
+					{
+						"id": "k_hollweg_quiet",
+						"if": {
+							"not": {
+								"past": {
+									"c01_thirteenth.bells": "rung"
+								}
+							}
+						}
+					},
+					"h_brass",
+					{
+						"id": "k_eggs_told",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								},
+								{
+									"past": {
+										"b01_specimen.teles": "told"
+									}
+								}
+							]
+						}
+					},
+					{
+						"id": "k_eggs_found",
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"b01_specimen.clutch": "burned"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"b01_specimen.teles": "told"
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"id": "k_eggs_ashes",
+						"if": {
+							"past": {
+								"b01_specimen.clutch": "burned"
+							}
+						}
+					},
+					"l_oldest"
+				]
+			}
+		],
+		"creatures": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1"
+				]
+			},
+			{
+				"still": "accused",
+				"lines": [
+					"l_oldest"
+				]
+			},
+			{
+				"still": "fire",
+				"lines": [
+					"cr_1"
+				]
+			}
+		],
+		"automata": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1"
+				]
+			},
+			{
+				"still": "accused",
+				"lines": [
+					"h_brass"
+				]
+			},
+			{
+				"still": "fire",
+				"lines": [
+					"au_1"
+				]
+			}
+		]
+	},
+	"ending": {
+		"crown": [
+			{
+				"still": "bridges",
+				"lines": [
+					"k_end1",
+					{
+						"id": "k_end_rome_all",
+						"if": {
+							"flag": {
+								"rome": "all"
+							}
+						}
+					},
+					{
+						"id": "k_end_rome_some",
+						"if": {
+							"flag": {
+								"rome": "some"
+							}
+						}
+					},
+					{
+						"id": "k_end_rome_few",
+						"if": {
+							"flag": {
+								"rome": "few"
+							}
+						}
+					},
+					"t_end_people"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_defiance",
+					"k_end2"
+				]
+			}
+		],
+		"creatures": [
+			{
+				"still": "fire",
+				"lines": [
+					"k_end_lost1"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_lost2"
+				]
+			}
+		],
+		"automata": [
+			{
+				"still": "fire",
+				"lines": [
+					"k_end_lost1"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_lost2"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"crown": {
+			"still": "council",
+			"text": [
+				"Rome, Lent 2770. The council gives its verdict on the machines and the creatures, and that night the city burns.",
+				"Hold the three bridges until dawn: nothing of the loose creatures or the runaway machines may reach Saint Peter's Square. They fight each other too.",
+				"Send Father Tomasz (and the Missionaries of Santo Spirito, new) to call the people of the east bank to the basilica, and put out the fires.",
+				"The King and Father Tomasz must live."
+			]
+		},
+		"creatures": {
+			"still": "fire",
+			"text": [
+				"Rome, Lent 2770. You are the Academy's specimens, penned in the stables by the Porta del Popolo.",
+				"When the fire comes the pens open. Bring three of your creatures into Saint Peter's Square before dawn. The machines are loose too."
+			]
+		},
+		"automata": {
+			"still": "fire",
+			"text": [
+				"Rome, Lent 2770. You are Meister Hollweg's demonstration pieces in the exhibition hall.",
+				"When the fire comes the doors open. Keep wound, and bring three of your machines into Saint Peter's Square before dawn. The beasts are loose too."
+			]
+		}
+	},
+	"debrief": {
+		"crown": {
+			"still": "bridges",
+			"title": "Rome holds",
+			"text": "The bridges held until dawn. Saved on the steps of Saint Peter's: {saved}.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"rome": "all"
+						}
+					},
+					"text": "Every quarter of Rome stood."
+				},
+				{
+					"if": {
+						"flag": {
+							"rome": "some"
+						}
+					},
+					"text": "Some of Rome's quarters burned."
+				},
+				{
+					"if": {
+						"flag": {
+							"rome": "few"
+						}
+					},
+					"text": "Most of the east bank burned."
+				}
+			]
+		},
+		"creatures": {
+			"still": "fire",
+			"title": "The creatures cross the Tiber",
+			"text": "The beasts are in Saint Peter's Square."
+		},
+		"automata": {
+			"still": "fire",
+			"title": "The machines cross the Tiber",
+			"text": "The automata are in Saint Peter's Square."
+		}
+	},
+	"next": {
+		"crown": "",
+		"creatures": "",
+		"automata": ""
+	}
+}

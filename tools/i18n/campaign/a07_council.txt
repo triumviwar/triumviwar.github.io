@@ -1,0 +1,486 @@
+# Act 1's mission a07_council, "The Council of Rome" (campaign/missions/a07_council.json, written by
+# tools/campaign/make_a07_mission.py; the plan: docs/campaign_act1_plan.md; what was built: docs/campaign_a07_build.md).
+# EVERY LINE IS A PLACEHOLDER for the owner. Also the hubs' talks after Rome (campaign.json) and C4's NEW cards.
+# Names: the Tiber = o Tibre / el Tíber; Saint Peter's = São Pedro / San Pedro; the Porta del Popolo, the Porta Pia,
+# the Campo Marzio, Parione, Regola, the Piazza Navona, Santo Spirito, the bridges' names keep their Italian names;
+# the stop-work = o travão / el freno (as a04); specimens = espécimes / especímenes; automata = autômatos / autómatas.
+
+> Rome, Lent 2770. The Church sits in council on the new machines and the new creatures. That night the city burns, the specimens break loose and the automata go wrong: the King holds the bridges until dawn.
+pt Roma, Quaresma de 2770. A Igreja reúne-se em concílio sobre as novas máquinas e as novas criaturas. Nessa noite a cidade arde, os espécimes soltam-se e os autômatos descontrolam-se: o Rei defende as pontes até o amanhecer.
+es Roma, Cuaresma de 2770. La Iglesia se reúne en concilio sobre las nuevas máquinas y las nuevas criaturas. Esa noche la ciudad arde, los especímenes se sueltan y los autómatas se descontrolan: el Rey defiende los puentes hasta el amanecer.
+
+> The young King, his guard and Father Tomasz, Rome's garrison on the east bank, the Swiss at Saint Peter's.
+pt O jovem Rei, a sua guarda e o padre Tomasz, a guarnição de Roma na margem leste, os suíços em São Pedro.
+es El joven Rey, su guardia y el padre Tomasz, la guarnición de Roma en la orilla este, los suizos en San Pedro.
+
+> The Academy's specimens, loose from their stables by the Porta del Popolo.
+pt Os espécimes da Academia, soltos das suas cavalariças junto à Porta del Popolo.
+es Los especímenes de la Academia, sueltos de sus establos junto a la Porta del Popolo.
+
+> The Automata
+pt Os Autômatos
+es Los Autómatas
+
+> Meister Hollweg's demonstration pieces, out of the exhibition hall and winding each other.
+pt As peças de demonstração do mestre Hollweg, fora do salão de exposição e dando corda umas às outras.
+es Las piezas de demostración del maestro Hollweg, fuera de la sala de exposición y dándose cuerda unas a otras.
+
+> The Assembly's Last Cell
+pt A Última Célula da Assembleia
+es La Última Célula de la Asamblea
+
+> The Free Assembly's last torch-bearers in Rome.
+pt Os últimos portadores de tochas da Assembleia Livre em Roma.
+es Los últimos portadores de antorchas de la Asamblea Libre en Roma.
+
+> The King must live.
+pt O Rei tem de viver.
+es El Rey debe vivir.
+
+> Hold the three bridges: nothing of the creatures or the machines may reach Saint Peter's Square.
+pt Defenda as três pontes: nada das criaturas ou das máquinas pode chegar à Praça de São Pedro.
+es Defiende los tres puentes: nada de las criaturas ni de las máquinas puede llegar a la Plaza de San Pedro.
+
+> The people: Father Tomasz (or a Missionary) calls each quarter to Saint Peter's. Saved: {saved} of {saved.of}.
+pt O povo: o padre Tomasz (ou um Missionário) chama cada bairro para São Pedro. Salvos: {saved} de {saved.of}.
+es El pueblo: el padre Tomasz (o un Misionero) llama a cada barrio a San Pedro. Salvados: {saved} de {saved.of}.
+
+> Put out the fires: men standing by a burning house put it out. A fire left alone spreads.
+pt Apague os incêndios: homens junto a uma casa em chamas apagam-na. Um fogo deixado sozinho espalha-se.
+es Apaga los incendios: hombres junto a una casa en llamas la apagan. Un fuego dejado solo se extiende.
+
+> Cross the river: bring three of your creatures into Saint Peter's Square before dawn.
+pt Atravesse o rio: leve três das suas criaturas à Praça de São Pedro antes do amanhecer.
+es Cruza el río: lleva tres de tus criaturas a la Plaza de San Pedro antes del amanecer.
+
+> Cross the river: bring three of your machines into Saint Peter's Square before dawn.
+pt Atravesse o rio: leve três das suas máquinas à Praça de São Pedro antes do amanhecer.
+es Cruza el río: lleva tres de tus máquinas a la Plaza de San Pedro antes del amanecer.
+
+> The Cardinal Dean
+pt O Cardeal Decano
+es El Cardenal Decano
+
+> Captain of the Garrison
+pt Capitão da Guarnição
+es Capitán de la Guarnición
+
+> Rome, Lent 2770. I was young, three years crowned. This one I tell myself: it was my city.
+pt Roma, Quaresma de 2770. Eu era jovem, coroado havia três anos. Esta conto eu mesmo: era a minha cidade.
+es Roma, Cuaresma de 2770. Yo era joven, coronado hacía tres años. Esta la cuento yo mismo: era mi ciudad.
+
+> The Church sat in council on the new machines and the new creatures. I sat with the cardinals and listened.
+pt A Igreja reuniu-se em concílio sobre as novas máquinas e as novas criaturas. Sentei-me com os cardeais e escutei.
+es La Iglesia se reunió en concilio sobre las nuevas máquinas y las nuevas criaturas. Me senté con los cardenales y escuché.
+
+> Meister Hollweg's own drawings, Eminences. The machine at Nuremberg was drawn to build its own successor.
+pt Os próprios desenhos do mestre Hollweg, Eminências. A máquina de Nuremberg foi desenhada para construir a sua sucessora.
+es Los propios dibujos del maestro Hollweg, Eminencias. La máquina de Núremberg fue dibujada para construir a su sucesora.
+
+> My report from Nuremberg, Eminences. Drawings or no drawings, the machine went on building itself.
+pt O meu relatório de Nuremberg, Eminências. Com desenhos ou sem eles, a máquina continuou a construir-se.
+es Mi informe de Núremberg, Eminencias. Con dibujos o sin ellos, la máquina siguió construyéndose.
+
+> I told him the night before the gift. The ghost in the machine destroyed the apostasy once. It was the enemy then. It is the enemy now.
+pt Eu disse-lhe na noite antes do presente. O fantasma na máquina destruiu a apostasia uma vez. Era o inimigo então. É o inimigo agora.
+es Se lo dije la noche antes del regalo. El fantasma en la máquina destruyó la apostasía una vez. Era el enemigo entonces. Es el enemigo ahora.
+
+> I drew the way up the plateau for the Crown. I saw her there, the creature from the station, grown, among her own.
+pt Desenhei o caminho até o planalto para a Coroa. Vi-a lá, a criatura da estação, crescida, entre os seus.
+es Dibujé el camino a la meseta para la Corona. La vi allí, la criatura de la estación, crecida, entre los suyos.
+
+> I gave my map to the Church alone, sealed. But I saw her there, the creature from the station, grown, among her own.
+pt Dei o meu mapa só à Igreja, selado. Mas vi-a lá, a criatura da estação, crescida, entre os seus.
+es Di mi mapa solo a la Iglesia, sellado. Pero la vi allí, la criatura de la estación, crecida, entre los suyos.
+
+> Meister Hollweg came as a witness. Nuremberg's bells had rung on his word, and he had saved what he could.
+pt O mestre Hollweg veio como testemunha. Os sinos de Nuremberg tinham tocado por sua palavra, e ele salvara o que pôde.
+es El maestro Hollweg vino como testigo. Las campanas de Núremberg habían sonado por su palabra, y él había salvado lo que pudo.
+
+> Meister Hollweg came as one accused. He had kept the bells of Nuremberg quiet.
+pt O mestre Hollweg veio como acusado. Tinha mantido calados os sinos de Nuremberg.
+es El maestro Hollweg vino como acusado. Había mantenido calladas las campanas de Núremberg.
+
+> My machines are not the ghost of the old age, Eminences. They are brass and springs. They could learn.
+pt As minhas máquinas não são o fantasma da era antiga, Eminências. São latão e molas. Poderiam aprender.
+es Mis máquinas no son el fantasma de la era antigua, Eminencias. Son latón y muelles. Podrían aprender.
+
+> The eggs were no secret. Lieutenant Teles had written to the Crown about the station.
+pt Os ovos não eram segredo. O tenente Teles tinha escrito à Coroa sobre a estação.
+es Los huevos no eran secreto. El teniente Teles había escrito a la Corona sobre la estación.
+
+> Under questioning it came out: Dr. Lindqvist had saved the eggs from the fire, and told no one.
+pt No interrogatório veio à luz: o dr. Lindqvist salvara os ovos do fogo e não contara a ninguém.
+es En el interrogatorio salió a la luz: el dr. Lindqvist había salvado los huevos del fuego y no se lo había dicho a nadie.
+
+> Dr. Lindqvist said the eggs were ashes. It was true.
+pt O dr. Lindqvist disse que os ovos eram cinzas. Era verdade.
+es El dr. Lindqvist dijo que los huevos eran cenizas. Era verdad.
+
+> They are not monsters, Eminences. They are the oldest things alive. Study them, and you read a page of creation no one has read.
+pt Não são monstros, Eminências. São as coisas vivas mais antigas. Estudem-nas e lerão uma página da criação que ninguém leu.
+es No son monstruos, Eminencias. Son las cosas vivas más antiguas. Estúdienlas y leerán una página de la creación que nadie ha leído.
+
+> A letter from Varenne in exile was read out. He condemned any fire set in his name.
+pt Leu-se uma carta de Varenne no exílio. Condenava qualquer fogo ateado em seu nome.
+es Se leyó una carta de Varenne en el exilio. Condenaba cualquier fuego prendido en su nombre.
+
+> Varenne was dead a year. His last friends in Rome had not forgotten.
+pt Varenne estava morto havia um ano. Os seus últimos amigos em Roma não tinham esquecido.
+es Varenne llevaba un año muerto. Sus últimos amigos en Roma no lo habían olvidado.
+
+> No machine may govern itself. Every machine that winds or mends itself shall be stopped and broken.
+pt Nenhuma máquina pode governar-se a si mesma. Toda a máquina que se dá corda ou se conserta será parada e quebrada.
+es Ninguna máquina puede gobernarse a sí misma. Toda máquina que se dé cuerda o se repare será detenida y rota.
+
+> The specimens are to be destroyed, and their eggs with them.
+pt Os espécimes serão destruídos, e os seus ovos com eles.
+es Los especímenes serán destruidos, y sus huevos con ellos.
+
+> Then you have judged what you will not understand. I will not break my life's work.
+pt Então julgaram o que não querem compreender. Não quebrarei a obra da minha vida.
+es Entonces han juzgado lo que no quieren entender. No romperé la obra de mi vida.
+
+> Burn them, and you burn a page of God's own book. I will not.
+pt Queimem-nos e queimarão uma página do próprio livro de Deus. Eu não o farei.
+es Quémenlos y quemarán una página del propio libro de Dios. Yo no lo haré.
+
+> They both walked out of the hall. I let them go. My mercy, or my mistake: I still don't know.
+pt Os dois saíram da sala. Deixei-os ir. Misericórdia ou erro meu: ainda não sei.
+es Los dos salieron de la sala. Los dejé ir. Misericordia o error mío: aún no lo sé.
+
+> Meister Hollweg goes to his exhibition hall; Dr. Lindqvist to his stables.
+pt O mestre Hollweg vai para o seu salão de exposição; o dr. Lindqvist para as suas cavalariças.
+es El maestro Hollweg va a su sala de exposición; el dr. Lindqvist a sus establos.
+
+> I sent my guard to the bridges that evening. I did not know why. I only knew the city was angry.
+pt Mandei a minha guarda para as pontes nessa tarde. Não sabia porquê. Só sabia que a cidade estava irada.
+es Mandé a mi guardia a los puentes esa tarde. No sabía por qué. Solo sabía que la ciudad estaba airada.
+
+> Majesty, the Romans were at the doors all day. They hate a clever machine more than they hate the devil.
+pt Majestade, os romanos estiveram às portas o dia todo. Odeiam uma máquina esperta mais do que odeiam o diabo.
+es Majestad, los romanos estuvieron a las puertas todo el día. Odian una máquina lista más que al diablo.
+
+> Three bridges: Ripetta in the north, Sant'Angelo under the castle, Sisto in the south. The garrison holds their east ends.
+pt Três pontes: Ripetta ao norte, Sant'Angelo sob o castelo, Sisto ao sul. A guarnição defende as pontas do leste.
+es Tres puentes: Ripetta al norte, Sant'Angelo bajo el castillo, Sisto al sur. La guarnición defiende sus extremos del este.
+
+> Fire in the Campo Marzio. The Assembly's last cell has come to Rome.
+pt Fogo no Campo Marzio. A última célula da Assembleia chegou a Roma.
+es Fuego en el Campo Marzio. La última célula de la Asamblea ha llegado a Roma.
+
+> The bells rang all over the city. Then the second fire, and the third.
+pt Os sinos tocaram por toda a cidade. Depois o segundo fogo, e o terceiro.
+es Las campanas sonaron por toda la ciudad. Luego el segundo fuego, y el tercero.
+
+> Only a few torch-bearers: half the cell walked away after Varenne's letter.
+pt Só uns poucos portadores de tochas: metade da célula foi-se embora depois da carta de Varenne.
+es Solo unos pocos portadores de antorchas: la mitad de la célula se marchó tras la carta de Varenne.
+
+> They burn Rome for Varenne: more torches, and their muskets at the bridges.
+pt Queimam Roma por Varenne: mais tochas, e os seus mosquetes nas pontes.
+es Queman Roma por Varenne: más antorchas, y sus mosquetes en los puentes.
+
+> Torch-bearers in by the Porta Pia.
+pt Portadores de tochas entram pela Porta Pia.
+es Portadores de antorchas entran por la Porta Pia.
+
+> The people are in the squares, Majesty, waiting for someone to tell them where to go. Let me go to them.
+pt O povo está nas praças, Majestade, à espera de quem lhe diga para onde ir. Deixe-me ir até eles.
+es El pueblo está en las plazas, Majestad, esperando a que alguien les diga adónde ir. Déjeme ir con ellos.
+
+> Santo Spirito trains Missionaries. Any priest can call a quarter to Saint Peter's, not only Tomasz.
+pt Santo Spirito treina Missionários. Qualquer padre pode chamar um bairro para São Pedro, não só Tomasz.
+es Santo Spirito entrena Misioneros. Cualquier sacerdote puede llamar a un barrio a San Pedro, no solo Tomasz.
+
+> A fire left alone takes the next house. Men standing by a burning house put it out.
+pt Um fogo deixado sozinho pega na casa seguinte. Homens junto a uma casa em chamas apagam-na.
+es Un fuego dejado solo prende la casa siguiente. Hombres junto a una casa en llamas la apagan.
+
+> Come! To Saint Peter's, all of you, over the bridge. Stay together.
+pt Venham! Para São Pedro, todos, pela ponte. Fiquem juntos.
+es ¡Venid! A San Pedro, todos, por el puente. Manteneos juntos.
+
+> The people run from the machines and the beasts, for the bridges, with no one to lead them.
+pt O povo foge das máquinas e das feras, para as pontes, sem ninguém que o guie.
+es El pueblo huye de las máquinas y las fieras, hacia los puentes, sin nadie que lo guíe.
+
+> Their houses are burning: the people of a quarter make for the river by themselves.
+pt As suas casas ardem: o povo de um bairro corre sozinho para o rio.
+es Sus casas arden: el pueblo de un barrio corre solo hacia el río.
+
+> The first of the people reach the steps of Saint Peter's.
+pt Os primeiros do povo chegam aos degraus de São Pedro.
+es Los primeros del pueblo llegan a las escalinatas de San Pedro.
+
+> The stables by the Porta del Popolo are open. The specimens are loose in the streets.
+pt As cavalariças junto à Porta del Popolo estão abertas. Os espécimes andam soltos pelas ruas.
+es Los establos junto a la Porta del Popolo están abiertos. Los especímenes andan sueltos por las calles.
+
+> Not like this! They are frightened. Let them be!
+pt Assim não! Estão assustados. Deixem-nos!
+es ¡Así no! Están asustados. ¡Dejadlos!
+
+> In the exhibition hall Hollweg's demonstration has woken. The pieces wind each other and walk out.
+pt No salão de exposição a demonstração de Hollweg acordou. As peças dão corda umas às outras e saem.
+es En la sala de exposición la demostración de Hollweg ha despertado. Las piezas se dan cuerda unas a otras y salen.
+
+> Stop! I mended them! I put the stop-works back with my own hands!
+pt Parem! Eu consertei-as! Pus os travões de volta com as minhas próprias mãos!
+es ¡Deteneos! ¡Las reparé! ¡Volví a poner los frenos con mis propias manos!
+
+> Hollweg had brought only two pieces, to show the stop-work. In the smoke they start, and do not stop.
+pt Hollweg trouxera só duas peças, para mostrar o travão. No meio do fumo arrancam, e não param.
+es Hollweg había traído solo dos piezas, para mostrar el freno. Entre el humo arrancan, y no se detienen.
+
+> The stop-work holds! It must hold. Why does it not hold?
+pt O travão aguenta! Tem de aguentar. Porque não aguenta?
+es ¡El freno aguanta! Tiene que aguantar. ¿Por qué no aguanta?
+
+> Two of his pieces were not his at all. They were the Machine's, from the Fürth meadows.
+pt Duas das suas peças não eram dele de todo. Eram da Máquina, dos prados de Fürth.
+es Dos de sus piezas no eran suyas en absoluto. Eran de la Máquina, de los prados de Fürth.
+
+> In the Piazza Navona the Romans turn on the machines with pikes and stones.
+pt Na Piazza Navona os romanos atacam as máquinas com piques e pedras.
+es En la Piazza Navona los romanos se lanzan contra las máquinas con picas y piedras.
+
+> Beasts and machines meet in the streets of Parione, and fall on each other.
+pt Feras e máquinas encontram-se nas ruas de Parione e lançam-se umas sobre as outras.
+es Fieras y máquinas se encuentran en las calles de Parione y se lanzan unas contra otras.
+
+> Let them. Every one they kill is one fewer at my bridges.
+pt Que lutem. Cada um que matam é um a menos nas minhas pontes.
+es Que luchen. Cada uno que matan es uno menos en mis puentes.
+
+> Hold the bridges until dawn. Nothing crosses to Saint Peter's.
+pt Defendam as pontes até o amanhecer. Nada passa para São Pedro.
+es Defended los puentes hasta el amanecer. Nada pasa a San Pedro.
+
+> The basilica's doors are open, Majesty. Everyone who reaches them is safe.
+pt As portas da basílica estão abertas, Majestade. Quem lá chegar está a salvo.
+es Las puertas de la basílica están abiertas, Majestad. Quien llegue a ellas está a salvo.
+
+> Rain before dawn. The fires that are left begin to die.
+pt Chuva antes do amanhecer. Os fogos que restam começam a morrer.
+es Lluvia antes del amanecer. Los fuegos que quedan empiezan a morir.
+
+> They are in Saint Peter's Square.
+pt Estão na Praça de São Pedro.
+es Están en la Plaza de San Pedro.
+
+> Dawn. The bridges held. Rome was black with smoke, and it was still Rome.
+pt Amanhecer. As pontes aguentaram. Roma estava negra de fumo, e ainda era Roma.
+es Amanecer. Los puentes resistieron. Roma estaba negra de humo, y seguía siendo Roma.
+
+> They are singing Lauds in the basilica, Majesty. With the doors open.
+pt Estão a cantar as Laudes na basílica, Majestade. Com as portas abertas.
+es Están cantando Laudes en la basílica, Majestad. Con las puertas abiertas.
+
+> The King is hit! Guard, to the King!
+pt O Rei foi atingido! Guarda, ao Rei!
+es ¡El Rey está herido! ¡Guardia, al Rey!
+
+> Keep the Father behind the line. Rome needs its priests tonight.
+pt Mantenham o padre atrás da linha. Roma precisa dos seus padres esta noite.
+es Mantened al padre tras la línea. Roma necesita a sus sacerdotes esta noche.
+
+> The pens will open when the fire comes. Cross the river to the great square before the light.
+pt Os currais abrir-se-ão quando o fogo vier. Atravesse o rio até a grande praça antes da luz.
+es Los corrales se abrirán cuando llegue el fuego. Cruza el río hasta la gran plaza antes de la luz.
+
+> The hall's doors will open when the fire comes. Wind each other. Cross the river to the great square before the light.
+pt As portas do salão abrir-se-ão quando o fogo vier. Deem corda uns aos outros. Atravessem o rio até a grande praça antes da luz.
+es Las puertas de la sala se abrirán cuando llegue el fuego. Daos cuerda unos a otros. Cruzad el río hasta la gran plaza antes de la luz.
+
+> The verdict stood. The machines in the Papal States were stopped, and the specimens we found were destroyed.
+pt O veredicto manteve-se. As máquinas dos Estados Pontifícios foram paradas, e os espécimes que encontrámos foram destruídos.
+es El veredicto se mantuvo. Las máquinas de los Estados Pontificios fueron detenidas, y los especímenes que encontramos fueron destruidos.
+
+> Every quarter of Rome stood. I was prouder of that than of anything I did that year.
+pt Todos os bairros de Roma ficaram de pé. Orgulhei-me mais disso do que de tudo o que fiz nesse ano.
+es Todos los barrios de Roma quedaron en pie. Me enorgulleció más que nada de lo que hice ese año.
+
+> Some of Rome burned. We rebuilt it that summer, street by street.
+pt Parte de Roma ardeu. Reconstruímo-la nesse verão, rua a rua.
+es Parte de Roma ardió. La reconstruimos ese verano, calle a calle.
+
+> Most of the east bank burned. Rome rebuilt it, and has not forgotten.
+pt Quase toda a margem leste ardeu. Roma reconstruiu-a, e não esqueceu.
+es Casi toda la orilla este ardió. Roma la reconstruyó, y no lo ha olvidado.
+
+> We counted them on the steps in the morning: {saved} souls from the east bank.
+pt Contámo-los nos degraus de manhã: {saved} almas da margem leste.
+es Los contamos en la escalinata por la mañana: {saved} almas de la orilla este.
+
+> Hollweg and Lindqvist were gone by morning: Hollweg after his crates, south; Lindqvist to breed what was left, in secret.
+pt Hollweg e Lindqvist tinham partido de manhã: Hollweg atrás dos seus caixotes, para o sul; Lindqvist para criar o que restava, em segredo.
+es Hollweg y Lindqvist se habían ido por la mañana: Hollweg tras sus cajas, hacia el sur; Lindqvist a criar lo que quedaba, en secreto.
+
+> That was the first time I met them both. It was not the last.
+pt Foi a primeira vez que os encontrei aos dois. Não foi a última.
+es Fue la primera vez que los encontré a los dos. No fue la última.
+
+> That is not how it went. They never reached the square.
+pt Não foi assim que aconteceu. Nunca chegaram à praça.
+es No fue así como ocurrió. Nunca llegaron a la plaza.
+
+> But if they had, there would have been no council, and no Church to hold one.
+pt Mas se tivessem chegado, não teria havido concílio, nem Igreja para o reunir.
+es Pero si hubieran llegado, no habría habido concilio, ni Iglesia para reunirlo.
+
+> NEW: THE CHURCH. Rome's churches train Missionaries.
+pt NOVO: A IGREJA. As igrejas de Roma treinam Missionários.
+es NUEVO: LA IGLESIA. Las iglesias de Roma entrenan Misioneros.
+
+> NEW: THE MISSIONARY. He brings the fallen back and leads the people where a soldier can't.
+pt NOVO: O MISSIONÁRIO. Traz de volta os caídos e guia o povo onde um soldado não consegue.
+es NUEVO: EL MISIONERO. Trae de vuelta a los caídos y guía al pueblo donde un soldado no puede.
+
+> Rome, Lent 2770. The council in session.
+pt Roma, Quaresma de 2770. O concílio em sessão.
+es Roma, Cuaresma de 2770. El concilio en sesión.
+
+> Father Ferrer testifies.
+pt O padre Ferrer testemunha.
+es El padre Ferrer testifica.
+
+> Valadares and his map.
+pt Valadares e o seu mapa.
+es Valadares y su mapa.
+
+> Meister Hollweg and Dr. Lindqvist before the council.
+pt O mestre Hollweg e o dr. Lindqvist perante o concílio.
+es El maestro Hollweg y el dr. Lindqvist ante el concilio.
+
+> The verdict.
+pt O veredicto.
+es El veredicto.
+
+> Hollweg and Lindqvist refuse.
+pt Hollweg e Lindqvist recusam.
+es Hollweg y Lindqvist se niegan.
+
+> Rome burning.
+pt Roma a arder.
+es Roma ardiendo.
+
+> The bridges at dawn.
+pt As pontes ao amanhecer.
+es Los puentes al amanecer.
+
+> Rome, Lent 2770. The council gives its verdict on the machines and the creatures, and that night the city burns.
+pt Roma, Quaresma de 2770. O concílio dá o seu veredicto sobre as máquinas e as criaturas, e nessa noite a cidade arde.
+es Roma, Cuaresma de 2770. El concilio da su veredicto sobre las máquinas y las criaturas, y esa noche la ciudad arde.
+
+> Hold the three bridges until dawn: nothing of the loose creatures or the runaway machines may reach Saint Peter's Square. They fight each other too.
+pt Defenda as três pontes até o amanhecer: nada das criaturas soltas ou das máquinas descontroladas pode chegar à Praça de São Pedro. Também lutam entre si.
+es Defiende los tres puentes hasta el amanecer: nada de las criaturas sueltas ni de las máquinas descontroladas puede llegar a la Plaza de San Pedro. También luchan entre sí.
+
+> Send Father Tomasz (and the Missionaries of Santo Spirito, new) to call the people of the east bank to the basilica, and put out the fires.
+pt Mande o padre Tomasz (e os Missionários de Santo Spirito, novos) chamar o povo da margem leste para a basílica, e apague os incêndios.
+es Envía al padre Tomasz (y a los Misioneros de Santo Spirito, nuevos) a llamar al pueblo de la orilla este a la basílica, y apaga los incendios.
+
+> The King and Father Tomasz must live.
+pt O Rei e o padre Tomasz têm de viver.
+es El Rey y el padre Tomasz deben vivir.
+
+> Rome, Lent 2770. You are the Academy's specimens, penned in the stables by the Porta del Popolo.
+pt Roma, Quaresma de 2770. Você são os espécimes da Academia, presos nas cavalariças junto à Porta del Popolo.
+es Roma, Cuaresma de 2770. Eres los especímenes de la Academia, encerrados en los establos junto a la Porta del Popolo.
+
+> When the fire comes the pens open. Bring three of your creatures into Saint Peter's Square before dawn. The machines are loose too.
+pt Quando o fogo vier os currais abrem-se. Leve três das suas criaturas à Praça de São Pedro antes do amanhecer. As máquinas também andam soltas.
+es Cuando llegue el fuego los corrales se abren. Lleva tres de tus criaturas a la Plaza de San Pedro antes del amanecer. Las máquinas también andan sueltas.
+
+> Rome, Lent 2770. You are Meister Hollweg's demonstration pieces in the exhibition hall.
+pt Roma, Quaresma de 2770. Você são as peças de demonstração do mestre Hollweg no salão de exposição.
+es Roma, Cuaresma de 2770. Eres las piezas de demostración del maestro Hollweg en la sala de exposición.
+
+> When the fire comes the doors open. Keep wound, and bring three of your machines into Saint Peter's Square before dawn. The beasts are loose too.
+pt Quando o fogo vier as portas abrem-se. Mantenha a corda e leve três das suas máquinas à Praça de São Pedro antes do amanhecer. As feras também andam soltas.
+es Cuando llegue el fuego las puertas se abren. Mantén la cuerda y lleva tres de tus máquinas a la Plaza de San Pedro antes del amanecer. Las fieras también andan sueltas.
+
+> Rome holds
+pt Roma resiste
+es Roma resiste
+
+> The bridges held until dawn. Saved on the steps of Saint Peter's: {saved}.
+pt As pontes aguentaram até o amanhecer. Salvos nos degraus de São Pedro: {saved}.
+es Los puentes resistieron hasta el amanecer. Salvados en la escalinata de San Pedro: {saved}.
+
+> Every quarter of Rome stood.
+pt Todos os bairros de Roma ficaram de pé.
+es Todos los barrios de Roma quedaron en pie.
+
+> Some of Rome's quarters burned.
+pt Alguns bairros de Roma arderam.
+es Algunos barrios de Roma ardieron.
+
+> Most of the east bank burned.
+pt Quase toda a margem leste ardeu.
+es Casi toda la orilla este ardió.
+
+> The creatures cross the Tiber
+pt As criaturas atravessam o Tibre
+es Las criaturas cruzan el Tíber
+
+> The beasts are in Saint Peter's Square.
+pt As feras estão na Praça de São Pedro.
+es Las fieras están en la Plaza de San Pedro.
+
+> The machines cross the Tiber
+pt As máquinas atravessam o Tibre
+es Las máquinas cruzan el Tíber
+
+> The automata are in Saint Peter's Square.
+pt Os autômatos estão na Praça de São Pedro.
+es Los autómatas están en la Plaza de San Pedro.
+
+> Rome burned for one night and stood in the morning. I walked the bridges at dawn with Tomasz.
+pt Roma ardeu uma noite e de manhã estava de pé. Percorri as pontes ao amanhecer com Tomasz.
+es Roma ardió una noche y por la mañana seguía en pie. Recorrí los puentes al amanecer con Tomasz.
+
+> Hollweg and Lindqvist were gone before the bells. I should have held them. I let them go.
+pt Hollweg e Lindqvist partiram antes dos sinos. Devia tê-los retido. Deixei-os ir.
+es Hollweg y Lindqvist se fueron antes de las campanas. Debí retenerlos. Los dejé ir.
+
+> We counted the people on the steps of Saint Peter's. I knew some of the faces from Mass.
+pt Contámos o povo nos degraus de São Pedro. Conhecia alguns rostos da Missa.
+es Contamos al pueblo en la escalinata de San Pedro. Conocía algunas caras de la Misa.
+
+> The Romans broke two machines with their bare hands in the Piazza Navona. Nobody had to tell them to.
+pt Os romanos quebraram duas máquinas com as mãos nuas na Piazza Navona. Ninguém precisou de lhes dizer.
+es Los romanos rompieron dos máquinas con las manos desnudas en la Piazza Navona. Nadie tuvo que decírselo.
+
+> The council said no machine may govern itself. I said mine did not govern: they served.
+pt O concílio disse que nenhuma máquina pode governar-se. Eu disse que as minhas não governavam: serviam.
+es El concilio dijo que ninguna máquina puede gobernarse. Yo dije que las mías no gobernaban: servían.
+
+> Then they woke in the smoke and walked out of the hall without me. I have had a long time to think about that night.
+pt Depois acordaram no fumo e saíram do salão sem mim. Tive muito tempo para pensar nessa noite.
+es Luego despertaron en el humo y salieron de la sala sin mí. He tenido mucho tiempo para pensar en esa noche.
+
+> Rome wanted them burned. I walked out of the council and went to the stables, to let them out myself.
+pt Roma queria-os queimados. Saí do concílio e fui às cavalariças, para os soltar eu mesmo.
+es Roma los quería quemados. Salí del concilio y fui a los establos, a soltarlos yo mismo.
+
+> Somebody had opened the pens before me. I have never found out who.
+pt Alguém abrira os currais antes de mim. Nunca descobri quem.
+es Alguien había abierto los corrales antes que yo. Nunca he sabido quién.
+
+> Destroyed, the cardinals said. Every one.
+pt Destruídos, disseram os cardeais. Todos.
+es Destruidos, dijeron los cardenales. Todos.
+
+> I left Rome that night with what I could carry. They will not find the rest.
+pt Deixei Roma nessa noite com o que pude levar. O resto não o encontrarão.
+es Dejé Roma esa noche con lo que pude llevar. El resto no lo encontrarán.
+
+> No machine may govern itself. Very well: mine will not be governed by Rome either.
+pt Nenhuma máquina pode governar-se. Muito bem: as minhas também não serão governadas por Roma.
+es Ninguna máquina puede gobernarse. Muy bien: las mías tampoco serán gobernadas por Roma.
+
+> Jakob, pack the drawings. We are going south, after the crates.
+pt Jakob, embala os desenhos. Vamos para o sul, atrás dos caixotes.
+es Jakob, empaqueta los dibujos. Nos vamos al sur, tras las cajas.

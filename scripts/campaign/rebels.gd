@@ -64,6 +64,13 @@ const ROLES := {
 	"hired_gun": {"kind": "musketeer", "art": "b_hired_gun", "about": "A musketeer hired at the Barra to guard the cages."},
 	"cage_cart": {"kind": "powder_wagon", "art": "b_cage_cart", "name": "Cage cart", "hp": 320, "cart": true, "about": "An ox cart with a cage of iron bars: a creature in it, the expedition's powder under it."},
 	"young_sire": {"kind": "tyrannosaur", "art": "b_young_sire", "name": "The young Sire", "hp": 480, "scale": 0.55, "about": "A young Tyrant Sire, two years old, asleep in the ferns."},
+	# Act 1's a07_council (Rome, Lent 2770): the young King himself in the field (the mission's hero), the Swiss at Saint
+	# Peter's, the captain of Rome's garrison, the Romans of the quarters and the mob that turns on the machines
+	"king_young": {"kind": "dismounted", "art": "a_king_young", "name": "The King", "hp": 380, "about": "The young King, three years crowned, in his own city."},
+	"swiss": {"kind": "pikeman", "art": "a_swiss", "about": "A Swiss Guard of Saint Peter's: halberd and striped doublet."},
+	"captain_rome": {"kind": "dismounted", "art": "a_delorme", "name": "Captain of the Garrison", "hp": 220, "about": "Captain of Rome's garrison on the east bank."},
+	"roman": {"kind": "labourer", "art": "c_citizen", "about": "A Roman of the quarters on the east bank."},
+	"roman_mob": {"kind": "pikeman", "art": "c_citizen", "about": "A Roman with a pike and a grudge against clever machines."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)

@@ -483,7 +483,7 @@ M = {
         "assembly": {"still": "hall", "title": "Paris holds",
                      "text": "The Assembly's flags still fly over the Hôtel de Ville."},
     },
-    "next": {"crown": "", "assembly": ""},
+    "next": {"crown": "a07_council", "assembly": ""},
 }
 
 if __name__ == "__main__":

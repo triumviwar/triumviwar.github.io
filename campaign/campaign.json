@@ -8,7 +8,8 @@
 			"missions": [
 				"p01_leaf",
 				"a01_presses",
-				"a06_barricades"
+				"a06_barricades",
+				"a07_council"
 			],
 			"hub": {
 				"title": "The King's Study",
@@ -189,6 +190,13 @@
 									"Ferrer's report came before the snow. Machines that take out their own stop-works.",
 									"He had them melted. Hollweg has not forgiven him. I think Ferrer was right."
 								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"Rome burned for one night and stood in the morning. I walked the bridges at dawn with Tomasz.",
+									"Hollweg and Lindqvist were gone before the bells. I should have held them. I let them go."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_king_face.png"
@@ -236,6 +244,13 @@
 								"lines": [
 									"I stayed with Varenne the last night. He did not confess. He did let me pray.",
 									"Notre-Dame's doors were black for a year. I made them leave the marks."
+								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"We counted the people on the steps of Saint Peter's. I knew some of the faces from Mass.",
+									"The Romans broke two machines with their bare hands in the Piazza Navona. Nobody had to tell them to."
 								]
 							}
 						],
@@ -299,6 +314,13 @@
 									"Ferrer came to Fürth with a notebook and left with a verdict.",
 									"He melted them in my own furnace. I would have learnt what went wrong. Now nobody will."
 								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"The council said no machine may govern itself. I said mine did not govern: they served.",
+									"Then they woke in the smoke and walked out of the hall without me. I have had a long time to think about that night."
+								]
 							}
 						]
 					},
@@ -312,6 +334,13 @@
 								"lines": [
 									"They took my chains off for the King. The guards stay. I do not mind the guards.",
 									"Ask me anything about her kind. I am the only man alive who has raised one."
+								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"Rome wanted them burned. I walked out of the council and went to the stables, to let them out myself.",
+									"Somebody had opened the pens before me. I have never found out who."
 								]
 							}
 						]
@@ -328,7 +357,8 @@
 			"missions": [
 				"b01_specimen",
 				"a03_plateau",
-				"a05_specimens"
+				"a05_specimens",
+				"a07_council"
 			],
 			"hub": {
 				"title": "Lindqvist's Station",
@@ -527,6 +557,13 @@
 								"lines": [
 									"The carts came down empty. The Academy wants its money back. I will go up again."
 								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"Destroyed, the cardinals said. Every one.",
+									"I left Rome that night with what I could carry. They will not find the rest."
+								]
 							}
 						]
 					},
@@ -644,7 +681,8 @@
 			"missions": [
 				"c01_thirteenth",
 				"a02_furth",
-				"a04_visit"
+				"a04_visit",
+				"a07_council"
 			],
 			"hub": {
 				"title": "Hollweg's Workshop",
@@ -779,6 +817,13 @@
 								"lines": [
 									"The Father has gone to Rome with his report, and my automata are slag.",
 									"He was afraid of them. Fear is not an argument."
+								]
+							},
+							{
+								"after": "a07_council",
+								"lines": [
+									"No machine may govern itself. Very well: mine will not be governed by Rome either.",
+									"Jakob, pack the drawings. We are going south, after the crates."
 								]
 							}
 						]

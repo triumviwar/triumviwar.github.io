@@ -71,7 +71,7 @@
 		{"mission": "a05_specimens", "line": "naturalist", "place": "The plateau's foot", "date": "Dry season 2769", "point": [-65.3, 0.25], "nudge": [16, 2], "after": ["a03_plateau"]},
 		{"mission": "a06_barricades", "line": "crown", "place": "Paris", "date": "July 2769", "point": [2.35, 48.86], "nudge": [0, 0], "after": ["a01_presses"]},
 		{"mission": "a04_visit", "line": "clockmaker", "place": "Fürth", "date": "Autumn 2769", "point": [10.99, 49.47], "nudge": [-24, 18], "after": ["a02_furth"]},
-		{"mission": "a07_council", "line": "all", "title": "The Council of Rome", "place": "Rome", "date": "Lent 2770", "point": [12.48, 41.9], "nudge": [0, 0], "after": ["a04_visit", "a05_specimens", "a06_barricades"]}
+		{"mission": "a07_council", "line": "all", "place": "Rome", "date": "Lent 2770", "point": [12.48, 41.9], "nudge": [0, 0], "after": ["a04_visit", "a05_specimens", "a06_barricades"]}
 	],
 	"rules": [
 		{"if": {"won_by": {"p01_leaf": "crown"}}, "region": "virginia", "to": "crown", "ledger": "Virginia held: Fairleigh broke the Free Assembly at the fort's gate."},
@@ -121,6 +121,12 @@
 		{"if": {"flag": {"a06_barricades.varenne": "executed"}}, "region": "paris", "to": "contested", "ledger": "Varenne was executed: risings flare in the provinces."},
 		{"if": {"flag": {"a06_barricades.varenne": "executed"}}, "regions": ["brittany", "provence"], "to": "unrest"},
 		{"if": {"done": "a07_council"}, "region": "papal_states", "to": "crown", "ledger": "The Council of Rome gave its verdict."},
-		{"if": {"flag": {"a07_council.rome": "few"}}, "region": "papal_states", "to": "contested", "ledger": "Rome burned: few of its quarters stood."}
+		{"if": {"flag": {"a07_council.rome": "few"}}, "region": "papal_states", "to": "contested", "ledger": "Rome burned: few of its quarters stood."},
+		{"if": {"flag": {"a07_council.rome": "some"}}, "ledger": "Rome burned in part: some of its quarters stood."},
+		{"if": {"flag": {"a07_council.rome": "all"}}, "ledger": "Every quarter of Rome stood through the night of fire."},
+		{"if": {"flag": {"a07_council.people": ["few", "some", "many"]}}, "ledger": "Saved on the steps of Saint Peter's: %s.", "args": ["a07_council.people_n"]},
+		{"if": {"flag": {"a07_council.hollweg": "defied"}}, "ledger": "Hollweg and Lindqvist defied the verdict and left Rome."},
+		{"if": {"won_by": {"a07_council": "creatures"}}, "region": "papal_states", "to": "brood", "pin": "a07_council", "seal": "broken", "ledger": "The creatures crossed the Tiber into Saint Peter's Square."},
+		{"if": {"won_by": {"a07_council": "automata"}}, "region": "papal_states", "to": "machine", "pin": "a07_council", "seal": "broken", "ledger": "The machines crossed the Tiber into Saint Peter's Square."}
 	]
 }

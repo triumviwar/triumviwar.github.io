@@ -546,7 +546,7 @@ M = {
         "machine": {"still": "riot", "title": "The machine's",
                     "text": "Father Ferrer's report was never written. The guild's broken ones are the Machine's."},
     },
-    "next": {"visit": "", "machine": ""},
+    "next": {"visit": "a07_council", "machine": ""},
 }
 
 # (the scripted guild answers the riot by standing: its Pendulum and line on HOLD at the yard's gate, on the Honest One's

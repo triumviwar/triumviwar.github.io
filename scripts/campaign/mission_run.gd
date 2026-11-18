@@ -436,6 +436,7 @@ func _physics_process(delta: float) -> void:
 	_tick_routes()
 	_tick_sleep()
 	_tick_disguise()
+	_tick_auto_tags()
 	if not choice_open.is_empty() and game.clock >= float(choice_open.get("until", INF)):
 		choose(String(choice_open["id"]), String(choice_open.get("default", "")))      # (nobody answered: the default)
 	_run_triggers()
@@ -1630,8 +1631,8 @@ func _tick_held() -> void:
 
 ## THE FIRES (the Brood prologue's `burn`, and a07's SPREADING FIRE): each burning building loses its health in about
 ## its `secs`, flames on it; a spreading one lights the nearest building of its spread tag within reach every `every`
-## seconds (the new fire spreads the same way); men of the dousing side standing by it (within 2 tiles of its edge, not
-## asleep or caged) put it out in `douse_secs` (8) seconds of their work together (two men twice as fast), and slow it
+## seconds (the new fire spreads the same way); men of the dousing side (or only of `douse_teams`) standing by it (within
+## 2 tiles of its edge, not asleep or caged) put it out in `douse_secs` (8) seconds of their work together (two men twice as fast), and slow it
 ## meanwhile (no spreading, half the burning); RAIN puts every fire out in about 20 s.
 func _tick_fires() -> void:
 	var still: Array = []
@@ -1641,7 +1642,7 @@ func _tick_fires() -> void:
 		var b = it["b"]
 		if not is_instance_valid(b) or b.dead:
 			continue
-		var men := _dousers(b, String(it["dside"]))
+		var men := _dousers(b, String(it["dside"]), it.get("dteams", []))
 		var work := float(men) + (0.4 if rain else 0.0)
 		if work > 0.0:
 			it["douse"] = float(it["douse"]) + work * TICK
@@ -1671,8 +1672,25 @@ func _tick_fires() -> void:
 	_burning = still
 	for pair in lit:
 		var src: Dictionary = pair[1]
-		set_alight(pair[0], {"secs": float(pair[0].max_hp) / maxf(float(src["rate"]), 0.01), "spread": src["spread"],
-			"douse_side": src["dside"], "douse_secs": src["dsecs"]})
+		var keys := {"secs": float(pair[0].max_hp) / maxf(float(src["rate"]), 0.01), "spread": src["spread"],
+			"douse_side": src["dside"], "douse_secs": src["dsecs"]}
+		set_alight(pair[0], keys)
+		var it2: Dictionary = _burning[_burning.size() - 1] if not _burning.is_empty() else {}
+		if not it2.is_empty() and it2["b"] == pair[0]:
+			it2["dteams"] = src.get("dteams", [])
+
+
+## (a07) mission "auto_tags": [{"team", "kind", "tag"}]: every unit of that team and kind (one a person trains too)
+## gets the tag (the Missionaries a player trains at Rome's church lead the people as Father Tomasz does).
+func _tick_auto_tags() -> void:
+	for at in data.get("auto_tags", []):
+		var t := team_index(String(at.get("team", "")))
+		var tg := String(at.get("tag", ""))
+		var have: Array = tags.get(tg, [])
+		for u in game.units:
+			if u.team == t and not u.dead and u.kind == String(at.get("kind", "")) and not have.has(u):
+				_tag(tg, u)
+				have = tags[tg]
 
 
 ## Set one building alight (the `burn` action's keys); already burning: nothing.
@@ -1681,7 +1699,8 @@ func set_alight(b: Building, v: Dictionary) -> void:
 		return
 	var sp: Dictionary = v.get("spread", {}) if v.get("spread") is Dictionary else {}
 	var ds := String(v.get("douse_side", side_of_team(b.team)))
-	_burning.append({"b": b, "rate": b.max_hp / maxf(float(v.get("secs", 60.0)), 1.0), "spread": sp,
+	var dt: Array = (v.get("douse_teams", []) as Array).map(func(x) -> int: return team_index(String(x)))
+	_burning.append({"dteams": dt, "b": b, "rate": b.max_hp / maxf(float(v.get("secs", 60.0)), 1.0), "spread": sp,
 		"t": float(sp.get("every", 12.0)), "douse": 0.0, "dside": ds, "dsecs": maxf(float(v.get("douse_secs", 8.0)), 0.5)})
 	if game.mlog:
 		game.mlog.add("(mission) fire: %s" % b.kind)
@@ -1708,13 +1727,15 @@ func douse(e: Entity) -> void:
 
 ## Men of the side putting this fire out: living, awake, uncaged units of that side within 2 tiles of the building's
 ## edge (no horses; a construct doesn't carry water: only the people of a side work at it, any of its units).
-func _dousers(b: Building, side: String) -> int:
-	if side == "":
+func _dousers(b: Building, side: String, teams: Array = []) -> int:
+	if side == "" and teams.is_empty():
 		return 0
 	var r: Rect2 = b.rect().grow(Defs.TILE * 2.0)
 	var n := 0
 	for u in game.units:
-		if u.dead or u.kind == "horse" or side_of_team(u.team) != side or u.has_meta("mission_caged") or u.has_meta("mission_asleep"):
+		if u.dead or u.kind == "horse" or u.has_meta("mission_caged") or u.has_meta("mission_asleep"):
+			continue
+		if (teams.is_empty() and side_of_team(u.team) != side) or (not teams.is_empty() and not teams.has(u.team)):
 			continue
 		if r.has_point(u.position):
 			n += 1
