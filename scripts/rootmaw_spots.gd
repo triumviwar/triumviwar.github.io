@@ -55,14 +55,21 @@ static func sources(g: Game, t: int) -> Array:
 ## Its swamp at its full reach would lie under a Rootmaw with its feet at p (its footprint's middle column, as
 ## BroodNew.maw_on_swamp; BroodNew.swamp_full; the swamp's own squashed circle, Game._update_swamp). margin: tiles kept in.
 static func covers(g: Game, src: Unit, p: Vector2, margin := 0.0) -> bool:
-	var a := BroodRoot.anchor(g, src) / Defs.TILE
-	var r := BroodNew.swamp_full(src) - margin
-	for c in BroodNew.maw_mid_cells(p):          # (the Rootmaw's swamp rule: BroodNew.maw_on_swamp)
-		var dx := float(c.x) + 0.5 - a.x
-		var dy := (float(c.y) + 0.5 - a.y) * 1.15
-		if dx * dx + dy * dy <= r * r:
-			return true
-	return false
+	return _covers_at(BroodRoot.anchor(g, src) / Defs.TILE, BroodNew.swamp_full(src) - margin, p)
+
+
+## covers() with the source's anchor (tiles) and reach worked out once (perf-late-brood: candidates() asks it for every
+## cell of a swamp's square; the same sums, the two middle cells of the footprint, BroodNew.maw_mid_cells, written out).
+static func _covers_at(a: Vector2, r: float, p: Vector2) -> bool:
+	var c := BroodRoot.cell_for(BroodNew.MAW, p)
+	var sz: Vector2i = BroodRoot.fp(BroodNew.MAW)[0]
+	var mx := float(c.x + sz.x / 2) + 0.5 - a.x
+	var y0 := c.y + sz.y / 2 - 1
+	var dy := (float(y0) + 0.5 - a.y) * 1.15
+	if mx * mx + dy * dy <= r * r:
+		return true
+	dy = (float(y0 + 1) + 0.5 - a.y) * 1.15
+	return mx * mx + dy * dy <= r * r
 
 
 ## The Rootmaws side t has or has on the way (rooting, rooted, a cocoon; one walking to root, a grub going to turn into
@@ -226,6 +233,17 @@ static func candidates(g: Game, src: Unit, skip: Unit = null, ai := false) -> Ar
 	var out: Array = []
 	var ri := int(ceil(full)) + 1
 	BroodRoot.batch_begin(g, t)
+	# (perf-late-brood: worked out once, not for each of the square's cells: the source's anchor and reach for covers(),
+	# the map's inner box, and the open Rootmaws whose circle rules a spot out (place_problem's "Too close to another
+	# Rootmaw's ground", asked first here: any answer but "" strikes a spot off, so the order of its rules doesn't matter;
+	# in a grown base most cells fail on that rule after the dear footprint and plan checks))
+	var ca := BroodRoot.anchor(g, src) / Defs.TILE
+	var inner := Rect2(Vector2.ZERO, Vector2(Game.W, Game.H) * T).grow(-T)
+	var rr := circle_r() * T * 2.0
+	var open_maws := PackedVector2Array()
+	for o in g.units:
+		if o != skip and not o.dead and o.kind == BroodNew.MAW and o.tesla_mode != "packed":
+			open_maws.append(o.position)
 	for dy in range(-ri, ri + 1):
 		for dx in range(-ri, ri + 1):
 			var pr: Vector2 = ck + Vector2(dx, dy) * T
@@ -233,7 +251,14 @@ static func candidates(g: Game, src: Unit, skip: Unit = null, ai := false) -> Ar
 			if seen.has(p):
 				continue
 			seen[p] = true
-			if not covers(g, src, p) or not Rect2(Vector2.ZERO, Vector2(Game.W, Game.H) * T).grow(-T).has_point(p):
+			if not _covers_at(ca, full, p) or not inner.has_point(p):
+				continue
+			var near := false
+			for q in open_maws:
+				if q.distance_to(p) < rr:
+					near = true
+					break
+			if near:
 				continue
 			if BroodRoot.place_problem(g, t, BroodNew.MAW, p, skip, ai, 1.0, false) != "":
 				continue
@@ -321,6 +346,19 @@ static func circle_r() -> float:
 
 ## Every spot to show for side t now: [{p, rank, src}] (rank 1 for each swamp's first spot, 2 for the rest).
 static func spots_for(g: Game, t: int) -> Array:
+	# (perf-late-brood: a memo round over the whole look, BroodRoot.memo_begin: the swamps overlap in a grown base, so
+	# the sources' squares ask place_problem the same spots again; nothing moves meanwhile. Inside a round already (the
+	# Brood computer's morph choice) that one goes on)
+	var own := BroodRoot._pp_memo == null
+	if own:
+		BroodRoot.memo_begin()
+	var got := _spots_for(g, t)
+	if own:
+		BroodRoot.memo_end()
+	return got
+
+
+static func _spots_for(g: Game, t: int) -> Array:
 	var out: Array = []
 	var a := assign(g, t)
 	var fixed := _fixed(g, t)
@@ -345,11 +383,24 @@ static func spots_for(g: Game, t: int) -> Array:
 ## sources with room cost anything: in a grown base most swamps are full.
 const KEEP_S := 15.0
 static var _sc := {}
+## (perf-late-brood) Each source's KEEP_S look comes at its own moment in the 15 s, not all of them on the same tick: in
+## the owner's Highmoor game (2026-11-18) the Brood computer had 17 swamps, and every 15 s all of them were looked at
+## again in one think, a 120-250 ms frame each time (ai/brood/rootmaws). The moment is from the source's feet in its
+## side's first-start frame (BroodRoot.feet_k: the same for both starts of a mirrored map). Measuring switch
+## `mawstagger:off`: all at once, as before.
+static var stagger := not OS.get_cmdline_user_args().has("mawstagger:off")
+
+
+static func _keep_phase(g: Game, src: Unit) -> float:
+	if not stagger:
+		return 0.0
+	var f := BroodRoot.feet_k(g, src.team, src)
+	return fposmod(f.x * 0.071 + f.y * 0.113, KEEP_S)
 
 
 static func _fit_kept(g: Game, src: Unit, n: int, fixed: Array) -> Array:
 	var reach := (BroodNew.swamp_full(src) + circle_r() * 2.0 + 1.0) * Defs.TILE
-	var key := "%s:%d:%s:%d:%d|" % [str(src.position), int(BroodNew.rooted(src)), str(BroodNew.swamp_full(src)), n, int(g.clock / KEEP_S)]
+	var key := "%s:%d:%s:%d:%d|" % [str(src.position), int(BroodNew.rooted(src)), str(BroodNew.swamp_full(src)), n, int((g.clock + _keep_phase(g, src)) / KEEP_S)]
 	for p in fixed:
 		if (p as Vector2).distance_to(src.position) < reach:
 			key += str(p)
