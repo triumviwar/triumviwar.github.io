@@ -10,9 +10,10 @@ class_name AICrownStack
 ## to its kind's count (WANT), from the labourers near enough that the walk pays:
 ##  - an idle labourer (or one with no free Farm post to go to) costs nothing: he goes if he arrives before the site is done;
 ##  - a working labourer goes only if his walk is under WALK_SHARE of the work he will do there (the site's labourer-seconds
-##    left shared among its builders), URGENT sites (the Barracks / Gate / Cottage under a scouted rush or a seen push, a
-##    Cottage while the supply is blocked, the opening's second Farm, a new hall's first Farm, a Town Hall behind the
-##    coach's clock) with a longer leash; a Cottage gets helpers only when urgent (or idle ones);
+##    left shared among its builders), and only to a site that holds the economy or the defence up: a Town Hall, a Farm
+##    while the labourers wait for posts, a blocked Cottage, the Barracks / Gate / Cottage under a rush our scout read
+##    (URGENT, with a longer leash, as the opening's second Farm, a new hall's first Farm and a Town Hall behind the coach's
+##    clock); under a seen push or a fight at home only the palisade; any other site of the list gets idle labourers only;
 ##  - never to a site in danger (AI._unsafe) nor one not begun yet (a ghost: its footprint must be clear to start), never the
 ##    scout, the escort, a Mill's last hand, a crew of any other building, a labourer leading a horse or on an errand, and
 ##    not more than BUSY_SHARE of the labourers off the Farms at once.
@@ -54,6 +55,7 @@ var args := OS.get_cmdline_user_args()
 ## economy did not gain, the walks cost Farm work, and against the Clockwork the income at 12:00 was lower in 15 of 19
 ## paired games). `buildstack:on` plays it (`buildstack:on0` / `on1` for one team, the mirror's measure).
 var all_kinds := args.has("buildstack:all")     # (variant A of the measure: working hands to every site of the list)
+var push_too := args.has("buildstack:push")     # (variant C: working hands to the sites under a push / a fight at home too)
 var on_switch := (args.has("buildstack:on") or all_kinds) and not args.has("buildstack:off")
 
 # (the report, result.json crown_ai "stack")
@@ -88,12 +90,16 @@ func builders(b: Building) -> Array:
 	return o
 
 
+## A rush read by our scout in the first 7 minutes: the Barracks, the Gate and the Cottage are what the defence waits for.
 func _rush_on() -> bool:
-	if ai._defending():
-		return true
-	if ai.scout != null and ai.scout.verdict == "rush" and game.clock < 420.0:
-		return true
-	return ai.dfn != null and ai.dfn.alert
+	return ai.scout != null and ai.scout.verdict == "rush" and game.clock < 420.0
+
+
+## A push seen coming or a fight at our buildings: only the palisade gets helpers (the owner's "walls before a seen push");
+## no labourer walks to any other site then (variant C sent them to the Barracks and Cottages during every push the
+## Clockwork made: 21 of its 23 helpers a game, more halls lost (0.53 v 0.37) and 5 fewer labourers at 12:00).
+func _push_on() -> bool:
+	return ai._defending() or (ai.dfn != null and ai.dfn.alert)
 
 
 func _supply_blocked() -> bool:
@@ -105,7 +111,7 @@ func _supply_blocked() -> bool:
 ## Foundry and Mill too: they stood in half the time and nothing came sooner, the gold was what they waited for, and the
 ## walks cost the side that stacked 4% of its income in the mirror, won or led 4 v 15, p 0.019): a Town Hall (its Farm
 ## posts), a Farm while the labourers wait for posts, a Cottage while the supply is blocked, the Barracks / Gate / Cottage
-## under a rush or a seen push. Idle labourers (nothing to work) help any site of the list.
+## under a rush our scout read; under a seen push only the palisade (_push_on). Idle labourers help any site of the list.
 func want(b: Building) -> Array:
 	var k := b.kind
 	if not WANT.has(k):
@@ -113,7 +119,7 @@ func want(b: Building) -> Array:
 	var n := int(WANT[k])
 	var urgent := false
 	var binding := false
-	if (k == "barracks" or k == "gate" or k == "cottage") and _rush_on():
+	if (k == "barracks" or k == "gate" or k == "cottage") and (_rush_on() or (push_too and _push_on())):
 		urgent = true
 	elif k == "cottage" and _supply_blocked():
 		urgent = true            # (supply blocked now: nothing trains till it stands)
@@ -252,7 +258,7 @@ func tick() -> void:
 			if idle:
 				ok = walk + IDLE_MARGIN < work / float(n)
 			else:
-				if n >= n_want or room <= 0 or (few and not (urgent and _rush_on())):
+				if n >= n_want or room <= 0 or (few and not (urgent and _rush_on())) or (_push_on() and not push_too):
 					continue
 				ok = walk < share * (URGENT_SHARE if urgent else WALK_SHARE) and walk < work / float(n)
 			if not ok:
@@ -271,7 +277,7 @@ func tick() -> void:
 				urgent_n += 1
 		if _watch.has(id):
 			_watch[id][2] = maxi(int(_watch[id][2]), n)
-	if left > 0 and room > 0 and _rush_on():
+	if left > 0 and room > 0 and (_rush_on() or _push_on()):
 		_wall_help(labs, taken, mini(left, room))
 
 
