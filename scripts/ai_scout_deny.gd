@@ -30,6 +30,7 @@ const WORKER_R := 9.0           # (tiles) ... workers only from this near
 const WORKERS_BY := 420.0       # (s) workers go at a scout only this early in the game (later it is the army's job)
 const MAX_PER := 2
 const MAX_ALL := 4
+const ARMED_LONE_R := 16.0      # (tiles) ... an armed one with none this near
 const LONE_R := 9.0             # (tiles) a soldier is a scout only with no armed friend this near
 const SCOUT_SPEED := 88.0       # an armed scout is this quick ...
 const SCOUT_VALUE := 180.0      # ... and worth no more than this (a Horseman, a Raptor, a Swift; not a Ticking Owl's raid)
@@ -66,9 +67,11 @@ func has(u: Unit) -> bool:
 	return hunters.has(u)
 
 
-## Is this enemy being hunted now? (AI._threat leaves it to the hunters: no army is held at home for a scout.)
+## Is this enemy being hunted now? (AI._threat leaves an UNARMED scout to the hunters: no army is held at home and no hands
+## are pulled off work for it. An armed one stays a threat for the defence as well: if the hunters are not enough, the
+## defence's own answer still comes.)
 func hunted(o: Unit) -> bool:
-	return hunts.has(o) and not (hunts[o]["by"] as Array).is_empty()
+	return hunts.has(o) and not (hunts[o]["by"] as Array).is_empty() and (o.is_worker() or not _armed(o))
 
 
 func _brood() -> bool:
@@ -143,6 +146,7 @@ func _armed(o: Unit) -> bool:
 ## The enemy scouts in or near our base, seen right now.
 func _scouts() -> Array:
 	var out: Array = []
+	var raid := -1              # (-1 not looked yet, 0 no, 1 yes: enemy fighters in our base that are no scouts)
 	for o in game.units:
 		if o.dead or o.off_field or o.team < 0 or o.aboard != null or not game.hostile(o.team, ai.team):
 			continue
@@ -152,6 +156,13 @@ func _scouts() -> Array:
 			continue
 		if not _lone(o):
 			continue                    # (a worker or a Winder with fighters about is an attack's escort: the defence's)
+		if _armed(o):
+			# (an armed scout only while no other enemy fighter is in our base or near it: the first Raptors of a wave
+			# coming in strung out are the wave's, not scouts; clockwork-home's test lost its army's focus to them)
+			if raid < 0:
+				raid = 1 if _raid_on() else 0
+			if raid == 1 or not _lone(o, ARMED_LONE_R):
+				continue
 		out.append(o)
 	return out
 
@@ -174,9 +185,23 @@ func is_scout(o: Unit) -> bool:
 	return o.is_air() or float(o.d.get("speed", 60)) >= SCOUT_SPEED
 
 
+## Enemy fighters in or by our base that are no scout (an attack, a raid: then no armed unit is taken for a scout).
+func _raid_on() -> bool:
+	var n_armed := 0
+	for o in game.units:
+		if o.dead or o.off_field or o.team < 0 or o.aboard != null or not game.hostile(o.team, ai.team) or not _armed(o):
+			continue
+		if base_dist(o.position) > LEASH * Defs.TILE or not game.is_visible_to(ai.team, o.position):
+			continue
+		n_armed += 1
+		if n_armed >= 2 or not is_scout(o):
+			return true
+	return false
+
+
 ## No armed friend of the scout near it (else it is a raid: the defence's).
-func _lone(o: Unit) -> bool:
-	for f in game.units_near(o.position, LONE_R * Defs.TILE):
+func _lone(o: Unit, r := LONE_R) -> bool:
+	for f in game.units_near(o.position, r * Defs.TILE):
 		if f != o and f.team == o.team and not f.dead and not f.off_field and _armed(f):
 			return false
 	return true
