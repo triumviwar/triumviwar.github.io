@@ -6986,7 +6986,7 @@ func die() -> void:
 	if keg:
 		keg = false
 		game.powder_blast(self, position, float(Defs.KEG["blast"]), float(Defs.KEG["radius"]))
-	elif kind == "powder_wagon":
+	elif kind == "powder_wagon" and not has_meta("cage_cart"):      # (a05's cage carts never blow up: MissionRun.cart_bind)
 		var full := clampf(powder / maxf(_pmax, 1.0), 0.0, 1.0)
 		var dmg := maxf(float(Defs.WAGON["blast"]) * full, float(Defs.WAGON["blast_min"]))
 		if game.mlog:

@@ -57,6 +57,13 @@ const ROLES := {
 	"volunteer": {"kind": "musketeer", "art": "a_volunteer", "about": "A Virginia volunteer: one of the families saved at the Hollins farm."},
 	"lyon_man": {"kind": "musketeer", "art": "rebel_militia", "about": "A Lyon weaver come to the barricades of Paris."},
 	"varenne_hall": {"kind": "dismounted", "art": "rebel_varenne", "name": "Etienne Varenne", "hp": 260, "about": "The Free Assembly's orator, in his hall."},
+	# Act 1's a05_specimens (the plateau's foot, the dry season 2769): the Academy's porters and hired guns, its CAGE CARTS
+	# (a Powder Wagon with a cage on it: "cart" never blows up, MissionRun.cart_bind), the young Sire it cages (a Tyrant
+	# Sire drawn small), Benedito with the canoes
+	"porter": {"kind": "labourer", "art": "b_villager", "about": "A porter hired at the Barra for the Academy's expedition."},
+	"hired_gun": {"kind": "musketeer", "art": "b_hired_gun", "about": "A musketeer hired at the Barra to guard the cages."},
+	"cage_cart": {"kind": "powder_wagon", "art": "b_cage_cart", "name": "Cage cart", "hp": 320, "cart": true, "about": "An ox cart with a cage of iron bars: a creature in it, the expedition's powder under it."},
+	"young_sire": {"kind": "tyrannosaur", "art": "b_young_sire", "name": "The young Sire", "hp": 480, "scale": 0.55, "about": "A young Tyrant Sire, two years old, asleep in the ferns."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)
@@ -83,6 +90,8 @@ static func apply(u: Unit, r: String) -> void:
 		u.set_meta("mission_name", String(ro["name"]))
 	if bool(ro.get("torch", false)):
 		u.set_meta("torch", true)
+	if bool(ro.get("cart", false)):
+		u.set_meta("cage_cart", true)     # (a05: a cage cart, never blows up)
 	if ro.has("scale"):
 		u.set_meta("role_scale", float(ro["scale"]))      # (drawn smaller: BroodNew's Mother picture reads it)
 		u.d = u.d.duplicate()                               # (its own: the sprite's scale comes from its "art_scale")

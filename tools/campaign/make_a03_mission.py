@@ -484,7 +484,7 @@ M = {
         "nest": {"still": "nest", "title": "The mountain keeps its own",
                  "text": "The strangers did not come down. The nest sleeps again in the cloud."},
     },
-    "next": {"party": "", "nest": ""},
+    "next": {"party": "a05_specimens", "nest": ""},
 }
 
 
