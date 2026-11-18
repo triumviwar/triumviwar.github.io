@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.60", "items": [
+		"The Crown computer no longer keeps two Labourers waiting at a Town Hall as haulers while a Farm still has room: it keeps only the haulers its horses and wagons need, and the rest go farming.",
+	]},
 	{"v": "0.38.59", "items": [
 		"Studies only: win rates in all nine matchups after two days of AI coaching (266 games): the Clockwork computer now beats the Brood computer, the Crown computer no longer collapses but still wins nothing, and the Brood mirror's start-spot edge is gone.",
 	]},

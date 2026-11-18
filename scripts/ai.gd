@@ -1878,6 +1878,7 @@ func _lab_want(want: int) -> int:
 ## fallback) and stayed there when a new hall's Farm came up: 10 Labourers waited by the Town Halls while the new Farm had 1
 ## of 8 (test_ai_expand). A waiting hauler beyond KEEP_HAULERS a hall goes to a post with room on land that pays, a few a think.
 const KEEP_HAULERS := 2
+var haul_need_on := not OS.get_cmdline_user_args().has("haulkeep:old")
 
 
 func _unpark() -> void:
@@ -1894,7 +1895,14 @@ func _unpark() -> void:
 	var moved := 0
 	for h in waiting:
 		var list: Array = waiting[h]
-		for i in range(KEEP_HAULERS, list.size()):
+		# (0.38.60, the owner's game 2026-11-18: "why 2 haulers while the farm is still not saturated": the hall kept 2 waiting
+		# haulers whatever it needed, a hand short on a Farm with room. Now it keeps only what its need asks for beyond the
+		# haulers already on a job; switch `haulkeep:old` keeps KEEP_HAULERS as before.)
+		var keep := KEEP_HAULERS
+		if haul_need_on:
+			var busy: int = (h as Building).haulers().size() - list.size()
+			keep = maxi(0, WorkerLabels.hauler_need(game, h) - busy)
+		for i in range(keep, list.size()):
 			if moved >= 3:
 				return
 			var u: Unit = list[i]
