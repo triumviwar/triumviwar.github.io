@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.61", "items": [
+		"FARMS BEFORE HAULERS: while any Farm still has a free post, the Crown computer puts no Labourer on hauling: new Horsemen walk to the Horse Breeder for their horse and the guns' horses walk in by themselves. Only powder wagons waiting for kegs still get a hauler.",
+	]},
 	{"v": "0.38.60", "items": [
 		"The Crown computer no longer keeps two Labourers waiting at a Town Hall as haulers while a Farm still has room: it keeps only the haulers its horses and wagons need, and the rest go farming.",
 	]},

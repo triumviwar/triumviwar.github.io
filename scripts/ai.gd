@@ -1901,7 +1901,10 @@ func _unpark() -> void:
 		var keep := KEEP_HAULERS
 		if haul_need_on:
 			var busy: int = (h as Building).haulers().size() - list.size()
-			keep = maxi(0, WorkerLabels.hauler_need(game, h) - busy)
+			var need_h: int = WorkerLabels.hauler_need(game, h)
+			if farms_first_on and _crown() and _farm_room():
+				need_h = mini(need_h, _wagon_haulers())     # (Farms before haulers: see _assign_haulers)
+			keep = maxi(0, need_h - busy)
 		for i in range(keep, list.size()):
 			if moved >= 3:
 				return
@@ -8289,6 +8292,23 @@ func _horses() -> void:
 		_mount_men(horses, keep, need + teams)
 
 
+var farms_first_on := not OS.get_cmdline_user_args().has("farmsfirst:off")
+
+
+## A built Farm on soil that pays with a free post.
+func _farm_room() -> bool:
+	return _mine("farm").any(func(f: Building) -> bool: return f.built and not f.barren() and f.crew.size() < f.crew_max())
+
+
+## The haulers the powder wagons' kegs ask for (all halls), the one hauling job a man can't do by walking himself.
+func _wagon_haulers() -> int:
+	var n := 0
+	for h in _halls():
+		if h.built and h.haul_cap() > 0:
+			n += ceili(float(WorkerLabels.need_parts(game, h).get("powder", 0.0)) - 0.25)
+	return maxi(n, 0)
+
+
 ## Crown: workers assigned to the Town Hall as haulers (Game.haul_dispatch: they lead the
 ## horses to the Barracks and Foundries and carry kegs to the wagons). One once there is a
 ## Horse Breeder, a gun or a wagon, two from 6 horse-using units, three from 12, or the halls' hauler need if more
@@ -8316,6 +8336,12 @@ func _assign_haulers() -> void:
 			short = gap
 			hall = h
 	want = maxi(want, need)
+	if farms_first_on and _farm_room():
+		# FARMS BEFORE HAULERS (the owner, 2026-11-18 11:54: "It didn't need any haulers, the Officer can walk to the
+		# Breeder, no big deal. It's so important in the beginning of the game to fully saturate Farms"): while a paying
+		# Farm has a free post, no haulers for horses (riders walk to the Breeder, gun horses walk in by themselves); only
+		# powder wagons' kegs still get theirs. Switch `farmsfirst:off`.
+		want = _wagon_haulers()
 	if game.haulers_of(team).size() >= want:
 		return
 	var best: Unit = null
