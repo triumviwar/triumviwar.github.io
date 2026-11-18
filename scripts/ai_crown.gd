@@ -1113,7 +1113,8 @@ func _think_stage_crown(i: int) -> void:
 			_tend_wall()        # (the ramp wall's crew kept at it, as the shared _build_up does)
 			_lap("ai/build", pt)
 		2:
-			if held > 0 and ca_behind():
+			if held > 0 and ca_behind() and not (stk != null and stk.hall_keeps()):
+				# (crown-build-stack: not the Town Hall step's gold while the main's Farms are full, AICrownStack.hall_keeps)
 				# (crown-coach-army: behind the clock, the next step's gold leaves a Musketeer's price for each idle Barracks:
 				# the Town Hall step's 400 held the Barracks idle for a minute at 4:00 with 190 in the bank)
 				var free: int = ca.step_release()

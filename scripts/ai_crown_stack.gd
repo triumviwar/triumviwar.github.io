@@ -52,6 +52,8 @@ func _init(a) -> void:
 	team = a.team
 	if args.has("buildstack:off%d" % team):
 		on_switch = false
+	if args.has("hallkeep:off%d" % team):
+		hall_keep_on = false
 
 
 func active() -> bool:
@@ -162,7 +164,7 @@ func tick() -> void:
 	var left := SEND_MAX
 	var sites: Array = []
 	for b in game.buildings:
-		if b.team != team or b.dead or b.built or not WANT.has(b.kind) or Defs.BUILDINGS[b.kind].get("line", false):
+		if b.team != team or b.dead or b.built or not WANT.has(b.kind) or (b.kind != "gate" and Defs.BUILDINGS[b.kind].get("line", false)):
 			continue
 		if ai._unsafe(b.center()):
 			continue
@@ -224,6 +226,52 @@ func tick() -> void:
 				urgent_n += 1
 		if _watch.has(id):
 			_watch[id][2] = maxi(int(_watch[id][2]), n)
+	if left > 0 and room > 0 and _rush_on():
+		_wall_help(labs, taken, mini(left, room))
+
+
+## THE PALISADE BEFORE A SEEN PUSH: while a rush is read, a push is seen coming or we defend, the unfinished palisade pieces
+## nobody works on get up to WALL_HELP more labourers from close by (each walks WALL_WALK s at most); done with his piece a
+## labourer goes on to the next unworked site near him (Game.next_site), so the ring closes along. Not under fire.
+const WALL_HELP := 4
+const WALL_WALK := 8.0
+
+
+func _wall_help(labs: Array, taken: Dictionary, n: int) -> void:
+	var on_wall := 0
+	for u in labs:
+		if u.order == "build" and u.order_target is Building and (u.order_target as Building).kind == "wall":
+			on_wall += 1
+	if on_wall >= WALL_HELP * 2:
+		return
+	var pieces: Array = []
+	for b in game.buildings:
+		if b.team == team and not b.dead and not b.built and b.kind == "wall" and not ai._unsafe(b.center()) and builders(b).is_empty():
+			pieces.append(b)
+	if pieces.is_empty():
+		return
+	var sent_now := 0
+	for u in labs:
+		if sent_now >= mini(n, WALL_HELP) or taken.has(u) or not _free(u):
+			continue
+		var best: Building = null
+		var bd := INF
+		for p in pieces:
+			var dd: float = u.position.distance_to(p.center())
+			if dd < bd:
+				bd = dd
+				best = p
+		if best == null or bd / maxf(1.0, u.speed) > WALL_WALK:
+			continue
+		u.give({"o": "build", "e": best})
+		pieces.erase(best)
+		taken[u] = true
+		sent_now += 1
+		sent += 1
+		urgent_n += 1
+		sent_by["wall"] = int(sent_by.get("wall", 0)) + 1
+		if pieces.is_empty():
+			return
 
 
 ## Every site of a WANT kind is watched (both arms: the report's build times).
@@ -250,5 +298,40 @@ func _watch_done() -> void:
 			_watch.erase(id)
 
 
+# ------------------------------------------------------------------ THE HALL STEP KEEPS ITS GOLD
+
+## (crown-build-stack, part 2: why the Crown's labourers stall; docs/crown_build_stack.md) Against the Clockwork the Crown had
+## 34 labourers at 8:00 to the Clockwork's 47 (docs/winrate_2026_11_17.md). Traced second by second
+## (tools/crown_econ_trace.gd): from ~3:00 the main's 16 Farm posts are full and the labourers stop at 16-18 until the second
+## hall's Farms stand (5:30-6:00); the opening's Town Hall step waited 90 s for its 400 gold, because the army clock
+## (AICrownArmy, behind until 6:30 against the Clockwork's usual army) let a Musketeer's price per idle Barracks out of
+## the held step every think (AICrown stage 2, step_release). So while the held step is the Town Hall, the main's Farm
+## posts are full (one free or none) and no armed enemy is at our buildings, no rush is read and no push is seen, the
+## step keeps its gold until HALL_KEEP_T; the stacked labourers then build it in a quarter of the time. Not against the
+## Brood (the economy rules measured worse there: AICrownCoach rule 7). Switch `hallkeep:off` (and per team).
+const HALL_KEEP_T := 330.0
+var hall_keep_on := not args.has("hallkeep:off")
+var hall_kept_t := 0.0          # (the report) seconds the hall step's gold was kept from the soldiers
+var _hk_last := -1.0
+
+
+func hall_keeps() -> bool:
+	if not hall_keep_on or not ai.on or ai.difficulty < 1 or ai.peaceful or ai.bo_done:
+		return false
+	if game.clock > HALL_KEEP_T or ai.vb() != null or ai._foe_is("brood"):
+		return false
+	if ai.bo_i >= ai._bo_plan.size() or String(ai._bo_plan[ai.bo_i].get("do", "")) != "hall":
+		return false
+	if ai._defending() or (ai.dfn != null and ai.dfn.alert) or (ai.scout != null and ai.scout.verdict == "rush"):
+		return false
+	if ai.coach == null or ai.coach._threat_now() or ai.coach.free_posts() > 1:
+		return false
+	if _hk_last >= 0.0 and game.clock - _hk_last < 2.0:
+		hall_kept_t += game.clock - _hk_last
+	_hk_last = game.clock
+	return true
+
+
 func counters() -> Dictionary:
-	return {"on": on_switch, "sent": sent, "sent_idle": sent_idle, "urgent": urgent_n, "by": sent_by, "built": built}
+	return {"on": on_switch, "sent": sent, "sent_idle": sent_idle, "urgent": urgent_n, "by": sent_by, "built": built,
+		"hall_keep": hall_keep_on, "hall_kept_t": snappedf(hall_kept_t, 0.1)}
