@@ -210,6 +210,7 @@ func _nb_think_stage(i: int) -> void:
 		return
 	match i:
 		0:
+			_lap_nb("scout_deny", sdn().tick)       # (scout-deny: an enemy scout in its land is hunted down, scripts/ai_scout_deny.gd)
 			_lap_nb("observe", _nb_observe.bind(q))
 			if int(q.nb.get("eggs", 0)) <= EGG_LOW and float(q.nb.get("grow_t", 0.0)) <= 0.0:
 				_egg_low_t = game.clock          # (her clutch run down: eggs hold the Brood back, _nb_grow_time)
@@ -2751,7 +2752,7 @@ func _nb_essence(q: Unit) -> void:
 			or (int(plan["grubs0"]) > 0 and not _first_out):          # (a rush keeps every Raptor for its first wave)
 		return
 	var raptors := _nb_mine("raptor").filter(func(u: Unit) -> bool: return u.position.distance_to(_qp(q)) < 16.0 * Defs.TILE \
-		and u.target == null and u.order != "sacrifice" and not _wave.has(u) and u != _scout)      # (at home, not fighting)
+		and u.target == null and u.order != "sacrifice" and not _wave.has(u) and u != _scout and not (sd != null and sd.has(u)))      # (at home, not fighting)
 	if raptors.size() <= maxi(2, int(plan["home_guard"])):
 		return
 	for u in raptors:
@@ -3368,6 +3369,8 @@ func _nb_army(q: Unit) -> void:
 	var army := _nb_army_units()
 	if _scout != null:
 		army.erase(_scout)
+	if sd != null and not sd.hunters.is_empty():
+		army = army.filter(func(u: Unit) -> bool: return not sd.has(u))      # (scout-deny: the hunters after a scout, not held or sent)
 	# a wave out is called home when the attack at the Mother is big and the creatures at home can't hold it
 	if _attacking and _nb_threat(q) != Vector2.INF and _nb_sires_needed(q):
 		var home_v := _value_of(army.filter(func(u: Unit) -> bool: return not _wave.has(u)))
