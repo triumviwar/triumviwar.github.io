@@ -70,6 +70,9 @@ def build():
     c.street("rue_garrison", [94, 48, 106, 52])
     c.street("quai_croix_w", [34, 3, 39, 22])
     c.street("quai_croix_e", [92, 3, 98, 32])
+    # ---- where the weavers go home: the hilltop's street at its two ends
+    c.street("home_w", [40, 9, 46, 12])
+    c.street("home_e", [84, 9, 91, 12])
     # ---- the squares
     c.square("hall_square", [56, 4, 74, 15], props=[["well", 58, 13], ["bench", 70, 13]])
     c.square("terreaux", [56, 24, 68, 30], props=[["well", 62, 28]])
@@ -123,7 +126,6 @@ def build():
 def areas_extra(c):
     """Areas the mission wants beyond the town's own (named here so the mission and the map agree)."""
     return {
-        "home_w": [40, 3, 6, 5], "home_e": [85, 3, 6, 5],          # where the weavers go home (the hilltop's corners)
         "hilltop_all": [39, 2, 53, 19],                            # the whole hilltop (Part 2: the Assembly up there)
         "below_stairs": [44, 21, 40, 5],                           # the street at the stairs' foot
         "garrison_yard": [108, 42, 12, 14],

@@ -54,6 +54,7 @@ class City:
         self.bridges = {}                # name -> {"river", "cells", "dir"}
         self.squares = {}
         self.traboules = {}
+        self.doors = {}                  # a traboule's name -> its middle cell (a mission may shut it there)
         self.starts = [[w // 4, h // 2], [3 * w // 4, h // 2]]
         self.reserved = []               # [x0, y0, x1, y1]: no district block comes within a street of these
 
@@ -297,6 +298,7 @@ class City:
         xs = [c[0] for c in cells]
         ys = [c[1] for c in cells]
         self.traboules[name] = cells
+        self.doors[name] = list(cells[len(cells) // 2])
         self.area(name, [min(xs), min(ys), max(xs) + 1, max(ys) + 1])
         return cells
 
@@ -492,3 +494,53 @@ def _read_prop_widths():
 
 
 _read_prop_widths()
+
+
+def demo(seed):
+    """A small town using every call (the test's: tools/test_city_gen.gd; also a starting point for a new town): a river
+    running north-south with two bridges, a canal running east-west with one, a hill with stairs, a walled quarter
+    with two gates, two districts, squares, a hidden yard with traboules, lots."""
+    c = City("city_demo", 72, 56, seed, biome="grass")
+    c.frame(2, "t")
+    c.river("river", [(36, 0), (34, 20), (37, 40), (35, 56)], 4)
+    c.river("canal", [(0, 30), (20, 31), (33, 30)], 3)
+    c.hill("hill", [44, 3, 70, 16])
+    c.ramp("stair_1", [50, 16, 54, 17])
+    c.ramp("stair_2", [62, 16, 66, 17])
+    c.block("yard_block", [8, 8, 20, 18], "yard")
+    c.district("west", [3, 3, 32, 52], block=(5, 8))
+    c.district("east", [41, 18, 70, 53], block=(5, 8))
+    c.district("hilltop", [45, 4, 69, 15], block=(4, 6))
+    c.square("market", [16, 38, 26, 46], props=[["well", 20, 42]])
+    c.square("east_square", [50, 30, 60, 38])
+    c.bridge("bridge_n", "river", y=12)
+    c.bridge("bridge_s", "river", y=44)
+    c.bridge("canal_bridge", "canal", x=12)
+    c.courtyard("yard", [11, 11, 17, 15])
+    c.traboule("trab_1", [14, 17], "n")
+    c.traboule("trab_2", [19, 12], "w")
+    c.traboules_in("west", 3)
+    c.wall([(42, 20), (42, 52)], gates=[(42, 34)])
+    for i in range(4):
+        c.lot("lot_%d" % (i + 1), "east" if i % 2 else "west")
+    c.lot("hill_lot", "hilltop")
+    c.houses()
+    c.starts = [[55, 34], [20, 42]]
+    return c
+
+
+if __name__ == "__main__":
+    import sys
+    args = sys.argv[1:]
+    seed = int(args[args.index("--demo") + 1]) if "--demo" in args else 1
+    city = demo(seed)
+    out = args[args.index("--out") + 1] if "--out" in args else None
+    probs = city.check((55, 34))
+    if probs:
+        print("PROBLEMS:", probs)
+        sys.exit(1)
+    if out:
+        city.save(out)
+        print("wrote", out, len(city.props), "props")
+    if "--ascii" in args:
+        print(city.ascii())

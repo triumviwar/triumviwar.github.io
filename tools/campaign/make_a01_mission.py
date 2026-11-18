@@ -17,7 +17,7 @@ the King frames it, and old Tomasz (the cardinal) says one line in the frame. A 
     then (a press given away at 5:00, then every 2:30). Close four.
   PART 2, THE WEAVERS' HILL: the Assembly calls the silk-weavers up the Croix-Rousse to the Weavers' Hall. Tomasz must
     stay on the hall's square 45 s (a STAY) while the garrison holds the three stairs against the Assembly's bands;
-    every 12 s he is NOT there two weavers turn to the mob (the temper +1). When he has spoken, the rest go home.
+    every 15 s he is NOT there (from 0:25) two weavers turn to the mob (the temper +1). When he has spoken, the rest go home.
   PART 3, THE LAST PRESS: a weaver tells Tomasz of the great press in a hidden yard under the hill, reached by two
     traboules. Find it (DISGUISED too), take its master printer, Master Rouvière, ALIVE (a CAPTURE) and close it. He
     names Paris (the a06 hint). The temper at the end sets the flag `lyon` (calm under 10, else sullen).
@@ -67,7 +67,8 @@ LAYOUT_ABOUT = {"old_town": "The hill's west, the slopes, the Presqu'île, Vieux
                 "hill": "The hill's west, the slopes, the Presqu'île, Vieux Lyon's north and Guillotière's north."}
 PERIOD = {"easy": 150, "normal": 120, "hard": 95}    # seconds between a press's runners
 TEMPER_TOP = 20
-TEMPER_START = 4
+TEMPER_START = 2
+SEARCH = 3          # seconds a Crown man must stand at a house's door (2 tiles) to see what it is
 
 
 def centre(name):
@@ -97,7 +98,7 @@ def place_presses(lid):
         if k in LAYOUTS[lid]:
             i += 1
             out.append({"build": {"team": "assembly", "kind": "cottage", "at": at, "tag": "presses", "tags": ["press_%d" % i],
-                                  "name": "Printing house", "disguise": {"as": "town", "within": 3, "by": "crown"}}})
+                                  "name": "Printing house", "disguise": {"as": "town", "within": 2, "by": "crown", "secs": SEARCH}}})
         else:
             out.append({"build": {"team": "town", "kind": "cottage", "at": at, "tag": "houses"}})
     out.append({"say": ["a_layout_" + lid]})
@@ -221,8 +222,11 @@ M = {
     ] + [{"team": "garrison", "kind": "cottage", "at": c, "tag": "quarters"} for c in GARRISON_QUARTERS]
     + [{"team": "town", "kind": "cottage", "at": CITY.lots["home_%d" % i]["at"], "tag": "houses"} for i in range(1, 17)]
     + [{"team": "town", "kind": "town_hall", "at": CITY.lots["weavers_hall"]["at"], "tag": "weavers_hall", "name": "The Weavers' Hall"},
+       # the yard's two traboules are shut (a door the Assembly keeps, in the town's colour) until a weaver tells Tomasz
+       {"team": "assembly", "kind": "wall", "at": CITY.doors["trab_yard_s"], "tag": "yard_doors", "disguise": {"as": "town", "within": 0, "secs": 99999}},
+       {"team": "assembly", "kind": "wall", "at": CITY.doors["trab_yard_e"], "tag": "yard_doors", "disguise": {"as": "town", "within": 0, "secs": 99999}},
        {"team": "assembly", "kind": "barracks", "at": CITY.lots["great_press"]["at"], "tag": "great_press", "name": "The great press",
-        "disguise": {"as": "town", "within": 3, "by": "crown"}}],
+        "disguise": {"as": "town", "within": 3, "by": "crown", "secs": SEARCH}}],
     "objectives": [
         # ---- the Crown: part 1
         {"id": "presses", "side": "crown", "primary": True, "kind": "manual",
@@ -306,13 +310,13 @@ M = {
         {"id": "turn", "when": {"all": [{"fired": "part2"}, {"not": {"done": "speech"}}, LIVE,
                                         {"not": {"count": {"tag": "tomasz", "area": "hall_square", "at_least": 1}}},
                                         {"count": {"tag": "weavers", "area": "hall_square", "at_least": 1}}]},
-         "delay": 12, "every": 12, "do": [
+         "delay": 25, "every": 15, "do": [
             {"convert": {"area": "hall_square", "from": "town", "kind": "labourer", "count": 2, "to": "assembly", "warn": 3, "as": "mob"}},
             {"counter": {"name": "temper", "add": 1}}, {"counter": {"name": "weavers", "add": 2}}]},
         {"id": "turn_line", "when": {"fired": "turn"}, "do": [{"say": ["n_turn", "t_turn"]}]},
         {"id": "mob_go", "when": {"all": [{"fired": "turn"}, LIVE]}, "delay": 3.5, "every": 3, "do": [
             {"spare": {"tag": "mob", "on": False}},          # (they were weavers, kept out of the fight: no longer)
-            {"order": {"tag": "mob", "do": "hunt", "prey": "tomasz", "within": 14}}]},
+            {"order": {"tag": "mob", "do": "attack", "to": "hall_square", "idle": True}}]},
         {"id": "spoken", "when": {"done": "speech"}, "do": [
             {"say": ["t_spoken", "wv_spoken"]},
             {"order": {"tag": "weavers", "only_team": "town", "do": "move", "to": "home_w"}},
@@ -326,6 +330,7 @@ M = {
          "delay": 5, "do": [
             {"objective": {"id": "speech", "set": "hidden"}}, {"objective": {"id": "hall", "set": "hidden"}},
             {"say": ["wv_yard", "t_3", "tip_4"]},
+            {"spare": {"tag": "yard_doors", "on": False}}, {"hurt": {"tag": "yard_doors", "amount": 99999}},
             {"objective": {"id": "great", "set": "active"}}, {"objective": {"id": "rouviere", "set": "active"}},
             {"objective": {"id": "close_great", "set": "active"}},
             {"ping": {"area": "trab_yard_s"}}, {"ping": {"area": "trab_yard_e"}},

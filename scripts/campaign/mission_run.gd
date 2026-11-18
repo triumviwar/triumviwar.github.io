@@ -1738,15 +1738,16 @@ func near_rect(tag: String) -> Rect2:
 	return Rect2()
 
 
-## A building DISGUISED ("disguise": {"as": team id, "within": tiles, "by": side}): to every other side it wears the
-## team `as`'s colour (on the map, the minimap, its card), nobody targets it or hurts it (spared), until a unit of a side
-## hostile to it (of `by` only, if given) comes within `within` tiles (3) of its edge: then it is UNMASKED.
+## A building DISGUISED ("disguise": {"as": team id, "within": tiles, "by": side, "secs": s}): to every other side it
+## wears the team `as`'s colour (on the map, the minimap, its card), nobody targets it or hurts it (spared), until a unit
+## of a side hostile to it (of `by` only, if given) stands within `within` tiles (3) of its edge for `secs` seconds (0:
+## at once; a man marching past doesn't see in, one who stops at the door does): then it is UNMASKED.
 func disguise(b: Entity, v: Dictionary) -> void:
 	var dt := team_index(String(v.get("as", "")))
 	if dt < 0 or b == null:
 		return
 	b.set_meta("disguise_team", dt)
-	b.set_meta("disguise", {"within": float(v.get("within", 3.0)) * Defs.TILE, "by": String(v.get("by", ""))})
+	b.set_meta("disguise", {"within": float(v.get("within", 3.0)) * Defs.TILE, "by": String(v.get("by", "")), "secs": float(v.get("secs", 0.0))})
 	b.spared = true
 	b.refresh_cloth()
 	if not _disguised.has(b):
@@ -1782,14 +1783,24 @@ func _tick_disguise() -> void:
 		var dv: Dictionary = b.get_meta("disguise", {})
 		var within := float(dv.get("within", 3.0 * Defs.TILE))
 		var by := String(dv.get("by", ""))
+		var secs := float(dv.get("secs", 0.0))
+		var near_one := false
 		for u in game.units:
 			if u.dead or u.off_field or not game.hostile(u.team, b.team):
 				continue
 			if by != "" and side_of_team(u.team) != by:
 				continue
 			if b.edge_distance(u.position) <= within:
-				unmask(b)
+				near_one = true
 				break
+		if not near_one:
+			if b.has_meta("disguise_since"):
+				b.remove_meta("disguise_since")
+			continue
+		if not b.has_meta("disguise_since"):
+			b.set_meta("disguise_since", game.clock)
+		if game.clock - float(b.get_meta("disguise_since")) >= secs - 0.001:
+			unmask(b)
 
 
 func _check_capture(o: Dictionary) -> void:

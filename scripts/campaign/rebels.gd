@@ -41,7 +41,7 @@ const ROLES := {
 	"guide": {"kind": "labourer", "art": "b_villager", "name": "Guide", "hp": 90, "about": "A man of Nazaré who knows the mountain's paths."},
 	# Act 1's a01_presses (Lyon, spring 2768): the young priest, the garrison's captain, the Assembly's runners and its
 	# master printer, the silk-weavers of the Croix-Rousse (stand-ins until drawn)
-	"tomasz": {"kind": "missionary", "art": "a_tomasz", "name": "Father Tomasz", "hp": 260, "about": "A young priest of a Lyon parish, ordained this spring."},
+	"tomasz": {"kind": "missionary", "art": "a_tomasz", "name": "Father Tomasz", "hp": 360, "about": "A young priest of a Lyon parish, ordained this spring."},
 	"delorme": {"kind": "dismounted", "art": "a_delorme", "name": "Captain Delorme", "hp": 220, "about": "Captain of the Crown's garrison at Lyon."},
 	"runner": {"kind": "labourer", "art": "a_runner", "about": "A runner of the Free Assembly with a bundle of pamphlets."},
 	"printer": {"kind": "labourer", "art": "a_printer", "name": "Master Rouvière", "hp": 300, "about": "The master printer of the great press under the hill."},

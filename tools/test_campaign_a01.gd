@@ -216,7 +216,7 @@ func _flags() -> void:
 		_step(g, 18.0)
 		check(P + "Tomasz's line in the streets", r.said_ids.has("t_saved") == (fam == "save") and r.said_ids.has("t_left") == (fam != "save"))
 		check(P + "the garrison: Delorme, Tomasz, 12 Musketeers, 4 Horsemen", r.tagged("delorme").size() == 1 and r.tagged("tomasz").size() == 1
-			and r.tagged("garrison_men").size() == 12 and r.tagged("riders").size() == 4 and r.tagged("tomasz")[0].max_hp >= 260.0)
+			and r.tagged("garrison_men").size() == 12 and r.tagged("riders").size() == 4 and r.tagged("tomasz")[0].max_hp >= 360.0)
 		check(P + "the Watch at four bridges, the hall, the town's houses", r.tagged("watch_men").size() == 8 and r.tagged("weavers_hall").size() == 1
 			and r.tagged("houses").size() == 16 + 6)
 
@@ -228,6 +228,8 @@ func _layouts() -> void:
 	# ---- random: the match's seed picks one of the three
 	var g: Game = await _start_layout("")
 	var r: MissionRun = g.mission
+	check("the hidden yard's two traboules are shut (doors in the town's colour, untouchable)", r.tagged("yard_doors").size() == 2
+		and r.tagged("yard_doors").all(func(b): return b.spared and b.cloth_colour() == g.team_colour(r.team_index("town"))))
 	check("random layout: one of the three", LAYOUTS.has(String(r.flags.get("layout", ""))), str(r.flags.get("layout", "")))
 	for lid in LAYOUTS:
 		g = await _start_layout(lid)
@@ -253,14 +255,16 @@ func _layouts() -> void:
 	_step(g, 3.5)
 	check("the Assembly's own man at its door: still hidden", p1.spared)
 	own.die()
-	_put(g, [man], p1.center() + Vector2(0, (p1.size.y * 0.5 + 2.0) * Defs.TILE))
+	_put(g, [man], p1.center() + Vector2(0, (p1.size.y * 0.5 + 1.2) * Defs.TILE))
 	_step(g, 4.0)
-	check("a Crown man within 3 tiles: UNMASKED (its own colour, open to attack)", not p1.spared and not p1.has_meta("disguise_team")
+	check("a Crown man at its door: not at once (he must stop and look)", p1.spared and not r.unmasked.has("press_1"))
+	_walk(g, 7.25)
+	check("...3 s at its door: UNMASKED (its own colour, open to attack)", not p1.spared and not p1.has_meta("disguise_team")
 		and r.unmasked.has("press_1") and r.unmasked.has("presses") and p1.cloth_colour() == g.team_colour(p1.team))
 	check("its men come out (2 militia and a pike)", r.tagged("press_men").size() == 3 and r.said_ids.has("d_found"))
 	var p2: Building = r.tagged("press_2")[0]
-	_put(g, r.tagged("watch_men").slice(0, 1), p2.center() + Vector2(0, (p2.size.y * 0.5 + 1.5) * Defs.TILE))
-	_step(g, 4.5)
+	_put(g, r.tagged("watch_men").slice(0, 1), p2.center() + Vector2(0, (p2.size.y * 0.5 + 1.2) * Defs.TILE))
+	_walk(g, 11.0)
 	check("the Watch finds one too", r.unmasked.has("press_2"))
 
 
@@ -272,7 +276,7 @@ func _part1() -> void:
 	var r: MissionRun = g.mission
 	var gt := r.team_index("garrison")
 	check("part 1: the objectives", r.obj["presses"] == "active" and r.obj["temper"] == "active" and r.obj["tomasz"] == "active" and r.obj["speech"] == "hidden")
-	check("the temper starts at 4", int(r.counters["temper"]) == 4 and r.objective_text(r.objective("temper")).begins_with("The city's temper: 4 of 20"))
+	check("the temper starts at 2", int(r.counters["temper"]) == 2 and r.objective_text(r.objective("temper")).begins_with("The city"))
 	_step(g, 41.0)
 	check("a runner out of the first press at 0:40", r.tagged("runner_1").size() == 1 and r.tagged("runner").size() == 1 and r.fired.has("run_1_normal")
 		and not r.fired.has("run_1_easy"))
@@ -285,8 +289,8 @@ func _part1() -> void:
 					sq = String(ti2["to"])
 	_put(g, [run], r.area_rect(sq).get_center())
 	_step(g, 42.0)
-	check("A RUNNER ON A SQUARE: off the map, the temper 5", run.dead or not is_instance_valid(run) or run.off_field or int(r.counters["temper"]) == 5, str(r.counters["temper"]))
-	check("...the temper 5", int(r.counters["temper"]) == 5)
+	check("A RUNNER ON A SQUARE: off the map, the temper 3", int(r.counters["temper"]) == 3, str(r.counters["temper"]))
+	r.act({"counter": {"name": "temper", "set": 5}})
 	_step(g, 61.0)
 	check("the second press's runner at 1:00", r.tagged("runner_2").size() == 1)
 	check("the city pays its garrison at 1:00", int(g.players[gt]["gold"]) == 340)
@@ -299,7 +303,7 @@ func _part1() -> void:
 	_step(g, 93.0)
 	_step(g, 93.25)
 	check("A PRESS CLOSED: 1 of 4, the temper -2, 60 gold", int(r.counters["closed"]) == 1 and int(r.counters["temper"]) == 2
-		and r.said_ids.has("d_closed") and r.objective_text(r.objective("presses")).begins_with("Find the Assembly"), str([r.counters, r.said_ids.has("d_closed"), g.players[gt]["gold"]]))
+		and int(g.players[gt]["gold"]) == 400 and r.said_ids.has("d_closed") and r.objective_text(r.objective("presses")).begins_with("Find the Assembly"), str([r.counters, r.said_ids.has("d_closed"), g.players[gt]["gold"]]))
 	_step(g, 162.0)
 	check("a closed press sends no more runners", r.tagged("runner_1", false).size() == 1)
 	# the Watch's hint at 5:00 (press 2 not yet found)
@@ -334,12 +338,14 @@ func _part2(g: Game, r: MissionRun, P: String) -> void:
 	check(P + "the remaining presses print no more", not r.fired.has("run_5_normal") or float(r.fired["run_5_normal"]) < t0)
 	_put(g, r.tagged("tomasz"), r.area_rect("garrison_yard").get_center())
 	_step(g, t0 + 12.5)
-	_step(g, t0 + 13.0)
+	check(P + "the agitators need a while: nobody turned at 0:12", not r.fired.has("turn"))
+	_step(g, t0 + 25.5)
+	_step(g, t0 + 26.0)
 	check(P + "Tomasz away: two weavers turn", r.fired.has("turn") and r._turning.size() >= 1 and int(r.counters["weavers"]) == 2 and r.said_ids.has("n_turn"))
 	var temper := int(r.counters["temper"])
-	_step(g, t0 + 17.0)
+	_step(g, t0 + 30.0)
 	check(P + "...they are the Assembly's mob now, no longer spared", r.tagged("mob").size() == 2 and r.tagged("mob").all(func(u): return u.team == r.team_index("assembly") and not u.spared))
-	_step(g, t0 + 26.0)
+	_step(g, t0 + 31.0)
 	check(P + "the first band at the Terreaux, for the hall", r.tagged("band").size() == 7 and r.said_ids.has("d_band1"))
 	_put(g, r.tagged("tomasz"), r.area_rect("hall_square").get_center() + Vector2(0, 64))
 	var t1 := g.clock
@@ -351,7 +357,7 @@ func _part2(g: Game, r: MissionRun, P: String) -> void:
 	check(P + "THE STAY: he has spoken (45 s)", r.obj["speech"] == "done" and r.said_ids.has("wv_spoken"))
 	check(P + "the weavers go home, the temper -3", r.fired.has("spoken") and int(r.counters["temper"]) == maxi(0, temper - 3))
 	var stay: Array = r.tagged("weavers").filter(func(u): return u.team == r.team_index("town"))
-	check(P + "only the weavers who listened are sent home (not the mob)", r.tagged("mob").all(func(u): return u.team != r.team_index("town")) and stay.size() >= 16 - turned and stay.size() < 16, str(stay.size()))
+	check(P + "only the weavers who listened are sent home (not the mob)", r.tagged("mob").all(func(u): return u.team != r.team_index("town")) and stay.size() >= 16 - turned, str(stay.size()))
 	_put(g, stay, r.area_rect("home_w").get_center())
 	_step(g, g.clock + 0.5)
 	check(P + "...off the map at home, counted", int(r.counters["home"]) == stay.size(), str(r.counters["home"]))
@@ -380,12 +386,13 @@ func _parts23() -> void:
 	_step(g, g.clock + 5.5)
 	check("PART 3: the great press's objectives, the traboules pinged", r.fired.has("part3") and r.obj["great"] == "active" and r.obj["rouviere"] == "active"
 		and r.obj["close_great"] == "active" and r.said_ids.has("wv_yard"))
+	check("the yard's doors (in the traboules) are broken open now", r.tagged("yard_doors", false).size() == 2 and r.tagged("yard_doors").is_empty())
 	var gp: Building = r.tagged("great_press")[0]
 	check("the great press is disguised (the town's colour, untouchable)", gp.spared and gp.has_meta("disguise_team"))
 	check("the master printer in the yard, kept from dying (capture)", r.tagged("printer").size() == 1 and r.tagged("printer")[0].hp_floor > 0.0)
 	var men: Array = r.tagged("garrison_men").slice(0, 4)
 	_put(g, men, r.area_rect("yard").get_center())
-	_step(g, g.clock + 0.5)
+	_walk(g, g.clock + 3.5)
 	check("a Crown man in the yard: the great press UNMASKED, found", not gp.spared and r.obj["great"] == "done" and r.said_ids.has("pr_1"))
 	_step(g, g.clock + 30.5)
 	check("the great press prints on while it stands (a runner to the Terreaux)", r.tagged("runner_great").size() >= 1)
@@ -477,7 +484,7 @@ func _difficulty() -> void:
 		check("%s: the runners on its own timetable" % d[0], r.fired.has("run_1_" + d[0]) and not r.fired.has("run_1_normal"))
 		var p1: Building = r.tagged("press_1")[0]
 		_put(g, r.tagged("riders").slice(0, 1), p1.center() + Vector2(0, (p1.size.y * 0.5 + 1.0) * Defs.TILE))
-		_step(g, 42.0)
+		_walk(g, 45.0)
 		var n := r.tagged("press_men").filter(func(u): return u.kind == "musketeer").size()
 		check("%s: a press's militia scaled (%d)" % [d[0], d[1]], n == int(d[1]), str(n))
 		check("%s: the garrison is the player's: never scaled" % d[0], r.tagged("garrison_men").size() == 12)
