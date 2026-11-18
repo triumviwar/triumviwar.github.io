@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.72": ["A pintura do amanhecer da Linha de Fürth: os soldados agora levam mosquetes de pederneira de verdade."],
 	"0.38.71": ["OS BATEDORES SÃO CAÇADOS: todos os computadores (a Coroa, o Relógio e a Ninhada) agora vão atrás de um batedor inimigo na sua base: um trabalhador, um Mensageiro ou um balão, ou um soldado rápido sozinho numa volta de reconhecimento. Mandam as duas unidades mais próximas que conseguem alcançá-lo (no começo, quando nenhum soldado consegue, um ou dois trabalhadores ao lado dele), perseguem só um pouco além da base e nunca para dentro do exército inimigo, e depois mandam-nas de volta ao seu posto ou ao trabalho. A Ninhada já não deixa um Trabalhador andar à volta da sua Mãe. A HISTÓRIA DA IA conta cada caçada.", "A Linha de Fürth ganha as primeiras pinturas de verdade: a guilda no exílio, o Honesto e a linha ao amanhecer."],
 	"0.38.70": ["A campanha fala: 353 falas gravadas do Rei, Hollweg, Lindqvist, Valadares, Fairleigh, Ruggieri e Varenne, e o anunciador da Ninhada na nova voz do Dr. Lindqvist.", "A Décima Terceira Hora abre com uma nova pintura: o Padre Ferrer e Meister Hollweg discutem na oficina."],
 	"0.38.69": ["Nos bastidores: uma única gravação de voz para todas as falas cuja voz já foi criada (374 falas: o novo locutor da Ninhada e, na campanha, o Rei, Hollweg, Lindqvist, Valadares, Fairleigh, Ruggieri e Varenne)."],

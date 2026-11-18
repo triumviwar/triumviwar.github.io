@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.72", "items": [
+		"The Fürth Line's dawn painting: the soldiers now carry proper flintlock muskets.",
+	]},
 	{"v": "0.38.71", "items": [
 		"SCOUTS ARE HUNTED DOWN: every computer (the Crown, the Clockwork and the Brood) now goes after an enemy scout in its base: a worker, a Messenger or a balloon, or a lone quick soldier on a scouting loop. It sends the two nearest units that can catch it (early, when no soldier can, one or two workers next to it), chases only a little way past its base and never into the enemy's army, then sends them back to their post or their work. The Brood no longer lets a Labourer walk round its Mother. The AI STORY tells each hunt.",
 		"The Fürth Line gets its first real paintings: the guild in exile, the Honest One and the line at dawn.",

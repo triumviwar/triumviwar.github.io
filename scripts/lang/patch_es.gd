@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.72": ["La pintura del amanecer de la Línea de Fürth: los soldados ahora llevan mosquetes de chispa de verdad."],
 	"0.38.71": ["LOS EXPLORADORES SON CAZADOS: todos los ordenadores (la Corona, el Reloj y la Nidada) ahora van tras un explorador enemigo en su base: un trabajador, un Mensajero o un globo, o un soldado rápido solo en una vuelta de exploración. Envían las dos unidades más cercanas que pueden alcanzarlo (al principio, cuando ningún soldado puede, uno o dos trabajadores a su lado), persiguen solo un poco más allá de su base y nunca hacia el ejército enemigo, y luego las devuelven a su puesto o a su trabajo. La Nidada ya no deja que un Peón dé vueltas alrededor de su Madre. La HISTORIA DE LA IA cuenta cada caza.", "La Línea de Fürth recibe sus primeras pinturas de verdad: el gremio en el exilio, el Honrado y la línea al amanecer."],
 	"0.38.70": ["La campaña habla: 353 frases grabadas del Rey, Hollweg, Lindqvist, Valadares, Fairleigh, Ruggieri y Varenne, y el anunciador de la Nidada con la nueva voz del Dr. Lindqvist.", "La Decimotercera Hora empieza con una pintura nueva: el Padre Ferrer y Meister Hollweg discuten en el taller."],
 	"0.38.69": ["Entre bastidores: una única grabación de voz para todas las frases cuya voz ya está creada (374 frases: el nuevo locutor de la Nidada y, en la campaña, el Rey, Hollweg, Lindqvist, Valadares, Fairleigh, Ruggieri y Varenne)."],
