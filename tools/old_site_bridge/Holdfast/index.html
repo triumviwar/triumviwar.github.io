@@ -1,0 +1,14 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Triumviwar has moved</title>
+<script>
+// The game's old address (holdfastrts.github.io/Holdfast/) is gone since the move to triumviwar.github.io (2026-11-13).
+// Apps from before 0.35.5 still look here for updates: their DOWNLOAD button opens Holdfast.apk / Holdfast_windows.zip,
+// which this page sends to the new files; anything else goes to the new site.
+var p = location.pathname.toLowerCase();
+var to = "https://triumviwar.github.io/";
+if (p.endsWith(".apk")) to += "Triumviwar.apk";
+else if (p.endsWith("_windows.zip")) to += "Triumviwar_windows.zip";
+location.replace(to);
+</script>
+<p>Triumviwar has moved to <a href="https://triumviwar.github.io/">https://triumviwar.github.io/</a>.</p>
