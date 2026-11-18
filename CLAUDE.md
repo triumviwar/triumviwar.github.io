@@ -304,6 +304,13 @@
   sooner), 0.87-0.93 of the others from 8:00; the Brood computer -4% alone, -7% by 8:00 in 24 games (its 4th+ Rootmaws must
   go to new ground); in games Brood/Crown 1.27-1.38, Brood/Clockwork 0.64 at 5:00 to 0.97 at 12:00. RECOMMENDATION WAITING:
   no Rootmaw number change; coach the Brood computer's 4th/5th Rootmaws onto new ground. 9 Claude's choices in the doc.
+- WIN RATES 2026-11-17 (study job winrate-2026-11-17, merged 0.38.59, docs/winrate_2026_11_17.md, data
+  docs/winrate_2026_11_17/, tools/study/winrate_1117*.py/.sh): 228 games to 12:00 on 0.38.45 + 19 Crown mirror games to
+  20:00. Brood v Clockwork TURNED OVER (Clockwork wins or leads 34 of 38, was 9; the Brood computer's GREEDY-read rush and
+  half-size waves); the Crown still 0 wins but holds (halls lost v Brood 1.21 -> 0.24, army 8:00 1.17 of the Brood's,
+  income 8:00 +16% v both) and trails at the bell (holds its wave while BIGGER 21 times in 13 games v the Brood: the
+  reckoning; v the Clockwork the gap is economy, 34 v 47 workers at 8:00, and the Balloon pick 0 of 12); Brood mirror spot
+  edge GONE (14 v 8, p 0.29); Crown mirror breaks only after 15:00 (2 wins, 13 of 19 1.5x apart at 20:00); 6 proposals.
 - WIN RATES 2026-11-15 (study job winrate-2026-11-15, 0.38.15 tools only, docs/winrate_2026_11_15.md, data
   docs/winrate_2026_11_15/, tools/study/winrate_1115*.py/.sh): on 0.38.14 the Crown computer still won 0 and led 0 of 76
   (v Brood 0-13-25, v Clockwork 0-22-16: worse, the Clockwork computer now reaches its bench, 1.01 at 8:00, the Crown

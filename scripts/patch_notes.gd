@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.59", "items": [
+		"Studies only: win rates in all nine matchups after two days of AI coaching (266 games): the Clockwork computer now beats the Brood computer, the Crown computer no longer collapses but still wins nothing, and the Brood mirror's start-spot edge is gone.",
+	]},
 	{"v": "0.38.58", "items": [
 		"Lyon (The Printing Houses) now follows the ladder too: the garrison has a Horse Breeder, and the mission brings the Horse Breeder and the Horseman as its new pieces.",
 		"THE CAMPAIGN TEACHES ONE PIECE AT A TIME: like a story campaign should, each mission now gives you one or two new pieces and shows you what they are for, instead of the whole army at once. Each line teaches its own side: the Crown's prologue gives the Musketeer and Ruggieri's Field Cannons; the Clockmaker's prologue the Winder and the Clock Soldier, and the Fürth Line adds the Springer and the Netter; the Naturalist's prologue the Tyrant Sire and his Raptors, and the nest on the Lost Plateau adds the Venom Sire and his Spitters. What is not yet yours says \"Not in this mission.\" and a NEW card tells you what just arrived. Every word of the cards is still a placeholder.",
