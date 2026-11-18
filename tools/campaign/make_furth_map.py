@@ -153,7 +153,7 @@ props += [["cottage", 76, 10, False], ["shed", 81, 10, True], ["haystack_b", 78,
 for x, y in [(62, 3), (70, 4), (96, 3), (104, 6), (86, 28), (68, 30)]:
     props.append(["pine", x, y, False])
 
-starts = [[38, 15], [106, 46]]
+starts = [[44, 16], [106, 46]]
 data = {
     "name": "furth_line", "size": [W, H], "cells": "".join("".join(r) for r in cells),
     "mirror": "off", "mix": "diag", "biome": "snow",

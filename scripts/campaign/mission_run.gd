@@ -633,6 +633,10 @@ func act(a: Dictionary) -> void:
 				elif v.has("team"):
 					var t := team_index(String(v["team"]))
 					us = game.units.filter(func(u) -> bool: return u.team == t and not u.dead)
+				if bool(v.get("idle", false)):
+					# ("idle": only those not busy with a target: the Fürth Line's machines pushed on at the tower, never
+					# pulled off the tower or a fight they are in)
+					us = us.filter(func(e) -> bool: return e is Unit and (e.target == null or not is_instance_valid(e.target) or e.target.dead))
 				_order(us.filter(func(e) -> bool: return e is Unit), v)
 			"objective":
 				set_objective(String(v["id"]), String(v.get("set", "active")))

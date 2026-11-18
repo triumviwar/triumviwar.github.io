@@ -3346,6 +3346,8 @@ const T := {
 	"The commissary writes his reports. Let him. Our machines are honest.": "El comisario escribe sus informes. Que los escriba. Nuestras máquinas son honradas.",
 	"The guild's travelling clock, carried out of Nuremberg on the last cart. It keeps the old city's time, and nobody resets it.": "El reloj de viaje del gremio, sacado de Núremberg en el último carro. Marca la hora de la ciudad vieja, y nadie lo pone en hora.",
 	"A new labouring automaton on the trestle. A small brass plate on its back reads STOP-WORK FITTED.": "Un autómata obrero nuevo en el caballete. Una placa de latón en su espalda dice TOPE PUESTO.",
+	"Off the Honest One's ground our soldiers run down, as theirs do. Send Winders with them to the earthworks.": "Fuera del suelo de la Honrada nuestros soldados se quedan sin cuerda, como los suyos. Manda Dadores de cuerda con ellos a las trincheras.",
+	"The mill has grown a tide. Burn it, Meister, before it sends another.": "El molino ha criado una marea. Quémelo, maestro, antes de que mande otra.",
 	"Specimen One": "Espécimen Uno",
 	"The Station": "La Estación",
 	"The Academy's station on the Rio Negro, the Crown's fort at São Gabriel and the mission village.": "La estación de la Academia en el Río Negro, el fuerte de la Corona en São Gabriel y la aldea de la misión.",

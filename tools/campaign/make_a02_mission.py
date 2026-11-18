@@ -119,9 +119,12 @@ def seed_grow(tid, seed, area, to, every, after, kinds, cond, cap=30):
     return {"id": tid, "when": {"all": c}, "every": every, "do": do}
 
 
-W1_S = [("clock_soldier", 6), ("springer", 1)]
-W2 = [("clock_soldier", 8), ("springer", 2), ("netter", 1)]
-W3 = [("clock_soldier", 10), ("springer", 3)]
+W1_S = [("clock_soldier", 5), ("springer", 1)]
+W2 = [("clock_soldier", 6), ("springer", 1), ("netter", 1)]
+W3 = [("clock_soldier", 8), ("springer", 2)]
+W3_S = [("clock_soldier", 5), ("springer", 1)]           # (both banks: the south half...)
+W3_N = 4                                                   # (...and Clock Soldiers on the road, with a Springer)
+GAP = 120                                                  # seconds between sorties
 
 M = {
     "id": "a02_furth",
@@ -141,7 +144,7 @@ M = {
         {"id": "machine", "name": "The Machine", "about": "Nuremberg's new masters. They tick off the beat and they want Fürth."},
     ],
     "teams": [
-        {"id": "guild", "side": "guild", "faction": "clockwork", "colour": 0, "start": "standard", "hall": [38, 15],
+        {"id": "guild", "side": "guild", "faction": "clockwork", "colour": 0, "start": "standard", "hall": [44, 16],
          "hall_tag": "honest", "camera": "yard", "gold": 400, "roster": {"deny": DENY},
          "control": {"solo": "p1", "coop": "p1", "versus": "p1", "foe": "script"}},
         {"id": "army", "side": "guild", "faction": "crown", "colour": 4, "start": "none", "camera": "yard", "powder": 400,
@@ -153,8 +156,8 @@ M = {
          "control": {"solo": "script", "coop": "script", "versus": "p2"}},
     ],
     "areas": {
-        "yard": [32, 11, 23, 17], "honest_ring": [34, 12, 13, 10], "town": [32, 3, 22, 8], "camp": [48, 2, 9, 7],
-        "refugees": [43, 41, 10, 6], "inside_n": [48, 15, 8, 8], "inside_s": [47, 44, 9, 7],
+        "yard": [32, 11, 23, 17], "honest_ring": [40, 13, 14, 10], "town": [32, 3, 22, 8], "camp": [48, 2, 9, 7],
+        "refugees": [43, 41, 10, 6], "inside_n": [50, 15, 6, 8], "inside_s": [47, 44, 9, 7],
         "line_n": [55, 2, 6, 33], "line_s": [55, 40, 6, 17], "road_gate": [55, 15, 7, 8], "meadow_gate": [55, 45, 7, 8],
         "road_mid": [76, 16, 14, 9], "meadow_mid": [76, 42, 14, 10], "mill": [65, 54, 12, 8], "mill_road": [62, 46, 10, 7],
         "link_n": [88, 19, 6, 6], "link_s": [88, 40, 6, 6], "old_bridge": [96, 29, 8, 9],
@@ -163,8 +166,8 @@ M = {
     "counters": {"sorties": {"start": 0}, "army": {"start": 0}},
     "units": [
         # ---- the guild (its Clocktower, presses and Winders are the standard start: the Honest One)
-        {"team": "guild", "kind": "missionary", "as": "hollweg", "count": 1, "at": [44, 20], "tag": "hollweg"},
-        {"team": "guild", "kind": "labourer", "as": "jakob", "count": 1, "at": [46, 20], "tag": "jakob", "if": JAKOB},
+        {"team": "guild", "kind": "missionary", "as": "hollweg", "count": 1, "at": [44, 6], "tag": "hollweg"},
+        {"team": "guild", "kind": "labourer", "as": "jakob", "count": 1, "at": [46, 6], "tag": "jakob", "if": JAKOB},
         {"team": "guild", "kind": "clock_soldier", "count": 4, "at": "inside_n", "tag": "guard"},
         {"team": "guild", "kind": "netter", "count": 1, "at": "inside_n", "tag": "guard"},
         # the guild's own defence when nobody leads it (the solo player is the machine)
@@ -173,8 +176,8 @@ M = {
         {"team": "guild", "kind": "netter", "count": 2, "at": "honest_ring", "tag": "g_def", "order": "hold", "if": NO_GUILD},
         # ---- the Franconian army at the line
         {"team": "army", "kind": "dismounted", "count": 1, "at": "camp", "tag": "colonel", "name": "Colonel von Rauch", "order": "hold"},
-        {"team": "army", "kind": "musketeer", "count": 4, "at": "road_gate", "tag": "line_n_men", "order": "hold"},
-        {"team": "army", "kind": "musketeer", "count": 4, "at": "meadow_gate", "tag": "line_s_men", "order": "hold"},
+        {"team": "army", "kind": "musketeer", "count": 5, "at": "road_gate", "tag": "line_n_men", "order": "hold"},
+        {"team": "army", "kind": "musketeer", "count": 5, "at": "meadow_gate", "tag": "line_s_men", "order": "hold"},
         {"team": "army", "kind": "musketeer", "count": 3, "at": "road_gate", "tag": "line_n_men", "order": "hold", "if": RUNG},
         {"team": "army", "kind": "musketeer", "count": 3, "at": "meadow_gate", "tag": "line_s_men", "order": "hold", "if": RUNG},
         {"team": "army", "kind": "cannon", "count": 1, "at": "inside_n", "tag": "guns", "order": "hold", "if": RUNG},
@@ -262,11 +265,11 @@ M = {
         {"id": "part2", "when": {"all": [GUILD, {"any": [{"all": [{"done": "stopwork"}, {"done": "works"}]}, {"time": 420}]}]}, "delay": 15, "do": [
             {"objective": {"id": "stopwork", "set": "hidden"}}, {"objective": {"id": "works", "set": "hidden"}},
             {"objective": {"id": "hold", "set": "active"}},
-            {"say": ["col_2", "h_2"]}, {"ping": {"area": "road_gate"}}, {"ping": {"area": "meadow_gate"}},
-            {"clock": {"name": "sortie", "secs": 40}}]},
+            {"say": ["col_2", "h_2", "tip_wind"]}, {"ping": {"area": "road_gate"}}, {"ping": {"area": "meadow_gate"}},
+            {"clock": {"name": "sortie", "secs": 60}}]},
         # the scripted guild (the machine's player): the stop-work fitted by itself, its own reinforcements
         {"id": "g_stop", "when": {"all": [{"time": 60}, NO_GUILD]}, "do": [{"flag": {"stopwork": "fitted"}}]},
-        {"id": "g_grow", "when": {"all": [{"time": 90}, NO_GUILD, {"not": {"dead": "honest"}}, {"count": {"team": "guild", "below": 36}}]}, "every": 70, "do": [
+        {"id": "g_grow", "when": {"all": [{"time": 90}, NO_GUILD, {"not": {"dead": "honest"}}, {"count": {"team": "guild", "below": 32}}]}, "every": 90, "do": [
             {"spawn": {"team": "guild", "kind": "clock_soldier", "count": 2, "at": "honest_ring", "tag": "g_more"}},
             {"order": {"tag": "g_more", "do": "attack", "to": "meadow_gate"}}]},
         {"id": "g_hollweg", "when": {"all": [{"time": 1}, NO_GUILD]}, "do": [{"order": {"tag": "hollweg", "do": "hold"}},
@@ -277,26 +280,33 @@ M = {
             {"reveal": {"area": "north_gate", "side": "guild", "secs": 40}}, {"ping": {"area": "south_gate"}}]},
         {"id": "tick_1", "when": {"all": [{"clock_left": {"name": "sortie", "below": 12}}, JAKOB]}, "do": [{"say": ["j_tick_s"]}, {"sound": {"name": "campaign/off_beat"}}]},
         {"id": "wave_1", "when": {"clock_out": "sortie"}, "do": wave(1, "south_gate", "meadow_gate", W1_S, None) + [
-            {"say": ["col_wave"]}, {"clock": {"name": "sortie2", "secs": 100}}]},
+            {"say": ["col_wave"]}, {"clock": {"name": "sortie2", "secs": GAP}}]},
         {"id": "tick_2", "when": {"all": [{"clock_left": {"name": "sortie2", "below": 12}}, JAKOB]}, "do": [
             {"say": ["j_tick_n"]}, {"sound": {"name": "campaign/off_beat"}}]},
         {"id": "tick_2c", "when": {"all": [{"fired": "tick_2"}, CUT]}, "delay": 5, "do": [{"say": ["j_tick_cut"]}]},
         {"id": "wave_2", "when": {"all": [{"clock_out": "sortie2"}, UNCUT]}, "do": wave(2, "north_gate", "road_gate", W2, None) + [
-            {"say": ["col_wave2"]}, {"clock": {"name": "sortie3", "secs": 100}}]},
+            {"say": ["col_wave2"]}, {"clock": {"name": "sortie3", "secs": GAP}}]},
         {"id": "wave_2c", "when": {"all": [{"clock_out": "sortie2"}, CUT]}, "do": wave(2, "south_gate", "meadow_gate", W2, None) + [
-            {"say": ["col_wave2c"]}, {"clock": {"name": "sortie3", "secs": 100}}]},
+            {"say": ["col_wave2c"]}, {"clock": {"name": "sortie3", "secs": GAP}}]},
         {"id": "tick_3", "when": {"all": [{"clock_left": {"name": "sortie3", "below": 12}}, JAKOB]}, "do": [{"say": ["j_tick_3"]}, {"sound": {"name": "campaign/off_beat"}}]},
         {"id": "wave_3", "when": {"all": [{"clock_out": "sortie3"}, UNCUT]}, "do":
-            wave(3, "south_gate", "meadow_gate", [("clock_soldier", 6), ("springer", 2)], None)
-            + [{"spawn": {"team": "machine", "kind": "clock_soldier", "count": 5, "at": "north_gate", "tag": "sortie3"}},
+            wave(3, "south_gate", "meadow_gate", W3_S, None)
+            + [{"spawn": {"team": "machine", "kind": "clock_soldier", "count": W3_N, "at": "north_gate", "tag": "sortie3n"}},
                {"spawn": {"team": "machine", "kind": "springer", "count": 1, "at": "north_gate", "tag": "sortie3n"}},
                {"order": {"tag": "sortie3n", "do": "attack", "to": "road_gate"}},
                {"say": ["col_wave3"]}]},
         {"id": "wave_3c", "when": {"all": [{"clock_out": "sortie3"}, CUT]}, "do": wave(3, "south_gate", "meadow_gate", W3, None) + [{"say": ["col_wave3"]}]},
         # the waves that reach the line go on at the Honest One (their seeds keep them coming)
         {"id": "push", "when": {"all": [{"fired": "wave_1"}, NO_MACHINE, {"not": {"fired": "the_end"}}]}, "every": 20, "do": [
-            {"order": {"tag": "sortie1", "do": "attack", "to": "honest_ring"}}, {"order": {"tag": "sortie2", "do": "attack", "to": "honest_ring"}},
-            {"order": {"tag": "sortie3", "do": "attack", "to": "honest_ring"}}, {"order": {"tag": "sortie3n", "do": "attack", "to": "honest_ring"}}]},
+            {"order": {"tag": t, "do": "attack", "to": "honest_ring", "idle": True}}
+            for t in ["sortie1", "sortie2", "sortie3", "sortie3n", "mach_mill_grow", "mach_gate_grow", "tide"]]},
+        # stopped at the palisade they break it: those right by it go for the nearest stake (every 12 s)
+        {"id": "breach", "when": {"all": [{"fired": "wave_1"}, NO_MACHINE, {"not": {"fired": "the_end"}}]}, "every": 12, "do": [
+            {"order": {"team": "machine", "do": "hunt", "prey": "earthworks", "within": 3}}]},
+        # through the line they go for the tower that made them, and for the man who made it
+        {"id": "for_honest", "when": {"all": [{"fired": "wave_1"}, NO_MACHINE, {"not": {"fired": "the_end"}}]}, "every": 8, "do": [
+            {"order": {"team": "machine", "do": "hunt", "prey": "honest", "within": 11}},
+            {"order": {"team": "machine", "do": "hunt", "prey": "hollweg", "within": 6}}]},
         {"id": "beat_1", "when": {"all": [{"fired": "wave_1"}, {"dead": "sortie1"}]}, "do": [{"counter": {"name": "sorties", "add": 1}}, {"say": ["col_beat"]}]},
         {"id": "beat_2", "when": {"all": [{"any": [{"fired": "wave_2"}, {"fired": "wave_2c"}]}, {"dead": "sortie2"}]}, "do": [{"counter": {"name": "sorties", "add": 1}}, {"say": ["h_beat"]}]},
         {"id": "beat_3", "when": {"all": [{"any": [{"fired": "wave_3"}, {"fired": "wave_3c"}]}, {"dead": "sortie3"},
@@ -321,6 +331,14 @@ M = {
         seed_grow("mill_grow", "seed_mill", "mill", "meadow_gate", 40, "part3", [("clock_soldier", 2)], [NO_MACHINE, {"not": {"fired": "the_end"}}]),
         seed_grow("gate_grow", "seed_s", "south_gate", "meadow_gate", 60, "part3", [("clock_soldier", 2)],
                   [NO_MACHINE, {"not": {"fired": "the_end"}}, {"not": {"dead": "seed_mill"}}]),
+        # the mill left standing grows: 6:00 into Part 3 (and every 2:30 after) it sends a tide with a Pendulum
+        {"id": "tide_clock", "when": {"fired": "part3"}, "do": [{"clock": {"name": "tide", "secs": 360}}]},
+        {"id": "tide", "when": {"all": [{"clock_out": "tide"}, {"not": {"dead": "seed_mill"}}, NO_MACHINE, {"not": {"fired": "the_end"}}]},
+         "every": 150, "do": [
+            {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 10, "at": "mill", "tag": "tide"}},
+            {"spawn": {"team": "machine", "kind": "springer", "count": 2, "at": "mill", "tag": "tide"}},
+            {"spawn": {"team": "machine", "kind": "pendulum", "count": 1, "at": "mill", "tag": "tide"}},
+            {"order": {"tag": "tide", "do": "attack", "to": "meadow_gate"}}, {"say": ["col_tide"]}, {"ping": {"area": "mill"}}]},
         {"id": "mill_burnt", "when": {"all": [{"fired": "part3"}, {"dead": "seed_mill"}, NO_MACHINE]}, "do": [
             {"say": ["col_burnt", "h_safe"]}, {"light": {"to": "winter_night", "secs": 20}},
             {"counter": {"name": "army", "count": {"team": "army"}}},
@@ -332,7 +350,7 @@ M = {
         {"id": "jakob_lost", "when": {"all": [{"time": 2}, {"dead": "jakob"}]}, "do": [{"say": ["h_jakob"]}]},
         # ================================================================ THE MACHINE (a person leads it)
         # the seeds' timetable: cogs and Tension while a seed stands, a construct or two out of each gate
-        {"id": "m_income", "when": {"all": [{"time": 30}, MACHINE]}, "every": 30, "do": [{"give": {"team": "machine", "gold": 130, "tension": 30}}]},
+        {"id": "m_income", "when": {"all": [{"time": 30}, MACHINE]}, "every": 30, "do": [{"give": {"team": "machine", "gold": 200, "tension": 20}}]},
         {"id": "m_free", "when": {"all": [{"time": 60}, MACHINE, {"count": {"team": "machine", "below": 60}}]}, "every": 60, "do": [
             {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 1, "at": "south_gate", "tag": "m_free"}},
             {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 1, "at": "north_gate", "tag": "m_free"}}]},
@@ -344,7 +362,7 @@ M = {
         {"id": "m_mill_lost", "when": {"all": [{"fired": "m_mill"}, {"dead": "seed_mill"}]}, "do": [{"objective": {"id": "m_mill", "set": "failed"}}, {"say": ["m_mill_lost"]}]},
         # the scripted guild answers the mill: a strike from the meadow gate at 10:00
         {"id": "g_strike", "when": {"all": [{"time": 600}, NO_GUILD, {"not": {"dead": "seed_mill"}}]}, "do": [
-            {"spawn": {"team": "guild", "kind": "clock_soldier", "count": 8, "at": "inside_s", "tag": "g_strike"}},
+            {"spawn": {"team": "guild", "kind": "clock_soldier", "count": 6, "at": "inside_s", "tag": "g_strike"}},
             {"spawn": {"team": "guild", "kind": "springer", "count": 2, "at": "inside_s", "tag": "g_strike"}},
             {"order": {"tag": "g_strike", "do": "attack", "to": "mill"}}]},
         {"id": "m_warn", "when": {"all": [MACHINE, {"clock_left": {"name": "line", "below": 120}}]}, "do": [{"say": ["m_warn"]}, {"sound": {"name": "campaign/off_beat"}}]},
@@ -386,6 +404,7 @@ M = {
         # part 2
         "col_2": {"who": "colonel", "to": "guild", "text": "Riders from the river. The gates of Nuremberg are open."},
         "h_2": {"who": "hollweg", "to": "guild", "text": "It is coming to us. Man the earthworks."},
+        "tip_wind": {"who": "hollweg", "to": "guild", "text": "Off the Honest One's ground our soldiers run down, as theirs do. Send Winders with them to the earthworks."},
         "n_signal": {"who": "narrator", "to": "guild", "text": "A lamp in a window in Nuremberg, three times: the loyal quarter's signal."},
         "h_signal": {"who": "hollweg", "to": "guild", "text": "Our people inside. They are telling us where it gathers."},
         "j_tick_s": {"who": "jakob", "to": "guild", "text": "Listen. Off the beat, south of the river. They are coming by the meadows."},
@@ -405,6 +424,7 @@ M = {
         "h_pattern": {"who": "hollweg", "to": "guild", "text": "I have my drawings. Open the Heavy Works: we will build a Pendulum."},
         "tip_heavy": {"who": "jakob", "to": "guild", "text": "The Heavy Works must stand by a Mainspring, Meister."},
         "h_people": {"who": "hollweg", "to": "guild", "text": "No drawings. Only our hands. The people of Nuremberg send theirs."},
+        "col_tide": {"who": "colonel", "to": "guild", "text": "The mill has grown a tide. Burn it, Meister, before it sends another."},
         "col_burnt": {"who": "colonel", "to": "guild", "text": "The mill is burning. The line holds."},
         "h_safe": {"who": "hollweg", "to": "guild", "text": "Safe this time."},
         "j_hurt": {"who": "jakob", "to": "guild", "text": "Meister, you are hurt. Stay behind the earthworks."},

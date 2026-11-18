@@ -47,8 +47,8 @@
 			"colour": 0,
 			"start": "standard",
 			"hall": [
-				38,
-				15
+				44,
+				16
 			],
 			"hall_tag": "honest",
 			"camera": "yard",
@@ -138,9 +138,9 @@
 			17
 		],
 		"honest_ring": [
-			34,
-			12,
+			40,
 			13,
+			14,
 			10
 		],
 		"town": [
@@ -162,9 +162,9 @@
 			6
 		],
 		"inside_n": [
-			48,
+			50,
 			15,
-			8,
+			6,
 			8
 		],
 		"inside_s": [
@@ -274,7 +274,7 @@
 			"count": 1,
 			"at": [
 				44,
-				20
+				6
 			],
 			"tag": "hollweg"
 		},
@@ -285,7 +285,7 @@
 			"count": 1,
 			"at": [
 				46,
-				20
+				6
 			],
 			"tag": "jakob",
 			"if": {
@@ -361,7 +361,7 @@
 		{
 			"team": "army",
 			"kind": "musketeer",
-			"count": 4,
+			"count": 5,
 			"at": "road_gate",
 			"tag": "line_n_men",
 			"order": "hold"
@@ -369,7 +369,7 @@
 		{
 			"team": "army",
 			"kind": "musketeer",
-			"count": 4,
+			"count": 5,
 			"at": "meadow_gate",
 			"tag": "line_s_men",
 			"order": "hold"
@@ -1746,7 +1746,8 @@
 				{
 					"say": [
 						"col_2",
-						"h_2"
+						"h_2",
+						"tip_wind"
 					]
 				},
 				{
@@ -1762,7 +1763,7 @@
 				{
 					"clock": {
 						"name": "sortie",
-						"secs": 40
+						"secs": 60
 					}
 				}
 			]
@@ -1809,12 +1810,12 @@
 					{
 						"count": {
 							"team": "guild",
-							"below": 36
+							"below": 32
 						}
 					}
 				]
 			},
-			"every": 70,
+			"every": 90,
 			"do": [
 				{
 					"spawn": {
@@ -1950,7 +1951,7 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "clock_soldier",
-						"count": 6,
+						"count": 5,
 						"at": "south_gate",
 						"tag": "sortie1"
 					}
@@ -1979,7 +1980,7 @@
 				{
 					"clock": {
 						"name": "sortie2",
-						"secs": 100
+						"secs": 120
 					}
 				}
 			]
@@ -2060,7 +2061,7 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "clock_soldier",
-						"count": 8,
+						"count": 6,
 						"at": "north_gate",
 						"tag": "sortie2"
 					}
@@ -2069,7 +2070,7 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "springer",
-						"count": 2,
+						"count": 1,
 						"at": "north_gate",
 						"tag": "sortie2"
 					}
@@ -2098,7 +2099,7 @@
 				{
 					"clock": {
 						"name": "sortie3",
-						"secs": 100
+						"secs": 120
 					}
 				}
 			]
@@ -2122,7 +2123,7 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "clock_soldier",
-						"count": 8,
+						"count": 6,
 						"at": "south_gate",
 						"tag": "sortie2"
 					}
@@ -2131,7 +2132,7 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "springer",
-						"count": 2,
+						"count": 1,
 						"at": "south_gate",
 						"tag": "sortie2"
 					}
@@ -2160,7 +2161,7 @@
 				{
 					"clock": {
 						"name": "sortie3",
-						"secs": 100
+						"secs": 120
 					}
 				}
 			]
@@ -2218,7 +2219,7 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "clock_soldier",
-						"count": 6,
+						"count": 5,
 						"at": "south_gate",
 						"tag": "sortie3"
 					}
@@ -2227,7 +2228,7 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "springer",
-						"count": 2,
+						"count": 1,
 						"at": "south_gate",
 						"tag": "sortie3"
 					}
@@ -2243,9 +2244,9 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "clock_soldier",
-						"count": 5,
+						"count": 4,
 						"at": "north_gate",
-						"tag": "sortie3"
+						"tag": "sortie3n"
 					}
 				},
 				{
@@ -2290,7 +2291,7 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "clock_soldier",
-						"count": 10,
+						"count": 8,
 						"at": "south_gate",
 						"tag": "sortie3"
 					}
@@ -2299,7 +2300,7 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "springer",
-						"count": 3,
+						"count": 2,
 						"at": "south_gate",
 						"tag": "sortie3"
 					}
@@ -2343,28 +2344,126 @@
 					"order": {
 						"tag": "sortie1",
 						"do": "attack",
-						"to": "honest_ring"
+						"to": "honest_ring",
+						"idle": true
 					}
 				},
 				{
 					"order": {
 						"tag": "sortie2",
 						"do": "attack",
-						"to": "honest_ring"
+						"to": "honest_ring",
+						"idle": true
 					}
 				},
 				{
 					"order": {
 						"tag": "sortie3",
 						"do": "attack",
-						"to": "honest_ring"
+						"to": "honest_ring",
+						"idle": true
 					}
 				},
 				{
 					"order": {
 						"tag": "sortie3n",
 						"do": "attack",
-						"to": "honest_ring"
+						"to": "honest_ring",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "mach_mill_grow",
+						"do": "attack",
+						"to": "honest_ring",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "mach_gate_grow",
+						"do": "attack",
+						"to": "honest_ring",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "tide",
+						"do": "attack",
+						"to": "honest_ring",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "breach",
+			"when": {
+				"all": [
+					{
+						"fired": "wave_1"
+					},
+					{
+						"not": {
+							"playing": "machine"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 12,
+			"do": [
+				{
+					"order": {
+						"team": "machine",
+						"do": "hunt",
+						"prey": "earthworks",
+						"within": 3
+					}
+				}
+			]
+		},
+		{
+			"id": "for_honest",
+			"when": {
+				"all": [
+					{
+						"fired": "wave_1"
+					},
+					{
+						"not": {
+							"playing": "machine"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 8,
+			"do": [
+				{
+					"order": {
+						"team": "machine",
+						"do": "hunt",
+						"prey": "honest",
+						"within": 11
+					}
+				},
+				{
+					"order": {
+						"team": "machine",
+						"do": "hunt",
+						"prey": "hollweg",
+						"within": 6
 					}
 				}
 			]
@@ -2775,6 +2874,92 @@
 			]
 		},
 		{
+			"id": "tide_clock",
+			"when": {
+				"fired": "part3"
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "tide",
+						"secs": 360
+					}
+				}
+			]
+		},
+		{
+			"id": "tide",
+			"when": {
+				"all": [
+					{
+						"clock_out": "tide"
+					},
+					{
+						"not": {
+							"dead": "seed_mill"
+						}
+					},
+					{
+						"not": {
+							"playing": "machine"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 150,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 10,
+						"at": "mill",
+						"tag": "tide"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "springer",
+						"count": 2,
+						"at": "mill",
+						"tag": "tide"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "pendulum",
+						"count": 1,
+						"at": "mill",
+						"tag": "tide"
+					}
+				},
+				{
+					"order": {
+						"tag": "tide",
+						"do": "attack",
+						"to": "meadow_gate"
+					}
+				},
+				{
+					"say": [
+						"col_tide"
+					]
+				},
+				{
+					"ping": {
+						"area": "mill"
+					}
+				}
+			]
+		},
+		{
 			"id": "mill_burnt",
 			"when": {
 				"all": [
@@ -2942,8 +3127,8 @@
 				{
 					"give": {
 						"team": "machine",
-						"gold": 130,
-						"tension": 30
+						"gold": 200,
+						"tension": 20
 					}
 				}
 			]
@@ -3106,7 +3291,7 @@
 					"spawn": {
 						"team": "guild",
 						"kind": "clock_soldier",
-						"count": 8,
+						"count": 6,
 						"at": "inside_s",
 						"tag": "g_strike"
 					}
@@ -3341,6 +3526,11 @@
 			"to": "guild",
 			"text": "It is coming to us. Man the earthworks."
 		},
+		"tip_wind": {
+			"who": "hollweg",
+			"to": "guild",
+			"text": "Off the Honest One's ground our soldiers run down, as theirs do. Send Winders with them to the earthworks."
+		},
 		"n_signal": {
 			"who": "narrator",
 			"to": "guild",
@@ -3430,6 +3620,11 @@
 			"who": "hollweg",
 			"to": "guild",
 			"text": "No drawings. Only our hands. The people of Nuremberg send theirs."
+		},
+		"col_tide": {
+			"who": "colonel",
+			"to": "guild",
+			"text": "The mill has grown a tide. Burn it, Meister, before it sends another."
 		},
 		"col_burnt": {
 			"who": "colonel",

@@ -125,7 +125,7 @@ func _data() -> void:
 			miss.append(String(t).left(50))
 	check("every text of the mission and the hubs has pt and es", miss.is_empty(), " | ".join(miss))
 	var sl := Campaign.storyline_of(MID)
-	check("the Clockwork storyline's first mission is c01", String(sl.get("id", "")) == "clockmaker" and (sl["missions"] as Array) == [MID])
+	check("the Clockwork storyline's first mission is c01", String(sl.get("id", "")) == "clockmaker" and (sl["missions"] as Array)[0] == MID)
 	check("it opens after the Crown's prologue", String(sl.get("requires", "")) == "p01_leaf")
 	var c := Campaign.make_cfg(MID, "solo")
 	check("solo: you are the guild; the Watch, the town and the machine are scripted", c["slots"].map(func(s): return s["who"]) == ["you", "script", "script", "script"])
@@ -468,16 +468,24 @@ func _hub_after() -> void:
 	var before := CampaignMenu.hub_now(sl["hub"], {"done": {}})
 	check("hub before: Hollweg's Workshop, Hollweg in it", String(before["title"]) == "Hollweg's Workshop" and (before["hotspots"] as Array).any(func(h): return h["id"] == "hollweg")
 		and not (before["hotspots"] as Array).any(func(h): return h["id"] == "letter"))
+	# (since Act 1's a02-furth: after c01 the guild's player moves to Fürth; the Machine's City is the hub of a player who
+	# won The Fürth Line as the Machine)
 	var after := CampaignMenu.hub_now(sl["hub"], {"done": {MID: {}}})
-	check("hub after: the machine's city, Hollweg gone, his letter", String(after["title"]) == "Nuremberg, the Machine's City" and (after["hide_layers"] as Array).has("hollweg")
+	check("hub after c01: the guild in exile at Fürth, Hollweg there, no letter", String(after["title"]) == "The Guild in Exile at Fürth"
+		and not (after["hide_layers"] as Array).has("hollweg") and (after["hotspots"] as Array).any(func(h): return h["id"] == "hollweg")
+		and not (after["hotspots"] as Array).any(func(h): return h["id"] == "letter"))
+	var mach := {"done": {MID: {}, "a02_furth": {"side": "machine"}}}
+	after = CampaignMenu.hub_now(sl["hub"], mach)
+	check("hub after a02 won as the Machine: the machine's city, Hollweg gone, his letter", String(after["title"]) == "Nuremberg, the Machine's City" and (after["hide_layers"] as Array).has("hollweg")
 		and not (after["hotspots"] as Array).any(func(h): return h["id"] == "hollweg") and (after["hotspots"] as Array).any(func(h): return h["id"] == "letter"))
 	var tk: Dictionary = sl["hub"]["talks"]["clock"]
-	check("the great clock's talk after c01", String(CampaignMenu.talk_lines(tk, {"done": {MID: {}}})[0]).contains("thirteen"))
+	check("the great clock's talk in the machine's city", String(CampaignMenu.talk_lines(tk, mach)[0]).contains("thirteen"))
+	check("the travelling clock's talk at Fürth", String(CampaignMenu.talk_lines(tk, {"done": {MID: {}}})[0]).contains("travelling"))
 	var king: Dictionary = Campaign.storylines()[0]["hub"]
 	check("the King's study after c01: Hollweg in exile there", (CampaignMenu.hub_now(king, {"done": {MID: {}}})["hotspots"] as Array).any(func(h): return h["id"] == "hollweg_exile")
 		and not (CampaignMenu.hub_now(king, {"done": {}})["hotspots"] as Array).any(func(h): return h["id"] == "hollweg_exile"))
 	# the page itself, opened on the clockmaker storyline with c01 done
-	Campaign.save_progress({"reached": [], "done": {"p01_leaf": {}, MID: {}}})
+	Campaign.save_progress({"reached": [], "done": {"p01_leaf": {}, MID: {}, "a02_furth": {"side": "machine"}}})
 	CampaignMenu.line = "clockmaker"
 	CampaignMenu.show(main)
 	await process_frame
