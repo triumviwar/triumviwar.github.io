@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.70", "items": [
+		"The campaign speaks: 353 recorded lines for the King, Hollweg, Lindqvist, Valadares, Fairleigh, Ruggieri and Varenne, and the Brood announcer in Dr. Lindqvist's new voice.",
+		"The Thirteenth Hour opens on a new painting: Father Ferrer and Meister Hollweg quarrel in the workshop.",
+	]},
 	{"v": "0.38.69", "items": [
 		"Behind the scenes: one voice recording run for every line whose voice is designed (374 lines: the new Brood announcer and the campaign's King, Hollweg, Lindqvist, Valadares, Fairleigh, Ruggieri and Varenne).",
 	]},

@@ -7,6 +7,10 @@ The owner records voices on his PC with `tools/voice_clone/` (Chatterbox; `run.b
 ALL CAMPAIGN TEXT IS PLACEHOLDER: the owner rewrites the dialogue before recording. This list says WHAT is waiting and
 WHERE its table is; the tables themselves live in each mission's build doc.
 
+RECORDED 2026-11-18 (0.38.70): the big run (tools/voice_clone/lines_big.txt, 374 lines) is in the game: the Brood
+announcer's 21 lines in Lindqvist's v2 voice and every mission line of the King, Hollweg, Lindqvist, Valadares (explorer ref),
+Fairleigh, Ruggieri and Varenne. Still to do: the voices marked * below (design them first), then make_big_lines.py again.
+
 ## 1. The Brood announcer: a new set in Lindqvist's new voice (owner 2026-11-18 15:55)
 
 "Now that the voice of the naturalist changed we need a completely new voice line set for the Brood announcer."

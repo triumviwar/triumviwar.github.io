@@ -139,7 +139,7 @@ func _data() -> void:
 	for k in m["stills"]:
 		check("still %s: its picture loads" % k, ResourceLoader.exists(String(m["stills"][k]["image"])))
 	check("the bells and the off-beat tick are in", ResourceLoader.exists("res://assets/audio/campaign/bell_toll.wav") and ResourceLoader.exists("res://assets/audio/campaign/off_beat.wav"))
-	check("the voice folder is c01 (no recordings yet: silent)", String(m.get("voice", "")) == "c01" and CampaignVoice.path_of(m, "h_open1") == "")
+	check("the voice folder is c01 and h_open1 is recorded (Chatterbox, 0.38.70)", String(m.get("voice", "")) == "c01" and CampaignVoice.path_of(m, "h_open1") != "")
 	check("campaign roles: citizen, hollweg, jakob, ferrer", ["citizen", "hollweg", "jakob", "ferrer"].all(func(r): return Defs.UNITS.has(String(Rebels.role(r).get("kind", "")))))
 
 

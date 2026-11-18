@@ -177,7 +177,7 @@ guild's machines brass with BLUE enamel; the runaway machines brass with RED ena
   the edge of a brass gear. Dockers in 18th-century clothes, gulls, cold light. 3:2 landscape, no text." (Avoid any
   readable words on the crates.)
 
-- c08 THE QUARREL (added 2026-11-18, the owner's confrontation between the Church and the inventor; today it shows c01_03 as a
+- c08 THE QUARREL (PAINTED 0.38.70: c01_08, made by Claude in the owner's ChatGPT; added 2026-11-18, the owner's confrontation between the Church and the inventor; today it shows c01_03 as a
   stand-in). "Oil painting, 18th-century history painting style. Night in a clockmaker's workshop in Nuremberg: a great
   half-built brass machine of gears behind them, lit by one lantern. An old clockmaker with grey curly hair and a
   moustache, in a leather apron, stands with one hand on the machine, defiant, the other open as if pleading. Facing him a
