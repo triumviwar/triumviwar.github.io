@@ -90,7 +90,8 @@ func _states() -> void:
 	check("new: the Clockmaker and Naturalist prologues locked", pins["c01_thirteenth"]["state"] == "locked" and pins["b01_specimen"]["state"] == "locked")
 	check("new: a02 and a03 locked", pins["a02_furth"]["state"] == "locked" and pins["a03_plateau"]["state"] == "locked")
 	check("new: a01 (built) locked until the Prologue", pins["a01_presses"]["state"] == "locked")
-	for mid in ["a04_visit", "a05_specimens", "a06_barricades", "a07_council"]:
+	check("new: a06 (built) locked until a01", pins["a06_barricades"]["state"] == "locked")
+	for mid in ["a04_visit", "a05_specimens", "a07_council"]:
 		check("new: %s is planned (not written yet)" % mid, pins[mid]["state"] == "planned")
 	check("new: Virginia purple, Franconia the empire's, the plateau blank", st["regions"]["virginia"] == "crown" and st["regions"]["franconia"] == "empire" and st["regions"]["plateau"] == "unknown")
 	check("new: no marks, an empty ledger", st["marks"].values().count(true) == 0 and (st["ledger"] as Array).is_empty())
@@ -135,6 +136,10 @@ func _states() -> void:
 	check("a01 lyon calm: Lyon purple", st["regions"]["lyon"] == "crown")
 	st = WarMapData.state(_with({"a01_presses": ["assembly", {"lyon": "risen"}]}))
 	check("a01 won by the Assembly (versus): Lyon in unrest, the seal broken", st["regions"]["lyon"] == "unrest" and st["pins"]["a01_presses"]["seal"] == "broken")
+	st = WarMapData.state(_with({"a01_presses": ["crown", {"lyon": "calm", "printer": "taken"}]}))
+	check("a06 (built) open once a01 is won", st["pins"]["a06_barricades"]["state"] == "open")
+	st = WarMapData.state(_with({"a06_barricades": ["assembly", {}]}))
+	check("a06 won by the Assembly (versus): Paris in unrest, the seal broken", st["regions"]["paris"] == "unrest" and st["pins"]["a06_barricades"]["seal"] == "broken")
 	st = WarMapData.state(_with({"a06_barricades": ["crown", {"varenne": "spared"}]}))
 	check("a06 Varenne spared: Paris purple, his ship into exile", st["regions"]["paris"] == "crown" and st["marks"]["varenne_exile"] and st["regions"]["brittany"] == "empire")
 	st = WarMapData.state(_with({"a06_barricades": ["crown", {"varenne": "executed"}]}))
@@ -217,12 +222,12 @@ func _ui() -> void:
 	wm.zoom_by(1.5)
 	check("zoom in", wm.zoom > z0)
 	# a planned pin: its card, no play button
-	wm.tap(wm.pin_screen(WarMapData.pin_of("a06_barricades")))
+	wm.tap(wm.pin_screen(WarMapData.pin_of("a07_council")))
 	await process_frame
 	var card: Control = _find("WarCard")
-	check("a tap on Paris' seal opens its card", card != null and card.visible and CampaignMenu.map_pick == "a06_barricades")
+	check("a tap on Rome's seal opens its card", card != null and card.visible and CampaignMenu.map_pick == "a07_council")
 	var cs: Label = _find("CardState")
-	check("Paris: not written yet, opens after Lyon", cs != null and cs.text.contains(Loc.t("Not written yet.")) and _find("Card_Briefing") == null)
+	check("Rome: not written yet", cs != null and cs.text.contains(Loc.t("Not written yet.")) and _find("Card_Briefing") == null)
 	# an open pin: BRIEFING
 	wm.show_view("world", false)
 	await process_frame

@@ -1,0 +1,447 @@
+# Act 1's mission a06_barricades, "The Barricades of Paris" (campaign/missions/a06_barricades.json, written by
+# tools/campaign/make_a06_mission.py; the plan: docs/campaign_act1_plan.md; what was built: docs/campaign_a06_build.md).
+# EVERY LINE IS A PLACEHOLDER for the owner. Also the King's study after a06 (campaign.json) and C3's NEW cards.
+# Names: the Free Assembly = a Assembleia Livre / la Asamblea Libre; barricade = barricada; the faubourg stays faubourg;
+# Field Marshal = Marechal de Campo / Mariscal de Campo; canister = metralha / metralla; Mortar = Morteiro / Mortero;
+# Notre-Dame, the Pont Notre-Dame, the Pont au Change, the Petit Pont, the Hôtel de Ville, the Grève, the Port
+# Saint-Nicolas, the parvis keep their French names; the Cité = a Cité / la Cité.
+
+> Paris, July 2769. The Free Assembly holds the city behind its barricades and Varenne sits in the Hôtel de Ville. Field Marshal Fairleigh takes it back street by street.
+pt Paris, julho de 2769. A Assembleia Livre domina a cidade atrás das suas barricadas e Varenne está no Hôtel de Ville. O marechal de campo Fairleigh a retoma rua a rua.
+es París, julio de 2769. La Asamblea Libre domina la ciudad tras sus barricadas y Varenne está en el Hôtel de Ville. El mariscal de campo Fairleigh la recupera calle a calle.
+
+> Field Marshal Fairleigh's army, Colonel Ruggieri's guns and the King's chaplain, Father Tomasz.
+pt O exército do marechal de campo Fairleigh, os canhões do coronel Ruggieri e o capelão do Rei, o padre Tomasz.
+es El ejército del mariscal de campo Fairleigh, los cañones del coronel Ruggieri y el capellán del Rey, el padre Tomasz.
+
+> Varenne's Paris: the barricades of the faubourg, the bridges, the torches and the hall. Green and black.
+pt A Paris de Varenne: as barricadas do faubourg, as pontes, as tochas e o paço. Verde e preto.
+es El París de Varenne: las barricadas del faubourg, los puentes, las antorchas y el ayuntamiento. Verde y negro.
+
+> Take the three barricades of the faubourg: {taken} of 3. Break them with the guns: the Mortar lobs over, the cannon's canister sweeps the street.
+pt Tome as três barricadas do faubourg: {taken} de 3. Quebre-as com os canhões: o Morteiro lança por cima, a metralha do canhão varre a rua.
+es Toma las tres barricadas del faubourg: {taken} de 3. Rómpelas con los cañones: el Mortero lanza por encima, la metralla del cañón barre la calle.
+
+> Field Marshal Fairleigh must live.
+pt O marechal de campo Fairleigh tem de viver.
+es El mariscal de campo Fairleigh debe vivir.
+
+> Take the bridges to the Cité, the Pont Notre-Dame and the Pont au Change: {bridges} of 2.
+pt Tome as pontes para a Cité, a Pont Notre-Dame e a Pont au Change: {bridges} de 2.
+es Toma los puentes a la Cité, el Pont Notre-Dame y el Pont au Change: {bridges} de 2.
+
+> Notre-Dame must not burn: stop the torch-bearers coming over the Petit Pont.
+pt Notre-Dame não pode arder: detenha os portadores de tochas que vêm pela Petit Pont.
+es Notre-Dame no debe arder: detén a los portadores de antorchas que vienen por el Petit Pont.
+
+> Take Varenne ALIVE: open the hall's palisade, wear him down, then a man of yours beside him. Don't let him reach the boats.
+pt Capture Varenne VIVO: abra a paliçada do paço, desgaste-o, depois um homem seu ao lado dele. Não o deixe chegar aos barcos.
+es Toma a Varenne VIVO: abre la empalizada del ayuntamiento, desgástalo y luego pon a uno de tus hombres a su lado. No dejes que llegue a las barcas.
+
+> Hold Paris: burn Notre-Dame, bring down the Field Marshal, or get Varenne out by the river.
+pt Defenda Paris: queime Notre-Dame, derrube o marechal de campo ou tire Varenne pelo rio.
+es Defiende París: quema Notre-Dame, derriba al mariscal de campo o saca a Varenne por el río.
+
+> Field Marshal Fairleigh
+pt Marechal de campo Fairleigh
+es Mariscal de campo Fairleigh
+
+> Colonel Ruggieri
+pt Coronel Ruggieri
+es Coronel Ruggieri
+
+> Will Hollins
+pt Will Hollins
+es Will Hollins
+
+> Paris rose in the summer of 2769. Not a riot: a city behind its own walls, with a government in its hall.
+pt Paris levantou-se no verão de 2769. Não um motim: uma cidade atrás das suas próprias muralhas, com um governo no seu paço.
+es París se levantó en el verano de 2769. No un motín: una ciudad tras sus propias murallas, con un gobierno en su ayuntamiento.
+
+> Fairleigh took it back. He was a field marshal by then. Let him tell it; he tells it shorter than I do.
+pt Fairleigh a retomou. Já era marechal de campo. Deixe que ele conte; conta mais curto do que eu.
+es Fairleigh la recuperó. Ya era mariscal de campo. Deja que lo cuente él; lo cuenta más corto que yo.
+
+> We camped outside the Porte Saint-Antoine. Beyond the gate the faubourg was one long street, and they had cut it three times.
+pt Acampamos fora da Porte Saint-Antoine. Além da porta o faubourg era uma única rua comprida, e eles a tinham cortado três vezes.
+es Acampamos fuera de la Porte Saint-Antoine. Tras la puerta el faubourg era una sola calle larga, y la habían cortado tres veces.
+
+> The printer the young Father took at Lyon had named Paris. He was right about that, if about nothing else.
+pt O impressor que o jovem padre prendeu em Lyon tinha dito Paris. Nisso tinha razão, se em mais nada.
+es El impresor que el joven padre apresó en Lyon había dicho París. En eso tenía razón, si en nada más.
+
+> We had no word from inside the city. We learnt its streets the hard way.
+pt Não tínhamos notícias de dentro da cidade. Aprendemos as suas ruas da maneira difícil.
+es No teníamos noticias de dentro de la ciudad. Aprendimos sus calles por las malas.
+
+> The Hollins boys came over with the Virginia volunteers. They had asked to.
+pt Os rapazes Hollins vieram com os voluntários da Virgínia. Tinham pedido para vir.
+es Los muchachos Hollins vinieron con los voluntarios de Virginia. Lo habían pedido.
+
+> Ruggieri had his guns, and the King had sent us something new from the foundries: a mortar, to throw a shell over a wall.
+pt Ruggieri tinha os seus canhões, e o Rei tinha-nos mandado uma coisa nova das fundições: um morteiro, para lançar uma granada por cima de um muro.
+es Ruggieri tenía sus cañones, y el Rey nos había enviado algo nuevo de las fundiciones: un mortero, para lanzar una granada por encima de un muro.
+
+> The Assembly wrote a great deal that summer. Here is what it meant to do.
+pt A Assembleia escreveu muito naquele verão. Eis o que ela pretendia fazer.
+es La Asamblea escribió mucho aquel verano. Esto es lo que pretendía hacer.
+
+> Three barricades between us and the Bastille. Don't walk lines into them, gentlemen. Break them with the guns first.
+pt Três barricadas entre nós e a Bastilha. Não marchem linhas contra elas, senhores. Quebrem-nas primeiro com os canhões.
+es Tres barricadas entre nosotros y la Bastilla. No metan líneas contra ellas, caballeros. Rómpanlas primero con los cañones.
+
+> The mortar throws over a barricade, Marshal. Set it up out of their muskets' reach, five to eleven tiles off.
+pt O morteiro atira por cima de uma barricada, marechal. Monte-o fora do alcance dos mosquetes deles, entre cinco e onze casas de distância.
+es El mortero dispara por encima de una barricada, mariscal. Emplácelo fuera del alcance de sus mosquetes, entre cinco y once casillas.
+
+> There are families behind those shutters, Marshal. They did not all choose this.
+pt Há famílias atrás daquelas janelas, marechal. Nem todas escolheram isto.
+es Hay familias detrás de esas persianas, mariscal. No todas eligieron esto.
+
+> Then we end it quickly. That is the mercy I can give them.
+pt Então acabamos depressa. É essa a misericórdia que lhes posso dar.
+es Entonces acabamos pronto. Esa es la misericordia que puedo darles.
+
+> Sir. The Hollins boys, all six of us. We are here for the Father, and for you.
+pt Senhor. Os rapazes Hollins, os seis. Estamos aqui pelo padre, e pelo senhor.
+es Señor. Los muchachos Hollins, los seis. Estamos aquí por el padre, y por usted.
+
+> I baptised your sister's boy, Will. Keep your head down for him.
+pt Batizei o filho da sua irmã, Will. Mantenha a cabeça baixa por ele.
+es Bauticé al hijo de tu hermana, Will. Mantén la cabeza agachada por él.
+
+> The Foundry casts more guns and mortars, each with a horse from the Breeder. The treasury pays us every minute.
+pt A Fundição funde mais canhões e morteiros, cada um com um cavalo do Criador. O tesouro nos paga a cada minuto.
+es La Fundición funde más cañones y morteros, cada uno con un caballo del Criadero. El tesoro nos paga cada minuto.
+
+> They have a gun of their own over there! Keep ours back out of its reach, or answer it.
+pt Eles têm um canhão lá! Mantenha os nossos fora do alcance dele, ou responda-lhe.
+es ¡Tienen un cañón allí! Mantén los nuestros fuera de su alcance, o respóndele.
+
+> They are coming out over the barricade! Canister, load canister!
+pt Estão a sair por cima da barricada! Metralha, carreguem metralha!
+es ¡Salen por encima de la barricada! ¡Metralla, carguen metralla!
+
+> CANISTER on the gun's card: a cone of balls down the street. Keep the line in front of the guns.
+pt METRALHA no painel do canhão: um cone de balas rua abaixo. Mantenha a linha à frente dos canhões.
+es METRALLA en el panel del cañón: un cono de balas calle abajo. Mantén la línea delante de los cañones.
+
+> The first barricade is ours. Bring the guns up.
+pt A primeira barricada é nossa. Tragam os canhões.
+es La primera barricada es nuestra. Traigan los cañones.
+
+> Two. The third is the strongest: they have one of our own guns behind it.
+pt Duas. A terceira é a mais forte: eles têm um dos nossos canhões atrás dela.
+es Dos. La tercera es la más fuerte: tienen uno de nuestros propios cañones detrás.
+
+> Three. The Bastille is open.
+pt Três. A Bastilha está aberta.
+es Tres. La Bastilla está abierta.
+
+> Now the river. They hold the bridges to the Cité.
+pt Agora o rio. Eles controlam as pontes para a Cité.
+es Ahora el río. Controlan los puentes a la Cité.
+
+> Marshal, look at the far bank. They are carrying torches towards Notre-Dame.
+pt Marechal, olhe a outra margem. Levam tochas para Notre-Dame.
+es Mariscal, mire la otra orilla. Llevan antorchas hacia Notre-Dame.
+
+> Then we take the bridges at the run. Notre-Dame does not burn while I command here.
+pt Então tomamos as pontes a correr. Notre-Dame não arde enquanto eu comandar aqui.
+es Entonces tomamos los puentes a la carrera. Notre-Dame no arde mientras yo mande aquí.
+
+> Lyon men are on the bridges: weavers who walked from the Croix-Rousse to fight.
+pt Há homens de Lyon nas pontes: tecelões que vieram a pé da Croix-Rousse para lutar.
+es Hay hombres de Lyon en los puentes: tejedores que vinieron a pie desde la Croix-Rousse para luchar.
+
+> Half of Lyon's Assembly is on the bridges and at the Bastille, under its own flags.
+pt Metade da Assembleia de Lyon está nas pontes e na Bastilha, sob as suas próprias bandeiras.
+es La mitad de la Asamblea de Lyon está en los puentes y en la Bastilla, bajo sus propias banderas.
+
+> I know some of those faces. From the weavers' square.
+pt Conheço alguns daqueles rostos. Da praça dos tecelões.
+es Conozco algunas de esas caras. De la plaza de los tejedores.
+
+> Torch-bearers on the Petit Pont, for the cathedral.
+pt Portadores de tochas na Petit Pont, para a catedral.
+es Portadores de antorchas en el Petit Pont, hacia la catedral.
+
+> The doors are burning! Men onto the parvis!
+pt As portas estão a arder! Homens para o adro!
+es ¡Las puertas arden! ¡Hombres al atrio!
+
+> Both bridges. The Cité is ours.
+pt As duas pontes. A Cité é nossa.
+es Los dos puentes. La Cité es nuestra.
+
+> Now the Hôtel de Ville. Varenne is in there. I want him alive: the King will judge him, not a musket ball.
+pt Agora o Hôtel de Ville. Varenne está lá dentro. Quero-o vivo: quem o julga é o Rei, não uma bala de mosquete.
+es Ahora el Hôtel de Ville. Varenne está dentro. Lo quiero vivo: lo juzgará el Rey, no una bala de mosquete.
+
+> They have palisaded the whole square. The guns will open it.
+pt Cercaram a praça inteira com uma paliçada. Os canhões vão abri-la.
+es Han rodeado toda la plaza con una empalizada. Los cañones la abrirán.
+
+> Take him alive: wear him down, then a man of ours beside him. If he reaches the river, he is gone.
+pt Prendam-no vivo: desgastem-no, depois um homem nosso ao lado dele. Se chegar ao rio, foi-se.
+es Tómenlo vivo: desgástenlo y luego un hombre nuestro a su lado. Si llega al río, se nos va.
+
+> The palisade is open. Watch the west gate: he will run.
+pt A paliçada está aberta. Vigiem a porta oeste: ele vai fugir.
+es La empalizada está abierta. Vigilen la puerta oeste: va a huir.
+
+> Varenne is out by the west gate, running for the boats at the Port Saint-Nicolas.
+pt Varenne saiu pela porta oeste, a correr para os barcos do Port Saint-Nicolas.
+es Varenne ha salido por la puerta oeste, corriendo hacia las barcas del Port Saint-Nicolas.
+
+> Riders! After him!
+pt Cavaleiros! Atrás dele!
+es ¡Jinetes! ¡Tras él!
+
+> A boat is waiting at the quay. Its oarsmen are already at the oars.
+pt Um barco espera no cais. Os remadores já estão aos remos.
+es Una barca espera en el muelle. Los remeros ya están a los remos.
+
+> You have taken a man, Marshal. You have not taken an idea.
+pt Prendeu um homem, marechal. Não prendeu uma ideia.
+es Ha apresado a un hombre, mariscal. No ha apresado una idea.
+
+> I have taken the man who burned Virginia. That will do for today.
+pt Prendi o homem que incendiou a Virgínia. Por hoje basta.
+es He apresado al hombre que incendió Virginia. Por hoy basta.
+
+> Marshal. I ask for his life. Send him away, but let him live. I prayed for his men in Virginia; I pray for him now.
+pt Marechal. Peço a vida dele. Mande-o embora, mas deixe-o viver. Rezei pelos homens dele na Virgínia; rezo por ele agora.
+es Mariscal. Le pido su vida. Destiérrelo, pero déjelo vivir. Recé por sus hombres en Virginia; rezo por él ahora.
+
+> The King gave me the right to judge him here. The Father asks for mercy. The order is yours.
+pt O Rei deu-me o direito de o julgar aqui. O padre pede misericórdia. A ordem é sua.
+es El Rey me dio el derecho de juzgarlo aquí. El padre pide misericordia. La orden es suya.
+
+> Exile, then. A ship, and never French ground again.
+pt Exílio, então. Um navio, e nunca mais solo francês.
+es Destierro, entonces. Un barco, y nunca más suelo francés.
+
+> You will regret your mercy, Marshal. Or I will make you glad of it. We shall see.
+pt Vai arrepender-se da sua misericórdia, marechal. Ou eu o farei alegrar-se dela. Veremos.
+es Se arrepentirá de su misericordia, mariscal. O haré que se alegre de ella. Ya veremos.
+
+> Thank God.
+pt Graças a Deus.
+es Gracias a Dios.
+
+> The law, then. At dawn, on the Grève.
+pt A lei, então. Ao amanhecer, na Grève.
+es La ley, entonces. Al amanecer, en la Grève.
+
+> Do it in daylight. Let them all see what the Crown is.
+pt Façam-no à luz do dia. Que todos vejam o que é a Coroa.
+es Háganlo a la luz del día. Que todos vean lo que es la Corona.
+
+> I will stay with him tonight, Marshal. Someone should.
+pt Fico com ele esta noite, marechal. Alguém deve ficar.
+es Me quedaré con él esta noche, mariscal. Alguien debe hacerlo.
+
+> Paris was the King's again by morning. The bells of Notre-Dame rang for Lauds.
+pt De manhã Paris era outra vez do Rei. Os sinos de Notre-Dame tocaram para as Laudes.
+es Por la mañana París volvía a ser del Rey. Las campanas de Notre-Dame tocaron a Laudes.
+
+> The Marshal is hit! Keep him behind the line!
+pt O marechal foi atingido! Mantenham-no atrás da linha!
+es ¡Han herido al mariscal! ¡Manténganlo detrás de la línea!
+
+> Notre-Dame is burning. The whole city can see it.
+pt Notre-Dame está a arder. A cidade inteira vê.
+es Notre-Dame arde. Toda la ciudad lo ve.
+
+> A boat pushes off from the Port Saint-Nicolas. Varenne is gone down the river.
+pt Um barco afasta-se do Port Saint-Nicolas. Varenne foi-se rio abaixo.
+es Una barca se aparta del Port Saint-Nicolas. Varenne se ha ido río abajo.
+
+> Hold the barricades. Burn Notre-Dame, bring down the Field Marshal, or get Varenne out by the river: any of them wins Paris.
+pt Defenda as barricadas. Queime Notre-Dame, derrube o marechal de campo ou tire Varenne pelo rio: qualquer um deles ganha Paris.
+es Defiende las barricadas. Quema Notre-Dame, derriba al mariscal de campo o saca a Varenne por el río: cualquiera de ellos gana París.
+
+> Your men behind a barricade are safe from the Crown's line. Not from its guns: when a barricade breaks, rush the guns.
+pt Os seus homens atrás de uma barricada estão a salvo da linha da Coroa. Não dos canhões: quando uma barricada cair, carregue sobre os canhões.
+es Tus hombres tras una barricada están a salvo de la línea de la Corona. No de sus cañones: cuando caiga una barricada, carga contra los cañones.
+
+> Paris was quiet by the feast of the Assumption. The barricades went back to being carts and paving stones.
+pt Pela festa da Assunção Paris estava em paz. As barricadas voltaram a ser carroças e pedras da calçada.
+es Para la fiesta de la Asunción París estaba en calma. Las barricadas volvieron a ser carros y adoquines.
+
+> Varenne sailed from Le Havre in September. I did not go to see him off.
+pt Varenne partiu do Havre em setembro. Não fui despedir-me dele.
+es Varenne zarpó de El Havre en septiembre. No fui a despedirlo.
+
+> Varenne died on the Grève at dawn. The crowd was very quiet.
+pt Varenne morreu na Grève ao amanhecer. A multidão ficou muito calada.
+es Varenne murió en la Grève al amanecer. La multitud estuvo muy callada.
+
+> The Hollins boys went home to Virginia that winter. All six of them.
+pt Os rapazes Hollins voltaram para a Virgínia naquele inverno. Os seis.
+es Los muchachos Hollins volvieron a Virginia aquel invierno. Los seis.
+
+> I said a Mass of thanksgiving in Notre-Dame. The doors were still black with smoke.
+pt Rezei uma missa de ação de graças em Notre-Dame. As portas ainda estavam negras de fumo.
+es Dije una misa de acción de gracias en Notre-Dame. Las puertas aún estaban negras de humo.
+
+> I said a Mass for his soul. Some of his men came, and I did not send them away.
+pt Rezei uma missa pela alma dele. Vieram alguns dos seus homens, e não os mandei embora.
+es Dije una misa por su alma. Vinieron algunos de sus hombres, y no los eché.
+
+> Mercy from the victor is still victory. I have never regretted that order.
+pt A misericórdia do vencedor ainda é vitória. Nunca me arrependi daquela ordem.
+es La misericordia del vencedor sigue siendo victoria. Nunca me arrepentí de aquella orden.
+
+> It was the law. I have read the order a hundred times since. It is still the law.
+pt Era a lei. Li a ordem cem vezes desde então. Continua a ser a lei.
+es Era la ley. He leído la orden cien veces desde entonces. Sigue siendo la ley.
+
+> That was the end of the Assembly's cities. The next fires were not theirs.
+pt Foi o fim das cidades da Assembleia. Os incêndios seguintes não foram deles.
+es Fue el fin de las ciudades de la Asamblea. Los siguientes incendios no fueron suyos.
+
+> That is not how it went. Paris did not hold.
+pt Não foi assim. Paris não resistiu.
+es No fue así. París no resistió.
+
+> But if it had, the Crown would have had two capitals, and one of them against it.
+pt Mas, se tivesse resistido, a Coroa teria tido duas capitais, e uma delas contra ela.
+es Pero, si hubiera resistido, la Corona habría tenido dos capitales, y una de ellas en su contra.
+
+> Rome, the present. The King.
+pt Roma, o presente. O Rei.
+es Roma, el presente. El Rey.
+
+> Paris, July 2769. The barricades of the faubourg.
+pt Paris, julho de 2769. As barricadas do faubourg.
+es París, julio de 2769. Las barricadas del faubourg.
+
+> Colonel Ruggieri's guns.
+pt Os canhões do coronel Ruggieri.
+es Los cañones del coronel Ruggieri.
+
+> Torches on the bridges of the Cité.
+pt Tochas nas pontes da Cité.
+es Antorchas en los puentes de la Cité.
+
+> The Hôtel de Ville.
+pt O Hôtel de Ville.
+es El Hôtel de Ville.
+
+> Varenne before the Field Marshal.
+pt Varenne diante do marechal de campo.
+es Varenne ante el mariscal de campo.
+
+> Paris, July 2769. The Free Assembly holds the city: three barricades across the faubourg, the bridges of the Cité, Varenne in the Hôtel de Ville.
+pt Paris, julho de 2769. A Assembleia Livre domina a cidade: três barricadas no faubourg, as pontes da Cité, Varenne no Hôtel de Ville.
+es París, julio de 2769. La Asamblea Libre domina la ciudad: tres barricadas en el faubourg, los puentes de la Cité, Varenne en el Hôtel de Ville.
+
+> Break the barricades with your guns (the Mortar is new: it lobs over walls), save Notre-Dame from the torches and take Varenne alive.
+pt Quebre as barricadas com os seus canhões (o Morteiro é novo: lança por cima dos muros), salve Notre-Dame das tochas e capture Varenne vivo.
+es Rompe las barricadas con tus cañones (el Mortero es nuevo: lanza por encima de los muros), salva Notre-Dame de las antorchas y toma a Varenne vivo.
+
+> Field Marshal Fairleigh and Father Tomasz must live.
+pt O marechal de campo Fairleigh e o padre Tomasz têm de viver.
+es El mariscal de campo Fairleigh y el padre Tomasz deben vivir.
+
+> Paris, July 2769. You are the Free Assembly, and the city is yours behind its barricades.
+pt Paris, julho de 2769. Você é a Assembleia Livre, e a cidade é sua atrás das barricadas.
+es París, julio de 2769. Eres la Asamblea Libre, y la ciudad es tuya tras sus barricadas.
+
+> Burn Notre-Dame, bring down the Field Marshal, or get Varenne out by the river.
+pt Queime Notre-Dame, derrube o marechal de campo ou tire Varenne pelo rio.
+es Quema Notre-Dame, derriba al mariscal de campo o saca a Varenne por el río.
+
+> Paris is the King's
+pt Paris é do Rei
+es París es del Rey
+
+> The barricades are down, Notre-Dame stands and Varenne is taken.
+pt As barricadas caíram, Notre-Dame está de pé e Varenne foi capturado.
+es Las barricadas han caído, Notre-Dame sigue en pie y Varenne está apresado.
+
+> Varenne is spared: exile, by your order.
+pt Varenne é poupado: o exílio, por ordem sua.
+es Varenne es perdonado: el destierro, por orden tuya.
+
+> Varenne is executed, by your order.
+pt Varenne é executado, por ordem sua.
+es Varenne es ejecutado, por orden tuya.
+
+> Paris holds
+pt Paris resiste
+es París resiste
+
+> The Assembly's flags still fly over the Hôtel de Ville.
+pt As bandeiras da Assembleia ainda tremulam sobre o Hôtel de Ville.
+es Las banderas de la Asamblea aún ondean sobre el Hôtel de Ville.
+
+> VARENNE
+pt VARENNE
+es VARENNE
+
+> SPARE HIM: EXILE
+pt POUPÁ-LO: EXÍLIO
+es PERDONARLO: DESTIERRO
+
+> Father Tomasz asks for his life. A ship, and never French ground again.
+pt O padre Tomasz pede a vida dele. Um navio, e nunca mais solo francês.
+es El padre Tomasz pide su vida. Un barco, y nunca más suelo francés.
+
+> EXECUTE HIM
+pt EXECUTÁ-LO
+es EJECUTARLO
+
+> The King's law for the man who burned Virginia and raised Paris. At dawn, on the Grève.
+pt A lei do Rei para o homem que incendiou a Virgínia e sublevou Paris. Ao amanhecer, na Grève.
+es La ley del Rey para el hombre que incendió Virginia y sublevó París. Al amanecer, en la Grève.
+
+# the King's study after a06 (campaign.json)
+
+> I sent Varenne to sea on Fairleigh's word and the Cardinal's prayer.
+pt Mandei Varenne para o mar pela palavra de Fairleigh e pela oração do Cardeal.
+es Envié a Varenne al mar por la palabra de Fairleigh y la oración del Cardenal.
+
+> Remember that mercy is a weapon too. It cuts the one who holds it, sometimes.
+pt Lembre-se de que a misericórdia também é uma arma. Às vezes corta quem a empunha.
+es Recuerda que la misericordia también es un arma. A veces corta a quien la empuña.
+
+> Varenne died on the Grève by the King's law, and I signed it.
+pt Varenne morreu na Grève pela lei do Rei, e eu assinei.
+es Varenne murió en la Grève por la ley del Rey, y yo la firmé.
+
+> A martyr is harder to fight than a man. I learnt that too late.
+pt Um mártir é mais difícil de combater do que um homem. Aprendi isso tarde demais.
+es Un mártir es más difícil de combatir que un hombre. Lo aprendí demasiado tarde.
+
+> I asked for his life and the Marshal gave it. I still do not know if I asked well.
+pt Pedi a vida dele e o marechal concedeu-a. Ainda não sei se pedi bem.
+es Pedí su vida y el mariscal me la concedió. Aún no sé si pedí bien.
+
+> Notre-Dame's doors were black for a year. I made them leave the marks.
+pt As portas de Notre-Dame ficaram negras durante um ano. Pedi que deixassem as marcas.
+es Las puertas de Notre-Dame estuvieron negras un año. Hice que dejaran las marcas.
+
+> I stayed with Varenne the last night. He did not confess. He did let me pray.
+pt Fiquei com Varenne na última noite. Não se confessou. Mas deixou-me rezar.
+es Me quedé con Varenne la última noche. No se confesó. Pero me dejó rezar.
+
+> Paris is quiet. The barricades went back to being carts and paving stones.
+pt Paris está em paz. As barricadas voltaram a ser carroças e pedras da calçada.
+es París está en calma. Las barricadas volvieron a ser carros y adoquines.
+
+> Ruggieri wants a dozen more mortars. I have told him he may have six.
+pt Ruggieri quer mais uma dúzia de morteiros. Disse-lhe que pode ter seis.
+es Ruggieri quiere una docena más de morteros. Le he dicho que puede tener seis.
+
+# THE ROSTER LADDER's NEW cards (tools/campaign/roster_ladder.py, docs/campaign_roster_ladder.md). PLACEHOLDER.
+
+> NEW: THE FOUNDRY. Cast your own Field Cannons now, and the Mortar.
+pt NOVO: A FUNDIÇÃO. Funde agora os seus próprios Canhões de Campanha, e o Morteiro.
+es NUEVO: LA FUNDICIÓN. Funde ahora tus propios Cañones de Campaña, y el Mortero.
+
+> NEW: THE MORTAR. It lobs its shell over walls: the barricades are its work, not the line's.
+pt NOVO: O MORTEIRO. Lança a sua granada por cima dos muros: as barricadas são trabalho dele, não da linha.
+es NUEVO: EL MORTERO. Lanza su granada por encima de los muros: las barricadas son trabajo suyo, no de la línea.

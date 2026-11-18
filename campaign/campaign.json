@@ -7,7 +7,8 @@
 			"about": "Told by the King in Rome. The Free Assembly rises against Church and Crown: Virginia in 2767, then the cities of the Crown.",
 			"missions": [
 				"p01_leaf",
-				"a01_presses"
+				"a01_presses",
+				"a06_barricades"
 			],
 			"hub": {
 				"title": "The King's Study",
@@ -148,6 +149,26 @@
 									"Lyon went home without a volley. The Cardinal will tell you it was luck. Do not believe him.",
 									"The printer named Paris. We should have listened sooner."
 								]
+							},
+							{
+								"after": "a06_barricades",
+								"flag": {
+									"a06_barricades.varenne": "spared"
+								},
+								"lines": [
+									"I sent Varenne to sea on Fairleigh's word and the Cardinal's prayer.",
+									"Remember that mercy is a weapon too. It cuts the one who holds it, sometimes."
+								]
+							},
+							{
+								"after": "a06_barricades",
+								"flag": {
+									"a06_barricades.varenne": "executed"
+								},
+								"lines": [
+									"Varenne died on the Grève by the King's law, and I signed it.",
+									"A martyr is harder to fight than a man. I learnt that too late."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_king_face.png"
@@ -176,6 +197,26 @@
 									"I spoke on the weavers' square until I had no voice left. Some of them still write to me.",
 									"Rouvière would not say who paid him. He said Paris, as if it were a prayer."
 								]
+							},
+							{
+								"after": "a06_barricades",
+								"flag": {
+									"a06_barricades.varenne": "spared"
+								},
+								"lines": [
+									"I asked for his life and the Marshal gave it. I still do not know if I asked well.",
+									"Notre-Dame's doors were black for a year. I made them leave the marks."
+								]
+							},
+							{
+								"after": "a06_barricades",
+								"flag": {
+									"a06_barricades.varenne": "executed"
+								},
+								"lines": [
+									"I stayed with Varenne the last night. He did not confess. He did let me pray.",
+									"Notre-Dame's doors were black for a year. I made them leave the marks."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_tomasz_face.png"
@@ -196,6 +237,13 @@
 								"lines": [
 									"It is done. I take no pleasure in it.",
 									"Ruggieri has his pipe, and I have the King's leaf. Rome will hear of this."
+								]
+							},
+							{
+								"after": "a06_barricades",
+								"lines": [
+									"Paris is quiet. The barricades went back to being carts and paving stones.",
+									"Ruggieri wants a dozen more mortars. I have told him he may have six."
 								]
 							}
 						]

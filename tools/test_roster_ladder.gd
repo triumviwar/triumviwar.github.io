@@ -156,7 +156,7 @@ func _run() -> void:
 				miss.append(k)
 		check("%s: the cards have pt and es" % mid, miss.is_empty(), str(miss))
 	var names: Array = built.map(func(r): return r["mission"])
-	check("the six built missions are on the ladder", _minus(["p01_leaf", "c01_thirteenth", "b01_specimen", "a02_furth", "a03_plateau", "a01_presses"], names).is_empty())
+	check("the seven built missions are on the ladder", _minus(["p01_leaf", "c01_thirteenth", "b01_specimen", "a02_furth", "a03_plateau", "a01_presses", "a06_barricades"], names).is_empty())
 	# ---- LIVE: each built mission started, its bound team refused exactly what is off its list
 	for r in built:
 		await _live(r)

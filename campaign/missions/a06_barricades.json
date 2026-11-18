@@ -1,0 +1,4134 @@
+{
+	"id": "a06_barricades",
+	"title": "The Barricades of Paris",
+	"summary": "Paris, July 2769. The Free Assembly holds the city behind its barricades and Varenne sits in the Hôtel de Ville. Field Marshal Fairleigh takes it back street by street.",
+	"map": "campaign:paris_barricades",
+	"voice": "a06",
+	"light": "dawn",
+	"expansion_spots": false,
+	"manual_end": true,
+	"difficulty": {
+		"easy": {
+			"spawns": 0.7
+		},
+		"hard": {
+			"spawns": 1.3
+		}
+	},
+	"modes": [
+		"solo",
+		"coop",
+		"versus"
+	],
+	"factions": {
+		"free_assembly": {
+			"name": "The Free Assembly",
+			"stand_in": "crown",
+			"campaign_only": true
+		}
+	},
+	"sides": [
+		{
+			"id": "crown",
+			"name": "The Crown",
+			"about": "Field Marshal Fairleigh's army, Colonel Ruggieri's guns and the King's chaplain, Father Tomasz."
+		},
+		{
+			"id": "assembly",
+			"name": "The Free Assembly",
+			"about": "Varenne's Paris: the barricades of the faubourg, the bridges, the torches and the hall. Green and black."
+		}
+	],
+	"teams": [
+		{
+			"id": "army",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "camp_yard",
+			"gold": 450,
+			"powder": 300,
+			"control": {
+				"solo": "p1",
+				"coop": "p1",
+				"versus": "p1"
+			},
+			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon",
+					"horse_breeder",
+					"cuirassier",
+					"horse",
+					"dismounted",
+					"messenger",
+					"foundry",
+					"mortar"
+				],
+				"new": [
+					"foundry",
+					"mortar"
+				],
+				"deny": [
+					"town_hall",
+					"farm"
+				]
+			}
+		},
+		{
+			"id": "guns",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 0,
+			"start": "none",
+			"camera": "camp_yard",
+			"control": {
+				"solo": "script",
+				"coop": "p2",
+				"versus": "script"
+			},
+			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon",
+					"horse_breeder",
+					"cuirassier",
+					"horse",
+					"dismounted",
+					"messenger",
+					"foundry",
+					"mortar"
+				],
+				"new": [
+					"foundry",
+					"mortar"
+				],
+				"deny": [
+					"town_hall",
+					"farm"
+				]
+			}
+		},
+		{
+			"id": "town",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "parvis",
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "assembly",
+			"side": "assembly",
+			"faction": "free_assembly",
+			"colour": 2,
+			"start": "none",
+			"camera": "greve",
+			"gold": 0,
+			"roster": {
+				"deny": [
+					"town_hall",
+					"cottage",
+					"farm",
+					"foundry",
+					"horse_breeder",
+					"armoury",
+					"church",
+					"powder_mill",
+					"barracks",
+					"wall",
+					"gate",
+					"musketeer",
+					"labourer",
+					"cuirassier",
+					"cannon",
+					"missionary"
+				]
+			},
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "p2"
+			}
+		}
+	],
+	"areas": {
+		"island": [
+			52,
+			52,
+			27,
+			11
+		],
+		"camp": [
+			108,
+			12,
+			17,
+			38
+		],
+		"faubourg_n": [
+			80,
+			3,
+			26,
+			26
+		],
+		"faubourg_s": [
+			80,
+			34,
+			26,
+			19
+		],
+		"bastille_n": [
+			66,
+			3,
+			14,
+			20
+		],
+		"rue_faubourg": [
+			66,
+			29,
+			40,
+			5
+		],
+		"porte": [
+			105,
+			29,
+			4,
+			5
+		],
+		"bastille": [
+			66,
+			23,
+			14,
+			18
+		],
+		"bastille_s": [
+			66,
+			41,
+			14,
+			7
+		],
+		"marais": [
+			6,
+			3,
+			58,
+			44
+		],
+		"quai": [
+			4,
+			47,
+			76,
+			3
+		],
+		"rue_saint_antoine": [
+			48,
+			29,
+			18,
+			4
+		],
+		"greve": [
+			34,
+			40,
+			16,
+			7
+		],
+		"hall": [
+			38,
+			35,
+			7,
+			6
+		],
+		"ring": [
+			33,
+			34,
+			18,
+			14
+		],
+		"hall_square": [
+			34,
+			35,
+			16,
+			12
+		],
+		"port": [
+			4,
+			50,
+			10,
+			4
+		],
+		"parvis": [
+			56,
+			53,
+			13,
+			9
+		],
+		"notre_dame": [
+			69,
+			54,
+			5,
+			5
+		],
+		"latin": [
+			6,
+			66,
+			98,
+			27
+		],
+		"quai_sud": [
+			4,
+			62,
+			100,
+			4
+		],
+		"maubert": [
+			58,
+			70,
+			12,
+			8
+		],
+		"rue_maubert": [
+			62,
+			65,
+			4,
+			5
+		],
+		"pont_notre_dame": [
+			56,
+			45,
+			5,
+			10
+		],
+		"pont_au_change": [
+			70,
+			45,
+			5,
+			10
+		],
+		"petit_pont": [
+			62,
+			59,
+			5,
+			10
+		],
+		"pont_neuf": [
+			28,
+			49,
+			5,
+			14
+		],
+		"camp_yard": [
+			110,
+			24,
+			12,
+			14
+		],
+		"before_gate": [
+			100,
+			28,
+			5,
+			7
+		],
+		"faubourg": [
+			80,
+			29,
+			26,
+			5
+		],
+		"right_bank": [
+			4,
+			3,
+			76,
+			47
+		],
+		"north_bank_bridges": [
+			52,
+			45,
+			26,
+			6
+		],
+		"left_bank": [
+			4,
+			62,
+			100,
+			32
+		],
+		"greve_west": [
+			24,
+			40,
+			9,
+			8
+		],
+		"bar_1": [
+			98,
+			28,
+			3,
+			7
+		],
+		"bar_1_behind": [
+			94,
+			29,
+			4,
+			5
+		],
+		"bar_1_front": [
+			101,
+			29,
+			4,
+			5
+		],
+		"bar_2": [
+			90,
+			28,
+			3,
+			7
+		],
+		"bar_2_behind": [
+			86,
+			29,
+			4,
+			5
+		],
+		"bar_2_front": [
+			93,
+			29,
+			4,
+			5
+		],
+		"bar_3": [
+			82,
+			28,
+			3,
+			7
+		],
+		"bar_3_behind": [
+			78,
+			29,
+			4,
+			5
+		],
+		"bar_3_front": [
+			85,
+			29,
+			4,
+			5
+		]
+	},
+	"counters": {
+		"taken": {
+			"start": 0,
+			"of": 3
+		},
+		"bridges": {
+			"start": 0,
+			"of": 2
+		}
+	},
+	"units": [
+		{
+			"team": "army",
+			"kind": "dismounted",
+			"as": "fairleigh",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "fairleigh"
+		},
+		{
+			"team": "army",
+			"kind": "missionary",
+			"as": "tomasz",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "tomasz"
+		},
+		{
+			"team": "army",
+			"kind": "musketeer",
+			"count": 14,
+			"at": "camp_yard",
+			"tag": "army_men"
+		},
+		{
+			"team": "army",
+			"kind": "cuirassier",
+			"count": 4,
+			"at": "camp_yard",
+			"tag": "riders"
+		},
+		{
+			"team": "army",
+			"kind": "powder_wagon",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "wagon"
+		},
+		{
+			"team": "army",
+			"kind": "dismounted",
+			"as": "ruggieri",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "ruggieri",
+			"modes": [
+				"solo"
+			]
+		},
+		{
+			"team": "army",
+			"kind": "cannon",
+			"count": 2,
+			"at": "camp_yard",
+			"tag": "cannons",
+			"tags": [
+				"guns_all"
+			],
+			"modes": [
+				"solo"
+			]
+		},
+		{
+			"team": "army",
+			"kind": "mortar",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "mortars",
+			"tags": [
+				"guns_all"
+			],
+			"modes": [
+				"solo"
+			]
+		},
+		{
+			"team": "army",
+			"kind": "dismounted",
+			"as": "ruggieri",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "ruggieri",
+			"modes": [
+				"versus"
+			]
+		},
+		{
+			"team": "army",
+			"kind": "cannon",
+			"count": 2,
+			"at": "camp_yard",
+			"tag": "cannons",
+			"tags": [
+				"guns_all"
+			],
+			"modes": [
+				"versus"
+			]
+		},
+		{
+			"team": "army",
+			"kind": "mortar",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "mortars",
+			"tags": [
+				"guns_all"
+			],
+			"modes": [
+				"versus"
+			]
+		},
+		{
+			"team": "guns",
+			"kind": "dismounted",
+			"as": "ruggieri",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "ruggieri",
+			"modes": [
+				"coop"
+			]
+		},
+		{
+			"team": "guns",
+			"kind": "cannon",
+			"count": 2,
+			"at": "camp_yard",
+			"tag": "cannons",
+			"tags": [
+				"guns_all"
+			],
+			"modes": [
+				"coop"
+			]
+		},
+		{
+			"team": "guns",
+			"kind": "mortar",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "mortars",
+			"tags": [
+				"guns_all"
+			],
+			"modes": [
+				"coop"
+			]
+		},
+		{
+			"team": "army",
+			"kind": "musketeer",
+			"as": "volunteer",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "volunteers",
+			"name": "Will Hollins",
+			"if": {
+				"past": {
+					"p01_leaf.families": "save"
+				}
+			},
+			"fixed": true
+		},
+		{
+			"team": "army",
+			"kind": "musketeer",
+			"as": "volunteer",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "volunteers",
+			"name": "Tom Hollins",
+			"if": {
+				"past": {
+					"p01_leaf.families": "save"
+				}
+			},
+			"fixed": true
+		},
+		{
+			"team": "army",
+			"kind": "musketeer",
+			"as": "volunteer",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "volunteers",
+			"name": "Jacob Hollins",
+			"if": {
+				"past": {
+					"p01_leaf.families": "save"
+				}
+			},
+			"fixed": true
+		},
+		{
+			"team": "army",
+			"kind": "musketeer",
+			"as": "volunteer",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "volunteers",
+			"name": "Ned Hollins",
+			"if": {
+				"past": {
+					"p01_leaf.families": "save"
+				}
+			},
+			"fixed": true
+		},
+		{
+			"team": "army",
+			"kind": "musketeer",
+			"as": "volunteer",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "volunteers",
+			"name": "Sam Hollins",
+			"if": {
+				"past": {
+					"p01_leaf.families": "save"
+				}
+			},
+			"fixed": true
+		},
+		{
+			"team": "army",
+			"kind": "musketeer",
+			"as": "volunteer",
+			"count": 1,
+			"at": "camp_yard",
+			"tag": "volunteers",
+			"name": "Eli Hollins",
+			"if": {
+				"past": {
+					"p01_leaf.families": "save"
+				}
+			},
+			"fixed": true
+		},
+		{
+			"team": "army",
+			"kind": "horse",
+			"count": 3,
+			"at": [
+				118,
+				23
+			],
+			"tag": "spare_horses",
+			"fixed": true
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "citizen",
+			"count": 3,
+			"at": "parvis",
+			"tag": "townsfolk",
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "militia",
+			"count": 4,
+			"at": "bar_1_behind",
+			"tag": "bar_1_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "pikeman",
+			"as": "pikeman",
+			"count": 2,
+			"at": "bar_1_behind",
+			"tag": "bar_1_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "militia",
+			"count": 5,
+			"at": "bar_2_behind",
+			"tag": "bar_2_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "pikeman",
+			"as": "pikeman",
+			"count": 2,
+			"at": "bar_2_behind",
+			"tag": "bar_2_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "cannon",
+			"count": 1,
+			"at": "bar_2_behind",
+			"tag": "bar_2_men",
+			"tags": [
+				"captured_guns"
+			],
+			"order": "hold",
+			"name": "Captured gun"
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "militia",
+			"count": 6,
+			"at": "bar_3_behind",
+			"tag": "bar_3_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "pikeman",
+			"as": "pikeman",
+			"count": 3,
+			"at": "bar_3_behind",
+			"tag": "bar_3_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "cannon",
+			"count": 1,
+			"at": "bar_3_behind",
+			"tag": "bar_3_men",
+			"tags": [
+				"captured_guns"
+			],
+			"order": "hold",
+			"name": "Captured gun"
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "lyon_man",
+			"count": 2,
+			"at": "bar_3_behind",
+			"tag": "bar_3_men",
+			"tags": [
+				"lyon_men"
+			],
+			"order": "hold",
+			"if": {
+				"past": {
+					"a01_presses.lyon": "risen"
+				}
+			}
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "militia",
+			"count": 4,
+			"at": "pont_notre_dame",
+			"tag": "bridge_nd_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "pikeman",
+			"as": "pikeman",
+			"count": 2,
+			"at": "pont_notre_dame",
+			"tag": "bridge_nd_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "militia",
+			"count": 4,
+			"at": "pont_au_change",
+			"tag": "bridge_ch_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "pikeman",
+			"as": "pikeman",
+			"count": 2,
+			"at": "pont_au_change",
+			"tag": "bridge_ch_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "lyon_man",
+			"count": 2,
+			"at": "pont_notre_dame",
+			"tag": "bridge_nd_men",
+			"tags": [
+				"lyon_men"
+			],
+			"order": "hold",
+			"if": {
+				"past": {
+					"a01_presses.lyon": "sullen"
+				}
+			}
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "lyon_man",
+			"count": 2,
+			"at": "pont_au_change",
+			"tag": "bridge_ch_men",
+			"tags": [
+				"lyon_men"
+			],
+			"order": "hold",
+			"if": {
+				"past": {
+					"a01_presses.lyon": "sullen"
+				}
+			}
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "lyon_man",
+			"count": 4,
+			"at": "pont_notre_dame",
+			"tag": "bridge_nd_men",
+			"tags": [
+				"lyon_men"
+			],
+			"order": "hold",
+			"if": {
+				"past": {
+					"a01_presses.lyon": "risen"
+				}
+			}
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "lyon_man",
+			"count": 4,
+			"at": "pont_au_change",
+			"tag": "bridge_ch_men",
+			"tags": [
+				"lyon_men"
+			],
+			"order": "hold",
+			"if": {
+				"past": {
+					"a01_presses.lyon": "risen"
+				}
+			}
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "militia",
+			"count": 3,
+			"at": "petit_pont",
+			"tag": "petit_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "dismounted",
+			"as": "varenne_hall",
+			"count": 1,
+			"at": "greve",
+			"tag": "varenne",
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "militia",
+			"count": 3,
+			"at": "greve",
+			"tag": "guard",
+			"tags": [
+				"hall_men"
+			],
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "militia",
+			"count": 5,
+			"at": "greve",
+			"tag": "hall_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "pikeman",
+			"as": "pikeman",
+			"count": 3,
+			"at": "greve",
+			"tag": "hall_men",
+			"order": "hold"
+		}
+	],
+	"buildings": [
+		{
+			"team": "army",
+			"kind": "barracks",
+			"at": [
+				109,
+				13
+			],
+			"tag": "barracks"
+		},
+		{
+			"team": "army",
+			"kind": "foundry",
+			"at": [
+				115,
+				13
+			],
+			"tag": "foundry"
+		},
+		{
+			"team": "army",
+			"kind": "horse_breeder",
+			"at": [
+				120,
+				18
+			],
+			"tag": "breeder"
+		},
+		{
+			"team": "army",
+			"kind": "powder_mill",
+			"at": [
+				109,
+				45
+			],
+			"tag": "mill"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				113,
+				41
+			],
+			"tag": "tents"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				117,
+				41
+			],
+			"tag": "tents"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				121,
+				41
+			],
+			"tag": "tents"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				113,
+				45
+			],
+			"tag": "tents"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				117,
+				45
+			],
+			"tag": "tents"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				121,
+				45
+			],
+			"tag": "tents"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				121,
+				37
+			],
+			"tag": "tents"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				99,
+				29
+			],
+			"tag": "bar_1_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				99,
+				30
+			],
+			"tag": "bar_1_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				99,
+				31
+			],
+			"tag": "bar_1_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				99,
+				32
+			],
+			"tag": "bar_1_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				99,
+				33
+			],
+			"tag": "bar_1_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				91,
+				29
+			],
+			"tag": "bar_2_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				91,
+				30
+			],
+			"tag": "bar_2_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				91,
+				31
+			],
+			"tag": "bar_2_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				91,
+				32
+			],
+			"tag": "bar_2_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				91,
+				33
+			],
+			"tag": "bar_2_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				83,
+				29
+			],
+			"tag": "bar_3_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				83,
+				30
+			],
+			"tag": "bar_3_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				83,
+				31
+			],
+			"tag": "bar_3_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				83,
+				32
+			],
+			"tag": "bar_3_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				83,
+				33
+			],
+			"tag": "bar_3_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "town",
+			"kind": "church",
+			"at": [
+				70,
+				55
+			],
+			"tag": "notre_dame",
+			"name": "Notre-Dame"
+		},
+		{
+			"team": "assembly",
+			"kind": "town_hall",
+			"at": [
+				39,
+				36
+			],
+			"tag": "hall",
+			"name": "The Hôtel de Ville"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				34,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				34,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				35,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				35,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				36,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				36,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				37,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				37,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				38,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				38,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				39,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				39,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				40,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				40,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				41,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				41,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				42,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				42,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				43,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				43,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				44,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				44,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				45,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				45,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				46,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				46,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				47,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				47,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				48,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				48,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				49,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				49,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				34
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				47
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				35
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				35
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				36
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				36
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				37
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				37
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				38
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				38
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				39
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				39
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				40
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				40
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				41
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				41
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "gate",
+			"at": [
+				33,
+				42
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				42
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				43
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				43
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				44
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				44
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				45
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				45
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				33,
+				46
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				50,
+				46
+			],
+			"tag": "ring",
+			"name": "The hall's palisade"
+		}
+	],
+	"objectives": [
+		{
+			"id": "barricades",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"text": "Take the three barricades of the faubourg: {taken} of 3. Break them with the guns: the Mortar lobs over, the cannon's canister sweeps the street."
+		},
+		{
+			"id": "fairleigh",
+			"side": "crown",
+			"primary": true,
+			"kind": "protect",
+			"tag": "fairleigh",
+			"text": "Field Marshal Fairleigh must live."
+		},
+		{
+			"id": "tomasz",
+			"side": "crown",
+			"primary": true,
+			"kind": "protect",
+			"tag": "tomasz",
+			"text": "Father Tomasz must live."
+		},
+		{
+			"id": "bridges",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Take the bridges to the Cité, the Pont Notre-Dame and the Pont au Change: {bridges} of 2."
+		},
+		{
+			"id": "notre_dame",
+			"side": "crown",
+			"primary": true,
+			"kind": "protect",
+			"tag": "notre_dame",
+			"hidden": true,
+			"text": "Notre-Dame must not burn: stop the torch-bearers coming over the Petit Pont."
+		},
+		{
+			"id": "varenne",
+			"side": "crown",
+			"primary": true,
+			"kind": "capture",
+			"tag": "varenne",
+			"hidden": true,
+			"text": "Take Varenne ALIVE: open the hall's palisade, wear him down, then a man of yours beside him. Don't let him reach the boats."
+		},
+		{
+			"id": "a_hold",
+			"side": "assembly",
+			"primary": true,
+			"kind": "manual",
+			"text": "Hold Paris: burn Notre-Dame, bring down the Field Marshal, or get Varenne out by the river."
+		}
+	],
+	"triggers": [
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "townsfolk",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "notre_dame",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "ring",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "hall",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "hall_men",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "varenne",
+						"on": true
+					}
+				},
+				{
+					"pin": {
+						"tag": "captured_guns",
+						"on": true
+					}
+				}
+			]
+		},
+		{
+			"id": "intro",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_1",
+						"r_1",
+						"t_1",
+						"f_t1"
+					]
+				},
+				{
+					"ping": {
+						"area": "bar_1"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro_saved",
+			"when": {
+				"all": [
+					{
+						"fired": "intro"
+					},
+					{
+						"past": {
+							"p01_leaf.families": "save"
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"say": [
+						"v_saved",
+						"t_saved"
+					]
+				}
+			]
+		},
+		{
+			"id": "tip_foundry",
+			"when": {
+				"all": [
+					{
+						"fired": "intro"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 40,
+			"do": [
+				{
+					"say": [
+						"tip_foundry"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_a",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "assembly"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"a_1",
+						"a_tip"
+					]
+				}
+			]
+		},
+		{
+			"id": "pay",
+			"when": {
+				"all": [
+					{
+						"time": 60
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 60,
+			"do": [
+				{
+					"give": {
+						"team": "army",
+						"gold": 60,
+						"powder": 30
+					}
+				}
+			]
+		},
+		{
+			"id": "guns_hurt",
+			"when": {
+				"all": [
+					{
+						"hurt": "guns_all"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"times": 1,
+			"do": [
+				{
+					"say": [
+						"r_hurt"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "taken",
+							"at_least": 3
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 6,
+			"do": [
+				{
+					"objective": {
+						"id": "barricades",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"f_2",
+						"t_2",
+						"f_2b"
+					]
+				},
+				{
+					"spare": {
+						"tag": "notre_dame",
+						"on": false
+					}
+				},
+				{
+					"objective": {
+						"id": "bridges",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "notre_dame",
+						"set": "active"
+					}
+				},
+				{
+					"reveal": {
+						"area": "north_bank_bridges",
+						"side": "crown",
+						"secs": 40
+					}
+				},
+				{
+					"reveal": {
+						"area": "parvis",
+						"side": "crown",
+						"secs": 60
+					}
+				},
+				{
+					"ping": {
+						"area": "pont_notre_dame"
+					}
+				},
+				{
+					"ping": {
+						"area": "pont_au_change"
+					}
+				},
+				{
+					"ping": {
+						"tag": "notre_dame"
+					}
+				},
+				{
+					"light": {
+						"to": "day",
+						"secs": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "objs_after_bars",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 10,
+			"do": [
+				{
+					"objective": {
+						"id": "barricades",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "lyon_sullen",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"past": {
+							"a01_presses.lyon": "sullen"
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"say": [
+						"n_lyon_sullen",
+						"t_lyon"
+					]
+				}
+			]
+		},
+		{
+			"id": "lyon_risen",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"past": {
+							"a01_presses.lyon": "risen"
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"say": [
+						"n_lyon_risen",
+						"t_lyon"
+					]
+				}
+			]
+		},
+		{
+			"id": "bridge_nd",
+			"when": {
+				"dead": "bridge_nd_men"
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "bridges",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "bridge_ch",
+			"when": {
+				"dead": "bridge_ch_men"
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "bridges",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "nd_hurt",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"hurt": "notre_dame"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"every": 45,
+			"times": 3,
+			"do": [
+				{
+					"say": [
+						"t_nd"
+					]
+				}
+			]
+		},
+		{
+			"id": "bridges_done",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"counter": {
+							"name": "bridges",
+							"at_least": 2
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "bridges",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"f_bridges"
+					]
+				}
+			]
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"fired": "bridges_done"
+					},
+					{
+						"fired": "torch_3"
+					},
+					{
+						"count": {
+							"tag": "torches",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 5,
+			"do": [
+				{
+					"objective": {
+						"id": "bridges",
+						"set": "hidden"
+					}
+				},
+				{
+					"say": [
+						"f_3",
+						"r_3",
+						"tip_3"
+					]
+				},
+				{
+					"spare": {
+						"tag": "ring",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "hall_men",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "varenne",
+						"on": false
+					}
+				},
+				{
+					"objective": {
+						"id": "varenne",
+						"set": "active"
+					}
+				},
+				{
+					"reveal": {
+						"area": "ring",
+						"side": "crown",
+						"secs": 60
+					}
+				},
+				{
+					"ping": {
+						"area": "greve"
+					}
+				},
+				{
+					"ping": {
+						"area": "port"
+					}
+				},
+				{
+					"light": {
+						"to": "dusk",
+						"secs": 90
+					}
+				}
+			]
+		},
+		{
+			"id": "breached",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"tag": "ring",
+									"below": 60,
+									"buildings": true
+								}
+							},
+							{
+								"count": {
+									"side": "crown",
+									"area": "hall_square",
+									"at_least": 1
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_breach"
+					]
+				}
+			]
+		},
+		{
+			"id": "flight_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "breached"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"not": {
+							"playing": "assembly"
+						}
+					},
+					{
+						"not": {
+							"captured": "varenne"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 25,
+			"do": [
+				{
+					"order": {
+						"tag": "varenne",
+						"do": "move",
+						"to": "port"
+					}
+				},
+				{
+					"order": {
+						"tag": "guard",
+						"do": "follow",
+						"leader": "varenne",
+						"within": 2
+					}
+				},
+				{
+					"say": [
+						"n_flight",
+						"f_flight"
+					]
+				},
+				{
+					"ping": {
+						"area": "port"
+					}
+				},
+				{
+					"reveal": {
+						"area": "port",
+						"side": "crown",
+						"secs": 40
+					}
+				}
+			]
+		},
+		{
+			"id": "flight_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "breached"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"not": {
+							"playing": "assembly"
+						}
+					},
+					{
+						"not": {
+							"captured": "varenne"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"order": {
+						"tag": "varenne",
+						"do": "move",
+						"to": "port"
+					}
+				},
+				{
+					"order": {
+						"tag": "guard",
+						"do": "follow",
+						"leader": "varenne",
+						"within": 2
+					}
+				},
+				{
+					"say": [
+						"n_flight",
+						"f_flight"
+					]
+				},
+				{
+					"ping": {
+						"area": "port"
+					}
+				},
+				{
+					"reveal": {
+						"area": "port",
+						"side": "crown",
+						"secs": 40
+					}
+				}
+			]
+		},
+		{
+			"id": "flight_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "breached"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"not": {
+							"playing": "assembly"
+						}
+					},
+					{
+						"not": {
+							"captured": "varenne"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "varenne",
+						"do": "move",
+						"to": "port"
+					}
+				},
+				{
+					"order": {
+						"tag": "guard",
+						"do": "follow",
+						"leader": "varenne",
+						"within": 2
+					}
+				},
+				{
+					"say": [
+						"n_flight",
+						"f_flight"
+					]
+				},
+				{
+					"ping": {
+						"area": "port"
+					}
+				},
+				{
+					"reveal": {
+						"area": "port",
+						"side": "crown",
+						"secs": 40
+					}
+				}
+			]
+		},
+		{
+			"id": "escaped_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"not": {
+							"captured": "varenne"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"stay": {
+							"tag": "varenne",
+							"area": "port",
+							"secs": 30
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_escaped"
+					]
+				},
+				{
+					"objective": {
+						"id": "varenne",
+						"set": "failed"
+					}
+				},
+				{
+					"objective": {
+						"id": "a_hold",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"varenne": "escaped"
+					}
+				}
+			]
+		},
+		{
+			"id": "escaped_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"not": {
+							"captured": "varenne"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"stay": {
+							"tag": "varenne",
+							"area": "port",
+							"secs": 20
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_escaped"
+					]
+				},
+				{
+					"objective": {
+						"id": "varenne",
+						"set": "failed"
+					}
+				},
+				{
+					"objective": {
+						"id": "a_hold",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"varenne": "escaped"
+					}
+				}
+			]
+		},
+		{
+			"id": "escaped_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"not": {
+							"captured": "varenne"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"stay": {
+							"tag": "varenne",
+							"area": "port",
+							"secs": 14
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_escaped"
+					]
+				},
+				{
+					"objective": {
+						"id": "varenne",
+						"set": "failed"
+					}
+				},
+				{
+					"objective": {
+						"id": "a_hold",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"varenne": "escaped"
+					}
+				}
+			]
+		},
+		{
+			"id": "at_quay",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"count": {
+							"tag": "varenne",
+							"area": "port",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"captured": "varenne"
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_quay"
+					]
+				}
+			]
+		},
+		{
+			"id": "taken",
+			"when": {
+				"captured": "varenne"
+			},
+			"do": [
+				{
+					"say": [
+						"va_taken",
+						"f_taken"
+					]
+				},
+				{
+					"light": {
+						"to": "night",
+						"secs": 30
+					}
+				}
+			]
+		},
+		{
+			"id": "verdict",
+			"when": {
+				"fired": "taken"
+			},
+			"delay": 8,
+			"do": [
+				{
+					"say": [
+						"t_mercy",
+						"f_order"
+					]
+				},
+				{
+					"choice": {
+						"id": "varenne",
+						"side": "crown",
+						"title": "VARENNE",
+						"line": "f_order",
+						"default": "spared",
+						"time": 120,
+						"options": [
+							{
+								"id": "spared",
+								"label": "SPARE HIM: EXILE",
+								"about": "Father Tomasz asks for his life. A ship, and never French ground again.",
+								"do": [
+									{
+										"say": [
+											"f_spared",
+											"va_spared",
+											"t_spared"
+										]
+									}
+								]
+							},
+							{
+								"id": "executed",
+								"label": "EXECUTE HIM",
+								"about": "The King's law for the man who burned Virginia and raised Paris. At dawn, on the Grève.",
+								"do": [
+									{
+										"say": [
+											"f_exec",
+											"va_exec",
+											"t_exec"
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "verdict_given",
+			"when": {
+				"all": [
+					{
+						"fired": "verdict"
+					},
+					{
+						"any": [
+							{
+								"flag": {
+									"varenne": "spared"
+								}
+							},
+							{
+								"flag": {
+									"varenne": "executed"
+								}
+							}
+						]
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"flag": {
+						"paris": "stood"
+					}
+				}
+			]
+		},
+		{
+			"id": "won",
+			"when": {
+				"fired": "verdict_given"
+			},
+			"delay": 7,
+			"do": [
+				{
+					"say": [
+						"f_won"
+					]
+				},
+				{
+					"light": {
+						"to": "dawn",
+						"secs": 15
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"fired": "won"
+			},
+			"delay": 5,
+			"do": [
+				{
+					"win": "crown"
+				}
+			]
+		},
+		{
+			"id": "nd_burnt",
+			"when": {
+				"all": [
+					{
+						"dead": "notre_dame"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_nd_burnt"
+					]
+				},
+				{
+					"objective": {
+						"id": "a_hold",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "marshal_down",
+			"when": {
+				"all": [
+					{
+						"dead": "fairleigh"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "a_hold",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "fairleigh_hurt",
+			"when": {
+				"all": [
+					{
+						"hurt": "fairleigh"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"r_marshal"
+					]
+				}
+			]
+		},
+		{
+			"id": "tomasz_hurt",
+			"when": {
+				"all": [
+					{
+						"hurt": "tomasz"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"f_priest"
+					]
+				}
+			]
+		},
+		{
+			"id": "taken_bar_1",
+			"when": {
+				"dead": "bar_1_men"
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "taken",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"f_bar_1"
+					]
+				}
+			]
+		},
+		{
+			"id": "breach_bar_1",
+			"when": {
+				"all": [
+					{
+						"count": {
+							"tag": "bar_1_wall",
+							"below": 5,
+							"buildings": true
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 3,
+						"at": "bar_2_front",
+						"tag": "rush_bar_1",
+						"tags": [
+							"rush"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"at": "bar_2_front",
+						"tag": "rush_bar_1",
+						"tags": [
+							"rush"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "rush_bar_1",
+						"do": "attack",
+						"to": "faubourg"
+					}
+				}
+			]
+		},
+		{
+			"id": "taken_bar_2",
+			"when": {
+				"dead": "bar_2_men"
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "taken",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"f_bar_2"
+					]
+				}
+			]
+		},
+		{
+			"id": "breach_bar_2",
+			"when": {
+				"all": [
+					{
+						"count": {
+							"tag": "bar_2_wall",
+							"below": 5,
+							"buildings": true
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 4,
+						"at": "bar_3_front",
+						"tag": "rush_bar_2",
+						"tags": [
+							"rush"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"at": "bar_3_front",
+						"tag": "rush_bar_2",
+						"tags": [
+							"rush"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "rush_bar_2",
+						"do": "attack",
+						"to": "faubourg"
+					}
+				}
+			]
+		},
+		{
+			"id": "taken_bar_3",
+			"when": {
+				"dead": "bar_3_men"
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "taken",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"f_bar_3"
+					]
+				}
+			]
+		},
+		{
+			"id": "breach_bar_3",
+			"when": {
+				"all": [
+					{
+						"count": {
+							"tag": "bar_3_wall",
+							"below": 5,
+							"buildings": true
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "pikeman",
+						"as": "pikeman",
+						"count": 5,
+						"at": "bastille",
+						"tag": "rush_bar_3",
+						"tags": [
+							"rush"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 3,
+						"at": "bastille",
+						"tag": "rush_bar_3",
+						"tags": [
+							"rush"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "rush_bar_3",
+						"do": "attack",
+						"to": "faubourg"
+					}
+				}
+			]
+		},
+		{
+			"id": "first_rush",
+			"when": {
+				"any": [
+					{
+						"fired": "breach_bar_1"
+					},
+					{
+						"fired": "breach_bar_2"
+					},
+					{
+						"fired": "breach_bar_3"
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"r_rush",
+						"tip_canister"
+					]
+				},
+				{
+					"point": {
+						"ui": "card",
+						"icon": "ab_canister"
+					}
+				}
+			]
+		},
+		{
+			"id": "torch_1",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 40,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "torch",
+						"count": 2,
+						"at": "maubert",
+						"tag": "torches",
+						"tags": [
+							"torch_1"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"at": "maubert",
+						"tag": "torch_escort"
+					}
+				},
+				{
+					"order": {
+						"tag": "torch_1",
+						"do": "move",
+						"to": "parvis",
+						"only_team": "assembly"
+					}
+				},
+				{
+					"order": {
+						"tag": "torch_escort",
+						"do": "attack",
+						"to": "parvis",
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "petit_pont"
+					}
+				},
+				{
+					"say": [
+						"n_torch"
+					]
+				}
+			]
+		},
+		{
+			"id": "torch_2",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 80,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "torch",
+						"count": 2,
+						"at": "maubert",
+						"tag": "torches",
+						"tags": [
+							"torch_2"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"at": "maubert",
+						"tag": "torch_escort"
+					}
+				},
+				{
+					"order": {
+						"tag": "torch_2",
+						"do": "move",
+						"to": "parvis",
+						"only_team": "assembly"
+					}
+				},
+				{
+					"order": {
+						"tag": "torch_escort",
+						"do": "attack",
+						"to": "parvis",
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "petit_pont"
+					}
+				}
+			]
+		},
+		{
+			"id": "torch_3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 120,
+			"do": [
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "labourer",
+						"as": "torch",
+						"count": 2,
+						"at": "maubert",
+						"tag": "torches",
+						"tags": [
+							"torch_3"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "assembly",
+						"kind": "musketeer",
+						"as": "militia",
+						"count": 2,
+						"at": "maubert",
+						"tag": "torch_escort"
+					}
+				},
+				{
+					"order": {
+						"tag": "torch_3",
+						"do": "move",
+						"to": "parvis",
+						"only_team": "assembly"
+					}
+				},
+				{
+					"order": {
+						"tag": "torch_escort",
+						"do": "attack",
+						"to": "parvis",
+						"idle": true
+					}
+				},
+				{
+					"ping": {
+						"area": "petit_pont"
+					}
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 5
+			},
+			"do": [
+				{
+					"say": [
+						"new_foundry",
+						"new_mortar"
+					]
+				}
+			]
+		}
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "crown",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"fairleigh": {
+			"name": "Field Marshal Fairleigh",
+			"side": "crown"
+		},
+		"tomasz": {
+			"name": "Father Tomasz",
+			"side": "crown"
+		},
+		"ruggieri": {
+			"name": "Colonel Ruggieri",
+			"side": "crown"
+		},
+		"volunteer": {
+			"name": "Will Hollins",
+			"side": "crown"
+		},
+		"varenne": {
+			"name": "Etienne Varenne",
+			"side": "assembly"
+		},
+		"narrator": {
+			"name": "Paris",
+			"side": "crown"
+		},
+		"assembly": {
+			"name": "The Free Assembly",
+			"side": "assembly"
+		},
+		"new": {
+			"name": "NEW",
+			"side": "crown"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "Paris rose in the summer of 2769. Not a riot: a city behind its own walls, with a government in its hall."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "Fairleigh took it back. He was a field marshal by then. Let him tell it; he tells it shorter than I do."
+		},
+		"f_open1": {
+			"who": "fairleigh",
+			"text": "We camped outside the Porte Saint-Antoine. Beyond the gate the faubourg was one long street, and they had cut it three times."
+		},
+		"f_open_printer": {
+			"who": "fairleigh",
+			"text": "The printer the young Father took at Lyon had named Paris. He was right about that, if about nothing else."
+		},
+		"f_open_noprinter": {
+			"who": "fairleigh",
+			"text": "We had no word from inside the city. We learnt its streets the hard way."
+		},
+		"f_open_saved": {
+			"who": "fairleigh",
+			"text": "The Hollins boys came over with the Virginia volunteers. They had asked to."
+		},
+		"f_open2": {
+			"who": "fairleigh",
+			"text": "Ruggieri had his guns, and the King had sent us something new from the foundries: a mortar, to throw a shell over a wall."
+		},
+		"k_open_a": {
+			"who": "king",
+			"text": "The Assembly wrote a great deal that summer. Here is what it meant to do."
+		},
+		"f_1": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "Three barricades between us and the Bastille. Don't walk lines into them, gentlemen. Break them with the guns first."
+		},
+		"r_1": {
+			"who": "ruggieri",
+			"to": "crown",
+			"text": "The mortar throws over a barricade, Marshal. Set it up out of their muskets' reach, five to eleven tiles off."
+		},
+		"t_1": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "There are families behind those shutters, Marshal. They did not all choose this."
+		},
+		"f_t1": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "Then we end it quickly. That is the mercy I can give them."
+		},
+		"v_saved": {
+			"who": "volunteer",
+			"to": "crown",
+			"text": "Sir. The Hollins boys, all six of us. We are here for the Father, and for you."
+		},
+		"t_saved": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "I baptised your sister's boy, Will. Keep your head down for him."
+		},
+		"tip_foundry": {
+			"who": "ruggieri",
+			"to": "crown",
+			"text": "The Foundry casts more guns and mortars, each with a horse from the Breeder. The treasury pays us every minute."
+		},
+		"r_hurt": {
+			"who": "ruggieri",
+			"to": "crown",
+			"text": "They have a gun of their own over there! Keep ours back out of its reach, or answer it."
+		},
+		"r_rush": {
+			"who": "ruggieri",
+			"to": "crown",
+			"text": "They are coming out over the barricade! Canister, load canister!"
+		},
+		"tip_canister": {
+			"who": "ruggieri",
+			"to": "crown",
+			"text": "CANISTER on the gun's card: a cone of balls down the street. Keep the line in front of the guns."
+		},
+		"f_bar_1": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "The first barricade is ours. Bring the guns up."
+		},
+		"f_bar_2": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "Two. The third is the strongest: they have one of our own guns behind it."
+		},
+		"f_bar_3": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "Three. The Bastille is open."
+		},
+		"f_2": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "Now the river. They hold the bridges to the Cité."
+		},
+		"t_2": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "Marshal, look at the far bank. They are carrying torches towards Notre-Dame."
+		},
+		"f_2b": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "Then we take the bridges at the run. Notre-Dame does not burn while I command here."
+		},
+		"n_lyon_sullen": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "Lyon men are on the bridges: weavers who walked from the Croix-Rousse to fight."
+		},
+		"n_lyon_risen": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "Half of Lyon's Assembly is on the bridges and at the Bastille, under its own flags."
+		},
+		"t_lyon": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "I know some of those faces. From the weavers' square."
+		},
+		"n_torch": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "Torch-bearers on the Petit Pont, for the cathedral."
+		},
+		"t_nd": {
+			"who": "tomasz",
+			"to": "crown",
+			"text": "The doors are burning! Men onto the parvis!"
+		},
+		"f_bridges": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "Both bridges. The Cité is ours."
+		},
+		"f_3": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "Now the Hôtel de Ville. Varenne is in there. I want him alive: the King will judge him, not a musket ball."
+		},
+		"r_3": {
+			"who": "ruggieri",
+			"to": "crown",
+			"text": "They have palisaded the whole square. The guns will open it."
+		},
+		"tip_3": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "Take him alive: wear him down, then a man of ours beside him. If he reaches the river, he is gone."
+		},
+		"f_breach": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "The palisade is open. Watch the west gate: he will run."
+		},
+		"n_flight": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "Varenne is out by the west gate, running for the boats at the Port Saint-Nicolas."
+		},
+		"f_flight": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "Riders! After him!"
+		},
+		"n_quay": {
+			"who": "narrator",
+			"to": "crown",
+			"text": "A boat is waiting at the quay. Its oarsmen are already at the oars."
+		},
+		"va_taken": {
+			"who": "varenne",
+			"text": "You have taken a man, Marshal. You have not taken an idea."
+		},
+		"f_taken": {
+			"who": "fairleigh",
+			"text": "I have taken the man who burned Virginia. That will do for today."
+		},
+		"t_mercy": {
+			"who": "tomasz",
+			"text": "Marshal. I ask for his life. Send him away, but let him live. I prayed for his men in Virginia; I pray for him now."
+		},
+		"f_order": {
+			"who": "fairleigh",
+			"text": "The King gave me the right to judge him here. The Father asks for mercy. The order is yours."
+		},
+		"f_spared": {
+			"who": "fairleigh",
+			"text": "Exile, then. A ship, and never French ground again."
+		},
+		"va_spared": {
+			"who": "varenne",
+			"text": "You will regret your mercy, Marshal. Or I will make you glad of it. We shall see."
+		},
+		"t_spared": {
+			"who": "tomasz",
+			"text": "Thank God."
+		},
+		"f_exec": {
+			"who": "fairleigh",
+			"text": "The law, then. At dawn, on the Grève."
+		},
+		"va_exec": {
+			"who": "varenne",
+			"text": "Do it in daylight. Let them all see what the Crown is."
+		},
+		"t_exec": {
+			"who": "tomasz",
+			"text": "I will stay with him tonight, Marshal. Someone should."
+		},
+		"f_won": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "Paris was the King's again by morning. The bells of Notre-Dame rang for Lauds."
+		},
+		"r_marshal": {
+			"who": "ruggieri",
+			"to": "crown",
+			"text": "The Marshal is hit! Keep him behind the line!"
+		},
+		"f_priest": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "The Father is hurt! Men round the priest!"
+		},
+		"n_nd_burnt": {
+			"who": "narrator",
+			"text": "Notre-Dame is burning. The whole city can see it."
+		},
+		"n_escaped": {
+			"who": "narrator",
+			"text": "A boat pushes off from the Port Saint-Nicolas. Varenne is gone down the river."
+		},
+		"a_1": {
+			"who": "assembly",
+			"to": "assembly",
+			"text": "Hold the barricades. Burn Notre-Dame, bring down the Field Marshal, or get Varenne out by the river: any of them wins Paris."
+		},
+		"a_tip": {
+			"who": "assembly",
+			"to": "assembly",
+			"text": "Your men behind a barricade are safe from the Crown's line. Not from its guns: when a barricade breaks, rush the guns."
+		},
+		"f_end1": {
+			"who": "fairleigh",
+			"text": "Paris was quiet by the feast of the Assumption. The barricades went back to being carts and paving stones."
+		},
+		"f_end_spared": {
+			"who": "fairleigh",
+			"text": "Varenne sailed from Le Havre in September. I did not go to see him off."
+		},
+		"f_end_exec": {
+			"who": "fairleigh",
+			"text": "Varenne died on the Grève at dawn. The crowd was very quiet."
+		},
+		"f_end_saved": {
+			"who": "fairleigh",
+			"text": "The Hollins boys went home to Virginia that winter. All six of them."
+		},
+		"t_end_spared": {
+			"who": "tomasz",
+			"text": "I said a Mass of thanksgiving in Notre-Dame. The doors were still black with smoke."
+		},
+		"t_end_exec": {
+			"who": "tomasz",
+			"text": "I said a Mass for his soul. Some of his men came, and I did not send them away."
+		},
+		"k_end_spared": {
+			"who": "king",
+			"text": "Mercy from the victor is still victory. I have never regretted that order."
+		},
+		"k_end_exec": {
+			"who": "king",
+			"text": "It was the law. I have read the order a hundred times since. It is still the law."
+		},
+		"k_end2": {
+			"who": "king",
+			"text": "That was the end of the Assembly's cities. The next fires were not theirs."
+		},
+		"k_end_a1": {
+			"who": "king",
+			"text": "That is not how it went. Paris did not hold."
+		},
+		"k_end_a2": {
+			"who": "king",
+			"text": "But if it had, the Crown would have had two capitals, and one of them against it."
+		},
+		"new_foundry": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE FOUNDRY. Cast your own Field Cannons now, and the Mortar."
+		},
+		"new_mortar": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE MORTAR. It lobs its shell over walls: the barricades are its work, not the line's."
+		}
+	},
+	"stills": {
+		"rome": {
+			"image": "res://campaign/stills/p01_01.jpg",
+			"caption": "Rome, the present. The King."
+		},
+		"barricade": {
+			"image": "res://campaign/stills/a06_01.jpg",
+			"caption": "Paris, July 2769. The barricades of the faubourg."
+		},
+		"battery": {
+			"image": "res://campaign/stills/a06_02.jpg",
+			"caption": "Colonel Ruggieri's guns."
+		},
+		"notre_dame": {
+			"image": "res://campaign/stills/a06_03.jpg",
+			"caption": "Torches on the bridges of the Cité."
+		},
+		"hall": {
+			"image": "res://campaign/stills/a06_04.jpg",
+			"caption": "The Hôtel de Ville."
+		},
+		"prisoner": {
+			"image": "res://campaign/stills/a06_05.jpg",
+			"caption": "Varenne before the Field Marshal."
+		}
+	},
+	"opening": {
+		"crown": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2"
+				]
+			},
+			{
+				"still": "barricade",
+				"lines": [
+					"f_open1",
+					{
+						"id": "f_open_printer",
+						"if": {
+							"past": {
+								"a01_presses.printer": "taken"
+							}
+						}
+					},
+					{
+						"id": "f_open_noprinter",
+						"if": {
+							"not": {
+								"past": {
+									"a01_presses.printer": "taken"
+								}
+							}
+						}
+					},
+					{
+						"id": "f_open_saved",
+						"if": {
+							"past": {
+								"p01_leaf.families": "save"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "battery",
+				"lines": [
+					"f_open2"
+				]
+			}
+		],
+		"assembly": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open_a"
+				]
+			},
+			{
+				"still": "barricade",
+				"lines": [
+					"a_1"
+				]
+			}
+		]
+	},
+	"ending": {
+		"crown": [
+			{
+				"still": "prisoner",
+				"lines": [
+					"f_end1",
+					{
+						"id": "f_end_spared",
+						"if": {
+							"flag": {
+								"varenne": "spared"
+							}
+						}
+					},
+					{
+						"id": "f_end_exec",
+						"if": {
+							"flag": {
+								"varenne": "executed"
+							}
+						}
+					},
+					{
+						"id": "f_end_saved",
+						"if": {
+							"past": {
+								"p01_leaf.families": "save"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "notre_dame",
+				"lines": [
+					{
+						"id": "t_end_spared",
+						"if": {
+							"flag": {
+								"varenne": "spared"
+							}
+						}
+					},
+					{
+						"id": "t_end_exec",
+						"if": {
+							"flag": {
+								"varenne": "executed"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					{
+						"id": "k_end_spared",
+						"if": {
+							"flag": {
+								"varenne": "spared"
+							}
+						}
+					},
+					{
+						"id": "k_end_exec",
+						"if": {
+							"flag": {
+								"varenne": "executed"
+							}
+						}
+					},
+					"k_end2"
+				]
+			}
+		],
+		"assembly": [
+			{
+				"still": "hall",
+				"lines": [
+					"k_end_a1"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_a2"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"crown": {
+			"still": "barricade",
+			"text": [
+				"Paris, July 2769. The Free Assembly holds the city: three barricades across the faubourg, the bridges of the Cité, Varenne in the Hôtel de Ville.",
+				"Break the barricades with your guns (the Mortar is new: it lobs over walls), save Notre-Dame from the torches and take Varenne alive.",
+				"Field Marshal Fairleigh and Father Tomasz must live."
+			]
+		},
+		"assembly": {
+			"still": "barricade",
+			"text": [
+				"Paris, July 2769. You are the Free Assembly, and the city is yours behind its barricades.",
+				"Burn Notre-Dame, bring down the Field Marshal, or get Varenne out by the river."
+			]
+		}
+	},
+	"debrief": {
+		"crown": {
+			"still": "prisoner",
+			"title": "Paris is the King's",
+			"text": "The barricades are down, Notre-Dame stands and Varenne is taken.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"varenne": "spared"
+						}
+					},
+					"text": "Varenne is spared: exile, by your order."
+				},
+				{
+					"if": {
+						"flag": {
+							"varenne": "executed"
+						}
+					},
+					"text": "Varenne is executed, by your order."
+				}
+			]
+		},
+		"assembly": {
+			"still": "hall",
+			"title": "Paris holds",
+			"text": "The Assembly's flags still fly over the Hôtel de Ville."
+		}
+	},
+	"next": {
+		"crown": "",
+		"assembly": ""
+	}
+}

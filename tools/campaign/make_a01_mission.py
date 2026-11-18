@@ -496,7 +496,7 @@ M = {
         "assembly": {"still": "hill", "title": "Lyon rises",
                      "text": "The Assembly's flags fly on the Terreaux. The garrison holds only the east bank."},
     },
-    "next": {"crown": "", "assembly": ""},
+    "next": {"crown": "a06_barricades", "assembly": ""},
 }
 
 for o in M["objectives"]:
