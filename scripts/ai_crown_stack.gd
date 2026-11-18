@@ -52,6 +52,7 @@ var team := 0
 
 var args := OS.get_cmdline_user_args()
 var on_switch := not args.has("buildstack:off")
+var all_kinds := args.has("buildstack:all")     # (variant A of the measure: working hands to every site of the list)
 
 # (the report, result.json crown_ai "stack")
 var sent := 0                    # helpers sent
@@ -97,13 +98,19 @@ func _supply_blocked() -> bool:
 	return game.supply_used(team) >= int(game.players[team]["cap"]) - 1
 
 
-## The helpers a site wants, and whether it is urgent.
+## The helpers a site wants: [working labourers it may take, urgent, idle labourers it may take]. Working hands go only
+## where the building is what holds the economy or the defence up (the first batch, variant A, stacked every Barracks,
+## Foundry and Mill too: they stood in half the time and nothing came sooner, the gold was what they waited for, and the
+## walks cost the side that stacked 4% of its income in the mirror, won or led 4 v 15, p 0.019): a Town Hall (its Farm
+## posts), a Farm while the labourers wait for posts, a Cottage while the supply is blocked, the Barracks / Gate / Cottage
+## under a rush or a seen push. Idle labourers (nothing to work) help any site of the list.
 func want(b: Building) -> Array:
 	var k := b.kind
 	if not WANT.has(k):
-		return [1, false]
+		return [1, false, 1]
 	var n := int(WANT[k])
 	var urgent := false
+	var binding := false
 	if (k == "barracks" or k == "gate" or k == "cottage") and _rush_on():
 		urgent = true
 	elif k == "cottage" and _supply_blocked():
@@ -114,9 +121,23 @@ func want(b: Building) -> Array:
 		urgent = true            # (a new hall's first Farm)
 	elif k == "town_hall" and ai.coach != null and ai._halls().filter(func(h: Building) -> bool: return h.built).size() < ai.coach.halls_need():
 		urgent = true            # (HALLS ON TIME: behind the clock's halls)
+	elif k == "town_hall":
+		binding = true
+	elif k == "farm" and _posts_short():
+		binding = true           # (the labourers wait for posts)
 	if urgent:
 		n = int(URGENT_WANT.get(k, n + 1))
-	return [n, urgent]
+	var work_n := n if (urgent or binding or all_kinds) else 1
+	return [work_n, urgent, n]
+
+
+## Labourers waiting for Farm posts: the free posts on live soil (less those queued) are one or none.
+func _posts_short() -> bool:
+	var free := 0
+	for f in ai._mine("farm"):
+		if f.built and not f.barren():
+			free += maxi(0, f.crew_max() - f.crew.size())
+	return free - ai._labs_queued() <= 1
 
 
 ## A Farm site at a built hall with no built Farm of its own yet.
@@ -204,9 +225,10 @@ func tick() -> void:
 		var w: Array = want(b)
 		var n_want: int = w[0]
 		var urgent: bool = w[1]
+		var n_idle: int = w[2]
 		var on_it := builders(b)
 		var id: int = b.get_instance_id()
-		if on_it.is_empty() or on_it.size() >= n_want:
+		if on_it.is_empty() or on_it.size() >= maxi(n_want, n_idle):
 			continue             # (nobody on it yet: its own builder walks there first, _finish_sites keeps it worked)
 		var work: float = (1.0 - b.progress) * b.build_time()          # labourer-seconds left
 		var cand: Array = []
@@ -218,7 +240,7 @@ func tick() -> void:
 		cand.sort_custom(func(a: Array, c: Array) -> bool: return a[0] < c[0])
 		var n := on_it.size()
 		for c in cand:
-			if n >= n_want or left <= 0:
+			if n >= maxi(n_want, n_idle) or left <= 0:
 				break
 			var walk: float = c[0]
 			var u: Unit = c[1]
@@ -228,7 +250,7 @@ func tick() -> void:
 			if idle:
 				ok = walk + IDLE_MARGIN < work / float(n)
 			else:
-				if room <= 0 or (few and not (urgent and _rush_on())):
+				if n >= n_want or room <= 0 or (few and not (urgent and _rush_on())):
 					continue
 				ok = walk < share * (URGENT_SHARE if urgent else WALK_SHARE) and walk < work / float(n)
 			if not ok:

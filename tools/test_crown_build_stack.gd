@@ -5,6 +5,8 @@ extends SceneTree
 ##   [off]    with the switch off nobody joins, and the Farm takes its full time
 ##   [far]    a working labourer too far away is not pulled (his walk would cost more than his share of the work)
 ##   [unsafe] a site in danger gets no helpers
+##   [binding] a working Farm hand helps a Town Hall (its posts) but not a Barracks with no rush on (its gold, not its
+##            build time, is what the army waits for), unless switched to every kind (buildstack:all, the measure's variant A)
 ##   [ghost]  a site not begun yet (its builder still on the way) gets none: helpers on its footprint would keep it a ghost
 ##   [brood]  THE HALL STEP KEEPS ITS GOLD never plays against the Brood
 ##   godot --headless --fixed-fps 30 --script res://tools/test_crown_build_stack.gd
@@ -156,6 +158,35 @@ func _run() -> void:
 	stk = AICrownStack.new(ai)
 	stk.tick()
 	check("[unsafe] a site in danger gets no helpers", _builders(g, site) == 1, "%d" % _builders(g, site))
+	g.queue_free()
+	await process_frame
+	# ---------------------------------------------------------------- [binding]
+	g = _game()
+	await process_frame
+	await process_frame
+	ai = _ai(g, 0)
+	await process_frame
+	h = U.hall(g, 0)
+	var farm1: Building = null
+	for b in g.buildings:
+		if b.team == 0 and b.kind == "farm" and b.built:
+			farm1 = b
+	var cb := g.find_spot(0, "barracks", h, 4, 14, "near")
+	var lone: Unit = g.workers(0)[0]
+	var bar: Building = g._add_building("barracks", 0, cb, false)      # (begun, not built: its requirement set aside)
+	lone.position = bar.center() + Vector2(0, 60)
+	lone.cmd_build(bar)
+	for i in 16:
+		var u: Unit = g._add_unit("labourer", 0, bar.center() + Vector2(110, 0).rotated(i * 0.4))
+		if farm1 != null:
+			u.cmd_gather(farm1)
+	U.step(g, 0.5)
+	stk = AICrownStack.new(ai)
+	stk.tick()
+	check("[binding] no working hand to a Barracks with no rush on", _builders(g, bar) == 1, "%d builders, %d labourers" % [_builders(g, bar), g.workers(0).size()])
+	stk.all_kinds = true
+	stk.tick()
+	check("[binding] ... but with buildstack:all (variant A) they go", _builders(g, bar) >= 2, "%d builders" % _builders(g, bar))
 	g.queue_free()
 	await process_frame
 	# ---------------------------------------------------------------- [ghost]
