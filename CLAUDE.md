@@ -25,6 +25,21 @@
 
 ## Current work
 
+- a04_visit BUILT (job a04-visit, 0.38.63, branch a04-visit, docs/campaign_a04_build.md): step 7 of Act 1's build order.
+  "Father Ferrer's Visit" (the Clockmaker line after a02, Fürth, autumn 2769, told by Ferrer, the King framing): map
+  campaign:furth_works (a02's map grown: tools/campaign/make_furth_works_map.py starts FROM furth_line.json), mission
+  tools/campaign/make_a04_mission.py, stand-in stills a04_01..05 (make_a04_stills.py; prompts in the doc). Sides: `visit`
+  = Ferrer's party (PURPLE, p1: Ferrer 300 hp, 2 lay brothers, escort by a02 `furth` strong 8 / thin 5, the gate men)
+  + THE GUILD (BLUE, co-op p2, bound to THE ROSTER LADDER's K3: HEAVY WORKS + PENDULUM) + THE WORKS (TEAL, scripted: the
+  automata that act alone); THE MACHINE (RED, versus p2). Part 1 six workshops (a STAY of 10 s each; signs: a Winder
+  winding another, the Assembly's pamphlets on the Lyon type if a01 was played), Hollweg called away, Jakob brings the
+  stop-works (lost: his old log in the barn), the dusk 10:00; Part 2 night: FOLLOW the night Winder (within 8, never 3:
+  it stops), the reveal at the river (c01 `gate` pattern / people), the dawn 7:00; Part 3 THE RIOT: the broken ones
+  CONVERT and march over the bridge and the meadow gap (an open gap) to the machine's ground (counted: lost_to_machine),
+  the machine's sortie, the guild's Pendulum at the yard's gate; THE CHOICE THE BROKEN ONES: MELT (Ferrer) / KEEP
+  (Hollweg), default and canon KEPT. Flags `broken`, `lost_to_machine` (a number: a tally banded by itself), `stopworks`
+  found / logged, `jakob`. VERSUS only. Engine: the `wind` action. ALL TEXT PLACEHOLDER; Ferrer and Brother Anselm need
+  voices. Tests tools/test_campaign_a04.gd, balance tools/sim_campaign_a04.gd. 16 Claude's choices in the doc.
 - a06_barricades BUILT (job a06-barricades, 0.38.59, branch a06-barricades, docs/campaign_a06_build.md): step 6 of Act 1's
   build order. "The Barricades of Paris" (the Crown line after a01, July 2769, told by Field Marshal Fairleigh, Tomasz the
   King's chaplain): map campaign:paris_barricades (the city generator, tools/campaign/make_paris_map.py: the camp outside

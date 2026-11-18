@@ -408,3 +408,16 @@ the keys above (spare, capture, a choice with a default, stay, follow, a countdo
 with 260 health in his hall; his p01 role is unchanged). A way the mission does a thing the engine has no key for: a
 building spared from every blow but one (Notre-Dame burns only at the torch-bearers' hands) is a repeating trigger that
 lifts the spare, hurts it, and puts the spare back in the same round.
+
+## Added by Act 1's a04_visit (a04-visit, 0.38.63; docs/campaign_a04_build.md)
+
+| key / action | what it does |
+| --- | --- |
+| `{"wind": {"tag", "share"}}` | Clockwork units with the tag wound up to that share at least (Unit.wind): run down to nothing a construct stands still, so a scripted team with no ground of its own (the works' broken automata) is wound before it marches, and a scripted guild's Pendulum kept wound on its post |
+
+Everything else in Father Ferrer's Visit is built from the keys above (stay, follow, route and `route_done`, near,
+`convert`, `exits` with `after`, counters, `tally`, countdown clocks, a choice with a default, cage, spare, `if` by `past`
+and `difficulty`, trigger `modes`). New roles in Rebels.ROLES: `ferrer_visit` (Ferrer with 300 health), `lay_brother`.
+A `tally` whose bands are the numbers themselves (`[[0, 0], [1, 1], ...]`) leaves a numeric flag the war map's
+`flag_at_least` can read (`lost_to_machine`).
+

@@ -105,9 +105,10 @@ The economy a faction cannot play without; the first mission of the line teaches
   Crown: bound too). The plan's garrison has a Barracks and a Powder Mill and no Horse Breeder: give it one standing
   (or a site) so the C2 pieces can be MADE, or the step teaches only the given Horsemen. Add C2's cards (CARDS has
   them; pt/es to write: CARDS_PT / CARDS_ES) and its row in test_roster_ladder.gd's "built" list.
-- a04_visit: Ferrer's party (Crown, PURPLE) is the solo default and has no production: not bound. THE GUILD (co-op
-  p2) is bound to K3: Heavy Works + Pendulum. A solo player meets K3's pieces only if the guild is played (or
-  through a02's `gate` pattern): Claude's choice 2.
+- a04_visit: APPLIED (job a04-visit, 0.38.63): Ferrer's party (Crown, PURPLE) is the solo default and has no
+  production: not bound. THE GUILD (co-op p2) is bound to K3: Heavy Works + Pendulum (a Heavy Works stands among the six
+  workshops, a Pendulum is given and holds the yard's gate in the riot); the cards go to the side `visit` 8 s in, in pt
+  / es. A solo player meets K3's pieces only if the guild is played (or through a02's `gate` pattern): Claude's choice 2.
 - a05_specimens: THE CREATURES (the solo pick and versus) are bound to B3; the expedition (Crown stand-in, the
   default) has no production.
 - a06_barricades: APPLIED (job a06-barricades, 0.38.59): the army ("army") and Ruggieri's "guns" (co-op p2) bound to
@@ -183,6 +184,9 @@ ladder there, never here by hand.
   the `gate` pattern unlock, no Aviary, turret, Serpent or research). Cards: the Springer, the Netter.
 - a03_plateau: THE NEST: B2 (the Venom Sire and Spitters makeable) plus the story's deny of the Tyrant Sire. No
   GROW / MATURE / research. Cards (to the nest only): the Venom Sire, the Spitters.
+- a04_visit (0.38.63): THE GUILD (the co-op friend): K3, the Heavy Works and the Pendulum makeable (a Heavy Works among
+  the six workshops, a Pendulum given); no Aviary, turret, Serpent, Great Winder, Ballista or research. Cards (to the
+  visit's side): the Heavy Works, the Pendulum.
 
 ## Engine (docs/campaign_engine.md "Added by the roster ladder")
 

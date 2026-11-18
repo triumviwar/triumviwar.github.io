@@ -70,6 +70,7 @@ func _run() -> void:
 	var pt := r.team_index("party")
 	var mt := r.team_index("machine")
 	print("SIM diff=%s furth=%s jakob=%s gate=%s active=%s careless=%s broken=%s" % [diff, furth, jakob, gate, active, careless, broken])
+	print("SIM start: jakob here=%d escort=%d broken-flag=%s" % [r.tagged("jakob").size(), r.tagged("escort").size(), Campaign.flag("a02_furth", "jakob")])
 	while g.clock < until and not g.over:
 		await physics_frame
 		if active and g.clock >= think:
