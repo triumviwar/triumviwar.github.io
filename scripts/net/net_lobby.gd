@@ -142,11 +142,13 @@ func _preset(m: String) -> void:
 
 
 ## Host: make this a campaign room for a mission played in co-op or versus (Campaign.make_cfg lays out the slots).
-func set_campaign(mission_id: String, md: String, seat := "p1") -> void:
+func set_campaign(mission_id: String, md: String, seat := "p1", pick := "") -> void:
 	if not is_host:
 		return
 	campaign = {"mission": mission_id, "mode": md, "seat": seat}
-	var cfg := Campaign.make_cfg(mission_id, md, seat, true)
+	var cfg := Campaign.make_cfg(mission_id, md, seat, true, pick)
+	if cfg["campaign"].has("pick"):
+		campaign["pick"] = cfg["campaign"]["pick"]      # (THE VERSUS PICK, a07: the side the friend's seat leads)
 	var old_peer := -1
 	for s in slots:
 		if s["who"] == "remote" and int(s.get("peer", -1)) >= 0:

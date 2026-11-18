@@ -10,6 +10,7 @@ static var line := ""            # the storyline whose hub is shown
 static var mode := "solo"
 static var seat := "p1"          # versus: which side the host plays ("p1" / "p2")
 static var solo_pick := ""       # solo: the side picked on the briefing (the SOLO SIDE PICK; "" the mission's own)
+static var vs_pick := ""         # versus: the side the friend's seat (p2) leads when the mission has a "versus_pick" (a07)
 ## THE WAR MAP page (war-map-v1, docs/war_map_v1.md)
 static var map_open := false     # the war map is the page the briefing and the war table go back to
 static var map_home := ""        # the storyline whose hub opened it (its BACK goes there)
@@ -141,7 +142,7 @@ static func war_table(main: Node) -> void:
 		var modes := Campaign.modes_of(m)
 		if not modes.has(mode):
 			mode = "solo"
-		var my_side := Campaign.seat_side(m, mode, seat) if mode == "versus" else (Campaign.solo_side(m, solo_pick) if mode == "solo" else Campaign.seat_side(m, mode, "p1"))
+		var my_side := Campaign.seat_side(m, mode, seat, vs_pick) if mode == "versus" else (Campaign.solo_side(m, solo_pick) if mode == "solo" else Campaign.seat_side(m, mode, "p1"))
 		rv.add_child(UiStyle.heading(Loc.t(String(m.get("title", pick))), 32, UiStyle.TRIM))
 		var br: Dictionary = m.get("briefing", {}).get(my_side, {})
 		var sv := StillView.make(m.get("stills", {}).get(String(br.get("still", "")), {}), _side_col(m, my_side))
@@ -170,21 +171,41 @@ static func war_table(main: Node) -> void:
 			srow.add_theme_constant_override("separation", 8)
 			rv.add_child(srow)
 			srow.add_child(UiStyle.text(Loc.t("YOU PLAY:"), 16, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
-			for st in ["p1", "p2"]:
-				var sd := Campaign.seat_side(m, "versus", st)
+			# (THE VERSUS PICK, a07: the friend's seat may lead one of several sides: a button for each)
+			var seats: Array = [["p1", ""]]
+			var picks := Campaign.versus_picks(m)
+			if picks.is_empty():
+				seats.append(["p2", ""])
+			else:
+				if not picks.has(vs_pick):
+					vs_pick = String(picks[0])
+				for pk in picks:
+					seats.append(["p2", String(pk)])
+			for sp in seats:
+				var st := String(sp[0])
+				var pk := String(sp[1])
+				var sd := Campaign.seat_side(m, "versus", st, pk)
 				var b: Button = main._button(Loc.t(Campaign.side_name(m, sd)).to_upper(), func() -> void:
 					seat = st
+					if pk != "":
+						vs_pick = pk
 					war_table(main))
 				b.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+				b.name = "Seat_" + st + ("_" + pk if pk != "" else "")
 				b.custom_minimum_size = Vector2(190, 46)
-				if st == seat:
+				if st == seat and (pk == "" or pk == vs_pick):
 					UiStyle.chosen(b, _side_col(m, sd))
 				srow.add_child(b)
+			if not picks.is_empty():
+				# the other side the friend could lead is scripted: say so
+				var other: Array = picks.filter(func(x) -> bool: return String(x) != vs_pick)
+				rv.add_child(_wrap(Loc.t("The friend's side: %s. The other is played by the computer: %s.") % [Loc.t(Campaign.side_name(m, vs_pick)),
+					", ".join(other.map(func(x) -> String: return Loc.t(Campaign.side_name(m, String(x)))))], 15, UiStyle.MUTED))
 		var go: Button = main._button("BRIEFING" if mode == "solo" else "OPEN AN ONLINE ROOM", func() -> void:
 			if mode == "solo":
 				briefing(main, pick)
 			else:
-				host_online(main, pick, mode, seat if mode == "versus" else "p1"))
+				host_online(main, pick, mode, seat if mode == "versus" else "p1", vs_pick if mode == "versus" else ""))
 		go.name = "Campaign_Go"
 		UiStyle.primary(go)
 		go.custom_minimum_size = Vector2(0, 60)
@@ -208,14 +229,14 @@ static func war_table(main: Node) -> void:
 
 
 ## CO-OP / VERSUS: host an online room for the mission (the friend joins with the code from ONLINE).
-static func host_online(main: Node, mid: String, md: String, st: String) -> void:
+static func host_online(main: Node, mid: String, md: String, st: String, vp := "") -> void:
 	var relay_ok: bool = not Settings.relay_url.contains("YOURNAME") and Settings.relay_url.strip_edges() != ""
 	if relay_ok:
 		var l := NetLobby.new()
 		main.add_child(l)
 		main.net_lobby = l
 		l.host(Settings.relay_url, NetLink.new_code())
-		l.set_campaign(mid, md, st)
+		l.set_campaign(mid, md, st, vp)
 	main.show_online()
 	var mm: Node = main.menu.get_child(0) if main.menu and main.menu.get_child_count() > 0 else null
 	if mm is MultiplayerMenu and main.net_lobby:
@@ -312,7 +333,8 @@ static func briefing(main: Node, mid: String) -> void:
 static func opening_then_start(main: Node, mid: String, cfg: Dictionary) -> void:
 	var m := Campaign.mission(mid)
 	var camp: Dictionary = cfg.get("campaign", {})
-	var pages := Campaign.show_pages(m, "opening", String(camp.get("side", Campaign.seat_side(m, String(camp.get("mode", "solo")), "p1"))))
+	var pages := Campaign.show_pages(m, "opening", String(camp.get("side", Campaign.seat_side(m, String(camp.get("mode", "solo")),
+		String(camp.get("seat", "p1")), String(camp.get("pick", ""))))))
 	if pages.is_empty():
 		main.start(cfg)
 		return

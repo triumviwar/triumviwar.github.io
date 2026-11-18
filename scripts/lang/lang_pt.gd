@@ -2746,6 +2746,7 @@ const T := {
 	"WAR TABLE": "MESA DE GUERRA",
 	"GO TO": "IR PARA",
 	"Tell your friend the room code: they join from ONLINE with it.": "Diga o código da sala ao seu amigo: ele entra pelo ONLINE com ele.",
+	"The friend's side: %s. The other is played by the computer: %s.": "O lado do amigo: %s. O outro é jogado pelo computador: %s.",
 	"%s follows its own %s build order: %s steps, then its milestones.": "%s segue a sua própria ordem de construção %s: %s passos, depois os seus marcos.",
 	"%s's build order: %s.": "Ordem de construção de %s: %s.",
 	"%s's opening is over: its milestones and its doctrine take over.": "A abertura de %s terminou: os seus marcos e a sua doutrina assumem.",

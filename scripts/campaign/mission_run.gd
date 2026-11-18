@@ -1633,7 +1633,7 @@ func _tick_held() -> void:
 ## its `secs`, flames on it; a spreading one lights the nearest building of its spread tag within reach every `every`
 ## seconds (the new fire spreads the same way); men of the dousing side (or only of `douse_teams`) standing by it (within
 ## 2 tiles of its edge, not asleep or caged) put it out in `douse_secs` (8) seconds of their work together (two men twice as fast), and slow it
-## meanwhile (no spreading, half the burning); RAIN puts every fire out in about 20 s.
+## meanwhile (no spreading, half the burning); RAIN works as one man at every fire (and no fire spreads in it).
 func _tick_fires() -> void:
 	var still: Array = []
 	var lit: Array = []
@@ -1643,7 +1643,7 @@ func _tick_fires() -> void:
 		if not is_instance_valid(b) or b.dead:
 			continue
 		var men := _dousers(b, String(it["dside"]), it.get("dteams", []))
-		var work := float(men) + (0.4 if rain else 0.0)
+		var work := float(men) + (1.0 if rain else 0.0)
 		if work > 0.0:
 			it["douse"] = float(it["douse"]) + work * TICK
 			if float(it["douse"]) >= float(it["dsecs"]):
@@ -1662,7 +1662,7 @@ func _tick_fires() -> void:
 		if randf() < 0.6:
 			game.spawn_effect("fire", b.center() + Vector2(randf_range(-28, 28), randf_range(-22, 14)), 0.9)
 		var sp: Dictionary = it["spread"]
-		if not sp.is_empty() and men == 0:
+		if not sp.is_empty() and men == 0 and not rain:
 			it["t"] = float(it["t"]) - TICK
 			if float(it["t"]) <= 0.0:
 				it["t"] = float(sp.get("every", 12.0))
