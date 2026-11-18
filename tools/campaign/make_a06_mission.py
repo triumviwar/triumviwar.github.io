@@ -12,13 +12,13 @@ The Assembly's great rising: Paris behind barricades, Varenne in the Hôtel de V
 the Crown took the city street by street; Father Tomasz, the King's chaplain to the army, is at his side. The King
 frames it. THE ROSTER LADDER's C3 (docs/campaign_roster_ladder.md): the FOUNDRY and the MORTAR.
   PART 1, THE FAUBOURG: three BARRICADES across the rue du Faubourg Saint-Antoine (palisades the Assembly holds, its men
-    behind them, a captured gun at the second and third). Take them with guns, not by walking in: the Mortar lobs its
+    behind them, no way round them). Take them with guns, not by walking in: the Mortar lobs its
     shell over a barricade, a Field Cannon's round shot breaks it, and when a barricade is breached the Assembly's men
     rush out down the street at the guns: CANISTER.
   PART 2, THE BRIDGES: the Assembly holds the Pont Notre-Dame and the Pont au Change (the Lyon men there by a01's
     `lyon`); torch-bearers cross the Petit Pont from the Place Maubert for NOTRE-DAME, which must not burn.
   PART 3, THE HALL: the Hôtel de Ville's square ringed with palisades: open it with the guns and take VARENNE ALIVE (a
-    CAPTURE). Once his ring is breached he runs for the boats at the Port Saint-Nicolas (20 s at the quay and he is gone).
+    CAPTURE). Once his ring is breached he runs for the boats at the Port Saint-Nicolas (30 s at the quay and he is gone).
   THE CHOICE, VARENNE (the act's): Tomasz asks for mercy, Fairleigh leaves the order to the player: SPARE him (exile:
     the canon) or EXECUTE him. Flags `varenne` spared / executed, `paris` stood.
 THE FLAGS READ: p01_leaf `families` (save: the Virginia volunteers, six Musketeers named over their bars, and their
@@ -59,13 +59,13 @@ LIVE = {"not": {"fired": "the_end"}}
 NOT_OVER = {"not": {"fired": "verdict_given"}}
 
 BARS = ["bar_1", "bar_2", "bar_3"]
-# the barricades' men (NORMAL): militia, pikemen, a captured gun
-BAR_MEN = {"bar_1": (4, 2, 0), "bar_2": (5, 2, 1), "bar_3": (6, 3, 1)}
+# the barricades' men (NORMAL): militia, pikemen, guns (none: a captured gun cut a column down in a street, the sim)
+BAR_MEN = {"bar_1": (3, 1, 0), "bar_2": (4, 1, 0), "bar_3": (5, 2, 0)}
 # the rush out of a breached barricade down the street at the guns: (pikemen, militia, where they come from)
-RUSH = {"bar_1": (3, 2, "bar_2_front"), "bar_2": (4, 2, "bar_3_front"), "bar_3": (5, 3, "bastille")}
+RUSH = {"bar_1": (2, 1, "bar_2_front"), "bar_2": (3, 1, "bar_3_front"), "bar_3": (3, 2, "bastille")}
 FLIGHT_DELAY = {"easy": 25, "normal": 12, "hard": 6}     # seconds after the ring is breached before Varenne runs
-BOAT_SECS = {"easy": 30, "normal": 20, "hard": 14}       # seconds at the Port Saint-Nicolas and the boat pushes off
-TORCH_WAVES = [40, 80, 120]                              # seconds after Part 2 (the torch-bearers on the Petit Pont)
+BOAT_SECS = {"easy": 45, "normal": 30, "hard": 20}       # seconds at the Port Saint-Nicolas and the boat pushes off
+TORCH_WAVES = [60, 100, 140]                              # seconds after Part 2 (the torch-bearers on the Petit Pont)
 NAMES = ["Will Hollins", "Tom Hollins", "Jacob Hollins", "Ned Hollins", "Sam Hollins", "Eli Hollins"]
 RING = make_paris_map.ring_cells(CITY)
 RING_GATE = min(RING, key=lambda c: (abs(c[1] - 42) if c[0] == make_paris_map.RING[0] else 99))   # the west side's middle
@@ -185,15 +185,15 @@ M = {
         {"team": "town", "kind": "labourer", "as": "citizen", "count": 3, "at": "parvis", "tag": "townsfolk", "order": "hold", "fixed": True},
     ] + barricade_units() + [
         # ---- the bridges to the Cité (the Lyon men by a01's `lyon`)
-        {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 4, "at": "pont_notre_dame", "tag": "bridge_nd_men", "order": "hold"},
-        {"team": "assembly", "kind": "pikeman", "as": "pikeman", "count": 2, "at": "pont_notre_dame", "tag": "bridge_nd_men", "order": "hold"},
-        {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 4, "at": "pont_au_change", "tag": "bridge_ch_men", "order": "hold"},
-        {"team": "assembly", "kind": "pikeman", "as": "pikeman", "count": 2, "at": "pont_au_change", "tag": "bridge_ch_men", "order": "hold"},
-        {"team": "assembly", "kind": "musketeer", "as": "lyon_man", "count": 2, "at": "pont_notre_dame", "tag": "bridge_nd_men", "tags": ["lyon_men"], "order": "hold", "if": SULLEN},
-        {"team": "assembly", "kind": "musketeer", "as": "lyon_man", "count": 2, "at": "pont_au_change", "tag": "bridge_ch_men", "tags": ["lyon_men"], "order": "hold", "if": SULLEN},
-        {"team": "assembly", "kind": "musketeer", "as": "lyon_man", "count": 4, "at": "pont_notre_dame", "tag": "bridge_nd_men", "tags": ["lyon_men"], "order": "hold", "if": RISEN},
-        {"team": "assembly", "kind": "musketeer", "as": "lyon_man", "count": 4, "at": "pont_au_change", "tag": "bridge_ch_men", "tags": ["lyon_men"], "order": "hold", "if": RISEN},
-        {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 3, "at": "petit_pont", "tag": "petit_men", "order": "hold"},
+        {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 3, "at": "pont_nd_north", "tag": "bridge_nd_men", "order": "hold"},
+        {"team": "assembly", "kind": "pikeman", "as": "pikeman", "count": 1, "at": "pont_nd_north", "tag": "bridge_nd_men", "order": "hold"},
+        {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 3, "at": "pont_ch_north", "tag": "bridge_ch_men", "order": "hold"},
+        {"team": "assembly", "kind": "pikeman", "as": "pikeman", "count": 1, "at": "pont_ch_north", "tag": "bridge_ch_men", "order": "hold"},
+        {"team": "assembly", "kind": "musketeer", "as": "lyon_man", "count": 2, "at": "pont_nd_north", "tag": "bridge_nd_men", "tags": ["lyon_men"], "order": "hold", "if": SULLEN},
+        {"team": "assembly", "kind": "musketeer", "as": "lyon_man", "count": 2, "at": "pont_ch_north", "tag": "bridge_ch_men", "tags": ["lyon_men"], "order": "hold", "if": SULLEN},
+        {"team": "assembly", "kind": "musketeer", "as": "lyon_man", "count": 4, "at": "pont_nd_north", "tag": "bridge_nd_men", "tags": ["lyon_men"], "order": "hold", "if": RISEN},
+        {"team": "assembly", "kind": "musketeer", "as": "lyon_man", "count": 4, "at": "pont_ch_north", "tag": "bridge_ch_men", "tags": ["lyon_men"], "order": "hold", "if": RISEN},
+        {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 3, "at": "petit_pont_south", "tag": "petit_men", "order": "hold"},
         # ---- the hall: Varenne, his guard, the hall's men inside the ring
         {"team": "assembly", "kind": "dismounted", "as": "varenne_hall", "count": 1, "at": "greve", "tag": "varenne", "order": "hold", "fixed": True},
         {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 3, "at": "greve", "tag": "guard", "tags": ["hall_men"], "order": "hold"},
@@ -235,17 +235,16 @@ M = {
         {"id": "setup", "when": {"time": 0.5}, "do": [
             {"spare": {"tag": "townsfolk", "on": True}}, {"spare": {"tag": "notre_dame", "on": True}},
             {"spare": {"tag": "ring", "on": True}}, {"spare": {"tag": "hall", "on": True}},
-            {"spare": {"tag": "hall_men", "on": True}}, {"spare": {"tag": "varenne", "on": True}},
-            {"pin": {"tag": "captured_guns", "on": True}}]},
+            {"spare": {"tag": "hall_men", "on": True}}, {"spare": {"tag": "varenne", "on": True}}]},
         {"id": "intro", "when": {"all": [{"time": 1.5}, CROWN]}, "do": [
             {"say": ["f_1", "r_1", "t_1", "f_t1"]}, {"ping": {"area": "bar_1"}}]},
         {"id": "intro_saved", "when": {"all": [{"fired": "intro"}, SAVED]}, "delay": 20, "do": [{"say": ["v_saved", "t_saved"]}]},
         {"id": "tip_foundry", "when": {"all": [{"fired": "intro"}, CROWN]}, "delay": 40, "do": [{"say": ["tip_foundry"]}]},
+        {"id": "tip_powder", "when": {"all": [{"fired": "intro"}, CROWN]}, "delay": 90, "do": [{"say": ["tip_powder"]}]},
         {"id": "intro_a", "when": {"all": [{"time": 1.5}, ASSEMBLY]}, "do": [{"say": ["a_1", "a_tip"]}]},
         # the King's treasury pays the army
-        {"id": "pay", "when": {"all": [{"time": 60}, LIVE]}, "every": 60, "do": [{"give": {"team": "army", "gold": 60, "powder": 30}}]},
+        {"id": "pay", "when": {"all": [{"time": 60}, LIVE]}, "every": 60, "do": [{"give": {"team": "army", "gold": 100, "powder": 40}}]},
         # ================================================================ PART 1: THE FAUBOURG
-        {"id": "guns_hurt", "when": {"all": [{"hurt": "guns_all"}, CROWN]}, "times": 1, "do": [{"say": ["r_hurt"]}]},
         {"id": "part2", "when": {"all": [{"counter": {"name": "taken", "at_least": 3}}, LIVE]}, "delay": 6, "do": [
             {"objective": {"id": "barricades", "set": "done"}},
             {"say": ["f_2", "t_2", "f_2b"]},
@@ -253,7 +252,9 @@ M = {
             {"objective": {"id": "bridges", "set": "active"}}, {"objective": {"id": "notre_dame", "set": "active"}},
             {"reveal": {"area": "north_bank_bridges", "side": "crown", "secs": 40}}, {"reveal": {"area": "parvis", "side": "crown", "secs": 60}},
             {"ping": {"area": "pont_notre_dame"}}, {"ping": {"area": "pont_au_change"}}, {"ping": {"tag": "notre_dame"}},
+            {"build": {"team": "army", "kind": "powder_mill", "at": [70, 25], "tag": "magazine", "name": "The Bastille's magazine"}},
             {"light": {"to": "day", "secs": 60}}]},
+        {"id": "magazine_line", "when": {"all": [{"fired": "part2"}, CROWN]}, "delay": 20, "do": [{"say": ["f_magazine"]}, {"ping": {"tag": "magazine"}}]},
         {"id": "objs_after_bars", "when": {"fired": "part2"}, "delay": 10, "do": [{"objective": {"id": "barricades", "set": "hidden"}}]},
         # ================================================================ PART 2: THE BRIDGES
         {"id": "lyon_sullen", "when": {"all": [{"fired": "part2"}, SULLEN, CROWN]}, "delay": 12, "do": [{"say": ["n_lyon_sullen", "t_lyon"]}]},
@@ -342,16 +343,17 @@ M = {
         "v_saved": {"who": "volunteer", "to": "crown", "text": "Sir. The Hollins boys, all six of us. We are here for the Father, and for you."},
         "t_saved": {"who": "tomasz", "to": "crown", "text": "I baptised your sister's boy, Will. Keep your head down for him."},
         "tip_foundry": {"who": "ruggieri", "to": "crown", "text": "The Foundry casts more guns and mortars, each with a horse from the Breeder. The treasury pays us every minute."},
-        "r_hurt": {"who": "ruggieri", "to": "crown", "text": "They have a gun of their own over there! Keep ours back out of its reach, or answer it."},
+        "tip_powder": {"who": "ruggieri", "to": "crown", "text": "Ten shots a musket, Marshal, then the bayonet. Keep the powder wagon close behind the line: it fills them again."},
         "r_rush": {"who": "ruggieri", "to": "crown", "text": "They are coming out over the barricade! Canister, load canister!"},
         "tip_canister": {"who": "ruggieri", "to": "crown", "text": "CANISTER on the gun's card: a cone of balls down the street. Keep the line in front of the guns."},
         "f_bar_1": {"who": "fairleigh", "to": "crown", "text": "The first barricade is ours. Bring the guns up."},
-        "f_bar_2": {"who": "fairleigh", "to": "crown", "text": "Two. The third is the strongest: they have one of our own guns behind it."},
+        "f_bar_2": {"who": "fairleigh", "to": "crown", "text": "Two. The third is the strongest: the Bastille is behind it."},
         "f_bar_3": {"who": "fairleigh", "to": "crown", "text": "Three. The Bastille is open."},
         # part 2
         "f_2": {"who": "fairleigh", "to": "crown", "text": "Now the river. They hold the bridges to the Cité."},
         "t_2": {"who": "tomasz", "to": "crown", "text": "Marshal, look at the far bank. They are carrying torches towards Notre-Dame."},
         "f_2b": {"who": "fairleigh", "to": "crown", "text": "Then we take the bridges at the run. Notre-Dame does not burn while I command here."},
+        "f_magazine": {"who": "fairleigh", "to": "crown", "text": "The Bastille's powder magazine is ours. The wagon and the muskets fill up there now, not back at the camp."},
         "n_lyon_sullen": {"who": "narrator", "to": "crown", "text": "Lyon men are on the bridges: weavers who walked from the Croix-Rousse to fight."},
         "n_lyon_risen": {"who": "narrator", "to": "crown", "text": "Half of Lyon's Assembly is on the bridges and at the Bastille, under its own flags."},
         "t_lyon": {"who": "tomasz", "to": "crown", "text": "I know some of those faces. From the weavers' square."},

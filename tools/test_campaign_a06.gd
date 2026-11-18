@@ -138,7 +138,7 @@ func _to_part3(g: Game, r: MissionRun) -> void:
 	_kill(r, "bridge_ch_men")
 	_step(g, g.clock + 0.5)
 	var t0 := float(r.fired["part2"])
-	_step(g, t0 + 121.0)
+	_step(g, t0 + 141.0)
 	_kill(r, "torches")
 	_kill(r, "torch_escort")
 	_step(g, g.clock + 0.5)
@@ -255,9 +255,8 @@ func _part1() -> void:
 		and r.obj["notre_dame"] == "hidden" and r.obj["varenne"] == "hidden")
 	for b in ["bar_1", "bar_2", "bar_3"]:
 		var walls: Array = r.tagged(b + "_wall")
-		check("%s: five palisades across the street, the Assembly's" % b, walls.size() == 5 and walls.all(func(w): return w.team == at))
-	check("the barricades' men: 6, 8 (a captured gun), 10", r.tagged("bar_1_men").size() == 6 and r.tagged("bar_2_men").size() == 8 and r.tagged("bar_3_men").size() == 10
-		and r.tagged("captured_guns").size() == 2, str([r.tagged("bar_1_men").size(), r.tagged("bar_2_men").size(), r.tagged("bar_3_men").size()]))
+		check("%s: ten palisades across the street (two deep), the Assembly's" % b, walls.size() == 10 and walls.all(func(w): return w.team == at))
+	check("the barricades' men: 4, 5, 7", r.tagged("bar_1_men").size() == 4 and r.tagged("bar_2_men").size() == 5 and r.tagged("bar_3_men").size() == 7, str([r.tagged("bar_1_men").size(), r.tagged("bar_2_men").size(), r.tagged("bar_3_men").size()]))
 	check("Notre-Dame, the hall, its ring and its men are spared until their part", r.tagged("notre_dame")[0].spared and r.tagged("hall")[0].spared
 		and r.tagged("ring").all(func(b): return b.spared) and r.tagged("hall_men").all(func(u): return u.spared) and r.tagged("varenne")[0].spared)
 	check("the hall's ring: palisades and one gate (the west side's, the Assembly's way out)", r.tagged("ring").size() > 40
@@ -265,8 +264,8 @@ func _part1() -> void:
 	# a breach: one palisade of the first barricade down
 	r.tagged("bar_1_wall")[2].take_damage(1e9, null)
 	_step(g, 30.0)
-	check("A BREACH: the rush comes out down the street (3 pikes, 2 militia)", r.fired.has("breach_bar_1") and r.tagged("rush_bar_1").size() == 5
-		and r.tagged("rush_bar_1").filter(func(u): return u.kind == "pikeman").size() == 3)
+	check("A BREACH: the rush comes out down the street (2 pikes, a militiaman)", r.fired.has("breach_bar_1") and r.tagged("rush_bar_1").size() == 3
+		and r.tagged("rush_bar_1").filter(func(u): return u.kind == "pikeman").size() == 2)
 	_step(g, 31.25)
 	check("...Ruggieri calls for canister (the tip, the card pointed at)", _said(r, "r_rush") and _said(r, "tip_canister"))
 	_kill(r, "bar_1_men")
@@ -276,11 +275,12 @@ func _part1() -> void:
 	_kill(r, "bar_3_men")
 	_step(g, 33.0)
 	check("all three taken", int(r.counters["taken"]) == 3 and _said(r, "f_bar_3"))
-	_step(g, 38.5)
+	_step(g, 33.25)
+	_step(g, 38.75)
 	check("not Part 2 at once", not r.fired.has("part2"))
 	_step(g, 39.5)
 	check("PART 2 six seconds after: the barricades done, the bridges and Notre-Dame shown", r.fired.has("part2") and r.obj["barricades"] == "done"
-		and r.obj["bridges"] == "active" and r.obj["notre_dame"] == "active" and not r.tagged("notre_dame")[0].spared)
+		and r.obj["bridges"] == "active" and r.obj["notre_dame"] == "active" and not r.tagged("notre_dame")[0].spared, str([r.fired.has("part2"), r.obj, r.tagged("notre_dame")[0].spared]))
 
 
 # ================================================================== part 2
@@ -292,25 +292,26 @@ func _part2() -> void:
 	await _to_part2(g, r)
 	var t0 := float(r.fired["part2"])
 	_step(g, t0 + 13.0)
+	check("the Bastille's magazine is the army's now (a powder mill)", r.tagged("magazine").size() == 1 and r.tagged("magazine")[0].team == r.team_index("army"))
 	check("sullen Lyon: the narrator names the Lyon men, Tomasz knows them", _said(r, "n_lyon_sullen") and _said(r, "t_lyon") and not _said(r, "n_lyon_risen"))
-	_step(g, t0 + 39.0)
-	check("no torches before 0:40", r.tagged("torches").is_empty())
-	_step(g, t0 + 40.5)
+	_step(g, t0 + 59.0)
+	check("no torches before 1:00", r.tagged("torches").is_empty())
+	_step(g, t0 + 60.5)
 	var tor: Array = r.tagged("torches")
 	check("THE FIRST TORCH WAVE at the Place Maubert: 2 torch-bearers, 2 militia", tor.size() == 2 and tor.all(func(u): return u.has_meta("torch")) and r.tagged("torch_escort").size() == 2
 		and _said(r, "n_torch"))
 	check("...sent over the Petit Pont to the parvis", tor.all(func(u): return u.order == "move"))
 	_kill(r, "bridge_nd_men")
-	_step(g, t0 + 41.0)
+	_step(g, t0 + 61.0)
 	check("the Pont Notre-Dame taken (its Lyon men too): 1 of 2", int(r.counters["bridges"]) == 1)
 	_kill(r, "bridge_ch_men")
-	_step(g, t0 + 41.5)
+	_step(g, t0 + 61.5)
 	check("BOTH BRIDGES: done", int(r.counters["bridges"]) == 2 and r.obj["bridges"] == "done" and _said(r, "f_bridges"))
 	_kill(r, "torches")
-	_step(g, t0 + 60.0)
+	_step(g, t0 + 80.0)
 	check("Part 3 waits for the torch waves", not r.fired.has("part3"))
-	_step(g, t0 + 120.5)
-	check("the third wave at 2:00", r.fired.has("torch_3") and r.tagged("torches").size() == 2)
+	_step(g, t0 + 140.5)
+	check("the second and third waves at 1:40 and 2:20", r.fired.has("torch_3") and r.tagged("torch_2").size() == 2 and r.tagged("torch_3").size() == 2, str([r.fired.has("torch_3"), r.tagged("torches").size()]))
 	_kill(r, "torches")
 	_step(g, g.clock + 0.5)
 	_step(g, g.clock + 5.5)
@@ -338,10 +339,10 @@ func _part3() -> void:
 	var va: Unit = r.tagged("varenne")[0]
 	check("...then RUNS for the boats with his guard", r.fired.has("flight_normal") and va.order == "move" and _said(r, "n_flight") and not r.fired.has("flight_easy"))
 	_put(g, [va], r.area_rect("port").get_center())
-	_walk(g, g.clock + 10.0)
+	_walk(g, g.clock + 20.0)
 	check("at the quay: the boat waits (not yet gone)", not g.over and _said(r, "n_quay"))
 	_walk(g, g.clock + 11.0)
-	check("20 s at the quay: VARENNE ESCAPES, the Crown loses", g.over and r.winner_side == "assembly" and r.obj["varenne"] == "failed" and _said(r, "n_escaped"))
+	check("30 s at the quay: VARENNE ESCAPES, the Crown loses", g.over and r.winner_side == "assembly" and r.obj["varenne"] == "failed" and _said(r, "n_escaped"))
 	# ---- the capture and the choice: SPARED
 	for v in ["spared", "executed"]:
 		_progress("save", "calm", "taken")
@@ -392,9 +393,14 @@ func _part3() -> void:
 	va.take_damage(1e6, null)
 	_put(g, [r.tagged("army_men")[0]], va.position + Vector2(20, 0))
 	_step(g, g.clock + 0.5)
+	_step(g, g.clock + 0.25)
 	_step(g, g.clock + 8.5)
-	_step(g, g.clock + 121.0)
-	check("the choice left unanswered: the canon, SPARED", r.flags.get("varenne", "") == "spared")
+	_step(g, g.clock + 0.5)
+	check("the choice is open", String(r.choice_open.get("id", "")) == "varenne")
+	_step(g, g.clock + 119.0)
+	check("...it waits two minutes", r.flags.get("varenne", "") == "")
+	_step(g, g.clock + 2.0)
+	check("the choice left unanswered: the canon, SPARED", r.flags.get("varenne", "") == "spared", str([r.flags, r.choice_open, r.captured]))
 
 
 # ================================================================== the defeats
@@ -424,7 +430,7 @@ func _versus() -> void:
 	var g: Game = await _start("versus")
 	var r: MissionRun = g.mission
 	check("versus: the Assembly's objective", r.objectives_for("assembly").map(func(o): return o["id"]) == ["a_hold"])
-	check("versus: the Assembly's own lines", _said(r, "a_1") and not _said(r, "f_1"))
+	check("versus: the Crown's lines are its own (to the Crown)", _said(r, "f_1") and String(r.data["lines"]["f_1"]["to"]) == "crown" and String(r.data["lines"]["a_1"]["to"]) == "assembly")
 	await _to_part2(g, r)
 	_kill(r, "notre_dame")
 	_step(g, g.clock + 0.5)
@@ -437,7 +443,7 @@ func _versus() -> void:
 # ================================================================== the difficulty
 
 func _difficulty() -> void:
-	for d in [["easy", 3, 25], ["hard", 5, 6]]:
+	for d in [["easy", 2, 25], ["hard", 4, 6]]:
 		_progress("save", "calm", "taken", d[0])
 		var g: Game = await _start()
 		var r: MissionRun = g.mission

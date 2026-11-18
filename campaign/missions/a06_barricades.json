@@ -379,14 +379,32 @@
 			9,
 			8
 		],
+		"pont_nd_north": [
+			55,
+			46,
+			6,
+			3
+		],
+		"pont_ch_north": [
+			69,
+			47,
+			6,
+			2
+		],
+		"petit_pont_south": [
+			61,
+			65,
+			6,
+			3
+		],
 		"bar_1": [
-			98,
+			97,
 			28,
-			3,
+			4,
 			7
 		],
 		"bar_1_behind": [
-			94,
+			93,
 			29,
 			4,
 			5
@@ -398,13 +416,13 @@
 			5
 		],
 		"bar_2": [
-			90,
+			89,
 			28,
-			3,
+			4,
 			7
 		],
 		"bar_2_behind": [
-			86,
+			85,
 			29,
 			4,
 			5
@@ -416,13 +434,13 @@
 			5
 		],
 		"bar_3": [
-			82,
+			81,
 			28,
-			3,
+			4,
 			7
 		],
 		"bar_3_behind": [
-			78,
+			77,
 			29,
 			4,
 			5
@@ -708,7 +726,7 @@
 			"team": "assembly",
 			"kind": "musketeer",
 			"as": "militia",
-			"count": 4,
+			"count": 3,
 			"at": "bar_1_behind",
 			"tag": "bar_1_men",
 			"order": "hold"
@@ -717,9 +735,27 @@
 			"team": "assembly",
 			"kind": "pikeman",
 			"as": "pikeman",
-			"count": 2,
+			"count": 1,
 			"at": "bar_1_behind",
 			"tag": "bar_1_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "musketeer",
+			"as": "militia",
+			"count": 4,
+			"at": "bar_2_behind",
+			"tag": "bar_2_men",
+			"order": "hold"
+		},
+		{
+			"team": "assembly",
+			"kind": "pikeman",
+			"as": "pikeman",
+			"count": 1,
+			"at": "bar_2_behind",
+			"tag": "bar_2_men",
 			"order": "hold"
 		},
 		{
@@ -727,8 +763,8 @@
 			"kind": "musketeer",
 			"as": "militia",
 			"count": 5,
-			"at": "bar_2_behind",
-			"tag": "bar_2_men",
+			"at": "bar_3_behind",
+			"tag": "bar_3_men",
 			"order": "hold"
 		},
 		{
@@ -736,51 +772,9 @@
 			"kind": "pikeman",
 			"as": "pikeman",
 			"count": 2,
-			"at": "bar_2_behind",
-			"tag": "bar_2_men",
-			"order": "hold"
-		},
-		{
-			"team": "assembly",
-			"kind": "cannon",
-			"count": 1,
-			"at": "bar_2_behind",
-			"tag": "bar_2_men",
-			"tags": [
-				"captured_guns"
-			],
-			"order": "hold",
-			"name": "Captured gun"
-		},
-		{
-			"team": "assembly",
-			"kind": "musketeer",
-			"as": "militia",
-			"count": 6,
 			"at": "bar_3_behind",
 			"tag": "bar_3_men",
 			"order": "hold"
-		},
-		{
-			"team": "assembly",
-			"kind": "pikeman",
-			"as": "pikeman",
-			"count": 3,
-			"at": "bar_3_behind",
-			"tag": "bar_3_men",
-			"order": "hold"
-		},
-		{
-			"team": "assembly",
-			"kind": "cannon",
-			"count": 1,
-			"at": "bar_3_behind",
-			"tag": "bar_3_men",
-			"tags": [
-				"captured_guns"
-			],
-			"order": "hold",
-			"name": "Captured gun"
 		},
 		{
 			"team": "assembly",
@@ -803,8 +797,8 @@
 			"team": "assembly",
 			"kind": "musketeer",
 			"as": "militia",
-			"count": 4,
-			"at": "pont_notre_dame",
+			"count": 3,
+			"at": "pont_nd_north",
 			"tag": "bridge_nd_men",
 			"order": "hold"
 		},
@@ -812,8 +806,8 @@
 			"team": "assembly",
 			"kind": "pikeman",
 			"as": "pikeman",
-			"count": 2,
-			"at": "pont_notre_dame",
+			"count": 1,
+			"at": "pont_nd_north",
 			"tag": "bridge_nd_men",
 			"order": "hold"
 		},
@@ -821,8 +815,8 @@
 			"team": "assembly",
 			"kind": "musketeer",
 			"as": "militia",
-			"count": 4,
-			"at": "pont_au_change",
+			"count": 3,
+			"at": "pont_ch_north",
 			"tag": "bridge_ch_men",
 			"order": "hold"
 		},
@@ -830,8 +824,8 @@
 			"team": "assembly",
 			"kind": "pikeman",
 			"as": "pikeman",
-			"count": 2,
-			"at": "pont_au_change",
+			"count": 1,
+			"at": "pont_ch_north",
 			"tag": "bridge_ch_men",
 			"order": "hold"
 		},
@@ -840,7 +834,7 @@
 			"kind": "musketeer",
 			"as": "lyon_man",
 			"count": 2,
-			"at": "pont_notre_dame",
+			"at": "pont_nd_north",
 			"tag": "bridge_nd_men",
 			"tags": [
 				"lyon_men"
@@ -857,7 +851,7 @@
 			"kind": "musketeer",
 			"as": "lyon_man",
 			"count": 2,
-			"at": "pont_au_change",
+			"at": "pont_ch_north",
 			"tag": "bridge_ch_men",
 			"tags": [
 				"lyon_men"
@@ -874,7 +868,7 @@
 			"kind": "musketeer",
 			"as": "lyon_man",
 			"count": 4,
-			"at": "pont_notre_dame",
+			"at": "pont_nd_north",
 			"tag": "bridge_nd_men",
 			"tags": [
 				"lyon_men"
@@ -891,7 +885,7 @@
 			"kind": "musketeer",
 			"as": "lyon_man",
 			"count": 4,
-			"at": "pont_au_change",
+			"at": "pont_ch_north",
 			"tag": "bridge_ch_men",
 			"tags": [
 				"lyon_men"
@@ -908,7 +902,7 @@
 			"kind": "musketeer",
 			"as": "militia",
 			"count": 3,
-			"at": "petit_pont",
+			"at": "petit_pont_south",
 			"tag": "petit_men",
 			"order": "hold"
 		},
@@ -1122,6 +1116,71 @@
 			"team": "assembly",
 			"kind": "wall",
 			"at": [
+				98,
+				29
+			],
+			"tag": "bar_1_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				98,
+				30
+			],
+			"tag": "bar_1_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				98,
+				31
+			],
+			"tag": "bar_1_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				98,
+				32
+			],
+			"tag": "bar_1_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				98,
+				33
+			],
+			"tag": "bar_1_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
 				91,
 				29
 			],
@@ -1187,6 +1246,71 @@
 			"team": "assembly",
 			"kind": "wall",
 			"at": [
+				90,
+				29
+			],
+			"tag": "bar_2_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				90,
+				30
+			],
+			"tag": "bar_2_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				90,
+				31
+			],
+			"tag": "bar_2_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				90,
+				32
+			],
+			"tag": "bar_2_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				90,
+				33
+			],
+			"tag": "bar_2_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
 				83,
 				29
 			],
@@ -1240,6 +1364,71 @@
 			"kind": "wall",
 			"at": [
 				83,
+				33
+			],
+			"tag": "bar_3_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				82,
+				29
+			],
+			"tag": "bar_3_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				82,
+				30
+			],
+			"tag": "bar_3_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				82,
+				31
+			],
+			"tag": "bar_3_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				82,
+				32
+			],
+			"tag": "bar_3_wall",
+			"tags": [
+				"barricades"
+			],
+			"name": "Barricade"
+		},
+		{
+			"team": "assembly",
+			"kind": "wall",
+			"at": [
+				82,
 				33
 			],
 			"tag": "bar_3_wall",
@@ -1969,12 +2158,6 @@
 						"tag": "varenne",
 						"on": true
 					}
-				},
-				{
-					"pin": {
-						"tag": "captured_guns",
-						"on": true
-					}
 				}
 			]
 		},
@@ -2052,6 +2235,27 @@
 			]
 		},
 		{
+			"id": "tip_powder",
+			"when": {
+				"all": [
+					{
+						"fired": "intro"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 90,
+			"do": [
+				{
+					"say": [
+						"tip_powder"
+					]
+				}
+			]
+		},
+		{
 			"id": "intro_a",
 			"when": {
 				"all": [
@@ -2091,30 +2295,9 @@
 				{
 					"give": {
 						"team": "army",
-						"gold": 60,
-						"powder": 30
+						"gold": 100,
+						"powder": 40
 					}
-				}
-			]
-		},
-		{
-			"id": "guns_hurt",
-			"when": {
-				"all": [
-					{
-						"hurt": "guns_all"
-					},
-					{
-						"playing": "crown"
-					}
-				]
-			},
-			"times": 1,
-			"do": [
-				{
-					"say": [
-						"r_hurt"
-					]
 				}
 			]
 		},
@@ -2198,9 +2381,47 @@
 					}
 				},
 				{
+					"build": {
+						"team": "army",
+						"kind": "powder_mill",
+						"at": [
+							70,
+							25
+						],
+						"tag": "magazine",
+						"name": "The Bastille's magazine"
+					}
+				},
+				{
 					"light": {
 						"to": "day",
 						"secs": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "magazine_line",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"say": [
+						"f_magazine"
+					]
+				},
+				{
+					"ping": {
+						"tag": "magazine"
 					}
 				}
 			]
@@ -2694,7 +2915,7 @@
 						"stay": {
 							"tag": "varenne",
 							"area": "port",
-							"secs": 30
+							"secs": 45
 						}
 					}
 				]
@@ -2748,7 +2969,7 @@
 						"stay": {
 							"tag": "varenne",
 							"area": "port",
-							"secs": 20
+							"secs": 30
 						}
 					}
 				]
@@ -2802,7 +3023,7 @@
 						"stay": {
 							"tag": "varenne",
 							"area": "port",
-							"secs": 14
+							"secs": 20
 						}
 					}
 				]
@@ -3124,7 +3345,7 @@
 					{
 						"count": {
 							"tag": "bar_1_wall",
-							"below": 5,
+							"below": 10,
 							"buildings": true
 						}
 					},
@@ -3141,7 +3362,7 @@
 						"team": "assembly",
 						"kind": "pikeman",
 						"as": "pikeman",
-						"count": 3,
+						"count": 2,
 						"at": "bar_2_front",
 						"tag": "rush_bar_1",
 						"tags": [
@@ -3154,7 +3375,7 @@
 						"team": "assembly",
 						"kind": "musketeer",
 						"as": "militia",
-						"count": 2,
+						"count": 1,
 						"at": "bar_2_front",
 						"tag": "rush_bar_1",
 						"tags": [
@@ -3197,7 +3418,7 @@
 					{
 						"count": {
 							"tag": "bar_2_wall",
-							"below": 5,
+							"below": 10,
 							"buildings": true
 						}
 					},
@@ -3214,7 +3435,7 @@
 						"team": "assembly",
 						"kind": "pikeman",
 						"as": "pikeman",
-						"count": 4,
+						"count": 3,
 						"at": "bar_3_front",
 						"tag": "rush_bar_2",
 						"tags": [
@@ -3227,7 +3448,7 @@
 						"team": "assembly",
 						"kind": "musketeer",
 						"as": "militia",
-						"count": 2,
+						"count": 1,
 						"at": "bar_3_front",
 						"tag": "rush_bar_2",
 						"tags": [
@@ -3270,7 +3491,7 @@
 					{
 						"count": {
 							"tag": "bar_3_wall",
-							"below": 5,
+							"below": 10,
 							"buildings": true
 						}
 					},
@@ -3287,7 +3508,7 @@
 						"team": "assembly",
 						"kind": "pikeman",
 						"as": "pikeman",
-						"count": 5,
+						"count": 3,
 						"at": "bastille",
 						"tag": "rush_bar_3",
 						"tags": [
@@ -3300,7 +3521,7 @@
 						"team": "assembly",
 						"kind": "musketeer",
 						"as": "militia",
-						"count": 3,
+						"count": 2,
 						"at": "bastille",
 						"tag": "rush_bar_3",
 						"tags": [
@@ -3362,7 +3583,7 @@
 					}
 				]
 			},
-			"delay": 40,
+			"delay": 60,
 			"do": [
 				{
 					"spawn": {
@@ -3429,7 +3650,7 @@
 					}
 				]
 			},
-			"delay": 80,
+			"delay": 100,
 			"do": [
 				{
 					"spawn": {
@@ -3491,7 +3712,7 @@
 					}
 				]
 			},
-			"delay": 120,
+			"delay": 140,
 			"do": [
 				{
 					"spawn": {
@@ -3661,10 +3882,10 @@
 			"to": "crown",
 			"text": "The Foundry casts more guns and mortars, each with a horse from the Breeder. The treasury pays us every minute."
 		},
-		"r_hurt": {
+		"tip_powder": {
 			"who": "ruggieri",
 			"to": "crown",
-			"text": "They have a gun of their own over there! Keep ours back out of its reach, or answer it."
+			"text": "Ten shots a musket, Marshal, then the bayonet. Keep the powder wagon close behind the line: it fills them again."
 		},
 		"r_rush": {
 			"who": "ruggieri",
@@ -3684,7 +3905,7 @@
 		"f_bar_2": {
 			"who": "fairleigh",
 			"to": "crown",
-			"text": "Two. The third is the strongest: they have one of our own guns behind it."
+			"text": "Two. The third is the strongest: the Bastille is behind it."
 		},
 		"f_bar_3": {
 			"who": "fairleigh",
@@ -3705,6 +3926,11 @@
 			"who": "fairleigh",
 			"to": "crown",
 			"text": "Then we take the bridges at the run. Notre-Dame does not burn while I command here."
+		},
+		"f_magazine": {
+			"who": "fairleigh",
+			"to": "crown",
+			"text": "The Bastille's powder magazine is ours. The wagon and the muskets fill up there now, not back at the camp."
 		},
 		"n_lyon_sullen": {
 			"who": "narrator",

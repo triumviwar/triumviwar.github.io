@@ -117,19 +117,22 @@ def areas_extra(c):
         "north_bank_bridges": [52, 45, 26, 6],
         "left_bank": [4, 62, 100, 32],
         "greve_west": [24, 40, 9, 8],
+        "pont_nd_north": [55, 46, 6, 3],
+        "pont_ch_north": [69, 47, 6, 2],
+        "petit_pont_south": [61, 65, 6, 3],
     }
     # each barricade: the cells across the street (x), its front (east) and the street behind it (west)
     for nm, x in BARRICADES.items():
-        out[nm] = [x - 1, STREET[1] - 1, 3, STREET[3] - STREET[1] + 2]
-        out[nm + "_behind"] = [x - 5, STREET[1], 4, STREET[3] - STREET[1]]
+        out[nm] = [x - 2, STREET[1] - 1, 4, STREET[3] - STREET[1] + 2]
+        out[nm + "_behind"] = [x - 6, STREET[1], 4, STREET[3] - STREET[1]]
         out[nm + "_front"] = [x + 2, STREET[1], 4, STREET[3] - STREET[1]]
     return out
 
 
 def barricade_cells(nm):
-    """The cells a barricade takes: across the street at its x."""
+    """The cells a barricade takes: across the street at its x, two deep (carts, beams and paving stones)."""
     x = BARRICADES[nm]
-    return [[x, y] for y in range(STREET[1], STREET[3])]
+    return [[xx, y] for xx in (x, x - 1) for y in range(STREET[1], STREET[3])]
 
 
 def ring_cells(c):
