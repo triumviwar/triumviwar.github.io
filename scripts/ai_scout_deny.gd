@@ -33,6 +33,8 @@ const MAX_ALL := 4
 const LONE_R := 9.0             # (tiles) a soldier is a scout only with no armed friend this near
 const SCOUT_SPEED := 88.0       # an armed scout is this quick ...
 const SCOUT_VALUE := 180.0      # ... and worth no more than this (a Horseman, a Raptor, a Swift; not a Ticking Owl's raid)
+const SLOW := 40.0              # an unarmed machine slower than this is no scout (the Great Winder)
+const HUNTER_MIN := 50.0        # a hunter at least this quick (no Spring Ballista or Pendulum sent after a scout)
 const CATCH := 0.85             # a hunter this quick against the scout's pace can cut a scout's loop off (AI._defend's rule)
 const EVERY := 0.5              # (s) looked at at most this often
 const COOL := 20.0              # (s) a scout that got away is left alone this long (unless it comes deeper in)
@@ -148,8 +150,8 @@ func _scouts() -> Array:
 			continue
 		if base_dist(o.position) > 0.0 or not game.is_visible_to(ai.team, o.position):
 			continue
-		if not o.is_worker() and _armed(o) and not _lone(o):
-			continue
+		if not _lone(o):
+			continue                    # (a worker or a Winder with fighters about is an attack's escort: the defence's)
 		out.append(o)
 	return out
 
@@ -164,7 +166,7 @@ func is_scout(o: Unit) -> bool:
 	if o.is_worker():
 		return true
 	if not _armed(o):
-		return true                 # (a Messenger, a balloon, a Missionary)
+		return float(o.d.get("speed", 0)) >= SLOW         # (a Messenger, a balloon, a Missionary; not a Great Winder)
 	if float(Game.unit_value(o)) > SCOUT_VALUE:
 		return false
 	if _brood() and AIBroodNew.is_rider(o):
@@ -216,7 +218,7 @@ func is_free(u: Unit) -> bool:
 
 
 func _fit(u: Unit, o: Unit) -> bool:
-	if not u.can_hit(o):
+	if not u.can_hit(o) or float(u.d.get("speed", 60)) < HUNTER_MIN:
 		return false
 	var d := u.position.distance_to(o.position)
 	if d > SEND_R * Defs.TILE:
