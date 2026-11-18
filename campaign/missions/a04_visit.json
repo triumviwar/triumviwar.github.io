@@ -192,8 +192,8 @@
 			10
 		],
 		"w_start": [
-			44,
-			21,
+			42,
+			12,
 			3,
 			2
 		],
@@ -2169,9 +2169,8 @@
 						"name": "Gear ground",
 						"disguise": {
 							"as": "guild",
-							"within": 4,
-							"by": "visit",
-							"secs": 2
+							"within": 0,
+							"secs": 99999
 						}
 					}
 				},
@@ -2445,7 +2444,7 @@
 			"when": {
 				"all": [
 					{
-						"fired": "night"
+						"fired": "leg1"
 					},
 					{
 						"not": {
@@ -2701,7 +2700,11 @@
 								}
 							},
 							{
-								"unmasked": "mesh"
+								"near": {
+									"team": "party",
+									"to": "mesh",
+									"within": 4
+								}
 							}
 						]
 					},
@@ -2716,6 +2719,12 @@
 				{
 					"unmask": {
 						"tag": "mesh"
+					}
+				},
+				{
+					"spare": {
+						"tag": "mesh",
+						"on": true
 					}
 				},
 				{

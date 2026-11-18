@@ -164,7 +164,7 @@ M = {
         {"ws_%d" % (i + 1): s[2] for i, s in enumerate(SHOPS)},
         town=[36, 2, 14, 6], yard=[32, 11, 23, 17], barn=[31, 14, 4, 9], honest_ring=[40, 13, 14, 10],
         # the night Winder's way: out of the yard, round by the town and the line's back, down to the river
-        w_start=[44, 21, 3, 2], w_town=[40, 8, 4, 2], w_camp=[52, 8, 3, 2], w_line=[54, 24, 3, 3], bank=[50, 31, 6, 4],
+        w_start=[42, 12, 3, 2], w_town=[40, 8, 4, 2], w_camp=[52, 8, 3, 2], w_line=[54, 24, 3, 3], bank=[50, 31, 6, 4],
         bank_watch=[44, 26, 14, 10], mesh_at=[52, 32, 2, 2],
         # the riot's way to the machine: the bridge, the south bank, the open gap, the machine's ground
         bridge=[39, 34, 6, 8], bridge_s=[40, 41, 6, 4], gap=[55, 45, 6, 7], meadow_ground=[67, 39, 22, 15], meadow=[74, 41, 12, 9],
@@ -287,7 +287,7 @@ M = {
         {"id": "night", "when": {"fired": "part2"}, "delay": 20, "do": [
             {"light": {"to": "night", "secs": 20}},
             {"build": {"team": "machine", "kind": "regulator", "at": "mesh_at", "tag": "mesh", "name": "Gear ground",
-                       "disguise": {"as": "guild", "within": 4, "by": "visit", "secs": 2}}}]
+                       "disguise": {"as": "guild", "within": 0, "secs": 99999}}}]
             + riot_units() + [
             {"spawn": {"team": "works", "kind": "winder", "count": 1, "at": "w_start", "tag": "night_winder", "name": "The night Winder"}},
             {"objective": {"id": "follow", "set": "active"}}, {"objective": {"id": "dawn", "set": "active"}},
@@ -300,7 +300,7 @@ M = {
         {"id": "leg3", "when": {"all": [{"route_done": "leg2"}, {"counter": {"name": "turning", "below": 1}}]}, "delay": 6, "do": [
             {"order": {"tag": "night_winder", "do": "route", "route": ["bank"], "name": "leg3"}}]},
         # too close: it stops, turns and goes back the way it came; a while later it sets out again
-        {"id": "spotted", "when": {"all": [{"fired": "night"}, {"not": {"route_done": "leg3"}}, {"counter": {"name": "turning", "below": 1}},
+        {"id": "spotted", "when": {"all": [{"fired": "leg1"}, {"not": {"route_done": "leg3"}}, {"counter": {"name": "turning", "below": 1}},
                                           {"near": {"team": "party", "to": "night_winder", "within": 3}}, LIVE]}, "every": 1, "do": [
             {"counter": {"name": "turning", "set": 1}}, {"counter": {"name": "spotted", "add": 1}},
             {"order": {"tag": "night_winder", "do": "move", "to": "w_start"}}, {"say": ["n_spotted"]}, {"clock": {"name": "resume", "secs": 18}}]},
@@ -318,8 +318,9 @@ M = {
         {"id": "at_bank", "when": {"route_done": "leg3"}, "do": [
             {"objective": {"id": "follow", "set": "done"}}, {"objective": {"id": "watch", "set": "active"}}, {"say": ["b_bank"]},
             {"ping": {"area": "bank"}}]},
-        {"id": "reveal", "when": {"all": [{"fired": "at_bank"}, {"any": [{"stay": {"tag": "ferrer", "area": "bank_watch", "secs": 3}}, {"unmasked": "mesh"}]}, LIVE]}, "do": [
-            {"unmask": {"tag": "mesh"}}, {"objective": {"id": "watch", "set": "done"}}, {"clock": {"name": "dawn", "stop": True}},
+        {"id": "reveal", "when": {"all": [{"fired": "at_bank"}, {"any": [{"stay": {"tag": "ferrer", "area": "bank_watch", "secs": 3}},
+                                                                          {"near": {"team": "party", "to": "mesh", "within": 4}}]}, LIVE]}, "do": [
+            {"unmask": {"tag": "mesh"}}, {"spare": {"tag": "mesh", "on": True}}, {"objective": {"id": "watch", "set": "done"}}, {"clock": {"name": "dawn", "stop": True}},
             {"objective": {"id": "dawn", "set": "hidden"}}, {"reveal": {"area": "bank", "side": "visit", "secs": 30}},
             {"say": ["n_mesh", "f_mesh"]}]},
         {"id": "reveal_pattern", "when": {"all": [{"fired": "reveal"}, PATTERN]}, "delay": 1, "do": [{"say": ["f_pattern", "b_pattern"]}]},
