@@ -20,7 +20,7 @@ the King frames it, and old Tomasz (the cardinal) says one line in the frame. A 
     every 15 s he is NOT there (from 0:25) two weavers turn to the mob (the temper +1). When he has spoken, the rest go home.
   PART 3, THE LAST PRESS: a weaver tells Tomasz of the great press in a hidden yard under the hill, reached by two
     traboules. Find it (DISGUISED too), take its master printer, Master Rouvière, ALIVE (a CAPTURE) and close it. He
-    names Paris (the a06 hint). The temper at the end sets the flag `lyon` (calm under 10, else sullen).
+    names Paris (the a06 hint). The temper at the end sets the flag `lyon` (calm under 6, else sullen).
 THE PROLOGUE'S FLAG (p01_leaf `families`: save / leave): Tomasz's opening lines and one of his lines at the end.
 VERSUS ONLY (no solo mirror: the Assembly is not a faction): the friend is the Free Assembly: his runners to walk to the
   squares, the presses' men, the bands and the mob; he wins at the temper's top or if Tomasz falls.
@@ -68,6 +68,7 @@ LAYOUT_ABOUT = {"old_town": "The hill's west, the slopes, the Presqu'île, Vieux
 PERIOD = {"easy": 150, "normal": 120, "hard": 95}    # seconds between a press's runners
 TEMPER_TOP = 20
 TEMPER_START = 2
+CALM_UNDER = 6      # the temper at the end under this: `lyon` calm, else sullen
 SEARCH = 3          # seconds a Crown man must stand at a house's door (2 tiles) to see what it is
 
 
@@ -132,6 +133,7 @@ def press_triggers():
     tr = []
     for i in range(1, 7):
         tr.append({"id": "found_%d" % i, "when": {"unmasked": "press_%d" % i}, "do": [
+            {"hurt": {"tag": "press_%d" % i, "amount": 150}},          # (its door broken in as it is found)
             {"spawn": {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 2, "near": "press_%d" % i,
                        "at": "east_bank", "tag": "press_men", "order": "hold"}},
             {"spawn": {"team": "assembly", "kind": "pikeman", "as": "pikeman", "count": 1, "near": "press_%d" % i,
@@ -264,6 +266,7 @@ M = {
         {"id": "intro_saved", "when": {"all": [{"fired": "intro"}, SAVED]}, "delay": 16, "do": [{"say": ["t_saved"]}]},
         {"id": "intro_left", "when": {"all": [{"fired": "intro"}, LEFT]}, "delay": 16, "do": [{"say": ["t_left"]}]},
         {"id": "tip_riders", "when": {"fired": "intro"}, "delay": 30, "do": [{"say": ["tip_2"]}]},
+        {"id": "tip_powder", "when": {"all": [{"fired": "intro"}, CROWN]}, "delay": 120, "do": [{"say": ["tip_powder"]}]},
         {"id": "intro_a", "when": {"all": [{"time": 1.5}, ASSEMBLY]}, "do": [{"say": ["a_1", "a_tip"]}]},
         # the city pays its garrison
         {"id": "pay", "when": {"all": [{"time": 60}, LIVE]}, "every": 60, "do": [{"give": {"team": "garrison", "gold": 40}}]},
@@ -292,17 +295,17 @@ M = {
         {"id": "objs_after_presses", "when": {"fired": "part2"}, "delay": 10, "do": [{"objective": {"id": "presses", "set": "hidden"}}]},
         # ================================================================ PART 2: THE WEAVERS' HILL
         # the Assembly's bands come up the three stairs to the hall
-        {"id": "band_1", "when": {"fired": "part2"}, "delay": 25, "do": [
-            {"spawn": {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 4, "at": "terreaux", "tag": "band"}},
+        {"id": "band_1", "when": {"fired": "part2"}, "delay": 40, "do": [
+            {"spawn": {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 3, "at": "terreaux", "tag": "band"}},
             {"spawn": {"team": "assembly", "kind": "pikeman", "as": "pikeman", "count": 2, "at": "terreaux", "tag": "band"}},
             {"spawn": {"team": "assembly", "kind": "labourer", "as": "torch", "count": 1, "fixed": True, "at": "terreaux", "tag": "band"}},
             {"order": {"tag": "band", "do": "attack", "to": "hall_square"}}, {"say": ["d_band1"]}, {"ping": {"area": "stair_c"}}]},
-        {"id": "band_2", "when": {"fired": "part2"}, "delay": 65, "do": [
-            {"spawn": {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 4, "at": "pont_saone_n", "tag": "band2"}},
+        {"id": "band_2", "when": {"fired": "part2"}, "delay": 80, "do": [
+            {"spawn": {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 3, "at": "pont_saone_n", "tag": "band2"}},
             {"spawn": {"team": "assembly", "kind": "pikeman", "as": "pikeman", "count": 3, "at": "pont_saone_n", "tag": "band2"}},
             {"order": {"tag": "band2", "do": "attack", "to": "hall_square"}}, {"say": ["d_band2"]}, {"ping": {"area": "stair_w"}}]},
-        {"id": "band_3", "when": {"fired": "part2"}, "delay": 105, "do": [
-            {"spawn": {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 5, "at": "pont_rhone_n", "tag": "band3"}},
+        {"id": "band_3", "when": {"fired": "part2"}, "delay": 120, "do": [
+            {"spawn": {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 4, "at": "pont_rhone_n", "tag": "band3"}},
             {"spawn": {"team": "assembly", "kind": "pikeman", "as": "pikeman", "count": 2, "at": "pont_rhone_n", "tag": "band3"}},
             {"spawn": {"team": "assembly", "kind": "labourer", "as": "torch", "count": 1, "fixed": True, "at": "pont_rhone_n", "tag": "band3"}},
             {"order": {"tag": "band3", "do": "attack", "to": "hall_square"}}, {"say": ["d_band3"]}, {"ping": {"area": "stair_e"}}]},
@@ -316,7 +319,7 @@ M = {
         {"id": "turn_line", "when": {"fired": "turn"}, "do": [{"say": ["n_turn", "t_turn"]}]},
         {"id": "mob_go", "when": {"all": [{"fired": "turn"}, LIVE]}, "delay": 3.5, "every": 3, "do": [
             {"spare": {"tag": "mob", "on": False}},          # (they were weavers, kept out of the fight: no longer)
-            {"order": {"tag": "mob", "do": "attack", "to": "hall_square", "idle": True}}]},
+            {"order": {"tag": "mob", "do": "hunt", "prey": "weavers_hall", "within": 20, "idle": True}}]},
         {"id": "spoken", "when": {"done": "speech"}, "do": [
             {"say": ["t_spoken", "wv_spoken"]},
             {"order": {"tag": "weavers", "only_team": "town", "do": "move", "to": "home_w"}},
@@ -348,7 +351,7 @@ M = {
         {"id": "taken", "when": {"captured": "printer"}, "do": [{"say": ["pr_taken", "t_taken"]}, {"flag": {"printer": "taken"}}]},
         {"id": "won", "when": {"all": [{"captured": "printer"}, {"dead": "great_press"}, {"fired": "part3"}, LIVE]}, "delay": 3, "do": [
             {"say": ["d_won", "t_won"]},
-            {"tally": {"flag": "lyon", "counter": "temper", "bands": [[0, "calm"], [10, "sullen"]]}},
+            {"tally": {"flag": "lyon", "counter": "temper", "bands": [[0, "calm"], [CALM_UNDER, "sullen"]]}},
             {"light": {"to": "dawn", "secs": 20}}]},
         {"id": "the_end", "when": {"fired": "won"}, "delay": 8, "do": [{"win": "crown"}]},
         # ================================================================ THE DEFEATS / THE ASSEMBLY'S WIN
@@ -384,6 +387,7 @@ M = {
         "t_1": {"who": "tomasz", "text": "Then we watch the squares, and follow the runners home."},
         "tip_1": {"who": "delorme", "to": "crown", "text": "A press looks like a house until our men stand at its door. Every runner who reaches a square stirs the city."},
         "tip_2": {"who": "delorme", "to": "crown", "text": "The riders are quick through the streets. Send them to look. Keep the muskets on the squares."},
+        "tip_powder": {"who": "delorme", "to": "crown", "text": "Ten shots a musket, Father, then the bayonet. The powder wagon fills them again: keep it near the men."},
         "t_saved": {"who": "tomasz", "to": "crown", "text": "In Virginia we saved the families. Here, too, it is the people we must save, not only the walls."},
         "t_left": {"who": "tomasz", "to": "crown", "text": "In Virginia we left the families on the road. I will not leave this city to the fire."},
         "w_runner": {"who": "watch", "to": "crown", "text": "A runner, Captain! A boy with a bundle of papers, running for the squares."},

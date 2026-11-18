@@ -345,8 +345,8 @@ func _part2(g: Game, r: MissionRun, P: String) -> void:
 	var temper := int(r.counters["temper"])
 	_step(g, t0 + 30.0)
 	check(P + "...they are the Assembly's mob now, no longer spared", r.tagged("mob").size() == 2 and r.tagged("mob").all(func(u): return u.team == r.team_index("assembly") and not u.spared))
-	_step(g, t0 + 31.0)
-	check(P + "the first band at the Terreaux, for the hall", r.tagged("band").size() == 7 and r.said_ids.has("d_band1"))
+	_step(g, t0 + 41.0)
+	check(P + "the first band at the Terreaux, for the hall", r.tagged("band").size() == 6 and r.said_ids.has("d_band1"))
 	_put(g, r.tagged("tomasz"), r.area_rect("hall_square").get_center() + Vector2(0, 64))
 	var t1 := g.clock
 	var turned := int(r.counters["weavers"])
@@ -404,11 +404,11 @@ func _parts23() -> void:
 	_step(g, g.clock + 0.25)
 	check("TAKEN ALIVE: the capture done, the flag `printer`", r.obj["rouviere"] == "done" and r.flags.get("printer", "") == "taken" and r.said_ids.has("pr_taken"),
 		str([r.obj["rouviere"], r.flags.get("printer", ""), pr.hp, pr.hp_floor, men[0].dead, men[0].position.distance_to(pr.position)]))
-	r.act({"counter": {"name": "temper", "set": 6}})
+	r.act({"counter": {"name": "temper", "set": 5}})
 	_kill(r, "great_press")
 	_step(g, g.clock + 0.5)
 	_step(g, g.clock + 3.5)
-	check("the great press closed: Lyon is quiet, `lyon` calm (temper 6)", r.fired.has("won") and r.flags.get("lyon", "") == "calm" and int(r.flags.get("lyon_n", -1)) == 6)
+	check("the great press closed: Lyon is quiet, `lyon` calm (temper 5)", r.fired.has("won") and r.flags.get("lyon", "") == "calm" and int(r.flags.get("lyon_n", -1)) == 5)
 	_step(g, g.clock + 8.5)
 	check("THE PRESSES ARE SILENT: the Crown wins", g.over and r.winner_side == "crown")
 	await create_timer(1.8).timeout
@@ -425,12 +425,16 @@ func _parts23() -> void:
 	var p := Campaign.progress()
 	check("it counts: done, by the Crown, the flags kept", (p["done"] as Dictionary).has(MID) and Campaign.flag(MID, "lyon") == "calm"
 		and Campaign.flag(MID, "printer") == "taken")
-	# ---- sullen: the temper at 10 or more
+	# ---- sullen: the temper at 6 or more
 	g = await _start_layout("old_town")
 	r = g.mission
-	r.act({"counter": {"name": "temper", "set": 12}})
-	r.fire({"id": "x", "do": [{"tally": {"flag": "lyon", "counter": "temper", "bands": [[0, "calm"], [10, "sullen"]]}}]})
-	check("a temper of 12 at the end: `lyon` sullen", r.flags.get("lyon", "") == "sullen")
+	r.act({"counter": {"name": "temper", "set": 6}})
+	var won_tr: Dictionary = {}
+	for t in r.data["triggers"]:
+		if String(t["id"]) == "won":
+			won_tr = t
+	r.fire({"id": "x", "do": (won_tr["do"] as Array).filter(func(a): return a.has("tally"))})
+	check("a temper of 6 at the end: `lyon` sullen", r.flags.get("lyon", "") == "sullen")
 
 
 # ================================================================== the defeats

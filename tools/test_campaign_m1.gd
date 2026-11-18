@@ -77,7 +77,7 @@ func _data() -> void:
 	var m := Campaign.mission(MID)
 	var pr := Campaign.problems(m)
 	check("p01_leaf: data checks out", pr.is_empty(), "; ".join(pr))
-	check("the prologue is p01_leaf", (Campaign.storylines()[0]["missions"] as Array) == [MID])
+	check("the Crown line begins with p01_leaf (then Act 1's a01)", (Campaign.storylines()[0]["missions"] as Array)[0] == MID)
 	var miss: Array = []
 	for t in Campaign.strings_of(m) + Campaign.index_strings():
 		if not LangPt.T.has(t) or not LangEs.T.has(t):

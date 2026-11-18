@@ -1894,6 +1894,27 @@
 			]
 		},
 		{
+			"id": "tip_powder",
+			"when": {
+				"all": [
+					{
+						"fired": "intro"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 120,
+			"do": [
+				{
+					"say": [
+						"tip_powder"
+					]
+				}
+			]
+		},
+		{
 			"id": "intro_a",
 			"when": {
 				"all": [
@@ -2229,14 +2250,14 @@
 			"when": {
 				"fired": "part2"
 			},
-			"delay": 25,
+			"delay": 40,
 			"do": [
 				{
 					"spawn": {
 						"team": "assembly",
 						"kind": "musketeer",
 						"as": "militia",
-						"count": 4,
+						"count": 3,
 						"at": "terreaux",
 						"tag": "band"
 					}
@@ -2286,14 +2307,14 @@
 			"when": {
 				"fired": "part2"
 			},
-			"delay": 65,
+			"delay": 80,
 			"do": [
 				{
 					"spawn": {
 						"team": "assembly",
 						"kind": "musketeer",
 						"as": "militia",
-						"count": 4,
+						"count": 3,
 						"at": "pont_saone_n",
 						"tag": "band2"
 					}
@@ -2332,14 +2353,14 @@
 			"when": {
 				"fired": "part2"
 			},
-			"delay": 105,
+			"delay": 120,
 			"do": [
 				{
 					"spawn": {
 						"team": "assembly",
 						"kind": "musketeer",
 						"as": "militia",
-						"count": 5,
+						"count": 4,
 						"at": "pont_rhone_n",
 						"tag": "band3"
 					}
@@ -2487,8 +2508,9 @@
 				{
 					"order": {
 						"tag": "mob",
-						"do": "attack",
-						"to": "hall_square",
+						"do": "hunt",
+						"prey": "weavers_hall",
+						"within": 20,
 						"idle": true
 					}
 				}
@@ -2838,7 +2860,7 @@
 								"calm"
 							],
 							[
-								10,
+								6,
 								"sullen"
 							]
 						]
@@ -4452,6 +4474,12 @@
 			},
 			"do": [
 				{
+					"hurt": {
+						"tag": "press_1",
+						"amount": 150
+					}
+				},
+				{
 					"spawn": {
 						"team": "assembly",
 						"kind": "musketeer",
@@ -4643,6 +4671,12 @@
 				"unmasked": "press_2"
 			},
 			"do": [
+				{
+					"hurt": {
+						"tag": "press_2",
+						"amount": 150
+					}
+				},
 				{
 					"spawn": {
 						"team": "assembly",
@@ -4836,6 +4870,12 @@
 			},
 			"do": [
 				{
+					"hurt": {
+						"tag": "press_3",
+						"amount": 150
+					}
+				},
+				{
 					"spawn": {
 						"team": "assembly",
 						"kind": "musketeer",
@@ -5027,6 +5067,12 @@
 				"unmasked": "press_4"
 			},
 			"do": [
+				{
+					"hurt": {
+						"tag": "press_4",
+						"amount": 150
+					}
+				},
 				{
 					"spawn": {
 						"team": "assembly",
@@ -5220,6 +5266,12 @@
 			},
 			"do": [
 				{
+					"hurt": {
+						"tag": "press_5",
+						"amount": 150
+					}
+				},
+				{
 					"spawn": {
 						"team": "assembly",
 						"kind": "musketeer",
@@ -5411,6 +5463,12 @@
 				"unmasked": "press_6"
 			},
 			"do": [
+				{
+					"hurt": {
+						"tag": "press_6",
+						"amount": 150
+					}
+				},
 				{
 					"spawn": {
 						"team": "assembly",
@@ -5689,6 +5747,11 @@
 			"who": "delorme",
 			"to": "crown",
 			"text": "The riders are quick through the streets. Send them to look. Keep the muskets on the squares."
+		},
+		"tip_powder": {
+			"who": "delorme",
+			"to": "crown",
+			"text": "Ten shots a musket, Father, then the bayonet. The powder wagon fills them again: keep it near the men."
 		},
 		"t_saved": {
 			"who": "tomasz",

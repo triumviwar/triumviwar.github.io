@@ -3356,6 +3356,7 @@ const T := {
 	"The printer named Paris. We should have listened sooner.": "El impresor nombró París. Debimos escuchar antes.",
 	"I spoke on the weavers' square until I had no voice left. Some of them still write to me.": "Hablé en la plaza de los tejedores hasta quedarme sin voz. Algunos todavía me escriben.",
 	"Rouvière would not say who paid him. He said Paris, as if it were a prayer.": "Rouvière no quiso decir quién le pagaba. Decía París, como si fuera una oración.",
+	"Ten shots a musket, Father, then the bayonet. The powder wagon fills them again: keep it near the men.": "Diez disparos por mosquete, padre, y luego la bayoneta. El carro de pólvora los vuelve a llenar: manténgalo cerca de los hombres.",
 	"The Fürth Line": "La Línea de Fürth",
 	"Fürth, March 2768. Three months after Nuremberg fell, the machine comes out of its gates. The guild in exile holds the line beside the Crown's army, and swears every machine it builds has a stop-work.": "Fürth, marzo de 2768. Tres meses después de la caída de Núremberg, la máquina sale por sus puertas. El gremio en el exilio defiende la línea junto al ejército de la Corona, y jura que toda máquina que construye tiene un tope.",
 	"The Guild in Exile": "El Gremio en el Exilio",

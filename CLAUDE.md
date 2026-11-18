@@ -25,6 +25,19 @@
 
 ## Current work
 
+- a01_presses BUILT with THE CITY GENERATOR (job a01-presses, 0.38.57, branch a01-presses, docs/campaign_a01_build.md,
+  docs/city_generator.md): step 5 of Act 1's build order. tools/campaign/city_gen.py (a town from a seed: rivers, fords as
+  bridges, hills and stairs, districts of solid house blocks, squares, streets, traboules with doors, hidden yards, lots,
+  walls; areas for the mission; check / ascii; a demo town) and Lyon (campaign:lyon_presses by make_lyon_map.py). Act 1's
+  "The Printing Houses" (the Crown line after p01, spring 2768, Father Tomasz; the storyline titled THE CROWN): six of
+  twelve houses are DISGUISED presses (the town's yellow, untouchable until a Crown man stands 3 s at the door; three
+  layouts, the seed picks), runners to the squares raise THE CITY'S TEMPER (20: lost), close four; Part 2 the weavers'
+  hill (Tomasz's STAY, the agitators turn weavers while he is away, bands up the three stairs); Part 3 the traboules
+  (doors shut until then) to the great press, CAPTURE Rouvière (he names Paris). Reads p01 `families`; sets `lyon`
+  calm/sullen (risen if the Assembly wins), `printer` taken. VERSUS only (the friend = the Free Assembly); co-op friend =
+  the City Watch. Engine: disguise/unmask/unmasked/disguised, tags, spawn near, ping by tag, choice default random,
+  counter min/max, order only_team. ALL TEXT PLACEHOLDER. Tests tools/test_city_gen.gd, tools/test_campaign_a01.gd,
+  balance tools/sim_campaign_a01.gd. Claude's choices in the doc.
 - THE WAR MAP v1 BUILT (job war-map-v1, 0.38.56, branch war-map-v1, docs/war_map_v1.md): step 4 of Act 1's build order.
   campaign/warmap.json (one data file for every skin: bounds/projection, views, regions with holders, marks, a pin per
   Act 1 mission with place/date/line, RULES by progress and flags) + campaign/warmap_land.json (Natural Earth 1:50m,

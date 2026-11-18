@@ -81,10 +81,16 @@ func _run() -> void:
 				range(1, 7).filter(func(i): return r.unmasked.has("press_%d" % i)).size(), r.count({"team": "garrison"}),
 				r.tagged("runner").size(), r.count({"team": "assembly"}), int(r.counters["weavers"]), int(r.counters["home"]),
 				"ok" if not r.tagged("tomasz").is_empty() else "DEAD"])
+			print("SIM      found presses standing: %s; riders at %s" % [r.tagged("presses").filter(func(b): return not b.has_meta("disguise_team")).map(func(b): return [b.cell, int(b.hp)]),
+				g.units.filter(func(u): return not u.dead and u.team == gt and u.kind == "cuirassier").map(func(u): return [g.cell_of(u.position), u.target.kind if u.target and is_instance_valid(u.target) else "-"])])
 			var gp: Array = r.tagged("great_press")
 			print("SIM      great press %s, printer %s, hall %s" % ["-" if gp.is_empty() else ("hidden" if gp[0].has_meta("disguise_team") else "found %d" % int(gp[0].hp)),
 				"taken" if r.captured.has("printer") else str(r.tagged("printer").size()), "up" if not r.tagged("weavers_hall").is_empty() else "BURNT"])
 	print("SIM end t=%d over=%s winner=%s flags=%s objectives=%s" % [g.clock, g.over, r.winner_side, r.flags, r.obj])
+	var tw: Array = r.tagged("tomasz", false)
+	if not tw.is_empty() and is_instance_valid(tw[0]) and tw[0].dead:
+		var lh = tw[0].get("last_hit_by")
+		print("SIM tomasz died at %s, last hit by %s" % [g.cell_of(tw[0].position), (str(lh.kind) + " " + String(lh.get_meta("rebel_role", "")) + " team " + str(lh.team)) if lh is Object and is_instance_valid(lh) else str(lh)])
 	if _saved_progress != "":
 		var f := FileAccess.open(Campaign.PROGRESS, FileAccess.WRITE)
 		f.store_string(_saved_progress)
@@ -109,6 +115,10 @@ func _play(g: Game, r: MissionRun, gt: int, at: int) -> void:
 	var riders: Array = g.units.filter(func(u): return not u.dead and u.team == gt and u.kind in ["cuirassier", "dismounted"])
 	var tom: Array = r.tagged("tomasz")
 	var found: Array = r.tagged("presses").filter(func(b): return not b.has_meta("disguise_team"))
+	# the powder wagon keeps to the middle of the squares (Jacobins), the muskets' refill
+	for w in r.tagged("wagon"):
+		if w.position.distance_to(r.area_rect("jacobins").get_center()) > 120.0 and _idle(w):
+			g.group_move([w], r.area_rect("jacobins").get_center(), false)
 	# the garrison's barracks trains Musketeers with the city's money
 	for b in r.tagged("barracks"):
 		if not b.dead and b.queue.size() < 2 and int(g.players[gt]["gold"]) >= 75 and g.can_train(b, "musketeer") == "":
@@ -173,9 +183,10 @@ func _play(g: Game, r: MissionRun, gt: int, at: int) -> void:
 			_fight(g, [army[i]], at, 280.0, post, 50.0)
 		var there: int = army.filter(func(u): return u.position.distance_to(top) < 300.0).size()
 		if not tom.is_empty() and r.obj.get("speech", "") == "done":
-			# (he has spoken: down the stairs, out of the fight)
-			if tom[0].position.distance_to(r.area_rect("terreaux").get_center()) > 90.0 and _idle(tom[0]):
-				g.group_move(tom, r.area_rect("terreaux").get_center(), false)
+			# (he has spoken: behind the hall, the soldiers between him and the stairs)
+			var back := r.area_rect("hall_square").position + Vector2(2.5, 1.5) * Defs.TILE
+			if tom[0].position.distance_to(back) > 50.0 and _idle(tom[0]):
+				g.group_move(tom, back, false)
 		elif not tom.is_empty() and (there >= 4 or g.clock > float(r.fired["part2"]) + 40.0) and tom[0].position.distance_to(top) > 80.0 and _idle(tom[0]):
 			g.group_move(tom, top + Vector2(0, 40), false)
 		return
@@ -200,8 +211,7 @@ func _play(g: Game, r: MissionRun, gt: int, at: int) -> void:
 			continue
 		if u.position.distance_to(yard) > 120.0 and _idle(u):
 			g.group_move([u], yard, true)
-	if not tom.is_empty() and tom[0].position.distance_to(r.area_rect("terreaux").get_center()) > 90.0 and _idle(tom[0]):
-		g.group_move(tom, r.area_rect("terreaux").get_center(), false)
+	# (Tomasz stays up on the hall's square, where the hill is held)
 
 
 func _nearest_foe(g: Game, u: Unit, t: int, reach: float) -> Unit:

@@ -369,3 +369,20 @@ solo mirror (`solo_sides`); it needed only these:
   every war table has a WAR MAP button. A rule's conditions: done, not_done, won_by, flag, flag_at_least, any.
 - A new mission needs a pin (tools/test_war_map.gd fails on a mission in campaign.json with no pin) and its rules name
   only flags it really sets (checked against its JSON).
+
+## Added by Act 1's a01_presses (a01-presses, 0.38.57; docs/campaign_a01_build.md, docs/city_generator.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| building / build `"disguise": {"as": team, "within": tiles, "by": side, "secs": s}` | a DISGUISED building: to every other side it wears team `as`'s colour (the map, the minimap, its card, the fog's memory) and nobody targets or hurts it (spared), until a unit of a side hostile to it (of `by`, if given) stands within `within` tiles (3) of its edge for `secs` seconds (0: at once): then it is UNMASKED (its own colour, open to attack, a ping). MissionRun.disguise / unmask, Entity.cloth_colour / refresh_cloth |
+| `{"unmask": {"tag", "first"}}` | the story gives them away (`first`: only the first still disguised) |
+| conditions `{"unmasked": tag}`, `{"disguised": tag}` | one with the tag has been unmasked (dead or alive); one still stands disguised |
+| unit / building / spawn / build `"tags": [tags]` | more tags than `tag` (a press is "presses" and "press_3") |
+| building / build `"name"` | the name kept on the building (meta `mission_name`) |
+| spawn `"near": tag` | round the first living thing with that tag (its footprint and two cells round; `at` if there is none) |
+| `{"ping": {"tag"}}` | a ping at the first living thing with the tag |
+| choice `"default": "random"` | the match's seed picks an option (the same on every machine and replay) when nobody answers |
+| `{"counter": {..., "min", "max"}}` | the counter kept between them |
+| `{"order": {..., "only_team": team}}` | of a tag, only those still on that team (the weavers who went home, not those who turned) |
+| roles `tomasz`, `delorme`, `runner`, `printer`, `weaver` | Rebels.ROLES (stand-ins: a Missionary, an Officer, Labourers) |
+| THE CITY GENERATOR | tools/campaign/city_gen.py: a town as a map editor map from a seed (docs/city_generator.md) |
