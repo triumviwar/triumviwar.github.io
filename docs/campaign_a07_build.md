@@ -353,4 +353,10 @@ Dean* 2.
 
 ## Tests run
 
-TESTS_RUN
+All on 0.38.68, Godot 4.7 headless (`--headless --fixed-fps 30 --script res://tools/<test>.gd`), each 0 failures:
+test_campaign, test_campaign_a01, _a02, _a03, _a04, _a05, _a06, _a07 (100 checks), _b01, _c01, _m1, test_city_gen,
+test_roster_ladder, test_tutorial, test_war_map. (Every one of them, and a script that only loads the main scene and
+quits, ends with exit code 134 after printing its result: Godot's teardown in this headless box, not a failure.)
+Changed for Rome: test_campaign_a04 / _a05 / _a06 (their winners now lead to Rome), test_roster_ladder (ten built
+missions; a07's teams are `guard` and `garrison`), test_war_map (Rome's pin is locked until all three are won, then open).
+`python3 tools/i18n_patch_build.py` prints []; `python3 tools/i18n_build.py` builds with every a07 text in pt and es.

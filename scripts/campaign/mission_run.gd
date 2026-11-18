@@ -1770,14 +1770,19 @@ func play_show(pages: Array) -> void:
 func _show_pages(pg: Array) -> void:
 	if game.hud == null or not is_instance_valid(game.hud) or game.hud.get_parent() == null or DisplayServer.get_name() == "headless":
 		return
-	var solo: bool = game.net == null and game.replay == null and game.hud.has_method("set_paused")
+	# (the tree paused quietly, as the HUD's own pause does but without its announcer's "paused" / "resumed")
+	var solo: bool = game.net == null and game.replay == null
 	var paused_here := false
 	if solo and not get_tree().paused:
-		game.hud.set_paused(true)
+		get_tree().paused = true
+		if "paused" in game.hud:
+			game.hud.paused = true
 		paused_here = true
 	StillShow.play(game.hud.get_parent(), data, pg, func() -> void:
-		if paused_here and is_instance_valid(game.hud) and get_tree().paused:
-			game.hud.set_paused(false))
+		if paused_here and is_instance_valid(game) and get_tree().paused:
+			get_tree().paused = false
+			if is_instance_valid(game.hud) and "paused" in game.hud:
+				game.hud.paused = false)
 
 
 ## An objective's words for the panel: translated, with the numbers put in: "{saved}" a counter, "{saved.of}" its
