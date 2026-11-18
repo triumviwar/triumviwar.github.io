@@ -18,7 +18,7 @@ frames it. THE ROSTER LADDER's C3 (docs/campaign_roster_ladder.md): the FOUNDRY 
   PART 2, THE BRIDGES: the Assembly holds the Pont Notre-Dame and the Pont au Change (the Lyon men there by a01's
     `lyon`); torch-bearers cross the Petit Pont from the Place Maubert for NOTRE-DAME, which must not burn.
   PART 3, THE HALL: the Hôtel de Ville's square ringed with palisades: open it with the guns and take VARENNE ALIVE (a
-    CAPTURE). Once his ring is breached he runs for the boats at the Port Saint-Nicolas (30 s at the quay and he is gone).
+    CAPTURE). Once the Crown is in his square he runs for the boats at the Port Saint-Nicolas (30 s at the quay and he is gone).
   THE CHOICE, VARENNE (the act's): Tomasz asks for mercy, Fairleigh leaves the order to the player: SPARE him (exile:
     the canon) or EXECUTE him. Flags `varenne` spared / executed, `paris` stood.
 THE FLAGS READ: p01_leaf `families` (save: the Virginia volunteers, six Musketeers named over their bars, and their
@@ -63,9 +63,10 @@ BARS = ["bar_1", "bar_2", "bar_3"]
 BAR_MEN = {"bar_1": (3, 1, 0), "bar_2": (4, 1, 0), "bar_3": (5, 2, 0)}
 # the rush out of a breached barricade down the street at the guns: (pikemen, militia, where they come from)
 RUSH = {"bar_1": (2, 1, "bar_2_front"), "bar_2": (3, 1, "bar_3_front"), "bar_3": (3, 2, "bastille")}
-FLIGHT_DELAY = {"easy": 25, "normal": 12, "hard": 6}     # seconds after the ring is breached before Varenne runs
+FLIGHT_DELAY = {"easy": 25, "normal": 12, "hard": 6}     # seconds after the Crown is in the hall's square before Varenne runs
 BOAT_SECS = {"easy": 45, "normal": 30, "hard": 20}       # seconds at the Port Saint-Nicolas and the boat pushes off
-TORCH_WAVES = [60, 100, 140]                              # seconds after Part 2 (the torch-bearers on the Petit Pont)
+TORCH_WAVES = [60, 100, 140]
+PATIENCE = 1200                                          # seconds for the three barricades (NORMAL; the clocks scale it)                              # seconds after Part 2 (the torch-bearers on the Petit Pont)
 NAMES = ["Will Hollins", "Tom Hollins", "Jacob Hollins", "Ned Hollins", "Sam Hollins", "Eli Hollins"]
 RING = make_paris_map.ring_cells(CITY)
 RING_GATE = min(RING, key=lambda c: (abs(c[1] - 42) if c[0] == make_paris_map.RING[0] else 99))   # the west side's middle
@@ -140,7 +141,7 @@ M = {
     "light": "dawn",
     "expansion_spots": False,
     "manual_end": True,
-    "difficulty": {"easy": {"spawns": 0.7}, "hard": {"spawns": 1.3}},
+    "difficulty": {"easy": {"spawns": 0.7, "clocks": 1.25}, "hard": {"spawns": 1.3, "clocks": 0.75}},
     "modes": ["solo", "coop", "versus"],
     "factions": {"free_assembly": {"name": "The Free Assembly", "stand_in": "crown", "campaign_only": True}},
     "sides": [
@@ -163,10 +164,10 @@ M = {
     "areas": area_list(),
     "counters": {"taken": {"start": 0, "of": 3}, "bridges": {"start": 0, "of": 2}},
     "units": [
-        # ---- the army (the player): the field marshal, the chaplain, the colonel of the guns, 14 Musketeers, 4 Horsemen
+        # ---- the army (the player): the field marshal, the chaplain, the colonel of the guns, 16 Musketeers, 4 Horsemen
         {"team": "army", "kind": "dismounted", "as": "fairleigh", "count": 1, "at": "camp_yard", "tag": "fairleigh"},
         {"team": "army", "kind": "missionary", "as": "tomasz", "count": 1, "at": "camp_yard", "tag": "tomasz"},
-        {"team": "army", "kind": "musketeer", "count": 14, "at": "camp_yard", "tag": "army_men"},
+        {"team": "army", "kind": "musketeer", "count": 16, "at": "camp_yard", "tag": "army_men"},
         {"team": "army", "kind": "cuirassier", "count": 4, "at": "camp_yard", "tag": "riders"},
         {"team": "army", "kind": "powder_wagon", "count": 1, "at": "camp_yard", "tag": "wagon"},
         # Ruggieri's guns: the army's in solo and versus, the friend's in co-op (as p01)
@@ -218,6 +219,8 @@ M = {
          "text": "Take the three barricades of the faubourg: {taken} of 3. Break them with the guns: the Mortar lobs over, the cannon's canister sweeps the street."},
         {"id": "fairleigh", "side": "crown", "primary": True, "kind": "protect", "tag": "fairleigh", "text": "Field Marshal Fairleigh must live."},
         {"id": "tomasz", "side": "crown", "primary": True, "kind": "protect", "tag": "tomasz", "text": "Father Tomasz must live."},
+        {"id": "patience", "side": "crown", "primary": False, "kind": "countdown", "clock": "patience",
+         "text": "The King's patience: {clock:patience} to break into Paris (the three barricades)."},
         # ---- part 2
         {"id": "bridges", "side": "crown", "primary": True, "kind": "manual", "hidden": True,
          "text": "Take the bridges to the Cité, the Pont Notre-Dame and the Pont au Change: {bridges} of 2."},
@@ -245,10 +248,22 @@ M = {
         # the King's treasury pays the army
         {"id": "pay", "when": {"all": [{"time": 60}, LIVE]}, "every": 60, "do": [{"give": {"team": "army", "gold": 100, "powder": 40}}]},
         # ================================================================ PART 1: THE FAUBOURG
+        # THE KING'S PATIENCE: the barricades taken in 20 minutes (EASY 25, HARD 15), or Paris holds
+        {"id": "patience_clock", "when": {"time": 1}, "do": [{"clock": {"name": "patience", "secs": PATIENCE}}]},
+        {"id": "patience_half", "when": {"all": [{"clock_left": {"name": "patience", "below": 300}}, {"not": {"fired": "part2"}}, CROWN]}, "do": [{"say": ["k_patience"]}]},
+        {"id": "patience_out", "when": {"all": [{"clock_out": "patience"}, {"not": {"fired": "part2"}}, LIVE]}, "do": [
+            {"say": ["n_patience"]}, {"objective": {"id": "barricades", "set": "failed"}}, {"objective": {"id": "a_hold", "set": "done"}}]},
+        # the Assembly's sorties over the first barricade at the camp while it stands (from 5:00, every 3:00)
+        {"id": "sortie", "when": {"all": [{"time": 300}, {"not": {"dead": "bar_1_men"}}, {"not": {"fired": "part2"}}, LIVE]}, "every": 180, "do": [
+            {"spawn": {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 3, "at": "bar_1_front", "tag": "sortie"}},
+            {"spawn": {"team": "assembly", "kind": "pikeman", "as": "pikeman", "count": 2, "at": "bar_1_front", "tag": "sortie"}},
+            {"spawn": {"team": "assembly", "kind": "labourer", "as": "torch", "count": 1, "at": "bar_1_front", "tag": "sortie"}},
+            {"order": {"tag": "sortie", "do": "attack", "to": "camp_yard", "idle": True}}, {"ping": {"area": "bar_1_front"}}]},
+        {"id": "sortie_line", "when": {"all": [{"fired": "sortie"}, CROWN]}, "do": [{"say": ["r_sortie"]}]},
         {"id": "part2", "when": {"all": [{"counter": {"name": "taken", "at_least": 3}}, LIVE]}, "delay": 6, "do": [
-            {"objective": {"id": "barricades", "set": "done"}},
+            {"objective": {"id": "barricades", "set": "done"}}, {"clock": {"name": "patience", "stop": True}},
+            {"objective": {"id": "patience", "set": "hidden"}},
             {"say": ["f_2", "t_2", "f_2b"]},
-            {"spare": {"tag": "notre_dame", "on": False}},
             {"objective": {"id": "bridges", "set": "active"}}, {"objective": {"id": "notre_dame", "set": "active"}},
             {"reveal": {"area": "north_bank_bridges", "side": "crown", "secs": 40}}, {"reveal": {"area": "parvis", "side": "crown", "secs": 60}},
             {"ping": {"area": "pont_notre_dame"}}, {"ping": {"area": "pont_au_change"}}, {"ping": {"tag": "notre_dame"}},
@@ -259,6 +274,15 @@ M = {
         # ================================================================ PART 2: THE BRIDGES
         {"id": "lyon_sullen", "when": {"all": [{"fired": "part2"}, SULLEN, CROWN]}, "delay": 12, "do": [{"say": ["n_lyon_sullen", "t_lyon"]}]},
         {"id": "lyon_risen", "when": {"all": [{"fired": "part2"}, RISEN, CROWN]}, "delay": 12, "do": [{"say": ["n_lyon_risen", "t_lyon"]}]},
+    ] + [
+        # the torch-bearers at Notre-Dame's doors burn it, 6 a second each (the cathedral stays spared from every other
+        # blow: a musket can't burn a cathedral, and the bridges' men would otherwise shoot it from the quay)
+        {"id": "nd_fire_%d" % n, "when": {"all": [{"fired": "part2"}, {"count": {"tag": "torches", "area": "notre_dame", "at_least": n}}, LIVE]},
+         "every": 1, "do": [{"spare": {"tag": "notre_dame", "on": False}}, {"hurt": {"tag": "notre_dame", "amount": 6}},
+                            {"spare": {"tag": "notre_dame", "on": True}}]}
+        for n in (1, 2, 3, 4)
+    ] + [
+        {"id": "nd_fire_line", "when": {"all": [{"fired": "nd_fire_1"}, CROWN]}, "do": [{"ping": {"tag": "notre_dame"}}]},
         {"id": "bridge_nd", "when": {"dead": "bridge_nd_men"}, "do": [{"counter": {"name": "bridges", "add": 1}}]},
         {"id": "bridge_ch", "when": {"dead": "bridge_ch_men"}, "do": [{"counter": {"name": "bridges", "add": 1}}]},
         {"id": "nd_hurt", "when": {"all": [{"fired": "part2"}, {"hurt": "notre_dame"}, CROWN]}, "every": 45, "times": 3, "do": [{"say": ["t_nd"]}]},
@@ -273,12 +297,13 @@ M = {
             {"reveal": {"area": "ring", "side": "crown", "secs": 60}}, {"ping": {"area": "greve"}}, {"ping": {"area": "port"}},
             {"light": {"to": "dusk", "secs": 90}}]},
         # ================================================================ PART 3: THE HALL
-        # once the ring is breached (or a Crown man is in the square) Varenne runs for the boats with his guard
+        # the ring breached: the marshal's warning; once a Crown man is IN the square, Varenne runs for the boats
         {"id": "breached", "when": {"all": [{"fired": "part3"}, {"any": [
             {"count": {"tag": "ring", "below": len(RING), "buildings": True}},
             {"count": {"side": "crown", "area": "hall_square", "at_least": 1}}]}]}, "do": [{"say": ["f_breach"]}]},
+        {"id": "stormed", "when": {"all": [{"fired": "part3"}, {"count": {"side": "crown", "area": "hall_square", "at_least": 1}}]}, "do": []},
     ] + [
-        {"id": "flight_" + d, "when": {"all": [{"fired": "breached"}, {"difficulty": d}, NO_ASSEMBLY, {"not": {"captured": "varenne"}}, LIVE]},
+        {"id": "flight_" + d, "when": {"all": [{"fired": "stormed"}, {"difficulty": d}, NO_ASSEMBLY, {"not": {"captured": "varenne"}}, LIVE]},
          "delay": s, "do": [
             {"order": {"tag": "varenne", "do": "move", "to": "port"}},
             {"order": {"tag": "guard", "do": "follow", "leader": "varenne", "within": 2}},
@@ -344,6 +369,9 @@ M = {
         "t_saved": {"who": "tomasz", "to": "crown", "text": "I baptised your sister's boy, Will. Keep your head down for him."},
         "tip_foundry": {"who": "ruggieri", "to": "crown", "text": "The Foundry casts more guns and mortars, each with a horse from the Breeder. The treasury pays us every minute."},
         "tip_powder": {"who": "ruggieri", "to": "crown", "text": "Ten shots a musket, Marshal, then the bayonet. Keep the powder wagon close behind the line: it fills them again."},
+        "r_sortie": {"who": "ruggieri", "to": "crown", "text": "They are coming out over the barricade at our camp! While it stands they will keep coming."},
+        "k_patience": {"who": "king", "to": "crown", "text": "I gave Fairleigh a month. He knew I would not give him two."},
+        "n_patience": {"who": "narrator", "text": "The King's courier rides into the camp. The marshal is recalled; Paris holds behind its barricades."},
         "r_rush": {"who": "ruggieri", "to": "crown", "text": "They are coming out over the barricade! Canister, load canister!"},
         "tip_canister": {"who": "ruggieri", "to": "crown", "text": "CANISTER on the gun's card: a cone of balls down the street. Keep the line in front of the guns."},
         "f_bar_1": {"who": "fairleigh", "to": "crown", "text": "The first barricade is ours. Bring the guns up."},
@@ -364,7 +392,7 @@ M = {
         "f_3": {"who": "fairleigh", "to": "crown", "text": "Now the Hôtel de Ville. Varenne is in there. I want him alive: the King will judge him, not a musket ball."},
         "r_3": {"who": "ruggieri", "to": "crown", "text": "They have palisaded the whole square. The guns will open it."},
         "tip_3": {"who": "fairleigh", "to": "crown", "text": "Take him alive: wear him down, then a man of ours beside him. If he reaches the river, he is gone."},
-        "f_breach": {"who": "fairleigh", "to": "crown", "text": "The palisade is open. Watch the west gate: he will run."},
+        "f_breach": {"who": "fairleigh", "to": "crown", "text": "The palisade is open. Before we go in, men to the west gate: he will run."},
         "n_flight": {"who": "narrator", "to": "crown", "text": "Varenne is out by the west gate, running for the boats at the Port Saint-Nicolas."},
         "f_flight": {"who": "fairleigh", "to": "crown", "text": "Riders! After him!"},
         "n_quay": {"who": "narrator", "to": "crown", "text": "A boat is waiting at the quay. Its oarsmen are already at the oars."},

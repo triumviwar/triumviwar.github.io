@@ -399,3 +399,12 @@ tools/campaign/roster_ladder.py, which the mission generators call (`roster_ladd
 | `{"unlock"/"deny": {"team", "kind"}}` | unchanged, and now also takes researches and stages; Campaign.problems checks every roster name and every unlock / deny kind (Campaign.roster_known) |
 
 Not gated: MOUNT (a man getting on a horse is not a training) and anything a mission hands over (units, buildings).
+
+## Added by Act 1's a06_barricades (a06-barricades, 0.38.59; docs/campaign_a06_build.md)
+
+Nothing in the engine: Paris is the city generator's (tools/campaign/make_paris_map.py) and the mission is built from
+the keys above (spare, capture, a choice with a default, stay, follow, a countdown, repeating triggers, build, `if` by
+`past` flags). New roles in Rebels.ROLES: `fairleigh`, `ruggieri`, `volunteer`, `lyon_man`, `varenne_hall` (Varenne
+with 260 health in his hall; his p01 role is unchanged). A way the mission does a thing the engine has no key for: a
+building spared from every blow but one (Notre-Dame burns only at the torch-bearers' hands) is a repeating trigger that
+lifts the spare, hurts it, and puts the spare back in the same round.

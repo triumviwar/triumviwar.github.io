@@ -110,7 +110,10 @@ The economy a faction cannot play without; the first mission of the line teaches
   through a02's `gate` pattern): Claude's choice 2.
 - a05_specimens: THE CREATURES (the solo pick and versus) are bound to B3; the expedition (Crown stand-in, the
   default) has no production.
-- a06_barricades: the army ("army" and Ruggieri's "guns", co-op p2) bound to C3.
+- a06_barricades: APPLIED (job a06-barricades, 0.38.59): the army ("army") and Ruggieri's "guns" (co-op p2) bound to
+  C3, the story's deny (no Town Hall or Farm in a siege camp) on top; the camp has a Foundry and a Horse Breeder
+  standing; the Mortar is given (one) and can be made; C3's cards in pt/es; the row in test_roster_ladder.gd. The
+  mission shows the Mortar on the barricades' men and canister on the rushes (docs/campaign_a06_build.md).
 - a07_council: THE CROWN bound to C4. The creatures and the automata are the other sides (scripted / versus): not
   bound; if a versus player picks them, they get what the night of fire needs.
 

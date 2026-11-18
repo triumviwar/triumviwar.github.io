@@ -11,7 +11,8 @@ extends SceneTree
 ##   - PART 3: the hall's ring (spared until now), the breach, Varenne's flight for the boats, his escape (a loss), the
 ##     CAPTURE, THE CHOICE both ways (`varenne` spared / executed, `paris` stood), the win, the ending by the flags,
 ##     the progress;
-##   - THE DEFEATS (Notre-Dame burnt, the Field Marshal or Father Tomasz killed), VERSUS (the Assembly wins when
+##   - THE DEFEATS (Notre-Dame burnt, the Field Marshal or Father Tomasz killed, THE KING'S PATIENCE out; the sorties
+##     at the camp meanwhile), VERSUS (the Assembly wins when
 ##     Notre-Dame burns), THE DIFFICULTY (the Assembly's numbers, Varenne's flight), THE HUB.
 ##   godot --headless --fixed-fps 30 --script res://tools/test_campaign_a06.gd
 ## Prints CHECK lines, then "campaign_a06: N failures"; exit code 1 on a failure. (Leaves user://campaign.json as it was.)
@@ -234,8 +235,8 @@ func _flags() -> void:
 		var vol: Array = r.tagged("volunteers")
 		check(P + "the Virginia volunteers (%d), named" % fl[3], vol.size() == fl[3] and vol.all(func(u): return String(u.get_meta("mission_name", "")).contains("Hollins")), str(vol.size()))
 		check(P + "the Lyon men (%d)" % fl[4], r.tagged("lyon_men").size() == fl[4], str(r.tagged("lyon_men").size()))
-		check(P + "the army: the marshal, the priest, 14 Musketeers, 4 Horsemen, 2 guns and a mortar", r.tagged("fairleigh").size() == 1 and r.tagged("tomasz").size() == 1
-			and r.tagged("army_men").size() == 14 and r.tagged("riders").size() == 4 and r.tagged("cannons").size() == 2 and r.tagged("mortars").size() == 1
+		check(P + "the army: the marshal, the priest, 16 Musketeers, 4 Horsemen, 2 guns and a mortar", r.tagged("fairleigh").size() == 1 and r.tagged("tomasz").size() == 1
+			and r.tagged("army_men").size() == 16 and r.tagged("riders").size() == 4 and r.tagged("cannons").size() == 2 and r.tagged("mortars").size() == 1
 			and r.tagged("ruggieri").size() == 1 and r.tagged("fairleigh")[0].max_hp >= 320.0)
 		check(P + "the camp: a Barracks, the Foundry, the Breeder", r.tagged("foundry").size() == 1 and r.tagged("breeder").size() == 1 and r.tagged("barracks").size() == 1)
 		_step(g, 25.0)
@@ -279,8 +280,9 @@ func _part1() -> void:
 	_step(g, 38.75)
 	check("not Part 2 at once", not r.fired.has("part2"))
 	_step(g, 39.5)
+	check("THE KING'S PATIENCE stops once Paris is entered", not r.clocks.has("patience") or r.obj["patience"] == "hidden")
 	check("PART 2 six seconds after: the barricades done, the bridges and Notre-Dame shown", r.fired.has("part2") and r.obj["barricades"] == "done"
-		and r.obj["bridges"] == "active" and r.obj["notre_dame"] == "active" and not r.tagged("notre_dame")[0].spared, str([r.fired.has("part2"), r.obj, r.tagged("notre_dame")[0].spared]))
+		and r.obj["bridges"] == "active" and r.obj["notre_dame"] == "active", str([r.fired.has("part2"), r.obj]))
 
 
 # ================================================================== part 2
@@ -301,11 +303,25 @@ func _part2() -> void:
 	check("THE FIRST TORCH WAVE at the Place Maubert: 2 torch-bearers, 2 militia", tor.size() == 2 and tor.all(func(u): return u.has_meta("torch")) and r.tagged("torch_escort").size() == 2
 		and _said(r, "n_torch"))
 	check("...sent over the Petit Pont to the parvis", tor.all(func(u): return u.order == "move"))
+	# THE FIRE: a musket can't hurt the cathedral; a torch-bearer at its doors burns it 6 a second
+	var nd: Building = r.tagged("notre_dame")[0]
+	nd.take_damage(500.0, r.tagged("bridge_nd_men")[0])
+	check("Notre-Dame: no musket ball burns it", nd.hp == nd.max_hp and nd.spared)
+	var torch: Unit = tor[0]
+	_put(g, [torch], nd.center() + Vector2(0, (nd.size.y * 0.5 + 0.6) * Defs.TILE))
+	torch.set_meta("torch_t", 99.0)
+	_walk(g, t0 + 65.0)
+	check("...a torch at its doors: it burns (6 a second)", nd.hp < nd.max_hp - 15.0 and nd.hp > nd.max_hp - 40.0 and nd.spared, str(nd.hp))
+	_put(g, [tor[1]], nd.center() + Vector2(0, (nd.size.y * 0.5 + 0.6) * Defs.TILE))
+	var h0 := nd.hp
+	_walk(g, t0 + 68.0)
+	check("...two torches: faster", h0 - nd.hp >= 24.0, str(h0 - nd.hp))
+	check("...Tomasz cries out", _said(r, "t_nd"))
 	_kill(r, "bridge_nd_men")
-	_step(g, t0 + 61.0)
+	_step(g, t0 + 68.5)
 	check("the Pont Notre-Dame taken (its Lyon men too): 1 of 2", int(r.counters["bridges"]) == 1)
 	_kill(r, "bridge_ch_men")
-	_step(g, t0 + 61.5)
+	_step(g, t0 + 69.0)
 	check("BOTH BRIDGES: done", int(r.counters["bridges"]) == 2 and r.obj["bridges"] == "done" and _said(r, "f_bridges"))
 	_kill(r, "torches")
 	_step(g, t0 + 80.0)
@@ -332,7 +348,12 @@ func _part3() -> void:
 	r.tagged("ring")[0].take_damage(1e9, null)
 	_step(g, g.clock + 0.5)
 	check("THE RING BREACHED: the marshal warns", r.fired.has("breached") and _said(r, "f_breach"))
-	var tb := float(r.fired["breached"])
+	_step(g, g.clock + 30.0)
+	check("a breach alone: Varenne stays in his hall", not r.fired.has("flight_normal") and not r.fired.has("stormed"))
+	_put(g, r.tagged("army_men").slice(0, 2), r.area_rect("hall_square").get_center() + Vector2(0, 3 * Defs.TILE))
+	_step(g, g.clock + 0.5)
+	check("a Crown man in his square: STORMED", r.fired.has("stormed"))
+	var tb := float(r.fired["stormed"])
 	_step(g, tb + 11.0)
 	check("Varenne holds 12 s (NORMAL)", not r.fired.has("flight_normal"))
 	_step(g, tb + 12.5)
@@ -410,10 +431,32 @@ func _defeats() -> void:
 	var g: Game = await _start()
 	var r: MissionRun = g.mission
 	await _to_part2(g, r)
+	r.act({"spare": {"tag": "notre_dame", "on": false}})     # (as its fire does: the torches' scripted burning)
 	_kill(r, "notre_dame")
 	_step(g, g.clock + 0.5)
 	check("NOTRE-DAME BURNT: the Crown loses", g.over and r.winner_side == "assembly" and r.obj["notre_dame"] == "failed" and _said(r, "n_nd_burnt"))
 	check("...and it does not count", not (Campaign.progress()["done"] as Dictionary).has(MID))
+	# THE KING'S PATIENCE: twenty minutes for the barricades (and the sorties at the camp meanwhile)
+	g = await _start()
+	r = g.mission
+	check("the King's patience: a 20:00 countdown on the panel", r.clocks.has("patience") and absf(float(r.clocks["patience"]) - 1201.0) < 2.0 and r.obj["patience"] == "active",
+		str(r.clocks))
+	_step(g, 299.0)
+	check("no sortie before 5:00", r.tagged("sortie").is_empty())
+	_step(g, 300.5)
+	check("A SORTIE over the first barricade at the camp (3 militia, 2 pikes, a torch)", r.tagged("sortie").size() == 6 and _said(r, "r_sortie"))
+	_kill(r, "sortie")
+	_step(g, 481.0)
+	check("...another three minutes later", r.tagged("sortie").size() == 6)
+	_step(g, 905.0)
+	check("five minutes left: the King's line", _said(r, "k_patience") and not g.over)
+	_step(g, 1201.5)
+	check("THE KING'S PATIENCE RUNS OUT: the marshal recalled, the Crown loses", g.over and r.winner_side == "assembly" and r.obj["barricades"] == "failed" and _said(r, "n_patience"))
+	g = await _start()
+	r = g.mission
+	_kill(r, "bar_1_men")
+	_step(g, 301.0)
+	check("no sortie once the first barricade is taken", r.tagged("sortie").is_empty())
 	for who in ["fairleigh", "tomasz"]:
 		g = await _start()
 		r = g.mission
@@ -432,6 +475,7 @@ func _versus() -> void:
 	check("versus: the Assembly's objective", r.objectives_for("assembly").map(func(o): return o["id"]) == ["a_hold"])
 	check("versus: the Crown's lines are its own (to the Crown)", _said(r, "f_1") and String(r.data["lines"]["f_1"]["to"]) == "crown" and String(r.data["lines"]["a_1"]["to"]) == "assembly")
 	await _to_part2(g, r)
+	r.act({"spare": {"tag": "notre_dame", "on": false}})     # (as its fire does: the torches' scripted burning)
 	_kill(r, "notre_dame")
 	_step(g, g.clock + 0.5)
 	check("versus: Notre-Dame burnt wins it for the Assembly", g.over and r.winner_side == "assembly" and r.obj["a_hold"] == "done")
@@ -449,15 +493,17 @@ func _difficulty() -> void:
 		var r: MissionRun = g.mission
 		var n := r.tagged("bar_1_men").filter(func(u): return u.kind == "musketeer").size()
 		check("%s: the first barricade's militia scaled (%d)" % [d[0], d[1]], n == int(d[1]), str(n))
-		check("%s: the army is the player's: never scaled" % d[0], r.tagged("army_men").size() == 14 and r.tagged("volunteers").size() == 6)
+		check("%s: the army is the player's: never scaled" % d[0], r.tagged("army_men").size() == 16 and r.tagged("volunteers").size() == 6)
+		var want := 1500.0 if d[0] == "easy" else 900.0
+		check("%s: the King's patience %d s" % [d[0], int(want)], absf(float(r.clocks.get("patience", 0.0)) - 1.0 - want) < 2.0, str(r.clocks))
 		await _to_part3(g, r)
-		r.tagged("ring")[0].take_damage(1e9, null)
+		_put(g, r.tagged("army_men").slice(0, 1), r.area_rect("hall_square").get_center() + Vector2(0, 3 * Defs.TILE))
 		_step(g, g.clock + 0.5)
-		var tb := float(r.fired["breached"])
+		var tb := float(r.fired["stormed"])
 		_step(g, tb + float(d[2]) - 1.0)
 		check("%s: Varenne not yet away" % d[0], not r.fired.has("flight_" + d[0]))
 		_step(g, tb + float(d[2]) + 0.5)
-		check("%s: he runs %d s after the breach" % [d[0], d[2]], r.fired.has("flight_" + d[0]) and not r.fired.has("flight_normal"))
+		check("%s: he runs %d s after the Crown is in his square" % [d[0], d[2]], r.fired.has("flight_" + d[0]) and not r.fired.has("flight_normal"))
 	Campaign.set_difficulty("normal")
 
 

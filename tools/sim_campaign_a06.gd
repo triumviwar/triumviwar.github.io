@@ -96,7 +96,7 @@ func _run() -> void:
 		if r.fired.has("part3") and not r.captured.has("varenne") and g.clock >= _p3:
 			_p3 = g.clock + 5.0
 			var va3: Array = r.tagged("varenne")
-			print("SIM   p3 t=%d breached=%s flight=%s varenne=%s riders=%s ring=%d hall_men=%d" % [g.clock, r.fired.has("breached"), r.fired.has("flight_" + diff),
+			print("SIM   p3 t=%d breached=%s stormed=%s flight=%s varenne=%s riders=%s ring=%d hall_men=%d" % [g.clock, r.fired.has("breached"), r.fired.has("stormed"), r.fired.has("flight_" + diff),
 				"-" if va3.is_empty() else "%d hp at %s" % [int(va3[0].hp), g.cell_of(va3[0].position)],
 				_of(g, gt, ["cuirassier"]).map(func(u): return [g.cell_of(u.position), u.target.kind if u.target and is_instance_valid(u.target) else "-"]),
 				r.tagged("ring").size(), r.tagged("hall_men").size()])
@@ -315,7 +315,9 @@ func _play(g: Game, r: MissionRun, gt: int, at: int) -> void:
 	var main_body: Array = muskets.slice(muskets.size() / 3)
 	_body(g, cordon, at, r.area_rect("greve_west").get_center() if va.is_empty() or r.captured.has("varenne") or va[0].position.distance_to(r.area_rect("greve_west").get_center()) < 200.0 \
 		else va[0].position, 260.0)
-	if r.fired.has("breached"):
+	var gate_c := r.area_rect("greve_west").get_center()
+	var held := cordon.filter(func(u): return u.position.distance_to(gate_c) < 5.0 * T).size() * 2 >= cordon.size()
+	if r.fired.has("breached") and (held or g.clock > float(r.fired["breached"]) + 60.0):
 		_body(g, main_body, at, r.area_rect("hall_square").get_center(), 280.0)
 	else:
 		_body(g, main_body, at, east + Vector2(10 * T, 0), 200.0)
