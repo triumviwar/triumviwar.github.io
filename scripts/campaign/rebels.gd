@@ -117,6 +117,8 @@ static func tick(run: MissionRun, dt: float) -> void:
 		for b in g.buildings:
 			if b.dead or b.ghost or not g.hostile(b.team, u.team):
 				continue
+			if run.is_burning(b) and run.data.has("torch_fire"):
+				continue          # (a07: a house already alight: on to the next)
 			var dd: float = b.edge_distance(u.position)
 			if dd < bd:
 				bd = dd
@@ -127,6 +129,13 @@ static func tick(run: MissionRun, dt: float) -> void:
 			continue
 		if bd <= TORCH_REACH:
 			u.set_meta("torch_burning", true)       # (Unit._anim_name: he plays his setting-fire strip)
+			# (a07) mission "torch_fire": {"tag", "secs", "spread", "douse_side"}: a torch at a building of that tag sets it
+			# ALIGHT (a spreading fire: MissionRun.set_alight), spared or not, instead of hacking at it
+			var tf: Variant = run.data.get("torch_fire", {})
+			if tf is Dictionary and not (tf as Dictionary).is_empty() and best.get_meta("mission_tag", "") != "" \
+					and run.tagged(String(tf.get("tag", ""))).has(best):
+				run.set_alight(best, tf)
+				continue
 			best.take_damage(TORCH_DPS * dt + maxf(float(best.armor), 0.0), u)      # (armour ignored: Entity.take_damage takes it off)
 			if randf() < dt * 0.8:
 				g.spawn_effect("fire", best.center() + Vector2(randf_range(-30, 30), randf_range(-20, 20)), 0.8)
