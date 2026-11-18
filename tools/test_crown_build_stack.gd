@@ -5,6 +5,7 @@ extends SceneTree
 ##   [off]    with the switch off nobody joins, and the Farm takes its full time
 ##   [far]    a working labourer too far away is not pulled (his walk would cost more than his share of the work)
 ##   [unsafe] a site in danger gets no helpers
+##   [ghost]  a site not begun yet (its builder still on the way) gets none: helpers on its footprint would keep it a ghost
 ##   [brood]  THE HALL STEP KEEPS ITS GOLD never plays against the Brood
 ##   godot --headless --fixed-fps 30 --script res://tools/test_crown_build_stack.gd
 const U := preload("res://tools/gear_test_util.gd")
@@ -155,6 +156,27 @@ func _run() -> void:
 	stk = AICrownStack.new(ai)
 	stk.tick()
 	check("[unsafe] a site in danger gets no helpers", _builders(g, site) == 1, "%d" % _builders(g, site))
+	g.queue_free()
+	await process_frame
+	# ---------------------------------------------------------------- [ghost]
+	g = _game()
+	await process_frame
+	await process_frame
+	ai = _ai(g, 0)
+	await process_frame
+	h = U.hall(g, 0)
+	s = _setup(g, h, 4, 120.0)
+	site = s[0]
+	for u in g.workers(0):
+		if u.order == "build" and u.order_target == site:
+			u.position = site.center() + Vector2(900, 0)       # (its builder far off: the site stays a ghost)
+	site.ghost = true
+	site.progress = 0.0
+	for u in s[1]:
+		u.cmd_stop()
+	stk = AICrownStack.new(ai)
+	stk.tick()
+	check("[ghost] a site not begun yet gets no helpers", _builders(g, site) == 1 and stk.sent == 0, "%d builders, ghost %s" % [_builders(g, site), site.ghost])
 	g.queue_free()
 	await process_frame
 	# ---------------------------------------------------------------- [brood]

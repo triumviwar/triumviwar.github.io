@@ -612,6 +612,8 @@ func _ready() -> void:
 
 
 var _opened_from := ""            # (opt_switch) the build it played before the pick: "optimal" = the common opening
+var keep_pending_off := OS.get_cmdline_user_args().has("keeppending:off")   # (crown-build-stack: the pending step kept)
+var pending_kept := 0             # (the report) picks that kept the common opening's pending step
 
 
 ## OPTIMAL's pick (scripts/ai_optimal.gd): play build k from where the game stands. In the opening its build order takes
@@ -632,7 +634,17 @@ func opt_switch(k: String) -> bool:
 		if plan.has("bo_opt") and opt != null and _opened_from == "optimal":
 			key = "bo_opt"         # (the build's own version for a pick from the common opening: the Rush's punish)
 		key = _cc_bo_key(key)
+		var pending: Dictionary = _bo_plan[bo_i] if bo_i < _bo_plan.size() else {}
 		_bo_plan = _bo_plan.slice(0, bo_i) + (plan[key] as Array).duplicate(true)
+		if not keep_pending_off and String(pending.get("do", "")) == "build" and not _st_done(pending) \
+				and not _bo_plan.slice(bo_i).any(func(st: Dictionary) -> bool: return String(st.get("do", "")) == "build" and String(st.get("k", "")) == String(pending["k"])):
+			# (crown-build-stack: the common opening's step still waiting at the pick (its Barracks, short of 150 gold by a
+			# second at 1:30) was cut with the old steps, and the Rush's own steps (bo_opt) take a Barracks as laid: the
+			# Horsemen never came, Dune Sea v the Brood (4 such games of 14 in the first batch). Kept at the front now)
+			var again: Dictionary = pending.duplicate(true)
+			again.erase("at")
+			_bo_plan.insert(bo_i, again)
+			pending_kept += 1
 		bo_lab_cap = _cc_lab_cap(key)
 		if not _def_on:
 			bo_army = false

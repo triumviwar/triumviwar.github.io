@@ -11,15 +11,17 @@ class_name AICrownStack
 ##  - an idle labourer (or one with no free Farm post to go to) costs nothing: he goes if he arrives before the site is done;
 ##  - a working labourer goes only if his walk is under WALK_SHARE of the work he will do there (the site's labourer-seconds
 ##    left shared among its builders), URGENT sites (the Barracks / Gate / Cottage under a scouted rush or a seen push, a
-##    supply block's Cottage, a new hall's first Farm) with a longer leash;
-##  - never to a site in danger (AI._unsafe), never the scout, the escort, a Mill's last hand, a labourer leading a horse or
-##    on an errand, and not more than BUSY_SHARE of the labourers off the Farms at once.
+##    Cottage while the supply is blocked, the opening's second Farm, a new hall's first Farm, a Town Hall behind the
+##    coach's clock) with a longer leash; a Cottage gets helpers only when urgent (or idle ones);
+##  - never to a site in danger (AI._unsafe) nor one not begun yet (a ghost: its footprint must be clear to start), never the
+##    scout, the escort, a Mill's last hand, a crew of any other building, a labourer leading a horse or on an errand, and
+##    not more than BUSY_SHARE of the labourers off the Farms at once.
 ## Done, a helper goes to the next unfinished site near him or back to a free post (Unit._build: game.next_site / free_site).
 ## Switch `buildstack:off` (both sides); `buildstack:off1` / `buildstack:off0` turn it off for team 1 / team 0 only (the
 ## mirror's measure).
 
 const WANT := {
-	"farm": 3, "cottage": 2, "barracks": 3, "gate": 3, "foundry": 3, "horse_breeder": 3, "powder_mill": 2,
+	"farm": 3, "cottage": 1, "barracks": 3, "gate": 3, "foundry": 3, "horse_breeder": 3, "powder_mill": 2,
 	"armoury": 2, "church": 2, "town_hall": 4,
 }
 const URGENT_WANT := {"barracks": 4, "gate": 4, "cottage": 3, "farm": 4, "town_hall": 5}
@@ -78,7 +80,7 @@ func _rush_on() -> bool:
 
 
 func _supply_blocked() -> bool:
-	return game.supply_used(team) >= int(game.players[team]["cap"]) - 2
+	return game.supply_used(team) >= int(game.players[team]["cap"]) - 1
 
 
 ## The helpers a site wants, and whether it is urgent.
@@ -91,7 +93,7 @@ func want(b: Building) -> Array:
 	if (k == "barracks" or k == "gate" or k == "cottage") and _rush_on():
 		urgent = true
 	elif k == "cottage" and _supply_blocked():
-		urgent = true
+		urgent = true            # (supply blocked now: nothing trains till it stands)
 	elif k == "farm" and ai._mine("farm").filter(func(f: Building) -> bool: return f.built and not f.barren()).size() < 2:
 		urgent = true            # (the opening's second Farm and a lost Farm: the halls' labourers wait for its posts)
 	elif k == "farm" and _hall_farmless(b):
@@ -129,10 +131,13 @@ func _free(u: Unit) -> bool:
 		return false
 	if ai._on_errand(u):
 		return false
-	if u.order == "gather" and u.order_target is Building and (u.order_target as Building).kind == "powder_mill":
+	if u.order == "gather":
+		if not (u.order_target is Building):
+			return false
 		var m: Building = u.order_target
-		if m.crew.size() <= 1:
-			return false         # (a Mill's last hand stays: the powder)
+		if m.kind == "powder_mill":
+			return m.crew.size() > 1     # (a Mill's last hand stays: the powder)
+		return m.kind == "farm"          # (only Farm hands: a Foundry's or a Church's crew keeps working)
 	return true
 
 
@@ -166,8 +171,9 @@ func tick() -> void:
 	for b in game.buildings:
 		if b.team != team or b.dead or b.built or not WANT.has(b.kind) or (b.kind != "gate" and Defs.BUILDINGS[b.kind].get("line", false)):
 			continue
-		if ai._unsafe(b.center()):
-			continue
+		if b.ghost or ai._unsafe(b.center()):
+			continue             # (a site not begun yet: its footprint must be clear to start, helpers standing on it held it
+			                     # a ghost until it was swept: the rush's Barracks never stood, Dune Sea v the Brood)
 		sites.append(b)
 	# urgent sites first, then the dearest
 	sites.sort_custom(func(a: Building, c: Building) -> bool:
@@ -246,7 +252,7 @@ func _wall_help(labs: Array, taken: Dictionary, n: int) -> void:
 		return
 	var pieces: Array = []
 	for b in game.buildings:
-		if b.team == team and not b.dead and not b.built and b.kind == "wall" and not ai._unsafe(b.center()) and builders(b).is_empty():
+		if b.team == team and not b.dead and not b.built and not b.ghost and b.kind == "wall" and not ai._unsafe(b.center()) and builders(b).is_empty():
 			pieces.append(b)
 	if pieces.is_empty():
 		return
@@ -334,4 +340,4 @@ func hall_keeps() -> bool:
 
 func counters() -> Dictionary:
 	return {"on": on_switch, "sent": sent, "sent_idle": sent_idle, "urgent": urgent_n, "by": sent_by, "built": built,
-		"hall_keep": hall_keep_on, "hall_kept_t": snappedf(hall_kept_t, 0.1)}
+		"hall_keep": hall_keep_on, "hall_kept_t": snappedf(hall_kept_t, 0.1), "pending_kept": ai.pending_kept}
