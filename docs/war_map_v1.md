@@ -91,7 +91,7 @@ region, which marks show, each pin's state and seal, the ledger; `problems()` = 
 | a02_furth | Fürth, March 2768 | Clockmaker | open after c01. `furth` strong = Fürth purple; thin = uneasy (hatched); won by the machine (`fallen`) = Fürth red, the seal broken |
 | a04_visit | Fürth, autumn 2769 | Clockmaker | planned (after a02). `broken` melted/kept in the ledger; `lost_to_machine` 4 or more = the red spreads east (the Upper Palatinate) |
 | a01_presses | Lyon, spring 2768 | Crown | planned (after p01). `lyon` calm = Lyon purple; sullen = uneasy |
-| a06_barricades | Paris, July 2769 | Crown | planned (after a01). Won by the Crown = Paris purple; `varenne` spared = his ship into exile; executed = Paris uneasy and two risings (Brittany, Provence) |
+| a06_barricades | Paris, July 2769 | Crown | BUILT (0.38.59): locked until a01, then open. Won by the Crown = Paris purple; `varenne` spared = his ship into exile; executed = Paris uneasy and two risings (Brittany, Provence); won by the Assembly (versus) = Paris in unrest, the seal broken |
 | a07_council | Rome, Lent 2770 | all three | planned (after a04, a05, a06). Done = Rome purple; `rome` few = Rome uneasy |
 
 tools/test_war_map.gd checks each of these and runs every flag combination of the built missions (432 maps) for a sound

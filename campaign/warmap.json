@@ -69,7 +69,7 @@
 		{"mission": "a02_furth", "line": "clockmaker", "place": "Fürth", "date": "March 2768", "point": [10.99, 49.47], "nudge": [-24, -14]},
 		{"mission": "a01_presses", "line": "crown", "place": "Lyon", "date": "Spring 2768", "point": [4.84, 45.76], "nudge": [0, 0], "after": ["p01_leaf"]},
 		{"mission": "a05_specimens", "line": "naturalist", "title": "The Specimens", "place": "The plateau's foot", "date": "Dry season 2769", "point": [-65.3, 0.25], "nudge": [16, 2], "after": ["a03_plateau"]},
-		{"mission": "a06_barricades", "line": "crown", "title": "The Barricades of Paris", "place": "Paris", "date": "July 2769", "point": [2.35, 48.86], "nudge": [0, 0], "after": ["a01_presses"]},
+		{"mission": "a06_barricades", "line": "crown", "place": "Paris", "date": "July 2769", "point": [2.35, 48.86], "nudge": [0, 0], "after": ["a01_presses"]},
 		{"mission": "a04_visit", "line": "clockmaker", "title": "Father Ferrer's Visit", "place": "Fürth", "date": "Autumn 2769", "point": [10.99, 49.47], "nudge": [-24, 18], "after": ["a02_furth"]},
 		{"mission": "a07_council", "line": "all", "title": "The Council of Rome", "place": "Rome", "date": "Lent 2770", "point": [12.48, 41.9], "nudge": [0, 0], "after": ["a04_visit", "a05_specimens", "a06_barricades"]}
 	],
@@ -113,6 +113,7 @@
 		{"if": {"flag_at_least": {"a04_visit.lost_to_machine": 4}}, "region": "franconia_more", "to": "machine", "ledger": "The machine's red spreads east of Nuremberg."},
 		{"if": {"flag": {"a05_specimens.cages": ["few", "some", "all"]}}, "ledger": "Cages brought down to the river: %s.", "args": ["a05_specimens.cages_n"]},
 		{"if": {"won_by": {"a06_barricades": "crown"}}, "region": "paris", "to": "crown", "ledger": "Paris was taken back from the barricades."},
+		{"if": {"won_by": {"a06_barricades": "assembly"}}, "region": "paris", "to": "unrest", "pin": "a06_barricades", "seal": "broken", "ledger": "Paris held behind its barricades: the Free Assembly's flags on the Hôtel de Ville."},
 		{"if": {"flag": {"a06_barricades.varenne": "spared"}}, "mark": "varenne_exile", "show": true, "ledger": "Varenne was spared and sent into exile."},
 		{"if": {"flag": {"a06_barricades.varenne": "executed"}}, "region": "paris", "to": "contested", "ledger": "Varenne was executed: risings flare in the provinces."},
 		{"if": {"flag": {"a06_barricades.varenne": "executed"}}, "regions": ["brittany", "provence"], "to": "unrest"},

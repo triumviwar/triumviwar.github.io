@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.62", "items": [
+		"ACT 1, THE BARRICADES OF PARIS (CAMPAIGN, THE CROWN, after The Printing Houses): Paris, July 2769. The Free Assembly holds the city behind its barricades and Varenne sits in the Hôtel de Ville. Lead Field Marshal Fairleigh's army, Colonel Ruggieri's guns and Father Tomasz in through the only street of the faubourg: break three barricades with your guns (the new MORTAR lobs its shell over them, the cannon's canister meets the men who rush out), take the bridges of the Cité before the torch-bearers burn Notre-Dame, open the hall's palisade and take Varenne alive before he reaches the boats. Then THE ACT'S CHOICE: Father Tomasz asks for his life, and the order is yours: spare him into exile, or execute him. The Virginia volunteers come if you saved the families, the Lyon men stand on the bridges if Lyon was left sullen. Solo, co-op (the friend has Ruggieri's guns) and versus (the friend is the Assembly); every word still a placeholder.",
+		"The Crown line's ladder reaches its third step: the Foundry and the Mortar are the new pieces in Paris. The King's study has new words after Paris (by what you did with Varenne), and the war map's seal for Paris opens after Lyon.",
+	]},
 	{"v": "0.38.61", "items": [
 		"FARMS BEFORE HAULERS: while any Farm still has a free post, the Crown computer puts no Labourer on hauling: new Horsemen walk to the Horse Breeder for their horse and the guns' horses walk in by themselves. Only powder wagons waiting for kegs still get a hauler.",
 	]},

@@ -46,6 +46,13 @@ const ROLES := {
 	"runner": {"kind": "labourer", "art": "a_runner", "about": "A runner of the Free Assembly with a bundle of pamphlets."},
 	"printer": {"kind": "labourer", "art": "a_printer", "name": "Master Rouvière", "hp": 300, "about": "The master printer of the great press under the hill."},
 	"weaver": {"kind": "labourer", "art": "c_citizen", "about": "A silk-weaver of the Croix-Rousse."},
+	# Act 1's a06_barricades (Paris, July 2769): the field marshal, the captain of the guns, the Virginia volunteers, the
+	# Lyon men at the barricades, Varenne in his hall (harder to kill than in Virginia: he is to be taken alive)
+	"fairleigh": {"kind": "dismounted", "art": "a_fairleigh", "name": "Field Marshal Fairleigh", "hp": 320, "about": "Lord Edmund Fairleigh, once Governor of Virginia, now the King's field marshal."},
+	"ruggieri": {"kind": "dismounted", "art": "a_ruggieri", "name": "Colonel Ruggieri", "hp": 220, "about": "Matteo Ruggieri, the guns' colonel since Virginia."},
+	"volunteer": {"kind": "musketeer", "art": "a_volunteer", "about": "A Virginia volunteer: one of the families saved at the Hollins farm."},
+	"lyon_man": {"kind": "musketeer", "art": "rebel_militia", "about": "A Lyon weaver come to the barricades of Paris."},
+	"varenne_hall": {"kind": "dismounted", "art": "rebel_varenne", "name": "Etienne Varenne", "hp": 260, "about": "The Free Assembly's orator, in his hall."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)
