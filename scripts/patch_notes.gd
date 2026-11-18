@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.74", "items": [
+		"The King speaks again in the campaign: his 85 new lines recorded again, clear this time.",
+	]},
 	{"v": "0.38.73", "items": [
 		"All three prologues are open from the start: the Crown, the Clockmaker and the Naturalist. The Crown is marked Start here, where the story begins.",
 		"The Leaf and the Fire: after Hollins Farm the Governor now points you at the second rebel camp on the road east, shown on the map.",

@@ -7,7 +7,7 @@ The owner records voices on his PC with `tools/voice_clone/` (Chatterbox; `run.b
 ALL CAMPAIGN TEXT IS PLACEHOLDER: the owner rewrites the dialogue before recording. This list says WHAT is waiting and
 WHERE its table is; the tables themselves live in each mission's build doc.
 
-REDO THE KING (owner 2026-11-18 21:57: "sounds weird like inside a box"): the -1.5 pitch shift (librosa) muffled him; his 85 new
+DONE 0.38.74 (re-recorded at pitch 0, in the game). REDO THE KING (owner 2026-11-18 21:57: "sounds weird like inside a box"): the -1.5 pitch shift (librosa) muffled him; his 85 new
 lines were taken out of the game (0.38.73). Re-record with tools/voice_clone/lines_king.txt ([pitch 0]); first delete
 out\*__k_*.wav, out\a07__tip_church.wav and out\a07__tip_fire.wav or the run skips them.
 

@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.74": ["El Rey vuelve a hablar en la campaña: sus 85 frases nuevas grabadas de nuevo, claras esta vez."],
 	"0.38.73": ["Los tres prólogos están abiertos desde el principio: la Corona, el Relojero y el Naturalista. La Corona está marcada Empieza aquí, donde empieza la historia.", "La Hoja y el Fuego: después de la Granja Hollins el Gobernador ahora te señala el segundo campamento rebelde en el camino al este, mostrado en el mapa.", "Las nuevas frases del Rey en la campaña se quitan hasta grabarlas de nuevo (sonaban apagadas)."],
 	"0.38.72": ["La pintura del amanecer de la Línea de Fürth: los soldados ahora llevan mosquetes de chispa de verdad."],
 	"0.38.71": ["LOS EXPLORADORES SON CAZADOS: todos los ordenadores (la Corona, el Reloj y la Nidada) ahora van tras un explorador enemigo en su base: un trabajador, un Mensajero o un globo, o un soldado rápido solo en una vuelta de exploración. Envían las dos unidades más cercanas que pueden alcanzarlo (al principio, cuando ningún soldado puede, uno o dos trabajadores a su lado), persiguen solo un poco más allá de su base y nunca hacia el ejército enemigo, y luego las devuelven a su puesto o a su trabajo. La Nidada ya no deja que un Peón dé vueltas alrededor de su Madre. La HISTORIA DE LA IA cuenta cada caza.", "La Línea de Fürth recibe sus primeras pinturas de verdad: el gremio en el exilio, el Honrado y la línea al amanecer."],
