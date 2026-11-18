@@ -2,7 +2,7 @@
 """PLAN MATRIX (plan-matrix-<faction>, docs/plan_matrix_<faction>.md): every plan of one faction FORCED on its Hard computer,
 against each opponent faction (Crown, Clockwork, the mirror) playing Hard OPTIMAL. A measuring tool: it changes no rule.
     python3 tools/study/plan_matrix.py FACTION list [--maps a,b,..]
-    python3 tools/study/plan_matrix.py FACTION run OUT --data DATA [--jobs 1] [--end 1200] [--maps ...] [--plans ...] [--opps ...]
+    python3 tools/study/plan_matrix.py FACTION run OUT --data DATA [--jobs 1] [--end 1200] [--maps ...] [--plans ...] [--opps ...] [--timeout 1800]
 FACTION: crown, clockwork or brood. Plans: AI.STRATEGIES for that faction (scripts/ai.gd strategies_for: the shared ones,
 the faction's own, OPTIMAL itself as the baseline; the hidden Turret turtle left out).
 Each cell (plan x opponent) plays MAPS x 2 rounds: round 0 the subject on one spot, round 1 the spots swapped (as in
@@ -70,6 +70,7 @@ if __name__ == "__main__":
     out = os.path.abspath(sys.argv[3])
     data = os.path.abspath(arg("--data", os.path.join(qm.ROOT, "docs/plan_matrix_%s/data" % f)))
     end = int(arg("--end", "1200"))
+    qm.TIMEOUT = int(arg("--timeout", "1800"))      # (plan-matrix-brood-2: ~3x a 20:00 game; a hung game is killed, FAILED.txt, the run goes on)
     print("%d games" % len(gl), flush=True)
     with ThreadPoolExecutor(int(arg("--jobs", "1"))) as ex:
         for t in ex.map(lambda g: qm.run_one(g, out, end, data), gl):
