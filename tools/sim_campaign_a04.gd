@@ -22,6 +22,8 @@ var broken := "kept"
 var _saved_progress := ""
 var _deaths := {}
 var _watch: Array = []
+var _p3 := 0.0
+var _killed := {}
 
 
 func _initialize() -> void:
@@ -76,7 +78,7 @@ func _run() -> void:
 		if active and String(r.choice_open.get("id", "")) == "broken":
 			r.choose("broken", broken)
 		for u in g.units:
-			if not u.dead and u.team == pt and not _watch.has(u):
+			if not u.dead and (u.team == pt or u.team == mt) and not _watch.has(u):
 				_watch.append(u)
 		for u in _watch.duplicate():
 			if not is_instance_valid(u):
@@ -86,6 +88,16 @@ func _run() -> void:
 				_watch.erase(u)
 				var key := "%s by %s/t%d" % [u.kind, u.last_hit_by, u.last_hit_team]
 				_deaths[key] = int(_deaths.get(key, 0)) + 1
+		if r.fired.has("riot") and not r.fired.has("riot_over") and g.clock >= _p3:
+			_p3 = g.clock + 5.0
+			var rio: Array = r.tagged("rioters")
+			var pen: Array = r.tagged("g_pendulum")
+			print("SIM   p3 t=%d rioters=%d %s lost=%d sortie=%d pendulum=%s" % [g.clock, rio.size(), rio.slice(0, 6).map(func(u): return [g.cell_of(u.position), int(u.hp), u.order]),
+				int(r.counters["lost_to_machine"]), r.tagged("sortie").size(),
+				"-" if pen.is_empty() else "%s %s %s wind %.2f" % [g.cell_of(pen[0].position), pen[0].order, pen[0].target.kind if pen[0].target and is_instance_valid(pen[0].target) else "-", pen[0].wind]])
+			if not _deaths.is_empty():
+				print("SIM      deaths: %s" % _deaths)
+				_deaths.clear()
 		if g.clock >= next:
 			next += 20.0 if g.clock < 120.0 else 60.0
 			var part := "1" if not r.fired.has("part2") else ("2" if not r.fired.has("riot") else "3")
@@ -177,8 +189,10 @@ func _play(g: Game, r: MissionRun, pt: int, mt: int) -> void:
 		for u in rio:
 			c3 += u.position
 		c3 /= float(rio.size())
-		_go(g, muskets, c3, true, 2.0 * Defs.TILE)
-		_go(g, _ours(g, pt, ["gate_men"], r), r.area_rect("gap").get_center(), true, 3.0 * Defs.TILE)
+		# (get ahead of them: the escort to the gap, the line's men already there; whoever is left behind chases)
+		var gap := r.area_rect("gap").get_center()
+		_go(g, muskets, gap if c3.x < gap.x - 2 * Defs.TILE else c3, true, 2.0 * Defs.TILE)
+		_go(g, _ours(g, pt, ["gate_men", "gap_men"], r), gap, true, 3.0 * Defs.TILE)
 	var safe := r.area_rect("yard").get_center()
 	if ferrer.position.distance_to(safe) > 3.0 * Defs.TILE:
 		g.group_move([ferrer] + _ours(g, pt, ["brothers"], r), safe, false)

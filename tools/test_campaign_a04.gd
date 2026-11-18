@@ -139,7 +139,7 @@ func _inspect(g: Game, r: MissionRun) -> void:
 	var fe: Unit = r.tagged("ferrer")[0]
 	for i in 6:
 		_put(g, [fe], _mid(r, "ws_%d" % (i + 1)))
-		_walk(g, g.clock + 6.75)
+		_walk(g, g.clock + 10.75)
 		if i == 2:
 			_walk(g, g.clock + 4.5)
 			if not r.tagged("jakob").is_empty():
@@ -147,7 +147,7 @@ func _inspect(g: Game, r: MissionRun) -> void:
 				_walk(g, g.clock + 0.5)
 	if r.objective("log") and r.obj.get("log", "") == "active":
 		_put(g, [fe], _mid(r, "barn"))
-		_walk(g, g.clock + 6.75)
+		_walk(g, g.clock + 10.75)
 
 
 ## Part 2 by the script: the night, the night Winder walked along its way (the party with it), the bank, the reveal.
@@ -157,12 +157,12 @@ func _night(g: Game, r: MissionRun) -> void:
 	_put(g, r.tagged("escort") + r.tagged("brothers"), r.tagged("ferrer")[0].position + Vector2(0, 3 * Defs.TILE))
 	_walk(g, g.clock + 8.5)       # (leg1)
 	var w: Array = r.tagged("night_winder")
-	for leg in [["w_town", "w_camp"], ["w_line"], ["bank"]]:
+	for leg in [["w_town", "w_camp"], ["w_line", "w_west"], ["bank"]]:
 		for wp in leg:
 			_put(g, w, _mid(r, wp))
 			_step(g, g.clock + 0.25)
 			_step(g, g.clock + 0.25)
-		_walk(g, g.clock + 6.5)
+		_walk(g, g.clock + 12.5)
 	_put(g, r.tagged("ferrer"), r.area_rect("bank_watch").position + Vector2(64, 64))
 	_walk(g, g.clock + 3.5)
 
@@ -275,15 +275,15 @@ func _play() -> void:
 	var mt := r.team_index("machine")
 	# ---- PART 1: a STAY of 6 s in each workshop
 	_put(g, [fe], _mid(r, "ws_1"))
-	_walk(g, g.clock + 5.0)
-	check("p1: 5 s in the Light Works is not enough", int(r.counters["inspected"]) == 0)
+	_walk(g, g.clock + 9.0)
+	check("p1: 9 s in the Light Works is not enough", int(r.counters["inspected"]) == 0)
 	_walk(g, g.clock + 1.75)
-	check("p1: 6 s: inspected 1, nothing there", int(r.counters["inspected"]) == 1 and _said(r, "f_ws1"))
+	check("p1: 10 s: inspected 1, nothing there", int(r.counters["inspected"]) == 1 and _said(r, "f_ws1"))
 	_put(g, [fe], _mid(r, "ws_2"))
-	_walk(g, g.clock + 6.75)
+	_walk(g, g.clock + 10.75)
 	check("p1: the Escapement: a Winder winding another (the sign)", int(r.counters["inspected"]) == 2 and _said(r, "f_wind") and _said(r, "h_wind"))
 	_put(g, [fe], _mid(r, "ws_3"))
-	_walk(g, g.clock + 6.75)
+	_walk(g, g.clock + 10.75)
 	check("p1: three seen: Hollweg called away to the presses", r.fired.has("called_away") and _said(r, "j_call"))
 	_walk(g, g.clock + 4.5)
 	check("p1: Jakob wants a word (the objective), he comes to the Father", r.obj["jakob_bin"] == "active" and _said(r, "j_word"))
@@ -292,24 +292,24 @@ func _play() -> void:
 	check("p1: Jakob's bin: the stop-works taken out (told the Father)", r.obj["jakob_bin"] == "done" and _said(r, "j_bin") and _said(r, "f_bin")
 		and r.flags.get("stopworks", "") == "found")
 	_put(g, [fe], _mid(r, "ws_5"))
-	_walk(g, g.clock + 6.75)
+	_walk(g, g.clock + 10.75)
 	check("p1: the lockers: the Assembly's pamphlets", _said(r, "f_print"))
 	_walk(g, g.clock + 8.5)
 	check("p1: ...on the Lyon type (a01 played)", _said(r, "f_type") and not _said(r, "f_type_no"))
 	_put(g, [fe], _mid(r, "ws_4"))
-	_walk(g, g.clock + 6.75)
+	_walk(g, g.clock + 10.75)
 	_put(g, [fe], _mid(r, "ws_6"))
-	_walk(g, g.clock + 6.75)
+	_walk(g, g.clock + 10.75)
 	check("p1: six of six: the inspection done; no log needed (Jakob told)", int(r.counters["inspected"]) == 6 and r.obj["inspect"] == "done" and r.obj["log"] != "active")
 	check("p1: a workshop counts once", r.fired.has("ws_6"))
 	# ---- PART 2: the night
 	_walk(g, g.clock + 6.5)
 	check("p2: dusk; the inspection off the panel; the dusk clock stopped", r.fired.has("part2") and not r.clocks.has("dusk") and r.obj["inspect"] == "hidden")
 	_walk(g, g.clock + 20.5)
-	check("p2: night: the broken ones on the bank (10, the works'), the night Winder", r.tagged("broken").size() == 10
+	check("p2: night: the broken ones on the bank and by the Mainspring (10 + 5, the works'), the night Winder", r.tagged("broken").size() == 15
+		and r.tagged("shift").size() == 5
 		and r.tagged("broken").all(func(u): return u.team == r.team_index("works")) and r.tagged("night_winder").size() == 1)
-	check("p2: the gear ground nobody laid: the machine's, disguised as the guild's", r.tagged("mesh").size() == 1 and r.tagged("mesh")[0].team == mt
-		and r.tagged("mesh")[0].has_meta("disguise_team"))
+	check("p2: the gear ground nobody laid: the works' own (no guild hand built it)", r.tagged("mesh").size() == 1 and r.tagged("mesh")[0].team == r.team_index("works"))
 	check("p2: follow it; the dawn clock (7:00)", r.obj["follow"] == "active" and r.obj["dawn"] == "active" and absf(float(r.clocks["dawn"]) - g.clock - 420.0 + 0.5) < 2.0)
 	_put(g, r.tagged("escort") + r.tagged("brothers"), fe.position + Vector2(0, 3 * Defs.TILE))
 	_walk(g, g.clock + 8.5)
@@ -320,37 +320,39 @@ func _play() -> void:
 		_step(g, g.clock + 0.25)
 		_step(g, g.clock + 0.25)
 	check("p2: leg 1 done", r.route_done.has("leg1"))
-	_walk(g, g.clock + 6.5)
-	_put(g, w, _mid(r, "w_line"))
-	_step(g, g.clock + 0.25)
-	_walk(g, g.clock + 6.5)
+	_walk(g, g.clock + 12.5)
+	for wp in ["w_line", "w_west"]:
+		_put(g, w, _mid(r, wp))
+		_step(g, g.clock + 0.25)
+		_step(g, g.clock + 0.25)
+	_walk(g, g.clock + 12.5)
 	_put(g, w, _mid(r, "bank"))
 	_step(g, g.clock + 0.25)
 	_step(g, g.clock + 0.25)
 	check("p2: at the bank: followed; watch from the bank", r.obj["follow"] == "done" and r.obj["watch"] == "active" and _said(r, "b_bank"))
 	_put(g, [fe], r.area_rect("bank_watch").position + Vector2(64, 64))
 	_walk(g, g.clock + 3.5)
-	check("p2: THE REVEAL: the gear ground unmasked, the meshing seen", r.fired.has("reveal") and not r.tagged("mesh")[0].has_meta("disguise_team") and _said(r, "n_mesh"))
+	check("p2: THE REVEAL: the meshing seen", r.fired.has("reveal") and _said(r, "n_mesh"))
 	_walk(g, g.clock + 1.5)
 	check("p2: the pattern (c01 canon): the Perpetual's drawings", _said(r, "f_pattern") and not _said(r, "f_people"))
 	check("p2: the dawn clock stopped", not r.clocks.has("dawn"))
 	# ---- PART 3: the riot
 	var broken: Array = r.tagged("broken").duplicate()
 	_walk(g, g.clock + 12.5)
-	check("p3: the riot: the broken ones stutter (the warning)", r.fired.has("riot") and int(r.counters["riot"]) == 10 and r.obj["riot"] == "active")
+	check("p3: the riot: the broken ones stutter (the warning)", r.fired.has("riot") and int(r.counters["riot"]) == 15 and r.obj["riot"] == "active")
 	check("p3: the winding pair stopped by Hollweg's key (caged, kept out of it)", r.tagged("pair").all(func(u): return u.m_pace == 0.0 and u.spared))
 	_walk(g, g.clock + 4.5)
-	check("p3: they turn RED (the machine's) and are the rioters", broken.all(func(u): return u.team == mt) and r.tagged("rioters").size() == 10)
+	check("p3: they turn RED (the machine's) and are the rioters", broken.all(func(u): return u.team == mt) and r.tagged("rioters").size() == 15)
 	_walk(g, g.clock + 1.0)
 	check("p3: they march for the machine's ground", r.fired.has("riot_march") and _said(r, "h_pend"))
-	check("p3: the guild's Pendulum and guards sent to the bridge (scripted guild)", r.fired.has("g_bridge"))
+	check("p3: the guild's Pendulum holds the yard's gate (on its ground)", r.tagged("g_pendulum")[0].order == "hold" and g.in_field(r.team_index("guild"), r.tagged("g_pendulum")[0].position))
 	# two of them reach the machine's ground: counted and gone
 	var rio: Array = r.tagged("rioters")
 	_put(g, rio.slice(0, 2), _mid(r, "meadow_ground"))
 	_step(g, g.clock + 0.25)
-	check("p3: two reach the machine's ground: lost_to_machine 2, taken off", int(r.counters["lost_to_machine"]) == 2 and r.tagged("rioters").size() == 8)
+	check("p3: two reach the machine's ground: lost_to_machine 2, taken off", int(r.counters["lost_to_machine"]) == 2 and r.tagged("rioters").size() == 13)
 	_walk(g, g.clock + 10.0)
-	check("p3: the machine's sortie out to meet them", r.tagged("sortie").size() == 6 and r.fired.has("m_sortie"))
+	check("p3: the machine's sortie out to meet them", r.tagged("sortie").size() == 8 and r.fired.has("m_sortie"))
 	# the rest stopped
 	_kill(r, "rioters")
 	_walk(g, g.clock + 3.5)
@@ -385,28 +387,28 @@ func _play_jakob_lost() -> void:
 	var fe: Unit = r.tagged("ferrer")[0]
 	for i in 6:
 		_put(g, [fe], _mid(r, "ws_%d" % (i + 1)))
-		_walk(g, g.clock + 6.75)
+		_walk(g, g.clock + 10.75)
 	check("jakob lost: read his old log in the barn (the objective)", r.obj["log"] == "active" and not r.fired.has("part2"))
 	_walk(g, g.clock + 8.0)
 	check("jakob lost: no Part 2 before the log", not r.fired.has("part2"))
 	check("jakob lost: no Jakob comes; the plain pamphlets (a01 not played)", not r.fired.has("jakob_comes") and _said(r, "f_type_no"))
 	_put(g, [fe], _mid(r, "barn"))
-	_walk(g, g.clock + 6.75)
+	_walk(g, g.clock + 10.75)
 	check("jakob lost: the log read: the same signs two years before", r.obj["log"] == "done" and _said(r, "f_log2") and r.flags.get("stopworks", "") == "logged")
 	_walk(g, g.clock + 6.5)
 	check("jakob lost: Part 2", r.fired.has("part2"))
 	_walk(g, g.clock + 20.5)
-	check("people: 12 at the bank (two salvaged)", r.tagged("broken").size() == 12 and r.tagged("salvaged").size() == 2)
+	check("people: 17 broken (two salvaged)", r.tagged("broken").size() == 17 and r.tagged("salvaged").size() == 2)
 	_put(g, r.tagged("escort") + r.tagged("brothers"), fe.position + Vector2(0, 3 * Defs.TILE))
 	_walk(g, g.clock + 8.5)
 	var w: Array = r.tagged("night_winder")
-	for leg in [["w_town", "w_camp"], ["w_line"], ["bank"]]:
+	for leg in [["w_town", "w_camp"], ["w_line", "w_west"], ["bank"]]:
 		for wp in leg:
 			_put(g, w, _mid(r, wp))
 			_step(g, g.clock + 0.25)
 			_step(g, g.clock + 0.25)
-		_walk(g, g.clock + 6.5)
-	# (the unmask by standing near the gear ground works as well as the stay)
+		_walk(g, g.clock + 12.5)
+	# (a man of the party by the gear ground works as well as the Father's stay)
 	_put(g, [fe], r.tagged("mesh")[0].center() + Vector2(0, 40))
 	_walk(g, g.clock + 3.0)
 	check("people: the reveal: salvaged red parts", r.fired.has("reveal") and _said(r, "f_people") and not _said(r, "f_pattern"))
@@ -448,11 +450,14 @@ func _night_rules() -> void:
 	# too close: within 3 tiles: it turns back, then sets out again
 	_put(g, [esc[0]], w.position + Vector2(Defs.TILE * 2, 0))
 	_walk(g, g.clock + 1.25)
-	check("night: too close: it sees you and turns back", r.fired.has("spotted") and int(r.counters["turning"]) == 1 and _said(r, "n_spotted"))
+	check("night: too close: it sees you and stops", r.fired.has("spotted") and int(r.counters["turning"]) == 1 and _said(r, "n_spotted")
+		and not r._routes.any(func(rt): return String(rt["name"]) == "leg1"))
+	_walk(g, g.clock + 13.0)
+	check("night: it waits while you stand close", not r.fired.has("resume_1") and int(r.counters["turning"]) == 1)
 	_put(g, [esc[0]], Vector2(10, 10) * Defs.TILE)
-	_walk(g, g.clock + 19.0)
-	check("night: a while later it sets out again (the whole way)", r.fired.has("resume") and int(r.counters["turning"]) == 0
-		and r._routes.any(func(rt): return String(rt["name"]) == "leg3"))
+	_walk(g, g.clock + 1.5)
+	check("night: backed off: it goes on with the leg it was on", r.fired.has("resume_1") and int(r.counters["turning"]) == 0
+		and r._routes.any(func(rt): return String(rt["name"]) == "leg1"))
 	# the dawn: never reached the bank
 	_walk(g, g.clock + 420.0)
 	check("night: dawn with nothing seen: the visit is lost", g.over and r.winner_side == "machine" and r.obj["follow"] == "failed")
@@ -516,7 +521,7 @@ func _versus() -> void:
 	_walk(g, g.clock + 5.5)
 	check("versus: no scripted sortie (the machine is a person's)", not r.fired.has("m_sortie"))
 	var rio: Array = r.tagged("rioters")
-	check("versus: the rioters are the machine player's", rio.size() == 10 and rio.all(func(u): return u.team == mt))
+	check("versus: the rioters are the machine player's", rio.size() == 15 and rio.all(func(u): return u.team == mt))
 	_put(g, rio.slice(0, 6), _mid(r, "meadow_ground"))
 	_step(g, g.clock + 0.25)
 	_step(g, g.clock + 0.25)
@@ -529,7 +534,7 @@ func _versus() -> void:
 # ================================================================== the difficulty
 
 func _difficulty() -> void:
-	for d in [["easy", 7, 3, 750.0, 4], ["hard", 13, 5, 510.0, 6]]:
+	for d in [["easy", 10, 3, 750.0, 5], ["hard", 19, 5, 510.0, 8]]:
 		_progress({"furth": "strong"}, {}, {}, d[0])
 		var g: Game = await _start()
 		var r: MissionRun = g.mission
@@ -545,16 +550,17 @@ func _difficulty() -> void:
 		check("%s: the dawn clock %d s" % [d[0], int(want)], absf(float(r.clocks.get("dawn", 0.0)) - g.clock - want) < 2.0)
 		_walk(g, g.clock + 8.5)
 		var w: Array = r.tagged("night_winder")
-		for leg in [["w_town", "w_camp"], ["w_line"], ["bank"]]:
+		for leg in [["w_town", "w_camp"], ["w_line", "w_west"], ["bank"]]:
 			for wp in leg:
 				_put(g, w, _mid(r, wp))
 				_step(g, g.clock + 0.25)
 				_step(g, g.clock + 0.25)
-			_walk(g, g.clock + 6.5)
+			_walk(g, g.clock + 12.5)
 		_put(g, r.tagged("ferrer"), r.area_rect("bank_watch").position + Vector2(64, 64))
 		_walk(g, g.clock + 3.5)
 		_walk(g, g.clock + 28.0)
-		check("%s: the machine's sortie scaled (%d)" % [d[0], d[4]], r.tagged("sortie").filter(func(u): return u.kind == "clock_soldier").size() == int(d[4]))
+		check("%s: the machine's sortie scaled (%d)" % [d[0], d[4]], r.tagged("sortie").filter(func(u): return u.kind == "clock_soldier").size() == int(d[4]),
+			"%d fired=%s %s" % [r.tagged("sortie").size(), r.fired.has("m_sortie"), r.fired.keys().slice(-8)])
 
 
 # ================================================================== the hubs

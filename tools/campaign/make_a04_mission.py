@@ -23,7 +23,7 @@ tells it truthfully (a Crown-side narrator); the King frames it.
     (c01's `gate`: pattern = the Perpetual's pattern, the flaw in the drawings; people = salvaged red parts).
   PART 3, THE RIOT: they CONVERT (red, the c01 stutter) and march for the machine's ground across the meadows; the
     machine sends a sortie to meet them. Stop them before they reach it (those that do are counted: lost_to_machine).
-    The guild's Pendulum sweeps the crowd at the bridge.
+    The guild's Pendulum sweeps the press-house shift at the yard's gate (on the guild's ground: off it, it runs down).
   THE CHOICE, THE BROKEN ONES: the stopped automata lie in the yard: Ferrer MELT them / Hollweg KEEP them (default and
     canon KEPT). Flags `broken` melted / kept, `lost_to_machine` (the count), `jakob` alive / lost.
 THE FLAGS READ (missing = the defaults): a02_furth `furth` (strong / thin: the escort), `jakob` (and c01's `jakob`:
@@ -74,11 +74,13 @@ SHOPS = [
     ("cog_press", [40, 24], [38, 23, 6, 5], "print"),
     ("heavy_works", [45, 24], [44, 23, 6, 5], ""),
 ]
-INSPECT_SECS = 6
+INSPECT_SECS = 10
 DUSK = 600                  # seconds for the inspection (NORMAL: the raced clock; EASY x1.25, HARD x0.85)
 DAWN = 420                  # seconds for the night shift
 # the riot (the works' automata at the bank), by the difficulty: Clock Soldiers, Springers, Winders
-RIOT = {"easy": (4, 1, 2), "normal": (6, 2, 2), "hard": (8, 3, 2)}
+RIOT = {"easy": (4, 1, 2), "normal": (6, 2, 2), "hard": (8, 2, 2)}
+# ...and the press-house's night shift on the yard's east side, meshing by the Mainspring: Clock Soldiers, Springers
+SHIFT = {"easy": (2, 1), "normal": (4, 1), "hard": (5, 2)}
 PEOPLE_MORE = 2             # c01 `gate` people: two more Clock Soldiers (the salvaged red parts)
 LOST_WIN = 6                # versus: the machine wins with this many brought home
 
@@ -111,6 +113,10 @@ def riot_units():
         for kind, n in (("clock_soldier", cs), ("springer", sp), ("winder", wd)):
             out.append({"spawn": {"team": "works", "kind": kind, "count": n, "at": "bank", "tag": "broken", "order": "hold", "fixed": True,
                                   "if": {"difficulty": d}}})
+    for d, (cs, sp) in SHIFT.items():
+        for kind, n in (("clock_soldier", cs), ("springer", sp)):
+            out.append({"spawn": {"team": "works", "kind": kind, "count": n, "at": "shift", "tag": "broken", "tags": ["shift"], "order": "hold",
+                                  "fixed": True, "if": {"difficulty": d}}})
     out.append({"spawn": {"team": "works", "kind": "clock_soldier", "count": PEOPLE_MORE, "at": "bank", "tag": "broken", "tags": ["salvaged"],
                           "order": "hold", "fixed": True, "if": PEOPLE}})
     return out
@@ -164,10 +170,10 @@ M = {
         {"ws_%d" % (i + 1): s[2] for i, s in enumerate(SHOPS)},
         town=[36, 2, 14, 6], yard=[32, 11, 23, 17], barn=[31, 14, 4, 9], honest_ring=[40, 13, 14, 10],
         # the night Winder's way: out of the yard, round by the town and the line's back, down to the river
-        w_start=[42, 12, 3, 2], w_town=[40, 8, 4, 2], w_camp=[52, 8, 3, 2], w_line=[54, 24, 3, 3], bank=[50, 31, 6, 4],
+        w_start=[42, 12, 3, 2], w_town=[40, 8, 4, 2], w_camp=[48, 8, 3, 2], w_line=[51, 28, 3, 3], w_west=[32, 28, 3, 3], shift=[53, 18, 4, 4], yard_gate=[43, 25, 5, 3], bank=[50, 31, 6, 4],
         bank_watch=[44, 26, 14, 10], mesh_at=[52, 32, 2, 2],
         # the riot's way to the machine: the bridge, the south bank, the open gap, the machine's ground
-        bridge=[39, 34, 6, 8], bridge_s=[40, 41, 6, 4], gap=[55, 45, 6, 7], meadow_ground=[67, 39, 22, 15], meadow=[74, 41, 12, 9],
+        bridge=[39, 34, 6, 8], bridge_s=[40, 41, 6, 4], gap=[55, 45, 6, 7], meadow_ground=[70, 39, 19, 15], meadow=[74, 41, 12, 9],
         road_gate=[55, 15, 7, 8], inside_n=[50, 15, 6, 8], inside_s=[48, 44, 7, 7], behind_line=[30, 1, 28, 58],
         link_n=[84, 19, 6, 6], link_s=[86, 52, 6, 6], north_gate=[102, 14, 11, 9], south_gate=[102, 44, 11, 9],
     ),
@@ -176,19 +182,20 @@ M = {
     "exits": [{"area": "meadow_ground", "tag": "rioters", "counter": "lost_to_machine", "after": "riot"}],
     "units": [
         # ---- Ferrer's party (the player)
-        {"team": "party", "kind": "missionary", "as": "ferrer_visit", "count": 1, "at": "town", "tag": "ferrer"},
-        {"team": "party", "kind": "missionary", "as": "lay_brother", "count": 2, "at": "town", "tag": "brothers", "fixed": True},
-        {"team": "party", "kind": "musketeer", "count": 8, "at": "town", "tag": "escort", "if": STRONG, "fixed": True},
-        {"team": "party", "kind": "musketeer", "count": 5, "at": "town", "tag": "escort", "if": THIN, "fixed": True},
+        {"team": "party", "kind": "missionary", "as": "ferrer_visit", "count": 1, "at": "town", "tag": "ferrer", "tags": ["shadow"]},
+        {"team": "party", "kind": "missionary", "as": "lay_brother", "count": 2, "at": "town", "tag": "brothers", "tags": ["shadow"], "fixed": True},
+        {"team": "party", "kind": "musketeer", "count": 8, "at": "town", "tag": "escort", "tags": ["shadow"], "if": STRONG, "fixed": True},
+        {"team": "party", "kind": "musketeer", "count": 5, "at": "town", "tag": "escort", "tags": ["shadow"], "if": THIN, "fixed": True},
         # the line's gate men (the Franconians lend them to the Father)
         {"team": "party", "kind": "musketeer", "count": 4, "at": "inside_s", "tag": "gap_men", "order": "hold", "fixed": True},
         {"team": "party", "kind": "musketeer", "count": 3, "at": "road_gate", "tag": "gate_men", "order": "hold", "fixed": True},
         # ---- the guild (its Clocktower, presses and Winders are the standard start: the Honest One)
         {"team": "guild", "kind": "missionary", "as": "hollweg", "count": 1, "at": [42, 8], "tag": "hollweg"},
         {"team": "guild", "kind": "labourer", "as": "jakob", "count": 1, "at": [50, 25], "tag": "jakob", "if": JAKOB},
-        {"team": "guild", "kind": "clock_soldier", "count": 6, "at": "yard", "tag": "g_guard"},
-        {"team": "guild", "kind": "springer", "count": 2, "at": "yard", "tag": "g_guard"},
-        {"team": "guild", "kind": "pendulum", "count": 1, "at": [47, 28], "tag": "g_pendulum"},
+        {"team": "guild", "kind": "clock_soldier", "count": 4, "at": "barn", "tag": "g_guard"},
+        {"team": "guild", "kind": "clock_soldier", "count": 2, "at": [44, 27], "tag": "g_line", "order": "hold"},
+        {"team": "guild", "kind": "springer", "count": 2, "at": [44, 27], "tag": "g_line", "order": "hold"},
+        {"team": "guild", "kind": "pendulum", "count": 1, "at": [48, 27], "tag": "g_pendulum", "order": "hold"},
         # ---- the works' own automata (the sign in the Escapement)
     ] + shop_units() + [
         # ---- the machine: a garrison on its meadow ground (a person's army in versus)
@@ -286,8 +293,7 @@ M = {
             {"say": ["h_night", "f_night"]}]},
         {"id": "night", "when": {"fired": "part2"}, "delay": 20, "do": [
             {"light": {"to": "night", "secs": 20}},
-            {"build": {"team": "machine", "kind": "regulator", "at": "mesh_at", "tag": "mesh", "name": "Gear ground",
-                       "disguise": {"as": "guild", "within": 0, "secs": 99999}}}]
+            {"build": {"team": "works", "kind": "regulator", "at": "mesh_at", "tag": "mesh", "name": "Gear ground"}}]
             + riot_units() + [
             {"spawn": {"team": "works", "kind": "winder", "count": 1, "at": "w_start", "tag": "night_winder", "name": "The night Winder"}},
             {"objective": {"id": "follow", "set": "active"}}, {"objective": {"id": "dawn", "set": "active"}},
@@ -295,23 +301,30 @@ M = {
             {"say": ["b_night", "f_follow", "b_tip2"]}, {"ping": {"tag": "night_winder"}}]},
         {"id": "leg1", "when": {"fired": "night"}, "delay": 8, "do": [
             {"order": {"tag": "night_winder", "do": "route", "route": ["w_town", "w_camp"], "name": "leg1"}}]},
-        {"id": "leg2", "when": {"all": [{"route_done": "leg1"}, {"counter": {"name": "turning", "below": 1}}]}, "delay": 6, "do": [
-            {"order": {"tag": "night_winder", "do": "route", "route": ["w_line"], "name": "leg2"}}]},
-        {"id": "leg3", "when": {"all": [{"route_done": "leg2"}, {"counter": {"name": "turning", "below": 1}}]}, "delay": 6, "do": [
+        {"id": "leg2", "when": {"all": [{"route_done": "leg1"}, {"counter": {"name": "turning", "below": 1}}]}, "delay": 12, "do": [
+            {"order": {"tag": "night_winder", "do": "route", "route": ["w_line", "w_west"], "name": "leg2"}}]},
+        {"id": "leg3", "when": {"all": [{"route_done": "leg2"}, {"counter": {"name": "turning", "below": 1}}]}, "delay": 12, "do": [
             {"order": {"tag": "night_winder", "do": "route", "route": ["bank"], "name": "leg3"}}]},
-        # too close: it stops, turns and goes back the way it came; a while later it sets out again
+        # too close (the Father's party within 3 tiles): it stops and turns its head; it goes on only once they have
+        # backed off (none within 4) and a while has passed, from the leg it was on
         {"id": "spotted", "when": {"all": [{"fired": "leg1"}, {"not": {"route_done": "leg3"}}, {"counter": {"name": "turning", "below": 1}},
-                                          {"near": {"team": "party", "to": "night_winder", "within": 3}}, LIVE]}, "every": 1, "do": [
+                                          {"near": {"tag": "shadow", "to": "night_winder", "within": 3}}, LIVE]}, "every": 1, "do": [
             {"counter": {"name": "turning", "set": 1}}, {"counter": {"name": "spotted", "add": 1}},
-            {"order": {"tag": "night_winder", "do": "move", "to": "w_start"}}, {"say": ["n_spotted"]}, {"clock": {"name": "resume", "secs": 18}}]},
-        {"id": "resume", "when": {"all": [{"counter": {"name": "turning", "at_least": 1}}, {"clock_out": "resume"}, LIVE]}, "every": 1, "do": [
+            {"order": {"tag": "night_winder", "do": "stop"}}, {"say": ["n_spotted"]}, {"clock": {"name": "resume", "secs": 12}}]},
+    ] + [
+        {"id": "resume_%d" % k, "when": {"all": [{"counter": {"name": "turning", "at_least": 1}}, {"clock_out": "resume"}, cond,
+                                                  {"not": {"near": {"tag": "shadow", "to": "night_winder", "within": 4}}}, LIVE]}, "every": 1, "do": [
             {"counter": {"name": "turning", "set": 0}}, {"say": ["n_resume"]},
-            {"order": {"tag": "night_winder", "do": "route", "route": ["w_town", "w_camp", "w_line", "bank"], "name": "leg3"}}]},
+            {"order": {"tag": "night_winder", "do": "route", "route": rt, "name": "leg%d" % k}}]}
+        for k, rt, cond in [(1, ["w_town", "w_camp"], {"not": {"route_done": "leg1"}}),
+                            (2, ["w_line", "w_west"], {"all": [{"route_done": "leg1"}, {"not": {"route_done": "leg2"}}]}),
+                            (3, ["bank"], {"all": [{"route_done": "leg2"}, {"not": {"route_done": "leg3"}}]})]
+    ] + [
         # too far: a brother says where it went (it doesn't wait)
         {"id": "dark", "when": {"all": [{"fired": "leg1"}, {"not": {"route_done": "leg3"}},
-                                        {"not": {"near": {"team": "party", "to": "night_winder", "within": 8}}}, LIVE]}, "every": 1, "do": [
+                                        {"not": {"near": {"tag": "shadow", "to": "night_winder", "within": 8}}}, LIVE]}, "every": 1, "do": [
             {"counter": {"name": "dark", "add": 1}}]},
-        {"id": "lit", "when": {"all": [{"fired": "leg1"}, {"near": {"team": "party", "to": "night_winder", "within": 8}}, LIVE]}, "every": 1, "do": [
+        {"id": "lit", "when": {"all": [{"fired": "leg1"}, {"near": {"tag": "shadow", "to": "night_winder", "within": 8}}, LIVE]}, "every": 1, "do": [
             {"counter": {"name": "dark", "set": 0}}]},
         {"id": "lost_it", "when": {"all": [{"counter": {"name": "dark", "at_least": 10}}, LIVE]}, "every": 20, "do": [
             {"say": ["b_lost"]}, {"ping": {"tag": "night_winder"}}]},
@@ -320,7 +333,7 @@ M = {
             {"ping": {"area": "bank"}}]},
         {"id": "reveal", "when": {"all": [{"fired": "at_bank"}, {"any": [{"stay": {"tag": "ferrer", "area": "bank_watch", "secs": 3}},
                                                                           {"near": {"team": "party", "to": "mesh", "within": 4}}]}, LIVE]}, "do": [
-            {"unmask": {"tag": "mesh"}}, {"spare": {"tag": "mesh", "on": True}}, {"objective": {"id": "watch", "set": "done"}}, {"clock": {"name": "dawn", "stop": True}},
+            {"objective": {"id": "watch", "set": "done"}}, {"ping": {"tag": "mesh"}}, {"clock": {"name": "dawn", "stop": True}},
             {"objective": {"id": "dawn", "set": "hidden"}}, {"reveal": {"area": "bank", "side": "visit", "secs": 30}},
             {"say": ["n_mesh", "f_mesh"]}]},
         {"id": "reveal_pattern", "when": {"all": [{"fired": "reveal"}, PATTERN]}, "delay": 1, "do": [{"say": ["f_pattern", "b_pattern"]}]},
@@ -331,19 +344,18 @@ M = {
         {"id": "riot", "when": {"fired": "reveal"}, "delay": 12, "do": [
             {"objective": {"id": "follow", "set": "hidden"}}, {"objective": {"id": "watch", "set": "hidden"}},
             {"counter": {"name": "riot", "count": {"tag": "broken"}}},
-            {"convert": {"tag": "broken", "to": "machine", "warn": 4, "as": "rioters", "sound": "campaign/off_beat"}},
+            {"convert": {"tag": "broken", "to": "machine", "warn": 3, "as": "rioters", "sound": "campaign/off_beat"}},
+            {"wind": {"tag": "broken", "share": 0.6}},
             {"cage": {"tag": "pair", "on": True}}, {"spare": {"tag": "pair", "on": True}},
             {"objective": {"id": "riot", "set": "active"}}, {"say": ["n_riot", "f_riot"]}, {"ping": {"area": "gap"}}]},
         {"id": "riot_march", "when": {"fired": "riot"}, "delay": 5, "do": [
-            {"order": {"tag": "rioters", "do": "move", "to": "meadow_ground"}}, {"ping": {"area": "bridge"}}]},
-        # (stragglers stopped by nothing walk on every 10 s; the ones in a fight keep fighting)
-        {"id": "riot_on", "when": {"all": [{"fired": "riot_march"}, LIVE]}, "every": 10, "do": [
-            {"order": {"tag": "rioters", "do": "move", "to": "meadow_ground", "idle": True}}]},
+            {"order": {"tag": "rioters", "do": "route", "route": ["bridge", "bridge_s", "gap", "meadow_ground"], "name": "riot"}},
+            {"ping": {"area": "bridge"}}]},
         {"id": "riot_key", "when": {"fired": "riot"}, "delay": 3, "do": [{"say": ["h_key", "h_pend"]}]},
         # the machine meets them: a sortie out of its meadow ground at the gap
-        {"id": "m_sortie", "when": {"all": [{"fired": "riot"}, NO_MACHINE]}, "delay": 15, "do": [
-            {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 5, "at": "meadow", "tag": "sortie"}},
-            {"spawn": {"team": "machine", "kind": "springer", "count": 1, "at": "meadow", "tag": "sortie"}},
+        {"id": "m_sortie", "when": {"all": [{"fired": "riot"}, NO_MACHINE]}, "delay": 6, "do": [
+            {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 6, "at": "meadow", "tag": "sortie"}},
+            {"spawn": {"team": "machine", "kind": "springer", "count": 2, "at": "meadow", "tag": "sortie"}},
             {"order": {"tag": "sortie", "do": "attack", "to": "gap"}}, {"say": ["b_sortie"]}, {"ping": {"area": "gap"}}]},
         {"id": "m_guard_out", "when": {"all": [{"fired": "riot"}, NO_MACHINE]}, "delay": 25, "do": [
             {"order": {"tag": "m_guard", "do": "attack", "to": "gap"}}]},
@@ -433,7 +445,7 @@ M = {
         "b_night": {"who": "brother", "to": "visit", "text": "Father, a Winder. Alone, out of the yard. Nobody sent it."},
         "f_follow": {"who": "ferrer", "to": "visit", "text": "Follow it. Quietly."},
         "b_tip2": {"who": "brother", "to": "visit", "text": "Keep it within eight tiles. Closer than three and it will see us."},
-        "n_spotted": {"who": "narrator", "to": "visit", "text": "The Winder stops. Its head turns. It goes back the way it came."},
+        "n_spotted": {"who": "narrator", "to": "visit", "text": "The Winder stops. Its head turns. Back off, and wait."},
         "n_resume": {"who": "narrator", "to": "visit", "text": "The Winder sets out again."},
         "b_lost": {"who": "brother", "to": "visit", "text": "We have lost sight of it, Father. It went that way."},
         "b_bank": {"who": "brother", "to": "visit", "text": "It stopped by the river, below the chapel. There are others there."},
@@ -448,7 +460,7 @@ M = {
         "n_riot": {"who": "narrator", "to": "visit", "text": "They turn red, one by one, off the beat. Then they walk for the meadows."},
         "f_riot": {"who": "ferrer", "to": "visit", "text": "They are going to the machine. Stop them before they reach its ground!"},
         "h_key": {"who": "hollweg", "to": "visit", "text": "These two in the yard still had their stop-works. I stopped them with my key. Not those."},
-        "h_pend": {"who": "hollweg", "to": "visit", "text": "The Pendulum to the bridge! Let it swing through them."},
+        "h_pend": {"who": "hollweg", "to": "visit", "text": "The Pendulum, to the yard's gate! The press-house shift must come past it."},
         "b_sortie": {"who": "brother", "to": "visit", "text": "The machine is coming out to meet them, at the open gap in the line!"},
         "n_over": {"who": "narrator", "to": "visit", "text": "The last of them is down or gone. Dawn over the meadows."},
         "f_none": {"who": "ferrer", "to": "visit", "text": "Not one reached it. Thank God."},
@@ -534,15 +546,11 @@ M = {
     "next": {"visit": "", "machine": ""},
 }
 
-# the scripted guild's answer to the riot (solo and versus: in co-op the friend leads the guild): the Pendulum and the
-# guards to the bridge, at the crowd
-M["triggers"] += [
-    {"id": "g_bridge", "modes": ["solo", "versus"], "when": {"fired": "riot_march"}, "do": [
-        {"order": {"tag": "g_pendulum", "do": "attack", "to": "bridge"}},
-        {"order": {"tag": "g_guard", "do": "attack", "to": "bridge"}}]},
-    {"id": "g_answer", "modes": ["solo", "versus"], "when": {"all": [{"fired": "riot_march"}, LIVE, {"not": {"fired": "riot_over"}}]}, "every": 4, "do": [
-        {"order": {"team": "guild", "do": "hunt", "prey_team": "machine", "within": 12}}]},
-]
+# (the scripted guild answers the riot by standing: its Pendulum and line on HOLD at the yard's gate, on the Honest One's
+# ground, where the press-house shift must come past: off its ground a construct runs down and stands still)
+# The scripted guild's Winders keep them wound (solo and versus; in co-op the friend leads the guild and winds his own).
+M["triggers"].append({"id": "g_wound", "modes": ["solo", "versus"], "when": {"all": [{"time": 2}, LIVE]}, "every": 5, "do": [
+    {"wind": {"tag": "g_pendulum", "share": 1.0}}, {"wind": {"tag": "g_line", "share": 1.0}}]})
 
 # THE ROSTER LADDER (docs/campaign_roster_ladder.md): the guild (co-op p2) is bound to K3, the Heavy Works and the Pendulum
 sys.path.insert(0, HERE)

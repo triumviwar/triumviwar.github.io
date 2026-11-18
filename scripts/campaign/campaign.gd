@@ -761,7 +761,7 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: unknown side %s" % [where, v])
 		"mark", "flag", "clock", "counter", "tally", "name":
 			pass
-		"cage", "pin", "carry", "spare", "floor", "heal", "burn", "nest_free":
+		"cage", "pin", "carry", "spare", "floor", "heal", "burn", "nest_free", "wind":
 			if not (v is Dictionary and v.has("tag")):
 				out.append("%s: %s needs a tag" % [where, k])
 		"convert":

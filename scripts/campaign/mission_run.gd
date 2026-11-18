@@ -812,6 +812,12 @@ func act(a: Dictionary) -> void:
 				# {"heal": {"tag", "share"}}: their health back up to that share at least
 				for e in tagged(String(v.get("tag", ""))):
 					e.hp = maxf(e.hp, e.max_hp * float(v.get("share", 1.0)))
+			"wind":
+				# (a04) {"wind": {"tag", "share"}}: Clockwork units wound up to that share at least (the broken ones wind each
+				# other before they march: run down to nothing they would stand still)
+				for e in tagged(String(v.get("tag", ""))):
+					if e is Unit:
+						(e as Unit).wind = maxf((e as Unit).wind, clampf(float(v.get("share", 1.0)), 0.0, 1.0))
 			"burn":
 				# {"burn": {"tag", "secs"}}: buildings set alight burn down in about that time (fire on them)
 				for e in tagged(String(v.get("tag", ""))):

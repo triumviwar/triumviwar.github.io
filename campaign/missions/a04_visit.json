@@ -204,15 +204,33 @@
 			2
 		],
 		"w_camp": [
-			52,
+			48,
 			8,
 			3,
 			2
 		],
 		"w_line": [
-			54,
-			24,
+			51,
+			28,
 			3,
+			3
+		],
+		"w_west": [
+			32,
+			28,
+			3,
+			3
+		],
+		"shift": [
+			53,
+			18,
+			4,
+			4
+		],
+		"yard_gate": [
+			43,
+			25,
+			5,
 			3
 		],
 		"bank": [
@@ -252,9 +270,9 @@
 			7
 		],
 		"meadow_ground": [
-			67,
+			70,
 			39,
-			22,
+			19,
 			15
 		],
 		"meadow": [
@@ -348,7 +366,10 @@
 			"as": "ferrer_visit",
 			"count": 1,
 			"at": "town",
-			"tag": "ferrer"
+			"tag": "ferrer",
+			"tags": [
+				"shadow"
+			]
 		},
 		{
 			"team": "party",
@@ -357,6 +378,9 @@
 			"count": 2,
 			"at": "town",
 			"tag": "brothers",
+			"tags": [
+				"shadow"
+			],
 			"fixed": true
 		},
 		{
@@ -365,6 +389,9 @@
 			"count": 8,
 			"at": "town",
 			"tag": "escort",
+			"tags": [
+				"shadow"
+			],
 			"if": {
 				"not": {
 					"past": {
@@ -380,6 +407,9 @@
 			"count": 5,
 			"at": "town",
 			"tag": "escort",
+			"tags": [
+				"shadow"
+			],
 			"if": {
 				"past": {
 					"a02_furth.furth": "thin"
@@ -448,26 +478,42 @@
 		{
 			"team": "guild",
 			"kind": "clock_soldier",
-			"count": 6,
-			"at": "yard",
+			"count": 4,
+			"at": "barn",
 			"tag": "g_guard"
+		},
+		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 2,
+			"at": [
+				44,
+				27
+			],
+			"tag": "g_line",
+			"order": "hold"
 		},
 		{
 			"team": "guild",
 			"kind": "springer",
 			"count": 2,
-			"at": "yard",
-			"tag": "g_guard"
+			"at": [
+				44,
+				27
+			],
+			"tag": "g_line",
+			"order": "hold"
 		},
 		{
 			"team": "guild",
 			"kind": "pendulum",
 			"count": 1,
 			"at": [
-				47,
-				28
+				48,
+				27
 			],
-			"tag": "g_pendulum"
+			"tag": "g_pendulum",
+			"order": "hold"
 		},
 		{
 			"team": "works",
@@ -1404,7 +1450,7 @@
 						"stay": {
 							"tag": "ferrer",
 							"area": "ws_1",
-							"secs": 6
+							"secs": 10
 						}
 					},
 					{
@@ -1436,7 +1482,7 @@
 						"stay": {
 							"tag": "ferrer",
 							"area": "ws_2",
-							"secs": 6
+							"secs": 10
 						}
 					},
 					{
@@ -1470,7 +1516,7 @@
 						"stay": {
 							"tag": "ferrer",
 							"area": "ws_3",
-							"secs": 6
+							"secs": 10
 						}
 					},
 					{
@@ -1502,7 +1548,7 @@
 						"stay": {
 							"tag": "ferrer",
 							"area": "ws_4",
-							"secs": 6
+							"secs": 10
 						}
 					},
 					{
@@ -1534,7 +1580,7 @@
 						"stay": {
 							"tag": "ferrer",
 							"area": "ws_5",
-							"secs": 6
+							"secs": 10
 						}
 					},
 					{
@@ -1567,7 +1613,7 @@
 						"stay": {
 							"tag": "ferrer",
 							"area": "ws_6",
-							"secs": 6
+							"secs": 10
 						}
 					},
 					{
@@ -2162,16 +2208,11 @@
 				},
 				{
 					"build": {
-						"team": "machine",
+						"team": "works",
 						"kind": "regulator",
 						"at": "mesh_at",
 						"tag": "mesh",
-						"name": "Gear ground",
-						"disguise": {
-							"as": "guild",
-							"within": 0,
-							"secs": 99999
-						}
+						"name": "Gear ground"
 					}
 				},
 				{
@@ -2276,7 +2317,7 @@
 					"spawn": {
 						"team": "works",
 						"kind": "springer",
-						"count": 3,
+						"count": 2,
 						"at": "bank",
 						"tag": "broken",
 						"order": "hold",
@@ -2293,6 +2334,108 @@
 						"count": 2,
 						"at": "bank",
 						"tag": "broken",
+						"order": "hold",
+						"fixed": true,
+						"if": {
+							"difficulty": "hard"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "works",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "shift",
+						"tag": "broken",
+						"tags": [
+							"shift"
+						],
+						"order": "hold",
+						"fixed": true,
+						"if": {
+							"difficulty": "easy"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "works",
+						"kind": "springer",
+						"count": 1,
+						"at": "shift",
+						"tag": "broken",
+						"tags": [
+							"shift"
+						],
+						"order": "hold",
+						"fixed": true,
+						"if": {
+							"difficulty": "easy"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "works",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "shift",
+						"tag": "broken",
+						"tags": [
+							"shift"
+						],
+						"order": "hold",
+						"fixed": true,
+						"if": {
+							"difficulty": "normal"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "works",
+						"kind": "springer",
+						"count": 1,
+						"at": "shift",
+						"tag": "broken",
+						"tags": [
+							"shift"
+						],
+						"order": "hold",
+						"fixed": true,
+						"if": {
+							"difficulty": "normal"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "works",
+						"kind": "clock_soldier",
+						"count": 5,
+						"at": "shift",
+						"tag": "broken",
+						"tags": [
+							"shift"
+						],
+						"order": "hold",
+						"fixed": true,
+						"if": {
+							"difficulty": "hard"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "works",
+						"kind": "springer",
+						"count": 2,
+						"at": "shift",
+						"tag": "broken",
+						"tags": [
+							"shift"
+						],
 						"order": "hold",
 						"fixed": true,
 						"if": {
@@ -2396,14 +2539,15 @@
 					}
 				]
 			},
-			"delay": 6,
+			"delay": 12,
 			"do": [
 				{
 					"order": {
 						"tag": "night_winder",
 						"do": "route",
 						"route": [
-							"w_line"
+							"w_line",
+							"w_west"
 						],
 						"name": "leg2"
 					}
@@ -2425,7 +2569,7 @@
 					}
 				]
 			},
-			"delay": 6,
+			"delay": 12,
 			"do": [
 				{
 					"order": {
@@ -2459,7 +2603,7 @@
 					},
 					{
 						"near": {
-							"team": "party",
+							"tag": "shadow",
 							"to": "night_winder",
 							"within": 3
 						}
@@ -2488,8 +2632,7 @@
 				{
 					"order": {
 						"tag": "night_winder",
-						"do": "move",
-						"to": "w_start"
+						"do": "stop"
 					}
 				},
 				{
@@ -2500,13 +2643,13 @@
 				{
 					"clock": {
 						"name": "resume",
-						"secs": 18
+						"secs": 12
 					}
 				}
 			]
 		},
 		{
-			"id": "resume",
+			"id": "resume_1",
 			"when": {
 				"all": [
 					{
@@ -2517,6 +2660,20 @@
 					},
 					{
 						"clock_out": "resume"
+					},
+					{
+						"not": {
+							"route_done": "leg1"
+						}
+					},
+					{
+						"not": {
+							"near": {
+								"tag": "shadow",
+								"to": "night_winder",
+								"within": 4
+							}
+						}
 					},
 					{
 						"not": {
@@ -2544,8 +2701,139 @@
 						"do": "route",
 						"route": [
 							"w_town",
-							"w_camp",
+							"w_camp"
+						],
+						"name": "leg1"
+					}
+				}
+			]
+		},
+		{
+			"id": "resume_2",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "turning",
+							"at_least": 1
+						}
+					},
+					{
+						"clock_out": "resume"
+					},
+					{
+						"all": [
+							{
+								"route_done": "leg1"
+							},
+							{
+								"not": {
+									"route_done": "leg2"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"near": {
+								"tag": "shadow",
+								"to": "night_winder",
+								"within": 4
+							}
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "turning",
+						"set": 0
+					}
+				},
+				{
+					"say": [
+						"n_resume"
+					]
+				},
+				{
+					"order": {
+						"tag": "night_winder",
+						"do": "route",
+						"route": [
 							"w_line",
+							"w_west"
+						],
+						"name": "leg2"
+					}
+				}
+			]
+		},
+		{
+			"id": "resume_3",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "turning",
+							"at_least": 1
+						}
+					},
+					{
+						"clock_out": "resume"
+					},
+					{
+						"all": [
+							{
+								"route_done": "leg2"
+							},
+							{
+								"not": {
+									"route_done": "leg3"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"near": {
+								"tag": "shadow",
+								"to": "night_winder",
+								"within": 4
+							}
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "turning",
+						"set": 0
+					}
+				},
+				{
+					"say": [
+						"n_resume"
+					]
+				},
+				{
+					"order": {
+						"tag": "night_winder",
+						"do": "route",
+						"route": [
 							"bank"
 						],
 						"name": "leg3"
@@ -2568,7 +2856,7 @@
 					{
 						"not": {
 							"near": {
-								"team": "party",
+								"tag": "shadow",
 								"to": "night_winder",
 								"within": 8
 							}
@@ -2600,7 +2888,7 @@
 					},
 					{
 						"near": {
-							"team": "party",
+							"tag": "shadow",
 							"to": "night_winder",
 							"within": 8
 						}
@@ -2717,20 +3005,14 @@
 			},
 			"do": [
 				{
-					"unmask": {
-						"tag": "mesh"
-					}
-				},
-				{
-					"spare": {
-						"tag": "mesh",
-						"on": true
-					}
-				},
-				{
 					"objective": {
 						"id": "watch",
 						"set": "done"
+					}
+				},
+				{
+					"ping": {
+						"tag": "mesh"
 					}
 				},
 				{
@@ -2880,9 +3162,15 @@
 					"convert": {
 						"tag": "broken",
 						"to": "machine",
-						"warn": 4,
+						"warn": 3,
 						"as": "rioters",
 						"sound": "campaign/off_beat"
+					}
+				},
+				{
+					"wind": {
+						"tag": "broken",
+						"share": 0.6
 					}
 				},
 				{
@@ -2926,39 +3214,19 @@
 				{
 					"order": {
 						"tag": "rioters",
-						"do": "move",
-						"to": "meadow_ground"
+						"do": "route",
+						"route": [
+							"bridge",
+							"bridge_s",
+							"gap",
+							"meadow_ground"
+						],
+						"name": "riot"
 					}
 				},
 				{
 					"ping": {
 						"area": "bridge"
-					}
-				}
-			]
-		},
-		{
-			"id": "riot_on",
-			"when": {
-				"all": [
-					{
-						"fired": "riot_march"
-					},
-					{
-						"not": {
-							"fired": "the_end"
-						}
-					}
-				]
-			},
-			"every": 10,
-			"do": [
-				{
-					"order": {
-						"tag": "rioters",
-						"do": "move",
-						"to": "meadow_ground",
-						"idle": true
 					}
 				}
 			]
@@ -2992,13 +3260,13 @@
 					}
 				]
 			},
-			"delay": 15,
+			"delay": 6,
 			"do": [
 				{
 					"spawn": {
 						"team": "machine",
 						"kind": "clock_soldier",
-						"count": 5,
+						"count": 6,
 						"at": "meadow",
 						"tag": "sortie"
 					}
@@ -3007,7 +3275,7 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "springer",
-						"count": 1,
+						"count": 2,
 						"at": "meadow",
 						"tag": "sortie"
 					}
@@ -3668,33 +3936,7 @@
 			]
 		},
 		{
-			"id": "g_bridge",
-			"modes": [
-				"solo",
-				"versus"
-			],
-			"when": {
-				"fired": "riot_march"
-			},
-			"do": [
-				{
-					"order": {
-						"tag": "g_pendulum",
-						"do": "attack",
-						"to": "bridge"
-					}
-				},
-				{
-					"order": {
-						"tag": "g_guard",
-						"do": "attack",
-						"to": "bridge"
-					}
-				}
-			]
-		},
-		{
-			"id": "g_answer",
+			"id": "g_wound",
 			"modes": [
 				"solo",
 				"versus"
@@ -3702,28 +3944,27 @@
 			"when": {
 				"all": [
 					{
-						"fired": "riot_march"
+						"time": 2
 					},
 					{
 						"not": {
 							"fired": "the_end"
 						}
-					},
-					{
-						"not": {
-							"fired": "riot_over"
-						}
 					}
 				]
 			},
-			"every": 4,
+			"every": 5,
 			"do": [
 				{
-					"order": {
-						"team": "guild",
-						"do": "hunt",
-						"prey_team": "machine",
-						"within": 12
+					"wind": {
+						"tag": "g_pendulum",
+						"share": 1.0
+					}
+				},
+				{
+					"wind": {
+						"tag": "g_line",
+						"share": 1.0
 					}
 				}
 			]
@@ -3962,7 +4203,7 @@
 		"n_spotted": {
 			"who": "narrator",
 			"to": "visit",
-			"text": "The Winder stops. Its head turns. It goes back the way it came."
+			"text": "The Winder stops. Its head turns. Back off, and wait."
 		},
 		"n_resume": {
 			"who": "narrator",
@@ -4031,7 +4272,7 @@
 		"h_pend": {
 			"who": "hollweg",
 			"to": "visit",
-			"text": "The Pendulum to the bridge! Let it swing through them."
+			"text": "The Pendulum, to the yard's gate! The press-house shift must come past it."
 		},
 		"b_sortie": {
 			"who": "brother",
