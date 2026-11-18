@@ -25,6 +25,16 @@
 
 ## Current work
 
+- THE WAR MAP v1 BUILT (job war-map-v1, 0.38.56, branch war-map-v1, docs/war_map_v1.md): step 4 of Act 1's build order.
+  campaign/warmap.json (one data file for every skin: bounds/projection, views, regions with holders, marks, a pin per
+  Act 1 mission with place/date/line, RULES by progress and flags) + campaign/warmap_land.json (Natural Earth 1:50m,
+  public domain, tools/campaign/make_warmap_land.py); WarMapData (state, ledger, problems), WarMap (the King's PARCHMENT
+  drawn in code, a `base` painting slot; pan, wheel, pinch, views THE WORLD / VIRGINIA / EUROPE / THE AMAZON; wax seals
+  planned / locked / open / done / broken), CampaignMenu.war_map (LEDGER, LIST, the pin card: BRIEFING, CO-OP / VERSUS;
+  desktop card right, phone card bottom). The King's study's war_table hotspot ("map": "parchment") opens it; every war
+  table has a WAR MAP button. Planned pins (a01, a04, a05, a06, a07) carry working titles and rules on the plan's flags.
+  ALL TEXT PLACEHOLDER; parchment/seal/rose prompts for the owner in the doc. tools/test_war_map.gd, tools/shot_war_map.gd,
+  pictures docs/shots/war_map/. 12 Claude's choices in the doc.
 - a03_plateau BUILT (job a03-plateau, 0.38.55, branch a03-plateau, docs/campaign_a03_build.md): Act 1's "The Lost
   Plateau" (the Naturalist line after b01, September 2767): map campaign:cloud_plateau (tools/campaign/make_cloud_plateau_map.py:
   the landing and the forest at the foot, the waterfall stair and the split in the rock, the misty top, the nest's hollow,

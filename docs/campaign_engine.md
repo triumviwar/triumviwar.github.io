@@ -357,3 +357,15 @@ solo mirror (`solo_sides`); it needed only these:
 | `{"tally": {..., "of": counter}}` | the bands are SHARES of that counter's number (`[[0, "few"], [0.5, "some"], [1, "all"]]`), so they hold whatever the size; `<flag>_n` is still the number |
 | `{"order": {..., "kind": kind or [kinds]}}` | only the units of those kinds take the order (the nest's Raptors hunt, its Spitters keep by the Mother) |
 | roles `linnea_grown` (a Brood Mother's kind at 0.5, 1,400 health), `guide` (a Labourer, Nazaré's guide) | Rebels.ROLES |
+
+## Added by THE WAR MAP v1 (war-map-v1, 0.38.56; docs/war_map_v1.md)
+
+- campaign/warmap.json (regions, marks, pins, rules; one file for every skin) and campaign/warmap_land.json (Natural
+  Earth's coasts, by tools/campaign/make_warmap_land.py); WarMapData (scripts/campaign/war_map_data.gd: `state(progress)`,
+  the ledger, `problems()`), WarMap (scripts/campaign/war_map.gd: the King's parchment skin drawn in code, pan / zoom /
+  pinch, seals by state), CampaignMenu.war_map (the page: views, LEDGER, LIST, the pin card with BRIEFING / CO-OP /
+  VERSUS).
+- A hub's war_table hotspot with `"map": "<skin>"` opens the war map instead of the list (the King's study: "parchment");
+  every war table has a WAR MAP button. A rule's conditions: done, not_done, won_by, flag, flag_at_least, any.
+- A new mission needs a pin (tools/test_war_map.gd fails on a mission in campaign.json with no pin) and its rules name
+  only flags it really sets (checked against its JSON).

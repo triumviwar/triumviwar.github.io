@@ -735,3 +735,10 @@ joint (E/SE/S), wrecks and card icons are the owner's pictures (tools/serpent/im
   spots per frame in scripts/wind_key_data.gd, followed from the sprites by the importer): not part of their strips.
 - For one uniform style ChatGPT would redraw the key turning (a real 8-16 frame turn per view, the bow edge-on in the
   middle) or draw it into each unit's strips; the per-frame spots table would then go.
+
+## The war map's parchment (code-drawn stand-in, war-map-v1, 0.38.56)
+
+The King's study's WAR MAP is drawn in code (scripts/campaign/war_map.gd, skin "parchment": Natural Earth's coasts on a
+flat tan, washes, wax seals as polygons, a compass rose). To be replaced by the owner's ChatGPT paintings: the base
+parchment, a sheet of eight wax seals, the compass rose and cartouche (prompts in docs/war_map_v1.md); the base goes in
+WarMap.SKINS["parchment"]["base"]. The Clockmaker's brass map and the Naturalist's specimen chart skins are not drawn yet.
