@@ -25,6 +25,10 @@ const ROLES := {
 	"hollweg": {"kind": "missionary", "art": "c_hollweg", "name": "Meister Hollweg", "hp": 260, "about": "Master of the Guild of the Escapement."},
 	"jakob": {"kind": "labourer", "art": "c_jakob", "name": "Jakob", "hp": 120, "about": "Hollweg's journeyman."},
 	"ferrer": {"kind": "missionary", "art": "c_ferrer", "name": "Father Ferrer", "about": "A Jesuit astronomer and engineer."},
+	# ACT 1's a04_visit (docs/campaign_a04_build.md): Ferrer on his inspection (harder to kill: the mission's hero) and his
+	# lay brothers (Missionaries: they bring the fallen back)
+	"ferrer_visit": {"kind": "missionary", "art": "c_ferrer", "name": "Father Ferrer", "hp": 300, "about": "A Jesuit astronomer and engineer, the Roman College's inspector."},
+	"lay_brother": {"kind": "missionary", "art": "c_lay_brother", "about": "A lay brother of the Society, travelling with Father Ferrer."},
 	# THE BROOD PROLOGUE (docs/campaign_b01_build.md): the station's people, the garrison's, and LINNEA, a Brood Mother's
 	# kind drawn at a third of her size ("scale") until her own art exists
 	"lindqvist": {"kind": "musketeer", "art": "b_lindqvist", "name": "Dr. Lindqvist", "hp": 320, "about": "The Academy's naturalist, with a fowling piece."},

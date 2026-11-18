@@ -129,6 +129,8 @@ CARDS_PT = {
     "cuirassier": "NOVO: O CAVALEIRO. Rápido e de golpe duro: alcance os mensageiros antes que cheguem às praças.",
     "foundry": "NOVO: A FUNDIÇÃO. Funda agora os seus próprios Canhões de Campanha, e o Morteiro.",
     "mortar": "NOVO: O MORTEIRO. Lança a sua granada por cima dos muros: as barricadas são trabalho dele, não da linha.",
+    "heavy_works": "NOVO: A OFICINA PESADA. Junto a uma Mola Real, ela constrói as grandes máquinas.",
+    "pendulum": "NOVO: O PÊNDULO. Um gigante lento cujo balanço corta tudo à sua volta, voadores também.",
     "spitter": "NOVO: OS CUSPIDORES. Dois por ovo, fecundados pelo Sire do Veneno: ácido por trás dos Raptores, contra terra e ar.",
 }
 CARDS_ES = {
@@ -145,12 +147,14 @@ CARDS_ES = {
     "cuirassier": "NUEVO: EL JINETE. Rápido y de golpe duro: alcanza a los correos antes de que lleguen a las plazas.",
     "foundry": "NUEVO: LA FUNDICIÓN. Funde ahora tus propios Cañones de Campaña, y el Mortero.",
     "mortar": "NUEVO: EL MORTERO. Lanza su granada por encima de los muros: las barricadas son trabajo suyo, no de la línea.",
+    "heavy_works": "NUEVO: EL TALLER PESADO. Junto a un Muelle Real, construye las grandes máquinas.",
+    "pendulum": "NUEVO: EL PÉNDULO. Un gigante lento cuyo vaivén corta todo a su alrededor, voladores también.",
     "spitter": "NUEVO: LOS ESCUPIDORES. Dos por huevo, fecundados por el Señor del Veneno: ácido desde detrás de los Raptores, contra tierra y aire.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit"}
 
 
 def step_of(mission_id):

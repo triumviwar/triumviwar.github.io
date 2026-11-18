@@ -70,7 +70,7 @@
 		{"mission": "a01_presses", "line": "crown", "place": "Lyon", "date": "Spring 2768", "point": [4.84, 45.76], "nudge": [0, 0], "after": ["p01_leaf"]},
 		{"mission": "a05_specimens", "line": "naturalist", "title": "The Specimens", "place": "The plateau's foot", "date": "Dry season 2769", "point": [-65.3, 0.25], "nudge": [16, 2], "after": ["a03_plateau"]},
 		{"mission": "a06_barricades", "line": "crown", "place": "Paris", "date": "July 2769", "point": [2.35, 48.86], "nudge": [0, 0], "after": ["a01_presses"]},
-		{"mission": "a04_visit", "line": "clockmaker", "title": "Father Ferrer's Visit", "place": "Fürth", "date": "Autumn 2769", "point": [10.99, 49.47], "nudge": [-24, 18], "after": ["a02_furth"]},
+		{"mission": "a04_visit", "line": "clockmaker", "place": "Fürth", "date": "Autumn 2769", "point": [10.99, 49.47], "nudge": [-24, 18], "after": ["a02_furth"]},
 		{"mission": "a07_council", "line": "all", "title": "The Council of Rome", "place": "Rome", "date": "Lent 2770", "point": [12.48, 41.9], "nudge": [0, 0], "after": ["a04_visit", "a05_specimens", "a06_barricades"]}
 	],
 	"rules": [

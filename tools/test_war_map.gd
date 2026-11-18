@@ -91,7 +91,8 @@ func _states() -> void:
 	check("new: a02 and a03 locked", pins["a02_furth"]["state"] == "locked" and pins["a03_plateau"]["state"] == "locked")
 	check("new: a01 (built) locked until the Prologue", pins["a01_presses"]["state"] == "locked")
 	check("new: a06 (built) locked until a01", pins["a06_barricades"]["state"] == "locked")
-	for mid in ["a04_visit", "a05_specimens", "a07_council"]:
+	check("new: a04 (built) locked until a02", pins["a04_visit"]["state"] == "locked")
+	for mid in ["a05_specimens", "a07_council"]:
 		check("new: %s is planned (not written yet)" % mid, pins[mid]["state"] == "planned")
 	check("new: Virginia purple, Franconia the empire's, the plateau blank", st["regions"]["virginia"] == "crown" and st["regions"]["franconia"] == "empire" and st["regions"]["plateau"] == "unknown")
 	check("new: no marks, an empty ledger", st["marks"].values().count(true) == 0 and (st["ledger"] as Array).is_empty())
@@ -121,7 +122,7 @@ func _states() -> void:
 	for it in [["strong", "guild", "crown", "seal"], ["thin", "guild", "contested", "seal"], ["fallen", "machine", "machine", "broken"]]:
 		st = WarMapData.state(_with({"a02_furth": [it[1], {"furth": it[0]}]}))
 		check("a02 furth %s: Fürth %s, the seal %s" % [it[0], it[2], it[3]], st["regions"]["furth"] == it[2] and st["pins"]["a02_furth"]["seal"] == it[3]
-			and st["pins"]["a04_visit"]["state"] == "planned")
+			and st["pins"]["a04_visit"]["state"] == ("open" if it[1] == "guild" else "locked"))
 	# ---- a03 the Lost Plateau
 	st = WarMapData.state(_with({"a03_plateau": ["party", {"map": "drawn", "party": "some"}]}))
 	check("a03 map drawn: the plateau drawn in (the creatures'), no question mark", st["regions"]["plateau"] == "brood" and not st["marks"]["plateau_question"])
@@ -144,10 +145,12 @@ func _states() -> void:
 	check("a06 Varenne spared: Paris purple, his ship into exile", st["regions"]["paris"] == "crown" and st["marks"]["varenne_exile"] and st["regions"]["brittany"] == "empire")
 	st = WarMapData.state(_with({"a06_barricades": ["crown", {"varenne": "executed"}]}))
 	check("a06 Varenne executed: Paris marked, two risings", st["regions"]["paris"] == "contested" and st["regions"]["brittany"] == "unrest" and st["regions"]["provence"] == "unrest")
-	st = WarMapData.state(_with({"a04_visit": ["guild", {"broken": "kept", "lost_to_machine": 5}]}))
-	check("a04 many lost to the machine: the red spreads east", st["regions"]["franconia_more"] == "machine")
-	st = WarMapData.state(_with({"a04_visit": ["guild", {"broken": "melted", "lost_to_machine": 1}]}))
+	st = WarMapData.state(_with({"a04_visit": ["visit", {"broken": "kept", "lost_to_machine": 5, "lost_to_machine_n": 5}]}))
+	check("a04 many lost to the machine: the red spreads east", st["regions"]["franconia_more"] == "machine" and st["pins"]["a04_visit"]["state"] == "done")
+	check("a04 kept: the ledger says so", WarMapData.ledger_of(st, "a04_visit").any(func(e) -> bool: return WarMapData.ledger_text(e).contains("kept for study")))
+	st = WarMapData.state(_with({"a04_visit": ["visit", {"broken": "melted", "lost_to_machine": 1, "lost_to_machine_n": 1}]}))
 	check("a04 few lost: no spread", st["regions"]["franconia_more"] == "empire")
+	check("a04 melted: the ledger says so", WarMapData.ledger_of(st, "a04_visit").any(func(e) -> bool: return WarMapData.ledger_text(e).contains("melted")))
 	# ---- every flag combination of the missions built so far: a sound state each
 	var n := 0
 	var bad: Array = []

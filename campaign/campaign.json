@@ -169,6 +169,26 @@
 									"Varenne died on the Grève by the King's law, and I signed it.",
 									"A martyr is harder to fight than a man. I learnt that too late."
 								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "kept"
+								},
+								"lines": [
+									"Ferrer's report came before the snow. Machines that take out their own stop-works.",
+									"Hollweg kept the broken ones to study. I let him. I wanted to know too."
+								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "melted"
+								},
+								"lines": [
+									"Ferrer's report came before the snow. Machines that take out their own stop-works.",
+									"He had them melted. Hollweg has not forgiven him. I think Ferrer was right."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_king_face.png"
@@ -258,6 +278,26 @@
 								"lines": [
 									"The King lets me keep a bench by the window. I do not build. I only take things apart.",
 									"Father Ferrer comes on Sundays. He asks me the same question every time."
+								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "kept"
+								},
+								"lines": [
+									"Ferrer came to Fürth with a notebook and left with a verdict.",
+									"I kept the broken ones. I was sure I could mend them. I was sure of a great many things."
+								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "melted"
+								},
+								"lines": [
+									"Ferrer came to Fürth with a notebook and left with a verdict.",
+									"He melted them in my own furnace. I would have learnt what went wrong. Now nobody will."
 								]
 							}
 						]
@@ -559,7 +599,8 @@
 			"about": "Nuremberg, 2767. A clockmaker builds a machine that never stops, and loses his city to it.",
 			"missions": [
 				"c01_thirteenth",
-				"a02_furth"
+				"a02_furth",
+				"a04_visit"
 			],
 			"hub": {
 				"title": "Hollweg's Workshop",
@@ -675,6 +716,26 @@
 									"The line held. The machine went back behind its walls.",
 									"The commissary writes his reports. Let him. Our machines are honest."
 								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "kept"
+								},
+								"lines": [
+									"The Father has gone to Rome with his report. Let him.",
+									"The broken ones are under sheets in the back. I will find the fault. Every machine can be mended."
+								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "melted"
+								},
+								"lines": [
+									"The Father has gone to Rome with his report, and my automata are slag.",
+									"He was afraid of them. Fear is not an argument."
+								]
 							}
 						]
 					},
@@ -701,6 +762,15 @@
 									"The great clock of the Guild still keeps time. It strikes thirteen now."
 								],
 								"sides": {
+									"a02_furth": "machine"
+								}
+							},
+							{
+								"after": "a04_visit",
+								"lines": [
+									"The travelling clock still keeps Nuremberg's time. Jakob stops it at night now, with his own hand."
+								],
+								"not_sides": {
 									"a02_furth": "machine"
 								}
 							}
@@ -730,6 +800,24 @@
 								"sides": {
 									"a02_furth": "machine"
 								}
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "kept"
+								},
+								"lines": [
+									"A broken automaton under a sheet. Its stop-work has been fitted again, with a new pin through it."
+								]
+							},
+							{
+								"after": "a04_visit",
+								"flag": {
+									"a04_visit.broken": "melted"
+								},
+								"lines": [
+									"The trestle is empty. On it lies a receipt from the foundry, signed by Father Ferrer."
+								]
 							}
 						]
 					},

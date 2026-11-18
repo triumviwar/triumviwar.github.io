@@ -514,7 +514,7 @@ M = {
         "machine": {"still": "sortie", "title": "Fürth burns",
                     "text": "The guild's tower is down. The Machine has the Pegnitz from Nuremberg to the Regnitz."},
     },
-    "next": {"guild": "", "machine": ""},
+    "next": {"guild": "a04_visit", "machine": ""},
 }
 
 for o in M["objectives"]:
