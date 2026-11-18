@@ -1,0 +1,38 @@
+# scout-deny (docs/scout_deny.md): the AI STORY's sentences for the hunt after an enemy scout in its base
+# (scripts/ai_story_lines.gd, scripts/ai_scout_deny.gd). The first %s is the player; the reasons are words of their own.
+
+> %s sends %s hunters after the %s's scouting %s.
+pt %s manda %s caçadores atrás do batedor de %s (%s).
+es %s envía %s cazadores tras el explorador de %s (%s).
+
+> %s kills the %s's scouting %s at %s: that scout reports nothing more.
+pt %s mata o batedor de %s (%s) aos %s: esse batedor não informa mais nada.
+es %s mata al explorador de %s (%s) a los %s: ese explorador ya no informa de nada.
+
+> %s lets the %s's scouting %s go (%s).
+pt %s deixa ir o batedor de %s (%s): %s.
+es %s deja ir al explorador de %s (%s): %s.
+
+> the chase took too long
+pt a perseguição demorou demais
+es la persecución duró demasiado
+
+> away past the leash
+pt longe demais da base
+es demasiado lejos de la base
+
+> out of sight
+pt fora de vista
+es fuera de vista
+
+> its friends are near
+pt os seus amigos estão perto
+es sus amigos están cerca
+
+> its hunters fell
+pt os seus caçadores caíram
+es sus cazadores cayeron
+
+> it got away
+pt escapou
+es escapó

@@ -1,0 +1,101 @@
+[00:00] P1 Brood plays Brood (Optimal)
+[00:00] P1 Brood's Brood: OPTIMAL: the common opening (Balanced's economy), a grub into the enemy's main early, then it picks its build from what it sees
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:02] P2 Crown sends a Labourer to scout
+[00:40] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[01:16] P1 Brood sends 2 Grubs after the Crown's scouting Labourer
+[01:26] P1 Brood lets the Crown's scouting Labourer go (the chase took too long)
+[01:45] P2 Crown scouted: GREEDY [a second base and little army] (the Mother and 1 turtle on new ground, 2 Rootmaws and 8 grubs seen, 0 Sires, 0 supply of army seen near its base): OPTIMAL picks its build from this
+[01:45] P2 Crown's plan: Rush, a build order of 6 steps from here (scripts/ai_crown.gd)
+[01:45] P2 Crown's plan: optimal: reads GREEDY [a second base and little army]: picks Rush (punish the greed: the Horse Breeder at once, the riders before its army)
+[02:35] P1 Brood's Brood: scouted: NORMAL [a standard opening] (1 halls, 0 production, 0 static defences, 60 of army seen): OPTIMAL picks its build from this
+[02:35] P1 Brood's Brood: optimal: reads NORMAL [a standard opening]: picks Timing attack (a timing attack)
+[02:49] P2 Crown sends 1 Musketeer after the Brood's scouting Grub
+[03:00] P2 Crown lets the Brood's scouting Grub go (away past the leash)
+[03:55] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[03:57] P2 Crown's rush: goes out (3 Horsemen together)
+[04:00] P2 Crown's plan: the army floor (a look at the Brood's army) waits for a fresh scout report: no enemy soldier seen for the whole game and its main not looked at for the whole game
+[04:00] P2 Crown sends a Labourer to scout again (trip 2)
+[04:29] P1 Brood's Brood: rider read: 3 riders in its land at 4:29: Raptors now, its grubs kept by them, no chase
+[04:29] P1 Brood's Brood: scouted: AGGRESSIVE [a Horse Breeder or riders early] (1 halls, 0 production, 0 static defences, 180 of army seen): OPTIMAL picks its build from this
+[04:29] P1 Brood's Brood: optimal: reads AGGRESSIVE [a Horse Breeder or riders early]: keeps Timing attack (it switched once this stage already; Balanced waits)
+[04:36] P2 Crown sends 2 Musketeer and Horseman after the Brood's scouting Grub
+[04:37] P2 Crown sends 3 labourers to mend its Town Hall under the line's fire
+[04:45] P1 Brood sends 2 Raptors after the Crown's scouting Labourer
+[04:45] P2 Crown lets the Brood's scouting Grub go (away past the leash)
+[04:46] P2 Crown scout under guard (Raptors), backing out of range
+[04:49] P1 Brood killed the Crown's scouting Labourer at 4:49
+[05:01] P2 Crown's plan: the army floor against the Brood: 180 of line (with what trains) against the 381 its scouting asks for: the soldiers' gold first
+[05:06] P2 Crown scouted: NORMAL [a standard opening] (the Mother and 1 turtle on new ground, 3 Rootmaws and 9 grubs seen, 0 Sires, 16 supply of army seen near its base, 275 of army known): OPTIMAL picks its build from this
+[05:06] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Rush (what it plays already answers it)
+[05:28] P2 Crown's rush: FAILED (no headway in 90 s): the riders ride home, no more go out alone; it builds up and attacks only with a proper force
+[05:28] P2 Crown's plan: the rush is over (failed): the economy now, balanced hands it to the Economy plan (labourers to two halls, the walled natural)
+[05:28] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[05:28] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[05:28] P2 Crown's scouts know: an enemy army of 525 (seen in the last 120 s), 0 enemy halls, tech none seen
+[05:46] P1 Brood's Brood: scouted: NORMAL [a standard opening] (1 halls, 0 production, 0 static defences, 199 of army seen): OPTIMAL picks its build from this
+[05:46] P1 Brood's Brood: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[05:50] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[06:02] P2 Crown's plan: the army floor against the Brood: 590 of line (with what trains) against the 676 its scouting asks for: the soldiers' gold first
+[06:25] P2 Crown sees a push coming: 19 soldiers worth 475, 1 tiles from its nearest building, against 600 of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)
+[06:35] P1 Brood's Brood: its wave lets the riders go (1 creatures turned back): no chase into the open
+[06:37] P2 Crown sends a Labourer to finish its Farm (nobody was working on it)
+[06:44] P2 Crown's scouts know: an enemy army of 325 (seen in the last 120 s), 0 enemy halls, tech none seen
+[06:51] P2 Crown sends 2 Horsemans after the Brood's scouting Raptors
+[06:53] P2 Crown killed the Brood's scouting Raptors at 6:53
+[07:04] P1 Brood's Brood: its wave lets the riders go (2 creatures turned back to the raid): no chase into the open
+[07:04] P2 Crown sends 4 labourers to mend its Cottage under the line's fire
+[07:06] P2 Crown's plan: the army floor against the Brood: 770 of line (with what trains) against the 1021 its scouting asks for: the soldiers' gold first
+[07:06] P1 Brood's Brood: pulls back: 250 of 550 left, 530 ahead (killed 100)
+[07:26] P2 Crown's fight at 6:23 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 750, lost 100
+[07:40] P2 Crown sends a Labourer to scout again (trip 3)
+[07:43] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[07:43] P2 Crown's scout found workers to hunt: it hands over to the raid
+[07:43] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[07:43] P2 Crown's scout found workers to hunt: it hands over to the raid
+[07:44] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[07:44] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[07:59] P2 Crown's scouts know: an enemy army of 850 (seen in the last 120 s), 0 enemy halls, tech none seen
+[08:06] P2 Crown's scout rides home (chased)
+[08:14] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[08:15] P1 Brood's Brood: its wave lets the riders go (1 creatures turned back): no chase into the open
+[08:17] P2 Crown scout under guard (Tyrant Challenger), backing out of range
+[08:18] P2 Crown scout killed: it saw nothing to go on, will look again soon
+[08:18] P2 Crown could not see the enemy [the scout was killed] (the scout was killed before it saw the base): that proves nothing; no army for it, keeps to Economy and looks again soon
+[08:23] P2 Crown's plan: the army floor against the Brood: 950 of line (with what trains) against the 1275 its scouting asks for: the soldiers' gold first
+[08:30] P2 Crown's scout rides home (chased)
+[08:30] P2 Crown sees a push coming: 54 soldiers worth 1350, 10 tiles from its nearest building, against 1070 of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)
+[08:47] P1 Brood's Brood: pulls back: 325 of 1675 left, 0 ahead (killed 390)
+[08:53] P2 Crown sends a Horseman to scout again (trip 4)
+[09:07] P2 Crown's fight at 8:31 at home (unformed): 1 gun near, 1 set at contact, 1 fired in its first 10 s; killed 1675, lost 340
+[09:09] P2 Crown scout blocked (walled out or no path): it saw nothing to go on, will look again soon
+[09:16] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[09:16] P2 Crown's scouts know: an enemy army of 25 (seen in the last 120 s), 0 enemy halls, tech none seen
+[09:23] P2 Crown's plan: the army floor against the Brood: 1300 of line (with what trains) against the 1475 its scouting asks for: the soldiers' gold first
+[09:33] P2 Crown scouted: NORMAL [a standard opening] (the Mother and 5 turtles on new ground, 4 Rootmaws and 13 grubs seen, 0 Sires, 61 supply of army seen near its base, 800 of army known): OPTIMAL picks its build from this
+[09:33] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Economy (what it plays already answers it)
+[09:44] P2 Crown sends a Labourer to scout again (trip 5)
+[10:03] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[10:03] P2 Crown's scout found workers to hunt: it hands over to the raid
+[10:04] P2 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[10:04] P2 Crown scout under guard (Raptors), backing out of range
+[10:05] P2 Crown scout killed: it saw nothing to go on, will look again soon
+[10:08] P2 Crown's scout rides home (chased)
+[10:09] P2 Crown sees a push coming: 48 soldiers worth 1200, 0 tiles from its nearest building, against 1660 of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)
+[10:11] P2 Crown sends 2 labourers to mend its Gate under the line's fire
+[10:15] P2 Crown sends 2 labourers to mend its Palisade under the line's fire
+[10:22] P2 Crown sends 2 labourers to mend its Gate under the line's fire
+[10:24] P2 Crown sends 2 labourers to mend its Palisade under the line's fire
+[10:33] P2 Crown sends a Labourer to finish its Farm (nobody was working on it)
+[10:41] P1 Brood's Brood: its wave lets the riders go (1 creatures turned back): no chase into the open
+[10:47] P2 Crown sends 3 labourers to mend its Palisade under the line's fire
+[10:56] P2 Crown's Horseman was killed and a horse bolted loose (the first: anyone's to catch)
+[11:01] P2 Crown sends 2 labourers to mend its Palisade under the line's fire
+[11:03] P2 Crown sends 2 labourers to mend its Palisade under the line's fire
+[11:05] P2 Crown sends 2 labourers to mend its Palisade under the line's fire
+[11:09] P2 Crown sends 2 labourers to mend its Palisade under the line's fire
+[11:11] P2 Crown sends 2 labourers to mend its Palisade under the line's fire
+[11:15] P2 Crown sends 2 labourers to mend its Palisade under the line's fire
+[11:17] P2 Crown sends 2 labourers to mend its Palisade under the line's fire
+[11:50] P2 Crown sends 2 labourers to mend its Palisade under the line's fire
+[11:55] P2 Crown sends 2 labourers to mend its Palisade under the line's fire

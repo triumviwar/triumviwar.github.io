@@ -650,7 +650,20 @@ func _finish() -> void:
 		if a.opt != null:
 			for p in a.opt.picks:
 				reads.append({"p": tm, "t": int(float(p[0])), "pick": "%s %s -> %s (%s)" % [String(p[1]), String(p[2]), String(p[3]), String(p[4])]})
-	var res := {"map": map, "seed": seed_, "version": ProjectSettings.get_setting("application/config/version", ""),
+	var scouting := {}          # (scout-deny) per player: its scouts' trips and what its scout-deny did
+	for tm in n:
+		var a := _ai(tm)
+		if a == null:
+			continue
+		var e := {}
+		if a.scout != null:
+			e["trips"] = a.scout.trip_log.map(func(x) -> Array: return [int(float(x[0])), String(x[1]), int(x[2]), bool(x[3]), AIRead.word(String(x[4])), int(float(x[5])) if x.size() > 5 else -1])
+		elif "scout_log" in a:
+			e["trips"] = a.scout_log.duplicate()
+		if a.sd != null:
+			e["deny"] = a.sd.report()
+		scouting[str(tm)] = e
+	var res := {"map": map, "seed": seed_, "scouting": scouting, "version": ProjectSettings.get_setting("application/config/version", ""),
 		"crown_ai": _crown_counters(),
 		"slots": slots, "end": int(round(g.clock)), "over": g.over,
 		"winner": g.winner if g.over else -1, "winner_side": (g.sides[g.winner] if g.over and g.winner >= 0 else -1),

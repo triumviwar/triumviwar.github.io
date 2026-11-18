@@ -210,6 +210,7 @@ func _nb_think_stage(i: int) -> void:
 		return
 	match i:
 		0:
+			_lap_nb("scout_deny", sdn().tick)       # (scout-deny: an enemy scout in its land is hunted down, scripts/ai_scout_deny.gd)
 			_lap_nb("observe", _nb_observe.bind(q))
 			if int(q.nb.get("eggs", 0)) <= EGG_LOW and float(q.nb.get("grow_t", 0.0)) <= 0.0:
 				_egg_low_t = game.clock          # (her clutch run down: eggs hold the Brood back, _nb_grow_time)
@@ -820,6 +821,7 @@ func _nb_scout(q: Unit) -> void:
 		return
 	if _scout != null and (not is_instance_valid(_scout) or _scout.dead):
 		_scout = null
+		scout_log.append([game.clock, "killed"])
 	if _scout == null:
 		var due := 70.0 if _scout_trips == 0 else (270.0 if _scout_trips == 1 else 9999.0)
 		if game.clock < due or _scout_trips >= 2:
@@ -846,6 +848,7 @@ func _nb_scout(q: Unit) -> void:
 		_scout_trips += 1
 		_scout_t0 = game.clock
 		_scout_go(pick, _scout_pts[0])
+		scout_log.append([game.clock, "sent", pick.kind])
 		say("sends a %s to scout" % Defs.UNITS[pick.kind]["name"])
 		return
 	# on the road: next point; home after the loop, after 100 s, or when hurt by soldiers
@@ -898,6 +901,7 @@ func _scout_go(u: Unit, p: Vector2) -> void:
 ##    army is, where it gathers).
 ## Hurt, or soldiers close to it, it runs home and goes back to work; another grub goes out after WATCH_GAP s (at most
 ## WATCH_MAX in a game: a grub is an egg and 50 food).
+var scout_log: Array = []           # (scout-deny) [clock, "sent", kind] / [clock, "killed"] of its scouts (tools/qa_match.gd)
 const WATCH_GAP := 60.0
 const OPT_WATCH_AT := 40.0      # (OPTIMAL: its first watching grub goes this early, the read is how it picks)
 const WATCH_MAX := 4
@@ -915,6 +919,7 @@ var _foot_dir := Vector2.ZERO       # out from its foot, away from the enemy's m
 func _nb_watch_scout(q: Unit, foe: int) -> void:
 	if _scout != null and (not is_instance_valid(_scout) or _scout.dead):
 		_scout = null
+		scout_log.append([game.clock, "killed"])
 		_watch_flee = false
 		_watch_peek = false
 		_watch_back = Vector2.INF
@@ -965,6 +970,7 @@ func _nb_watch_scout(q: Unit, foe: int) -> void:
 			_scout_pts = [st + toward * 8.0 * Defs.TILE, st + toward.orthogonal() * 7.0 * Defs.TILE, st - toward * 6.0 * Defs.TILE,
 				st - toward.orthogonal() * 7.0 * Defs.TILE, st]
 		pick.auto_work = false
+		scout_log.append([game.clock, "sent", pick.kind])
 		pick.cmd_move(_peek_pts[0] if _watch_peek else _scout_pts[0])
 		say("sends a Grub to %s" % ("watch the foot of the enemy's ramp" if _foe_is("crown") else "explore the enemy's main"))
 		return
@@ -2751,7 +2757,7 @@ func _nb_essence(q: Unit) -> void:
 			or (int(plan["grubs0"]) > 0 and not _first_out):          # (a rush keeps every Raptor for its first wave)
 		return
 	var raptors := _nb_mine("raptor").filter(func(u: Unit) -> bool: return u.position.distance_to(_qp(q)) < 16.0 * Defs.TILE \
-		and u.target == null and u.order != "sacrifice" and not _wave.has(u) and u != _scout)      # (at home, not fighting)
+		and u.target == null and u.order != "sacrifice" and not _wave.has(u) and u != _scout and not (sd != null and sd.has(u)))      # (at home, not fighting)
 	if raptors.size() <= maxi(2, int(plan["home_guard"])):
 		return
 	for u in raptors:
@@ -3368,6 +3374,8 @@ func _nb_army(q: Unit) -> void:
 	var army := _nb_army_units()
 	if _scout != null:
 		army.erase(_scout)
+	if sd != null and not sd.hunters.is_empty():
+		army = army.filter(func(u: Unit) -> bool: return not sd.has(u))      # (scout-deny: the hunters after a scout, not held or sent)
 	# a wave out is called home when the attack at the Mother is big and the creatures at home can't hold it
 	if _attacking and _nb_threat(q) != Vector2.INF and _nb_sires_needed(q):
 		var home_v := _value_of(army.filter(func(u: Unit) -> bool: return not _wave.has(u)))
