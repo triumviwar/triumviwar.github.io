@@ -25,6 +25,9 @@
 
 ## Current work
 
+- THE CHATTERBOX LIST (owner 2026-11-18 15:55): docs/chatterbox_todo.md is the one list of every voice line still to record
+  (Chatterbox on the owner's PC). Top item: a NEW Brood announcer set (21 lines) in Lindqvist's v2 voice
+  (refs/lindqvist_ref.wav); then every mission's voice table and the voices to design. Add new missions' tables there.
 - a04_visit BUILT (job a04-visit, 0.38.63, branch a04-visit, docs/campaign_a04_build.md): step 7 of Act 1's build order.
   "Father Ferrer's Visit" (the Clockmaker line after a02, Fürth, autumn 2769, told by Ferrer, the King framing): map
   campaign:furth_works (a02's map grown: tools/campaign/make_furth_works_map.py starts FROM furth_line.json), mission
