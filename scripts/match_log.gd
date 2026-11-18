@@ -19,6 +19,15 @@ var _snd := {}           # second -> {sound name: times}, kept apart and printed
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	current = self
+	# (perf-late-brood: a slow frame's "the rest" split: how long the drawing took on the processor and on the graphics card
+	# (the renderer's own measure of the frame before), so a freeze in the drawing (a shader made the first time, pictures
+	# sent to the graphics card) is told apart from the engine or the system; computers only, as phones pay for the measure)
+	if Settings.pc() and DisplayServer.get_name() != "headless":
+		_vp = get_viewport().get_viewport_rid()
+		RenderingServer.viewport_set_measure_render_time(_vp, true)
+
+
+var _vp := RID()
 
 
 func _exit_tree() -> void:
@@ -91,6 +100,8 @@ func _process(_delta: float) -> void:
 	_last_us = now
 	_last_frame = fr
 	Prof.frame_reset()
+	ArtWarm.landed_n = 0
+	ArtWarm.landed_mb = 0.0
 
 
 ## A frame slower than this gets a "slow frame" line: what took the time (Prof's parts).
@@ -128,7 +139,14 @@ func _slow_frame(ms: float) -> void:
 				if su:
 					p += " (slowest unit: %s %.1f ms, %s)" % [su.kind, Prof.slow_unit_us / 1000.0, su.order]
 			parts.append(p)
-	parts.append("the rest %.1f" % maxf(0.0, ms - top))
+	var rest := "the rest %.1f" % maxf(0.0, ms - top)
+	if _vp.is_valid():
+		var rc := RenderingServer.viewport_get_measured_render_time_cpu(_vp) + RenderingServer.get_frame_setup_time_cpu()
+		var rg := RenderingServer.viewport_get_measured_render_time_gpu(_vp)
+		rest += " (drawing: %.1f processor, %.1f graphics card)" % [rc, rg]
+	if ArtWarm.landed_n > 0:
+		rest += " (%d pictures came in, %.0f MB)" % [ArtWarm.landed_n, ArtWarm.landed_mb]
+	parts.append(rest)
 	lines.append("[%s] slow frame %d ms: %s" % [stamp(), int(round(ms)), ", ".join(parts)])
 
 

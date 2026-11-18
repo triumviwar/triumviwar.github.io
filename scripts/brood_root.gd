@@ -85,6 +85,8 @@ static func feet_k(g: Game, t: int, u: Unit) -> Vector2:
 ## its side's mirror set would have them, carried back (for that first start, its own feet). A footprint's feet hang
 ## below its middle ON SCREEN, so the plain feet would put a mirrored side's swamp on the other side of its nest.
 static func anchor(g: Game, u: Unit) -> Vector2:
+	if has_fp(u) and g == u.game:
+		return u.anchor_fp()          # (kept on the creature while its footprint is the same: Unit.anchor_fp, perf-late-brood)
 	return g.sym_pt(u.team, feet_k(g, u.team, u))
 
 

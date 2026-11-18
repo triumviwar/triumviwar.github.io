@@ -2154,47 +2154,86 @@ func _nb_supply_turtle_spot_go(q: Unit, me: Unit):
 			centres.append(BroodRoot.feet_k(game, team, t))
 	var qreg := game.region_of(game.cell_of(_qp(q)))
 	var qk := BroodRoot.feet_k(game, team, q)
+	# (perf-late-brood: 33 ms a look in a grown base (17 turtles: 1,900 spots, each with place_problem until the first good
+	# one). The pick is the spot with the lowest score that passes every check, the first of equals in the old order (round
+	# the Mother first; done there when she has one and her feet are her first-start feet); the spots are now scored first,
+	# put in that order (a stable sort) and checked until the first that passes: the same spot)
+	var cands: Array = []
 	var best = null
 	var bs := INF
-	for cpos in centres:
+	for ci in centres.size():
+		var cpos: Vector2 = centres[ci]
+		if ci == 1:
+			best = _supply_first(cands, me, INF)
+			if best != null:
+				bs = float(_sup_s)
+				if centres[0] == _qp(q):
+					return best          # (round the Mother found one: the nearest is good enough)
+			cands = []
 		for ring in [5.0, 7.0, 9.0, 11.0, 13.0, 15.0, 17.0]:
 			for i in 16:
-				var pr: Vector2 = (cpos as Vector2) + Vector2.from_angle(TAU * i / 16.0 + ring * 0.37) * ring * Defs.TILE
+				var pr: Vector2 = cpos + Vector2.from_angle(TAU * i / 16.0 + ring * 0.37) * ring * Defs.TILE
 				var p_k: Vector2 = BroodRoot.snap(BroodNew.TURTLE, pr)
-				var p: Vector2 = BroodRoot.sym_snap(game, team, BroodNew.TURTLE, pr)
 				var c: Vector2i = game.sym_rect(team, game.cell_of(p_k), Vector2i.ONE)
-				if not _nb_on_map(p_k) or not game._walkable(c) or _spot_bad(p):
+				if not _nb_on_map(p_k) or not game._walkable(c):
 					continue
 				var s := p_k.distance_to(qk) + (0.0 if game.region_of(c) == qreg else 300.0)
 				if s >= bs:
 					continue
-				if _foe_near(p, 10.0 * Defs.TILE):
-					continue
-				if BroodRoot.place_problem(game, team, BroodNew.TURTLE, p, me, true) != "":
-					continue
-				var ok := true
-				for o in BroodRoot._bt_mine:
-					if o != me and o.team == team and (o.kind == BroodNew.TURTLE or o.kind == BroodNew.MAW) and not o.dead and o.position.distance_to(p) < 3.0 * Defs.TILE:
-						ok = false
-						break
-				if ok:
-					bs = s
-					best = p
-		if best != null and cpos == _qp(q):
-			break          # (round the Mother found one: the nearest is good enough)
-	return best
+				cands.append([s, cands.size(), pr])
+	if centres.size() == 1:
+		return _supply_first(cands, me, INF)
+	var later = _supply_first(cands, me, bs)
+	return later if later != null else best
+
+
+var _sup_s := 0.0
+
+
+## The first spot of `cands` ([score, order, point in the first-start frame]) in score order (the order breaking ties)
+## that scores under `under` and passes the supply turtle's checks (_nb_supply_turtle_spot_go); its score in _sup_s.
+func _supply_first(cands: Array, me: Unit, under: float):
+	cands.sort_custom(func(a: Array, b: Array) -> bool: return float(a[0]) < float(b[0]) or (float(a[0]) == float(b[0]) and int(a[1]) < int(b[1])))
+	for e in cands:
+		if float(e[0]) >= under:
+			break
+		var p: Vector2 = BroodRoot.sym_snap(game, team, BroodNew.TURTLE, e[2])
+		if _spot_bad(p) or _foe_near(p, 10.0 * Defs.TILE):
+			continue
+		if BroodRoot.place_problem(game, team, BroodNew.TURTLE, p, me, true) != "":
+			continue
+		var ok := true
+		for o in BroodRoot._bt_mine:
+			if o != me and o.team == team and (o.kind == BroodNew.TURTLE or o.kind == BroodNew.MAW) and not o.dead and o.position.distance_to(p) < 3.0 * Defs.TILE:
+				ok = false
+				break
+		if ok:
+			_sup_s = float(e[0])
+			return p
+	return null
 
 
 ## A father's nest: beside the Mother, three quarters of his reach out (clear of her nest and of the other fathers'),
 ## the spot nearest him.
 func _nb_father_spot(q: Unit, me: Unit, k: String = BroodNew.FATHER):
+	BroodRoot.batch_begin(game, team)          # (a search batch: the same answers, the units listed once; perf-late-brood)
+	var r = _nb_father_spot_go(q, me, k)
+	BroodRoot.batch_end()
+	return r
+
+
+## (perf-late-brood: in the owner's Highmoor game (2026-11-18) a Sire looked for his nest on every think from 10:00, 20 to
+## 40 ms each time (ai/brood/father). The spot is the legal one nearest `from` on the first ring that has one, the first
+## of equals in the ring's order; the ring's spots are now put in that order first (a stable sort) and checked until the
+## first legal one, instead of checking all 24 with the dear place_problem: the same spot.)
+func _nb_father_spot_go(q: Unit, me: Unit, k: String):
 	var home := BroodRoot.home_region(game, _qp(q))
 	var reach := float(Defs.NB["father_r"]) * Defs.TILE
 	var qk := BroodRoot.feet_k(game, team, q)        # (start-spots-fix: in this side's first-start frame, mirrored back)
 	var from: Vector2 = BroodRoot.feet_k(game, team, me) if me != null else qk + Vector2(0, reach)
+	var mg := _nb_mother_ground(q)
 	for frac in [0.75, 0.6, 0.9, 0.5, 1.0]:
-		var best = null
-		var best_k := Vector2.INF
+		var ring: Array = []
 		for i in 24:
 			var pr: Vector2 = qk + Vector2.from_angle(TAU * i / 24.0) * reach * frac
 			var p_k: Vector2 = BroodRoot.snap(k, pr)
@@ -2202,13 +2241,13 @@ func _nb_father_spot(q: Unit, me: Unit, k: String = BroodNew.FATHER):
 			var c: Vector2i = game.sym_rect(team, game.cell_of(p_k), Vector2i.ONE)
 			if not _nb_on_map(p_k) or not game._walkable(c) or game.region_of(c) != home:
 				continue
-			if BroodRoot.place_problem(game, team, k, p, me, true) != "" or BroodRoot.rect_for(k, p).intersects(_nb_mother_ground(q)) or _spot_bad(p):
+			ring.append([p_k.distance_to(from), ring.size(), p])
+		ring.sort_custom(func(a: Array, b: Array) -> bool: return float(a[0]) < float(b[0]) or (float(a[0]) == float(b[0]) and int(a[1]) < int(b[1])))
+		for e in ring:
+			var p: Vector2 = e[2]
+			if BroodRoot.place_problem(game, team, k, p, me, true) != "" or BroodRoot.rect_for(k, p).intersects(mg) or _spot_bad(p):
 				continue
-			if best == null or p_k.distance_to(from) < best_k.distance_to(from):
-				best = p
-				best_k = p_k
-		if best != null:
-			return best
+			return p
 	return null
 
 
@@ -2435,8 +2474,8 @@ func _nb_find_spot_go(q: Unit, m: Unit):
 					continue
 				if _maw_circle_taken(p, m):
 					continue
-				if not _nb_spot_ok(p) or BroodRoot.place_problem(game, team, BroodNew.MAW, p, m, true, 1.0, not soon) != "" or _spot_bad(p):
-					continue
+				# (perf-late-brood: the score first, then the dear checks only for a spot that would beat the best so far: a
+				# spot is the best only if it is legal and scores lower, so the pick is the same)
 				var s := p_k.distance_to(qk) * (1.0 if ci == 0 else 0.6) + (60.0 if int(game.height[game.idx(c)]) != h else 0.0) + p_k.distance_to(from) * 0.3
 				if _eco():
 					# (the owner's build: a Rootmaw at the FAR edge of the ground it roots on, the expansions first: a load
@@ -2448,6 +2487,8 @@ func _nb_find_spot_go(q: Unit, m: Unit):
 					s -= foe.distance_to(pm) * 0.15         # (a little away from the enemy)
 				if s >= bs:
 					continue          # (the enemy near only adds to it: no better than the best whatever it says)
+				if not _nb_spot_ok(p) or BroodRoot.place_problem(game, team, BroodNew.MAW, p, m, true, 1.0, not soon) != "" or _spot_bad(p):
+					continue
 				if _foe_near(pm, 10.0 * Defs.TILE):
 					s += 2000.0
 				if s < bs:
@@ -2478,14 +2519,16 @@ func _nb_marked_spot(q: Unit, m: Unit):
 			continue
 		if _maw_circle_taken(p, m) or not _nb_spot_ok(p) or _spot_bad(p):
 			continue
-		if BroodRoot.place_problem(game, team, BroodNew.MAW, p, m, true, 1.0, not soon) != "":
-			continue
 		var s := p_k.distance_to(qk) * (0.6 if out else 1.0) + p_k.distance_to(from) * 0.3 - (30.0 if int(e["rank"]) == 1 else 0.0)
 		if _eco():
 			s = -p_k.distance_to(qk) * 0.5 + (0.0 if out else 400.0) + p_k.distance_to(from) * 0.1
 		var foe := _nb_nearest_foe_pos(p)
 		if foe != Vector2.INF:
 			s -= foe.distance_to(pm) * 0.15
+		if s >= bs:
+			continue          # (perf-late-brood: no better than the best so far whatever the checks below say: the same pick)
+		if BroodRoot.place_problem(game, team, BroodNew.MAW, p, m, true, 1.0, not soon) != "":
+			continue
 		if _foe_near(pm, 10.0 * Defs.TILE):
 			s += 2000.0
 		if s < bs:

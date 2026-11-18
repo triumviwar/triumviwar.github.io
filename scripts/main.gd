@@ -2720,6 +2720,15 @@ func _notification(what: int) -> void:
 		return
 	if what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_WM_CLOSE_REQUEST, NOTIFICATION_WM_WINDOW_FOCUS_OUT]:
 		_autosave()
+	# (perf-late-brood: in the match log, so a long frame there can be told from the window being moved or put away; an
+	# 8-second frame in the owner's game of 2026-11-18 had no part of the game in it)
+	if game and is_instance_valid(game) and game.mlog and not game.over:
+		if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+			game.mlog.add("the game's window lost focus")
+		elif what == NOTIFICATION_WM_WINDOW_FOCUS_IN:
+			game.mlog.add("the game's window has focus again")
+		elif what == NOTIFICATION_APPLICATION_PAUSED:
+			game.mlog.add("the game was put in the background")
 	# closed or sent to the background on purpose: not a crash (back in front: running again)
 	if what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_WM_CLOSE_REQUEST] and not OS.has_feature("web"):
 		DirAccess.remove_absolute(RUNNING)
