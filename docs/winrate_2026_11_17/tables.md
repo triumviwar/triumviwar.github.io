@@ -11,6 +11,9 @@ All six pairings now (0.38.46, to 12:00; the Crown mirror to 15:00) against the 
 | Crown v Crown (P1) to 15:00 | 38 | **0-38-0** | 13 / 18 / 7 | 0 (-) | 13 v 18 (0.473) | 2026-11-12 | 3-35-0 | 16 / 18 / 4 | 9 / 10 (1.000) |
 | Brood v Brood (P1) | 38 | **5-33-0** | 14 / 8 / 16 | 5 (11:22) | 14 v 8 (0.286) | 2026-11-15 | 3-34-1 | 23 / 7 / 8 | 5 / 14 (0.064) |
 | Clockwork v Clockwork (P1) | 38 | **2-35-1** | 19 / 15 / 4 | 3 (11:31) | 19 v 15 (0.608) | 2026-11-12 | 1-36-1 | 19 / 13 / 6 | 12 / 13 (1.000) |
+| Crown v Crown (P1) to 20:00, round 0 | 19 | **2-17-0** | 6 / 12 / 1 | 2 (18:05) | 6 v 12 (0.238) | | | | |
+
+(The same 19 round-0 Crown mirror games of the main run at 15:00: 0-19-0, won or led 6 / 8 / 5.)
 
 ## Crown v Brood
 
@@ -516,4 +519,33 @@ Built halls lost per game: first 0.82, second 1.24 (2026-11-12: 0.68, 1.32). Fir
 | saltmarsh_isles | w P1 | w P1 | l P1 | l P1 | balanced / balanced | balanced / balanced |
 | thornwood_maze | l P1 | = P1 | l P1 | l P1 | balanced / balanced | balanced / balanced |
 | twin_fords | l P1 | w P1 | w P1 | w P1 | economy / balanced | balanced / balanced |
+
+## Crown v Crown to 20:00 (round 0, 19 games)
+
+- at 12:00: income P1/P2 0.99, army 0.93, games still running 19
+- at 15:00: income P1/P2 0.92, army 0.91, games still running 19
+- at 18:00: income P1/P2 0.85, army 0.80, games still running 18
+- at 20:00: income P1/P2 0.75, army 0.63, games still running 17
+
+| map | result | length | halls lost P1 / P2 | P1 pick / P2 pick |
+|---|---|---|---|---|
+| amberfall_vale | l | 20:00 | 0 / 1 | balanced / siege |
+| ashfall | W | 17:54 | 0 / 5 | balanced / dragoon |
+| ashford_crossing | l | 20:00 | 1 / 0 | siege / economy |
+| border_march | l | 20:00 | 2 / 0 | balanced / economy |
+| cinder_steps | l | 20:00 | 0 / 0 | economy / siege |
+| dune_sea | W | 18:16 | 1 / 4 | dragoon / timing |
+| frostfang | l | 20:00 | 4 / 0 | dragoon / balanced |
+| frostmere | l | 20:00 | 5 / 0 | dragoon / balanced |
+| glimmerdeep | w | 20:00 | 0 / 2 | dragoon / siege |
+| greenhold | l | 20:00 | 2 / 0 | timing / dragoon |
+| highmoor | w | 20:00 | 1 / 1 | economy / economy |
+| hollowfen | l | 20:00 | 1 / 0 | dragoon / dragoon |
+| kestrel_rise | w | 20:00 | 0 / 3 | balanced / dragoon |
+| mirewood | l | 20:00 | 1 / 0 | economy / siege |
+| red_coast | l | 20:00 | 4 / 0 | dragoon / balanced |
+| redrock_canyon | = | 20:00 | 1 / 0 | dragoon / timing |
+| saltmarsh_isles | l | 20:00 | 1 / 1 | balanced / dragoon |
+| thornwood_maze | l | 20:00 | 2 / 0 | balanced / economy |
+| twin_fords | w | 20:00 | 0 / 2 | economy / economy |
 
