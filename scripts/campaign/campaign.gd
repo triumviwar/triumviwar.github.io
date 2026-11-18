@@ -448,6 +448,44 @@ static func strings_of(m: Dictionary) -> Array:
 
 
 ## What is wrong with a mission's data ([] = nothing): names that point nowhere, unknown kinds, conditions and actions.
+## THE ROSTER LADDER (docs/campaign_roster_ladder.md): every piece of a faction a team's roster can name: its units,
+## buildings and researches (Defs), and for the Brood the Mother's growth stages as "stage2" / "stage3" (her GROW).
+static func roster_items(faction: String) -> Array:
+	var out: Array = []
+	for d in [Defs.UNITS, Defs.BUILDINGS, Defs.RESEARCH]:
+		for k in d:
+			if String(d[k].get("faction", "")) == faction:
+				out.append(String(k))
+	if faction == "brood":
+		out.append_array(ROSTER_STAGES)
+	return out
+
+
+const ROSTER_STAGES := ["stage2", "stage3"]
+
+
+## What a team may not build, train, research (or, the Brood, grow to) in this mission: with an ALLOW-LIST (the
+## ladder: "roster": {"allow": [...]}) everything of its faction not on it, plus the roster's "deny" (the story's own
+## refusals on top of the ladder). `m` gives the campaign-only factions' stand-ins.
+static func roster_denied(m: Dictionary, tm: Dictionary) -> Array:
+	var r: Dictionary = tm.get("roster", {})
+	var out: Array = []
+	if r.has("allow"):
+		var allow: Array = r["allow"]
+		for k in roster_items(engine_faction(m, String(tm.get("faction", "crown")))):
+			if not allow.has(k):
+				out.append(k)
+	for k in r.get("deny", []):
+		if not out.has(String(k)):
+			out.append(String(k))
+	return out
+
+
+## A roster name the ladder may use: a unit, building or research, or a Brood growth stage.
+static func roster_known(k: String) -> bool:
+	return Defs.UNITS.has(k) or Defs.BUILDINGS.has(k) or Defs.RESEARCH.has(k) or ROSTER_STAGES.has(k)
+
+
 static func problems(m: Dictionary) -> Array:
 	var out: Array = []
 	if m.is_empty():
@@ -575,9 +613,13 @@ static func problems(m: Dictionary) -> Array:
 		if ex.has("team") and not teams.has(String(ex["team"])):
 			out.append("exit: unknown team %s" % ex["team"])
 	for tm in m.get("teams", []):
-		for k in tm.get("roster", {}).get("deny", []):
-			if not (Defs.UNITS.has(String(k)) or Defs.BUILDINGS.has(String(k))):
-				out.append("team %s: roster of unknown kind %s" % [tm["id"], k])
+		for key in ["deny", "allow", "new"]:
+			for k in tm.get("roster", {}).get(key, []):
+				if not roster_known(String(k)):
+					out.append("team %s: roster %s of unknown kind %s" % [tm["id"], key, k])
+		for k in tm.get("roster", {}).get("new", []):
+			if tm.get("roster", {}).has("allow") and not (tm["roster"]["allow"] as Array).has(k):
+				out.append("team %s: roster new %s is not on its allow-list" % [tm["id"], k])
 	for o in m.get("objectives", []):
 		if String(o.get("kind", "")) == "countdown" and String(o.get("clock", "")) == "":
 			out.append("objective %s: a countdown needs a clock" % o["id"])
@@ -730,6 +772,9 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 		"unlock", "deny":
 			if not teams.has(String(v.get("team", ""))):
 				out.append("%s: %s for unknown team" % [where, k])
+			for kk in (v["kind"] if v.get("kind") is Array else [v.get("kind", "")]):
+				if not roster_known(String(kk)):
+					out.append("%s: %s of unknown kind %s" % [where, k, kk])
 		"sound":
 			var sn := String(v.get("name", ""))
 			if not (ResourceLoader.exists("res://assets/audio/%s.wav" % sn) or ResourceLoader.exists("res://assets/audio/%s.ogg" % sn)):

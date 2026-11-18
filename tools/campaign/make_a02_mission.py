@@ -145,7 +145,7 @@ M = {
     ],
     "teams": [
         {"id": "guild", "side": "guild", "faction": "clockwork", "colour": 0, "start": "standard", "hall": [44, 16],
-         "hall_tag": "honest", "camera": "yard", "gold": 400, "roster": {"deny": DENY},
+         "hall_tag": "honest", "camera": "yard", "gold": 400,
          "control": {"solo": "p1", "coop": "p1", "versus": "p1", "foe": "script"}},
         {"id": "army", "side": "guild", "faction": "crown", "colour": 4, "start": "none", "camera": "yard", "powder": 400,
          "control": {"solo": "script", "coop": "p2", "versus": "script"}},
@@ -520,6 +520,14 @@ M = {
 for o in M["objectives"]:
     if "kind_of" in o:
         o["kind"], o["unit_kind"] = "reach", o.pop("kind_of")
+
+
+# THE ROSTER LADDER (docs/campaign_roster_ladder.md): the line's own team may build / train / research only its step's
+# pieces; the NEW card says what this mission brings (tools/campaign/roster_ladder.py)
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import roster_ladder
+roster_ladder.apply(M, "a02_furth")
 
 out = os.path.join(ROOT, "campaign", "missions", "a02_furth.json")
 with open(out, "w") as f:

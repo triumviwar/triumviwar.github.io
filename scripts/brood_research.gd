@@ -220,6 +220,8 @@ static func problem(g: Game, u: Unit, key: String) -> String:
 	var t := u.team
 	if g.has_tech(t, key):
 		return "Already done."
+	if g.mission and g.mission.denied(t, key):
+		return "Not in this mission."      # (the roster ladder: docs/campaign_roster_ladder.md)
 	if busy(u) and 1 + queued(u).size() >= QUEUE_MAX:
 		return "The research queue is full."
 	if in_hand(g, t, key):

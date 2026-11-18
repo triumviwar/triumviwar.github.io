@@ -4418,6 +4418,8 @@ func research_problem(b: Building, key: String) -> String:
 		return "Can't research that here."
 	if has_tech(b.team, key):
 		return "Already done."
+	if mission and mission.denied(b.team, key):
+		return "Not in this mission."      # (the roster ladder: docs/campaign_roster_ladder.md)
 	if researching(b.team, key):
 		return "Already in the queue."
 	if b.queue.size() >= 5:

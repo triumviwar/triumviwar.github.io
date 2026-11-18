@@ -50,6 +50,27 @@
 			"gold": 300,
 			"powder": 300,
 			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon",
+					"horse_breeder",
+					"cuirassier",
+					"horse",
+					"dismounted",
+					"messenger"
+				],
+				"new": [
+					"horse_breeder",
+					"cuirassier"
+				],
 				"deny": [
 					"town_hall",
 					"cottage",
@@ -85,6 +106,29 @@
 				"solo": "script",
 				"coop": "p2",
 				"versus": "script"
+			},
+			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon",
+					"horse_breeder",
+					"cuirassier",
+					"horse",
+					"dismounted",
+					"messenger"
+				],
+				"new": [
+					"horse_breeder",
+					"cuirassier"
+				]
 			}
 		},
 		{
@@ -841,6 +885,15 @@
 				42
 			],
 			"tag": "mill"
+		},
+		{
+			"team": "garrison",
+			"kind": "horse_breeder",
+			"at": [
+				108,
+				47
+			],
+			"tag": "breeder"
 		},
 		{
 			"team": "garrison",
@@ -5654,6 +5707,20 @@
 					]
 				}
 			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 5
+			},
+			"do": [
+				{
+					"say": [
+						"new_horse_breeder",
+						"new_cuirassier"
+					]
+				}
+			]
 		}
 	],
 	"speakers": {
@@ -5694,6 +5761,10 @@
 		"assembly": {
 			"name": "The Free Assembly",
 			"side": "assembly"
+		},
+		"new": {
+			"name": "NEW",
+			"side": "crown"
 		}
 	},
 	"lines": {
@@ -5973,6 +6044,16 @@
 		"k_end_a2": {
 			"who": "king",
 			"text": "But if it had, Paris would have had a sister. I have thought of that."
+		},
+		"new_horse_breeder": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE HORSE BREEDER. It raises the horses: a mounted man is the fastest thing in a city."
+		},
+		"new_cuirassier": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE HORSEMAN. Fast and hard-hitting: ride down the runners before they reach the squares."
 		}
 	},
 	"stills": {

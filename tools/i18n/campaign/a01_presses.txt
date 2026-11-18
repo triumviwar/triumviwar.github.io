@@ -436,3 +436,13 @@ es Rouvière no quiso decir quién le pagaba. Decía París, como si fuera una o
 > Ten shots a musket, Father, then the bayonet. The powder wagon fills them again: keep it near the men.
 pt Dez tiros por mosquete, padre, depois a baioneta. A carroça de pólvora os enche de novo: mantenha-a perto dos homens.
 es Diez disparos por mosquete, padre, y luego la bayoneta. El carro de pólvora los vuelve a llenar: manténgalo cerca de los hombres.
+
+# THE ROSTER LADDER's NEW cards (tools/campaign/roster_ladder.py, docs/campaign_roster_ladder.md). PLACEHOLDER.
+
+> NEW: THE HORSE BREEDER. It raises the horses: a mounted man is the fastest thing in a city.
+pt NOVO: O CRIADOR DE CAVALOS. Ele cria os cavalos: um homem montado é a coisa mais rápida numa cidade.
+es NUEVO: EL CRIADERO DE CABALLOS. Cría los caballos: un hombre montado es lo más rápido en una ciudad.
+
+> NEW: THE HORSEMAN. Fast and hard-hitting: ride down the runners before they reach the squares.
+pt NOVO: O CAVALEIRO. Rápido e de golpe duro: alcance os mensageiros antes que cheguem às praças.
+es NUEVO: EL JINETE. Rápido y de golpe duro: alcanza a los correos antes de que lleguen a las plazas.

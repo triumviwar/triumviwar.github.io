@@ -144,3 +144,7 @@ canister charge, the ending.
 barns standing (two barns burned in each, by militia musket fire in the big wave at 5:00-6:35), the manor untouched,
 19 to 29 Crown men left. Before the tuning (torch 11 a second, 8 Musketeers) the same bot lost one run in three and a
 passive player lost the night at about 5 minutes.
+
+## The roster ladder (roster-ladder, 0.38.57)
+
+What the player may build, train, research and grow to here is now the roster ladder's step for this mission (docs/campaign_roster_ladder.md; tools/campaign/roster_ladder.py), with a NEW card a few seconds in. tools/test_roster_ladder.gd checks it.

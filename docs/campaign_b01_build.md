@@ -377,3 +377,7 @@ dialogue later), b06 -> b01_06, b07 -> b01_07, b08 -> b01_08.
   last line, as before).
 - Not run: the faction and AI tests (the AI change is one line, read only in a mission that names an `ai_foe`; the
   supply cap only in a mission that names one).
+
+## The roster ladder (roster-ladder, 0.38.57)
+
+What the player may build, train, research and grow to here is now the roster ladder's step for this mission (docs/campaign_roster_ladder.md; tools/campaign/roster_ladder.py), with a NEW card a few seconds in. tools/test_roster_ladder.gd checks it.

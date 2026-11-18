@@ -60,6 +60,20 @@
 			"control": {
 				"solo": "p1",
 				"versus": "p1"
+			},
+			"roster": {
+				"allow": [
+					"brood_mother",
+					"grub",
+					"rootmaw",
+					"mound_turtle",
+					"tyrannosaur",
+					"raptor"
+				],
+				"new": [
+					"tyrannosaur",
+					"raptor"
+				]
 			}
 		},
 		{
@@ -2677,6 +2691,20 @@
 					}
 				}
 			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 5
+			},
+			"do": [
+				{
+					"say": [
+						"new_tyrannosaur",
+						"new_raptor"
+					]
+				}
+			]
 		}
 	],
 	"speakers": {
@@ -2713,6 +2741,10 @@
 		"narrator": {
 			"name": "The Rio Negro",
 			"side": "station"
+		},
+		"new": {
+			"name": "NEW",
+			"side": "sire"
 		}
 	},
 	"lines": {
@@ -2976,6 +3008,16 @@
 		"k_end_taken": {
 			"who": "king",
 			"text": "And the fire took nothing. The pack carried her eggs north in its jaws. He never knew."
+		},
+		"new_tyrannosaur": {
+			"who": "new",
+			"to": "sire",
+			"text": "NEW: THE TYRANT SIRE. A grub becomes him. Rooted by the Mother, he fathers her warrior eggs; up, he fights; his ROAR calls the pack."
+		},
+		"new_raptor": {
+			"who": "new",
+			"to": "sire",
+			"text": "NEW: THE RAPTORS. Pick them on the Mother's card: an egg of quick biters that hatches in the Sire's nest. Many and fast; weak alone."
 		}
 	},
 	"stills": {

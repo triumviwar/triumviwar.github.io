@@ -56,8 +56,7 @@ def townsfolk(tid, area, after, every, n, flag_cond, first_delay=0, times=6):
 QUIET = [{"not": {"flag": {"bells": "rung"}}}]
 RUNG = [{"flag": {"bells": "rung"}}]
 
-DENY = ["heavy_works", "cuckoo_house", "cuckoo", "pendulum", "ballista", "great_winder", "brass_serpent",
-        "serpent_gear_s", "serpent_gear_b"]
+# (the guild's roster: the roster ladder's step K1, tools/campaign/roster_ladder.py, set at the end)
 
 M = {
     "id": "c01_thirteenth",
@@ -79,7 +78,7 @@ M = {
     ],
     "teams": [
         {"id": "guild", "side": "guild", "faction": "clockwork", "colour": 0, "start": "standard", "hall": [52, 64],
-         "hall_tag": "perpetual", "camera": "yard", "gold": 400, "roster": {"deny": DENY},
+         "hall_tag": "perpetual", "camera": "yard", "gold": 400,
          "control": {"solo": "p1", "coop": "p1", "versus": "p1"}},
         {"id": "watch", "side": "guild", "faction": "crown", "colour": 4, "start": "none", "camera": "yard", "powder": 300,
          "control": {"solo": "script", "coop": "p2", "versus": "script"}},
@@ -452,6 +451,14 @@ M = {
 for o in M["objectives"]:
     if "kind_of" in o:
         o["kind"], o["unit_kind"] = "reach", o.pop("kind_of")
+
+
+# THE ROSTER LADDER (docs/campaign_roster_ladder.md): the line's own team may build / train / research only its step's
+# pieces; the NEW card says what this mission brings (tools/campaign/roster_ladder.py)
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import roster_ladder
+roster_ladder.apply(M, "c01_thirteenth")
 
 out = os.path.join(os.path.dirname(__file__), "..", "..", "campaign", "missions", "c01_thirteenth.json")
 with open(out, "w") as f:

@@ -452,6 +452,8 @@ static func grow_problem(g: Game, q: Unit) -> String:
 		return "No Brood Mother."
 	if stage(q) >= (Defs.NB["stages"] as Array).size() - 1:
 		return "She is fully grown."
+	if g.mission and g.mission.denied(q.team, "stage%d" % (stage(q) + 2)):
+		return "Not in this mission."      # (the roster ladder: her growth stages, "stage2" / "stage3")
 	if float(q.nb.get("grow_t", 0.0)) > 0.0:
 		return "She is growing."
 	if BroodResearch.busy(q):
@@ -601,6 +603,8 @@ static func lay_problem(g: Game, q: Unit, k: String) -> String:
 		if BroodRoot.morph_list().has(k):
 			return "A grub turns into it now: pick it on a grub's card."
 		return "Not in the Brood yet."
+	if g.mission and g.mission.denied(q.team, k):
+		return "Not in this mission."      # (the roster ladder: docs/campaign_roster_ladder.md)
 	if int(q.nb.get("eggs", 0)) < 1:
 		return "No eggs ready."
 	var u: Dictionary = Defs.UNITS[k]

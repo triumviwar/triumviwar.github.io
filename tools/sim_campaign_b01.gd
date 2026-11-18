@@ -225,7 +225,9 @@ func _play(g: Game, r: MissionRun, me: int) -> void:
 	if _state == "nest":
 		var pen := r.area_rect("pen").get_center()
 		# the pack keeps round him: anything that comes at the rooted Sire first, then the gate
-		var threats: Array = g.units.filter(func(u): return not u.dead and g.hostile(u.team, me) and not u.spared and u.position.distance_to(sire.position) < 420.0 and u.kind != "brood_egg")
+		# (only what is coming at the pack or close by: a garrison holding in its fort out of reach is not a threat, and
+		# chasing it kept the pack off the gate for good: roster-ladder's runs, on main too)
+		var threats: Array = g.units.filter(func(u): return _threat(g, u, me, sire))
 		if not threats.is_empty():
 			threats.sort_custom(func(a, b): return a.position.distance_to(sire.position) < b.position.distance_to(sire.position))
 			for u in army:
@@ -293,3 +295,15 @@ func _shots(g: Game, r: MissionRun) -> void:
 			_shot_n += 1
 			img.save_jpg("%s/%d_%s.jpg" % [shots, _shot_n, k], 0.85)
 			print("SIM shot %s" % k)
+
+
+## A threat to the rooted Sire (the "nest" step): an enemy within 420 px that is close (200) or going for the pack.
+func _threat(g: Game, u: Unit, me: int, sire: Unit) -> bool:
+	if u.dead or not g.hostile(u.team, me) or u.spared or u.kind == "brood_egg":
+		return false
+	var d := u.position.distance_to(sire.position)
+	if d >= 420.0:
+		return false
+	if d < 200.0:
+		return true
+	return u.target != null and is_instance_valid(u.target) and not u.target.dead and u.target.team == me

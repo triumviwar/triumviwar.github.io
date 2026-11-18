@@ -312,6 +312,14 @@ M = {
     "next": {"crown": "a01_presses", "rebels": ""},
 }
 
+
+# THE ROSTER LADDER (docs/campaign_roster_ladder.md): the line's own team may build / train / research only its step's
+# pieces; the NEW card says what this mission brings (tools/campaign/roster_ladder.py)
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import roster_ladder
+roster_ladder.apply(M, "p01_leaf")
+
 out = os.path.join(os.path.dirname(__file__), "..", "..", "campaign", "missions", "p01_leaf.json")
 with open(out, "w") as f:
     json.dump(M, f, indent="\t", ensure_ascii=False)

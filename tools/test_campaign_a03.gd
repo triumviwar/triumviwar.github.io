@@ -175,7 +175,8 @@ func _data() -> void:
 	check("no creature speaks: the nest's pages are the King's", (m["opening"]["nest"] as Array).all(func(pg): return (pg["lines"] as Array).all(
 		func(l): return String(m["lines"][l]["who"]) == "king")) and (m["ending"]["nest"] as Array).all(func(pg): return (pg["lines"] as Array).all(
 		func(l): return String(m["lines"][l]["who"]) == "king")))
-	check("no line is said to the nest", (m["lines"] as Dictionary).values().all(func(l): return String(l.get("to", "")) != "nest"))
+	# (but the roster ladder's NEW cards: the game's own voice, docs/campaign_roster_ladder.md)
+	check("no line is said to the nest but the NEW cards", (m["lines"] as Dictionary).values().all(func(l): return String(l.get("to", "")) != "nest" or String(l["who"]) == "new"))
 
 
 # ================================================================== the prologue's flags at the start

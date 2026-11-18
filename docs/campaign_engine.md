@@ -386,3 +386,16 @@ solo mirror (`solo_sides`); it needed only these:
 | `{"order": {..., "only_team": team}}` | of a tag, only those still on that team (the weavers who went home, not those who turned) |
 | roles `tomasz`, `delorme`, `runner`, `printer`, `weaver` | Rebels.ROLES (stand-ins: a Missionary, an Officer, Labourers) |
 | THE CITY GENERATOR | tools/campaign/city_gen.py: a town as a map editor map from a seed (docs/city_generator.md) |
+## Added by the roster ladder (roster-ladder, 0.38.57; docs/campaign_roster_ladder.md)
+
+Each mission brings the line's player one or two new pieces (the owner, 2026-11-18); the data is in
+tools/campaign/roster_ladder.py, which the mission generators call (`roster_ladder.apply(M, "<id>")`).
+
+| key / action | what it does |
+| --- | --- |
+| team `"roster": {"allow": [pieces]}` | an ALLOW-LIST: everything of the team's faction (Campaign.roster_items: its units, buildings, researches, and the Brood's growth stages `stage2` / `stage3`) not on it is "Not in this mission." (Campaign.roster_denied; the old `deny` still adds to it: the story's refusals on top of the ladder) |
+| team `"roster": {"new": [pieces]}` | the mission's NEW pieces (on the allow-list; the doc's CHECKED TABLE and tools/test_roster_ladder.gd read them); the generator adds the NEW cards: speaker `new` ("NEW"), a line per piece `to` the ladder side, said by the trigger `ladder_new` a few seconds in |
+| the refusal reaches | Game.requirement_text (buildings), Game.can_train (units), Game.research_problem (Crown / Clockwork research), BroodResearch.problem, BroodRoot.morph_problem (a grub's BUILD), BroodNew.lay_problem (the Mother's eggs), BroodMature.problem (MATURE: the mature form's kind), BroodNew.grow_problem (GROW: `stage2`, `stage3`) |
+| `{"unlock"/"deny": {"team", "kind"}}` | unchanged, and now also takes researches and stages; Campaign.problems checks every roster name and every unlock / deny kind (Campaign.roster_known) |
+
+Not gated: MOUNT (a man getting on a horse is not a training) and anything a mission hands over (units, buildings).

@@ -221,6 +221,8 @@ M = {
     "buildings": [
         {"team": "garrison", "kind": "barracks", "at": [108, 42], "tag": "barracks"},
         {"team": "garrison", "kind": "powder_mill", "at": [114, 42], "tag": "mill"},
+        # the roster ladder's C2 (docs/campaign_roster_ladder.md): a standing Horse Breeder, so Horsemen can be MADE here
+        {"team": "garrison", "kind": "horse_breeder", "at": [108, 47], "tag": "breeder"},
     ] + [{"team": "garrison", "kind": "cottage", "at": c, "tag": "quarters"} for c in GARRISON_QUARTERS]
     + [{"team": "town", "kind": "cottage", "at": CITY.lots["home_%d" % i]["at"], "tag": "houses"} for i in range(1, 17)]
     + [{"team": "town", "kind": "town_hall", "at": CITY.lots["weavers_hall"]["at"], "tag": "weavers_hall", "name": "The Weavers' Hall"},
@@ -503,6 +505,11 @@ for o in M["objectives"]:
 
 if __name__ == "__main__":
     out = os.path.join(ROOT, "campaign", "missions", MID + ".json")
+    # THE ROSTER LADDER (docs/campaign_roster_ladder.md): C2, the Horse Breeder and the Horseman. The garrison's story
+    # deny (no building in a city it does not own) stays on top; its Horse Breeder stands from the start.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import roster_ladder
+    roster_ladder.apply(M, "a01_presses", story_deny={"garrison": list(M["teams"][0]["roster"]["deny"])})
     with open(out, "w") as f:
         json.dump(M, f, indent="\t", ensure_ascii=False)
     print("wrote", os.path.normpath(out), len(M["triggers"]), "triggers", len(M["lines"]), "lines;",

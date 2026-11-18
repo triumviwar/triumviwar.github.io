@@ -317,3 +317,7 @@ design); THE GUIDE FROM NAZARÉ needs a designed voice; "The Mountain" (the narr
   engine's shutdown here, not a test.
 - Not run: the faction and AI tests (no unit, price or skirmish rule changed: the four engine additions act only inside
   a mission that asks for them). Not played on two devices (versus).
+
+## The roster ladder (roster-ladder, 0.38.57)
+
+What the player may build, train, research and grow to here is now the roster ladder's step for this mission (docs/campaign_roster_ladder.md; tools/campaign/roster_ladder.py), with a NEW card a few seconds in. tools/test_roster_ladder.gd checks it.
