@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.76", "items": [
+		"POWDER SMOKE NO LONGER BLINKS AT EVERY VOLLEY: every puff of a volley lived exactly 3 seconds, solid for 2 and gone over 1, so a whole line's smoke came at once and went at once. Now each puff lives 2.3 to 4.1 seconds (still about 3 on average) and starts thinning early, so a line's smoke frays away bit by bit instead of switching off.",
+	]},
 	{"v": "0.38.75", "items": [
 		"FASTER LATE GAMES AGAINST THE BROOD: the Brood computer no longer stops the game for a tenth of a second every 15 seconds in a grown base (it looked for every Rootmaw spot at once; now each swamp in its own moment, three times faster), and its Sires and Mound Turtles find their spots with far less searching. Units moving, grubs walking to their Rootmaws, rooted creatures and units looking for a target cost less, and wave paths are worked out faster. The game plays out exactly as before.",
 		"The replay is written in the background (it froze the game for a moment at 0:10 on some computers), new unit pictures come in a few at a time, and the match log's slow frames now say how long the drawing took and when the window lost focus.",
