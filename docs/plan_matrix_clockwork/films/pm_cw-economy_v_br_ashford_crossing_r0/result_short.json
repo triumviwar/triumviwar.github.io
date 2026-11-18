@@ -1,0 +1,80 @@
+{
+ "map": "ashford_crossing",
+ "seed": 2103,
+ "slots": [
+  [
+   "clockwork",
+   "economy",
+   0
+  ],
+  [
+   "brood",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 711,
+ "winner": 0,
+ "version": "0.38.59",
+ "tech_at": {
+  "0:shield_wall": 535,
+  "1:nb_clutch_raptor": 400
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "GREEDY",
+   "t": 111,
+   "why": "a second base and little army"
+  },
+  {
+   "p": 0,
+   "read": "AGGRESSIVE",
+   "t": 209,
+   "why": "fast rush units early"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 616,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "read": "GREEDY",
+   "t": 111,
+   "why": "no army and no production at its base"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 307,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "pick": "opening GREEDY -> rush (punish the greed before its army is up)",
+   "t": 111
+  }
+ ],
+ "final": [
+  {
+   "income": 17958,
+   "army": 5130,
+   "halls": 4,
+   "workers": 54,
+   "plan": "economy",
+   "supply": 149,
+   "lost": 39
+  },
+  {
+   "income": 8429,
+   "army": 75,
+   "halls": 0,
+   "workers": 1,
+   "plan": "balanced",
+   "supply": 1,
+   "lost": 159
+  }
+ ]
+}
