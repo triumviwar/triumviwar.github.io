@@ -5,22 +5,72 @@ games changing something to see if crown gets better, currently its bad ai." Thi
 blocks of 10 games of the Crown computer (Hard OPTIMAL) against the Clockwork computer (Hard OPTIMAL), to 20:00, a change of
 the Crown computer's play between blocks. The sister job crown-1000-brood does the Brood half.
 
-## In short (provisional, updated as the blocks come in)
+## In short
 
-(Written during the run; the final numbers replace these at the end.)
+**28 blocks, 280 games to 20:00** (of the 500 asked: two games at a time on a 2-core machine, about 30 minutes a block; one
+restart of the machine). 24 blocks against the Clockwork tried 16 changes, 4 were kept, and the kept set was run twice more
+on the same 10 games; one block each against the Brood and in the mirror checked the gate.
 
-| | block 0 (0.38.81) | the kept set (block 19) |
+| the same 10 games (Crown Hard OPTIMAL v Clockwork Hard OPTIMAL, 20:00) | block 0 (0.38.81) | the kept set (blocks 19 + 22, 20 games) |
 |---|---|---|
-| survived to 20:00 | 6 of 10 | 9 of 10 |
-| won or led at 20:00 | 0 | 6 (3 wins) |
-| score, Crown / Clockwork (income + 2 x army; a beaten side x0.25) | x0.19 | x1.07 |
-| paired v block 0 | | x5.74 (t 4.2, 10 better / 0 worse) |
-| income at 8:00 / 12:00 (of the Clockwork's) | 0.65 / 0.55 | 0.79 / 0.75 |
-| army at 8:00 / 12:00 | 0.56 / 0.31 | 0.80 / 0.88 |
+| survived to 20:00 | 6 of 10 | **18 of 20** |
+| won or led at 20:00 | 0 | **8** (2 wins, 6 led by 10%+), 2 even |
+| score, Crown / Clockwork (income + 2 x army; a beaten side x0.25) | x0.19 | **x0.89** |
+| paired v block 0, each game against itself | | x5.74 (t 4.2, 10 better / 0 worse) and x3.94 (t 3.2, 10 / 0) |
+| score at 12:00 | x0.48 | x0.74 |
+| income at 8:00 / 12:00 (of the Clockwork's) | 0.65 / 0.55 | 0.81 / 0.74 |
+| army at 8:00 / 12:00 | 0.56 / 0.31 | 0.86 / 0.75 |
+| labourers at 8:00 | 33.5 | 39.2 |
+| halls at 12:00 | 2.9 | 3.75 |
 
-The kept changes (all against the Clockwork only, scripts/ai_crown_v_clock.gd): `pick` (OPTIMAL picks Timing or Siege),
-`hall2` (the second hall right after the pick), `tech3` (the Church and the Armoury after the third hall), `dry` (with the
-powder gone and 400+ gold banked, Field Cannons and bayonet Musketeers).
+**The kept changes** (scripts/ai_crown_v_clock.gd, AICrownVClock; each plays only for a Crown computer whose enemy is the
+Clockwork; on by default, `-- cvc<name>:off` turns one off, `-- cvc:off` all; tools/test_crown_v_clock.gd):
+
+1. `pick` (block 1, confirmed by 10): OPTIMAL's NORMAL / GREEDY pick against the Clockwork is the Timing attack or the Siege
+   push, half and half (it was Timing 3 : Economy 1 : Balloon 2): the plan matrix's two best, and x1.71 v block 0 (t 1.9).
+2. `hall2` (blocks 5 and 14): right after the pick the second hall is the build order's next step, at 11 labourers. The
+   second hall stands at ~3:00 (was 4:00-6:00, the Clockwork's ~2:30): labourers at 8:00 34 -> 40, income at 8:00 0.69 ->
+   0.81, the score at 12:00 x1.19 and x1.35 (t 2.8, 3.0).
+3. `tech3` (block 6): the Church and the Armoury wait for the third hall. The weakest of the four: block 6 x2.15, but its
+   in-effect rerun (17) x0.82 and the ablation (21) x1.4; never harm, kept.
+4. `dry` (block 18): **the biggest single find**. Traced second by second, the surviving Crowns ran out of POWDER from ~9:00
+   (their halls' saltpetre runs down) while the gold piled up to 5,000-14,700 at 16:00-18:00, the Barracks and the
+   Foundries idle: the shared production skips the Foundries when the powder is short, though a Field Cannon costs gold
+   only and fires no powder, and the Musketeers waited for a full load. Now with the powder under a Musketeer's load and
+   400+ gold banked, the Foundries cast Field Cannons and the Barracks train Musketeers with the bayonet (the owner's
+   ammunition rule: they fill up when the powder comes). Block 18: 9 survived, 4 led, x1.88 (t 1.6, 8/2); it acted in 6 of
+   10 games and 4 of those were led.
+
+**Tried and not kept** (each in the log below): a smaller army clock (`share`), the third hall at 28 labourers (`hall3`, it
+did not move the hall), no wave into a bigger army (`hold`, twice: more economy, the same end), labourers before the army
+clock (`labs`), a gun for every 3 Musketeers with the Barracks waiting (`guns`: clearly worse), the Mills' hands to the Farms
+(`powder`, a wrong premise), standing at the natural against an even force (`stand`: clearly worse, the old caution was
+right), more Barracks for a big bank (`spend`, never acted), the wave pulling back sooner (`trade`, never acted), a second
+Foundry sooner (`foundry2`), the bayonet rule from 200 gold (`drybank=200`: worse at 12:00), no labourers past 55 with a big
+bank (`richlabs`). The switches stay in the code, off.
+
+**The gate**: against the Brood (block 26) and in the mirror (block 27) no change acted in any game (the "cvc" counters in
+result.json are empty); by construction they cannot touch those matchups. The sister job crown-1000-brood's changes and
+these should merge without meeting.
+
+**What is still wrong** against the Clockwork:
+- The Crown still trails at the bell in about half the games (score x0.89): the Clockwork's income stays ahead (the Crown
+  0.74 of it at 12:00) and its army reaches 5,000-7,000 by 16:00-18:00.
+- Cinder Steps round 1 is lost in nearly every block (7 of 9 before the kept set, and in block 19): the natural falls at
+  9:00-10:30 while the army holds the main's ramp top ("goes down only at 1.3x"); going down sooner (`stand`) lost more.
+- The noise is large: one block of 10 moves x0.5-x2 on luck alone (block 6 against its rerun 17). Single-block verdicts
+  are leans; the kept set's two reruns are what to trust.
+- The powder runs out late in every long game: `dry` buys bayonets and guns with the gold, but the real fix (more powder,
+  new Mills on fresh saltpetre, or a Powder Wagon economy) is not built.
+
+**Claude's choices for the owner**:
+1. The keep rule (x1.15 with t 1.2 and no fewer survived) was applied with judgement where the 20:00 and 12:00 measures
+   disagreed: `hall2` was kept on its 12:00 gain (t 2.8 and 3.0) with survival even; `tech3` was kept on a lean.
+2. `dry` buys bayonet Musketeers, who fight with the bayonet until the powder comes: a cheap body rather than an idle bank.
+   If the owner dislikes powderless Musketeers in the computer's army, `-- cvcdry:off` turns it off (the guns half alone
+   is a possible variant, not measured).
+3. 280 games, not 500: the rest of the budget went to the checks (the reruns, the Brood and the mirror) and the tests.
+4. `drybank=800` and `timingonly` were written but not run (queued when the machine restarted).
 
 ## How it is measured
 
@@ -91,3 +141,4 @@ games; 7:34-13:35 in the rest) and the one into the Clockwork's base melts (Cind
 | 20 | with 1,000+ gold banked no labourer past 55, so the supply goes to soldiers (`richlabs`), on the kept set | 9 | 4 | 0.80 | v blocks 19+21: x0.89 (t -0.6, 4/5); at 12:00 x0.98 | not kept: within the noise (`dry` already turns the late bank into soldiers) |
 | 22 | none: the kept set again (the rerun) | 9 | 2 | 0.74 | v block 0: x3.94 (t 3.2, 10 better / 0 worse); at 12:00 x1.48 (t 3.9) | the kept set holds: blocks 19 and 22 together 18 of 20 survived, 8 won or led (block 0: 6, 0) |
 | 26 | the check against the Brood: the kept set, Crown OPTIMAL v Brood OPTIMAL, the same maps, rounds and plan-matrix seeds (`--vs brood`) | 5 | 1 | 0.26 | none of the changes acted in any game (the "cvc" counters empty: the gate holds); the plan-matrix-crown OPTIMAL row on these 10 games (0.38.59) survived 0, x0.09 | no harm: the kept changes cannot play here |
+| 27 | the check in the mirror: the kept set, Crown OPTIMAL v Crown OPTIMAL (`--vs crown`) | 6 (the queue's side) | 1 | 0.31 | none of the changes acted (both sides' counters empty); both sides play the same code, so the side's 4 defeats are the mirror's own spread (the plan-matrix row, 0.38.59 with the old mirror picks: 9 survived) | no harm: the kept changes cannot play here |
