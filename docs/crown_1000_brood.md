@@ -8,7 +8,51 @@ Clockwork half; every change here runs only against the Brood (scripts/ai_crown_
 
 ## Summary
 
-(written at the end of the job)
+**140 games against the Brood (14 blocks of 10, to 20:00) fit the run, not 500**: a game took 12-14 minutes of the
+machine's time two at a time (the Crown now lasts to 17-20 minutes), so a block of 10 took 60-75 minutes. Two more blocks
+checked the kept changes against the Clockwork and in the mirror (below). The job finished cleanly: the kept changes ON
+by default, the rest OFF behind their switches, the AI tests run.
+
+**Kept (on by default, against the Brood only)**: `lean` (OPTIMAL plays the Horseman rush's own build from 0:00 in every
+game, as the plan matrix found best) and `siege` (when the rush is over it hands over to the Siege push, not the Economy
+plan: Field Cannons and Mortars, a push on the Brood's rooted ground weighed against the Brood army it has SEEN, and no
+late re-pick back to the Economy race). Not kept: `eco`, `press`, `tech`, `halls`, `farms`, `queen`, `pester`.
+
+| Crown OPTIMAL v Brood OPTIMAL, the same 10 games | before (main 0.38.81, b01+b05, 20 games) | lean (b02+b07, 20) | **kept: lean + siege (b09+b10+b14, 30)** | plan matrix 0.38.59, the same seeds (10) |
+|---|---|---|---|---|
+| mean g (ln score ratio, beaten counted a quarter) | -1.19 | -0.98 | **-0.73** | -2.41 |
+| g14 (the ratio at 14:00) | -0.25 | -0.02 | **+0.10** | -0.78 |
+| survived to 20:00 | 9 of 20 (45%) | 8 of 20 (40%) | **20 of 30 (67%)** | 0 of 10 |
+| won or led at 20:00 | 3 of 20 (2 won) | 4 of 20 (3 won) | **10 of 30 (0 won, 10 led)** | 0 |
+| median minute of the defeats | 16:55 | 17:59 | **18:52** | 15:39 |
+| income at 8:00 / 12:00, of the Brood's | 1.18 / 0.95 | 1.35 / 1.13 | **1.47 / 1.16** | 0.85 / 0.70 |
+| army at 8:00 / 12:00, of the Brood's | 1.86 / 2.20 | 2.14 / 2.20 | **2.65 / 2.98** | 1.34 / 0.64 |
+| Crown halls at 12:00 | 3.0 | 3.0 | **3.8** | 2.3 |
+| Field Cannons at once (most) | 1-3 | 2.3 | **5.7-6.4** | |
+
+Paired game by game against the baseline pool, the kept code is better in 7 of 10 games, mean g +0.45 (t 1.7), g14 +0.35
+(t 3.7). The noise between two blocks of the same code is about 0.6 in g and 0.2 in g14 (block 5 reran block 1): the kept
+code's three blocks scored -1.18, -0.25 and -0.77.
+
+**What is still wrong**: the Crown now lasts and leads more often, but it **won no game outright** with the kept code (the
+baseline won 2 of 20, by crushing the Brood's army mid-game and pressing). The Brood still reaches 4 grounds, 60 grubs and
+its supply cap by 13:00-14:00 and keeps 6-8 Rootmaws to the end: the Siege pushes (1-2 a game, from ~9:30) break a
+Rootmaw or a few Mound Turtles each and come back when the Brood's army arrives (9 Rootmaws in 13 pushes of block 14).
+The Crown holds at home with guns now, and the games that are lost are lost late (18:00-19:40) to the Brood's capped
+waves with Battering Horns breaking an outlying hall's palisade. Every economy change tried (labourers first, halls on
+time, every hall's second Farm) cost army and did not pay; a quicker strike at the Brood Mother (`queen`) lost its army
+on the rooted ground before reaching her.
+
+**Claude's choices for the owner**:
+1. `lean` makes the Crown's opening against the Brood always the Horseman rush (no more 35/65 dice). A human facing the
+   Crown computer will see the same opening every time; the matrix and this job both say it is the best one.
+2. `siege` was kept on a pooled measure (+0.26 g at first, +0.45 with its third block), under the doc's own +0.3 bar for
+   one block, because its survival (14 of 20, then 20 of 30) and its guns, halls and later defeats were clear.
+3. `siege` also stops OPTIMAL's late re-pick to the Economy race on a GREEDY read against the Brood (it threw away the
+   push in 3 of 20 games: Ashford r0 block 10 at 11:52); a part of the same change, not measured on its own.
+4. Comparisons are against pooled blocks of the kept code (block 5 showed one block of the same code moves g by 0.6).
+5. 140 games instead of 500: the machine played 10 games an hour; the run stopped with time left for the check blocks and
+   the tests.
 
 ## How it is measured
 
@@ -50,3 +94,4 @@ Every block against the pooled blocks of the code kept at the time (base); d = t
 | b11 | **farms** (lean, siege on): every built hall on paying land gets its second Farm at once once the Farms standing are nearly manned (6 free posts at most) | -0.74 | +0.04 | 7 | 2 | 17:43 | -0.03 (-0.1) · -0.04 (-0.4) · 5/4 (v b09+b10) | no: 1-6 Farms laid a game, 5.8 Farms at 12:00 (4.9), the income at 12:00 no higher |
 | b12 | **queen** (lean, siege on): a siege push 2.5x the Brood army seen lately (from 8:00) marches on the Brood Mother herself, setting up only against what stands in its way | -0.80 | +0.07 | 6 | 3 | 17:32 | -0.08 (-0.2) · -0.01 (-0.1) · 6/4 (v b09+b10) | no: 1-2 such pushes a game, each broke 1-2 Rootmaws and 1-5 turtles but none reached her, and lost 1,300-10,300 of army doing it |
 | b13 | **pester** (lean, siege on): after the rush the riders raid the grubs again 60 s after each party comes home (a successful rush blocked the raids for 10 minutes), and the Siege push leaves the riders to it | -0.65 | +0.06 | 7 | 2 | 18:39 | +0.07 (0.2) · -0.01 (-0.1) · 7/3 (v b09+b10) | no (not clear: 0-5 parties a game) |
+| b14 | **the kept code** again (lean + siege, nothing else): the rerun of the best | -0.77 | +0.16 | 6 | 3 | 18:56 | v the baseline b01+b05: +0.42 (1.3) · +0.40 (4.7) · 7/3 | the pool b09+b10+b14 v b01+b05: +0.45 (1.7) · +0.35 (3.7) · 7/3 |
