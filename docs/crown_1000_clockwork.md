@@ -88,3 +88,4 @@ games; 7:34-13:35 in the rest) and the one into the Clockwork's base melts (Cind
 | 23 | `dry` from 200 gold banked (was 400) (`cvcdrybank=200`) | 7 | 6 | 0.68 | v blocks 19+21: x0.75 (t -0.6, 4/6); **at 12:00 x0.85 (t -3.2)** | not kept: bayonet Musketeers bought sooner cost the army at 12:00; 400 stays |
 | 16 | `hold` again, on the kept set | 8 | 5 | 0.61 | v blocks 19+21: x0.68 (t -0.7, 4/6); at 12:00 x0.97 | not kept (as in block 4: more economy, no better end) |
 | 12 | a second Foundry at 26 labourers and two halls (was 40-44 and three) (`foundry2`), on the kept set | 9 | 4 | 1.09 | v blocks 19+21: x1.21 (t 0.4, 4 better / 6 worse); at 12:00 x0.93 (t -1.0) | not kept: within the noise |
+| 20 | with 1,000+ gold banked no labourer past 55, so the supply goes to soldiers (`richlabs`), on the kept set | 9 | 4 | 0.80 | v blocks 19+21: x0.89 (t -0.6, 4/5); at 12:00 x0.98 | not kept: within the noise (`dry` already turns the late bank into soldiers) |
