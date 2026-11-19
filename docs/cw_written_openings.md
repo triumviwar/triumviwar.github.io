@@ -5,11 +5,11 @@ timing are bad in every matchup. Maybe the owl and Springer are currently bad be
 did in the past?"
 
 **Short answer: yes, mostly.** The four weak plans (Owl raids, Springer timing, Heavy Works push, Rush) all had one
-Clocktower and two Cog Presses at 5:00 where OPTIMAL and Balanced had two and four, and were 2,000-4,000 cogs behind by
+Clocktower at 3:00 and two Cog Presses at 5:00 where OPTIMAL and Balanced had two and four, and were 2,000-4,000 cogs behind by
 8:00. Started from the common opening (as OPTIMAL's own picks are), the Owls went from **2 to 11** games won or led of 24
 (better than before in 9 paired games, worse in none, p 0.004), the Springers from **5 to 12** (7 / 1, p 0.07), the Heavy
-Works push from **11 to 17** (7 / 1, p 0.07). The Rush, which is not a written opening, only moved **9 to 10**. They are
-still not OPTIMAL's equal in the mirror (0-2 of 8 each) and the Springers and the Rush are still weak against the Brood.
+Works push from **11 to 18** (8 / 1, p 0.04). The Rush, which is not a written opening, only moved **9 to 10**. They are
+still not OPTIMAL's equal in the mirror (the Owls 1 of 8, the Springers 2, the Heavy Works 3) and the Springers and the Rush are still weak against the Brood.
 
 Only the computer's play changed: no unit or building number. Data: `docs/cw_written_openings/data/` (the after games,
 result.json, story.txt and the Clockwork's match-log lines, cwlog.txt), every table in `docs/cw_written_openings/tables.md`
@@ -81,15 +81,15 @@ The plan-matrix design: 4 maps (Greenhold, Ashford Crossing, Mirewood, Cinder St
 |---|---|---|---|---|---|---|---|---|---|
 | Owl raids | 1 (0-3-5) | **6** (4-4-0) | 1 (0-1-7) | **4** (3-4-1) | 0 (0-0-8) | 1 (1-0-7) | 2 | **11** | 9 / 0 (**0.004**) |
 | Springer timing | 4 (2-3-3) | **8** (3-5-0) | 1 (1-2-5) | 2 (2-1-5) | 0 (0-0-8) | 2 (1-1-6) | 5 | **12** | 7 / 1 (0.07) |
-| Heavy Works push | 5 (3-4-1) | **8** (3-5-0) | 6 (5-1-2) | 7 (7-0-1) | 0 (0-0-8) | 2 (2-1-4) | 11 | **17** of 23 | 7 / 1 (0.07) |
+| Heavy Works push | 5 (3-4-1) | **8** (3-5-0) | 6 (5-1-2) | 7 (7-0-1) | 0 (0-0-8) | 3 (3-1-4) | 11 | **18** | 8 / 1 (**0.04**) |
 | Rush | 3 (1-6-1) | 6 (2-6-0) | 2 (1-1-6) | **0** (0-0-8) | 4 (4-1-3) | 4 (4-0-4) | 9 | 10 | 5 / 4 (1.0) |
 | OPTIMAL (the study) | 8 (6-2-0) | | 7 (6-1-1) | | 6 (6-0-2) | | 21 | | |
 
-(W-D-L in brackets. The Heavy Works push has 23 games after: one mirror game ran past the study's time limit; see the
-note at the end.)
+(W-D-L in brackets. One Heavy Works mirror game ran past the study's 50-minute limit and was played again with a longer
+one: a win.)
 
 By opponent, better / worse paired (v Crown, v Brood, mirror): the Owls 5/0, 3/0, 1/0; the Springers 4/0, 1/1, 2/0; the
-Heavy Works push 3/0, 2/1, 2/0; the Rush 4/1, **0/2**, 1/1.
+Heavy Works push 3/0, 2/1, 3/0; the Rush 4/1, **0/2**, 1/1.
 
 ### The economy after (medians of all 24 games: Winders / presses / Clocktowers / cogs earned)
 
@@ -97,7 +97,7 @@ Heavy Works push 3/0, 2/1, 2/0; the Rush 4/1, **0/2**, 1/1.
 |---|---|---|---|---|---|---|---|---|
 | Owl raids | 15 / 2 / 1 / 1,614 | 17 / 2 / 2 / 1,924 | 19 / 2 / 1 / 3,241 | 25 / 4 / 2 / 3,966 | 26 / 3 / 2 / 5,566 | **39 / 4 / 3 / 8,498** | 24,113 | 22,358 |
 | Springer timing | 14 / 2 / 1 / 1,604 | 17 / 2 / 2 / 1,920 | 20 / 2 / 1 / 3,246 | 25 / 4 / 2 / 3,946 | 29 / 3 / 2 / 5,850 | **40 / 4 / 3 / 8,585** | 31,841 | 37,168 |
-| Heavy Works push | 15 / 2 / 1 / 1,829 | 18 / 2 / 2 / 1,929 | 22 / 2 / 2 / 3,552 | 24 / 4 / 2 / 4,023 | 34 / 4 / 2 / 7,300 | **37 / 4 / 3 / 8,757** | 36,410 | 39,348 |
+| Heavy Works push | 15 / 2 / 1 / 1,829 | 18 / 2 / 2 / 1,930 | 22 / 2 / 2 / 3,552 | 24 / 4 / 2 / 4,038 | 34 / 4 / 2 / 7,300 | **37 / 4 / 3 / 8,790** | 36,410 | 39,348 |
 | Rush | 12 / 2 / 1 / 1,946 | 12 / 2 / 1 / 1,958 | 21 / 2 / 2 / 3,902 | 21 / 2 / 2 / 3,906 | 29 / 4 / 2 / 7,468 | **40 / 4 / 3 / 8,163** | 31,033 | 36,225 |
 | OPTIMAL (the study) | 17 / 2 / 2 / 1,915 | | 26 / 4 / 2 / 4,022 | | 43 / 6 / 3 / 9,650 | | 41,445 | |
 
@@ -118,7 +118,7 @@ their tech costs, not a missing Clocktower. The Rush gains less (+700 by 8:00): 
 | Springer timing | Clockwork | 2:15 | the raid out 5:24 (7), a leap in 4 of 8 | 9:20 (2) |
 | Heavy Works push | Crown | 2:15 | - | 6:41 (8), 2.4 pushes a game |
 | Heavy Works push | Brood | 2:15 | - | 8:41 (7) |
-| Heavy Works push | Clockwork | 2:15 | - | 6:24 (6) |
+| Heavy Works push | Clockwork | 2:15 | - | 6:18 (7) |
 | Rush | all | (turns to the economy at 4:00 in all 24) | - | 7:03 / 8:56 (3) / 7:34 |
 
 The Owls still raid (later: the first Owl ~6:10 where the build from 0:00 had it ~4:50-5:30), the Springers still leap on
@@ -128,7 +128,9 @@ Springers' first attack v the Brood came at a median 16:35 and the Owls' at 11:4
 ### OPTIMAL not hurt
 
 OPTIMAL runs none of the new rules (they are only for a plan forced in the lobby), so its games can only differ by the
-match's own noise. As a check its games on the first two maps were played again on this build: see "OPTIMAL check" below.
+match's own noise. As a check its 12 games on the first two maps (Greenhold, Ashford Crossing) were played again on this
+build: won or led **10 of 12 before, 10 of 12 after** (v Crown 4 -> 4, v Brood 3 -> 4, mirror 3 -> 2), better in 1, worse
+in 1 (p 1.0); cogs earned by 8:00 a median 9,838 -> 9,032, by 20:00 38,096 -> 40,138 (the same games' noise).
 
 ## Films (new games on the study's map, seed and sides; `tools/study/plan_matrix_cw_film.sh`, FILM_KEEP)
 
@@ -158,7 +160,7 @@ Clockwork's army 7,505 v 4,060, income 30,469 v 32,912 (even by the 10% rule).
 
 ## What is left (for the owner)
 
-1. **The mirror is still lost**: Owls 1 of 8, Springers 2, Heavy Works push 2. The Clockwork OPTIMAL (Balanced or
+1. **The mirror is still mostly lost**: Owls 1 of 8, Springers 2, Heavy Works push 3. The Clockwork OPTIMAL (Balanced or
    Economy) pushes at ~5:30-6:00 with Clock Soldiers; any build spending on tech then (Aviaries, research, a Heavy Works)
    meets it with half the army. The economy is no longer the reason (40 Winders at 8:00 v 48). A mirror answer would be
    OPTIMAL's: Balanced or the Clock Soldier rush.
@@ -170,8 +172,6 @@ Clockwork's army 7,505 v 4,060, income 30,469 v 32,912 (even by the 10% rule).
    name; the owner's call.
 4. **The Owls' raids are few against the Crown and the Clockwork** (2.5 and 0.6 sorties a game): anti-air guards every
    target (Musketeers, canister, Netters). Not an economy question.
-5. A Heavy Works push mirror game (Greenhold, round 2) ran 50 minutes without ending and was killed by the study's time
-   limit; it was played again with a longer limit (below).
 
 ## Claude's choices
 
@@ -196,4 +196,17 @@ Clockwork's army 7,505 v 4,060, income 30,469 v 32,912 (even by the 10% rule).
 
 - New: `tools/test_cw_written_openings.gd` (the three builds begin at 2:15-3:00 and play their plan, the second
   Clocktower by 3:00, 18+ Winders at 4:00, 3+ presses at 5:00; the Rush turns by 4:00): PASS.
-- TESTS_PLACEHOLDER
+- Run on this build (43 Clockwork AI tests: tools/test_cw_*.gd, test_clockwork_*.gd and the test_ai_*.gd that play the
+  Clockwork), bare runs:
+  - **pass**: test_cw_written_openings, test_clockwork_owls and test_clockwork_springer_timing (with the moved times),
+    test_clockwork_army, _builds_a, _eco, _home, _sounds, test_ai_cw_horse_raid, test_ai_expand, test_ai_optimal,
+    test_ai_placement, test_ai_r5_hold_spots, test_ai_round6, test_ai_round6_stall, test_ai_scout_defence,
+    test_ai_abandoned_site, test_cw_ai, _air, _air_ai, _builders_share, _carrier, _couple, _crate_build, _lab, _plate,
+    _raid_leash, _rifleman, _scout_workers, _scrapper, _siding, _storm, _tesla, _tier2, _tier3_ai, _work_car
+    (test_cw_gun_rush prints its measure, no verdict);
+  - **passed on a rerun**: test_clockwork_builds_b (the first run: the Pendulums' push not out by 9:00; the Pendulums are
+    not changed here, and it passed twice after, once with this job's switches off), test_cw_army (3 checks the first
+    run, unit mechanics; passed twice after), test_ai_scout_sentry (known flaky);
+  - **fail**: test_cw_heavy (1), test_cw_militia (1), test_cw_tier3 (3 online checks): listed in CLAUDE.md as failing
+    before; test_ai_harass's [raid] check fails in a bare run every time (2,997 -> 2,955 px) but passes with any
+    command-line argument, this job's switches on or off: a Crown v Brood case, no Clockwork in it, so not this change.

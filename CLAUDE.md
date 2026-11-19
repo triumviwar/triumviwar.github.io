@@ -25,6 +25,15 @@
 
 ## Current work
 
+- CW WRITTEN OPENINGS (owner 2026-11-19 07:26 "maybe the owl and Springer ... forget economy"; job cw-written-openings,
+  0.38.82, docs/cw_written_openings.md, data docs/cw_written_openings/, tools/study/cw_written_openings_report.py,
+  tools/test_cw_written_openings.gd): YES, mostly economy. The Owl raids, Springer timing and Heavy Works push now play
+  Balanced's written opening first and switch to their build (opt_switch) once the 2nd Clocktower is laid after 2:15
+  (v the Brood the Owls/Springers once its two new presses are, 4:30 latest); a Mainspring when they wait on Tension; the
+  bank works v every faction; the Rush turns to Balanced's economy numbers at 4:00 / its first push. Switches cwcommon:off,
+  cwbroodlate:off, cwbankall:off, cwrushturn:off. 96 games to 20:00 (plan-matrix tags): won or led Owls 2 -> 11 of 24
+  (p 0.004), Springers 5 -> 12, Heavy 11 -> 18 (p 0.04), Rush 9 -> 10; 8:00 income 5,600-7,300 -> 8,200-8,800; OPTIMAL
+  unchanged (10/12 both). Left: the mirror (1-3 of 8), Springers/Rush v the Brood, the Rush never rushes (ONE ARMY push).
 - PLAN MATRIX, THE BROOD (job plan-matrix-brood(-2), 0.38.80, docs/plan_matrix_brood.md, data docs/plan_matrix_brood/,
   tools/study/plan_matrix_brood*.py): every Brood plan forced v each side's Hard OPTIMAL, 216 games to 20:00 on 4 maps
   (0.38.59/0.38.69): v the Crown 60 of 72 won or led (any plan but the Air rush), v the Clockwork 1 of 72 (no plan works;

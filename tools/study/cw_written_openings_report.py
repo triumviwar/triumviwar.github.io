@@ -98,13 +98,16 @@ def main():
     before = args[0] if args else os.path.join(ROOT, "docs/plan_matrix_clockwork/data")
     after = args[1] if len(args) > 1 else os.path.join(ROOT, "docs/cw_written_openings/data")
     maps = pm.MAPS[:nm]
-    B = [r for r in rp.load("clockwork", before, maps) if r["plan"] in PLANS]
     A = rp.load("clockwork", after, maps)
+    # (only the before games whose tag was played after: OPTIMAL was played again on fewer maps, as a check)
+    akeys = {(r["plan"], r["key"]) for r in A}
+    B = [r for r in rp.load("clockwork", before, maps) if r["plan"] in PLANS and (r["plan"], r["key"]) in akeys]
     cell = lambda R, p, o: [r for r in R if r["plan"] == p and (o is None or r["opp"] == o)]
     out = []
     P = out.append
     P("# CW written openings: before (0.38.59, the plan matrix) and after (%d games after)\n" % len(A))
-    P("Won or led of 8 (W-D-L at 20:00); before -> after paired on the same tag (better / worse, sign test p).\n")
+    P("Won or led (W-D-L at 20:00) of the games played after (8 a cell; OPTIMAL, a check, on the first two maps: 4 a cell),")
+    P("against the before games of the same tags; before -> after paired on the same tag (better / worse, sign test p).\n")
     P("## Won or led\n")
     P("| plan | v Crown before | after | v Brood before | after | v Clockwork before | after | all before | all after | paired better / worse (p) |")
     P("|---|---|---|---|---|---|---|---|---|---|")
