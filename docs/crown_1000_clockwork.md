@@ -5,7 +5,22 @@ games changing something to see if crown gets better, currently its bad ai." Thi
 blocks of 10 games of the Crown computer (Hard OPTIMAL) against the Clockwork computer (Hard OPTIMAL), to 20:00, a change of
 the Crown computer's play between blocks. The sister job crown-1000-brood does the Brood half.
 
-(Summary at the end of the job goes here.)
+## In short (provisional, updated as the blocks come in)
+
+(Written during the run; the final numbers replace these at the end.)
+
+| | block 0 (0.38.81) | the kept set (block 19) |
+|---|---|---|
+| survived to 20:00 | 6 of 10 | 9 of 10 |
+| won or led at 20:00 | 0 | 6 (3 wins) |
+| score, Crown / Clockwork (income + 2 x army; a beaten side x0.25) | x0.19 | x1.07 |
+| paired v block 0 | | x5.74 (t 4.2, 10 better / 0 worse) |
+| income at 8:00 / 12:00 (of the Clockwork's) | 0.65 / 0.55 | 0.79 / 0.75 |
+| army at 8:00 / 12:00 | 0.56 / 0.31 | 0.80 / 0.88 |
+
+The kept changes (all against the Clockwork only, scripts/ai_crown_v_clock.gd): `pick` (OPTIMAL picks Timing or Siege),
+`hall2` (the second hall right after the pick), `tech3` (the Church and the Armoury after the third hall), `dry` (with the
+powder gone and 400+ gold banked, Field Cannons and bayonet Musketeers).
 
 ## How it is measured
 
