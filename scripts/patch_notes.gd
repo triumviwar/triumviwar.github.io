@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.60", "items": [
+		"Studies only: every Clockwork computer plan tested against every faction to 20 minutes (240 games): OPTIMAL is the best or tied for best against all three; the Owl raids, the Springer timing, the Rush and the Heavy Works push do clearly worse, mostly because their written openings fall behind in economy.",
+	]},
 	{"v": "0.38.59", "items": [
 		"Studies only: win rates in all nine matchups after two days of AI coaching (266 games): the Clockwork computer now beats the Brood computer, the Crown computer no longer collapses but still wins nothing, and the Brood mirror's start-spot edge is gone.",
 	]},

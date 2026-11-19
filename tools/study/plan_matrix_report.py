@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """PLAN MATRIX report (tools/study/plan_matrix.py; docs/plan_matrix_<faction>.md): tables from tools/qa_match.gd's
 result.json files. A measuring tool only.
-    python3 tools/study/plan_matrix_report.py FACTION DATA [--csv games.csv] > tables.md
+    python3 tools/study/plan_matrix_report.py FACTION DATA [--csv games.csv] [--maps N] > tables.md
+(--maps N: only the first N maps of plan_matrix.MAPS, so a run cut inside a map leaves every cell the same games.)
 The SUBJECT is the faction's forced plan (slot P1 in round 0, P2 in round 1; in the mirror the opponent is OPTIMAL).
 Result at the bell (20:00 or the game's end): W / L when decided, else a draw LED by the side with income earned + 2 x army
 value 10% ahead (w / l), or even (=), the win-rate studies' rule. "Won or led" = W + w.
@@ -54,7 +55,7 @@ def plan_of(s):
     return s.split("(")[0].strip()
 
 
-def load(fac, data):
+def load(fac, data, maps=None):
     rows = []
     for d in sorted(glob.glob(os.path.join(data, "pm_*"))):
         f = os.path.join(d, "result.json")
@@ -67,6 +68,8 @@ def load(fac, data):
         opp = CODE[rest[:2]]
         mp = rest[3:-3]
         rnd = int(tag[-1])
+        if maps is not None and mp not in maps:
+            continue
         si, oi = (0, 1) if rnd == 0 else (1, 0)
         at = {}
         for r in g["minutes"]:
@@ -117,7 +120,8 @@ def ratio(r, m, k):
 
 def main():
     fac, data = sys.argv[1], sys.argv[2]
-    rows = load(fac, data)
+    nm = int(sys.argv[sys.argv.index("--maps") + 1]) if "--maps" in sys.argv else len(pm.MAPS)
+    rows = load(fac, data, pm.MAPS[:nm])
     out = []
     P = out.append
     plans = [p for p in pm.PLANS[fac] if any(r["plan"] == p for r in rows)]
