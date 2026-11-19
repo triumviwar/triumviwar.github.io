@@ -17,7 +17,9 @@ class_name AIBroodVCw
 ##   bvcmix    the mix: Spitters lead once the Venom Sire stands (two for every Raptor; Raptors held at RAPTOR_CAP), Brutes
 ##             at her stage 3 (one for every 8 Spitters, up to BRUTE_MAX), Spitters matured into Venom Challengers
 ##   bvcspoils the spoils for that: Spitter eggs, maturing and Brutes (grubs harvest, spare Raptors offered up)
+##   bvcraid   the Raptors raid the Winders at a press away from the Clockwork's army (raid_tick)
 ##   bvcsire   the Venom Sire early (VENOM_AT) and its line's research soon (Long Spit out-reaches the Springer)
+##   bvcgrubs  the plan's own grubs (the 44 cap against the Clockwork was for the small early waves)
 ##   bvcwave   the waves: no small early waves; a wave goes with EDGE times the biggest Clockwork army seen lately (or at
 ##             the supply cap), Raptors stay home when Pendulums have been seen (the waves are the shooters and the tanks)
 
@@ -61,6 +63,10 @@ static func plan(ai, p: Dictionary) -> void:
 	if not off("bvcmix"):
 		p["mix"] = "venom"
 		p["mature"] = "push"
+	if not off("bvcgrubs"):
+		p["grubs"] = int(AIBroodNew.PLANS.get(ai.strategy, p)["grubs"]) - (6 if ai.difficulty == 0 else 0)
+		# (the plan's own grubs again: the cap of 44 was for the small early waves, an army it lacked; with no wave short of
+		# the reckoning the army stays home on its swamp and the Brood earns: it trailed the Clockwork 0.8 at 8:00)
 	if not off("bvcwave"):
 		p["wave"] = maxi(int(p["wave"]), 24)
 		p["wave_t"] = maxf(float(p["wave_t"]), 390.0)
@@ -121,10 +127,10 @@ static func spoils_want(ai, q: Unit) -> float:
 
 ## THE RECKONING: the Clockwork's army is at home on its gears, out of sight; what the creatures saw of it lately
 ## (seen_army) is most often a part of it. So the reckoning is the most it has seen or what a Clockwork computer has by
-## this minute (CW_TABLE: the lower quartile of the 72 plan-matrix games, docs/plan_matrix_brood), less what the Brood
+## this minute (CW_TABLE: the median of the 72 plan-matrix games, docs/plan_matrix_brood), less what the Brood
 ## killed in the last KILLS_FOR s (a beaten push is a chance: the counter goes), never under a third of it.
-const CW_TABLE := [[360.0, 650.0], [420.0, 1290.0], [480.0, 2075.0], [540.0, 2355.0], [600.0, 2800.0],
-	[660.0, 3065.0], [720.0, 3725.0], [780.0, 4000.0]]
+const CW_TABLE := [[360.0, 790.0], [420.0, 1590.0], [480.0, 2430.0], [540.0, 2990.0], [600.0, 3380.0],
+	[660.0, 3845.0], [720.0, 4750.0], [780.0, 5100.0]]
 const KILLS_FOR := 90.0
 const KILLS_BIG := 400.0
 
