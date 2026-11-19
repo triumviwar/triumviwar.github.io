@@ -3031,11 +3031,25 @@ func _after_rush_brood() -> void:
 		return
 	_after_rush_done = true
 	var was := strategy
+	if C1kB.on("siege"):
+		# (crown-1000-brood, change "siege": the rush hands over to the Siege push, not the Economy plan: its guns (the
+		# Crown had 1-3 Field Cannons in most games of blocks 1-6, its lines "0 gun(s) behind them") and its push on the
+		# rooted creatures (Rootmaws, turtles) weighed against the Brood army it has SEEN, not the clock's table)
+		opt_switch("siege")
+		opening = "breeder"
+		if opt != null:
+			opt.current = "siege"
+		c1kb_siege_at = game.clock
+		say("the rush is over (%s): %s hands it to the Siege push (guns, then a push on its rooted ground)" % [_rush_state, was])
+		return
 	opt_switch("economy")
 	opening = "breeder"          # (the riders' Breeder stands: the raids and the rider scouts keep going)
 	if opt != null:
 		opt.current = "economy"
 	say("the rush is over (%s): the economy now, %s hands it to the Economy plan (labourers to two halls, the walled natural)" % [_rush_state, was])
+
+
+var c1kb_siege_at := -1.0
 
 
 ## the raid over: the Musketeers' wave waits for a proper force again (as after a failed rush)
