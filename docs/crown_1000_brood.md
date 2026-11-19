@@ -99,6 +99,27 @@ Every block against the pooled blocks of the code kept at the time (base); d = t
 | b16 | **guns** (kept code +): the push's Field Cannons one for 3 Musketeers, up to 8 (one for 5, up to 4) | -1.00 | -0.02 | 6 | 1 | 17:52 | -0.27 (-0.6) · -0.13 (-0.9) · 4/6 (v b09+b10+b14) | no: 4-9 cannons at once (5.7-6.4), the line thinner |
 | b17 | **maws** (kept code +): the Siege push marches on the nearest Rootmaw seen rooted away from the Mother (the enemy's base, before) | -0.57 | +0.03 | 8 | 2 | 17:50 | +0.16 (0.6) · -0.07 (-0.8) · 7/3 (v b09+b10+b14) | no (not clear: 8 Rootmaws broken in 17 pushes, as many as before) |
 
+
+## What the games showed (the stories, the plan lines, the counters)
+
+1. **The clock's reckoning of the Brood holds the Crown back while it is far ahead.** AICrown.foe_estimate weighs the Brood
+   by BROOD_TABLE (3,800 at 10:00, 5,000 at 12:00) whatever was seen: "holds its wave back: the enemy army it knows is
+   bigger" with 2,210 of army against 720 there (Ashford r0, block 1, 10:00), "milestone Foundry waits: the army is far
+   behind the enemy's (2410 against the 0 it reckons)" (block 5). Loosening it for the waves (`press`) or the tech
+   (`tech`) did not help: the waves traded evenly, and the earlier buildings took the soldiers' gold.
+2. **Under the Economy handover the Crown had 1-3 Field Cannons**: its Foundries stood idle 500-980 s a game, almost all of
+   it without a gun's gold (the Barracks spend first); its musket lines fought "with 0 gun(s) behind them". The Siege push
+   handover keeps a gun's gold first (AICrownSiege.gun_due): 5-9 cannons and mortars at once.
+3. **The Crown's economy is its Farms**: ~4 Farms (32 posts, ~21 labourers on them) for 2.8 halls at 10:00, the income
+   ~1,500 a minute against the Brood's ~2,400 from 11:00. Every change that put labourers, halls or Farms before the army
+   (`eco`, `halls`, `farms`) cost army and did not pay within 20 minutes.
+4. **The Siege pushes trade about evenly** (killed 575-8,250, lost 1,620-5,290 a push in block 14; 1-2 pushes a game from
+   ~9:30), break a Rootmaw or a few Mound Turtles each, and come back when the Brood's army arrives; the Brood rebuilds
+   to its cap in two minutes. Changes to the push (`edge`, `guns`, `maws`, `queen`) did not clearly beat it.
+5. **The Brood's late waves (13:00-19:00, 100-200 supply, Battering Horns) still decide the lost games**: they break an
+   outlying hall's palisade while the army stands at another, or meet the army at home after a push; the MUSTER rule
+   gathers the army out of reach when the force at the buildings is 1.2x its own.
+
 ## The other matchups (the kept code, one block each)
 
 Every change is gated to a Crown computer facing a Brood (AICrown.vb(), AIOptimal's foe), so against the Clockwork and in
