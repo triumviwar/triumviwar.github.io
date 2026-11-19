@@ -2534,6 +2534,8 @@ const GUN_SHARE_BROOD := 4
 
 
 func _gun_share() -> int:
+	if AICrownVClock.on("guns") and AICrownVClock.vs(self) and on and difficulty >= 1:
+		return AICrownVClock.GUN_SHARE      # (crown-1000-clockwork: a Field Cannon for every few Musketeers)
 	if brood_spend_off or not on or difficulty < 1 or not _foe_is("brood"):
 		return super()
 	return GUN_SHARE_BROOD

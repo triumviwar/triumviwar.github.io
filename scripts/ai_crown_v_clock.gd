@@ -118,3 +118,12 @@ static func labs_free(ai) -> bool:
 	if not on("labs") or not vs(ai):
 		return false
 	return ai.game.clock < LABS_UNTIL or ai.game.workers(ai.team).size() < LABS_UNDER
+
+
+# ------------------------------------------------------------------ 8. guns with the line (AICrown._gun_share)
+
+## Blocks 1 and 3, the deaths before 15:00: the Crown's Field Cannons killed 606 Clockwork units for 58 lost (10 a gun), its
+## Musketeers 1,118 for 539 (2 a man). Against the Clockwork the guns came three first, then one for every four of the whole
+## army (AI._produce); against the Brood one for every GUN_SHARE_BROOD 4 Musketeers with the Barracks waiting for its gold.
+## Here against the Clockwork the same rule with GUN_SHARE Musketeers a gun.
+const GUN_SHARE := 3
