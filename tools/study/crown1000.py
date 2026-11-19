@@ -8,7 +8,7 @@ each block run with a set of study switches (the change being tried, on top of t
 Data: docs/crown_1000_clockwork/data/<BLOCK>/<tag>/ (result.json, story.txt); <BLOCK>/extra.txt holds its switches.
 The tags are plan_matrix's (pm_cr-optimal_v_cw_<map>_r<round>), so tools/study/plan_matrix_report.py reads a block too.
 The seeds and sides are plan_matrix's for the Crown's OPTIMAL row (the plan-matrix-crown study's games of these maps)."""
-import os, sys, json, math, glob, csv, statistics as st
+import os, sys, re, json, math, glob, csv, statistics as st
 from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -25,9 +25,9 @@ def games(vs="clockwork"):
     return [g for g in pm.queue("crown", MAPS, ["optimal"], [vs])]
 
 
-def rows_of(block):
+def rows_of(block, cut=1200):
     d = os.path.join(DATA, block)
-    return pr.load(d, "crown", 1200) if os.path.isdir(d) else []
+    return pr.load(d, "crown", cut) if os.path.isdir(d) else []
 
 
 def gkey(r):
@@ -80,25 +80,31 @@ def fmt(x, f="%.2f"):
 
 def report(base, blocks):
     base_rows = [rows_of(b) for b in base]
+    base12 = [rows_of(b, 720) for b in base]
     out = []
     P = out.append
-    P("| block | switches | games | survived | won or led | score x (Crown/Cw) | v base x (t, up/down) | income 8:00 | 12:00 "
+    P("| block | switches | games | survived | won or led | score x (Crown/Cw) | v base x (t, up/down) | 12:00 score x / v base | income 8:00 | 12:00 "
       "| army 8:00 | 12:00 | labourers 8:00 | halls 12:00 | median defeat |")
-    P("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+    P("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     csvrows = []
     for b in blocks:
         rows = rows_of(b)
         s = summary(rows)
         if not s:
             continue
-        ex = open(os.path.join(DATA, b, "extra.txt")).read().strip() if os.path.exists(os.path.join(DATA, b, "extra.txt")) else ""
+        ex = open(os.path.join(DATA, b, "extra.txt")).read().strip().replace("\n", " ") if os.path.exists(os.path.join(DATA, b, "extra.txt")) else ""
         p = paired(rows, base_rows) if b not in base else None
         pv = "" if not p else "x%.2f (t %s, %d/%d)" % (p["x"], fmt(p["t"], "%.1f"), p["up"], p["down"])
-        P("| %s | %s | %d | %d | %d | %.2f | %s | %s | %s | %s | %s | %s | %s | %s |" % (
-            b, ex or "-", s["n"], s["surv"], s["wol"], s["score_x"], pv, fmt(s["inc8"]), fmt(s["inc12"]), fmt(s["army8"]),
+        r12 = rows_of(b, 720)
+        s12 = summary(r12)
+        p12 = paired(r12, base12) if b not in base else None
+        pv12 = "x%.2f" % s12["score_x"] + ("" if not p12 else " / x%.2f (t %s)" % (p12["x"], fmt(p12["t"], "%.1f")))
+        P("| %s | %s | %d | %d | %d | %.2f | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
+            b, ex or "-", s["n"], s["surv"], s["wol"], s["score_x"], pv, pv12, fmt(s["inc8"]), fmt(s["inc12"]), fmt(s["army8"]),
             fmt(s["army12"]), fmt(s["labs8"], "%.1f"), fmt(s["halls12"], "%.1f"), pr.mmss(s["defeat_med"])))
         csvrows.append([b, ex, s["n"], s["surv"], s["wol"], "%.3f" % s["score_x"], "" if not p else "%.3f" % p["x"],
-                        "" if not p or p["t"] is None else "%.2f" % p["t"], fmt(s["inc8"]), fmt(s["inc12"]), fmt(s["army8"]),
+                        "" if not p or p["t"] is None else "%.2f" % p["t"], "%.3f" % s12["score_x"],
+                        "" if not p12 else "%.3f" % p12["x"], "" if not p12 or p12["t"] is None else "%.2f" % p12["t"], fmt(s["inc8"]), fmt(s["inc12"]), fmt(s["army8"]),
                         fmt(s["army12"]), fmt(s["labs8"], "%.1f"), fmt(s["halls12"], "%.1f"), pr.mmss(s["defeat_med"])])
     return out, csvrows
 
@@ -129,8 +135,11 @@ if __name__ == "__main__":
         extra = [x for x in arg("--extra", "").split(",") if x]
         dd = os.path.join(DATA, block)
         os.makedirs(dd, exist_ok=True)
+        root = os.path.abspath(arg("--root", qm.ROOT))
+        kept = re.search(r"const KEPT := (\{.*\})", open(os.path.join(root, "scripts/ai_crown_v_clock.gd")).read())
+        kept = ",".join(k for k, v in json.loads(kept.group(1)).items() if v) if kept else ""
         with open(os.path.join(dd, "extra.txt"), "w") as f:
-            f.write(",".join(extra) + ("" if vs == "clockwork" else " (v %s)" % vs) + "\n")
+            f.write(",".join(extra) + ("" if vs == "clockwork" else " (v %s)" % vs) + "\n" + "kept: " + kept + "\n")
         out = os.path.abspath(arg("--out", "/tmp/c1000_out/" + block))
         gl = games(vs)
         qm.RUN_ROOT = os.path.abspath(arg("--root", qm.ROOT))     # (a copy of the repo to run, so editing goes on meanwhile)
@@ -145,7 +154,7 @@ if __name__ == "__main__":
         if "--csv" in sys.argv:
             with open(arg("--csv", ""), "w", newline="") as f:
                 w = csv.writer(f)
-                w.writerow(["block", "switches", "games", "survived", "won_or_led", "score_x", "v_base_x", "v_base_t",
+                w.writerow(["block", "switches", "games", "survived", "won_or_led", "score_x", "v_base_x", "v_base_t", "score12_x", "v_base12_x", "v_base12_t",
                             "income8", "income12", "army8", "army12", "labourers8", "halls12", "median_defeat"])
                 w.writerows(csvrows)
     elif cmd == "games":

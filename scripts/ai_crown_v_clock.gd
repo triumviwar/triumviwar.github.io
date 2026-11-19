@@ -7,7 +7,7 @@ class_name AICrownVClock
 ## `-- cvc:<name>` turns it on (to measure it again). `-- cvc:off` turns every one off.
 
 ## The kept changes (see the doc's log for each one's block and numbers)
-const KEPT := {}
+const KEPT := {"pick": true}
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 
@@ -103,3 +103,18 @@ static func hall2_first(ai) -> void:
 ## the Church and the Armoury wait for the third hall to stand.
 static func tech_waits(ai, k: String, halls: int) -> bool:
 	return (k == "church" or k == "armoury") and halls < 3 and on("tech3") and vs(ai)
+
+
+# ------------------------------------------------------------------ 7. labourers before the army clock (AICrownCoach)
+
+## The coach's LABOURERS FIRST (a labourer for an idle hall's free Farm post before any stage spends) yields to the army
+## clock (AICrownCoach.army_short). Here, against the Clockwork, it yields only to an enemy at our buildings (the coach's own
+## checks) until LABS_UNTIL, and after it while the labourers are under LABS_UNDER.
+const LABS_UNTIL := 360.0
+const LABS_UNDER := 30
+
+
+static func labs_free(ai) -> bool:
+	if not on("labs") or not vs(ai):
+		return false
+	return ai.game.clock < LABS_UNTIL or ai.game.workers(ai.team).size() < LABS_UNDER

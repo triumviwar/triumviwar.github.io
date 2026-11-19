@@ -1,0 +1,5 @@
+4 error lines
+    1  ERROR: Resource file not found: res://assets/buildings/cuckoo_house_work_0.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Resource file not found: res://assets/buildings/cuckoo_house_work_1.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Resource file not found: res://assets/buildings/cuckoo_house_work_2.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Resource file not found: res://assets/buildings/cuckoo_house_work_3.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
