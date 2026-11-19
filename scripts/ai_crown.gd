@@ -1787,6 +1787,25 @@ const C1KB_PRESS_SHARE := 0.35
 var c1kb_presses := 0
 
 
+## (crown-1000-brood, change "tech") THE TECH IS NOT HELD BY THE CLOCK'S RECKONING: the milestones (Armoury, Church, a
+## second Foundry) and the Armoury's research waited while the army was under foe_estimate (BROOD_TABLE: 3,800 at 10:00,
+## 5,000 at 12:00): "milestone Foundry waits: the army is far behind the enemy's (2410 against the 0 it reckons)" (block 5,
+## Ashford Crossing r0), and the Crown had the Matchlock in 9 of 44 games while the Brood had Pack Hunt and Battering Horns
+## in 37 and 34. With a fresh report the Brood army it weighs here is what it saw in the last two minutes, never under
+## C1KB_TECH_SHARE of the table; with none, foe_estimate as before.
+const C1KB_TECH_SHARE := 0.4
+var c1kb_tech_eased := 0
+
+
+func _c1kb_tech_est() -> float:
+	if not C1kB.on("tech") or not scouted_fresh():
+		return foe_estimate()
+	var est := maxf(ch.foe_known(), C1KB_TECH_SHARE * _lerp_table(BROOD_TABLE, game.clock) - 0.5 * float(game.stats[team]["value_killed"]))
+	if est < foe_estimate():
+		c1kb_tech_eased += 1
+	return est
+
+
 func _c1kb_press(mine: float) -> bool:
 	if game.clock < C1KB_PRESS_FROM:
 		return false
@@ -2020,7 +2039,7 @@ func _tend_wagon() -> void:
 func _research() -> void:
 	if _research_off:
 		return
-	if brood_spend_army() and float(game.army_value(team)) < foe_estimate() * HOLD_SHARE:
+	if brood_spend_army() and float(game.army_value(team)) < _c1kb_tech_est() * HOLD_SHARE:
 		_refit_army()
 		return                  # (crown-v-brood-coach: far behind the Brood, the research's gold goes to soldiers)
 	super()
@@ -2539,7 +2558,7 @@ var brood_spend_off := OS.get_cmdline_user_args().has("broodspend:off")
 func brood_spend_army() -> bool:
 	if brood_spend_off or not on or difficulty < 1 or peaceful or not _foe_is("brood") or not bo_done:
 		return false
-	if float(game.army_value(team)) < foe_estimate():
+	if float(game.army_value(team)) < _c1kb_tech_est():
 		return true
 	if vb_line_short():
 		return true             # (crown-coach-v-brood: the home line short, not counting the riders out raiding)
