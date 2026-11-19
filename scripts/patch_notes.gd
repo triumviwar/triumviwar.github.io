@@ -4,6 +4,12 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.83", "items": [
+		"THE BROOD COMPUTER AGAINST THE CLOCKWORK (nothing the player uses changed): it was laying almost only Raptors and throwing them at the Clockwork's base in small waves, where the Pendulums swept them away. Now, against the Clockwork only, it lays Spitters (two for every Raptor once its Venom Sire stands, with the spoils kept for them), Brutes later, holds its army at home until it reckons it is clearly bigger, and sends its Raptors to raid lone Winders instead. In 16 games to 20:00 against the Clockwork computer it won or led 6, where it won or led none before.",
+	]},
+	{"v": "0.38.82", "items": [
+		"THE BROOD COMPUTER AGAINST THE CLOCKWORK (nothing the player uses changed): it was laying almost only Raptors and throwing them at the Clockwork's base in small waves, where the Pendulums swept them away. Now, against the Clockwork only, it lays Spitters (two for every Raptor once its Venom Sire stands, with the spoils kept for them), Brutes later, holds its army at home until it reckons it is clearly bigger, and sends its Raptors to raid lone Winders instead. In 16 games to 20:00 against the Clockwork computer it won or led 6, where it won or led none before.",
+	]},
 	{"v": "0.38.81", "items": [
 		"BETTER PICKS IN THE MIRRORS: the computer's OPTIMAL plan now plays Balanced or the Balloon harass against another Crown (it played the Economy race or the Timing attack, among the worst there), and Balanced against another Brood (it played the Timing attack or rushed, which won none of 8). The choice comes from the 20-minute studies of every plan.",
 	]},

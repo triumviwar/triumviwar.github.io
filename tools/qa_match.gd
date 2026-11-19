@@ -219,7 +219,18 @@ func _side(tm: int) -> Dictionary:
 		"res2": int(st.get("res2_in", 0.0)), "out": not _alive(tm), "gw_cogs": _gw_sum(tm),
 		"idle_w": g.workers(tm).filter(func(w: Unit) -> bool: return w.order == "idle").size(),
 		"idle_w_avg": snappedf(float(_idle_w[tm][0]) / maxf(1.0, float(_idle_w[tm][1])), 0.1),
-		"push": _push_phase(tm), "crown": _crown_econ(tm, a), "drink": _drinkers(tm), "home": _home_share(tm)}
+		"push": _push_phase(tm), "crown": _crown_econ(tm, a), "drink": _drinkers(tm), "home": _home_share(tm),
+		"kinds": _kinds(tm)}
+
+
+## (brood-v-clockwork-army, a measure) the side's army by kind now: kind -> count (no workers, no rooted Brood creatures)
+func _kinds(tm: int) -> Dictionary:
+	var out := {}
+	for u in g.army(tm):
+		if u.dead or u.is_worker() or (u._k_nb and (u.kind == BroodNew.QUEEN or BroodNew.rooted(u))):
+			continue
+		out[u.kind] = int(out.get(u.kind, 0)) + 1
+	return out
 
 
 ## (ground-nocap-study, kept as a measure) the side's Farms / Cog Presses: [live built, spent, going up, the most by one hall]
