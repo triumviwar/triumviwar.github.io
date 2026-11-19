@@ -216,11 +216,34 @@ const COMMON_FIRST := ["springer", "owls", "heavy"]
 const COMMON_FROM := 135.0
 const COMMON_BY := 180.0
 var common_on := not OS.get_cmdline_user_args().has("cwcommon:off")
+## AGAINST THE BROOD THE OWLS AND THE SPRINGERS WAIT FOR THE NEW PRESSES. The Brood computer reads the common opening as
+## GREEDY and sends its Raptor rush at ~2:50-3:30 (as against OPTIMAL and Balanced); begun at 2:15, the Owls' and the
+## Springers' builds met it with their Mainspring, Escapement, Aviaries and research under way and lost their Winders to it
+## (the first study games after the change: 0 of 4 each, 19-20 Winders at 8:00 where OPTIMAL had 30). Against the Brood
+## those two begin once the common opening has laid the second Clocktower's two presses (where Balanced itself hands over
+## to the shared rules against the Brood), or at BROOD_BY. The Heavy Works push (3 of 4 there) begins as elsewhere.
+## `-- cwbroodlate:off` begins them at 2:15 there too.
+const BROOD_LATE := ["owls", "springer"]
+const BROOD_BY := 270.0
+var brood_late_on := not OS.get_cmdline_user_args().has("cwbroodlate:off")
 var written := ""               # the written build waiting for the common opening ("" = none, or it has begun)
 var written_at := -1.0          # when it began (tests, the study)
 
 
 func _common_due() -> bool:
+	if brood_late_on and BROOD_LATE.has(written) and CwBrood.vs_brood(self):
+		# (against the Brood: the common opening's new presses first, as Balanced hands over to the shared rules there)
+		if game.clock >= BROOD_BY:
+			return true
+		if game.clock < COMMON_FROM:
+			return false
+		var news := 0
+		var laid := 0
+		for i in steps.size():
+			if String(steps[i]) == "press_new":
+				news += 1
+				laid += 1 if done[i] else 0
+		return news > 0 and laid >= news
 	if game.clock >= COMMON_BY:
 		return true
 	if game.clock < COMMON_FROM:
@@ -484,11 +507,13 @@ func _supply() -> void:
 
 func _build_up() -> void:
 	_air_answer()
-	if bo_on and _dry_hand_over():
+	if bo_on and written != "" and _common_due():
+		_common_over()          # (cw-written-openings: before any hand-over can end the common opening)
+	if bo_on and written == "" and _dry_hand_over():
 		return
-	if bo_on and _stuck_hand_over():
+	if bo_on and written == "" and _stuck_hand_over():
 		return
-	if bo_on and CwBrood.hand_over(self):
+	if bo_on and written == "" and CwBrood.hand_over(self):
 		return              # (clockwork-v-brood-coach-2: against the Brood the shared rules once the new presses are laid)
 	if bo_on:
 		_bo_tick()
@@ -773,8 +798,6 @@ var _opt_picks := 0
 
 
 func _bo_tick() -> void:
-	if written != "" and _common_due():
-		_common_over()
 	if _bo_cap_t > 0.0 and game.clock > _bo_cap_t:
 		_bo_cap_t = -1.0
 		_end_build("time: %d steps of %d done" % [done.count(true), steps.size()])
