@@ -197,7 +197,7 @@ func _ready() -> void:
 	# (clockwork-eco: the Economy and Balanced openings keep the scout: rush evidence is their only reason for an early army)
 	note("plays the %s: the opening build (%d steps)" % [String(STRATEGIES[strategy]["name"]), steps.size()])
 	if written != "":
-		note("the %s starts from the common opening (Winders non-stop, a fast second Clocktower); its own build from about %d:%02d" % [String(STRATEGIES[written]["name"]), int(COMMON_FROM) / 60, int(COMMON_FROM) % 60])
+		note("the %s starts from the common opening (Winders non-stop, a fast second Clocktower); its own build once the second Clocktower is laid (from %d:%02d; against the Brood the Owls and the Springers once its two presses are)" % [String(STRATEGIES[written]["name"]), int(COMMON_FROM) / 60, int(COMMON_FROM) % 60])
 	if opt != null:
 		note("OPTIMAL: the common opening (the economy opening: Winders non-stop, a fast second Clocktower), a scout, then it picks its build from what it sees")
 

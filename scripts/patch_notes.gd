@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.82", "items": [
+		"THE CLOCKWORK COMPUTER'S WRITTEN PLANS KEEP THEIR ECONOMY (nothing a player uses changed): picked in the lobby, the Owl raids, the Springer timing and the Heavy Works push now open like the Clockwork's best computer (Winders non-stop and a fast second Clocktower) and only then play their own build, so they no longer fall thousands of cogs behind; the Rush turns to a normal economy after four minutes. Measured in 96 games to 20 minutes: the Owl raids won or led 11 games of 24 (were 2), the Springer timing 12 (were 5), the Heavy Works push 17 (were 11); the Owls still raid, the Springers still leap in and the Heavy Works still push.",
+	]},
 	{"v": "0.38.81", "items": [
 		"BETTER PICKS IN THE MIRRORS: the computer's OPTIMAL plan now plays Balanced or the Balloon harass against another Crown (it played the Economy race or the Timing attack, among the worst there), and Balanced against another Brood (it played the Timing attack or rushed, which won none of 8). The choice comes from the 20-minute studies of every plan.",
 	]},
