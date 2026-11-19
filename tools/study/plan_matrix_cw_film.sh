@@ -11,7 +11,7 @@ import sys; sys.path.insert(0,'tools/study'); import plan_matrix_cw as pm
 for g in pm.queue('$fac'):
   if g[0]=='$tag': print(g[1], g[2], ','.join('%s/%s/%d'%s for s in g[3]))")
 raw=${FILM_RAW:-/tmp/claude-0/films}/$tag
-keep=docs/plan_matrix_$fac/films/$tag
+keep=${FILM_KEEP:-docs/plan_matrix_$fac/films}/$tag      # (cw-written-openings: FILM_KEEP=docs/cw_written_openings/films)
 mkdir -p "$raw" "$keep"
 date +%s > "$raw/start.txt"
 LP_NUM_THREADS=1 nice -n 5 timeout 14400 xvfb-run -a godot --rendering-driver opengl3 --resolution 1280x720 --fixed-fps 30 --path . \
