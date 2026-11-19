@@ -44,6 +44,12 @@
   OPTIMAL's GREEDY-read Rush scores like Balanced, the forced Rush/Economy worse), mirror Balanced 6 of 8 (OPTIMAL picks
   Timing). The AIR RUSH plan builds no flyers (Storm Lure never in 10 of 24, else ~8:15). Proposed pick table in the doc;
   rerun the v-Crown column on 0.38.79+. OWNER DECISIONS WAITING.
+- THE BROOD IS NOT A PERSON (owner 2026-11-19 15:06: "Brood is not rational, by naming Linnea we cant give a personality
+  like that. There are broodmothers of course and they fight among themselves, we cant personalize the brood"):
+  docs/campaign_timeline.md "The Brood is not a person". No creature has a name, will, plan or feelings; Brood Mothers
+  fight each other; the Queen is the Mother that wins. "Linnea" is only the scientists' label in b01. Act 2's d06 and
+  question 1 are marked for rework; b01/a03/a05/a07 King lines that give the creatures a mind ("She went home", "her
+  children", "She called them") are to be rewritten when the texts are.
 - WORLD LORE (owner 2026-11-18 16:18-16:24): the APOSTASY of the POST-MODERN AGE was destroyed by its thinking machines (THE
   GHOST IN THE MACHINE); since then technology for its own sake is no goal (why 2767 has muskets and clockwork), the common
   people HATE technology, and Hollweg built the Perpetual IN SECRET. c01 opens with THE QUARREL (Ferrer v Hollweg, 0.38.65);

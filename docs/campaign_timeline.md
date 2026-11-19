@@ -39,6 +39,16 @@ automata that do not think) is tolerated, grudgingly; a self-winding, self-mendi
 exactly what the world swore off. Crowds should fear or hate the guild's machines (c01's gift, a02's Fürth, a04's riot);
 the Machine's spread is the old nightmare come back.
 
+## The Brood is not a person (owner, 2026-11-19 15:06)
+
+"Brood is not rational... we can't personalize the brood." The Brood is nature, not a people: no creature has a name of
+its own, a will, a plan, a love or a grudge. Brood Mothers are many, and they FIGHT AMONG THEMSELVES. A Queen is not
+somebody: she is whichever Mother wins, roots and grows. Writers' checks: humans may name a specimen (the station called
+its caged Mother "Linnea"; that is the scientists' label and their sentiment, and the story treats it as their mistake),
+but no narrator the story trusts (the King, Valadares) speaks of a creature wanting, choosing, loving or going home. The
+Brood moves by instinct, hunger, calls, heat, smell and the strongest Mother: it is to be explained like weather or a
+flood, never like a character. No creature speaks or has a point of view, even in a Brood-played mission.
+
 ## Dates (proposed)
 
 The Prologue is 2767 (owner). The King was young and newly crowned then; the present is about 2795.

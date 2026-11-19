@@ -406,6 +406,15 @@ player sees creatures that do not stop.
 
 ### d06_queen: THE QUEEN (the fazenda, the wet season 2775; the Naturalist)
 
+> OWNER 2026-11-19 15:06: THE BROOD IS NOT RATIONAL AND IS NOT PERSONALIZED (docs/campaign_timeline.md "The Brood is not a
+> person"). The Queen is NOT Linnea and no creature "comes for her young". REWORK for the build job: the pens hold several
+> Mothers (the young ones Lindqvist bred, b01's clutch among them if `clutch` saved, and a wild one the flood drives onto
+> the island); in the wet season they FIGHT EACH OTHER in the pens; the strongest kills or drives off the rest, roots in
+> the biggest pen and GROWS into the Queen; every bred creature turns to the strongest call and the leash breaks. Part 2
+> becomes THE MOTHERS FIGHT (the player's Mother must win: kill the rival Mothers, then root); no names, no wanting, no
+> "home", no lines that give a creature a mind. "Linnea" is only the scientists' name for b01's caged specimen and is not
+> used for any creature after b01. The text below is the old version, kept until the rework.
+
 Three years after the commission left. The stock is grown (the Brood's B6: GROW to stage 3 and the BRUTE). LINNEA,
 grown on the plateau, comes down the rivers in the floods for her young (b01 `clutch` saved) or for the plateau's
 young (burned). She reaches the island; in the pens she GROWS into the thing the Brood had been waiting for, a QUEEN,
@@ -1005,7 +1014,7 @@ campaign/stills/b01_03.jpg; the Sire = campaign/stills/b01_05.jpg.
 
 Each with Claude's recommendation (the plan above is written as if it is taken) and what changes either way.
 
-1. WHO IS THE QUEEN? RECOMMENDED: LINNEA. The player met her in b01's pen (and freed her as the Sire's pack), Valadares
+1. WHO IS THE QUEEN? ANSWERED (owner 2026-11-19 15:06): NOT LINNEA, NO NAMED CREATURE: the Mothers fight and the strongest becomes the Queen (see d06). Old recommendation: LINNEA. The player met her in b01's pen (and freed her as the Sire's pack), Valadares
    saw her grown in a03, and she comes down the rivers for her young (b01's clutch) in d06: the Brood's birth is her
    story, and nature unleashed by pride (Lindqvist kept her children for her without knowing it). OTHERWISE: a young
    Mother bred in Lindqvist's pens grows into the Queen (Linnea stays on the plateau as an old Mother for Act 3):
