@@ -242,14 +242,22 @@ const TRADE_MIN := 250.0
 ## load. Here against the Clockwork, with the powder under a Musketeer's load and DRY_BANK gold banked: the Foundries cast
 ## Field Cannons, and the Barracks train Musketeers with the bayonet (they fill up when the powder comes, the owner's rule).
 const DRY_BANK := 400
+static var dry_bank: int = _num("cvcdrybank=", DRY_BANK)      # (study switch `-- cvcdrybank=200`)
+
+
+static func _num(key: String, dflt: int) -> int:
+	for a in _args:
+		if a.begins_with(key):
+			return int(a.substr(key.length()))
+	return dflt
 
 
 static func dry_guns(ai) -> bool:
-	return on("dry") and vs(ai) and ai._gold() >= DRY_BANK
+	return on("dry") and vs(ai) and ai._gold() >= dry_bank
 
 
 static func dry_musket(ai) -> bool:
-	if not on("dry") or not vs(ai) or ai._gold() < DRY_BANK:
+	if not on("dry") or not vs(ai) or ai._gold() < dry_bank:
 		return false
 	if ai._res2() >= float(Defs.ammo_load("musketeer")):
 		return false
