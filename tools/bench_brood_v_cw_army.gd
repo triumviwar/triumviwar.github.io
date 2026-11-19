@@ -21,6 +21,7 @@ var begun := false
 var started := false
 var args := {}
 var budget := 2000.0
+var bratio := 1.0                # (the Brood's budget as a share of the Clockwork's: 0.5 = a wave at 1:2)
 var n_seeds := 3
 var scene := "line"
 var cwmix := "std"
@@ -57,6 +58,11 @@ const PRICE := {"raptor": 25.0, "spitter": 47.5, "brute": 170.0, "tyrant_challen
 	"mist_toad": 125.0, "clock_soldier": 70.0, "springer": 125.0, "pendulum": 275.0, "winder": 60.0}
 
 
+class SilentSfx extends Sfx:
+	func _find(_name: String) -> Array:
+		return []
+
+
 func _initialize() -> void:
 	Settings.load_all()
 	for a in OS.get_cmdline_user_args():
@@ -65,6 +71,7 @@ func _initialize() -> void:
 			args[a.substr(0, i)] = a.substr(i + 1)
 	budget = float(args.get("budget", "2000"))
 	n_seeds = int(args.get("seeds", "3"))
+	bratio = float(args.get("bratio", "1"))
 	scene = String(args.get("scene", "line"))
 	cwmix = String(args.get("cw", "std"))
 	tech = String(args.get("tech", "early"))
@@ -82,7 +89,7 @@ func _process(delta: float) -> bool:
 		if t > 0.2:
 			begun = true
 			root.add_child(SilentSfx.new())
-			main.start({"map": "dune_sea", "seed": 4242, "slots": [
+			main.start({"map": String(args.get("map", "greenhold" if scene == "ramp" else "dune_sea")), "seed": 4242, "slots": [
 				{"who": "easy", "faction": "clockwork", "colour": 0, "side": 0},
 				{"who": "easy", "faction": "brood", "colour": 1, "side": 1}]})
 			if main.game:
@@ -110,10 +117,10 @@ func wait(sec: float) -> void:
 		await physics_frame
 
 
-func counts(mix: Dictionary) -> Dictionary:
+func counts(mix: Dictionary, k_budget := 1.0) -> Dictionary:
 	var out := {}
 	for k in mix:
-		var n := int(round(budget * float(mix[k]) / float(PRICE[k])))
+		var n := int(round(budget * k_budget * float(mix[k]) / float(PRICE[k])))
 		if k in ["raptor", "spitter"]:
 			n = int(round(n / 2.0)) * 2          # (whole eggs)
 		out[k] = maxi(1 if float(mix[k]) > 0.0 else 0, n)
@@ -161,6 +168,39 @@ func _field() -> Array:
 	return best
 
 
+## THE RAMP (scene ramp): the Clockwork's own main (team 0's start), its army on the high ground just above the ramp,
+## the Brood at the ramp's foot. [the army's spot, down the ramp, the foot]
+func _ramp_setup() -> Array:
+	var ai: AI = null
+	for a in g.ais:
+		if a.team == 0:
+			ai = a
+	var bands: Array = ai._ramp_bands()
+	var band: Array = bands[0]["band"]
+	var rampc: Array = bands[0]["ramp"]
+	var bc := Vector2.ZERO
+	for c in band:
+		bc += g.cell_center(c)
+	bc /= band.size()
+	var rc := Vector2.ZERO
+	for c in rampc:
+		rc += g.cell_center(c)
+	rc /= rampc.size()
+	var dir: Vector2 = (rc - bc).normalized()
+	var lv := int(g.height[g.idx(band[0])])
+	var line_mid := _free_near(bc - dir * 60.0, lv)
+	var foot := rc
+	for i in 40:
+		var q: Vector2 = rc + dir * (i * 16.0)
+		var c: Vector2i = g.cell_of(q)
+		if g.in_map(c) and g.ramp[g.idx(c)] == 0 and int(g.height[g.idx(c)]) < lv:
+			foot = q + dir * 260.0
+			break
+	foot = _free_near(foot, int(g.height[g.idx(g.cell_of(foot))]))
+	print("ramp: army at %s, foot %s" % [str(line_mid), str(foot)])
+	return [line_mid, dir, foot]
+
+
 func _add(k: String, team: int, p: Vector2, lv: int, list: Array) -> Unit:
 	var u: Unit = g._add_unit(k, team, _free_near(p, lv))
 	u.auto_work = false
@@ -201,22 +241,27 @@ func fight(mix_name: String, s: int) -> Dictionary:
 	for k in ["nb_pack_hunt", "nb_long_spit", "nb_slither"]:
 		g.players[1]["tech"][k] = tech == "late"
 	if _field_cache.is_empty():
-		_field_cache = _field()
+		_field_cache = _ramp_setup() if scene == "ramp" else _field()
 	var mid: Vector2 = _field_cache[0]
 	var dir: Vector2 = _field_cache[1]
 	var cw_at: Vector2 = mid - dir * 120.0
 	var br_at: Vector2 = mid + dir * 360.0
 	var lv := int(g.height[g.idx(g.cell_of(mid))])
+	var lvb := lv
+	if scene == "ramp":
+		cw_at = mid
+		br_at = _field_cache[2]
+		lvb = int(g.height[g.idx(g.cell_of(br_at))])
 	var cw: Array = []
 	var br: Array = []
 	var cn := counts(CW[cwmix])
-	var bn := counts(MIXES[mix_name])
+	var bn := counts(MIXES[mix_name], bratio)
 	# the Clockwork: soldiers in front (toward the Brood), Pendulums among them, Springers behind, Winders at the back
 	_block(["clock_soldier", "pendulum"], cn, 0, cw_at, dir, lv, cw, rng, 0.0)
 	_block(["springer", "winder"], cn, 0, cw_at, -dir, lv, cw, rng, 40.0)
 	# the Brood: melee in front, shooters behind
-	_block(["brute", "tyrant_challenger", "raptor"], bn, 1, br_at, -dir, lv, br, rng, 0.0)
-	_block(["mist_toad", "venom_challenger", "spitter"], bn, 1, br_at, dir, lv, br, rng, 50.0)
+	_block(["brute", "tyrant_challenger", "raptor"], bn, 1, br_at, -dir, lvb, br, rng, 0.0)
+	_block(["mist_toad", "venom_challenger", "spitter"], bn, 1, br_at, dir, lvb, br, rng, 50.0)
 	await wait(0.5)
 	var fighters := cw.filter(func(u) -> bool: return u.kind != "winder")
 	for u in cw:
@@ -234,6 +279,21 @@ func fight(mix_name: String, s: int) -> Dictionary:
 			ShieldWall.think(g, 0)
 		var a0 := _alive(cw).filter(func(u) -> bool: return u.kind != "winder")
 		var a1 := _alive(br)
+		if args.has("debug"):
+			var ws := 0.0
+			var tg := 0
+			var hp := 0.0
+			for u in a0:
+				ws += u.wind
+				hp += u.hp / u.max_hp
+				tg += 1 if u.target != null else 0
+			var bhp := 0.0
+			for u in a1:
+				bhp += u.hp
+			var u0: Unit = a0[0]
+			print("t %.1f cw %d (wind %.2f hp %.2f targets %d, orders %s) brood %d hp %d | u0 %s tgt %s cd %.2f state %s" % [g.clock - t0, a0.size(), ws / maxf(1, a0.size()),
+				hp / maxf(1, a0.size()), tg, str(a0.map(func(u): return u.order).slice(0, 4)), a1.size(), bhp, u0.kind,
+				str(u0.target.kind if u0.target else "-"), u0.cd if "cd" in u0 else -1.0, u0.anim if "anim" in u0 else "?"])
 		if a0.is_empty() or a1.is_empty():
 			break
 		var at := Vector2.ZERO
@@ -251,7 +311,7 @@ func fight(mix_name: String, s: int) -> Dictionary:
 			for u in a0:
 				if u.order == "idle" and u.target == null:
 					u.cmd_move(bt, true)
-	var r := {"mix": mix_name, "seed": s, "budget": budget, "scene": scene, "cw": cwmix, "tech": tech,
+	var r := {"mix": mix_name, "seed": s, "budget": budget, "bratio": bratio, "scene": scene, "cw": cwmix, "tech": tech,
 		"time": snapped(g.clock - t0, 0.5), "cw_n": cn, "br_n": bn}
 	for side in [["cw", cw], ["br", br]]:
 		var cost := 0.0
@@ -300,7 +360,7 @@ func _run() -> void:
 			if _out:
 				_out.store_line(JSON.stringify(r))
 				_out.flush()
-	print("\n| Brood mix (%s, %d, cw %s, %s) | units | won-drew-lost | Brood killed per value lost |" % [scene, budget, cwmix, tech])
+	print("\n| Brood mix (%s, %d x %.2f v %d, cw %s, %s) | units | won-drew-lost | Brood killed per value lost |" % [scene, budget, bratio, budget, cwmix, tech])
 	print("|---|---|---|---|")
 	for m in names:
 		var ww := [0, 0, 0]
