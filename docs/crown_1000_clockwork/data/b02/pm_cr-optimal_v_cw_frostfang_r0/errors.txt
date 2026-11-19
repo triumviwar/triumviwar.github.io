@@ -1,0 +1,3 @@
+128 error lines
+  102  SCRIPT ERROR: Trying to assign invalid previously freed instance.  at: reserved (res://scripts/ai_expand_wall.gd:458)
+   26  SCRIPT ERROR: Trying to assign invalid previously freed instance.  at: slot_for (res://scripts/ai_expand_wall.gd:339)

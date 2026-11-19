@@ -53,3 +53,5 @@ games; 7:34-13:35 in the rest) and the one into the Clockwork's base melts (Cind
 |---|---|---|---|---|---|---|
 | 0 | none (0.38.81) | 6 | 0 | 0.19 | - | baseline |
 | 1 | OPTIMAL's pick against the Clockwork: Timing or Siege, half and half (was Timing 3 : Economy 1 : Balloon 2) (`pick`) | 7 | 0 | 0.31 | x1.66 (t 1.1, 6 better / 3 worse); at 12:00 x1.14 (t 1.5) | **kept** (with the plan matrix behind it: Siege and Timing were the two best plans of 12 games each) |
+| 2 | the army clock's share 0.6 -> 0.4 of a Hard Clockwork's usual army (`share`), run on block 0's code (without `pick`) | 5 | 1 (a win, Cinder Steps r1) | 0.24 | v block 0: x1.27 (t 0.4, 5/4); at 12:00 x1.24 (t 2.5), labourers at 8:00 37.9 (33.5), income 12:00 0.64 (0.55) | not decided: the economy clearly up, survival one game down; run again on the kept set (block 8) |
+| 3 | the third hall at 28 labourers (not 40 and an army of 0.7 a labourer) (`hall3`) | 7 | 0 | 0.29 | v block 1: x0.92 (t -0.2, 5/4); at 12:00 x0.97 | not kept: 3.5 halls at 12:00 (3.2), no more income, less army |
