@@ -1846,6 +1846,53 @@ func _c1kb_count(dt: float) -> void:
 		c1kb_noguns_t += delta
 
 
+## (crown-1000-brood, change "farms") EVERY HALL'S TWO FARMS: a new hall got its first Farm at once (_hall_farm, the
+## owner's plans and the openings) and its second only from the shared economy think, behind the army's gold; at 10:00 the
+## Crown had 2.8 halls and 4.1 Farms (blocks 7-9), its income the Farms' (380 gold a harvest each). Against the Brood, from
+## C1KB_FARMS_FROM, a built hall on paying land with fewer than its two Farms gets the next at once when the Farms standing
+## have at most C1KB_FARMS_ROOM free posts (so the gold does not go to posts nobody works yet) and 100 gold is there.
+const C1KB_FARMS_FROM := 240.0
+const C1KB_FARMS_ROOM := 6
+var c1kb_farms_laid := 0
+var _c1kb_farms_t := 0.0
+
+
+func _c1kb_farms(dt: float) -> void:
+	_c1kb_farms_t -= dt
+	if _c1kb_farms_t > 0.0:
+		return
+	_c1kb_farms_t = 3.0
+	if game.clock < C1KB_FARMS_FROM or not on or difficulty < 1 or _defending() or _busy_building("farm"):
+		return
+	if game.econ_count(team, "farm") >= game.econ_limit(team, "farm") or _gold() < int(Defs.BUILDINGS["farm"]["cost"]):
+		return
+	var room := 0
+	for f in _mine("farm"):
+		if f.built and not f.barren():
+			room += maxi(0, f.crew_max() - f.crew.size())
+	if room > C1KB_FARMS_ROOM:
+		return
+	var per := Defs.econ_per_hall("crown", "farm")
+	for h in _halls():
+		if not h.built or _land(h) < DRY_LAND or _farms_at(h) >= per or game.econ_full_at(team, "farm", h.center()) != "":
+			continue
+		var spot := Vector2i(-1, -1)
+		if lay != null:
+			spot = lay.econ_spot("farm", h)
+		if spot.x < 0:
+			spot = game.find_spot(team, "farm", h, 4, Defs.ECON_RANGE - 2, "behind", true)
+		if spot.x < 0:
+			spot = game.find_spot(team, "farm", h, 4, Defs.ECON_RANGE - 2, "behind")
+		if spot.x < 0 or _unsafe((Vector2(spot) + Vector2(Defs.BUILDINGS["farm"]["size"]) * 0.5) * Defs.TILE):
+			continue
+		var n0 := _mine("farm").size()
+		_construct("farm", spot)
+		if _mine("farm").size() > n0:
+			c1kb_farms_laid += 1
+			say("a second Farm at its hall at once (the Farms standing are nearly manned)")
+			return
+
+
 func _c1kb_press(mine: float) -> bool:
 	if game.clock < C1KB_PRESS_FROM:
 		return false
@@ -2661,6 +2708,8 @@ func _tick_ai(delta: float) -> void:
 	super(delta)
 	if vb() != null and game != null and not game.over:
 		_c1kb_count(delta)
+		if C1kB.on("farms"):
+			_c1kb_farms(delta)
 	if dr != null and not game.over:
 		dr.micro()
 	if quiet and game != null and not game.over:
