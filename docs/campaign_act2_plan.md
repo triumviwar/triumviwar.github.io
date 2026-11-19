@@ -221,8 +221,7 @@ Hollweg tells it as a rescue; the King tells it as a desertion, gently.
   build: the works are being left (Claude's choice 3: the Winders wind from a portable spring, the K4 SHIELD WALL and a
   RATCHET TURRET set at the bridge as the rearguard's last stand: the ladder's reactive turret). THE COMMISSARY
   (Crown, PURPLE; the solo mirror or versus p2, else scripted): Colonel von Rauch's men (12 / 8 by a02 `furth`), the
-  commissary (proposed: Commissary Brandt of the Imperial Chancery), Ferrer as witness, NETTERS? no: the Crown's own:
-  Musketeers, Horsemen, two Field Cannons, dogs; their order is to TAKE, not to kill (a Crown kill of a family member
+  commissary (proposed: Commissary Brandt of the Imperial Chancery), Ferrer as witness, Musketeers, Horsemen, two Field Cannons, dogs; their order is to TAKE, not to kill (a Crown kill of a family member
   is a Crown fail in the mirror: Claude's choice 4). THE MACHINE (RED, scripted): it sees Fürth emptying and sends a
   sortie into the works in Part 2 (bigger by a04 `lost_to_machine`). JAKOB (alive) is a fourth figure: he walks to the
   Crown's lines at the gate (scene, Part 1).
@@ -285,8 +284,8 @@ Brood play: b01's player knows these creatures) and as the commission on the mir
   commission's order: the stock smaller in d06), `storm` hatched (always on a win).
 - MIRROR (THE COMMISSION, solo pick): find and destroy half the pens before dawn without losing Valadares, against
   creatures that hide and a fazenda that lies. A commission win is the canon's opposite (the stock destroyed; the King:
-  "He told me Valadares found nothing. Valadares found enough."): the flag `hidden` few, and d06 plays smaller. Is the
-  commission's win NOT the King's story? Claude's choice 5: it IS allowed as canon-compatible (Valadares found some:
+  "He told me Valadares found nothing. Valadares found enough."): the flag `hidden` few, and d06 plays smaller. Claude's choice
+  5: the commission's win IS allowed as canon-compatible (Valadares found some:
   the canon is `hidden` some), so the mirror counts like a count, not a broken seal.
 - ENGINE: THE LEASH (creatures obey within a lure's reach), HIDDEN (sleeping units seen only within n tiles), a
   "found" condition (a unit of a side SEEN by another side: a03's `seen` turned around), tracks (a fading mark).
@@ -503,3 +502,238 @@ men found Lindqvist's LURE BOOK.
   guns) before the dry season. A swarm win: the Barra lost (a broken seal: a RECLAIM PART in d10, owner question 6).
 - ENGINE: a LURE POST as a usable thing (b01's lure turned into a mission action that pulls a wave's route), the
   swamp's spread as a mission timer (the forward Mother's ground grows faster than in skirmish: a mission multiplier).
+
+### d09_crossroads: BETWEEN TWO FIRES (Bahia to the São Francisco, the dry season 2780; the second crossing)
+
+Ten years after Rome. The army of Brazil (the Crown's largest in the New World) marches from Salvador into the
+sertão to the fort at the crossroads of the São Francisco (proposed: FORT CONSTANTINE, after the King), the one place
+from which it can strike either way: up the rivers at the swarm, or south at the city of gears. On the road both
+fires find it. At the fort, in the same hour, two messengers ride in. THE CROWN CHOOSES.
+
+- NARRATOR: Tomasz (now the frontier's vicar general, proposed; he came to the army from São Rafael's fort); the King
+  frames, and at the choice the frame stops: the King asks his listener what he would have done (THE FRAME AT THE
+  CHOICE, below).
+- SIDES: THE ARMY OF BRAZIL (Crown, PURPLE, p1): GENERAL RUGGIERI (the timeline's general of artillery: a hero), Tomasz,
+  lines of Musketeers with the C5 kit, Dragoons (C6), Field Cannons and a Mortar, NEW: ARMOUR (Guardsmen, Cuirassiers)
+  and the POWDER WAGON (C7: a march without a base; the wagon refills the line), the Virginia Volunteers (p01
+  `families` save). THE FORT'S GARRISON (BLUE, co-op p2, else scripted holding). THE CREATURES (GREEN: Hatchling
+  flights and a raiding pack from the north-west) and THE AUTOMATA (RED: Swift and Ticking Owl raids, a column of
+  Clock Soldiers and Springers from the south-west): scripted, or ONE of them the versus friend's pick (a07's VERSUS
+  PICK); they fight each other where they meet (a07's three sides). THE SERTANEJOS (YELLOW): the road's villages,
+  people to bring into the fort.
+- MAP (campaign:sao_francisco, the sertão: dry scrub (caatinga), red earth, cactus, the great brown river; a new
+  BIOME, the dry backlands): the road from the east edge (Salvador's way) through two villages to the fort on the
+  river's bank (west-centre); the river ford; the north-west trail (the jungle's way) and the south-west trail (the
+  highlands' way).
+- PART 1, THE ROAD: the march (no base: the wagon); raids from the air first (both factions' flyers: the first time the
+  player sees Swifts and Hatchlings in one sky, and they fight each other); the villages' people into the column.
+- PART 2, THE FORT: the fort besieged by both raiding forces at once from two sides (they arrived the same week: the
+  crossing in one picture); relieve it; the creatures and the machines fight each other at the ford.
+- PART 3, THE COUNCIL OF WAR: in the fort, a mid-match show (solo pauses): the messenger from the frontier (the
+  swarm on the rivers: by d05 `fields`, d08 `barra`) and the envoy from Concórdia (VARENNE under a white flag with a07's
+  "a city that governs itself" demands, by a06 `varenne` spared; executed: a letter nailed to the ford's post); Tomasz's
+  counsel ("the people under the swarm cannot wait; the city can": placeholder, by the flags); the King's frame. THE
+  CHOICE. Then the night: hold the fort against the side NOT chosen, which strikes first (a survival clock to dawn).
+- CHOICE, WHICH FIRE FIRST (the crossing's): THE BROOD FIRST / THE CLOCKWORK FIRST. Ruggieri's order; the player's
+  buttons. Canon: the owner's (Claude leans THE BROOD FIRST).
+- CARRIES: `first` brood / clockwork, `fort` held (always to win), `sertao` few / some / many (people brought in).
+- MODES: SOLO as the Crown (the two others scripted). CO-OP: the second player is the fort's garrison. VERSUS: the
+  friend picks the creatures or the automata (a07's versus pick); three seats later (Act 3).
+- ENGINE: the SERTÃO biome (dry scrub, red ground, cactus props), the march without a base (built: the wagon), THE
+  CHOICE that opens two missions in either order (data: two pins `after` d09, one marked first by the flag), the
+  frame's question (THE FRAME AT THE CHOICE: below).
+
+### d10_jungle: THE JUNGLE FRONT (Óbidos and the Barra, 2780; the crossing's branch)
+
+The army's jungle column goes up the Amazon to break the swarm's forward nests before they reach the river towns.
+Valadares leads it (he knows the rivers and, by a03 `map`, the swarm's road). FRESH (the Brood first): the swarm still
+young below the Barra. GROWN (the Brood second): it has spread down the rivers while the army was in the south.
+
+- NARRATOR: Valadares; the King frames.
+- SIDES: THE JUNGLE COLUMN (Crown, PURPLE, p1): Valadares, a part of the army of Brazil (as d09 left it: the units
+  that lived carry? No: Claude's choice 8, a fixed column by the flags, not the survivors), NEW: the OBSERVATION
+  BALLOON (C8: seeing over the canopy; it spots for the guns at long range), the Barra's garrison (BLUE, co-op p2).
+  THE SWARM (Brood, GREEN; solo mirror or versus p2): forward Mothers rooted along the river (FRESH 2, GROWN 4; one
+  fewer with d05 `fields` burned, one more with left), the Queen's Challengers (GROWN), NEW on the swarm's side: the
+  MIST TOAD with FOG BANK and MIASMA (B7, bound to the swarm: the jungle's fog as a weapon; GROWN only, or FRESH too in
+  the mirror so the ladder's step is always met: Claude's choice 9).
+- MAP (campaign:obidos_front, jungle, várzea: the Amazon's main channel (south), Óbidos' fort on its narrows (east),
+  the island of d03 in the middle (the fazenda's ruins: the swarm's oldest ground), creeks north to the Barra's
+  river).
+- PART 1, THE NARROWS: hold Óbidos while the balloon goes up; find the forward Mothers under the fog.
+- PART 2, THE NESTS: break each forward Mother (the Queen is NOT here: she is upriver beyond the map: Act 3). With d08
+  `lure` used, one lure post (a wave drawn into the guns once; then a wave more at the end).
+- PART 3, THE ISLAND: burn the swarm's oldest ground on Lindqvist's island (the ruins); the Queen's answer: the last
+  wave. GROWN with d08 `barra` burned: a RECLAIM PART first (retake the Barra's bluff).
+- CHOICE: none. CARRIES: `jungle` held / thin (the nests broken in time).
+- MIRROR (THE SWARM, solo pick): hold the river: keep two forward Mothers alive till the dry season, or break Óbidos.
+- ENGINE: the balloon's spotting (built in skirmish: the computer's balloon AI; the mission only gives it), fog banks
+  (built: the Mist Toad), a two-version mission by a flag (data).
+
+### d11_siege: THE SIEGE OF CONCÓRDIA (the southern highlands, 2780; the crossing's branch)
+
+The army's southern column climbs to the highlands and lays siege to the city of gears. FATHER FERRER comes with it
+as Rome's witness (old now) and with JAKOB (alive), who can hear the city's ticking. FRESH (the Clockwork first): the
+walls not finished, the city's army in the field: a true siege. GROWN (the Clockwork second): the walls finished, the
+Spring Ballistas on them, owls over the camp: the Crown can only close the road and hold.
+
+- NARRATOR: Ferrer (in his report to Rome, 2780; or before the King in 2795: owner question 3's twin); the King frames.
+- SIDES: THE SOUTHERN COLUMN (Crown, PURPLE, p1): Ferrer (a hero who must live), Jakob (alive), Ruggieri's siege train
+  (Mortars, Field Cannons), NEW: PREPARED CHARGES and the GUNNER'S QUADRANT (C9: the guns' science against the
+  machines' plates), the valley's militia (by d04 `colonists`: fought = they march with the Crown gladly; parley = a
+  few), the honest masters (BLUE, by d07 `spring` stopped: they know the city and open a postern: a co-op p2 seat).
+  THE CITY (Clockwork, RED; solo mirror or versus p2, else the Clockwork computer held by script): its walls (GROWN:
+  finished), NEW on the city's side: the SPRING BALLISTA and LONG CHAIN (K7, bound to the city: the guild's siege
+  engines turned on the besiegers), Ticking Owls, Clock Soldiers, Pendulums; HOLLWEG on the walls (by `spring`
+  running: seen, not met; stopped: he is not there, he is with the Crown's column as a prisoner who asked to come:
+  Claude's choice 10).
+- MAP (campaign:concordia_siege, d04 / d07's city with walls; the plateau's edge where the Crown camps; the mine's
+  galleries under the walls (a sapper's way: the old mine)).
+- PART 1, THE LINES: dig the siege lines (palisades as earthworks), the batteries; Jakob marks the weak gates (a04
+  `stopworks` found: two at the start; logged: Ferrer finds one in Part 2).
+- PART 2, THE SORTIES: the city's sorties (owls by night, Clock Soldiers at dawn); prepared charges against the plates.
+- PART 3, THE MINE: FRESH: a sapper's way through the old galleries to blow the great spring's tower foundations (the
+  city crippled, not taken: `siege` close); GROWN: the galleries are the city's now: hold the road and the camp
+  against the great sortie (`siege` held off: the city stands whole).
+- CHOICE: none. CARRIES: `siege` close / held_off, `jakob` alive / lost (he can fall here: the war's cost).
+- MIRROR (THE CITY, solo pick): break the siege: burn the batteries or kill Ferrer.
+- ENGINE: SAPPING (a unit tunnelling under a wall to a point: a route under walls for a tagged unit, a mission action),
+  otherwise built (prepared charges, walls, the city's machines).
+
+## THE FRAME (the King and his listener) in Act 2
+
+The heir is OPEN (the owner is still deciding who the King talks to and whether the listener is named or kept
+mysterious). Every frame scene is written so it works BOTH WAYS: the King's lines never need the listener's name or
+face; the listener's own lines are few and can be cut without breaking the scene.
+
+| scene | when | what the King does | version A: THE NAMED HEIR (the timeline's proposed Prince Alessandro, about 20, seen) | version B: THE LISTENER UNSEEN (never named; the King speaks to "you", the player) |
+| --- | --- | --- | --- | --- |
+| THE ACT'S OPENING | before the first Act 2 mission | the King at the war map, Brazil unrolled for the first time: "I let them walk out of my city." | the prince at the desk's other side, a young face lit by the candle; he asks "Why did you let them go?" (one line) | the camera is the listener: the King looks up at us; the question is the King's own, asked aloud to himself |
+| THE THREE LINES | at each line's first mission | as Act 1: the King names the teller (Hollweg in exile, Lindqvist under guard, Tomasz) | the prince sits back to listen | unchanged |
+| THE BIRTH (after d06) | the Naturalist line's middle | the King quiet a long moment: "And that was how she became a queen." | the prince's question: "Could he have stopped it?" | the King: "You will ask if he could have stopped it. He could." |
+| THE FRAME AT THE CHOICE (d09, Part 3) | the crossing's choice | the King stops his story: "I will tell you what we chose. First tell me what you would choose." The player's buttons ARE the listener's answer; the King then says what Ruggieri chose (the canon) and whether the listener agreed (if-lines) | the prince answers (the player's button, his voice: two short lines) | the player answers (the button only); the King nods to the camera |
+| THE ACT'S CLOSE | after both fronts | the war map: red and green in Brazil; "That was the Breaking. The rest you have lived through." | the prince at the window: the present's war outside (a still) | the King alone at the window |
+| THE HEIR'S PRACTICE (owner question 13 of Act 1, still LATER) | after d09, optional | a short practice mission: hold a ford against two raids from two sides with half the force (a lesson in choosing) | the prince commands it (his own hero unit) | "you" command it (a captain's hero, unnamed) |
+
+Two still sets for the frame (A and B) are listed in the stills (the ACT 2 FRAME section); the build makes the frame
+a hub talk with if-lines by a setting `heir` named / unseen (Claude's choice 11), so the owner's decision is one value.
+
+## THE WAR MAP in Act 2
+
+Act 1's data file grows (campaign/warmap.json); Act 2 adds a view, regions, marks, pins and rules, and the act's two
+new skins.
+
+- VIEW: BRAZIL (the whole colony from the Amazon to the Rio Uruguai), and THE AMAZON kept; Europe keeps Act 1's.
+- REGIONS (new): the lower Amazon (Óbidos and the island), the Tapajós (São Rafael), the Rio Negro and the Barra
+  (Act 1's grown), Minas Gerais (Vila Rica), Bahia (Salvador), the sertão and the São Francisco (the fort), São Paulo,
+  the southern highlands (Concórdia), the valley (the colonists). Held at the act's start: all purple but the plateau
+  (Act 1's state).
+- MARKS: the fazenda (a house, then burnt), the Queen (a green crown mark, shown after d06, where nobody has been:
+  "beyond the map"), Concórdia (a gear mark from d04), the crates' mine, the ships' line of the exodus (Hamburg to
+  the south: a dashed sea line, the only sea), Varenne's ship (spared) ending at Concórdia.
+- PINS: d01-d11 with dates and lines; d10 / d11 with the "first" clock.
+- RULES (sketch): d02 `exodus` (the ledger: "N families left Fürth with the guild"); Franconia red as Act 1; d04 =
+  Concórdia BLUE (the guild's: a new holder, "the free city", blue hatched brass); d07 `spring` running = Concórdia red
+  in the ledger's words but blue on the map until d09 ("the King did not know yet": the map is the King's, it shows
+  what he knew: Claude's choice 12), stopped = red at once and the honest masters' mark at the coast; d03 `hidden` few
+  = the island marked; d06 = the island GREEN (the Brood's birth), the Queen's mark; d05 `fields` burned / left = the
+  Tapajós green (left) or contested (burned) and São Rafael's mark (a burnt church or a church); d08 `barra` held /
+  burned, `nazare`; d09 = the fort; d10 `jungle` held = the lower Amazon contested, thin = green; d11 `siege` close =
+  Concórdia besieged (red with a purple ring), held off = red, and the valley contested; d01 `minas` restless = Minas
+  uneasy, `conspirator` fled = a line from Minas to Concórdia.
+- THE SECOND SKINS (Act 1's build order step 10, DUE NOW: the Clockmaker's and the Naturalist's hubs both move in
+  Act 2):
+  - THE BRASS MAP (the Clockmaker's hub at Concórdia from d04): engraved plates on turning rings, regions as enamel,
+    pins as small gears; RED spreads as a creeping gear ground. Same data, a `brass` skin in WarMap.SKINS.
+  - THE SPECIMEN CHART (the Naturalist's hub: the fazenda's study from d03, then after d06 Valadares' quarters at the
+    Barra (proposed), the chart now his: a naturalist's river map with the swarm's spread inked in green by a careful
+    Crown hand): `chart` skin.
+  - THE NEST FLOOR (the Brood player's own map, for a player who plays the Brood side of d06 / d08 / d10): claw marks
+    on the nest's floor: Act 3 (recommended), or now with d06 (owner question 10).
+
+### The hubs in Act 2
+
+| hub | before | in Act 2 |
+| --- | --- | --- |
+| THE KING'S STUDY (the Crown) | unchanged | the war map grows; a new hotspot: Ruggieri's dispatch (after d09) |
+| THE CLOCKMAKER'S | the guild's barn at Fürth (a02) | after d02: the barge cabin (one painting, optional); after d04: CONCÓRDIA'S COUNCIL HALL (the brass map on the council table, Hollweg at its head, Varenne by the flag); after d07 `spring` stopped: a fisherman's house at the coast (Hollweg with the honest masters) |
+| THE MACHINE'S CITY (the Machine player's) | Nuremberg | after d07 (a machine win or `spring` running): Concórdia's great spring tower, empty of men |
+| THE NATURALIST'S | the warehouse at the Barra | after d03: THE FAZENDA'S STUDY (Lindqvist, the specimen chart, jars, a window on the pens); after d06: VALADARES' QUARTERS AT THE BARRA (the line's teller changes hands: the Crown's servant now holds the chart; Lindqvist's chair empty) |
+| THE NEST (the Brood player's) | none | after d06 (owner question 10): the Queen's hollow, the nest-floor map |
+
+## THE ROSTER LADDER: Act 2's rungs
+
+Act 1's ladder doc already pencils C5-C9, K4-K7, B4-B7 into "Act 2, slot n". Placed (and two small changes):
+
+| step | mission | new | bound side | where it shows off |
+| --- | --- | --- | --- | --- |
+| C5 | d01_minas | ARMOURY + MATCHLOCK + SOCKET BAYONET | the garrison | Part 2: the bayonet up the stairs on the night of the signal |
+| C6 | d05_aldeia | DRAGOON + CAVALRY CHARGE | the mission (the relief's dragoons trainable at the fort's Horse Breeder) | Part 2: the charge into the Raptors round the hamlet |
+| C7 | d09_crossroads | ARMOUR (Guardsmen, Cuirassiers) + POWDER WAGON | the army | Part 1: the march without a base |
+| C8 | d10_jungle (or d11 when fought first: below) | OBSERVATION BALLOON | the column | Part 1: spotting the forward Mothers under the fog |
+| C9 | d11_siege (or d10) | PREPARED CHARGES + GUNNER'S QUADRANT | the column | Part 2: the plates of the sorties |
+| K4 | d02_exodus | RATCHET TURRET + SHIELD WALL | the guild | Part 3: the rearguard at the bridge (the turret only as the last stand: the owner's rule, static defence is not a build) |
+| K5 | d04_concordia | CLOCK AVIARY + SWIFT | the guild | Part 1: mapping the highlands |
+| K6 | d07_spring | TICKING OWL + HIGH LEAP | the honest masters | Part 2: the owls watch the quarters turn; Part 3: the leap onto the tower |
+| K7 | d11_siege (the city: mirror and versus) | SPRING BALLISTA + LONG CHAIN | the city | its walls against the siege lines |
+| B4 | d03_fazenda | STORM SIRE + HATCHLINGS | the stock | Part 2: the Hatchlings watch the commission |
+| B5 (was B6) | d06_queen | GROW to stage 3 + BRUTE | the Brood | Part 2: the Queen; Part 3: the Brute through the palisade |
+| B6 (was B5) | d08_rivers (the swarm: mirror and versus) | BIGGER CLUTCH (Raptors), PACK HUNT, QUICK ROOTS | the swarm | the waves on the Barra |
+| B7 | d10_jungle (the swarm: mirror and versus) | MIST TOAD + FOG BANK + MIASMA | the swarm | the fog on the river |
+
+Changes from the ladder doc (Claude's choices 13 and 14): B5 and B6 SWAP (the Queen IS stage 3: d06 must give it);
+C8 and C9 follow the diamond: the front fought FIRST gives its own rung, the second gives the other's as well as its
+own? No: each front keeps ITS rung (the balloon is the jungle's, the charges the siege's), and the ladder's order
+simply differs by branch (C8 before C9 or after); tools/test_roster_ladder.gd checks both orders.
+
+As in Act 1: the ladder binds only the line's own faction on its player's side; the Naturalist's and the Clockmaker's
+mirrors (the swarm in d08 / d10, the city in d11) ARE bound (Act 1's choice 1, extended to the Clockwork's mirror in
+d11: Claude's choice 15), so a Brood or Clockwork player meets each step.
+
+## The engine work Act 2 needs (beyond Act 1)
+
+| need | missions | size |
+| --- | --- | --- |
+| CARGO CARTS for people and gold (a05's cage carts with a "cargo" kind: families, gold; an exit counting cargo) | d01, d02 | small |
+| TAKE A CART (a surround condition: enemies round a cart for n s and no friend near: it changes side) | d02 | small |
+| THE LEASH (a side's units obey only within n tiles of a tagged "lure" unit or post; out of reach they act alone: wander, hunt, root) and its BREAKING (a unit within n tiles of another tag changes team for good) | d03, d06 | medium |
+| HIDDEN units (asleep in forest: seen only within n tiles) and a FOUND condition (a unit of a tag seen by a side) | d03 | small |
+| TRACKS (a fading mark where a unit walked, shown to a side) | d03 | small |
+| BUILDINGS THAT CONVERT on a spread (from a source outward, every n s, the nearest building of a tag) | d07 (d04's plates) | small-medium |
+| a GROUND THAT SPREADS from a building (gear floor or swamp, a mission timer) | d04, d08 | small (the seeds' and the swamp's code) |
+| a BRAKE (a mission action: a faction's wind to zero on the map) | d07 | small |
+| THE FOG OF THE UNMAPPED (fog lifted only where a flyer has flown) | d04 | small |
+| VÁRZEA (flooded forest: creatures and boats' landings only, slow for men, no buildings) | d05, d06, d08, d10 | medium (a terrain kind + map work) |
+| THE SERTÃO biome (dry scrub, red earth, cactus) and the highlands (araucaria pines) | d09, d04, d07, d11 | medium (art: tiles and props) |
+| the CITY GENERATOR IN HILLS (stairs, heights) | d01 | small-medium |
+| a LURE POST as a mission action (pulls a wave's route once) | d08, d10 | small |
+| SAPPING (a tagged unit's route under a wall to a point) | d11 | small |
+| A GRANARY THAT FEEDS a side (income from a held building) | d05 | small |
+| TWO VERSIONS BY A FLAG for a whole mission (FRESH / GROWN; data only: `if` on units, buildings, waves) and the diamond's "first" clock on the war map | d10, d11 | small |
+| THE FRAME AT THE CHOICE (a hub talk whose buttons set a flag, then if-lines; the `heir` setting) | d09 | small |
+| RECLAIM PARTS (a Part 0 by a broken-seal flag: owner question 6) | d02, d10 | small |
+| THE WAR MAP: the Brazil view, Act 2's regions and rules, the BRASS and CHART skins (and the NEST floor: question 10) | the act | medium |
+| SAVING A MISSION halfway (CONTINUE: engine "Open") | all (missions grow longer) | medium |
+| THREE SEATS online | d09 (later: Act 3) | large |
+
+### Proposed BUILD ORDER
+
+Each step a job on its own branch, merged on its DONE as in Act 1; the owner's answers first.
+
+1. ENGINE STEP 0 FOR ACT 2 (one job): cargo carts and TAKE A CART, HIDDEN / FOUND / TRACKS, THE LEASH and its
+   breaking, BUILDINGS THAT CONVERT, the spreading ground, the BRAKE, the LURE POST, SAPPING, the granary, the two
+   versions and the frame's choice; each with its line in docs/campaign_engine.md ("Added by Act 2's engine step 0")
+   and a check in tools/test_campaign.gd.
+2. d02_exodus (the cheapest: Fürth's map grown again, a02 / a04 roles; proves cargo carts and three sides on the move).
+3. d03_fazenda (THE LEASH and HIDDEN; the Naturalist's Brood play; a new island map).
+4. THE WAR MAP's Act 2 (the Brazil view, regions, pins and rules) and the BRASS and CHART skins (stand-in art drawn in
+   code until the owner's paintings).
+5. VÁRZEA and the highlands / sertão art (one art job: the owner's ChatGPT tiles and props, prompts in that job's doc).
+6. d04_concordia (the highlands; the crates; the fog of the unmapped).
+7. d01_minas (the city generator in hills).
+8. d06_queen (the leash breaks; the Queen).
+9. d05_aldeia (várzea; the first swarm on the Crown).
+10. d07_spring (buildings that convert; the brake; the act's second choice).
+11. d08_rivers (the lure post; the swarm mirror bound to B6).
+12. d09_crossroads (the sertão; the crossing's choice; the frame at the choice).
+13. d10_jungle and d11_siege (two versions each; sapping), then the heir's practice (question 13, still later).
