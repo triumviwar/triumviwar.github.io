@@ -5096,8 +5096,14 @@ func _produce() -> void:
 				k = hk
 			if k != "":
 				game.train(b, k)
+	var guns_dry := short_powder and AICrownVClock.dry_guns(self)     # (crown-1000-clockwork: the guns need no powder)
 	for f in _mine("foundry"):
-		if not f.built or short_powder:
+		if not f.built or (short_powder and not guns_dry):
+			continue
+		if guns_dry:
+			if f.queue.size() < (2 if _gold() > 600 else 1) and game.can_train(f, "cannon") == "":
+				game.train(f, "cannon")
+				AICrownVClock.count(self, "dry_gun")
 			continue
 		if cannons == 0 and _gun_first():
 			# (AICrown: against the Brood the first gun is a Field Cannon, before a Mortar or a wagon: it waits for its gold)

@@ -230,3 +230,28 @@ static func spend(ai) -> void:
 ## own waves). Here the Crown's wave against the Clockwork pulls back at TRADE_RATIO.
 const TRADE_RATIO := 1.3
 const TRADE_MIN := 250.0
+
+
+# ------------------------------------------------------------------ 14. no powder, a big bank (AI._produce, AICrownAmmo)
+
+## Traced (Mirewood 9269 with `hall2`, 9:00-15:40): the powder bank was 0-22 from 9:00 while the gold grew 584 -> 9,127, the
+## Barracks and the Foundries idle (the Mills grind less as their halls' saltpetre runs down, AICrown's Mills at 15% when it
+## is spent); the supply filled with labourers to 200. In blocks 5, 14 and 15 the surviving Crowns sat on 5,000-14,700 gold
+## at 16:00-18:00 with an army of 1,100-3,300. The shared production skips the Foundries when the powder is short
+## (AI._produce: short_powder) though a Field Cannon costs gold only and fires no powder, and the Musketeers wait for a full
+## load. Here against the Clockwork, with the powder under a Musketeer's load and DRY_BANK gold banked: the Foundries cast
+## Field Cannons, and the Barracks train Musketeers with the bayonet (they fill up when the powder comes, the owner's rule).
+const DRY_BANK := 400
+
+
+static func dry_guns(ai) -> bool:
+	return on("dry") and vs(ai) and ai._gold() >= DRY_BANK
+
+
+static func dry_musket(ai) -> bool:
+	if not on("dry") or not vs(ai) or ai._gold() < DRY_BANK:
+		return false
+	if ai._res2() >= float(Defs.ammo_load("musketeer")):
+		return false
+	count(ai, "dry_musket")
+	return true
