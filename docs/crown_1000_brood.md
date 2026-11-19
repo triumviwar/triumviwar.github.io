@@ -8,15 +8,17 @@ Clockwork half; every change here runs only against the Brood (scripts/ai_crown_
 
 ## Summary
 
-**140 games against the Brood (14 blocks of 10, to 20:00) fit the run, not 500**: a game took 12-14 minutes of the
-machine's time two at a time (the Crown now lasts to 17-20 minutes), so a block of 10 took 60-75 minutes. Two more blocks
-checked the kept changes against the Clockwork and in the mirror (below). The job finished cleanly: the kept changes ON
+**210 games against the Brood (21 blocks of 10, to 20:00) fit the run, not 500**: two games at a time on the 2-core
+machine, a block of 10 took 26-35 minutes (the Crown now lasts to 17-20 minutes), about 12 hours of games with the
+reading and coding between. Two more blocks checked the kept changes against the Clockwork and in the mirror (below), 230
+games in all. The job finished cleanly: the kept changes ON
 by default, the rest OFF behind their switches, the AI tests run.
 
 **Kept (on by default, against the Brood only)**: `lean` (OPTIMAL plays the Horseman rush's own build from 0:00 in every
 game, as the plan matrix found best) and `siege` (when the rush is over it hands over to the Siege push, not the Economy
 plan: Field Cannons and Mortars, a push on the Brood's rooted ground weighed against the Brood army it has SEEN, and no
-late re-pick back to the Economy race). Not kept: `eco`, `press`, `tech`, `halls`, `farms`, `queen`, `pester`.
+late re-pick back to the Economy race). Not kept (behind their switches, off): `eco`, `press`, `tech`, `halls`, `farms`, `queen`, `pester`, `edge`, `guns`,
+`maws`, `mortars`, `guard`, `spare`.
 
 | Crown OPTIMAL v Brood OPTIMAL, the same 10 games | before (main 0.38.81, b01+b05, 20 games) | lean (b02+b07, 20) | **kept: lean + siege (b09+b10+b14, 30)** | plan matrix 0.38.59, the same seeds (10) |
 |---|---|---|---|---|
@@ -41,7 +43,9 @@ Rootmaw or a few Mound Turtles each and come back when the Brood's army arrives 
 The Crown holds at home with guns now, and the games that are lost are lost late (18:00-19:40) to the Brood's capped
 waves with Battering Horns breaking an outlying hall's palisade. Every economy change tried (labourers first, halls on
 time, every hall's second Farm) cost army and did not pay; a quicker strike at the Brood Mother (`queen`) lost its army
-on the rooted ground before reaching her.
+on the rooted ground before reaching her. Tuning the Siege push itself (a bigger edge before it goes, more cannons, more
+mortars, the far Rootmaws as its goal, a home guard left behind, coming home sooner) gave nothing clear in 8 blocks:
+`maws` (+0.16, 7/3) and `guard` (+0.21, then -0.34) were the nearest, within the noise.
 
 **Claude's choices for the owner**:
 1. `lean` makes the Crown's opening against the Brood always the Horseman rush (no more 35/65 dice). A human facing the
@@ -51,8 +55,8 @@ on the rooted ground before reaching her.
 3. `siege` also stops OPTIMAL's late re-pick to the Economy race on a GREEDY read against the Brood (it threw away the
    push in 3 of 20 games: Ashford r0 block 10 at 11:52); a part of the same change, not measured on its own.
 4. Comparisons are against pooled blocks of the kept code (block 5 showed one block of the same code moves g by 0.6).
-5. 140 games instead of 500: the machine played 10 games an hour; the run stopped with time left for the check blocks and
-   the tests.
+5. 230 games instead of 500 (210 against the Brood): the machine played ~18 games an hour two at a time, and every block
+   also needed its reading and its change written.
 
 ## How it is measured
 
@@ -118,7 +122,7 @@ Every block against the pooled blocks of the code kept at the time (base); d = t
    (`eco`, `halls`, `farms`) cost army and did not pay within 20 minutes.
 4. **The Siege pushes trade about evenly** (killed 575-8,250, lost 1,620-5,290 a push in block 14; 1-2 pushes a game from
    ~9:30), break a Rootmaw or a few Mound Turtles each, and come back when the Brood's army arrives; the Brood rebuilds
-   to its cap in two minutes. Changes to the push (`edge`, `guns`, `maws`, `queen`) did not clearly beat it.
+   to its cap in two minutes. Changes to the push (`edge`, `guns`, `mortars`, `maws`, `queen`, `guard`, `spare`) did not clearly beat it.
 5. **The Brood's late waves (13:00-19:00, 100-200 supply, Battering Horns) still decide the lost games**: they break an
    outlying hall's palisade while the army stands at another, or meet the army at home after a push; the MUSTER rule
    gathers the army out of reach when the force at the buildings is 1.2x its own.

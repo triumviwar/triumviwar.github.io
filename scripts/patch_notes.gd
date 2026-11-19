@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.82", "items": [
+		"THE CROWN COMPUTER AGAINST THE BROOD (nothing the player uses changed): it now opens with its Horseman rush in every game against the Brood, and when the rush is over it turns to its Siege push instead of the Economy race: Field Cannons and Mortars first, then pushes on the Brood's rooted ground when it is clearly bigger than the Brood army it has seen. In 30 test games to 20 minutes it lasted to the end in 20 (9 of 20 before) and was ahead at the bell in 10, with three times the cannons and nearly four halls at 12:00. It still rarely wins outright. Measured in 210 games against the Brood, 13 other changes tried and left off.",
+	]},
 	{"v": "0.38.81", "items": [
 		"BETTER PICKS IN THE MIRRORS: the computer's OPTIMAL plan now plays Balanced or the Balloon harass against another Crown (it played the Economy race or the Timing attack, among the worst there), and Balanced against another Brood (it played the Timing attack or rushed, which won none of 8). The choice comes from the 20-minute studies of every plan.",
 	]},
