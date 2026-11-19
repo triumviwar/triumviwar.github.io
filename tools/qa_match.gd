@@ -138,6 +138,8 @@ func _crown_counters() -> Dictionary:
 		if a == null or g.faction_of(tm) != "crown":
 			continue
 		var d := {}
+		if a.has_meta("cvc"):
+			d["cvc"] = a.get_meta("cvc")       # (crown-1000-clockwork: how often each AICrownVClock change acted)
 		var c = a.get("coach")
 		if c != null:
 			for k in ["labs_first_n", "labs_first_held_t", "screen_trained", "guns_early_n"]:

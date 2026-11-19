@@ -20,6 +20,13 @@ static func on(name: String) -> bool:
 	return bool(KEPT.get(name, false)) and not _args.has("cvc" + name + ":off")
 
 
+## A change acted once more (result.json "crown_ai" "cvc", tools/qa_match.gd).
+static func count(ai, name: String) -> void:
+	var d: Dictionary = ai.get_meta("cvc", {})
+	d[name] = int(d.get(name, 0)) + 1
+	ai.set_meta("cvc", d)
+
+
 ## The Crown computer `ai` (AI / AICrown) plays the Clockwork.
 static func vs(ai) -> bool:
 	if ai == null or ai.game == null:
@@ -71,7 +78,10 @@ static func hold_wave(ai, ready: Array) -> bool:
 	for u in ready:
 		if is_instance_valid(u) and not u.dead and u.has_attack():
 			mine += float(ai.game.unit_value(u))
-	return mine < HOLD_K * float(ai.foe_reckon())
+	var held: bool = mine < HOLD_K * float(ai.foe_reckon())
+	if held:
+		count(ai, "hold")
+	return held
 
 
 # ------------------------------------------------------------------ 5. the second hall next (AICrown.opt_switch)
@@ -95,6 +105,7 @@ static func hall2_first(ai) -> void:
 			break
 	st["at"] = {"labs": HALL2_LABS}
 	plan.insert(i0, st)
+	count(ai, "hall2")
 
 
 # ------------------------------------------------------------------ 6. the tech after the third hall (AICrown._mid_tick)
@@ -188,6 +199,11 @@ const SPEND_MAX := 8
 
 
 static func spend(ai) -> void:
+	if _args.has("cvc:dbg") and vs(ai) and ai.game.clock >= 540.0 and int(ai.game.clock) % 20 == 0:
+		var qs := []
+		for b in ai._mine("barracks") + ai._mine("foundry"):
+			qs.append("%s%s:%d" % [b.kind.substr(0, 1), "" if b.built else "*", (b.queue as Array).size()])
+		print("[cvc %d] gold %d res2 %d reserve %d saving %s hallres %s lags %s def %s threat %s attacking %s army %d sup %d/%d prod %s" % [int(ai.game.clock), ai._gold(), int(ai._res2()), ai._reserve, str(ai._saving), str(ai._hall_reserve), str(ai.army_lags()), str(ai._defending()), str(ai._threat() != Vector2.INF), str(ai._attacking), ai.game.army_value(ai.team), ai.game.supply_used(ai.team), int(ai.game.players[ai.team]["cap"]), " ".join(qs)])
 	if not on("spend") or not vs(ai) or ai.game.clock < SPEND_FROM or ai._gold() < SPEND_BANK:
 		return
 	var bs: Array = ai._mine("barracks")
@@ -201,4 +217,16 @@ static func spend(ai) -> void:
 	var n0: int = bs.size()
 	ai._construct("barracks")
 	if ai._mine("barracks").size() > n0:
+		count(ai, "spend")
 		ai.say("a big bank (%d): another Barracks (%d)" % [ai._gold(), n0 + 1])
+		if ai.game.mlog:
+			ai.game.mlog.add("%s has a big bank (%d gold): another Barracks (%d)" % [ai.game.mlog.who(ai.team), ai._gold(), n0 + 1])
+
+
+# ------------------------------------------------------------------ 13. the wave pulls back sooner (AI._losing_trade)
+
+## A test game (Frostfang 9236, `hall2`, 9:00-14:20): the wave was out the whole time, the army 3,020 at 11:40 and 1,175 at
+## 14:00; a wave pulls back only when it lost 2.2 times what it killed over 30 s (AI.TRADE_RATIO, made for the Clockwork's
+## own waves). Here the Crown's wave against the Clockwork pulls back at TRADE_RATIO.
+const TRADE_RATIO := 1.3
+const TRADE_MIN := 250.0

@@ -5860,8 +5860,15 @@ func _losing_trade(wave: Array) -> bool:
 		return false
 	var killed: float = float(_trade[-1][1]) - float(_trade[0][1])
 	var lost: float = float(_trade[-1][2]) - float(_trade[0][2])
-	if lost < TRADE_MIN or lost < killed * TRADE_RATIO:
+	var tr_ratio := TRADE_RATIO
+	var tr_min := TRADE_MIN
+	if AICrownVClock.on("trade") and AICrownVClock.vs(self):
+		tr_ratio = AICrownVClock.TRADE_RATIO       # (crown-1000-clockwork: the wave pulls back sooner)
+		tr_min = AICrownVClock.TRADE_MIN
+	if lost < tr_min or lost < killed * tr_ratio:
 		return false
+	if tr_ratio != TRADE_RATIO:
+		AICrownVClock.count(self, "trade")
 	var spot := _wave_target
 	_bad_spots[spot] = now + TRADE_AVOID
 	var hall := _hall_at(spot)
