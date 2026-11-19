@@ -103,10 +103,13 @@ func _run() -> void:
 	var pk: Array = ai.opt.picks[0] if not (ai.opt.picks as Array).is_empty() else [0.0, "", "", "", ""]
 	print("   Crown OPTIMAL v a greedy Clockwork: %s" % str(pk))
 	check(String(pk[2]) == "GREEDY", "the Crown reads the greedy Clockwork as GREEDY (%s)" % pk[2])
-	check(String(pk[3]) in ["rush", "timing", "economy", "balloon"] and float(pk[0]) <= 150.0, "it answers it in time (the riders, the Timing attack, the Economy race or the balloons, crown-ai-v2): %s at %d s" % [pk[3], int(pk[0])])
+	check(String(pk[3]) in ["rush", "timing", "economy", "balloon", "siege"] and float(pk[0]) <= 150.0, "it answers it in time (the riders, the Timing attack, the Economy race, the balloons or the Siege push, crown-ai-v2, crown-1000-clockwork): %s at %d s" % [pk[3], int(pk[0])])
 	check(ai.strategy == String(pk[3]), "the picked build plays (strategy %s)" % ai.strategy)
 	await _until(g.clock + 60.0)
 	var what: String = {"rush": "horse_breeder", "balloon": "foundry", "timing": "powder_mill"}.get(ai.strategy, "")
+	if AICrownVClock.on("hall2"):
+		what = ""       # (crown-1000-clockwork: against the Clockwork the second hall is the pick's first step, its 400
+		await _until(g.clock + 45.0)        # gold comes at about 3:00 in the study's games)
 	var built := ai._mine(what).size() if what != "" else g.halls_of(0, false).size() - 1
 	check(built > 0, "its build is under way a minute later (%s: %d)" % [what if what != "" else "second hall", built])
 	check(_log_has("reads GREEDY") and _log_has("picks"), "the read and the pick are in the match log")

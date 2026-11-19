@@ -72,6 +72,23 @@ these should merge without meeting.
 3. 260 games, not 500: the rest of the budget went to the checks (the reruns, the Brood and the mirror) and the tests.
 4. `drybank=800` and `timingonly` were written but not run (queued when the machine restarted).
 
+## The tests (0.38.82, `tools/study/crown1000_tests.sh`: every tools/test_ai_*.gd and tools/test_crown_*.gd)
+
+- **Pass (37)**: test_ai_abandoned_site, air_defence, army_response, brood, crown_bank, cw_horse_raid, expand, expand_wall,
+  gg_rule, harass, optimal (after its update, below), placement, r5_hold_spots, round6, round6_stall, scout,
+  scout_defence, scout_sentry, scout_threat, worker_safety; test_crown_ammo, balloon, balloon_coach, build_order,
+  build_stack, defence, farms, gate, ghosts, hold, line, lost_hall, mirror, owner_eco, rider_screen, siege, v_brood, and
+  the new **test_crown_v_clock** (the kept rules and their gate: on against the Clockwork, never against the Brood or in
+  the mirror).
+- **test_ai_optimal** failed one check with the kept set: "its build is under way a minute later (powder_mill: 0)" on
+  Greenhold against a greedy Clockwork, because with `hall2` the pick's first step is the second hall (it passes with
+  `cvc:off`). Updated: with `hall2` on, the check is the second hall, 45 s later (its 400 gold comes at about 3:00, as in
+  the study's games), and the Siege push counts as an answer in time. Passes.
+- **Fail, all in Crown v Brood games where no change of this job can act**: test_ai_rush (2: the rush killed grubs,
+  workers before the Mother) and test_ai_rush_followup (14), both listed in CLAUDE.md as failing before; test_crown_dragoon_raid
+  [plan] (listed as failing before); test_crown_stall [foundry] (a Foundry by 330 s: 350) and test_ai_wall_vs_rush (the
+  Barracks and Mill laid by 75 s: 100 s): both fail the same way with `cvc:off`, so they are not this job's.
+
 ## How it is measured
 
 - **The 10 games of a block**: five maps (Greenhold, Ashford Crossing, Mirewood, Frostfang, Cinder Steps) x two rounds with
