@@ -177,6 +177,11 @@ func _ready() -> void:
 		_attack_at = int(_s("wave"))
 		note("cwnew:off: the Springer timing plays as the old computer's Balanced")
 		return
+	if common_on and cw_on and eco_on and Defs.gear_mode and opt == null and COMMON_FIRST.has(strategy) and over.is_empty():
+		# (cw-written-openings: the written build waits for the common opening, as OPTIMAL's do)
+		written = strategy
+		strategy = "balanced"
+		_opened = "balanced"
 	if not (PLANS.has(strategy) or PLANS_B.has(strategy) or BuildsC.PLANS.has(strategy) or _eco_plan()) or not Defs.gear_mode:
 		return
 	_make_plan()
@@ -191,8 +196,136 @@ func _ready() -> void:
 		scout.passive = difficulty >= 1 and not peaceful
 	# (clockwork-eco: the Economy and Balanced openings keep the scout: rush evidence is their only reason for an early army)
 	note("plays the %s: the opening build (%d steps)" % [String(STRATEGIES[strategy]["name"]), steps.size()])
+	if written != "":
+		note("the %s starts from the common opening (Winders non-stop, a fast second Clocktower); its own build once the second Clocktower is laid (from %d:%02d; against the Brood the Owls and the Springers once its two presses are)" % [String(STRATEGIES[written]["name"]), int(COMMON_FROM) / 60, int(COMMON_FROM) % 60])
 	if opt != null:
 		note("OPTIMAL: the common opening (the economy opening: Winders non-stop, a fast second Clocktower), a scout, then it picks its build from what it sees")
+
+
+## THE WRITTEN BUILDS START FROM THE COMMON OPENING (cw-written-openings, 2026-11-19; docs/cw_written_openings.md). The owner,
+## 07:26: "Owl raids and the Springer timing are bad in every matchup. Maybe ... they forget economy like horseman rush did
+## in the past?" They did: the plan matrix (docs/plan_matrix_clockwork.md) found the forced Owl raids, Springer timing and
+## Heavy Works push with ONE Clocktower and 2 Cog Presses at 5:00 (OPTIMAL and Balanced: two and four), 13-15 Winders at
+## 3:00 (17), and 2,500-4,400 cogs behind by 8:00; OPTIMAL's Springer timing, picked at 2:15-3:00 after the common opening,
+## won 5 of 5 where the forced one won or led 4 of 8. Now these three play Balanced's written opening first (Winders
+## non-stop, the second Clocktower at ~2:10-2:30, the scout's rush reaction) and switch to their own build (opt_switch:
+## the steps already done passed by, their raids and push made new) once the second Clocktower is laid and COMMON_FROM
+## has passed, or at COMMON_BY at the latest. Their identity is the build after it: the Owls still raid, the Springers
+## still leap on a timing, the Heavy Works still push. `-- cwcommon:off` plays them from 0:00 as before.
+const COMMON_FIRST := ["springer", "owls", "heavy"]
+const COMMON_FROM := 135.0
+const COMMON_BY := 180.0
+var common_on := not OS.get_cmdline_user_args().has("cwcommon:off")
+## AGAINST THE BROOD THE OWLS AND THE SPRINGERS WAIT FOR THE NEW PRESSES. The Brood computer reads the common opening as
+## GREEDY and sends its Raptor rush at ~2:50-3:30 (as against OPTIMAL and Balanced); begun at 2:15, the Owls' and the
+## Springers' builds met it with their Mainspring, Escapement, Aviaries and research under way and lost their Winders to it
+## (the first study games after the change: 0 of 4 each, 19-20 Winders at 8:00 where OPTIMAL had 30). Against the Brood
+## those two begin once the common opening has laid the second Clocktower's two presses (where Balanced itself hands over
+## to the shared rules against the Brood), or at BROOD_BY. The Heavy Works push (3 of 4 there) begins as elsewhere.
+## `-- cwbroodlate:off` begins them at 2:15 there too.
+const BROOD_LATE := ["owls", "springer"]
+const BROOD_BY := 270.0
+var brood_late_on := not OS.get_cmdline_user_args().has("cwbroodlate:off")
+var written := ""               # the written build waiting for the common opening ("" = none, or it has begun)
+var written_at := -1.0          # when it began (tests, the study)
+
+
+func _common_due() -> bool:
+	if brood_late_on and BROOD_LATE.has(written) and CwBrood.vs_brood(self):
+		# (against the Brood: the common opening's new presses first, as Balanced hands over to the shared rules there)
+		if game.clock >= BROOD_BY:
+			return true
+		if game.clock < COMMON_FROM:
+			return false
+		var news := 0
+		var laid := 0
+		for i in steps.size():
+			if String(steps[i]) == "press_new":
+				news += 1
+				laid += 1 if done[i] else 0
+		return news > 0 and laid >= news
+	if game.clock >= COMMON_BY:
+		return true
+	if game.clock < COMMON_FROM:
+		return false
+	for i in steps.size():
+		if String(steps[i]) == "clocktower":
+			return done[i]
+	return true
+
+
+func _common_over() -> void:
+	var k := written
+	written = ""
+	written_at = game.clock
+	var picks := _opt_picks
+	opt_switch(k)
+	_opt_picks = picks
+	if scout != null:
+		# (as the build from 0:00: its own units scout, the scout only reads what they see; a rush read still gets the reaction)
+		scout.enabled = false
+		scout.passive = difficulty >= 1 and not peaceful
+
+
+## TENSION, NOT COGS (cw-written-openings). A written build begun from the common opening has more cogs and its Mainspring
+## later than the build from 0:00: the Owl raids on Greenhold waited on Tension for their Swifts from 3:30 with 1,000 cogs
+## in the bank, and the stuck rule ended the build at 5:55 with one Owl. While the first step held up waits only for
+## Tension for SPRING_WAIT s, with the cogs for it free, a Clocktower that has no Mainspring gets one (the econ limit, one
+## a Clocktower), its crew as the build's.
+const SPRING_WAIT := 20.0
+var _t_wait := -1.0
+var springs_laid := 0           # (tests, the study)
+
+
+func _tension_spring(r: Dictionary) -> void:
+	if written_at < 0.0 or r.is_empty() or String(r.get("st", "")) != "wait" or float(r.get("t", 0.0)) <= _free_t():
+		_t_wait = -1.0
+		return
+	if _t_wait < 0.0:
+		_t_wait = game.clock
+		return
+	if game.clock - _t_wait < SPRING_WAIT:
+		return
+	if game.econ_count(team, "mainspring") >= game.econ_limit(team, "mainspring"):
+		return
+	for sp in _mine("mainspring"):
+		if not sp.built:
+			return              # (one going up already)
+	var cost := game.build_price(team, "mainspring")
+	if _free() < cost:
+		return
+	var c := _spot("mainspring")
+	if c.x < 0 or _lay("mainspring", c, false) == null:
+		return
+	_t_wait = game.clock
+	springs_laid += 1
+	note("waits on Tension with %d cogs free: a Mainspring by the second Clocktower" % _free())
+
+
+## THE CLOCKWORK'S RUSH TURNS TO THE ECONOMY (cw-written-openings). The Rush is the shared computer on the Rush numbers (a
+## quarter fewer Winders, the second Clocktower 2.5 times later, two halls, tech late); its waves are the ONE ARMY push's,
+## which goes only stronger than the enemy it reckons, so its first attack came at a median 5:40-7:15 (OPTIMAL's 5:20-
+## 5:55) and the starved economy was all the plan was: 31 Winders and 7,572 cogs by 8:00 v the Crown (OPTIMAL 44, 9,764).
+## Now it opens on the Rush numbers (an army first) and turns to Balanced's economy numbers (Winders, expansions, halls,
+## tech; its waves stay the Rush's) once its first push has gone out, or at RUSH_TURN at the latest. `-- cwrushturn:off`
+## as before.
+const RUSH_TURN := 240.0
+const RUSH_ECON := ["workers", "expand", "halls", "tech"]
+var rush_turn_on := not OS.get_cmdline_user_args().has("cwrushturn:off")
+var rush_turned_at := -1.0
+
+
+func _rush_turned() -> bool:
+	if not rush_turn_on or strategy != "rush" or game == null or game.faction_of(team) != "clockwork":
+		return false
+	if rush_turned_at >= 0.0:
+		return true
+	var out: bool = push != null and (push.phase == "march" or push.phase == "fight" or push.phase == "siege")
+	if out or game.clock >= RUSH_TURN:
+		rush_turned_at = game.clock
+		note("the Rush turns to the economy (%s): Winders, a second Clocktower and tech on Balanced's schedule; its waves stay the Rush's" % ["its first push is out" if out else "time"])
+		return true
+	return false
 
 
 ## clockwork-eco: Economy and Balanced play a written opening (ai_cw_eco.gd) unless `-- cweco:off`.
@@ -322,6 +455,8 @@ func _held_worker(u: Unit) -> bool:
 # ------------------------------------------------------------------ the shared computer's parts, off while the build runs
 
 func _s(key: String) -> Variant:
+	if not bo_on and key in RUSH_ECON and not (scout != null and scout.mod.has(key)) and _rush_turned():
+		return STRATEGIES["balanced"][key]
 	if bo_on:
 		match key:
 			"workers":
@@ -372,11 +507,13 @@ func _supply() -> void:
 
 func _build_up() -> void:
 	_air_answer()
-	if bo_on and _dry_hand_over():
+	if bo_on and written != "" and _common_due():
+		_common_over()          # (cw-written-openings: before any hand-over can end the common opening)
+	if bo_on and written == "" and _dry_hand_over():
 		return
-	if bo_on and _stuck_hand_over():
+	if bo_on and written == "" and _stuck_hand_over():
 		return
-	if bo_on and CwBrood.hand_over(self):
+	if bo_on and written == "" and CwBrood.hand_over(self):
 		return              # (clockwork-v-brood-coach-2: against the Brood the shared rules once the new presses are laid)
 	if bo_on:
 		_bo_tick()
@@ -680,6 +817,7 @@ func _bo_tick() -> void:
 		_bo_mass()              # (clockwork-army: the army grows from the new presses on, ahead of the later steps)
 	var ahead := 0
 	var i := 0
+	var first_r := {}
 	while i < steps.size() and ahead < 3:
 		if done[i]:
 			i += 1
@@ -697,6 +835,7 @@ func _bo_tick() -> void:
 		if st == "supply":
 			break
 		if ahead == 0:
+			first_r = r
 			# (the first step held up puts its price by; the ones read past it only go with what is left, they put
 			# nothing by: a far step waiting for a building that is not even laid must not starve the Winders)
 			_hold += int(r.get("cost", 0))
@@ -708,6 +847,7 @@ func _bo_tick() -> void:
 	if not done.has(false):
 		_end_build("the last step")
 		return
+	_tension_spring(first_r)
 	_train_workers()
 	if macro != null:
 		macro.bo_tick()         # (econ-coach-clockwork: empty posts filled, a standing Clocktower's presses, under any build)
@@ -1377,13 +1517,17 @@ func cc_vs_crown() -> bool:
 ## army of one Springer (Dune Sea, seed 1107), the Heavy Works push 450-550. Against the Crown, once the cogs free of every
 ## waiting step's price stay over CC_BANK for CC_BANK_T s, every idle Light Works trains a Clock Soldier (the soldiers the
 ## plan's own "clock_soldier N" step will want anyway; the Winders come first: _train_workers ran before).
+## (cw-written-openings) A build begun from the common opening has the cogs of its economy: against every faction, not only
+## the Crown (the Owl raids v the Clockwork OPTIMAL, Greenhold: 1,467 cogs in the bank at 6:00 waiting on Tension, one Clock
+## Soldier to meet a push worth 867 at 6:53). `-- cwbankall:off` keeps it to the Crown.
+var bank_all_on := not OS.get_cmdline_user_args().has("cwbankall:off")
 const CC_BANK := 350
 const CC_BANK_T := 15.0
 var _cc_bank_t := -1.0
 
 
 func _cc_bank() -> void:
-	if not cc_on or difficulty < 1 or _eco_plan() or not cc_vs_crown():
+	if not cc_on or difficulty < 1 or _eco_plan() or not (cc_vs_crown() or (written_at >= 0.0 and bank_all_on)):
 		return
 	var free := _free() - maxi(0, _reserve)       # (a heavy machine's cogs kept by _b_keep stay kept)
 	if free < CC_BANK:

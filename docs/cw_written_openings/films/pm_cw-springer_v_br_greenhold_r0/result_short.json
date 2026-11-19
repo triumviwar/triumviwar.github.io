@@ -1,0 +1,100 @@
+{
+ "map": "greenhold",
+ "seed": 2100,
+ "slots": [
+  [
+   "clockwork",
+   "springer",
+   0
+  ],
+  [
+   "brood",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 1200,
+ "winner": -1,
+ "version": "0.38.81",
+ "tech_at": {
+  "0:high_leap": 310,
+  "0:long_chain": 515,
+  "0:shield_wall": 645,
+  "1:nb_battering_horns": 950,
+  "1:nb_clutch_raptor": 555,
+  "1:nb_pack_hunt": 670
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "AGGRESSIVE",
+   "t": 203,
+   "why": "fast rush units early"
+  },
+  {
+   "p": 1,
+   "read": "GREEDY",
+   "t": 100,
+   "why": "no army and no production at its base"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 263,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "read": "GREEDY",
+   "t": 339,
+   "why": "a second base and little army"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 415,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "read": "DEFENSIVE",
+   "t": 869,
+   "why": "turrets or rooted defenders"
+  },
+  {
+   "p": 1,
+   "pick": "opening GREEDY -> rush (punish the greed before its army is up)",
+   "t": 100
+  },
+  {
+   "p": 1,
+   "pick": "middle GREEDY -> economy (too late to punish: out-expand it)",
+   "t": 339
+  },
+  {
+   "p": 1,
+   "pick": "late DEFENSIVE -> brute (a siege to break its defences)",
+   "t": 869
+  }
+ ],
+ "final": [
+  {
+   "income": 30469,
+   "army": 7505,
+   "halls": 5,
+   "workers": 47,
+   "plan": "springer",
+   "supply": 179,
+   "lost": 145
+  },
+  {
+   "income": 32912,
+   "army": 4060,
+   "halls": 4,
+   "workers": 60,
+   "plan": "brute",
+   "supply": 200,
+   "lost": 255
+  }
+ ]
+}

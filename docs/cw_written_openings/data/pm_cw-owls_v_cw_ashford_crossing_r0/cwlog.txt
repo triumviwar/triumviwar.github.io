@@ -1,0 +1,604 @@
+[00:00] P1 Clockwork's Clockwork: plays the Balanced: the opening build (19 steps)
+[00:00] P1 Clockwork's Clockwork: the Owl raids starts from the common opening (Winders non-stop, a fast second Clocktower); its own build from about 2:15
+[00:00] P2 Clockwork's Clockwork: plays the Balanced: the opening build (19 steps)
+[00:00] P2 Clockwork's Clockwork: OPTIMAL: the common opening (the economy opening: Winders non-stop, a fast second Clocktower), a scout, then it picks its build from what it sees
+  P1 Clockwork  side 1  colour Blue  AI: HARD, BALANCED
+  P2 Clockwork  side 2  colour Red  AI: HARD, OPTIMAL
+[00:00] P1 Clockwork's Clockwork: army: the army rests on its gears at (12, 15), where the enemy's way in reaches the base
+[00:00] P2 Clockwork's Clockwork: army: the army rests on its gears at (100, 101), where the enemy's way in reaches the base
+[00:12] P1 Clockwork got its first Winder
+[00:12] P2 Clockwork got its first Winder
+[00:18] P1 Clockwork sends a Winder to scout
+[00:18] P2 Clockwork sends a Winder to scout
+[00:25] P1 Clockwork's Clockwork: lays a Regulator at 7 supply (step 1: 7 regulator)
+[00:25] P2 Clockwork's Clockwork: lays a Regulator at 7 supply (step 1: 7 regulator)
+[00:37] P1 Clockwork's Clockwork: lays a Cog Press at 8 supply (step 2: 8 cog_press)
+[00:37] P2 Clockwork's Clockwork: lays a Cog Press at 8 supply (step 2: 8 cog_press)
+[00:50] P2 Clockwork finished a Regulator
+[00:50] P1 Clockwork finished a Regulator
+  P1 Clockwork: earned 373 cogs total, has 133 + 0 tension | supply 9/20 | workers 8 | halls 1 | army (0 value): none | kills +0 (0) losses +0 (0) | brass 96% | efficiency 100%
+  P2 Clockwork: earned 373 cogs total, has 133 + 0 tension | supply 9/20 | workers 8 | halls 1 | army (0 value): none | kills +0 (0) losses +0 (0) | brass 96% | efficiency 100%
+[01:14] P1 Clockwork finished a Cog Press
+[01:14] P2 Clockwork finished a Cog Press
+[01:26] P1 Clockwork sends 2 Winders after the Clockwork's scouting Winder
+[01:26] P1 Clockwork scout under guard (Winder), backing out of range
+[01:27] P2 Clockwork scout under guard (Winder), backing out of range
+[01:30] P2 Clockwork's Clockwork: army: the army rests on its gears at (98, 97), where the enemy's way in reaches the base
+[01:30] P1 Clockwork lets the Clockwork's scouting Winder go (away past the leash)
+[01:45] P1 Clockwork's Clockwork: its next Clocktower's spot: (14, 33), room for 8 of its ring's buildings (93% open ground beyond), 24 steps from its halls
+[01:45] P1 Clockwork's Clockwork: lays a Clocktower at 13 supply (step 4: clocktower)
+[01:47] P2 Clockwork's Clockwork: its next Clocktower's spot: (97, 79), room for 8 of its ring's buildings (93% open ground beyond), 24 steps from its halls
+[01:47] P2 Clockwork's Clockwork: lays a Clocktower at 13 supply (step 4: clocktower)
+[01:56] P1 Clockwork sends 1 Winder after the Clockwork's scouting Winder
+[01:58] P2 Clockwork scout under guard (Winder), backing out of range
+  P1 Clockwork: earned 1090 cogs total, has 150 + 0 tension | supply 14/20 | workers 13 | halls 1 | army (0 value): none | kills +0 (0) losses +0 (0) | brass 88% | efficiency 100%
+  P2 Clockwork: earned 1072 cogs total, has 132 + 0 tension | supply 14/20 | workers 13 | halls 1 | army (0 value): none | kills +0 (0) losses +0 (0) | brass 88% | efficiency 100%
+[02:00] P1 Clockwork's Clockwork: lays a Light Works at 14 supply (step 5: movement_works)
+[02:01] P2 Clockwork sends 1 Winder after the Clockwork's scouting Winder
+[02:01] P2 Clockwork's Clockwork: lays a Light Works at 14 supply (step 5: movement_works)
+[02:01] P1 Clockwork lets the Clockwork's scouting Winder go (away past the leash)
+[02:04] P1 Clockwork scout under guard (Winder), backing out of range
+[02:06] P2 Clockwork lets the Clockwork's scouting Winder go (away past the leash)
+[02:14] P1 Clockwork's Clockwork: lays a Mainspring at 15 supply (step 6: mainspring)
+[02:15] P1 Clockwork's Clockwork: plays the Owl raids from here: the opening build (18 steps, 5 done already)
+[02:15] P2 Clockwork's Clockwork: lays a Mainspring at 15 supply (step 6: mainspring)
+[02:22] P2 Clockwork's Clockwork: lays a Regulator at 15 supply (step 8: 15 regulator)
+[02:44] P1 Clockwork's Clockwork: supply blocked at 18/20: a Regulator first
+[02:46] P1 Clockwork finished a Light Works
+[02:46] P1 Clockwork's Clockwork: lays a Escapement at 18 supply (step 6: escapement)
+[02:47] P2 Clockwork finished a Light Works
+[02:49] P2 Clockwork finished a Regulator
+[02:51] P1 Clockwork finished a Mainspring
+[02:54] P2 Clockwork finished a Mainspring
+[02:55] P1 Clockwork finished a Clocktower (expansion)
+[02:56] P1 Clockwork's Clockwork: army: the army rests on its gears at (20, 38), where the enemy's way in reaches the base
+[02:56] P2 Clockwork scouted: GREEDY [a second base and little army] (2 halls, 1 economy, 0 military buildings, 0 supply of army): OPTIMAL picks its build from this
+[02:56] P2 Clockwork's Clockwork: optimal: reads GREEDY [a second base and little army]: keeps Balanced (steady waves punish the greed)
+[02:58] P2 Clockwork finished a Clocktower (expansion)
+[02:58] P2 Clockwork's Clockwork: army: gathers in front of its Clocktower at (99, 81)
+[02:59] P1 Clockwork's Clockwork: macro: lays a Cog Press by a Clocktower with 0 of its 2 (100% brass left) while the opening build runs
+[02:59] P2 Clockwork's Clockwork: lays a Cog Press by its new Clocktower at 20 supply (step 11: press_new)
+  P1 Clockwork: earned 1954 cogs total, has 24 + 8 tension | supply 19/30 | workers 18 | halls 2 | army (0 value): none | kills +0 (0) losses +0 (0) | brass 78% 100% | efficiency 89%
+  P2 Clockwork: earned 1935 cogs total, has 70 + 1 tension | supply 20/40 | workers 17 | halls 2 | army (0 value): none | kills +0 (0) losses +0 (0) | brass 78% 100% | efficiency 71%
+[03:01] P2 Clockwork got its first Clock Soldier
+[03:01] P2 Clockwork's Clockwork: 2 Clock Soldier queued (step 10)
+[03:02] P1 Clockwork got its first Clock Soldier
+[03:03] P1 Clockwork's Clockwork: 2 Clock Soldier queued (step 9)
+[03:11] P1 Clockwork finished a Regulator
+[03:22] P2 Clockwork's Clockwork: lays a Cog Press by its new Clocktower at 24 supply (step 12: press_new)
+[03:27] P2 Clockwork's Clockwork: the second Clocktower's presses are laid: the army grows from now on (a Clock Soldier from every idle Light Works)
+[03:28] P2 Clockwork's Clockwork: army: the army rests on its gears at (95, 77), where the enemy's way in reaches the base
+[03:29] P2 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[03:30] P1 Clockwork finished a Escapement
+[03:30] P1 Clockwork's Clockwork: lays a Clock Aviary at 20 supply (step 8: cuckoo_house)
+[03:30] P1 Clockwork's Clockwork: lays a Regulator at 20 supply (step 12: 18 regulator)
+[03:32] P1 Clockwork's Clockwork: macro: Winders for the empty posts while the opening build runs (1 posts empty)
+[03:37] P2 Clockwork's Clockwork: lays a Light Works at 25 supply (step 13: movement_works)
+[03:43] P1 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[03:46] P1 Clockwork finished a Cog Press
+[03:47] P1 Clockwork's Clockwork: macro: lays a Cog Press by a Clocktower with 1 of its 2 (99% brass left) while the opening build runs
+[03:49] P2 Clockwork finished a Cog Press
+[03:49] P2 Clockwork's Clockwork: lays a Regulator at 26 supply (step 14: 21 regulator)
+[03:55] P1 Clockwork's Clockwork: lays a Clock Aviary at 23 supply (step 11: cuckoo_house)
+[03:55] P1 Clockwork finished a Regulator
+[03:56] P1 Clockwork's Clockwork: army: the army rests on its gears at (16, 22), where the enemy's way in reaches the base
+[03:59] P2 Clockwork finished a Cog Press
+  P1 Clockwork: earned 2823 cogs total, has 18 + 22 tension | supply 24/50 | workers 21 | halls 2 | army (140 value): 2 Clock Soldier | kills +0 (0) losses +0 (0) | brass 69% 100% | efficiency 78%
+  P2 Clockwork: earned 2826 cogs total, has 111 + 105 tension | supply 27/40 | workers 22 | halls 2 | army (280 value): 4 Clock Soldier | kills +0 (0) losses +0 (0) | brass 69% 100% | efficiency 63%
+[04:02] P2 Clockwork's Clockwork: lays a Escapement at 27 supply (step 15: escapement)
+[04:14] P2 Clockwork finished a Regulator
+[04:16] P2 Clockwork's Clockwork: lays a Regulator at 30 supply (step 18: 27 regulator)
+[04:20] P1 Clockwork finished a Clock Aviary
+[04:22] P2 Clockwork finished a Light Works
+[04:28] P2 Clockwork's Clockwork: the opening build is over (its end step) at 34 supply: the computer plays on (Balanced numbers)
+[04:29] P2 Clockwork keeps room for a Heavy Works' big ring on its gear field (a Mainspring anywhere in the network feeds it)
+[04:35] P1 Clockwork's Clockwork: the bank works: 683 cogs no step was waiting for: 1 Clock Soldiers from the idle Light Works
+[04:35] P2 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[04:38] P1 Clockwork finished a Cog Press
+[04:41] P2 Clockwork finished a Regulator
+[04:41] P1 Clockwork's Clockwork: waits on Tension with 499 cogs free: a Mainspring by the second Clocktower
+[04:42] P2 Clockwork's Clockwork: army: waits for a fresh scout report before it goes (worth 560, the enemy army it reckons 303)
+[04:43] P2 Clockwork sends a Winder to scout again (trip 2)
+[04:43] P2 Clockwork's Clockwork: its next Clocktower's spot: (100, 61), room for 9 of its ring's buildings (93% open ground beyond), 43 steps from its halls
+[04:45] P1 Clockwork finished a Clock Aviary
+[04:48] P2 Clockwork finished a Escapement
+[04:50] P1 Clockwork's Clockwork: the bank works: 689 cogs no step was waiting for: 1 Clock Soldiers from the idle Light Works
+[04:51] P1 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[04:57] P2 Clockwork is expanding to fresh ore (left at its best hall: 93%), 42 tiles from its main
+  P1 Clockwork: earned 4126 cogs total, has 741 + 127 tension | supply 31/50 | workers 25 | halls 2 | army (210 value): 3 Clock Soldier | kills +0 (0) losses +0 (0) | brass 59% 95% | efficiency 84%
+  P2 Clockwork: earned 4266 cogs total, has 11 + 200 tension | supply 41/60 | workers 30 | halls 2 | army (630 value): 9 Clock Soldier | kills +0 (0) losses +0 (0) | brass 59% 93% | efficiency 88%
+[05:05] P1 Clockwork's Clockwork: the bank works: 619 cogs no step was waiting for: 1 Clock Soldiers from the idle Light Works
+[05:13] P1 Clockwork queued research: Ticking Owl
+[05:13] P1 Clockwork's Clockwork: researches TICKING OWL
+[05:20] P2 Clockwork lays a Heavy Works on the spot it kept by a Mainspring
+[05:21] P1 Clockwork's Clockwork: the bank works: 790 cogs no step was waiting for: 1 Clock Soldiers from the idle Light Works
+[05:22] P1 Clockwork finished a Mainspring
+[05:23] P1 Clockwork's Clockwork: army: the whole army defends the base (5 units, 350, with its Winders) against a raid worth 300 at (26, 32)
+[05:24] P2 Clockwork's Clockwork: army: holds at its gathering point: worth 700, the enemy army it reckons 562 (it goes at 702)
+[05:24] P1 Clockwork sends 2 Clock Soldiers after the Clockwork's scouting Winder
+[05:26] P2 Clockwork scout under guard (Clock Soldier), backing out of range
+[05:30] P1 Clockwork's Clockwork: army: the base is calm again: the army walks back to rest on its gears
+[05:31] P1 Clockwork killed the Clockwork's scouting Winder at 5:31
+[05:31] P2 Clockwork scout killed: it saw nothing to go on, will look again soon
+[05:31] P2 Clockwork could not see the enemy [the scout was killed] (the scout was killed before it saw the base): that proves nothing; no army for it, keeps to Balanced and looks again soon
+[05:35] P2 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[05:36] P1 Clockwork's Clockwork: the bank works: 1022 cogs no step was waiting for: 1 Clock Soldiers from the idle Light Works
+[05:41] P1 Clockwork got its first Swift
+[05:44] P2 Clockwork finished a Ratchet Turret
+[05:50] P2 Clockwork got its first Netter
+[05:52] P1 Clockwork's Clockwork: the bank works: 1205 cogs no step was waiting for: 1 Clock Soldiers from the idle Light Works
+[05:56] P2 Clockwork finished a Regulator
+[05:58] P1 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+  P1 Clockwork: earned 5832 cogs total, has 1312 + 97 tension | supply 49/50 | workers 35 | halls 2 | army (640 value): 7 Clock Soldier, 2 Swift | kills +1 (1) losses +0 (0) | brass 50% 85% | efficiency 95%
+  P2 Clockwork: earned 6121 cogs total, has 301 + 106 tension | supply 59/70 | workers 38 | halls 2 | army (825 value): 10 Clock Soldier, 1 Netter | kills +0 (0) losses +1 (1) | brass 50% 82% | efficiency 96%
+[06:00] P1 Clockwork's Clockwork: supply blocked at 49/50: a Regulator first
+[06:01] P2 Clockwork got its first Springer
+[06:04] P2 Clockwork finished a Clocktower (expansion)
+[06:05] P2 Clockwork's Clockwork: army: the army rests on its gears at (93, 81), where the enemy's way in reaches the base
+[06:06] P2 Clockwork's Clockwork: macro: a second Cog Press at once for the idle Winders (9 idle)
+[06:06] P1 Clockwork's Clockwork: army: holds at its gathering point: worth 560, the enemy army it reckons 805 (it goes at 1006)
+[06:06] P2 Clockwork sends a Winder to scout again (trip 3)
+[06:08] P1 Clockwork researched Ticking Owl
+[06:08] P2 Clockwork's Clockwork: air: enemy flyers seen (1): a Clock Aviary at once, for Swifts
+[06:09] P2 Clockwork saw an enemy Swift (fast): raiders to watch for
+[06:09] P2 Clockwork's Clockwork: army: holds at its gathering point: worth 1000, the enemy army it reckons 856 (it goes at 1071)
+[06:10] P2 Clockwork's Clockwork: army: a small raid worth 75 at (88, 88), far from the army: sends 2 units (225) at it, the rest stays on its gears
+[06:10] P2 Clockwork sends 2 Springer and Netter after the Clockwork's scouting Swift
+[06:11] P2 Clockwork finished a Regulator
+[06:12] P2 Clockwork finished a Heavy Works
+[06:14] P1 Clockwork's Clockwork: the opening build is over (stuck: no step done for 60 s with 1600 cogs in the bank) at 50 supply: the computer plays on (Owl raids numbers)
+[06:14] P1 Clockwork's Clockwork: its next Clocktower's spot: (11, 51), room for 9 of its ring's buildings (93% open ground beyond), 43 steps from its halls
+[06:14] P1 Clockwork is expanding to fresh ore (left at its best hall: 83%), 42 tiles from its main
+[06:14] P1 Clockwork scout lost on the way: it saw nothing to go on, will look again soon
+[06:14] P1 Clockwork could not see the enemy [the scout was turned back] (the scout was lost on the way before it saw the base): that proves nothing; no army for it, keeps to its Owl raids plan and looks again soon
+[06:15] P1 Clockwork keeps room for a Heavy Works' big ring on its gear field (a Mainspring anywhere in the network feeds it)
+[06:15] P1 Clockwork lays a Heavy Works on the spot it kept by a Mainspring
+[06:22] P1 Clockwork queued research: Shield Wall
+[06:22] P1 Clockwork researches SHIELD WALL (it met 3 shooters)
+[06:23] P2 Clockwork's Clockwork: army: a small raid worth 48 at (105, 100), far from the army: sends 2 units (200) at it, the rest stays on its gears
+[06:24] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[06:24] P2 Clockwork groups its Winders up to fight the riders together (the soldiers are coming)
+[06:24] P1 Clockwork finished a Regulator
+[06:25] P2 Clockwork killed the Clockwork's scouting Swift at 6:25
+[06:31] P2 Clockwork's Clockwork: army: the raid is over: 3 defenders walk back to the army
+[06:32] P2 Clockwork's Clockwork: army: goes out: worth 1250 against the 952 it reckons (a report 7 s old)
+[06:32] P2 Clockwork's Clockwork: push: push 1 goes out: 14 units, 18 supply, 1250 value { "clock_soldier": 10, "netter": 1, "springer": 3 }
+[06:33] P2 Clockwork's Clockwork: push: heads for the enemy's base at (13, 53)
+[06:43] P1 Clockwork finished a Regulator
+[06:45] P2 Clockwork's Clockwork: push: 1 fast rider (90 value) round it: it does not chase them, the march goes on
+[06:48] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[06:49] P1 Clockwork got its first Netter
+[06:50] P1 Clockwork sends a Winder to scout again (trip 2)
+[06:51] P1 Clockwork sends 2 Clock Soldiers after the Clockwork's scouting Winder
+[06:51] P1 Clockwork's Clockwork: army: holds at its gathering point: worth 595, the enemy army it reckons 1125 (it goes at 1406)
+[06:52] P1 Clockwork finished a Ratchet Turret
+[06:52] P2 Clockwork finished a Cog Press
+[06:53] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[06:53] P2 Clockwork finished a Cog Press
+[06:55] P1 Clockwork finished a Regulator
+[06:55] P2 Clockwork scout under guard (Clock Soldier), backing out of range
+[07:00] P1 Clockwork finished a Light Works
+  P1 Clockwork: earned 7637 cogs total, has 621 + 59 tension | supply 68/80 | workers 40 | halls 2 | army (910 value): 8 Clock Soldier, 3 Swift, 1 Netter | kills +0 (1) losses +2 (2) | brass 40% 75% | efficiency 93%
+  P2 Clockwork: earned 7825 cogs total, has 260 + 45 tension | supply 78/90 | workers 47 | halls 3 | army (1420 value): 11 Clock Soldier, 2 Netter, 4 Springer | kills +2 (2) losses +0 (1) | brass 43% 71% 100% | efficiency 73%
+[07:00] P1 Clockwork killed the Clockwork's scouting Winder at 7:00
+[07:01] P2 Clockwork scout killed: it saw nothing to go on, will look again soon
+[07:01] P2 Clockwork finished a Clock Aviary
+[07:01] P2 Clockwork's Clockwork: push: 4 fresh units walk out to join it (6 supply)
+[07:03] P1 Clockwork researched Shield Wall
+[07:04] P1 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[07:06] P2 Clockwork queued research: Long Chain
+[07:06] P2 Clockwork researches LONG CHAIN (2 Netters)
+[07:09] P1 Clockwork finished a Heavy Works
+[07:10] P2 Clockwork got its first Spring Ballista
+[07:11] P1 Clockwork got its first Springer
+[07:11] P1 Clockwork's Clockwork: army: the whole army defends the base (10 units, 785, with its Winders) against a raid worth 300 at (22, 58)
+[07:12] P2 Clockwork's Clockwork: push: is at its goal (13, 53): the front goes in
+[07:15] P2 Clockwork finished a Regulator
+[07:15] P1 Clockwork finished a Regulator
+[07:16] P2 Clockwork's Clockwork: push: 4 fresh units walk out to join it (6 supply)
+[07:17] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[07:20] P2 Clockwork's Clockwork: OPTIMAL: a Brass Serpent from the Heavy Works (clockwork)
+[07:21] P2 Clockwork's Clockwork: push: 2 fast riders (140 value) round it: it does not chase them, the march goes on
+[07:22] P1 Clockwork finished a Clocktower (expansion)
+[07:22] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[07:22] P2 Clockwork's Clockwork: push: meets 4 armed enemies (280 value) at (18, 55)
+[07:22] P2 Clockwork's Clockwork: army: a Springer jumps in to shoot at a Clock Soldier
+[07:23] P1 Clockwork scout under guard (Netter), backing out of range
+[07:24] P2 Clockwork's Netter caught P1 Clockwork's Winder
+[07:25] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[07:26] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[07:26] P1 Clockwork's Netter caught P2 Clockwork's Clock Soldier
+[07:26] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[07:28] P2 Clockwork's Netter caught P1 Clockwork's Netter
+[07:28] P2 Clockwork's Netter caught P1 Clockwork's Winder
+[07:31] P2 Clockwork's Netter caught P1 Clockwork's Springer
+[07:31] P1 Clockwork scout killed: it saw nothing to go on, will look again soon
+[07:31] P2 Clockwork's Netter caught P1 Clockwork's Springer
+[07:31] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[07:32] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[07:32] P2 Clockwork's Netter caught P1 Clockwork's Netter
+[07:33] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[07:33] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[07:34] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[07:34] P1 Clockwork finished a Ratchet Turret
+[07:34] P2 Clockwork's Netter caught P1 Clockwork's Winder
+[07:35] P2 Clockwork's Netter caught P1 Clockwork's Springer
+[07:36] P1 Clockwork couldn't start a Cog Press: the spot was blocked (refunded)
+[07:36] P1 Clockwork looks for another spot for its Cog Press (that one stayed blocked)
+[07:36] P1 Clockwork's Clockwork: army: a raid worth 1103 at (14, 48) is far stronger than its 604: the whole army holds together on its gears at (16, 22), the Winders mend it
+[07:36] P2 Clockwork sends a Winder to scout again (trip 4)
+[07:36] P2 Clockwork's Netter caught P1 Clockwork's Springer
+[07:36] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[07:37] P1 Clockwork finished a Regulator
+[07:37] P2 Clockwork's Netter caught P1 Clockwork's Netter
+[07:37] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[07:38] P2 Clockwork's Netter caught P1 Clockwork's Winder
+[07:39] P2 Clockwork finished a Ratchet Turret
+[07:41] P2 Clockwork finished a Regulator
+[07:41] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[07:41] P2 Clockwork's Clockwork: army: a Springer jumps in to shoot at a Netter
+[07:41] P2 Clockwork's Netter caught P1 Clockwork's Netter
+[07:42] P1 Clockwork's Netter caught P2 Clockwork's Netter
+[07:42] P2 Clockwork's Netter caught P1 Clockwork's Springer
+[07:43] P2 Clockwork researched Long Chain
+[07:44] P1 Clockwork finished a Light Works
+[07:45] P2 Clockwork's Clockwork: push: 1 fast rider (125 value) round it: it does not chase them, the march goes on
+[07:50] P2 Clockwork got its first Brass Serpent
+[07:50] P2 Clockwork's Clockwork: OPTIMAL: a Brass Serpent from the Heavy Works (clockwork)
+[07:53] P1 Clockwork got its first Spring Ballista
+[07:53] P1 Clockwork sends 2 Winders to crew its Spring Ballista
+[07:55] P1 Clockwork's first Winder crews a Spring Ballista
+[07:58] P2 Clockwork's Netter caught P1 Clockwork's Winder
+[07:59] P1 Clockwork scouted: NORMAL [a standard opening] (2 halls, 3 economy, 3 military buildings, 28 supply of army): keeps to its Owl raids plan
+[08:00] P1 Clockwork couldn't start a Cog Press: the spot was blocked (refunded)
+[08:00] P1 Clockwork looks for another spot for its Cog Press (that one stayed blocked)
+  P1 Clockwork: earned 9299 cogs total, has 364 + 23 tension | supply 79/110 | workers 41 | halls 3 | army (1215 value): 7 Swift, 4 Springer, 1 Spring Ballista, 2 Clock Soldier | kills +1 (2) losses +12 (14) | brass 31% 66% 100% | efficiency 87%
+  P2 Clockwork: earned 10707 cogs total, has 921 + 31 tension | supply 102/110 | workers 52 | halls 3 | army (2435 value): 21 Clock Soldier, 2 Netter, 4 Springer, 1 Spring Ballista, 1 Brass Serpent | kills +12 (14) losses +1 (2) | brass 33% 59% 89% | efficiency 75%
+[08:02] P2 Clockwork finished a Regulator
+[08:03] P1 Clockwork's Clockwork: army: the whole army defends the base (7 units, 690, with its Winders) against a raid worth 1248 at (17, 47)
+[08:03] P2 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[08:03] P2 Clockwork's Netter caught P1 Clockwork's Winder
+[08:09] P2 Clockwork's Clockwork: push: meets 1 armed enemies (70 value) at (14, 52)
+[08:09] P2 Clockwork's Clockwork: army: a Springer jumps in to shoot at a Clock Soldier
+[08:10] P2 Clockwork finished a Light Works
+[08:10] P2 Clockwork builds a Mainspring by a Light Works (so it may make Springers)
+[08:13] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[08:14] P2 Clockwork's Clockwork: push: 8 fresh units walk out to join it (8 supply)
+[08:18] P1 Clockwork sends 2 Clock Soldiers after the Clockwork's scouting Winder
+[08:20] P2 Clockwork scout under guard (Spring Ballista), backing out of range
+[08:22] P2 Clockwork's Netter caught P1 Clockwork's Springer
+[08:23] P1 Clockwork couldn't start a Cog Press: the spot was blocked (refunded)
+[08:23] P1 Clockwork looks for another spot for its Cog Press (that one stayed blocked)
+[08:23] P2 Clockwork's Netter caught P1 Clockwork's Springer
+[08:26] P2 Clockwork finished a Regulator
+[08:26] P2 Clockwork's Clockwork: a Winder carries a gear out to its Brass Serpent
+[08:28] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[08:28] P1 Clockwork's Springer jumped (5 tiles)
+[08:29] P1 Clockwork killed the Clockwork's scouting Winder at 8:29
+[08:29] P2 Clockwork scout killed: it saw nothing to go on, will look again soon
+[08:32] P1 Clockwork lost a Clocktower to P2 Clockwork (clock_soldier)
+[08:33] P1 Clockwork's Clockwork: its next Clocktower's spot: (38, 21), room for 7 of its ring's buildings (97% open ground beyond), 36 steps from its halls
+[08:33] P2 Clockwork's Clockwork: push: heads for the enemy's base at (16, 35)
+[08:34] P1 Clockwork finished a Light Works
+[08:37] P1 Clockwork: the brass at a Clocktower is running low (under 25%)
+[08:37] P2 Clockwork's Clockwork: a Winder carries a gear out to its Brass Serpent
+[08:38] P2 Clockwork's Netter caught P1 Clockwork's Spring Ballista
+[08:39] P1 Clockwork's Springer jumped (5 tiles)
+[08:40] P2 Clockwork queued research: Shield Wall
+[08:40] P2 Clockwork researches SHIELD WALL (it met 6 shooters)
+[08:43] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[08:43] P1 Clockwork's Springer jumped (5 tiles)
+[08:43] P2 Clockwork's Netter caught P1 Clockwork's Spring Ballista
+[08:44] P2 Clockwork's Netter caught P1 Clockwork's Spring Ballista
+[08:48] P2 Clockwork's Clockwork: a Winder carries a gear out to its Brass Serpent
+[08:48] P2 Clockwork's Clockwork: a Winder carries a gear out to its Brass Serpent
+[08:50] P2 Clockwork's Clockwork: push: pulls back (the enemy's army comes, worth 1055 against its 735): 735 value left of 1250, killed 2020 since it went out
+[08:52] P2 Clockwork finished a Mainspring
+[08:56] P2 Clockwork finished a Light Works
+[08:58] P1 Clockwork finished a Regulator
+[08:59] P2 Clockwork's Clockwork: a Winder carries a gear out to its Brass Serpent
+[08:59] P1 Clockwork sends a Winder to scout again (trip 3)
+  P1 Clockwork: earned 10319 cogs total, has 396 + 30 tension | supply 80/110 | workers 42 | halls 2 | army (1645 value): 7 Swift, 4 Springer, 2 Spring Ballista, 6 Clock Soldier | kills +17 (19) losses +8 (22) | brass 21% 64% | efficiency 40%
+  P2 Clockwork: earned 13309 cogs total, has 757 + 7 tension | supply 112/130 | workers 51 | halls 3 | army (2500 value): 25 Clock Soldier, 1 Netter, 1 Springer, 1 Spring Ballista, 2 Brass Serpent | kills +8 (22) losses +17 (19) | brass 26% 51% 75% | efficiency 80%
+[09:00] P1 Clockwork is expanding to fresh ore (left at its best hall: 64%), 31 tiles from its main
+[09:04] P2 Clockwork: the brass at a Clocktower is running low (under 25%)
+[09:04] P2 Clockwork's Clockwork: its next Clocktower's spot: (78, 74), room for 8 of its ring's buildings (93% open ground beyond), 46 steps from its halls
+[09:04] P2 Clockwork is expanding to fresh ore (left at its best hall: 75%), 37 tiles from its main
+[09:05] P2 Clockwork sends a Winder to scout again (trip 5)
+[09:05] P1 Clockwork's Clockwork: army: the base is calm again: the army walks back to rest on its gears
+[09:05] P2 Clockwork's Clockwork: army: the army rests on its gears at (88, 82), where the enemy's way in reaches the base
+[09:06] P1 Clockwork's Clockwork: army: holds at its gathering point: worth 1590, the enemy army it reckons 2262 (it goes at 2828)
+[09:11] P2 Clockwork got its first Swift
+[09:11] P2 Clockwork's Clockwork: a Winder carries a gear out to its Brass Serpent
+[09:12] P1 Clockwork's Clock Soldier goes on to harass the workers (out alone)
+[09:12] P1 Clockwork's Clock Soldier pulls back from Netter
+[09:13] P2 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[09:13] P1 Clockwork's Clock Soldier goes on to harass the workers (out alone)
+[09:13] P1 Clockwork's Clock Soldier pulls back from Netter
+[09:20] P2 Clockwork researched Shield Wall
+[09:23] P2 Clockwork's Clockwork: a Winder carries a gear out to its Brass Serpent
+[09:26] P2 Clockwork finished a Regulator
+[09:32] P1 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[09:33] P1 Clockwork finished a Cog Press
+[09:35] P2 Clockwork's Clockwork: a Winder carries a gear out to its Brass Serpent
+[09:36] P1 Clockwork's Clockwork: army: the army rests on its gears at (25, 30), where the enemy's way in reaches the base
+[09:40] P2 Clockwork scout under guard (Clock Soldier), backing out of range
+[09:43] P2 Clockwork finished a Light Works
+[09:44] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+[09:46] P2 Clockwork's Clockwork: push: is home again: it gathers for the next push (it waits for 4 more supply)
+[09:46] P2 Clockwork's Clockwork: army: a small raid worth 59 at (74, 74), far from the army: sends 2 units (225) at it, the rest stays on its gears
+[09:46] P2 Clockwork sends 2 Winders to crew its Spring Ballista
+[09:47] P2 Clockwork finished a Regulator
+[09:48] P1 Clockwork saw an enemy Swift (fast): raiders to watch for
+[09:49] P2 Clockwork's first Winder crews a Spring Ballista
+[09:50] P2 Clockwork's Clockwork: army: the whole army defends the base (46 units, 3745, with its Winders) against a raid worth 344 at (71, 71)
+[09:51] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[09:51] P1 Clockwork scout under guard (Spring Ballista), backing out of range
+[09:51] P2 Clockwork sends 2 Clock Soldiers after the Clockwork's scouting Winder
+[09:51] P1 Clockwork's Clockwork: army: holds at its gathering point: worth 1730, the enemy army it reckons 3535 (it goes at 4418)
+[09:52] P2 Clockwork killed the Clockwork's scouting Swift at 9:52
+[09:53] P1 Clockwork sends 2 Clock Soldier and Springer after the Clockwork's scouting Winder
+[09:55] P1 Clockwork finished a Regulator
+[09:55] P1 Clockwork killed the Clockwork's scouting Winder at 9:55
+[09:55] P2 Clockwork scout killed: it saw nothing to go on, will look again soon
+[09:56] P1 Clockwork scouted: DEFENSIVE [turrets or rooted defenders] (2 static defences, 0 wall pieces, 3 halls, 6 economy, 6 military buildings, 59 supply of army): it turtles; keeps to its Owl raids plan
+[09:56] P2 Clockwork killed the Clockwork's scouting Winder at 9:56
+[09:58] P2 Clockwork's Clockwork: army: the base is calm again: the army walks back to rest on its gears
+[09:59] P2 Clockwork's Clockwork: army: goes out: worth 3570 against the 1416 it reckons (a report 4 s old)
+[09:59] P2 Clockwork's Clockwork: push: push 2 goes out: 45 units, 51 supply, 3570 value { "clock_soldier": 41, "netter": 1, "springer": 1, "ballista": 2 }
+[10:00] P2 Clockwork's Clockwork: push: is clearly ahead (worth 3570, the enemy army seen lately 1088, reckoned 1385): it presses on to the enemy's halls to finish
+[10:00] P2 Clockwork's Clockwork: push: heads for Clocktower at (40, 23)
+  P1 Clockwork: earned 12209 cogs total, has 56 + 6 tension | supply 105/120 | workers 49 | halls 2 | army (2070 value): 6 Swift, 4 Springer, 3 Spring Ballista, 11 Clock Soldier | kills +1 (20) losses +2 (24) | brass 12% 52% | efficiency 88%
+  P2 Clockwork: earned 16194 cogs total, has 933 + 51 tension | supply 143/150 | workers 53 | halls 3 | army (3965 value): 41 Clock Soldier, 1 Netter, 1 Springer, 2 Spring Ballista, 2 Brass Serpent, 2 Swift | kills +2 (24) losses +1 (20) | brass 17% 41% 62% | efficiency 76%
+[10:04] P2 Clockwork finished a Regulator
+[10:06] P2 Clockwork's Clockwork: push: 5 fresh units walk out to join it (6 supply)
+[10:11] P1 Clockwork got its first Great Winder
+[10:11] P1 Clockwork's Clockwork: army: its Great Winder sweeps the wrecks by the army into cogs between fights
+[10:11] P2 Clockwork's Clockwork: push: 1 fast rider (90 value) round it: it does not chase them, the march goes on
+[10:12] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[10:13] P2 Clockwork's Clockwork: army: a small raid worth 68 at (72, 72), far from the army: sends 2 units (420) at it, the rest stays on its gears
+[10:14] P1 Clockwork finished a Clocktower (expansion)
+[10:14] P1 Clockwork's Clockwork: its next Clocktower's spot: (36, 39), room for 8 of its ring's buildings (95% open ground beyond), 50 steps from its halls
+[10:14] P1 Clockwork's Clockwork: army: the army rests on its gears at (41, 27), where the enemy's way in reaches the base
+[10:14] P2 Clockwork finished a Clocktower (expansion)
+[10:15] P2 Clockwork's Clockwork: army: the army rests on its gears at (81, 71), where the enemy's way in reaches the base
+[10:16] P1 Clockwork's Clock Soldier pulls back from Clock Soldier
+[10:16] P1 Clockwork's Clock Soldier pulls back from Clock Soldier
+[10:17] P2 Clockwork finished a Regulator
+[10:18] P1 Clockwork's Clockwork: macro: a second Cog Press at once for the idle Winders (6 idle)
+[10:19] P1 Clockwork finished a Regulator
+[10:19] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+[10:22] P1 Clockwork sends its Great Winder with the army
+[10:22] P2 Clockwork's Clockwork: army: the raid is over: 3 defenders walk back to the army
+[10:27] P1 Clockwork's Clock Soldier pulls back from Clock Soldier
+[10:27] P1 Clockwork's Clock Soldier pulls back from Clock Soldier
+[10:27] P2 Clockwork's Clockwork: push: meets 2 armed enemies (140 value) at (63, 61)
+[10:28] P2 Clockwork's Clockwork: army: a Springer jumps in to shoot at a Clock Soldier
+[10:32] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[10:32] P1 Clockwork is expanding to fresh ore (left at its best hall: 100%), 40 tiles from its main
+[10:33] P1 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[10:33] P2 Clockwork's Clockwork: push: an enemy reaches a Spring Ballista: it rolls back, the front meets it
+[10:33] P2 Clockwork's Clockwork: push: 10 fresh units walk out to join it (12 supply)
+[10:33] P2 Clockwork's Clockwork: push: 3 fast riders (230 value) round it: it does not chase them, the march goes on
+[10:33] P2 Clockwork killed the Clockwork's scouting Swift at 10:33
+[10:34] P2 Clockwork finished a Regulator
+[10:37] P1 Clockwork's Clockwork: army: holds at its gathering point: worth 2705, the enemy army it reckons 4555 (it goes at 5693)
+[10:37] P1 Clockwork's Clockwork: army: the whole army defends the base (24 units, 2130, with its Winders) against a raid worth 2170 at (47, 42)
+[10:45] P2 Clockwork's Clockwork: army: the army rests on its gears at (93, 78), where the enemy's way in reaches the base
+[10:45] P1 Clockwork finished a Regulator
+[10:46] P1 Clockwork's Clockwork: top-up: a Swift turns into a Ticking Owl (1 Owls)
+[10:46] P1 Clockwork's Clock Soldier goes home (driven back too often)
+[10:46] P1 Clockwork's Clock Soldier goes home (driven back too often)
+[10:48] P1 Clockwork's Clockwork: army: the base is calm again: the army walks back to rest on its gears
+[10:48] P2 Clockwork's Clockwork: push: 6 fresh units walk out to join it (6 supply)
+[10:48] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[10:49] P2 Clockwork's Clockwork: push: meets 3 armed enemies (305 value) at (53, 48)
+[10:50] P1 Clockwork's Great Winder sweeps up its first wreck
+[10:52] P2 Clockwork's Clockwork: army: a Springer jumps in to shoot at a Clock Soldier
+[10:54] P2 Clockwork got its first Great Winder
+[10:54] P2 Clockwork's Clockwork: army: its Great Winder sweeps the wrecks by the army into cogs between fights
+[10:57] P2 Clockwork sends its Great Winder with the army
+[10:59] P2 Clockwork finished a Cog Press
+  P1 Clockwork: earned 14506 cogs total, has 88 + 74 tension | supply 113/150 | workers 59 | halls 3 | army (2225 value): 6 Springer, 3 Spring Ballista, 4 Swift, 10 Clock Soldier, 1 Great Winder | kills +9 (29) losses +11 (35) | brass 3% 36% 100% | efficiency 87%
+  P2 Clockwork: earned 19035 cogs total, has 1264 + 27 tension | supply 167/190 | workers 58 | halls 4 | army (5305 value): 53 Clock Soldier, 1 Netter, 2 Springer, 3 Spring Ballista, 2 Brass Serpent, 3 Swift, 1 Great Winder | kills +11 (35) losses +9 (29) | brass 7% 32% 49% 100% | efficiency 77%
+[11:00] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+[11:03] P2 Clockwork's Clockwork: push: an enemy reaches a Spring Ballista: it rolls back, the front meets it
+[11:03] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[11:03] P2 Clockwork finished a Regulator
+[11:05] P1 Clockwork's Springer jumped (5 tiles)
+[11:06] P1 Clockwork's Swift became a Ticking Owl
+[11:06] P1 Clockwork's Clockwork: the first Ticking Owl flies
+[11:07] P2 Clockwork's Clockwork: army: a small raid worth 44 at (91, 92), far from the army: sends 1 units (100) at it, the rest stays on its gears
+[11:07] P1 Clockwork's Springer jumped (5 tiles)
+[11:08] P2 Clockwork killed the Clockwork's scouting Swift at 11:08
+[11:08] P2 Clockwork's Clockwork: push: 6 fresh units walk out to join it (10 supply)
+[11:09] P1 Clockwork's Springer jumped (5 tiles)
+[11:09] P1 Clockwork's Springer jumped (4 tiles)
+[11:09] P1 Clockwork finished a Cog Press
+[11:10] P2 Clockwork's Clockwork: army: a Springer jumps in to shoot at a Springer
+[11:11] P1 Clockwork's Great Winder throws SCATTER COGS (13.5 enemies in the litter)
+[11:11] P1 Clockwork's Springer jumped (5 tiles)
+[11:11] P1 Clockwork's Great Winder scattered cogs (21 enemies inside)
+[11:12] P1 Clockwork's Springer jumped (5 tiles)
+[11:14] P2 Clockwork's Clockwork: army: the raid is over: 1 defenders walk back to the army
+[11:14] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+[11:15] P2 Clockwork's Clockwork: army: the army rests on its gears at (73, 70), where the enemy's way in reaches the base
+[11:16] P1 Clockwork finished a Cog Press
+[11:17] P1 Clockwork: the brass at a Clocktower is spent (its presses yield nothing)
+[11:17] P2 Clockwork's Netter caught P1 Clockwork's Spring Ballista
+[11:21] P2 Clockwork killed the Clockwork's scouting Swift at 11:21
+[11:25] P2 Clockwork's Clockwork: push: 6 fresh units walk out to join it (6 supply)
+[11:29] P2 Clockwork got its first Pendulum
+[11:29] P2 Clockwork's Clockwork: army: a small raid worth 55 at (75, 75), far from the army: sends 1 units (200) at it, the rest stays on its gears
+[11:30] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+[11:30] P2 Clockwork's Clockwork: army: a Springer jumps in to shoot at a Spring Ballista
+[11:32] P2 Clockwork's Netter caught P1 Clockwork's Great Winder
+[11:33] P1 Clockwork's Clockwork: the Owls defend the base (enemies by it that cannot hit flyers)
+[11:34] P2 Clockwork's Clockwork: push: 3 fast riders (230 value) round it: it does not chase them, the march goes on
+[11:37] P2 Clockwork's Clockwork: push: 5 fresh units walk out to join it (8 supply)
+[11:37] P2 Clockwork's Clockwork: push: is at its goal (40, 23): the front goes in
+[11:37] P2 Clockwork's Clockwork: push: goes for the 10 Winders mending the Clocktower first
+[11:38] P1 Clockwork's Clockwork: the Owls defend the base (enemies by it that cannot hit flyers)
+[11:38] P1 Clockwork got its first Pendulum
+[11:39] P2 Clockwork lets the Clockwork's scouting Swift go (away past the leash)
+[11:41] P2 Clockwork finished a Cog Press
+[11:42] P1 Clockwork: the brass at a Clocktower is running low (under 25%)
+[11:42] P1 Clockwork finished a Clocktower (expansion)
+[11:43] P1 Clockwork's Clockwork: its next Clocktower's spot: (36, 3), room for 4 of its ring's buildings (59% open ground beyond), 51 steps from its halls
+[11:43] P2 Clockwork's Clockwork: push: meets 3 armed enemies (380 value) at (41, 28)
+[11:43] P2 Clockwork's Clockwork: army: the raid is over: 1 defenders walk back to the army
+[11:44] P2 Clockwork: the brass at a Clocktower is running low (under 25%)
+[11:44] P2 Clockwork's Clockwork: its next Clocktower's spot: (75, 96), room for 8 of its ring's buildings (93% open ground beyond), 38 steps from its halls
+[11:44] P2 Clockwork is expanding to fresh ore (left at its best hall: 100%), 27 tiles from its main
+[11:46] P2 Clockwork: the brass at a Clocktower is spent (its presses yield nothing)
+[11:46] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[11:47] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+[11:49] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[11:50] P2 Clockwork's Clockwork: push: an enemy reaches a Spring Ballista: it rolls back, the front meets it
+[11:55] P1 Clockwork is expanding to fresh ore (left at its best hall: 100%), 27 tiles from its main
+[11:55] P2 Clockwork's Clockwork: army: a Springer jumps in to shoot at a Ticking Owl
+[11:57] P2 Clockwork's Clockwork: army: its Great Winder sweeps the wrecks by the army into cogs between fights
+[12:00] P2 Clockwork's Clockwork: links two Brass Serpents into a Hydra
+  P1 Clockwork: earned 16615 cogs total, has 41 + 59 tension | supply 77/160 | workers 52 | halls 4 | army (1095 value): 1 Ticking Owl, 4 Swift, 1 Pendulum, 6 Clock Soldier | kills +2 (31) losses +43 (78) | brass 0% 20% 95% 100% | efficiency 49%
+  P2 Clockwork: earned 21793 cogs total, has 1402 + 48 tension | supply 196/200 | workers 58 | halls 4 | army (7010 value): 72 Clock Soldier, 1 Netter, 3 Springer, 3 Spring Ballista, 1 Brass Serpent, 4 Swift, 1 Great Winder, 1 Pendulum | kills +43 (78) losses +2 (31) | brass 0% 22% 36% 100% | efficiency 47%
+[12:01] P2 Clockwork killed the Clockwork's scouting Swift at 12:01
+[12:02] P2 Clockwork's Clockwork: push: 9 fresh units walk out to join it (9 supply)
+[12:04] P2 Clockwork's Netter caught P1 Clockwork's Clock Soldier
+[12:06] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+[12:06] P2 Clockwork's Clockwork: army: a small raid worth 65 at (69, 67), far from the army: sends 1 units (200) at it, the rest stays on its gears
+[12:10] P2 Clockwork's Clockwork: army: a Springer jumps in to shoot at a Swift
+[12:11] P2 Clockwork's Clockwork: a Winder carries a gear out to its Brass Serpent
+[12:15] P2 Clockwork killed the Clockwork's scouting Swift at 12:15
+[12:15] P1 Clockwork's Clockwork: army: the army rests on its gears at (44, 41), where the enemy's way in reaches the base
+[12:15] P2 Clockwork's Clockwork: push: 5 fresh units walk out to join it (8 supply)
+[12:17] P2 Clockwork's Clockwork: push: goes for the 1 Winders mending the Clocktower first
+[12:21] P1 Clockwork's Clockwork: army: a raid worth 5191 at (35, 21) is far stronger than its 70: the whole army holds together on its gears at (44, 41), the Winders mend it
+[12:21] P2 Clockwork's Clockwork: army: the raid is over: 1 defenders walk back to the army
+[12:22] P2 Clockwork's Clockwork: push: 1 fast rider (90 value) round it: it does not chase them, the march goes on
+[12:27] P2 Clockwork's Clockwork: army: a small raid worth 35 at (75, 68), far from the army: sends 1 units (100) at it, the rest stays on its gears
+[12:27] P1 Clockwork lost a Clocktower to P2 Clockwork (clock_soldier)
+[12:28] P1 Clockwork lost a Cog Press to P2 Clockwork
+[12:28] P1 Clockwork pulled down a Cog Press by spent brass (fresh brass by another hall)
+[12:28] P2 Clockwork's Clockwork: push: the Clocktower at its goal falls after 50 s
+[12:28] P2 Clockwork's Clockwork: push: heads for Clocktower at (38, 41)
+[12:28] P1 Clockwork lost a Cog Press to P2 Clockwork
+[12:28] P1 Clockwork pulled down a Cog Press by spent brass (fresh brass by another hall)
+[12:28] P1 Clockwork's Clockwork: army: the whole army defends the base (2 units, 140, with its Winders) against a raid worth 3003 at (40, 31)
+[12:30] P2 Clockwork's Clockwork: push: does not wait for its Ballistas any more: they walk to it, the march goes on
+[12:31] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+[12:32] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[12:33] P2 Clockwork killed the Clockwork's scouting Swift at 12:33
+[12:34] P2 Clockwork's Clockwork: push: 7 fresh units walk out to join it (8 supply)
+[12:34] P1 Clockwork lost a Clocktower to P2 Clockwork (clock_soldier)
+[12:34] P1 Clockwork dropped a Cog Press: nobody was coming to start it (refunded)
+[12:34] P2 Clockwork's Clockwork: push: the Clocktower at its goal falls after 6 s
+[12:36] P2 Clockwork's Great Winder sweeps up its first wreck
+[12:36] P2 Clockwork's Clockwork: push: meets 3 armed enemies (230 value) at (37, 34)
+[12:38] P2 Clockwork's Clockwork: push: an enemy reaches a Spring Ballista: it rolls back, the front meets it
+[12:39] P2 Clockwork's Clockwork: army: the raid is over: 1 defenders walk back to the army
+[12:41] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+[12:42] P2 Clockwork's Clockwork: push: is at its goal (16, 35): the front goes in
+[12:45] P2 Clockwork's Clockwork: push: 1 fast rider (70 value) round it: it does not chase them, the march goes on
+[12:46] P2 Clockwork lets the Clockwork's scouting Swift go (away past the leash)
+[12:47] P2 Clockwork's Clockwork: push: goes for the 2 Winders mending the Clocktower first
+[12:48] P2 Clockwork: the brass at a Clocktower is running low (under 25%)
+[12:49] P2 Clockwork's Clockwork: push: 6 fresh units walk out to join it (6 supply)
+[12:51] P1 Clockwork's Clockwork: army: a raid worth 4956 at (19, 33) is far stronger than its 430: the whole army holds together on its gears at (44, 41), the Winders mend it
+[12:53] P2 Clockwork's Clockwork: army: a Springer jumps in to shoot at a Clock Soldier
+[12:54] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[13:00] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+  P1 Clockwork: earned 17860 cogs total, has 142 + 10 tension | supply 68/140 | workers 50 | halls 2 | army (585 value): 3 Swift, 3 Clock Soldier, 1 Spring Ballista | kills +2 (33) losses +21 (99) | brass 0% 9% | efficiency 17%
+  P2 Clockwork: earned 24330 cogs total, has 3121 + 165 tension | supply 200/200 | workers 58 | halls 4 | army (8645 value): 90 Clock Soldier, 1 Netter, 4 Springer, 3 Spring Ballista, 1 Brass Serpent, 5 Swift, 1 Great Winder, 2 Pendulum | kills +21 (99) losses +2 (33) | brass 0% 11% 22% 96% | efficiency 51%
+[13:01] P2 Clockwork finished a Clocktower (expansion)
+[13:01] P2 Clockwork's Clockwork: its next Clocktower's spot: (57, 97), room for 9 of its ring's buildings (93% open ground beyond), 57 steps from its halls
+[13:01] P2 Clockwork is expanding to fresh ore (left at its best hall: 100%), 45 tiles from its main
+[13:01] P2 Clockwork's Clockwork: army: the army rests on its gears at (74, 75), where the enemy's way in reaches the base
+[13:02] P1 Clockwork lost a Clocktower to P2 Clockwork (clock_soldier)
+[13:03] P2 Clockwork's Clockwork: push: the Clocktower at its goal falls after 20 s
+[13:03] P2 Clockwork's Clockwork: push: heads for Clocktower at (11, 11)
+[13:04] P2 Clockwork scouted: NORMAL [a standard opening] (1 halls, 6 economy, 6 military buildings, 15 supply of army): OPTIMAL picks its build from this
+[13:04] P2 Clockwork's Clockwork: optimal: reads NORMAL [a standard opening]: keeps Balanced (what it plays already answers it)
+[13:04] P2 Clockwork killed the Clockwork's scouting Swift at 13:04
+[13:06] P2 Clockwork queued research: Ticking Owl
+[13:07] P2 Clockwork's Clockwork: push: 1 fast rider (70 value) round it: it does not chase them, the march goes on
+[13:09] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[13:12] P2 Clockwork's Clockwork: army: its Great Winder sweeps the wrecks by the army into cogs between fights
+[13:13] P1 Clockwork lost a Light Works to P2 Clockwork (clock_soldier)
+[13:15] P1 Clockwork's Clockwork: army: the army rests on its gears at (17, 21), where the enemy's way in reaches the base
+[13:17] P1 Clockwork lost a Cog Press to P2 Clockwork (clock_soldier)
+[13:18] P1 Clockwork lost a Light Works to P2 Clockwork (ballista)
+[13:28] P1 Clockwork lost a Cog Press to P2 Clockwork (clock_soldier)
+[13:32] P1 Clockwork lost a Mainspring to P2 Clockwork (clock_soldier)
+[13:33] P1 Clockwork lost a Cog Press to P2 Clockwork (clock_soldier)
+[13:33] P1 Clockwork finished a Clocktower (expansion)
+[13:37] P2 Clockwork's Clockwork: push: does not wait for its Ballistas any more: they walk to it, the march goes on
+[13:40] P2 Clockwork's Clockwork: push: is at its goal (11, 11): the front goes in
+[13:40] P2 Clockwork's Clockwork: push: goes for the 7 Winders mending the Clocktower first
+[13:44] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+[13:45] P2 Clockwork's Clockwork: push: 1 fast rider (90 value) round it: it does not chase them, the march goes on
+[13:45] P2 Clockwork killed the Clockwork's scouting Swift at 13:45
+[13:47] P2 Clockwork finished a Cog Press
+[13:52] P2 Clockwork's Netter caught P1 Clockwork's Swift
+[13:58] P2 Clockwork: the brass at a Clocktower is spent (its presses yield nothing)
+  P1 Clockwork: earned 17874 cogs total, has 60 + 14 tension | supply 47/140 | workers 44 | halls 2 | army (75 value): 1 Swift | kills +1 (34) losses +16 (115) | brass 0% 100% | efficiency 0%
+  P2 Clockwork: earned 27203 cogs total, has 4987 + 146 tension | supply 200/200 | workers 60 | halls 5 | army (8570 value): 90 Clock Soldier, 1 Netter, 4 Springer, 3 Spring Ballista, 1 Brass Serpent, 4 Swift, 1 Great Winder, 2 Pendulum | kills +16 (115) losses +1 (34) | brass 0% 0% 9% 90% 100% | efficiency 48%
+[14:00] P2 Clockwork researched Ticking Owl
+[14:02] P1 Clockwork lost a Clocktower to P2 Clockwork (clock_soldier)
+[14:02] P1 Clockwork's Clockwork: army: the army rests on its gears at (40, 9), where the enemy's way in reaches the base
+[14:02] P2 Clockwork's Clockwork: push: the Clocktower at its goal falls after 21 s
+[14:02] P2 Clockwork's Clockwork: push: heads for Clocktower at (38, 5)
+[14:06] P2 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[14:08] P2 Clockwork sends 2 Swifts after the Clockwork's scouting Swift
+[14:09] P1 Clockwork lost a Mainspring to P2 Clockwork (clock_soldier)
+[14:13] P1 Clockwork lost a Cog Press to P2 Clockwork (clock_soldier)
+[14:17] P1 Clockwork lost a Escapement to P2 Clockwork (clock_soldier)
+[14:19] P2 Clockwork killed the Clockwork's scouting Swift at 14:19
+[14:19] P1 Clockwork lost a Ratchet Turret to P2 Clockwork (clock_soldier)
+[14:19] P2 Clockwork finished a Clocktower (expansion)
+[14:19] P1 Clockwork lost a Clock Aviary to P2 Clockwork (clock_soldier)
+[14:23] P2 Clockwork hunts: the enemy has no army left (106 units go for its last buildings)
+[14:23] P1 Clockwork lost a Regulator to P2 Clockwork (clock_soldier)
+[14:24] P2 Clockwork's Clockwork: push: is at its goal (38, 5): the front goes in
+[14:29] P2 Clockwork's Clockwork: push: goes for the 1 Winders mending the Clocktower first
+[14:38] P2 Clockwork finished a Cog Press
+[14:38] P2 Clockwork's Clockwork: army: its Great Winder sweeps the wrecks by the army into cogs between fights
+[14:41] P2 Clockwork: the brass at a Clocktower is spent (its presses yield nothing)
+[14:48] P1 Clockwork lost a Clocktower to P2 Clockwork (clock_soldier)
+[14:48] P2 Clockwork's Clockwork: push: hunts in parties: 96 after its last 17 buildings and 37 units
+  P1 Clockwork: earned 17874 cogs total, has 0 + 14 tension | supply 38/110 | workers 37 | halls 0 | army (0 value): none | kills +0 (34) losses +8 (123) | efficiency 0%
+  P2 Clockwork: earned 29232 cogs total, has 6675 + 266 tension | supply 200/200 | workers 60 | halls 6 | army (8570 value): 90 Clock Soldier, 1 Netter, 4 Springer, 3 Spring Ballista, 1 Brass Serpent, 4 Swift, 1 Great Winder, 2 Pendulum | kills +8 (123) losses +0 (34) | brass 0% 0% 0% 81% 96% 100% | efficiency 41%
+[15:06] P2 Clockwork finished a Cog Press
+[15:10] P2 Clockwork's Clockwork: army: the army rests on its gears: 1 run-down units step onto the gears to wind
+[15:17] P2 Clockwork finished a Cog Press
+[15:18] P2 Clockwork's Clockwork: push: hunts in parties: 97 after its last 17 buildings and 36 units
+[15:31] P1 Clockwork lost a Ratchet Turret to P2 Clockwork (clock_soldier)
+[15:33] P1 Clockwork lost a Regulator to P2 Clockwork (clock_soldier)
+[15:33] P1 Clockwork lost a Light Works to P2 Clockwork (ballista)
+[15:35] P1 Clockwork lost a Regulator to P2 Clockwork (springer)
+[15:37] P1 Clockwork lost a Regulator to P2 Clockwork (clock_soldier)
+[15:38] P1 Clockwork lost a Clock Aviary to P2 Clockwork (clock_soldier)
+[15:38] P1 Clockwork lost a Regulator to P2 Clockwork (clock_soldier)
+[15:39] P1 Clockwork lost a Regulator to P2 Clockwork (clock_soldier)
+[15:40] P1 Clockwork lost a Regulator to P2 Clockwork (clock_soldier)
+[15:41] P1 Clockwork lost a Regulator to P2 Clockwork (clock_soldier)
+[15:45] P1 Clockwork lost a Regulator to P2 Clockwork (clock_soldier)
+[15:45] P1 Clockwork lost a Regulator to P2 Clockwork (clock_soldier)
+[15:45] P1 Clockwork lost a Regulator to P2 Clockwork (clock_soldier)
+[15:48] P1 Clockwork lost a Regulator to P2 Clockwork (clock_soldier)
+[15:48] P2 Clockwork's Clockwork: push: hunts in parties: 97 after its last 3 buildings and 31 units
+[15:52] P1 Clockwork lost a Cog Press to P2 Clockwork (clock_soldier)
+[15:52] P2 Clockwork's Netter caught P1 Clockwork's Winder
+  P1 Clockwork: earned 17874 cogs total, has 47 + 14 tension | supply 26/0 | workers 26 | halls 0 | army (0 value): none | kills +0 (34) losses +11 (134)
+  P2 Clockwork: earned 31272 cogs total, has 8652 + 377 tension | supply 200/200 | workers 60 | halls 6 | army (8570 value): 90 Clock Soldier, 1 Netter, 4 Springer, 3 Spring Ballista, 1 Brass Serpent, 4 Swift, 1 Great Winder, 2 Pendulum | kills +11 (134) losses +0 (34) | brass 0% 0% 0% 71% 86% 97% | efficiency 49%
+[16:06] P1 Clockwork lost a Heavy Works to P2 Clockwork (springer)
+[16:07] P2 Clockwork's Netter caught P1 Clockwork's Winder
+[16:17] P2 Clockwork sends 1 Clock Soldier after the Clockwork's scouting Winder
+[16:18] P2 Clockwork's Clockwork: push: hunts in parties: 97 after its last 1 buildings and 24 units
+[16:18] P2 Clockwork sends 2 Clock Soldiers after the Clockwork's scouting Winder
+[16:20] P1 Clockwork lost a Light Works to P2 Clockwork (clock_soldier)
+[16:21] P1 Clockwork sends a Winder to scout again (trip 4)
+[16:21] P1 Clockwork is out
+  P2 Clockwork: earned 32185 cogs total, has 9565 + 400 tension | supply 200/200 | workers 60 | halls 6 | army (8570 value): 90 Clock Soldier, 1 Netter, 4 Springer, 3 Spring Ballista, 1 Brass Serpent, 4 Swift, 1 Great Winder, 2 Pendulum | kills +24 (158) losses +0 (34) | brass 0% 0% 0% 68% 83% 93% | efficiency 49%
+RESULT at 16:21: winner P2 Clockwork
+  P1 Clockwork: earned 17874, spent 17675, trained 156, built 35, killed 34, lost 158, razed 0, buildings lost 37, peak army 2820. Kills by: Clock Soldier 14, Spring Ballista 8, Springer 9, Pendulum 2, Swift 1
+  P2 Clockwork: earned 32185, spent 21775, trained 197, built 44, killed 158, lost 34, razed 37, buildings lost 0, peak army 8645. Kills by: Springer 16, Clock Soldier 107, Netter 2, Spring Ballista 9, Swift 10, Pendulum 3

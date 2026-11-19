@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.84", "items": [
+		"THE CLOCKWORK COMPUTER'S WRITTEN PLANS KEEP THEIR ECONOMY (nothing a player uses changed): picked in the lobby, the Owl raids, the Springer timing and the Heavy Works push now open like the Clockwork's best computer (Winders non-stop and a fast second Clocktower) and only then play their own build, so they no longer fall thousands of cogs behind; the Rush turns to a normal economy after four minutes. Measured in 96 games to 20 minutes: the Owl raids won or led 11 games of 24 (were 2), the Springer timing 12 (were 5), the Heavy Works push 17 (were 11); the Owls still raid, the Springers still leap in and the Heavy Works still push.",
+	]},
 	{"v": "0.38.83", "items": [
 		"THE BROOD COMPUTER AGAINST THE CLOCKWORK (nothing the player uses changed): it was laying almost only Raptors and throwing them at the Clockwork's base in small waves, where the Pendulums swept them away. Now, against the Clockwork only, it lays Spitters (two for every Raptor once its Venom Sire stands, with the spoils kept for them), Brutes later, holds its army at home until it reckons it is clearly bigger, and sends its Raptors to raid lone Winders instead. In 16 games to 20:00 against the Clockwork computer it won or led 6, where it won or led none before.",
 	]},

@@ -15,8 +15,10 @@ extends SceneTree
 ## Winders at 6:00 (the economy keeps growing behind it), a second Clocktower laid by HALL_BY. (What the attack kills is
 ## measured, not tested: docs/clockwork_ai_rebuild.md has why it is small.)
 ## json:<file> appends one line with every number (the study: docs/clockwork_ai_rebuild.md).
+## (cw-written-openings, 0.38.82: the build starts from the common opening now, its own steps from 2:15: READY at ~5:20 and
+## the first leap at ~6:30 on Greenhold 11 with 33 Winders at 6:00 (READY was ~4:20); LEAP_BY 6:30 -> 7:00)
 const READY_BY := 330.0
-const LEAP_BY := 390.0
+const LEAP_BY := 420.0
 const WORKERS_6 := 16
 const HALL_BY := 450.0
 var main: Node

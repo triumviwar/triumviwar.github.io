@@ -1,0 +1,121 @@
+{
+ "map": "greenhold",
+ "seed": 2100,
+ "slots": [
+  [
+   "clockwork",
+   "owls",
+   0
+  ],
+  [
+   "crown",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 1200,
+ "winner": -1,
+ "version": "0.38.81",
+ "tech_at": {
+  "0:long_chain": 615,
+  "0:owl_morph": 350,
+  "0:shield_wall": 525,
+  "1:armour": 545,
+  "1:bayonet": 500,
+  "1:charge": 435,
+  "1:flintlock": 585,
+  "1:matchlock": 480
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 395,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 484,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 633,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 1026,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 103,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "read": "GREEDY",
+   "t": 178,
+   "why": "no army and no production at its base"
+  },
+  {
+   "p": 1,
+   "read": "UNKNOWN",
+   "t": 314,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 396,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "read": "UNKNOWN",
+   "t": 568,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 1,
+   "read": "DEFENSIVE",
+   "t": 644,
+   "why": "turrets or rooted defenders"
+  },
+  {
+   "p": 1,
+   "pick": "opening NORMAL -> balloon (raids on its workers)",
+   "t": 103
+  },
+  {
+   "p": 1,
+   "pick": "late DEFENSIVE -> siege (a siege to break its defences)",
+   "t": 644
+  }
+ ],
+ "final": [
+  {
+   "income": 31223,
+   "army": 7830,
+   "halls": 6,
+   "workers": 54,
+   "plan": "owls",
+   "supply": 200,
+   "lost": 131
+  },
+  {
+   "income": 27360,
+   "army": 620,
+   "halls": 2,
+   "workers": 11,
+   "plan": "siege",
+   "supply": 45,
+   "lost": 128
+  }
+ ]
+}
