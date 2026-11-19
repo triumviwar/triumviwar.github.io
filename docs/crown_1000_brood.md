@@ -95,6 +95,8 @@ Every block against the pooled blocks of the code kept at the time (base); d = t
 | b12 | **queen** (lean, siege on): a siege push 2.5x the Brood army seen lately (from 8:00) marches on the Brood Mother herself, setting up only against what stands in its way | -0.80 | +0.07 | 6 | 3 | 17:32 | -0.08 (-0.2) · -0.01 (-0.1) · 6/4 (v b09+b10) | no: 1-2 such pushes a game, each broke 1-2 Rootmaws and 1-5 turtles but none reached her, and lost 1,300-10,300 of army doing it |
 | b13 | **pester** (lean, siege on): after the rush the riders raid the grubs again 60 s after each party comes home (a successful rush blocked the raids for 10 minutes), and the Siege push leaves the riders to it | -0.65 | +0.06 | 7 | 2 | 18:39 | +0.07 (0.2) · -0.01 (-0.1) · 7/3 (v b09+b10) | no (not clear: 0-5 parties a game) |
 | b14 | **the kept code** again (lean + siege, nothing else): the rerun of the best | -0.77 | +0.16 | 6 | 3 | 18:56 | v the baseline b01+b05: +0.42 (1.3) · +0.40 (4.7) · 7/3 | the pool b09+b10+b14 v b01+b05: +0.45 (1.7) · +0.35 (3.7) · 7/3 |
+| b15 | **edge** (kept code +): the Siege push against the Brood waits for 2.5x the Brood army seen lately (1.5) | -0.90 | -0.00 | 7 | 1 | 19:06 | -0.17 (-0.5) · -0.10 (-1.2) · 4/5 (v b09+b10+b14) | no |
+| b16 | **guns** (kept code +): the push's Field Cannons one for 3 Musketeers, up to 8 (one for 5, up to 4) | -1.00 | -0.02 | 6 | 1 | 17:52 | -0.27 (-0.6) · -0.13 (-0.9) · 4/6 (v b09+b10+b14) | no: 4-9 cannons at once (5.7-6.4), the line thinner |
 
 ## The other matchups (the kept code, one block each)
 
