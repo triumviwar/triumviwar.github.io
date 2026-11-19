@@ -78,6 +78,10 @@ const C1KB_MORTAR_PER := 4
 ## halls it left (block 14: "falls back: the base is attacked", halls lost at 14:00-19:00 while the push was out). Against
 ## the Brood C1KB_GUARD of the Musketeers (the nearest home) and one gun of four stay home on the post.
 const C1KB_GUARD := 0.3
+## (crown-1000-brood, change "spare") THE PUSH COMES HOME SOONER: it fell back only under RETREAT_K (0.45) of what went out, and
+## traded about evenly with a Brood that rebuilds faster (block 14: lost 1,620-5,290 a push); against the Brood it falls
+## back under C1KB_RETREAT_K, the army kept for the Brood's capped waves at home.
+const C1KB_RETREAT_K := 0.7
 var c1kb_guarded := 0
 
 
@@ -738,7 +742,8 @@ func wagon_busy() -> bool:
 ## Why the push is lost ("" while it is not).
 func _lost(mid: Vector2) -> String:
 	var now := _value(men.keys())
-	if now < v0 * RETREAT_K:
+	var rk := C1KB_RETREAT_K if _brood() and C1kB.on("spare") else RETREAT_K
+	if now < v0 * rk:
 		return "%d of the %d that went out is left" % [int(now), int(v0)]
 	var foes := _visible_foes(mid, 520.0).filter(func(u: Unit) -> bool: return not u.is_worker())
 	var fv := _value(foes)
