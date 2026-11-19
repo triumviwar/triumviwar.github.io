@@ -71,6 +71,10 @@ const C1KB_EDGE_BROOD := 2.5
 ## Musketeers; against the Brood's swarm one for C1KB_GUNS_PER, up to C1KB_CANNONS_MAX.
 const C1KB_GUNS_PER := 3
 const C1KB_CANNONS_MAX := 8
+## (crown-1000-brood, change "mortars") MORE MORTARS: one for 7 Musketeers, 3 at most (MORTARS_MAX); against the Brood's
+## clumped waves at the palisade one for C1KB_MORTAR_PER, up to C1KB_MORTARS_MAX (after the first 3 Field Cannons, as before).
+const C1KB_MORTAR_PER := 4
+const C1KB_MORTARS_MAX := 6
 ## (crown-1000-brood, change "maws") THE PUSH GOES FOR THE FAR ROOTMAWS: it marched for the enemy's base (the Mother, her
 ## fathers and turtles) and set up against what it met on the way; against the Brood it marches on the nearest Rootmaw it
 ## has seen rooted away from the Mother (AICrownVBrood.MAW_FAR), her base only when there is none.
@@ -832,6 +836,8 @@ func _gun_want() -> Array:
 	if _brood() and C1kB.on("guns"):
 		want_c = clampi(1 + muskets / C1KB_GUNS_PER, 1, C1KB_CANNONS_MAX)     # (crown-1000-brood, change "guns")
 		want_m = clampi(muskets / 7, 0, MORTARS_MAX)
+	if _brood() and C1kB.on("mortars"):
+		want_m = clampi(muskets / C1KB_MORTAR_PER, 0, C1KB_MORTARS_MAX)       # (crown-1000-brood, change "mortars")
 	if muskets < (GUN_LINE_BROOD if _brood() else GUN_LINE):
 		return []          # (the line first: against the Brood a gun's gold held from 4 Musketeers lost the main, b08 Greenhold)
 	var k := ""
