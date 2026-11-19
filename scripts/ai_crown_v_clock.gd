@@ -142,9 +142,9 @@ const GUN_SHARE := 3
 
 # ------------------------------------------------------------------ 9. the powder piles up (AICrown._mill_farm_cap)
 
-## Blocks 1, 3 and 8: the Crown's powder in the bank was a median 330 at 8:00, 716 at 12:00 and 938 at 14:00 (a Musketeer's
-## load is a few) while 4-9 labourers ground it; the Farms had free posts. Here, with POWDER_BANK or more banked, the Mills
-## keep one hand each and the rest go to the free Farm posts on live soil (no fewer than the cap less those posts).
+## (Block 11. Its premise was read from result.json's "res2", which is the powder ground so far, not the bank: the powder
+## does not pile up; late it runs out, see 14.) With POWDER_BANK or more banked, the Mills keep one hand each and the rest
+## go to the free Farm posts on live soil (no fewer than the cap less those posts). Not kept.
 const POWDER_BANK := 250.0
 
 
