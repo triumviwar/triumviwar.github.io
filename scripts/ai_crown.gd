@@ -3099,6 +3099,7 @@ func _after_rush_brood() -> void:
 
 
 var c1kb_siege_at := -1.0
+var c1kb_queen_pushes := 0
 
 
 ## the raid over: the Musketeers' wave waits for a proper force again (as after a failed rush)

@@ -52,6 +52,17 @@ const REACH := 470.0            # (px) a target this far from a gun's spot is ou
 var ai                          # the AICrown
 var game: Game
 var state := ""                 # "" home, "march", "set", "back"
+## (crown-1000-brood, change "queen") THE MOTHER HERSELF: the Brood is beaten when its Mother dies. A push that goes out
+## C1KB_QUEEN_EDGE times the Brood army seen lately (never under C1KB_QUEEN_FOE_MIN) from C1KB_QUEEN_FROM marches on her,
+## setting up only against what stands in its way (C1KB_QUEEN_STOP of the usual reach), the Brood's army, or her: block 10,
+## Ashford r0, 3,620 of army against 340 at 12:00, the push took 1:48 to reach the first Rootmaw by the natural, and the
+## Brood rebuilt to 3,655 by 14:00.
+const C1kB := preload("res://scripts/ai_crown_1k_brood.gd")
+const C1KB_QUEEN_FROM := 480.0
+const C1KB_QUEEN_EDGE := 2.5
+const C1KB_QUEEN_FOE_MIN := 400.0
+const C1KB_QUEEN_STOP := 0.45
+var queen_mode := false
 var men := {}                   # unit -> true: the push
 var trail: Array = []           # the line's middle, a point every TRAIL_STEP px of the way (newest last)
 var anchor = null               # the target set up against (Building or Unit)
@@ -223,6 +234,14 @@ func _go(home: Array, value: float) -> void:
 		"cannons": g.filter(func(u: Unit) -> bool: return u.kind == "cannon").size(),
 		"line": home.size() - g.size(), "broke": {}, "end": -1.0, "why": "", "sets": 0}
 	pushes.append(cur)
+	queen_mode = false
+	if _brood() and C1kB.on("queen") and game.clock >= C1KB_QUEEN_FROM:
+		var seen: float = maxf(ai.ch.foe_known(), C1KB_QUEEN_FOE_MIN)
+		if value >= C1KB_QUEEN_EDGE * seen and BroodNew.queen(game, ai._foe()) != null:
+			queen_mode = true
+			cur["queen"] = true
+			ai.c1kb_queen_pushes += 1
+			say("goes for the Brood Mother herself: %d against the %d of Brood it has seen lately" % [int(value), int(ai.ch.foe_known())])
 	say("goes out: %d supply (%d guns, %d in the line), worth %d" % [cur["sup"], g.size(), home.size() - g.size(), int(value)])
 	_orders_t = 0.0
 
@@ -424,7 +443,10 @@ func _army_on(mid: Vector2) -> Variant:
 
 func _march(line: Array, guns: Array, mid: Vector2) -> void:
 	# contact: a defence near, or the enemy army on the line
-	var a = _next_anchor(mid, STOP_D)
+	var a = _next_anchor(mid, STOP_D * (C1KB_QUEEN_STOP if queen_mode else 1.0))
+	var q: Unit = BroodNew.queen(game, ai._foe()) if queen_mode else null
+	if q != null and q.position.distance_to(mid) < STOP_D:
+		a = q                     # (crown-1000-brood "queen": the Mother first when she is in reach)
 	if a == null:
 		a = _army_on(mid)
 	if a != null:
@@ -435,6 +457,9 @@ func _march(line: Array, guns: Array, mid: Vector2) -> void:
 	_orders_t = game.clock + 2.0
 	var goal: Vector2 = ai._enemy_base()
 	var nb = _next_anchor(mid, 99999.0)
+	if q != null:
+		nb = null
+		goal = q.position         # (crown-1000-brood "queen": the march goes for the Mother, past the rooted ground)
 	var mg: Vector2 = ai.cm.wave_target(mid) if ai.mirror() != null else Vector2.INF
 	if mg != Vector2.INF:
 		goal = mg                 # (crown-mirror-coach: the push marches on the cheapest enemy hall, AICrownMirror.wave_target;

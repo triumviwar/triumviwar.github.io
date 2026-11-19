@@ -164,6 +164,9 @@ func choose(read: String) -> Array:
 	var f := foe()
 	var t := game.clock
 	var st := stage_of(t)
+	if fac == "crown" and f == "brood" and current == "siege" and C1kB.on("siege") and read != "AGGRESSIVE":
+		return []        # (crown-1000-brood, "siege": the Siege push after the rush keeps its push; a late GREEDY read (the
+		                 # Brood's usual new ground) turned it to the Economy race in 3 of 20 games, Ashford r0 b10 at 11:52)
 	match read:
 		"AGGRESSIVE":
 			if st == "opening" or current in ["economy", "rush", "cs_rush"]:
