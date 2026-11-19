@@ -141,7 +141,7 @@ handover: `c1kb_siege_at` -1 in all 20 games).
 
 ## The tests (0.38.82, the kept code on)
 
-All 42 of `tools/test_ai_*.gd` and `tools/test_crown_*.gd` were run. **33 pass.** Two failed once and passed on the
+All 42 of `tools/test_ai_*.gd` and `tools/test_crown_*.gd` were run. **35 pass.** Two failed once and passed on the
 rerun with the kept code on (flaky as CLAUDE.md says): `test_ai_harass` ([raid]), `test_ai_rush` (the rush killed grubs,
 workers before the Mother). Five fail the same way with the whole job switched off (`-- c1kb:off`), so not from this job:
 `test_ai_rush_followup` (14-15 checks), `test_ai_wall_vs_rush` (Barracks and Mill by 75 s: 58 / 100 s),
