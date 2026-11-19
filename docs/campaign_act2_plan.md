@@ -155,6 +155,12 @@ broken and open a RECLAIM PART (below, and owner question 6).
 | a07 `rome` | few | d01: "Rome burned and the Church did not fall" is the conspirators' pamphlet; the temper counter starts higher |
 | a07 `people` | many | d05: Tomasz's name reached the frontier: the converts trust him at once (two more mission militia) |
 | a07 `hollweg`, `lindqvist` | defied (always) | the act's opening: both gone (the frame) |
+| a01 `lyon` | calm (canon) / sullen | d01: the conspiracy's pamphlets are on the Lyon type (calm: "the last of it"; sullen: "Lyon still prints") |
+| | risen (the Assembly won a01) | a RECLAIM PART: d01 opens with Tomasz's letter from Lyon in unrest; Act 2's map keeps Lyon in UNREST until Act 3's reclaim (owner question 6) |
+| a01 `printer` | taken | d01: the Crown knows the cell's printer's mark (one hidden armoury shown at the start) |
+| a06 `paris` | stood | d09: the army of Brazil's colours "were blessed at Notre-Dame" (a line); the map only |
+| b01 `teles` | quiet (always since the flip) | d03: the commission comes on Rome's order alone, not the garrison's report: no change |
+| b01 `turtle`, `gun`; c01 `cut`; a02 `stopwork`; a03 `survey`, `sire_way`, `party`; a05 `way` | any | lines only, or nothing (small flags stay in the ledger) |
 
 New Act 2 flags (below): d01 `minas`, `gold`; d02 `exodus`, `drawings`; d03 `hidden`, `storm`; d04 `colonists`;
 d05 `fields` (choice), `aldeia`; d06 `brood_n`, `pieter`; d07 `spring` (choice), `honest`; d08 `lure` (choice),
@@ -550,8 +556,8 @@ Valadares leads it (he knows the rivers and, by a03 `map`, the swarm's road). FR
 young below the Barra. GROWN (the Brood second): it has spread down the rivers while the army was in the south.
 
 - NARRATOR: Valadares; the King frames.
-- SIDES: THE JUNGLE COLUMN (Crown, PURPLE, p1): Valadares, a part of the army of Brazil (as d09 left it: the units
-  that lived carry? No: Claude's choice 8, a fixed column by the flags, not the survivors), NEW: the OBSERVATION
+- SIDES: THE JUNGLE COLUMN (Crown, PURPLE, p1): Valadares, a part of the army of Brazil (a fixed column set by the flags,
+  not d09's survivors: Claude's choice 8), NEW: the OBSERVATION
   BALLOON (C8: seeing over the canopy; it spots for the guns at long range), the Barra's garrison (BLUE, co-op p2).
   THE SWARM (Brood, GREEN; solo mirror or versus p2): forward Mothers rooted along the river (FRESH 2, GROWN 4; one
   fewer with d05 `fields` burned, one more with left), the Queen's Challengers (GROWN), NEW on the swarm's side: the
@@ -670,8 +676,8 @@ Act 1's ladder doc already pencils C5-C9, K4-K7, B4-B7 into "Act 2, slot n". Pla
 | C5 | d01_minas | ARMOURY + MATCHLOCK + SOCKET BAYONET | the garrison | Part 2: the bayonet up the stairs on the night of the signal |
 | C6 | d05_aldeia | DRAGOON + CAVALRY CHARGE | the mission (the relief's dragoons trainable at the fort's Horse Breeder) | Part 2: the charge into the Raptors round the hamlet |
 | C7 | d09_crossroads | ARMOUR (Guardsmen, Cuirassiers) + POWDER WAGON | the army | Part 1: the march without a base |
-| C8 | d10_jungle (or d11 when fought first: below) | OBSERVATION BALLOON | the column | Part 1: spotting the forward Mothers under the fog |
-| C9 | d11_siege (or d10) | PREPARED CHARGES + GUNNER'S QUADRANT | the column | Part 2: the plates of the sorties |
+| C8 | d10_jungle | OBSERVATION BALLOON | the column | Part 1: spotting the forward Mothers under the fog |
+| C9 | d11_siege | PREPARED CHARGES + GUNNER'S QUADRANT | the column | Part 2: the plates of the sorties |
 | K4 | d02_exodus | RATCHET TURRET + SHIELD WALL | the guild | Part 3: the rearguard at the bridge (the turret only as the last stand: the owner's rule, static defence is not a build) |
 | K5 | d04_concordia | CLOCK AVIARY + SWIFT | the guild | Part 1: mapping the highlands |
 | K6 | d07_spring | TICKING OWL + HIGH LEAP | the honest masters | Part 2: the owls watch the quarters turn; Part 3: the leap onto the tower |
@@ -682,8 +688,7 @@ Act 1's ladder doc already pencils C5-C9, K4-K7, B4-B7 into "Act 2, slot n". Pla
 | B7 | d10_jungle (the swarm: mirror and versus) | MIST TOAD + FOG BANK + MIASMA | the swarm | the fog on the river |
 
 Changes from the ladder doc (Claude's choices 13 and 14): B5 and B6 SWAP (the Queen IS stage 3: d06 must give it);
-C8 and C9 follow the diamond: the front fought FIRST gives its own rung, the second gives the other's as well as its
-own? No: each front keeps ITS rung (the balloon is the jungle's, the charges the siege's), and the ladder's order
+C8 and C9 follow the diamond: each front keeps ITS rung (the balloon is the jungle's, the charges the siege's), and the ladder's order
 simply differs by branch (C8 before C9 or after); tools/test_roster_ladder.gd checks both orders.
 
 As in Act 1: the ladder binds only the line's own faction on its player's side; the Naturalist's and the Clockmaker's
@@ -737,3 +742,325 @@ Each step a job on its own branch, merged on its DONE as in Act 1; the owner's a
 11. d08_rivers (the lure post; the swarm mirror bound to B6).
 12. d09_crossroads (the sertão; the crossing's choice; the frame at the choice).
 13. d10_jungle and d11_siege (two versions each; sapping), then the heir's practice (question 13, still later).
+
+## VOICES (for docs/chatterbox_todo.md)
+
+ALL TEXT PLACEHOLDER; the counts are rough (lines per speaker, Act 2's missions as planned). Speakers marked * need a
+voice DESIGNED first (ElevenLabs Voice Design: a 10-20 s sample saved as `tools/voice_clone/refs/<name>_ref.wav`,
+then Chatterbox for every line). Designed voices only, never a real person's.
+
+| speaker | missions | about | ref |
+| --- | --- | --- | --- |
+| the King | all (frame) | 70 | king_ref.wav (pitch 0) |
+| Hollweg | d02, d04, d07, the frame | 70 | hollweg_ref.wav |
+| Lindqvist | d03, d06 | 60 | lindqvist_ref.wav (v2) |
+| Valadares* | d03 (mirror), d08, d10 | 70 | the explorer ref or a new one (Act 1's open question) |
+| Tomasz* (a grown man now, about 30-40) | d01, d05, d09 | 60 | to design: between Act 1's young Tomasz and the old Cardinal; the owner may want one voice aged by pitch |
+| Ferrer* | d02 (mirror), d11 | 35 | to design (Act 1's list) |
+| Jakob* | d02, d11 | 15 | to design (Act 1's list) |
+| Varenne | d04, d07, d09 | 20 | varenne_ref.wav |
+| Ruggieri (a general now) | d09, d10, d11 | 20 | ruggieri_ref.wav |
+| Pieter* | d03, d06 | 10 | to design (Act 1's list) |
+| Benedito* | d03, d08 | 8 | to design (Act 1's list) |
+| Colonel von Rauch* | d02 | 6 | to design (Act 1's list) |
+| Commissary Brandt* (proposed) | d02 | 6 | new: a dry chancery official, German |
+| Desembargador Fonseca* (proposed), the commission's magistrate | d03 | 8 | new: a Portuguese judge, pompous, honest |
+| Captain Bento Arruda* (proposed), the valley's militia | d04 | 8 | new: a southern Brazilian cattleman-officer, plain |
+| Padre Anselmo* (proposed), the valley's priest | d04 | 4 | new: a kind country priest (one of the few voices that calms a crowd) |
+| Citizen Morel* (proposed; with `varenne` executed) | d04, d07 | 8 | new: an Assembly man, cold |
+| the honest masters' speaker* (proposed: Jakob's son, Matthias) | d07 | 10 | new: a young German craftsman |
+| Captain Luís de Meneses* (proposed), the garrison | d01 | 12 | new: a Portuguese dragoon officer |
+| Lieutenant Inácio Ramos* (proposed), the conspiracy | d01 | 6 | new: a Brazilian orator, warm and dangerous |
+| Brother Tiago* (proposed), São Rafael's catechist | d05 | 8 | new: a young native catechist, gentle; care: a designed voice, no accent caricature |
+| the dragoons' captain* | d05 | 4 | new or a reused officer |
+| the fort's commander* | d09 | 3 | reused officer |
+| the frontier's messenger*, the Barra's sergeant* | d08, d09 | 1-2 each | reused |
+| the prince* (version A of the frame only) | the frame | 6 | new: a young man of about 20; only if the owner names the heir |
+
+Narrator lines ("Vila Rica", "Fürth", "The Island", "Concórdia", "São Rafael", "The Swarm", "The City", "The Fort")
+can stay as text. No creature and no machine speaks (b01, c01).
+
+The section to add to docs/chatterbox_todo.md when each mission is BUILT (this job adds a pointer only): the mission's
+table goes in its build doc, as Act 1's; the voices to design above join section 3.
+
+## STILLS: the prompts for the owner (ChatGPT, one request each, at most 3 reference images; each prompt stands alone)
+
+House style as Act 1: an oil painting in the manner of an 18th-century history painting, visible brushwork, 3:2
+landscape (cut to 1280 x 853), no text or lettering anywhere. The Crown's men in PURPLE coats; the guild in dark blue
+with brass; the Machine red and brass; the creatures reptilian first (the owner's art direction: insect only a little).
+Save each as `art/campaign/stills/d0N_0M.png` and cut it to 1280 x 853 into `campaign/stills/d0N_0M.jpg`. Reference
+files named below are in the repo: `campaign/stills/<id>.jpg` and `campaign/hub/<name>.png`. Faces: the King old =
+campaign/hub/rome_king.png (Act 2's King is about 30-40: "the same face, ten years after a07_01"); Hollweg =
+campaign/hub/nuremberg_hollweg.png; Lindqvist = campaign/hub/station_lindqvist.png; Tomasz = campaign/hub/rome_tomasz.png
+(made younger); Ferrer = campaign/stills/a04_01.jpg; Valadares = campaign/stills/a03_04.jpg; Linnea =
+campaign/stills/b01_03.jpg; the Sire = campaign/stills/b01_05.jpg.
+
+### The ACT 2 FRAME
+
+- f2_01 THE MAP OF BRAZIL. "Oil painting, 18th-century history painting style. A king in his late fifties with a grey
+  beard and a long clay pipe stands at a candle-lit desk in a dark study and unrolls a large parchment map of South
+  America; the Amazon is drawn in fine ink, the south blank. His hand rests on the map. Warm candlelight, deep shadows,
+  books behind. 3:2 landscape, no text." (References: campaign/hub/rome_king.png, p01_01.jpg.)
+- f2_02A THE PRINCE LISTENS (version A). "Oil painting, 18th-century history painting style. A young prince of about
+  twenty in a dark purple coat sits on the far side of a candle-lit desk covered with maps, leaning forward to listen,
+  his face half in shadow. Warm candlelight. 3:2 landscape, no text." (References: rome_king.png for the room's light,
+  p01_01.jpg.)
+- f2_02B THE EMPTY CHAIR (version B). "Oil painting, 18th-century history painting style. The far side of a candle-lit
+  desk covered with maps, seen from where a listener would sit: across it an old king with a grey beard and a pipe
+  looks straight out of the picture at the viewer. Warm candlelight. 3:2 landscape, no text." (References:
+  rome_king.png, p01_01.jpg.)
+- f2_03 THE WINDOW. "Oil painting, 18th-century history painting style. An old king seen from behind at a tall window
+  at night; outside, far off over a city's roofs, the red glow of a war on the horizon. A burnt-out candle on the sill.
+  3:2 landscape, no text." (References: rome_king.png, a07_06.jpg.)
+
+### d02_exodus
+
+- d02_01 THE NIGHT BELL. "Oil painting, 18th-century history painting style. Night in a snowy German workshop yard;
+  families in dark blue coats load carts by lantern light; tall brass clockwork soldiers, wound by keys on their backs,
+  carry chests; a grey-bearded master clockmaker in a long coat directs them from a cart's step. Snow falling. 3:2
+  landscape, no text." (References: nuremberg_hollweg.png, a02_01.jpg, a04_02.jpg.)
+- d02_02 JAKOB STAYS. "Oil painting, 18th-century history painting style. At a snowy works gate at night a young
+  journeyman clockmaker with a leather apron turns away from a line of carts and walks towards distant soldiers in
+  purple coats with lanterns; behind him an old master clockmaker watches, hand half raised. 3:2 landscape, no text."
+  (References: nuremberg_hollweg.png, c01_08.jpg.)
+- d02_03 THE ROAD. "Oil painting, 18th-century history painting style. A frozen valley road at dawn; a column of
+  carts and brass automata hurries west; horsemen in purple coats with nets ride down from a snowy slope; far off to
+  the east a walled city glows red. 3:2 landscape, no text." (References: a02_03.jpg, c01_02.jpg.)
+- d02_04 THE SHIPS. "Oil painting, 18th-century history painting style. A grey northern harbour; families in blue coats
+  and crated brass machines go up the gangways of two tall sailing ships; an old clockmaker stands at the rail looking
+  back. Gulls, cold light. 3:2 landscape, no text." (References: nuremberg_hollweg.png, a05_04.jpg for the crates.)
+
+### d03_fazenda
+
+- d03_01 THE ISLAND. "Oil painting, 18th-century history painting style. A wide brown tropical river at the dry season,
+  sandbanks showing; on a forested island a white plantation house with a red tile roof and sugar fields, and behind it
+  dark forest. Late afternoon light, heat haze. 3:2 landscape, no text." (References: b01_02.jpg, a05_04.jpg.)
+- d03_02 THE PENS. "Oil painting, 18th-century history painting style. In a jungle clearing at dusk an elderly
+  Scandinavian naturalist in a linen coat holds up a brass lure like a censer; around him young green reptilian
+  creatures, sleek and spined, lie in wooden pens; a young assistant writes in a ledger. 3:2 landscape, no text."
+  (References: station_lindqvist.png, b01_03.jpg, a05_02.jpg.)
+- d03_03 THE COMMISSION. "Oil painting, 18th-century history painting style. Canoes land soldiers in purple coats on a
+  sandy river beach; a weathered Portuguese-Brazilian explorer with a map case and a judge in black robes step ashore;
+  the plantation house up the slope. Bright morning. 3:2 landscape, no text." (References: a03_04.jpg, b01_02.jpg.)
+- d03_04 THE STORM SIRE. "Oil painting, 18th-century history painting style. Over a jungle canopy at dawn a great green
+  winged reptile with a crested head flies, small winged hatchlings round it, watching canoes on the river below.
+  Mist in the trees. 3:2 landscape, no text." (References: b01_05.jpg, a03_03.jpg.)
+
+### d04_concordia
+
+- d04_01 THE MINE ON THE HIGHLANDS. "Oil painting, 18th-century history painting style. A high grassy plateau with tall
+  umbrella-shaped araucaria pines and red earth; an old mine's spoil heaps; a brass clocktower half raised by tall
+  clockwork machines; families in blue coats set up tents. Wide sky, clear light. 3:2 landscape, no text."
+  (References: a02_02.jpg, a04_01.jpg.)
+- d04_02 THE VALLEY'S FEAR. "Oil painting, 18th-century history painting style. Night on a cart road up a hill; a crowd
+  of colonists with torches and farm tools stops before a line of brass automata with shields; a country priest in a
+  black cassock stands between them with raised hands. 3:2 landscape, no text." (References: a07_06.jpg, a04_04.jpg.)
+- d04_03 THE CRATES. "Oil painting, 18th-century history painting style. In a dark mine gallery lit by a lantern an old
+  clockmaker kneels by two opened wooden crates stamped with a gear seal; inside, brass parts gleam; from the crate a
+  thin line of gear plates has crept across the rock floor. 3:2 landscape, no text." (References: nuremberg_hollweg.png,
+  a05_04.jpg, c01_03.jpg.)
+- d04_04 CONCORD. "Oil painting, 18th-century history painting style. A new town of timber and brass on a highland
+  plateau at sunset; a clocktower over it; an old clockmaker and a lean man in a sober black coat with a revolutionary's
+  cockade (the exile) stand together looking at it. 3:2 landscape, no text." (References: nuremberg_hollweg.png,
+  a06_05.jpg for Varenne.)
+
+### d01_minas
+
+- d01_01 VILA RICA. "Oil painting, 18th-century history painting style. A colonial mining town spread over steep green
+  hills, whitewashed houses with red roofs, baroque churches with twin towers on every height, a stone square in the
+  middle with a crowd. Morning light, mountains behind. 3:2 landscape, no text." (References: a01_01.jpg, p01_05.jpg.)
+- d01_02 THE DERRAMA. "Oil painting, 18th-century history painting style. In a stone square an official reads a tax
+  decree from steps before soldiers in purple coats; an angry crowd of miners and townsmen; a young priest in a black
+  cassock moves among them. 3:2 landscape, no text." (References: rome_tomasz.png (younger), a01_03.jpg.)
+- d01_03 THE STAIRS. "Oil painting, 18th-century history painting style. Night on steep stone stairs between white
+  houses; soldiers in purple coats charge upward with fixed bayonets against men with muskets behind a cart. 3:2
+  landscape, no text." (References: a06_01.jpg, a01_04.jpg.)
+- d01_04 THE GOLD ROAD. "Oil painting, 18th-century history painting style. A mule train of carts with iron-bound
+  chests goes down a rocky gorge road escorted by horsemen in purple coats; men fire from the rocks above. 3:2
+  landscape, no text." (References: a05_03.jpg, a06_02.jpg.)
+
+### d05_aldeia
+
+- d05_01 SÃO RAFAEL. "Oil painting, 18th-century history painting style. A mission village on a riverside bluff in
+  the Amazon: a timber church with a whitewashed front and a wooden bell tower, thatched houses, fields; native converts
+  and a priest in a black cassock at the church door; flooded forest around. Soft evening light. 3:2 landscape, no
+  text." (References: b01_02.jpg, rome_tomasz.png (younger).)
+- d05_02 THE BELL. "Oil painting, 18th-century history painting style. Night; a priest rings a church bell by a rope
+  while villagers run in from the fields; at the edge of the flooded forest pale eyes and green reptilian shapes. 3:2
+  landscape, no text." (References: b01_04.jpg, d05_01 when made.)
+- d05_03 THE DRAGOONS. "Oil painting, 18th-century history painting style. Mounted soldiers in purple coats gallop
+  through a muddy jungle clearing with sabres raised into a pack of green raptor-like reptiles. 3:2 landscape, no
+  text." (References: a05_03.jpg, b01_04.jpg.)
+- d05_04 THE FIELDS. "Oil painting, 18th-century history painting style. A priest and a cavalry captain stand by a
+  granary at dusk with a torch between them; behind them a column of villagers leaving down a trail; the fields green
+  and full. 3:2 landscape, no text." (References: rome_tomasz.png (younger), d05_01 when made.)
+
+### d06_queen
+
+- d06_01 THE FLOOD. "Oil painting, 18th-century history painting style. A plantation island in flood; wooden pens stand
+  in brown water among half-drowned trees; green reptilian creatures in the pens lift their heads toward the forest.
+  Grey rain light. 3:2 landscape, no text." (References: d03_02 when made, b01_02.jpg.)
+- d06_02 SHE COMES. "Oil painting, 18th-century history painting style. Out of a flooded forest at night wades a large
+  green reptilian mother creature, crested and heavy, eyes glowing faintly; smaller creatures turn from their pens
+  toward her. 3:2 landscape, no text." (References: b01_03.jpg, a03_03.jpg.)
+- d06_03 THE QUEEN. "Oil painting, 18th-century history painting style. In a ruined forest pen at dawn an enormous
+  green reptilian queen lies rooted in the swamp, her back grown with spines and fleshy growths; a ring of creatures
+  around her bowed low. Awe, not horror. 3:2 landscape, no text." (References: b01_03.jpg, a03_03.jpg.)
+- d06_04 THE CANOES. "Oil painting, 18th-century history painting style. An elderly naturalist and a young assistant
+  push off in a canoe from a burning plantation house at night; on the bank behind, green creatures. 3:2 landscape, no
+  text." (References: station_lindqvist.png, b01_06.jpg.)
+
+### d07_spring
+
+- d07_01 THE COUNCIL OF GEARS. "Oil painting, 18th-century history painting style. A council hall of timber and brass;
+  craftsmen in blue coats sit on benches, each with a small brass automaton standing at his shoulder; an old clockmaker
+  presides; a lean man in a black coat speaks. Lamplight. 3:2 landscape, no text." (References: nuremberg_hollweg.png,
+  a07_01.jpg, a06_05.jpg.)
+- d07_02 THE STREETS TURN. "Oil painting, 18th-century history painting style. Night in a town of brass; a street's
+  lamps go red one after another; clockwork figures wind each other in a doorway; a young craftsman with a lantern
+  watches from a corner. 3:2 landscape, no text." (References: a04_03.jpg, c01_04.jpg.)
+- d07_03 THE GREAT SPRING. "Oil painting, 18th-century history painting style. Inside a tall tower a huge coiled brass
+  spring fills the space; an old clockmaker with both hands on a great iron brake lever; craftsmen in blue behind him
+  shouting. 3:2 landscape, no text." (References: nuremberg_hollweg.png, c01_03.jpg.)
+
+### d08_rivers
+
+- d08_01 THE MEETING OF THE WATERS. "Oil painting, 18th-century history painting style. Where a black river meets a
+  brown one, a colonial river town on a bluff with a small fort and a white church; flooded forest on the far bank;
+  heavy clouds. 3:2 landscape, no text." (References: b01_02.jpg, a05_04.jpg.)
+- d08_02 NAZARÉ. "Oil painting, 18th-century history painting style. Villagers carry children and bundles into long
+  canoes on a jungle river; an explorer with a musket holds the bank; in the trees, green shapes. 3:2 landscape, no
+  text." (References: a03_04.jpg, b01_07.jpg.)
+- d08_03 THE LURE BOOK. "Oil painting, 18th-century history painting style. By a campfire on a riverbank at night a
+  weathered explorer holds an old leather book with drawings of creatures; an old boatman beside him; the explorer's
+  other hand near the fire. 3:2 landscape, no text." (References: a03_04.jpg, b01_07.jpg.)
+
+### d09_crossroads
+
+- d09_01 THE ARMY OF BRAZIL. "Oil painting, 18th-century history painting style. A long column of soldiers in purple
+  coats, cuirassiers in breastplates and powder wagons marches through dry thorny scrub and cactus under a white sky;
+  a general on a grey horse; a priest walks beside the guns. 3:2 landscape, no text." (References: p01_05.jpg,
+  a06_02.jpg.)
+- d09_02 TWO SKIES. "Oil painting, 18th-century history painting style. Over a dry red-earth plain two flights meet in
+  the sky: brass clockwork birds from the left, green winged reptiles from the right, fighting; soldiers below look
+  up. 3:2 landscape, no text." (References: d03_04 when made, a07_06.jpg.)
+- d09_03 THE COUNCIL OF WAR. "Oil painting, 18th-century history painting style. Inside a whitewashed fort's room
+  lit by lamps, a general of artillery with grey hair stands over a map of Brazil; a priest beside him; two messengers
+  in the doorway, one dusty from the jungle, one a lean man in black under a white flag. 3:2 landscape, no text."
+  (References: a06_05.jpg, rome_tomasz.png (younger), a07_03.jpg.)
+
+### d10_jungle
+
+- d10_01 THE BALLOON. "Oil painting, 18th-century history painting style. A purple observation balloon rises on a
+  rope over the Amazon's canopy at dawn; an officer in its basket with a telescope; below, mist and the dark shapes of
+  rooted creatures in the swamp. 3:2 landscape, no text." (References: a03_01.jpg.)
+- d10_02 THE NESTS BURN. "Oil painting, 18th-century history painting style. Soldiers in purple coats with torches and
+  muskets in a flooded forest; a great rooted creature's swamp burns; green fog rolls in. 3:2 landscape, no text."
+  (References: a03_03.jpg, b01_06.jpg.)
+
+### d11_siege
+
+- d11_01 THE SIEGE LINES. "Oil painting, 18th-century history painting style. Earthwork batteries on a grassy plateau
+  with araucaria pines; cannons in purple-coated gun crews fire at the brass walls and clocktower of a town; an old
+  Jesuit priest with a telescope and a young journeyman clockmaker listening, head cocked. 3:2 landscape, no text."
+  (References: a04_01.jpg, d04_04 when made, a06_02.jpg.)
+- d11_02 THE SORTIE. "Oil painting, 18th-century history painting style. At dawn brass clockwork soldiers and great
+  spring-crossbow engines pour from a town gate onto siege lines; soldiers in purple meet them. 3:2 landscape, no
+  text." (References: a02_03.jpg, a04_04.jpg.)
+- d11_03 HOLLWEG ON THE WALLS. "Oil painting, 18th-century history painting style. On brass city walls at sunset an old
+  clockmaker looks down at the siege lines; behind him, very still, rows of clockwork figures. 3:2 landscape, no
+  text." (References: nuremberg_hollweg.png, c01_06.jpg.)
+
+## CLAUDE'S CHOICES (for the owner to confirm or change)
+
+1. MISSION IDS `d01`..`d11` (Act 1 is `a`, the prologues `p` / `b` / `c`).
+2. THE LINES STAY FREE until the crossing (d05 meets the swarm before d06 shows it born for a player who plays the
+   Crown line first); the King's frame covers it.
+3. NO CLOCKTOWER IN d02: the guild is leaving; its Winders wind from a portable spring (a mission rule).
+4. d02's MIRROR: the commissary must TAKE, not kill: a family member killed by the Crown is a Crown fail (the good
+   guys enforce Rome's verdict without a massacre).
+5. MIRROR WINS THAT FIT THE CANON COUNT AS COUNTS, not broken seals (d03's commission, d06's fazenda, d07's machine):
+   the King's story allows them (Valadares found some; Lindqvist burned some; the city turned). Only wins that the
+   canon cannot hold (d02's commissary capturing Hollweg, d08's swarm taking the Barra) break a seal.
+6. b01's RIVAL PACK (`rival` standing) comes back in d06 as a third side (red), fighting the Queen's first night.
+7. VARENNE (spared) in d07 is the first to see the council's vote is not free; his side at the 3rd crossing stays open
+   (the timeline).
+8. d10 and d11's columns are SET BY THE FLAGS, not d09's survivors (no carried armies between missions).
+9. B7 (the Mist Toad) is given on the swarm's side in BOTH versions of d10 in the mirror (the ladder's step always
+   met); the scripted swarm has it only GROWN.
+10. HOLLWEG IN d11: on the walls with `spring` running (seen, not met); with stopped, he came with the Crown's column
+    as a prisoner who asked to come (his road to the King's palace).
+11. THE FRAME's two versions (named heir / unseen listener) are one setting, `heir` named / unseen.
+12. THE WAR MAP SHOWS WHAT THE KING KNEW: Concórdia stays blue on his parchment after d07 (`spring` running) until
+    d09; the brass map (Hollweg's) never shows it red.
+13. B5 and B6 SWAP: d06 gives GROW stage 3 + BRUTE (the Queen is stage 3).
+14. C8 (balloon) is the jungle front's, C9 (charges) the siege's, whichever is fought first.
+15. THE CITY IN d11 IS BOUND to K7 (the Naturalist mirrors' rule extended to the Clockwork's mirror).
+16. THE QUEEN IS LINNEA (owner question 1).
+17. CONCÓRDIA, FORT CONSTANTINE, SÃO RAFAEL and the new characters' names are proposals.
+18. NO NAVAL: d02's ships, d06's and d08's canoes and the crossing to Brazil are stills or exits only.
+
+## OWNER QUESTIONS
+
+Each with Claude's recommendation (the plan above is written as if it is taken) and what changes either way.
+
+1. WHO IS THE QUEEN? RECOMMENDED: LINNEA. The player met her in b01's pen (and freed her as the Sire's pack), Valadares
+   saw her grown in a03, and she comes down the rivers for her young (b01's clutch) in d06: the Brood's birth is her
+   story, and nature unleashed by pride (Lindqvist kept her children for her without knowing it). OTHERWISE: a young
+   Mother bred in Lindqvist's pens grows into the Queen (Linnea stays on the plateau as an old Mother for Act 3):
+   more "Lindqvist made it", less "it was always hers".
+
+2. WHERE IS THE CITY OF GEARS, AND ITS NAME? RECOMMENDED: the southern highlands (the plateau above the Rio Uruguai:
+   pines, red earth, old mines), named CONCÓRDIA by Hollweg (a city of concord, governed by itself: the words Rome
+   condemned). OTHERWISE: Minas Gerais (the gold country: the conspiracy and the city side by side; but the crossing's
+   "one border and the other" is weaker), or another name (Nova Fürth, Libertas, the Escapement).
+
+3. FERRER'S TELLING IN d11: in his report to Rome (2780) or before the King in 2795? RECOMMENDED: his REPORT (he may be
+   dead by 2795; the King holds the report, as he holds Valadares'). OTHERWISE: alive at the palace in 2795 (one more
+   old man at the King's fire, with Hollweg: a scene to write).
+
+4. THE GUILD LEAVES BY HAMBURG (d02's ships: the guild crosses Protestant and free cities; no Crown port would take
+   it). RECOMMENDED: yes, a still. OTHERWISE: Lisbon (the crates' road, but in the Crown's hand: a smuggling scene).
+
+5. THE CONSPIRACY OF THE MINES (d01): an echo of history (the Minas conspiracy) with every name invented. RECOMMENDED:
+   yes, invented names only. OTHERWISE: a different Crown mission (the Crown's Viceroy arriving at Salvador; a
+   Portuguese town's rising at home).
+
+6. RECLAIM MISSIONS. The rule: a lost battle returns as a reclaim mission. Act 1's losses that the canon cannot hold
+   are versus / mirror wins (Fürth fallen, Lyon risen, Paris taken by the Assembly, the plateau kept); Act 2 adds the
+   Barra (d08's swarm win) and the commissary's capture (d02). RECOMMENDED: no separate missions: the Act 2 mission at
+   that place opens with a RECLAIM PART (a Part 0: Fürth's breakout in d02, the Barra's bluff in d10; Lyon and Paris in
+   Act 3's European missions) and the war map's broken seal mends when it is won. OTHERWISE: a short reclaim mission
+   per broken seal (r_furth, r_lyon, r_paris, r_plateau, r_barra), optional pins on the map (more work, more
+   missions only versus players see).
+
+7. THE CANON OF THE FIELDS (d05): RECOMMENDED LEFT (the priest will not burn the poor's bread; soldiers pay for it).
+   OTHERWISE BURNED (the hard choice that worked: the frontier holds; the village never forgives).
+
+8. THE CANON OF THE GREAT SPRING (d07): RECOMMENDED RUNNING (Hollweg's last pride; the city whole and red for Act 3;
+   he reaches the King's palace only after it turns on him). OTHERWISE STOPPED (Hollweg's first humility; a blue
+   remnant of the guild for Act 3, the city smaller).
+
+9. THE CROSSING: LOCK THE SECOND FRONT until the first is won? RECOMMENDED: yes (the choice means something: the
+   briefing of the other says "the army is in the north"). OTHERWISE: both open at once and the flag only says which was
+   CHOSEN (a player could undo the choice by playing the other first).
+
+10. THE BROOD'S OWN HUB AND MAP (the nest floor): RECOMMENDED: Act 3 (the Brood player has the Naturalist's hub until
+    then: Valadares' quarters with the chart). OTHERWISE: now with d06 (one more painting, the nest-floor skin).
+
+11. THE CANON OF THE CROSSING (d09): THE BROOD FIRST (Claude's lean: the people first; the city grows unchecked into
+    Act 3's great threat) or THE CLOCKWORK FIRST (the city besieged; the swarm spreads down the rivers). The owner's.
+
+12. THE LURE BOOK'S CANON (d08): RECOMMENDED BURNED (Rome's order; Valadares will not call them). OTHERWISE USED (the
+    Crown's servant does a hard practical thing once; the lure comes back in d10 and Act 3).
+
+13. THE HEIR (open): the frame is written both ways (THE FRAME above); the owner decides NAMED (Prince Alessandro, seen,
+    a few lines) or UNSEEN (the player is the listener). Claude's recommendation if asked: UNSEEN until the finale,
+    where the heir steps out and is the player's own commander in the present: the reveal is the King's last lesson
+    ("you were listening all along"). It keeps every frame scene cheap now and gives the finale a moment.
+
+14. THE KING AT THE CHOICE (d09): the King asks the listener "what would you choose?" before telling what Ruggieri
+    chose. RECOMMENDED: yes (the player's choice is also the heir's lesson). OTHERWISE: the player is simply Ruggieri.
+
+15. Act 2's SIZE: eleven missions plus the frame (and the heir's practice later). RECOMMENDED as planned. OTHERWISE
+    trim d01 (the Crown line would have two missions before the crossing) or merge d02 into d04's opening.
