@@ -244,6 +244,41 @@ func _common_over() -> void:
 		scout.passive = difficulty >= 1 and not peaceful
 
 
+## TENSION, NOT COGS (cw-written-openings). A written build begun from the common opening has more cogs and its Mainspring
+## later than the build from 0:00: the Owl raids on Greenhold waited on Tension for their Swifts from 3:30 with 1,000 cogs
+## in the bank, and the stuck rule ended the build at 5:55 with one Owl. While the first step held up waits only for
+## Tension for SPRING_WAIT s, with the cogs for it free, a Clocktower that has no Mainspring gets one (the econ limit, one
+## a Clocktower), its crew as the build's.
+const SPRING_WAIT := 20.0
+var _t_wait := -1.0
+var springs_laid := 0           # (tests, the study)
+
+
+func _tension_spring(r: Dictionary) -> void:
+	if written_at < 0.0 or r.is_empty() or String(r.get("st", "")) != "wait" or float(r.get("t", 0.0)) <= _free_t():
+		_t_wait = -1.0
+		return
+	if _t_wait < 0.0:
+		_t_wait = game.clock
+		return
+	if game.clock - _t_wait < SPRING_WAIT:
+		return
+	if game.econ_count(team, "mainspring") >= game.econ_limit(team, "mainspring"):
+		return
+	for sp in _mine("mainspring"):
+		if not sp.built:
+			return              # (one going up already)
+	var cost := game.build_price(team, "mainspring")
+	if _free() < cost:
+		return
+	var c := _spot("mainspring")
+	if c.x < 0 or _lay("mainspring", c, false) == null:
+		return
+	_t_wait = game.clock
+	springs_laid += 1
+	note("waits on Tension with %d cogs free: a Mainspring by the second Clocktower" % _free())
+
+
 ## THE CLOCKWORK'S RUSH TURNS TO THE ECONOMY (cw-written-openings). The Rush is the shared computer on the Rush numbers (a
 ## quarter fewer Winders, the second Clocktower 2.5 times later, two halls, tech late); its waves are the ONE ARMY push's,
 ## which goes only stronger than the enemy it reckons, so its first attack came at a median 5:40-7:15 (OPTIMAL's 5:20-
@@ -759,6 +794,7 @@ func _bo_tick() -> void:
 		_bo_mass()              # (clockwork-army: the army grows from the new presses on, ahead of the later steps)
 	var ahead := 0
 	var i := 0
+	var first_r := {}
 	while i < steps.size() and ahead < 3:
 		if done[i]:
 			i += 1
@@ -776,6 +812,7 @@ func _bo_tick() -> void:
 		if st == "supply":
 			break
 		if ahead == 0:
+			first_r = r
 			# (the first step held up puts its price by; the ones read past it only go with what is left, they put
 			# nothing by: a far step waiting for a building that is not even laid must not starve the Winders)
 			_hold += int(r.get("cost", 0))
@@ -787,6 +824,7 @@ func _bo_tick() -> void:
 	if not done.has(false):
 		_end_build("the last step")
 		return
+	_tension_spring(first_r)
 	_train_workers()
 	if macro != null:
 		macro.bo_tick()         # (econ-coach-clockwork: empty posts filled, a standing Clocktower's presses, under any build)
