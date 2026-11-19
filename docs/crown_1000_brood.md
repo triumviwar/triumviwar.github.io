@@ -99,6 +99,7 @@ Every block against the pooled blocks of the code kept at the time (base); d = t
 | b16 | **guns** (kept code +): the push's Field Cannons one for 3 Musketeers, up to 8 (one for 5, up to 4) | -1.00 | -0.02 | 6 | 1 | 17:52 | -0.27 (-0.6) · -0.13 (-0.9) · 4/6 (v b09+b10+b14) | no: 4-9 cannons at once (5.7-6.4), the line thinner |
 | b17 | **maws** (kept code +): the Siege push marches on the nearest Rootmaw seen rooted away from the Mother (the enemy's base, before) | -0.57 | +0.03 | 8 | 2 | 17:50 | +0.16 (0.6) · -0.07 (-0.8) · 7/3 (v b09+b10+b14) | no (not clear: 8 Rootmaws broken in 17 pushes, as many as before) |
 | b18 | **mortars** (kept code +): the push's Mortars one for 4 Musketeers, up to 6 (one for 7, up to 3) | -0.84 | +0.07 | 6 | 3 | 18:25 | -0.11 (-0.3) · -0.04 (-0.3) · 4/4 (v b09+b10+b14) | no |
+| b19 | **guard** (kept code +): while the Siege push is out against the Brood, 30% of the Musketeers (the nearest home) and one gun of four stay home and do not join it | -0.52 | +0.25 | 7 | 5 | 18:17 | +0.21 (0.5) · +0.15 (1.4) · 6/3 (v b09+b10+b14) | not yet (under the bar, the army at 12:00 5.0 of the Brood's): run again (b21) |
 
 ## What the games showed (the stories, the plan lines, the counters)
 
