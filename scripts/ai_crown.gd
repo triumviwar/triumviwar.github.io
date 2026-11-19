@@ -596,6 +596,7 @@ func _ready() -> void:
 	_bo_plan = (plan[bo_key] as Array).duplicate(true) if difficulty >= 1 else []
 	bo_lab_cap = _cc_lab_cap(bo_key)
 	if strategy != "rush" and AICrownCoach.farm_first():      # (every plan but the Rush, the owner 2026-11-16 09:39)
+		AICrownRules.fire(self, "farmfirst")
 		AICrownCoach.farm_before_barracks(_bo_plan)    # (the coach: the owner DECIDED 2026-11-16 08:01; switch farmfirst:off)
 	if _bo_plan.is_empty():
 		bo_done = true                         # (Easy: no build order, the shared rules from the start)
@@ -674,7 +675,7 @@ var ca = null
 func ca_behind() -> bool:
 	if ca == null:
 		ca = AICrownArmy.new(self)
-	return ca.behind()
+	return AICrownRules.t(self, "crownarmy_behind", ca.behind())
 
 
 func ca_slot_waits(kind: String) -> bool:

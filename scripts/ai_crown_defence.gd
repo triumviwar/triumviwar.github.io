@@ -208,7 +208,7 @@ var _coming := 0.0
 
 
 func wave_waits(_ready: Array) -> bool:
-	return active() and warn_on and alert and _coming >= _home_v * RECALL_HOME
+	return AICrownRules.t(ai, "df_wave_waits", active() and warn_on and alert and _coming >= _home_v * RECALL_HOME)
 
 
 var _home_v := 0.0
@@ -247,7 +247,7 @@ var soldiers_behind := OS.get_cmdline_user_args().has("dfsoldiers:behind")
 
 
 func wants_soldiers() -> bool:
-	return active() and warn_on and alert and (not soldiers_behind or _coming >= _home_v * SOLDIERS_K)
+	return AICrownRules.t(ai, "df_soldiers", active() and warn_on and alert and (not soldiers_behind or _coming >= _home_v * SOLDIERS_K))
 
 
 ## (AICrown.party_wait) no balloon party forms while the alert lasts (or BOARD_REST s after one was called off).

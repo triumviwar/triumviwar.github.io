@@ -159,8 +159,8 @@ func army_short() -> bool:
 	if AICrownVClock.labs_free(ai):
 		return false            # (crown-1000-clockwork: against the Clockwork the labourers before the army clock)
 	if ai.vb() != null and ai.vbr.line_short():
-		return true
-	return ai.ca_behind()
+		return AICrownRules.t(ai, "armyfloor", true)
+	return AICrownRules.t(ai, "armyfloor", ai.ca_behind())
 
 
 ## Trains what it can now and returns the gold to hold for the rest (a labourer's price for each slot still open).
@@ -201,7 +201,10 @@ func halls_need() -> int:
 	if ai.dfn != null and ai.dfn.wants_soldiers():
 		return 0
 	var t: float = game.clock
-	return 4 if t >= HALL4_T else (3 if t >= HALL3_T else (2 if t >= HALL2_T else 1))
+	var need := 4 if t >= HALL4_T else (3 if t >= HALL3_T else (2 if t >= HALL2_T else 1))
+	if need > ai._halls().size():
+		AICrownRules.fire(ai, "hallsontime_short")      # (crown-rule-cleanup: a think when the rule wanted a hall more)
+	return need
 
 
 const FULL_T := 150.0

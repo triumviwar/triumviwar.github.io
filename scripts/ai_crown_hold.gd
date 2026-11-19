@@ -1466,8 +1466,8 @@ func _inside_natural(spots: Array) -> bool:
 
 
 func gate_live() -> bool:
-	return gate_on and active() and not _gate_spots.is_empty() and _gate_hall != null and is_instance_valid(_gate_hall) \
-			and not _gate_hall.dead
+	return AICrownRules.t(ai, "hold_gate_live", gate_on and active() and not _gate_spots.is_empty() and _gate_hall != null and is_instance_valid(_gate_hall) \
+			and not _gate_hall.dead)
 
 
 ## The walled natural the army stands at: the plan of our nearest hall to the main (not the main) whose wall is closed
