@@ -172,3 +172,33 @@ static func mid_at(ai, k: String, n: int, at: Dictionary) -> Dictionary:
 ## against a force up to 1/STAND_BEAT of itself (was 1/1.3) and musters only under STAND_MUSTER of the force (was 1.2).
 const STAND_BEAT := 0.9
 const STAND_MUSTER := 0.85
+
+
+# ------------------------------------------------------------------ 12. a big bank late: more Barracks (AICrown stage 1)
+
+## Blocks 5 and 14 (with `hall2`): the Crown's bank grew from 12:00 (a mean 811 at 12:00, 2,218 at 14:00, 3,280 at 16:00,
+## 3,916 at 18:00) while its army fell (1,828 -> 1,227) and the Clockwork's pushes took its halls: the gold was there, the
+## production was not (AICrown._scale_prod sits behind the milestones' think, which a threat at home or a hall's saving
+## stops). Here, from SPEND_FROM, with SPEND_BANK banked and every Barracks built and busy, another Barracks goes down (one
+## at a time, SPEND_MAX at most); the soldiers then come from the shared rules.
+const SPEND_FROM := 480.0
+const SPEND_BANK := 500
+const SPEND_MAX := 8
+
+
+
+static func spend(ai) -> void:
+	if not on("spend") or not vs(ai) or ai.game.clock < SPEND_FROM or ai._gold() < SPEND_BANK:
+		return
+	var bs: Array = ai._mine("barracks")
+	if bs.size() >= SPEND_MAX or ai._busy_building("barracks"):
+		return
+	for b in bs:
+		if not b.built or (b.queue as Array).size() < 2:
+			return
+	if ai._gold() < int(Defs.BUILDINGS["barracks"]["cost"]) + 100:
+		return
+	var n0: int = bs.size()
+	ai._construct("barracks")
+	if ai._mine("barracks").size() > n0:
+		ai.say("a big bank (%d): another Barracks (%d)" % [ai._gold(), n0 + 1])

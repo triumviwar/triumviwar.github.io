@@ -1080,6 +1080,7 @@ func _think_stage_crown(i: int) -> void:
 		if stk == null:
 			stk = AICrownStack.new(self)
 		stk.tick()              # (crown-build-stack: labourers stacked on the sites that matter, scripts/ai_crown_stack.gd)
+		AICrownVClock.spend(self)       # (crown-1000-clockwork: a big bank late: more Barracks)
 		_lost_halls_crown()     # (crown-ai-v2: a hall lost is remembered, its ground waits)
 	if i == 1 and not cannon_first:
 		_cannon_check()         # (CANNONS AGAINST THE BROOD, below)
