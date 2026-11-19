@@ -646,6 +646,7 @@ func opt_switch(k: String) -> bool:
 			_bo_plan.insert(bo_i, again)
 			pending_kept += 1
 		bo_lab_cap = _cc_lab_cap(key)
+		AICrownVClock.hall2_first(self)      # (crown-1000-clockwork: the second hall next)
 		if not _def_on:
 			bo_army = false
 			bo_army_cap = 0
@@ -739,6 +740,8 @@ const HOLD_BEAT_BROOD := 2.0
 
 
 func hold_beat() -> float:
+	if AICrownVClock.on("stand") and AICrownVClock.vs(self):
+		return AICrownVClock.STAND_BEAT      # (crown-1000-clockwork: down to the natural against an even force)
 	if on and _foe_is("brood"):
 		return float(plan.get("beat_brood", HOLD_BEAT_BROOD))
 	return 1.3
@@ -1077,6 +1080,7 @@ func _think_stage_crown(i: int) -> void:
 		if stk == null:
 			stk = AICrownStack.new(self)
 		stk.tick()              # (crown-build-stack: labourers stacked on the sites that matter, scripts/ai_crown_stack.gd)
+		AICrownVClock.spend(self)       # (crown-1000-clockwork: a big bank late: more Barracks)
 		_lost_halls_crown()     # (crown-ai-v2: a hall lost is remembered, its ground waits)
 	if i == 1 and not cannon_first:
 		_cannon_check()         # (CANNONS AGAINST THE BROOD, below)
@@ -1969,6 +1973,8 @@ var _mill_farm_last := -1.0
 func _mill_farm_cap(cap: int) -> int:
 	if _defending() or (scout != null and scout.verdict == "rush" and game.clock < 420.0):
 		return cap
+	if AICrownVClock.on("powder") and AICrownVClock.vs(self):
+		cap = AICrownVClock.mill_cap(self, cap)      # (crown-1000-clockwork: the powder piles up: the hands to the Farms)
 	# (by the labourers beyond the Farms' posts, not by where the hands stand now: a hand sent to a Farm frees no post to
 	# count, so the cap does not swing back and forth)
 	var posts := 0
@@ -2597,11 +2603,13 @@ func _mid_tick() -> void:
 			continue
 		if lags and not _mid_ok_lagging(k):
 			continue            # (ai-followups: the army far behind: no tech, and no more Barracks than the gold keeps busy)
+		if AICrownVClock.tech_waits(self, k, halls):
+			continue            # (crown-1000-clockwork: the Church and the Armoury after the third hall)
 		if _cc_rush_hold(k, army) or _cc_tech_hold(k):
 			continue            # (crown-v-clockwork-coach: a Clockwork rush read: soldiers before the milestones; the Farms
 			                    # before the tech)            # (crown-owner-eco: the gun's gold holds the tech back, not the production; crown-hold: the
 			# first AI.CANNONS_FIRST Field Cannons too)
-		var at: Dictionary = m[2]
+		var at: Dictionary = AICrownVClock.mid_at(self, k, int(m[1]), m[2])      # (crown-1000-clockwork: a milestone sooner)
 		if labs < int(at.get("labs", 0)) or halls < int(at.get("halls", 0)) or army < int(at.get("army", 0)):
 			continue
 		if not game.requirement_met(team, k) or _busy_building(k):
@@ -2661,6 +2669,8 @@ const GUN_SHARE_BROOD := 4
 
 
 func _gun_share() -> int:
+	if AICrownVClock.on("guns") and AICrownVClock.vs(self) and on and difficulty >= 1:
+		return AICrownVClock.GUN_SHARE      # (crown-1000-clockwork: a Field Cannon for every few Musketeers)
 	if brood_spend_off or not on or difficulty < 1 or not _foe_is("brood"):
 		return super()
 	return GUN_SHARE_BROOD
@@ -3413,6 +3423,8 @@ const OWNER_HALL_ARMY := 0.7
 func owner_hall_ok() -> bool:
 	if not owner_on() or _halls().size() < 2:
 		return true
+	if AICrownVClock.on("hall3") and AICrownVClock.vs(self):
+		return AICrownVClock.hall_ok(self)     # (crown-1000-clockwork: the third hall on the labourers alone)
 	if _best_soil() < OWNER_HALL3_SOIL:
 		return true
 	var labs := game.workers(team).size()
@@ -3526,6 +3538,8 @@ func owner_lab_cap() -> int:
 	var going := _hall_reserve or _busy_building(_f()["hall"])
 	var top := OWNER_LAB_MAX + OWNER_LAB_PER_HALL * maxi(0, built - 2) + (SAT_PRETRAIN if going and built >= 2 else 0)
 	var cap := _posts() + OWNER_SPARE_LABS + (SAT_PRETRAIN if going else 0)
+	if AICrownVClock.rich_labs(self) >= 0:
+		return mini(mini(cap, top), AICrownVClock.rich_labs(self))     # (crown-1000-clockwork: a big bank: the supply to soldiers)
 	return mini(cap, top)
 
 

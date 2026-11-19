@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.86", "items": [
+		"THE CROWN COMPUTER AGAINST THE CLOCKWORK, coached over 260 games: its OPTIMAL plan picks the Timing attack or the Siege push, its second Town Hall goes down right after the pick (about 3:00), the Church and the Armoury wait for the third hall, and when its powder runs out late with gold in the bank its Foundries cast Field Cannons and its Barracks train Musketeers with the bayonet. On the same ten games it now lasts to 20:00 in 18 of 20 (was 6 of 10) and leads or wins 8 (was none).",
+	]},
 	{"v": "0.38.85", "items": [
 		"THE CROWN COMPUTER AGAINST THE BROOD (nothing the player uses changed): it now opens with its Horseman rush in every game against the Brood, and when the rush is over it turns to its Siege push instead of the Economy race: Field Cannons and Mortars first, then pushes on the Brood's rooted ground when it is clearly bigger than the Brood army it has seen. In 30 test games to 20 minutes it lasted to the end in 20 (9 of 20 before) and was ahead at the bell in 10, with three times the cannons and nearly four halls at 12:00. It still rarely wins outright. Measured in 210 games against the Brood, 13 other changes tried and left off.",
 	]},

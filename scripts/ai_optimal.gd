@@ -196,6 +196,8 @@ func choose(read: String) -> Array:
 			var w: Dictionary = (NORMAL.get(fac, {}) as Dictionary).get(f, {"balanced": 1.0})
 			if fac == "crown" and f == "clockwork":
 				w = clock_w(w)
+				if AICrownVClock.on("pick"):
+					w = AICrownVClock.pick_w()      # (crown-1000-clockwork 1: Timing or Siege)
 			var k := _weighted(w)
 			if NORMAL_TRY != "" and fac == "crown":
 				k = NORMAL_TRY
@@ -259,7 +261,7 @@ func _punish(f: String, t: float) -> Array:
 				# (coached: the one-hall Timing attack lost the race to a Clockwork economy, 9,500 to 16,600 earned by 12:00
 				# on Highmoor. crown-ai-v2: Balanced's waves, picked here in 24 of 38 QA games, won or led 2 of 33; in the plan
 				# games against Hard Clockwork OPTIMAL on four maps the Timing attack won or led 3 of 4: GREEDY_CLOCK)
-				var k := _weighted(clock_w(GREEDY_CLOCK))
+				var k := _weighted(AICrownVClock.pick_w() if AICrownVClock.on("pick") else clock_w(GREEDY_CLOCK))
 				return [k, "out-expand it" if k == "economy" else _normal_why(k)]
 			if f == "crown" and _mirror_keep():
 				return []            # (crown-v-crown-coach: the Timing attack keeps its timing)

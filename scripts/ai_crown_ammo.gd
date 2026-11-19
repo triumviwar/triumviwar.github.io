@@ -40,6 +40,8 @@ func musket_ok(b: Building, kind: String) -> bool:
 		return true
 	if _hold_dry():
 		return true             # (a rush at the gate and no Mill yet: a bayonet now, the shots when the Mill grinds)
+	if AICrownVClock.dry_musket(ai):
+		return true             # (crown-1000-clockwork: the gold piles up, the powder is gone: a bayonet now)
 	if ai.has_method("ca_dry_ok") and ai.ca_dry_ok():
 		return true             # (crown-coach-army: the army behind the clock and the Mill only starting: a bayonet now, the
 		                        # shots when it grinds; scripts/ai_crown_army.gd dry_ok)

@@ -1,0 +1,10 @@
+42 error lines
+   34  SCRIPT ERROR: Trying to assign invalid previously freed instance.  at: slot_for (res://scripts/ai_expand_wall.gd:339)
+    1  ERROR: Resource file not found: res://assets/buildings/town_hall_damaged.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Resource file not found: res://assets/buildings/town_hall_belfry_damaged.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Resource file not found: res://assets/buildings/town_hall_destroyed.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Resource file not found: res://assets/buildings/farm_destroyed.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Resource file not found: res://assets/buildings/cottage_damaged.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Resource file not found: res://assets/buildings/powder_mill_damaged.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Resource file not found: res://assets/buildings/powder_mill_stone_damaged.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Resource file not found: res://assets/buildings/powder_mill_damaged_ground.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)

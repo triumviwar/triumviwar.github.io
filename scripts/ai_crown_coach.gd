@@ -156,6 +156,8 @@ func labs_wanted() -> bool:
 func army_short() -> bool:
 	if floor_off:
 		return false
+	if AICrownVClock.labs_free(ai):
+		return false            # (crown-1000-clockwork: against the Clockwork the labourers before the army clock)
 	if ai.vb() != null and ai.vbr.line_short():
 		return true
 	return ai.ca_behind()
