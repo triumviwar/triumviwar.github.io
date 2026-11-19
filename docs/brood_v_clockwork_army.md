@@ -38,7 +38,8 @@ After the fix (scripts/ai_brood_v_cw.gd, only against the Clockwork, no unit num
 | income ratio at 12:00 (OPTIMAL / Balanced) | 0.74 / 0.79 | 0.79 / 0.81 |
 
 The Brood now wins some games against the Clockwork computer (6 of 16, none before) and is better in 11 of 16 paired
-games. It is not even yet: it still loses 8 of 16. CROWN_MIRROR_LINE
+games. It is not even yet: it still loses 8 of 16. Against the Crown and in the mirror nothing moved (the rules don't act
+there): Crown 8 of 8 won or led before and after, mirror 2 of 8 before and after.
 
 ## 1. The question, with numbers
 
@@ -123,7 +124,7 @@ each has its own switch. No unit, price or research number changed.
 | bvcraid | THE RAPTOR RAID: with Raptors held home, 8-16 of them (4 kept as a guard) go after the Winders at the Cog Press or Clocktower farthest from where the Clockwork's army was last seen, at most every 75 s, never with the army on the way (14 tiles), an alarm, enemies near the Mother or a wave out. They bite Winders not guarded (under 140 of armed enemies within 6 tiles), walk past buildings, and come home when outmatched (0.8), half dead or after 70 s. |
 
 Also: tools/qa_match.gd writes each side's army by kind every minute (`kinds`), and the Brood's wave line in the match log
-says what it reckoned ("attacks with 69 supply (...) (worth 3105; it reckons the Clockwork's army 2650)").
+says what it reckoned ("attacks with N supply (kinds) (worth V; it reckons the Clockwork's army R)").
 
 ## 3. Measured
 
@@ -134,7 +135,16 @@ same 16 after (`tools/study/plan_matrix_brood.py`; the data in `docs/brood_v_clo
 `docs/brood_v_clockwork_army/report.md`). Scored as the plan matrix: W / L before the bell; at the bell led (w) or
 trailed (l) by income + 2 x army, 10%.
 
-RESULTS_TABLE
+| plan v the Clockwork | before: won or led (W-D-L) | after | after better / worse than before, game by game (p) | finer score before / after |
+|---|---|---|---|---|
+| OPTIMAL (8 games) | 0 (0-2-6) | **4 (4-1-3)** | 6 / 2 (0.29) | -0.75 / **1.08** |
+| Balanced (8 games) | 0 (0-2-6) | **2 (2-1-5)** | 5 / 3 (0.73) | -0.79 / **0.05** |
+| both (16) | 0 | **6** (all six outright wins) | 11 / 5 (0.21) | |
+
+(The finer score, as the plan matrix's: a win 3; a draw 0..2 by the Brood's share of income + 2 x army at the bell; a
+loss -2 at once .. -1 at the bell. The Brood lasted longer too: mean end of the games 14:32 -> 15:16 Balanced, 15:35 ->
+15:53 OPTIMAL, counting a game to the bell as 20:00.) On 8 games a plan no single row reaches p < 0.05; the direction is
+the same in both plans and the won/led count goes 0 -> 6 of 16.
 
 The army after (median counts standing, 8 games each):
 
@@ -158,7 +168,13 @@ The army after (median counts standing, 8 games each):
 
 ### Against the Crown and in the mirror (8 games each, OPTIMAL, the same 4 maps)
 
-CROWN_MIRROR_TABLE
+| Brood OPTIMAL v | before: won or led (W-D-L) | after | better / worse (p) | finer score before / after |
+|---|---|---|---|---|
+| Crown OPTIMAL | 8 (4-4-0) | 8 (5-3-0) | 3 / 3 (1.0) | 2.15 / 2.38 |
+| Brood OPTIMAL (mirror) | 2 (2-2-4) | 2 (1-3-4) | 5 / 2 (0.45) | 0.33 / 0.15 |
+
+Not hurt. Every rule is gated to a Clockwork enemy, so these games run the same code; the differences are the games'
+own noise (two games on the same seed differ by a few percent from the first minute).
 
 ### The films (tools/film_coach.gd, Greenhold seed 1102, Brood Balanced on spot A; `docs/brood_v_clockwork_army/films/`)
 
