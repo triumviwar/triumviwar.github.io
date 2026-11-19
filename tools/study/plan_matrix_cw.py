@@ -67,6 +67,8 @@ if __name__ == "__main__":
     data = os.path.abspath(arg("--data", os.path.join(qm.ROOT, "docs/plan_matrix_%s/data" % fac)))
     end = int(arg("--end", "1200"))
     qm.KEEP_CW = "--cwlog" in sys.argv          # (cw-written-openings: the Clockwork's own match-log lines, cwlog.txt)
+    if arg("--timeout", ""):
+        qm.TIMEOUT = int(arg("--timeout", "3000"))      # (cw-written-openings: a long 200-supply mirror game)
     if arg("--extra", ""):
         qm.EXTRA = arg("--extra", "").split(",")      # study switches for every game, e.g. cwcommon:off
     print("%d games" % len(gl), flush=True)
