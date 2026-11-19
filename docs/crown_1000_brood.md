@@ -95,3 +95,15 @@ Every block against the pooled blocks of the code kept at the time (base); d = t
 | b12 | **queen** (lean, siege on): a siege push 2.5x the Brood army seen lately (from 8:00) marches on the Brood Mother herself, setting up only against what stands in its way | -0.80 | +0.07 | 6 | 3 | 17:32 | -0.08 (-0.2) · -0.01 (-0.1) · 6/4 (v b09+b10) | no: 1-2 such pushes a game, each broke 1-2 Rootmaws and 1-5 turtles but none reached her, and lost 1,300-10,300 of army doing it |
 | b13 | **pester** (lean, siege on): after the rush the riders raid the grubs again 60 s after each party comes home (a successful rush blocked the raids for 10 minutes), and the Siege push leaves the riders to it | -0.65 | +0.06 | 7 | 2 | 18:39 | +0.07 (0.2) · -0.01 (-0.1) · 7/3 (v b09+b10) | no (not clear: 0-5 parties a game) |
 | b14 | **the kept code** again (lean + siege, nothing else): the rerun of the best | -0.77 | +0.16 | 6 | 3 | 18:56 | v the baseline b01+b05: +0.42 (1.3) · +0.40 (4.7) · 7/3 | the pool b09+b10+b14 v b01+b05: +0.45 (1.7) · +0.35 (3.7) · 7/3 |
+
+## The other matchups (the kept code, one block each)
+
+Every change is gated to a Crown computer facing a Brood (AICrown.vb(), AIOptimal's foe), so against the Clockwork and in
+the mirror the kept code plays exactly as main; one block each checked it on the same 5 maps x 2 rounds (plan_matrix_crown's
+seeds for those matchups) with no script error, and its counters show nothing of this job acted (no lean, no Siege
+handover: `c1kb_siege_at` -1 in all 20 games).
+
+| block | matchup | mean g | g14 | survived | won/led | median defeat | income 8:00 / 12:00 | army 8:00 / 12:00 | plan matrix 0.38.59, same seeds: g, g14, survived |
+|---|---|---|---|---|---|---|---|---|---|
+| cw01 | Crown v Clockwork | -1.82 | -0.92 | 5 | 0 | 16:34 | 0.64 / 0.56 | 0.68 / 0.26 | -1.75, -0.92, 6 |
+| cr01 | Crown v Crown (the "subject" is one seat of two identical computers) | +0.43 | +0.09 | 10 | 6 | - | 0.98 / 1.02 | 0.93 / 1.30 | -0.37, -0.10, 9 |
