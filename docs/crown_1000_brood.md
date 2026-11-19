@@ -138,3 +138,27 @@ handover: `c1kb_siege_at` -1 in all 20 games).
 |---|---|---|---|---|---|---|---|---|---|
 | cw01 | Crown v Clockwork | -1.82 | -0.92 | 5 | 0 | 16:34 | 0.64 / 0.56 | 0.68 / 0.26 | -1.75, -0.92, 6 |
 | cr01 | Crown v Crown (the "subject" is one seat of two identical computers) | +0.43 | +0.09 | 10 | 6 | - | 0.98 / 1.02 | 0.93 / 1.30 | -0.37, -0.10, 9 |
+
+## The tests (0.38.82, the kept code on)
+
+All 42 of `tools/test_ai_*.gd` and `tools/test_crown_*.gd` were run. **33 pass.** Two failed once and passed on the
+rerun with the kept code on (flaky as CLAUDE.md says): `test_ai_harass` ([raid]), `test_ai_rush` (the rush killed grubs,
+workers before the Mother). Five fail the same way with the whole job switched off (`-- c1kb:off`), so not from this job:
+`test_ai_rush_followup` (14-15 checks), `test_ai_wall_vs_rush` (Barracks and Mill by 75 s: 58 / 100 s),
+`test_crown_rider_screen` (a rider in front of the muskets), `test_crown_stall` ([foundry] by 330 s: 334-349),
+`test_crown_dragoon_raid` ([plan], failing on main before, CLAUDE.md). Several tests end with "Aborted" (exit 134) after
+"ALL PASS": Godot's exit, not a check.
+
+## Files
+
+- `scripts/ai_crown_1k_brood.gd` (AICrown1kBrood: the switches, KEPT = lean, siege), the changes in `scripts/ai_optimal.gd`
+  (lean, siege's keep), `scripts/ai_crown.gd` (siege's handover, press, tech, farms, pester, the counters),
+  `scripts/ai_crown_siege.gd` (queen, edge, guns, mortars, maws, guard, spare), `scripts/ai_crown_v_brood.gd` (eco),
+  `scripts/ai_crown_coach.gd` (halls); the AI STORY line for the handover (`scripts/ai_story_lines.gd`,
+  `tools/i18n/49_spectator.txt`).
+- `tools/study/crown_1000_brood.py` (run / report / csv; `--opp` for the check blocks; pooled bases "b09+b10+b14"),
+  `tools/qa_match.gd` (result.json: the c1kb counters and every siege push), `tools/study/qa_matches.py` (KEEP_GREP: the
+  Crown's plan lines kept as planlog.txt).
+- Data: `docs/crown_1000_brood/data/<block>/` (230 games), `docs/crown_1000_brood/blocks.csv`. No film was made: a film
+  takes about 3 hours of this machine (tools/film_coach.gd renders every frame), the blocks took the time; the stories,
+  plan lines and counters stand in for them.
