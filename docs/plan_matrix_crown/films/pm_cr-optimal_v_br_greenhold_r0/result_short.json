@@ -1,0 +1,99 @@
+{
+ "map": "greenhold",
+ "seed": 9103,
+ "slots": [
+  [
+   "crown",
+   "optimal",
+   0
+  ],
+  [
+   "brood",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 892,
+ "winner": 1,
+ "version": "0.38.59",
+ "tech_at": {
+  "0:charge": 430,
+  "1:nb_battering_horns": 720,
+  "1:nb_clutch_raptor": 460,
+  "1:nb_pack_hunt": 380
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "GREEDY",
+   "t": 92,
+   "why": "a second base and little army"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 329,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 563,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 639,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "pick": "opening GREEDY -> rush (punish the greed: the Horse Breeder at once, the riders before its army)",
+   "t": 92
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 247,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "read": "AGGRESSIVE",
+   "t": 248,
+   "why": "a Horse Breeder or riders early"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 330,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "pick": "opening UNKNOWN -> timing (a timing attack)",
+   "t": 180
+  }
+ ],
+ "final": [
+  {
+   "income": 10260,
+   "army": 0,
+   "halls": 0,
+   "workers": 0,
+   "plan": "economy",
+   "supply": 0,
+   "lost": 84
+  },
+  {
+   "income": 24405,
+   "army": 3750,
+   "halls": 4,
+   "workers": 55,
+   "plan": "timing",
+   "supply": 199,
+   "lost": 293
+  }
+ ]
+}

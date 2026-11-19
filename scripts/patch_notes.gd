@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.77", "items": [
+		"Studies only: every Crown computer plan was played against every faction to 20 minutes (288 games). Played that long, the Crown computer loses most games against the Brood and the Clockwork whatever its plan; the Horseman rush lasts longest against the Brood, the siege and timing plans against the Clockwork, and the balloon harass does clearly better than the Horseman rush against the Clockwork.",
+	]},
 	{"v": "0.38.76", "items": [
 		"POWDER SMOKE NO LONGER BLINKS AT EVERY VOLLEY: every puff of a volley lived exactly 3 seconds, solid for 2 and gone over 1, so a whole line's smoke came at once and went at once. Now each puff lives 2.3 to 4.1 seconds (still about 3 on average) and starts thinning early, so a line's smoke frays away bit by bit instead of switching off.",
 	]},
