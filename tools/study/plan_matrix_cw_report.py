@@ -12,7 +12,7 @@ import os, sys, json, glob, math, statistics as st
 from collections import Counter, defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import plan_matrix as pm
+import plan_matrix_cw as pm
 
 CODE = {"cr": "crown", "br": "brood", "cw": "clockwork"}
 NAMES = {"optimal": "OPTIMAL", "balanced": "Balanced", "rush": "Rush", "economy": "Economy", "timing": "Timing attack",

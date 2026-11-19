@@ -7,7 +7,7 @@
 cd "$(dirname "$0")/../.."
 fac=$1; tag=$2; end=${3:-1200}
 read m seed spec < <(python3 -c "
-import sys; sys.path.insert(0,'tools/study'); import plan_matrix as pm
+import sys; sys.path.insert(0,'tools/study'); import plan_matrix_cw as pm
 for g in pm.queue('$fac'):
   if g[0]=='$tag': print(g[1], g[2], ','.join('%s/%s/%d'%s for s in g[3]))")
 raw=${FILM_RAW:-/tmp/claude-0/films}/$tag
