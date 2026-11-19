@@ -33,3 +33,5 @@ Clockwork half; every change here runs only against the Brood (scripts/ai_crown_
 |---|---|---|---|---|---|---|---|
 | b01 | the baseline: main 0.38.81, nothing on | -0.90 | 5 | 2 | 17:44 | | the baseline |
 | b02 | **lean**: OPTIMAL plays the Rush plan's own build from 0:00 in every game (it leaned to it in 35% before, else the common opening and the Rush on a GREEDY read at ~1:40) | -0.76 | 4 | 3 | 17:41 | +0.15 (t 0.2), 5/4 | no (not clear; but the income at 8:00 1.40 v 1.17 and the army at 8:00 2.43 v 1.71 of the Brood's) |
+| b03 | **eco**: the coach's economy rules (LABOURERS FIRST, HALLS ON TIME) from 5:00 against the Brood (they come on after the first push is held or at 9:00 now), the army floor still first | -1.91 | 1 | 1 | 17:28 | -1.00 (t -2.1), 3/6 | no: the army at 12:00 fell to 1.37 of the Brood's (2.99), lost 9 |
+| b04 | **press**: from 7:30, with a fresh report, the wave goes when it is 2x the Brood army seen in the last two minutes (never under 0.35 of the clock's reckoning, BROOD_TABLE) | -1.59 | 3 | 1 | 17:37 | -0.69 (t -1.2), 6/4 | no (mixed: 6 games better, but the two wins of block 1 lost) |

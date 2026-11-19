@@ -135,6 +135,7 @@ if __name__ == "__main__":
         with open(os.path.join(dd, "extra.txt"), "w") as f:
             f.write(" ".join(extra) + "\n")
         qm.RUN_ROOT = os.path.abspath(arg("--root", qm.ROOT))
+        qm.KEEP_GREP = "Crown's plan"
         out = os.path.abspath(arg("--out", "/tmp/c1k_out/" + name))
         end = int(arg("--end", "1200"))
         with ThreadPoolExecutor(int(arg("--jobs", "2"))) as ex:

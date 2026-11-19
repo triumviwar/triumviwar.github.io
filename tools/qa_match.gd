@@ -163,6 +163,14 @@ func _crown_counters() -> Dictionary:
 		var gn = a.get("gn")
 		if gn != null:
 			d["guns"] = gn.counters()      # (crown-guns-coach: its fights, guns set and firing at contact)
+		for pr in a.get_property_list():
+			if String(pr["name"]).begins_with("c1kb_"):
+				d[pr["name"]] = a.get(pr["name"])      # (crown-1000-brood: its changes' counters)
+		var vb2 = a.get("vbr")
+		if vb2 != null:
+			for pr in vb2.get_property_list():
+				if String(pr["name"]).begins_with("c1kb_"):
+					d["vb_" + String(pr["name"])] = vb2.get(pr["name"])
 		o[str(tm)] = d
 	return o
 
