@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.60", "items": [
+		"Studies only: every Crown computer plan was played against every faction to 20 minutes (288 games). Played that long, the Crown computer loses most games against the Brood and the Clockwork whatever its plan; the Horseman rush lasts longest against the Brood, the siege and timing plans against the Clockwork, and the balloon harass does clearly better than the Horseman rush against the Clockwork.",
+	]},
 	{"v": "0.38.59", "items": [
 		"Studies only: win rates in all nine matchups after two days of AI coaching (266 games): the Clockwork computer now beats the Brood computer, the Crown computer no longer collapses but still wins nothing, and the Brood mirror's start-spot edge is gone.",
 	]},
