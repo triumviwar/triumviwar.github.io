@@ -227,8 +227,9 @@ Hollweg tells it as a rescue; the King tells it as a desertion, gently.
   build: the works are being left (Claude's choice 3: the Winders wind from a portable spring, the K4 SHIELD WALL and a
   RATCHET TURRET set at the bridge as the rearguard's last stand: the ladder's reactive turret). THE COMMISSARY
   (Crown, PURPLE; the solo mirror or versus p2, else scripted): Colonel von Rauch's men (12 / 8 by a02 `furth`), the
-  commissary (proposed: Commissary Brandt of the Imperial Chancery), Ferrer as witness, Musketeers, Horsemen, two Field Cannons, dogs; their order is to TAKE, not to kill (a Crown kill of a family member
-  is a Crown fail in the mirror: Claude's choice 4). THE MACHINE (RED, scripted): it sees Fürth emptying and sends a
+  commissary (proposed: Commissary Brandt of the Crown's chancery), Ferrer as witness, Musketeers, Horsemen, two
+  Field Cannons, dogs; their order is to TAKE, not to kill (a Crown kill of a family member is a Crown fail in the
+  mirror: Claude's choice 4). THE MACHINE (RED, scripted): it sees Fürth emptying and sends a
   sortie into the works in Part 2 (bigger by a04 `lost_to_machine`). JAKOB (alive) is a fourth figure: he walks to the
   Crown's lines at the gate (scene, Part 1).
 - MAP (campaign:furth_exodus, a04's Fürth grown again, winter): the works (south-west), the guild's barns, the Rednitz

@@ -82,7 +82,13 @@ Pieter, Benedito, Captain Delorme, Colonel von Rauch, Brother Anselm, Will Holli
 (Teles, Frei Joaquim, the Captain of the Watch, the Commissary, Rouvière, Mère Gautier, the Sergeant, the guide, the
 Cardinal Dean of a07).
 
-## 4. Later
+## 4. Act 2 (planned, not built)
+
+docs/campaign_act2_plan.md "VOICES" lists Act 2's speakers and the new voices to design (Tomasz grown, Commissary
+Brandt, Desembargador Fonseca, Captain Arruda, Padre Anselmo, Citizen Morel, Matthias, Captain de Meneses, Lieutenant
+Ramos, Brother Tiago, the prince if the heir is named). Each mission's table joins section 2 when it is built.
+
+## 5. Later
 
 - pt / es versions of the announcers (Crown herald, Brood scientist): not decided (docs/announcers.md).
 - The Clockwork announcer: see the owner's question of 2026-11-18 (Hollweg / the Machine's voice), undecided.

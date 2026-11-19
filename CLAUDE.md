@@ -25,6 +25,19 @@
 
 ## Current work
 
+- ACT 2 PLANNED (owner 2026-11-19 11:06 "Yes write act 2."; job campaign-act2-plan, branch campaign-act2-plan, docs only:
+  docs/campaign_act2_plan.md): THE BREAKING 2771-2780, eleven missions d01-d11 on three lines + the 2nd crossing: the
+  Crown (Tomasz) d01_minas (the Assembly's conspiracy at Vila Rica) -> d05_aldeia (the swarm at his mission São Rafael;
+  choice THE FIELDS); the Clockmaker (Hollweg) d02_exodus (the guild leaves Fürth and the Crown) -> d04_concordia (the
+  city of gears on the southern highlands; the 2767 crates opened) -> d07_spring (the city turns; choice THE GREAT
+  SPRING); the Naturalist d03_fazenda (Lindqvist breeds in secret; the leash; Valadares' commission) -> d06_queen
+  (LINNEA comes for her young and becomes the QUEEN; the Brood is born) -> d08_rivers (Valadares holds the Barra; choice
+  THE LURE BOOK); the crossing d09_crossroads (the army of Brazil, General Ruggieri; choice WHICH FIRE FIRST) and its
+  diamond d10_jungle / d11_siege (FRESH or GROWN by `first`). Every Act 1 / prologue flag's effect in a table; ladder
+  rungs C5-C9, K4-K7, B4-B7 placed (B5/B6 swapped); the war map's Brazil view and the brass / chart skins; the frame
+  written for a NAMED or UNSEEN heir; engine needs and build order; voices; still prompts. ALL TEXT PLACEHOLDER;
+  18 Claude's choices, 15 OWNER QUESTIONS waiting (the Queen = Linnea, the city's place/name, reclaim parts, the canons).
+
 - PLAN MATRIX, THE BROOD (job plan-matrix-brood(-2), 0.38.80, docs/plan_matrix_brood.md, data docs/plan_matrix_brood/,
   tools/study/plan_matrix_brood*.py): every Brood plan forced v each side's Hard OPTIMAL, 216 games to 20:00 on 4 maps
   (0.38.59/0.38.69): v the Crown 60 of 72 won or led (any plan but the Air rush), v the Clockwork 1 of 72 (no plan works;
