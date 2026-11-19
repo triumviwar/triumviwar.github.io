@@ -255,3 +255,18 @@ static func dry_musket(ai) -> bool:
 		return false
 	count(ai, "dry_musket")
 	return true
+
+
+# ------------------------------------------------------------------ 15. a big bank: the supply to soldiers (AICrown.owner_lab_cap)
+
+## Blocks 5, 14, 15: the Crowns that lived sat on thousands of gold from 14:00 with their supply full at 200 and 70-98 of it
+## labourers (the cap is the halls' posts plus a few, up to 90 on five halls), so the army had 100 supply at most. With
+## RICH_BANK banked the gold is not what is short: no labourer is trained past RICH_LABS.
+const RICH_BANK := 1000
+const RICH_LABS := 55
+
+
+static func rich_labs(ai) -> int:
+	if not on("richlabs") or not vs(ai) or ai._gold() < RICH_BANK:
+		return -1
+	return RICH_LABS
