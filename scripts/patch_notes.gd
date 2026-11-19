@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.78", "items": [
+		"Studies only: every Clockwork computer plan tested against every faction to 20 minutes (240 games): OPTIMAL is the best or tied for best against all three; the Owl raids, the Springer timing, the Rush and the Heavy Works push do clearly worse, mostly because their written openings fall behind in economy.",
+	]},
 	{"v": "0.38.77", "items": [
 		"Studies only: every Crown computer plan was played against every faction to 20 minutes (288 games). Played that long, the Crown computer loses most games against the Brood and the Clockwork whatever its plan; the Horseman rush lasts longest against the Brood, the siege and timing plans against the Clockwork, and the balloon harass does clearly better than the Horseman rush against the Clockwork.",
 	]},
