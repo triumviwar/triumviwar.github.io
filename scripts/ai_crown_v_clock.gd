@@ -72,3 +72,34 @@ static func hold_wave(ai, ready: Array) -> bool:
 		if is_instance_valid(u) and not u.dead and u.has_attack():
 			mine += float(ai.game.unit_value(u))
 	return mine < HOLD_K * float(ai.foe_reckon())
+
+
+# ------------------------------------------------------------------ 5. the second hall next (AICrown.opt_switch)
+
+## The Crown's second hall came at ~4:30-5:00 against the Clockwork's second Clocktower at ~2:30 (block 0): OPTIMAL's pick at
+## ~1:30 puts its build order's hall step after the Foundry or the army (Timing's from two halls at 12 labourers behind the
+## army step; the Siege and Balloon plans have none). Here the pick's next step is the second hall, at HALL2_LABS labourers.
+const HALL2_LABS := 11
+
+
+static func hall2_first(ai) -> void:
+	if not on("hall2") or not vs(ai) or ai._halls().size() >= 2:
+		return
+	var plan: Array = ai._bo_plan
+	var i0: int = ai.bo_i
+	var st := {"do": "hall", "n": 2}
+	for j in range(i0, plan.size()):
+		if String((plan[j] as Dictionary).get("do", "")) == "hall":
+			st = plan[j]
+			plan.remove_at(j)
+			break
+	st["at"] = {"labs": HALL2_LABS}
+	plan.insert(i0, st)
+
+
+# ------------------------------------------------------------------ 6. the tech after the third hall (AICrown._mid_tick)
+
+## The milestones put up a Church and an Armoury at 7:00-9:00 (block 0) while the third hall waited for 40 labourers. Here
+## the Church and the Armoury wait for the third hall to stand.
+static func tech_waits(ai, k: String, halls: int) -> bool:
+	return (k == "church" or k == "armoury") and halls < 3 and on("tech3") and vs(ai)

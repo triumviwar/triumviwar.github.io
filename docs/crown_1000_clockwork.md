@@ -1,0 +1,54 @@
+# Crown 1000, the Clockwork half (crown-1000-clockwork)
+
+The owner, 2026-11-19 07:26: "The Crown's computer is the weak one... We need a complete job of 1000 crown games, every 10
+games changing something to see if crown gets better, currently its bad ai." This job is the half against the Clockwork:
+blocks of 10 games of the Crown computer (Hard OPTIMAL) against the Clockwork computer (Hard OPTIMAL), to 20:00, a change of
+the Crown computer's play between blocks. The sister job crown-1000-brood does the Brood half.
+
+(Summary at the end of the job goes here.)
+
+## How it is measured
+
+- **The 10 games of a block**: five maps (Greenhold, Ashford Crossing, Mirewood, Frostfang, Cinder Steps) x two rounds with
+  the start spots swapped; the seeds and sides are the plan-matrix-crown study's OPTIMAL row (tools/study/plan_matrix.py),
+  the same in every block. Runner: `tools/study/crown1000.py run BLOCK --extra SWITCHES --root COPY` (two games at a time on
+  the 2-core machine, about 55 minutes a block); `tools/study/crown1000_queue.sh` runs a queue of blocks, each on a fresh
+  copy of the working tree (`tools/study/crown1000_sync.sh`), so the next change is written while a block runs.
+- **Score**: plan_matrix_report's: income earned + 2 x army value, the Crown's over the Clockwork's at the bell (a beaten
+  side's score x0.25). "Survived" = not beaten by 20:00. "Won or led" = won, or 10% ahead on the score at 20:00.
+- **Paired**: each game against the same game (map, round, seed, sides) of the baseline blocks (the mean of their log
+  scores when the baseline was run more than once): x = the geometric mean of the ratio, t = paired t on the logs,
+  up/down = games better / worse by more than 5%.
+- **Noise**: a match is not deterministic (the same seed plays a different game), so one block is noisy. A change is
+  KEPT when its block beats the kept baseline by a clear margin (x >= 1.15 with t >= 1.2, and no fewer games survived); the
+  kept set is rerun every 10 blocks to check it was not luck.
+- **What changes**: the Crown computer's play only, gated to the Crown v Clockwork matchup (scripts/ai_crown_v_clock.gd,
+  AICrownVClock, every change behind its switch `cvc:<name>`); no number of the game.
+- Data: `docs/crown_1000_clockwork/data/<block>/` (result.json, story.txt per game, extra.txt = its switches);
+  `docs/crown_1000_clockwork/blocks.csv` (one row a block: `python3 tools/study/crown1000.py report --csv ...`).
+
+## Block 0: where the Crown stands (0.38.81, no change)
+
+Survived 6 of 10, won or led 0, score x0.19 of the Clockwork's (a beaten Crown's score counted a quarter); the median
+defeat 17:27. OPTIMAL picked Timing 7, Balloon 2, Economy 1 (read NORMAL at ~1:30 in all 10).
+
+| minute | 3:00 | 5:00 | 8:00 | 10:00 | 12:00 | 16:00 |
+|---|---|---|---|---|---|---|
+| labourers / Winders | 15 / 17 | 21 / 27 | 34 / 44 | 39 / 52 | 36 / 53 | 31 / 52 |
+| income earned (Crown / Clockwork) | 1,330 / 1,904 | 2,850 / 4,085 | 6,194 / 9,596 | 8,664 / 14,830 | 11,124 / 20,174 | 14,900 / 29,882 |
+| army value | 18 / 14 | 229 / 467 | 1,139 / 2,018 | 1,628 / 2,743 | 1,228 / 3,928 | 740 / 6,998 |
+| halls | 1 / 2 | 2 / 2 | 2 / 3 | 2 / 3 | 3 / 4 | 2 / 5 |
+| bank | 57 / 143 | 25 / 303 | 41 / 376 | 114 / 688 | 144 / 913 | 1,053 / 2,594 |
+
+What the stories show: the Crown spends every coin (a bank of 25-60 gold to 8:00) and is still behind on every count. Its
+second hall comes at ~4:30-5:00 (the Clockwork's at ~2:30), its third at ~11:00 (the Clockwork's ~6:30). In the opening a
+hall stood idle with 2+ free Farm posts 5-6 of every 12 looks (every 5 s) at 3:00-5:00, the build order owning the gold.
+The Clockwork's first push (8 units) leaves at ~4:45 and the Crown holds at its ramp top with half the army; from 10:00 the
+Clockwork's army doubles the Crown's and the halls fall from 11:00-13:00. The Crown's waves are few and late (none in 4
+games; 7:34-13:35 in the rest) and the one into the Clockwork's base melts (Cinder Steps r0: 1,610 -> 544 in two minutes).
+
+## The log, block by block
+
+| block | the change (its switch) | survived | won or led | score x | v kept baseline | kept? |
+|---|---|---|---|---|---|---|
+| 0 | none (0.38.81) | 6 | 0 | 0.19 | - | baseline |

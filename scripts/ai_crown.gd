@@ -646,6 +646,7 @@ func opt_switch(k: String) -> bool:
 			_bo_plan.insert(bo_i, again)
 			pending_kept += 1
 		bo_lab_cap = _cc_lab_cap(key)
+		AICrownVClock.hall2_first(self)      # (crown-1000-clockwork: the second hall next)
 		if not _def_on:
 			bo_army = false
 			bo_army_cap = 0
@@ -2467,6 +2468,8 @@ func _mid_tick() -> void:
 			continue
 		if lags and not _mid_ok_lagging(k):
 			continue            # (ai-followups: the army far behind: no tech, and no more Barracks than the gold keeps busy)
+		if AICrownVClock.tech_waits(self, k, halls):
+			continue            # (crown-1000-clockwork: the Church and the Armoury after the third hall)
 		if _cc_rush_hold(k, army) or _cc_tech_hold(k):
 			continue            # (crown-v-clockwork-coach: a Clockwork rush read: soldiers before the milestones; the Farms
 			                    # before the tech)            # (crown-owner-eco: the gun's gold holds the tech back, not the production; crown-hold: the
