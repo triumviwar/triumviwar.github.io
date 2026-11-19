@@ -8,7 +8,7 @@ extends RefCounted
 ## switch: `-- c1kb<name>:on` / `:off`; `-- c1kb:off` plays the matchup as before this job. The changes KEPT are on by default
 ## (KEPT); the rest were measured and not kept (the doc says what each did).
 
-const KEPT: Array[String] = []
+const KEPT: Array[String] = ["lean"]   # (block 2, kept after block 5)
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 

@@ -1806,6 +1806,46 @@ func _c1kb_tech_est() -> float:
 	return est
 
 
+## (crown-1000-brood, the report) where the guns go: seconds a built Foundry stood idle, with a horse at it or not, and with
+## a gun's gold or not; seconds the Crown had no gun at all from 8:00
+var c1kb_fd_idle := 0.0          # Foundry-seconds idle
+var c1kb_fd_idle_nohorse := 0.0  # ... with no horse at it
+var c1kb_fd_idle_gold := 0.0     # ... with a gun's gold in the bank
+var c1kb_fd_idle_rich := 0.0     # ... with a horse AND a gun's gold (nothing held it but the rules)
+var c1kb_noguns_t := 0.0         # seconds with no Field Cannon from 8:00
+var c1kb_guns_max := 0           # most Field Cannons at once
+
+
+var _c1kb_acc := 0.0
+
+
+func _c1kb_count(dt: float) -> void:
+	_c1kb_acc += dt
+	if _c1kb_acc < 0.5:
+		return
+	var delta := _c1kb_acc
+	_c1kb_acc = 0.0
+	var gold := _gold() >= int(Defs.UNITS["cannon"]["cost"])
+	for f in _mine("foundry"):
+		if not f.built or not (f.queue as Array).is_empty():
+			continue
+		c1kb_fd_idle += delta
+		var h: bool = game.horses_at(f) > 0
+		if not h:
+			c1kb_fd_idle_nohorse += delta
+		if gold:
+			c1kb_fd_idle_gold += delta
+			if h:
+				c1kb_fd_idle_rich += delta
+	var guns := 0
+	for u in game.army(team):
+		if u.kind == "cannon" and not u.dead:
+			guns += 1
+	c1kb_guns_max = maxi(c1kb_guns_max, guns)
+	if guns == 0 and game.clock >= 480.0:
+		c1kb_noguns_t += delta
+
+
 func _c1kb_press(mine: float) -> bool:
 	if game.clock < C1KB_PRESS_FROM:
 		return false
@@ -2619,6 +2659,8 @@ func _on_errand(u: Unit) -> bool:
 func _tick_ai(delta: float) -> void:
 	var quiet := _stage >= STAGES and _think - delta > 0.0     # (no think part runs this tick)
 	super(delta)
+	if vb() != null and game != null and not game.over:
+		_c1kb_count(delta)
 	if dr != null and not game.over:
 		dr.micro()
 	if quiet and game != null and not game.over:
