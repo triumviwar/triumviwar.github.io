@@ -166,7 +166,7 @@ func _home_army() -> Array:
 	return game.army(ai.team).filter(func(u: Unit) -> bool:
 		return not men.has(u) and not u.dead and not u.off_field and u.has_attack() and u.kind != "powder_wagon" and not u.is_air() \
 			and not ai._raiders.has(u) and not ai._on_errand(u) and not (ai.harass != null and ai.harass.has(u)) and u.order != "mount" \
-			and not ai._horse_coming(u) and not u.is_worker())
+			and not ai._horse_coming(u) and not u.is_worker() and not (u.kind == "cuirassier" and _brood() and C1kB.on("pester")))
 
 
 func _maybe_go() -> void:

@@ -2719,7 +2719,14 @@ func _tick_ai(delta: float) -> void:
 
 
 func _raid() -> void:
+	if vb() != null and C1kB.on("pester") and _rush_state not in ["", "ongoing"] and _rush_mode != "hunt" and _raiders.is_empty():
+		# (crown-1000-brood, change "pester": see c1kb_pester_n)
+		if _raid_block > game.clock + C1KB_PESTER_GAP:
+			_raid_block = game.clock + C1KB_PESTER_GAP
+	var had := _raiders.size()
 	super()
+	if vb() != null and had == 0 and _raiders.size() >= 2 and _rush_state not in ["", "ongoing"]:
+		c1kb_pester_n += 1
 	if dragoon_plan() and not peaceful:
 		if dr == null:
 			dr = DragoonRaid.new(self)
@@ -3100,6 +3107,13 @@ func _after_rush_brood() -> void:
 
 var c1kb_siege_at := -1.0
 var c1kb_queen_pushes := 0
+## (crown-1000-brood, change "pester") THE RIDERS KEEP AT THE GRUBS: after the Horseman rush a successful mop-up blocked
+## the raids for 10 minutes (AI._rush_mop, _raid_block + 600 s), a failed one 150 s, and the Siege push took the riders
+## along; the Brood's grubs run to its warriors whenever riders show (its income is its grubs at the Rootmaws). Against the
+## Brood, once the rush is over, a raiding party of the riders at home forms again C1KB_PESTER_GAP s after the last
+## (AI._raid's own rules: two riders at least, home when hurt or caught), and the Siege push leaves the riders to it.
+const C1KB_PESTER_GAP := 60.0
+var c1kb_pester_n := 0          # raiding parties formed after the rush
 
 
 ## the raid over: the Musketeers' wave waits for a proper force again (as after a failed rush)
