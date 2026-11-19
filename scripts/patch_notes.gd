@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.60", "items": [
+		"THE CROWN COMPUTER AND ITS LABOURERS (nothing a player uses changed): the computer was taught to send several Labourers to a building site at once, as a good Crown player does, and it was measured in 342 games against the Brood, the Clockwork and itself. It built faster but earned no more, because it spends its gold as soon as it comes, so the stacking is switched off for now and kept for later. Fixed on the way: when the computer picked its plan a moment before it could pay for its Barracks, that Barracks was never built and its Horseman rush never came.",
+	]},
 	{"v": "0.38.59", "items": [
 		"Studies only: win rates in all nine matchups after two days of AI coaching (266 games): the Clockwork computer now beats the Brood computer, the Crown computer no longer collapses but still wins nothing, and the Brood mirror's start-spot edge is gone.",
 	]},

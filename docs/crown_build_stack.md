@@ -21,7 +21,10 @@ changed.
    - variant C (only where the building holds the economy or the defence up, and during pushes): against the Clockwork
      the income ratio at 12:00 was lower in 15 of 19 paired games (p 0.019), 5 fewer labourers at 12:00 (p 0.031), the
      third hall 70 s later;
-   - variant D (as C, but no labourer walks to a site during a push except to the palisade): <<D>>.
+   - variant D (as C, but no labourer walks to a site during a push except to the palisade, the one shipped behind the
+     switch): neutral. Against the Brood 2.3 more labourers at 8:00 (higher in 15 of 19 pairs, p 0.008) and the third hall
+     sooner in 12 of 16, but the income, the army and the outcome did not move (outcome better in 3, worse in 5); against
+     the Clockwork nothing moved (income 8:00 higher in 5, lower in 10, p 0.30); in the mirror won or led 14 v 12 (p 0.85).
    **So the stacking is OFF by default** (switch `buildstack:on`). The code, its test and its counters stay for the owner
    to try in his own games and for a later job.
 2. **Why it does not help the computer: the Crown computer waits for gold, not for buildings.** Its bank sits at a
@@ -42,15 +45,15 @@ changed.
    comes at ~5:00) and the army floor holds the rest.
    **Nothing here is the computer doing something plainly wrong**: each hold is a rule an earlier coaching job measured
    (the army on time, the army floor, the owner's third hall). The gap is the income: the Crown earns 0.67 of the
-   Clockwork's at 8:00 with 0.75 of its workers. The one wrong thing found and fixed is below (3).
-3. **A bug found on the way, fixed (ON, switch `keeppending:off`)**: when OPTIMAL picked its build at ~1:30, the common
+   Clockwork's at 8:00 with 0.75 of its workers. The one wrong thing found and fixed is below (4).
+4. **A bug found on the way, fixed (ON, switch `keeppending:off`)**: when OPTIMAL picked its build at ~1:30, the common
    opening's step still waiting for its gold was cut with the old steps (AICrown.opt_switch slices the plan at the step
    it is on). The Rush's own steps (bo_opt) take the Barracks as laid, so when the Barracks was 20 gold short at the pick
    it was never built: no Horseman came, the army was 0-60 at 5:00 and the Crown lost to the Brood (Dune Sea r0, and 3
    more of 14 games in the first batch, where stacking had moved the gold by a second). Now the waiting step is kept at
    the front of the new plan unless the new plan builds that kind itself. It did not fire in the 115 measured games of
    variant C (the opening's gold no longer moves); it guards a timing that any small change can hit.
-4. **The hall step keeps its gold** (switch `hallkeep:on`, OFF): while the opening's Town Hall step waits and the main's
+5. **The hall step keeps its gold** (switch `hallkeep:on`, OFF): while the opening's Town Hall step waits and the main's
    Farm posts are full, the army clock may not take the step's gold. Measured with the stacking, it fired a median 0 s
    and at most 20 s a game: the step is usually paid before the posts fill. Off with the stacking.
 
@@ -96,19 +99,44 @@ Every think (AICrown stage 1, after _finish_sites) each unfinished Crown site of
   not the game). "Won or led" = won, or led a draw by 10% on income + 2 x army (the win-rate rule).
 - Round 1 and the 20:00 sample were not run: every version measured worse or no better at 12:00 in round 0, and the
   machine time went to the next version instead (see Claude's choices).
-- Data: docs/crown_build_stack/data (variant C), data_variantA, data_variantD; tables.md, tables_variantA.md,
-  tables_variantD.md. Films: docs/crown_build_stack/films (tools/study/crown_build_stack_film.sh, buildstack:on).
+- Data: docs/crown_build_stack/data (variant C), data_variantA, data_variantD (each game's result.json, story.txt and
+  trace.json); tables.md, tables_variantA.md, tables_variantD.md. Variant A and C ran with the old switch names (the
+  batches' `--off buildstack:off,hallkeep:off,keeppending:off`, stacking on by default then); D with `--on
+  buildstack:on,hallkeep:on --off keeppending:off`, so D's "off" arm also lacks the OPTIMAL pick fix. Films: docs/crown_build_stack/films (tools/study/crown_build_stack_film.sh, buildstack:on).
 
 ## The numbers
 
-<<NUMBERS>>
+Round 0, 19 games a pairing to 12:00 (Crown v Brood and v Clockwork: Crown's view, pooled income / army ratios; the
+mirror: the side with the change v without). Full tables: docs/crown_build_stack/tables_variantA.md, tables.md (C),
+tables_variantD.md.
+
+| | variant A (every kind) | variant C (binding + pushes) | variant D (binding, palisade only in pushes) |
+|---|---|---|---|
+| v Brood: won or led on / off | 2 / 1 | 1 / 3 | 0 / 3 |
+| v Brood: income ratio 8:00 / 12:00, on (off) | 0.85 / 0.74 (0.82 / 0.72) | 0.82 / 0.73 (0.86 / 0.77) | 0.86 / 0.75 (0.84 / 0.74) |
+| v Brood: Crown labourers 8:00 on / off | 30.9 / 30.8 | 31.6 / 31.4 | 32.4 / 30.1 (p 0.008) |
+| v Brood: outcome better / worse | 5 / 4 | 2 / 6 | 3 / 5 |
+| v Clockwork: income ratio 8:00 / 12:00, on (off) | 0.67 / 0.59 (0.68 / 0.61) | 0.65 / 0.54 (0.67 / 0.61) | 0.67 / 0.61 (0.68 / 0.62) |
+| v Clockwork: Crown labourers 8:00 / 12:00 on (off) | 34.3 / 41.5 (34.4 / 42.7) | 31.5 / 36.6 (33.7 / 41.6) | 33.4 / 41.1 (33.5 / 43.6) |
+| v Clockwork: income ratio 12:00 higher / lower | 11 / 8 | 4 / 15 (p 0.019) | 8 / 11 |
+| v Clockwork: built halls lost on / off | 0.47 / 0.42 | 0.53 / 0.37 | 0.42 / 0.21 |
+| mirror: won or led with / without | 4 / 15 (p 0.019) | 12 / 21 (p 0.16) | 14 / 12 (p 0.85) |
+| mirror: income 12:00 with / without | 13,876 / 14,653 | 14,156 / 14,900 | 14,757 / 14,499 |
+| helpers sent a game (v Clockwork) | 48 | 23 | 6 |
+| Barracks placed to done (s) on / off | 25 / 42 | 34 / 43 | 42 / 42 |
+| Town Hall builders (median) on / off | 4 / 3 | 4 / 3 | 4 / 3 |
+
+Every outcome is a draw at 12:00 but a few (the Crown still wins nothing v the Clockwork); "won or led" moves about +-3
+between two runs of the same build, so only the paired tests with p under 0.05 are called real. Variant A's batch ran
+before the early-minutes rule; its v Brood rows are on the same footing as C and D, its mirror row is what made the
+binding list.
 
 ## The films
 
 - **Greenhold v the Clockwork (r0, variant C)**: Timing plan; the Crown's sites had 1-5 builders (coach.txt "build" 1 in
   24 looks, 2-5 in 26); 40 labourers and 4 halls at 12:00 against 54 Winders on 5; income 11,780 v 21,869. The film
   shows what the tables say: the buildings come fast, the gold does not.
-- **Kestrel Rise v the Brood (r0, variant D)**: Economy plan; 43 labourers and 3 halls at 12:00 against 50 grubs;
+- **Kestrel Rise v the Brood (r0, variant C)**: Economy plan; 43 labourers and 3 halls at 12:00 against 50 grubs;
   income 11,780 v 13,726, army 1,905 v 2,215; no hall lost.
 
 ## Claude's choices (for the owner)
@@ -136,3 +164,14 @@ Every think (AICrown stage 1, after _finish_sites) each unfinished Crown site of
    minute per worker at 10:00 in the 11-12 coaching). Against the Clockwork the army clock takes half the halls' idle
    time; a lower SHARE (0.6 now) or an earlier UNTIL (6:30 now) would give the labourers more gold and the army less:
    measured before at 0.75 -> 0.6 (crown-coach-army). The owner's call.
+
+## Tests
+
+- tools/test_crown_build_stack.gd (new): helpers up to the want, a Farm in 6.5 s instead of 25, off by default, no far
+  walker, no unsafe or ghost site, no working hand to a Barracks without a rush (but with `buildstack:all`), the hall
+  step's keep never v the Brood. Passes.
+- The AI, Crown and campaign tests (49) on the final build: all campaign tests pass; the failures are the ones that fail
+  with this job's switches off too (test_ai_rush, test_ai_rush_followup, test_ai_scout_defence, test_ai_wall_vs_rush's
+  "laid by 75 s" (its Mill at 100 s either way), test_crown_dragoon_raid, test_crown_stall's Foundry at 351 s either
+  way) or flaky (test_crown_rider_screen: formed 34 s, contact 37-38 s; passed on a rerun; test_crown_line,
+  test_crown_mirror passed their checks).
