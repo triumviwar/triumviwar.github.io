@@ -21,13 +21,17 @@ MAPS = ["greenhold", "ashford_crossing", "mirewood", "frostfang", "cinder_steps"
 DATA = os.path.join(qm.ROOT, "docs/crown_1000_brood/data")
 
 
+OPP = "brood"      # (--opp clockwork / crown: the check blocks of the other matchups, plan_matrix_crown's seeds)
+OPP_I = {"crown": 0, "brood": 1, "clockwork": 2}
+
+
 def queue():
     out = []
     for mi, m in enumerate(MAPS):
         for r in (0, 1):
-            seed = 9100 + 97 * r + 11 * mi + 3
+            seed = 9100 + 97 * r + 11 * mi + 3 * OPP_I[OPP]
             swap = (r + mi) % 2 == 1
-            me, foe = ("crown", "optimal"), ("brood", "optimal")
+            me, foe = ("crown", "optimal"), (OPP, "optimal")
             s1, s2 = (foe, me) if swap else (me, foe)
             tag = "c1k_%s_r%d" % (m, r)
             out.append((tag, m, seed, [(s1[0], s1[1], 0), (s2[0], s2[1], 1)]))
@@ -152,6 +156,7 @@ def f2(v):
 if __name__ == "__main__":
     arg = lambda k, d: sys.argv[sys.argv.index(k) + 1] if k in sys.argv else d
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
+    OPP = arg("--opp", "brood")
     if cmd == "list":
         for g in queue():
             print(*g)
