@@ -140,6 +140,24 @@ if __name__ == "__main__":
         with ThreadPoolExecutor(int(arg("--jobs", "2"))) as ex:
             for t in ex.map(lambda g: qm.run_one(g, out, end, dd, extra), queue()):
                 print("done", t, flush=True)
+    elif cmd == "csv":
+        # blocks.csv: one row a block (its switches, its numbers, and against the block named in its base.txt if any)
+        import csv as _csv
+        out = os.path.join(os.path.dirname(DATA), "blocks.csv")
+        with open(out, "w", newline="") as f:
+            w = _csv.writer(f)
+            w.writerow(["block", "switches", "base", "n", "mean_g", "survived", "won_led", "median_defeat_s", "inc8", "inc12",
+                        "army8", "army12", "halls12", "d_v_base", "t_v_base", "better", "worse"])
+            for d in sorted(glob.glob(os.path.join(DATA, "b*"))):
+                n = os.path.basename(d)
+                ex = open(os.path.join(d, "extra.txt")).read().strip() if os.path.exists(os.path.join(d, "extra.txt")) else ""
+                b = open(os.path.join(d, "base.txt")).read().strip() if os.path.exists(os.path.join(d, "base.txt")) else ""
+                s = summary(n, block(n), block(b) if b else None)
+                r = lambda v, k=2: "" if v is None else round(v, k)
+                w.writerow([n, ex, b, s["n"], r(s["g"]), s["surv"], s["wl"], r(s["beat_med"], 0), r(s["inc8"]), r(s["inc12"]),
+                            r(s["army8"]), r(s["army12"]), r(s["halls12"]), r(s.get("d")), r(s.get("t")), s.get("better", ""),
+                            s.get("worse", "")])
+        print(out)
     elif cmd == "report":
         names = [x for x in sys.argv[2:] if not x.startswith("--") and x != arg("--base", None)]
         base = arg("--base", None)

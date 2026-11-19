@@ -1747,6 +1747,8 @@ func _wave_worth(ready: Array) -> bool:
 			want_look("the wave")
 			return false
 		var est := foe_estimate()
+		if vb() != null and C1kB.on("press") and _c1kb_press(mine):
+			return true         # (crown-1000-brood, change "press": see _c1kb_press)
 		if vb() != null and vbr.hold_first(mine, est):
 			return false        # (crown-brood-army: HOLD THE FIRST PUSH, THEN COUNTER, scripts/ai_crown_v_brood.gd part 6)
 		if mine >= est * (coach.edge_brood() if coach != null and coach.honest_on() else CR_EDGE_BROOD):
@@ -1772,6 +1774,28 @@ func _wave_worth(ready: Array) -> bool:
 
 
 var _held_said := -99.0
+
+
+## (crown-1000-brood, change "press") GO WHEN CLEARLY BIGGER THAN WHAT IS SEEN: the Brood reckoning by the clock (BROOD_TABLE,
+## 3,800 at 10:00) held the wave home with 2,210 of army against 720 there (Ashford Crossing r0 10:00, block 1) until the
+## Brood's capped wave came at 12:30. From C1KB_PRESS_FROM, with a fresh report, the wave goes when it is C1KB_PRESS_EDGE
+## times the Brood army seen in the last two minutes, never less than C1KB_PRESS_SHARE of the table.
+const C1kB := preload("res://scripts/ai_crown_1k_brood.gd")
+const C1KB_PRESS_FROM := 450.0
+const C1KB_PRESS_EDGE := 2.0
+const C1KB_PRESS_SHARE := 0.35
+var c1kb_presses := 0
+
+
+func _c1kb_press(mine: float) -> bool:
+	if game.clock < C1KB_PRESS_FROM:
+		return false
+	var est := maxf(ch.foe_known(), C1KB_PRESS_SHARE * _lerp_table(BROOD_TABLE, game.clock) - 0.5 * float(game.stats[team]["value_killed"]))
+	if mine < C1KB_PRESS_EDGE * est:
+		return false
+	c1kb_presses += 1
+	say("presses the Brood: %d of army against the %d it has seen lately" % [int(mine), int(ch.foe_known())])
+	return true
 
 
 ## The second hall of the opening: the safest rated site (AI._safe_hall_spot), three labourers build it together.
