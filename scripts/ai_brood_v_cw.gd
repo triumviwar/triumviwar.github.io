@@ -29,8 +29,10 @@ const SPIT_PER_RAPTOR := 2       # Spitters laid for each Raptor beyond the cap
 const BRUTE_MAX := 8
 const BRUTE_EVERY := 8           # a Brute for every this many Spitters
 const VENOM_AT := 210.0          # the Venom Sire's lure from this time (the Spitter timing's)
+const FULL_CAP := 186            # (supply: only at the game's own cap must the army go; at a turtle cap it roots more turtles)
 const EDGE := 1.15               # a wave goes with this much of the biggest Clockwork army it has seen lately
-const SPOILS_FOR := 30.0         # spoils kept for the line's eggs and maturing
+const SPOILS_FOR := 40.0         # spoils kept for the line's eggs and maturing
+const BANK_MAX := 400            # food above this is never kept waiting for the Venom Sire: a Raptor is better than a bank
 
 
 static func off(key: String) -> bool:
@@ -87,14 +89,19 @@ static func warrior(ai, spend: int, spoils: float, trex: bool, dilo: bool, brute
 	if not dilo:
 		# (the Venom Sire away or researching: Raptors as before up to the cap; past that the food waits for him (his
 		# research is a minute at most), a Brute, maturing, her growth and the grubs. Dead: Raptors as before)
-		if raptors >= cap and BroodNew.count_of(g, t, BroodNew.DILO) > 0:
+		if raptors >= cap and BroodNew.count_of(g, t, BroodNew.DILO) > 0 and spend < BANK_MAX:
 			return ""
 		return "-"
 	var spit_due := raptors >= cap or spitters < raptors * SPIT_PER_RAPTOR
 	if spit_due:
+		# (the spoils kept for her stage 3 do not hold the Spitters back: 5 an egg, they are the army; the frostfang trace had
+		# 30-55 spoils for minutes, all kept, and laid 72 Raptors to 4 Spitters)
+		spoils = maxf(spoils, ai._spoils())
 		if spoils >= float(sp[1]) and spend >= int(sp[0]):
 			return "spitter"
-		return ""          # (food kept for the Spitters' egg; the spoils come from harvests and offered-up Raptors)
+		if spoils < float(sp[1]):
+			return "-"          # (no spoils for the egg: a Raptor, and the spare Raptors at home are offered up for spoils)
+		return ""          # (food kept for the Spitters' egg)
 	return "-"
 
 
@@ -119,6 +126,7 @@ static func spoils_want(ai, q: Unit) -> float:
 const CW_TABLE := [[360.0, 650.0], [420.0, 1290.0], [480.0, 2075.0], [540.0, 2355.0], [600.0, 2800.0],
 	[660.0, 3065.0], [720.0, 3725.0], [780.0, 4000.0]]
 const KILLS_FOR := 90.0
+const KILLS_BIG := 400.0
 
 
 static func table_at(c: float) -> float:
@@ -137,6 +145,8 @@ static func reckon(ai) -> float:
 		if ai.game.clock - float(e[0]) <= KILLS_FOR:
 			k = now - float(e[1])
 			break
+	if k < KILLS_BIG:
+		k = 0.0          # (a few raiders or a scout killed at home are not a beaten push)
 	return maxf(base - k, base / 3.0)
 
 
@@ -161,3 +171,146 @@ static func wave_filter(ai, wave: Array) -> Array:
 	if shooters.size() < 8:
 		return wave
 	return wave.filter(func(u: Unit) -> bool: return u.kind != "raptor")
+
+
+# ------------------------------------------------------------------ the raids (bvcraid)
+
+## THE RAPTOR RAID: once the waves are shooters and tanks (Pendulums or shields seen), the Raptors at home beyond a
+## guard go after the Clockwork's WINDERS at a Cog Press or Clocktower away from its army (a Winder, 74, can't outrun a
+## Raptor, 92): RAID_MIN of them at most every RAID_GAP s, never under an alarm, a threat at the Mother or with a wave out.
+## They bite Winders first (cmd_attack on the nearest within RAID_PREY tiles), walk past buildings, and come home when
+## armed enemies near them are worth more than RAID_OUTMATCH of the pack, when half the pack is gone or after RAID_TIME s.
+const RAID_MIN := 8
+const RAID_MAX := 16
+const RAID_GUARD := 4
+const RAID_GAP := 75.0
+const RAID_TIME := 70.0
+const RAID_PREY := 9.0
+const RAID_OUTMATCH := 0.8
+const RAID_CLEAR := 14.0         # tiles: the Clockwork's army last seen this near the raid's way or its goal: no raid
+
+
+const RAID_GUARDED := 140.0      # armed enemies worth this much within RAID_GUARD_R tiles of a Winder: it is not chased
+const RAID_GUARD_R := 6.0
+
+
+## Armed enemies' value near p (seen).
+static func guarded(ai, p: Vector2) -> float:
+	var g = ai.game
+	var v := 0.0
+	for o in g.units_near(p, RAID_GUARD_R * Defs.TILE):
+		if g.hostile(o.team, ai.team) and not o.dead and o.has_attack() and not o.is_worker() and g.is_visible_to(ai.team, o.position):
+			v += float(Game.unit_value(o))
+	return v
+
+
+static func raid_has(ai, u: Unit) -> bool:
+	return ai.bvc_raid.has("units") and (ai.bvc_raid["units"] as Array).has(u)
+
+
+## From _nb_army: the raid going on, or a new one. Returns the units the raid holds (the army leaves them be).
+static func raid_tick(ai, q: Unit, army: Array) -> void:
+	if off("bvcraid"):
+		return
+	var g = ai.game
+	var r: Dictionary = ai.bvc_raid
+	if r.has("units"):
+		var pack: Array = (r["units"] as Array).filter(func(u) -> bool: return is_instance_valid(u) and not u.dead)
+		r["units"] = pack
+		if pack.is_empty():
+			ai.say("its Raptor raid is gone (killed %d)" % int(float(g.stats[ai.team]["value_killed"]) - float(r["k0"])))
+			ai.bvc_raid = {}
+			return
+		var mid := Vector2.ZERO
+		for u in pack:
+			mid += u.position
+		mid /= pack.size()
+		var armed := 0.0
+		for o in g.units_near(mid, 9.0 * Defs.TILE):
+			if g.hostile(o.team, ai.team) and not o.dead and o.has_attack() and not o.is_worker() and g.is_visible_to(ai.team, o.position):
+				armed += float(Game.unit_value(o))
+		var home: bool = r.get("home", false)
+		if not home:
+			var why := ""
+			if armed > ai._value_of(pack) * RAID_OUTMATCH:
+				why = "an army of %d near" % int(armed)
+			elif pack.size() * 2 <= int(r["n0"]):
+				why = "half the pack lost"
+			elif g.clock - float(r["t0"]) > RAID_TIME:
+				why = "out long enough"
+			if why != "":
+				r["home"] = true
+				home = true
+				ai.say("its Raptor raid comes home (%s; killed %d)" % [why, int(float(g.stats[ai.team]["value_killed"]) - float(r["k0"]))])
+				for u in pack:
+					u.cmd_move(ai._qp(q))
+		if home:
+			for u in pack.duplicate():
+				if u.position.distance_to(ai._qp(q)) < 14.0 * Defs.TILE:
+					pack.erase(u)
+			r["units"] = pack
+			if pack.is_empty():
+				ai.bvc_raid = {}
+			return
+		# bite the Winders: each Raptor with no worker in its jaws goes for the nearest Winder in reach
+		for u in pack:
+			if u.target != null and is_instance_valid(u.target) and u.target is Unit and (u.target as Unit).is_worker() \
+					and guarded(ai, (u.target as Unit).position) < RAID_GUARDED:
+				continue
+			var best: Unit = null
+			var bd := RAID_PREY * Defs.TILE
+			for o in g.units_near(u.position, RAID_PREY * Defs.TILE):
+				if g.hostile(o.team, ai.team) and not o.dead and o.is_worker() and g.is_visible_to(ai.team, o.position):
+					var d: float = o.position.distance_to(u.position)
+					if d < bd and guarded(ai, o.position) < RAID_GUARDED:
+						bd = d
+						best = o
+			if best != null:
+				u.cmd_attack(best)
+			elif u.order == "idle" or u.order == "attack" or (u.target != null and u.target is Building):
+				u.cmd_move(r["goal"])          # (a plain walk: past the buildings, to the press)
+		return
+	# a new raid?
+	if not heavy_seen(ai) or ai._attacking or ai._alarm_on() or ai._nb_threat(q) != Vector2.INF or float(ai._foe_near_home) > 100.0:
+		return
+	if g.clock - float(ai.bvc_raid_t) < RAID_GAP:
+		return
+	var home_r: Array = army.filter(func(u: Unit) -> bool: return u.kind == "raptor" and u.moult_t < 0.0 \
+		and u.position.distance_to(ai._qp(q)) < 24.0 * Defs.TILE and (u.target == null or not is_instance_valid(u.target)))
+	if home_r.size() < RAID_MIN + RAID_GUARD:
+		return
+	var goal := raid_goal(ai)
+	if goal == Vector2.INF:
+		return
+	if ai.bvc_army_at != Vector2.INF:
+		var cp := Geometry2D.get_closest_point_to_segment(ai.bvc_army_at, ai._qp(q), goal)
+		if cp.distance_to(ai.bvc_army_at) < RAID_CLEAR * Defs.TILE:
+			return          # (its army stands on the way, or by the press)
+	var pack := home_r.slice(0, mini(RAID_MAX, home_r.size() - RAID_GUARD))
+	ai.bvc_raid = {"units": pack, "t0": g.clock, "goal": goal, "n0": pack.size(), "k0": float(g.stats[ai.team]["value_killed"])}
+	ai.bvc_raid_t = g.clock
+	for u in pack:
+		u.cmd_move(goal)
+	ai.say("sends %d Raptors to raid the Winders at a %s (%d tiles out)" % [pack.size(), String(r.get("what", "Cog Press")),
+		int(ai._qp(q).distance_to(goal) / Defs.TILE)])
+
+
+## The raid's goal: the known Cog Press (or Clocktower) farthest from where the Clockwork's army was last seen (else from
+## its start), not one seen with armed units by it.
+static func raid_goal(ai) -> Vector2:
+	var g = ai.game
+	var foe: int = ai._foe()
+	if foe < 0:
+		return Vector2.INF
+	var army_at: Vector2 = ai.bvc_army_at if ai.bvc_army_at != Vector2.INF else (Vector2(g.starts[foe]) + Vector2(2.5, 2.0)) * Defs.TILE
+	var best := Vector2.INF
+	var bd := -1.0
+	for b in ai._foe_blds:
+		if not is_instance_valid(b) or b.dead or not b.kind in ["cog_press", "clocktower"]:
+			continue
+		var p: Vector2 = ai._foe_blds[b]
+		var d := p.distance_to(army_at) + (300.0 if b.kind == "cog_press" else 0.0)
+		if d > bd:
+			bd = d
+			best = p
+	return best

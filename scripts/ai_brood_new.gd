@@ -282,6 +282,9 @@ var seen_army := 0.0            # the biggest enemy army value seen lately (fade
 var seen_wall := false
 var seen_pend := 0                # (brood-v-clockwork-army: the most enemy Pendulums seen at once)
 var bvc_kills: Array = []         # (brood-v-clockwork-army: [clock, value killed] a second, AIBroodVCw.reckon)
+var bvc_raid := {}                # (brood-v-clockwork-army: the Raptor raid on the Winders, AIBroodVCw.raid_tick)
+var bvc_raid_t := -999.0
+var bvc_army_at := Vector2.INF    # (where the Clockwork's army was last seen, its biggest group: the raid goes elsewhere)
 var riders_n := 0               # the most fast enemy riders (Horsemen...) seen at once lately (is_rider)
 var riders_t := -999.0          # when riders were last seen
 var rush_seen := ""             # rush evidence: what was seen ("" = none)
@@ -327,6 +330,7 @@ func _nb_observe(q: Unit) -> void:
 	seen_army = maxf(0.0, seen_army - dt * 1.0)        # (fades: 60 a minute)
 	var air := 0
 	var pend := 0
+	var seen_at := Vector2.ZERO        # (brood-v-clockwork-army: where it sees the enemy's army, by value)
 	var val := 0.0
 	var out := 0.0                  # (value seen OUT of the enemy's own base: an army on the move)
 	var home := 0.0
@@ -357,6 +361,7 @@ func _nb_observe(q: Unit) -> void:
 			continue
 		var v := float(Game.unit_value(u))
 		val += v
+		seen_at += u.position * v
 		var away: bool = fst == Vector2.INF or u.position.distance_to(fst) > 22.0 * Defs.TILE
 		if away:
 			out += v
@@ -392,6 +397,8 @@ func _nb_observe(q: Unit) -> void:
 		riders_t = game.clock
 	seen_army = maxf(seen_army, val)
 	seen_pend = maxi(seen_pend, pend)
+	if val >= 400.0:
+		bvc_army_at = seen_at / val
 	if _bvc():
 		AIBroodVCw.note_kills(self)
 	if air > 0:
@@ -3441,6 +3448,9 @@ func _nb_army(q: Unit) -> void:
 		army.erase(_scout)
 	if sd != null and not sd.hunters.is_empty():
 		army = army.filter(func(u: Unit) -> bool: return not sd.has(u))      # (scout-deny: the hunters after a scout, not held or sent)
+	if _bvc():
+		AIBroodVCw.raid_tick(self, q, army)          # (brood-v-clockwork-army: the Raptors raid the Winders, not the line)
+		army = army.filter(func(u: Unit) -> bool: return not AIBroodVCw.raid_has(self, u))
 	# a wave out is called home when the attack at the Mother is big and the creatures at home can't hold it
 	if _attacking and _nb_threat(q) != Vector2.INF and _nb_sires_needed(q):
 		var home_v := _value_of(army.filter(func(u: Unit) -> bool: return not _wave.has(u)))
@@ -3495,7 +3505,8 @@ func _nb_army(q: Unit) -> void:
 		return
 	if not first_rush and not capped and not by_build and mine_v < seen_army * float(plan.get("edge", 0.6)):
 		return
-	if _bvc() and not first_rush and not capped and not AIBroodVCw.off("bvcwave") and not AIBroodVCw.wave_ok(self, mine_v):
+	if _bvc() and not first_rush and not banked and game.supply_used(team) < AIBroodVCw.FULL_CAP and not AIBroodVCw.off("bvcwave") \
+			and not AIBroodVCw.wave_ok(self, mine_v):
 		return          # (brood-v-clockwork-army: not into the Clockwork's base short of its reckoned army)
 	# a wall seen (the Crown's ramp wall): not with claws alone (round 3: Raptor waves into Musketeers behind a wall lost
 	# three to four times what they killed); Brutes with Battering Horns or a real line of Spitters first, or at the cap
