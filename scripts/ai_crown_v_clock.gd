@@ -7,7 +7,7 @@ class_name AICrownVClock
 ## `-- cvc:<name>` turns it on (to measure it again). `-- cvc:off` turns every one off.
 
 ## The kept changes (see the doc's log for each one's block and numbers)
-const KEPT := {"pick": true}
+const KEPT := {"pick": true, "hall2": true}
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 
