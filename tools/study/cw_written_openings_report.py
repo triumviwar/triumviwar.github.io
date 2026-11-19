@@ -93,7 +93,7 @@ def marks(data, tag, si):
 
 
 def main():
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    args = [a for i, a in enumerate(sys.argv[1:]) if not a.startswith("--") and sys.argv[i] != "--maps"]
     nm = int(sys.argv[sys.argv.index("--maps") + 1]) if "--maps" in sys.argv else 4
     before = args[0] if args else os.path.join(ROOT, "docs/plan_matrix_clockwork/data")
     after = args[1] if len(args) > 1 else os.path.join(ROOT, "docs/cw_written_openings/data")

@@ -1494,13 +1494,17 @@ func cc_vs_crown() -> bool:
 ## army of one Springer (Dune Sea, seed 1107), the Heavy Works push 450-550. Against the Crown, once the cogs free of every
 ## waiting step's price stay over CC_BANK for CC_BANK_T s, every idle Light Works trains a Clock Soldier (the soldiers the
 ## plan's own "clock_soldier N" step will want anyway; the Winders come first: _train_workers ran before).
+## (cw-written-openings) A build begun from the common opening has the cogs of its economy: against every faction, not only
+## the Crown (the Owl raids v the Clockwork OPTIMAL, Greenhold: 1,467 cogs in the bank at 6:00 waiting on Tension, one Clock
+## Soldier to meet a push worth 867 at 6:53). `-- cwbankall:off` keeps it to the Crown.
+var bank_all_on := not OS.get_cmdline_user_args().has("cwbankall:off")
 const CC_BANK := 350
 const CC_BANK_T := 15.0
 var _cc_bank_t := -1.0
 
 
 func _cc_bank() -> void:
-	if not cc_on or difficulty < 1 or _eco_plan() or not cc_vs_crown():
+	if not cc_on or difficulty < 1 or _eco_plan() or not (cc_vs_crown() or (written_at >= 0.0 and bank_all_on)):
 		return
 	var free := _free() - maxi(0, _reserve)       # (a heavy machine's cogs kept by _b_keep stay kept)
 	if free < CC_BANK:
