@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.82", "items": [
+		"THE CROWN COMPUTER AGAINST THE CLOCKWORK, coached over 260 games: its OPTIMAL plan picks the Timing attack or the Siege push, its second Town Hall goes down right after the pick (about 3:00), the Church and the Armoury wait for the third hall, and when its powder runs out late with gold in the bank its Foundries cast Field Cannons and its Barracks train Musketeers with the bayonet. On the same ten games it now lasts to 20:00 in 18 of 20 (was 6 of 10) and leads or wins 8 (was none).",
+	]},
 	{"v": "0.38.81", "items": [
 		"BETTER PICKS IN THE MIRRORS: the computer's OPTIMAL plan now plays Balanced or the Balloon harass against another Crown (it played the Economy race or the Timing attack, among the worst there), and Balanced against another Brood (it played the Timing attack or rushed, which won none of 8). The choice comes from the 20-minute studies of every plan.",
 	]},

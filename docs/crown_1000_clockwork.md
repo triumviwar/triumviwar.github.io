@@ -7,7 +7,7 @@ the Crown computer's play between blocks. The sister job crown-1000-brood does t
 
 ## In short
 
-**28 blocks, 280 games to 20:00** (of the 500 asked: two games at a time on a 2-core machine, about 30 minutes a block; one
+**26 blocks, 260 games to 20:00** (of the 500 asked: two games at a time on a 2-core machine, about 30 minutes a block; one
 restart of the machine). 24 blocks against the Clockwork tried 16 changes, 4 were kept, and the kept set was run twice more
 on the same 10 games; one block each against the Brood and in the mirror checked the gate.
 
@@ -69,7 +69,7 @@ these should merge without meeting.
 2. `dry` buys bayonet Musketeers, who fight with the bayonet until the powder comes: a cheap body rather than an idle bank.
    If the owner dislikes powderless Musketeers in the computer's army, `-- cvcdry:off` turns it off (the guns half alone
    is a possible variant, not measured).
-3. 280 games, not 500: the rest of the budget went to the checks (the reruns, the Brood and the mirror) and the tests.
+3. 260 games, not 500: the rest of the budget went to the checks (the reruns, the Brood and the mirror) and the tests.
 4. `drybank=800` and `timingonly` were written but not run (queued when the machine restarted).
 
 ## How it is measured
