@@ -25,6 +25,12 @@
 
 ## Current work
 
+- PLAN MATRIX, THE BROOD (job plan-matrix-brood(-2), 0.38.80, docs/plan_matrix_brood.md, data docs/plan_matrix_brood/,
+  tools/study/plan_matrix_brood*.py): every Brood plan forced v each side's Hard OPTIMAL, 216 games to 20:00 on 4 maps
+  (0.38.59/0.38.69): v the Crown 60 of 72 won or led (any plan but the Air rush), v the Clockwork 1 of 72 (no plan works;
+  OPTIMAL's GREEDY-read Rush scores like Balanced, the forced Rush/Economy worse), mirror Balanced 6 of 8 (OPTIMAL picks
+  Timing). The AIR RUSH plan builds no flyers (Storm Lure never in 10 of 24, else ~8:15). Proposed pick table in the doc;
+  rerun the v-Crown column on 0.38.79+. OWNER DECISIONS WAITING.
 - WORLD LORE (owner 2026-11-18 16:18-16:24): the APOSTASY of the POST-MODERN AGE was destroyed by its thinking machines (THE
   GHOST IN THE MACHINE); since then technology for its own sake is no goal (why 2767 has muskets and clockwork), the common
   people HATE technology, and Hollweg built the Perpetual IN SECRET. c01 opens with THE QUARREL (Ferrer v Hollweg, 0.38.65);

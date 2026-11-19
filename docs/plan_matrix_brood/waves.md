@@ -1,0 +1,29 @@
+| plan | opponent | games | waves a game | first wave (median time, supply) | waves pulled back a game | lost of a pulled-back wave |
+|---|---|---|---|---|---|---|
+| balanced | Crown | 8 | 3.0 | 7:07, 28 | 2.1 | 72% |
+| rush | Crown | 8 | 2.8 | 3:03, 10 | 1.8 | 56% |
+| economy | Crown | 8 | 1.8 | 9:22, 46 | 0.9 | 63% |
+| timing | Crown | 8 | 3.5 | 6:53, 27 | 2.5 | 67% |
+| air | Crown | 8 | 2.6 | 7:05, 19 | 2.1 | 63% |
+| xrush | Crown | 8 | 3.0 | 1:46, 8 | 2.0 | 67% |
+| spitter | Crown | 8 | 2.4 | 9:09, 26 | 1.0 | 66% |
+| brute | Crown | 8 | 2.1 | 10:20, 66 | 1.1 | 71% |
+| optimal | Crown | 8 | 2.8 | 7:44, 29 | 1.6 | 69% |
+| balanced | Clockwork | 8 | 3.1 | 5:19, 18 | 3.1 | 59% |
+| rush | Clockwork | 8 | 2.5 | 2:59, 10 | 2.5 | 64% |
+| economy | Clockwork | 8 | 2.6 | 5:00, 18 | 2.6 | 59% |
+| timing | Clockwork | 8 | 2.5 | 5:00, 18 | 2.5 | 64% |
+| air | Clockwork | 8 | 2.0 | 6:44, 16 | 2.0 | 60% |
+| xrush | Clockwork | 8 | 2.5 | 1:46, 8 | 2.5 | 65% |
+| spitter | Clockwork | 8 | 1.9 | 6:49, 22 | 1.9 | 57% |
+| brute | Clockwork | 8 | 1.2 | 9:02, 64 | 1.1 | 58% |
+| optimal | Clockwork | 8 | 3.6 | 2:52, 10 | 3.6 | 69% |
+| balanced | Brood | 8 | 4.6 | 6:50, 24 | 4.0 | 71% |
+| rush | Brood | 8 | 1.8 | 2:58, 10 | 1.8 | 55% |
+| economy | Brood | 8 | 3.6 | 8:57, 65 | 3.1 | 63% |
+| timing | Brood | 8 | 3.6 | 6:38, 24 | 3.1 | 70% |
+| air | Brood | 8 | 2.0 | 8:58, 46 | 2.0 | 63% |
+| xrush | Brood | 8 | 2.5 | 1:47, 8 | 2.4 | 65% |
+| spitter | Brood | 8 | 4.1 | 8:13, 54 | 3.8 | 62% |
+| brute | Brood | 8 | 3.2 | 9:19, 85 | 3.0 | 64% |
+| optimal | Brood | 8 | 4.6 | 6:58, 23 | 4.1 | 65% |
