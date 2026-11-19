@@ -740,6 +740,8 @@ const HOLD_BEAT_BROOD := 2.0
 
 
 func hold_beat() -> float:
+	if AICrownVClock.on("stand") and AICrownVClock.vs(self):
+		return AICrownVClock.STAND_BEAT      # (crown-1000-clockwork: down to the natural against an even force)
 	if on and _foe_is("brood"):
 		return float(plan.get("beat_brood", HOLD_BEAT_BROOD))
 	return 1.3

@@ -160,3 +160,15 @@ static func mid_at(ai, k: String, n: int, at: Dictionary) -> Dictionary:
 	if k == "foundry" and n == 2 and on("foundry2") and vs(ai):
 		return {"labs": FOUNDRY2_LABS, "halls": 2}
 	return at
+
+
+# ------------------------------------------------------------------ 11. stand at the halls (AICrown.hold_beat, AICrownDefence)
+
+## The decisive minutes are 9:00-13:00: in the games the Crown lost its army at 8:00 was the survivors' (1,052 v 1,223) and
+## by 12:00 it was 980 v 1,544 with the Clockwork's 4,395 v 3,434 (blocks 0-9, 60 games). The stories: "holds the top of its
+## ramp: against the force below (1,895) its army (1,575) goes down only at 2,464", "gathers its army at its hall, out of
+## reach: the force at its buildings (2,260) is more than its army (2,280) can beat one by one", and the natural falls
+## without a fight (Cinder Steps r1, lost in 7 of 9 blocks). Here against the Clockwork the army goes down to an expansion
+## against a force up to 1/STAND_BEAT of itself (was 1/1.3) and musters only under STAND_MUSTER of the force (was 1.2).
+const STAND_BEAT := 0.9
+const STAND_MUSTER := 0.85
