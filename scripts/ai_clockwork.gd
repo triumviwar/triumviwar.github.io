@@ -177,6 +177,11 @@ func _ready() -> void:
 		_attack_at = int(_s("wave"))
 		note("cwnew:off: the Springer timing plays as the old computer's Balanced")
 		return
+	if common_on and cw_on and eco_on and Defs.gear_mode and opt == null and COMMON_FIRST.has(strategy) and over.is_empty():
+		# (cw-written-openings: the written build waits for the common opening, as OPTIMAL's do)
+		written = strategy
+		strategy = "balanced"
+		_opened = "balanced"
 	if not (PLANS.has(strategy) or PLANS_B.has(strategy) or BuildsC.PLANS.has(strategy) or _eco_plan()) or not Defs.gear_mode:
 		return
 	_make_plan()
@@ -191,8 +196,78 @@ func _ready() -> void:
 		scout.passive = difficulty >= 1 and not peaceful
 	# (clockwork-eco: the Economy and Balanced openings keep the scout: rush evidence is their only reason for an early army)
 	note("plays the %s: the opening build (%d steps)" % [String(STRATEGIES[strategy]["name"]), steps.size()])
+	if written != "":
+		note("the %s starts from the common opening (Winders non-stop, a fast second Clocktower); its own build from about %d:%02d" % [String(STRATEGIES[written]["name"]), int(COMMON_FROM) / 60, int(COMMON_FROM) % 60])
 	if opt != null:
 		note("OPTIMAL: the common opening (the economy opening: Winders non-stop, a fast second Clocktower), a scout, then it picks its build from what it sees")
+
+
+## THE WRITTEN BUILDS START FROM THE COMMON OPENING (cw-written-openings, 2026-11-19; docs/cw_written_openings.md). The owner,
+## 07:26: "Owl raids and the Springer timing are bad in every matchup. Maybe ... they forget economy like horseman rush did
+## in the past?" They did: the plan matrix (docs/plan_matrix_clockwork.md) found the forced Owl raids, Springer timing and
+## Heavy Works push with ONE Clocktower and 2 Cog Presses at 5:00 (OPTIMAL and Balanced: two and four), 13-15 Winders at
+## 3:00 (17), and 2,500-4,400 cogs behind by 8:00; OPTIMAL's Springer timing, picked at 2:15-3:00 after the common opening,
+## won 5 of 5 where the forced one won or led 4 of 8. Now these three play Balanced's written opening first (Winders
+## non-stop, the second Clocktower at ~2:10-2:30, the scout's rush reaction) and switch to their own build (opt_switch:
+## the steps already done passed by, their raids and push made new) once the second Clocktower is laid and COMMON_FROM
+## has passed, or at COMMON_BY at the latest. Their identity is the build after it: the Owls still raid, the Springers
+## still leap on a timing, the Heavy Works still push. `-- cwcommon:off` plays them from 0:00 as before.
+const COMMON_FIRST := ["springer", "owls", "heavy"]
+const COMMON_FROM := 135.0
+const COMMON_BY := 180.0
+var common_on := not OS.get_cmdline_user_args().has("cwcommon:off")
+var written := ""               # the written build waiting for the common opening ("" = none, or it has begun)
+var written_at := -1.0          # when it began (tests, the study)
+
+
+func _common_due() -> bool:
+	if game.clock >= COMMON_BY:
+		return true
+	if game.clock < COMMON_FROM:
+		return false
+	for i in steps.size():
+		if String(steps[i]) == "clocktower":
+			return done[i]
+	return true
+
+
+func _common_over() -> void:
+	var k := written
+	written = ""
+	written_at = game.clock
+	var picks := _opt_picks
+	opt_switch(k)
+	_opt_picks = picks
+	if scout != null:
+		# (as the build from 0:00: its own units scout, the scout only reads what they see; a rush read still gets the reaction)
+		scout.enabled = false
+		scout.passive = difficulty >= 1 and not peaceful
+
+
+## THE CLOCKWORK'S RUSH TURNS TO THE ECONOMY (cw-written-openings). The Rush is the shared computer on the Rush numbers (a
+## quarter fewer Winders, the second Clocktower 2.5 times later, two halls, tech late); its waves are the ONE ARMY push's,
+## which goes only stronger than the enemy it reckons, so its first attack came at a median 5:40-7:15 (OPTIMAL's 5:20-
+## 5:55) and the starved economy was all the plan was: 31 Winders and 7,572 cogs by 8:00 v the Crown (OPTIMAL 44, 9,764).
+## Now it opens on the Rush numbers (an army first) and turns to Balanced's economy numbers (Winders, expansions, halls,
+## tech; its waves stay the Rush's) once its first push has gone out, or at RUSH_TURN at the latest. `-- cwrushturn:off`
+## as before.
+const RUSH_TURN := 240.0
+const RUSH_ECON := ["workers", "expand", "halls", "tech"]
+var rush_turn_on := not OS.get_cmdline_user_args().has("cwrushturn:off")
+var rush_turned_at := -1.0
+
+
+func _rush_turned() -> bool:
+	if not rush_turn_on or strategy != "rush" or game == null or game.faction_of(team) != "clockwork":
+		return false
+	if rush_turned_at >= 0.0:
+		return true
+	var out: bool = push != null and (push.phase == "march" or push.phase == "fight" or push.phase == "siege")
+	if out or game.clock >= RUSH_TURN:
+		rush_turned_at = game.clock
+		note("the Rush turns to the economy (%s): Winders, a second Clocktower and tech on Balanced's schedule; its waves stay the Rush's" % ["its first push is out" if out else "time"])
+		return true
+	return false
 
 
 ## clockwork-eco: Economy and Balanced play a written opening (ai_cw_eco.gd) unless `-- cweco:off`.
@@ -322,6 +397,8 @@ func _held_worker(u: Unit) -> bool:
 # ------------------------------------------------------------------ the shared computer's parts, off while the build runs
 
 func _s(key: String) -> Variant:
+	if not bo_on and key in RUSH_ECON and not (scout != null and scout.mod.has(key)) and _rush_turned():
+		return STRATEGIES["balanced"][key]
 	if bo_on:
 		match key:
 			"workers":
@@ -661,6 +738,8 @@ var _opt_picks := 0
 
 
 func _bo_tick() -> void:
+	if written != "" and _common_due():
+		_common_over()
 	if _bo_cap_t > 0.0 and game.clock > _bo_cap_t:
 		_bo_cap_t = -1.0
 		_end_build("time: %d steps of %d done" % [done.count(true), steps.size()])
