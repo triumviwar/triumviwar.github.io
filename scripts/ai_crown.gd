@@ -1840,6 +1840,8 @@ var _mill_farm_last := -1.0
 func _mill_farm_cap(cap: int) -> int:
 	if _defending() or (scout != null and scout.verdict == "rush" and game.clock < 420.0):
 		return cap
+	if AICrownVClock.on("powder") and AICrownVClock.vs(self):
+		cap = AICrownVClock.mill_cap(self, cap)      # (crown-1000-clockwork: the powder piles up: the hands to the Farms)
 	# (by the labourers beyond the Farms' posts, not by where the hands stand now: a hand sent to a Farm frees no post to
 	# count, so the cap does not swing back and forth)
 	var posts := 0

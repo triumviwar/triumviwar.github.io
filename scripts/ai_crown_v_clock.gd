@@ -127,3 +127,22 @@ static func labs_free(ai) -> bool:
 ## army (AI._produce); against the Brood one for every GUN_SHARE_BROOD 4 Musketeers with the Barracks waiting for its gold.
 ## Here against the Clockwork the same rule with GUN_SHARE Musketeers a gun.
 const GUN_SHARE := 3
+
+
+# ------------------------------------------------------------------ 9. the powder piles up (AICrown._mill_farm_cap)
+
+## Blocks 1, 3 and 8: the Crown's powder in the bank was a median 330 at 8:00, 716 at 12:00 and 938 at 14:00 (a Musketeer's
+## load is a few) while 4-9 labourers ground it; the Farms had free posts. Here, with POWDER_BANK or more banked, the Mills
+## keep one hand each and the rest go to the free Farm posts on live soil (no fewer than the cap less those posts).
+const POWDER_BANK := 250.0
+
+
+static func mill_cap(ai, cap: int) -> int:
+	if ai._res2() < POWDER_BANK:
+		return cap
+	var free := 0
+	for f in ai._mine("farm"):
+		if f.built and not f.barren():
+			free += maxi(0, f.crew_max() - f.crew.size())
+	var mills: int = ai._mine("powder_mill").filter(func(m) -> bool: return m.built).size()
+	return maxi(mills, cap - free)
