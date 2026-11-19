@@ -146,3 +146,17 @@ static func mill_cap(ai, cap: int) -> int:
 			free += maxi(0, f.crew_max() - f.crew.size())
 	var mills: int = ai._mine("powder_mill").filter(func(m) -> bool: return m.built).size()
 	return maxi(mills, cap - free)
+
+
+# ------------------------------------------------------------------ 10. the second Foundry sooner (AICrown._mid_tick)
+
+## Block 9 (`guns`: the Barracks waiting for a gun's gold) thinned the line. The guns without the wait: a second Foundry as
+## a milestone at FOUNDRY2_LABS labourers and two halls (the plans have it at 40-44 labourers and three halls), so more
+## Field Cannons come from the shared rule (one for every four of the army, AI._produce) while the Barracks train on.
+const FOUNDRY2_LABS := 26
+
+
+static func mid_at(ai, k: String, n: int, at: Dictionary) -> Dictionary:
+	if k == "foundry" and n == 2 and on("foundry2") and vs(ai):
+		return {"labs": FOUNDRY2_LABS, "halls": 2}
+	return at

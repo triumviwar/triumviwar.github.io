@@ -2476,7 +2476,7 @@ func _mid_tick() -> void:
 			continue            # (crown-v-clockwork-coach: a Clockwork rush read: soldiers before the milestones; the Farms
 			                    # before the tech)            # (crown-owner-eco: the gun's gold holds the tech back, not the production; crown-hold: the
 			# first AI.CANNONS_FIRST Field Cannons too)
-		var at: Dictionary = m[2]
+		var at: Dictionary = AICrownVClock.mid_at(self, k, int(m[1]), m[2])      # (crown-1000-clockwork: a milestone sooner)
 		if labs < int(at.get("labs", 0)) or halls < int(at.get("halls", 0)) or army < int(at.get("army", 0)):
 			continue
 		if not game.requirement_met(team, k) or _busy_building(k):
