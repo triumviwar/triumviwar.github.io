@@ -74,6 +74,30 @@ const C1KB_CANNONS_MAX := 8
 ## (crown-1000-brood, change "mortars") MORE MORTARS: one for 7 Musketeers, 3 at most (MORTARS_MAX); against the Brood's
 ## clumped waves at the palisade one for C1KB_MORTAR_PER, up to C1KB_MORTARS_MAX (after the first 3 Field Cannons, as before).
 const C1KB_MORTAR_PER := 4
+## (crown-1000-brood, change "guard") A HOME GUARD: the push took the whole army at home, and the Brood's waves went for the
+## halls it left (block 14: "falls back: the base is attacked", halls lost at 14:00-19:00 while the push was out). Against
+## the Brood C1KB_GUARD of the Musketeers (the nearest home) and one gun of four stay home on the post.
+const C1KB_GUARD := 0.3
+var c1kb_guarded := 0
+
+
+func _c1kb_guard(home: Array) -> Array:
+	var front: Vector2 = ai._front()
+	var musk := home.filter(func(u: Unit) -> bool: return Defs.MUSKETS.has(u.kind))
+	musk.sort_custom(func(a: Unit, b: Unit) -> bool: return a.position.distance_to(front) < b.position.distance_to(front))
+	var keep := {}
+	for i in int(float(musk.size()) * C1KB_GUARD):
+		keep[musk[i]] = true
+	var guns := home.filter(func(u: Unit) -> bool: return u.kind == "cannon")
+	if guns.size() >= 4:
+		guns.sort_custom(func(a: Unit, b: Unit) -> bool: return a.position.distance_to(front) < b.position.distance_to(front))
+		keep[guns[0]] = true
+	c1kb_guarded += keep.size()
+	_c1kb_keep = keep
+	return home.filter(func(u: Unit) -> bool: return not keep.has(u))
+
+
+var _c1kb_keep := {}            # (change "guard") the guard of the push out: not joined to it
 const C1KB_MORTARS_MAX := 6
 ## (crown-1000-brood, change "maws") THE PUSH GOES FOR THE FAR ROOTMAWS: it marched for the enemy's base (the Mother, her
 ## fathers and turtles) and set up against what it met on the way; against the Brood it marches on the nearest Rootmaw it
@@ -252,6 +276,11 @@ func _stay(why: String) -> void:
 
 func _go(home: Array, value: float) -> void:
 	men.clear()
+	if _brood() and C1kB.on("guard"):
+		home = _c1kb_guard(home)
+		value = 0.0
+		for u in home:
+			value += float(Game.unit_value(u)) * (GUN_WEIGHT if GUNS.has(u.kind) else 1.0)
 	for u in home:
 		men[u] = true
 	state = "march"
@@ -354,6 +383,8 @@ func _join() -> void:
 	if ai._threat() != Vector2.INF:
 		return
 	var home := _home_army()
+	if not _c1kb_keep.is_empty():
+		home = home.filter(func(u: Unit) -> bool: return not _c1kb_keep.has(u))
 	if ai._army_supply(home) < JOIN_SUP:
 		return
 	var to := _behind(GUN_TRAIL * 0.5)
@@ -754,6 +785,7 @@ func _end(why: String) -> void:
 		say("is over (%s): killed %d, lost %d, broke %s" % [why, int(cur["killed"]), int(cur["lost"]), str(cur["broke"])])
 	state = ""
 	men.clear()
+	_c1kb_keep.clear()
 	_near.clear()
 	anchor = null
 	_next_go = game.clock + COOL
