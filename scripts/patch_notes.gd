@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.85", "items": [
+		"THE CROWN COMPUTER AGAINST THE BROOD (nothing the player uses changed): it now opens with its Horseman rush in every game against the Brood, and when the rush is over it turns to its Siege push instead of the Economy race: Field Cannons and Mortars first, then pushes on the Brood's rooted ground when it is clearly bigger than the Brood army it has seen. In 30 test games to 20 minutes it lasted to the end in 20 (9 of 20 before) and was ahead at the bell in 10, with three times the cannons and nearly four halls at 12:00. It still rarely wins outright. Measured in 210 games against the Brood, 13 other changes tried and left off.",
+	]},
 	{"v": "0.38.84", "items": [
 		"THE CLOCKWORK COMPUTER'S WRITTEN PLANS KEEP THEIR ECONOMY (nothing a player uses changed): picked in the lobby, the Owl raids, the Springer timing and the Heavy Works push now open like the Clockwork's best computer (Winders non-stop and a fast second Clocktower) and only then play their own build, so they no longer fall thousands of cogs behind; the Rush turns to a normal economy after four minutes. Measured in 96 games to 20 minutes: the Owl raids won or led 11 games of 24 (were 2), the Springer timing 12 (were 5), the Heavy Works push 17 (were 11); the Owls still raid, the Springers still leap in and the Heavy Works still push.",
 	]},

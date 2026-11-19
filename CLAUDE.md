@@ -47,6 +47,14 @@
   cwbroodlate:off, cwbankall:off, cwrushturn:off. 96 games to 20:00 (plan-matrix tags): won or led Owls 2 -> 11 of 24
   (p 0.004), Springers 5 -> 12, Heavy 11 -> 18 (p 0.04), Rush 9 -> 10; 8:00 income 5,600-7,300 -> 8,200-8,800; OPTIMAL
   unchanged (10/12 both). Left: the mirror (1-3 of 8), Springers/Rush v the Brood, the Rush never rushes (ONE ARMY push).
+- CROWN 1000, THE BROOD HALF (owner 2026-11-19 07:26 "1000 crown games, every 10 games changing something"; job
+  crown-1000-brood, 0.38.82, docs/crown_1000_brood.md, data docs/crown_1000_brood/, tools/study/crown_1000_brood.py,
+  scripts/ai_crown_1k_brood.gd AICrown1kBrood): 21 blocks of 10 Crown OPTIMAL v Brood OPTIMAL games to 20:00 (210; 500
+  did not fit) + one block v Clockwork and one mirror. KEPT (v the Brood only, switches c1kb<name>:off, c1kb:off all):
+  `lean` (the Horseman rush's own build from 0:00 every game) and `siege` (after the rush, the Siege push instead of the
+  Economy plan; no late re-pick): survived to 20:00 20 of 30 (base 9 of 20), won or led 10 of 30 (3), defeats 18:52
+  (16:55), Field Cannons ~6 (1-3), but 0 outright wins. 13 changes measured and left off (eco, press, tech, halls, farms,
+  queen, pester, edge, guns, maws, mortars, guard, spare). 5 Claude's choices in the doc.
 - PLAN MATRIX, THE BROOD (job plan-matrix-brood(-2), 0.38.80, docs/plan_matrix_brood.md, data docs/plan_matrix_brood/,
   tools/study/plan_matrix_brood*.py): every Brood plan forced v each side's Hard OPTIMAL, 216 games to 20:00 on 4 maps
   (0.38.59/0.38.69): v the Crown 60 of 72 won or led (any plan but the Air rush), v the Clockwork 1 of 72 (no plan works;

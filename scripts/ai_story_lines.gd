@@ -69,6 +69,7 @@ const RULES := [
 	# ---- the Crown against the Brood (crown-v-brood-coach, docs/crown_v_brood_coach.md)
 	["^'s plan: its riders are chased off the grubs there", "%s's riders are chased off the grubs there: they pull back and come again at another Rootmaw.", 1, "raid"],
 	["^'s plan: the rush is over \\((?:\\w+)\\): the economy now", "%s's rush is over: it hands over to its Economy plan, labourers to two halls and a walled natural.", 3, "plan"],
+	["^'s plan: the rush is over \\((?:\\w+)\\): \\w+ hands it to the Siege push", "%s's rush is over: it hands over to its Siege push, guns first, then a push on the Brood's rooted ground.", 3, "plan"],
 	["^turns from its natural's gate to the enemy inside its wall \\((\\d+) against (\\d+)\\)", "%s turns from its natural's gate to the enemy inside its wall (%s against %s).", 2, "defend"],
 	# ---- crown-coach-v-brood (docs/crown-coach-v-brood.md, scripts/ai_crown_v_brood.gd)
 	["^'s plan: against the Brood the line comes before more buildings: (\\d+) of Musketeers and guns against the (\\d+)", "%s puts its musket line before more buildings (%s of Musketeers and guns against the %s it wants by now).", 2, "army"],

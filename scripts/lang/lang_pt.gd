@@ -2675,6 +2675,7 @@ const T := {
 	"%s expands while its base is still rich: more %s, %s tiles out.": "%s expande enquanto a sua base ainda é rica: mais %s, a %s casas de distância.",
 	"%s's riders are chased off the grubs there: they pull back and come again at another Rootmaw.": "Os cavaleiros de %s são expulsos das larvas ali: recuam e voltam noutra Bocarraiz.",
 	"%s's rush is over: it hands over to its Economy plan, labourers to two halls and a walled natural.": "A investida de %s acabou: passa para o seu plano de Economia, trabalhadores para duas bases e uma expansão murada.",
+	"%s's rush is over: it hands over to its Siege push, guns first, then a push on the Brood's rooted ground.": "A investida de %s acabou: passa para o seu Avanço de cerco, primeiro os canhões, depois um avanço sobre o terreno enraizado da Ninhada.",
 	"%s puts its musket line before more buildings (%s of Musketeers and guns against the %s it wants by now).": "%s põe a sua linha de mosqueteiros antes de mais edifícios (%s de Mosqueteiros e canhões contra os %s que quer por agora).",
 	"%s goes out at once with %s of army: the Brood's wave just died at its line.": "%s sai de imediato com %s de exército: a onda da Ninhada acabou de morrer na sua linha.",
 	"%s goes out at once with %s of army: its army is far bigger than the Brood army it saw lately.": "%s sai de imediato com %s de exército: o seu exército é muito maior do que o exército da Ninhada que viu há pouco.",
