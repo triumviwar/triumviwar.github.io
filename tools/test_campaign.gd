@@ -63,7 +63,7 @@ func _data() -> void:
 	check("crown and rebels on opposite sides", c["slots"][0]["side"] != c["slots"][2]["side"] and c["slots"][0]["side"] == c["slots"][1]["side"])
 	# a campaign-only faction plays its stand-in until it exists
 	check("campaign-only faction -> stand-in", Campaign.engine_faction({"factions": {"tribes": {"stand_in": "crown"}}}, "tribes") == "crown")
-	check("only the prologue is open at first", Campaign.unlocked("p01_leaf") and not Campaign.storyline_open(Campaign.storylines()[1]))
+	check("all three prologues are open at first (owner 2026-11-18), the Crown marked Start here", Campaign.unlocked("p01_leaf") and Campaign.unlocked("b01_specimen") and Campaign.unlocked("c01_thirteenth") and bool(Campaign.storylines()[0].get("start", false)))
 
 
 func _start(mode: String, seat := "p1") -> Game:
@@ -321,7 +321,7 @@ func _run() -> void:
 	check("the mission's end screen shows", main.ui_layer.find_child("MissionEnd", true, false) != null)
 	var p := Campaign.progress()
 	check("progress: the test mission is done", (p["done"] as Dictionary).has("p01_revolt"))
-	check("the test mission opens no storyline", not Campaign.storyline_open(Campaign.storylines()[1]))
+	check("every storyline is open from the start", Campaign.storyline_open(Campaign.storylines()[1]))
 	Campaign.record("p01_leaf", "solo", "crown", "crown", {"families": "save"})
 	p = Campaign.progress()
 	check("the prologue won: the naturalist and clockmaker storylines open", Campaign.storyline_open(Campaign.storylines()[1]) and Campaign.storyline_open(Campaign.storylines()[2]))

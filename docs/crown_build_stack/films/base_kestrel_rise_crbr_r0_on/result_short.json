@@ -1,0 +1,98 @@
+{
+ "map": "kestrel_rise",
+ "seed": 1130,
+ "slots": [
+  [
+   "crown",
+   "optimal",
+   0
+  ],
+  [
+   "brood",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 720,
+ "winner": -1,
+ "version": "0.38.59",
+ "tech_at": {
+  "0:charge": 555,
+  "1:nb_clutch_spitter": 695,
+  "1:nb_pack_hunt": 585
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "GREEDY",
+   "t": 75,
+   "why": "no army and no production at its base"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 356,
+   "why": "the scout was driven off"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 487,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 596,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 672,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "pick": "opening GREEDY -> rush (punish the greed: the Horse Breeder at once, the riders before its army)",
+   "t": 75
+  },
+  {
+   "p": 1,
+   "read": "AGGRESSIVE",
+   "t": 229,
+   "why": "a Horse Breeder or riders early"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 305,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "pick": "opening UNKNOWN -> spitter (a timing attack)",
+   "t": 180
+  }
+ ],
+ "final": [
+  {
+   "income": 11780,
+   "army": 1905,
+   "halls": 3,
+   "workers": 43,
+   "plan": "economy",
+   "supply": 91,
+   "lost": 26
+  },
+  {
+   "income": 13726,
+   "army": 2215,
+   "halls": 4,
+   "workers": 50,
+   "plan": "spitter",
+   "supply": 142,
+   "lost": 96
+  }
+ ]
+}

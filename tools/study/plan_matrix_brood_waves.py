@@ -8,8 +8,8 @@ import os, sys, re
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import plan_matrix_report as rep
-import plan_matrix as pm
+import plan_matrix_brood_report as rep
+import plan_matrix_brood as pm
 
 ATT = re.compile(r"^\[(\d+):(\d+)\] P(\d) Brood attacks with (\d+) supply")
 BACK = re.compile(r"^\[(\d+):(\d+)\] P(\d) Brood pulls its wave back: only (\d+) of (\d+)")

@@ -111,6 +111,8 @@ static func war_table(main: Node) -> void:
 		var open := Campaign.storyline_open(sl, p)
 		v.add_child(UiStyle.text(Loc.t(String(sl.get("title", ""))), 22, UiStyle.TRIM if open else UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
 		v.add_child(_wrap(Loc.t(String(sl.get("about", ""))), 15, UiStyle.MUTED))
+		if bool(sl.get("start", false)):
+			v.add_child(_wrap(Loc.t("Start here: the story begins with the King in Rome."), 15, UiStyle.TRIM))
 		if not open:
 			var req := Campaign.mission(String(sl.get("requires", "")))
 			v.add_child(_wrap(Loc.t("Opens after: %s") % Loc.t(String(req.get("title", ""))), 15, UiStyle.MUTED))
@@ -482,7 +484,8 @@ static func show(main: Node) -> void:
 	top.add_child(t)
 	for s in Campaign.storylines():
 		var open := Campaign.storyline_open(s, p)
-		var b: Button = main._button(Loc.t(String(s.get("title", ""))) + ("" if open else "  " + Loc.t("(locked)")), func() -> void:
+		var b: Button = main._button(Loc.t(String(s.get("title", ""))) + ("" if open else "  " + Loc.t("(locked)"))
+				+ ("  · " + Loc.t("Start here") if bool(s.get("start", false)) else ""), func() -> void:
 			line = String(s["id"])
 			show(main))
 		b.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED

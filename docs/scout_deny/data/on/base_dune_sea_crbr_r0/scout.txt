@@ -1,0 +1,98 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P2 Brood plays Brood (Optimal)
+[00:00] P2 Brood's Brood: OPTIMAL: the common opening (Balanced's economy), a grub into the enemy's main early, then it picks its build from what it sees
+[00:02] P1 Crown sends a Labourer to scout
+[00:40] P2 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[01:19] P2 Brood sends 2 Grubs after the Crown's scouting Labourer
+[01:29] P1 Crown scouted: GREEDY [a second base and little army] (the Mother and 1 turtle on new ground, 2 Rootmaws and 7 grubs seen, 0 Sires, 0 supply of army seen near its base): OPTIMAL picks its build from this
+[01:29] P1 Crown's plan: Rush, a build order of 6 steps from here (scripts/ai_crown.gd)
+[01:29] P1 Crown's plan: optimal: reads GREEDY [a second base and little army]: picks Rush (punish the greed: the Horse Breeder at once, the riders before its army)
+[01:30] P2 Brood killed the Crown's scouting Labourer at 1:30
+[03:00] P2 Brood's Brood: optimal: reads UNKNOWN [no read yet]: picks Timing attack (a timing attack)
+[03:02] P2 Brood's Brood: rider read: a Horseman at 3:02: Raptors now, its grubs kept by them, no chase
+[03:02] P2 Brood's Brood: scouted: AGGRESSIVE [a Horse Breeder or riders early] (1 halls, 0 production, 0 static defences, 60 of army seen): OPTIMAL picks its build from this
+[03:02] P2 Brood's Brood: optimal: reads AGGRESSIVE [a Horse Breeder or riders early]: keeps Timing attack (it switched once this stage already; Balanced waits)
+[03:38] P1 Crown's rush: goes out (3 Horsemen together)
+[04:00] P1 Crown's plan: the army floor (a look at the Brood's army) waits for a fresh scout report: no enemy soldier seen for the whole game and its main not looked at for the whole game
+[04:00] P1 Crown sends a Labourer to scout again (trip 2)
+[04:05] P1 Crown saw an enemy Raptors (fast, a Brood rush unit): evidence of a rush
+[04:10] P2 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[04:46] P1 Crown scout under guard (Raptors), backing out of range
+[04:47] P2 Brood sends 2 Grubs after the Crown's scouting Labourer
+[04:49] P2 Brood lets the Crown's scouting Labourer go (away past the leash)
+[04:57] P1 Crown's plan: the army floor against the Brood: 120 of line (with what trains) against the 425 its scouting asks for: the soldiers' gold first
+[05:08] P1 Crown's rush: FAILED (no headway in 90 s): the riders ride home, no more go out alone; it builds up and attacks only with a proper force
+[05:09] P1 Crown's plan: the rush is over (failed): the economy now, balanced hands it to the Economy plan (labourers to two halls, the walled natural)
+[05:09] P1 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[05:09] P1 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[05:09] P1 Crown's Horseman goes on to harass the workers (the scout found workers)
+[05:09] P1 Crown's scout found workers to hunt: it hands over to the raid
+[05:09] P1 Crown's Horseman goes on to harass the workers (the scout found workers)
+[05:09] P1 Crown's scout found workers to hunt: it hands over to the raid
+[05:09] P1 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[05:09] P1 Crown's scouts know: an enemy army of 425 (seen in the last 120 s), 0 enemy halls, tech none seen
+[05:10] P1 Crown's Horseman goes on to harass the workers (the scout found workers)
+[05:10] P1 Crown's scout found workers to hunt: it hands over to the raid
+[05:13] P1 Crown scout under guard (Raptors), backing out of range
+[05:15] P2 Brood sends 2 Raptors after the Crown's scouting Labourer
+[05:15] P1 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[05:17] P1 Crown scout under guard (Raptors), backing out of range
+[05:22] P1 Crown scout killed: it saw nothing to go on, will look again soon
+[05:22] P1 Crown could not see the enemy [the scout was killed] (the scout was killed before it saw the base): that proves nothing; no army for it, keeps to Economy and looks again soon
+[05:22] P2 Brood killed the Crown's scouting Labourer at 5:22
+[05:27] P2 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[05:30] P2 Brood's Brood: scouted: NORMAL [a standard opening] (1 halls, 0 production, 0 static defences, 180 of army seen): OPTIMAL picks its build from this
+[05:30] P2 Brood's Brood: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[05:57] P1 Crown sends a Labourer to scout again (trip 3)
+[05:59] P1 Crown's plan: the army floor against the Brood: 360 of line (with what trains) against the 660 its scouting asks for: the soldiers' gold first
+[06:03] P1 Crown's scout rides home (chased)
+[06:06] P1 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[06:07] P1 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[06:25] P1 Crown's scouts know: an enemy army of 575 (seen in the last 120 s), 0 enemy halls, tech none seen
+[06:37] P1 Crown scout under guard (Raptors), backing out of range
+[06:38] P1 Crown scout killed: it saw nothing to go on, will look again soon
+[06:38] P1 Crown scouted: NORMAL [a standard opening] (the Mother and 1 turtle on new ground, 3 Rootmaws and 7 grubs seen, 0 Sires, 25 supply of army seen near its base, 625 of army known): OPTIMAL picks its build from this
+[06:38] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Economy (what it plays already answers it)
+[06:41] P2 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[06:59] P1 Crown's plan: the army floor against the Brood: 480 of line (with what trains) against the 994 its scouting asks for: the soldiers' gold first
+[07:02] P1 Crown sees a push coming: 24 soldiers worth 600, 1 tiles from its nearest building, against 600 of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)
+[07:09] P2 Brood's Brood: its wave lets the riders go (9 creatures turned back to the raid): no chase into the open
+[07:21] P2 Brood's Brood: pulls back: 150 of 625 left, 180 ahead (killed 485)
+[07:26] P1 Crown sends a Labourer to scout again (trip 4)
+[07:40] P1 Crown's scout rides home (chased)
+[07:40] P1 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[07:40] P1 Crown's scouts know: an enemy army of 225 (seen in the last 120 s), 0 enemy halls, tech none seen
+[07:42] P1 Crown's fight at 6:58 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 525, lost 435
+[08:03] P1 Crown's plan: the army floor against the Brood: 470 of line (with what trains) against the 1211 its scouting asks for: the soldiers' gold first
+[08:05] P1 Crown's Horseman goes on to harass the workers (the scout found workers)
+[08:05] P1 Crown's scout found workers to hunt: it hands over to the raid
+[08:05] P1 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[08:12] P2 Brood sends 2 Tyrant Challengers after the Crown's scouting Labourer
+[08:15] P1 Crown scout under guard (Tyrant Challenger), backing out of range
+[08:18] P2 Brood killed the Crown's scouting Labourer at 8:18
+[08:18] P1 Crown scout killed: it saw nothing to go on, will look again soon
+[08:18] P1 Crown could not see the enemy [the scout was killed] (the scout was killed before it saw the base): that proves nothing; no army for it, keeps to Economy and looks again soon
+[08:31] P1 Crown's Horseman goes on to harass the workers (the scout found workers)
+[08:31] P1 Crown's scout found workers to hunt: it hands over to the raid
+[08:32] P1 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[08:51] P1 Crown's scout rides home (chased)
+[08:53] P1 Crown sends a Field Cannon to scout again (trip 5)
+[08:56] P1 Crown's scouts know: an enemy army of 1200 (seen in the last 120 s), 0 enemy halls, tech none seen
+[08:57] P1 Crown sees a push coming: 17 soldiers worth 625, 40 tiles from its nearest building, against 1000 of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)
+[09:03] P2 Brood's Brood: its wave lets the riders go (1 creatures turned back): no chase into the open
+[09:05] P1 Crown sends 2 labourers to mend its Palisade under the line's fire
+[09:15] P1 Crown scout under guard (Tyrant Challenger), backing out of range
+[09:16] P1 Crown's plan: the army floor against the Brood: 930 of line (with what trains) against the 1625 its scouting asks for: the soldiers' gold first
+[09:19] P1 Crown scout killed: it saw nothing to go on, will look again soon
+[09:24] P1 Crown's scout rides home (chased)
+[09:30] P1 Crown sends a Labourer to finish its Barracks (nobody was working on it)
+[09:33] P1 Crown scouted: NORMAL [a standard opening] (the Mother and 5 turtles on new ground, 3 Rootmaws and 14 grubs seen, 0 Sires, 52 supply of army seen near its base, 1800 of army known): OPTIMAL picks its build from this
+[09:33] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Economy (what it plays already answers it)
+[09:37] P2 Brood's Brood: its wave lets the riders go (1 creatures turned back): no chase into the open
+[09:47] P1 Crown sends a Horseman to scout the map (a loop of 10 spots: the hall sites and the foot of the enemy's ramp)
+[09:47] P1 Crown's scout rides home (chased)
+[09:49] P1 Crown sends a Labourer to finish its Barracks (nobody was working on it)
+[10:12] P1 Crown sends a Labourer to finish its Barracks (nobody was working on it)
+[10:19] P1 Crown's fight at 9:05 at home (unformed): 2 guns near, 0 set at contact, 2 fired in its first 10 s; killed 2400, lost 3405
+[10:19] P1 Crown sends a Labourer to finish its Barracks (nobody was working on it)
+[11:07] P1 Crown's fight at 10:40 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 300, lost 1780

@@ -9,8 +9,8 @@ import os, sys
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import plan_matrix_report as rep
-import plan_matrix as pm
+import plan_matrix_brood_report as rep
+import plan_matrix_brood as pm
 
 
 def fine(r):

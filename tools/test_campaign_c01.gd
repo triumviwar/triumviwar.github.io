@@ -126,7 +126,7 @@ func _data() -> void:
 	check("every text of the mission and the hubs has pt and es", miss.is_empty(), " | ".join(miss))
 	var sl := Campaign.storyline_of(MID)
 	check("the Clockwork storyline's first mission is c01", String(sl.get("id", "")) == "clockmaker" and (sl["missions"] as Array)[0] == MID)
-	check("it opens after the Crown's prologue", String(sl.get("requires", "")) == "p01_leaf")
+	check("it is open from the start (owner 2026-11-18)", String(sl.get("requires", "")) == "")
 	var c := Campaign.make_cfg(MID, "solo")
 	check("solo: you are the guild; the Watch, the town and the machine are scripted", c["slots"].map(func(s): return s["who"]) == ["you", "script", "script", "script"])
 	c = Campaign.make_cfg(MID, "coop", "p1", true)
@@ -139,7 +139,7 @@ func _data() -> void:
 	for k in m["stills"]:
 		check("still %s: its picture loads" % k, ResourceLoader.exists(String(m["stills"][k]["image"])))
 	check("the bells and the off-beat tick are in", ResourceLoader.exists("res://assets/audio/campaign/bell_toll.wav") and ResourceLoader.exists("res://assets/audio/campaign/off_beat.wav"))
-	check("the voice folder is c01 (no recordings yet: silent)", String(m.get("voice", "")) == "c01" and CampaignVoice.path_of(m, "h_open1") == "")
+	check("the voice folder is c01 and h_open1 is recorded (Chatterbox, 0.38.70)", String(m.get("voice", "")) == "c01" and CampaignVoice.path_of(m, "h_open1") != "")
 	check("campaign roles: citizen, hollweg, jakob, ferrer", ["citizen", "hollweg", "jakob", "ferrer"].all(func(r): return Defs.UNITS.has(String(Rebels.role(r).get("kind", "")))))
 
 

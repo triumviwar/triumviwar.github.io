@@ -184,6 +184,16 @@ var am = AICrownAmmo.new(self)          # (crown-ammo: armed recruits, the ARM W
 var harass: AIHarass = null
 
 
+## DENY THE SCOUT (scout-deny, scripts/ai_scout_deny.gd, docs/scout_deny.md): made on first use (sdn()).
+var sd: AIScoutDeny = null
+
+
+func sdn() -> AIScoutDeny:
+	if sd == null:
+		sd = AIScoutDeny.new(self)
+	return sd
+
+
 func hz() -> AIHarass:
 	if harass == null:
 		harass = AIHarass.new(self)
@@ -650,6 +660,7 @@ func _tick_ai(delta: float) -> void:
 	if not _phased:
 		_think = first_phase([2.2, 1.2, 0.7, 0.4][clampi(difficulty, 0, 3)])
 	_cav_tick()                    # (crown-coach-cavalry: the riders' in and out, every tick: AICrown, scripts/ai_cav_micro.gd)
+	sdn().tick()                   # (scout-deny: an enemy scout in our base is hunted down, every EVERY s: scripts/ai_scout_deny.gd)
 	_think -= delta
 	if _stage < STAGES:
 		_think_stage(_stage)       # (a think goes on over the next ticks, a part each)
@@ -5301,6 +5312,8 @@ func _on_errand(u: Unit) -> bool:
 		return true
 	if _screen_has(u):
 		return true             # (crown-rider-screen: a rider on the line's screen or the picket, scripts/ai_crown_screen.gd)
+	if sd != null and sd.has(u):
+		return true             # (scout-deny: a hunter after an enemy scout, scripts/ai_scout_deny.gd)
 	return ch.is_scout(u)       # (a rider scout on its loop: scripts/ai_crown_hold.gd)
 
 
@@ -7433,7 +7446,7 @@ func _threats() -> Array:
 		if b.team != team or b.dead:
 			continue
 		for u in game.units_near(b.center(), 330.0):
-			if game.hostile(u.team, team) and not u.dead and not u.off_field and _threat_seen(u, b):
+			if game.hostile(u.team, team) and not u.dead and not u.off_field and _threat_seen(u, b) and not _scout_hunted(u):
 				if out.all(func(p: Vector2) -> bool: return p.distance_to(u.position) > 300.0):
 					out.append(u.position)
 				break
@@ -7445,9 +7458,14 @@ func _threat() -> Vector2:
 		if b.team != team or b.dead:
 			continue
 		for u in game.units_near(b.center(), 330.0):
-			if game.hostile(u.team, team) and not u.dead and not u.off_field and _threat_seen(u, b):
+			if game.hostile(u.team, team) and not u.dead and not u.off_field and _threat_seen(u, b) and not _scout_hunted(u):
 				return u.position
 	return Vector2.INF
+
+
+## (scout-deny) an enemy scout the hunters are after is theirs: no army is held at home for it, no hands are pulled off work
+func _scout_hunted(u: Unit) -> bool:
+	return sd != null and sd.hunted(u)
 
 
 ## PHANTOM THREAT (the owner's log 2026-11-03, v0.27.0 Red Coast: "holds the top of its ramp: the force below (300)" every

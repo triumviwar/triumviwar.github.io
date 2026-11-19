@@ -278,8 +278,9 @@ func _thick(me: Unit) -> void:
 	for i in th.cap:
 		longest = maxf(longest, th._life[i])
 		solid = maxf(solid, th._a[i])
-	# (the owner, 2026-11-03: every puff lives about 3 s, THICK included: 2 s solid, 1 s fading)
-	check(longest <= 3.2 and longest >= 2.8, "THICK: puffs live about 3 s like the rest (longest %.1f s)" % longest)
+	# (the owner, 2026-11-03: puffs live about 3 s, THICK included; 0.38.76 spreads them 2.3 to 4.1 s so a volley's smoke
+	# frays away instead of going all at once)
+	check(longest <= 4.15 and longest >= 2.8, "THICK: puffs live about 3 s like the rest (longest %.1f s)" % longest)
 	check(is_equal_approx(PowderSmoke.LIFE_K[3], 1.0) and PowderSmoke.THICK_A > 1.0, "THICK: lives x%.2f (3 s), %.0f%% more solid" % [PowderSmoke.LIFE_K[3], (PowderSmoke.THICK_A - 1.0) * 100.0])
 	th.tick(0.1)
 	check(th._mm.visible_instance_count > 0, "THICK puffs are drawn (%d)" % th._mm.visible_instance_count)

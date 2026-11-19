@@ -87,7 +87,7 @@ func _states() -> void:
 	var st := WarMapData.state(_p({}))
 	var pins: Dictionary = st["pins"]
 	check("new: the Prologue's pin is open", pins["p01_leaf"]["state"] == "open")
-	check("new: the Clockmaker and Naturalist prologues locked", pins["c01_thirteenth"]["state"] == "locked" and pins["b01_specimen"]["state"] == "locked")
+	check("new: the Clockmaker and Naturalist prologues open (owner 2026-11-18)", pins["c01_thirteenth"]["state"] == "open" and pins["b01_specimen"]["state"] == "open")
 	check("new: a02 and a03 locked", pins["a02_furth"]["state"] == "locked" and pins["a03_plateau"]["state"] == "locked")
 	check("new: a01 (built) locked until the Prologue", pins["a01_presses"]["state"] == "locked")
 	check("new: a06 (built) locked until a01", pins["a06_barricades"]["state"] == "locked")

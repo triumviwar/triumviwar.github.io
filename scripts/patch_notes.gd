@@ -4,6 +4,41 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.79", "items": [
+		"THE CROWN COMPUTER AND ITS LABOURERS (nothing a player uses changed): the computer was taught to send several Labourers to a building site at once, as a good Crown player does, and it was measured in 342 games against the Brood, the Clockwork and itself. It built faster but earned no more, because it spends its gold as soon as it comes, so the stacking is switched off for now and kept for later. Fixed on the way: when the computer picked its plan a moment before it could pay for its Barracks, that Barracks was never built and its Horseman rush never came.",
+	]},
+	{"v": "0.38.78", "items": [
+		"Studies only: every Clockwork computer plan tested against every faction to 20 minutes (240 games): OPTIMAL is the best or tied for best against all three; the Owl raids, the Springer timing, the Rush and the Heavy Works push do clearly worse, mostly because their written openings fall behind in economy.",
+	]},
+	{"v": "0.38.77", "items": [
+		"Studies only: every Crown computer plan was played against every faction to 20 minutes (288 games). Played that long, the Crown computer loses most games against the Brood and the Clockwork whatever its plan; the Horseman rush lasts longest against the Brood, the siege and timing plans against the Clockwork, and the balloon harass does clearly better than the Horseman rush against the Clockwork.",
+	]},
+	{"v": "0.38.76", "items": [
+		"POWDER SMOKE NO LONGER BLINKS AT EVERY VOLLEY: every puff of a volley lived exactly 3 seconds, solid for 2 and gone over 1, so a whole line's smoke came at once and went at once. Now each puff lives 2.3 to 4.1 seconds (still about 3 on average) and starts thinning early, so a line's smoke frays away bit by bit instead of switching off.",
+	]},
+	{"v": "0.38.75", "items": [
+		"FASTER LATE GAMES AGAINST THE BROOD: the Brood computer no longer stops the game for a tenth of a second every 15 seconds in a grown base (it looked for every Rootmaw spot at once; now each swamp in its own moment, three times faster), and its Sires and Mound Turtles find their spots with far less searching. Units moving, grubs walking to their Rootmaws, rooted creatures and units looking for a target cost less, and wave paths are worked out faster. The game plays out exactly as before.",
+		"The replay is written in the background (it froze the game for a moment at 0:10 on some computers), new unit pictures come in a few at a time, and the match log's slow frames now say how long the drawing took and when the window lost focus.",
+	]},
+	{"v": "0.38.74", "items": [
+		"The King speaks again in the campaign: his 85 new lines recorded again, clear this time.",
+	]},
+	{"v": "0.38.73", "items": [
+		"All three prologues are open from the start: the Crown, the Clockmaker and the Naturalist. The Crown is marked Start here, where the story begins.",
+		"The Leaf and the Fire: after Hollins Farm the Governor now points you at the second rebel camp on the road east, shown on the map.",
+		"The King's new campaign lines are taken out until they are recorded again (they sounded muffled).",
+	]},
+	{"v": "0.38.72", "items": [
+		"The Fürth Line's dawn painting: the soldiers now carry proper flintlock muskets.",
+	]},
+	{"v": "0.38.71", "items": [
+		"SCOUTS ARE HUNTED DOWN: every computer (the Crown, the Clockwork and the Brood) now goes after an enemy scout in its base: a worker, a Messenger or a balloon, or a lone quick soldier on a scouting loop. It sends the two nearest units that can catch it (early, when no soldier can, one or two workers next to it), chases only a little way past its base and never into the enemy's army, then sends them back to their post or their work. The Brood no longer lets a Labourer walk round its Mother. The AI STORY tells each hunt.",
+		"The Fürth Line gets its first real paintings: the guild in exile, the Honest One and the line at dawn.",
+	]},
+	{"v": "0.38.70", "items": [
+		"The campaign speaks: 353 recorded lines for the King, Hollweg, Lindqvist, Valadares, Fairleigh, Ruggieri and Varenne, and the Brood announcer in Dr. Lindqvist's new voice.",
+		"The Thirteenth Hour opens on a new painting: Father Ferrer and Meister Hollweg quarrel in the workshop.",
+	]},
 	{"v": "0.38.69", "items": [
 		"Behind the scenes: one voice recording run for every line whose voice is designed (374 lines: the new Brood announcer and the campaign's King, Hollweg, Lindqvist, Valadares, Fairleigh, Ruggieri and Varenne).",
 	]},

@@ -430,7 +430,7 @@ func _finish(how: String) -> void:
 	if how in ["blocked", "driven off", "timeout"] and not _hall_seen:
 		denied_trips += 1        # (shut out: the sentry's reason to watch the ramp)
 	var r := _evaluate()
-	trip_log.append([game.clock, how, int(_coverage() * 100.0), _hall_seen, String(r["verdict"])])
+	trip_log.append([game.clock, how, int(_coverage() * 100.0), _hall_seen, String(r["verdict"]), sent_at])
 	if debug_trips:
 		_say("scout trip %d ends (%s): saw %d%% of its main, hall seen %s, read %s" % [trips, how, int(_coverage() * 100.0), str(_hall_seen), AIRead.word(String(r["verdict"]))])
 	# A scout that was stopped before it saw anything decisive proves nothing (a wall, a

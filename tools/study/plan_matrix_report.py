@@ -1,33 +1,25 @@
 #!/usr/bin/env python3
-"""PLAN MATRIX REPORT (docs/plan_matrix_<faction>.md): the tables of tools/study/plan_matrix.py's games.
-    python3 tools/study/plan_matrix_report.py FACTION DATA [--csv games.csv] > tables.md
-"The subject" = the side whose plan was forced (in the mirror with both OPTIMAL: the side on spot A in round 0 and on
-spot B in round 1, as plan_matrix.py lays the spots out). Each game is scored for the subject:
-  W / L      won / lost (the game ended before the bell);
-  w / l / =  a draw at the bell (20:00) led / trailed / even by income earned + 2 x army value, 10% the margin.
-"Won or led" = W + w. Against OPTIMAL: each plan's games paired with OPTIMAL's on the same map, round and opponent (the
-same seed and spots): better / worse (W > w > = > l > L), two-sided sign test. A measuring tool."""
-import os, sys, glob, json, math, re, statistics as st
-from collections import defaultdict, Counter
+"""PLAN MATRIX report (docs/plan_matrix_<faction>.md): tables from tools/study/plan_matrix.py's games (tools/qa_match.gd's
+result.json). A measuring tool only.
+    python3 tools/study/plan_matrix_report.py DATA --faction crown [--csv games.csv] [--cut 1200] > tables.md
+The SUBJECT of a game is the side playing the forced plan (in the mirror's OPTIMAL row, the side the queue puts the plan
+on). Result: won (W) / lost (L) if a side was beaten by the bell, else a draw LED by income earned + 2 x army value 10%
+ahead (w / l) or even (=). "Won or led" = W + w. Against OPTIMAL: each game is paired with the OPTIMAL row's game on the
+same map, round, seed and sides; score W/w = +1, = 0, l/L = -1; a sign test of the plan v OPTIMAL (ties dropped), and the
+geometric mean of the score ratio (subject / opponent) at the bell with a paired t on its log."""
+import os, sys, json, glob, math, csv, statistics as st
+from collections import Counter, defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import plan_matrix as pm
 import qa_matches as qm
+import plan_matrix as pm
 
-MINS = [5, 8, 12, 16, 20]
-RANK = {"W": 2, "w": 1, "=": 0, "l": -1, "L": -2}
-NAME = {"crown": "Crown", "clockwork": "Clockwork", "brood": "Brood"}
-TAG = re.compile(r"pm_(\w\w)-(\w+)_v_(\w\w)_(\w+)_r(\d)$")
-LONG = {v: k for k, v in qm.SHORT.items()}
+WORKERS = {"labourer", "winder", "grub"}
+NAMES = {"crown": "Crown", "brood": "Brood", "clockwork": "Clockwork"}
 
 
 def mmss(s):
     return "-" if s is None else "%d:%02d" % (int(s) // 60, int(s) % 60)
-
-
-def med(xs):
-    xs = [x for x in xs if x is not None]
-    return st.median(xs) if xs else None
 
 
 def mean(xs):
@@ -35,12 +27,9 @@ def mean(xs):
     return sum(xs) / len(xs) if xs else None
 
 
-def f2(x):
-    return "-" if x is None else "%.2f" % x
-
-
-def f0(x):
-    return "-" if x is None else "{:,}".format(int(round(x)))
+def med(xs):
+    xs = [x for x in xs if x is not None]
+    return st.median(xs) if xs else None
 
 
 def binom_p(k, n):
@@ -54,60 +43,92 @@ def fp(p):
     return "%.3f" % p if p >= 0.001 else "<0.001"
 
 
-def plan_of(s):
-    s = s.split("->")[1] if "->" in s else s
-    return s.split("(")[0].strip()
+def f2(x):
+    return "" if x is None else "%.2f" % x
 
 
-def load(fac, data):
+def f0(x):
+    return "" if x is None else "{:,}".format(int(round(x)))
+
+
+def load(data, fac, cut=1200):
     rows = []
-    for d in sorted(glob.glob(os.path.join(data, "pm_*"))):
-        mt = TAG.match(os.path.basename(d))
+    for d in sorted(glob.glob(os.path.join(data, "pm_%s-*" % pm.SHORT[fac]))):
         f = os.path.join(d, "result.json")
-        if not mt or not os.path.exists(f):
+        if not os.path.exists(f):
             continue
-        _, plan, oc, m, r = mt.groups()
-        r = int(r)
+        tag = os.path.basename(d)
+        fac_, plan, opp, m, rnd = pm.parse_tag(tag)
         g = json.load(open(f))
-        slots = g["slots"]
-        cand = [i for i, s in enumerate(slots) if s[0] == fac and s[1] == plan]
-        if len(cand) == 1:
-            si = cand[0]
-        else:   # the mirror with both OPTIMAL: the subject's spot as plan_matrix.queue lays it
-            swap = (r + qm.MAPS.index(m)) % 2 == 1
-            si = 1 if swap else 0
+        mi = qm.MAPS.index(m)
+        si = 1 if (rnd + mi) % 2 == 1 else 0
         oi = 1 - si
         at = {}
-        for x in g["minutes"]:
-            at[(x["p"], int(round(x["t"] / 60)))] = x
-        fin = g["final"]
+        for r in g["minutes"]:
+            at[(r["p"], int(round(r["t"] / 60)))] = r
+        end, winner, fin = g["end"], g["winner"], g["final"]
+        if end > cut:
+            mm = cut // 60
+            if (0, mm) in at and (1, mm) in at:
+                fin = [at[(0, mm)], at[(1, mm)]]
+            end, winner = cut, -1
         sc = [x["income"] + 2 * x["army"] for x in fin]
-        if g["winner"] >= 0:
-            res = "W" if g["winner"] == si else "L"
+        if winner >= 0:
+            res = lead = "W" if winner == si else "L"
         else:
-            res = "w" if sc[si] > 1.1 * sc[oi] else ("l" if sc[oi] > 1.1 * sc[si] else "=")
-        hl = [0, 0]
-        fa = [None, None]
+            res = "D"
+            lead = "w" if sc[si] > 1.1 * sc[oi] else ("l" if sc[oi] > 1.1 * sc[si] else "=")
+        halls_lost = [0, 0]
+        first_hall = [None, None]
         for e in g["events"]:
-            if e.get("ev") == "hall_lost" and e.get("built"):
-                hl[e["p"]] += 1
-            if e.get("ev") == "first_attack" and fa[e["p"]] is None:
-                fa[e["p"]] = e["t"]
+            if e.get("ev") == "hall_lost" and e.get("built") and e["t"] <= end:
+                halls_lost[e["p"]] += 1
+                if first_hall[e["p"]] is None:
+                    first_hall[e["p"]] = e["t"]
+        att = [None, None]
+        arr = [None, None]
+        for e in g["events"]:
+            if e.get("ev") == "first_attack" and e["t"] <= end and att[e["p"]] is None:
+                att[e["p"]] = e
+            if e.get("ev") == "first_arrival" and e["t"] <= end and arr[e["p"]] is None:
+                arr[e["p"]] = e
+        # what the subject's first arrival killed in its 90 s (from the deaths: victim kind, victim team, killer kind, team)
+        kill = None
+        a = arr[si]
+        if a:
+            k = Counter()
+            for dd in g.get("deaths", []):
+                if a["t"] <= dd[0] <= a["t"] + 90 and dd[2] == oi and dd[4] == si:
+                    k["workers" if dd[1] in WORKERS else "army"] += 1
+            hl = sum(1 for e in g["events"] if e.get("ev") == "hall_lost" and e.get("built") and e["p"] == oi
+                     and a["t"] <= e["t"] <= a["t"] + 90)
+            kill = {"t": a["t"], "workers": k["workers"], "army": k["army"], "halls": hl, "lost": a.get("own_lost", 0)}
         picks = {0: [], 1: []}
-        read = {0: None, 1: None}
-        for x in sorted(g.get("reads", []), key=lambda x: x["t"]):
-            if "pick" in x:
-                picks[x["p"]].append((x["t"], x["pick"]))
-            elif read[x["p"]] is None:
-                read[x["p"]] = x["read"]
-        rows.append({"tag": os.path.basename(d), "plan": plan, "opp": LONG[oc], "map": m, "r": r, "si": si, "oi": oi,
-                     "res": res, "end": g["end"], "at": at, "final": fin, "hl": hl, "fa": fa, "picks": picks,
-                     "read": read, "spot": "A" if si == 0 else "B", "version": g.get("version", "")})
+        reads = {0: [], 1: []}
+        for r in sorted(g.get("reads", []), key=lambda r: r["t"]):
+            if r["t"] > end:
+                continue
+            if "pick" in r:
+                picks[r["p"]].append((r["t"], r["pick"]))
+            else:
+                reads[r["p"]].append((r["t"], r["read"]))
+        rows.append({"tag": tag, "plan": plan, "opp": opp, "map": m, "r": rnd, "si": si, "oi": oi, "res": res, "lead": lead,
+                     "end": end, "won_at": g["end"] if g["winner"] >= 0 and g["end"] <= cut else None, "at": at,
+                     "halls_lost": halls_lost, "first_hall": first_hall, "att": att, "arr": arr, "kill": kill,
+                     "picks": picks, "reads": reads, "fin": fin, "sc": sc, "seed": g["seed"], "version": g.get("version", "")})
     return rows
+
+
+def score(r):
+    return 1 if r["lead"] in ("W", "w") else (-1 if r["lead"] in ("L", "l") else 0)
 
 
 def val(r, p, m, k):
     x = r["at"].get((p, m))
+    if x is None and r["won_at"] is not None and m * 60 > r["won_at"]:
+        # the game ended before minute m: the last row it has (the loser counts as beaten, 0 left)
+        last = max((mm for (pp, mm) in r["at"] if pp == p), default=None)
+        x = r["at"].get((p, last)) if last is not None else None
     return x[k] if x else None
 
 
@@ -115,138 +136,163 @@ def ratio(rows, m, k):
     pr = [(val(r, r["si"], m, k), val(r, r["oi"], m, k)) for r in rows]
     pr = [(a, b) for a, b in pr if a is not None and b is not None]
     s = sum(b for _, b in pr)
-    return (sum(a for a, _ in pr) / s) if pr and s else None
+    return sum(a for a, _ in pr) / s if pr and s else None
 
 
-def won_led(rows):
-    return sum(r["res"] in ("W", "w") for r in rows)
+def lratio(r):
+    """log of the subject's score / the opponent's at the bell (a beaten side: x0.25 of its score, floor 1)"""
+    a, b = r["sc"][r["si"]], r["sc"][r["oi"]]
+    if r["res"] == "W":
+        b *= 0.25
+    elif r["res"] == "L":
+        a *= 0.25
+    return math.log(max(a, 1) / max(b, 1))
 
 
-def lost_trailed(rows):
-    return sum(r["res"] in ("L", "l") for r in rows)
+def vs_optimal(rows, opt):
+    ob = {(r["map"], r["r"]): r for r in opt}
+    pr = [(r, ob[(r["map"], r["r"])]) for r in rows if (r["map"], r["r"]) in ob]
+    up = sum(score(a) > score(b) for a, b in pr)
+    down = sum(score(a) < score(b) for a, b in pr)
+    d = [lratio(a) - lratio(b) for a, b in pr]
+    t = None
+    if len(d) > 2 and st.stdev(d) > 0:
+        t = mean(d) / (st.stdev(d) / math.sqrt(len(d)))
+    return {"n": len(pr), "up": up, "down": down, "p": binom_p(min(up, down), up + down) if up + down else 1.0,
+            "dr": math.exp(mean(d)) if d else None, "t": t}
 
 
-def wdl(rows):
-    c = Counter(r["res"] for r in rows)
-    return "%d-%d-%d" % (c["W"], c["w"] + c["="] + c["l"], c["L"])
-
-
-def vs_opt(rows, base):
-    ob = {(r["opp"], r["map"], r["r"]): r for r in base}
-    up = down = 0
+def cells(rows):
+    c = defaultdict(list)
     for r in rows:
-        b = ob.get((r["opp"], r["map"], r["r"]))
-        if b is None:
-            continue
-        d = RANK[r["res"]] - RANK[b["res"]]
-        up += d > 0
-        down += d < 0
-    return up, down, binom_p(min(up, down), up + down) if up + down else 1.0
+        c[(r["plan"], r["opp"])].append(r)
+    return c
 
 
-def pick_of(r, side):
-    pk = r["picks"][r[side]]
-    return plan_of(pk[0][1]) if pk else "(none)"
+def short_pick(s):
+    s = s.split("->")[1] if "->" in s else s
+    return s.split("(")[0].strip()
 
 
 def main():
-    fac = sys.argv[1]
-    data = sys.argv[2]
+    data = sys.argv[1]
     arg = lambda k, d: sys.argv[sys.argv.index(k) + 1] if k in sys.argv else d
-    rows = load(fac, data)
+    fac = arg("--faction", "crown")
+    cut = int(arg("--cut", "1200"))
+    rows = load(data, fac, cut)
     plans = pm.plans_of(fac)
-    out = []
-    P = out.append
-    by = defaultdict(list)
-    for r in rows:
-        by[(r["plan"], r["opp"])].append(r)
-    opps = [o for o in pm.FACS if any(r["opp"] == o for r in rows)]
-    P("# Plan matrix, %s: tables (%d games, version %s)\n" % (NAME[fac], len(rows), ", ".join(sorted({r["version"] for r in rows}))))
-    P("Each cell: won or led / games (W-D-L) and, against OPTIMAL's games on the same map, round and opponent, better / "
-      "worse and the sign test's p.\n")
-    P("| %s plan | %s |" % (NAME[fac], " | ".join("v %s OPTIMAL" % NAME[o] for o in opps)))
-    P("|---|" + "---|" * len(opps))
+    opps = [o for o in pm.FACS if o != fac] + [fac]
+    C = cells(rows)
+    P = print
+    P("# Plan matrix tables: %s (%d games, cut at %s)\n" % (NAMES[fac], len(rows), mmss(cut)))
+    P("Versions: %s. Maps: %s.\n" % (", ".join(sorted(set(r["version"] for r in rows))),
+                                     ", ".join(m for m in pm.MAPS if any(r["map"] == m for r in rows))))
+    # 1. the matrix
+    P("## Won or led of n (W-D-L), and v OPTIMAL\n")
+    P("Each cell: won or led / games (W-D-L; trailed). Below: paired v the OPTIMAL row (same map, round, seed, sides): "
+      "better / worse games (sign-test p) and the score ratio at the bell relative to OPTIMAL's (x, paired t).\n")
+    P("| plan | " + " | ".join("v %s" % NAMES[o] + (" (mirror)" if o == fac else "") for o in opps) + " | all |")
+    P("|---|" + "---|" * (len(opps) + 1))
     for p in plans:
-        cells = []
+        line = ["**%s**" % p]
+        allr = []
         for o in opps:
-            rr = by[(p, o)]
-            if not rr:
-                cells.append("")
+            rs = C.get((p, o), [])
+            allr += rs
+            if not rs:
+                line.append("")
                 continue
-            c = "**%d** / %d (%s)" % (won_led(rr), len(rr), wdl(rr))
+            wl = sum(score(r) > 0 for r in rs)
+            tr = sum(score(r) < 0 for r in rs)
+            W = sum(r["res"] == "W" for r in rs)
+            D = sum(r["res"] == "D" for r in rs)
+            L = sum(r["res"] == "L" for r in rs)
+            s = "%d/%d (%d-%d-%d; %d)" % (wl, len(rs), W, D, L, tr)
             if p != "optimal":
-                u, d, pv = vs_opt(rr, by[("optimal", o)])
-                c += " · %d/%d p %s" % (u, d, fp(pv))
-            cells.append(c)
-        P("| %s | %s |" % (p, " | ".join(cells)))
-    P("")
+                v = vs_optimal(rs, C.get(("optimal", o), []))
+                if v["n"]:
+                    s += "<br>%d/%d p %s, x%s%s" % (v["up"], v["down"], fp(v["p"]), f2(v["dr"]),
+                                                     "" if v["t"] is None else " t %.1f" % v["t"])
+            line.append(s)
+        wl = sum(score(r) > 0 for r in allr)
+        line.append("%d/%d" % (wl, len(allr)) if allr else "")
+        P("| " + " | ".join(line) + " |")
+    P()
+    # 2. per opponent: economy / army / halls / first attack
     for o in opps:
-        P("## v %s OPTIMAL\n" % NAME[o])
-        P("| plan | games | W-D-L | won or led | lost or trailed | income ratio 5/8/12/16/20 | army ratio 5/8/12/16/20 | "
-          "workers 8:00 (own v opp) | halls 12:00 (own v opp) | halls lost (own / opp) | first attack (own / opp) | "
-          "decided (mean length) |")
-        P("|---|---|---|---|---|---|---|---|---|---|---|---|")
+        P("## v %s%s\n" % (NAMES[o], " (mirror: the forced plan v OPTIMAL)" if o == fac else ""))
+        P("Ratios subject / opponent (sums over the cell's games; a beaten side's last row carried).\n")
+        P("| plan | n | income 5 | 8 | 12 | 16 | 20 | workers 8 | 12 | 20 (own) | army 8 | 12 | 16 | halls 12 | 20 (own/opp) | "
+          "halls lost own / opp | won (median) | lost (median) |")
+        P("|---|---|" + "---|" * 16)
         for p in plans:
-            rr = by[(p, o)]
-            if not rr:
+            rs = C.get((p, o), [])
+            if not rs:
                 continue
-            inc = "/".join(f2(ratio(rr, m, "income")) for m in MINS)
-            arm = "/".join(f2(ratio(rr, m, "army")) for m in MINS)
-            wk = "%s v %s" % (f0(mean([val(r, r["si"], 8, "workers") for r in rr])), f0(mean([val(r, r["oi"], 8, "workers") for r in rr])))
-            hl = "%s v %s" % (f2(mean([val(r, r["si"], 12, "halls") for r in rr])), f2(mean([val(r, r["oi"], 12, "halls") for r in rr])))
-            lost = "%s / %s" % (f2(mean([r["hl"][r["si"]] for r in rr])), f2(mean([r["hl"][r["oi"]] for r in rr])))
-            fa = "%s / %s" % (mmss(med([r["fa"][r["si"]] for r in rr])), mmss(med([r["fa"][r["oi"]] for r in rr])))
-            dec = [r["end"] for r in rr if r["res"] in ("W", "L")]
-            P("| %s | %d | %s | %d | %d | %s | %s | %s | %s | %s | %s | %d (%s) |" % (
-                p, len(rr), wdl(rr), won_led(rr), lost_trailed(rr), inc, arm, wk, hl, lost, fa, len(dec), mmss(mean(dec))))
-        P("")
-        P("OPTIMAL's opening pick on the %s side (read -> plan), over all of this column's games:\n" % NAME[o])
-        c = Counter(pick_of(r, "oi") for p in plans for r in by[(p, o)])
-        P(", ".join("%s x%d" % x for x in c.most_common()) + "\n")
-        base = by[("optimal", o)]
-        if base:
-            P("The %s's own OPTIMAL (the baseline row): its opening picks and how they went:\n" % NAME[fac])
-            P("| %s OPTIMAL picked | games | W-D-L | won or led |" % NAME[fac])
-            P("|---|---|---|---|")
-            g = defaultdict(list)
-            for r in base:
-                g[pick_of(r, "si")].append(r)
-            for k, rr in sorted(g.items(), key=lambda x: -len(x[1])):
-                P("| %s | %d | %s | %d |" % (k, len(rr), wdl(rr), won_led(rr)))
-            P("")
-            reads = Counter(r["read"][r["si"]] for r in base)
-            P("Its first read of the %s: %s\n" % (NAME[o], ", ".join("%s x%d" % x for x in reads.most_common())))
-    P("## Spots\n")
-    a = [r for r in rows if r["spot"] == "A"]
-    b = [r for r in rows if r["spot"] == "B"]
-    P("Won or led on spot A %d of %d, on spot B %d of %d.\n" % (won_led(a), len(a), won_led(b), len(b)))
-    P("## By map (all cells)\n")
-    P("| map | games | won or led | lost or trailed |")
-    P("|---|---|---|---|")
-    for m in pm.MAPS:
-        rr = [r for r in rows if r["map"] == m]
-        if rr:
-            P("| %s | %d | %d | %d |" % (m, len(rr), won_led(rr), lost_trailed(rr)))
-    P("")
-    print("\n".join(out))
+            hl = (sum(r["halls_lost"][r["si"]] for r in rs) / len(rs), sum(r["halls_lost"][r["oi"]] for r in rs) / len(rs))
+            wins = [r["won_at"] for r in rs if r["res"] == "W"]
+            losses = [r["won_at"] for r in rs if r["res"] == "L"]
+            mw = lambda m: mean([val(r, r["si"], m, "workers") for r in rs])
+            mh = lambda m, s: mean([val(r, r[s], m, "halls") for r in rs])
+            P("| %s | %d | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s/%s | %.2f / %.2f | %d (%s) | %d (%s) |" % (
+                p, len(rs), f2(ratio(rs, 5, "income")), f2(ratio(rs, 8, "income")), f2(ratio(rs, 12, "income")),
+                f2(ratio(rs, 16, "income")), f2(ratio(rs, 20, "income")), f2(ratio(rs, 8, "workers")),
+                f2(ratio(rs, 12, "workers")), f0(mw(20)), f2(ratio(rs, 8, "army")), f2(ratio(rs, 12, "army")),
+                f2(ratio(rs, 16, "army")), "%.1f/%.1f" % (mh(12, "si") or 0, mh(12, "oi") or 0), "%.1f" % (mh(20, "si") or 0),
+                "%.1f" % (mh(20, "oi") or 0), hl[0], hl[1], len(wins), mmss(med(wins)), len(losses), mmss(med(losses))))
+        P()
+        P("| plan | own first attack lands (median, n) | kills in its 90 s (workers / army, mean) | halls taken in it | "
+          "opp first attack lands | opp OPTIMAL picks |")
+        P("|---|---|---|---|---|---|")
+        for p in plans:
+            rs = C.get((p, o), [])
+            if not rs:
+                continue
+            at = [r["arr"][r["si"]]["t"] for r in rs if r["arr"][r["si"]]]
+            ot = [r["arr"][r["oi"]]["t"] for r in rs if r["arr"][r["oi"]]]
+            ks = [r["kill"] for r in rs if r["kill"]]
+            picks = Counter(short_pick(r["picks"][r["oi"]][-1][1]) if r["picks"][r["oi"]] else "-" for r in rs)
+            P("| %s | %s (%d) | %s / %s (%d arrivals) | %d | %s (%d) | %s |" % (
+                p, mmss(med(at)), len(at), f2(mean([k["workers"] for k in ks])), f2(mean([k["army"] for k in ks])), len(ks),
+                sum(k["halls"] for k in ks), mmss(med(ot)), len(ot), ", ".join("%s %d" % kv for kv in picks.most_common())))
+        P()
+    # 3. OPTIMAL's own picks on the subject side
+    P("## What the subject's OPTIMAL picked\n")
+    P("| opponent | map | round | read -> pick (time) | result |")
+    P("|---|---|---|---|---|")
+    for o in opps:
+        for r in sorted(C.get(("optimal", o), []), key=lambda r: (pm.MAPS.index(r["map"]), r["r"])):
+            pk = "; ".join("%s (%s)" % (pp.replace("opening ", ""), mmss(t)) for t, pp in r["picks"][r["si"]]) or "-"
+            P("| %s | %s | %d | %s | %s |" % (NAMES[o], r["map"], r["r"], pk, r["lead"]))
+    P()
+    # 4. per map: best plan
+    P("## By map: the subject's result per plan (W w = l L)\n")
+    for o in opps:
+        P("v %s\n" % NAMES[o])
+        P("| plan | " + " | ".join("%s r%d" % (m, rr) for m in pm.MAPS for rr in (0, 1)) + " |")
+        P("|---|" + "---|" * (len(pm.MAPS) * 2))
+        for p in plans:
+            rs = {(r["map"], r["r"]): r for r in C.get((p, o), [])}
+            P("| %s | " % p + " | ".join(rs[(m, rr)]["lead"] if (m, rr) in rs else "" for m in pm.MAPS for rr in (0, 1)) + " |")
+        P()
     if "--csv" in sys.argv:
-        with open(arg("--csv", ""), "w") as f:
-            hd = ["tag", "plan", "opp", "map", "round", "spot", "res", "end", "opp_pick", "own_pick", "own_read",
-                  "first_attack_own", "first_attack_opp", "halls_lost_own", "halls_lost_opp"]
-            for m in MINS:
-                hd += ["inc%d_own" % m, "inc%d_opp" % m, "wk%d_own" % m, "wk%d_opp" % m, "army%d_own" % m,
-                       "army%d_opp" % m, "halls%d_own" % m, "halls%d_opp" % m]
-            f.write(",".join(hd) + "\n")
+        with open(arg("--csv", "games.csv"), "w", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["tag", "plan", "opp", "map", "round", "seed", "subject_side", "result", "lead", "end", "won_at",
+                        "score_subj", "score_opp", "inc8_ratio", "inc12_ratio", "inc20_ratio", "army8_ratio", "army12_ratio",
+                        "workers8", "workers20", "halls12", "halls20", "halls_lost", "opp_halls_lost", "first_attack",
+                        "arrival_workers_killed", "arrival_army_killed", "opp_first_attack", "subj_picks", "opp_picks"])
             for r in rows:
-                v = [r["tag"], r["plan"], r["opp"], r["map"], r["r"], r["spot"], r["res"], r["end"],
-                     pick_of(r, "oi").replace(",", ";"), pick_of(r, "si").replace(",", ";"), r["read"][r["si"]] or "",
-                     r["fa"][r["si"]] or "", r["fa"][r["oi"]] or "", r["hl"][r["si"]], r["hl"][r["oi"]]]
-                for m in MINS:
-                    for k in ("income", "workers", "army", "halls"):
-                        for s in ("si", "oi"):
-                            x = val(r, r[s], m, k)
-                            v.append("" if x is None else x)
-                f.write(",".join(str(x) for x in v) + "\n")
+                gr = lambda m, k: (val(r, r["si"], m, k) / val(r, r["oi"], m, k)) if val(r, r["si"], m, k) is not None and val(r, r["oi"], m, k) else None
+                w.writerow([r["tag"], r["plan"], r["opp"], r["map"], r["r"], r["seed"], r["si"], r["res"], r["lead"], r["end"],
+                            r["won_at"], r["sc"][r["si"]], r["sc"][r["oi"]], f2(gr(8, "income")), f2(gr(12, "income")),
+                            f2(gr(20, "income")), f2(gr(8, "army")), f2(gr(12, "army")), val(r, r["si"], 8, "workers"),
+                            val(r, r["si"], 20, "workers"), val(r, r["si"], 12, "halls"), val(r, r["si"], 20, "halls"),
+                            r["halls_lost"][r["si"]], r["halls_lost"][r["oi"]],
+                            r["arr"][r["si"]]["t"] if r["arr"][r["si"]] else "",
+                            r["kill"]["workers"] if r["kill"] else "", r["kill"]["army"] if r["kill"] else "",
+                            r["arr"][r["oi"]]["t"] if r["arr"][r["oi"]] else "",
+                            " | ".join(pp for _, pp in r["picks"][r["si"]]), " | ".join(pp for _, pp in r["picks"][r["oi"]])])
 
 
 if __name__ == "__main__":

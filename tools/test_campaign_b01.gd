@@ -169,7 +169,7 @@ func _data() -> void:
 	check("the clutch: a ninhada / la puesta (the Brood itself is a Ninhada / la Nidada)", String(LangPt.T.get("TAKE THE CLUTCH", "")).contains("NINHADA") and String(LangEs.T.get("TAKE THE CLUTCH", "")).contains("PUESTA"))
 	var sl := Campaign.storyline_of(MID)
 	check("THE NATURALIST storyline's first mission is b01", String(sl.get("id", "")) == "naturalist" and String(sl.get("title", "")) == "The Naturalist" and (sl["missions"] as Array)[0] == MID)
-	check("it opens after the Crown's prologue", String(sl.get("requires", "")) == "p01_leaf")
+	check("it is open from the start (owner 2026-11-18)", String(sl.get("requires", "")) == "")
 	check("solo and versus (no co-op: one Brood side to play)", (m["modes"] as Array) == ["solo", "versus"])
 	var c := Campaign.make_cfg(MID, "solo")
 	var who: Array = c["slots"].map(func(s): return s["who"])
@@ -194,7 +194,7 @@ func _data() -> void:
 		check("sound campaign/%s is in" % s, ResourceLoader.exists("res://assets/audio/campaign/%s.wav" % s))
 	# (the roster ladder's NEW card is the game's own voice, not a creature: docs/campaign_roster_ladder.md)
 	check("no creature speaks: every speaker is the station's or the King's", (m["speakers"] as Dictionary).keys().all(func(k): return k == "new" or String(m["speakers"][k]["side"]) == "station"))
-	check("the voice folder is b01 (no recordings yet: silent)", String(m.get("voice", "")) == "b01" and CampaignVoice.path_of(m, "l_open1") == "")
+	check("the voice folder is b01 and l_open1 is recorded (Chatterbox, 0.38.70)", String(m.get("voice", "")) == "b01" and CampaignVoice.path_of(m, "l_open1") != "")
 	check("Linnea is a Brood Mother's kind, drawn at 0.3", String(Rebels.role("linnea")["kind"]) == "brood_mother" and is_equal_approx(float(Rebels.role("linnea")["scale"]), 0.3))
 
 

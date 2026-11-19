@@ -118,6 +118,10 @@ const RULES := [
 	["^saw an enemy (.+?) \\(fast\\): raiders to watch for", "%s spots an enemy %s: fast raiders to watch for.", 1, "scout"],
 	["^saw an enemy (.+?): a slow foot soldier", "%s spots an enemy %s: a normal opening, no rush yet.", 1, "scout"],
 	["^sends a (.+?) to scout(?: again)?", "%s sends a %s to scout.", 1, "scout"],
+	# (scout-deny, scripts/ai_scout_deny.gd: the hunt for an enemy scout in its base)
+	["^sends (\\d+) .+? after the (\\w+)'s scouting (.+)$", "%s sends %s hunters after the %s's scouting %s.", 2, "deny"],
+	["^killed the (\\w+)'s scouting (.+?) at (\\d+:\\d+)$", "%s kills the %s's scouting %s at %s: that scout reports nothing more.", 2, "deny"],
+	["^lets the (\\w+)'s scouting (.+?) go \\((.+)\\)$", "%s lets the %s's scouting %s go (%s).", 1, "deny"],
 	["^scout (?:was )?(?:\\w+).*: it saw nothing to go on", "%s's scout was stopped before it saw anything; it will look again soon.", 1, "scout"],
 	["^the sentry backs away", "", 1, "scout"],
 	["^posts a (.+?) at the foot of the walled ramp", "%s posts a %s at the foot of the enemy's ramp to keep watch.", 1, "scout"],

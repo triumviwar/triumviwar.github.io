@@ -1,0 +1,103 @@
+{
+ "map": "greenhold",
+ "seed": 2100,
+ "slots": [
+  [
+   "clockwork",
+   "owls",
+   0
+  ],
+  [
+   "crown",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 1200,
+ "winner": -1,
+ "version": "0.38.59",
+ "tech_at": {
+  "0:owl_morph": 290,
+  "0:shield_wall": 570,
+  "1:armour": 540,
+  "1:bayonet": 590,
+  "1:charge": 585,
+  "1:matchlock": 570,
+  "1:pouch": 1025
+ },
+ "reads": [
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 335,
+   "why": "no scout got out"
+  },
+  {
+   "p": 0,
+   "read": "NORMAL",
+   "t": 476,
+   "why": "a standard opening"
+  },
+  {
+   "p": 0,
+   "read": "UNKNOWN",
+   "t": 610,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 75,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "read": "UNKNOWN",
+   "t": 296,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 379,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "read": "UNKNOWN",
+   "t": 693,
+   "why": "the scout was killed"
+  },
+  {
+   "p": 1,
+   "read": "NORMAL",
+   "t": 768,
+   "why": "a standard opening"
+  },
+  {
+   "p": 1,
+   "pick": "opening NORMAL -> balloon (raids on its workers)",
+   "t": 75
+  }
+ ],
+ "final": [
+  {
+   "income": 26983,
+   "army": 5665,
+   "halls": 5,
+   "workers": 49,
+   "plan": "owls",
+   "supply": 150,
+   "lost": 154
+  },
+  {
+   "income": 45880,
+   "army": 2995,
+   "halls": 7,
+   "workers": 90,
+   "plan": "balloon",
+   "supply": 200,
+   "lost": 66
+  }
+ ]
+}

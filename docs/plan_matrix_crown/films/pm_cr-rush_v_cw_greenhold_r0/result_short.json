@@ -1,0 +1,58 @@
+{
+ "map": "greenhold",
+ "seed": 9106,
+ "slots": [
+  [
+   "crown",
+   "rush",
+   0
+  ],
+  [
+   "clockwork",
+   "optimal",
+   1
+  ]
+ ],
+ "end": 869,
+ "winner": 1,
+ "version": "0.38.59",
+ "tech_at": {
+  "0:charge": 435,
+  "1:high_leap": 740,
+  "1:long_chain": 495,
+  "1:shield_wall": 435
+ },
+ "reads": [
+  {
+   "p": 1,
+   "read": "AGGRESSIVE",
+   "t": 81,
+   "why": "a production building very early"
+  },
+  {
+   "p": 1,
+   "pick": "opening AGGRESSIVE -> balanced (defend against the rush before it counter-attacks)",
+   "t": 81
+  }
+ ],
+ "final": [
+  {
+   "income": 9120,
+   "army": 0,
+   "halls": 0,
+   "workers": 2,
+   "plan": "balanced",
+   "supply": 2,
+   "lost": 88
+  },
+  {
+   "income": 21660,
+   "army": 6865,
+   "halls": 4,
+   "workers": 46,
+   "plan": "balanced",
+   "supply": 170,
+   "lost": 39
+  }
+ ]
+}

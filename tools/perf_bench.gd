@@ -72,6 +72,9 @@ var spike_ms := 100.0            # spike:N prints every frame slower than N ms w
 var sound := false               # sounds and music as in a real match (and the path queue's time limit)
 var save_state := ""             # savestate:FILE writes the match as a save (SaveGame.capture) at the end (qa-perf: render_bench.gd loads it)
 var spectate := false            # spectate: watch computers (no "you"; the spectator panels open)
+var resume := ""                 # resume:FILE starts from a save written by savestate:FILE (perf-late-brood: a late game in
+                                 # seconds; minutes: is still the game clock to stop at). Its map, sides, plans and seed come
+                                 # from the save; the computers' own memories start afresh, as when a player continues a match.
 
 
 ## The sounds without the wall clock: every name has no sound, so a play stops before it looks at
@@ -166,6 +169,8 @@ func _start() -> void:
 			spectate = true
 		elif a.begins_with("savestate:"):
 			save_state = a.substr(10)
+		elif a.begins_with("resume:"):
+			resume = a.substr(7)
 		elif a == "kinds":
 			Prof.by_kind = true       # (each minute: the units' and buildings' ticks by kind and order)
 		elif a.begins_with("log:"):
@@ -190,7 +195,20 @@ func _start() -> void:
 	if not sound:
 		root.add_child(SilentSfx.new())       # (Sfx.me from now on)
 	seed(match_seed)              # (before the match is made: setting it up draws random numbers too)
-	main.start({"map": map, "slots": slots, "seed": match_seed})
+	if resume != "":
+		var sv = JSON.parse_string(FileAccess.get_file_as_string(resume))
+		var rcfg: Dictionary = (sv["cfg"] as Dictionary).duplicate(true)
+		map = String(rcfg["map"])
+		match_seed = int(rcfg.get("seed", match_seed))
+		facs.clear()
+		for sl in rcfg["slots"]:
+			facs.append(String(sl["faction"]))
+		rcfg["resume"] = sv
+		seed(match_seed)
+		main.start(rcfg)
+		strat0 = String(rcfg["slots"][0].get("strategy", strat0))
+	else:
+		main.start({"map": map, "slots": slots, "seed": match_seed})
 	var g: Game = main.game
 	if not sound:
 		g.path_budget_us = 1 << 40

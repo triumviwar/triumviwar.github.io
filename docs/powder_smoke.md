@@ -261,3 +261,16 @@ What was found and changed is in docs/perf_smoke.md. In short:
   looks in a row, and fades more slowly (0.8 a second, was 1.5).
 - Cheaper to draw: each puff is an octagon round its soft circle, not a square (17% less to fill), and a dense square
   takes new puffs only up to 14 (was 22): past 8 it is drawn at 8 / count anyway, so the extra puffs only cost fill.
+
+## Still blinking: the volley pulse (0.38.76)
+
+The owner, 2026-11-18: "The smoke is problematic, it is still blinking."
+Each puff's own fade was smooth (tools/shot_smoke_fix.gd: no puff's drawn alpha changed by more than 0.068 in a frame).
+The blink was the whole cloud: since 2026-11-03 every puff lived 2.85 to 3.15 s, solid for 2 s and gone over the last 1 s,
+so all of a volley's puffs came together and went together, and a firing line's smoke switched on and off every volley.
+Measured on the film's frames (twice a second, the area over the two lines): its brightness swung by about 12 levels each volley cycle.
+
+Now each puff lives 2.3 to 4.1 s (3.2 on average) and thins from 30 % of its life on (a smoothstep to nothing), so a
+line's smoke frays away puff by puff. The swing is about 8 levels; nothing pops (0 puffs over 0.08 a frame).
+Some pulse stays where whole lines fire volleys together: a volley does make smoke at once.
+If it still reads as blinking, the next step is a longer life (the owner asked for short smoke on 2026-11-03).

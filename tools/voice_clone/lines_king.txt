@@ -1,0 +1,93 @@
+# The King again (2026-11-18): pitch 0 this time (the -1.5 pitch shift made him sound boxy). run.bat --lines lines_king.txt
+# Delete the old king files from out\ first, or this run skips them.
+
+# ---- king (85 lines)
+[ref king_ref.wav]
+[pitch 0]
+[exaggeration 0.4]
+a01__k_open1 | The year after Virginia, the Assembly's pamphlets were in every city of the Crown.
+a01__k_open2 | Most of them were printed in Lyon. The Cardinal was there. He was a young priest then.
+a01__k_open_a | The Assembly kept no record of that spring. Here is what it would have done, if it could.
+a01__k_end1 | He was more than lucky. He made a city go home without a volley.
+a01__k_end2 | Paris was another matter.
+a01__k_end_a1 | That is not how it went. Lyon did not rise.
+a01__k_end_a2 | But if it had, Paris would have had a sister. I have thought of that.
+a02__k_open1 | The Machine kept Nuremberg through the winter. In March it came out of the gates.
+a02__k_open2 | The guild had gone three miles, to Fürth. The Crown gave it a field and a barn.
+a02__k_open_m | The Machine has no voice. It left no account of that spring. Only what it did.
+a02__k_open_m2 | In March it came out of Nuremberg's gates, west along the river, toward the guild that made it.
+a02__k_end1 | He believes it. I believe he believes it.
+a02__k_end2 | A stop-work is a wheel like any other. A wheel can be taken out.
+a02__k_end_m1 | That is not how it went. The line held at Fürth.
+a02__k_end_m2 | But it could have gone that way. I have thought so, many nights.
+a03__k_open1 | His first letter came from the burning station. His report came at Christmas, in a waxed case, with a map.
+a03__k_open2 | The Crown's mapmaker. He wrote as he walked, and he wrote the truth. Let him tell it.
+a03__k_open_n | No creature wrote a report. But the mountain was theirs before it was anyone's.
+a03__k_open_n2 | That September strangers came up their cliff in the mist, while the nest slept.
+a03__k_end1 | He did his duty, and told me plainly what he saw.
+a03__k_end_drawn | I kept his map. Others bought copies of it from a clerk. That was not his doing.
+a03__k_end_withheld | The Church kept his map. The doctor found the way up without it, by a longer road.
+a03__k_end_n1 | That is not how it went. Valadares came down the mountain, and his report came to me.
+a03__k_end_n2 | But it could have gone that way. Then no one would have known what waited in the cloud.
+a04__k_open1 | In the autumn of 2769 the Roman College asked me for leave to inspect the guild at Fürth.
+a04__k_open2 | I sent Father Ferrer. He had warned Hollweg once. I wanted him to see whether he had been wrong.
+a04__k_open_m | The machine had no voice. It waited across the meadows, and its ground crept west.
+a04__k_end1 | Ferrer's report was on my table before the snow. I read it twice.
+a04__k_end_kept | Hollweg brought his mended machines to Rome. I let him. That was my mistake, not his.
+a04__k_end_melted | Hollweg came to Rome with nothing but his drawings, and his anger.
+a05__k_open1 | The doctor came before me in chains, an old man. He asked to tell it himself.
+a05__k_open2 | I let him. He tells it as his finest hour. I will say where it was not.
+a05__k_open_c | No creature told me this. But the nest was theirs, and the young were theirs.
+a05__k_open_c2 | That dry season men came with cages while the nest slept.
+a05__k_end1 | His finest hour, he calls it. He took a mother's young in the night.
+a05__k_end2 | And the crates on that quay went south to the mines. Nobody opened them.
+a05__k_end_c1 | That is not how it went. The carts came down to the river.
+a05__k_end_c2 | But it could have gone that way. Then the doctor would have come home with empty cages.
+a06__k_open1 | Paris rose in the summer of 2769. Not a riot: a city behind its own walls, with a government in its hall.
+a06__k_open2 | Fairleigh took it back. He was a field marshal by then. Let him tell it; he tells it shorter than I do.
+a06__k_open_a | The Assembly wrote a great deal that summer. Here is what it meant to do.
+a06__k_patience | I gave Fairleigh a month. He knew I would not give him two.
+a06__k_end_spared | Mercy from the victor is still victory. I have never regretted that order.
+a06__k_end_exec | It was the law. I have read the order a hundred times since. It is still the law.
+a06__k_end2 | That was the end of the Assembly's cities. The next fires were not theirs.
+a06__k_end_a1 | That is not how it went. Paris did not hold.
+a06__k_end_a2 | But if it had, the Crown would have had two capitals, and one of them against it.
+a07__k_open1 | Rome, Lent 2770. I was young, three years crowned. This one I tell myself: it was my city.
+a07__k_open2 | The Church sat in council on the new machines and the new creatures. I sat with the cardinals and listened.
+a07__k_hollweg_rung | Meister Hollweg came as a witness. Nuremberg's bells had rung on his word, and he had saved what he could.
+a07__k_hollweg_quiet | Meister Hollweg came as one accused. He had kept the bells of Nuremberg quiet.
+a07__k_eggs_told | The eggs were no secret. Lieutenant Teles had written to the Crown about the station.
+a07__k_eggs_found | Under questioning it came out: Dr. Lindqvist had saved the eggs from the fire, and told no one.
+a07__k_eggs_ashes | Dr. Lindqvist said the eggs were ashes. It was true.
+a07__k_varenne_spared | A letter from Varenne in exile was read out. He condemned any fire set in his name.
+a07__k_varenne_exec | Varenne was dead a year. His last friends in Rome had not forgotten.
+a07__k_letgo | They both walked out of the hall. I let them go. My mercy, or my mistake: I still don't know.
+a07__k_1 | I sent my guard to the bridges that evening. I did not know why. I only knew the city was angry.
+a07__k_tip_bridges | Three bridges: Ripetta in the north, Sant'Angelo under the castle, Sisto in the south. The garrison holds their east ends.
+a07__k_2 | The bells rang all over the city. Then the second fire, and the third.
+a07__tip_church | Santo Spirito trains Missionaries. Any priest can call a quarter to Saint Peter's, not only Tomasz.
+a07__tip_fire | A fire left alone takes the next house. Men standing by a burning house put it out.
+a07__k_machine_own | Two of his pieces were not his at all. They were the Machine's, from the Fürth meadows.
+a07__k_meet | Let them. Every one they kill is one fewer at my bridges.
+a07__k_3 | Hold the bridges until dawn. Nothing crosses to Saint Peter's.
+a07__k_dawn | Dawn. The bridges held. Rome was black with smoke, and it was still Rome.
+a07__k_priest | Keep the Father behind the line. Rome needs its priests tonight.
+a07__k_end1 | The verdict stood. The machines in the Papal States were stopped, and the specimens we found were destroyed.
+a07__k_end_rome_all | Every quarter of Rome stood. I was prouder of that than of anything I did that year.
+a07__k_end_rome_some | Some of Rome burned. We rebuilt it that summer, street by street.
+a07__k_end_rome_few | Most of the east bank burned. Rome rebuilt it, and has not forgotten.
+a07__k_end_defiance | Hollweg and Lindqvist were gone by morning: Hollweg after his crates, south; Lindqvist to breed what was left, in secret.
+a07__k_end2 | That was the first time I met them both. It was not the last.
+a07__k_end_lost1 | That is not how it went. They never reached the square.
+a07__k_end_lost2 | But if they had, there would have been no council, and no Church to hold one.
+b01__k_open1 | Two letters came that year. The first came from the Amazon, from the Crown's mapmaker.
+b01__k_open2 | The naturalist they brought me in chains. He knows these creatures better than any man alive. Let him tell it.
+b01__k_end1 | He wrote that his lure called them. It did not. She called them, and they came for her.
+b01__k_end2 | She was never stolen. She went home.
+b01__k_end_saved | And what he carried out of the fire was not research. It was her children.
+b01__k_end_taken | And the fire took nothing. The pack carried her eggs north in its jaws. He never knew.
+c01__k_open1 | The clockmaker came to Rome in the winter of that year, with nothing but his coat. He lives in this palace still.
+c01__k_open2 | Tell him, Meister. Tell him what you told me.
+c01__k_end1 | He saw it take out its own stop-work and let it be. He thought it had chosen. He thought it could think.
+c01__k_end2 | It had chosen nothing. A pattern copies itself, and that is all it does. We burned what we could find. We did not find everything.
+

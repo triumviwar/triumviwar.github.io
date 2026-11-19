@@ -31,13 +31,13 @@ const FRAMES := 3               # assets/effects/smoke.png frames 1..3 (frame 0 
 ## size grown (both as a scale of the 27 px smoke frame), push (px/s, along the shot),
 ## spread (px around the muzzle), peak alpha].
 const KINDS := {
-	"musket": [3, 1, 2.85, 3.15, 0.6, 2.9, 18.0, 5.0, 0.42],
-	"cannon": [7, 3, 2.85, 3.15, 1.0, 4.4, 27.6, 10.0, 0.48],
-	"canister": [8, 3, 2.85, 3.15, 1.0, 4.2, 36.0, 14.0, 0.48],
-	"mortar": [5, 2, 2.85, 3.15, 0.9, 3.6, 10.8, 8.0, 0.45],
-	"keg": [8, 3, 2.85, 3.15, 1.2, 4.6, 18.0, 26.0, 0.48],
-	"wagon": [16, 6, 2.85, 3.15, 1.5, 5.4, 24.0, 50.0, 0.5],
-	"shell": [3, 1, 2.85, 3.15, 0.9, 3.2, 13.2, 14.0, 0.36],
+	"musket": [3, 1, 2.3, 4.1, 0.6, 2.9, 18.0, 5.0, 0.42],
+	"cannon": [7, 3, 2.3, 4.1, 1.0, 4.4, 27.6, 10.0, 0.48],
+	"canister": [8, 3, 2.3, 4.1, 1.0, 4.2, 36.0, 14.0, 0.48],
+	"mortar": [5, 2, 2.3, 4.1, 0.9, 3.6, 10.8, 8.0, 0.45],
+	"keg": [8, 3, 2.3, 4.1, 1.2, 4.6, 18.0, 26.0, 0.48],
+	"wagon": [16, 6, 2.3, 4.1, 1.5, 5.4, 24.0, 50.0, 0.5],
+	"shell": [3, 1, 2.3, 4.1, 0.9, 3.2, 13.2, 14.0, 0.36],
 }
 const CAP := {3: 960, 2: 720, 1: 260}          # puffs alive at most (thick, full, light)
 const LIFE_K := {3: 1.0, 2: 1.0, 1: 1.0}       # (the owner, 2026-11-03: every puff lives 3 s whatever the level)
@@ -57,7 +57,10 @@ const THIN_RATE := 0.7                 # how fast a puff's thinning follows its 
 const AGE_K := 0.0                    # extra ageing per DENSE puffs past DENSE in its square (0: a puff lives its 3 s; an ageing jump made it blink)
 const RATE_MAX := 2.2
 const FADE_IN := 0.5                   # seconds a new puff takes to fade in (smoothstep; quicker steps a frame of 20 a second visibly)
-const FADE_OUT := 1.0                  # the last second of its life it fades (the owner, 2026-11-03: 2 s solid, 1 s going)
+const FADE_FROM := 0.3                 # a puff starts thinning at this share of its life and fades out smoothly over the rest
+## (0.38.76, the owner: "the smoke is still blinking": every puff of a volley lived 3 s, solid for 2 and gone over 1, so a
+## whole line's smoke came at once and went at once, a pulse at every volley. Lives now spread 2.3 to 4.1 s (3.2 on
+## average, the owner's short smoke of 2026-11-03 kept) and each puff thins from early on, so a line's smoke frays away.)
 
 static var force := -1                 # tests and tools: this level in every new match (-1: the setting)
 
@@ -381,7 +384,9 @@ func tick(dt: float) -> void:
 				_seen[j] = sn
 				var x := age / life
 				var fi := minf(age / FADE_IN, 1.0)
-				var fo := clampf((life - age - 0.12) / (FADE_OUT - 0.12), 0.0, 1.0)      # (1 until its last second, then down to 0 a tick or two before it ends: no pop, no blink)
+				var fs := life * FADE_FROM
+				var fo := clampf((life - 0.12 - age) / (life - 0.12 - fs), 0.0, 1.0)      # (1 till FADE_FROM of its life, then smoothly to 0 a tick or two before it ends: no pop)
+				fo = fo * fo * (3.0 - 2.0 * fo)
 				var al := _a[j] * fi * fi * (3.0 - 2.0 * fi) * fo * sn * th     # (solid for 2 s, then fading over 1 s)
 				var dal := (al - _al[j]) / dt if _al[j] > 0.0 else 0.0
 				_al[j] = al

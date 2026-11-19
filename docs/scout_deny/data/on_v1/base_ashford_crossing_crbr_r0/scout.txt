@@ -1,0 +1,51 @@
+[00:00] P1 Brood plays Brood (Optimal)
+[00:00] P1 Brood's Brood: OPTIMAL: the common opening (Balanced's economy), a grub into the enemy's main early, then it picks its build from what it sees
+[00:00] P2 Crown's plan: optimal: leans to Rush before it scouts (Horsemen are good against the Brood's grubs)
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P2 Crown's plan: Rush, a build order of 10 steps (scripts/ai_crown.gd)
+[00:02] P2 Crown sends a Labourer to scout
+[00:40] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[01:18] P1 Brood sends 2 Grubs after the Crown's scouting Labourer
+[01:28] P1 Brood killed the Crown's scouting Labourer at 1:28
+[01:28] P2 Crown scouted: GREEDY [a second base and little army] (the Mother and 1 turtle on new ground, 2 Rootmaws and 7 grubs seen, 0 Sires, 0 supply of army seen near its base): OPTIMAL picks its build from this
+[01:28] P2 Crown's plan: optimal: reads GREEDY [a second base and little army]: keeps Rush (punish the greed: the Horse Breeder at once, the riders before its army)
+[01:45] P1 Brood's Brood: rider read: a Horse Breeder at 1:45 and no Powder Mill: Raptors now, its grubs kept by them, no chase
+[01:45] P1 Brood's Brood: scouted: AGGRESSIVE [a Horse Breeder or riders early] (1 halls, 2 production, 0 static defences, 0 of army seen): OPTIMAL picks its build from this
+[01:45] P1 Brood's Brood: optimal: reads AGGRESSIVE [a Horse Breeder or riders early]: keeps Balanced (defend against the rush before it counter-attacks)
+[01:47] P2 Crown sends 1 Labourer after the Brood's scouting Grub
+[01:57] P2 Crown lets the Brood's scouting Grub go (the chase took too long)
+[03:03] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[03:37] P2 Crown's rush: goes out (3 Horsemen together)
+[04:00] P2 Crown's plan: the army floor (a look at the Brood's army) waits for a fresh scout report: no enemy soldier seen for the whole game and its main not looked at for the whole game
+[04:00] P2 Crown sends a Labourer to scout again (trip 2)
+[04:12] P2 Crown saw an enemy Raptors (fast, a Brood rush unit): evidence of a rush
+[04:25] P2 Crown's plan: the army floor against the Brood: 60 of line (with what trains) against the 275 its scouting asks for: the soldiers' gold first
+[04:49] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[04:57] P2 Crown scout under guard (Raptors), backing out of range
+[05:25] P2 Crown's plan: the army floor against the Brood: 120 of line (with what trains) against the 481 its scouting asks for: the soldiers' gold first
+[05:30] P1 Brood's Brood: scouted: NORMAL [a standard opening] (1 halls, 2 production, 0 static defences, 171 of army seen): OPTIMAL picks its build from this
+[05:30] P1 Brood's Brood: optimal: reads NORMAL [a standard opening]: keeps Balanced (what it plays already answers it)
+[05:59] P1 Brood's Brood: sends a Grub to watch the foot of the enemy's ramp
+[06:02] P2 Crown's rush: SUCCEEDED, the riders keep hunting while they win (125 killed, 3 riders left, defenders seen 0)
+[06:25] P2 Crown's plan: the army floor against the Brood: 530 of line (with what trains) against the 804 its scouting asks for: the soldiers' gold first
+[08:16] P2 Crown's plan: the army floor against the Brood: 1250 of line (with what trains) against the 1254 its scouting asks for: the soldiers' gold first
+[08:23] P2 Crown scouted: NORMAL [a standard opening] (the Mother and 3 turtles on new ground, 3 Rootmaws and 32 grubs seen, 1 Sire, 15 supply of army seen near its base, 350 of army known): OPTIMAL picks its build from this
+[08:23] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Rush (what it plays already answers it)
+[08:42] P2 Crown sends a Labourer to scout again (trip 3)
+[09:29] P1 Brood sends 2 Raptors after the Crown's scouting Labourer
+[09:30] P2 Crown scout under guard (Spitters), backing out of range
+[09:33] P1 Brood lets the Crown's scouting Labourer go (its friends are near)
+[09:40] P2 Crown's rush: the hunt ends (nothing killed for 75 s): the riders ride home
+[09:40] P2 Crown's rush: SUCCEEDED, mop-up: the riders regroup at home; a force of 15+ supply goes out as one group
+[09:40] P2 Crown's plan: the rush is over (succeeded): the economy now, rush hands it to the Economy plan (labourers to two halls, the walled natural)
+[09:40] P2 Crown's wave sends 3 Horsemen ahead and to its flanks as a screen (3 out)
+[09:53] P1 Brood sends 2 Raptors after the Crown's scouting Labourer
+[09:55] P1 Brood killed the Crown's scouting Labourer at 9:55
+[09:56] P2 Crown scout killed: it saw nothing to go on, will look again soon
+[09:56] P2 Crown could not see the enemy [the scout was killed] (the scout was killed before it saw the base): that proves nothing; no army for it, keeps to Economy and looks again soon
+[10:01] slow frame 54 ms: units 29.7 (slowest unit: tyrannosaur 4.2 ms, idle), game 11.2, buildings 5.6, ai 4.8, ai/brood 4.7, ai/brood/scout_deny 1.3, the rest 2.8
+[10:31] P2 Crown sends a Field Cannon to scout again (trip 4)
+[10:33] P1 Brood's Brood: its wave lets the riders go (6 creatures turned back): no chase into the open
+[10:36] P2 Crown sees a push coming: 22 soldiers worth 550, 44 tiles from its nearest building, against 180 of army at home: it gets ready (soldiers before labourers, the balloons stay home, the army waits at its post)
+[10:50] P1 Brood's Brood: pulls back: 320 of 665 left, 1550 ahead (killed 300)
+[11:12] P2 Crown's fight at 10:33 out (unformed): 2 guns near, 0 set at contact, 1 fired in its first 10 s; killed 1345, lost 300

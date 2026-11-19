@@ -871,6 +871,7 @@ var rp_path := ""                 # guest: where the whole replay was saved, onc
 func send_replay(path: String, now := false) -> void:
 	if not is_host or (_live_peers().is_empty() and spec_peers.is_empty()):
 		return       # (the spectators get it too: the same whole file as the players)
+	ReplayFile.wait_io()          # (its last records may still be being written: ReplayFile.append)
 	rp_out = FileAccess.get_file_as_bytes(path)
 	rp_pos = 0
 	_log("sending the replay to the guests (%d KB)" % (rp_out.size() / 1024))

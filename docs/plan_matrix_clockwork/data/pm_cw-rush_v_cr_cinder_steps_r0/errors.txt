@@ -1,0 +1,2 @@
+4 error lines
+    4  SCRIPT ERROR: Trying to assign invalid previously freed instance.  at: reserved (res://scripts/ai_expand_wall.gd:458)

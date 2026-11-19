@@ -405,7 +405,7 @@ M = {
         "letter": {"image": STILL % "c01_01", "caption": "Rome, the present. The King listens; the clockmaker tells it."},
         "nuremberg": {"image": STILL % "c01_02", "caption": "Nuremberg in Advent, 2767."},
         "heart": {"image": STILL % "c01_03", "caption": "The heart of the Perpetual."},
-        "quarrel": {"image": STILL % "c01_03", "caption": "The workshop, the night before the gift."},  # stand-in: c01_08 to paint (docs/campaign_c01_build.md)
+        "quarrel": {"image": STILL % "c01_08", "caption": "The workshop, the night before the gift."},
         "wakes": {"image": STILL % "c01_04", "caption": "The Perpetual wakes."},
         "mill": {"image": STILL % "c01_05", "caption": "The mill island, at dusk."},
         "thirteen": {"image": STILL % "c01_06", "caption": "The thirteenth hour."},
