@@ -81,7 +81,10 @@ func want() -> float:
 	var tab: Array = TABLE.get(g.faction_of(foe), [])
 	if tab.is_empty():
 		return 0.0
-	var w: float = share * ai._lerp_table(tab, g.clock + (0.0 if lead_off else LEAD))
+	var sh := share
+	if AICrownVClock.on("share") and AICrownVClock.vs(ai):
+		sh = AICrownVClock.SHARE      # (crown-1000-clockwork: a smaller army clock against the Clockwork, more labourers)
+	var w: float = sh * ai._lerp_table(tab, g.clock + (0.0 if lead_off else LEAD))
 	var seen: float = ai.ch.foe_known() if ai.ch != null else 0.0
 	w = maxf(w, SHARE_SEEN * seen)
 	return maxf(0.0, w - 0.5 * float(g.stats[ai.team]["value_killed"]))

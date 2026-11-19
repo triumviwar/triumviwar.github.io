@@ -3250,6 +3250,8 @@ const OWNER_HALL_ARMY := 0.7
 func owner_hall_ok() -> bool:
 	if not owner_on() or _halls().size() < 2:
 		return true
+	if AICrownVClock.on("hall3") and AICrownVClock.vs(self):
+		return AICrownVClock.hall_ok(self)     # (crown-1000-clockwork: the third hall on the labourers alone)
 	if _best_soil() < OWNER_HALL3_SOIL:
 		return true
 	var labs := game.workers(team).size()
