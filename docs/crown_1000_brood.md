@@ -18,10 +18,13 @@ Clockwork half; every change here runs only against the Brood (scripts/ai_crown_
 - **A game's score**: g = ln((income earned + 2 x army) of the Crown / of the Brood) at 20:00 or at the defeat, the beaten
   side's score counted a quarter (plan_matrix_report's rule). A block's score is the mean g of its 10 games; with it the
   games survived (not beaten by 20:00), won or led (won, or 10% ahead at 20:00), the median minute of the defeats.
-- **Keep or not**: a change is kept when its block beats the best so far by a clear margin: the mean g up by 0.3 or more and
-  more games better than worse, paired game by game (same map, round, seed) against the kept baseline's block. The match is
-  not deterministic (a film of the same seed is another game), so two blocks of the same code differ too: the reruns of the
-  baseline (every few blocks) measure that noise.
+- **A steadier second measure**: g14 = the same score ratio at 14:00 (the last minute of a side beaten sooner), before
+  most defeats; it does not swing by +-2.3 with a won or lost game.
+- **The noise**: block 5 reran block 1's code (nothing changed): mean g -1.47 against -0.90, g14 -0.35 against -0.15. Two
+  blocks of the same code differ by about 0.6 in g and 0.2 in g14 (the match is not deterministic: the same seed is another
+  game). So from block 5 on a change is weighed against the POOLED blocks of the kept code (each game's numbers the mean of
+  its runs: base "b01+b05"), and kept when the mean g is up by 0.3 or more AND g14 is up clearly (t 1.5 or more) or more
+  games are better than worse. A kept change's later blocks join the pool.
 - **Switches**: every change is `-- c1kb<name>:on`; the kept ones are on by default (AICrown1kBrood.KEPT), `-- c1kb:off`
   plays as before the job.
 - Data: `docs/crown_1000_brood/data/<block>/<tag>/` (result.json, story.txt, extra.txt = the block's switches);
@@ -29,9 +32,13 @@ Clockwork half; every change here runs only against the Brood (scripts/ai_crown_
 
 ## The log
 
-| block | what changed (switches on) | mean g | survived | won/led | median defeat | v best: d (t), better/worse | kept? |
-|---|---|---|---|---|---|---|---|
-| b01 | the baseline: main 0.38.81, nothing on | -0.90 | 5 | 2 | 17:44 | | the baseline |
-| b02 | **lean**: OPTIMAL plays the Rush plan's own build from 0:00 in every game (it leaned to it in 35% before, else the common opening and the Rush on a GREEDY read at ~1:40) | -0.76 | 4 | 3 | 17:41 | +0.15 (t 0.2), 5/4 | no (not clear; but the income at 8:00 1.40 v 1.17 and the army at 8:00 2.43 v 1.71 of the Brood's) |
-| b03 | **eco**: the coach's economy rules (LABOURERS FIRST, HALLS ON TIME) from 5:00 against the Brood (they come on after the first push is held or at 9:00 now), the army floor still first | -1.91 | 1 | 1 | 17:28 | -1.00 (t -2.1), 3/6 | no: the army at 12:00 fell to 1.37 of the Brood's (2.99), lost 9 |
-| b04 | **press**: from 7:30, with a fresh report, the wave goes when it is 2x the Brood army seen in the last two minutes (never under 0.35 of the clock's reckoning, BROOD_TABLE) | -1.59 | 3 | 1 | 17:37 | -0.69 (t -1.2), 6/4 | no (mixed: 6 games better, but the two wins of block 1 lost) |
+Every block against the pooled blocks of the code kept at the time (base); d = the paired mean difference (t), better/worse
+= games whose g moved by more than 0.05.
+
+| block | what changed (switches on) | mean g | g14 | survived | won/led | median defeat | v base: d g (t) · d g14 (t) · better/worse | kept? |
+|---|---|---|---|---|---|---|---|---|
+| b01 | the baseline: main 0.38.81, nothing on | -0.90 | -0.15 | 5 | 2 | 17:44 | | the baseline |
+| b02 | **lean**: OPTIMAL plays the Rush plan's own build from 0:00 in every game (it leaned to it in 35% before, else the common opening and the Rush on a GREEDY read at ~1:40) | -0.76 | +0.12 | 4 | 3 | 17:41 | +0.43 (0.8) · +0.37 (1.8) · 5/5 (v b01+b05) | **yes** (decided after block 5: the income at 8:00 1.40 v 1.18, the army at 8:00 2.43 v 1.86 and at 12:00 2.99 v 2.20 of the Brood's) |
+| b03 | **eco**: the coach's economy rules (LABOURERS FIRST, HALLS ON TIME) from 5:00 against the Brood (they come on after the first push is held or at 9:00 now), the army floor still first | -1.91 | -0.35 | 1 | 1 | 17:28 | -0.72 (-2.7) · -0.10 (-0.8) · 1/7 (v b01+b05) | no: the army at 12:00 fell to 1.37 of the Brood's |
+| b04 | **press**: from 7:30, with a fresh report, the wave goes when it is 2x the Brood army seen in the last two minutes (never under 0.35 of the clock's reckoning, BROOD_TABLE) | -1.59 | -0.25 | 3 | 1 | 17:37 | -0.41 (-1.0) · 0.00 (0.0) · 4/6 (v b01+b05) | no |
+| b05 | the baseline again (block 1's code): the noise | -1.47 | -0.35 | 4 | 1 | 16:46 | -0.57 (-0.7) · -0.20 v b01 · 3/6 | the pool b01+b05 |

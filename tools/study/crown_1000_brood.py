@@ -76,14 +76,37 @@ def one(d, cut=1200):
         return a[key] / b[key]
 
     halls12 = at.get((si, 12), {}).get("halls")
+    # (a steadier second measure: the score ratio at 14:00, before most defeats; the last minute of a side beaten sooner)
+    def at_or_last(p, mn):
+        for k in range(mn, -1, -1):
+            if (p, k) in at:
+                return at[(p, k)]
+        return None
+    a14, b14 = at_or_last(si, 14), at_or_last(oi, 14)
+    g14 = math.log(max(1.0, a14["income"] + 2 * a14["army"]) / max(1.0, b14["income"] + 2 * b14["army"])) if a14 and b14 else None
     picks = [x.get("pick") for x in sorted(g.get("reads", []), key=lambda x: x["t"]) if x["p"] == si and "pick" in x]
     return {"tag": tag, "map": m, "r": r, "si": si, "res": res, "end": end, "g": gv, "sc": sc,
             "beaten": end if res == "L" else None, "inc8": ratio("income", 8), "inc12": ratio("income", 12),
-            "army8": ratio("army", 8), "army12": ratio("army", 12), "halls12": halls12, "picks": picks,
+            "army8": ratio("army", 8), "army12": ratio("army", 12), "halls12": halls12, "g14": g14, "picks": picks,
             "version": g.get("version", "")}
 
 
 def block(name):
+    if "+" in name:
+        # a pooled base: several blocks of the same code, each game's numbers the mean of its runs
+        parts = [block(x) for x in name.split("+")]
+        rows = {}
+        for t in parts[0]:
+            xs = [p[t] for p in parts if t in p]
+            r = dict(xs[0])
+            for k in ("g", "g14", "inc8", "inc12", "army8", "army12", "halls12"):
+                v = [x[k] for x in xs if x[k] is not None]
+                r[k] = sum(v) / len(v) if v else None
+            r["res"] = "L" if sum(1 for x in xs if x["res"] == "L") * 2 > len(xs) else ("W" if all(x["res"] == "W" for x in xs) else "=")
+            bt = [x["beaten"] for x in xs if x["beaten"]]
+            r["beaten"] = st.median(bt) if bt and r["res"] == "L" else None
+            rows[t] = r
+        return rows
     rows = {}
     for d in sorted(glob.glob(os.path.join(DATA, name, "c1k_*"))):
         x = one(d)
@@ -100,7 +123,7 @@ def summary(name, rows, base=None):
     mean = lambda k: (lambda v: sum(v) / len(v) if v else None)([x[k] for x in rows.values() if x[k] is not None])
     s = {"block": name, "n": len(rows), "g": sum(gs) / len(gs) if gs else 0.0, "surv": surv, "wl": wl,
          "beat_med": st.median(bt) if bt else None, "inc8": mean("inc8"), "inc12": mean("inc12"), "army8": mean("army8"),
-         "army12": mean("army12"), "halls12": mean("halls12")}
+         "army12": mean("army12"), "halls12": mean("halls12"), "g14": mean("g14")}
     if base is not None:
         ds = [rows[t]["g"] - base[t]["g"] for t in rows if t in base]
         if len(ds) >= 2:
@@ -110,6 +133,11 @@ def summary(name, rows, base=None):
             s["t"] = md / (sd / math.sqrt(len(ds))) if sd > 0 else 0.0
             s["better"] = sum(1 for x in ds if x > 0.05)
             s["worse"] = sum(1 for x in ds if x < -0.05)
+        d14 = [rows[t]["g14"] - base[t]["g14"] for t in rows if t in base and rows[t]["g14"] is not None and base[t]["g14"] is not None]
+        if len(d14) >= 2:
+            s["d14"] = sum(d14) / len(d14)
+            sd = st.stdev(d14)
+            s["t14"] = s["d14"] / (sd / math.sqrt(len(d14))) if sd > 0 else 0.0
     return s
 
 
@@ -163,15 +191,16 @@ if __name__ == "__main__":
         names = [x for x in sys.argv[2:] if not x.startswith("--") and x != arg("--base", None)]
         base = arg("--base", None)
         brow = block(base) if base else None
-        print("| block | n | mean g | survived | won/led | median defeat | inc 8 | inc 12 | army 8 | army 12 | halls 12 | v base d (t) | better/worse |")
-        print("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+        print("| block | n | mean g | survived | won/led | median defeat | inc 8 | inc 12 | army 8 | army 12 | halls 12 | v base d (t) | better/worse | g 14:00 | v base d14 (t) |")
+        print("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
         for n in ([base] if base else []) + names:
             s = summary(n, block(n), brow if n != base else None)
             dt = "%+.2f (%.1f)" % (s["d"], s["t"]) if "d" in s else ""
             bw = "%d/%d" % (s["better"], s["worse"]) if "d" in s else ""
-            print("| %s | %d | %+.2f | %d | %d | %s | %s | %s | %s | %s | %s | %s | %s |" % (
+            d14 = "%+.2f (%.1f)" % (s["d14"], s["t14"]) if "d14" in s else ""
+            print("| %s | %d | %+.2f | %d | %d | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
                 n, s["n"], s["g"], s["surv"], s["wl"], mmss(s["beat_med"]), f2(s["inc8"]), f2(s["inc12"]),
-                f2(s["army8"]), f2(s["army12"]), f2(s["halls12"]), dt, bw))
+                f2(s["army8"]), f2(s["army12"]), f2(s["halls12"]), dt, bw, f2(s["g14"]), d14))
         if "--games" in sys.argv:
             for n in ([base] if base else []) + names:
                 print("\n" + n)
