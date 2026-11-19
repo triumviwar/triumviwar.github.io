@@ -14,7 +14,7 @@ extends SceneTree
 ## ready (its flock out of the opening) by RAID_BY, the first sortie by OUT_BY (after the crank post is set up), at least
 ## WORKERS_6 Winders at 6:00 (the economy keeps growing), a second Clocktower laid by HALL_BY.
 ## (cw-written-openings, 0.38.82: the build starts from the common opening now, its own steps from 2:15: the first Owl at
-## ~6:05 and the raid ready at ~6:15 on Greenhold 11, with 32 Winders at 6:00 (was 5:30 / 6:00 with about 22))
+## ~6:05 and the raid ready at ~6:15 on Greenhold 11, with 32 Winders at 6:00 (the limits were 5:30 / 6:00))
 const OWL_BY := 390.0
 const RAID_BY := 420.0
 const OUT_BY := 480.0
