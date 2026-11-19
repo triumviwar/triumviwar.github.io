@@ -42,6 +42,11 @@ static func vs(ai) -> bool:
 const PICK := {"timing": 1.0, "siege": 1.0}
 
 
+## (study switch `-- cvc:timingonly`: the Timing attack every time)
+static func pick_w() -> Dictionary:
+	return {"timing": 1.0} if on("timingonly") else PICK
+
+
 # ------------------------------------------------------------------ 2. the army clock's share (AICrownArmy.want)
 
 ## The army clock (AICrownArmy) keeps 0.6 of a Hard Clockwork's usual army 45 s ahead until 6:30, soldiers before labourers;
