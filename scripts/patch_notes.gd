@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.81", "items": [
+		"BETTER PICKS IN THE MIRRORS: the computer's OPTIMAL plan now plays Balanced or the Balloon harass against another Crown (it played the Economy race or the Timing attack, among the worst there), and Balanced against another Brood (it played the Timing attack or rushed, which won none of 8). The choice comes from the 20-minute studies of every plan.",
+	]},
 	{"v": "0.38.80", "items": [
 		"Studies only: every Brood plan forced on the Brood computer against each side's best computer, 216 games to 20:00. Almost any Brood plan beats the Crown computer, none beats the Clockwork computer, and in the Brood mirror the Balanced plan does best. The Air rush plan builds almost no flyers.",
 	]},

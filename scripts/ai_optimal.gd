@@ -130,7 +130,9 @@ func say(s: String) -> void:
 const NORMAL := {
 	"crown": {"brood": {"economy": 3.0, "balanced": 1.0},
 		"clockwork": {"timing": 3.0, "economy": 1.0, "balloon": 1.0},
-		"crown": {"economy": 3.0, "balanced": 2.0, "dragoon": 2.0, "siege": 1.0, "timing": 1.0}},
+		# (the owner, 2026-11-19, from docs/plan_matrix_crown.md: in the mirror Balanced won or led 8 of 12 and lost none,
+		# Balloon 5 with 4 wins; Timing and Dragoon were the worst)
+		"crown": {"balanced": 3.0, "balloon": 2.0}},
 	"clockwork": {"brood": {"pendulum": 3.0, "balanced": 2.0, "owls": 2.0},
 		"crown": {"balanced": 2.0, "economy": 2.0, "springer": 2.0, "heavy": 1.0},
 		"clockwork": {"balanced": 3.0, "economy": 2.0, "springer": 1.0}},
@@ -139,7 +141,8 @@ const NORMAL := {
 		# (brood-v-brood-coach, docs/brood-v-brood-coach.md: no Rush in the mirror: its 10 Raptors at 2:51 met the other
 		# Brood's rush evidence, Raptors and Mother and came home with half, and the rusher was behind all game: it lost 4,
 		# trailed 1 and led 1 of 6 against Economy turned Balanced in the measuring batch's first seed)
-		"brood": {"balanced": 2.0, "timing": 2.0, "economy": 1.0}},
+		# (the owner, 2026-11-19, from docs/plan_matrix_brood.md: Balanced won or led 6 of 8 in the mirror, Timing 4)
+		"brood": {"balanced": 1.0}},
 }
 
 
@@ -256,9 +259,10 @@ func _punish(f: String, t: float) -> Array:
 				return [k, "out-expand it" if k == "economy" else _normal_why(k)]
 			if f == "crown" and _mirror_keep():
 				return []            # (crown-v-crown-coach: the Timing attack keeps its timing)
+			if f == "crown" and t < TOO_LATE:
+				# (the owner, 2026-11-19: the mirror's best plans are Balanced and Balloon, the Timing attack one of the worst)
+				return ["balanced", "Horsemen are no answer to Musketeers: a line and guns"]
 			if t < TOO_LATE:
-				if f == "crown":
-					return ["timing", "Horsemen are no answer to Musketeers: a timing attack"]
 				return ["timing", "a timing attack before its economy pays off"]
 			return ["economy", "too late to punish: out-expand it"]
 		"clockwork":
@@ -277,6 +281,9 @@ func _punish(f: String, t: float) -> Array:
 				return ["springer", "a timing attack before its economy pays off"]
 			return ["economy", "too late to punish: out-expand it"]
 		"brood":
+			if f == "brood":
+				# (the owner, 2026-11-19: in the mirror the Rush won or led 0 of 8, Balanced 6)
+				return ["balanced", "steady waves punish the greed"]
 			if early and f != "crown":
 				return ["rush", "punish the greed before its army is up"]
 			if t < TOO_LATE:
