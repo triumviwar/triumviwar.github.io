@@ -25,6 +25,16 @@
 
 ## Current work
 
+- CROWN POWDER STUDY (owner 2026-11-20 01:09 "Measure"; job crown-powder-study, 0.38.88, docs/crown_powder_study.md, data
+  docs/crown_powder_study/, scripts/crown_powder.gd CrownPowder, tools/study/crown_powder_study.py + _queue.sh + _doc.py,
+  tools/test_crown_powder.gd): four options for the Crown's late powder, match switches ALL OFF (`-- powder:salt2500`,
+  `floor35`, `nitre`, `buy`, combined with +): A 2,500 saltpetre a Town Hall; B the Mill's floor 35%; C NITRE BEDS (3 x 2,
+  125 gold; 3 gold a powder, 40 a minute; by a Farm or Horse Breeder, one a hall; rests at 400 banked; stand-in art
+  tools/draw_nitre_beds.py); D BUY POWDER at the Town Hall (50 for 150 gold, 30 s a side). The computer from 6:00 with
+  under 60 powder: buys with 400 gold, lays beds. 300 games (20 an option a matchup, the crown-1000 seeds, to 20:00) + the
+  bench: NO OPTION MOVED THE RESULTS beyond the noise; the computer's saltpetre is NOT spent (4,300-6,600 left at 16:00):
+  it keeps 6-9 Labourers on 4-5 Mills. Recommendation: no number change; coach the computer to crew its Mills; if a design
+  change for humans is wanted, B (the quietest; D leaned to a snowball in the mirror). OWNER DECISIONS WAITING.
 - ACT 2 PLANNED (owner 2026-11-19 11:06 "Yes write act 2."; job campaign-act2-plan, branch campaign-act2-plan, docs only:
   docs/campaign_act2_plan.md): THE BREAKING 2771-2780, eleven missions d01-d11 on three lines + the 2nd crossing: the
   Crown (Tomasz) d01_minas (the Assembly's conspiracy at Vila Rica) -> d05_aldeia (the swarm at his mission São Rafael;
