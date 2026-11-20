@@ -44,11 +44,14 @@ def square(im, size):
 def main():
     out = os.path.join(ROOT, "campaign/warmap_art")
     os.makedirs(out, exist_ok=True)
-    sheet = key(Image.open(os.path.join(ROOT, "art/campaign/warmap_seals_chatgpt.png")))
+    # the brighter set (owner 2026-11-20: "brighter to match [the eye], more like the Triumviwar logo"): 3 x 2, crown
+    # (purple, gold crown), clockmaker (crimson, gold gear), all (gold, a star); whole on top, cracked below. (The first
+    # sheet, warmap_seals_chatgpt.png, darker, is kept in art/ but no longer used.)
+    sheet = key(Image.open(os.path.join(ROOT, "art/campaign/warmap_seals_bright_chatgpt.png")))
     w, h = sheet.size
     for row in range(2):
-        for i, line in enumerate(LINES):
-            cell = sheet.crop((i * w // 4, row * h // 2, (i + 1) * w // 4, (row + 1) * h // 2))
+        for i, line in enumerate(["crown", "clockmaker", "all"]):
+            cell = sheet.crop((i * w // 3, row * h // 2, (i + 1) * w // 3, (row + 1) * h // 2))
             name = "seal_%s%s.png" % (line, "_broken" if row else "")
             square(cell, 128).save(os.path.join(out, name))
             print("wrote", name)

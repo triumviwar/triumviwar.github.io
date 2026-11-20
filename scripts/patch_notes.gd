@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.93", "items": [
+		"The war map's other seals are brighter and closer to the game's emblem: a gold crown on purple wax, a gold gear on crimson wax, a gold star on gold wax, beside the green reptile eye.",
+	]},
 	{"v": "0.38.92", "items": [
 		"The Naturalist's seal on the war map is now the green reptile eye of the game's emblem, not a leaf.",
 	]},
