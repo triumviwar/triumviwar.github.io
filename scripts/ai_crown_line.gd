@@ -106,6 +106,8 @@ var line_log: Array = []         # [clock, kind, shooters, across px, guns] (tes
 func _init(owner) -> void:
 	ai = owner
 	game = owner.game
+	if AICrownRules.dropped(ai, "line:off"):
+		on = false      # (crown-rule-cleanup: left out of the cleaned set against some enemies, AICrownRules.DROP)
 
 
 func active() -> bool:

@@ -105,11 +105,11 @@ static func _num(key: String, dflt: int) -> int:
 
 
 static func dry_guns(ai) -> bool:
-	return on("dry") and vs(ai) and ai._gold() >= dry_bank
+	return on("dry") and vs(ai) and ai._gold() >= dry_bank and not AICrownRules.dropped(ai, "cvcdry:off")
 
 
 static func dry_musket(ai) -> bool:
-	if not on("dry") or not vs(ai) or ai._gold() < dry_bank:
+	if not on("dry") or not vs(ai) or ai._gold() < dry_bank or AICrownRules.dropped(ai, "cvcdry:off"):
 		return false
 	if ai._res2() >= float(Defs.ammo_load("musketeer")):
 		return false

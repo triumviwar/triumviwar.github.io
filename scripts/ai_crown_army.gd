@@ -44,7 +44,9 @@ var lags_hook := OS.get_cmdline_user_args().has("crownarmy:lags")  # (AICrown.ar
 var until := UNTIL              # (study switch `-- crownarmy:until=900`)
 var share := SHARE              # (study switch `-- crownarmy:share=0.9`)
 var room := ROOM                # (study switch `-- crownarmy:room=1`)
-var off := OS.get_cmdline_user_args().has("crownarmy:off")
+var off: bool:      # (crown-rule-cleanup: read when used, the enemy known; AICrownRules.DROP)
+	get:
+		return AICrownRules.dropped(ai, "crownarmy:off")
 var clock_off := OS.get_cmdline_user_args().has("crownarmy:noclock")    # (the clock off, the powder fix kept: a study switch)
 var lead_off := OS.get_cmdline_user_args().has("crownlead:off")    # (the clock without its look ahead: the WIP of 03:45)
 var behind_t := 0.0             # (the report) seconds it was behind

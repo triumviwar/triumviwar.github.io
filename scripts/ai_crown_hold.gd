@@ -59,7 +59,12 @@ const GO_EVEN := 0.9
 const GO_COOL := 90.0           # (s) after a wave, before the next timing
 
 var ai = null
-var on := not OS.get_cmdline_user_args().has("hold:off")
+var on: bool:      # (crown-rule-cleanup: left out of the cleaned set against some enemies, AICrownRules.DROP)
+	get:
+		return _on and not AICrownRules.dropped(ai, "hold:off")
+	set(v):
+		_on = v
+var _on := true
 var scout_on := not OS.get_cmdline_user_args().has("hscout:off")
 
 # the ramp post

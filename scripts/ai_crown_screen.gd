@@ -70,6 +70,8 @@ var pulled := 0                  # times the riders pulled back to the line at c
 func _init(owner) -> void:
 	ai = owner
 	game = owner.game
+	if AICrownRules.dropped(ai, "screen:off"):
+		on = false      # (crown-rule-cleanup: left out of the cleaned set against some enemies, AICrownRules.DROP)
 
 
 func active() -> bool:

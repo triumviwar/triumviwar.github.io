@@ -57,17 +57,27 @@ var team := 0
 
 var args := OS.get_cmdline_user_args()
 var off := args.has("coach:off")
-var labs_first_on := not off and not args.has("labsfirst:off")
+var labs_first_on: bool:      # (crown-rule-cleanup: read when used, the enemy known; AICrownRules.DROP)
+	get:
+		return not off and not AICrownRules.dropped(ai, "labsfirst:off")
 
-var halls_on_time_on := not off and not args.has("hallsontime:off")
+var halls_on_time_on: bool:      # (crown-rule-cleanup: read when used, the enemy known; AICrownRules.DROP)
+	get:
+		return not off and not AICrownRules.dropped(ai, "hallsontime:off")
 ## (crown-brood-measure 2026-11-17, docs/crown_brood_measure.md: rule 3 is only read v the Brood, and there it cost the
 ## Crown: income at 8:00 lower in 26 of 38 paired games (p 0.034), at 12:00 21 v 8 (p 0.024), army 8:00 0.68 v 0.84; it
 ## sent waves into a Brood grown since last seen. OFF by default since 0.38.42; `broodhonest:on` brings it back.)
 var honest_off := off or args.has("honest:off") or not args.has("broodhonest:on")
-var screen_first_on := not off and not args.has("screenfirst:off")
-var floor_off := args.has("armyfloor:off")
+var screen_first_on: bool:      # (crown-rule-cleanup: read when used, the enemy known; AICrownRules.DROP)
+	get:
+		return not off and not AICrownRules.dropped(ai, "screenfirst:off")
+var floor_off: bool:      # (crown-rule-cleanup: read when used, the enemy known; AICrownRules.DROP)
+	get:
+		return AICrownRules.dropped(ai, "armyfloor:off")
 var screen_trained := 0
-var guns_first_on := not off and not args.has("gunsfirst:off")
+var guns_first_on: bool:      # (crown-rule-cleanup: read when used, the enemy known; AICrownRules.DROP)
+	get:
+		return not off and not AICrownRules.dropped(ai, "gunsfirst:off")
 var guns_early_n := 0
 
 
@@ -356,9 +366,9 @@ func line_holds(foes: Array, c: Vector2, face: Vector2) -> bool:
 ## 5:00 up in all five (v Clockwork 0.56 -> 0.85, 0.61 -> 0.77, 0.63 -> 0.72 of the enemy's; v Brood 0.87 -> 0.99, 1.26 ->
 ## 1.38), the army at 5:00 about the same, no early collapse; v Clockwork better in 2 of 3 games, even in 1; v Brood even.
 ## A seen rush still puts the Barracks and soldiers first (_bo_defence). Switch `farmfirst:off` for the old order.
-static func farm_first() -> bool:
+static func farm_first(ai = null) -> bool:
 	var a := OS.get_cmdline_user_args()
-	return not a.has("coach:off") and not a.has("farmfirst:off")
+	return not a.has("coach:off") and not AICrownRules.dropped(ai, "farmfirst:off")
 
 
 static func farm_before_barracks(plan: Array) -> void:

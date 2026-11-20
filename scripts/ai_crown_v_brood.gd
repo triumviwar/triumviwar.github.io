@@ -50,18 +50,18 @@ func _init(a) -> void:
 	game = a.game
 	team = a.team
 	var args := OS.get_cmdline_user_args()
-	off = args.has("cvb:off")
+	off = AICrownRules.dropped(ai, "cvb:off")      # (crown-rule-cleanup: AICrownRules.DROP)
 	line_off = off or args.has("cvbline:off")
 	target_off = off or not args.has("cvbtarget:on")      # (MEASURED, NOT KEPT AS THE DEFAULT: parts 2 and 3 below)
 	keep_wide = args.has("cvbkeep:wide")
-	cba_off = args.has("cba:off")
+	cba_off = AICrownRules.dropped(ai, "cba:off")
 	floor_off = cba_off or args.has("cbafloor:off")
 	for arg in args:
 		if arg.begins_with("cbafloor:k="):
 			floor_k = float(arg.split("=")[1])
 	counter_off = off or not args.has("cvbcounter:on")
 	hold_off = cba_off or args.has("cbahold:off")
-	econ_off = cba_off or args.has("cbaecon:off")
+	econ_off = cba_off or AICrownRules.dropped(ai, "cbaecon:off")
 	if not cba_off and args.has("cbacounter:on") and not args.has("cvbcounter:on"):
 		counter_off = off       # (crown-brood-army part 6, MEASURED IN FILMS AND NOT KEPT: the counter after a held push, only
 		counter_died_only = true  # when the Brood's wave has just died at our line: see part 6)

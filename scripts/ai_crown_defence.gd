@@ -75,6 +75,8 @@ var _engaged := false
 func _init(a) -> void:
 	ai = a
 	game = a.game
+	if AICrownRules.dropped(ai, "defence:off"):
+		on = false      # (crown-rule-cleanup: left out of the cleaned set against some enemies, AICrownRules.DROP)
 
 
 func _say(s: String) -> void:

@@ -65,6 +65,8 @@ var n := {"take": 0, "in": 0, "out": 0, "round": 0, "home": 0, "skip_blob": 0, "
 func _init(a) -> void:
 	ai = a
 	game = a.game
+	if AICrownRules.dropped(ai, "cavmicro:off"):
+		on = false      # (crown-rule-cleanup: left out of the cleaned set against some enemies, AICrownRules.DROP)
 
 
 func has(u: Unit) -> bool:
