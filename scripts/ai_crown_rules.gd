@@ -31,7 +31,7 @@ const DROP := {
 		"crownarmy:off", "armyfloor:off", "cba:off", "cvb:off", "screenfirst:off",                         # army
 		"gunscoach:off", "gunsfirst:off", "line:off", "screen:off", "cavmicro:off", "defence:off",        # fight
 		"hold:off"],                                                                                      # home
-	"clockwork": ["crownarmy:off", "armyfloor:off", "screenfirst:off", "cvcdry:off",                       # army
+	"clockwork": ["crownarmy:off", "armyfloor:off", "screenfirst:off",                                     # army (not cvc dry)
 		"gunscoach:off", "gunsfirst:off", "line:off", "screen:off", "cavmicro:off", "defence:off",        # fight
 		"hold:off"],                                                                                      # home
 }
