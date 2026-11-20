@@ -98,6 +98,16 @@ tools/test_war_map.gd checks each of these and runs every flag combination of th
 state (every holder and pin state known, Franconia red, the quarter and the plateau by their flags, no "%" left in a
 ledger line).
 
+## Painted seals and compass rose (0.38.91)
+
+Claude made prompt 2 (the seals) and the rose of prompt 3 in the owner's ChatGPT: art/campaign/warmap_seals_chatgpt.png
+(4 x 2: crown, clockmaker, naturalist, all; whole, then cracked) and art/campaign/warmap_rose_chatgpt.png, keyed off
+magenta by tools/campaign/import_warmap_art.py into campaign/warmap_art/ (seal_<line>[_broken].png 128 px, rose.png 256).
+WarMap._draw_pin draws the painted seal for open, done, locked (greyed, with the padlock) and broken pins (planned pins
+keep the drawn dashed ring); _draw_rose draws the painted rose. Without the files the code draws its own as before. The
+parchment base (prompt 1) is NOT made: ChatGPT can't keep real coastlines in place, and the code's Natural Earth coasts
+are exact. The cartouche is not used by the game, so it was not made.
+
 ## The parchment painting (prompts for the owner's ChatGPT)
 
 The code draws a stand-in. When the owner's painting comes it goes in `WarMap.SKINS["parchment"]["base"]` (a

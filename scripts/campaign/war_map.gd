@@ -512,6 +512,18 @@ func _draw_pin(pn: Dictionary) -> void:
 		_draw_sign(String(pn["line"]), c, r * 0.45, Color(ink, 0.45))
 		return
 	var col: Color = s["locked"] if state == "locked" else s["lines"].get(String(pn["line"]), s["locked"])
+	var broken := String(ps.get("seal", "")) == "broken"
+	var tex := _art("seal_%s%s" % [String(pn["line"]), "_broken" if broken else ""])
+	if tex:
+		# the painted seal (campaign/warmap_art, tools/campaign/import_warmap_art.py); greyed when locked
+		var mod := Color(0.62, 0.58, 0.55) if state == "locked" else Color.WHITE
+		draw_texture_rect(tex, Rect2(c - Vector2(r, r) * 1.15, Vector2(r, r) * 2.3), false, mod)
+		if state == "done" and not broken:
+			draw_arc(c, r + 2.5, 0, TAU, 28, Color(0.95, 0.8, 0.35, 0.9), 1.5, true)
+		if state == "locked":
+			draw_rect(Rect2(c + Vector2(r * 0.35, r * 0.25), Vector2(r * 0.6, r * 0.5)), Color(0.2, 0.18, 0.15))
+			draw_arc(c + Vector2(r * 0.65, r * 0.25), r * 0.2, PI, TAU, 8, Color(0.2, 0.18, 0.15), 1.6)
+		return
 	# the wax: a blob with a soft scalloped edge
 	var blob := PackedVector2Array()
 	for i in 20:
@@ -556,8 +568,21 @@ func _draw_sign(line: String, c: Vector2, r: float, col: Color) -> void:
 			draw_colored_polygon(stp, col)
 
 
+## A painted picture for the map (campaign/warmap_art/<name>.png), or null: the code draws its own.
+var _art_cache := {}
+func _art(name: String) -> Texture2D:
+	if not _art_cache.has(name):
+		var p := "res://campaign/warmap_art/%s.png" % name
+		_art_cache[name] = load(p) if ResourceLoader.exists(p) else null
+	return _art_cache[name]
+
+
 func _draw_rose(c: Vector2, r: float, s: Dictionary) -> void:
 	var ink: Color = s["ink"]
+	var tex := _art("rose")
+	if tex:
+		draw_texture_rect(tex, Rect2(c - Vector2(r, r) * 1.45, Vector2(r, r) * 2.9), false, Color(1, 1, 1, 0.92))
+		return
 	draw_circle(c, r * 0.75, Color(s["paper"], 0.6))
 	draw_arc(c, r * 0.75, 0, TAU, 32, Color(ink, 0.6), 1.2, true)
 	for i in 8:

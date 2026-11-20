@@ -1037,7 +1037,7 @@ const UNITS := {
 	# the GUN CREWMAN (gun-crew-fetch, 2026-11-20): one of a Foundry's gun crew. With no Town Hall hauler free for it, he comes
 	# out of the Foundry, fetches the horse kept for its gun from the Horse Breeder on a leash, hitches it by the Foundry and
 	# goes back in (scripts/gun_crew.gd). Trained nowhere, not selectable (picking him picks his Foundry), not saved (a new one
-	# comes out after a load). A stand-in: the Labourer's strips with a gunner's steel helmet (tools/make_gun_crew_art.py).
+	# comes out after a load). His art: ChatGPT's (tools/import_gun_crew.py, tools/import_gun_crew_death.py).
 	"gun_crewman": {
 		"tags": ["light"],
 		"name": "Gun Crewman", "hp": 46, "armor": 0, "speed": 74, "cost": 0, "time": 1.0, "supply": 0,
@@ -1897,7 +1897,7 @@ const TEMP_ART := {
 	"serpent_gear_b": {"art": "great_winder"},
 	"horse": {"art": "horse", "portrait": "horse"},
 	"messenger": {"art": "messenger", "portrait": "messenger"},
-	"gun_crewman": {"art": "gun_crew", "portrait": "labourer"},     # (a stand-in: docs/art_style_inconsistency.md)
+	"gun_crewman": {"art": "gun_crew", "portrait": "gun_crewman"},
 	"dragoon": {"art": "dragoon", "armoured": "dragoon_armoured", "portrait": "dragoon", "portrait_armoured": "dragoon_armoured"},
 	"dismounted": {"art": "dismounted", "armoured": "dismounted_armoured", "portrait": "dismounted", "portrait_armoured": "dismounted_armoured"},
 	"mounted_missionary": {"art": "missionary_mounted", "portrait": "mounted_missionary"},

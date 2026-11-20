@@ -107,8 +107,9 @@ thrust (s, se face us now); the rest below is still open.
 5. Death strips: the lying body is centred on the man's spot like the standing frames (the sheets give no common
    ground point), so the body slides half a body sideways as he falls.
 
-Still a stand-in: the pikeman's n brace and thrust (a back view with the pike levelled away from us would fix it),
-the torch-bearer's se setting fire (row 3's first frame + the thrust row), the militia's bayonet and aiming up, the
+FIXED 2026-11-20 (0.38.91): the pikeman's n brace and thrust, a back view with the pike raised away from us
+(art/campaign/rebels/pikeman_thrust_n_chatgpt.png, Claude in the owner's ChatGPT; REDRAWS "pikeman_thrust_n" at a fixed
+scale 0.112, since the pike above the hat spoils the height measure). Still a stand-in: the torch-bearer's se setting fire (row 3's first frame + the thrust row), the militia's bayonet and aiming up, the
 torch-bearer's build (the crouch), and the side views of problem 1 in the other rows.
 
 ### Ready prompts (one request each; A and B are done, C done but for the north view)

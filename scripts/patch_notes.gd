@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.91", "items": [
+		"ART FROM CHATGPT: the Foundry's gun crewman now dies in his own painted animation in every direction (hit, falling as his helmet flies off, lying beside it) and has his own card portrait instead of the Labourer's. The war map's seals are painted wax seals (a purple crown, an amber gear, a green leaf, a gold star; cracked across where a place was lost) and its compass rose is a painted one. The rebel pikeman, seen from behind, now raises his pike away from you instead of a moved stand-in.",
+	]},
 	{"v": "0.38.90", "items": [
 		"FACES IN THE CAMPAIGN: when someone speaks during a campaign mission or a lesson, the box now shows their painted portrait instead of their initials: the King, Father Tomasz, Lord Fairleigh, Captain Ruggieri, Varenne, Meister Hollweg, Father Ferrer, Jakob, Dr. Lindqvist, Valadares and some thirty more, all painted with ChatGPT in the style of the story's paintings. The Machine, the automata, the creatures and the Free Assembly get a painting of their own. Places speaking (Rome, Nuremberg...) keep their initials.",
 	]},

@@ -774,4 +774,8 @@ ne, n): idle (2 frames), walk (6) and death (3), 42 x 35 cells, feet at (21, 33)
 DONE FOR THE WALK (0.38.88, 2026-11-20): Claude drew the five walks with ChatGPT in the owner's Chrome (one request per
 direction: the cannon's crew and the Labourer's walk as references, then the first gunner sheet for the rest), saved in
 art/redraws/gun_crew_walk_<dir>_chatgpt.png and imported by tools/import_gun_crew.py (scaled to 32 px, coat to the team
-mask); his idle is the walk's first frame twice. STILL STAND-IN: his death (the Labourer's, hat recoloured).
+mask); his idle is the walk's first frame twice. DONE FOR THE DEATH AND THE ICON (0.38.91): three frames a view (hit, falling
+with the helmet flying, lying with the helmet beside him), one request per view in the owner's Chrome
+(art/redraws/gun_crew_death_<dir>_chatgpt.png, tools/import_gun_crew_death.py; each third of the sheet is one frame, the
+lying frames shrunk a little where they would overrun the 42-px cell), and his own card icon assets/icons/gun_crewman.png
+(art/redraws/gun_crew_icon_chatgpt.png, shrunk to 64). Nothing of him is drawn in code any more.

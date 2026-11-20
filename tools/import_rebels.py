@@ -91,6 +91,9 @@ REDRAWS = {
 		("pikeman_thrust_s", ("match", "brace", ["brace2"]), 30, [
 			("brace2", "s", 0, 700, 0, 500, None), ("brace2", "se", 700, 9999, 0, 500, None),
 			("thrust2", "s", 0, 760, 500, 9999, None), ("thrust2", "se", 760, 9999, 500, 9999, None)]),
+		# the north, from behind (2026-11-20, Claude in the owner's ChatGPT): the pike raised away from us
+		("pikeman_thrust_n", ("scale", 0.112), "dark", [     # (hat to soles ~240 sheet px, as the s sheet's men)
+			("brace2", "n", 0, 9999, 0, 470, None), ("thrust2", "n", 0, 9999, 470, 9999, None)]),
 	],
 }
 BIG = 1100            # sheet px: a piece this big is (part of) a man
@@ -463,7 +466,11 @@ def cut_redraw(name, sole_rule, boxes):
 def apply_redraws(art, rows, scale):
 	for name, ref, sole_rule, boxes in REDRAWS.get(art, []):
 		got = cut_redraw(name, sole_rule, boxes)
-		if ref[0] == "idle":
+		if ref[0] == "scale":
+			# a fixed factor: the men's height can't be measured when the pike stands above the hat (the n back view)
+			hs = []
+			k = ref[1]
+		elif ref[0] == "idle":
 			hs = [height(e) for (r, _d), es in got.items() if r == "idle" for e in es]
 			k = ref[1] / float(np.median(hs))
 		else:
@@ -509,12 +516,8 @@ BUILD = {
 		# the sheet draws each row's men overlapping (a pike runs over the next man): only the LAST man of a brace or
 		# attack row keeps his whole pike, so the thrust is that man moved: drawn back, then lunging
 		"idle": [("idle", None)], "walk": [("walk", None)], "death": [("death", None)],
-		# the redraw (pikeman_thrust*_chatgpt.png) for s, se, e, ne: levelled pike, then the thrust by reach
+		# the redraws (pikeman_thrust*_chatgpt.png) for every view: levelled pike, then the thrust by reach
 		"brace": [("brace2", None)], "attack": [("thrust2", "reach")],
-		# STAND-IN for n (the redraw's n men face us): the main sheet draws each row's men overlapping (a pike runs over
-		# the next man), so only the LAST man of a brace or attack row keeps his whole pike: that man moved
-		"brace@n": [("brace", [-1])],
-		"attack@n": [("attack", [(-1, -7), (-1, -4), (-1, 1), (-1, 5), (-1, 2)])],
 	},
 	"rebel_torch": {
 		"idle": [("idle", None)], "walk": [("walk", None)], "death": [("death", None)],

@@ -1,5 +1,5 @@
 class_name GunCrewArt
-## The Gun Crewman's stand-in strips (tools/make_gun_crew_art.py: the Labourer's with a gunner's steel helmet), merged into
+## The Gun Crewman's strips (ChatGPT's walk and death: tools/import_gun_crew.py, tools/import_gun_crew_death.py), merged into
 ## ArtData.UNITS. Kept apart, with no other class in it, so ArtData can read it while the game loads.
 
 const ART := {

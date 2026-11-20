@@ -27,7 +27,7 @@ const ART := {
 		"walk_s": 3, "walk_se": 4, "walk_e": 5, "walk_ne": 4, "walk_n": 3,
 		}},
 	"rebel_pikeman": {"cell": Vector2i(102, 62), "anchor": Vector2(51, 54), "frames": {
-		"attack_s": 3, "attack_se": 3, "attack_e": 4, "attack_ne": 4, "attack_n": 5,
+		"attack_s": 3, "attack_se": 3, "attack_e": 4, "attack_ne": 4, "attack_n": 3,
 		"brace_s": 1, "brace_se": 1, "brace_e": 1, "brace_ne": 1, "brace_n": 1,
 		"death_s": 3, "death_se": 3, "death_e": 3, "death_ne": 3, "death_n": 3,
 		"idle_s": 2, "idle_se": 2, "idle_e": 2, "idle_ne": 2, "idle_n": 2,
