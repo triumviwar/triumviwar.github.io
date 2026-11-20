@@ -543,7 +543,7 @@ func _draw_pin(pn: Dictionary) -> void:
 		draw_arc(c + Vector2(r * 0.65, r * 0.25), r * 0.2, PI, TAU, 8, Color(0.2, 0.18, 0.15), 1.6)
 
 
-## The line's sign: a crown (the Crown), a gear (the Clockmaker), a leaf (the Naturalist), a star (all three).
+## The line's sign: a crown (the Crown), a gear (the Clockmaker), a reptile's eye (the Naturalist), a star (all three).
 func _draw_sign(line: String, c: Vector2, r: float, col: Color) -> void:
 	match line:
 		"crown":
@@ -557,9 +557,14 @@ func _draw_sign(line: String, c: Vector2, r: float, col: Color) -> void:
 			draw_colored_polygon(g, col)
 			draw_circle(c, r * 0.3, col.lightened(0.5))
 		"naturalist":
-			draw_colored_polygon(PackedVector2Array([c + Vector2(0, -r), c + Vector2(r * 0.6, -r * 0.2), c + Vector2(r * 0.3, r * 0.6),
-				c + Vector2(0, r), c + Vector2(-r * 0.3, r * 0.6), c + Vector2(-r * 0.6, -r * 0.2)]), col)
-			draw_line(c + Vector2(0, -r * 0.8), c + Vector2(0, r * 1.1), col.lightened(0.4), 1.2)
+			# a reptile's eye (the game's emblem): an almond with a slit pupil
+			var eye := PackedVector2Array()
+			for i in 16:
+				var a := TAU * i / 16.0
+				eye.append(c + Vector2(cos(a) * r, sin(a) * r * 0.55))
+			draw_colored_polygon(eye, col)
+			draw_colored_polygon(PackedVector2Array([c + Vector2(0, -r * 0.5), c + Vector2(r * 0.14, 0), c + Vector2(0, r * 0.5),
+				c + Vector2(-r * 0.14, 0)]), col.lightened(0.5))
 		_:
 			var stp := PackedVector2Array()
 			for i in 10:

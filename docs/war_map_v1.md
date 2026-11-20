@@ -101,7 +101,8 @@ ledger line).
 ## Painted seals and compass rose (0.38.91)
 
 Claude made prompt 2 (the seals) and the rose of prompt 3 in the owner's ChatGPT: art/campaign/warmap_seals_chatgpt.png
-(4 x 2: crown, clockmaker, naturalist, all; whole, then cracked) and art/campaign/warmap_rose_chatgpt.png, keyed off
+(4 x 2: crown, clockmaker, naturalist, all; whole, then cracked; the Naturalist's leaf replaced by the emblem's
+reptile eye, owner 2026-11-20: art/campaign/warmap_seal_eye_chatgpt.png) and art/campaign/warmap_rose_chatgpt.png, keyed off
 magenta by tools/campaign/import_warmap_art.py into campaign/warmap_art/ (seal_<line>[_broken].png 128 px, rose.png 256).
 WarMap._draw_pin draws the painted seal for open, done, locked (greyed, with the padlock) and broken pins (planned pins
 keep the drawn dashed ring); _draw_rose draws the painted rose. Without the files the code draws its own as before. The

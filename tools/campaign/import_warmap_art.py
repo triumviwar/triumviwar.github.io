@@ -2,7 +2,7 @@
 """The war map's painted seals and compass rose (ChatGPT, 2026-11-20), keyed off their magenta ground.
 
 art/campaign/warmap_seals_chatgpt.png: a 4 x 2 grid on magenta, top row whole, bottom row cracked, in the order crown
-(purple, a crown), clockmaker (amber, a gear), naturalist (green, a leaf), all (gold, a star). Each seal is found as the
+(purple, a crown), clockmaker (amber, a gear), naturalist (green, a leaf: replaced by the eye sheet below), all (gold, a star). Each seal is found as the
 largest blob in its grid cell, cropped square round it and written 128 x 128 to campaign/warmap_art/seal_<line>.png and
 seal_<line>_broken.png. art/campaign/warmap_rose_chatgpt.png -> campaign/warmap_art/rose.png (256 x 256).
 WarMap draws them when they exist (else its own drawn seals and rose).
@@ -52,6 +52,13 @@ def main():
             name = "seal_%s%s.png" % (line, "_broken" if row else "")
             square(cell, 128).save(os.path.join(out, name))
             print("wrote", name)
+    # the Naturalist's seal is the green REPTILE EYE of the game's emblem (owner 2026-11-20: "an eye like the
+    # triumviwar", not a leaf): its own sheet, whole left, cracked right
+    eye = key(Image.open(os.path.join(ROOT, "art/campaign/warmap_seal_eye_chatgpt.png")))
+    w, h = eye.size
+    for i, name in enumerate(["seal_naturalist.png", "seal_naturalist_broken.png"]):
+        square(eye.crop((i * w // 2, 0, (i + 1) * w // 2, h)), 128).save(os.path.join(out, name))
+        print("wrote", name, "(the eye)")
     rose = key(Image.open(os.path.join(ROOT, "art/campaign/warmap_rose_chatgpt.png")))
     square(rose, 256).save(os.path.join(out, "rose.png"))
     print("wrote rose.png")
