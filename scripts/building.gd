@@ -874,7 +874,7 @@ func soil_left() -> float:
 
 ## Town Hall / Clocktower: its full lode (saltpetre / ore); 0 for anything else.
 func lode_full() -> float:
-	return float(Defs.LODE.get(kind, 0.0))
+	return CrownPowder.lode_full(kind)
 
 
 ## Powder Mill / Ore Crusher / Boiler: share of its hall's lode left (0..1), 0 with no hall;
@@ -969,7 +969,7 @@ func efficiency() -> Array:
 		_:
 			left = lode_left()
 			res = "saltpetre" if kind == "powder_mill" else ("brass" if kind == "cog_press" else "ore")
-			trickle = Defs.POWDER_FLOOR if kind == "powder_mill" else Defs.LODE_SPENT      # (powder: a floor, the owner 14:44)
+			trickle = CrownPowder.powder_floor() if kind == "powder_mill" else Defs.LODE_SPENT      # (powder: a floor, the owner 14:44)
 	var staff := clampf(float(have) / float(want), 0.0, 1.0) if want > 0 else 0.0
 	return [staff * (trickle + (1.0 - trickle) * left), have, want, left, res]
 
@@ -1058,6 +1058,8 @@ func _econ(delta: float) -> void:
 			# the Clock Aviary: its doors open and a little brass bird pops out and flies off, over and over, while it makes
 			# a Swift (or researches) and is linked; doors shut when idle
 			_gear_anim(not queue.is_empty() and game.gear_net.speed_mult(self) > 0.0, float(Defs.GEAR["aviary_dt"]), 4)
+		"nitre_beds":
+			CrownPowder.beds_tick(self, delta)      # (crown-powder-study, option C: gold into powder, slowly)
 		"powder_mill":
 			# grinds its Town Hall's saltpetre: less as it runs down, Defs.POWDER_FLOOR once it is spent (Game.draw_lode)
 			var n := working_crew()

@@ -372,6 +372,27 @@ func _crown_econ(tm: int, a) -> Dictionary:
 		d["lab_cap"] = a.owner_lab_cap()
 		d["lag_s"] = int(a.lag_time)
 		d["farms_pulled"] = int(a.get("farms_pulled") if a.get("farms_pulled") != null else 0)
+	# (crown-powder-study, a measure) the powder bank now, the saltpetre left in the halls, the musket men with shots and
+	# without (bayonet only), what the study's options made (Nitre Beds, BUY POWDER: CrownPowder.made)
+	d["powder"] = int(float(g.players[tm]["res2"]))
+	var salt := 0.0
+	for h in g.halls_of(tm):
+		salt += h.lode
+	d["salt"] = int(salt)
+	var armed := 0
+	var dry := 0
+	for u in g.units:
+		if u.team != tm or u.dead or u._pmax <= 0.0:
+			continue
+		if not (String(u.kind).begins_with("musketeer") or String(u.kind).begins_with("dragoon")):
+			continue
+		if u.powder >= 1.0:
+			armed += 1
+		else:
+			dry += 1
+	d["musk_armed"] = armed
+	d["musk_dry"] = dry
+	d["opt_made"] = CrownPowder.made_of(g, tm)
 	return d
 
 

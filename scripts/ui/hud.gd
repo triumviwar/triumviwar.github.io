@@ -1313,6 +1313,8 @@ func _build_card() -> Array:
 				game.cancel_train(b)
 				if Building.is_research(last):
 					toast("%s research cancelled: paid back." % Defs.RESEARCH[last.substr(1)]["name"]), true, "", ""])
+		if b.kind == "town_hall" and b.built and b.team == game.human:
+			CrownPowder.card(self, list)      # (crown-powder-study, option D: BUY POWDER; only with the match switch)
 		if b.kind == "barracks" and b.built and (b.team == game.human or game.demo):
 			_arm_button(list, game.selected_buildings().filter(func(x: Building) -> bool: return x.kind == "barracks" and x.built))
 		if Defs.REFIT_AT.has(b.kind) and (game.has_refits(game.human) or _full_card):
@@ -3907,7 +3909,7 @@ func _draw_panel(font: Font) -> void:
 				var salt := bb.lode_left()
 				info = "Haulers %d/%d · Soil: %d%% (%d gold)%s · Saltpetre: %d%% (%d powder)%s · %s" % [bb.haulers_free(), bb.haulers().size(), int(round(soil * 100)), int(bb.soil),
 					" spent: its farms pay nothing" if soil <= 0.0 else (" running low" if soil < Defs.SOIL_LOW else ""),
-					int(round(salt * 100)), int(bb.lode), (" spent: the Mill grinds at %d%%" % int(round(Defs.POWDER_FLOOR * 100.0))) if salt <= 0.0 else (" running low" if salt < Defs.SOIL_LOW else ""),
+					int(round(salt * 100)), int(bb.lode), (" spent: the Mill grinds at %d%%" % int(round(CrownPowder.powder_floor() * 100.0))) if salt <= 0.0 else (" running low" if salt < Defs.SOIL_LOW else ""),
 					_econ_counts(bb)]
 			elif bb.kind == "clocktower" and (e.team == game.human or game.demo):
 				var coal := bb.soil_left()
@@ -3928,7 +3930,7 @@ func _draw_panel(font: Font) -> void:
 				info = "Horses here: %d (Horsemen, Dragoons, cannons, mortars and wagons need one each)  ·  " % game.horses_at(bb) + info
 			elif bb.kind == "powder_mill":
 				var sl := bb.lode_left()
-				info = "+%.1f powder/s%s" % [game.lode_pay(bb, Defs.MILL_RATE * bb.working_crew()), (" · saltpetre spent: it grinds at %d%%; expand to a new Town Hall" % int(round(Defs.POWDER_FLOOR * 100.0))) if sl <= 0.0 else (" · saltpetre running low" if sl < Defs.SOIL_LOW else "")]
+				info = "+%.1f powder/s%s" % [game.lode_pay(bb, Defs.MILL_RATE * bb.working_crew()), (" · saltpetre spent: it grinds at %d%%; expand to a new Town Hall" % int(round(CrownPowder.powder_floor() * 100.0))) if sl <= 0.0 else (" · saltpetre running low" if sl < Defs.SOIL_LOW else "")]
 			elif bb.d.has("battery") and e.team == game.human:
 				var bat: Array = bb.d["battery"]
 				var coal2 := bb.soil_left()
@@ -5219,7 +5221,7 @@ func _res_tip(i: int) -> Dictionary:
 		return {}
 	var body: String = Loc.t(RES_TIPS[fac][i])
 	if fac == "crown" and i == 1:
-		body = body % int(round(Defs.POWDER_FLOOR * 100.0))
+		body = body % int(round(CrownPowder.powder_floor() * 100.0))
 	var crew: String = {"crown": ["farm", "powder_mill"], "brood": ["food", "spoils"]}[fac][i]
 	return {"title": "%s: %d" % [r[i], int(pl["gold"]) if i == 0 else int(pl["res2"])], "body": body + "\n" + _crew_line(crew) + "\n" + _income_line(rates.x if i == 0 else rates.y)}
 
