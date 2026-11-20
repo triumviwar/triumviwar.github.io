@@ -9,7 +9,31 @@ The owner, 2026-11-20 07:20 ("some rules are very case specific"): the first run
 (commit 05f171a39) is reverted; only the plain threshold variants that measured worse are deleted again, and a SITUATIONAL rule
 is never deleted because it fired 0 times or showed no gain in 10-game blocks.
 
-(This job was restarted on 2026-11-20 08:50 after the first run went silent; the doc is written as the blocks come in.)
+(This job was restarted on 2026-11-20 08:50 after the first run went silent. 25 blocks of 10 games to 20:00 were played,
+two at a time, about 30 minutes a block.)
+
+## In short
+
+**Against the Clockwork the stack was costing the Crown its economy.** With the coaching groups off and added back one at a
+time, the plan picks plus the economy rules alone (20 games) survived 20 of 20 and won or led 18, score x2.6 of the Clockwork's
+(g +0.96), where today's full stack (30 games) survived 24 and won or led 12 (g -0.27). Two groups were the harm, each in
+several blocks: the **army clock and army floor** (they hold the gold the economy rules want: p3 -0.61, and without them the
+rest of the army group was even, p3s) and the **whole fight group** (the line, the guns' coaching, the rider screen, the cavalry
+micro, GUNS FIRST and the defence: p4 -1.55, t -3.2; less the defence p4s -0.63; less the alert, guns first and the screen p4m
+-0.80, t -2.6). They are now **cut against the Clockwork only** (scripts/ai_crown_rules.gd, AICrownRules.CUT; `-- crc:off`
+plays the old full stack). The cleaned code against the Clockwork (final1 + final2 below) beats the full stack paired game by
+game: final1 +0.87 (t 1.7), g14 +0.34 (t 2.2), 8 better / 2 worse.
+
+**Against the Brood nothing measured clearly.** Every step moved the score within the noise (the base pool and the full stack
+are 0.2 to 0.4 apart, t under 1); the army group was the only one that leaned up, and the army-only set (20 games) scores the
+same as the full stack's 40. So the Brood keeps today's full stack. **The mirror** keeps it too (one block, the counters).
+
+**The Brood question (step 4)**: yes, with the best set the Crown still loses to the Brood's capped army at 15:00-19:30 (14 of
+40 full-stack games lost, every defeat between minute 15 and 19). It looks like **balance more than the AI**, with numbers below.
+
+**Deleted**: only the plain threshold variants of the 1000 jobs that measured worse (16, listed below). **Kept untested or within
+the noise**: every situational rule (below). No game number was changed.
+
 
 ## The 25 experiments of the two 1000 jobs (step 0)
 
@@ -119,3 +143,85 @@ One line a block, written as each one ends.
 | 19:27 | Brood | p5 | army home | g -1.41, g14 -0.38, survived 3, won/led 2, defeats median 14:53; v p3 (army) -0.98 (t -1.7), 2/8; v the base pool -0.54 (t -0.8). Everything added on top of p3 has scored lower (fight -0.66, home -0.98), which says p3's 10 of 10 was partly luck: p3 is rerun (p3b). THE HOLD stays on either way (situational, never clearly harm). |
 | 19:55 | Clockwork | final1 | **the cleaned code** (no switch: AICrownRules.CUT cuts the army clock, the army floor and the fight group against the Clockwork; plan, econ, `dry` and the hold on) | g +0.59, g14 +0.07, survived 9, won/led 6, defeats median 16:28, income 8/12 0.94/1.04, army 8/12 1.14/3.07; **v the full-stack pool (30 games) +0.87 (t 1.7), g14 +0.34 (t 2.2), 8 better / 2 worse**; v the plan + econ pool -0.37 (t -0.9). The cuts acted as meant (no line formed, no screen rider, no muster). |
 | 20:20 | Brood | p3b | army (again) | g -0.44, survived 6, won/led 3. **The army pool (p3 + p3b, 20 games): g -0.43, g14 -0.03, survived 16 of 20, won/led 4**; v the base pool +0.43 (t 0.7), 7/3. Against the full stack's 40 games (full1 + old b09, b10, b14: g -0.68, g14 +0.10, survived 26, won/led 14) the army-only set is +0.25 (t 0.8) in g but -0.12 (t -0.8) in g14, 5/5: **no difference the blocks can see**. Against the Brood no group measured as clear harm on what was kept, so **the Brood keeps today's full stack** (no cut). |
+
+## What is kept, cut and deleted (step 3)
+
+| matchup | on by default after the cleanup | cut (AICrownRules.CUT, off by default here only) | the evidence |
+|---|---|---|---|
+| Crown v Clockwork | plan (`pick`, OPTIMAL's picks), econ (FARM FIRST, LABOURERS FIRST, HALLS ON TIME, `hall2`, `tech3`), `dry`, the hold, the build stack and everything outside the groups | the army clock (`crownarmy`), the army floor (`armyfloor`), the guns' coaching (`gunscoach`), GUNS FIRST (`gunsfirst`), the line (`line`), the rider screen (`screen`), the cavalry micro (`cavmicro`), the defence (`defence`) | the add-back blocks p2/p2b, p3, p3s, p4, p4s, p4m; the cleaned code's final1 and final2 against the full stack |
+| Crown v Brood | everything, as before | nothing | no group measured as clear harm; the full stack and the army-only set score the same |
+| Crown v Crown | everything, as before | nothing | a mirror cannot be measured by switching both sides the same way (the score is relative): one block for the counters |
+
+`-- crc:off` plays the full stack everywhere (as 0.38.86); `-- crc<name>:on` brings one cut rule back against the Clockwork.
+The study switches of every rule still work as before.
+
+**Situational rules kept although they acted little or measured within the noise** (never deleted for that, the owner's rule):
+- THE HOLD (main and ramp posts, the walled natural's gate post, menders, rider scouts): against the Clockwork -0.45 (t -1.1),
+  against the Brood -0.98 on top of the army group (t -1.7, one block); the gate post is live only on maps with a walled
+  natural. Kept on everywhere; worth a look of its own.
+- The defence's parts (the alert, no walk past, the muster): cut against the Clockwork as part of the fight group; kept against
+  the Brood and in the mirror. The muster acted 6-9 times in 10 games.
+- The mirror coach (`cmc`): acts only in the mirror; not measurable here.
+- From the 1000 jobs, off by default and not measured fairly: `trade`, `spend` (they never acted), `queen`, `pester`, `maws`,
+  `guard`, `farms`, `foundry2`, `richlabs`.
+- Outside the groups and left on in every block: the Balloon harass's fixes, the build stack, the Crown economy coach, the owner's
+  doctrine, the cinder fixes, the scout denial, the ammunition rules.
+
+**What fights what** (the interactions the blocks showed):
+1. Against the Clockwork the economy rules and the army clock pull the same gold two ways. With the clock and the floor off,
+   LABOURERS FIRST trained 966 labourers in 10 games (477 in the full stack), the Crown stood on 4.9 halls at 12:00 (3.5) and
+   ~80 labourers (~50), and its army at 12:00 was still 1.8x the Clockwork's (the economy pays for it).
+2. The defence's alert silences HALLS ON TIME and LABOURERS FIRST while it is on (25,208 thinks in 10 games against the
+   Clockwork): the halls rule wanted a hall in only 2 of the full stack's 10 games.
+3. On top of plan + econ, the fighting rules cost more than they win against the Clockwork, in every split tried. The counters do
+   not say why; the likeliest reading is that the line, the held posts and the musters keep the army at home in formations
+   while the Clockwork's army is out, so the Crown trades less and later. It is the opposite of what those jobs measured alone
+   (kills per loss up): measured alone they were added on top of an economy that was held back.
+4. Against the Brood the lean (`optlean`) makes FARM FIRST dead (every game the Rush plan), and the coach's economy rules wait
+   for the Brood army job's held push, so the econ group hardly acts there.
+
+## The Brood question (step 4)
+
+With the best set against the Brood (today's full stack, 40 games: full1 + the Brood job's kept-code blocks 9, 10, 14):
+
+| minute | Crown army | Brood army | Crown / Brood army | Crown / Brood income | Brood supply |
+|---|---|---|---|---|---|
+| 8 | 1,320 | 550 | 2.40 | 1.37 | 64 |
+| 10 | 2,195 | 1,200 | 1.75 | 1.19 | 104 |
+| 12 | 2,622 | 1,687 | 1.64 | 1.11 | 125 |
+| 14 | 2,917 | 2,025 | 1.18 | 1.03 | 144 |
+| 16 | 2,270 | 2,575 | 0.97 | 0.92 | 161 |
+| 17 | 2,000 | 3,015 | 0.86 | 0.91 | 194 |
+| 19 | 2,320 | 3,287 | 1.03 | 1.01 | 196 |
+
+(medians of the games still running at that minute)
+
+- **Yes, it still collapses late**: 14 of 40 lost, all between minute 15 and 19 (median 17:30); a minute before each defeat the
+  Brood stood at 172-200 supply of its 200 and the Crown's army was gone (0 to 0.6 of the Brood's), its halls 0-3 to the
+  Brood's 4.
+- **It looks like balance more than the AI**: the Crown is AHEAD in army (1.6-2.4x) and income (1.1-1.4x) until 13:00-14:00,
+  spends its gold (its bank 80-130 at 10:00-17:00), and reaches its own supply cap (185-200 by 16:00-18:00). From 15:00 the
+  two economies are even (0.9-1.0) and both armies are at the cap, and the Brood's capped army is worth more (3,000 against
+  2,000-2,300 at 17:00) and is rebuilt faster. Nothing the rule groups did moved that window: the base, the army-only set and the
+  full stack all lose 20-35% of games, all in the same minutes. What is left for the AI is the use of a lead it HAS at 8:00-13:00
+  (the Siege pushes trade about evenly, crown-1000-brood), not its economy or its spending.
+- So the Brood's late game (the 200-supply army, Battering Horns, the rebuild speed) is the place to look for the owner: a
+  balance question, which this job leaves alone (no number changed).
+
+## Claude's choices for the owner
+
+1. **The cuts are by matchup, not deletions**: the Clockwork cut turns eight coaching rules off against the Clockwork only; they
+   stay on against the Brood and in the mirror, and `-- crc:off` brings the old stack back. The fight group's own jobs had
+   measured them as gains alone; together with the economy rules they cost, so they are cut there rather than deleted.
+2. **The fight group is cut as a whole against the Clockwork** though three splits could not find a single culprit (the
+   defence, the alert with guns first and the screen, the line with the guns and the cavalry: each split still cost). A finer
+   job could find a part worth keeping.
+3. **The Brood keeps the full stack** although the army-only set survived more (16 of 20 against 26 of 40): it led less (4
+   against 14) and its g14 was lower; the blocks cannot tell them apart, and the full stack carries the Brood job's measured gain.
+4. **The plan group was not kept alone against the Brood** (p1 + p1b, -0.58) but is in the final Brood set (the full stack):
+   lean and siege were measured by the Brood job on top of the whole stack, and they need the rest to pay.
+5. **THE HOLD stays on everywhere**: it leaned to harm in two blocks (one per matchup), within the noise, and it is the owner's
+   doctrine and a situational rule.
+6. The Clockwork blocks used crown-1000-clockwork's seeds so its kept-set blocks 19 and 22 pair with this job's; the Brood and
+   mirror blocks the Brood job's.
+7. 16 threshold variants of the 1000 jobs were deleted again (they measured worse); 9 of their changes stay as off switches.
