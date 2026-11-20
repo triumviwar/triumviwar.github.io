@@ -156,6 +156,8 @@ func labs_wanted() -> bool:
 func army_short() -> bool:
 	if floor_off:
 		return false
+	if AICrownVClock.labs_free(ai):
+		return false            # (crown-1000-clockwork: against the Clockwork the labourers before the army clock)
 	if ai.vb() != null and ai.vbr.line_short():
 		return AICrownRules.t(ai, "armyfloor", true)
 	return AICrownRules.t(ai, "armyfloor", ai.ca_behind())
@@ -194,7 +196,7 @@ const HALL4_T := 690.0
 
 
 func halls_need() -> int:
-	if not halls_on_time_on or not active() or not econ_rules() or ai._defending() or _threat_now():
+	if not halls_on_time_on or not active() or not (econ_rules() or _c1kb_halls()) or ai._defending() or _threat_now():
 		return 0
 	if ai.dfn != null and ai.dfn.wants_soldiers():
 		return 0
@@ -206,10 +208,17 @@ func halls_need() -> int:
 
 
 const FULL_T := 150.0
+const C1kB := preload("res://scripts/ai_crown_1k_brood.gd")
+
+
+## (crown-1000-brood, change "halls") against the Brood HALLS ON TIME from the start (not only after the first push is held
+## or 9:00, as the coach's other economy rules), LABOURERS FIRST still waiting: block 3 ("eco", both) starved the army.
+func _c1kb_halls() -> bool:
+	return ai.vb() != null and C1kB.on("halls")
 
 
 func bo_hall_now() -> bool:
-	if not halls_on_time_on or not active() or not econ_rules() or _threat_now() or game.clock < FULL_T:
+	if not halls_on_time_on or not active() or not (econ_rules() or _c1kb_halls()) or _threat_now() or game.clock < FULL_T:
 		return false
 	if ai._halls().size() != 1 or free_posts() > 1 or ai._mine("farm").filter(func(f: Building) -> bool: return f.built).size() < 2:
 		return false

@@ -20,6 +20,7 @@ extends RefCounted
 ##    are held as when the army lags; the Mill's crew grows for its powder (an idle Barracks for want of powder is no sign
 ##    that nothing wants it); no more riders. Switch: `-- cvbline:off`.
 
+const C1kB := preload("res://scripts/ai_crown_1k_brood.gd")    # (crown-1000-brood)
 
 var ai = null
 var game: Game = null
@@ -494,5 +495,9 @@ const ECON_AFTER := 540.0
 func econ_after_hold() -> bool:
 	if econ_off or ai.peaceful:
 		return false
+	if C1kB.on("eco") and game.clock >= C1KB_ECO_FROM:
+		return true          # (crown-1000-brood, change "eco": the coach's economy rules from 5:00, the army floor still first)
 	return (held_t >= 0.0 and not hold_off) or game.clock >= ECON_AFTER
 
+
+const C1KB_ECO_FROM := 300.0

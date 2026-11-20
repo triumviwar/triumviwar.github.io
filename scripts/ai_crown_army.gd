@@ -82,6 +82,8 @@ func want() -> float:
 	if tab.is_empty():
 		return 0.0
 	var sh := share
+	if AICrownVClock.on("share") and AICrownVClock.vs(ai):
+		sh = AICrownVClock.SHARE      # (crown-1000-clockwork: a smaller army clock against the Clockwork, more labourers)
 	var w: float = sh * ai._lerp_table(tab, g.clock + (0.0 if lead_off else LEAD))
 	var seen: float = ai.ch.foe_known() if ai.ch != null else 0.0
 	w = maxf(w, SHARE_SEEN * seen)

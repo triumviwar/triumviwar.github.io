@@ -373,7 +373,7 @@ func muster(army: Array, spots: Array) -> bool:
 	var mine := 0.0
 	for u in home:
 		mine += ai._unit_value(u)
-	var mk := MUSTER_K
+	var mk := AICrownVClock.STAND_MUSTER if AICrownVClock.on("stand") and AICrownVClock.vs(ai) else MUSTER_K   # (crown-1000-clockwork)
 	if home.is_empty() or foe < MUSTER_MIN or mine >= foe * mk:
 		if _mustering:
 			_end_muster()

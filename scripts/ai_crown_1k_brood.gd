@@ -6,9 +6,7 @@ extends RefCounted
 ## kept only when the block beat the best so far. Every change here runs only when the Crown computer faces a Brood
 ## (AICrown.vb()), so the sister job against the Clockwork (crown-1000-clockwork) merges beside it. Each change has its own
 ## switch: `-- c1kb<name>:on` / `:off`; `-- c1kb:off` plays the matchup as before this job. The changes KEPT are on by default
-## (KEPT); the rest were measured and not kept (the doc says what each did). (crown-rule-cleanup, docs/crown_rule_cleanup.md:
-## the 13 changes not kept (eco, press, tech, halls, farms, queen, pester, edge, guns, maws, mortars, guard, spare) were
-## off by default and never acted, so their code and switches are deleted; git history before 0.38.87 has them.)
+## (KEPT); the rest were measured and not kept (the doc says what each did).
 
 const KEPT: Array[String] = ["lean", "siege"]   # (lean: block 2, kept after block 5; siege: blocks 9-10)
 
@@ -21,4 +19,4 @@ static func on(name: String) -> bool:
 		return false
 	if _args.has("c1kb%s:off" % name):
 		return false
-	return KEPT.has(name)
+	return KEPT.has(name) or _args.has("c1kb%s:on" % name)

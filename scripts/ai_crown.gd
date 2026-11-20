@@ -741,6 +741,8 @@ const HOLD_BEAT_BROOD := 2.0
 
 
 func hold_beat() -> float:
+	if AICrownVClock.on("stand") and AICrownVClock.vs(self):
+		return AICrownVClock.STAND_BEAT      # (crown-1000-clockwork: down to the natural against an even force)
 	if on and _foe_is("brood"):
 		return float(plan.get("beat_brood", HOLD_BEAT_BROOD))
 	return 1.3
@@ -1079,6 +1081,7 @@ func _think_stage_crown(i: int) -> void:
 		if stk == null:
 			stk = AICrownStack.new(self)
 		stk.tick()              # (crown-build-stack: labourers stacked on the sites that matter, scripts/ai_crown_stack.gd)
+		AICrownVClock.spend(self)       # (crown-1000-clockwork: a big bank late: more Barracks)
 		_lost_halls_crown()     # (crown-ai-v2: a hall lost is remembered, its ground waits)
 	if i == 1 and not cannon_first:
 		_cannon_check()         # (CANNONS AGAINST THE BROOD, below)
@@ -1749,6 +1752,8 @@ func _wave_worth(ready: Array) -> bool:
 			want_look("the wave")
 			return false
 		var est := foe_estimate()
+		if vb() != null and C1kB.on("press") and _c1kb_press(mine):
+			return true         # (crown-1000-brood, change "press": see _c1kb_press)
 		if vb() != null and vbr.hold_first(mine, est):
 			return false        # (crown-brood-army: HOLD THE FIRST PUSH, THEN COUNTER, scripts/ai_crown_v_brood.gd part 6)
 		if mine >= est * (coach.edge_brood() if coach != null and coach.honest_on() else CR_EDGE_BROOD):
@@ -1776,7 +1781,36 @@ func _wave_worth(ready: Array) -> bool:
 var _held_said := -99.0
 
 
+## (crown-1000-brood, change "press") GO WHEN CLEARLY BIGGER THAN WHAT IS SEEN: the Brood reckoning by the clock (BROOD_TABLE,
+## 3,800 at 10:00) held the wave home with 2,210 of army against 720 there (Ashford Crossing r0 10:00, block 1) until the
+## Brood's capped wave came at 12:30. From C1KB_PRESS_FROM, with a fresh report, the wave goes when it is C1KB_PRESS_EDGE
+## times the Brood army seen in the last two minutes, never less than C1KB_PRESS_SHARE of the table.
 const C1kB := preload("res://scripts/ai_crown_1k_brood.gd")
+const C1KB_PRESS_FROM := 450.0
+const C1KB_PRESS_EDGE := 2.0
+const C1KB_PRESS_SHARE := 0.35
+var c1kb_presses := 0
+
+
+## (crown-1000-brood, change "tech") THE TECH IS NOT HELD BY THE CLOCK'S RECKONING: the milestones (Armoury, Church, a
+## second Foundry) and the Armoury's research waited while the army was under foe_estimate (BROOD_TABLE: 3,800 at 10:00,
+## 5,000 at 12:00): "milestone Foundry waits: the army is far behind the enemy's (2410 against the 0 it reckons)" (block 5,
+## Ashford Crossing r0), and the Crown had the Matchlock in 9 of 44 games while the Brood had Pack Hunt and Battering Horns
+## in 37 and 34. With a fresh report the Brood army it weighs here is what it saw in the last two minutes, never under
+## C1KB_TECH_SHARE of the table; with none, foe_estimate as before.
+const C1KB_TECH_SHARE := 0.4
+var c1kb_tech_eased := 0
+
+
+func _c1kb_tech_est() -> float:
+	if not C1kB.on("tech") or not scouted_fresh():
+		return foe_estimate()
+	var est := maxf(ch.foe_known(), C1KB_TECH_SHARE * _lerp_table(BROOD_TABLE, game.clock) - 0.5 * float(game.stats[team]["value_killed"]))
+	if est < foe_estimate():
+		c1kb_tech_eased += 1
+	return est
+
+
 ## (crown-1000-brood, the report) where the guns go: seconds a built Foundry stood idle, with a horse at it or not, and with
 ## a gun's gold or not; seconds the Crown had no gun at all from 8:00
 var c1kb_fd_idle := 0.0          # Foundry-seconds idle
@@ -1815,6 +1849,64 @@ func _c1kb_count(dt: float) -> void:
 	c1kb_guns_max = maxi(c1kb_guns_max, guns)
 	if guns == 0 and game.clock >= 480.0:
 		c1kb_noguns_t += delta
+
+
+## (crown-1000-brood, change "farms") EVERY HALL'S TWO FARMS: a new hall got its first Farm at once (_hall_farm, the
+## owner's plans and the openings) and its second only from the shared economy think, behind the army's gold; at 10:00 the
+## Crown had 2.8 halls and 4.1 Farms (blocks 7-9), its income the Farms' (380 gold a harvest each). Against the Brood, from
+## C1KB_FARMS_FROM, a built hall on paying land with fewer than its two Farms gets the next at once when the Farms standing
+## have at most C1KB_FARMS_ROOM free posts (so the gold does not go to posts nobody works yet) and 100 gold is there.
+const C1KB_FARMS_FROM := 240.0
+const C1KB_FARMS_ROOM := 6
+var c1kb_farms_laid := 0
+var _c1kb_farms_t := 0.0
+
+
+func _c1kb_farms(dt: float) -> void:
+	_c1kb_farms_t -= dt
+	if _c1kb_farms_t > 0.0:
+		return
+	_c1kb_farms_t = 3.0
+	if game.clock < C1KB_FARMS_FROM or not on or difficulty < 1 or _defending() or _busy_building("farm"):
+		return
+	if game.econ_count(team, "farm") >= game.econ_limit(team, "farm") or _gold() < int(Defs.BUILDINGS["farm"]["cost"]):
+		return
+	var room := 0
+	for f in _mine("farm"):
+		if f.built and not f.barren():
+			room += maxi(0, f.crew_max() - f.crew.size())
+	if room > C1KB_FARMS_ROOM:
+		return
+	var per := Defs.econ_per_hall("crown", "farm")
+	for h in _halls():
+		if not h.built or _land(h) < DRY_LAND or _farms_at(h) >= per or game.econ_full_at(team, "farm", h.center()) != "":
+			continue
+		var spot := Vector2i(-1, -1)
+		if lay != null:
+			spot = lay.econ_spot("farm", h)
+		if spot.x < 0:
+			spot = game.find_spot(team, "farm", h, 4, Defs.ECON_RANGE - 2, "behind", true)
+		if spot.x < 0:
+			spot = game.find_spot(team, "farm", h, 4, Defs.ECON_RANGE - 2, "behind")
+		if spot.x < 0 or _unsafe((Vector2(spot) + Vector2(Defs.BUILDINGS["farm"]["size"]) * 0.5) * Defs.TILE):
+			continue
+		var n0 := _mine("farm").size()
+		_construct("farm", spot)
+		if _mine("farm").size() > n0:
+			c1kb_farms_laid += 1
+			say("a second Farm at its hall at once (the Farms standing are nearly manned)")
+			return
+
+
+func _c1kb_press(mine: float) -> bool:
+	if game.clock < C1KB_PRESS_FROM:
+		return false
+	var est := maxf(ch.foe_known(), C1KB_PRESS_SHARE * _lerp_table(BROOD_TABLE, game.clock) - 0.5 * float(game.stats[team]["value_killed"]))
+	if mine < C1KB_PRESS_EDGE * est:
+		return false
+	c1kb_presses += 1
+	say("presses the Brood: %d of army against the %d it has seen lately" % [int(mine), int(ch.foe_known())])
+	return true
 
 
 ## The second hall of the opening: the safest rated site (AI._safe_hall_spot), three labourers build it together.
@@ -1882,6 +1974,8 @@ var _mill_farm_last := -1.0
 func _mill_farm_cap(cap: int) -> int:
 	if _defending() or (scout != null and scout.verdict == "rush" and game.clock < 420.0):
 		return cap
+	if AICrownVClock.on("powder") and AICrownVClock.vs(self):
+		cap = AICrownVClock.mill_cap(self, cap)      # (crown-1000-clockwork: the powder piles up: the hands to the Farms)
 	# (by the labourers beyond the Farms' posts, not by where the hands stand now: a hand sent to a Farm frees no post to
 	# count, so the cap does not swing back and forth)
 	var posts := 0
@@ -2039,7 +2133,7 @@ func _tend_wagon() -> void:
 func _research() -> void:
 	if _research_off:
 		return
-	if brood_spend_army() and float(game.army_value(team)) < foe_estimate() * HOLD_SHARE:
+	if brood_spend_army() and float(game.army_value(team)) < _c1kb_tech_est() * HOLD_SHARE:
 		_refit_army()
 		return                  # (crown-v-brood-coach: far behind the Brood, the research's gold goes to soldiers)
 	super()
@@ -2516,7 +2610,7 @@ func _mid_tick() -> void:
 			continue            # (crown-v-clockwork-coach: a Clockwork rush read: soldiers before the milestones; the Farms
 			                    # before the tech)            # (crown-owner-eco: the gun's gold holds the tech back, not the production; crown-hold: the
 			# first AI.CANNONS_FIRST Field Cannons too)
-		var at: Dictionary = m[2]
+		var at: Dictionary = AICrownVClock.mid_at(self, k, int(m[1]), m[2])      # (crown-1000-clockwork: a milestone sooner)
 		if labs < int(at.get("labs", 0)) or halls < int(at.get("halls", 0)) or army < int(at.get("army", 0)):
 			continue
 		if not game.requirement_met(team, k) or _busy_building(k):
@@ -2560,7 +2654,7 @@ var brood_spend_off := OS.get_cmdline_user_args().has("broodspend:off")
 func brood_spend_army() -> bool:
 	if brood_spend_off or not on or difficulty < 1 or peaceful or not _foe_is("brood") or not bo_done:
 		return false
-	if float(game.army_value(team)) < foe_estimate():
+	if float(game.army_value(team)) < _c1kb_tech_est():
 		return true
 	if vb_line_short():
 		return true             # (crown-coach-v-brood: the home line short, not counting the riders out raiding)
@@ -2576,6 +2670,8 @@ const GUN_SHARE_BROOD := 4
 
 
 func _gun_share() -> int:
+	if AICrownVClock.on("guns") and AICrownVClock.vs(self) and on and difficulty >= 1:
+		return AICrownVClock.GUN_SHARE      # (crown-1000-clockwork: a Field Cannon for every few Musketeers)
 	if brood_spend_off or not on or difficulty < 1 or not _foe_is("brood"):
 		return super()
 	return GUN_SHARE_BROOD
@@ -2623,6 +2719,8 @@ func _tick_ai(delta: float) -> void:
 	super(delta)
 	if vb() != null and game != null and not game.over:
 		_c1kb_count(delta)
+		if C1kB.on("farms"):
+			_c1kb_farms(delta)
 	if dr != null and not game.over:
 		dr.micro()
 	if quiet and game != null and not game.over:
@@ -2632,6 +2730,10 @@ func _tick_ai(delta: float) -> void:
 
 
 func _raid() -> void:
+	if vb() != null and C1kB.on("pester") and _rush_state not in ["", "ongoing"] and _rush_mode != "hunt" and _raiders.is_empty():
+		# (crown-1000-brood, change "pester": see c1kb_pester_n)
+		if _raid_block > game.clock + C1KB_PESTER_GAP:
+			_raid_block = game.clock + C1KB_PESTER_GAP
 	var had := _raiders.size()
 	super()
 	if vb() != null and had == 0 and _raiders.size() >= 2 and _rush_state not in ["", "ongoing"]:
@@ -3015,7 +3117,13 @@ func _after_rush_brood() -> void:
 
 
 var c1kb_siege_at := -1.0
-## (crown-1000-brood, the report) raiding parties of riders formed after the rush
+var c1kb_queen_pushes := 0
+## (crown-1000-brood, change "pester") THE RIDERS KEEP AT THE GRUBS: after the Horseman rush a successful mop-up blocked
+## the raids for 10 minutes (AI._rush_mop, _raid_block + 600 s), a failed one 150 s, and the Siege push took the riders
+## along; the Brood's grubs run to its warriors whenever riders show (its income is its grubs at the Rootmaws). Against the
+## Brood, once the rush is over, a raiding party of the riders at home forms again C1KB_PESTER_GAP s after the last
+## (AI._raid's own rules: two riders at least, home when hurt or caught), and the Siege push leaves the riders to it.
+const C1KB_PESTER_GAP := 60.0
 var c1kb_pester_n := 0          # raiding parties formed after the rush
 
 
@@ -3316,6 +3424,8 @@ const OWNER_HALL_ARMY := 0.7
 func owner_hall_ok() -> bool:
 	if not owner_on() or _halls().size() < 2:
 		return true
+	if AICrownVClock.on("hall3") and AICrownVClock.vs(self):
+		return AICrownVClock.hall_ok(self)     # (crown-1000-clockwork: the third hall on the labourers alone)
 	if _best_soil() < OWNER_HALL3_SOIL:
 		return true
 	var labs := game.workers(team).size()
@@ -3429,6 +3539,8 @@ func owner_lab_cap() -> int:
 	var going := _hall_reserve or _busy_building(_f()["hall"])
 	var top := OWNER_LAB_MAX + OWNER_LAB_PER_HALL * maxi(0, built - 2) + (SAT_PRETRAIN if going and built >= 2 else 0)
 	var cap := _posts() + OWNER_SPARE_LABS + (SAT_PRETRAIN if going else 0)
+	if AICrownVClock.rich_labs(self) >= 0:
+		return mini(mini(cap, top), AICrownVClock.rich_labs(self))     # (crown-1000-clockwork: a big bank: the supply to soldiers)
 	return mini(cap, top)
 
 

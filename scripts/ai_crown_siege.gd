@@ -52,6 +52,78 @@ const REACH := 470.0            # (px) a target this far from a gun's spot is ou
 var ai                          # the AICrown
 var game: Game
 var state := ""                 # "" home, "march", "set", "back"
+## (crown-1000-brood, change "queen") THE MOTHER HERSELF: the Brood is beaten when its Mother dies. A push that goes out
+## C1KB_QUEEN_EDGE times the Brood army seen lately (never under C1KB_QUEEN_FOE_MIN) from C1KB_QUEEN_FROM marches on her,
+## setting up only against what stands in its way (C1KB_QUEEN_STOP of the usual reach), the Brood's army, or her: block 10,
+## Ashford r0, 3,620 of army against 340 at 12:00, the push took 1:48 to reach the first Rootmaw by the natural, and the
+## Brood rebuilt to 3,655 by 14:00.
+const C1kB := preload("res://scripts/ai_crown_1k_brood.gd")
+const C1KB_QUEEN_FROM := 480.0
+const C1KB_QUEEN_EDGE := 2.5
+const C1KB_QUEEN_FOE_MIN := 400.0
+const C1KB_QUEEN_STOP := 0.45
+var queen_mode := false
+## (crown-1000-brood, change "edge") THE PUSH WAITS FOR A CLEAR EDGE: against the Brood the push went at EDGE_BROOD (1.5) times
+## the Brood army seen lately, with 35-49 supply and 3 guns at ~9:30-10:00, and traded about evenly (block 14: killed
+## 575-8,250, lost 1,620-5,290 a push) while the Brood's income rebuilt faster. Now it waits for C1KB_EDGE_BROOD times.
+const C1KB_EDGE_BROOD := 2.5
+## (crown-1000-brood, change "guns") MORE CANISTER: the push's Field Cannons were capped at CANNONS_MAX (4), one for 5
+## Musketeers; against the Brood's swarm one for C1KB_GUNS_PER, up to C1KB_CANNONS_MAX.
+const C1KB_GUNS_PER := 3
+const C1KB_CANNONS_MAX := 8
+## (crown-1000-brood, change "mortars") MORE MORTARS: one for 7 Musketeers, 3 at most (MORTARS_MAX); against the Brood's
+## clumped waves at the palisade one for C1KB_MORTAR_PER, up to C1KB_MORTARS_MAX (after the first 3 Field Cannons, as before).
+const C1KB_MORTAR_PER := 4
+## (crown-1000-brood, change "guard") A HOME GUARD: the push took the whole army at home, and the Brood's waves went for the
+## halls it left (block 14: "falls back: the base is attacked", halls lost at 14:00-19:00 while the push was out). Against
+## the Brood C1KB_GUARD of the Musketeers (the nearest home) and one gun of four stay home on the post.
+const C1KB_GUARD := 0.3
+## (crown-1000-brood, change "spare") THE PUSH COMES HOME SOONER: it fell back only under RETREAT_K (0.45) of what went out, and
+## traded about evenly with a Brood that rebuilds faster (block 14: lost 1,620-5,290 a push); against the Brood it falls
+## back under C1KB_RETREAT_K, the army kept for the Brood's capped waves at home.
+const C1KB_RETREAT_K := 0.7
+var c1kb_guarded := 0
+
+
+func _c1kb_guard(home: Array) -> Array:
+	var front: Vector2 = ai._front()
+	var musk := home.filter(func(u: Unit) -> bool: return Defs.MUSKETS.has(u.kind))
+	musk.sort_custom(func(a: Unit, b: Unit) -> bool: return a.position.distance_to(front) < b.position.distance_to(front))
+	var keep := {}
+	for i in int(float(musk.size()) * C1KB_GUARD):
+		keep[musk[i]] = true
+	var guns := home.filter(func(u: Unit) -> bool: return u.kind == "cannon")
+	if guns.size() >= 4:
+		guns.sort_custom(func(a: Unit, b: Unit) -> bool: return a.position.distance_to(front) < b.position.distance_to(front))
+		keep[guns[0]] = true
+	c1kb_guarded += keep.size()
+	_c1kb_keep = keep
+	return home.filter(func(u: Unit) -> bool: return not keep.has(u))
+
+
+var _c1kb_keep := {}            # (change "guard") the guard of the push out: not joined to it
+const C1KB_MORTARS_MAX := 6
+## (crown-1000-brood, change "maws") THE PUSH GOES FOR THE FAR ROOTMAWS: it marched for the enemy's base (the Mother, her
+## fathers and turtles) and set up against what it met on the way; against the Brood it marches on the nearest Rootmaw it
+## has seen rooted away from the Mother (AICrownVBrood.MAW_FAR), her base only when there is none.
+func _c1kb_far_maw(mid: Vector2) -> Vector2:
+	var foe: int = ai._foe()
+	if foe < 0:
+		return Vector2.INF
+	var mother: Unit = BroodNew.queen(game, foe)
+	var mp: Vector2 = mother.position if mother != null else game.start_mid(foe)
+	var best := Vector2.INF
+	var bd := INF
+	for u in ai._maws_seen.keys():
+		if not is_instance_valid(u) or u.dead or not BroodNew.rooted(u):
+			continue
+		if u.position.distance_to(mp) < AICrownVBrood.MAW_FAR * Defs.TILE:
+			continue
+		var d: float = u.position.distance_to(mid)
+		if d < bd:
+			bd = d
+			best = u.position
+	return best
 var men := {}                   # unit -> true: the push
 var trail: Array = []           # the line's middle, a point every TRAIL_STEP px of the way (newest last)
 var anchor = null               # the target set up against (Building or Unit)
@@ -155,7 +227,7 @@ func _home_army() -> Array:
 	return game.army(ai.team).filter(func(u: Unit) -> bool:
 		return not men.has(u) and not u.dead and not u.off_field and u.has_attack() and u.kind != "powder_wagon" and not u.is_air() \
 			and not ai._raiders.has(u) and not ai._on_errand(u) and not (ai.harass != null and ai.harass.has(u)) and u.order != "mount" \
-			and not ai._horse_coming(u) and not u.is_worker())
+			and not ai._horse_coming(u) and not u.is_worker() and not (u.kind == "cuirassier" and _brood() and C1kB.on("pester")))
 
 
 func _maybe_go() -> void:
@@ -186,6 +258,8 @@ func _maybe_go() -> void:
 		return
 	var known: float = ai.ch.foe_known()
 	var edge := EDGE_BROOD if _brood() else EDGE
+	if _brood() and C1kB.on("edge"):
+		edge = C1KB_EDGE_BROOD    # (crown-1000-brood, change "edge": see C1KB_EDGE_BROOD)
 	if known > 0.0 and mine < known * edge and not big:
 		if game.clock - _stay_t > 60.0:
 			_stay_t = game.clock
@@ -206,6 +280,11 @@ func _stay(why: String) -> void:
 
 func _go(home: Array, value: float) -> void:
 	men.clear()
+	if _brood() and C1kB.on("guard"):
+		home = _c1kb_guard(home)
+		value = 0.0
+		for u in home:
+			value += float(Game.unit_value(u)) * (GUN_WEIGHT if GUNS.has(u.kind) else 1.0)
 	for u in home:
 		men[u] = true
 	state = "march"
@@ -223,6 +302,14 @@ func _go(home: Array, value: float) -> void:
 		"cannons": g.filter(func(u: Unit) -> bool: return u.kind == "cannon").size(),
 		"line": home.size() - g.size(), "broke": {}, "end": -1.0, "why": "", "sets": 0}
 	pushes.append(cur)
+	queen_mode = false
+	if _brood() and C1kB.on("queen") and game.clock >= C1KB_QUEEN_FROM:
+		var seen: float = maxf(ai.ch.foe_known(), C1KB_QUEEN_FOE_MIN)
+		if value >= C1KB_QUEEN_EDGE * seen and BroodNew.queen(game, ai._foe()) != null:
+			queen_mode = true
+			cur["queen"] = true
+			ai.c1kb_queen_pushes += 1
+			say("goes for the Brood Mother herself: %d against the %d of Brood it has seen lately" % [int(value), int(ai.ch.foe_known())])
 	say("goes out: %d supply (%d guns, %d in the line), worth %d" % [cur["sup"], g.size(), home.size() - g.size(), int(value)])
 	_orders_t = 0.0
 
@@ -300,6 +387,8 @@ func _join() -> void:
 	if ai._threat() != Vector2.INF:
 		return
 	var home := _home_army()
+	if not _c1kb_keep.is_empty():
+		home = home.filter(func(u: Unit) -> bool: return not _c1kb_keep.has(u))
 	if ai._army_supply(home) < JOIN_SUP:
 		return
 	var to := _behind(GUN_TRAIL * 0.5)
@@ -424,7 +513,10 @@ func _army_on(mid: Vector2) -> Variant:
 
 func _march(line: Array, guns: Array, mid: Vector2) -> void:
 	# contact: a defence near, or the enemy army on the line
-	var a = _next_anchor(mid, STOP_D)
+	var a = _next_anchor(mid, STOP_D * (C1KB_QUEEN_STOP if queen_mode else 1.0))
+	var q: Unit = BroodNew.queen(game, ai._foe()) if queen_mode else null
+	if q != null and q.position.distance_to(mid) < STOP_D:
+		a = q                     # (crown-1000-brood "queen": the Mother first when she is in reach)
 	if a == null:
 		a = _army_on(mid)
 	if a != null:
@@ -435,6 +527,14 @@ func _march(line: Array, guns: Array, mid: Vector2) -> void:
 	_orders_t = game.clock + 2.0
 	var goal: Vector2 = ai._enemy_base()
 	var nb = _next_anchor(mid, 99999.0)
+	if q != null:
+		nb = null
+		goal = q.position         # (crown-1000-brood "queen": the march goes for the Mother, past the rooted ground)
+	elif _brood() and C1kB.on("maws"):
+		var fm: Vector2 = _c1kb_far_maw(mid)
+		if fm != Vector2.INF:
+			nb = null
+			goal = fm             # (crown-1000-brood, change "maws": see _c1kb_far_maw)
 	var mg: Vector2 = ai.cm.wave_target(mid) if ai.mirror() != null else Vector2.INF
 	if mg != Vector2.INF:
 		goal = mg                 # (crown-mirror-coach: the push marches on the cheapest enemy hall, AICrownMirror.wave_target;
@@ -642,7 +742,7 @@ func wagon_busy() -> bool:
 ## Why the push is lost ("" while it is not).
 func _lost(mid: Vector2) -> String:
 	var now := _value(men.keys())
-	var rk := RETREAT_K
+	var rk := C1KB_RETREAT_K if _brood() and C1kB.on("spare") else RETREAT_K
 	if now < v0 * rk:
 		return "%d of the %d that went out is left" % [int(now), int(v0)]
 	var foes := _visible_foes(mid, 520.0).filter(func(u: Unit) -> bool: return not u.is_worker())
@@ -690,6 +790,7 @@ func _end(why: String) -> void:
 		say("is over (%s): killed %d, lost %d, broke %s" % [why, int(cur["killed"]), int(cur["lost"]), str(cur["broke"])])
 	state = ""
 	men.clear()
+	_c1kb_keep.clear()
 	_near.clear()
 	anchor = null
 	_next_go = game.clock + COOL
@@ -769,6 +870,11 @@ func _gun_want() -> Array:
 		mortars += f.queue.count("mortar")
 	var want_c := clampi(1 + muskets / 5, 1, CANNONS_MAX)
 	var want_m := clampi(muskets / 7, 0, MORTARS_MAX)
+	if _brood() and C1kB.on("guns"):
+		want_c = clampi(1 + muskets / C1KB_GUNS_PER, 1, C1KB_CANNONS_MAX)     # (crown-1000-brood, change "guns")
+		want_m = clampi(muskets / 7, 0, MORTARS_MAX)
+	if _brood() and C1kB.on("mortars"):
+		want_m = clampi(muskets / C1KB_MORTAR_PER, 0, C1KB_MORTARS_MAX)       # (crown-1000-brood, change "mortars")
 	if muskets < (GUN_LINE_BROOD if _brood() else GUN_LINE):
 		return []          # (the line first: against the Brood a gun's gold held from 4 Musketeers lost the main, b08 Greenhold)
 	var k := ""
@@ -776,7 +882,7 @@ func _gun_want() -> Array:
 		k = "cannon"
 	elif mortars < want_m and cannons >= ai.CANNONS_FIRST:
 		k = "mortar"          # (crown-hold: 3 Field Cannons before the first Mortar, the siege push too)
-	elif mortars < want_m and cannons < CANNONS_MAX:
+	elif mortars < want_m and cannons < (C1KB_CANNONS_MAX if _brood() and C1kB.on("guns") else CANNONS_MAX):
 		k = "cannon"
 	if k == "":
 		return []
