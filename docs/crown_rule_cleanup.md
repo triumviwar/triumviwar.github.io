@@ -9,7 +9,7 @@ The owner, 2026-11-20 07:20 ("some rules are very case specific"): the first run
 (commit 05f171a39) is reverted; only the plain threshold variants that measured worse are deleted again, and a SITUATIONAL rule
 is never deleted because it fired 0 times or showed no gain in 10-game blocks.
 
-(This job was restarted on 2026-11-20 08:50 after the first run went silent. 25 blocks of 10 games to 20:00 were played,
+(This job was restarted on 2026-11-20 08:50 after the first run went silent. 27 blocks of 10 games to 20:00 were played,
 two at a time, about 30 minutes a block.)
 
 ## In short
@@ -22,8 +22,9 @@ rest of the army group was even, p3s) and the **whole fight group** (the line, t
 micro, GUNS FIRST and the defence: p4 -1.55, t -3.2; less the defence p4s -0.63; less the alert, guns first and the screen p4m
 -0.80, t -2.6), and last **THE HOLD** (p5 -0.45, and the cleaned code with it off, final3, +0.87, t 2.7). They are now **cut
 against the Clockwork only** (scripts/ai_crown_rules.gd, AICrownRules.CUT; `-- crc:off`
-plays the old full stack). The cleaned code against the Clockwork (with the hold off: final3, final4) beats the full stack paired
-game by game: final3 +1.36 (t 3.2), g14 +0.55 (t 4.4), 9 better / 1 worse; survived 10 of 10, won or led 8.
+plays the old full stack). The cleaned code against the Clockwork (final3 + final4, 20 games) survived 20 of 20 and won or led 17
+(score x3.2 of the Clockwork's), and beats the full stack paired game by game: +1.43 (t 3.4), g14 +0.62 (t 5.2), 9 better / 1
+worse.
 
 **Against the Brood nothing measured clearly.** Every step moved the score within the noise (the base pool and the full stack
 are 0.2 to 0.4 apart, t under 1); the army group was the only one that leaned up, and the army-only set (20 games) scores the
@@ -230,3 +231,4 @@ With the best set against the Brood (today's full stack, 40 games: full1 + the B
 | 20:47 | mirror | final1 | the full stack (the mirror has no cut) | 10 games, both sides the same code: survived 10, no game ended (as the Brood job's mirror check, old cr01). The counters, both sides (20 sides): the army clock behind 19,488 thinks, the army floor 13,410, the defence's soldiers-first 32,438 and 24 musters, LABOURERS FIRST 1,342 labourers, HALLS ON TIME short in 11 sides (531 thinks), the gate post live 10,835 thinks in 10 sides, the mirror coach's press 22 times in 6 sides, the line formed 33 times, the screen 213 riders, 4,253 cavalry blows. The same pull of the army clock and the defence on the economy as against the Clockwork; whether cutting them pays in the mirror cannot be measured by switching both sides (left as a question). |
 | 21:19 | Clockwork | final2 | the cleaned code again | g -0.18, survived 7, won/led 5. **The cleaned code's pool (final1 + final2, 20 games): g +0.21, g14 -0.09, survived 16, won/led 11** (score x1.2 of the Clockwork's); v the full stack's 30 games +0.48 (t 1.2), g14 +0.18 (t 1.3), 8 better / 2 worse. But v the plan + econ pool -0.75 (t -2.0), g14 -0.33 (t -2.2): what the cleaned code has beyond plan + econ costs. `dry` alone was even (p3s), so the suspect is THE HOLD (p5 -0.45 too): one more block with the hold off (final3). |
 | 21:51 | Clockwork | final3 | the cleaned code with the hold off too (`hold:off`) | **g +1.08, g14 +0.28, survived 10, won/led 8**, income 8/12 0.93/1.10, army 8/12 1.03/3.58; v the cleaned pool (final1 + final2) **+0.87 (t 2.7), g14 +0.37 (t 3.7), 9/1**; v the plan + econ pool +0.12 (t 0.5); v the full stack +1.36 (t 3.2), 9/1. With p5 (-0.45) and the cleaned pool's -0.75 against plan + econ that is three blocks: against the Clockwork THE HOLD costs too. **The hold is added to the Clockwork cut** (a cut by matchup, not a deletion: it stays on against the Brood and in the mirror). final4 plays the new default. |
+| 22:32 | Clockwork | final4 | **the new default** (the cut with the hold, no switch) | **g +1.23, g14 +0.42, survived 10, won/led 9**, income 8/12 0.94/1.17, army 8/12 1.52/2.60; v the full stack +1.51 (t 3.4), g14 +0.69 (t 4.9), 8/0. **The final pool (final3 + final4, 20 games): survived 20 of 20, won or led 17, g +1.16 (score x3.2 of the Clockwork's), v the full stack's 30 games +1.43 (t 3.4), g14 +0.62 (t 5.2), 9/1** (the full stack: 24 of 30 survived, 12 won or led, g -0.27). |
