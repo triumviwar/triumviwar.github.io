@@ -2,9 +2,9 @@
 pt Operário
 es Peón
 
-> Builds and repairs (buildings and the guns and wagons), and works the Farms and the Powder Mills. Right-clicked onto a Town Hall he becomes a hauler: he leads horses to the Barracks and Foundry and carries powder kegs to the Wagons. MOUNT a horse and he rides as a Messenger. Weak in a fight.
-pt Constrói e conserta (construções, canhões e carroças) e trabalha nas Fazendas e nos Moinhos de Pólvora. Com o botão direito sobre uma Prefeitura ele vira carregador: leva cavalos ao Quartel e à Fundição e carrega barris de pólvora para as Carroças. MONTE um cavalo e ele cavalga como Mensageiro. Fraco em combate.
-es Construye y repara (edificios, cañones y carros) y trabaja en las Granjas y los Molinos de Pólvora. Con clic derecho sobre un Ayuntamiento se vuelve porteador: lleva caballos al Cuartel y a la Fundición y carga barriles de pólvora a los Carros. MONTA un caballo y cabalga como Mensajero. Débil en combate.
+> Builds and repairs (buildings and the guns and wagons), and works the Farms and the Powder Mills. Right-clicked onto a Town Hall he becomes a hauler: he leads horses to the Barracks and Foundry (with none free, a Foundry sends a gun crewman for its gun's horse) and carries powder kegs to the Wagons. MOUNT a horse and he rides as a Messenger. Weak in a fight.
+pt Constrói e conserta (construções, canhões e carroças) e trabalha nas Fazendas e nos Moinhos de Pólvora. Com o botão direito sobre uma Prefeitura ele vira carregador: leva cavalos ao Quartel e à Fundição (sem nenhum livre, a Fundição manda um artilheiro buscar o cavalo da peça) e carrega barris de pólvora para as Carroças. MONTE um cavalo e ele cavalga como Mensageiro. Fraco em combate.
+es Construye y repara (edificios, cañones y carros) y trabaja en las Granjas y los Molinos de Pólvora. Con clic derecho sobre un Ayuntamiento se vuelve porteador: lleva caballos al Cuartel y a la Fundición (sin ninguno libre, la Fundición manda un artillero por el caballo de la pieza) y carga barriles de pólvora a los Carros. MONTA un caballo y cabalga como Mensajero. Débil en combate.
 
 > Musketeer
 pt Mosqueteiro
@@ -238,9 +238,9 @@ es Energía móvil: rueda plegado; DESPLIÉGALO (3 s) para dar cuerda (y sobreca
 pt Prefeitura
 es Ayuntamiento
 
-> Trains labourers. Right-click Labourers onto it to make them haulers: they lead horses to the Barracks and Foundry and carry powder kegs to the Wagons. Each Town Hall allows 2 Farms and 1 Powder Mill nearby. Its farmland holds a reserve of gold (once the farms have drawn it out they pay nothing) and its ground a reserve of saltpetre for the Mill (spent, the Mill grinds nothing). Expand to fresh land.
-pt Treina operários. Clique direito em Operários sobre ela para fazê-los carregadores: eles guiam cavalos até o Quartel e a Fundição e levam barris de pólvora às Carroças. Cada Prefeitura permite 2 Fazendas e 1 Moinho de Pólvora por perto. Suas terras de cultivo guardam uma reserva de ouro (esgotada pelas fazendas, não pagam nada) e seu solo uma reserva de salitre para o Moinho (esgotado, o Moinho não mói nada). Expanda para terra fresca.
-es Entrena peones. Haz clic derecho con Peones sobre él para convertirlos en porteadores: guían caballos hasta el Cuartel y la Fundición y llevan barriles de pólvora a los Carros. Cada Ayuntamiento permite 2 Granjas y 1 Molino de pólvora cerca. Sus tierras de cultivo guardan una reserva de oro (agotada por las granjas, no pagan nada) y su suelo una reserva de salitre para el Molino (agotado, el Molino no muele nada). Expándete a tierra nueva.
+> Trains labourers. Right-click Labourers onto it to make them haulers: they lead horses to the Barracks and Foundry (with none free, a Foundry sends a gun crewman for its gun's horse) and carry powder kegs to the Wagons. Each Town Hall allows 2 Farms and 1 Powder Mill nearby. Its farmland holds a reserve of gold (once the farms have drawn it out they pay nothing) and its ground a reserve of saltpetre for the Mill (spent, the Mill grinds nothing). Expand to fresh land.
+pt Treina operários. Clique direito em Operários sobre ela para fazê-los carregadores: eles guiam cavalos até o Quartel e a Fundição (sem nenhum livre, a Fundição manda um artilheiro buscar o cavalo da peça) e levam barris de pólvora às Carroças. Cada Prefeitura permite 2 Fazendas e 1 Moinho de Pólvora por perto. Suas terras de cultivo guardam uma reserva de ouro (esgotada pelas fazendas, não pagam nada) e seu solo uma reserva de salitre para o Moinho (esgotado, o Moinho não mói nada). Expanda para terra fresca.
+es Entrena peones. Haz clic derecho con Peones sobre él para convertirlos en porteadores: guían caballos hasta el Cuartel y la Fundición (sin ninguno libre, la Fundición manda un artillero por el caballo de la pieza) y llevan barriles de pólvora a los Carros. Cada Ayuntamiento permite 2 Granjas y 1 Molino de pólvora cerca. Sus tierras de cultivo guardan una reserva de oro (agotada por las granjas, no pagan nada) y su suelo una reserva de salitre para el Molino (agotado, el Molino no muele nada). Expándete a tierra nueva.
 
 > Cottage
 pt Casebre
@@ -282,9 +282,9 @@ es Armería
 pt Fundição
 es Fundición
 
-> Casts field cannons and mortars, rigs observation balloons and builds powder wagons (each cannon, mortar and wagon needs a horse: one at the Foundry, else a free one at a breeder walks over, else a breeder trains one; the gun waits for it). Needs a Barracks.
-pt Funde canhões de campanha e morteiros, monta balões de observação e constrói carroças de pólvora (cada canhão, morteiro e carroça precisa de um cavalo: um na Fundição, senão um livre num criador vem até lá, senão um criador treina um; a peça espera por ele). Precisa de um Quartel.
-es Funde cañones de campaña y morteros, monta globos de observación y construye carros de pólvora (cada cañón, mortero y carro necesita un caballo: uno en la Fundición, si no uno libre de un criador viene hasta allí, si no un criador entrena uno; la pieza lo espera). Necesita un Cuartel.
+> Casts field cannons and mortars, rigs observation balloons and builds powder wagons (each cannon, mortar and wagon needs a horse: one at the Foundry, else a free one at a breeder is kept for it, else a breeder trains one; a Town Hall hauler leads it over, or with none free a gun crewman comes out and fetches it on the leash; the gun waits for it). Needs a Barracks.
+pt Funde canhões de campanha e morteiros, monta balões de observação e constrói carroças de pólvora (cada canhão, morteiro e carroça precisa de um cavalo: um na Fundição, senão um livre num criador fica reservado, senão um criador treina um; um carregador da Prefeitura o traz, ou sem nenhum livre um artilheiro sai e vai buscá-lo pela rédea; a peça espera por ele). Precisa de um Quartel.
+es Funde cañones de campaña y morteros, monta globos de observación y construye carros de pólvora (cada cañón, mortero y carro necesita un caballo: uno en la Fundición, si no uno libre de un criador queda reservado, si no un criador entrena uno; un porteador del Ayuntamiento lo trae, o sin ninguno libre un artillero sale a buscarlo de la rienda; la pieza lo espera). Necesita un Cuartel.
 
 > Burrow
 pt Toca
@@ -734,9 +734,9 @@ es Un tramo de empalizada que se abre solo para tu bando. Colócala sobre tu emp
 pt Treina Mosqueteiros e Oficiais, Cavaleiros e Dragões (precisam de um Criador de Cavalos), e com Armadura os blindados. A pólvora compra seus tiros quando saem (ARMAR COM PÓLVORA). Reequipa soldados. Precisa de um Casebre. Duas aberturas: Moinho de Pólvora primeiro para Mosqueteiros armados, ou Criador de Cavalos primeiro para um ataque de Cavaleiros.
 es Entrena Mosqueteros y Oficiales, Jinetes y Dragones (necesitan un Criador de caballos), y con Armadura los acorazados. La pólvora compra sus disparos al salir (ARMAR CON PÓLVORA). Reequipa soldados. Necesita una Cabaña. Dos aperturas: Molino de pólvora primero para Mosqueteros armados, o Criador de caballos primero para un ataque de Jinetes.
 
-> Casts cannons and mortars, rigs balloons, builds powder wagons (each needs a horse: one standing here, else a Town Hall hauler leads one over from the Horse Breeder, or it walks over by itself when you have no haulers).
-pt Funde canhões e morteiros, monta balões, constrói carroças de pólvora (cada um precisa de um cavalo: um parado aqui, senão um carregador da Prefeitura traz um do Criador de Cavalos, ou ele vai sozinho se você não tem carregadores).
-es Funde cañones y morteros, monta globos, construye carros de pólvora (cada uno necesita un caballo: uno parado aquí, si no un porteador del Ayuntamiento trae uno del Criador de caballos, o va solo si no tienes porteadores).
+> Casts cannons and mortars, rigs balloons, builds powder wagons (each needs a horse: one standing here, else a Town Hall hauler leads one over from the Horse Breeder, or with none free a gun crewman comes out and leads it over; a horse never walks over alone).
+pt Funde canhões e morteiros, monta balões, constrói carroças de pólvora (cada um precisa de um cavalo: um parado aqui, senão um carregador da Prefeitura traz um do Criador de Cavalos, ou, sem nenhum livre, um artilheiro sai e o traz pela rédea; um cavalo nunca vai sozinho).
+es Funde cañones y morteros, monta globos, construye carros de pólvora (cada uno necesita un caballo: uno parado aquí, si no un porteador del Ayuntamiento trae uno del Criador de caballos, o, sin ninguno libre, un artillero sale y lo trae de la rienda; un caballo nunca va solo).
 
 > Ripens into a 380-gold harvest about every 40 s with a full crew (up to 8 Labourers).
 pt Amadurece numa colheita de 380 de ouro a cada 40 s com a equipe completa (até 8 Operários).

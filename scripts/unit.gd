@@ -381,6 +381,7 @@ var keg_shots := 0.0            # ... the musket shots in it (a full one from th
 ## "ph": "fetch" | "deliver" | "home" | "to_mill" | "to_wagon", "want": [horses claimed, not yet
 ## on the leash], "wagon" / "gun": the keg's / the team horses' destination}
 var haul_job: Dictionary = {}
+var fetch_home: Building = null   # (a Gun Crewman, scripts/gun_crew.gd) the Foundry he came out of and goes back into
 var team_want := 0              # (a gun, wagon) horses it should draw: haulers bring spares up to this
 # the cavalry's pistol (Defs.PISTOL: Horseman, Cuirassier, Officer, Armoured Officer)
 var pistol := false             # loaded (trained loaded; fired, it stays empty until he reloads on foot)
@@ -3978,6 +3979,9 @@ func _tick_unit(delta: float) -> void:
 		_foot_dragoon(delta)
 	if not led.is_empty():
 		_prune_led()
+	if fetch_home != null and order != "gun_fetch" and not dead:
+		order = "gun_fetch"           # (a Gun Crewman takes no other order: he fetches the gun's horse and goes back in)
+		queue.clear()
 	if crew_of != null and order != "crew":
 		Ballista.leave(self)          # (a Ballista's crewman given another order: he steps off and does it)
 	# a Horseman or Cuirassier in the saddle, under way on an order: he fights on the move (scripts/ride_by.gd)
@@ -4128,6 +4132,8 @@ func _tick_unit(delta: float) -> void:
 				want = RideBy.steer(self, target, delta) if _rides_by else _engage(target, delta, true)
 		"gather":
 			want = _gather(delta)
+		"gun_fetch":
+			want = GunCrew.tick(self, delta)             # (a Gun Crewman fetching a gun's horse on the leash)
 		"repair":
 			want = _repair(delta)
 		"escort":
@@ -6953,6 +6959,8 @@ func die() -> void:
 		CwUnits.on_death(game, self)
 	queue.clear()
 	line_rest.clear()
+	if fetch_home != null:
+		GunCrew.on_death(self)     # (a Gun Crewman: the next one comes out after a moment)
 	_haul_abort()              # (a hauler: his claims on horses are let go; the keg still blows)
 	_leave_mine()
 	_release_patient()
@@ -9173,7 +9181,7 @@ func _horse_into(delta: float) -> Vector2:
 		if far < 40.0 or _into_t > 90.0:
 			game.hitch_horse(b, self)     # (there, or it could not get there: it is hitched all the same)
 			return _stand_hitched(b, delta)
-		return _walk_to(game.approach_point(e, position), delta)    # (a reserved horse comes by itself from the breeder)
+		return _walk_to(game.approach_point(e, position), delta)    # (its last steps to its hitch, or one already at the building)
 	var g := e as Unit
 	if not g.team_room():
 		into = null
@@ -9242,6 +9250,8 @@ func walk_into(e: Entity) -> void:
 static func can_steal(o: Unit) -> bool:
 	if o.kind == "winder":
 		return true
+	if o.kind == "gun_crewman":
+		return false                     # (he is on an errand for his gun: he takes nobody's horse)
 	return o.d["faction"] == "crown" and o.kind != "horse" and not Defs.HARNESSED.has(o.kind) and o.kind != "balloon"
 
 

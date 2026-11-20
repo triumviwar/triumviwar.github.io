@@ -4784,7 +4784,7 @@ func train(b: Building, key: String) -> String:
 			h.walk_into(b)
 		else:
 			# one click trains both: a free horse at a breeder is kept for him, or the
-			# nearest breeder trains one (paid now); a gun's horse walks over by itself
+			# nearest breeder trains one (paid now); a gun's is brought by a hauler or a Gun Crewman
 			kit["rid"] = new_rid()
 			_reserve_horse(b, k, int(kit["rid"]), true)
 	if k == "horse":
@@ -4983,15 +4983,13 @@ func spawn_trained(b: Building, k: String, kit: Dictionary = {}) -> void:
 			continue
 		if u.kind == "horse":
 			# a bought horse grazes where it stands, or walks to the RALLY and grazes there;
-			# one bought for a recruit is kept for him (a gun's walks over to its Foundry)
+			# one bought for a recruit is kept for him: it waits here till its rider, a hauler or
+			# a Gun Crewman comes for it (GunCrew; a horse never walks to a building by itself)
 			u.graze_at = u.position
 			if rid != 0:
 				var owner: Object = rid_owner(b.team, rid)
 				if owner != null:
 					u.horse_rid = rid
-					if owner is Building:
-						if not (owner as Building).can_train("cuirassier") and not hauler_serves_rid(b.team, rid):
-							u.walk_into(owner)
 					continue
 			if b.rally != Vector2.INF:
 				u.cmd_move(b.rally + Vector2(randf_range(-20, 20), randf_range(-20, 20)))
@@ -8897,6 +8895,8 @@ func haul_dispatch(delta: float) -> void:
 	for k in _haul_seen.keys():
 		if not live.has(k):
 			_haul_seen.erase(k)
+	for t in n_players():
+		GunCrew.dispatch(self, t)          # (a Foundry's horse no hauler is free to bring: a Gun Crewman goes for it)
 
 
 func _nearest_free_hauler(free: Array, p: Vector2) -> Unit:
@@ -10209,6 +10209,10 @@ func set_selection(list: Array) -> void:
 	for e in list:
 		if e is Unit and is_instance_valid(e) and (e as Unit).crew_of != null and is_instance_valid((e as Unit).crew_of):
 			e = (e as Unit).crew_of      # (a Spring Ballista's crewman is part of it: picking him picks the machine)
+		if e is Unit and is_instance_valid(e) and (e as Unit).kind == "gun_crewman":
+			if not is_instance_valid((e as Unit).fetch_home):
+				continue
+			e = (e as Unit).fetch_home   # (a Gun Crewman is one of his Foundry's crew: picking him picks the Foundry)
 		if is_instance_valid(e) and not e.dead and not e.off_field and not selection.has(e):
 			e.selected = true
 			selection.append(e)
@@ -10886,7 +10890,7 @@ func army(t: int) -> Array:
 	# the cost; the computer players ask for it dozens of times a second)
 	var out: Array = []
 	for u in units:
-		if u.team == t and not u.dead and not u.is_worker() and u.aboard == null and u.kind != "horse" and u.kind != "messenger":
+		if u.team == t and not u.dead and not u.is_worker() and u.aboard == null and u.kind != "horse" and u.kind != "messenger" and u.kind != "gun_crewman":
 			out.append(u)
 	return out
 
@@ -11539,15 +11543,15 @@ func new_rid() -> int:
 
 
 ## Keep a horse for queue entry `rid` of building b (unit kind k): a spare one at a breeder,
-## else the nearest breeder queues one (`pay`: 40 gold now). A gun's horse walks over to
-## its Foundry by itself; a rider's waits at the breeder for him. False: none to be had.
+## else the nearest breeder queues one (`pay`: 40 gold now). It waits at the breeder: a rider
+## walks to his; a gun's is brought on a leash by a Town Hall hauler (haul_dispatch) or, with
+## none free, by a Gun Crewman out of the Foundry (GunCrew). A horse never walks to a building
+## by itself (the owner, 2026-11-20). False: none to be had.
 func _reserve_horse(b: Building, k: String, rid: int, pay: bool) -> bool:
 	var h := spare_horse(b.team, b)
 	if h:
 		h.horse_rid = rid
 		h.cmd_stop()
-		if not Defs.RIDERS.has(k) and not hauler_serves_rid(b.team, rid):
-			h.walk_into(b)           # (with haulers about, one fetches it: haul_dispatch)
 		return true
 	var br := breeder_with_room(b.team, b.center())
 	if br == null:
@@ -11713,6 +11717,7 @@ func hitch_spot(b: Building, h: Unit) -> Vector2:
 
 ## A Foundry's gun is ready but its horse isn't there yet: make sure one is coming (its own,
 ## or a new spare one if it was killed or stolen, or a new one bought when there's gold).
+## Who brings it: a hauler (haul_dispatch) or a Gun Crewman (GunCrew.dispatch); never itself.
 func fetch_reserved(b: Building, i: int) -> void:
 	var kt = b.kit_at(i)
 	var rid := int(kt.get("rid", 0)) if kt is Dictionary else 0
@@ -11720,8 +11725,6 @@ func fetch_reserved(b: Building, i: int) -> void:
 		return
 	var h := reserved_horse(b.team, rid)
 	if h:
-		if h.into != b and h.leader == null and not Unit._claim_live(h) and not hauler_serves_rid(b.team, rid):
-			h.walk_into(b)           # (no hauler to bring it, or none came in time: it walks by itself)
 		return
 	if rid_breeder(b.team, rid) != null:
 		return
