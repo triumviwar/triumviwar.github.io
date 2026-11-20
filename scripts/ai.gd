@@ -8370,7 +8370,7 @@ func _assign_haulers() -> void:
 	if farms_first_on and _farm_room():
 		# FARMS BEFORE HAULERS (the owner, 2026-11-18 11:54: "It didn't need any haulers, the Officer can walk to the
 		# Breeder, no big deal. It's so important in the beginning of the game to fully saturate Farms"): while a paying
-		# Farm has a free post, no haulers for horses (riders walk to the Breeder, gun horses walk in by themselves); only
+		# Farm has a free post, no haulers for horses (riders walk to the Breeder, a Gun Crewman fetches a gun's horse: GunCrew); only
 		# powder wagons' kegs still get theirs. Switch `farmsfirst:off`.
 		want = _wagon_haulers()
 	if game.haulers_of(team).size() >= want:

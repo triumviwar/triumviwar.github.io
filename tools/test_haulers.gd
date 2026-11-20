@@ -217,8 +217,8 @@ func _horseman() -> void:
 	var hl: Unit = horse.leader
 	check(hl != null and hl.led.has(horse) and String(hl.haul_job.get("k", "")) == "horse", "…it is on his leash, his job is 'horse' (work: %s)" % (hl.work if hl else "?"))
 	check("%d/%d" % [hall.haulers_free(), hall.haulers().size()] == "1/2", "one hauler out: the counter reads 1/2")
-	await wait_for(func() -> bool: return horse.into == bar or not is_instance_valid(horse) or horse.dead, 30.0)
-	var delivered: bool = horse.into == bar or not is_instance_valid(horse) or horse.dead or (bar.kit_at(0).has("coat") and int(bar.kit_at(0).get("rid", 0)) == 0)
+	await wait_for(func() -> bool: return not is_instance_valid(horse) or horse.dead or horse.into == bar, 30.0)
+	var delivered: bool = not is_instance_valid(horse) or horse.dead or horse.into == bar or (bar.kit_at(0).has("coat") and int(bar.kit_at(0).get("rid", 0)) == 0)
 	check(delivered, "he leads it to the Barracks and hitches it")
 	await wait_for(func() -> bool: return hl.haul_job.is_empty(), 30.0)
 	check(hl.haul_job.is_empty() and hl.is_hauler() and hl.position.distance_to(hall.center()) < 260.0, "then he is back at the Town Hall (%.0f px)" % hl.position.distance_to(hall.center()))
@@ -481,7 +481,9 @@ func _fallback() -> void:
 	sp.graze_at = sp.position
 	await physics_frame
 	g.train(fdy, "cannon")
-	check(sp.into == fdy, "no hauler: a gun's horse walks to the Foundry by itself")
+	check(sp.into == null, "no hauler: a gun's horse does not walk to the Foundry by itself (gun-crew-fetch)")
+	await wait_for(func() -> bool: return sp.leader != null and sp.leader.kind == "gun_crewman", 30.0)
+	check(sp.leader != null and sp.leader.kind == "gun_crewman", "no hauler: a gun crewman leads it over")
 	var cn := func() -> Array: return g.units.filter(func(u: Unit) -> bool: return u.team == 0 and u.kind == "cannon" and not u.dead)
 	await wait_for(func() -> bool: return not cn.call().is_empty(), 80.0)
 	check(not cn.call().is_empty(), "…and the gun rolls out")
@@ -494,7 +496,9 @@ func _fallback() -> void:
 	sp3.graze_at = sp3.position
 	await physics_frame
 	g.train(fdy, "cannon")
-	check(not g.hauler_serves_rid(0, sp3.horse_rid) and sp3.into == fdy, "every hauler busy: the horse walks to the Foundry at once")
+	await wait_for(func() -> bool: return g.units.any(func(u: Unit) -> bool: return u.kind == "gun_crewman" and not u.dead and int(u.haul_job.get("rid", 0)) == sp3.horse_rid), 3.0)
+	check(sp3.into == null and g.units.any(func(u: Unit) -> bool: return u.kind == "gun_crewman" and not u.dead and int(u.haul_job.get("rid", 0)) == sp3.horse_rid), \
+		"every hauler busy: a gun crewman goes for the horse at once (it never walks over alone)")
 	# a dry gun that cannot limber gets a keg; a team setting keeps horses on a gun
 	late.haul_job = {}
 	await _clear_horses()
