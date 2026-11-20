@@ -5491,7 +5491,7 @@ func _army() -> void:
 		_attack_at = _army_supply(ready)
 		if game.mlog:
 			game.mlog.add("%s's army is at the supply cap or far ahead (%d supply): it goes out again" % [game.mlog.who(team), _army_supply(ready)])
-	if not _attacking and _army_supply(ready) >= _attack_at and not regrouping and _timing_ok(ready) and _kit_ready(ready) and r5.attack_ok(ready) and _wave_worth(ready) and not (_sw() and swm().hold_attack()) and not (not push and AICrownVClock.hold_wave(self, ready)):
+	if not _attacking and _army_supply(ready) >= _attack_at and not regrouping and _timing_ok(ready) and _kit_ready(ready) and r5.attack_ok(ready) and _wave_worth(ready) and not (_sw() and swm().hold_attack()):
 		_attacking = true
 		_wave_target = _enemy_base()
 		_attack_at = mini(_attack_at + int(_s("step")), 70)
@@ -5868,13 +5868,8 @@ func _losing_trade(wave: Array) -> bool:
 	var lost: float = float(_trade[-1][2]) - float(_trade[0][2])
 	var tr_ratio := TRADE_RATIO
 	var tr_min := TRADE_MIN
-	if AICrownVClock.on("trade") and AICrownVClock.vs(self):
-		tr_ratio = AICrownVClock.TRADE_RATIO       # (crown-1000-clockwork: the wave pulls back sooner)
-		tr_min = AICrownVClock.TRADE_MIN
 	if lost < tr_min or lost < killed * tr_ratio:
 		return false
-	if tr_ratio != TRADE_RATIO:
-		AICrownVClock.count(self, "trade")
 	var spot := _wave_target
 	_bad_spots[spot] = now + TRADE_AVOID
 	var hall := _hall_at(spot)
