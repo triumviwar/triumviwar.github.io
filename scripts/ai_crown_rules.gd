@@ -25,7 +25,7 @@ static func t(ai, name: String, v: bool) -> bool:
 ## Each name is the rule's own study switch without ":off" (`-- crownarmy:off` and the cut do the same). The mirror keeps
 ## every rule. `-- crc:off` plays today's full stack as before the cleanup; `-- crc<name>:on` brings one rule back.
 const CUT := {
-	"clockwork": ["crownarmy", "armyfloor"],
+	"clockwork": ["crownarmy", "armyfloor", "gunscoach", "gunsfirst", "line", "screen", "cavmicro", "defence"],
 	"brood": [],
 }
 
