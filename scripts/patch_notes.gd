@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.87", "items": [
+		"A HORSE NEVER WALKS TO THE FOUNDRY BY ITSELF: with no Town Hall hauler free, a Field Cannon's, Mortar's or Powder Wagon's horse used to walk alone from the Horse Breeder to the Foundry. Now one of the Foundry's GUN CREW comes out, walks to the breeder (waiting there while the horse is still being bred), takes the horse on the leash, leads it back, hitches it beside the Foundry and goes back in; the gun then rolls out drawn by that horse. He brings the next guns' ready horses along too. He is unarmed and can be killed: the horse stays where it is and another crewman comes out a moment later. A free hauler nearer to the horse takes the job over, and cancelling the gun lets the horse go where it stands. He can't be picked or ordered (clicking him picks his Foundry). Haulers and crewmen now lead a horse right up to its own spot beside the building instead of letting it go a few steps short.",
+	]},
 	{"v": "0.38.86", "items": [
 		"THE CROWN COMPUTER AGAINST THE CLOCKWORK, coached over 260 games: its OPTIMAL plan picks the Timing attack or the Siege push, its second Town Hall goes down right after the pick (about 3:00), the Church and the Armoury wait for the third hall, and when its powder runs out late with gold in the bank its Foundries cast Field Cannons and its Barracks train Musketeers with the bayonet. On the same ten games it now lasts to 20:00 in 18 of 20 (was 6 of 10) and leads or wins 8 (was none).",
 	]},

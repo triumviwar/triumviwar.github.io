@@ -1,7 +1,7 @@
 extends SceneTree
 ## Pictures of the Gun Crewman (gun-crew-fetch, docs/gun_crew_fetch.md): no haulers, a Field Cannon queued at the Foundry;
 ## he comes out, walks to the Horse Breeder, takes the horse on the leash, leads it back, hitches it, goes back in, and
-## the cannon rolls out drawn by that horse. Frames every 0.5 s of game time for a film (tools: ffmpeg/gif).
+## the cannon rolls out drawn by that horse. Frames every second of game time for a film (tools: ffmpeg/gif).
 ##   xvfb-run -a godot --rendering-driver opengl3 --resolution 1280x720 --fixed-fps 30 --script res://tools/shot_gun_crew_fetch.gd -- <outdir>
 var out := ""
 var main: Node
@@ -179,7 +179,8 @@ func _run() -> void:
 	await physics_frame
 	var h := _spare(br)
 	g.camera.position = (fdy.center() + br.center()) * 0.5
-	g.camera.zoom = Vector2(1.6, 1.6)
+	g.camera.zoom = Vector2(2.6, 2.6)
+	g.camera.position = fdy.center()
 	g.train(fdy, "cannon")
 	var n := 0
 	var named := {}
@@ -188,20 +189,23 @@ func _run() -> void:
 		var c := crews()
 		var cm: Unit = c[0] if not c.is_empty() else null
 		var key := ""
-		if cm and h.leader == null and br.edge_distance(cm.position) > 120.0 and not named.has("1_out"):
+		var hv: bool = is_instance_valid(h) and not h.dead
+		var look: Vector2 = cm.position if cm else (h.position if hv else fdy.center())
+		g.camera.position = g.camera.position.lerp(look, 0.15)
+		if cm and hv and h.leader == null and br.edge_distance(cm.position) > 120.0 and not named.has("1_out"):
 			key = "1_out"
-		elif h.leader == cm and cm != null and br.edge_distance(cm.position) < 80.0 and not named.has("2_leash"):
+		elif hv and cm != null and h.leader == cm and br.edge_distance(cm.position) < 80.0 and not named.has("2_leash"):
 			key = "2_leash"
-		elif h.leader == cm and cm != null and fdy.edge_distance(cm.position) < 200.0 and fdy.edge_distance(cm.position) > 80.0 and not named.has("3_lead"):
+		elif hv and cm != null and h.leader == cm and fdy.edge_distance(cm.position) < 200.0 and fdy.edge_distance(cm.position) > 80.0 and not named.has("3_lead"):
 			key = "3_lead"
-		elif is_instance_valid(h) and h.hitch_p != Vector2.INF and not named.has("4_hitched"):
+		elif hv and h.hitch_p != Vector2.INF and not named.has("4_hitched"):
 			key = "4_hitched"
 		if key != "":
 			named[key] = true
 			if key == "4_hitched":
 				fdy.prod_t = maxf(fdy.prod_t, fdy.entry_time("cannon") - 2.0)
 			await _snap(key)
-		if int(g.clock * 2.0) != int((g.clock - 1.0 / 30.0) * 2.0):
+		if int(g.clock) != int(g.clock - 1.0 / 30.0) and n < 40:
 			await _snap("film/%03d" % n)
 			n += 1
 		if not guns("cannon").is_empty() and not named.has("5_cannon"):
