@@ -325,7 +325,7 @@ func _closing(o: Unit, c: Vector2) -> float:
 
 
 func gun_set(foes: Array, c: Vector2, face: Vector2, base: float) -> float:
-	if not guns_first_on or not active():
+	if not guns_first_on or not active() or AICrownRules.cut(ai, "gunsfirst"):
 		return base
 	var extra := 0.0
 	for o in foes:
@@ -340,7 +340,7 @@ func gun_set(foes: Array, c: Vector2, face: Vector2, base: float) -> float:
 
 
 func line_holds(foes: Array, c: Vector2, face: Vector2) -> bool:
-	if not guns_first_on or not active():
+	if not guns_first_on or not active() or AICrownRules.cut(ai, "gunsfirst"):
 		return false
 	for o in foes:
 		if is_instance_valid(o) and not o.dead and _closing(o, c) >= COMING and (o.position - c).length() < 900.0:

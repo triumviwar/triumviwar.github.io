@@ -111,7 +111,7 @@ var game:
 
 
 func active() -> bool:
-	return on and ai.doctrine()
+	return on and ai.doctrine() and not AICrownRules.cut(ai, "hold")
 
 
 func scouting() -> bool:

@@ -84,7 +84,12 @@ func _say(s: String) -> void:
 
 
 func active() -> bool:
-	return on and ai.on and ai.difficulty >= 1 and not ai.peaceful
+	return on and ai.on and ai.difficulty >= 1 and not ai.peaceful and not AICrownRules.cut(ai, "defence")
+
+
+## The alert's part on (`dfwarn:off`; crown-rule-cleanup: AICrownRules.CUT can cut it by matchup).
+func _warn() -> bool:
+	return warn_on and not AICrownRules.cut(ai, "dfwarn")
 
 
 func _home_d(p: Vector2) -> float:
@@ -98,7 +103,7 @@ func _home_d(p: Vector2) -> float:
 # ============================================================ 1. the alert
 
 func tick() -> void:
-	if not active() or not warn_on:
+	if not active() or not _warn():
 		return
 	_boarding()
 	if game.clock - _look_t < LOOK_EVERY:
@@ -209,7 +214,7 @@ var _coming := 0.0
 
 
 func wave_waits(_ready: Array) -> bool:
-	return AICrownRules.t(ai, "df_wave_waits", active() and warn_on and alert and _coming >= _home_v * RECALL_HOME)
+	return AICrownRules.t(ai, "df_wave_waits", active() and _warn() and alert and _coming >= _home_v * RECALL_HOME)
 
 
 var _home_v := 0.0
@@ -248,12 +253,12 @@ var soldiers_behind := OS.get_cmdline_user_args().has("dfsoldiers:behind")
 
 
 func wants_soldiers() -> bool:
-	return AICrownRules.t(ai, "df_soldiers", active() and warn_on and alert and (not soldiers_behind or _coming >= _home_v * SOLDIERS_K))
+	return AICrownRules.t(ai, "df_soldiers", active() and _warn() and alert and (not soldiers_behind or _coming >= _home_v * SOLDIERS_K))
 
 
 ## (AICrown.party_wait) no balloon party forms while the alert lasts (or BOARD_REST s after one was called off).
 func party_wait() -> bool:
-	return active() and warn_on and (alert or game.clock - _board_stop_t < BOARD_REST)
+	return active() and _warn() and (alert or game.clock - _board_stop_t < BOARD_REST)
 
 
 # ============================================================ 2. no walk past the enemy

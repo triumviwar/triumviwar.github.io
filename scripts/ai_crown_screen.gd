@@ -73,7 +73,7 @@ func _init(owner) -> void:
 
 
 func active() -> bool:
-	return on and ai.difficulty >= 1 and ai.ln != null and ai.ln.active()
+	return on and ai.difficulty >= 1 and ai.ln != null and ai.ln.active() and not AICrownRules.cut(ai, "screen")
 
 
 func has(u) -> bool:
