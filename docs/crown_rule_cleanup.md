@@ -47,3 +47,4 @@ One line a block, written as each one ends.
 
 | time | matchup | block | groups on | what it showed |
 |---|---|---|---|---|
+| 09:40 | Brood | full1 | the full stack (today's default) | g -0.52, g14 +0.08, survived 6, won/led 4, defeats median 15:53, income 8/12 1.50/1.25, army 2.96/2.94; v the Brood job's kept-code pool (old b09+b10+b14, same code but the gated Clockwork changes) +0.21 (t 0.4), 5/5: the same code within the noise. Counters: the army floor acted in every game (7,807 thinks), the defence's soldiers-first 4,420, the gate post live 12,609, lean 10 of 10, 13 siege pushes; halls on time wanted a hall in 3 games only, the line formed 5 times, the screen sent riders in 4 games. |
