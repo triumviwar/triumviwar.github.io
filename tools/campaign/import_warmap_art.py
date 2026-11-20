@@ -62,6 +62,50 @@ def main():
     for i, name in enumerate(["seal_naturalist.png", "seal_naturalist_broken.png"]):
         square(eye.crop((i * w // 2, 0, (i + 1) * w // 2, h)), 128).save(os.path.join(out, name))
         print("wrote", name, "(the eye)")
+    # the ornaments (2026-11-20, the old-map look): 2 x 2: a three-master, a two-master, a sea serpent, an empty
+    # cartouche
+    orn = key(Image.open(os.path.join(ROOT, "art/campaign/warmap_ornaments_chatgpt.png")))
+    # each ornament is the group of pieces round one of the four biggest blobs (the pieces closed up by a dilation, so a
+    # ship's rigging and its waves stay with it and a neighbour's bowsprit does not), in reading order
+    import numpy as np
+    from scipy import ndimage
+    rgba = np.asarray(orn).copy()
+    a = rgba[..., 3] > 40
+    lab, n = ndimage.label(ndimage.binary_dilation(a, iterations=6))
+    sizes = ndimage.sum(a, lab, range(1, n + 1))
+    big = sorted(range(1, n + 1), key=lambda k: -sizes[k - 1])[:4]
+    objs = ndimage.find_objects(lab)
+    big.sort(key=lambda k: (round(objs[k - 1][0].start / (orn.height / 2)), objs[k - 1][1].start))
+    for name, k in zip(["ship_big", "ship_small", "serpent", "cartouche"], big):
+        ys, xs = objs[k - 1]
+        part = rgba[ys, xs].copy()
+        part[lab[ys, xs] != k, 3] = 0
+        cell = Image.fromarray(part)
+        cell.thumbnail((512, 512), Image.LANCZOS)
+        cell.save(os.path.join(out, name + ".png"))
+        print("wrote", name)
+    # the mountains: 4 x 2 inked peaks
+    mt = os.path.join(ROOT, "art/campaign/warmap_mountains_chatgpt.png")
+    if os.path.exists(mt):
+        m = key(Image.open(mt))
+        w, h = m.size
+        for i in range(8):
+            cell = m.crop(((i % 4) * w // 4, (i // 4) * h // 2, (i % 4 + 1) * w // 4, (i // 4 + 1) * h // 2))
+            cell = cell.crop(cell.getbbox())
+            cell.thumbnail((128, 128), Image.LANCZOS)
+            cell.save(os.path.join(out, "mountain_%d.png" % i))
+        print("wrote mountain_0..7")
+    # the parchment: ChatGPT's sheet, toned down (lighter, less orange) so the ink reads on it
+    pa = os.path.join(ROOT, "art/campaign/warmap_parchment_chatgpt.png")
+    if os.path.exists(pa):
+        from PIL import ImageEnhance
+        im = Image.open(pa).convert("RGB")
+        im = im.crop((0, 0, im.width, im.height - 3))
+        im = ImageEnhance.Color(im).enhance(0.62)
+        im = ImageEnhance.Brightness(im).enhance(1.10)
+        im = ImageEnhance.Contrast(im).enhance(0.80)
+        im.resize((2048, int(2048 * im.height / im.width)), Image.LANCZOS).save(os.path.join(out, "parchment.jpg"), quality=90)
+        print("wrote parchment.jpg (from ChatGPT's sheet)")
     rose = key(Image.open(os.path.join(ROOT, "art/campaign/warmap_rose_chatgpt.png")))
     square(rose, 256).save(os.path.join(out, "rose.png"))
     print("wrote rose.png")

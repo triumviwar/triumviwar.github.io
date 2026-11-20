@@ -111,6 +111,26 @@ keep the drawn dashed ring); _draw_rose draws the painted rose. Without the file
 parchment base (prompt 1) is NOT made: ChatGPT can't keep real coastlines in place, and the code's Natural Earth coasts
 are exact. The cartouche is not used by the game, so it was not made.
 
+## The old-map look (owner 2026-11-20: "a 17th~18th century style map"; 0.38.94)
+
+Not one painting of the whole map (ChatGPT would move the coasts, and a 1,500-px world goes blurry in the Europe view):
+the PAPER and the ORNAMENTS are ChatGPT's, the LAND stays drawn by the code from Natural Earth, in an engraver's style.
+- The PARCHMENT: art/campaign/warmap_parchment_chatgpt.png (a blank aged sheet, fold creases, stains), toned lighter and
+  less orange by tools/campaign/import_warmap_art.py -> campaign/warmap_art/parchment.jpg; drawn in SCREEN space
+  (the sheet does not zoom; the map on it does), with a faint cool sea wash over it (skin "sea_wash").
+- The LAND: a warm watercolour wash (skin "land", now see-through), a green-ochre band along every shore ("shore"),
+  the coast in dark ink 1.4 px, and THE ENGRAVED COAST LINES: three rings of fine ink out to sea
+  (WarMap.RIPPLES 0.3 / 0.65 / 1.05 degrees, Geometry2D.offset_polygon once at load, map units: they open out as you zoom).
+- The MOUNTAINS: campaign/warmap_mountains.json (rough ranges as lon/lat lines, a03's cloud mountain among them),
+  stamped with ChatGPT's eight inked peaks (art/campaign/warmap_mountains_chatgpt.png -> mountain_0..7.png), 28-44 px on
+  screen, overlapping like a range; without the pictures the code draws its own little hills.
+- The ORNAMENTS in the empty seas (WarMap.ORNAMENTS: lon, lat, width): a three-master in the North Atlantic, a
+  two-master off Ascension, a sea serpent in the Pacific, and a cartouche (crown, laurel, purple ribbon) in the North
+  Pacific holding THE WAR MAP and the act's title, drawn in ink by the game (so it translates)
+  (art/campaign/warmap_ornaments_chatgpt.png, cut apart by blobs).
+- Claude's choices: the paper does not zoom; the sea is the same paper a little cooler (old maps leave it plain);
+  where the ornaments sit; the cloud mountain gets peaks (it is fiction, but the map is the King's).
+
 ## The parchment painting (prompts for the owner's ChatGPT)
 
 The code draws a stand-in. When the owner's painting comes it goes in `WarMap.SKINS["parchment"]["base"]` (a

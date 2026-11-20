@@ -25,6 +25,11 @@
 
 ## Current work
 
+- THE WAR MAP AS AN OLD MAP (owner 2026-11-20 22:42-22:49 "17th~18th century style map", "Yes" to the hybrid; 0.38.94,
+  docs/war_map_v1.md "The old-map look"): ChatGPT's parchment, ships, sea serpent, cartouche, inked mountains and seals
+  (art/campaign/warmap_*_chatgpt.png -> campaign/warmap_art/ by tools/campaign/import_warmap_art.py); the land stays
+  code-drawn (exact coasts, sharp at any zoom) with engraved coast rings, a shore band and mountain ranges
+  (campaign/warmap_mountains.json). Seals: purple crown, crimson gear, green REPTILE EYE (the emblem's), gold star.
 - DIALOGUE PORTRAITS (owner 2026-11-20 20:50; 0.38.90): campaign/portraits/<who>.png (256 px, oil style, made in ChatGPT
   as 2x2 sheets kept in art/campaign/portraits/sheet1-8.png); MissionRun.portrait_for(who, name, own): the speaker's own
   "portrait", else portraits/<who>_<name slug>.png (shared keys like teacher/captain), else portraits/<who>.png, else

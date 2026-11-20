@@ -13,9 +13,10 @@ const SKINS := {
 	"parchment": {
 		"base": "",
 		"paper": Color(0.86, 0.79, 0.63), "paper_edge": Color(0.55, 0.40, 0.22, 0.55),
-		"sea": Color(0.76, 0.78, 0.66), "land": Color(0.88, 0.80, 0.62), "coast": Color(0.30, 0.22, 0.14, 0.85),
-		"river": Color(0.30, 0.38, 0.45, 0.55), "grid": Color(0.40, 0.30, 0.18, 0.14), "ink": Color(0.22, 0.15, 0.09),
-		"empire": Color(0.50, 0.30, 0.62, 0.17),
+		"sea": Color(0.62, 0.70, 0.62, 0.55), "land": Color(0.86, 0.70, 0.44, 0.34), "sea_wash": Color(0.50, 0.64, 0.64, 0.26), "coast": Color(0.26, 0.17, 0.09, 0.95),
+		"shore": Color(0.55, 0.62, 0.36, 0.22),
+		"river": Color(0.22, 0.34, 0.48, 0.65), "grid": Color(0.40, 0.30, 0.18, 0.10), "ink": Color(0.22, 0.15, 0.09),
+		"empire": Color(0.50, 0.30, 0.62, 0.10),
 		"holders": {
 			"crown": {"fill": Color(0.47, 0.22, 0.62, 0.38), "line": Color(0.36, 0.14, 0.48, 0.9)},
 			"contested": {"fill": Color(0.47, 0.22, 0.62, 0.30), "line": Color(0.36, 0.14, 0.48, 0.9), "hatch": Color(0.72, 0.14, 0.10, 0.75)},
@@ -30,6 +31,11 @@ const SKINS := {
 	},
 }
 
+## The coast's ink rings out to sea, in map units (degrees), and the mountain ranges' file.
+const RIPPLES := [0.3, 0.65, 1.05]
+const MOUNTAINS := "res://campaign/warmap_mountains.json"
+const PARCHMENT := "res://campaign/warmap_art/parchment.jpg"
+
 var skin := "parchment"
 var selected := ""
 var st := {}                       # WarMapData.state()
@@ -38,6 +44,8 @@ var zoom := 1.0                    # pixels per map unit
 var seal_r := 13.0                 # a pin's radius on screen (phones: bigger)
 
 var _land: Array = []              # [[points, triangle indices]] in map units
+var _ripples: Array = []           # the engraved coast lines out to sea: [[closed polyline, ring 0..2]] in map units
+var _hills: Array = []             # the mountain ranges (campaign/warmap_mountains.json): dense points along each, map units
 var _lakes: Array = []
 var _rivers: Array = []
 var _regions: Array = []           # [{id, pts, hatch: [segments], box: Rect2}]
@@ -124,6 +132,32 @@ func _build() -> void:
 			_lakes = arr
 	for flat in ld.get("rivers", []):
 		_rivers.append(WarMapData.ring(flat))
+	# THE OLD MAP'S COASTS (owner 2026-11-20: a 17th-18th century map): rings of fine ink lines out to sea, as the
+	# engravers drew them; made once, in map units (so they open out as the map zooms in)
+	for it in _land:
+		var lb: Rect2 = it[2]
+		if maxf(lb.size.x, lb.size.y) < 1.2:
+			continue
+		for ri in RIPPLES.size():
+			for poly in Geometry2D.offset_polygon(it[0], RIPPLES[ri], Geometry2D.JOIN_ROUND):
+				var cl: PackedVector2Array = (poly as PackedVector2Array).duplicate()
+				if Geometry2D.is_polygon_clockwise(cl) != Geometry2D.is_polygon_clockwise(it[0]):
+					continue            # (a hole the offset made inside a bay: not a coast line)
+				cl.append(cl[0])
+				_ripples.append([cl, ri])
+	if FileAccess.file_exists(MOUNTAINS):
+		var mj = JSON.parse_string(FileAccess.get_file_as_string(MOUNTAINS))
+		for rg in (mj.get("ranges", []) if mj is Dictionary else []):
+			var pts := PackedVector2Array()
+			var line: Array = rg["line"]
+			for i in line.size() - 1:
+				var a := WarMapData.pt(line[i])
+				var b := WarMapData.pt(line[i + 1])
+				var n := maxi(1, int(a.distance_to(b) / 0.35))
+				for k in n:
+					pts.append(a.lerp(b, float(k) / n))
+			pts.append(WarMapData.pt(line[line.size() - 1]))
+			_hills.append(pts)
 	for rg in WarMapData.data().get("regions", []):
 		var pts := WarMapData.region_outline(rg)
 		var bx := Rect2(pts[0], Vector2.ZERO)
@@ -348,7 +382,16 @@ func _draw() -> void:
 	var s: Dictionary = sk()
 	var font := UiStyle.body_font()
 	var tfont := UiStyle.title_font()
-	draw_rect(Rect2(Vector2.ZERO, size), s["sea"])
+	draw_rect(Rect2(Vector2.ZERO, size), s["paper"])
+	var paper := _art_file(PARCHMENT)
+	if paper:
+		# the sheet itself (screen space: the paper does not zoom, the map on it does), covering the frame
+		var k := maxf(size.x / paper.get_width(), size.y / paper.get_height())
+		var ps := Vector2(paper.get_width(), paper.get_height()) * k
+		draw_texture_rect(paper, Rect2((size - ps) * 0.5, ps), false)
+		draw_rect(Rect2(Vector2.ZERO, size), s["sea_wash"])      # the sea a little cooler than the land
+	else:
+		draw_rect(Rect2(Vector2.ZERO, size), s["sea"])
 	# the land, in map units under one transform; the lines' widths are in pixels (divided by the zoom)
 	draw_set_transform(size * 0.5 - center * zoom, 0.0, Vector2(zoom, zoom))
 	var px := 1.0 / zoom
@@ -363,15 +406,31 @@ func _draw() -> void:
 			draw_line(WarMapData.to_map(lon, float(bd[1])), WarMapData.to_map(lon, float(bd[3])), s["grid"], px)
 		for lat in range(int(ceil(float(bd[1]) / 10.0)) * 10, int(bd[3]) + 1, 10):
 			draw_line(WarMapData.to_map(float(bd[0]), lat), WarMapData.to_map(float(bd[2]), lat), s["grid"], (2.0 if lat == 0 else 1.0) * px)
+		# the engraved coast lines out to sea, the nearest darkest
+		var vis := Rect2(center - size * 0.5 / zoom, size / zoom).grow(2.0)
+		for rp in _ripples:
+			var pl: PackedVector2Array = rp[0]
+			var ink: Color = s["ink"]
+			ink.a = [0.42, 0.28, 0.16][rp[1]]
+			draw_polyline(pl, ink, 0.8 * px, true)
+		# the land: a watercolour wash on the paper, a deeper band along the shore
 		for it in _land:
 			if not (it[1] as PackedInt32Array).is_empty():
 				RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), it[1], it[0], PackedColorArray([s["land"]]))
 				RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), it[1], it[0], PackedColorArray([s["empire"]]))
+		for it in _land:
+			if not (it[2] as Rect2).intersects(vis):
+				continue
+			var c: PackedVector2Array = (it[0] as PackedVector2Array).duplicate()
+			c.append(c[0])
+			draw_polyline(c, s["shore"], 5.0 * px, true)
 		for it in _lakes:
 			if not (it[1] as PackedInt32Array).is_empty():
 				RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), it[1], it[0], PackedColorArray([s["sea"]]))
 		for r in _rivers:
 			draw_polyline(r, s["river"], 1.2 * px, true)
+		_draw_hills(s, px, vis)
+		_draw_ornaments()
 	# the regions: washes, hatching, outlines
 	var regs: Dictionary = st.get("regions", {})
 	for rg in _regions:
@@ -396,8 +455,9 @@ func _draw() -> void:
 		for it in _land:
 			var c: PackedVector2Array = (it[0] as PackedVector2Array).duplicate()
 			c.append(c[0])
-			draw_polyline(c, s["coast"], 1.1 * px, true)
+			draw_polyline(c, s["coast"], 1.4 * px, true)
 	draw_set_transform(Vector2.ZERO)
+	_draw_cartouche_text(s)
 	# region names (where there is room)
 	for rg in _regions:
 		if not bool(rg["label"]):
@@ -571,6 +631,77 @@ func _draw_sign(line: String, c: Vector2, r: float, col: Color) -> void:
 				var a := TAU * i / 10.0 - PI / 2
 				stp.append(c + Vector2(cos(a), sin(a)) * r * (1.0 if i % 2 == 0 else 0.45))
 			draw_colored_polygon(stp, col)
+
+
+## The mountains as an old map draws them: little inked hills along each range, the light from the left (the right
+## flank hatched). Their size is held between 11 and 20 px on screen; along a range they are spaced by that size.
+func _draw_hills(s: Dictionary, px: float, vis: Rect2) -> void:
+	var hs := clampf(2.0 * zoom, 28.0, 44.0)         # a mountain's width on screen
+	var step := maxi(1, int(ceil(hs * 0.7 / (0.35 * zoom))))
+	var ink: Color = s["ink"]
+	var painted := _art("mountain_0") != null
+	for pts in _hills:
+		for i in range(0, (pts as PackedVector2Array).size(), step):
+			var p: Vector2 = pts[i]
+			if not vis.has_point(p):
+				continue
+			var w := hs * px * (0.85 + 0.3 * absf(sin(float(i) * 1.7)))
+			if painted:
+				# ChatGPT's inked peaks (campaign/warmap_art/mountain_0..7), one picked by the place on the range
+				var tex := _art("mountain_%d" % (int(absf(p.x * 7.0 + p.y * 3.0)) % 8))
+				var h := w * tex.get_height() / tex.get_width()
+				draw_texture_rect(tex, Rect2(p - Vector2(w * 0.5, h * 0.8), Vector2(w, h)), false)
+				continue
+			var h2 := w * (0.75 + 0.35 * absf(cos(float(i) * 2.3)))
+			var l := p + Vector2(-w * 0.5, 0)
+			var r := p + Vector2(w * 0.5, 0)
+			var top := p + Vector2(w * 0.06, -h2)
+			draw_colored_polygon(PackedVector2Array([l, top, r]), Color(s["paper"], 0.85))
+			for k in 3:                                    # the shaded flank
+				var f := 0.3 + 0.22 * k
+				draw_line(top.lerp(r, f), top.lerp(r, f) + Vector2(-w * 0.12, h2 * 0.22), Color(ink, 0.55), 0.8 * px, true)
+			draw_polyline(PackedVector2Array([l, l.lerp(top, 0.5) + Vector2(-w * 0.04, 0), top, r]), Color(ink, 0.85), 1.1 * px, true)
+
+
+## The old map's ornaments in the empty seas (ChatGPT's, campaign/warmap_art): [picture, lon, lat, width in degrees].
+const ORNAMENTS := [["ship_big", -40.0, 31.0, 18.0], ["ship_small", -18.0, -8.0, 12.0], ["serpent", -122.0, -2.0, 22.0],
+	["cartouche", -138.0, 33.0, 34.0]]
+
+
+func _draw_ornaments() -> void:
+	for o in ORNAMENTS:
+		var tex := _art(String(o[0]))
+		if tex == null:
+			continue
+		var c := WarMapData.to_map(float(o[1]), float(o[2]))
+		var w: float = o[3]
+		var h := w * tex.get_height() / tex.get_width()
+		draw_texture_rect(tex, Rect2(c - Vector2(w, h) * 0.5, Vector2(w, h)), false, Color(1, 1, 1, 0.92))
+
+
+## The cartouche's words: the act's title, in ink, inside the frame (drawn after the land, on screen).
+func _draw_cartouche_text(s: Dictionary) -> void:
+	var tex := _art("cartouche")
+	if tex == null:
+		return
+	var o: Array = ORNAMENTS[3]
+	var c := to_screen(WarMapData.to_map(float(o[1]), float(o[2])))
+	var w: float = float(o[3]) * zoom
+	if w < 90.0:
+		return
+	var t1 := Loc.t(String(WarMapData.data().get("title", ""))).to_upper()
+	var t2 := Loc.t(String(WarMapData.data().get("act_title", "")))
+	var f := UiStyle.title_font()
+	var fs := int(clampf(w * 0.095, 11, 40))
+	var ink: Color = s["ink"]
+	draw_string(f, c + Vector2(-w * 0.32, fs * 0.15), t1, HORIZONTAL_ALIGNMENT_CENTER, w * 0.64, fs, Color(ink, 0.9))
+	draw_string(f, c + Vector2(-w * 0.32, fs * 1.25), t2, HORIZONTAL_ALIGNMENT_CENTER, w * 0.64, int(fs * 0.7), Color(ink, 0.8))
+
+
+func _art_file(p: String) -> Texture2D:
+	if not _art_cache.has(p):
+		_art_cache[p] = load(p) if ResourceLoader.exists(p) else null
+	return _art_cache[p]
 
 
 ## A painted picture for the map (campaign/warmap_art/<name>.png), or null: the code draws its own.

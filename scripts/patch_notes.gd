@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.94", "items": [
+		"THE WAR MAP AS AN OLD MAP: the King's map now looks like an 18th-century royal map: an aged parchment sheet with folds and stains, the coasts in ink with fine engraved lines rippling out to sea, inked mountain ranges, two sailing ships and a sea serpent in the oceans, and a crowned cartouche holding the map's title. The land is still drawn exactly, so it stays sharp when you zoom in.",
+	]},
 	{"v": "0.38.93", "items": [
 		"The war map's other seals are brighter and closer to the game's emblem: a gold crown on purple wax, a gold gear on crimson wax, a gold star on gold wax, beside the green reptile eye.",
 	]},

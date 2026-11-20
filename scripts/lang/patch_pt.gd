@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.94": ["O MAPA DE GUERRA COMO UM MAPA ANTIGO: o mapa do Rei agora parece um mapa real do século XVIII: uma folha de pergaminho envelhecido com dobras e manchas, as costas a tinta com finas linhas gravadas que se espalham pelo mar, cordilheiras a tinta, dois navios à vela e uma serpente marinha nos oceanos, e uma cartela coroada com o título do mapa. A terra continua desenhada com exatidão, por isso fica nítida quando você aproxima."],
 	"0.38.93": ["Os outros selos do mapa de guerra estão mais vivos e mais próximos do emblema do jogo: uma coroa dourada em cera roxa, uma engrenagem dourada em cera carmesim, uma estrela dourada em cera dourada, ao lado do olho verde de réptil."],
 	"0.38.92": ["O selo do Naturalista no mapa de guerra agora é o olho verde de réptil do emblema do jogo, não uma folha."],
 	"0.38.91": ["ARTE DO CHATGPT: o artilheiro da Fundição agora morre na sua própria animação pintada em todas as direções (atingido, caindo enquanto o capacete voa, deitado ao lado dele) e tem o seu próprio retrato no cartão em vez do do Trabalhador. Os selos do mapa de guerra são selos de cera pintados (uma coroa roxa, uma engrenagem âmbar, uma folha verde, uma estrela dourada; rachados onde um lugar foi perdido) e a rosa dos ventos é pintada. O piqueiro rebelde, visto de costas, agora levanta o pique para longe de você em vez de um substituto movido."],
