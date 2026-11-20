@@ -154,8 +154,8 @@ func labs_wanted() -> bool:
 ## army is short of what the Crown's own army rules want by now: v the Brood the line (AICrownVBrood.line_short), every
 ## matchup the army clock (AICrownArmy.behind). Switch `armyfloor:off`.
 func army_short() -> bool:
-	if floor_off:
-		return false
+	if floor_off or AICrownRules.cut(ai, "armyfloor"):
+		return false      # (crown-rule-cleanup: cut against the Clockwork, AICrownRules.CUT)
 	if ai.vb() != null and ai.vbr.line_short():
 		return AICrownRules.t(ai, "armyfloor", true)
 	return AICrownRules.t(ai, "armyfloor", ai.ca_behind())

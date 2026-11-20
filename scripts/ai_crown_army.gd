@@ -66,7 +66,7 @@ func _init(owner) -> void:
 
 
 func active() -> bool:
-	if off or clock_off or not ai.on or ai.difficulty < 1 or ai.peaceful:
+	if off or clock_off or not ai.on or ai.difficulty < 1 or ai.peaceful or AICrownRules.cut(ai, "crownarmy"):
 		return false
 	var foe: int = ai._foe()
 	return foe >= 0 and TABLE.has(ai.game.faction_of(foe))
@@ -129,7 +129,7 @@ func behind() -> bool:
 
 ## A Barracks stands idle with a Musketeer's gold but not his powder (the Mill's crew should grow: AICrown._mill_feedback).
 func powder_wait() -> bool:
-	if off or not ai.on:
+	if off or not ai.on or AICrownRules.cut(ai, "crownarmy"):
 		return false
 	if ai._res2() >= float(Defs.ammo_load("musketeer")):
 		return false
