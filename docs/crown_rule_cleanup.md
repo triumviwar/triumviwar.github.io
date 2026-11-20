@@ -21,6 +21,55 @@ exists measured worse:
 | crown-1000-clockwork | share (army clock 0.4: x1.27 then x0.80), hall3 (third hall at 28 labourers: x0.92), hold (no wave under 1.3x: x0.90, x0.68), labs (labourers before the army clock: x0.64), guns (a cannon for 3 Musketeers: x0.43, t -1.8), powder (read the wrong number), stand (go down at 0.9x, muster at 0.85x: x0.55, t -1.7), timingonly (a study pick) | trade (`cvc:trade`, never acted: no fair test), spend (`cvc:spend`, never acted), foundry2 (`cvc:foundry2`, within the noise), richlabs (`cvc:richlabs`, a big bank, within the noise) |
 | crown-1000-brood | eco (economy rules from 5:00: -0.72, t -2.7), press (go at 2x the army seen: -0.41), tech (tech on the army seen: -0.73, t -2.1), halls (halls on time from the start: -0.59), edge (push at 2.5x: -0.17), guns (cannon ratio: -0.27), mortars (mortar ratio: -0.11), spare (push home at 0.7: -0.73, t -2.3) | queen (`c1kbqueen:on`, a push on the Mother), pester (`c1kbpester:on`, riders at the grubs after the rush), maws (`c1kbmaws:on`, the push on the far Rootmaws), guard (`c1kbguard:on`, a home guard while the push is out), farms (`c1kbfarms:on`, every hall's second Farm, within the noise) |
 
+## The inventory (step 1)
+
+Every Crown coaching module, its switch, where it plays and how often it ACTED in the full-stack blocks (full1, 10 games each;
+"thinks" = the computer's decisions where the rule changed what it did; the counters are in each game's result.json
+"crown_ai"). The mirror column comes with the mirror's block.
+
+| group | module (file) | switch (off) | plays against | acted v Brood (full1) | acted v Clockwork (full1) |
+|---|---|---|---|---|---|
+| plan | OPTIMAL leans to the Horseman rush (ai_optimal.gd) | `optlean:off` | Brood (the lean chance) | 10 of 10 games | never (not the Brood) |
+| plan | crown-1000-brood `lean`, `siege` (ai_crown_1k_brood.gd, ai_crown.gd, ai_optimal.gd) | `c1kblean:off`, `c1kbsiege:off` | Brood | the Siege handover in 10 of 10, 13 pushes, the pick kept 21 times | never |
+| plan | crown-1000-clockwork `pick` (ai_crown_v_clock.gd) | `cvcpick:off` | Clockwork | never | every game (Timing or Siege) |
+| plan | the mirror's picks and play (ai_crown_mirror.gd, ai_optimal.gd) | `mirror:off` | mirror | never | never |
+| econ | FARM FIRST (ai_crown_coach.gd) | `farmfirst:off` | all, every plan but the Rush | never (lean makes every game the Rush plan) | 10 of 10 |
+| econ | LABOURERS FIRST (ai_crown_coach.gd) | `labsfirst:off` | all; against the Brood only after the first push is held or 9:00 | 259 labourers trained, 146 s of gold held | 477 labourers, 334 s held |
+| econ | HALLS ON TIME (ai_crown_coach.gd) | `hallsontime:off` | as LABOURERS FIRST | short of a hall in 3 games (141 thinks) | short in 2 games (11 thinks) |
+| econ | crown-1000-clockwork `hall2`, `tech3` | `cvchall2:off`, `cvctech3:off` | Clockwork | never | hall2 in 10 of 10 |
+| econ | the Brood army job's economy after the held push (ai_crown_v_brood.gd part 7) | `cbaecon:off` | Brood | (opens the two rules above) | never |
+| army | THE ARMY CLOCK (ai_crown_army.gd) | `crownarmy:off` | all | (inside the army floor) | behind in 16,657 thinks |
+| army | THE ARMY FLOOR (ai_crown_coach.gd) | `armyfloor:off` | all | 7,807 thinks, every game | 8,901 thinks, every game |
+| army | the army floor tied to the Brood, hold the first push (ai_crown_v_brood.gd parts 5-6) | `cba:off` | Brood | 186 soldiers trained, 9 Barracks, 612 s of gold held | never |
+| army | the Crown against the Brood, parts 1-4 (ai_crown_v_brood.gd) | `cvb:off` | Brood | the home line short 5,392 s | never |
+| army | THE SCREEN FIRST (ai_crown_coach.gd) | `screenfirst:off` | all | 17 riders | 37 riders |
+| army | crown-1000-clockwork `dry` | `cvcdry:off` | Clockwork | never | 7,888 bayonet Musketeers' thinks in 9 games, 21 guns |
+| fight | THE GUNS COACHED (ai_crown_guns.gd) | `gunscoach:off` | all | 169 post sets, 149 kept, 40 fights | (counted, see data) |
+| fight | GUNS FIRST (ai_crown_coach.gd) | `gunsfirst:off` | all | 26 thinks in 4 games | 136 in 5 games |
+| fight | THE LINE (ai_crown_line.gd) | `line:off` | all | formed 5 times, 43 home lines | formed 22 times, 26 home lines, 19 deploys |
+| fight | THE RIDER SCREEN (ai_crown_screen.gd) | `screen:off` | all | 19 riders sent, 26 flank hits | 77 sent, 293 flank hits |
+| fight | CAVALRY MICRO (ai_cav_micro.gd) | `cavmicro:off` | all | 694 blows, 248 charged | 1,009 blows, 229 charged |
+| fight | THE DEFENCE (alert, no walk past, muster) (ai_crown_defence.gd) | `defence:off` | all | soldiers first 4,420 thinks, 19 alerts, 6 musters | soldiers first 25,208 thinks, 28 alerts, 9 musters |
+| home | THE HOLD (main, ramp, gate post, menders, rider scouts) (ai_crown_hold.gd) | `hold:off` | all | the gate post live 12,609 thinks in 9 games, 20 mends | the gate post never live, 60 mends |
+| home | the mirror coach (press, outlying halls, guns for a walled hall) (ai_crown_mirror.gd) | `cmc:off` | mirror | never | never |
+
+Not in the groups (left on in every block, not measured here): the Balloon harass's own fixes (`blfix:off`, its plan only),
+the build stack (`buildstack:off`), the Crown's economy coach (`crowneco:off`), the owner's doctrine (`owner:off`), the cinder
+fixes (`cinder:off`), the scout denial (`scoutdeny:off`, every faction), the ammunition rules (crown-ammo).
+
+**What overrides what** (read from the code and the counters):
+1. **The defence's alert switches the economy rules off**: HALLS ON TIME and LABOURERS FIRST return nothing while the defence
+   wants soldiers (AICrownDefence.wants_soldiers). Against the Clockwork that is 25,208 thinks, so the halls rule wanted a hall
+   in only 2 of 10 games: it is mostly silenced by the defence, not by its own clock.
+2. **The army floor yields to nothing but feeds on the army clock**: against the Clockwork AICrownCoach.army_short is
+   AICrownArmy.behind (16,657 thinks), so `armyfloor` and `crownarmy` are one rule there; against the Brood the floor is the
+   Brood army job's home line (cvb's line_short) first.
+3. **OPTIMAL's lean against the Brood makes FARM FIRST dead there**: every game is the Rush plan, and FARM FIRST skips the Rush.
+4. **The coach's economy rules against the Brood wait for the Brood army job** (`cbaecon`: after the first push is held or 9:00),
+   so they act late or never there.
+5. **`siege` keeps OPTIMAL's pick** (21 times): the late re-pick to the Economy race cannot happen against the Brood.
+6. **`dry` overrides the ammunition rule** against the Clockwork (Musketeers trained with no powder, 9 of 10 games).
+
 ## How it is measured
 
 - The games: crown-1000-brood's 10 (5 maps: Greenhold, Ashford Crossing, Mirewood, Frostfang, Cinder Steps, x 2 rounds with
