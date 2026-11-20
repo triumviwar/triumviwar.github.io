@@ -485,6 +485,7 @@ func _mend_tick() -> void:
 
 
 func _mend(w: Unit, b: Building) -> void:
+	AICrownRules.fire(ai, "hold_mend")
 	if b.built:
 		w.cmd_repair(b)
 	else:

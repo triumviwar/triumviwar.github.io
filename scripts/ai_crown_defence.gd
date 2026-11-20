@@ -155,6 +155,7 @@ func tick() -> void:
 
 ## The alert's call home: a balloon party still boarding comes home (the men are not left walking about below).
 func _recall() -> void:
+	AICrownRules.fire(ai, "df_recall")
 	var bl = ai.bl
 	if bl == null:
 		return

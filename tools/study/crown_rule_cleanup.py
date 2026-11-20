@@ -37,6 +37,20 @@ def switches(on):
     return out
 
 
+# Against the Clockwork the seeds of crown-1000-clockwork (plan_matrix_crown's), so its kept-set blocks 19 and 22 pair
+# game by game with this job's (copied as old_b19, old_b22).
+SEEDS_CW = {"c1k_ashford_crossing_r0": 9205, "c1k_ashford_crossing_r1": 9302, "c1k_cinder_steps_r0": 9282,
+            "c1k_cinder_steps_r1": 9379, "c1k_frostfang_r0": 9139, "c1k_frostfang_r1": 9236, "c1k_greenhold_r0": 9106,
+            "c1k_greenhold_r1": 9203, "c1k_mirewood_r0": 9172, "c1k_mirewood_r1": 9269}
+
+
+def queue():
+    q = cb.queue()
+    if cb.OPP == "clockwork":
+        q = [(t, m, SEEDS_CW.get(t, s), sl) for t, m, s, sl in q]
+    return q
+
+
 def setup(opp):
     cb.OPP = opp
     cb.DATA = os.path.join(ROOT_DATA, opp)
@@ -88,7 +102,7 @@ if __name__ == "__main__":
         qm.KEEP_GREP = "Crown's plan"
         out = os.path.abspath(arg("--out", "/tmp/crc_out/%s/%s" % (opp, name)))
         with ThreadPoolExecutor(int(arg("--jobs", "2"))) as ex:
-            for t in ex.map(lambda g: qm.run_one(g, out, 1200, dd, extra), cb.queue()):
+            for t in ex.map(lambda g: qm.run_one(g, out, 1200, dd, extra), queue()):
                 print("done", t, flush=True)
     elif cmd == "report":
         opp = sys.argv[2]
