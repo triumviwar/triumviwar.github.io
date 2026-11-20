@@ -200,10 +200,11 @@ Pantocrator in the Byzantine icon style, St Michael, St Gabriel, St Peter, a red
 Enlightenment figures, no naked putti) and NO hallucinations. Plan: one world painting (two hemispheres) + one painting
 per region view (Europe, Virginia, the Amazon; Brazil for Act 2), the seals and region washes fitted to each painting by
 landmarks, the code map kept as the fallback.
-- art/campaign/warmap_world_chatgpt.png: the Catholic world sheet. STILL WRONG: St Michael's sword has two hilts,
-  Christ's halo has scribbled pseudo-letters, St Peter's keys are tangled; a fix request is written (one sword raised in
-  the right hand, shield in the left; a plain cross in the halo; two clean crossed keys).
-- art/campaign/warmap_europe_chatgpt.png: Europe traced from tools/campaign/render_region_ref.py's outline (Virgin and
-  Child icon, a pope, a red-cross ship, a crowned cartouche); to be checked figure by figure before use.
+- art/campaign/warmap_world_chatgpt.png: the Catholic world sheet, FIXED (ChatGPT edit on a third account: St Michael
+  one sword raised, St Peter two crossed keys; the pseudo-letters left in Christ's halo painted out by Claude with an
+  OpenCV inpaint). Checked figure by figure.
+- art/campaign/warmap_europe_chatgpt.png: Europe (Virgin and Child icon, a pope with the papal cross and a book, a
+  red-cross ship, a crowned cartouche), FIXED (halos cleaned by a ChatGPT edit, the Child's halo marks inpainted).
+  Checked figure by figure. Its coasts follow the outline only roughly (Ireland added): fit by landmarks.
 - Virginia and the Amazon: outlines made (render_region_ref.py -89.7 31 -66.3 43 / -74.7 -6 -53.3 5), not painted.
-Stopped 2026-11-20 23:25: one ChatGPT account out of images, the other's uploads hang.
+Stopped 2026-11-20 23:40: all three ChatGPT accounts out of images (the third gave three); Virginia and the Amazon wait for the reset.
