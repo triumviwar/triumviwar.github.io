@@ -20,9 +20,10 @@ time, the plan picks plus the economy rules alone (20 games) survived 20 of 20 a
 several blocks: the **army clock and army floor** (they hold the gold the economy rules want: p3 -0.61, and without them the
 rest of the army group was even, p3s) and the **whole fight group** (the line, the guns' coaching, the rider screen, the cavalry
 micro, GUNS FIRST and the defence: p4 -1.55, t -3.2; less the defence p4s -0.63; less the alert, guns first and the screen p4m
--0.80, t -2.6). They are now **cut against the Clockwork only** (scripts/ai_crown_rules.gd, AICrownRules.CUT; `-- crc:off`
-plays the old full stack). The cleaned code against the Clockwork (final1 + final2 below) beats the full stack paired game by
-game: final1 +0.87 (t 1.7), g14 +0.34 (t 2.2), 8 better / 2 worse.
+-0.80, t -2.6), and last **THE HOLD** (p5 -0.45, and the cleaned code with it off, final3, +0.87, t 2.7). They are now **cut
+against the Clockwork only** (scripts/ai_crown_rules.gd, AICrownRules.CUT; `-- crc:off`
+plays the old full stack). The cleaned code against the Clockwork (with the hold off: final3, final4) beats the full stack paired
+game by game: final3 +1.36 (t 3.2), g14 +0.55 (t 4.4), 9 better / 1 worse; survived 10 of 10, won or led 8.
 
 **Against the Brood nothing measured clearly.** Every step moved the score within the noise (the base pool and the full stack
 are 0.2 to 0.4 apart, t under 1); the army group was the only one that leaned up, and the army-only set (20 games) scores the
@@ -148,7 +149,7 @@ One line a block, written as each one ends.
 
 | matchup | on by default after the cleanup | cut (AICrownRules.CUT, off by default here only) | the evidence |
 |---|---|---|---|
-| Crown v Clockwork | plan (`pick`, OPTIMAL's picks), econ (FARM FIRST, LABOURERS FIRST, HALLS ON TIME, `hall2`, `tech3`), `dry`, the hold, the build stack and everything outside the groups | the army clock (`crownarmy`), the army floor (`armyfloor`), the guns' coaching (`gunscoach`), GUNS FIRST (`gunsfirst`), the line (`line`), the rider screen (`screen`), the cavalry micro (`cavmicro`), the defence (`defence`) | the add-back blocks p2/p2b, p3, p3s, p4, p4s, p4m; the cleaned code's final1 and final2 against the full stack |
+| Crown v Clockwork | plan (`pick`, OPTIMAL's picks), econ (FARM FIRST, LABOURERS FIRST, HALLS ON TIME, `hall2`, `tech3`), `dry`, the build stack and everything outside the groups | the army clock (`crownarmy`), the army floor (`armyfloor`), the guns' coaching (`gunscoach`), GUNS FIRST (`gunsfirst`), the line (`line`), the rider screen (`screen`), the cavalry micro (`cavmicro`), the defence (`defence`), the hold (`hold`) | the add-back blocks p2/p2b, p3, p3s, p4, p4s, p4m, p5; the cleaned code's final1 to final4 against the full stack |
 | Crown v Brood | everything, as before | nothing | no group measured as clear harm; the full stack and the army-only set score the same |
 | Crown v Crown | everything, as before | nothing | a mirror cannot be measured by switching both sides the same way (the score is relative): one block for the counters |
 
@@ -156,9 +157,9 @@ One line a block, written as each one ends.
 The study switches of every rule still work as before.
 
 **Situational rules kept although they acted little or measured within the noise** (never deleted for that, the owner's rule):
-- THE HOLD (main and ramp posts, the walled natural's gate post, menders, rider scouts): against the Clockwork -0.45 (t -1.1),
-  against the Brood -0.98 on top of the army group (t -1.7, one block); the gate post is live only on maps with a walled
-  natural. Kept on everywhere; worth a look of its own.
+- THE HOLD (main and ramp posts, the walled natural's gate post, menders, rider scouts): against the Brood -0.98 on top of the
+  army group (t -1.7, one block) and kept on there and in the mirror (situational, within the noise). Against the Clockwork it
+  measured as harm in three blocks and is cut there (not deleted).
 - The defence's parts (the alert, no walk past, the muster): cut against the Clockwork as part of the fight group; kept against
   the Brood and in the mirror. The muster acted 6-9 times in 10 games.
 - The mirror coach (`cmc`): acts only in the mirror; not measurable here.
@@ -210,7 +211,7 @@ With the best set against the Brood (today's full stack, 40 games: full1 + the B
 
 ## Claude's choices for the owner
 
-1. **The cuts are by matchup, not deletions**: the Clockwork cut turns eight coaching rules off against the Clockwork only; they
+1. **The cuts are by matchup, not deletions**: the Clockwork cut turns nine coaching rules off against the Clockwork only; they
    stay on against the Brood and in the mirror, and `-- crc:off` brings the old stack back. The fight group's own jobs had
    measured them as gains alone; together with the economy rules they cost, so they are cut there rather than deleted.
 2. **The fight group is cut as a whole against the Clockwork** though three splits could not find a single culprit (the
@@ -220,8 +221,9 @@ With the best set against the Brood (today's full stack, 40 games: full1 + the B
    against 14) and its g14 was lower; the blocks cannot tell them apart, and the full stack carries the Brood job's measured gain.
 4. **The plan group was not kept alone against the Brood** (p1 + p1b, -0.58) but is in the final Brood set (the full stack):
    lean and siege were measured by the Brood job on top of the whole stack, and they need the rest to pay.
-5. **THE HOLD stays on everywhere**: it leaned to harm in two blocks (one per matchup), within the noise, and it is the owner's
-   doctrine and a situational rule.
+5. **THE HOLD is cut against the Clockwork** (three blocks: p5, the cleaned pool, final3 +0.87, t 2.7) though it is the owner's
+   doctrine (hold the main, go down only when ready): against the Clockwork the Crown does better going out with its economy.
+   It stays on against the Brood (one block of -0.98, within the noise) and in the mirror.
 6. The Clockwork blocks used crown-1000-clockwork's seeds so its kept-set blocks 19 and 22 pair with this job's; the Brood and
    mirror blocks the Brood job's.
 7. 16 threshold variants of the 1000 jobs were deleted again (they measured worse); 9 of their changes stay as off switches.

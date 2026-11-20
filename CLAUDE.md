@@ -28,10 +28,10 @@
 - CROWN RULE CLEANUP (owner 2026-11-19 23:30 "Yes", 2026-11-20 07:20 "some rules are very case specific"; job
   crown-rule-cleanup, 0.38.87, docs/crown_rule_cleanup.md, data docs/crown_rule_cleanup/data/, tools/study/crown_rule_cleanup.py,
   scripts/ai_crown_rules.gd AICrownRules): the Crown's coaching rules in 5 groups (plan, econ, army, fight, home), a clean base
-  with all off, added back one at a time, 25 blocks of 10 games to 20:00. V THE CLOCKWORK the army clock + army floor and the
-  whole fight group (gunscoach, gunsfirst, line, screen, cavmicro, defence) measured as harm on top of plan + econ (plan + econ
-  alone: 20 of 20 survived, 18 won/led): CUT against the Clockwork only (AICrownRules.CUT; `crc:off` = the old stack,
-  `crc<name>:on` one back); the cleaned code v the full stack +0.87 (t 1.7), 8/2. V THE BROOD and the MIRROR: no change (all
+  with all off, added back one at a time, 27 blocks of 10 games to 20:00. V THE CLOCKWORK the army clock + army floor, the
+  whole fight group (gunscoach, gunsfirst, line, screen, cavmicro, defence) and the hold measured as harm on top of plan + econ
+  (plan + econ alone: 20 of 20 survived, 18 won/led): CUT against the Clockwork only (AICrownRules.CUT; `crc:off` = the old
+  stack, `crc<name>:on` one back); the cleaned code v the full stack +1.36 (t 3.2), 9/1. V THE BROOD and the MIRROR: no change (all
   within the noise). The Brood question: the Crown leads to ~14:00 and loses at 15-19 to the capped Brood army at even income
   and full spending: balance more than AI. 16 threshold variants of the 1000 jobs deleted again; trade, spend, queen, pester,
   maws, guard, farms, foundry2, richlabs kept as off switches. 7 Claude's choices in the doc.
