@@ -25,6 +25,14 @@
 
 ## Current work
 
+- THE CROWN'S POWDER (owner 2026-11-20 20:41): job crown-powder-study measured four design options (more saltpetre,
+  a 35% floor, Nitre Beds, BUY POWDER; all OFF switches `powder:<option>`): none helped the computer; its halls still hold
+  saltpetre late, it UNDER-CREWS its Mills (6-9 hands on 4-5 Mills). OWNER: LEAVE POWDER AS IT IS for now (no design
+  change); YES to coaching the Crown computer to put a FULL CREW (6) on each Mill when the army's powder runs low, as a
+  job AFTER crown-rule-cleanup merges.
+- GUN CREWMAN ART (2026-11-20, 0.38.88): his walk in all five views drawn with ChatGPT in the owner's Chrome
+  (art/redraws/gun_crew_walk_<dir>_chatgpt.png, tools/import_gun_crew.py); his death is still the Labourer's stand-in.
+
 - GUN CREW FETCH (owner 2026-11-20 08:34 "Horses are not supposed to go alone. Without a hauler the cannon operator should
   go from the foundry and get the horse on a leash back to the foundry"; job gun-crew-fetch, 0.38.87, docs/gun_crew_fetch.md,
   scripts/gun_crew.gd GunCrew, tools/test_gun_crew_fetch.gd, pictures docs/shots/gun_crew_fetch/): a gun's horse WAITS at

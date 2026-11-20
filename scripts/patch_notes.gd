@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.88", "items": [
+		"THE GUN CREWMAN'S OWN ART: the Foundry's crewman who fetches a gun's horse now walks as a real gunner (a steel morion helmet, the red coat, empty hands) in every direction, drawn with ChatGPT, instead of a Labourer with a grey hat.",
+	]},
 	{"v": "0.38.87", "items": [
 		"A HORSE NEVER WALKS TO THE FOUNDRY BY ITSELF: with no Town Hall hauler free, a Field Cannon's, Mortar's or Powder Wagon's horse used to walk alone from the Horse Breeder to the Foundry. Now one of the Foundry's GUN CREW comes out, walks to the breeder (waiting there while the horse is still being bred), takes the horse on the leash, leads it back, hitches it beside the Foundry and goes back in; the gun then rolls out drawn by that horse. He brings the next guns' ready horses along too. He is unarmed and can be killed: the horse stays where it is and another crewman comes out a moment later. A free hauler nearer to the horse takes the job over, and cancelling the gun lets the horse go where it stands. He can't be picked or ordered (clicking him picks his Foundry). Haulers and crewmen now lead a horse right up to its own spot beside the building instead of letting it go a few steps short.",
 	]},

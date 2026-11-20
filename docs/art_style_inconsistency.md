@@ -760,3 +760,7 @@ when no hauler is free) wears the Labourer's idle/walk/death strips with the bro
 idle leans on a pick). The Field Cannon's and Mortar's painted crew wear a red (team) coat and a grey morion helmet;
 wanted from ChatGPT: a gunner like them, unarmed (a rammer or nothing in hand), in the Labourer's five views (s, se, e,
 ne, n): idle (2 frames), walk (6) and death (3), 42 x 35 cells, feet at (21, 33), the coat in the team-colour red.
+DONE FOR THE WALK (0.38.88, 2026-11-20): Claude drew the five walks with ChatGPT in the owner's Chrome (one request per
+direction: the cannon's crew and the Labourer's walk as references, then the first gunner sheet for the rest), saved in
+art/redraws/gun_crew_walk_<dir>_chatgpt.png and imported by tools/import_gun_crew.py (scaled to 32 px, coat to the team
+mask); his idle is the walk's first frame twice. STILL STAND-IN: his death (the Labourer's, hat recoloured).
