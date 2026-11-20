@@ -5491,7 +5491,7 @@ func _army() -> void:
 		_attack_at = _army_supply(ready)
 		if game.mlog:
 			game.mlog.add("%s's army is at the supply cap or far ahead (%d supply): it goes out again" % [game.mlog.who(team), _army_supply(ready)])
-	if not _attacking and _army_supply(ready) >= _attack_at and not regrouping and _timing_ok(ready) and _kit_ready(ready) and r5.attack_ok(ready) and _wave_worth(ready) and not (_sw() and swm().hold_attack()) and not (not push and AICrownVClock.hold_wave(self, ready)):
+	if not _attacking and _army_supply(ready) >= _attack_at and not regrouping and _timing_ok(ready) and _kit_ready(ready) and r5.attack_ok(ready) and _wave_worth(ready) and not (_sw() and swm().hold_attack()):
 		_attacking = true
 		_wave_target = _enemy_base()
 		_attack_at = mini(_attack_at + int(_s("step")), 70)

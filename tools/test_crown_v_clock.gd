@@ -37,7 +37,7 @@ func _run() -> void:
 	# [kept]
 	for k in ["pick", "hall2", "tech3", "dry"]:
 		check("[kept] %s on by default" % k, AICrownVClock.on(k))
-	for k in ["share", "hall3", "hold", "labs", "guns", "powder", "foundry2", "stand", "spend", "trade", "richlabs", "timingonly"]:
+	for k in ["foundry2", "spend", "trade", "richlabs"]:
 		check("[kept] %s off by default" % k, not AICrownVClock.on(k))
 	check("[pick] Timing or Siege", AICrownVClock.pick_w().keys().all(func(k) -> bool: return k in ["timing", "siege"]))
 
