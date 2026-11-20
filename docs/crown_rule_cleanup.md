@@ -6,6 +6,12 @@ an inventory with counts of how often each rule acts, a clean base with the coac
 at a time and kept only when they help on top of what is kept, the cleaned set against today's stack, and a plain answer
 to the Brood question. No balance number was changed.
 
+**NOTE (2026-11-20 12:40): this is the FIRST run of the job, pushed to the side branch `crown-rule-cleanup-first`.** A
+restarted run (from 08:50, on the branch `crown-rule-cleanup`) reverted this run's deletion of the 25 not-kept changes on the
+owner's word of 2026-11-20 07:20 ("some rules are very case specific": a situational rule is not deleted for firing 0
+times). This branch still has that deletion (section 5): do not merge it as is; take its measurements (sections 2 to 4,
+the data) and the cleaned set (AICrownRules.DROP) into the restarted run, which keeps the situational rules.
+
 ## In short
 
 **The cleaned set is the new default** (0.38.87): against the Brood the Crown computer keeps only its PLAN rules (the
@@ -204,7 +210,7 @@ Crown's Farm posts a hall.
 7. 27 blocks of 10 games (270 games): 14 against the Brood, 12 against the Clockwork, 1 in the mirror, about 30-40 minutes
    a block on this 2-core machine (two games at a time); not more reruns per step.
 
-MIRROR_PLACEHOLDER
+(The mirror block was stopped unfinished: see the note at the top.)
 
 ## 7. The tests (0.38.87, the cleaned set on)
 
