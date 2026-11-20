@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.87", "items": [
+		"THE CROWN COMPUTER'S COACHING, CLEANED UP (nothing the player uses changed): its rules were measured again as groups, switched off and added back one at a time over 250 games to 20 minutes. Against the Clockwork its army clock and army floor (which held back the gold its economy needed) and its fighting rules (the formed line, the guns' coaching, the rider screen, the cavalry micro, the defence) are now off, and it plays its economy: on the same ten games it beats the old set game by game (8 better, 2 worse). Against the Brood and in the mirror nothing measured clearly, so it plays as before. Sixteen small variants from earlier tests that measured worse were removed; the situational rules stay.",
+	]},
 	{"v": "0.38.86", "items": [
 		"THE CROWN COMPUTER AGAINST THE CLOCKWORK, coached over 260 games: its OPTIMAL plan picks the Timing attack or the Siege push, its second Town Hall goes down right after the pick (about 3:00), the Church and the Armoury wait for the third hall, and when its powder runs out late with gold in the bank its Foundries cast Field Cannons and its Barracks train Musketeers with the bayonet. On the same ten games it now lasts to 20:00 in 18 of 20 (was 6 of 10) and leads or wins 8 (was none).",
 	]},
