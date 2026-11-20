@@ -192,3 +192,18 @@ labels stay drawn over it). One request each.
   after another, not at once.)
 - As before on this cloud machine every headless Godot run ends with "Aborted" (exit 134) AFTER its last line.
 - `python3 tools/i18n_build.py` (no errors), `python3 tools/i18n_patch_build.py` reports [].
+
+## Painted maps, in progress (owner 2026-11-20 23:09 "Ye"; not wired in yet)
+
+The owner wants the whole map painted like 18th-century double-hemisphere maps, with CATHOLIC iconography only (Christ
+Pantocrator in the Byzantine icon style, St Michael, St Gabriel, St Peter, a red-cross ship; no classical, pagan or
+Enlightenment figures, no naked putti) and NO hallucinations. Plan: one world painting (two hemispheres) + one painting
+per region view (Europe, Virginia, the Amazon; Brazil for Act 2), the seals and region washes fitted to each painting by
+landmarks, the code map kept as the fallback.
+- art/campaign/warmap_world_chatgpt.png: the Catholic world sheet. STILL WRONG: St Michael's sword has two hilts,
+  Christ's halo has scribbled pseudo-letters, St Peter's keys are tangled; a fix request is written (one sword raised in
+  the right hand, shield in the left; a plain cross in the halo; two clean crossed keys).
+- art/campaign/warmap_europe_chatgpt.png: Europe traced from tools/campaign/render_region_ref.py's outline (Virgin and
+  Child icon, a pope, a red-cross ship, a crowned cartouche); to be checked figure by figure before use.
+- Virginia and the Amazon: outlines made (render_region_ref.py -89.7 31 -66.3 43 / -74.7 -6 -53.3 5), not painted.
+Stopped 2026-11-20 23:25: one ChatGPT account out of images, the other's uploads hang.
