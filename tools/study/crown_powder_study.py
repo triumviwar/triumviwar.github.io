@@ -66,6 +66,8 @@ def game(d, opp):
             return (m.get("crown") or {}).get(sub)
         return m.get(key)
     x["dry"] = dry
+    a16, b16 = mins.get((si, 16)), mins.get((oi, 16))
+    x["g16"] = math.log(max(1.0, a16["income"] + 2 * a16["army"]) / max(1.0, b16["income"] + 2 * b16["army"])) if a16 and b16 else None
     for mn in (8, 12, 16):
         x["pow%d" % mn] = at(si, mn, None, "powder")
         x["gold%d" % mn] = at(si, mn, "bank")
@@ -192,6 +194,22 @@ def report():
             s = summary(pool(opt, opp))
             if s:
                 print("| %s | %s | %s |" % (opp, opt, " | ".join("%s / %s / %s / %s" % (f2(s["mills%d" % mn], 0), f2(s["hands%d" % mn], 0), f2(s["salt%d" % mn], 0), f2(s["halls%d" % mn], 0)) for mn in (8, 12, 16))))
+    # THE MIRROR'S SNOWBALL: both sides play the option, so the mean g is ~0 by symmetry; the spread is what tells.
+    print("\n### The mirror: how far apart the two Crowns end (both play the option)\n")
+    print("| option | games | decided by 20:00 | mean abs(g) | 1.5x apart at 16:00 (score) | median minute decided |")
+    print("|---|---|---|---|---|---|")
+    for opt in OPTS:
+        rows = pool(opt, "crown")
+        if not rows:
+            continue
+        dec = [r for r in rows if r["res"] in ("W", "L")]
+        apart = 0
+        for r in rows:
+            g16 = r.get("g16")
+            if g16 is not None and abs(g16) > math.log(1.5):
+                apart += 1
+        print("| %s | %d | %d | %.2f | %d | %s |" % (opt, len(rows), len(dec), mean([abs(r["g"]) for r in rows]), apart,
+                                                     mmss(med([r["end"] for r in dec]))))
     if "--games" in sys.argv:
         for opp in OPPS:
             for opt in OPTS:
