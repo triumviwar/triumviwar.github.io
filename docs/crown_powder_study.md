@@ -26,7 +26,7 @@ and does reach the floor late), **B, the 35% floor**, is the smallest and quiete
 +11% powder over 20 minutes, mostly after 12:00, it never pays more than a fresh Mill, it needs no new button or building,
 it measured the best against the Brood (+0.30 in g, t 1.5) and neutral elsewhere, and it did not make the mirror snowball
 (the two Crowns ended 1.5 times apart at 16:00 in 3 of 20 games, the baseline in 6). Of the others, D (BUY POWDER) was the
-best against the Clockwork (+0.40, t 0.9) but is a gold-to-powder exchange with no exposure (no building to raid), C (the
+best against the Clockwork (+0.40, t 0.9) but is a gold-to-powder exchange with no exposure (no building to raid) and leaned to a snowball in the mirror (1.5 times apart at 16:00 in 10 of 20, the baseline 6), C (the
 Nitre Beds) leaned worse against the Brood and the Clockwork and made the mirror end sooner and more often (11 of 20
 decided, baseline 7), and A changes nothing for the computer before 16:00 (its halls are not spent).
 
@@ -79,9 +79,75 @@ most gold; on the bench the gold is free (it builds no army), in a game it is no
 
 ## The games
 
+How to read the mirror: both Crowns play the option, so "survived" and "won or led" are for the side the queue calls the
+Crown (its seeds and spots), and the mean g leans to that side (+0.45 in the baseline: the spots, not the option). What tells
+in the mirror is the last table: how often the two ended far apart (a snowball) and how often the game was decided.
+
 (The tables below are `python3 tools/study/crown_powder_study.py report`.)
 
-REPORT
+<!-- REPORT -->
+### Crown v the Brood
+
+| option | games | survived | won or led (won) | mean g | g 14:00 | v base: d g (t) b/w | v base: d g14 (t) | median defeat | income 8/12/16 (x enemy) | army 8/12/16 (x enemy) | dry minutes | powder bank 8/12/16 | gold bank 8/12/16 | musket men armed/bayonet 12 | armed/bayonet 16 | made: nitre / bought |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| base | 20 | 14 | 5 (1) | -0.54 | 0.12 |  |  | 18:13 | 1.43 / 1.20 / 1.00 | 2.17 / 1.70 / 0.97 | 1.1 | 68 / 155 / 46 | 220 / 128 / 90 | 14 / 0 | 13 / 0 | 0 / 0 |
+| salt2500 | 20 | 14 | 6 (0) | -0.66 | 0.06 | -0.12 (-0.3) 4/6 | -0.07 (-0.5) | 16:54 | 1.38 / 1.10 / 0.97 | 2.11 / 1.75 / 0.95 | 0.1 | 100 / 140 / 196 | 105 / 142 / 130 | 21 / 0 | 18 / 0 | 0 / 0 |
+| floor35 | 20 | 16 | 7 (2) | -0.24 | 0.09 | +0.30 (1.5) 6/2 | -0.03 (-0.4) | 16:50 | 1.44 / 1.09 / 1.12 | 2.26 / 1.52 / 0.74 | 1.2 | 97 / 177 / 46 | 288 / 82 / 223 | 16 / 0 | 18 / 0 | 0 / 0 |
+| nitre | 20 | 10 | 8 (0) | -0.95 | 0.02 | -0.41 (-1.1) 5/5 | -0.10 (-0.8) | 18:30 | 1.44 / 1.16 / 1.02 | 2.72 / 1.79 / 1.10 | 0.6 | 92 / 202 / 42 | 100 / 132 / 40 | 17 / 0 | 17 / 1 | 356 / 0 |
+| buy | 20 | 15 | 5 (0) | -0.67 | 0.08 | -0.13 (-0.4) 5/5 | -0.04 (-0.3) | 17:34 | 1.40 / 1.10 / 0.93 | 2.23 / 1.48 / 0.81 | 0.5 | 91 / 134 / 113 | 182 / 148 / 96 | 15 / 0 | 14 / 0 | 0 / 248 |
+
+### Crown v the Clockwork
+
+| option | games | survived | won or led (won) | mean g | g 14:00 | v base: d g (t) b/w | v base: d g14 (t) | median defeat | income 8/12/16 (x enemy) | army 8/12/16 (x enemy) | dry minutes | powder bank 8/12/16 | gold bank 8/12/16 | musket men armed/bayonet 12 | armed/bayonet 16 | made: nitre / bought |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| base | 20 | 14 | 9 (1) | -0.66 | -0.46 |  |  | 16:05 | 0.76 / 0.67 / 0.77 | 0.91 / 0.42 / 1.47 | 2.9 | 95 / 4 / 0 | 31 / 157 / 851 | 8 / 0 | 21 / 11 | 0 / 0 |
+| salt2500 | 20 | 17 | 8 (0) | -0.52 | -0.42 | +0.14 (0.5) 5/5 | +0.04 (0.4) | 13:20 | 0.77 / 0.66 / 0.78 | 0.85 / 0.68 / 0.90 | 2.2 | 112 / 8 / 0 | 32 / 288 / 335 | 16 / 0 | 21 / 10 | 0 / 0 |
+| floor35 | 20 | 16 | 6 (2) | -0.56 | -0.42 | +0.10 (0.3) 7/3 | +0.04 (0.4) | 16:20 | 0.79 / 0.72 / 0.74 | 0.95 / 0.48 / 0.66 | 1.6 | 74 / 3 / 0 | 47 / 235 / 293 | 14 / 0 | 23 / 0 | 0 / 0 |
+| nitre | 20 | 16 | 3 (1) | -0.76 | -0.51 | -0.10 (-0.3) 7/3 | -0.05 (-0.5) | 15:58 | 0.77 / 0.69 / 0.73 | 0.87 / 0.42 / 0.29 | 0.5 | 96 / 32 / 22 | 14 / 31 / 50 | 13 / 0 | 21 / 0 | 558 / 0 |
+| buy | 20 | 17 | 8 (2) | -0.26 | -0.28 | +0.40 (0.9) 7/3 | +0.18 (1.3) | 19:14 | 0.81 / 0.75 / 0.88 | 0.99 / 0.80 / 0.86 | 1.4 | 100 / 26 / 1 | 84 / 18 / 178 | 16 / 0 | 21 / 1 | 0 / 532 |
+| salt2500+nitre | 1 | 0 | 0 (0) | -2.69 | -1.24 |  |  | 14:40 | 0.81 / 0.61 /  | 0.79 /  /  | 0.0 | 101 / 73 /  | 31 / 0 /  | 0 / 0 |  /  | 0 / 0 |
+
+### Crown v the Crown (mirror)
+
+| option | games | survived | won or led (won) | mean g | g 14:00 | v base: d g (t) b/w | v base: d g14 (t) | median defeat | income 8/12/16 (x enemy) | army 8/12/16 (x enemy) | dry minutes | powder bank 8/12/16 | gold bank 8/12/16 | musket men armed/bayonet 12 | armed/bayonet 16 | made: nitre / bought |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| base | 20 | 18 | 12 (5) | +0.45 | 0.14 |  |  | 18:06 | 1.00 / 1.00 / 1.01 | 1.20 / 1.31 / 1.27 | 2.2 | 54 / 0 / 39 | 20 / 24 / 67 | 16 / 1 | 9 / 3 | 0 / 0 |
+| salt2500 | 20 | 16 | 9 (4) | -0.01 | 0.03 | -0.47 (-1.3) 4/6 | -0.11 (-1.9) | 18:33 | 0.98 / 0.99 / 0.92 | 1.08 / 1.21 / 0.71 | 2.1 | 58 / 1 / 0 | 25 / 148 / 47 | 15 / 0 | 10 / 2 | 0 / 0 |
+| floor35 | 20 | 18 | 11 (5) | +0.51 | 0.27 | +0.05 (0.1) 4/6 | +0.13 (1.4) | 19:43 | 0.99 / 1.08 / 1.05 | 1.31 / 1.96 / 1.26 | 1.5 | 49 / 8 / 198 | 28 / 93 / 80 | 18 / 0 | 17 / 2 | 0 / 0 |
+| nitre | 20 | 17 | 15 (8) | +0.73 | 0.15 | +0.28 (0.7) 6/4 | +0.01 (0.1) | 15:54 | 0.96 / 1.04 / 1.25 | 1.04 / 1.24 / 2.06 | 0.7 | 62 / 18 / 134 | 16 / 16 / 12 | 14 / 1 | 16 / 0 | 541 / 0 |
+| buy | 20 | 18 | 14 (7) | +0.75 | 0.26 | +0.29 (0.7) 8/2 | +0.12 (1.3) | 18:59 | 0.99 / 1.07 / 1.20 | 0.98 / 1.36 / 1.70 | 0.9 | 59 / 15 / 60 | 26 / 45 / 30 | 16 / 2 | 18 / 2 | 0 / 382 |
+
+### The Mills (medians, the Crown side): Mills built / hands on them / saltpetre left in all its halls / halls, at 8:00, 12:00, 16:00
+
+| matchup | option | 8:00 | 12:00 | 16:00 |
+|---|---|---|---|---|
+| brood | base | 1 / 6 / 2362 / 2 | 4 / 8 / 4520 / 4 | 5 / 8 / 5424 / 5 |
+| brood | salt2500 | 2 / 6 / 4700 / 2 | 4 / 6 / 9272 / 4 | 4 / 9 / 8987 / 4 |
+| brood | floor35 | 1 / 6 / 2350 / 2 | 3 / 7 / 4546 / 4 | 5 / 6 / 6324 / 6 |
+| brood | nitre | 2 / 6 / 2357 / 2 | 4 / 6 / 4548 / 4 | 4 / 4 / 6622 / 6 |
+| brood | buy | 1 / 6 / 2358 / 2 | 4 / 8 / 4582 / 4 | 4 / 6 / 5424 / 5 |
+| clockwork | base | 2 / 6 / 3590 / 3 | 4 / 6 / 4507 / 4 | 5 / 8 / 6617 / 6 |
+| clockwork | salt2500 | 2 / 6 / 4674 / 2 | 4 / 6 / 9029 / 4 | 5 / 8 / 11197 / 5 |
+| clockwork | floor35 | 2 / 6 / 2342 / 2 | 3 / 6 / 4320 / 4 | 4 / 9 / 4271 / 4 |
+| clockwork | nitre | 2 / 6 / 2332 / 2 | 4 / 6 / 4430 / 4 | 4 / 8 / 5286 / 5 |
+| clockwork | buy | 2 / 6 / 2344 / 2 | 4 / 7 / 4534 / 4 | 5 / 7 / 5716 / 5 |
+| clockwork | salt2500+nitre | 2 / 6 / 4623 / 2 | 2 / 0 / 4792 / 2 |  /  /  /  |
+| crown | base | 2 / 7 / 3012 / 2 | 3 / 10 / 4141 / 4 | 4 / 11 / 4450 / 5 |
+| crown | salt2500 | 2 / 4 / 7127 / 3 | 4 / 6 / 7922 / 4 | 4 / 6 / 8582 / 4 |
+| crown | floor35 | 2 / 6 / 3607 / 3 | 4 / 10 / 4435 / 4 | 4 / 12 / 4312 / 4 |
+| crown | nitre | 2 / 5 / 3582 / 3 | 4 / 8 / 4548 / 4 | 5 / 10 / 6201 / 6 |
+| crown | buy | 2 / 5 / 3605 / 3 | 4 / 7 / 4536 / 4 | 4 / 7 / 3998 / 4 |
+
+### The mirror: how far apart the two Crowns end (both play the option)
+
+| option | games | decided by 20:00 | mean abs(g) | 1.5x apart at 16:00 (score) | median minute decided |
+|---|---|---|---|---|---|
+| base | 20 | 7 | 1.20 | 6 | 16:40 |
+| salt2500 | 20 | 8 | 1.20 | 6 | 18:33 |
+| floor35 | 20 | 7 | 1.17 | 3 | 15:35 |
+| nitre | 20 | 11 | 1.50 | 7 | 17:05 |
+| buy | 20 | 9 | 1.33 | 10 | 18:02 |
+<!-- /REPORT -->
 
 ## Claude's choices (for the owner to confirm or change)
 
