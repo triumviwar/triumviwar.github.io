@@ -6,7 +6,7 @@ on the scripted economy bench. Nothing a player sees changes unless a switch is 
 
 ## In short
 
-**None of the four options measurably changed how the Crown computer does.** Over 300 games (Crown Hard OPTIMAL v the
+**None of the four options measurably changed how the Crown computer does.** Over 300 games, 360 with the A+C pair (Crown Hard OPTIMAL v the
 Brood, v the Clockwork and the Crown mirror, 20 games per option per matchup, to 20:00) every option stayed within the
 noise of the baseline (no paired difference reached t 2 in its two pooled blocks). The reason is in the numbers: **the
 saltpetre is not what runs out.** At 16:00 the Crown computer's halls still hold 4,300 to 6,600 saltpetre between them
@@ -30,6 +30,10 @@ best against the Clockwork (+0.40, t 0.9) but is a gold-to-powder exchange with 
 Nitre Beds) leaned worse against the Brood and the Clockwork and made the mirror end sooner and more often (11 of 20
 decided, baseline 7), and A changes nothing for the computer before 16:00 (its halls are not spent).
 
+**A and C together** (`salt2500+nitre`, 60 more games): also within the noise against the Brood (-0.02) and the Clockwork
+(+0.21, t 0.9); in the mirror the games ended decided more often (12 of 20, the baseline 7), as with C alone. Over 360 games
+in all, no option nor the pair is a clear gain, and the beds (with or without A) are the ones that make the mirror end.
+
 ## The options (all OFF; `-- powder:<option>`, several with `+`: `powder:salt2500+nitre`)
 
 | option | switch | what it does | where |
@@ -48,7 +52,7 @@ one site at a time and one a minute at most, whenever it can pay 175 (C).
 - **The games**: the crown-1000 jobs' 10 games per matchup (5 maps: Greenhold, Ashford Crossing, Mirewood, Frostfang,
   Cinder Steps; 2 rounds with the start spots swapped; their seeds), Crown Hard OPTIMAL v Brood / Clockwork / Crown Hard
   OPTIMAL, to 20:00, on 0.38.86 (both crown-1000 jobs' kept changes on). Two blocks of the same 10 per option per matchup,
-  pooled: 20 games a cell, 300 in all (plus the A+C combination, below). In the mirror BOTH Crowns play the option.
+  pooled: 20 games a cell, 300 in all, and 60 more for the A+C pair. In the mirror BOTH Crowns play the option.
   `tools/study/crown_powder_study.py run <opt> <opp> <block>`, the queue `tools/study/crown_powder_queue.sh`, the tables
   `python3 tools/study/crown_powder_study.py report`.
 - **The score** (crown_1000_brood's): g = ln of (income + 2 x army) Crown over the enemy's at 20:00 or the defeat, a
@@ -95,6 +99,7 @@ in the mirror is the last table: how often the two ended far apart (a snowball) 
 | floor35 | 20 | 16 | 7 (2) | -0.24 | 0.09 | +0.30 (1.5) 6/2 | -0.03 (-0.4) | 16:50 | 1.44 / 1.09 / 1.12 | 2.26 / 1.52 / 0.74 | 1.2 | 97 / 177 / 46 | 288 / 82 / 223 | 16 / 0 | 18 / 0 | 0 / 0 |
 | nitre | 20 | 10 | 8 (0) | -0.95 | 0.02 | -0.41 (-1.1) 5/5 | -0.10 (-0.8) | 18:30 | 1.44 / 1.16 / 1.02 | 2.72 / 1.79 / 1.10 | 0.6 | 92 / 202 / 42 | 100 / 132 / 40 | 17 / 0 | 17 / 1 | 356 / 0 |
 | buy | 20 | 15 | 5 (0) | -0.67 | 0.08 | -0.13 (-0.4) 5/5 | -0.04 (-0.3) | 17:34 | 1.40 / 1.10 / 0.93 | 2.23 / 1.48 / 0.81 | 0.5 | 91 / 134 / 113 | 182 / 148 / 96 | 15 / 0 | 14 / 0 | 0 / 248 |
+| salt2500+nitre | 20 | 15 | 3 (1) | -0.56 | 0.06 | -0.02 (-0.0) 4/5 | -0.07 (-0.4) | 16:41 | 1.40 / 1.11 / 0.98 | 2.29 / 1.60 / 1.01 | 0.2 | 104 / 180 / 222 | 138 / 86 / 85 | 17 / 0 | 13 / 0 | 226 / 0 |
 
 ### Crown v the Clockwork
 
@@ -105,7 +110,7 @@ in the mirror is the last table: how often the two ended far apart (a snowball) 
 | floor35 | 20 | 16 | 6 (2) | -0.56 | -0.42 | +0.10 (0.3) 7/3 | +0.04 (0.4) | 16:20 | 0.79 / 0.72 / 0.74 | 0.95 / 0.48 / 0.66 | 1.6 | 74 / 3 / 0 | 47 / 235 / 293 | 14 / 0 | 23 / 0 | 0 / 0 |
 | nitre | 20 | 16 | 3 (1) | -0.76 | -0.51 | -0.10 (-0.3) 7/3 | -0.05 (-0.5) | 15:58 | 0.77 / 0.69 / 0.73 | 0.87 / 0.42 / 0.29 | 0.5 | 96 / 32 / 22 | 14 / 31 / 50 | 13 / 0 | 21 / 0 | 558 / 0 |
 | buy | 20 | 17 | 8 (2) | -0.26 | -0.28 | +0.40 (0.9) 7/3 | +0.18 (1.3) | 19:14 | 0.81 / 0.75 / 0.88 | 0.99 / 0.80 / 0.86 | 1.4 | 100 / 26 / 1 | 84 / 18 / 178 | 16 / 0 | 21 / 1 | 0 / 532 |
-| salt2500+nitre | 1 | 0 | 0 (0) | -2.69 | -1.24 |  |  | 14:40 | 0.81 / 0.61 /  | 0.79 /  /  | 0.0 | 101 / 73 /  | 31 / 0 /  | 0 / 0 |  /  | 0 / 0 |
+| salt2500+nitre | 20 | 16 | 7 (2) | -0.45 | -0.38 | +0.21 (0.9) 7/3 | +0.08 (0.7) | 16:14 | 0.78 / 0.72 / 0.76 | 0.99 / 0.73 / 0.89 | 0.7 | 101 / 16 / 27 | 31 / 54 / 110 | 17 / 0 | 15 / 0 | 519 / 0 |
 
 ### Crown v the Crown (mirror)
 
@@ -116,6 +121,7 @@ in the mirror is the last table: how often the two ended far apart (a snowball) 
 | floor35 | 20 | 18 | 11 (5) | +0.51 | 0.27 | +0.05 (0.1) 4/6 | +0.13 (1.4) | 19:43 | 0.99 / 1.08 / 1.05 | 1.31 / 1.96 / 1.26 | 1.5 | 49 / 8 / 198 | 28 / 93 / 80 | 18 / 0 | 17 / 2 | 0 / 0 |
 | nitre | 20 | 17 | 15 (8) | +0.73 | 0.15 | +0.28 (0.7) 6/4 | +0.01 (0.1) | 15:54 | 0.96 / 1.04 / 1.25 | 1.04 / 1.24 / 2.06 | 0.7 | 62 / 18 / 134 | 16 / 16 / 12 | 14 / 1 | 16 / 0 | 541 / 0 |
 | buy | 20 | 18 | 14 (7) | +0.75 | 0.26 | +0.29 (0.7) 8/2 | +0.12 (1.3) | 18:59 | 0.99 / 1.07 / 1.20 | 0.98 / 1.36 / 1.70 | 0.9 | 59 / 15 / 60 | 26 / 45 / 30 | 16 / 2 | 18 / 2 | 0 / 382 |
+| salt2500+nitre | 20 | 18 | 16 (10) | +1.08 | 0.28 | +0.62 (1.8) 7/3 | +0.13 (1.4) | 17:55 | 0.99 / 1.15 / 1.22 | 1.07 / 1.44 / 1.81 | 0.5 | 60 / 40 / 168 | 20 / 30 / 7 | 17 / 0 | 30 / 1 | 473 / 0 |
 
 ### The Mills (medians, the Crown side): Mills built / hands on them / saltpetre left in all its halls / halls, at 8:00, 12:00, 16:00
 
@@ -126,17 +132,19 @@ in the mirror is the last table: how often the two ended far apart (a snowball) 
 | brood | floor35 | 1 / 6 / 2350 / 2 | 3 / 7 / 4546 / 4 | 5 / 6 / 6324 / 6 |
 | brood | nitre | 2 / 6 / 2357 / 2 | 4 / 6 / 4548 / 4 | 4 / 4 / 6622 / 6 |
 | brood | buy | 1 / 6 / 2358 / 2 | 4 / 8 / 4582 / 4 | 4 / 6 / 5424 / 5 |
+| brood | salt2500+nitre | 1 / 6 / 4704 / 2 | 4 / 6 / 9272 / 4 | 5 / 7 / 11038 / 5 |
 | clockwork | base | 2 / 6 / 3590 / 3 | 4 / 6 / 4507 / 4 | 5 / 8 / 6617 / 6 |
 | clockwork | salt2500 | 2 / 6 / 4674 / 2 | 4 / 6 / 9029 / 4 | 5 / 8 / 11197 / 5 |
 | clockwork | floor35 | 2 / 6 / 2342 / 2 | 3 / 6 / 4320 / 4 | 4 / 9 / 4271 / 4 |
 | clockwork | nitre | 2 / 6 / 2332 / 2 | 4 / 6 / 4430 / 4 | 4 / 8 / 5286 / 5 |
 | clockwork | buy | 2 / 6 / 2344 / 2 | 4 / 7 / 4534 / 4 | 5 / 7 / 5716 / 5 |
-| clockwork | salt2500+nitre | 2 / 6 / 4623 / 2 | 2 / 0 / 4792 / 2 |  /  /  /  |
+| clockwork | salt2500+nitre | 2 / 6 / 4705 / 2 | 4 / 6 / 9120 / 4 | 4 / 6 / 11112 / 5 |
 | crown | base | 2 / 7 / 3012 / 2 | 3 / 10 / 4141 / 4 | 4 / 11 / 4450 / 5 |
 | crown | salt2500 | 2 / 4 / 7127 / 3 | 4 / 6 / 7922 / 4 | 4 / 6 / 8582 / 4 |
 | crown | floor35 | 2 / 6 / 3607 / 3 | 4 / 10 / 4435 / 4 | 4 / 12 / 4312 / 4 |
 | crown | nitre | 2 / 5 / 3582 / 3 | 4 / 8 / 4548 / 4 | 5 / 10 / 6201 / 6 |
 | crown | buy | 2 / 5 / 3605 / 3 | 4 / 7 / 4536 / 4 | 4 / 7 / 3998 / 4 |
+| crown | salt2500+nitre | 2 / 6 / 5962 / 2 | 4 / 7 / 9272 / 4 | 5 / 10 / 10926 / 5 |
 
 ### The mirror: how far apart the two Crowns end (both play the option)
 
@@ -147,6 +155,7 @@ in the mirror is the last table: how often the two ended far apart (a snowball) 
 | floor35 | 20 | 7 | 1.17 | 3 | 15:35 |
 | nitre | 20 | 11 | 1.50 | 7 | 17:05 |
 | buy | 20 | 9 | 1.33 | 10 | 18:02 |
+| salt2500+nitre | 20 | 12 | 1.60 | 6 | 16:41 |
 <!-- /REPORT -->
 
 ## Claude's choices (for the owner to confirm or change)
@@ -183,7 +192,7 @@ in the mirror is the last table: how often the two ended far apart (a snowball) 
 4. If D is kept: is a 30-second merchant right, or should it be a Town Hall queue item (it would then compete with the
    Labourers, a real opportunity cost)?
 
-## The tests (options off, 0.38.86)
+## The tests (options off; run on 0.38.86, the new test and test_exhaust again after merging main 0.38.87)
 
 `tools/test_crown_powder.gd` (new): every option on and off: PASS. The AI and Crown tests (tools/test_ai_*.gd,
 tools/test_crown_*.gd, tools/test_exhaust.gd, 46 scripts) with the options off: all pass but test_ai_rush_followup (Crown v
