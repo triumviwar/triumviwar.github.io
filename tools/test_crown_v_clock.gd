@@ -45,6 +45,10 @@ func _run() -> void:
 	U.step(g, 0.5)
 	var ai := _ai(g, 0)
 	check("[gate] a Crown against the Clockwork", AICrownVClock.vs(ai))
+	# [cut] (crown-rule-cleanup: the rules AICrownRules.CUT turns off against the Clockwork)
+	for r in ["crownarmy", "armyfloor", "gunscoach", "gunsfirst", "line", "screen", "cavmicro", "defence"]:
+		check("[cut] %s cut against the Clockwork" % r, AICrownRules.cut(ai, r))
+	check("[cut] the hold kept against the Clockwork", not AICrownRules.cut(ai, "hold"))
 	# [hall2]
 	ai._bo_plan = [{"do": "build", "k": "foundry", "at": {"labs": 13}}, {"do": "army", "k": "musketeer", "cap": 8},
 		{"do": "hall", "n": 2, "at": {"labs": 17}}]
@@ -75,6 +79,8 @@ func _run() -> void:
 		U.step(g2, 0.5)
 		var a2 := _ai(g2, 0)
 		check("[gate] not against the %s" % foe, not AICrownVClock.vs(a2))
+		check("[cut] the army clock not cut against the %s" % foe, not AICrownRules.cut(a2, "crownarmy"))
+		check("[cut] the line not cut against the %s" % foe, not AICrownRules.cut(a2, "line"))
 		g2.players[0]["res2"] = 0.0
 		g2.players[0]["gold"] = 900
 		check("[gate] no bayonet rule against the %s" % foe, not AICrownVClock.dry_musket(a2))
