@@ -1,0 +1,33 @@
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:37] P2 Crown's plan: Timing attack, a build order of 12 steps from here (scripts/ai_crown.gd)
+[01:37] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Timing attack (a timing attack)
+[02:52] P2 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Timing attack (it switched once this stage already; Siege push waits)
+[02:55] P2 Crown's plan: the army on time: 0 of army (with what trains) against the 60 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[03:25] P2 Crown's plan: a Farm at its new hall at once (0 s after it stood)
+[03:55] P2 Crown's plan: the army on time: 180 of army (with what trains) against the 191 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[04:51] P2 Crown's plan: the army first: 180 of army against the 320 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[05:15] P2 Crown's plan: the army on time: 420 of army (with what trains) against the 421 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[06:40] P2 Crown's plan: the opening is over (the timing's window is shut: the Clockwork's economy is paying off; its waves weigh what it reckons from here): the milestones take over
+[06:41] P2 Crown's plan: milestone: Barracks 3 (31 labourers, 2 halls, army 22 supply)
+[06:43] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[07:16] P2 Crown's plan: the timing waits: 950 of army against the 919 it reckons the Clockwork has (it wants 1.15 times)
+[07:46] P2 Crown's plan: the timing waits: 1190 of army against the 1114 it reckons the Clockwork has (it wants 1.15 times)
+[08:16] P2 Crown's plan: the timing waits: 1310 of army against the 1310 it reckons the Clockwork has (it wants 1.15 times)
+[08:48] P2 Crown's plan: its wave stays out: a raid worth 381 at home is left to the soldiers there (the wave is worth 1004)
+[09:02] P2 Crown's plan: milestone: Foundry 2 (47 labourers, 3 halls, army 37 supply)
+[09:20] P2 Crown's plan: milestone: Armoury 1 (47 labourers, 4 halls, army 37 supply)
+[09:41] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[10:09] P2 Crown's plan: trains a Drummer for its Marching Band (26 soldiers)
+[10:23] P2 Crown's plan: trains a Fifer for its Marching Band (26 soldiers)
+[10:28] P2 Crown's plan: the army first: 1550 of army against the 2660 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[10:34] P2 Crown's plan: trains a Piper for its Marching Band (10 soldiers)
+[11:28] P2 Crown's plan: the army first: 1365 of army against the 2400 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[12:26] P2 Crown's plan: the wave waits: 1315 of army against the 1440 it knows (it wants 1.1 times)
+[12:42] P2 Crown's plan: trains a Drummer for its Marching Band (31 soldiers)
+[12:43] P2 Crown's plan: trains a Fifer for its Marching Band (31 soldiers)
+[12:44] P2 Crown's plan: trains a Piper for its Marching Band (31 soldiers)
+[13:20] P2 Crown's plan: trains a Fifer for its Marching Band (36 soldiers)
+[13:26] P2 Crown's plan: trains a Piper for its Marching Band (32 soldiers)
+[13:56] P2 Crown's plan: trains a Drummer for its Marching Band (31 soldiers)
+[19:35] P2 Crown's plan: Siege push, a build order of 1 steps from here (scripts/ai_crown.gd)
+[19:35] P2 Crown's plan: optimal: reads DEFENSIVE [turrets or rooted defenders]: picks Siege push (a siege to break its defences)
