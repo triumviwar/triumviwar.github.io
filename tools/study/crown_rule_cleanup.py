@@ -110,17 +110,22 @@ if __name__ == "__main__":
         base = arg("--base", None)
         names = [x for x in sys.argv[3:] if not x.startswith("--") and x != base]
         brow = cb.block(base) if base else None
-        print("| block | groups on | n | mean g | survived | won/led | median defeat | inc 8 | inc 12 | army 8 | army 12 | g14 | v base d (t) | better/worse |")
-        print("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+        print("| block | groups on | games | mean g | survived | won/led | median defeat | inc 8 | inc 12 | army 8 | army 12 | g14 | v base: d g (t) · d g14 (t) · better/worse |")
+        print("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
         for n in ([base] if base else []) + names:
             s = cb.summary(n, cb.block(n), brow if n != base else None)
+            parts = [cb.block(x) for x in n.split("+")]
+            allr = [r for pp in parts for r in pp.values()]
+            surv = sum(1 for r in allr if r["res"] != "L")
+            wl = sum(1 for r in allr if r["res"] in ("W", "w"))
+            bt = sorted(r["beaten"] for r in allr if r["beaten"])
+            med = st.median(bt) if bt else None
             gp = os.path.join(cb.DATA, n.split("+")[0], "groups.txt")
             gs = open(gp).read().strip() if os.path.exists(gp) else "?"
-            dt = "%+.2f (%.1f)" % (s["d"], s["t"]) if "d" in s else ""
-            bw = "%d/%d" % (s["better"], s["worse"]) if "d" in s else ""
-            print("| %s | %s | %d | %+.2f | %d | %d | %s | %s | %s | %s | %s | %s | %s | %s |" % (
-                n, gs or "none", s["n"], s["g"], s["surv"], s["wl"], cb.mmss(s["beat_med"]), cb.f2(s["inc8"]),
-                cb.f2(s["inc12"]), cb.f2(s["army8"]), cb.f2(s["army12"]), cb.f2(s["g14"]), dt, bw))
+            dt = ("%+.2f (%.1f) · %+.2f (%.1f) · %d/%d" % (s["d"], s["t"], s.get("d14", 0), s.get("t14", 0), s["better"], s["worse"])) if "d" in s else ""
+            print("| %s | %s | %d | %+.2f | %d | %d | %s | %s | %s | %s | %s | %s | %s |" % (
+                n, gs or "none", len(allr), s["g"], surv, wl, cb.mmss(med), cb.f2(s["inc8"]),
+                cb.f2(s["inc12"]), cb.f2(s["army8"]), cb.f2(s["army12"]), cb.f2(s["g14"]), dt))
     elif cmd == "fired":
         opp = sys.argv[2]
         setup(opp)
