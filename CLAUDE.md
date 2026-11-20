@@ -25,6 +25,16 @@
 
 ## Current work
 
+- GUN CREW FETCH (owner 2026-11-20 08:34 "Horses are not supposed to go alone. Without a hauler the cannon operator should
+  go from the foundry and get the horse on a leash back to the foundry"; job gun-crew-fetch, 0.38.87, docs/gun_crew_fetch.md,
+  scripts/gun_crew.gd GunCrew, tools/test_gun_crew_fetch.gd, pictures docs/shots/gun_crew_fetch/): a gun's horse WAITS at
+  the breeder; a free Town Hall hauler fetches it, else a GUN CREWMAN (Defs.UNITS.gun_crewman, order "gun_fetch",
+  Unit.fetch_home) comes out of the Foundry, waits at the breeder while it's bred, leads it (and the Foundry's other ready
+  horses within HAUL.batch) on the leash, hitches it and goes back in; a nearer free hauler takes over; killed: the horse
+  stays, a new one after 4 s; cancel: the horse is let go where it stands; not selectable (picks his Foundry), not saved
+  (rebuilt). Haulers and crewmen lead a horse to its own hitch spot (Unit.hitch_pref). Stand-in art: the Labourer with a
+  steel helmet (tools/make_gun_crew_art.py). audit_horses.gd counts ALONE / crewmen / GUN WAIT. 9 Claude's choices in the doc.
+
 - ACT 2 PLANNED (owner 2026-11-19 11:06 "Yes write act 2."; job campaign-act2-plan, branch campaign-act2-plan, docs only:
   docs/campaign_act2_plan.md): THE BREAKING 2771-2780, eleven missions d01-d11 on three lines + the 2nd crossing: the
   Crown (Tomasz) d01_minas (the Assembly's conspiracy at Vila Rica) -> d05_aldeia (the swarm at his mission São Rafael;
