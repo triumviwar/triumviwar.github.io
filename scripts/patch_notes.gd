@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.89", "items": [
+		"Studies only (nothing a player uses changed): four ways to give the Crown more powder late in a game were built behind study switches, all off, and measured in 300 computer games and on the economy bench: more saltpetre in a Town Hall, a higher floor for a Mill on spent saltpetre, NITRE BEDS (a small building that turns gold into powder slowly) and BUY POWDER at the Town Hall. None changed how the Crown computer does: its Town Halls still hold most of their saltpetre at 16 minutes, because it keeps too few Labourers at its Mills. The report is for the owner to choose.",
+	]},
 	{"v": "0.38.88", "items": [
 		"THE GUN CREWMAN'S OWN ART: the Foundry's crewman who fetches a gun's horse now walks as a real gunner (a steel morion helmet, the red coat, empty hands) in every direction, drawn with ChatGPT, instead of a Labourer with a grey hat.",
 	]},

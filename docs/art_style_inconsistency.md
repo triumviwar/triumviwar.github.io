@@ -752,6 +752,17 @@ by the creature's radius). Wanted from ChatGPT: an ox cart with an iron cage on 
 empty), then the cage's bars as an overlay strip; the young Sire is a Tyrant Sire drawn at 0.55 (its own young art
 later), Lindqvist, the porters and the hired guns are stand-ins (Musketeers, Labourers).
 
+## Nitre Beds and BUY POWDER (code, crown-powder-study 0.38.88; only with the study switches `powder:nitre` / `powder:buy`)
+
+- `assets/buildings/nitre_beds_{built,damaged,construction,destroyed}.png` (104 x 84, the 3 x 2 footprint): drawn by
+  `tools/draw_nitre_beds.py` with PIL: three long earth beds with white saltpetre crust, a straw lean-to on two posts, a barrel,
+  a dung heap, a small purple sign. Flat pixel shapes, no painted shading: far from the ChatGPT Crown buildings. Redraw only if
+  the owner keeps option C (docs/crown_powder_study.md). Prompt idea: "a small 18th-century saltpetre works: three long low
+  beds of dark earth and dung crusted white with nitre, an open straw-roofed lean-to over the back, a lye barrel, a dung heap,
+  same 3/4 top-down painted style and size as the Powder Mill, transparent background", plus damaged / construction /
+  destroyed states.
+- `assets/icons/nitre_beds.png` (the building shrunk) and `assets/icons/ab_buy_powder.png` (a powder keg and a gold coin),
+  64 x 64, same script.
 ## The Gun Crewman (code-recoloured stand-in, gun-crew-fetch, 0.38.87)
 
 The Foundry's GUN CREWMAN (Defs.UNITS.gun_crewman, docs/gun_crew_fetch.md: he leads a gun's horse from the Horse Breeder

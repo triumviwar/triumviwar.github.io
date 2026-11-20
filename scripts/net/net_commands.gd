@@ -20,7 +20,7 @@ const GAME := {
 	"morph_order": {"own": [0]}, "cancel_morph": {"own": [0]}, "mature_order": {"own": [0]},
 	"bombard_order": {"own": [0]}, "ground_order": {"own": [0]},
 	"lay_line": {"team": 0, "own": [2]}, "buy_train": {"team": 0}, "ride_order": {"own": [0]}, "set_split": {"team": 0},
-	"player_surrender": {"team": 0}, "serpent_order": {"own": [0]}, "wind_up_order": {"own": [0, 1]},      # (the Brass Serpent's card: scripts/brass_serpent.gd)
+	"player_surrender": {"team": 0}, "serpent_order": {"own": [0]}, "buy_powder": {"team": 0}, "wind_up_order": {"own": [0, 1]},      # (the Brass Serpent's card: scripts/brass_serpent.gd)
 }
 
 ## UNIT / BUILDING: methods of an entity the guest owns (the receiver must be theirs).

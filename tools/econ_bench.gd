@@ -59,7 +59,7 @@ func _initialize() -> void:
 		if "=" in a:
 			var kv := a.split("=", true, 1)
 			opts[kv[0]] = kv[1]
-		else:
+		elif not a.begins_with("powder:"):      # (crown-powder-study's switches: scripts/crown_powder.gd)
 			fac = a
 	for s in String(opts["exp"]).split(","):
 		if s != "" and s != "auto":
@@ -108,7 +108,9 @@ func _process(delta: float) -> bool:
 func _drain() -> void:
 	match fac:
 		"crown":
-			pass       # (powder: Game.add_res2 counts it in stats "res2_in"; the bank has no cap that stops a Mill)
+			# (powder: Game.add_res2 counts it in stats "res2_in"; the bank has no cap that stops a Mill. crown-powder-study:
+			# drained so the Nitre Beds, which rest at 400 banked, never rest)
+			g.players[0]["res2"] = 0.0
 		"clockwork":
 			var v := g.tension(0)
 			if v > 0.0:
@@ -124,7 +126,8 @@ func _primary() -> float:
 func _secondary() -> float:
 	if fac == "clockwork":
 		return float(g.stats[0].get("tension_in", 0.0))
-	return float(g.stats[0]["res2_in"])
+	# (crown-powder-study: the powder of Nitre Beds and BUY POWDER too: they put it in the bank, not through add_res2)
+	return float(g.stats[0]["res2_in"]) + float(g.stats[0].get("nitre_powder", 0.0)) + float(g.stats[0].get("bought_powder", 0.0))
 
 
 # ------------------------------------------------------------------ the scripted build
@@ -231,6 +234,10 @@ func _think() -> void:
 	if pending.any(func(p: Array) -> bool: return Defs.is_econ(String(p[1]))):
 		return
 	var order: Array = ["farm", "farm", "powder_mill"] if fac == "crown" else [Defs.GEAR_PRESS, Defs.GEAR_PRESS, "mainspring"]
+	if fac == "crown" and CrownPowder.on("nitre"):
+		order.append(CrownPowder.BEDS)       # (crown-powder-study C: a hall's Nitre Beds by its Farms, as soon as paid)
+	if fac == "crown" and CrownPowder.on("buy"):
+		CrownPowder.buy(g, 0)                # (crown-powder-study D: BUY POWDER whenever the merchant comes)
 	var halls := _halls()
 	halls.sort_custom(func(x: Building, y: Building) -> bool: return _fresh(x) > _fresh(y))
 	for h in halls:
@@ -238,7 +245,10 @@ func _think() -> void:
 			continue
 		for k in order:
 			var per := Defs.econ_per_hall(fac, k)
-			if _of_hall(k, h) >= per or g.econ_count(0, k) >= g.econ_limit(0, k):
+			if k == CrownPowder.BEDS:
+				if _of_hall(k, h) >= 1:
+					continue
+			elif _of_hall(k, h) >= per or g.econ_count(0, k) >= g.econ_limit(0, k):
 				continue
 			var big: bool = fac == "clockwork" and k == Defs.GEAR_PRESS and String(opts["press"]) == "big"
 			if GearNet.pickable(k):
@@ -524,6 +534,10 @@ func _row() -> void:
 	var row := {"min": rows.size() + 1, "p": int(p - float(last["p"])), "s": snappedf(s - float(last["s"]), 0.1),
 		"p_cum": int(p), "s_cum": snappedf(s, 0.1), "workers": ws.size(), "working": working, "econ": econ,
 		"left": int(_left()), "bank": _gold(), "spent": int(g.stats[0]["spent"]), "supply": g.supply_used(0), "cap": int(g.players[0]["cap"])}
+	row["made"] = CrownPowder.made_of(g, 0)      # (crown-powder-study)
+	row["salt"] = 0
+	for h in _halls():
+		row["salt"] += int(h.lode)
 	row["value"] = int(row["p"] + row["s"])
 	row["value_cum"] = int(p + s)
 	row["per_worker"] = snappedf(float(row["value"]) / maxf(1.0, float(working)), 0.1)

@@ -846,6 +846,8 @@ static func supply_kind(faction: String) -> String:
 ## or the Ore Crusher; the Pressure Relay and the Rail Yard only while the Line is on.
 static func build_list(faction: String) -> Array:
 	var l: Array = FACTIONS[faction]["build"].duplicate()
+	if faction == "crown" and CrownPowder.on("nitre"):
+		l.insert(l.find("powder_mill") + 1, "nitre_beds")      # (crown-powder-study, option C: scripts/crown_powder.gd)
 	if faction == "clockwork":
 		if gear_mode:
 			l[l.find("ore_crusher")] = GEAR_PRESS
@@ -1625,6 +1627,11 @@ const BUILDINGS := {
 		"name": "Powder Mill", "hp": 600, "armor": 1, "cost": 100, "time": 30.0, "size": Vector2i(3, 3),
 		"supply": 0, "sight": 5, "trains": [], "crew": 6, "faction": "crown",
 		"about": "Up to 6 labourers grind its Town Hall's saltpetre into black powder for the bank: it buys musketeers and wagons and pays for refilling soldiers' powder. It grinds less as that saltpetre runs down, and 15% once it is spent. Soldiers and wagons nearby refill here.",
+	},
+	"nitre_beds": {
+		"name": "Nitre Beds", "hp": 450, "armor": 1, "cost": 125, "time": 25.0, "size": Vector2i(3, 2),
+		"supply": 0, "sight": 5, "trains": [], "faction": "crown",
+		"about": "A STUDY BUILDING (crown-powder-study, on only with the match switch powder:nitre). Beds of dung and earth that grow saltpetre: it turns gold into powder slowly by itself (3 gold a powder, 40 powder a minute), never as fast as a fresh Mill. It must stand by a Farm or a Horse Breeder and near a Town Hall; one per Town Hall. It rests while 400 powder are banked.",
 	},
 	"horse_breeder": {
 		"name": "Horse Breeder", "hp": 500, "armor": 1, "cost": 100, "time": 25.0, "size": Vector2i(4, 3),
@@ -2451,6 +2458,7 @@ const TIPS := {
 	"armoury": "Researches Armour, the musket locks, the socket bayonet and the guns' drills. Refits soldiers too.",
 	"foundry": "Casts cannons and mortars, rigs balloons, builds powder wagons (each needs a horse: one standing here, else a Town Hall hauler leads one over from the Horse Breeder, or with none free a gun crewman comes out and leads it over; a horse never walks over alone).",
 	"farm": "Ripens into a 380-gold harvest about every 40 s with a full crew (up to 8 Labourers).",
+	"nitre_beds": "Turns gold into powder slowly (3 gold a powder, 40 a minute). By a Farm or Horse Breeder; one per Town Hall.",
 	"powder_mill": "Up to 6 Labourers grind the Hall's saltpetre into powder (you start with none). Unlocks Musketeers. Soldiers and wagons nearby refill here.",
 	"church": "Sends out one Missionary.",
 	# Crown research
@@ -2532,6 +2540,7 @@ const SHORT := {
 	"foundry": "Casts cannons and mortars, rigs balloons, builds powder wagons.",
 	"farm": "Labourers grow gold here: a 380-gold harvest about every 40 s.",
 	"powder_mill": "Labourers grind saltpetre into powder. Soldiers refill nearby.",
+	"nitre_beds": "Turns gold into powder slowly. By a Farm or Horse Breeder.",
 	"horse_breeder": "Sells horses (40 gold) for cavalry, guns and wagons.",
 	"church": "Sends out one Missionary.",
 	# Clockwork buildings

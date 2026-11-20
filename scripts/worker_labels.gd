@@ -493,7 +493,7 @@ static func _tip_mill(g: Game, b: Building) -> Dictionary:
 	var st := Loc.t("%d of %d at work") % [b.working_crew(), crew] + "  ·  " + Loc.t("saltpetre left %d%%") % int(round(b.lode_left() * 100.0))
 	return {"title": Loc.t("Powder makers"), "stats": st,
 		"body": Loc.t("Labourers grinding the Town Hall's saltpetre into black powder, about %d powder a minute each (%d with all %d). Powder buys Musketeers and Powder Wagons and refills your soldiers' shots. It grinds less as the saltpetre runs down, and %d%% of that once it is spent.") % [
-			int(round(Defs.MILL_RATE * 60.0)), int(round(Defs.MILL_RATE * 60.0 * crew)), crew, int(round(Defs.POWDER_FLOOR * 100.0))]}
+			int(round(Defs.MILL_RATE * 60.0)), int(round(Defs.MILL_RATE * 60.0 * crew)), crew, int(round(CrownPowder.powder_floor() * 100.0))]}
 
 
 ## Food a minute for one grub: a load pays for the time its round trip takes (Game.food_at: a rate a grub-second that

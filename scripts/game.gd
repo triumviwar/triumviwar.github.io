@@ -2799,7 +2799,7 @@ func draw_lode(b: Building, v: float) -> float:
 	if b.kind == "powder_mill":
 		# POWDER, a secondary resource (the owner, 2026-10-30 14:44): the Mill grinds less as its hall's saltpetre runs down,
 		# Defs.POWDER_FLOOR once it is spent, and stays there (Defs.second_share); what it grinds is drawn while any is left
-		var share := Defs.second_share(h.lode / h.lode_full() if h else 0.0, Defs.POWDER_FLOOR)
+		var share := Defs.second_share(h.lode / h.lode_full() if h else 0.0, CrownPowder.powder_floor())
 		var pay := v * share
 		if h and h.lode > 0.0:
 			h.lode = maxf(0.0, h.lode - pay)
@@ -2817,7 +2817,7 @@ func draw_lode(b: Building, v: float) -> float:
 func lode_pay(b: Building, v: float) -> float:
 	var h := lode_hall(b)
 	if b.kind == "powder_mill":
-		return v * Defs.second_share(h.lode / h.lode_full() if h else 0.0, Defs.POWDER_FLOOR)
+		return v * Defs.second_share(h.lode / h.lode_full() if h else 0.0, CrownPowder.powder_floor())
 	var fresh := minf(h.lode, v) if h else 0.0
 	return fresh + (v - fresh) * Defs.LODE_SPENT
 
@@ -2830,7 +2830,7 @@ func _lode_check(h: Building) -> void:
 		return
 	h.lode_warned = level
 	var what: String = Defs.LODE_NAME[h.kind]
-	var user := ("its Mill grinds at %d%%" % int(round(Defs.POWDER_FLOOR * 100.0))) if h.kind == "town_hall" else ("its presses yield nothing" if Defs.gear_mode else "its crushers pay nothing")
+	var user := ("its Mill grinds at %d%%" % int(round(CrownPowder.powder_floor() * 100.0))) if h.kind == "town_hall" else ("its presses yield nothing" if Defs.gear_mode else "its crushers pay nothing")
 	if mlog:
 		mlog.add("%s: the %s at a %s %s" % [mlog.who(h.team), what, h.d["name"], ("is spent (%s)" % user) if level == 2 else "is running low (under %d%%)" % int(Defs.SOIL_LOW * 100)])
 	if h.team == human and not demo and hud:
@@ -2845,7 +2845,7 @@ func _lode_check(h: Building) -> void:
 ## Share (0..1) of the lode a new hall of this kind would find at a spot (cell): fresh, unless
 ## a hall fell there and left some of it drawn out (see soil_scars).
 func lode_at_spot(c: Vector2i, hall_kind: String) -> float:
-	var full := float(Defs.LODE.get(hall_kind, 0.0))
+	var full := CrownPowder.lode_full(hall_kind)
 	if full <= 0.0:
 		return 0.0
 	var mid := (Vector2(c) + Vector2(Defs.BUILDINGS[hall_kind]["size"]) * 0.5) * T
@@ -5216,6 +5216,10 @@ func placement_problem(t: int, k: String, c: Vector2i, ai := false, limits_check
 		for h in (_spot_all_halls if limits_checked and _in_spot else halls_of(t, false)):
 			if h.center().distance_to(mid0) < spacing * T:
 				return "Too close to your other %s: it needs its own ground." % Defs.BUILDINGS[k]["name"]
+	if k == CrownPowder.BEDS:
+		var nw := CrownPowder.place_problem(self, t, c)      # (crown-powder-study, option C: by a Farm or Horse Breeder, one a hall)
+		if nw != "":
+			return nw
 	if Defs.is_econ(k):
 		if not limits_checked and econ_count(t, k) >= econ_limit(t, k):
 			return "Each %s allows %d %s. Expand for more." % [Defs.BUILDINGS[faction_hall(t)]["name"],
@@ -5462,6 +5466,12 @@ func lay_line(t: int, cells: Array, builders: Array, queued := false) -> void:
 
 
 ## Buy a train at the team's Clocktower ("ore" or "troop"). Returns "" or the reason it was refused.
+## (crown-powder-study, option D `-- powder:buy`) BUY POWDER at a Town Hall: scripts/crown_powder.gd.
+func buy_powder(t: int) -> String:
+	if net_forward(self, "buy_powder", [t]): return ""
+	return CrownPowder.buy(self, t)
+
+
 func buy_train(t: int, kind: String) -> String:
 	if net_forward(self, "buy_train", [t, kind]): return ""
 	return line_net.rails.buy(t, kind)

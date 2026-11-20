@@ -1,0 +1,51 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:13] P1 Crown's plan: Timing attack, a build order of 12 steps from here (scripts/ai_crown.gd)
+[01:13] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Timing attack (a timing attack)
+[02:30] P1 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Timing attack (it switched once this stage already; Siege push waits)
+[02:55] P1 Crown's plan: the army on time: 0 of army (with what trains) against the 60 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[03:11] P1 Crown's plan: a Farm at its new hall at once (24 s after it stood)
+[03:55] P1 Crown's plan: the army on time: 60 of army (with what trains) against the 190 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[04:23] P1 Crown's plan: the army first: 120 of army against the 229 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:51] P1 Crown's plan: optimal: reads AGGRESSIVE [a big early army]: keeps Timing attack (what it plays already answers it)
+[04:51] P1 Crown's plan: a rush is scouted: soldiers before labourers, no new hall till it is held
+[04:55] P1 Crown's plan: the army on time: 300 of army (with what trains) against the 330 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[06:40] P1 Crown's plan: the opening is over (the timing's window is shut: the Clockwork's economy is paying off; its waves weigh what it reckons from here): the milestones take over
+[06:41] P1 Crown's plan: milestone Barracks 3 could not be placed now: the next ones go on
+[06:54] P1 Crown's plan: milestone: Barracks 3 (29 labourers, 2 halls, army 22 supply)
+[08:21] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[08:41] P1 Crown's plan: milestone: Barracks 3 (41 labourers, 2 halls, army 18 supply)
+[09:26] P1 Crown's plan: the timing waits: 1070 of army against the 1055 it reckons the Clockwork has (it wants 1.15 times)
+[09:42] P1 Crown's plan: milestone: Barracks 3 (41 labourers, 2 halls, army 24 supply)
+[09:59] P1 Crown's plan: the timing waits: 1070 of army against the 1303 it reckons the Clockwork has (it wants 1.15 times)
+[10:25] P1 Crown's plan: milestone: Armoury 1 (44 labourers, 3 halls, army 32 supply)
+[10:31] P1 Crown's plan: the army first: 1580 of army against the 2700 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[11:03] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[11:24] P1 Crown's plan: the timing waits: 1070 of army against the 1290 it reckons the Clockwork has (it wants 1.15 times)
+[11:37] P1 Crown's plan: milestone: Foundry 2 (45 labourers, 3 halls, army 27 supply)
+[11:44] P1 Crown's plan: the army first: 1340 of army against the 2725 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[11:54] P1 Crown's plan: the timing waits: 1070 of army against the 2725 it reckons the Clockwork has (it wants 1.15 times)
+[11:58] P1 Crown's plan: trains a Drummer for its Marching Band (18 soldiers)
+[12:02] P1 Crown's plan: trains a Fifer for its Marching Band (19 soldiers)
+[12:13] P1 Crown's plan: trains a Piper for its Marching Band (19 soldiers)
+[12:24] P1 Crown's plan: the timing waits: 1240 of army against the 2895 it reckons the Clockwork has (it wants 1.15 times)
+[12:51] P1 Crown's plan: the army first: 2165 of army against the 3805 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[14:15] P1 Crown's plan: the army first: 1270 of army against the 2160 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[14:15] P1 Crown's plan: milestone Church waits: the army is far behind the enemy's (1270 against the 2160 it reckons)
+[14:33] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[15:15] P1 Crown's plan: the army first: 450 of army against the 2615 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[15:15] P1 Crown's plan: milestone Church waits: the army is far behind the enemy's (450 against the 2615 it reckons)
+[16:04] P1 Crown's plan: trains a Drummer for its Marching Band (11 soldiers)
+[16:15] P1 Crown's plan: the army first: 1070 of army against the 2670 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[16:15] P1 Crown's plan: milestone Church waits: the army is far behind the enemy's (1070 against the 2670 it reckons)
+[16:18] P1 Crown's plan: the timing waits: 880 of army against the 3160 it reckons the Clockwork has (it wants 1.15 times)
+[16:24] P1 Crown's plan: trains a Fifer for its Marching Band (14 soldiers)
+[16:42] P1 Crown's plan: trains a Piper for its Marching Band (15 soldiers)
+[16:48] P1 Crown's plan: the timing waits: 1110 of army against the 3160 it reckons the Clockwork has (it wants 1.15 times)
+[17:18] P1 Crown's plan: the timing waits: 1530 of army against the 2860 it reckons the Clockwork has (it wants 1.15 times)
+[17:20] P1 Crown's plan: milestone: Church 1 (47 labourers, 3 halls, army 44 supply)
+[17:49] P1 Crown's plan: the timing waits: 1530 of army against the 1620 it reckons the Clockwork has (it wants 1.15 times)
+[18:50] P1 Crown's plan: Siege push, a build order of 1 steps from here (scripts/ai_crown.gd)
+[18:50] P1 Crown's plan: optimal: reads GREEDY [a second base and little army]: picks Siege push (a siege to break its defences)
+[19:17] P1 Crown's plan: trains a Drummer for its Marching Band (34 soldiers)
+[19:17] P1 Crown's plan: trains a Fifer for its Marching Band (34 soldiers)
+[19:18] P1 Crown's plan: trains a Piper for its Marching Band (34 soldiers)
