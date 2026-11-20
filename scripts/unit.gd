@@ -381,7 +381,8 @@ var keg_shots := 0.0            # ... the musket shots in it (a full one from th
 ## "ph": "fetch" | "deliver" | "home" | "to_mill" | "to_wagon", "want": [horses claimed, not yet
 ## on the leash], "wagon" / "gun": the keg's / the team horses' destination}
 var haul_job: Dictionary = {}
-var fetch_home: Building = null   # (a Gun Crewman, scripts/gun_crew.gd) the Foundry he came out of and goes back into
+var fetch_home: Building = null
+var hitch_pref := Vector2.INF       # (a horse) the hitch spot its leader brought it to (Game.hitch_horse takes it)   # (a Gun Crewman, scripts/gun_crew.gd) the Foundry he came out of and goes back into
 var team_want := 0              # (a gun, wagon) horses it should draw: haulers bring spares up to this
 # the cavalry's pistol (Defs.PISTOL: Horseman, Cuirassier, Officer, Armoured Officer)
 var pistol := false             # loaded (trained loaded; fired, it stays empty until he reloads on foot)
@@ -6421,7 +6422,7 @@ func _haul_horses(site: Building, delta: float) -> Vector2:
 				# there by itself; the owner, 2026-11-20: "Horses are not supposed to go alone")
 				var sk := "spot%d" % pick.get_instance_id()
 				if not j.has(sk):
-					j[sk] = game.hitch_spot(goal_e as Building, pick)
+					j[sk] = game.hitch_spot(goal_e as Building, pick, 3.0)
 				var spot: Vector2 = j[sk]
 				var there := position.distance_to(spot) < 14.0
 				j["spot_t"] = float(j.get("spot_t", 0.0)) + delta if there else 0.0
@@ -6505,6 +6506,10 @@ func _hitch(h: Unit, dest: Entity) -> void:
 	led.erase(h)
 	h.leader = null
 	game.haul_done(team, "horse")
+	var sk := "spot%d" % h.get_instance_id()
+	if dest is Building and haul_job.has(sk):
+		h.hitch_pref = haul_job[sk]      # (it is hitched on the spot he led it to: Game.hitch_horse)
+		haul_job.erase(sk)
 	if dest is Building or (dest is Unit and Defs.HARNESSED.has((dest as Unit).kind)):
 		h.walk_into(dest)
 	else:
@@ -9237,6 +9242,7 @@ func _stand_hitched(b: Building, delta: float) -> Vector2:
 func _unhitch() -> void:
 	into = null
 	hitch_p = Vector2.INF
+	hitch_pref = Vector2.INF
 	_hitch_t = 0.0
 	graze_at = position
 	_graze_goal = Vector2.INF

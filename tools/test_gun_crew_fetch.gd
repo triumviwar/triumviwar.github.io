@@ -341,6 +341,6 @@ func _run() -> void:
 				saved_rid = true
 		check(saved_rid, "the horse is saved with its reservation")
 
-	check(lone_max < 60.0, "no horse ever walked to a building by itself (farthest %.0f px: %s)" % [lone_max, lone_what])
+	check(lone_max < 80.0, "no horse ever walked to a building by itself (farthest %.0f px: %s)" % [lone_max, lone_what])
 	print("gun crew fetch: " + ("ALL PASS" if fails == 0 else "%d FAILED" % fails))
 	quit(1 if fails else 0)

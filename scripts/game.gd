@@ -11658,7 +11658,9 @@ func hitch_horse(b: Building, h: Unit) -> void:
 	if h.horse_rid != 0:
 		horse_arrived(b, h)
 		h.horse_rid = 0
-	h.hitch_p = hitch_spot(b, h)
+	# (led there by a hauler or a Gun Crewman: the spot he led it to, GunCrew; else the best one round the building)
+	h.hitch_p = h.hitch_pref if h.hitch_pref != Vector2.INF else hitch_spot(b, h)
+	h.hitch_pref = Vector2.INF
 	h._hitch_t = 0.0
 	h.velocity = Vector2.ZERO
 	h.path = PackedVector2Array()
@@ -11667,8 +11669,9 @@ func hitch_horse(b: Building, h: Unit) -> void:
 
 ## A spot beside the building for a hitched horse: round its rim, clear ground the horse can walk
 ## to, on the side away from the rally (where the recruits come out), a body's width from the
-## others hitched there; the horse's own spot if there is none.
-func hitch_spot(b: Building, h: Unit) -> Vector2:
+## others hitched there; the horse's own spot if there is none. `near_w`: how much nearer to the horse counts (a led
+## horse: its leader takes it to the nearest good spot, not round the building).
+func hitch_spot(b: Building, h: Unit, near_w := 0.5) -> Vector2:
 	var r := b.rect()
 	var out := r.grow(22.0)
 	var toward: Vector2 = b.rally if b.rally != Vector2.INF else r.get_center() + Vector2(0, r.size.y)
@@ -11702,7 +11705,7 @@ func hitch_spot(b: Building, h: Unit) -> Vector2:
 				break
 		if clash:
 			continue
-		var sc: float = p.distance_to(toward) - 0.5 * p.distance_to(h.position)
+		var sc: float = p.distance_to(toward) - near_w * p.distance_to(h.position)
 		if not in_open_map(c):
 			sc -= 200000.0           # (a pocket shut in by buildings: only if there is nothing else)
 		elif region_of(c) != home:
