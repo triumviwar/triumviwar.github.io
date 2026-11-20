@@ -4,11 +4,12 @@ CLEAN BASE with every group off, then the groups added back one at a time. A mea
 tools/study/crown_1000_brood.py (its 10 games: 5 maps x 2 rounds with the start spots swapped, Hard OPTIMAL v Hard OPTIMAL
 to 20:00, its score g = ln of the Crown's (income + 2 x army) over the enemy's, a beaten side counted a quarter).
     python3 tools/study/crown_rule_cleanup.py groups
-    python3 tools/study/crown_rule_cleanup.py run OPP BLOCK [--on G1,G2] [--full] [--extra a,b] [--jobs 2] [--root COPY]
+    python3 tools/study/crown_rule_cleanup.py run OPP BLOCK [--on G1,G2] [--full] [--except a,b] [--extra a,b] [--jobs 2] [--root COPY]
     python3 tools/study/crown_rule_cleanup.py report OPP [--base B1+B2] BLOCK ...
     python3 tools/study/crown_rule_cleanup.py fired OPP BLOCK ...     (how often each rule acted, result.json crown_ai)
 OPP is brood, clockwork or crown (the mirror). `--on` names the groups kept ON; every other group's switches are passed
-(off). `--full` = today's whole stack (no switch). Data: docs/crown_rule_cleanup/data/<OPP>/<BLOCK>/."""
+(off). `--full` = the whole stack (`crclean:off` since 0.38.87, when the cleaned set
+became the default); `--full --cleaned` = no switch at all (the default code: the blocks cs3). Data: docs/crown_rule_cleanup/data/<OPP>/<BLOCK>/."""
 import os, sys, json, glob, statistics as st
 from concurrent.futures import ThreadPoolExecutor
 
@@ -77,7 +78,11 @@ if __name__ == "__main__":
         opp, name = sys.argv[2], sys.argv[3]
         setup(opp)
         on = GNAMES if "--full" in sys.argv else [x for x in arg("--on", "").split(",") if x]
-        extra = switches(on) + [x for x in arg("--extra", "").split(",") if x]
+        keep = [x for x in arg("--except", "").split(",") if x]      # (switches of an OFF group left out: part of it on)
+        extra = [x for x in switches(on) if x not in keep] + [x for x in arg("--extra", "").split(",") if x]
+        if "--full" in sys.argv and "--cleaned" not in sys.argv:
+            extra.append("crclean:off")      # (since 0.38.87 the cleaned set is the default: --full = today's whole stack as
+                                              # measured; --cleaned = no switch at all, the default code)
         dd = os.path.join(cb.DATA, name)
         os.makedirs(dd, exist_ok=True)
         with open(os.path.join(dd, "extra.txt"), "w") as f:

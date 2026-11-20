@@ -25,6 +25,17 @@
 
 ## Current work
 
+- CROWN RULE CLEANUP (owner 2026-11-19 23:30 "Yes"; job crown-rule-cleanup, 0.38.87, docs/crown_rule_cleanup.md, data
+  docs/crown_rule_cleanup/data/, tools/study/crown_rule_cleanup.py + _curve.py, scripts/ai_crown_rules.gd AICrownRules): the
+  Crown computer's coaching rules in 5 groups (plan, econ, army, fight, home), counted (result.json crown_ai "rules"), a clean
+  base and the groups added back, 27 blocks of 10 games to 20:00. THE CLEANED SET IS THE DEFAULT (AICrownRules.DROP by the
+  enemy; `crclean:off` = the whole stack; tests `AICrownRules.whole = true`): v the Brood only PLAN (lean + siege); v the
+  Clockwork PLAN + ECON + `dry`; army floor/clock, guns/line/screen/cavalry/defence coaching and home posts left out there;
+  the mirror unchanged. v Clockwork led or won 10 -> 22 of 30 (paired +0.67, t 3.6), v Brood as good (survived 17 -> 21 of
+  30, defeats 18:01 -> 19:05). The 25 not-kept changes of the two Crown 1000 jobs deleted. THE BROOD QUESTION: the Crown
+  still collapses 15:00-19:00 with every set (it leads the army to 13:00, the Brood's 56 grubs earn 2,200 a minute at its
+  cap while the Crown's labourers die): looks like BALANCE (the Brood's late economy) more than these rules. 7 Claude's
+  choices in the doc (1: the owner's fight rules are off v Brood/Clockwork).
 - ACT 2 PLANNED (owner 2026-11-19 11:06 "Yes write act 2."; job campaign-act2-plan, branch campaign-act2-plan, docs only:
   docs/campaign_act2_plan.md): THE BREAKING 2771-2780, eleven missions d01-d11 on three lines + the 2nd crossing: the
   Crown (Tomasz) d01_minas (the Assembly's conspiracy at Vila Rica) -> d05_aldeia (the swarm at his mission São Rafael;

@@ -1,0 +1,57 @@
+[00:00] P1 Crown's plan: optimal: leans to Rush before it scouts (Horsemen are good against the Brood's grubs)
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P1 Crown's plan: Rush, a build order of 10 steps (scripts/ai_crown.gd)
+[01:37] P1 Crown's plan: optimal: reads GREEDY [a second base and little army]: keeps Rush (punish the greed: the Horse Breeder at once, the riders before its army)
+[04:00] P1 Crown's plan: the army floor (a look at the Brood's army) waits for a fresh scout report: no enemy soldier seen for the whole game and its main not looked at for the whole game
+[04:00] P1 Crown's plan: against the Brood the line comes before more buildings: 0 of Musketeers and guns against the 125 it wants by now
+[04:15] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[04:24] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[04:29] P1 Crown's plan: the army floor against the Brood: 60 of line (with what trains) against the 275 its scouting asks for: the soldiers' gold first
+[04:47] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[04:49] P1 Crown's plan: milestone: Foundry 1 (21 labourers, 1 halls, army 16 supply)
+[04:54] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Rush (what it plays already answers it)
+[05:00] P1 Crown's plan: against the Brood the line comes before more buildings: 60 of Musketeers and guns against the 375 it wants by now
+[05:04] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (400 against the 375 it reckons)
+[05:25] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[05:31] P1 Crown's plan: the army floor against the Brood: 240 of line (with what trains) against the 504 its scouting asks for: the soldiers' gold first
+[06:00] P1 Crown's plan: against the Brood the line comes before more buildings: 240 of Musketeers and guns against the 706 it wants by now
+[06:03] P1 Crown's plan: the Brood is seen (its army in sight): the Foundry before the Horse Breeder, a Field Cannon for the ramp post first
+[06:04] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (440 against the 375 it reckons)
+[06:33] P1 Crown's plan: the army floor against the Brood: 600 of line (with what trains) against the 847 its scouting asks for: the soldiers' gold first
+[07:01] P1 Crown's plan: against the Brood the line comes before more buildings: 600 of Musketeers and guns against the 1055 it wants by now
+[07:04] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (740 against the 375 it reckons)
+[07:21] P1 Crown's plan: Economy, a build order of 0 steps from here (scripts/ai_crown.gd)
+[07:21] P1 Crown's plan: optimal: reads GREEDY [a second base and little army]: picks Economy (too late for the riders: out-expand it)
+[07:22] P1 Crown's plan: the Brood is seen (its army in sight): the Foundry before the Horse Breeder, a Field Cannon for the ramp post first
+[07:40] P1 Crown's plan: the army floor against the Brood: 1080 of line (with what trains) against the 1133 its scouting asks for: the soldiers' gold first
+[08:01] P1 Crown's plan: against the Brood the line comes before more buildings: 1080 of Musketeers and guns against the 1345 it wants by now
+[08:29] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (1400 against the 0 it reckons)
+[08:38] P1 Crown's plan: milestone: Barracks 3 (45 labourers, 2 halls, army 26 supply)
+[09:32] P1 Crown's plan: milestone: Barracks 4 (51 labourers, 2 halls, army 36 supply)
+[09:49] P1 Crown's plan: against the Brood the line comes before more buildings: 1850 of Musketeers and guns against the 1852 it wants by now
+[09:54] P1 Crown's plan: against the Brood the army holds at home for its first push: 1970 of army against the 3723 it reckons (out at 7446 before the push is held)
+[09:56] P1 Crown's plan: the wave waits for a fresh scout report: no enemy soldier seen for 75 s and its main not looked at for 233 s
+[10:11] P1 Crown's plan: milestone Church waits: the army is far behind the enemy's (2260 against the 50 it reckons)
+[10:35] P1 Crown's plan: a Farm at its new hall at once (17 s after it stood)
+[10:38] P1 Crown's plan: the wave waits on the high ground: 2440 of army against the 3689 it reckons the Brood has (375 seen lately; it wants 1.5 times)
+[11:11] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (3170 against the 200 it reckons)
+[11:15] P1 Crown's plan: milestone: Foundry 2 (45 labourers, 3 halls, army 64 supply)
+[11:39] P1 Crown's plan: the wave waits on the high ground: 3030 of army against the 4116 it reckons the Brood has (450 seen lately; it wants 1.5 times)
+[12:08] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Economy (what it plays already answers it)
+[12:11] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (3340 against the 2225 it reckons)
+[12:39] P1 Crown's plan: the wave waits on the high ground: 3115 of army against the 4262 it reckons the Brood has (2500 seen lately; it wants 1.5 times)
+[12:53] P1 Crown's plan: a Farm at its new hall at once (19 s after it stood)
+[13:07] P1 Crown's plan: a Farm at its new hall at once (32 s after it stood)
+[13:11] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (3245 against the 1950 it reckons)
+[14:11] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (3285 against the 25 it reckons)
+[14:21] P1 Crown's plan: the wave waits on the high ground: 3355 of army against the 2845 it reckons the Brood has (25 seen lately; it wants 1.5 times)
+[14:49] P1 Crown's plan: the wave waits for a fresh scout report: no enemy soldier seen for 75 s and its main not looked at for 526 s
+[15:11] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (3605 against the 3350 it reckons)
+[15:23] P1 Crown's plan: milestone: Armoury 1 (49 labourers, 3 halls, army 65 supply)
+[15:41] P1 Crown's plan: a Farm at its new hall at once (323 s after it stood)
+[16:11] P1 Crown's plan: milestone Church waits: the army is far behind the enemy's (2045 against the 125 it reckons)
+[16:19] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Economy (what it plays already answers it)
+[16:21] P1 Crown's plan: against the Brood the line comes before more buildings: 1135 of Musketeers and guns against the 1170 it wants by now
+[17:21] P1 Crown's plan: against the Brood the line comes before more buildings: 655 of Musketeers and guns against the 1035 it wants by now
+[18:21] P1 Crown's plan: against the Brood the line comes before more buildings: 655 of Musketeers and guns against the 1035 it wants by now
+[19:21] P1 Crown's plan: against the Brood the line comes before more buildings: 485 of Musketeers and guns against the 1035 it wants by now

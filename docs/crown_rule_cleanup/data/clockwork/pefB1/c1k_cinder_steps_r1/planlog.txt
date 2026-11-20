@@ -1,0 +1,36 @@
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:10] P2 Crown's plan: Timing attack, a build order of 12 steps from here (scripts/ai_crown.gd)
+[01:10] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Timing attack (a timing attack)
+[02:30] P2 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Timing attack (a timing attack)
+[03:00] P2 Crown's plan: a Farm at its new hall at once (13 s after it stood)
+[03:40] P2 Crown's plan: the army first: 0 of army against the 137 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:40] P2 Crown's plan: the army first: 0 of army against the 350 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[05:40] P2 Crown's plan: the army first: 200 of army against the 489 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[05:53] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[06:40] P2 Crown's plan: the opening is over (the timing's window is shut: the Clockwork's economy is paying off; its waves weigh what it reckons from here): the milestones take over
+[06:40] P2 Crown's plan: milestone: Barracks 3 (40 labourers, 2 halls, army 17 supply)
+[07:57] P2 Crown's plan: milestone: Barracks 3 (38 labourers, 2 halls, army 29 supply)
+[09:08] P2 Crown's plan: milestone: Armoury 1 (40 labourers, 3 halls, army 30 supply)
+[09:10] P2 Crown's plan: milestone Church 1 could not be placed now: the next ones go on
+[09:16] P2 Crown's plan: milestone: Church 1 (48 labourers, 3 halls, army 30 supply)
+[09:33] P2 Crown's plan: its wave stays out: only scouts by its buildings at home (the wave is worth 1230)
+[10:08] P2 Crown's plan: trains a Drummer for its Marching Band (18 soldiers)
+[10:08] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[10:34] P2 Crown's plan: its wave stays out: a raid worth 41 at home is left to the soldiers there (the wave is worth 787)
+[11:03] P2 Crown's plan: the army first: 1255 of army against the 2170 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[13:40] P2 Crown's plan: the army first: 1555 of army against the 2675 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[14:40] P2 Crown's plan: the army first: 1025 of army against the 3460 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[15:03] P2 Crown's plan: milestone: Barracks 3 (36 labourers, 3 halls, army 11 supply)
+[15:07] P2 Crown's plan: milestone Barracks 3 could not be placed now: the next ones go on
+[15:40] P2 Crown's plan: the army first: 1115 of army against the 3325 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[15:41] P2 Crown's plan: milestone: Barracks 3 (36 labourers, 3 halls, army 11 supply)
+[16:03] P2 Crown's plan: milestone: Barracks 3 (37 labourers, 3 halls, army 12 supply)
+[16:25] P2 Crown's plan: milestone: Barracks 3 (41 labourers, 3 halls, army 22 supply)
+[16:40] P2 Crown's plan: the army first: 1375 of army against the 6335 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[16:44] P2 Crown's plan: milestone: Barracks 3 (37 labourers, 2 halls, army 18 supply)
+[16:54] P2 Crown's plan: milestone: Barracks 3 (37 labourers, 2 halls, army 19 supply)
+[17:06] P2 Crown's plan: milestone Church waits: the army is far behind the enemy's (1515 against the 5955 it reckons)
+[17:40] P2 Crown's plan: the army first: 1070 of army against the 4245 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[18:06] P2 Crown's plan: milestone Church waits: the army is far behind the enemy's (760 against the 1995 it reckons)
+[18:40] P2 Crown's plan: the army first: 820 of army against the 1995 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[19:13] P2 Crown's plan: milestone Church waits: the army is far behind the enemy's (960 against the 2655 it reckons)

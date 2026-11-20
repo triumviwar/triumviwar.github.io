@@ -1,0 +1,33 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:31] P1 Crown's plan: Siege push, a build order of 9 steps from here (scripts/ai_crown.gd)
+[01:31] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Siege push (a siege to break its defences)
+[02:46] P1 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Siege push (a siege to break its defences)
+[03:09] P1 Crown's plan: a Farm at its new hall at once (24 s after it stood)
+[03:38] P1 Crown's plan: the army first: 0 of army against the 136 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[03:51] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[04:14] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (100 against the 196 it reckons)
+[04:38] P1 Crown's plan: the army first: 100 of army against the 277 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:41] P1 Crown's plan: milestone: Barracks 2 (31 labourers, 2 halls, army 3 supply)
+[04:50] P1 Crown's plan: milestone: Foundry 2 (32 labourers, 2 halls, army 6 supply)
+[05:32] P1 Crown's plan: milestone: Barracks 3 (38 labourers, 2 halls, army 7 supply)
+[05:38] P1 Crown's plan: the army first: 260 of army against the 449 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[05:45] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (260 against the 480 it reckons)
+[06:18] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Siege push (what it plays already answers it)
+[06:37] P1 Crown's plan: milestone: Armoury 1 (44 labourers, 3 halls, army 11 supply)
+[07:04] P1 Crown's plan: milestone: Church 1 (46 labourers, 3 halls, army 20 supply)
+[07:07] P1 Crown's plan: milestone Church 1 could not be placed now: the next ones go on
+[07:47] P1 Crown's plan: milestone: Church 1 (50 labourers, 3 halls, army 36 supply)
+[07:47] P1 Crown's plan: trains a Drummer for its Marching Band (19 soldiers)
+[07:54] P1 Crown's plan: trains a Fifer for its Marching Band (19 soldiers)
+[08:26] P1 Crown's plan: trains a Piper for its Marching Band (14 soldiers)
+[09:08] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Siege push (what it plays already answers it)
+[12:34] P1 Crown's plan: trains a Drummer for its Marching Band (40 soldiers)
+[12:35] P1 Crown's plan: trains a Fifer for its Marching Band (40 soldiers)
+[12:36] P1 Crown's plan: trains a Piper for its Marching Band (40 soldiers)
+[17:26] P1 Crown's plan: trains a Fifer for its Marching Band (45 soldiers)
+[19:02] P1 Crown's plan: trains a Fifer for its Marching Band (56 soldiers)
+[19:03] P1 Crown's plan: trains a Piper for its Marching Band (55 soldiers)
+[19:04] P1 Crown's plan: trains a Piper for its Marching Band (53 soldiers)
+[19:38] P1 Crown's plan: trains a Drummer for its Marching Band (41 soldiers)
+[19:38] P1 Crown's plan: trains a Drummer for its Marching Band (41 soldiers)
+[19:40] P1 Crown's plan: trains a Fifer for its Marching Band (41 soldiers)

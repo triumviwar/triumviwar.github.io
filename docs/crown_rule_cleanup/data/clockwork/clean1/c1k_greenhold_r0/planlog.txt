@@ -1,0 +1,73 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:31] P1 Crown's plan: Balloon harass, a build order of 11 steps from here (scripts/ai_crown.gd)
+[01:31] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Balloon harass (raids on its workers)
+[02:47] P1 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Balloon harass (raids on its workers)
+[03:30] P1 Crown's plan: the second hall comes first: its trigger (Town Hall 2) has held 20 s
+[04:13] P1 Crown's plan: the Foundry rigs a balloon (1 of 1)
+[04:57] P1 Crown's plan: optimal: reads AGGRESSIVE [a big early army]: keeps Balloon harass (what it plays already answers it)
+[04:58] P1 Crown's plan: a rush is scouted: soldiers before labourers, no new hall till it is held
+[05:03] P1 Crown's plan: the Foundry rigs a balloon (2 of 2)
+[05:03] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[05:04] P1 Crown's plan: milestone Horse Breeder waits: a rush is read and the army has 5 supply (it wants 8 first)
+[05:33] P1 Crown's plan: party 1 forms: a balloon and 3 Musketeers
+[05:43] P1 Crown's plan: party 1 flies to the Cog Press (113 tiles)
+[05:49] P1 Crown's plan: milestone Horse Breeder waits: a rush is read and the army has 7 supply (it wants 8 first)
+[06:04] P1 Crown's plan: party 2 forms: a balloon and 3 Musketeers
+[06:13] P1 Crown's plan: party 2 flies to their start (107 tiles)
+[06:35] P1 Crown's plan: milestone Armoury waits: a rush is read and the army has 7 supply (it wants 8 first)
+[06:39] P1 Crown's plan: party 1 backs off: anti-air on the way (200 of it)
+[06:41] P1 Crown's plan: party 2 backs off: anti-air on the way (225 of it)
+[06:46] P1 Crown's plan: party 1 flies to the Cog Press (40 tiles, round the anti-air)
+[06:49] P1 Crown's plan: party 2 flies to the Cog Press (49 tiles, round the anti-air)
+[07:15] P1 Crown's plan: party 1 hovers over the Cog Press: the basket fires
+[07:16] P1 Crown's plan: the first strike: party 1 over the Cog Press
+[07:21] P1 Crown's plan: the first kill of the balloon harass: Winder
+[07:21] P1 Crown's plan: party 2 hovers over the Cog Press: the basket fires
+[07:27] P1 Crown's plan: party 1 backs off: anti-air over the Cog Press (250 of it)
+[07:41] P1 Crown's plan: party 1 flies to the Cog Press (16 tiles, round the anti-air)
+[07:48] P1 Crown's plan: the Foundry rigs a balloon (3 of 3)
+[07:55] P1 Crown's plan: party 1 hovers over the Cog Press: the basket fires
+[08:14] P1 Crown's plan: party 3 forms: a balloon and 4 Musketeers
+[08:24] P1 Crown's plan: Siege push, a build order of 0 steps from here (scripts/ai_crown.gd)
+[08:24] P1 Crown's plan: optimal: reads DEFENSIVE [turrets or rooted defenders]: picks Siege push (a siege to break its defences)
+[08:25] P1 Crown's plan: party 3 flies to the Cog Press (111 tiles, round the anti-air)
+[08:38] P1 Crown's plan: milestone: Foundry 2 (38 labourers, 2 halls, army 24 supply)
+[08:47] P1 Crown's plan: party 2: its balloon is down (by a clock_soldier, in its home)
+[08:50] P1 Crown's plan: milestone: Armoury 1 (40 labourers, 2 halls, army 20 supply)
+[09:13] P1 Crown's plan: party 1 is over (home)
+[09:38] P1 Crown's plan: party 4 forms: a balloon and 4 Musketeers
+[09:50] P1 Crown's plan: party 4 flies to the Cog Press (82 tiles, round the anti-air)
+[09:51] P1 Crown's plan: party 3 hovers over the Cog Press: the basket fires
+[09:54] P1 Crown's plan: trains a Drummer for its Marching Band (22 soldiers)
+[09:58] P1 Crown's plan: trains a Fifer for its Marching Band (22 soldiers)
+[10:28] P1 Crown's plan: the Foundry rigs a balloon (3 of 3)
+[10:29] P1 Crown's plan: party 3 backs off: anti-air over the Cog Press (225 of it)
+[10:36] P1 Crown's plan: party 3 flies to the Clocktower (36 tiles, round the anti-air)
+[10:41] P1 Crown's plan: trains a Piper for its Marching Band (25 soldiers)
+[10:46] P1 Crown's plan: party 3 backs off: anti-air on the way (225 of it)
+[10:46] P1 Crown's plan: party 4 backs off: anti-air on the way (325 of it)
+[10:47] P1 Crown's plan: party 3 pulls back home (the balloon is under fire)
+[10:49] P1 Crown's plan: party 4 pulls back home (the balloon is under fire)
+[10:51] P1 Crown's plan: the Foundry rigs a balloon (3 of 3)
+[10:51] P1 Crown's plan: party 4: its balloon is down (by a clock_soldier, in its home)
+[12:02] P1 Crown's plan: party 3 is over (home)
+[12:10] P1 Crown's plan: party 5 forms: a balloon and 4 Musketeers
+[12:29] P1 Crown's plan: party 6 forms: a balloon and 3 Musketeers
+[12:38] P1 Crown's plan: party 7 forms: a balloon and 3 Musketeers
+[12:40] P1 Crown's plan: trains a Drummer for its Marching Band (20 soldiers)
+[12:46] P1 Crown's plan: party 6 flies to the Cog Press (87 tiles)
+[12:52] P1 Crown's plan: party 7 flies to the Clocktower (88 tiles)
+[12:54] P1 Crown's plan: party 5 flies to the Cog Press (82 tiles)
+[13:20] P1 Crown's plan: trains a Fifer for its Marching Band (24 soldiers)
+[13:35] P1 Crown's plan: party 7 backs off: anti-air on the way (200 of it)
+[13:41] P1 Crown's plan: party 6 hovers over the Cog Press: the basket fires
+[13:42] P1 Crown's plan: party 7 flies to the Clocktower (42 tiles, round the anti-air)
+[13:44] P1 Crown's plan: party 5 hovers over the Cog Press: the basket fires
+[13:47] P1 Crown's plan: party 7 backs off: anti-air on the way (200 of it)
+[13:54] P1 Crown's plan: party 7 flies to the Mainspring (76 tiles, round the anti-air)
+[14:30] P1 Crown's plan: party 7 turns back: the balloon was hit on the way
+[14:37] P1 Crown's plan: trains a Piper for its Marching Band (22 soldiers)
+[14:39] P1 Crown's plan: party 7: its balloon is down (by a cuckoo, in its home)
+[14:58] P1 Crown's plan: party 5: its balloon is down (by a cuckoo, in its home)
+[14:59] P1 Crown's plan: party 6: its balloon is down (by a cuckoo, in its home)
+[18:24] P1 Crown's plan: the army first: 2630 of army against the 4670 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
