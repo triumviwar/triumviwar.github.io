@@ -41,7 +41,7 @@ The Brood and the Clockwork have no horses: untouched.
 |---|---|---|
 | `Game._reserve_horse` (a spare horse kept for a gun) | walked to the Foundry when no hauler was free | stays at the breeder; a hauler or a Gun Crewman fetches it |
 | `Game.fetch_reserved` (the gun is ready, its horse isn't there) | walked to the Foundry | only makes sure a horse is kept (a new one if it was killed or stolen); the fetching is GunCrew's / the haulers' |
-| `Game._spawn_trained` horse branch (a horse bred for a gun, ~4994) | walked to the Foundry | stays at the breeder (same as above) |
+| `Game.spawn_trained` horse branch (a horse bred for a gun, ~4994) | walked to the Foundry | stays at the breeder (same as above) |
 | `Game.train`, a free horse **already at the building** (within HORSES.at_building, 2 tiles, ~4784) | walks the 2 tiles to its hitch spot | kept: it is already at the building (no trip from the breeder) |
 | `Unit._hitch` (a hauler / crewman lets go) | let go within 30 px of the building's edge, the horse then walked round to its spot | he leads it to the spot; it is hitched there |
 | `Game._horse_command` (right-click a gun with a horse selected or led, ~11846) and `Game.harness_order` (HARNESS, ~11906) | the horse walks to the GUN | kept: the player orders it, and the destination is a gun in the field, not a building |
@@ -101,7 +101,22 @@ A frame a second in docs/shots/gun_crew_fetch/film/ (tools/shot_gun_crew_fetch.g
   crewmen counted, a Gun Crewman making no headway as LEAD STUCK (not while he waits by the breeder), and GUN WAIT (a
   Foundry gun ready but waiting over 60 s for its horse); a 5th argument picks the Crown computer's plan (siege for guns).
 
-AUDIT_RESULTS
+**The audit** (Crown Hard on the Siege push, 12 minutes; this branch against main 0.38.86 on the same seed):
+
+| Game | ALONE (main -> now) | Gun crewmen | Horses hitched for a recruit | LEAD STUCK | GUN STUCK | GUN WAIT |
+|---|---|---|---|---|---|---|
+| Greenhold v Clockwork, seed 7 | 4 (219-259 px) -> 0 | 6 | 5 -> 6 | 0 -> 0 | 1 -> 4 | 0 -> 0 |
+| Hollowfen v Brood, seed 11 | 2 (80-346 px) -> 0 | 6 | 2 -> 6 | 0 -> 0 | 1 -> 0 | 0 -> 0 |
+
+No horse walked to a building by itself; no crewman or hauler stuck; no gun waited over a minute for its horse. The GUN
+STUCK lines on Greenhold are limbered guns jammed on the move in the crowded base below the Foundry (cell 14,14), the
+same spot main jams at (the games differ after the first gun, so the counts are noise between runs); not a Foundry wait.
+
+**The Crown AI tests**, this branch and main side by side: test_crown_siege, test_crown_build_order, test_ai_optimal,
+test_crown_hold, test_crown_line, test_crown_owner_eco, test_crown_rider_screen, test_crown_v_clock, test_ai_placement
+pass on both (rider_screen failed once on main: flaky); test_crown_stall's "[foundry] a Foundry stands by 330 s" fails on
+both (343-344 s: older than this job). test_i18n passes (0 untranslated). test_content_all's only failure is its
+_rebels arena list (more campaign roles than its 6 spots), not touched here.
 
 ## Claude's choices (for the owner to confirm)
 

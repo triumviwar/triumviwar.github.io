@@ -209,7 +209,8 @@ func _run() -> void:
 			await _snap("film/%03d" % n)
 			n += 1
 		if not guns("cannon").is_empty() and not named.has("5_cannon"):
-			for i in 30:
+			for i in 45:
+				g.camera.position = (guns("cannon")[0] as Unit).position + Vector2(0, -30) if not guns("cannon").is_empty() else g.camera.position
 				await physics_frame
 			named["5_cannon"] = true
 			await _snap("5_cannon")
