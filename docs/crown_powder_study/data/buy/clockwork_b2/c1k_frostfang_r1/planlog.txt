@@ -1,0 +1,25 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:33] P1 Crown's plan: Timing attack, a build order of 12 steps from here (scripts/ai_crown.gd)
+[01:33] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Timing attack (a timing attack)
+[02:49] P1 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Timing attack (a timing attack)
+[02:55] P1 Crown's plan: the army on time: 0 of army (with what trains) against the 61 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[03:11] P1 Crown's plan: a Farm at its new hall at once (20 s after it stood)
+[03:55] P1 Crown's plan: the army on time: 60 of army (with what trains) against the 192 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[04:05] P1 Crown's plan: the army first: 0 of army against the 167 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:55] P1 Crown's plan: the army on time: 300 of army (with what trains) against the 332 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[06:40] P1 Crown's plan: the opening is over (the timing's window is shut: the Clockwork's economy is paying off; its waves weigh what it reckons from here): the milestones take over
+[07:05] P1 Crown's plan: its wave stays out: only scouts by its buildings at home (the wave is worth 1000)
+[07:24] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[07:43] P1 Crown's plan: milestone: Armoury 1 (44 labourers, 3 halls, army 25 supply)
+[08:03] P1 Crown's plan: milestone: Church 1 (45 labourers, 3 halls, army 35 supply)
+[08:19] P1 Crown's plan: milestone: Foundry 2 (45 labourers, 3 halls, army 36 supply)
+[08:43] P1 Crown's plan: trains a Drummer for its Marching Band (21 soldiers)
+[09:00] P1 Crown's plan: trains a Fifer for its Marching Band (20 soldiers)
+[09:24] P1 Crown's plan: trains a Piper for its Marching Band (21 soldiers)
+[11:06] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[11:48] P1 Crown's plan: trains a Drummer for its Marching Band (32 soldiers)
+[11:54] P1 Crown's plan: trains a Fifer for its Marching Band (31 soldiers)
+[12:29] P1 Crown's plan: trains a Piper for its Marching Band (32 soldiers)
+[16:56] P1 Crown's plan: Siege push, a build order of 1 steps from here (scripts/ai_crown.gd)
+[16:56] P1 Crown's plan: optimal: reads DEFENSIVE [turrets or rooted defenders]: picks Siege push (a siege to break its defences)
+[17:59] P1 Crown's plan: its wave stays out: only scouts by its buildings at home (the wave is worth 691)
