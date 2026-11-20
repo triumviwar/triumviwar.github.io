@@ -37,6 +37,8 @@ const DROP := {
 }
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
+## (tests of a single rule: true plays today's whole stack, as `-- crclean:off`)
+static var whole := false
 
 
 ## Is the rule whose study switch is `sw` (e.g. "line:off") off for the Crown computer `ai`: the switch given, or left out
@@ -44,7 +46,7 @@ static var _args: PackedStringArray = OS.get_cmdline_user_args()
 static func dropped(ai, sw: String) -> bool:
 	if _args.has(sw):
 		return true
-	if _args.has("crclean:off") or ai == null:
+	if whole or _args.has("crclean:off") or ai == null:
 		return false
 	var f := foe_faction(ai)
 	return f != "" and (DROP.get(f, []) as Array).has(sw)

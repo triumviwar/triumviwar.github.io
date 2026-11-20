@@ -33,6 +33,8 @@ func check(ok: bool, what: String) -> void:
 
 
 func _initialize() -> void:
+	AICrownRules.whole = true      # (crown-rule-cleanup: this tests the rule itself, which the cleaned set leaves out against
+	                               # this enemy: today's whole stack, docs/crown_rule_cleanup.md)
 	for a in OS.get_cmdline_user_args():
 		var kv := a.split(":", true, 1)
 		if kv.size() == 2:
