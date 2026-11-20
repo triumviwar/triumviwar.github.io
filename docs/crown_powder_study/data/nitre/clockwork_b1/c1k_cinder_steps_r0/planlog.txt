@@ -1,0 +1,20 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:14] P1 Crown's plan: Timing attack, a build order of 12 steps from here (scripts/ai_crown.gd)
+[01:14] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Timing attack (a timing attack)
+[02:30] P1 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Timing attack (it switched once this stage already; Siege push waits)
+[02:55] P1 Crown's plan: the army on time: 0 of army (with what trains) against the 60 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[03:10] P1 Crown's plan: a Farm at its new hall at once (23 s after it stood)
+[03:55] P1 Crown's plan: the army on time: 0 of army (with what trains) against the 160 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[04:25] P1 Crown's plan: the army first: 60 of army against the 206 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:47] P1 Crown's plan: optimal: reads AGGRESSIVE [a big early army]: keeps Timing attack (what it plays already answers it)
+[04:48] P1 Crown's plan: a rush is scouted: soldiers before labourers, no new hall till it is held
+[06:21] P1 Crown's plan: the army on time: 590 of army (with what trains) against the 600 it wants by now (60% of a Hard Clockwork's usual army): soldiers before more labourers
+[06:40] P1 Crown's plan: the opening is over (the timing's window is shut: the Clockwork's economy is paying off; its waves weigh what it reckons from here): the milestones take over
+[07:38] P1 Crown's plan: milestone: Barracks 3 (35 labourers, 2 halls, army 19 supply)
+[09:00] P1 Crown's plan: the army first: 680 of army against the 1235 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[09:00] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (680 against the 1235 it reckons)
+[09:14] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[10:00] P1 Crown's plan: the army first: 800 of army against the 2165 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[10:00] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (800 against the 2165 it reckons)
+[11:00] P1 Crown's plan: the army first: 970 of army against the 2825 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[11:00] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (970 against the 2825 it reckons)
