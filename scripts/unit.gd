@@ -6416,6 +6416,28 @@ func _haul_horses(site: Building, delta: float) -> Vector2:
 			if pick == null:
 				j["ph"] = "home"
 				return Vector2.ZERO
+			if goal_e is Building and bd < 4.0 * Defs.TILE:
+				# (gun-crew-fetch: at a building he leads the horse right up to its hitch spot, so it never walks
+				# there by itself; the owner, 2026-11-20: "Horses are not supposed to go alone")
+				var sk := "spot%d" % pick.get_instance_id()
+				if not j.has(sk):
+					j[sk] = game.hitch_spot(goal_e as Building, pick)
+				var spot: Vector2 = j[sk]
+				var there := position.distance_to(spot) < 14.0
+				j["spot_t"] = float(j.get("spot_t", 0.0)) + delta if there else 0.0
+				if pick.position.distance_to(spot) < 34.0 or float(j["spot_t"]) > 2.0:
+					j["spot_t"] = 0.0
+					_hitch(pick, goal_e)
+					return Vector2.ZERO
+				if there:
+					# (he stands on the spot; the horse steps up beside him: a moment for it)
+					path = PackedVector2Array()
+					return Vector2.ZERO
+				if _haul_stuck(position.distance_to(spot), delta) == 2:
+					pick._snap_to_leader(spot)
+					_hitch(pick, goal_e)
+					return Vector2.ZERO
+				return _walk_to(spot, delta)
 			if bd < float(Defs.HAUL["reach"]):
 				_hitch(pick, goal_e)
 				return Vector2.ZERO

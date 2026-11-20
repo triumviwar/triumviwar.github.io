@@ -230,7 +230,7 @@ static func _new_home(u: Unit) -> Building:
 	for b in u.game.buildings:
 		if b.team != u.team or b.dead or not b.built or (b.kind != "foundry" and b.kind != "town_hall"):
 			continue
-		var dd := b.edge_distance(u.position)
+		var dd: float = b.edge_distance(u.position)
 		if dd < bd:
 			bd = dd
 			best = b
