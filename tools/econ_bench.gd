@@ -59,7 +59,7 @@ func _initialize() -> void:
 		if "=" in a:
 			var kv := a.split("=", true, 1)
 			opts[kv[0]] = kv[1]
-		else:
+		elif not a.begins_with("powder:"):      # (crown-powder-study's switches: scripts/crown_powder.gd)
 			fac = a
 	for s in String(opts["exp"]).split(","):
 		if s != "" and s != "auto":
