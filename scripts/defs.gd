@@ -142,7 +142,7 @@ const WAGON := {"store": 120, "fill": 8.0, "per_powder": 1.0, "keg": 30, "keg_lo
 ## where the Horse Breeder spawns it to that building and hitched; a Powder Wagon on SUPPLY
 ## gets kegs from a Powder Mill; a gun or wagon with `team_want` horses gets spare ones.
 ## `scan` s between dispatches; `batch` tiles: other ready horses that close to the first one
-## are led along (with no hauler free the recruit / gun fetches its horse by itself at once); `reach` px to count as arrived.
+## are led along (with no hauler free a rider walks to his horse and a Foundry sends a Gun Crewman for a gun's: GunCrew); `reach` px to count as arrived.
 ## Kegs to a wagon: as many on the way at once as its powder use calls for (WorkerLabels.wagon_need: kegs a second x the
 ## round trip from the Mill), only capped by its room (WAGON store); the old limit of 2 kegs in flight ("kegs") was
 ## removed (the owner, 2026-10-29).
@@ -955,7 +955,7 @@ const UNITS := {
 		"tags": ["light"],
 		"name": "Labourer", "hp": 46, "armor": 0, "speed": 74, "cost": 50, "time": 12.0, "supply": 1,
 		"sight": 7, "range": 20, "damage": 7, "cooldown": 1.0, "radius": 9, "from": "town_hall",
-		"faction": "crown", "worker": true, "about": "Builds and repairs (buildings and the guns and wagons), and works the Farms and the Powder Mills. Right-clicked onto a Town Hall he becomes a hauler: he leads horses to the Barracks and Foundry and carries powder kegs to the Wagons. MOUNT a horse and he rides as a Messenger. Weak in a fight.",
+		"faction": "crown", "worker": true, "about": "Builds and repairs (buildings and the guns and wagons), and works the Farms and the Powder Mills. Right-clicked onto a Town Hall he becomes a hauler: he leads horses to the Barracks and Foundry (with none free, a Foundry sends a gun crewman for its gun's horse) and carries powder kegs to the Wagons. MOUNT a horse and he rides as a Messenger. Weak in a fight.",
 	},
 	"musketeer": {
 		"tags": ["light"],
@@ -1031,6 +1031,17 @@ const UNITS := {
 		"sight": 8, "range": 110, "damage": 30, "cooldown": 1.1, "aim": 0.35, "radius": 10, "from": "barracks",
 		"sabre": {"damage": 18.0, "cooldown": 1.1}, "faction": "crown",
 		"about": "A Horseman on foot: his flintlock pistol (one shot, 30 damage, a little over half a musket's reach) and the same sabre as in the saddle up close (about a plain bayonet's match). On foot he reloads the pistol by himself (4 s, a charge of his powder: his charges refill like a Musketeer's, 1 powder each). Needs no Horse Breeder: without a horse he walks. Powder buys his pistol (5 powder: the loaded shot and 4 charges); with none he comes out with the sabre only. MOUNT a horse and he rides as a Horseman.",
+	},
+	# the GUN CREWMAN (gun-crew-fetch, 2026-11-20): one of a Foundry's gun crew. With no Town Hall hauler free for it, he comes
+	# out of the Foundry, fetches the horse kept for its gun from the Horse Breeder on a leash, hitches it by the Foundry and
+	# goes back in (scripts/gun_crew.gd). Trained nowhere, not selectable (picking him picks his Foundry), not saved (a new one
+	# comes out after a load). A stand-in: the Labourer's strips with a gunner's steel helmet (tools/make_gun_crew_art.py).
+	"gun_crewman": {
+		"tags": ["light"],
+		"name": "Gun Crewman", "hp": 46, "armor": 0, "speed": 74, "cost": 0, "time": 1.0, "supply": 0,
+		"sight": 5, "range": 20, "damage": 0, "cooldown": 1.0, "radius": 9, "from": "",
+		"no_attack": true, "faction": "crown", "campaign_only": true, "gun_crew": true,
+		"about": "One of the Foundry's gun crew. With no Town Hall hauler free, he walks to the Horse Breeder, leads the horse kept for the gun back on a leash and hitches it by the Foundry, then goes back in. Unarmed: guard him.",
 	},
 	# the PIKEMAN, back for the campaign only (campaign-m1, 2026-11-04): the rebels' pikeman in mission 1 (scripts/campaign/rebels.gd).
 	# Retired from the Crown's roster (the Musketeer's bayonet does his job); no building trains him and no lobby lists him.
@@ -1511,7 +1522,7 @@ const UNITS := {
 const BUILDINGS := {
 	"town_hall": {
 		"name": "Town Hall", "hp": 1600, "armor": 2, "cost": 400, "time": 60.0, "size": Vector2i(5, 4),
-		"supply": 10, "sight": 9, "trains": ["labourer"], "haulers": 6, "faction": "crown", "about": "Trains labourers. Right-click Labourers onto it to make them haulers: they lead horses to the Barracks and Foundry and carry powder kegs to the Wagons. Each Town Hall allows 2 Farms and 1 Powder Mill round it: each counts for its nearest Town Hall. Its farmland holds a reserve of gold (once the farms have drawn it out they pay nothing) and its ground a reserve of saltpetre for the Mill (spent, the Mill grinds at 15%). Expand to fresh land.",
+		"supply": 10, "sight": 9, "trains": ["labourer"], "haulers": 6, "faction": "crown", "about": "Trains labourers. Right-click Labourers onto it to make them haulers: they lead horses to the Barracks and Foundry (with none free, a Foundry sends a gun crewman for its gun's horse) and carry powder kegs to the Wagons. Each Town Hall allows 2 Farms and 1 Powder Mill round it: each counts for its nearest Town Hall. Its farmland holds a reserve of gold (once the farms have drawn it out they pay nothing) and its ground a reserve of saltpetre for the Mill (spent, the Mill grinds at 15%). Expand to fresh land.",
 	},
 	"cottage": {
 		"name": "Cottage", "hp": 400, "armor": 1, "cost": 100, "time": 20.0, "size": Vector2i(2, 2),
@@ -1539,7 +1550,7 @@ const BUILDINGS := {
 	},
 	"foundry": {
 		"name": "Foundry", "hp": 900, "armor": 2, "cost": 200, "time": 45.0, "size": Vector2i(4, 3),
-		"supply": 0, "sight": 7, "trains": ["cannon", "mortar", "balloon", "powder_wagon"], "requires": "barracks", "faction": "crown", "about": "Casts field cannons and mortars, rigs observation balloons and builds powder wagons (each cannon, mortar and wagon needs a horse: one at the Foundry, else a free one at a breeder walks over, else a breeder trains one; the gun waits for it). Needs a Barracks.",
+		"supply": 0, "sight": 7, "trains": ["cannon", "mortar", "balloon", "powder_wagon"], "requires": "barracks", "faction": "crown", "about": "Casts field cannons and mortars, rigs observation balloons and builds powder wagons (each cannon, mortar and wagon needs a horse: one at the Foundry, else a free one at a breeder is kept for it, else a breeder trains one; a Town Hall hauler leads it over, or with none free a gun crewman comes out and fetches it on the leash; the gun waits for it). Needs a Barracks.",
 	},
 	"clocktower": {
 		"name": "Clocktower", "hp": 2000, "armor": 3, "cost": 400, "time": 60.0, "size": Vector2i(5, 4),
@@ -1850,7 +1861,7 @@ const NEUTRAL_CLOTH := Color(0.86, 0.85, 0.80)
 const MOUNTS := {"labourer": "messenger", "musketeer": "dragoon", "dismounted": "cuirassier", "missionary": "mounted_missionary"}
 const FOOT := {"messenger": "labourer", "dragoon": "musketeer", "cuirassier": "dismounted", "mounted_missionary": "missionary"}
 ## Men who can lead horses by the reins (and the Clockwork's Winders).
-const LEADERS := ["labourer", "musketeer", "dismounted", "messenger", "winder"]
+const LEADERS := ["labourer", "musketeer", "dismounted", "messenger", "winder", "gun_crewman"]
 ## Units drawn by a horse: without one (RELEASE HORSE) they stand where they are.
 const HARNESSED := ["cannon", "mortar", "powder_wagon"]
 ## Soldiers who carry a musket (locks, the shot pouch, the musket's powder). (The Officer
@@ -1879,6 +1890,7 @@ const TEMP_ART := {
 	"serpent_gear_b": {"art": "great_winder"},
 	"horse": {"art": "horse", "portrait": "horse"},
 	"messenger": {"art": "messenger", "portrait": "messenger"},
+	"gun_crewman": {"art": "gun_crew", "portrait": "labourer"},     # (a stand-in: docs/art_style_inconsistency.md)
 	"dragoon": {"art": "dragoon", "armoured": "dragoon_armoured", "portrait": "dragoon", "portrait_armoured": "dragoon_armoured"},
 	"dismounted": {"art": "dismounted", "armoured": "dismounted_armoured", "portrait": "dismounted", "portrait_armoured": "dismounted_armoured"},
 	"mounted_missionary": {"art": "missionary_mounted", "portrait": "mounted_missionary"},
@@ -2437,7 +2449,7 @@ const TIPS := {
 	"gate": "A palisade piece that opens for your side only. Lay it onto your own palisade to swap a piece. Needs a Cottage.",
 	"barracks": "Trains Musketeers and Officers, Horsemen and Dragoons (need a Horse Breeder), and with Armour the armoured ones. Powder buys their shots as they come out (ARM WITH POWDER). Refits soldiers. Needs a Cottage. Two openings: Powder Mill first for armed Musketeers, or Horse Breeder first for a Horseman rush.",
 	"armoury": "Researches Armour, the musket locks, the socket bayonet and the guns' drills. Refits soldiers too.",
-	"foundry": "Casts cannons and mortars, rigs balloons, builds powder wagons (each needs a horse: one standing here, else a Town Hall hauler leads one over from the Horse Breeder, or it walks over by itself when you have no haulers).",
+	"foundry": "Casts cannons and mortars, rigs balloons, builds powder wagons (each needs a horse: one standing here, else a Town Hall hauler leads one over from the Horse Breeder, or with none free a gun crewman comes out and leads it over; a horse never walks over alone).",
 	"farm": "Ripens into a 380-gold harvest about every 40 s with a full crew (up to 8 Labourers).",
 	"powder_mill": "Up to 6 Labourers grind the Hall's saltpetre into powder (you start with none). Unlocks Musketeers. Soldiers and wagons nearby refill here.",
 	"church": "Sends out one Missionary.",

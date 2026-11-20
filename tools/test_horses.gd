@@ -358,7 +358,9 @@ func _one_click() -> void:
 	# a gun: the spare walks to the Foundry by itself, and the gun rolls out with it
 	var coat: String = spare.coat
 	check(g.train(fdy, "cannon") == "", "one click: CANNON (%s)" % g.can_train(fdy, "cannon"))
-	check(spare.into == fdy, "the gun's horse walks to the Foundry by itself, led by nobody")
+	check(spare.into == null and spare.horse_rid != 0, "the gun's horse waits at the breeder: it never walks to the Foundry by itself (gun-crew-fetch)")
+	await wait_for(func() -> bool: return spare.leader != null and spare.leader.kind == "gun_crewman", 30.0)
+	check(spare.leader != null and spare.leader.kind == "gun_crewman", "with no hauler a gun crewman comes out of the Foundry and leads it")
 	var cannons := func() -> Array: return g.units.filter(func(u: Unit) -> bool: return u.team == 0 and u.kind == "cannon")
 	await wait_for(func() -> bool: return not cannons.call().is_empty(), 60.0)
 	var cn: Array = cannons.call()

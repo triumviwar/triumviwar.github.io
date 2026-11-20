@@ -751,3 +751,12 @@ scripts/campaign/mission_run.gd: a dark see-through box, vertical wooden bars ev
 by the creature's radius). Wanted from ChatGPT: an ox cart with an iron cage on it (the five views of the wagon's strips,
 empty), then the cage's bars as an overlay strip; the young Sire is a Tyrant Sire drawn at 0.55 (its own young art
 later), Lindqvist, the porters and the hired guns are stand-ins (Musketeers, Labourers).
+
+## The Gun Crewman (code-recoloured stand-in, gun-crew-fetch, 0.38.87)
+
+The Foundry's GUN CREWMAN (Defs.UNITS.gun_crewman, docs/gun_crew_fetch.md: he leads a gun's horse from the Horse Breeder
+when no hauler is free) wears the Labourer's idle/walk/death strips with the brown hat recoloured a steel grey in code
+(tools/make_gun_crew_art.py -> assets/units/gun_crew/; his idle is the walk's first frame twice, since the Labourer's
+idle leans on a pick). The Field Cannon's and Mortar's painted crew wear a red (team) coat and a grey morion helmet;
+wanted from ChatGPT: a gunner like them, unarmed (a rammer or nothing in hand), in the Labourer's five views (s, se, e,
+ne, n): idle (2 frames), walk (6) and death (3), 42 x 35 cells, feet at (21, 33), the coat in the team-colour red.

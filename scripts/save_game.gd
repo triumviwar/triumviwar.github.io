@@ -207,9 +207,10 @@ static func capture(game: Game, cfg: Dictionary, replay := false) -> Dictionary:
 	# every saved unit's number (in this list's order), so horses can name who leads them
 	var ids := {}
 	for u in game.units:
-		if u.dead or u.off_field or (u.kind == "horse" and is_instance_valid(u.into) and u.into is Building and u.horse_rid == 0):
+		if u.dead or u.off_field or u.kind == "gun_crewman" or (u.kind == "horse" and is_instance_valid(u.into) and u.into is Building and u.horse_rid == 0):
 			continue           # (a horse taken to a building, or hitched there, is already in its queue entry; one
-			                   # kept for a gun still on its way is saved with its reservation: it is fetched again)
+			                   # kept for a gun still on its way is saved with its reservation: it is fetched again;
+			                   # a Gun Crewman is not saved: a new one comes out of the Foundry after a load, GunCrew)
 		ids[u] = ids.size()
 	for u in game.units:
 		if not ids.has(u):
