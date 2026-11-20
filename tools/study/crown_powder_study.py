@@ -73,6 +73,10 @@ def game(d, opp):
         x["bay%d" % mn] = at(si, mn, None, "musk_dry")
         x["army%d_v" % mn] = at(si, mn, "army")
         x["inc%d_v" % mn] = at(si, mn, "income")
+        x["hands%d" % mn] = at(si, mn, None, "on_mills")
+        x["mills%d" % mn] = at(si, mn, None, "mills")
+        x["salt%d" % mn] = at(si, mn, None, "salt")
+        x["halls%d" % mn] = at(si, mn, "halls")
         x["inc%d" % mn] = cb_ratio(mins, si, oi, mn, "income")
         x["army%d" % mn] = cb_ratio(mins, si, oi, mn, "army")
     last = None
@@ -128,7 +132,7 @@ def summary(rows):
             # a ratio's mean in logs (x of the enemy's)
             v = [math.log(r["%s%d" % (k, mn)]) for r in rows if r.get("%s%d" % (k, mn))]
             s["%s%d" % (k, mn)] = math.exp(sum(v) / len(v)) if v else None
-        for k in ("pow", "gold", "arm", "bay", "army%d_v", "inc%d_v"):
+        for k in ("pow", "gold", "arm", "bay", "army%d_v", "inc%d_v", "hands", "mills", "salt", "halls"):
             kk = k % mn if "%" in k else "%s%d" % (k, mn)
             s[kk] = med([r.get(kk) for r in rows])
     return s
@@ -180,6 +184,14 @@ def report():
                 f2(s["inc8"]), f2(s["inc12"]), f2(s["inc16"]), f2(s["army8"]), f2(s["army12"]), f2(s["army16"]), s["dry"],
                 f2(s["pow8"], 0), f2(s["pow12"], 0), f2(s["pow16"], 0), f2(s["gold8"], 0), f2(s["gold12"], 0), f2(s["gold16"], 0),
                 f2(s["arm12"], 0), f2(s["bay12"], 0), f2(s["arm16"], 0), f2(s["bay16"], 0), f2(s["nitre"], 0), f2(s["bought"], 0)))
+    print("\n### The Mills (medians, the Crown side): Mills built / hands on them / saltpetre left in all its halls / halls, at 8:00, 12:00, 16:00\n")
+    print("| matchup | option | 8:00 | 12:00 | 16:00 |")
+    print("|---|---|---|---|---|")
+    for opp in OPPS:
+        for opt in OPTS:
+            s = summary(pool(opt, opp))
+            if s:
+                print("| %s | %s | %s |" % (opp, opt, " | ".join("%s / %s / %s / %s" % (f2(s["mills%d" % mn], 0), f2(s["hands%d" % mn], 0), f2(s["salt%d" % mn], 0), f2(s["halls%d" % mn], 0)) for mn in (8, 12, 16))))
     if "--games" in sys.argv:
         for opp in OPPS:
             for opt in OPTS:

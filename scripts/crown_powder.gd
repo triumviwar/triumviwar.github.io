@@ -173,25 +173,32 @@ static func card(hud, list: Array) -> void:
 
 # ------------------------------------------------------------------ the computer (C and D)
 
-## The computer's trigger, the same for both: gold banked and little powder (`dry` against the Clockwork uses 400 too), once
-## a hall's saltpetre is low (AI_SALT_LOW): not the opening's empty bank before the first Mill.
+## The computer's trigger, the same for both: gold banked and little powder (`dry` against the Clockwork uses 400 too), after
+## the opening (AI_FROM).
 const AI_GOLD := 400
 const AI_POWDER := 60.0
-## (C) a hall's saltpetre this low (share left) with a Mill on it: the beds go there
-const AI_SALT_LOW := 0.35
+## Not before this clock (s). The owner's sketch was "at a hall whose saltpetre is low"; traced (Mirewood 9269 v the
+## Clockwork, `nitre`), the bank was dry from ~10:00 with every hall still holding over a third of its saltpetre (4,500 in
+## the ground at 13:00): the Mills could not grind fast enough for the army, so no hall was ever "low" and no beds were laid.
+## So the trigger is the dry bank after the opening; the beds go by the hall with the least saltpetre left first.
+const AI_FROM := 360.0
+## (C) a new bed no sooner than this after the last was laid (s): the dry bank must last
+const AI_BEDS_GAP := 60.0
 
 
-## Think stage 1 of the Crown computer (AICrown._think_stage_crown).
+## Think stage 1 of the Crown computer (AICrown._think_stage_crown). BUY POWDER with AI_GOLD banked; the beds, a lasting
+## building, as soon as their price can be paid (traced, Mirewood 9269 v the Clockwork: the bank sat at 200-370 from 12:00
+## with the powder at 0, so a 400-gold trigger would have laid none until 16:00).
 static func ai_tick(ai) -> void:
 	if not (on("nitre") or on("buy")) or ai.game == null or ai.game.faction_of(ai.team) != "crown":
 		return
 	var g = ai.game
 	var t: int = ai.team
-	if ai._gold() < AI_GOLD or ai._res2() >= AI_POWDER:
+	if ai._res2() >= AI_POWDER:
 		return
-	if not ai._halls().any(func(h: Building) -> bool: return h.built and h.lode_left() < AI_SALT_LOW):
-		return          # (no hall's saltpetre is low yet: the opening's empty bank is not the problem these answer)
-	if on("buy") and buy_problem(g, t) == "":
+	if float(g.clock) < AI_FROM:
+		return          # (the opening's empty bank before the first Mill is not the problem these answer)
+	if on("buy") and ai._gold() >= AI_GOLD and buy_problem(g, t) == "":
 		buy(g, t)
 		_count(ai, "buy")
 	if on("nitre"):
@@ -206,7 +213,9 @@ static func _ai_beds(ai) -> void:
 	for b in g.buildings:
 		if b.team == t and b.kind == BEDS and not b.dead and not b.built:
 			return          # (one site at a time)
-	var halls: Array = ai._halls().filter(func(h: Building) -> bool: return h.built and h.lode_left() < AI_SALT_LOW)
+	if float(g.clock) - float(ai.get_meta("powder_beds_t", -999.0)) < AI_BEDS_GAP:
+		return
+	var halls: Array = ai._halls().filter(func(h: Building) -> bool: return h.built)
 	halls.sort_custom(func(a: Building, b: Building) -> bool: return a.lode_left() < b.lode_left())
 	for h in halls:
 		var has := false
@@ -222,6 +231,7 @@ static func _ai_beds(ai) -> void:
 		if spot.x < 0:
 			continue
 		ai._construct(BEDS, spot)
+		ai.set_meta("powder_beds_t", float(g.clock))
 		_count(ai, "beds")
 		return
 
