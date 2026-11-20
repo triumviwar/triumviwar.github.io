@@ -752,7 +752,7 @@ by the creature's radius). Wanted from ChatGPT: an ox cart with an iron cage on 
 empty), then the cage's bars as an overlay strip; the young Sire is a Tyrant Sire drawn at 0.55 (its own young art
 later), Lindqvist, the porters and the hired guns are stand-ins (Musketeers, Labourers).
 
-## Nitre Beds and BUY POWDER (code, crown-powder-study 0.38.87; only with the study switches `powder:nitre` / `powder:buy`)
+## Nitre Beds and BUY POWDER (code, crown-powder-study 0.38.88; only with the study switches `powder:nitre` / `powder:buy`)
 
 - `assets/buildings/nitre_beds_{built,damaged,construction,destroyed}.png` (104 x 84, the 3 x 2 footprint): drawn by
   `tools/draw_nitre_beds.py` with PIL: three long earth beds with white saltpetre crust, a straw lean-to on two posts, a barrel,
