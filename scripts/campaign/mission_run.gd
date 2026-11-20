@@ -197,8 +197,21 @@ func line(lid: String) -> Dictionary:
 	if ln.has("phone") and not Settings.pc():
 		txt = String(ln["phone"])          # (a line with its own words for a phone: the controls differ)
 	return {"id": lid, "who": who, "name": String(sp.get("name", who)), "side": String(sp.get("side", "")),
-		"portrait": String(sp.get("portrait", "")), "text": txt, "still": String(ln.get("still", "")),
+		"portrait": portrait_for(who, String(sp.get("name", who)), String(sp.get("portrait", ""))), "text": txt, "still": String(ln.get("still", "")),
 		"to": String(ln.get("to", ""))}
+
+
+# The face in the dialogue box: the speaker's own "portrait" if the mission names one, else
+# campaign/portraits/<who>_<name>.png (a key shared by several people, like "teacher"), else
+# campaign/portraits/<who>.png; "" draws the initials.
+static func portrait_for(who: String, nm: String, own := "") -> String:
+	if own != "" and ResourceLoader.exists(own):
+		return own
+	var slug := nm.to_lower().replace(".", "").replace("'", "").replace(" ", "_")
+	for p in ["res://campaign/portraits/%s_%s.png" % [who, slug], "res://campaign/portraits/%s.png" % who]:
+		if ResourceLoader.exists(p):
+			return p
+	return own
 
 
 func still(sid: String) -> Dictionary:

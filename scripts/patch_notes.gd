@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.90", "items": [
+		"FACES IN THE CAMPAIGN: when someone speaks during a campaign mission or a lesson, the box now shows their painted portrait instead of their initials: the King, Father Tomasz, Lord Fairleigh, Captain Ruggieri, Varenne, Meister Hollweg, Father Ferrer, Jakob, Dr. Lindqvist, Valadares and some thirty more, all painted with ChatGPT in the style of the story's paintings. The Machine, the automata, the creatures and the Free Assembly get a painting of their own. Places speaking (Rome, Nuremberg...) keep their initials.",
+	]},
 	{"v": "0.38.89", "items": [
 		"Studies only (nothing a player uses changed): four ways to give the Crown more powder late in a game were built behind study switches, all off, and measured in 300 computer games and on the economy bench: more saltpetre in a Town Hall, a higher floor for a Mill on spent saltpetre, NITRE BEDS (a small building that turns gold into powder slowly) and BUY POWDER at the Town Hall. None changed how the Crown computer does: its Town Halls still hold most of their saltpetre at 16 minutes, because it keeps too few Labourers at its Mills. The report is for the owner to choose.",
 	]},

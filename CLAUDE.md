@@ -25,6 +25,10 @@
 
 ## Current work
 
+- DIALOGUE PORTRAITS (owner 2026-11-20 20:50; 0.38.90): campaign/portraits/<who>.png (256 px, oil style, made in ChatGPT
+  as 2x2 sheets kept in art/campaign/portraits/sheet1-8.png); MissionRun.portrait_for(who, name, own): the speaker's own
+  "portrait", else portraits/<who>_<name slug>.png (shared keys like teacher/captain), else portraits/<who>.png, else
+  initials. New speaker = one new file. Places (narrator) and the NEW card keep initials.
 - THE CROWN'S POWDER (owner 2026-11-20 20:41): job crown-powder-study measured four design options (more saltpetre,
   a 35% floor, Nitre Beds, BUY POWDER; all OFF switches `powder:<option>`): none helped the computer; its halls still hold
   saltpetre late, it UNDER-CREWS its Mills (6-9 hands on 4-5 Mills). OWNER: LEAVE POWDER AS IT IS for now (no design
