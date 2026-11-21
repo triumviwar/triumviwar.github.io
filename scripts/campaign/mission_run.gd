@@ -2302,6 +2302,18 @@ func _kind_ok(e: Entity, kinds: Array) -> bool:
 	return kinds.has("army") and e is Unit and not (e as Unit).is_worker()
 
 
+## Worked out: a Mill or Farm whose ground is spent, a Rootmaw that has drunk its swamp dry. It takes no crew, so a
+## lesson's "2 on each" counts it as done (a slow player's home Rootmaw ran dry and "Put 2 grubs on each Rootmaw"
+## could never be done; playtest 2026-11-21).
+func _spent(e: Entity) -> bool:
+	if e is Building:
+		return (e as Building).barren()
+	if e is Unit and BroodNew.is_source(e):
+		var u := e as Unit
+		return float(u.nb.get("food", 0.0)) < 1.0 and BroodNew.ground_left(game, u) < 1.0
+	return false
+
+
 func _need(q: Variant) -> int:
 	return int(q.get("count", 1)) if q is Dictionary else 1
 
@@ -2335,7 +2347,8 @@ func _tutorial_cond(k: String, v: Variant) -> bool:
 			var at_least := int(v.get("at_least", 1)) if v is Dictionary else 1
 			var n := 0
 			for e in game.buildings + game.units:
-				if e.team == game.human and not e.dead and kinds.has(e.kind) and WorkerLabels.workers(game, e).size() >= at_least:
+				if e.team == game.human and not e.dead and kinds.has(e.kind) \
+						and (WorkerLabels.workers(game, e).size() >= at_least or _spent(e)):
 					n += 1
 			return n >= _need(v)
 		"group":
