@@ -1519,7 +1519,7 @@ func _nb_mother_up(q: Unit) -> String:
 		                   # Hollowfen game). With no warriors she still gets up: her grubs huddle by her)
 	if at >= MOTHER_BIG and mine < at:
 		return "big"
-	# (brood-mother-uproot) HER SWAMP LINGERS (BroodNew.LINGER s, the Rootmaws on it wait, not lost): getting up costs a
+	# (brood-mother-uproot) HER SWAMP LINGERS (BroodNew.LINGER s, the Rootmaws on it drink less and less, not lost): getting up costs a
 	# pause in their food, no longer the whole economy, so she joins a smaller fight at her nest her army there does not
 	# clearly win (MOTHER_HELP), and mother_guard roots her back on it before it runs out
 	if BroodNew.linger_on and at >= MOTHER_HELP and mine < at * 1.3:

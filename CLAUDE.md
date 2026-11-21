@@ -67,6 +67,10 @@
   450/800/1100 hp + the mark nudge (the HARD stall fixed); a05 creatures: +4/+8 guns; a02 Machine: the guild +defence and
   builds every 1:30 (NORMAL/HARD); b01 rival cap 28/36/50, HARD ai normal. 10 Claude's choices in the doc. Merge on its
   DONE; the player-comforts job changes MissionRun at the same time.
+- BROOD SWAMP FADES (owner 2026-11-21 21:03, his answers to brood-mother-uproot's choices; 0.38.120,
+  docs/brood_mother_uproot.md "The owner's answers"): LINGER 30 s (fresh each time), Mound Turtles too, the swamp keeps
+  its whole circle and fades, gone at once at 30 s (Game.swamp_drop; a killed source still recedes), Rootmaws drink at the
+  fading share 100% -> 0% (BroodNew.maw_fade_share, nb "wait" 0..1), root back only on their own spot.
 - BROOD MOTHER UPROOT (owner 2026-11-21 15:43 "a bit of everything", to the Brood skirmish playtest's finding 6; job
   brood-mother-uproot, branch brood-mother-uproot, docs/brood_mother_uproot.md, tools/test_brood_mother_uproot.gd +
   _ai.gd, tools/playtest/brood_linger.gd, tools/study/brood_mother_uproot.py, data docs/brood_mother_uproot/data/,

@@ -5829,6 +5829,8 @@ func on_swamp(t: int, p: Vector2) -> bool:
 ## THE SWAMP SPREADS AT A WALK (the owner, 2026-10-31): it is worked out once every SWAMP_STEP s, growing one tile out
 ## from each rooted source (BroodNew.swamp_grow) and receding one ring where no source holds it any more.
 const SWAMP_STEP := 1.0
+## Lingering swamps whose time is up this step: [team, centre in tiles, radius]; they go at once (_update_swamp).
+var swamp_drop: Array = []
 
 
 ## Once a swamp step (the host; a guest's swamp follows the radii it is sent: NetPuppet).
@@ -5889,14 +5891,26 @@ func _update_swamp() -> void:
 		# update (every SWAMP_STEP: 1 tile a second, as it grows), the outermost unsupported tiles first
 		# (nothing to do where the grid came out as it was, as for every side without swamp:
 		# the whole-map loop ran for every player every half second)
+		var drops: Array = []        # (the owner, 2026-11-21 21:03: a faded lingering swamp goes at once, no retreat)
+		for d in swamp_drop:
+			if int(d[0]) == t:
+				drops.append(d)
 		for i in (W * H if old != g else 0):
 			if old[i] == 1 and g[i] == 0:
 				var x := i % W
 				var y := i / W
+				var dropped := false
+				for d in drops:
+					if BroodNew._in_circle(Vector2(x + 0.5, y + 0.5), d[1], float(d[2]) + 0.75):
+						dropped = true
+						break
+				if dropped:
+					continue
 				if x > 0 and x < W - 1 and y > 0 and y < H - 1 and old[i - 1] == 1 and old[i + 1] == 1 and old[i - W] == 1 and old[i + W] == 1:
 					g[i] = 1
 					swamp_dirty = true
 		swamp[t] = g
+	swamp_drop.clear()
 	_swamp_any = _all_swamp()
 	swamp_layer.queue_redraw()
 	swamp_layer_b.queue_redraw()

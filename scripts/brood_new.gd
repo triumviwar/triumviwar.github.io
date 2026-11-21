@@ -279,13 +279,14 @@ static func swamp_sources(g: Game, t: int) -> Array:
 
 ## THE SWAMP LINGERS (the owner, 2026-11-21 15:43, "a bit of everything"; docs/brood_mother_uproot.md): when the Brood
 ## Mother gets up (UPROOT, to fight), her swamp does not start to recede at once: it LINGERS for LINGER s where she was
-## rooted, fading as the time runs out, then recedes a ring a second as before. While it lingers the Rootmaws on it stay
-## rooted but WAIT (they do not drink: no food from them) until she roots again on it (her own swamp takes over) or the
-## swamp is gone (then they uproot as before). Uprooted that way, a Rootmaw ROOTS AGAIN BY ITSELF on its own spot when
+## rooted. THE OWNER, 2026-11-21 21:03: 30 s (a fresh 30 each time she gets up); Mound Turtles the same; the swamp stays
+## the whole circle and FADES (no ring by ring retreat), gone all at once when the time is up; the Rootmaws on it keep
+## drinking at the fading share (100% as she gets up, 0% at 30 s) until she roots again on it (her own swamp takes over)
+## or the swamp is gone (then they uproot as before). Uprooted that way, a Rootmaw ROOTS AGAIN BY ITSELF on its own spot when
 ## swamp is back under it (she rooted again, or a turtle's swamp) and the spot is free, unless it was given an order.
 ## `-- broodlinger:off` plays it as before (measuring); `broodlinger:30` / `:60` another time.
 static var linger_on := true
-static var LINGER := 45.0
+static var LINGER := 30.0
 static var _linger_args := _read_linger_args()
 
 
@@ -312,10 +313,12 @@ static func linger_sources(g: Game, t: int) -> Array:
 	var out: Array = []
 	if not linger_on or not on(g, t):
 		return out
-	var q := queen(g, t)
-	var left := linger_left(g, q)
-	if left > 0.0:
-		out.append([Vector2(float(q.nb["lgx"]), float(q.nb["lgy"])), float(q.nb["lgr"]), clampf(left / LINGER, 0.0, 1.0)])
+	for q in g.units:              # (the Mother and every Mound Turtle that got up: owner 2026-11-21 21:03)
+		if q.team != t or not (q.kind == QUEEN or q.kind == TURTLE) or not q.nb.has("lgu"):
+			continue
+		var left := linger_left(g, q)
+		if left > 0.0:
+			out.append([Vector2(float(q.nb["lgx"]), float(q.nb["lgy"])), float(q.nb["lgr"]), clampf(left / LINGER, 0.0, 1.0)])
 	return out
 
 
@@ -332,9 +335,12 @@ static func _linger_start(g: Game, q: Unit) -> void:
 	q.nb["lgx"] = c.x
 	q.nb["lgy"] = c.y
 	q.nb["lgr"] = float(q.nb["swr"])
-	q.nb["lgu"] = g.clock + LINGER
+	q.nb["lgu"] = g.clock + LINGER          # (a fresh LINGER each time she gets up)
 	if q.team == g.human and not g.demo and g.hud:
-		g.hud.toast(Loc.t("The Brood Mother is up: her swamp lingers %d s. The Rootmaws on it wait (no food) until she roots on it again.") % int(LINGER), false)
+		if q.kind == QUEEN:
+			g.hud.toast(Loc.t("The Brood Mother is up: her swamp fades over %d s. The Rootmaws on it drink less and less until she roots on it again.") % int(LINGER), false)
+		else:
+			g.hud.toast(Loc.t("A Mound Turtle is up: its swamp fades over %d s.") % int(LINGER), false)
 
 
 static func _linger_end(q: Unit) -> void:
@@ -363,28 +369,33 @@ static func linger_fade(c: Vector2, lg: Array, live: Array) -> float:
 	return f if inside else 1.0
 
 
-## A rooted Rootmaw WAITS: its swamp is only the Mother's lingering one (no live source, her rooted or a turtle's, covers
-## its footprint's middle). It drinks nothing meanwhile and does not uproot.
-static func maw_waits(g: Game, u: Unit) -> bool:
+## A rooted Rootmaw on a FADING swamp: its swamp is only a lingering one (no live source, a rooted Mother's or turtle's,
+## covers its footprint's middle). Returns the share it drinks at (the strongest lingering swamp's time left, 1 -> 0), or
+## -1 when it is not on a fading swamp. It does not uproot meanwhile.
+static func maw_fade_share(g: Game, u: Unit) -> float:
 	if not linger_on:
-		return false
+		return -1.0
 	var lg := linger_sources(g, u.team)
 	if lg.is_empty():
-		return false
+		return -1.0
 	var cells: Array = maw_mid_cells(u.position)
-	var in_lg := false
+	var share := -1.0
 	for c in cells:
 		var cc := Vector2(c.x + 0.5, c.y + 0.5)
 		for l in lg:
 			if _in_circle(cc, l[0], float(l[1])):
-				in_lg = true
-	if not in_lg:
-		return false
+				share = maxf(share, float(l[2]))
+	if share < 0.0:
+		return -1.0
 	for src in swamp_sources(g, u.team):
 		for c in cells:
 			if _in_circle(Vector2(c.x + 0.5, c.y + 0.5), src[0], float(src[1])):
-				return false
-	return true
+				return -1.0
+	return share
+
+
+static func maw_waits(g: Game, u: Unit) -> bool:
+	return maw_fade_share(g, u) >= 0.0
 
 
 ## A Rootmaw that lost its swamp and uprooted (_lost_swamp) roots again by itself on its own spot (nb "home") once swamp
@@ -445,13 +456,15 @@ static func swamp_grow(g: Game, step: float) -> bool:
 	for u in g.units:
 		if not (u.kind == QUEEN or u.kind == TURTLE) or not on(g, u.team):
 			continue
-		if u.kind == QUEEN and u.nb.has("lgu") and g.clock >= float(u.nb["lgu"]):
-			_linger_end(u)            # (brood-mother-uproot: her lingering swamp's time is up: it recedes now)
+		if u.nb.has("lgu") and g.clock >= float(u.nb["lgu"]):
+			# (the owner, 2026-11-21 21:03) the faded swamp is gone at once, no ring by ring retreat
+			g.swamp_drop.append([u.team, Vector2(float(u.nb["lgx"]), float(u.nb["lgy"])), float(u.nb["lgr"])])
+			_linger_end(u)
 			changed = true
 		if u.dead or u.tesla_mode == "packing" or u.tesla_mode == "packed":
 			if u.nb.has("swr"):
-				if u.kind == QUEEN:
-					_linger_start(g, u)        # (brood-mother-uproot: her swamp lingers where she was)
+				if not u.dead:
+					_linger_start(g, u)        # (brood-mother-uproot: the Mother's or a turtle's swamp lingers where it was)
 				u.nb.erase("swr")
 				changed = true
 			continue
@@ -468,7 +481,7 @@ static func swamp_grow(g: Game, step: float) -> bool:
 		elif float(u.nb["swr"]) > full:
 			u.nb["swr"] = full
 			changed = true
-		if u.kind == QUEEN and u.nb.has("lgu"):
+		if u.nb.has("lgu"):
 			# (brood-mother-uproot) rooted again on her lingering swamp: it lasts until her own has grown over it (her
 			# swamp takes over from what lies there, the Rootmaws feed again as it reaches them); rooted away from it, it
 			# lingers on its time and then recedes
@@ -706,12 +719,12 @@ static func progress(g: Game, u: Unit) -> Dictionary:
 		return {"label": "ROOTING" if u.tesla_mode == "deploying" else "UPROOTING", "f": clampf(1.0 - u.tesla_t / maxf(sw, 0.01), 0.0, 1.0), "left": maxf(0.0, u.tesla_t),
 			"icon": "ab_nb_root" if u.tesla_mode == "deploying" else "ab_uproot", "col": BAR_ROOT}
 	if u.kind == MAW and rooted(u) and u.nb.has("wait"):
-		# (brood-mother-uproot) its card: it waits on the Mother's lingering swamp
-		var ql := linger_left(g, queen(g, u.team))
-		return {"label": "WAITING: THE MOTHER IS UP", "f": clampf(ql / LINGER, 0.0, 1.0), "left": ql, "icon": "ab_uproot", "col": BAR_WAIT}
-	if u.kind == QUEEN and not rooted(u) and linger_on and linger_left(g, u) > 0.0:
+		# (brood-mother-uproot) its card: it drinks at the fading swamp's share
+		var sh := float(u.nb["wait"])
+		return {"label": "SWAMP FADING: DRINKS LESS", "f": clampf(sh, 0.0, 1.0), "left": sh * LINGER, "icon": "ab_uproot", "col": BAR_WAIT}
+	if (u.kind == QUEEN or u.kind == TURTLE) and not rooted(u) and linger_on and linger_left(g, u) > 0.0:
 		var ll := linger_left(g, u)
-		return {"label": "HER SWAMP LINGERS", "f": clampf(ll / LINGER, 0.0, 1.0), "left": ll, "icon": "ab_nb_root", "col": BAR_WAIT}
+		return {"label": "HER SWAMP FADES" if u.kind == QUEEN else "ITS SWAMP FADES", "f": clampf(ll / LINGER, 0.0, 1.0), "left": ll, "icon": "ab_nb_root", "col": BAR_WAIT}
 	var e: Unit = u if u.kind == EGG else null
 	if is_father(u.kind) and rooted(u):
 		var ne := nest_eggs(g, u)
@@ -1518,11 +1531,12 @@ static func tick(g: Game, u: Unit, delta: float) -> void:
 			if float(u.nb["wet_t"]) <= 0.0:
 				u.nb["wet_t"] = 0.5
 				u.nb["dry"] = not maw_on_swamp(g, u.team, u.position)      # (off the swamp: it stops feeding)
-				var waits := rooted(u) and not bool(u.nb["dry"]) and maw_waits(g, u)
-				if waits != u.nb.has("wait"):
-					u.queue_redraw()               # (its "waiting" mark: the picture is redrawn only when asked)
+				var share := maw_fade_share(g, u) if rooted(u) and not bool(u.nb["dry"]) else -1.0
+				var waits := share >= 0.0
+				if waits != u.nb.has("wait") or (waits and absf(share - float(u.nb.get("wait", 1.0))) >= 0.1):
+					u.queue_redraw()               # (its "fading" mark: the picture is redrawn only when asked)
 				if waits:
-					u.nb["wait"] = true            # (brood-mother-uproot: on her lingering swamp only, it waits)
+					u.nb["wait"] = share           # (on a fading swamp only: it drinks at this share)
 					if g.stats.size() > u.team:
 						g.stats[u.team]["maw_wait_s"] = float(g.stats[u.team].get("maw_wait_s", 0.0)) + 0.5
 				else:
@@ -1538,12 +1552,13 @@ static func tick(g: Game, u: Unit, delta: float) -> void:
 						_lost_swamp(g, u)
 				else:
 					u.nb.erase("dry_t")
-			if rooted(u) and u.nb.has("spot") and not bool(u.nb.get("dry", false)) and not u.nb.has("wait"):
+			if rooted(u) and u.nb.has("spot") and not bool(u.nb.get("dry", false)) and float(u.nb.get("wait", 1.0)) > 0.0:
 				var id := int(u.nb["spot"])
 				if g.nb_spots.has(id):
 					var s: Dictionary = g.nb_spots[id]
 					var qm := queen(g, u.team)        # (a far Rootmaw drinks faster: Game.food_mult, 0.24.22)
 					var fill := float(Defs.NB["maw_fill"]) * (maxf(1.0, Game.food_mult(fdist(g, qm, u) / Defs.TILE)) if qm else 1.0)
+					fill *= clampf(float(u.nb.get("wait", 1.0)), 0.0, 1.0)      # (a fading swamp: it drinks less and less)
 					var take := minf(minf(fill * delta, float(s["left"])), float(Defs.NB["maw_cap"]) - food)
 					if take > 0.0:
 						s["left"] = float(s["left"]) - take
@@ -2103,7 +2118,7 @@ static func producing(g: Game, u: Unit) -> bool:
 		MAW:
 			if g.clock - float(u.nb.get("hv", -99.0)) < 1.5:
 				return true
-			return rooted(u) and not bool(u.nb.get("dry", false)) and not u.nb.has("wait") and ground_left(g, u) >= 1.0 and float(u.nb.get("food", 0.0)) < float(Defs.NB["maw_cap"]) - 0.5
+			return rooted(u) and not bool(u.nb.get("dry", false)) and float(u.nb.get("wait", 1.0)) > 0.05 and ground_left(g, u) >= 1.0 and float(u.nb.get("food", 0.0)) < float(Defs.NB["maw_cap"]) - 0.5
 	return false
 
 
@@ -2275,9 +2290,9 @@ static func draw(u: Unit, top: float) -> void:
 		u.draw_rect(Rect2(-bw * 0.5, y, bw, 3).grow(0.5), Color(0, 0, 0, 0.6 * fa))
 		u.draw_rect(Rect2(-bw * 0.5, y, bw * f, 3), Color(0.75, 0.9, 0.25, fa))
 		if rooted(u) and u.nb.has("wait") and not bool(u.nb.get("dry", false)):
-			# (brood-mother-uproot) WAITING: on the Mother's lingering swamp, it drinks nothing until she roots on it again
+			# (brood-mother-uproot) on a FADING swamp: it drinks at the share left
 			var font := ThemeDB.fallback_font
-			var wt := Loc.t("waiting")
+			var wt := "%s %d%%" % [Loc.t("fading"), int(round(float(u.nb["wait"]) * 100.0))]
 			var ww := font.get_string_size(wt, HORIZONTAL_ALIGNMENT_LEFT, -1, 13).x
 			var wp := Vector2(-ww * 0.5, float(st.get("dry", y - 6.0)))
 			var pulse := 1.0

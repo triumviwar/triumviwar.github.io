@@ -147,3 +147,15 @@ What this says, in plain words:
    the switch is on. It does not get up for riders alone, scouts or flyers, as before.
 7. **The linger starts fresh each time she gets up.** Getting up and down quickly does not stack it, but each new get-up
    gives a new 45 seconds. Rooting takes time, so this is no exploit: the Rootmaws are paused while she is up anyway.
+
+## The owner's answers (2026-11-21 21:03), built in 0.38.120
+
+- **30 s**, not 45 (`BroodNew.LINGER`), and a fresh 30 each time she gets up.
+- **The swamp keeps its whole circle and FADES**: no ring by ring retreat. When the 30 s are up the faded swamp is gone
+  at once (`Game.swamp_drop`: `_update_swamp` keeps no ring of a timed-out lingering circle). A swamp whose source is
+  KILLED still recedes ring by ring as before.
+- **Rootmaws drink at the fading share** (`BroodNew.maw_fade_share`, kept in nb "wait" as 0..1): 100% as she gets up,
+  0% at 30 s, linear. Card SWAMP FADING: DRINKS LESS, a "fading n%" mark.
+- **Mound Turtles do the same** (their own `lgx/lgy/lgr/lgu`; card ITS SWAMP FADES).
+- A Rootmaw roots back only on its own spot (unchanged).
+- Test: `tools/test_brood_mother_uproot.gd` (the whole circle kept while fading, gone at once, a turtle lingers).

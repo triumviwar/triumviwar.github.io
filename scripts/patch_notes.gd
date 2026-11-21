@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.120", "items": [
+		"THE BROOD'S SWAMP FADES WHEN THE MOTHER OR A MOUND TURTLE GETS UP: when either uproots, its swamp stays where it was for 30 seconds (a fresh 30 each time) as the whole circle, fading, and then is gone all at once (no more ring by ring retreat). The Rootmaws on it keep drinking, but less and less: all their food as it starts, none at 30 seconds (their card says SWAMP FADING: DRINKS LESS, with a \"fading\" mark and the share over them). Root the Mother or the turtle again on it and they drink fully again; past the 30 seconds they uproot and root again by themselves on their own spot when swamp is back under it, as before.",
+	]},
 	{"v": "0.38.119", "items": [
 		"IRONMAN CAMPAIGN: on the campaign hub, IRONMAN plays the campaign with only one save, the one that goes on where you left each mission. No SAVE or LOAD SAVE in the match menu, no checkpoints, a choice is saved the moment you make it, a mission you are in the middle of can only be continued, and a mission you have won is not played again. Asked before it is turned on, and it stays on.",
 	]},
