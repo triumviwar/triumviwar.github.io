@@ -220,7 +220,14 @@ func _ui() -> void:
 	check("the map is sized and fitted", wm.size.x > 100 and wm.zoom > 0.5, "%s zoom %.2f" % [wm.size, wm.zoom])
 	check("its views, LEDGER and LIST", _find("View_europe") != null and _find("View_amazon") != null and _find("WarMap_Ledger") != null and _find("WarMap_List") != null)
 	check("the world opens on its Catholic painting", wm.painted == "world")
-	check("no legend over a painted sheet (it has no washes)", _find("WarLegend") != null and not (_find("WarLegend") as Control).visible)
+	check("TERRITORY on: the legend lists the holders over the painting", _find("WarLegend") != null and (_find("WarLegend") as Control).visible and WarMap.territory)
+	var tc := wm._terr_build()
+	check("the holders' stripes and flags are on the sheet", not (tc["fills"] as Array).is_empty() and not (tc["flags"] as Array).is_empty(), "%d fills, %d flags" % [tc["fills"].size(), tc["flags"].size()])
+	(_find("WarMap_Territory") as Button).button_pressed = false
+	await process_frame
+	check("TERRITORY off: no legend, the painting clean", not WarMap.territory and not (_find("WarLegend") as Control).visible)
+	(_find("WarMap_Territory") as Button).button_pressed = true
+	await process_frame
 	(_find("WarMap_Ledger") as Button).pressed.emit()
 	await process_frame
 	check("LEDGER folds out", (_find("WarLedger") as Control).visible)

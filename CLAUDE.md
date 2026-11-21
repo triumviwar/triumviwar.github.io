@@ -120,7 +120,9 @@
 - THE WAR MAP IS THE CATHOLIC PAINTINGS (owner 2026-11-21 21:52 "why isn't it showing the Catholic map?"; 0.38.122,
   docs/war_map_v1.md "Painted maps"): each view shows its painted sheet (campaign/warmap_art/painted_<view>.jpg), places
   by WarMapData.painted_px (landmark fit + inverse-distance correction, "at" by hand), written by
-  tools/campaign/fit_warmap_paintings.py (`--check dir` pictures); no washes/legend/rose on them; the code map is the fallback.
+  tools/campaign/fit_warmap_paintings.py (`--check dir` pictures); the code map is the fallback. TERRITORY (0.38.123, owner
+  23:48): held regions as diagonal STRIPES in the holder's colour (two colours for contested/unrest), a thin edge, a FLAG
+  at the middle, the legend; the TERRITORY button hides it (WarMap.territory, _terr_build).
 - THE WAR MAP AS AN OLD MAP (owner 2026-11-20 22:42-22:49 "17th~18th century style map", "Yes" to the hybrid; 0.38.94,
   docs/war_map_v1.md "The old-map look"): ChatGPT's parchment, ships, sea serpent, cartouche, inked mountains and seals
   (art/campaign/warmap_*_chatgpt.png -> campaign/warmap_art/ by tools/campaign/import_warmap_art.py); the land stays

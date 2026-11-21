@@ -3330,6 +3330,7 @@ const T := {
 	"PLAY ON THE WEB": "JOGAR NA WEB",
 	"JOIN THE DISCORD": "ENTRAR NO DISCORD",
 	"COPY LINK": "COPIAR LINK",
+	"TERRITORY": "TERRITÓRIO",
 	"Lyon, spring 2768. The Free Assembly's pamphlets are everywhere, and Lyon's presses print them. The garrison and the city's clergy hunt the presses through the streets before the city turns.": "Lyon, primavera de 2768. Os panfletos da Assembleia Livre estão em toda parte, e as prensas de Lyon os imprimem. A guarnição e o clero da cidade caçam as prensas pelas ruas antes que a cidade se revolte.",
 	"Captain Delorme's garrison, the City Watch and a young priest, Father Tomasz.": "A guarnição do capitão Delorme, a Guarda da cidade e um jovem padre, o padre Tomasz.",
 	"Varenne's people in Lyon: the presses, their runners and the silk-weavers they stir up. Green and black.": "A gente de Varenne em Lyon: as prensas, os seus mensageiros e os tecelões de seda que eles agitam. Verde e preto.",

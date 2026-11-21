@@ -225,3 +225,15 @@ the Amazon's plateau stands on the painted hills, north-east of the station). A 
 view; the world sheet shows all. No region washes, region names, legend or rose on the paintings (the owner: no
 country colours); the act's title is written in each sheet's crowned cartouche. A view without its painting (or a
 missing file) draws the old code map. Rerun the tool with `--check <dir>` for pictures of every place on every sheet.
+
+
+## Territory on the paintings (0.38.123, the owner 2026-11-21 23:48 "Do that")
+
+Held regions are filled with diagonal STRIPES in the holder's colour (14 sheet pixels a band, one pattern for every
+region so neighbours line up; gaps between bands so the painting shows; contested = the Crown's purple and the
+machine's crimson alternating, unrest = green and black; unknown land = only its dashed edge), a thin edge in the same
+colour, and a FLAG (a pole and a swallowtail pennant, split for contested/unrest) at the region's middle that steps
+aside from the seals; its name on a small ribbon (on the world sheet only once zoomed in). Built once per sheet and
+state (WarMap._terr_build): the region as cut to the real coasts on the drawn map, warped by WarMapData.painted_px, so
+it can spill a little past a painted coast (Brittany most). The TERRITORY button (WarMap.territory, on by default, kept
+while the game runs) hides stripes, flags and the legend.

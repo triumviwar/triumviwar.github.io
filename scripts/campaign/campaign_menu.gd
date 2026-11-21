@@ -1005,8 +1005,19 @@ static func war_map(main: Node) -> void:
 	var lb: Button = main._button("LEDGER", func() -> void:
 		ledger.visible = not ledger.visible
 		zr.visible = not ledger.visible
-		leg.visible = not ledger.visible and leg.get_child(0).get_child_count() > 0 and wm.painted == "")
+		leg.visible = not ledger.visible and leg.get_child(0).get_child_count() > 0 and (wm.painted == "" or WarMap.territory))
 	lb.name = "WarMap_Ledger"
+	# TERRITORY (owner 2026-11-21): the holders' stripes and flags on the paintings, shown or hidden
+	var tb: Button = main._button("TERRITORY", func() -> void: pass)
+	tb.name = "WarMap_Territory"
+	tb.toggle_mode = true
+	tb.button_pressed = WarMap.territory
+	tb.custom_minimum_size = Vector2(0, 46 if pc else 56)
+	tb.toggled.connect(func(on: bool) -> void:
+		WarMap.territory = on
+		leg.visible = not ledger.visible and leg.get_child(0).get_child_count() > 0 and (wm.painted == "" or on)
+		wm.queue_redraw())
+	top.add_child(tb)
 	lb.custom_minimum_size = Vector2(0, 46 if pc else 56)
 	top.add_child(lb)
 	var lst: Button = main._button("LIST", func() -> void:
@@ -1087,10 +1098,19 @@ static func war_map(main: Node) -> void:
 			sw.color = Color(hc["fill"], 0.9) if h != "unknown" else hc["fill"]
 			sw.custom_minimum_size = Vector2(16, 16)
 			sw.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			if h == "contested" or h == "unrest":
+				# (the two colours its stripes alternate: the Crown's and the machine's, the Assembly's green and black)
+				sw.custom_minimum_size = Vector2(8, 16)
+				sw.color = Color(hc["line"], 1.0) if h == "contested" else Color(0.20, 0.50, 0.22)
+				row.add_child(sw)
+				sw = ColorRect.new()
+				sw.custom_minimum_size = Vector2(8, 16)
+				sw.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+				sw.color = Color(hc["hatch"], 1.0) if h == "contested" else Color(0.06, 0.06, 0.05)
 			row.add_child(sw)
 			row.add_child(UiStyle.text(Loc.t(String(d.get("holders", {}).get(h, h))), 14 if pc else 16, UiStyle.TEXT, HORIZONTAL_ALIGNMENT_LEFT))
 			lgv.add_child(row)
-		leg.visible = lgv.get_child_count() > 0 and wm.painted == ""     # (the painted sheets have no washes)
+		leg.visible = lgv.get_child_count() > 0 and (wm.painted == "" or WarMap.territory) and not ledger.visible
 	fill.call()
 	var show_card := func(mid: String) -> void:
 		map_pick = mid

@@ -65,6 +65,15 @@ var pending_cam := {}              # {"c": center, "z": zoom, "v": painted} to p
 ## its painting (or a missing file) shows the drawn map as before.
 var painted := ""
 var _ptex: Texture2D
+## TERRITORY ON THE PAINTINGS (owner 2026-11-21 23:48 "Do that"): each held region is filled with diagonal STRIPES in
+## its holder's colour (gaps between, so the painting shows; two colours alternating where it is contested or in
+## unrest), a thin edge in the same colour, and a FLAG at its middle. The TERRITORY button hides it all. Built once per
+## sheet and state (_terr_build), in the sheet's pixels: the region cut to the coasts as on the drawn map, warped onto
+## the painting by WarMapData.painted_px.
+static var territory := true
+const STRIPE_W := 14.0                 # a band's width in sheet pixels (every region's bands line up: one pattern)
+var _terr := {}
+var _terr_key := ""
 
 
 static func make(skin_id := "parchment") -> WarMap:
@@ -579,11 +588,158 @@ func _draw() -> void:
 	_draw_rose(Vector2(size.x - 60, size.y - 64), 38.0, s)
 
 
+## The bands' colours for a holder on the paintings: [first, second] (second clear: a gap); [] = no stripes.
+func _stripe_cols(h: String, hs: Dictionary) -> Array:
+	match h:
+		"contested":
+			return [Color(hs["line"], 0.50), Color(hs["hatch"], 0.50)]
+		"unrest":
+			return [Color(0.20, 0.50, 0.22, 0.55), Color(0.06, 0.06, 0.05, 0.45)]
+		"unknown":
+			return []
+	return [Color(hs["line"], 0.50), Color(0, 0, 0, 0)]
+
+
+func _terr_build() -> Dictionary:
+	var key := painted + "|" + str(st.get("regions", {}))
+	if key == _terr_key:
+		return _terr
+	_terr_key = key
+	var pt: Dictionary = WarMapData.data()["paintings"][painted]
+	var sh := _ptex.get_size()
+	var rect := PackedVector2Array([Vector2.ZERO, Vector2(sh.x, 0), sh, Vector2(0, sh.y)])
+	var ys := float(WarMapData.data().get("projection", {}).get("y_scale", 1.0))
+	var s := sk()
+	var regs: Dictionary = st.get("regions", {})
+	var fills: Array = []
+	var edges: Array = []
+	var flags: Array = []
+	var nv := Vector2(1, -1).normalized()
+	var uv := Vector2(1, 1).normalized()
+	for rg in _regions:
+		var h := String(regs.get(rg["id"], "empire"))
+		if h == "empire" or not (s["holders"] as Dictionary).has(h):
+			continue
+		var hs: Dictionary = s["holders"][h]
+		var cols := _stripe_cols(h, hs)
+		var on_sheet := false
+		for part in rg["parts"]:
+			var src: PackedVector2Array = part["pts"]
+			var pp := PackedVector2Array()
+			for i in src.size():
+				var a: Vector2 = src[i]
+				var b: Vector2 = src[(i + 1) % src.size()]
+				var n := maxi(1, int(a.distance_to(b) / 0.4))
+				for k in n:
+					var q := a.lerp(b, float(k) / n)
+					pp.append(WarMapData.painted_px(pt, q.x, -q.y / ys))
+			for cut in Geometry2D.intersect_polygons(pp, rect):
+				if (cut as PackedVector2Array).size() < 3 or Geometry2D.is_polygon_clockwise(cut) != Geometry2D.is_polygon_clockwise(pp):
+					continue
+				on_sheet = true
+				var cl: PackedVector2Array = (cut as PackedVector2Array).duplicate()
+				cl.append(cl[0])
+				edges.append([cl, Color(hs["line"], 0.8), bool(hs.get("dashed", false))])
+				if cols.is_empty():
+					continue
+				var t0 := INF
+				var t1 := -INF
+				var s0 := INF
+				var s1 := -INF
+				for q in cut:
+					t0 = minf(t0, q.dot(nv))
+					t1 = maxf(t1, q.dot(nv))
+					s0 = minf(s0, q.dot(uv))
+					s1 = maxf(s1, q.dot(uv))
+				for k in range(int(floor(t0 / STRIPE_W)), int(ceil(t1 / STRIPE_W)) + 1):
+					var col: Color = cols[posmod(k, 2)]
+					if col.a <= 0.0:
+						continue
+					var quad := PackedVector2Array([nv * k * STRIPE_W + uv * (s0 - 2), nv * (k + 1) * STRIPE_W + uv * (s0 - 2),
+						nv * (k + 1) * STRIPE_W + uv * (s1 + 2), nv * k * STRIPE_W + uv * (s1 + 2)])
+					for piece in Geometry2D.intersect_polygons(cut, quad):
+						var tri := Geometry2D.triangulate_polygon(piece)
+						if not tri.is_empty():
+							fills.append([piece, tri, col])
+		if on_sheet and h != "unknown":
+			var la: Vector2 = rg["label_at"]
+			var fp := WarMapData.painted_px(pt, la.x, -la.y / ys)
+			if Rect2(Vector2.ZERO, sh).has_point(fp):
+				flags.append([fp, h, String(rg["name"])])
+	_terr = {"fills": fills, "edges": edges, "flags": flags}
+	return _terr
+
+
+## A region's flag: a pole and a swallowtail pennant in the holder's colour (split for contested, banded for unrest).
+func _draw_flag(p: Vector2, h: String, name: String, s: Dictionary, font: Font) -> void:
+	var hs: Dictionary = s["holders"][h]
+	var k := 1.0 if Settings.pc() else 1.25
+	var ink: Color = s["ink"]
+	var top := p + Vector2(0, -30) * k
+	draw_line(p + Vector2(0, 1), top, Color(0.25, 0.16, 0.08), 2.2 * k, true)
+	draw_circle(top, 2.2 * k, Color(0.80, 0.62, 0.22))
+	var w := 26.0 * k
+	var fh := 15.0 * k
+	var fl := PackedVector2Array([top + Vector2(1, 2) * k, top + Vector2(w, 2 * k), top + Vector2(w - 7 * k, 2 * k + fh * 0.5),
+		top + Vector2(w, 2 * k + fh), top + Vector2(1 * k, 2 * k + fh)])
+	var main: Color = Color(hs["line"], 1.0)
+	if h == "unrest":
+		main = Color(0.20, 0.50, 0.22)
+	draw_colored_polygon(fl, main)
+	if h == "contested" or h == "unrest":
+		var second: Color = Color(hs["hatch"], 1.0) if h == "contested" else Color(0.06, 0.06, 0.05)
+		draw_colored_polygon(PackedVector2Array([top + Vector2(1, 2 + fh * 0.5) * Vector2(k, 1) , fl[2], fl[3], fl[4]]), second)
+	var ol := fl.duplicate()
+	ol.append(fl[0])
+	draw_polyline(ol, ink, 1.0, true)
+	draw_circle(p, 2.5 * k, ink)
+	if painted == "world" and zoom < min_zoom() * 1.6:
+		return
+	var fs := 12 if Settings.pc() else 15
+	var txt := Loc.t(name).to_upper()
+	var tw := font.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
+	var lr := Rect2(p + Vector2(-tw * 0.5 - 4, 4), Vector2(tw + 8, fs + 6))
+	draw_rect(lr, Color(s["paper"], 0.85))
+	draw_rect(lr, Color(main, 0.9), false, 1.0)
+	draw_string(font, lr.position + Vector2(4, fs + 1), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, ink)
+
+
 ## The painted sheet: the painting, its marks and seals, their names, and the act's title in its cartouche.
 func _draw_painted(s: Dictionary, font: Font) -> void:
 	draw_rect(Rect2(Vector2.ZERO, size), Color(0.09, 0.07, 0.05))
 	var r := Rect2(to_screen(Vector2.ZERO), _ptex.get_size() * zoom)
 	draw_texture_rect(_ptex, r, false)
+	if territory:
+		var tc := _terr_build()
+		draw_set_transform(to_screen(Vector2.ZERO), 0.0, Vector2(zoom, zoom))
+		for f in tc["fills"]:
+			RenderingServer.canvas_item_add_triangle_array(get_canvas_item(), f[1], f[0], PackedColorArray([f[2]]))
+		for e in tc["edges"]:
+			var cl: PackedVector2Array = e[0]
+			if bool(e[2]):
+				for i in cl.size() - 1:
+					draw_dashed_line(cl[i], cl[i + 1], e[1], 1.6 / zoom, 6.0 / zoom)
+			else:
+				draw_polyline(cl, e[1], 2.4 / zoom, true)
+		draw_set_transform(Vector2.ZERO)
+		# a flag steps aside from the seals and the flags already planted
+		var taken: Array = []
+		for pn in WarMapData.data().get("pins", []):
+			if shows(pn["point"], String(pn["mission"])):
+				taken.append(pin_screen(pn))
+		for f in tc["flags"]:
+			var at := to_screen(f[0])
+			for off in [Vector2.ZERO, Vector2(-34, -4), Vector2(34, -4), Vector2(0, -40), Vector2(-34, 30), Vector2(34, 30)]:
+				var ok := true
+				for q in taken:
+					if (q as Vector2).distance_to(at + off) < seal_r + 18.0:
+						ok = false
+						break
+				if ok:
+					at += off
+					break
+			taken.append(at)
+			_draw_flag(at, String(f[1]), String(f[2]), s, font)
 	var mks: Dictionary = st.get("marks", {})
 	for mk in WarMapData.data().get("marks", []):
 		if bool(mks.get(String(mk["id"]), false)) and shows(mk["point"], String(mk["id"])):

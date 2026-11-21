@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.123", "items": [
+		"TERRITORY ON THE PAINTED WAR MAP: each held region is filled with diagonal stripes in its holder's colour (the painting shows between them; two colours alternate where a region is uneasy or in unrest), with a thin edge and a small flag in the holder's colours at its middle, and the legend shows again. The new TERRITORY button hides it all to see the painting clean.",
+	]},
 	{"v": "0.38.122", "items": [
 		"THE WAR MAP IS THE CATHOLIC MAP: the war table now shows the painted sheets: the world in two hemispheres under Christ, St Michael, St Gabriel and St Peter, and Europe, Virginia and the Amazon each on their own painting with Our Lady, St Michael or the Pope. The views switch sheets; the seals and their names stand on the painted places, and the act's title is in each sheet's crowned cartouche. The old drawn map (with its mountains in the wrong places) is gone.",
 	]},
