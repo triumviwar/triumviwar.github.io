@@ -75,7 +75,7 @@ func begin(levels: Dictionary) -> void:
 		var lv: String = levels.get(t, "")
 		lines.append("  %s  side %d  colour %s%s" % [who(t), int(game.sides[t]) + 1, game.team_name(t),
 			("  AI: " + lv) if lv != "" else ""])
-	lines.append("Device: %s" % ("computer" if Settings.pc() else "phone/tablet"))
+	head.append("Device: %s" % ("computer" if Settings.pc() else "phone/tablet"))
 	if game.net != null and game.net.watching:
 		lines.append("Watched online as a spectator (every side seen; minutes before joining are missing from this log)")
 	lines.append("")

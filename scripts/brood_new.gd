@@ -2143,7 +2143,7 @@ static func draw(u: Unit, top: float) -> void:
 		var eggs := nest_eggs(g, u)
 		var font2 := ThemeDB.fallback_font
 		var near := father_near(g, u.team, u.kind)
-		var txt2 := (Loc.t("%d eggs") % eggs.size()) if near else Loc.t("too far from the Mother")
+		var txt2 := ((Loc.t("1 egg") if eggs.size() == 1 else Loc.t("%d eggs") % eggs.size())) if near else Loc.t("too far from the Mother")
 		var tw := font2.get_string_size(txt2, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x
 		var tp := Vector2(-tw * 0.5, float(st.get("text", top - 6.0)))
 		u.draw_string_outline(font2, tp, txt2, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, 4, Color(0, 0, 0, 0.8))

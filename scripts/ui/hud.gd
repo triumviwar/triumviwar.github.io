@@ -743,6 +743,25 @@ func _press(p: Vector2) -> void:
 			return
 
 
+## A card label too wide for its button at the smallest size (8): [first line, second line, size] split at the space
+## nearest its middle, each line fitting `room`; [] if it fits on one line (or has no space to split at).
+func _card_two_lines(lab: String, room: float) -> Array:
+	var f := UiStyle.bold_font()
+	if f.get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, 8).x <= room or not lab.contains(" "):
+		return []
+	var best := -1
+	var mid := lab.length() / 2.0
+	for i in lab.length():
+		if lab[i] == " " and (best < 0 or absf(i - mid) < absf(best - mid)):
+			best = i
+	var a := lab.substr(0, best)
+	var b := lab.substr(best + 1)
+	for sz in [10, 9, 8]:
+		if f.get_string_size(a, HORIZONTAL_ALIGNMENT_LEFT, -1, sz).x <= room and f.get_string_size(b, HORIZONTAL_ALIGNMENT_LEFT, -1, sz).x <= room:
+			return [a, b, sz]
+	return [a, b, 8]
+
+
 ## A HUD button pressed (or, on a long card on a phone, tapped): it acts, or says why it can't.
 func _use_button(b: Dictionary) -> void:
 	if b["enabled"]:
@@ -2578,6 +2597,12 @@ func _hidden_key_note(letter: String) -> String:
 			var lab := String(m["labs"].get(id, id))
 			if String(id).begins_with("R:"):
 				return Loc.t("%s: researched, or already researching.") % Loc.t(lab.capitalize())
+			# (playtest 2026-11-21: A, M, S, H or P with the rooted Brood Mother (or another rooted creature) picked said
+			# "Attack: not now.", which tells nothing: rooted it is a building, and UPROOT gets it up)
+			var sel := game.selected_units()
+			if lab in ["MOVE", "ATTACK", "STOP", "HOLD", "PATROL", "ATTACK GROUND"] and not sel.is_empty() \
+					and sel.all(func(u: Unit) -> bool: return BroodRoot.fixed(u) and u.kind != BroodNew.EGG):
+				return Loc.t("Rooted: UPROOT it first.")
 			return Loc.t("%s: not now.") % Loc.t(lab.capitalize())
 	return ""
 
@@ -4949,18 +4974,16 @@ func _draw_card(font: Font) -> void:
 		if UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5:
 			lab = lab.replace(Loc.t("ARMOURED ").strip_edges() + " ", Loc.t("ARM. ").strip_edges() + " ")      # (Armoured Dragoon / Officer: still too long)
 		var lcol := (Color(1, 0.9, 0.55) if on else UiStyle.TEXT) if enabled else Color(1, 1, 1, 0.45)
-		var sp := lab.find(" ", lab.length() / 2 - 3)
-		if sp < 0:
-			sp = lab.rfind(" ")
-		if UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5 and sp > 0:
-			# still too long at the smallest size (VISTA DAS ENGRENAGENS, ATACAR O CHÃO...: they were cut off): two lines
-			# (playtest-skirmish-clockwork, 2026-11-21)
-			_ci.draw_rect(Rect2(br.position.x + 2, br.end.y - 26, br.size.x - 4, 11), Color(0, 0, 0, 0.62))
-			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 15), lab.substr(0, sp), 8, lcol, 1)
-			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab.substr(sp + 1), 8, lcol, 1)
-		else:
+		var two := _card_two_lines(lab, br.size.x - 5)
+		if two.is_empty():
 			lab = _fit_card_label(lab, lsz, br.size.x + 2)      # (a few pixels over the padding still reads: ATTACK GROUND)
 			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab, lsz, lcol, 1)
+		else:
+			# (playtest 2026-11-21: a label still too wide at the smallest size ran over its neighbours, e.g. pt
+			# "RAÍZES RÁPIDAS" into "CURA DO PÂNTANO": two lines then, on a taller strip)
+			_ci.draw_rect(Rect2(br.position.x + 2, br.end.y - 27, br.size.x - 4, 10), Color(0, 0, 0, 0.62))
+			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 16), String(two[0]), int(two[2]), lcol, 1)
+			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), String(two[1]), int(two[2]), lcol, 1)
 		if it[5] != "":
 			var cw := font.get_string_size(it[5], HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 8
 			var cbr := Rect2(br.end.x - cw - 2, br.position.y + 2, cw, 15)
