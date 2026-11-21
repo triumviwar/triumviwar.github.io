@@ -49,6 +49,8 @@ func _ready() -> void:
 		if lines.is_empty():
 			_items.append([String(pg.get("still", "")), ""])
 		for lid in lines:
+			if lid is Dictionary:
+				lid = (lid as Dictionary).get("id", "")      # (a conditional line nobody settled: shown, never a crash)
 			_items.append([String(pg.get("still", "")), String(lid)])
 	_band = PanelContainer.new()
 	_band.add_theme_stylebox_override("panel", UiStyle.box(Color(0.05, 0.035, 0.02, 0.86), UiStyle.TRIM_DIM, 0, 0, 18.0))

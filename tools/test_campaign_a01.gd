@@ -213,6 +213,12 @@ func _flags() -> void:
 			for l in pg["lines"]:
 				ids.append(String(l["id"]) if l is Dictionary else String(l))
 		check(P + "the opening's lines", ids.has("t_open_saved") == (fam == "save") and ids.has("t_open_left") == (fam != "save") and ids.has("c_open"), str(ids))
+		# (the opening as START plays it, before any match: the menu settles the "if" lines; unsettled they broke the
+		# whole StillShow, playtest 2026-11-21)
+		var ids2: Array = []
+		for pg in CampaignMenu.opening_now(r.data, r.data["opening"]["crown"]):
+			ids2 += pg["lines"]
+		check(P + "the opening START plays: the same lines, each an id", ids2 == ids and ids2.all(func(l) -> bool: return l is String), str(ids2))
 		_step(g, 18.0)
 		check(P + "Tomasz's line in the streets", r.said_ids.has("t_saved") == (fam == "save") and r.said_ids.has("t_left") == (fam != "save"))
 		check(P + "the garrison: Delorme, Tomasz, 12 Musketeers, 4 Horsemen", r.tagged("delorme").size() == 1 and r.tagged("tomasz").size() == 1

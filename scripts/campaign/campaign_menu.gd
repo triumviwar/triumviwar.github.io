@@ -337,11 +337,26 @@ static func opening_then_start(main: Node, mid: String, cfg: Dictionary) -> void
 	var camp: Dictionary = cfg.get("campaign", {})
 	var pages := Campaign.show_pages(m, "opening", String(camp.get("side", Campaign.seat_side(m, String(camp.get("mode", "solo")),
 		String(camp.get("seat", "p1")), String(camp.get("pick", ""))))))
+	# (lines with an "if": said only when it holds, as in an ending: a01, a05, a06 and a07 open with lines read from
+	# the missions before, {"past": ...}; unfiltered they broke the whole opening: playtest 2026-11-21)
+	pages = opening_now(m, pages)
 	if pages.is_empty():
 		main.start(cfg)
 		return
 	main._clear_ui()
 	StillShow.play(main.ui_layer, m, pages, func() -> void: main.start(cfg))
+
+
+## An opening's pages with their conditional lines settled before the match exists (a MissionRun without a game:
+## only conditions that read the progress, {"past"}, {"difficulty"}, and their "not" / "all" / "any", make sense here).
+static func opening_now(m: Dictionary, pages: Array) -> Array:
+	var tmp := MissionRun.new()
+	tmp.data = m
+	tmp.id = String(m.get("id", ""))
+	tmp.difficulty = Campaign.difficulty()
+	var out := tmp.pages_now(pages)
+	tmp.free()
+	return out
 
 
 # ------------------------------------------------------------------ the end of a mission
