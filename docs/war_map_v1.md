@@ -206,5 +206,13 @@ landmarks, the code map kept as the fallback.
 - art/campaign/warmap_europe_chatgpt.png: Europe (Virgin and Child icon, a pope with the papal cross and a book, a
   red-cross ship, a crowned cartouche), FIXED (halos cleaned by a ChatGPT edit, the Child's halo marks inpainted).
   Checked figure by figure. Its coasts follow the outline only roughly (Ireland added): fit by landmarks.
-- Virginia and the Amazon: outlines made (render_region_ref.py -89.7 31 -66.3 43 / -74.7 -6 -53.3 5), not painted.
-Stopped 2026-11-20 23:40: all three ChatGPT accounts out of images (the third gave three); Virginia and the Amazon wait for the reset.
+- LAND BY LANDSCAPE (owner 2026-11-20 23:49: "it should all be painted on biome/vegetation... similar to a satellite
+  picture"): no country colours or borders on any sheet; the world and Europe repainted that way (2026-11-20 23:55),
+  St Michael's sword on the world sheet fixed in the same edit (one long sword, point down).
+- art/campaign/warmap_virginia_chatgpt.png: Virginia (St Michael icon, red-cross ship, crowned cartouche); the coast
+  simplified (Chesapeake, Delaware Bay, Long Island, Cape Cod are there): fit by landmarks. A stray mark by the halo
+  inpainted.
+- art/campaign/warmap_amazon_chatgpt.png: the Amazon (Our Lady with the Child, crowned cartouche), all land edge to edge
+  (a first try had an invented sea and a wing on Our Lady: fixed by an edit). The Amazon and the Rio Negro follow the
+  outline roughly.
+Next: wire them in (world view + one painting per region view, seals fitted by landmarks, the code map as fallback).
