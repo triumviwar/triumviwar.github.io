@@ -7029,6 +7029,12 @@ func entity_at(p: Vector2, _any := true) -> Entity:
 		var lab := WorkerLabels.at(self, p)
 		if lab != null:
 			return lab
+	# a one-tile piece (a palisade, a gate) under the click itself first: the lean below (+10, for sprites drawn above
+	# their footprint) picked the piece SOUTH of a gate, so a right-click on the pen's gate in "Specimen One" attacked
+	# the palisade under it and the gate could not be targeted at all (playtest 2026-11-21)
+	for b in buildings:
+		if b.size.x == 1 and b.size.y == 1 and b.rect().has_point(p) and not hidden_ghost(b, who) and shown_to_commander(b):
+			return b
 	for b in buildings:
 		if hidden_ghost(b, who) or not shown_to_commander(b):
 			continue                  # (both tests below need it on show to whoever gave the order)

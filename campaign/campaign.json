@@ -402,7 +402,10 @@
 							0.072,
 							0.213
 						],
-						"requires": "a05_specimens"
+						"requires": "a05_specimens",
+						"sides": {
+							"a05_specimens": "expedition"
+						}
 					},
 					{
 						"id": "specimen",
@@ -415,7 +418,10 @@
 							0.072,
 							0.266
 						],
-						"requires": "a05_specimens"
+						"requires": "a05_specimens",
+						"sides": {
+							"a05_specimens": "expedition"
+						}
 					},
 					{
 						"id": "crate",
@@ -424,10 +430,10 @@
 						"talk": "crate",
 						"until": "b01_specimen",
 						"rect": [
-							0.562,
-							0.414,
-							0.072,
-							0.213
+							0.7,
+							0.47,
+							0.1,
+							0.14
 						]
 					},
 					{
@@ -440,10 +446,10 @@
 							"b01_specimen.clutch": "saved"
 						},
 						"rect": [
-							0.562,
-							0.414,
-							0.072,
-							0.213
+							0.7,
+							0.47,
+							0.1,
+							0.14
 						]
 					},
 					{
@@ -456,10 +462,10 @@
 							"b01_specimen.clutch": "burned"
 						},
 						"rect": [
-							0.562,
-							0.414,
-							0.072,
-							0.213
+							0.7,
+							0.47,
+							0.1,
+							0.14
 						]
 					},
 					{
@@ -656,7 +662,10 @@
 							0.82,
 							0.82,
 							0.9
-						]
+						],
+						"sides": {
+							"a03_plateau": "party"
+						}
 					},
 					"a05_specimens": {
 						"title": "The Warehouse at the Barra",
@@ -668,7 +677,10 @@
 							0.82,
 							0.82,
 							0.9
-						]
+						],
+						"sides": {
+							"a05_specimens": "expedition"
+						}
 					}
 				}
 			}

@@ -217,12 +217,19 @@ func skip_all() -> void:
 func _process(delta: float) -> void:
 	if is_instance_valid(game) and game.over and _box.visible:
 		skip_all()             # (the mission's end screen takes over)
+	# the match MENU / SETTINGS open over the match: the dialogue, the objectives and a choice step aside (they were drawn
+	# over the PAUSED panel and its music list, and took its clicks: playtest 2026-11-21)
+	var over := is_instance_valid(game) and game.hud != null and (bool(game.hud.get("menu_open")) or bool(game.hud.get("settings_open")))
+	if visible == over:
+		visible = not over
 	run.talk_busy = not queue.is_empty() or (not current.is_empty() and line_t > 0.0)
 	if _choice and run.choice_open.is_empty():
 		_choice.queue_free()          # (answered by the default in time, or the match ended)
 		_choice = null
 	if current.is_empty() or get_tree().paused and not (game and game.net):
 		return
+	if over and not (game and game.net):
+		return             # (a line is not used up unseen behind the menu)
 	line_t -= delta
 	if line_t <= 0.0 and not (tutorial and queue.is_empty()):
 		advance()           # (a lesson's last line stays: it says what to do now)

@@ -85,7 +85,8 @@ static func war_table(main: Node) -> void:
 	var box := _frame(main)
 	var p := Campaign.progress()
 	var sl0 := _line_data()
-	box.add_child(UiStyle.heading(Loc.t(String(sl0.get("hub", {}).get("title", sl0.get("title", "")))) + "  ·  " + Loc.t("WAR TABLE"), 34, UiStyle.TRIM))
+	# (the hub as the story left it: "The Warehouse at the Barra" once the station is lost, not its first name)
+	box.add_child(UiStyle.heading(Loc.t(String(hub_now(sl0.get("hub", {}), p).get("title", sl0.get("title", "")))) + "  ·  " + Loc.t("WAR TABLE"), 34, UiStyle.TRIM))
 	var ids: Array = (sl0.get("missions", []) as Array).map(func(x) -> String: return String(x))
 	if pick == "" or not ids.has(pick) or not Campaign.unlocked(pick, p):
 		pick = ""
@@ -263,8 +264,23 @@ static func briefing(main: Node, mid: String) -> void:
 	sv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	sv.size_flags_stretch_ratio = 1.3
 	body.add_child(sv)
-	var v := _panel(body)
-	v.get_parent().size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	# (the words scroll: a long briefing with a side pick, The Specimens', pushed START under the bottom edge at 1280 x
+	# 720, playtest 2026-11-21)
+	var bpn := PanelContainer.new()
+	bpn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	body.add_child(bpn)
+	var pv := VBoxContainer.new()            # the words (scrolling), then the side and difficulty picks (always in view)
+	pv.add_theme_constant_override("separation", 10)
+	bpn.add_child(pv)
+	var bsc := ScrollContainer.new()
+	bsc.name = "BriefingWords"
+	bsc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	bsc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	pv.add_child(bsc)
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 10)
+	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bsc.add_child(v)
 	v.add_child(UiStyle.text(Loc.t("You lead: %s") % Loc.t(Campaign.side_name(m, side)), 20, _side_col(m, side).lightened(0.35), HORIZONTAL_ALIGNMENT_LEFT, true))
 	for t in br.get("text", []):
 		v.add_child(_wrap(Loc.t(String(t)), 18))
@@ -272,14 +288,14 @@ static func briefing(main: Node, mid: String) -> void:
 	for o in m.get("objectives", []):
 		if String(o.get("side", "")) == side and not bool(o.get("hidden", false)):
 			var pre := "-  " if bool(o.get("primary", true)) else "-  " + Loc.t("(optional)") + " "
-			v.add_child(_wrap(pre + Loc.t(String(o["text"])), 16, UiStyle.TEXT if bool(o.get("primary", true)) else UiStyle.MUTED))
+			v.add_child(_wrap(pre + Campaign.brief_text(m, Loc.t(String(o["text"]))), 16, UiStyle.TEXT if bool(o.get("primary", true)) else UiStyle.MUTED))
 	# THE SOLO SIDE PICK (a mission that lets you lead either side alone) and the campaign's DIFFICULTY (act1-engine0)
 	var sides := Campaign.solo_sides(m)
 	if sides.size() > 1:
 		var srow := HFlowContainer.new()
 		srow.add_theme_constant_override("h_separation", 8)
 		srow.add_theme_constant_override("v_separation", 6)
-		v.add_child(srow)
+		pv.add_child(srow)
 		srow.add_child(UiStyle.text(Loc.t("YOU PLAY:"), 16, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
 		for sd in sides:
 			var b: Button = main._button(Loc.t(Campaign.side_name(m, sd)).to_upper(), func() -> void:
@@ -294,7 +310,7 @@ static func briefing(main: Node, mid: String) -> void:
 	var drow := HFlowContainer.new()
 	drow.add_theme_constant_override("h_separation", 8)
 	drow.add_theme_constant_override("v_separation", 6)
-	v.add_child(drow)
+	pv.add_child(drow)
 	drow.add_child(UiStyle.text(Loc.t("DIFFICULTY:"), 16, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
 	var dnow := Campaign.difficulty()
 	for lv in Campaign.DIFFICULTIES:
@@ -308,7 +324,7 @@ static func briefing(main: Node, mid: String) -> void:
 		drow.add_child(b)
 	var dabout := {"easy": "More time on the clock and fewer enemies.", "normal": "The mission as it was written.",
 		"hard": "Less time on the clock and more enemies."}
-	v.add_child(_wrap(Loc.t(dabout[dnow]), 15, UiStyle.MUTED))
+	pv.add_child(_wrap(Loc.t(dabout[dnow]), 15, UiStyle.MUTED))
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 16)
@@ -335,8 +351,8 @@ static func briefing(main: Node, mid: String) -> void:
 static func opening_then_start(main: Node, mid: String, cfg: Dictionary) -> void:
 	var m := Campaign.mission(mid)
 	var camp: Dictionary = cfg.get("campaign", {})
-	var pages := Campaign.show_pages(m, "opening", String(camp.get("side", Campaign.seat_side(m, String(camp.get("mode", "solo")),
-		String(camp.get("seat", "p1")), String(camp.get("pick", ""))))))
+	var pages := Campaign.pages_before(Campaign.show_pages(m, "opening", String(camp.get("side", Campaign.seat_side(m, String(camp.get("mode", "solo")),
+		String(camp.get("seat", "p1")), String(camp.get("pick", "")))))))
 	if pages.is_empty():
 		main.start(cfg)
 		return
@@ -400,9 +416,22 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 	var sv := StillView.make(m.get("stills", {}).get(String(db.get("still", "")), {}), _side_col(m, win_side))
 	sv.custom_minimum_size = Vector2(380, 230)
 	h.add_child(sv)
+	# the words and the objectives scroll when they are more than the screen holds (a won Specimen One at 1280 x 720
+	# pushed NEXT MISSION and CAMPAIGN under the bottom edge: playtest 2026-11-21)
+	var tsc := ScrollContainer.new()
+	tsc.name = "EndWords"
+	tsc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	tsc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	h.add_child(tsc)
 	var tv := VBoxContainer.new()
 	tv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	h.add_child(tv)
+	tsc.add_child(tv)
+	var fit := func() -> void:
+		if not is_instance_valid(tsc):
+			return
+		var room: float = o.get_viewport_rect().size.y - 260.0
+		tsc.custom_minimum_size.y = clampf(tv.get_combined_minimum_size().y, 230.0, maxf(230.0, room))
+	tv.resized.connect(fit)
 	tv.add_child(UiStyle.text(Loc.t(String(db.get("title", ""))), 24, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
 	tv.add_child(_wrap(Loc.t(String(db.get("text", ""))), 17))
 	for ti in db.get("text_if", []):
@@ -422,6 +451,14 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 		else:
 			var opened: Array = Campaign.opens(mid).map(func(sl: Dictionary) -> String: return Loc.t(String(sl.get("title", ""))))
 			story = (Loc.t("New storylines open: %s") % ", ".join(opened)) if not opened.is_empty() else Loc.t("The next mission is being written.")
+			# a MIRROR won (the Nest on the Lost Plateau, the creatures in The Specimens): the story goes on from the other
+			# side, so say so ("being written" sent players looking for a mission that will not come: playtest 2026-11-21)
+			var nx: Variant = m.get("next", null)
+			if opened.is_empty() and nx is Dictionary and run.mode == "solo":
+				for sd in nx:
+					if String(nx[sd]) != "" and String(sd) != win_side:
+						story = Loc.t("That is not how it went. To go on with the story, win it as %s.") % Loc.t(Campaign.side_name(m, String(sd)))
+						break
 	else:
 		story = Loc.t("Try again: the story waits for a victory.")
 	v.add_child(_wrap(story, 17, UiStyle.TRIM))

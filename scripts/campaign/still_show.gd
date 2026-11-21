@@ -49,6 +49,10 @@ func _ready() -> void:
 		if lines.is_empty():
 			_items.append([String(pg.get("still", "")), ""])
 		for lid in lines:
+			if lid is Dictionary:
+				lid = lid.get("id", "") if Campaign.cond_before(lid.get("if", {})) else ""
+				if String(lid) == "":
+					continue          # (an "if" line not filtered by the caller: kept only when it holds)
 			_items.append([String(pg.get("still", "")), String(lid)])
 	_band = PanelContainer.new()
 	_band.add_theme_stylebox_override("panel", UiStyle.box(Color(0.05, 0.035, 0.02, 0.86), UiStyle.TRIM_DIM, 0, 0, 18.0))

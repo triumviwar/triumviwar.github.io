@@ -270,6 +270,95 @@ static func diff_mult(m: Dictionary, level: String) -> Dictionary:
 	return out
 
 
+## A show's pages before the match (a mission's OPENING): lines with an "if" kept only when it holds (StillShow wants
+## line ids; an "if" line reached it as a Dictionary and stopped The Specimens' and The Printing Houses' openings with a
+## SCRIPT ERROR: playtest 2026-11-21). The match's own MissionRun.pages_now does the same for the ending.
+static func pages_before(pages: Array) -> Array:
+	var out: Array = []
+	for pg in pages:
+		var ids: Array = []
+		for ln in pg.get("lines", []):
+			if ln is Dictionary:
+				if cond_before(ln.get("if", {})):
+					ids.append(String(ln.get("id", "")))
+			else:
+				ids.append(String(ln))
+		if ids.is_empty() and not (pg.get("lines", []) as Array).is_empty():
+			continue
+		var c: Dictionary = (pg as Dictionary).duplicate()
+		c["lines"] = ids
+		out.append(c)
+	return out
+
+
+## The conditions that can be asked before a match: "past" (a finished mission's flag), "difficulty", and "not" / "all"
+## / "any" of them. Anything else (it needs the match) does not hold.
+static func cond_before(c: Variant) -> bool:
+	if not (c is Dictionary):
+		return false
+	var ok := true
+	for k in c:
+		var v: Variant = c[k]
+		match String(k):
+			"past":
+				for fk in v:
+					var pr := String(fk).split(".")
+					ok = ok and pr.size() == 2 and str(flag(pr[0], pr[1])) == str(v[fk])
+			"difficulty":
+				ok = ok and difficulty() == String(v)
+			"not":
+				ok = ok and not cond_before(v)
+			"all":
+				for x in v:
+					ok = ok and cond_before(x)
+			"any":
+				var anyok := false
+				for x in v:
+					anyok = anyok or cond_before(x)
+				ok = ok and anyok
+			_:
+				ok = false
+	return ok
+
+
+## An objective's words before the match (the BRIEFING): its numbers are not known yet, so "{clock:<name>}" is the
+## clock's length at this difficulty (its first "clock" action), a "(... {counter} ...)" aside goes, "{<counter>.of}" is
+## its "of" and any other "{<counter>}" its start. (They showed raw, "Dawn in {clock:dawn}", playtest 2026-11-21.)
+static func brief_text(m: Dictionary, txt: String) -> String:
+	if txt.find("{") < 0:
+		return txt
+	var mult := float(diff_mult(m, difficulty()).get("clocks", 1.0))
+	var re := RegEx.create_from_string("\\{clock:([a-z_0-9]+)\\}")
+	for mt in re.search_all(txt):
+		var secs := _first_clock(m, mt.get_string(1))
+		var rep := "%d:%02d" % [int(secs * mult) / 60, int(secs * mult) % 60] if secs > 0.0 else "..."
+		txt = txt.replace(mt.get_string(0), rep)
+	var cs: Dictionary = m.get("counters", {})
+	txt = RegEx.create_from_string("\\s*\\([^()]*\\{[a-z_0-9]+\\}[^()]*\\)").sub(txt, "", true)
+	for cn in cs:
+		var of: Variant = cs[cn].get("of", "")
+		txt = txt.replace("{%s.of}" % cn, str(int(of)) if (of is float or of is int) else str(of))
+		txt = txt.replace("{%s}" % cn, str(int(cs[cn].get("start", 0))))
+	return txt
+
+
+static func _first_clock(v: Variant, name: String) -> float:
+	if v is Dictionary:
+		var c: Variant = (v as Dictionary).get("clock", null)
+		if c is Dictionary and String((c as Dictionary).get("name", "")) == name and (c as Dictionary).has("secs"):
+			return float(c["secs"])
+		for k in v:
+			var f := _first_clock(v[k], name)
+			if f > 0.0:
+				return f
+	elif v is Array:
+		for x in v:
+			var f := _first_clock(x, name)
+			if f > 0.0:
+				return f
+	return 0.0
+
+
 ## The side a player seat plays in this mode ("p1" / "p2"): the side of its first team ("" none).
 static func seat_side(m: Dictionary, mode: String, seat: String, pick := "") -> String:
 	for tm in m.get("teams", []):

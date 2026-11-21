@@ -1808,8 +1808,13 @@ func fill(txt: String) -> String:
 	if txt.find("{") < 0:
 		return txt
 	for cn in counters:
-		txt = txt.replace("{%s}" % cn, str(counters[cn]))
-		txt = txt.replace("{%s.of}" % cn, str(data.get("counters", {}).get(cn, {}).get("of", "")))
+		# (a counter with an "of" reads "n of N": past N it says N, not "22 of 6 Raptors", playtest 2026-11-21)
+		var of: Variant = data.get("counters", {}).get(cn, {}).get("of", null)
+		var n := int(counters[cn])
+		if of != null and (of is int or of is float) and txt.contains("{%s} of" % cn):
+			n = mini(n, int(of))
+		txt = txt.replace("{%s}" % cn, str(n))
+		txt = txt.replace("{%s.of}" % cn, (str(int(of)) if (of is int or of is float) else str(of)) if of != null else "")
 	for cn in clocks:
 		var left := maxi(0, int(ceil(float(clocks[cn]) - game.clock)))
 		txt = txt.replace("{clock:%s}" % cn, "%d:%02d" % [left / 60, left % 60])
