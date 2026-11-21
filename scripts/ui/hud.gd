@@ -4924,6 +4924,7 @@ func _draw_card(font: Font) -> void:
 			lsz -= 1
 		if UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5:
 			lab = lab.replace(Loc.t("ARMOURED ").strip_edges() + " ", Loc.t("ARM. ").strip_edges() + " ")      # (Armoured Dragoon / Officer: still too long)
+		lab = _fit_card_label(lab, lsz, br.size.x + 2)      # (a few pixels over the padding still reads: ATTACK GROUND)
 		_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab, lsz, (Color(1, 0.9, 0.55) if on else UiStyle.TEXT) if enabled else Color(1, 1, 1, 0.45), 1)
 		if it[5] != "":
 			var cw := font.get_string_size(it[5], HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 8
@@ -4938,6 +4939,25 @@ func _draw_card(font: Font) -> void:
 			_ci.draw_rect(kr, UiStyle.TRIM_DIM, false, 1.0)
 			_text(UiStyle.bold_font(), kr.position + Vector2(kr.size.x * 0.5, 13), it[6], 12, Color(1, 0.92, 0.6), 1)
 	_draw_card_bar()          # (a long card: its scroll bar)
+
+
+## A card label still too wide at the smallest size (OBSERVATION BALLOON, longer words in pt/es) ran into the buttons
+## beside it (playtest 2026-11-21): the first words are cut to "OBS." one by one, then the end gets "…".
+func _fit_card_label(lab: String, lsz: int, w: float) -> String:
+	var f := UiStyle.bold_font()
+	if f.get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x <= w:
+		return lab
+	var words := lab.split(" ", false)
+	for i in words.size() - 1:
+		if words[i].length() > 4 and not words[i].ends_with("."):
+			words[i] = words[i].substr(0, 3) + "."
+			var t := " ".join(words)
+			if f.get_string_size(t, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x <= w:
+				return t
+	var t2 := " ".join(words)
+	while t2.length() > 2 and f.get_string_size(t2 + "…", HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > w:
+		t2 = t2.substr(0, t2.length() - 1)
+	return t2.strip_edges() + "…"
 
 
 ## Autocast (WORK, PUSH): a golden outline that breathes, with sparks running round it.
