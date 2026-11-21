@@ -6180,6 +6180,10 @@ func _sacrifice(delta: float) -> Vector2:
 ## Grub on HARVEST: take the bodies of the fallen (friend or foe) near it, wrap each in a
 ## cocoon and carry it to the Brood Mother for spoils; then come back to where it was.
 var harvest_home := Vector2.ZERO
+var _harvest_none := 0.0           # s a HARVEST order has had nothing to wrap at its spot (HARVEST_DONE ends it)
+## (playtest 2026-11-21) A HARVEST order with no body left near its spot this long is done: the grub goes idle and, with
+## WORK on, back to its post. Before, it stood there for good: out of work, and not idle for F1 / the idle count.
+const HARVEST_DONE := 6.0
 var _corpse: Unit = null
 
 
@@ -6226,6 +6230,7 @@ func cmd_harvest() -> void:
 	_reset_work()
 	order = "harvest"
 	_harvest_auto = false
+	_harvest_none = 0.0
 	harvest_home = position
 	work = ""
 	target = null
@@ -6268,7 +6273,11 @@ func _harvest(delta: float) -> Vector2:
 				if (path.is_empty() or path_i >= path.size()) and not path_pending:
 					_request_path(harvest_home)
 				return _follow(delta)
+			_harvest_none += delta
+			if _harvest_none >= HARVEST_DONE:
+				cmd_stop()          # (nothing left to wrap here: done; WORK sends it back to its post)
 			return Vector2.ZERO
+		_harvest_none = 0.0
 	if position.distance_to(_corpse.position) < radius + 14.0:
 		path = PackedVector2Array()
 		facing = (_corpse.position - position).normalized()
