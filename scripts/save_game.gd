@@ -100,6 +100,8 @@ static func _kit_save(kt):
 ## Gearknight a Thresher and the Bolt Automaton an Arc Thrower (Clockwork rework); the Jack is
 ## the Springer (Defs.unit_kind).
 static func _kind(k: String) -> String:
+	if k == "pikeman" and Defs.UNITS.has(k):
+		return k          # (the Pikeman is back as a campaign-only unit: a mission's save keeps him; player-comforts)
 	return {"pikeman": "musketeer", "gearknight": "thresher", "bolt": "arc_thrower"}.get(k, Defs.unit_kind(k))
 
 

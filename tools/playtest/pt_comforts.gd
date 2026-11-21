@@ -126,11 +126,11 @@ func _layout() -> void:
 	await pt.wait(0.3)
 	# a building selected: the card and the panel
 	for b in game().buildings:
-		if b.team == game().human and not b.dead:
-			game().select_only(b) if game().has_method("select_only") else null
-			if game().selection.is_empty():
-				game().selection = [b]
+		if b.team == game().human and not b.dead and b.kind == "barracks":
+			game().set_selection([b])
 			break
+	if game().selection.is_empty():
+		game().set_selection(game().units.filter(func(u) -> bool: return u.team == game().human and not u.dead).slice(0, 6))
 	await pt.wait(0.5)
 	await pt.shot("mission_selected")
 	main._to_menu()
@@ -143,7 +143,7 @@ func _layout() -> void:
 		await pt.wait(0.2)
 	for b in game().buildings:
 		if b.team == game().human and b.kind == "town_hall":
-			game().selection = [b]
+			game().set_selection([b])
 	await pt.wait(0.5)
 	await _sizes("skirmish")
 	await pt.shot("skirmish")
@@ -192,14 +192,14 @@ func _menu() -> void:
 	await pt.wait(2.0)
 	# LOAD: its question; Esc says no
 	await _menu_open()
-	await pt.click(_menu_btn("LOAD").get_center())
+	await pt.click(_menu_btn("LOAD SAVE").get_center())
 	await pt.wait(0.3)
 	check("load_asks", hud().get("_confirm") == "load")
 	await pt.shot("load_question")
 	await pt.key(KEY_ESCAPE)
 	check("esc_says_no", hud().get("_confirm") == "" and game() == g)
 	# LOAD again; Enter says yes
-	await pt.click(_menu_btn("LOAD").get_center())
+	await pt.click(_menu_btn("LOAD SAVE").get_center())
 	await pt.wait(0.3)
 	await pt.key(KEY_ENTER)
 	await pt.wait(1.5)
@@ -222,9 +222,10 @@ func _menu() -> void:
 	await pt.shot("hub_after_quit")
 	var on_hub := pt.find("Hotspot_war_table") != null or pt.find("WAR TABLE") != null
 	check("at_hub", on_hub, str(pt.button_names().slice(0, 12)))
-	await pt.tap("Hotspot_war_table")
-	await pt.wait(0.6)
-	await pt.tap("Mission_" + args["mission"])
+	# (the prologue's war table hotspot opens the war map: the mission's card on the war table, as its list shows it)
+	CampaignMenu.pick = args["mission"]
+	CampaignMenu.mode = "solo"
+	CampaignMenu.war_table(main)
 	await pt.wait(0.6)
 	var cont: BaseButton = pt.find("Campaign_Auto")
 	check("card_continue", cont != null, str(pt.button_names()))

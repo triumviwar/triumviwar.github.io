@@ -12,6 +12,8 @@ signal settings_back               # Esc while that page is open: back to the ma
 const CARD_BTN := 52.0           # mobile: 4 x 3 (x1.5 interface scale: 78 px, still a thumb's width)
 const CARD_BTN_PC := 60.0        # computer: 4 x 3 with letter hotkeys
 const MINI_W := 210.0
+const MINI_COMPACT := 0.8          # the minimap on a phone held sideways (with the HUD's smaller scale: 0.69 of the old)
+const CARD_BTN_COMPACT := 54.0     # the command card's buttons there (HUD units; x1.3 = 70 of the screen's units)
 
 var game: Game
 var controls: Controls
@@ -47,12 +49,22 @@ var ui_scale := 1.0
 
 
 func _fit() -> void:
-	ui_scale = Settings.ui_scale_now()
+	ui_scale = _want_scale()
 	set_anchors_preset(Control.PRESET_TOP_LEFT)
 	position = Vector2.ZERO
 	scale = Vector2(ui_scale, ui_scale)
 	size = get_viewport_rect().size / ui_scale
 	_sig.clear()          # (everything is drawn again)
+
+
+## The scale wanted now (a phone held sideways: smaller, Settings.hud_scale_for; player-comforts).
+func _want_scale() -> float:
+	return Settings.hud_scale_for(get_viewport_rect().size)
+
+
+## A phone held sideways: the compact layout (a smaller minimap, a compact card; MissionUi folds the objectives).
+func compact() -> bool:
+	return Settings.compact_phone(get_viewport_rect().size)
 
 
 ## (asked once a frame: on some platforms the system is asked where the pointer is)
@@ -206,7 +218,7 @@ func _tick_hud(delta: float) -> void:
 	if _redraw_t <= 0.0:
 		_redraw_t = 0.05
 		_moved = false
-		if not size.is_equal_approx(get_viewport_rect().size / ui_scale) or ui_scale != Settings.ui_scale_now():
+		if not size.is_equal_approx(get_viewport_rect().size / ui_scale) or ui_scale != _want_scale():
 			_fit()
 		if _full_t <= 0.0:
 			_full_t = 1.0
@@ -470,7 +482,7 @@ func _layout() -> Dictionary:
 		_rects_vs = _vs()
 		var b := _btn()
 		_rects = UiLayout.rects(_vs(), {
-			"mini": mini_size(),
+			"mini": mini_size() * (MINI_COMPACT if compact() else 1.0),
 			"hotbar": HotkeyBar.size_hint(),
 			"card": Vector2(b * _cols() + 4, b * _rows() + 4),
 			"panel": Vector2(0, 88 + UnitStats.ROW_H)})      # (the stats row under the lines: scripts/ui/unit_stats.gd)
@@ -503,7 +515,11 @@ func _rows() -> int:
 
 
 func _btn() -> float:
-	return CARD_BTN_PC if Settings.pc() else CARD_BTN
+	if Settings.pc():
+		return CARD_BTN_PC
+	# (a phone held sideways, the HUD at 1.3 not 1.5: the card's buttons a little smaller on the screen, still a thumb's
+	# width: 54 x 1.3 = 70 of the game's units, over 44; player-comforts)
+	return CARD_BTN_COMPACT if compact() and is_equal_approx(ui_scale, Settings.COMPACT_SCALE) else CARD_BTN
 
 
 func card_rect() -> Rect2:
@@ -2899,9 +2915,11 @@ func _menu_list() -> Array:
 	]
 	if MissionSave.can_save(game):
 		# a campaign mission (player-comforts): SAVE now, LOAD your own save (asked first: what happened since is lost)
-		list.append({"label": "SAVE", "cb": func() -> void: save_requested.emit()})
+		list.append({"label": "SAVE", "cb": func() -> void:
+			toggle_menu(false)          # (back to the match: its "Saved." is seen)
+			save_requested.emit()})
 		var has_save := MissionSave.has(game.mission.id, "save")
-		list.append({"label": "LOAD", "enabled": has_save, "why": "Nothing saved yet: SAVE first.", "cb": func() -> void:
+		list.append({"label": "LOAD SAVE", "enabled": has_save, "why": "Nothing saved yet: SAVE first.", "cb": func() -> void:
 			_confirm = "load"
 			_sig.erase("pause")})
 	list.append({"label": "SURRENDER", "bad": true, "cb": func() -> void:
@@ -2998,7 +3016,8 @@ func _pause_item() -> Dictionary:
 func _menu_pitch(n: int) -> float:
 	# (the panel is 92 + n * pitch + 10 tall: on a phone held sideways the old 150 / 46 left
 	# BACK TO THE MATCH under the bottom edge)
-	return clampf((_vs().y - 116.0) / float(maxi(n, 1)), 40.0, 66.0)
+	# (36 at least: the mission's SAVE and LOAD made the list longer; 36 x 1.5 is still 54 of the screen's units)
+	return clampf((_vs().y - 116.0) / float(maxi(n, 1)), 36.0, 66.0)
 
 
 ## The whole menu panel (the music column too, when there is room).

@@ -35,7 +35,7 @@ static func reload(tree: SceneTree, main: Node) -> Game:
 	var r: MissionRun = g.mission
 	var before := {"clock": g.clock, "flags": r.flags.duplicate(true), "counters": r.counters.duplicate(true),
 		"obj": r.obj.duplicate(true), "units": g.units.filter(func(u) -> bool: return not u.dead).size(),
-		"fired": r.fired.size(), "clocks": r.clocks.duplicate(), "tags": _tag_sizes(r), "said": r.said_ids.size()}
+		"fired": r.fired.size(), "clocks": _round(r.clocks), "tags": _tag_sizes(r), "said": r.said_ids.size()}
 	var ok := MissionSave.write(g, main.last_cfg, "save")
 	var cp := MissionSave.peek(r.id, "checkpoint")
 	print("SIM SAVE t=%d written=%s checkpoints=%s (a checkpoint at %s) flags=%s" % [g.clock, ok, r.checkpoints.keys(),
@@ -53,7 +53,7 @@ static func reload(tree: SceneTree, main: Node) -> Game:
 	if kind == "save":
 		var diffs: Array = []
 		for k in ["flags", "counters", "obj", "clocks", "tags"]:
-			var now: Variant = {"flags": r2.flags, "counters": r2.counters, "obj": r2.obj, "clocks": r2.clocks, "tags": _tag_sizes(r2)}[k]
+			var now: Variant = {"flags": r2.flags, "counters": r2.counters, "obj": r2.obj, "clocks": _round(r2.clocks), "tags": _tag_sizes(r2)}[k]
 			if now != before[k]:
 				diffs.append("%s %s / %s" % [k, now, before[k]])
 		if r2.fired.size() != int(before["fired"]) or r2.said_ids.size() != int(before["said"]):
@@ -67,4 +67,12 @@ static func _tag_sizes(r: MissionRun) -> Dictionary:
 	var out := {}
 	for t in r.tags:
 		out[t] = r.tagged(String(t)).size()
+	return out
+
+
+## Clocks to a hundredth of a second (a save writes a float with a few digits fewer).
+static func _round(d: Dictionary) -> Dictionary:
+	var out := {}
+	for k in d:
+		out[k] = snappedf(float(d[k]), 0.01)
 	return out
