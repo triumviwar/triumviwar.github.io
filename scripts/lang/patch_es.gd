@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.106": ["EL PÉNDULO CAMINA PINTADO: su caminar hacia el sur, sureste y este ahora está pintado a mano en vez de armado con piezas recortadas, con rodillas que se doblan y pies que se asientan. El caminar hacia el noreste y el norte sigue siendo el antiguo por ahora."],
 	"0.38.105": ["LA MADRE DE LA NIDADA VUELVE A TENER UNA SOLA COLA: sus imágenes poniendo huevos (primera etapa) se redibujaron. Cuando se alzaba para poner, aparecía una segunda cola a la izquierda del nido; ahora es el cuello lo que se alza, y el huevo nuevo aparece donde la imagen lo pone."],
 	"0.38.104": ["LAS ÚLTIMAS IMÁGENES PROVISIONALES ESTÁN PINTADAS: el Rey escuchando a Hollweg en su estudio, Hollweg alzando el corazón del Perpetuo mientras Ferrer mira desde la puerta, Tomasz leyendo al Rey la carta del cartógrafo, Lindqvist alimentando al Espécimen Uno, y Lindqvist encadenado ante el Rey. Todas las imágenes de la historia en la campaña ya son pinturas."],
 	"0.38.103": ["LA LÍNEA DE FÜRTH ESTÁ TODA PINTADA: sus dos últimas imágenes ahora son pinturas de verdad: los soldados rojos de la Máquina saliendo por la puerta de la ciudad contra la empalizada, y el molino del Rednitz cubierto de engranajes rojos incendiado por el gremio y la Corona. Todas las imágenes de la historia de los prólogos y del Acto 1 ya son pinturas."],

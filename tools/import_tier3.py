@@ -358,6 +358,22 @@ def pendulum():
         at = cells(A['attack'][r], acw, ach)
         frames[('attack_r', d)] = at[:6]
         frames[('attack_l', d)] = at[6:]
+    # the walk: a ChatGPT repaint of a facing's code walk (art/redraws/pendulum_v2_walk_<d>_chatgpt.png, one row of 8) replaces
+    # that facing's code frames; scaled so its first frame is as tall as the idle, under the case like the idle, feet down
+    for r, d in enumerate(DIRS):
+        path = SRC + 'pendulum_v2_walk_%s_chatgpt.png' % d
+        if not os.path.exists(path):
+            continue
+        rgb = np.array(Image.open(path).convert('RGB')).astype(int)
+        row = figure_cells(rgb, content_bands(path, 1), 8)[0]
+        i0 = np.array(idle[r][0])
+        x0, y0, x1, y1 = bbox(i0)
+        f0 = row[0][0]
+        fx0, fy0, fx1, fy1 = bbox(f0)
+        k = (y1 - y0) / float(fy1 - fy0)
+        off = icw / 2.0 - case_x(i0)
+        frames[('walk', d)] = [(o, case_x(o) + off / k, bottom(o), k) for o, xy in row]
+        print('pendulum walk %s: ChatGPT repaint, scale %.3f of the idle' % (d.upper(), k))
     # the death: ChatGPT's sheets, cut by figure (no grid kept: sheet 2's rows sit lower, flying arms cross the lines)
     rows = []
     for k, n in ((1, 3), (2, 2)):

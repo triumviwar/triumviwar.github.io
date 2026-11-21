@@ -779,3 +779,5 @@ with the helmet flying, lying with the helmet beside him), one request per view 
 (art/redraws/gun_crew_death_<dir>_chatgpt.png, tools/import_gun_crew_death.py; each third of the sheet is one frame, the
 lying frames shrunk a little where they would overrun the 42-px cell), and his own card icon assets/icons/gun_crewman.png
 (art/redraws/gun_crew_icon_chatgpt.png, shrunk to 64). Nothing of him is drawn in code any more.
+
+- Pendulum v2 WALK repainted by ChatGPT (0.38.106): art/redraws/pendulum_v2_walk_{s,se,e}_chatgpt.png (one row of 8, repaints of the code walk rows) replace the code walk for those facings (tools/import_tier3.py takes any pendulum_v2_walk_<d>_chatgpt.png it finds, scaled to the idle, under the case). STILL CODE: the NE and N walks (the account ran out of images; guides are the code rows of art/redraws/pendulum_v2_walk.png), the idle sway and the two low sweeps.

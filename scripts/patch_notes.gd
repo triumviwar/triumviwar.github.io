@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.106", "items": [
+		"THE PENDULUM WALKS PAINTED: its walk facing south, south-east and east is now hand-painted instead of pieced together from cut parts, with knees that bend and feet that plant. The north-east and north walks are still the old ones for now.",
+	]},
 	{"v": "0.38.105", "items": [
 		"THE BROOD MOTHER HAS ONE TAIL AGAIN: her laying pictures (first stage) were redrawn. When she reared up to lay, a second tail appeared down the left of her nest; now it is her neck that lifts, and the new egg lands where the picture lays it.",
 	]},
