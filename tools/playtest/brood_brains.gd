@@ -28,6 +28,10 @@ func play() -> void:
 	match String(a["who"]):
 		"probe":
 			await probe()
+		"confused":
+			await confused()
+		"quitter":
+			await quitter()
 		_:
 			if has_method(String(a["mission"]).get_slice("_", 0) + "_" + String(a["who"])):
 				await call(String(a["mission"]).get_slice("_", 0) + "_" + String(a["who"]))
@@ -591,3 +595,76 @@ func a05_creatures() -> void:
 				await hand.army()
 				await hand.hit(carts[0])
 	await _result()
+
+
+# ------------------------------------------------------------------ the confused player and the button masher
+## CONFUSED: clicks anywhere (the map, the HUD, the dialogue), random keys, Esc, the menu open and shut, the window
+## resized, pauses; meanwhile watches the console. Then sits there until `until`.
+func confused() -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = int(a.get("seed", "7"))
+	var keys := [KEY_ESCAPE, KEY_A, KEY_S, KEY_H, KEY_M, KEY_P, KEY_B, KEY_SPACE, KEY_F1, KEY_F2, KEY_F3, KEY_1, KEY_TAB, KEY_ENTER, KEY_QUOTELEFT, KEY_Q, KEY_W, KEY_E, KEY_R]
+	var sizes := [Vector2i(1280, 720), Vector2i(1024, 768), Vector2i(1600, 900), Vector2i(900, 500)]
+	for i in 160:
+		if g.over:
+			break
+		var roll := rng.randi() % 10
+		var p := Vector2(rng.randf() * pt.vs().x, rng.randf() * pt.vs().y)
+		match roll:
+			0, 1, 2:
+				await pt.click(p)
+			3:
+				await pt.click(p, MOUSE_BUTTON_RIGHT)
+			4:
+				await pt.click(p, MOUSE_BUTTON_LEFT, true)
+			5:
+				await pt.key(keys[rng.randi() % keys.size()])
+			6:
+				await pt.drag(p, p + Vector2(rng.randf_range(-300, 300), rng.randf_range(-200, 200)))
+			7:
+				await hand.menu()
+				await pt.wait(0.2)
+				await hand.menu_item(["BACK TO THE MATCH", "PAUSE", "RESUME", "SETTINGS"][rng.randi() % 4])
+				await pt.wait(0.3)
+				if pt.find("BACK") != null and g.hud.get("settings_open"):
+					await pt.tap("BACK")
+				if g.hud.get("menu_open"):
+					await hand.menu_item("BACK TO THE MATCH")
+				if g.hud.get("paused"):
+					await hand.menu()
+					await hand.menu_item("RESUME")
+					await hand.menu_item("BACK TO THE MATCH")
+			8:
+				if DisplayServer.get_name() != "headless":
+					DisplayServer.window_set_size(sizes[rng.randi() % sizes.size()])
+					await pt.wait(0.3)
+			9:
+				await pt.tap("Dialogue_NEXT", 0.2)
+				await pt.tap("Dialogue_SKIP", 0.2)
+		await tick()
+		if i % 40 == 0:
+			await pt.shot("confused_%d" % i)
+	if DisplayServer.get_name() != "headless":
+		DisplayServer.window_set_size(Vector2i(1280, 720))
+	if g.hud.get("paused"):
+		await hand.menu()
+		await hand.menu_item("RESUME")
+	if g.hud.get("menu_open"):
+		await hand.menu_item("BACK TO THE MATCH")
+	pt.note("CONFUSED", "done at %d:%02d over=%s; then idle" % [int(g.clock) / 60, int(g.clock) % 60, g.over])
+	await idle()
+	await _result()
+
+
+## QUIT: plays a minute, quits to the menu from the match menu, comes back in through the campaign (the mission starts
+## again: missions are not saved), and checks the progress file is as it was.
+func quitter() -> void:
+	var before := JSON.stringify(Campaign.progress())
+	await wait_tick(60.0)
+	await pt.shot("before_quit")
+	await hand.menu()
+	await hand.menu_item("QUIT TO MENU")
+	await pt.wait(1.5)
+	await pt.shot("menu_after_quit")
+	var cont = pt.find("Menu_continue")
+	pt.note("QUIT", "after QUIT TO MENU: CONTINUE on the menu = %s; progress unchanged = %s" % [cont != null, JSON.stringify(Campaign.progress()) == before])

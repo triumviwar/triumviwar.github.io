@@ -270,6 +270,57 @@ static func diff_mult(m: Dictionary, level: String) -> Dictionary:
 	return out
 
 
+## A show's pages before the match (a mission's OPENING): lines with an "if" kept only when it holds (StillShow wants
+## line ids; an "if" line reached it as a Dictionary and stopped The Specimens' and The Printing Houses' openings with a
+## SCRIPT ERROR: playtest 2026-11-21). The match's own MissionRun.pages_now does the same for the ending.
+static func pages_before(pages: Array) -> Array:
+	var out: Array = []
+	for pg in pages:
+		var ids: Array = []
+		for ln in pg.get("lines", []):
+			if ln is Dictionary:
+				if cond_before(ln.get("if", {})):
+					ids.append(String(ln.get("id", "")))
+			else:
+				ids.append(String(ln))
+		if ids.is_empty() and not (pg.get("lines", []) as Array).is_empty():
+			continue
+		var c: Dictionary = (pg as Dictionary).duplicate()
+		c["lines"] = ids
+		out.append(c)
+	return out
+
+
+## The conditions that can be asked before a match: "past" (a finished mission's flag), "difficulty", and "not" / "all"
+## / "any" of them. Anything else (it needs the match) does not hold.
+static func cond_before(c: Variant) -> bool:
+	if not (c is Dictionary):
+		return false
+	var ok := true
+	for k in c:
+		var v: Variant = c[k]
+		match String(k):
+			"past":
+				for fk in v:
+					var pr := String(fk).split(".")
+					ok = ok and pr.size() == 2 and str(flag(pr[0], pr[1])) == str(v[fk])
+			"difficulty":
+				ok = ok and difficulty() == String(v)
+			"not":
+				ok = ok and not cond_before(v)
+			"all":
+				for x in v:
+					ok = ok and cond_before(x)
+			"any":
+				var anyok := false
+				for x in v:
+					anyok = anyok or cond_before(x)
+				ok = ok and anyok
+			_:
+				ok = false
+	return ok
+
+
 ## An objective's words before the match (the BRIEFING): its numbers are not known yet, so "{clock:<name>}" is the
 ## clock's length at this difficulty (its first "clock" action), a "(... {counter} ...)" aside goes, "{<counter>.of}" is
 ## its "of" and any other "{<counter>}" its start. (They showed raw, "Dawn in {clock:dawn}", playtest 2026-11-21.)

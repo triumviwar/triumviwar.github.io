@@ -74,7 +74,21 @@ func _run() -> void:
 	await pt.tap("Diff_" + args["diff"])
 	await pt.wait(0.4)
 	await pt.shot("briefing")
-	await pt.tap("Briefing_Start")
+	if args.get("fast", "") == "1":
+		# the button masher: START three times in a row, then NEXT as fast as the mouse goes
+		var st = pt.find("Briefing_Start")
+		if st:
+			var c: Vector2 = pt.rect_of(st).get_center()
+			for i in 3:
+				await pt.click(c, MOUSE_BUTTON_LEFT, i > 0)
+		for i in 30:
+			var nx = pt.find("Show_NEXT")
+			if nx == null:
+				break
+			await pt.click(pt.rect_of(nx).get_center(), MOUSE_BUTTON_LEFT, i % 2 == 1)
+		pt.note("FAST", "after mashing: StillShows %d, games %d" % [root.find_children("StillShow", "", true, false).size(), root.find_children("*", "Game", true, false).size()])
+	else:
+		await pt.tap("Briefing_Start")
 	await _opening()
 	# the match
 	var t := 0.0
