@@ -33,8 +33,6 @@ func _initialize() -> void:
 	rng.seed = hash(str(o)) + int(o.get("seed", "0"))
 	if FileAccess.file_exists("user://settings.cfg"):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path("user://settings.cfg"))
-	if o["lang"] != "en":
-		Settings.language = o["lang"]
 	main = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
 	pt = Lib.new(self)
@@ -389,22 +387,28 @@ func macro() -> void:
 	var sire := BroodNew.father(g, me, BroodNew.FATHER)
 	var dilo := BroodNew.father(g, me, BroodNew.DILO)
 	var st := BroodNew.stage(q)
+	var morphing := mine("grub").filter(func(u: Unit) -> bool: return u.order == "nb_morph").size()
+	var cocoons := mine().filter(func(u: Unit) -> bool: return BroodRoot.in_cocoon(u)).size()
 	# 1) idle grubs back to work
 	if due("idle", 6.0):
 		await idle_grubs_to_work()
-	# 2) supply: a Mound Turtle when close to the cap (at home first; later on new ground)
-	var turtles_coming := mine("grub").filter(func(u: Unit) -> bool: return u.order == "nb_morph").size() + mine(BroodNew.TURTLE).filter(func(u: Unit) -> bool: return BroodRoot.in_cocoon(u)).size()
-	if su.y - su.x <= (10 if food() > 400 else 5) and food() >= 100 and su.y < 200 and turtles_coming <= (1 if food() > 500 else 0) and due("turtle", 15.0):
-		var where := q.position
+	# what the food is kept for next (a person thinks "turtle next", "Sire next" before laying more)
+	var reserve := 0
+	var need_turtle := su.y - su.x <= (12 if g.clock > 360.0 else 6) and su.y < 200
+	if need_turtle:
+		reserve = 100
+	elif sire == null and maws >= 2:
+		reserve = 150
+	# 2) supply: a Mound Turtle when close to the cap (at home first, then on new ground the game marks gold)
+	if need_turtle and food() >= 100 and morphing + cocoons <= (1 if food() > 450 else 0) and due("turtle", 12.0):
 		var spot := Vector2.INF
 		if turtles >= 1 and g.exp_spots != null:
-			# the expansion: the best Mound Turtle spot the game marks gold
 			for s in ExpansionSpots.nb_pick(g, me, g.exp_spots):
 				spot = find_spot(BroodNew.TURTLE, BroodRoot.feet_at(BroodNew.TURTLE, s["tc"]), 0, 3)
 				if spot != Vector2.INF:
 					break
 		if spot == Vector2.INF:
-			spot = find_spot(BroodNew.TURTLE, where, 7, 18)
+			spot = find_spot(BroodNew.TURTLE, q.position, 7, 18)
 		if spot == Vector2.INF:
 			for t2 in mine(BroodNew.TURTLE):
 				spot = find_spot(BroodNew.TURTLE, t2.position, 5, 12)
@@ -412,69 +416,88 @@ func macro() -> void:
 					break
 		if spot != Vector2.INF:
 			await grub_to(BroodNew.TURTLE, spot)
-	# 3) grubs: the Mother lays them while the Rootmaws want more
-	var want_grubs := mini(maws * 7 + 2, 40)
-	if grubs < want_grubs and food() >= 50 and su.x < su.y and due("grubs", 4.0):
-		await lay("grub", clampi((food() - 50) / 50, 1, 3))
-	# 4) Rootmaws on the gold spots
-	var spots: Array = RootmawSpots.spots_for(g, me)
-	if not spots.is_empty() and food() >= 125 and maws < 9 and grubs >= maws * 5 and due("maw", 12.0):
-		spots.sort_custom(func(a, b) -> bool: return int(a["rank"]) < int(b["rank"]))
-		await grub_to(BroodNew.MAW, spots[0]["p"])
-	# 5) the Tyrant Sire beside her
-	if sire == null and maws >= 2 and food() >= 150 and due("sire", 20.0):
+		else:
+			finding("UX", "No place found for a Mound Turtle anywhere near the Mother or the turtles at %s." % _clock())
+	# 3) the Tyrant Sire beside her
+	if sire == null and maws >= 2 and food() >= 150 and due("sire", 15.0):
 		var sp := find_spot(BroodNew.FATHER, q.position, 3, 7)
 		if sp != Vector2.INF:
 			await grub_to(BroodNew.FATHER, sp)
 		else:
 			finding("UX", "No room found for the Tyrant Sire within the father range at %s." % str(q.position / Defs.TILE))
+	# 4) Rootmaws on the gold spots
+	var spots: Array = RootmawSpots.spots_for(g, me)
+	if not spots.is_empty() and food() - reserve >= 125 and maws < 10 and grubs >= maws * 5 and due("maw", 10.0):
+		spots.sort_custom(func(x, y) -> bool: return int(x["rank"]) < int(y["rank"]))
+		await grub_to(BroodNew.MAW, spots[0]["p"])
+	# 5) grubs: the Mother lays them while the Rootmaws want more
+	var want_grubs := mini(maws * 7 + 2, 42)
+	if grubs < want_grubs and food() - reserve >= 50 and su.x < su.y and due("grubs", 3.0):
+		await lay("grub", clampi((food() - reserve - 50) / 50 + 1, 1, 4))
 	# 6) research at a rooted Sire (PACK HUNT ...)
-	if sire != null and BroodNew.rooted(sire) and food() >= 150 and due("research", 40.0):
+	if sire != null and BroodNew.rooted(sire) and food() - reserve >= 150 and g.clock > 240.0 and due("research", 40.0):
 		await select_unit(sire)
 		for b in pt.card(hud):
-			if b["enabled"] and b["icon"] != "" and not (b["label"] in ["UPROOT", "RALLY", "STOP RESEARCH"]) and b["label"] == b["label"].to_upper() \
-					and Defs.RESEARCH.values().any(func(r) -> bool: return String(r.get("name", "")).to_upper() == b["label"] or Defs.research_label(_rkey(r)) == b["label"]):
+			if b["enabled"] and not (b["label"] in ["UPROOT", "RALLY", "STOP RESEARCH", "WORKERS"]) and b["icon"] != "rally" and not String(b["label"]).ends_with("EGGS") and not String(b["label"]).contains("·"):
 				await card(b["label"])
-				pt.note("research " + b["label"])
+				pt.note("research " + b["label"] + " -> " + String(hud._msg))
+				did("research")
 				break
 	# 7) grow her
-	if st == 0 and g.clock > 300.0 and food() >= 300 and due("grow", 30.0):
+	if st == 0 and g.clock > 330.0 and food() - reserve >= 300 and due("grow", 30.0):
 		await select_mother()
 		await card("GROW")
-	if st == 1 and g.clock > 540.0 and food() >= 500 and spoils() >= 75 and due("grow", 30.0):
+	if st == 1 and g.clock > 600.0 and food() - reserve >= 500 and spoils() >= 75 and due("grow", 30.0):
 		await select_mother()
 		await card("GROW")
-	# 8) the Venom Sire after the first push is out
-	if dilo == null and sire != null and maws >= 3 and food() >= 220 and due("dilo", 30.0):
+	# 8) the Venom Sire once the base stands
+	if dilo == null and sire != null and maws >= 3 and g.clock > 300.0 and food() - reserve >= 220 and due("dilo", 25.0):
 		if spoils() < 25:
-			# spoils for him: offer up a grub (SACRIFICE), as a person does without bodies
+			# spoils for him: offer up a grub (SACRIFICE), as a person does with no bodies about
 			var gs2 := mine("grub")
 			if gs2.size() > 12 and await select_unit(gs2[gs2.size() - 1]):
 				await card("SACRIFICE")
-				await card("SACRIFICE")
-	if dilo == null and sire != null and maws >= 3 and food() >= 220 and spoils() >= 25 and due("dilo2", 20.0):
-		var sp2 := find_spot(BroodNew.DILO, q.position, 3, 7)
-		if sp2 != Vector2.INF:
-			await grub_to(BroodNew.DILO, sp2)
+		else:
+			var sp2 := find_spot(BroodNew.DILO, q.position, 3, 7)
+			if sp2 != Vector2.INF:
+				await grub_to(BroodNew.DILO, sp2)
 	# 9) warriors
-	if sire != null and BroodNew.rooted(sire) and su.x < su.y - 1 and grubs >= mini(want_grubs, 14) and due("army", 5.0):
+	if sire != null and BroodNew.rooted(sire) and su.x < su.y - 1 and (grubs >= mini(want_grubs, 14) or g.clock > 210.0) and food() - reserve >= 50 and due("army", 4.0):
 		var k := "raptor"
-		if dilo != null and BroodNew.rooted(dilo) and rng.randf() < 0.35:
+		if dilo != null and BroodNew.rooted(dilo) and rng.randf() < 0.4:
 			k = "spitter"
 		if st >= 2 and rng.randf() < 0.3:
 			k = "brute"
-		await lay(k, clampi(food() / 100, 1, 6))
+		await lay(k, clampi((food() - reserve) / 100, 1, 6 if food() < 1500 else 12))
 	# 10) spoils: grubs harvest the bodies near home
-	var bodies: Array = g.corpses.filter(func(c) -> bool: return is_instance_valid(c) and c.position.distance_to(q.position) < 18 * Defs.TILE and g.is_seen(me, c.position)) if g.has_method("is_seen") else g.corpses.filter(func(c) -> bool: return is_instance_valid(c) and c.position.distance_to(q.position) < 18 * Defs.TILE)
-	if spoils() < 120 and bodies.size() >= 2 and due("harvest", 30.0) and grubs > 6:
+	var bodies: Array = g.corpses.filter(func(c) -> bool: return is_instance_valid(c) and c.position.distance_to(q.position) < 18 * Defs.TILE)
+	if spoils() < 150 and bodies.size() >= 2 and due("harvest", 30.0) and grubs > 6:
 		var gs := mine("grub").filter(func(u: Unit) -> bool: return u.order in ["gather", "idle"])
-		gs.sort_custom(func(a, b) -> bool: return a.position.distance_to(bodies[0].position) < b.position.distance_to(bodies[0].position))
+		gs.sort_custom(func(x, y) -> bool: return x.position.distance_to(bodies[0].position) < y.position.distance_to(bodies[0].position))
 		if gs.size() >= 2:
 			await select_unit(gs[0])
 			await select_unit(gs[1], true)
 			await card("HARVEST")
+	# 10b) rich in food, poor in spoils: offer up spare grubs (spoils + eggs back), and HARVEST on autocast for a few
+	if spoils() < 80 and food() > 800 and grubs > 34 and due("offer", 20.0):
+		var gs3 := mine("grub").filter(func(u: Unit) -> bool: return u.order in ["gather", "idle"])
+		if gs3.size() > 3:
+			await select_unit(gs3[0])
+			await select_unit(gs3[1], true)
+			await select_unit(gs3[2], true)
+			await card("SACRIFICE")
+			did("offer grubs")
+	if g.clock > 240.0 and due("autoharvest", 600.0):
+		var gs4 := mine("grub")
+		if gs4.size() > 8:
+			await select_unit(gs4[0])
+			await select_unit(gs4[1], true)
+			await select_unit(gs4[2], true)
+			await pt.card_click(hud, "HARVEST", MOUSE_BUTTON_RIGHT)     # (right-click: autocast)
+			pt.note("HARVEST autocast: %s" % hud._msg)
+			did("harvest autocast")
 	# 11) mature young when she can
-	if st >= 1 and food() >= 200 and due("mature", 50.0):
+	if st >= 1 and food() - reserve >= 200 and due("mature", 50.0):
 		var young := army().filter(func(u: Unit) -> bool: return BroodMature.mature_of(u.kind) != "" and BroodMature.problem(u) == "")
 		if not young.is_empty():
 			await select_unit(young[0])
@@ -505,16 +528,21 @@ func war() -> void:
 			pt.hold_ctrl(false)
 		army_group = a.duplicate()
 		did("group army")
-	# defend: enemies near her, near a Rootmaw or a turtle
-	var threat: Array = []
-	for b in mine().filter(func(u: Unit) -> bool: return BroodNew.rooted(u)):
-		threat += enemy_units_near(b.position, 12 * Defs.TILE)
-	if not threat.is_empty() and due("defend", 4.0):
+	# defend: armed enemies at her, or two or more at a Rootmaw or a turtle
+	var threat: Array = enemy_units_near(q.position, 14 * Defs.TILE).filter(func(u) -> bool: return u.armed())
+	if threat.is_empty():
+		for b in mine().filter(func(u: Unit) -> bool: return BroodNew.rooted(u)):
+			var near: Array = enemy_units_near(b.position, 10 * Defs.TILE).filter(func(u) -> bool: return u.armed())
+			if near.size() >= 2:
+				threat = near
+				break
+	if not threat.is_empty() and due("defend", 6.0):
 		var c: Vector2 = threat[0].position
 		await recall_army()
 		await attack_move(c)
 		pt.note("defend at %s (%d enemies)" % [str(c / Defs.TILE), threat.size()])
 		did("defend")
+		attacking = false
 		# she gets up to fight when they are at her
 		if enemy_units_near(q.position, 5 * Defs.TILE).size() >= 3 and BroodNew.rooted(q) and due("mother_up", 30.0):
 			await select_mother()
@@ -526,15 +554,42 @@ func war() -> void:
 		await select_mother()
 		if await card("ROOT"):
 			await place_root(BroodNew.QUEEN, q.position, false)
+		# and the Rootmaws her swamp let go of
+		for m in mine(BroodNew.MAW).filter(func(u: Unit) -> bool: return not BroodNew.rooted(u) and not BroodRoot.in_cocoon(u)):
+			await select_unit(m)
+			if await card("ROOT"):
+				await place_root(BroodNew.MAW, m.position, false)
+				did("reroot rootmaw")
 	var power := 0
 	for u in a:
 		power += int(Defs.UNITS[u.kind].get("supply", 1))
-	if power >= 24 and due("attack", 50.0):
+	if power >= (24 if not attacking else 10) and due("attack", 35.0):
 		await recall_army()
-		await attack_move(enemy_start())
+		var tgt := enemy_target()
+		await attack_move(tgt)
 		attacking = true
-		pt.note("ATTACK with %d supply of army at %s" % [power, _clock()])
+		pt.note("ATTACK with %d supply of army at %s toward %s" % [power, _clock(), str(tgt / Defs.TILE)])
 		did("attack")
+
+
+## where to strike: the enemy building nearest my army that I have seen (else their start)
+func enemy_target() -> Vector2:
+	var a := army()
+	var c: Vector2 = mother().position
+	if not a.is_empty():
+		c = Vector2.ZERO
+		for u in a:
+			c += u.position
+		c /= a.size()
+	var best := enemy_start()
+	var bd := INF
+	for b in g.buildings if "buildings" in g else []:
+		if is_instance_valid(b) and not b.dead and g.enemies_of(me).has(b.team) and (b.seen_mask & (1 << me)) != 0:
+			var d: float = b.position.distance_to(c)
+			if d < bd:
+				bd = d
+				best = b.position
+	return best
 
 
 func select_army_phone() -> void:
@@ -673,7 +728,7 @@ func breaker_step() -> void:
 
 func _run() -> void:
 	await pt.frames(5)
-	if not await pt.into_match(main, {"opp": o["opp"], "who": o["level"], "plan": o["plan"], "map": o["map"]}):
+	if not await pt.into_match(main, {"opp": o["opp"], "who": o["level"], "plan": o["plan"], "map": o["map"], "lang": o["lang"]}):
 		pt.note("could not start the match")
 		_end(1)
 		return
@@ -687,7 +742,27 @@ func _run() -> void:
 	var shot_t := 0.0
 	var end_at: float = o["mins"] * 60.0
 	var think := 0
-	while not g.over and g.clock < end_at and is_instance_valid(g):
+	while true:
+		if not is_instance_valid(g) or main.game != g:
+			# (the player left the match, e.g. QUIT TO MENU: a person presses CONTINUE)
+			finding("NOTE", "%s player left the match to the menu (%s)." % [o["who"], "QUIT TO MENU" if main.game == null else "?"])
+			await pt.secs(2.0)
+			await pt.shot("left_to_menu")
+			if not await pt.click_text("CONTINUE"):
+				break
+			for i in 300:
+				await pt.frames(1)
+				if main.game != null and is_instance_valid(main.game) and main.game.is_inside_tree():
+					break
+			await pt.secs(3.0)
+			g = main.game
+			if g == null:
+				break
+			hud = g.hud
+			me = g.human
+			pt.note("CONTINUE: back at %s" % _clock())
+		if g.over or g.clock >= end_at:
+			break
 		think += 1
 		match o["who"]:
 			"careful":
@@ -726,6 +801,9 @@ func _run() -> void:
 			await pt.shot("t%02d" % int(g.clock / 60))
 		await pt.secs(0.4)
 	Engine.time_scale = 1.0
+	if g == null or not is_instance_valid(g):
+		_end(0)
+		return
 	pt.note("END at %s: over %s winner %s (me %d)" % [_clock(), str(g.over), str(g.winner), me])
 	await pt.secs(3.0)
 	await pt.shot("end")

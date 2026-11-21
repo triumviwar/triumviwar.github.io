@@ -34,12 +34,14 @@ func sandbox(label: String, times := 1) -> void:
 
 
 func give(food_k := 1, spoils_k := 0) -> void:
+	var f0 := food()
 	await sandbox(Defs.res_names("brood")[0].to_upper(), 0)
 	for i in food_k:
 		await pt.click_text("+1000")
 	for i in spoils_k:
 		await pt.click_text("+200")
 	await sandbox_panel(false)
+	probe(food() >= f0 + 1000 * food_k - 100, "the sandbox's +1000 gave food (%d -> %d)" % [f0, food()])
 
 
 func wait_game(t: float, every := 0.5) -> void:
@@ -54,12 +56,12 @@ func rooted_maws() -> int:
 
 
 func _run() -> void:
-	pt.tag = "probe_%s%s" % ["phone" if mobile else "pc", ("_" + o["lang"]) if o["lang"] != "en" else ""]
 	for a in OS.get_cmdline_user_args():
 		if a.begins_with("part="):
 			part = a.substr(5)
+	pt.tag = "probe_%s_%s%s" % [part, "phone" if mobile else "pc", ("_" + o["lang"]) if o["lang"] != "en" else ""]
 	await pt.frames(5)
-	if not await pt.into_match(main, {"opp": "crown", "who": "easy", "plan": "BALANCED", "map": "HOLLOWFEN", "sandbox": true}):
+	if not await pt.into_match(main, {"opp": "crown", "who": "easy", "plan": "BALANCED", "map": "HOLLOWFEN", "sandbox": true, "lang": o["lang"]}):
 		_end(1)
 		return
 	g = main.game
@@ -70,16 +72,16 @@ func _run() -> void:
 	await sandbox_panel(true)
 	await pt.shot("sandbox_panel")
 	for b in pt.all_buttons(root):
-		if b is Button and String((b as Button).text).strip_edges() in ["P2", "2"]:
+		if b is Button and String((b as Button).text).strip_edges().trim_prefix("»").strip_edges() == "2":
 			await pt.click_control(b)
 			break
 	await pt.click_text("AI: ON")
 	for b in pt.all_buttons(root):
-		if b is Button and String((b as Button).text).strip_edges() in ["P1", "1"]:
+		if b is Button and String((b as Button).text).strip_edges().trim_prefix("»").strip_edges() == "1":
 			await pt.click_control(b)
 			break
 	await sandbox_panel(false)
-	pt.note("enemy ai: %s" % str(g.ais.map(func(a): return a.process_mode)))
+	pt.note("enemy ai: %s; sandbox acting %d" % [str(g.ais.map(func(a): return a.process_mode)), main.game.get_node_or_null("SandboxPanel").acting if false else -1])
 	Engine.time_scale = 2.0
 	if part in ["all", "eco"]:
 		await eco()
@@ -285,7 +287,7 @@ func army_part() -> void:
 	await pt.key(KEY_P)
 	await pt.click(scr(c) + Vector2(200, 0))
 	await wait_game(3.0)
-	probe(g.selected_units().any(func(u): return u.order == "patrol"), "P + click patrols")
+	probe(g.selected_units().any(func(u): return u.patrol_a != Vector2.INF), "P + click patrols")
 	# SACRIFICE one Raptor
 	var r1: Unit = mine("raptor")[0]
 	var s0 := spoils()
@@ -310,9 +312,34 @@ func army_part() -> void:
 
 # ------------------------------------------------------------------ late: GROW, the other Sires, every creature, MATURE
 
+func spawn_enemy(kind_label: String, at: Vector2, n := 1) -> void:
+	await sandbox_panel(true)
+	for b in pt.all_buttons(root):
+		if b is Button and String((b as Button).text).strip_edges().trim_prefix("»").strip_edges() == "2":
+			await pt.click_control(b)
+			break
+	await pt.click_text("CROWN", true)
+	await pt.click_text(kind_label)
+	await sandbox_panel(false)     # (the panel covers the right of the map)
+	await look(at)
+	for i in n:
+		await pt.click(scr(at + Vector2(i * 30, 0)))
+	await sandbox_panel(true)
+	await pt.click_text(kind_label)      # (picked again: off)
+	for b in pt.all_buttons(root):
+		if b is Button and String((b as Button).text).strip_edges().trim_prefix("»").strip_edges() == "1":
+			await pt.click_control(b)
+			break
+	await sandbox_panel(false)
+
+
 func late() -> void:
 	await give(3, 3)
 	var q := mother()
+	# the Tyrant Sire and two turtles first (supply for the big ones)
+	await grub_to(BroodNew.FATHER, find_spot(BroodNew.FATHER, q.position, 3, 7))
+	await grub_to(BroodNew.TURTLE, find_spot(BroodNew.TURTLE, q.position, 8, 16))
+	await grub_to(BroodNew.TURTLE, find_spot(BroodNew.TURTLE, q.position, 8, 16))
 	await select_mother()
 	await pt.hover_card(hud, "GROW", "tip_grow_stage2")
 	await card("GROW")
@@ -333,6 +360,16 @@ func late() -> void:
 	await wait_game(70.0)
 	probe(BroodNew.stage(mother()) >= 2, "GROW reached stage 3 (stage %d)" % BroodNew.stage(mother()))
 	await pt.shot("stage3")
+	# where are the Sires nested beside her? (zoomed out, and her stage-3 body over them?)
+	for k in BroodNew.FATHERS:
+		var f := BroodNew.father(g, me, k)
+		if f:
+			var br: Rect2 = BroodRoot.body_rect(f)
+			var qr: Rect2 = BroodRoot.body_rect(mother())
+			pt.note("%s body %s, Mother body %s, overlap %.0f%% of his" % [k, str(br), str(qr), 100.0 * br.intersection(qr).get_area() / maxf(1.0, br.get_area())])
+	await pt.wheel(pt.vsize() * 0.5, false, 6)
+	await pt.shot("stage3_zoomed_out")
+	await pt.wheel(pt.vsize() * 0.5, true, 6)
 	await give(3, 3)
 	# every creature on her card
 	await select_mother()
@@ -361,12 +398,15 @@ func late() -> void:
 	# the Mist Toad's spells on enemies (spawned by the sandbox for the enemy)
 	var toad := mine().filter(func(u: Unit) -> bool: return u.kind == "mist_toad")
 	if not toad.is_empty():
+		await spawn_enemy("Musketeer", toad[0].position + Vector2(7 * Defs.TILE, 0), 3)
+		await wait_game(2.0)
 		await select_unit(toad[0])
 		await pt.shot("toad_card")
 		pt.note("toad card: %s" % ", ".join(pt.card(hud).map(func(b): return "%s%s" % [b["label"], "" if b["enabled"] else "(x: %s)" % b["why"]])))
 		for sl in ["FOG", "MIASMA", "TONGUE"]:
 			if await card(sl):
-				await click_world(toad[0].position + Vector2(5 * Defs.TILE, 0))
+				var foe := enemy_units_near(toad[0].position, 12 * Defs.TILE)
+				await click_world(foe[0].position if not foe.is_empty() else toad[0].position + Vector2(5 * Defs.TILE, 0))
 				pt.note("%s: %s" % [sl, hud._msg])
 				await pt.shot("toad_" + sl.to_lower())
 			await pt.key(KEY_ESCAPE)
@@ -390,10 +430,19 @@ func late() -> void:
 
 func ui_part() -> void:
 	Engine.time_scale = 1.0
+	await wait_game(20.0)
+	# the top bar's tooltips (food, spoils, supply)
+	var tr: Rect2 = hud.top_rect()
+	for x in [0.03, 0.10, 0.17]:
+		pt.move(Vector2(tr.position.x + tr.size.x * x, tr.get_center().y) * hud.ui_scale)
+		await pt.secs(1.2)
+		hud._redraw_t = 0.0
+		await pt.shot("tip_top_%d" % int(x * 100))
 	await pt.key(KEY_PAUSE)
 	await pt.frames(5)
-	pt.note("paused after Pause key: %s" % str(get_root().get_tree().paused if false else hud.paused))
+	pt.note("paused after the Pause key: %s" % str(hud.paused))
 	await pt.shot("pause_key")
+	await pt.key(KEY_PAUSE)
 	await pt.menu_click(hud, "PAUSE")
 	await pt.shot("menu_paused")
 	pt.note("menu: %s" % ", ".join(pt.menu_labels(hud)))
@@ -403,6 +452,34 @@ func ui_part() -> void:
 	await pt.shot("settings_in_match")
 	await pt.key(KEY_ESCAPE)
 	await pt.frames(5)
+	await pt.key(KEY_ESCAPE)
+	# save and load mid-match: QUIT TO MENU, then CONTINUE on the main menu
+	var before := {"clock": g.clock, "grubs": mine("grub").size(), "maws": mine(BroodNew.MAW).size(), "food": food(), "stage": BroodNew.stage(mother())}
+	await pt.menu_click(hud, "QUIT TO MENU")
+	await pt.frames(5)
+	await pt.shot("quit_confirm")
+	if main.game != null and is_instance_valid(main.game) and not main.game.is_queued_for_deletion():
+		# (a confirm: its YES)
+		for b in hud._menu_buttons():
+			if b.get("bad", false) or String(b["label"]) in ["YES", "QUIT"]:
+				await pt.click((b["rect"] as Rect2).get_center() * hud.ui_scale)
+				break
+	await pt.secs(2.0)
+	await pt.shot("menu_after_quit")
+	pt.note("main menu buttons: %s" % ", ".join(pt.button_texts(main.menu)))
+	if await pt.click_text("CONTINUE"):
+		for i in 300:
+			await pt.frames(1)
+			if main.game != null and is_instance_valid(main.game) and main.game.is_inside_tree() and main.game != g:
+				break
+		await pt.secs(3.0)
+		g = main.game
+		hud = g.hud
+		me = g.human
+		var after := {"clock": g.clock, "grubs": mine("grub").size(), "maws": mine(BroodNew.MAW).size(), "food": food(), "stage": BroodNew.stage(mother())}
+		pt.note("save/continue: before %s after %s" % [str(before), str(after)])
+		probe(absf(float(after["clock"]) - float(before["clock"])) < 15.0 and after["maws"] == before["maws"] and after["stage"] == before["stage"], "CONTINUE brought the match back (%s -> %s)" % [str(before), str(after)])
+		await pt.shot("continued")
 	await pt.menu_click(hud, "SURRENDER")
 	await pt.shot("surrender_confirm")
 	for b in hud._menu_buttons():
@@ -413,3 +490,19 @@ func ui_part() -> void:
 	await pt.shot("end_screen")
 	probe(g.over, "SURRENDER ended the match")
 	pt.note("end screen buttons: %s" % ", ".join(pt.button_texts(main.ui_layer)))
+	for tab in ["INCOME", "WORKERS"]:
+		await pt.click_text(tab, true)
+		await pt.shot("end_" + tab.to_lower())
+	DisplayServer.clipboard_set("")
+	await pt.click_text("COPY LOG")
+	await pt.frames(5)
+	var clip := DisplayServer.clipboard_get()
+	pt.note("COPY LOG: %d characters, first line '%s'" % [clip.length(), clip.split("\n")[0] if clip != "" else ""])
+	probe(clip.length() > 200, "COPY LOG put the match log on the clipboard (%d chars)" % clip.length())
+	if clip != "":
+		var f := FileAccess.open("user://pt_match_log.txt", FileAccess.WRITE)
+		f.store_string(clip)
+		f.close()
+	await pt.click_text("VIEW MAP")
+	await pt.secs(2.0)
+	await pt.shot("view_map")

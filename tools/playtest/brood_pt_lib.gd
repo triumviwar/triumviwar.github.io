@@ -424,6 +424,18 @@ func pick_list(main: Node, dd: Button, item: String) -> bool:
 ## map: list label start, e.g. "HOLLOWFEN" (or "" = the random pool), lang}
 func into_match(main: Node, o: Dictionary) -> bool:
 	await frames(8)
+	var lang := String(o.get("lang", "en"))
+	if lang != "en" and Settings.language != lang:
+		# the flags in the corner of the first page (their tooltips name the language)
+		for b in all_buttons(main.menu):
+			if String(b.tooltip_text) == Loc.NATIVE[lang]:
+				var was0 := touch_mode
+				touch_mode = false
+				await click_control(b)
+				touch_mode = was0
+				break
+		await frames(8)
+		note("language now %s" % Settings.language)
 	var dev := "MOBILE" if touch_mode else "COMPUTER"
 	if find_button(dev, true) != null and find_button("SKIRMISH") == null:
 		var was := touch_mode
