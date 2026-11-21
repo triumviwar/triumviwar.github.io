@@ -180,8 +180,10 @@ func _draw_room() -> void:
 	var t := UiStyle.heading(Loc.t("ROOM") + "  " + l.code, 38, Color(1, 0.9, 0.55))
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	top.add_child(t)
-	var cp: Button
-	cp = main._button("COPY", func() -> void:
+	# (the button is passed in: a lambda takes a copy of `cp` when it is made, still null then, so pressing COPY
+	# stopped with a SCRIPT ERROR before it could say COPIED, playtest 2026-11-21)
+	var cp: Button = main._button("COPY", func() -> void: pass)
+	cp.pressed.connect(func() -> void:
 		DisplayServer.clipboard_set(l.code)
 		cp.text = Loc.t("COPIED"))
 	cp.custom_minimum_size = Vector2(130, 44)
@@ -549,8 +551,10 @@ func _draw_campaign_room(l: NetLobby) -> void:
 	var t := UiStyle.heading(Loc.t("ROOM") + "  " + l.code, 38, Color(1, 0.9, 0.55))
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	top.add_child(t)
-	var cp: Button
-	cp = main._button("COPY", func() -> void:
+	# (the button is passed in: a lambda takes a copy of `cp` when it is made, still null then, so pressing COPY
+	# stopped with a SCRIPT ERROR before it could say COPIED, playtest 2026-11-21)
+	var cp: Button = main._button("COPY", func() -> void: pass)
+	cp.pressed.connect(func() -> void:
 		DisplayServer.clipboard_set(l.code)
 		cp.text = Loc.t("COPIED"))
 	cp.custom_minimum_size = Vector2(130, 44)
