@@ -206,6 +206,16 @@ const NB_STAGES := 4
 var _nb_stage := NB_STAGES
 
 
+## (ai-opponent-review) the benchmark player's look (AI.bench_look): at home her eggs, growth, Rootmaws, turtles and
+## morphs; at the army the maturing, research, army and spells.
+func bench_look(army_look: bool) -> void:
+	if army_look:
+		_nb_think_stage(3)
+	else:
+		for i in 3:
+			_nb_think_stage(i)
+
+
 func _nb_think_stage(i: int) -> void:
 	var _pb := Time.get_ticks_usec()
 	if i == 0 and strategy != _plan_of and PLANS.has(strategy):
@@ -218,7 +228,8 @@ func _nb_think_stage(i: int) -> void:
 		return
 	match i:
 		0:
-			_lap_nb("scout_deny", sdn().tick)       # (scout-deny: an enemy scout in its land is hunted down, scripts/ai_scout_deny.gd)
+			if bench == null:
+				_lap_nb("scout_deny", sdn().tick)      # (the benchmark player hunts scouts by its own rule: BenchHuman)       # (scout-deny: an enemy scout in its land is hunted down, scripts/ai_scout_deny.gd)
 			_lap_nb("observe", _nb_observe.bind(q))
 			if int(q.nb.get("eggs", 0)) <= EGG_LOW and float(q.nb.get("grow_t", 0.0)) <= 0.0:
 				_egg_low_t = game.clock          # (her clutch run down: eggs hold the Brood back, _nb_grow_time)
@@ -244,7 +255,7 @@ func _nb_think_stage(i: int) -> void:
 			_lap_nb("mature", _nb_mature.bind(q))
 			_lap_nb("research", _nb_research.bind(q))
 			_lap_nb("army", _nb_army.bind(q))
-			if difficulty >= 1:
+			if difficulty >= 1 and (bench == null or bench_flags.get("abil", false)):
 				_spells()           # (the Mist Toads' FOG and TONGUE, as the old Brood's computer: AI._toad)
 	Prof.add("ai/brood", _pb)
 
@@ -2847,6 +2858,8 @@ func _nb_lay(q: Unit) -> void:
 	var eggs := int(q.nb.get("eggs", 0))
 	if eggs <= 0:
 		return
+	if bench != null and bench_flags.get("no_produce", false) and bench_flags.get("no_workers", false):
+		return          # (ai-opponent-review: the benchmark player forgot her eggs this look)
 	var food := _food()
 	var grubs := BroodNew.count_of(game, team, "grub")
 	var want_grubs := _nb_want_grubs()
@@ -2916,6 +2929,8 @@ func _nb_lay(q: Unit) -> void:
 	if k == "grub" and food - 50 < keep - (_nb_growth_keep(q) if grubs * 10 < want_grubs * 7 else 0) and grubs >= 6 \
 			and not (soft and soft_share_on and food >= 50 + mini(keep, _morph_keep)):
 		return          # (the workforce is far short: grubs come before her growth's savings)
+	if bench != null and ((k == "grub" and bench_flags.get("no_workers", false)) or (k != "grub" and bench_flags.get("no_produce", false))):
+		return          # (ai-opponent-review: the benchmark player forgot the grubs, or the warriors, this look)
 	if BroodNew.lay(game, q, k) == "" and soft:
 		if k == "grub":
 			_soft_g += 1
@@ -2936,6 +2951,8 @@ func _nb_want_grubs() -> int:
 		n = mini(n, 14)
 	if bb != null:
 		n = mini(n, bb.grub_cap())          # (the written build: grubs held until its push)
+	if bench != null:
+		n = mini(n, int(bench_flags.get("cap", n)))      # (ai-opponent-review: the benchmark player's grubs stop here)
 	return mini(n, int(plan["grubs"]) + _extra_grubs(crew))
 
 

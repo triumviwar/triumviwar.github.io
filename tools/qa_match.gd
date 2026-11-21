@@ -58,7 +58,7 @@ func _initialize() -> void:
 			"slots": spec = kv[1]
 	for s in spec.split(","):
 		var p := s.split("/")
-		slots.append([p[0], p[1] if p.size() > 1 else "optimal", int(p[2]) if p.size() > 2 else slots.size()])
+		slots.append([p[0], p[1] if p.size() > 1 else "optimal", int(p[2]) if p.size() > 2 else slots.size(), p[3] if p.size() > 3 else ""])
 	n = slots.size()
 	for i in n:
 		_halls_seen.append({})
@@ -87,8 +87,16 @@ func _process(delta: float) -> bool:
 		seed(seed_)
 		var sl: Array = []
 		for i in n:
-			sl.append({"who": diff, "faction": slots[i][0], "colour": i, "side": slots[i][2], "strategy": slots[i][1]})
+			# (ai-opponent-review: a slot's own level, faction/plan/side/who: easy, normal, hard, brutal, or a benchmark
+			# player novice / average / good (BenchHuman), which runs on a Hard computer's build knowledge)
+			var who: String = slots[i][3] if slots[i][3] != "" else diff
+			sl.append({"who": "hard" if BenchHuman.valid(who) else who, "faction": slots[i][0], "colour": i, "side": slots[i][2], "strategy": slots[i][1]})
 		main.start({"map": map, "seed": seed_, "slots": sl})
+		for i in n:
+			if BenchHuman.valid(slots[i][3]):
+				for a in main.game.ais:
+					if a.team == i:
+						a.bench = BenchHuman.new(slots[i][3], seed_ * 31 + i)
 		return false
 	if main.game == null:
 		return false
@@ -724,6 +732,7 @@ func _finish() -> void:
 		scouting[str(tm)] = e
 	var res := {"map": map, "seed": seed_, "scouting": scouting, "version": ProjectSettings.get_setting("application/config/version", ""),
 		"crown_ai": _crown_counters(),
+		"bench": _bench_report(),
 		"slots": slots, "end": int(round(g.clock)), "over": g.over,
 		"winner": g.winner if g.over else -1, "winner_side": (g.sides[g.winner] if g.over and g.winner >= 0 else -1),
 		"minutes": minutes, "final": endl, "events": events, "reads": reads, "riders_seen": _riders_count(), "tech_at": _tech_at,
@@ -734,6 +743,16 @@ func _finish() -> void:
 	r.store_string(JSON.stringify(res))
 	r.close()
 	print("done ", out)
+
+
+## (ai-opponent-review) each benchmark player's looks: how many at home and at its army, how many it forgot workers / soldiers
+func _bench_report() -> Dictionary:
+	var out := {}
+	for tm in n:
+		var a := _ai(tm)
+		if a != null and a.bench != null:
+			out[str(tm)] = a.bench.summary()
+	return out
 
 
 ## (brood-spot-study, docs/brood_spot_study.md) every Rootmaw and Mound Turtle the first time it is seen rooted: an event
