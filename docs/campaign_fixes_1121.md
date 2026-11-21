@@ -161,9 +161,11 @@ Per mission:
   and its men fight what comes at Valadares on the way down. Valadares, the prey, has 450 / 800 / 1,100 health (320
   before). Also fixed: the scripted mapmaker could stand at the edge of a survey mark for good, the survey never taken
   (playtest-campaign-brood finding 13, the Nest "won" when the rains came); he walks on into the mark now.
-- THE CREATURES (a05): the Academy hires 4 more guns on Normal and 8 on Hard, and the guns escort properly (see above).
+- THE CREATURES (a05): the Academy hires 4 more guns on Normal and 8 on Hard, and on Normal and Hard the guns escort the
+  doctor and the carts properly (see above). Easy keeps the old way.
 - THE MACHINE (a02): the guild's own defence has 4 more Clock Soldiers and a Pendulum on Normal, 4 more Clock Soldiers and
-  2 Springers again on Hard, and it keeps building: 2 Clock Soldiers every 1:30 on Normal, 2 and a Springer on Hard.
+  2 Springers again on Hard, and it keeps building: 2 Clock Soldiers every 1:30 on Normal, 2 and a Springer on Hard, up to
+  46 units (its old reinforcements, 2 every 2:00, stop at 30 on Easy as before).
 - SPECIMEN ONE (b01, the pack against the rival pack): the rival pack's cap is 28 on Easy, 36 on Normal (as before) and 50
   on Hard, where it also plays as the Normal computer.
 - Every scripted side the player does not lead already had more or fewer units by the difficulty (EASY three quarters,
