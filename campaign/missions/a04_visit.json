@@ -287,6 +287,12 @@
 			7,
 			8
 		],
+		"gap_post": [
+			46,
+			41,
+			16,
+			13
+		],
 		"inside_n": [
 			50,
 			15,
@@ -1234,10 +1240,19 @@
 		{
 			"id": "riot",
 			"side": "visit",
-			"primary": true,
+			"primary": false,
 			"kind": "manual",
 			"hidden": true,
 			"text": "Stop the broken automata before they reach the machine's ground across the meadows. Lost to the machine: {lost_to_machine}."
+		},
+		{
+			"id": "gather",
+			"side": "visit",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "gather",
+			"hidden": true,
+			"text": "The broken ones march in {clock:gather}: over the bridge and out of the meadow gap. Hold the gap."
 		},
 		{
 			"id": "m_take",
@@ -2301,6 +2316,9 @@
 						"count": 4,
 						"at": "bank",
 						"tag": "broken",
+						"tags": [
+							"wave_1"
+						],
 						"order": "hold",
 						"fixed": true,
 						"if": {
@@ -2315,6 +2333,9 @@
 						"count": 1,
 						"at": "bank",
 						"tag": "broken",
+						"tags": [
+							"wave_2"
+						],
 						"order": "hold",
 						"fixed": true,
 						"if": {
@@ -2329,6 +2350,9 @@
 						"count": 2,
 						"at": "bank",
 						"tag": "broken",
+						"tags": [
+							"wave_2"
+						],
 						"order": "hold",
 						"fixed": true,
 						"if": {
@@ -2343,6 +2367,9 @@
 						"count": 6,
 						"at": "bank",
 						"tag": "broken",
+						"tags": [
+							"wave_1"
+						],
 						"order": "hold",
 						"fixed": true,
 						"if": {
@@ -2357,6 +2384,9 @@
 						"count": 2,
 						"at": "bank",
 						"tag": "broken",
+						"tags": [
+							"wave_2"
+						],
 						"order": "hold",
 						"fixed": true,
 						"if": {
@@ -2371,6 +2401,9 @@
 						"count": 2,
 						"at": "bank",
 						"tag": "broken",
+						"tags": [
+							"wave_2"
+						],
 						"order": "hold",
 						"fixed": true,
 						"if": {
@@ -2385,6 +2418,9 @@
 						"count": 8,
 						"at": "bank",
 						"tag": "broken",
+						"tags": [
+							"wave_1"
+						],
 						"order": "hold",
 						"fixed": true,
 						"if": {
@@ -2399,6 +2435,9 @@
 						"count": 2,
 						"at": "bank",
 						"tag": "broken",
+						"tags": [
+							"wave_2"
+						],
 						"order": "hold",
 						"fixed": true,
 						"if": {
@@ -2413,6 +2452,9 @@
 						"count": 2,
 						"at": "bank",
 						"tag": "broken",
+						"tags": [
+							"wave_2"
+						],
 						"order": "hold",
 						"fixed": true,
 						"if": {
@@ -2428,7 +2470,8 @@
 						"at": "shift",
 						"tag": "broken",
 						"tags": [
-							"shift"
+							"shift",
+							"wave_3"
 						],
 						"order": "hold",
 						"fixed": true,
@@ -2445,7 +2488,8 @@
 						"at": "shift",
 						"tag": "broken",
 						"tags": [
-							"shift"
+							"shift",
+							"wave_3"
 						],
 						"order": "hold",
 						"fixed": true,
@@ -2462,7 +2506,8 @@
 						"at": "shift",
 						"tag": "broken",
 						"tags": [
-							"shift"
+							"shift",
+							"wave_3"
 						],
 						"order": "hold",
 						"fixed": true,
@@ -2479,7 +2524,8 @@
 						"at": "shift",
 						"tag": "broken",
 						"tags": [
-							"shift"
+							"shift",
+							"wave_3"
 						],
 						"order": "hold",
 						"fixed": true,
@@ -2496,7 +2542,8 @@
 						"at": "shift",
 						"tag": "broken",
 						"tags": [
-							"shift"
+							"shift",
+							"wave_3"
 						],
 						"order": "hold",
 						"fixed": true,
@@ -2513,7 +2560,8 @@
 						"at": "shift",
 						"tag": "broken",
 						"tags": [
-							"shift"
+							"shift",
+							"wave_3"
 						],
 						"order": "hold",
 						"fixed": true,
@@ -2530,7 +2578,8 @@
 						"at": "bank",
 						"tag": "broken",
 						"tags": [
-							"salvaged"
+							"salvaged",
+							"wave_2"
 						],
 						"order": "hold",
 						"fixed": true,
@@ -3211,11 +3260,11 @@
 			]
 		},
 		{
-			"id": "riot",
+			"id": "riot_warn",
 			"when": {
 				"fired": "reveal"
 			},
-			"delay": 12,
+			"delay": 6,
 			"do": [
 				{
 					"objective": {
@@ -3226,6 +3275,114 @@
 				{
 					"objective": {
 						"id": "watch",
+						"set": "hidden"
+					}
+				},
+				{
+					"clock": {
+						"name": "gather",
+						"secs": 35
+					}
+				},
+				{
+					"objective": {
+						"id": "gather",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"b_gather",
+						"f_gather"
+					]
+				},
+				{
+					"ping": {
+						"area": "bridge"
+					}
+				},
+				{
+					"ping": {
+						"area": "gap"
+					}
+				},
+				{
+					"ping": {
+						"tag": "gate_men"
+					}
+				},
+				{
+					"reveal": {
+						"area": "gap",
+						"side": "visit",
+						"secs": 120
+					}
+				}
+			]
+		},
+		{
+			"id": "g_to_gap",
+			"modes": [
+				"solo",
+				"versus"
+			],
+			"when": {
+				"all": [
+					{
+						"fired": "riot_warn"
+					},
+					{
+						"count": {
+							"team": "party",
+							"area": "gap_post",
+							"at_least": 8
+						}
+					},
+					{
+						"not": {
+							"fired": "riot_over"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"h_pend"
+					]
+				},
+				{
+					"order": {
+						"tag": "g_pendulum",
+						"do": "attack",
+						"to": "inside_s"
+					}
+				},
+				{
+					"order": {
+						"tag": "g_line",
+						"do": "attack",
+						"to": "inside_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "riot",
+			"when": {
+				"all": [
+					{
+						"fired": "riot_warn"
+					},
+					{
+						"clock_out": "gather"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "gather",
 						"set": "hidden"
 					}
 				},
@@ -3292,13 +3449,13 @@
 			"do": [
 				{
 					"order": {
-						"tag": "rioters",
+						"tag": "wave_1",
 						"do": "route",
 						"route": [
 							"bridge",
 							"bridge_s",
 							"gap",
-							"meadow_ground"
+							"meadow"
 						],
 						"name": "riot"
 					}
@@ -3307,6 +3464,75 @@
 					"ping": {
 						"area": "bridge"
 					}
+				},
+				{
+					"say": [
+						"b_wave"
+					]
+				}
+			]
+		},
+		{
+			"id": "riot_march2",
+			"when": {
+				"fired": "riot_march"
+			},
+			"delay": 20,
+			"do": [
+				{
+					"order": {
+						"tag": "wave_2",
+						"do": "route",
+						"route": [
+							"bridge",
+							"bridge_s",
+							"gap",
+							"meadow"
+						],
+						"name": "riot2"
+					}
+				},
+				{
+					"ping": {
+						"area": "bridge"
+					}
+				},
+				{
+					"say": [
+						"b_wave2"
+					]
+				}
+			]
+		},
+		{
+			"id": "riot_march3",
+			"when": {
+				"fired": "riot_march2"
+			},
+			"delay": 20,
+			"do": [
+				{
+					"order": {
+						"tag": "wave_3",
+						"do": "route",
+						"route": [
+							"bridge",
+							"bridge_s",
+							"gap",
+							"meadow"
+						],
+						"name": "riot3"
+					}
+				},
+				{
+					"ping": {
+						"area": "bridge"
+					}
+				},
+				{
+					"say": [
+						"b_wave3"
+					]
 				}
 			]
 		},
@@ -3319,9 +3545,39 @@
 			"do": [
 				{
 					"say": [
-						"h_key",
-						"h_pend"
+						"h_key"
 					]
+				}
+			]
+		},
+		{
+			"id": "riot_push",
+			"when": {
+				"all": [
+					{
+						"fired": "riot_march3"
+					},
+					{
+						"not": {
+							"fired": "riot_over"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 25,
+			"every": 10,
+			"do": [
+				{
+					"order": {
+						"tag": "rioters",
+						"do": "move",
+						"to": "meadow"
+					}
 				}
 			]
 		},
@@ -3440,14 +3696,29 @@
 			]
 		},
 		{
+			"id": "riot_late",
+			"when": {
+				"fired": "riot_march3"
+			},
+			"delay": 120,
+			"do": []
+		},
+		{
 			"id": "riot_over",
 			"when": {
 				"all": [
 					{
-						"fired": "riot_march"
+						"fired": "riot_march3"
 					},
 					{
-						"dead": "rioters"
+						"any": [
+							{
+								"dead": "rioters"
+							},
+							{
+								"fired": "riot_late"
+							}
+						]
 					},
 					{
 						"not": {
@@ -3459,15 +3730,15 @@
 			"delay": 3,
 			"do": [
 				{
-					"objective": {
-						"id": "riot",
-						"set": "done"
-					}
-				},
-				{
 					"light": {
 						"to": "dawn",
 						"secs": 30
+					}
+				},
+				{
+					"order": {
+						"tag": "rioters",
+						"do": "stop"
 					}
 				},
 				{
@@ -3613,6 +3884,54 @@
 					"say": [
 						"n_over"
 					]
+				}
+			]
+		},
+		{
+			"id": "riot_kept",
+			"when": {
+				"all": [
+					{
+						"fired": "riot_over"
+					},
+					{
+						"counter": {
+							"name": "lost_to_machine",
+							"at_most_half": "riot"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "riot",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "riot_lost",
+			"when": {
+				"all": [
+					{
+						"fired": "riot_over"
+					},
+					{
+						"not": {
+							"fired": "riot_kept"
+						}
+					}
+				]
+			},
+			"delay": 0.5,
+			"do": [
+				{
+					"objective": {
+						"id": "riot",
+						"set": "failed"
+					}
 				}
 			]
 		},
@@ -4011,6 +4330,9 @@
 						"id": "riot",
 						"set": "failed"
 					}
+				},
+				{
+					"win": "machine"
 				}
 			]
 		},
@@ -4356,7 +4678,32 @@
 		"h_pend": {
 			"who": "hollweg",
 			"to": "visit",
-			"text": "The Pendulum, to the yard's gate! The press-house shift must come past it."
+			"text": "Your men are at the gap, Father. The Pendulum and the guild's line are coming down to you."
+		},
+		"b_gather": {
+			"who": "brother",
+			"to": "visit",
+			"text": "Father, the broken ones are gathering on the bank! They will cross the bridge and go out by the gap in the line."
+		},
+		"f_gather": {
+			"who": "ferrer",
+			"to": "visit",
+			"text": "Then we wait for them at the gap. Every man there, now: the escort and the colonel's gate men too."
+		},
+		"b_wave": {
+			"who": "brother",
+			"to": "visit",
+			"text": "The first of them are on the bridge. They walk as if they were called. They do not even fight."
+		},
+		"b_wave2": {
+			"who": "brother",
+			"to": "visit",
+			"text": "More on the bridge: the Springers and the Winders."
+		},
+		"b_wave3": {
+			"who": "brother",
+			"to": "visit",
+			"text": "The last ones, from the press-house. Hold the gap!"
 		},
 		"b_sortie": {
 			"who": "brother",

@@ -15,6 +15,8 @@ var main: Node
 var until := 1500.0
 var active := false
 var careless := false
+var idle3 := false        # (campaign-fixes-1121) plays parts 1 and 2, then gives no order in the riot: a passive player
+var late3 := false        # (campaign-fixes-1121) does not heed the warning: moves only once they march (the old bot)
 var diff := "normal"
 var furth := "strong"
 var jakob := "alive"
@@ -33,6 +35,10 @@ func _initialize() -> void:
 			active = true
 		elif a == "careless":
 			careless = true
+		elif a == "idle3":
+			idle3 = true
+		elif a == "late3":
+			late3 = true
 		elif a.begins_with("until="):
 			until = float(a.substr(6))
 		elif a.begins_with("diff="):
@@ -70,7 +76,7 @@ func _run() -> void:
 	var think := 2.0
 	var pt := r.team_index("party")
 	var mt := r.team_index("machine")
-	print("SIM diff=%s furth=%s jakob=%s gate=%s active=%s careless=%s broken=%s" % [diff, furth, jakob, gate, active, careless, broken])
+	print("SIM diff=%s furth=%s jakob=%s gate=%s active=%s careless=%s broken=%s idle3=%s late3=%s" % [diff, furth, jakob, gate, active, careless, broken, idle3, late3])
 	print("SIM start: jakob here=%d escort=%d broken-flag=%s" % [r.tagged("jakob").size(), r.tagged("escort").size(), Campaign.flag("a02_furth", "jakob")])
 	while g.clock < until and not g.over:
 		await physics_frame
@@ -93,7 +99,7 @@ func _run() -> void:
 				_watch.erase(u)
 				var key := "%s by %s/t%d" % [u.kind, u.last_hit_by, u.last_hit_team]
 				_deaths[key] = int(_deaths.get(key, 0)) + 1
-		if r.fired.has("riot") and not r.fired.has("riot_over") and g.clock >= _p3:
+		if r.fired.has("riot_warn") and not r.fired.has("riot_over") and g.clock >= _p3:
 			_p3 = g.clock + 5.0
 			var rio: Array = r.tagged("rioters")
 			var pen: Array = r.tagged("g_pendulum")
@@ -162,7 +168,7 @@ func _play(g: Game, r: MissionRun, pt: int, mt: int) -> void:
 			g.group_move([ferrer], goal, false)
 		_go(g, esc, ferrer.position + Vector2(0, 3 * Defs.TILE), false, 3.0 * Defs.TILE)
 		return
-	if not r.fired.has("riot"):
+	if not r.fired.has("riot") and (late3 or not r.fired.has("riot_warn")):
 		# ---- PART 2: shadow the Winder 5 tiles behind; at the bank, Ferrer to the watch
 		var w: Array = r.tagged("night_winder")
 		if r.fired.has("at_bank"):
@@ -170,7 +176,8 @@ func _play(g: Game, r: MissionRun, pt: int, mt: int) -> void:
 			var spot := bw.position + Vector2(2, 2) * Defs.TILE
 			if ferrer.position.distance_to(spot) > 20.0:
 				g.group_move([ferrer], spot, false)
-			_go(g, esc, spot + Vector2(-2, -2) * Defs.TILE, false, 3.0 * Defs.TILE)
+			# (idle3 / late3: only the Father goes to watch; his men wait in the town, as in the playtest's games)
+			_go(g, esc, r.area_rect("town").get_center() if (idle3 or late3) else spot + Vector2(-2, -2) * Defs.TILE, false, 3.0 * Defs.TILE)
 			return
 		if w.is_empty():
 			return
@@ -186,7 +193,9 @@ func _play(g: Game, r: MissionRun, pt: int, mt: int) -> void:
 			if u.position.distance_to(spot2) > 1.5 * Defs.TILE:
 				g.group_move([u], spot2, false)
 		return
-	# ---- PART 3: the escort at the bridge and the south bank (attack-moving the rioters), Ferrer back by the chapel
+	if idle3:
+		return
+	# ---- PART 3 (from the warning: the brother says where they will go): the escort at the bridge and the south bank (attack-moving the rioters), Ferrer back by the chapel
 	var rio: Array = r.tagged("rioters")
 	var muskets := _ours(g, pt, ["escort"], r)
 	if not rio.is_empty():

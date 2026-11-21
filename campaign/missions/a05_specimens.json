@@ -478,6 +478,44 @@
 		},
 		{
 			"team": "expedition",
+			"kind": "musketeer",
+			"as": "hired_gun",
+			"count": 4,
+			"at": "camp",
+			"tag": "guns",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "creatures"
+					},
+					{
+						"difficulty": "normal"
+					}
+				]
+			}
+		},
+		{
+			"team": "expedition",
+			"kind": "musketeer",
+			"as": "hired_gun",
+			"count": 8,
+			"at": "camp",
+			"tag": "guns",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "creatures"
+					},
+					{
+						"difficulty": "hard"
+					}
+				]
+			}
+		},
+		{
+			"team": "expedition",
 			"kind": "labourer",
 			"as": "porter",
 			"count": 4,
@@ -4971,6 +5009,9 @@
 						"not": {
 							"fired": "the_end"
 						}
+					},
+					{
+						"difficulty": "easy"
 					}
 				]
 			},
@@ -4990,6 +5031,70 @@
 						"do": "hunt",
 						"prey_team": "creatures",
 						"within": 7
+					}
+				}
+			]
+		},
+		{
+			"id": "x_escort",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					},
+					{
+						"not": {
+							"difficulty": "easy"
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"order": {
+						"tag": "guns",
+						"do": "follow",
+						"leader": "carts",
+						"within": 4,
+						"fight": 7
+					}
+				}
+			]
+		},
+		{
+			"id": "x_escort1",
+			"when": {
+				"all": [
+					{
+						"fired": "x_eggs"
+					},
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					},
+					{
+						"not": {
+							"difficulty": "easy"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"order": {
+						"tag": "guns",
+						"do": "follow",
+						"leader": "lindqvist",
+						"within": 3,
+						"fight": 6
 					}
 				}
 			]

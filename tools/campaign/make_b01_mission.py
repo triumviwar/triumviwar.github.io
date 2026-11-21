@@ -63,7 +63,12 @@ M = {
         {"id": "sire", "side": "sire", "faction": "brood", "colour": 2, "start": "standard", "hall": [16, 14], "hall_tag": "old_mother",
          "camera": "den", "gold": 300, "control": {"solo": "p1", "versus": "p1"}},
         {"id": "rival", "side": "rival", "faction": "brood", "colour": 1, "start": "standard", "hall": [58, 18], "hall_tag": "rival_mother",
-         "camera": "rival_den", "ai_foe": "sire", "supply_cap": 36, "control": {"solo": "ai:easy:balanced", "versus": "p2"}},
+         "camera": "rival_den", "ai_foe": "sire",
+         # (campaign-fixes-1121: the campaign's difficulty, chosen in the hub, scales the rival pack: its cap, and on HARD
+         # it plays as the Normal computer)
+         # (NORMAL as it was: the playtest and the sim found b01 a hard fight already, not an easy one)
+         "supply_cap": {"easy": 28, "normal": 36, "hard": 50}, "ai_by_difficulty": {"hard": "normal"},
+         "control": {"solo": "ai:easy:balanced", "versus": "p2"}},
         {"id": "station", "side": "station", "faction": "crown", "colour": 3, "start": "none", "camera": "yard", "powder": 400,
          "control": {"solo": "script", "versus": "script"}},
         {"id": "garrison", "side": "station", "faction": "crown", "colour": 4, "start": "none", "camera": "fort", "powder": 300,

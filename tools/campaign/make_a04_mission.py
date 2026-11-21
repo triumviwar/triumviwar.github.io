@@ -83,6 +83,13 @@ RIOT = {"easy": (4, 1, 2), "normal": (6, 2, 2), "hard": (8, 2, 2)}
 SHIFT = {"easy": (2, 1), "normal": (4, 1), "hard": (5, 2)}
 PEOPLE_MORE = 2             # c01 `gate` people: two more Clock Soldiers (the salvaged red parts)
 LOST_WIN = 6                # versus: the machine wins with this many brought home
+# THE RIOT, STOPPABLE (campaign-fixes-1121, the owner 2026-11-21: 12-20 of them reached the machine every time, "not
+# intended"; docs/campaign_fixes_1121.md): a warning and a countdown before they march (the brother says where: over the
+# bridge and out of the meadow gap), the gate men posted at the gap from the start, the guild's Pendulum and line sent
+# there once the Father's men stand at the gap, THREE WAVES (the bank's Clock Soldiers; its Springers, Winders and the
+# salvaged; the press-house shift) a while apart. (Slowing them too, `carry`, made it a walkover: tried and left out.)
+GATHER = 35                 # seconds from the warning to the march (NORMAL; EASY x1.25, HARD x0.85)
+WAVE_GAP = 20               # seconds between the waves
 
 
 def shop_units():
@@ -110,14 +117,14 @@ def shop_triggers():
 def riot_units():
     out = []
     for d, (cs, sp, wd) in RIOT.items():
-        for kind, n in (("clock_soldier", cs), ("springer", sp), ("winder", wd)):
-            out.append({"spawn": {"team": "works", "kind": kind, "count": n, "at": "bank", "tag": "broken", "order": "hold", "fixed": True,
-                                  "if": {"difficulty": d}}})
+        for kind, n, wave in (("clock_soldier", cs, "wave_1"), ("springer", sp, "wave_2"), ("winder", wd, "wave_2")):
+            out.append({"spawn": {"team": "works", "kind": kind, "count": n, "at": "bank", "tag": "broken", "tags": [wave], "order": "hold",
+                                  "fixed": True, "if": {"difficulty": d}}})
     for d, (cs, sp) in SHIFT.items():
         for kind, n in (("clock_soldier", cs), ("springer", sp)):
-            out.append({"spawn": {"team": "works", "kind": kind, "count": n, "at": "shift", "tag": "broken", "tags": ["shift"], "order": "hold",
+            out.append({"spawn": {"team": "works", "kind": kind, "count": n, "at": "shift", "tag": "broken", "tags": ["shift", "wave_3"], "order": "hold",
                                   "fixed": True, "if": {"difficulty": d}}})
-    out.append({"spawn": {"team": "works", "kind": "clock_soldier", "count": PEOPLE_MORE, "at": "bank", "tag": "broken", "tags": ["salvaged"],
+    out.append({"spawn": {"team": "works", "kind": "clock_soldier", "count": PEOPLE_MORE, "at": "bank", "tag": "broken", "tags": ["salvaged", "wave_2"],
                           "order": "hold", "fixed": True, "if": PEOPLE}})
     return out
 
@@ -174,7 +181,7 @@ M = {
         bank_watch=[44, 26, 14, 10], mesh_at=[52, 32, 2, 2],
         # the riot's way to the machine: the bridge, the south bank, the open gap, the machine's ground
         bridge=[39, 34, 6, 8], bridge_s=[40, 41, 6, 4], gap=[55, 45, 6, 7], meadow_ground=[70, 39, 19, 15], meadow=[74, 41, 12, 9],
-        road_gate=[55, 15, 7, 8], inside_n=[50, 15, 6, 8], inside_s=[48, 44, 7, 7], behind_line=[30, 1, 28, 58],
+        road_gate=[55, 15, 7, 8], gap_post=[46, 41, 16, 13], inside_n=[50, 15, 6, 8], inside_s=[48, 44, 7, 7], behind_line=[30, 1, 28, 58],
         link_n=[84, 19, 6, 6], link_s=[86, 52, 6, 6], north_gate=[102, 14, 11, 9], south_gate=[102, 44, 11, 9],
     ),
     "counters": {"inspected": {"start": 0, "of": 6}, "riot": {"start": 0}, "lost_to_machine": {"start": 0}, "dark": {"start": 0},
@@ -238,8 +245,11 @@ M = {
         {"id": "watch", "side": "visit", "primary": True, "kind": "manual", "hidden": True,
          "text": "Watch from the bank: bring the Father near the river where the Winder stopped."},
         # ---- part 3
-        {"id": "riot", "side": "visit", "primary": True, "kind": "manual", "hidden": True,
+        # (optional since campaign-fixes-1121: it can now be failed, most of them lost, and that is counted, never a defeat)
+        {"id": "riot", "side": "visit", "primary": False, "kind": "manual", "hidden": True,
          "text": "Stop the broken automata before they reach the machine's ground across the meadows. Lost to the machine: {lost_to_machine}."},
+        {"id": "gather", "side": "visit", "primary": False, "kind": "countdown", "clock": "gather", "hidden": True,
+         "text": "The broken ones march in {clock:gather}: over the bridge and out of the meadow gap. Hold the gap."},
         # ---- the machine (versus)
         {"id": "m_take", "side": "machine", "primary": True, "kind": "manual",
          "text": "Kill Father Ferrer, or bring 6 of the guild's broken automata to your ground: {lost_to_machine} of 6. They wake at night."},
@@ -343,17 +353,38 @@ M = {
         {"id": "dawn_out", "when": {"all": [{"clock_out": "dawn"}, {"not": {"fired": "reveal"}}, LIVE]}, "do": [
             {"say": ["n_dawn"]}, {"objective": {"id": "follow", "set": "failed"}}, {"objective": {"id": "m_take", "set": "done"}}]},
         # ================================================================ PART 3: THE RIOT
-        {"id": "riot", "when": {"fired": "reveal"}, "delay": 12, "do": [
+        {"id": "riot_warn", "when": {"fired": "reveal"}, "delay": 6, "do": [
             {"objective": {"id": "follow", "set": "hidden"}}, {"objective": {"id": "watch", "set": "hidden"}},
+            {"clock": {"name": "gather", "secs": GATHER}}, {"objective": {"id": "gather", "set": "active"}},
+            {"say": ["b_gather", "f_gather"]}, {"ping": {"area": "bridge"}}, {"ping": {"area": "gap"}}, {"ping": {"tag": "gate_men"}},
+            {"reveal": {"area": "gap", "side": "visit", "secs": 120}}]},
+        # (the scripted guild sends its Pendulum and line down to the gap once the Father's men stand there: solo and
+        # versus; a player who leaves the gap to the four gate men loses many)
+        {"id": "g_to_gap", "modes": ["solo", "versus"], "when": {"all": [{"fired": "riot_warn"},
+            {"count": {"team": "party", "area": "gap_post", "at_least": 8}}, {"not": {"fired": "riot_over"}}]}, "do": [
+            {"say": ["h_pend"]},
+            {"order": {"tag": "g_pendulum", "do": "attack", "to": "inside_s"}}, {"order": {"tag": "g_line", "do": "attack", "to": "inside_s"}}]},
+        {"id": "riot", "when": {"all": [{"fired": "riot_warn"}, {"clock_out": "gather"}]}, "do": [
+            {"objective": {"id": "gather", "set": "hidden"}},
             {"counter": {"name": "riot", "count": {"tag": "broken"}}},
             {"convert": {"tag": "broken", "to": "machine", "warn": 3, "as": "rioters", "sound": "campaign/off_beat"}},
             {"wind": {"tag": "broken", "share": 0.6}},
             {"cage": {"tag": "pair", "on": True}}, {"spare": {"tag": "pair", "on": True}},
             {"objective": {"id": "riot", "set": "active"}}, {"say": ["n_riot", "f_riot"]}, {"ping": {"area": "gap"}}]},
         {"id": "riot_march", "when": {"fired": "riot"}, "delay": 5, "do": [
-            {"order": {"tag": "rioters", "do": "route", "route": ["bridge", "bridge_s", "gap", "meadow_ground"], "name": "riot"}},
-            {"ping": {"area": "bridge"}}]},
-        {"id": "riot_key", "when": {"fired": "riot"}, "delay": 3, "do": [{"say": ["h_key", "h_pend"]}]},
+            {"order": {"tag": "wave_1", "do": "route", "route": ["bridge", "bridge_s", "gap", "meadow"], "name": "riot"}},
+            {"ping": {"area": "bridge"}}, {"say": ["b_wave"]}]},
+        {"id": "riot_march2", "when": {"fired": "riot_march"}, "delay": WAVE_GAP, "do": [
+            {"order": {"tag": "wave_2", "do": "route", "route": ["bridge", "bridge_s", "gap", "meadow"], "name": "riot2"}},
+            {"ping": {"area": "bridge"}}, {"say": ["b_wave2"]}]},
+        {"id": "riot_march3", "when": {"fired": "riot_march2"}, "delay": WAVE_GAP, "do": [
+            {"order": {"tag": "wave_3", "do": "route", "route": ["bridge", "bridge_s", "gap", "meadow"], "name": "riot3"}},
+            {"ping": {"area": "bridge"}}, {"say": ["b_wave3"]}]},
+        {"id": "riot_key", "when": {"fired": "riot"}, "delay": 3, "do": [{"say": ["h_key"]}]},
+        # (a wave's route ends when half of it is in: stragglers left short of the machine's ground stood there for good
+        # and the riot never ended; once every wave is out, whoever is left walks on into the meadow)
+        {"id": "riot_push", "when": {"all": [{"fired": "riot_march3"}, {"not": {"fired": "riot_over"}}, LIVE]}, "delay": 25, "every": 10, "do": [
+            {"order": {"tag": "rioters", "do": "move", "to": "meadow"}}]},
         # the machine meets them: a sortie out of its meadow ground at the gap
         {"id": "m_sortie", "when": {"all": [{"fired": "riot"}, NO_MACHINE]}, "delay": 6, "do": [
             {"spawn": {"team": "machine", "kind": "clock_soldier", "count": 6, "at": "meadow", "tag": "sortie"}},
@@ -364,11 +395,19 @@ M = {
         # through the line the machine's sortie goes for the man who came to judge it
         {"id": "for_ferrer", "when": {"all": [{"fired": "m_sortie"}, NO_MACHINE, LIVE, {"not": {"fired": "riot_over"}}]}, "every": 8, "do": [
             {"order": {"tag": "sortie", "do": "hunt", "prey": "ferrer", "within": 10}}]},
-        {"id": "riot_over", "when": {"all": [{"fired": "riot_march"}, {"dead": "rioters"}, LIVE]}, "delay": 3, "do": [
-            {"objective": {"id": "riot", "set": "done"}}, {"light": {"to": "dawn", "secs": 30}},
+        # (a straggler stuck on the earthworks' corner kept the riot from ending; two minutes after the last wave the
+        # riot is over whatever is left: they stop where they stand)
+        {"id": "riot_late", "when": {"fired": "riot_march3"}, "delay": 120, "do": []},
+        {"id": "riot_over", "when": {"all": [{"fired": "riot_march3"}, {"any": [{"dead": "rioters"}, {"fired": "riot_late"}]}, LIVE]}, "delay": 3, "do": [
+            {"light": {"to": "dawn", "secs": 30}}, {"order": {"tag": "rioters", "do": "stop"}},
             {"order": {"team": "machine", "do": "move", "to": "meadow"}},
             {"tally": {"flag": "lost_to_machine", "counter": "lost_to_machine", "bands": [[i, i] for i in range(0, 31)]}},
             {"say": ["n_over"]}]},
+        # (stopped: most of them kept from the machine; else the objective is failed: not a defeat, counted)
+        {"id": "riot_kept", "when": {"all": [{"fired": "riot_over"}, {"counter": {"name": "lost_to_machine", "at_most_half": "riot"}}]}, "do": [
+            {"objective": {"id": "riot", "set": "done"}}]},
+        {"id": "riot_lost", "when": {"all": [{"fired": "riot_over"}, {"not": {"fired": "riot_kept"}}]}, "delay": 0.5, "do": [
+            {"objective": {"id": "riot", "set": "failed"}}]},
         {"id": "over_none", "when": {"all": [{"fired": "riot_over"}, {"counter": {"name": "lost_to_machine", "below": 1}}]}, "do": [{"say": ["f_none"]}]},
         {"id": "over_some", "when": {"all": [{"fired": "riot_over"}, {"counter": {"name": "lost_to_machine", "at_least": 1}}]}, "do": [{"say": ["f_some"]}]},
         # ---- THE CHOICE, THE BROKEN ONES
@@ -395,7 +434,7 @@ M = {
         {"id": "m_night", "when": {"all": [{"fired": "night"}, MACHINE]}, "do": [{"say": ["m_night"]}]},
         {"id": "m_riot", "when": {"all": [{"fired": "riot"}, MACHINE]}, "delay": 5, "do": [{"say": ["m_riot"]}]},
         {"id": "m_won", "when": {"all": [MACHINE, {"counter": {"name": "lost_to_machine", "at_least": LOST_WIN}}, LIVE]}, "do": [
-            {"objective": {"id": "m_take", "set": "done"}}, {"objective": {"id": "riot", "set": "failed"}}]},
+            {"objective": {"id": "m_take", "set": "done"}}, {"objective": {"id": "riot", "set": "failed"}}, {"win": "machine"}]},
     ],
     "speakers": {
         "king": {"name": "The King", "side": "visit", "portrait": "res://campaign/hub/rome_king_face.png"},
@@ -463,7 +502,12 @@ M = {
         "n_riot": {"who": "narrator", "to": "visit", "text": "They turn red, one by one, off the beat. Then they walk for the meadows."},
         "f_riot": {"who": "ferrer", "to": "visit", "text": "They are going to the machine. Stop them before they reach its ground!"},
         "h_key": {"who": "hollweg", "to": "visit", "text": "These two in the yard still had their stop-works. I stopped them with my key. Not those."},
-        "h_pend": {"who": "hollweg", "to": "visit", "text": "The Pendulum, to the yard's gate! The press-house shift must come past it."},
+        "h_pend": {"who": "hollweg", "to": "visit", "text": "Your men are at the gap, Father. The Pendulum and the guild's line are coming down to you."},
+        "b_gather": {"who": "brother", "to": "visit", "text": "Father, the broken ones are gathering on the bank! They will cross the bridge and go out by the gap in the line."},
+        "f_gather": {"who": "ferrer", "to": "visit", "text": "Then we wait for them at the gap. Every man there, now: the escort and the colonel's gate men too."},
+        "b_wave": {"who": "brother", "to": "visit", "text": "The first of them are on the bridge. They walk as if they were called. They do not even fight."},
+        "b_wave2": {"who": "brother", "to": "visit", "text": "More on the bridge: the Springers and the Winders."},
+        "b_wave3": {"who": "brother", "to": "visit", "text": "The last ones, from the press-house. Hold the gap!"},
         "b_sortie": {"who": "brother", "to": "visit", "text": "The machine is coming out to meet them, at the open gap in the line!"},
         "n_over": {"who": "narrator", "to": "visit", "text": "The last of them is down or gone. Dawn over the meadows."},
         "f_none": {"who": "ferrer", "to": "visit", "text": "Not one reached it. Thank God."},

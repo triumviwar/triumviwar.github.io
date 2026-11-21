@@ -668,7 +668,18 @@ static func show(main: Node) -> void:
 	talk_box.visible = false
 	talk_box.add_theme_stylebox_override("panel", UiStyle.box(Color(0.09, 0.07, 0.05, 0.94), UiStyle.TRIM, 2, 10, 12.0))
 	var spots: Array = hub.get("hotspots", [])
-	var list := _panel(body, 230)
+	# (the list scrolls: with the DIFFICULTY row on the hub, BACK went under the bottom edge on a phone; campaign-fixes-1121)
+	var lpan := PanelContainer.new()
+	lpan.custom_minimum_size.x = 230
+	body.add_child(lpan)
+	var lsc := ScrollContainer.new()
+	lsc.name = "HubList"
+	lsc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	lpan.add_child(lsc)
+	var list := VBoxContainer.new()
+	list.add_theme_constant_override("separation", 10)
+	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	lsc.add_child(list)
 	list.add_child(UiStyle.text(Loc.t("GO TO"), 15, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
 	var btns: Array = []
 	for hs in spots:
@@ -732,10 +743,38 @@ static func show(main: Node) -> void:
 		talk_box.size = Vector2(s.x * 0.9, s.y * 0.38)
 	scene.resized.connect(place)
 	place.call_deferred()
+	_hub_difficulty(main, list)
 	var back: Button = main._button("BACK", func() -> void: main.show_menu())
 	main._set_back(back)
 	back.custom_minimum_size = Vector2(0, 56)
 	list.add_child(back)
+
+
+## THE CAMPAIGN'S DIFFICULTY on the hub (campaign-fixes-1121, the owner 2026-11-21: "campaign has AI level as well in
+## the hub"): EASY / NORMAL / HARD for every mission of every line, the side you lead and the mirrors alike (the clocks,
+## the foe's numbers, the computer's level); the briefing shows the same choice.
+static func _hub_difficulty(main: Node, list: VBoxContainer) -> void:
+	var dnow := Campaign.difficulty()
+	var cap := UiStyle.text(Loc.t("DIFFICULTY:") + " " + Loc.t(Campaign.DIFF_LABEL[dnow]), 15, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true)
+	cap.name = "HubDifficulty"
+	list.add_child(cap)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 4)
+	list.add_child(row)
+	for lv in Campaign.DIFFICULTIES:
+		var b: Button = main._button(Campaign.DIFF_LABEL[lv], func() -> void:
+			Campaign.set_difficulty(lv)
+			show(main))
+		b.name = "HubDiff_" + String(lv)
+		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		b.custom_minimum_size = Vector2(0, 44 if Settings.pc() else 56)
+		b.add_theme_font_size_override("font_size", 13)
+		if lv == dnow:
+			UiStyle.chosen(b)
+		row.add_child(b)
+	var about := {"easy": "More time on the clock and fewer enemies.", "normal": "The mission as it was written.",
+		"hard": "Less time on the clock and more enemies."}
+	list.add_child(_wrap(Loc.t(about[dnow]), 13, UiStyle.MUTED))
 
 
 ## A hub as the story has left it (clockwork-prologue-build): "after": {mission id: {"title", "about", "still",

@@ -13,10 +13,12 @@
 	],
 	"difficulty": {
 		"easy": {
-			"spawns": 0.75
+			"spawns": 0.75,
+			"clocks": 1.25
 		},
 		"hard": {
-			"spawns": 1.2
+			"spawns": 1.2,
+			"clocks": 0.85
 		}
 	},
 	"factions": {
@@ -239,6 +241,36 @@
 			33,
 			10,
 			12
+		],
+		"raid_0": [
+			105,
+			10,
+			6,
+			4
+		],
+		"raid_1": [
+			104,
+			20,
+			6,
+			4
+		],
+		"raid_2": [
+			94,
+			13,
+			5,
+			4
+		],
+		"raid_3": [
+			88,
+			12,
+			4,
+			3
+		],
+		"raid_road": [
+			80,
+			5,
+			34,
+			22
 		]
 	},
 	"units": [
@@ -1245,7 +1277,7 @@
 			"primary": false,
 			"kind": "manual",
 			"hidden": true,
-			"text": "Save the families at Hollins Farm."
+			"text": "Save the families at Hollins Farm. The raiders reach it in {clock:raid}."
 		},
 		{
 			"id": "gate",
@@ -2018,10 +2050,7 @@
 						"kind": "musketeer",
 						"as": "militia",
 						"count": 4,
-						"at": [
-							72,
-							15
-						],
+						"at": "raid_0",
 						"tag": "raiders",
 						"order": "hold"
 					}
@@ -2032,16 +2061,33 @@
 						"kind": "labourer",
 						"as": "torch",
 						"count": 1,
-						"at": [
-							68,
-							15
-						],
+						"at": "raid_0",
 						"tag": "raiders"
+					}
+				},
+				{
+					"clock": {
+						"name": "raid",
+						"secs": 100,
+						"scale": true
+					}
+				},
+				{
+					"ping": {
+						"tag": "raiders"
+					}
+				},
+				{
+					"reveal": {
+						"area": "raid_road",
+						"side": "crown",
+						"secs": 150
 					}
 				},
 				{
 					"say": [
 						"t_smoke",
+						"t_band",
 						"f_choice"
 					]
 				},
@@ -2062,7 +2108,7 @@
 						"id": "families",
 						"side": "crown",
 						"default": "leave",
-						"time": 120,
+						"time": 60,
 						"title": "Hollins Farm is burning, and loyal families are trapped there.",
 						"options": [
 							{
@@ -2149,7 +2195,123 @@
 			"when": {
 				"fired": "camp1_down"
 			},
-			"delay": 6,
+			"delay": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "move",
+						"to": "raid_1"
+					}
+				}
+			]
+		},
+		{
+			"id": "raid_leg2",
+			"when": {
+				"all": [
+					{
+						"fired": "camp1_down"
+					},
+					{
+						"clock_left": {
+							"name": "raid",
+							"below": 62
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "move",
+						"to": "raid_2"
+					}
+				},
+				{
+					"ping": {
+						"tag": "raiders"
+					}
+				}
+			]
+		},
+		{
+			"id": "raid_leg3",
+			"when": {
+				"all": [
+					{
+						"fired": "camp1_down"
+					},
+					{
+						"clock_left": {
+							"name": "raid",
+							"below": 30
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "move",
+						"to": "raid_3"
+					}
+				},
+				{
+					"ping": {
+						"tag": "raiders"
+					}
+				},
+				{
+					"say": [
+						"t_band_near"
+					]
+				}
+			]
+		},
+		{
+			"id": "raid_ping",
+			"when": {
+				"all": [
+					{
+						"fired": "camp1_down"
+					},
+					{
+						"not": {
+							"clock_out": "raid"
+						}
+					},
+					{
+						"not": {
+							"dead": "raiders"
+						}
+					}
+				]
+			},
+			"every": 15,
+			"delay": 15,
+			"do": [
+				{
+					"ping": {
+						"tag": "raiders"
+					}
+				}
+			]
+		},
+		{
+			"id": "raid_arrive",
+			"when": {
+				"all": [
+					{
+						"fired": "camp1_down"
+					},
+					{
+						"clock_out": "raid"
+					}
+				]
+			},
 			"do": [
 				{
 					"order": {
@@ -2157,6 +2319,46 @@
 						"do": "attack",
 						"to": "hollins"
 					}
+				},
+				{
+					"ping": {
+						"area": "hollins"
+					}
+				}
+			]
+		},
+		{
+			"id": "left",
+			"when": {
+				"all": [
+					{
+						"flag": {
+							"families": "leave"
+						}
+					},
+					{
+						"fired": "raid_arrive"
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"hurt": {
+						"tag": "hollins_farm",
+						"amount": 2000
+					}
+				},
+				{
+					"hurt": {
+						"tag": "families",
+						"amount": 500
+					}
+				},
+				{
+					"say": [
+						"t_left"
+					]
 				}
 			]
 		},
@@ -2199,6 +2401,12 @@
 						"do": "move",
 						"to": "plantation"
 					}
+				},
+				{
+					"clock": {
+						"name": "raid",
+						"stop": true
+					}
 				}
 			]
 		},
@@ -2227,34 +2435,12 @@
 					"say": [
 						"t_toolate"
 					]
-				}
-			]
-		},
-		{
-			"id": "left",
-			"when": {
-				"flag": {
-					"families": "leave"
-				}
-			},
-			"delay": 40,
-			"do": [
-				{
-					"hurt": {
-						"tag": "hollins_farm",
-						"amount": 2000
-					}
 				},
 				{
-					"hurt": {
-						"tag": "families",
-						"amount": 500
+					"clock": {
+						"name": "raid",
+						"stop": true
 					}
-				},
-				{
-					"say": [
-						"t_left"
-					]
 				}
 			]
 		},
@@ -2848,6 +3034,14 @@
 		"f_camp2": {
 			"who": "fairleigh",
 			"text": "The second camp lies further east on the road, before the fort. Take it."
+		},
+		"t_band": {
+			"who": "tomasz",
+			"text": "Riders saw a band on the north road, my lord: militia and a torch. They will be at the farm within the hour."
+		},
+		"t_band_near": {
+			"who": "tomasz",
+			"text": "The band is past the woods. They are almost at the farm!"
 		}
 	},
 	"stills": {
@@ -2953,5 +3147,9 @@
 	"next": {
 		"crown": "a01_presses",
 		"rebels": ""
-	}
+	},
+	"heroes": [
+		"fairleigh",
+		"tomasz"
+	]
 }

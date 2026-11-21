@@ -43,6 +43,25 @@
   computer, 1.85x as wide as tall): the HUD at 1.3 (Settings.hud_scale_for), card buttons 54, minimap 0.8, the
   objectives folded to one line, the dialogue box 3 lines a page ("1/2", tap or NEXT). Driver
   tools/playtest/pt_comforts.gd, pictures docs/shots/player_comforts/. 12 Claude's choices in the doc.
+- CAMPAIGN FIXES 1121 (owner 2026-11-21 15:43, answers to the three campaign playtests; job campaign-fixes-1121, branch
+  campaign-fixes-1121, docs/campaign_fixes_1121.md, patch note under "0.38.999"): (1) a04's RIOT stoppable: a warning +
+  countdown (35 s NORMAL) naming the bridge and the meadow gap, the gate men can reach it, the guild's Pendulum and line come
+  down once 8 of the Father's men stand at the gap (area gap_post), THREE WAVES 20 s apart, the riot objective optional
+  (done at most half lost, else failed; versus `win` machine), stragglers pushed on, riot over 2:00 after the last wave;
+  sim (lost of 15 NORMAL): careful 1, late 6, passive 9-10 (sim_campaign_a04 idle3 / late3). (2) c01: the MILL SEED burnt
+  before night = the stroke +1:30 (MILL_EARLY), flag `mill` burnt/standing, ending/debrief lines, objective optional;
+  JAKOB'S ESCORT (3 Watch musketeers follow him in Part 3, solo), Jakob 180 hp (Rebels role, all missions), "I'm hit"
+  line. (3) p01 THE RAIDERS MARCH (tools/campaign/patch_p01_1121.py patches the JSON): from the east woods in 3 stages on a
+  clock `raid` 1:40 NORMAL (scaled), pinged, the families' line shows it; the choice 60 s; MARCH ON burns the farm when they
+  arrive. (4) STORY HEROES WOUNDED NOT KILLED (scripts/campaign/mission_heroes.gd MissionHeroes, 3 lines in MissionRun):
+  primary protect tags + mission "heroes" (p01 fairleigh, tomasz) - "mortal"; not Brood creatures, not a hero an enemy
+  person hunts (mirror / versus); floor 20%, wounded = spared, falls back, heals 1%/s, back at 60%; meta story_hero out of
+  ARMY (F2); a hero medic tends only within 3 tiles. (5) MIRRORS HARDER + DIFFICULTY ON THE HUB (campaign_menu
+  _hub_difficulty, the GO TO list scrolls): team supply_cap per difficulty (MissionRun.supply_cap_of), "ai_by_difficulty"
+  (Campaign.make_cfg), follow "fight": tiles (an escort), action "max_hp"; a03 Nest: party escort 2/6/12 + Valadares
+  450/800/1100 hp + the mark nudge (the HARD stall fixed); a05 creatures: +4/+8 guns; a02 Machine: the guild +defence and
+  builds every 1:30 (NORMAL/HARD); b01 rival cap 28/36/50, HARD ai normal. 10 Claude's choices in the doc. Merge on its
+  DONE; the player-comforts job changes MissionRun at the same time.
 - GRADED GAPS COVERED (owner 2026-11-21 03:42 "all parts you rated... covered in the current tasks? If not, do it"): Claude graded the game B- overall (concept A, systems A-, campaign B+ design / C play, art B-, computer opponent C, balance ungradeable, polish C+, scope C). Two more cloud jobs: ai-opponent-review (fresh 9-matchup win-rate matrix, human-like NOVICE/AVERAGE/GOOD benchmark players v each difficulty, the computer's visible blunders fixed behind switches; docs/ai_opponent_review.md) and sprite-hallucination-audit (every strip on contact sheets, wrong frames listed with ChatGPT redraw prompts; docs/sprite_hallucination_audit.md). Owner-only parts: campaign dialogue (he rewrites it), voices (Chatterbox on his PC), scope/focus (his call).
 - AI OPPONENT REVIEW (job ai-opponent-review, owner 2026-11-21 03:42 "the computer opponent got a C"; docs/ai_opponent_review.md,
   tables docs/ai_opponent_review/tables.md, data docs/ai_opponent_review/data/ + fix_*/, pictures docs/shots/ai_opponent_review/,

@@ -1,0 +1,14 @@
+# campaign-fixes-1121 (docs/campaign_fixes_1121.md): the story's must-live people are wounded, not killed
+# (scripts/campaign/mission_heroes.gd); the campaign's difficulty on the hub.
+
+> %s is wounded and falls back.
+pt %s está ferido e recua.
+es %s está herido y se retira.
+
+> A hero
+pt Um herói
+es Un héroe
+
+> (wounded)
+pt (ferido)
+es (herido)

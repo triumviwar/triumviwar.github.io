@@ -89,7 +89,14 @@
 			"hall_tag": "rival_mother",
 			"camera": "rival_den",
 			"ai_foe": "sire",
-			"supply_cap": 36,
+			"supply_cap": {
+				"easy": 28,
+				"normal": 36,
+				"hard": 50
+			},
+			"ai_by_difficulty": {
+				"hard": "normal"
+			},
 			"control": {
 				"solo": "ai:easy:balanced",
 				"versus": "p2"

@@ -516,3 +516,16 @@ es NUEVO: EL CAÑÓN DE CAMPAÑA. Los dos cañones del Capitán Ruggieri: la bal
 > The second camp lies further east on the road, before the fort. Take it.
 pt O segundo acampamento fica mais a leste na estrada, antes do forte. Tomem-no.
 es El segundo campamento está más al este en el camino, antes del fuerte. Tomadlo.
+
+# campaign-fixes-1121: the raiders march on Hollins Farm (tools/campaign/patch_p01_1121.py)
+> Save the families at Hollins Farm. The raiders reach it in {clock:raid}.
+pt Salve as famílias da Fazenda Hollins. Os saqueadores chegam lá em {clock:raid}.
+es Salva a las familias de la Granja Hollins. Los saqueadores llegan en {clock:raid}.
+
+> Riders saw a band on the north road, my lord: militia and a torch. They will be at the farm within the hour.
+pt Os batedores viram um bando na estrada do norte, meu senhor: milicianos e uma tocha. Estarão na fazenda antes de uma hora.
+es Los jinetes vieron una banda en el camino del norte, mi señor: milicianos y una antorcha. Estarán en la granja antes de una hora.
+
+> The band is past the woods. They are almost at the farm!
+pt O bando passou do bosque. Estão quase na fazenda!
+es La banda ha dejado atrás el bosque. ¡Están casi en la granja!

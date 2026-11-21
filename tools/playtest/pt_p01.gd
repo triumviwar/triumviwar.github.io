@@ -61,6 +61,12 @@ func think() -> void:
 	# a choice on screen
 	if by_name("Choice_families") and families != "none":
 		await choose_if("families", families)
+		# (campaign-fixes-1121: a picture of the raiders' march and the families' countdown; the view only, no order)
+		if families == "save" and not rr.tagged("raiders").is_empty():
+			await wait(3.0)
+			g().camera.position = centroid(rr.tagged("raiders"))
+			await shot("05b_raiders_march")
+			note("raiders' countdown: %s" % rr.objective_text(rr.objective("families")))
 	var reb := side_units("rebels")
 	var dawn := rr.fired.has("dawn")
 	if int(g().clock) % 20 < int(think_every):

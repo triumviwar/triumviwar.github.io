@@ -22,6 +22,7 @@ import os
 
 STILL = "res://campaign/stills/%s.jpg"
 CAP = 32                                   # the machine's living units the seeds spawn up to (never an endless grind)
+MILL_EARLY = 90                            # seconds the mill seed burnt before night adds to the city's last hour
 
 # ---------------------------------------------------------------- helpers
 
@@ -123,7 +124,10 @@ M = {
         {"id": "look", "side": "guild", "primary": False, "kind": "reach", "hidden": True, "area": "mill_bank", "tag": "jakob",
          "text": "Go with Jakob to the river bank by the mill island."},
         {"id": "catch", "side": "guild", "primary": False, "kind": "manual", "hidden": True, "text": "Catch one of the red machines in a net."},
-        {"id": "mill", "side": "guild", "primary": True, "kind": "destroy", "hidden": True, "tag": "seed_mill", "text": "Destroy the seed on the mill island."},
+        # (campaign-fixes-1121: the seed MATTERS: burnt before night the city's last hour is longer and the machine has one
+        # seed fewer; the flag `mill` and the ending say which. Optional: the night still falls, as the story has it)
+        {"id": "mill", "side": "guild", "primary": False, "kind": "destroy", "hidden": True, "tag": "seed_mill",
+         "text": "Burn the seed on the mill island before night: the city's last hour will be longer and the machine slower."},
         # part 3
         {"id": "fall", "side": "guild", "primary": True, "kind": "countdown", "hidden": True, "clock": "fall",
          "text": "The city cannot be held. Save who you can. The great clock strikes thirteen in {clock:fall}."},
@@ -237,6 +241,17 @@ M = {
             {"reveal": {"area": "gate_in", "side": "guild", "secs": 600}},
             {"order": {"tag": "ferrer", "do": "move", "to": "gate_in"}}]},
         {"id": "mill_still", "when": {"all": [{"fired": "lost"}, {"not": {"dead": "seed_mill"}}]}, "do": [{"say": ["h_mill_late"]}]},
+        # (the mill burnt before night: the stroke 90 s later, said at the start of Part 3)
+        {"id": "mill_early_bonus", "when": {"all": [{"fired": "lost"}, {"fired": "mill_burnt_early"}]}, "delay": 4, "do": [
+            {"clock": {"name": "fall", "add": MILL_EARLY}}, {"say": ["cap_mill_early"]}]},
+        # JAKOB'S ESCORT (campaign-fixes-1121: he died in 4 of 6 careful games fetching the drawings alone): three of the
+        # Watch go with him wherever he goes (solo; in co-op the friend leads the Watch); the captain says so
+        {"id": "jakob_escort", "modes": ["solo", "versus"], "when": {"all": [{"fired": "lost"}, {"not": {"dead": "jakob"}}]}, "delay": 2, "do": [
+            {"spawn": {"team": "watch", "kind": "musketeer", "count": 3, "at": "yard", "near": "jakob", "tag": "jakob_escort", "fixed": True}},
+            {"order": {"tag": "jakob_escort", "do": "follow", "leader": "jakob", "within": 2}},
+            {"say": ["cap_escort"]}, {"ping": {"tag": "jakob"}}]},
+        {"id": "jakob_hit", "when": {"all": [{"fired": "lost"}, {"hp": {"tag": "jakob", "below": 0.5}}, {"not": {"dead": "jakob"}}]}, "do": [
+            {"say": ["j_hit"]}, {"ping": {"tag": "jakob"}}]},
         # with the bells rung the city is already on the road
         {"id": "early_road", "when": {"all": [{"fired": "lost"}, {"flag": {"bells": "rung"}}]}, "do": [
             {"say": ["f_road"]},
@@ -312,6 +327,9 @@ M = {
         {"id": "toll", "when": {"fired": "stroke"}, "every": 1.25, "times": 13, "do": [{"sound": {"name": "campaign/bell_toll"}}]},
         {"id": "stroke_flags", "when": {"fired": "stroke"}, "do": [{"flag": {"jakob": "alive", "cut": "no"}}]},
         {"id": "stroke_jakob", "when": {"all": [{"fired": "stroke_flags"}, {"dead": "jakob"}]}, "do": [{"flag": {"jakob": "lost"}}]},
+        {"id": "stroke_mill", "when": {"fired": "stroke_flags"}, "do": [{"flag": {"mill": "standing"}}]},
+        {"id": "stroke_mill_b", "when": {"all": [{"fired": "stroke_mill"}, {"dead": "seed_mill"}]}, "do": [{"flag": {"mill": "burnt"}}]},
+        {"id": "stroke_mill_f", "when": {"all": [{"fired": "stroke_mill"}, {"not": {"dead": "seed_mill"}}]}, "do": [{"objective": {"id": "mill", "set": "failed"}}]},
         {"id": "stroke_cut", "when": {"all": [{"fired": "stroke_flags"}, {"done": "cut"}]}, "do": [{"flag": {"cut": "yes"}}]},
         {"id": "stroke_people", "when": {"all": [{"fired": "stroke"}, {"counter": {"name": "saved", "at_least": 1}}]}, "do": [{"objective": {"id": "people", "set": "done"}}]},
         {"id": "stroke_gate", "when": {"all": [{"fired": "stroke"}, {"not": {"flag": {"gate": "people"}}}, {"not": {"flag": {"gate": "pattern"}}}]}, "do": [
@@ -383,6 +401,11 @@ M = {
         "j_cut": {"who": "jakob", "text": "The links are cut. North of the river they are slowing."},
         "h_cut": {"who": "hollweg", "text": "Good. It needs its links like a clock needs its train."},
         "j_drawings": {"who": "jakob", "text": "I have the drawings, Meister. All of them."},
+        "cap_mill_early": {"who": "captain", "text": "The mill seed burned before dark. The machine is late to the streets: we have longer."},
+        "cap_escort": {"who": "captain", "text": "Three of my men go with your journeyman, Meister. North of the river the streets are the machine's."},
+        "j_hit": {"who": "jakob", "text": "I'm hit! Keep them off me, I'm coming back."},
+        "h_end_mill": {"who": "hollweg", "text": "We burned the seed on the mill island before dark. It bought the city an hour it would not have had."},
+        "h_end_nomill": {"who": "hollweg", "text": "The mill on the island was still turning when the clock struck. I hear it at night."},
         "h_jakob": {"who": "hollweg", "text": "Jakob. Not Jakob."},
         "j_hurt": {"who": "jakob", "to": "guild", "text": "Meister, you are hurt. Keep away from them until the last moment."},
         "cap_riders": {"who": "captain", "text": "Riders from Fürth! They will hold the gate for the last of us."},
@@ -424,6 +447,8 @@ M = {
         {"still": "thirteen", "lines": ["h_end1",
                                         {"id": "h_end_people", "if": {"flag": {"gate": "people"}}},
                                         {"id": "h_end_pattern", "if": {"flag": {"gate": "pattern"}}},
+                                        {"id": "h_end_mill", "if": {"flag": {"mill": "burnt"}}},
+                                        {"id": "h_end_nomill", "if": {"flag": {"mill": "standing"}}},
                                         {"id": "h_end_jakob", "if": {"flag": {"jakob": "alive"}}},
                                         {"id": "h_end_nojakob", "if": {"flag": {"jakob": "lost"}}}]},
         {"still": "crates", "lines": ["h_end2"]},
@@ -447,6 +472,8 @@ M = {
                       {"if": {"flag": {"saved": "few"}}, "text": "Few of the townsfolk reached the Crown's camp: {saved} of {townsfolk}."},
                       {"if": {"flag": {"bells": "rung"}}, "text": "The bells were rung. The guild is disgraced."},
                       {"if": {"flag": {"bells": "quiet"}}, "text": "The bells were kept quiet. The city slept until the machine reached its streets."},
+                      {"if": {"flag": {"mill": "burnt"}}, "text": "The mill seed burned before night: the machine came late to the streets."},
+                      {"if": {"flag": {"mill": "standing"}}, "text": "The mill seed was still turning at the stroke."},
                       {"if": {"flag": {"cut": "yes"}}, "text": "The links at the bridges were cut."},
                       {"if": {"flag": {"jakob": "lost"}}, "text": "Jakob did not come out."},
                       {"if": {"flag": {"gate": "pattern"}}, "text": "Hollweg's drawings rode out on the last cart."},

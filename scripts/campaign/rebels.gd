@@ -23,7 +23,7 @@ const ROLES := {
 	# roles in general now. People are stand-ins until drawn (their "art" folder named here, used once it is in).
 	"citizen": {"kind": "labourer", "art": "c_citizen", "about": "A townsman of Nuremberg."},
 	"hollweg": {"kind": "missionary", "art": "c_hollweg", "name": "Meister Hollweg", "hp": 260, "about": "Master of the Guild of the Escapement."},
-	"jakob": {"kind": "labourer", "art": "c_jakob", "name": "Jakob", "hp": 120, "about": "Hollweg's journeyman."},
+	"jakob": {"kind": "labourer", "art": "c_jakob", "name": "Jakob", "hp": 180, "about": "Hollweg's journeyman."},
 	"ferrer": {"kind": "missionary", "art": "c_ferrer", "name": "Father Ferrer", "about": "A Jesuit astronomer and engineer."},
 	# ACT 1's a04_visit (docs/campaign_a04_build.md): Ferrer on his inspection (harder to kill: the mission's hero) and his
 	# lay brothers (Missionaries: they bring the fallen back)
