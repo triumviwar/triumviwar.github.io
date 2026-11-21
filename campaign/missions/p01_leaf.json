@@ -265,6 +265,12 @@
 			12,
 			4,
 			3
+		],
+		"raid_road": [
+			80,
+			5,
+			34,
+			22
 		]
 	},
 	"units": [
@@ -2069,6 +2075,13 @@
 				{
 					"ping": {
 						"tag": "raiders"
+					}
+				},
+				{
+					"reveal": {
+						"area": "raid_road",
+						"side": "crown",
+						"secs": 150
 					}
 				},
 				{

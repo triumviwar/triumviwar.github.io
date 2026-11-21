@@ -25,7 +25,8 @@ d.setdefault("easy", {})["clocks"] = 1.25
 d.setdefault("hard", {})["clocks"] = 0.85
 
 # the band's way: out of the east woods, down the clearing, west toward the farm
-m["areas"].update({"raid_0": [105, 10, 6, 4], "raid_1": [104, 20, 6, 4], "raid_2": [94, 13, 5, 4], "raid_3": [88, 12, 4, 3]})
+m["areas"].update({"raid_0": [105, 10, 6, 4], "raid_1": [104, 20, 6, 4], "raid_2": [94, 13, 5, 4], "raid_3": [88, 12, 4, 3],
+                   "raid_road": [80, 5, 34, 22]})
 
 objs = {o["id"]: o for o in m["objectives"]}
 objs["families"]["text"] = "Save the families at Hollins Farm. The raiders reach it in {clock:raid}."
@@ -41,6 +42,9 @@ for a in c1["do"]:
 if not any("clock" in a for a in c1["do"]):
     c1["do"].insert(3, {"clock": {"name": "raid", "secs": RAID, "scale": True}})
     c1["do"].insert(4, {"ping": {"tag": "raiders"}})
+# (the march is SEEN: the east woods' road lit for the player while the band comes, playtest picture 2026-11-21)
+if not any(a.get("reveal", {}).get("area") == "raid_road" for a in c1["do"]):
+    c1["do"].insert(5, {"reveal": {"area": "raid_road", "side": "crown", "secs": 150}})
 for a in c1["do"]:
     if "say" in a and a["say"] == ["t_smoke", "f_choice"]:
         a["say"] = ["t_smoke", "t_band", "f_choice"]

@@ -85,7 +85,8 @@ func _shots() -> void:
 		"follow": run.fired.has("leg1") and game.clock > float(run.fired.get("leg1", 0)) + 20,
 		"spotted": run.fired.has("spotted"),
 		"reveal": run.fired.has("reveal") and game.clock > float(run.fired.get("reveal", 0)) + 4,
-		"riot": run.fired.has("riot") and game.clock > float(run.fired.get("riot", 0)) + 25}
+		"riot": run.fired.has("riot") and game.clock > float(run.fired.get("riot", 0)) + 25,
+		"gather": run.fired.has("riot_warn") and game.clock > float(run.fired.get("riot_warn", 0)) + 8}
 	for k in want:
 		if want[k] and not _shot_done.has(k):
 			_shot_done[k] = true
@@ -160,6 +161,14 @@ func careful() -> void:
 		await select([f])
 		await order_to(run.area_rect("bank_watch").get_center())
 		return
+	# (campaign-fixes-1121) the warning: "Hold the gap": every musketeer to the gap while the countdown runs
+	if run.obj.get("gather", "") == "active" and game.clock - _gap_sent > 12:
+		_gap_sent = game.clock
+		var men0 := mine().filter(func(u): return u.kind == "musketeer")
+		if not men0.is_empty():
+			await select(men0)
+			await order_to(run.area_rect("gap_post").get_center(), true)
+		return
 	# PART 3: the riot: the escort and the gate men meet the broken ones at the bridge and the gap; Ferrer back in town
 	if run.obj.get("riot", "") == "active":
 		var men := mine().filter(func(u): return u.kind == "musketeer")
@@ -179,6 +188,7 @@ func careful() -> void:
 
 
 var _ferrer_sent := -100.0
+var _gap_sent := -100.0
 
 
 func reckless() -> void:

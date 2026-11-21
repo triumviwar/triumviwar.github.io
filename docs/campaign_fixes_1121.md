@@ -57,6 +57,13 @@ in the riot):
 
 So a careful player keeps most of them, a passive one loses most, as the owner asked.
 
+Played with real mouse and keys (the playtest driver tools/playtest/clock_a04.gd, careful player, Normal; it now sends
+every musketeer to the gap when the countdown shows, but once they march it still chases the walkers' middle toward the
+bridge and leaves the gap): 9 of 15 reached the machine (13 to 14 in the playtest), the objective was failed, the mission
+won. In the same game the machine's sortie went for Father Ferrer and he was WOUNDED, not killed: he fell back to the yard
+with "(wounded)" over his name (part 4). Pictures: docs/shots/campaign_fixes_1121/a04_warning_countdown.jpg (the countdown
+objective) and a04_riot_ferrer_wounded.jpg.
+
 ## 2. The Thirteenth Hour: the mill seed matters, Jakob can live
 
 What was wrong: the mission could be "won" (the story's loss that counts) without ever burning the mill seed, a primary
@@ -92,7 +99,9 @@ What changed (tools/campaign/patch_p01_1121.py; the Prologue's generator is olde
 the same way the roster ladder does it):
 
 - The band (four militia and a torch) now comes out of the east woods and marches down the north road toward the farm in
-  three stages, pinged on the map at each stage and every 15 seconds, so it shows on the minimap too.
+  three stages, pinged on the map at each stage and every 15 seconds, so it shows on the minimap too. The road through
+  the east woods is lit for the player while it comes (2:30), so the band is SEEN, not only pinged: the first picture
+  showed only fog.
 - Tomasz says so at once: "Riders saw a band on the north road, my lord... They will be at the farm within the hour."
   and again when it is close ("They are almost at the farm!").
 - The families' objective shows the time: "Save the families at Hollins Farm. The raiders reach it in 1:40." That is 1:40 on
@@ -100,6 +109,12 @@ the same way the roster ladder does it):
   15 seconds, so there is time, but not to dawdle.
 - The choice now waits a minute for an answer (it was two; past the raiders' arrival the answer would make no sense).
 - MARCH ON: the farm burns when the band gets there (it burnt after 40 seconds before).
+
+Played with real input (tools/playtest/pt_p01.gd, careful, Easy, SAVE): the countdown read "The raiders reach it in 2:00",
+the band was seen walking down the clearing with its torch, the families were saved and the mission won. Picture:
+docs/shots/campaign_fixes_1121/p01_raiders_march.jpg. The same driver as the "killer" player (who sends Fairleigh and
+Tomasz alone into the rebels at the start) kept both alive the whole game; in the playtest Fairleigh died in about 100
+seconds.
 
 ## 4. The story's people who must live are wounded, not killed
 
@@ -131,7 +146,7 @@ Nest won in 4:42 and the creatures in 3:52 in the playtest, the Machine in about
 
 THE DIFFICULTY ON THE HUB: every hub's GO TO list now ends with "DIFFICULTY: NORMAL", the three buttons EASY / NORMAL / HARD
 and one line on what it does, above BACK. It is the same setting as the briefing's. The list scrolls now: on a phone the
-extra row pushed BACK under the bottom edge.
+extra row pushed BACK under the bottom edge. Picture: docs/shots/campaign_fixes_1121/hub_difficulty.jpg.
 
 The engine learned three small things for it:
 
@@ -196,7 +211,11 @@ Run before and after on this branch: tools/test_campaign_m1.gd (the Prologue, ne
 the gap, the three waves, the half rule), the new tools/test_campaign_heroes.gd (the heroes and the mirrors by difficulty),
 test_campaign, test_campaign_a02, a03, a05, b01, a01, a06, a07, test_roster_ladder, test_war_map and test_i18n.
 
-TEST_RESULTS
+All of them end with 0 failures on the branch (and printed 0 on main before, per the playtest reports). As on main,
+every headless run aborts while Godot shuts down, after its result line (exit code 134): read the last line, not the
+exit code. Running the tests at the same time as the sims gives false failures: they share the campaign progress file.
+Found and fixed in test_campaign_b01: its supply cap check broke on the cap by difficulty and stopped the data checks
+after it with a script error, which still printed "0 failures"; now it checks the Normal cap.
 
 The sims gained a few switches: sim_campaign_a04.gd idle3 (plays to the riot, then nothing) and late3 (the party waits in
 the town, moves only when they march); sim_campaign_b01.gd diff=easy|normal|hard (the campaign's difficulty for the run).
