@@ -157,7 +157,15 @@ about half a point with t under two is not a finding on its own.
 
 ## The tests
 
-<!-- TESTS -->
+All 44 of `tools/test_ai_*.gd` and `tools/test_crown_*.gd` and the new `tools/test_crown_mill_crew.gd` were run on the
+branch with the rule as merged (on against the Clockwork). Every Godot run on this machine ends with an abort as it quits
+(exit 134, the engine quitting, the games too), so each test was read by its own PASS / FAIL lines. **Pass**: 40, among them
+`test_crown_mill_crew`, `test_crown_v_clock`, `test_crown_powder`, `test_crown_defence`, `test_crown_siege`,
+`test_crown_mirror`, `test_crown_v_brood`, `test_ai_optimal` and `test_ai_round6`. **Flaky**: `test_ai_cw_horse_raid`
+failed twice and passed on the third run with the rule on (and passed with `millcrew:off`); its Crown has no computer, so
+the rule cannot act there. **Failing before this job** (the same checks the rule cleanup listed, none against the
+Clockwork's Crown computer): `test_ai_rush_followup`, `test_ai_wall_vs_rush` (the Barracks and Mill by 75 s),
+`test_crown_dragoon_raid` ([plan]), `test_crown_rider_screen` (a rider in front of the muskets).
 
 ## Files
 
