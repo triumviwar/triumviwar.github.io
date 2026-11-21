@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.100", "items": [
+		"THE SPECIMENS, PAINTED IN PART: three of its five pictures are real paintings now: Lindqvist's camp with its empty cages under the moon, the hired men netting a sleeping young creature in the ferns, and the cage carts on the forest trail with the pack following in the shadows.",
+	]},
 	{"v": "0.38.99", "items": [
 		"FATHER FERRER'S VISIT IS PAINTED: all five of its pictures are real paintings now: Ferrer arriving at the works with his escort as Hollweg welcomes him, an automaton winding another by itself while Ferrer writes, the night shift on the gears by the river, the riot as the broken ones turn red and the Pendulum scythes through them, and Hollweg standing between Ferrer and the furnace.",
 	]},
