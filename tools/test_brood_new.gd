@@ -283,8 +283,10 @@ func _run() -> void:
 		gr.auto_work = false
 	# (her uprooting in 2. took her swamp from under it: it uprooted by itself (brood-fix3); root it again once her new
 	# swamp has spread back over it, 1 tile a second)
-	check(maw.tesla_mode == "packed", "   the Mother walked off (2.): her swamp receded and the Rootmaw uprooted by itself")
-	await wait_for(func() -> bool: return g.on_swamp(0, maw.position), 20.0)
+	# (brood-mother-uproot: her swamp now LINGERS a while: the Rootmaw on it waits, rooted, then uproots when it is gone;
+	# rooted again, she has it rooting back by itself on its spot)
+	check(maw.tesla_mode == "packed" or BroodNew.linger_on, "   the Mother walked off (2.): the Rootmaw uprooted by itself (with the lingering swamp it may still be rooted, waiting or fed again: %s)" % maw.tesla_mode)
+	await wait_for(func() -> bool: return g.on_swamp(0, maw.position) and not maw.nb.has("wait"), BroodNew.LINGER + 20.0)
 	maw.cmd_deploy()
 	await wait_for(func() -> bool: return maw.tesla_mode == "deployed", float(Defs.NB["maw_switch"]) + 2.0)
 	maw.nb["food"] = 0.0

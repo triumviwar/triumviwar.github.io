@@ -735,6 +735,7 @@ func _finish() -> void:
 		scouting[str(tm)] = e
 	var res := {"map": map, "seed": seed_, "scouting": scouting, "version": ProjectSettings.get_setting("application/config/version", ""),
 		"crown_ai": _crown_counters(),
+		"brood_linger": _linger_counters(),
 		"bench": _bench_report(),
 		"slots": slots, "end": int(round(g.clock)), "over": g.over,
 		"winner": g.winner if g.over else -1, "winner_side": (g.sides[g.winner] if g.over and g.winner >= 0 else -1),
@@ -746,6 +747,19 @@ func _finish() -> void:
 	r.store_string(JSON.stringify(res))
 	r.close()
 	print("done ", out)
+
+
+## (brood-mother-uproot) each Brood side's Mother and Rootmaws: times she got up with a swamp, Rootmaws that lost their
+## swamp, Rootmaw-seconds waiting on her lingering swamp, Rootmaws that rooted back by themselves
+func _linger_counters() -> Dictionary:
+	var out := {}
+	for tm in n:
+		if g.faction_of(tm) != "brood":
+			continue
+		var st: Dictionary = g.stats[tm]
+		out[str(tm)] = {"up": int(st.get("nb_up_n", 0)), "lost": int(st.get("maw_lost_swamp", 0)),
+			"wait_s": int(st.get("maw_wait_s", 0.0)), "auto": int(st.get("maw_autoroot", 0))}
+	return out
 
 
 ## (ai-opponent-review) each benchmark player's looks: how many at home and at its army, how many it forgot workers / soldiers

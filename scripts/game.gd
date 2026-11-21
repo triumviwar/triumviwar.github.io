@@ -5841,6 +5841,10 @@ func _tick_swamp(delta: float) -> void:
 		swamp_dirty = true
 	if swamp_dirty:
 		_update_swamp()
+	elif brood_in_match() and BroodNew.linger_on:
+		for t in n_players():
+			if not BroodNew.linger_sources(self, t).is_empty():
+				(swamp_layer if t == 0 else swamp_layer_b).queue_redraw()      # (brood-mother-uproot: a lingering swamp fades)
 
 
 ## How far out (tiles, up to `full`) the swamp of side t already lies all round centre c (tiles): a source rooted on
@@ -5870,7 +5874,7 @@ func _update_swamp() -> void:
 		g.fill(0)
 		if faction_of(t) == "brood":
 			# the rooted Brood Mother and Mound Turtles (scripts/brood_new.gd)
-			for src in BroodNew.swamp_sources(self, t):
+			for src in BroodNew.swamp_sources(self, t) + BroodNew.linger_sources(self, t):
 				var nc: Vector2 = src[0]
 				var nr: float = src[1]
 				for y in range(int(nc.y - nr) - 1, int(nc.y + nr) + 2):
@@ -6007,6 +6011,10 @@ func _draw_swamp(team: int) -> void:
 	# or with a little, no longer costs two loops over the whole map; the same tiles, in the
 	# same order)
 	var cells := PackedInt32Array()
+	# (brood-mother-uproot) the Mother's LINGERING swamp fades as its time runs out, and dries browner: the cells only it
+	# holds (none of her rooted swamp's or a turtle's) are drawn fainter
+	var lg: Array = BroodNew.linger_sources(self, team)
+	var live: Array = BroodNew.swamp_sources(self, team) if not lg.is_empty() else []
 	var j := g.find(1)
 	while j >= 0:
 		if cliff[j] == 0 and ramp[j] == 0 and (not hide or known[j] == 1):
@@ -6018,7 +6026,14 @@ func _draw_swamp(team: int) -> void:
 		var y := i / W
 		var edge := (x > 0 and sh[i - 1] == 0) or (x < W - 1 and sh[i + 1] == 0) \
 			or (y > 0 and sh[i - W] == 0) or (y < H - 1 and sh[i + W] == 0)
-		layer.draw_texture(t, Vector2(x * T, y * T), Color(1, 1, 1, 0.55 if edge else 1.0))
+		var a := 0.55 if edge else 1.0
+		var col := Color(1, 1, 1)
+		if not lg.is_empty():
+			var fade := BroodNew.linger_fade(Vector2(x + 0.5, y + 0.5), lg, live)
+			if fade < 1.0:
+				a *= 0.45 + 0.4 * fade
+				col = Color(1.0, 0.86 + 0.14 * fade, 0.62 + 0.38 * fade)
+		layer.draw_texture(t, Vector2(x * T, y * T), Color(col.r, col.g, col.b, a))
 
 
 var _astar_dirty := false

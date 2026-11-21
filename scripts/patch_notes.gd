@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.118", "items": [
+		"THE BROOD MOTHER CAN GET UP TO FIGHT WITHOUT LOSING HER ECONOMY: when she uproots, her swamp now LINGERS for 45 seconds where she was rooted, fading as the time runs out. The Rootmaws on it stay rooted and WAIT (they drink nothing: a \"waiting\" mark over them, and their card says WAITING: THE MOTHER IS UP; hers says HER SWAMP LINGERS with the time left). Root her again on it and they feed again at once. If she stays up longer, the swamp recedes and they uproot as before, but each keeps its spot: when the swamp is back under it (she rooted again, or a Mound Turtle's swamp) it ROOTS AGAIN BY ITSELF, unless you gave it another order. The Brood computer now gets up for smaller fights at its nest and roots back before the swamp runs out.",
+	]},
 	{"v": "0.38.117", "items": [
 		"SAVE INSIDE A CAMPAIGN MISSION: a mission is now saved as you play it (every 15 seconds and when you leave), and the match menu has SAVE and LOAD SAVE for a save of your own. The mission's card in the campaign offers CONTINUE (where you left it), LOAD SAVE and FROM CHECKPOINT. Everything the story counts comes back: the objectives, choices, clocks, the cages, fires, sleepers and disguised houses. Online co-op and versus missions and the tutorial's lessons are not saved.",
 		"CHECKPOINTS: when a new part of a mission begins, or you meet one of its main objectives, the game keeps a checkpoint by itself. After a defeat the end screen offers RETRY FROM CHECKPOINT, so you play again from that part, not from the start (RESTART MISSION still starts it over).",
