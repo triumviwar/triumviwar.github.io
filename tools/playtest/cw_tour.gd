@@ -575,7 +575,7 @@ func phone_controls() -> void:
 	await io.pinch(io.vs() * 0.45, 100.0, 260.0)
 	check(g.camera.zoom.x > z0, "pinch out zooms in (%.2f -> %.2f)" % [z0, g.camera.zoom.x])
 	await io.pinch(io.vs() * 0.45, 260.0, 100.0)
-	var dr: Rect2 = g.hud.drag_rect()
+	var dr: Rect2 = p.hs(g.hud.drag_rect())
 	await io.tap(dr.get_center())
 	io.note("BOX/PAN tapped: drag_mode %s" % Settings.drag_mode)
 	var cam0: Vector2 = g.camera.position
@@ -595,7 +595,7 @@ func phone_controls() -> void:
 func menu_open() -> void:
 	if g.hud.menu_open:
 		return
-	var r: Rect2 = g.hud.menu_rect()
+	var r: Rect2 = p.hs(g.hud.menu_rect())
 	if p.phone:
 		await io.tap(r.get_center())
 	else:
@@ -606,7 +606,7 @@ func menu_open() -> void:
 func menu_item(label: String) -> bool:
 	for b in g.hud._menu_buttons():
 		if String(b.get("label", "")).begins_with(label):
-			var c: Vector2 = (b["rect"] as Rect2).get_center()
+			var c: Vector2 = p.hs(b["rect"] as Rect2).get_center()
 			if p.phone:
 				await io.tap(c)
 			else:
@@ -629,7 +629,7 @@ func match_menu() -> void:
 	if g.hud.paused:
 		# the paused screen has its own RESUME
 		for b in g.hud._paused_buttons():
-			var c: Vector2 = (b["rect"] as Rect2).get_center()
+			var c: Vector2 = p.hs(b["rect"] as Rect2).get_center()
 			if p.phone:
 				await io.tap(c)
 			else:

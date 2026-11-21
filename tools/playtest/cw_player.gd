@@ -67,7 +67,12 @@ func to_screen(w: Vector2) -> Vector2:
 
 
 func on_field(p: Vector2) -> bool:
-	return Rect2(Vector2(8, 44), io.vs() - Vector2(16, 52)).has_point(p) and not hud._hud_has(p)
+	return Rect2(Vector2(8, 44) * hud.ui_scale, io.vs() - Vector2(16, 52) * hud.ui_scale).has_point(p) and not hud.hud_has_screen(p)
+
+
+## A HUD rectangle (the HUD works in its own space, drawn at ui_scale: bigger on a phone) on the screen.
+func hs(r: Rect2) -> Rect2:
+	return Rect2(r.position * hud.ui_scale, r.size * hud.ui_scale)
 
 
 ## Bring a world point into view: a click on the minimap (or a tap), then arrow keys if the HUD hides it.
@@ -75,7 +80,7 @@ func look_at(w: Vector2) -> Vector2:
 	var p := to_screen(w)
 	if on_field(p) and p.distance_to(io.vs() * Vector2(0.5, 0.4)) < io.vs().y * 0.35:
 		return p
-	var m: Rect2 = hud.mini_rect()
+	var m: Rect2 = hs(hud.mini_rect())
 	var f := (w / (Vector2(Game.W, Game.H) * Game.T)).clamp(Vector2(0.01, 0.01), Vector2(0.99, 0.99))
 	var mp := m.position + f * m.size
 	if phone:
@@ -183,7 +188,7 @@ func press(label: String, shift := false) -> String:
 	if style == "fast" and key.length() == 1 and not phone:
 		await io.key(OS.find_keycode_from_string(key), shift)
 	else:
-		var r: Rect2 = b["rect"]
+		var r: Rect2 = hs(b["rect"])
 		if phone:
 			await io.tap(r.get_center())
 		else:

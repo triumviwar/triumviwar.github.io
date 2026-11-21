@@ -113,10 +113,9 @@ func refused(what: String, why: String) -> void:
 	if why == "":
 		return
 	var k := what + "|" + why.substr(0, 40)
-	if tried.has(k):
-		return
-	tried[k] = true
-	say("REFUSED %s: %s" % [what, why])
+	tried[k] = int(tried.get(k, 0)) + 1
+	if int(tried[k]) == 1 or int(tried[k]) % 10 == 0:
+		say("REFUSED %s: %s (x%d)" % [what, why, tried[k]])
 
 
 # ------------------------------------------------------------------ the brain
@@ -143,14 +142,25 @@ func can_pay(kind: String) -> bool:
 	return p.cogs() >= int(d.get("cost", 0)) and p.tension() >= float(d.get("tension", 0))
 
 
+var next_status := 0.0
+
+
 func think() -> void:
 	var h := hall()
 	if h == null:
 		return
-	await jobs()
+	if g.clock >= next_status:
+		next_status = g.clock + 30.0
+		var qs: Array = []
+		for b in g.buildings:
+			if b.team == g.human and not b.dead and not b.queue.is_empty():
+				qs.append("%s:%d" % [b.kind, b.queue.size()])
+		say("STATUS cogs %d tension %d supply %d/%d winders %d army %d (%d sup) towers %d queues %s" % [p.cogs(), int(p.tension()),
+			g.supply_used(g.human), int(g.players[g.human]["cap"]), count("winder"), army_units().size(), army_supply(army_units()),
+			p.mine("clocktower").size(), qs])
 	await workers_to_work()
-	await build_order(h)
 	await produce()
+	await build_order(h)
 	await army()
 
 
@@ -186,20 +196,20 @@ func workers_to_work() -> void:
 ## grow with the Clocktowers (presses and Mainsprings are per tower).
 func wants() -> Array:
 	var towers: int = maxi(1, p.mine("clocktower").size())
+	var lws := 2 + int(p.cogs() > 600) + int(g.clock > 420.0) + int(g.clock > 600.0)
 	return [
 		["mainspring", 25.0, towers, true],
 		[Defs.GEAR_PRESS, 50.0, 2 * towers, true],
-		["movement_works", 90.0, 1, false],
-		["escapement", 150.0, 1, false],
-		["movement_works", 180.0, 2, false],
+		["movement_works", 80.0, 1, false],
+		["escapement", 140.0, 1, false],
+		["movement_works", 150.0, 2, false],
 		["clocktower", 270.0, 2, false],
-		["heavy_works", 300.0, 1, true],
-		["movement_works", 360.0, 3, false],
+		["movement_works", 240.0, lws, false],
+		["heavy_works", 330.0, 1, true],
 		["ratchet_turret", 420.0, 1, false],
 		["cuckoo_house", 480.0, 1, false],
 		["heavy_works", 600.0, 2, true],
 		["clocktower", 660.0, 3, false],
-		["movement_works", 720.0, 4, false],
 	]
 
 
@@ -272,7 +282,7 @@ func produce() -> void:
 		refused("train Winder", why)
 	# Light Works: Clock Soldiers, then Springers and Netters
 	for lw in p.mine("movement_works"):
-		if queued(lw) >= 2 or supply_room() < 2 or p.cogs() < 70:
+		if queued(lw) >= 3 or supply_room() < 2 or p.cogs() < 70:
 			continue
 		var pick := "CLOCK SOLDIER"
 		if has_built("escapement") and p.tension() >= 40:
@@ -294,7 +304,7 @@ func produce() -> void:
 		if es.queue.size() > 0:
 			continue
 		for r in ["SHIELD WALL", "HIGH LEAP", "LONG CHAIN"]:
-			if tried.has("research " + r):
+			if tried.has("research " + r) and typeof(tried["research " + r]) == TYPE_BOOL:
 				continue
 			if not await p.select(es):
 				break
@@ -431,7 +441,7 @@ func shields_up() -> void:
 
 func select_army() -> void:
 	if p.phone:
-		var bar: Rect2 = g.hud.bar.rect()
+		var bar: Rect2 = p.hs(g.hud.bar.rect())
 		await io.tap(bar.position + Vector2(bar.size.y * 1.9, bar.size.y * 0.5))
 	else:
 		await io.key(KEY_F2)
@@ -450,7 +460,7 @@ func amove_army(w: Vector2, escort: bool) -> void:
 				continue
 			if await p.select(u, true):
 				n += 1
-	var m: Rect2 = g.hud.mini_rect()
+	var m: Rect2 = p.hs(g.hud.mini_rect())
 	var mp := m.position + (w / (Vector2(Game.W, Game.H) * Game.T)).clamp(Vector2(0.02, 0.02), Vector2(0.98, 0.98)) * m.size
 	if p.phone:
 		var why: String = await p.press("ATTACK")
@@ -470,7 +480,7 @@ func amove_army(w: Vector2, escort: bool) -> void:
 
 func move_army(w: Vector2) -> void:
 	await select_army()
-	var m: Rect2 = g.hud.mini_rect()
+	var m: Rect2 = p.hs(g.hud.mini_rect())
 	var mp := m.position + (w / (Vector2(Game.W, Game.H) * Game.T)).clamp(Vector2(0.02, 0.02), Vector2(0.98, 0.98)) * m.size
 	if p.phone:
 		await io.tap(mp)     # (a tap on the minimap with units selected: they move there)
