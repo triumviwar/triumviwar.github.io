@@ -429,7 +429,9 @@ func _nest_play() -> void:
 		r.flags.get("sire_way", "") == "split" and r._routes.any(func(rt): return String(rt["name"]) == "down" and (rt["pts"] as Array).has("stair_top")))
 	# half of them killed: under half left
 	var ppl := _people(g, r).filter(func(u): return not r.tagged("valadares").has(u))
-	for i in 4:
+	# (campaign-fixes-1121: played as the Nest the party has its escort too: kill down to under half of all of them)
+	var kill := int(r.counters["party0"]) - int(r.counters["party0"]) / 2 + 1
+	for i in mini(kill, ppl.size()):
 		ppl[i].die()
 	_step(g, g.clock + 1.5)
 	check("nest: THE PARTY UNDER HALF: the nest wins", g.over and r.winner_side == "nest" and r.obj["n_hunt"] == "done", str(r.counters))

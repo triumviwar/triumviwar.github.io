@@ -278,7 +278,10 @@ M = {
             {"clock": {"name": "sortie", "secs": 60}}]},
         # the scripted guild (the machine's player): the stop-work fitted by itself, its own reinforcements
         {"id": "g_stop", "when": {"all": [{"time": 60}, NO_GUILD]}, "do": [{"flag": {"stopwork": "fitted"}}]},
-        {"id": "g_grow", "when": {"all": [{"time": 90}, NO_GUILD, {"not": {"dead": "honest"}}, {"count": {"team": "guild", "below": 30}}]}, "every": 120, "do": [
+        {"id": "g_grow", "when": {"all": [{"time": 90}, NO_GUILD, {"not": {"dead": "honest"}},
+            # (campaign-fixes-1121: NORMAL and HARD, with their bigger defence, grow up to 46)
+            {"any": [{"all": [{"difficulty": "easy"}, {"count": {"team": "guild", "below": 30}}]},
+                     {"all": [{"not": {"difficulty": "easy"}}, {"count": {"team": "guild", "below": 46}}]}]}]}, "every": 120, "do": [
             {"spawn": {"team": "guild", "kind": "clock_soldier", "count": 2, "at": "honest_ring", "tag": "g_more"}},
             {"order": {"tag": "g_more", "do": "attack", "to": "inside_n"}}]},
         # ...and it answers what comes through: its soldiers and the Franconians go for the machine's within reach
@@ -382,7 +385,7 @@ M = {
         {"id": "m_mill_lost", "when": {"all": [{"fired": "m_mill"}, {"dead": "seed_mill"}]}, "do": [{"objective": {"id": "m_mill", "set": "failed"}}, {"say": ["m_mill_lost"]}]},
         # the scripted guild keeps building: Clock Soldiers out of the barn every 1:30 (NORMAL two, HARD three; EASY none)
         {"id": "g_build", "when": {"all": [{"time": 90}, NO_GUILD, {"difficulty": ["normal", "hard"]}, {"not": {"dead": "honest"}},
-                                           {"count": {"team": "guild", "below": 40}}]}, "every": 90, "do": [
+                                           {"count": {"team": "guild", "below": 46}}]}, "every": 90, "do": [
             {"spawn": {"team": "guild", "kind": "clock_soldier", "count": 2, "at": "barn", "tag": "g_def", "order": "hold", "fixed": True}}]},
         {"id": "g_build_h", "when": {"all": [{"fired": "g_build"}, {"difficulty": "hard"}, {"not": {"dead": "honest"}}]}, "every": 90, "do": [
             {"spawn": {"team": "guild", "kind": "springer", "count": 1, "at": "barn", "tag": "g_def", "order": "hold", "fixed": True}}]},

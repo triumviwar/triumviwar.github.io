@@ -1942,10 +1942,36 @@
 						}
 					},
 					{
-						"count": {
-							"team": "guild",
-							"below": 30
-						}
+						"any": [
+							{
+								"all": [
+									{
+										"difficulty": "easy"
+									},
+									{
+										"count": {
+											"team": "guild",
+											"below": 30
+										}
+									}
+								]
+							},
+							{
+								"all": [
+									{
+										"not": {
+											"difficulty": "easy"
+										}
+									},
+									{
+										"count": {
+											"team": "guild",
+											"below": 46
+										}
+									}
+								]
+							}
+						]
 					}
 				]
 			},
@@ -3551,7 +3577,7 @@
 					{
 						"count": {
 							"team": "guild",
-							"below": 40
+							"below": 46
 						}
 					}
 				]

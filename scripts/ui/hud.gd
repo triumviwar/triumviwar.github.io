@@ -3684,8 +3684,8 @@ func _refresh_counts() -> void:
 		if u.is_worker():
 			if u.order == "idle":
 				idle += 1
-		elif u.kind != "horse" and u.kind != "messenger":
-			army += 1
+		elif u.kind != "horse" and u.kind != "messenger" and not u.has_meta("story_hero"):
+			army += 1      # (a campaign's must-live people are not in ARMY: campaign-fixes-1121)
 	var busy := 0
 	for pb in game.producers(me):
 		busy += (pb as Building).queue.size()

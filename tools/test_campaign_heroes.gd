@@ -104,7 +104,7 @@ func _run() -> void:
 	check("played as the party, Valadares is protected", not va.is_empty() and va[0].has_meta("story_hero"))
 	check("(played as the party: no mirror escort)", r.tagged("escort").is_empty())
 	# ---------------------------------------------------------------- THE MIRRORS BY THE DIFFICULTY (campaign-fixes-1121)
-	for d in [["easy", 2, 5, 28, "easy"], ["normal", 6, 10, 36, "easy"], ["hard", 12, 15, 50, "normal"]]:
+	for d in [["easy", 2, 7, 28, "easy"], ["normal", 6, 12, 36, "easy"], ["hard", 12, 17, 50, "normal"]]:
 		Campaign.set_difficulty(String(d[0]))
 		var cfg := Campaign.make_cfg("b01_specimen", "solo")
 		check("b01 %s: the rival pack's computer plays %s" % [d[0], d[4]], String(cfg["slots"][1]["who"]) == String(d[4]), String(cfg["slots"][1]["who"]))
@@ -116,7 +116,7 @@ func _run() -> void:
 		var base := 0
 		for u in r.tagged("guns"):
 			base += 1
-		check("a05 %s, the creatures played: %d hired guns (the six scaled, and the mirror's own)" % [d[0], d[2]], base == int(d[2]), str(base))
+		check("a05 %s, the creatures played: %d hired guns (the eight scaled, and the mirror's own)" % [d[0], d[2]], base == int(d[2]), str(base))
 		g = await _start("b01_specimen", "solo")
 		r = g.mission
 		check("b01 %s: the rival pack's cap is %d" % [d[0], d[3]], r.supply_cap_of(r.team_index("rival")) == int(d[3]) and g.max_supply(r.team_index("rival")) == int(d[3]))

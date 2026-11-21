@@ -625,7 +625,7 @@ func _difficulty() -> void:
 		r = g.mission
 		_step(g, 0.5)
 		check("%s, as the creatures: your own hunters never scaled (6 Raptors)" % d[0], r.tagged("nest_guard").filter(func(u): return u.kind == "raptor").size() == 6)
-		check("%s, as the creatures: the expedition's guns scaled" % d[0], r.tagged("guns").size() == (7 if d[0] == "easy" else 9), str(r.tagged("guns").size()))
+		check("%s, as the creatures: the expedition's guns scaled" % d[0], r.tagged("guns").size() == (7 if d[0] == "easy" else 17), str(r.tagged("guns").size()))      # (HARD: + the mirror's 8, campaign-fixes-1121)
 	Campaign.set_difficulty("normal")
 
 

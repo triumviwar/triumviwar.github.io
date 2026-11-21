@@ -184,7 +184,8 @@ func _data() -> void:
 		int(sl0["colour"]) == 2 and sl0["faction"] == "brood" and int(sl1["colour"]) == 1 and sl1["faction"] == "brood"
 		and int(c["slots"][2]["colour"]) == 3 and c["slots"][2]["faction"] == "crown" and int(c["slots"][3]["colour"]) == 4)
 	check("three sides: the Sire's pack, the rival pack, the station", Campaign.side_ids(m) == ["sire", "rival", "station"])
-	check("the rival: its foe is the Sire's pack, its supply capped", String(m["teams"][1].get("ai_foe", "")) == "sire" and int(m["teams"][1].get("supply_cap", 0)) == 36)
+	check("the rival: its foe is the Sire's pack, its supply capped", String(m["teams"][1].get("ai_foe", "")) == "sire"
+		and m["teams"][1].get("supply_cap") is Dictionary and int(m["teams"][1]["supply_cap"].get("normal", 0)) == 36)      # (by the difficulty: campaign-fixes-1121)
 	check("the map is the Rio Negro map, in the jungle, with the two dens and seven starts", String(m["map"]) == "campaign:rio_negro_station"
 		and String(Campaign.map_data("rio_negro_station").get("biome", "")) == "jungle" and (Campaign.map_data("rio_negro_station")["starts"] as Array).size() == 7)
 	check("the floor is darkened", (m.get("floor", []) as Array).size() == 3 and float(m["floor"][1]) < 0.8)
