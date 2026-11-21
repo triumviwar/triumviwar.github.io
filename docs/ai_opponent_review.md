@@ -12,11 +12,58 @@ No balance number was changed. Every change is in how the computer plays, and ea
 
 ## In short
 
-{SHORT}
+- **The matrix (Hard against Hard, 71 games to 20:00):** the Crown computer now beats or leads the Clockwork computer (7
+  of 11; on 11-17 it led none at 12:00) and leads the Brood computer at 12:00 (9 of 12) but loses to it by 20:00 (the
+  Brood won or led 8 of 12). Brood v Clockwork is even. The mirrors finish now, mostly between 14:00 and 18:00.
+- **Where the levels sit**, measured with a new human-like benchmark player (NOVICE, AVERAGE, GOOD; 81 games): EASY is
+  beaten by every strength, except the Easy Brood, which beat everyone. NORMAL is not a close game for the average
+  player: the computer wins or leads two games in three. HARD beat the good benchmark player in every game. The Brood
+  computer is about a level stronger than the Crown and Clockwork computers at every level; the Crown computer the weakest.
+- **Blunders**: no computer stood idle while its base burned or sat on a big bank. The laughable ones were: the Easy
+  Brood not being easy (it had no worker cap), one rider keeping the whole Brood army at home, a wrong AI STORY line ("far
+  behind" with twice the army), the Crown's guns and wagons stuck, the Hard Crown watching a hall die from its high
+  ground, and the Clockwork's whole army turning round for one raider.
+- **Fixed** (each with an off switch): the Easy and Normal Brood get a worker cap like the others, the Easy Brood lays its
+  warriors at half the pace (the benchmark players went from 2 of 9 to 5 of 8 won or led against it), a squad guards
+  against riders while the rest of the Brood plays on (the guard never over 725, was up to 3,875), and the AI STORY line
+  says why it waits.
+- **Next**: make the levels mean the same for every faction (the Normal Brood next), decide what Normal is, give Hard a
+  habit a good player can find, and play the owner's own games against each level to calibrate the benchmark.
 
 ## 1. The matrix: the Hard OPTIMAL computer against itself, all nine matchups, to 20:00
 
-{MATRIX}
+How: the 2026-11-17 study's design (Hard OPTIMAL against Hard OPTIMAL, the sides swapped between round 0 and round 1),
+cut down to the six "parity" maps of every kind (Greenhold, Dune Sea, Frostfang, Ashford Crossing, Hollowfen, Cinder
+Steps), 12 games a pairing, 71 games in all, on today's main (0.38.107, before this job's fixes), each to 20:00. One game
+timed out (Crown v Clockwork, Greenhold round 1). Beside it: the same tags (map, seed, sides) in the 11-17 study, which
+ran to 12:00, so the comparison is at 12:00.
+
+| pairing | games | W-D-L 20:00 | won or led 20:00 | median end of decided | W-D-L 12:00 | won or led 12:00 | 11-17 same tags (12:00) | paired better / worse (p) |
+|---|---|---|---|---|---|---|---|---|
+| Crown v Brood | 12 | 0-8-4 | 3 / 8 / 1 | 17:16 | 0-12-0 | 9 / 2 / 1 | 2 / 9 / 1 | 9 / 1 (0.02) |
+| Crown v Clockwork | 11 | 2-8-1 | 7 / 2 / 2 | 14:39 | 0-11-0 | 2 / 5 / 4 | 0 / 10 / 1 | 6 / 1 (0.12) |
+| Brood v Clockwork | 12 | 4-4-4 | 6 / 6 / 0 | 15:52 | 0-11-1 | 2 / 8 / 2 | 0 / 11 / 1 | 4 / 1 (0.38) |
+| Crown v Crown (P1) | 12 | 4-5-3 | 6 / 6 / 0 | 18:08 | 0-12-0 | 5 / 3 / 4 | 4 / 6 / 2 | 5 / 3 (0.73) |
+| Brood v Brood (P1) | 12 | 3-8-1 | 5 / 4 / 3 | 14:14 | 0-12-0 | 5 / 2 / 5 | 6 / 3 / 3 | 2 / 3 (1.00) |
+| Clockwork v Clockwork (P1) | 12 | 2-4-6 | 2 / 6 / 4 | 13:31 | 0-11-1 | 4 / 6 / 2 | 7 / 3 / 2 | 2 / 6 (0.29) |
+
+Read aloud:
+
+1. **Crown v Clockwork turned over.** At 12:00 the Crown led 2 and trailed 5 (on 11-17: 0 and 10); by 20:00 it won 2,
+   lost 1 and led 5 more: 7 of 11 won or led. Income a minute is even at 8:00 (0.97) and the Crown's from 12:00 (1.14,
+   then 1.39 at 16:00). This is the crown-rule-cleanup of 0.38.107: against the Clockwork its army clock, army floor,
+   fight rules and home hold were cut and it plays its economy.
+2. **Crown v Brood: the Crown leads at 12:00 and loses by 20:00.** At 12:00 the Crown led 9 of 12 (on 11-17: 2, paired
+   9 better and 1 worse, p 0.02), with 1.8 times the Brood's army at 8:00. Then the Brood out-earns it (the Crown's
+   income a minute 1.28 of the Brood's at 8:00, 0.76 at 12:00, 0.59 at 16:00), and by 20:00 the Brood won 4, led 4; the
+   Crown led 3 and won none. This is what crown-rule-cleanup found: "the Crown leads to ~14:00 and loses at 15-19".
+3. **Brood v Clockwork is even again**: 4 wins each, 6 won or led each. At 12:00 the Clockwork still leads 8 of 12 (11 of
+   12 on 11-17): the Brood's army is half the Clockwork's at 8:00 and it comes back late.
+4. **The mirrors now finish**: decided by 20:00 Crown 7 of 12 (11-17: 2 of 19 to 20:00), Brood 4, Clockwork 8. Spot A
+   against spot B: Crown 6 v 6, Brood 5 v 4, Clockwork 2 v 6 (P1 lost 6 of 12; p 0.29 on 8 decided games: not proven, but
+   worth watching: on 11-17 spot A led 7 v 3 at 12:00).
+5. Across the six pairings 34 of 71 games ended by 20:00 (the median end 13:31 to 18:08 by pairing). At 12:00 only 2 had:
+   a win rate to 12:00 measures who is ahead, a win rate to 20:00 begins to measure who wins.
 
 ## 2. Where each computer level sits: the human-like benchmark player
 
@@ -178,7 +225,9 @@ for long. The laughable things are subtler, and the logs and films show them:
    times the riders), only the nearest creatures worth 3 times the riders (400 at least) guard the grubs, with the same
    no-chase rule; the others go back to the plan and its waves. Filmed again on the same map and seed: the guard against
    the one Cuirassier was 14 to 16 creatures (410-420) instead of 89 to 122, and the wave left at 10:26 instead of 10:56
-   (`rider_squad_after_wave_1039.jpg`). {RIDERSQUAD} The Brood's rider tests pass (test_brood_v_riders,
+   (`rider_squad_after_wave_1039.jpg`). In the 12 Crown v Brood matrix games run again on the fixed code (the Crown OPTIMAL rides its Horsemen into every
+   Brood), the guard's value never went over 725 (before: 44 guard lines over 1,500, up to 3,875); the results moved
+   within the noise (for the Brood 4 better, 5 worse, 3 the same; it won or led 10 of 12, before 8). The Brood's rider tests pass (test_brood_v_riders,
    test_brood_rush_riders).
 4. **THE CROWN'S "MILESTONE WAITS" LINE GIVES ITS REAL REASON**: "the army is far behind the enemy's (army against the
    reckoned enemy)" only when that is the reason; otherwise "the army comes first" with the Brood it estimates, its short
@@ -223,7 +272,17 @@ In order of what a player would feel first:
 
 ## 5. Balance observations (proposals only, nothing changed)
 
-{BALANCE}
+From the computer-against-computer matrix only; the AI's skill is part of every number, so these are leads to check,
+not verdicts.
+
+- **The Brood's late game**: against the Crown it is behind on army until 14:00-16:00 and wins anyway, on income (the
+  Crown earns 0.59 of the Brood a minute at 16:00). With the Crown computer now playing its economy, this looks more like
+  the Brood's late economy than the Crown's AI. If it is confirmed with human players: look at the Rootmaws' late yield,
+  or the Brood's supply cap army at even income (crown-rule-cleanup's question).
+- **The Clockwork mirror's spot B** (P1 lost 6 of 12) and the Brood v Clockwork early game (the Brood's army half the
+  Clockwork's at 8:00, then even at the bell): measure before any change.
+- **The level gap between factions** (section 2) is AI tuning, not balance: do not read the benchmark tables as faction
+  balance.
 
 ## The tools
 

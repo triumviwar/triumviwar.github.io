@@ -27,6 +27,25 @@
 ## Current work
 
 - GRADED GAPS COVERED (owner 2026-11-21 03:42 "all parts you rated... covered in the current tasks? If not, do it"): Claude graded the game B- overall (concept A, systems A-, campaign B+ design / C play, art B-, computer opponent C, balance ungradeable, polish C+, scope C). Two more cloud jobs: ai-opponent-review (fresh 9-matchup win-rate matrix, human-like NOVICE/AVERAGE/GOOD benchmark players v each difficulty, the computer's visible blunders fixed behind switches; docs/ai_opponent_review.md) and sprite-hallucination-audit (every strip on contact sheets, wrong frames listed with ChatGPT redraw prompts; docs/sprite_hallucination_audit.md). Owner-only parts: campaign dialogue (he rewrites it), voices (Chatterbox on his PC), scope/focus (his call).
+- AI OPPONENT REVIEW (job ai-opponent-review, owner 2026-11-21 03:42 "the computer opponent got a C"; docs/ai_opponent_review.md,
+  tables docs/ai_opponent_review/tables.md, data docs/ai_opponent_review/data/ + fix_*/, pictures docs/shots/ai_opponent_review/,
+  tools/study/ai_opponent_review*.py, freeze_copy.sh, run_ai_tests.sh): (1) MATRIX Hard OPTIMAL v Hard OPTIMAL, 71 games to
+  20:00 on the 6 parity maps (0.38.107): the Crown now won or led the Clockwork 7 of 11 (11-17: led none at 12:00), leads the
+  Brood at 12:00 9 of 12 but the Brood won or led 8 of 12 by 20:00 (out-earns it late); Brood v Clockwork even (4-4); mirrors
+  finish (34 of 71 decided by 20:00); Clockwork mirror P1 lost 6 of 12 (p 0.29, watch). (2) THE BENCHMARK PLAYER
+  (scripts/ai_bench_human.gd BenchHuman, qa_match slot faction/plan/side/novice|average|good; AI.bench / bench_look; never in a
+  real match): Balanced plan on the Hard computer's build knowledge with human limits (looks every 1.5/1/0.6 s, one place a
+  look, notices attacks after 6/3/1.2 s, forgets workers/soldiers 35/15/5%, worker cap 24/36/48, no micro). 81 games to 15:00
+  (pre-fix): EASY beaten by every strength except the Easy BROOD (beat everyone); NORMAL wins or leads 2 in 3 v the average
+  player; HARD beat the good player in all 9; the Brood computer ~a level stronger than the others at every level, the Crown
+  the weakest. (3) FIXED (switches): `levelgrubs:off` Easy/Normal Brood grub cap 20/38 like the others' worker caps;
+  `easypace:off` Easy Brood lays warriors on every other think (both skirmish + tutorial only, story missions as tuned;
+  benchmark won or led v the Easy Brood 2/9 -> 5/8); `ridersquad:off` the Brood's rider guard is a squad worth 3x the riders
+  (400+), the rest plays on (one Cuirassier had pinned 122 creatures; guard never over 725 after); the Crown's "milestone
+  waits" line gives its real reason. AI tests: the same 2 fail before and after (rush_followup, wall_vs_rush). PROPOSALS: a
+  Normal Brood pace; the Hard Crown's high-ground BEAT when its own hall below is hit; the Clockwork's whole-army defence v
+  small raids; the Crown's stuck guns/wagons (pathing); qa_match's first_attack misses pushes; calibrate the benchmark on the
+  owner's own games. Patch note entry under "0.38.108" (no version bump on the branch). OWNER DECISIONS WAITING.
 - PLAYTEST JOBS (owner 2026-11-21 02:45: "simulations of players, buttons pressed, actually play the game... campaign missions, editor, tutorial... look for bad aspects or bugs, very deep work"): 8 cloud jobs started 02:50-02:57, each on its own branch, real input from the main menu, several player types, screenshots, desktop + phone, en/pt/es: playtest-campaign-crown (p01, a01, a06, a07), playtest-campaign-clock (c01, a02, a04), playtest-campaign-brood (b01, a03, a05), playtest-tutorial-editor (tutorial, map editor, replays), playtest-skirmish-crown / -clockwork / -brood (whole matches v Hard/OPTIMAL, every card button, touch), playtest-menus-online (menus, settings, saves, online rooms, spectators, ranked dev, web). Drivers in tools/playtest/, reports docs/playtest_2026_11_21_<area>.md. Merge each on "DONE: <job>:".
 - THE WAR MAP AS AN OLD MAP (owner 2026-11-20 22:42-22:49 "17th~18th century style map", "Yes" to the hybrid; 0.38.94,
   docs/war_map_v1.md "The old-map look"): ChatGPT's parchment, ships, sea serpent, cartouche, inked mountains and seals
