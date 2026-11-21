@@ -1,0 +1,44 @@
+{
+ "brood": {
+  "summary": true,
+  "sheets_checked": 41,
+  "strips_checked": 373,
+  "notes": "No new extra-tail/extra-head hallucinations on the Brood Mother at any stage; the stage-1 lay_se fix holds (one tail), and stages 2 and 3 lay_se have the same single coiled body. The worst problems are design or facing mismatches rather than extra limbs: the Raptor's old idle frames next to its redrawn walks, the Tyrant Challenger's north death that never falls, and the grub turning into a different frog-like creature in its cocoon strips. There are trapped navy patches on the SE fly loop of both the Pterodactyl and the Storm Challenger, and pits blink in the lure arrivals. Known issues already in docs/art_style_inconsistency.md (stage-2 south, the third-wing patches, the Storm Challenger's N swoop, the moult) are listed but marked as known. A navy/white/magenta pixel scan of every strip found no magenta, and no other navy beyond dark burrow shadows."
+ },
+ "buildings": {
+  "summary": true,
+  "sheets_checked": 42,
+  "strips_checked": 330,
+  "notes": "Building states mostly agree well (Crown buildings: same roofs, towers, chimneys and banners across built/construction/damaged/destroyed; Clockwork machines too). The clear state mismatch is the Boiler. The Barracks cavalry drills are code-cut (horse masked out) and leave floating rein/hoof scraps. Paddock graze strips don't match their facings. Effects show no broken frames beyond tool cell-guess splits; the 22 crate_unfold strips are one shared generic animation (fine). Gear bands, world props, pipes: clean. Menu painting: faces, hands and the Catholic imagery (processional cross, priest in stole, fleurs-de-lis) look fine; the merged Jack and one red-spined Brood creature are the issues."
+ },
+ "campaign": {
+  "summary": true,
+  "sheets_checked": 28,
+  "strips_checked": 284,
+  "notes": "Group: 59 campaign stills (all opened at 800-1000 px, several zoomed), 36 portraits (at 256-512 px), 4 hub rooms + 8 hub figures/faces + rome_desk, 26 war-map pieces, and 5 units (pikeman 25 strips, rebel_militia 45, rebel_pikeman 25, rebel_torch 25, rebel_varenne 35). No still is a code-drawn stand-in: all 59 are paintings (colour counts 21k-52k, all painterly), so no stills are kind code_art. Tone is good throughout: Crown purple, Clockwork red/brass (blue for Hollweg's own/guild machines as the story intends), Brood green reptiles with red crests (no insect look), crucifixes, papal keys, rosaries; no naked putti or pagan figures (the a07_01 wall frescoes are clothed Baroque saints/angels, western not Byzantine but they are frescoes, not icons). No gibberish lettering seen (stills avoid text). Hands checked on all speaking figures: no wrong finger counts found. rome_desk [4] and mountain_* [4] rows are contact-sheet tool splits. Rebel stand-ins already documented in docs/rebel_art.md are noted only briefly."
+ },
+ "clockwork": {
+  "summary": true,
+  "sheets_checked": 50,
+  "strips_checked": 578,
+  "notes": "Checked all 50 sheets (re-rendered at 3-5x from the asset files with feet line, plus pixel checks for edge contact, background colours and feet off the anchor). Current army (first ten) is clean of extra limbs/legs/tails; the main problems are design switches between strips (Springer claw arm, Pendulum missing blade in the high swing S/N, Clock Soldier E view clock face/shield) and wrong facings (Netter S, Great Winder NE, Ballista death all SE). Clock Soldier shield: correct (left arm) in every facing including its own W/SW/NW strips. Pendulum: two arms everywhere. Great Winder: 4 legs consistent. Wind-up keys on the army are drawn in code (not in the strips); the Winder's own key is present in every frame. Brass Serpent pieces and Tesla Cart: several sheets split by guessed frame width (tool split, not checked as frames). Skywing, Steam Walker, Tesla Cart, Bulwark, Stormcaller, Thresher, Windup Soldier, Arc Thrower, Bolt, Gearknight, Ornithopter are older tin-mode/experimental units (not offered in gear mode); ore_car/ore_locomotive/troop_car are not referenced by any script. Sheet names for clock_soldier/pendulum findings are approximate (which of the n sheets)."
+ },
+ "crown_foot": {
+  "summary": true,
+  "sheets_checked": 29,
+  "strips_checked": 312,
+  "notes": "No glaring extra heads/tails in this group; the worst is the Guardsman's one-legged idle_s frame. The recurring problems are facings that are not really drawn (Dismounted Officer aim/fire/death/melee all side-on; cannon se/ne = e; mortar fire identical in every facing), weapons that vanish in north/south views (Musketeer melee_n, reload_n, idle_s), and the two gun crews' deploy strips which are code collages with a dithered horse and a jumping gun facing. Musketeer and Armoured Musketeer share most frames (recolours), so their findings come in pairs. Known code art (labourer tools, bury_n, walk_shovel, armoured legs, band death, wind keys) is listed LOW for completeness. cannon_wheel / cannon_wheel_back loose files look fine."
+ },
+ "crown_mounted": {
+  "summary": true,
+  "sheets_checked": 25,
+  "strips_checked": 254,
+  "notes": "Every strip rendered again at 2-6x from assets/units (cell 98x70 riders/horses, 48 missionary, 64 bandage, 112 horse team, 60 wagon, 184/54 balloon). Recurring problems: (1) wrong or drifting FACINGS rather than extra legs: several _ne strips are byte copies of _e or _n (cuirassier walk_ne=walk_n; dragoon idle/death_ne=_e; dragoon_armoured walk/idle/death_ne=_e; powder_wagon all _ne=_e; horse graze_s=graze_se), and many gallops change angle mid-loop; (2) all rider deaths use one side-on fall for every facing; (3) the team-colour recolour of riders (documented, tools/recolour_officers.py) leaves ragged red saddle-cloth blobs and red flecks on the white coats, and recoloured two Horseman sabres red. No extra or missing horse legs found in normal frames; horses keep the same grey coat and size across facings (the Missionary's horse is a lighter dapple, consistent). Horse masks sheet is only coat colour ramps (not art). Cuirassier's code-drawn sabre arc in passing and the rein lines are code (docs) but not in these strips."
+ },
+ "icons": {
+  "summary": true,
+  "sheets_checked": 30,
+  "strips_checked": 483,
+  "notes": "Checked from the assets themselves at 2-6x zoom (the contact sheets show 64 px icons too small), on light and dark backdrops. Icons 236 (+3 faction emblems), UI 91 (cursors 54, stats 27, panels 6, logo, vet chevrons), props 156. Scans of every icon/prop found NO magenta specks; the navy/blue pixel count is high only where the design is blue (pine, tents, snow, trough). The Brood DEMOLISH no longer looks like BUILD (it is a claw slashing the ground), and no Brood SPIT icon file exists (not wired), so neither old issue is present. Cursors (Crown/Brood/Clockwork, 32 and 48) and stat/resource icons are clean, with matching sizes and no halos. Hand and finger counts are OK on the stop icons, gauntlet and gloves. The main weak spots are framing consistency (frameless clockwork building portraits cut at the border, two frame styles) and the code-made placeholders listed. Duplicates by design: guardsman = musketeer_armoured, clockwork ab_mend = ab_wind_up."
+ }
+}
