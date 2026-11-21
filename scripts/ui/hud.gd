@@ -4924,7 +4924,18 @@ func _draw_card(font: Font) -> void:
 			lsz -= 1
 		if UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5:
 			lab = lab.replace(Loc.t("ARMOURED ").strip_edges() + " ", Loc.t("ARM. ").strip_edges() + " ")      # (Armoured Dragoon / Officer: still too long)
-		_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab, lsz, (Color(1, 0.9, 0.55) if on else UiStyle.TEXT) if enabled else Color(1, 1, 1, 0.45), 1)
+		var lcol := (Color(1, 0.9, 0.55) if on else UiStyle.TEXT) if enabled else Color(1, 1, 1, 0.45)
+		var sp := lab.find(" ", lab.length() / 2 - 3)
+		if sp < 0:
+			sp = lab.rfind(" ")
+		if UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5 and sp > 0:
+			# still too long at the smallest size (VISTA DAS ENGRENAGENS, ATACAR O CHÃO...: they were cut off): two lines
+			# (playtest-skirmish-clockwork, 2026-11-21)
+			_ci.draw_rect(Rect2(br.position.x + 2, br.end.y - 26, br.size.x - 4, 11), Color(0, 0, 0, 0.62))
+			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 15), lab.substr(0, sp), 8, lcol, 1)
+			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab.substr(sp + 1), 8, lcol, 1)
+		else:
+			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab, lsz, lcol, 1)
 		if it[5] != "":
 			var cw := font.get_string_size(it[5], HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 8
 			var cbr := Rect2(br.end.x - cw - 2, br.position.y + 2, cw, 15)
