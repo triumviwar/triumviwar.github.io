@@ -2959,7 +2959,7 @@ func _nb_lay(q: Unit) -> void:
 	if k == "grub" and food - 50 < keep - (_nb_growth_keep(q) if grubs * 10 < want_grubs * 7 else 0) and grubs >= 6 \
 			and not (soft and soft_share_on and food >= 50 + mini(keep, _morph_keep)):
 		return          # (the workforce is far short: grubs come before her growth's savings)
-	if easy_pace_on and difficulty == 0 and k != "grub" and not _nb_threat_big(q):
+	if easy_pace_on and difficulty == 0 and k != "grub" and _level_fix() and not _nb_threat_big(q):
 		_easy_skip = not _easy_skip
 		if _easy_skip:
 			return          # (ai-opponent-review: the Easy Brood lays its warriors at half the pace, EASY PACE below)
@@ -2987,7 +2987,7 @@ func _nb_want_grubs() -> int:
 		n = mini(n, bb.grub_cap())          # (the written build: grubs held until its push)
 	if bench != null:
 		n = mini(n, int(bench_flags.get("cap", n)))      # (ai-opponent-review: the benchmark player's grubs stop here)
-	if level_grubs_on and difficulty <= 1:
+	if level_grubs_on and difficulty <= 1 and _level_fix():
 		return mini(mini(n, int(plan["grubs"]) + _extra_grubs(crew)), LEVEL_GRUBS[difficulty])
 	return mini(n, int(plan["grubs"]) + _extra_grubs(crew))
 
@@ -3006,6 +3006,12 @@ const LEVEL_GRUBS := [20, 38]
 ## Crown and Clockwork train slowly. MEASURING SWITCH `easypace:off`.
 static var easy_pace_on := not OS.get_cmdline_user_args().has("easypace:off")
 var _easy_skip := false
+
+
+## The level fixes above are for skirmish and the tutorial's practice games; a story mission's Brood computer (the rival
+## pack of the Brood prologue, an Easy Brood capped at 36 supply) was tuned as it was and plays as before.
+func _level_fix() -> bool:
+	return game.mission == null or bool((game.mission as MissionRun).data.get("tutorial", false))
 static var level_grubs_on := not OS.get_cmdline_user_args().has("levelgrubs:off")
 
 

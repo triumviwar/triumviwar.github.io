@@ -9,7 +9,7 @@ for t in tools/test_ai_*.gd; do
 	rc=$?
 	fails=$(echo "$out" | grep -E "FAIL" | grep -v "ALL PASS" | head -3 | tr '\n' ' ' | cut -c1-240)
 	verdict=FAIL
-	if echo "$out" | grep -qE "ALL PASS|^PASS"; then verdict=PASS; fi
+	if echo "$out" | grep -qE "ALL PASS|ALL OK|^PASS|RESULT: 0 failed"; then verdict=PASS; fi
 	if [ -n "$fails" ]; then verdict=FAIL; fi
 	# (the engine often aborts on exit after a finished test: rc 134 with "ALL PASS" is a pass)
 	echo "$(basename $t) $verdict rc=$rc $(( $(date +%s) - s ))s ${fails}"
