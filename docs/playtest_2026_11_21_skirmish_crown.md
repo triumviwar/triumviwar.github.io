@@ -60,10 +60,10 @@ things to look at.
 | 3 | You v Hard Crown, OPTIMAL | (random 1v1) | still on at 22:05, a draw (both alive) |
 | 4 | You v Hard Clockwork, OPTIMAL | Glimmerdeep | **won at 15:23** (106 kills for 32 losses) |
 | 5 | 2v2: you + Hard Crown v Hard Clockwork + Hard Brood | Whitecap Pass | lost at 12:25 |
-| 6 | You v Hard Brood, OPTIMAL (the improved player) | (random 1v1) | see the end of this report |
+| 6 | You v Hard Brood, OPTIMAL (the improved player) | (random 1v1) | lost at 13:33 (Raptor raids from 4:30 on) |
 | - | Easy Crown (controls), Easy Brood (phone x2), Easy Clockwork / Brood in the sandbox (cards, specials, pt, es), Hard Clockwork (chaos) | several | (not played to the end) |
 
-About 14 matches started from the main menu, 5 played to the end; 3 screen sizes; English, Portuguese and Spanish.
+About 14 matches started from the main menu, 6 played to the end; 3 screen sizes; English, Portuguese and Spanish.
 
 **No game SCRIPT ERROR in any run**: not in the matches, not in the 220 random inputs, not in the card coverage. The
 only errors in the logs were my drivers' own while I wrote them, and the exit problem (finding 8).
@@ -116,12 +116,14 @@ FIXED means a commit on this branch; PROPOSAL means left for the owner.
 
 ### Not fixed: proposals for the owner
 
-10. **UX, an abandoned building site holds its gold forever.** Place a building with a group of labourers, then place
-    a second one with the same group without Shift: the labourers go to the second, and the first stays a see-through
-    ghost that nobody comes to build, with its price paid (ABANDON gives it back). In the card run an Armoury ghost
-    waited over two minutes with nobody coming. The Clockwork already cancels a ghost whose Winder is no longer coming,
-    with all of its cost back. PROPOSAL: the same rule for the Crown (a ghost with no labourer on the way for ~10 s is
-    cancelled and paid back), or a toast "The Armoury site has no builder".
+10. **BUG (seen once, not traced), a building site that stayed a ghost.** In the specials run the labourer group
+    (group 2, four labourers) placed an Armoury, then at once a Foundry next to it without Shift. The Foundry was built;
+    the Armoury stayed a see-through ghost for more than two minutes with its price paid: the labourers did not take it
+    up after the Foundry (the "next unfinished site within 8 tiles" rule, Game.next_site) and the sweep that cancels a
+    Crown ghost nobody is coming to (Game.sweep_ghosts, all of its cost back) did not remove it either, probably
+    because `_crown_chain` still counted it as part of a chain. To reproduce: sandbox, group of labourers, place
+    Armoury, then Foundry 3-6 tiles away (no Shift), wait. PROPOSAL: a look at `_crown_chain` (a chain whose root is
+    finished should let its ghosts go or be taken up).
 11. **UX, a new Powder Mill (and Farm) gets no workers by itself, and nothing says so.** In matches 1 and 2 my player
     had 0 powder for most of the game while the Musketeers came out with bayonets only: the Mill stood at "POWDER
     MAKERS 0/6" and its builders went off to other work. The label is there
@@ -166,7 +168,7 @@ FIXED means a commit on this branch; PROPOSAL means left for the owner.
 21. **DESIGN (balance, not changed), what the Hard computers did against a simple scripted player.** My player is a
     plain macro script (no micro at all): it beat Hard Clockwork OPTIMAL at 15:23 (the Clockwork threw its whole army
     at my musket line and cannons at 7:30 and lost it, 106 kills to 32), drew Hard Crown OPTIMAL at 22:00, and lost to
-    Hard Brood OPTIMAL twice (it earned about twice my income). In the 2v2 my Hard Crown ally earned 5,320 to the
+    Hard Brood OPTIMAL three times (it earned about twice my income). In the 2v2 my Hard Crown ally earned 5,320 to the
     Clockwork's 17,953. This matches the win-rate studies: the Crown computer is the weakest, and the Clockwork
     computer is easy to bait into a prepared defence.
 22. **DESIGN (colours), FITS MAP colours vs the faction colours.** With FITS MAP the Crown came out green and the Brood
