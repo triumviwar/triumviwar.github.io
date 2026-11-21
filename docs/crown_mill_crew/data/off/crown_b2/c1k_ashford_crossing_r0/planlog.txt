@@ -1,0 +1,84 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[02:37] P2 Crown's plan: Balloon harass, a build order of 11 steps from here (scripts/ai_crown.gd)
+[02:37] P2 Crown's plan: optimal: reads UNKNOWN [no read yet]: picks Balloon harass (raids on its workers)
+[02:39] P1 Crown's plan: Balanced, a build order of 7 steps from here (scripts/ai_crown.gd)
+[02:39] P1 Crown's plan: optimal: reads UNKNOWN [no read yet]: picks Balanced (a normal game)
+[02:53] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[03:25] P1 Crown's plan: the army on time: 0 of army (with what trains) against the 60 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[03:25] P2 Crown's plan: the army on time: 0 of army (with what trains) against the 60 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[03:54] P2 Crown's plan: a Farm at its new hall at once (23 s after it stood)
+[04:06] P1 Crown's plan: milestone: Foundry 1 (19 labourers, 2 halls, army 0 supply)
+[04:09] P1 Crown's plan: the army first: 0 of army against the 74 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:09] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (0 against the 74 it reckons)
+[04:25] P1 Crown's plan: the army on time: 0 of army (with what trains) against the 115 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[04:47] P1 Crown's plan: milestone: Barracks 2 (26 labourers, 2 halls, army 0 supply)
+[04:47] P2 Crown's plan: the Foundry rigs a balloon (1 of 1)
+[05:08] P2 Crown's plan: the army on time: 180 of army (with what trains) against the 180 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[05:09] P1 Crown's plan: the army first: 60 of army against the 199 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[05:09] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (60 against the 199 it reckons)
+[05:23] P2 Crown's plan: party 1 forms: a balloon and 3 Musketeers
+[05:25] P1 Crown's plan: the army on time: 120 of army (with what trains) against the 185 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[05:28] P2 Crown's plan: the Foundry rigs a balloon (2 of 2)
+[05:28] P2 Crown's plan: the opening is over (the build order is done): the milestones take over
+[05:31] P2 Crown's plan: party 1 flies to the flank of their main (131 tiles, round the anti-air)
+[05:51] P2 Crown's plan: milestone: Horse Breeder 1 (30 labourers, 2 halls, army 6 supply)
+[05:53] P2 Crown's plan: party 2 forms: a balloon and 4 Musketeers
+[06:02] P2 Crown's plan: party 2 flies to their start (135 tiles, round the anti-air)
+[06:04] P2 Crown's plan: milestone: Armoury 1 (32 labourers, 2 halls, army 6 supply)
+[06:08] P2 Crown's plan: the army on time: 240 of army (with what trains) against the 272 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[06:12] P2 Crown's plan: milestone: Barracks 3 (31 labourers, 2 halls, army 6 supply)
+[06:49] P2 Crown's plan: party 1 backs off: anti-air on the way (360 of it)
+[06:57] P2 Crown's plan: party 1 flies to the Powder Mill (20 tiles, round the anti-air)
+[07:08] P1 Crown's plan: milestone: Armoury 1 (39 labourers, 2 halls, army 14 supply)
+[07:08] P2 Crown's plan: party 1 backs off: anti-air on the way (300 of it)
+[07:11] P1 Crown's plan: milestone: Church 1 (41 labourers, 2 halls, army 13 supply)
+[07:16] P2 Crown's plan: party 1 flies to their start (47 tiles, round the anti-air)
+[07:21] P2 Crown's plan: milestone: Church 1 (38 labourers, 2 halls, army 15 supply)
+[07:43] P2 Crown's plan: party 2 hovers over the Town Hall: the basket fires
+[07:44] P2 Crown's plan: party 1 backs off: anti-air on the way (180 of it)
+[07:44] P2 Crown's plan: the first strike: party 2 over the Town Hall
+[07:49] P1 Crown's plan: trains a Drummer for its Marching Band (12 soldiers)
+[07:51] P1 Crown's plan: trains a Fifer for its Marching Band (13 soldiers)
+[07:51] P2 Crown's plan: the first kill of the balloon harass: Labourer
+[07:52] P2 Crown's plan: party 1 flies to the Farm (41 tiles, round the anti-air)
+[07:54] P2 Crown's plan: party 2 pulls back home (the balloon is under fire)
+[08:00] P2 Crown's plan: party 1 backs off: anti-air on the way (300 of it)
+[08:05] P2 Crown's plan: party 1 pulls back home (the balloon is under fire)
+[08:11] P2 Crown's plan: party 1: its balloon is down (by a musketeer, in its home)
+[08:13] P1 Crown's plan: trains a Piper for its Marching Band (17 soldiers)
+[08:28] P2 Crown's plan: the wave waits: 960 of army against the 1070 it knows (it wants 1.1 times)
+[08:35] P2 Crown's plan: Siege push, a build order of 0 steps from here (scripts/ai_crown.gd)
+[08:35] P2 Crown's plan: optimal: reads DEFENSIVE [a walled ramp that kept the scout out]: picks Siege push (a siege to break its defences)
+[09:16] P2 Crown's plan: trains a Drummer for its Marching Band (23 soldiers)
+[09:22] P2 Crown's plan: party 2: its balloon is down (by a musketeer, in its home)
+[09:50] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Siege push (what it plays already answers it)
+[10:09] P1 Crown's plan: a Farm at its new hall at once (36 s after it stood)
+[10:09] P1 Crown's plan: milestone: Foundry 2 (51 labourers, 3 halls, army 47 supply)
+[12:51] P1 Crown's plan: the wave waits: 1340 of army against the 1250 it knows (it wants 1.1 times)
+[13:02] P2 Crown's plan: trains a Drummer for its Marching Band (30 soldiers)
+[13:08] P2 Crown's plan: trains a Fifer for its Marching Band (30 soldiers)
+[14:05] P2 Crown's plan: trains a Piper for its Marching Band (14 soldiers)
+[14:14] P1 Crown's plan: trains a Drummer for its Marching Band (22 soldiers)
+[14:15] P1 Crown's plan: trains a Fifer for its Marching Band (22 soldiers)
+[14:16] P1 Crown's plan: trains a Piper for its Marching Band (22 soldiers)
+[14:45] P2 Crown's plan: the Foundry rigs a balloon (1 of 3)
+[15:11] P2 Crown's plan: party 3 forms: a balloon and 4 Musketeers
+[15:20] P2 Crown's plan: party 3 flies to the Powder Mill (121 tiles)
+[15:29] P2 Crown's plan: the Foundry rigs a balloon (2 of 3)
+[15:31] P2 Crown's plan: party 3 hovers over the attack at home: the basket fires down
+[15:32] P2 Crown's plan: party 3 flies to the Powder Mill (106 tiles)
+[15:53] P1 Crown's plan: trains a Drummer for its Marching Band (33 soldiers)
+[16:12] P1 Crown's plan: trains a Fifer for its Marching Band (33 soldiers)
+[16:14] P1 Crown's plan: trains a Piper for its Marching Band (33 soldiers)
+[16:14] P2 Crown's plan: party 3 backs off: anti-air on the way (240 of it)
+[16:21] P2 Crown's plan: party 3 flies to the Farm (76 tiles, round the anti-air)
+[17:18] P2 Crown's plan: party 3 hovers over the Farm: the basket fires
+[17:34] P1 Crown's plan: a Farm at its new hall at once (9 s after it stood)
+[17:43] P2 Crown's plan: trains a Fifer for its Marching Band (31 soldiers)
+[17:46] P2 Crown's plan: party 4 forms: a balloon and 4 Musketeers
+[17:55] P2 Crown's plan: party 4 flies to the Farm (120 tiles, round the anti-air)
+[18:53] P2 Crown's plan: trains a Piper for its Marching Band (31 soldiers)
+[18:53] P2 Crown's plan: the Foundry rigs a balloon (3 of 3)
+[19:19] P2 Crown's plan: party 4 hovers over the Farm: the basket fires
+[19:22] P2 Crown's plan: party 3 hovers over the attack at home: the basket fires down
