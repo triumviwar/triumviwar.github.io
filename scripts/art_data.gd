@@ -631,7 +631,7 @@ const BASE_UNITS := {
 		"mount_se": 6,
 		"walk_e": 10,
 		"walk_n": 10,
-		"walk_ne": 10,
+		"walk_ne": 6,
 		"walk_s": 10,
 		"walk_se": 10,
 	}},
