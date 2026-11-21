@@ -9,14 +9,14 @@ cd "$(dirname "$0")/.." || exit 1
 OUT=${OUT:-/tmp/campaign_save}
 JOBS=${JOBS:-2}
 mkdir -p "$OUT"
-# mission sim save_at extra-args
+# mission sim save_at extra-args (save_at: about half way through the sim's own run; p01's sim plays only its night)
 LIST="p01 m1 300 active until=490
-a01 a01 420 active
+a01 a01 180 active
 a02 a02 400 active
 a03 a03 300 active
-a04 a04 500 active
-a05 a05 400 active
-a06 a06 500 active
+a04 a04 150 active
+a05 a05 170 active
+a06 a06 160 active
 a07 a07 400 active
 b01 b01 300 active
 c01 c01 400 active"

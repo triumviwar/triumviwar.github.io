@@ -124,6 +124,21 @@ func _layout() -> void:
 	await pt.shot("mission_objectives_tapped")
 	await pt.click(head.get_center())
 	await pt.wait(0.3)
+	# a long line on a phone held sideways: three lines at a time, "1/2", a tap on the box shows the rest
+	if phone:
+		mui.skip_all()
+		mui._on_said({"id": "pt_long", "who": "king", "name": "The King", "side": "", "portrait": "", "still": "", "to": "",
+			"text": "Hear me well, for I will say this only once tonight: the barns must stand until the dawn, the guns must keep to the lawn, the men must hold their line whatever the mob shouts, and no man of mine fires on the families who come to the gate with their hands empty."})
+		await pt.wait(0.5)
+		var page: Label = mui.get("_page")
+		check("long_line_paged", mui.compact and page.visible and page.text.begins_with("1/"), "%s lines %d" % [page.text, (mui.get("_text") as Label).get_line_count()])
+		await pt.shot("mission_long_line_page1")
+		var bx: Control = mui.get("_box")
+		await pt.click(bx.get_global_rect().position + Vector2(bx.size.x * 0.35, bx.size.y * 0.6))
+		await pt.wait(0.4)
+		check("tap_shows_page2", page.text.begins_with("2/"), page.text)
+		await pt.shot("mission_long_line_page2")
+		mui.skip_all()
 	# a building selected: the card and the panel
 	for b in game().buildings:
 		if b.team == game().human and not b.dead and b.kind == "barracks":
