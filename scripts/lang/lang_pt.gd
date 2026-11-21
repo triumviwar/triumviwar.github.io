@@ -1911,6 +1911,7 @@ const T := {
 	"Laying: no lever yet": "Postura: nenhuma alavanca ainda",
 	"A grub turns into it now: pick it on a grub's card.": "Agora uma larva se transforma nele: escolha-o no cartão de uma larva.",
 	"%d eggs": "%d ovos",
+	"1 egg": "1 ovo",
 	"too far from the Mother": "longe demais da Mãe",
 	"dry": "seco",
 	"FATHER RANGE": "ALCANCE DO PAI",
