@@ -1,0 +1,21 @@
+# playtest-menus-online (2026-11-21): the relay's refusals, now shown instead of "Could not reach the relay"
+
+> No room with that code.
+pt Não há sala com esse código.
+es No hay ninguna sala con ese código.
+
+> The room is full.
+pt A sala está cheia.
+es La sala está llena.
+
+> That room code is already in use.
+pt Esse código de sala já está em uso.
+es Ese código de sala ya está en uso.
+
+> The match is under way: a player who left can't come back into it (a computer plays that side now).
+pt A partida está em andamento: um jogador que saiu não pode voltar a ela (o computador joga esse lado agora).
+es La partida está en marcha: un jugador que salió no puede volver a ella (el ordenador juega ese bando ahora).
+
+> MENU > QUIT TO MENU to leave.
+pt MENU > SAIR PARA O MENU para sair.
+es MENÚ > SALIR AL MENÚ para salir.

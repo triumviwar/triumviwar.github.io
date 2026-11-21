@@ -138,6 +138,17 @@ func _process(delta: float) -> void:
 			_ws.send_text("ping")
 	elif st == WebSocketPeer.STATE_CLOSED:
 		if _was != WebSocketPeer.STATE_CLOSED:
+			# the relay's refusal ("No room with that code.", "The room is full.") comes as a word just before it closes;
+			# when both land in one poll the word was never read and a wrong code said "Could not reach the relay"
+			# (playtest 2026-11-21): read what is left, then the close's own reason (the Cloudflare relay puts it there)
+			while _ws.get_available_packet_count() > 0:
+				var left := _ws.get_packet()
+				if _ws.was_string_packet():
+					_text(left.get_string_from_utf8())
+			if _reason == "" and _ws.get_close_reason() != "":
+				_reason = _ws.get_close_reason()
+			if _reason == "" and not connected and _ws.get_close_code() == 1000:
+				_reason = "The relay refused the connection."      # (it answered, then closed: not unreachable)
 			_finish(_reason if _reason != "" else ("Could not reach the relay. Check its address in SETTINGS." if not connected else "The connection to the other player was lost."))
 
 

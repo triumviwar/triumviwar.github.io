@@ -118,6 +118,7 @@ var _ping_t := 0.0
 var _heard := {}                  # host: relay id -> msec of its last message
 var _quiet := {}                  # host: relay id -> msec it went quiet (no word for QUIET_AFTER)
 var waiting := false              # guest: no picture from the host for over STALL_AFTER
+var gone_why := ""                 # guest: the link to the host closed for good (why): the HUD says so instead of waiting
 var _frame_ms := 0                # msec of the last frame (a long gap: this game itself stood still)
 
 # ---- pause
@@ -1465,6 +1466,8 @@ func _on_notice(d: Dictionary) -> void:
 
 
 func _on_closed(why: String) -> void:
+	if not is_host:
+		gone_why = why if why != "" else "The connection to the other player was lost."
 	if game and is_instance_valid(game) and not game.over:
 		game.notify(why)
 	lost.emit(why)

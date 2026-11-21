@@ -425,6 +425,11 @@ func _late_hi(from: int) -> void:
 		_start_spec(from)                 # (its start was lost, or came before its page was ready: again)
 		return
 	if s.peer_team.has(from):
+		# (the relay gives a new connection the lowest free id: someone joining after a player dropped out gets that
+		# player's id and was ignored without a word, "Waiting for the host..." for ever, playtest 2026-11-21; a player
+		# who left can't take their seat back, the computer plays it, so say so)
+		if s.lost_peers.has(from):
+			link.send({"t": "refuse", "m": "The match is under way: a player who left can't come back into it (a computer plays that side now)."}, from)
 		return
 	if not _add_spec(from):
 		link.send({"t": "refuse", "m": "The match has begun and every spectator's place is taken."}, from)

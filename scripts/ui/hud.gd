@@ -351,7 +351,7 @@ func _layer_sig(n: String) -> Array:
 				vals.append(game.apm())
 			if _online():
 				var pm := game.net.ping_shown()
-				vals.append_array([pm / 5 if pm < 1000 else pm / 100, game.net.ping_grade(), game.net.waiting])
+				vals.append_array([pm / 5 if pm < 1000 else pm / 100, game.net.ping_grade(), game.net.waiting, game.net.gone_why])
 			_top_vals = vals
 			return vals + [menu_rect().has_point(m)]
 		"map view":
@@ -3422,8 +3422,9 @@ func _draw_ping(clock_r: Rect2, left: float) -> void:
 	_ci.draw_circle(r.position + Vector2(11, 11), 4.5, Color(0, 0, 0, 0.6))
 	_ci.draw_circle(r.position + Vector2(11, 11), 3.5, col)
 	_ci.draw_string(font, Vector2(r.position.x + 20, r.position.y + 16), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, col)
-	if not net.is_host and net.waiting and not game.over:
-		var wt := Loc.t("Waiting for the host...")
+	if not net.is_host and (net.waiting or net.gone_why != "") and not game.over:
+		# (the host gone for good: say so, not "Waiting..." for ever; playtest 2026-11-21)
+		var wt := Loc.t("Waiting for the host...") if net.gone_why == "" else Loc.t(net.gone_why) + "  " + Loc.t("MENU > QUIT TO MENU to leave.")
 		var ww := font.get_string_size(wt, HORIZONTAL_ALIGNMENT_LEFT, -1, 18).x + 36.0
 		var br := Rect2(_vs().x * 0.5 - ww * 0.5, top_rect().end.y + 8.0, ww, 32)
 		UiStyle.box(Color(0.12, 0.05, 0.04, 0.88), Color(1.0, 0.35, 0.3, 0.8), 2, 14, 0.0).draw(_ci.get_canvas_item(), br)
