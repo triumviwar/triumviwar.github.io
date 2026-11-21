@@ -270,6 +270,44 @@ static func diff_mult(m: Dictionary, level: String) -> Dictionary:
 	return out
 
 
+## An objective's words before the match (the BRIEFING): its numbers are not known yet, so "{clock:<name>}" is the
+## clock's length at this difficulty (its first "clock" action), a "(... {counter} ...)" aside goes, "{<counter>.of}" is
+## its "of" and any other "{<counter>}" its start. (They showed raw, "Dawn in {clock:dawn}", playtest 2026-11-21.)
+static func brief_text(m: Dictionary, txt: String) -> String:
+	if txt.find("{") < 0:
+		return txt
+	var mult := float(diff_mult(m, difficulty()).get("clocks", 1.0))
+	var re := RegEx.create_from_string("\\{clock:([a-z_0-9]+)\\}")
+	for mt in re.search_all(txt):
+		var secs := _first_clock(m, mt.get_string(1))
+		var rep := "%d:%02d" % [int(secs * mult) / 60, int(secs * mult) % 60] if secs > 0.0 else "..."
+		txt = txt.replace(mt.get_string(0), rep)
+	var cs: Dictionary = m.get("counters", {})
+	txt = RegEx.create_from_string("\\s*\\([^()]*\\{[a-z_0-9]+\\}[^()]*\\)").sub(txt, "", true)
+	for cn in cs:
+		var of: Variant = cs[cn].get("of", "")
+		txt = txt.replace("{%s.of}" % cn, str(int(of)) if (of is float or of is int) else str(of))
+		txt = txt.replace("{%s}" % cn, str(int(cs[cn].get("start", 0))))
+	return txt
+
+
+static func _first_clock(v: Variant, name: String) -> float:
+	if v is Dictionary:
+		var c: Variant = (v as Dictionary).get("clock", null)
+		if c is Dictionary and String((c as Dictionary).get("name", "")) == name and (c as Dictionary).has("secs"):
+			return float(c["secs"])
+		for k in v:
+			var f := _first_clock(v[k], name)
+			if f > 0.0:
+				return f
+	elif v is Array:
+		for x in v:
+			var f := _first_clock(x, name)
+			if f > 0.0:
+				return f
+	return 0.0
+
+
 ## The side a player seat plays in this mode ("p1" / "p2"): the side of its first team ("" none).
 static func seat_side(m: Dictionary, mode: String, seat: String, pick := "") -> String:
 	for tm in m.get("teams", []):

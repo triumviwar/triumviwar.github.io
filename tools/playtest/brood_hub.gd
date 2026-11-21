@@ -48,7 +48,13 @@ static func progress_for(st: String) -> Dictionary:
 		if st == "a05_few": a05["flags"]["cages"] = "few"
 		if st == "a05_creatures": a05 = {"won_by": "creatures", "side": "creatures", "mode": "solo", "flags": {"specimens": "freed"}}
 		done["a05_specimens"] = a05
-	return {"done": done}
+	# ("reached": what a finished mission opened, as Campaign.record leaves it)
+	var reached: Array = []
+	for mid in done:
+		var nx := String(Campaign.next_of(mid, String(done[mid]["won_by"])))
+		if nx != "" and not reached.has(nx):
+			reached.append(nx)
+	return {"done": done, "reached": reached}
 
 
 func _prepare() -> void:
@@ -74,7 +80,7 @@ func _run(main: Node) -> void:
 	await pt.wait(1.5)
 	await pt.past_crash_page()
 	await pt.shot("menu")
-	if not await pt.tap("CAMPAIGN", 8.0):
+	if not await pt.tap("Menu_campaign", 8.0):
 		pt.note("FAIL", "no CAMPAIGN button: " + str(pt.button_names()))
 		_end()
 		return

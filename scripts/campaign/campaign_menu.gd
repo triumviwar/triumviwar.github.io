@@ -272,7 +272,7 @@ static func briefing(main: Node, mid: String) -> void:
 	for o in m.get("objectives", []):
 		if String(o.get("side", "")) == side and not bool(o.get("hidden", false)):
 			var pre := "-  " if bool(o.get("primary", true)) else "-  " + Loc.t("(optional)") + " "
-			v.add_child(_wrap(pre + Loc.t(String(o["text"])), 16, UiStyle.TEXT if bool(o.get("primary", true)) else UiStyle.MUTED))
+			v.add_child(_wrap(pre + Campaign.brief_text(m, Loc.t(String(o["text"]))), 16, UiStyle.TEXT if bool(o.get("primary", true)) else UiStyle.MUTED))
 	# THE SOLO SIDE PICK (a mission that lets you lead either side alone) and the campaign's DIFFICULTY (act1-engine0)
 	var sides := Campaign.solo_sides(m)
 	if sides.size() > 1:

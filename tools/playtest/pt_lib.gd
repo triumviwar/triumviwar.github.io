@@ -68,9 +68,16 @@ func _flush() -> void:
 	Input.flush_buffered_events()
 
 
+## Viewport coordinates (what controls and the canvas use) to the window's (what input events carry): differ when
+## the content is stretched (a phone-sized window).
+func win(p: Vector2) -> Vector2:
+	return tree.root.get_final_transform() * p
+
+
 func move(p: Vector2) -> void:
 	if touch:
 		return
+	p = win(p)
 	var e := InputEventMouseMotion.new()
 	e.position = p
 	e.global_position = p
@@ -79,6 +86,7 @@ func move(p: Vector2) -> void:
 
 
 func press(p: Vector2, down: bool, btn := MOUSE_BUTTON_LEFT, dbl := false, shift := false) -> void:
+	p = win(p)
 	if touch and btn == MOUSE_BUTTON_LEFT:
 		var t := InputEventScreenTouch.new()
 		t.position = p
@@ -116,7 +124,7 @@ func drag(a: Vector2, b: Vector2, btn := MOUSE_BUTTON_LEFT, steps := 8) -> void:
 	press(a, true, btn)
 	await frames(1)
 	for i in range(1, steps + 1):
-		var p := a.lerp(b, float(i) / steps)
+		var p := win(a.lerp(b, float(i) / steps))
 		if touch:
 			var d := InputEventScreenDrag.new()
 			d.position = p

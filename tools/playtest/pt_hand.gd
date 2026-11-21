@@ -29,7 +29,29 @@ func on_screen(w: Vector2, margin := 60.0) -> bool:
 		var r: Rect2 = _hud_rect(k)
 		if r.grow(8).has_point(s):
 			return false
+	# (the mission's objectives and dialogue box take the clicks under them)
+	for c in _mission_boxes():
+		if (c as Control).get_global_rect().grow(10).has_point(s):
+			return false
 	return true
+
+
+var _mui: Control = null
+
+
+func _mission_boxes() -> Array:
+	var out: Array = []
+	if _mui == null or not is_instance_valid(_mui):
+		_mui = null
+		for n in pt.tree.root.find_children("*", "Control", true, false):
+			if n is MissionUi:
+				_mui = n
+				break
+	if _mui:
+		for c in _mui.get_children():
+			if c is Control and (c as Control).visible and (c as Control).mouse_filter == Control.MOUSE_FILTER_STOP:
+				out.append(c)
+	return out
 
 
 func _hud_rect(k: String) -> Rect2:
@@ -202,3 +224,12 @@ func menu_item(label: String) -> bool:
 	pt.note("HAND", "no menu item '%s' (menu: %s)" % [label, menu_labels()])
 	fails += 1
 	return false
+
+
+## Control groups: Ctrl+n sets group n from the selection, n picks it.
+func group_set(n: int) -> void:
+	await pt.key(KEY_0 + n, false, true)
+
+
+func group(n: int) -> void:
+	await pt.key(KEY_0 + n)

@@ -55,7 +55,7 @@ func _prepare() -> void:
 func _run() -> void:
 	await pt.wait(1.0)
 	await pt.past_crash_page()
-	await pt.tap("CAMPAIGN", 8.0)
+	await pt.tap("Menu_campaign", 8.0)
 	await pt.wait(0.6)
 	await pt.tap("Line_naturalist")
 	await pt.wait(0.5)
@@ -123,9 +123,11 @@ func _opening() -> void:
 		n += 1
 
 
-func _after_end(g: Game) -> void:
+func _after_end(g) -> void:
 	# the ending show (won) and the end panel
 	await pt.wait(1.0)
+	if not is_instance_valid(g):
+		return
 	var n := 0
 	while root.find_child("StillShow", true, false) != null and n < 40:
 		var txt: String = pt.labels_text().replace("\n", " | ")
