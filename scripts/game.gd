@@ -4318,7 +4318,7 @@ func can_train(b: Building, key: String) -> String:
 	if not b.can_train(k):
 		return "Can't train that here."
 	if mission and mission.denied(b.team, k):
-		return "Not in this mission."      # (a campaign team's roster: docs/campaign_c01_build.md)
+		return mission.denied_text(b.team, k)      # (a campaign team's roster: docs/campaign_c01_build.md)
 	if Defs.train_armoured(key) and not has_tech(b.team, "armour"):
 		return "Research Armour at the Armoury first."
 	if not (ArtData.UNITS.has(k) or ArtData.UNITS.has(Defs.art_for(k, false))) or Defs.PENDING.has(k):      # (a stand-in wears another's sprites: Defs.TEMP_ART)
@@ -5152,7 +5152,7 @@ func _crown_chain() -> Dictionary:
 ## "" when every building this one needs stands (finished), else what's missing.
 func requirement_text(t: int, k: String) -> String:
 	if mission and mission.denied(t, k):
-		return "Not in this mission."      # (a campaign team's roster: docs/campaign_c01_build.md)
+		return mission.denied_text(t, k)      # (a campaign team's roster: docs/campaign_c01_build.md)
 	if Defs.energy_only(k):
 		return "No power on the gear field."      # (gear mode: Defs.ENERGY_KINDS)
 	var r = Defs.BUILDINGS[k].get("requires", "")

@@ -433,9 +433,9 @@ es Mata al Padre Ferrer, o quédate con los autómatas rotos del gremio cuando c
 pt O relatório
 es El informe
 
-> Father Ferrer rode for Rome with his report. Stopped: {riot} broken automata; lost to the machine: {lost_to_machine}.
-pt O Padre Ferrer partiu para Roma com o seu relatório. Detidos: {riot} autômatos quebrados; perdidos para a máquina: {lost_to_machine}.
-es El Padre Ferrer partió hacia Roma con su informe. Detenidos: {riot} autómatas rotos; perdidos para la máquina: {lost_to_machine}.
+> Father Ferrer rode for Rome with his report. Of {riot} broken automata, {lost_to_machine} reached the machine's ground.
+pt O Padre Ferrer partiu para Roma com o seu relatório. Dos {riot} autômatos quebrados, {lost_to_machine} chegaram ao terreno da máquina.
+es El Padre Ferrer partió hacia Roma con su informe. De los {riot} autómatas rotos, {lost_to_machine} llegaron al terreno de la máquina.
 
 > The broken ones were melted.
 pt Os quebrados foram derretidos.

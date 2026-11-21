@@ -63,6 +63,13 @@ static func middle(g: Array) -> Vector2:
 ## One tick of an escorting Winder (Unit order "escort"): the velocity he wants.
 static func tick(u: Unit, delta: float) -> Vector2:
 	u._esc_t -= delta
+	for o in u.esc_group:
+		if o == null or not is_instance_valid(o):
+			# (a man of the group freed since the last look: a campaign exit takes units off the map at once (a04's broken
+			# ones reaching the machine's ground); middle() and rear_spot() read his position: SCRIPT ERROR every tick
+			# until the next REPICK; playtest-campaign-clock)
+			prune(u)
+			break
 	if u._esc_t <= 0.0 or u.esc_group.is_empty():
 		u._esc_t = REPICK
 		prune(u)

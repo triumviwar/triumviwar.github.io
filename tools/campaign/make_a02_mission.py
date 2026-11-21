@@ -244,7 +244,8 @@ M = {
         {"id": "rung_purse", "when": {"all": [{"time": 0.5}, RUNG, GUILD]}, "do": [{"give": {"team": "guild", "gold": 200}}]},
         {"id": "jakob_obj", "when": {"all": [{"time": 0.5}, JAKOB, GUILD]}, "do": [{"objective": {"id": "jakob", "set": "active"}}]},
         # quiet bells: a Crown commissary watches the guild; no Light Works until the stop-work is fitted
-        {"id": "watched", "when": {"all": [{"time": 0.5}, QUIET]}, "do": [{"deny": {"team": "guild", "kind": "movement_works"}}]},
+        {"id": "watched", "when": {"all": [{"time": 0.5}, QUIET]}, "do": [{"deny": {"team": "guild", "kind": "movement_works",
+            "why": "The commissary forbids it until the stop-work is fitted."}}]},
         {"id": "intro", "when": {"all": [{"time": 1}, GUILD]}, "do": [{"say": ["h_1", "col_1", "tip_1"]}, {"ping": {"area": "honest_ring"}}]},
         {"id": "intro_quiet", "when": {"all": [{"fired": "intro"}, QUIET]}, "delay": 14, "do": [{"say": ["com_1", "h_com"]}]},
         {"id": "intro_rung", "when": {"all": [{"fired": "intro"}, RUNG]}, "delay": 14, "do": [{"say": ["col_rung"]}]},
@@ -505,14 +506,21 @@ M = {
             "Burn the Honest One or kill Meister Hollweg before the Crown finishes its line."]},
     },
     "debrief": {
+        # (the words say what happened: the guild also wins when the Machine's player runs out of time with the mill seed
+        # standing, and the Machine wins by Hollweg dead with the tower up; both screens said otherwise;
+        # playtest-campaign-clock)
         "guild": {"still": "held", "title": "The line holds",
-                  "text": "The Rednitz mill burned and the machine went back behind Nuremberg's walls. Fürth stands.",
+                  "text": "The machine went back behind Nuremberg's walls. Fürth stands.",
                   "text_if": [
+                      {"if": {"dead": "seed_mill"}, "text": "The Rednitz mill burned."},
+                      {"if": {"not": {"dead": "seed_mill"}}, "text": "Fürth's line was finished before the machine broke through."},
                       {"if": {"flag": {"furth": "strong"}}, "text": "The Franconian army kept its strength: {army} men on the line."},
                       {"if": {"flag": {"furth": "thin"}}, "text": "The Franconian army is thin: {army} men on the line."},
                       {"if": {"flag": {"jakob": "lost"}}, "text": "Jakob is not with the guild."}]},
         "machine": {"still": "sortie", "title": "Fürth burns",
-                    "text": "The guild's tower is down. The Machine has the Pegnitz from Nuremberg to the Regnitz."},
+                    "text": "The Machine has the Pegnitz from Nuremberg to the Regnitz.",
+                    "text_if": [{"if": {"dead": "honest"}, "text": "The guild's tower is down."},
+                                {"if": {"dead": "hollweg"}, "text": "Meister Hollweg is dead."}]},
     },
     "next": {"guild": "a04_visit", "machine": ""},
 }

@@ -270,57 +270,6 @@ static func diff_mult(m: Dictionary, level: String) -> Dictionary:
 	return out
 
 
-## A show's pages before the match (a mission's OPENING): lines with an "if" kept only when it holds (StillShow wants
-## line ids; an "if" line reached it as a Dictionary and stopped The Specimens' and The Printing Houses' openings with a
-## SCRIPT ERROR: playtest 2026-11-21). The match's own MissionRun.pages_now does the same for the ending.
-static func pages_before(pages: Array) -> Array:
-	var out: Array = []
-	for pg in pages:
-		var ids: Array = []
-		for ln in pg.get("lines", []):
-			if ln is Dictionary:
-				if cond_before(ln.get("if", {})):
-					ids.append(String(ln.get("id", "")))
-			else:
-				ids.append(String(ln))
-		if ids.is_empty() and not (pg.get("lines", []) as Array).is_empty():
-			continue
-		var c: Dictionary = (pg as Dictionary).duplicate()
-		c["lines"] = ids
-		out.append(c)
-	return out
-
-
-## The conditions that can be asked before a match: "past" (a finished mission's flag), "difficulty", and "not" / "all"
-## / "any" of them. Anything else (it needs the match) does not hold.
-static func cond_before(c: Variant) -> bool:
-	if not (c is Dictionary):
-		return false
-	var ok := true
-	for k in c:
-		var v: Variant = c[k]
-		match String(k):
-			"past":
-				for fk in v:
-					var pr := String(fk).split(".")
-					ok = ok and pr.size() == 2 and str(flag(pr[0], pr[1])) == str(v[fk])
-			"difficulty":
-				ok = ok and difficulty() == String(v)
-			"not":
-				ok = ok and not cond_before(v)
-			"all":
-				for x in v:
-					ok = ok and cond_before(x)
-			"any":
-				var anyok := false
-				for x in v:
-					anyok = anyok or cond_before(x)
-				ok = ok and anyok
-			_:
-				ok = false
-	return ok
-
-
 ## An objective's words before the match (the BRIEFING): its numbers are not known yet, so "{clock:<name>}" is the
 ## clock's length at this difficulty (its first "clock" action), a "(... {counter} ...)" aside goes, "{<counter>.of}" is
 ## its "of" and any other "{<counter>}" its start. (They showed raw, "Dawn in {clock:dawn}", playtest 2026-11-21.)
@@ -490,6 +439,62 @@ static func show_pages(m: Dictionary, which: String, side := "") -> Array:
 	return v if v is Array else []
 
 
+## A mission's OPENING before its match exists: the pages with their conditional lines ({"id", "if"}) decided by what
+## can be known from the menu: "past" (the flags of missions played before), "difficulty", "playing" (the side
+## picked), and "all" / "any" / "not" of those. (MissionRun.pages_now does it for the shows during and after a match;
+## the opening handed StillShow the raw {"id", "if"} dictionaries and its _ready stopped on them: a01, a05, a06 and a07
+## opened on stills with no words and no buttons; playtest-campaign-clock.)
+static func pages_before(pages: Array, side: String, diff := "") -> Array:
+	if diff == "":
+		diff = difficulty()
+	var out: Array = []
+	for pg in pages:
+		var ids: Array = []
+		for ln in pg.get("lines", []):
+			if ln is Dictionary:
+				if cond_before(ln.get("if", {}), side, diff):
+					ids.append(String(ln.get("id", "")))
+			else:
+				ids.append(String(ln))
+		if ids.is_empty() and not (pg.get("lines", []) as Array).is_empty():
+			continue
+		var c: Dictionary = (pg as Dictionary).duplicate()
+		c["lines"] = ids
+		out.append(c)
+	return out
+
+
+static func cond_before(c: Variant, side: String, diff: String) -> bool:
+	if not (c is Dictionary):
+		return false
+	var ok := true
+	for k in c:
+		var v: Variant = c[k]
+		match String(k):
+			"all":
+				for x in v:
+					ok = ok and cond_before(x, side, diff)
+			"any":
+				var a := false
+				for x in v:
+					a = a or cond_before(x, side, diff)
+				ok = ok and a
+			"not":
+				ok = ok and not cond_before(v, side, diff)
+			"past":
+				for fk in v:
+					var pr := String(fk).split(".")
+					ok = ok and pr.size() == 2 and str(flag(pr[0], pr[1])) == str(v[fk])
+			"difficulty":
+				ok = ok and (v if v is Array else [v]).map(func(x) -> String: return String(x)).has(diff)
+			"playing":
+				ok = ok and String(v) == side
+			_:
+				push_warning("Campaign.cond_before: '%s' can't be decided before the match (taken as false)" % k)
+				ok = false
+	return ok
+
+
 # ------------------------------------------------------------------ text
 
 ## Every player-facing string of campaign.json: storylines, hubs (hotspots, talks), rooms.
@@ -544,6 +549,8 @@ static func strings_of(m: Dictionary) -> Array:
 			out.append(String(ti.get("text", "")))
 	for tr in m.get("triggers", []):
 		for a in tr.get("do", []):
+			if a is Dictionary and a.has("deny") and a["deny"] is Dictionary:
+				out.append(String(a["deny"].get("why", "")))          # (the refusal's words while the story holds it back)
 			if a is Dictionary and a.has("choice"):
 				out.append(String(a["choice"].get("title", "")))
 				for o in a["choice"].get("options", []):

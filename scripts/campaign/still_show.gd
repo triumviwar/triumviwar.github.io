@@ -50,7 +50,7 @@ func _ready() -> void:
 			_items.append([String(pg.get("still", "")), ""])
 		for lid in lines:
 			if lid is Dictionary:
-				lid = lid.get("id", "") if Campaign.cond_before(lid.get("if", {})) else ""
+				lid = lid.get("id", "") if Campaign.cond_before(lid.get("if", {}), "", Campaign.difficulty()) else ""
 				if String(lid) == "":
 					continue          # (an "if" line not filtered by the caller: kept only when it holds)
 			_items.append([String(pg.get("still", "")), String(lid)])

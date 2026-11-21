@@ -2423,6 +2423,18 @@
 					"say": [
 						"h_jakob"
 					]
+				},
+				{
+					"objective": {
+						"id": "drawings",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "drawings",
+						"set": "failed"
+					}
 				}
 			]
 		},
@@ -3424,8 +3436,22 @@
 		},
 		"machine": {
 			"still": "thirteen",
-			"title": "Meister Hollweg is dead",
-			"text": "The clockmaker never reached the gate. Try again: he must live to tell it."
+			"title": "The clockmaker did not get out",
+			"text": "The clockmaker never reached the gate. Try again: he must live to tell it.",
+			"text_if": [
+				{
+					"if": {
+						"dead": "hollweg"
+					},
+					"text": "Meister Hollweg is dead."
+				},
+				{
+					"if": {
+						"fired": "trapped"
+					},
+					"text": "The thirteenth stroke finds Meister Hollweg inside the walls."
+				}
+			]
 		}
 	},
 	"next": {
