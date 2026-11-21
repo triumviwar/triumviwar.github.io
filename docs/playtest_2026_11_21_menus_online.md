@@ -40,6 +40,9 @@ during a run is a finding. The programs are kept in `tools/playtest/` so they ca
 - `pt_ranked.gd` with `ranked.sh`: the ladder service with the test sign-in and its match server; two players type
   the ladder address, pick a faction, FIND A MATCH (one CANCELs first), play on the server, one SURRENDERs, both read
   the battle report with the rating change, then the LEADERBOARD.
+- `pt_layout.gd`: the interface layout and hotkeys page by a player trying to break it (the minimap dragged off the
+  screen, the selection panel made as narrow as it goes, commands bound to a digit, to a letter already used, to F1 and
+  Space), then a skirmish with that layout.
 - `web_settings.cjs`, and the existing `tools/web/qa_smoke.cjs`: the web build made as CI makes it, served locally and
   played in headless Chromium, at a computer's size and a phone's.
 
@@ -100,6 +103,10 @@ choice for the owner), ART (how it looks). "Fixed" gives the commit on the branc
    piece the music player's bar looked a few pixels long, and a low volume looked like no bar at all. Sliders now have
    a groove with a rim. Pictures: `before_music_player_bar_and_cut_titles.jpg`, `after_music_player_bar.jpg`,
    `after_sound_sliders_pt.jpg`. Commit "Sliders show their whole track".
+36. **BUG: a selection box over your buildings only logged an engine error.** When the box held none of your units the
+    game picked your buildings, then ran a check written for units on them: "Cannot convert argument 1 from Object to
+    Object", once per box (found by the layout driver dragging a box over the town hall). Fixed, commit "A box over
+    buildings only no longer logs an engine error".
 9. **UX: RESET SETTINGS' second press was cut in Portuguese and Spanish.** "TOQUE DE NOVO PARA REDEFINIR" and "PULSA
    OTRA VEZ PARA RESTABLECER" did not fit the button; now "TOQUE PARA CONFIRMAR" / "PULSA PARA CONFIRMAR".
    Picture: `before_reset_armed_cut_pt.jpg`.
@@ -130,6 +137,12 @@ Menus and Settings:
     (`phone_es_844_layout_enter_chat.jpg`).
 17. **ART: in the main menu's bottom corner the credit line "...with the help of AI" runs into the studio's logo** by
     a few pixels at 1280x720.
+37. **UX: the hotkeys page accepts anything a letter long, and says nothing otherwise.** A command can be bound to a
+    digit (MOVE on 1, which is control group 1's key) or to the same letter as another command (ATTACK on S, STOP's
+    key): no warning; in a match one of the two quietly gets another letter. A key that is not a letter or digit (F1,
+    Space) leaves the button at "press a key…" with no word about why (`tools/playtest/pt_layout.gd`). Proposal: refuse
+    digits, show a clash in red, and a line "Letters and digits only". Dragging the minimap off the screen was tried:
+    it stays on screen (good).
 18. **UX: an open dropdown list stays open when its page is redrawn, and Esc does not close it.** In an online room the
     host's map list stayed open over the room when the friend joined (`online_dropdown_left_open_over_room.jpg`); in the
     skirmish set-up and the rooms Esc leaves the list open. Proposal: close any open list when the page redraws, and on
@@ -208,7 +221,10 @@ Found in passing, for other jobs:
 35. **ART (the match's bottom bar): in Spanish and Portuguese the IDLE / ARMY / MAKE buttons are too narrow for their
     words**: "EJÉRCITO" and "PRODUCIR" run into the small F2 / F3 key labels in their corners.
 
-No crash of the game was seen in any run. The only script errors were numbers 1, 2, 3 and 20.
+38. Note: there is no credits or about page (the main menu's corner has the version, the patch notes and the studio's
+    line); the update check's box only shows when a newer version is out, so here it was covered by its own test.
+
+No crash of the game was seen in any run. The only script or engine errors were numbers 1, 2, 3, 20 and 36.
 
 ## The existing tests
 
