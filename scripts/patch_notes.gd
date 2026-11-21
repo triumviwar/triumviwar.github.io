@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.109", "items": [
+		"PLAYTEST FIXES (skirmish as the Crown): long command card labels such as OBSERVATION BALLOON no longer run into their neighbours; clicking in a crowded base picks the building drawn in front; the match log always starts with its header; train tooltips are fully translated in Portuguese and Spanish; Esc on an open dropdown in the skirmish setup closes only the list; the Armoury's card line no longer names the Charge (it is at the Horse Breeder); the Town Hall's line fits in pt and es.",
+	]},
 	{"v": "0.38.108", "items": [
 		"PLAYTEST FIXES: menus, saves, online and the Brood's campaign were played start to finish by test players. Fixed: a damaged settings or save file no longer stops the game; COPY in an online room works; a wrong room code now says the room was not found; a guest whose host left, or who rejoins after dropping out, is no longer left waiting for ever; the ranked result no longer covers VICTORY / DEFEAT; slider tracks show in full; in Specimen One the pen's gate can be clicked; mission briefings show real times and counts instead of codes; counts stop at their target; the end screens of the Nest and creature sides say the story goes on from the other side; the warehouse hub follows who won; the egg, the crate and the notebook no longer sit on top of each other; the war map's title fits its frame; mission buttons no longer hide behind the match MENU.",
 	]},
