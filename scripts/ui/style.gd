@@ -196,6 +196,27 @@ static func draw_button(ci: CanvasItem, r: Rect2, hover := false, on := false, e
 	bg.a *= alpha
 	cached_box(bg, bd, 2, 7, 2).draw(ci.get_canvas_item(), r)
 
+## A slider a finger can move: the project doesn't turn touches into mouse events (see touch_text), and a Slider
+## reads only the mouse, so on a phone no slider moved: the volumes, the opacities, the music player's bar, the
+## replay's timeline (playtest 2026-11-21). A touch puts the value where the finger is and a drag follows it, with
+## the slider's own drag_started / drag_ended (the replay seeks on the release).
+static func touch_slider(sl: Slider) -> void:
+	sl.gui_input.connect(func(ev: InputEvent) -> void:
+		var x := 0.0
+		if ev is InputEventScreenTouch:
+			x = (ev as InputEventScreenTouch).position.x
+		elif ev is InputEventScreenDrag:
+			x = (ev as InputEventScreenDrag).position.x
+		else:
+			return
+		if ev is InputEventScreenTouch and (ev as InputEventScreenTouch).pressed:
+			sl.drag_started.emit()
+		sl.value = lerpf(sl.min_value, sl.max_value, clampf(x / maxf(1.0, sl.size.x), 0.0, 1.0))
+		if ev is InputEventScreenTouch and not (ev as InputEventScreenTouch).pressed:
+			sl.drag_ended.emit(true)
+		sl.accept_event())
+
+
 ## A text box a phone can type into. The project doesn't turn touches into mouse clicks (the game reads
 ## touches itself), so a LineEdit never takes focus from a tap on its own, and the web build has no virtual
 ## keyboard: a tap grabs the focus and opens the phone's keyboard (Android), or, in a phone's browser, the

@@ -37,7 +37,9 @@ func _ready() -> void:
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 6)
 	v.add_child(row)
-	_play = _btn("❚❚", func() -> void: player.set_playing(not player.playing), 52)
+	_play = _btn("", func() -> void: player.set_playing(not player.playing), 52)
+	_play.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_play.tooltip_text = "Play / pause (Space)"
 	row.add_child(_play)
 	for x in ReplayPlayer.SPEEDS:
 		var sx: float = x
@@ -49,6 +51,7 @@ func _ready() -> void:
 	_time.custom_minimum_size.x = 58
 	row.add_child(_time)
 	_slider = HSlider.new()
+	UiStyle.touch_slider(_slider)
 	_slider.min_value = player.start_t
 	_slider.max_value = maxf(player.length, player.start_t + 0.1)
 	_slider.step = 0.1
@@ -86,6 +89,31 @@ func _btn(t: String, cb: Callable, w: float) -> Button:
 		Sfx.play_any(["ui/click", "click"])
 		cb.call())
 	return b
+
+
+## PLAY (a triangle) and PAUSE (two bars) drawn here: the fonts' "▶" came out a speck (playtest 2026-11-21).
+static var _glyphs := {}
+
+
+static func _glyph(play: bool) -> Texture2D:
+	if _glyphs.has(play):
+		return _glyphs[play]
+	var n := 22
+	var img := Image.create(n, n, false, Image.FORMAT_RGBA8)
+	var col := UiStyle.TEXT
+	for y in n:
+		for x in n:
+			var on := false
+			if play:
+				# a triangle pointing right, 4 px in from the edges
+				var t := float(x - 5) / float(n - 9)
+				on = x >= 5 and x <= n - 4 and absf(y - (n - 1) * 0.5) <= (1.0 - t) * (n - 8) * 0.5
+			else:
+				on = y >= 4 and y <= n - 5 and ((x >= 5 and x <= 9) or (x >= 13 and x <= 17))
+			if on:
+				img.set_pixel(x, y, col)
+	_glyphs[play] = ImageTexture.create_from_image(img)
+	return _glyphs[play]
 
 
 static func _speed_text(x: float) -> String:
@@ -129,7 +157,7 @@ func _next_fog() -> void:
 func _refresh() -> void:
 	if player == null:
 		return
-	_play.text = "▶" if not player.playing else "❚❚"
+	_play.icon = _glyph(not player.playing)
 	for pr in _speeds:
 		(pr[1] as Button).button_pressed = is_equal_approx(float(pr[0]), player.speed)
 	var ft := game.view_team
