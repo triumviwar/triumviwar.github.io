@@ -19,6 +19,7 @@ RUN_ROOT = ROOT
 KEEP_CW = False
 KEEP_GREP = ""      # (crown-1000-brood) keep the match log's lines with this text in DATA/<tag>/planlog.txt
 TIMEOUT = 3000      # (plan-matrix-brood-2) seconds before a hung game is killed and marked FAILED
+LOG_DIR = ""        # (ai-opponent-review) keep each game's match log as LOG_DIR/<tag>.log (outside the repo: they are big)
 EXTRA = []          # (crown-v-clockwork-coach) more user args for every game, e.g. ["crcw:off"]
 CLASSIC = ["greenhold", "highmoor", "dune_sea", "frostfang", "twin_fords", "ashfall", "mirewood", "border_march", "red_coast"]
 NAMED_1V1 = ["ashford_crossing", "kestrel_rise", "thornwood_maze", "redrock_canyon", "saltmarsh_isles", "glimmerdeep",
@@ -170,6 +171,9 @@ def run_one(g, out, end, data, extra=None):
     for fn in ("result.json", "story.txt"):
         if os.path.exists(os.path.join(d, fn)):
             shutil.copy(os.path.join(d, fn), dd)
+    if LOG_DIR and os.path.exists(os.path.join(d, "log.txt")):
+        os.makedirs(LOG_DIR, exist_ok=True)
+        shutil.copy(os.path.join(d, "log.txt"), os.path.join(LOG_DIR, tag + ".log"))
     if KEEP_GREP and os.path.exists(os.path.join(d, "log.txt")):
         # (crown-1000-brood: one side's own lines of the match log, e.g. "Crown's plan")
         with open(os.path.join(d, "log.txt"), errors="replace") as f, open(os.path.join(dd, "planlog.txt"), "w") as o:

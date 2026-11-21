@@ -2668,8 +2668,22 @@ func _mid_ok_lagging(k: String) -> bool:
 	mid_held += 1
 	if game.clock - _mid_held_said > 60.0:
 		_mid_held_said = game.clock
-		say("milestone %s waits: the army is far behind the enemy's (%d against the %d it reckons)" % [String(Defs.BUILDINGS[k]["name"]), game.army_value(team), int(foe_reckon())])
+		say("milestone %s waits: %s" % [String(Defs.BUILDINGS[k]["name"]), _mid_hold_why()])
 	return false
+
+
+## (ai-opponent-review) WHY THE MILESTONE WAITS, as it is: the line said "the army is far behind the enemy's (1580 against the
+## 775 it reckons)" in the benchmark games against the Brood, where the hold came from brood_spend_army's other reasons (the
+## Brood it ESTIMATES, not the one it reckons from sight; the home line short of its floor; a Barracks idle for want of gold)
+func _mid_hold_why() -> String:
+	var mine := game.army_value(team)
+	if army_lags():
+		return "the army is far behind the enemy's (%d against the %d it reckons)" % [mine, int(foe_reckon())]
+	if _foe_is("brood") and float(mine) < foe_estimate():
+		return "the army comes first (%d against the %d of Brood it estimates)" % [mine, int(foe_estimate())]
+	if vb_line_short():
+		return "the army comes first (its home line is short of its floor)"
+	return "the army comes first (a Barracks or a Foundry stands idle for want of gold)"
 
 
 # ------------------------------------------------------------------ the Dragoon raids (crown-builds-a)

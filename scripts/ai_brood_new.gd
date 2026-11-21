@@ -206,6 +206,16 @@ const NB_STAGES := 4
 var _nb_stage := NB_STAGES
 
 
+## (ai-opponent-review) the benchmark player's look (AI.bench_look): at home her eggs, growth, Rootmaws, turtles and
+## morphs; at the army the maturing, research, army and spells.
+func bench_look(army_look: bool) -> void:
+	if army_look:
+		_nb_think_stage(3)
+	else:
+		for i in 3:
+			_nb_think_stage(i)
+
+
 func _nb_think_stage(i: int) -> void:
 	var _pb := Time.get_ticks_usec()
 	if i == 0 and strategy != _plan_of and PLANS.has(strategy):
@@ -218,7 +228,8 @@ func _nb_think_stage(i: int) -> void:
 		return
 	match i:
 		0:
-			_lap_nb("scout_deny", sdn().tick)       # (scout-deny: an enemy scout in its land is hunted down, scripts/ai_scout_deny.gd)
+			if bench == null:
+				_lap_nb("scout_deny", sdn().tick)      # (the benchmark player hunts scouts by its own rule: BenchHuman)       # (scout-deny: an enemy scout in its land is hunted down, scripts/ai_scout_deny.gd)
 			_lap_nb("observe", _nb_observe.bind(q))
 			if int(q.nb.get("eggs", 0)) <= EGG_LOW and float(q.nb.get("grow_t", 0.0)) <= 0.0:
 				_egg_low_t = game.clock          # (her clutch run down: eggs hold the Brood back, _nb_grow_time)
@@ -244,7 +255,7 @@ func _nb_think_stage(i: int) -> void:
 			_lap_nb("mature", _nb_mature.bind(q))
 			_lap_nb("research", _nb_research.bind(q))
 			_lap_nb("army", _nb_army.bind(q))
-			if difficulty >= 1:
+			if difficulty >= 1 and (bench == null or bench_flags.get("abil", false)):
 				_spells()           # (the Mist Toads' FOG and TONGUE, as the old Brood's computer: AI._toad)
 	Prof.add("ai/brood", _pb)
 
@@ -745,6 +756,23 @@ func _nb_defend_riders(q: Unit, army: Array, group: Array) -> bool:
 	var strong := _value_of(avail) >= _value_of(group) * 2.5
 	var reach := (RIDER_GUARD_R + 8.0 if strong else RIDER_GUARD_R) * Defs.TILE
 	var leash := (RIDER_LEASH + 9.0 if strong else RIDER_LEASH) * Defs.TILE
+	if rider_squad_on and strong:
+		# (ai-opponent-review) A SQUAD GUARDS, THE REST PLAYS ON: the nearest creatures worth RIDER_SQUAD_K times the riders
+		# (RIDER_SQUAD_MIN at least) guard the grubs; the others are left to the plan (_nb_army: its waves go on)
+		var need := maxf(_value_of(group) * RIDER_SQUAD_K, RIDER_SQUAD_MIN)
+		var srt: Array = avail.duplicate()
+		srt.sort_custom(func(a: Unit, b: Unit) -> bool: return a.position.distance_squared_to(at) < b.position.distance_squared_to(at))
+		var squad: Array = []
+		var v := 0.0
+		for u in srt:
+			if v >= need:
+				_rider_free.append(u)
+			else:
+				squad.append(u)
+				v += float(Game.unit_value(u))
+		if not _rider_free.is_empty():
+			avail = squad
+			rider_squads += 1
 	var near: Array = group.filter(func(r: Unit) -> bool: return r.position.distance_to(guard) < reach or _grub_near(r.position, 5.0))
 	_def = avail
 	_def_at = at
@@ -772,6 +800,19 @@ func _nb_defend_riders(q: Unit, army: Array, group: Array) -> bool:
 		say("guards its grubs with %d (%d) against %d riders at %s: no chase past %d tiles" % [avail.size(), int(_value_of(avail)), group.filter(func(o) -> bool: return is_rider(o)).size(),
 			"the Mother" if site == q or guard.distance_to(_qp(q)) < 6.0 * Defs.TILE else "its %s" % String(Defs.UNITS[site.kind]["name"]), int(RIDER_LEASH)])
 	return true
+
+
+## (ai-opponent-review, docs/ai_opponent_review.md) ONE RIDER PINNED THE WHOLE BROOD: against a group of riders at home every
+## creature not in a wave became the guard (_def) and _nb_army held the rest, so no wave went out while one Cuirassier
+## circled its land: in a benchmark game a Normal Brood guarded with 115 creatures (3,565) against 1 rider from 9:28 to
+## 10:35, its 121-supply wave waiting. Now, when the guard is strong (2.5 times the riders), only a squad worth
+## RIDER_SQUAD_K times them (the nearest; RIDER_SQUAD_MIN at least) guards and the rest plays its plan. The no-chase rule is
+## the same for the squad. MEASURING SWITCH `ridersquad:off` (as before).
+const RIDER_SQUAD_K := 3.0
+const RIDER_SQUAD_MIN := 400.0
+static var rider_squad_on := not OS.get_cmdline_user_args().has("ridersquad:off")
+var _rider_free: Array = []          # this think: the creatures the rider guard left to the plan
+var rider_squads := 0                # (the doc: thinks a squad guarded and the rest played on)
 
 
 ## Every enemy fighter near the Mother (13 tiles) is a rider or an Officer.
@@ -2847,6 +2888,8 @@ func _nb_lay(q: Unit) -> void:
 	var eggs := int(q.nb.get("eggs", 0))
 	if eggs <= 0:
 		return
+	if bench != null and bench_flags.get("no_produce", false) and bench_flags.get("no_workers", false):
+		return          # (ai-opponent-review: the benchmark player forgot her eggs this look)
 	var food := _food()
 	var grubs := BroodNew.count_of(game, team, "grub")
 	var want_grubs := _nb_want_grubs()
@@ -2916,6 +2959,12 @@ func _nb_lay(q: Unit) -> void:
 	if k == "grub" and food - 50 < keep - (_nb_growth_keep(q) if grubs * 10 < want_grubs * 7 else 0) and grubs >= 6 \
 			and not (soft and soft_share_on and food >= 50 + mini(keep, _morph_keep)):
 		return          # (the workforce is far short: grubs come before her growth's savings)
+	if easy_pace_on and difficulty == 0 and k != "grub" and _level_fix() and not _nb_threat_big(q):
+		_easy_skip = not _easy_skip
+		if _easy_skip:
+			return          # (ai-opponent-review: the Easy Brood lays its warriors at half the pace, EASY PACE below)
+	if bench != null and ((k == "grub" and bench_flags.get("no_workers", false)) or (k != "grub" and bench_flags.get("no_produce", false))):
+		return          # (ai-opponent-review: the benchmark player forgot the grubs, or the warriors, this look)
 	if BroodNew.lay(game, q, k) == "" and soft:
 		if k == "grub":
 			_soft_g += 1
@@ -2936,7 +2985,34 @@ func _nb_want_grubs() -> int:
 		n = mini(n, 14)
 	if bb != null:
 		n = mini(n, bb.grub_cap())          # (the written build: grubs held until its push)
+	if bench != null:
+		n = mini(n, int(bench_flags.get("cap", n)))      # (ai-opponent-review: the benchmark player's grubs stop here)
+	if level_grubs_on and difficulty <= 1 and _level_fix():
+		return mini(mini(n, int(plan["grubs"]) + _extra_grubs(crew)), LEVEL_GRUBS[difficulty])
 	return mini(n, int(plan["grubs"]) + _extra_grubs(crew))
+
+
+## (ai-opponent-review, docs/ai_opponent_review.md) THE EASY AND NORMAL BROOD HAD NO WORKER CAP. The Crown and Clockwork
+## computers stop their workers by level (AI._workers: Easy 16, Normal 30 / 26, Hard 40 / 32), the Brood computer only by
+## its plan (46-54 grubs at every level): its Easy level was the Hard economy with a later first wave (Easy -6 grubs on the
+## plan). In the benchmark games the Easy Brood had 47-52 grubs and 2,400-3,100 of army at 8:00 and beat every benchmark
+## player, the good one too, where the Easy Crown and Clockwork lost to the average and good players. The caps here match
+## the others' by income (a grub earns about 0.75 of a labourer: the 2026-11-17 matrix, 48 grubs on 1.18x the Crown's 31
+## labourers' income): Easy 20, Normal 38. Hard and Brutal unchanged. MEASURING SWITCH `levelgrubs:off` (as before).
+const LEVEL_GRUBS := [20, 38]
+## (ai-opponent-review) EASY PACE: with the grub cap alone the Easy Brood still had 2,460 of army at 8:00 (the Easy Crown 840,
+## the Easy Clockwork 1,500: they spend their income on buildings, the Brood on creatures) and beat the average and good
+## benchmark players. Easy now lays a warrior on every other think (not while a big attack is at the Mother), as the Easy
+## Crown and Clockwork train slowly. MEASURING SWITCH `easypace:off`.
+static var easy_pace_on := not OS.get_cmdline_user_args().has("easypace:off")
+var _easy_skip := false
+
+
+## The level fixes above are for skirmish and the tutorial's practice games; a story mission's Brood computer (the rival
+## pack of the Brood prologue, an Easy Brood capped at 36 supply) was tuned as it was and plays as before.
+func _level_fix() -> bool:
+	return game.mission == null or bool((game.mission as MissionRun).data.get("tutorial", false))
+static var level_grubs_on := not OS.get_cmdline_user_args().has("levelgrubs:off")
 
 
 ## BROOD-ROOTMAW-COACH: the banked food into grubs for the new Rootmaws. With its Rootmaws on new ground the posts
@@ -3459,9 +3535,11 @@ func _nb_army(q: Unit) -> void:
 			_wave_end_nb(q, false)
 	# DEFENCE AS A SWARM (docs/brood_ai_swarm.md): enemies at home are fought by a squad sized to them, all at once
 	if _nb_defend(q, army.filter(func(u: Unit) -> bool: return not _wave.has(u))):
-		if not _attacking:
+		if not _attacking and _rider_free.is_empty():
 			_nb_hold_rest(army)
 			return
+		if not _attacking:
+			army = army.filter(func(u: Unit) -> bool: return not _def.has(u))      # (the rider squad guards: the rest plays on)
 	if hunt == null:
 		hunt = AIHunt.new(self)
 	if not _attacking and hunt.tick(army):
@@ -4246,6 +4324,7 @@ static func _fight_wins(mine: Array, foes: Array, margin := 0.6) -> bool:
 
 ## Defence: true while it is answering (or holding back from) enemies at home.
 func _nb_defend(q: Unit, army: Array) -> bool:
+	_rider_free = []
 	_rally = _nb_stage_point(q)
 	_def = _def.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead)
 	var foes := _nb_home_foes(q)

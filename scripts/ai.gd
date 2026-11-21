@@ -15,6 +15,10 @@ var strategy := "balanced"      # one of STRATEGIES (picked in the skirmish lobb
 ## Debug/benchmark only (tools/econ_bench.gd): never attack, raid or drop; the army just
 ## gathers at home. Off in every real match.
 var peaceful := false
+## (ai-opponent-review) THE HUMAN-LIKE BENCHMARK PLAYER (scripts/ai_bench_human.gd): set only by tools/qa_match.gd on a
+## measuring slot; it replaces the computer's own think with a person's looks. null in every real match.
+var bench: BenchHuman = null
+var bench_flags := {}            # this look's limits (BenchHuman.tick): no_workers, no_produce, cap, abil, deny
 
 ## How each strategy plays.
 ##  wave: army supply for the first attack (then each wave waits for `step` more)
@@ -628,7 +632,10 @@ func _physics_process(delta: float) -> void:
 	var _p0 := Time.get_ticks_usec()
 	if game and game.mlog:
 		game.mlog.ai_team = team         # (what it writes now is its own decision: the AI STORY, scripts/ai_story.gd)
-	_tick_ai(delta)
+	if bench != null:
+		bench.tick(self, delta)
+	else:
+		_tick_ai(delta)
 	if game and game.mlog:
 		game.mlog.ai_team = -1
 	Prof.add("ai", _p0)
@@ -715,7 +722,8 @@ func _think_stage(i: int) -> void:
 			var ek2 := _hide_econ(true)     # (... and before more soldiers, once the army has its minimum)
 			var bk2 := _band()              # (THE MARCHING BAND: its training and its musicians' research, the gold kept for them)
 			_research()
-			_produce()
+			if not bench_flags.get("no_produce", false):
+				_produce()
 			game.players[team]["gold"] += ek2 + bk2
 			pt = _lap("ai/produce", pt)
 			ch.tick()           # (the rider scouts are picked before the raid party forms)
@@ -739,10 +747,10 @@ func _think_stage(i: int) -> void:
 			pt = _lap("ai/horses", pt)
 			_loose_horses()
 			pt = _lap("ai/loose", pt)
-			if difficulty >= 1:
+			if difficulty >= 1 and (bench == null or bench_flags.get("abil", false)):
 				_abilities()
 			pt = _lap("ai/abil", pt)
-			if difficulty >= 2:
+			if difficulty >= 2 and bench == null:
 				_micro()
 			_lap("ai/micro", pt)
 			_gg_tick()
@@ -842,6 +850,17 @@ func gg_reply() -> void:
 	for b in game.buildings.duplicate():
 		if b.team == team:
 			b.take_damage(99999, null)
+
+
+## (ai-opponent-review) THE BENCHMARK PLAYER'S LOOK (BenchHuman.tick): one place a look, all its parts at once. At home:
+## workers, economy, building, research and production (and the horses); at the army: the scout, the raids' riders and
+## the army. Abilities only for the average and good player; never the Hard computer's micro.
+func bench_look(army_look: bool) -> void:
+	if army_look:
+		_think_stage(3)
+	else:
+		for i in [0, 1, 2, 4]:
+			_think_stage(i)
 
 
 ## Everything at once (tests and tools that call it).
@@ -1834,6 +1853,8 @@ func _workers() -> void:
 	if doctrine() and (_hall_reserve or _busy_building(_f()["hall"]) or _bare_hall()):
 		want = mini(want + SAT_PRETRAIN, 46 if difficulty >= 3 else _lv([16, 30, 40]) + SAT_PRETRAIN)    # (DOCTRINE: hands for the new hall's farms, trained ahead)
 	want = _lab_want(want)
+	if bench != null:
+		want = mini(want, int(bench_flags.get("cap", want)))      # (ai-opponent-review: the benchmark player's workers stop here)
 	var worker: String = _f()["worker"]
 	var queued := 0
 	for h in _halls():
@@ -1855,7 +1876,7 @@ func _workers() -> void:
 		hold_gold = true            # (the Winders wait for the Works' 200)
 	_lab_short = _crown() and not hold_gold and labs.size() + queued < want and _halls().any(func(h: Building) -> bool: return h.built and h.queue.is_empty())
 	for h in _halls():
-		if h.built and not hold_gold and labs.size() + queued < want and h.queue.size() < 2 and _base_trains_labs():
+		if h.built and not hold_gold and labs.size() + queued < want and h.queue.size() < 2 and _base_trains_labs() and not bench_flags.get("no_workers", false):
 			if game.train(h, worker) == "":
 				queued += 1
 	# Everyone idle goes to a post with room (escorts excepted).

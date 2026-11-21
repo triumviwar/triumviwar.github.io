@@ -4,6 +4,11 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.113", "items": [
+		"AN EASIER EASY BROOD: the Brood computer on Easy now keeps to 20 grubs (on Normal 38) as the Crown and Clockwork computers keep to fewer workers on the easier levels, and on Easy it lays its warriors at half the pace. Before, an Easy Brood had the Hard economy and beat players who beat the Easy Crown and the Easy Clockwork. Story missions are unchanged; the tutorial's practice games use the new Easy.",
+		"ONE RIDER NO LONGER HOLDS THE WHOLE BROOD AT HOME: against riders in its land the Brood computer still guards its grubs without chasing, but only with a squad worth three times the riders; the rest of its army goes on with its plan and its attacks.",
+		"THE CROWN COMPUTER CREWS ITS POWDER MILLS (nothing the player uses changed): against the Clockwork, when its army runs short of powder (Musketeers with no shots, a Barracks waiting), it now fills every Powder Mill that still has saltpetre toward a full crew of six, the nearest first, and sends the hands back to the Farms once the powder is in the bank. Before, it only ever filled its first Mill and kept one or two hands on the others while its saltpetre lay unused. On the same games it won or led 34 of 40 against 14 of 20 before. Against the Brood and in the mirror it measured no better, so there it plays as before.",
+	]},
 	{"v": "0.38.112", "items": [
 		"PLAYTEST FIXES (skirmish as the Brood): a HARVEST order with no body near no longer leaves the grubs idle for good; the Sire's nest says \"1 egg\", not \"1 eggs\"; attack, move and other keys on a rooted creature now say \"Rooted: UPROOT it first.\" instead of \"Attack: not now.\"; card labels too long even at the smallest size go to two lines.",
 	]},
@@ -22,7 +27,6 @@ const NOTES := [
 	]},
 	{"v": "0.38.107", "items": [
 		"THE CROWN COMPUTER'S COACHING, CLEANED UP (nothing the player uses changed): its rules were measured again as groups, switched off and added back one at a time over 270 games to 20 minutes. Against the Clockwork its army clock and army floor (which held back the gold its economy needed) its fighting rules (the formed line, the guns' coaching, the rider screen, the cavalry micro, the defence) and its hold at home are now off, and it plays its economy: on the same ten games it beats the old set game by game (9 better, 1 worse) and lasted to 20:00 in all ten. Against the Brood and in the mirror nothing measured clearly, so it plays as before. Sixteen small variants from earlier tests that measured worse were removed; the situational rules stay.",
-		"THE CROWN COMPUTER CREWS ITS POWDER MILLS (nothing the player uses changed): against the Clockwork, when its army runs short of powder (Musketeers with no shots, a Barracks waiting), it now fills every Powder Mill that still has saltpetre toward a full crew of six, the nearest first, and sends the hands back to the Farms once the powder is in the bank. Before, it only ever filled its first Mill and kept one or two hands on the others while its saltpetre lay unused. On the same games it won or led 34 of 40 against 14 of 20 before. Against the Brood and in the mirror it measured no better, so there it plays as before.",
 	]},
 	{"v": "0.38.106", "items": [
 		"THE PENDULUM WALKS PAINTED: its walk facing south, south-east and east is now hand-painted instead of pieced together from cut parts, with knees that bend and feet that plant. The north-east and north walks are still the old ones for now.",
