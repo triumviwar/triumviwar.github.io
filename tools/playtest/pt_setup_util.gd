@@ -5,7 +5,8 @@ extends "res://tools/playtest/pt_base.gd"
 func nth_button(text: String, n := 0) -> BaseButton:
 	var k := 0
 	for b in buttons():
-		if button_text(b).to_upper().strip_edges().begins_with(text.to_upper()):
+		var bt := button_text(b).to_upper().strip_edges()
+		if bt.begins_with(text.to_upper()) or bt.begins_with(Loc.t(text).to_upper()):
 			if k == n:
 				return b
 			k += 1

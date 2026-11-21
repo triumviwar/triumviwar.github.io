@@ -89,6 +89,11 @@ func _think() -> void:
 	var g := game()
 	if g.over:
 		return
+	var halls_built := my_buildings("town_hall").filter(func(b) -> bool: return b.built).size()
+	if my_buildings("farm").size() < 2 * halls_built and not order.has("farm"):
+		order.push_front("farm")
+	if my_buildings("powder_mill").size() < halls_built and not order.has("powder_mill") and halls_built >= 2:
+		order.append("powder_mill")
 	if int(g.clock) % 30 < 2:
 		_report_state()
 	await _defend()
@@ -150,8 +155,11 @@ func _build_next() -> void:
 	# a building of the order still a ghost (nobody went): wait
 	var spot := _spot_for(k)
 	if spot.x < 0:
-		finding("BUILD: no free spot found for %s near the hall" % k)
+		step("no spot yet for %s: later" % k)
 		order.pop_front()
+		if k in ["farm", "powder_mill"] and int(placed.get("deferred_" + k, 0)) < 6:
+			placed["deferred_" + k] = int(placed.get("deferred_" + k, 0)) + 1
+			order.append(k)
 		return
 	var lab = _a_labourer()
 	if lab == null:
@@ -243,33 +251,45 @@ func _spot_for(k: String) -> Vector2i:
 	return Vector2i(-1, -1)
 
 
-## Barracks train Musketeers, Foundry guns, Breeder a horse now and then.
+## Production through F3 (MAKE: every building that makes something), as the HOW TO PLAY suggests: one press of
+## MUSKETEER queues at the least busy Barracks.
 func _train_army() -> void:
 	var going_up := my_buildings("cottage").filter(func(b) -> bool: return not b.built).size()
-	if _supply_free() < 6 and going_up == 0 and (order.is_empty() or order[0] != "cottage") and int(res()["cap"]) < 200:
+	var need := 6 + 3 * my_buildings("barracks").size()
+	if _supply_free() < need and going_up == 0 and (order.is_empty() or order[0] != "cottage") and int(res()["cap"]) < 200:
 		order.push_front("cottage")
 	if _supply_free() < 2:
 		return
-	for b in my_buildings("barracks"):
-		if (b.queue as Array).size() < 2 and _built(b):
+	var rax := my_buildings("barracks").filter(func(b) -> bool: return b.built)
+	var fdy := my_buildings("foundry").filter(func(b) -> bool: return b.built)
+	if rax.is_empty():
+		return
+	var idle_rax := rax.filter(func(b) -> bool: return (b.queue as Array).size() < 2).size()
+	if idle_rax == 0 and (fdy.is_empty() or (fdy[0].queue as Array).size() > 0):
+		return
+	await key(KEY_F3)
+	await settle()
+	for i in idle_rax:
+		if int(res()["gold"]) < 60:
+			break
+		var want := "MUSKETEER"
+		if not my_buildings("horse_breeder").is_empty() and my_units("cuirassier").size() < 4 and randf() < 0.25:
+			want = "HORSEMAN"
+		var r := await card(want)
+		if r == "ok":
+			stats["trained"] += 1
+	if not fdy.is_empty() and (fdy[0].queue as Array).is_empty() and int(res()["gold"]) > 260 and my_units("cannon").size() < 5:
+		var r2 := await card("FIELD CANNON")
+		if r2 == "ok":
+			stats["trained"] += 1
+	for b in rax:
+		if not b.has_meta("pt_rally"):
 			await select_ent(b)
-			var want := "MUSKETEER" if randf() < 0.8 or my_buildings("horse_breeder").is_empty() else "HORSEMAN"
-			var r := await card(want)
-			if r == "ok":
-				stats["trained"] += 1
-			if int(b.get("rally_set") if "rally_set" in b else 0) == 0 and not b.has_meta("pt_rally"):
-				# rally in front of the base: R (RALLY) then a click
-				if not find_card("RALLY").is_empty():
-					await card("RALLY")
-					var w: Vector2 = my_buildings("town_hall")[0].position.lerp(enemy_guess, 0.12)
-					await click(await look_at(w))
-					b.set_meta("pt_rally", true)
-	for f in my_buildings("foundry"):
-		if (f.queue as Array).size() < 1 and _built(f) and int(res()["gold"]) > 300 and my_units("cannon").size() < 5:
-			await select_ent(f)
-			var r := await card("FIELD CANNON")
-			if r == "ok":
-				stats["trained"] += 1
+			if game().selection.has(b) and not find_card("RALLY").is_empty():
+				await card("RALLY")
+				var w: Vector2 = my_buildings("town_hall")[0].position.lerp(enemy_guess, 0.15)
+				await click(await look_at(w))
+				b.set_meta("pt_rally", true)
 
 
 func _built(b) -> bool:

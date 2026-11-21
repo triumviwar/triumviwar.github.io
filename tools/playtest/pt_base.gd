@@ -358,6 +358,11 @@ func button_text(b: BaseButton) -> String:
 func find_button(text: String) -> BaseButton:
 	var bs := buttons()
 	var want := text.to_upper()
+	var tr := Loc.t(text).to_upper()
+	if tr != want:
+		for b in bs:
+			if button_text(b).to_upper().strip_edges() == tr:
+				return b
 	for b in bs:
 		if button_text(b).to_upper().strip_edges() == want:
 			return b

@@ -90,14 +90,15 @@ func run() -> void:
 	await key(KEY_1)
 	await settle()
 	check("group_double_tap_centres", cam().distance_to(labs[0].position) < 400, "cam %s labs %s" % [str(cam()), str(labs[0].position)])
-	await press(w2s(ent_point(hall)))
+	await key(KEY_F3)        # (MAKE: the hall alone; a click near it picks the labourers at its door)
 	await settle()
+	step("before Shift+1: %s" % str(sel_kinds()))
 	_shift = true
 	await key(KEY_1)
 	_shift = false
 	await settle()
 	check("shift_number_adds_group", game().selection.size() >= labs.size() + 1, str(sel_kinds()))
-	await press(w2s(ent_point(hall)))
+	await key(KEY_F3)
 	await settle()
 	key_down(KEY_SHIFT, true)
 	await ctrl_key(KEY_1)
@@ -107,11 +108,19 @@ func run() -> void:
 	await settle()
 	check("ctrl_shift_number_adds", sel_kinds().has("town_hall"), str(sel_kinds()))
 	await shot("groups_bar")
-	# ---- orders
+	# ---- orders (the labourers alone again: Ctrl+1 over them)
 	await key(KEY_ESCAPE)
+	await look_at(labs[0].position)
+	r = Rect2(w2s(labs[0].position), Vector2.ZERO)
+	for u in labs:
+		r = r.expand(w2s(u.position + Vector2(0, -12)))
+	r = r.grow(30)
 	await drag(r.position, r.end)
 	await settle()
+	await ctrl_key(KEY_1)
+	step("orders on %s" % str(sel_kinds()))
 	var spot: Vector2 = hall.position + Vector2(-200, 160)
+	await look_at(spot)
 	await rclick(w2s(spot))
 	await settle()
 	check("rclick_move", labs.all(func(u) -> bool: return u.order in ["move", "amove"]), str(labs.map(func(u) -> String: return u.order)))
@@ -256,8 +265,10 @@ func run() -> void:
 	# leave to the menu and CONTINUE
 	var n_units := my_units().size()
 	clk = g.clock
-	await press(mr.get_center() * ms)
-	await settle()
+	if not hud().menu_open:
+		await press(mr.get_center() * ms)
+		await settle()
+	step("menu open after Settings closed: %s" % hud().menu_open)
 	await menu_press("QUIT TO MENU")
 	await wait_real(1.5)
 	await shot("menu_after_quit")
@@ -291,6 +302,8 @@ func run() -> void:
 
 
 func menu_press(label: String) -> void:
+	if not hud().menu_open:
+		finding("MENU: pressing '%s' with the menu closed" % label)
 	for b in hud()._menu_buttons():
 		if String(b.get("label", "")).begins_with(label):
 			await press((b["rect"] as Rect2).get_center() * hud().ui_scale)
