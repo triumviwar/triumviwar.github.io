@@ -3,7 +3,7 @@
 (scripts/ai_crown_mill_crew.gd) ON (the default) against OFF (`-- millcrew:off`), in computer games: Crown Hard OPTIMAL v
 the Brood, v the Clockwork and the Crown mirror (both Crowns play the arm), the SAME 10 games as the crown-1000 and powder
 jobs (5 maps x 2 rounds, start spots swapped, their seeds), to 20:00; blocks of the same 10 pooled.
-    python3 tools/study/crown_mill_crew.py run ARM OPP BLOCK [--jobs 2] [--extra a:b,c:d]    ARM: on | off   OPP: brood | clockwork | crown
+    python3 tools/study/crown_mill_crew.py run ARM OPP BLOCK [--jobs 2] [--extra a:b,c:d]    ARM: on | v1 | off   OPP: brood | clockwork | crown
     python3 tools/study/crown_mill_crew.py report [--games]
 Data: docs/crown_mill_crew/data/<ARM>/<OPP>_b<BLOCK>/<tag>/ (result.json, story.txt, planlog.txt).
 The measures and the score are the powder study's (tools/study/crown_powder_study.py): g = ln of (income + 2 x army)
@@ -17,7 +17,7 @@ import crown_1000_brood as cb
 import crown_powder_study as cps
 
 DATA = os.path.join(qm.ROOT, "docs/crown_mill_crew/data")
-ARMS = ["off", "on"]
+ARMS = ["off", "v1", "on"]      # v1: the first version (`millcrew:v1`), on: the default
 OPPS = ["brood", "clockwork", "crown"]
 NAMES = {"brood": "the Brood", "clockwork": "the Clockwork", "crown": "the Crown (mirror)"}
 
@@ -26,7 +26,7 @@ def run(arm, opp, blk, jobs=2, extra_args=None):
     cb.OPP = opp
     dd = os.path.join(DATA, arm, "%s_b%d" % (opp, blk))
     os.makedirs(dd, exist_ok=True)
-    extra = (["millcrew:off"] if arm == "off" else []) + (extra_args or [])
+    extra = {"off": ["millcrew:off"], "v1": ["millcrew:v1"]}.get(arm, []) + (extra_args or [])
     with open(os.path.join(dd, "extra.txt"), "w") as f:
         f.write(" ".join(extra) + "\n")
     qm.RUN_ROOT = os.path.abspath(qm.ROOT)
@@ -110,12 +110,15 @@ def report():
     print("| matchup | g | g 14:00 | income at 12:00 | income at 16:00 | army at 12:00 | army at 16:00 | powder bank 12 | hands on Mills 12 | hands on Mills 16 | saltpetre left 16 | musket men with no shot 12 | no shot 16 |")
     print("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for opp in OPPS:
-        on, off = pool("on", opp), pool("off", opp)
+      for arm in ("v1", "on"):
+        on, off = pool(arm, opp), pool("off", opp)
+        if not on:
+            continue
         cells = []
         for k in ("g", "g14", "inc12_v", "inc16_v", "army12_v", "army16_v", "pow12", "hands12", "hands16", "salt16", "bay12", "bay16"):
             p = paired_key(on, off, k)
             cells.append("" if p is None else ("%+.2f (%.1f) %d/%d of %d" % p if k in ("g", "g14") else "%+.0f (%.1f) %d/%d of %d" % p))
-        print("| %s | %s |" % (opp, " | ".join(cells)))
+        print("| %s %s | %s |" % (opp, arm, " | ".join(cells)))
     print("\n### The mirror: how far apart the two Crowns end (both play the arm)\n")
     print("| arm | games | decided by 20:00 | mean abs(g) | 1.5x apart at 16:00 | median minute decided |")
     print("|---|---|---|---|---|---|")

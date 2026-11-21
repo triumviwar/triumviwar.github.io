@@ -28,8 +28,12 @@ const DRY_MANY := 6
 const MOVE_A_THINK := 3
 const MISSING := 30.0            # powder of shots missing in the army that counts as "the army wants powder"
 const DRY_FEW := 2
-const HOLD := 30.0               # (s) on for at least this long
-const STEP_BACK := 6.0           # (s) one hand back to the Farms at most this often after release
+const NEED_CAP := 120.0          # the army's missing shots count up to this much powder (men far out in the field
+                                 # cannot refill: counted whole, the first version kept the Mills full while 150-430 lay banked)
+const HOLD := 20.0               # (s) on for at least this long
+const STEP_BACK := 2.0           # (s) one hand back to the Farms at most this often after release
+## `-- millcrew:v1`: the first version measured (no cap on the missing shots, on for 30 s at least, a hand back every 6 s)
+var v1 := OS.get_cmdline_user_args().has("millcrew:v1")
 
 var ai                           # the AICrown
 var game
@@ -109,12 +113,12 @@ func tick() -> void:
 	var crew := _crew()
 	_missing()
 	var want: float = ai.POWDER_WANT + 15.0 * (ai._mine("barracks").size() + ai._mine("foundry").size())
-	var need: float = want + _need
+	var need: float = want + (_need if v1 else minf(_need, NEED_CAP))
 	var bank: float = ai._res2()
 	var asks: bool = _need >= MISSING or _dry >= DRY_FEW or ai.ca_powder_wait()
 	var blocked: bool = mills.is_empty() or (ai.scout != null and ai.scout.verdict == "rush" and now < 420.0) or ai._defending()
 	if active:
-		if blocked or (bank >= need and now - _on_t >= HOLD):
+		if blocked or (bank >= need and now - _on_t >= (30.0 if v1 else HOLD)):
 			active = false
 			_floor = crew
 			_step_t = now
@@ -128,7 +132,7 @@ func tick() -> void:
 		var labs: int = game.workers(ai.team).size()
 		var share := SHARE_DRY if _dry >= DRY_MANY else SHARE
 		_floor = mini(FULL * mills.size(), maxi(crew, int(labs * share)))
-	elif _floor > 0 and now - _step_t >= STEP_BACK:
+	elif _floor > 0 and now - _step_t >= (6.0 if v1 else STEP_BACK):
 		_step_t = now
 		_floor = mini(_floor, crew) - 1
 		if _floor <= 0:
