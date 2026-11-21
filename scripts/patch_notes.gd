@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.96", "items": [
+		"SPECIMEN ONE IS PAINTED: five more of the Naturalist prologue's pictures are real paintings now: the station at the rapids under the cloud mountain, eyes at the forest's edge as Valadares raises his pistol, the Tyrant Sire lying down by the pen and its eggs, Lindqvist clutching his crate in the canoe as the station burns, and the canoe going north past giant three-toed tracks.",
+	]},
 	{"v": "0.38.95", "items": [
 		"THE THIRTEENTH HOUR IS PAINTED: five more of the Clockwork prologue's pictures are real paintings now instead of stand-ins: Nuremberg's Christmas market in Advent, the Perpetual waking in Hollweg's hidden courtyard, Jakob finding the red gears on the mill island, Hollweg at the city gate as Nuremberg burns, and the crates with a red glow loaded at the port.",
 	]},
