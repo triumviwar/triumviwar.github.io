@@ -85,7 +85,9 @@ static func war_table(main: Node) -> void:
 	var box := _frame(main)
 	var p := Campaign.progress()
 	var sl0 := _line_data()
-	box.add_child(UiStyle.heading(Loc.t(String(sl0.get("hub", {}).get("title", sl0.get("title", "")))) + "  ·  " + Loc.t("WAR TABLE"), 34, UiStyle.TRIM))
+	# (the hub as the story has left it: after the fall the Clockmaker's war table is the barn at Fürth's, not Hollweg's
+	# workshop; playtest-campaign-clock)
+	box.add_child(UiStyle.heading(Loc.t(String(hub_now(sl0.get("hub", {}), p).get("title", sl0.get("title", "")))) + "  ·  " + Loc.t("WAR TABLE"), 34, UiStyle.TRIM))
 	var ids: Array = (sl0.get("missions", []) as Array).map(func(x) -> String: return String(x))
 	if pick == "" or not ids.has(pick) or not Campaign.unlocked(pick, p):
 		pick = ""
@@ -131,6 +133,9 @@ static func war_table(main: Node) -> void:
 				war_table(main))
 			b.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 			b.alignment = HORIZONTAL_ALIGNMENT_LEFT
+			# (a long title with "(won by ...)" wraps onto a second line instead of widening the list: the mission's
+			# panel lost its width and pushed BACK / WAR MAP under the bottom of the screen; playtest-campaign-clock)
+			b.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			b.disabled = not ok
 			b.name = "Mission_" + String(mid)
 			if String(mid) == pick:
@@ -148,7 +153,9 @@ static func war_table(main: Node) -> void:
 		rv.add_child(UiStyle.heading(Loc.t(String(m.get("title", pick))), 32, UiStyle.TRIM))
 		var br: Dictionary = m.get("briefing", {}).get(my_side, {})
 		var sv := StillView.make(m.get("stills", {}).get(String(br.get("still", "")), {}), _side_col(m, my_side))
-		sv.custom_minimum_size = Vector2(0, 220)
+		# (it grows into the room left; at least 140 tall, so a crossing's three VERSUS seats and their line still leave
+		# BACK / WAR MAP on the screen: a07 on 1280 x 720 put them 36 px under the edge with 220; playtest-campaign-clock)
+		sv.custom_minimum_size = Vector2(0, 140)
 		sv.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		rv.add_child(sv)
 		rv.add_child(_wrap(Loc.t(String(m.get("summary", ""))), 17))
@@ -263,8 +270,18 @@ static func briefing(main: Node, mid: String) -> void:
 	sv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	sv.size_flags_stretch_ratio = 1.3
 	body.add_child(sv)
-	var v := _panel(body)
+	# (the words, the objectives, the sides and the difficulty scroll when they need more room than the screen has: the
+	# Fürth Line's briefing in Portuguese pushed START half under the bottom of a 1280 x 720 screen;
+	# playtest-campaign-clock)
+	var bsc := ScrollContainer.new()
+	bsc.name = "BriefingScroll"
+	bsc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	bsc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bsc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	body.add_child(bsc)
+	var v := _panel(bsc)
 	v.get_parent().size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	v.get_parent().size_flags_vertical = Control.SIZE_EXPAND_FILL
 	v.add_child(UiStyle.text(Loc.t("You lead: %s") % Loc.t(Campaign.side_name(m, side)), 20, _side_col(m, side).lightened(0.35), HORIZONTAL_ALIGNMENT_LEFT, true))
 	for t in br.get("text", []):
 		v.add_child(_wrap(Loc.t(String(t)), 18))
