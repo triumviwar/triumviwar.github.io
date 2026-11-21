@@ -3,7 +3,7 @@ navy (art/redraws/<sheet>.png) cut with the shared redraw cutter onto the game's
 tall (median bounding-box height) as the reference strip's chosen frames, their feet where that strip's feet are.
 
 Usage (repo root):
-  python3 tools/import_sa_strip.py <sheet> <unit> <anim> <dir> <frames> <ref_strip> <ref_frames> [ref_pick,...]
+  python3 tools/import_sa_strip.py <sheet> <unit> <anim> <dir> <frames> <ref_strip> <ref_frames> [ref_pick,...] [sheet_pick,...]
 e.g. python3 tools/import_sa_strip.py rebel_pikeman_walk_s_chatgpt rebel_pikeman walk s 3 walk_s 3 0,1
 """
 import os
@@ -48,6 +48,8 @@ def main():
     sheet, unit, anim, d, n, ref, rn = sys.argv[1:8]
     n, rn = int(n), int(rn)
     pick = [int(x) for x in sys.argv[8].split(",")] if len(sys.argv) > 8 else list(range(rn))
+    # the answer's frames whose height is measured (default all; leave out frames with a raised weapon)
+    spick = [int(x) for x in sys.argv[9].split(",")] if len(sys.argv) > 9 else None
     refs = frames_of("assets/units/%s/%s.png" % (unit, ref), rn)
     cell = (refs[0].shape[1], refs[0].shape[0])
     rb = [box(refs[i][..., 3] > 0) for i in pick]
@@ -60,7 +62,8 @@ def main():
     if any(not (f[..., 3] > 0).any() for f in figs):
         figs = by_parts(px, fg, n)
     hs = [box(f[..., 3] > 0) for f in figs]
-    scale = want_h / float(np.median([b[3] - b[1] + 1 for b in hs]))
+    hp = hs if spick is None else [hs[i] for i in spick]
+    scale = want_h / float(np.median([b[3] - b[1] + 1 for b in hp]))
     ground = float(np.median([b[3] for b in hs]))
     cells = []
     for f in figs:
