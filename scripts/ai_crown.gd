@@ -1044,6 +1044,8 @@ func _think_stage(i: int) -> void:
 	# (the Crown coach 2026-11-16, LABOURERS FIRST: before any stage spends; the gold for an idle hall's labourer is held)
 	if coach == null and on:
 		coach = AICrownCoach.new(self)
+	if i == 0:
+		mill_crew().tick()      # (crown-mill-crew: THE MILLS' FULL CREW while the army's powder is low; before the hands move)
 	var floor_held: int = vbr.floor_produce() if vb() != null else 0      # (crown-brood-army: THE ARMY FLOOR TIED TO THE BROOD)
 	game.players[team]["gold"] -= floor_held
 	var lab_held: int = coach.labs_first() if coach != null else 0
@@ -1899,6 +1901,30 @@ func _bo_hall() -> String:
 ## rule kept 1-3 on it until 5:00, so the Musketeers waited for powder (about 20 a minute: 2 Musketeers) while gold piled up.
 ## After the opening every Mill gets its full crew (powder piling up with no gold sends two back to the farms, as before).
 func _mill_cap() -> int:
+	var cap := _mill_cap_wanted()
+	if mc != null and mc.floor_crew() > 0:
+		cap = maxi(cap, mc.floor_crew())        # (crown-mill-crew: the full crews while the powder is low, AICrownMillCrew)
+	return cap
+
+
+## (crown-mill-crew) THE MILLS' FULL CREW (scripts/ai_crown_mill_crew.gd, docs/crown_mill_crew.md); `-- millcrew:off`.
+var mc: AICrownMillCrew = null
+
+
+func mill_crew() -> AICrownMillCrew:
+	if mc == null:
+		mc = AICrownMillCrew.new(self)
+	return mc
+
+
+## While the rule is on it fills every Mill with saltpetre left, nearest first (the shared mover fills only the first Mill).
+func _balance_mill(labs: Array) -> void:
+	if mc != null and mc.fill(labs):
+		return
+	super(labs)
+
+
+func _mill_cap_wanted() -> int:
 	var cap := _mill_cap_plan()
 	if _foe_is("brood") and not mill_feed_off and on and difficulty >= 1:
 		# (crown-v-brood-coach: the Farms' posts before the powder: Greenhold 1100 at 5:33-6:34, six of 14 labourers on the

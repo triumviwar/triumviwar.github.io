@@ -179,6 +179,9 @@ func _crown_counters() -> Dictionary:
 		# (crown-rule-cleanup: every coaching rule's acts, AICrownRules; the mirror's press, the defence's musters, riders' blows)
 		if a.has_meta("rules"):
 			d["rules"] = a.get_meta("rules")
+		var mcx = a.get("mc")
+		if mcx != null:
+			d["millcrew"] = mcx.report()        # (crown-mill-crew: seconds on, hands sent, times switched on)
 		var cmx = a.get("cm")
 		if cmx != null:
 			d["cmc_press_n"] = cmx.get("press_n")

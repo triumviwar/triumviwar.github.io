@@ -28,6 +28,18 @@
 
 - GRADED GAPS COVERED (owner 2026-11-21 03:42 "all parts you rated... covered in the current tasks? If not, do it"): Claude graded the game B- overall (concept A, systems A-, campaign B+ design / C play, art B-, computer opponent C, balance ungradeable, polish C+, scope C). Two more cloud jobs: ai-opponent-review (fresh 9-matchup win-rate matrix, human-like NOVICE/AVERAGE/GOOD benchmark players v each difficulty, the computer's visible blunders fixed behind switches; docs/ai_opponent_review.md) and sprite-hallucination-audit (every strip on contact sheets, wrong frames listed with ChatGPT redraw prompts; docs/sprite_hallucination_audit.md). Owner-only parts: campaign dialogue (he rewrites it), voices (Chatterbox on his PC), scope/focus (his call).
 - PLAYTEST JOBS (owner 2026-11-21 02:45: "simulations of players, buttons pressed, actually play the game... campaign missions, editor, tutorial... look for bad aspects or bugs, very deep work"): 8 cloud jobs started 02:50-02:57, each on its own branch, real input from the main menu, several player types, screenshots, desktop + phone, en/pt/es: playtest-campaign-crown (p01, a01, a06, a07), playtest-campaign-clock (c01, a02, a04), playtest-campaign-brood (b01, a03, a05), playtest-tutorial-editor (tutorial, map editor, replays), playtest-skirmish-crown / -clockwork / -brood (whole matches v Hard/OPTIMAL, every card button, touch), playtest-menus-online (menus, settings, saves, online rooms, spectators, ranked dev, web). Drivers in tools/playtest/, reports docs/playtest_2026_11_21_<area>.md. Merge each on "DONE: <job>:".
+- CROWN MILL CREW (owner 2026-11-20 20:41 "YES"; job crown-mill-crew, branch crown-mill-crew, docs/crown_mill_crew.md,
+  scripts/ai_crown_mill_crew.gd AICrownMillCrew, tools/test_crown_mill_crew.gd, tools/study/crown_mill_crew.py + _queue.sh,
+  data docs/crown_mill_crew/data/): the Crown COMPUTER only (no number changed). Why it kept 1-2 hands a Mill: the Mill
+  feedback added hands only while a Barracks/Foundry trained (refills of dry soldiers never asked) and AI._balance_mill
+  fills only mills[0]. From 5:00, when the army asks for powder (30+ powder of shots missing, counted up to 120, or 2+
+  musket men dry, or a Barracks waiting) and the bank is under half the need, it fills every Mill with saltpetre left
+  toward 6, nearest first, 3 a think, idle hands then the fullest Farm, at most 35% of the labourers (50% with 6+ dry);
+  not in a rush defence; lets go when the bank holds the need (20 s at least), hands back one per 2 s. ON BY DEFAULT V THE
+  CLOCKWORK ONLY (MATCHUPS; `millcrew:off`, `millcrew:on` everywhere, `millcrew:v1` the first version). 180 games to 20:00
+  (10 games x 2 blocks a cell, off / v1 / on): v Clockwork won or led 34 of 40 (off 14 of 20), won 13 of 40 (3 of 20), g
+  +0.29 (t 1.4) / +0.20 (t 0.8), dry minutes 1.5 -> 0.4-0.6; v Brood no change (-0.16 / -0.07); mirror a snowball (1.5x
+  apart at 16:00 7-9 of 20 v 4), so off there. 7 Claude's choices in the doc.
 - THE WAR MAP AS AN OLD MAP (owner 2026-11-20 22:42-22:49 "17th~18th century style map", "Yes" to the hybrid; 0.38.94,
   docs/war_map_v1.md "The old-map look"): ChatGPT's parchment, ships, sea serpent, cartouche, inked mountains and seals
   (art/campaign/warmap_*_chatgpt.png -> campaign/warmap_art/ by tools/campaign/import_warmap_art.py); the land stays
