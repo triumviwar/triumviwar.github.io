@@ -1810,12 +1810,20 @@ func fill(txt: String) -> String:
 	if txt.find("{") < 0:
 		return txt
 	for cn in counters:
-		txt = txt.replace("{%s}" % cn, str(counters[cn]))
-		txt = txt.replace("{%s.of}" % cn, str(data.get("counters", {}).get(cn, {}).get("of", "")))
+		txt = txt.replace("{%s}" % cn, _num(counters[cn]))
+		txt = txt.replace("{%s.of}" % cn, _num(data.get("counters", {}).get(cn, {}).get("of", "")))
 	for cn in clocks:
 		var left := maxi(0, int(ceil(float(clocks[cn]) - game.clock)))
 		txt = txt.replace("{clock:%s}" % cn, "%d:%02d" % [left / 60, left % 60])
 	return txt
+
+
+## A number for the player's eyes: a whole one without ".0" (the data's numbers are floats once read: a07's "Saved: 13
+## of 18.0"; playtest 2026-11-21).
+static func _num(v: Variant) -> String:
+	if v is float and is_equal_approx(v, roundf(v)):
+		return str(int(roundf(v)))
+	return str(v)
 
 
 ## An OPENING's or ENDING's pages as this run left them: a line may be {"id", "if": a condition} (said only when it
