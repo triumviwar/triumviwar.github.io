@@ -1,0 +1,30 @@
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:18] P2 Crown's plan: Timing attack, a build order of 12 steps from here (scripts/ai_crown.gd)
+[01:18] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Timing attack (a timing attack)
+[02:33] P2 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Timing attack (a timing attack)
+[03:09] P2 Crown's plan: a Farm at its new hall at once (20 s after it stood)
+[03:54] P2 Crown's plan: the army first: 0 of army against the 146 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:54] P2 Crown's plan: the army first: 100 of army against the 330 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[06:40] P2 Crown's plan: the opening is over (the timing's window is shut: the Clockwork's economy is paying off; its waves weigh what it reckons from here): the milestones take over
+[06:42] P2 Crown's plan: milestone: Barracks 3 (40 labourers, 2 halls, army 21 supply)
+[07:14] P2 Crown's plan: milestone: Armoury 1 (43 labourers, 3 halls, army 29 supply)
+[07:19] P2 Crown's plan: milestone: Church 1 (44 labourers, 3 halls, army 33 supply)
+[07:40] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[07:53] P2 Crown's plan: milestone: Foundry 2 (49 labourers, 3 halls, army 29 supply)
+[08:02] P2 Crown's plan: trains a Drummer for its Marching Band (16 soldiers)
+[08:50] P2 Crown's plan: trains a Fifer for its Marching Band (11 soldiers)
+[09:32] P2 Crown's plan: trains a Piper for its Marching Band (14 soldiers)
+[11:17] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[11:19] P2 Crown's plan: trains a Drummer for its Marching Band (32 soldiers)
+[11:20] P2 Crown's plan: trains a Fifer for its Marching Band (32 soldiers)
+[11:20] P2 Crown's plan: trains a Piper for its Marching Band (32 soldiers)
+[12:03] P2 Crown's plan: the army first: 1695 of army against the 3025 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[13:41] P2 Crown's plan: trains a Drummer for its Marching Band (30 soldiers)
+[13:43] P2 Crown's plan: trains a Fifer for its Marching Band (30 soldiers)
+[13:44] P2 Crown's plan: trains a Piper for its Marching Band (32 soldiers)
+[14:32] P2 Crown's plan: trains a Fifer for its Marching Band (45 soldiers)
+[14:39] P2 Crown's plan: trains a Drummer for its Marching Band (42 soldiers)
+[16:12] P2 Crown's plan: its wave stays out: only scouts by its buildings at home (the wave is worth 2755)
+[17:23] P2 Crown's plan: Siege push, a build order of 1 steps from here (scripts/ai_crown.gd)
+[17:23] P2 Crown's plan: optimal: reads DEFENSIVE [turrets or rooted defenders]: picks Siege push (a siege to break its defences)
+[18:38] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Siege push (what it plays already answers it)
