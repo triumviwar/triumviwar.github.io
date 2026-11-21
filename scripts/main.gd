@@ -661,7 +661,12 @@ func _set_back(b: Button) -> void:
 
 
 ## Esc / back: press this page's BACK (menus only, never in a match). True when there was one.
+## An open dropdown list is closed first (playtest 2026-11-21: Esc on an open list left the whole setup page).
 func menu_back() -> bool:
+	if is_instance_valid(_list_shade) and _list_shade.is_inside_tree() and not _list_shade.is_queued_for_deletion():
+		_list_shade.queue_free()
+		_list_shade = null
+		return true
 	if game != null or not is_instance_valid(_esc_button) or not _esc_button.is_visible_in_tree() or _esc_button.disabled:
 		return false
 	_esc_button.pressed.emit()
@@ -1946,8 +1951,12 @@ func _dropdown(text: String, w: float, items: Array, pick: Callable, list_w := 2
 
 ## The list a dropdown opens: big rows in the menu's own layer (not a separate popup
 ## window, which froze on some Android phones). A tap outside closes it.
+var _list_shade: Control = null      # the dropdown list open now (_open_list): Esc / back closes it first
+
+
 func _open_list(b: Button, current: String, items: Array, pick: Callable, min_w := 240.0, after := Callable()) -> void:
 	var shade := Control.new()
+	_list_shade = shade
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	shade.mouse_filter = Control.MOUSE_FILTER_STOP
 	var bg := ColorRect.new()
