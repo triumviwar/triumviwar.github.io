@@ -26,6 +26,7 @@
 
 ## Current work
 
+- PLAYTEST JOBS (owner 2026-11-21 02:45: "simulations of players, buttons pressed, actually play the game... campaign missions, editor, tutorial... look for bad aspects or bugs, very deep work"): 8 cloud jobs started 02:50-02:57, each on its own branch, real input from the main menu, several player types, screenshots, desktop + phone, en/pt/es: playtest-campaign-crown (p01, a01, a06, a07), playtest-campaign-clock (c01, a02, a04), playtest-campaign-brood (b01, a03, a05), playtest-tutorial-editor (tutorial, map editor, replays), playtest-skirmish-crown / -clockwork / -brood (whole matches v Hard/OPTIMAL, every card button, touch), playtest-menus-online (menus, settings, saves, online rooms, spectators, ranked dev, web). Drivers in tools/playtest/, reports docs/playtest_2026_11_21_<area>.md. Merge each on "DONE: <job>:".
 - THE WAR MAP AS AN OLD MAP (owner 2026-11-20 22:42-22:49 "17th~18th century style map", "Yes" to the hybrid; 0.38.94,
   docs/war_map_v1.md "The old-map look"): ChatGPT's parchment, ships, sea serpent, cartouche, inked mountains and seals
   (art/campaign/warmap_*_chatgpt.png -> campaign/warmap_art/ by tools/campaign/import_warmap_art.py); the land stays
