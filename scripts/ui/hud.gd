@@ -4464,8 +4464,10 @@ func _shift_queueable(list: Array) -> void:
 ## (RELEASE HORSE, HARNESS) in the selection.
 func _horse_buttons(list: Array, units: Array) -> void:
 	var leaders := units.filter(func(u: Unit) -> bool: return u.can_lead())
+	var near := _free_horse_near(leaders.filter(func(u: Unit) -> bool: return u.lead_count() < int(Defs.HORSES["lead_max"])), true) if not leaders.is_empty() else false
+	if not near and not leaders.is_empty() and leaders.all(func(u: Unit) -> bool: return u.kind == "winder" and u.led.is_empty()):
+		leaders = []          # (a Winder's card: LEAD only when a loose horse is near; it was always there, greyed: playtest 2026-11-21)
 	if not leaders.is_empty():
-		var near := _free_horse_near(leaders.filter(func(u: Unit) -> bool: return u.lead_count() < int(Defs.HORSES["lead_max"])), true)
 		list.append(["horse_lead", "LEAD", func() -> void:
 			var n := game.lead_order(game.selected_units())
 			toast("Fetching %d horse%s by the reins." % [n, "" if n == 1 else "s"] if n > 0 else "No free horse nearby."), near, "No free horse of yours within %d tiles." % int(Defs.HORSES["fetch"]), ""])
@@ -4930,8 +4932,19 @@ func _draw_card(font: Font) -> void:
 			lsz -= 1
 		if UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5:
 			lab = lab.replace(Loc.t("ARMOURED ").strip_edges() + " ", Loc.t("ARM. ").strip_edges() + " ")      # (Armoured Dragoon / Officer: still too long)
-		lab = _fit_card_label(lab, lsz, br.size.x + 2)      # (a few pixels over the padding still reads: ATTACK GROUND)
-		_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab, lsz, (Color(1, 0.9, 0.55) if on else UiStyle.TEXT) if enabled else Color(1, 1, 1, 0.45), 1)
+		var lcol := (Color(1, 0.9, 0.55) if on else UiStyle.TEXT) if enabled else Color(1, 1, 1, 0.45)
+		var sp := lab.find(" ", lab.length() / 2 - 3)
+		if sp < 0:
+			sp = lab.rfind(" ")
+		if UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5 and sp > 0:
+			# still too long at the smallest size (VISTA DAS ENGRENAGENS, ATACAR O CHÃO...: they were cut off): two lines
+			# (playtest-skirmish-clockwork, 2026-11-21)
+			_ci.draw_rect(Rect2(br.position.x + 2, br.end.y - 26, br.size.x - 4, 11), Color(0, 0, 0, 0.62))
+			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 15), lab.substr(0, sp), 8, lcol, 1)
+			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab.substr(sp + 1), 8, lcol, 1)
+		else:
+			lab = _fit_card_label(lab, lsz, br.size.x + 2)      # (a few pixels over the padding still reads: ATTACK GROUND)
+			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab, lsz, lcol, 1)
 		if it[5] != "":
 			var cw := font.get_string_size(it[5], HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 8
 			var cbr := Rect2(br.end.x - cw - 2, br.position.y + 2, cw, 15)
