@@ -3470,7 +3470,10 @@ func _draw_rest(font: Font) -> void:
 	if _msg_t > 0.0:
 		var a := minf(_msg_t, 1.0)
 		var mw := font.get_string_size(_msg, HORIZONTAL_ALIGNMENT_LEFT, -1, 21).x + 36
-		var mrr := Rect2(vs.x * 0.5 - mw * 0.5, top_rect().end.y + 46, mw, 36)
+		# (a campaign mission: lower, under its objectives and dialogue box, which lie over the HUD and hid the toast's
+		# ends: "...out of powder: bring them to a Mill"; playtest 2026-11-21)
+		var my := top_rect().end.y + 46 if game.mission == null else maxf(top_rect().end.y + 46, vs.y * 0.4)
+		var mrr := Rect2(vs.x * 0.5 - mw * 0.5, my, mw, 36)
 		var sb := UiStyle.box(Color(0.1, 0.08, 0.06, 0.88 * a), Color(0.79, 0.64, 0.29, 0.6 * a), 2, 18, 0.0)
 		sb.draw(_ci.get_canvas_item(), mrr)
 		_text(UiStyle.bold_font(), Vector2(vs.x * 0.5, mrr.position.y + 25), _msg, 21, Color(1, 0.85, 0.65, a), 1)
