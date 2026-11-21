@@ -208,8 +208,18 @@ func _run() -> void:
 	check("SAVE: the flag is set", r.flags.get("families", "") == "save")
 	check("SAVE: the families objective shows", r.obj["families"] == "active")
 	check("SAVE: the rebels dig in (10 more at the gate, earthworks)", r.tagged("mass").size() == 32 and r.tagged("earthworks").size() == 2, "%d %d" % [r.tagged("mass").size(), r.tagged("earthworks").size()])
+	# (campaign-fixes-1121: the raiders MARCH from the east woods on a countdown the player sees; SAVE used to fail ten
+	# seconds after it was picked, the band spawned at the farm)
+	var farm := r.area_rect("hollins").get_center()
+	check("SAVE: the band starts far from the farm", r.tagged("raiders").all(func(u): return u.position.distance_to(farm) > 25 * Defs.TILE))
+	var left := float(r.clocks.get("raid", 0.0)) - g.clock
+	check("SAVE: the raiders' countdown runs (about 1:40 on NORMAL)", left > 85.0 and left <= 100.0, str(left))
+	check("SAVE: the families' line shows the countdown", r.objective_text(r.objective("families")).find(":") > 0, r.objective_text(r.objective("families")))
+	_step(g, 505.0)
+	check("SAVE: 15 s on, every family still alive", r.tagged("families").size() == 6)
+	check("SAVE: the band is on its way", r.fired.has("raiders_go"))
 	_kill(r, "raiders")
-	_step(g, 495.0)
+	_step(g, 510.0)
 	check("raiders gone: the families are saved", r.obj["families"] == "done" and r.said_ids.has("t_saved"))
 	_kill(r, "camp2")
 	_step(g, 500.0)
@@ -279,6 +289,7 @@ func _run() -> void:
 	await process_frame
 	_ui().pick_choice("families", "leave")
 	check("LEAVE: the flag is set, the fort as it was", r.flags.get("families", "") == "leave" and r.tagged("mass").size() == 22 and r.obj["families"] == "hidden")
+	r.clocks["raid"] = g.clock + 1.0      # (the band's march: it reaches the farm, then the farm burns)
 	_step(g, 486.0)
 	_step(g, 527.0)
 	check("LEAVE: Hollins Farm burns, Tomasz remembers", r.fired.has("left") and r.tagged("hollins_farm").is_empty() and r.said_ids.has("t_left"))

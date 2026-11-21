@@ -3998,11 +3998,14 @@ func _tick_unit(delta: float) -> void:
 			if _d_medic and scan_t <= 0.0:
 				# the fallen first (a soldier back), then the wounded: Defs.CARE
 				scan_t = float(Defs.CARE["rescan"])
-				var body := game.find_body(self, float(Defs.REVIVE["scan"]) * Defs.TILE)
+				# (a campaign's must-live Missionary, Father Tomasz, tends only those close by: he walked alone into the
+				# fight in Paris, playtest 2026-11-21; campaign-fixes-1121)
+				var hero := has_meta("story_hero")
+				var body := game.find_body(self, (3.0 if hero else float(Defs.REVIVE["scan"])) * Defs.TILE)
 				if body:
 					cmd_revive(body)
 				else:
-					var pt := game.find_patient(self, 9 * Defs.TILE)
+					var pt := game.find_patient(self, (3 if hero else 9) * Defs.TILE)
 					if pt:
 						cmd_heal(pt)
 						_care_auto = true      # (his own choice: he may change his mind for a body)
@@ -8303,6 +8306,8 @@ func _draw_no_ammo(c: Vector2) -> void:
 func _draw_mission_marks(top: float) -> void:
 	if has_meta("mission_name"):
 		var nm := Loc.t(String(get_meta("mission_name")))
+		if has_meta("mission_wounded"):
+			nm += " " + Loc.t("(wounded)")      # (a must-live man fallen back: campaign-fixes-1121)
 		var f := UiStyle.bold_font()
 		var na := ov_a(true)     # (OVERLAY OPACITY: a label over him)
 		draw_string_outline(f, Vector2(-70, top - 4), nm, HORIZONTAL_ALIGNMENT_CENTER, 140, 11, 3, Color(0, 0, 0, 0.85 * na))

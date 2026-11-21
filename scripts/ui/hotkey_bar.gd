@@ -280,6 +280,7 @@ func select_army() -> void:
 	var gm := game()
 	# (the Brood: no ROOTED creature, egg or cocoon: they are its buildings; the owner's playtest, 2026-10-30)
 	var a := gm.army(gm.human).filter(func(u: Unit) -> bool: return not (u._k_nb and (BroodRoot.fixed(u) or BroodRoot.in_cocoon(u) or u.kind == BroodNew.PILE)))
+	a = a.filter(func(u: Unit) -> bool: return not u.has_meta("story_hero"))      # (a mission's must-live people stay out: campaign-fixes-1121)
 	if a.is_empty():
 		hud.toast("No army yet.")
 		return

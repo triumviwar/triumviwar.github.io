@@ -84,6 +84,8 @@ var unmasked := {}                   # tag -> the game clock a building with it 
 # Act 1's a05_specimens (a05-specimens, docs/campaign_a05_build.md): CAGE CARTS (a creature caged on a cart: carried with
 # it, untouchable and harmless; freed when the cart is broken, loaded with it when the cart leaves by an exit)
 var _carts: Array = []               # {"u": the creature, "cart": the cart, "freed": counter, "freed_tag": tag}
+# campaign-fixes-1121: the story's must-live people are WOUNDED, not killed (scripts/campaign/mission_heroes.gd)
+var heroes: MissionHeroes = null
 
 
 func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
@@ -442,6 +444,9 @@ func _physics_process(delta: float) -> void:
 		return
 	_t = TICK
 	Rebels.tick(self, TICK)
+	if heroes == null:
+		heroes = MissionHeroes.new(self)
+	heroes.tick(TICK)
 	_tick_turning()
 	_tick_exits()
 	_tick_carts()
