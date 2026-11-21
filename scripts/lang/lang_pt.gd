@@ -1496,7 +1496,7 @@ const T := {
 	"Cogs": "Engrenagens",
 	"cogs": "engrenagens",
 	"brass": "latão",
-	"Its gear ring would clash with a %s's ring: leave room for the gears to mesh.": "Seu anel de engrenagens bateria no anel de %s: deixe espaço para as engrenagens engrenarem.",
+	"Its gear ring would clash with the %s's ring: leave room for the gears to mesh.": "Seu anel de engrenagens bateria no anel de %s: deixe espaço para as engrenagens engrenarem.",
 	"Its gear ring must touch your gear field: mesh it with a linked building's ring.": "Seu anel de engrenagens precisa tocar o seu campo de engrenagens: engrene-o com o anel de uma construção ligada.",
 	"Only a Clockwork building's connecting gear can be swapped (not the Clocktower's).": "Só a engrenagem de ligação de uma construção do Mecanismo pode ser trocada (não a da Torre do Relógio).",
 	"Wait until it is built.": "Espere até ficar pronta.",

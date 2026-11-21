@@ -711,7 +711,7 @@ func placement_problem(t: int, k: String, c: Vector2i, big := false) -> String:
 	var st := candidate(t, k, c, big)
 	match st["state"]:
 		"clash":
-			return "Its gear ring would clash with a %s's ring: leave room for the gears to mesh." % String(Defs.BUILDINGS[st["with"].kind]["name"])
+			return "Its gear ring would clash with the %s's ring: leave room for the gears to mesh." % String(Defs.BUILDINGS[st["with"].kind]["name"])
 		"far":
 			if st.get("level", false):
 				return "Gears mesh only on the same ground level: its ring would touch your field only across a cliff or a ramp."
