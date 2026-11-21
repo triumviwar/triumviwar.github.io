@@ -96,7 +96,10 @@ frames), R9 Horseman walk NE (now 8 frames; the request's "white coat, tricorne"
 the grey horse and plumed hat of the other views), R10 Powder Wagon walk N (+ idle_n from its first frame), R11 Dragoon
 walk S (now 6 frames): all with tools/import_sa_strip.py (one row of figures, scaled to a reference strip's height, or
 width with SA_BY=width, feet on its feet). Finding 89, the Brood RALLY icon: now three claw scratches in mossy ground
-with a scent mist and the yellow arrow (art/ui/icons3/brood_rally_2.png, tools/import_brood_rally_2.py). Still to do:
+with a scent mist and the yellow arrow (art/ui/icons3/brood_rally_2.png, tools/import_brood_rally_2.py). MEDIUM findings done (0.38.116): M70, M71 (Cuirassier attack E/SE),
+M73, M74, M75 (Cuirassier walk NE/S/SE). Their requests come from tools/audit/medium_batch.py (JOBS: refs in
+docs/redraw_refs/sm<NN>_*/, prompts as JSON); next in its list: M79, M80, M82 (Horseman), M76, M77 (Armoured Dragoon),
+M63-M65 (Musketeer), M67, M68 (Guardsman); then the other MEDIUM findings need JOBS entries. Still to do: the rest of
 the MEDIUM findings; the Brood rally CURSOR (a flag on a pole) may want the same change.
 
 ## Redraw requests for the HIGH findings
