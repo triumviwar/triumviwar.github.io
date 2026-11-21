@@ -18,8 +18,10 @@ extends RefCounted
 ## when the bank holds what the army needs; then the extra hands go back one every STEP_BACK seconds (no swing back and
 ## forth). `-- millcrew:off` plays as before; `-- millcrew:on` forces it on where it is off by default (MATCHUPS).
 
-## Where it is on by default (the enemy's faction; the mirror is "crown"): set from the measure (docs/crown_mill_crew.md).
-const MATCHUPS := ["brood", "clockwork", "crown"]
+## Where it is on by default (the enemy's faction; the mirror is "crown"), set from the measure (docs/crown_mill_crew.md):
+## against the Clockwork it helped (40 games, both versions: won or led 34 v 14 of 20, won outright 13 v 3 of 20); against
+## the Brood it changed nothing and in the mirror the two Crowns ended further apart (a snowball), so there it is off.
+const MATCHUPS := ["clockwork"]
 const START := 300.0             # (s) after the opening
 const FULL := 6                  # a Mill's full crew (Defs powder_mill crew)
 const SHARE := 0.35              # the most of the labourers on the Mills ...
