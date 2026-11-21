@@ -245,7 +245,8 @@ M = {
         {"id": "watch", "side": "visit", "primary": True, "kind": "manual", "hidden": True,
          "text": "Watch from the bank: bring the Father near the river where the Winder stopped."},
         # ---- part 3
-        {"id": "riot", "side": "visit", "primary": True, "kind": "manual", "hidden": True,
+        # (optional since campaign-fixes-1121: it can now be failed, most of them lost, and that is counted, never a defeat)
+        {"id": "riot", "side": "visit", "primary": False, "kind": "manual", "hidden": True,
          "text": "Stop the broken automata before they reach the machine's ground across the meadows. Lost to the machine: {lost_to_machine}."},
         {"id": "gather", "side": "visit", "primary": False, "kind": "countdown", "clock": "gather", "hidden": True,
          "text": "The broken ones march in {clock:gather}: over the bridge and out of the meadow gap. Hold the gap."},
@@ -394,8 +395,11 @@ M = {
         # through the line the machine's sortie goes for the man who came to judge it
         {"id": "for_ferrer", "when": {"all": [{"fired": "m_sortie"}, NO_MACHINE, LIVE, {"not": {"fired": "riot_over"}}]}, "every": 8, "do": [
             {"order": {"tag": "sortie", "do": "hunt", "prey": "ferrer", "within": 10}}]},
-        {"id": "riot_over", "when": {"all": [{"fired": "riot_march3"}, {"dead": "rioters"}, LIVE]}, "delay": 3, "do": [
-            {"light": {"to": "dawn", "secs": 30}},
+        # (a straggler stuck on the earthworks' corner kept the riot from ending; two minutes after the last wave the
+        # riot is over whatever is left: they stop where they stand)
+        {"id": "riot_late", "when": {"fired": "riot_march3"}, "delay": 120, "do": []},
+        {"id": "riot_over", "when": {"all": [{"fired": "riot_march3"}, {"any": [{"dead": "rioters"}, {"fired": "riot_late"}]}, LIVE]}, "delay": 3, "do": [
+            {"light": {"to": "dawn", "secs": 30}}, {"order": {"tag": "rioters", "do": "stop"}},
             {"order": {"team": "machine", "do": "move", "to": "meadow"}},
             {"tally": {"flag": "lost_to_machine", "counter": "lost_to_machine", "bands": [[i, i] for i in range(0, 31)]}},
             {"say": ["n_over"]}]},
@@ -430,7 +434,7 @@ M = {
         {"id": "m_night", "when": {"all": [{"fired": "night"}, MACHINE]}, "do": [{"say": ["m_night"]}]},
         {"id": "m_riot", "when": {"all": [{"fired": "riot"}, MACHINE]}, "delay": 5, "do": [{"say": ["m_riot"]}]},
         {"id": "m_won", "when": {"all": [MACHINE, {"counter": {"name": "lost_to_machine", "at_least": LOST_WIN}}, LIVE]}, "do": [
-            {"objective": {"id": "m_take", "set": "done"}}, {"objective": {"id": "riot", "set": "failed"}}]},
+            {"objective": {"id": "m_take", "set": "done"}}, {"objective": {"id": "riot", "set": "failed"}}, {"win": "machine"}]},
     ],
     "speakers": {
         "king": {"name": "The King", "side": "visit", "portrait": "res://campaign/hub/rome_king_face.png"},

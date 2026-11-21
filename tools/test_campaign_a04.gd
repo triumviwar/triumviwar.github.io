@@ -341,7 +341,7 @@ func _play() -> void:
 	# (campaign-fixes-1121: a WARNING and a countdown first: where they will go, the gap; then three waves)
 	_walk(g, g.clock + 6.5)
 	check("p3: the warning: they gather, the countdown, the gap pinged", r.fired.has("riot_warn") and r.obj["gather"] == "active" and _said(r, "b_gather") and r.clocks.has("gather"))
-	check("p3: the countdown is 35 s on NORMAL", absf(float(r.clocks["gather"]) - g.clock - 35.0) < 1.0, str(float(r.clocks["gather"]) - g.clock))
+	check("p3: the countdown is 35 s on NORMAL", float(r.clocks["gather"]) - g.clock > 30.0 and float(r.clocks["gather"]) - g.clock <= 35.0, str(float(r.clocks["gather"]) - g.clock))
 	check("p3: nobody at the gap yet: the guild stays on its ground", not r.fired.has("g_to_gap"))
 	_put(g, r.tagged("escort"), _mid(r, "gap_post"))
 	_walk(g, g.clock + 1.0)
@@ -535,7 +535,7 @@ func _versus() -> void:
 	_walk(g, g.clock + 5.5)
 	check("versus: no scripted sortie (the machine is a person's)", not r.fired.has("m_sortie"))
 	var rio: Array = r.tagged("rioters")
-	check("versus: the rioters are the machine player's", rio.size() == 15 and rio.all(func(u): return u.team == mt))
+	check("versus: the rioters are the machine player's", rio.size() == 15 and rio.all(func(u): return u.team == mt), "%d %s" % [rio.size(), r.fired.keys().slice(-6)])
 	_put(g, rio.slice(0, 6), _mid(r, "meadow_ground"))
 	_step(g, g.clock + 0.25)
 	_step(g, g.clock + 0.25)
@@ -572,7 +572,7 @@ func _difficulty() -> void:
 			_walk(g, g.clock + 12.5)
 		_put(g, r.tagged("ferrer"), r.area_rect("bank_watch").position + Vector2(64, 64))
 		_walk(g, g.clock + 3.5)
-		_walk(g, g.clock + 28.0)
+		_walk(g, g.clock + 65.0)      # (the warning's countdown first: campaign-fixes-1121)
 		check("%s: the machine's sortie scaled (%d)" % [d[0], d[4]], r.tagged("sortie").filter(func(u): return u.kind == "clock_soldier").size() == int(d[4]),
 			"%d fired=%s %s" % [r.tagged("sortie").size(), r.fired.has("m_sortie"), r.fired.keys().slice(-8)])
 

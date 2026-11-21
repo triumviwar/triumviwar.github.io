@@ -4,6 +4,8 @@ extends SceneTree
 ## leaves them wounded (untouchable, falling back), they heal and come back; they are not in ARMY (F2); Tomasz tends only
 ## the wounded close by. Played as the Nest (a03's mirror) Valadares is the prey: not protected, he dies.
 ##   godot --headless --fixed-fps 30 --script res://tools/test_campaign_heroes.gd
+## Also the MIRRORS by the campaign's difficulty: a03's escort when the Nest is played, a05's hired guns when the creatures
+## are, b01's rival pack (its cap, its computer's level).
 ## Prints CHECK lines, then "campaign_heroes: N failures". (Leaves user://campaign.json as it was.)
 var main: Node
 var fails := 0
@@ -100,6 +102,24 @@ func _run() -> void:
 	r.heroes.tick(1.0)
 	va = r.tagged("valadares")
 	check("played as the party, Valadares is protected", not va.is_empty() and va[0].has_meta("story_hero"))
+	check("(played as the party: no mirror escort)", r.tagged("escort").is_empty())
+	# ---------------------------------------------------------------- THE MIRRORS BY THE DIFFICULTY (campaign-fixes-1121)
+	for d in [["easy", 2, 5, 28, "easy"], ["normal", 6, 10, 36, "easy"], ["hard", 12, 15, 50, "normal"]]:
+		Campaign.set_difficulty(String(d[0]))
+		var cfg := Campaign.make_cfg("b01_specimen", "solo")
+		check("b01 %s: the rival pack's computer plays %s" % [d[0], d[4]], String(cfg["slots"][1]["who"]) == String(d[4]), String(cfg["slots"][1]["who"]))
+		g = await _start("a03_plateau", "solo", "nest")
+		r = g.mission
+		check("a03 %s, the Nest played: the party's escort is %d" % [d[0], d[1]], r.tagged("escort").size() == int(d[1]), str(r.tagged("escort").size()))
+		g = await _start("a05_specimens", "solo", "creatures")
+		r = g.mission
+		var base := 0
+		for u in r.tagged("guns"):
+			base += 1
+		check("a05 %s, the creatures played: %d hired guns (the six scaled, and the mirror's own)" % [d[0], d[2]], base == int(d[2]), str(base))
+		g = await _start("b01_specimen", "solo")
+		r = g.mission
+		check("b01 %s: the rival pack's cap is %d" % [d[0], d[3]], r.supply_cap_of(r.team_index("rival")) == int(d[3]) and g.max_supply(r.team_index("rival")) == int(d[3]))
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(Campaign.PROGRESS))
 	if _kept != "":
 		var f := FileAccess.open(Campaign.PROGRESS, FileAccess.WRITE)

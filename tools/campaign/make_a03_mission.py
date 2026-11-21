@@ -220,6 +220,10 @@ M = {
         {"id": "pieter_lost", "when": {"all": [{"fired": "pieter"}, {"not": PIETER}]}, "do": [{"say": ["v_pieter_lost"]}]},
         {"id": "red_seen", "when": {"all": [RIVAL, {"seen": {"tag": "red_pack", "by": "party"}}]}, "do": [{"say": ["b_red"]}]},
         {"id": "cache_tip", "when": {"all": [{"time": 40}, PARTY]}, "do": [{"say": ["tip_cache"]}]},
+        # (campaign-fixes-1121: played as the Nest, the mapmaker is the prey: harder to bring down by the difficulty, so the
+        # hunt has to break his escort first)
+    ] + [{"id": "prey_hp_" + d, "when": {"all": [{"time": 0.5}, NEST, {"difficulty": d}]}, "do": [{"max_hp": {"tag": "valadares", "hp": hp}}]}
+         for d, hp in (("easy", 450), ("normal", 800), ("hard", 1100))] + [
         # ---- the nest's start (a person leads it: no creature speaks)
         {"id": "intro_n", "when": {"all": [{"time": 1}, NEST]}, "do": [
             {"ping": {"area": "stair_foot"}}, {"sound": {"name": "campaign/linnea_call", "area": "kin", "vol": -6}}]},
@@ -334,9 +338,9 @@ M = {
         {"id": "p_up", "when": {"all": [{"time": 3}, NO_PARTY]}, "do": [
             {"order": {"tag": "valadares", "do": "route", "route": ["trail_w", "stair_foot", "stair_top", "cairn"], "name": "leg1"}},
             {"order": {"tag": "guides", "do": "follow", "leader": "valadares", "within": 3}},
-            {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2}},
-            {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3}},
-            {"order": {"tag": "escort", "do": "follow", "leader": "valadares", "within": 3}}]},
+            {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2, "fight": 5}},
+            {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3, "fight": 5}},
+            {"order": {"tag": "escort", "do": "follow", "leader": "valadares", "within": 3, "fight": 6}}]},
         {"id": "p_leg2", "when": {"all": [{"fired": "mark_cairn"}, NO_PARTY, {"not": {"fired": "part3"}}]}, "delay": 1, "do": [
             {"order": {"tag": "valadares", "do": "route", "route": ["source"], "name": "leg2"}}]},
         {"id": "p_leg3", "when": {"all": [{"fired": "mark_source"}, NO_PARTY, {"not": {"fired": "part3"}}]}, "delay": 1, "do": [
@@ -346,22 +350,23 @@ M = {
         {"id": "p_down", "when": {"all": [{"fired": "part3"}, NO_PARTY, {"flag": {"sire_way": "stair"}}]}, "delay": 1, "do": [
             {"order": {"tag": "valadares", "do": "route", "route": ["mid_top", "split_in", "split_top", "split_foot", "trail_e", "landing"], "name": "down"}},
             {"order": {"tag": "guides", "do": "follow", "leader": "valadares", "within": 2}},
-            {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2}},
-            {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3}},
-            {"order": {"tag": "escort", "do": "follow", "leader": "valadares", "within": 3}},
+            {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2, "fight": 5}},
+            {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3, "fight": 5}},
+            {"order": {"tag": "escort", "do": "follow", "leader": "valadares", "within": 3, "fight": 6}},
             {"order": {"tag": "benedito", "do": "move", "to": "landing"}}]},
         {"id": "p_down_w", "when": {"all": [{"fired": "part3"}, NO_PARTY, {"flag": {"sire_way": "split"}}]}, "delay": 1, "do": [
             {"order": {"tag": "valadares", "do": "route", "route": ["mid_top", "cairn", "stair_top", "stair_foot", "trail_w", "landing"], "name": "down"}},
             {"order": {"tag": "guides", "do": "follow", "leader": "valadares", "within": 2}},
-            {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2}},
-            {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3}},
-            {"order": {"tag": "escort", "do": "follow", "leader": "valadares", "within": 3}},
+            {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2, "fight": 5}},
+            {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3, "fight": 5}},
+            {"order": {"tag": "escort", "do": "follow", "leader": "valadares", "within": 3, "fight": 6}},
             {"order": {"tag": "benedito", "do": "move", "to": "landing"}}]},
-        # (the scripted party fights what comes at Valadares: its men turn on the hunters within reach, then follow on)
-        {"id": "p_fight", "when": {"all": [{"fired": "part3"}, NO_PARTY, {"not": {"fired": "the_end"}}]}, "delay": 3, "every": 2, "do": [
-            {"order": {"tag": "escort", "do": "follow", "leader": "valadares", "within": 3}},
-            {"order": {"tag": "escort", "do": "hunt", "prey_team": "nest", "within": 6}},
-            {"order": {"tag": "men", "do": "hunt", "prey_team": "nest", "within": 5}}]},
+        # (campaign-fixes-1121: the scripted mapmaker's route ends when he is near a mark, and with a big escort round him
+        # he could stand at its edge for good, the survey never taken: playtest-campaign-brood finding 13, "the party's
+        # script can stall" on HARD. He walks on into the mark now and then until it is taken)
+    ] + [{"id": "p_nudge_" + mk, "when": {"all": [{"route_done": leg}, NO_PARTY, {"not": {"fired": "mark_" + mk}}, {"not": {"fired": "part3"}}]},
+          "delay": 4, "every": 4, "do": [{"order": {"tag": "valadares", "do": "move", "to": mk}}]}
+         for leg, mk in (("leg1", "cairn"), ("leg2", "source"), ("leg3", "rim"), ("leg4", "lookout"))] + [
         # (the scripted men at the landing step into the canoe; the rest keep following)
         {"id": "p_board", "when": {"all": [{"fired": "part3"}, NO_PARTY, {"count": {"tag": "valadares", "area": "landing", "at_least": 1}}]}, "every": 2, "do": [
             {"order": {"tag": "men", "do": "move", "to": "landing"}}, {"order": {"tag": "teles_men", "do": "move", "to": "landing"}},

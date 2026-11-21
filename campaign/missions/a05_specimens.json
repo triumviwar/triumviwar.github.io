@@ -4994,45 +4994,6 @@
 			]
 		},
 		{
-			"id": "x_fight1",
-			"when": {
-				"all": [
-					{
-						"fired": "x_eggs"
-					},
-					{
-						"not": {
-							"playing": "expedition"
-						}
-					},
-					{
-						"not": {
-							"fired": "part2_go"
-						}
-					}
-				]
-			},
-			"every": 2,
-			"do": [
-				{
-					"order": {
-						"tag": "guns",
-						"do": "follow",
-						"leader": "lindqvist",
-						"within": 3
-					}
-				},
-				{
-					"order": {
-						"tag": "guns",
-						"do": "hunt",
-						"prey_team": "creatures",
-						"within": 5
-					}
-				}
-			]
-		},
-		{
 			"id": "x_fight",
 			"when": {
 				"all": [
@@ -5048,6 +5009,9 @@
 						"not": {
 							"fired": "the_end"
 						}
+					},
+					{
+						"difficulty": "easy"
 					}
 				]
 			},
@@ -5067,6 +5031,70 @@
 						"do": "hunt",
 						"prey_team": "creatures",
 						"within": 7
+					}
+				}
+			]
+		},
+		{
+			"id": "x_escort",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					},
+					{
+						"not": {
+							"difficulty": "easy"
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"order": {
+						"tag": "guns",
+						"do": "follow",
+						"leader": "carts",
+						"within": 4,
+						"fight": 7
+					}
+				}
+			]
+		},
+		{
+			"id": "x_escort1",
+			"when": {
+				"all": [
+					{
+						"fired": "x_eggs"
+					},
+					{
+						"not": {
+							"playing": "expedition"
+						}
+					},
+					{
+						"not": {
+							"difficulty": "easy"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"order": {
+						"tag": "guns",
+						"do": "follow",
+						"leader": "lindqvist",
+						"within": 3,
+						"fight": 6
 					}
 				}
 			]

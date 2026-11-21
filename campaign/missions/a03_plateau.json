@@ -1183,6 +1183,78 @@
 			]
 		},
 		{
+			"id": "prey_hp_easy",
+			"when": {
+				"all": [
+					{
+						"time": 0.5
+					},
+					{
+						"playing": "nest"
+					},
+					{
+						"difficulty": "easy"
+					}
+				]
+			},
+			"do": [
+				{
+					"max_hp": {
+						"tag": "valadares",
+						"hp": 450
+					}
+				}
+			]
+		},
+		{
+			"id": "prey_hp_normal",
+			"when": {
+				"all": [
+					{
+						"time": 0.5
+					},
+					{
+						"playing": "nest"
+					},
+					{
+						"difficulty": "normal"
+					}
+				]
+			},
+			"do": [
+				{
+					"max_hp": {
+						"tag": "valadares",
+						"hp": 800
+					}
+				}
+			]
+		},
+		{
+			"id": "prey_hp_hard",
+			"when": {
+				"all": [
+					{
+						"time": 0.5
+					},
+					{
+						"playing": "nest"
+					},
+					{
+						"difficulty": "hard"
+					}
+				]
+			},
+			"do": [
+				{
+					"max_hp": {
+						"tag": "valadares",
+						"hp": 1100
+					}
+				}
+			]
+		},
+		{
 			"id": "intro_n",
 			"when": {
 				"all": [
@@ -2624,7 +2696,8 @@
 						"tag": "men",
 						"do": "follow",
 						"leader": "valadares",
-						"within": 2
+						"within": 2,
+						"fight": 5
 					}
 				},
 				{
@@ -2632,7 +2705,8 @@
 						"tag": "teles_men",
 						"do": "follow",
 						"leader": "valadares",
-						"within": 3
+						"within": 3,
+						"fight": 5
 					}
 				},
 				{
@@ -2640,7 +2714,8 @@
 						"tag": "escort",
 						"do": "follow",
 						"leader": "valadares",
-						"within": 3
+						"within": 3,
+						"fight": 6
 					}
 				}
 			]
@@ -2793,7 +2868,8 @@
 						"tag": "men",
 						"do": "follow",
 						"leader": "valadares",
-						"within": 2
+						"within": 2,
+						"fight": 5
 					}
 				},
 				{
@@ -2801,7 +2877,8 @@
 						"tag": "teles_men",
 						"do": "follow",
 						"leader": "valadares",
-						"within": 3
+						"within": 3,
+						"fight": 5
 					}
 				},
 				{
@@ -2809,7 +2886,8 @@
 						"tag": "escort",
 						"do": "follow",
 						"leader": "valadares",
-						"within": 3
+						"within": 3,
+						"fight": 6
 					}
 				},
 				{
@@ -2870,7 +2948,8 @@
 						"tag": "men",
 						"do": "follow",
 						"leader": "valadares",
-						"within": 2
+						"within": 2,
+						"fight": 5
 					}
 				},
 				{
@@ -2878,7 +2957,8 @@
 						"tag": "teles_men",
 						"do": "follow",
 						"leader": "valadares",
-						"within": 3
+						"within": 3,
+						"fight": 5
 					}
 				},
 				{
@@ -2886,7 +2966,8 @@
 						"tag": "escort",
 						"do": "follow",
 						"leader": "valadares",
-						"within": 3
+						"within": 3,
+						"fight": 6
 					}
 				},
 				{
@@ -2899,11 +2980,11 @@
 			]
 		},
 		{
-			"id": "p_fight",
+			"id": "p_nudge_cairn",
 			"when": {
 				"all": [
 					{
-						"fired": "part3"
+						"route_done": "leg1"
 					},
 					{
 						"not": {
@@ -2912,36 +2993,132 @@
 					},
 					{
 						"not": {
-							"fired": "the_end"
+							"fired": "mark_cairn"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
 						}
 					}
 				]
 			},
-			"delay": 3,
-			"every": 2,
+			"delay": 4,
+			"every": 4,
 			"do": [
 				{
 					"order": {
-						"tag": "escort",
-						"do": "follow",
-						"leader": "valadares",
-						"within": 3
+						"tag": "valadares",
+						"do": "move",
+						"to": "cairn"
 					}
-				},
+				}
+			]
+		},
+		{
+			"id": "p_nudge_source",
+			"when": {
+				"all": [
+					{
+						"route_done": "leg2"
+					},
+					{
+						"not": {
+							"playing": "party"
+						}
+					},
+					{
+						"not": {
+							"fired": "mark_source"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"every": 4,
+			"do": [
 				{
 					"order": {
-						"tag": "escort",
-						"do": "hunt",
-						"prey_team": "nest",
-						"within": 6
+						"tag": "valadares",
+						"do": "move",
+						"to": "source"
 					}
-				},
+				}
+			]
+		},
+		{
+			"id": "p_nudge_rim",
+			"when": {
+				"all": [
+					{
+						"route_done": "leg3"
+					},
+					{
+						"not": {
+							"playing": "party"
+						}
+					},
+					{
+						"not": {
+							"fired": "mark_rim"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"every": 4,
+			"do": [
 				{
 					"order": {
-						"tag": "men",
-						"do": "hunt",
-						"prey_team": "nest",
-						"within": 5
+						"tag": "valadares",
+						"do": "move",
+						"to": "rim"
+					}
+				}
+			]
+		},
+		{
+			"id": "p_nudge_lookout",
+			"when": {
+				"all": [
+					{
+						"route_done": "leg4"
+					},
+					{
+						"not": {
+							"playing": "party"
+						}
+					},
+					{
+						"not": {
+							"fired": "mark_lookout"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"every": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "move",
+						"to": "lookout"
 					}
 				}
 			]

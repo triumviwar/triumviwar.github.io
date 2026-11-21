@@ -402,14 +402,16 @@ M = {
             {"order": {"tag": "guns", "do": "follow", "leader": "carts", "within": 4}},
             {"order": {"tag": "porters", "do": "follow", "leader": "carts", "within": 3}},
             {"order": {"tag": "pieter", "do": "follow", "leader": "lindqvist", "within": 2}}]},
-        # (the scripted guns fight what comes at the doctor in the night too, then follow him on)
-        {"id": "x_fight1", "when": {"all": [{"fired": "x_eggs"}, NO_EXP, {"not": {"fired": "part2_go"}}]}, "every": 2, "do": [
-            {"order": {"tag": "guns", "do": "follow", "leader": "lindqvist", "within": 3}},
-            {"order": {"tag": "guns", "do": "hunt", "prey_team": "creatures", "within": 5}}]},
         # (the scripted escort fights what comes at the carts)
-        {"id": "x_fight", "when": {"all": [{"fired": "part2_go"}, NO_EXP, {"not": {"fired": "the_end"}}]}, "every": 2, "do": [
+        # (campaign-fixes-1121: on NORMAL and HARD one escort order: a "hunt" after the "follow" in the same tick ended the
+        # following, and the guns stood where their last quarry fell while the carts went on; EASY keeps the old way)
+        {"id": "x_fight", "when": {"all": [{"fired": "part2_go"}, NO_EXP, {"not": {"fired": "the_end"}}, {"difficulty": "easy"}]}, "every": 2, "do": [
             {"order": {"tag": "guns", "do": "follow", "leader": "carts", "within": 4}},
             {"order": {"tag": "guns", "do": "hunt", "prey_team": "creatures", "within": 7}}]},
+        {"id": "x_escort", "when": {"all": [{"fired": "part2_go"}, NO_EXP, {"not": {"difficulty": "easy"}}]}, "delay": 2, "do": [
+            {"order": {"tag": "guns", "do": "follow", "leader": "carts", "within": 4, "fight": 7}}]},
+        {"id": "x_escort1", "when": {"all": [{"fired": "x_eggs"}, NO_EXP, {"not": {"difficulty": "easy"}}]}, "delay": 1, "do": [
+            {"order": {"tag": "guns", "do": "follow", "leader": "lindqvist", "within": 3, "fight": 6}}]},
         {"id": "x_quay", "when": {"all": [{"fired": "part3"}, NO_EXP]}, "every": 4, "do": [
             {"order": {"tag": "lindqvist", "do": "move", "to": "quay"}}]},
     ],

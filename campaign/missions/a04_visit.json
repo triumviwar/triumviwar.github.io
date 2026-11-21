@@ -1240,7 +1240,7 @@
 		{
 			"id": "riot",
 			"side": "visit",
-			"primary": true,
+			"primary": false,
 			"kind": "manual",
 			"hidden": true,
 			"text": "Stop the broken automata before they reach the machine's ground across the meadows. Lost to the machine: {lost_to_machine}."
@@ -3696,6 +3696,14 @@
 			]
 		},
 		{
+			"id": "riot_late",
+			"when": {
+				"fired": "riot_march3"
+			},
+			"delay": 120,
+			"do": []
+		},
+		{
 			"id": "riot_over",
 			"when": {
 				"all": [
@@ -3703,7 +3711,14 @@
 						"fired": "riot_march3"
 					},
 					{
-						"dead": "rioters"
+						"any": [
+							{
+								"dead": "rioters"
+							},
+							{
+								"fired": "riot_late"
+							}
+						]
 					},
 					{
 						"not": {
@@ -3718,6 +3733,12 @@
 					"light": {
 						"to": "dawn",
 						"secs": 30
+					}
+				},
+				{
+					"order": {
+						"tag": "rioters",
+						"do": "stop"
 					}
 				},
 				{
@@ -4309,6 +4330,9 @@
 						"id": "riot",
 						"set": "failed"
 					}
+				},
+				{
+					"win": "machine"
 				}
 			]
 		},

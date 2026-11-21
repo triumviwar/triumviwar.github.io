@@ -874,6 +874,12 @@ func act(a: Dictionary) -> void:
 				# {"floor": {"tag", "share"}}: their health never goes under that share (0: no floor)
 				for e in tagged(String(v.get("tag", ""))):
 					e.hp_floor = e.max_hp * float(v.get("share", 0.0))
+			"max_hp":
+				# (campaign-fixes-1121) {"max_hp": {"tag", "hp"}}: their full health set to hp, and filled (a mirror's prey,
+				# Valadares when the Nest is played, harder to bring down by the campaign's difficulty)
+				for e in tagged(String(v.get("tag", ""))):
+					e.max_hp = float(v.get("hp", e.max_hp))
+					e.hp = e.max_hp
 			"heal":
 				# {"heal": {"tag", "share"}}: their health back up to that share at least
 				for e in tagged(String(v.get("tag", ""))):
@@ -940,7 +946,10 @@ func _order(us: Array, v: Dictionary) -> void:
 		"follow":
 			# {"do": "follow", "leader": tag, "within": tiles (3)}: they keep within reach of the leader (the first of the tag
 			# alive), walking after it when it gets away; they stop when it is gone
-			_follows.append({"units": us, "leader": String(v.get("leader", "")), "within": float(v.get("within", 3)) * Defs.TILE, "t": 0.0})
+			# (campaign-fixes-1121: "fight": tiles: an ESCORT: a follower with an enemy within that many tiles goes for it,
+			# and keeps at it while the leader is not too far, instead of walking past it: the mirrors' scripted guards)
+			_follows.append({"units": us, "leader": String(v.get("leader", "")), "within": float(v.get("within", 3)) * Defs.TILE, "t": 0.0,
+				"fight": float(v.get("fight", 0)) * Defs.TILE})
 		"attack":
 			game.group_move(us, p, true)
 		"move":
@@ -2012,11 +2021,39 @@ func _tick_routes() -> void:
 		if float(f["t"]) >= 1.0:
 			f["t"] = 0.0
 			var lp := _pos(lead[0])
-			var far := us.filter(func(u) -> bool: return u.position.distance_to(lp) > float(f["within"]))
+			var fr := float(f.get("fight", 0.0))
+			if fr > 0.0:
+				for u in us:
+					if u.target != null and is_instance_valid(u.target) and not u.target.dead:
+						continue
+					var foe := _foe_near(u, fr)
+					if foe and foe.position.distance_to(lp) < fr + float(f["within"]):
+						u.cmd_attack(foe)
+			var far: Array = []
+			for u in us:
+				if u.position.distance_to(lp) <= float(f["within"]):
+					continue
+				if fr > 0.0 and u.target != null and is_instance_valid(u.target) and not u.target.dead and u.position.distance_to(lp) < fr + float(f["within"]) * 2.0:
+					continue      # (an escort at its quarry, its leader not too far)
+				far.append(u)
 			if not far.is_empty():
 				game.group_move(far, lp, false)
 		fk.append(f)
 	_follows = fk
+
+
+## The nearest living enemy unit within r of u (an escort's quarry), or null.
+func _foe_near(u: Unit, r: float) -> Unit:
+	var best: Unit = null
+	var bd := r
+	for e in game.units_near(u.position, r):
+		if e.dead or not game.hostile(u.team, e.team) or e.untouchable() or e.kind == "horse":
+			continue
+		var d: float = u.position.distance_to(e.position)
+		if d < bd:
+			bd = d
+			best = e
+	return best
 
 
 ## A SLEEP's name: its "name", else its tag, team or side.

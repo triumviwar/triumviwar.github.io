@@ -621,7 +621,18 @@ static func show(main: Node) -> void:
 	talk_box.visible = false
 	talk_box.add_theme_stylebox_override("panel", UiStyle.box(Color(0.09, 0.07, 0.05, 0.94), UiStyle.TRIM, 2, 10, 12.0))
 	var spots: Array = hub.get("hotspots", [])
-	var list := _panel(body, 230)
+	# (the list scrolls: with the DIFFICULTY row on the hub, BACK went under the bottom edge on a phone; campaign-fixes-1121)
+	var lpan := PanelContainer.new()
+	lpan.custom_minimum_size.x = 230
+	body.add_child(lpan)
+	var lsc := ScrollContainer.new()
+	lsc.name = "HubList"
+	lsc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	lpan.add_child(lsc)
+	var list := VBoxContainer.new()
+	list.add_theme_constant_override("separation", 10)
+	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	lsc.add_child(list)
 	list.add_child(UiStyle.text(Loc.t("GO TO"), 15, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
 	var btns: Array = []
 	for hs in spots:

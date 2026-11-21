@@ -918,7 +918,7 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 			for ck in ["freed", "caged"]:
 				if v is Dictionary and v.has(ck) and not (m.get("counters", {}) as Dictionary).has(String(v[ck])):
 					out.append("%s: cart: unknown counter %s" % [where, v[ck]])
-		"cage", "pin", "carry", "spare", "floor", "heal", "burn", "nest_free", "wind", "remove", "douse":
+		"cage", "pin", "carry", "spare", "floor", "heal", "max_hp", "burn", "nest_free", "wind", "remove", "douse":
 			if not (v is Dictionary and v.has("tag")):
 				out.append("%s: %s needs a tag" % [where, k])
 			elif k == "burn" and v.get("spread") is Dictionary and String(v["spread"].get("tag", "")) == "":
