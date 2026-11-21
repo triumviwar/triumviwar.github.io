@@ -455,7 +455,7 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 	tv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	h.add_child(tv)
 	tv.add_child(UiStyle.text(Loc.t(String(db.get("title", ""))), int(24 * k), UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
-	tv.add_child(_wrap(Loc.t(String(db.get("text", ""))), int(17 * k)))
+	tv.add_child(_wrap(run.fill(Loc.t(String(db.get("text", "")))), int(17 * k)))      # (Rome's "Saved ...: {saved}"; playtest 2026-11-21)
 	for ti in db.get("text_if", []):
 		if run.cond(ti.get("if", {})):
 			tv.add_child(_wrap(run.fill(Loc.t(String(ti.get("text", "")))), int(16 * k)))      # (the debrief's words by the flags)
