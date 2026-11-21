@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.110", "items": [
+		"PLAYTEST FIXES (campaign): openings with lines that depend on earlier missions (Lyon, Paris, Rome, the Specimens) no longer open on a blank still; Rome's verdict show answers clicks and taps; objectives lost at the end are no longer ticked as done; briefings and end screens show real numbers instead of codes; war tables keep their BACK and WAR MAP buttons on screen; the war table keeps the hub's current name after Nuremberg falls; c01 and a02 end screens tell the right story; script errors in Father Ferrer's riot are gone; hint arrows go away once used.",
+		"PLAYTEST FIXES (skirmish as the Clockwork, tutorial, editor and replays): a beaten side no longer lingers in the match; the Ticking Owl can be clicked on its body; the end screen names each side's own resources; long card labels go to two lines; Winders no longer carry a greyed LEAD button; the Basics lesson can be lost and tried again; the map editor asks before throwing work away and refuses names Windows cannot save; a pinch no longer paints; sliders move under a finger on phones; GEAR VIEW works on Spanish and Brazilian keyboards; a building just north of a Town Hall can be clicked.",
+	]},
 	{"v": "0.38.109", "items": [
 		"PLAYTEST FIXES (skirmish as the Crown): long command card labels such as OBSERVATION BALLOON no longer run into their neighbours; clicking in a crowded base picks the building drawn in front; the match log always starts with its header; train tooltips are fully translated in Portuguese and Spanish; Esc on an open dropdown in the skirmish setup closes only the list; the Armoury's card line no longer names the Charge (it is at the Horse Breeder); the Town Hall's line fits in pt and es.",
 	]},
