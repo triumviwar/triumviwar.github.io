@@ -322,15 +322,17 @@ static func linger_sources(g: Game, t: int) -> Array:
 ## She gets up with a swamp round her: it lingers (called by swamp_grow as her swamp source goes, before its radius is
 ## forgotten). A Mother already lingering keeps the older centre if she got up again before rooting (she never rooted).
 static func _linger_start(g: Game, q: Unit) -> void:
-	if not linger_on or q.dead or not q.nb.has("swr") or float(q.nb["swr"]) < 1.0:
+	if q.dead or not q.nb.has("swr") or float(q.nb["swr"]) < 1.0:
+		return
+	if g.stats.size() > q.team:
+		g.stats[q.team]["nb_up_n"] = int(g.stats[q.team].get("nb_up_n", 0)) + 1      # (counted with the switch off too)
+	if not linger_on:
 		return
 	var c: Vector2 = BroodRoot.anchor(g, q) / Defs.TILE
 	q.nb["lgx"] = c.x
 	q.nb["lgy"] = c.y
 	q.nb["lgr"] = float(q.nb["swr"])
 	q.nb["lgu"] = g.clock + LINGER
-	if g.stats.size() > q.team:
-		g.stats[q.team]["nb_up_n"] = int(g.stats[q.team].get("nb_up_n", 0)) + 1
 	if q.team == g.human and not g.demo and g.hud:
 		g.hud.toast(Loc.t("The Brood Mother is up: her swamp lingers %d s. The Rootmaws on it wait (no food) until she roots on it again.") % int(LINGER), false)
 
