@@ -31,7 +31,28 @@ func run() -> void:
 	speed = float(args.get("speed", speed))
 	style = String(args.get("style", style))
 	await wait_real(1.0)
-	await setup_1v1(who, opp, plan, map_label)
+	if String(args.get("mode", "1v1")) == "2v2":
+		# me + a Hard Crown ally (team 1) v the computer `opp` and a Hard Brood
+		await press_button("SKIRMISH")
+		await wait_real(0.3)
+		await press_button("2v2")
+		await wait_real(0.3)
+		await pick_in_slot(0, 1, "CROWN")
+		for i in [1, 2, 3]:
+			await pick_in_slot(i, 0, who)
+		await pick_in_slot(1, 1, "CROWN")
+		await pick_in_slot(2, 1, opp)
+		await pick_in_slot(3, 1, "BROOD")
+		step("2v2 teams: %s" % str(main.lobby["slots"].map(func(sl) -> String: return "%s/%s/team%d" % [sl["who"], sl["faction"], int(sl["side"]) + 1])))
+	elif String(args.get("mode", "1v1")) == "ffa4":
+		await press_button("SKIRMISH")
+		await wait_real(0.3)
+		await press_button("FFA")
+		await wait_real(0.3)
+		await pick_in_slot(0, 1, "CROWN")
+		step("FFA slots: %s" % str(main.lobby["slots"].map(func(sl) -> String: return "%s/%s/team%d" % [sl["who"], sl["faction"], int(sl["side"]) + 1])))
+	else:
+		await setup_1v1(who, opp, plan, map_label)
 	await shot("setup")
 	await press_button("START")
 	await wait_match()
@@ -63,10 +84,10 @@ func run() -> void:
 func _enemy_start() -> Vector2:
 	var g := game()
 	for b in g.buildings:
-		if is_instance_valid(b) and b.team != g.human and b.team >= 0:
+		if is_instance_valid(b) and b.team != g.human and b.team >= 0 and not g.allied(b.team, g.human):
 			return b.position
 	for u in g.units:
-		if is_instance_valid(u) and u.team != g.human and u.team >= 0:
+		if is_instance_valid(u) and u.team != g.human and u.team >= 0 and not g.allied(u.team, g.human):
 			return u.position
 	return Vector2(Game.W, Game.H) * Game.T - my_buildings("town_hall")[0].position
 
@@ -357,7 +378,7 @@ func _nearest_enemy_building() -> Vector2:
 	var bd := INF
 	var home: Vector2 = my_buildings("town_hall")[0].position if not my_buildings("town_hall").is_empty() else Vector2.ZERO
 	for b in g.buildings:
-		if is_instance_valid(b) and not b.dead and b.team >= 0 and b.team != g.human and g.is_visible_to(g.human, b.position):
+		if is_instance_valid(b) and not b.dead and b.team >= 0 and b.team != g.human and not g.allied(b.team, g.human) and g.is_visible_to(g.human, b.position):
 			var d := home.distance_to(b.position)
 			if d < bd:
 				bd = d
@@ -372,7 +393,7 @@ func _foes_near(p: Vector2) -> int:
 	var g := game()
 	var n := 0
 	for u in g.units:
-		if is_instance_valid(u) and not u.dead and u.team >= 0 and u.team != g.human and not u.is_worker() and u.position.distance_to(p) < 8 * Defs.TILE:
+		if is_instance_valid(u) and not u.dead and u.team >= 0 and u.team != g.human and not g.allied(u.team, g.human) and not u.is_worker() and u.position.distance_to(p) < 8 * Defs.TILE:
 			n += 1
 	return n
 
@@ -384,7 +405,7 @@ func _defend() -> void:
 	if halls.is_empty():
 		return
 	for u in g.units:
-		if is_instance_valid(u) and not u.dead and u.team >= 0 and u.team != g.human and not u.is_worker():
+		if is_instance_valid(u) and not u.dead and u.team >= 0 and u.team != g.human and not g.allied(u.team, g.human) and not u.is_worker():
 			for h in halls:
 				if u.position.distance_to(h.position) < 14 * Defs.TILE and _foes_near(u.position) >= 3:
 					if attacking and _army().size() > 12:
