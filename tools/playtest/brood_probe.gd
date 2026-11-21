@@ -91,6 +91,8 @@ func _run() -> void:
 		await late()
 	if part in ["all", "ui"]:
 		await ui_part()
+	if part == "toad":
+		await toad_part()
 	Engine.time_scale = 1.0
 	_end(0)
 
@@ -337,7 +339,7 @@ func late() -> void:
 	await give(3, 3)
 	var q := mother()
 	# the Tyrant Sire and two turtles first (supply for the big ones)
-	await grub_to(BroodNew.FATHER, find_spot(BroodNew.FATHER, q.position, 3, 7))
+	probe(await grub_to(BroodNew.FATHER, find_spot(BroodNew.FATHER, q.position, 3, 7)), "the Tyrant Sire ordered (%s)" % hud._msg)
 	await grub_to(BroodNew.TURTLE, find_spot(BroodNew.TURTLE, q.position, 8, 16))
 	await grub_to(BroodNew.TURTLE, find_spot(BroodNew.TURTLE, q.position, 8, 16))
 	await select_mother()
@@ -398,9 +400,18 @@ func late() -> void:
 	# the Mist Toad's spells on enemies (spawned by the sandbox for the enemy)
 	var toad := mine().filter(func(u: Unit) -> bool: return u.kind == "mist_toad")
 	if not toad.is_empty():
+		# walk the toad off her rim first (a person moves it into the open), then the enemy
+		await select_unit(toad[0])
+		if not g.selection.has(toad[0]):
+			await box_select([toad[0].position])
+		await click_world(mother().position + Vector2(0, 12 * Defs.TILE), MOUSE_BUTTON_RIGHT)
+		await wait_game(8.0)
 		await spawn_enemy("Musketeer", toad[0].position + Vector2(7 * Defs.TILE, 0), 3)
 		await wait_game(2.0)
 		await select_unit(toad[0])
+		if not g.selection.has(toad[0]):
+			await box_select([toad[0].position])
+		probe(g.selection.has(toad[0]), "the Mist Toad can be picked (%s)" % str(g.selection.map(func(x): return x.kind)))
 		await pt.shot("toad_card")
 		pt.note("toad card: %s" % ", ".join(pt.card(hud).map(func(b): return "%s%s" % [b["label"], "" if b["enabled"] else "(x: %s)" % b["why"]])))
 		for sl in ["FOG", "MIASMA", "TONGUE"]:
@@ -506,3 +517,72 @@ func ui_part() -> void:
 	await pt.click_text("VIEW MAP")
 	await pt.secs(2.0)
 	await pt.shot("view_map")
+
+
+# ------------------------------------------------------------------ the Mist Toad's three spells (research at the Venom Sire first)
+
+func toad_part() -> void:
+	await give(3, 3)
+	var q := mother()
+	await grub_to(BroodNew.TURTLE, find_spot(BroodNew.TURTLE, q.position, 8, 16))
+	for i in 3:
+		if await grub_to(BroodNew.DILO, find_spot(BroodNew.DILO, q.position, 3, 7)):
+			break
+		pt.note("Venom Sire order failed (%s), again" % hud._msg)
+		await pt.key(KEY_ESCAPE)
+	await select_mother()
+	await card("GROW")
+	await wait_game(50.0)
+	await give(2, 2)
+	await select_mother()
+	await card("GROW")
+	await wait_game(65.0)
+	probe(BroodNew.stage(mother()) >= 2, "stage 3 for the toads")
+	var dilo := BroodNew.father(g, me, BroodNew.DILO)
+	if dilo == null:
+		probe(false, "no Venom Sire")
+		return
+	await select_unit(dilo)
+	pt.note("venom sire card: %s" % ", ".join(pt.card(hud).map(func(b): return "%s%s" % [b["label"], "" if b["enabled"] else "(x: %s)" % b["why"]])))
+	await pt.shot("venom_sire_card")
+	for r in ["FOG", "MIASMA"]:
+		var b: Dictionary = {}
+		for c in pt.card(hud):
+			if String(c["label"]).contains(r):
+				b = c
+		if not b.is_empty():
+			await pt.hover_card(hud, b["label"], "tip_research_" + r.to_lower())
+			await card(b["label"])
+			pt.note("research %s: %s" % [r, hud._msg])
+	await wait_game(70.0)
+	await give(1, 1)
+	await lay("mist_toad", 2)
+	await wait_game(40.0)
+	var toad := mine("mist_toad")
+	probe(not toad.is_empty(), "a Mist Toad hatched")
+	if toad.is_empty():
+		return
+	await pt.key(KEY_F2)          # (ARMY: the toads are the only army)
+	await pt.frames(3)
+	pt.note("F2 picked: %s" % str(g.selected_units().map(func(x): return x.kind)))
+	await click_world(mother().position + Vector2(0, 12 * Defs.TILE), MOUSE_BUTTON_RIGHT)
+	await wait_game(8.0)
+	await spawn_enemy("Musketeer", toad[0].position + Vector2(6 * Defs.TILE, 0), 4)
+	await wait_game(2.0)
+	for sl in ["FOG", "MIASMA", "TONGUE"]:
+		await pt.key(KEY_F2)
+		await pt.frames(3)
+		var cb: Dictionary = pt.card_find(hud, sl)
+		pt.note("%s on the card: %s" % [sl, "missing" if cb.is_empty() else ("ready" if cb["enabled"] else "refused: " + String(cb["why"]))])
+		if await card(sl):
+			var foe := enemy_units_near(toad[0].position, 12 * Defs.TILE)
+			await click_world(foe[0].position if not foe.is_empty() else toad[0].position + Vector2(5 * Defs.TILE, 0))
+			await pt.frames(10)
+			pt.note("%s cast: %s" % [sl, hud._msg])
+			await pt.shot("toad_" + sl.to_lower())
+			probe(true, "%s cast by a click on the card and the map" % sl)
+		if g.controls.mode != "":
+			await pt.key(KEY_ESCAPE)
+		await wait_game(4.0)
+	await wait_game(6.0)
+	await pt.shot("toad_after")

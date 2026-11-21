@@ -280,15 +280,16 @@ func _norm(s: String) -> String:
 ## a visible button whose text (as shown, translated) starts with `text` (or equals it when exact)
 func find_button(text: String, exact := false, under: Node = null) -> BaseButton:
 	var want := _norm(text)
+	var want_tr := _norm(Loc.t(text))      # (some pages set their text already translated)
 	var best: BaseButton = null
 	for b in all_buttons(under if under else root):
 		var t := ""
 		if b is Button:
 			t = _norm((b as Button).text)
 			var shown := _norm(b.atr((b as Button).text))
-			if shown == want or t == want:
+			if shown == want or t == want or t == want_tr:
 				return b
-			if not exact and best == null and (t.begins_with(want) or shown.begins_with(want)):
+			if not exact and best == null and (t.begins_with(want) or shown.begins_with(want) or t.begins_with(want_tr)):
 				best = b
 	return best
 
@@ -318,10 +319,12 @@ func scroll_into_view(c: Control) -> void:
 		if view.encloses(r):
 			return
 		var down := r.get_center().y > view.get_center().y
+		var before := sc.scroll_vertical
 		if touch_mode:
 			var mid := view.get_center()
 			await touch_drag(mid, mid + Vector2(0, -view.size.y * 0.3 if down else view.size.y * 0.3), 0, 6)
-		else:
+		if sc.scroll_vertical == before:
+			# (a finger drag doesn't scroll a list on a machine with no touch screen, as here under xvfb: the wheel then)
 			await wheel(view.get_center(), not down, 1)
 		await frames(1)
 

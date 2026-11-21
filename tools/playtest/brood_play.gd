@@ -583,8 +583,9 @@ func enemy_target() -> Vector2:
 		c /= a.size()
 	var best := enemy_start()
 	var bd := INF
-	for b in g.buildings if "buildings" in g else []:
-		if is_instance_valid(b) and not b.dead and g.enemies_of(me).has(b.team) and (b.seen_mask & (1 << me)) != 0:
+	var few: bool = g.units.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead and g.enemies_of(me).has(u.team) and u.armed()).size() < 6
+	for b in g.buildings:
+		if is_instance_valid(b) and not b.dead and g.enemies_of(me).has(b.team) and (few or (b.seen_mask & (1 << me)) != 0):
 			var d: float = b.position.distance_to(c)
 			if d < bd:
 				bd = d
@@ -738,6 +739,33 @@ func _run() -> void:
 	pt.note("match: me %d (%s) v %s, map %s, size %s" % [me, g.faction_of(me), str(g.enemies_of(me).map(func(t): return g.faction_of(t))), str(g.get("map_id")), str(pt.vsize())])
 	await pt.secs(4.0)     # (the countdown)
 	await pt.shot("start")
+	if mobile:
+		# two fingers: spread to zoom in, pinch to zoom out, then a two-finger pan
+		var c: Vector2 = play_rect().get_center()
+		var z0: float = g.camera.zoom.x
+		await pt.pinch(c, 120.0, 320.0)
+		var z1: float = g.camera.zoom.x
+		await pt.shot("pinch_in")
+		await pt.pinch(c, 320.0, 90.0)
+		var z2: float = g.camera.zoom.x
+		pt.note("pinch: zoom %.2f -> %.2f -> %.2f" % [z0, z1, z2])
+		if not (z1 > z0 and z2 < z1):
+			finding("UX", "Pinch did not zoom (%.2f -> %.2f -> %.2f)." % [z0, z1, z2])
+		var p0: Vector2 = g.camera.position
+		pt.touch(c - Vector2(40, 0), 0, true)
+		pt.touch(c + Vector2(40, 0), 1, true)
+		await pt.frames(1)
+		for i in 8:
+			pt.touch_move(c - Vector2(40, 0) + Vector2(-20 * (i + 1), 0), 0)
+			pt.touch_move(c + Vector2(40, 0) + Vector2(-20 * (i + 1), 0), 1)
+			await pt.frames(1)
+		pt.touch(c - Vector2(200, 0), 0, false)
+		pt.touch(c - Vector2(120, 0), 1, false)
+		await pt.frames(3)
+		pt.note("two-finger pan moved the view %s" % str(g.camera.position - p0))
+		# and a one-finger drag: with the default DRAG: BOX it box-selects (a person trying to scroll)
+		await pt.touch_drag(c, c + Vector2(-200, 0), 0, 8)
+		pt.note("one-finger drag picked %d units" % g.selected_units().size())
 	Engine.time_scale = o["ts"]
 	var shot_t := 0.0
 	var end_at: float = o["mins"] * 60.0
@@ -793,7 +821,7 @@ func _run() -> void:
 			shot_t = g.clock
 			pt.note("t %s food %d spoils %d supply %s grubs %d maws %d turtles %d army %d stage %d | %s" % [_clock(), food(), spoils(), str(supply()),
 				mine("grub").size(), mine(BroodNew.MAW).size(), mine(BroodNew.TURTLE).size(), army().size(), BroodNew.stage(mother()) if mother() else -1,
-				", ".join(g.enemies_of(me).map(func(t): return "%s %d units" % [g.faction_of(t), g.units.filter(func(u): return is_instance_valid(u) and u.team == t and not u.dead).size()]))])
+				", ".join(g.enemies_of(me).map(func(t): return "%s %d units %d buildings" % [g.faction_of(t), g.units.filter(func(u): return is_instance_valid(u) and u.team == t and not u.dead).size(), g.buildings.filter(func(b): return is_instance_valid(b) and b.team == t and not b.dead).size()]))])
 			var orders := {}
 			for u in mine("grub"):
 				orders[u.order] = int(orders.get(u.order, 0)) + 1
