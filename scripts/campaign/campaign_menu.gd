@@ -432,7 +432,11 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 	var cc := CenterContainer.new()
 	cc.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	o.add_child(cc)
-	var v := _panel(cc, 820)
+	# (a phone: bigger words, as the war map's card has: at 14-17 the debrief and the objectives were a few pixels
+	# high on a phone held sideways; playtest 2026-11-21)
+	var ph := not Settings.pc()
+	var k := 1.4 if ph else 1.0
+	var v := _panel(cc, 1000 if ph else 820)
 	var title := ("VICTORY" if won else "DEFEAT") if run.mode != "versus" else (Loc.t("%s WIN") % Loc.t(Campaign.side_name(m, win_side)).to_upper())
 	var db: Dictionary = m.get("debrief", {}).get(win_side, {})
 	# a STORY LOSS (the Clockwork prologue): the mission counts as played to its end, but the screen says the story's
@@ -440,27 +444,27 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 	var story_loss := db.has("banner") and won
 	if story_loss:
 		title = String(db["banner"])
-	v.add_child(UiStyle.heading(Loc.t(title), 44, UiStyle.BAD if story_loss or not won else UiStyle.GOOD))
+	v.add_child(UiStyle.heading(Loc.t(title), int(44 * k), UiStyle.BAD if story_loss or not won else UiStyle.GOOD))
 	var h := HBoxContainer.new()
 	h.add_theme_constant_override("separation", 14)
 	v.add_child(h)
 	var sv := StillView.make(m.get("stills", {}).get(String(db.get("still", "")), {}), _side_col(m, win_side))
-	sv.custom_minimum_size = Vector2(380, 230)
+	sv.custom_minimum_size = Vector2(380, 230) if not ph else Vector2(340, 210)
 	h.add_child(sv)
 	var tv := VBoxContainer.new()
 	tv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	h.add_child(tv)
-	tv.add_child(UiStyle.text(Loc.t(String(db.get("title", ""))), 24, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
-	tv.add_child(_wrap(Loc.t(String(db.get("text", ""))), 17))
+	tv.add_child(UiStyle.text(Loc.t(String(db.get("title", ""))), int(24 * k), UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
+	tv.add_child(_wrap(Loc.t(String(db.get("text", ""))), int(17 * k)))
 	for ti in db.get("text_if", []):
 		if run.cond(ti.get("if", {})):
-			tv.add_child(_wrap(run.fill(Loc.t(String(ti.get("text", "")))), 16))      # (the debrief's words by the flags)
+			tv.add_child(_wrap(run.fill(Loc.t(String(ti.get("text", "")))), int(16 * k)))      # (the debrief's words by the flags)
 	# the objectives as they ended
 	for ob in run.objectives_for(mine):
 		if String(ob.get("kind", "")) == "countdown":
 			continue
 		var mark: String = {"done": "[+] ", "failed": "[x] ", "active": "[ ] "}.get(String(ob["state"]), "")
-		tv.add_child(_wrap(mark + run.objective_text(ob), 14, UiStyle.GOOD if ob["state"] == "done" else (UiStyle.BAD if ob["state"] == "failed" else UiStyle.MUTED)))
+		tv.add_child(_wrap(mark + run.objective_text(ob), int(14 * k), UiStyle.GOOD if ob["state"] == "done" else (UiStyle.BAD if ob["state"] == "failed" else UiStyle.MUTED)))
 	# where the story goes
 	var story := ""
 	if won or run.mode == "versus":
@@ -471,7 +475,7 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 			story = (Loc.t("New storylines open: %s") % ", ".join(opened)) if not opened.is_empty() else Loc.t("The next mission is being written.")
 	else:
 		story = Loc.t("Try again: the story waits for a victory.")
-	v.add_child(_wrap(story, 17, UiStyle.TRIM))
+	v.add_child(_wrap(story, int(17 * k), UiStyle.TRIM))
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 10)
@@ -493,7 +497,9 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 		show(main)])
 	for bt in btns:
 		var b: Button = main._button(bt[0], bt[1])
-		b.custom_minimum_size = Vector2(170, 54)
+		b.custom_minimum_size = Vector2(170, 54) if not ph else Vector2(210, 70)
+		if ph:
+			b.add_theme_font_size_override("font_size", 24)
 		b.name = "End_" + String(bt[0]).replace(" ", "_")
 		row.add_child(b)
 
