@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.99", "items": [
+		"FATHER FERRER'S VISIT IS PAINTED: all five of its pictures are real paintings now: Ferrer arriving at the works with his escort as Hollweg welcomes him, an automaton winding another by itself while Ferrer writes, the night shift on the gears by the river, the riot as the broken ones turn red and the Pendulum scythes through them, and Hollweg standing between Ferrer and the furnace.",
+	]},
 	{"v": "0.38.98", "items": [
 		"THE LOST PLATEAU IS PAINTED: all five of its pictures are real paintings now: Valadares' party landing under the cloud mountain, the climb beside the waterfall, the sleeping nest seen through a spyglass with the young mother awake, Valadares drawing the map above the clouds, and the flight down the cleft with the Tyrant Sire looking over the rim.",
 	]},
