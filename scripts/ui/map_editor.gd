@@ -104,6 +104,12 @@ var _last_touch := Vector2.INF
 var _new_size := Vector2i(110, 80)
 var _left_scroll := 0
 var _drawn_xf := Transform2D()  # the view the overlay was last drawn for (phones redraw only on change)
+var _saved := ""                # the map as it was last loaded or saved (_snapshot as JSON): changes since ask first
+var _file := ""                 # the name it was loaded / last saved under ("" a new map)
+var _armed := ""                # a button pressed once that asks to be pressed again ("back", "new", "load", "save:<name>", "del:<name>")
+var _armed_ms := 0
+var _stroke_ms := 0             # when the finger that paints came down (a second finger soon after: a pinch, not paint)
+var _stroke_undo := 0           # the undo steps before that stroke
 
 
 func _ready() -> void:
@@ -149,8 +155,11 @@ func load_from(data: Dictionary) -> void:
 	show_problems = false
 	_undo.clear()
 	_redo.clear()
+	_file = map_name if String(data.get("cells", "")) != "" and MapGen.custom_names().has(map_name) else ""
+	_armed = ""
 	_fit_camera()
 	_rebuild()
+	_saved = JSON.stringify(_snapshot())
 	_build_ui()
 
 
@@ -236,6 +245,22 @@ func _snapshot() -> Dictionary:
 
 
 ## Keep the map as it is now, before a change.
+## Changes since the map was loaded or saved (BACK, NEW and LOAD ask before throwing them away; playtest 2026-11-21).
+func _unsaved() -> bool:
+	return JSON.stringify(_snapshot()) != _saved
+
+
+## A press that must be repeated within 4 seconds to go through ("" first press: says `ask`, false).
+func _confirm(id: String, ask: String) -> bool:
+	if _armed == id and Time.get_ticks_msec() - _armed_ms < 4000:
+		_armed = ""
+		return true
+	_armed = id
+	_armed_ms = Time.get_ticks_msec()
+	_say(ask)
+	return false
+
+
 func _push_undo() -> void:
 	_undo.append(_snapshot())
 	if _undo.size() > UNDO_DEPTH:
@@ -305,7 +330,9 @@ func _build_ui() -> void:
 	top.position = Vector2(8, 6)
 	top.add_theme_constant_override("separation", 5)
 	_ui.add_child(top)
-	top.add_child(_btn("BACK", 74, func() -> void: back_requested.emit()))
+	top.add_child(_btn("BACK", 74, func() -> void:
+		if not _unsaved() or _confirm("back", "Not saved. Press BACK again to leave without saving."):
+			back_requested.emit()))
 	_name_edit = LineEdit.new()
 	_name_edit.text = map_name
 	_name_edit.custom_minimum_size = Vector2(170, 44)
@@ -321,8 +348,12 @@ func _build_ui() -> void:
 	info.tooltip_text = "Mode (from the start spots' teams) and size in cells"
 	info.mouse_filter = Control.MOUSE_FILTER_PASS
 	top.add_child(info)
-	top.add_child(_btn("NEW", 62, func() -> void: _show_new(), "A new map: pick its size"))
-	top.add_child(_btn("LOAD" if Loc.lang == "en" else Loc.t("LOAD MAP"), 66, func() -> void: _show_load(), "Open one of your maps"))
+	top.add_child(_btn("NEW", 62, func() -> void:
+		if not _unsaved() or _confirm("new", "Not saved. Press NEW again to start another map anyway."):
+			_show_new(), "A new map: pick its size"))
+	top.add_child(_btn("LOAD" if Loc.lang == "en" else Loc.t("LOAD MAP"), 66, func() -> void:
+		if not _unsaved() or _confirm("load", "Not saved. Press LOAD again to open another map anyway."):
+			_show_load(), "Open one of your maps"))
 	top.add_child(_btn("SAVE", 66, func() -> void: _save(), "Save the map (it shows up in Skirmish)"))
 	var chk := _btn("CHECK", 76, func() -> void:
 		_run_check()
@@ -452,6 +483,22 @@ func _build_ui() -> void:
 		_build_problems(vp)
 	elif tool == "prop":
 		_build_palette(vp)
+
+
+## A map's name as a file name every system takes (Windows refuses < > : " / \\ | ? * and names like CON; a name
+## of dots or ending in a dot or space is no file there either): those characters become "-".
+static func file_safe(n: String) -> String:
+	var out := ""
+	for ch in n.strip_edges():
+		out += "-" if "<>:\"/\\|?*".contains(ch) or ch.unicode_at(0) < 32 else ch
+	out = out.strip_edges().rstrip(".").strip_edges()
+	if out.trim_prefix(".") == "" and out != "":
+		out = "-"
+	var stem := out.get_slice(".", 0).to_upper()
+	if stem in ["CON", "PRN", "AUX", "NUL", "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9",
+			"LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8", "LPT9"]:
+		out = "_" + out
+	return out
 
 
 func _small_label(t: String) -> Label:
@@ -623,9 +670,16 @@ func _show_load() -> void:
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		b.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		row.add_child(b)
-		row.add_child(_btn("×", 44, func() -> void:
-			MapGen.delete_custom(nm)
-			_show_load(), "Delete this map"))
+		var sure := _armed == "del:" + nm and Time.get_ticks_msec() - _armed_ms < 4000
+		var del := _btn("SURE?" if sure else "×", 70 if sure else 44, func() -> void:
+			if _confirm("del:" + nm, "Press SURE? to delete \"%s\" for good." % nm):
+				MapGen.delete_custom(nm)
+				if _file == nm:
+					_file = ""
+			_show_load(), "Delete this map")
+		if sure:
+			del.add_theme_color_override("font_color", UiStyle.BAD)
+		row.add_child(del)
 		list.add_child(row)
 	v.add_child(_btn("CLOSE", 120, func() -> void: p.queue_free()))
 
@@ -841,10 +895,15 @@ func _run_check() -> void:
 
 
 func _save() -> bool:
-	map_name = map_name.strip_edges().replace("/", "-").replace("\\", "-").replace(":", "-")
+	map_name = MapEditor.file_safe(map_name)
 	if map_name == "":
 		_say("Give the map a name first.")
 		return false
+	if map_name != _file and MapGen.custom_names().has(map_name) \
+			and not _confirm("save:" + map_name, "There is already a map called \"%s\". Press again to replace it." % map_name):
+		return false
+	if is_instance_valid(_name_edit) and _name_edit.text != map_name:
+		_name_edit.text = map_name
 	_run_check()
 	var data := to_data()
 	data["checked"] = _faults() == 0 and starts.size() >= 2
@@ -852,6 +911,8 @@ func _save() -> bool:
 		_say("Couldn't save the map.")
 		return false
 	_save_picture()
+	_file = map_name
+	_saved = JSON.stringify(_snapshot())
 	if _faults() > 0:
 		show_problems = true
 		problem_sel = -1
@@ -978,8 +1039,16 @@ func _input(event: InputEvent) -> void:
 			_last_touch = st.position
 			if _touches.size() == 1 and not pan_mode:
 				_painting = true
+				_stroke_ms = Time.get_ticks_msec()
+				_stroke_undo = _undo.size()
 				_paint(st.position, true)
 			elif _touches.size() == 2:
+				if _painting and Time.get_ticks_msec() - _stroke_ms < 500 and _undo.size() > _stroke_undo:
+					# (the first finger of a pinch or a two-finger pan had already painted a dab, put a spot or a
+					# decoration, mirrored too: taken back; playtest 2026-11-21)
+					_restore(_undo.pop_back())
+					_stroke.clear()
+					_painting = false
 				_end_stroke()
 				var ps: Array = _touches.values()
 				_pinch = (ps[0] as Vector2).distance_to(ps[1])
@@ -1408,7 +1477,7 @@ func _draw() -> void:
 		hint = ("Click a decoration to remove it" if prop_erase else "Click to place · right click removes") if Settings.pc() else ("Tap a decoration to remove it" if prop_erase else "Tap to place")
 	var line := _status if _status != "" else (tip if tip != "" else hint)
 	var font := UiStyle.bold_font()
-	var w := font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, 17).x + 30
+	var w := font.get_string_size(Loc.t(line), HORIZONTAL_ALIGNMENT_LEFT, -1, 17).x + 30      # (the shown words: _text translates)
 	var sr := Rect2(size.x * 0.5 - w * 0.5, size.y - 46, w, 36)
 	UiStyle.box(Color(0.1, 0.08, 0.06, 0.9), UiStyle.TRIM_DIM, 2, 18, 0.0).draw(get_canvas_item(), sr)
 	_text(sr.get_center() + Vector2(0, 6), line, 17, Color(1, 0.9, 0.65) if _status != "" else (Color(1, 0.6, 0.5) if tip != "" else UiStyle.TEXT))

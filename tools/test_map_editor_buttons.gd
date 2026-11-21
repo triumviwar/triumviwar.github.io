@@ -95,6 +95,11 @@ func _run() -> void:
 		await process_frame
 		check(not ed._painting and backs[0] == 0, "a stroke released over BACK ends and does not go back")
 		await _click(bp)
-		check(backs[0] == 1, "BACK fires (%d)" % backs[0])
+		# (the map was painted and not saved: the first BACK asks, the second leaves; playtest 2026-11-21)
+		check(backs[0] == 0 and ed._armed == "back", "BACK with unsaved paint asks first (%d)" % backs[0])
+		back = _button(ed, "BACK")
+		if back:
+			await _click(back.get_global_rect().get_center())
+		check(backs[0] == 1, "BACK fires on the second press (%d)" % backs[0])
 	print("FAILS: %d" % fails)
 	quit(1 if fails > 0 else 0)
