@@ -169,7 +169,10 @@ It was her children." / "He never knew." Found besides:
 ## Tests
 
 Run on the branch and on main (`tools/test_campaign.gd`, `test_campaign_b01.gd`, `test_campaign_a03.gd`,
-`test_campaign_a05.gd`, `test_war_map.gd`, `test_roster_ladder.gd`): see the table at the end.
+`test_campaign_a05.gd`, `test_war_map.gd`, `test_roster_ladder.gd`), headless: every one reports 0 failures on
+both. Every one also ends with exit code 134 on both (Godot aborts while shutting down: "Texture ... leaked", then
+"RenderingServer::get_singleton() is null"), after its result is printed: harmless for the tests, but worth knowing
+when a script reads the exit code.
 
 ## Proposals for the owner
 
