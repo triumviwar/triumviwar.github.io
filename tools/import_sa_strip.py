@@ -13,7 +13,8 @@ import numpy as np
 from PIL import Image
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from redraw_lib import col_boxes, cut, load_sheet, save_strip, to_cell  # noqa: E402
+from redraw_lib import BG, col_boxes, cut, defringe, load_sheet, save_strip, to_cell  # noqa: E402
+from scipy import ndimage  # noqa: E402
 
 
 def frames_of(path, n):
@@ -25,6 +26,22 @@ def frames_of(path, n):
 def box(m):
     ys, xs = np.nonzero(m)
     return xs.min(), ys.min(), xs.max(), ys.max()
+
+
+def by_parts(px, fg, n):
+    """The n biggest joined shapes of the sheet, left to right (when the figures' columns overlap, e.g. a long pike
+    reaching over the next figure's column)."""
+    m = ndimage.binary_closing(fg, iterations=1) | fg
+    lab, k = ndimage.label(m, structure=np.ones((3, 3)))
+    sizes = ndimage.sum(m, lab, range(1, k + 1))
+    big = sorted(np.argsort(sizes)[::-1][:n] + 1, key=lambda i: np.nonzero(lab == i)[1].mean())
+    out = []
+    for i in big:
+        img = np.zeros(fg.shape + (4,), np.uint8)
+        img[..., :3] = px
+        img[..., 3] = np.where(lab == i, 255, 0)
+        out.append(defringe(img, BG.astype(float)))
+    return out
 
 
 def main():
@@ -40,6 +57,8 @@ def main():
     px, fg = load_sheet(sheet)
     H, W = fg.shape
     figs = [cut(px, fg, (x0, 0, x1, H)) for x0, x1 in col_boxes(fg, 0, H, (0, W), n)]
+    if any(not (f[..., 3] > 0).any() for f in figs):
+        figs = by_parts(px, fg, n)
     hs = [box(f[..., 3] > 0) for f in figs]
     scale = want_h / float(np.median([b[3] - b[1] + 1 for b in hs]))
     ground = float(np.median([b[3] for b in hs]))
