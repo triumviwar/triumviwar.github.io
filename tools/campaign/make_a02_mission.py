@@ -244,7 +244,8 @@ M = {
         {"id": "rung_purse", "when": {"all": [{"time": 0.5}, RUNG, GUILD]}, "do": [{"give": {"team": "guild", "gold": 200}}]},
         {"id": "jakob_obj", "when": {"all": [{"time": 0.5}, JAKOB, GUILD]}, "do": [{"objective": {"id": "jakob", "set": "active"}}]},
         # quiet bells: a Crown commissary watches the guild; no Light Works until the stop-work is fitted
-        {"id": "watched", "when": {"all": [{"time": 0.5}, QUIET]}, "do": [{"deny": {"team": "guild", "kind": "movement_works"}}]},
+        {"id": "watched", "when": {"all": [{"time": 0.5}, QUIET]}, "do": [{"deny": {"team": "guild", "kind": "movement_works",
+            "why": "The commissary forbids it until the stop-work is fitted."}}]},
         {"id": "intro", "when": {"all": [{"time": 1}, GUILD]}, "do": [{"say": ["h_1", "col_1", "tip_1"]}, {"ping": {"area": "honest_ring"}}]},
         {"id": "intro_quiet", "when": {"all": [{"fired": "intro"}, QUIET]}, "delay": 14, "do": [{"say": ["com_1", "h_com"]}]},
         {"id": "intro_rung", "when": {"all": [{"fired": "intro"}, RUNG]}, "delay": 14, "do": [{"say": ["col_rung"]}]},

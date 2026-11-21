@@ -511,6 +511,8 @@ static func strings_of(m: Dictionary) -> Array:
 			out.append(String(ti.get("text", "")))
 	for tr in m.get("triggers", []):
 		for a in tr.get("do", []):
+			if a is Dictionary and a.has("deny") and a["deny"] is Dictionary:
+				out.append(String(a["deny"].get("why", "")))          # (the refusal's words while the story holds it back)
 			if a is Dictionary and a.has("choice"):
 				out.append(String(a["choice"].get("title", "")))
 				for o in a["choice"].get("options", []):

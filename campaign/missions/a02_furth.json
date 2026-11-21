@@ -1119,7 +1119,8 @@
 				{
 					"deny": {
 						"team": "guild",
-						"kind": "movement_works"
+						"kind": "movement_works",
+						"why": "The commissary forbids it until the stop-work is fitted."
 					}
 				}
 			]

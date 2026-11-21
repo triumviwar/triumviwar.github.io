@@ -805,7 +805,9 @@ func act(a: Dictionary) -> void:
 					if k == "deny":
 						if not deny.has(t):
 							deny[t] = {}
-						deny[t][String(kk)] = true
+						# (an optional "why": what the refusal says instead of "Not in this mission." while the story holds
+						# it back: a02's commissary and the stop-work; playtest-campaign-clock)
+						deny[t][String(kk)] = String(v["why"]) if v.has("why") else true
 					elif deny.has(t):
 						(deny[t] as Dictionary).erase(String(kk))
 			"name":
@@ -1285,6 +1287,12 @@ func winner_side_of(team: int) -> String:
 ## {"deny": [kinds]}, changed by the `unlock` and `deny` actions.)
 func denied(t: int, k: String) -> bool:
 	return deny.has(t) and (deny[t] as Dictionary).has(k)
+
+
+## What a refusal says for a denied kind: the deny action's "why" when it gave one, else "Not in this mission.".
+func denied_text(t: int, k: String) -> String:
+	var w: Variant = (deny.get(t, {}) as Dictionary).get(k, true)
+	return String(w) if w is String and String(w) != "" else "Not in this mission."
 
 
 ## `convert`: {"tag", "to": team id, "warn": seconds (5), "as": a new tag}: the tagged units stutter for the warning

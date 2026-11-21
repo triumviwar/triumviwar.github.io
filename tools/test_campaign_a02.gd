@@ -182,7 +182,7 @@ func _flags() -> void:
 		check(P + "Hollweg and Jakob at Fürth", r.tagged("hollweg").size() == 1 and r.tagged("jakob").size() == 1)
 		check(P + "quiet bells: the commissary, 10 musketeers, no guns", r.tagged("commissary").size() == 1 and _n(g, at, "musketeer") == 10 and _n(g, at, "cannon") == 0,
 			"%d musketeers" % _n(g, at, "musketeer"))
-		check(P + "quiet bells: no Light Works until the stop-work", g.requirement_text(gt, "movement_works") == "Not in this mission.")
+		check(P + "quiet bells: no Light Works until the stop-work", g.requirement_text(gt, "movement_works") == "The commissary forbids it until the stop-work is fitted.")      # (the deny's own words: playtest-campaign-clock)
 		check(P + "quiet bells: no extra cogs", int(g.players[gt]["gold"]) == 400)
 		check(P + "some saved: two cottages and four diggers", r.tagged("cottages").size() == 2 and r.tagged("diggers").size() == 4)
 		check(P + "the pattern: no Heavy Works yet (Part 3)", r.denied(gt, "heavy_works") and r.denied(gt, "pendulum"))
