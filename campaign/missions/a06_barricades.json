@@ -3968,6 +3968,18 @@
 			]
 		},
 		{
+			"id": "rush_point_off",
+			"when": {
+				"fired": "first_rush"
+			},
+			"delay": 30,
+			"do": [
+				{
+					"point": {}
+				}
+			]
+		},
+		{
 			"id": "torch_1",
 			"when": {
 				"all": [

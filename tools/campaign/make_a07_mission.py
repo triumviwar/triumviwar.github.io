@@ -353,6 +353,8 @@ M = {
             {"spawn": {"team": "assembly", "kind": "musketeer", "as": "militia", "count": 3, "at": "porta_gate", "tag": "bridge_cell"}},
             {"order": {"tag": "bridge_cell", "do": "attack", "to": "ponte_sant_angelo_e"}}]},
         {"id": "tip_people", "when": {"all": [P2, CROWN]}, "delay": 20, "do": [{"say": ["t_people", "tip_church"]}, {"point": {"kind": "church"}}]},
+        # (the arrow at the Church goes away again: it stayed for the rest of the night; playtest 2026-11-21)
+        {"id": "tip_people_off", "when": {"fired": "tip_people"}, "delay": 40, "do": [{"point": {}}]},
         {"id": "tip_fire", "when": {"all": [P2, CROWN, {"burning": {"tag": "houses", "at_least": 2}}]}, "do": [{"say": ["tip_fire"]}]},
         # the specimens break loose (the fire reaches their stables; the Assembly's men open the pens)
         {"id": "loose", "when": {"all": [P2, LIVE]}, "delay": 70, "do": [
