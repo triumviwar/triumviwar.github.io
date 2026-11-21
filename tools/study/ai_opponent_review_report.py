@@ -123,7 +123,7 @@ def matrix(data, out):
 
 
 def bench(data, out):
-    out.append("## The benchmark players against the computer (to 20:00)\n")
+    out.append("## The benchmark players against the computer (to 15:00)\n")
     cells = defaultdict(list)       # (comp faction, level, strength) -> outcomes from the HUMAN's side
     by_bf = defaultdict(list)       # (bench faction, level, strength)
     games = []
@@ -141,7 +141,7 @@ def bench(data, out):
         by_bf[(bf, lv, st)].append(o)
         games.append((os.path.basename(d), bf, st, cf, lv, o, x["end"], x))
     out.append("Each cell is the HUMAN-LIKE PLAYER's record against that computer (all three benchmark factions together): "
-               "won-drawn-lost (W-D-L at 20:00), then won or led / trailed / even at the bell. The owner's targets: a novice "
+               "won-drawn-lost (W-D-L at 15:00), then won or led / trailed / even at the bell. The owner's targets: a novice "
                "usually beats Easy; an average player has close games with Normal; a good player finds Hard a real fight.\n")
     for st in STRS:
         out.append("### %s player\n" % st.upper())

@@ -65,7 +65,16 @@ def matrix(r):
     return [g for g in qm.base(r) if g[1] in MAPS]
 
 
+def fix_cells(name):
+    """(the blunder fixes, measured) the bench0 games a fix touches, the same tags, seeds and sides, run on the fixed code"""
+    if name == "levelgrubs":
+        return [g for g in bench(0) if "_v_breasy_" in g[0] or "_v_brnormal_" in g[0]]
+    return []
+
+
 def queue(only=""):
+    if only.startswith("fix:"):
+        return fix_cells(only[4:])
     parts = {"sanity": sanity(), "bench0": bench(0), "matrix0": matrix(0), "bench1": bench(1), "matrix1": matrix(1)}
     if only:
         return parts[only]

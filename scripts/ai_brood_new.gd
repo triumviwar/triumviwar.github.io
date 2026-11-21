@@ -2953,7 +2953,20 @@ func _nb_want_grubs() -> int:
 		n = mini(n, bb.grub_cap())          # (the written build: grubs held until its push)
 	if bench != null:
 		n = mini(n, int(bench_flags.get("cap", n)))      # (ai-opponent-review: the benchmark player's grubs stop here)
+	if level_grubs_on and difficulty <= 1:
+		return mini(mini(n, int(plan["grubs"]) + _extra_grubs(crew)), LEVEL_GRUBS[difficulty])
 	return mini(n, int(plan["grubs"]) + _extra_grubs(crew))
+
+
+## (ai-opponent-review, docs/ai_opponent_review.md) THE EASY AND NORMAL BROOD HAD NO WORKER CAP. The Crown and Clockwork
+## computers stop their workers by level (AI._workers: Easy 16, Normal 30 / 26, Hard 40 / 32), the Brood computer only by
+## its plan (46-54 grubs at every level): its Easy level was the Hard economy with a later first wave (Easy -6 grubs on the
+## plan). In the benchmark games the Easy Brood had 47-52 grubs and 2,400-3,100 of army at 8:00 and beat every benchmark
+## player, the good one too, where the Easy Crown and Clockwork lost to the average and good players. The caps here match
+## the others' by income (a grub earns about 0.75 of a labourer: the 2026-11-17 matrix, 48 grubs on 1.18x the Crown's 31
+## labourers' income): Easy 20, Normal 38. Hard and Brutal unchanged. MEASURING SWITCH `levelgrubs:off` (as before).
+const LEVEL_GRUBS := [20, 38]
+static var level_grubs_on := not OS.get_cmdline_user_args().has("levelgrubs:off")
 
 
 ## BROOD-ROOTMAW-COACH: the banked food into grubs for the new Rootmaws. With its Rootmaws on new ground the posts
