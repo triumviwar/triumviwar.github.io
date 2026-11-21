@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.98", "items": [
+		"THE LOST PLATEAU IS PAINTED: all five of its pictures are real paintings now: Valadares' party landing under the cloud mountain, the climb beside the waterfall, the sleeping nest seen through a spyglass with the young mother awake, Valadares drawing the map above the clouds, and the flight down the cleft with the Tyrant Sire looking over the rim.",
+	]},
 	{"v": "0.38.97", "items": [
 		"THE PRINTING HOUSES ARE PAINTED: all five of the Lyon mission's pictures are real paintings now: Father Tomasz catching a pamphlet on the bridge, the master printer at his press in a weaver's attic, Tomasz calming the weavers on their hill, the soldiers creeping through the traboules, and the last press broken at dawn.",
 	]},
