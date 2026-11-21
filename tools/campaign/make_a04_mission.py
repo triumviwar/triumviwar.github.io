@@ -538,7 +538,7 @@ M = {
     },
     "debrief": {
         "visit": {"still": "broken", "title": "The report",
-                  "text": "Father Ferrer rode for Rome with his report. Stopped: {riot} broken automata; lost to the machine: {lost_to_machine}.",
+                  "text": "Father Ferrer rode for Rome with his report. Of {riot} broken automata, {lost_to_machine} reached the machine's ground.",
                   "text_if": [
                       {"if": {"flag": {"broken": "melted"}}, "text": "The broken ones were melted."},
                       {"if": {"flag": {"broken": "kept"}}, "text": "The broken ones were kept for study."},

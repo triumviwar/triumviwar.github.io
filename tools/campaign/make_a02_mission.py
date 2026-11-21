@@ -506,14 +506,21 @@ M = {
             "Burn the Honest One or kill Meister Hollweg before the Crown finishes its line."]},
     },
     "debrief": {
+        # (the words say what happened: the guild also wins when the Machine's player runs out of time with the mill seed
+        # standing, and the Machine wins by Hollweg dead with the tower up; both screens said otherwise;
+        # playtest-campaign-clock)
         "guild": {"still": "held", "title": "The line holds",
-                  "text": "The Rednitz mill burned and the machine went back behind Nuremberg's walls. Fürth stands.",
+                  "text": "The machine went back behind Nuremberg's walls. Fürth stands.",
                   "text_if": [
+                      {"if": {"dead": "seed_mill"}, "text": "The Rednitz mill burned."},
+                      {"if": {"not": {"dead": "seed_mill"}}, "text": "Fürth's line was finished before the machine broke through."},
                       {"if": {"flag": {"furth": "strong"}}, "text": "The Franconian army kept its strength: {army} men on the line."},
                       {"if": {"flag": {"furth": "thin"}}, "text": "The Franconian army is thin: {army} men on the line."},
                       {"if": {"flag": {"jakob": "lost"}}, "text": "Jakob is not with the guild."}]},
         "machine": {"still": "sortie", "title": "Fürth burns",
-                    "text": "The guild's tower is down. The Machine has the Pegnitz from Nuremberg to the Regnitz."},
+                    "text": "The Machine has the Pegnitz from Nuremberg to the Regnitz.",
+                    "text_if": [{"if": {"dead": "honest"}, "text": "The guild's tower is down."},
+                                {"if": {"dead": "hollweg"}, "text": "Meister Hollweg is dead."}]},
     },
     "next": {"guild": "a04_visit", "machine": ""},
 }

@@ -218,9 +218,10 @@ func machine_careful() -> void:
 	var honest: Array = run.tagged("honest")
 	var target: Vector2 = honest[0].position if not honest.is_empty() else run.area_rect("barn").get_center()
 	var idle := army.filter(func(u): return (u.target == null or not is_instance_valid(u.target)) and u.velocity.length() < 5)
-	# wait for a band of 10 (as a player gathers before he walks), then all at the Honest One
-	if idle.size() >= 10 or (game.clock > 420 and idle.size() >= 4):
-		await select(idle)
+	# wait for a band of 12 (as a player gathers before he walks), then the whole army (ARMY, F2) at the Honest One
+	if idle.size() >= 12 or (game.clock > 420 and idle.size() >= 4):
+		await select_army()
+		note("machine: ARMY selected %d, sent at the Honest One" % game.selected_units().size())
 		await order_to(target, true)
 	for lw in my_buildings("movement_works"):
 		if lw.built and lw.queue.size() < 2 and gold() >= 80:

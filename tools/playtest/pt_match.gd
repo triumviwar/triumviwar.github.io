@@ -215,6 +215,15 @@ func select(units: Array) -> void:
 			await click_at(w2s(spot_of(units[i])), MOUSE_BUTTON_LEFT, true)
 
 
+## The whole army: ARMY on the hotkey bar (F2 on a computer, a tap on the bar's ARMY on a phone).
+func select_army() -> void:
+	if touch:
+		await click_at(hud_pt(game.hud.bar.rect_of(HotkeyBar.ARMY).get_center()))
+	else:
+		await key(KEY_F2)
+	await frames(2)
+
+
 ## Order the selection to a world point: a right click on the minimap (a tap on the minimap with MOVE on a phone).
 func order_to(w: Vector2, attack := false) -> void:
 	if touch:
