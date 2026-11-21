@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.114", "items": [
+		"REDRAWN SPRITES (from the sprite check, where a frame had come out wrong): the Raptor standing still now has the slim body of its run; the Tyrant Challenger falls properly when it dies seen from behind; the rebel pikeman carries one pike when walking toward you and down to the right (he had two in one frame); the Guardsman standing facing you has both legs; the Cuirassier strikes with his sabre the right way round when riding away from you and up to the right.",
+	]},
 	{"v": "0.38.113", "items": [
 		"AN EASIER EASY BROOD: the Brood computer on Easy now keeps to 20 grubs (on Normal 38) as the Crown and Clockwork computers keep to fewer workers on the easier levels, and on Easy it lays its warriors at half the pace. Before, an Easy Brood had the Hard economy and beat players who beat the Easy Crown and the Easy Clockwork. Story missions are unchanged; the tutorial's practice games use the new Easy.",
 		"ONE RIDER NO LONGER HOLDS THE WHOLE BROOD AT HOME: against riders in its land the Brood computer still guards its grubs without chasing, but only with a squad worth three times the riders; the rest of its army goes on with its plan and its attacks.",
