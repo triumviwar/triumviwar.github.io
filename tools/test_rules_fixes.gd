@@ -186,6 +186,24 @@ func _helpless() -> void:
 		for b in g.buildings:
 			if b.team == 1 and not b.dead:
 				print("  bld: ", b.kind, " built ", b.built, " q ", b.queue, " trains ", b.d.get("trains", []), " gold ", g.players[1]["gold"])
+	# (playtest-skirmish-clockwork, 2026-11-21) cogs in the bank and a Clocktower: not helpless; the Clocktower gone, a lone
+	# Light Works cut off from the gear field (it trains nothing) with cogs in the bank: helpless
+	g.players[1]["gold"] = 500
+	var ct: Building = null
+	for b in g.buildings:
+		if b.team == 1 and b.kind == "clocktower" and not b.dead:
+			ct = b
+	await wait(1.0)
+	check(not g.helpless(1), "[helpless] a Clocktower and the price of a Winder: not helpless")
+	if ct:
+		var lw: Building = g._add_building("movement_works", 1, Vector2i(ct.cell) + Vector2i(-12, 0), true)
+		for b in g.buildings.duplicate():
+			if b.team == 1 and not b.dead and b != lw:
+				b.die()
+		await wait(2.0)
+		check(lw != null and not lw.dead and g.gear_net.speed_mult(lw) <= 0.0, "[helpless] the Light Works stands unlinked")
+		check(g.helpless(1), "[helpless] a lone unlinked Light Works with cogs: helpless")
+	g.players[1]["gold"] = 0
 	# team 0 (the Crown): only its hall and enough gold for a Labourer: not helpless
 	for u in g.units.duplicate():
 		if u.team == 0 and not u.dead:

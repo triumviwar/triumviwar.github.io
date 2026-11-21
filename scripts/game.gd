@@ -10117,8 +10117,14 @@ func helpless(t: int) -> bool:
 		for q in b.queue:
 			if not String(q).begins_with("@"):
 				return false          # (a unit on its way)
+		# (playtest-skirmish-clockwork, 2026-11-21: a Clockwork building cut off from the gear field stands idle and trains
+		# nothing; and nothing comes out without the supply for it. A lone unlinked Light Works with cogs in the bank kept a
+		# beaten Clockwork "alive" for 7 minutes, until the enemy happened on it.)
+		if gear_net and gear_net.speed_mult(b) <= 0.0:
+			continue
 		for k in b.d.get("trains", []):
-			if Defs.UNITS.has(k) and int(Defs.UNITS[k].get("cost", 0)) <= gold:
+			if Defs.UNITS.has(k) and int(Defs.UNITS[k].get("cost", 0)) <= gold \
+					and supply_used(t) + int(Defs.UNITS[k].get("supply", 0)) <= int(players[t].get("cap", 0)):
 				return false
 	return true
 
