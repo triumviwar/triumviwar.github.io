@@ -550,7 +550,15 @@ func quit_game() -> void:
 	_autosave()
 	if not OS.has_feature("web"):
 		DirAccess.remove_absolute(RUNNING)     # (closed on purpose: not a crash)
+	release_cursor_art()
 	get_tree().quit()
+
+
+## The custom cursor's picture is let go before the program ends: Input held it past the renderer, and freeing it
+## then gave "Texture with GL ID ... leaked" / "RenderingServer::get_singleton() is null" on every EXIT (playtest
+## 2026-11-21; the test machine's exit still ended in a crash inside the engine afterwards, see the report).
+static func release_cursor_art() -> void:
+	Input.set_custom_mouse_cursor(null)
 
 
 ## Place the title and the grid by the screen's fractions; on a small screen the buttons keep their minimum size
@@ -661,7 +669,12 @@ func _set_back(b: Button) -> void:
 
 
 ## Esc / back: press this page's BACK (menus only, never in a match). True when there was one.
+## An open dropdown list is closed first (playtest 2026-11-21: Esc on an open list left the whole setup page).
 func menu_back() -> bool:
+	if is_instance_valid(_list_shade) and _list_shade.is_inside_tree() and not _list_shade.is_queued_for_deletion():
+		_list_shade.queue_free()
+		_list_shade = null
+		return true
 	if game != null or not is_instance_valid(_esc_button) or not _esc_button.is_visible_in_tree() or _esc_button.disabled:
 		return false
 	_esc_button.pressed.emit()
@@ -1946,8 +1959,12 @@ func _dropdown(text: String, w: float, items: Array, pick: Callable, list_w := 2
 
 ## The list a dropdown opens: big rows in the menu's own layer (not a separate popup
 ## window, which froze on some Android phones). A tap outside closes it.
+var _list_shade: Control = null      # the dropdown list open now (_open_list): Esc / back closes it first
+
+
 func _open_list(b: Button, current: String, items: Array, pick: Callable, min_w := 240.0, after := Callable()) -> void:
 	var shade := Control.new()
+	_list_shade = shade
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	shade.mouse_filter = Control.MOUSE_FILTER_STOP
 	var bg := ColorRect.new()
@@ -2732,6 +2749,8 @@ func _notification(what: int) -> void:
 	# closed or sent to the background on purpose: not a crash (back in front: running again)
 	if what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_WM_CLOSE_REQUEST] and not OS.has_feature("web"):
 		DirAccess.remove_absolute(RUNNING)
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		release_cursor_art()          # (the window's close button: the program ends next; see quit_game)
 	elif what == NOTIFICATION_APPLICATION_RESUMED:
 		_mark_running("resumed" if game == null else "resumed a match")
 	# online: the app put away (or back): the host pauses the match for everyone meanwhile (NetSession.set_hidden;

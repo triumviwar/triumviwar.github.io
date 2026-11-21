@@ -4920,11 +4920,17 @@ func _draw_card(font: Font) -> void:
 		_ci.draw_rect(Rect2(br.position.x + 2, br.end.y - 17, br.size.x - 4, 15), Color(0, 0, 0, 0.62))
 		# the label at 11, smaller only when it wouldn't fit the (phone's narrower) button
 		var lab := Loc.t(String(it[1]).trim_prefix("> ").trim_prefix("~ "))
+		var raw_lab := String(it[1])
+		if Defs.BUILDINGS.has(String(it[0])) and Defs.is_econ(String(it[0])) and raw_lab.count("/") == 1 and raw_lab.contains(" "):
+			# the build page's "POWDER 0/1": the first word of the English name, which no dictionary can translate
+			# (pt/es showed "POWDER 0/1"; playtest 2026-11-21): the first word of the translated name instead
+			lab = Loc.t(String(Defs.BUILDINGS[String(it[0])]["name"])).to_upper().split(" ")[0] + " " + raw_lab.get_slice(" ", raw_lab.get_slice_count(" ") - 1)
 		var lsz := 11
 		while lsz > 8 and UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5:
 			lsz -= 1
 		if UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5:
 			lab = lab.replace(Loc.t("ARMOURED ").strip_edges() + " ", Loc.t("ARM. ").strip_edges() + " ")      # (Armoured Dragoon / Officer: still too long)
+		lab = _fit_card_label(lab, lsz, br.size.x + 2)      # (a few pixels over the padding still reads: ATTACK GROUND)
 		_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab, lsz, (Color(1, 0.9, 0.55) if on else UiStyle.TEXT) if enabled else Color(1, 1, 1, 0.45), 1)
 		if it[5] != "":
 			var cw := font.get_string_size(it[5], HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 8
@@ -4939,6 +4945,25 @@ func _draw_card(font: Font) -> void:
 			_ci.draw_rect(kr, UiStyle.TRIM_DIM, false, 1.0)
 			_text(UiStyle.bold_font(), kr.position + Vector2(kr.size.x * 0.5, 13), it[6], 12, Color(1, 0.92, 0.6), 1)
 	_draw_card_bar()          # (a long card: its scroll bar)
+
+
+## A card label still too wide at the smallest size (OBSERVATION BALLOON, longer words in pt/es) ran into the buttons
+## beside it (playtest 2026-11-21): the first words are cut to "OBS." one by one, then the end gets "…".
+func _fit_card_label(lab: String, lsz: int, w: float) -> String:
+	var f := UiStyle.bold_font()
+	if f.get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x <= w:
+		return lab
+	var words := lab.split(" ", false)
+	for i in words.size() - 1:
+		if words[i].length() > 4 and not words[i].ends_with("."):
+			words[i] = words[i].substr(0, 3) + "."
+			var t := " ".join(words)
+			if f.get_string_size(t, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x <= w:
+				return t
+	var t2 := " ".join(words)
+	while t2.length() > 2 and f.get_string_size(t2 + "…", HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > w:
+		t2 = t2.substr(0, t2.length() - 1)
+	return t2.strip_edges() + "…"
 
 
 ## Autocast (WORK, PUSH): a golden outline that breathes, with sparks running round it.
@@ -5109,7 +5134,9 @@ func _card_tip(it: Array) -> Dictionary:
 		if al != "":
 			t["stats"] = "%s  ·  %s  ·  %d s  ·  %d supply" % [_cost_text(price[0], price[1]), Loc.t("ammunition:") + " " + Loc.t(al), int(u["time"]), int(u["supply"])]      # (crown-ammo: the powder for his shots)
 		var tg: Array = ["armored"] if arm else u.get("tags", [])
-		t["body"] = ("[%s] " % " ".join(tg.map(func(x: String) -> String: return x.capitalize())) if not tg.is_empty() else "") + Defs.tip(k)
+		# (each piece translated on its own: the whole "[Light] Light line infantry: ..." found no entry and came out half
+		# English in pt/es, playtest 2026-11-21)
+		t["body"] = ("[%s] " % " ".join(tg.map(func(x: String) -> String: return Loc.t(x.capitalize()))) if not tg.is_empty() else "") + Loc.t(Defs.tip(k))
 		if Defs.ARMOURED.has(kd):
 			var kt := game.kit_for_new(game.human, k)
 			var parts: Array = []
@@ -5120,9 +5147,9 @@ func _card_tip(it: Array) -> Dictionary:
 			if kt.get("bayonet", false):
 				parts.append("the Socket Bayonet")
 			if not parts.is_empty():
-				t["body"] += "  Comes out with %s (the refit fees are in the price)." % ", ".join(parts)
+				t["body"] += "  " + Loc.t("Comes out with %s (the refit fees are in the price).") % ", ".join(parts.map(func(x: String) -> String: return Loc.t(x)))
 		if kd == MarchingBand.KIND or MarchingBand.MUSICIANS.has(kd):
-			t["body"] += "  " + MarchingBand.train_note(game, game.human, kd)      # (who comes out; where a Fifer / Piper goes)
+			t["body"] += "  " + Loc.t(MarchingBand.train_note(game, game.human, kd))      # (who comes out; where a Fifer / Piper goes)
 		t["hint"] = ("Right-click" if Settings.pc() else "Hold") + ": train it automatically (glows while on)."
 	elif Defs.BUILDINGS.has(k) and page in ["build", "advanced"]:
 		var bd: Dictionary = Defs.BUILDINGS[k]

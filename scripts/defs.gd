@@ -2536,7 +2536,7 @@ const SHORT := {
 	"wall": "Wooden palisade: blocks the way. Lay it in a line.",
 	"gate": "A palisade piece that opens for your side only.",
 	"barracks": "Trains Musketeers, Horsemen, Officers and Dragoons. Refits soldiers.",
-	"armoury": "The Crown's research: armour, locks, bayonet, guns and the charge.",
+	"armoury": "The Crown's research: armour, locks, bayonet, guns and the band.",
 	"foundry": "Casts cannons and mortars, rigs balloons, builds powder wagons.",
 	"farm": "Labourers grow gold here: a 380-gold harvest about every 40 s.",
 	"powder_mill": "Labourers grind saltpetre into powder. Soldiers refill nearby.",

@@ -7035,16 +7035,19 @@ func entity_at(p: Vector2, _any := true) -> Entity:
 	for b in buildings:
 		if b.size.x == 1 and b.size.y == 1 and b.rect().has_point(p) and not hidden_ghost(b, who) and shown_to_commander(b):
 			return b
+	# of the buildings under the click (footprint or picture), the one drawn in front (lowest on the map): they were
+	# asked in the order they were built, so a click on a Foundry's roof could pick an older Barracks behind it, or the
+	# other way round (playtest 2026-11-21)
+	var best_b: Building = null
 	for b in buildings:
 		if hidden_ghost(b, who) or not shown_to_commander(b):
 			continue                  # (both tests below need it on show to whoever gave the order)
-		if b.rect().grow(6).has_point(p + Vector2(0, 10)):
-			return b
-		if b.sprite and b.sprite.texture:
-			var sr: Rect2 = b.sprite_rect()
-			if sr.grow(-6).has_point(p):
-				return b
-	return null
+		var hit: bool = b.rect().grow(6).has_point(p + Vector2(0, 10))
+		if not hit and b.sprite and b.sprite.texture:
+			hit = b.sprite_rect().grow(-6).has_point(p)
+		if hit and (best_b == null or b.rect().end.y > best_b.rect().end.y):
+			best_b = b
+	return best_b
 
 
 ## The finished economy building of team t (a Farm with its fields, a Mill, Pit, Boiler...)
