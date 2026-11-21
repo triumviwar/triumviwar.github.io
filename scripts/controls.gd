@@ -4,7 +4,7 @@ extends Node
 ## COMPUTER: left click selects (Shift adds or drops, Ctrl or double-click = all of that type on
 ##   screen, Ctrl+Shift drops that type (map_click); a worker label selects its workers), left drag = box, right click = command, wheel = zoom, middle drag or the
 ##   screen edges or arrow keys = pan, letter hotkeys for everything on the command card,
-##   1-9 and 0 groups (Ctrl+number sets, Ctrl+Shift+number adds the selection, Shift+number adds the group to the selection), F1 idle workers, F2 army, F3 make, F4-F10 camera views (Shift+F saves), Space = jump to
+##   1-9 and 0 groups (Ctrl+number sets, Shift+number (or Ctrl+Shift+number) adds the selection to the group, Alt+number steals; HotkeyBar.key), F1 idle workers, F2 army, F3 make, F4-F10 camera views (Shift+F saves), Space = jump to
 ##   the selection, Esc = cancel. Shift with a command (right click, MOVE, ATTACK, REPAIR,
 ##   placing buildings and walls) queues it after the units' current orders. Watching computers: 0 all vision, 1-4 follow that player.
 ##   Ctrl+A = ATTACK GROUND (as in Total Annihilation; Defs.BOMBARD, Defs.GROUND): the next click is a spot on the ground
