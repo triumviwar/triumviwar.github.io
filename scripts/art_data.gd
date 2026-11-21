@@ -513,7 +513,7 @@ const BASE_UNITS := {
 		"pistol_se": 4,
 		"walk_e": 7,
 		"walk_n": 8,
-		"walk_ne": 7,
+		"walk_ne": 8,
 		"walk_s": 10,
 		"walk_se": 8,
 	}},
