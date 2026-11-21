@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.101", "items": [
+		"THE SPECIMENS AND THE BARRICADES OF PARIS ARE PAINTED: the Specimens' last two pictures (the landing at the quay beside the crates marked with a cogwheel, and the Tyrant Sire bursting out at the last cage cart) and all five of Paris's (the barricade at dawn, Ruggieri's mortar battery, the torches carried towards Notre-Dame, the storming of the Hotel de Ville, and Varenne in chains before the Marshal while Father Tomasz asks mercy) are real paintings now.",
+	]},
 	{"v": "0.38.100", "items": [
 		"THE SPECIMENS, PAINTED IN PART: three of its five pictures are real paintings now: Lindqvist's camp with its empty cages under the moon, the hired men netting a sleeping young creature in the ferns, and the cage carts on the forest trail with the pack following in the shadows.",
 	]},
