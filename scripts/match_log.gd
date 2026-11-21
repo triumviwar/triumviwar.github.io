@@ -65,16 +65,22 @@ func add(text: String) -> void:
 
 
 func begin(levels: Dictionary) -> void:
-	lines.append(GameName.title() + " v%s match log  (%s)" % [ProjectSettings.get_setting("application/config/version", "dev"), Time.get_datetime_string_from_system(false, true)])
-	lines.append("Map: %s, %d players  (seed %d)" % [game.map_name, game.n_players(), game.rng.seed])
+	# (playtest 2026-11-21: the computers are made before begin() (it names their plans), and their first lines
+	# ("P2 Crown's plan: ...") went in before the header: every log started with them, not "Triumviwar vX.Y.Z match
+	# log" (GameName.is_log_header). The header now goes in front of whatever is there already.)
+	var head := PackedStringArray()
+	head.append(GameName.title() + " v%s match log  (%s)" % [ProjectSettings.get_setting("application/config/version", "dev"), Time.get_datetime_string_from_system(false, true)])
+	head.append("Map: %s, %d players  (seed %d)" % [game.map_name, game.n_players(), game.rng.seed])
 	for t in game.n_players():
 		var lv: String = levels.get(t, "")
-		lines.append("  %s  side %d  colour %s%s" % [who(t), int(game.sides[t]) + 1, game.team_name(t),
+		head.append("  %s  side %d  colour %s%s" % [who(t), int(game.sides[t]) + 1, game.team_name(t),
 			("  AI: " + lv) if lv != "" else ""])
-	lines.append("Device: %s" % ("computer" if Settings.pc() else "phone/tablet"))
+	head.append("Device: %s" % ("computer" if Settings.pc() else "phone/tablet"))
 	if game.net != null and game.net.watching:
-		lines.append("Watched online as a spectator (every side seen; minutes before joining are missing from this log)")
-	lines.append("")
+		head.append("Watched online as a spectator (every side seen; minutes before joining are missing from this log)")
+	head.append("")
+	head.append_array(lines)
+	lines = head
 
 
 # ---- lag: real frame times this minute, and what the game was busy with (Prof)
