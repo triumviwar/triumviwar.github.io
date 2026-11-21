@@ -114,6 +114,8 @@ def barricade_triggers():
             {"order": {"tag": "rush_" + nm, "do": "attack", "to": "faubourg"}}]})
     tr.append({"id": "first_rush", "when": {"any": [{"fired": "breach_" + nm} for nm in BARS]}, "delay": 1, "do": [
         {"say": ["r_rush", "tip_canister"]}, {"point": {"ui": "card", "icon": "ab_canister"}}]})
+    # (the hint's arrow goes away again: it stayed on the command card for the rest of the mission; playtest 2026-11-21)
+    tr.append({"id": "rush_point_off", "when": {"fired": "first_rush"}, "delay": 30, "do": [{"point": {}}]})
     return tr
 
 
@@ -219,7 +221,7 @@ M = {
          "text": "Take the three barricades of the faubourg: {taken} of 3. Break them with the guns: the Mortar lobs over, the cannon's canister sweeps the street."},
         {"id": "fairleigh", "side": "crown", "primary": True, "kind": "protect", "tag": "fairleigh", "text": "Field Marshal Fairleigh must live."},
         {"id": "tomasz", "side": "crown", "primary": True, "kind": "protect", "tag": "tomasz", "text": "Father Tomasz must live."},
-        {"id": "patience", "side": "crown", "primary": False, "kind": "countdown", "clock": "patience",
+        {"id": "patience", "side": "crown", "primary": False, "kind": "countdown", "clock": "patience", "fail": True,
          "text": "The King's patience: {clock:patience} to break into Paris (the three barricades)."},
         # ---- part 2
         {"id": "bridges", "side": "crown", "primary": True, "kind": "manual", "hidden": True,

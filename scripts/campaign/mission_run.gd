@@ -1116,13 +1116,17 @@ func _check_objectives() -> void:
 			continue
 		match String(o.get("kind", "manual")):
 			"survive":
+				# (an "if": what must still hold when the time is up, else it fails: the Prologue's "until dawn, with at
+				# least three barns standing" was ticked done on the very defeat it caused; playtest 2026-11-21)
 				if game.clock >= float(o.get("time", 0)):
-					set_objective(oid, "done")
+					set_objective(oid, "done" if not o.has("if") or cond(o["if"]) else "failed")
 			"countdown":
 				# (a clock shown in the panel: "{clock:fall}" in its words; it never decides the end itself)
 				var cn := String(o.get("clock", ""))
 				if clocks.has(cn) and game.clock >= float(clocks[cn]):
-					set_objective(oid, "done")
+					# ("fail": running out is the bad end: Paris's "The King's patience" was ticked green on the defeat
+					# it brought; playtest 2026-11-21)
+					set_objective(oid, "failed" if bool(o.get("fail", false)) else "done")
 			"destroy":
 				if tags.has(String(o["tag"])) and tagged(String(o["tag"])).is_empty():
 					set_objective(oid, "done")
@@ -1826,7 +1830,20 @@ func fill(txt: String) -> String:
 	for cn in clocks:
 		var left := maxi(0, int(ceil(float(clocks[cn]) - game.clock)))
 		txt = txt.replace("{clock:%s}" % cn, "%d:%02d" % [left / 60, left % 60])
+	if txt.find("{") >= 0:
+		txt = _UNSET.sub(txt, "…", true)       # (a clock not started yet: a06's "{clock:patience}" in its first second)
 	return txt
+
+
+static var _UNSET := RegEx.create_from_string("\\{[^}]*\\}")
+
+
+## A number for the player's eyes: a whole one without ".0" (the data's numbers are floats once read: a07's "Saved: 13
+## of 18.0"; playtest 2026-11-21).
+static func _num(v: Variant) -> String:
+	if v is float and is_equal_approx(v, roundf(v)):
+		return str(int(roundf(v)))
+	return str(v)
 
 
 ## An OPENING's or ENDING's pages as this run left them: a line may be {"id", "if": a condition} (said only when it

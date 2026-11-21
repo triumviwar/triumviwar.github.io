@@ -113,7 +113,8 @@ M = {
         {"id": "rising", "side": "crown", "primary": True, "kind": "manual", "text": "Put down the rising."},
         {"id": "manor", "side": "crown", "primary": True, "kind": "protect", "tag": "manor", "text": "The manor must stand."},
         {"id": "barns", "side": "crown", "primary": True, "kind": "protect", "tag": "barns", "text": "Do not let every drying barn burn."},
-        {"id": "dawn", "side": "crown", "primary": True, "kind": "survive", "time": 480, "text": "Hold until dawn, with at least three barns standing."},
+        {"id": "dawn", "side": "crown", "primary": True, "kind": "survive", "time": 480,
+         "if": {"count": {"tag": "barns", "buildings": True, "at_least": 3}}, "text": "Hold until dawn, with at least three barns standing."},
         {"id": "camps", "side": "crown", "primary": True, "kind": "manual", "hidden": True, "text": "Clear the two rebel camps on the road."},
         {"id": "families", "side": "crown", "primary": False, "kind": "manual", "hidden": True, "text": "Save the families at Hollins Farm."},
         {"id": "gate", "side": "crown", "primary": True, "kind": "reach", "hidden": True, "area": "before_gate", "side_units": "crown", "count": 6,
@@ -146,7 +147,7 @@ M = {
         {"id": "barn_lost", "when": {"count": {"tag": "barns", "buildings": True, "below": 5}}, "do": [{"say": ["t_barn"]}]},
         {"id": "manor_hit", "when": {"hurt": "manor"}, "do": [{"say": ["f_manor"]}]},
         # dawn: with fewer than three barns standing the year is lost; else the rebels fall back and the march begins
-        {"id": "dawn_lost", "when": {"all": [{"done": "dawn"}, {"count": {"tag": "barns", "buildings": True, "below": 3}}]}, "do": [
+        {"id": "dawn_lost", "when": {"failed": "dawn"}, "do": [
             {"say": ["f_ash"]}, {"lose": "crown"}]},
         {"id": "dawn", "when": {"all": [{"done": "dawn"}, {"count": {"tag": "barns", "buildings": True, "at_least": 3}}]}, "do": [
             {"light": {"to": "dawn", "secs": 4}},

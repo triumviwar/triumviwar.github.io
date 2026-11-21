@@ -51,6 +51,18 @@ func _data() -> void:
 		if not LangPt.T.has(t) or not LangEs.T.has(t):
 			miss.append(String(t).left(50))
 	check("every campaign text has pt and es", miss.is_empty(), " | ".join(miss))
+	# the briefing's objectives never show a raw "{counter}" or "{clock:name}" (CampaignMenu.brief_fill; playtest 2026-11-21)
+	var raw: Array = []
+	for id in Campaign.mission_ids():
+		var m := Campaign.mission(id)
+		for o in m.get("objectives", []):
+			var bt := CampaignMenu.brief_fill(m, String(o["text"]))
+			if bt.find("{") >= 0 or bt.find("}") >= 0:
+				raw.append(id + ": " + bt.left(60))
+	check("the briefings' objectives: no raw {placeholders}", raw.is_empty(), " | ".join(raw))
+	var a06 := Campaign.mission("a06_barricades")
+	var pt := CampaignMenu.brief_fill(a06, "{taken} of {taken.of}, {clock:patience}")
+	check("brief_fill: a06's barricades and the King's patience", pt.begins_with("0 of 3, ") and pt.find(":") > 0 and pt.find("…") < 0, pt)
 	# who sits where
 	var c := Campaign.make_cfg("p01_revolt", "solo")
 	check("solo: you, scripted horse, scripted rebels", c["slots"].map(func(s): return s["who"]) == ["you", "script", "script"], str(c["slots"].map(func(s): return s["who"])))

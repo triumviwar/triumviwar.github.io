@@ -115,7 +115,8 @@ JSON files are not resources and are left out otherwise). Progress is kept in `u
 - `wiped_out`: {side: seconds}: after that time a side with no units and no buildings left (having had some) loses.
 - `objectives`: `id`, `side`, `primary` (true: decides the mission; false: optional), `text`, `hidden` (until a
   trigger shows it), `kind`:
-  - `survive` (`time` in seconds: done then; the panel counts down),
+  - `survive` (`time` in seconds: done then; the panel counts down; an `"if"` condition must also hold then, else it
+    fails: the Prologue's "until dawn, with at least three barns standing"),
   - `destroy` (`tag`: done when everything with the tag is dead),
   - `protect` (`tag`: failed when everything with the tag is dead; counts as met while it holds),
   - `reach` (`area`, `count`, and `tag`, `team` or `side_units`: done when that many stand in the area),
@@ -256,7 +257,7 @@ player did (selected, camera_moved, built, rooted, crew, did...) and the `point`
 | `"counters": {name: {"start", "of"}}` | mission numbers; `{"counter": {"name", "add"/"set"}}`; condition `{"counter": {"name", "at_least", "below"}}`; in any objective's or debrief's words `{name}` (and `{name.of}`) |
 | `"exits": [{"area", "tag" or "team", "counter"}]` | units walking into the area leave the map (Game.consume_unit: not a loss) and are counted |
 | `{"clock": {"name", "secs"}}`, `{"name", "add": s}`, `{"name", "stop": true}` | a COUNTDOWN the triggers read: `{"clock_out": name}`, `{"clock_left": {"name", "below": s}}`; `{clock:name}` in words shows m:ss |
-| objective `"kind": "countdown", "clock": name` | the clock in the panel (ticked when out; never decides the end) |
+| objective `"kind": "countdown", "clock": name` | the clock in the panel (ticked when out, crossed when out with `"fail": true`, as Paris's King's patience; never decides the end) |
 | trigger `"every": s` (`"times": n`, `"while": cond`) | a REPEATING trigger: after its first firing (its `when` and `delay`), again every s seconds while `while` (else `when`) holds |
 | `{"convert": {"tag" (or "area" + "from" + "kind" + "count"), "to": team, "warn": s, "as": new tag, "sound"}}` | units stutter (stunned, the stars, a sound) for the warning, then change side (colour, selection, supply) |
 | team `"roster": {"deny": [kinds]}`, `{"deny"/"unlock": {"team", "kind"}}` | what a team may not build or train in this mission (Game.can_train / requirement_text: "Not in this mission.") |

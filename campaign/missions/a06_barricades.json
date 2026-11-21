@@ -2090,6 +2090,7 @@
 			"primary": false,
 			"kind": "countdown",
 			"clock": "patience",
+			"fail": true,
 			"text": "The King's patience: {clock:patience} to break into Paris (the three barricades)."
 		},
 		{
@@ -3964,6 +3965,18 @@
 						"ui": "card",
 						"icon": "ab_canister"
 					}
+				}
+			]
+		},
+		{
+			"id": "rush_point_off",
+			"when": {
+				"fired": "first_rush"
+			},
+			"delay": 30,
+			"do": [
+				{
+					"point": {}
 				}
 			]
 		},

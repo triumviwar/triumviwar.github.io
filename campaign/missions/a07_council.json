@@ -2286,6 +2286,18 @@
 			]
 		},
 		{
+			"id": "tip_people_off",
+			"when": {
+				"fired": "tip_people"
+			},
+			"delay": 40,
+			"do": [
+				{
+					"point": {}
+				}
+			]
+		},
+		{
 			"id": "tip_fire",
 			"when": {
 				"all": [

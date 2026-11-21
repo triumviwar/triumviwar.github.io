@@ -353,6 +353,36 @@ static func briefing(main: Node, mid: String) -> void:
 	row.add_child(go)
 
 
+## An objective's words on the briefing, before any match: its counters at their start ("0 of 4"), its clocks at their
+## full length at the campaign's difficulty ("20:00"), anything only the match knows as "…". (They read "{temper}",
+## "{clock:patience}" on a01-a06's briefings; playtest 2026-11-21.)
+static func brief_fill(m: Dictionary, txt: String) -> String:
+	if txt.find("{") < 0:
+		return txt
+	var cs: Dictionary = m.get("counters", {})
+	for cn in cs:
+		var c: Dictionary = cs[cn]
+		if c.has("of"):
+			txt = txt.replace("{%s.of}" % cn, MissionRun._num(c["of"]))
+		if c.has("of") or float(c.get("start", 0)) != 0.0:
+			txt = txt.replace("{%s}" % cn, MissionRun._num(c.get("start", 0)))
+	var mult := Campaign.diff_mult(m, Campaign.difficulty())
+	var timed := {}
+	for o in m.get("objectives", []):
+		if String(o.get("kind", "")) == "countdown":
+			timed[String(o.get("clock", ""))] = true
+	for tr in m.get("triggers", []):
+		for a in tr.get("do", []):
+			if a is Dictionary and a.has("clock") and a["clock"] is Dictionary and (a["clock"] as Dictionary).has("secs"):
+				var cl: Dictionary = a["clock"]
+				var cn := String(cl.get("name", ""))
+				var scales: bool = bool(cl["scale"]) if cl.has("scale") else timed.has(cn)
+				var secs := int(round(float(cl["secs"]) * (float(mult.get("clocks", 1.0)) if scales else 1.0)))
+				txt = txt.replace("{clock:%s}" % cn, "%d:%02d" % [secs / 60, secs % 60])
+	var re := RegEx.create_from_string("\\{[^}]*\\}")
+	return re.sub(txt, "…", true)
+
+
 ## The mission's OPENING (its stills and lines: StillShow), then the match. None: straight in.
 static func opening_then_start(main: Node, mid: String, cfg: Dictionary) -> void:
 	var m := Campaign.mission(mid)
@@ -365,6 +395,18 @@ static func opening_then_start(main: Node, mid: String, cfg: Dictionary) -> void
 		return
 	main._clear_ui()
 	StillShow.play(main.ui_layer, m, pages, func() -> void: main.start(cfg))
+
+
+## An opening's pages with their conditional lines settled before the match exists (a MissionRun without a game:
+## only conditions that read the progress, {"past"}, {"difficulty"}, and their "not" / "all" / "any", make sense here).
+static func opening_now(m: Dictionary, pages: Array) -> Array:
+	var tmp := MissionRun.new()
+	tmp.data = m
+	tmp.id = String(m.get("id", ""))
+	tmp.difficulty = Campaign.difficulty()
+	var out := tmp.pages_now(pages)
+	tmp.free()
+	return out
 
 
 # ------------------------------------------------------------------ the end of a mission
@@ -408,7 +450,11 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 	var cc := CenterContainer.new()
 	cc.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	o.add_child(cc)
-	var v := _panel(cc, 820)
+	# (a phone: bigger words, as the war map's card has: at 14-17 the debrief and the objectives were a few pixels
+	# high on a phone held sideways; playtest 2026-11-21)
+	var ph := not Settings.pc()
+	var k := 1.4 if ph else 1.0
+	var v := _panel(cc, 1000 if ph else 820)
 	var title := ("VICTORY" if won else "DEFEAT") if run.mode != "versus" else (Loc.t("%s WIN") % Loc.t(Campaign.side_name(m, win_side)).to_upper())
 	var db: Dictionary = m.get("debrief", {}).get(win_side, {})
 	# a STORY LOSS (the Clockwork prologue): the mission counts as played to its end, but the screen says the story's
@@ -416,12 +462,12 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 	var story_loss := db.has("banner") and won
 	if story_loss:
 		title = String(db["banner"])
-	v.add_child(UiStyle.heading(Loc.t(title), 44, UiStyle.BAD if story_loss or not won else UiStyle.GOOD))
+	v.add_child(UiStyle.heading(Loc.t(title), int(44 * k), UiStyle.BAD if story_loss or not won else UiStyle.GOOD))
 	var h := HBoxContainer.new()
 	h.add_theme_constant_override("separation", 14)
 	v.add_child(h)
 	var sv := StillView.make(m.get("stills", {}).get(String(db.get("still", "")), {}), _side_col(m, win_side))
-	sv.custom_minimum_size = Vector2(380, 230)
+	sv.custom_minimum_size = Vector2(380, 230) if not ph else Vector2(340, 210)
 	h.add_child(sv)
 	# the words and the objectives scroll when they are more than the screen holds (a won Specimen One at 1280 x 720
 	# pushed NEXT MISSION and CAMPAIGN under the bottom edge: playtest 2026-11-21)
@@ -443,13 +489,13 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 	tv.add_child(_wrap(run.fill(Loc.t(String(db.get("text", "")))), 17))      # (its {counters} filled, as text_if's: a04, a07)
 	for ti in db.get("text_if", []):
 		if run.cond(ti.get("if", {})):
-			tv.add_child(_wrap(run.fill(Loc.t(String(ti.get("text", "")))), 16))      # (the debrief's words by the flags)
+			tv.add_child(_wrap(run.fill(Loc.t(String(ti.get("text", "")))), int(16 * k)))      # (the debrief's words by the flags)
 	# the objectives as they ended
 	for ob in run.objectives_for(mine):
 		if String(ob.get("kind", "")) == "countdown":
 			continue
 		var mark: String = {"done": "[+] ", "failed": "[x] ", "active": "[ ] "}.get(String(ob["state"]), "")
-		tv.add_child(_wrap(mark + run.objective_text(ob), 14, UiStyle.GOOD if ob["state"] == "done" else (UiStyle.BAD if ob["state"] == "failed" else UiStyle.MUTED)))
+		tv.add_child(_wrap(mark + run.objective_text(ob), int(14 * k), UiStyle.GOOD if ob["state"] == "done" else (UiStyle.BAD if ob["state"] == "failed" else UiStyle.MUTED)))
 	# where the story goes
 	var story := ""
 	if won or run.mode == "versus":
@@ -468,7 +514,7 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 						break
 	else:
 		story = Loc.t("Try again: the story waits for a victory.")
-	v.add_child(_wrap(story, 17, UiStyle.TRIM))
+	v.add_child(_wrap(story, int(17 * k), UiStyle.TRIM))
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 10)
@@ -490,7 +536,9 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 		show(main)])
 	for bt in btns:
 		var b: Button = main._button(bt[0], bt[1])
-		b.custom_minimum_size = Vector2(170, 54)
+		b.custom_minimum_size = Vector2(170, 54) if not ph else Vector2(210, 70)
+		if ph:
+			b.add_theme_font_size_override("font_size", 24)
 		b.name = "End_" + String(bt[0]).replace(" ", "_")
 		row.add_child(b)
 
