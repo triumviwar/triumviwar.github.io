@@ -756,6 +756,23 @@ func _nb_defend_riders(q: Unit, army: Array, group: Array) -> bool:
 	var strong := _value_of(avail) >= _value_of(group) * 2.5
 	var reach := (RIDER_GUARD_R + 8.0 if strong else RIDER_GUARD_R) * Defs.TILE
 	var leash := (RIDER_LEASH + 9.0 if strong else RIDER_LEASH) * Defs.TILE
+	if rider_squad_on and strong:
+		# (ai-opponent-review) A SQUAD GUARDS, THE REST PLAYS ON: the nearest creatures worth RIDER_SQUAD_K times the riders
+		# (RIDER_SQUAD_MIN at least) guard the grubs; the others are left to the plan (_nb_army: its waves go on)
+		var need := maxf(_value_of(group) * RIDER_SQUAD_K, RIDER_SQUAD_MIN)
+		var srt: Array = avail.duplicate()
+		srt.sort_custom(func(a: Unit, b: Unit) -> bool: return a.position.distance_squared_to(at) < b.position.distance_squared_to(at))
+		var squad: Array = []
+		var v := 0.0
+		for u in srt:
+			if v >= need:
+				_rider_free.append(u)
+			else:
+				squad.append(u)
+				v += float(Game.unit_value(u))
+		if not _rider_free.is_empty():
+			avail = squad
+			rider_squads += 1
 	var near: Array = group.filter(func(r: Unit) -> bool: return r.position.distance_to(guard) < reach or _grub_near(r.position, 5.0))
 	_def = avail
 	_def_at = at
@@ -783,6 +800,19 @@ func _nb_defend_riders(q: Unit, army: Array, group: Array) -> bool:
 		say("guards its grubs with %d (%d) against %d riders at %s: no chase past %d tiles" % [avail.size(), int(_value_of(avail)), group.filter(func(o) -> bool: return is_rider(o)).size(),
 			"the Mother" if site == q or guard.distance_to(_qp(q)) < 6.0 * Defs.TILE else "its %s" % String(Defs.UNITS[site.kind]["name"]), int(RIDER_LEASH)])
 	return true
+
+
+## (ai-opponent-review, docs/ai_opponent_review.md) ONE RIDER PINNED THE WHOLE BROOD: against a group of riders at home every
+## creature not in a wave became the guard (_def) and _nb_army held the rest, so no wave went out while one Cuirassier
+## circled its land: in a benchmark game a Normal Brood guarded with 115 creatures (3,565) against 1 rider from 9:28 to
+## 10:35, its 121-supply wave waiting. Now, when the guard is strong (2.5 times the riders), only a squad worth
+## RIDER_SQUAD_K times them (the nearest; RIDER_SQUAD_MIN at least) guards and the rest plays its plan. The no-chase rule is
+## the same for the squad. MEASURING SWITCH `ridersquad:off` (as before).
+const RIDER_SQUAD_K := 3.0
+const RIDER_SQUAD_MIN := 400.0
+static var rider_squad_on := not OS.get_cmdline_user_args().has("ridersquad:off")
+var _rider_free: Array = []          # this think: the creatures the rider guard left to the plan
+var rider_squads := 0                # (the doc: thinks a squad guarded and the rest played on)
 
 
 ## Every enemy fighter near the Mother (13 tiles) is a rider or an Officer.
@@ -3489,9 +3519,11 @@ func _nb_army(q: Unit) -> void:
 			_wave_end_nb(q, false)
 	# DEFENCE AS A SWARM (docs/brood_ai_swarm.md): enemies at home are fought by a squad sized to them, all at once
 	if _nb_defend(q, army.filter(func(u: Unit) -> bool: return not _wave.has(u))):
-		if not _attacking:
+		if not _attacking and _rider_free.is_empty():
 			_nb_hold_rest(army)
 			return
+		if not _attacking:
+			army = army.filter(func(u: Unit) -> bool: return not _def.has(u))      # (the rider squad guards: the rest plays on)
 	if hunt == null:
 		hunt = AIHunt.new(self)
 	if not _attacking and hunt.tick(army):
@@ -4276,6 +4308,7 @@ static func _fight_wins(mine: Array, foes: Array, margin := 0.6) -> bool:
 
 ## Defence: true while it is answering (or holding back from) enemies at home.
 func _nb_defend(q: Unit, army: Array) -> bool:
+	_rider_free = []
 	_rally = _nb_stage_point(q)
 	_def = _def.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead)
 	var foes := _nb_home_foes(q)
