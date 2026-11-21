@@ -148,7 +148,9 @@ static func war_table(main: Node) -> void:
 		rv.add_child(UiStyle.heading(Loc.t(String(m.get("title", pick))), 32, UiStyle.TRIM))
 		var br: Dictionary = m.get("briefing", {}).get(my_side, {})
 		var sv := StillView.make(m.get("stills", {}).get(String(br.get("still", "")), {}), _side_col(m, my_side))
-		sv.custom_minimum_size = Vector2(0, 220)
+		# (the still takes the room that is left: at 220 high at least, Rome's VERSUS page, with its seat pick and the
+		# friend's line, pushed BACK and WAR MAP under the bottom of a 1280 x 720 screen; playtest 2026-11-21)
+		sv.custom_minimum_size = Vector2(0, 110)
 		sv.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		rv.add_child(sv)
 		rv.add_child(_wrap(Loc.t(String(m.get("summary", ""))), 17))
