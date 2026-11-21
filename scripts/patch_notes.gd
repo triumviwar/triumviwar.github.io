@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.97", "items": [
+		"THE PRINTING HOUSES ARE PAINTED: all five of the Lyon mission's pictures are real paintings now: Father Tomasz catching a pamphlet on the bridge, the master printer at his press in a weaver's attic, Tomasz calming the weavers on their hill, the soldiers creeping through the traboules, and the last press broken at dawn.",
+	]},
 	{"v": "0.38.96", "items": [
 		"SPECIMEN ONE IS PAINTED: five more of the Naturalist prologue's pictures are real paintings now: the station at the rapids under the cloud mountain, eyes at the forest's edge as Valadares raises his pistol, the Tyrant Sire lying down by the pen and its eggs, Lindqvist clutching his crate in the canoe as the station burns, and the canoe going north past giant three-toed tracks.",
 	]},
