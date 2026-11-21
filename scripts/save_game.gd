@@ -60,10 +60,19 @@ static func peek() -> Dictionary:
 	var f := FileAccess.open(PATH, FileAccess.READ)
 	if f == null:
 		return {}
-	var d = JSON.parse_string(f.get_as_text())
-	if d is Dictionary and MapGen.old_layout(String((d.get("cfg", {}) as Dictionary).get("map", "")), String(d.get("version", ""))):
+	# (a damaged file: JSON.parse rather than parse_string, which logged an engine error on every visit to the menu;
+	# a save without its set-up, its players or its clock is no save: CONTINUE used to stop the menu with a SCRIPT
+	# ERROR on it, playtest 2026-11-21)
+	var js := JSON.new()
+	if js.parse(f.get_as_text()) != OK or not js.data is Dictionary:
+		return {}
+	var d: Dictionary = js.data
+	var cfg: Variant = d.get("cfg", {})
+	if not cfg is Dictionary or not (cfg as Dictionary).get("slots", null) is Array or not (d.get("clock", null) is float or d.get("clock", null) is int):
+		return {}
+	if MapGen.old_layout(String((cfg as Dictionary).get("map", "")), String(d.get("version", ""))):
 		return {}                 # (its map has been made bigger since: the match can't go on on the new ground)
-	return d if d is Dictionary else {}
+	return d
 
 
 static func _v2(v: Vector2) -> Array:
