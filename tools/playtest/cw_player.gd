@@ -257,7 +257,7 @@ func mouse_for_cell(kind: String, c: Vector2i) -> Vector2:
 
 
 ## A good free cell for `kind` round `anchor` (what a player sees as the green ghost). Nearest first.
-func find_spot(kind: String, anchor: Vector2, rmin := 2, rmax := 22) -> Vector2i:
+func find_spot(kind: String, anchor: Vector2, rmin := 2, rmax := 32) -> Vector2i:
 	var ac := g.cell_of(anchor)
 	for r in range(rmin, rmax):
 		var cands: Array = []
@@ -342,8 +342,12 @@ func train(b: Building, label: String, n := 1) -> String:
 	if not await select(b):
 		return "could not select " + b.kind
 	var why := ""
+	var q0 := b.queue.size()
 	for i in n:
 		why = await press(label)
 		if why != "":
 			return why
+	await io.frames(2)
+	if b.queue.size() <= q0 and not b.dead:
+		issue("train", "%s pressed at the %s but its queue is still %d (selection: %s)" % [label, b.kind, b.queue.size(), g.selection.map(func(x) -> String: return x.kind)])
 	return ""

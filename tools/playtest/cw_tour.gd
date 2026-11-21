@@ -119,10 +119,19 @@ func _run() -> void:
 
 # ------------------------------------------------------------------ the sandbox panel
 
+var ai_off_done := false
+
+
 func sandbox_money(n := 4) -> void:
 	if io.find_button("SANDBOX >", true) != null:
 		await press_ui("SANDBOX >")
-	await io.shot("sandbox_panel")
+	if not ai_off_done and arg("ai", "off") == "off":
+		ai_off_done = true
+		await press_ui("2")
+		await press_ui("AI: ON")
+		await press_ui("» 1")
+		io.note("sandbox: player 2's AI switched off (%s)" % ("off" if io.find_button("AI: OFF", true) != null else "?"))
+		await io.shot("sandbox_panel")
 	for i in n:
 		await press_ui("+1000 COGS")
 	await press_ui("+200 TENSION")
@@ -224,6 +233,8 @@ func buildings() -> void:
 	await io.key(KEY_ESCAPE)
 	await build("cuckoo_house")
 	await build("regulator", false, 6)
+	await build("regulator", false, 8)
+	await build("regulator", false, 8)
 	await build("movement_works", true)
 	await io.wait(3.0)
 	await io.shot("base_building")
@@ -692,3 +703,22 @@ func match_menu() -> void:
 	for b in io.buttons():
 		labs.append(io.btn_text(b))
 	io.note("end screen buttons: %s" % ", ".join(labs))
+	# COPY LOG: the match log on the clipboard
+	DisplayServer.clipboard_set("")
+	await io.press("COPY LOG", p.phone, true)
+	await io.frames(3)
+	var clip := DisplayServer.clipboard_get()
+	check(clip.begins_with("Triumviwar v"), "COPY LOG puts the match log on the clipboard (%d chars, starts '%s')" % [clip.length(), clip.substr(0, 40)])
+	var lines := clip.split("\n")
+	io.note("match log: %d lines; last: %s" % [lines.size(), " / ".join(lines.slice(maxi(0, lines.size() - 4)))])
+	# VIEW MAP, then back; WATCH REPLAY
+	await io.press("VIEW MAP", p.phone, true)
+	await io.wait(1.0)
+	await io.shot("view_map")
+	io.note("after VIEW MAP: buttons %s" % ", ".join(io.buttons().map(func(b) -> String: return io.btn_text(b)).slice(0, 12)))
+	await io.key(KEY_ESCAPE)
+	await io.wait(1.0)
+	if await io.press("WATCH REPLAY", p.phone, true):
+		await io.wait(4.0)
+		await io.shot("replay")
+		io.note("replay running: %s" % str(main.game != null and main.game.replay != null))

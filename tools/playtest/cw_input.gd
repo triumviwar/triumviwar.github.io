@@ -91,14 +91,13 @@ func click(p: Vector2, btn := MOUSE_BUTTON_LEFT, shift := false, ctrl := false, 
 	if ctrl:
 		key_down(KEY_CTRL)
 	button(p, btn, true, shift, ctrl, false, alt)
-	await frames(2)
+	await frames(1)
 	button(p, btn, false, shift, ctrl, false, alt)
 	await frames(1)
 	if shift:
 		key_up(KEY_SHIFT)
 	if ctrl:
 		key_up(KEY_CTRL)
-	await frames(1)
 
 
 func rclick(p: Vector2, shift := false) -> void:

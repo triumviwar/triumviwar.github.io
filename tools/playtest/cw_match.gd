@@ -235,7 +235,9 @@ func build_order(h: Building) -> void:
 			refused("build " + kind, g.requirement_text(g.human, kind))
 			continue
 		if not can_pay(kind):
-			return          # (save up for it)
+			if kind == "clocktower" and p.cogs() < 400:
+				return      # (save up for the expansion)
+			continue
 		var anchor: Vector2 = h.center()
 		var rmin := 5
 		if kind == "clocktower":
@@ -249,7 +251,8 @@ func build_order(h: Building) -> void:
 					break
 		var why: String = await p.build(kind, anchor, bool(st[3]), rmin)
 		refused("build " + kind, why)
-		return
+		if why == "" or p.cogs() < 300:
+			return
 
 
 func expansion_spot() -> Vector2:
