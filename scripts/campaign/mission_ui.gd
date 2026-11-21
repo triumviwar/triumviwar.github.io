@@ -114,10 +114,27 @@ func _layout() -> void:
 
 
 func _on_said(ln: Dictionary) -> void:
+	if tutorial:
+		# (a lesson: lines of a step the player has already done, still waiting their turn, are dropped, and a line of
+		# a done step on show gives way after a moment: a quick player read "zoom with the wheel" while the task said
+		# "defeat the bandits", four steps behind; playtest 2026-11-21)
+		queue = queue.filter(func(q: Dictionary) -> bool: return not _step_done(q))
 	queue.append(ln)
-	if current.is_empty() or (tutorial and line_t <= 0.0 and queue.size() == 1):
+	if current.is_empty() or (tutorial and (line_t <= 0.0 or (_step_done(current) and _shown >= 1.5)) and queue.size() == 1):
 		advance()           # (a lesson's held line gives way to the next step's first)
 	run.talk_busy = true
+
+
+var _shown := 0.0           # seconds the current line has been on show
+
+
+## A lesson's line belongs to a step whose task is already done (its id is "<step>_<n>": Campaign.expand_steps).
+func _step_done(ln: Dictionary) -> bool:
+	var id := String(ln.get("id", ""))
+	var cut := id.rfind("_")
+	if cut <= 0:
+		return false
+	return String(run.obj.get("task_" + id.substr(0, cut), "")) == "done"
 
 
 ## The next line now (the current one is done).
@@ -127,6 +144,7 @@ func advance() -> void:
 		_box.visible = false
 		return
 	current = queue.pop_front()
+	_shown = 0.0
 	var txt := Loc.t(String(current["text"]))
 	line_t = maxf(4.5, 2.0 + txt.length() / 14.0) * (1.3 if tutorial else 1.0)
 	_name.text = Loc.t(String(current["name"]))
@@ -224,8 +242,11 @@ func _process(delta: float) -> void:
 	if current.is_empty() or get_tree().paused and not (game and game.net):
 		return
 	line_t -= delta
+	_shown += delta
 	if line_t <= 0.0 and not (tutorial and queue.is_empty()):
 		advance()           # (a lesson's last line stays: it says what to do now)
+	elif tutorial and _shown >= 1.5 and not queue.is_empty() and _step_done(current):
+		advance()           # (a done step's line gives way to the next step's)
 
 
 ## A side's colour: its first team's colour in this match.
