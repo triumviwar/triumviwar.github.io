@@ -71,6 +71,18 @@ static func show_box(mine: String) -> bool:
 	return not dismissed and latest != "" and newer(latest, mine)
 
 
+## The site's file for a system ("Windows" / "Android"), from the site that answered (the newest version is always there).
+static func file_url(system: String) -> String:
+	var f := String(FILES.get(system, ""))
+	if from_site != SITE:
+		f = f.replace("Triumviwar", "Holdfast")     # (the old site still serves the old file names)
+	return from_site + f
+
+
+## The studio's Discord (the owner, 2026-11-21 21:29).
+const DISCORD := "https://discord.gg/fMnaQHKxnh"
+
+
 static func download_url() -> String:
 	var f := String(FILES.get(OS.get_name(), ""))
 	if from_site != SITE:

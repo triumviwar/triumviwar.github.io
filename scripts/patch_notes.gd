@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.121", "items": [
+		"PATCH NOTES HAS DOWNLOADS: under the notes, WINDOWS and ANDROID download the newest version of the game from the site, and PLAY ON THE WEB opens it in the browser.",
+		"THE STUDIO: click the Salgarellius Catholic Games logo (or its line) in the corner of the main menu and it opens big, with the invite to our Discord: JOIN THE DISCORD opens it, COPY LINK copies it.",
+	]},
 	{"v": "0.38.120", "items": [
 		"THE BROOD'S SWAMP FADES WHEN THE MOTHER OR A MOUND TURTLE GETS UP: when either uproots, its swamp stays where it was for 30 seconds (a fresh 30 each time) as the whole circle, fading, and then is gone all at once (no more ring by ring retreat). The Rootmaws on it keep drinking, but less and less: all their food as it starts, none at 30 seconds (their card says SWAMP FADING: DRINKS LESS, with a \"fading\" mark and the share over them). Root the Mother or the turtle again on it and they drink fully again; past the 30 seconds they uproot and root again by themselves on their own spot when swamp is back under it, as before.",
 	]},

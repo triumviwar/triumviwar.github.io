@@ -472,8 +472,12 @@ func show_menu() -> void:
 		logo.custom_minimum_size = Vector2(lh * logo_tex.get_width() / float(logo_tex.get_height()), lh)
 		logo.size_flags_vertical = Control.SIZE_SHRINK_END
 		logo.modulate = Color(1, 1, 1, 0.92)
-		logo.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		logo.mouse_filter = Control.MOUSE_FILTER_STOP          # (the owner, 2026-11-21: a click shows it big, with the Discord)
+		logo.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		logo.tooltip_text = "Salgarellius Catholic Games"
+		logo.gui_input.connect(func(ev: InputEvent) -> void:
+			if _is_click(ev):
+				_studio_box(root))
 		corner.add_child(logo)
 	var fs := 13 if pc else 15
 	var ver := Button.new()
@@ -496,6 +500,11 @@ func show_menu() -> void:
 	var ai := UiStyle.text(Loc.t("Made by Salgarellius Catholic Games with the help of AI"), fs - 1, Color(1, 0.96, 0.85, 0.75), HORIZONTAL_ALIGNMENT_RIGHT)
 	ai.add_theme_constant_override("outline_size", 4)
 	ai.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.85))
+	ai.mouse_filter = Control.MOUSE_FILTER_STOP
+	ai.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	ai.gui_input.connect(func(ev: InputEvent) -> void:
+		if _is_click(ev):
+			_studio_box(root))
 	foot.add_child(ai)
 	_menu_grid.resized.connect(_layout_menu)
 	_layout_menu()
@@ -1482,6 +1491,26 @@ func show_patch_notes(from_menu := false) -> void:
 			t.custom_minimum_size.x = 560
 			t.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART   # (one line each ran far off the screen)
 			list.add_child(t)
+	# DOWNLOAD THE GAME (the owner, 2026-11-21 21:29): the site always serves the newest version
+	v.add_child(UiStyle.text(Loc.t("DOWNLOAD THE GAME (the newest version)"), 17, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_CENTER))
+	var dl := HBoxContainer.new()
+	dl.alignment = BoxContainer.ALIGNMENT_CENTER
+	dl.add_theme_constant_override("separation", 10)
+	v.add_child(dl)
+	var dlw := _button("WINDOWS", func() -> void:
+		OS.shell_open(UpdateCheck.file_url("Windows")))
+	var dla := _button("ANDROID", func() -> void:
+		OS.shell_open(UpdateCheck.file_url("Android")))
+	var web := _button("PLAY ON THE WEB", func() -> void:
+		OS.shell_open(UpdateCheck.from_site))
+	for b in [dlw, dla, web]:
+		b.custom_minimum_size = Vector2(0, 46)
+		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		dl.add_child(b)
+	if OS.get_name() == "Android":
+		UiStyle.primary(dla)
+	elif OS.get_name() == "Windows":
+		UiStyle.primary(dlw)
 	var back := _button("BACK", func() -> void:
 		if from_menu:
 			show_menu()
@@ -2388,6 +2417,82 @@ func _flag_row(sz: Vector2, reload: Callable) -> HBoxContainer:
 	for c in Loc.LANGS:
 		row.add_child(_flag_button(c, sz, reload))
 	return row
+
+
+## A left click or a tap (released) on a control.
+func _is_click(ev: InputEvent) -> bool:
+	if ev is InputEventMouseButton:
+		return ev.button_index == MOUSE_BUTTON_LEFT and not ev.pressed
+	if ev is InputEventScreenTouch:
+		return not ev.pressed
+	return false
+
+
+## THE STUDIO (the owner, 2026-11-21 21:29): a click on Salgarellius Catholic Games (its logo or its line) shows the logo
+## big over the menu with the Discord invite (JOIN THE DISCORD opens it; the link can be copied); a click outside closes.
+func _studio_box(root: Control) -> void:
+	if root.has_node("StudioBox"):
+		return
+	var dim := ColorRect.new()
+	dim.name = "StudioBox"
+	dim.color = Color(0, 0, 0, 0.72)
+	dim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	dim.mouse_filter = Control.MOUSE_FILTER_STOP
+	root.add_child(dim)
+	var c := CenterContainer.new()
+	c.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	c.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	dim.add_child(c)
+	var p := PanelContainer.new()
+	c.add_child(p)
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 12)
+	v.alignment = BoxContainer.ALIGNMENT_CENTER
+	p.add_child(v)
+	var vs := root.get_viewport_rect().size
+	var logo_tex: Texture2D = load("res://assets/ui/logo_salgarellius.png")
+	if logo_tex != null:
+		var logo := TextureRect.new()
+		logo.texture = logo_tex
+		logo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		logo.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		var lh := clampf(vs.y - 260.0, 140.0, 360.0)
+		logo.custom_minimum_size = Vector2(minf(lh * logo_tex.get_width() / float(logo_tex.get_height()), vs.x - 120.0), lh)
+		logo.pivot_offset = logo.custom_minimum_size * 0.5
+		logo.scale = Vector2(0.35, 0.35)
+		v.add_child(logo)
+		var tw := logo.create_tween()
+		tw.tween_property(logo, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	var h := UiStyle.heading("Salgarellius Catholic Games", 26, UiStyle.TRIM)
+	h.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(h)
+	var link := LineEdit.new()
+	link.text = UpdateCheck.DISCORD
+	link.editable = false
+	link.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	link.custom_minimum_size = Vector2(360, 40)
+	link.add_theme_font_size_override("font_size", 18)
+	v.add_child(link)
+	var row := HBoxContainer.new()
+	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	row.add_theme_constant_override("separation", 12)
+	v.add_child(row)
+	var join := _button("JOIN THE DISCORD", func() -> void:
+		OS.shell_open(UpdateCheck.DISCORD))
+	UiStyle.primary(join)
+	join.custom_minimum_size = Vector2(220, 50)
+	row.add_child(join)
+	var copy := _button("COPY LINK", func() -> void:
+		DisplayServer.clipboard_set(UpdateCheck.DISCORD))
+	copy.custom_minimum_size = Vector2(160, 50)
+	row.add_child(copy)
+	var close := _button("CLOSE", func() -> void:
+		dim.queue_free())
+	close.custom_minimum_size = Vector2(140, 50)
+	row.add_child(close)
+	dim.gui_input.connect(func(ev: InputEvent) -> void:
+		if _is_click(ev):
+			dim.queue_free())
 
 
 ## The new-version box over the main menu: what's out, DOWNLOAD (opens the site's file in the browser) and LATER.
