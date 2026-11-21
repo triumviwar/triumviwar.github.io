@@ -555,6 +555,14 @@ func _input(event: InputEvent) -> void:
 		game.input_cmd = false
 
 
+## A StillShow played over the match (a mid-match show: a07's verdict) lies above the HUD: its clicks are its own.
+## (The HUD took them for its paused panel and bars: the show's NEXT and SKIP and a click on the picture did nothing,
+## only the keys worked; playtest 2026-11-21.)
+func _show_over() -> bool:
+	var p := get_parent()
+	return p != null and p.get_children().any(func(c: Node) -> bool: return c is StillShow and not c.is_queued_for_deletion())
+
+
 func _on_input(event: InputEvent) -> void:
 	if settings_open:
 		# the Settings page over the match takes every click and key (its own controls); Esc closes it
@@ -565,6 +573,8 @@ func _on_input(event: InputEvent) -> void:
 		return
 	if game == null or (game.over and not game.map_view):
 		return
+	if not (event is InputEventKey) and _show_over():
+		return          # (a show over the match: its clicks and taps are its own)
 	if event is InputEventKey and _chat_input(event as InputEventKey):
 		get_viewport().set_input_as_handled()
 		return
