@@ -114,6 +114,26 @@ static func theme() -> Theme:
 	t.set_stylebox("grabber", "VScrollBar", grab)
 	t.set_stylebox("grabber_highlight", "VScrollBar", grab)
 	t.set_stylebox("scroll", "VScrollBar", StyleBoxEmpty.new())
+	# the sliders' track (playtest 2026-11-21): the engine's own track is a dark line that vanished on the dark panels,
+	# so a bar showed only its filled part (the music player's seek bar looked a few pixels long, a muted volume like
+	# nothing at all); a groove with a rim, the filled part in the trim colour
+	var groove := StyleBoxFlat.new()
+	groove.bg_color = Color(0.06, 0.05, 0.04)
+	groove.border_color = TRIM_DIM
+	groove.set_border_width_all(1)
+	groove.set_corner_radius_all(4)
+	groove.content_margin_top = 3
+	groove.content_margin_bottom = 3
+	t.set_stylebox("slider", "HSlider", groove)
+	var fill := StyleBoxFlat.new()
+	fill.bg_color = TRIM_DIM.lightened(0.15)
+	fill.set_corner_radius_all(4)
+	fill.content_margin_top = 3
+	fill.content_margin_bottom = 3
+	t.set_stylebox("grabber_area", "HSlider", fill)
+	var fill_hi := fill.duplicate() as StyleBoxFlat
+	fill_hi.bg_color = TRIM
+	t.set_stylebox("grabber_area_highlight", "HSlider", fill_hi)
 	return t
 
 
