@@ -2587,6 +2587,12 @@ func _hidden_key_note(letter: String) -> String:
 			var lab := String(m["labs"].get(id, id))
 			if String(id).begins_with("R:"):
 				return Loc.t("%s: researched, or already researching.") % Loc.t(lab.capitalize())
+			# (playtest 2026-11-21: A, M, S, H or P with the rooted Brood Mother (or another rooted creature) picked said
+			# "Attack: not now.", which tells nothing: rooted it is a building, and UPROOT gets it up)
+			var sel := game.selected_units()
+			if lab in ["MOVE", "ATTACK", "STOP", "HOLD", "PATROL", "ATTACK GROUND"] and not sel.is_empty() \
+					and sel.all(func(u: Unit) -> bool: return BroodRoot.fixed(u) and u.kind != BroodNew.EGG):
+				return Loc.t("Rooted: UPROOT it first.")
 			return Loc.t("%s: not now.") % Loc.t(lab.capitalize())
 	return ""
 

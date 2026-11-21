@@ -2486,6 +2486,7 @@ const T := {
 	"tension": "tensión",
 	"%s: researched, or already researching.": "%s: ya investigado, o en investigación.",
 	"%s: not now.": "%s: ahora no.",
+	"Rooted: UPROOT it first.": "Arraigado: usa DESARRAIGAR primero.",
 	"A NEW VERSION IS OUT": "HAY UNA NUEVA VERSIÓN",
 	"Version %s is out (you have %s). Download it and replace this copy to update.": "Ha salido la versión %s (tienes la %s). Descárgala y reemplaza esta copia para actualizar.",
 	"DOWNLOAD": "DESCARGAR",
