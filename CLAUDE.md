@@ -26,6 +26,19 @@
 
 ## Current work
 
+- BROOD MOTHER UPROOT (owner 2026-11-21 15:43 "a bit of everything", to the Brood skirmish playtest's finding 6; job
+  brood-mother-uproot, branch brood-mother-uproot, docs/brood_mother_uproot.md, tools/test_brood_mother_uproot.gd +
+  _ai.gd, tools/playtest/brood_linger.gd, tools/study/brood_mother_uproot.py, data docs/brood_mother_uproot/data/,
+  pictures docs/shots/brood_mother_uproot/): the Mother uproots: her swamp LINGERS BroodNew.LINGER 45 s where she was
+  (nb lgx/lgy/lgr/lgu; Game._update_swamp lays BroodNew.linger_sources, _draw_swamp fades it browner), the Rootmaws on it
+  only stay rooted and WAIT (nb "wait": no drinking, a "waiting" mark, card WAITING: THE MOTHER IS UP; hers HER SWAMP
+  LINGERS), rooted again on it her own swamp takes over; past it they uproot as before but keep their spot (nb "home")
+  and ROOT AGAIN BY THEMSELVES when swamp is back under it (any order cancels). The computer's Mother also gets up for a
+  smaller fight at her nest (MOTHER_HELP 150, not clearly won), roots back after 5 calm s or before the linger runs out.
+  Switch broodlinger:off (broodlinger:30/60 another time). 60 games to 15:00 (on/off x Crown, Clockwork, mirror): no
+  swing (g -0.09 / +0.14 / -0.04, all |t| < 1); the computers seldom get her up before 15:00. Food bank at 200/200 and
+  research stopping a Sire's eggs: NO CHANGE (owner). Patch note under "0.38.999" (no version bump on the branch).
+  7 Claude's choices in the doc.
 - GRADED GAPS COVERED (owner 2026-11-21 03:42 "all parts you rated... covered in the current tasks? If not, do it"): Claude graded the game B- overall (concept A, systems A-, campaign B+ design / C play, art B-, computer opponent C, balance ungradeable, polish C+, scope C). Two more cloud jobs: ai-opponent-review (fresh 9-matchup win-rate matrix, human-like NOVICE/AVERAGE/GOOD benchmark players v each difficulty, the computer's visible blunders fixed behind switches; docs/ai_opponent_review.md) and sprite-hallucination-audit (every strip on contact sheets, wrong frames listed with ChatGPT redraw prompts; docs/sprite_hallucination_audit.md). Owner-only parts: campaign dialogue (he rewrites it), voices (Chatterbox on his PC), scope/focus (his call).
 - AI OPPONENT REVIEW (job ai-opponent-review, owner 2026-11-21 03:42 "the computer opponent got a C"; docs/ai_opponent_review.md,
   tables docs/ai_opponent_review/tables.md, data docs/ai_opponent_review/data/ + fix_*/, pictures docs/shots/ai_opponent_review/,
