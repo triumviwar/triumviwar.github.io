@@ -439,11 +439,11 @@
 		{
 			"id": "mill",
 			"side": "guild",
-			"primary": true,
+			"primary": false,
 			"kind": "destroy",
 			"hidden": true,
 			"tag": "seed_mill",
-			"text": "Destroy the seed on the mill island."
+			"text": "Burn the seed on the mill island before night: the city's last hour will be longer and the machine slower."
 		},
 		{
 			"id": "fall",
@@ -1414,6 +1414,117 @@
 					"say": [
 						"h_mill_late"
 					]
+				}
+			]
+		},
+		{
+			"id": "mill_early_bonus",
+			"when": {
+				"all": [
+					{
+						"fired": "lost"
+					},
+					{
+						"fired": "mill_burnt_early"
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"clock": {
+						"name": "fall",
+						"add": 90
+					}
+				},
+				{
+					"say": [
+						"cap_mill_early"
+					]
+				}
+			]
+		},
+		{
+			"id": "jakob_escort",
+			"modes": [
+				"solo",
+				"versus"
+			],
+			"when": {
+				"all": [
+					{
+						"fired": "lost"
+					},
+					{
+						"not": {
+							"dead": "jakob"
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"spawn": {
+						"team": "watch",
+						"kind": "musketeer",
+						"count": 3,
+						"at": "yard",
+						"near": "jakob",
+						"tag": "jakob_escort",
+						"fixed": true
+					}
+				},
+				{
+					"order": {
+						"tag": "jakob_escort",
+						"do": "follow",
+						"leader": "jakob",
+						"within": 2
+					}
+				},
+				{
+					"say": [
+						"cap_escort"
+					]
+				},
+				{
+					"ping": {
+						"tag": "jakob"
+					}
+				}
+			]
+		},
+		{
+			"id": "jakob_hit",
+			"when": {
+				"all": [
+					{
+						"fired": "lost"
+					},
+					{
+						"hp": {
+							"tag": "jakob",
+							"below": 0.5
+						}
+					},
+					{
+						"not": {
+							"dead": "jakob"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"j_hit"
+					]
+				},
+				{
+					"ping": {
+						"tag": "jakob"
+					}
 				}
 			]
 		},
@@ -2750,6 +2861,62 @@
 			]
 		},
 		{
+			"id": "stroke_mill",
+			"when": {
+				"fired": "stroke_flags"
+			},
+			"do": [
+				{
+					"flag": {
+						"mill": "standing"
+					}
+				}
+			]
+		},
+		{
+			"id": "stroke_mill_b",
+			"when": {
+				"all": [
+					{
+						"fired": "stroke_mill"
+					},
+					{
+						"dead": "seed_mill"
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"mill": "burnt"
+					}
+				}
+			]
+		},
+		{
+			"id": "stroke_mill_f",
+			"when": {
+				"all": [
+					{
+						"fired": "stroke_mill"
+					},
+					{
+						"not": {
+							"dead": "seed_mill"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "mill",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
 			"id": "stroke_cut",
 			"when": {
 				"all": [
@@ -3125,6 +3292,26 @@
 			"who": "jakob",
 			"text": "I have the drawings, Meister. All of them."
 		},
+		"cap_mill_early": {
+			"who": "captain",
+			"text": "The mill seed burned before dark. The machine is late to the streets: we have longer."
+		},
+		"cap_escort": {
+			"who": "captain",
+			"text": "Three of my men go with your journeyman, Meister. North of the river the streets are the machine's."
+		},
+		"j_hit": {
+			"who": "jakob",
+			"text": "I'm hit! Keep them off me, I'm coming back."
+		},
+		"h_end_mill": {
+			"who": "hollweg",
+			"text": "We burned the seed on the mill island before dark. It bought the city an hour it would not have had."
+		},
+		"h_end_nomill": {
+			"who": "hollweg",
+			"text": "The mill on the island was still turning when the clock struck. I hear it at night."
+		},
 		"h_jakob": {
 			"who": "hollweg",
 			"text": "Jakob. Not Jakob."
@@ -3304,6 +3491,22 @@
 						}
 					},
 					{
+						"id": "h_end_mill",
+						"if": {
+							"flag": {
+								"mill": "burnt"
+							}
+						}
+					},
+					{
+						"id": "h_end_nomill",
+						"if": {
+							"flag": {
+								"mill": "standing"
+							}
+						}
+					},
+					{
 						"id": "h_end_jakob",
 						"if": {
 							"flag": {
@@ -3399,6 +3602,22 @@
 						}
 					},
 					"text": "The bells were kept quiet. The city slept until the machine reached its streets."
+				},
+				{
+					"if": {
+						"flag": {
+							"mill": "burnt"
+						}
+					},
+					"text": "The mill seed burned before night: the machine came late to the streets."
+				},
+				{
+					"if": {
+						"flag": {
+							"mill": "standing"
+						}
+					},
+					"text": "The mill seed was still turning at the stroke."
 				},
 				{
 					"if": {

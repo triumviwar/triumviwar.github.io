@@ -346,6 +346,10 @@ func _play(run: String, bells: String, gate: String, drawings: bool) -> void:
 		check(P + "RUNG: the city already on the road (20 townsfolk)", r.tagged("folk").size() == 20 and int(r.counters["townsfolk"]) == 20)
 	else:
 		check(P + "QUIET: nobody on the road yet", r.tagged("folk").is_empty())
+	_step(g, lost_t + 5.0)
+	# (campaign-fixes-1121: the mill seed burnt before night puts the stroke 90 s back; Jakob gets an escort of the Watch)
+	check(P + "the mill burnt before night: the stroke 1:30 later", is_equal_approx(float(r.clocks["fall"]), lost_t + 540.0 + 90.0) and r.said_ids.has("cap_mill_early"))
+	check(P + "Jakob's escort: three of the Watch follow him", r.tagged("jakob_escort").size() == 3 and r.said_ids.has("cap_escort"))
 	_step(g, lost_t + 120.0)
 	var out_n := r.tagged("folk").size()
 	check(P + "townsfolk come out of the houses", int(r.counters["townsfolk"]) > (20 if bells == "rung" else 0) and out_n > 0)
@@ -395,6 +399,7 @@ func _play(run: String, bells: String, gate: String, drawings: bool) -> void:
 	_step(g, fall + 0.1)
 	check(P + "THE STROKE: Hollweg at the gate", r.fired.has("stroke") and r.said_ids.has("cap_13") and r.obj["hollweg"] == "done" and not g.over)
 	check(P + "the saved tallied", r.flags.has("saved") and int(r.flags.get("saved_n", -1)) == int(r.counters["saved"]))
+	check(P + "the flag: mill burnt", r.flags.get("mill", "") == "burnt", str(r.flags))
 	check(P + "the flags: jakob " + ("alive" if drawings else "lost") + ", cut yes",
 		r.flags.get("jakob", "") == ("alive" if drawings else "lost") and r.flags.get("cut", "") == "yes", str(r.flags))
 	for i in 14:
@@ -413,7 +418,7 @@ func _play(run: String, bells: String, gate: String, drawings: bool) -> void:
 		for i in 20:
 			if is_instance_valid(show) and not show.is_queued_for_deletion():
 				show.next()
-		var want: Array = ["h_end1", "h_end_" + (gate if gate != "" else "people"), "h_end_jakob" if drawings else "h_end_nojakob", "h_end2", "k_end1", "k_end2"]
+		var want: Array = ["h_end1", "h_end_" + (gate if gate != "" else "people"), "h_end_mill", "h_end_jakob" if drawings else "h_end_nojakob", "h_end2", "k_end1", "k_end2"]
 		check(P + "the ending's lines by the flags", show.shown_ids == want, str(show.shown_ids))
 	for i in 3:
 		await process_frame

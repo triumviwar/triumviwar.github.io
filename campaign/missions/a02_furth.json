@@ -393,6 +393,96 @@
 			}
 		},
 		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 4,
+			"at": "barn",
+			"tag": "g_def",
+			"order": "hold",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "guild"
+						}
+					},
+					{
+						"difficulty": [
+							"normal",
+							"hard"
+						]
+					}
+				]
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "pendulum",
+			"count": 1,
+			"at": "honest_ring",
+			"tag": "g_def",
+			"order": "hold",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "guild"
+						}
+					},
+					{
+						"difficulty": [
+							"normal",
+							"hard"
+						]
+					}
+				]
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 4,
+			"at": "inside_s",
+			"tag": "g_def",
+			"order": "hold",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "guild"
+						}
+					},
+					{
+						"difficulty": "hard"
+					}
+				]
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "springer",
+			"count": 2,
+			"at": "inside_n",
+			"tag": "g_def",
+			"order": "hold",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "guild"
+						}
+					},
+					{
+						"difficulty": "hard"
+					}
+				]
+			}
+		},
+		{
 			"team": "army",
 			"kind": "dismounted",
 			"count": 1,
@@ -3432,6 +3522,84 @@
 					"say": [
 						"m_mill_lost"
 					]
+				}
+			]
+		},
+		{
+			"id": "g_build",
+			"when": {
+				"all": [
+					{
+						"time": 90
+					},
+					{
+						"not": {
+							"playing": "guild"
+						}
+					},
+					{
+						"difficulty": [
+							"normal",
+							"hard"
+						]
+					},
+					{
+						"not": {
+							"dead": "honest"
+						}
+					},
+					{
+						"count": {
+							"team": "guild",
+							"below": 40
+						}
+					}
+				]
+			},
+			"every": 90,
+			"do": [
+				{
+					"spawn": {
+						"team": "guild",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "barn",
+						"tag": "g_def",
+						"order": "hold",
+						"fixed": true
+					}
+				}
+			]
+		},
+		{
+			"id": "g_build_h",
+			"when": {
+				"all": [
+					{
+						"fired": "g_build"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"not": {
+							"dead": "honest"
+						}
+					}
+				]
+			},
+			"every": 90,
+			"do": [
+				{
+					"spawn": {
+						"team": "guild",
+						"kind": "springer",
+						"count": 1,
+						"at": "barn",
+						"tag": "g_def",
+						"order": "hold",
+						"fixed": true
+					}
 				}
 			]
 		},

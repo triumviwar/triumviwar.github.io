@@ -183,6 +183,10 @@ M = {
         {"team": "expedition", "kind": "musketeer", "as": "hired_gun", "count": 6, "at": "camp", "tag": "guns", "if": SAVED_CLUTCH},
         {"team": "expedition", "kind": "musketeer", "as": "hired_gun", "count": 4, "at": "camp", "tag": "guns", "if": BURNED},
         {"team": "expedition", "kind": "musketeer", "as": "hired_gun", "count": 2, "at": "camp", "tag": "guns", "if": DRAWN},
+        # (campaign-fixes-1121: THE MIRROR HARDER: led by a person the creatures won in under four minutes; the scripted
+        # expedition hires more guns, by the campaign's difficulty)
+        {"team": "expedition", "kind": "musketeer", "as": "hired_gun", "count": 4, "at": "camp", "tag": "guns", "fixed": True, "if": {"all": [CRE, {"difficulty": "normal"}]}},
+        {"team": "expedition", "kind": "musketeer", "as": "hired_gun", "count": 8, "at": "camp", "tag": "guns", "fixed": True, "if": {"all": [CRE, {"difficulty": "hard"}]}},
         {"team": "expedition", "kind": "labourer", "as": "porter", "count": 4, "at": "camp", "tag": "porters", "if": SAVED_CLUTCH, "fixed": True},
         {"team": "expedition", "kind": "labourer", "as": "porter", "count": 2, "at": "camp", "tag": "porters", "if": BURNED, "fixed": True},
         # ---- the convoy: a cage cart for each bed of young (the middle one, the young Sire's, only with a breeding stock)
@@ -398,6 +402,10 @@ M = {
             {"order": {"tag": "guns", "do": "follow", "leader": "carts", "within": 4}},
             {"order": {"tag": "porters", "do": "follow", "leader": "carts", "within": 3}},
             {"order": {"tag": "pieter", "do": "follow", "leader": "lindqvist", "within": 2}}]},
+        # (the scripted guns fight what comes at the doctor in the night too, then follow him on)
+        {"id": "x_fight1", "when": {"all": [{"fired": "x_eggs"}, NO_EXP, {"not": {"fired": "part2_go"}}]}, "every": 2, "do": [
+            {"order": {"tag": "guns", "do": "follow", "leader": "lindqvist", "within": 3}},
+            {"order": {"tag": "guns", "do": "hunt", "prey_team": "creatures", "within": 5}}]},
         # (the scripted escort fights what comes at the carts)
         {"id": "x_fight", "when": {"all": [{"fired": "part2_go"}, NO_EXP, {"not": {"fired": "the_end"}}]}, "every": 2, "do": [
             {"order": {"tag": "guns", "do": "follow", "leader": "carts", "within": 4}},

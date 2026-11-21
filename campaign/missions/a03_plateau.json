@@ -434,6 +434,78 @@
 			"tag": "cache"
 		},
 		{
+			"team": "party",
+			"kind": "musketeer",
+			"count": 2,
+			"at": "camp",
+			"tag": "escort",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "nest"
+					},
+					{
+						"difficulty": "easy"
+					}
+				]
+			}
+		},
+		{
+			"team": "party",
+			"kind": "musketeer",
+			"count": 6,
+			"at": "camp",
+			"tag": "escort",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "nest"
+					},
+					{
+						"difficulty": "normal"
+					}
+				]
+			}
+		},
+		{
+			"team": "party",
+			"kind": "musketeer",
+			"count": 10,
+			"at": "camp",
+			"tag": "escort",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "nest"
+					},
+					{
+						"difficulty": "hard"
+					}
+				]
+			}
+		},
+		{
+			"team": "party",
+			"kind": "dismounted",
+			"count": 2,
+			"at": "camp",
+			"tag": "escort",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "nest"
+					},
+					{
+						"difficulty": "hard"
+					}
+				]
+			}
+		},
+		{
 			"team": "nest",
 			"kind": "raptor",
 			"count": 6,
@@ -2562,6 +2634,14 @@
 						"leader": "valadares",
 						"within": 3
 					}
+				},
+				{
+					"order": {
+						"tag": "escort",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 3
+					}
 				}
 			]
 		},
@@ -2726,6 +2806,14 @@
 				},
 				{
 					"order": {
+						"tag": "escort",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 3
+					}
+				},
+				{
+					"order": {
 						"tag": "benedito",
 						"do": "move",
 						"to": "landing"
@@ -2795,9 +2883,65 @@
 				},
 				{
 					"order": {
+						"tag": "escort",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 3
+					}
+				},
+				{
+					"order": {
 						"tag": "benedito",
 						"do": "move",
 						"to": "landing"
+					}
+				}
+			]
+		},
+		{
+			"id": "p_fight",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "party"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"every": 2,
+			"do": [
+				{
+					"order": {
+						"tag": "escort",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 3
+					}
+				},
+				{
+					"order": {
+						"tag": "escort",
+						"do": "hunt",
+						"prey_team": "nest",
+						"within": 6
+					}
+				},
+				{
+					"order": {
+						"tag": "men",
+						"do": "hunt",
+						"prey_team": "nest",
+						"within": 5
 					}
 				}
 			]
@@ -2835,6 +2979,13 @@
 				{
 					"order": {
 						"tag": "teles_men",
+						"do": "move",
+						"to": "landing"
+					}
+				},
+				{
+					"order": {
+						"tag": "escort",
 						"do": "move",
 						"to": "landing"
 					}

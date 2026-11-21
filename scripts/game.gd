@@ -3359,8 +3359,8 @@ func faction_of(t: int) -> String:
 
 func max_supply(t: int) -> int:
 	var top := int(Defs.FACTIONS[factions[t]]["max_supply"])
-	if mission != null and int(mission.team_data(t).get("supply_cap", 0)) > 0:
-		top = mini(top, int(mission.team_data(t)["supply_cap"]))     # (a mission's cap: the prologue flip's rival pack)
+	if mission != null and mission.supply_cap_of(t) > 0:
+		top = mini(top, mission.supply_cap_of(t))     # (a mission's cap: the prologue flip's rival pack; by the difficulty)
 	return top
 
 

@@ -140,6 +140,12 @@ M = {
         {"team": "party", "kind": "labourer", "as": "guide", "count": 1, "at": "camp", "tag": "guides", "if": GUIDE2, "fixed": True},
         {"team": "party", "kind": "musketeer", "count": 6, "at": "camp", "tag": "teles_men", "if": TOLD},
         {"team": "party", "kind": "powder_wagon", "count": 1, "at": "cache", "tag": "cache"},
+        # (campaign-fixes-1121: THE MIRROR HARDER: led by a person the Nest won in under five minutes; the Crown's party
+        # brings a stronger escort, by the campaign's difficulty)
+        {"team": "party", "kind": "musketeer", "count": 2, "at": "camp", "tag": "escort", "fixed": True, "if": {"all": [NEST, {"difficulty": "easy"}]}},
+        {"team": "party", "kind": "musketeer", "count": 6, "at": "camp", "tag": "escort", "fixed": True, "if": {"all": [NEST, {"difficulty": "normal"}]}},
+        {"team": "party", "kind": "musketeer", "count": 10, "at": "camp", "tag": "escort", "fixed": True, "if": {"all": [NEST, {"difficulty": "hard"}]}},
+        {"team": "party", "kind": "dismounted", "count": 2, "at": "camp", "tag": "escort", "fixed": True, "if": {"all": [NEST, {"difficulty": "hard"}]}},
         # ---- the nest (its Mother, a Rootmaw and grubs are the standard start in the hollow): its hunters, asleep
         {"team": "nest", "kind": "raptor", "count": 6, "at": "nest_core", "tag": "nest_guard"},
         {"team": "nest", "kind": "raptor", "count": 4, "at": "nest_core", "tag": "nest_guard", "name": "Young", "if": TAKEN},
@@ -329,7 +335,8 @@ M = {
             {"order": {"tag": "valadares", "do": "route", "route": ["trail_w", "stair_foot", "stair_top", "cairn"], "name": "leg1"}},
             {"order": {"tag": "guides", "do": "follow", "leader": "valadares", "within": 3}},
             {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2}},
-            {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3}}]},
+            {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3}},
+            {"order": {"tag": "escort", "do": "follow", "leader": "valadares", "within": 3}}]},
         {"id": "p_leg2", "when": {"all": [{"fired": "mark_cairn"}, NO_PARTY, {"not": {"fired": "part3"}}]}, "delay": 1, "do": [
             {"order": {"tag": "valadares", "do": "route", "route": ["source"], "name": "leg2"}}]},
         {"id": "p_leg3", "when": {"all": [{"fired": "mark_source"}, NO_PARTY, {"not": {"fired": "part3"}}]}, "delay": 1, "do": [
@@ -341,16 +348,24 @@ M = {
             {"order": {"tag": "guides", "do": "follow", "leader": "valadares", "within": 2}},
             {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2}},
             {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3}},
+            {"order": {"tag": "escort", "do": "follow", "leader": "valadares", "within": 3}},
             {"order": {"tag": "benedito", "do": "move", "to": "landing"}}]},
         {"id": "p_down_w", "when": {"all": [{"fired": "part3"}, NO_PARTY, {"flag": {"sire_way": "split"}}]}, "delay": 1, "do": [
             {"order": {"tag": "valadares", "do": "route", "route": ["mid_top", "cairn", "stair_top", "stair_foot", "trail_w", "landing"], "name": "down"}},
             {"order": {"tag": "guides", "do": "follow", "leader": "valadares", "within": 2}},
             {"order": {"tag": "men", "do": "follow", "leader": "valadares", "within": 2}},
             {"order": {"tag": "teles_men", "do": "follow", "leader": "valadares", "within": 3}},
+            {"order": {"tag": "escort", "do": "follow", "leader": "valadares", "within": 3}},
             {"order": {"tag": "benedito", "do": "move", "to": "landing"}}]},
+        # (the scripted party fights what comes at Valadares: its men turn on the hunters within reach, then follow on)
+        {"id": "p_fight", "when": {"all": [{"fired": "part3"}, NO_PARTY, {"not": {"fired": "the_end"}}]}, "delay": 3, "every": 2, "do": [
+            {"order": {"tag": "escort", "do": "follow", "leader": "valadares", "within": 3}},
+            {"order": {"tag": "escort", "do": "hunt", "prey_team": "nest", "within": 6}},
+            {"order": {"tag": "men", "do": "hunt", "prey_team": "nest", "within": 5}}]},
         # (the scripted men at the landing step into the canoe; the rest keep following)
         {"id": "p_board", "when": {"all": [{"fired": "part3"}, NO_PARTY, {"count": {"tag": "valadares", "area": "landing", "at_least": 1}}]}, "every": 2, "do": [
             {"order": {"tag": "men", "do": "move", "to": "landing"}}, {"order": {"tag": "teles_men", "do": "move", "to": "landing"}},
+            {"order": {"tag": "escort", "do": "move", "to": "landing"}},
             {"order": {"tag": "guides", "do": "move", "to": "landing"}}]},
     ],
     "speakers": {

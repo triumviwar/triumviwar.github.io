@@ -337,6 +337,11 @@ static func make_cfg(id: String, mode: String, host_seat := "p1", online := fals
 			var p := ctl.split(":")
 			slot["who"] = p[1] if p.size() > 1 and ["easy", "normal", "hard", "brutal"].has(p[1]) else "normal"
 			slot["strategy"] = p[2] if p.size() > 2 else "balanced"
+			# (campaign-fixes-1121: a computer foe may play stronger at the campaign's NORMAL / HARD: "ai_by_difficulty":
+			# {"normal": "easy", "hard": "normal"}; the owner: the campaign has an AI level, chosen in the hub)
+			var abd: Variant = tm.get("ai_by_difficulty", {})
+			if abd is Dictionary and (abd as Dictionary).has(difficulty()):
+				slot["who"] = String(abd[difficulty()])
 		else:
 			slot["who"] = "script"
 		slots.append(slot)

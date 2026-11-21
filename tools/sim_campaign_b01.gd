@@ -13,6 +13,8 @@ var until := 2400.0
 var active := false
 var rush := false
 var rival_level := ""
+var diff := ""             # (campaign-fixes-1121) "diff=easy|normal|hard": the campaign's difficulty for the run (the rival's cap and level)
+var _kept_progress := ""
 var raid := false          # ("raid": waves at the rival Mother first, the Sire kept home)
 var eggs := "left"
 var shots := ""
@@ -40,6 +42,8 @@ func _initialize() -> void:
 			until = float(a.substr(6))
 		if a.begins_with("rival="):
 			rival_level = a.substr(6)
+		if a.begins_with("diff="):
+			diff = a.substr(5)
 		if a.begins_with("eggs="):
 			eggs = a.substr(5)
 		if a.begins_with("shots="):
@@ -55,7 +59,12 @@ func _initialize() -> void:
 
 func _run() -> void:
 	await process_frame
+	if diff != "":
+		if FileAccess.file_exists(Campaign.PROGRESS):
+			_kept_progress = FileAccess.get_file_as_string(Campaign.PROGRESS)
+		Campaign.set_difficulty(diff)
 	var cfg := Campaign.make_cfg("b01_specimen", "solo")
+	print("SIM diff=%s rival=%s cap=%s" % [Campaign.difficulty(), cfg["slots"][1]["who"], str(Campaign.mission("b01_specimen")["teams"][1].get("supply_cap"))])
 	if rival_level != "":
 		cfg["slots"][1]["who"] = rival_level        # (the rival computer's level: easy as written, "rival=normal" to try)
 	main.start(cfg)
@@ -117,6 +126,12 @@ func _run() -> void:
 			print("SIM %s died at cell %s (state %s)" % [h, g.cell_of(hs[0].position), _state])
 	print("SIM the Sire was hit by (kind, samples) %s" % _hits)
 	print("SIM the pack's dead, by the last hit's kind %s" % _killers)
+	if diff != "":
+		if _kept_progress != "":
+			var kf := FileAccess.open(Campaign.PROGRESS, FileAccess.WRITE)
+			kf.store_string(_kept_progress)
+		else:
+			DirAccess.remove_absolute(ProjectSettings.globalize_path(Campaign.PROGRESS))
 	quit()
 
 

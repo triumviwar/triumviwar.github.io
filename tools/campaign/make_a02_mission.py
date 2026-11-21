@@ -176,6 +176,12 @@ M = {
         {"team": "guild", "kind": "netter", "count": 2, "at": "honest_ring", "tag": "g_def", "order": "hold", "if": NO_GUILD},
         {"team": "guild", "kind": "clock_soldier", "count": 5, "at": "barn", "tag": "g_def", "order": "hold", "if": NO_GUILD},
         {"team": "guild", "kind": "springer", "count": 2, "at": "barn", "tag": "g_def", "order": "hold", "if": NO_GUILD},
+        # (campaign-fixes-1121: THE MIRROR HARDER: led by a person the Machine won in about seven minutes; the guild's own
+        # defence is stronger at NORMAL and HARD, and it keeps building, below)
+        {"team": "guild", "kind": "clock_soldier", "count": 4, "at": "barn", "tag": "g_def", "order": "hold", "fixed": True, "if": {"all": [NO_GUILD, {"difficulty": ["normal", "hard"]}]}},
+        {"team": "guild", "kind": "pendulum", "count": 1, "at": "honest_ring", "tag": "g_def", "order": "hold", "fixed": True, "if": {"all": [NO_GUILD, {"difficulty": ["normal", "hard"]}]}},
+        {"team": "guild", "kind": "clock_soldier", "count": 4, "at": "inside_s", "tag": "g_def", "order": "hold", "fixed": True, "if": {"all": [NO_GUILD, {"difficulty": "hard"}]}},
+        {"team": "guild", "kind": "springer", "count": 2, "at": "inside_n", "tag": "g_def", "order": "hold", "fixed": True, "if": {"all": [NO_GUILD, {"difficulty": "hard"}]}},
         # ---- the Franconian army at the line
         {"team": "army", "kind": "dismounted", "count": 1, "at": "camp", "tag": "colonel", "name": "Colonel von Rauch", "order": "hold"},
         {"team": "army", "kind": "musketeer", "count": 5, "at": "road_gate", "tag": "line_n_men", "order": "hold"},
@@ -374,6 +380,12 @@ M = {
         {"id": "m_mill_pend", "when": {"all": [{"fired": "m_mill"}, {"not": {"dead": "seed_mill"}}]}, "delay": 60, "every": 90, "times": 3, "do": [
             {"spawn": {"team": "machine", "kind": "pendulum", "count": 1, "at": "mill", "tag": "m_pend"}}, {"say": ["m_pend"]}]},
         {"id": "m_mill_lost", "when": {"all": [{"fired": "m_mill"}, {"dead": "seed_mill"}]}, "do": [{"objective": {"id": "m_mill", "set": "failed"}}, {"say": ["m_mill_lost"]}]},
+        # the scripted guild keeps building: Clock Soldiers out of the barn every 1:30 (NORMAL two, HARD three; EASY none)
+        {"id": "g_build", "when": {"all": [{"time": 90}, NO_GUILD, {"difficulty": ["normal", "hard"]}, {"not": {"dead": "honest"}},
+                                           {"count": {"team": "guild", "below": 40}}]}, "every": 90, "do": [
+            {"spawn": {"team": "guild", "kind": "clock_soldier", "count": 2, "at": "barn", "tag": "g_def", "order": "hold", "fixed": True}}]},
+        {"id": "g_build_h", "when": {"all": [{"fired": "g_build"}, {"difficulty": "hard"}, {"not": {"dead": "honest"}}]}, "every": 90, "do": [
+            {"spawn": {"team": "guild", "kind": "springer", "count": 1, "at": "barn", "tag": "g_def", "order": "hold", "fixed": True}}]},
         # the scripted guild answers the mill: a strike from the meadow gate at 10:00
         {"id": "g_strike", "when": {"all": [{"time": 600}, NO_GUILD, {"not": {"dead": "seed_mill"}}]}, "do": [
             {"spawn": {"team": "guild", "kind": "clock_soldier", "count": 6, "at": "inside_s", "tag": "g_strike"}},

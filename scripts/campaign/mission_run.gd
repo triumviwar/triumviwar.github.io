@@ -126,6 +126,15 @@ func team_data(t: int) -> Dictionary:
 	return data["teams"][t] if t >= 0 and t < (data["teams"] as Array).size() else {}
 
 
+## A team's supply cap (0: none): "supply_cap": n, or by the campaign's difficulty {"easy": n, "normal": n, "hard": n}
+## (campaign-fixes-1121: the mirrors' foes grow with the difficulty).
+func supply_cap_of(t: int) -> int:
+	var c: Variant = team_data(t).get("supply_cap", 0)
+	if c is Dictionary:
+		return int(c.get(difficulty, c.get("normal", 0)))
+	return int(c)
+
+
 func team_index(team_id: String) -> int:
 	return team_ids.find(team_id)
 
@@ -569,6 +578,9 @@ func cond(c: Variant) -> bool:
 				# {"counter": {"name", "at_least", "below"}}: a mission number (townsfolk saved, seeds burnt)
 				var n := int(counters.get(String(v.get("name", "")), 0))
 				ok = (not v.has("at_least") or n >= int(v["at_least"])) and (not v.has("below") or n < int(v["below"]))
+				if v.has("at_most_half"):
+					# (campaign-fixes-1121: at most half of another counter: a04's lost to the machine of the riot)
+					ok = ok and n * 2 <= int(counters.get(String(v["at_most_half"]), 0))
 			"hp":
 				# {"hp": {"tag", "below": share}}: one of them has less than that share of its health (the Sire hurt)
 				ok = false

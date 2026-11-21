@@ -269,9 +269,9 @@ es Van hacia la máquina. ¡Detenedlos antes de que lleguen a su terreno!
 pt Estes dois no pátio ainda tinham as suas travas. Parei-os com a minha chave. Aqueles não.
 es Estos dos del patio aún tenían sus topes. Los paré con mi llave. A aquellos no.
 
-> The Pendulum, to the yard's gate! The press-house shift must come past it.
-pt O Pêndulo, para o portão do pátio! O turno da prensa tem de passar por ele.
-es ¡El Péndulo, a la puerta del patio! El turno de la prensa tiene que pasar junto a él.
+> Your men are at the gap, Father. The Pendulum and the guild's line are coming down to you.
+pt Os seus homens estão na brecha, Padre. O Pêndulo e a linha da guilda descem até vocês.
+es Sus hombres están en la brecha, Padre. El Péndulo y la línea del gremio bajan hacia ustedes.
 
 > The machine is coming out to meet them, at the open gap in the line!
 pt A máquina está saindo ao encontro deles, pela brecha aberta na linha!
@@ -540,3 +540,28 @@ es Un hermano lego de la Compañía, que viaja con el Padre Ferrer.
 > A journeyman calls Meister Hollweg away to the presses. The big one is off its beat.
 pt Um oficial chama o Mestre Hollweg às prensas. A grande saiu do compasso.
 es Un oficial llama al maestro Hollweg a las prensas. La grande va fuera de compás.
+
+# campaign-fixes-1121: the riot can be stopped (a warning, the gap, three waves)
+> The broken ones march in {clock:gather}: over the bridge and out of the meadow gap. Hold the gap.
+pt Os quebrados marcham dentro de {clock:gather}: pela ponte e pela brecha dos prados. Defendam a brecha.
+es Los rotos marchan en {clock:gather}: por el puente y por la brecha de los prados. Defended la brecha.
+
+> Father, the broken ones are gathering on the bank! They will cross the bridge and go out by the gap in the line.
+pt Padre, os quebrados estão se juntando na margem! Vão atravessar a ponte e sair pela brecha da linha.
+es ¡Padre, los rotos se están juntando en la orilla! Cruzarán el puente y saldrán por la brecha de la línea.
+
+> Then we wait for them at the gap. Every man there, now: the escort and the colonel's gate men too.
+pt Então vamos esperá-los na brecha. Todos os homens para lá, agora: a escolta e os homens do portão do coronel também.
+es Entonces los esperamos en la brecha. Todos los hombres allí, ya: la escolta y los hombres de la puerta del coronel también.
+
+> The first of them are on the bridge. They walk as if they were called. They do not even fight.
+pt Os primeiros estão na ponte. Caminham como se os chamassem. Nem sequer lutam.
+es Los primeros están en el puente. Caminan como si los llamaran. Ni siquiera luchan.
+
+> More on the bridge: the Springers and the Winders.
+pt Mais na ponte: os Saltadores e os Enroladores.
+es Más en el puente: los Saltadores y los Dadores de cuerda.
+
+> The last ones, from the press-house. Hold the gap!
+pt Os últimos, da casa da prensa. Defendam a brecha!
+es Los últimos, de la casa de la prensa. ¡Defended la brecha!
