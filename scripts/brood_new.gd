@@ -782,7 +782,7 @@ static func _rim(r: Rect2, dir: Vector2) -> Vector2:
 ## heave in code; the egg flies from her clutch (CLUTCH_AT). Either way the egg then goes to the rim in POP_TIME s, over
 ## an arc POP_ARC px high.
 const LAY_DUR := [0.28, 0.38, 0.7, 0.7, 0.38, 0.32]      # (2.76 s in all: the owner, 21:28, "too fast"; her laying RATE is not slowed)
-const LAY_EGG_AT := Vector2(14.0, -57.0)
+const LAY_EGG_AT := Vector2(-5.0, -70.0)
 const LAY_EGG_BIG := 1.6
 const LAY_TIME := 1.0
 const POP_TIME := 0.55

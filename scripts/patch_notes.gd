@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.105", "items": [
+		"THE BROOD MOTHER HAS ONE TAIL AGAIN: her laying pictures (first stage) were redrawn. When she reared up to lay, a second tail appeared down the left of her nest; now it is her neck that lifts, and the new egg lands where the picture lays it.",
+	]},
 	{"v": "0.38.104", "items": [
 		"THE LAST STAND-INS ARE PAINTED: the King listening to Hollweg in his study, Hollweg holding up the heart of the Perpetual while Ferrer watches from the door, Tomasz reading the mapmaker's letter to the King, Lindqvist feeding Specimen One, and Lindqvist in chains before the King. Every story picture in the campaign is now a painting.",
 	]},
