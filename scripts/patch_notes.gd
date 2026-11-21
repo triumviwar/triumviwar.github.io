@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.103", "items": [
+		"THE FURTH LINE IS FULLY PAINTED: its last two pictures are real paintings now: the Machine's red soldiers pouring out of the city gate against the palisade, and the Rednitz mill overgrown with red gears set alight by the guild and the Crown. Every story picture of the prologues and Act 1 is now a painting.",
+	]},
 	{"v": "0.38.102", "items": [
 		"THE COUNCIL OF ROME IS PAINTED: all seven of its pictures are real paintings now: the young King listening to the council under the crucifix, Father Ferrer showing the cardinals the machine's drawing, Valadares at his map with Lindqvist's sketch, Hollweg and Lindqvist accused side by side, the Dean reading the verdict, Rome burning across the Tiber below an untouched Saint Peter's, and the King and Father Tomasz holding the bridge at dawn. Every mission of Act 1 now has its paintings.",
 	]},
