@@ -550,7 +550,15 @@ func quit_game() -> void:
 	_autosave()
 	if not OS.has_feature("web"):
 		DirAccess.remove_absolute(RUNNING)     # (closed on purpose: not a crash)
+	release_cursor_art()
 	get_tree().quit()
+
+
+## The custom cursor's picture is let go before the program ends: Input held it past the renderer, and freeing it
+## then gave "Texture with GL ID ... leaked" / "RenderingServer::get_singleton() is null" on every EXIT (playtest
+## 2026-11-21; the test machine's exit still ended in a crash inside the engine afterwards, see the report).
+static func release_cursor_art() -> void:
+	Input.set_custom_mouse_cursor(null)
 
 
 ## Place the title and the grid by the screen's fractions; on a small screen the buttons keep their minimum size
@@ -2741,6 +2749,8 @@ func _notification(what: int) -> void:
 	# closed or sent to the background on purpose: not a crash (back in front: running again)
 	if what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_WM_CLOSE_REQUEST] and not OS.has_feature("web"):
 		DirAccess.remove_absolute(RUNNING)
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		release_cursor_art()          # (the window's close button: the program ends next; see quit_game)
 	elif what == NOTIFICATION_APPLICATION_RESUMED:
 		_mark_running("resumed" if game == null else "resumed a match")
 	# online: the app put away (or back): the host pauses the match for everyone meanwhile (NetSession.set_hidden;
