@@ -2742,6 +2742,7 @@ const T := {
 	"The story goes on: %s": "La historia continúa: %s",
 	"New storylines open: %s": "Se abren nuevas historias: %s",
 	"The next mission is being written.": "La próxima misión se está escribiendo.",
+	"That is not how it went. To go on with the story, win it as %s.": "No fue así como ocurrió. Para seguir la historia, gana como %s.",
 	"Try again: the story waits for a victory.": "Inténtalo de nuevo: la historia espera una victoria.",
 	"NEXT MISSION": "SIGUIENTE MISIÓN",
 	"WAR TABLE": "MESA DE GUERRA",

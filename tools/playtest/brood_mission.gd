@@ -142,7 +142,20 @@ func _after_end(g) -> void:
 	pt.note("END", "end panel: " + pt.labels_text().replace("\n", " | ").substr(0, 700))
 	pt.note("END", "buttons: " + str(pt.button_names()))
 	var p := Campaign.progress()
-	pt.note("PROGRESS", JSON.stringify(p.get("done", {}).get(args["mission"], {})))
+	pt.note("PROGRESS", JSON.stringify(p.get("done", {}).get(args["mission"], {})) + " reached=" + str(p.get("reached", [])))
+	# where the end panel leads: NEXT MISSION (its briefing), else CAMPAIGN (the hub as the mission left it)
+	if pt.find("End_NEXT_MISSION") != null:
+		await pt.tap("End_NEXT_MISSION")
+		await pt.wait(1.0)
+		await pt.shot("next_mission_briefing")
+		pt.note("NEXT", pt.labels_text().replace("\n", " | ").substr(0, 300))
+		await pt.tap("BACK", 2.0)
+		await pt.wait(0.8)
+	elif pt.find("End_CAMPAIGN") != null:
+		await pt.tap("End_CAMPAIGN")
+		await pt.wait(1.0)
+	await pt.shot("after_end_hub")
+	pt.note("HUB", pt.labels_text().replace("\n", " | ").substr(0, 300))
 
 
 func _end() -> void:

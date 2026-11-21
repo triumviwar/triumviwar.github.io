@@ -263,8 +263,19 @@ static func briefing(main: Node, mid: String) -> void:
 	sv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	sv.size_flags_stretch_ratio = 1.3
 	body.add_child(sv)
-	var v := _panel(body)
-	v.get_parent().size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	# (the words scroll: a long briefing with a side pick, The Specimens', pushed START under the bottom edge at 1280 x
+	# 720, playtest 2026-11-21)
+	var bpn := PanelContainer.new()
+	bpn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	body.add_child(bpn)
+	var bsc := ScrollContainer.new()
+	bsc.name = "BriefingWords"
+	bsc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	bpn.add_child(bsc)
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 10)
+	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bsc.add_child(v)
 	v.add_child(UiStyle.text(Loc.t("You lead: %s") % Loc.t(Campaign.side_name(m, side)), 20, _side_col(m, side).lightened(0.35), HORIZONTAL_ALIGNMENT_LEFT, true))
 	for t in br.get("text", []):
 		v.add_child(_wrap(Loc.t(String(t)), 18))
@@ -435,6 +446,14 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 		else:
 			var opened: Array = Campaign.opens(mid).map(func(sl: Dictionary) -> String: return Loc.t(String(sl.get("title", ""))))
 			story = (Loc.t("New storylines open: %s") % ", ".join(opened)) if not opened.is_empty() else Loc.t("The next mission is being written.")
+			# a MIRROR won (the Nest on the Lost Plateau, the creatures in The Specimens): the story goes on from the other
+			# side, so say so ("being written" sent players looking for a mission that will not come: playtest 2026-11-21)
+			var nx: Variant = m.get("next", null)
+			if opened.is_empty() and nx is Dictionary and run.mode == "solo":
+				for sd in nx:
+					if String(nx[sd]) != "" and String(sd) != win_side:
+						story = Loc.t("That is not how it went. To go on with the story, win it as %s.") % Loc.t(Campaign.side_name(m, String(sd)))
+						break
 	else:
 		story = Loc.t("Try again: the story waits for a victory.")
 	v.add_child(_wrap(story, 17, UiStyle.TRIM))
