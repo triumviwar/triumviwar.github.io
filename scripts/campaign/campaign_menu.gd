@@ -85,7 +85,8 @@ static func war_table(main: Node) -> void:
 	var box := _frame(main)
 	var p := Campaign.progress()
 	var sl0 := _line_data()
-	box.add_child(UiStyle.heading(Loc.t(String(sl0.get("hub", {}).get("title", sl0.get("title", "")))) + "  ·  " + Loc.t("WAR TABLE"), 34, UiStyle.TRIM))
+	# (the hub as the story left it: "The Warehouse at the Barra" once the station is lost, not its first name)
+	box.add_child(UiStyle.heading(Loc.t(String(hub_now(sl0.get("hub", {}), p).get("title", sl0.get("title", "")))) + "  ·  " + Loc.t("WAR TABLE"), 34, UiStyle.TRIM))
 	var ids: Array = (sl0.get("missions", []) as Array).map(func(x) -> String: return String(x))
 	if pick == "" or not ids.has(pick) or not Campaign.unlocked(pick, p):
 		pick = ""
