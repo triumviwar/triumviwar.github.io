@@ -64,6 +64,16 @@
   (rebuilt). Haulers and crewmen lead a horse to its own hitch spot (Unit.hitch_pref). Stand-in art: the Labourer with a
   steel helmet (tools/make_gun_crew_art.py). audit_horses.gd counts ALONE / crewmen / GUN WAIT. 9 Claude's choices in the doc.
 
+- CROWN RULE CLEANUP (owner 2026-11-19 23:30 "Yes", 2026-11-20 07:20 "some rules are very case specific"; job
+  crown-rule-cleanup, 0.38.87, docs/crown_rule_cleanup.md, data docs/crown_rule_cleanup/data/, tools/study/crown_rule_cleanup.py,
+  scripts/ai_crown_rules.gd AICrownRules): the Crown's coaching rules in 5 groups (plan, econ, army, fight, home), a clean base
+  with all off, added back one at a time, 27 blocks of 10 games to 20:00. V THE CLOCKWORK the army clock + army floor, the
+  whole fight group (gunscoach, gunsfirst, line, screen, cavmicro, defence) and the hold measured as harm on top of plan + econ
+  (plan + econ alone: 20 of 20 survived, 18 won/led): CUT against the Clockwork only (AICrownRules.CUT; `crc:off` = the old
+  stack, `crc<name>:on` one back); the cleaned code v the full stack +1.36 (t 3.2), 9/1. V THE BROOD and the MIRROR: no change (all
+  within the noise). The Brood question: the Crown leads to ~14:00 and loses at 15-19 to the capped Brood army at even income
+  and full spending: balance more than AI. 16 threshold variants of the 1000 jobs deleted again; trade, spend, queen, pester,
+  maws, guard, farms, foundry2, richlabs kept as off switches. 7 Claude's choices in the doc.
 - ACT 2 PLANNED (owner 2026-11-19 11:06 "Yes write act 2."; job campaign-act2-plan, branch campaign-act2-plan, docs only:
   docs/campaign_act2_plan.md): THE BREAKING 2771-2780, eleven missions d01-d11 on three lines + the 2nd crossing: the
   Crown (Tomasz) d01_minas (the Assembly's conspiracy at Vila Rica) -> d05_aldeia (the swarm at his mission São Rafael;

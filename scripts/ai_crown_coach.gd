@@ -154,13 +154,11 @@ func labs_wanted() -> bool:
 ## army is short of what the Crown's own army rules want by now: v the Brood the line (AICrownVBrood.line_short), every
 ## matchup the army clock (AICrownArmy.behind). Switch `armyfloor:off`.
 func army_short() -> bool:
-	if floor_off:
-		return false
-	if AICrownVClock.labs_free(ai):
-		return false            # (crown-1000-clockwork: against the Clockwork the labourers before the army clock)
+	if floor_off or AICrownRules.cut(ai, "armyfloor"):
+		return false      # (crown-rule-cleanup: cut against the Clockwork, AICrownRules.CUT)
 	if ai.vb() != null and ai.vbr.line_short():
-		return true
-	return ai.ca_behind()
+		return AICrownRules.t(ai, "armyfloor", true)
+	return AICrownRules.t(ai, "armyfloor", ai.ca_behind())
 
 
 ## Trains what it can now and returns the gold to hold for the rest (a labourer's price for each slot still open).
@@ -196,26 +194,22 @@ const HALL4_T := 690.0
 
 
 func halls_need() -> int:
-	if not halls_on_time_on or not active() or not (econ_rules() or _c1kb_halls()) or ai._defending() or _threat_now():
+	if not halls_on_time_on or not active() or not econ_rules() or ai._defending() or _threat_now():
 		return 0
 	if ai.dfn != null and ai.dfn.wants_soldiers():
 		return 0
 	var t: float = game.clock
-	return 4 if t >= HALL4_T else (3 if t >= HALL3_T else (2 if t >= HALL2_T else 1))
+	var need := 4 if t >= HALL4_T else (3 if t >= HALL3_T else (2 if t >= HALL2_T else 1))
+	if need > ai._halls().size():
+		AICrownRules.fire(ai, "hallsontime_short")      # (crown-rule-cleanup: a think when the rule wanted a hall more)
+	return need
 
 
 const FULL_T := 150.0
-const C1kB := preload("res://scripts/ai_crown_1k_brood.gd")
-
-
-## (crown-1000-brood, change "halls") against the Brood HALLS ON TIME from the start (not only after the first push is held
-## or 9:00, as the coach's other economy rules), LABOURERS FIRST still waiting: block 3 ("eco", both) starved the army.
-func _c1kb_halls() -> bool:
-	return ai.vb() != null and C1kB.on("halls")
 
 
 func bo_hall_now() -> bool:
-	if not halls_on_time_on or not active() or not (econ_rules() or _c1kb_halls()) or _threat_now() or game.clock < FULL_T:
+	if not halls_on_time_on or not active() or not econ_rules() or _threat_now() or game.clock < FULL_T:
 		return false
 	if ai._halls().size() != 1 or free_posts() > 1 or ai._mine("farm").filter(func(f: Building) -> bool: return f.built).size() < 2:
 		return false
@@ -331,7 +325,7 @@ func _closing(o: Unit, c: Vector2) -> float:
 
 
 func gun_set(foes: Array, c: Vector2, face: Vector2, base: float) -> float:
-	if not guns_first_on or not active():
+	if not guns_first_on or not active() or AICrownRules.cut(ai, "gunsfirst"):
 		return base
 	var extra := 0.0
 	for o in foes:
@@ -346,7 +340,7 @@ func gun_set(foes: Array, c: Vector2, face: Vector2, base: float) -> float:
 
 
 func line_holds(foes: Array, c: Vector2, face: Vector2) -> bool:
-	if not guns_first_on or not active():
+	if not guns_first_on or not active() or AICrownRules.cut(ai, "gunsfirst"):
 		return false
 	for o in foes:
 		if is_instance_valid(o) and not o.dead and _closing(o, c) >= COMING and (o.position - c).length() < 900.0:

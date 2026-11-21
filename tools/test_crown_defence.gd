@@ -29,6 +29,9 @@ func check(ok: bool, what: String) -> void:
 
 
 func _initialize() -> void:
+	# (crown-rule-cleanup: the defence is cut against the Clockwork by default, AICrownRules.CUT; this test measures the defence
+	# itself against a Clockwork push, so it plays the old full stack, as `-- crc:off`)
+	AICrownRules._args = PackedStringArray(["crc:off"])
 	_run.call_deferred()
 
 

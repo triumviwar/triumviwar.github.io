@@ -117,6 +117,18 @@ var kept := 0                   # (tests) times the shared loop was kept off a l
 func _init(owner) -> void:
 	ai = owner
 	game = owner.game
+	if AICrownRules.cut(ai, "gunscoach"):
+		# (crown-rule-cleanup: cut against this enemy, AICrownRules.CUT; the same as `-- gunscoach:off`, the count kept)
+		off = true
+		keep_on = false
+		set_on = false
+		follow_on = false
+		await_on = false
+		pace_on = false
+		ramp_on = false
+		def_on = false
+		post_on = false
+		spot_on = false
 
 
 func _say(s: String) -> void:

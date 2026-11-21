@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.107", "items": [
+		"THE CROWN COMPUTER'S COACHING, CLEANED UP (nothing the player uses changed): its rules were measured again as groups, switched off and added back one at a time over 270 games to 20 minutes. Against the Clockwork its army clock and army floor (which held back the gold its economy needed) its fighting rules (the formed line, the guns' coaching, the rider screen, the cavalry micro, the defence) and its hold at home are now off, and it plays its economy: on the same ten games it beats the old set game by game (9 better, 1 worse) and lasted to 20:00 in all ten. Against the Brood and in the mirror nothing measured clearly, so it plays as before. Sixteen small variants from earlier tests that measured worse were removed; the situational rules stay.",
+	]},
 	{"v": "0.38.106", "items": [
 		"THE PENDULUM WALKS PAINTED: its walk facing south, south-east and east is now hand-painted instead of pieced together from cut parts, with knees that bend and feet that plant. The north-east and north walks are still the old ones for now.",
 	]},

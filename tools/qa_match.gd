@@ -176,6 +176,17 @@ func _crown_counters() -> Dictionary:
 			for pr in vb2.get_property_list():
 				if String(pr["name"]).begins_with("c1kb_"):
 					d["vb_" + String(pr["name"])] = vb2.get(pr["name"])
+		# (crown-rule-cleanup: every coaching rule's acts, AICrownRules; the mirror's press, the defence's musters, riders' blows)
+		if a.has_meta("rules"):
+			d["rules"] = a.get_meta("rules")
+		var cmx = a.get("cm")
+		if cmx != null:
+			d["cmc_press_n"] = cmx.get("press_n")
+		var dfx = a.get("dfn")
+		if dfx != null:
+			d["df_musters"] = dfx.get("musters")
+		for k in ["cav_blows", "cav_charged"]:
+			d[k] = int(g.stats[tm].get(k, 0))
 		o[str(tm)] = d
 	return o
 

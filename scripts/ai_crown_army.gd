@@ -66,7 +66,7 @@ func _init(owner) -> void:
 
 
 func active() -> bool:
-	if off or clock_off or not ai.on or ai.difficulty < 1 or ai.peaceful:
+	if off or clock_off or not ai.on or ai.difficulty < 1 or ai.peaceful or AICrownRules.cut(ai, "crownarmy"):
 		return false
 	var foe: int = ai._foe()
 	return foe >= 0 and TABLE.has(ai.game.faction_of(foe))
@@ -82,8 +82,6 @@ func want() -> float:
 	if tab.is_empty():
 		return 0.0
 	var sh := share
-	if AICrownVClock.on("share") and AICrownVClock.vs(ai):
-		sh = AICrownVClock.SHARE      # (crown-1000-clockwork: a smaller army clock against the Clockwork, more labourers)
 	var w: float = sh * ai._lerp_table(tab, g.clock + (0.0 if lead_off else LEAD))
 	var seen: float = ai.ch.foe_known() if ai.ch != null else 0.0
 	w = maxf(w, SHARE_SEEN * seen)
@@ -131,7 +129,7 @@ func behind() -> bool:
 
 ## A Barracks stands idle with a Musketeer's gold but not his powder (the Mill's crew should grow: AICrown._mill_feedback).
 func powder_wait() -> bool:
-	if off or not ai.on:
+	if off or not ai.on or AICrownRules.cut(ai, "crownarmy"):
 		return false
 	if ai._res2() >= float(Defs.ammo_load("musketeer")):
 		return false

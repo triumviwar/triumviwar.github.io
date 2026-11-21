@@ -109,7 +109,7 @@ func _init(owner) -> void:
 
 
 func active() -> bool:
-	return on and ai.difficulty >= 1
+	return on and ai.difficulty >= 1 and not AICrownRules.cut(ai, "line")
 
 
 func _say(s: String) -> void:

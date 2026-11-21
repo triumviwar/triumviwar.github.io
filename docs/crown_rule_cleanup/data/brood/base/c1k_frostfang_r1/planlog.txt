@@ -1,0 +1,35 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:30] P1 Crown's plan: Rush, a build order of 6 steps from here (scripts/ai_crown.gd)
+[01:30] P1 Crown's plan: optimal: reads GREEDY [a second base and little army]: picks Rush (punish the greed: the Horse Breeder at once, the riders before its army)
+[04:19] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[04:40] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[04:44] P1 Crown's plan: milestone: Foundry 1 (20 labourers, 1 halls, army 16 supply)
+[04:57] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (460 against the 150 it reckons)
+[05:17] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[05:37] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[05:37] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Rush (what it plays already answers it)
+[05:57] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (460 against the 525 it reckons)
+[06:01] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[06:16] P1 Crown's plan: Economy, a build order of 0 steps from here (scripts/ai_crown.gd)
+[06:16] P1 Crown's plan: the rush is over (succeeded): the economy now, rush hands it to the Economy plan (labourers to two halls, the walled natural)
+[06:16] P1 Crown's plan: the Brood is seen (its army in sight): the Foundry before the Horse Breeder, a Field Cannon for the ramp post first
+[06:57] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (200 against the 675 it reckons)
+[08:06] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (1025 against the 450 it reckons)
+[08:09] P1 Crown's plan: milestone: Barracks 3 (28 labourers, 2 halls, army 21 supply)
+[09:01] P1 Crown's plan: milestone: Barracks 4 (35 labourers, 2 halls, army 32 supply)
+[09:06] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (1635 against the 250 it reckons)
+[09:42] P1 Crown's plan: the wave waits on the high ground: 1740 of army against the 3350 it reckons the Brood has (400 seen lately; it wants 1.5 times)
+[10:07] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (2310 against the 650 it reckons)
+[10:09] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Economy (what it plays already answers it)
+[10:42] P1 Crown's plan: the wave waits on the high ground: 2065 of army against the 4011 it reckons the Brood has (1450 seen lately; it wants 1.5 times)
+[11:07] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (2335 against the 1650 it reckons)
+[11:53] P1 Crown's plan: the wave waits on the high ground: 1760 of army against the 3410 it reckons the Brood has (600 seen lately; it wants 1.5 times)
+[12:18] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (2615 against the 475 it reckons)
+[12:53] P1 Crown's plan: the wave waits on the high ground: 2425 of army against the 3450 it reckons the Brood has (250 seen lately; it wants 1.5 times)
+[13:18] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (2775 against the 350 it reckons)
+[13:56] P1 Crown's plan: milestone: Foundry 2 (51 labourers, 4 halls, army 46 supply)
+[14:17] P1 Crown's plan: milestone: Armoury 1 (62 labourers, 4 halls, army 48 supply)
+[14:22] P1 Crown's plan: the wave waits on the high ground: 1700 of army against the 1587 it reckons the Brood has (25 seen lately; it wants 1.5 times)
+[18:42] P1 Crown's plan: optimal: reads GREEDY [a second base and little army]: keeps Economy (too late for the riders: out-expand it)
+[18:47] P1 Crown's plan: trains a Drummer for its Marching Band (14 soldiers)
+[19:58] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Economy (what it plays already answers it)

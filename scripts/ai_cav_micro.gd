@@ -65,6 +65,8 @@ var n := {"take": 0, "in": 0, "out": 0, "round": 0, "home": 0, "skip_blob": 0, "
 func _init(a) -> void:
 	ai = a
 	game = a.game
+	if AICrownRules.cut(ai, "cavmicro"):
+		on = false        # (crown-rule-cleanup: cut against this enemy, AICrownRules.CUT; as `-- cavmicro:off`)
 
 
 func has(u: Unit) -> bool:

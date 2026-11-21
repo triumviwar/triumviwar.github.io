@@ -1,0 +1,31 @@
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:36] P2 Crown's plan: Timing attack, a build order of 12 steps from here (scripts/ai_crown.gd)
+[01:36] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Timing attack (a timing attack)
+[02:51] P2 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Timing attack (it switched once this stage already; Siege push waits)
+[03:49] P2 Crown's plan: a Farm at its new hall at once (24 s after it stood)
+[04:14] P2 Crown's plan: the army first: 0 of army against the 198 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[05:39] P2 Crown's plan: the army first: 240 of army against the 490 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[06:40] P2 Crown's plan: the opening is over (the timing's window is shut: the Clockwork's economy is paying off; its waves weigh what it reckons from here): the milestones take over
+[06:58] P2 Crown's plan: milestone: Barracks 3 (38 labourers, 2 halls, army 23 supply)
+[07:08] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[07:26] P2 Crown's plan: milestone: Foundry 2 (42 labourers, 3 halls, army 24 supply)
+[07:42] P2 Crown's plan: milestone: Armoury 1 (44 labourers, 3 halls, army 24 supply)
+[08:04] P2 Crown's plan: milestone: Church 1 (47 labourers, 3 halls, army 20 supply)
+[08:40] P2 Crown's plan: trains a Drummer for its Marching Band (16 soldiers)
+[08:44] P2 Crown's plan: trains a Fifer for its Marching Band (16 soldiers)
+[08:48] P2 Crown's plan: the timing waits: 1180 of army against the 1040 it reckons the Clockwork has (it wants 1.15 times)
+[09:05] P2 Crown's plan: trains a Piper for its Marching Band (18 soldiers)
+[10:50] P2 Crown's plan: the army first: 1550 of army against the 2655 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[11:05] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[11:31] P2 Crown's plan: trains a Fifer for its Marching Band (10 soldiers)
+[11:50] P2 Crown's plan: the army first: 1280 of army against the 2905 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[12:50] P2 Crown's plan: the army first: 1130 of army against the 3195 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[13:23] P2 Crown's plan: milestone: Horse Breeder 1 (63 labourers, 3 halls, army 5 supply)
+[13:50] P2 Crown's plan: the army first: 250 of army against the 3220 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[14:06] P2 Crown's plan: milestone Foundry waits: the army is far behind the enemy's (475 against the 4350 it reckons)
+[14:50] P2 Crown's plan: the army first: 110 of army against the 4280 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[15:06] P2 Crown's plan: milestone Foundry waits: the army is far behind the enemy's (40 against the 4490 it reckons)
+[15:50] P2 Crown's plan: the army first: 40 of army against the 4420 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[16:06] P2 Crown's plan: milestone Foundry waits: the army is far behind the enemy's (0 against the 4720 it reckons)
+[16:50] P2 Crown's plan: the army first: 160 of army against the 3310 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[17:06] P2 Crown's plan: milestone Foundry waits: the army is far behind the enemy's (160 against the 2880 it reckons)

@@ -1,0 +1,2 @@
+1 error lines
+    1  SCRIPT ERROR: Left operand of 'is' is a previously freed instance.  at: _count_kills (res://scripts/ai_crown_balloon.gd:1254)

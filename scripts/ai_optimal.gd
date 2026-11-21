@@ -165,6 +165,7 @@ func choose(read: String) -> Array:
 	var t := game.clock
 	var st := stage_of(t)
 	if fac == "crown" and f == "brood" and current == "siege" and C1kB.on("siege") and read != "AGGRESSIVE":
+		AICrownRules.fire(ai, "c1kb_siege_keeps_pick")
 		return []        # (crown-1000-brood, "siege": the Siege push after the rush keeps its push; a late GREEDY read (the
 		                 # Brood's usual new ground) turned it to the Economy race in 3 of 20 games, Ashford r0 b10 at 11:52)
 	match read:
@@ -408,6 +409,7 @@ func lean_now() -> String:
 	var f: int = ai._foe()
 	var d: float = Vector2(game.starts[team]).distance_to(Vector2(game.starts[f])) if f >= 0 else 999.0
 	if _rng.randf() < _lean_chance(foe(), d):
+		AICrownRules.fire(ai, "optlean_rush")
 		lean = "rush"
 		return "rush"
 	return ""

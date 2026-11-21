@@ -37,7 +37,7 @@ func _run() -> void:
 	# [kept]
 	for k in ["pick", "hall2", "tech3", "dry"]:
 		check("[kept] %s on by default" % k, AICrownVClock.on(k))
-	for k in ["share", "hall3", "hold", "labs", "guns", "powder", "foundry2", "stand", "spend", "trade", "richlabs", "timingonly"]:
+	for k in ["foundry2", "spend", "trade", "richlabs"]:
 		check("[kept] %s off by default" % k, not AICrownVClock.on(k))
 	check("[pick] Timing or Siege", AICrownVClock.pick_w().keys().all(func(k) -> bool: return k in ["timing", "siege"]))
 
@@ -45,6 +45,9 @@ func _run() -> void:
 	U.step(g, 0.5)
 	var ai := _ai(g, 0)
 	check("[gate] a Crown against the Clockwork", AICrownVClock.vs(ai))
+	# [cut] (crown-rule-cleanup: the rules AICrownRules.CUT turns off against the Clockwork)
+	for r in ["crownarmy", "armyfloor", "gunscoach", "gunsfirst", "line", "screen", "cavmicro", "defence", "hold"]:
+		check("[cut] %s cut against the Clockwork" % r, AICrownRules.cut(ai, r))
 	# [hall2]
 	ai._bo_plan = [{"do": "build", "k": "foundry", "at": {"labs": 13}}, {"do": "army", "k": "musketeer", "cap": 8},
 		{"do": "hall", "n": 2, "at": {"labs": 17}}]
@@ -75,6 +78,9 @@ func _run() -> void:
 		U.step(g2, 0.5)
 		var a2 := _ai(g2, 0)
 		check("[gate] not against the %s" % foe, not AICrownVClock.vs(a2))
+		check("[cut] the army clock not cut against the %s" % foe, not AICrownRules.cut(a2, "crownarmy"))
+		check("[cut] the line not cut against the %s" % foe, not AICrownRules.cut(a2, "line"))
+		check("[cut] the hold not cut against the %s" % foe, not AICrownRules.cut(a2, "hold"))
 		g2.players[0]["res2"] = 0.0
 		g2.players[0]["gold"] = 900
 		check("[gate] no bayonet rule against the %s" % foe, not AICrownVClock.dry_musket(a2))
