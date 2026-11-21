@@ -3129,10 +3129,12 @@ func show_battle_report(winner: int, rp_path: String) -> void:
 	o.watch_replay.connect(func(path: String) -> void:
 		_to_menu()
 		start_replay(path))
-	ui_layer.add_child(o)
 	if ranked_match != "":
-		ui_layer.add_child(RankedMenu.result_panel(self, ranked_match))     # (the ladder's result and the rating change)
+		# (the ladder's result and the rating change, under the headline: on its own over the screen's top it covered
+		# the report's VICTORY / DEFEAT, playtest 2026-11-21)
+		o.extra = RankedMenu.result_panel(self, ranked_match)
 		ranked_match = ""
+	ui_layer.add_child(o)
 
 
 ## VIEW MAP on the battle report: the report steps aside, the whole map is shown (no fog) and

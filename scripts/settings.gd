@@ -43,41 +43,72 @@ static func load_all() -> void:
 	_loaded = true
 	var cfg := ConfigFile.new()
 	if cfg.load(PATH) == OK:
-		device = cfg.get_value("input", "device", "")
-		drag_mode = cfg.get_value("input", "drag_mode", "box")
-		ui_size = cfg.get_value("input", "ui_size", 0)
-		fullscreen = cfg.get_value("input", "fullscreen", true)
-		window_full = bool(cfg.get_value("display", "fullscreen", false))
-		grid_keys = cfg.get_value("input", "grid_keys", false)
-		tooltips = cfg.get_value("input", "tooltips", true)
-		build_grid = cfg.get_value("input", "build_grid", true)
-		area_marks = bool(cfg.get_value("ui", "area_marks", true))
-		powder_smoke = clampi(int(cfg.get_value("ui", "powder_smoke", -1)), -1, 3)
-		expansion_spots = bool(cfg.get_value("ui", "expansion_spots", true))
-		rootmaw_spots = bool(cfg.get_value("ui", "rootmaw_spots", true))
-		charge_bars = bool(cfg.get_value("ui", "charge_bars", true))
-		health_bars = clampi(int(cfg.get_value("ui", "health_bars", 0)), 0, 1)
-		band_marks = clampi(int(cfg.get_value("ui", "band_marks", 1)), 0, 2)
-		gear_turn = bool(cfg.get_value("ui", "gear_turn", true))
-		mini_alpha = clampf(float(cfg.get_value("input", "mini_alpha", 0.6)), 0.2, 1.0)
-		overlay_alpha = clampf(float(cfg.get_value("ui", "overlay_alpha", OVERLAY_DEFAULT)), 0.3, 1.0)
-		relay_url = String(cfg.get_value("online", "relay_url", relay_url))
+		# (every value read through a type check: a hand-edited or damaged file with a number where a word belongs
+		# stopped load_all with a SCRIPT ERROR half way, playtest 2026-11-21; a wrong value is dropped for the default)
+		device = _str(cfg, "input", "device", "")
+		if not device in ["", "pc", "mobile"]:
+			device = ""                # (asked again on the device page)
+		drag_mode = _str(cfg, "input", "drag_mode", "box")
+		if not drag_mode in ["box", "pan"]:
+			drag_mode = "box"
+		ui_size = _int(cfg, "input", "ui_size", 0)
+		if ui_size != 0:
+			ui_size = clampi(ui_size, 100, 200)
+		fullscreen = _bool(cfg, "input", "fullscreen", true)
+		window_full = _bool(cfg, "display", "fullscreen", false)
+		grid_keys = _bool(cfg, "input", "grid_keys", false)
+		tooltips = _bool(cfg, "input", "tooltips", true)
+		build_grid = _bool(cfg, "input", "build_grid", true)
+		area_marks = _bool(cfg, "ui", "area_marks", true)
+		powder_smoke = clampi(_int(cfg, "ui", "powder_smoke", -1), -1, 3)
+		expansion_spots = _bool(cfg, "ui", "expansion_spots", true)
+		rootmaw_spots = _bool(cfg, "ui", "rootmaw_spots", true)
+		charge_bars = _bool(cfg, "ui", "charge_bars", true)
+		health_bars = clampi(_int(cfg, "ui", "health_bars", 0), 0, 1)
+		band_marks = clampi(_int(cfg, "ui", "band_marks", 1), 0, 2)
+		gear_turn = _bool(cfg, "ui", "gear_turn", true)
+		mini_alpha = clampf(_float(cfg, "input", "mini_alpha", 0.6), 0.2, 1.0)
+		overlay_alpha = clampf(_float(cfg, "ui", "overlay_alpha", OVERLAY_DEFAULT), 0.3, 1.0)
+		relay_url = _str(cfg, "online", "relay_url", relay_url)
 		if relay_url.contains("YOURNAME") or relay_url.strip_edges() == "":
 			relay_url = "wss://pocketrts-relay.salgarellius-rts.workers.dev"     # (an old placeholder saved earlier)
-		ladder_url = String(cfg.get_value("online", "ladder_url", ladder_url))
-		ranked_dev_id = String(cfg.get_value("online", "ranked_dev_id", ""))
-		ranked_faction = String(cfg.get_value("online", "ranked_faction", "random"))
-		language = str(cfg.get_value("ui", "language", "en"))
+		ladder_url = _str(cfg, "online", "ladder_url", ladder_url)
+		ranked_dev_id = _str(cfg, "online", "ranked_dev_id", "")
+		ranked_faction = _str(cfg, "online", "ranked_faction", "random")
+		language = _str(cfg, "ui", "language", "en")
+		if not Loc.LANGS.has(language):
+			language = "en"
 		cw_lab = false        # (the CLOCKWORK LAB switch is gone from Settings, owner 2026-11-15: a saved "on" is ignored; tools may still set it)
-		replays_keep = clampi(int(cfg.get_value("ui", "replays_keep", 30)), 5, 200)
-		replay_rec = String(cfg.get_value("ui", "replay_rec", ""))
+		replays_keep = clampi(_int(cfg, "ui", "replays_keep", 30), 5, 200)
+		replay_rec = _str(cfg, "ui", "replay_rec", "")
 		if not REPLAY_MODES.has(replay_rec):
 			replay_rec = ""
-		narrator = bool(cfg.get_value("ui", "narrator", true))
-		narrator_volume = clampi(int(cfg.get_value("ui", "narrator_volume", 80)), 0, 100)
-		narrator_rate = clampf(float(cfg.get_value("ui", "narrator_rate", 1.1)), 0.5, 2.0)
+		narrator = _bool(cfg, "ui", "narrator", true)
+		narrator_volume = clampi(_int(cfg, "ui", "narrator_volume", 80), 0, 100)
+		narrator_rate = clampf(_float(cfg, "ui", "narrator_rate", 1.1), 0.5, 2.0)
 	Loc.set_lang(language)
 	apply()
+
+
+## A value from the file if it has the right type, else the default (a damaged or hand-edited settings.cfg).
+static func _str(cfg: ConfigFile, sec: String, k: String, def: String) -> String:
+	var v: Variant = cfg.get_value(sec, k, def)
+	return v if v is String else def
+
+
+static func _bool(cfg: ConfigFile, sec: String, k: String, def: bool) -> bool:
+	var v: Variant = cfg.get_value(sec, k, def)
+	return v if v is bool else def
+
+
+static func _int(cfg: ConfigFile, sec: String, k: String, def: int) -> int:
+	var v: Variant = cfg.get_value(sec, k, def)
+	return int(v) if (v is int or v is float) else def
+
+
+static func _float(cfg: ConfigFile, sec: String, k: String, def: float) -> float:
+	var v: Variant = cfg.get_value(sec, k, def)
+	return float(v) if (v is int or v is float) else def
 
 
 static func save_all() -> void:

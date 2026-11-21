@@ -53,7 +53,7 @@ server.on("upgrade", (req, sock) => {
   if (role === "host") { if (room.has(0)) err = "That room code is already in use."; }
   else if (!room.has(0)) err = "No room with that code.";
   else { for (id = 1; id < 8 && room.has(id); id++); if (id >= 8) err = "The room is full."; }
-  if (err) { sendText(sock, { t: "error", m: err }); sock.write(frame(8, Buffer.from([3, 232]))); sock.end(); return; }
+  if (err) { sendText(sock, { t: "error", m: err }); sock.write(frame(8, Buffer.concat([Buffer.from([3, 232]), Buffer.from(err)]))); sock.end(); return; }
   room.set(id, sock); rooms.set(code, room);
   sendText(sock, { t: "hello", id });
   if (id > 0) sendText(room.get(0), { t: "join", id });
@@ -91,7 +91,7 @@ server.on("upgrade", (req, sock) => {
     if (room.get(id) !== sock) return;
     room.delete(id);
     console.log(`[relay] ${code}: ${id === 0 ? "host" : "guest " + id} left`);
-    if (id === 0) { for (const s of room.values()) { sendText(s, { t: "closed" }); s.end(); } rooms.delete(code); }
+    if (id === 0) { for (const s of room.values()) { sendText(s, { t: "closed" }); s.write(frame(8, Buffer.concat([Buffer.from([3, 232]), Buffer.from("host left")]))); s.end(); } rooms.delete(code); }
     else if (room.has(0)) sendText(room.get(0), { t: "leave", id });
   };
   sock.on("close", gone); sock.on("error", gone);

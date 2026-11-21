@@ -22,8 +22,9 @@ static func load_all() -> void:
 	_loaded = true
 	var cfg := ConfigFile.new()
 	if cfg.load(Settings.PATH) == OK:
-		active = cfg.get_value("layout", "active", "STANDARD")
-		profiles = cfg.get_value("layout", "profiles", {})
+		active = Settings._str(cfg, "layout", "active", "STANDARD")
+		var pr: Variant = cfg.get_value("layout", "profiles", {})
+		profiles = pr if pr is Dictionary else {}
 	if not (BUILT_IN.has(active) or CUSTOM.has(active)):
 		active = "STANDARD"
 

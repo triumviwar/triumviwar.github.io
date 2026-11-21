@@ -103,9 +103,18 @@ func _draw_entry() -> void:
 			code_edit.caret_column = up.length())
 	UiStyle.touch_text(code_edit, "ROOM CODE")
 	jrow.add_child(code_edit)
+	# (JOIN or WATCH with no code, or one too short, did nothing at all: say what is missing, playtest 2026-11-21)
+	var code_hint := UiStyle.text("", 16, UiStyle.BAD, HORIZONTAL_ALIGNMENT_LEFT)
+	code_hint.visible = false
+	var need_code := func() -> bool:
+		if code_edit.text.strip_edges().length() >= 3:
+			return true
+		code_hint.text = Loc.t("Type the room code your friend gave you.")
+		code_hint.visible = true
+		return false
 	var join: Button = main._button("JOIN", func() -> void:
 		var c := code_edit.text.strip_edges()
-		if c.length() < 3:
+		if not need_code.call():
 			return
 		var l := NetLobby.new()
 		main.add_child(l)
@@ -122,7 +131,7 @@ func _draw_entry() -> void:
 	# WATCH: join as a spectator from the start (a full room, or a match under way, seats one anyway)
 	var watch: Button = main._button("WATCH", func() -> void:
 		var c := code_edit.text.strip_edges()
-		if c.length() < 3:
+		if not need_code.call():
 			return
 		var l := NetLobby.new()
 		main.add_child(l)
@@ -139,6 +148,7 @@ func _draw_entry() -> void:
 	watch.disabled = not _relay_set()
 	jrow.add_child(watch)
 	v.add_child(jrow)
+	v.add_child(code_hint)
 	if Identity.available():
 		# RANKED (docs/online_ranked.md): on our servers, Steam players only (or a test server's DEV sign-in)
 		var rk: Button = main._button("RANKED", func() -> void: main.show_ranked())
@@ -180,8 +190,10 @@ func _draw_room() -> void:
 	var t := UiStyle.heading(Loc.t("ROOM") + "  " + l.code, 38, Color(1, 0.9, 0.55))
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	top.add_child(t)
-	var cp: Button
-	cp = main._button("COPY", func() -> void:
+	# (the button is passed in: a lambda takes a copy of `cp` when it is made, still null then, so pressing COPY
+	# stopped with a SCRIPT ERROR before it could say COPIED, playtest 2026-11-21)
+	var cp: Button = main._button("COPY", func() -> void: pass)
+	cp.pressed.connect(func() -> void:
 		DisplayServer.clipboard_set(l.code)
 		cp.text = Loc.t("COPIED"))
 	cp.custom_minimum_size = Vector2(130, 44)
@@ -549,8 +561,10 @@ func _draw_campaign_room(l: NetLobby) -> void:
 	var t := UiStyle.heading(Loc.t("ROOM") + "  " + l.code, 38, Color(1, 0.9, 0.55))
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	top.add_child(t)
-	var cp: Button
-	cp = main._button("COPY", func() -> void:
+	# (the button is passed in: a lambda takes a copy of `cp` when it is made, still null then, so pressing COPY
+	# stopped with a SCRIPT ERROR before it could say COPIED, playtest 2026-11-21)
+	var cp: Button = main._button("COPY", func() -> void: pass)
+	cp.pressed.connect(func() -> void:
 		DisplayServer.clipboard_set(l.code)
 		cp.text = Loc.t("COPIED"))
 	cp.custom_minimum_size = Vector2(130, 44)

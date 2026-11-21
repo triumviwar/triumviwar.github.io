@@ -14,6 +14,7 @@ var _tab_buttons: Array = []
 var replay_path := ""             # the match's replay (Main._on_end), "" if none was written
 var _rp_line: Label
 var _rp_btn: Button
+var extra: Control                # shown under the headline (RANKED: the ladder's result and the rating change)
 
 const ROWS := [
 	["Income", "gold"],
@@ -62,6 +63,9 @@ func _ready() -> void:
 	else:
 		title = "VICTORY" if won else "DEFEAT"
 	v.add_child(UiStyle.heading(title, 52, Color(1, 0.85, 0.45) if won or game.demo else UiStyle.BAD))
+	if extra != null:
+		extra.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		v.add_child(extra)
 	var secs := int(game.clock)
 	var lvl: String = ["Easy", "Normal", "Hard", "Brutal"][clampi(game.difficulty, 0, 3)]
 	v.add_child(UiStyle.text("%s   ·   %d:%02d   ·   %s AI   ·   %d players" % [game.map_name, secs / 60, secs % 60, lvl, game.n_players()], 18, UiStyle.MUTED))
