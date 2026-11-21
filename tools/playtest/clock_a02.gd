@@ -193,7 +193,7 @@ func guild_careful() -> void:
 		if idle2.size() >= 3:
 			await select(idle2)
 			await order_to(seed.position, true)
-	if run.obj.get("mill", "") == "active" and not _said.has("p3roster"):
+	if run.obj.get("mill", "") == "active" and not _said.has("p3roster") and game.clock > float(run.fired.get("part3", 1e9)) + 25.0:
 		_said["p3roster"] = true
 		note("a02 part 3 roster: heavy_works '%s', pendulum '%s' (c01 gate %s)" % [game.requirement_text(game.human, "heavy_works"),
 			game.requirement_text(game.human, "pendulum"), Campaign.flag("c01_thirteenth", "gate")])

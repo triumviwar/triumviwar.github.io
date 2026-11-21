@@ -320,7 +320,13 @@ func show_crash(report: String) -> void:
 	v.add_theme_constant_override("separation", 10)
 	pan.add_child(v)
 	v.add_child(UiStyle.heading("THE GAME CLOSED UNEXPECTEDLY", 34, UiStyle.TRIM))
-	var why := UiStyle.text("Last time the game didn't close normally (a crash, or the phone shut it). COPY the report and paste it to the developer. Your match was autosaved: CONTINUE is on the menu.", 17, UiStyle.MUTED)
+	# (the autosave's sentence only when there is a match to continue: a campaign mission or the menus are never saved,
+	# and a phone shutting the game mid-mission promised a CONTINUE that wasn't there; playtest-campaign-clock)
+	var sv := SaveGame.peek()
+	var can_go_on: bool = not sv.is_empty() and not SaveGame.old_brood(sv) and sv.get("version", "") == version
+	var why := UiStyle.text(Loc.t("Last time the game didn't close normally (a crash, or the phone shut it). COPY the report and paste it to the developer.")
+			+ (" " + Loc.t("Your match was autosaved: CONTINUE is on the menu.") if can_go_on else ""), 17, UiStyle.MUTED)
+	why.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	why.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART   # one long line ran off a phone's screen
 	v.add_child(why)
 	var box := TextEdit.new()

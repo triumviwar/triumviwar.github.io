@@ -144,7 +144,8 @@ func careful() -> void:
 		var d := f.position.distance_to(nw.position) / Game.T
 		var want_d := 5.5
 		if player == "close":
-			want_d = 1.5 if int(run.counters.get("spotted", 0)) < 2 else 5.5      # (too close twice, then a proper distance)
+			# (too close at first; told "Back off, and wait" it backs off to 6 tiles, waits, then follows properly)
+			want_d = 1.5 if int(run.counters.get("spotted", 0)) < 1 else 6.0
 		if player == "wander" and game.clock < float(run.fired.get("leg1", 0)) + 40:
 			return       # (lets it go for a while: the brothers should say where it went)
 		if absf(d - want_d) > 1.2:

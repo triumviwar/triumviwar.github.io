@@ -307,10 +307,16 @@ func build(worker: Unit, kind: String, cell: Vector2i) -> bool:
 	var sp := w2s(w)
 	_mouse_move(to_window(sp))
 	await frames(2)
-	if game.controls.ghost_cell != cell:
+	if not touch and game.controls.ghost_cell != cell:
 		note("build %s: the ghost is at %s, wanted %s" % [kind, game.controls.ghost_cell, cell])
 	await click_at(sp)
 	await frames(3)
+	if touch and game.controls.mode == "place":
+		# (a phone: the first tap puts the ghost there, a second tap on the same spot builds)
+		if game.controls.ghost_cell != cell:
+			note("build %s (phone): the tap put the ghost at %s, wanted %s" % [kind, game.controls.ghost_cell, cell])
+		await click_at(sp)
+		await frames(3)
 	if game.controls.mode == "place":
 		note("build %s at %s: still placing (%s)" % [kind, cell, game.placement_problem(game.human, kind, game.controls.ghost_cell)])
 		await key(KEY_ESCAPE)
