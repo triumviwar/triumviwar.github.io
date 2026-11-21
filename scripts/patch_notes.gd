@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.116", "items": [
+		"A NEW BROOD RALLY ICON: three claw scratches in mossy ground with a scent mark, instead of a skull on a stake with feathers (the creatures have no tribes or totems).",
+		"THE CUIRASSIER REDRAWN: his sabre blow facing right and down to the right shows one blade (it held two in one frame), he gallops toward you and down to the right at one steady angle (it drifted mid-stride), and he has his own gallop up to the right (it played the one seen from straight behind).",
+	]},
 	{"v": "0.38.115", "items": [
 		"MORE REDRAWN SPRITES (the rest of the sprite check's list): the Armoured Dragoon and the Horseman galloping away up to the right are now seen from behind at one steady angle (they turned sideways mid-stride); the Powder Wagon driving away has its horse ahead of it, not under it; the Dragoon galloping toward you is drawn facing you (it was a three-quarter view).",
 	]},
