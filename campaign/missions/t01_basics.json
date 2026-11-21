@@ -324,5 +324,19 @@
   "you": {
    "text": "You can move the view, select, march, fight and use the card, the minimap and control groups."
   }
- }
+ },
+ "lost": "Your Musketeers are all gone, recruit. Start the lesson again.",
+ "triggers": [
+  {
+   "id": "lost_recruits",
+   "when": {
+    "dead": "recruits"
+   },
+   "do": [
+    {
+     "lose": "you"
+    }
+   ]
+  }
+ ]
 }
