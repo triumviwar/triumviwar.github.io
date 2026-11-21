@@ -58,10 +58,19 @@ func enter(via := "map") -> bool:
 			await press_name("Card_Close")
 		var pn := WarMapData.pin_of(mid)
 		await press_name("View_" + String({"p01_leaf": "virginia"}.get(mid, "europe")), false)
-		await wait(0.6)
-		await click_at(to_window(w, w.pin_screen(pn)))
-		for i in 20:
-			await wait(0.2)
+		for tries in 4:
+			# (the view glides there: wait till it stands still, then tap the seal where it is drawn now)
+			var last := Vector2.INF
+			for i in 40:
+				await wait(0.1)
+				if w.center.distance_to(last) < 0.01:
+					break
+				last = w.center
+			await click_at(to_window(w, w.pin_screen(pn)))
+			for i in 20:
+				await wait(0.2)
+				if by_name("Card_Briefing"):
+					break
 			if by_name("Card_Briefing"):
 				break
 		if not check("the %s pin opens its card" % mid, w.selected == mid and by_name("Card_Briefing") != null, "selected=" + w.selected):
@@ -144,8 +153,9 @@ func army_to(p: Vector2, attack := true) -> void:
 func attack_unit(u: Node2D) -> void:
 	if u == null or not is_instance_valid(u):
 		return
-	await look_at(u.global_position)
-	await click_at(w2win(u.global_position), MOUSE_BUTTON_RIGHT)
+	var at: Vector2 = (u as Building).center() if u is Building else u.global_position     # (a building: its middle)
+	await look_at(at)
+	await click_at(w2win(at), MOUSE_BUTTON_RIGHT)
 
 
 ## A control group: Ctrl+n sets it from the selection, n selects it.
@@ -203,12 +213,13 @@ func look_at(p: Vector2) -> void:
 func pick(e: Node2D) -> bool:
 	if not is_instance_valid(e) or e.dead:
 		return false
-	await look_at(e.global_position)
+	var at: Vector2 = (e as Building).center() if e is Building else e.global_position
+	await look_at(at)
 	var up := Vector2(0, -0.6 * Defs.TILE)
-	await click_at(w2win(e.global_position + up))
+	await click_at(w2win(at + up))
 	await frames(2)
 	if not g().selection.has(e):
-		await click_at(w2win(e.global_position + up * 2.0))
+		await click_at(w2win(at + up * 2.0))
 		await frames(2)
 	return g().selection.has(e)
 

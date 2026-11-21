@@ -121,6 +121,13 @@ func think() -> void:
 			set_meta("reload_%d" % int(g().clock / 30.0), true)
 			await group(4)
 			note("t=%d %d guns dry: RELOAD %s" % [g().clock, dry.size(), await card("RELOAD")])
+		# (only what the player can see: a palisade in the fog is no target, a right-click there is a walk; the riders
+		# go ahead to show it)
+		var seen_wall := wall.filter(func(b: Building) -> bool: return g().shown_to_commander(b))
+		if not wall.is_empty() and seen_wall.is_empty():
+			await group(1)
+			await army_sel_to(area("bar_%d_front" % i) + Vector2(2 * Defs.TILE, 0))
+		wall = seen_wall
 		if not wall.is_empty():
 			await group(4)
 			var wt: Node2D = nearest(wall, area("bar_%d_front" % i))
@@ -134,8 +141,9 @@ func think() -> void:
 		if not men.is_empty():
 			await group(5)
 			await attack_unit(nearest(men, area("bar_%d" % i)))
-		await group(1)
-		await army_sel_to(area("bar_%d_front" % i) + Vector2(7 * Defs.TILE, 0))
+		if not seen_wall.is_empty() or rr.tagged("bar_%d_wall" % i).size() <= 4:
+			await group(1)
+			await army_sel_to(area("bar_%d_front" % i) + Vector2(7 * Defs.TILE, 0))
 		return
 	if not rr.fired.has("part3"):
 		var torches := rr.tagged("torches")
