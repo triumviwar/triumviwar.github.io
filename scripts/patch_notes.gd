@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.104", "items": [
+		"THE LAST STAND-INS ARE PAINTED: the King listening to Hollweg in his study, Hollweg holding up the heart of the Perpetual while Ferrer watches from the door, Tomasz reading the mapmaker's letter to the King, Lindqvist feeding Specimen One, and Lindqvist in chains before the King. Every story picture in the campaign is now a painting.",
+	]},
 	{"v": "0.38.103", "items": [
 		"THE FURTH LINE IS FULLY PAINTED: its last two pictures are real paintings now: the Machine's red soldiers pouring out of the city gate against the palisade, and the Rednitz mill overgrown with red gears set alight by the guild and the Crown. Every story picture of the prologues and Act 1 is now a painting.",
 	]},
