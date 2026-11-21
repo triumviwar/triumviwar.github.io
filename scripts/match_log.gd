@@ -65,6 +65,10 @@ func add(text: String) -> void:
 
 
 func begin(levels: Dictionary) -> void:
+	# the computers start (and log their openings) before this: their lines go after the header, which must stay the
+	# log's first line (GameName.is_log_header; playtest 2026-11-21: a skirmish log began "[00:00] P2 Crown opens ...")
+	var early := lines.duplicate()
+	lines.clear()
 	lines.append(GameName.title() + " v%s match log  (%s)" % [ProjectSettings.get_setting("application/config/version", "dev"), Time.get_datetime_string_from_system(false, true)])
 	lines.append("Map: %s, %d players  (seed %d)" % [game.map_name, game.n_players(), game.rng.seed])
 	for t in game.n_players():
@@ -75,6 +79,7 @@ func begin(levels: Dictionary) -> void:
 	if game.net != null and game.net.watching:
 		lines.append("Watched online as a spectator (every side seen; minutes before joining are missing from this log)")
 	lines.append("")
+	lines.append_array(early)
 
 
 # ---- lag: real frame times this minute, and what the game was busy with (Prof)
