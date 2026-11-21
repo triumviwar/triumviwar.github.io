@@ -277,7 +277,10 @@ M = {
         {"id": "drawings_got", "when": {"all": [{"fired": "lost"}, {"count": {"tag": "jakob", "area": "guildhouse", "at_least": 1}}]}, "do": [
             {"objective": {"id": "drawings", "set": "done"}}, {"name": {"tag": "jakob", "name": "Jakob (the drawings)"}},
             {"flag": {"drawings": "taken"}}, {"say": ["j_drawings"]}]},
-        {"id": "jakob_lost", "when": {"all": [{"fired": "lost"}, {"dead": "jakob"}]}, "do": [{"say": ["h_jakob"]}]},
+        # (Jakob killed: the drawings he carried are lost with him; the panel and the end screen said "[+] Jakob fetches
+        # the master drawings" beside "Hollweg's drawings burned": playtest-campaign-clock)
+        {"id": "jakob_lost", "when": {"all": [{"fired": "lost"}, {"dead": "jakob"}]}, "do": [{"say": ["h_jakob"]},
+            {"objective": {"id": "drawings", "set": "hidden"}}, {"objective": {"id": "drawings", "set": "failed"}}]},
         {"id": "hollweg_hurt", "when": {"all": [{"fired": "found"}, {"hurt": "hollweg"}]}, "every": 45, "times": 3, "do": [
             {"say": ["j_hurt"]}, {"ping": {"area": "gate_in"}}]},
         {"id": "riders", "when": {"clock_left": {"name": "fall", "below": 100}}, "do": [
@@ -448,8 +451,12 @@ M = {
                       {"if": {"flag": {"jakob": "lost"}}, "text": "Jakob did not come out."},
                       {"if": {"flag": {"gate": "pattern"}}, "text": "Hollweg's drawings rode out on the last cart."},
                       {"if": {"flag": {"gate": "people"}}, "text": "Hollweg's drawings burned in the workshop."}]},
-        "machine": {"still": "thirteen", "title": "Meister Hollweg is dead",
-                    "text": "The clockmaker never reached the gate. Try again: he must live to tell it."},
+        # (the title said "Meister Hollweg is dead" when the stroke found him alive inside the walls too: the words now
+        # say which it was; playtest-campaign-clock)
+        "machine": {"still": "thirteen", "title": "The clockmaker did not get out",
+                    "text": "The clockmaker never reached the gate. Try again: he must live to tell it.",
+                    "text_if": [{"if": {"dead": "hollweg"}, "text": "Meister Hollweg is dead."},
+                                {"if": {"fired": "trapped"}, "text": "The thirteenth stroke finds Meister Hollweg inside the walls."}]},
     },
     # (the guild's story goes on at Fürth: Act 1's a02_furth; a machine win is no story to go on from)
     "next": {"guild": "a02_furth", "machine": ""},
