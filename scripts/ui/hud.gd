@@ -4463,8 +4463,10 @@ func _shift_queueable(list: Array) -> void:
 ## (RELEASE HORSE, HARNESS) in the selection.
 func _horse_buttons(list: Array, units: Array) -> void:
 	var leaders := units.filter(func(u: Unit) -> bool: return u.can_lead())
+	var near := _free_horse_near(leaders.filter(func(u: Unit) -> bool: return u.lead_count() < int(Defs.HORSES["lead_max"])), true) if not leaders.is_empty() else false
+	if not near and not leaders.is_empty() and leaders.all(func(u: Unit) -> bool: return u.kind == "winder" and u.led.is_empty()):
+		leaders = []          # (a Winder's card: LEAD only when a loose horse is near; it was always there, greyed: playtest 2026-11-21)
 	if not leaders.is_empty():
-		var near := _free_horse_near(leaders.filter(func(u: Unit) -> bool: return u.lead_count() < int(Defs.HORSES["lead_max"])), true)
 		list.append(["horse_lead", "LEAD", func() -> void:
 			var n := game.lead_order(game.selected_units())
 			toast("Fetching %d horse%s by the reins." % [n, "" if n == 1 else "s"] if n > 0 else "No free horse nearby."), near, "No free horse of yours within %d tiles." % int(Defs.HORSES["fetch"]), ""])
