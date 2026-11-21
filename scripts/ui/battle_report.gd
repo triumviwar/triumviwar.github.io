@@ -17,7 +17,7 @@ var _rp_btn: Button
 
 const ROWS := [
 	["Income", "gold"],
-	["Gold spent", "spent"],
+	["Spent", "spent"],          # (every side's money: gold, cogs, biomass; it said "Gold spent" for all)
 	["Units trained", "trained"],
 	["Structures built", "built"],
 	["Units killed", "killed"],
