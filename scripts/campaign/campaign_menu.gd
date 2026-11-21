@@ -268,10 +268,14 @@ static func briefing(main: Node, mid: String) -> void:
 	var bpn := PanelContainer.new()
 	bpn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	body.add_child(bpn)
+	var pv := VBoxContainer.new()            # the words (scrolling), then the side and difficulty picks (always in view)
+	pv.add_theme_constant_override("separation", 10)
+	bpn.add_child(pv)
 	var bsc := ScrollContainer.new()
 	bsc.name = "BriefingWords"
 	bsc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	bpn.add_child(bsc)
+	bsc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	pv.add_child(bsc)
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 10)
 	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -290,7 +294,7 @@ static func briefing(main: Node, mid: String) -> void:
 		var srow := HFlowContainer.new()
 		srow.add_theme_constant_override("h_separation", 8)
 		srow.add_theme_constant_override("v_separation", 6)
-		v.add_child(srow)
+		pv.add_child(srow)
 		srow.add_child(UiStyle.text(Loc.t("YOU PLAY:"), 16, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
 		for sd in sides:
 			var b: Button = main._button(Loc.t(Campaign.side_name(m, sd)).to_upper(), func() -> void:
@@ -305,7 +309,7 @@ static func briefing(main: Node, mid: String) -> void:
 	var drow := HFlowContainer.new()
 	drow.add_theme_constant_override("h_separation", 8)
 	drow.add_theme_constant_override("v_separation", 6)
-	v.add_child(drow)
+	pv.add_child(drow)
 	drow.add_child(UiStyle.text(Loc.t("DIFFICULTY:"), 16, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
 	var dnow := Campaign.difficulty()
 	for lv in Campaign.DIFFICULTIES:
@@ -319,7 +323,7 @@ static func briefing(main: Node, mid: String) -> void:
 		drow.add_child(b)
 	var dabout := {"easy": "More time on the clock and fewer enemies.", "normal": "The mission as it was written.",
 		"hard": "Less time on the clock and more enemies."}
-	v.add_child(_wrap(Loc.t(dabout[dnow]), 15, UiStyle.MUTED))
+	pv.add_child(_wrap(Loc.t(dabout[dnow]), 15, UiStyle.MUTED))
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 16)

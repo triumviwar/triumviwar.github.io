@@ -528,9 +528,16 @@ func _result() -> void:
 func a05_careful() -> void:
 	await pt.wait(1.0)
 	await party_group()
-	# the young: west, middle, east (a stay by each); the eggs if `eggs=1`
+	# the eggs first when asked (eggs=1): netting the last young one ends the night at once
+	if a.get("eggs", "") == "1" and not g.over:
+		await party_to(area_c("hollow_w"), "lindqvist", 150.0)
+		await party_to(area_c("egg_bed"), "lindqvist", 150.0)
+		await stay(12.0)
+		pt.note("PLAN", "%d:%02d eggs: %s" % [int(g.clock) / 60, int(g.clock) % 60, r.obj.get("eggs", "")])
+		await party_to(area_c("camp"), "lindqvist", 150.0)
+	# the young: middle, west, east (a stay by each)
 	for ar in ["young_m", "young_w", "young_e"]:
-		if g.over or r.fired.has("dawn") or r.fired.has("part2"):
+		if g.over or r.obj.get("take", "") != "active":
 			break
 		var w := area_c(ar) + Vector2(0, 2.5 * Defs.TILE)
 		await party_to(w, "lindqvist", 150.0)
@@ -540,15 +547,12 @@ func a05_careful() -> void:
 		var c0 := int(r.counters.get("caged", 0))
 		while not g.over and g.clock - t0 < 25.0 and int(r.counters.get("caged", 0)) == c0:
 			await wait_tick(1.0)
-	if a.get("eggs", "") == "1" and not g.over:
-		await party_to(area_c("hollow_w"), "lindqvist", 150.0)
-		await party_to(area_c("egg_bed"), "lindqvist", 150.0)
-		await stay(12.0)
-	# then guard the carts down the trail (follow the first cart, attack-moving) and onto the quay
+	# then guard the carts down the trail: with the rearmost cart still whole, attack-moving; then the quay
 	var guard_t := 0.0
+	var log_t := 0.0
 	while not g.over and g.clock < float(a["until"]):
-		await wait_tick(2.0)
-		var carts: Array = r.tagged("carts")
+		await wait_tick(1.0)
+		var carts: Array = r.tagged("carts").filter(func(c): return is_instance_valid(c) and not c.dead)
 		var l = tagged1("lindqvist")
 		if l == null:
 			continue
@@ -557,8 +561,11 @@ func a05_careful() -> void:
 			to = area_c("quay")
 		else:
 			carts.sort_custom(func(x, y): return x.position.y < y.position.y)
-			to = carts[carts.size() / 2].position + Vector2(0, 2 * Defs.TILE)
-		if g.clock - guard_t > 6.0 and l.position.distance_to(to) > 140.0:
+			to = carts[0].position + Vector2(0, 1.5 * Defs.TILE)
+		if g.clock - log_t > 20.0:
+			log_t = g.clock
+			pt.note("TRAIL", "%d:%02d carts %s; Lindqvist at %s; freed %d" % [int(g.clock) / 60, int(g.clock) % 60, carts.map(func(c): return [c.kind, g.cell_of(c.position), int(c.hp)]), g.cell_of(l.position), int(r.counters.get("freed", 0))])
+		if g.clock - guard_t > 4.0 and l.position.distance_to(to) > 100.0:
 			guard_t = g.clock
 			await hand.group(1)
 			await hand.go(to, true)

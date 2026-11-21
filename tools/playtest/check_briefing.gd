@@ -2,6 +2,9 @@ extends SceneTree
 ## A check (playtest-campaign-brood): every mission's BRIEFING, each side you may lead, at this window size: START and
 ## BACK on screen. xvfb-run ... --resolution 1280x720 --script res://tools/playtest/check_briefing.gd -- [phone]
 func _initialize() -> void:
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("lang="):
+			Loc.set_lang(a.substr(5))
 	if OS.get_cmdline_user_args().has("phone"):
 		Settings.device = "phone"
 		Settings.apply()
@@ -25,7 +28,10 @@ func _run(main) -> void:
 			CampaignMenu.briefing(main, String(mid))
 			for i in 4:
 				await process_frame
-			for nm in ["Briefing_Start"]:
+			var names := ["Briefing_Start", "Diff_easy", "Diff_hard"]
+			for x in root.find_children("Side_*", "Button", true, false):
+				names.append(String(x.name))
+			for nm in names:
 				var b: Control = root.find_child(nm, true, false)
 				var ok := b != null and Rect2(Vector2.ZERO, vs).encloses(b.get_global_rect())
 				if not ok:

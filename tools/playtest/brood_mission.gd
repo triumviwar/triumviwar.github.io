@@ -143,7 +143,7 @@ func _after_end(g) -> void:
 	if not is_instance_valid(g):
 		return
 	var n := 0
-	while root.find_child("StillShow", true, false) != null and n < 40:
+	while _show_up() and n < 40:
 		var txt: String = pt.labels_text().replace("\n", " | ")
 		pt.note("ENDING", "%d: %s" % [n, txt.substr(0, 300)])
 		if n < 8:
@@ -177,3 +177,10 @@ func _end() -> void:
 	print("PT END %s clicks=%d covered=%d hand_fails=%d errors=%d" % [args["tag"], pt.clicks, pt.misses, hand.fails if hand else -1, pt.errs.size()])
 	Engine.time_scale = 1.0
 	quit()
+
+
+func _show_up() -> bool:
+	for n in root.find_children("*", "Control", true, false):
+		if n is StillShow and is_instance_valid(n) and not n.is_queued_for_deletion():
+			return true
+	return false
