@@ -653,7 +653,7 @@ const BASE_UNITS := {
 		"walk_e": 6,
 		"walk_n": 6,
 		"walk_ne": 6,
-		"walk_s": 10,
+		"walk_s": 6,
 		"walk_se": 6,
 	}},
 	"messenger": {"cell": Vector2i(98, 70), "anchor": Vector2(49, 66), "frames": {
