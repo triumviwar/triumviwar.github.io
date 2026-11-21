@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """AI OPPONENT REVIEW (ai-opponent-review, docs/ai_opponent_review.md): a measuring tool.
     python3 tools/study/ai_opponent_review.py list
-    python3 tools/study/ai_opponent_review.py run OUT [--data DATA] [--jobs 2] [--only sanity|bench0|matrix0|bench1|matrix1] [--root DIR]
+    python3 tools/study/ai_opponent_review.py run OUT [--data DATA] [--jobs 2] [--only sanity|bench0|matrix0|bench1|matrix1] [--root DIR] [--logs DIR]
 Queue, in order (a run cut short still has every cell once):
   sanity : the benchmark players against each other (good v novice, good v average, average v novice), each faction once;
   bench0 : every benchmark faction x strength (novice, average, good) x computer faction x level (easy, normal, hard, the
            computer on its OPTIMAL plan), once, on a rotating map of the parity six, sides alternating;
   matrix0: Hard OPTIMAL v Hard OPTIMAL, the six pairings (nine matchups with the mirrors) on the parity six maps, round 0
            (the same tags and seeds as qa_matches.base / docs/winrate_2026_11_17.md);
-  bench1 : the bench again, the next map, the sides swapped;
-  matrix1: round 1 of the matrix (the sides swapped).
-Every game to 20:00. Done games (DATA/<tag>/result.json) are skipped."""
+  matrix1: round 1 of the matrix (the sides swapped);
+  bench1 : the bench again, the next map, the sides swapped.
+The matrix to 20:00, the benchmark games to 15:00. Done games (DATA/<tag>/result.json) are skipped."""
 import os, sys
 from concurrent.futures import ThreadPoolExecutor
 
@@ -22,7 +22,8 @@ SH = qm.SHORT
 STRENGTHS = ["novice", "average", "good"]
 LEVELS = ["easy", "normal", "hard"]
 MAPS = qm.PARITY_MAPS
-END = 1200
+END = 1200          # the matrix (as the 2026-11-17 study's long games)
+BENCH_END = 900     # the benchmark games: decided or clearly led by 15:00 (a quarter of an hour is a full game for most players)
 
 
 def bench(r):
@@ -68,14 +69,14 @@ def queue(only=""):
     parts = {"sanity": sanity(), "bench0": bench(0), "matrix0": matrix(0), "bench1": bench(1), "matrix1": matrix(1)}
     if only:
         return parts[only]
-    return parts["sanity"] + parts["bench0"] + parts["matrix0"] + parts["bench1"] + parts["matrix1"]
+    return parts["sanity"] + parts["bench0"] + parts["matrix0"] + parts["matrix1"] + parts["bench1"]
 
 
 def run_one(g, out, data):
     tag, m, seed, slots = g
     spec = ",".join("/".join(str(x) for x in s) for s in slots)
     # qa_matches.run_one builds its slot spec from 3-tuples: ours (4 fields: faction/plan/side/who) goes last and wins
-    return qm.run_one((tag, m, seed, []), out, END, data, ["slots:" + spec])
+    return qm.run_one((tag, m, seed, []), out, END if tag.startswith("base_") else BENCH_END, data, ["slots:" + spec])
 
 
 if __name__ == "__main__":
@@ -90,6 +91,8 @@ if __name__ == "__main__":
         print(len(gl), "games")
         sys.exit(0)
     out = os.path.abspath(sys.argv[2])
+    if "--logs" in sys.argv:
+        qm.LOG_DIR = os.path.abspath(arg("--logs", ""))      # (the match logs, for the blunder hunt)
     if "--root" in sys.argv:
         qm.RUN_ROOT = os.path.abspath(arg("--root", qm.ROOT))      # (a frozen copy of the game: code edited meanwhile can't leak in)
     data = os.path.abspath(arg("--data", os.path.join(qm.ROOT, "docs/ai_opponent_review/data")))
