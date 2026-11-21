@@ -3308,7 +3308,10 @@ func _res_line(t: int) -> String:
 	var r2: int = int(game.energy[t]) if fac == "clockwork" else int(pl["res2"])
 	if fac == "clockwork" and Defs.gear_mode:
 		r2 = int(float(pl.get("tension", 0.0)))
-	var line := "P%d %s   %d %s · %d %s · %d/%d supply" % [t + 1, String(Defs.FACTIONS[fac]["name"]), int(pl["gold"]), names[0], r2, names[1], supply_of(t), int(pl["cap"])]
+	# (translated before the income piece goes on: whole, the line matched no pattern and "P1 Clockwork" and "supply"
+	# stayed English in Portuguese and Spanish; playtest 2026-11-21)
+	var line := Loc.t("P%d %s   %d %s · %d %s · %d/%d supply") % [t + 1, Loc.t(String(Defs.FACTIONS[fac]["name"])), int(pl["gold"]),
+		Loc.t(names[0]), r2, Loc.t(names[1]), supply_of(t), int(pl["cap"])]
 	if game.replay:
 		line += "   ·   " + game.replay.obs_line(t)      # (a replay: income, army and workers, as an observer sees them)
 	else:       # (watching live, the same: owner 2026-11-13 "we should be able to see income per minute somewhere")
