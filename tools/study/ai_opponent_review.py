@@ -69,6 +69,8 @@ def fix_cells(name):
     """(the blunder fixes, measured) the bench0 games a fix touches, the same tags, seeds and sides, run on the fixed code"""
     if name == "levelgrubs":
         return [g for g in bench(0) if "_v_breasy_" in g[0] or "_v_brnormal_" in g[0]]
+    if name == "easypace":
+        return [g for g in bench(0) if "_v_breasy_" in g[0]]
     if name == "ridersquad":
         # the Hard Crown OPTIMAL rides its Horsemen into every Brood: the matrix's Crown v Brood games, both rounds
         return [g for g in matrix(0) + matrix(1) if g[0].split("_")[-2] == "crbr"]

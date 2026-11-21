@@ -2959,6 +2959,10 @@ func _nb_lay(q: Unit) -> void:
 	if k == "grub" and food - 50 < keep - (_nb_growth_keep(q) if grubs * 10 < want_grubs * 7 else 0) and grubs >= 6 \
 			and not (soft and soft_share_on and food >= 50 + mini(keep, _morph_keep)):
 		return          # (the workforce is far short: grubs come before her growth's savings)
+	if easy_pace_on and difficulty == 0 and k != "grub" and not _nb_threat_big(q):
+		_easy_skip = not _easy_skip
+		if _easy_skip:
+			return          # (ai-opponent-review: the Easy Brood lays its warriors at half the pace, EASY PACE below)
 	if bench != null and ((k == "grub" and bench_flags.get("no_workers", false)) or (k != "grub" and bench_flags.get("no_produce", false))):
 		return          # (ai-opponent-review: the benchmark player forgot the grubs, or the warriors, this look)
 	if BroodNew.lay(game, q, k) == "" and soft:
@@ -2996,6 +3000,12 @@ func _nb_want_grubs() -> int:
 ## the others' by income (a grub earns about 0.75 of a labourer: the 2026-11-17 matrix, 48 grubs on 1.18x the Crown's 31
 ## labourers' income): Easy 20, Normal 38. Hard and Brutal unchanged. MEASURING SWITCH `levelgrubs:off` (as before).
 const LEVEL_GRUBS := [20, 38]
+## (ai-opponent-review) EASY PACE: with the grub cap alone the Easy Brood still had 2,460 of army at 8:00 (the Easy Crown 840,
+## the Easy Clockwork 1,500: they spend their income on buildings, the Brood on creatures) and beat the average and good
+## benchmark players. Easy now lays a warrior on every other think (not while a big attack is at the Mother), as the Easy
+## Crown and Clockwork train slowly. MEASURING SWITCH `easypace:off`.
+static var easy_pace_on := not OS.get_cmdline_user_args().has("easypace:off")
+var _easy_skip := false
 static var level_grubs_on := not OS.get_cmdline_user_args().has("levelgrubs:off")
 
 

@@ -230,7 +230,7 @@ def blunders(data, out):
                "army idle = its army stood still (fewer than a quarter fighting) while 300+ of the enemy was in its base for "
                "the stall's length; bank = 400+ unspent for a minute; no units = nothing made for 90 s below the supply cap; "
                "stuck = a unit stuck on a move order; bad first attack = its first attack lost 2x what it killed; no attack = "
-               "never attacked by 12:00; one hall = still one hall at 10:00.\n")
+               "no wave of its own and none of its armies arrived in the enemy's base by 12:00; one hall = still one hall at 10:00.\n")
     agg = defaultdict(lambda: Counter())
     ngames = Counter()
     examples = defaultdict(list)
@@ -261,7 +261,11 @@ def blunders(data, out):
                         seen.add(k)
                         if len(examples[k]) < 12:
                             examples[k].append("%s P%d %s at %s" % (tag, i + 1, key[0], mmss(e.get("t"))))
-            if not any(e.get("ev") == "first_attack" and e.get("p") == i and e["t"] <= 720 for e in g["events"]) and g["end"] >= 720:
+            # (attacked: its own first wave, or its army arriving in the enemy's base: the Crown's siege push and the
+            # Clockwork's push are not "waves" for the match tool's first_attack, but they arrive)
+            went = any((e.get("ev") == "first_attack" and e.get("p") == i or e.get("ev") == "first_arrival" and e.get("p") != i)
+                       and e["t"] <= 720 for e in g["events"])
+            if not went and g["end"] >= 720:
                 agg[key]["no attack by 12:00"] += 1
                 if len(examples["no attack by 12:00"]) < 12:
                     examples["no attack by 12:00"].append("%s P%d %s" % (tag, i + 1, key[0]))
