@@ -3246,6 +3246,8 @@ func _to_menu() -> void:
 
 
 func _on_end(winner: int) -> void:
+	if game == null:
+		return  # (the match already let go, e.g. a test that ends a mission after tearing its game down)
 	var won := game.demo or (winner >= 0 and game.allied(winner, game.human))
 	Music.me.match_ended(won, game.faction_of(maxi(winner, 0) if game.demo else game.human))
 	if not game.demo:
