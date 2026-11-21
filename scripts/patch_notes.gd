@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.95", "items": [
+		"THE THIRTEENTH HOUR IS PAINTED: five more of the Clockwork prologue's pictures are real paintings now instead of stand-ins: Nuremberg's Christmas market in Advent, the Perpetual waking in Hollweg's hidden courtyard, Jakob finding the red gears on the mill island, Hollweg at the city gate as Nuremberg burns, and the crates with a red glow loaded at the port.",
+	]},
 	{"v": "0.38.94", "items": [
 		"THE WAR MAP AS AN OLD MAP: the King's map now looks like an 18th-century royal map: an aged parchment sheet with folds and stains, the coasts in ink with fine engraved lines rippling out to sea, inked mountain ranges, two sailing ships and a sea serpent in the oceans, and a crowned cartouche holding the map's title. The land is still drawn exactly, so it stays sharp when you zoom in.",
 	]},
