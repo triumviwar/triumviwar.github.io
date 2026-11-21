@@ -87,6 +87,18 @@ owner checks the list; the redraws are done later, one strip at a time, in ChatG
 - **11. Powder Wagon, walk north**, frames 0, 1, 2, 3, 4 and 5: Seen from the back (barrels toward the viewer) but the horse is drawn BELOW/in front of the wagon's tailboard, i.e. the horse is behind the wagon pushing it; driving north the horse should be ahead (above) and mostly hidden by the wagon. Same composition in idle_n and the unload_n/death_n frames. (likely)
   File `assets/units/powder_wagon/walk_n.png`. Picture `docs/shots/sprite_audit/011_units_powder_wagon_walk_n.png`. Source sheet (best guess by name): `art/crown/powder_wagon.png`, `art/crown/mill_base/powder_mill_built.png`.
 
+## Done (2026-11-21, 0.38.114-0.38.116)
+
+The owner said "Redraw all". The eleven requests below were made one at a time in ChatGPT and imported:
+R1 Raptor idle S/SE/N (tools/import_raptor_idle_sa.py), R2 Tyrant Challenger death N (tools/import_tyrant_death_n_sa.py),
+R3/R4 rebel pikeman walk S/SE, R5 Guardsman idle S, R6/R7 Cuirassier attack N/NE, R8 Armoured Dragoon walk NE (now 6
+frames), R9 Horseman walk NE (now 8 frames; the request's "white coat, tricorne" was wrong, the answer was redone with
+the grey horse and plumed hat of the other views), R10 Powder Wagon walk N (+ idle_n from its first frame), R11 Dragoon
+walk S (now 6 frames): all with tools/import_sa_strip.py (one row of figures, scaled to a reference strip's height, or
+width with SA_BY=width, feet on its feet). Finding 89, the Brood RALLY icon: now three claw scratches in mossy ground
+with a scent mist and the yellow arrow (art/ui/icons3/brood_rally_2.png, tools/import_brood_rally_2.py). Still to do:
+the MEDIUM findings; the Brood rally CURSOR (a flag on a pole) may want the same change.
+
 ## Redraw requests for the HIGH findings
 
 One request a strip (the Raptor's is three one-frame idles in one row). Every request stands alone, in the same style as
