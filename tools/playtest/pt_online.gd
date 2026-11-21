@@ -23,12 +23,18 @@ func play() -> void:
 	DirAccess.make_dir_recursive_absolute(sync)
 	tag = role + "_" + tag
 	await start_main()
+	if role == "chost":
+		await campaign_host()
+		note(role + "_done")
+		return
 	await to_online()
 	match role:
 		"host":
 			await host()
 		"guest", "rejoin":
 			await guest()
+		"cguest":
+			await campaign_guest()
 		"spec":
 			await spectator()
 		"third":
@@ -209,6 +215,25 @@ func play_some(seconds: float) -> void:
 		await wait(0.6)
 
 
+func room_state() -> String:
+	var l := lobby()
+	if l == null:
+		return "(no room)"
+	var f: Array = []
+	for sl in l.slots:
+		f.append(String(sl.get("faction", "?")))
+	return "map %s mode %s factions %s" % [l.map, l.mode, str(f)]
+
+
+func chat_lines() -> String:
+	if main.game == null or main.game.chat == null:
+		return "(no chat)"
+	var t: Array = []
+	for ln in main.game.chat.lines:
+		t.append("%s: %s" % [String(ln.get("name", "")), String(ln.get("text", ""))])
+	return str(t)
+
+
 func net_line() -> String:
 	var g: Game = main.game
 	if g == null or g.net == null:
@@ -263,6 +288,8 @@ func host() -> void:
 		await wait(1.0)
 		await look("room_with_spec")
 	await wait(1.0)
+	print("PT host room at START: %s" % room_state())
+	note("host_room", room_state())
 	if not await press("START", 0.3, true):
 		find("BUG", "host", "START not pressable: %s" % lobby().problem())
 		return
@@ -307,6 +334,7 @@ func host() -> void:
 			await play_some(secs * 0.5)
 			await look("match_end")
 	print("PT host end %s" % net_line())
+	print("PT host chat %s" % chat_lines())
 	await until("guest_done", 90)
 
 
@@ -339,6 +367,9 @@ func guest() -> void:
 		await wait(2.0)
 		await look("rejoin_room")
 		print("PT rejoin sees: %s | game %s" % [status_line(), main.game != null])
+		await wait(4.0)
+		print("PT rejoin 6 s on: %s refused '%s'" % [status_line(), lobby().refused if lobby() else ""])
+		await look("rejoin_room_later")
 		if await wait_match(30):
 			await wait(5.0)
 			await look("rejoin_match")
@@ -366,14 +397,15 @@ func guest() -> void:
 			return
 		"host_leave":
 			await until("host_left", 120)
-			for i in 6:
-				await wait(2.0)
-				print("PT guest after host left: game %s %s" % [main.game != null, net_line()])
+			for i in 12:
+				await wait(2.5)
+				print("PT guest after host left: game %s over %s gone '%s' %s" % [main.game != null, main.game.over if main.game else "-", main.game.net.gone_why if main.game and main.game.net else "-", net_line()])
 			await look("guest_after_host_left")
 		_:
 			await play_some(secs * 0.5)
 			await look("match_end")
 	print("PT guest end %s" % net_line())
+	print("PT guest chat %s" % chat_lines())
 
 
 # ------------------------------------------------------------------ the others
@@ -393,14 +425,21 @@ func spectator() -> void:
 	await look("spec_room")
 	print("PT spec room: %s spectating=%s" % [status_line(), lobby().spectating if lobby() else false])
 	note("spec_watching")
+	await wait(8.0)
+	await look("spec_room_later")
+	print("PT spec room 8 s later: %s" % room_state())
 	if not await wait_match(180):
 		find("BUG", "spec", "the spectator never saw the match start")
 		return
 	await wait(5.0)
 	await look("spec_match")
 	await say("spectator says hi")
+	await wait(3.0)
+	await look("spec_after_say")
+	print("PT spec room at start (host's): %s" % read_note("host_room"))
 	await wait(secs * 0.5)
 	await look("spec_match_late")
+	print("PT spec chat %s" % chat_lines())
 
 
 func third() -> void:
@@ -445,3 +484,99 @@ func to_online_again() -> void:
 	if main.menu_buttons.has("online") and is_instance_valid(main.menu_buttons["online"]) and (main.menu_buttons["online"] as Control).is_visible_in_tree():
 		await tap(main.menu_buttons["online"])
 		await wait(0.5)
+
+
+# ------------------------------------------------------------------ a campaign mission played by two (CO-OP / VERSUS)
+
+func set_relay_in_settings() -> void:
+	# the relay is typed in Settings > GAMEPLAY > ONLINE RELAY ADDRESS (the campaign's room uses the saved one)
+	await tap(main.menu_buttons["settings"])
+	await wait(0.4)
+	var re: LineEdit = null
+	for c in all_controls("LineEdit"):
+		re = c
+	await tap(re)
+	await key_tap(KEY_A, false, true)
+	await type_text(relay)
+	await key_tap(KEY_ESCAPE)
+	await wait(0.4)
+	if not (main.menu_buttons.has("campaign") and is_instance_valid(main.menu_buttons["campaign"]) and (main.menu_buttons["campaign"] as Control).is_visible_in_tree()):
+		await key_tap(KEY_ESCAPE)
+		await wait(0.4)
+
+
+func campaign_host() -> void:
+	await set_relay_in_settings()
+	await tap(main.menu_buttons["campaign"])
+	await wait(0.8)
+	if not await press("WAR TABLE"):
+		return
+	await look("war_table")
+	var md := "coop" if scen == "coop" else "versus"
+	var mb := find_button("Mode_" + md, true)
+	if mb == null or mb.disabled:
+		find("BUG", "campaign online", "no %s mode for the first mission" % md)
+		return
+	await tap(mb)
+	await wait(0.5)
+	await look("war_table_" + md)
+	if not await press("Campaign_Go", 0.5, true):
+		return
+	for i in 40:
+		await wait(0.25)
+		if room_code_on_screen() != "" and lobby() and lobby().online:
+			break
+	var code := room_code_on_screen()
+	await look("campaign_room")
+	print("PT chost room '%s': %s" % [code, status_line()])
+	if code == "":
+		find("BUG", "campaign online", "no room code (status %s)" % status_line())
+		return
+	note("code", code)
+	if not await until("guest_ready", 150):
+		return
+	await wait(1.5)
+	await look("campaign_room_full")
+	if not await press("START", 0.3, true):
+		find("BUG", "campaign online", "START not pressable: %s" % lobby().problem())
+		return
+	if not await wait_match(120):
+		find("BUG", "campaign online", "no match after START")
+		return
+	note("started")
+	await wait(3.0)
+	await look("campaign_match_begin")
+	# the opening's lines: SKIP if offered
+	await press("SKIP", 0.8, true)
+	await look("campaign_match_skipped")
+	await play_some(secs * 0.6)
+	await look("campaign_match_mid")
+	print("PT chost mid %s chat %s" % [net_line(), chat_lines()])
+	await until("cguest_done", 120)
+
+
+func campaign_guest() -> void:
+	if not await until("code", 200):
+		return
+	var box := code_box()
+	await tap(box)
+	await type_text(read_note("code"))
+	if not await press("JOIN"):
+		return
+	for i in 60:
+		await wait(0.25)
+		if lobby() and lobby().online:
+			break
+	await wait(1.0)
+	await look("campaign_guest_room")
+	print("PT cguest room: %s" % status_line())
+	note("guest_ready")
+	if not await wait_match(200):
+		find("BUG", "campaign online", "the guest's mission never started")
+		return
+	await wait(3.0)
+	await look("campaign_guest_begin")
+	await press("SKIP", 0.8, true)
+	await play_some(secs * 0.6)
+	await look("campaign_guest_mid")
+	print("PT cguest mid %s" % net_line())

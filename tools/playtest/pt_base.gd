@@ -445,7 +445,7 @@ func audit(name: String) -> void:
 			if st:
 				mx = st.get_margin(SIDE_LEFT) + st.get_margin(SIDE_RIGHT)
 			var icon_w := 0.0
-			if b.icon != null and not b.expand_icon:
+			if b.icon != null and not b.expand_icon and b.icon.get_width() < box.x * 0.5:
 				icon_w = b.icon.get_width() + b.get_theme_constant("h_separation")
 			var w := 0.0
 			for ln in t.split("\n"):

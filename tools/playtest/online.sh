@@ -1,9 +1,9 @@
 #!/bin/sh
 # ONLINE playtest: the local relay and several copies of the game, each driven by tools/playtest/pt_online.gd.
 #   tools/playtest/online.sh <scen> <outdir> [secs]
-#   scen: basic (host + guest), spec (host + guest + a spectator), full (host + guest + a third who JOINs),
+#   scen: coop / versus (a campaign mission's online room, the first mission), basic (host + guest), spec (host + guest + a spectator), full (host + guest + a third who JOINs),
 #         host_leave, guest_drop (the guest's program is killed mid-match, then a new copy rejoins), wrong (a bad code)
-# Copies after the first two run headless (no pictures) to spare the CPU unless ALLWIN=1.
+# Copies after the first two run in a small window (960x540) to spare the CPU.
 cd "$(dirname "$0")/../.." || exit 1
 SCEN=${1:-basic}; OUT=${2:-/tmp/pt_online_out}; SECS=${3:-60}
 PORT=${PORT:-8797}
@@ -13,13 +13,20 @@ RELAY=$!
 sleep 1
 RUN="tools/playtest/run.sh pt_online"
 COMMON="relay:ws://127.0.0.1:$PORT sync:$SYNC scen:$SCEN secs:$SECS out:$OUT/shots lang:${LANG_PT:-en}"
-headless() {  # role
-	XDG_DATA_HOME=$OUT/home_$1 timeout 900 godot --headless --audio-driver Dummy --script res://tools/playtest/pt_online.gd -- role:$1 $COMMON > "$OUT/$1.log" 2>&1 &
+headless() {  # role: a small window (a headless copy has no screen to click on)
+	PT_HOME=$OUT/home_$1 $RUN 960x540 role:$1 $COMMON > "$OUT/$1.log" 2>&1 &
 }
 win() {  # role [size]
 	PT_HOME=$OUT/home_$1 $RUN ${2:-1280x720} role:$1 $COMMON > "$OUT/$1.log" 2>&1 &
 }
-if [ "$SCEN" = "wrong" ]; then
+if [ "$SCEN" = "coop" ] || [ "$SCEN" = "versus" ]; then
+	win chost; H=$!
+	sleep 2
+	win cguest; G=$!
+	wait $H
+	sleep 3
+	pkill -f "sync:$SYNC" 2>/dev/null
+elif [ "$SCEN" = "wrong" ]; then
 	win wrong; W=$!
 	wait $W
 else
