@@ -54,8 +54,9 @@ func run() -> void:
 	await settle()
 	check("drag_box", game().selection.size() >= 2, str(sel_kinds()))
 	# long press: move without fighting
-	var spot: Vector2 = hall.position + Vector2(-160, 140)
-	await long_press(w2s(spot), 0.8)
+	var sp := vp_size() * Vector2(0.55, 0.3)       # (open ground above the HUD)
+	step("long press with %s selected" % str(sel_kinds()))
+	await long_press(sp, 0.8)
 	await settle()
 	check("long_press_move", labs.any(func(u) -> bool: return u.order == "move"), str(labs.map(func(u) -> String: return u.order)))
 	# two fingers: pan and pinch
