@@ -274,7 +274,7 @@ static func briefing(main: Node, mid: String) -> void:
 	for o in m.get("objectives", []):
 		if String(o.get("side", "")) == side and not bool(o.get("hidden", false)):
 			var pre := "-  " if bool(o.get("primary", true)) else "-  " + Loc.t("(optional)") + " "
-			v.add_child(_wrap(pre + Loc.t(String(o["text"])), 16, UiStyle.TEXT if bool(o.get("primary", true)) else UiStyle.MUTED))
+			v.add_child(_wrap(pre + brief_fill(m, Loc.t(String(o["text"]))), 16, UiStyle.TEXT if bool(o.get("primary", true)) else UiStyle.MUTED))
 	# THE SOLO SIDE PICK (a mission that lets you lead either side alone) and the campaign's DIFFICULTY (act1-engine0)
 	var sides := Campaign.solo_sides(m)
 	if sides.size() > 1:
@@ -331,6 +331,36 @@ static func briefing(main: Node, mid: String) -> void:
 	go.add_theme_font_size_override("font_size", 28)
 	UiStyle.primary(go)
 	row.add_child(go)
+
+
+## An objective's words on the briefing, before any match: its counters at their start ("0 of 4"), its clocks at their
+## full length at the campaign's difficulty ("20:00"), anything only the match knows as "…". (They read "{temper}",
+## "{clock:patience}" on a01-a06's briefings; playtest 2026-11-21.)
+static func brief_fill(m: Dictionary, txt: String) -> String:
+	if txt.find("{") < 0:
+		return txt
+	var cs: Dictionary = m.get("counters", {})
+	for cn in cs:
+		var c: Dictionary = cs[cn]
+		if c.has("of"):
+			txt = txt.replace("{%s.of}" % cn, MissionRun._num(c["of"]))
+		if c.has("of") or float(c.get("start", 0)) != 0.0:
+			txt = txt.replace("{%s}" % cn, MissionRun._num(c.get("start", 0)))
+	var mult := Campaign.diff_mult(m, Campaign.difficulty())
+	var timed := {}
+	for o in m.get("objectives", []):
+		if String(o.get("kind", "")) == "countdown":
+			timed[String(o.get("clock", ""))] = true
+	for tr in m.get("triggers", []):
+		for a in tr.get("do", []):
+			if a is Dictionary and a.has("clock") and a["clock"] is Dictionary and (a["clock"] as Dictionary).has("secs"):
+				var cl: Dictionary = a["clock"]
+				var cn := String(cl.get("name", ""))
+				var scales: bool = bool(cl["scale"]) if cl.has("scale") else timed.has(cn)
+				var secs := int(round(float(cl["secs"]) * (float(mult.get("clocks", 1.0)) if scales else 1.0)))
+				txt = txt.replace("{clock:%s}" % cn, "%d:%02d" % [secs / 60, secs % 60])
+	var re := RegEx.create_from_string("\\{[^}]*\\}")
+	return re.sub(txt, "…", true)
 
 
 ## The mission's OPENING (its stills and lines: StillShow), then the match. None: straight in.
