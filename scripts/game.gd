@@ -7028,6 +7028,14 @@ func entity_at(p: Vector2, _any := true) -> Entity:
 		# a click on a worker label ("FARMERS 3/8", drawn over everything) picks its building, even over another's drawing
 		var lab := WorkerLabels.at(self, p)
 		if lab != null:
+			# (over another building's own ground, that building: a Town Hall's HAULERS label floats over the middle
+			# of whatever stands just north of it, and a click or tap on that Mill or Foundry picked the Town Hall:
+			# a lesson's "select the Foundry" could not be done by clicking it; playtest 2026-11-21. A Farm's flat
+			# fields don't count: the label over them still picks its hall.)
+			for b in buildings:
+				if b != lab and not b.dead and b.kind != "farm" and b.rect().has_point(p + Vector2(0, 10)) \
+						and not hidden_ghost(b, who) and shown_to_commander(b):
+					return b
 			return lab
 	for b in buildings:
 		if hidden_ghost(b, who) or not shown_to_commander(b):

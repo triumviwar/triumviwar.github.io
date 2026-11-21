@@ -31,6 +31,8 @@ func play() -> void:
 			await part_play()
 		"break":
 			await part_break()
+		"tools":
+			await part_tools()
 
 
 ## The screen spot of a cell's middle.
@@ -493,3 +495,91 @@ func part_break() -> void:
 		await press_button("HELP", ed, true)
 	await shot("spam_dialogs")
 	note("dialogs open after spam: %d" % main._editor._ui.get_children().filter(func(c: Node) -> bool: return c.has_meta("dialog")).size())
+
+
+# ------------------------------------------------------------------ mirrors, biomes, props, the phone's DRAG
+func mirror_button() -> Button:
+	for b in buttons(main._editor):
+		if b is Button and String((b as Button).text) in ["OFF", "TURN 180", "LEFT | RIGHT", "TOP | BOTTOM", "4-WAY", "TURN 90"]:
+			return b
+	return null
+
+
+func part_tools() -> void:
+	for sz in ["128x96", "104x104"]:
+		await new_map(sz)
+		var seen: Array = []
+		for i in 7:
+			var mb := mirror_button()
+			if mb == null:
+				break
+			seen.append((mb as Button).text)
+			await press(mb)
+			await frames(2)
+		note("MIRROR on %s cycles: %s" % [sz, str(seen)])
+	# 4-WAY: one START click
+	while mirror_button() and mirror_button().text != "4-WAY":
+		await press(mirror_button())
+	await pick_tool("START")
+	await put(Vector2i(14, 14))
+	note("4-WAY START: %d starts, teams %s, mode %s" % [ed.starts.size(), str(ed.teams), ed.mode()])
+	await shot("four_way_starts")
+	# LAND and MIX
+	await press_button("GRASS", ed)
+	await wait(0.4)
+	await shot("land_dialog")
+	note("LAND dialog: %s" % str(dialog_buttons().map(func(b: BaseButton) -> String: return (b as Button).text if b is Button else "")).substr(0, 300))
+	var snow := button("SNOW", main._editor)
+	if snow:
+		await press(snow)
+		await wait(2.5)
+		ed = main._editor
+	note("biome now %s / %s" % [ed.biome_a, ed.biome_b])
+	await press_button("MIX", ed)
+	await wait(0.4)
+	var vol := button("VOLCANIC", main._editor)
+	if vol:
+		await press(vol)
+		await wait(2.5)
+		ed = main._editor
+	note("mix now %s + %s (%s); WATER tool reads '%s'" % [ed.biome_a, ed.biome_b, ed.mix, "LAVA" if button("LAVA", main._editor) else "WATER"])
+	await shot("mixed_biomes")
+	var bl := button("BLEND", main._editor)
+	if bl:
+		await press(bl)
+		await wait(2.0)
+		note("BLEND now %s" % main._editor.mix)
+		await shot("blend")
+	# props: place, ERASE mode, erase it
+	await pick_tool("PROPS")
+	var before: int = ed.props.size()
+	await put(Vector2i(60, 30))
+	note("a prop placed: %d -> %d" % [before, ed.props.size()])
+	await press_button("ERASE", ed)
+	await put(Vector2i(60, 30))
+	note("ERASE click: %d props" % ed.props.size())
+	if not phone:
+		await press_button("PLACE", ed)
+		await put(Vector2i(70, 40))
+		var n1: int = ed.props.size()
+		await click(cell_spot(Vector2i(70, 40)), MOUSE_BUTTON_RIGHT)
+		note("a right click on a prop: %d -> %d" % [n1, ed.props.size()])
+	# the phone's DRAG: PAN, then a finger drag must move the view, not paint
+	if phone:
+		await pick_tool("HIGH")
+		var dp := button("DRAG", main._editor)
+		if dp:
+			await press(dp)
+			ed = main._editor
+			var cam0: Vector2 = game().camera.position if game() else Vector2.ZERO
+			var u0: int = ed._undo.size()
+			await touch_drag(screen_size() * 0.5, screen_size() * 0.5 + Vector2(-200, -80))
+			note("DRAG: PAN, a finger drag: camera moved %s, undo %d -> %d (painted? %s)" % [str((game().camera.position - cam0) if game() else Vector2.ZERO), u0, ed._undo.size(), ed._undo.size() > u0])
+			# and a pinch in PAINT mode paints nothing (the fix)
+			await press(button("DRAG", main._editor))
+			ed = main._editor
+			u0 = ed._undo.size()
+			var c0 := ed.cells
+			await pinch(screen_size() * 0.5, true)
+			note("DRAG: PAINT, a pinch: undo %d -> %d, cells changed %s" % [u0, ed._undo.size(), ed.cells != c0])
+	await shot("tools_end")
