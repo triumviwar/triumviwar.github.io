@@ -1,6 +1,6 @@
 class_name MapEditor
 extends Control
-## The map editor: a map of any size (48 x 48 to 192 x 192); paint ground, high ground,
+## The map editor: a map of any size (32 x 32 to 256 x 256); paint ground, high ground,
 ## ramps, water (lava in the volcanic lands), fords, trees and rocks with a round or square
 ## brush (1-8) or a fill; place decorations (single ones or whole groups: farm, camp,
 ## ruins...); place 2-8 start spots with their teams (1v1 to 4v4, or everyone alone) and
@@ -50,7 +50,7 @@ const UNDO_DEPTH := 40
 const LETTERS := "ABCDEFGH"
 const HELP_TEXT := """MAP EDITOR
 
-NEW picks the size (presets from 48x48 to 192x192, or your own width and height in steps of 4). LOAD opens one of your maps, SAVE keeps it (with a picture for the lobby), PLAY saves it and takes you to Skirmish with it.
+NEW picks the size (presets from 64x64 to 256x256, or your own width and height in steps of 4). LOAD opens one of your maps, SAVE keeps it (with a picture for the lobby), PLAY saves it and takes you to Skirmish with it.
 
 TERRAIN: GROUND (also the eraser), HIGH ground, RAMP, WATER (lava in volcanic and ashland), FORD, TREES and ROCKS. Brush sizes 1-8, ROUND or SQUARE; FILL floods a whole area of the same terrain. Plateaus get their cliffs as in the game. Paint a ramp across the edge of high ground: it is squared into a clean rectangle; a ramp that doesn't join high ground to low ground shows red.
 
