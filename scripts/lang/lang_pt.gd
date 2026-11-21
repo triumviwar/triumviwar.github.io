@@ -2464,7 +2464,7 @@ const T := {
 	"Wooden palisade: blocks the way. Lay it in a line.": "Paliçada de madeira: bloqueia o caminho. Coloque-a em linha.",
 	"A palisade piece that opens for your side only.": "Um trecho de paliçada que abre só para o seu lado.",
 	"Trains Musketeers, Horsemen, Officers and Dragoons. Refits soldiers.": "Treina Mosqueteiros, Cavaleiros, Oficiais e Dragões. Reequipa soldados.",
-	"The Crown's research: armour, locks, bayonet, guns and the charge.": "As pesquisas da Coroa: armadura, fechos, baioneta, canhões e a carga.",
+	"The Crown's research: armour, locks, bayonet, guns and the band.": "As pesquisas da Coroa: armadura, fechos, baioneta, canhões e a banda.",
 	"Casts cannons and mortars, rigs balloons, builds powder wagons.": "Funde canhões e morteiros, arma balões, constrói carroças de pólvora.",
 	"Labourers grow gold here: a 380-gold harvest about every 40 s.": "Operários cultivam ouro aqui: uma colheita de 380 de ouro a cada ~40 s.",
 	"Labourers grind saltpetre into powder. Soldiers refill nearby.": "Operários moem salitre em pólvora. Soldados recarregam por perto.",

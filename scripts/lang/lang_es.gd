@@ -2464,7 +2464,7 @@ const T := {
 	"Wooden palisade: blocks the way. Lay it in a line.": "Empalizada de madera: bloquea el paso. Colócala en línea.",
 	"A palisade piece that opens for your side only.": "Un tramo de empalizada que solo se abre para tu bando.",
 	"Trains Musketeers, Horsemen, Officers and Dragoons. Refits soldiers.": "Entrena Mosqueteros, Jinetes, Oficiales y Dragones. Reequipa soldados.",
-	"The Crown's research: armour, locks, bayonet, guns and the charge.": "Investigación de la Corona: armadura, llaves, bayoneta, cañones y la carga.",
+	"The Crown's research: armour, locks, bayonet, guns and the band.": "Investigación de la Corona: armadura, llaves, bayoneta, cañones y la banda.",
 	"Casts cannons and mortars, rigs balloons, builds powder wagons.": "Funde cañones y morteros, arma globos, construye carros de pólvora.",
 	"Labourers grow gold here: a 380-gold harvest about every 40 s.": "Los Peones cultivan oro aquí: una cosecha de 380 de oro cada ~40 s.",
 	"Labourers grind saltpetre into powder. Soldiers refill nearby.": "Los Peones muelen salitre en pólvora. Los soldados se recargan cerca.",
