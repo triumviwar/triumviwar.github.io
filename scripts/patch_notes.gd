@@ -4,7 +4,7 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
-	{"v": "0.38.999", "items": [
+	{"v": "0.38.117", "items": [
 		"SAVE INSIDE A CAMPAIGN MISSION: a mission is now saved as you play it (every 15 seconds and when you leave), and the match menu has SAVE and LOAD SAVE for a save of your own. The mission's card in the campaign offers CONTINUE (where you left it), LOAD SAVE and FROM CHECKPOINT. Everything the story counts comes back: the objectives, choices, clocks, the cages, fires, sleepers and disguised houses. Online co-op and versus missions and the tutorial's lessons are not saved.",
 		"CHECKPOINTS: when a new part of a mission begins, or you meet one of its main objectives, the game keeps a checkpoint by itself. After a defeat the end screen offers RETRY FROM CHECKPOINT, so you play again from that part, not from the start (RESTART MISSION still starts it over).",
 		"QUIT TO CAMPAIGN: leaving a mission from the match menu now takes you back to its storyline's camp, where its card offers CONTINUE, instead of the main menu.",
