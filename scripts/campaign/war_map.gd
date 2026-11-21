@@ -693,9 +693,15 @@ func _draw_cartouche_text(s: Dictionary) -> void:
 	var t2 := Loc.t(String(WarMapData.data().get("act_title", "")))
 	var f := UiStyle.title_font()
 	var fs := int(clampf(w * 0.095, 11, 40))
+	# (the words shrink to fit the frame: drawn at a fixed size they were cut, "THE WAR MA", playtest 2026-11-21)
+	while fs > 8 and f.get_string_size(t1, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > w * 0.62:
+		fs -= 1
+	var fs2 := int(fs * 0.7)
+	while fs2 > 7 and f.get_string_size(t2, HORIZONTAL_ALIGNMENT_LEFT, -1, fs2).x > w * 0.62:
+		fs2 -= 1
 	var ink: Color = s["ink"]
 	draw_string(f, c + Vector2(-w * 0.32, fs * 0.15), t1, HORIZONTAL_ALIGNMENT_CENTER, w * 0.64, fs, Color(ink, 0.9))
-	draw_string(f, c + Vector2(-w * 0.32, fs * 1.25), t2, HORIZONTAL_ALIGNMENT_CENTER, w * 0.64, int(fs * 0.7), Color(ink, 0.8))
+	draw_string(f, c + Vector2(-w * 0.32, fs * 1.25), t2, HORIZONTAL_ALIGNMENT_CENTER, w * 0.64, fs2, Color(ink, 0.8))
 
 
 func _art_file(p: String) -> Texture2D:
