@@ -232,3 +232,29 @@ With the best set against the Brood (today's full stack, 40 games: full1 + the B
 | 21:19 | Clockwork | final2 | the cleaned code again | g -0.18, survived 7, won/led 5. **The cleaned code's pool (final1 + final2, 20 games): g +0.21, g14 -0.09, survived 16, won/led 11** (score x1.2 of the Clockwork's); v the full stack's 30 games +0.48 (t 1.2), g14 +0.18 (t 1.3), 8 better / 2 worse. But v the plan + econ pool -0.75 (t -2.0), g14 -0.33 (t -2.2): what the cleaned code has beyond plan + econ costs. `dry` alone was even (p3s), so the suspect is THE HOLD (p5 -0.45 too): one more block with the hold off (final3). |
 | 21:51 | Clockwork | final3 | the cleaned code with the hold off too (`hold:off`) | **g +1.08, g14 +0.28, survived 10, won/led 8**, income 8/12 0.93/1.10, army 8/12 1.03/3.58; v the cleaned pool (final1 + final2) **+0.87 (t 2.7), g14 +0.37 (t 3.7), 9/1**; v the plan + econ pool +0.12 (t 0.5); v the full stack +1.36 (t 3.2), 9/1. With p5 (-0.45) and the cleaned pool's -0.75 against plan + econ that is three blocks: against the Clockwork THE HOLD costs too. **The hold is added to the Clockwork cut** (a cut by matchup, not a deletion: it stays on against the Brood and in the mirror). final4 plays the new default. |
 | 22:32 | Clockwork | final4 | **the new default** (the cut with the hold, no switch) | **g +1.23, g14 +0.42, survived 10, won/led 9**, income 8/12 0.94/1.17, army 8/12 1.52/2.60; v the full stack +1.51 (t 3.4), g14 +0.69 (t 4.9), 8/0. **The final pool (final3 + final4, 20 games): survived 20 of 20, won or led 17, g +1.16 (score x3.2 of the Clockwork's), v the full stack's 30 games +1.43 (t 3.4), g14 +0.62 (t 5.2), 9/1** (the full stack: 24 of 30 survived, 12 won or led, g -0.27). |
+
+## The tests (0.38.87)
+
+All 44 of `tools/test_ai_*.gd` and `tools/test_crown_*.gd` were run after the cleanup (while the last blocks played, so some ran
+slowly). **Updated for the cleanup**: `test_crown_v_clock` (checks the cut: the nine rules cut against the Clockwork, none against
+the Brood or the Crown) and `test_crown_defence` (it measures the defence against a Clockwork push, so it now plays with
+`crc:off`; ALL PASS). **Pass at the first run**: 31, among them `test_crown_line`, `test_crown_hold`, `test_crown_siege`, `test_crown_mirror`,
+`test_crown_v_brood`, `test_crown_build_stack`. **Passed on a rerun** (flaky, as CLAUDE.md says): `test_ai_cw_horse_raid`,
+`test_ai_scout_sentry`, `test_ai_worker_safety`, `test_ai_expand`, `test_ai_expand_wall`. **Too slow to finish on this 2-core
+machine with games running** (every check they reached passed): `test_ai_optimal`, `test_ai_round6`. **Failing before this job**
+(the same checks the 1000 jobs listed as failing with their changes off; all Crown v Brood or mirror, where the cleanup changes
+nothing): `test_ai_rush_followup`, `test_ai_wall_vs_rush`, `test_crown_rider_screen` (a rider in front of the muskets),
+`test_crown_stall` ([foundry] by 330 s: 334), `test_crown_dragoon_raid` ([plan]), `test_ai_brood` (the Brood's banked food,
+flaky).
+
+## Files
+
+- `scripts/ai_crown_rules.gd` (AICrownRules: the rule counters, `fire` / `t`; the matchup cuts, `CUT` and `cut`), the cut's
+  gates in `ai_crown_army.gd`, `ai_crown_coach.gd` (the army floor, GUNS FIRST), `ai_crown_defence.gd` (the module and its
+  alert), `ai_crown_screen.gd`, `ai_crown_line.gd`, `ai_crown_hold.gd`, `ai_crown_guns.gd`, `ai_cav_micro.gd`; the counters in
+  `ai_crown.gd`, `ai_optimal.gd`, `ai_crown_hold.gd`, `ai_crown_defence.gd`; result.json "crown_ai" "rules" (`tools/qa_match.gd`).
+- The 1000 jobs' restored off switches: `scripts/ai_crown_v_clock.gd` (foundry2, spend, trade, richlabs),
+  `scripts/ai_crown_1k_brood.gd`, `ai_crown.gd`, `ai_crown_siege.gd` (farms, queen, pester, maws, guard).
+- `tools/study/crown_rule_cleanup.py` (groups, run, report, fired; the Clockwork blocks on crown-1000-clockwork's seeds).
+- Data: `docs/crown_rule_cleanup/data/<brood|clockwork|crown>/<block>/` (270 games of this job; `old_*` = the 1000 jobs'
+  blocks copied for pairing).
