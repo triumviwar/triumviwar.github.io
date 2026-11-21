@@ -657,7 +657,9 @@ func _key(e: InputEventKey) -> void:
 		if not units.is_empty() and begin_bombard() and hud:
 			hud.flash_card("ATTACK GROUND")
 		return
-	match e.keycode:
+	# (the key under Esc opens the GEAR VIEW whatever it prints: on Spanish and Brazilian keyboards it is º or ', and
+	# ` is a dead key elsewhere, so the lesson's "the ` key, under Esc" did nothing; playtest 2026-11-21)
+	match KEY_QUOTELEFT if e.physical_keycode == KEY_QUOTELEFT else e.keycode:
 		KEY_ESCAPE, KEY_BACKSPACE:
 			if mode != "":
 				cancel_mode()

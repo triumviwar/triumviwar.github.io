@@ -939,13 +939,11 @@ func show_map_editor(name := "", data := {}) -> void:
 		game.queue_free()
 		game = null
 		show_editor_menu())
-	_editor.play_requested.connect(func(id: String, n: int) -> void:
+	_editor.play_requested.connect(func(id: String, _n: int) -> void:
 		game.queue_free()
 		game = null
-		lobby["map"] = id
-		while lobby["slots"].size() > n:
-			lobby["slots"].pop_back()
-		show_skirmish())
+		_pick_map(id)          # (as the lobby's own pick: a 2v2 map gets four players two a side; only trimmed before,
+		show_skirmish())       # so a 4-start 2v2 map from PLAY started as a 1v1; playtest 2026-11-21)
 
 
 ## The Settings tabs, one shown at a time (the last one picked is kept for the session).
@@ -1203,6 +1201,7 @@ func settings_rows(tab: String) -> Array:
 				show_settings()), "ui_size"))
 			var mm := _row("MINIMAP SOLIDITY")
 			var mms := HSlider.new()
+			UiStyle.touch_slider(mms)
 			mms.min_value = 0.2
 			mms.max_value = 1.0
 			mms.step = 0.05
@@ -1238,6 +1237,7 @@ func settings_rows(tab: String) -> Array:
 			# OVERLAY OPACITY (docs/overlay_alpha.md): how solid the bars, chevrons and marks over the units are
 			var oo := _row("OVERLAY OPACITY")
 			var oos := HSlider.new()
+			UiStyle.touch_slider(oos)
 			oos.min_value = 0.3
 			oos.max_value = 1.0
 			oos.step = 0.05
@@ -1265,6 +1265,7 @@ func settings_rows(tab: String) -> Array:
 					game.ai_story.narrator.stop()), "narrator"))
 			var nv := _row("NARRATOR VOLUME")
 			var nvs := HSlider.new()
+			UiStyle.touch_slider(nvs)
 			nvs.min_value = 0
 			nvs.max_value = 100
 			nvs.step = 5
@@ -1494,6 +1495,7 @@ func _player_bar() -> Control:
 	pp.add_theme_font_size_override("font_size", 16)
 	h.add_child(pp)
 	var bar := HSlider.new()
+	UiStyle.touch_slider(bar)
 	bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	bar.custom_minimum_size.y = 32
@@ -1577,6 +1579,7 @@ func _volume_row(title: String, which: String) -> Control:
 	ic.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT, Control.PRESET_MODE_MINSIZE, 8)
 	mb.add_child(ic)
 	var sl := HSlider.new()
+	UiStyle.touch_slider(sl)
 	sl.min_value = 0.0
 	sl.max_value = 1.0
 	sl.step = 0.05

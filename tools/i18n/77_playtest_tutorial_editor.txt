@@ -1,0 +1,25 @@
+# playtest-tutorial-editor (2026-11-21): the map editor asks before throwing work away.
+
+> Not saved. Press BACK again to leave without saving.
+pt Não salvo. Aperte VOLTAR de novo para sair sem salvar.
+es Sin guardar. Pulsa VOLVER otra vez para salir sin guardar.
+
+> Not saved. Press NEW again to start another map anyway.
+pt Não salvo. Aperte NOVO de novo para começar outro mapa assim mesmo.
+es Sin guardar. Pulsa NUEVO otra vez para empezar otro mapa de todos modos.
+
+> Not saved. Press LOAD again to open another map anyway.
+pt Não salvo. Aperte ABRIR de novo para abrir outro mapa assim mesmo.
+es Sin guardar. Pulsa ABRIR otra vez para abrir otro mapa de todos modos.
+
+> Press SURE? to delete "%s" for good.
+pt Aperte CERTEZA? para apagar "%s" de vez.
+es Pulsa ¿SEGURO? para borrar "%s" para siempre.
+
+> There is already a map called "%s". Press again to replace it.
+pt Já existe um mapa chamado "%s". Aperte de novo para substituí-lo.
+es Ya hay un mapa llamado "%s". Pulsa otra vez para reemplazarlo.
+
+> Start %d: team %s. Every start is on one team now: give one of them another team.
+pt Início %d: equipe %s. Agora todos os inícios estão na mesma equipe: dê outra equipe a um deles.
+es Inicio %d: equipo %s. Ahora todos los inicios están en el mismo equipo: dale otro equipo a uno de ellos.
