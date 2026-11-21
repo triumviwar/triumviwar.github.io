@@ -400,9 +400,22 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 	var sv := StillView.make(m.get("stills", {}).get(String(db.get("still", "")), {}), _side_col(m, win_side))
 	sv.custom_minimum_size = Vector2(380, 230)
 	h.add_child(sv)
+	# the words and the objectives scroll when they are more than the screen holds (a won Specimen One at 1280 x 720
+	# pushed NEXT MISSION and CAMPAIGN under the bottom edge: playtest 2026-11-21)
+	var tsc := ScrollContainer.new()
+	tsc.name = "EndWords"
+	tsc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	tsc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	h.add_child(tsc)
 	var tv := VBoxContainer.new()
 	tv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	h.add_child(tv)
+	tsc.add_child(tv)
+	var fit := func() -> void:
+		if not is_instance_valid(tsc):
+			return
+		var room: float = o.get_viewport_rect().size.y - 260.0
+		tsc.custom_minimum_size.y = clampf(tv.get_combined_minimum_size().y, 230.0, maxf(230.0, room))
+	tv.resized.connect(fit)
 	tv.add_child(UiStyle.text(Loc.t(String(db.get("title", ""))), 24, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
 	tv.add_child(_wrap(Loc.t(String(db.get("text", ""))), 17))
 	for ti in db.get("text_if", []):
