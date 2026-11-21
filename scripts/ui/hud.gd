@@ -4919,6 +4919,11 @@ func _draw_card(font: Font) -> void:
 		_ci.draw_rect(Rect2(br.position.x + 2, br.end.y - 17, br.size.x - 4, 15), Color(0, 0, 0, 0.62))
 		# the label at 11, smaller only when it wouldn't fit the (phone's narrower) button
 		var lab := Loc.t(String(it[1]).trim_prefix("> ").trim_prefix("~ "))
+		var raw_lab := String(it[1])
+		if Defs.BUILDINGS.has(String(it[0])) and Defs.is_econ(String(it[0])) and raw_lab.count("/") == 1 and raw_lab.contains(" "):
+			# the build page's "POWDER 0/1": the first word of the English name, which no dictionary can translate
+			# (pt/es showed "POWDER 0/1"; playtest 2026-11-21): the first word of the translated name instead
+			lab = Loc.t(String(Defs.BUILDINGS[String(it[0])]["name"])).to_upper().split(" ")[0] + " " + raw_lab.get_slice(" ", raw_lab.get_slice_count(" ") - 1)
 		var lsz := 11
 		while lsz > 8 and UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5:
 			lsz -= 1
@@ -5128,7 +5133,9 @@ func _card_tip(it: Array) -> Dictionary:
 		if al != "":
 			t["stats"] = "%s  ·  %s  ·  %d s  ·  %d supply" % [_cost_text(price[0], price[1]), Loc.t("ammunition:") + " " + Loc.t(al), int(u["time"]), int(u["supply"])]      # (crown-ammo: the powder for his shots)
 		var tg: Array = ["armored"] if arm else u.get("tags", [])
-		t["body"] = ("[%s] " % " ".join(tg.map(func(x: String) -> String: return x.capitalize())) if not tg.is_empty() else "") + Defs.tip(k)
+		# (each piece translated on its own: the whole "[Light] Light line infantry: ..." found no entry and came out half
+		# English in pt/es, playtest 2026-11-21)
+		t["body"] = ("[%s] " % " ".join(tg.map(func(x: String) -> String: return Loc.t(x.capitalize()))) if not tg.is_empty() else "") + Loc.t(Defs.tip(k))
 		if Defs.ARMOURED.has(kd):
 			var kt := game.kit_for_new(game.human, k)
 			var parts: Array = []
@@ -5139,9 +5146,9 @@ func _card_tip(it: Array) -> Dictionary:
 			if kt.get("bayonet", false):
 				parts.append("the Socket Bayonet")
 			if not parts.is_empty():
-				t["body"] += "  Comes out with %s (the refit fees are in the price)." % ", ".join(parts)
+				t["body"] += "  " + Loc.t("Comes out with %s (the refit fees are in the price).") % ", ".join(parts.map(func(x: String) -> String: return Loc.t(x)))
 		if kd == MarchingBand.KIND or MarchingBand.MUSICIANS.has(kd):
-			t["body"] += "  " + MarchingBand.train_note(game, game.human, kd)      # (who comes out; where a Fifer / Piper goes)
+			t["body"] += "  " + Loc.t(MarchingBand.train_note(game, game.human, kd))      # (who comes out; where a Fifer / Piper goes)
 		t["hint"] = ("Right-click" if Settings.pc() else "Hold") + ": train it automatically (glows while on)."
 	elif Defs.BUILDINGS.has(k) and page in ["build", "advanced"]:
 		var bd: Dictionary = Defs.BUILDINGS[k]
