@@ -29,7 +29,20 @@ static func peek(mid: String, kind := "auto") -> Dictionary:
 
 
 static func has(mid: String, kind := "auto") -> bool:
-	return not peek(mid, kind).is_empty()
+	# (asked as the match menu is drawn: the file is read once per change, not every frame)
+	var p := path(mid, kind)
+	SaveGame.wait()
+	if mid == "" or not FileAccess.file_exists(p):
+		return false
+	var key := "%s@%d" % [p, FileAccess.get_modified_time(p)]
+	if not _has_cache.has(key):
+		if _has_cache.size() > 16:
+			_has_cache.clear()
+		_has_cache[key] = not peek(mid, kind).is_empty()
+	return bool(_has_cache[key])
+
+
+static var _has_cache := {}
 
 
 static func clear(mid: String, kind := "auto") -> void:

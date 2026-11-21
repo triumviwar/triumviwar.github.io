@@ -578,7 +578,8 @@ func _input(event: InputEvent) -> void:
 ## only the keys worked; playtest 2026-11-21.)
 func _show_over() -> bool:
 	var p := get_parent()
-	return p != null and p.get_children().any(func(c: Node) -> bool: return c is StillShow and not c.is_queued_for_deletion())
+	# (also Main's question, "Quit the game?", asked over a match by the phone's back: player-comforts)
+	return p != null and p.get_children().any(func(c: Node) -> bool: return (c is StillShow or c.name == "AskBox") and not c.is_queued_for_deletion())
 
 
 func _on_input(event: InputEvent) -> void:

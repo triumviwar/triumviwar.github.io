@@ -42,7 +42,8 @@ replay (a continued mission records a new replay from the moment it continues).
 ### Where the files are
 
 Three files a mission, in the game's user folder under missions/: "where you left it", your own SAVE, and the last
-checkpoint. They are apart from the skirmish's autosave: a mission never writes over a skirmish you left, and the
+checkpoint. Like the skirmish's save, they are kept for the version of the game that wrote them: after an update a
+mission begun before it starts again. They are apart from the skirmish's autosave: a mission never writes over a skirmish you left, and the
 main menu's CONTINUE is still the skirmish's. A finished mission no longer deletes the skirmish's autosave either (it
 did before, by accident).
 
@@ -60,7 +61,27 @@ did before, by accident).
   how many automata were lost) differ a little from run to run, with or without a save; what the story decides (the
   choices, who won, the flags written) matched in every mission the bot finished both times.
 
-THE_RESULTS_TABLE
+The full runs (tools/test_campaign_save.sh; "saved" = saved and loaded half way through the run, at the time in
+brackets; the bot plays the mission's default side on Normal):
+
+| mission | straight through | saved and loaded |
+|---|---|---|
+| p01 The Leaf and the Fire | the sim plays only the night (8 minutes): no flag yet | the same (saved at 5:00); the state after the load identical |
+| a01 The Printing Houses | Crown won: printer taken, Lyon calm | the same (saved at 3:00) |
+| a02 The Fürth Line | guild won: stop-work fitted, Fürth strong (11 men), Jakob alive | the same flags, Fürth strong with 13 men (saved at 6:40) |
+| a03 The Lost Plateau | party won: survey full, map drawn, the Sire by the split, party few (3), Linnea seen | the same (saved at 5:00) |
+| a04 Father Ferrer's Visit | the visit won: stop-works found, 5 lost to the machine, the broken ones kept, Jakob alive | the same (saved at 2:30) |
+| a05 The Specimens | expedition won: eggs taken, the short way, cages some (2), crates seen, Pieter lost | the same (saved at 2:50) |
+| a06 The Barricades of Paris | Crown won: Varenne spared, Paris stood | the same (saved at 2:40) |
+| a07 The Council of Rome | Crown won: both defied, Rome some (4), people many (18) | the same (saved at 6:40) |
+| b01 Specimen One | the Sire's pack won (clutch saved, eggs left, saved some (15), Pieter lost, the rival standing) in 2 of 3 runs | won once, stalled at the pen's gate twice (saved at 5:00) |
+| c01 The Thirteenth Hour | guild won: bells quiet, drawings taken, gate pattern, saved some (54), Jakob alive, cut no | the same (saved at 6:40) |
+
+Specimen One: the sim's pack sometimes never breaks Linnea's pen gate and the rival pack wins in the end. That happened
+in a run with no save too (the first straight run), so it is the bot, not the save: the Raptors sent at the gate from
+the north of the pen try to walk through the pen's wall, which the story keeps unbreakable until the gate falls, and
+stand there. A player who clicks the gate from the north may meet the same thing; it is worth a look in a pathfinding
+job (the siege path should not go through a building nobody can hurt). Not changed here.
 
 ## 2. QUIT goes back to the campaign
 
@@ -114,17 +135,31 @@ Measured on 844 by 390, in the Prologue's first minute (shares of the screen's h
 
 Pictures (docs/shots/player_comforts/):
 
-- before_phone/01_mission_dialogue.png and after_phone/01_mission_dialogue.png: the same moment before and after.
-- before_phone/02_mission_objectives_tapped.png (the objectives folded by a tap, the only way to fold them before) and
-  after_phone/02_mission_objectives_tapped.png (opened by a tap).
-- after_phone/03 and 04: a long line in two pages ("1/2", then "2/2" after a tap).
-- before_phone/04_skirmish.png and after_phone/05_skirmish.png: a skirmish.
-- after_phone_780_b01/: the Naturalist's prologue on a 780 by 360 phone, a creature selected.
-- pc/: a computer at 1280 by 720: the pause, the menu with SAVE and LOAD SAVE, the questions, the hub after QUIT,
-  the card with CONTINUE and LOAD SAVE, the main menu's EXIT question.
+- before_phone/01_mission_dialogue.jpg and after_phone/01_mission_dialogue.jpg: the same moment before and after.
+- before_phone/02_mission_objectives_tapped.jpg (the objectives folded by a tap, the only way to fold them before) and
+  after_phone/02_mission_objectives_tapped.jpg (opened by a tap).
+- after_phone/03 and 04: a long line in two pages ("1/2", then "2/2" after a tap on the box).
+- after_phone/05_mission_selected.jpg: a Barracks selected, the compact card and panel.
+- before_phone/04_skirmish.jpg and after_phone/06_skirmish.jpg: a skirmish.
+- after_phone_780_b01/: the Naturalist's prologue on a 780 by 360 phone (03: a creature selected).
+- after_phone_menu/: on the phone: paused by F10, the match menu with SAVE and LOAD SAVE, the LOAD and QUIT questions,
+  the hub after QUIT, the card with CONTINUE and LOAD SAVE, the mission continued, the main menu's EXIT question.
+- pc/: the same on a computer at 1280 by 720 (a computer's layout is unchanged).
 
 The driver that takes them plays with real input: tools/playtest/pt_comforts.gd
 (tools/playtest/run.sh pt_comforts 844x390 phone tag=<name> what=layout|menu|all).
+
+## Tests
+
+New: tools/test_campaign_save.gd (107 checks, all pass), tools/test_campaign_save.sh (the full runs above), the playtest
+driver tools/playtest/pt_comforts.gd (all its checks pass on a computer at 1280 by 720 and a phone at 844 by 390).
+
+Existing tests run after the job, all passing: test_i18n, test_campaign, test_campaign_m1, test_campaign_b01,
+test_campaign_c01, test_qa_save_continue, test_qa_save_roundtrip, test_save_job, test_hotkeys (changed: it used F10 for
+the seventh camera view; it now checks that F10 is no view key and uses the tab), test_hud_frames, test_menu_grid,
+test_drag_release_ui, test_tutorial, test_war_map, test_roster_ladder. test_gear_save fails with 4 failures both on main
+and on the branch (its save has no match set-up, which the save check added by the playtests refuses): not this job's.
+Every headless run still ends with the engine's abort at quit (exit code 134), as on main.
 
 ## Claude's choices (for the owner to confirm or change)
 

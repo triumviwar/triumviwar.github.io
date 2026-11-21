@@ -11,7 +11,7 @@ JOBS=${JOBS:-2}
 mkdir -p "$OUT"
 # mission sim save_at extra-args (save_at: about half way through the sim's own run; p01's sim plays only its night)
 LIST="p01 m1 300 active until=490
-a01 a01 180 active
+a01 a01 180 active layout=hill
 a02 a02 400 active
 a03 a03 300 active
 a04 a04 150 active
