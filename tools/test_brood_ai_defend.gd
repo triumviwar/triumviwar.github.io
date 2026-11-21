@@ -176,6 +176,11 @@ func _mother(q: Unit) -> void:
 				lost += 1
 	check(lost == 0, "no Rootmaw loses its swamp (%d)" % lost)
 	# the Tyrant Sire: laid by hand beside her, rooted by the computer; then he answers the harass
+	# (brood-mother-uproot: a Sire the computer made by itself meanwhile would be the one it looks after, not this one;
+	# it is taken off so the computer roots this one)
+	for o in g.units.duplicate():
+		if o.team == bt and o.kind == BroodNew.FATHER and not o.dead:
+			g.consume_unit(o)
 	var f: Unit = g._add_unit(BroodNew.FATHER, bt, spot_near(q.position, 5.0, 2.0))
 	t0 = g.clock
 	while g.clock - t0 < 60.0 and not alive(foes).is_empty():
