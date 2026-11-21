@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.102", "items": [
+		"THE COUNCIL OF ROME IS PAINTED: all seven of its pictures are real paintings now: the young King listening to the council under the crucifix, Father Ferrer showing the cardinals the machine's drawing, Valadares at his map with Lindqvist's sketch, Hollweg and Lindqvist accused side by side, the Dean reading the verdict, Rome burning across the Tiber below an untouched Saint Peter's, and the King and Father Tomasz holding the bridge at dawn. Every mission of Act 1 now has its paintings.",
+	]},
 	{"v": "0.38.101", "items": [
 		"THE SPECIMENS AND THE BARRICADES OF PARIS ARE PAINTED: the Specimens' last two pictures (the landing at the quay beside the crates marked with a cogwheel, and the Tyrant Sire bursting out at the last cage cart) and all five of Paris's (the barricade at dawn, Ruggieri's mortar battery, the torches carried towards Notre-Dame, the storming of the Hotel de Ville, and Varenne in chains before the Marshal while Father Tomasz asks mercy) are real paintings now.",
 	]},
