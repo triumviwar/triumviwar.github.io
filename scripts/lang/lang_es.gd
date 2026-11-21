@@ -3270,6 +3270,7 @@ const T := {
 	"Not saved. Press LOAD again to open another map anyway.": "Sin guardar. Pulsa ABRIR otra vez para abrir otro mapa de todos modos.",
 	"Press SURE? to delete \"%s\" for good.": "Pulsa ¿SEGURO? para borrar \"%s\" para siempre.",
 	"There is already a map called \"%s\". Press again to replace it.": "Ya hay un mapa llamado \"%s\". Pulsa otra vez para reemplazarlo.",
+	"Start %d: team %s. Every start is on one team now: give one of them another team.": "Inicio %d: equipo %s. Ahora todos los inicios están en el mismo equipo: dale otro equipo a uno de ellos.",
 	"Lyon, spring 2768. The Free Assembly's pamphlets are everywhere, and Lyon's presses print them. The garrison and the city's clergy hunt the presses through the streets before the city turns.": "Lyon, primavera de 2768. Los panfletos de la Asamblea Libre están por todas partes, y las prensas de Lyon los imprimen. La guarnición y el clero de la ciudad persiguen las prensas por las calles antes de que la ciudad se subleve.",
 	"Captain Delorme's garrison, the City Watch and a young priest, Father Tomasz.": "La guarnición del capitán Delorme, la Guardia de la ciudad y un joven sacerdote, el padre Tomasz.",
 	"Varenne's people in Lyon: the presses, their runners and the silk-weavers they stir up. Green and black.": "La gente de Varenne en Lyon: las prensas, sus correos y los tejedores de seda que agitan. Verde y negro.",

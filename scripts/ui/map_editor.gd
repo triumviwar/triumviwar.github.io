@@ -1329,7 +1329,10 @@ func _place_marker(c: Vector2i) -> void:
 				return
 			_push_undo()
 			teams[k] = (int(teams[k]) + 1) % clampi(starts.size(), 2, 8)
-			_say("Start %d: team %s. The map is %s." % [k + 1, LETTERS[teams[k]], mode()])
+			if mode() == "-":
+				_say("Start %d: team %s. Every start is on one team now: give one of them another team." % [k + 1, LETTERS[teams[k]]])
+			else:
+				_say("Start %d: team %s. The map is %s." % [k + 1, LETTERS[teams[k]], mode()])
 		"erase":
 			var hit := false
 			for list in [starts, halls]:

@@ -442,6 +442,8 @@ static func mode_from_teams(teams: Array) -> String:
 	var sizes: Array = count.values()
 	sizes.sort()
 	sizes.reverse()
+	if sizes.size() == 1:
+		return "-"          # (every start on one team: no mode; it read "2" in the editor; playtest 2026-11-21)
 	if sizes.size() == 2:
 		return "%dv%d" % [sizes[0], sizes[1]]
 	if sizes[0] == 1:
