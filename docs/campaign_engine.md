@@ -115,7 +115,8 @@ JSON files are not resources and are left out otherwise). Progress is kept in `u
 - `wiped_out`: {side: seconds}: after that time a side with no units and no buildings left (having had some) loses.
 - `objectives`: `id`, `side`, `primary` (true: decides the mission; false: optional), `text`, `hidden` (until a
   trigger shows it), `kind`:
-  - `survive` (`time` in seconds: done then; the panel counts down),
+  - `survive` (`time` in seconds: done then; the panel counts down; an `"if"` condition must also hold then, else it
+    fails: the Prologue's "until dawn, with at least three barns standing"),
   - `destroy` (`tag`: done when everything with the tag is dead),
   - `protect` (`tag`: failed when everything with the tag is dead; counts as met while it holds),
   - `reach` (`area`, `count`, and `tag`, `team` or `side_units`: done when that many stand in the area),

@@ -1114,8 +1114,10 @@ func _check_objectives() -> void:
 			continue
 		match String(o.get("kind", "manual")):
 			"survive":
+				# (an "if": what must still hold when the time is up, else it fails: the Prologue's "until dawn, with at
+				# least three barns standing" was ticked done on the very defeat it caused; playtest 2026-11-21)
 				if game.clock >= float(o.get("time", 0)):
-					set_objective(oid, "done")
+					set_objective(oid, "done" if not o.has("if") or cond(o["if"]) else "failed")
 			"countdown":
 				# (a clock shown in the panel: "{clock:fall}" in its words; it never decides the end itself)
 				var cn := String(o.get("clock", ""))

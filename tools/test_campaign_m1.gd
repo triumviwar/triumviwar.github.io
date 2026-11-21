@@ -319,6 +319,7 @@ func _run() -> void:
 	_step(g, 481.0)
 	_step(g, 481.5)
 	check("two barns at dawn: the year is lost", g.over and r.winner_side == "rebels" and r.said_ids.has("f_ash"))
+	check("two barns at dawn: the dawn objective is crossed, not ticked (playtest 2026-11-21)", r.obj["dawn"] == "failed")
 	# ---------------------------------------------------------------- co-op and versus (offline: the friend's side scripted)
 	g = await _start("coop")
 	r = g.mission

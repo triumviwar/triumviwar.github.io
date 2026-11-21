@@ -1222,6 +1222,13 @@
 			"primary": true,
 			"kind": "survive",
 			"time": 480,
+			"if": {
+				"count": {
+					"tag": "barns",
+					"buildings": true,
+					"at_least": 3
+				}
+			},
 			"text": "Hold until dawn, with at least three barns standing."
 		},
 		{
@@ -1858,18 +1865,7 @@
 		{
 			"id": "dawn_lost",
 			"when": {
-				"all": [
-					{
-						"done": "dawn"
-					},
-					{
-						"count": {
-							"tag": "barns",
-							"buildings": true,
-							"below": 3
-						}
-					}
-				]
+				"failed": "dawn"
 			},
 			"do": [
 				{
