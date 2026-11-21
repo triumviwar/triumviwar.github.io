@@ -191,8 +191,7 @@ func wait_built(kind: String, secs := 120.0) -> bool:
 
 func buildings() -> void:
 	# the gear pick on the ghost: G and the BIG GEAR / SMALL GEAR button
-	var w: Unit = p.free_winder()
-	await p.select(w)
+	await p.select_a_winder()
 	await p.press("BUILD")
 	await dump("winder_build_page")
 	await io.shot("build_page")
@@ -215,8 +214,7 @@ func buildings() -> void:
 	await wait_built("escapement")
 	await build("heavy_works", true)
 	# the Heavy Works on a small gear: what does the card say?
-	var w2: Unit = p.free_winder()
-	await p.select(w2)
+	await p.select_a_winder()
 	await p.press("BUILD")
 	await p.press("HEAVY WORKS")
 	await dump("placing_heavy_works")
@@ -241,13 +239,22 @@ func turrets() -> void:
 			t.append(b)
 	if t.is_empty():
 		return
-	# a second turret right beside the first: its circle overlaps
+	# a second turret near the first: its circle overlaps (look for a cell refused for the circle, not for a ring)
 	var c: Vector2i = t[0].cell + Vector2i(3, 0)
 	var prob: String = g.placement_problem(g.human, "ratchet_turret", c)
+	var msgs := {}
+	for dx in range(-8, 9):
+		for dy in range(-8, 9):
+			var cc: Vector2i = t[0].cell + Vector2i(dx, dy)
+			var pr: String = g.placement_problem(g.human, "ratchet_turret", cc)
+			msgs[pr] = int(msgs.get(pr, 0)) + 1
+			if pr.to_lower().contains("turret") or pr.to_lower().contains("circle"):
+				c = cc
+				prob = pr
+	io.note("cells round the first turret, by refusal: %s" % msgs)
 	io.note("turret beside a turret (%s): '%s'" % [c, prob])
 	check(prob != "", "two turrets' circles may not overlap (refused: %s)" % prob)
-	var w: Unit = p.free_winder()
-	await p.select(w)
+	await p.select_a_winder()
 	await p.press("BUILD")
 	await p.press("RATCHET TURRET")
 	var sp: Vector2 = await p.look_at(p.mouse_for_cell("ratchet_turret", c))
@@ -419,7 +426,7 @@ func abilities() -> void:
 				await io.wait(2.0)
 				check(p.mine("brass_serpent").size() >= 2, "UNLINK gives 2 Serpents back")
 	# WIND UP: a Winder, then a soldier
-	var ws: Array = p.mine("winder")
+	var ws: Array = p.mine("winder").filter(func(u: Unit) -> bool: return not u.off_field and u.visible and u.work != "manning")
 	if not ws.is_empty() and not cs.is_empty():
 		await p.select(ws[0])
 		var why: String = await p.press("WIND UP")
@@ -586,6 +593,8 @@ func phone_controls() -> void:
 # ------------------------------------------------------------------ the match menu
 
 func menu_open() -> void:
+	if g.hud.menu_open:
+		return
 	var r: Rect2 = g.hud.menu_rect()
 	if p.phone:
 		await io.tap(r.get_center())

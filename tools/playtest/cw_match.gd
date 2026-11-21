@@ -162,7 +162,7 @@ func workers_to_work() -> void:
 			idle.append(u)
 	if idle.is_empty():
 		return
-	for k in [Defs.GEAR_PRESS, "mainspring"]:
+	for k in ["mainspring", Defs.GEAR_PRESS]:
 		for b in p.mine(k):
 			var room: int = b.crew_max() - b.crew.filter(func(x) -> bool: return is_instance_valid(x) and not x.dead).size()
 			if room <= 0 or b.barren():
@@ -187,18 +187,19 @@ func workers_to_work() -> void:
 func wants() -> Array:
 	var towers: int = maxi(1, p.mine("clocktower").size())
 	return [
-		["mainspring", 30.0, towers, true],
-		[Defs.GEAR_PRESS, 60.0, 2 * towers, true],
-		["movement_works", 100.0, 1, false],
-		["escapement", 170.0, 1, false],
-		["movement_works", 220.0, 2, false],
-		["heavy_works", 240.0, 1, true],
-		["ratchet_turret", 260.0, 1, false],
-		["clocktower", 300.0, 2, false],
-		["cuckoo_house", 400.0, 1, false],
-		["movement_works", 480.0, 3, false],
+		["mainspring", 25.0, towers, true],
+		[Defs.GEAR_PRESS, 50.0, 2 * towers, true],
+		["movement_works", 90.0, 1, false],
+		["escapement", 150.0, 1, false],
+		["movement_works", 180.0, 2, false],
+		["clocktower", 270.0, 2, false],
+		["heavy_works", 300.0, 1, true],
+		["movement_works", 360.0, 3, false],
+		["ratchet_turret", 420.0, 1, false],
+		["cuckoo_house", 480.0, 1, false],
 		["heavy_works", 600.0, 2, true],
-		["clocktower", 720.0, 3, false],
+		["clocktower", 660.0, 3, false],
+		["movement_works", 720.0, 4, false],
 	]
 
 
@@ -326,42 +327,129 @@ func enemy_target() -> Vector2:
 
 
 func threat_home() -> Unit:
-	var h := hall()
+	var best: Unit = null
+	var bd := INF
 	for u in g.units:
-		if is_instance_valid(u) and not u.dead and u.team != g.human and u.team >= 0 and u.global_position.distance_to(h.global_position) < 18 * Defs.TILE:
-			return u
-	return null
+		if not is_instance_valid(u) or u.dead or u.team == g.human or u.team < 0 or u.is_worker():
+			continue
+		if not g.is_visible_to(g.human, u.position):
+			continue
+		for b in g.buildings:
+			if is_instance_valid(b) and not b.dead and b.team == g.human:
+				var d: float = u.global_position.distance_to(b.center())
+				if d < 12 * Defs.TILE and d < bd:
+					bd = d
+					best = u
+	return best
+
+
+func army_supply(a: Array) -> int:
+	var sup := 0
+	for u in a:
+		sup += int(u.d["supply"])
+	return sup
+
+
+## Where the army waits: in front of the main Clocktower, toward the enemy.
+func rally_point() -> Vector2:
+	var h := hall()
+	var toward := (enemy_target() - h.center()).normalized()
+	return h.center() + toward * 9.0 * Defs.TILE
+
+
+var out := false             # the army is out on an attack
+var out_sup := 0
+var rallied := {}
 
 
 func army() -> void:
 	var a := army_units()
+	# new production buildings rally to the front (select it, right-click the ground)
+	for k in ["movement_works", "heavy_works", "cuckoo_house"]:
+		for b in p.mine(k):
+			if rallied.has(b):
+				continue
+			rallied[b] = true
+			if await p.select(b):
+				var rp: Vector2 = await p.look_at(rally_point())
+				if p.phone:
+					var why: String = await p.press("RALLY")
+					refused("RALLY", why)
+					await io.tap(rp)
+				else:
+					await io.rclick(rp)
+				say("rally of %s set" % b.kind)
 	if a.is_empty():
 		return
+	var sup := army_supply(a)
 	var foe := threat_home()
-	var sup := 0
-	for u in a:
-		sup += int(u.d["supply"])
-	if foe != null:
-		if attacked_at < 0.0 or g.clock - attacked_at > 15.0:
+	if foe != null and (not out or sup < out_sup / 2):
+		if attacked_at < 0.0 or g.clock - attacked_at > 12.0:
 			attacked_at = g.clock
-			say("DEFEND: enemy %s at home; army (%d) attack-moves there" % [foe.kind, a.size()])
-			await amove_army(foe.global_position)
+			out = false
+			say("DEFEND: enemy %s by my buildings; army (%d units, %d supply) attack-moves there" % [foe.kind, a.size(), sup])
+			await amove_army(foe.global_position, false)
+			await shields_up()
 		return
-	if sup >= 24 + 10 * waves and g.clock - attacked_at > 40.0:
+	if out:
+		if sup < out_sup * 0.45:
+			out = false
+			attacked_at = g.clock
+			say("RETREAT: the wave is down to %d supply of %d" % [sup, out_sup])
+			await move_army(rally_point())
+		elif g.clock - attacked_at > 25.0:
+			attacked_at = g.clock
+			await amove_army(enemy_target(), true)
+			await shields_up()
+		return
+	if sup >= 30 + 12 * waves and g.clock - attacked_at > 30.0:
 		waves += 1
 		attacked_at = g.clock
-		say("ATTACK wave %d: %d units (%d supply)" % [waves, a.size(), sup])
-		await amove_army(enemy_target())
+		out = true
+		out_sup = sup
+		say("ATTACK wave %d: %d units (%d supply), with Winders to escort" % [waves, a.size(), sup])
+		await amove_army(enemy_target(), true)
+	elif g.clock - attacked_at > 45.0:
+		attacked_at = g.clock
+		await move_army(rally_point())
 
 
-## F2 (all the army) or a box, then A and a click on the minimap (phone: ATTACK, then tap the minimap).
-func amove_army(w: Vector2) -> void:
+## The Clock Soldiers raise their shields (SHIELD WALL) when the enemy is close.
+func shields_up() -> void:
+	if not g.has_tech(g.human, "shield_wall"):
+		return
+	var cs: Array = p.mine("clock_soldier")
+	if cs.is_empty():
+		return
 	if p.phone:
-		var army_btn: Rect2 = g.hud.bar.rect()
-		await io.tap(army_btn.position + Vector2(100, army_btn.size.y * 0.5))     # (IDLE / ARMY / MAKE: the 2nd)
+		return
+	await io.key(KEY_F2)
+	await io.frames(2)
+	var why: String = await p.press("SHIELD FORWARD")
+	refused("SHIELD FORWARD", why)
+
+
+func select_army() -> void:
+	if p.phone:
+		var bar: Rect2 = g.hud.bar.rect()
+		await io.tap(bar.position + Vector2(bar.size.y * 1.9, bar.size.y * 0.5))
 	else:
 		await io.key(KEY_F2)
 	await io.frames(2)
+
+
+## F2 (all the army) [+ Shift-click two Winders: they escort], then A and a click on the minimap.
+func amove_army(w: Vector2, escort: bool) -> void:
+	await select_army()
+	if escort and not p.phone:
+		var n := 0
+		for u in p.mine("winder"):
+			if n >= 3:
+				break
+			if u.off_field or not u.visible or u.work == "manning" or u.order == "build":
+				continue
+			if await p.select(u, true):
+				n += 1
 	var m: Rect2 = g.hud.mini_rect()
 	var mp := m.position + (w / (Vector2(Game.W, Game.H) * Game.T)).clamp(Vector2(0.02, 0.02), Vector2(0.98, 0.98)) * m.size
 	if p.phone:
@@ -371,6 +459,23 @@ func amove_army(w: Vector2) -> void:
 	else:
 		await io.key(KEY_A)
 		await io.click(mp)
+	await io.frames(2)
+	var esc := 0
+	for u in p.mine("winder"):
+		if u.order == "escort":
+			esc += 1
+	if escort and esc == 0 and not p.phone:
+		refused("escort", "no Winder escorts the army after A + minimap with Winders selected")
+
+
+func move_army(w: Vector2) -> void:
+	await select_army()
+	var m: Rect2 = g.hud.mini_rect()
+	var mp := m.position + (w / (Vector2(Game.W, Game.H) * Game.T)).clamp(Vector2(0.02, 0.02), Vector2(0.98, 0.98)) * m.size
+	if p.phone:
+		await io.tap(mp)     # (a tap on the minimap with units selected: they move there)
+	else:
+		await io.rclick(mp)
 	await io.frames(2)
 
 

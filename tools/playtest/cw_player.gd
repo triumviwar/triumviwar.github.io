@@ -98,7 +98,7 @@ func look_at(w: Vector2) -> Vector2:
 
 
 func where(e: Entity) -> Vector2:
-	return (e as Building).center() if e is Building else e.global_position
+	return e.center()
 
 
 ## A click (or tap) on something of mine: it becomes the selection.
@@ -208,6 +208,43 @@ func free_winder(near := Vector2.INF) -> Unit:
 	return best
 
 
+## A Winder to give an order to: one out on the field (a click on him), else the WINDERS label over a press or the
+## Mainspring (a click on it picks its crew, as a player pulls hands off a press).
+func select_a_winder(near := Vector2.INF) -> bool:
+	var best: Unit = null
+	var bd := INF
+	for u in mine("winder"):
+		if u.off_field or not u.visible or u.work == "manning":
+			continue
+		var d := 0.0 if u.order in ["", "idle"] else 5000.0
+		if near.is_finite():
+			d += u.global_position.distance_to(near)
+		if d < bd:
+			bd = d
+			best = u
+	if best != null and await select(best):
+		return true
+	for k in [Defs.GEAR_PRESS, "mainspring"]:
+		for b in mine(k):
+			if b.crew.is_empty():
+				continue
+			var L: Dictionary = WorkerLabels.layout(g, b)
+			if L.is_empty() or not L.has("rect"):
+				continue
+			var wp: Vector2 = (L["rect"] as Rect2).get_center()
+			await look_at(wp)
+			var sp := to_screen(wp)
+			if phone:
+				await io.tap(sp)
+			else:
+				await io.click(sp)
+			await io.frames(2)
+			if g.selected_units().any(func(x: Unit) -> bool: return x.kind == "winder"):
+				return true
+			issue("worker label", "a click on the %s's WINDERS label did not pick its crew" % k)
+	return false
+
+
 ## The building's footprint top-left cell for a world point under the mouse (Controls._move_ghost backwards).
 func mouse_for_cell(kind: String, c: Vector2i) -> Vector2:
 	var size: Vector2i = Defs.BUILDINGS[kind]["size"]
@@ -234,10 +271,7 @@ func find_spot(kind: String, anchor: Vector2, rmin := 2, rmax := 22) -> Vector2i
 ## Select a Winder, BUILD, the building's button, (G for a big gear), move the ghost, click. Returns "" or why not.
 func build(kind: String, anchor: Vector2, big := false, rmin := 2) -> String:
 	var name := String(Defs.BUILDINGS[kind]["name"]).to_upper()
-	var w := free_winder(anchor)
-	if w == null:
-		return "no Winder"
-	if not await select(w):
+	if not await select_a_winder(anchor):
 		return "could not select a Winder"
 	var why := await press("BUILD")
 	if why != "":
