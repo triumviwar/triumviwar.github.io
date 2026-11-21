@@ -185,3 +185,21 @@ Every headless run still ends with the engine's abort at quit (exit code 134), a
     compact).
 12. A save fix found on the way: a saved Pikeman (back as a campaign-only unit) came back as a Musketeer; he now comes
     back a Pikeman.
+
+## IRONMAN (0.38.119, the owner 2026-11-21 20:59: "Campaign in Ironman mode you can't save load scam")
+
+A switch on the campaign hub, under the difficulty: IRONMAN: OFF asks first, then stays ON for this campaign
+(`Campaign.ironman()`, progress key `ironman`; `Campaign.set_ironman()` also clears every mission's own SAVE and
+CHECKPOINT: `MissionSave.clear_kept()`). With it on:
+
+- only "where you left it" (MissionSave `auto`) is ever written (`MissionSave.write` refuses `save` / `checkpoint`);
+- the match menu has no SAVE / LOAD SAVE; a CHECKPOINT moment writes where you left it instead (`Main.mission_checkpoint`);
+- a CHOICE is saved the moment it is made (`MissionRun.choose` emits `checkpoint_wanted("choice:<id>")`);
+- the card shows only CONTINUE; the briefing's START is shut while a mission is under way (CONTINUE beside it) and for
+  good once it is won (`CampaignMenu.ironman_lock`); the end panel has no RETRY FROM CHECKPOINT and no PLAY AGAIN after
+  a win; a DEFEAT may still be tried again from the mission's start (RESTART MISSION).
+
+Test: `tools/test_campaign_ironman.gd` (12 checks). Claude's choices for the owner: (1) it can't be turned off (no
+campaign reset exists yet); (2) a defeat may be restarted from the start, a win can't be replayed; (3) online co-op and
+versus are untouched (they never saved); (4) the 15-second autosave stays, so a game killed by the phone can lose up
+to 15 seconds, but quitting, a choice and a checkpoint moment save at once.

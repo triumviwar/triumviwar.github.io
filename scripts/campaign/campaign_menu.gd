@@ -247,6 +247,8 @@ static func _save_row(main: Node, parent: Control, mid: String) -> void:
 	row.add_theme_constant_override("v_separation", 6)
 	var kinds := [["auto", "CONTINUE  (%s)"], ["save", "LOAD SAVE  (%s)"], ["checkpoint", "FROM CHECKPOINT  (%s)"]]
 	for kd in kinds:
+		if Campaign.ironman() and String(kd[0]) != "auto":
+			continue
 		var d := MissionSave.peek(mid, String(kd[0]))
 		if d.is_empty():
 			continue
@@ -395,6 +397,31 @@ static func briefing(main: Node, mid: String) -> void:
 	go.add_theme_font_size_override("font_size", 28)
 	UiStyle.primary(go)
 	row.add_child(go)
+	var iron_why := ironman_lock(mid)
+	if iron_why != "":
+		# IRONMAN: a mission won is not played again, a mission begun goes on from where you left it (CONTINUE)
+		go.disabled = true
+		go.tooltip_text = Loc.t(iron_why)
+		box.add_child(_wrap(Loc.t(iron_why), 14, UiStyle.TRIM))
+		if MissionSave.has(mid, "auto"):
+			var cont: Button = main._button(Loc.t("CONTINUE  (%s)") % MissionSave.clock_text(MissionSave.peek(mid, "auto")),
+				func() -> void: main.mission_load("auto", mid))
+			cont.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+			cont.name = "Briefing_Continue"
+			cont.custom_minimum_size = Vector2(300, 60)
+			UiStyle.primary(cont, Color("#2f6a8a"))
+			row.add_child(cont)
+
+
+## Why IRONMAN keeps a mission's START shut ("" when it doesn't): won already, or begun and saved where you left it.
+static func ironman_lock(mid: String) -> String:
+	if not Campaign.ironman():
+		return ""
+	if (Campaign.progress().get("done", {}) as Dictionary).has(mid):
+		return "IRONMAN: this mission is played for good."
+	if MissionSave.has(mid, "auto"):
+		return "IRONMAN: this mission goes on from where you left it."
+	return ""
 
 
 ## An objective's words on the briefing, before any match: its counters at their start ("0 of 4"), its clocks at their
@@ -570,10 +597,12 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 			main._to_menu()
 			pick = nxt
 			briefing(main, nxt)])
-	if not online and not won and run.mode == "solo" and MissionSave.has(mid, "checkpoint"):
+	var iron := Campaign.ironman() and run.mode == "solo"
+	if not online and not won and run.mode == "solo" and MissionSave.has(mid, "checkpoint") and not iron:
 		# a CHECKPOINT kept: try again from the last part begun, not from the start (player-comforts)
 		btns.append(["RETRY FROM CHECKPOINT", func() -> void: main.mission_load("checkpoint", mid)])
-	if not online:
+	if not online and not (won and iron):
+		# (IRONMAN: a mission won is played for good; a defeat may be tried again from its start)
 		btns.append(["PLAY AGAIN" if won else "RESTART MISSION", func() -> void: main.start()])
 	btns.append(["BATTLE REPORT", func() -> void:
 		o.queue_free()
@@ -775,6 +804,26 @@ static func _hub_difficulty(main: Node, list: VBoxContainer) -> void:
 	var about := {"easy": "More time on the clock and fewer enemies.", "normal": "The mission as it was written.",
 		"hard": "Less time on the clock and more enemies."}
 	list.add_child(_wrap(Loc.t(about[dnow]), 13, UiStyle.MUTED))
+	_hub_ironman(main, list)
+
+
+## IRONMAN on the hub: one save that goes on where you left it, nothing to load back; asked first, and it stays on.
+static func _hub_ironman(main: Node, list: VBoxContainer) -> void:
+	if Campaign.ironman():
+		var on := UiStyle.text(Loc.t("IRONMAN: ON"), 15, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true)
+		on.name = "HubIronman"
+		list.add_child(on)
+		list.add_child(_wrap(Loc.t("One save that goes on where you left it. No loading back, no checkpoints, choices stick."), 13, UiStyle.MUTED))
+		return
+	var b: Button = main._button("IRONMAN: OFF", func() -> void:
+		main.ask("Play this campaign in IRONMAN? Only where you left each mission is kept: no SAVE, no LOAD SAVE, no checkpoints, a finished mission is not played again. It can't be turned off.", "IRONMAN",
+			func() -> void:
+				Campaign.set_ironman()
+				show(main)))
+	b.name = "HubIronman"
+	b.custom_minimum_size = Vector2(0, 44 if Settings.pc() else 56)
+	b.add_theme_font_size_override("font_size", 13)
+	list.add_child(b)
 
 
 ## A hub as the story has left it (clockwork-prologue-build): "after": {mission id: {"title", "about", "still",

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.119", "items": [
+		"IRONMAN CAMPAIGN: on the campaign hub, IRONMAN plays the campaign with only one save, the one that goes on where you left each mission. No SAVE or LOAD SAVE in the match menu, no checkpoints, a choice is saved the moment you make it, a mission you are in the middle of can only be continued, and a mission you have won is not played again. Asked before it is turned on, and it stays on.",
+	]},
 	{"v": "0.38.118", "items": [
 		"THE BROOD MOTHER CAN GET UP TO FIGHT WITHOUT LOSING HER ECONOMY: when she uproots, her swamp now LINGERS for 45 seconds where she was rooted, fading as the time runs out. The Rootmaws on it stay rooted and WAIT (they drink nothing: a \"waiting\" mark over them, and their card says WAITING: THE MOTHER IS UP; hers says HER SWAMP LINGERS with the time left). Root her again on it and they feed again at once. If she stays up longer, the swamp recedes and they uproot as before, but each keeps its spot: when the swamp is back under it (she rooted again, or a Mound Turtle's swamp) it ROOTS AGAIN BY ITSELF, unless you gave it another order. The Brood computer now gets up for smaller fights at its nest and roots back before the swamp runs out.",
 	]},

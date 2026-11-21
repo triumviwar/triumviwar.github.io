@@ -2914,8 +2914,8 @@ func _menu_list() -> Array:
 		{"label": "MINIMAP", "slider": "minimap", "cb": func() -> void: pass},
 		{"label": "SETTINGS", "cb": func() -> void: settings_requested.emit()},      # (the whole Settings page over the match)
 	]
-	if MissionSave.can_save(game):
-		# a campaign mission (player-comforts): SAVE now, LOAD your own save (asked first: what happened since is lost)
+	if MissionSave.can_save(game) and not Campaign.ironman():
+		# a campaign mission (player-comforts; not in IRONMAN, where only where you left it is kept): SAVE now, LOAD your own save (asked first: what happened since is lost)
 		list.append({"label": "SAVE", "cb": func() -> void:
 			toggle_menu(false)          # (back to the match: its "Saved." is seen)
 			save_requested.emit()})

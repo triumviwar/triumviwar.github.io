@@ -43,6 +43,11 @@
   computer, 1.85x as wide as tall): the HUD at 1.3 (Settings.hud_scale_for), card buttons 54, minimap 0.8, the
   objectives folded to one line, the dialogue box 3 lines a page ("1/2", tap or NEXT). Driver
   tools/playtest/pt_comforts.gd, pictures docs/shots/player_comforts/. 12 Claude's choices in the doc.
+- IRONMAN CAMPAIGN (owner 2026-11-21 20:59 "Campaign in Ironman mode you can't save load scam"; 0.38.119,
+  docs/player_comforts.md "IRONMAN", tools/test_campaign_ironman.gd): a hub switch (asked, then stays on; Campaign.ironman /
+  set_ironman clears every SAVE/CHECKPOINT): only "where you left it" is written, no SAVE/LOAD SAVE, checkpoints write the
+  autosave, a CHOICE saved at once, START shut while under way (CONTINUE) and for good once won, a defeat restarts from
+  the start. 4 Claude's choices in the doc.
 - CAMPAIGN FIXES 1121 (owner 2026-11-21 15:43, answers to the three campaign playtests; job campaign-fixes-1121, branch
   campaign-fixes-1121, docs/campaign_fixes_1121.md, patch note under "0.38.999"): (1) a04's RIOT stoppable: a warning +
   countdown (35 s NORMAL) naming the bridge and the meadow gap, the gate men can reach it, the guild's Pendulum and line come

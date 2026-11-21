@@ -259,6 +259,20 @@ static func set_difficulty(d: String) -> void:
 	save_progress(p)
 
 
+## IRONMAN (the owner 2026-11-21: "Campaign in Ironman mode you can't save load scam"): a campaign played with only the
+## one save that goes on where you left it (MissionSave "auto"): no SAVE / LOAD SAVE, no checkpoints, a choice saved at
+## once, a finished mission not played again and a mission begun not begun afresh. Once on it stays on for this campaign.
+static func ironman() -> bool:
+	return bool(progress().get("ironman", false))
+
+
+static func set_ironman() -> void:
+	var p := progress()
+	p["ironman"] = true
+	save_progress(p)
+	MissionSave.clear_kept()
+
+
 ## A mission's multipliers at a difficulty: {"clocks", "spawns"} (the mission's "difficulty": {level: {...}} over
 ## DIFF_DEFAULT).
 static func diff_mult(m: Dictionary, level: String) -> Dictionary:

@@ -1090,6 +1090,8 @@ func choose(cid: String, opt_id: String) -> void:
 	for a in opt.get("do", []):
 		act(a)
 	objectives_changed.emit()
+	if Campaign.ironman() and saveable():
+		checkpoint_wanted.emit("choice:" + cid)      # (IRONMAN: the choice saved at once, so leaving can't undo it)
 
 
 func _opt(opts: Array, oid: String) -> Dictionary:

@@ -51,6 +51,18 @@ static func clear(mid: String, kind := "auto") -> void:
 		DirAccess.remove_absolute(path(mid, kind))
 
 
+## Every mission's own SAVE and CHECKPOINT gone (IRONMAN turned on: only where you left each one stays).
+static func clear_kept() -> void:
+	SaveGame.wait()
+	var d := DirAccess.open(DIR)
+	if d == null:
+		return
+	for f in d.get_files():
+		if f.ends_with("_save.json") or f.ends_with("_checkpoint.json"):
+			DirAccess.remove_absolute(DIR + f)
+	_has_cache.clear()
+
+
 static func clear_all(mid: String) -> void:
 	for k in KINDS:
 		clear(mid, k)
@@ -71,8 +83,8 @@ static func can_save(game: Game) -> bool:
 
 ## Write this mission's save of that kind now; true when written.
 static func write(game: Game, cfg: Dictionary, kind := "auto") -> bool:
-	if not can_save(game):
-		return false
+	if not can_save(game) or (kind != "auto" and Campaign.ironman()):
+		return false      # (IRONMAN: only where you left it is ever written)
 	var c := cfg.duplicate(true)
 	c.erase("resume")
 	return SaveGame.save(game, c, path(game.mission.id, kind))

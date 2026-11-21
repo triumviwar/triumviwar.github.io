@@ -3186,6 +3186,9 @@ func mission_save_now() -> void:
 
 ## A CHECKPOINT (MissionRun.checkpoint_wanted: a new part of the mission, a primary objective met).
 func mission_checkpoint() -> void:
+	if game and Campaign.ironman():
+		_autosave()      # (IRONMAN: no checkpoint; where you left it is written at once instead, a choice made sticks)
+		return
 	if game and MissionSave.write(game, last_cfg, "checkpoint"):
 		_autosave()
 		if game.hud:
