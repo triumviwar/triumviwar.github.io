@@ -49,6 +49,7 @@ func play() -> void:
 	note("choices seen: %s" % [choices_seen])
 	await ending(not skip)
 	note("progress after: %s" % [Campaign.progress().get("done", {}).get(mid, {})])
+	await after_win()
 
 
 func think() -> void:
@@ -64,6 +65,7 @@ func think() -> void:
 	var dawn := rr.fired.has("dawn")
 	if int(g().clock) % 20 < int(think_every):
 		var bs: Array = rr.tagged("barns").map(func(b: Building) -> String: return "%d@%s" % [b.hp, b.cell])
+		note("t=%d fairleigh %s tomasz %s" % [g().clock, "ok" if not rr.tagged("fairleigh").is_empty() else "DEAD", "ok" if not rr.tagged("tomasz").is_empty() else "DEAD"])
 		note("t=%d barns %s crown=%d rebels=%d torches=%d g2=%d g3=%d" % [g().clock, bs, side_units("crown").size(), reb.size(),
 			reb.filter(func(u: Unit) -> bool: return u.has_meta("torch")).size(), g().groups[1].size(), g().groups[2].size()])
 	if style == "reckless" and not dawn:

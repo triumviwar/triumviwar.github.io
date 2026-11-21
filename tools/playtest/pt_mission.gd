@@ -338,6 +338,13 @@ func run_mission(limit := 2400.0) -> void:
 			Engine.time_scale = 1.0
 			await think()
 			Engine.time_scale = speed
+		# a NEW roster card or a choice on screen: a picture of it (once each)
+		if not said.is_empty() and String(said[-1][1]).begins_with("new_") and not has_meta("shot_" + String(said[-1][1])):
+			set_meta("shot_" + String(said[-1][1]), true)
+			Engine.time_scale = 1.0
+			await frames(3)
+			await shot("06_" + String(said[-1][1]))
+			Engine.time_scale = speed
 		if shots_every > 0.0 and g() and g().clock >= next_shot:
 			next_shot += shots_every
 			Engine.time_scale = 1.0
@@ -392,3 +399,31 @@ func print_said() -> void:
 	for s in said:
 		if String(s[3]).strip_edges() == "" or String(s[2]).strip_edges() == "":
 			print("FINDING empty line text or name: %s" % [s])
+
+
+## After a win: NEXT MISSION (the next briefing), its BACK (the war map: this pin's seal done, the next open), the
+## ledger.
+func after_win() -> void:
+	if by_name("End_NEXT_MISSION") == null:
+		note("no NEXT MISSION on the end screen: %s" % [buttons().map(func(b: BaseButton) -> String: return String(b.text))])
+		return
+	await press_name("End_NEXT_MISSION")
+	await frames(10)
+	await shot("10_next_briefing")
+	note("NEXT MISSION opens: %s" % labels_text().left(200))
+	check("NEXT MISSION: the next mission's briefing", by_name("Briefing_Start") != null)
+	await press_text("BACK")
+	await frames(10)
+	await shot("11_after_back")
+	var w := by_name("WarMap") as WarMap
+	note("BACK from that briefing: war map %s, map_open %s; page: %s" % [w != null, CampaignMenu.map_open, labels_text().left(200)])
+	if w:
+		var st: Dictionary = w.st
+		var pins: Array = []
+		for k in st.get("pins", {}):
+			pins.append("%s=%s" % [k, st["pins"][k].get("state", "?")])
+		note("pins now: %s" % [pins])
+		await press_name("WarMap_Ledger")
+		await frames(4)
+		await shot("12_ledger")
+		note("ledger: %s" % labels_text().left(400))

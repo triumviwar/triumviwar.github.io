@@ -36,6 +36,16 @@ func play() -> void:
 			await select_all(us)
 			note("Ctrl+click / Shift+double-click: %d of %d %s selected (%s)" % [g().selection.size(), us.size(), it[1][0], _kinds(g().selection)])
 			await group_set(int(it[0]))
+		# the two who must live stay in the camp: HOLD (an idle Missionary walks off by himself to the wounded and
+		# the fallen, into the fight: that is how Tomasz died in the first runs)
+		if not args.has("nohold"):
+			for tg in ["tomasz", "fairleigh"]:
+				var u: Array = r().tagged(tg)
+				if not u.is_empty():
+					await look_at(u[0].global_position)
+					await click_at(w2win(u[0].global_position))
+					await key(KEY_H)
+					note("%s on HOLD (selected: %s, order %s)" % [tg, _kinds(g().selection), u[0].order])
 		await shot("03_groups")
 		note("volunteers (the Hollins): %d" % r().tagged("volunteers").size())
 	await run_mission(float(args.get("limit", "3600")))
@@ -44,6 +54,7 @@ func play() -> void:
 	note("choices seen: %s; counters %s; flags %s" % [choices_seen, r().counters if r() else {}, r().flags if r() else {}])
 	await ending(not args.has("skip"))
 	note("progress after: %s" % [Campaign.progress().get("done", {}).get(mid, {})])
+	await after_win()
 
 
 func think() -> void:
@@ -59,7 +70,7 @@ func think() -> void:
 	if int(g().clock) % 60 < int(think_every) and not rr.fired.has("part2"):
 		for k in [1, 2, 3]:
 			var ms: Array = rr.tagged("bar_%d_men" % k)
-			note("   bar %d: wall %d, men %d at %s" % [k, rr.tagged("bar_%d_wall" % k).size(), ms.size(),
+			note("   bar %d: wall %s, men %d at %s" % [k, rr.tagged("bar_%d_wall" % k).map(func(b: Building) -> Vector2i: return b.cell), ms.size(),
 				ms.map(func(u: Unit) -> Vector2i: return g().cell_of(u.global_position))])
 	if by_name("Choice_varenne") and verdict != "none":
 		await choose_if("varenne", verdict)
@@ -79,12 +90,14 @@ func think() -> void:
 	if not rr.fired.has("part2"):
 		var i := 0
 		for k in [1, 2, 3]:
-			if not rr.tagged("bar_%d_men" % k).is_empty() or not rr.tagged("bar_%d_wall" % k).is_empty():
+			if not rr.tagged("bar_%d_men" % k).is_empty() or rr.tagged("bar_%d_wall" % k).size() > 4:
 				i = k
 				break
 		if i == 0:
 			return
-		var wall := rr.tagged("bar_%d_wall" % i)
+		var wall: Array = rr.tagged("bar_%d_wall" % i)
+		if wall.size() <= 4:
+			wall = []          # (a way through: in)
 		var men := rr.tagged("bar_%d_men" % i)
 		var rush := foes.filter(func(u: Unit) -> bool: return rr.tagged("rush").has(u) or rr.tagged("sortie").has(u))
 		var near_rush := rush.filter(func(u: Unit) -> bool: return u.global_position.x > area("bar_%d" % i).x - 6 * Defs.TILE)
@@ -102,9 +115,19 @@ func think() -> void:
 			await army_sel_to(area("bar_%d_front" % i) + Vector2(5 * Defs.TILE, 0))
 		else:
 			await army_sel_to(area("bar_%d_behind" % i))
+		# guns out of powder (the toast says so): RELOAD (R) sends them to the nearest powder and back
+		var dry := team_units("army", ["cannon", "mortar"]).filter(func(u: Unit) -> bool: return u.powder < 1.0 and u.order != "reload")
+		if not dry.is_empty() and not has_meta("reload_%d" % int(g().clock / 30.0)):
+			set_meta("reload_%d" % int(g().clock / 30.0), true)
+			await group(4)
+			note("t=%d %d guns dry: RELOAD %s" % [g().clock, dry.size(), await card("RELOAD")])
 		if not wall.is_empty():
 			await group(4)
-			await attack_unit(nearest(wall, area("bar_%d_front" % i)))
+			var wt: Node2D = nearest(wall, area("bar_%d_front" % i))
+			var guns := team_units("army", ["cannon"])
+			if not guns.is_empty() and centroid(guns).distance_to(wt.global_position) < 9 * Defs.TILE and card_labels().has("UNLIMBER"):
+				note("t=%d guns in reach of the palisade: UNLIMBER %s" % [g().clock, await card("UNLIMBER")])
+			await attack_unit(wt)
 		else:
 			await group(4)
 			await army_sel_to(area("bar_%d_front" % i) + Vector2(4 * Defs.TILE, 0))
@@ -159,3 +182,8 @@ func _kinds(list: Array) -> String:
 	for e in list:
 		d[e.kind] = int(d.get(e.kind, 0)) + 1
 	return str(d)
+
+
+## The palisade pieces across the street's middle (rows 30-32): those must go for a way through.
+func _mid(ws: Array) -> Array:
+	return ws.filter(func(b: Building) -> bool: return is_instance_valid(b) and b.cell.y >= 29 and b.cell.y <= 32)

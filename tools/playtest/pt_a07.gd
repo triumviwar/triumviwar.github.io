@@ -58,6 +58,7 @@ func play() -> void:
 	note("counters %s; flags %s; fires out %d" % [r().counters if r() else {}, r().flags if r() else {}, r().fires_out if r() else -1])
 	await ending(not args.has("skip"))
 	note("progress after: %s" % [Campaign.progress().get("done", {}).get(mid, {})])
+	await after_win()
 
 
 func think() -> void:
@@ -114,11 +115,27 @@ func think() -> void:
 			await key(KEY_M)
 			await click_at(mini_win(f.global_position + Vector2(0, 2.5 * Defs.TILE)))
 		return
-	# Part 3: the bridges
-	for it in [[2, "ponte_sant_angelo_w"], [4, "ponte_ripetta_w"], [1, "ponte_sisto_w"], [3, "piazza_in"]]:
-		await group(int(it[0]))
-		if int(it[0]) == 3:
-			await key(KEY_M)
-			await click_at(mini_win(area(String(it[1]))))
-		else:
-			await army_sel_to(area(String(it[1])))
+	# Part 3: the bridges. The muskets on the Ponte Sant'Angelo, the guns where the north road comes into the square,
+	# the riders hunt whatever comes near the square; Tomasz on the steps (HOLD), the King too
+	if not has_meta("held"):
+		set_meta("held", true)
+		for tg in ["king"]:
+			var u: Array = rr.tagged(tg)
+			if not u.is_empty():
+				await look_at(u[0].global_position)
+				await click_at(w2win(u[0].global_position))
+				await key(KEY_H)
+	await group(2)
+	await army_sel_to(area("ponte_sant_angelo_w"))
+	await group(4)
+	await army_sel_to(area("piazza_in") + Vector2(0, -6 * Defs.TILE))
+	await group(3)
+	await key(KEY_M)
+	await click_at(mini_win(area("steps")))
+	var foes: Array = side_units("creatures") + side_units("automata")
+	var near: Array = foes.filter(func(u: Unit) -> bool: return u.global_position.distance_to(area("piazza_in")) < 18 * Defs.TILE)
+	await group(1)
+	if not near.is_empty():
+		await attack_unit(nearest(near, area("piazza_in")))
+	else:
+		await army_sel_to(area("borgo_square"))

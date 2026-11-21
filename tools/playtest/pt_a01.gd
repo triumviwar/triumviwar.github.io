@@ -41,6 +41,7 @@ func play() -> void:
 	note("choices seen: %s; counters %s" % [choices_seen, r().counters if r() else {}])
 	await ending(not args.has("skip"))
 	note("progress after: %s" % [Campaign.progress().get("done", {}).get(mid, {})])
+	await after_win()
 
 
 func _make_groups() -> void:
@@ -63,6 +64,12 @@ func _make_groups() -> void:
 		await click_at(w2win(tom[0].global_position))
 		note("click on Tomasz selects %s" % [_kinds(g().selection)])
 		await group_set(3)
+	var wag := r().tagged("wagon")
+	if not wag.is_empty():
+		await look_at(wag[0].global_position)
+		await click_at(w2win(wag[0].global_position))
+		note("click on the wagon selects %s" % [_kinds(g().selection)])
+		await group_set(6)
 	await shot("03_groups")
 	# the riders' round: every house lot, nearest first from the garrison
 	var lots: Array = []
@@ -103,6 +110,13 @@ func think() -> void:
 		await key(KEY_M)
 		await click_at(mini_win(area("yard")))
 		note("Tomasz sent alone to the yard")
+	# the powder wagon follows the muskets (their refill)
+	if not rr.tagged("wagon").is_empty() and not team_units("garrison", ["musketeer"]).is_empty():
+		var mc := centroid(team_units("garrison", ["musketeer"]))
+		if rr.tagged("wagon")[0].global_position.distance_to(mc) > 6 * Defs.TILE:
+			await group(6)
+			await key(KEY_M)
+			await click_at(mini_win(mc + Vector2(0, 2 * Defs.TILE)))
 	var foes := side_units("assembly")
 	var found: Array = rr.tagged("presses").filter(func(b: Building) -> bool: return not b.has_meta("disguise_team"))
 	if not rr.fired.has("part2"):

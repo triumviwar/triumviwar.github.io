@@ -79,9 +79,13 @@ func play() -> void:
 		await shot("02_talk_%s" % id)
 		off_screen("talk " + id)
 		var n := 0
+		var said_lines: Array = [first]
 		while by_name("HubTalk") and n < 30:
 			await press_name("TalkNext")
 			n += 1
+			if by_name("TalkText"):
+				said_lines.append(String((by_name("TalkText") as Label).text))
+		note("talk %s: %s" % [id, " / ".join(said_lines)])
 		check("hotspot %s talk closes after its lines" % id, by_name("HubTalk") == null, "%d presses" % n)
 	flush_errors("hotspots")
 	# the other storylines
