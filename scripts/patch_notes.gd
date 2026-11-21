@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.108", "items": [
+		"PLAYTEST FIXES: menus, saves, online and the Brood's campaign were played start to finish by test players. Fixed: a damaged settings or save file no longer stops the game; COPY in an online room works; a wrong room code now says the room was not found; a guest whose host left, or who rejoins after dropping out, is no longer left waiting for ever; the ranked result no longer covers VICTORY / DEFEAT; slider tracks show in full; in Specimen One the pen's gate can be clicked; mission briefings show real times and counts instead of codes; counts stop at their target; the end screens of the Nest and creature sides say the story goes on from the other side; the warehouse hub follows who won; the egg, the crate and the notebook no longer sit on top of each other; the war map's title fits its frame; mission buttons no longer hide behind the match MENU.",
+	]},
 	{"v": "0.38.107", "items": [
 		"THE CROWN COMPUTER'S COACHING, CLEANED UP (nothing the player uses changed): its rules were measured again as groups, switched off and added back one at a time over 270 games to 20 minutes. Against the Clockwork its army clock and army floor (which held back the gold its economy needed) its fighting rules (the formed line, the guns' coaching, the rider screen, the cavalry micro, the defence) and its hold at home are now off, and it plays its economy: on the same ten games it beats the old set game by game (9 better, 1 worse) and lasted to 20:00 in all ten. Against the Brood and in the mirror nothing measured clearly, so it plays as before. Sixteen small variants from earlier tests that measured worse were removed; the situational rules stay.",
 	]},
