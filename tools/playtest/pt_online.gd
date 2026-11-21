@@ -178,6 +178,8 @@ func wait_match(timeout := 90.0) -> bool:
 
 
 func say(text: String) -> void:
+	if device == "mobile":
+		return              # (a phone has no typing box: its quick-chat buttons instead)
 	await key_tap(KEY_ENTER)
 	await wait(0.2)
 	if not hud.chat_typing:

@@ -16,8 +16,9 @@ COMMON="relay:ws://127.0.0.1:$PORT sync:$SYNC scen:$SCEN secs:$SECS out:$OUT/sho
 headless() {  # role: a small window (a headless copy has no screen to click on)
 	PT_HOME=$OUT/home_$1 $RUN 960x540 role:$1 $COMMON > "$OUT/$1.log" 2>&1 &
 }
-win() {  # role [size]
-	PT_HOME=$OUT/home_$1 $RUN ${2:-1280x720} role:$1 $COMMON > "$OUT/$1.log" 2>&1 &
+win() {  # role [size] [extra args...]
+	r=$1; sz=${2:-1280x720}; shift; [ $# -gt 0 ] && shift
+	PT_HOME=$OUT/home_$r $RUN $sz role:$r $COMMON "$@" > "$OUT/$r.log" 2>&1 &
 }
 if [ "$SCEN" = "coop" ] || [ "$SCEN" = "versus" ]; then
 	win chost; H=$!
@@ -32,7 +33,7 @@ elif [ "$SCEN" = "wrong" ]; then
 else
 	win host; H=$!
 	sleep 2
-	win guest ${GUEST_SIZE:-1280x720}; G=$!
+	win guest ${GUEST_SIZE:-1280x720} $GUEST_ARGS; G=$!     # GUEST_ARGS="device:mobile lang:pt": the guest on a phone, in Portuguese
 	case $SCEN in
 		spec) headless spec ;;
 		full) headless third ;;
