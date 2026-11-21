@@ -1,0 +1,4464 @@
+[
+ {
+  "sheet": "units_raptor_1.png",
+  "file": "assets/units/raptor/idle_se.png",
+  "subject": "Raptor",
+  "anim": "idle",
+  "facing": "se",
+  "frames": [
+   0
+  ],
+  "problem": "The idle frames idle_s, idle_se and idle_n are an older, bulkier Raptor design, about 1.3x the size of the redrawn slim walk frames (thicker body, different crest, more frontal stance). Each time a Raptor stops walking it pops to a bigger, differently drawn creature. idle_se is also drawn facing straight south (front-on), not south-east, so a Raptor walking SE turns to face the camera when it stops. idle_e matches the walk_e design and is fine.",
+  "severity": "HIGH",
+  "kind": "size",
+  "confidence": "sure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/001_units_raptor_idle_se.png",
+  "source": [
+   "art/redraws/raptor_walk_n_chatgpt.png",
+   "art/redraws/raptor_walk_ne_chatgpt.png",
+   "art/redraws/raptor_walk_s_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_tyrant_challenger_1.png",
+  "file": "assets/units/tyrant_challenger/death_n.png",
+  "subject": "Tyrant Challenger",
+  "anim": "death",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "problem": "The north death never falls: all 5 frames are a standing back view and match the walk_n frames almost exactly (best match a walk frame in every case). A Challenger killed while facing north just walks in place and then vanishes.",
+  "severity": "HIGH",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/002_units_tyrant_challenger_death_n.png",
+  "source": [
+   "art/redraws/tyrant_challenger_portrait_chatgpt.png",
+   "art/redraws/young_tyrant_concept_chatgpt.png",
+   "art/redraws/young_tyrant_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_pikeman_2.png",
+  "file": "assets/units/rebel_pikeman/walk_s.png",
+  "subject": "Rebel Pikeman",
+  "anim": "walk",
+  "facing": "s",
+  "frames": [
+   2
+  ],
+  "problem": "A SECOND pike appears: the man still carries his pike over the shoulder and holds another pike raised in his front hand; frames 0-1 have one pike. Flickers every walk cycle.",
+  "severity": "HIGH",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/003_units_rebel_pikeman_walk_s.png",
+  "source": [
+   "art/campaign/rebels/pikeman_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_pikeman_2.png",
+  "file": "assets/units/rebel_pikeman/walk_se.png",
+  "subject": "Rebel Pikeman",
+  "anim": "walk",
+  "facing": "se",
+  "frames": [
+   2
+  ],
+  "problem": "Same as walk_s: a second pike in the raised hand on top of the shouldered one (two pikes).",
+  "severity": "HIGH",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/004_units_rebel_pikeman_walk_se.png",
+  "source": [
+   "art/campaign/rebels/pikeman_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_armoured_2.png",
+  "file": "assets/units/musketeer_armoured/idle_s.png",
+  "subject": "Armoured Musketeer (Guardsman)",
+  "anim": "idle",
+  "facing": "s",
+  "frames": [
+   1
+  ],
+  "problem": "Frame 1 stands on ONE leg: only a single boot/leg under the cuirass (frame 0 has two). The idle flickers between two legs and one leg.",
+  "severity": "HIGH",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/005_units_musketeer_armoured_idle_s.png",
+  "source": [
+   "art/redraws/musketeer_armoured_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_armoured_aim_s_chatgpt.png",
+   "art/redraws/musketeer_armoured_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_cuirassier_1.png",
+  "file": "assets/units/cuirassier/attack_n.png",
+  "subject": "Cuirassier",
+  "anim": "attack",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "problem": "Wrong facing: the N sabre attack shows the horse and rider coming toward the camera at a SE three-quarter angle (rider's face and breastplate front visible), not from behind. A Cuirassier attacking northward turns to face the viewer.",
+  "severity": "HIGH",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/006_units_cuirassier_attack_n.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_cuirassier_1.png",
+  "file": "assets/units/cuirassier/attack_ne.png",
+  "subject": "Cuirassier",
+  "anim": "attack",
+  "facing": "ne",
+  "frames": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "problem": "Wrong facing: the NE attack is also a front/SE three-quarter view (horse head lower right, rider facing the camera), essentially another SE strip.",
+  "severity": "HIGH",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/007_units_cuirassier_attack_ne.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_dragoon_1.png",
+  "file": "assets/units/dragoon/walk_s.png",
+  "subject": "Dragoon",
+  "anim": "walk",
+  "facing": "s",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "problem": "The S gallop is a SE three-quarter view (horse heading to the viewer's right), not toward the camera; frame 9 jumps to a different angle. walk_se in turn is close to a side profile.",
+  "severity": "HIGH",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/008_units_dragoon_walk_s.png",
+  "source": [
+   "art/crown/dragoons.png",
+   "art/crown/mount/dragoon_armoured_mount.png",
+   "art/crown/mount/dragoon_armoured_mount_n.png"
+  ],
+  "note_lead": "Raised to HIGH by the lead reviewer: the Dragoon is common and walking south is common. An older prompt for it exists (21_dragoon_walk_south in docs/animation_redraw_prompts_2.md) but was never imported."
+ },
+ {
+  "sheet": "units_dragoon_armoured_1.png",
+  "file": "assets/units/dragoon_armoured/walk_ne.png",
+  "subject": "Armoured Dragoon",
+  "anim": "walk",
+  "facing": "ne",
+  "frames": [],
+  "problem": "walk_ne is an exact copy of walk_e, and walk_e itself is a SE-like three-quarter view with the rider's face toward the camera, so riding NE (and E) he appears to ride toward the viewer. idle_ne == idle_e and death_ne == death_e too.",
+  "severity": "HIGH",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/009_units_dragoon_armoured_walk_ne.png",
+  "source": [
+   "art/crown/mount/dragoon_armoured_mount.png",
+   "art/crown/mount/dragoon_armoured_mount_n.png",
+   "art/crown/mount/dragoon_armoured_mount_s.png"
+  ]
+ },
+ {
+  "sheet": "units_horseman_1.png",
+  "file": "assets/units/horseman/walk_ne.png",
+  "subject": "Horseman",
+  "anim": "walk",
+  "facing": "ne",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "problem": "Facing drifts across the gallop: frame 0 is a true NE rear view, frames 1-2 in between, frames 3-6 nearly an E side profile. The rider turns ~45 degrees during one loop; the red saddle cloth also jumps from a large blob (1-2) to a small patch (3-4).",
+  "severity": "HIGH",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/010_units_horseman_walk_ne.png",
+  "source": [
+   "art/crown/horseman.png",
+   "art/crown/horseman_attack_death.png",
+   "art/crown/horseman_dismounted.png"
+  ]
+ },
+ {
+  "sheet": "units_powder_wagon_2.png",
+  "file": "assets/units/powder_wagon/walk_n.png",
+  "subject": "Powder Wagon",
+  "anim": "walk",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "problem": "Seen from the back (barrels toward the viewer) but the horse is drawn BELOW/in front of the wagon's tailboard, i.e. the horse is behind the wagon pushing it; driving north the horse should be ahead (above) and mostly hidden by the wagon. Same composition in idle_n and the unload_n/death_n frames.",
+  "severity": "HIGH",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/011_units_powder_wagon_walk_n.png",
+  "source": [
+   "art/crown/powder_wagon.png",
+   "art/crown/mill_base/powder_mill_built.png",
+   "art/crown/mill_base/powder_mill_damaged.png"
+  ]
+ },
+ {
+  "sheet": "units_brood_mother_2_1.png",
+  "file": "assets/units/brood_mother_2/walk_s.png",
+  "subject": "Brood Mother stage 2",
+  "anim": "walk",
+  "facing": "s",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "problem": "The stage-2 south walk and idle_s are drawn as a south-east three-quarter view (head lower right, tail up left), unlike attack_s (front-on) and stage 1 and 3's frontal south. Walking south she looks like she is going SE, and she turns when she attacks. This is already known in docs/art_style_inconsistency.md.",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/012_units_brood_mother_2_walk_s.png",
+  "source": [
+   "art/redraws/brood_mother_e_walk_a_chatgpt.png",
+   "art/redraws/brood_mother_e_walk_b_chatgpt.png",
+   "art/redraws/brood_mother_e_walk_stride_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_brute_1.png",
+  "file": "assets/units/brute/attack_e.png",
+  "subject": "Brute",
+  "anim": "attack",
+  "facing": "e",
+  "frames": [
+   4
+  ],
+  "problem": "Frame 4 is a different drawing: the Brute is rearing, with a large pale tan belly patch and a different shell and frill. It doesn't match frames 0-3 or the walk. idle_e frame 2 also has a shorter, curled tail than frames 0-1.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/013_units_brute_attack_e.png",
+  "source": [
+   "art/brood/brute.png",
+   "art/figures/brood_brute.png",
+   "art/menu_fix/ref_unit_brute.png"
+  ]
+ },
+ {
+  "sheet": "units_grub_1.png",
+  "file": "assets/units/grub/carry_cocoon_s.png",
+  "subject": "Grub (carrying/wrapping cocoon)",
+  "anim": "carry_cocoon / idle_cocoon / wrap / death_cocoon",
+  "facing": "all",
+  "frames": [],
+  "problem": "Every cocoon strip (carry_cocoon, idle_cocoon, wrap and death_cocoon, all facings) draws the grub differently from its walk, harvest and idle: lighter olive, standing taller on thinner legs, a smaller head; it reads as a different animal while it carries a cocoon. Also carry_cocoon_s and wrap_s are side or south-east views, not south (wrap_s, wrap_se and wrap_e are nearly the same picture).",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/014_units_grub_carry_cocoon_s.png",
+  "source": [
+   "art/redraws/grub_cocoon_se_chatgpt.png",
+   "art/redraws/grub_harvest_chatgpt.png",
+   "art/redraws/grub_harvest_ne_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_grub_1.png",
+  "file": "assets/units/grub/harvest_s.png",
+  "subject": "Grub",
+  "anim": "harvest",
+  "facing": "s",
+  "frames": [
+   3,
+   4
+  ],
+  "problem": "The facing changes inside the strip: frames 0-2 are front-on (south), and frames 3-4 turn to a side SE/E view to drop the food. A grub harvesting facing south swivels mid-loop. harvest_n frame 4 also half-turns, which is milder.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/015_units_grub_harvest_s.png",
+  "source": [
+   "art/redraws/grub_harvest_chatgpt.png",
+   "art/redraws/grub_harvest_ne_chatgpt.png",
+   "art/redraws/grub_cocoon_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_hatchlings_2.png",
+  "file": "assets/units/hatchlings/walk_se.png",
+  "subject": "Hatchlings",
+  "anim": "walk (fly) / idle",
+  "facing": "se",
+  "frames": [
+   2
+  ],
+  "problem": "Frame 2 (the frame where a third wing was erased in code, 0.26.10) now shows a truncated body: one big downstroke wing, no tail or hind legs, and the far wing gone. It blinks in the fly loop, which is also the idle. This is known as weak in docs/third_wing.md; redraw wanted.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/016_units_hatchlings_walk_se.png",
+  "source": []
+ },
+ {
+  "sheet": "units_lure_dilophosaurus_1.png",
+  "file": "assets/units/lure_dilophosaurus/arrive_se.png",
+  "subject": "Venom Sire (Dilophosaurus) lure arrival",
+  "anim": "arrive",
+  "facing": "se",
+  "frames": [
+   2,
+   6,
+   7,
+   8,
+   9
+  ],
+  "problem": "The same pit blinking as the Tyrant lure: frames 6, 7 and 9 have no ground, while 8, 10 and 11 have the pit with him hovering over it in 8-9. Frame 2 he floats in mid-air. Frame 7 is drawn differently (head up, crest and head spines missing, pale yellow chest) and frame 6's head is lost in a green blob, so the design wobbles.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/017_units_lure_dilophosaurus_arrive_se.png",
+  "source": [
+   "art/redraws/dilophosaurus_lure_arrive_se_chatgpt.png",
+   "art/redraws/pterodactyl_lure_arrive_se_chatgpt.png",
+   "art/redraws/tyrannosaur_lure_arrive_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_lure_tyrannosaur_1.png",
+  "file": "assets/units/lure_tyrannosaur/arrive_se.png",
+  "subject": "Tyrant Sire lure arrival",
+  "anim": "arrive",
+  "facing": "se",
+  "frames": [
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "problem": "The pit/ground under the Sire blinks: frames 6, 8, 10 and 11 have the dug pit under his feet, while frames 7 and 9 have none, so he floats with no ground and the pit pops in and out. In frame 6 he hangs well above the pit.",
+  "severity": "MEDIUM",
+  "kind": "order",
+  "confidence": "sure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/018_units_lure_tyrannosaur_arrive_se.png",
+  "source": [
+   "art/redraws/dilophosaurus_lure_arrive_se_chatgpt.png",
+   "art/redraws/pterodactyl_lure_arrive_se_chatgpt.png",
+   "art/redraws/tyrannosaur_lure_arrive_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_mist_toad_1.png",
+  "file": "assets/units/mist_toad/fog_e.png",
+  "subject": "Mist Toad",
+  "anim": "fog",
+  "facing": "e",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13
+  ],
+  "problem": "In every fog frame the toad is covered in white blotches (the mist cut out with the background, leaving white patches stuck on its skin), so it looks piebald rather than breathing fog. The body also jumps left and right and changes size between frames (e.g. 3->4, 8->9).",
+  "severity": "MEDIUM",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/019_units_mist_toad_fog_e.png",
+  "source": [
+   "art/figures/brood_mist_toad_fog.png",
+   "art/redraws/mist_toad_hop_e_chatgpt.png",
+   "art/redraws/mist_toad_hop_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_pterodactyl_2.png",
+  "file": "assets/units/pterodactyl/walk_se.png",
+  "subject": "Pterodactyl (Storm Sire)",
+  "anim": "walk (fly) / idle",
+  "facing": "se",
+  "frames": [
+   1,
+   3
+  ],
+  "problem": "A flat dark navy patch (RGB about 16,32,48; ~260 px) sits between the far wing's root and the neck/crest in frames 1 and 3, which is likely ChatGPT's background left in. The same strip is the idle.",
+  "severity": "MEDIUM",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/020_units_pterodactyl_walk_se.png",
+  "source": [
+   "art/redraws/pterodactyl_concept_chatgpt.png",
+   "art/redraws/pterodactyl_dive_e_chatgpt.png",
+   "art/redraws/pterodactyl_dive_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_raptor_1.png",
+  "file": "assets/units/raptor/death_e.png",
+  "subject": "Raptor",
+  "anim": "death",
+  "facing": "e",
+  "frames": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "problem": "The death poses don't connect: frame 1 is lying on its belly, frame 2 on its back with legs up and the head end in red at the right, frame 3 on its belly again stretched out, and frame 4 curled short. The body flips over and back between frames, so the death reads as a jumble. The Raptor is the commonest Brood unit.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/021_units_raptor_death_e.png",
+  "source": [
+   "art/redraws/raptor_walk_n_chatgpt.png",
+   "art/redraws/raptor_walk_ne_chatgpt.png",
+   "art/redraws/raptor_walk_s_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_storm_challenger_1.png",
+  "file": "assets/units/storm_challenger/attack_n.png",
+  "subject": "Storm Challenger",
+  "anim": "attack",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "problem": "The head flips 180 degrees inside the loop: frames 0, 4 and 5 (and every N fly/idle frame) have the beak at the BOTTOM, as if facing south, while the swoop frames 1-3, flipped in code, point it up. This is known in the docs as a weak spot.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/022_units_storm_challenger_attack_n.png",
+  "source": [
+   "art/redraws/storm_challenger_e_chatgpt.png",
+   "art/redraws/storm_challenger_n_chatgpt.png",
+   "art/redraws/storm_challenger_ne_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_storm_challenger_2.png",
+  "file": "assets/units/storm_challenger/walk_se.png",
+  "subject": "Storm Challenger",
+  "anim": "walk (fly) / idle",
+  "facing": "se",
+  "frames": [
+   1,
+   2,
+   3
+  ],
+  "problem": "Frame 2 is the code-patched frame (third wing erased): a truncated body with one wing and a dark cut line along the wing top. Frames 1 and 3 have a dark navy patch between the far wing root and the head crest, which looks like ChatGPT's background trapped there.",
+  "severity": "MEDIUM",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/023_units_storm_challenger_walk_se.png",
+  "source": [
+   "art/redraws/storm_challenger_e_chatgpt.png",
+   "art/redraws/storm_challenger_n_chatgpt.png",
+   "art/redraws/storm_challenger_ne_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_tyrannosaur_1.png",
+  "file": "assets/units/tyrannosaur/death_se.png",
+  "subject": "Tyrant Sire (Tyrannosaur)",
+  "anim": "death",
+  "facing": "se",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "The death starts with a different, upright drawing (standing tall like a kaiju, thin and smaller, short tail hanging down) that doesn't match his crouched walk/idle SE. He pops to a new figure the moment he dies, then crumples in frames 2-5. Frame 3 shows no head.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/024_units_tyrannosaur_death_se.png",
+  "source": [
+   "art/redraws/tyrannosaur_se_breath_death_chatgpt.png",
+   "art/redraws/tyrannosaur_concept_chatgpt.png",
+   "art/redraws/tyrannosaur_e_bite_alt_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_tyrant_challenger_1.png",
+  "file": "assets/units/tyrant_challenger/death_se.png",
+  "subject": "Tyrant Challenger",
+  "anim": "death",
+  "facing": "se",
+  "frames": [
+   3
+  ],
+  "problem": "Frame 3: a long clawed limb sticks straight up out of the back near the hips, reading as a second neck and head (the real head is lying at the right). It is absent in frames 2 and 4.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/025_units_tyrant_challenger_death_se.png",
+  "source": [
+   "art/redraws/tyrant_challenger_portrait_chatgpt.png",
+   "art/redraws/young_tyrant_concept_chatgpt.png",
+   "art/redraws/young_tyrant_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "buildings__loose_2.png",
+  "file": "assets/buildings/boiler_damaged.png",
+  "subject": "Boiler",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "States disagree in design: built is a horizontal drum with ONE chimney; construction an upright drum; damaged an upright body with TWO chimneys and a different pipe layout",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/026_buildings_boiler_damaged.png",
+  "source": []
+ },
+ {
+  "sheet": "buildings_drill_cuirassier_1.png",
+  "file": "assets/buildings/drill_cuirassier/mount_e.png",
+  "subject": "Cuirassier (Barracks drill, horse cut out)",
+  "anim": "mount",
+  "facing": "e",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "problem": "Leftovers of the removed horse float beside the rider: a bridle/rein scrap hangs in the air to his right in every frame, and in frame 1 a detached boot/hoof sits well below the figure; the saddle cloth floats with no body",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/027_buildings_drill_cuirassier_mount_e.png",
+  "source": [
+   "art/campaign/warmap_mountains_chatgpt.png",
+   "art/crown/mount/dragoon_mount_e.png",
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "buildings_drill_horseman_1.png",
+  "file": "assets/buildings/drill_horseman/mount_e.png",
+  "subject": "Horseman (Barracks drill, horse cut out)",
+  "anim": "mount",
+  "facing": "e",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "problem": "Same as the Cuirassier: detached rein/bridle scraps float to the right of the rider in every frame and a stray hoof/boot below him in frame 1",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/028_buildings_drill_horseman_mount_e.png",
+  "source": [
+   "art/campaign/warmap_mountains_chatgpt.png",
+   "art/crown/mount/dragoon_mount_e.png",
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "buildings_paddock_horse_1.png",
+  "file": "assets/buildings/paddock_horse/graze_e.png",
+  "subject": "Paddock horse",
+  "anim": "graze",
+  "facing": "e,n,ne,s,se",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "The graze strips do not match their facings: graze_e is not a side profile (a compact front/three-quarter view unlike idle_e/walk_e) and graze_s, graze_se and graze_n are nearly the same silhouette; the horse also looks smaller than in walk/idle",
+  "severity": "MEDIUM",
+  "kind": "size",
+  "confidence": "likely",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/029_buildings_paddock_horse_graze_e.png",
+  "source": []
+ },
+ {
+  "sheet": "buildings__loose_18.png",
+  "file": "assets/buildings/wall_ns_construction.png",
+  "subject": "Palisade N-S run",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "wall_ns_construction / wall_ns_damaged / wall_ns_destroyed are front-on E-W palisade art squeezed to 32 px, while wall_ns_built is a narrow side-on column of stakes; a N-S line changes from a column to a wide front-on fence when damaged or being built",
+  "severity": "MEDIUM",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/030_buildings_wall_ns_construction.png",
+  "source": []
+ },
+ {
+  "sheet": "menu__loose_1.png",
+  "file": "assets/menu/battle.jpg",
+  "subject": "Main menu battle painting",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Clockwork Jack in the right-middle (twin drill launchers, about x 1100-1230, y 430-560 of 1672x941): its body runs into a long purple coil spring that ends in a second robot torso below (the sword-bearer), so two automata are merged by a spring 'neck/arm' - a hallucinated anatomy",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/031_menu_battle.png",
+  "source": [
+   "art/redraws/main_menu_battle_chatgpt.png",
+   "art/redraws/main_menu_battle_wide_chatgpt.png",
+   "art/menu_fix/battle_current.png"
+  ]
+ },
+ {
+  "sheet": "menu__loose_1.png",
+  "file": "assets/menu/battle.jpg",
+  "subject": "Main menu battle painting",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "A Brood creature in the lower middle (left of the stone bridge, about x 870-1000, y 690-760) has RED spines/crest; the owner wants the Brood green (the other creatures were repainted green in 0.33.32, this one was missed)",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/032_menu_battle.png",
+  "source": [
+   "art/redraws/main_menu_battle_chatgpt.png",
+   "art/redraws/main_menu_battle_wide_chatgpt.png",
+   "art/menu_fix/battle_current.png"
+  ]
+ },
+ {
+  "sheet": "units_pikeman_2.png",
+  "file": "assets/units/pikeman/walk_ne.png",
+  "subject": "Pikeman (Crown campaign)",
+  "anim": "walk",
+  "facing": "ne",
+  "frames": [
+   1
+  ],
+  "problem": "Two pike shafts drawn (a doubled line) in frame 1; the others have one (already in docs/animation_audit_units.md, still not fixed).",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/033_units_pikeman_walk_ne.png",
+  "source": [
+   "art/campaign/rebels/pikeman_chatgpt.png",
+   "art/campaign/rebels/pikeman_thrust_chatgpt.png",
+   "art/campaign/rebels/pikeman_thrust_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_pikeman_2.png",
+  "file": "assets/units/pikeman/walk_s.png",
+  "subject": "Pikeman (Crown campaign)",
+  "anim": "walk",
+  "facing": "s",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "Only 2 frames for the walk in s and se (4 in e/ne/n), and the s/se walk is the side view facing east carrying the pike back: the legs barely move, the walk skates.",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/034_units_pikeman_walk_s.png",
+  "source": [
+   "art/campaign/rebels/pikeman_chatgpt.png",
+   "art/campaign/rebels/pikeman_thrust_chatgpt.png",
+   "art/campaign/rebels/pikeman_thrust_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_pikeman_1.png",
+  "file": "assets/units/rebel_pikeman/brace_s.png",
+  "subject": "Rebel Pikeman",
+  "anim": "brace",
+  "facing": "s",
+  "frames": [
+   0
+  ],
+  "problem": "The levelled pike toward the viewer is drawn as a short stub pointing straight DOWN, its head hanging below the soles / ground line; reads as a man holding a stick at the floor, not a braced pike. attack_s (all 3 frames) the same, with the tip poking under the feet.",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/035_units_rebel_pikeman_brace_s.png",
+  "source": [
+   "art/campaign/stills/p01_04_rebels_come.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_torch_2.png",
+  "file": "assets/units/rebel_torch/mine_ne.png",
+  "subject": "Rebel Torch-bearer",
+  "anim": "mine (setting fire)",
+  "facing": "ne",
+  "frames": [
+   1,
+   2,
+   4
+  ],
+  "problem": "Frames 1-2 have detached sparks/specks floating behind the head and below the hand (stray pixels, one far below); frame 4 the torch is drawn bent like a rope/hook ending on the ground.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/036_units_rebel_torch_mine_ne.png",
+  "source": [
+   "art/campaign/stills/p01_04_rebels_come.png"
+  ]
+ },
+ {
+  "sheet": "campaign_warmap_art_2.png",
+  "file": "campaign/warmap_art/ship_big.png",
+  "subject": "War map ship (big)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Magenta/pink halo left along all the rigging lines and sail edges (background removal on a magenta key): the ropes read hot pink on the parchment. ship_small.png has the same pink rigging.",
+  "severity": "MEDIUM",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/037_campaign_warmap_art_ship_big.png",
+  "source": []
+ },
+ {
+  "sheet": "units_ballista_1.png",
+  "file": "assets/units/ballista/death_n.png",
+  "subject": "Spring Ballista",
+  "anim": "death",
+  "facing": "s, se, e, ne, n",
+  "frames": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "problem": "All five death strips are the same SE-angle picture, so a ballista facing N, S or E snaps to the SE view when it dies.",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/038_units_ballista_death_n.png",
+  "source": [
+   "art/redraws/ballista_wreck_chatgpt.png",
+   "art/redraws/ballista_dirs.png",
+   "art/redraws/ballista_dirs_preview.png"
+  ]
+ },
+ {
+  "sheet": "units_ballista_1.png",
+  "file": "assets/units/ballista/death_s.png",
+  "subject": "Spring Ballista",
+  "anim": "death",
+  "facing": "all",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "Frames 1 and 2 touch the top of the cell (the flying spring coil and the smoke are cut flat at the top edge); frame 0 touches the bottom (bolt cut). Frame 1 also looks larger than frames 0/2.",
+  "severity": "MEDIUM",
+  "kind": "cutoff",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/039_units_ballista_death_s.png",
+  "source": [
+   "art/redraws/ballista_wreck_chatgpt.png",
+   "art/redraws/ballista_dirs.png",
+   "art/redraws/ballista_dirs_preview.png"
+  ]
+ },
+ {
+  "sheet": "units_bulwark_1.png",
+  "file": "assets/units/bulwark/attack_n.png",
+  "subject": "Bulwark (old/experimental)",
+  "anim": "attack/brace/braced_hit/death/idle/walk",
+  "facing": "s, se, ne, n",
+  "frames": [],
+  "problem": "Most facings are the same side view facing right (S, SE, E, NE identical; attack_n, brace_n, braced_hit_n, death_n too), only idle_n and walk_n show the back. Attack frame 2 the spear passes through the shield.",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/040_units_bulwark_attack_n.png",
+  "source": [
+   "art/clockwork/bulwark.png"
+  ]
+ },
+ {
+  "sheet": "units_clock_soldier_3.png",
+  "file": "assets/units/clock_soldier/idle_e.png",
+  "subject": "Clock Soldier",
+  "anim": "idle/walk vs attack/guard/death",
+  "facing": "e",
+  "frames": [
+   0
+  ],
+  "problem": "East view changes design between strips: idle_e and walk_e show the CLOCK FACE on the chest facing east with the shield at the back (idle) or a shield edge at the front (walk), while attack_e, guard_e and death_e show a plain body with NO clock face and the shield held behind/at the side. The shield also jumps from behind the body (idle_e, attack_e) to in front (walk_e frame 0-5) when the soldier starts walking. Known in docs/clock_soldier_west.md (\"shield on its back\").",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/041_units_clock_soldier_idle_e.png",
+  "source": [
+   "art/redraws/clock_soldier_idle_west_chatgpt.png",
+   "art/redraws/clock_soldier_idle.png",
+   "art/redraws/clock_soldier_shield_idle_east_guide.png"
+  ]
+ },
+ {
+  "sheet": "units_great_winder_1.png",
+  "file": "assets/units/great_winder/idle_ne.png",
+  "subject": "Great Winder",
+  "anim": "idle/walk/sweep/wind/death",
+  "facing": "ne",
+  "frames": [],
+  "problem": "The NE view is drawn as a second SE view: the clock face and the front rollers face the camera at the lower right, while the N view shows the hopper/back plate and the wind arm in wind_ne points NE. Turning between SE and NE barely changes; between NE and N the machine flips round.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/042_units_great_winder_idle_ne.png",
+  "source": [
+   "art/redraws/great_winder_dirs_v2_chatgpt.png",
+   "art/redraws/great_winder_key_rollers_chatgpt.png",
+   "art/redraws/great_winder_leg_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_netter_1.png",
+  "file": "assets/units/netter/walk_s.png",
+  "subject": "Netter",
+  "anim": "walk/idle/attack/death",
+  "facing": "s",
+  "frames": [],
+  "problem": "The S view is turned 90 degrees: the barrel body lies crosswise (long side to the camera) exactly like the E view, while the N view shows the barrel end-on and SE/NE show it along the facing. So a Netter walking south looks like it is side-stepping east; turning S<->SE/SW snaps the body round. Affects idle_s, walk_s, attack_s, death_s.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/043_units_netter_walk_s.png",
+  "source": [
+   "art/redraws/netter_walk.png",
+   "art/redraws/netter_death_chatgpt.png",
+   "art/redraws/concepts/netter_v1.png"
+  ]
+ },
+ {
+  "sheet": "units_pendulum_1.png",
+  "file": "assets/units/pendulum/attack_hi_l_s.png",
+  "subject": "Pendulum",
+  "anim": "attack_hi_l / attack_hi_r",
+  "facing": "s, n",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "problem": "HIGH SWING S and N views: only the swinging arm carries a blade; the other hand is a bare brass weight with NO blade in every frame. In idle, walk, the normal attack_l/attack_r and in the high swing SE/NE views both hands carry blades, so one blade vanishes when the Pendulum swings at a flyer facing S or N (also attack_hi_r_s / attack_hi_l_n / attack_hi_r_n).",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/044_units_pendulum_attack_hi_l_s.png",
+  "source": [
+   "art/redraws/pendulum_death_chatgpt_1.png",
+   "art/redraws/pendulum_death_chatgpt_2.png",
+   "art/redraws/pendulum_high_swing_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_skywing_1.png",
+  "file": "assets/units/skywing/idle_s.png",
+  "subject": "Skywing (old/experimental)",
+  "anim": "idle",
+  "facing": "s",
+  "frames": [
+   1
+  ],
+  "problem": "Frame 1 is only a small wing fragment: the body is missing; frames 0 and 2 show the creature off-centre with one wing.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/045_units_skywing_idle_s.png",
+  "source": [
+   "art/redraws/skywing_pterosaur_concept_chatgpt.png",
+   "art/brood/skywing.png",
+   "art/brood/skywing_grounded.png"
+  ]
+ },
+ {
+  "sheet": "units_skywing_2.png",
+  "file": "assets/units/skywing/walk_ne.png",
+  "subject": "Skywing (old/experimental)",
+  "anim": "walk",
+  "facing": "ne",
+  "frames": [
+   1
+  ],
+  "problem": "Frame 1 contains two overlapping copies of the creature (two tails, two pairs of wings); walk_ne has only 2 frames where the other views have 3.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/046_units_skywing_walk_ne.png",
+  "source": [
+   "art/redraws/skywing_pterosaur_concept_chatgpt.png",
+   "art/brood/skywing.png",
+   "art/brood/skywing_grounded.png"
+  ]
+ },
+ {
+  "sheet": "units_springer_1.png",
+  "file": "assets/units/springer/attack_up_s.png",
+  "subject": "Springer",
+  "anim": "attack_up",
+  "facing": "all",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "problem": "Body design changes between strips: in idle, walk, jump and attack_l/attack_r BOTH arms end in steel drill/blade tips, but in attack_up (all 5 facings) and in death (all 5 facings) one arm is a big brass CLAW/pincer instead of a drill. The arm switches shape the moment it shoots at a flyer or dies.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/047_units_springer_attack_up_s.png",
+  "source": [
+   "art/figures/src_clockwork_springers_chatgpt.png",
+   "art/figures/clockwork_springer_crouch_left.png",
+   "art/figures/clockwork_springer_leap_left.png"
+  ],
+  "note_lead": "Lowered from HIGH by the lead reviewer: it shows only when a Springer shoots at a flyer."
+ },
+ {
+  "sheet": "units_springer_2.png",
+  "file": "assets/units/springer/death_s.png",
+  "subject": "Springer",
+  "anim": "death",
+  "facing": "all",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "problem": "Same as attack_up: the death strips (s, se, e, ne, n) draw one arm as a claw/pincer, the idle/walk/attack strips show two drill arms. The claw arm appears on the frame the unit dies.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/048_units_springer_death_s.png",
+  "source": [
+   "art/figures/src_clockwork_springers_chatgpt.png",
+   "art/figures/clockwork_springer_crouch_left.png",
+   "art/figures/clockwork_springer_leap_left.png"
+  ]
+ },
+ {
+  "sheet": "units_steam_walker_1.png",
+  "file": "assets/units/steam_walker/walk_e.png",
+  "subject": "Steam Walker (old/experimental)",
+  "anim": "walk, attack",
+  "facing": "e",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "problem": "The body jumps sideways inside the cell from frame to frame (attack_e frame 1 ~60 px right of frames 0/2; walk_e drifts left and right), and the walker changes size between attack frames; walk frame 5 loses its steam plume.",
+  "severity": "MEDIUM",
+  "kind": "size",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/049_units_steam_walker_walk_e.png",
+  "source": [
+   "art/clockwork/steam_walker.png"
+  ]
+ },
+ {
+  "sheet": "units_stormcaller_1.png",
+  "file": "assets/units/stormcaller/cast_s.png",
+  "subject": "Stormcaller (old/experimental)",
+  "anim": "cast, attack, walk",
+  "facing": "all",
+  "frames": [
+   0
+  ],
+  "problem": "cast frame 0 is the side-view attack pose, frames 1-3 a front view; attack_* are the same side view in every facing and walk_n is a side view, not a back view.",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/050_units_stormcaller_cast_s.png",
+  "source": [
+   "art/clockwork/stormcaller.png"
+  ]
+ },
+ {
+  "sheet": "units_tesla_cart_2.png",
+  "file": "assets/units/tesla_cart/deployed_s.png",
+  "subject": "Tesla Cart (old/experimental)",
+  "anim": "deploy vs deployed/attack",
+  "facing": "all",
+  "frames": [],
+  "problem": "deploy ends on a TALL coil tower (frame 4), but deployed and attack show a short coil: the tower shrinks the moment deploy ends. attack_e/attack_ne frame 0 is drawn larger than frames 1-2.",
+  "severity": "MEDIUM",
+  "kind": "size",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/051_units_tesla_cart_deployed_s.png",
+  "source": [
+   "art/clockwork/tesla_cart.png",
+   "art/clockwork/tesla_spider.png"
+  ]
+ },
+ {
+  "sheet": "units_thresher_2.png",
+  "file": "assets/units/thresher/walk_s.png",
+  "subject": "Thresher (old/experimental)",
+  "anim": "walk, idle",
+  "facing": "s",
+  "frames": [
+   0
+  ],
+  "problem": "The saw blades vanish: walk_s frame 0 and all three idle_s frames have bare arms, the other walk_s frames and every SE/E/NE strip carry two big saws.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/052_units_thresher_walk_s.png",
+  "source": [
+   "art/clockwork/thresher.png"
+  ]
+ },
+ {
+  "sheet": "units_ticking_owl_2.png",
+  "file": "assets/units/ticking_owl/walk_ne.png",
+  "subject": "Ticking Owl",
+  "anim": "walk/idle (fly loop)",
+  "facing": "ne",
+  "frames": [
+   0
+  ],
+  "problem": "Frame 0 of the NE fly loop shows the owl turned to the east (face, eye and clock face visible) while frames 1-3 show its back: the body spins every loop. Same in idle_ne frame 0.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/053_units_ticking_owl_walk_ne.png",
+  "source": [
+   "art/redraws/ticking_owl_fly.png"
+  ]
+ },
+ {
+  "sheet": "units_cannon_1.png",
+  "file": "assets/units/cannon/deploy_e.png",
+  "subject": "Field Cannon",
+  "anim": "deploy",
+  "facing": "se, e, ne",
+  "frames": [
+   2,
+   3
+  ],
+  "problem": "Mid-deploy the gun jumps from a side view (frames 0-1, 4) to a head-on view with the barrel pointing straight up (frames 2-3), then back; se, e and ne share the same east frames 0-3. The horse leaving is a dithered checkerboard. Looks code-assembled from other facings.",
+  "severity": "MEDIUM",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/054_units_cannon_deploy_e.png",
+  "source": [
+   "art/crown/cannon.png",
+   "art/crown/cannon2_angles.png",
+   "art/crown/cannon2_front.png"
+  ]
+ },
+ {
+  "sheet": "units_cannon_1.png",
+  "file": "assets/units/cannon/deploy_s.png",
+  "subject": "Field Cannon",
+  "anim": "deploy",
+  "facing": "s",
+  "frames": [
+   2
+  ],
+  "problem": "Frame 2 of the south deploy shows the gun in an east side view with the crew bent over it, between head-on frames; the horse also hangs below the ground line in frames 0-2.",
+  "severity": "MEDIUM",
+  "kind": "order",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/055_units_cannon_deploy_s.png",
+  "source": [
+   "art/crown/cannon.png",
+   "art/crown/cannon2_angles.png",
+   "art/crown/cannon2_front.png"
+  ]
+ },
+ {
+  "sheet": "units_dismounted_1.png",
+  "file": "assets/units/dismounted/aim_s.png",
+  "subject": "Dismounted Officer",
+  "anim": "aim/fire/death",
+  "facing": "s, se, ne, n",
+  "frames": [],
+  "problem": "All five facings of aim, fire and death are the same east-profile pose (pistol pointing screen-right). Facing south or north he still aims sideways; no real s/se/ne/n views.",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/056_units_dismounted_aim_s.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_dismounted_1.png",
+  "file": "assets/units/dismounted/death_s.png",
+  "subject": "Dismounted Officer",
+  "anim": "death",
+  "facing": "all",
+  "frames": [
+   2,
+   3
+  ],
+  "problem": "Frame 2 crouches low, frame 3 stands taller again, then frame 4 lies down: he falls, gets back up, falls. Frame 2 also loses the red plume (different design). Same in every facing.",
+  "severity": "MEDIUM",
+  "kind": "order",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/057_units_dismounted_death_s.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_ne_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_dismounted_1.png",
+  "file": "assets/units/dismounted/fire_ne.png",
+  "subject": "Dismounted Officer",
+  "anim": "fire",
+  "facing": "ne",
+  "frames": [
+   1
+  ],
+  "problem": "A second pistol/arm sticks out to the LEFT while the shot flashes on the right: an extra hand-gun appears for one frame.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/058_units_dismounted_fire_ne.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_dismounted_2.png",
+  "file": "assets/units/dismounted/melee_n.png",
+  "subject": "Dismounted Officer",
+  "anim": "melee",
+  "facing": "all",
+  "frames": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "problem": "All five facings are one slash drawn to the right; frame 0 shows him from the front, frames 1-3 from behind (body turns round mid-swing). The melee body also differs from idle/walk (no red plume on the hat, cleaner white shirt, different proportions).",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/059_units_dismounted_melee_n.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_ne_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_mortar_1.png",
+  "file": "assets/units/mortar/deploy_s.png",
+  "subject": "Mortar",
+  "anim": "deploy",
+  "facing": "all",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "problem": "The deploy is a disjointed collage: frame 1 a rearing horse, the cart changes size and shape, the crew count goes 2-1-2, frames 3-4 are the same east view in every facing, frame 5 jumps to the set-up mortar. A brown horse here, while walk uses a GREY horse (colour changes between animations).",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/060_units_mortar_deploy_s.png",
+  "source": [
+   "art/crown/mortar_a.png",
+   "art/crown/mortar_b.png",
+   "art/crown/mortar_walk.png"
+  ]
+ },
+ {
+  "sheet": "units_mortar_1.png",
+  "file": "assets/units/mortar/fire_s.png",
+  "subject": "Mortar",
+  "anim": "fire",
+  "facing": "all",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "Frame 0's mortar is a much bigger black barrel with the two crew farther apart (54-59 px wide v 39-42 in idle, feet 2-3 px lower); frame 1 snaps back to the small bronze mortar. Every shot pops in size. All five facings are the same picture.",
+  "severity": "MEDIUM",
+  "kind": "size",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/061_units_mortar_fire_s.png",
+  "source": [
+   "art/crown/mortar_a.png",
+   "art/crown/mortar_b.png",
+   "art/crown/mortar_walk.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_1.png",
+  "file": "assets/units/musketeer/death_e.png",
+  "subject": "Musketeer",
+  "anim": "death",
+  "facing": "e",
+  "frames": [
+   2
+  ],
+  "problem": "A separate small red-and-brown chunk lies on the ground to the right of the body, detached (looks like a tiny second figure or a severed piece).",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/062_units_musketeer_death_e.png",
+  "source": [
+   "art/redraws/musketeer_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_aim_s_chatgpt.png",
+   "art/redraws/musketeer_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_2.png",
+  "file": "assets/units/musketeer/idle_s.png",
+  "subject": "Musketeer",
+  "anim": "idle",
+  "facing": "s",
+  "frames": [
+   1
+  ],
+  "problem": "The musket held down his side in frame 0 almost vanishes in frame 1 (only the muzzle tip shows over the hat); the barrel also touches the top of the canvas (flat cut).",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/063_units_musketeer_idle_s.png",
+  "source": [
+   "art/redraws/musketeer_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_aim_s_chatgpt.png",
+   "art/redraws/musketeer_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_3.png",
+  "file": "assets/units/musketeer/melee_n.png",
+  "subject": "Musketeer",
+  "anim": "melee",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "No musket or bayonet visible at all in the north bayonet thrust (only a stub at the hip): he jabs with nothing. melee_s also shows almost no weapon.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/064_units_musketeer_melee_n.png",
+  "source": [
+   "art/redraws/musketeer_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_aim_s_chatgpt.png",
+   "art/redraws/musketeer_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_3.png",
+  "file": "assets/units/musketeer/reload_n.png",
+  "subject": "Musketeer",
+  "anim": "reload",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "Reloading with no musket visible (back view, the gun is entirely gone); reload_s frame 0 likewise shows no musket.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/065_units_musketeer_reload_n.png",
+  "source": [
+   "art/redraws/musketeer_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_aim_s_chatgpt.png",
+   "art/redraws/musketeer_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_armoured_1.png",
+  "file": "assets/units/musketeer_armoured/death_e.png",
+  "subject": "Armoured Musketeer",
+  "anim": "death",
+  "facing": "e",
+  "frames": [
+   2
+  ],
+  "problem": "Same detached red chunk with a stick lying apart to the right of the body as the Musketeer's death_e (recolour of the same frame). Frame 1's crumpled body is also cut by a straight vertical edge on the right.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/066_units_musketeer_armoured_death_e.png",
+  "source": [
+   "art/redraws/musketeer_armoured_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_armoured_aim_s_chatgpt.png",
+   "art/redraws/musketeer_armoured_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_armoured_3.png",
+  "file": "assets/units/musketeer_armoured/melee_n.png",
+  "subject": "Armoured Musketeer",
+  "anim": "melee",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "Same as the Musketeer: no musket/bayonet visible in the north thrust.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/067_units_musketeer_armoured_melee_n.png",
+  "source": [
+   "art/redraws/musketeer_armoured_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_armoured_aim_s_chatgpt.png",
+   "art/redraws/musketeer_armoured_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_armoured_3.png",
+  "file": "assets/units/musketeer_armoured/walk_s.png",
+  "subject": "Armoured Musketeer",
+  "anim": "walk",
+  "facing": "s",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "Only 3 frames (e has 6, ne 5, se 4); the pasted labourer legs read as one central leg in frames 0 and 2, and the musket is cut at the top edge. The walk counts per facing differ (3/4/6/5/7).",
+  "severity": "MEDIUM",
+  "kind": "code_art",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/068_units_musketeer_armoured_walk_s.png",
+  "source": [
+   "art/redraws/gait_src/crown_musketeer_armoured_walk_e.png",
+   "art/redraws/gait_src/crown_musketeer_armoured_walk_n.png",
+   "art/redraws/gait_src/crown_musketeer_armoured_walk_ne.png"
+  ]
+ },
+ {
+  "sheet": "units_balloon_3.png",
+  "file": "assets/units/balloon/gunner_up_s.png",
+  "subject": "Balloon gunner",
+  "anim": "gunner_up/gunner_down",
+  "facing": "s",
+  "frames": [
+   0
+  ],
+  "problem": "The musket is missing in frame 0 of gunner_up_s and gunner_down_s (present in frames 1-2). In every facing the gunner fires out to the viewer's right, even facing N/S.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/069_units_balloon_gunner_up_s.png",
+  "source": [
+   "art/crown/balloon_basket_pilot.png",
+   "art/crown/balloon_rope_barrel.png",
+   "art/crown/balloon_v1.png"
+  ]
+ },
+ {
+  "sheet": "units_cuirassier_1.png",
+  "file": "assets/units/cuirassier/attack_e.png",
+  "subject": "Cuirassier",
+  "anim": "attack",
+  "facing": "e",
+  "frames": [
+   1,
+   2
+  ],
+  "problem": "Doubled parts: frame 2 shows a sabre raised over the head AND a straight blade thrust out to the right at the same time (two swords); frame 1 has a doubled/ghosted helmet (two helmet shapes side by side over the rider). The E attack is also a SE three-quarter view rather than a profile.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/070_units_cuirassier_attack_e.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_cuirassier_1.png",
+  "file": "assets/units/cuirassier/attack_se.png",
+  "subject": "Cuirassier",
+  "anim": "attack",
+  "facing": "se",
+  "frames": [
+   1
+  ],
+  "problem": "Two blades: a sabre raised overhead plus a second blade angled down past the horse's neck in the same frame.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/071_units_cuirassier_attack_se.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_cuirassier_1.png",
+  "file": "assets/units/cuirassier/pistol_s.png",
+  "subject": "Cuirassier",
+  "anim": "pistol",
+  "facing": "all",
+  "frames": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "problem": "Helmet design changes between animations: in the pistol strips (all facings) his morion carries a tall red plume, while walk, idle, attack and mount show a plain morion with no plume.",
+  "severity": "MEDIUM",
+  "kind": "size",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/072_units_cuirassier_pistol_s.png",
+  "source": [
+   "art/crown/cuirassier_pistol.png",
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_cuirassier_2.png",
+  "file": "assets/units/cuirassier/walk_ne.png",
+  "subject": "Cuirassier",
+  "anim": "walk",
+  "facing": "ne",
+  "frames": [],
+  "problem": "walk_ne is a byte-for-byte copy of walk_n: a NE gallop plays the straight rear view.",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/073_units_cuirassier_walk_ne.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_cuirassier_2.png",
+  "file": "assets/units/cuirassier/walk_s.png",
+  "subject": "Cuirassier",
+  "anim": "walk",
+  "facing": "s",
+  "frames": [
+   1,
+   2,
+   3
+  ],
+  "problem": "Facing drifts inside the loop: frames 1-3 show the horse turned three-quarter to the viewer's left, frames 0 and 4-7 straight at the camera, so the gallop wobbles side to side.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/074_units_cuirassier_walk_s.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_cuirassier_2.png",
+  "file": "assets/units/cuirassier/walk_se.png",
+  "subject": "Cuirassier",
+  "anim": "walk",
+  "facing": "se",
+  "frames": [
+   4,
+   5,
+   6,
+   7
+  ],
+  "problem": "Facing drifts: frames 0-3 are a three-quarter SE view, frames 4-7 almost straight front (S); in the loop the horse swings between two angles.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/075_units_cuirassier_walk_se.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_dragoon_armoured_1.png",
+  "file": "assets/units/dragoon_armoured/idle_e.png",
+  "subject": "Armoured Dragoon",
+  "anim": "idle",
+  "facing": "e",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "The 2-frame idle switches angle: frame 0 horse heading right (three-quarter), frame 1 horse facing straight at the camera; feet also move 3 px off the line (bottom 64 vs 67). Same in idle_ne (copy) and idle_se's feet.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/076_units_dragoon_armoured_idle_e.png",
+  "source": [
+   "art/crown/mount/dragoon_armoured_mount.png",
+   "art/crown/mount/dragoon_armoured_mount_n.png",
+   "art/crown/mount/dragoon_armoured_mount_s.png"
+  ]
+ },
+ {
+  "sheet": "units_dragoon_armoured_1.png",
+  "file": "assets/units/dragoon_armoured/walk_n.png",
+  "subject": "Armoured Dragoon",
+  "anim": "walk",
+  "facing": "n",
+  "frames": [
+   0
+  ],
+  "problem": "Frame 0 is a straight rear view; frames 1-9 the horse is turned three-quarter to the right with a different saddlebag layout, so the loop snaps once per cycle.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/077_units_dragoon_armoured_walk_n.png",
+  "source": [
+   "art/crown/mount/dragoon_armoured_mount.png",
+   "art/crown/mount/dragoon_armoured_mount_n.png",
+   "art/crown/mount/dragoon_armoured_mount_s.png"
+  ]
+ },
+ {
+  "sheet": "units_horse_1.png",
+  "file": "assets/units/horse/graze_s.png",
+  "subject": "Horse",
+  "anim": "graze",
+  "facing": "s/se/ne/n",
+  "frames": [],
+  "problem": "Grazing shows the same body angle (head down to the lower right) in every facing: graze_s is an exact copy of graze_se, and graze_ne / graze_n are nearly the same pose instead of rear views.",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/078_units_horse_graze_s.png",
+  "source": [
+   "art/crown/barracks_props/horse_prop.png",
+   "art/crown/buildings_v2/horse_breeder.png",
+   "art/crown/horse_breeder.png"
+  ]
+ },
+ {
+  "sheet": "units_horseman_1.png",
+  "file": "assets/units/horseman/attack_n.png",
+  "subject": "Horseman",
+  "anim": "attack",
+  "facing": "n",
+  "frames": [
+   0
+  ],
+  "problem": "Sabre is pure team red (blade recoloured as team colour, so it will be purple in game), and it is raised in the rider's LEFT hand (viewer's left from behind) while frames 1-2 cut with the right hand.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/079_units_horseman_attack_n.png",
+  "source": [
+   "art/crown/horseman_attack_death.png",
+   "art/crown/horseman.png",
+   "art/crown/horseman_dismounted.png"
+  ]
+ },
+ {
+  "sheet": "units_horseman_1.png",
+  "file": "assets/units/horseman/attack_ne.png",
+  "subject": "Horseman",
+  "anim": "attack",
+  "facing": "ne",
+  "frames": [
+   2,
+   3
+  ],
+  "problem": "Frame 2 the horse suddenly turns to a side profile facing left/west with its legs mostly missing (only rump and head), while frames 0,1,3 are rear views; frame 3 the raised sabre is red (team colour) and held in the left hand as in attack_n frame 0.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/080_units_horseman_attack_ne.png",
+  "source": [
+   "art/crown/horseman_attack_death.png",
+   "art/crown/horseman.png",
+   "art/crown/horseman_dismounted.png"
+  ]
+ },
+ {
+  "sheet": "units_horseman_1.png",
+  "file": "assets/units/horseman/mount_se.png",
+  "subject": "Horseman",
+  "anim": "mount",
+  "facing": "se/e",
+  "frames": [
+   3,
+   4,
+   5,
+   6
+  ],
+  "problem": "A long brown musket/carbine appears on the rider's back once he is in the saddle (mount_se and mount_e frames 3-6) that the Horseman never carries in idle, walk or attack. In mount_e frames 0-1 the saddle cloth is still white (not recoloured to team red) and turns red from frame 2.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/081_units_horseman_mount_se.png",
+  "source": [
+   "art/crown/horseman_dismounted.png",
+   "art/crown/mount/horseman_mount.png",
+   "art/crown/mount/horseman_mount_n.png"
+  ]
+ },
+ {
+  "sheet": "units_horseman_1.png",
+  "file": "assets/units/horseman/walk_s.png",
+  "subject": "Horseman",
+  "anim": "walk",
+  "facing": "s",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "Facing drifts: frames 0-1 are straight front, frames 2-9 turned three-quarter to the viewer's left (tail showing on the left), so the loop snaps between angles.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/082_units_horseman_walk_s.png",
+  "source": [
+   "art/crown/horseman.png",
+   "art/crown/horseman_attack_death.png",
+   "art/crown/horseman_dismounted.png"
+  ]
+ },
+ {
+  "sheet": "units_missionary_1.png",
+  "file": "assets/units/missionary/death_se.png",
+  "subject": "Missionary",
+  "anim": "death",
+  "facing": "se/e",
+  "frames": [
+   1,
+   2,
+   3
+  ],
+  "problem": "Death strips are disjointed: death_se frames 1-2 are tangled shapes of different sizes (frame 2 small and upright again) between the fall and the lying body; death_e starts with him already lying full length (frame 0) then curls smaller (1-2): order/size wrong. No death_n file.",
+  "severity": "MEDIUM",
+  "kind": "order",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/083_units_missionary_death_se.png",
+  "source": [
+   "art/crown/missionary.png",
+   "art/crown/missionary_mounted.png",
+   "art/crown/mount/missionary_bandage_a.png"
+  ]
+ },
+ {
+  "sheet": "units_missionary_1.png",
+  "file": "assets/units/missionary/idle_n.png",
+  "subject": "Missionary",
+  "anim": "idle",
+  "facing": "n",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "The N idle shows his FRONT (face, collar, stole down the chest) instead of his back; frame 0 has the bag in front, frame 1 no bag and a white collar, so the two frames also differ in design.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/084_units_missionary_idle_n.png",
+  "source": [
+   "art/crown/missionary.png",
+   "art/crown/missionary_mounted.png",
+   "art/crown/mount/missionary_bandage_a.png"
+  ]
+ },
+ {
+  "sheet": "units_missionary_1.png",
+  "file": "assets/units/missionary/idle_ne.png",
+  "subject": "Missionary",
+  "anim": "idle",
+  "facing": "ne",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "The 2-frame idle switches pose: frame 0 hunched and turned with the bag swung out left, frame 1 upright with the bag at his side; visible as a jerk every idle cycle.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/085_units_missionary_idle_ne.png",
+  "source": [
+   "art/crown/missionary.png",
+   "art/crown/missionary_mounted.png",
+   "art/crown/mount/missionary_bandage_a.png"
+  ]
+ },
+ {
+  "sheet": "units_missionary_mounted_1.png",
+  "file": "assets/units/missionary_mounted/walk_e.png",
+  "subject": "Mounted Missionary",
+  "anim": "walk",
+  "facing": "e",
+  "frames": [
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "problem": "The processional cross he carries vanishes in frames 2-4 and is half there in 6; frames 5-6 have a dark detached fragment at the right edge of the cell (a piece of a neighbouring drawing / cut-off part).",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/086_units_missionary_mounted_walk_e.png",
+  "source": [
+   "art/crown/missionary_mounted.png",
+   "art/crown/missionary.png",
+   "art/crown/mount/missionary_bandage_a.png"
+  ]
+ },
+ {
+  "sheet": "units_missionary_mounted_1.png",
+  "file": "assets/units/missionary_mounted/walk_s.png",
+  "subject": "Mounted Missionary",
+  "anim": "walk",
+  "facing": "s",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8
+  ],
+  "problem": "The S walk is a three-quarter/side view with the horse running to the viewer's right (same angle as walk_se), not toward the camera; frames 0 and 8 differ in angle from 1-7.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/087_units_missionary_mounted_walk_s.png",
+  "source": [
+   "art/crown/missionary_mounted.png",
+   "art/crown/missionary.png",
+   "art/crown/mount/missionary_bandage_a.png"
+  ]
+ },
+ {
+  "sheet": "units_powder_wagon_2.png",
+  "file": "assets/units/powder_wagon/walk_ne.png",
+  "subject": "Powder Wagon",
+  "anim": "walk",
+  "facing": "ne",
+  "frames": [],
+  "problem": "walk_ne, idle_ne, unload_ne and death_ne are exact copies of the _e strips, and the E strips are a SE three-quarter view (horse at lower right): heading NE or E the wagon appears to head down-right.",
+  "severity": "MEDIUM",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/088_units_powder_wagon_walk_ne.png",
+  "source": [
+   "art/crown/powder_wagon.png",
+   "art/crown/mill_base/powder_mill_built.png",
+   "art/crown/mill_base/powder_mill_damaged.png"
+  ]
+ },
+ {
+  "sheet": "icons_brood_1.png",
+  "file": "assets/icons/brood/rally.png",
+  "subject": "Brood RALLY",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Shows a skull on a stake with a feather/spine headdress: a tribal totem or fetish. It is pagan in look, and it suggests the creatures have a culture (owner: the Brood is not a person). An egg, a pheromone mark or a claw scratch would fit better.",
+  "severity": "MEDIUM",
+  "kind": "tone",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/089_icons_brood_rally.png",
+  "source": []
+ },
+ {
+  "sheet": "icons_clockwork_1.png",
+  "file": "assets/icons/clockwork/ab_serpent_link.png",
+  "subject": "Brass Serpent LINK / UNLINK / COLLECT / GROW",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Flat code-drawn glyphs in the painted frame. LINK in particular shows two beige blocks with red dots, like dice, plus three cogs, and does not read as serpent heads joining. COLLECT, GROW and UNLINK are flat cogs with a tray, a plus and two arrows.",
+  "severity": "MEDIUM",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/090_icons_clockwork_ab_serpent_link.png",
+  "source": []
+ },
+ {
+  "sheet": "icons__loose_*.png",
+  "file": "assets/icons/cog_press.png",
+  "subject": "Clockwork building portraits with no frame",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "cog_press, cuckoo_house, escapement, heavy_works, mainspring, movement_works, regulator, ratchet_turret, tension and research_ticking_owl are crops on a TRANSPARENT background with no icon frame. Most are cut flat at the 64 px border: the cuckoo house is cut at left and bottom, the cog press at the right, the owl's wings at both sides, the regulator at the sides and bottom. Every other portrait sits in a dark framed square.",
+  "severity": "MEDIUM",
+  "kind": "cutoff",
+  "confidence": "sure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/091_icons_cog_press.png",
+  "source": [
+   "art/redraws/cog_press_chatgpt.png",
+   "art/clockwork/gear/cog_press_built.png",
+   "art/clockwork/gear/cog_press_construct.png"
+  ]
+ },
+ {
+  "sheet": "icons__loose_*.png",
+  "file": "assets/icons/hatchlings.png",
+  "subject": "Hatchlings (Brood unit portrait)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Drawn as a green bird chick: big hooked beak, round bird eye, a red chicken comb. Reads as a chicken, not a reptile hatchling (art direction: the Brood is reptilian first). The same beaked chicks also burst from the egg in nbr_clutch_hatchlings.png.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/092_icons_hatchlings.png",
+  "source": []
+ },
+ {
+  "sheet": "props__loose_*.png",
+  "file": "assets/props/dead_trunk.png",
+  "subject": "Dead trunk prop",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Does not read as a trunk: a lumpy brown heap with a grey pointed shape (a figure or helmet?) on top and branches out to the sides. Unclear what it is.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/093_props_dead_trunk.png",
+  "source": []
+ },
+ {
+  "sheet": "props__loose_*.png",
+  "file": "assets/props/windmill.png",
+  "subject": "Windmill prop",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The four sails are fixed to a bare tree trunk with roots, not a mill building or post. The sails do not match: one is red cloth, one checkered/torn, two brown lattice. A stray orange speck floats at the left. It reads as a hallucinated object.",
+  "severity": "MEDIUM",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/094_props_windmill.png",
+  "source": [
+   "art/crown/farm_windmill.png"
+  ]
+ },
+ {
+  "sheet": "units_brood_mother_1.png",
+  "file": "assets/units/brood_mother/lay_se.png",
+  "subject": "Brood Mother stage 1",
+  "anim": "lay",
+  "facing": "se",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "problem": "Rechecked after the 0.38.105 fix: one tail in every frame (it runs along the top and curls round the front of the nest into the body). There are no two tails now and it looks fine; listed only to confirm.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/095_units_brood_mother_lay_se.png",
+  "source": [
+   "art/redraws/brood_mother_rooted_lay_se_chatgpt.png",
+   "art/redraws/brood_mother_se_walk_lay_death_chatgpt.png",
+   "art/redraws/brood_mother_concept1_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_brood_mother_1.png",
+  "file": "assets/units/brood_mother/walk_s.png",
+  "subject": "Brood Mother stage 1",
+  "anim": "walk",
+  "facing": "s",
+  "frames": [
+   0,
+   2
+  ],
+  "problem": "Frames 0 and 2 swing the whole body and head hard left and right (the tail tip jumps from upper right to upper left) between the two symmetric frames 1 and 3. At game size the front-on walk wobbles side to side.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "unsure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/096_units_brood_mother_walk_s.png",
+  "source": [
+   "art/redraws/brood_mother_e_walk_a_chatgpt.png",
+   "art/redraws/brood_mother_e_walk_b_chatgpt.png",
+   "art/redraws/brood_mother_e_walk_stride_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_brood_mother_1.png",
+  "file": "assets/units/brood_mother_2/lay_se.png",
+  "subject": "Brood Mother stage 2 (and stage 3)",
+  "anim": "lay",
+  "facing": "se",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "problem": "Checked for the two-tails fault: stage 2 and stage 3 lay_se have the same single coiled body as the fixed stage 1 (the tail tip upper left, the coil round the front leading to the neck). No extra tail found. In stage 3 (brood_mother_3/lay_se, frames 2-4) the egg drops from under her jaw/neck on a string of goo, so it reads as laid from the mouth.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/097_units_brood_mother_2_lay_se.png",
+  "source": [
+   "art/redraws/brood_mother_rooted_lay_se_chatgpt.png",
+   "art/redraws/brood_mother_se_walk_lay_death_chatgpt.png",
+   "art/redraws/brood_egg_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_brute_1.png",
+  "file": "assets/units/brute/idle_se.png",
+  "subject": "Brute",
+  "anim": "idle",
+  "facing": "se",
+  "frames": [
+   0
+  ],
+  "problem": "idle_se is the same front-on view as idle_s, not a south-east three-quarter view.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/098_units_brute_idle_se.png",
+  "source": [
+   "art/brood/brute.png",
+   "art/figures/brood_brute.png",
+   "art/menu_fix/ref_unit_brute.png"
+  ]
+ },
+ {
+  "sheet": "units_grub_2.png",
+  "file": "assets/units/grub/morph_e.png",
+  "subject": "Grub",
+  "anim": "morph",
+  "facing": "e",
+  "frames": [
+   3,
+   4
+  ],
+  "problem": "morph_e ends as a mound/building (frames 3-4), the old Brood's grub-into-building morph. It looks out of place next to the new Brood; it may be unused (it is still listed in art_data.gd).",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "unsure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/099_units_grub_morph_e.png",
+  "source": [
+   "art/redraws/grub_cocoon_se_chatgpt.png",
+   "art/redraws/grub_harvest_chatgpt.png",
+   "art/redraws/grub_harvest_ne_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_moult_tyrant_1.png",
+  "file": "assets/units/moult_tyrant/shell_se.png",
+  "subject": "Moults (Storm, Tyrant, Venom)",
+  "anim": "shell / split / open",
+  "facing": "se",
+  "frames": [],
+  "problem": "Code-assembled moult shells (the cocoon case recoloured, one shell for all three lines; the shed skins come from Gemini). Their size jitters between shell frames 0-3, and the shell reads as flat next to the painted units. This is known and listed in docs/art_style_inconsistency.md.",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/100_units_moult_tyrant_shell_se.png",
+  "source": [
+   "art/redraws/moult_tyrant_se_gemini.jpg",
+   "art/redraws/moult_storm_se_gemini.jpg",
+   "art/redraws/moult_venom_se_gemini.jpg"
+  ]
+ },
+ {
+  "sheet": "units_rootmaw_3.png",
+  "file": "assets/units/rootmaw/walk_e.png",
+  "subject": "Rootmaw",
+  "anim": "walk / idle",
+  "facing": "e",
+  "frames": [],
+  "problem": "walk_e and idle_e are the same three-quarter SE picture as walk_se/idle_se (only slightly redrawn), not a side-on east view, so east and south-east look identical.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/101_units_rootmaw_walk_e.png",
+  "source": [
+   "art/redraws/rootmaw_lizard_e_walk_chatgpt.png",
+   "art/redraws/rootmaw_lizard_n_walk_chatgpt.png",
+   "art/redraws/rootmaw_lizard_ne_walk_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_spitter_1.png",
+  "file": "assets/units/spitter/attack_e.png",
+  "subject": "Spitter",
+  "anim": "attack",
+  "facing": "e",
+  "frames": [
+   3
+  ],
+  "problem": "Frame 3: the tail is about a third shorter and the body slides right, so the tail visibly shrinks and grows back during the spit.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/102_units_spitter_attack_e.png",
+  "source": [
+   "art/redraws/spitter_baby_concept_chatgpt.png",
+   "art/redraws/spitter_e_chatgpt.png",
+   "art/redraws/spitter_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_tyrant_challenger_1.png",
+  "file": "assets/units/tyrant_challenger/death_s.png",
+  "subject": "Tyrant Challenger",
+  "anim": "death",
+  "facing": "s",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "The south death starts as a side-on (SE/E) figure, not a front view, so the unit visibly turns as it dies.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/103_units_tyrant_challenger_death_s.png",
+  "source": [
+   "art/redraws/tyrant_challenger_portrait_chatgpt.png",
+   "art/redraws/young_tyrant_concept_chatgpt.png",
+   "art/redraws/young_tyrant_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_venom_challenger_1.png",
+  "file": "assets/units/venom_challenger/death_n.png",
+  "subject": "Venom Challenger",
+  "anim": "death",
+  "facing": "s, ne, n",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "Every death facing starts from a side-on figure (death_n frame 0 is a side/NE view, death_s frame 0 faces right), so the unit turns as it dies in S, NE and N. This is milder than the Tyrant Challenger's N.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Brood",
+  "picture": "docs/shots/sprite_audit/104_units_venom_challenger_death_n.png",
+  "source": [
+   "art/redraws/venom_challenger_concept_chatgpt.png",
+   "art/redraws/venom_challenger_e_chatgpt.png",
+   "art/redraws/venom_challenger_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "buildings__loose_1.png",
+  "file": "assets/buildings/armoury_anim_bayonet.png",
+  "subject": "Armoury inventor (Bayonet experiment)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   3,
+   4
+  ],
+  "problem": "The pumpkin target bursts in frame 3 but is whole again in frame 4 (with a second splash) before flying off in 5; looks like a repeated hit or wrong order",
+  "severity": "LOW",
+  "kind": "order",
+  "confidence": "unsure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/105_buildings_armoury_anim_bayonet.png",
+  "source": [
+   "art/crown/armoury.png",
+   "art/crown/buildings_v2/armoury.png",
+   "art/ui/icons3/crown_armoury_icons.png"
+  ]
+ },
+ {
+  "sheet": "buildings__loose_1.png",
+  "file": "assets/buildings/armoury_anim_charge.png",
+  "subject": "Armoury inventor (Cavalry Charge experiment)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0,
+   2,
+   4,
+   5
+  ],
+  "problem": "The test horse/mount changes shape between frames (a bench-like saddle in 0-1, a brown bear-like lump in 4-5); hard to read as the same object",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/106_buildings_armoury_anim_charge.png",
+  "source": [
+   "art/crown/armoury.png",
+   "art/crown/buildings_v2/armoury.png",
+   "art/ui/icons3/crown_armoury_icons.png"
+  ]
+ },
+ {
+  "sheet": "buildings__loose_1.png",
+  "file": "assets/buildings/assembly_works_damaged.png",
+  "subject": "Assembly Works",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Damaged state adds a large cog wheel at the front-left and rearranged front banners/towers not in the built art; construction frame is a different-shaped open hall",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/107_buildings_assembly_works_damaged.png",
+  "source": []
+ },
+ {
+  "sheet": "buildings__loose_5.png",
+  "file": "assets/buildings/cuckoo_house_damaged.png",
+  "subject": "Cuckoo House",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "A debris fragment is cut flat at the right edge of the image",
+  "severity": "LOW",
+  "kind": "cutoff",
+  "confidence": "likely",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/108_buildings_cuckoo_house_damaged.png",
+  "source": [
+   "art/clockwork/gear/cuckoo_house_built.png",
+   "art/clockwork/gear/cuckoo_house_construct.png",
+   "art/clockwork/gear/cuckoo_house_damaged.png"
+  ]
+ },
+ {
+  "sheet": "buildings_drill_cuirassier_1.png",
+  "file": "assets/buildings/drill_cuirassier/idle_e.png",
+  "subject": "Cuirassier / Horseman seated drill",
+  "anim": "idle/attack",
+  "facing": "e",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "With the horse masked out, idle_e and attack_e show a split-legged rider with fragmented red saddle-cloth pieces hanging off; reads as broken anatomy unless the wooden prop hides it exactly (code-assembled)",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "unsure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/109_buildings_drill_cuirassier_idle_e.png",
+  "source": [
+   "art/campaign/rebels/varenne_idles_chatgpt.png",
+   "art/redraws/clock_soldier_idle_west_chatgpt.png",
+   "art/redraws/clock_soldier_shield_idle_east_guide.png"
+  ]
+ },
+ {
+  "sheet": "buildings_drill_dragoon_1.png",
+  "file": "assets/buildings/drill_dragoon/mount_e.png",
+  "subject": "Dragoon (Barracks drill, horse cut out)",
+  "anim": "mount",
+  "facing": "e",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "problem": "Detached rein scraps float to the right of the man; frame 1 has a stray boot/hoof under him",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/110_buildings_drill_dragoon_mount_e.png",
+  "source": [
+   "art/campaign/warmap_mountains_chatgpt.png",
+   "art/crown/mount/dragoon_mount_e.png",
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "buildings_drill_dragoon_armoured_1.png",
+  "file": "assets/buildings/drill_dragoon_armoured/mount_e.png",
+  "subject": "Armoured Dragoon (Barracks drill)",
+  "anim": "mount",
+  "facing": "e",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "Floating rein scraps right of the man in every frame; frames 0-1 a detached boot/hoof well below the figure",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/111_buildings_drill_dragoon_armoured_mount_e.png",
+  "source": [
+   "art/campaign/warmap_mountains_chatgpt.png",
+   "art/crown/mount/dragoon_mount_e.png",
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "buildings_drill_musketeer_1.png",
+  "file": "assets/buildings/drill_musketeer/reload_e.png",
+  "subject": "Musketeer (Barracks drill)",
+  "anim": "reload",
+  "facing": "e",
+  "frames": [
+   2,
+   7
+  ],
+  "problem": "At 26 px the musket is hard to find in frames 5-7 (frame 7 seems to have none) and frame 2 is lower/smaller than its neighbours",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/112_buildings_drill_musketeer_reload_e.png",
+  "source": [
+   "art/crown/reload_cannon_a.png",
+   "art/crown/reload_cannon_b.png",
+   "art/crown/reload_mortar.png"
+  ]
+ },
+ {
+  "sheet": "buildings__loose_9.png",
+  "file": "assets/buildings/gate_v_construction.png",
+  "subject": "Gate in a N-S line",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "gate_v_construction and gate_v_destroyed look cut-and-rotated (planks at odd angles, a cross-shaped heap) and do not match the side-on built/damaged/open gate tower",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "unsure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/113_buildings_gate_v_construction.png",
+  "source": [
+   "art/crown/palisade_gate_v.png"
+  ]
+ },
+ {
+  "sheet": "buildings_mill_horse_1.png",
+  "file": "assets/buildings/mill_horse/walk_e.png",
+  "subject": "Powder Mill horse",
+  "anim": "walk",
+  "facing": "e",
+  "frames": [
+   2,
+   4
+  ],
+  "problem": "Body length jumps between frames (frame 4 noticeably shorter and smaller than 0/1/5); navy-blue background specks on the legs and belly in several frames of walk_e and walk_se. Leg counts are 4 in every frame",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/114_buildings_mill_horse_walk_e.png",
+  "source": [
+   "art/redraws/clock_soldier_walk_e_chatgpt.png",
+   "art/redraws/dilophosaurus_walk_e_chatgpt.png",
+   "art/redraws/gun_crew_walk_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "buildings__loose_12.png",
+  "file": "assets/buildings/mill_runner.png",
+  "subject": "Powder Mill runner stone",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Flat grey disc with a plain arm, looks code-drawn/out of style next to the painted mill",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "unsure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/115_buildings_mill_runner.png",
+  "source": [
+   "art/crown/mill_runner_top.png",
+   "art/crown/farm_windmill.png",
+   "art/crown/mill_base/powder_mill_built.png"
+  ]
+ },
+ {
+  "sheet": "buildings__loose_13.png",
+  "file": "assets/buildings/nitre_beds_built.png",
+  "subject": "Nitre Beds (study switch only)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Stand-in drawn with PIL (flat boxes, plain stripes) and clearly out of style next to the painted buildings; documented, only with powder:nitre",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/116_buildings_nitre_beds_built.png",
+  "source": []
+ },
+ {
+  "sheet": "buildings__loose_17.png",
+  "file": "assets/buildings/wall_diag_se_built.png",
+  "subject": "Diagonal palisade",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Diagonal walls (all wall_diag_*) are recomposed in code from straight stakes with uniform steel bands; they look flatter/more regular than the painted E-W palisade (already listed in docs/art_style_inconsistency.md)",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/117_buildings_wall_diag_se_built.png",
+  "source": []
+ },
+ {
+  "sheet": "effects__loose_1.png",
+  "file": "assets/effects/ballista_bolt.png",
+  "subject": "effects",
+  "anim": "",
+  "facing": "",
+  "frames": [],
+  "problem": "tool split, not checked (ballista_bolt is 1 frame; also fire.png, screw_impact, screw_muzzle, storm_in, zap_strike cell guesses)",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/118_effects_ballista_bolt.png",
+  "source": [
+   "art/redraws/ballista_wreck_chatgpt.png",
+   "art/redraws/ballista_dirs.png",
+   "art/redraws/ballista_dirs_preview.png"
+  ]
+ },
+ {
+  "sheet": "menu__loose_1.png",
+  "file": "assets/menu/brood.png",
+  "subject": "Brood realm painting (menu fallback)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Brood mounds and creatures carry bright RED spines/crystals throughout, against the green Brood rule; only used when battle.jpg is missing (main.gd fallback), so rarely seen",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Buildings, effects, menu",
+  "picture": "docs/shots/sprite_audit/119_menu_brood.png",
+  "source": [
+   "art/redraws/brood_egg_chatgpt.png",
+   "art/redraws/brood_mother_concept1_chatgpt.png",
+   "art/redraws/brood_mother_concept2_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_pikeman_1.png",
+  "file": "assets/units/pikeman/attack_s.png",
+  "subject": "Pikeman (Crown campaign)",
+  "anim": "attack",
+  "facing": "",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "All attack strips are 2 near-identical frames equal to the brace pose (a 1-2 px shift); the thrust is barely visible. Old retired-Pikeman strips, clearly older/blockier style than the rebel ChatGPT sprites beside them.",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "likely",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/120_units_pikeman_attack_s.png",
+  "source": [
+   "art/campaign/rebels/pikeman_chatgpt.png",
+   "art/campaign/rebels/pikeman_thrust_chatgpt.png",
+   "art/campaign/rebels/pikeman_thrust_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_pikeman_1.png",
+  "file": "assets/units/pikeman/attack_se.png",
+  "subject": "Pikeman (Crown campaign)",
+  "anim": "attack",
+  "facing": "se",
+  "frames": [
+   1
+  ],
+  "problem": "Frame 1 is a different pose: the pike is held at shoulder like a musket and the body is drawn smaller/differently from frame 0 and from the other facings.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/121_units_pikeman_attack_se.png",
+  "source": [
+   "art/campaign/rebels/pikeman_chatgpt.png",
+   "art/campaign/rebels/pikeman_thrust_chatgpt.png",
+   "art/campaign/rebels/pikeman_thrust_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_militia_3.png",
+  "file": "assets/units/rebel_militia/melee_e.png",
+  "subject": "Rebel Militiaman",
+  "anim": "melee",
+  "facing": "",
+  "frames": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "problem": "Bayonet thrust is the aim frame pushed forward in code (no drawn thrust), so he 'slides' while aiming; aimup/fireup are exact copies of aim/fire (stand-ins per docs/rebel_art.md).",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/122_units_rebel_militia_melee_e.png",
+  "source": [
+   "art/campaign/stills/p01_04_rebels_come.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_militia_4.png",
+  "file": "assets/units/rebel_militia/walk_s.png",
+  "subject": "Rebel Militiaman",
+  "anim": "walk",
+  "facing": "s",
+  "frames": [
+   1
+  ],
+  "problem": "Frame 1 the musket suddenly hangs low across the body to the bottom-left while frames 0 and 2 carry it on the shoulder; the gun jumps position each cycle.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/123_units_rebel_militia_walk_s.png",
+  "source": [
+   "art/campaign/stills/p01_04_rebels_come.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_pikeman_1.png",
+  "file": "assets/units/rebel_pikeman/attack_n.png",
+  "subject": "Rebel Pikeman",
+  "anim": "attack",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "Frame 1 the pike stands straight up over the head while frames 0 and 2 slant it right; the pike jumps between angles (docs/rebel_art.md calls part of the n thrust moved, not redrawn).",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "likely",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/124_units_rebel_pikeman_attack_n.png",
+  "source": [
+   "art/campaign/stills/p01_04_rebels_come.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_pikeman_1.png",
+  "file": "assets/units/rebel_pikeman/attack_se.png",
+  "subject": "Rebel Pikeman",
+  "anim": "attack",
+  "facing": "se",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "The pike is held low and points down-right to the ground below the feet (also brace_se); the thrust does not read as a thrust toward the target.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/125_units_rebel_pikeman_attack_se.png",
+  "source": [
+   "art/campaign/stills/p01_04_rebels_come.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_torch_1.png",
+  "file": "assets/units/rebel_torch/build_e.png",
+  "subject": "Rebel Torch-bearer",
+  "anim": "build",
+  "facing": "",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "The torch vanishes in the build strips (e, n, se, s; ne has it only in frame 2): a crouch with a flask. Stand-in, rebels never build, so low impact.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/126_units_rebel_torch_build_e.png",
+  "source": [
+   "art/campaign/stills/p01_04_rebels_come.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_torch_2.png",
+  "file": "assets/units/rebel_torch/mine_se.png",
+  "subject": "Rebel Torch-bearer",
+  "anim": "mine (setting fire)",
+  "facing": "se",
+  "frames": [
+   2,
+   3
+  ],
+  "problem": "Detached orange specks float in front of/below the torch (frame 2) and a brown smear sits behind the hat (frame 3); se is the stand-in built from row 3 + row 4 (docs/rebel_art.md).",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/127_units_rebel_torch_mine_se.png",
+  "source": [
+   "art/campaign/stills/p01_04_rebels_come.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_torch_2.png",
+  "file": "assets/units/rebel_torch/walk_n.png",
+  "subject": "Rebel Torch-bearer",
+  "anim": "walk",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "problem": "The n group (separate redraw) is a broader, larger man than the e/ne/s/se groups (shoulders and body visibly bigger, white shirt front); size and design change when he turns north. idle_n and death_n too.",
+  "severity": "LOW",
+  "kind": "size",
+  "confidence": "likely",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/128_units_rebel_torch_walk_n.png",
+  "source": [
+   "art/campaign/stills/p01_04_rebels_come.png"
+  ]
+ },
+ {
+  "sheet": "units_rebel_varenne_2.png",
+  "file": "assets/units/rebel_varenne/melee_s.png",
+  "subject": "Etienne Varenne",
+  "anim": "melee",
+  "facing": "s",
+  "frames": [
+   2
+  ],
+  "problem": "Frame 2 the sabre blade is a thin grey arc above the crouched man's head, apparently not connected to his hand.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/129_units_rebel_varenne_melee_s.png",
+  "source": [
+   "art/campaign/stills/p01_04_rebels_come.png"
+  ]
+ },
+ {
+  "sheet": "campaign_hub_1.png",
+  "file": "campaign/hub/rome_king.png",
+  "subject": "The King (Rome hub figure)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The pipe smoke above the match was keyed to MAGENTA/pink, and a magenta fleck sits in the hair left of the crown (cut-out artifact). The king.png portrait, cropped from this, shows the same pink fleck by the crown.",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "sure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/130_campaign_hub_rome_king.png",
+  "source": [
+   "art/campaign/hub/rome_king_chatgpt.png",
+   "art/campaign/hub/rome_room_chatgpt.png",
+   "art/campaign/hub/rome_tomasz_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "campaign_hub_1.png",
+  "file": "campaign/hub/rome_tomasz.png",
+  "subject": "Tomasz (Rome hub)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The hub Tomasz is an old grey-haired cardinal in full scarlet, while portraits/tomasz.png (used in dialogue) and all stills show the young black-cassock priest. Fine if the hub is decades later, but the two faces do not read as the same man.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "unsure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/131_campaign_hub_rome_tomasz.png",
+  "source": [
+   "art/campaign/hub/rome_tomasz_chatgpt.png",
+   "art/campaign/hub/rome_king_chatgpt.png",
+   "art/campaign/hub/rome_room_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "campaign_portraits_2.png",
+  "file": "campaign/portraits/hollweg.png",
+  "subject": "Portraits hollweg / king / lindqvist",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "These three portraits are tight crops of the hub figures (blurrier, oblique, background of the room) unlike the other 33 frontal bust portraits on a plain dark ground; style inconsistent in the dialogue box.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/132_campaign_portraits_hollweg.png",
+  "source": [
+   "art/campaign/hub/nuremberg_hollweg_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "campaign_stills_1.png",
+  "file": "campaign/stills/a02_03.jpg",
+  "subject": "The F\u00fcrth line firing",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Foreground kneeling musketeer: the musket's butt floats beside the shoulder with no hand at the stock (only the forward hand holds it).",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/133_campaign_stills_a02_03.png",
+  "source": [
+   "art/campaign/stills/a02_01.png",
+   "art/campaign/stills/a02_02.png",
+   "art/campaign/stills/a02_03.png"
+  ]
+ },
+ {
+  "sheet": "campaign_stills_3.png",
+  "file": "campaign/stills/a05_05.jpg",
+  "subject": "The convoy raided",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The ox team is muddled: three ox heads but the bodies merge into one mass, one head has no body of its own.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/134_campaign_stills_a05_05.png",
+  "source": [
+   "art/campaign/stills/a05_01.png",
+   "art/campaign/stills/a05_02.png",
+   "art/campaign/stills/a05_03.png"
+  ]
+ },
+ {
+  "sheet": "campaign_stills_5.png",
+  "file": "campaign/stills/a07_06.jpg",
+  "subject": "Rome burning",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The automata in the night of fire are brass/gold, not the Clockwork's red; minor colour-code slip. Tone otherwise fine.",
+  "severity": "LOW",
+  "kind": "tone",
+  "confidence": "unsure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/135_campaign_stills_a07_06.png",
+  "source": [
+   "art/campaign/stills/a07_01.png",
+   "art/campaign/stills/a07_02.png",
+   "art/campaign/stills/a07_03.png"
+  ]
+ },
+ {
+  "sheet": "campaign_stills_8.png",
+  "file": "campaign/stills/p01_04.jpg",
+  "subject": "Rebels burning the plantation",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The shouting leader's long gun has an impossible length: its barrel continues as a pike-long shaft up to the burning roof (a musket merged with a pike).",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/136_campaign_stills_p01_04.png",
+  "source": [
+   "art/campaign/stills/p01_05_musket_fix_chatgpt.png",
+   "art/campaign/stills/p01_01_king_pipe.png",
+   "art/campaign/stills/p01_02_world_map.png"
+  ]
+ },
+ {
+  "sheet": "campaign_warmap_art_1.png",
+  "file": "campaign/warmap_art/mountain_2.png",
+  "subject": "War map mountains",
+  "anim": "",
+  "facing": "",
+  "frames": [],
+  "problem": "Thin purple/magenta specks along the base edge of several mountains (mountain_0..7). Their multi-cell rows on the sheet are a tool split, not checked.",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/137_campaign_warmap_art_mountain_2.png",
+  "source": [
+   "art/campaign/warmap_mountains_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "campaign_warmap_art_2.png",
+  "file": "campaign/warmap_art/serpent.png",
+  "subject": "War map sea serpent",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Pinkish fringe pixels round the outline and in the waves (same keying halo as the ships). Motif itself fine (classic map sea serpent).",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "unsure",
+  "group": "Campaign art and rebels",
+  "picture": "docs/shots/sprite_audit/138_campaign_warmap_art_serpent.png",
+  "source": [
+   "art/redraws/hooded_serpent_concept2_chatgpt.png",
+   "art/redraws/hooded_serpent_concept_chatgpt.png",
+   "art/redraws/hooded_serpent_death_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_clock_soldier_2.png",
+  "file": "assets/units/clock_soldier/guard_walk_e.png",
+  "subject": "Clock Soldier",
+  "anim": "guard_walk",
+  "facing": "e",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "A detached orange speck (loose heel) floats behind the rear foot.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/139_units_clock_soldier_guard_walk_e.png",
+  "source": [
+   "art/redraws/clock_soldier_attack_chatgpt.png",
+   "art/redraws/clock_soldier_idle_west_chatgpt.png",
+   "art/redraws/clock_soldier_walk_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_clock_soldier_2.png",
+  "file": "assets/units/clock_soldier/guard_walk_sw.png",
+  "subject": "Clock Soldier",
+  "anim": "guard_walk",
+  "facing": "sw",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "problem": "The left arm sticks out to the viewer right as a stub ending in a flat cut-off pipe while the shield is held in front of the chest: looks like an extra/floating shoulder piece with no hand. (Sword correctly in the right hand, shield on the left.)",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/140_units_clock_soldier_guard_walk_sw.png",
+  "source": [
+   "art/redraws/clock_soldier_attack_chatgpt.png",
+   "art/redraws/clock_soldier_idle_west_chatgpt.png",
+   "art/redraws/clock_soldier_walk_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_cuckoo_1.png",
+  "file": "assets/units/cuckoo/walk_ne.png",
+  "subject": "Swift (cuckoo)",
+  "anim": "walk/idle (fly loop)",
+  "facing": "ne",
+  "frames": [
+   0
+  ],
+  "problem": "Same as the owl, milder: NE frame 0 is turned toward east (head and tail in profile), frames 1-3 seen from behind.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/141_units_cuckoo_walk_ne.png",
+  "source": [
+   "art/redraws/cuckoo_peck_chatgpt_try.png",
+   "art/redraws/cuckoo_peck_chatgpt_try2.png",
+   "art/clockwork/gear/cuckoo_house_built.png"
+  ]
+ },
+ {
+  "sheet": "units_great_winder_0.png",
+  "file": "assets/units/great_winder/death_s.png",
+  "subject": "Great Winder",
+  "anim": "death",
+  "facing": "all",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "problem": "Death is made in code from the standing frame (per tools/cw_art notes): the legs slide away as rigid rotated chunks and the body just sinks; it looks pasted next to the painted strips.",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/142_units_great_winder_death_s.png",
+  "source": [
+   "art/redraws/great_winder_dirs_v2_chatgpt.png",
+   "art/redraws/great_winder_key_rollers_chatgpt.png",
+   "art/redraws/great_winder_leg_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_ore_locomotive_1.png",
+  "file": "assets/units/ore_locomotive/run_e.png",
+  "subject": "Ore Locomotive (unused)",
+  "anim": "run",
+  "facing": "e, n, s",
+  "frames": [],
+  "problem": "Not referenced by any script. Its run strips are 4 frames side by side with no cell size known to the game; run_n shows the engine at an angle rather than from behind.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "unsure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/143_units_ore_locomotive_run_e.png",
+  "source": []
+ },
+ {
+  "sheet": "units_pendulum_0.png",
+  "file": "assets/units/pendulum/attack_hi_l_e.png",
+  "subject": "Pendulum",
+  "anim": "attack_hi_l / attack_hi_r",
+  "facing": "e",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "problem": "attack_hi_l_e and attack_hi_r_e are the same drawing (the same near arm swings in both), so the \"alternate arms\" high swing does not alternate in the E/W views.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/144_units_pendulum_attack_hi_l_e.png",
+  "source": [
+   "art/redraws/pendulum_death_chatgpt_1.png",
+   "art/redraws/pendulum_death_chatgpt_2.png",
+   "art/redraws/pendulum_high_swing_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_pendulum_0.png",
+  "file": "assets/units/pendulum/attack_hi_l_n.png",
+  "subject": "Pendulum",
+  "anim": "attack_hi_l",
+  "facing": "n",
+  "frames": [
+   4
+  ],
+  "problem": "A few pink/magenta pixels at the blade where the arm crosses over the head (also a small red streak above the body in attack_hi_r_ne frame 2, probably a swing trail).",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "unsure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/145_units_pendulum_attack_hi_l_n.png",
+  "source": [
+   "art/redraws/pendulum_death_chatgpt_1.png",
+   "art/redraws/pendulum_death_chatgpt_2.png",
+   "art/redraws/pendulum_high_swing_e_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_pendulum_5.png",
+  "file": "assets/units/pendulum/walk_n.png",
+  "subject": "Pendulum",
+  "anim": "walk",
+  "facing": "n, ne",
+  "frames": [
+   1,
+   4,
+   5
+  ],
+  "problem": "Feet bob 1-2 px above/below the ground line between walk frames (bottom row 83-86 vs anchor 84); other facings sit exactly on it.",
+  "severity": "LOW",
+  "kind": "ground",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/146_units_pendulum_walk_n.png",
+  "source": [
+   "art/redraws/pendulum_v2_walk_e_chatgpt.png",
+   "art/redraws/pendulum_v2_walk_s_chatgpt.png",
+   "art/redraws/pendulum_v2_walk_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_skywing_0.png",
+  "file": "assets/units/skywing/gattack_se.png",
+  "subject": "Skywing (old/experimental)",
+  "anim": "gattack/land",
+  "facing": "se, n, ne",
+  "frames": [
+   1
+  ],
+  "problem": "Frames touch the cell edge: gattack_se f1 and gattack_n f2 cut at the bottom, land_se f3 at the left, land_ne f0 at the top.",
+  "severity": "LOW",
+  "kind": "cutoff",
+  "confidence": "sure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/147_units_skywing_gattack_se.png",
+  "source": [
+   "art/redraws/skywing_pterosaur_concept_chatgpt.png",
+   "art/brood/skywing.png",
+   "art/brood/skywing_grounded.png"
+  ]
+ },
+ {
+  "sheet": "units_ticking_owl_0.png",
+  "file": "assets/units/ticking_owl/attack_se.png",
+  "subject": "Ticking Owl",
+  "anim": "attack",
+  "facing": "se",
+  "frames": [
+   3
+  ],
+  "problem": "Right wing tip ends in a straight vertical edge (looks cut).",
+  "severity": "LOW",
+  "kind": "cutoff",
+  "confidence": "unsure",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/148_units_ticking_owl_attack_se.png",
+  "source": [
+   "art/redraws/ticking_owl_fly.png"
+  ]
+ },
+ {
+  "sheet": "units_windup_soldier_2.png",
+  "file": "assets/units/windup_soldier/walk_ne.png",
+  "subject": "Windup Soldier (old/experimental)",
+  "anim": "walk",
+  "facing": "all",
+  "frames": [
+   4,
+   5
+  ],
+  "problem": "Walk legs are drawn in code (docs/art_style_inconsistency.md); in walk_ne the rifle appears only in frames 4-5. Tiny low-res figure, every facing the same side pose.",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "likely",
+  "group": "Clockwork",
+  "picture": "docs/shots/sprite_audit/149_units_windup_soldier_walk_ne.png",
+  "source": [
+   "art/clockwork/windup_soldier.png"
+  ]
+ },
+ {
+  "sheet": "units__shared_1.png",
+  "file": "assets/units/_shared/wind_key_11.png",
+  "subject": "Clockwork wind-up key",
+  "anim": "",
+  "facing": "",
+  "frames": [],
+  "problem": "Tool split, not checked (a 16 x 6 grid of keys, split into 4 cells by the sheet tool). Keys are code-turned from one painted still (known).",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "unsure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/150_units_shared_wind_key_11.png",
+  "source": []
+ },
+ {
+  "sheet": "units_band_1.png",
+  "file": "assets/units/band/death_se.png",
+  "subject": "Drummer / Fifer / Piper",
+  "anim": "death",
+  "facing": "se",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "Code-made death (the walk frame tipped 35/70/90 degrees, known): rigid rotation; the tipped figure runs to the canvas bottom (46, below the feet line at 44). Idle is the same strip as walk; SE only.",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/151_units_band_death_se.png",
+  "source": [
+   "art/redraws/band_drummer_walk_se_chatgpt.png",
+   "art/redraws/band_fifer_walk_se_b_chatgpt.png",
+   "art/redraws/band_fifer_walk_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_cannon_1.png",
+  "file": "assets/units/cannon/death_s.png",
+  "subject": "Field Cannon",
+  "anim": "death",
+  "facing": "all",
+  "frames": [
+   1
+  ],
+  "problem": "Smoke dissolves as a hard checkerboard dither pattern (also the leaving horse in deploy and the smoke in fire frame 3): reads as a checkerboard at game zoom. Code effect.",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/152_units_cannon_death_s.png",
+  "source": [
+   "art/crown/cannon.png",
+   "art/crown/cannon2_angles.png",
+   "art/crown/cannon2_front.png"
+  ]
+ },
+ {
+  "sheet": "units_cannon_2.png",
+  "file": "assets/units/cannon/reload_n.png",
+  "subject": "Field Cannon",
+  "anim": "reload",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "problem": "The rammer crouches on top of the vertical barrel's muzzle and reads as floating in mid-air above the gun.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "unsure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/153_units_cannon_reload_n.png",
+  "source": [
+   "art/crown/reload_cannon_a.png",
+   "art/crown/reload_cannon_b.png",
+   "art/figures/crown_cannon_reload.png"
+  ]
+ },
+ {
+  "sheet": "units_cannon_2.png",
+  "file": "assets/units/cannon/walk_se.png",
+  "subject": "Field Cannon",
+  "anim": "walk",
+  "facing": "se, ne",
+  "frames": [],
+  "problem": "walk_se and walk_ne are the same east side view as walk_e (limber pulled flat to the right); no diagonal views.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/154_units_cannon_walk_se.png",
+  "source": [
+   "art/crown/cannon.png",
+   "art/crown/cannon2_angles.png",
+   "art/crown/cannon2_front.png"
+  ]
+ },
+ {
+  "sheet": "units_dismounted_3.png",
+  "file": "assets/units/dismounted/walk_e.png",
+  "subject": "Dismounted Officer",
+  "anim": "walk",
+  "facing": "e, se, ne",
+  "frames": [
+   2,
+   3,
+   5,
+   6,
+   7
+  ],
+  "problem": "The hat crown touches the top row of the 36 px canvas in many walk frames; may be trimmed by 1-2 px.",
+  "severity": "LOW",
+  "kind": "cutoff",
+  "confidence": "unsure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/155_units_dismounted_walk_e.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_dismounted_armoured_1.png",
+  "file": "assets/units/dismounted_armoured/death_s.png",
+  "subject": "Dismounted Cuirassier",
+  "anim": "death",
+  "facing": "all",
+  "frames": [
+   2,
+   3,
+   4
+  ],
+  "problem": "Small orange/brown specks lie just below the ground line under the body.",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/156_units_dismounted_armoured_death_s.png",
+  "source": [
+   "art/redraws/cuirassier_dismounted_melee_death_e_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_n_chatgpt.png",
+   "art/redraws/cuirassier_dismounted_melee_death_ne_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_gun_crew_1.png",
+  "file": "assets/units/gun_crew/death_s.png",
+  "subject": "Gun Crewman",
+  "anim": "death",
+  "facing": "s, ne",
+  "frames": [
+   1
+  ],
+  "problem": "The flying helmet is cut flat at the top edge of the canvas. Frame 2's body lying down shows no head. (Death is the Labourer stand-in, known.)",
+  "severity": "LOW",
+  "kind": "cutoff",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/157_units_gun_crew_death_s.png",
+  "source": [
+   "art/redraws/gun_crew_death_e_chatgpt.png",
+   "art/redraws/gun_crew_death_n_chatgpt.png",
+   "art/redraws/gun_crew_death_ne_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_gun_crew_1.png",
+  "file": "assets/units/gun_crew/idle_e.png",
+  "subject": "Gun Crewman",
+  "anim": "idle",
+  "facing": "se, e, ne",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "Idle frames are mid-stride walk poses (one leg forward), so he seems frozen mid-step when standing.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/158_units_gun_crew_idle_e.png",
+  "source": [
+   "art/redraws/gun_crew_death_e_chatgpt.png",
+   "art/redraws/gun_crew_death_n_chatgpt.png",
+   "art/redraws/gun_crew_death_ne_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_labourer_1.png",
+  "file": "assets/units/labourer/bury_n.png",
+  "subject": "Labourer",
+  "anim": "bury",
+  "facing": "n",
+  "frames": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "problem": "Frames 1-3 are a standing back view with no shovel while a soil pile grows beside him (code repair, known); frame 5 turns to a front view. Frame 4 in every facing replaces him with a dirt mound (he vanishes into it, then reappears).",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/159_units_labourer_bury_n.png",
+  "source": [
+   "art/redraws/labourer_bury.png",
+   "art/crown/labourer.png",
+   "art/crown/labourer_keg.png"
+  ]
+ },
+ {
+  "sheet": "units_labourer_2.png",
+  "file": "assets/units/labourer/death_n.png",
+  "subject": "Labourer",
+  "anim": "death",
+  "facing": "n",
+  "frames": [
+   0
+  ],
+  "problem": "All five death facings are the same side-on fall; the north one is not a back view.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/160_units_labourer_death_n.png",
+  "source": [
+   "art/redraws/labourer_death.png",
+   "art/redraws/labourer_death_keg.png",
+   "art/crown/labourer.png"
+  ]
+ },
+ {
+  "sheet": "units_labourer_3.png",
+  "file": "assets/units/labourer/idle_keg_s.png",
+  "subject": "Labourer",
+  "anim": "idle_keg",
+  "facing": "s",
+  "frames": [
+   0
+  ],
+  "problem": "The keg sits in the middle of the chest in frame 0 and jumps to his right side in frames 1-3.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/161_units_labourer_idle_keg_s.png",
+  "source": [
+   "art/crown/labourer.png",
+   "art/crown/labourer_keg.png",
+   "art/crown/labourer_portrait.png"
+  ]
+ },
+ {
+  "sheet": "units_labourer_4.png",
+  "file": "assets/units/labourer/shovel_s.png",
+  "subject": "Labourer",
+  "anim": "shovel / mine",
+  "facing": "all",
+  "frames": [],
+  "problem": "Code-drawn tools on painted bodies (hoe, shovel and loads, known in art_style_inconsistency.md).",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/162_units_labourer_shovel_s.png",
+  "source": [
+   "art/crown/labourer.png",
+   "art/crown/labourer_keg.png",
+   "art/crown/labourer_portrait.png"
+  ]
+ },
+ {
+  "sheet": "units_labourer_4.png",
+  "file": "assets/units/labourer/walk_n.png",
+  "subject": "Labourer",
+  "anim": "walk",
+  "facing": "n",
+  "frames": [
+   2
+  ],
+  "problem": "Frame 2's torso is wider/blockier and the head sits 1-2 px higher than its neighbours: a small hitch in the loop.",
+  "severity": "LOW",
+  "kind": "size",
+  "confidence": "unsure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/163_units_labourer_walk_n.png",
+  "source": [
+   "art/redraws/gait_src/labourer_walk_s_prestride.png",
+   "art/redraws/gait_src/labourer_walk_se_prestride.png",
+   "art/redraws/labourer_walk_and_carry.png"
+  ]
+ },
+ {
+  "sheet": "units_labourer_5.png",
+  "file": "assets/units/labourer/walk_shovel_e.png",
+  "subject": "Labourer",
+  "anim": "walk_shovel",
+  "facing": "all",
+  "frames": [],
+  "problem": "Code composite (known): the shovel strip's upper body on the walk legs; the loaded shovel is stiff and flatter in style than the painted body. walk_shovel_e/_n also touch the top edge of the canvas (hat crown).",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/164_units_labourer_walk_shovel_e.png",
+  "source": [
+   "art/crown/labourer.png",
+   "art/crown/labourer_keg.png",
+   "art/crown/labourer_portrait.png"
+  ]
+ },
+ {
+  "sheet": "units_mortar_1.png",
+  "file": "assets/units/mortar/death_s.png",
+  "subject": "Mortar",
+  "anim": "death",
+  "facing": "all",
+  "frames": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "problem": "The wreck sits 4-9 px below the feet line (bottoms at 82-87 v 78 for idle), so the dead crew sinks into the ground.",
+  "severity": "LOW",
+  "kind": "ground",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/165_units_mortar_death_s.png",
+  "source": [
+   "art/crown/mortar_a.png",
+   "art/crown/mortar_b.png",
+   "art/crown/mortar_walk.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_1.png",
+  "file": "assets/units/musketeer/death_n.png",
+  "subject": "Musketeer",
+  "anim": "death",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "North death shows him from the front (face visible), not his back.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/166_units_musketeer_death_n.png",
+  "source": [
+   "art/redraws/musketeer_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_aim_s_chatgpt.png",
+   "art/redraws/musketeer_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_2.png",
+  "file": "assets/units/musketeer/idle_e.png",
+  "subject": "Musketeer",
+  "anim": "idle",
+  "facing": "e",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "The musket butt pokes below the feet line.",
+  "severity": "LOW",
+  "kind": "ground",
+  "confidence": "likely",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/167_units_musketeer_idle_e.png",
+  "source": [
+   "art/redraws/musketeer_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_aim_s_chatgpt.png",
+   "art/redraws/musketeer_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_2.png",
+  "file": "assets/units/musketeer/idle_n.png",
+  "subject": "Musketeer",
+  "anim": "idle",
+  "facing": "n",
+  "frames": [
+   2
+  ],
+  "problem": "Frame 2 is narrower with a different gold patch on the coat (design change vs frames 0-1). Same in the Armoured Musketeer's idle_n.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/168_units_musketeer_idle_n.png",
+  "source": [
+   "art/redraws/musketeer_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_aim_s_chatgpt.png",
+   "art/redraws/musketeer_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_armoured_2.png",
+  "file": "assets/units/musketeer_armoured/fireup_s.png",
+  "subject": "Armoured Musketeer",
+  "anim": "fireup",
+  "facing": "s",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "Two stray grey pixels float to the right of the figure at knee height (leftover background specks).",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/169_units_musketeer_armoured_fireup_s.png",
+  "source": [
+   "art/redraws/musketeer_armoured_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_armoured_aim_s_chatgpt.png",
+   "art/redraws/musketeer_armoured_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_armoured_2.png",
+  "file": "assets/units/musketeer_armoured/idle_s.png",
+  "subject": "Armoured Musketeer",
+  "anim": "idle",
+  "facing": "s",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "The musket barrel is cut flat at the top edge of the canvas in both frames.",
+  "severity": "LOW",
+  "kind": "cutoff",
+  "confidence": "sure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/170_units_musketeer_armoured_idle_s.png",
+  "source": [
+   "art/redraws/musketeer_armoured_aim_ne_chatgpt.png",
+   "art/redraws/musketeer_armoured_aim_s_chatgpt.png",
+   "art/redraws/musketeer_armoured_aim_se_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "units_musketeer_armoured_3.png",
+  "file": "assets/units/musketeer_armoured/walk_se.png",
+  "subject": "Armoured Musketeer",
+  "anim": "walk",
+  "facing": "se",
+  "frames": [
+   3
+  ],
+  "problem": "Frame 3's body changes design: brown stock across the chest, more red, legs a different grey than frames 0-2.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Crown on foot",
+  "picture": "docs/shots/sprite_audit/171_units_musketeer_armoured_walk_se.png",
+  "source": [
+   "art/redraws/gait_src/crown_musketeer_armoured_walk_e.png",
+   "art/redraws/gait_src/crown_musketeer_armoured_walk_n.png",
+   "art/redraws/gait_src/crown_musketeer_armoured_walk_ne.png"
+  ]
+ },
+ {
+  "sheet": "units_balloon_1.png",
+  "file": "assets/units/balloon/death_e.png",
+  "subject": "Balloon",
+  "anim": "death",
+  "facing": "all",
+  "frames": [
+   4
+  ],
+  "problem": "The crash frame's smoke columns reach the top of the cell and are cut flat; the gunner_down/up last frames' smoke also touches the cell edge.",
+  "severity": "LOW",
+  "kind": "cutoff",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/172_units_balloon_death_e.png",
+  "source": [
+   "art/crown/balloon_basket_pilot.png",
+   "art/crown/balloon_rope_barrel.png",
+   "art/crown/balloon_v1.png"
+  ]
+ },
+ {
+  "sheet": "units_balloon_2.png",
+  "file": "assets/units/balloon/idle_e.png",
+  "subject": "Balloon",
+  "anim": "idle/drift",
+  "facing": "all",
+  "frames": [],
+  "problem": "The envelope's stripes and ragged brown patch marks change shape from frame to frame (idle_e frame 1 noticeably different), so the canopy shimmers; edges are jagged.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/173_units_balloon_idle_e.png",
+  "source": [
+   "art/crown/balloon_basket_pilot.png",
+   "art/crown/balloon_rope_barrel.png",
+   "art/crown/balloon_v1.png"
+  ]
+ },
+ {
+  "sheet": "units_balloon_3.png",
+  "file": "assets/units/balloon/pilot_s.png",
+  "subject": "Balloon pilot",
+  "anim": "pilot",
+  "facing": "all",
+  "frames": [
+   3
+  ],
+  "problem": "Frame 3 of every pilot strip is empty (basket_* frame 3 instead shows a crewman): probably by design (pilot hidden/moved), unsure.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "unsure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/174_units_balloon_pilot_s.png",
+  "source": [
+   "art/crown/balloon_basket_pilot.png",
+   "art/crown/balloon_rope_barrel.png",
+   "art/crown/balloon_v1.png"
+  ]
+ },
+ {
+  "sheet": "units_dragoon_1.png",
+  "file": "assets/units/dragoon/idle_ne.png",
+  "subject": "Dragoon",
+  "anim": "idle",
+  "facing": "ne",
+  "frames": [],
+  "problem": "idle_ne is an exact copy of idle_e (a SE-ish view with the rider's front); death_ne == death_e, and all death facings play the same SE-ish fall.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/175_units_dragoon_idle_ne.png",
+  "source": [
+   "art/crown/dragoons.png",
+   "art/crown/mount/dragoon_armoured_mount.png",
+   "art/crown/mount/dragoon_armoured_mount_n.png"
+  ]
+ },
+ {
+  "sheet": "units_dragoon_1.png",
+  "file": "assets/units/dragoon/walk_se.png",
+  "subject": "Dragoon",
+  "anim": "walk",
+  "facing": "se/s/ne",
+  "frames": [],
+  "problem": "The musket on his back vanishes between facings: slung musket visible in walk_s and walk_ne (bayonet tip), absent in walk_se and walk_e.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/176_units_dragoon_walk_se.png",
+  "source": [
+   "art/crown/dragoons.png",
+   "art/crown/mount/dragoon_armoured_mount.png",
+   "art/crown/mount/dragoon_armoured_mount_n.png"
+  ]
+ },
+ {
+  "sheet": "units_horse_1.png",
+  "file": "assets/units/horse/death_ne.png",
+  "subject": "Horse",
+  "anim": "death",
+  "facing": "ne",
+  "frames": [
+   1
+  ],
+  "problem": "Frame 1 is a jumbled sitting/tangled shape that doesn't follow frames 0 and 2; across the death strips the head flips sides between frames (e.g. death_n 0 head left, 2 head right).",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/177_units_horse_death_ne.png",
+  "source": [
+   "art/crown/horseman_attack_death.png",
+   "art/crown/barracks_props/horse_prop.png",
+   "art/crown/buildings_v2/horse_breeder.png"
+  ]
+ },
+ {
+  "sheet": "units_horse_2.png",
+  "file": "assets/units/horse/walk_e.png",
+  "subject": "Horse",
+  "anim": "walk/idle",
+  "facing": "all",
+  "frames": [],
+  "problem": "Scattered single white pixels on the dark coat and legs in most frames (look like halo/background specks rather than highlights).",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "unsure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/178_units_horse_walk_e.png",
+  "source": [
+   "art/crown/barracks_props/horse_prop.png",
+   "art/crown/buildings_v2/horse_breeder.png",
+   "art/crown/horse_breeder.png"
+  ]
+ },
+ {
+  "sheet": "units_horse_2.png",
+  "file": "assets/units/horse/walk_s.png",
+  "subject": "Horse",
+  "anim": "walk",
+  "facing": "s",
+  "frames": [
+   4,
+   5
+  ],
+  "problem": "Frames 4-5 turn the horse to a three-quarter view (head swinging to the viewer's left) while 0-3 face straight at the camera; walk_se frame 0 similarly is more frontal than 1-4.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/179_units_horse_walk_s.png",
+  "source": [
+   "art/crown/barracks_props/horse_prop.png",
+   "art/crown/buildings_v2/horse_breeder.png",
+   "art/crown/horse_breeder.png"
+  ]
+ },
+ {
+  "sheet": "units_horse_team_1.png",
+  "file": "assets/units/horse_team/walk_se.png",
+  "subject": "Horse team (gun/wagon horse)",
+  "anim": "walk",
+  "facing": "se/e",
+  "frames": [
+   1,
+   2
+  ],
+  "problem": "Pale blue-grey fragments between the legs (far legs washed to background colour or background left in), most visible in walk_se frames 1-2; leg count hard to read in walk_e frame 4.",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "unsure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/180_units_horse_team_walk_se.png",
+  "source": [
+   "art/crown/horse_team.png",
+   "art/crown/barracks_props/horse_prop.png",
+   "art/crown/buildings_v2/horse_breeder.png"
+  ]
+ },
+ {
+  "sheet": "units_horseman_1.png",
+  "file": "assets/units/horseman/attack_s.png",
+  "subject": "Horseman",
+  "anim": "attack",
+  "facing": "s",
+  "frames": [
+   2
+  ],
+  "problem": "Frame 2 the horse twists to a three-quarter view (tail/rump swinging out to the left) while frames 0,1,3 are straight front; same frame-2 body swing in attack_se, attack_e and attack_n.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/181_units_horseman_attack_s.png",
+  "source": [
+   "art/crown/horseman_attack_death.png",
+   "art/crown/horseman.png",
+   "art/crown/horseman_dismounted.png"
+  ]
+ },
+ {
+  "sheet": "units_horseman_1.png",
+  "file": "assets/units/horseman/death_n.png",
+  "subject": "Horseman",
+  "anim": "death",
+  "facing": "n",
+  "frames": [
+   1
+  ],
+  "problem": "While the rider is still upright in the saddle, a horizontal leg/arm with a brown boot sticks out to the right of him: looks like an extra limb from the thrown-rider pose.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/182_units_horseman_death_n.png",
+  "source": [
+   "art/crown/horseman_attack_death.png",
+   "art/crown/horseman.png",
+   "art/crown/horseman_dismounted.png"
+  ]
+ },
+ {
+  "sheet": "units_horseman_1.png",
+  "file": "assets/units/horseman/death_s.png",
+  "subject": "Horseman",
+  "anim": "death",
+  "facing": "s",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "The rearing horse is drawn in side profile (head to the right), not facing south; all five death strips use the same side-on fall, so frames 2-3 are identical across facings.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/183_units_horseman_death_s.png",
+  "source": [
+   "art/crown/horseman_attack_death.png",
+   "art/crown/horseman.png",
+   "art/crown/horseman_dismounted.png"
+  ]
+ },
+ {
+  "sheet": "units_horseman_1.png",
+  "file": "assets/units/horseman/pistol_n.png",
+  "subject": "Horseman/Cuirassier",
+  "anim": "pistol",
+  "facing": "n/s",
+  "frames": [
+   1,
+   2
+  ],
+  "problem": "In the N and S pistol strips (both Horseman and Cuirassier) the pistol is fired out sideways to the viewer's right, not along the facing (away from / toward the camera).",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/184_units_horseman_pistol_n.png",
+  "source": [
+   "art/crown/horseman_pistol.png",
+   "art/crown/horseman.png",
+   "art/crown/horseman_attack_death.png"
+  ]
+ },
+ {
+  "sheet": "units_missionary_1.png",
+  "file": "assets/units/missionary/walk_s.png",
+  "subject": "Missionary",
+  "anim": "walk",
+  "facing": "all",
+  "frames": [],
+  "problem": "Walk legs are code-built (documented in art_style_inconsistency.md, import_gait_missionary.py): wide black trousers under the robe hem, stiff next to the painted idle.",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/185_units_missionary_walk_s.png",
+  "source": [
+   "art/crown/missionary.png",
+   "art/crown/missionary_mounted.png",
+   "art/crown/mount/missionary_bandage_a.png"
+  ]
+ },
+ {
+  "sheet": "units_missionary_bandage_h_1.png",
+  "file": "assets/units/missionary_bandage_h/bandage_n.png",
+  "subject": "Missionary (bandaging a musketeer)",
+  "anim": "bandage",
+  "facing": "n",
+  "frames": [
+   0,
+   1,
+   2
+  ],
+  "problem": "The N view shows the missionary from the FRONT (red stole down his chest) like the SE view, while missionary_bandage_c/bandage_n correctly shows him from behind.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/186_units_missionary_bandage_h_bandage_n.png",
+  "source": [
+   "art/crown/mount/missionary_bandage_a.png",
+   "art/crown/mount/missionary_bandage_b.png",
+   "art/crown/missionary.png"
+  ]
+ },
+ {
+  "sheet": "units_missionary_mounted_2.png",
+  "file": "assets/units/missionary_mounted/mount_s.png",
+  "subject": "Mounted Missionary",
+  "anim": "mount",
+  "facing": "all",
+  "frames": [
+   5
+  ],
+  "problem": "The processional cross appears from nowhere in the last frame of every mount strip (frames 0-4 he carries only the bag).",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/187_units_missionary_mounted_mount_s.png",
+  "source": [
+   "art/crown/missionary_mounted.png",
+   "art/crown/mount/missionary_mount.png",
+   "art/crown/mount/missionary_mount_n.png"
+  ]
+ },
+ {
+  "sheet": "units_powder_wagon_2.png",
+  "file": "assets/units/powder_wagon/walk_se.png",
+  "subject": "Powder Wagon",
+  "anim": "walk",
+  "facing": "se",
+  "frames": [
+   0,
+   1
+  ],
+  "problem": "Frames 0-1 are narrower and more front-on than 2-5 (angle drift inside the loop).",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "sure",
+  "group": "Crown riders and wagons",
+  "picture": "docs/shots/sprite_audit/188_units_powder_wagon_walk_se.png",
+  "source": [
+   "art/crown/powder_wagon.png",
+   "art/crown/mill_base/powder_mill_built.png",
+   "art/crown/mill_base/powder_mill_damaged.png"
+  ]
+ },
+ {
+  "sheet": "icons__loose_*.png",
+  "file": "assets/icons/ab_arm_powder.png",
+  "subject": "ARM WITH POWDER (and ab_mortar_deploy)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Composited in code from pasted painted pieces (keg + pistol; mortar + arrow). These are the known placeholders. They read fine but sit visibly pasted together.",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/189_icons_ab_arm_powder.png",
+  "source": []
+ },
+ {
+  "sheet": "icons__loose_*.png",
+  "file": "assets/icons/ab_buy_powder.png",
+  "subject": "BUY POWDER",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "A flat code-drawn keg and coin with no frame, unlike the painted buttons (a stand-in for the powder study's switch).",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/190_icons_ab_buy_powder.png",
+  "source": []
+ },
+ {
+  "sheet": "icons__loose_*.png",
+  "file": "assets/icons/ab_deploy.png",
+  "subject": "Command icon frames",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The top-level command buttons mix two frame styles: a gold/brown riveted frame (ab_brace, ab_deploy, ab_harvest, ab_overload, ab_reload, ab_sacrifice, ab_storm, ab_windup, ab_land, ab_courier) and a grey bevelled frame (ab_supply, ab_limber, ab_round_shot, attack, move...). Some Crown buttons (ab_reload) use the Clockwork-like brass frame. The style is not consistent within one faction's card.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/191_icons_ab_deploy.png",
+  "source": []
+ },
+ {
+  "sheet": "icons__loose_*.png",
+  "file": "assets/icons/ab_jump.png",
+  "subject": "Crown-folder JUMP / MORPH OWL / HIGH LEAP buttons",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "ab_jump, ab_morph_owl and research_high_leap at the top level are bare unit sprites on transparency (no frame, no dark backdrop), unlike the other command buttons. The framed Clockwork copies exist in icons/clockwork/. Check that the frameless ones are still used.",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/192_icons_ab_jump.png",
+  "source": []
+ },
+ {
+  "sheet": "icons__loose_*.png",
+  "file": "assets/icons/ab_tongue.png",
+  "subject": "TONGUE (top-level copy)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "A low-detail toad crop on a plain grey square with no frame. The tongue is cut flat at the right border. icons/brood/ab_tongue.png is the proper framed version.",
+  "severity": "LOW",
+  "kind": "cutoff",
+  "confidence": "sure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/193_icons_ab_tongue.png",
+  "source": []
+ },
+ {
+  "sheet": "icons_brood_1.png",
+  "file": "assets/icons/brood/ab_take_off.png",
+  "subject": "Brood TAKE OFF",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Unsure: the flyer's body has a head with a beak on the right, plus a second beak/crest-like shape on the left above the wing, which might read as two heads. At 64 px it is ambiguous.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/194_icons_brood_ab_take_off.png",
+  "source": []
+ },
+ {
+  "sheet": "icons_brood_1.png",
+  "file": "assets/icons/brood/build.png",
+  "subject": "Brood BUILD",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The middle shows a carved green face in a shrine of bones and red spines. It looks like an idol or tribal mask, and it does not say BUILD. Unsure what was meant.",
+  "severity": "LOW",
+  "kind": "tone",
+  "confidence": "unsure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/195_icons_brood_build.png",
+  "source": [
+   "art/redraws/cog_rings_building_flat.png",
+   "art/redraws/labourer_build_hammer.png",
+   "art/redraws/labourer_build_v2.png"
+  ]
+ },
+ {
+  "sheet": "icons_clockwork_1.png",
+  "file": "assets/icons/clockwork/ab_scatter.png",
+  "subject": "Clockwork SCATTER (Great Winder sweep)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Composited in code: a tiny shrunk Great Winder sprite and small cogs on a dotted arc. Most of the frame is empty and it is hard to read at card size (known, docs/cog_scatter.md).",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/196_icons_clockwork_ab_scatter.png",
+  "source": []
+ },
+ {
+  "sheet": "icons__loose_*.png",
+  "file": "assets/icons/nbr_clutch_raptor.png",
+  "subject": "Clutch: Raptor research icon",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Three raptor heads grow out of ONE egg side by side, so it reads as a three-headed creature. nbr_clutch_spitter.png is almost the same picture (same egg, same three heads, only the mouths drool green), so the two buttons are hard to tell apart.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/197_icons_nbr_clutch_raptor.png",
+  "source": []
+ },
+ {
+  "sheet": "icons__loose_*.png",
+  "file": "assets/icons/nitre_beds.png",
+  "subject": "Nitre Beds portrait",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "A tiny flat code-drawn box on a transparent background, a stand-in. It is far below the other portraits.",
+  "severity": "LOW",
+  "kind": "code_art",
+  "confidence": "sure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/198_icons_nitre_beds.png",
+  "source": []
+ },
+ {
+  "sheet": "icons__loose_*.png",
+  "file": "assets/icons/storm_challenger.png",
+  "subject": "Storm Challenger / Pterodactyl portraits",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "storm_challenger.png is the pterodactyl.png head cropped smaller: same crest, beak and colours. Two different units share one face. tyrannosaur / tyrant_challenger / venom_challenger are near copies of each other too, and dilophosaurus.png looks like brood_mother.png (same frilled red-spined face). brood_mother_2/_3 are only tighter crops of stage 1, so the stages are told apart by zoom alone.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "sure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/199_icons_storm_challenger.png",
+  "source": [
+   "art/redraws/storm_challenger_e_chatgpt.png",
+   "art/redraws/storm_challenger_n_chatgpt.png",
+   "art/redraws/storm_challenger_ne_chatgpt.png"
+  ]
+ },
+ {
+  "sheet": "icons__loose_*.png",
+  "file": "assets/icons/tension.png",
+  "subject": "Tension",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Small orange-brown specks sit in the bottom-left and bottom-right corners, apart from the spring (leftovers of the source sheet). The blue swirls are cut flat at the left and right borders.",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/200_icons_tension.png",
+  "source": []
+ },
+ {
+  "sheet": "props__loose_*.png",
+  "file": "assets/props/boulder_moss.png",
+  "subject": "Mossy boulder",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "A detached piece of something brown floats below-right of the boulder, apart from it (a leftover fragment from the sheet).",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/201_props_boulder_moss.png",
+  "source": []
+ },
+ {
+  "sheet": "props__loose_*.png",
+  "file": "assets/props/campfire.png",
+  "subject": "Campfire prop",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "A dark navy/grey triangle stands behind the flames like a tent shape: probably the source sheet's dark backdrop or a smoke halo left in. It shows as a dark wedge on light ground.",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/202_props_campfire.png",
+  "source": []
+ },
+ {
+  "sheet": "props__loose_*.png",
+  "file": "assets/props/flag.png",
+  "subject": "Flag prop",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Besides the pole, a second short stick hangs off the flag's fly end, with no reason to be there.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "unsure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/203_props_flag.png",
+  "source": []
+ },
+ {
+  "sheet": "props__loose_*.png",
+  "file": "assets/props/mushroom.png",
+  "subject": "Mushroom / forge / thorns props",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "mushroom.png is a few unreadable bluish pixels, not a mushroom (mushroom_red is fine). forge.png is a grey muddle (an anvil and a stack?) that does not read as a forge. thorns.png is noise.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/204_props_mushroom.png",
+  "source": []
+ },
+ {
+  "sheet": "props__loose_*.png",
+  "file": "assets/props/ruin_tower.png",
+  "subject": "Ruin tower (also ruin_pillar)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Semi-transparent bluish-grey ghost pixels hang around the left side (a halo of the old backdrop). A bare branch with a red rag sticks out of the top at an odd angle. ruin_pillar has the same blue ghost speckle on its left and top.",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/205_props_ruin_tower.png",
+  "source": []
+ },
+ {
+  "sheet": "props__loose_*.png",
+  "file": "assets/props/shrine.png",
+  "subject": "Shrine prop",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "A mossy rubble blob with no visible cross, statue, niche or roof, so nothing says shrine. Also a tone point: a wayside shrine should read as Catholic (a cross or a Marian niche).",
+  "severity": "LOW",
+  "kind": "tone",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/206_props_shrine.png",
+  "source": []
+ },
+ {
+  "sheet": "props__loose_*.png",
+  "file": "assets/props/snow_rocks_c.png",
+  "subject": "Snow rocks (a-d)",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "Loose single specks and flakes float around the heap, detached from it. This is most visible on c and d.",
+  "severity": "LOW",
+  "kind": "background",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/207_props_snow_rocks_c.png",
+  "source": []
+ },
+ {
+  "sheet": "props__loose_*.png",
+  "file": "assets/props/table_long.png",
+  "subject": "Long table / small stall",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The table's top surface is cut flat along the top of the image (54 opaque px on the top row). stall_small's awning is also cut flat at the top.",
+  "severity": "LOW",
+  "kind": "cutoff",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/208_props_table_long.png",
+  "source": []
+ },
+ {
+  "sheet": "props__loose_*.png",
+  "file": "assets/props/tripod.png",
+  "subject": "Tripod prop",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The rope from the top runs off and is cut flat at the right edge.",
+  "severity": "LOW",
+  "kind": "cutoff",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/209_props_tripod.png",
+  "source": []
+ },
+ {
+  "sheet": "ui__loose_1.png",
+  "file": "assets/ui/logo_salgarellius.png",
+  "subject": "Salgarellius Catholic Games logo",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The angel's sword ends in an ANCHOR instead of a hilt or blade tip: a sword and an anchor fused into one object (a typical AI merge). The cross, rosary, keys shield and Chi-Rho are fine and the lettering is correct.",
+  "severity": "LOW",
+  "kind": "hallucination",
+  "confidence": "likely",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/210_ui_logo_salgarellius.png",
+  "source": [
+   "art/brand/salgarellius_catholic_games_logo.png"
+  ]
+ },
+ {
+  "sheet": "ui_panels_1.png",
+  "file": "assets/ui/panels/brood_card.png",
+  "subject": "Brood card / panel border",
+  "anim": "",
+  "facing": "",
+  "frames": [
+   0
+  ],
+  "problem": "The border's spines are bright RED. UI panels are not team-recoloured, and the Brood's colour is venom green (the owner asked for the menu Brood's red spines to go green). Unsure if intended. Panel sheets also show tool splits (brood_panel 7, clockwork_card 4, crown_card 4): single images, tool split, not checked.",
+  "severity": "LOW",
+  "kind": "other",
+  "confidence": "unsure",
+  "group": "Icons, UI, props",
+  "picture": "docs/shots/sprite_audit/211_ui_panels_brood_card.png",
+  "source": [
+   "art/redraws/brood_egg_chatgpt.png",
+   "art/redraws/brood_mother_concept1_chatgpt.png",
+   "art/redraws/brood_mother_concept2_chatgpt.png"
+  ]
+ }
+]
