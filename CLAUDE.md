@@ -26,6 +26,23 @@
 
 ## Current work
 
+- PLAYER COMFORTS (owner 2026-11-21 15:43, his answers to the playtests' questions; job player-comforts, branch
+  player-comforts, docs/player_comforts.md, patch note under 0.38.999): (1) SAVING INSIDE A CAMPAIGN MISSION: solo
+  missions save themselves (every 15 s, on leaving, the phone putting the game away) to user://missions/<id>.json,
+  the match menu's SAVE / LOAD SAVE (<id>_save.json, asked first) and CHECKPOINTS (<id>_checkpoint.json: a trigger id
+  "part..." (not "party") fired or a primary objective of the player's side met, MissionRun._want_checkpoint); the
+  card offers CONTINUE / LOAD SAVE / FROM CHECKPOINT (CampaignMenu._save_row), a defeat RETRY FROM CHECKPOINT and
+  RESTART MISSION; MissionRun.save_state / load_state (SAVE_KEYS, var_to_str, entities as {"@u": n} / {"@b": n}),
+  save_entity ("mx": SAVE_METAS, spared, floor, held, a scripted unit's order); MissionSave (paths, peek, write);
+  not online, not lessons; the skirmish's autosave untouched. Tests tools/test_campaign_save.gd (every Act 1 mission
+  saved and loaded the same) and tools/test_campaign_save.sh (each played to its end by its sim with and without a
+  save half way: tools/sim_save_hook.gd, `save_at=` on every tools/sim_campaign_*.gd). (2) QUIT TO CAMPAIGN goes to the
+  mission's hub (Main._quit_match, CampaignMenu.back_to_hub). (3) PAUSE: Pause/Break or F10 (Hud.PAUSE_KEYS; the 7th
+  camera view lost F10, tab only). (4) QUESTIONS: EXIT and the phone's back ask (Main.ask, AskBox), QUIT / LOAD SAVE in
+  the match menu ask (Hud._confirm); Esc no, Enter yes. (5) A PHONE HELD SIDEWAYS (Settings.compact_phone: not a
+  computer, 1.85x as wide as tall): the HUD at 1.3 (Settings.hud_scale_for), card buttons 54, minimap 0.8, the
+  objectives folded to one line, the dialogue box 3 lines a page ("1/2", tap or NEXT). Driver
+  tools/playtest/pt_comforts.gd, pictures docs/shots/player_comforts/. 12 Claude's choices in the doc.
 - GRADED GAPS COVERED (owner 2026-11-21 03:42 "all parts you rated... covered in the current tasks? If not, do it"): Claude graded the game B- overall (concept A, systems A-, campaign B+ design / C play, art B-, computer opponent C, balance ungradeable, polish C+, scope C). Two more cloud jobs: ai-opponent-review (fresh 9-matchup win-rate matrix, human-like NOVICE/AVERAGE/GOOD benchmark players v each difficulty, the computer's visible blunders fixed behind switches; docs/ai_opponent_review.md) and sprite-hallucination-audit (every strip on contact sheets, wrong frames listed with ChatGPT redraw prompts; docs/sprite_hallucination_audit.md). Owner-only parts: campaign dialogue (he rewrites it), voices (Chatterbox on his PC), scope/focus (his call).
 - AI OPPONENT REVIEW (job ai-opponent-review, owner 2026-11-21 03:42 "the computer opponent got a C"; docs/ai_opponent_review.md,
   tables docs/ai_opponent_review/tables.md, data docs/ai_opponent_review/data/ + fix_*/, pictures docs/shots/ai_opponent_review/,

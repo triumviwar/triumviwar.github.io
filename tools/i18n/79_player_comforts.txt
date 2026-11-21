@@ -1,0 +1,82 @@
+# player-comforts (2026-11-21): saving inside a campaign mission, checkpoints, QUIT to the hub, the pause keys, the
+# questions before leaving (docs/player_comforts.md)
+
+> QUIT TO CAMPAIGN
+pt SAIR PARA A CAMPANHA
+es SALIR A LA CAMPAÑA
+
+> YES, LOAD
+pt SIM, CARREGAR
+es SÍ, CARGAR
+
+> YES, QUIT
+pt SIM, SAIR
+es SÍ, SALIR
+
+> Quit the game?
+pt Sair do jogo?
+es ¿Salir del juego?
+
+> Nothing saved yet: SAVE first.
+pt Nada salvo ainda: SALVE primeiro.
+es Aún no hay nada guardado: GUARDA primero.
+
+> Load your save? What happened since then is lost.
+pt Carregar o seu jogo salvo? O que aconteceu desde então se perde.
+es ¿Cargar tu partida guardada? Lo que pasó desde entonces se pierde.
+
+> Leave the mission? It is saved: CONTINUE is on its card.
+pt Sair da missão? Ela fica salva: CONTINUAR está no cartão dela.
+es ¿Salir de la misión? Queda guardada: CONTINUAR está en su ficha.
+
+> Leave? This starts again next time.
+pt Sair? Isto recomeça da próxima vez.
+es ¿Salir? Esto empieza de nuevo la próxima vez.
+
+> Leave the match? CONTINUE on the main menu brings it back.
+pt Sair da partida? CONTINUAR no menu principal a traz de volta.
+es ¿Salir de la partida? CONTINUAR en el menú principal la recupera.
+
+> Saved.
+pt Salvo.
+es Guardado.
+
+> This can't be saved.
+pt Isto não pode ser salvo.
+es Esto no se puede guardar.
+
+> Checkpoint.
+pt Ponto de controle.
+es Punto de control.
+
+> Nothing saved to load.
+pt Nada salvo para carregar.
+es No hay nada guardado que cargar.
+
+> CONTINUE  (%s)
+pt CONTINUAR  (%s)
+es CONTINUAR  (%s)
+
+> LOAD SAVE  (%s)
+pt CARREGAR SALVO  (%s)
+es CARGAR GUARDADO  (%s)
+
+> FROM CHECKPOINT  (%s)
+pt DO PONTO DE CONTROLE  (%s)
+es DESDE EL PUNTO DE CONTROL  (%s)
+
+> RETRY FROM CHECKPOINT
+pt TENTAR DO PONTO DE CONTROLE
+es REINTENTAR DESDE EL PUNTO DE CONTROL
+
+> RESTART MISSION
+pt RECOMEÇAR A MISSÃO
+es REINICIAR LA MISIÓN
+
+> Your mission was saved: CONTINUE is on its card in the CAMPAIGN.
+pt Sua missão foi salva: CONTINUAR está no cartão dela na CAMPANHA.
+es Tu misión se guardó: CONTINUAR está en su ficha en la CAMPAÑA.
+
+> LOAD SAVE
+pt CARREGAR SALVO
+es CARGAR GUARDADO

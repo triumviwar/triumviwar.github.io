@@ -1,4 +1,5 @@
 extends SceneTree
+const SimSave = preload("res://tools/sim_save_hook.gd")
 ## Plays the Naturalist's prologue, "Specimen One", AS THE BROOD (docs/campaign_b01_build.md: the prologue flip), with a
 ## simple Brood player bot against the rival pack (the Brood computer, Easy) and the scripted station, and prints every
 ## minute how it goes: the step of the teaching strip, the pack, the rival pack, the station, the eggs, the people saved.
@@ -72,6 +73,9 @@ func _run() -> void:
 	var seen := {}
 	while g.clock < until and not g.over:
 		await physics_frame
+		if SimSave.due(g):
+			g = await SimSave.reload(self, main)      # (save_at=: player-comforts)
+			r = g.mission
 		if not r.choice_open.is_empty() and String(r.choice_open["id"]) == "eggs":
 			r.choose("eggs", eggs)
 		for u in g.units:

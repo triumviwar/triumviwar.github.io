@@ -4,6 +4,14 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"SAVE INSIDE A CAMPAIGN MISSION: a mission is now saved as you play it (every 15 seconds and when you leave), and the match menu has SAVE and LOAD SAVE for a save of your own. The mission's card in the campaign offers CONTINUE (where you left it), LOAD SAVE and FROM CHECKPOINT. Everything the story counts comes back: the objectives, choices, clocks, the cages, fires, sleepers and disguised houses. Online co-op and versus missions and the tutorial's lessons are not saved.",
+		"CHECKPOINTS: when a new part of a mission begins, or you meet one of its main objectives, the game keeps a checkpoint by itself. After a defeat the end screen offers RETRY FROM CHECKPOINT, so you play again from that part, not from the start (RESTART MISSION still starts it over).",
+		"QUIT TO CAMPAIGN: leaving a mission from the match menu now takes you back to its storyline's camp, where its card offers CONTINUE, instead of the main menu.",
+		"A PAUSE KEY: Pause/Break or F10 pauses and resumes the match (online as the menu's PAUSE allows). F10 was the seventh camera view's key: that view is kept, with a click or a tap on its tab.",
+		"ASKED FIRST: EXIT on the main menu, the phone's back button, and QUIT in the match menu now ask before leaving. Esc or NO keeps you where you are, Enter or YES goes.",
+		"A PHONE HELD SIDEWAYS: on a short wide screen the interface takes less room: a smaller minimap and command card (its buttons still a thumb's width), the objectives folded to one line (tap it to open them), and a shorter dialogue box with a smaller portrait that shows three lines at a time (tap it or NEXT for the rest).",
+	]},
 	{"v": "0.38.116", "items": [
 		"A NEW BROOD RALLY ICON: three claw scratches in mossy ground with a scent mark, instead of a skull on a stake with feathers (the creatures have no tribes or totems).",
 		"THE CUIRASSIER REDRAWN: his sabre blow facing right and down to the right shows one blade (it held two in one frame), he gallops toward you and down to the right at one steady angle (it drifted mid-stride), and he has his own gallop up to the right (it played the one seen from straight behind).",

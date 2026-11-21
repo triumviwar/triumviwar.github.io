@@ -1,4 +1,5 @@
 extends SceneTree
+const SimSave = preload("res://tools/sim_save_hook.gd")
 ## Plays Act 1's "Father Ferrer's Visit" (docs/campaign_a04_build.md) with a simple bot and prints, every minute, how it
 ## goes: the part, the workshops seen, the night Winder, the riot, the lost to the machine, Ferrer and Hollweg. A balance
 ## check: a player who plays it wins on EASY / NORMAL / HARD in a sensible time and loses few automata to the machine;
@@ -73,6 +74,9 @@ func _run() -> void:
 	print("SIM start: jakob here=%d escort=%d broken-flag=%s" % [r.tagged("jakob").size(), r.tagged("escort").size(), Campaign.flag("a02_furth", "jakob")])
 	while g.clock < until and not g.over:
 		await physics_frame
+		if SimSave.due(g):
+			g = await SimSave.reload(self, main)      # (save_at=: player-comforts)
+			r = g.mission
 		if active and g.clock >= think:
 			think = g.clock + 1.0
 			_play(g, r, pt, mt)

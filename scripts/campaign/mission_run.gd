@@ -454,6 +454,7 @@ func _physics_process(delta: float) -> void:
 		choose(String(choice_open["id"]), String(choice_open.get("default", "")))      # (nobody answered: the default)
 	_run_triggers()
 	_check_objectives()
+	_take_checkpoint()
 	_sync_t -= TICK
 	if _sync_t <= 0.0:
 		_sync_t = SYNC_EVERY
@@ -500,6 +501,8 @@ func fire(tr: Dictionary) -> void:
 		game.mlog.add("(mission) trigger %s" % tr.get("id", ""))
 	for a in tr.get("do", []):
 		act(a)
+	if is_part_trigger(tid):
+		_want_checkpoint(tid)        # (a new part of the mission: a CHECKPOINT, player-comforts)
 
 
 ## Is a condition true now? (docs/campaign_engine.md lists them.)
@@ -1105,6 +1108,8 @@ func set_objective(oid: String, state: String) -> void:
 	obj[oid] = state
 	if game.mlog:
 		game.mlog.add("(mission) objective %s: %s" % [oid, state])
+	if state == "done" and bool(objective(oid).get("primary", false)) and String(objective(oid).get("side", "")) == my_side():
+		_want_checkpoint("obj:" + oid)      # (a primary objective met: a CHECKPOINT, player-comforts)
 	objectives_changed.emit()
 	_send({"k": "obj", "o": obj.duplicate()})
 
@@ -2423,6 +2428,223 @@ func stamp_reveals() -> void:
 			if int(game.sides[t]) == int(r[0]):
 				game._reveal_air(t, r[1], int(r[2]))
 	reveals = keep
+
+
+# ------------------------------------------------------------------ SAVING A MISSION (player-comforts)
+# A mission is saved with the match (SaveGame.capture: "mission"): every number, flag, clock and list the triggers
+# read, with the units and buildings it holds written as their place in the save's own lists ({"@u": n}, {"@b": n}).
+# Godot's var_to_str keeps whole numbers whole (a flag 3 stays 3, never 3.0) and Vector2s as they are. Each unit and
+# building also keeps what the mission put on it ("mx": its tag, name, role, cage, sleep, disguise, floor...). Saved in
+# a solo match only (not online, not a tutorial lesson): docs/player_comforts.md.
+
+## The MissionRun's own state that a save keeps (everything else comes from the mission's data again).
+const SAVE_KEYS := ["obj", "fired", "_met", "reveals", "said_ids", "winner_side", "_side_had", "flags", "choice_open",
+	"light_name", "counters", "clocks", "deny", "_next", "_times", "_turning", "_caged", "_burning", "out_sides", "fires_out",
+	"_stay", "route_done", "_routes", "_follows", "sleeping", "woke", "mist_sight", "mist_teams", "captured", "weather_name",
+	"_disguised", "unmasked", "_carts", "tags", "checkpoints"]
+## The metas the mission puts on a unit or building that a save keeps (object metas, "on_cart" / "cage_cargo", come back
+## from the carts' list).
+const SAVE_METAS := ["mission_tag", "mission_name", "rebel_role", "torch_burning", "torch_t", "disguise_team", "disguise",
+	"disguise_since", "mission_asleep", "mission_caged", "mission_captured", "mission_root", "cart_mass"]
+
+signal checkpoint_wanted(why: String)      # a part began or a primary objective was met: Main keeps a CHECKPOINT
+var checkpoints := {}                       # why -> game clock: the checkpoints taken so far (one each)
+var _cp_due := ""                           # a checkpoint asked for, taken at the end of this tick
+
+
+## May this mission be saved? Solo, not a lesson, not a guest's or a replay's copy.
+func saveable() -> bool:
+	return mode == "solo" and not remote and not bool(data.get("tutorial", false)) and game != null \
+		and game.net == null and game.replay == null and not game.demo
+
+
+## The state as text (var_to_str), entities as their numbers in the save's lists (`uid`: unit -> n, `bid`: building -> n).
+func save_state(uid: Dictionary, bid: Dictionary) -> String:
+	var st := {}
+	for k in SAVE_KEYS:
+		st[k] = pack(get(k), uid, bid)
+	return var_to_str(st)
+
+
+## A value with its units and buildings turned into {"@u": n} / {"@b": n} (gone or not saved: null).
+static func pack(v: Variant, uid: Dictionary, bid: Dictionary) -> Variant:
+	match typeof(v):
+		TYPE_OBJECT:
+			if v == null or not is_instance_valid(v):
+				return null
+			if uid.has(v):
+				return {"@u": uid[v]}
+			if bid.has(v):
+				return {"@b": bid[v]}
+			return null
+		TYPE_ARRAY:
+			var out: Array = []
+			for x in v:
+				out.append(pack(x, uid, bid))
+			return out
+		TYPE_DICTIONARY:
+			var od := {}
+			for k in v:
+				od[k] = pack(v[k], uid, bid)
+			return od
+	return v
+
+
+## The other way: {"@u": n} back to the unit made for it (`mu`: the units in the save's order, `mb`: the buildings).
+static func unpack(v: Variant, mu: Array, mb: Array) -> Variant:
+	match typeof(v):
+		TYPE_ARRAY:
+			var out: Array = []
+			for x in v:
+				out.append(unpack(x, mu, mb))
+			return out
+		TYPE_DICTIONARY:
+			if v.size() == 1 and (v.has("@u") or v.has("@b")):
+				var i := int(v["@u"] if v.has("@u") else v["@b"])
+				var lst: Array = mu if v.has("@u") else mb
+				var e: Variant = lst[i] if i >= 0 and i < lst.size() else null
+				return e if e != null and is_instance_valid(e) else null
+			var od := {}
+			for k in v:
+				od[k] = unpack(v[k], mu, mb)
+			return od
+	return v
+
+
+## What the mission put on one unit or building (SaveGame.capture's "mx"), as text; "" when nothing.
+func save_entity(e: Entity, uid: Dictionary, bid: Dictionary) -> String:
+	var x := {}
+	for mk in SAVE_METAS:
+		if e.has_meta(mk):
+			x["m:" + mk] = e.get_meta(mk)
+	if e.spared:
+		x["spared"] = true
+	if e.hp_floor > 0.0:
+		x["floor"] = e.hp_floor
+	if e is Unit:
+		var u: Unit = e
+		if u.m_pace != 1.0:
+			x["pace"] = u.m_pace
+		if u.m_unarmed:
+			x["unarmed"] = true
+		if u.nb_mass != 1.0 and not u.has_meta("on_cart"):
+			x["mass"] = u.nb_mass
+		# (its order: a scripted wave on the march goes on after a load; a save of a skirmish drops orders)
+		if u.order in ["move", "amove", "attack", "hold"]:
+			x["o"] = [u.order, u.order_point, pack(u.order_target, uid, bid)]
+	if x.is_empty():
+		return ""
+	x["hp"] = e.hp       # (a hero's role raises his health above the stand-in's: his health is set again after it)
+	return var_to_str(x)
+
+
+## After SaveGame.restore made every unit and building again: the mission's state and what it put on each.
+## `d`: the save; `mu` / `mb`: the made units and buildings in the save's order (null where one couldn't be made).
+func load_state(d: Dictionary, mu: Array, mb: Array) -> void:
+	# what the mission put on each one: its role first (a hero's art, scale and health), then the rest
+	var lists := [[d.get("units", []), mu], [d.get("buildings", []), mb]]
+	var orders: Array = []
+	for pair in lists:
+		var src: Array = pair[0]
+		var made: Array = pair[1]
+		for i in mini(src.size(), made.size()):
+			var e = made[i]
+			var s := String((src[i] as Dictionary).get("mx", ""))
+			if e == null or not is_instance_valid(e) or s == "":
+				continue
+			var x: Variant = str_to_var(s)
+			if not (x is Dictionary):
+				continue
+			if e is Unit and x.has("m:rebel_role"):
+				Rebels.apply(e, String(x["m:rebel_role"]))
+			for k in x:
+				if String(k).begins_with("m:"):
+					e.set_meta(String(k).substr(2), x[k])
+			e.spared = bool(x.get("spared", false))
+			e.hp_floor = float(x.get("floor", 0.0))
+			e.hp = minf(float(x.get("hp", e.hp)), e.max_hp)
+			if e is Unit:
+				e.m_pace = float(x.get("pace", 1.0))
+				e.m_unarmed = bool(x.get("unarmed", false))
+				if x.has("mass"):
+					e.nb_mass = float(x["mass"])
+				if x.get("o") is Array:
+					orders.append([e, x["o"]])
+			if e.has_meta("disguise_team") and e is Building:
+				e.refresh_cloth()
+			e.queue_redraw()
+	var st: Variant = str_to_var(String(d.get("mission", "")))
+	if not (st is Dictionary):
+		return
+	for k in SAVE_KEYS:
+		if (st as Dictionary).has(k):
+			set(k, unpack(st[k], mu, mb))
+	# the cages on the carts: their bars and ties back
+	for it in _carts:
+		var u = it.get("u")
+		var c = it.get("cart")
+		if u == null or c == null:
+			continue
+		u.set_meta("on_cart", c)
+		u.set_meta("mission_caged", true)
+		c.set_meta("cage_cargo", u)
+		u.nb_mass = 0.001
+		if u.get_node_or_null("CageBars") == null:
+			var bars := CageBars.new()
+			bars.name = "CageBars"
+			bars.r = u.radius
+			u.add_child(bars)
+	# the orders under way (a wave sent at the barns walks on)
+	for o in orders:
+		var u: Unit = o[0]
+		var ov: Array = unpack(o[1], mu, mb)
+		var tgt = ov[2] if ov.size() > 2 else null
+		match String(ov[0]):
+			"move", "amove":
+				u._start({"o": String(ov[0]), "p": ov[1]})
+			"attack":
+				if tgt != null and is_instance_valid(tgt) and not tgt.dead:
+					u._start({"o": "attack", "e": tgt})
+			"hold":
+				u.cmd_hold()
+	# the scene as it was: the light, the weather, the mist
+	set_light(light_name, 0.0)
+	if weather_name != "":
+		set_weather(weather_name)
+	elif weather_node:
+		set_weather("")
+	for t in team_ids.size():
+		game._recount_supply(t)
+	_t = 0.0
+	objectives_changed.emit()
+	if not choice_open.is_empty():
+		choice_offered.emit(choice_open)
+	if game.mlog:
+		game.mlog.add("(mission) continued from a save")
+
+
+## A CHECKPOINT is due: a trigger called "part..." fired (Part 2, Part 3: "part2", "part3_go"; not "party"), or a primary
+## objective of the player's side was met. Taken at the end of the tick (Main writes it: Main.mission_checkpoint).
+func _want_checkpoint(why: String) -> void:
+	if not saveable() or checkpoints.has(why) or game.over:
+		return
+	_cp_due = why
+
+
+func _take_checkpoint() -> void:
+	if _cp_due == "" or game.over:
+		_cp_due = ""
+		return
+	var why := _cp_due
+	_cp_due = ""
+	checkpoints[why] = game.clock
+	if game.mlog:
+		game.mlog.add("(mission) checkpoint: %s" % why)
+	checkpoint_wanted.emit(why)
+
+
+static func is_part_trigger(tid: String) -> bool:
+	return tid.begins_with("part") and not tid.begins_with("party")
 
 
 # ------------------------------------------------------------------ online

@@ -159,6 +159,23 @@ static func ui_scale_now() -> float:
 	return 1.0 if pc() else 1.5
 
 
+## A PHONE HELD SIDEWAYS on a short wide screen (844 x 390, 780 x 360, 915 x 412: twice as wide as tall, or nearly):
+## the HUD, the objectives and the dialogue box are drawn smaller there (player-comforts: "they cover nearly half the
+## screen"). `vs`: the screen's size (any units: only its shape counts). An INTERFACE SIZE chosen in Settings wins.
+const COMPACT_ASPECT := 1.85
+const COMPACT_SCALE := 1.3          # the HUD's scale there (1.5 on other phones)
+static func compact_phone(vs: Vector2) -> bool:
+	return not pc() and vs.y > 0.0 and vs.x >= vs.y * COMPACT_ASPECT
+
+
+## The HUD's scale for this screen: ui_scale_now, but smaller on a phone held sideways (compact_phone) unless the
+## player chose a size.
+static func hud_scale_for(vs: Vector2) -> float:
+	if ui_size == 0 and compact_phone(vs):
+		return COMPACT_SCALE
+	return ui_scale_now()
+
+
 ## The powder smoke drawn now: as the player set it, or, never chosen, THICK on every platform
 ## (the owner's experiment, 2026-10-27: the smoke over everything, "a bit annoying"; before it:
 ## full on a computer, light on a phone or in a browser).

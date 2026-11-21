@@ -80,7 +80,17 @@ func _build_box() -> void:
 	var bv := VBoxContainer.new()
 	bv.add_theme_constant_override("separation", 6)
 	h.add_child(bv)
-	for it in [["NEXT", func() -> void: advance()], ["SKIP", func() -> void: skip_all()]]:
+	_page = UiStyle.text("", 13, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_RIGHT)
+	_page.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	_page.visible = false
+	tv.add_child(_page)
+	_box.gui_input.connect(func(e: InputEvent) -> void:
+		# (a tap on the box's words: the next page of a long line on a phone held sideways, player-comforts)
+		if compact and ((e is InputEventScreenTouch and (e as InputEventScreenTouch).pressed) \
+				or (e is InputEventMouseButton and (e as InputEventMouseButton).pressed and (e as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT)):
+			next_page()
+			_box.accept_event())
+	for it in [["NEXT", func() -> void: next_page()], ["SKIP", func() -> void: skip_all()]]:
 		var b := Button.new()
 		b.text = it[0]
 		b.name = "Dialogue_" + String(it[0])
@@ -90,27 +100,88 @@ func _build_box() -> void:
 
 
 func _layout() -> void:
-	var hud_scale: float = game.hud.ui_scale if game and game.hud else 1.0
-	_scale = hud_scale
 	var vs := get_viewport_rect().size
+	# (the HUD's scale for this screen: asked of Settings, as the HUD itself may not have fitted the new size yet)
+	var hud_scale: float = Settings.hud_scale_for(vs) if game and game.hud else 1.0
+	_scale = hud_scale
+	var was := compact
+	compact = Settings.compact_phone(vs)
+	if compact and not was and not _fold_chosen:
+		folded = true              # (a phone held sideways: the objectives start as one line; a tap opens them)
 	var top := 40.0 * hud_scale
 	var fs := int((16 if _pc() else 19) * hud_scale)
 	var w := minf(vs.x * (0.42 if _pc() else 0.5), 600.0 * hud_scale)
+	var ps := 64.0 * hud_scale if _pc() else 76.0 * hud_scale
+	var bh := (30 if _pc() else 40) * hud_scale
+	if compact:
+		# A PHONE HELD SIDEWAYS (player-comforts): a narrower, shorter box (a smaller portrait, 3 lines at a time: a tap
+		# or NEXT shows the rest), the buttons still a thumb's size (36 x 1.3 = 47 of the screen's units)
+		fs = int(19 * hud_scale)
+		w = minf(vs.x * 0.46, 600.0 * hud_scale)
+		ps = 50.0 * hud_scale
+		bh = 36.0 * hud_scale
 	_box.position = Vector2(vs.x - w - 8.0 * hud_scale, top)
 	_box.custom_minimum_size = Vector2(w, 0)
 	_box.size = Vector2(w, 0)
-	var ps := 64.0 * hud_scale if _pc() else 76.0 * hud_scale
 	_portrait.custom_minimum_size = Vector2(ps, ps)
-	_text.custom_minimum_size.x = maxf(120.0, w - ps - 130.0 * hud_scale)      # (a width to wrap at, or the box grows tall)
+	_text.custom_minimum_size.x = maxf(120.0, w - ps - (96.0 if compact else 130.0) * hud_scale)      # (a width to wrap at, or the box grows tall)
+	_text.max_lines_visible = COMPACT_LINES if compact else -1
 	_name.add_theme_font_size_override("font_size", fs)
 	_text.add_theme_font_size_override("font_size", fs)
+	_page.add_theme_font_size_override("font_size", int(fs * 0.8))
 	for b in _box.find_children("Dialogue_*", "Button", true, false):
 		(b as Button).add_theme_font_size_override("font_size", int(fs * 0.85))
-		(b as Button).custom_minimum_size = Vector2(80 * hud_scale, (30 if _pc() else 40) * hud_scale)
-	_still_holder.custom_minimum_size = Vector2(w - 24, (w - 24) * 0.42)
+		(b as Button).custom_minimum_size = Vector2((70 if compact else 80) * hud_scale, bh)
+	var sh := (w - 24) * 0.42
+	if compact:
+		sh = minf(sh, vs.y * 0.22)     # (a still with a line: smaller, the map still seen)
+	_still_holder.custom_minimum_size = Vector2(sh / 0.42 if compact else w - 24, sh)
 	_obj.position = Vector2(8.0 * hud_scale, top)
 	_obj.fs = fs - 1
 	_obj.queue_redraw()
+	_paginate()
+
+
+## COMPACT (a phone held sideways): the line's pages of COMPACT_LINES lines; "2/3" in the corner while there are more.
+const COMPACT_LINES := 3
+var compact := false
+var _fold_chosen := false          # the player folded or opened the objectives himself
+var _page: Label
+
+
+## The page shown of a long line on a phone held sideways (Label.lines_skipped), and its "1/2".
+func _paginate() -> void:
+	if _page == null:
+		return
+	var n := _text.get_line_count() if compact else 0
+	var pages := int(ceil(float(n) / COMPACT_LINES)) if compact else 1
+	_page.visible = compact and pages > 1
+	if _page.visible:
+		_page.text = "%d/%d" % [_text.lines_skipped / COMPACT_LINES + 1, pages]
+
+
+## More of this line to show (a phone held sideways)?
+func _more_pages() -> bool:
+	return compact and _text.lines_skipped + COMPACT_LINES < _text.get_line_count()
+
+
+## NEXT, or a tap on the box: the line's next page on a phone held sideways, else the next line.
+func next_page() -> void:
+	if _more_pages():
+		_text.lines_skipped += COMPACT_LINES
+		line_t = maxf(line_t, _page_secs())
+		_paginate()
+		return
+	advance()
+
+
+## Time to read a page of the line: its share of the whole line's.
+func _page_secs() -> float:
+	var n := maxi(1, _text.get_line_count())
+	return maxf(3.0, _line_secs * float(COMPACT_LINES) / float(n))
+
+
+var _line_secs := 4.5
 
 
 func _on_said(ln: Dictionary) -> void:
@@ -147,6 +218,8 @@ func advance() -> void:
 	_shown = 0.0
 	var txt := Loc.t(String(current["text"]))
 	line_t = maxf(4.5, 2.0 + txt.length() / 14.0) * (1.3 if tutorial else 1.0)
+	_line_secs = line_t
+	_text.lines_skipped = 0
 	_name.text = Loc.t(String(current["name"]))
 	_text.text = txt
 	var col := _side_colour(String(current.get("side", "")))
@@ -163,11 +236,21 @@ func advance() -> void:
 	_box.visible = true
 	_box.size = Vector2(_box.custom_minimum_size.x, 0)
 	_box.reset_size.call_deferred()
+	_paginate.call_deferred()
+	if compact:
+		_fit_first_page.call_deferred()
 	var vsec := CampaignVoice.play(self, run.data, String(current.get("id", "")))      # (a recorded line, if there is one)
 	if vsec > 0.0:
 		line_t = maxf(line_t, vsec + 0.6)
 	else:
 		Sfx.play_any(["ui/click", "click"], Vector2.INF, -10.0)
+
+
+## A long line on a phone held sideways: its first page gets its share of the reading time (the rest comes page by page).
+func _fit_first_page() -> void:
+	if _more_pages():
+		line_t = _page_secs()
+	_paginate()
 
 
 ## A CHOICE (MissionRun.offer_choice, campaign-m1): a panel in the middle of the top with the question and a button per
@@ -250,7 +333,9 @@ func _process(delta: float) -> void:
 		return             # (a line is not used up unseen behind the menu)
 	line_t -= delta
 	_shown += delta
-	if line_t <= 0.0 and not (tutorial and queue.is_empty()):
+	if line_t <= 0.0 and _more_pages():
+		next_page()         # (a phone held sideways: the line's next page)
+	elif line_t <= 0.0 and not (tutorial and queue.is_empty()):
 		advance()           # (a lesson's last line stays: it says what to do now)
 	elif tutorial and _shown >= 1.5 and not queue.is_empty() and _step_done(current):
 		advance()           # (a done step's line gives way to the next step's)
@@ -281,8 +366,9 @@ class ObjectivesPanel extends Control:
 	func _gui_input(e: InputEvent) -> void:
 		if (e is InputEventMouseButton and (e as InputEventMouseButton).pressed and (e as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT) \
 				or (e is InputEventScreenTouch and (e as InputEventScreenTouch).pressed):
-			if e.position.y < fs + 14:
+			if e.position.y < fs + 14 or (ui.compact and ui.folded):
 				ui.folded = not ui.folded
+				ui._fold_chosen = true
 				queue_redraw()
 			accept_event()
 
@@ -300,6 +386,8 @@ class ObjectivesPanel extends Control:
 		var font := UiStyle.body_font()
 		var bold := UiStyle.bold_font()
 		var w := clampf(ui.get_viewport_rect().size.x * 0.30, 260.0, 440.0 * ui._scale)
+		if ui.compact:
+			w = clampf(ui.get_viewport_rect().size.x * (0.40 if ui.folded else 0.34), 260.0, 520.0 * ui._scale)
 		var rh := fs + 10.0
 		var lines: Array = []          # [objective, wrapped lines]
 		var total := fs + 14.0
@@ -315,8 +403,27 @@ class ObjectivesPanel extends Control:
 				lines.append([o, wrapped])
 				total += wrapped.size() * (fs + 4) + 6
 		size = Vector2(w, total + 6)
+		if ui.folded and ui.compact:
+			size.y = maxf(size.y, 46.0)      # (a thumb's height to tap it open)
 		UiStyle.draw_panel(self, Rect2(Vector2.ZERO, size), Color(0, 0, 0, 0), 0.85)
-		draw_string(bold, Vector2(10, fs + 6), Loc.t("LESSON" if ui.tutorial else "OBJECTIVES") + ("  +" if ui.folded else "  -"), HORIZONTAL_ALIGNMENT_LEFT, -1, fs, UiStyle.TRIM)
+		var head := Loc.t("LESSON" if ui.tutorial else "OBJECTIVES") + ("  +" if ui.folded else "  -")
+		draw_string(bold, Vector2(10, fs + 6), head, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, UiStyle.TRIM)
+		if ui.folded and ui.compact:
+			# (folded on a phone held sideways: the first objective still open on the same line, cut to fit; a tap on the
+			# line opens the list: player-comforts)
+			var now: Array = list.filter(func(o: Dictionary) -> bool: return o["state"] == "active" and bool(o.get("primary", true)))
+			if now.is_empty():
+				now = list.filter(func(o: Dictionary) -> bool: return o["state"] == "active")
+			var x0 := 10.0 + bold.get_string_size(head, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x + 10.0
+			var room := w - x0 - 10.0
+			if not now.is_empty() and room > 40.0:
+				var t1 := run.objective_text(now[0])
+				var shown := t1
+				while shown.length() > 4 and font.get_string_size(shown + "...", HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > room:
+					shown = shown.substr(0, shown.length() - 2)
+				if shown != t1:
+					shown = shown.strip_edges() + "..."
+				draw_string(font, Vector2(x0, fs + 6), shown, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, UiStyle.TEXT)
 		var y := fs + 16.0
 		for row in lines:
 			var o: Dictionary = row[0]

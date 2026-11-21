@@ -287,7 +287,8 @@ func _run() -> void:
 	bar.key(_key(KEY_5, false, true))
 	g.camera.position = Vector2(2000, 1500)
 	g.camera.zoom = Vector2(1.1, 1.1)
-	bar.key(_key(KEY_F10, true))
+	check(not bar.key(_key(KEY_F10, true)), "F10 is no camera view key (it pauses: player-comforts)")
+	bar.activate(HotkeyBar.CAM0 + 6, "set")      # (the 7th view: its tab, no key since F10 pauses)
 	var m6pos: Vector2 = m[6].position
 	main._to_menu()
 	await process_frame
@@ -305,7 +306,7 @@ func _run() -> void:
 	check(st2[3] == 1 and st2[4] == 2, "group 4 (a Musketeer) and group 5 (2 buildings) are back: %s" % str(st2))
 	check(g2.groups[3].size() == 1 and g2.groups[3][0].kind == "musketeer" and g2.groups[3][0].position.distance_to(m6pos) < 40.0, "the group's unit is the same one")
 	check(g2.groups[4].all(func(e) -> bool: return e is Building) and g2.groups[4].any(func(e) -> bool: return e.kind == "armoury"), "buildings in a group came back")
-	check(g2.cam_slots[6] != null and (g2.cam_slots[6][0] as Vector2).distance_to(Vector2(2000, 1500)) < 1.0, "camera view F10 came back")
+	check(g2.cam_slots[6] != null and (g2.cam_slots[6][0] as Vector2).distance_to(Vector2(2000, 1500)) < 1.0, "the 7th camera view came back")
 	check(g2.cam_slots[1] != null, "camera view F5 came back")
 	SaveGame.clear()
 	# ---- a key held down fires once (the owner, 2026-10-30: a held B opened BUILD and then picked the Barracks;

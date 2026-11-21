@@ -2,12 +2,12 @@ class_name HotkeyBar
 extends RefCounted
 ## The bottom hotkey bar (above the selection card, as wide as the card is): IDLE (F1), ARMY (F2),
 ## MAKE (F3) and the ten control groups 1 2 3 4 5 6 7 8 9 0, and under it, peeking out above
-## the bar, seven camera tabs F4-F10.
+## the bar, seven camera tabs F4-F9 and a 7th with no key (F10 pauses).
 ##
 ## Groups (computer): number = select (twice: jump to it), Shift+number = ADD the selection to
 ## the group, Ctrl+number = SET it (replace), Ctrl+Shift+number = ADD the selection to it, Shift+number = add the group to the selection (as in StarCraft 2; to drop a unit: select the group, Shift+click the unit off, Ctrl+number again).
 ## The same with the mouse on the buttons (Shift/Ctrl+click), and on a phone: tap selects,
-## hold sets. Camera tabs: F4-F10 jump, Shift+F4-F10 (or Ctrl+) save the view; a tap on a tab
+## hold sets. Camera tabs: F4-F9 jump, Shift+F4-F9 (or Ctrl+) save the view; a tap on a tab
 ## jumps (an empty one saves), a long press saves.
 ## (Browsers: Ctrl+1-8 switches tabs, F5 reloads; use the buttons then.)
 ## The groups and views live in the Game (game.groups, game.cam_slots) and are in the autosave.
@@ -23,7 +23,8 @@ const TAB_H := 16.0               # the visible edge of a camera tab
 const BTN_H := 40.0
 const FLASH_S := 0.14             # how long a pressed button stays pushed in
 const HOLD_S := 0.45              # a long press saves (group / view)
-const FKEYS := [KEY_F4, KEY_F5, KEY_F6, KEY_F7, KEY_F8, KEY_F9, KEY_F10]
+## (F10 pauses since player-comforts (the owner asked for Pause/Break and F10): the 7th view has no key, a click or tap only)
+const FKEYS := [KEY_F4, KEY_F5, KEY_F6, KEY_F7, KEY_F8, KEY_F9]
 const NAMES := ["IDLE", "ARMY", "MAKE"]
 
 var hud: Control                  # the Hud (its game, toast, drawing)
@@ -418,7 +419,7 @@ func draw(font: Font, counts: Array) -> void:
 		UiStyle.draw_button(ci, vr, pc and tr.has_point(mouse) and hit(mouse) == id, push > 0.0 or set_)
 		if push > 0.0:
 			ci.draw_rect(vr, Color(0, 0, 0, 0.25 * push))
-		hud._text(UiStyle.bold_font(), vr.position + Vector2(vr.size.x * 0.5, TAB_H - 4), "F%d" % (j + 4), 11, Color(1, 0.9, 0.55) if set_ else Color(1, 1, 1, 0.5), 1)
+		hud._text(UiStyle.bold_font(), vr.position + Vector2(vr.size.x * 0.5, TAB_H - 4), "F%d" % (j + 4) if j < FKEYS.size() else "·", 11, Color(1, 0.9, 0.55) if set_ else Color(1, 1, 1, 0.5), 1)
 	for i in N_BTN:
 		var r := button_rect(i)
 		var g := group_of(i)
