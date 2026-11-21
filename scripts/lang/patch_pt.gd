@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.95": ["A DÉCIMA TERCEIRA HORA ESTÁ PINTADA: mais cinco imagens do prólogo do Relógio agora são pinturas de verdade em vez de substitutas: o mercado de Natal de Nuremberg no Advento, o Perpétuo despertando no pátio escondido de Hollweg, Jakob encontrando as engrenagens vermelhas na ilha do moinho, Hollweg no portão da cidade enquanto Nuremberg arde, e os caixotes com um brilho vermelho embarcados no porto."],
 	"0.38.94": ["O MAPA DE GUERRA COMO UM MAPA ANTIGO: o mapa do Rei agora parece um mapa real do século XVIII: uma folha de pergaminho envelhecido com dobras e manchas, as costas a tinta com finas linhas gravadas que se espalham pelo mar, cordilheiras a tinta, dois navios à vela e uma serpente marinha nos oceanos, e uma cartela coroada com o título do mapa. A terra continua desenhada com exatidão, por isso fica nítida quando você aproxima."],
 	"0.38.93": ["Os outros selos do mapa de guerra estão mais vivos e mais próximos do emblema do jogo: uma coroa dourada em cera roxa, uma engrenagem dourada em cera carmesim, uma estrela dourada em cera dourada, ao lado do olho verde de réptil."],
 	"0.38.92": ["O selo do Naturalista no mapa de guerra agora é o olho verde de réptil do emblema do jogo, não uma folha."],
