@@ -1,0 +1,24 @@
+# Playtest 2026-11-21, the Clockmaker line: the pictures kept (docs/playtest_2026_11_21_campaign_clock.md)
+
+- `before_war_table_back_off_screen.jpg`: BEFORE fix 3: a02's VERSUS page after a04 was won: the long "(won by ...)" buttons squeeze the mission's panel and BACK / WAR MAP fall under the bottom edge (1280 x 720).
+- `after_war_table_a07_versus_pt.jpg`: AFTER fixes 2 and 3, in Portuguese: the heading names the hub as the story left it, the buttons wrap, a07's three seats and BACK / WAR MAP fit.
+- `before_briefing_start_cut_pt.jpg`: BEFORE fix 4: a02's briefing in Portuguese: START (INICIAR) half under the bottom edge.
+- `before_c01_trapped_said_dead.jpg`: BEFORE fix 6: c01, Hollweg alive but inside the walls at the stroke: the screen said "Meister Hollweg is dead".
+- `c01_defeat_trapped.jpg`: AFTER fix 6 (phone, Portuguese): "The clockmaker did not get out" and the line for being trapped.
+- `before_a02_tower_down_but_standing.jpg`: BEFORE fix 8: a02, Hollweg killed with the Honest One standing; the screen said "The guild's tower is down".
+- `before_a04_placeholders.jpg`: BEFORE fix 9: a04's VICTORY with {riot} and {lost_to_machine} not filled in.
+- `after_a04_end_filled.jpg`: AFTER fix 9: "Of 15 broken automata, 13 reached the machine's ground." Also finding 33: "Stop the broken automata" ticked with 13 lost.
+- `a07_opening_after_fix.jpg`: AFTER fix 1: a07's opening with its words and SKIP / NEXT (on main it came up as stills with no words and no buttons).
+- `hub_workshop_dome.jpg`: Finding 17: Hollweg's Workshop in Nuremberg, with a Saint Peter's-like dome through the window.
+- `hub_furth_barn_same_painting.jpg`: Finding 17: "The Guild in Exile at Fürth" (a barn) is the same Nuremberg workshop painting, tinted.
+- `phone_briefing_tiny_text.jpg`: Finding 18: the briefing on a phone held sideways (844 x 390, Spanish): the words are about 8 pixels high.
+- `phone_choice_bells.jpg`: Findings 25 and 26 (phone, Portuguese): THE BELLS over the objectives and the map, no time left shown; Hollweg's card says "Missionário".
+- `choice_bells_no_timer.jpg`: Finding 25: THE BELLS on a computer: no clock and no word of the default (KEEP IT QUIET after 90 s).
+- `settings_over_pause.jpg`: Finding 28: SETTINGS over the pause menu: the pause menu's words show through.
+- `c01_supply_full_at_start.jpg`: Finding 20: c01 at 0:53, supply 10 of 10: the Light Works can't train until a Regulator stands; the first tip doesn't say so.
+- `c01_story_loss_end_es.jpg`: Finding 23: NUREMBERG IS LOST (HARD, Spanish) with the primary "Destroy the seed on the mill island" unticked.
+- `a02_hold_2_of_3_ticked.jpg`: Finding 30: "Hold the earthworks: 2 of 3 sorties beaten back" ticked done (Spanish).
+- `a02_machine_win_being_written.jpg`: Finding 32: a02 won as the Machine: "The next mission is being written." (the Brood job's mirror fix covers it).
+- `a04_riot_supply_red.jpg`: Findings 33 and 36: the riot begins with the party in the town; the top bar shows 15/0 supply in red and Horses: 0.
+- `a04_spotted_missionary_card.jpg`: Findings 26 and 34: following the night Winder; Ferrer's card says Missionary with a MOUNT button.
+- `online_room_a02_versus.jpg`: OPEN AN ONLINE ROOM from a02's VERSUS seat (the relay can't be reached from this test machine).
