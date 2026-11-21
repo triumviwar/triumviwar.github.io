@@ -85,7 +85,7 @@ const RULES := [
 	["^'s plan: the Farms first: (\\d+) labourers for (\\d+) halls \\(it wants (\\d+)\\)", "%s keeps training labourers for its Farms (%s for %s halls, it wants %s) while its army holds half the enemy's.", 2, "army"],
 	["^'s plan: milestone (.+?) waits: a rush is read", "%s holds its %s back: a rush is read, soldiers first.", 2, "army"],
 	["^'s Clockwork: the bank works: (\\d+) cogs no step was waiting for: (\\d+) Clock Soldiers", "%s puts %s idle cogs into %s Clock Soldiers (no step of its build was waiting for them).", 1, "army"],
-	["^'s plan: milestone (.+?) waits: the army is far behind", "%s's %s waits: its army comes first.", 1, "tech"],
+	["^'s plan: milestone (.+?) waits: the army (?:is far behind|comes first)", "%s's %s waits: its army comes first.", 1, "tech"],
 	["^'s Clockwork: plays the (?:Economy|Balanced): the opening build", "%s opens for its economy: Winders non-stop and a fast second Clocktower, no army before it without a reason.", 3, "plan"],
 	["^'s Clockwork: rush evidence", "%s saw a rush coming: a Light Works and Clock Soldiers first, then back to its economy.", 3, "defence"],
 	["^'s Clockwork: lays a Light Works against the rush", "", 1, "defence"],
