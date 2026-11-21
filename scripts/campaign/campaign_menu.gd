@@ -352,8 +352,9 @@ static func briefing(main: Node, mid: String) -> void:
 static func opening_then_start(main: Node, mid: String, cfg: Dictionary) -> void:
 	var m := Campaign.mission(mid)
 	var camp: Dictionary = cfg.get("campaign", {})
-	var pages := Campaign.show_pages(m, "opening", String(camp.get("side", Campaign.seat_side(m, String(camp.get("mode", "solo")),
-		String(camp.get("seat", "p1")), String(camp.get("pick", ""))))))
+	var side := String(camp.get("side", Campaign.seat_side(m, String(camp.get("mode", "solo")), String(camp.get("seat", "p1")),
+		String(camp.get("pick", "")))))
+	var pages := Campaign.pages_before(Campaign.show_pages(m, "opening", side), side)      # (its lines with an "if" decided now)
 	if pages.is_empty():
 		main.start(cfg)
 		return

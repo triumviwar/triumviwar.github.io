@@ -162,7 +162,12 @@ func on_screen(w: Vector2) -> bool:
 ## The minimap's point for a world point.
 func mini_point(w: Vector2) -> Vector2:
 	var m: Rect2 = game.hud.mini_rect()
-	return m.position + m.size * (w / (Vector2(Game.W, Game.H) * Game.T)).clamp(Vector2.ZERO, Vector2.ONE)
+	return hud_pt(m.position + m.size * (w / (Vector2(Game.W, Game.H) * Game.T)).clamp(Vector2.ZERO, Vector2.ONE))
+
+
+## The HUD draws in its own scale (HUD.ui_scale: bigger on a phone): a point of its rects on the screen.
+func hud_pt(p: Vector2) -> Vector2:
+	return p * float(game.hud.ui_scale)
 
 
 ## Move the view there: a click on the minimap (as a player does).
@@ -199,7 +204,7 @@ func select(units: Array) -> void:
 	for u in units:
 		r = r.expand(w2s((u as Unit).position))
 	r = r.grow(22)
-	if play_rect().encloses(r) and not touch:
+	if play_rect().encloses(r) and (not touch or Settings.drag_mode == "box"):
 		await drag(r.position, r.end)
 		return
 	await click_at(w2s(spot_of(units[0])))
@@ -262,7 +267,7 @@ func press_card(labels: Array, quiet := false) -> bool:
 				if not quiet:
 					note("card button %s disabled: %s" % [b["label"], b["why"]])
 				return false
-			await click_at((b["rect"] as Rect2).get_center())
+			await click_at(hud_pt((b["rect"] as Rect2).get_center()))
 			await frames(2)
 			return true
 	if not quiet:
@@ -321,11 +326,11 @@ func gold() -> int:
 ## The HUD's menu (MENU in the top bar or Esc), then one of its items by label.
 func menu_item(label: String) -> bool:
 	if not game.hud.menu_open:
-		await click_at(game.hud.menu_rect().get_center())
+		await click_at(hud_pt(game.hud.menu_rect().get_center()))
 		await frames(3)
 	for b in game.hud._menu_buttons():
 		if String(b["label"]).begins_with(label):
-			await click_at((b["rect"] as Rect2).get_center())
+			await click_at(hud_pt((b["rect"] as Rect2).get_center()))
 			await frames(3)
 			return true
 	finding("pause menu has no %s (%s)" % [label, game.hud._menu_buttons().map(func(x): return x["label"])])
