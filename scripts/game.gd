@@ -6031,7 +6031,7 @@ func _draw_swamp(team: int) -> void:
 		if not lg.is_empty():
 			var fade := BroodNew.linger_fade(Vector2(x + 0.5, y + 0.5), lg, live)
 			if fade < 1.0:
-				a *= 0.3 + 0.55 * fade
+				a *= 0.45 + 0.4 * fade
 				col = Color(1.0, 0.86 + 0.14 * fade, 0.62 + 0.38 * fade)
 		layer.draw_texture(t, Vector2(x * T, y * T), Color(col.r, col.g, col.b, a))
 

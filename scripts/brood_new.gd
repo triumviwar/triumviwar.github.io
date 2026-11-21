@@ -1517,6 +1517,8 @@ static func tick(g: Game, u: Unit, delta: float) -> void:
 				u.nb["wet_t"] = 0.5
 				u.nb["dry"] = not maw_on_swamp(g, u.team, u.position)      # (off the swamp: it stops feeding)
 				var waits := rooted(u) and not bool(u.nb["dry"]) and maw_waits(g, u)
+				if waits != u.nb.has("wait"):
+					u.queue_redraw()               # (its "waiting" mark: the picture is redrawn only when asked)
 				if waits:
 					u.nb["wait"] = true            # (brood-mother-uproot: on her lingering swamp only, it waits)
 					if g.stats.size() > u.team:
@@ -2276,7 +2278,7 @@ static func draw(u: Unit, top: float) -> void:
 			var wt := Loc.t("waiting")
 			var ww := font.get_string_size(wt, HORIZONTAL_ALIGNMENT_LEFT, -1, 13).x
 			var wp := Vector2(-ww * 0.5, float(st.get("dry", y - 6.0)))
-			var pulse := 0.75 + 0.25 * sin(g.clock * 4.0)
+			var pulse := 1.0
 			u.draw_string_outline(font, wp, wt, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, 4, Color(0, 0, 0, 0.8 * sqrt(fa)))
 			u.draw_string(font, wp, wt, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1.0, 0.85, 0.35, fa * pulse))
 		if rooted(u) and bool(u.nb.get("dry", false)):
