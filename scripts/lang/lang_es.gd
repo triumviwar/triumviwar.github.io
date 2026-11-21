@@ -2498,7 +2498,7 @@ const T := {
 	"PLAYING ON": "JUGANDO EN",
 	"OPEN": "ABRIR",
 	"RESET SETTINGS": "RESTABLECER AJUSTES",
-	"PRESS AGAIN TO RESET": "PULSA OTRA VEZ PARA RESTABLECER",
+	"PRESS AGAIN TO RESET": "PULSA PARA CONFIRMAR",
 	"Mute / unmute": "Silenciar / activar sonido",
 	"F11 or Alt+Enter also switches it.": "F11 o Alt+Intro también lo cambian.",
 	"F11 also works (the browser's own full screen).": "F11 también funciona (la pantalla completa del propio navegador).",
