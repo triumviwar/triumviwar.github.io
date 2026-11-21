@@ -259,12 +259,16 @@ func click_at(p: Vector2, btn := MOUSE_BUTTON_LEFT, mods := {}) -> void:
 	await frames(2)
 
 
-func double_click_at(p: Vector2) -> void:
+func double_click_at(p: Vector2, mods := {}) -> void:
 	_mouse_move(p)
-	_mouse_btn(p, MOUSE_BUTTON_LEFT, true)
-	_mouse_btn(p, MOUSE_BUTTON_LEFT, false)
-	_mouse_btn(p, MOUSE_BUTTON_LEFT, true, true)
-	_mouse_btn(p, MOUSE_BUTTON_LEFT, false)
+	await frames(1)
+	_mouse_btn(p, MOUSE_BUTTON_LEFT, true, false, mods)
+	await frames(1)
+	_mouse_btn(p, MOUSE_BUTTON_LEFT, false, false, mods)
+	await frames(1)
+	_mouse_btn(p, MOUSE_BUTTON_LEFT, true, true, mods)
+	await frames(1)
+	_mouse_btn(p, MOUSE_BUTTON_LEFT, false, false, mods)
 	await frames(2)
 
 

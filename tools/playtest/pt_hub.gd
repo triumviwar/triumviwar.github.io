@@ -24,13 +24,15 @@ static func prog_for(k: String) -> Dictionary:
 	if k in ["a06", "all"]:
 		done["a06_barricades"] = crown.merged({"flags": {"varenne": "spared", "paris": "stood"}})
 	if k == "all":
-		done["c01_thirteenth"] = {"won_by": "", "side": "guild", "flags": {"bells": "rang", "gate": "people"}}
-		done["b01_specimen"] = {"won_by": "brood", "side": "brood", "flags": {"clutch": "taken"}}
+		# (the other lines as a player who won them on their canon would leave them: Campaign.record's shape)
+		done["c01_thirteenth"] = {"won_by": "guild", "side": "guild", "flags": {"bells": "rung", "gate": "people", "saved": "some", "jakob": "alive", "cut": "some"}}
+		done["b01_specimen"] = {"won_by": "sire", "side": "sire", "flags": {"clutch": "saved", "eggs": "left", "rival": "standing"}}
 		done["a02_furth"] = {"won_by": "guild", "side": "guild", "flags": {"furth": "strong"}}
-		done["a03_plateau"] = {"won_by": "crown", "side": "crown", "flags": {"map": "drawn"}}
-		done["a04_visit"] = {"won_by": "crown", "side": "visit", "flags": {"broken": "kept"}}
-		done["a05_specimens"] = {"won_by": "crown", "side": "crown", "flags": {"cages": "some"}}
-		reached.append("a07_council")
+		done["a03_plateau"] = {"won_by": "party", "side": "party", "flags": {"map": "drawn", "party": "some"}}
+		done["a04_visit"] = {"won_by": "visit", "side": "visit", "flags": {"broken": "kept", "lost_to_machine": 2, "stopworks": "found", "jakob": "alive"}}
+		done["a05_specimens"] = {"won_by": "expedition", "side": "expedition", "flags": {"cages": "some", "cages_n": 3, "eggs": "taken", "pieter": "alive", "way": "short", "crates": "seen"}}
+		for m2 in ["a02_furth", "a03_plateau", "a04_visit", "a05_specimens", "a07_council"]:
+			reached.append(m2)
 	return {"reached": reached, "done": done}
 
 

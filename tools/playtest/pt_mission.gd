@@ -60,8 +60,13 @@ func enter(via := "map") -> bool:
 		await press_name("View_" + String({"p01_leaf": "virginia"}.get(mid, "europe")), false)
 		await wait(0.6)
 		await click_at(to_window(w, w.pin_screen(pn)))
-		await wait(0.5)
+		for i in 20:
+			await wait(0.2)
+			if by_name("Card_Briefing"):
+				break
 		if not check("the %s pin opens its card" % mid, w.selected == mid and by_name("Card_Briefing") != null, "selected=" + w.selected):
+			await shot("enter_fail")
+			note("card: %s" % labels_text().left(400))
 			return false
 		await press_name("Card_Briefing")
 	else:
@@ -137,6 +142,8 @@ func army_to(p: Vector2, attack := true) -> void:
 
 ## A right-click on a unit (the camera taken there first): the selection attacks it.
 func attack_unit(u: Node2D) -> void:
+	if u == null or not is_instance_valid(u):
+		return
 	await look_at(u.global_position)
 	await click_at(w2win(u.global_position), MOUSE_BUTTON_RIGHT)
 
@@ -168,6 +175,22 @@ func box_select(us: Array) -> void:
 func army_sel_to(p: Vector2) -> void:
 	await key(KEY_A)
 	await click_at(mini_win(p))
+
+
+## Every one of these units selected as a player would: Ctrl+click one (all of its kind on screen), then
+## Shift+double-click one still left out (adds its kind on that screen), until all are in or 8 tries.
+func select_all(us: Array) -> void:
+	us = us.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead)
+	if us.is_empty():
+		return
+	await look_at(us[0].global_position)
+	await click_at(w2win(us[0].global_position), MOUSE_BUTTON_LEFT, {"ctrl": true})
+	for i in 8:
+		var left := us.filter(func(u) -> bool: return is_instance_valid(u) and not g().selection.has(u))
+		if left.is_empty():
+			break
+		await look_at(left[0].global_position)
+		await double_click_at(w2win(left[0].global_position), {"shift": true})
 
 
 ## The camera there: a click on the minimap.
@@ -264,6 +287,8 @@ func nearest(list: Array, to: Vector2) -> Node2D:
 	var best: Node2D = null
 	var bd := INF
 	for e in list:
+		if not is_instance_valid(e):
+			continue
 		var d: float = (e as Node2D).global_position.distance_to(to)
 		if d < bd:
 			bd = d
@@ -273,6 +298,7 @@ func nearest(list: Array, to: Vector2) -> Node2D:
 
 func centroid(list: Array) -> Vector2:
 	var c := Vector2.ZERO
+	list = list.filter(func(e) -> bool: return is_instance_valid(e))
 	for e in list:
 		c += (e as Node2D).global_position
 	return c / maxf(1.0, list.size())
