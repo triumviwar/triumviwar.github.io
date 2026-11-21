@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.115", "items": [
+		"MORE REDRAWN SPRITES (the rest of the sprite check's list): the Armoured Dragoon and the Horseman galloping away up to the right are now seen from behind at one steady angle (they turned sideways mid-stride); the Powder Wagon driving away has its horse ahead of it, not under it; the Dragoon galloping toward you is drawn facing you (it was a three-quarter view).",
+	]},
 	{"v": "0.38.114", "items": [
 		"REDRAWN SPRITES (from the sprite check, where a frame had come out wrong): the Raptor standing still now has the slim body of its run; the Tyrant Challenger falls properly when it dies seen from behind; the rebel pikeman carries one pike when walking toward you and down to the right (he had two in one frame); the Guardsman standing facing you has both legs; the Cuirassier strikes with his sabre the right way round when riding away from you and up to the right.",
 	]},
