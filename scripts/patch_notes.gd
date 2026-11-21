@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.108", "items": [
+		"AN EASIER EASY BROOD: the Brood computer on Easy now keeps to 20 grubs (on Normal 38) as the Crown and Clockwork computers keep to fewer workers on the easier levels, and on Easy it lays its warriors at half the pace. Before, an Easy Brood had the Hard economy and beat players who beat the Easy Crown and the Easy Clockwork. Story missions are unchanged; the tutorial's practice games use the new Easy.",
+		"ONE RIDER NO LONGER HOLDS THE WHOLE BROOD AT HOME: against riders in its land the Brood computer still guards its grubs without chasing, but only with a squad worth three times the riders; the rest of its army goes on with its plan and its attacks.",
+	]},
 	{"v": "0.38.107", "items": [
 		"THE CROWN COMPUTER'S COACHING, CLEANED UP (nothing the player uses changed): its rules were measured again as groups, switched off and added back one at a time over 270 games to 20 minutes. Against the Clockwork its army clock and army floor (which held back the gold its economy needed) its fighting rules (the formed line, the guns' coaching, the rider screen, the cavalry micro, the defence) and its hold at home are now off, and it plays its economy: on the same ten games it beats the old set game by game (9 better, 1 worse) and lasted to 20:00 in all ten. Against the Brood and in the mirror nothing measured clearly, so it plays as before. Sixteen small variants from earlier tests that measured worse were removed; the situational rules stay.",
 	]},

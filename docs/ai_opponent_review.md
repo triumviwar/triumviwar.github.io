@@ -57,11 +57,64 @@ and the faction rows as hints.
 
 ### The results (before the fixes in section 3)
 
-{BENCH}
+Each cell is the BENCHMARK PLAYER's record against that computer: won-drawn-lost at 15:00, then in brackets won or led /
+lost or trailed / even. The "all" row is the three computer factions together (nine games).
+
+### NOVICE player
+
+| computer | v EASY | v NORMAL | v HARD |
+|---|---|---|---|
+| Crown computer | 1-2-0 (2 / 0 / 1) | 0-2-1 (0 / 3 / 0) | 0-3-0 (1 / 2 / 0) |
+| Brood computer | 0-1-2 (0 / 3 / 0) | 0-0-3 (0 / 3 / 0) | 0-1-2 (0 / 2 / 1) |
+| Clockwork computer | 1-1-1 (2 / 1 / 0) | 1-1-1 (2 / 1 / 0) | 0-1-2 (0 / 3 / 0) |
+| **all** | 2-4-3 (4 / 4 / 1) | 1-3-5 (2 / 7 / 0) | 0-5-4 (1 / 7 / 1) |
+
+### AVERAGE player
+
+| computer | v EASY | v NORMAL | v HARD |
+|---|---|---|---|
+| Crown computer | 2-1-0 (3 / 0 / 0) | 0-3-0 (0 / 2 / 1) | 0-2-1 (1 / 2 / 0) |
+| Brood computer | 0-1-2 (1 / 2 / 0) | 0-1-2 (0 / 3 / 0) | 0-0-3 (0 / 3 / 0) |
+| Clockwork computer | 2-1-0 (2 / 1 / 0) | 0-2-1 (2 / 1 / 0) | 0-0-3 (0 / 3 / 0) |
+| **all** | 4-3-2 (6 / 3 / 0) | 0-6-3 (2 / 6 / 1) | 0-2-7 (1 / 8 / 0) |
+
+### GOOD player
+
+| computer | v EASY | v NORMAL | v HARD |
+|---|---|---|---|
+| Crown computer | 2-1-0 (3 / 0 / 0) | 1-2-0 (1 / 2 / 0) | 0-3-0 (0 / 1 / 2) |
+| Brood computer | 0-1-2 (1 / 2 / 0) | 1-2-0 (1 / 1 / 1) | 0-0-3 (0 / 3 / 0) |
+| Clockwork computer | 3-0-0 (3 / 0 / 0) | 1-1-1 (1 / 2 / 0) | 0-2-1 (0 / 2 / 1) |
+| **all** | 5-2-2 (7 / 2 / 0) | 3-5-1 (3 / 5 / 1) | 0-5-4 (0 / 6 / 3) |
+
+Read aloud, the "all" rows say:
+
+- EASY: the novice won or led 4 of 9, the average player 6 of 9, the good player 7 of 9. Against the Easy Crown and the
+  Easy Clockwork every strength wins or leads most games. Against the Easy BROOD nobody did: the novice 0 of 3, the
+  average and good players 1 of 3 each.
+- NORMAL: the novice won or led 2 of 9 (lost 5), the average player 2 of 9 (lost 3, trailed 6), the good player 3 of 9.
+  Normal is not a close game for the average player: the computer leads two games in three.
+- HARD: the novice 1 of 9, the average player 1 of 9 (lost 7), the good player 0 of 9 (lost 4, trailed 2, even 3). The
+  good benchmark player never beat the Hard computer in 15 minutes.
+- By faction: the BROOD computer is the strongest at every level (the benchmark won or led 3 of its 27 games), the CROWN
+  computer the weakest (11 of 27; at Easy and Normal it beat a benchmark player only once). The Clockwork is between (12 of 27).
+- Economy at 8:00: against Easy every benchmark player out-earns the computer except the novice (0.95); against Hard
+  every one earns less (0.79 novice, 0.87 average, 0.95 good). The Hard computer also wins sooner (median 12:10-13:29).
+
 
 ### Against the owner's targets
 
-{TARGETS}
+- "A novice should usually beat Easy": MET against the Easy Crown and the Easy Clockwork (the novice won or led 4 of 6),
+  NOT against the Easy Brood (0 of 3). After the two Easy Brood fixes (section 3) the novice won or led 2 of 3 against it,
+  and every strength together 5 of 8 (before: 2 of 9).
+- "An average player should have close games on Normal": NOT MET. The Normal computer leads or wins 6 of 9 against the
+  average player, the Brood all 3. Normal sits closer to "a good player's fair fight": the good player won or led 3 and
+  lost 1. The Normal Brood is the furthest off (the cap fix does not touch it before 9:00).
+- "A good player should find Hard a real fight": MORE THAN MET. The good player won no game in 9 and led none; Hard is a
+  wall, not a fight, for this benchmark. (A real good player who micro-manages, baits and scouts will do better: the
+  benchmark has no micro at all.)
+- So, roughly: EASY is where the owner wants it for the Crown and the Clockwork; NORMAL plays like the owner's idea of HARD;
+  HARD is beyond the good benchmark player; and the Brood computer is one level stronger than the other two at every level.
 
 ## 3. The computer's blunders
 
@@ -72,19 +125,101 @@ base, a bank left unspent, no units made, units stuck on a move, a first attack 
 one hall at 10:00); the match logs of every game (the computer explains each decision there, and the AI STORY the player
 reads is made from them); and filmed games (pictures every 15 seconds, the armies every minute, every fight).
 
-{BLUNDERS}
+The blunder scan over the 81 benchmark games (the computer's side only; the full table in tables.md):
+
+| computer | army idle while the enemy is in its base | bank unspent | units stuck | no attack by 12:00 | one hall at 10:00 |
+|---|---|---|---|---|---|
+| Crown Easy / Normal / Hard | 0 / 0 / 0 | 1 / 0 / 0 | 1 / 2 / 3 games | 1 / 1 / 3 | 5 / 0 / 0 |
+| Clockwork Easy / Normal / Hard | 0 / 0 / 0 | 0 / 0 / 0 | 1 / 0 / 0 | 0 / 0 / 0 | 5 / 2 / 0 |
+| Brood Easy / Normal / Hard | 0 / 0 / 0 | 0 / 1 / 1 | 0 / 1 / 0 | 0 / 0 / 0 | - |
+
+(9 games a level and faction.) No computer stood idle with its army while its base burned, and none sat on a big bank
+for long. The laughable things are subtler, and the logs and films show them:
+
+1. **THE EASY BROOD IS NOT EASY** (a bug in the levels). The Crown and Clockwork computers stop making workers by level
+   (Easy 16, Normal 30 or 26, Hard 40 or 32); the Brood computer stopped only by its plan, 46 to 54 grubs, at every
+   level. Its Easy had the Hard economy with a later first wave. At 8:00 the Easy Brood had 47 grubs and 2,460 of army
+   (the Easy Crown 840, the Easy Clockwork 1,500, the HARD Brood 1,070) and it beat the good benchmark player.
+   Picture: `easy_brood_army_0830.jpg` (the Easy Brood's army of 4,170 by its Mother at 8:30, a good Crown player at 1,850).
+2. **ONE RIDER PINS THE WHOLE BROOD ARMY** (a bug). Against riders at home the Brood guards its grubs and does not chase
+   (the owner's rule), but the guard was EVERY creature not in a wave, and while it guarded no wave could leave. In a
+   Normal Brood's game one Cuirassier circling its land kept 89, then 122 creatures (4,175 of army) at home from 10:06
+   to 10:56. Pictures: `rider_pin_before_map_1030.png` (the whole map at 10:30: the Brood's dots all at home, top left)
+   and `rider_pin_before_brood_1030.jpg`.
+3. **THE CROWN SAYS ITS ARMY IS "FAR BEHIND" WITH TWICE THE ENEMY'S** (a wrong line in the AI STORY). "Milestone Armoury
+   waits: the army is far behind the enemy's (1,580 against the 775 it reckons)". The hold was for another reason (the
+   Brood it ESTIMATES blind, a short home line, or a Barracks idle for want of gold) and the line printed the wrong pair.
+4. **THE CROWN'S WHEELS GET STUCK**: Field Cannons, Mortars and Powder Wagons stuck on a move order in 6 of the 27 Crown
+   computer games (and the benchmark Crown's own guns too): pathing for the big wheeled units, not a decision.
+5. **THE HARD CROWN RARELY GOES OUT**: in 3 of 9 games it had not attacked by 12:00 (twice against a benchmark Crown,
+   once against a Clockwork). Its Siege push went out at 8:11 with 19 supply and one gun and fell back at 8:51; at 13:23
+   its 1,863 of army watched from the top of its ramp while 1,520 of the novice's took a hall below ("goes down only at
+   1,978": it wants 1.3 times the force before it leaves the high ground).
+6. **THE CLOCKWORK SENDS ITS WHOLE ARMY AGAINST SMALL RAIDS**: "the whole army defends the base (12 units, 1,160) against a
+   raid worth 150": 31 of 166 such lines in the benchmark games were more than five times the raid. Short (the raid leaves
+   or dies), so it costs less than the Brood's pin, but a human sees the whole army turn round for one rider.
+7. **THE EASY COMPUTERS DO NOT EXPAND**: the Easy Crown and the Easy Clockwork are still on one hall at 10:00 in 5 of 9
+   games each. That is Easy being easy, and fine; listed because a human notices it.
 
 ### What was fixed (each behind an off switch, each measured)
 
-{FIXES}
+1. **THE EASY AND NORMAL BROOD GET A WORKER CAP** like the other computers (switch `levelgrubs:off`): Easy 20 grubs, Normal
+   38, Hard and Brutal unchanged. The caps match the others' by income (a grub earns about three quarters of a labourer).
+   Measured on the same 18 benchmark games: the Easy Brood's income at 8:00 fell from about 9,300 to 6,000, but its army
+   hardly (2,460 -> 2,400): the Brood has no buildings to buy, so the food goes into creatures. Results for the computer:
+   better in 2, worse in 7, the same in 7. Normal is not touched before 9:00 (its grubs stay under 38 till then).
+2. **THE EASY BROOD LAYS ITS WARRIORS AT HALF THE PACE** (switch `easypace:off`): a warrior egg on every other think, not
+   while a big attack is at its Mother. Together with the cap, on the same 8 Easy Brood games: the benchmark players won or
+   led 5 of 8 (before 2 of 9), the novice 2 of 3 (before 0 of 3); the computer was worse in 5 games and the same in 3.
+   Both Brood level fixes are for skirmish and the tutorial's practice games only: the story missions' Brood computers
+   (the rival pack of the Brood prologue is an Easy Brood capped at 36 supply) play as they were tuned
+   (test_campaign_b01 and test_tutorial pass).
+3. **A SQUAD GUARDS AGAINST RIDERS, THE REST PLAYS ON** (switch `ridersquad:off`): when the Brood's guard is strong (2.5
+   times the riders), only the nearest creatures worth 3 times the riders (400 at least) guard the grubs, with the same
+   no-chase rule; the others go back to the plan and its waves. Filmed again on the same map and seed: the guard against
+   the one Cuirassier was 14 to 16 creatures (410-420) instead of 89 to 122, and the wave left at 10:26 instead of 10:56
+   (`rider_squad_after_wave_1039.jpg`). {RIDERSQUAD} The Brood's rider tests pass (test_brood_v_riders,
+   test_brood_rush_riders).
+4. **THE CROWN'S "MILESTONE WAITS" LINE GIVES ITS REAL REASON**: "the army is far behind the enemy's (army against the
+   reckoned enemy)" only when that is the reason; otherwise "the army comes first" with the Brood it estimates, its short
+   home line, or its idle Barracks. The AI STORY line the player reads is the same ("its army comes first").
+
+The AI tests (tools/test_ai_*.gd, 23) before and after: the same two fail on main and on the branch
+(test_ai_rush_followup, test_ai_wall_vs_rush: "Barracks and Powder Mill by 75 s", 100 s; both listed as known in
+CLAUDE.md); test_ai_harass's [raid] check failed once before and passed after (known flaky).
 
 ### Not fixed: proposals
 
-{PROPOSALS}
+- **The Normal Brood is still a level too strong** for the average benchmark player (it won all three). A Normal pace like
+  Easy's (a warrior on two thinks in three) is the obvious next step; not done because Normal is less clearly a bug and
+  wants its own measurement.
+- **The Hard Crown's high-ground rule** (BEAT 1.3, against the Brood about 2): it watched a hall die below while bigger
+  than the attackers. Proposal: when one of its own halls below is being hit, go down at 1.0 (an even fight) instead.
+- **The Clockwork's whole-army defence**: send a share sized to the raid (as the Brood's squad now does) and keep the rest
+  where it was.
+- **The Crown's wheeled units getting stuck**: a pathing job (the big units' corner slip), not an AI one.
+- **The match tool's first_attack misses the Crown's Siege push and the Clockwork's push** (they are not "waves"); this
+  report counts an army arriving in the enemy's base as well. Worth fixing in tools/qa_match.gd.
 
 ## 4. What would most improve the computer opponent next
 
-{NEXT}
+In order of what a player would feel first:
+
+1. **Make the levels mean the same for every faction.** The Brood computer is a level stronger than the Crown and the
+   Clockwork at Easy, Normal and Hard alike. The two Easy fixes here are the start; Normal wants the same (a slower pace,
+   measured against the average benchmark player), and Hard v Hard the Brood leads the Crown from 12:00 on (section 1).
+2. **Re-label or re-tune Normal.** Against the benchmark players Normal plays like the owner's idea of Hard (the average
+   player wins or leads 2 of 9). Either Normal gets a little slower (its think 1.2 s, its worker caps), or the lobby says
+   so ("Normal: for players who know the game").
+3. **Give Hard something a good player can find and punish.** Hard beat the good benchmark player in every game. A real
+   good player out-plays the benchmark with micro and baiting, so Hard may be right for them; but a computer with no
+   readable habit is no fun to beat. The Crown's passivity (the high-ground rule, the Siege push that turns round) is the
+   habit to keep and make fair; the Brood's and Clockwork's waves are the ones to make readable.
+4. **Fix the visible silliness that remains**: the Clockwork's whole army against one raider, the Crown's stuck guns and
+   wagons, the Crown's hall dying below a bigger army on the high ground.
+5. **Measure against people.** The benchmark has the computer's blind spots. One evening of the owner's own games against
+   each level, logged (the match log already says everything the computer decides), would show whether the benchmark's
+   NOVICE / AVERAGE / GOOD are the right yardstick; the tool can then be tuned to match him.
 
 ## 5. Balance observations (proposals only, nothing changed)
 
