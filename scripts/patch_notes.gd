@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.111", "items": [
+		"Translations: the study building Nitre Beds (on only with a study switch) now has its Portuguese and Spanish texts, and the last patch notes use the game's own names for units and buildings.",
+	]},
 	{"v": "0.38.110", "items": [
 		"PLAYTEST FIXES (campaign): openings with lines that depend on earlier missions (Lyon, Paris, Rome, the Specimens) no longer open on a blank still; Rome's verdict show answers clicks and taps; objectives lost at the end are no longer ticked as done; briefings and end screens show real numbers instead of codes; war tables keep their BACK and WAR MAP buttons on screen; the war table keeps the hub's current name after Nuremberg falls; c01 and a02 end screens tell the right story; script errors in Father Ferrer's riot are gone; hint arrows go away once used.",
 		"PLAYTEST FIXES (skirmish as the Clockwork, tutorial, editor and replays): a beaten side no longer lingers in the match; the Ticking Owl can be clicked on its body; the end screen names each side's own resources; long card labels go to two lines; Winders no longer carry a greyed LEAD button; the Basics lesson can be lost and tried again; the map editor asks before throwing work away and refuses names Windows cannot save; a pinch no longer paints; sliders move under a finger on phones; GEAR VIEW works on Spanish and Brazilian keyboards; a building just north of a Town Hall can be clicked.",
