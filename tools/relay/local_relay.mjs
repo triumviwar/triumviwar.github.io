@@ -91,7 +91,7 @@ server.on("upgrade", (req, sock) => {
     if (room.get(id) !== sock) return;
     room.delete(id);
     console.log(`[relay] ${code}: ${id === 0 ? "host" : "guest " + id} left`);
-    if (id === 0) { for (const s of room.values()) { sendText(s, { t: "closed" }); s.end(); } rooms.delete(code); }
+    if (id === 0) { for (const s of room.values()) { sendText(s, { t: "closed" }); s.write(frame(8, Buffer.concat([Buffer.from([3, 232]), Buffer.from("host left")]))); s.end(); } rooms.delete(code); }
     else if (room.has(0)) sendText(room.get(0), { t: "leave", id });
   };
   sock.on("close", gone); sock.on("error", gone);

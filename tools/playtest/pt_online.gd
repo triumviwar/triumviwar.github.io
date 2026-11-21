@@ -512,6 +512,9 @@ func campaign_host() -> void:
 	if not await press("WAR TABLE"):
 		return
 	await look("war_table")
+	if find_button("LIST", true) != null:          # (the war table opens on the war map; LIST shows the missions)
+		await press("LIST", 0.6, true)
+		await look("war_table_list")
 	var md := "coop" if scen == "coop" else "versus"
 	var mb := find_button("Mode_" + md, true)
 	if mb == null or mb.disabled:

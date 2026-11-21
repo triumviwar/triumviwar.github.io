@@ -147,6 +147,8 @@ func _process(delta: float) -> void:
 					_text(left.get_string_from_utf8())
 			if _reason == "" and _ws.get_close_reason() != "":
 				_reason = _ws.get_close_reason()
+				if _reason == "host left":
+					_reason = "The host left the game."     # (the relay's close when the host goes: worker.js)
 			if _reason == "" and not connected and _ws.get_close_code() == 1000:
 				_reason = "The relay refused the connection."      # (it answered, then closed: not unreachable)
 			_finish(_reason if _reason != "" else ("Could not reach the relay. Check its address in SETTINGS." if not connected else "The connection to the other player was lost."))
