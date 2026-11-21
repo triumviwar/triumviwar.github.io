@@ -1083,7 +1083,9 @@ func _finish_box(add := false) -> void:
 		list = main if not main.is_empty() else lines
 	# Army in the box? Leave out the workers busy at the economy (farming, hauling, building);
 	# ones out with the army (repairing, winding, idle) come along.
-	if list.any(func(u: Unit) -> bool: return not u.is_worker()):
+	# (the list is buildings when the box held no unit: a Unit-typed lambda failed on each, an engine error at every
+	# box over buildings only, playtest 2026-11-21)
+	if list.any(func(u) -> bool: return u is Unit and not (u as Unit).is_worker()):
 		list = list.filter(func(u: Unit) -> bool: return not u.is_worker() or u.work == "" or (u.order == "repair" and u.order_target is Unit))     # (a Winder winding a soldier, also on the march)
 	# horses only when that's all there is (or with the men leading them: those come along anyway)
 	if list.any(func(u) -> bool: return u is Unit and u.kind != "horse"):
