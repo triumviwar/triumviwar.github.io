@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.112", "items": [
+		"PLAYTEST FIXES (skirmish as the Brood): a HARVEST order with no body near no longer leaves the grubs idle for good; the Sire's nest says \"1 egg\", not \"1 eggs\"; attack, move and other keys on a rooted creature now say \"Rooted: UPROOT it first.\" instead of \"Attack: not now.\"; card labels too long even at the smallest size go to two lines.",
+	]},
 	{"v": "0.38.111", "items": [
 		"Translations: the study building Nitre Beds (on only with a study switch) now has its Portuguese and Spanish texts, and the last patch notes use the game's own names for units and buildings.",
 	]},
