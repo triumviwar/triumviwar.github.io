@@ -1,4 +1,5 @@
 extends SceneTree
+const SimSave = preload("res://tools/sim_save_hook.gd")
 ## Plays Act 1's "The Council of Rome" (docs/campaign_a07_build.md) with a simple bot and prints, every minute, how it
 ## goes: the part, the dawn clock, the guard, the creatures, the automata, the fires, the houses standing, the people
 ## saved. A balance check: a player who plays it wins on NORMAL; a player who does nothing loses (the creatures or the
@@ -75,6 +76,9 @@ func _run() -> void:
 	print("SIM diff=%s cages=%s broken=%s varenne=%s lost=%d active=%s" % [diff, cages, broken, varenne, lost, active])
 	while g.clock < until and not g.over:
 		await physics_frame
+		if SimSave.due(g):
+			g = await SimSave.reload(self, main)      # (save_at=: player-comforts)
+			r = g.mission
 		if paused:
 			paused = false          # (the mid-match show pauses a solo match: the bot reads it at once)
 		if active and g.clock >= think:

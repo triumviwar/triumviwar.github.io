@@ -106,11 +106,11 @@ Constructs run down away from a Clocktower, Spring Tower, Charging Pylon or depl
 Left click selects (Shift adds, Ctrl-click or double-click picks every unit of that type on screen); left drag box-selects; right click commands (move, attack, work, rally). Mouse wheel zooms; screen edges, arrow keys or the middle button pan.
 Line move: hold the right button and drag a line; your units spread out along it (with A first, they attack-move). On a phone: tap MOVE or ATTACK, then drag.
 Shift-queued orders: hold Shift while giving an order (right click, MOVE, ATTACK, REPAIR, placing buildings or walls) and it goes after what the units are already doing, up to 16 orders. MOVE, ATTACK, REPAIR and placement stay open while Shift is held. Shift-placed buildings are built one after another in click order (each Brood site takes its own grub). A plain order clears the queue. Selected units show their queue as faint lines: green move, red attack, yellow build or work.
-Every command button has a letter hotkey (hover for details): B build, A attack, M move, S stop, H hold, G work, E repair (right-click it: automatic repair, glowing), Ctrl+A attack ground (a spot, or hold and drag a line to share it out: every unit that can attack keeps attacking it until another order). The hotkey bar above the selection card: F1 idle workers, F2 army, F3 MAKE (every building that makes something), then groups 1-9 and 0: the number selects (twice: jumps to it), Ctrl+number sets the group to the selection, Shift+number adds the selection to it, Alt+number sets it and takes those units out of every other group (Shift+Alt+number adds them and takes them out) (to drop a unit: select the group, Shift+click it off, Ctrl+number again). F4-F10 jump to camera views (the tabs peeking above the bar); Shift+F4-F10 saves the current view. Tab scrolls a long command card (so do the mouse wheel and its scroll bar); every command's key works even when its button is scrolled out of view. Space jumps to the selection, Esc cancels. In a browser, Ctrl+1-8 and F5 may be taken by the browser: use the bar's buttons or Shift+click. Enter: chat (type, Enter sends, Esc cancels; the computer's "gg" can be answered with gg).
+Every command button has a letter hotkey (hover for details): B build, A attack, M move, S stop, H hold, G work, E repair (right-click it: automatic repair, glowing), Ctrl+A attack ground (a spot, or hold and drag a line to share it out: every unit that can attack keeps attacking it until another order). The hotkey bar above the selection card: F1 idle workers, F2 army, F3 MAKE (every building that makes something), then groups 1-9 and 0: the number selects (twice: jumps to it), Ctrl+number sets the group to the selection, Shift+number adds the selection to it, Alt+number sets it and takes those units out of every other group (Shift+Alt+number adds them and takes them out) (to drop a unit: select the group, Shift+click it off, Ctrl+number again). F4-F9 jump to camera views (the tabs peeking above the bar); Shift+F4-F9 saves the current view. Pause/Break or F10 pauses and resumes the match. Tab scrolls a long command card (so do the mouse wheel and its scroll bar); every command's key works even when its button is scrolled out of view. Space jumps to the selection, Esc cancels. In a browser, Ctrl+1-8 and F5 may be taken by the browser: use the bar's buttons or Shift+click. Enter: chat (type, Enter sends, Esc cancels; the computer's "gg" can be answered with gg).
 Tooltips: rest the mouse on a command button for its cost, time, supply, what's still missing (in red) and what it does; on a unit or building (yours or the enemy's), a resource or a quick button a little longer. Settings > TOOLTIPS switches them off.
 
 MOBILE
-Tap to select, double-tap for every unit of that type on screen. DRAG: BOX / PAN (top right) switches what a one-finger drag does. Tap the ground to move, an enemy to attack. The speech-bubble button (top right) opens QUICK CHAT: one tap sends GG, GL HF, THANKS, OOPS, WAIT or ATTACK?. Long-press to move without fighting. Two fingers pan, pinch zooms, tap the minimap to jump. IDLE / ARMY / MAKE and the groups 1-0 (the bar above the selection card) select quickly (MAKE: every building that makes something, to train from all of them). Groups: hold to save, tap to select. The tabs F4-F10 peeking above the bar: tap to jump to a saved view (an empty one saves this view), hold to save. Hold REPAIR for automatic repair (it glows); Tap a portrait in a group to keep only that kind.
+Tap to select, double-tap for every unit of that type on screen. DRAG: BOX / PAN (top right) switches what a one-finger drag does. Tap the ground to move, an enemy to attack. The speech-bubble button (top right) opens QUICK CHAT: one tap sends GG, GL HF, THANKS, OOPS, WAIT or ATTACK?. Long-press to move without fighting. Two fingers pan, pinch zooms, tap the minimap to jump. IDLE / ARMY / MAKE and the groups 1-0 (the bar above the selection card) select quickly (MAKE: every building that makes something, to train from all of them). Groups: hold to save, tap to select. The camera tabs peeking above the bar: tap to jump to a saved view (an empty one saves this view), hold to save. Hold REPAIR for automatic repair (it glows); Tap a portrait in a group to keep only that kind.
 The command card shows 12 buttons; when a selection has more, drag the card up and down with a finger to see the rest (a thin bar at its right edge shows where you are). Help: tap "?" (top right), then tap anything (a button, a unit or building, a resource) to see what it is instead of using it; the next touch puts the tooltip away. Settings > TOOLTIPS switches it off.
 
 WATCHING COMPUTERS
@@ -325,7 +325,8 @@ func show_crash(report: String) -> void:
 	var sv := SaveGame.peek()
 	var can_go_on: bool = not sv.is_empty() and not SaveGame.old_brood(sv) and sv.get("version", "") == version
 	var why := UiStyle.text(Loc.t("Last time the game didn't close normally (a crash, or the phone shut it). COPY the report and paste it to the developer.")
-			+ (" " + Loc.t("Your match was autosaved: CONTINUE is on the menu.") if can_go_on else ""), 17, UiStyle.MUTED)
+			+ (" " + Loc.t("Your match was autosaved: CONTINUE is on the menu.") if can_go_on else "")
+			+ (" " + Loc.t("Your mission was saved: CONTINUE is on its card in the CAMPAIGN.") if MissionSave.newest_auto() != "" else ""), 17, UiStyle.MUTED)
 	why.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	why.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART   # one long line ran off a phone's screen
 	v.add_child(why)
@@ -543,12 +544,84 @@ func _menu_button(id: String, save: Dictionary, pc: bool) -> Button:
 		"exit":
 			if menu_web:
 				return null       # (a browser tab can't be quit: the slot stays empty)
-			b = _button("EXIT", func() -> void: quit_game())
+			b = _button("EXIT", func() -> void:
+				ask("Quit the game?", "YES, QUIT", func() -> void: quit_game()))      # (asked first: player-comforts)
 	if b == null:
 		return null       # (an empty "" slot of MENU_SLOTS: nothing to make)
 	b.name = "Menu_" + id
 	b.clip_text = false
 	return b
+
+
+## A question over the page (player-comforts: EXIT asks first): the words, YES (its label) and NO. Esc or the phone's
+## back says NO, Enter says YES.
+var _ask: Control = null
+
+
+func ask(question: String, yes_label: String, on_yes: Callable) -> void:
+	if is_instance_valid(_ask):
+		_ask.queue_free()
+	var o := AskBox.new()
+	o.name = "AskBox"
+	o.theme = UiStyle.theme()
+	o.process_mode = Node.PROCESS_MODE_ALWAYS
+	o.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_ask = o
+	ui_layer.add_child(o)
+	var dim := ColorRect.new()
+	dim.color = Color(0, 0, 0, 0.55)
+	dim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	o.add_child(dim)
+	var cc := CenterContainer.new()
+	cc.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	o.add_child(cc)
+	var p := PanelContainer.new()
+	cc.add_child(p)
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 16)
+	p.add_child(v)
+	var ph := not Settings.pc()
+	var l := UiStyle.text(Loc.t(question), 30 if ph else 24, UiStyle.TEXT, HORIZONTAL_ALIGNMENT_CENTER, true)
+	l.custom_minimum_size = Vector2(520 if ph else 440, 0)
+	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	v.add_child(l)
+	var row := HBoxContainer.new()
+	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	row.add_theme_constant_override("separation", 16)
+	v.add_child(row)
+	var yes := _button(yes_label, func() -> void:
+		o.queue_free()
+		on_yes.call())
+	yes.name = "Confirm_Yes"
+	UiStyle.primary(yes, UiStyle.BAD)
+	var no := _button("NO", func() -> void: o.queue_free())
+	no.name = "Confirm_No"
+	for b in [yes, no]:
+		b.custom_minimum_size = Vector2(200, 64 if ph else 56)
+		row.add_child(b)
+	o.yes = yes
+	o.no = no
+
+
+class AskBox extends Control:
+	var yes: Button
+	var no: Button
+
+	func _input(e: InputEvent) -> void:
+		if not (e is InputEventKey) or not (e as InputEventKey).pressed or (e as InputEventKey).echo:
+			return
+		var k := (e as InputEventKey).keycode
+		if k == KEY_ESCAPE:
+			no.pressed.emit()
+			get_viewport().set_input_as_handled()
+		elif k in [KEY_ENTER, KEY_KP_ENTER]:
+			yes.pressed.emit()
+			get_viewport().set_input_as_handled()
+
+
+## Is a question open (AskBox)? The phone's back closes it (says NO).
+func ask_open() -> bool:
+	return is_instance_valid(_ask) and _ask.is_inside_tree() and not _ask.is_queued_for_deletion()
 
 
 ## EXIT: save first (as the phone's back does), then close the game.
@@ -2673,6 +2746,7 @@ var _rotate_paused := false
 var _save_t := 0.0
 var _save_pf := -1
 var _save_job: SaveGame.SaveJob = null
+var _save_path := SaveGame.PATH       # (where the save being written goes: a campaign mission has its own, MissionSave)
 var _f11_hint: PanelContainer
 var _f11_t := 0.0
 
@@ -2684,8 +2758,13 @@ func _autosave(steps := false) -> void:
 	_save_job = null                      # (one at once replaces one still being written)
 	if game == null or game.over or game.demo or game.edit_mode:
 		return
-	if game.net or game.mission:
-		# an online match or a campaign mission can't be continued (no save), but its log is kept as it goes, like any match's
+	_save_path = SaveGame.PATH
+	if game.mission and MissionSave.can_save(game):
+		# a CAMPAIGN MISSION (player-comforts): its own save, not the skirmish's autosave (CONTINUE on the mission's card)
+		_save_path = MissionSave.path(game.mission.id)
+	elif game.net or game.mission:
+		# an online match, a lesson or an online mission can't be continued (no save), but its log is kept as it goes, like
+		# any match's
 		if game.mlog:
 			_write_log("user://logs/unfinished.txt", game.mlog.text())
 		return
@@ -2701,7 +2780,7 @@ func _autosave(steps := false) -> void:
 			_save_job.defer_write = true     # (written off the main thread: _save_step)
 			return
 	else:
-		SaveGame.save(game, cfg)
+		SaveGame.save(game, cfg, _save_path)
 	_save_done(pt)
 
 
@@ -2718,7 +2797,7 @@ func _save_step() -> void:
 		var log_text: String = game.mlog.text() if game and game.mlog else ""
 		SaveGame.write_async(text, func() -> void:
 			if log_text != "":
-				_write_log("user://logs/unfinished.txt", log_text))
+				_write_log("user://logs/unfinished.txt", log_text), _save_path)
 		Prof.add("autosave/log", pl)
 		Prof.add("autosave", pt)
 		print("[save] done")
@@ -2740,9 +2819,11 @@ func _notification(what: int) -> void:
 	# the phone's back (project setting quit_on_go_back is off): back one menu level; on the top row, or in a
 	# match, the app closes as before
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		if ask_open():
+			_ask.queue_free()        # (a question open: back says NO)
+			return
 		if not menu_back():
-			_autosave()
-			get_tree().quit()
+			ask("Quit the game?", "YES, QUIT", func() -> void: quit_game())      # (asked first, the match saved on YES: player-comforts)
 		return
 	if what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_WM_CLOSE_REQUEST, NOTIFICATION_WM_WINDOW_FOCUS_OUT]:
 		_autosave()
@@ -2939,6 +3020,13 @@ func start(cfg: Dictionary = {}) -> void:
 		mr.game = game
 		mr.setup(Campaign.mission(String(camp.get("mission", ""))), String(camp.get("mode", "solo")), cfg, game.puppet)
 		game.mission = mr
+		if mr.mode == "solo" and not bool(mr.data.get("tutorial", false)) and not cfg.has("net"):
+			mr.checkpoint_wanted.connect(func(_why: String) -> void: mission_checkpoint())
+			if not cfg.has("resume"):
+				# (the mission begun again from its start: where you left it and its checkpoints belong to the run before;
+				# your own SAVE stays: player-comforts)
+				MissionSave.clear(mr.id, "auto")
+				MissionSave.clear(mr.id, "checkpoint")
 	game.process_mode = Node.PROCESS_MODE_PAUSABLE
 	if cfg.has("crown_nat"):
 		game.set_meta("crown_nat", String(cfg["crown_nat"]))      # (crown-v-brood's corner pocket experiment, CrownSites.corner_on)
@@ -3003,7 +3091,9 @@ func start(cfg: Dictionary = {}) -> void:
 		if watching:
 			_to_replays()
 		else:
-			_to_menu())
+			_quit_match())
+	hud.save_requested.connect(func() -> void: mission_save_now())
+	hud.load_requested.connect(func() -> void: mission_load("save"))
 	if game.demo:
 		# computers only: the VIEW dropdown (all vision, a player's vision, follow a player)
 		var sp := Spectator.new()
@@ -3073,6 +3163,55 @@ func start(cfg: Dictionary = {}) -> void:
 			ReplayRecorder.start(game, last_cfg, human, game.puppet, ReplayRecorder.rate_for(Settings.replay_mode(), online_host), game.net_watch)
 
 
+## QUIT from the match menu: a campaign mission goes back to its storyline's hub (where its card offers CONTINUE), any
+## other match to the main menu (player-comforts).
+func _quit_match() -> void:
+	var mid := ""
+	if game and game.mission and not bool(game.mission.data.get("tutorial", false)) and game.net == null:
+		mid = game.mission.id
+	_to_menu()
+	if mid != "":
+		CampaignMenu.back_to_hub(self, mid)
+
+
+## The match menu's SAVE in a campaign mission: written now, said in a toast.
+func mission_save_now() -> void:
+	if game and MissionSave.write(game, last_cfg, "save"):
+		_autosave()      # (where you left it too, so CONTINUE and SAVE agree now)
+		if game.hud:
+			game.hud.toast("Saved.", false)
+	elif game and game.hud:
+		game.hud.toast("This can't be saved.", false)
+
+
+## A CHECKPOINT (MissionRun.checkpoint_wanted: a new part of the mission, a primary objective met).
+func mission_checkpoint() -> void:
+	if game and MissionSave.write(game, last_cfg, "checkpoint"):
+		_autosave()
+		if game.hud:
+			game.hud.toast("Checkpoint.", false)
+
+
+## Load a mission's save of that kind ("save", "checkpoint", "auto") and play on from it.
+func mission_load(kind: String, mid := "") -> void:
+	if mid == "" and game and game.mission:
+		mid = game.mission.id
+	var d := MissionSave.peek(mid, kind)
+	if d.is_empty():
+		if game and game.hud:
+			game.hud.toast("Nothing saved to load.", false)
+		return
+	get_tree().paused = false
+	Engine.time_scale = 1.0
+	if game and game.rec and not game.rec.done:
+		game.rec.finish(-1, true)      # (the replay so far is kept, as when leaving)
+	if game:
+		game.queue_free()
+		game = null
+	Game._tex_cache.clear()
+	start(MissionSave.resume_cfg(d))
+
+
 func _to_menu() -> void:
 	get_tree().paused = false
 	Engine.time_scale = 1.0
@@ -3115,7 +3254,15 @@ func _on_end(winner: int) -> void:
 	if game.mlog:
 		game.mlog.finish(winner)
 		_save_log(game.mlog.text())
-	SaveGame.clear()
+	if game.mission:
+		# (a campaign mission over: where you left it is gone; a defeat keeps its CHECKPOINT for RETRY FROM CHECKPOINT,
+		# a victory clears it; a skirmish's autosave is not touched: player-comforts)
+		var mid := game.mission.id
+		MissionSave.clear(mid, "auto")
+		if won and game.mission.mode == "solo":
+			MissionSave.clear(mid, "checkpoint")
+	else:
+		SaveGame.clear()
 	var rp_path := ""
 	if game.rec:
 		rp_path = game.rec.finish(winner)

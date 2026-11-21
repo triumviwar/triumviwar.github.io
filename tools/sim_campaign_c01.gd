@@ -1,4 +1,5 @@
 extends SceneTree
+const SimSave = preload("res://tools/sim_save_hook.gd")
 ## Plays the Clockwork prologue, "The Thirteenth Hour" (docs/campaign_c01_build.md), with a simple player bot and prints,
 ## every minute, how it goes: the part, the guild's army, the machine's, the seeds, the townsfolk saved, the time left. A
 ## balance check: Parts 1-2 must be winnable by a player who plays them (the order filled, the mill seed burnt), Part 3 a
@@ -53,6 +54,9 @@ func _run() -> void:
 	var mt := r.team_index("machine")
 	while g.clock < until and not g.over:
 		await physics_frame
+		if SimSave.due(g):
+			g = await SimSave.reload(self, main)      # (save_at=: player-comforts)
+			r = g.mission
 		if not r.choice_open.is_empty():
 			var cid := String(r.choice_open["id"])
 			if cid == "bells":

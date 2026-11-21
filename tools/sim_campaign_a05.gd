@@ -1,4 +1,5 @@
 extends SceneTree
+const SimSave = preload("res://tools/sim_save_hook.gd")
 ## Plays Act 1's "The Specimens" (docs/campaign_a05_build.md) from either side with a simple bot and prints, every 30
 ## seconds, how it goes: the part, the caged, the carts and their health, the freed, the loaded, the expedition's men,
 ## the raiders, the clocks. A balance check: the expedition's player who plays it wins on NORMAL in a sensible time; the
@@ -69,6 +70,9 @@ func _run() -> void:
 	print("SIM side=%s diff=%s b01=%s a03=%s active=%s human=%d" % [side, diff, "none" if no_flags else str(b01), "none" if no_flags else str(a03), active, g.human])
 	while g.clock < until and not g.over:
 		await physics_frame
+		if SimSave.due(g):
+			g = await SimSave.reload(self, main)      # (save_at=: player-comforts)
+			r = g.mission
 		if active and g.clock >= think:
 			think = g.clock + 0.75
 			if side == "creatures":

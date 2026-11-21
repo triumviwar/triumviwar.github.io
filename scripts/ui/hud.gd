@@ -4,6 +4,8 @@ extends Control
 ## that land on its panels before the map sees them.
 
 signal quit_requested
+signal save_requested              # the menu's SAVE (a campaign mission: MissionSave, player-comforts)
+signal load_requested              # the menu's LOAD, after its question
 signal settings_requested          # the match MENU's SETTINGS (main.gd open_match_settings: the Settings page over the match)
 signal settings_back               # Esc while that page is open: back to the match MENU
 
@@ -576,6 +578,22 @@ func _on_input(event: InputEvent) -> void:
 	if not (event is InputEventKey) and _show_over():
 		return          # (a show over the match: its clicks and taps are its own)
 	if event is InputEventKey and _chat_input(event as InputEventKey):
+		get_viewport().set_input_as_handled()
+		return
+	if event is InputEventKey and (event as InputEventKey).pressed and not (event as InputEventKey).echo \
+			and (event as InputEventKey).keycode in PAUSE_KEYS and _confirm == "":
+		# PAUSE (player-comforts): Pause/Break or F10 pause and resume, as the menu's PAUSE / RESUME (online by its rules:
+		# the pauses left, and nothing to resume while the host is away)
+		var pit := _pause_item()
+		if bool(pit.get("enabled", true)) and countdown <= 0.0 and not game.over and not game.net_watch:
+			set_paused(not paused)
+		elif pit.has("why"):
+			toast(String(pit["why"]))
+		get_viewport().set_input_as_handled()
+		return
+	if event is InputEventKey and (event as InputEventKey).pressed and not (event as InputEventKey).echo \
+			and (event as InputEventKey).keycode in [KEY_ENTER, KEY_KP_ENTER] and menu_open and _confirm != "":
+		_confirm_yes()             # (Enter answers the menu's question YES: player-comforts)
 		get_viewport().set_input_as_handled()
 		return
 	if event is InputEventKey and (event as InputEventKey).pressed and not (event as InputEventKey).echo \
@@ -2838,6 +2856,7 @@ func _lay_wall_path(k: String, via: Array, end: Vector2i, queued: bool) -> void:
 ## at most, then a 3-2-1). While paused, with the menu closed, a small panel says so (online: who) with RESUME.
 
 var menu_open := false
+const PAUSE_KEYS := [KEY_PAUSE, KEY_F10]      # pause / resume (player-comforts; F10 was the 7th camera view's key)
 var settings_open := false          # the Settings page is open over the match (main.gd): the HUD takes no input meanwhile
 var _confirm := ""                  # the menu asks first: "surrender" or "quit"
 var music := MenuMusic.new()
@@ -2863,44 +2882,90 @@ func _music_shown() -> bool:
 
 func _menu_list() -> Array:
 	if _confirm != "":
-		var yes := "YES, SURRENDER" if _confirm == "surrender" else "YES, LEAVE"
+		var yes: String = {"surrender": "YES, SURRENDER", "load": "YES, LOAD"}.get(_confirm, "YES, LEAVE")
 		return [
-			{"label": yes, "bad": true, "cb": func() -> void:
-				var what := _confirm
-				toggle_menu(false)
-				if what == "surrender":
-					game.player_surrender()
-				else:
-					set_paused(false)
-					quit_requested.emit()},
+			{"label": yes, "bad": true, "cb": func() -> void: _confirm_yes()},
 			{"label": "NO", "cb": func() -> void:
 				_confirm = ""
 				_sig.erase("pause")},
 		]
+	var in_mission := game.mission != null and not bool(game.mission.data.get("tutorial", false))
 	var list: Array = [_pause_item(),
 		{"label": "MUSIC", "slider": "music", "cb": func() -> void: pass},
 		{"label": "SOUND", "slider": "sound", "cb": func() -> void: pass},
 		{"label": "AMBIENCE", "slider": "ambience", "cb": func() -> void: pass},
 		{"label": "MINIMAP", "slider": "minimap", "cb": func() -> void: pass},
 		{"label": "SETTINGS", "cb": func() -> void: settings_requested.emit()},      # (the whole Settings page over the match)
-		{"label": "SURRENDER", "bad": true, "cb": func() -> void:
-			_confirm = "surrender"
-			_sig.erase("pause")},
-		{"label": "QUIT TO MENU", "cb": func() -> void:
-			if _online() and not game.over:
-				_confirm = "quit"          # (online: leaving ends it for the friend too, or hands your side to a computer)
-				_sig.erase("pause")
-				return
-			toggle_menu(false)
-			set_paused(false)
-			quit_requested.emit()},
-		{"label": "BACK TO THE MATCH", "cb": func() -> void: toggle_menu(false)},
 	]
+	if MissionSave.can_save(game):
+		# a campaign mission (player-comforts): SAVE now, LOAD your own save (asked first: what happened since is lost)
+		list.append({"label": "SAVE", "cb": func() -> void: save_requested.emit()})
+		var has_save := MissionSave.has(game.mission.id, "save")
+		list.append({"label": "LOAD", "enabled": has_save, "why": "Nothing saved yet: SAVE first.", "cb": func() -> void:
+			_confirm = "load"
+			_sig.erase("pause")})
+	list.append({"label": "SURRENDER", "bad": true, "cb": func() -> void:
+		_confirm = "surrender"
+		_sig.erase("pause")})
+	list.append({"label": "QUIT TO CAMPAIGN" if in_mission else "QUIT TO MENU", "cb": func() -> void:
+		if not game.over and not game.demo and game.replay == null:
+			_confirm = "quit"          # (asked first: online leaving ends it for the friend too; a match is left: player-comforts)
+			_sig.erase("pause")
+			return
+		toggle_menu(false)
+		set_paused(false)
+		quit_requested.emit()})
+	list.append({"label": "BACK TO THE MATCH", "cb": func() -> void: toggle_menu(false)})
 	if game.demo or game.over:
 		list = list.filter(func(b: Dictionary) -> bool: return b["label"] != "SURRENDER")    # watching computers: nobody of yours to surrender
 	if game.replay or game.net_watch:
 		list = list.filter(func(b: Dictionary) -> bool: return not String(b["label"]).begins_with("PAUSE"))    # (a replay: its own bar pauses; an online spectator can't pause the players)
 	return list
+
+
+## The menu's question answered YES (its button, or Enter).
+func _confirm_yes() -> void:
+	var what := _confirm
+	toggle_menu(false)
+	if what == "surrender":
+		game.player_surrender()
+	elif what == "load":
+		load_requested.emit()
+	else:
+		set_paused(false)
+		quit_requested.emit()
+
+
+## Words broken into lines no wider than `w` (already translated).
+func _wrap_lines(t: String, f: Font, sz: int, w: float) -> PackedStringArray:
+	var out := PackedStringArray()
+	var cur := ""
+	for word in t.split(" "):
+		var tryl := word if cur == "" else cur + " " + word
+		if cur != "" and TextCache.width(f, tryl, sz) > w:
+			out.append(cur)
+			cur = word
+		else:
+			cur = tryl
+	if cur != "":
+		out.append(cur)
+	return out
+
+
+## The question the menu asks (over its YES / NO).
+func _confirm_text() -> String:
+	match _confirm:
+		"surrender":
+			return "Give up this match? Your buildings fall."
+		"load":
+			return "Load your save? What happened since then is lost."
+	if _online():
+		return "Leave the match? It ends for your friend too." if game.net.is_host else "Leave the match? A computer plays your side."
+	if game.mission != null:
+		if MissionSave.can_save(game):
+			return "Leave the mission? It is saved: CONTINUE is on its card."
+		return "Leave? This starts again next time."
+	return "Leave the match? CONTINUE on the main menu brings it back."
 
 
 ## An online match (not a replay, whose session stands in for the host's: game.replay).
@@ -3528,9 +3593,10 @@ func _draw_pause() -> void:
 		if sub != "":
 			_text(UiStyle.bold_font(), Vector2(cx, pr.position.y + 76), sub, 16, UiStyle.TEXT, 1)
 		if _confirm != "":
-			var q := "Give up this match? Your buildings fall." if _confirm == "surrender" else (
-				"Leave the match? It ends for your friend too." if game.net and game.net.is_host else "Leave the match? A computer plays your side.")
-			_text(UiStyle.bold_font(), Vector2(cx, pr.position.y + 120), q, 17, UiStyle.TEXT, 1)
+			# (wrapped to the panel: the longer questions ran past its edges)
+			var ql := _wrap_lines(Loc.t(_confirm_text()), UiStyle.bold_font(), 17, pr.size.x - 30.0)
+			for qi in ql.size():
+				_text(UiStyle.bold_font(), Vector2(cx, pr.position.y + 112 + qi * 21 - (ql.size() - 1) * 6), ql[qi], 17, UiStyle.TEXT, 1)
 		for b in _menu_buttons():
 			var r: Rect2 = b["rect"]
 			var on: bool = b.get("enabled", true)

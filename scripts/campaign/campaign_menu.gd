@@ -210,6 +210,8 @@ static func war_table(main: Node) -> void:
 				var other: Array = picks.filter(func(x) -> bool: return String(x) != vs_pick)
 				rv.add_child(_wrap(Loc.t("The friend's side: %s. The other is played by the computer: %s.") % [Loc.t(Campaign.side_name(m, vs_pick)),
 					", ".join(other.map(func(x) -> String: return Loc.t(Campaign.side_name(m, String(x)))))], 15, UiStyle.MUTED))
+		if mode == "solo":
+			_save_row(main, rv, pick)        # (CONTINUE / LOAD SAVE / FROM CHECKPOINT: player-comforts)
 		var go: Button = main._button("BRIEFING" if mode == "solo" else "OPEN AN ONLINE ROOM", func() -> void:
 			if mode == "solo":
 				briefing(main, pick)
@@ -235,6 +237,48 @@ static func war_table(main: Node) -> void:
 	wm.name = "WarTable_Map"
 	wm.custom_minimum_size = Vector2(240, 56)
 	brow.add_child(wm)
+
+
+## The mission's own saves on its card (player-comforts, MissionSave): CONTINUE (where you left it), LOAD SAVE (the
+## match menu's SAVE), FROM CHECKPOINT (the last part begun); each only when there is one. BRIEFING starts it afresh.
+static func _save_row(main: Node, parent: Control, mid: String) -> void:
+	var row := HFlowContainer.new()
+	row.add_theme_constant_override("h_separation", 8)
+	row.add_theme_constant_override("v_separation", 6)
+	var kinds := [["auto", "CONTINUE  (%s)"], ["save", "LOAD SAVE  (%s)"], ["checkpoint", "FROM CHECKPOINT  (%s)"]]
+	for kd in kinds:
+		var d := MissionSave.peek(mid, String(kd[0]))
+		if d.is_empty():
+			continue
+		var kind := String(kd[0])
+		var b: Button = main._button(Loc.t(String(kd[1])) % MissionSave.clock_text(d), func() -> void:
+			main.mission_load(kind, mid))
+		b.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		b.name = "Campaign_" + kind.capitalize()
+		b.custom_minimum_size = Vector2(200, 52)
+		if kind == "auto":
+			UiStyle.primary(b, Color("#2f6a8a"))
+		row.add_child(b)
+	if row.get_child_count() > 0:
+		parent.add_child(row)
+	else:
+		row.free()
+
+
+## Back to the hub of the storyline this mission belongs to (QUIT TO CAMPAIGN from a mission: player-comforts). A
+## crossing in several storylines (a07) goes back to the one shown before, when it is one of them.
+static func back_to_hub(main: Node, mid: String) -> void:
+	var here := false
+	for sl in Campaign.storylines():
+		if String(sl.get("id", "")) == line and (sl.get("missions", []) as Array).has(mid):
+			here = true
+	if not here:
+		var sl := Campaign.storyline_of(mid)
+		if not sl.is_empty():
+			line = String(sl["id"])
+	pick = mid
+	mode = "solo"
+	show(main)
 
 
 ## CO-OP / VERSUS: host an online room for the mission (the friend joins with the code from ONLINE).
@@ -526,8 +570,11 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 			main._to_menu()
 			pick = nxt
 			briefing(main, nxt)])
+	if not online and not won and run.mode == "solo" and MissionSave.has(mid, "checkpoint"):
+		# a CHECKPOINT kept: try again from the last part begun, not from the start (player-comforts)
+		btns.append(["RETRY FROM CHECKPOINT", func() -> void: main.mission_load("checkpoint", mid)])
 	if not online:
-		btns.append(["PLAY AGAIN", func() -> void: main.start()])
+		btns.append(["PLAY AGAIN" if won else "RESTART MISSION", func() -> void: main.start()])
 	btns.append(["BATTLE REPORT", func() -> void:
 		o.queue_free()
 		main.show_battle_report(winner, rp_path)])
@@ -1062,6 +1109,8 @@ static func _pin_card(main: Node, card: PanelContainer, mid: String, stt: Dictio
 	outer.add_child(bv)
 	if state in ["open", "done"]:
 		var sl := Campaign.storyline_of(mid)
+		if MissionSave.has(mid, "auto") or MissionSave.has(mid, "save") or MissionSave.has(mid, "checkpoint"):
+			_save_row(main, bv, mid)      # (the pin's card too: CONTINUE and the rest, player-comforts)
 		var go: Button = main._button("BRIEFING", func() -> void:
 			keep_cam.call()
 			line = String(sl["id"])

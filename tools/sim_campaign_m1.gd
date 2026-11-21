@@ -1,4 +1,5 @@
 extends SceneTree
+const SimSave = preload("res://tools/sim_save_hook.gd")
 ## Plays mission 1's night (docs/campaign_m1_build.md) with a passive player (his men only fire back where they stand)
 ## and prints, every minute, what is left: barns, the manor, the Crown's men, the rebels in the field. A balance check:
 ## the night must hurt a player who does nothing, and not more than a player who fights can mend.
@@ -36,6 +37,9 @@ func _run() -> void:
 	var gov := r.team_index("governor")
 	while g.clock < until and not g.over:
 		await physics_frame
+		if SimSave.due(g):
+			g = await SimSave.reload(self, main)      # (save_at=: player-comforts)
+			r = g.mission
 		if active and g.clock >= think:
 			think = g.clock + 1.5
 			_play(g, r, gov, reb)
@@ -52,7 +56,7 @@ func _run() -> void:
 			var mh: float = r.tagged("manor")[0].hp if not r.tagged("manor").is_empty() else 0.0
 			print("SIM t=%4d barns=%d manor=%d crown=%d rebels_in_field=%d torches=%d" % [g.clock, r.tagged("barns").size(), mh, crown, field,
 				g.units.filter(func(u): return not u.dead and u.has_meta("torch")).size()])
-	print("SIM end t=%d over=%s winner=%s barns=%d dawn=%s" % [g.clock, g.over, r.winner_side, r.tagged("barns").size(), r.obj.get("dawn")])
+	print("SIM end t=%d over=%s winner=%s barns=%d dawn=%s flags=%s" % [g.clock, g.over, r.winner_side, r.tagged("barns").size(), r.obj.get("dawn"), r.flags])
 	quit()
 
 

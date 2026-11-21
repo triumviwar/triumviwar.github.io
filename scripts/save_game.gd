@@ -25,15 +25,15 @@ static func wait() -> void:
 
 
 ## Writes `text` as the save, then runs `after` (the log's writing), both on a worker thread when there are threads.
-static func write_async(text: String, after: Callable) -> void:
+static func write_async(text: String, after: Callable, path := PATH) -> void:
 	wait()
 	if not can_write_async():
-		write(text)
+		write(text, path)
 		if after.is_valid():
 			after.call()
 		return
 	_task = WorkerThreadPool.add_task(func() -> void:
-		_write_file(text)
+		_write_file(text, path)
 		if after.is_valid():
 			after.call(), false, "autosave")
 
@@ -55,9 +55,15 @@ static func old_brood(d: Dictionary) -> bool:
 
 
 static func peek() -> Dictionary:
-	if not exists():
+	return peek_file(PATH)
+
+
+## A save file read and checked (peek's, for any file: a campaign mission's own saves, MissionSave); {} when it is none.
+static func peek_file(path: String) -> Dictionary:
+	wait()
+	if not FileAccess.file_exists(path):
 		return {}
-	var f := FileAccess.open(PATH, FileAccess.READ)
+	var f := FileAccess.open(path, FileAccess.READ)
 	if f == null:
 		return {}
 	# (a damaged file: JSON.parse rather than parse_string, which logged an engine error on every visit to the menu;
@@ -118,10 +124,11 @@ static func _to_v2(a) -> Vector2:
 	return Vector2(float(a[0]), float(a[1])) if a is Array else Vector2.INF
 
 
-static func save(game: Game, cfg: Dictionary) -> void:
+static func save(game: Game, cfg: Dictionary, path := PATH) -> bool:
 	var d := capture(game, cfg)
 	if not d.is_empty():
-		write(JSON.stringify(d))
+		write(JSON.stringify(d), path)
+	return not d.is_empty()
 
 
 ## The match as a save, in a few steps (Main's autosave every 15 s): the state is taken at once (capture), then the
@@ -168,13 +175,15 @@ class SaveJob:
 		return true
 
 
-static func write(text: String) -> void:
+static func write(text: String, path := PATH) -> void:
 	wait()
-	_write_file(text)
+	_write_file(text, path)
 
 
-static func _write_file(text: String) -> void:
-	var f := FileAccess.open(PATH, FileAccess.WRITE)
+static func _write_file(text: String, path := PATH) -> void:
+	if not DirAccess.dir_exists_absolute(path.get_base_dir()):
+		DirAccess.make_dir_recursive_absolute(path.get_base_dir())
+	var f := FileAccess.open(path, FileAccess.WRITE)
 	if f:
 		f.store_string(text)
 		f.close()
@@ -200,9 +209,11 @@ static func capture(game: Game, cfg: Dictionary, replay := false) -> Dictionary:
 		d["ai"].append({"team": ai.team, "walled": ai._walled, "attack_at": ai._attack_at, "strategy": ai.strategy,
 			"failed": ai._failed, "regroup": ai._regroup_until, "opening": ai.opening,
 			"opt": {"picks": ai.opt.picks, "switched": ai.opt.switched.keys()} if ai.opt != null else {}})
+	var bids := {}            # (a campaign mission: each saved building's number, for the mission's lists)
 	for b in game.buildings:
 		if b.dead:
 			continue
+		bids[b] = d["buildings"].size()
 		d["buildings"].append({"k": b.kind, "t": b.team, "c": [b.cell.x, b.cell.y], "built": b.built,
 			"progress": b.progress, "hp": b.hp, "queue": b.queue, "kits": b.kits.map(func(kt): return _kit_save(kt)), "ar": b.auto_refit, "arm": b.arm_powder, "prod_t": b.prod_t,
 			"auto": b.auto_train, "bat": b.batteries, "v": b.vertical, "vl": b.dir_locked, "gl": b.locked,
@@ -213,6 +224,7 @@ static func capture(game: Game, cfg: Dictionary, replay := false) -> Dictionary:
 			"wrally": _v2(b.worker_rally) if b.worker_rally != Vector2.INF else null})
 		if replay:
 			d["buildings"].back()["nid"] = b.net_id
+	var mrun: MissionRun = game.mission if game.mission != null and not replay else null
 	# every saved unit's number (in this list's order), so horses can name who leads them
 	var ids := {}
 	for u in game.units:
@@ -343,6 +355,10 @@ static func capture(game: Game, cfg: Dictionary, replay := false) -> Dictionary:
 			var cpl = CwConsist.save_tag(u)
 			if cpl != null:
 				ud["cpl"] = cpl                  # coupled into a train: [train id, place in it]
+		if mrun:
+			var mx := mrun.save_entity(u, ids, bids)       # (what a campaign mission put on him: MissionRun.save_entity)
+			if mx != "":
+				ud["mx"] = mx
 		d["units"].append(ud)
 	# control groups (units by their number in this list, buildings by their cell) and the
 	# camera hotkeys
@@ -383,6 +399,14 @@ static func capture(game: Game, cfg: Dictionary, replay := false) -> Dictionary:
 			d["kegs"].append([u.position.x, u.position.y, u.team, u.keg_shots if u.keg_shots > 0.0 else float(Defs.WAGON["keg"]), float(Defs.KEG["hp"])])
 	d["trains"] = game.line_net.rails.save()    # the Clockwork's trains (and the soldiers riding them)
 	d["line"] = game.line_net.save()           # the Clockwork Line: [x, y, team, hp, progress, built]
+	if mrun:
+		# a CAMPAIGN MISSION (player-comforts): what the mission put on each building, and its own state
+		for b in bids:
+			var bx := mrun.save_entity(b, ids, bids)
+			if bx != "":
+				d["buildings"][bids[b]]["mx"] = bx
+		d["mission"] = mrun.save_state(ids, bids)
+		d["mission_id"] = mrun.id
 	return d
 
 
@@ -498,6 +522,10 @@ static func restore(game: Game, d: Dictionary) -> void:
 		game.fog_base_dirty = true
 	# (Farms last: in saves from before Farms grew (to 5x4, then 6x5, then 6x6 tiles) each may have to
 	# shift a little to fit between what stands round it)
+	var made_b: Array = []      # (the saved buildings in order, null where one couldn't be made: a mission's lists)
+	made_b.resize(Array(d["buildings"]).size())
+	for bi in made_b.size():
+		(d["buildings"][bi] as Dictionary)["_i"] = bi
 	var blist: Array = Array(d["buildings"]).filter(func(x) -> bool: return String(x["k"]) != "farm") \
 		+ Array(d["buildings"]).filter(func(x) -> bool: return String(x["k"]) == "farm")
 	for bd in blist:
@@ -508,6 +536,7 @@ static func restore(game: Game, d: Dictionary) -> void:
 		if bk == "farm" and Array(d.get("farm_size", [])) != [float(Defs.BUILDINGS["farm"]["size"].x), float(Defs.BUILDINGS["farm"]["size"].y)]:
 			at = _fit(game, at, Defs.BUILDINGS[bk]["size"])
 		var b := game._add_building(bk, int(bd["t"]), at, bool(bd["built"]), bool(bd.get("ghost", false)))
+		made_b[int(bd["_i"])] = b
 		b.net_id = int(bd.get("nid", 0))       # (a mixed replay's keyframe: its id, for the commands after it)
 		b.progress = float(bd["progress"])
 		b.hp = float(bd["hp"])
@@ -839,6 +868,8 @@ static func restore(game: Game, d: Dictionary) -> void:
 	if game.mlog:
 		game.mlog.lines = PackedStringArray(d.get("log", []))
 		game.mlog.add("(match continued after it was closed)")
+	if game.mission != null and d.get("mission") is String:
+		game.mission.load_state(d, made, made_b)      # (a campaign mission's own state: player-comforts)
 	# the fog put back NOW, before the first picture: the match is held paused through the 3-2-1 countdown (no tick,
 	# no _update_vis), and every restored unit and building stood drawn on the open map until GO (owner, 2026-10-30)
 	game.refresh_fog()

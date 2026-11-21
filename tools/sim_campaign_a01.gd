@@ -1,4 +1,5 @@
 extends SceneTree
+const SimSave = preload("res://tools/sim_save_hook.gd")
 ## Plays Act 1's "The Printing Houses" (docs/campaign_a01_build.md) with a simple bot and prints, every minute, how it
 ## goes: the part, the city's temper, the presses closed and found, the garrison, the runners out, the Assembly's men. A
 ## balance check: a player who plays it wins on NORMAL in a sensible time; a player who does nothing loses when the
@@ -70,6 +71,9 @@ func _run() -> void:
 	print("SIM diff=%s families=%s active=%s layout=%s" % [diff, families, active, layout])
 	while g.clock < until and not g.over:
 		await physics_frame
+		if SimSave.due(g):
+			g = await SimSave.reload(self, main)      # (save_at=: player-comforts)
+			r = g.mission
 		if active and g.clock >= think:
 			think = g.clock + 1.0
 			_play(g, r, gt, at)
