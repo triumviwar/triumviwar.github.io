@@ -257,7 +257,7 @@ player did (selected, camera_moved, built, rooted, crew, did...) and the `point`
 | `"counters": {name: {"start", "of"}}` | mission numbers; `{"counter": {"name", "add"/"set"}}`; condition `{"counter": {"name", "at_least", "below"}}`; in any objective's or debrief's words `{name}` (and `{name.of}`) |
 | `"exits": [{"area", "tag" or "team", "counter"}]` | units walking into the area leave the map (Game.consume_unit: not a loss) and are counted |
 | `{"clock": {"name", "secs"}}`, `{"name", "add": s}`, `{"name", "stop": true}` | a COUNTDOWN the triggers read: `{"clock_out": name}`, `{"clock_left": {"name", "below": s}}`; `{clock:name}` in words shows m:ss |
-| objective `"kind": "countdown", "clock": name` | the clock in the panel (ticked when out; never decides the end) |
+| objective `"kind": "countdown", "clock": name` | the clock in the panel (ticked when out, crossed when out with `"fail": true`, as Paris's King's patience; never decides the end) |
 | trigger `"every": s` (`"times": n`, `"while": cond`) | a REPEATING trigger: after its first firing (its `when` and `delay`), again every s seconds while `while` (else `when`) holds |
 | `{"convert": {"tag" (or "area" + "from" + "kind" + "count"), "to": team, "warn": s, "as": new tag, "sound"}}` | units stutter (stunned, the stars, a sound) for the warning, then change side (colour, selection, supply) |
 | team `"roster": {"deny": [kinds]}`, `{"deny"/"unlock": {"team", "kind"}}` | what a team may not build or train in this mission (Game.can_train / requirement_text: "Not in this mission.") |

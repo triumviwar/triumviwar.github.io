@@ -452,6 +452,7 @@ func _defeats() -> void:
 	check("five minutes left: the King's line", _said(r, "k_patience") and not g.over)
 	_step(g, 1201.5)
 	check("THE KING'S PATIENCE RUNS OUT: the marshal recalled, the Crown loses", g.over and r.winner_side == "assembly" and r.obj["barricades"] == "failed" and _said(r, "n_patience"))
+	check("the King's patience out: crossed on the panel, not ticked (playtest 2026-11-21)", r.obj["patience"] == "failed", str(r.obj["patience"]))
 	g = await _start()
 	r = g.mission
 	_kill(r, "bar_1_men")

@@ -1122,7 +1122,9 @@ func _check_objectives() -> void:
 				# (a clock shown in the panel: "{clock:fall}" in its words; it never decides the end itself)
 				var cn := String(o.get("clock", ""))
 				if clocks.has(cn) and game.clock >= float(clocks[cn]):
-					set_objective(oid, "done")
+					# ("fail": running out is the bad end: Paris's "The King's patience" was ticked green on the defeat
+					# it brought; playtest 2026-11-21)
+					set_objective(oid, "failed" if bool(o.get("fail", false)) else "done")
 			"destroy":
 				if tags.has(String(o["tag"])) and tagged(String(o["tag"])).is_empty():
 					set_objective(oid, "done")

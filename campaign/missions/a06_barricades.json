@@ -2090,6 +2090,7 @@
 			"primary": false,
 			"kind": "countdown",
 			"clock": "patience",
+			"fail": true,
 			"text": "The King's patience: {clock:patience} to break into Paris (the three barricades)."
 		},
 		{

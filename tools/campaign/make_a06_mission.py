@@ -221,7 +221,7 @@ M = {
          "text": "Take the three barricades of the faubourg: {taken} of 3. Break them with the guns: the Mortar lobs over, the cannon's canister sweeps the street."},
         {"id": "fairleigh", "side": "crown", "primary": True, "kind": "protect", "tag": "fairleigh", "text": "Field Marshal Fairleigh must live."},
         {"id": "tomasz", "side": "crown", "primary": True, "kind": "protect", "tag": "tomasz", "text": "Father Tomasz must live."},
-        {"id": "patience", "side": "crown", "primary": False, "kind": "countdown", "clock": "patience",
+        {"id": "patience", "side": "crown", "primary": False, "kind": "countdown", "clock": "patience", "fail": True,
          "text": "The King's patience: {clock:patience} to break into Paris (the three barricades)."},
         # ---- part 2
         {"id": "bridges", "side": "crown", "primary": True, "kind": "manual", "hidden": True,
