@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"THE BROOD MOTHER CAN GET UP TO FIGHT WITHOUT LOSING HER ECONOMY: when she uproots, her swamp now LINGERS for 45 seconds where she was rooted, fading as the time runs out. The Rootmaws on it stay rooted and WAIT (they drink nothing: a \"waiting\" mark over them, and their card says WAITING: THE MOTHER IS UP; hers says HER SWAMP LINGERS with the time left). Root her again on it and they feed again at once. If she stays up longer, the swamp recedes and they uproot as before, but each keeps its spot: when the swamp is back under it (she rooted again, or a Mound Turtle's swamp) it ROOTS AGAIN BY ITSELF, unless you gave it another order. The Brood computer now gets up for smaller fights at its nest and roots back before the swamp runs out.",
+	]},
 	{"v": "0.38.113", "items": [
 		"AN EASIER EASY BROOD: the Brood computer on Easy now keeps to 20 grubs (on Normal 38) as the Crown and Clockwork computers keep to fewer workers on the easier levels, and on Easy it lays its warriors at half the pace. Before, an Easy Brood had the Hard economy and beat players who beat the Easy Crown and the Easy Clockwork. Story missions are unchanged; the tutorial's practice games use the new Easy.",
 		"ONE RIDER NO LONGER HOLDS THE WHOLE BROOD AT HOME: against riders in its land the Brood computer still guards its grubs without chasing, but only with a squad worth three times the riders; the rest of its army goes on with its plan and its attacks.",
