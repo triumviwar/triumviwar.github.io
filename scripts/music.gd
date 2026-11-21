@@ -102,14 +102,18 @@ func _ready() -> void:
 	add_child(_amb)
 	var cfg := ConfigFile.new()
 	if cfg.load("user://settings.cfg") == OK:
-		music_on = cfg.get_value("audio", "music", true)
-		sound_on = cfg.get_value("audio", "sound", true)
-		amb_on = cfg.get_value("audio", "ambience", true)
-		music_vol = cfg.get_value("audio", "music_vol", 0.5)
-		sound_vol = cfg.get_value("audio", "sound_vol", 1.0)
-		amb_vol = cfg.get_value("audio", "amb_vol", 1.0)
-		mode = cfg.get_value("audio", "music_mode", "vanilla")
-		off_list = cfg.get_value("audio", "music_off", [])
+		# (type-checked like Settings.load_all: a damaged file stopped _ready with a SCRIPT ERROR, playtest 2026-11-21)
+		music_on = Settings._bool(cfg, "audio", "music", true)
+		sound_on = Settings._bool(cfg, "audio", "sound", true)
+		amb_on = Settings._bool(cfg, "audio", "ambience", true)
+		music_vol = clampf(Settings._float(cfg, "audio", "music_vol", 0.5), 0.0, 1.0)
+		sound_vol = clampf(Settings._float(cfg, "audio", "sound_vol", 1.0), 0.0, 1.0)
+		amb_vol = clampf(Settings._float(cfg, "audio", "amb_vol", 1.0), 0.0, 1.0)
+		mode = Settings._str(cfg, "audio", "music_mode", "vanilla")
+		if not MODES.has(mode):
+			mode = "vanilla"
+		var off: Variant = cfg.get_value("audio", "music_off", [])
+		off_list = off if off is Array else []
 	_apply()
 
 
