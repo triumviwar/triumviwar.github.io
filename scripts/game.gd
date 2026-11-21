@@ -6994,11 +6994,15 @@ func entity_at(p: Vector2, _any := true) -> Entity:
 	# (the mouse asks this whenever it moves: a unit more than 26 px away on either axis can't
 	# be the nearest within 26 px, so it's passed over before anything else is asked of it)
 	for u in units:
-		if absf(u.position.x - p.x) >= 26.5 or absf(u.position.y - 12.0 - p.y) >= 26.5:
+		# a flyer is picked on its body, drawn high over its shadow (Unit.center: a Swift's 34 px up, a balloon's 32), as
+		# well as on its shadow (playtest-skirmish-clockwork, 2026-11-21: a click on a Swift's body picked the Winder
+		# under it, or nothing)
+		var fy: float = u.center().y if u._air_k and not u.dead else u.position.y - 12.0
+		if absf(u.position.x - p.x) >= 26.5 or (absf(u.position.y - 12.0 - p.y) >= 26.5 and absf(fy - p.y) >= 26.5):
 			continue
 		if u.dead or not shown_to_commander(u):
 			continue
-		var dd: float = (u.position + Vector2(0, -12)).distance_to(p)
+		var dd: float = minf((u.position + Vector2(0, -12)).distance_to(p), Vector2(u.position.x, fy).distance_to(p))
 		if dd < bd:
 			var rider := Unit.mounting_onto(u)
 			if rider != null and (rider.dead or not shown_to_commander(rider)):
