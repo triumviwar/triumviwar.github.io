@@ -53,7 +53,10 @@ def main():
     refs = frames_of("assets/units/%s/%s.png" % (unit, ref), rn)
     cell = (refs[0].shape[1], refs[0].shape[0])
     rb = [box(refs[i][..., 3] > 0) for i in pick]
-    want_h = float(np.median([b[3] - b[1] + 1 for b in rb]))
+    # SA_BY=width matches the figures' widths instead (a view whose height differs from the reference's, e.g. a wagon
+    # seen from behind with its horse hidden against one seen from the front with the horse below it)
+    k = (0, 2) if os.environ.get("SA_BY") == "width" else (1, 3)
+    want_h = float(np.median([b[k[1]] - b[k[0]] + 1 for b in rb]))
     feet_y = int(np.median([b[3] for b in rb])) + 1
     feet_x = int(round(np.median([np.nonzero(refs[i][..., 3] > 0)[1].mean() for i in pick])))
     px, fg = load_sheet(sheet)
@@ -63,7 +66,7 @@ def main():
         figs = by_parts(px, fg, n)
     hs = [box(f[..., 3] > 0) for f in figs]
     hp = hs if spick is None else [hs[i] for i in spick]
-    scale = want_h / float(np.median([b[3] - b[1] + 1 for b in hp]))
+    scale = want_h / float(np.median([b[k[1]] - b[k[0]] + 1 for b in hp]))
     ground = float(np.median([b[3] for b in hs]))
     cells = []
     for f in figs:
