@@ -1479,6 +1479,7 @@ func _nb_mother_moves(q: Unit) -> void:
 ##  "last"  a last stand: under 40% health with enemies at her.
 ## Never for a scout, a lone raider, a small harass, flyers, or enemies only passing near.
 const MOTHER_BIG := 250.0
+const MOTHER_HELP := 150.0      # (brood-mother-uproot: with the lingering swamp)
 
 
 func _nb_mother_up(q: Unit) -> String:
@@ -1518,6 +1519,11 @@ func _nb_mother_up(q: Unit) -> String:
 		                   # Hollowfen game). With no warriors she still gets up: her grubs huddle by her)
 	if at >= MOTHER_BIG and mine < at:
 		return "big"
+	# (brood-mother-uproot) HER SWAMP LINGERS (BroodNew.LINGER s, the Rootmaws on it wait, not lost): getting up costs a
+	# pause in their food, no longer the whole economy, so she joins a smaller fight at her nest her army there does not
+	# clearly win (MOTHER_HELP), and mother_guard roots her back on it before it runs out
+	if BroodNew.linger_on and at >= MOTHER_HELP and mine < at * 1.3:
+		return "help"
 	if strikes and q.hp < q.max_hp * 0.8 and not fighting:
 		return "alone"
 	return ""
