@@ -219,13 +219,16 @@ func _ui() -> void:
 	await process_frame
 	check("the map is sized and fitted", wm.size.x > 100 and wm.zoom > 0.5, "%s zoom %.2f" % [wm.size, wm.zoom])
 	check("its views, LEDGER and LIST", _find("View_europe") != null and _find("View_amazon") != null and _find("WarMap_Ledger") != null and _find("WarMap_List") != null)
-	check("the legend lists the machine's and the Crown's", _find("WarLegend") != null and (_find("WarLegend") as Control).visible)
+	check("the world opens on its Catholic painting", wm.painted == "world")
+	check("no legend over a painted sheet (it has no washes)", _find("WarLegend") != null and not (_find("WarLegend") as Control).visible)
 	(_find("WarMap_Ledger") as Button).pressed.emit()
 	await process_frame
 	check("LEDGER folds out", (_find("WarLedger") as Control).visible)
 	(_find("View_europe") as Button).pressed.emit()
 	await create_timer(0.5).timeout
-	check("EUROPE zooms in", wm.zoom > wm.min_zoom() * 3.0, "%.2f" % wm.zoom)
+	check("EUROPE shows Europe's painting, whole", wm.painted == "europe" and absf(wm.zoom - wm.min_zoom()) < 0.01, "%s %.2f" % [wm.painted, wm.zoom])
+	var rome := wm.to_screen(wm.geo([12.48, 41.9], "a07_council"))
+	check("Rome stands in Italy on it", rome.x > wm.size.x * 0.5 and rome.y > wm.size.y * 0.5, str(rome))
 	var z0 := wm.zoom
 	wm.zoom_by(1.5)
 	check("zoom in", wm.zoom > z0)

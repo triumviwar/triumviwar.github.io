@@ -973,7 +973,7 @@ static func war_map(main: Node) -> void:
 		wm.pending_cam = map_cam
 	holder.add_child(wm)
 	var keep_cam := func() -> void:
-		map_cam = {"c": wm.center, "z": wm.zoom}
+		map_cam = {"c": wm.center, "z": wm.zoom, "v": wm.painted}
 	# the views (THE WORLD, VIRGINIA, EUROPE, THE AMAZON)
 	for v in d.get("views", []):
 		var vid := String(v["id"])
@@ -1005,7 +1005,7 @@ static func war_map(main: Node) -> void:
 	var lb: Button = main._button("LEDGER", func() -> void:
 		ledger.visible = not ledger.visible
 		zr.visible = not ledger.visible
-		leg.visible = not ledger.visible and leg.get_child(0).get_child_count() > 0)
+		leg.visible = not ledger.visible and leg.get_child(0).get_child_count() > 0 and wm.painted == "")
 	lb.name = "WarMap_Ledger"
 	lb.custom_minimum_size = Vector2(0, 46 if pc else 56)
 	top.add_child(lb)
@@ -1090,7 +1090,7 @@ static func war_map(main: Node) -> void:
 			row.add_child(sw)
 			row.add_child(UiStyle.text(Loc.t(String(d.get("holders", {}).get(h, h))), 14 if pc else 16, UiStyle.TEXT, HORIZONTAL_ALIGNMENT_LEFT))
 			lgv.add_child(row)
-		leg.visible = lgv.get_child_count() > 0
+		leg.visible = lgv.get_child_count() > 0 and wm.painted == ""     # (the painted sheets have no washes)
 	fill.call()
 	var show_card := func(mid: String) -> void:
 		map_pick = mid

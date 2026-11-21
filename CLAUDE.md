@@ -117,6 +117,10 @@
   (10 games x 2 blocks a cell, off / v1 / on): v Clockwork won or led 34 of 40 (off 14 of 20), won 13 of 40 (3 of 20), g
   +0.29 (t 1.4) / +0.20 (t 0.8), dry minutes 1.5 -> 0.4-0.6; v Brood no change (-0.16 / -0.07); mirror a snowball (1.5x
   apart at 16:00 7-9 of 20 v 4), so off there. 7 Claude's choices in the doc.
+- THE WAR MAP IS THE CATHOLIC PAINTINGS (owner 2026-11-21 21:52 "why isn't it showing the Catholic map?"; 0.38.122,
+  docs/war_map_v1.md "Painted maps"): each view shows its painted sheet (campaign/warmap_art/painted_<view>.jpg), places
+  by WarMapData.painted_px (landmark fit + inverse-distance correction, "at" by hand), written by
+  tools/campaign/fit_warmap_paintings.py (`--check dir` pictures); no washes/legend/rose on them; the code map is the fallback.
 - THE WAR MAP AS AN OLD MAP (owner 2026-11-20 22:42-22:49 "17th~18th century style map", "Yes" to the hybrid; 0.38.94,
   docs/war_map_v1.md "The old-map look"): ChatGPT's parchment, ships, sea serpent, cartouche, inked mountains and seals
   (art/campaign/warmap_*_chatgpt.png -> campaign/warmap_art/ by tools/campaign/import_warmap_art.py); the land stays

@@ -74,6 +74,38 @@ static func region_outline(rg: Dictionary) -> PackedVector2Array:
 	return ring(rg.get("poly", []))
 
 
+## THE CATHOLIC PAINTINGS (owner 2026-11-20 23:09; wired in 2026-11-21): a place's pixel on a view's painted sheet
+## (data "paintings", written by tools/campaign/fit_warmap_paintings.py): the place set by hand ("at", by pin or mark id),
+## else the sheet's fit (a quadratic or affine in lon/lat, the world's two hemispheres apart, its landmarks spread back
+## by inverse distance so each lands where it is painted).
+static func painted_px(pt: Dictionary, lon: float, lat: float, key := "") -> Vector2:
+	var at: Dictionary = pt.get("at", {})
+	if key != "" and at.has(key):
+		return Vector2(float(at[key][0]), float(at[key][1]))
+	var c: Array = pt.get("fit", [])
+	if pt.has("hemi"):
+		c = pt["west"] if lon < float(pt["hemi"]) else pt["east"]
+	if c.size() < 2:
+		return Vector2.ZERO
+	var cx: Array = c[0]
+	var f: Array = [1.0, lon, lat] if cx.size() == 3 else [1.0, lon, lat, lon * lon, lon * lat, lat * lat]
+	var p := Vector2.ZERO
+	for i in f.size():
+		p.x += float(cx[i]) * f[i]
+		p.y += float(c[1][i]) * f[i]
+	if c.size() > 2:
+		var ws := 0.0
+		var dp := Vector2.ZERO
+		for r in c[2]:
+			var dd := pow(lon - float(r[0]), 2) + pow(lat - float(r[1]), 2)
+			if dd < 1e-9:
+				return p + Vector2(float(r[2]), float(r[3]))
+			ws += 1.0 / dd
+			dp += Vector2(float(r[2]), float(r[3])) / dd
+		p += dp / ws
+	return p
+
+
 static func pin_of(mid: String) -> Dictionary:
 	for pn in data().get("pins", []):
 		if String(pn["mission"]) == mid:

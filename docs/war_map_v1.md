@@ -215,4 +215,13 @@ landmarks, the code map kept as the fallback.
 - art/campaign/warmap_amazon_chatgpt.png: the Amazon (Our Lady with the Child, crowned cartouche), all land edge to edge
   (a first try had an invented sea and a wing on Our Lady: fixed by an edit). The Amazon and the Rio Negro follow the
   outline roughly.
-Next: wire them in (world view + one painting per region view, seals fitted by landmarks, the code map as fallback).
+WIRED IN (0.38.122, owner 2026-11-21 21:52 "why isn't it showing the Catholic map?"): each view shows its painting
+(campaign/warmap_art/painted_<view>.jpg, made by tools/campaign/fit_warmap_paintings.py from the art/ sheets). The
+camera works in the sheet's pixels (the whole sheet in view at least, 4x at most; a sheet smaller than the view slides
+inside it); places go on it by WarMapData.painted_px: hand-picked LANDMARKS per sheet fitted by least squares (a
+quadratic, the world's two hemispheres apart; affine for Virginia and the Amazon), their misses spread back by inverse
+distance so every landmark lands where it is painted; pins and marks the story needs exactly are placed by hand ("at":
+the Amazon's plateau stands on the painted hills, north-east of the station). A region sheet shows the pins inside its
+view; the world sheet shows all. No region washes, region names, legend or rose on the paintings (the owner: no
+country colours); the act's title is written in each sheet's crowned cartouche. A view without its painting (or a
+missing file) draws the old code map. Rerun the tool with `--check <dir>` for pictures of every place on every sheet.

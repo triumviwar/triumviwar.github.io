@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.122", "items": [
+		"THE WAR MAP IS THE CATHOLIC MAP: the war table now shows the painted sheets: the world in two hemispheres under Christ, St Michael, St Gabriel and St Peter, and Europe, Virginia and the Amazon each on their own painting with Our Lady, St Michael or the Pope. The views switch sheets; the seals and their names stand on the painted places, and the act's title is in each sheet's crowned cartouche. The old drawn map (with its mountains in the wrong places) is gone.",
+	]},
 	{"v": "0.38.121", "items": [
 		"PATCH NOTES HAS DOWNLOADS: under the notes, WINDOWS and ANDROID download the newest version of the game from the site, and PLAY ON THE WEB opens it in the browser.",
 		"THE STUDIO: click the Salgarellius Catholic Games logo (or its line) in the corner of the main menu and it opens big, with the invite to our Discord: JOIN THE DISCORD opens it, COPY LINK copies it.",

@@ -58,7 +58,13 @@ var _zoom0 := 1.0
 var _t := 0.0
 var _fitted := false
 var _view_rect := Rect2()
-var pending_cam := {}              # {"c": center, "z": zoom} to put back once sized (the page came back to the map)
+var pending_cam := {}              # {"c": center, "z": zoom, "v": painted} to put back once sized (the page came back)
+## THE CATHOLIC PAINTINGS (owner 2026-11-21 21:52: "why isn't it showing the Catholic map?"): each view (THE WORLD,
+## VIRGINIA, EUROPE, THE AMAZON) shows its painted sheet (data "paintings": campaign/warmap_art/painted_<view>.jpg);
+## the camera then works in the sheet's pixels and the places are put on it by WarMapData.painted_px. A view without
+## its painting (or a missing file) shows the drawn map as before.
+var painted := ""
+var _ptex: Texture2D
 
 
 static func make(skin_id := "parchment") -> WarMap:
@@ -71,6 +77,10 @@ func _ready() -> void:
 	clip_contents = true
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	seal_r = 13.0 if Settings.pc() else 18.0
+	var vs: Array = WarMapData.data().get("views", [])
+	var start := String(pending_cam.get("v", String(vs[0]["id"]) if not vs.is_empty() else ""))
+	if _paint_ok(start):
+		_set_painted(start)
 	_build()
 	refresh()
 	resized.connect(_fit_once)
@@ -99,13 +109,48 @@ func sk() -> Dictionary:
 	return SKINS[skin]
 
 
+func _paint_ok(id: String) -> bool:
+	var pt: Dictionary = WarMapData.data().get("paintings", {}).get(id, {})
+	return not pt.is_empty() and ResourceLoader.exists(String(pt.get("file", "")))
+
+
+func _set_painted(id: String) -> void:
+	painted = id
+	_ptex = load(String(WarMapData.data()["paintings"][id]["file"])) if id != "" else null
+
+
+## A place (lon/lat) where the map draws it: on the painted sheet (its pixels) or the drawn map (map units).
+func geo(a: Array, key := "") -> Vector2:
+	if painted == "":
+		return WarMapData.pt(a)
+	return WarMapData.painted_px(WarMapData.data()["paintings"][painted], float(a[0]), float(a[1]), key)
+
+
+## Is a pin or mark on the sheet shown now? The world sheet shows all; a region's sheet those placed on it by hand and
+## those inside its view (a degree to spare).
+func shows(a: Array, key := "") -> bool:
+	if painted == "" or painted == "world":
+		return true
+	if (WarMapData.data()["paintings"][painted].get("at", {}) as Dictionary).has(key):
+		return true
+	for v in WarMapData.data().get("views", []):
+		if String(v["id"]) == painted:
+			var r: Array = v["rect"]
+			return float(a[0]) >= float(r[0]) - 1.0 and float(a[0]) <= float(r[2]) + 1.0 and float(a[1]) >= float(r[1]) - 1.0 and float(a[1]) <= float(r[3]) + 1.0
+	return true
+
+
 ## The map's whole area (the land is cut to it; the camera never shows past it).
 func world_rect() -> Rect2:
+	if painted != "" and _ptex:
+		return Rect2(Vector2.ZERO, _ptex.get_size())
 	return WarMapData.rect_of(WarMapData.data().get("bounds", [-180, -60, 180, 80]))
 
 
 ## The first view (THE WORLD: the act's lands): where the map opens.
 func home_rect() -> Rect2:
+	if painted != "":
+		return world_rect()
 	var vs: Array = WarMapData.data().get("views", [])
 	return WarMapData.rect_of(vs[0]["rect"]) if not vs.is_empty() else world_rect()
 
@@ -207,11 +252,13 @@ func to_mapp(s: Vector2) -> Vector2:
 
 func min_zoom() -> float:
 	var w := world_rect()
+	if painted != "" and size.x > 0:
+		return minf(size.x / w.size.x, size.y / w.size.y)       # (the whole sheet, its saints and frame, in view)
 	return maxf(size.x / w.size.x, size.y / w.size.y) if size.x > 0 else 1.0
 
 
 func max_zoom() -> float:
-	return min_zoom() * 60.0
+	return min_zoom() * (4.0 if painted != "" else 60.0)
 
 
 ## Show a map rectangle (a view's), with a short glide when `glide`.
@@ -219,7 +266,7 @@ func show_rect(r: Rect2, glide := true) -> void:
 	_view_rect = r
 	if size.x <= 10:
 		return
-	var z := clampf(minf(size.x / r.size.x, size.y / r.size.y) * 0.92, min_zoom(), max_zoom())
+	var z := clampf(minf(size.x / r.size.x, size.y / r.size.y) * (1.0 if painted != "" else 0.92), min_zoom(), max_zoom())
 	var c := r.get_center()
 	if glide and is_inside_tree():
 		var tw := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
@@ -236,6 +283,17 @@ func show_rect(r: Rect2, glide := true) -> void:
 
 
 func show_view(id: String, glide := true) -> void:
+	if _paint_ok(id) or painted != "":
+		# a painted sheet for each view: the sheet changes (a quick fade), whole in view
+		_set_painted(id if _paint_ok(id) else "")
+		_fitted = false
+		modulate.a = 0.35
+		if is_inside_tree():
+			create_tween().tween_property(self, "modulate:a", 1.0, 0.25)
+		if painted != "":
+			show_rect(world_rect(), false)
+			return
+		glide = false
 	for v in WarMapData.data().get("views", []):
 		if String(v["id"]) == id:
 			show_rect(WarMapData.rect_of(v["rect"]), glide)
@@ -258,7 +316,10 @@ func _clamp() -> void:
 	for ax in 2:
 		var lo: float = w.position[ax] + half[ax]
 		var hi: float = w.end[ax] - half[ax]
-		center[ax] = (w.position[ax] + w.end[ax]) * 0.5 if lo > hi else clampf(center[ax], lo, hi)
+		if lo > hi and painted != "":
+			center[ax] = clampf(center[ax], hi, lo)        # (a sheet smaller than the view slides inside it: room for the card)
+		else:
+			center[ax] = (w.position[ax] + w.end[ax]) * 0.5 if lo > hi else clampf(center[ax], lo, hi)
 
 
 # ------------------------------------------------------------------ input
@@ -331,6 +392,8 @@ func tap(at: Vector2) -> void:
 	var best := ""
 	var bd := seal_r * 1.7
 	for pn in WarMapData.data().get("pins", []):
+		if not shows(pn["point"], String(pn["mission"])):
+			continue
 		var dd := pin_screen(pn).distance_to(at)
 		if dd < bd:
 			bd = dd
@@ -367,7 +430,7 @@ func bring_into_view(mid: String) -> void:
 func pin_screen(pn: Dictionary) -> Vector2:
 	var nd: Array = pn.get("nudge", [0, 0])
 	var k := seal_r / 13.0
-	return to_screen(WarMapData.pt(pn["point"])) + Vector2(float(nd[0]), float(nd[1])) * k
+	return to_screen(geo(pn["point"], String(pn["mission"]))) + Vector2(float(nd[0]), float(nd[1])) * k
 
 
 func _process(dt: float) -> void:
@@ -382,6 +445,9 @@ func _draw() -> void:
 	var s: Dictionary = sk()
 	var font := UiStyle.body_font()
 	var tfont := UiStyle.title_font()
+	if painted != "" and _ptex:
+		_draw_painted(s, font)
+		return
 	draw_rect(Rect2(Vector2.ZERO, size), s["paper"])
 	var paper := _art_file(PARCHMENT)
 	if paper:
@@ -513,9 +579,55 @@ func _draw() -> void:
 	_draw_rose(Vector2(size.x - 60, size.y - 64), 38.0, s)
 
 
+## The painted sheet: the painting, its marks and seals, their names, and the act's title in its cartouche.
+func _draw_painted(s: Dictionary, font: Font) -> void:
+	draw_rect(Rect2(Vector2.ZERO, size), Color(0.09, 0.07, 0.05))
+	var r := Rect2(to_screen(Vector2.ZERO), _ptex.get_size() * zoom)
+	draw_texture_rect(_ptex, r, false)
+	var mks: Dictionary = st.get("marks", {})
+	for mk in WarMapData.data().get("marks", []):
+		if bool(mks.get(String(mk["id"]), false)) and shows(mk["point"], String(mk["id"])):
+			_draw_mark(mk, font)
+	var pins: Array = []
+	for pn in WarMapData.data().get("pins", []):
+		if shows(pn["point"], String(pn["mission"])):
+			pins.append(pn)
+			_draw_pin(pn)
+	var order := pins.duplicate()
+	order.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return String(a["mission"]) == selected and String(b["mission"]) != selected)
+	var placed: Array = []
+	var seals := {}
+	for pn in order:
+		var c := pin_screen(pn)
+		seals[String(pn["mission"])] = Rect2(c - Vector2(seal_r, seal_r), Vector2(seal_r, seal_r) * 2)
+		placed.append(seals[String(pn["mission"])])
+	for pn in order:
+		var c := pin_screen(pn)
+		var fs := 15 if Settings.pc() else 18
+		var t1 := Loc.t(String(pn["place"]))
+		var t2 := Loc.t(String(pn["date"]))
+		var w := maxf(font.get_string_size(t1, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x, font.get_string_size(t2, HORIZONTAL_ALIGNMENT_LEFT, -1, fs - 2).x)
+		var lr := Rect2(c + Vector2(-w * 0.5, seal_r + 2), Vector2(w, fs * 2.1))
+		var free := true
+		for q in placed:
+			if (q as Rect2).intersects(lr) and q != seals[String(pn["mission"])]:
+				free = false
+				break
+		if String(pn["mission"]) != selected and not free:
+			continue
+		placed.append(lr)
+		draw_rect(lr.grow(3), Color(s["paper"], 0.8))
+		draw_string(font, lr.position + Vector2(0, fs * 0.9), t1, HORIZONTAL_ALIGNMENT_CENTER, w, fs, s["ink"])
+		draw_string(font, lr.position + Vector2(0, fs * 1.9), t2, HORIZONTAL_ALIGNMENT_CENTER, w, fs - 2, Color(s["ink"], 0.75))
+	# the act's title in the sheet's crowned cartouche
+	var cart: Array = WarMapData.data()["paintings"][painted].get("cart", [])
+	if cart.size() == 3:
+		_cartouche_words(s, to_screen(Vector2(float(cart[0]), float(cart[1]))), float(cart[2]) * zoom * 1.25)
+
+
 func _draw_mark(mk: Dictionary, font: Font) -> void:
 	var s: Dictionary = sk()
-	var c := to_screen(WarMapData.pt(mk["point"]))
+	var c := to_screen(geo(mk["point"], String(mk.get("id", ""))))
 	var ink: Color = s["ink"]
 	match String(mk.get("kind", "dot")):
 		"dot":
@@ -552,7 +664,7 @@ func _draw_pin(pn: Dictionary) -> void:
 	var ps: Dictionary = st.get("pins", {}).get(mid, {"state": "planned", "seal": ""})
 	var state := String(ps["state"])
 	var c := pin_screen(pn)
-	var truep := to_screen(WarMapData.pt(pn["point"]))
+	var truep := to_screen(geo(pn["point"], mid))
 	var r := seal_r
 	var ink: Color = s["ink"]
 	if c.distance_to(truep) > 2.0:
@@ -685,8 +797,10 @@ func _draw_cartouche_text(s: Dictionary) -> void:
 	if tex == null:
 		return
 	var o: Array = ORNAMENTS[3]
-	var c := to_screen(WarMapData.to_map(float(o[1]), float(o[2])))
-	var w: float = float(o[3]) * zoom
+	_cartouche_words(s, to_screen(WarMapData.to_map(float(o[1]), float(o[2]))), float(o[3]) * zoom)
+
+
+func _cartouche_words(s: Dictionary, c: Vector2, w: float) -> void:
 	if w < 90.0:
 		return
 	var t1 := Loc.t(String(WarMapData.data().get("title", ""))).to_upper()

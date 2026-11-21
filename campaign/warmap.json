@@ -3,20 +3,72 @@
 	"title": "THE WAR MAP",
 	"act": 1,
 	"act_title": "Act 1: 2767-2770",
-	"bounds": [-170, -48, 110, 76],
-	"projection": {"kind": "equirect", "y_scale": 1.3},
+	"bounds": [
+		-170,
+		-48,
+		110,
+		76
+	],
+	"projection": {
+		"kind": "equirect",
+		"y_scale": 1.3
+	},
 	"land": "res://campaign/warmap_land.json",
 	"views": [
-		{"id": "world", "label": "THE WORLD", "rect": [-100, -22, 45, 62]},
-		{"id": "virginia", "label": "VIRGINIA", "rect": [-86, 31, -70, 43]},
-		{"id": "europe", "label": "EUROPE", "rect": [-3, 40.5, 16, 51.5]},
-		{"id": "amazon", "label": "THE AMAZON", "rect": [-70, -5, -58, 3.5]}
+		{
+			"id": "world",
+			"label": "THE WORLD",
+			"rect": [
+				-100,
+				-22,
+				45,
+				62
+			]
+		},
+		{
+			"id": "virginia",
+			"label": "VIRGINIA",
+			"rect": [
+				-86,
+				31,
+				-70,
+				43
+			]
+		},
+		{
+			"id": "europe",
+			"label": "EUROPE",
+			"rect": [
+				-3,
+				40.5,
+				16,
+				51.5
+			]
+		},
+		{
+			"id": "amazon",
+			"label": "THE AMAZON",
+			"rect": [
+				-70,
+				-5,
+				-58,
+				3.5
+			]
+		}
 	],
 	"lines": {
-		"crown": {"name": "The Crown"},
-		"clockmaker": {"name": "The Clockmaker"},
-		"naturalist": {"name": "The Naturalist"},
-		"all": {"name": "All three lines"}
+		"crown": {
+			"name": "The Crown"
+		},
+		"clockmaker": {
+			"name": "The Clockmaker"
+		},
+		"naturalist": {
+			"name": "The Naturalist"
+		},
+		"all": {
+			"name": "All three lines"
+		}
 	},
 	"holders": {
 		"empire": "The empire",
@@ -28,105 +80,1485 @@
 		"unknown": "Unknown land"
 	},
 	"regions": [
-		{"id": "virginia", "name": "Virginia", "holder": "crown", "label_at": [-77.2, 38.1],
-			"poly": [-79.6, 39.5, -77.9, 39.7, -76.9, 39.6, -75.5, 38.5, -75.4, 37.9, -75.8, 37.2, -75.9, 36.55, -77.4, 36.55, -79.6, 36.55]},
-		{"id": "virginia_interior", "name": "The interior", "holder": "empire", "label_at": [-81.4, 37.8],
-			"poly": [-83.7, 36.6, -79.6, 36.55, -79.6, 39.5, -80.5, 40.6, -81.8, 39.4, -82.7, 38.3]},
-		{"id": "lyon", "name": "Lyon", "holder": "empire", "label_at": [4.8, 45.15],
-			"poly": [3.9, 46.35, 5.7, 46.35, 5.8, 45.55, 5.5, 45.15, 4.0, 45.15, 3.7, 45.7]},
-		{"id": "paris", "name": "Paris", "holder": "empire", "label_at": [2.4, 49.55],
-			"poly": [1.4, 49.25, 2.6, 49.35, 3.5, 49.15, 3.55, 48.4, 2.6, 48.15, 1.5, 48.35, 1.3, 48.85]},
-		{"id": "brittany", "name": "Brittany", "holder": "empire", "label": false,
-			"poly": [-4.8, 48.6, -3.0, 48.85, -1.2, 48.6, -1.1, 47.6, -2.5, 47.2, -4.3, 47.7]},
-		{"id": "provence", "name": "Provence", "holder": "empire", "label": false,
-			"poly": [4.6, 44.4, 6.4, 44.6, 7.6, 44.1, 7.4, 43.6, 6.2, 43.0, 5.0, 43.2, 4.4, 43.6]},
-		{"id": "franconia", "name": "Franconia", "holder": "empire", "label_at": [11.1, 50.35],
-			"poly": [9.4, 50.5, 10.8, 50.6, 12.1, 50.4, 12.4, 49.4, 11.7, 48.75, 10.4, 48.8, 9.3, 49.4]},
-		{"id": "franconia_more", "name": "The Upper Palatinate", "holder": "empire", "label": false,
-			"poly": [12.4, 49.4, 12.1, 50.4, 13.0, 50.2, 13.5, 49.4, 12.9, 48.8, 11.7, 48.75]},
-		{"id": "furth", "name": "Fürth", "holder": "empire", "label": false, "circle": [10.99, 49.47, 0.16]},
-		{"id": "papal_states", "name": "Rome", "holder": "empire", "label_at": [12.6, 43.1],
-			"poly": [12.2, 44.6, 13.0, 44.0, 13.9, 42.8, 13.6, 41.6, 12.9, 41.25, 12.0, 41.8, 11.2, 42.4, 11.8, 43.4]},
-		{"id": "upper_rio_negro", "name": "The upper Rio Negro", "holder": "empire", "label_at": [-66.6, -1.6],
-			"poly": [-69.8, 1.4, -67.6, 1.2, -66.4, 0.4, -64.6, 0.2, -62.8, -0.5, -63.2, -1.4, -65.2, -1.2, -67.4, -0.9, -69.9, -0.2]},
-		{"id": "plateau", "name": "The cloud mountain", "holder": "unknown", "label_at": [-65.9, 1.85],
-			"poly": [-66.7, 1.45, -65.8, 1.6, -65.1, 1.3, -65.0, 0.75, -65.6, 0.45, -66.4, 0.5, -66.9, 0.9]}
+		{
+			"id": "virginia",
+			"name": "Virginia",
+			"holder": "crown",
+			"label_at": [
+				-77.2,
+				38.1
+			],
+			"poly": [
+				-79.6,
+				39.5,
+				-77.9,
+				39.7,
+				-76.9,
+				39.6,
+				-75.5,
+				38.5,
+				-75.4,
+				37.9,
+				-75.8,
+				37.2,
+				-75.9,
+				36.55,
+				-77.4,
+				36.55,
+				-79.6,
+				36.55
+			]
+		},
+		{
+			"id": "virginia_interior",
+			"name": "The interior",
+			"holder": "empire",
+			"label_at": [
+				-81.4,
+				37.8
+			],
+			"poly": [
+				-83.7,
+				36.6,
+				-79.6,
+				36.55,
+				-79.6,
+				39.5,
+				-80.5,
+				40.6,
+				-81.8,
+				39.4,
+				-82.7,
+				38.3
+			]
+		},
+		{
+			"id": "lyon",
+			"name": "Lyon",
+			"holder": "empire",
+			"label_at": [
+				4.8,
+				45.15
+			],
+			"poly": [
+				3.9,
+				46.35,
+				5.7,
+				46.35,
+				5.8,
+				45.55,
+				5.5,
+				45.15,
+				4.0,
+				45.15,
+				3.7,
+				45.7
+			]
+		},
+		{
+			"id": "paris",
+			"name": "Paris",
+			"holder": "empire",
+			"label_at": [
+				2.4,
+				49.55
+			],
+			"poly": [
+				1.4,
+				49.25,
+				2.6,
+				49.35,
+				3.5,
+				49.15,
+				3.55,
+				48.4,
+				2.6,
+				48.15,
+				1.5,
+				48.35,
+				1.3,
+				48.85
+			]
+		},
+		{
+			"id": "brittany",
+			"name": "Brittany",
+			"holder": "empire",
+			"label": false,
+			"poly": [
+				-4.8,
+				48.6,
+				-3.0,
+				48.85,
+				-1.2,
+				48.6,
+				-1.1,
+				47.6,
+				-2.5,
+				47.2,
+				-4.3,
+				47.7
+			]
+		},
+		{
+			"id": "provence",
+			"name": "Provence",
+			"holder": "empire",
+			"label": false,
+			"poly": [
+				4.6,
+				44.4,
+				6.4,
+				44.6,
+				7.6,
+				44.1,
+				7.4,
+				43.6,
+				6.2,
+				43.0,
+				5.0,
+				43.2,
+				4.4,
+				43.6
+			]
+		},
+		{
+			"id": "franconia",
+			"name": "Franconia",
+			"holder": "empire",
+			"label_at": [
+				11.1,
+				50.35
+			],
+			"poly": [
+				9.4,
+				50.5,
+				10.8,
+				50.6,
+				12.1,
+				50.4,
+				12.4,
+				49.4,
+				11.7,
+				48.75,
+				10.4,
+				48.8,
+				9.3,
+				49.4
+			]
+		},
+		{
+			"id": "franconia_more",
+			"name": "The Upper Palatinate",
+			"holder": "empire",
+			"label": false,
+			"poly": [
+				12.4,
+				49.4,
+				12.1,
+				50.4,
+				13.0,
+				50.2,
+				13.5,
+				49.4,
+				12.9,
+				48.8,
+				11.7,
+				48.75
+			]
+		},
+		{
+			"id": "furth",
+			"name": "Fürth",
+			"holder": "empire",
+			"label": false,
+			"circle": [
+				10.99,
+				49.47,
+				0.16
+			]
+		},
+		{
+			"id": "papal_states",
+			"name": "Rome",
+			"holder": "empire",
+			"label_at": [
+				12.6,
+				43.1
+			],
+			"poly": [
+				12.2,
+				44.6,
+				13.0,
+				44.0,
+				13.9,
+				42.8,
+				13.6,
+				41.6,
+				12.9,
+				41.25,
+				12.0,
+				41.8,
+				11.2,
+				42.4,
+				11.8,
+				43.4
+			]
+		},
+		{
+			"id": "upper_rio_negro",
+			"name": "The upper Rio Negro",
+			"holder": "empire",
+			"label_at": [
+				-66.6,
+				-1.6
+			],
+			"poly": [
+				-69.8,
+				1.4,
+				-67.6,
+				1.2,
+				-66.4,
+				0.4,
+				-64.6,
+				0.2,
+				-62.8,
+				-0.5,
+				-63.2,
+				-1.4,
+				-65.2,
+				-1.2,
+				-67.4,
+				-0.9,
+				-69.9,
+				-0.2
+			]
+		},
+		{
+			"id": "plateau",
+			"name": "The cloud mountain",
+			"holder": "unknown",
+			"label_at": [
+				-65.9,
+				1.85
+			],
+			"poly": [
+				-66.7,
+				1.45,
+				-65.8,
+				1.6,
+				-65.1,
+				1.3,
+				-65.0,
+				0.75,
+				-65.6,
+				0.45,
+				-66.4,
+				0.5,
+				-66.9,
+				0.9
+			]
+		}
 	],
 	"marks": [
-		{"id": "loyal_village", "kind": "village", "point": [-78.4, 37.0], "label": "The Hollins farm", "shown": false},
-		{"id": "loyal_quarter", "kind": "dot", "point": [11.15, 49.42], "label": "The loyal quarter", "shown": false},
-		{"id": "burnt_station", "kind": "burnt", "point": [-64.5, -0.55], "label": "The station, burnt", "shown": false},
-		{"id": "plateau_question", "kind": "question", "point": [-65.9, 1.05], "label": "", "shown": false},
-		{"id": "nazare", "kind": "village", "point": [-63.5, -0.85], "label": "Nazaré", "shown": false},
-		{"id": "barra", "kind": "town", "point": [-60.0, -3.1], "label": "The Barra", "shown": false},
-		{"id": "varenne_exile", "kind": "ship", "point": [-14.0, 33.0], "label": "Varenne, into exile", "shown": false}
+		{
+			"id": "loyal_village",
+			"kind": "village",
+			"point": [
+				-78.4,
+				37.0
+			],
+			"label": "The Hollins farm",
+			"shown": false
+		},
+		{
+			"id": "loyal_quarter",
+			"kind": "dot",
+			"point": [
+				11.15,
+				49.42
+			],
+			"label": "The loyal quarter",
+			"shown": false
+		},
+		{
+			"id": "burnt_station",
+			"kind": "burnt",
+			"point": [
+				-64.5,
+				-0.55
+			],
+			"label": "The station, burnt",
+			"shown": false
+		},
+		{
+			"id": "plateau_question",
+			"kind": "question",
+			"point": [
+				-65.9,
+				1.05
+			],
+			"label": "",
+			"shown": false
+		},
+		{
+			"id": "nazare",
+			"kind": "village",
+			"point": [
+				-63.5,
+				-0.85
+			],
+			"label": "Nazaré",
+			"shown": false
+		},
+		{
+			"id": "barra",
+			"kind": "town",
+			"point": [
+				-60.0,
+				-3.1
+			],
+			"label": "The Barra",
+			"shown": false
+		},
+		{
+			"id": "varenne_exile",
+			"kind": "ship",
+			"point": [
+				-14.0,
+				33.0
+			],
+			"label": "Varenne, into exile",
+			"shown": false
+		}
 	],
 	"pins": [
-		{"mission": "p01_leaf", "line": "crown", "place": "Virginia", "date": "Summer 2767", "point": [-77.3, 37.45], "nudge": [0, 0]},
-		{"mission": "b01_specimen", "line": "naturalist", "place": "The Rio Negro", "date": "June 2767", "point": [-65.0, -0.4], "nudge": [0, 10]},
-		{"mission": "a03_plateau", "line": "naturalist", "place": "The cloud mountain", "date": "September 2767", "point": [-65.9, 0.9], "nudge": [-8, -12]},
-		{"mission": "c01_thirteenth", "line": "clockmaker", "place": "Nuremberg", "date": "Advent 2767", "point": [11.08, 49.45], "nudge": [24, -2]},
-		{"mission": "a02_furth", "line": "clockmaker", "place": "Fürth", "date": "March 2768", "point": [10.99, 49.47], "nudge": [-24, -14]},
-		{"mission": "a01_presses", "line": "crown", "place": "Lyon", "date": "Spring 2768", "point": [4.84, 45.76], "nudge": [0, 0], "after": ["p01_leaf"]},
-		{"mission": "a05_specimens", "line": "naturalist", "place": "The plateau's foot", "date": "Dry season 2769", "point": [-65.3, 0.25], "nudge": [16, 2], "after": ["a03_plateau"]},
-		{"mission": "a06_barricades", "line": "crown", "place": "Paris", "date": "July 2769", "point": [2.35, 48.86], "nudge": [0, 0], "after": ["a01_presses"]},
-		{"mission": "a04_visit", "line": "clockmaker", "place": "Fürth", "date": "Autumn 2769", "point": [10.99, 49.47], "nudge": [-24, 18], "after": ["a02_furth"]},
-		{"mission": "a07_council", "line": "all", "place": "Rome", "date": "Lent 2770", "point": [12.48, 41.9], "nudge": [0, 0], "after": ["a04_visit", "a05_specimens", "a06_barricades"]}
+		{
+			"mission": "p01_leaf",
+			"line": "crown",
+			"place": "Virginia",
+			"date": "Summer 2767",
+			"point": [
+				-77.3,
+				37.45
+			],
+			"nudge": [
+				0,
+				0
+			]
+		},
+		{
+			"mission": "b01_specimen",
+			"line": "naturalist",
+			"place": "The Rio Negro",
+			"date": "June 2767",
+			"point": [
+				-65.0,
+				-0.4
+			],
+			"nudge": [
+				0,
+				10
+			]
+		},
+		{
+			"mission": "a03_plateau",
+			"line": "naturalist",
+			"place": "The cloud mountain",
+			"date": "September 2767",
+			"point": [
+				-65.9,
+				0.9
+			],
+			"nudge": [
+				-8,
+				-12
+			]
+		},
+		{
+			"mission": "c01_thirteenth",
+			"line": "clockmaker",
+			"place": "Nuremberg",
+			"date": "Advent 2767",
+			"point": [
+				11.08,
+				49.45
+			],
+			"nudge": [
+				24,
+				-2
+			]
+		},
+		{
+			"mission": "a02_furth",
+			"line": "clockmaker",
+			"place": "Fürth",
+			"date": "March 2768",
+			"point": [
+				10.99,
+				49.47
+			],
+			"nudge": [
+				-24,
+				-14
+			]
+		},
+		{
+			"mission": "a01_presses",
+			"line": "crown",
+			"place": "Lyon",
+			"date": "Spring 2768",
+			"point": [
+				4.84,
+				45.76
+			],
+			"nudge": [
+				0,
+				0
+			],
+			"after": [
+				"p01_leaf"
+			]
+		},
+		{
+			"mission": "a05_specimens",
+			"line": "naturalist",
+			"place": "The plateau's foot",
+			"date": "Dry season 2769",
+			"point": [
+				-65.3,
+				0.25
+			],
+			"nudge": [
+				16,
+				2
+			],
+			"after": [
+				"a03_plateau"
+			]
+		},
+		{
+			"mission": "a06_barricades",
+			"line": "crown",
+			"place": "Paris",
+			"date": "July 2769",
+			"point": [
+				2.35,
+				48.86
+			],
+			"nudge": [
+				0,
+				0
+			],
+			"after": [
+				"a01_presses"
+			]
+		},
+		{
+			"mission": "a04_visit",
+			"line": "clockmaker",
+			"place": "Fürth",
+			"date": "Autumn 2769",
+			"point": [
+				10.99,
+				49.47
+			],
+			"nudge": [
+				-24,
+				18
+			],
+			"after": [
+				"a02_furth"
+			]
+		},
+		{
+			"mission": "a07_council",
+			"line": "all",
+			"place": "Rome",
+			"date": "Lent 2770",
+			"point": [
+				12.48,
+				41.9
+			],
+			"nudge": [
+				0,
+				0
+			],
+			"after": [
+				"a04_visit",
+				"a05_specimens",
+				"a06_barricades"
+			]
+		}
 	],
 	"rules": [
-		{"if": {"won_by": {"p01_leaf": "crown"}}, "region": "virginia", "to": "crown", "ledger": "Virginia held: Fairleigh broke the Free Assembly at the fort's gate."},
-		{"if": {"flag": {"p01_leaf.families": "save"}}, "mark": "loyal_village", "show": true, "ledger": "The Hollins families were saved: a loyal village in Virginia."},
-		{"if": {"flag": {"p01_leaf.families": "leave"}}, "region": "virginia_interior", "to": "unrest", "ledger": "The families were left behind: the interior is uneasy."},
-		{"if": {"won_by": {"p01_leaf": "rebels"}}, "regions": ["virginia", "virginia_interior"], "to": "unrest", "pin": "p01_leaf", "seal": "broken", "ledger": "Virginia rose: the Free Assembly holds the fort."},
-
-		{"if": {"done": "c01_thirteenth"}, "region": "franconia", "to": "machine", "pin": "c01_thirteenth", "seal": "broken", "ledger": "Nuremberg is lost: the machine holds Franconia."},
-		{"if": {"done": "c01_thirteenth"}, "region": "furth", "to": "crown"},
-		{"if": {"flag": {"c01_thirteenth.saved": ["some", "many"]}}, "mark": "loyal_quarter", "show": true, "ledger": "A loyal quarter still holds out inside Nuremberg."},
-		{"if": {"flag": {"c01_thirteenth.saved": ["few", "some", "many"]}}, "ledger": "Townsfolk who reached Fürth from Nuremberg: %s.", "args": ["c01_thirteenth.saved_n"]},
-		{"if": {"flag": {"c01_thirteenth.bells": "rung"}}, "ledger": "The bells were rung: the Crown trusts the guild."},
-		{"if": {"flag": {"c01_thirteenth.bells": "quiet"}}, "ledger": "The bells stayed quiet: a Crown commissary watches the guild."},
-		{"if": {"flag": {"c01_thirteenth.gate": "pattern"}}, "ledger": "Hollweg carried his drawings out of the west gate."},
-		{"if": {"flag": {"c01_thirteenth.gate": "people"}}, "ledger": "Hollweg held the west gate for the people and left his drawings."},
-		{"if": {"flag": {"c01_thirteenth.jakob": "lost"}}, "ledger": "Jakob was lost in Nuremberg."},
-
-		{"if": {"flag": {"a02_furth.furth": "strong"}}, "region": "furth", "to": "crown", "ledger": "The Fürth line held, strong."},
-		{"if": {"flag": {"a02_furth.furth": "thin"}}, "region": "furth", "to": "contested", "ledger": "The Fürth line held, but thin."},
-		{"if": {"won_by": {"a02_furth": "machine"}}, "region": "furth", "to": "machine", "pin": "a02_furth", "seal": "broken", "ledger": "Fürth fell to the machine."},
-
-		{"if": {"done": "b01_specimen"}, "marks": ["burnt_station", "plateau_question", "barra"], "show": true, "pin": "b01_specimen", "seal": "broken", "ledger": "The Academy's station on the Rio Negro burned. Something came down from the mountain to the north."},
-		{"if": {"flag": {"b01_specimen.saved": ["few", "some", "many"]}}, "mark": "nazare", "show": true, "ledger": "The station's people who reached Nazaré: %s.", "args": ["b01_specimen.saved_n"]},
-		{"if": {"flag": {"b01_specimen.clutch": "saved"}}, "ledger": "The clutch was saved and carried downriver."},
-		{"if": {"flag": {"b01_specimen.clutch": "burned"}}, "ledger": "The clutch was burned."},
-		{"if": {"flag": {"b01_specimen.teles": "quiet"}}, "ledger": "Lieutenant Teles was never told: the station stayed the Academy's secret."},
-
-		{"if": {"flag": {"a03_plateau.map": "drawn"}}, "region": "plateau", "to": "brood", "mark": "plateau_question", "show": false, "ledger": "Valadares drew the plateau for the Crown: the creatures' mountain is on the map."},
-		{"if": {"flag": {"a03_plateau.map": "withheld"}}, "ledger": "Valadares withheld his map: the plateau stays blank."},
-		{"if": {"flag": {"a03_plateau.party": "few"}}, "ledger": "Few of the mapmaker's party came down alive."},
-		{"if": {"flag": {"a03_plateau.party": "all"}}, "ledger": "The whole of the mapmaker's party came down alive."},
-		{"if": {"won_by": {"a03_plateau": "nest"}}, "pin": "a03_plateau", "seal": "broken", "ledger": "The plateau kept its secret: the mapmaker never came down."},
-
-		{"if": {"flag": {"a01_presses.lyon": "calm"}}, "region": "lyon", "to": "crown", "ledger": "Lyon's presses were found: the city is calm."},
-		{"if": {"flag": {"a01_presses.lyon": "sullen"}}, "region": "lyon", "to": "contested", "ledger": "Lyon's presses were found, but the city is sullen."},
-		{"if": {"won_by": {"a01_presses": "assembly"}}, "region": "lyon", "to": "unrest", "pin": "a01_presses", "seal": "broken", "ledger": "Lyon rose: the Free Assembly's flags on the Terreaux."},
-		{"if": {"flag": {"a04_visit.broken": "melted"}}, "ledger": "The broken automata were melted down."},
-		{"if": {"flag": {"a04_visit.broken": "kept"}}, "ledger": "The broken automata were kept for study."},
-		{"if": {"flag_at_least": {"a04_visit.lost_to_machine": 4}}, "region": "franconia_more", "to": "machine", "ledger": "The machine's red spreads east of Nuremberg."},
-		{"if": {"flag": {"a05_specimens.cages": ["few", "some", "all"]}}, "ledger": "Cages brought down to the river: %s.", "args": ["a05_specimens.cages_n"]},
-		{"if": {"flag": {"a05_specimens.cages": "all"}}, "ledger": "Every cage came down to the Barra: the Academy has its breeding stock."},
-		{"if": {"flag": {"a05_specimens.cages": "few"}}, "ledger": "Few of the Academy's cages reached the river."},
-		{"if": {"won_by": {"a05_specimens": "creatures"}}, "pin": "a05_specimens", "seal": "broken", "ledger": "The creatures broke the Academy's cages on the mountain."},
-		{"if": {"won_by": {"a06_barricades": "crown"}}, "region": "paris", "to": "crown", "ledger": "Paris was taken back from the barricades."},
-		{"if": {"won_by": {"a06_barricades": "assembly"}}, "region": "paris", "to": "unrest", "pin": "a06_barricades", "seal": "broken", "ledger": "Paris held behind its barricades: the Free Assembly's flags on the Hôtel de Ville."},
-		{"if": {"flag": {"a06_barricades.varenne": "spared"}}, "mark": "varenne_exile", "show": true, "ledger": "Varenne was spared and sent into exile."},
-		{"if": {"flag": {"a06_barricades.varenne": "executed"}}, "region": "paris", "to": "contested", "ledger": "Varenne was executed: risings flare in the provinces."},
-		{"if": {"flag": {"a06_barricades.varenne": "executed"}}, "regions": ["brittany", "provence"], "to": "unrest"},
-		{"if": {"done": "a07_council"}, "region": "papal_states", "to": "crown", "ledger": "The Council of Rome gave its verdict."},
-		{"if": {"flag": {"a07_council.rome": "few"}}, "region": "papal_states", "to": "contested", "ledger": "Rome burned: few of its quarters stood."},
-		{"if": {"flag": {"a07_council.rome": "some"}}, "ledger": "Rome burned in part: some of its quarters stood."},
-		{"if": {"flag": {"a07_council.rome": "all"}}, "ledger": "Every quarter of Rome stood through the night of fire."},
-		{"if": {"flag": {"a07_council.people": ["few", "some", "many"]}}, "ledger": "Saved on the steps of Saint Peter's: %s.", "args": ["a07_council.people_n"]},
-		{"if": {"flag": {"a07_council.hollweg": "defied"}}, "ledger": "Hollweg and Lindqvist defied the verdict and left Rome."},
-		{"if": {"won_by": {"a07_council": "creatures"}}, "region": "papal_states", "to": "brood", "pin": "a07_council", "seal": "broken", "ledger": "The creatures crossed the Tiber into Saint Peter's Square."},
-		{"if": {"won_by": {"a07_council": "automata"}}, "region": "papal_states", "to": "machine", "pin": "a07_council", "seal": "broken", "ledger": "The machines crossed the Tiber into Saint Peter's Square."}
-	]
+		{
+			"if": {
+				"won_by": {
+					"p01_leaf": "crown"
+				}
+			},
+			"region": "virginia",
+			"to": "crown",
+			"ledger": "Virginia held: Fairleigh broke the Free Assembly at the fort's gate."
+		},
+		{
+			"if": {
+				"flag": {
+					"p01_leaf.families": "save"
+				}
+			},
+			"mark": "loyal_village",
+			"show": true,
+			"ledger": "The Hollins families were saved: a loyal village in Virginia."
+		},
+		{
+			"if": {
+				"flag": {
+					"p01_leaf.families": "leave"
+				}
+			},
+			"region": "virginia_interior",
+			"to": "unrest",
+			"ledger": "The families were left behind: the interior is uneasy."
+		},
+		{
+			"if": {
+				"won_by": {
+					"p01_leaf": "rebels"
+				}
+			},
+			"regions": [
+				"virginia",
+				"virginia_interior"
+			],
+			"to": "unrest",
+			"pin": "p01_leaf",
+			"seal": "broken",
+			"ledger": "Virginia rose: the Free Assembly holds the fort."
+		},
+		{
+			"if": {
+				"done": "c01_thirteenth"
+			},
+			"region": "franconia",
+			"to": "machine",
+			"pin": "c01_thirteenth",
+			"seal": "broken",
+			"ledger": "Nuremberg is lost: the machine holds Franconia."
+		},
+		{
+			"if": {
+				"done": "c01_thirteenth"
+			},
+			"region": "furth",
+			"to": "crown"
+		},
+		{
+			"if": {
+				"flag": {
+					"c01_thirteenth.saved": [
+						"some",
+						"many"
+					]
+				}
+			},
+			"mark": "loyal_quarter",
+			"show": true,
+			"ledger": "A loyal quarter still holds out inside Nuremberg."
+		},
+		{
+			"if": {
+				"flag": {
+					"c01_thirteenth.saved": [
+						"few",
+						"some",
+						"many"
+					]
+				}
+			},
+			"ledger": "Townsfolk who reached Fürth from Nuremberg: %s.",
+			"args": [
+				"c01_thirteenth.saved_n"
+			]
+		},
+		{
+			"if": {
+				"flag": {
+					"c01_thirteenth.bells": "rung"
+				}
+			},
+			"ledger": "The bells were rung: the Crown trusts the guild."
+		},
+		{
+			"if": {
+				"flag": {
+					"c01_thirteenth.bells": "quiet"
+				}
+			},
+			"ledger": "The bells stayed quiet: a Crown commissary watches the guild."
+		},
+		{
+			"if": {
+				"flag": {
+					"c01_thirteenth.gate": "pattern"
+				}
+			},
+			"ledger": "Hollweg carried his drawings out of the west gate."
+		},
+		{
+			"if": {
+				"flag": {
+					"c01_thirteenth.gate": "people"
+				}
+			},
+			"ledger": "Hollweg held the west gate for the people and left his drawings."
+		},
+		{
+			"if": {
+				"flag": {
+					"c01_thirteenth.jakob": "lost"
+				}
+			},
+			"ledger": "Jakob was lost in Nuremberg."
+		},
+		{
+			"if": {
+				"flag": {
+					"a02_furth.furth": "strong"
+				}
+			},
+			"region": "furth",
+			"to": "crown",
+			"ledger": "The Fürth line held, strong."
+		},
+		{
+			"if": {
+				"flag": {
+					"a02_furth.furth": "thin"
+				}
+			},
+			"region": "furth",
+			"to": "contested",
+			"ledger": "The Fürth line held, but thin."
+		},
+		{
+			"if": {
+				"won_by": {
+					"a02_furth": "machine"
+				}
+			},
+			"region": "furth",
+			"to": "machine",
+			"pin": "a02_furth",
+			"seal": "broken",
+			"ledger": "Fürth fell to the machine."
+		},
+		{
+			"if": {
+				"done": "b01_specimen"
+			},
+			"marks": [
+				"burnt_station",
+				"plateau_question",
+				"barra"
+			],
+			"show": true,
+			"pin": "b01_specimen",
+			"seal": "broken",
+			"ledger": "The Academy's station on the Rio Negro burned. Something came down from the mountain to the north."
+		},
+		{
+			"if": {
+				"flag": {
+					"b01_specimen.saved": [
+						"few",
+						"some",
+						"many"
+					]
+				}
+			},
+			"mark": "nazare",
+			"show": true,
+			"ledger": "The station's people who reached Nazaré: %s.",
+			"args": [
+				"b01_specimen.saved_n"
+			]
+		},
+		{
+			"if": {
+				"flag": {
+					"b01_specimen.clutch": "saved"
+				}
+			},
+			"ledger": "The clutch was saved and carried downriver."
+		},
+		{
+			"if": {
+				"flag": {
+					"b01_specimen.clutch": "burned"
+				}
+			},
+			"ledger": "The clutch was burned."
+		},
+		{
+			"if": {
+				"flag": {
+					"b01_specimen.teles": "quiet"
+				}
+			},
+			"ledger": "Lieutenant Teles was never told: the station stayed the Academy's secret."
+		},
+		{
+			"if": {
+				"flag": {
+					"a03_plateau.map": "drawn"
+				}
+			},
+			"region": "plateau",
+			"to": "brood",
+			"mark": "plateau_question",
+			"show": false,
+			"ledger": "Valadares drew the plateau for the Crown: the creatures' mountain is on the map."
+		},
+		{
+			"if": {
+				"flag": {
+					"a03_plateau.map": "withheld"
+				}
+			},
+			"ledger": "Valadares withheld his map: the plateau stays blank."
+		},
+		{
+			"if": {
+				"flag": {
+					"a03_plateau.party": "few"
+				}
+			},
+			"ledger": "Few of the mapmaker's party came down alive."
+		},
+		{
+			"if": {
+				"flag": {
+					"a03_plateau.party": "all"
+				}
+			},
+			"ledger": "The whole of the mapmaker's party came down alive."
+		},
+		{
+			"if": {
+				"won_by": {
+					"a03_plateau": "nest"
+				}
+			},
+			"pin": "a03_plateau",
+			"seal": "broken",
+			"ledger": "The plateau kept its secret: the mapmaker never came down."
+		},
+		{
+			"if": {
+				"flag": {
+					"a01_presses.lyon": "calm"
+				}
+			},
+			"region": "lyon",
+			"to": "crown",
+			"ledger": "Lyon's presses were found: the city is calm."
+		},
+		{
+			"if": {
+				"flag": {
+					"a01_presses.lyon": "sullen"
+				}
+			},
+			"region": "lyon",
+			"to": "contested",
+			"ledger": "Lyon's presses were found, but the city is sullen."
+		},
+		{
+			"if": {
+				"won_by": {
+					"a01_presses": "assembly"
+				}
+			},
+			"region": "lyon",
+			"to": "unrest",
+			"pin": "a01_presses",
+			"seal": "broken",
+			"ledger": "Lyon rose: the Free Assembly's flags on the Terreaux."
+		},
+		{
+			"if": {
+				"flag": {
+					"a04_visit.broken": "melted"
+				}
+			},
+			"ledger": "The broken automata were melted down."
+		},
+		{
+			"if": {
+				"flag": {
+					"a04_visit.broken": "kept"
+				}
+			},
+			"ledger": "The broken automata were kept for study."
+		},
+		{
+			"if": {
+				"flag_at_least": {
+					"a04_visit.lost_to_machine": 4
+				}
+			},
+			"region": "franconia_more",
+			"to": "machine",
+			"ledger": "The machine's red spreads east of Nuremberg."
+		},
+		{
+			"if": {
+				"flag": {
+					"a05_specimens.cages": [
+						"few",
+						"some",
+						"all"
+					]
+				}
+			},
+			"ledger": "Cages brought down to the river: %s.",
+			"args": [
+				"a05_specimens.cages_n"
+			]
+		},
+		{
+			"if": {
+				"flag": {
+					"a05_specimens.cages": "all"
+				}
+			},
+			"ledger": "Every cage came down to the Barra: the Academy has its breeding stock."
+		},
+		{
+			"if": {
+				"flag": {
+					"a05_specimens.cages": "few"
+				}
+			},
+			"ledger": "Few of the Academy's cages reached the river."
+		},
+		{
+			"if": {
+				"won_by": {
+					"a05_specimens": "creatures"
+				}
+			},
+			"pin": "a05_specimens",
+			"seal": "broken",
+			"ledger": "The creatures broke the Academy's cages on the mountain."
+		},
+		{
+			"if": {
+				"won_by": {
+					"a06_barricades": "crown"
+				}
+			},
+			"region": "paris",
+			"to": "crown",
+			"ledger": "Paris was taken back from the barricades."
+		},
+		{
+			"if": {
+				"won_by": {
+					"a06_barricades": "assembly"
+				}
+			},
+			"region": "paris",
+			"to": "unrest",
+			"pin": "a06_barricades",
+			"seal": "broken",
+			"ledger": "Paris held behind its barricades: the Free Assembly's flags on the Hôtel de Ville."
+		},
+		{
+			"if": {
+				"flag": {
+					"a06_barricades.varenne": "spared"
+				}
+			},
+			"mark": "varenne_exile",
+			"show": true,
+			"ledger": "Varenne was spared and sent into exile."
+		},
+		{
+			"if": {
+				"flag": {
+					"a06_barricades.varenne": "executed"
+				}
+			},
+			"region": "paris",
+			"to": "contested",
+			"ledger": "Varenne was executed: risings flare in the provinces."
+		},
+		{
+			"if": {
+				"flag": {
+					"a06_barricades.varenne": "executed"
+				}
+			},
+			"regions": [
+				"brittany",
+				"provence"
+			],
+			"to": "unrest"
+		},
+		{
+			"if": {
+				"done": "a07_council"
+			},
+			"region": "papal_states",
+			"to": "crown",
+			"ledger": "The Council of Rome gave its verdict."
+		},
+		{
+			"if": {
+				"flag": {
+					"a07_council.rome": "few"
+				}
+			},
+			"region": "papal_states",
+			"to": "contested",
+			"ledger": "Rome burned: few of its quarters stood."
+		},
+		{
+			"if": {
+				"flag": {
+					"a07_council.rome": "some"
+				}
+			},
+			"ledger": "Rome burned in part: some of its quarters stood."
+		},
+		{
+			"if": {
+				"flag": {
+					"a07_council.rome": "all"
+				}
+			},
+			"ledger": "Every quarter of Rome stood through the night of fire."
+		},
+		{
+			"if": {
+				"flag": {
+					"a07_council.people": [
+						"few",
+						"some",
+						"many"
+					]
+				}
+			},
+			"ledger": "Saved on the steps of Saint Peter's: %s.",
+			"args": [
+				"a07_council.people_n"
+			]
+		},
+		{
+			"if": {
+				"flag": {
+					"a07_council.hollweg": "defied"
+				}
+			},
+			"ledger": "Hollweg and Lindqvist defied the verdict and left Rome."
+		},
+		{
+			"if": {
+				"won_by": {
+					"a07_council": "creatures"
+				}
+			},
+			"region": "papal_states",
+			"to": "brood",
+			"pin": "a07_council",
+			"seal": "broken",
+			"ledger": "The creatures crossed the Tiber into Saint Peter's Square."
+		},
+		{
+			"if": {
+				"won_by": {
+					"a07_council": "automata"
+				}
+			},
+			"region": "papal_states",
+			"to": "machine",
+			"pin": "a07_council",
+			"seal": "broken",
+			"ledger": "The machines crossed the Tiber into Saint Peter's Square."
+		}
+	],
+	"paintings": {
+		"world": {
+			"file": "res://campaign/warmap_art/painted_world.jpg",
+			"size": [
+				1536,
+				1024
+			],
+			"cart": [
+				768,
+				883,
+				268
+			],
+			"hemi": -25.0,
+			"west": [
+				[
+					886.6323185720906,
+					5.35469022706425,
+					-2.230538923228484,
+					0.003907396988815261,
+					-0.031774707853211764,
+					-0.0119907964230222
+				],
+				[
+					526.3829902770157,
+					-0.5577788931477234,
+					-4.561589404025298,
+					-0.0041898164826388515,
+					-0.005055573212684255,
+					0.0009041394781292692
+				],
+				[
+					[
+						-80.4,
+						25.1,
+						-5.955046443937249,
+						-14.420841009384446
+					],
+					[
+						-87,
+						21.5,
+						-12.284615169321796,
+						13.002750994678593
+					],
+					[
+						-79.5,
+						9,
+						2.6811300113056973,
+						2.118082046962172
+					],
+					[
+						-35.2,
+						-5.4,
+						2.355834162549286,
+						9.476558766181483
+					],
+					[
+						-50,
+						0,
+						-5.666299690916276,
+						-15.79739372780466
+					],
+					[
+						-67.3,
+						-55.9,
+						-3.638890462653592,
+						-2.7433073406303947
+					],
+					[
+						-57,
+						-35,
+						1.9002970262735062,
+						7.758995123369004
+					],
+					[
+						-81.3,
+						-4.7,
+						14.800091456831922,
+						-8.564683742484362
+					],
+					[
+						-70,
+						42,
+						3.4665106545770072,
+						1.231055651924862
+					],
+					[
+						-53,
+						47.5,
+						-1.7976084169313253,
+						0.7320493166274105
+					],
+					[
+						-109.9,
+						22.9,
+						-1.9457326297373925,
+						8.184600649885397
+					],
+					[
+						-168,
+						65.6,
+						0.414633712470561,
+						-2.203497942727722
+					],
+					[
+						-82,
+						51.5,
+						5.669695789498292,
+						1.225631213403517
+					]
+				]
+			],
+			"east": [
+				[
+					881.034248309705,
+					3.9688874292739253,
+					-0.10146068929646816,
+					-0.003371693216260728,
+					0.0074025448773656286,
+					0.017151182747707064
+				],
+				[
+					529.5856293016914,
+					0.26202525573654073,
+					-4.149765399659385,
+					0.00021934130259803003,
+					-0.000852501285751301,
+					0.0071071874507454644
+				],
+				[
+					[
+						-5.6,
+						36,
+						-0.7857373855877086,
+						14.88360877954807
+					],
+					[
+						-17.5,
+						14.7,
+						-4.856559527523132,
+						-11.820907317220701
+					],
+					[
+						18.5,
+						-34.4,
+						3.6200044838228678,
+						6.787010998119285
+					],
+					[
+						51.3,
+						11.8,
+						-3.4368731793131246,
+						4.888916830045503
+					],
+					[
+						32.5,
+						30,
+						0.9285361490940431,
+						6.594552673720045
+					],
+					[
+						77.5,
+						8,
+						-3.2473597037164836,
+						-12.938191322409466
+					],
+					[
+						103.5,
+						1.3,
+						5.411224400324954,
+						6.4425057815841456
+					],
+					[
+						-4.5,
+						48.4,
+						1.2393188884275332,
+						3.6030002166047552
+					],
+					[
+						15.6,
+						38,
+						13.572612757005345,
+						-5.792932920208102
+					],
+					[
+						10.6,
+						57.7,
+						-11.500135545831426,
+						-9.086759912413243
+					],
+					[
+						29,
+						41,
+						14.230734439298203,
+						1.837995556553949
+					],
+					[
+						56,
+						26.5,
+						-12.059400839082627,
+						1.295974663857578
+					],
+					[
+						45,
+						-25.6,
+						-3.1163649369054838,
+						-6.694774027783069
+					]
+				]
+			]
+		},
+		"europe": {
+			"file": "res://campaign/warmap_art/painted_europe.jpg",
+			"size": [
+				1536,
+				1024
+			],
+			"cart": [
+				765,
+				896,
+				237
+			],
+			"fit": [
+				[
+					-2869.5036988224037,
+					64.54706682492065,
+					135.01963648666347,
+					0.6328794173875228,
+					-0.4140579574815018,
+					-1.3271038207985888
+				],
+				[
+					5074.238549303915,
+					10.647200745836612,
+					-148.63372463170944,
+					-0.19417051097540025,
+					-0.1878828524022117,
+					1.068415447855906
+				],
+				[
+					[
+						-5.7,
+						50.06,
+						67.35555172248849,
+						-7.700477580344966
+					],
+					[
+						-4.5,
+						48.4,
+						-72.16221131159125,
+						15.729902291806468
+					],
+					[
+						1.6,
+						50.9,
+						-23.896546556666294,
+						16.91934280493058
+					],
+					[
+						4.75,
+						52.95,
+						-9.718910255984497,
+						-26.540237721153204
+					],
+					[
+						2.35,
+						48.86,
+						13.00054574986666,
+						5.00174679100337
+					],
+					[
+						4.84,
+						45.76,
+						-13.597682762955742,
+						-15.369222811591726
+					],
+					[
+						4.8,
+						43.4,
+						39.18023917091739,
+						26.547379554091208
+					],
+					[
+						8.9,
+						44.4,
+						21.851096069382038,
+						10.731294550439088
+					],
+					[
+						9.4,
+						43.0,
+						3.1728674918723527,
+						-6.473084946082281
+					],
+					[
+						12.3,
+						45.4,
+						15.526509218839237,
+						15.890394343135767
+					],
+					[
+						12.48,
+						41.9,
+						-35.545072858901676,
+						-11.595064085668696
+					],
+					[
+						11.08,
+						49.45,
+						-3.0600235597883056,
+						-13.091059463522129
+					],
+					[
+						-1.5,
+						43.4,
+						-6.227403479188126,
+						-18.782990174129395
+					],
+					[
+						10.6,
+						57.7,
+						4.12104136147002,
+						8.73207644709877
+					]
+				]
+			]
+		},
+		"virginia": {
+			"file": "res://campaign/warmap_art/painted_virginia.jpg",
+			"size": [
+				1536,
+				1024
+			],
+			"cart": [
+				771,
+				870,
+				288
+			],
+			"fit": [
+				[
+					5609.0729909234815,
+					63.18123937474806,
+					2.662424386667139
+				],
+				[
+					3357.4234264374318,
+					-1.5089406057136105,
+					-80.20559353098491
+				],
+				[
+					[
+						-70.1,
+						41.9,
+						26.37630744500393,
+						2.414206050311975
+					],
+					[
+						-71.9,
+						41.07,
+						-22.687649439514644,
+						1.1274703293100288
+					],
+					[
+						-74.0,
+						40.47,
+						-21.40959212054463,
+						-11.164661061279446
+					],
+					[
+						-74.95,
+						38.93,
+						-2.287281159066197,
+						11.885231325575774
+					],
+					[
+						-75.97,
+						37.12,
+						-7.023428856955661,
+						14.173987616664874
+					],
+					[
+						-75.53,
+						35.25,
+						0.15555942122284705,
+						-12.146538419762692
+					],
+					[
+						-76.1,
+						39.54,
+						14.74706524602675,
+						-9.924638317094093
+					],
+					[
+						-77.3,
+						37.45,
+						12.129019463859436,
+						3.6349424762913713
+					]
+				]
+			]
+		},
+		"amazon": {
+			"file": "res://campaign/warmap_art/painted_amazon.jpg",
+			"size": [
+				1536,
+				1024
+			],
+			"cart": [
+				767,
+				864,
+				288
+			],
+			"fit": [
+				[
+					12320.203991130686,
+					179.05543237250345,
+					160.88691796008644
+				],
+				[
+					-4135.742793791683,
+					-69.53880266075556,
+					-230.62084257206536
+				],
+				[
+					[
+						-60.0,
+						-3.1,
+						-17.128603104211834,
+						-25.509977827053376
+					],
+					[
+						-65.0,
+						-0.4,
+						-2.246119733927685,
+						5.472283813745264
+					],
+					[
+						-63.5,
+						-0.85,
+						24.569844789356125,
+						41.00110864744909
+					],
+					[
+						-64.5,
+						-0.55,
+						15.359201773834798,
+						9.648558758312618
+					],
+					[
+						-67.0,
+						1.2,
+						-20.55432372505868,
+						-30.611973392461493
+					]
+				]
+			],
+			"at": {
+				"a03_plateau": [
+					770,
+					160
+				],
+				"a05_specimens": [
+					735,
+					228
+				],
+				"plateau_question": [
+					815,
+					128
+				]
+			}
+		}
+	}
 }
