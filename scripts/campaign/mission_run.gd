@@ -1815,7 +1815,12 @@ func fill(txt: String) -> String:
 	for cn in clocks:
 		var left := maxi(0, int(ceil(float(clocks[cn]) - game.clock)))
 		txt = txt.replace("{clock:%s}" % cn, "%d:%02d" % [left / 60, left % 60])
+	if txt.find("{") >= 0:
+		txt = _UNSET.sub(txt, "…", true)       # (a clock not started yet: a06's "{clock:patience}" in its first second)
 	return txt
+
+
+static var _UNSET := RegEx.create_from_string("\\{[^}]*\\}")
 
 
 ## A number for the player's eyes: a whole one without ".0" (the data's numbers are floats once read: a07's "Saved: 13
