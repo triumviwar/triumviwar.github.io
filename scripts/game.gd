@@ -5876,7 +5876,7 @@ func _update_swamp() -> void:
 		g.fill(0)
 		if faction_of(t) == "brood":
 			# the rooted Brood Mother and Mound Turtles (scripts/brood_new.gd)
-			for src in BroodNew.swamp_sources(self, t) + BroodNew.linger_sources(self, t):
+			for src in BroodNew.swamp_sources(self, t) + BroodNew.linger_sources(self, t) + (mission.swamp_sources(t) if mission else []):
 				var nc: Vector2 = src[0]
 				var nr: float = src[1]
 				for y in range(int(nc.y - nr) - 1, int(nc.y + nr) + 2):
@@ -9607,6 +9607,8 @@ func _update_vis() -> void:
 					fm.walker(u)
 		elif demo:
 			u.visible = not u.off_field     # (the side looked through before may have been hidden)
+	if mission:
+		mission.after_vis(ft)          # (act2-engine0: hidden units, sappers under the ground)
 	for c in crates:
 		if not allied(c.team, ft):
 			c.visible = hv[idx(cell_of(c.position))] == 1

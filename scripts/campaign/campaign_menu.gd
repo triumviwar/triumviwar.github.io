@@ -341,6 +341,13 @@ static func briefing(main: Node, mid: String) -> void:
 		if String(o.get("side", "")) == side and not bool(o.get("hidden", false)):
 			var pre := "-  " if bool(o.get("primary", true)) else "-  " + Loc.t("(optional)") + " "
 			v.add_child(_wrap(pre + Campaign.brief_text(m, Loc.t(String(o["text"]))), 16, UiStyle.TEXT if bool(o.get("primary", true)) else UiStyle.MUTED))
+	# THE VERSION (act2-engine0: FRESH / GROWN, picked by what happened before: said plainly before the match)
+	var ver := MissionAct2.version_of(m, side)
+	var vlab := String(m.get("versions", {}).get("labels", {}).get(ver, "")) if m.get("versions") is Dictionary else ""
+	if vlab != "":
+		var vl := _wrap(Loc.t(vlab), 16, UiStyle.TRIM)
+		vl.name = "Briefing_Version"
+		v.add_child(vl)
 	# THE SOLO SIDE PICK (a mission that lets you lead either side alone) and the campaign's DIFFICULTY (act1-engine0)
 	var sides := Campaign.solo_sides(m)
 	if sides.size() > 1:
@@ -893,7 +900,7 @@ static func _hotspot(main: Node, sl: Dictionary, hs: Dictionary, talk_box: Panel
 				war_table(main)
 		"talk":
 			var tk: Dictionary = sl.get("hub", {}).get("talks", {}).get(String(hs.get("talk", "")), {})
-			_talk(talk_box, tk, talk_lines(tk, p))
+			_talk(talk_box, tk, talk_lines(tk, p), talk_entry(tk, p).get("choice", {}))
 		"room":
 			var rm: Dictionary = Campaign.index().get("rooms", {}).get(String(hs.get("room", "")), {})
 			_talk(talk_box, {"name": String(rm.get("title", "")), "colour": 3}, [String(rm.get("text", ""))])
@@ -902,15 +909,32 @@ static func _hotspot(main: Node, sl: Dictionary, hs: Dictionary, talk_box: Panel
 ## What a person in the hub says now: the entry for the latest finished mission it lists ("after": a mission id,
 ## "" before any). So the talk changes after each mission.
 static func talk_lines(tk: Dictionary, p: Dictionary) -> Array:
-	var out: Array = []
+	return talk_entry(tk, p).get("lines", [])
+
+
+## The talk entry said now (the last that holds). act2-engine0: an entry's "heir": "named" / "unseen" (Campaign.heir,
+## the frame's two versions) and "hub_flag": {name: value} (an answer given in a hub choice) must hold too.
+static func talk_entry(tk: Dictionary, p: Dictionary) -> Dictionary:
+	var out: Dictionary = {}
 	for e in tk.get("entries", []):
 		var aft := String(e.get("after", ""))
-		if (aft == "" or (p["done"] as Dictionary).has(aft)) and flags_ok(e.get("flag", {}), p) and sides_ok(e, p):
-			out = e.get("lines", [])
+		if (aft == "" or (p["done"] as Dictionary).has(aft)) and flags_ok(e.get("flag", {}), p) and sides_ok(e, p) \
+				and (not e.has("heir") or String(e["heir"]) == Campaign.heir()) and hub_flags_ok(e.get("hub_flag", {})):
+			out = e
 	return out
 
 
-static func _talk(box: PanelContainer, tk: Dictionary, lines: Array) -> void:
+static func hub_flags_ok(f: Dictionary) -> bool:
+	for k in f:
+		if str(Campaign.hub_flag(String(k))) != str(f[k]):
+			return false
+	return true
+
+
+## act2-engine0, THE FRAME AT THE CHOICE: a talk entry's "choice": {"flag", "question", "options": [{"id", "label",
+## "lines"}]}: after its lines the buttons are the listener's answer (the player's); the answer is kept
+## (Campaign.set_hub_flag) and the option's lines follow (the King: what was chosen, and whether you agreed).
+static func _talk(box: PanelContainer, tk: Dictionary, lines: Array, choice: Dictionary = {}) -> void:
 	for c in box.get_children():
 		c.queue_free()
 	var h := HBoxContainer.new()
@@ -935,12 +959,38 @@ static func _talk(box: PanelContainer, tk: Dictionary, lines: Array) -> void:
 	nb.focus_mode = Control.FOCUS_NONE
 	nb.custom_minimum_size = Vector2(110, 50)
 	nb.size_flags_vertical = Control.SIZE_SHRINK_END
+	var opts := HFlowContainer.new()
+	opts.name = "TalkChoice"
+	opts.add_theme_constant_override("h_separation", 8)
+	opts.visible = false
+	v.add_child(opts)
+	state["lines"] = lines
+	state["asked"] = not choice.is_empty() and (choice.get("options", []) as Array).size() > 0
 	var show_line := func() -> void:
-		txt.text = "..." if lines.is_empty() else Loc.t(String(lines[state["i"]]))
-		nb.text = Loc.t("NEXT") if state["i"] < lines.size() - 1 else Loc.t("CLOSE")
+		var ls: Array = state["lines"]
+		txt.text = "..." if ls.is_empty() else Loc.t(String(ls[state["i"]]))
+		var last: bool = state["i"] >= ls.size() - 1
+		nb.text = Loc.t("NEXT") if not last else Loc.t("CLOSE")
+		nb.visible = not (last and state["asked"])
+		opts.visible = last and state["asked"]
+	for o in choice.get("options", []):
+		var ob := Button.new()
+		ob.name = "TalkOpt_" + String(o.get("id", ""))
+		ob.text = Loc.t(String(o.get("label", "")))
+		ob.focus_mode = Control.FOCUS_NONE
+		ob.custom_minimum_size = Vector2(150, 50)
+		ob.pressed.connect(func() -> void:
+			Sfx.play_any(["ui/click", "click"])
+			Campaign.set_hub_flag(String(choice.get("flag", "")), String(o.get("id", "")))
+			var ol: Array = o.get("lines", [])
+			state["lines"] = ol if not ol.is_empty() else ["..."]
+			state["asked"] = false
+			state["i"] = 0
+			show_line.call())
+		opts.add_child(ob)
 	nb.pressed.connect(func() -> void:
 		Sfx.play_any(["ui/click", "click"])
-		if state["i"] < lines.size() - 1:
+		if state["i"] < (state["lines"] as Array).size() - 1:
 			state["i"] += 1
 			show_line.call()
 		else:
