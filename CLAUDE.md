@@ -181,6 +181,13 @@
   within the noise). The Brood question: the Crown leads to ~14:00 and loses at 15-19 to the capped Brood army at even income
   and full spending: balance more than AI. 16 threshold variants of the 1000 jobs deleted again; trade, spend, queen, pester,
   maws, guard, farms, foundry2, richlabs kept as off switches. 7 Claude's choices in the doc.
+- WORLDWIDE PLAN (owner 2026-11-22 "Yes"; docs/campaign_worldwide_plan.md, an OUTLINE): the dangers leave Brazil by
+  TRADE (ships carry seeds and eggs); THE CLIMATE (the Brood can't live in the cold, the Clockwork rusts in the wet;
+  a mission rule only); local Catholic allies (Kongo, Ethiopia, Goa, Manila, Nagasaki, New Spain); Act 2 + two optional
+  sparks (d12_luanda, d13_goa); Act 3 theatres AFRICA (Lindqvist taken), THE INDIES (Hollweg's stop-work from
+  Nagasaki), THE SOUTHERN SEAS (the exiles rise), THE AMERICAS (Fairleigh's last ride); the war map's yearly clock;
+  the 3rd crossing = three missions on one night (Lisbon, Goa, an Atlantic port), any order; Antarctica the Cold
+  Forge. 8 Claude's choices, 8 OWNER QUESTIONS waiting.
 - ACT 2 ANSWERS (owner 2026-11-22 20:35-20:39; docs/campaign_act2_plan.md "OWNER ANSWERS"): every recommendation
   accepted; Linnea becomes the Queen AS AN ANIMAL; NO BROOD HUB OR WAR MAP EVER (the Naturalist always tells the Brood's
   story); the crossing's order has NO CANON (the player chooses); NEW: the campaign should go WORLDWIDE (Africa, Asia,

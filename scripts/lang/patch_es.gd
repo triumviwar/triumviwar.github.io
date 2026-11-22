@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.171": ["Nada cambia en el juego: quedó escrito para el autor un esbozo de la campaña por todo el mundo (África, las Indias, los mares del sur, las Américas, la Antártida)."],
 	"0.38.170": ["Nada cambia en el juego: las respuestas del autor al plan del Acto 2 quedaron registradas."],
 	"0.38.169": ["Nada cambia en el juego: el plan de la campaña registra que la Madre de la Nidada a la que los científicos llamaron Linnea se convierte en la Reina, un animal y nada más."],
 	"0.38.168": ["VOCES DE LA CAMPAÑA CON SENTIMIENTO: 278 frases de la campaña se grabaron de nuevo con emoción: las órdenes gritadas gritan, las acusaciones y discusiones suenan enfadadas, las alarmas son urgentes, el duelo es lento y bajo. Entre ellas Valadares acusando al doctor y mandando prender fuego a la paja, Ferrer y Hollweg discutiendo, los gritos de Varenne y las oraciones de Tomasz."],
