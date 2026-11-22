@@ -594,3 +594,16 @@ static func field_tick(ai, q, mid: Vector2) -> bool:
 		if u.order == "idle" and u.target == null:
 			u.cmd_move(ai._wave_target, true)
 	return true
+
+
+# ------------------------------------------------------------------ THE SIRE GOES WITH THE CAPPED WAVE (`wbmsirewave`)
+## THE SIRE AT THE CAP (blocks 1-11: from 12:00 both sides stood at the supply cap, where no egg can be laid: the Tyrant
+## Sire (1,000 health, 42 a bite) stood rooted on his nest beside her doing nothing while every wave lost to the
+## defender's Sires and swamp). A wave that leaves AT THE CAP takes the Tyrant Sire with it (the plans' own "sire leads":
+## he gets up and walks with it, comes home with it and roots again on his nest); not before the cap, when his eggs are the
+## army to come.
+static func sire_leads(ai, capped: bool) -> String:
+	if not on("sirewave") or not mirror(ai) or not capped:
+		return ""
+	ai.wbm["sirewaves"] = int(ai.wbm.get("sirewaves", 0)) + 1
+	return BroodNew.FATHER

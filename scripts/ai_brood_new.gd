@@ -3656,6 +3656,8 @@ func _nb_army(q: Unit) -> void:
 	# a Sire may lead the wave (the plan's "sire_leads": he gets up from his nest and walks with it; his line lays no
 	# eggs meanwhile)
 	var lead := String(plan.get("sire_leads", ""))
+	if lead == "":
+		lead = AIWr1000BroodMirror.sire_leads(self, capped)          # (wr1000-brood-mirror: at the cap a Sire lays nothing at home)
 	if lead != "":
 		var f := BroodNew.father(game, team, lead)
 		if f and not BroodRoot.in_cocoon(f) and not BroodResearch.busy(f):
