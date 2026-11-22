@@ -76,3 +76,25 @@ static func hunt_goal(ai, foe_t: int, from: Vector2) -> Vector2:
 				bd = d
 				best = b.center()
 	return best if best != Vector2.INF else AIHunt._target(game, foe_t, from)
+
+
+# ------------------------------------------------------------------ reckon: the Clockwork's reckoning of today's Crown (block 3)
+
+## Block 1: the Clockwork computer's pushes went out against the Crown "worth 3,970 against the 325 it reckons" and lost twice
+## what they killed (26 pushes, lost 45,030, killed 22,455). Its reckoning of the Crown's army (AICwArmy.reckon) is the
+## Crown row of AICwArmy.TABLES (flat at 1,500 from 12:00) less half of EVERYTHING it has killed since 0:00, or what it has
+## seen lately if more; today's Crown computer has 1,700 at 12:00, 3,000 at 14:00 and 4,000 at 16:00 (the lower quarter of
+## block 1). Here, against the Crown: the row goes on growing as today's Crown does (CROWN_ROW, block 1's lower quarter),
+## and only what it killed in the last AICwArmy.KILL_RECENT s comes off it for a push going out (as against the Clockwork).
+const CROWN_ROW := [[0.0, 0.0], [180.0, 60.0], [240.0, 200.0], [300.0, 330.0], [360.0, 480.0], [420.0, 800.0], [480.0, 1000.0],
+	[600.0, 1200.0], [720.0, 1600.0], [780.0, 2000.0], [840.0, 2700.0], [960.0, 3600.0]]
+
+
+static func cw_table(ai, tab: Array) -> Array:
+	if on("reckon") and vs(ai, "clockwork"):
+		return CROWN_ROW
+	return tab
+
+
+static func cw_recent(ai) -> bool:
+	return on("reckon") and vs(ai, "clockwork")

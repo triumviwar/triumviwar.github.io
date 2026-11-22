@@ -147,7 +147,7 @@ func reckon(all_kills := false) -> float:
 	if foe < 0:
 		return 0.0
 	var seen: float = ai.push.foe_mem() if ai.push != null else 0.0
-	var tab: Array = TABLES.get(game.faction_of(foe), TABLES["crown"])
+	var tab: Array = AIWccr.cw_table(ai, TABLES.get(game.faction_of(foe), TABLES["crown"]))     # (wr1000-crown-clockwork)
 	var floor_v := maxf(0.0, table_at(tab, game.clock) - _killed_for_reckon(all_kills) * KILL_SHARE)
 	return maxf(seen, floor_v) + _rooted_seen() * ROOTED_K
 
@@ -1018,7 +1018,7 @@ var _kill_hist: Array = []      # [clock, value killed] every 10 s
 func _killed_for_reckon(all_kills: bool) -> float:
 	var k := float(game.stats[team]["value_killed"])
 	var foe := _foe()
-	if all_kills or not reckon_recent_on or foe < 0 or game.faction_of(foe) != "clockwork":
+	if all_kills or not reckon_recent_on or foe < 0 or (game.faction_of(foe) != "clockwork" and not AIWccr.cw_recent(ai)):
 		return k
 	if _kill_hist.is_empty() or game.clock - float(_kill_hist[-1][0]) >= 10.0:
 		_kill_hist.append([game.clock, k])
