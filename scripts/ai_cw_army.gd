@@ -181,7 +181,7 @@ func may_launch(list: Array) -> bool:
 		return true
 	if CwBrood.push_waits(ai, self, mine, rk):
 		return false            # (clockwork-v-brood-coach-2: into the Brood's land only clearly ahead)
-	if _fail_v > 0.0 and mine < _fail_v * AFTER_FAIL:
+	if _fail_v > 0.0 and mine < _fail_v * AFTER_FAIL and not WkM.fail_waived(ai, self, mine):
 		stats["waits"] = int(stats["waits"]) + 1
 		say("holds at its gathering point: its last push (%d) had to pull back; the next goes worth %d (it has %d)" % [int(_fail_v), int(_fail_v * AFTER_FAIL), int(mine)], "fail", 45.0)
 		return false
@@ -279,6 +279,7 @@ func _counter_ok(mine: float) -> bool:
 ## back, and lost 700 for 60.)
 const AFTER_FAIL := 1.25
 var _fail_v := 0.0
+var _fail_t := -999.0           # (wr1000-clockwork-mirror: when that push pulled back)
 var _retreats := 0
 
 
@@ -289,6 +290,7 @@ func _note_retreat() -> void:
 	if r > _retreats:
 		_retreats = r
 		_fail_v = maxf(float(ai.push.value_in), float(ai.push.value0))
+		_fail_t = game.clock
 
 
 func _ask_look() -> void:
