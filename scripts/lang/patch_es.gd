@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.126": ["EL DRAGÓN ACORAZADO REDIBUJADO: quieto mirando a la derecha se queda de lado (su caballo se giraba hacia ti en el segundo cuadro), y galopando alejándose mantiene una sola vista de espaldas en cada cuadro (se desviaba a un ángulo de tres cuartos)."],
 	"0.38.125": ["EL JINETE REDIBUJADO DE ESPALDAS: su golpe de sable cabalgando alejándose (norte) y hacia arriba a la derecha ahora lleva una sola hoja de acero en la mano derecha en cada cuadro (tenía hoja roja, la mano equivocada y un caballo que giraba), y su galope hacia ti mantiene un solo ángulo de frente (variaba entre cuadros)."],
 	"0.38.124": ["LA TIERRA DE LA CORONA ES SOLO MORADA: una región que la Corona tiene pero donde la gente está inquieta ahora tiene franjas y bandera moradas y moradas claras (tenía rojo, que es el color de la máquina), en el mapa de guerra pintado y en el dibujado y en la leyenda."],
 	"0.38.123": ["TERRITORIO EN EL MAPA DE GUERRA PINTADO: cada región tomada se llena de franjas diagonales del color de quien la tiene (la pintura se ve entre ellas; dos colores alternan donde la región está inquieta o en revuelta), con un borde fino y una pequeña bandera con los colores del dueño en su centro, y la leyenda vuelve a aparecer. El nuevo botón TERRITORIO lo oculta todo para ver la pintura limpia."],

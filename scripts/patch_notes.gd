@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.126", "items": [
+		"THE ARMOURED DRAGOON REDRAWN: standing still facing right he stays side-on (his horse turned toward you in the second frame), and galloping away he keeps one straight rear view in every frame (it drifted into a three-quarter angle).",
+	]},
 	{"v": "0.38.125", "items": [
 		"THE HORSEMAN REDRAWN FROM BEHIND: his sabre blow riding away (north) and toward the upper right now hold one steel blade in his right hand in every frame (it had a red blade, the wrong hand and a horse that turned), and his gallop toward you keeps one straight front angle (it drifted between frames).",
 	]},

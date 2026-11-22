@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.126": ["O DRAGÃO COURAÇADO REDESENHADO: parado virado para a direita ele fica de lado (o cavalo virava para você no segundo quadro), e galopando para longe mantém uma só vista de costas em cada quadro (escorregava para um ângulo de três quartos)."],
 	"0.38.125": ["O CAVALEIRO REDESENHADO DE COSTAS: o golpe de sabre cavalgando para longe (norte) e para cima à direita agora tem uma só lâmina de aço na mão direita em cada quadro (tinha lâmina vermelha, a mão errada e um cavalo que virava), e o galope na sua direção mantém um só ângulo de frente (variava entre quadros)."],
 	"0.38.124": ["A TERRA DA COROA É SÓ ROXA: uma região que a Coroa tem, mas onde o povo está inquieto, agora tem listras e bandeira roxas e roxo-claras (tinha vermelho, que é a cor da máquina), no mapa de guerra pintado e no desenhado e na legenda."],
 	"0.38.123": ["TERRITÓRIO NO MAPA DE GUERRA PINTADO: cada região tomada fica cheia de listras diagonais na cor de quem a tem (a pintura aparece entre elas; duas cores alternam onde a região está inquieta ou em revolta), com uma borda fina e uma pequena bandeira nas cores do dono no meio, e a legenda volta a aparecer. O novo botão TERRITÓRIO esconde tudo para ver a pintura limpa."],
