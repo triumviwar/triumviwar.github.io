@@ -118,9 +118,10 @@ static func owl_target(ai) -> int:
 	if not on("owls") or not cw_v_brood(ai):
 		return 0
 	var s := _look(ai)
-	if int(s["spit"]) < OWL_SPITS:
+	var more := on("owlsmore")          # (block 13: sooner and more of them)
+	if int(s["spit"]) < (OWLS_MORE_SPITS if more else OWL_SPITS):
 		return 0
-	var n := mini(OWL_MAX, int(s["spit"]) / OWL_PER)
+	var n := mini(OWLS_MORE_MAX if more else OWL_MAX, int(s["spit"]) / (OWLS_MORE_PER if more else OWL_PER))
 	n -= int(s["aa"]) / 2          # (flyer-killers seen: fewer Owls)
 	return maxi(0, n)
 
@@ -364,3 +365,11 @@ static func works_wait(ai) -> bool:
 	if have == 0 or have >= want or ai._busy_building(ai._works()):
 		return false
 	return ai._gold() < int(Defs.BUILDINGS[ai._works()]["cost"]) + 30
+
+
+# ------------------------------------------------------------------ owlsmore (block 13)
+## OWLSMORE: the kept Owls came late and few (blocks 4 and 10: 0-10 a game, the first after 9:00 in most): with Spitters
+## seen from OWLS_MORE_SPITS, one Owl for every OWLS_MORE_PER Spitters, up to OWLS_MORE_MAX.
+const OWLS_MORE_SPITS := 6
+const OWLS_MORE_PER := 3
+const OWLS_MORE_MAX := 14
