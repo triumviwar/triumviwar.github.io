@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.142", "items": [
+		"THE MORTAR SETS UP PROPERLY: facing right, down-right or toward you, its crew unhitch the grey horse, lead it aside and lift the mortar off the cart onto the ground (it was a jumble of other pictures with a rearing brown horse).",
+	]},
 	{"v": "0.38.141", "items": [
 		"THE FIELD CANNON SETS UP WITHOUT SPINNING: unlimbering to the side, the gun no longer flips to face you with its barrel straight up for two frames, and unlimbering toward you it no longer turns sideways for a frame.",
 	]},

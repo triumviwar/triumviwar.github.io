@@ -5,6 +5,7 @@ tall (median bounding-box height) as the reference strip's chosen frames, their 
 Usage (repo root):
   python3 tools/import_sa_strip.py <sheet> <unit> <anim> <dir> <frames> <ref_strip> <ref_frames> [ref_pick,...] [sheet_pick,...]
 e.g. python3 tools/import_sa_strip.py rebel_pikeman_walk_s_chatgpt rebel_pikeman walk s 3 walk_s 3 0,1
+SA_K=<factor> scales the figures by hand; SA_BY=width matches widths; SA_GAP=<px> cuts the frames at gaps wider than px.
 """
 import os
 import sys
@@ -61,7 +62,22 @@ def main():
     feet_x = int(round(np.median([np.nonzero(refs[i][..., 3] > 0)[1].mean() for i in pick])))
     px, fg = load_sheet(sheet)
     H, W = fg.shape
-    figs = [cut(px, fg, (x0, 0, x1, H)) for x0, x1 in col_boxes(fg, 0, H, (0, W), n)]
+    cols = col_boxes(fg, 0, H, (0, W), n)
+    if os.environ.get("SA_GAP"):
+        # (a frame made of several separate pieces, e.g. two crewmen apart from their gun: the figures are the runs of
+        # columns with something in them, runs closer than SA_GAP sheet px joined)
+        occ = fg.any(0)
+        xs = np.nonzero(occ)[0]
+        rs, x0 = [], xs[0]
+        for a_, b_ in zip(xs[:-1], xs[1:]):
+            if b_ - a_ > int(os.environ["SA_GAP"]):
+                rs.append((x0, a_ + 1))
+                x0 = b_
+        rs.append((x0, xs[-1] + 1))
+        if len(rs) != n:
+            sys.exit("SA_GAP gives %d figures, not %d: %s" % (len(rs), n, rs))
+        cols = [(max(0, a_ - 4), min(W, b_ + 4)) for a_, b_ in rs]
+    figs = [cut(px, fg, (x0, 0, x1, H)) for x0, x1 in cols]
     if any(not (f[..., 3] > 0).any() for f in figs):
         figs = by_parts(px, fg, n)
     hs = [box(f[..., 3] > 0) for f in figs]

@@ -144,7 +144,10 @@ over; 130 the King's pink pipe smoke made grey and the pink fleck in his hair (h
 pink fringe under the war map's mountains removed; 151 the musicians' death on the feet line.
 0.38.141: 54 the Field Cannon's east, south-east and north-east deploy keep the gun side-on while the horse goes (frames 2-3
 flipped to a head-on gun with its barrel up: now frame 1's gun and crew with those frames' horse); 55 the south deploy's
-side-view frame 2 replaced by frame 1. Left: the dithered fading horse, the Mortar's deploy (60, a collage: needs a redraw).
+side-view frame 2 replaced by frame 1. Left: the dithered fading horse.
+0.38.142: 60 the Mortar's deploy redrawn for E, SE and S (requests M111-M113: the grey horse unhitched and led aside, the
+mortar lifted off the cart and set down; SE came out nearly side-on); `SA_GAP=<px>` in tools/import_sa_strip.py cuts an
+answer's frames at gaps wider than px (a frame made of separate pieces). NE and N still the old collage.
 
 ## Redraw requests for the HIGH findings
 

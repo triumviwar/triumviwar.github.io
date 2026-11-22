@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.142": ["EL MORTERO SE MONTA BIEN: mirando a la derecha, abajo a la derecha o hacia ti, su dotación desengancha el caballo gris, lo aparta y baja el mortero del carro al suelo (era un revoltijo de otras imágenes con un caballo marrón encabritado)."],
 	"0.38.141": ["EL CAÑÓN DE CAMPAÑA SE MONTA SIN GIRAR: al desenganchar de lado, el cañón ya no se vuelve hacia ti con el cañón hacia arriba durante dos cuadros, y al desenganchar hacia ti ya no se pone de lado durante un cuadro."],
 	"0.38.140": ["PEQUEÑAS LIMPIEZAS DE ARTE: el humo de la pipa del Rey es gris (era rosa) y desapareció una mancha rosa en su pelo; sin borde rosa bajo las montañas del mapa de guerra; sin motas azules en el caballo del Molino de Pólvora; sin chispas sueltas alrededor del rebelde de la antorcha; los músicos ya no se hunden en el suelo al caer."],
 	"0.38.139": ["ARREGLOS DE ARTE: el Saltador conserva sus dos brazos de taladro al disparar a un volador y al ser alcanzado (un brazo se volvía pinza); el Péndulo golpeando a un volador de frente o de espaldas conserva la hoja en la otra mano."],

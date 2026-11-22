@@ -158,6 +158,17 @@ JOBS += [
      [("1_current_walk_s.png", [("missionary_mounted", "walk_s")]), ("2_idle_s_front.png", [("missionary_mounted", "idle_s")]), ("3_walk_n_model.png", [("missionary_mounted", "walk_n")])]),
 ]
 
+MOR = "the Mortar team (two crewmen in pure red coats, grey breeches, brown boots and steel morion helmets, with a short black-iron and bronze mortar on its wooden bed, carried on a small two-wheeled cart pulled by a GREY horse)"
+LOOK["mortar"] = "men, horse, cart, mortar and colours"
+_MOR_V = {"s": ("facing the viewer, the cart and horse pointing toward the bottom of the image", "the south view: facing the viewer"),
+          "se": ("three-quarter toward the lower right, the horse in front at the lower right", "the south-east view: three-quarter toward the lower right"),
+          "e": ("side-on, the horse in front to the right", "the east view: facing right"),
+          "ne": ("three-quarter AWAY toward the upper right, the horse in front at the upper right", "the north-east view: three-quarter from behind, toward the upper right"),
+          "n": ("seen from behind, the horse in front toward the top of the image", "the north view: seen from behind")}
+for _n, _d in ((111, "s"), (112, "se"), (113, "e"), (114, "ne"), (115, "n")):
+    JOBS.append((_n, "mortar", "deploy_" + _d, 6, MOR, "setting up to fire, %s; 6 frames: 1 the cart halted, the grey horse still hitched, a crewman at each side; 2 one crewman unhitches the horse; 3 he leads the horse a step away to the side; 4 the two crewmen lift the mortar off the cart; 5 they set it down on its bed on the ground; 6 the mortar set up on the ground, the two crewmen standing either side of it, exactly like reference 2 (the cart and horse gone). The SAME grey horse, the SAME two men and the SAME mortar size in every frame" % _MOR_V[_d][0], _MOR_V[_d][1], "a brown horse, a rearing horse, a third crewman, the mortar changing size, a different facing between frames,",
+                 [("1_walk_%s_cart.png" % _d, [("mortar", "walk_" + _d)]), ("2_idle_%s_set_up.png" % _d, [("mortar", "idle_" + _d)])]))
+
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."

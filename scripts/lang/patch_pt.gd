@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.142": ["O MORTEIRO SE MONTA DIREITO: virado para a direita, para baixo à direita ou para você, a guarnição desatrela o cavalo cinza, leva-o para o lado e tira o morteiro da carroça para o chão (era uma mistura de outras imagens com um cavalo marrom empinando)."],
 	"0.38.141": ["O CANHÃO DE CAMPANHA SE MONTA SEM GIRAR: desatrelando de lado, o canhão não vira mais para você com o cano apontado para cima por dois quadros, e desatrelando na sua direção ele não fica mais de lado por um quadro."],
 	"0.38.140": ["PEQUENAS LIMPEZAS DE ARTE: a fumaça do cachimbo do Rei é cinza (era rosa) e uma mancha rosa no cabelo dele sumiu; sem borda rosa sob as montanhas do mapa de guerra; sem pontinhos azuis no cavalo do Moinho de Pólvora; sem faíscas soltas em volta do rebelde com a tocha; os músicos não afundam mais no chão quando caem."],
 	"0.38.139": ["CORREÇÕES DE ARTE: o Saltador mantém os dois braços de broca ao atirar num voador e ao ser atingido (um braço virava garra); o Pêndulo golpeando um voador virado para você ou de costas mantém a lâmina na outra mão."],
