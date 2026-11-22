@@ -93,3 +93,37 @@ static func go(ai, _q, army: Array, sup: int) -> bool:
 	if not mirror(ai):
 		return false
 	return counter(ai, ai._value_of(army), sup)
+
+
+# ------------------------------------------------------------------ THE OUTER GROUND (`wbmouter`)
+## THE WAVE'S GOAL (block 1's games: against another Brood the wave's goal was the enemy's START, its Mother: the Brood has
+## no buildings, so AIBroodNew._nb_wave_goal never found a nearer one. Every wave walked into her swamp, her Sires and her
+## whole army and traded 1 for 3: 70 of 80 waves pulled back with half or less, killing a quarter of what they lost). Now
+## the wave goes for the enemy's OUTER ground: the rooted creature it has seen (a Mound Turtle, a Rootmaw) farthest from the
+## enemy Mother, OUTER_MIN tiles from her at least, the nearer to its own Mother the better. Razed, the next one; none
+## known: the Mother as before.
+const OUTER_MIN := 16.0
+
+
+static func outer_goal(ai, q, from: Vector2) -> Vector2:
+	if not on("outer") or not mirror(ai):
+		return Vector2.INF
+	var foe: int = ai._foe()
+	if foe < 0:
+		return Vector2.INF
+	var fq: Unit = BroodNew.queen(ai.game, foe)
+	var fqp: Vector2 = fq.position if fq != null else (Vector2(ai.game.starts[foe]) + Vector2(2.5, 2.0)) * Defs.TILE
+	var mine: Vector2 = ai._qp(q)
+	var best := Vector2.INF
+	var bs := -INF
+	for u in ai._foe_nb_seen.keys():
+		if not is_instance_valid(u) or u.dead or u.team != foe or not (u.kind in [BroodNew.TURTLE, BroodNew.MAW]):
+			continue
+		var dq: float = u.position.distance_to(fqp)
+		if dq < OUTER_MIN * Defs.TILE or u.position.distance_to(from) < 3.0 * Defs.TILE:
+			continue
+		var s: float = dq - 0.5 * u.position.distance_to(mine) - 0.3 * u.position.distance_to(from)
+		if s > bs:
+			bs = s
+			best = u.position
+	return best

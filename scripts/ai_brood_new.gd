@@ -34,6 +34,7 @@ var plan := {}                   # this game's build order: PLANS[strategy] + `o
 var over := {}                   # (tools/play_brood_3.gd, tools/measure_brood_ai.gd: settings forced for a coached game)
 var note: Array = []             # [clock, text] of what it decided (tests and tools read it)
 var held: Array = []             # creatures it leaves alone (a coach's hand orders: tools/play_brood_3.gd)
+var wbm := {}                    # (wr1000-brood-mirror: its own state, scripts/ai_wr1000_brood_mirror.gd)
 
 ## THE PROFILES (docs/brood_ai.md has the timelines; docs/ai_build_timelines.md the table). Times in game seconds.
 ##  sire_g / sire_t   the Tyrant Sire's lure goes down with this many grubs, or at this time (and 2 Rootmaws)
@@ -334,6 +335,7 @@ func _under_armed() -> bool:
 
 
 func _nb_observe(q: Unit) -> void:
+	AIWr1000BroodMirror.note(self)
 	if game.clock - _obs_t < 1.0:
 		return
 	var dt := game.clock - _obs_t
@@ -3316,6 +3318,9 @@ func _nb_wave_goal(q: Unit) -> Vector2:
 	var foe := _foe()
 	if foe < 0:
 		return Vector2.INF
+	var og := AIWr1000BroodMirror.outer_goal(self, q, _qp(q))          # (wr1000-brood-mirror: the enemy Brood's outer ground)
+	if og != Vector2.INF:
+		return og
 	var best := (Vector2(game.starts[foe]) + Vector2(2.5, 2.0)) * Defs.TILE
 	var bd := best.distance_to(_qp(q))
 	for b in _foe_blds:
@@ -3341,6 +3346,9 @@ func _foe_bld_near(p: Vector2, r: float) -> bool:
 ## the one it can finish), its nearest building the Brood has seen, else that enemy's centre, else its start. Vector2.INF:
 ## no enemy left.
 func _nb_next_goal(q: Unit, from: Vector2) -> Vector2:
+	var og := AIWr1000BroodMirror.outer_goal(self, q, from)          # (wr1000-brood-mirror: the next of its outer ground)
+	if og != Vector2.INF:
+		return og
 	var foes: Array = game.enemies_of(team).filter(func(t: int) -> bool: return game.center_of_team(t) != Vector2.ZERO or game.supply_used(t) > 0)
 	if foes.is_empty():
 		return Vector2.INF
@@ -3564,7 +3572,9 @@ func _nb_army(q: Unit) -> void:
 	# BANKED AT THE CAP (the owner's playtests 2026-11-03: a Brood at its supply cap with thousands of food sat at home
 	# while the enemy outgrew it): its army goes, whatever the plan's wave time or size says (12 supply at least)
 	var capped0 := game.supply_used(team) >= mini(int(game.players[team]["cap"]), game.max_supply(team)) - 6
-	var banked := capped0 and _food() >= 1500 and sup >= 12
+	var wbm_go := AIWr1000BroodMirror.go(self, q, army, sup)          # (wr1000-brood-mirror: its own wave rules in the mirror)
+	var banked := (capped0 and _food() >= 1500 and sup >= 12) or wbm_go
+	capped0 = capped0 or wbm_go
 	if peaceful or game.clock < _retreat_until or (not banked and (game.clock < float(plan["wave_t"]) or _rush_on() or _alarm_on() \
 			or _rider_short())):
 		return
@@ -3579,7 +3589,7 @@ func _nb_army(q: Unit) -> void:
 	var mine_v := _value_of(army)
 	if _bvc():
 		mine_v = _value_of(AIBroodVCw.wave_filter(self, army))      # (what would go: no Raptors once Pendulums are seen)
-	var capped := game.supply_used(team) >= mini(int(game.players[team]["cap"]), game.max_supply(team)) - 6
+	var capped := game.supply_used(team) >= mini(int(game.players[team]["cap"]), game.max_supply(team)) - 6 or wbm_go
 	var first_rush := int(plan["grubs0"]) > 0 and not _first_out
 	if first_rush and seen_army >= maxf(mine_v * 2.0, 400.0):
 		# CALLED OFF (brood-ai-tune, round A g08: the Rush's 10 Raptors went at 3:00 into a Clockwork army of 560 and
