@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.176": ["Nada muda no jogo: o plano da campanha passa a ter o mar: viagens contadas em pinturas, um capitão de navio que volta, tempestades e batalhas navais em pinturas."],
 	"0.38.175": ["Nada muda no jogo: começou um estudo para tornar a Coroa contra a Ninhada mais equilibrada."],
 	"0.38.174": ["O menu principal ficou mais arrumado: COMO JOGAR é agora um botão na página do TUTORIAL (o seu VOLTAR regressa lá), e SAIR subiu para a segunda linha, ao lado de DEFINIÇÕES."],
 	"0.38.173": ["Nada muda no jogo: as respostas do autor ao esboço da campanha pelo mundo ficaram registadas."],

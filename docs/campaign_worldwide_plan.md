@@ -183,6 +183,37 @@ look. A small expedition (Hollweg and Valadares, the two who know their enemies 
 cannot live there: a pure Crown-versus-Machine fight on ice, in the dark. (Or: a war map mark only, "beyond the map".
 Owner question 4.)
 
+## THE SEA (owner 2026-11-22 21:32)
+
+The owner: "I would like us to see more of the sea, of the ocean, of the ships in painting stills... a few voyages,
+because the world is so large... maybe we could meet a ship captain. We don't have naval battle in the game, and that's
+okay... but we should portray it in painting stills, in the story, as something epic, as something dangerous, as
+something important."
+
+No naval play: the sea lives in the STILLS and the story. Proposed (all names working ones):
+
+- THE CAPTAIN: one recurring sea captain of the Crown's navy and his ship, the NOSSA SENHORA DA BOA VIAGEM (Our Lady of
+  Good Voyage), a Portuguese-built ship of the line. He carries Tomasz to Brazil (Act 2), Ferrer east (d13), Valadares
+  to Africa (Act 3); he tells the VOYAGES in his own voice (a logbook); he ages with the story; he is at Lisbon on the
+  night the world caught fire. Working name: Captain Rui Amaral.
+- THE VOYAGES: short still shows (4-6 paintings each, the captain or the line's teller speaking), played on the war map
+  when the story crosses an ocean (a dashed sea line drawn as the still plays), and in the openings and endings of the
+  missions that start or end at a port. They are not missions: no fighting, a minute or two each.
+  - Act 1: the Lisbon crates leaving the Amazon quay (a05's ending); the young King's galley to the council (a07).
+  - Act 2: THE CROSSING (Tomasz to Brazil, meeting the captain: a storm, a Mass on deck, the first sight of the
+    coast); THE GUILD'S SHIP from Hamburg (d02's ending: the machines ticking in the hold at night); THE HOLD (the eggs'
+    ship to Luanda: sailors missing one by one, d12's opening); ROUND THE CAPE (Ferrer east, d13: the Cape of Storms).
+  - Act 3: THE CONVOY (an army carried between theatres, attacked by the Assembly's PRIVATEERS: a sea battle in stills,
+    broadsides and boarding); THE SHIP WITH NO CREW (a merchantman found adrift in the Indies, its sails trimmed by
+    machines that never sleep); THE DRIFTING HULK (a Brazilian ship full of nests washing up on an African shore);
+    LISBON BURNING (the harbour on the night the world caught fire, seen from the captain's deck).
+  - The finale: the fleet in the present, what is left of it.
+- THE SEA IN THE STORY: the sea is the empire's road and its weak point. Every danger reaches a new continent by ship;
+  every army and every priest reaches the front by ship. Storms, the Cape, privateers and what hides in a hold make each
+  crossing a risk; a lost ship is a ledger line (an army or a cargo that never arrived).
+- STILLS: ChatGPT oil paintings in the campaign's style, one request each (at most 3 reference images: the captain's
+  portrait once made, the ship, the style reference); prompts written with each act's still list.
+
 ## THE WAR MAP
 
 - New VIEWS: AFRICA, THE INDIES, THE SOUTHERN SEAS, THE AMERICAS (North and South), with the WORLD view as Act 3's
