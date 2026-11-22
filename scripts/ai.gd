@@ -2561,6 +2561,7 @@ func _build_up() -> void:
 		elif mw == 1 and t > _lv([600.0, 300.0, 220.0]) and gold > 300:
 			_construct(_works())
 		_turrets()
+		AIWccr.outpost_turret(self)      # (wr1000-crown-clockwork: a turret at each Clocktower's presses against riders)
 		_tier2(t)
 	elif _clock():
 		var works := _mine("assembly_works").size()

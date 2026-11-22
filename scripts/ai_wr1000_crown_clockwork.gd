@@ -184,3 +184,89 @@ static func cw_need(ai, need: int) -> int:
 			count(ai, "fresh")
 		return n
 	return need
+
+
+# ------------------------------------------------------------------ turret: a Ratchet Turret at each Clocktower's presses
+
+## Blocks 1-7 (70 games): the Clockwork computer lost 5,538 Winders, about 79 a game, 2,014 of them to the Crown's riders
+## ("P1 Crown's Horseman goes after the enemy workers" every minute or two from ~5:00): one or two Horsemen ride round its
+## presses while the army stays on its gears, and its Winders are rebuilt over and over. The owner's rule for static
+## defence (2026-11-03): not a build, but "a later security against harass so you can concentrate your army", at the
+## expansions and worker lines. Here (the Clockwork computer against the Crown) from TURRET_FROM, once enemy riders have been
+## seen, each built Clocktower with no Ratchet Turret within TURRET_NEAR of its presses gets one by them (one at a time,
+## with the cogs to spare, never while gold is kept for a hall).
+const TURRET_FROM := 300.0
+const TURRET_NEAR := 300.0
+const TURRET_SPARE := 100
+const TURRET_EVERY := 5.0
+
+
+static func outpost_turret(ai) -> void:
+	if not on("turret") or not vs(ai, "clockwork"):
+		return
+	var game: Game = ai.game
+	if game.clock < TURRET_FROM or game.clock < float(ai.get_meta("wcc_turret_t", 0.0)):
+		return
+	ai.set_meta("wcc_turret_t", game.clock + TURRET_EVERY)
+	var k := Defs.CW_TURRET
+	if not game.requirement_met(ai.team, k) or ai._busy_building(k) or ai._keeping():
+		return
+	if ai._gold() < game.build_price(ai.team, k) + TURRET_SPARE:
+		return
+	if not _riders_seen(ai):
+		return
+	var turrets: Array = ai._mine(k)
+	for h in ai._halls():
+		if not h.built:
+			continue
+		var presses: Array = game.buildings.filter(func(b: Building) -> bool: return b.team == ai.team and not b.dead and b.built \
+			and (b.kind == Defs.GEAR_PRESS or b.kind == "mainspring") and b.center().distance_to(h.center()) < 420.0)
+		if presses.is_empty():
+			continue
+		var mid := Vector2.ZERO
+		for p in presses:
+			mid += p.center()
+		mid /= float(presses.size())
+		if turrets.any(func(t: Building) -> bool: return t.center().distance_to(mid) < TURRET_NEAR):
+			continue
+		var spot := _gear_spot(ai, k, mid)
+		if spot.x < 0:
+			continue
+		if ai._lay(k, spot, false) != null:
+			count(ai, "turret")
+			ai.note("a Ratchet Turret by a Clocktower's presses against the Crown's riders")
+		return
+
+
+## The Clockwork side has seen an enemy rider (a Horseman or Cuirassier, a Dragoon).
+static func _riders_seen(ai) -> bool:
+	if ai.has_meta("wcc_riders"):
+		return true
+	for u in ai.game.units:
+		if u.team != ai.team and not u.dead and ai.game.hostile(u.team, ai.team) and Defs.RIDERS.has(u.kind) and ai.game.is_visible_to(ai.team, u.position):
+			ai.set_meta("wcc_riders", true)
+			return true
+	return false
+
+
+## A spot for a gear building of kind k as near tgt as there is room, meshing with one of our gear buildings on its level
+## (AICwBuildsA._gear_spot).
+static func _gear_spot(ai, k: String, tgt: Vector2) -> Vector2i:
+	var game: Game = ai.game
+	var lv := game.level_of(tgt)
+	var gears: Array = game.buildings.filter(func(b: Building) -> bool: return b.team == ai.team and not b.dead and b.built \
+		and GearNet.has_gear(b) and game.level_of(b.center()) == lv)
+	gears.sort_custom(func(a: Building, b: Building) -> bool: return a.center().distance_to(tgt) < b.center().distance_to(tgt))
+	var best := Vector2i(-1, -1)
+	var bd := INF
+	game.set_gear_pick(ai.team, k, false)
+	var size: Vector2i = Defs.BUILDINGS[k]["size"]
+	for g in gears.slice(0, 6):
+		var c := GearEcon.room_spot(game, ai.team, k, [g], [], tgt, true, 14)
+		if c.x < 0:
+			continue
+		var d := (Vector2(c) * Defs.TILE + Vector2(size) * Defs.TILE * 0.5).distance_to(tgt)
+		if d < bd:
+			bd = d
+			best = c
+	return best
