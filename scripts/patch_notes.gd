@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.154", "items": [
+		"THE BROOD AGAINST THE BROOD ENDS MORE GAMES (only the computer's play; nothing a player uses changed): when the Brood computer faces another Brood and attacks at its full supply, its Tyrant Sire now walks with the wave. At the supply cap no egg can be laid, so he stood rooted beside the Mother doing nothing while every wave broke on the enemy's Sires and swamp; he comes home with the wave and roots on his nest again. In 30 measured games 6 in 10 ended by 20:00 against 4 in 10 before. Against the Crown and the Clockwork the Brood plays as before.",
+	]},
 	{"v": "0.38.153", "items": [
 		"No change in the game: the voice recording list is up to date (three new campaign lines to record).",
 	]},

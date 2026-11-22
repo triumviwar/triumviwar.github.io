@@ -34,6 +34,7 @@ var plan := {}                   # this game's build order: PLANS[strategy] + `o
 var over := {}                   # (tools/play_brood_3.gd, tools/measure_brood_ai.gd: settings forced for a coached game)
 var note: Array = []             # [clock, text] of what it decided (tests and tools read it)
 var held: Array = []             # creatures it leaves alone (a coach's hand orders: tools/play_brood_3.gd)
+var wbm := {}                    # (wr1000-brood-mirror: its own state, scripts/ai_wr1000_brood_mirror.gd)
 
 ## THE PROFILES (docs/brood_ai.md has the timelines; docs/ai_build_timelines.md the table). Times in game seconds.
 ##  sire_g / sire_t   the Tyrant Sire's lure goes down with this many grubs, or at this time (and 2 Rootmaws)
@@ -334,6 +335,7 @@ func _under_armed() -> bool:
 
 
 func _nb_observe(q: Unit) -> void:
+	AIWr1000BroodMirror.note(self)
 	if game.clock - _obs_t < 1.0:
 		return
 	var dt := game.clock - _obs_t
@@ -2998,7 +3000,7 @@ func _nb_want_grubs() -> int:
 		n = mini(n, int(bench_flags.get("cap", n)))      # (ai-opponent-review: the benchmark player's grubs stop here)
 	if level_grubs_on and difficulty <= 1 and _level_fix():
 		return mini(mini(n, int(plan["grubs"]) + _extra_grubs(crew)), LEVEL_GRUBS[difficulty])
-	return mini(n, int(plan["grubs"]) + _extra_grubs(crew))
+	return mini(mini(n, int(plan["grubs"]) + _extra_grubs(crew)), AIWr1000BroodMirror.grubs_cap(self))
 
 
 ## (ai-opponent-review, docs/ai_opponent_review.md) THE EASY AND NORMAL BROOD HAD NO WORKER CAP. The Crown and Clockwork
@@ -3120,6 +3122,8 @@ const STORM_WANT := 4
 
 func _nb_mature(q: Unit) -> void:
 	if _nb_saving_growth(q) or BroodNew.stage(q) < 1:
+		return
+	if AIWr1000BroodMirror.quality(self, q):          # (wr1000-brood-mirror: the capped army grows up)
 		return
 	var food := _food()
 	var push: bool = String(plan["mature"]) == "push" and _army_supply_now() * 10 >= _attack_at * 7 and not _attacking
@@ -3319,6 +3323,9 @@ func _nb_wave_goal(q: Unit) -> Vector2:
 	var foe := _foe()
 	if foe < 0:
 		return Vector2.INF
+	var og := AIWr1000BroodMirror.wave_goal(self, q)          # (wr1000-brood-mirror: its own goals in the mirror)
+	if og != Vector2.INF:
+		return og
 	var best := (Vector2(game.starts[foe]) + Vector2(2.5, 2.0)) * Defs.TILE
 	var bd := best.distance_to(_qp(q))
 	for b in _foe_blds:
@@ -3344,6 +3351,9 @@ func _foe_bld_near(p: Vector2, r: float) -> bool:
 ## the one it can finish), its nearest building the Brood has seen, else that enemy's centre, else its start. Vector2.INF:
 ## no enemy left.
 func _nb_next_goal(q: Unit, from: Vector2) -> Vector2:
+	var og := AIWr1000BroodMirror.outer_goal(self, q, from)          # (wr1000-brood-mirror: the next of its outer ground)
+	if og != Vector2.INF:
+		return og
 	var foes: Array = game.enemies_of(team).filter(func(t: int) -> bool: return game.center_of_team(t) != Vector2.ZERO or game.supply_used(t) > 0)
 	if foes.is_empty():
 		return Vector2.INF
@@ -3567,7 +3577,12 @@ func _nb_army(q: Unit) -> void:
 	# BANKED AT THE CAP (the owner's playtests 2026-11-03: a Brood at its supply cap with thousands of food sat at home
 	# while the enemy outgrew it): its army goes, whatever the plan's wave time or size says (12 supply at least)
 	var capped0 := game.supply_used(team) >= mini(int(game.players[team]["cap"]), game.max_supply(team)) - 6
-	var banked := capped0 and _food() >= 1500 and sup >= 12
+	var wbm_say := AIWr1000BroodMirror.go(self, q, army, sup)          # (wr1000-brood-mirror: its own wave rules in the mirror)
+	if wbm_say < 0:
+		return
+	var wbm_go := wbm_say > 0
+	var banked := (capped0 and _food() >= 1500 and sup >= 12) or wbm_go
+	capped0 = capped0 or wbm_go
 	if peaceful or game.clock < _retreat_until or (not banked and (game.clock < float(plan["wave_t"]) or _rush_on() or _alarm_on() \
 			or _rider_short())):
 		return
@@ -3582,7 +3597,7 @@ func _nb_army(q: Unit) -> void:
 	var mine_v := _value_of(army)
 	if _bvc():
 		mine_v = _value_of(AIBroodVCw.wave_filter(self, army))      # (what would go: no Raptors once Pendulums are seen)
-	var capped := game.supply_used(team) >= mini(int(game.players[team]["cap"]), game.max_supply(team)) - 6
+	var capped := game.supply_used(team) >= mini(int(game.players[team]["cap"]), game.max_supply(team)) - 6 or wbm_go
 	var first_rush := int(plan["grubs0"]) > 0 and not _first_out
 	if first_rush and seen_army >= maxf(mine_v * 2.0, 400.0):
 		# CALLED OFF (brood-ai-tune, round A g08: the Rush's 10 Raptors went at 3:00 into a Clockwork army of 560 and
@@ -3615,7 +3630,7 @@ func _nb_army(q: Unit) -> void:
 			near += int(u.d["supply"])
 	if _gather_t < 0.0:
 		_gather_t = game.clock
-	if near * 10 < sup * 7 and game.clock - _gather_t < 25.0:
+	if near * 10 < sup * 7 and game.clock - _gather_t < 25.0 and not wbm_go:
 		return
 	_gather_t = -1.0
 	var goal := _nb_wave_goal(q)
@@ -3644,6 +3659,8 @@ func _nb_army(q: Unit) -> void:
 	# a Sire may lead the wave (the plan's "sire_leads": he gets up from his nest and walks with it; his line lays no
 	# eggs meanwhile)
 	var lead := String(plan.get("sire_leads", ""))
+	if lead == "":
+		lead = AIWr1000BroodMirror.sire_leads(self, capped)          # (wr1000-brood-mirror: at the cap a Sire lays nothing at home)
 	if lead != "":
 		var f := BroodNew.father(game, team, lead)
 		if f and not BroodRoot.in_cocoon(f) and not BroodResearch.busy(f):
@@ -3699,6 +3716,8 @@ func _nb_wave_tick(q: Unit, army: Array) -> void:
 			or (game.clock - _wave_t0 > 150.0 and gained < lost * 0.5 and ahead > left):
 		say("pulls back: %d of %d left, %d ahead (killed %d)" % [int(left), int(_wave_v0), int(ahead), gained])
 		_wave_end_nb(q, gained < _wave_v0 * 0.6)
+		return
+	if AIWr1000BroodMirror.wave_tick(self, q, mid):          # (wr1000-brood-mirror: its own wave steering in the mirror)
 		return
 	# THE RAID KEEPS AT ITS PREY (brood-rush-coach): riders who ride off are not chased out into the open
 	_nb_wave_no_chase(mid)
