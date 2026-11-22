@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.166", "items": [
+		"No change in the game: a one-click file for the voice emotion run.",
+	]},
 	{"v": "0.38.165", "items": [
 		"FOLLOW: a right click with units selected on one of your own units (or an ally's) now makes them follow it wherever it goes, until you give them another order, as in StarCraft 2. Before, they only walked to where it stood.",
 		"SPECIMEN ONE: Linnea lays a clutch of three eggs, not five, and faster (one every 12 seconds), and once free she walks home at more than twice a Brood Mother's pace, nearly keeping up with the Sire.",

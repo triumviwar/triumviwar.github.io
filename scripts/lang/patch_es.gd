@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.166": ["Nada cambia en el juego: un archivo de un clic para la grabación de las voces con emoción."],
 	"0.38.165": ["SEGUIR: un clic derecho con unidades seleccionadas sobre una unidad tuya (o de un aliado) hace ahora que la sigan adonde vaya, hasta que les des otra orden, como en StarCraft 2. Antes solo iban hasta donde estaba.", "ESPÉCIMEN UNO: Linnea pone una nidada de tres huevos, no cinco, y más deprisa (uno cada 12 segundos), y una vez libre vuelve a casa a más del doble del paso de una Madre de la Nidada, casi al ritmo del Señor."],
 	"0.38.164": ["VOCES DE LA CAMPAÑA: 235 frases más se dicen ahora en voz alta. El Padre Ferrer, el joven Tomasz, Jakob, el Capitán Delorme, Benedito, el Hermano Anselm, el Coronel von Rauch, la Máquina, el Capitán de la Guardia, Pieter, el viejo Cardenal Tomasz, el Cardenal Decano, Rouvière, la Madre Gautier, el Comisario, el guía, Teles, Fray Joaquim, Will Hollins y la Asamblea Libre tienen sus voces. Todas las frases siguen siendo provisionales."],
 	"0.38.163": ["CAMPAÑA: las frases que describen la escena (nadie habla) mostraban solo un lugar como quien habla, como EL RÍO NEGRO o NÚREMBERG, como si el lugar hablara. Ahora dicen NARRACIÓN · EL RÍO NEGRO."],
