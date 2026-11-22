@@ -78,3 +78,18 @@ const PRESS2 := {"from": 420.0, "edge": 1.15, "min": 700.0, "cool": 20.0, "floor
 
 static func press_k(k: String, today: float) -> float:
 	return float(PRESS2[k]) if on("press2") else today
+
+
+## CHANGE `labcap`: FEWER LABOURERS, A BIGGER ARMY. In blocks 1-4 a side had ~50 labourers and ~1,800 of army at 12:00
+## (24-30 Musketeers) and 60-80 labourers later, with 100-150 of its 200 supply used: the armies that meet are small beside
+## the economy, the walls hold them, and the score ratio at 14:00 is within 25% in most games. The labourers' top (AICrown.
+## owner_lab_cap: 48 on two halls, 14 more a hall after) comes down to LAB_TOP on two halls and LAB_PER_HALL a hall after;
+## the supply and the gold go to the army.
+const LAB_TOP := 40
+const LAB_PER_HALL := 8
+
+
+static func lab_top(ai, top: int, built: int) -> int:
+	if not on("labcap") or not mirror(ai):
+		return top
+	return mini(top, LAB_TOP + LAB_PER_HALL * maxi(0, built - 2))
