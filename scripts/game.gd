@@ -2271,6 +2271,7 @@ func _start_positions() -> void:
 			line_net.lay_start(t)       # a finished main from the Clocktower to its first buildings
 	if mission:
 		mission.after_start()        # (the mission's own units, buildings and resources)
+		HubGrow.on_start(self)       # (the hub's blessing gold and the company called: hubs-grow)
 	_update_swamp()
 
 
@@ -3429,6 +3430,8 @@ func _add_unit(k: String, t: int, pos: Vector2) -> Unit:
 	u.tserial = int(_tserial[t])        # (start-spots-fix: counted per side, so two mirrored sides' units match one for one)
 	u.setup(self, k, t, pos)
 	apply_drills(u)
+	if mission:
+		HubGrow.on_unit(self, u)      # (the campaign hub's upgrades for this line: scripts/campaign/hub_grow.gd)
 	world.add_child(u)
 	units.append(u)
 	if Defs.cw_roster:

@@ -341,6 +341,7 @@ static func briefing(main: Node, mid: String) -> void:
 		if String(o.get("side", "")) == side and not bool(o.get("hidden", false)):
 			var pre := "-  " if bool(o.get("primary", true)) else "-  " + Loc.t("(optional)") + " "
 			v.add_child(_wrap(pre + Campaign.brief_text(m, Loc.t(String(o["text"]))), 16, UiStyle.TEXT if bool(o.get("primary", true)) else UiStyle.MUTED))
+	HubRoomsUi.brief(v, mid, side)      # (what the hub's rooms give this mission: hubs-grow)
 	# THE SOLO SIDE PICK (a mission that lets you lead either side alone) and the campaign's DIFFICULTY (act1-engine0)
 	var sides := Campaign.solo_sides(m)
 	if sides.size() > 1:
@@ -586,6 +587,12 @@ static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt
 	else:
 		story = Loc.t("Try again: the story waits for a victory.")
 	v.add_child(_wrap(story, int(17 * k), UiStyle.TRIM))
+	var earned := HubRoomsUi.end_line(game, won)      # (the line's purse for the hub's rooms: hubs-grow)
+	if earned != "":
+		var el := _wrap(earned, int(16 * k), UiStyle.GOOD)
+		el.name = "EndHubAward"
+		el.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		v.add_child(el)
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 10)
@@ -647,12 +654,16 @@ static func show(main: Node) -> void:
 	var p := Campaign.progress()
 	var sl := _line_data()
 	var hub := hub_now(sl.get("hub", {}), p)
+	# (hubs-grow: the hub's rooms, the people who joined, the counters that act on the game: HubRoomsUi / HubGrow)
+	var rv := HubRoomsUi.view(sl, hub, p)
+	var redraw := func() -> void: show(main)
 	if Music.me:
 		Music.me.hub(String(hub.get("music", HUB_MUSIC.get(String(sl.get("id", "")), ""))))
 	var top := HBoxContainer.new()
 	top.add_theme_constant_override("separation", 8)
 	box.add_child(top)
-	var t := UiStyle.heading(Loc.t(String(hub.get("title", sl.get("title", "")))), 36, UiStyle.TRIM)
+	var t := UiStyle.heading(String(rv["title"]), 36, UiStyle.TRIM)
+	t.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(t)
@@ -675,6 +686,7 @@ static func show(main: Node) -> void:
 			UiStyle.chosen(b)
 		top.add_child(b)
 	box.add_child(_wrap(Loc.t(String(hub.get("about", sl.get("about", "")))), 15, UiStyle.MUTED))
+	HubRoomsUi.add_tabs(main, box, rv, p, redraw)
 	var body := HBoxContainer.new()
 	body.add_theme_constant_override("separation", 12)
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -687,10 +699,12 @@ static func show(main: Node) -> void:
 	body.add_child(scene)
 	var col := Defs.colour_of(int(hub.get("colour", 1)))
 	# a layered painting (HubScene: campaign/hub/<hub>.json) when the hub has one, else its still
-	var hsc: HubScene = HubScene.make(String(hub["scene"])) if hub.has("scene") else null
+	var hsc: HubScene = HubScene.make(String(rv["scene"])) if String(rv["scene"]) != "" else null
 	if hsc and not hsc.ok():
 		hsc = null
 	if hsc:
+		HubRoomsUi.add_people(hsc, rv)
+	if hsc and bool(rv["main"]):
 		hsc.hidden_layers = hub.get("hide_layers", [])
 		if hub.has("tint"):
 			var tn: Array = hub["tint"]
@@ -702,7 +716,7 @@ static func show(main: Node) -> void:
 	talk_box.name = "HubTalk"
 	talk_box.visible = false
 	talk_box.add_theme_stylebox_override("panel", UiStyle.box(Color(0.09, 0.07, 0.05, 0.94), UiStyle.TRIM, 2, 10, 12.0))
-	var spots: Array = hub.get("hotspots", [])
+	var spots: Array = rv["spots"]
 	# (the list scrolls: with the DIFFICULTY row on the hub, BACK went under the bottom edge on a phone; campaign-fixes-1121)
 	var lpan := PanelContainer.new()
 	lpan.custom_minimum_size.x = 230
@@ -718,10 +732,16 @@ static func show(main: Node) -> void:
 	list.add_child(UiStyle.text(Loc.t("GO TO"), 15, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true))
 	var btns: Array = []
 	for hs in spots:
-		var act := func() -> void: _hotspot(main, sl, hs, talk_box, p)
+		var act := func() -> void:
+			if HubRoomsUi.handles(hs):
+				HubRoomsUi.act(main, rv, hs, talk_box, scene, redraw)
+			else:
+				_hotspot(main, sl, hs, talk_box, p)
 		var list_only := bool(hs.get("list_only", false))
 		var lb: Button = main._button(String(hs.get("label", "")), act)
 		lb.name = "HotspotList_" + String(hs["id"])
+		if HubRoomsUi.is_new(rv, hs, p):
+			HubRoomsUi.badge(lb)
 		lb.custom_minimum_size = Vector2(0, 52 if Settings.pc() else 62)
 		if String(hs.get("kind", "")) == "war_table":
 			UiStyle.primary(lb)

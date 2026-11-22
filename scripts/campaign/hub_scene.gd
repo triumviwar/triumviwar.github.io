@@ -104,6 +104,36 @@ func ok() -> bool:
 	return _room != null
 
 
+## A person who has joined this room (hubs-grow: campaign/hubs_grow.json "people"): their cut-out as a layer, put before
+## the layer named "before" (Rome's desk drawn over whoever stands behind it), cut off at the room's y "behind" (a
+## person standing behind a table: only what shows above it), with a floor shadow [x, y, rx, ry] when given.
+func add_person(pe: Dictionary) -> void:
+	var id := "p_" + String(pe["id"])
+	var img := String(pe.get("image", ""))
+	if img == "" or not ResourceLoader.exists(img):
+		return
+	_tex[id] = load(img)
+	var l := {"id": id, "image": img, "pos": pe.get("pos", [0, 0]), "size": pe.get("size", [100, 300])}
+	if pe.has("behind"):
+		l["behind"] = float(pe["behind"])
+	var layers: Array = data.get("layers", [])
+	var at := layers.size()
+	var bf := String(pe.get("before", ""))
+	for i in layers.size():
+		if bf != "" and String(layers[i].get("id", "")) == bf:
+			at = i
+			break
+	layers.insert(at, l)
+	if pe.has("shadow"):
+		layers.insert(0, {"id": id + "_shadow", "shadow": pe["shadow"]})
+	data["layers"] = layers
+	var br: Dictionary = data.get("fx", {}).get("breathe", {})
+	br[id] = 0.004
+	if not data.has("fx"):
+		data["fx"] = {}
+	data["fx"]["breathe"] = br
+
+
 func _ready() -> void:
 	resized.connect(queue_redraw)
 
@@ -189,6 +219,13 @@ func _draw() -> void:
 		var b := 1.0 + amp * (0.5 + 0.5 * sin(_t * TAU / 4.6 + float(id.length())))
 		var r := Rect2(o + (pos + Vector2(0, sz.y * (1.0 - b))) * k, Vector2(sz.x, sz.y * b) * k)
 		var lit := 1.18 if highlight == id else 1.0
+		if l.has("behind"):
+			# (standing behind a table: only the part above its top, at "behind" in the room's pixels)
+			var cut := clampf((float(l["behind"]) - pos.y) / sz.y, 0.0, 1.0)
+			var ts := tex.get_size()
+			draw_texture_rect_region(tex, Rect2(r.position, Vector2(r.size.x, r.size.y * cut)), Rect2(Vector2.ZERO, Vector2(ts.x, ts.y * cut)),
+				Color(lit * warm, lit * warm, lit * warm * 0.98))
+			continue
 		draw_texture_rect(tex, r, false, Color(lit * warm, lit * warm, lit * warm * 0.98))
 		if id == "king":
 			_draw_fire(fx, k, o)
