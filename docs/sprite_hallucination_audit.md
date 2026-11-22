@@ -164,6 +164,9 @@ keg idle frame 0 (keg on the chest) by frame 1; 141 the Swift's (cuckoo) north-e
 156, 169 specks by the Armoured Officer's south death and the Guardsman's fire-up removed; 145 the Pendulum's pink pixels
 at the blade; 200 the Tension icon's corner specks; 201 the loose piece by the mossy boulder; 207 the loose specks
 round the snowy rocks (c, d).
+0.38.152: 202 the navy triangle behind the campfire's flames removed; 205 the bluish ghost pixels left of the ruined
+tower; 105 the Armoury's bayonet experiment plays the pumpkin hit before it bursts (frames 3 and 4 swapped); 108 the
+debris piece cut by the damaged Clock Aviary's (cuckoo house) right edge removed.
 
 ## Redraw requests for the HIGH findings
 

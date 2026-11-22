@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.152", "items": [
+		"ART FIXES: the campfire no longer has a dark triangle behind its flames, the ruined tower no longer a bluish haze on its left; in the Armoury's bayonet experiment the pumpkin is hit before it bursts (it burst and then stood whole again); the damaged Clock Aviary lost a debris piece cut off at its edge.",
+	]},
 	{"v": "0.38.151", "items": [
 		"ART FIXES: no more loop hiccups in the Musketeer's and Guardsman's idle facing away, the Horseman's sabre cut toward you (the horse twisted for a frame), the Labourer holding a keg (it jumped across his chest) and the Swift flying up-right (it turned sideways for a frame); stray specks removed from a few soldiers, rocks and the Tension icon.",
 	]},
