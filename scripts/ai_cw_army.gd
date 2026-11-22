@@ -855,6 +855,8 @@ func _defend(home: Array, g: Vector2) -> bool:
 	# THE WHOLE ARMY: the biggest raid is worth a good share of it
 	if not home.is_empty() and whole:
 		var main_g: Vector2 = ai._post_spot()
+		if WkM.fall_back(self, home, mine, bv, big["spot"], g):
+			return true          # (wr1000-clockwork-mirror "nofeed")
 		if home_on and mine < bv * HOLD_K and (big["spot"] as Vector2).distance_to(g) > HOLD_FAR and not _spots.is_empty():
 			# (clockwork-home) FAR STRONGER THAN THE WHOLE ARMY (as 0.33.0's rule at the main), away from its gathering point: it
 			# does not walk out into it; it holds together on its gears, wound and mended there, and meets it when it comes.

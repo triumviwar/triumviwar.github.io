@@ -146,3 +146,39 @@ static func _raze_clear(push) -> void:
 	if push.has_meta("wkm_raze") and not (push.get_meta("wkm_raze") as Dictionary).is_empty():
 		push.set_meta("wkm_raze", {})
 		push._note_once("wkmrazeend", "joins up again: the enemy army is back", 40.0)
+
+
+## CHANGE "nofeed" (block 7). An enemy push far stronger than the whole army at home, AT its gathering point (the rule that
+## holds the army on its gears covers only a raid HOLD_FAR away), was met by whatever stood there: on Greenhold r0 (block 4)
+## P1's first push of 8 sat at P2's door from 5:14 to 8:31 and P2 sent 1, 2, 5 units at a time into it ("the whole army
+## defends the base (1 units, 51) against a raid worth 630"), lost 62 to 13 and was out at 12:26. In the mirror, such a push
+## (the army worth under NOFEED_K of it) is not met: the army and every new unit gather at the friendly Clocktower farthest
+## from it (NOFEED_AWAY px at least), out of its reach, and go in together once they are worth NOFEED_K of it.
+const NOFEED_K := 0.55
+const NOFEED_AWAY := 800.0
+
+
+static func fall_back(army, home: Array, mine: float, bv: float, spot: Vector2, g: Vector2) -> bool:
+	var ai = army.ai
+	var game = army.game
+	if not on("nofeed") or home.is_empty() or not mirror(game, army.team, army._foe()):
+		return false
+	if mine >= bv * NOFEED_K or spot.distance_to(g) > army.HOLD_FAR:
+		return false
+	var best = null
+	var bd := NOFEED_AWAY
+	for b in game.buildings:
+		if b.team == army.team and not b.dead and not b.ghost and b.built and b.kind == game.faction_hall(army.team):
+			var d: float = b.center().distance_to(spot)
+			if d > bd:
+				bd = d
+				best = b
+	if best == null:
+		return false
+	var to: Vector2 = best.center()
+	for u in home:
+		army._order(u, to + Vector2(randf_range(-60, 60), randf_range(60, 120)), false, 120.0)
+	army.phase = "hold"
+	army.defenders.clear()
+	army.say("a push worth %d at its gathering point is far stronger than its %d: the army does not feed it, it gathers at the Clocktower %s away from it" % [int(bv), int(mine), army._where(to)], "wkmfeed", 30.0)
+	return true
