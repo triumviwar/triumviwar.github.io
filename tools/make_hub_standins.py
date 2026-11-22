@@ -119,8 +119,9 @@ def room_picture(rid, cfg, room):
     vd.ellipse([-W * 0.25, -H * 0.3, W * 1.25, H * 1.3], fill=255)
     vig = vig.filter(ImageFilter.GaussianBlur(160))
     im = Image.composite(im, Image.new("RGB", (W, H), (8, 6, 4)), vig)
+    im = im.point(lambda v: min(255, int(v * 1.2 + 4)))      # (a little lighter: the people must read against it)
     d = ImageDraw.Draw(im)
-    d.text((24, H - 40), "STAND-IN: " + room["title"] + " (the painting comes later)", font=font(22), fill=(210, 190, 150))
+    d.text((24, 16), "STAND-IN: " + room["title"] + " (the painting comes later)", font=font(22), fill=(210, 190, 150))
     return im
 
 

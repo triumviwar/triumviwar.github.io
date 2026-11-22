@@ -31,7 +31,6 @@ static func view(sl: Dictionary, hub: Dictionary, p: Dictionary) -> Dictionary:
 		out["scene"] = String(hub.get("scene", ""))
 	else:
 		var r := HubGrow.room(lid, rid)
-		out["title"] = out["title"] + "  ·  " + Loc.t(String(r.get("title", "")))
 		out["scene"] = String(r.get("scene", ""))
 		out["people"] = HubGrow.people_now(lid, rid, p)
 		var spots := _mine(HubGrow.hotspots_now(lid, rid, p))

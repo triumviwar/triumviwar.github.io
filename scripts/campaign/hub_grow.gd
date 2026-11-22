@@ -294,6 +294,8 @@ static func buy(oid: String) -> String:
 
 ## A choice is open once the line has earned its "at" in all (what was brought back), and its conditions hold.
 static func choice_open(o: Dictionary, p: Dictionary) -> bool:
+	if test_all() != "":
+		return true
 	return earned(String(o.get("line", "")), p) >= int(o.get("at", 0))
 
 
@@ -360,6 +362,9 @@ static func loadout(mid: String, side := "", p: Dictionary = {}) -> Dictionary:
 	if lid == "":
 		return out
 	var h := state(p)
+	var all := test_all()
+	if all != "":
+		h = _all_state(lid, p, all)
 	for o in offers(lid, ["upgrades"], p):
 		if (h["bought"] as Array).has(String(o["id"])):
 			_add_mods(out, o.get("mods", {}))
@@ -370,16 +375,41 @@ static func loadout(mid: String, side := "", p: Dictionary = {}) -> Dictionary:
 			var side_o: Dictionary = o.get(ab, {})
 			_add_mods(out, side_o.get("mods", {}))
 			out["items"].append([String(side_o.get("label", "")), String(side_o.get("about", ""))])
-	var bl := offer(picked("blessings", lid, p))
+	var bl := offer(String((h["bless"] as Dictionary).get(lid, "")))
 	if not bl.is_empty() and ok(bl, p):
 		_add_mods(out, bl.get("mods", {}))
 		out["gold"] = int(out["gold"]) + int(bl.get("gold", 0))
 		out["items"].append([String(bl["label"]), String(bl["about"])])
-	var hp := offer(picked("helpers", lid, p))
+	var hp := offer(String((h["helper"] as Dictionary).get(lid, "")))
 	if not hp.is_empty() and ok(hp, p):
 		out["helper"] = hp
 		out["items"].append([String(hp["label"]), String(hp["about"])])
 	return out
+
+
+## A TEST SWITCH (the mission sims, docs/hubs_grow.md "Checks"): `-- hubgrow:a` (or `hubgrow:b`) plays a mission as if the
+## line had every upgrade open now, each choice on its a (b) side, the first blessing and the first company open. Never in a
+## real game.
+static func test_all() -> String:
+	for x in OS.get_cmdline_user_args():
+		if String(x) in ["hubgrow:a", "hubgrow:b"]:
+			return String(x).substr(8)
+	return ""
+
+
+static func _all_state(lid: String, p: Dictionary, ab: String) -> Dictionary:
+	var h := {"bought": [], "choices": {}, "bless": {}, "helper": {}, "earned": {}, "spent": {}}
+	for o in offers(lid, ["upgrades"], p):
+		h["bought"].append(String(o["id"]))
+	for o in offers(lid, ["choices"], p):
+		h["choices"][String(o["id"])] = ab
+	var bls := offers(lid, ["blessings"], p)
+	if not bls.is_empty():
+		h["bless"][lid] = String(bls[0]["id"])
+	var hps := offers(lid, ["helpers"], p)
+	if not hps.is_empty():
+		h["helper"][lid] = String(hps[-1]["id"])      # (the latest company met: the one a player most likely calls)
+	return h
 
 
 ## Multipliers multiply ("hp", "damage", "speed", "wind_drain"); "sight" and "armor" add.
