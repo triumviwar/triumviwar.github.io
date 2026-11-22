@@ -41,7 +41,7 @@ static func make(setup: Dictionary) -> WWWar:
 	if w.d["name"] == "":
 		w.d["name"] = "war_%d" % (Time.get_unix_time_from_system() as int)
 	w.log_line(["The war begins: %s.", WWRules.season_name(0)])
-	w.begin_turn()
+	w.d["report"] = w.begin_turn()
 	return w
 
 
@@ -272,7 +272,8 @@ func land_worth(f: String) -> int:
 # ------------------------------------------------------------------ the log (lines kept as [English template, args...])
 
 func log_line(line: Array) -> void:
-	(d["log"] as Array).append({"s": int(d.get("season", 0)), "line": line})
+	d["log_n"] = int(d.get("log_n", 0)) + 1
+	(d["log"] as Array).append({"s": int(d.get("season", 0)), "line": line, "n": int(d["log_n"])})
 	while (d["log"] as Array).size() > 80:
 		(d["log"] as Array).pop_front()
 

@@ -14,7 +14,7 @@ from shapely.ops import unary_union, voronoi_diagram
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 BOUNDS = (-170, -56, 165, 72)
-REACH = 13.0          # degrees round a town its region reaches at most
+REACH = 20.0          # degrees round a town its region reaches at most
 SEA_REACH = 0.0       # (no automatic lanes: a straight line crosses land; every lane is in LANES)
 TOL = 0.12
 
@@ -87,13 +87,13 @@ R = [
     ("patagonia", "Patagonia", -68.0, -45.0, "cold", 1, 1, 0),
 ]
 # land pairs that touch on the map but have no way through (seas, mountains), and pairs joined though they don't touch
-CUT = {("milan", "nuremberg"), ("london", "low_countries"), ("london", "brittany"), ("scotland", "scandinavia"), ("egypt", "arabia"),
+CUT = {("bengal", "siberia"), ("milan", "nuremberg"), ("london", "low_countries"), ("london", "brittany"), ("scotland", "scandinavia"), ("egypt", "arabia"),
        ("morocco", "andalusia"), ("greece", "egypt"), ("canton", "manila"), ("nagasaki", "tartary"), ("nagasaki", "canton"),
        ("caribbean", "new_spain"), ("caribbean", "louisiana"), ("caribbean", "new_granada"), ("caribbean", "virginia"),
        ("london", "paris"), ("rome", "naples_x"), ("scandinavia", "poland"), ("malacca", "manila"), ("goa", "arabia"),
        ("constantinople", "egypt"), ("arabia", "persia_x"), ("bengal", "goa_x"), ("new_holland", "malacca"),
        ("peru", "mato_grosso_x"), ("italy", "x"), ("brittany", "castile"), ("naples", "hungary"), ("naples", "vienna"), ("sahara", "andalusia")}
-EXTRA = {("siberia", "muscovy"), ("siberia", "tartary"), ("london", "scotland"), ("ohio", "louisiana"), ("great_plains", "louisiana"), ("egypt", "arabia")}
+EXTRA = {("saxony", "scandinavia"), ("siberia", "muscovy"), ("siberia", "tartary"), ("london", "scotland"), ("ohio", "louisiana"), ("great_plains", "louisiana"), ("egypt", "arabia")}
 EXTRA -= {("egypt", "arabia")}
 EXTRA |= {("egypt", "arabia")}   # (Suez: by land)
 CUT.discard(("egypt", "arabia"))
@@ -153,7 +153,7 @@ def main(land_path):
         # keep only the land pieces that hold the town or touch the piece that does (no far-off islands)
         parts = list(sh.geoms) if hasattr(sh, "geoms") else [sh]
         main_p = min(parts, key=lambda p: p.distance(Point(r[2], r[3])))
-        keep = [p for p in parts if p is main_p or (p.area > 1.0 and p.distance(main_p) < 2.5)]
+        keep = [p for p in parts if p is main_p or (p.area > 1.0 and p.distance(main_p) < 0.3)]
         shapes[r[0]] = unary_union(keep)
     ids = [r[0] for r in R]
     nb = {i: set() for i in ids}

@@ -1,6 +1,7 @@
 extends SceneTree
 ## THE MAIN MENU'S FLAT GRID (the owner's layout, 2026-10-31): 3 x 3 slots, row by row
-##   TUTORIAL CAMPAIGN SKIRMISH ONLINE / REPLAYS EDITOR SETTINGS EXIT (not on the web) / CONTINUE (only with a save);
+##   TUTORIAL CAMPAIGN SKIRMISH ONLINE / REPLAYS EDITOR SETTINGS EXIT (not on the web) / CONTINUE (only with a save)
+##   WORLD WAR (world-war-mode);
 ##   HOW TO PLAY is on the TUTORIAL page (owner 2026-11-22)
 ## (4 x 3 since the TUTORIAL, 0.30)
 ## all inside the painting's top-left sky; Esc does nothing on the menu; every page's BACK returns to it;
@@ -57,10 +58,11 @@ func _run() -> void:
 	await process_frame
 	await process_frame
 	var b: Dictionary = main.menu_buttons
-	var fixed := ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit"]
+	var fixed := ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "worldwar"]
 	var miss := fixed.filter(func(id: String) -> bool: return not b.has(id))
-	_check("the 8 fixed slots", miss.is_empty(), miss)
-	_check("slot order", main.MENU_SLOTS == ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "continue", "", "", ""], main.MENU_SLOTS)
+	_check("the 9 fixed slots", miss.is_empty(), miss)
+	_check("WORLD WAR in row 3, column 2 (world-war-mode)", b["worldwar"].text == "WORLD WAR" and b["worldwar"].position.y > b["exit"].position.y + 1.0 and b["worldwar"].position.x > b["tutorial"].position.x + 1.0, b["worldwar"].position)
+	_check("slot order", main.MENU_SLOTS == ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "continue", "worldwar", "", ""], main.MENU_SLOTS)
 	_check("CAMPAIGN enabled (0.30.0)", not b["campaign"].disabled, b["campaign"].text)
 	_check("TUTORIAL next to CAMPAIGN (same row)", b["tutorial"].text == "TUTORIAL" and absf(b["tutorial"].position.y - b["campaign"].position.y) < 1.0 and b["tutorial"].position.x < b["campaign"].position.x, [b["tutorial"].position, b["campaign"].position])
 	_check("SKIRMISH text", b["skirmish"].text == "SKIRMISH", b["skirmish"].text)
@@ -129,6 +131,7 @@ func _run() -> void:
 	# every page's BACK comes back to the main menu
 	await _back_from("TUTORIAL", func() -> void: main.menu_buttons["tutorial"].pressed.emit())
 	await _back_from("SKIRMISH", func() -> void: main.menu_buttons["skirmish"].pressed.emit())
+	await _back_from("WORLD WAR", func() -> void: main.menu_buttons["worldwar"].pressed.emit())
 	# HOW TO PLAY from the TUTORIAL page; its BACK goes to the TUTORIAL page
 	main.menu_buttons["tutorial"].pressed.emit()
 	await process_frame
