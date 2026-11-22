@@ -1197,6 +1197,8 @@ func _bo_labs() -> void:
 		return
 	var wall_keep := WALL_LAB_KEEP if wall_throttle() else 0
 	var top := mini(bo_lab_cap, owner_lab_cap())      # (the owner's plans: never past the halls' saturation)
+	if AIWccr.lab_cap(self) >= 0:
+		top = mini(top, AIWccr.lab_cap(self))      # (wr1000-crown-clockwork)
 	for h in _halls():
 		if not h.built or labs + queued >= top or free < LAB_COST + (wall_keep if queued > 0 else 0):
 			continue      # (crown-ai-v2: while the natural's palisade comes first, one labourer at a time, above)

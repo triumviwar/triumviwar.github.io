@@ -153,6 +153,8 @@ const LABS_MAX := 70
 static func lab_cap(ai) -> int:
 	if not on("labs") or not vs(ai, "crown"):
 		return -1
+	if ai.game.workers(ai.team).size() >= LABS_MAX and int(ai.game.clock) % 30 == 0:
+		count(ai, "labs")        # (about once a 30 s look while it holds)
 	return LABS_MAX
 
 
