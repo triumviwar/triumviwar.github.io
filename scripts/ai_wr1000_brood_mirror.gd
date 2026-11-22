@@ -44,6 +44,11 @@ static func note(ai) -> void:
 	while h.size() > 2 and ai.game.clock - float(h[0][0]) > WINDOW:
 		h.pop_front()
 	w["hist"] = h
+	if bool(w.get("was_out", false)) and not ai._attacking:
+		w["wave_end_t"] = ai.game.clock          # (a wave just came home: regroup)
+	w["was_out"] = ai._attacking
+	if on("grubs"):
+		grubs_tick(ai)
 	if on("chase"):
 		# (the chase: the enemy army near its Mother, once a second, and what it was 2 s ago)
 		var q = BroodNew.queen(ai.game, ai.team)
@@ -111,6 +116,8 @@ static func go(ai, q, army: Array, sup: int) -> int:
 	if counter(ai, v, sup):
 		return 1
 	if quality_hold(ai, q, army):
+		return -1
+	if regroup_hold(ai, sup):
 		return -1
 	return 0
 
@@ -338,3 +345,69 @@ static func quality_hold(ai, q, army: Array) -> bool:
 			w.erase("q_wait")          # (a fresh wait after a while)
 		return false
 	return true
+
+
+# ------------------------------------------------------------------ THE REGROUP (`wbmregroup`)
+## THE REGROUP (blocks 1-4: at the cap with food banked, a wave that pulled back with half was sent out again 3 to 30 s
+## later (the BANKED rule), its survivors still walking home and the fresh eggs not hatched, into the same defence: Hollowfen
+## block 1, P2 pulled back at 15:56 with 845 of 4,395 and attacked again at 15:59 with 111 supply). After a wave comes home
+## it waits REGROUP s before the next one, unless it is REGROUP_SUP supply bigger than that wave was (a new army).
+const REGROUP := 45.0
+
+
+static func regroup_hold(ai, sup: int) -> bool:
+	if not on("regroup"):
+		return false
+	var t := float(ai.wbm.get("wave_end_t", -999.0))
+	if ai.game.clock - t > REGROUP:
+		return false
+	return sup < int(ai._wave_sup * 1.4)
+
+
+# ------------------------------------------------------------------ FEWER GRUBS AT THE CAP (`wbmgrubs`)
+## FEWER GRUBS AT THE CAP (blocks 1-4: at 200 supply with 4,000-7,000 food banked from 14:00, 57-62 grubs held 60 supply
+## while the army fought at 120: food it could not spend, an army it could not grow). At the cap with GRUBS_BANK food or
+## more, it lays no grub over GRUBS_KEEP and offers up a grub over GRUBS_KEEP at the Mother every GRUBS_EVERY s (a grub's
+## spoils back): the room goes to warriors. Under GRUBS_LOW food it grows them back as before.
+const GRUBS_BANK := 3000
+const GRUBS_LOW := 1200
+const GRUBS_KEEP := 44
+const GRUBS_EVERY := 3.0
+
+
+static func grubs_cap(ai) -> int:
+	if not on("grubs") or not mirror(ai):
+		return 999
+	return GRUBS_KEEP if bool(ai.wbm.get("grubs_cut", false)) else 999
+
+
+static func grubs_tick(ai) -> void:
+	var g = ai.game
+	var t: int = ai.team
+	var w: Dictionary = ai.wbm
+	var capped: bool = g.supply_used(t) >= mini(int(g.players[t]["cap"]), g.max_supply(t)) - 6
+	if capped and ai._food() >= GRUBS_BANK:
+		if not bool(w.get("grubs_cut", false)):
+			ai.say("at the cap with %d food: fewer grubs (%d), more warriors" % [ai._food(), GRUBS_KEEP])
+		w["grubs_cut"] = true
+	elif ai._food() < GRUBS_LOW:
+		w["grubs_cut"] = false
+	if not bool(w.get("grubs_cut", false)) or g.clock - float(w.get("grub_off_t", -99.0)) < GRUBS_EVERY:
+		return
+	var q = BroodNew.queen(g, t)
+	if q == null:
+		return
+	var grubs: Array = ai._nb_mine("grub")
+	if grubs.size() <= GRUBS_KEEP:
+		return
+	var home: Vector2 = ai._qp(q)
+	var best: Unit = null
+	for u in grubs:
+		if u == ai._scout or u.order == "sacrifice" or u.order == "nb_morph" or u.carrying > 0 or not u.can_sacrifice():
+			continue
+		if best == null or u.position.distance_to(home) < best.position.distance_to(home):
+			best = u
+	if best != null:
+		best.cmd_sacrifice()
+		w["grub_off_t"] = g.clock
+		w["grubs_off"] = int(w.get("grubs_off", 0)) + 1

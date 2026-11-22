@@ -2997,7 +2997,7 @@ func _nb_want_grubs() -> int:
 		n = mini(n, int(bench_flags.get("cap", n)))      # (ai-opponent-review: the benchmark player's grubs stop here)
 	if level_grubs_on and difficulty <= 1 and _level_fix():
 		return mini(mini(n, int(plan["grubs"]) + _extra_grubs(crew)), LEVEL_GRUBS[difficulty])
-	return mini(n, int(plan["grubs"]) + _extra_grubs(crew))
+	return mini(mini(n, int(plan["grubs"]) + _extra_grubs(crew)), AIWr1000BroodMirror.grubs_cap(self))
 
 
 ## (ai-opponent-review, docs/ai_opponent_review.md) THE EASY AND NORMAL BROOD HAD NO WORKER CAP. The Crown and Clockwork
