@@ -214,6 +214,29 @@ No naval play: the sea lives in the STILLS and the story. Proposed (all names wo
 - STILLS: ChatGPT oil paintings in the campaign's style, one request each (at most 3 reference images: the captain's
   portrait once made, the ship, the style reference); prompts written with each act's still list.
 
+## THE BALLOONIST (owner 2026-11-22 21:33)
+
+The owner: "We should also get to know a balloon character... You could see the world from up there in a mission or in
+an exploration... maybe he comes when we unlock the balloon as a unit to recruit."
+
+- WHEN: with THE ROSTER LADDER's C8, the OBSERVATION BALLOON, in d10_jungle (Act 2's jungle front: spotting the
+  forward Mothers under the fog). He arrives with his balloon and stays with the Crown line after that.
+- WHO (proposed, working names): a Brazilian-born priest and aeronaut, FATHER INÁCIO LOURENÇO, inspired by the real
+  flying priest of Brazil (Bartolomeu de Gusmão and his Passarola, 1709) but invented. His balloon is cloth, fire and
+  rope, blessed and simple: the opposite of the Machine. Where the common people hate technology, they cheer his
+  balloon, because it serves and does not rule (THE WORLD LORE's line between a tool and a master). He is cheerful,
+  curious, a little reckless, and sees the world as God's map.
+- WHAT HE BRINGS:
+  - FROM ABOVE: stills painted from the air (the Amazon from above with the swarm's paths through the forest; Concórdia's
+    gears turning seen from the sky; a coastline with the fleet; later continents in Act 3).
+  - IN MISSIONS: a moment in d10 where he goes up and the fog lifts from a large part of the map (the mission reveals it,
+    his voice describing what he sees), and the BALLOON as a trainable unit from then on.
+  - AN EXPLORATION: one short scouting mission of his own in Act 3 (proposed: over the Congo basin or the Ethiopian
+    highlands, finding where the Brood nests before Valadares' column goes up the river): fly, spot, mark, get home before
+    the wind or the creatures that can reach him.
+  - A TELLER: he tells his own parts, like the captain tells the voyages.
+- He and the captain are friends who argue about whether the sea or the sky is the greater road.
+
 ## THE WAR MAP
 
 - New VIEWS: AFRICA, THE INDIES, THE SOUTHERN SEAS, THE AMERICAS (North and South), with the WORLD view as Act 3's

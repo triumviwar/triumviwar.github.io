@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.177", "items": [
+		"Nothing changes in the game: the campaign plan gains a balloonist, who joins with the Observation Balloon and shows the world from the air.",
+	]},
 	{"v": "0.38.176", "items": [
 		"Nothing changes in the game: the campaign plan now has the sea: voyages told in paintings, a recurring ship captain, storms and sea battles in stills.",
 	]},
