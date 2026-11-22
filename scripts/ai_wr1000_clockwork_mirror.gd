@@ -7,7 +7,7 @@ extends RefCounted
 ## its own switch: `-- wkm<name>:on` / `:off`; `-- wkm:off` plays the mirror as before this job. The changes KEPT are on by
 ## default (KEPT); the rest were measured and not kept (the doc says what each did).
 
-const KEPT: Array[String] = []
+const KEPT: Array[String] = ["nospr"]     # (nospr: block 3)
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 
