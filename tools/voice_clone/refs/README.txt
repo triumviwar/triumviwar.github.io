@@ -8,3 +8,4 @@ fairleigh Lord Edmund Fairleigh, Governor of Virginia: cold, clipped English ari
 ruggieri  Captain Matteo Ruggieri, the guns: loud, gruff Italian gunner.
 lindqvist Dr. Lindqvist, the scientist (Brood storyline): elderly Oxford-educated Scandinavian professor, a condescending
           atheist lecturer (v2, 2026-11-14; the first design was "flat").
+ferrer_ref.wav: Father Ferrer, designed 2026-11-22 (a calm, measured Spanish Jesuit of about fifty, light Castilian accent; 13.5 s).

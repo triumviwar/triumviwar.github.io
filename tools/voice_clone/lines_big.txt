@@ -2,6 +2,62 @@
 # A stopped run picks up where it left off. EVERY CAMPAIGN LINE IS A PLACEHOLDER (rewritten later).
 
 
+# ---- ferrer (51 lines)
+[ref refs/ferrer_ref.wav]
+[pitch 0.0]
+[exaggeration 0.45]
+a04__f_open1 | Fürth had grown. Eighteen months of work, and the barn was a town of gears.
+a04__f_open2 | Hollweg met me at the gate. He was proud of it. He had a right to be, I thought then.
+a04__f_1 | Six workshops, Meister. I will see every one.
+a04__f_thin | The colonel could spare me only five men. He has not forgotten the Rednitz.
+a04__f_ws1 | The Light Works. Clean benches, good men. Nothing here.
+a04__f_ws3 | A cog press. Every tooth stamped with the guild's mark. Nothing here.
+a04__f_ws4 | The Mainspring. Wound tight, and the stop-work on it. Nothing here.
+a04__f_ws6 | The Heavy Works. Big machines, built slowly. Nothing here.
+a04__f_wind | That Winder is winding another Winder. Who told it to?
+a04__f_wind2 | I will write that down, Meister.
+a04__f_print | Pamphlets in the journeymen's lockers. The Free Assembly's.
+a04__f_type | I know this type. Father Tomasz sent a page of it from Lyon. The same broken letter E.
+a04__f_type_no | Good paper, a good press. Someone pays for this.
+a04__f_bin | Taken out clean. Not broken. Taken out.
+a04__f_log0 | Jakob kept a log in Nuremberg. Hollweg keeps it now. I want to read it.
+a04__f_log | Two years old. Winders winding each other. Machines at work with no one at the bench.
+a04__f_log2 | The same signs, Meister. Written down before Nuremberg fell.
+a04__f_night | Then I will not sleep. Brothers, we stay up.
+a04__f_follow | Follow it. Quietly.
+a04__f_mesh | Nobody built this. They built it.
+a04__f_pattern | Look at them. The Perpetual's pattern, every wheel, with a stop-work bolted on. They took it off themselves.
+a04__f_people | Red brass in every one. Parts salvaged from the line, fitted to save time.
+a04__f_riot | They are going to the machine. Stop them before they reach its ground!
+a04__f_gather | Then we wait for them at the gap. Every man there, now: the escort and the colonel's gate men too.
+a04__f_none | Not one reached it. Thank God.
+a04__f_some | Some of them reached it. It will use them.
+a04__f_melt | Melt them, Meister. Every wheel.
+a04__f_melted | Into the furnace. I watched it done.
+a04__f_kept | I wrote that down too.
+a04__f_won | I rode for Rome that morning with my report.
+a04__f_hhurt | Meister Hollweg is hurt. Get men to him.
+a04__f_end1 | I wrote my report on the road. I did not soften it.
+a04__f_end_melted | The broken ones were melted. Hollweg did not speak to me again until Rome.
+a04__f_end_kept | The broken ones were kept. Hollweg swore he would mend them.
+a04__f_end_lost | And some of them reached the machine. I counted them in my report.
+a04__f_end_jakob | Jakob found the stop-works and told me. He did not tell his master. I put that in too.
+a07__f_pattern | Meister Hollweg's own drawings, Eminences. The machine at Nuremberg was drawn to build its own successor.
+a07__f_people | My report from Nuremberg, Eminences. Drawings or no drawings, the machine went on building itself.
+a07__f_quarrel | I told him the night before the gift. The ghost in the machine destroyed the apostasy once. It was the enemy then. It is the enemy now.
+c01__f_open | And when will it know its work is done, Meister?
+c01__f_q1 | You know what destroyed the apostasy, Meister. In the post-modern age, all those centuries ago.
+c01__f_q2 | You know the ghost in the machine is the enemy. It was then. It is now.
+c01__f_1 | Your soldiers, Meister, or the Crown's?
+c01__f_gift | It is beautiful. That is what frightens me.
+c01__f_found | There is another at the bath houses. It did not start today.
+c01__f_turn | They were never yours, Meister. They were its.
+c01__f_bells | Ring the bells, Meister. Let the city wake and go.
+c01__f_rung | Ring them. Every church. Now.
+c01__f_lost | Get the people to the west gate. The Crown's camp is at Fürth.
+c01__f_road | The bells woke them. Half the city is already on the road.
+c01__f_warn | Two minutes, Meister. To the gate.
+
 # ---- hollweg (2 lines)
 [ref refs/hollweg_ref.wav]
 [pitch 0.0]

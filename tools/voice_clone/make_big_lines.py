@@ -21,8 +21,9 @@ VOICES = {
     "fairleigh": ("refs/fairleigh_ref.wav", 0.0, 0.45),
     "ruggieri": ("refs/ruggieri_ref.wav", 0.0, 0.7),
     "varenne": ("refs/varenne_ref.wav", 0.0, 0.7),
+    "ferrer": ("refs/ferrer_ref.wav", 0.0, 0.45),    # designed 2026-11-22: a calm Spanish Jesuit of fifty
 }
-ORDER = ["lindqvist", "king", "hollweg", "valadares", "fairleigh", "ruggieri", "varenne"]
+ORDER = ["ferrer", "lindqvist", "king", "hollweg", "valadares", "fairleigh", "ruggieri", "varenne"]
 
 
 def announcer():

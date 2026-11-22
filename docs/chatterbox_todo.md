@@ -15,9 +15,10 @@ RECORDED 2026-11-18 (0.38.70): the big run (tools/voice_clone/lines_big.txt, 374
 announcer's 21 lines in Lindqvist's v2 voice and every mission line of the King, Hollweg, Lindqvist, Valadares (explorer ref),
 Fairleigh, Ruggieri and Varenne. Still to do: the voices marked * below (design them first), then make_big_lines.py again.
 
-NEXT RUN (2026-11-22): tools/voice_clone/lines_big.txt holds the 3 lines added since the big run (Hollweg's two c01
-endings about the mill seed, Fairleigh's p01 line about the second camp). Everything else still to record waits on a
-voice to DESIGN first (section 3): 305 lines, most of them Ferrer 51, Tomasz 49, Jakob 26, Delorme 17, Benedito 16.
+NEXT RUN (2026-11-22): tools/voice_clone/lines_big.txt holds Father Ferrer's 51 lines (his voice designed 2026-11-22,
+refs/ferrer_ref.wav) and the 3 lines added since the big run (Hollweg's two c01 endings about the mill seed, Fairleigh's
+p01 line about the second camp). The rest waits on a voice to DESIGN first (section 3): 254 lines, most of them Tomasz
+49, Jakob 26, Delorme 17, Benedito 16.
 
 ## 1. The Brood announcer: a new set in Lindqvist's new voice (owner 2026-11-18 15:55)
 
@@ -79,9 +80,10 @@ Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
 
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
-Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, explorer (now Valadares? the owner to say). The King
+Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, ferrer (2026-11-22), explorer (now Valadares? the owner to say). The King
 uses king_ref.wav / king_ref_b.wav.
-Still to design: Tomasz young (a01, a06, p01) and old (the Cardinal), Ferrer, Jakob, Valadares (or the explorer ref),
+Still to design: Tomasz young (a01, a06, p01; a "Tomasz Wierzbicki (the young seminarian)" voice is in the owner's
+ElevenLabs account: its sample would do) and old (the Cardinal), Jakob, Valadares (or the explorer ref),
 Pieter, Benedito, Captain Delorme, Colonel von Rauch, Brother Anselm, Will Hollins, and the one-to-two-line parts
 (Teles, Frei Joaquim, the Captain of the Watch, the Commissary, Rouvière, Mère Gautier, the Sergeant, the guide, the
 Cardinal Dean of a07).

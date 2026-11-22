@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.156", "items": [
+		"No change in the game yet: Father Ferrer has a voice now, and his 51 campaign lines are ready to record.",
+	]},
 	{"v": "0.38.155", "items": [
 		"THE CROWN COMPUTER AGAINST THE CLOCKWORK COMPUTER, MEASURED AGAIN (no change to how either plays): 169 games of the Hard computers to 20:00 on six maps, ten at a time on the same ten games. The two are even until about 14:00; then the Crown pulls ahead and leads at 20:00 in about two games of three, though only a few games end by then. Eleven small changes to either computer's play were each tried on those ten games (the Crown hunting a beaten Clockwork, fewer labourers for the Crown, the Clockwork's turrets by its presses, its Winders kept out of the Crown's fire, another plan for it, and more); none did clearly better than two runs of the same games differ by luck, so all of them stay off.",
 	]},
