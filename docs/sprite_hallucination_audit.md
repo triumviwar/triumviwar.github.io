@@ -125,6 +125,8 @@ stray hoofs beside the mounting riders of the Barracks drills (Cuirassier, Horse
 in mount_e/se frames 3-6 (two pixels wide at game size). 0.38.133: the Officer on foot (dismounted) aims and fires in every facing: S, SE, NE and N
 redrawn (requests M92-M95, one sheet a facing: the aim frame and two fire frames, cut into aim_<dir> and fire_<dir>);
 0.38.134: his sabre slash too, in S, SE, NE and N (M96-M99). His death is still the east picture in every facing.
+0.38.135: 43 the Netter's south view redrawn end-on (walk_s 8 frames, attack_s 6, death_s 5; idle_s from the new walk;
+requests M100-M102): the barrel points at you, as the north view shows its back.
 
 ## Redraw requests for the HIGH findings
 

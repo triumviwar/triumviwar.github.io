@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.135": ["O NETTER OLHA PARA VOCÊ: andando, disparando e se quebrando para baixo na tela, ele agora mostra a ponta redonda da frente (mostrava o lado comprido, como se andasse de lado)."],
 	"0.38.134": ["O OFICIAL A PÉ GOLPEIA PARA ONDE ESTÁ VIRADO: o golpe de sabre é desenhado na sua direção, para baixo à direita, para cima à direita e para longe de você (todas as direções usavam a mesma imagem golpeando para a direita)."],
 	"0.38.133": ["O OFICIAL A PÉ MIRA PARA ONDE ESTÁ VIRADO: um Oficial sem cavalo agora mira e dispara a pistola na sua direção, para baixo à direita, para cima à direita e para longe de você (todas as direções usavam a mesma imagem apontando para a direita)."],
 	"0.38.132": ["SOLDADOS MAIS ARRUMADOS: um Mosqueteiro ou Guarda caído virado para a direita já não tem um pedaço vermelho solto ao lado, e os cavaleiros montando no treino do Quartel já não têm pedaços de rédea e um casco solto flutuando ao lado."],

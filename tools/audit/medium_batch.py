@@ -122,6 +122,18 @@ for _n, _d in ((96, "s"), (97, "se"), (98, "ne"), (99, "n")):
     JOBS.append((_n, "dismounted", "melee_" + _d, 4, OFF, "slashing with his sabre in his right hand (the pistol put away), %s; 4 frames: 1 the sabre raised over his right shoulder; 2 the cut coming down, a short pale swoosh along the blade's path; 3 the follow-through low across his body; 4 recovering, the sabre back up. The SAME facing in all four frames, ONE sabre" % _OFF_MEL[_d], _OFF_VIEW[_d][1], "a side profile facing right, the body turning between frames, a second blade,",
                  [("1_melee_e_pose.png", [("dismounted", "melee_e")]), ("2_walk_%s_view.png" % _d, [("dismounted", "walk_" + _d)])]))
 
+NET = "the Netter (a Clockwork automaton: a brass barrel body with pure red bands and a dark glass window, standing on four short jointed brass and red legs, a brass net launcher on top)"
+LOOK["netter"] = "machine, its colours and proportions"
+_NS = "seen from the FRONT, end-on: the barrel points straight at the viewer so we see its ROUND front end (a big brass disc with a red rim) in the middle, the four legs spread round it, the net launcher's round mouth on top facing us, like reference 2 but from the front instead of the back"
+JOBS += [
+    (100, "netter", "walk_s", 8, NET, "walking toward the viewer, %s; 8 frames, a seamless walk loop, the legs stepping in turn, the body bobbing a little" % _NS, "the south view: walking toward the viewer", "a side view of the barrel, the barrel lying crosswise, its long side toward us,",
+     [("1_current_walk_s.png", [("netter", "walk_s")]), ("2_walk_n_endon.png", [("netter", "walk_n")]), ("3_walk_se_model.png", [("netter", "walk_se")])]),
+    (101, "netter", "attack_s", 6, NET, "firing its net toward the viewer, %s; 6 frames: 1 standing braced; 2 the launcher tilting down at us; 3 the recoil, a puff of steam; 4 the launcher back up; 5 a click of the reloading net; 6 standing braced" % _NS, "the south view: facing the viewer", "a side view of the barrel, the barrel lying crosswise, its long side toward us,",
+     [("1_current_attack_s.png", [("netter", "attack_s")]), ("2_walk_n_endon.png", [("netter", "walk_n")]), ("3_attack_se_model.png", [("netter", "attack_se")])]),
+    (102, "netter", "death_s", 5, NET, "breaking down, %s; 5 frames: 1 struck, sparks; 2 a leg buckling, the body tilting; 3 collapsing, a puff of steam; 4 lying broken, a band sprung loose; 5 still, a wisp of steam" % _NS, "the south view: facing the viewer", "a side view of the barrel, the barrel lying crosswise, its long side toward us,",
+     [("1_current_death_s.png", [("netter", "death_s")]), ("2_walk_n_endon.png", [("netter", "walk_n")]), ("3_death_se_model.png", [("netter", "death_se")])]),
+]
+
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."
