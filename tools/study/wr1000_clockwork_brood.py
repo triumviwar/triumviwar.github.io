@@ -110,6 +110,7 @@ def block(name):
             for k in ("g", "g14", "inc8", "inc12", "army8", "army12", "halls12"):
                 v = [x[k] for x in xs if x[k] is not None]
                 r[k] = sum(v) / len(v) if v else None
+            r["resl"] = [x["res"] for x in xs]
             r["res"] = "L" if sum(1 for x in xs if x["res"] == "L") * 2 > len(xs) else ("W" if all(x["res"] == "W" for x in xs) else "=")
             bt = [x["beaten"] for x in xs if x["beaten"]]
             r["beaten"] = st.median(bt) if bt and r["res"] == "L" else None
@@ -125,11 +126,13 @@ def block(name):
 
 def summary(name, rows, base=None):
     gs = [x["g"] for x in rows.values()]
-    surv = sum(1 for x in rows.values() if x["res"] != "L")
-    wl = sum(1 for x in rows.values() if x["res"] in ("W", "w"))
+    rl = lambda x: x.get("resl", [x["res"]])
+    surv = sum(sum(1 for r in rl(x) if r != "L") / len(rl(x)) for x in rows.values())
+    wl = sum(sum(1 for r in rl(x) if r in ("W", "w")) / len(rl(x)) for x in rows.values())
+    won = sum(sum(1 for r in rl(x) if r == "W") / len(rl(x)) for x in rows.values())
     bt = [x["beaten"] for x in rows.values() if x["beaten"]]
     mean = lambda k: (lambda v: sum(v) / len(v) if v else None)([x[k] for x in rows.values() if x[k] is not None])
-    s = {"block": name, "n": len(rows), "g": sum(gs) / len(gs) if gs else 0.0, "surv": surv, "wl": wl,
+    s = {"block": name, "n": len(rows), "g": sum(gs) / len(gs) if gs else 0.0, "surv": surv, "wl": wl, "won": won,
          "beat_med": st.median(bt) if bt else None, "inc8": mean("inc8"), "inc12": mean("inc12"), "army8": mean("army8"),
          "army12": mean("army12"), "halls12": mean("halls12"), "g14": mean("g14")}
     if base is not None:
@@ -201,15 +204,15 @@ if __name__ == "__main__":
         names = [x for x in sys.argv[2:] if not x.startswith("--") and x != arg("--base", None)]
         base = arg("--base", None)
         brow = block(base) if base else None
-        print("| block | n | mean g | survived | won/led | median defeat | inc 8 | inc 12 | army 8 | army 12 | halls 12 | v base d (t) | better/worse | g 14:00 | v base d14 (t) |")
-        print("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+        print("| block | n | mean g | CW survived | CW won | CW won/led | median defeat | inc 8 | inc 12 | army 8 | army 12 | halls 12 | v base d (t) | better/worse | g 14:00 | v base d14 (t) |")
+        print("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
         for n in ([base] if base else []) + names:
             s = summary(n, block(n), brow if n != base else None)
             dt = "%+.2f (%.1f)" % (s["d"], s["t"]) if "d" in s else ""
             bw = "%d/%d" % (s["better"], s["worse"]) if "d" in s else ""
             d14 = "%+.2f (%.1f)" % (s["d14"], s["t14"]) if "d14" in s else ""
-            print("| %s | %d | %+.2f | %d | %d | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
-                n, s["n"], s["g"], s["surv"], s["wl"], mmss(s["beat_med"]), f2(s["inc8"]), f2(s["inc12"]),
+            print("| %s | %d | %+.2f | %.1f | %.1f | %.1f | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
+                n, s["n"], s["g"], s["surv"], s["won"], s["wl"], mmss(s["beat_med"]), f2(s["inc8"]), f2(s["inc12"]),
                 f2(s["army8"]), f2(s["army12"]), f2(s["halls12"]), dt, bw, f2(s["g14"]), d14))
         if "--games" in sys.argv:
             for n in ([base] if base else []) + names:

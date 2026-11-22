@@ -167,3 +167,83 @@ static func owl_keep(ai) -> float:
 	if not ai.game.has_tech(ai.team, "owl_morph"):
 		return float(Defs.RESEARCH["owl_morph"]["tension"])
 	return float(Defs.OWL_MORPH["tension"])
+
+
+# ------------------------------------------------------------------ sire (block 5)
+## SIRE: the Brood's Venom Sire stood unrooted beside the Mother all game in some games (hollowfen r0: hatched at 7:09,
+## never rooted to 20:00, 0 Spitters laid, 1,000-2,700 food banked, 88 Raptors fed to the Pendulums): every nest in his
+## 7-tile range was taken by the Mound Turtles rooted round her for supply (110 of 120 places on her rings "Blocked: a
+## rooted creature is in the way", the rest on her own ground), so AIBroodNew._nb_father_spot found none, and a Sire
+## without a nest fertilises no eggs (no Spitters: AIBroodVCw.warrior waits on him). Now, against the Clockwork, a Sire
+## with no nest for SIRE_WAIT s gets one: the supply Mound Turtle rooted nearest his best ring round her gets up and walks
+## SIRE_AWAY tiles out (left alone for SIRE_HOLD s, then the computer roots it again where there is room), and he nests
+## where it stood.
+const SIRE_WAIT := 12.0
+const SIRE_AWAY := 9.0
+const SIRE_HOLD := 25.0
+static var _no_nest := {}          # father -> clock when he first found no nest
+static var _moved := {}            # turtle -> [clock it was moved, the ai]
+
+
+static func sire_room(ai, q: Unit, f: Unit) -> void:
+	if not on("sire") or not brood_v_cw(ai):
+		return
+	var g = ai.game
+	_release(ai)
+	var t0 = _no_nest.get(f)
+	if t0 == null:
+		_no_nest[f] = g.clock
+		return
+	if g.clock - float(t0) < SIRE_WAIT:
+		return
+	for t in _moved.keys():
+		if _moved[t][1] == ai:
+			return          # (one turtle at a time)
+	var reach := float(Defs.NB["father_r"]) * Defs.TILE
+	var qk: Vector2 = BroodRoot.feet_k(g, ai.team, q)
+	var best: Unit = null
+	var bd := INF
+	for t in g.units:
+		if t.dead or t.team != ai.team or t.kind != BroodNew.TURTLE or not BroodNew.rooted(t) or ai.held.has(t):
+			continue
+		var d: float = BroodRoot.feet_k(g, ai.team, t).distance_to(qk)
+		if d > reach * 1.05:
+			continue
+		var dd: float = absf(d - reach * 0.75)
+		if dd < bd:
+			bd = dd
+			best = t
+	if best == null:
+		return
+	best.cmd_uproot(false)
+	ai.held.append(best)
+	_moved[best] = [g.clock, ai]
+	_no_nest[f] = g.clock          # (the next one, if he still finds none, after another wait)
+	if g.mlog:
+		g.mlog.add("%s's Brood: the %s found no nest by the Mother for %d s: a supply Mound Turtle gets up to make room [wkbsire]" % [g.mlog.who(ai.team), String(Defs.UNITS[f.kind]["name"]), int(SIRE_WAIT)])
+
+
+## A Sire that has his nest: forget his wait.
+static func sire_nested(ai, f: Unit) -> void:
+	_no_nest.erase(f)
+	if not _moved.is_empty():
+		_release(ai)
+
+
+## The moved turtles: walked out once up, let go after SIRE_HOLD s.
+static func _release(ai) -> void:
+	var g = ai.game
+	var q := BroodNew.queen(g, ai.team)
+	for t in _moved.keys():
+		var e: Array = _moved[t]
+		if e[1] != ai:
+			continue
+		if not is_instance_valid(t) or t.dead or g.clock - float(e[0]) > SIRE_HOLD:
+			ai.held.erase(t)
+			_moved.erase(t)
+			continue
+		if t.tesla_mode == "packed" and t.order != "move" and q != null:
+			var away: Vector2 = t.position - q.position
+			if away.length() < 1.0:
+				away = Vector2.RIGHT
+			t.cmd_move(t.position + away.normalized() * SIRE_AWAY * Defs.TILE)

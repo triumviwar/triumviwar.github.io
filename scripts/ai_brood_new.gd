@@ -2670,8 +2670,11 @@ func _nb_one_father(q: Unit, f: Unit) -> void:
 	var spot = _nb_father_spot(q, f, f.kind)
 	if spot != null:
 		_root_to(f, spot)
+		WkB.sire_nested(self, f)
 	elif d > 14.0 * Defs.TILE and f.order != "move":
 		f.cmd_move(_qp(q))       # (on a leash: by her, never off after a scout)
+	else:
+		WkB.sire_room(self, q, f)       # (wr1000-clockwork-brood `wkbsire`: no nest by her, a supply turtle makes room)
 
 
 # ------------------------------------------------------------------ eggs
