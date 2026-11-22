@@ -90,6 +90,8 @@ M = {
         "jetty": [57, 70, 11, 6],
         "village": [3, 54, 27, 21], "bonfires": [12, 63, 11, 8], "beach": [6, 71, 18, 5], "causeway_w": [30, 67, 16, 6],
         "causeway_e": [86, 67, 16, 6], "fort": [105, 56, 18, 15], "fort_steps": [107, 72, 12, 4],
+        # the ground south of the den, down the back way (the Brood's first growth: owner 2026-11-22 "the game should say it")
+        "south": [8, 36, 16, 14],
         "ford": [78, 43, 8, 7], "trail_c": [74, 20, 5, 6], "jar_w": [27, 42, 6, 5], "jar_c": [72, 41, 6, 5], "jar_e": [97, 42, 6, 5],
     },
     "counters": {"raptors": {"start": 0, "of": 6}, "eggs": {"start": 0, "of": 5}, "jars": {"start": 0, "of": 3},
@@ -150,6 +152,8 @@ M = {
          "text": "Break her pen's gate."},
         {"id": "home", "side": "sire", "primary": True, "kind": "manual", "hidden": True,
          "text": "Take her home: walk the Sire back to the Old Mother's den. Linnea follows at his heels."},
+        {"id": "grow", "side": "sire", "primary": False, "kind": "manual", "hidden": True,
+         "text": "GROW SOUTH: the den's swamp feeds only a few Rootmaws. Walk a grub down the back way south of the den and turn it into a MOUND TURTLE (BUILD) there: its swamp feeds more Rootmaws, and more food means more eggs."},
         {"id": "rival", "side": "sire", "primary": False, "kind": "destroy", "tag": "rival_mother",
          "text": "Drive the rival pack off: kill its Mother."},
         # versus: the rival pack's player
@@ -174,6 +178,12 @@ M = {
         # ---- the teaching strip
         {"id": "rooted_1", "when": {"all": [{"rooted": {"tag": "sire"}}, {"not": {"fired": "roar_heard"}}]}, "do": [
             {"objective": {"id": "root", "set": "done"}}, {"objective": {"id": "lay", "set": "active"}}, {"ping": {"area": "den"}}]},
+        # GROW SOUTH, shown with LAY AND HATCH: the first turtle on the ground south of the den
+        {"id": "grow_show", "when": {"fired": "rooted_1"}, "delay": 20, "do": [
+            {"objective": {"id": "grow", "set": "active"}}, {"ping": {"area": "south"}}, {"reveal": {"area": "south", "side": "sire", "secs": 15}}]},
+        {"id": "grow_done", "when": {"all": [{"fired": "grow_show"},
+                                             {"count": {"team": "sire", "kind": "mound_turtle", "area": "south", "at_least": 1}}]}, "do": [
+            {"objective": {"id": "grow", "set": "done"}}]},
         {"id": "laid", "when": {"all": [{"fired": "rooted_1"}, {"any": [{"counter": {"name": "raptors", "at_least": 6}},
                                                                        {"all": [{"time": 600}, {"counter": {"name": "raptors", "at_least": 4}}]}]}]}, "do": [
             {"objective": {"id": "lay", "set": "done"}}, {"objective": {"id": "roar", "set": "active"}},

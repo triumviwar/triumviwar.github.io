@@ -5161,7 +5161,7 @@
 			"side": "expedition"
 		},
 		"new": {
-			"name": "NEW",
+			"name": "NEW IN YOUR ARMY",
 			"side": "creatures"
 		}
 	},
@@ -5445,7 +5445,8 @@
 		"new_tyrant_challenger": {
 			"who": "new",
 			"to": "creatures",
-			"text": "NEW: MATURE. A grown Raptor moults into a Tyrant Challenger; a grown Spitter into a Venom Challenger."
+			"text": "NEW: MATURE. A grown Raptor moults into a Tyrant Challenger; a grown Spitter into a Venom Challenger.",
+			"portrait": "res://assets/icons/tyrant_challenger.png"
 		}
 	},
 	"stills": {

@@ -3213,7 +3213,7 @@
 			"side": "party"
 		},
 		"new": {
-			"name": "NEW",
+			"name": "NEW IN YOUR ARMY",
 			"side": "nest"
 		}
 	},
@@ -3486,12 +3486,14 @@
 		"new_dilophosaurus": {
 			"who": "new",
 			"to": "nest",
-			"text": "NEW: THE VENOM SIRE. A grub becomes him. Rooted by the Mother he fathers Spitters; up, he spits acid from afar."
+			"text": "NEW: THE VENOM SIRE. A grub becomes him. Rooted by the Mother he fathers Spitters; up, he spits acid from afar.",
+			"portrait": "res://assets/icons/dilophosaurus.png"
 		},
 		"new_spitter": {
 			"who": "new",
 			"to": "nest",
-			"text": "NEW: THE SPITTERS. Two to an egg, fathered by the Venom Sire: acid from behind the Raptors, at ground and air."
+			"text": "NEW: THE SPITTERS. Two to an egg, fathered by the Venom Sire: acid from behind the Raptors, at ground and air.",
+			"portrait": "res://assets/icons/spitter.png"
 		}
 	},
 	"stills": {

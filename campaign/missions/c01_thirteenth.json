@@ -3092,7 +3092,7 @@
 			"side": "machine"
 		},
 		"new": {
-			"name": "NEW",
+			"name": "NEW IN YOUR ARMY",
 			"side": "guild"
 		}
 	},
@@ -3394,12 +3394,14 @@
 		"new_winder": {
 			"who": "new",
 			"to": "guild",
-			"text": "NEW: THE WINDER. The guild's hands: it builds, works the presses, and winds the machines; a machine run down stands still."
+			"text": "NEW: THE WINDER. The guild's hands: it builds, works the presses, and winds the machines; a machine run down stands still.",
+			"portrait": "res://assets/icons/winder.png"
 		},
 		"new_clock_soldier": {
 			"who": "new",
 			"to": "guild",
-			"text": "NEW: THE CLOCK SOLDIER. The Light Works makes it: a shielded soldier that never tires while it is wound. Keep the Winders behind them."
+			"text": "NEW: THE CLOCK SOLDIER. The Light Works makes it: a shielded soldier that never tires while it is wound. Keep the Winders behind them.",
+			"portrait": "res://assets/icons/clock_soldier.png"
 		}
 	},
 	"stills": {

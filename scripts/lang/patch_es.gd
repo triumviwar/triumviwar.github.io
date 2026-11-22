@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.162": ["CAMPAÑA: la tarjeta que dice lo que una misión añade a tu ejército dice ahora NUEVO EN TU EJÉRCITO y muestra la imagen de la nueva unidad o edificio, en lugar de un simple NUEVO con una N.", "ESPÉCIMEN UNO (la primera misión del Naturalista): un nuevo objetivo opcional, CRECER HACIA EL SUR, aparece poco después de que el Señor se enraíce: lleva una larva por el camino de atrás, al sur de la guarida, y conviértela en una Tortuga Montículo, porque el pantano de la guarida solo alimenta a unas pocas Bocarraíces. El terreno se muestra en el mapa."],
 	"0.38.161": ["CUARTELES DE LA CAMPAÑA: la caja oscura detrás de cada persona en la que se puede hacer clic (Tomasz, el Rey, Hollweg, Lindqvist) ha desaparecido; era la sombra del botón. El Rey en su estudio es ahora más pequeño (unas tres cuartas partes de su tamaño anterior), sentado en el propio trono de la sala en lugar de dominar la escena."],
 	"0.38.160": ["MÚSICA NUEVA: la misión de París (Las Barricadas de París) empieza con su propio tema, The Barricades of Paris, como Núremberg y Roma. También está en la lista CAMPAÑA del reproductor de música."],
 	"0.38.159": ["Todavía nada cambia en el juego: cada personaje que habla en la campaña tiene ya una voz, y las 235 frases que faltan por grabar están en una sola lista."],

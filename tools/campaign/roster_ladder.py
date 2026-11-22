@@ -183,6 +183,12 @@ def allow_of(faction, upto):
     return out
 
 
+NEW_NAME = "NEW IN YOUR ARMY"
+_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ICON = {c: "res://assets/icons/%s.png" % c for c in CARDS
+        if os.path.exists(os.path.join(_ROOT, "assets", "icons", c + ".png"))}
+
+
 def roster_of(mission_id):
     fac, i = step_of(mission_id)
     return {"allow": allow_of(fac, i), "new": list(LADDER[fac][i][2])}
@@ -209,8 +215,10 @@ def apply(M, mission_id, story_deny=None, at=None):
         if lid in ids:
             continue
         M["lines"][lid] = {"who": "new", "to": side, "text": CARDS[card]}
+        if card in ICON:      # the dialogue box's face: the new piece's own icon (0.38.162, the owner: "what is this NEW?")
+            M["lines"][lid]["portrait"] = ICON[card]
         ids.append(lid)
-    M["speakers"]["new"] = {"name": "NEW", "side": side}
+    M["speakers"]["new"] = {"name": NEW_NAME, "side": side}
     M["triggers"] = [t for t in M["triggers"] if t["id"] != "ladder_new"]
     M["triggers"].append({"id": "ladder_new", "when": {"time": at if at is not None else CARD_AT.get(mission_id, 5)},
                           "do": [{"say": ids}]})

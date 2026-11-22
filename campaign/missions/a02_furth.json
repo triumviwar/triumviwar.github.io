@@ -3812,7 +3812,7 @@
 			"side": "machine"
 		},
 		"new": {
-			"name": "NEW",
+			"name": "NEW IN YOUR ARMY",
 			"side": "guild"
 		}
 	},
@@ -4100,12 +4100,14 @@
 		"new_springer": {
 			"who": "new",
 			"to": "guild",
-			"text": "NEW: THE SPRINGER. Built at the Light Works once an Escapement ticks: it leaps over the line onto what stands behind it."
+			"text": "NEW: THE SPRINGER. Built at the Light Works once an Escapement ticks: it leaps over the line onto what stands behind it.",
+			"portrait": "res://assets/icons/springer.png"
 		},
 		"new_netter": {
 			"who": "new",
 			"to": "guild",
-			"text": "NEW: THE NETTER. Also from the Light Works with an Escapement: its chain and net hold a man fast while the others strike."
+			"text": "NEW: THE NETTER. Also from the Light Works with an Escapement: its chain and net hold a man fast while the others strike.",
+			"portrait": "res://assets/icons/netter.png"
 		}
 	},
 	"stills": {

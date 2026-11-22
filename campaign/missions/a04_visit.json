@@ -4417,7 +4417,7 @@
 			"side": "machine"
 		},
 		"new": {
-			"name": "NEW",
+			"name": "NEW IN YOUR ARMY",
 			"side": "visit"
 		}
 	},
@@ -4830,12 +4830,14 @@
 		"new_heavy_works": {
 			"who": "new",
 			"to": "visit",
-			"text": "NEW: THE HEAVY WORKS. Beside a Mainspring it builds the great machines."
+			"text": "NEW: THE HEAVY WORKS. Beside a Mainspring it builds the great machines.",
+			"portrait": "res://assets/icons/heavy_works.png"
 		},
 		"new_pendulum": {
 			"who": "new",
 			"to": "visit",
-			"text": "NEW: THE PENDULUM. A slow giant whose swing cuts everything round it, flyers too."
+			"text": "NEW: THE PENDULUM. A slow giant whose swing cuts everything round it, flyers too.",
+			"portrait": "res://assets/icons/pendulum.png"
 		}
 	},
 	"stills": {

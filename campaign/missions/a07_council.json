@@ -4802,7 +4802,7 @@
 			"side": "automata"
 		},
 		"new": {
-			"name": "NEW",
+			"name": "NEW IN YOUR ARMY",
 			"side": "crown"
 		}
 	},
@@ -5099,12 +5099,14 @@
 		"new_church": {
 			"who": "new",
 			"to": "crown",
-			"text": "NEW: THE CHURCH. Rome's churches train Missionaries."
+			"text": "NEW: THE CHURCH. Rome's churches train Missionaries.",
+			"portrait": "res://assets/icons/church.png"
 		},
 		"new_missionary": {
 			"who": "new",
 			"to": "crown",
-			"text": "NEW: THE MISSIONARY. He brings the fallen back and leads the people where a soldier can't."
+			"text": "NEW: THE MISSIONARY. He brings the fallen back and leads the people where a soldier can't.",
+			"portrait": "res://assets/icons/missionary.png"
 		}
 	},
 	"stills": {

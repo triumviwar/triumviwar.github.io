@@ -5763,7 +5763,7 @@
 			"side": "assembly"
 		},
 		"new": {
-			"name": "NEW",
+			"name": "NEW IN YOUR ARMY",
 			"side": "crown"
 		}
 	},
@@ -6048,12 +6048,14 @@
 		"new_horse_breeder": {
 			"who": "new",
 			"to": "crown",
-			"text": "NEW: THE HORSE BREEDER. It raises the horses: a mounted man is the fastest thing in a city."
+			"text": "NEW: THE HORSE BREEDER. It raises the horses: a mounted man is the fastest thing in a city.",
+			"portrait": "res://assets/icons/horse_breeder.png"
 		},
 		"new_cuirassier": {
 			"who": "new",
 			"to": "crown",
-			"text": "NEW: THE HORSEMAN. Fast and hard-hitting: ride down the runners before they reach the squares."
+			"text": "NEW: THE HORSEMAN. Fast and hard-hitting: ride down the runners before they reach the squares.",
+			"portrait": "res://assets/icons/cuirassier.png"
 		}
 	},
 	"stills": {

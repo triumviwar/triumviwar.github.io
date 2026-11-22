@@ -208,7 +208,7 @@ func line(lid: String) -> Dictionary:
 	if ln.has("phone") and not Settings.pc():
 		txt = String(ln["phone"])          # (a line with its own words for a phone: the controls differ)
 	return {"id": lid, "who": who, "name": String(sp.get("name", who)), "side": String(sp.get("side", "")),
-		"portrait": portrait_for(who, String(sp.get("name", who)), String(sp.get("portrait", ""))), "text": txt, "still": String(ln.get("still", "")),
+		"portrait": portrait_for(who, String(sp.get("name", who)), String(ln.get("portrait", sp.get("portrait", "")))), "text": txt, "still": String(ln.get("still", "")),
 		"to": String(ln.get("to", ""))}
 
 

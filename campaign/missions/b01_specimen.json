@@ -304,6 +304,12 @@
 			12,
 			4
 		],
+		"south": [
+			8,
+			36,
+			16,
+			14
+		],
 		"ford": [
 			78,
 			43,
@@ -763,6 +769,14 @@
 			"text": "Take her home: walk the Sire back to the Old Mother's den. Linnea follows at his heels."
 		},
 		{
+			"id": "grow",
+			"side": "sire",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "GROW SOUTH: the den's swamp feeds only a few Rootmaws. Walk a grub down the back way south of the den and turn it into a MOUND TURTLE (BUILD) there: its swamp feeds more Rootmaws, and more food means more eggs."
+		},
+		{
 			"id": "rival",
 			"side": "sire",
 			"primary": false,
@@ -973,6 +987,59 @@
 				{
 					"ping": {
 						"area": "den"
+					}
+				}
+			]
+		},
+		{
+			"id": "grow_show",
+			"when": {
+				"fired": "rooted_1"
+			},
+			"delay": 20,
+			"do": [
+				{
+					"objective": {
+						"id": "grow",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"area": "south"
+					}
+				},
+				{
+					"reveal": {
+						"area": "south",
+						"side": "sire",
+						"secs": 15
+					}
+				}
+			]
+		},
+		{
+			"id": "grow_done",
+			"when": {
+				"all": [
+					{
+						"fired": "grow_show"
+					},
+					{
+						"count": {
+							"team": "sire",
+							"kind": "mound_turtle",
+							"area": "south",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "grow",
+						"set": "done"
 					}
 				}
 			]
@@ -2750,7 +2817,7 @@
 			"side": "station"
 		},
 		"new": {
-			"name": "NEW",
+			"name": "NEW IN YOUR ARMY",
 			"side": "sire"
 		}
 	},
@@ -3019,12 +3086,14 @@
 		"new_tyrannosaur": {
 			"who": "new",
 			"to": "sire",
-			"text": "NEW: THE TYRANT SIRE. A grub becomes him. Rooted by the Mother, he fathers her warrior eggs; up, he fights; his ROAR calls the pack."
+			"text": "NEW: THE TYRANT SIRE. A grub becomes him. Rooted by the Mother, he fathers her warrior eggs; up, he fights; his ROAR calls the pack.",
+			"portrait": "res://assets/icons/tyrannosaur.png"
 		},
 		"new_raptor": {
 			"who": "new",
 			"to": "sire",
-			"text": "NEW: THE RAPTORS. Pick them on the Mother's card: an egg of quick biters that hatches in the Sire's nest. Many and fast; weak alone."
+			"text": "NEW: THE RAPTORS. Pick them on the Mother's card: an egg of quick biters that hatches in the Sire's nest. Many and fast; weak alone.",
+			"portrait": "res://assets/icons/raptor.png"
 		}
 	},
 	"stills": {

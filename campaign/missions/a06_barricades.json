@@ -4222,7 +4222,7 @@
 			"side": "assembly"
 		},
 		"new": {
-			"name": "NEW",
+			"name": "NEW IN YOUR ARMY",
 			"side": "crown"
 		}
 	},
@@ -4543,12 +4543,14 @@
 		"new_foundry": {
 			"who": "new",
 			"to": "crown",
-			"text": "NEW: THE FOUNDRY. Cast your own Field Cannons now, and the Mortar."
+			"text": "NEW: THE FOUNDRY. Cast your own Field Cannons now, and the Mortar.",
+			"portrait": "res://assets/icons/foundry.png"
 		},
 		"new_mortar": {
 			"who": "new",
 			"to": "crown",
-			"text": "NEW: THE MORTAR. It lobs its shell over walls: the barricades are its work, not the line's."
+			"text": "NEW: THE MORTAR. It lobs its shell over walls: the barricades are its work, not the line's.",
+			"portrait": "res://assets/icons/mortar.png"
 		}
 	},
 	"stills": {

@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.162", "items": [
+		"CAMPAIGN: the card that tells you what a mission adds to your army now says NEW IN YOUR ARMY and shows the new unit's or building's own picture, instead of a bare NEW with an N.",
+		"SPECIMEN ONE (the Naturalist's first mission): a new optional objective, GROW SOUTH, shows soon after the Sire roots: walk a grub down the back way south of the den and turn it into a Mound Turtle, because the den's swamp alone feeds only a few Rootmaws. The ground is shown on the map.",
+	]},
 	{"v": "0.38.161", "items": [
 		"CAMPAIGN HUBS: the dark box behind each person you can click (Tomasz, the King, Hollweg, Lindqvist) is gone; it was the button's drop shadow. The King in his study is smaller now (about three quarters of his old size), seated in the room's own throne instead of looming over the scene.",
 	]},
