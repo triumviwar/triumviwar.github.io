@@ -7030,7 +7030,7 @@ func _escort_want(army: Array) -> int:
 		return 0
 	var cap := mini(10, maxi(2, game.workers(team).size() / 3))
 	var bal := army.filter(func(u: Unit) -> bool: return u.kind == Defs.BALLISTA_KIND).size()
-	return _great_winder_escort(clampi(2 + cons / 5, 2, cap)) + mini(bal, 2) * BALLISTA_CREW      # (+ the Ballistas' crew: _ballista_crew)
+	return _great_winder_escort(AIWccr.escort_cap(self, cons, cap)) + mini(bal, 2) * BALLISTA_CREW      # (+ the Ballistas' crew: _ballista_crew; wr1000-crown-clockwork: fewer v the Crown)
 
 
 ## Gear mode: each free escort Winder winds (cmd_repair: wind first, then mends) the construct that needs it most

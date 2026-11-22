@@ -337,3 +337,19 @@ static func cw_greedy(opt) -> Array:
 		return []
 	count(opt.ai, "cwpick")
 	return ["economy", "too late to punish: out-expand it"]
+
+
+# ------------------------------------------------------------------ escort: fewer Winders walk with the army
+
+## Blocks 1-11: about 35 of the Clockwork's ~80 Winders lost a game died out with the army, walking with it or mending in
+## the Crown's fire ("move by Musketeer", "repair by Musketeer / Field Cannon"): the escort (AI._escort_want) is one Winder for
+## every 5 constructs, 2 to 10, the Spring Ballistas' crews on top, and every one lost is trained again at home. Here (the
+## Clockwork computer against the Crown) the escort is one for every ESCORT_PER constructs, at most ESCORT_MAX.
+const ESCORT_PER := 8
+const ESCORT_MAX := 6
+
+
+static func escort_cap(ai, cons: int, cap: int) -> int:
+	if not on("escort") or not vs(ai, "clockwork"):
+		return clampi(2 + cons / 5, 2, cap)
+	return clampi(2 + cons / ESCORT_PER, 2, mini(cap, ESCORT_MAX))
