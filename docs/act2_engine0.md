@@ -166,7 +166,8 @@ and TAKING THE CART sat on the cart's name (moved under the cart); 3 the lures' 
 under-line and a stronger green); 4 the tracks did not read on dark grass (a pale scuff under each print); 7 a Brood
 team past the first two had no swamp on screen at all (the Game paints two teams' swamp: the mission's ground now
 paints its own); 8 the gallery was a thin faint line (a trench, a brighter dashed way ahead, the mound bigger).
-The pictures hold the game's clock still, so words that fade in play ("LOOSE!", "FOUND!") pile up a little there.
+The pictures hold the game's clock still, so words that fade in play ("LOOSE!", "FOUND!") pile up a little there, and
+a unit's hover card shows in a corner (the mouse could not be put anywhere without one).
 
 ## Claude's choices (for the owner to confirm)
 
@@ -222,8 +223,12 @@ The pictures hold the game's clock still, so words that fade in play ("LOOSE!", 
 ## Tests run (Godot 4.7, headless)
 
 - tools/test_act2_engine0.gd (new): every piece above, the data checks good and bad, the version, the heir, the hub
-  choice and the briefing's version line, the save keeping the state: RESULT_NEW.
-- Before and after (the same machine; "before" on origin/main 0.38.178): RESULT_TABLE
+  choice and the briefing's version line, the save keeping the state: 78 checks, 0 failures.
+- Before and after (the same machine; "before" on origin/main 0.38.178, failures before / after): test_campaign 0 / 0
+  (129 checks, run again after campaign.json gained "heir": 0), test_campaign_a01 0 / 0, a02 0 / 0, a03 0 / 0, a04 0 / 0,
+  a05 0 / 0, a06 0 / 0, a07 0 / 0, b01 0 / 0, c01 0 / 0, heroes 0 / 0, ironman 0 / 0, save 0 / 0, test_roster_ladder
+  0 / 0, test_war_map 0 / 0, test_campaign_m1 1 / 1 (the same check fails on main: "no recording yet for Tomasz", a
+  recording has been added since that test was written). tools/test_i18n.gd: no failure.
 - Boot: `godot --headless --path . --quit-after 120`: no SCRIPT ERROR / Parse Error.
 - (On this cloud machine every headless Godot run ends with "Aborted", exit 134, after its last line: the engine's
   shutdown here, as Act 1's step 0 noted.)
