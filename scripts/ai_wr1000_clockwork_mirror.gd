@@ -60,11 +60,18 @@ static func fail_waived(ai, army, mine: float) -> bool:
 ## all four games where it was picked (blocks 0 and 1, beaten at 11:17-13:31, a draw where it turned to Balanced). A lost game
 ## decided by a dice throw at 3:00 is no skill: in the mirror the pick is Balanced or Economy.
 static func normal_w(w: Dictionary) -> Dictionary:
-	if not on("nospr") or not w.has("springer"):
-		return w
 	var out := w.duplicate()
-	out.erase("springer")
+	if on("nospr"):
+		out.erase("springer")
+	if on("noeco") and out.size() > 1:
+		out.erase("economy")
 	return out
+
+
+## CHANGE "noeco" (block 6). The Economy race picked by the same dice lost every game it was picked in blocks 0-3: 7 of 7
+## (Hollowfen r0 P2 four times, beaten at 12:35-16:21 with 0.13-0.66 of the Balanced side's army at 8:00; Cinder Steps r0,
+## Frostfang r0, Dune Sea r0 once each). The Balanced side reads it GREEDY at 2:50 and its steady waves punish it before the
+## second and third Clocktowers pay. In the mirror the NORMAL / UNKNOWN pick is Balanced (with "nospr").
 
 
 ## CHANGE "raze" (block 4). A push that has won walks hall to hall as one block: on Ashford r1 (block 2) the push of 61 had
