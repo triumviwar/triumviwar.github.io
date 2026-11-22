@@ -90,9 +90,21 @@ const LAB_PER_HALL := 8
 
 
 static func lab_top(ai, top: int, built: int) -> int:
-	if not on("labcap") or not mirror(ai):
+	if not mirror(ai):
+		return top
+	if on("labcap2"):
+		top = mini(top, LAB_ALL)
+	if not on("labcap"):
 		return top
 	return mini(top, LAB_TOP + LAB_PER_HALL * maxi(0, built - 2))
+
+
+## CHANGE `labcap2`: NO MORE THAN LAB_ALL LABOURERS, HOWEVER MANY HALLS. `labcap` hardly bound (47 labourers at 12:00
+## against 49). The sides that reached the cap late had 95-104 labourers of their 200 supply (block 10 Greenhold r1 P1, block
+## 13 Ashford r0 P2: 13 Barracks, 2,400-2,900 of army, 17,165 gold unspent at 20:00): half the supply idle in the fields
+## while the army stayed the size of a 12:00 army. With 7-8 halls AICrown.owner_lab_cap allows 118-132. Now never over
+## LAB_ALL (64: about two thirds of what the posts of 4 halls hold), so a late army can be 130 supply or more.
+const LAB_ALL := 64
 
 
 ## Called every army think in the mirror (AICrown._army, after the mirror coach's press, before the shared waves).
