@@ -226,7 +226,15 @@ crossing on, every mission has the WHOLE faction (no ladder). Placement in the A
 7. The third crossing is THREE missions on ONE night on three continents, in any order.
 8. Local Catholic allies on every continent (Kongo, Ethiopia, Goa, Manila, Nagasaki, New Spain).
 
-## OWNER QUESTIONS
+## OWNER ANSWERS (2026-11-22 21:08)
+
+"Yes to your recommendations": all eight as recommended. THE CLIMATE RULE shapes the world map; the LOCAL CATHOLIC
+ALLIES fight beside the Crown; Act 3 starts at the outline's size (cut when its plan is written); ANTARCTICA is a short
+mission (the Cold Forge); the third crossing is THREE MISSIONS ON ONE NIGHT in any order; the finale is in ROME; China,
+India's princes, Persia, the Ottomans and Russia stay out (marks at most); d12_luanda and d13_goa go into Act 2 as
+optional missions. The 8 Claude's choices stand.
+
+## OWNER QUESTIONS (answered above)
 
 1. THE CLIMATE RULE (the Brood can't live in the cold, the Clockwork rusts in the wet): yes as the shape of the world
    map? RECOMMENDED: yes (it explains why the dangers spread where they do and gives every continent its own fight).

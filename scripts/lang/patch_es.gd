@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.173": ["Nada cambia en el juego: las respuestas del autor al esbozo de la campaña por el mundo quedaron registradas."],
 	"0.38.171": ["Nada cambia en el juego: quedó escrito para el autor un esbozo de la campaña por todo el mundo (África, las Indias, los mares del sur, las Américas, la Antártida)."],
 	"0.38.170": ["Nada cambia en el juego: las respuestas del autor al plan del Acto 2 quedaron registradas."],
 	"0.38.169": ["Nada cambia en el juego: el plan de la campaña registra que la Madre de la Nidada a la que los científicos llamaron Linnea se convierte en la Reina, un animal y nada más."],

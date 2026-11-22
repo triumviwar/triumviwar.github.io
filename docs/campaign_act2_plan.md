@@ -1026,6 +1026,11 @@ campaign/stills/b01_03.jpg; the Sire = campaign/stills/b01_05.jpg.
 - WORLDWIDE (new direction): "It would be interesting to expand the campaign to be worldwide. Africa, Asia, Oceania,
   all the continents." To plan: where Act 2 (or Act 3's global war) reaches Africa, Asia and Oceania.
 
+- WORLDWIDE (2026-11-22 21:08, docs/campaign_worldwide_plan.md): two OPTIONAL missions abroad join Act 2: d12_luanda
+  (THE HOLD, 2777, the Naturalist, Valadares' letter: eggs in a ship's hold at Luanda) and d13_goa (THE MINING MACHINES,
+  2779, the Clockmaker, Ferrer's report: Concórdia's machines wake in the Viceroy's arsenal); no gating, open after d06
+  and d04, before the crossing.
+
 ## OWNER QUESTIONS
 
 Each with Claude's recommendation (the plan above is written as if it is taken) and what changes either way.
