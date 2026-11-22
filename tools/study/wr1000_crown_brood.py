@@ -7,6 +7,7 @@ changes are study switches passed to every game of a block (`--extra a,b`).
     python3 tools/study/wr1000_crown_brood.py list
     python3 tools/study/wr1000_crown_brood.py run BLOCK [--extra sw1,sw2] [--jobs 2] [--end 1200] [--root DIR]
     python3 tools/study/wr1000_crown_brood.py report [--base BLOCK] [BLOCK ...]
+    python3 tools/study/wr1000_crown_brood.py results BLOCK[+BLOCK] ...   (the win-rate table: won/led/even/behind/lost)
 Data: docs/wr1000_crown_brood/data/<BLOCK>/<tag>/ (result.json, story.txt); the switches of a block in
 docs/wr1000_crown_brood/data/<BLOCK>/extra.txt. Game score = (income earned + 2 x army) Crown / Brood at the bell or the
 defeat, a beaten Crown's score counted a quarter (plan_matrix_report's rule); g = ln(score ratio). A block's numbers:
@@ -196,6 +197,23 @@ if __name__ == "__main__":
                             r(s["army8"]), r(s["army12"]), r(s["halls12"]), r(s.get("d")), r(s.get("t")), s.get("better", ""),
                             s.get("worse", "")])
         print(out)
+    elif cmd == "results":
+        # (the win rate of every block: won / led / even / behind / lost at 20:00, as the job's summary table has it)
+        print("| block | switches | games | won | led | even | behind | lost | mean g | g14 | inc 8 / 12 | army 8 / 12 | halls 12 | defeats (min) |")
+        print("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+        for n in [x for x in sys.argv[2:] if not x.startswith("--")]:
+            rows = {}
+            for part in n.split("+"):
+                for t, x in block(part).items():
+                    rows[part + t] = x
+            s = summary(n, rows)
+            c = {k: sum(1 for x in rows.values() if x["res"] == k) for k in "Ww=lL"}
+            ex = " ".join(sorted(set(open(os.path.join(DATA, p, "extra.txt")).read().strip() for p in n.split("+")
+                                     if os.path.exists(os.path.join(DATA, p, "extra.txt")))))
+            dm = sorted(x["beaten"] / 60.0 for x in rows.values() if x["beaten"])
+            print("| %s | %s | %d | %d | %d | %d | %d | %d | %+.2f | %+.2f | %s / %s | %s / %s | %s | %s |" % (
+                n, ex or "(none)", len(rows), c["W"], c["w"], c["="], c["l"], c["L"], s["g"], s["g14"], f2(s["inc8"]),
+                f2(s["inc12"]), f2(s["army8"]), f2(s["army12"]), "%.1f" % s["halls12"], ", ".join("%.1f" % v for v in dm)))
     elif cmd == "report":
         names = [x for x in sys.argv[2:] if not x.startswith("--") and x != arg("--base", None)]
         base = arg("--base", None)
