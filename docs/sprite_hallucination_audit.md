@@ -147,7 +147,8 @@ flipped to a head-on gun with its barrel up: now frame 1's gun and crew with tho
 side-view frame 2 replaced by frame 1. Left: the dithered fading horse.
 0.38.142: 60 the Mortar's deploy redrawn for E, SE and S (requests M111-M113: the grey horse unhitched and led aside, the
 mortar lifted off the cart and set down; SE came out nearly side-on); `SA_GAP=<px>` in tools/import_sa_strip.py cuts an
-answer's frames at gaps wider than px (a frame made of separate pieces). NE and N still the old collage.
+answer's frames at gaps wider than px (a frame made of separate pieces). 0.38.147: NE too (M114). N is still the old
+collage (its answer drew the horse facing the viewer in the first frames).
 
 ## Redraw requests for the HIGH findings
 

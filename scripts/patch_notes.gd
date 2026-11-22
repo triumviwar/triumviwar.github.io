@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.147", "items": [
+		"THE MORTAR SETS UP PROPERLY facing up-right too: the crew unhitch the grey horse and set the mortar down.",
+	]},
 	{"v": "0.38.146", "items": [
 		"THE CROWN AGAINST THE CROWN, MEASURED (a study; the computer plays as before): 180 Hard computer games of the Crown against itself to 20:00 on six maps. Three games in ten end with a side beaten before 20:00 (most after 18:00), and a side ahead at 12:00 keeps its lead in most games. Seven trial changes to the computer's play in this matchup (finishing off an enemy far behind, pressing a lead sooner, fewer labourers, holding the army home when behind, going out at the supply cap) did not make the games clearly more decisive, so none is on; they stay as study switches for a bigger test.",
 	]},
