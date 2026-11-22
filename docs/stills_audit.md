@@ -1,7 +1,7 @@
 # Campaign stills audit (2026-11-22)
 
 The owner asked (2026-11-22 10:07) for every campaign still to be checked for hallucinations and imperfections, like
-the sprites. All 118 pictures in `campaign/stills/` (59 stills, each with its `_small` copy) were looked at, first on
+the sprites. All 59 stills in `campaign/stills/` were looked at, first on
 2x2 contact sheets, then every one at full size.
 
 ## Fixed (0.38.128)
