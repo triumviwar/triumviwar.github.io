@@ -5,7 +5,9 @@ extends RefCounted
 ## Clockwork computer (Hard OPTIMAL) against itself to 20:00 on 10 parity games. Every change here runs only when a Clockwork
 ## computer faces a Clockwork (mirror(ai, foe)), so the sister jobs of the other pairings merge beside it. Each change has
 ## its own switch: `-- wkm<name>:on` / `:off`; `-- wkm:off` plays the mirror as before this job. The changes KEPT are on by
-## default (KEPT); the rest were measured and not kept (the doc says what each did).
+## default (KEPT); the rest were measured and not kept (the doc says what each did): cap (blocks 2, 8, 13), raze (5),
+## counter (10), mreck (11), raze2 (12), fairfail (15), and nofeed (blocks 7-17: the most games decided, 36 of 40, but spot B
+## won 27 of 36 with it; off until the cause is found).
 
 const KEPT: Array[String] = ["nospr", "noeco"]     # (nospr: block 3, noeco: block 6; nofeed (blocks 7-16) turned off again: spot B won 27 of 36 decided games)
 

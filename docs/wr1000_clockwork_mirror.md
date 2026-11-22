@@ -19,6 +19,17 @@ P1 is always spot A (the top-left start), P2 spot B. "Led" = 10% ahead on income
 |---|---|---|---|---|---|---|---|---|---|
 | ai-opponent-review, 0.38.107 (block 0) | 10 | 2 / 0 / 4 / 0 / 4 | 6 of 10 | 13:59 (11:17-17:16) | -0.53 | -0.20 | 0.96 / 0.99 | 0.87 / 1.75 | 3.3 / 3.3 |
 | **baseline, main 0.38.124 (blocks 1 + 4)** | **20** | **9 / 2 / 3 / 1 / 5** | **14 of 20** | **13:26 (11:27-16:13)** | **+0.49** | **+0.19** | **1.02 / 1.12** | **0.97 / 3.80** | **3.3 / 2.7** |
+| the final defaults: nospr + noeco (blocks 6 + 18) | 20 | 8 / 0 / 5 / 1 / 6 | 14 of 20 | 15:39 (13:22-19:19) | +0.27 | +0.18 | 1.01 / 1.08 | 1.32 / 1.16 | 3.5 / 3.1 |
+| with nofeed too (blocks 7, 9, 14, 16; off at the end) | 40 | 9 / 0 / 2 / 2 / 27 | 36 of 40 | 15:15 (12:12-19:48) | -1.07 | -0.39 | 1.02 / 0.92 | 0.90 / 0.29 | 2.9 / 3.6 |
+
+(g = ln of P1's score over P2's; army ratios are geometric means, swung by games where one army is near 0.)
+
+**In one breath**: the fresh mirror is fair between the two starts and finishes 7 games in 10 by 20:00, but a third of
+its losses came from a dice throw at 3:00 (the Springer timing or the Economy race against Balanced). The job keeps one
+fix: in the mirror OPTIMAL's normal pick is Balanced. With it the games are no more often decided (14 of 20, the same as
+the baseline) but they are decided by play: no game is lost to the opening pick, the defeats come later (median 15:39
+against 13:26) and the starts stay even (8-6). The one change that made the mirror end almost every game (`nofeed`, 36 of
+40) also made spot B win 27 of 36, so it is off.
 
 Read aloud: the mirror finishes most games (14 of 20 by 20:00, most between 12:30 and 14:30); the side ahead at 12:00
 went on to win or lead in 17 of the 18 games where one side was ahead: nobody comes back. No spot edge overall: over
@@ -66,8 +77,8 @@ again at the end, see below). "Decided" is out of 10.
 | 14 | the kept set again | +nofeed | 10 | 15:12 | 1-9 | 10 of 10 | 2.40 | |
 | 15 | `fairfail`: a push that killed 80% of what it lost sets no bar | +nofeed | 8 | 15:40 | 2-6 | 9 of 9 | 1.97 | no |
 | 16 | `nofeed` made symmetric (its spot away from the push, not "below" the Clocktower) and sticky (it no longer flips back to defending when the push steps 600 px on) | nospr+noeco | 8 of 9 | 14:43 | 1-7 | 9 of 9 | 2.03 | |
-| 17 | `nofeed` with `spotswap` (player 1 on spot B): is it the spot or the player? | nospr+noeco | B17_DEC | B17_END | B17_P1 | | | diagnostic |
-| 18 | **the final defaults** (nospr + noeco) | | B18_DEC | B18_END | B18_P1 | | | |
+| 17 | `nofeed` with `spotswap` (player 1 on spot B): is it the spot or the player? | nospr+noeco | 7 | 14:21 | 3-4 (player 1 on spot B) | 6 of 7 | 1.82 | diagnostic |
+| 18 | **the final defaults** (nospr + noeco) | | 7 | 15:37 | 4-3 | 7 of 8 | 1.75 | (block 6 again: 7, 15:41, 4-3) |
 
 **Kept, on by default** (in the mirror only): `nospr` and `noeco`, together: OPTIMAL's normal pick in the mirror is
 Balanced. **Measured and not kept**, off behind their switches: `cap`, `raze`, `raze2`, `counter`, `mreck`, `fairfail`,
@@ -84,7 +95,10 @@ mirror would be about (71, 46)), so the rule seems to magnify a small edge in wh
 whether it is the spot or the player order. Until the cause is found it stays off: a mirror that one start wins 3 times in
 4 is worse to watch than a draw.
 
-B17_TEXT
+Block 17 played `nofeed` with the starts swapped (player 1 on spot B): player 1 won 3, player 2 (now on spot A) won 4, 7
+decided. So it is neither simply the spot nor simply the player order: spot B with player 2 won 24 of 27 decided games in
+blocks 9, 14 and 16, and block 7 (the same code) had gone 6-3 the other way. Ten games can't settle it; the proposals say
+where to look.
 
 ## Claude's choices for the owner
 
