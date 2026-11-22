@@ -64,6 +64,23 @@ chooses which to fight first. Both fronts are played; the one fought second has 
 Act 2 ends with neither danger beaten: the act's name is the BREAKING, the Crown's hold on the world cracking. Act 3
 (the Fall of the Colonies) begins on the war map as Act 2 leaves it.
 
+## THE THREE RULES FOR EVERY MISSION (owner 2026-11-22 21:30-21:42, from his notes on b01)
+
+The owner's notes on the Naturalist's first mission (the NEW card unclear, no word to expand south, "Rio Negro" read as a
+message, five eggs too long, Linnea too slow, follow on right-click, flat voices, hub shadows, the King too big) come down
+to three rules. Every Act 2 job follows them, and checks them before its DONE:
+
+1. SAY IT PLAINLY. Every step tells the player what to do and why (an objective line and, the first time, a short line
+   from a character); every new card, label or caption explains itself (a place reads as a place: "Narration · the Rio
+   Negro"); nothing assumes an experienced RTS player (expanding, rooting, where to go next are asked for in words).
+2. NO WAITING. No escort, count, timer or walk leaves the player idle: escorted characters keep the army's pace, counts
+   are short (two or three, not five), and anything that must take time gives the player something to do meanwhile. The
+   job's sim measures the longest stretch with nothing to do (target: under 45 s).
+3. CHECK THE FEEL. Before DONE the job looks at screenshots of every new scene (hub, stills on screen, the mission at
+   its key moments) for scale, shadows and odd overlaps; every dramatic line is marked with its feeling in the voice
+   table (docs/chatterbox_todo.md and tools/voice_clone/emotions.json) so Chatterbox reads it with emotion; units given
+   orders (follow, escort) keep doing them.
+
 ## Act 2 as a whole
 
 ### The missions and the order

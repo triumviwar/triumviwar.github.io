@@ -198,6 +198,10 @@
   Viagem; storms, the Cape, privateers' sea battles in stills, ships with dangers in the hold); doc section "THE SEA". THE BALLOONIST (owner 21:33): joins
   with the Observation Balloon (C8, d10_jungle); proposed Father Inácio Lourenço, a Brazilian priest-aeronaut (inspired by
   Gusmão, invented); stills from the air, the fog lifted in d10, his own scouting mission in Act 3; doc "THE BALLOONIST".
+- THE THREE MISSION RULES (owner 2026-11-22 21:42 "Do it", from his b01 notes; docs/campaign_act2_plan.md "THE THREE
+  RULES"): SAY IT PLAINLY (every step and new card explains itself, nothing assumes an RTS veteran), NO WAITING (no idle
+  stretch over ~45 s, escorts keep pace, short counts), CHECK THE FEEL (screenshots for scale/shadows, dramatic lines
+  marked for emotion, orders that stick). Every campaign job follows them. ACT 2 BUILD STARTED: job act2-engine0.
 - ACT 2 ANSWERS (owner 2026-11-22 20:35-20:39; docs/campaign_act2_plan.md "OWNER ANSWERS"): every recommendation
   accepted; Linnea becomes the Queen AS AN ANIMAL; NO BROOD HUB OR WAR MAP EVER (the Naturalist always tells the Brood's
   story); the crossing's order has NO CANON (the player chooses); NEW: the campaign should go WORLDWIDE (Africa, Asia,

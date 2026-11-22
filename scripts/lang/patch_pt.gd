@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.178": ["Ainda nada muda no jogo: ficaram escritas três regras para cada missão da campanha (dizer as coisas claramente, nada de esperas, verificar a sensação), e começou a construção do Ato 2."],
 	"0.38.177": ["Nada muda no jogo: o plano da campanha ganha um balonista, que chega com o Balão de Observação e mostra o mundo visto do ar."],
 	"0.38.176": ["Nada muda no jogo: o plano da campanha passa a ter o mar: viagens contadas em pinturas, um capitão de navio que volta, tempestades e batalhas navais em pinturas."],
 	"0.38.175": ["Nada muda no jogo: começou um estudo para tornar a Coroa contra a Ninhada mais equilibrada."],
