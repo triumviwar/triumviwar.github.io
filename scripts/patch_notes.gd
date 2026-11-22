@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.129", "items": [
+		"BROOD SPRITES CLEANED UP: the Raptor dies falling once (it flipped over and back), the Brute rams with its horns (its attack spat acid), the Tyrant Sire dies as the same crouched beast (it turned into a thin upright one), the Tyrant Challenger no longer grows a limb out of its back as it dies, the Hatchlings and the Storm Challenger no longer lose half their body in one wing-beat, the dark patch between wing and neck of the Storm Sire and the Storm Challenger is gone, and the Storm Challenger flying north points its beak away from you in every frame.",
+	]},
 	{"v": "0.38.128", "items": [
 		"TWO CAMPAIGN PAINTINGS FIXED: in The Fürth Line the city seen through the barn door is Nuremberg now (it looked like the Moscow Kremlin), and in Father Ferrer's Visit the old clockmaker stands on his own two feet among the broken automata (he was sunk into the cobbles to the waist).",
 	]},

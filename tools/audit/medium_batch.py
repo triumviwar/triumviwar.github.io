@@ -68,17 +68,47 @@ JOBS = [
      [("1_current_walk_s.png", [("musketeer_armoured", "walk_s")]), ("2_walk_se_e_model.png", [("musketeer_armoured", "walk_se"), ("musketeer_armoured", "walk_e")])]),
 ]
 
+RAP = "the Raptor (a slim green reptilian raptor with pure red spines along its back and head, a long tail, two clawed legs)"
+BRU = "the Brute (a heavy squat armoured reptile with a bony shell and a frill, olive green with pure red spines)"
+TYR = "the Tyrant Sire (a huge crouched green tyrannosaur with pure red spines along its back, a big head, small arms, a long heavy tail)"
+TCH = "the Tyrant Challenger (a big green tyrannosaur-like reptile with pure red spines, a big head and a long tail)"
+HAT = "the Hatchlings (a little flock of three small green reptile hatchlings with leathery bat-like wings and pure red spines, flying together)"
+STC = "the Storm Challenger (a green pterosaur with leathery wings, a long beak and a tall pure red crest, pure red spines along the wing edges)"
+LOOK = {"raptor": "creature, its colours and proportions", "brute": "creature, its colours and proportions",
+        "tyrannosaur": "creature, its colours and proportions", "tyrant_challenger": "creature, its colours and proportions",
+        "hatchlings": "creatures, their colours and proportions", "storm_challenger": "creature, its colours and proportions"}
+
+JOBS += [
+    (21, "raptor", "death_e", 5, RAP, "dying, in a side view facing right (east), 5 frames that follow on one from the other: 1 struck, rearing back; 2 falling sideways; 3 hitting the ground on its side; 4 lying on its side, legs folding; 5 still, lying on its side. It falls ONCE and stays down, the same side of the body toward us in every frame", "the east view: facing right", "the body flipping over between frames, lying on its back with legs up,",
+     [("1_current_death_e.png", [("raptor", "death_e")]), ("2_walk_e_model.png", [("raptor", "walk_e")])]),
+    (13, "brute", "attack_e", 5, BRU, "attacking in a side view facing right (east), 5 frames: 1 head lowered, gathering; 2 lunging forward; 3 the head-butt, frill flared; 4 the impact; 5 pulling back to stand. The same creature and shell in every frame, all four feet on the ground", "the east view: facing right", "a rearing pose, a pale belly patch, a different shell or frill between frames,",
+     [("1_current_attack_e.png", [("brute", "attack_e")]), ("2_walk_e_model.png", [("brute", "walk_e")])]),
+    (24, "tyrannosaur", "death_se", 6, TYR, "dying, in a three-quarter view toward the lower right (south-east), 6 frames: 1 the crouched pose of the walk, struck, head thrown up; 2 staggering; 3 the legs buckling; 4 crashing down onto its side; 5 lying, the tail falling; 6 still on the ground. It is the SAME crouched creature as the walk from the first frame, its head always visible", "the south-east view: three-quarter toward the lower right", "an upright kaiju pose, a thinner smaller body in the first frames, a missing head,",
+     [("1_current_death_se.png", [("tyrannosaur", "death_se")]), ("2_walk_se_model.png", [("tyrannosaur", "walk_se")])]),
+    (25, "tyrant_challenger", "death_se", 5, TCH, "dying, in a three-quarter view toward the lower right (south-east), 5 frames: 1 struck, rearing; 2 staggering; 3 falling onto its side; 4 lying, the tail and legs settling; 5 still. ONE head and neck, two legs and one tail in every frame", "the south-east view: three-quarter toward the lower right", "a limb sticking up from the back, a second neck or head,",
+     [("1_current_death_se.png", [("tyrant_challenger", "death_se")]), ("2_walk_se_model.png", [("tyrant_challenger", "walk_se")])]),
+    (16, "hatchlings", "walk_se", 6, HAT, "flying together toward the lower right (south-east), 6 frames, a seamless wing-beat loop: wings up, half down, fully down, half up, and back. Every hatchling whole in every frame, with exactly two wings, a tail and two hind legs each", "the south-east view: flying toward the lower right", "a truncated body, a missing wing or tail, a third wing,",
+     [("1_current_walk_se.png", [("hatchlings", "walk_se")]), ("2_walk_e_model.png", [("hatchlings", "walk_e")])]),
+    (23, "storm_challenger", "walk_se", 6, STC, "flying toward the lower right (south-east), 6 frames, a seamless wing-beat loop: wings up, half down, fully down, half up, and back. The whole creature in every frame with exactly two wings", "the south-east view: flying toward the lower right", "a truncated body, a missing wing, a third wing, dark patches between wing and neck,",
+     [("1_current_walk_se.png", [("storm_challenger", "walk_se")]), ("2_walk_e_model.png", [("storm_challenger", "walk_e")])]),
+    (22, "storm_challenger", "attack_n", 6, STC, "attacking while flying AWAY from the viewer, seen from behind and above (its back and tail toward us, its beak pointing UP the image, away from us), 6 frames: 1 gliding; 2 wings raised; 3 diving forward and up the image; 4 the beak strike; 5 pulling up; 6 gliding again. The beak points up the image in EVERY frame", "the north view: flying away, seen from behind", "the beak pointing down toward the viewer, the head flipping round between frames,",
+     [("1_current_attack_n.png", [("storm_challenger", "attack_n")]), ("2_walk_n_model.png", [("storm_challenger", "walk_n")])]),
+]
+
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."
     os.makedirs(out, exist_ok=True)
+    only = set(int(x) for x in sys.argv[2].split(",")) if len(sys.argv) > 2 else None
     for n, unit, strip, frames, who, what, view, avoid, refs in JOBS:
+        if only and n not in only:
+            continue
         pid = "sm%02d_%s_%s" % (n, unit, strip)
         dd = os.path.join(mr.ROOT, "docs/redraw_refs", pid)
         os.makedirs(dd, exist_ok=True)
         for name, rows in refs:
             mr.render(rows, os.path.join(dd, name))
-        text = ("Make ONE row only. Draw %s %s. The man, horse, outfit and colours of the references. " % (who, what)
+        text = ("Make ONE row only. Draw %s %s. The %s of the references. "  % (who, what, LOOK.get(unit, "man, horse, outfit and colours"))
                 + COMMON % (avoid, view, frames))
         json.dump({"pid": pid, "unit": unit, "strip": strip, "frames": frames, "text": text,
                    "refs": [os.path.join(dd, r[0]) for r in refs]}, open(os.path.join(out, "M%02d.json" % n), "w"))

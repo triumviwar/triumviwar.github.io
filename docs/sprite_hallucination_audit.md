@@ -102,6 +102,20 @@ docs/redraw_refs/sm<NN>_*/, prompts as JSON); next in its list: M79, M80, M82 (H
 M63-M65 (Musketeer), M67, M68 (Guardsman); then the other MEDIUM findings need JOBS entries. Still to do: the rest of
 the MEDIUM findings; the Brood rally CURSOR (a flag on a pole) may want the same change.
 
+## Done (2026-11-22, 0.38.125-0.38.129)
+
+MEDIUM findings: M79, M80, M82 (Horseman attack N/NE, walk S), M76, M77 (Armoured Dragoon idle E, walk N), M63-M65
+(Musketeer idle S, melee N, reload N), M67, M68 (Guardsman melee N, walk S, now 6 frames). The Brood (0.38.129):
+21 Raptor death E redrawn (falls once, stays down); 13 Brute attack E redrawn (a horned head-butt, the old strip spat
+acid it never uses); 24 Tyrant Sire death SE redrawn (the crouched Sire from the first frame); 25 Tyrant Challenger
+death SE: frame 3 (the limb out of the back) replaced by frame 4 (its redraw came out brighter green and side-on, so the
+old strip was kept); 16 Hatchlings and 23 Storm Challenger fly SE: the truncated code-patched frame 2 replaced by frame 3;
+20 and 23 the navy patch between wing and neck made see-through (tools/clear_navy_patches.py); 22 Storm Challenger
+north: the fly loop and the swoop's frames 0, 4, 5 flipped top to bottom so the beak points away in every north frame
+(tools/flip_storm_n.py). A reptilian Hatchlings design (a small wyvern) came out of the SE request and is kept as an
+idea for finding 92 (the chicken-like Hatchlings) in art/redraws/ideas/hatchlings_wyvern_se_chatgpt.png: changing
+it means every view and the portrait, an owner's call.
+
 ## Redraw requests for the HIGH findings
 
 One request a strip (the Raptor's is three one-frame idles in one row). Every request stands alone, in the same style as
