@@ -3540,6 +3540,8 @@ func owner_lab_cap() -> int:
 
 
 func _lab_want(want: int) -> int:
+	if AIWccr.lab_cap(self) >= 0:
+		want = mini(want, AIWccr.lab_cap(self))       # (wr1000-crown-clockwork: labourers stop at 70, whatever the plan)
 	if not owner_on() or lab_cap_off:
 		return want
 	if difficulty < 2:
