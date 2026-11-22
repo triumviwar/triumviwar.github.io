@@ -247,3 +247,20 @@ static func _release(ai) -> void:
 			if away.length() < 1.0:
 				away = Vector2.RIGHT
 			t.cmd_move(t.position + away.normalized() * SIRE_AWAY * Defs.TILE)
+
+
+# ------------------------------------------------------------------ table (block 6)
+## TABLE: the Clockwork's reckoning of the Brood's army has a floor from a table of what a Brood has by that minute
+## (AICwArmy.TABLES "brood": 10:00 1,900, 12:00 2,700). In this pairing's games (blocks 1-3, 30 games) the Brood's army
+## was 2,430 at 10:00 and 3,805 at 12:00 (medians), so the push went out at about 1.1 times the real army and "pressed on
+## to finish" with a reckoning of half the truth (dune sea r0 12:13: reckoned 1,795, the Brood had 3,870), met the
+## Spitters in the open and was shot in the back on the way home. The floor is now the median of those games (lower than
+## the old table before 9:00, where the Brood's army was smaller than it said).
+const BROOD_TABLE := [[0.0, 0.0], [180.0, 150.0], [300.0, 450.0], [360.0, 600.0], [420.0, 800.0], [480.0, 1000.0],
+	[540.0, 1600.0], [600.0, 2400.0], [660.0, 3200.0], [720.0, 3800.0]]
+
+
+static func reckon_table(ai, tab: Array) -> Array:
+	if on("table") and cw_v_brood(ai):
+		return BROOD_TABLE
+	return tab
