@@ -547,7 +547,7 @@ func _build_words(b: Dictionary) -> String:
 	if float(b.get("income", 0.0)) > 0.0:
 		w.append(Loc.t("+%d%% income") % int(round(float(b["income"]) * 100)))
 	if bool(b.get("trade", false)):
-		w.append(Loc.t("+10%% more for each Trade Post next to it"))
+		w.append(Loc.t("+10% more for each Trade Post next to it"))
 	if bool(b.get("swamp", false)):
 		w.append(Loc.t("the land becomes wet: the Clockwork rusts in it"))
 	if WWRules.MEND_AT.get(war.current(), []).has(String(b["id"])):

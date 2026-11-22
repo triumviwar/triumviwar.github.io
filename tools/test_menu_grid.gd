@@ -61,7 +61,7 @@ func _run() -> void:
 	var fixed := ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "worldwar"]
 	var miss := fixed.filter(func(id: String) -> bool: return not b.has(id))
 	_check("the 9 fixed slots", miss.is_empty(), miss)
-	_check("WORLD WAR in row 3, column 2 (world-war-mode)", b["worldwar"].text == "WORLD WAR" and b["worldwar"].position.y > b["exit"].position.y + 1.0 and b["worldwar"].position.x > b["tutorial"].position.x + 1.0, b["worldwar"].position)
+	_check("WORLD WAR in row 3, column 2 (world-war-mode)", b["worldwar"].text.replace("\n", " ") == "WORLD WAR" and b["worldwar"].position.y > b["exit"].position.y + 1.0 and b["worldwar"].position.x > b["tutorial"].position.x + 1.0, [b["worldwar"].position, b["exit"].position, b["tutorial"].position])
 	_check("slot order", main.MENU_SLOTS == ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "continue", "worldwar", "", ""], main.MENU_SLOTS)
 	_check("CAMPAIGN enabled (0.30.0)", not b["campaign"].disabled, b["campaign"].text)
 	_check("TUTORIAL next to CAMPAIGN (same row)", b["tutorial"].text == "TUTORIAL" and absf(b["tutorial"].position.y - b["campaign"].position.y) < 1.0 and b["tutorial"].position.x < b["campaign"].position.x, [b["tutorial"].position, b["campaign"].position])

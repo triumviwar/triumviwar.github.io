@@ -57,12 +57,12 @@ func save(path := "") -> bool:
 	if path == "":
 		path = path_of(String(d["name"]))
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DIR))
-	d["rng"] = rng.state
+	d["rng"] = str(rng.state)          # (as text: a 64-bit number would lose its last digits as a JSON number)
 	d["saved"] = Time.get_unix_time_from_system()
 	var f := FileAccess.open(path, FileAccess.WRITE)
 	if f == null:
 		return false
-	f.store_string(JSON.stringify(d))
+	f.store_string(JSON.stringify(d, "", false))          # (the keys in their own order: the dice fall the same after a load)
 	return true
 
 
@@ -92,8 +92,8 @@ static func from_dict(v: Dictionary) -> WWWar:
 	for r in w.d["regions"].values():
 		r["guard"] = int(r.get("guard", 0))
 	w.rng.seed = int(w.d.get("seed", 0))
-	if w.d.has("rng"):
-		w.rng.state = int(w.d["rng"])
+	if w.d.get("rng") is String:
+		w.rng.state = (w.d["rng"] as String).to_int()
 	return w
 
 
@@ -318,7 +318,9 @@ func remove_army(id: String) -> void:
 ## Take a share of an army's units (rounded fairly by the war's dice); an army left with nothing is gone.
 func lose(a: Dictionary, share: float) -> void:
 	share = clampf(share, 0.0, 1.0)
-	for k in a["units"].keys():
+	var ks: Array = a["units"].keys()
+	ks.sort()
+	for k in ks:
 		var n := int(a["units"][k])
 		var gone := n * share
 		var whole := int(floor(gone))
