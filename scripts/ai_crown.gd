@@ -2836,6 +2836,7 @@ func _army() -> void:
 		vbr.track()             # (crown-coach-v-brood: the kills of the last minute, for the counter)
 	if mirror() != null:
 		cm.press()              # (crown-mirror-coach: the side ahead presses, AICrownMirror.press)
+		AIWr1000CrownMirror.army_tick(self)     # (wr1000-crown-mirror: its mirror experiments on the wave)
 	super()
 
 

@@ -93,3 +93,50 @@ static func lab_top(ai, top: int, built: int) -> int:
 	if not on("labcap") or not mirror(ai):
 		return top
 	return mini(top, LAB_TOP + LAB_PER_HALL * maxi(0, built - 2))
+
+
+## Called every army think in the mirror (AICrown._army, after the mirror coach's press, before the shared waves).
+static func army_tick(ai) -> void:
+	if on("behind"):
+		_behind(ai)
+
+
+## CHANGE `behind`: THE SIDE BEHIND KEEPS ITS ARMY. Block 3, Dune Sea r0: P1, behind after a lost field fight at 8:49
+## (1,410 killed for 2,410), went on sending what it had out in small groups ("fight at 11:15 out: killed 0, lost 175",
+## 11:44 "killed 0, lost 625") and was beaten at 14:52 with its labourers down from 50 to 6. Now, from BEHIND_FROM, a side
+## whose fighters are worth under BEHIND_SHARE of the enemy army seen in the last BEHIND_FRESH s (BEHIND_MIN of it at
+## least) sends no new wave: it holds at home, behind its walls and on its high ground, and builds up until it is not
+## behind any more (the bar it had comes back). A wave already out is not called back by this (the defence's own rules do).
+const BEHIND_FROM := 480.0
+const BEHIND_SHARE := 0.6
+const BEHIND_FRESH := 90.0
+const BEHIND_MIN := 600.0
+const HOLD_BAR := 990             # (under 999: the Timing plan and AICrown read 999 as "no bar set yet")
+
+
+static func _behind(ai) -> void:
+	var game = ai.game
+	var held: bool = ai.has_meta("wcm_behind_bar")
+	var behind := false
+	if game.clock >= BEHIND_FROM and ai.ch != null and game.clock - float(ai.ch._last_army_t) <= BEHIND_FRESH:
+		var known: float = ai.ch.foe_known()
+		if known >= BEHIND_MIN:
+			var mine := 0.0
+			for u in game.units:
+				if AIHunt.fighter(u, ai.team):
+					mine += float(Game.unit_value(u))
+			behind = mine < known * BEHIND_SHARE
+			if behind and not held and not ai._attacking:
+				ai.set_meta("wcm_behind_bar", ai._attack_at)
+				ai._attack_at = HOLD_BAR
+				AICrownRules.fire(ai, "wcm_behind")
+				if game.mlog:
+					game.mlog.add("%s is behind (%d of army against the %d it saw): it keeps its army at home and builds up (wr1000 behind)" % [game.mlog.who(ai.team), int(mine), int(known)])
+				return
+	if held and not behind:
+		ai._attack_at = int(ai.get_meta("wcm_behind_bar"))
+		ai.remove_meta("wcm_behind_bar")
+		if game.mlog:
+			game.mlog.add("%s is not behind any more: its waves go again (wr1000 behind)" % game.mlog.who(ai.team))
+	elif held:
+		ai._attack_at = maxi(ai._attack_at, HOLD_BAR)
