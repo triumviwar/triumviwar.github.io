@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.150": ["CORRECCIONES DE ARTE: el Retador Tirano y el Retador Venenoso muertos mirando hacia ti ahora caen mirando hacia ti (se giraban de lado al morir)."],
 	"0.38.149": ["ARREGLOS DE ARTE: el Carro de Pólvora yendo abajo a la derecha ya no se gira hacia ti dos cuadros de cada vuelta; la cola del Escupidor ya no se encoge al escupir; el Piquero de la campaña caminando arriba a la derecha ya no lleva dos picas en un cuadro."],
 	"0.38.148": ["ARREGLOS DE ARTE: el Misionero vendando a un soldado de espaldas muestra la espalda (mostraba el frente); el Piquero rebelde se afirma y embiste con la pica nivelada hacia ti y abajo a la derecha (apuntaba al suelo), y su embestida alejándose mantiene un solo ángulo (la pica saltaba hacia arriba)."],
 	"0.38.147": ["EL MORTERO SE MONTA BIEN también mirando arriba a la derecha: la dotación desengancha el caballo gris y pone el mortero en el suelo."],

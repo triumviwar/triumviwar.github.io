@@ -180,6 +180,20 @@ JOBS += [
      [("1_current_attack_n.png", [("rebel_pikeman", "attack_n")]), ("2_attack_e_pose.png", [("rebel_pikeman", "attack_e")]), ("3_walk_n_view.png", [("rebel_pikeman", "walk_n")])]),
 ]
 
+VCH = "the Venom Challenger (a two-legged olive-green reptile, lean like a dilophosaurus, with a pure red frill round its neck and a row of pure red spines down its back and long tail)"
+LOOK["venom_challenger"] = "creature, its colours and proportions"
+_DIE = "5 frames: 1 struck, rearing; 2 staggering; 3 falling; 4 lying, the tail and legs settling; 5 still. ONE head and neck, two legs and one tail in every frame, the SAME facing as the first frame throughout"
+JOBS += [
+    (119, "tyrant_challenger", "death_s", 5, TCH, "dying, facing the viewer (toward the bottom of the image), its head and chest toward us, falling backward away from the viewer; " + _DIE, "the south view: facing the viewer", "a side view, the body turned to the right,",
+     [("1_current_death_s.png", [("tyrant_challenger", "death_s")]), ("2_walk_s_model.png", [("tyrant_challenger", "walk_s")])]),
+    (120, "venom_challenger", "death_s", 5, VCH, "dying, facing the viewer (toward the bottom of the image), its head and frill toward us, falling backward away from the viewer; " + _DIE, "the south view: facing the viewer", "a side view, the body turned to the right,",
+     [("1_current_death_s.png", [("venom_challenger", "death_s")]), ("2_walk_s_model.png", [("venom_challenger", "walk_s")])]),
+    (121, "venom_challenger", "death_ne", 5, VCH, "dying, facing three-quarter AWAY toward the upper right, its back half turned to us, falling forward toward the upper right; " + _DIE, "the north-east view: three-quarter from behind, toward the upper right", "a side view, the body turned to the right, its face toward us,",
+     [("1_current_death_ne.png", [("venom_challenger", "death_ne")]), ("2_walk_ne_model.png", [("venom_challenger", "walk_ne")])]),
+    (122, "venom_challenger", "death_n", 5, VCH, "dying, facing straight AWAY from the viewer (toward the top of the image), its back and tail toward us, NO face, falling forward away from us; " + _DIE, "the north view: seen from behind", "a side view, the body turned to the right, its face toward us,",
+     [("1_current_death_n.png", [("venom_challenger", "death_n")]), ("2_walk_n_model.png", [("venom_challenger", "walk_n")])]),
+]
+
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."

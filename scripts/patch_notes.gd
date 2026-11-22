@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.150", "items": [
+		"ART FIXES: the Tyrant Challenger and the Venom Challenger killed while facing you now fall facing you (they turned sideways as they died).",
+	]},
 	{"v": "0.38.149", "items": [
 		"ART FIXES: the Powder Wagon driving down-right no longer turns toward you for two frames of each loop; the Spitter's tail no longer shrinks as it spits; the campaign Pikeman walking up-right no longer carries two pikes for a frame.",
 	]},

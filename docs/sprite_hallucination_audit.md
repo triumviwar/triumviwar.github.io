@@ -155,6 +155,9 @@ answer of 4 frames each, cut into brace (frame 1) and attack (frames 2-4)); 124 
 0.38.149: 33 the Crown campaign Pikeman's north-east walk frame 1 (two pike shafts) replaced by frame 3; 188 the Powder
 Wagon's south-east walk frames 0-1 (more front-on) replaced by frames 4-5; 102 the Spitter's east spit frame 3 gets frame 2's
 full tail.
+0.38.150: 103 the Tyrant Challenger's south death redrawn facing you all the way down (M119); 104 the Venom
+Challenger's south death the same (M120). Its NE and N deaths (M121, M122) still wait: ChatGPT drew NE as a side
+profile again, and that account's attachment limit was reached.
 
 ## Redraw requests for the HIGH findings
 

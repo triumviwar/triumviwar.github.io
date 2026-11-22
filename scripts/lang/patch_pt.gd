@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.150": ["CORREÇÕES DE ARTE: o Desafiante Tirano e o Desafiante Venenoso mortos virados para você agora caem virados para você (viravam de lado ao morrer)."],
 	"0.38.149": ["CORREÇÕES DE ARTE: a Carroça de Pólvora indo para baixo à direita não se vira mais para você em dois quadros de cada volta; a cauda do Cuspidor não encolhe mais quando ele cospe; o Piqueiro da campanha andando para cima à direita não carrega mais dois piques num quadro."],
 	"0.38.148": ["CORREÇÕES DE ARTE: o Missionário fazendo curativo num soldado de costas mostra as costas (mostrava a frente); o Piqueiro rebelde firma e investe com o pique nivelado na sua direção e para baixo à direita (apontava para o chão), e a investida para longe de você mantém um só ângulo (o pique pulava para cima)."],
 	"0.38.147": ["O MORTEIRO SE MONTA DIREITO também virado para cima à direita: a guarnição desatrela o cavalo cinza e põe o morteiro no chão."],
