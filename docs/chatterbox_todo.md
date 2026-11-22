@@ -15,6 +15,10 @@ RECORDED 2026-11-18 (0.38.70): the big run (tools/voice_clone/lines_big.txt, 374
 announcer's 21 lines in Lindqvist's v2 voice and every mission line of the King, Hollweg, Lindqvist, Valadares (explorer ref),
 Fairleigh, Ruggieri and Varenne. Still to do: the voices marked * below (design them first), then make_big_lines.py again.
 
+NEXT RUN (2026-11-22): tools/voice_clone/lines_big.txt holds the 3 lines added since the big run (Hollweg's two c01
+endings about the mill seed, Fairleigh's p01 line about the second camp). Everything else still to record waits on a
+voice to DESIGN first (section 3): 305 lines, most of them Ferrer 51, Tomasz 49, Jakob 26, Delorme 17, Benedito 16.
+
 ## 1. The Brood announcer: a new set in Lindqvist's new voice (owner 2026-11-18 15:55)
 
 "Now that the voice of the naturalist changed we need a completely new voice line set for the Brood announcer."

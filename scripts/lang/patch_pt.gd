@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.153": ["Nada muda no jogo: a lista de gravação de vozes está em dia (três falas novas da campanha para gravar)."],
 	"0.38.152": ["CORREÇÕES DE ARTE: a fogueira não tem mais um triângulo escuro atrás das chamas, a torre em ruínas não tem mais uma névoa azulada à esquerda; no experimento de baioneta do Arsenal a abóbora é atingida antes de estourar (ela estourava e depois aparecia inteira de novo); a Casa do Cuco danificada perdeu um pedaço de entulho cortado na borda."],
 	"0.38.151": ["CORREÇÕES DE ARTE: acabaram os soluços nas voltas do Mosqueteiro e do Guarda parados de costas, do golpe de sabre do Cavaleiro na sua direção (o cavalo se torcia num quadro), do Operário segurando um barril (o barril pulava pelo peito) e do Cuco voando para cima à direita (ele se virava de lado num quadro); pontinhos soltos tirados de alguns soldados, pedras e do ícone de Tensão."],
 	"0.38.150": ["CORREÇÕES DE ARTE: o Desafiante Tirano e o Desafiante Venenoso mortos virados para você agora caem virados para você (viravam de lado ao morrer)."],

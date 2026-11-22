@@ -14,7 +14,7 @@ HERE = os.path.join(ROOT, "tools", "voice_clone")
 
 # who -> (reference, pitch, exaggeration). The King as in the prologue (deeper, calm).
 VOICES = {
-    "king": ("king_ref.wav", -1.5, 0.4),
+    "king": ("king_ref.wav", 0.0, 0.4),  # pitch 0: -1.5 muffled him (owner 2026-11-18)
     "hollweg": ("refs/hollweg_ref.wav", 0.0, 0.5),
     "lindqvist": ("refs/lindqvist_ref.wav", 0.0, 0.5),
     "valadares": ("refs/explorer_ref.wav", 0.0, 0.5),
@@ -30,7 +30,8 @@ def announcer():
     out = []
     for ln in open(os.path.join(ROOT, "docs", "chatterbox_todo.md"), encoding="utf-8"):
         m = re.match(r"\| ([a-z0-9_]+) \| [^|]+ \| (.+?) \|\s*$", ln)
-        if m and m.group(1) not in ("key", "mission"):
+        if m and m.group(1) not in ("key", "mission") and not os.path.exists(
+                os.path.join(ROOT, "assets", "voice", "announcer", "brood", m.group(1) + ".ogg")):
             out.append(("brood__" + m.group(1), m.group(2).strip()))
     return out
 
@@ -58,9 +59,10 @@ def main():
             "# A stopped run picks up where it left off. EVERY CAMPAIGN LINE IS A PLACEHOLDER (rewritten later).", ""]
     ann = announcer()
     total = 0
-    rows += ["# ---- The Brood announcer, Lindqvist's v2 voice (%d)" % len(ann),
-             "[ref refs/lindqvist_ref.wav]", "[pitch 0]", "[exaggeration 0.5]"]
-    rows += ["%s | %s" % r for r in ann]
+    if ann:
+        rows += ["# ---- The Brood announcer, Lindqvist's v2 voice (%d)" % len(ann),
+                 "[ref refs/lindqvist_ref.wav]", "[pitch 0]", "[exaggeration 0.5]"]
+        rows += ["%s | %s" % r for r in ann]
     total += len(ann)
     ml = mission_lines()
     for who in ORDER:

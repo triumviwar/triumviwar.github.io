@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.153": ["Nada cambia en el juego: la lista de grabación de voces está al día (tres frases nuevas de la campaña para grabar)."],
 	"0.38.152": ["CORRECCIONES DE ARTE: la hoguera ya no tiene un triángulo oscuro detrás de las llamas, la torre en ruinas ya no tiene una neblina azulada a su izquierda; en el experimento de bayoneta de la Armería la calabaza recibe el golpe antes de reventar (reventaba y luego aparecía entera otra vez); la Casa del Cuco dañada perdió un trozo de escombro cortado en el borde."],
 	"0.38.151": ["CORRECCIONES DE ARTE: se acabaron los saltos en los ciclos del Mosquetero y del Guardia quietos de espaldas, del sablazo del Jinete hacia ti (el caballo se torcía un cuadro), del Peón sujetando un barril (el barril saltaba por el pecho) y del Cuco volando arriba a la derecha (se ponía de lado un cuadro); quitados puntitos sueltos de algunos soldados, rocas y del icono de Tensión."],
 	"0.38.150": ["CORRECCIONES DE ARTE: el Retador Tirano y el Retador Venenoso muertos mirando hacia ti ahora caen mirando hacia ti (se giraban de lado al morir)."],

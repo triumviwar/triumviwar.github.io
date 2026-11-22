@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.153", "items": [
+		"No change in the game: the voice recording list is up to date (three new campaign lines to record).",
+	]},
 	{"v": "0.38.152", "items": [
 		"ART FIXES: the campfire no longer has a dark triangle behind its flames, the ruined tower no longer a bluish haze on its left; in the Armoury's bayonet experiment the pumpkin is hit before it bursts (it burst and then stood whole again); the damaged Clock Aviary lost a debris piece cut off at its edge.",
 	]},
