@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.161": ["CUARTELES DE LA CAMPAÑA: la caja oscura detrás de cada persona en la que se puede hacer clic (Tomasz, el Rey, Hollweg, Lindqvist) ha desaparecido; era la sombra del botón. El Rey en su estudio es ahora más pequeño (unas tres cuartas partes de su tamaño anterior), sentado en el propio trono de la sala en lugar de dominar la escena."],
 	"0.38.160": ["MÚSICA NUEVA: la misión de París (Las Barricadas de París) empieza con su propio tema, The Barricades of Paris, como Núremberg y Roma. También está en la lista CAMPAÑA del reproductor de música."],
 	"0.38.159": ["Todavía nada cambia en el juego: cada personaje que habla en la campaña tiene ya una voz, y las 235 frases que faltan por grabar están en una sola lista."],
 	"0.38.158": ["Nada cambia en el juego: diez voces más de la campaña están diseñadas (el joven Tomasz, el Cardenal Decano, el impresor, la tejedora, el Comisario, el guía, Teles, Fray Joaquim, Will Hollins y la Asamblea Libre), esperando sus muestras antes de que sus frases pasen a la lista de grabación."],

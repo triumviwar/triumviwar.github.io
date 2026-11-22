@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.161", "items": [
+		"CAMPAIGN HUBS: the dark box behind each person you can click (Tomasz, the King, Hollweg, Lindqvist) is gone; it was the button's drop shadow. The King in his study is smaller now (about three quarters of his old size), seated in the room's own throne instead of looming over the scene.",
+	]},
 	{"v": "0.38.160", "items": [
 		"NEW MUSIC: the Paris mission (The Barricades of Paris) opens with its own theme, The Barricades of Paris, like Nuremberg and Rome. It is in the music player's CAMPAIGN list too.",
 	]},

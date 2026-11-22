@@ -26,10 +26,11 @@ OUT = "campaign/hub"
 # Where the figures go, in the room's pixels: the layer's own scale and its top-left corner. The King's lion
 # armrests land on the room chair's arms; Tomasz stands on the clear floor on the left, turned to the King.
 PLACE = {
-    "king": {"scale": 0.52, "at": [923, 164]},
+    # (0.38.161, the owner: "the king is too big": 0.78 of the first size, seated in the room's own throne)
+    "king": {"scale": 0.4056, "at": [1002.4, 272.5]},
     "tomasz": {"scale": 0.74, "at": [-262, 222], "tone": [0.76, 0.68, 0.62]},
 }
-FACES = {"king": (1338, 160, 1498, 320), "tomasz": (288, 228, 398, 338)}
+FACES = {"king": (1326, 269, 1451, 394), "tomasz": (288, 228, 398, 338)}
 # The desk's back edge in the room (x, y): everything below it, right of the candelabrum, is the desk drawn over
 # the King.
 DESK_EDGE = [(840, 640), (1000, 626), (1200, 616), (1400, 608), (1672, 600)]
@@ -89,7 +90,7 @@ def main():
                                    "pos": [dbox[0], dbox[1]], "size": [dk.width, dk.height]})
             comp.alpha_composite(dk, (dbox[0], dbox[1]))
     # what the hub animates in code (room pixels): the pipe's smoke and the match, the candle flames, breathing
-    info["fx"] = {"smoke": [1335, 343], "match": [1327, 331], "candles": [[617, 315], [677, 272], [737, 325]],
+    info["fx"] = {"smoke": [1324, 412], "match": [1317, 403], "candles": [[617, 315], [677, 272], [737, 325]],
                   "breathe": {"king": 0.006, "tomasz": 0.004}}
     # the talk box's portraits: the faces, cut from the room as composed (square, room pixels)
     for name, box in FACES.items():

@@ -738,7 +738,10 @@ static func show(main: Node) -> void:
 			# over the painting the hotspot is the thing itself: no box, its name low on it; pointed at, the person
 			# (or the map, the letter) lights up
 			st = UiStyle.box(Color(0, 0, 0, 0), Color(0, 0, 0, 0), 0, 6, 0.0)
+			st.shadow_size = 0      # (the box's drop shadow darkened a rectangle round each person: owner 2026-11-22)
 			st_h = st
+			hb.add_theme_stylebox_override("hover_pressed", st)
+			hb.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 			hb.add_theme_color_override("font_color", Color(1, 0.95, 0.8, 0.0))      # its name shows when pointed at
 			hb.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.0))
 			hb.add_theme_color_override("font_hover_color", Color(1, 0.95, 0.8, 1.0))
