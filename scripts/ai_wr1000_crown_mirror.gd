@@ -7,7 +7,7 @@ extends RefCounted
 ## it. Each change has its own switch: `-- wcm<name>:on` / `:off`; `-- wcm:off` plays the mirror as before this job. The
 ## changes KEPT are on by default (KEPT); the rest were measured and not kept (the doc says what each did).
 
-const KEPT: Array[String] = []
+const KEPT: Array[String] = []   # (none: 180 games, no change measured clearly past the noise; the doc has every block)
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 

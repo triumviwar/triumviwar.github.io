@@ -5,7 +5,7 @@ extends RefCounted
 
 const NOTES := [
 	{"v": "0.38.999", "items": [
-		"THE CROWN AGAINST THE CROWN, MEASURED (a study; the computer plays as before): 170 Hard computer games of the Crown against itself to 20:00 on six maps. Three games in ten end with a side beaten before 20:00 (most after 18:00), and a side ahead at 12:00 keeps its lead in most games. Seven trial changes to the computer's play in this matchup (finishing off an enemy far behind, pressing a lead sooner, fewer labourers, holding the army home when behind, going out at the supply cap) did not make the games clearly more decisive, so none is on; they stay as study switches for a bigger test.",
+		"THE CROWN AGAINST THE CROWN, MEASURED (a study; the computer plays as before): 180 Hard computer games of the Crown against itself to 20:00 on six maps. Three games in ten end with a side beaten before 20:00 (most after 18:00), and a side ahead at 12:00 keeps its lead in most games. Seven trial changes to the computer's play in this matchup (finishing off an enemy far behind, pressing a lead sooner, fewer labourers, holding the army home when behind, going out at the supply cap) did not make the games clearly more decisive, so none is on; they stay as study switches for a bigger test.",
 	]},
 	{"v": "0.38.124", "items": [
 		"THE CROWN'S LAND IS ONLY PURPLE: a region the Crown holds but where people are uneasy now has purple and pale purple stripes and flag (it had red, which is the machine's colour), on the painted and the drawn war map and in the legend.",
