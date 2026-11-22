@@ -55,10 +55,13 @@ static func hunt_anyway(ai, foe_t: int, army: Array) -> bool:
 	for u in ai.game.units:
 		if AIHunt.fighter(u, foe_t):
 			theirs += float(Game.unit_value(u))
+	# (its whole army: the Siege push's men are on an errand and not in `army`; block 2 never hunted for that, the push
+	# being out with most of the army whenever the Clockwork was beaten down)
 	var mine := 0.0
-	for u in army:
-		mine += float(Game.unit_value(u))
-	var go := mine >= FINISH_OURS and theirs < mine * FINISH_SHARE
+	for u in ai.game.army(ai.team):
+		if AIHunt.fighter(u, ai.team):
+			mine += float(Game.unit_value(u))
+	var go := mine >= FINISH_OURS and theirs < mine * FINISH_SHARE and army.size() >= AIHunt.MIN_UNITS
 	if go:
 		count(ai, "finish")
 	return go
