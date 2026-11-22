@@ -117,7 +117,9 @@ idea for finding 92 (the chicken-like Hatchlings) in art/redraws/ideas/hatchling
 it means every view and the portrait, an owner's call. 0.38.130: 15 Grub harvest S, frames 3-4 (the side view) replaced
 by frames 2 and 1 (front on); 17 and 18 the Sire lures' arrival: the pit of the last frame laid behind frames 6-11, so
 the ground no longer blinks (tools/lure_pit_steady.py). 19 Mist Toad fog E: no white blotches left in the current
-strip (checked); its size still steps down between frames 3 and 4.
+strip (checked); its size still steps down between frames 3 and 4. 0.38.131: the Missionary's north walk and idle redrawn from behind
+(they showed his face; requests M90, M91), and his north-east idle shows its upright frame twice (the hunched first frame
+switched pose).
 
 ## Redraw requests for the HIGH findings
 

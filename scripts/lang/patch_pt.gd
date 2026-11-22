@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.131": ["O MISSIONÁRIO VIRA AS COSTAS: andando ou parado virado para o norte ele é visto de costas (mostrava o rosto indo para longe de você), e parado virado para cima à direita já não se curva e se endireita sem parar."],
 	"0.38.130": ["MAIS CORREÇÕES DA NINHADA: uma Larva colhendo virada para você continua virada para você (girava de lado para largar a comida), e quando um Senhor atende a uma isca a cova cavada fica debaixo dos pés dele em vez de piscar."],
 	"0.38.129": ["SPRITES DA NINHADA LIMPOS: o Raptor morre caindo uma vez só (virava de barriga para cima e de volta), o Bruto investe com os chifres (o ataque cuspia ácido), o Senhor Tirano morre como a mesma fera agachada (virava uma magra de pé), o Desafiante Tirano já não cria um membro nas costas ao morrer, os Filhotes e o Desafiante da Tempestade já não perdem meio corpo numa batida de asa, a mancha escura entre a asa e o pescoço do Senhor da Tempestade e do Desafiante da Tempestade sumiu, e o Desafiante da Tempestade voando para o norte aponta o bico para longe de você em cada quadro."],
 	"0.38.128": ["DUAS PINTURAS DA CAMPANHA CORRIGIDAS: em A Linha de Fürth a cidade vista pela porta do celeiro agora é Nuremberg (parecia o Kremlin de Moscou), e em A Visita do Padre Ferrer o velho relojoeiro está de pé sobre as próprias pernas entre os autômatos quebrados (estava afundado nas pedras até a cintura)."],

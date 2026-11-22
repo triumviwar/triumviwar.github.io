@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.131", "items": [
+		"THE MISSIONARY TURNS HIS BACK: walking or standing facing north he is seen from behind (he showed his face going away from you), and standing toward the upper right he no longer hunches and straightens over and over.",
+	]},
 	{"v": "0.38.130", "items": [
 		"MORE BROOD FIXES: a Grub harvesting toward you keeps facing you (it swung sideways to drop the food), and when a Sire answers a lure the dug pit stays under his feet instead of blinking in and out.",
 	]},

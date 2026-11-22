@@ -95,6 +95,15 @@ JOBS += [
      [("1_current_attack_n.png", [("storm_challenger", "attack_n")]), ("2_walk_n_model.png", [("storm_challenger", "walk_n")])]),
 ]
 
+MIS = "the Missionary (a priest in a long black cassock and a black wide-brimmed hat, a pure red stole hanging from his shoulders, a brown leather satchel at his hip)"
+LOOK["missionary"] = "man, outfit and colours"
+JOBS += [
+    (90, "missionary", "walk_n", 4, MIS, "walking AWAY from the viewer, seen from BEHIND: we see the back of his hat, the back of his cassock and the satchel strap across his back, NO face, NO front of the stole; 4 frames, a seamless walk loop: left foot forward, passing, right foot forward, passing", "the north view: seen from behind", "his face, the front of his stole, a front view,",
+     [("1_current_walk_n.png", [("missionary", "walk_n")]), ("2_walk_e_s_model.png", [("missionary", "walk_e"), ("missionary", "walk_s")])]),
+    (91, "missionary", "idle_n", 2, MIS, "standing still with his BACK to the viewer, seen from BEHIND: the back of his hat, the back of his cassock, the satchel strap across his back, NO face; 2 frames of a quiet idle: frame 2 differs only by a slight rise of the shoulders", "the north view: seen from behind", "his face, the front of his stole, a front view,",
+     [("1_current_idle_n.png", [("missionary", "idle_n")]), ("2_idle_s_e_model.png", [("missionary", "idle_s"), ("missionary", "idle_e")])]),
+]
+
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."

@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.131": ["EL MISIONERO DA LA ESPALDA: caminando o quieto hacia el norte se le ve de espaldas (mostraba la cara alejándose de ti), y quieto mirando arriba a la derecha ya no se encorva y se endereza una y otra vez."],
 	"0.38.130": ["MÁS ARREGLOS DE LA PROLE: una Larva que cosecha mirando hacia ti sigue mirándote (giraba de lado para soltar la comida), y cuando un Señor acude a un señuelo el hoyo excavado se queda bajo sus pies en vez de parpadear."],
 	"0.38.129": ["SPRITES DE LA PROLE LIMPIOS: el Raptor muere cayendo una sola vez (se daba la vuelta y volvía), el Bruto embiste con los cuernos (su ataque escupía ácido), el Señor Tirano muere como la misma bestia agachada (se volvía una delgada de pie), el Retador Tirano ya no saca un miembro de la espalda al morir, las Crías y el Retador de la Tormenta ya no pierden medio cuerpo en un aleteo, la mancha oscura entre el ala y el cuello del Señor de la Tormenta y del Retador de la Tormenta desapareció, y el Retador de la Tormenta volando hacia el norte apunta el pico lejos de ti en cada cuadro."],
 	"0.38.128": ["DOS PINTURAS DE LA CAMPAÑA CORREGIDAS: en La Línea de Fürth la ciudad que se ve por la puerta del granero ahora es Núremberg (parecía el Kremlin de Moscú), y en La Visita del Padre Ferrer el viejo relojero está de pie sobre sus propias piernas entre los autómatas rotos (estaba hundido en los adoquines hasta la cintura)."],
