@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.163", "items": [
+		"CAMPAIGN: the lines that set the scene (no one speaking) used to show only a place as their speaker, like THE RIO NEGRO or NUREMBERG, as if the place were talking. They now read NARRATION · THE RIO NEGRO.",
+	]},
 	{"v": "0.38.162", "items": [
 		"CAMPAIGN: the card that tells you what a mission adds to your army now says NEW IN YOUR ARMY and shows the new unit's or building's own picture, instead of a bare NEW with an N.",
 		"SPECIMEN ONE (the Naturalist's first mission): a new optional objective, GROW SOUTH, shows soon after the Sire roots: walk a grub down the back way south of the den and turn it into a Mound Turtle, because the den's swamp alone feeds only a few Rootmaws. The ground is shown on the map.",

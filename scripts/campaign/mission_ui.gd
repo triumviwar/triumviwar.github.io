@@ -221,6 +221,10 @@ func advance() -> void:
 	_line_secs = line_t
 	_text.lines_skipped = 0
 	_name.text = Loc.t(String(current["name"]))
+	if String(current.get("who", "")) == "narrator":
+		# (a scene-setting line, no one speaking: its "name" is the place; the owner 2026-11-22: "what is the Rio
+		# Negro as a message?")
+		_name.text = Loc.t("Narration") + "  ·  " + Loc.t(String(current["name"]))
 	_text.text = txt
 	var col := _side_colour(String(current.get("side", "")))
 	_name.add_theme_color_override("font_color", col.lightened(0.45))
