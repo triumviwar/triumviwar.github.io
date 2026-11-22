@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.167", "items": [
+		"No change in the game: the test player of Specimen One knows the clutch is three eggs now.",
+	]},
 	{"v": "0.38.166", "items": [
 		"No change in the game: a one-click file for the voice emotion run.",
 	]},

@@ -210,7 +210,7 @@ func _play(g: Game, r: MissionRun, me: int) -> void:
 				_go_t = g.clock
 		return
 	# the pack spent: the Sire goes home to rebuild (his nest by the Old Mother) unless she is already out
-	if army.size() < 4 and not r.fired.has("broken") and not (BroodNew.rooted(sire) and int(r.counters.get("eggs", 0)) >= 4):
+	if army.size() < 4 and not r.fired.has("broken") and not (BroodNew.rooted(sire) and int(r.counters.get("eggs", 0)) >= 2):
 		_state = "build"
 		_rebuilds += 1
 		if BroodNew.rooted(sire):
