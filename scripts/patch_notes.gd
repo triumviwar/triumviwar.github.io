@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.165", "items": [
+		"FOLLOW: a right click with units selected on one of your own units (or an ally's) now makes them follow it wherever it goes, until you give them another order, as in StarCraft 2. Before, they only walked to where it stood.",
+		"SPECIMEN ONE: Linnea lays a clutch of three eggs, not five, and faster (one every 12 seconds), and once free she walks home at more than twice a Brood Mother's pace, nearly keeping up with the Sire.",
+	]},
 	{"v": "0.38.164", "items": [
 		"CAMPAIGN VOICES: 235 more lines are spoken now. Father Ferrer, young Tomasz, Jakob, Captain Delorme, Benedito, Brother Anselm, Colonel von Rauch, the Machine, the Captain of the Watch, Pieter, old Cardinal Tomasz, the Cardinal Dean, Rouvière, Mère Gautier, the Commissary, the guide, Teles, Frei Joaquim, Will Hollins and the Free Assembly have their voices. Every line is still a placeholder.",
 	]},

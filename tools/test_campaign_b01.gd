@@ -410,10 +410,10 @@ func _play(run: String, eggs: String) -> void:
 	check(P + "her first egg, caged and spared", int(r.counters["eggs"]) == 1 and r.tagged("eggs").size() == 1 and r.tagged("eggs")[0].spared)
 	_step(g, g.clock + 0.1)
 	check(P + "they see the eggs", r.said_ids.has("l_young") and r.said_ids.has("p_eggs"))
-	for i in 4:
-		_step(g, g.clock + 16.1)
+	for i in 2:
+		_step(g, g.clock + 12.1)
 	_step(g, g.clock + 0.1)
-	check(P + "the clutch: five eggs; break the gate next", int(r.counters["eggs"]) == 5 and r.tagged("eggs").size() == 5 and r.obj["nest"] == "done"
+	check(P + "the clutch: three eggs; break the gate next", int(r.counters["eggs"]) == 3 and r.tagged("eggs").size() == 3 and r.obj["nest"] == "done"
 		and r.obj["gate"] == "active" and not r.tagged("pen_gate")[0].spared, "%d %s" % [int(r.counters["eggs"]), r.obj["nest"]])
 	_step(g, turn_t + 21.0)
 	_step(g, turn_t + 61.0)
@@ -436,9 +436,10 @@ func _play(run: String, eggs: String) -> void:
 		check(P + "TAKEN: the eggs gone with him; the Sire carries them (slower, he cannot bite)", r.tagged("eggs").is_empty() and is_equal_approx(sire.m_pace, 0.6) and sire.m_unarmed
 			and String(sire.get_meta("mission_name", "")) == "The Tyrant Sire (the clutch)")
 	else:
-		check(P + "LEFT: the eggs stay in the straw; the Sire free", r.tagged("eggs").size() == 5 and not sire.m_unarmed)
+		check(P + "LEFT: the eggs stay in the straw; the Sire free", r.tagged("eggs").size() == 3 and not sire.m_unarmed)
 	_step(g, g.clock + 2.1)
 	check(P + "HEEL: she walks after the Sire", r.fired.has("heel") and lin.order == "move")
+	check(P + "...quicker than a Brood Mother: 2.3x (owner 2026-11-22)", is_equal_approx(lin.m_pace, 2.3), "%.2f" % lin.m_pace)
 	# ---- THE RESEARCH (the script's choice: SAVE IT)
 	check(P + "Lindqvist goes for the straw (the scientists' debate)", r.fired.has("research_go") and r.said_ids.has("l_save"))
 	_put(g, r.tagged("lindqvist"), r.area_rect("pen"))

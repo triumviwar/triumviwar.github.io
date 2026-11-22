@@ -1,3 +1,11 @@
 # The big run (docs/chatterbox_todo.md): run.bat --lines lines_big.txt
 # A stopped run picks up where it left off. EVERY CAMPAIGN LINE IS A PLACEHOLDER (rewritten later).
 
+
+# ---- lindqvist (1 lines)
+[ref refs/lindqvist_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+b01__l_three | Three eggs. Three. And he lay across the gate and would not let a man near.

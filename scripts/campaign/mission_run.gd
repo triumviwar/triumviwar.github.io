@@ -858,7 +858,7 @@ func act(a: Dictionary) -> void:
 			"mist":
 				set_mist(v)
 				_send({"k": "mist", "v": v})
-			"cage", "pin", "carry", "spare":
+			"cage", "pin", "carry", "spare", "pace":
 				hold(String(k), v)
 			"cart":
 				cart_bind(v)
@@ -1663,6 +1663,10 @@ func hold(what: String, v: Dictionary) -> void:
 			"pin":
 				if e is Unit:
 					e.m_pace = 0.0 if on else 1.0
+			"pace":
+				# {"pace": {"tag", "pace"}}: its speed times this (b01: Linnea, slow as a Brood Mother, walks home quicker)
+				if e is Unit:
+					e.m_pace = float(v.get("pace", 1.0))
 			"carry":
 				if e is Unit:
 					e.m_pace = float(v.get("pace", 0.65)) if on else 1.0

@@ -282,6 +282,7 @@ player did (selected, camera_moved, built, rooted, crew, did...) and the `point`
 | `{"spare": {"tag", "on"}}` | nobody targets it and nothing hurts it (Entity.spared, read by Entity.untouchable); the fire of `burn` still takes a spared building |
 | `{"pin": {"tag", "on"}}` | can't move, still fights (Unit.m_pace 0: the fort's gun with no horse) |
 | `{"carry": {"tag", "on", "pace"}}` | slower (pace, 0.65) and can't attack (Unit.m_unarmed: Lindqvist with the egg crate) |
+| `{"pace": {"tag", "pace"}}` | its speed times pace (b01: Linnea, a Brood Mother, walks home at 2.3x; 0.38.165) |
 | `{"floor": {"tag", "share"}}`, `{"heal": {"tag", "share"}}` | health never under that share of the most (Entity.hp_floor: the Sire who cannot die tonight; 0 clears it); health back up to a share |
 | condition `{"hp": {"tag", "below": share}}` | one of them has less than that share of its health |
 | `{"order": {..., "do": "root", "to": area}}`, `"do": "uproot"` | a Brood creature walks there and roots (a father may nest by a Mother of another side: meta `mission_root`, BroodRoot's place rule), or gets up |

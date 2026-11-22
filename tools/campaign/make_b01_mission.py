@@ -94,7 +94,7 @@ M = {
         "south": [8, 36, 16, 14],
         "ford": [78, 43, 8, 7], "trail_c": [74, 20, 5, 6], "jar_w": [27, 42, 6, 5], "jar_c": [72, 41, 6, 5], "jar_e": [97, 42, 6, 5],
     },
-    "counters": {"raptors": {"start": 0, "of": 6}, "eggs": {"start": 0, "of": 5}, "jars": {"start": 0, "of": 3},
+    "counters": {"raptors": {"start": 0, "of": 6}, "eggs": {"start": 0, "of": 3}, "jars": {"start": 0, "of": 3},
                  "people": {"start": 0}, "saved": {"start": 0}, "heroes": {"start": 0}},
     "exits": [
         # the station's people into the canoes at the jetty and the village's boats at the beach, once the pen is broken
@@ -147,7 +147,7 @@ M = {
         {"id": "roar", "side": "sire", "primary": True, "kind": "reach", "hidden": True, "area": "edge", "tag": "sire",
          "text": "THE SIRE'S ROAR: UPROOT the Sire and walk him to the forest's edge above the station. There he roars, and she answers."},
         {"id": "nest", "side": "sire", "primary": True, "kind": "manual", "hidden": True,
-         "text": "LINNEA: root the Sire beside her pen (here he may nest far from the Old Mother). While he lies there she lays her clutch ({eggs} of 5). Rooted he cannot bite: keep the pack round him."},
+         "text": "LINNEA: root the Sire beside her pen (here he may nest far from the Old Mother). While he lies there she lays her clutch ({eggs} of 3). Rooted he cannot bite: keep the pack round him."},
         {"id": "gate", "side": "sire", "primary": True, "kind": "destroy", "hidden": True, "tag": "pen_gate",
          "text": "Break her pen's gate."},
         {"id": "home", "side": "sire", "primary": True, "kind": "manual", "hidden": True,
@@ -261,19 +261,22 @@ M = {
         {"id": "sire_rooted", "when": {"all": [{"fired": "roar_heard"}, {"rooted": {"tag": "sire"}}, {"count": {"tag": "sire", "area": "nest_wide", "at_least": 1}}]}, "do": [
             {"say": ["l_groom"]}, {"sound": {"name": "campaign/linnea_call", "area": "pen"}}]},
         {"id": "eggs", "when": {"all": [{"fired": "sire_rooted"}, {"rooted": {"tag": "sire"}}, {"count": {"tag": "sire", "area": "nest_wide", "at_least": 1}},
-                                        {"counter": {"name": "eggs", "below": 5}}]}, "every": 16, "delay": 8, "do": [
+                                        {"counter": {"name": "eggs", "below": 3}}]}, "every": 12, "delay": 8, "do": [
             {"spawn": {"team": "pen", "kind": "brood_egg", "count": 1, "at": "pen_in", "tag": "eggs"}},
             {"cage": {"tag": "eggs", "on": True}}, {"spare": {"tag": "eggs", "on": True}}, {"counter": {"name": "eggs", "add": 1}},
             {"sound": {"name": "campaign/linnea_call", "area": "pen", "vol": -6}}]},
         {"id": "eggs_seen", "when": {"fired": "eggs"}, "do": [{"say": ["l_young"]}]},
         {"id": "eggs_seen_p", "when": {"all": [{"fired": "eggs"}, PIETER]}, "do": [{"say": ["p_eggs"]}]},
-        {"id": "ready", "when": {"counter": {"name": "eggs", "at_least": 5}}, "do": [
+        {"id": "ready", "when": {"counter": {"name": "eggs", "at_least": 3}}, "do": [
             {"objective": {"id": "nest", "set": "done"}}, {"objective": {"id": "gate", "set": "active"}},
-            {"spare": {"tag": "pen_gate", "on": False}}, {"ping": {"area": "pen"}}, {"say": ["l_five"]}]},
+            {"spare": {"tag": "pen_gate", "on": False}}, {"ping": {"area": "pen"}}, {"say": ["l_three"]}]},
         # ================================================================ THE PEN BROKEN: she goes with him; the station falls
         {"id": "broken", "when": {"all": [{"fired": "ready"}, {"dead": "pen_gate"}]}, "do": [
             {"spare": {"tag": "pen", "on": False}}, {"hurt": {"tag": "pen", "amount": 99999}},
             {"cage": {"tag": "linnea", "on": False}},
+            # (a Brood Mother walks 24: at 2.3x she nearly keeps up with the Sire on the way home; owner 2026-11-22
+            # "Linnea herself is too slow")
+            {"pace": {"tag": "linnea", "pace": 2.3}},
             {"convert": {"tag": "linnea", "to": "kin", "warn": 1, "sound": "campaign/linnea_call"}},
             {"objective": {"id": "home", "set": "active"}}, {"ping": {"area": "den"}},
             {"say": ["n_taken", "l_taken", "v_taken"]},
@@ -391,7 +394,7 @@ M = {
         "l_groom": {"who": "lindqvist", "text": "He did not want to eat her. He lay down beside her like a groom."},
         "p_eggs": {"who": "pieter", "text": "Doctor, there are eggs in her straw."},
         "l_young": {"who": "lindqvist", "text": "She is too young. She is far too young."},
-        "l_five": {"who": "lindqvist", "text": "Five eggs. Five. And he lay across the gate and would not let a man near."},
+        "l_three": {"who": "lindqvist", "text": "Three eggs. Three. And he lay across the gate and would not let a man near."},
         "n_taken": {"who": "narrator", "text": "The pen broke like kindling, and she followed him."},
         "l_taken": {"who": "lindqvist", "text": "No. No! She is mine! Shoot him, not her!"},
         "v_taken": {"who": "valadares", "text": "Let her go, Doctor. Your notes, your people. Now."},

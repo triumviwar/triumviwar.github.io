@@ -348,7 +348,7 @@
 		},
 		"eggs": {
 			"start": 0,
-			"of": 5
+			"of": 3
 		},
 		"jars": {
 			"start": 0,
@@ -749,7 +749,7 @@
 			"primary": true,
 			"kind": "manual",
 			"hidden": true,
-			"text": "LINNEA: root the Sire beside her pen (here he may nest far from the Old Mother). While he lies there she lays her clutch ({eggs} of 5). Rooted he cannot bite: keep the pack round him."
+			"text": "LINNEA: root the Sire beside her pen (here he may nest far from the Old Mother). While he lies there she lays her clutch ({eggs} of 3). Rooted he cannot bite: keep the pack round him."
 		},
 		{
 			"id": "gate",
@@ -1987,12 +1987,12 @@
 					{
 						"counter": {
 							"name": "eggs",
-							"below": 5
+							"below": 3
 						}
 					}
 				]
 			},
-			"every": 16,
+			"every": 12,
 			"delay": 8,
 			"do": [
 				{
@@ -2071,7 +2071,7 @@
 			"when": {
 				"counter": {
 					"name": "eggs",
-					"at_least": 5
+					"at_least": 3
 				}
 			},
 			"do": [
@@ -2100,7 +2100,7 @@
 				},
 				{
 					"say": [
-						"l_five"
+						"l_three"
 					]
 				}
 			]
@@ -2134,6 +2134,12 @@
 					"cage": {
 						"tag": "linnea",
 						"on": false
+					}
+				},
+				{
+					"pace": {
+						"tag": "linnea",
+						"pace": 2.3
 					}
 				},
 				{
@@ -2987,9 +2993,9 @@
 			"who": "lindqvist",
 			"text": "She is too young. She is far too young."
 		},
-		"l_five": {
+		"l_three": {
 			"who": "lindqvist",
-			"text": "Five eggs. Five. And he lay across the gate and would not let a man near."
+			"text": "Three eggs. Three. And he lay across the gate and would not let a man near."
 		},
 		"n_taken": {
 			"who": "narrator",

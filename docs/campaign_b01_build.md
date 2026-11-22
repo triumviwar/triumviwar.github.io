@@ -84,7 +84,7 @@ THE STATION'S STORY, by the script, while the player plays (Lindqvist's eyes; th
 | the roar | the dusk, "She knows that voice"; 12 s later THE TELES DEBATE, the script's choice: KEEP IT QUIET (flag `teles` quiet) |
 | 25 s later | the night and the rain; the lure explained; Pieter walks the three jars to the forest's edge (it pulls nobody: "they walked past the jars" when the pack comes onto the rise) |
 | the Sire on the station's rise | the break-in: "the ground shook", the fire light; the guards go for the pen; Valadares fires the thatch (the garden at +20 s, the specimen house at +70 s, the house at +90 s); Teles comes late with three men to hold the east causeway (+60 s); Frei Joaquim sends the village to its boats |
-| the Sire rooted by her pen | "He lay down beside her like a groom"; the eggs; "She is too young"; at five: "Five eggs. And he lay across the gate." |
+| the Sire rooted by her pen | "He lay down beside her like a groom"; the eggs; "She is too young"; at three: "Three eggs. And he lay across the gate." |
 | the gate broken | "The pen broke like kindling, and she followed him"; the station's people to the jetty, the village to its beach, Teles back to the fort; THE RESEARCH (the scientists' choice, by the script: canon SAVE IT): Lindqvist goes to the straw; left: he carries the crate (flag `clutch` saved); taken: the straw is empty, "I thought the fire had taken them" (`clutch` burned, `fire` yes); then to the jetty |
 | Lindqvist and Valadares on the jetty | the canoes push off |
 
@@ -169,7 +169,7 @@ Rio Negro a narrator); no creature has a voice.
 | l_groom.ogg | Dr. Lindqvist | sire_rooted | He did not want to eat her. He lay down beside her like a groom. |
 | p_eggs.ogg | Pieter | eggs_seen_p | Doctor, there are eggs in her straw. |
 | l_young.ogg | Dr. Lindqvist | eggs_seen | She is too young. She is far too young. |
-| l_five.ogg | Dr. Lindqvist | ready | Five eggs. Five. And he lay across the gate and would not let a man near. |
+| l_three.ogg | Dr. Lindqvist | to record | Three eggs. Three. And he lay across the gate and would not let a man near. |
 | n_taken.ogg | The Rio Negro | broken | The pen broke like kindling, and she followed him. |
 | l_taken.ogg | Dr. Lindqvist | broken | No. No! She is mine! Shoot him, not her! |
 | v_taken.ogg | Valadares | broken | Let her go, Doctor. Your notes, your people. Now. |

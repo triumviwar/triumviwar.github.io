@@ -10616,6 +10616,14 @@ func smart_command(list: Array, p: Vector2, force_move := false, queued := false
 				u.give({"o": "follow", "e": e}, queued)
 		_ping(p, Color(0.4, 1, 0.4))
 		return
+	# a right click on one of ours (or an ally's) unit: FOLLOW it until another order (as in StarCraft 2; the owner
+	# 2026-11-22: "it is supposed to stay following the unit until we give them another command")
+	if _follow_target(us, e):
+		for u in us:
+			if u != e:
+				u.give({"o": "follow", "e": e}, queued)
+		_ping(p, Color(0.4, 1, 0.4))
+		return
 	if e and prey(us[0].team, e):        # (an enemy; for the Brood a loose horse too)
 		us = WinderEscort.split_off(us, p, queued)       # (Winders with fighting units escort them, they don't charge)
 		for u in us:
@@ -10626,6 +10634,13 @@ func smart_command(list: Array, p: Vector2, force_move := false, queued := false
 	# and don't stop to fight on the way (A, then click, for an attack-move). (On a phone a tap
 	# on the ground stays an attack-move: there's no right button to tell them apart.)
 	group_move(us, p, not force_move and not Settings.pc(), queued)
+
+
+## A right click on this unit makes the selection follow it: a living unit of ours or a friend's (not an enemy, not
+## a horse: those have their own orders), not one of the selection itself.
+func _follow_target(us: Array, e) -> bool:
+	return e is Unit and is_instance_valid(e) and not e.dead and e.kind != "horse" and not us.has(e) \
+		and not hostile(e.team, us[0].team) and e.team >= 0
 
 
 ## Online guest: the ring and the answer smart_command gives, worked out on this screen at the click (the host runs
@@ -10680,6 +10695,8 @@ func _smart_choice(us: Array, p: Vector2, force_move: bool) -> Array:
 		return [Color(0.95, 0.7, 0.25), "other"]
 	if e is Building and e.team == us[0].team and not e.built:
 		return [yellow, "other"]
+	if _follow_target(us, e) or (e is Unit and e.team == us[0].team and us.all(func(u: Unit) -> bool: return MarchingBand.is_musician(u))):
+		return [Color(0.4, 1, 0.4), "other"]
 	if e and prey(us[0].team, e):
 		return [Color(1, 0.3, 0.3), "other"]
 	var amove := not force_move and not Settings.pc()
