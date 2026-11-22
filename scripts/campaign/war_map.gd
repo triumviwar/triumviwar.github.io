@@ -19,7 +19,7 @@ const SKINS := {
 		"empire": Color(0.50, 0.30, 0.62, 0.10),
 		"holders": {
 			"crown": {"fill": Color(0.47, 0.22, 0.62, 0.38), "line": Color(0.36, 0.14, 0.48, 0.9)},
-			"contested": {"fill": Color(0.47, 0.22, 0.62, 0.30), "line": Color(0.36, 0.14, 0.48, 0.9), "hatch": Color(0.72, 0.14, 0.10, 0.75)},
+			"contested": {"fill": Color(0.47, 0.22, 0.62, 0.30), "line": Color(0.36, 0.14, 0.48, 0.9), "hatch": Color(0.72, 0.55, 0.82, 0.75)},
 			"machine": {"fill": Color(0.74, 0.16, 0.10, 0.42), "line": Color(0.52, 0.08, 0.05, 0.9), "hatch": Color(0.45, 0.05, 0.03, 0.45)},
 			"brood": {"fill": Color(0.25, 0.55, 0.20, 0.42), "line": Color(0.14, 0.36, 0.10, 0.9)},
 			"unrest": {"fill": Color(0.20, 0.46, 0.22, 0.30), "line": Color(0.10, 0.10, 0.08, 0.9), "hatch": Color(0.08, 0.08, 0.06, 0.65)},
@@ -592,7 +592,7 @@ func _draw() -> void:
 func _stripe_cols(h: String, hs: Dictionary) -> Array:
 	match h:
 		"contested":
-			return [Color(hs["line"], 0.50), Color(hs["hatch"], 0.50)]
+			return [Color(hs["line"], 0.50), Color(hs["hatch"], 0.30)]      # (the Crown's, uneasy: purple only, red is the machine's)
 		"unrest":
 			return [Color(0.20, 0.50, 0.22, 0.55), Color(0.06, 0.06, 0.05, 0.45)]
 		"unknown":
