@@ -44,6 +44,18 @@ static func note(ai) -> void:
 	while h.size() > 2 and ai.game.clock - float(h[0][0]) > WINDOW:
 		h.pop_front()
 	w["hist"] = h
+	if on("chase"):
+		# (the chase: the enemy army near its Mother, once a second, and what it was 2 s ago)
+		var q = BroodNew.queen(ai.game, ai.team)
+		if q != null:
+			var fn := _foes_near(ai, q)
+			var hn: Array = w.get("near_h", [])
+			hn.append([fn[0], fn[1], ai.game.clock])
+			if hn.size() > 3:
+				hn.pop_front()
+			w["near_h"] = hn
+			w["near"] = hn[-1]
+			w["near0"] = hn[0]
 
 
 ## [killed, lost] in the last WINDOW s.
@@ -88,14 +100,19 @@ static func counter(ai, army_v: float, sup: int) -> bool:
 	return true
 
 
-## The one hook in AIBroodNew._nb_army: true = its army goes now (a wave out of this job's rules), past the cap and plan rules.
-static func go(ai, q, army: Array, sup: int) -> bool:
+## The one hook in AIBroodNew._nb_army: 1 = its army goes now (a wave out of this job's rules), past the cap and plan
+## rules; -1 = it holds this think; 0 = the usual rules.
+static func go(ai, q, army: Array, sup: int) -> int:
 	if not mirror(ai):
-		return false
+		return 0
 	var v: float = ai._value_of(army)
 	if chase(ai, q, v, sup):
-		return true
-	return counter(ai, v, sup)
+		return 1
+	if counter(ai, v, sup):
+		return 1
+	if quality_hold(ai, q, army):
+		return -1
+	return 0
 
 
 # ------------------------------------------------------------------ THE OUTER GROUND (`wbmouter`)
@@ -143,7 +160,7 @@ const CHASE_KILL := 0.3
 const CHASE_EDGE := 0.7
 const CHASE_STOP := 22.0
 const CHASE_MAX := 50.0
-const CHASE_SEE := 34.0
+const CHASE_SEE := 44.0
 
 
 ## The enemy fighters seen within CHASE_SEE tiles of its Mother (not rooted, not flyers): [value, middle].
@@ -168,10 +185,9 @@ static func chase(ai, q, army_v: float, sup: int) -> bool:
 		w["chasing"] = false          # (a chase that never left, or a wave ended some other way)
 	if not on("chase") or ai._attacking or sup < 8:
 		return false
-	var fn := _foes_near(ai, q)
-	var prev: Array = w.get("near", [0.0, Vector2.INF, -99.0])
-	w["near"] = [fn[0], fn[1], ai.game.clock]
-	if float(fn[0]) < 150.0 or prev[1] == Vector2.INF or fn[1] == Vector2.INF or ai.game.clock - float(prev[2]) > 3.0:
+	var fn: Array = w.get("near", [0.0, Vector2.INF, -99.0])
+	var prev: Array = w.get("near0", [0.0, Vector2.INF, -99.0])
+	if float(fn[0]) < 150.0 or prev[1] == Vector2.INF or fn[1] == Vector2.INF or ai.game.clock - float(fn[2]) > 1.5:
 		return false
 	var c: Vector2 = ai._qp(q)
 	var away: bool = (fn[1] as Vector2).distance_to(c) > (prev[1] as Vector2).distance_to(c) + 8.0
@@ -238,3 +254,87 @@ static func wave_goal(ai, q) -> Vector2:
 	if cg != Vector2.INF:
 		return cg
 	return outer_goal(ai, q, ai._qp(q))
+
+
+# ------------------------------------------------------------------ THE CAPPED ARMY GROWS UP (`wbmquality`)
+## THE CAPPED ARMY (blocks 1-3: from 12:00 both sides sat at 200 supply with 2,000 to 7,000 food banked, and their waves
+## were 100-130 Raptors: the cheapest creature, 38 health a supply. MATURE stopped at the cap (a Tyrant Challenger needs
+## one more supply than its Raptor) and at half of each young kind). At the cap with QUALITY_FOOD food or more, it
+## matures the young at home (Raptors into Tyrant Challengers, 65 health a supply; Spitters into Venom Challengers, 110)
+## past the half, QUALITY_EACH a think, and when the cap stops it, offers a Raptor at home up to the Mother to make room
+## (a Raptor's spoils back). Rooted creatures, grubs and the wave out are left alone.
+const QUALITY_FOOD := 1500
+const QUALITY_EACH := 4
+
+
+static func quality(ai, q) -> bool:
+	if not on("quality") or not mirror(ai):
+		return false
+	var g = ai.game
+	var t: int = ai.team
+	var capped: bool = g.supply_used(t) >= mini(int(g.players[t]["cap"]), g.max_supply(t)) - 6
+	if not capped or ai._food() < QUALITY_FOOD or BroodNew.stage(q) < 1:
+		return false
+	var home: Vector2 = ai._qp(q)
+	var n := 0
+	var blocked := false
+	for yk in ["spitter", "raptor"]:
+		var mk := BroodMature.mature_of(yk)
+		if BroodNew.stage(q) < BroodNew.unit_stage(mk):
+			continue
+		for u in ai._nb_mine(yk):
+			if n >= QUALITY_EACH:
+				break
+			if u.moult_t >= 0.0 or (u.target != null and is_instance_valid(u.target)) or ai.in_wave(u) or u == ai._scout \
+					or u.position.distance_to(home) > 22.0 * Defs.TILE or ai.held.has(u):
+				continue
+			var why := BroodMature.problem(u)
+			if why == "Supply is maxed out." or why.begins_with("Need more supply"):
+				blocked = true
+				break
+			if why != "" or ai._food() - int(BroodMature.price(g, t, u.kind)[0]) < 500:
+				continue
+			BroodMature.start(u)
+			n += 1
+	if blocked and ai.game.clock - float(ai.wbm.get("offer_t", -9.0)) > 1.0:
+		# (the cap stops it: a Raptor at home offered up makes room for the next to mature)
+		var rs: Array = ai._nb_mine("raptor").filter(func(u) -> bool: return u.position.distance_to(home) < 16.0 * Defs.TILE \
+			and u.target == null and u.order != "sacrifice" and not ai.in_wave(u) and u != ai._scout and u.moult_t < 0.0 and u.can_sacrifice())
+		if rs.size() >= 4:
+			(rs[0] as Unit).cmd_sacrifice()
+			ai.wbm["offer_t"] = ai.game.clock
+			ai.wbm["offered"] = int(ai.wbm.get("offered", 0)) + 1
+	ai.wbm["matured"] = int(ai.wbm.get("matured", 0)) + n
+	if ai.game.clock - float(ai.wbm.get("q_said", -999.0)) > 120.0:
+		ai.wbm["q_said"] = ai.game.clock
+		ai.say("its capped army grows up: %d matured, %d Raptors offered up so far" % [int(ai.wbm["matured"]), int(ai.wbm.get("offered", 0))])
+	return true
+
+
+## THE CAPPED ARMY WAITS TO GROW UP (part of `wbmquality`): at the cap, while young creatures at home are still to mature
+## (or moulting) and the food is there, the banked wave waits for them, QUALITY_WAIT s at most from the first wait.
+const QUALITY_WAIT := 45.0
+
+
+static func quality_hold(ai, q, army: Array) -> bool:
+	if not on("quality"):
+		return false
+	var w: Dictionary = ai.wbm
+	var moulting := army.filter(func(u) -> bool: return u.moult_t >= 0.0).size()
+	var young := 0
+	if ai._food() >= QUALITY_FOOD:
+		for u in army:
+			var mk := BroodMature.mature_of(u.kind)
+			if (u.kind == "raptor" or u.kind == "spitter") and BroodNew.stage(q) >= BroodNew.unit_stage(mk) and u.moult_t < 0.0:
+				young += 1
+	var grown := army.filter(func(u) -> bool: return u.kind in ["tyrant_challenger", "venom_challenger"]).size()
+	if moulting == 0 and (young <= grown or ai._food() < QUALITY_FOOD):
+		w.erase("q_wait")
+		return false
+	if not w.has("q_wait"):
+		w["q_wait"] = ai.game.clock
+	if ai.game.clock - float(w["q_wait"]) > QUALITY_WAIT:
+		if ai.game.clock - float(w["q_wait"]) > QUALITY_WAIT * 3.0:
+			w.erase("q_wait")          # (a fresh wait after a while)
+		return false
+	return true

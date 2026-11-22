@@ -3120,6 +3120,8 @@ const STORM_WANT := 4
 func _nb_mature(q: Unit) -> void:
 	if _nb_saving_growth(q) or BroodNew.stage(q) < 1:
 		return
+	if AIWr1000BroodMirror.quality(self, q):          # (wr1000-brood-mirror: the capped army grows up)
+		return
 	var food := _food()
 	var push: bool = String(plan["mature"]) == "push" and _army_supply_now() * 10 >= _attack_at * 7 and not _attacking
 	if food < (MATURE_FOOD if not push else 200):
@@ -3572,7 +3574,10 @@ func _nb_army(q: Unit) -> void:
 	# BANKED AT THE CAP (the owner's playtests 2026-11-03: a Brood at its supply cap with thousands of food sat at home
 	# while the enemy outgrew it): its army goes, whatever the plan's wave time or size says (12 supply at least)
 	var capped0 := game.supply_used(team) >= mini(int(game.players[team]["cap"]), game.max_supply(team)) - 6
-	var wbm_go := AIWr1000BroodMirror.go(self, q, army, sup)          # (wr1000-brood-mirror: its own wave rules in the mirror)
+	var wbm_say := AIWr1000BroodMirror.go(self, q, army, sup)          # (wr1000-brood-mirror: its own wave rules in the mirror)
+	if wbm_say < 0:
+		return
+	var wbm_go := wbm_say > 0
 	var banked := (capped0 and _food() >= 1500 and sup >= 12) or wbm_go
 	capped0 = capped0 or wbm_go
 	if peaceful or game.clock < _retreat_until or (not banked and (game.clock < float(plan["wave_t"]) or _rush_on() or _alarm_on() \
