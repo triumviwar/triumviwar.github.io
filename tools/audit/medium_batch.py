@@ -114,6 +114,14 @@ for _n, _d in ((92, "s"), (93, "se"), (94, "ne"), (95, "n")):
                  [("1_aim_fire_e_pose.png", [("dismounted", "aim_e"), ("dismounted", "fire_e")]), ("2_walk_%s_view.png" % _d, [("dismounted", "walk_" + _d)])]))
 LOOK["dismounted"] = "man, outfit and colours"
 
+_OFF_MEL = {"s": "facing the viewer (toward the bottom of the image), his face and chest toward us, the cut coming down toward the viewer",
+            "se": "facing three-quarter toward the lower right, the cut coming down toward the lower right",
+            "ne": "facing three-quarter AWAY toward the upper right, his back half turned to us, the cut going up-right away from us",
+            "n": "facing straight AWAY from the viewer (toward the top of the image), his back to us, NO face, the cut going up the image away from us"}
+for _n, _d in ((96, "s"), (97, "se"), (98, "ne"), (99, "n")):
+    JOBS.append((_n, "dismounted", "melee_" + _d, 4, OFF, "slashing with his sabre in his right hand (the pistol put away), %s; 4 frames: 1 the sabre raised over his right shoulder; 2 the cut coming down, a short pale swoosh along the blade's path; 3 the follow-through low across his body; 4 recovering, the sabre back up. The SAME facing in all four frames, ONE sabre" % _OFF_MEL[_d], _OFF_VIEW[_d][1], "a side profile facing right, the body turning between frames, a second blade,",
+                 [("1_melee_e_pose.png", [("dismounted", "melee_e")]), ("2_walk_%s_view.png" % _d, [("dismounted", "walk_" + _d)])]))
+
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."

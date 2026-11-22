@@ -124,7 +124,7 @@ stray hoofs beside the mounting riders of the Barracks drills (Cuirassier, Horse
 (tools/drop_loose_bits.py: pieces smaller than a share of the frame's biggest). Left: the carbine on the Horseman's back
 in mount_e/se frames 3-6 (two pixels wide at game size). 0.38.133: the Officer on foot (dismounted) aims and fires in every facing: S, SE, NE and N
 redrawn (requests M92-M95, one sheet a facing: the aim frame and two fire frames, cut into aim_<dir> and fire_<dir>);
-his melee and death are still the east pictures in every facing.
+0.38.134: his sabre slash too, in S, SE, NE and N (M96-M99). His death is still the east picture in every facing.
 
 ## Redraw requests for the HIGH findings
 
