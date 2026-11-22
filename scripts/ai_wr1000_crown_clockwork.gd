@@ -117,3 +117,26 @@ static func decoy_back(raid) -> void:
 
 static func decoy_done(raid) -> bool:
 	return raid.has_meta("wcc_decoy_back")
+
+
+# ------------------------------------------------------------------ trade: the Clockwork's push leaves a losing fight
+
+## Blocks 1-3: the Clockwork computer's pushes into the Crown lost about twice what they killed (lost 71,980, killed 39,015
+## in block 1): they pull back only under GRIND (0.4) of what went out and joined, the "finishing" rule against the Crown
+## keeps them in longer, and fresh groups walk out to join them one after another ("5 fresh units walk out to join it" while
+## it lost 3,345 for 540, Ashford Crossing 12:51-14:32). Here (the Clockwork computer against the Crown) the push pulls
+## back once it has lost TRADE_LOST of what went out and joined while it killed under TRADE_K of what it lost since it
+## went out; the "finishing" rule no longer holds it in that case.
+const TRADE_LOST := 0.3
+const TRADE_K := 0.6
+
+
+static func losing_trade(push, now: float) -> String:
+	if not on("trade") or not vs(push.ai, "clockwork") or push.value_in <= 0.0:
+		return ""
+	var lost: float = push.value_in - now
+	var killed := float(int(push.game.stats[push.team]["value_killed"]) - push.kill0)
+	if lost >= push.value_in * TRADE_LOST and killed < lost * TRADE_K:
+		count(push.ai, "trade")
+		return "a losing trade: lost %d of the %d that went out and joined, killed %d" % [int(lost), int(push.value_in), int(killed)]
+	return ""

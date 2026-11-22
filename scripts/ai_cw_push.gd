@@ -898,6 +898,10 @@ func _should_retreat() -> bool:
 	var fv := _value(foes)
 	# (cinder-clockwork-ai) A PUSH THAT STILL WINS FINISHES THE JOB: rushing guns with a thin guard, or against the Crown
 	# worth FINISH_K times all it knows of near it, its losses alone no longer turn it round
+	var wcc_why := AIWccr.losing_trade(self, now)      # (wr1000-crown-clockwork: out of a losing fight)
+	if wcc_why != "":
+		_retreat(wcc_why)
+		return true
 	var lossy := now < value_in * GRIND or (now < value_in * (1.0 - LOST_SHARE) and now < fv * RETREAT_K)
 	if lossy and _finishing(now, fv):
 		return false
