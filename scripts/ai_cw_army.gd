@@ -181,6 +181,8 @@ func may_launch(list: Array) -> bool:
 		return false
 	if _counter_ok(mine):
 		return true
+	if WkB.brace(ai, self):
+		return false            # (wr1000-clockwork-brood `wkbbrace`: hold for the Brood's wave, then counter)
 	if CwBrood.push_waits(ai, self, mine, rk):
 		return false            # (clockwork-v-brood-coach-2: into the Brood's land only clearly ahead)
 	if _fail_v > 0.0 and mine < _fail_v * AFTER_FAIL:

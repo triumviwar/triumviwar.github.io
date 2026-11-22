@@ -264,3 +264,26 @@ static func reckon_table(ai, tab: Array) -> Array:
 	if on("table") and cw_v_brood(ai):
 		return BROOD_TABLE
 	return tab
+
+
+# ------------------------------------------------------------------ brace (block 8)
+## BRACE: most of the Clockwork's army died in the middle of the map (9:00-15:00, blocks 1-5: 2,190 of its fighters' deaths
+## away from both bases against 1,040 at its base), when its push met the Brood's Spitter wave in the open (frostfang r1
+## b02: the Brood attacked at 10:44, the push went at 10:46 and pulled back with half). Against the Brood, from BRACE_FROM
+## to BRACE_TO, the push goes only as a COUNTER (AICwArmy._counter_ok: a Brood wave just broken on its gears) or at the
+## supply cap; meanwhile the army waits on its gears, where the Winders mend it and the turrets help.
+const BRACE_FROM := 480.0
+const BRACE_TO := 960.0
+const BRACE_SLACK := 12
+
+
+static func brace(ai, army) -> bool:
+	if not on("brace") or not cw_v_brood(ai):
+		return false
+	var g = ai.game
+	if g.clock < BRACE_FROM or g.clock > BRACE_TO:
+		return false
+	if g.supply_used(ai.team) >= g.max_supply(ai.team) - BRACE_SLACK:
+		return false
+	army.say("holds on its gears: against the Brood it waits for its wave and counter-attacks after it [wkbbrace]", "wkbbrace", 60.0)
+	return true
