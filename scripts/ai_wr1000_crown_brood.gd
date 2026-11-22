@@ -66,14 +66,21 @@ const CAP_SUP := 110
 static var cap_waits := {}      # team -> thinks the push waited for it
 
 
+## (change "capmid", block 17: the same with CAPMID_SUP: with CAP_SUP the push hardly ever went (0 pushes in 8 of 10 games
+## of block 14) and half the games saw no attack from the Crown at all: a middle size, so the Crown still attacks)
+const CAPMID_SUP := 80
+
+
 static func push_waits(ai, sup: int, siege) -> bool:
-	if not vs_brood(ai, "cap"):
+	var mid := vs_brood(ai, "capmid")
+	if not (mid or vs_brood(ai, "cap")):
 		return false
-	if sup >= CAP_SUP or ai.game.supply_used(ai.team) >= ai.game.max_supply(ai.team) - 6:
+	var need: int = CAPMID_SUP if mid else CAP_SUP
+	if sup >= need or ai.game.supply_used(ai.team) >= ai.game.max_supply(ai.team) - 6:
 		return false
 	cap_waits[ai.team] = int(cap_waits.get(ai.team, 0)) + 1
 	if int(cap_waits[ai.team]) % 30 == 1:
-		siege.say("waits for a big army against the Brood: %d supply at home, it wants %d" % [sup, CAP_SUP])
+		siege.say("waits for a big army against the Brood: %d supply at home, it wants %d" % [sup, need])
 	return true
 
 
