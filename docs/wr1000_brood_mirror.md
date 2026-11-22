@@ -216,9 +216,9 @@ tell the two apart: part of the edge looks like the spot (the brood-spot-study's
   and block 15 reran block 1's code. Blocks of the same code differ by 1-2 decided games and about 0.15 in mean |g|, so a
   change is weighed against the POOLED baseline blocks game by game (`b01+b05+b15`: each game's numbers the mean of its
   runs) and kept only when clearly better than that (and not worse to watch).
-- **Switches**: every change is `-- wbm<name>:on`, in scripts/ai_wr1000_brood_mirror.gd (AIWr1000BroodMirror) with five
-  small hooks in scripts/ai_brood_new.gd (the wave rules, the wave's goal, the wave's steering, MATURE, the grubs wanted)
-  and one in its observe step; every change runs only when a Brood computer faces another Brood (AIBroodNew._foe_is("brood")).
+- **Switches**: every change is `-- wbm<name>:on`, in scripts/ai_wr1000_brood_mirror.gd (AIWr1000BroodMirror) with small
+  one-line hooks in scripts/ai_brood_new.gd (a `wbm` dictionary for its state; the wave rules in _nb_army and the Sire who
+  leads; the wave's goal and next goal; the wave's steering; MATURE; the grubs wanted; its observe step); every change runs only when a Brood computer faces another Brood (AIBroodNew._foe_is("brood")).
   `-- wbm:off` turns the whole job off. The kept ones would be listed in AIWr1000BroodMirror.KEPT.
 - Data: `docs/wr1000_brood_mirror/data/<block>/<tag>/` (result.json, story.txt, planlog.txt = the Brood computers' own lines
   of the match log), `extra.txt` the block's switches; `docs/wr1000_brood_mirror/blocks.md` one row a block
