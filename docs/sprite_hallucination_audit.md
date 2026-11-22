@@ -149,6 +149,9 @@ side-view frame 2 replaced by frame 1. Left: the dithered fading horse.
 mortar lifted off the cart and set down; SE came out nearly side-on); `SA_GAP=<px>` in tools/import_sa_strip.py cuts an
 answer's frames at gaps wider than px (a frame made of separate pieces). 0.38.147: NE too (M114). N is still the old
 collage (its answer drew the horse facing the viewer in the first frames).
+0.38.148: 186 the Missionary's north bandage shows his back (the kneeling priest from missionary_bandage_c laid over
+the old patient); 35, 125 the rebel Pikeman's brace and thrust S and SE redrawn with the pike level (M116, M117: one
+answer of 4 frames each, cut into brace (frame 1) and attack (frames 2-4)); 124 his north thrust at one slant (M118).
 
 ## Redraw requests for the HIGH findings
 

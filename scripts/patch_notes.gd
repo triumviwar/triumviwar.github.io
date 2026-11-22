@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.148", "items": [
+		"ART FIXES: the Missionary bandaging a soldier while facing away shows his back (he showed his front); the rebel Pikeman braces and thrusts with his pike level toward you and down-right (it pointed at the ground), and his thrust away from you keeps one angle (the pike jumped upright).",
+	]},
 	{"v": "0.38.147", "items": [
 		"THE MORTAR SETS UP PROPERLY facing up-right too: the crew unhitch the grey horse and set the mortar down.",
 	]},
