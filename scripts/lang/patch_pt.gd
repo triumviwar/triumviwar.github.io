@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.160": ["MÚSICA NOVA: a missão de Paris (As Barricadas de Paris) abre com o seu próprio tema, The Barricades of Paris, como Nuremberg e Roma. Também está na lista CAMPANHA do leitor de música."],
 	"0.38.159": ["Ainda nada muda no jogo: cada personagem que fala na campanha tem agora uma voz, e as 235 falas que faltam gravar estão numa só lista."],
 	"0.38.158": ["Nada muda no jogo: mais dez vozes da campanha estão desenhadas (o jovem Tomasz, o Cardeal Decano, o impressor, a tecelã, o Comissário, o guia, Teles, Frei Joaquim, Will Hollins e a Assembleia Livre), à espera das suas amostras antes de as falas irem para a lista de gravação."],
 	"0.38.157": ["MÚSICA NOVA: dezenove peças novas feitas com o ElevenLabs. Duas aberturas novas no menu (Clockwork Mourning e Heart of the Mire); peças novas da Coroa para a abertura, a escaramuça e a batalha (Ceremonial Advance, Skirmish March, Battle March of Triumph, Battle of the Fallen Banner); uma batalha nova para o Mecanismo (Clockwork Host) e para a Ninhada (Swamp Hunt). Cada facção tem agora a sua música de vitória e de derrota. Os três quartéis da campanha tocam cada um a sua peça (o gabinete do Rei, a oficina de Hollweg, a estação de Lindqvist), e as missões de Nuremberg e de Roma abrem com os seus próprios temas. As peças novas também estão no leitor de música (uma lista CAMPANHA debaixo das aberturas)."],

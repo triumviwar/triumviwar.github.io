@@ -170,9 +170,9 @@ chain (tools/music/master_elevenlabs.py; sources in art/audio_src/music_elevenla
 | clock_battle_17 | Clockwork Host | Clockwork full battle |
 | brood_battle_17 | Swamp Hunt | Brood full battle |
 | hub_study / hub_workshop / hub_station | The Last Study / Spring-Wound Remembrance / Riverside Station at Night | the campaign hubs, looped (CampaignMenu.HUB_MUSIC; a hub's own "music" wins) |
-| mission_c01 / mission_a07 | The Thirteenth Hour / Fire Over Rome | a mission's "music": played first instead of an opening piece |
+| mission_c01 / mission_a06 / mission_a07 | The Thirteenth Hour / The Barricades of Paris / Fire Over Rome | a mission's "music": played first instead of an opening piece |
 | win_* / defeat_* | Crown of Triumph, Fall of the Crown, Clockwork Triumph, March of Stalled Gears, Reptile War Triumph, Last Beat in the Swamp | the end-of-match stings (30 s; the old win stings replaced, `defeat` kept as the fallback) |
 
 All of them are FEATURED (the battle and menu ones) like the first batch; the old pieces stay in rotation. The
-Barricades of Paris (mission_a06, a06's "music") was made but not yet sent: until its file is in, a06 opens as before.
+Barricades of Paris (mission_a06) came in 0.38.160: the Paris mission opens with it.
 Clockwork Mourning was made before the lyrics switch was set to instrumental: if it has a voice in it, remake it.

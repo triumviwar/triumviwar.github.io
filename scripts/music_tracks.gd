@@ -95,5 +95,6 @@ const TRACKS := {
 	"hub_workshop": "Spring-Wound Remembrance",
 	"hub_station": "Riverside Station at Night",
 	"mission_c01": "The Thirteenth Hour",
+	"mission_a06": "The Barricades of Paris",
 	"mission_a07": "Fire Over Rome",
 }

@@ -76,6 +76,7 @@ PIECES = [
     ("hub_station", "Riverside_Station_at_Night", "Riverside Station at Night", "campaign: Lindqvist's station",
      dict(hp=38, sub=0.25)),
     ("mission_c01", "The_Thirteenth_Hour", "The Thirteenth Hour", "mission: Nuremberg (c01)", dict(hp=35, sub=0.25)),
+    ("mission_a06", "The_Barricades_Of_Paris", "The Barricades of Paris", "mission: Paris (a06)", dict(hp=35, sub=0.25)),
     ("mission_a07", "Fire_Over_Rome", "Fire Over Rome", "mission: Rome (a07)", dict(hp=35, sub=0.25)),
     ("win_crown", "Crown_of_Triumph", "Crown of Triumph", "Crown victory", dict(hp=35, sub=0.25)),
     ("defeat_crown", "Fall_of_the_Crown", "Fall of the Crown", "Crown defeat", dict(hp=35, sub=0.25)),

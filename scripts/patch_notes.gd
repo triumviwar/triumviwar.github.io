@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.160", "items": [
+		"NEW MUSIC: the Paris mission (The Barricades of Paris) opens with its own theme, The Barricades of Paris, like Nuremberg and Rome. It is in the music player's CAMPAIGN list too.",
+	]},
 	{"v": "0.38.159", "items": [
 		"No change in the game yet: every speaking part in the campaign now has a voice, and all 235 lines still to record are on one list.",
 	]},
