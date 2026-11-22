@@ -6,7 +6,7 @@ extends RefCounted
 ## merge beside it. Each change has its switch: `-- wkb<name>:on` / `:off`; `-- wkb:off` plays as before this job. The
 ## changes KEPT are on by default (KEPT); the rest were measured and left off (the doc says what each did).
 
-const KEPT: Array[String] = []
+const KEPT: Array[String] = ["owls"]      # (owls: blocks 4 and 10, kept after block 10; it brings `springs`)
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 
