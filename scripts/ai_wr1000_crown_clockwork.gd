@@ -284,3 +284,28 @@ static func winders_flee(ai) -> bool:
 		count(ai, "flee")
 		return true
 	return false
+
+
+# ------------------------------------------------------------------ mend: the escort Winders keep out of the Crown's fire
+
+## Blocks 1-8 (79 games): 1,978 Winders died while MENDING (1,168 to Musketeers, 692 to Field Cannons, 118 to Mortars), about
+## 25 a game: the army's escort Winders (AI._escort_wind) wind and mend any construct of the army under half health within
+## 420 px of its middle, wherever the Crown's line and guns are; only a run-down one is left when an enemy is beside it.
+## Here (the Clockwork computer against the Crown) an escort Winder winds or mends nothing that stands within an enemy
+## shooter's reach (its range + MEND_MARGIN) that its side can see.
+const MEND_MARGIN := 60.0
+
+
+static func mend_unsafe(ai, o: Unit) -> bool:
+	if not on("mend") or not vs(ai, "clockwork"):
+		return false
+	var game: Game = ai.game
+	for e in game.units_near(o.position, 500.0):
+		if e.dead or e.off_field or not game.hostile(e.team, ai.team) or e.is_worker() or not e.has_attack():
+			continue
+		var r := float(e.d.get("range", 0.0))
+		if r < 100.0 or e.position.distance_to(o.position) > r + MEND_MARGIN or not game.is_visible_to(ai.team, e.position):
+			continue
+		count(ai, "mend")
+		return true
+	return false
