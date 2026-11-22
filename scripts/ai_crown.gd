@@ -214,12 +214,14 @@ func _siege_hold_off(wave: Array, piece: Building, back: Vector2) -> bool:
 
 
 func _hunt_anyway(foe_t: int, army: Array) -> bool:
-	return mirror() != null and cm.hunt_anyway(foe_t, army)
+	return (mirror() != null and cm.hunt_anyway(foe_t, army)) or AIWccr.hunt_anyway(self, foe_t, army)    # (wr1000-crown-clockwork)
 
 
 func _hunt_goal(foe_t: int, from: Vector2) -> Vector2:
 	if mirror() != null:
 		return cm.hunt_goal(foe_t, from)
+	if AIWccr.on("finish") and AIWccr.vs(self, "crown"):
+		return AIWccr.hunt_goal(self, foe_t, from)      # (wr1000-crown-clockwork: halls first)
 	return super(foe_t, from)
 const BO_LIMIT := 600.0          # (game seconds) the opening hands over by then whatever is left
 ## THE BALLOON HARASS (scripts/ai_crown_balloon.gd): made on the Balloon harass plan only (Normal and up)

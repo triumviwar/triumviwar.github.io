@@ -171,6 +171,7 @@ if __name__ == "__main__":
         qm.RUN_ROOT = os.path.abspath(arg("--root", qm.ROOT))
         qm.KEEP_GREP = "Crown's plan"
         qm.KEEP_CW = True
+        qm.LOG_DIR = os.path.abspath(arg("--logs", "/tmp/wcc_logs/" + name))     # the whole match logs (big: kept out of the repo)
         out = os.path.abspath(arg("--out", "/tmp/wcc_out/" + name))
         end = int(arg("--end", "1200"))
         with ThreadPoolExecutor(int(arg("--jobs", "2"))) as ex:

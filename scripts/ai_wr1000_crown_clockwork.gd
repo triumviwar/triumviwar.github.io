@@ -35,3 +35,44 @@ static func vs(ai, me: String) -> bool:
 	if f < 0 or ai.game.faction_of(ai.team) != me:
 		return false
 	return ai.game.faction_of(f) == ("clockwork" if me == "crown" else "crown")
+
+
+# ------------------------------------------------------------------ finish: the Crown hunts a beaten Clockwork (block 2)
+
+## Block 1 (the baseline): the Crown at its 200 supply with 4,000-5,000 of army and a bank of 7,000-21,000 gold, the
+## Clockwork's army beaten down to 350-1,000, and the game still standing at 20:00 (Hollowfen, Ashford Crossing, Dune Sea):
+## the shared hunt (AIHunt) only starts when the enemy has NO fighting unit, and the Clockwork always has a few. Here the
+## Crown computer hunts the Clockwork's halls (nearest first, then its other buildings) while the Clockwork's fighting
+## units are worth under FINISH_SHARE of its army and its army is at least FINISH_OURS (the mirror's token hunt, AICrownMirror).
+const FINISH_SHARE := 0.2
+const FINISH_OURS := 2000.0
+
+
+static func hunt_anyway(ai, foe_t: int, army: Array) -> bool:
+	if not on("finish") or not vs(ai, "crown"):
+		return false
+	var theirs := 0.0
+	for u in ai.game.units:
+		if AIHunt.fighter(u, foe_t):
+			theirs += float(Game.unit_value(u))
+	var mine := 0.0
+	for u in army:
+		mine += float(Game.unit_value(u))
+	var go := mine >= FINISH_OURS and theirs < mine * FINISH_SHARE
+	if go:
+		count(ai, "finish")
+	return go
+
+
+## The hunt's goal in this pairing: the enemy's nearest hall, else the shared rule (its nearest building).
+static func hunt_goal(ai, foe_t: int, from: Vector2) -> Vector2:
+	var game: Game = ai.game
+	var best := Vector2.INF
+	var bd := INF
+	for b in game.buildings:
+		if b.team == foe_t and not b.dead and not b.ghost and b.kind == game.faction_hall(foe_t):
+			var d: float = b.center().distance_to(from)
+			if d < bd:
+				bd = d
+				best = b.center()
+	return best if best != Vector2.INF else AIHunt._target(game, foe_t, from)
