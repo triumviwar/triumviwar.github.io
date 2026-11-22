@@ -321,3 +321,46 @@ static func pend_target(ai, others: int, t: int) -> int:
 	if not on("pends") or not cw_v_brood(ai) or t <= 0:
 		return t
 	return clampi(2 + others / PENDS_PER, 2, PENDS_MAX)
+
+
+# ------------------------------------------------------------------ works (block 12)
+## WORKS: against the Brood the Clockwork had ONE Light Works until 6:00-8:30 (blocks 1 and 9: the second at 5:10-8:33,
+## ashford r1 b09 none until 10:32), so its army could not grow faster than one Clock Soldier every 16 s through the
+## Brood's timing attacks of 6:00-7:00 (28-37 supply of Raptors: 20-58 Winders lost in those games). One Works makes
+## about 260 cogs of army a minute while the Clockwork earns 800-1,000 at 6:00. Against the Brood its second Light Works
+## from WORKS2_AT, a third from WORKS3_AT (one going up at a time, with the cogs at hand and room for its supply).
+const WORKS2_AT := 240.0
+const WORKS3_AT := 390.0
+
+
+static func more_works(ai) -> void:
+	if not on("works") or not cw_v_brood(ai):
+		return
+	var g = ai.game
+	var want := 1
+	if g.clock >= WORKS3_AT:
+		want = 3
+	elif g.clock >= WORKS2_AT:
+		want = 2
+	var have: int = ai._mine(ai._works()).size()
+	if have == 0 or have >= want or ai._busy_building(ai._works()):
+		return
+	var cost := int(Defs.BUILDINGS[ai._works()]["cost"])
+	if ai._gold() < cost + 30:
+		ai._reserve = maxi(ai._reserve, cost + 30)        # (saved for, like the tech: the Winders and the army wait a moment)
+		return
+	ai._construct(ai._works())
+	if g.mlog and ai._busy_building(ai._works()):
+		g.mlog.add("%s lays Light Works %d against the Brood's timing [wkbworks]" % [g.mlog.who(ai.team), have + 1])
+
+
+## The Works is due and its cogs are short: the Winders wait (AIClockwork._train_workers) so the cogs gather for it.
+static func works_wait(ai) -> bool:
+	if not on("works") or not cw_v_brood(ai):
+		return false
+	var g = ai.game
+	var want := 3 if g.clock >= WORKS3_AT else (2 if g.clock >= WORKS2_AT else 1)
+	var have: int = ai._mine(ai._works()).size()
+	if have == 0 or have >= want or ai._busy_building(ai._works()):
+		return false
+	return ai._gold() < int(Defs.BUILDINGS[ai._works()]["cost"]) + 30

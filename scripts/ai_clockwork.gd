@@ -484,6 +484,8 @@ func _lab_want(want: int) -> int:
 
 
 func _produce() -> void:
+	if WkB.works_wait(self):
+		return          # (wr1000-clockwork-brood `wkbworks`: the Light Works' cogs first)
 	if not bo_on:
 		if not _keeping():
 			_b_keep()       # (cw-builds-b: the plan's heavy machines first, after the opening; clockwork-ai-v2: not out of the
@@ -507,6 +509,7 @@ func _supply() -> void:
 
 func _build_up() -> void:
 	_air_answer()
+	WkB.more_works(self)        # (wr1000-clockwork-brood `wkbworks`: the second and third Light Works on time v the Brood)
 	if bo_on and written != "" and _common_due():
 		_common_over()          # (cw-written-openings: before any hand-over can end the common opening)
 	if bo_on and written == "" and _dry_hand_over():
@@ -860,6 +863,8 @@ func _bo_tick() -> void:
 ## Escapement then wait a moment), instead of the army waiting for the opening's last steps (the first soldier came at 4:20,
 ## 5 at 5:00).
 func _bo_mass() -> void:
+	if WkB.works_wait(self):
+		return          # (wr1000-clockwork-brood `wkbworks`: the Light Works' cogs first)
 	if army_g == null or not _eco_plan():
 		return
 	var news := 0
@@ -1150,6 +1155,8 @@ func _supply_guard() -> void:
 
 ## Winders for the build: one at a time in each Clocktower's queue, from the cogs left over after the steps' price.
 func _train_workers() -> void:
+	if WkB.works_wait(self):
+		return          # (wr1000-clockwork-brood `wkbworks`: the Light Works' cogs first)
 	var w := String(_f()["worker"])
 	var have := game.workers(team).size()
 	for h in _halls():
@@ -1527,6 +1534,8 @@ var _cc_bank_t := -1.0
 
 
 func _cc_bank() -> void:
+	if WkB.works_wait(self):
+		return          # (wr1000-clockwork-brood `wkbworks`: the Light Works' cogs first)
 	if not cc_on or difficulty < 1 or _eco_plan() or not (cc_vs_crown() or (written_at >= 0.0 and bank_all_on)):
 		return
 	var free := _free() - maxi(0, _reserve)       # (a heavy machine's cogs kept by _b_keep stay kept)
