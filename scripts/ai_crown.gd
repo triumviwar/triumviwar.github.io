@@ -3532,6 +3532,8 @@ func owner_lab_cap() -> int:
 	var going := _hall_reserve or _busy_building(_f()["hall"])
 	var top := OWNER_LAB_MAX + OWNER_LAB_PER_HALL * maxi(0, built - 2) + (SAT_PRETRAIN if going and built >= 2 else 0)
 	var cap := _posts() + OWNER_SPARE_LABS + (SAT_PRETRAIN if going else 0)
+	if AIWccr.lab_cap(self) >= 0:
+		return mini(mini(cap, top), AIWccr.lab_cap(self))      # (wr1000-crown-clockwork: labourers stop at 70)
 	if AICrownVClock.rich_labs(self) >= 0:
 		return mini(mini(cap, top), AICrownVClock.rich_labs(self))     # (crown-1000-clockwork: a big bank: the supply to soldiers)
 	return mini(cap, top)

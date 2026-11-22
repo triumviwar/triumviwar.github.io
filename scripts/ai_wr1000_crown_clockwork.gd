@@ -140,3 +140,17 @@ static func losing_trade(push, now: float) -> String:
 		count(push.ai, "trade")
 		return "a losing trade: lost %d of the %d that went out and joined, killed %d" % [int(lost), int(push.value_in), int(killed)]
 	return ""
+
+
+# ------------------------------------------------------------------ labs: the Crown's labourers stop at LABS_MAX
+
+## Blocks 1-4: the Crown computer reaches its 200 supply at 14:00-16:00 with 80-112 labourers (its halls' Farm posts and a
+## few spare), so its army is 90-120 supply while 7,000-21,000 gold piles up unspent by 20:00; the Clockwork keeps 45-55
+## Winders. Here (the Crown computer against the Clockwork) no labourer is trained past LABS_MAX: the supply goes to soldiers.
+const LABS_MAX := 70
+
+
+static func lab_cap(ai) -> int:
+	if not on("labs") or not vs(ai, "crown"):
+		return -1
+	return LABS_MAX
