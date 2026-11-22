@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"THE CLOCKWORK COMPUTER AGAINST ITSELF PLAYS A REAL GAME: in a Clockwork mirror the computer no longer throws dice on a plan that loses (the Springer timing it switched to at 3:00 had almost no army at 8:00 and lost every game it was picked in; the Economy race lost every game against Balanced's waves): it plays Balanced. And when an enemy push far stronger than its army stands at its door, it no longer sends its soldiers in one or two at a time to die: the army and every new unit gather at its farthest Clocktower and go back in together. Measured over 150 Hard games to 20:00: 9 of 10 games now end before 20:00 (6 to 8 before), with no edge for either start. Only the mirror changed; each change has a switch (wkmnospr, wkmnoeco, wkmnofeed :off, or wkm:off for all). Also fixed: a Spring Ballista's shot along a line no longer stops with an error when one of the men in it is already gone.",
+	]},
 	{"v": "0.38.124", "items": [
 		"THE CROWN'S LAND IS ONLY PURPLE: a region the Crown holds but where people are uneasy now has purple and pale purple stripes and flag (it had red, which is the machine's colour), on the painted and the drawn war map and in the legend.",
 	]},
