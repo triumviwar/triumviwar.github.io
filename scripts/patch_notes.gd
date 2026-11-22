@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.130", "items": [
+		"MORE BROOD FIXES: a Grub harvesting toward you keeps facing you (it swung sideways to drop the food), and when a Sire answers a lure the dug pit stays under his feet instead of blinking in and out.",
+	]},
 	{"v": "0.38.129", "items": [
 		"BROOD SPRITES CLEANED UP: the Raptor dies falling once (it flipped over and back), the Brute rams with its horns (its attack spat acid), the Tyrant Sire dies as the same crouched beast (it turned into a thin upright one), the Tyrant Challenger no longer grows a limb out of its back as it dies, the Hatchlings and the Storm Challenger no longer lose half their body in one wing-beat, the dark patch between wing and neck of the Storm Sire and the Storm Challenger is gone, and the Storm Challenger flying north points its beak away from you in every frame.",
 	]},

@@ -114,7 +114,10 @@ old strip was kept); 16 Hatchlings and 23 Storm Challenger fly SE: the truncated
 north: the fly loop and the swoop's frames 0, 4, 5 flipped top to bottom so the beak points away in every north frame
 (tools/flip_storm_n.py). A reptilian Hatchlings design (a small wyvern) came out of the SE request and is kept as an
 idea for finding 92 (the chicken-like Hatchlings) in art/redraws/ideas/hatchlings_wyvern_se_chatgpt.png: changing
-it means every view and the portrait, an owner's call.
+it means every view and the portrait, an owner's call. 0.38.130: 15 Grub harvest S, frames 3-4 (the side view) replaced
+by frames 2 and 1 (front on); 17 and 18 the Sire lures' arrival: the pit of the last frame laid behind frames 6-11, so
+the ground no longer blinks (tools/lure_pit_steady.py). 19 Mist Toad fog E: no white blotches left in the current
+strip (checked); its size still steps down between frames 3 and 4.
 
 ## Redraw requests for the HIGH findings
 
