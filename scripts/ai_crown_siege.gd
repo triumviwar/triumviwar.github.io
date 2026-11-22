@@ -228,6 +228,8 @@ func _maybe_go() -> void:
 		big = true                # (crown-mirror-coach: the side ahead presses, AICrownMirror.press_siege)
 	if not big and (guns.size() < GUNS_GO or cannons < 1 or muskets < LINE_GO):
 		return
+	if _brood() and preload("res://scripts/ai_wr1000_crown_brood.gd").push_waits(ai, sup, self):
+		return                  # (wr1000-crown-brood "cap": against the Brood the push goes only as a big army)
 	var mine := 0.0
 	for u in home:
 		mine += float(Game.unit_value(u)) * (GUN_WEIGHT if GUNS.has(u.kind) else 1.0)

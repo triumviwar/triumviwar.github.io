@@ -57,6 +57,26 @@ static func research_now(ai) -> bool:
 	return armed_lead(ai)
 
 
+# ------------------------------------------------------------------ change "cap": the push goes as a big army
+## (block 1: the Siege push went out with 36-53 supply at 9:10-11:30 (AICrownSiege.BIG_GO 50 lets any push that big go),
+## set up against Rootmaws and Mound Turtles on the rooted ground, lost 1,100-3,600 of army for 700-3,400 killed and came
+## home; the Brood rebuilt to its cap by 13:00-14:00 and its waves broke the Crown at 15:00-19:00. The two games with no
+## push survived.) Against the Brood the push goes only with CAP_SUP supply at home, or with the Crown's supply full.
+const CAP_SUP := 110
+static var cap_waits := {}      # team -> thinks the push waited for it
+
+
+static func push_waits(ai, sup: int, siege) -> bool:
+	if not vs_brood(ai, "cap"):
+		return false
+	if sup >= CAP_SUP or ai.game.supply_used(ai.team) >= ai.game.max_supply(ai.team) - 6:
+		return false
+	cap_waits[ai.team] = int(cap_waits.get(ai.team, 0)) + 1
+	if int(cap_waits[ai.team]) % 30 == 1:
+		siege.say("waits for a big army against the Brood: %d supply at home, it wants %d" % [sup, CAP_SUP])
+	return true
+
+
 ## (qa_match's result.json "crown_ai": what this job's changes did)
 static func counters(team: int) -> Dictionary:
-	return {"wcb_arm_freed": int(arm_freed.get(team, 0))}
+	return {"wcb_arm_freed": int(arm_freed.get(team, 0)), "wcb_cap_waits": int(cap_waits.get(team, 0))}
