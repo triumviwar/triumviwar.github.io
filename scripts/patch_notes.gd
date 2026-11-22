@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"THE BROOD AGAINST THE BROOD ENDS MORE GAMES (only the computer's play; nothing a player uses changed): when the Brood computer faces another Brood and attacks at its full supply, its Tyrant Sire now walks with the wave. At the supply cap no egg can be laid, so he stood rooted beside the Mother doing nothing while every wave broke on the enemy's Sires and swamp; he comes home with the wave and roots on his nest again. In 30 measured games 6 in 10 ended by 20:00 against 4 in 10 before. Against the Crown and the Clockwork the Brood plays as before.",
+	]},
 	{"v": "0.38.124", "items": [
 		"THE CROWN'S LAND IS ONLY PURPLE: a region the Crown holds but where people are uneasy now has purple and pale purple stripes and flag (it had red, which is the machine's colour), on the painted and the drawn war map and in the legend.",
 	]},
