@@ -52,3 +52,16 @@ static func fail_waived(ai, army, mine: float) -> bool:
 		return false
 	army.say("the last push's bar (%d) is waived: %s (worth %d)" % [int(army._fail_v * army.AFTER_FAIL), why, int(mine)], "wkmcap", 45.0)
 	return true
+
+
+## CHANGE "nospr" (block 3). OPTIMAL's NORMAL / UNKNOWN pick in the mirror is Balanced 3, Economy 2, Springer timing 1. The
+## Springer timing switched to at 3:00 from the economy opening lays the Escapement and buys HIGH LEAP, a Clock Aviary and a
+## Swift before any army: 240 worth at 5:00, 365 at 8:00 against the other side's 2,015 (Cinder Steps r0, block 1), and it lost
+## all four games where it was picked (blocks 0 and 1, beaten at 11:17-13:31, a draw where it turned to Balanced). A lost game
+## decided by a dice throw at 3:00 is no skill: in the mirror the pick is Balanced or Economy.
+static func normal_w(w: Dictionary) -> Dictionary:
+	if not on("nospr") or not w.has("springer"):
+		return w
+	var out := w.duplicate()
+	out.erase("springer")
+	return out
