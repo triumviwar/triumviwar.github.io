@@ -270,3 +270,17 @@ static func _gear_spot(ai, k: String, tgt: Vector2) -> Vector2i:
 			bd = d
 			best = c
 	return best
+
+
+# ------------------------------------------------------------------ flee: the Winders do not fight the Crown's riders
+
+## Blocks 1-8 (79 games): 1,640 Winders died to the Crown's Horsemen with an ATTACK order, about 21 a game: the round-5 rule
+## (AIRound5.worker_raid) groups the Winders by a press to hit one rider together when they outweigh the riders on paper,
+## and the Horsemen (100 health, a sabre, the charge) cut them down; all the Clockwork's Winders killed about 4 units a game.
+## Here (the Clockwork computer against the Crown) that rule is skipped: the shared rule takes the raid (the Winders flee to
+## safety and the guards come, AIRound5.guard_workers).
+static func winders_flee(ai) -> bool:
+	if on("flee") and vs(ai, "clockwork"):
+		count(ai, "flee")
+		return true
+	return false
