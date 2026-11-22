@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.132", "items": [
+		"TIDIER SOLDIERS: a fallen Musketeer or Guardsman facing right no longer has a loose red scrap lying beside him, and the riders mounting up in the Barracks drill no longer have bits of rein and a stray hoof floating next to them.",
+	]},
 	{"v": "0.38.131", "items": [
 		"THE MISSIONARY TURNS HIS BACK: walking or standing facing north he is seen from behind (he showed his face going away from you), and standing toward the upper right he no longer hunches and straightens over and over.",
 	]},

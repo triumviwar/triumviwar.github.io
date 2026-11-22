@@ -119,7 +119,10 @@ by frames 2 and 1 (front on); 17 and 18 the Sire lures' arrival: the pit of the 
 the ground no longer blinks (tools/lure_pit_steady.py). 19 Mist Toad fog E: no white blotches left in the current
 strip (checked); its size still steps down between frames 3 and 4. 0.38.131: the Missionary's north walk and idle redrawn from behind
 (they showed his face; requests M90, M91), and his north-east idle shows its upright frame twice (the hunched first frame
-switched pose).
+switched pose). 0.38.132: the loose chunk beside the Musketeer's and Guardsman's east death, and the rein scraps and
+stray hoofs beside the mounting riders of the Barracks drills (Cuirassier, Horseman, Dragoon, Armoured Dragoon), removed
+(tools/drop_loose_bits.py: pieces smaller than a share of the frame's biggest). Left: the carbine on the Horseman's back
+in mount_e/se frames 3-6 (two pixels wide at game size).
 
 ## Redraw requests for the HIGH findings
 
