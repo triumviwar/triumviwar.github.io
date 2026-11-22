@@ -309,3 +309,31 @@ static func mend_unsafe(ai, o: Unit) -> bool:
 		count(ai, "mend")
 		return true
 	return false
+
+
+# ------------------------------------------------------------------ cwpick: the Clockwork's plan against the Crown
+
+## Blocks 1 and 6 (the baseline): the Clockwork computer's OPTIMAL picks the Springer timing in 5 of the 10 games (an
+## UNKNOWN or late GREEDY read of the Crown: AIOptimal.NORMAL's 2:2:2:1 dice, and the GREEDY row "a timing attack"), and
+## those went worse for it (the Crown's mean score +0.45 there, +0.21 where it played Economy; the plan matrix's "Springer
+## 5 of 5" was measured against the Crown computer before its coaching). Here (the Clockwork computer against the Crown) a
+## NORMAL or UNKNOWN read picks Balanced or Economy, half and half, and a GREEDY read past the Clock Soldier rush's window
+## the Economy race.
+const CW_PICK := {"balanced": 1.0, "economy": 1.0}
+
+
+static func cw_pick(opt, read: String) -> Array:
+	if not on("cwpick") or opt.fac != "clockwork" or opt.foe() != "crown":
+		return []
+	if read == "NORMAL":
+		count(opt.ai, "cwpick")
+		var k: String = opt._weighted(CW_PICK)
+		return [k, opt._normal_why(k)]
+	return []
+
+
+static func cw_greedy(opt) -> Array:
+	if not on("cwpick") or opt.fac != "clockwork" or opt.foe() != "crown":
+		return []
+	count(opt.ai, "cwpick")
+	return ["economy", "too late to punish: out-expand it"]

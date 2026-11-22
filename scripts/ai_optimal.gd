@@ -194,6 +194,9 @@ func choose(read: String) -> Array:
 				return []        # (a normal read later keeps what it plays: the dice are thrown once, no flip-flop)
 			if fac == "crown" and f == "clockwork" and NORMAL_CLOCK_TRY != "":
 				return [NORMAL_CLOCK_TRY, _normal_why(NORMAL_CLOCK_TRY)]     # (study switch, crown-coach-balloon)
+			var wcc: Array = AIWccr.cw_pick(self, "NORMAL")      # (wr1000-crown-clockwork: Balanced or Economy v the Crown)
+			if not wcc.is_empty():
+				return wcc
 			var w: Dictionary = (NORMAL.get(fac, {}) as Dictionary).get(f, {"balanced": 1.0})
 			if fac == "crown" and f == "clockwork":
 				w = clock_w(w)
@@ -284,6 +287,8 @@ func _punish(f: String, t: float) -> Array:
 					return cb
 			if early:
 				return ["cs_rush", "punish the greed before its army is up"]
+			if not AIWccr.cw_greedy(self).is_empty():
+				return AIWccr.cw_greedy(self)        # (wr1000-crown-clockwork: the Economy race v a greedy Crown)
 			if t < TOO_LATE:
 				return ["springer", "a timing attack before its economy pays off"]
 			return ["economy", "too late to punish: out-expand it"]
