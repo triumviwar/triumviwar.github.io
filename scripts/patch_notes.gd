@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"Nothing new to play yet: the campaign engine learned what Act 2's missions need: carts that carry families or gold and can be taken, creatures that hide and leave tracks, the lure's leash and its breaking, buildings that turn to the other side, ground that spreads, the brake on the machines, sappers under the walls, granaries that feed whoever holds them, and missions that change with what you fought first.",
+	]},
 	{"v": "0.38.178", "items": [
 		"Nothing changes in the game yet: three rules for every campaign mission are written down (say it plainly, no waiting, check the feel), and the building of Act 2 has started.",
 	]},

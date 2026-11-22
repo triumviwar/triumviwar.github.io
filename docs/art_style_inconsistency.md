@@ -781,3 +781,16 @@ lying frames shrunk a little where they would overrun the 42-px cell), and his o
 (art/redraws/gun_crew_icon_chatgpt.png, shrunk to 64). Nothing of him is drawn in code any more.
 
 - Pendulum v2 WALK repainted by ChatGPT (0.38.106): art/redraws/pendulum_v2_walk_{s,se,e}_chatgpt.png (one row of 8, repaints of the code walk rows) replace the code walk for those facings (tools/import_tier3.py takes any pendulum_v2_walk_<d>_chatgpt.png it finds, scaled to the idle, under the case). STILL CODE: the NE and N walks (the account ran out of images; guides are the code rows of art/redraws/pendulum_v2_walk.png), the idle sway and the two low sweeps.
+
+## Act 2's engine step 0 (act2-engine0, 0.38.999; scripts/campaign/mission_act2.gd, pictures docs/shots/act2_engine0/)
+
+Drawn in code, to be painted later (stand-ins):
+- The CARGO marks beside a cart: a bundle of three sacks (families) and a small chest with a gold lid (gold), with "x3".
+- The FAMILY CART and GOLD CART roles use the Powder Wagon's sprite (a covered cart with an ox): a cart with a family
+  aboard and an iron-bound gold cart are wanted.
+- The LURE POST: a brown pole with a green jar on top and a pulsing green ring at its foot.
+- TRACKS: three-claw prints (dark lines over a pale scuff) in pairs.
+- The GEAR GROUND: brass squares with a ring and six teeth on each cell.
+- SAPPING: the gallery as a dark trench with a dashed earth line, a dashed line still to dig and a brown mound over the
+  sappers.
+- A Brood team's swamp past the first two teams is painted by the mission with the swamp tile (no edges or blending).

@@ -684,7 +684,7 @@ func _tick_leash(dt: float) -> void:
 			if not u.has_meta("leash_loose"):
 				u.set_meta("leash_loose", true)
 				_loose_t[u] = 0.0
-				_say_float(u.position + Vector2(0, -30), "LOOSE!", Color(1.0, 0.6, 0.3), run.side_of_team(u.team))
+				_say_float(u.position + Vector2(0, -52), "LOOSE!", Color(1.0, 0.6, 0.3), run.side_of_team(u.team))
 			_loose_t[u] = float(_loose_t.get(u, 0.0)) - dt
 			if float(_loose_t[u]) <= 0.0:
 				_loose_t[u] = LOOSE_EVERY
@@ -1230,21 +1230,47 @@ func _draw_under() -> void:
 				for k in 6:
 					var a := TAU * float(k) / 6.0 + float(cell.x + cell.y)
 					cv.draw_line(pc + Vector2(cos(a), sin(a)) * step * 0.28, pc + Vector2(cos(a), sin(a)) * step * 0.38, Color(0.35, 0.25, 0.1, 0.6), 2.0)
+	# THE SPREADING SWAMP of a Brood team the Game doesn't paint (it paints the first two teams' swamp only: a mission's
+	# Brood is often its third or fourth team): its cells drawn here with the swamp's own picture
+	for gr in st["grounds"]:
+		var tm := int(gr["team"])
+		if String(gr["kind"]) != "swamp" or tm < 2 or tm >= g.swamp.size():
+			continue
+		var tx: Texture2D = Game.tex("res://assets/tiles/swamp.png")
+		var sw: PackedByteArray = g.swamp[tm]
+		var c := _ground_centre(gr) / _tile()
+		var rr := float(gr["r"]) + 1.0
+		var tc := g.team_colour(tm)
+		for y in range(int(c.y - rr), int(c.y + rr) + 1):
+			for x in range(int(c.x - rr), int(c.x + rr) + 1):
+				if x < 0 or y < 0 or x >= Game.W or y >= Game.H or sw[y * Game.W + x] != 1 or g.cliff[y * Game.W + x] != 0:
+					continue
+				var cp := g.cell_center(Vector2i(x, y))
+				if not _sees_all() and ft >= 0 and not g.allied(tm, ft) and not g.is_visible_to(ft, cp):
+					continue
+				var rect := Rect2(Vector2(x, y) * _tile(), Vector2(_tile(), _tile()))
+				if tx:
+					cv.draw_texture_rect(tx, rect, false, Color(1, 1, 1, 0.9).lerp(tc, 0.15))
+				else:
+					cv.draw_rect(rect, Color(0.25, 0.35, 0.15, 0.8))
 	# TRACKS: only the side that reads them (or a spectator)
 	for m in _marks:
 		if not _sees_all() and int(m[3]) != mysi:
 			continue
 		var age := (g.clock - float(m[1])) / maxf(1.0, float(m[4]))
-		var al := clampf(1.0 - age, 0.0, 1.0) * 0.75
+		var al := clampf(1.0 - age, 0.0, 1.0) * 0.95
 		var p: Vector2 = m[0]
 		var ang: float = m[2]
 		var fwd := Vector2(cos(ang), sin(ang))
-		var sidev := fwd.orthogonal() * 5.0
+		var sidev := fwd.orthogonal() * 6.0
 		for sgn in [-1.0, 1.0]:
-			var q: Vector2 = p + sidev * sgn + fwd * (3.0 if sgn > 0.0 else -3.0)
+			var q: Vector2 = p + sidev * sgn + fwd * (4.0 if sgn > 0.0 else -4.0)
+			cv.draw_circle(q, 3.5, Color(0.95, 0.88, 0.62, 0.35 * al))      # (a pale scuff so the print reads on dark grass)
 			for t in 3:
-				var ta := ang + (float(t) - 1.0) * 0.45
-				cv.draw_line(q, q + Vector2(cos(ta), sin(ta)) * 6.0, Color(0.22, 0.16, 0.08, al), 2.0)
+				var ta := ang + (float(t) - 1.0) * 0.5
+				var tip := q + Vector2(cos(ta), sin(ta)) * 8.0
+				cv.draw_line(q, tip, Color(0.95, 0.88, 0.62, 0.3 * al), 4.5)
+				cv.draw_line(q, tip, Color(0.16, 0.1, 0.04, al), 2.5)
 	# SAPPING: the gallery dug, for its own side
 	for s in st["saps"]:
 		var u = s.get("u")
@@ -1258,12 +1284,14 @@ func _draw_under() -> void:
 		var ln := a2.distance_to(now)
 		var dirv := (b2 - a2).normalized()
 		var d := 0.0
+		cv.draw_line(a2, now, Color(0.12, 0.08, 0.04, 0.55), 9.0)          # (the gallery dug so far: a dark trench)
 		while d < ln:
-			cv.draw_line(a2 + dirv * d, a2 + dirv * minf(d + 8.0, ln), Color(0.35, 0.24, 0.12, 0.85), 3.0)
+			cv.draw_line(a2 + dirv * d, a2 + dirv * minf(d + 10.0, ln), Color(0.55, 0.4, 0.2, 0.95), 4.0)
 			d += 16.0
-		cv.draw_dashed_line(now, b2, Color(0.9, 0.8, 0.5, 0.35), 1.5, 6.0)
-		cv.draw_circle(now, 9.0, Color(0.42, 0.3, 0.16, 0.9))
-		cv.draw_circle(now + Vector2(-3, -3), 4.0, Color(0.55, 0.42, 0.25, 0.9))
+		cv.draw_dashed_line(now, b2, Color(1.0, 0.9, 0.55, 0.7), 2.0, 8.0)   # (the way still to dig)
+		cv.draw_arc(b2, 12.0, 0.0, TAU, 24, Color(1.0, 0.9, 0.55, 0.8), 2.0)
+		cv.draw_circle(now, 11.0, Color(0.3, 0.2, 0.1, 0.95))              # (the mound over the sappers)
+		cv.draw_circle(now + Vector2(-3, -3), 5.0, Color(0.6, 0.46, 0.28, 0.95))
 
 
 func _draw_over() -> void:
@@ -1282,7 +1310,8 @@ func _draw_over() -> void:
 			continue
 		var reach := float(l["within"]) * _tile()
 		for p in lures_of(String(l["lure"])):
-			cv.draw_arc(p, reach, 0.0, TAU, 72, Color(0.55, 1.0, 0.5, 0.35), 2.0)
+			cv.draw_arc(p, reach, 0.0, TAU, 96, Color(0.1, 0.2, 0.05, 0.35), 4.5)
+			cv.draw_arc(p, reach, 0.0, TAU, 96, Color(0.6, 1.0, 0.5, 0.6), 2.0)
 		for u in units:
 			if _alive(u) and u.has_meta("leash_loose") and u.visible:
 				_label(cv, font, u.position + Vector2(0, -u.radius - 22.0), Loc.t("LOOSE"), Color(1.0, 0.62, 0.3))
@@ -1303,16 +1332,17 @@ func _draw_over() -> void:
 		if not _alive(c) or not c.visible:
 			continue
 		var k := clampf(float(it["t"]) / maxf(0.1, float(it.get("secs", 5.0))), 0.0, 1.0)
-		var top: Vector2 = c.position + Vector2(-26, -c.radius - 30.0)
+		var top: Vector2 = c.position + Vector2(-26, c.radius + 8.0)      # (under the cart: its name and bar stay clear)
 		cv.draw_rect(Rect2(top, Vector2(52, 7)), Color(0, 0, 0, 0.7))
 		cv.draw_rect(Rect2(top + Vector2(1, 1), Vector2(50 * k, 5)), Color(1.0, 0.6, 0.2))
-		_label(cv, font, top + Vector2(26, -6), Loc.t("TAKING THE CART"), Color(1.0, 0.7, 0.35))
+		_label(cv, font, top + Vector2(26, 22), Loc.t("TAKING THE CART"), Color(1.0, 0.7, 0.35))
 	# CARGO: a bundle (families) or a chest (gold) on a cart
 	for it in st["loads"]:
 		var c = it.get("cart")
 		if not _alive(c) or not c.visible:
 			continue
-		var p: Vector2 = c.position + Vector2(0, -c.radius - 8.0)
+		var p: Vector2 = c.position + Vector2(c.radius + 12.0, -14.0)      # (beside the cart, clear of its name and flag)
+		cv.draw_circle(p, 13.0, Color(0, 0, 0, 0.45))
 		if String(it["cargo"]) == "gold":
 			cv.draw_rect(Rect2(p - Vector2(9, 6), Vector2(18, 12)), Color(0.45, 0.28, 0.12))
 			cv.draw_rect(Rect2(p - Vector2(9, 6), Vector2(18, 4)), Color(0.95, 0.78, 0.25))
@@ -1321,7 +1351,7 @@ func _draw_over() -> void:
 			cv.draw_circle(p + Vector2(5, 1), 5.0, Color(0.42, 0.36, 0.28))
 			cv.draw_circle(p + Vector2(0, -5), 5.0, Color(0.62, 0.5, 0.35))
 		if int(it["n"]) > 1:
-			_label(cv, font, p + Vector2(16, 2), "%d" % int(it["n"]), Color(1, 1, 1))
+			_label(cv, font, p + Vector2(0, 26), "x%d" % int(it["n"]), Color(1, 1, 1))
 	# BUILDINGS THAT CONVERT: the next to turn
 	for s in st["spreads"]:
 		var b = s.get("next")

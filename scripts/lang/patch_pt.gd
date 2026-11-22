@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["Ainda nada novo para jogar: o motor da campanha aprendeu o que as missões do Ato 2 precisam: carroças que levam famílias ou ouro e podem ser tomadas, criaturas que se escondem e deixam rastros, a trela da isca e como ela se rompe, edifícios que passam para o outro lado, terreno que se espalha, o travão das máquinas, sapadores sob as muralhas, celeiros que alimentam quem os segura, e missões que mudam conforme o que você combateu primeiro."],
 	"0.38.178": ["Ainda nada muda no jogo: ficaram escritas três regras para cada missão da campanha (dizer as coisas claramente, nada de esperas, verificar a sensação), e começou a construção do Ato 2."],
 	"0.38.177": ["Nada muda no jogo: o plano da campanha ganha um balonista, que chega com o Balão de Observação e mostra o mundo visto do ar."],
 	"0.38.176": ["Nada muda no jogo: o plano da campanha passa a ter o mar: viagens contadas em pinturas, um capitão de navio que volta, tempestades e batalhas navais em pinturas."],

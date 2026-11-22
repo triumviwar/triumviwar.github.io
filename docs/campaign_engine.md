@@ -455,3 +455,40 @@ MATURE refuses a caged creature (BroodMature.problem: "It is caged.").
 | mission `"needs": [missions]` | a CROSSING: unlocked only once every one of them is finished, whichever led to it (Campaign.unlocked); a mission in several storylines is listed once (Campaign.mission_ids) |
 | mission `"auto_tags": [{"team", "kind", "tag"}]` | every unit of that team and kind (one a person trains too) gets the tag |
 | roles `king_young`, `swiss`, `captain_rome`, `roman`, `roman_mob` | Rebels.ROLES (stand-ins) |
+
+## Added by Act 2's engine step 0 (act2-engine0; docs/act2_engine0.md)
+
+The code is scripts/campaign/mission_act2.gd (MissionAct2: MissionRun asks it for the keys it doesn't know; its state is
+MissionRun.act2, saved with the mission). Test: tools/test_act2_engine0.gd. Pictures: docs/shots/act2_engine0/.
+
+| key / action / condition | what it does |
+| --- | --- |
+| role `family_cart`, `gold_cart` (Rebels.ROLES) | CARGO CARTS: a cart that never blows up, at the column's walking pace (a role's new `"speed"`) |
+| `{"load": {"cart": tag, "cargo": "families" / "gold" / ..., "amount": 1, "lost": counter, "first"}}`, `{"unload": {"tag"}}` | the empty carts of the tag take that cargo aboard (a bundle or a chest drawn beside the cart, "x3"); a cart broken: its cargo LOST (counted in `lost`); a cart taken keeps it |
+| exit `"cargo": true` | a cart with a load leaves by it with its load; `cargo_counter` counts the load's amount (cage carts as before: one each) |
+| condition `{"loaded": {"tag", "cargo", "at_least" / "below"}}` | the cargo aboard living carts of the tag |
+| mission `"take_carts": [{"tag", "by": side, "to": team, "secs": 5, "within": 2, "guard": 3, "counter", "as"}]` | TAKE A CART: armed men of `by` within `within` tiles of a cart and no armed man of its own side within `guard` tiles for `secs` seconds: the cart changes side, cargo and all (to `to`, else the first team of `by` nobody plays). A bar TAKING THE CART fills under it and empties when they are driven off; TAKEN! when done |
+| condition `{"taken": tag}` or `{"taken": {"tag", "at_least"}}` | carts of the tag taken so far |
+| `{"hide": {"tag" / "team" / "side", "from": side, "within": 3, "awake_within", "name", "counter", "on"}}` | HIDDEN: not on that side's screen and nobody of it aims at them, until FOUND: a unit of `from` within `within` tiles of one ASLEEP, or seeing one AWAKE in its own sight (or within `awake_within`), or one is hurt or goes for one of them. Found = seen for good, pinged, FOUND!, counted. `"on": false`: hidden no more (not counted) |
+| condition `{"found": {"name" or "tag", "at_least" (1) / "below"}}` | how many of that hiding were found |
+| `{"tracks": {"tag" / "team" / "side", "for": side, "secs": 60, "every": 2, "name", "on"}}` | TRACKS: claw marks where they walk, seen only by the side `for` (and spectators), fading over `secs` |
+| `{"order": {..., "do": "track", "within": 14}}` | each scripted man walks to the freshest track of his side within reach (a search on a hunch; repeat with `every`) |
+| `{"leash": {"tag" / "team" / "side", "lure": tag, "within": 8, "loose": "wander" / "hunt" / "root" / "to", "to": area, "name", "breaks": {...}, "on"}}` | THE LEASH: they obey only within `within` tiles of a LURE (a unit, building or lure post with that tag; a ring shows its reach to their side); out of every lure's reach they are LOOSE (LOOSE over them) and go their own way every 3 s whatever they were told; back in reach they wait for orders (HELD). A leash on a team or side takes its new units too |
+| leash `"breaks": {"near": tag, "within": 5, "to": team, "as": tag, "counter", "warn": 2}` | THE BREAKING: one within `within` tiles of a unit with the `near` tag leaves the leash and changes side for good (stars for `warn` s first; THE LEASH BREAKS) |
+| conditions `{"loose": {"name" or "tag", "at_least"}}`, `{"broke": {"name", "at_least"}}` | loose now; broken so far |
+| `{"lure_post": {"tag", "at": area / [x, y] / tag, "secs", "pull": {"tag" / "team" / "side", "within": 20, "then": area, "name", "attack"}, "remove"}}` | a LURE POST (a pole and a jar, LURE POST over it): a lure for leashes with that tag; with `pull` it draws the scripted units of the group within reach to it ONCE, then on to `then` (a route: its spot is the area `lure:<tag>`); `secs`: gone after that long |
+| condition `{"lured": tag}` | the post pulled at least one (and `{"route_done": name}` when they arrive) |
+| `{"spread_convert": {"name", "from": tag, "tag": buildings, "to": team, "every": 20, "first", "warn": 5, "units": tag, "counter", "max", "stop"}}` | BUILDINGS THAT CONVERT: every `every` s the building of the tag nearest the source or one already turned is marked (a red ring, TURNING n) for `warn` s, then changes side with the `units`-tagged men within 4 tiles; `"stop": true` stops the spread |
+| condition `{"turned": {"name", "at_least"}}` | buildings turned so far |
+| `{"ground": {"name", "from": tag or "at", "kind": "swamp" / "gear", "team", "r": 2, "step": 1, "every": 10, "max": 10, "wind": 0.04, "stop"}}` | THE SPREADING GROUND: grows by `step` tiles every `every` s up to `max`. `swamp`: the Brood's real swamp for that team (Game._update_swamp asks MissionRun.swamp_sources; a Brood team past the first two is painted by MissionAct2 itself); `gear`: brass plates on which the team's Clockwork units are wound (`wind` a second) |
+| condition `{"ground": {"name", "at_least": tiles}}`, `{"ground": {"name", "on": tag}}` | its radius; one of the tag stands on it |
+| `{"brake": {"team" / "tag" / "side" / "faction", "name", "on"}}` | THE BRAKE: their Clockwork units run down to nothing at once and stay so (new ones too) until `"on": false` |
+| `{"sap": {"tag", "to": area / [x, y], "secs": 30, "name", "blast": {"tag", "amount", "within": 3}}}` | SAPPING: they go under the ground (off the field: seen only by their own side, as a gallery dug and a mound moving), straight to the place in `secs`, come up there; `blast`: a mine as they come up. Works on a person's men too |
+| condition `{"sapped": name}` | the sappers came up |
+| mission `"granaries": [{"tag", "gold": 10, "powder": 0, "every": 10, "hold_within": 4, "counter"}]` | GRANARIES: each feeds its holder every `every` s: its own team, or, with men of another side round it and none of its own, the team of the nearest of them ("+10" over it for that player) |
+| condition `{"fed": {"team", "at_least"}}` | what the granaries gave that team |
+| mission `"versions": {"pick": [{"if": cond, "id"}], "default", "labels": {id: words}}` | TWO VERSIONS (FRESH / GROWN): picked once before anything is placed (the first pick whose condition holds before the match: `past`, `difficulty`, `playing`, `heir`, `hub_flag`), kept in the flag `version`; the briefing shows its label (MissionAct2.version_of) |
+| condition `{"version": id}` (or a list) | the mission's version: on units, buildings, spawns, lines, waves |
+| campaign.json `"heir": "unseen" / "named"`; condition `{"heir": ...}`; hub talk entry `"heir"` | THE HEIR: one setting for the whole frame (Campaign.heir) |
+| hub talk entry `"choice": {"flag", "options": [{"id", "label", "lines"}]}`, entry `"hub_flag": {name: value}`, condition `{"hub_flag": {...}}` | THE FRAME AT THE CHOICE: after the entry's lines the buttons are the listener's answer, kept in the progress file (Campaign.set_hub_flag); the option's lines follow |
+| MissionRun.longest_idle() (and a match-log line at the end) | THE IDLE METER (NO WAITING): the longest stretch with no line, objective, counter or choice, no fight of the player's men and nothing new made; a mission's sim reads it (target under 45 s) |
