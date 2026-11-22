@@ -90,10 +90,19 @@ const COUNTER_SUP := 40
 static var counters_sent := {}  # team -> counter-attacks sent
 
 
+## (change "counterw", block 9: the same, wider: COUNTERW_WINDOW s, COUNTERW_K, COUNTERW_SUP; "counter" fired 0-2 times a game)
+const COUNTERW_WINDOW := 90.0
+const COUNTERW_K := 1.5
+const COUNTERW_SUP := 30
+
+
 static func counter_now(ai, siege, mine: float, sup: int, since_threat: float) -> bool:
-	if not vs_brood(ai, "counter") or since_threat < 0.0 or since_threat > COUNTER_WINDOW:
+	var wide := vs_brood(ai, "counterw")
+	if not (wide or vs_brood(ai, "counter")) or since_threat < 0.0:
 		return false
-	if sup < COUNTER_SUP or mine < COUNTER_K * maxf(COUNTER_FOE_MIN, float(ai.ch.foe_known())):
+	if since_threat > (COUNTERW_WINDOW if wide else COUNTER_WINDOW):
+		return false
+	if sup < (COUNTERW_SUP if wide else COUNTER_SUP) or mine < (COUNTERW_K if wide else COUNTER_K) * maxf(COUNTER_FOE_MIN, float(ai.ch.foe_known())):
 		return false
 	counters_sent[ai.team] = int(counters_sent.get(ai.team, 0)) + 1
 	siege.say("strikes back: the Brood's wave at its buildings is beaten (%d of army against the %d of Brood it knows)" % [
