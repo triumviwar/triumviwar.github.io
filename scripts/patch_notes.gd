@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"THE CLOCKWORK COMPUTER AGAINST THE BROOD USES ITS TENSION: it now lays a Mainspring at every Clocktower (it ran four Clocktowers on two), so its army is no longer nearly all Clock Soldiers: Springers come in numbers, and once it has seen the Brood's Spitters it lays its Clock Aviary at once and turns Swifts into Ticking Owls, which Spitters cannot spit at. In 30 test games against the Hard Brood it won about half (was a third) and lost one in five (was three in ten). Other matchups are unchanged.",
+	]},
 	{"v": "0.38.124", "items": [
 		"THE CROWN'S LAND IS ONLY PURPLE: a region the Crown holds but where people are uneasy now has purple and pale purple stripes and flag (it had red, which is the machine's colour), on the painted and the drawn war map and in the legend.",
 	]},
