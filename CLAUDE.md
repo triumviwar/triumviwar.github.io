@@ -31,8 +31,12 @@
   clockwork-brood (baseline even 7-6; KEPT `owls`: a Mainspring at every Clocktower, the Aviary + Owls v Spitters: 16-6 in
   30, switch wkbowls:off), clockwork-mirror (14 of 20 decided, no spot edge; KEPT nospr + noeco: the mirror plays
   Balanced; wkm<name>), crown-brood (baseline the Crown won 0, led 2 of 20, lost 7; 10 changes measured, none kept,
-  wcb<name>:on), crown-mirror (9 of 30 decided by 20:00, no spot edge, nothing kept, wcm<name>:on). Still running:
-  brood-mirror, crown-clockwork (merge on DONE). AI tests rerun after the merges (results in the session's report).
+  wcb<name>:on), crown-mirror (9 of 30 decided by 20:00, no spot edge, nothing kept, wcm<name>:on). MERGED 2026-11-22
+  (0.38.154-0.38.155): brood-mirror (baseline 13 of 30 decided; KEPT `sirewave`: in the mirror a wave at the supply cap
+  takes the Tyrant Sire along, 24 of 40 decided, defeats ~12:17; no switch; 8 others off, wbm<name>:on; the P1 spot edge
+  back at 20:00, 68 v 34), crown-clockwork (baseline: the Crown won or led 18 of 30, the Clockwork 7, 5 decided; even to
+  ~14:00, then the Crown pulls ahead; 11 changes tried, none beyond the noise, all off, wcc<name>:on). AI tests after
+  0.38.146: 18 of 23 pass, the 5 failures known or flaky (rush, rush_followup, wall_vs_rush, brood bank, cw_horse_raid).
 - PLAYER COMFORTS (owner 2026-11-21 15:43, his answers to the playtests' questions; job player-comforts, branch
   player-comforts, docs/player_comforts.md, patch note under 0.38.999): (1) SAVING INSIDE A CAMPAIGN MISSION: solo
   missions save themselves (every 15 s, on leaving, the phone putting the game away) to user://missions/<id>.json,

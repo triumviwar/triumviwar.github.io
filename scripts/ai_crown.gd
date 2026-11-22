@@ -214,12 +214,14 @@ func _siege_hold_off(wave: Array, piece: Building, back: Vector2) -> bool:
 
 
 func _hunt_anyway(foe_t: int, army: Array) -> bool:
-	return mirror() != null and (cm.hunt_anyway(foe_t, army) or AIWr1000CrownMirror.hunt(self, foe_t))
+	return (mirror() != null and (cm.hunt_anyway(foe_t, army) or AIWr1000CrownMirror.hunt(self, foe_t))) or AIWccr.hunt_anyway(self, foe_t, army)    # (wr1000-crown-mirror, wr1000-crown-clockwork)
 
 
 func _hunt_goal(foe_t: int, from: Vector2) -> Vector2:
 	if mirror() != null:
 		return cm.hunt_goal(foe_t, from)
+	if AIWccr.on("finish") and AIWccr.vs(self, "crown"):
+		return AIWccr.hunt_goal(self, foe_t, from)      # (wr1000-crown-clockwork: halls first)
 	return super(foe_t, from)
 const BO_LIMIT := 600.0          # (game seconds) the opening hands over by then whatever is left
 ## THE BALLOON HARASS (scripts/ai_crown_balloon.gd): made on the Balloon harass plan only (Normal and up)
@@ -1195,6 +1197,8 @@ func _bo_labs() -> void:
 		return
 	var wall_keep := WALL_LAB_KEEP if wall_throttle() else 0
 	var top := mini(bo_lab_cap, owner_lab_cap())      # (the owner's plans: never past the halls' saturation)
+	if AIWccr.lab_cap(self) >= 0:
+		top = mini(top, AIWccr.lab_cap(self))      # (wr1000-crown-clockwork)
 	for h in _halls():
 		if not h.built or labs + queued >= top or free < LAB_COST + (wall_keep if queued > 0 else 0):
 			continue      # (crown-ai-v2: while the natural's palisade comes first, one labourer at a time, above)
@@ -3538,12 +3542,16 @@ func owner_lab_cap() -> int:
 	var top := OWNER_LAB_MAX + OWNER_LAB_PER_HALL * maxi(0, built - 2) + (SAT_PRETRAIN if going and built >= 2 else 0)
 	top = AIWr1000CrownMirror.lab_top(self, top, built)     # (wr1000-crown-mirror "labcap")
 	var cap := _posts() + OWNER_SPARE_LABS + (SAT_PRETRAIN if going else 0)
+	if AIWccr.lab_cap(self) >= 0:
+		return mini(mini(cap, top), AIWccr.lab_cap(self))      # (wr1000-crown-clockwork: labourers stop at 70)
 	if AICrownVClock.rich_labs(self) >= 0:
 		return mini(mini(cap, top), AICrownVClock.rich_labs(self))     # (crown-1000-clockwork: a big bank: the supply to soldiers)
 	return mini(cap, top)
 
 
 func _lab_want(want: int) -> int:
+	if AIWccr.lab_cap(self) >= 0:
+		want = mini(want, AIWccr.lab_cap(self))       # (wr1000-crown-clockwork: labourers stop at 70, whatever the plan)
 	if not owner_on() or lab_cap_off:
 		return want
 	if difficulty < 2:

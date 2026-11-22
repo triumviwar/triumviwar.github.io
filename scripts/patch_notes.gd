@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.155", "items": [
+		"THE CROWN COMPUTER AGAINST THE CLOCKWORK COMPUTER, MEASURED AGAIN (no change to how either plays): 169 games of the Hard computers to 20:00 on six maps, ten at a time on the same ten games. The two are even until about 14:00; then the Crown pulls ahead and leads at 20:00 in about two games of three, though only a few games end by then. Eleven small changes to either computer's play were each tried on those ten games (the Crown hunting a beaten Clockwork, fewer labourers for the Crown, the Clockwork's turrets by its presses, its Winders kept out of the Crown's fire, another plan for it, and more); none did clearly better than two runs of the same games differ by luck, so all of them stay off.",
+	]},
 	{"v": "0.38.154", "items": [
 		"THE BROOD AGAINST THE BROOD ENDS MORE GAMES (only the computer's play; nothing a player uses changed): when the Brood computer faces another Brood and attacks at its full supply, its Tyrant Sire now walks with the wave. At the supply cap no egg can be laid, so he stood rooted beside the Mother doing nothing while every wave broke on the enemy's Sires and swamp; he comes home with the wave and roots on his nest again. In 30 measured games 6 in 10 ended by 20:00 against 4 in 10 before. Against the Crown and the Clockwork the Brood plays as before.",
 	]},

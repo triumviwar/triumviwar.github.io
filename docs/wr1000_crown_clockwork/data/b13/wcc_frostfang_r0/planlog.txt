@@ -1,0 +1,35 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:34] P1 Crown's plan: Siege push, a build order of 9 steps from here (scripts/ai_crown.gd)
+[01:34] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Siege push (a siege to break its defences)
+[02:49] P1 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Siege push (a siege to break its defences)
+[03:12] P1 Crown's plan: a Farm at its new hall at once (20 s after it stood)
+[03:38] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[03:50] P1 Crown's plan: the army first: 0 of army against the 144 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[03:50] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (0 against the 144 it reckons)
+[04:39] P1 Crown's plan: milestone: Barracks 2 (27 labourers, 2 halls, army 3 supply)
+[04:42] P1 Crown's plan: the Farms first: 29 labourers for 2 halls (it wants 32) while its army (160) holds half the 292 it reckons
+[04:50] P1 Crown's plan: the army first: 160 of army against the 289 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:50] P1 Crown's plan: milestone Armoury waits: the army is far behind the enemy's (160 against the 289 it reckons)
+[05:59] P1 Crown's plan: milestone: Foundry 2 (38 labourers, 2 halls, army 10 supply)
+[06:02] P1 Crown's plan: milestone: Barracks 3 (39 labourers, 2 halls, army 10 supply)
+[06:50] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Siege push (what it plays already answers it)
+[07:02] P1 Crown's plan: milestone: Armoury 1 (46 labourers, 3 halls, army 20 supply)
+[07:10] P1 Crown's plan: milestone: Church 1 (49 labourers, 3 halls, army 20 supply)
+[08:05] P1 Crown's plan: trains a Drummer for its Marching Band (18 soldiers)
+[08:44] P1 Crown's plan: trains a Fifer for its Marching Band (17 soldiers)
+[09:10] P1 Crown's plan: trains a Piper for its Marching Band (11 soldiers)
+[09:23] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Siege push (what it plays already answers it)
+[12:12] P1 Crown's plan: the army first: 1570 of army against the 2700 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[13:57] P1 Crown's plan: trains a Drummer for its Marching Band (32 soldiers)
+[14:19] P1 Crown's plan: trains a Fifer for its Marching Band (36 soldiers)
+[14:24] P1 Crown's plan: the army first: 2620 of army against the 5220 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[15:25] P1 Crown's plan: the army first: 380 of army against the 5150 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[16:25] P1 Crown's plan: the army first: 400 of army against the 6280 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[17:25] P1 Crown's plan: the army first: 460 of army against the 7545 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[18:10] P1 Crown's plan: the labourers keep coming: 35 labourers for 3 halls, though its army (40) is far behind the 5405 it reckons
+[18:25] P1 Crown's plan: the army first: 40 of army against the 5305 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[19:06] P1 Crown's plan: milestone Church waits: the army is far behind the enemy's (260 against the 5670 it reckons)
+[19:24] P1 Crown's plan: milestone: Foundry 2 (40 labourers, 4 halls, army 6 supply)
+[19:25] P1 Crown's plan: the army first: 480 of army against the 5490 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[19:25] P1 Crown's plan: milestone Foundry 2 could not be placed now: the next ones go on
+[19:48] P1 Crown's plan: milestone: Foundry 2 (39 labourers, 3 halls, army 15 supply)

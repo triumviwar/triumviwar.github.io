@@ -383,6 +383,8 @@ func worker_raid(c: Dictionary, labs: Array, stand: Dictionary) -> bool:
 	var foes: Array = c["foes"]
 	if foes.is_empty() or not foes.all(func(o: Unit) -> bool: return _rider(o)):
 		return false
+	if AIWccr.winders_flee(ai):
+		return false            # (wr1000-crown-clockwork: against the Crown's riders the Winders flee)
 	_horse_t = ai.game.clock
 	var centre: Vector2 = c["c"]
 	var post := _anchor(centre, ANCHOR_R + 150.0)

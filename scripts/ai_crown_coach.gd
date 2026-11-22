@@ -137,6 +137,8 @@ func _threat_now() -> bool:
 func labs_wanted() -> bool:
 	if not labs_first_on or not active() or not econ_rules():
 		return false
+	if AIWccr.lab_cap(ai) >= 0 and game.workers(team).size() >= AIWccr.lab_cap(ai):
+		return false            # (wr1000-crown-clockwork: labourers stop at 70)
 	if ai._defending() or _threat_now():
 		return false
 	if ai.dfn != null and ai.dfn.wants_soldiers():
