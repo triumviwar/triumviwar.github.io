@@ -26,6 +26,13 @@
 
 ## Current work
 
+- WR1000, "1000 OVER 10s" (owner 2026-11-22 01:29; six jobs, blocks of 10 Hard OPTIMAL games to 20:00 on the parity maps,
+  one change to the computers' play a block, docs/wr1000_<pairing>.md). MERGED 2026-11-22 (0.38.143-0.38.146):
+  clockwork-brood (baseline even 7-6; KEPT `owls`: a Mainspring at every Clocktower, the Aviary + Owls v Spitters: 16-6 in
+  30, switch wkbowls:off), clockwork-mirror (14 of 20 decided, no spot edge; KEPT nospr + noeco: the mirror plays
+  Balanced; wkm<name>), crown-brood (baseline the Crown won 0, led 2 of 20, lost 7; 10 changes measured, none kept,
+  wcb<name>:on), crown-mirror (9 of 30 decided by 20:00, no spot edge, nothing kept, wcm<name>:on). Still running:
+  brood-mirror, crown-clockwork (merge on DONE). AI tests rerun after the merges (results in the session's report).
 - PLAYER COMFORTS (owner 2026-11-21 15:43, his answers to the playtests' questions; job player-comforts, branch
   player-comforts, docs/player_comforts.md, patch note under 0.38.999): (1) SAVING INSIDE A CAMPAIGN MISSION: solo
   missions save themselves (every 15 s, on leaving, the phone putting the game away) to user://missions/<id>.json,
