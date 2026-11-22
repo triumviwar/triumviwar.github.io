@@ -134,6 +134,21 @@ JOBS += [
      [("1_current_death_s.png", [("netter", "death_s")]), ("2_walk_n_endon.png", [("netter", "walk_n")]), ("3_death_se_model.png", [("netter", "death_se")])]),
 ]
 
+_OFF_DIE = {"s": "facing the viewer (toward the bottom of the image), his face toward us, falling backward away from the viewer",
+            "se": "facing three-quarter toward the lower right, falling backward toward the upper left",
+            "ne": "facing three-quarter AWAY toward the upper right, his back half turned to us, falling forward toward the upper right",
+            "n": "facing straight AWAY from the viewer (toward the top of the image), his back to us, NO face, falling forward up the image away from us"}
+for _n, _d in ((103, "s"), (104, "se"), (105, "ne"), (106, "n")):
+    JOBS.append((_n, "dismounted", "death_" + _d, 5, OFF, "shot and dying, %s; 5 frames: 1 hit, staggering, the pistol dropping; 2 the knees buckling; 3 falling; 4 hitting the ground; 5 lying still, the pistol and his tricorne on the ground beside him. The SAME facing as frame 1 throughout" % _OFF_DIE[_d], _OFF_VIEW[_d][1], "a side profile facing right, falling sideways to the right, a second pistol,",
+                 [("1_death_e_pose.png", [("dismounted", "death_e")]), ("2_walk_%s_view.png" % _d, [("dismounted", "walk_" + _d)])]))
+
+_MIS_DIE = {"se": ("facing three-quarter toward the lower right, falling backward toward the upper left", "the south-east view: three-quarter toward the lower right", 4),
+            "e": ("facing right (east) in profile, falling backward to the left", "the east view: facing right", 3)}
+for _n, _d in ((107, "se"), (108, "e")):
+    _v = _MIS_DIE[_d]
+    JOBS.append((_n, "missionary", "death_" + _d, _v[2], MIS, "struck down and dying, %s; %d frames in order: he staggers, his knees buckle, he falls%s, and the LAST frame shows him lying still full length on the ground, his hat beside him. He stays the SAME size in every frame, nothing tangled" % (_v[0], _v[2], "" if _v[2] == 3 else ", he hits the ground"), _v[1], "a tangled shape, a smaller or bigger man between frames, standing up again after falling,",
+                 [("1_current_death_%s.png" % _d, [("missionary", "death_" + _d)]), ("2_walk_%s_view.png" % _d, [("missionary", "walk_" + _d)])]))
+
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."

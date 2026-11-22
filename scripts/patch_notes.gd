@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.137", "items": [
+		"DEATHS DRAWN FOR EVERY FACING: the Officer on foot falls the way he faces (he always fell to the right); the Missionary's fall is redrawn in order, at one size (it tangled and shrank).",
+	]},
 	{"v": "0.38.136", "items": [
 		"ART FIXES: the Mortar fires from its own small barrel (the shot showed a bigger cannon) and its wreck no longer sinks into the ground; the Spring Ballista's wreck no longer has its spring cut off at the top; the Ticking Owl flying up-right no longer turns its face to you once a wingbeat; the Pendulum walking away no longer bobs off the ground; a loose speck behind the Clock Soldier's heel is gone.",
 	]},

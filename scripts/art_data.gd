@@ -155,7 +155,7 @@ const BASE_UNITS := {
 		"bandage_n": 1,
 		"bandage_s": 1,
 		"bandage_se": 1,
-		"death_e": 3,
+		"death_e": 4,
 		"death_ne": 2,
 		"death_s": 2,
 		"death_se": 4,
