@@ -2682,6 +2682,7 @@ func _hall_first() -> bool:
 	# (round 6, Crown: a hall under 40% soil is tired already: the next one comes while the main still pays, not after it
 	# is barren; 0.14.100 Kestrel Rise went broke at 0% soil with 37 idle Labourers)
 	var fresh_at := FRESH_CROWN if r6_cr and _crown() and difficulty >= 1 else 0.25
+	fresh_at = AIWccr.cw_fresh_at(self, fresh_at)      # (wr1000-crown-clockwork: the next Clocktower on time)
 	var fresh := _halls().filter(func(h: Building) -> bool: return not h.built or _land(h) > fresh_at).size()
 	# how many fresh halls it needs: a second once the best soil is under HALL_FIRST_SOIL; the Crown also one for every
 	# 16 Labourers (a hall's farms and mill hold about that many: with more on one hall's land they stood idle or
@@ -2702,6 +2703,7 @@ func _hall_first() -> bool:
 		# by up to ten minutes)
 		need = maxi(need, mini(3, ceili(game.workers(team).size() / 13.0)))
 		need = AICwBrood.halls_need(self, need)       # (clockwork-v-brood-coach-2: a third Clocktower on time against the Brood)
+		need = AIWccr.cw_need(self, need)       # (wr1000-crown-clockwork)
 	if fresh >= need or _busy_building(hall):
 		return false
 	if _sw() and _best_soil() > DRY_LAND and swm().hold_expand():

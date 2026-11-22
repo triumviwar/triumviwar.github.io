@@ -154,3 +154,31 @@ static func lab_cap(ai) -> int:
 	if not on("labs") or not vs(ai, "crown"):
 		return -1
 	return LABS_MAX
+
+
+# ------------------------------------------------------------------ fresh: the Clockwork's next Clocktower on time
+
+## Blocks 1-5: the Clockwork computer's Winders peak at ~52 at 10:00 and fall to ~43 by 20:00 while it goes from 3.6 to 5.6
+## halls; its income a minute falls from ~2,300 (12:00-14:00) to ~2,000 (18:00-20:00) while the Crown's rises from ~2,800
+## to ~3,400. Its presses run dry and the next Clocktower is only laid once fewer than 3 halls have a quarter of their brass
+## left ("the brass at a Clocktower is spent" 11:30, the new one standing at 12:38; 14:20 and 15:30, Greenhold block 5):
+## the posts empty and the Winders are not replaced in between. Here (the Clockwork computer against the Crown) a Clocktower
+## counts as fresh only with FRESH_AT of its brass left (the Crown's own rule, AI.FRESH_CROWN) and it keeps one fresh hall
+## for every 13 Winders up to NEED_MAX (3 before).
+const FRESH_AT := 0.4
+const NEED_MAX := 4
+
+
+static func cw_fresh_at(ai, fresh_at: float) -> float:
+	if on("fresh") and vs(ai, "clockwork"):
+		return maxf(fresh_at, FRESH_AT)
+	return fresh_at
+
+
+static func cw_need(ai, need: int) -> int:
+	if on("fresh") and vs(ai, "clockwork"):
+		var n := maxi(need, mini(NEED_MAX, ceili(ai.game.workers(ai.team).size() / 13.0)))
+		if n > need:
+			count(ai, "fresh")
+		return n
+	return need
