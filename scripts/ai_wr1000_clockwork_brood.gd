@@ -46,7 +46,7 @@ static var _springs_t := {}
 
 
 static func more_springs(ai) -> void:
-	if not (on("springs") or on("owls")) or not cw_v_brood(ai):
+	if not (on("springs") or on("owls") or on("pends")) or not cw_v_brood(ai):
 		return
 	var g = ai.game
 	if g.clock < SPRINGS_AT or g.clock < float(_springs_t.get(ai, 0.0)):
@@ -305,3 +305,19 @@ static func stuck_t(ai, t: float) -> float:
 
 static func stuck_bank(ai, b: int) -> int:
 	return STUCK_BANK if on("stuck") and cw_v_brood(ai) else b
+
+
+# ------------------------------------------------------------------ pends (block 11)
+## PENDS: the Pendulum is the Clockwork's best killer against the Brood (blocks 1-5: ~3,100 of the Brood's Raptors and
+## Tyrant Challengers to Pendulums, 1,800 to Clock Soldiers who are 10 times as many), and its blades cut Spitters (light)
+## for x1.5 too once they reach them; it had 3-9 (AICwBrood: one for every 5 others, up to 8), with Tension the limit.
+## Against the Brood: one for every PENDS_PER others, up to PENDS_MAX, and the Mainspring at every Clocktower (`springs`)
+## for the Tension.
+const PENDS_PER := 3
+const PENDS_MAX := 12
+
+
+static func pend_target(ai, others: int, t: int) -> int:
+	if not on("pends") or not cw_v_brood(ai) or t <= 0:
+		return t
+	return clampi(2 + others / PENDS_PER, 2, PENDS_MAX)
