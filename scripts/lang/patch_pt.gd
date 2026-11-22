@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.138": ["O MISSIONÁRIO MONTADO: cavalgando de lado ele segura a cruz processional em cada passo (ela sumia a cada poucos passos), e cavalgando na sua direção ele e o cavalo olham para você (cavalgavam de lado)."],
 	"0.38.137": ["MORTES DESENHADAS PARA CADA DIREÇÃO: o Oficial a pé cai para o lado para onde está virado (sempre caía para a direita); a queda do Missionário foi redesenhada em ordem e num só tamanho (ela se embaralhava e encolhia)."],
 	"0.38.136": ["CORREÇÕES DE ARTE: o Morteiro dispara do seu próprio cano pequeno (o tiro mostrava um canhão maior) e os destroços dele não afundam mais no chão; os destroços da Balista de Mola não têm mais a mola cortada no topo; a Coruja de Corda voando para cima à direita não vira mais o rosto para você a cada batida de asas; o Pêndulo andando para longe não sobe e desce mais do chão; um pontinho solto atrás do calcanhar do Soldado de Relógio sumiu."],
 	"0.38.135": ["O NETTER OLHA PARA VOCÊ: andando, disparando e se quebrando para baixo na tela, ele agora mostra a ponta redonda da frente (mostrava o lado comprido, como se andasse de lado)."],

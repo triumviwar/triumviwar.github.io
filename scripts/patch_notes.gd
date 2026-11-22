@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.138", "items": [
+		"THE MOUNTED MISSIONARY: riding sideways he keeps his processional cross in every step (it vanished every few steps), and riding toward you he and his horse face you (they rode sideways).",
+	]},
 	{"v": "0.38.137", "items": [
 		"DEATHS DRAWN FOR EVERY FACING: the Officer on foot falls the way he faces (he always fell to the right); the Missionary's fall is redrawn in order, at one size (it tangled and shrank).",
 	]},

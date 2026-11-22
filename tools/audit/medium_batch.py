@@ -149,6 +149,15 @@ for _n, _d in ((107, "se"), (108, "e")):
     JOBS.append((_n, "missionary", "death_" + _d, _v[2], MIS, "struck down and dying, %s; %d frames in order: he staggers, his knees buckle, he falls%s, and the LAST frame shows him lying still full length on the ground, his hat beside him. He stays the SAME size in every frame, nothing tangled" % (_v[0], _v[2], "" if _v[2] == 3 else ", he hits the ground"), _v[1], "a tangled shape, a smaller or bigger man between frames, standing up again after falling,",
                  [("1_current_death_%s.png" % _d, [("missionary", "death_" + _d)]), ("2_walk_%s_view.png" % _d, [("missionary", "walk_" + _d)])]))
 
+MMIS = "the mounted Missionary (a priest in a long black cassock and a black wide-brimmed hat, a pure red stole, a brown leather satchel, carrying a tall wooden processional cross upright in his right hand) on a grey horse with a pure red saddle cloth"
+LOOK["missionary_mounted"] = "man, horse, outfit and colours"
+JOBS += [
+    (109, "missionary_mounted", "walk_e", 9, MMIS, "riding to the right (east), the horse seen side-on in profile walking right; 9 frames, a seamless walk loop of the horse's legs; the processional cross held upright in EVERY frame, the same cross, never missing", "the east view: facing right", "a missing or half-drawn cross, a loose dark fragment beside the horse,",
+     [("1_current_walk_e.png", [("missionary_mounted", "walk_e")]), ("2_idle_e_model.png", [("missionary_mounted", "idle_e")])]),
+    (110, "missionary_mounted", "walk_s", 9, MMIS, "riding TOWARD the viewer (toward the bottom of the image): the horse seen head-on from the front, its head and chest toward us, its legs stepping toward us, the rider's face and the front of his stole toward us, like reference 2 but walking; 9 frames, a seamless walk loop; the processional cross held upright in every frame", "the south view: coming toward the viewer", "a side view of the horse, the horse walking to the right,",
+     [("1_current_walk_s.png", [("missionary_mounted", "walk_s")]), ("2_idle_s_front.png", [("missionary_mounted", "idle_s")]), ("3_walk_n_model.png", [("missionary_mounted", "walk_n")])]),
+]
+
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."
