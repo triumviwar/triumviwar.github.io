@@ -1014,7 +1014,9 @@ campaign/stills/b01_03.jpg; the Sire = campaign/stills/b01_05.jpg.
 
 Each with Claude's recommendation (the plan above is written as if it is taken) and what changes either way.
 
-1. WHO IS THE QUEEN? ANSWERED (owner 2026-11-19 15:06): NOT LINNEA, NO NAMED CREATURE: the Mothers fight and the strongest becomes the Queen (see d06). Old recommendation: LINNEA. The player met her in b01's pen (and freed her as the Sire's pack), Valadares
+1. WHO IS THE QUEEN? ANSWERED AGAIN (owner 2026-11-22 20:35): "It's ok that Linnea is a Brood Mother queen, but she is
+   an animal, this is what it is, do not personify it." LINNEA (the scientists' name for her, never her own) becomes the
+   Queen: an animal winning among animals, never a mind, a will or a feeling. (Before, 2026-11-19 15:06: no named creature.) Old recommendation: LINNEA. The player met her in b01's pen (and freed her as the Sire's pack), Valadares
    saw her grown in a03, and she comes down the rivers for her young (b01's clutch) in d06: the Brood's birth is her
    story, and nature unleashed by pride (Lindqvist kept her children for her without knowing it). OTHERWISE: a young
    Mother bred in Lindqvist's pens grows into the Queen (Linnea stays on the plateau as an old Mother for Act 3):

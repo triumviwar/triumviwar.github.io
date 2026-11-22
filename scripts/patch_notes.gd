@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.169", "items": [
+		"No change in the game: the campaign plan records that the Brood Mother the scientists called Linnea becomes the Queen, an animal and nothing more.",
+	]},
 	{"v": "0.38.168", "items": [
 		"CAMPAIGN VOICES WITH FEELING: 278 campaign lines were recorded again with emotion: the shouted orders shout, the accusations and quarrels are angry, the alarms are urgent, the mourning is slow and quiet. Valadares accusing the doctor and calling to fire the thatch, Ferrer and Hollweg quarrelling, Varenne's cries and Tomasz's prayers among them.",
 	]},
