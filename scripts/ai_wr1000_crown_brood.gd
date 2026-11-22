@@ -77,6 +77,31 @@ static func push_waits(ai, sup: int, siege) -> bool:
 	return true
 
 
+# ------------------------------------------------------------------ change "counter": strike back after a beaten wave
+## (block 1: the Brood's waves broke on the Crown's line at home ("Brood pulls its wave back: only 170 of 400 is left",
+## Dune Sea r1 10:38) while the Crown stood 2-4 times its army, and the push waited QUIET (60 s) after any enemy force at
+## its buildings: by then the Brood had laid its next eggs.) Against the Brood, within COUNTER_WINDOW s of a wave at our
+## buildings that is gone now, with the army at home worth COUNTER_K times the Brood army seen lately (never under
+## COUNTER_FOE_MIN) and COUNTER_SUP supply, the push goes at once (the counter-attack), guns or not.
+const COUNTER_WINDOW := 45.0
+const COUNTER_K := 2.0
+const COUNTER_FOE_MIN := 300.0
+const COUNTER_SUP := 40
+static var counters_sent := {}  # team -> counter-attacks sent
+
+
+static func counter_now(ai, siege, mine: float, sup: int, since_threat: float) -> bool:
+	if not vs_brood(ai, "counter") or since_threat < 0.0 or since_threat > COUNTER_WINDOW:
+		return false
+	if sup < COUNTER_SUP or mine < COUNTER_K * maxf(COUNTER_FOE_MIN, float(ai.ch.foe_known())):
+		return false
+	counters_sent[ai.team] = int(counters_sent.get(ai.team, 0)) + 1
+	siege.say("strikes back: the Brood's wave at its buildings is beaten (%d of army against the %d of Brood it knows)" % [
+		int(mine), int(ai.ch.foe_known())])
+	return true
+
+
 ## (qa_match's result.json "crown_ai": what this job's changes did)
 static func counters(team: int) -> Dictionary:
-	return {"wcb_arm_freed": int(arm_freed.get(team, 0)), "wcb_cap_waits": int(cap_waits.get(team, 0))}
+	return {"wcb_arm_freed": int(arm_freed.get(team, 0)), "wcb_cap_waits": int(cap_waits.get(team, 0)),
+		"wcb_counters": int(counters_sent.get(team, 0))}

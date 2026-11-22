@@ -239,6 +239,9 @@ func _maybe_go() -> void:
 		_threat_t = game.clock
 		_stay("an enemy force (%d) is at our buildings" % int(near))
 		return
+	if _brood() and preload("res://scripts/ai_wr1000_crown_brood.gd").counter_now(ai, self, mine, sup, game.clock - _threat_t):
+		_go(home, mine)         # (wr1000-crown-brood "counter": a Brood wave beaten at home: the push goes now)
+		return
 	if game.clock - _threat_t < QUIET and not (ai.mirror() != null and ai.cm.threat_small(near, mine)):
 		_stay("an enemy force was at our buildings %d s ago" % int(game.clock - _threat_t))
 		return
