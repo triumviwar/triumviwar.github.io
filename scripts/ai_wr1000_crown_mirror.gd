@@ -66,3 +66,15 @@ static func siege_yields(sg) -> bool:
 	if sg.state != "":
 		sg._end("the hunt takes over: the enemy army is a fraction of ours")
 	return true
+
+
+## CHANGE `press2` (block 6): THE SIDE AHEAD PRESSES SOONER. The mirror coach's press (AICrownMirror.press, rule 8) sent a
+## wave 0-3 times a side a game in blocks 1-2, and armies 3-4 times the enemy's sat at home (Frostfang r1, both blocks: P1
+## 1,635 against 370-385 at 12:00, its first attack at 10:46 / 11:57). Its numbers made easier: from 7:00 (8:00), 1.15
+## times the enemy army it reckons (1.3), 700 of army (900), 20 s after the last wave (25), the reckoning's floor 0.5 of
+## the clock's table when the enemy army was seen lately (0.7) and 0.6 when not (0.8).
+const PRESS2 := {"from": 420.0, "edge": 1.15, "min": 700.0, "cool": 20.0, "floor": 0.5, "stale": 0.6}
+
+
+static func press_k(k: String, today: float) -> float:
+	return float(PRESS2[k]) if on("press2") else today

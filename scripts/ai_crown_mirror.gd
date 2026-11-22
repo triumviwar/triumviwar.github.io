@@ -344,6 +344,13 @@ const PRESS_FRESH := 60.0
 const PRESS_FLOOR := 0.7          # ... seen lately (a scout's glimpse may be part of it): this share at least
 const PRESS_BAR := 0.85           # the bar comes down to this share of the army ready
 var press_n := 0                  # (the report) waves the press sent
+# (wr1000-crown-mirror "press2": the press's numbers come from AIWr1000CrownMirror.press_k, today's by default)
+var p_from: float = AIWr1000CrownMirror.press_k("from", PRESS_FROM)
+var p_edge: float = AIWr1000CrownMirror.press_k("edge", PRESS_EDGE)
+var p_min: float = AIWr1000CrownMirror.press_k("min", PRESS_MIN)
+var p_cool: float = AIWr1000CrownMirror.press_k("cool", PRESS_COOL)
+var p_stale: float = AIWr1000CrownMirror.press_k("stale", PRESS_STALE)
+var p_floor: float = AIWr1000CrownMirror.press_k("floor", PRESS_FLOOR)
 var _press_said := -99.0
 var _wave_off_t := -99.0          # clock the last wave ended
 var _was_attacking := false
@@ -359,7 +366,7 @@ func press() -> void:
 	if _was_attacking:
 		_was_attacking = false
 		_wave_off_t = game.clock
-	if game.clock < PRESS_FROM or game.clock - _wave_off_t < PRESS_COOL or ai.siege != null:
+	if game.clock < p_from or game.clock - _wave_off_t < p_cool or ai.siege != null:
 		return
 	if ai._threat() != Vector2.INF:
 		return
@@ -368,10 +375,10 @@ func press() -> void:
 			and not u.is_worker() and u.armed() and not ai._on_errand(u) and not (hz != null and hz.has(u)) and not ai._horse_coming(u) \
 			and not ai._guards.has(u))      # (a new hall's guards stay: AI._guard_new_hall)
 	var mine := _value(ready)
-	if mine < PRESS_MIN:
+	if mine < p_min:
 		return
 	var est := foe_army()
-	if mine < est * PRESS_EDGE:
+	if mine < est * p_edge:
 		return
 	var guns := ready.filter(func(u) -> bool: return GUN_KINDS.has(u.kind)).size()
 	if not _open_hall() and guns < BOMBARD_GUNS:
@@ -400,15 +407,15 @@ const PRESS_SIEGE_SUP := 30
 
 
 func press_siege(home: Array, guns: int) -> bool:
-	if not press_on or ai.peaceful or game.clock < PRESS_FROM:
+	if not press_on or ai.peaceful or game.clock < p_from:
 		return false
 	if guns < 1 and ai._army_supply(home) < PRESS_SIEGE_SUP:
 		return false
 	var mine := _value(home)
-	if mine < PRESS_MIN:
+	if mine < p_min:
 		return false
 	var est := foe_army()
-	if mine < est * PRESS_EDGE:
+	if mine < est * p_edge:
 		return false
 	press_n += 1
 	if game.clock - _press_said > 30.0:
@@ -451,7 +458,7 @@ func siege_guns() -> void:
 	var army: Array = game.army(ai.team).filter(func(u: Unit) -> bool: return not u.is_worker() and u.armed())
 	var mine := _value(army)
 	var est := foe_army()
-	if mine < PRESS_MIN or mine < est * PRESS_EDGE:
+	if mine < p_min or mine < est * p_edge:
 		return
 	if ai._gold() < int(Defs.UNITS["cannon"]["cost"]):
 		return
@@ -510,8 +517,8 @@ func _held_by(ready: Array) -> String:
 func foe_army() -> float:
 	var known: float = ai.ch.foe_known() if ai.ch != null else 0.0
 	if ai.ch != null and game.clock - float(ai.ch._last_army_t) <= PRESS_FRESH:
-		return maxf(known, PRESS_FLOOR * ai.foe_reckon())
-	return maxf(known, PRESS_STALE * ai.foe_reckon())
+		return maxf(known, p_floor * ai.foe_reckon())
+	return maxf(known, p_stale * ai.foe_reckon())
 
 
 ## An enemy hall the wave has not just been beaten at (AI._walled_halls).
