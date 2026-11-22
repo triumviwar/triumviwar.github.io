@@ -67,6 +67,7 @@ def main():
     hs = [box(f[..., 3] > 0) for f in figs]
     hp = hs if spick is None else [hs[i] for i in spick]
     scale = want_h / float(np.median([b[k[1]] - b[k[0]] + 1 for b in hp]))
+    scale *= float(os.environ.get("SA_K", "1"))  # a hand factor when a tall weapon makes the box wrong
     ground = float(np.median([b[3] for b in hs]))
     cells = []
     for f in figs:

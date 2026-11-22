@@ -816,7 +816,7 @@ const BASE_UNITS := {
 		"walk_e": 6,
 		"walk_n": 7,
 		"walk_ne": 5,
-		"walk_s": 3,
+		"walk_s": 6,
 		"walk_se": 4,
 	}},
 	"mortar": {"cell": Vector2i(158, 91), "anchor": Vector2(79, 78), "frames": {

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.127", "items": [
+		"THE MUSKETEER AND THE GUARDSMAN REDRAWN: the Musketeer standing toward you keeps his whole musket in both frames, and his bayonet thrust and reload seen from behind hold the musket in every frame (the thrust was empty-handed); the Guardsman thrusts away from you with his musket and bayonet, and marches toward you on two legs in a full six-step walk (it had one middle leg and three steps).",
+	]},
 	{"v": "0.38.126", "items": [
 		"THE ARMOURED DRAGOON REDRAWN: standing still facing right he stays side-on (his horse turned toward you in the second frame), and galloping away he keeps one straight rear view in every frame (it drifted into a three-quarter angle).",
 	]},
