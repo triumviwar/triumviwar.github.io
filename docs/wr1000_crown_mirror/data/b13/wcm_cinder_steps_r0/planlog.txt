@@ -1,0 +1,53 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[01:58] P2 Crown's plan: Balanced, a build order of 7 steps from here (scripts/ai_crown.gd)
+[01:58] P2 Crown's plan: optimal: reads UNKNOWN [no read yet]: picks Balanced (a normal game)
+[01:59] P1 Crown's plan: Balanced, a build order of 7 steps from here (scripts/ai_crown.gd)
+[01:59] P1 Crown's plan: optimal: reads UNKNOWN [no read yet]: picks Balanced (a normal game)
+[02:50] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[02:50] P2 Crown's plan: the opening is over (the build order is done): the milestones take over
+[02:57] P1 Crown's plan: optimal: reads GREEDY [a second base and little army]: keeps Balanced (Horsemen are no answer to Musketeers: a line and guns)
+[02:57] P2 Crown's plan: optimal: reads GREEDY [a second base and little army]: keeps Balanced (Horsemen are no answer to Musketeers: a line and guns)
+[03:05] P1 Crown's plan: the army on time: 0 of army (with what trains) against the 60 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[03:05] P2 Crown's plan: the army on time: 0 of army (with what trains) against the 60 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[03:24] P2 Crown's plan: a Farm at its new hall at once (5 s after it stood)
+[03:24] P2 Crown's plan: milestone: Foundry 1 (19 labourers, 2 halls, army 0 supply)
+[03:40] P1 Crown's plan: milestone: Foundry 1 (20 labourers, 2 halls, army 0 supply)
+[03:42] P1 Crown's plan: the army first: 0 of army against the 92 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[03:42] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (0 against the 92 it reckons)
+[03:55] P2 Crown's plan: the army first: 0 of army against the 73 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[03:55] P2 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (0 against the 73 it reckons)
+[04:05] P1 Crown's plan: the army on time: 0 of army (with what trains) against the 137 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[04:05] P2 Crown's plan: the army on time: 0 of army (with what trains) against the 112 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[04:10] P1 Crown's plan: milestone: Horse Breeder 1 (24 labourers, 2 halls, army 0 supply)
+[04:30] P1 Crown's plan: milestone: Barracks 2 (23 labourers, 2 halls, army 0 supply)
+[04:30] P2 Crown's plan: milestone: Barracks 2 (25 labourers, 2 halls, army 1 supply)
+[04:42] P1 Crown's plan: the army first: 0 of army against the 181 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:42] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (0 against the 181 it reckons)
+[05:00] P2 Crown's plan: the army first: 120 of army against the 200 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[05:00] P2 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (120 against the 200 it reckons)
+[05:05] P1 Crown's plan: the army on time: 120 of army (with what trains) against the 200 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[05:08] P2 Crown's plan: the army on time: 180 of army (with what trains) against the 180 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[05:53] P2 Crown's plan: milestone: Barracks 3 (36 labourers, 2 halls, army 7 supply)
+[06:04] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Balanced (what it plays already answers it)
+[06:16] P1 Crown's plan: milestone: Barracks 4 (31 labourers, 2 halls, army 10 supply)
+[06:40] P2 Crown's plan: milestone: Barracks 4 (34 labourers, 2 halls, army 9 supply)
+[06:51] P1 Crown's plan: milestone: Armoury 1 (30 labourers, 2 halls, army 10 supply)
+[07:34] P1 Crown's plan: the army first: 340 of army against the 568 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[08:04] P1 Crown's plan: trains a Drummer for its Marching Band (12 soldiers)
+[08:05] P1 Crown's plan: trains a Fifer for its Marching Band (12 soldiers)
+[08:13] P2 Crown's plan: milestone: Armoury 1 (46 labourers, 2 halls, army 27 supply)
+[08:14] P2 Crown's plan: milestone: Church 1 (46 labourers, 2 halls, army 27 supply)
+[08:19] P1 Crown's plan: trains a Piper for its Marching Band (12 soldiers)
+[09:01] P1 Crown's plan: milestone: Church 1 (40 labourers, 2 halls, army 30 supply)
+[09:59] P2 Crown's plan: trains a Drummer for its Marching Band (25 soldiers)
+[10:17] P2 Crown's plan: trains a Fifer for its Marching Band (25 soldiers)
+[10:57] P2 Crown's plan: trains a Piper for its Marching Band (26 soldiers)
+[13:37] P2 Crown's plan: milestone: Foundry 2 (48 labourers, 3 halls, army 53 supply)
+[14:00] P2 Crown's plan: trains a Drummer for its Marching Band (30 soldiers)
+[14:16] P2 Crown's plan: trains a Fifer for its Marching Band (33 soldiers)
+[15:36] P2 Crown's plan: trains a Piper for its Marching Band (37 soldiers)
+[18:11] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Balanced (what it plays already answers it)
+[18:36] P2 Crown's plan: trains a Drummer for its Marching Band (10 soldiers)
+[19:16] P2 Crown's plan: trains a Fifer for its Marching Band (14 soldiers)
+[19:56] P2 Crown's plan: trains a Piper for its Marching Band (16 soldiers)

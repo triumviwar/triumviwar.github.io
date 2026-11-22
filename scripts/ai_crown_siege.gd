@@ -161,6 +161,8 @@ func tick() -> void:
 	for u in men.keys():
 		if not _alive(u) or u.off_field:
 			men.erase(u)
+	if AIWr1000CrownMirror.siege_yields(self):
+		return                    # (wr1000-crown-mirror "finish": the hunt takes the push's men)
 	if state == "":
 		_maybe_go()
 		return

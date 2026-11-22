@@ -183,7 +183,7 @@ func dfn_move(u: Unit, spot: Vector2) -> bool:
 
 
 func party_wait() -> bool:
-	return dfn != null and dfn.party_wait()
+	return (dfn != null and dfn.party_wait()) or AIWr1000CrownMirror.maxed(self)     # (wr1000-crown-mirror "maxed")
 
 
 func _def_hold(army: Array, spots: Array) -> bool:
@@ -214,7 +214,7 @@ func _siege_hold_off(wave: Array, piece: Building, back: Vector2) -> bool:
 
 
 func _hunt_anyway(foe_t: int, army: Array) -> bool:
-	return mirror() != null and cm.hunt_anyway(foe_t, army)
+	return mirror() != null and (cm.hunt_anyway(foe_t, army) or AIWr1000CrownMirror.hunt(self, foe_t))
 
 
 func _hunt_goal(foe_t: int, from: Vector2) -> Vector2:
@@ -2838,6 +2838,7 @@ func _army() -> void:
 		vbr.track()             # (crown-coach-v-brood: the kills of the last minute, for the counter)
 	if mirror() != null:
 		cm.press()              # (crown-mirror-coach: the side ahead presses, AICrownMirror.press)
+		AIWr1000CrownMirror.army_tick(self)     # (wr1000-crown-mirror: its mirror experiments on the wave)
 	super()
 
 
@@ -3535,6 +3536,7 @@ func owner_lab_cap() -> int:
 	var built := _halls().filter(func(h: Building) -> bool: return h.built).size()
 	var going := _hall_reserve or _busy_building(_f()["hall"])
 	var top := OWNER_LAB_MAX + OWNER_LAB_PER_HALL * maxi(0, built - 2) + (SAT_PRETRAIN if going and built >= 2 else 0)
+	top = AIWr1000CrownMirror.lab_top(self, top, built)     # (wr1000-crown-mirror "labcap")
 	var cap := _posts() + OWNER_SPARE_LABS + (SAT_PRETRAIN if going else 0)
 	if AICrownVClock.rich_labs(self) >= 0:
 		return mini(mini(cap, top), AICrownVClock.rich_labs(self))     # (crown-1000-clockwork: a big bank: the supply to soldiers)
