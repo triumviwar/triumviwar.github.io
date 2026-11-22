@@ -1334,6 +1334,10 @@ func finish(side_id: String) -> void:
 	if game.over:
 		return
 	winner_side = side_id
+	if game.mlog and a2 != null:
+		# (act2-engine0, the owner's rule NO WAITING: the longest stretch the player had nothing to do, for the sims)
+		var li := a2.longest_idle()
+		game.mlog.add("(mission) longest idle stretch %.0f s (from %.0f s)" % [float(li["secs"]), float(li["from"])])
 	var w := -1
 	for t in team_ids.size():
 		if side_of_team(t) == side_id:
@@ -1459,7 +1463,7 @@ func _tick_exits() -> void:
 				break
 			if u is Unit and not u.dead and r.has_point(u.position) and not keep.has(u):
 				if cargo:
-					var c = u.get_meta("cage_cargo", null)
+					var c = u.get_meta("cage_cargo") if u.has_meta("cage_cargo") else null
 					if c == null or not is_instance_valid(c) or c.dead:
 						# (act2-engine0: a cart with families or gold aboard leaves with its load, counted by its amount)
 						var ld: int = a2.cart_leaves(u) if a2 != null and u.has_meta("cart_load") else 0
