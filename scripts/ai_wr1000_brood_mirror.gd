@@ -89,10 +89,13 @@ static func counter(ai, army_v: float, sup: int) -> bool:
 
 
 ## The one hook in AIBroodNew._nb_army: true = its army goes now (a wave out of this job's rules), past the cap and plan rules.
-static func go(ai, _q, army: Array, sup: int) -> bool:
+static func go(ai, q, army: Array, sup: int) -> bool:
 	if not mirror(ai):
 		return false
-	return counter(ai, ai._value_of(army), sup)
+	var v: float = ai._value_of(army)
+	if chase(ai, q, v, sup):
+		return true
+	return counter(ai, v, sup)
 
 
 # ------------------------------------------------------------------ THE OUTER GROUND (`wbmouter`)
@@ -127,3 +130,111 @@ static func outer_goal(ai, q, from: Vector2) -> Vector2:
 			bs = s
 			best = u.position
 	return best
+
+
+# ------------------------------------------------------------------ THE CHASE (`wbmchase`)
+## THE CHASE (blocks 1-3: a broken wave walked home through open ground with nobody after it: the defender stood down at
+## DEF_LEASH and went back to its rally, so the attacker kept a third to half of its wave and refilled it from its bank
+## in a minute). When an enemy army it has just beaten at home (it killed CHASE_KILL of the enemy army seen lately in
+## the last minute and lost less than it killed) is seen walking AWAY from its Mother, worth under CHASE_EDGE of its own
+## army, its army follows and bites it on the road: the chase's goal is that group, retaken every 2 s; it stops once the
+## wave is CHASE_STOP tiles from the enemy Mother (her swamp, her Sires), the group is out of sight 6 s, or after CHASE_MAX s.
+const CHASE_KILL := 0.3
+const CHASE_EDGE := 0.7
+const CHASE_STOP := 22.0
+const CHASE_MAX := 50.0
+const CHASE_SEE := 34.0
+
+
+## The enemy fighters seen within CHASE_SEE tiles of its Mother (not rooted, not flyers): [value, middle].
+static func _foes_near(ai, q) -> Array:
+	var c: Vector2 = ai._qp(q)
+	var v := 0.0
+	var m := Vector2.ZERO
+	for u in ai.game.units_near(c, CHASE_SEE * Defs.TILE):
+		if u.dead or u.off_field or u.team < 0 or not ai.game.hostile(u.team, ai.team) or not u.has_attack() or u.is_worker():
+			continue
+		if u._k_nb or u.is_air() or not ai.game.is_visible_to(ai.team, u.position):
+			continue
+		var uv := float(Game.unit_value(u))
+		v += uv
+		m += u.position * uv
+	return [v, m / v if v > 0.0 else Vector2.INF]
+
+
+static func chase(ai, q, army_v: float, sup: int) -> bool:
+	var w: Dictionary = ai.wbm
+	if bool(w.get("chasing", false)) and not ai._attacking and ai.game.clock - float(w.get("chase_t", 0.0)) > 1.5:
+		w["chasing"] = false          # (a chase that never left, or a wave ended some other way)
+	if not on("chase") or ai._attacking or sup < 8:
+		return false
+	var fn := _foes_near(ai, q)
+	var prev: Array = w.get("near", [0.0, Vector2.INF, -99.0])
+	w["near"] = [fn[0], fn[1], ai.game.clock]
+	if float(fn[0]) < 150.0 or prev[1] == Vector2.INF or fn[1] == Vector2.INF or ai.game.clock - float(prev[2]) > 3.0:
+		return false
+	var c: Vector2 = ai._qp(q)
+	var away: bool = (fn[1] as Vector2).distance_to(c) > (prev[1] as Vector2).distance_to(c) + 8.0
+	if not away or float(fn[0]) > army_v * CHASE_EDGE:
+		return false
+	var kl := recent(ai)
+	if float(kl[0]) < ai.seen_army * CHASE_KILL or float(kl[1]) >= float(kl[0]):
+		return false
+	w["chase_t"] = ai.game.clock
+	w["chasing"] = true
+	w["chase_seen"] = ai.game.clock
+	w["chases"] = int(w.get("chases", 0)) + 1
+	ai.say("chases a beaten enemy army of %d going home with %d" % [int(fn[0]), int(army_v)])
+	return true
+
+
+## The chase's goal for the wave about to leave (Vector2.INF: not a chase).
+static func chase_goal(ai, q) -> Vector2:
+	if not bool(ai.wbm.get("chasing", false)) or ai._attacking:
+		return Vector2.INF
+	var fn: Array = ai.wbm.get("near", [0.0, Vector2.INF])
+	return fn[1]
+
+
+## The chase on the road: true = it steered the wave this think (the rest of _nb_wave_tick is skipped).
+static func chase_tick(ai, q, mid: Vector2) -> bool:
+	if not bool(ai.wbm.get("chasing", false)):
+		return false
+	var w: Dictionary = ai.wbm
+	var foe: int = ai._foe()
+	var fq: Unit = BroodNew.queen(ai.game, foe) if foe >= 0 else null
+	var near_her: bool = fq != null and mid.distance_to(fq.position) < CHASE_STOP * Defs.TILE
+	var best: Unit = null
+	for u in ai.game.units_near(mid, 16.0 * Defs.TILE):
+		if u.dead or u.off_field or u.team < 0 or not ai.game.hostile(u.team, ai.team) or not u.has_attack() or u.is_worker():
+			continue
+		if u._k_nb or u.is_air() or not ai.game.is_visible_to(ai.team, u.position):
+			continue
+		if fq != null and u.position.distance_to(fq.position) < CHASE_STOP * Defs.TILE:
+			continue
+		if best == null or u.position.distance_to(mid) < best.position.distance_to(mid):
+			best = u
+	if best != null:
+		w["chase_seen"] = ai.game.clock
+	if near_her or ai.game.clock - float(w.get("chase_seen", 0.0)) > 6.0 or ai.game.clock - float(w.get("chase_t", 0.0)) > CHASE_MAX:
+		w["chasing"] = false
+		ai.say("ends its chase (%s)" % ("at the enemy's swamp" if near_her else "nothing left to bite"))
+		ai._wave_end_nb(q, false)
+		return true
+	if best != null and ai.game.clock - float(w.get("chase_steer", -9.0)) > 2.0:
+		w["chase_steer"] = ai.game.clock
+		ai._wave_target = best.position
+		for u in ai._wave:
+			if u.target == null or u.order != "attack":
+				u.cmd_move(best.position, true)
+	return false
+
+
+## The one hook in AIBroodNew._nb_wave_goal: this job's goal for a wave leaving now (Vector2.INF: the usual one).
+static func wave_goal(ai, q) -> Vector2:
+	if not mirror(ai):
+		return Vector2.INF
+	var cg := chase_goal(ai, q)
+	if cg != Vector2.INF:
+		return cg
+	return outer_goal(ai, q, ai._qp(q))

@@ -3318,7 +3318,7 @@ func _nb_wave_goal(q: Unit) -> Vector2:
 	var foe := _foe()
 	if foe < 0:
 		return Vector2.INF
-	var og := AIWr1000BroodMirror.outer_goal(self, q, _qp(q))          # (wr1000-brood-mirror: the enemy Brood's outer ground)
+	var og := AIWr1000BroodMirror.wave_goal(self, q)          # (wr1000-brood-mirror: its own goals in the mirror)
 	if og != Vector2.INF:
 		return og
 	var best := (Vector2(game.starts[foe]) + Vector2(2.5, 2.0)) * Defs.TILE
@@ -3622,7 +3622,7 @@ func _nb_army(q: Unit) -> void:
 			near += int(u.d["supply"])
 	if _gather_t < 0.0:
 		_gather_t = game.clock
-	if near * 10 < sup * 7 and game.clock - _gather_t < 25.0:
+	if near * 10 < sup * 7 and game.clock - _gather_t < 25.0 and not wbm_go:
 		return
 	_gather_t = -1.0
 	var goal := _nb_wave_goal(q)
@@ -3706,6 +3706,8 @@ func _nb_wave_tick(q: Unit, army: Array) -> void:
 			or (game.clock - _wave_t0 > 150.0 and gained < lost * 0.5 and ahead > left):
 		say("pulls back: %d of %d left, %d ahead (killed %d)" % [int(left), int(_wave_v0), int(ahead), gained])
 		_wave_end_nb(q, gained < _wave_v0 * 0.6)
+		return
+	if AIWr1000BroodMirror.chase_tick(self, q, mid):          # (wr1000-brood-mirror: a chase of a beaten army)
 		return
 	# THE RAID KEEPS AT ITS PREY (brood-rush-coach): riders who ride off are not chased out into the open
 	_nb_wave_no_chase(mid)

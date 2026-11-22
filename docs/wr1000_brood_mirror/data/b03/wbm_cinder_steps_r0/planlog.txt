@@ -1,0 +1,436 @@
+  P1 Brood  side 1  colour Blue  AI: HARD, OPTIMAL
+  P2 Brood  side 2  colour Red  AI: HARD, OPTIMAL
+[00:00] P1 Brood plays Brood (Optimal)
+[00:00] P1 Brood's Brood: OPTIMAL: the common opening (Balanced's economy), a grub into the enemy's main early, then it picks its build from what it sees
+[00:00] P2 Brood plays Brood (Optimal)
+[00:00] P2 Brood's Brood: OPTIMAL: the common opening (Balanced's economy), a grub into the enemy's main early, then it picks its build from what it sees
+[00:12] P1 Brood got its first Grub
+[00:12] P2 Brood got its first Grub
+[00:23] P1 Brood got its first Rootmaw
+[00:23] P2 Brood got its first Rootmaw
+[00:26] P2 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 20 tiles out
+[00:27] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 20 tiles out
+[00:40] P1 Brood's Brood: sends a Grub to explore the enemy's main
+[00:40] P2 Brood's Brood: sends a Grub to explore the enemy's main
+[00:56] P2 Brood got its first Mound Turtle
+[00:57] P1 Brood got its first Mound Turtle
+  P1 Brood: earned 211 biomass total, has 36 + 0 spoils | supply 8/28 | workers 7 | halls 0 | army (250 value): 1 Brood Mother, 2 Rootmaw, 1 Mound Turtle, 1 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 8 eggs | Rootmaws rooted 2 (ground 92% 94%) | Mound Turtles rooted 1
+  P2 Brood: earned 211 biomass total, has 36 + 0 spoils | supply 8/28 | workers 7 | halls 0 | army (250 value): 1 Brood Mother, 2 Rootmaw, 1 Mound Turtle, 1 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 8 eggs | Rootmaws rooted 2 (ground 92% 94%) | Mound Turtles rooted 1
+  P1 Brood: earned 549 biomass total, has 49 + 0 spoils | supply 12/28 | workers 11 | halls 0 | army (325 value): 1 Brood Mother, 3 Rootmaw, 1 Mound Turtle, 1 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 10 eggs | Rootmaws rooted 3 (ground 83% 86% 98%) | Mound Turtles rooted 1
+  P2 Brood: earned 535 biomass total, has 35 + 0 spoils | supply 12/28 | workers 11 | halls 0 | army (325 value): 1 Brood Mother, 3 Rootmaw, 1 Mound Turtle, 1 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 9 eggs | Rootmaws rooted 3 (ground 83% 86% 99%) | Mound Turtles rooted 1
+[02:20] P1 Brood's Brood: a grub goes to grow the Tyrant Lure
+[02:23] P2 Brood's Brood: a grub goes to grow the Tyrant Lure
+[02:49] P2 Brood's Brood: scouted: NORMAL [a standard opening] (1 halls, 0 production, 0 static defences, 75 of army seen): OPTIMAL picks its build from this
+[02:49] P2 Brood's Brood: optimal: reads NORMAL [a standard opening]: keeps Balanced (a normal game)
+[02:51] P1 Brood got its first Tyrant Sire
+[02:53] P1 Brood's Brood: scouted: NORMAL [a standard opening] (1 halls, 0 production, 0 static defences, 75 of army seen): OPTIMAL picks its build from this
+[02:53] P1 Brood's Brood: optimal: reads NORMAL [a standard opening]: keeps Balanced (a normal game)
+[02:55] P2 Brood got its first Tyrant Sire
+  P1 Brood: earned 1008 biomass total, has 33 + 0 spoils | supply 19/28 | workers 13 | halls 0 | army (550 value): 1 Brood Mother, 4 Rootmaw, 1 Mound Turtle, 1 Tyrant Sire, 2 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 9 eggs | Rootmaws rooted 3 (ground 75% 78% 90%) | Mound Turtles rooted 1
+  P2 Brood: earned 996 biomass total, has 21 + 0 spoils | supply 19/28 | workers 13 | halls 0 | army (550 value): 1 Brood Mother, 4 Rootmaw, 1 Mound Turtle, 1 Tyrant Sire, 2 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 9 eggs | Rootmaws rooted 3 (ground 75% 78% 90%) | Mound Turtles rooted 1
+[03:18] P1 Brood sends 1 Grub after the Brood's scouting Grub
+[03:21] P1 Brood lets the Brood's scouting Grub go (out of sight)
+[03:32] P2 Brood sends 1 Grub after the Brood's scouting Grub
+[03:35] P2 Brood lets the Brood's scouting Grub go (away past the leash)
+[03:47] P1 Brood sends 1 Grub after the Brood's scouting Grub
+[03:51] P1 Brood lets the Brood's scouting Grub go (away past the leash)
+  P1 Brood: earned 1695 biomass total, has 20 + 0 spoils | supply 30/40 | workers 23 | halls 0 | army (650 value): 1 Brood Mother, 4 Rootmaw, 2 Mound Turtle, 1 Tyrant Sire, 3 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 7 eggs | Rootmaws rooted 4 (ground 66% 69% 87% 86%) | Mound Turtles rooted 2
+  P2 Brood: earned 1661 biomass total, has 36 + 0 spoils | supply 29/40 | workers 22 | halls 0 | army (650 value): 1 Brood Mother, 4 Rootmaw, 2 Mound Turtle, 1 Tyrant Sire, 4 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 8 eggs | Rootmaws rooted 4 (ground 66% 69% 87% 87%) | Mound Turtles rooted 2
+[04:12] P2 Brood sends 1 Grub after the Brood's scouting Grub
+[04:15] P2 Brood lets the Brood's scouting Grub go (away past the leash)
+[04:17] P1 Brood sends 2 Grubs after the Brood's scouting Grub
+[04:20] P1 Brood lets the Brood's scouting Grub go (away past the leash)
+[04:41] P2 Brood sends 1 Grub after the Brood's scouting Grub
+[04:44] P2 Brood lets the Brood's scouting Grub go (away past the leash)
+[04:46] P1 Brood sends 1 Grub after the Brood's scouting Grub
+[04:49] P1 Brood lets the Brood's scouting Grub go (out of sight)
+[04:58] P1 Brood's Brood: grows the Mother to stage 2
+[04:58] P1 Brood got its first Raptors
+  P1 Brood: earned 3088 biomass total, has 38 + 0 spoils | supply 45/52 | workers 37 | halls 0 | army (1025 value): 1 Brood Mother, 5 Rootmaw, 4 Mound Turtle, 1 Tyrant Sire, 1 Egg, 4 Raptors | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 5 eggs | Rootmaws rooted 5 (ground 58% 60% 79% 69% 95%) | Mound Turtles rooted 3
+  P2 Brood: earned 3019 biomass total, has 269 + 0 spoils | supply 44/52 | workers 35 | halls 0 | army (925 value): 1 Brood Mother, 5 Rootmaw, 4 Mound Turtle, 1 Tyrant Sire, 4 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 1 rooted, 4 eggs | Rootmaws rooted 5 (ground 58% 60% 78% 70% 95%) | Mound Turtles rooted 3
+[05:02] P2 Brood's Brood: grows the Mother to stage 2
+[05:03] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 30 tiles out
+[05:03] P2 Brood got its first Raptors
+[05:04] P2 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 30 tiles out
+[05:10] P2 Brood sends 2 Raptors after the Brood's scouting Grub
+[05:11] P1 Brood's Tyrant Sire researches Bigger Clutch
+[05:11] P1 Brood's Brood: researches Bigger Clutch
+[05:14] P2 Brood lets the Brood's scouting Grub go (out of sight)
+[05:15] P1 Brood sends 2 Raptors after the Brood's scouting Grub
+[05:19] P1 Brood lets the Brood's scouting Grub go (out of sight)
+[05:21] P2 Brood's Tyrant Sire researches Bigger Clutch
+[05:21] P2 Brood's Brood: researches Bigger Clutch
+[05:28] P2 Brood's Brood: a grub goes to grow the Venom Lure
+[05:40] P2 Brood sends 2 Raptors after the Brood's scouting Grub
+[05:41] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 30 tiles out
+[05:41] P1 Brood sends 2 Raptors after the Brood's scouting Grub
+[05:43] P2 Brood lets the Brood's scouting Grub go (out of sight)
+[05:43] P2 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 30 tiles out
+[05:51] P1 Brood researched Bigger Clutch
+[05:54] P1 Brood's Brood: grows the Mother to stage 3
+[05:56] P2 Brood's Raptors matured into a Tyrant Challenger
+[05:56] P2 Brood's Raptors matured into a Tyrant Challenger
+[05:58] P1 Brood lets the Brood's scouting Grub go (away past the leash)
+  P1 Brood: earned 5242 biomass total, has 317 + 15 spoils | supply 60/88 | workers 43 | halls 0 | army (1325 value): 1 Brood Mother, 6 Rootmaw, 6 Mound Turtle, 1 Tyrant Sire, 5 Raptors, 5 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 2 rooted, 0 eggs | Rootmaws rooted 5 (ground 49% 52% 62% 53% 86%) | Mound Turtles rooted 6 | sacrificed 7 (+105 spoils)
+  P2 Brood: earned 5050 biomass total, has 475 + 15 spoils | supply 64/76 | workers 41 | halls 0 | army (1675 value): 1 Brood Mother, 6 Rootmaw, 5 Mound Turtle, 1 Tyrant Sire, 2 Tyrant Challenger, 7 Raptors, 1 Venom Sire, 4 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 2 rooted, 0 eggs | Rootmaws rooted 5 (ground 49% 52% 61% 54% 86%) | Mound Turtles rooted 5 | sacrificed 5 (+75 spoils)
+[06:01] P2 Brood researched Bigger Clutch
+[06:02] P2 Brood's Tyrant Sire researches Pack Hunt
+[06:02] P2 Brood's Brood: researches Pack Hunt
+[06:03] P2 Brood got its first Venom Sire
+[06:15] P1 Brood's Tyrant Sire researches Pack Hunt
+[06:15] P1 Brood's Brood: researches Pack Hunt
+[06:37] P2 Brood researched Pack Hunt
+[06:39] P1 Brood's Raptors matured into a Tyrant Challenger
+[06:44] P2 Brood's Brood: layout: not a Mound Turtle there (It would shut 19 of its own in.)
+[06:48] P1 Brood's Raptors matured into a Tyrant Challenger
+[06:48] P1 Brood's Raptors matured into a Tyrant Challenger
+[06:48] P1 Brood's Raptors matured into a Tyrant Challenger
+[06:48] P1 Brood's Raptors matured into a Tyrant Challenger
+[06:49] P1 Brood's Raptors matured into a Tyrant Challenger
+[06:50] P1 Brood researched Pack Hunt
+[06:51] P2 Brood's Brood: grows the Mother to stage 3
+[06:53] P2 Brood's Brood: attacks with 24 supply (2 tyrant_challenger, 20 raptor)
+[06:53] P2 Brood's Brood attacks with 24 supply
+  P1 Brood: earned 7305 biomass total, has 730 + 40 spoils | supply 84/100 | workers 52 | halls 0 | army (2075 value): 1 Brood Mother, 6 Rootmaw, 8 Mound Turtle, 1 Tyrant Sire, 6 Tyrant Challenger, 3 Raptors, 5 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 3 rooted, 0 eggs | Rootmaws rooted 6 (ground 41% 42% 44% 36% 78% 84%) | Mound Turtles rooted 7 | sacrificed 15 (+225 spoils)
+  P2 Brood: earned 7267 biomass total, has 367 + 0 spoils | supply 100/100 | workers 53 | halls 0 | army (2525 value): 1 Brood Mother, 6 Rootmaw, 8 Mound Turtle, 1 Tyrant Sire, 2 Tyrant Challenger, 1 Venom Sire, 29 Raptors, 2 Egg | kills +0 (0) losses +0 (0) | Brood: Mother stage 2 rooted, 2 eggs | Rootmaws rooted 6 (ground 41% 43% 43% 38% 77% 85%) | Mound Turtles rooted 7 | sacrificed 10 (+150 spoils)
+[07:05] P1 Brood's Brood: defends with 3 (1 tyrant_challenger, 2 raptor, 150) against 100 (4 raptor) at home
+[07:06] P1 Brood's Brood: ALARM: an enemy army of 350 out of its main at 7:06: warriors, grubs pulled back, a turtle in front
+[07:06] P1 Brood's Brood: a Rootmaw under attack uproots to back off (13 raptor)
+[07:09] P2 Brood's Brood: layout: not a Mound Turtle there (It would shut 16 of its own in.)
+[07:15] P2 Brood's Brood: sends a Grub to explore the enemy's main
+[07:18] P2 Brood's Raptors matured into a Tyrant Challenger
+[07:18] P2 Brood's Raptors matured into a Tyrant Challenger
+[07:20] P1 Brood got its first Brute
+[07:20] P2 Brood's Brood: pulls back: 525 of 900 left, 925 ahead (killed 125)
+[07:20] P2 Brood's Brood: ALARM: an enemy army of 900 out of its main at 7:20: warriors, grubs pulled back, a turtle in front
+[07:20] P2 Brood's Brood: ALARM: a Mound Turtle gets up to root in front of the natural
+[07:21] P1 Brood's Brood: sends a Grub to explore the enemy's main
+[07:23] P2 Brood's Raptors matured into a Tyrant Challenger
+[07:23] P2 Brood's Raptors matured into a Tyrant Challenger
+[07:24] P1 Brood's Raptors matured into a Tyrant Challenger
+[07:24] P1 Brood's Raptors matured into a Tyrant Challenger
+[07:27] P2 Brood got its first Spitters
+[07:27] P1 Brood sends 2 Tyrant Challengers after the Brood's scouting Grub
+[07:32] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 59 of its own in.)
+[07:34] P1 Brood killed the Brood's scouting Grub at 7:34
+[07:41] P2 Brood's Brood: a Mound Turtle roots in front of the natural
+[07:41] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[07:47] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[07:48] P1 Brood's Raptors matured into a Tyrant Challenger
+[07:48] P1 Brood's Raptors matured into a Tyrant Challenger
+[07:49] P2 Brood sends 2 Raptors and Tyrant Challenger after the Brood's scouting Grub
+[07:53] P2 Brood lets the Brood's scouting Grub go (out of sight)
+[07:55] P1 Brood's Raptors matured into a Tyrant Challenger
+  P1 Brood: earned 9452 biomass total, has 727 + 30 spoils | supply 124/124 | workers 48 | halls 0 | army (4250 value): 1 Brood Mother, 7 Rootmaw, 11 Mound Turtle, 1 Tyrant Sire, 11 Tyrant Challenger, 43 Raptors, 2 Brute, 1 Egg | kills +19 (19) losses +3 (3) | Brood: Mother stage 3 rooted, 13 eggs | Rootmaws rooted 7 (ground 32% 33% 27% 20% 70% 97% 97%) | Mound Turtles rooted 9 | sacrificed 19 (+285 spoils)
+  P2 Brood: earned 9618 biomass total, has 653 + 0 spoils | supply 124/136 | workers 52 | halls 0 | army (3465 value): 1 Brood Mother, 7 Rootmaw, 11 Mound Turtle, 1 Tyrant Sire, 6 Tyrant Challenger, 1 Venom Sire, 32 Raptors, 2 Spitters, 6 Egg | kills +3 (3) losses +19 (19) | Brood: Mother stage 3 rooted, 0 eggs | Rootmaws rooted 7 (ground 32% 35% 25% 22% 68% 68% 91%) | Mound Turtles rooted 10 | sacrificed 15 (+225 spoils)
+[08:00] P2 Brood's Raptors matured into a Tyrant Challenger
+[08:00] P2 Brood's Raptors matured into a Tyrant Challenger
+[08:00] P2 Brood's Raptors matured into a Tyrant Challenger
+[08:01] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[08:02] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 95 of its own in.)
+[08:05] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[08:17] P2 Brood sends 2 Spitters and Raptors after the Brood's scouting Grub
+[08:17] P1 Brood's Tyrant Sire researches Battering Horns
+[08:17] P1 Brood's Brood: researches Battering Horns
+[08:18] P2 Brood's Raptors matured into a Tyrant Challenger
+[08:18] P2 Brood's Brood Mother researches Quick Roots
+[08:18] P2 Brood's Brood: researches Quick Roots
+[08:20] P2 Brood lets the Brood's scouting Grub go (out of sight)
+[08:21] P2 Brood's Brood: layout: not a Mound Turtle there (It would shut 15 of its own in.)
+[08:23] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 14 tiles out
+[08:30] P2 Brood's Raptors matured into a Tyrant Challenger
+[08:33] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 110 of its own in.)
+[08:34] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 15 tiles out
+[08:34] P2 Brood's Brood: sends a Grub to explore the enemy's main
+[08:39] P1 Brood's Brood: attacks with 93 supply (11 tyrant_challenger, 65 raptor, 2 brute)
+[08:39] P1 Brood's Brood attacks with 93 supply
+[08:41] P2 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 33 tiles out
+[08:42] P2 Brood's Brood: attacks with 92 supply (11 tyrant_challenger, 64 raptor, 6 spitter)
+[08:42] P2 Brood's Brood attacks with 92 supply
+[08:46] P2 Brood's Brood: layout: not a Mound Turtle there (It would shut 23 of its own in.)
+[08:47] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[08:48] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[08:55] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[08:59] P1 Brood's Brood: pulls back: 1325 of 3025 left, 1695 ahead (killed 1275)
+[08:59] P1 Brood's Brood: ALARM: an enemy army of 1695 out of its main at 8:59: warriors, grubs pulled back, a turtle in front
+[08:59] P1 Brood's Brood: ALARM: a Mound Turtle gets up to root in front of the natural
+  P1 Brood: earned 11329 biomass total, has 829 + 20 spoils | supply 90/148 | workers 55 | halls 0 | army (3450 value): 1 Brood Mother, 8 Rootmaw, 14 Mound Turtle, 1 Tyrant Sire, 10 Tyrant Challenger, 2 Brute, 5 Egg | kills +48 (67) losses +66 (69) | Brood: Mother stage 3 rooted, 19 eggs | Rootmaws rooted 8 (ground 23% 24% 9% 4% 61% 89% 89% 78%) | Mound Turtles rooted 11 | sacrificed 21 (+315 spoils)
+  P2 Brood: earned 11845 biomass total, has 0 + 60 spoils | supply 142/172 | workers 52 | halls 0 | army (4445 value): 1 Brood Mother, 8 Rootmaw, 15 Mound Turtle, 1 Tyrant Sire, 10 Tyrant Challenger, 1 Venom Sire, 6 Spitters, 29 Raptors, 13 Egg | kills +66 (69) losses +48 (67) | Brood: Mother stage 3 rooted, 2 eggs | Rootmaws rooted 8 (ground 23% 26% 8% 6% 59% 50% 88% 90%) | Mound Turtles rooted 13 | sacrificed 23 (+345 spoils)
+[09:02] P1 Brood's Brood: defends with 2 (1 tyrant_challenger, 1 brute, 250) against 25 (1 raptor) at home
+[09:03] P2 Brood researched Quick Roots
+[09:05] P1 Brood's Brood: pulls its defenders back to the Mother: 600 against 1100
+[09:07] P1 Brood researched Battering Horns
+[09:09] P1 Brood's Brood: a Rootmaw under attack uproots to back off (3 tyrant_challenger, 1 raptor, 1 spitter)
+[09:09] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[09:13] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[09:15] P1 Brood's Brood: a Mound Turtle roots in front of the natural
+[09:15] P1 Brood's Brood: defends with 7 (1 brute, 6 tyrant_challenger, 750) against 1300 (16 raptor, 9 tyrant_challenger) at the Mother
+[09:21] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[09:22] P2 Brood's Brood: goes for the enemy Mother with 2 (she has 2400 of 2400 health)
+[09:26] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[09:30] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[09:46] P2 Brood's Brood: pulls back: 1105 of 4950 left, 0 ahead (killed 2975)
+[09:47] P2 Brood's Brood: ALARM: an enemy army of 1450 out of its main at 9:47: warriors, grubs pulled back, a turtle in front
+  P1 Brood: earned 12948 biomass total, has 73 + 176 spoils | supply 149/184 | workers 60 | halls 0 | army (4100 value): 1 Brood Mother, 9 Rootmaw, 14 Mound Turtle, 1 Tyrant Sire, 1 Tyrant Challenger, 71 Raptors, 5 Egg | kills +75 (142) losses +13 (82) | Brood: Mother stage 3 rooted, 14 eggs | Rootmaws rooted 7 (ground 15% 15% 85% 53% 85% 87% 98%) | Mound Turtles rooted 14 | sacrificed 23 (+345 spoils)
+  P2 Brood: earned 14102 biomass total, has 2 + 50 spoils | supply 139/196 | workers 55 | halls 0 | army (3980 value): 1 Brood Mother, 9 Rootmaw, 15 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 51 Raptors, 4 Spitters, 9 Egg | kills +13 (82) losses +75 (142) | Brood: Mother stage 3 rooted, 4 eggs | Rootmaws rooted 8 (ground 14% 18% 93% 51% 32% 80% 78% 95%) | Mound Turtles rooted 15 | sacrificed 23 (+345 spoils)
+[10:06] P2 Brood's Brood: sends a Grub to explore the enemy's main
+[10:08] P1 Brood's Brood: sends a Grub to explore the enemy's main
+[10:15] P1 Brood sends 2 Raptors after the Brood's scouting Grub
+[10:19] P2 Brood sends 2 Raptors after the Brood's scouting Grub
+[10:22] P2 Brood lets the Brood's scouting Grub go (out of sight)
+[10:25] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[10:25] P1 Brood lets the Brood's scouting Grub go (away past the leash)
+[10:28] P2 Brood's Brood: layout: not a Mound Turtle there (It would shut 12 of its own in.)
+[10:28] P1 Brood's Brood Mother researches Quick Roots
+[10:28] P1 Brood's Brood: researches Quick Roots
+[10:29] P2 Brood's Brood: layout: not a Mound Turtle there (It would shut 20 of its own in.)
+[10:30] P2 Brood's Brood: layout: not a Mound Turtle there (It would shut 13 of its own in.)
+[10:36] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 149 of its own in.)
+[10:37] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 159 of its own in.)
+[10:37] P1 Brood's Brood: layout: not a Mound Turtle there (It would shut 144 of its own in.)
+[10:38] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 15 tiles out
+[10:44] P1 Brood's Raptors matured into a Tyrant Challenger
+[10:46] P1 Brood's Raptors matured into a Tyrant Challenger
+[10:47] P2 Brood sends 2 Raptors after the Brood's scouting Grub
+[10:50] P2 Brood lets the Brood's scouting Grub go (out of sight)
+[10:53] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 15 tiles out
+[10:54] P2 Brood's Brood: layout: not a Mound Turtle there (It would shut 7 of its own in.)
+[10:54] P2 Brood's Brood: layout: not a Mound Turtle there (It would shut 7 of its own in.)
+[10:55] P2 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 14 tiles out
+  P1 Brood: earned 15315 biomass total, has 440 + 288 spoils | supply 196/196 | workers 59 | halls 0 | army (5725 value): 1 Brood Mother, 9 Rootmaw, 16 Mound Turtle, 1 Tyrant Sire, 3 Tyrant Challenger, 108 Raptors, 2 Brute, 5 Egg | kills +0 (142) losses +0 (82) | Brood: Mother stage 3 rooted, 20 eggs | Rootmaws rooted 8 (ground 6% 6% 68% 45% 70% 69% 65% 82%) | Mound Turtles rooted 15 | sacrificed 23 (+345 spoils)
+  P2 Brood: earned 16598 biomass total, has 548 + 50 spoils | supply 199/200 | workers 54 | halls 0 | army (6230 value): 1 Brood Mother, 9 Rootmaw, 18 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 129 Raptors, 4 Spitters, 2 Egg | kills +0 (82) losses +0 (142) | Brood: Mother stage 3 rooted, 12 eggs | Rootmaws rooted 8 (ground 6% 11% 90% 47% 15% 63% 61% 85%) | Mound Turtles rooted 16 | sacrificed 23 (+345 spoils)
+[11:03] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 16 tiles out
+[11:03] P1 Brood's Brood: attacks with 120 supply (3 tyrant_challenger, 108 raptor, 2 brute)
+[11:03] P1 Brood's Brood attacks with 120 supply
+[11:06] P2 Brood's Brood: attacks with 130 supply (126 raptor, 4 spitter)
+[11:06] P2 Brood's Brood attacks with 130 supply
+[11:13] P2 Brood's Brood: defends with 3 (3 raptor, 75) against 50 (2 raptor) at home
+[11:13] P1 Brood researched Quick Roots
+[11:14] P1 Brood's Brood Mother researches Swamp Mending
+[11:14] P1 Brood's Brood: researches Swamp Mending
+[11:14] P2 Brood's Brood: pulls its defenders back to the Mother: 125 against 575
+[11:14] P1 Brood's Raptors matured into a Tyrant Challenger
+[11:15] P2 Brood's Brood: a Rootmaw under attack uproots to back off (40 raptor)
+[11:15] P1 Brood's Brood: defends with 2 (1 brute, 1 tyrant_challenger, 250) against 25 (1 raptor) at home
+[11:16] P1 Brood's Brood: pulls its defenders back to the Mother: 250 against 700
+[11:17] P1 Brood's Brood: a Rootmaw under attack uproots to back off (47 raptor)
+[11:17] P1 Brood's Brood: its wave closes up before it meets an enemy army of 1525 (4 of 128 supply at its head)
+[11:18] P1 Brood's Brood: turns its wave to meet an enemy army of 2700 heading for its Mother
+[11:20] P2 Brood's Brood: defends with 3 (3 raptor, 75) against 50 (2 raptor) at home
+[11:20] P2 Brood's Brood: pulls its defenders back to the Mother: 125 against 475
+[11:20] P2 Brood's Brood: its wave closes up before it meets an enemy army of 2500 (4 of 130 supply at its head)
+[11:21] P2 Brood's Brood: turns its wave to meet an enemy army of 2600 heading for its Mother
+[11:24] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 17 tiles out
+[11:24] P1 Brood's Brood: defends with 2 (1 brute, 1 tyrant_challenger, 250) against 175 (7 raptor) at home
+[11:24] P1 Brood's Brood: pulls its defenders back to the Mother: 250 against 1350
+[11:27] P1 Brood's Brood: defends with 2 (1 brute, 1 tyrant_challenger, 250) against 200 (8 raptor) at home
+[11:30] P1 Brood's Brood: a Rootmaw under attack uproots to back off (10 raptor)
+[11:31] P2 Brood's Raptors matured into a Tyrant Challenger
+[11:32] P2 Brood's Brood: pulls back: 1190 of 3520 left, 1550 ahead (killed 2325)
+[11:34] P2 Brood's Brood: ALARM: an enemy army of 1550 out of its main at 11:34: warriors, grubs pulled back, a turtle in front
+[11:36] P2 Brood's Brood: defends with 39 (36 raptor, 2 spitter, 1 tyrant_challenger, 1090) against 775 (31 raptor) at home
+[11:39] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[11:40] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[11:41] P2 Brood's Brood: a Rootmaw under attack uproots to back off (28 raptor)
+[11:41] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[11:45] P1 Brood: a Rootmaw lost its swamp and uprooted
+[11:46] P1 Brood's Brood: a grub goes to root a Mound Turtle on new ground, 30 tiles out
+[11:46] P1 Brood's Brood: nothing of the enemy in sight: its wave splits into 9 packs to look for it
+[11:55] P2 Brood sends 2 Raptors after the Brood's scouting Raptors
+[11:56] P2 Brood killed the Brood's scouting Raptors at 11:56
+[11:59] P1 Brood researched Swamp Mending
+  P1 Brood: earned 17349 biomass total, has 74 + 210 spoils | supply 149/200 | workers 60 | halls 0 | army (5025 value): 1 Brood Mother, 9 Rootmaw, 19 Mound Turtle, 1 Tyrant Sire, 1 Tyrant Challenger, 64 Raptors, 4 Brute, 3 Egg | kills +155 (297) losses +94 (176) | Brood: Mother stage 3 rooted, 20 eggs | Rootmaws rooted 7 (ground 0% 35% 57% 36% 60% 53% 73%) | Mound Turtles rooted 18 | sacrificed 23 (+345 spoils)
+  P2 Brood: earned 18764 biomass total, has 74 + 50 spoils | supply 128/200 | workers 57 | halls 0 | army (4190 value): 1 Brood Mother, 10 Rootmaw, 18 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 2 Spitters, 48 Raptors, 5 Egg | kills +94 (176) losses +155 (297) | Brood: Mother stage 3 rooted, 7 eggs | Rootmaws rooted 9 (ground 0% 6% 81% 42% 46% 43% 76% 28% 28%) | Mound Turtles rooted 18 | sacrificed 24 (+360 spoils)
+[12:11] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[12:13] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[12:13] P1 Brood's Brood: sends a Grub to explore the enemy's main
+[12:24] P2 Brood sends 2 Raptors after the Brood's scouting Grub
+[12:28] P2 Brood lets the Brood's scouting Grub go (its friends are near)
+[12:39] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[12:42] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[12:55] P2 Brood sends 2 Raptors after the Brood's scouting Grub
+[12:58] P2 Brood lets the Brood's scouting Grub go (out of sight)
+  P1 Brood: earned 20238 biomass total, has 1688 + 210 spoils | supply 200/200 | workers 61 | halls 0 | army (6450 value): 1 Brood Mother, 9 Rootmaw, 19 Mound Turtle, 1 Tyrant Sire, 1 Tyrant Challenger, 121 Raptors, 4 Brute | kills +0 (297) losses +0 (176) | Brood: Mother stage 3 rooted, 20 eggs | Rootmaws rooted 7 (ground 33% 20% 45% 28% 44% 35% 67%) | Mound Turtles rooted 19 | sacrificed 23 (+345 spoils)
+  P2 Brood: earned 21453 biomass total, has 963 + 50 spoils | supply 200/200 | workers 58 | halls 0 | army (6290 value): 1 Brood Mother, 10 Rootmaw, 18 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 2 Spitters, 132 Raptors | kills +0 (176) losses +0 (297) | Brood: Mother stage 3 rooted, 14 eggs | Rootmaws rooted 9 (ground 1% 80% 38% 29% 25% 68% 13% 11% 24%) | Mound Turtles rooted 18 | sacrificed 24 (+360 spoils)
+[13:01] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[13:06] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[13:06] P2 Brood's Brood: attacks with 131 supply (2 spitter, 129 raptor)
+[13:06] P2 Brood's Brood attacks with 131 supply
+[13:13] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[13:14] P1 Brood's Brood: defends with 76 (3 brute, 73 raptor, 2275) against 300 (12 raptor) at home
+[13:15] P1 Brood's Brood: pulls back: 1450 of 4325 left, 2275 ahead (killed 4130)
+[13:16] P1 Brood's Brood: ALARM: an enemy army of 2825 out of its main at 13:16: warriors, grubs pulled back, a turtle in front
+[13:21] P1 Brood's Brood: a Rootmaw under attack uproots to back off (108 raptor)
+[13:22] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[13:22] P1 Brood's Brood: a Rootmaw under attack uproots to fight back (1 raptor)
+[13:25] P1 Brood's Brood: pulls its defenders back to the Mother: 1525 against 2500
+[13:25] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:25] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:25] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:26] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:26] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:27] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:27] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:27] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:27] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:28] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:28] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:28] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[13:28] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:28] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:29] P1 Brood's Brood: defends with 46 (13 tyrant_challenger, 30 raptor, 3 brute, 2500) against 2450 (98 raptor) at home
+[13:29] P1 Brood's Raptors matured into a Tyrant Challenger
+[13:30] P1 Brood's Brood: a Rootmaw under attack uproots to back off (85 raptor)
+[13:36] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[13:44] P1 Brood's Brood: defends with 2 (2 tyrant_challenger, 200) against 70 (1 spitter, 1 raptor) at home
+[13:51] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[13:57] P1 Brood's Brood: defends with 5 (5 raptor, 125) against 100 (4 raptor) at home
+  P1 Brood: earned 22694 biomass total, has 94 + 64 spoils | supply 175/200 | workers 60 | halls 0 | army (5625 value): 1 Brood Mother, 8 Rootmaw, 19 Mound Turtle, 1 Tyrant Sire, 6 Tyrant Challenger, 4 Brute, 71 Raptors, 6 Egg | kills +163 (460) losses +137 (313) | Brood: Mother stage 3 rooted, 8 eggs | Rootmaws rooted 6 (ground 16% 27% 20% 31% 59% 40%) | Mound Turtles rooted 19 | sacrificed 23 (+345 spoils)
+  P2 Brood: earned 23960 biomass total, has 545 + 50 spoils | supply 148/200 | workers 64 | halls 0 | army (4350 value): 1 Brood Mother, 10 Rootmaw, 18 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 58 Raptors, 6 Egg | kills +137 (313) losses +163 (460) | Brood: Mother stage 3 rooted, 1 eggs | Rootmaws rooted 8 (ground 0% 80% 34% 12% 8% 58% 34% 23%) | Mound Turtles rooted 18 | sacrificed 24 (+360 spoils)
+[14:02] P2 Brood's Brood: pulls back: 1125 of 5590 left, 0 ahead (killed 4425)
+[14:08] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[14:18] P2 Brood's Brood: attacks with 71 supply (71 raptor)
+[14:18] P2 Brood's Brood attacks with 71 supply
+[14:22] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[14:22] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[14:26] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[14:28] P1 Brood's Raptors matured into a Tyrant Challenger
+[14:28] P1 Brood's Brood: defends with 4 (4 raptor, 100) against 75 (3 raptor) at home
+[14:29] P1 Brood's Raptors matured into a Tyrant Challenger
+[14:29] P2 Brood's Raptors matured into a Tyrant Challenger
+[14:30] P1 Brood's Brood: a Rootmaw under attack uproots to back off (33 raptor)
+[14:35] P1 Brood's Brood: a Rootmaw under attack uproots to back off (4 raptor)
+[14:35] P2 Brood's Brood: pulls back: 1600 of 2325 left, 3225 ahead (killed 300)
+[14:36] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[14:36] P2 Brood's Brood: ALARM: an enemy army of 3475 out of its main at 14:36: warriors, grubs pulled back, a turtle in front
+[14:43] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[14:47] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[14:48] P2 Brood's Raptors matured into a Tyrant Challenger
+[14:49] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[14:53] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[14:56] P1 Brood's Brood: attacks with 132 supply (8 tyrant_challenger, 4 brute, 104 raptor)
+[14:56] P1 Brood's Brood attacks with 132 supply
+[14:57] P2 Brood's Raptors matured into a Tyrant Challenger
+[14:57] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+  P1 Brood: earned 25395 biomass total, has 1695 + 138 spoils | supply 200/200 | workers 61 | halls 0 | army (6725 value): 1 Brood Mother, 8 Rootmaw, 19 Mound Turtle, 1 Tyrant Sire, 8 Tyrant Challenger, 4 Brute, 107 Raptors | kills +62 (522) losses +11 (324) | Brood: Mother stage 3 rooted, 20 eggs | Rootmaws rooted 6 (ground 10% 11% 14% 18% 50% 24%) | Mound Turtles rooted 19 | sacrificed 23 (+345 spoils)
+  P2 Brood: earned 27106 biomass total, has 781 + 50 spoils | supply 184/200 | workers 64 | halls 0 | army (5355 value): 1 Brood Mother, 10 Rootmaw, 18 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 3 Tyrant Challenger, 79 Raptors, 4 Spitters, 8 Egg | kills +11 (324) losses +62 (522) | Brood: Mother stage 3 rooted, 0 eggs | Rootmaws rooted 8 (ground 22% 77% 30% 0% 35% 41% 18% 5%) | Mound Turtles rooted 18 | sacrificed 28 (+420 spoils)
+[15:03] P2 Brood's Brood: defends with 3 (2 raptor, 1 spitter, 95) against 50 (2 raptor) at home
+[15:05] P2 Brood's Brood: a Rootmaw under attack uproots to back off (52 raptor)
+[15:05] P2 Brood's Brood: defends with 8 (7 raptor, 1 spitter, 220) against 200 (8 raptor) at home
+[15:06] P2 Brood's Raptors matured into a Tyrant Challenger
+[15:10] P2 Brood's Raptors matured into a Tyrant Challenger
+[15:15] P2 Brood's Brood: pulls its defenders back to the Mother: 1495 against 2350
+[15:16] P2 Brood's Raptors matured into a Tyrant Challenger
+[15:17] P2 Brood's Brood: defends with 41 (5 tyrant_challenger, 26 raptor, 10 spitter, 1600) against 2050 (6 tyrant_challenger, 58 raptor) at home
+[15:19] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:19] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:20] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:23] P2 Brood's Brood: a Rootmaw under attack uproots to back off (4 brute, 3 tyrant_challenger, 19 raptor)
+[15:33] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:33] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[15:33] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:33] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:34] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[15:34] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:34] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:35] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:35] P2 Brood's Raptors matured into a Tyrant Challenger
+[15:35] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:35] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:36] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:37] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:37] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:39] P2 Brood's Brood: a Rootmaw under attack uproots to back off (5 tyrant_challenger, 2 brute, 12 raptor)
+[15:42] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:46] P1 Brood's Brood: nothing of the enemy in sight: its wave splits into 9 packs to look for it
+[15:47] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[15:49] P1 Brood's Raptors matured into a Tyrant Challenger
+[15:54] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[15:55] P2 Brood's Brood: a Rootmaw under attack uproots to back off (8 raptor)
+  P1 Brood: earned 28031 biomass total, has 56 + 60 spoils | supply 191/200 | workers 61 | halls 0 | army (5975 value): 1 Brood Mother, 8 Rootmaw, 19 Mound Turtle, 1 Tyrant Sire, 14 Tyrant Challenger, 77 Raptors, 8 Egg | kills +144 (666) losses +127 (451) | Brood: Mother stage 3 rooted, 9 eggs | Rootmaws rooted 7 (ground 43% 41% 3% 5% 38% 8% 58%) | Mound Turtles rooted 19 | sacrificed 23 (+345 spoils)
+  P2 Brood: earned 29027 biomass total, has 17 + 51 spoils | supply 130/200 | workers 64 | halls 0 | army (3675 value): 1 Brood Mother, 7 Rootmaw, 17 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 5 Spitters, 1 Tyrant Challenger, 31 Raptors, 7 Egg | kills +127 (451) losses +144 (666) | Brood: Mother stage 3 rooted, 0 eggs | Rootmaws rooted 6 (ground 7% 74% 26% 28% 21% 23%) | Mound Turtles rooted 17 | sacrificed 31 (+465 spoils)
+[16:07] P2 Brood's Brood: defends with 6 (6 raptor, 150) against 175 (1 tyrant_challenger, 3 raptor) at home
+[16:08] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[16:10] P2 Brood's Brood: defends with 47 (40 raptor, 6 spitter, 1 tyrant_challenger, 1370) against 400 (8 raptor, 2 tyrant_challenger) at home
+[16:11] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[16:17] P2 Brood's Brood: defends with 32 (6 spitter, 25 raptor, 1 tyrant_challenger, 995) against 650 (14 raptor, 3 tyrant_challenger) at home
+[16:17] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[16:21] P2 Brood's Brood: defends with 2 (1 tyrant_challenger, 1 raptor, 125) against 25 (1 raptor) at home
+[16:22] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[16:23] P1 Brood's Raptors matured into a Tyrant Challenger
+[16:24] P2 Brood's Brood: pulls its defenders back to the Mother: 605 against 1350
+[16:26] P2 Brood's Brood: defends with 19 (6 spitter, 13 raptor, 595) against 700 (2 tyrant_challenger, 20 raptor) at home
+[16:29] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[16:31] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[16:31] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[16:33] P2 Brood's Brood: pulls its defenders back to the Mother: 260 against 775
+[16:35] P2 Brood's Brood: defends with 4 (3 raptor, 1 spitter, 120) against 200 (2 tyrant_challenger) at home
+[16:40] P2 Brood got its first Mist Toad
+[16:51] P2 Brood's Brood: defends with 4 (1 spitter, 3 raptor, 120) against 100 (1 tyrant_challenger) at home
+[16:52] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[16:55] P2 Brood got its first Brute
+  P1 Brood: earned 31006 biomass total, has 2506 + 58 spoils | supply 199/200 | workers 61 | halls 0 | army (6775 value): 1 Brood Mother, 8 Rootmaw, 19 Mound Turtle, 1 Tyrant Sire, 14 Tyrant Challenger, 103 Raptors, 1 Brute | kills +62 (728) losses +10 (461) | Brood: Mother stage 3 rooted, 20 eggs | Rootmaws rooted 6 (ground 26% 26% 37% 26% 0% 46%) | Mound Turtles rooted 19 | sacrificed 23 (+345 spoils)
+  P2 Brood: earned 31142 biomass total, has 102 + 68 spoils | supply 129/200 | workers 64 | halls 0 | army (3945 value): 1 Brood Mother, 7 Rootmaw, 17 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 11 Spitters, 21 Raptors, 2 Mist Toad, 6 Egg, 1 Brute | kills +10 (461) losses +62 (728) | Brood: Mother stage 3 rooted, 10 eggs | Rootmaws rooted 7 (ground 45% 71% 21% 18% 8% 6% 0%) | Mound Turtles rooted 17 | sacrificed 31 (+465 spoils)
+[17:02] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[17:05] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[17:08] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[17:19] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[17:24] P2 Brood's Brood: a Rootmaw under attack uproots to back off (5 raptor, 4 tyrant_challenger)
+[17:26] P2 Brood's Brood: defends with 2 (2 spitter, 90) against 25 (1 raptor) at home
+[17:28] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[17:41] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[17:44] P2 Brood's Tyrant Sire researches Battering Horns
+[17:44] P2 Brood's Brood: researches Battering Horns
+[17:44] P2 Brood's Brood: defends with 4 (1 spitter, 3 raptor, 120) against 100 (1 tyrant_challenger) at home
+[17:56] P2 Brood's Brood: attacks with 123 supply (17 spitter, 91 raptor, 3 mist_toad, 2 brute)
+[17:56] P2 Brood's Brood attacks with 123 supply
+[18:00] P2 Brood's Brood: defends with 3 (3 raptor, 75) against 100 (1 tyrant_challenger) at home
+  P1 Brood: earned 33988 biomass total, has 5488 + 58 spoils | supply 199/200 | workers 61 | halls 0 | army (6775 value): 1 Brood Mother, 8 Rootmaw, 19 Mound Turtle, 1 Tyrant Sire, 14 Tyrant Challenger, 103 Raptors, 1 Brute | kills +1 (729) losses +0 (461) | Brood: Mother stage 3 rooted, 20 eggs | Rootmaws rooted 7 (ground 8% 9% 42% 20% 36% 12% 28%) | Mound Turtles rooted 19 | sacrificed 23 (+345 spoils)
+  P2 Brood: earned 33686 biomass total, has 631 + 42 spoils | supply 198/200 | workers 63 | halls 0 | army (6290 value): 1 Brood Mother, 7 Rootmaw, 17 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 17 Spitters, 94 Raptors, 3 Mist Toad, 2 Brute, 1 Egg | kills +0 (461) losses +1 (729) | Brood: Mother stage 3 rooted, 19 eggs | Rootmaws rooted 6 (ground 27% 59% 17% 8% 53% 32%) | Mound Turtles rooted 17 | sacrificed 33 (+495 spoils)
+[18:01] P2 Brood's Brood: pulls its defenders back to the Mother: 75 against 200
+[18:04] P2 Brood's Brood: defends with 3 (3 raptor, 75) against 100 (1 tyrant_challenger) at home
+[18:07] P2 Brood's Brood: turns its wave to meet an enemy army of 1425 heading for its Mother
+[18:08] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[18:10] P2 Brood's Brood: defends with 3 (3 raptor, 75) against 75 (3 raptor) at home
+[18:10] P1 Brood's Brood: pulls back: 1475 of 6750 left, 1525 ahead (killed 6690)
+[18:10] P2 Brood's Brood: pulls its defenders back to the Mother: 75 against 125
+[18:10] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[18:11] P1 Brood's Brood: ALARM: an enemy army of 2225 out of its main at 18:11: warriors, grubs pulled back, a turtle in front
+[18:15] P1 Brood's Brood: defends with 2 (1 raptor, 1 tyrant_challenger, 125) against 25 (1 raptor) at home
+[18:21] P2 Brood's Brood: nothing of the enemy in sight: its wave splits into 11 packs to look for it
+[18:23] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[18:25] P1 Brood's Brood: attacks with 93 supply (2 tyrant_challenger, 86 raptor, 1 brute)
+[18:25] P1 Brood's Brood attacks with 93 supply
+[18:26] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[18:27] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[18:30] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[18:34] P2 Brood researched Battering Horns
+[18:44] P2 Brood's Brood: pulls back: 935 of 3640 left, 1200 ahead (killed 3575)
+[18:44] P2 Brood's Brood: ALARM: an enemy army of 1300 out of its main at 18:44: warriors, grubs pulled back, a turtle in front
+[18:46] P2 Brood's Brood: a Rootmaw under attack uproots to back off (32 raptor, 2 tyrant_challenger)
+[18:46] P2 Brood's Brood: defends with 8 (5 spitter, 3 raptor, 300) against 175 (7 raptor) at home
+[18:58] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+  P1 Brood: earned 36636 biomass total, has 4836 + 58 spoils | supply 197/200 | workers 61 | halls 0 | army (5900 value): 1 Brood Mother, 8 Rootmaw, 19 Mound Turtle, 1 Tyrant Sire, 2 Tyrant Challenger, 116 Raptors, 1 Brute, 4 Egg | kills +141 (870) losses +122 (583) | Brood: Mother stage 3 rooted, 9 eggs | Rootmaws rooted 7 (ground 27% 37% 37% 3% 26% 0% 11%) | Mound Turtles rooted 19 | sacrificed 23 (+345 spoils)
+  P2 Brood: earned 36267 biomass total, has 482 + 52 spoils | supply 150/200 | workers 64 | halls 0 | army (3425 value): 1 Brood Mother, 6 Rootmaw, 17 Mound Turtle, 1 Tyrant Sire, 1 Venom Sire, 15 Egg, 37 Raptors | kills +122 (583) losses +141 (870) | Brood: Mother stage 3 rooted, 0 eggs | Rootmaws rooted 5 (ground 10% 45% 13% 35% 14%) | Mound Turtles rooted 17 | sacrificed 35 (+525 spoils)
+[19:03] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[19:05] P2 Brood's Raptors matured into a Tyrant Challenger
+[19:07] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[19:10] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[19:16] P1 Brood's Brood: pulls back: 1300 of 5575 left, 300 ahead (killed 3925)
+[19:22] P2 Brood's Raptors matured into a Tyrant Challenger
+[19:33] P1 Brood's Brood: attacks with 93 supply (1 brute, 90 raptor)
+[19:33] P1 Brood's Brood attacks with 93 supply
+[19:33] P1 Brood's Raptors matured into a Tyrant Challenger
+[19:34] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[19:34] P2 Brood: the ground of a Rootmaw is running low (under 25%)
+[19:37] P1 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[19:38] P1 Brood's Raptors matured into a Tyrant Challenger
+[19:38] P1 Brood's Raptors matured into a Tyrant Challenger
+[19:42] P1 Brood: the ground of a Rootmaw is running low (under 25%)
+[19:43] P2 Brood's Brood: defends with 10 (9 raptor, 1 spitter, 270) against 250 (10 raptor) at home
+[19:44] P2 Brood's Brood: a Rootmaw under attack uproots to back off (51 raptor)
+[19:45] P2 Brood's Brood: defends with 6 (6 raptor, 150) against 125 (5 raptor) at home
+[19:47] P2 Brood's Brood: a Rootmaw under attack uproots to back off (11 raptor)
+[19:48] P2 Brood: the ground of a Rootmaw is spent (it drinks nothing more)
+[19:50] P1 Brood's Brood: its wave closes up before it meets an enemy army of 2845 (18 of 119 supply at its head)
+[19:57] P2 Brood's Brood: defends with 121 (113 raptor, 6 spitter, 2 tyrant_challenger, 3295) against 325 (13 raptor) at home
