@@ -46,7 +46,7 @@ static var _springs_t := {}
 
 
 static func more_springs(ai) -> void:
-	if not on("springs") or not cw_v_brood(ai):
+	if not (on("springs") or on("owls")) or not cw_v_brood(ai):
 		return
 	var g = ai.game
 	if g.clock < SPRINGS_AT or g.clock < float(_springs_t.get(ai, 0.0)):
@@ -73,3 +73,97 @@ static func more_springs(ai) -> void:
 		elif ai._threat() == Vector2.INF or ai._holds_line():
 			ai._reserve = maxi(ai._reserve, cost + 20)
 		return
+
+
+# ------------------------------------------------------------------ owls (block 4)
+## OWLS: the Brood's army against the Clockwork is led by Spitters (AIBroodVCw "bvcmix"), and a Spitter never spits at a
+## flyer. The Ticking Owl (a Swift morphed: 175 cogs + 65 Tension in all) swoops on ground units and only the Brood's
+## Venom Challengers, Dilophosaurus, Pterodactyls, Hatchlings and Storm Challengers can touch it. With Spitters seen
+## (OWL_SPITS or more lately), the Clockwork lays its Aviary at once, researches the Owl and keeps Swifts coming to morph,
+## up to one Owl for every OWL_PER Spitters seen (OWL_MAX), fewer once the Brood shows flyer-killers. It comes with
+## `springs` (the Tension for it); `wkbowls:on` turns both on.
+const OWL_SPITS := 10
+const OWL_PER := 4
+const OWL_MAX := 10
+const AA_KINDS := ["venom_challenger", "dilophosaurus", "pterodactyl", "hatchlings", "storm_challenger"]
+static var _seen := {}       # ai -> {"t": next look, "spit": n, "spit_t": when, "aa": n, "aa_t": when}
+
+
+static func _look(ai) -> Dictionary:
+	var g = ai.game
+	var s: Dictionary = _seen.get(ai, {"t": 0.0, "spit": 0, "spit_t": -999.0, "aa": 0, "aa_t": -999.0})
+	if g.clock >= float(s["t"]):
+		s["t"] = g.clock + 3.0
+		var sp := 0
+		var aa := 0
+		for u in g.units:
+			if u.dead or not g.hostile(u.team, ai.team) or not g.is_visible_to(ai.team, u.position):
+				continue
+			if u.kind == "spitter":
+				sp += 1
+			elif AA_KINDS.has(u.kind):
+				aa += 1
+		if sp >= int(s["spit"]) or g.clock - float(s["spit_t"]) > 120.0:
+			s["spit"] = sp
+			s["spit_t"] = g.clock
+		if aa >= int(s["aa"]) or g.clock - float(s["aa_t"]) > 120.0:
+			s["aa"] = aa
+			s["aa_t"] = g.clock
+		_seen[ai] = s
+	return s
+
+
+## The Owls the Clockwork wants now against the Brood (0 = the rule is off or not called for).
+static func owl_target(ai) -> int:
+	if not on("owls") or not cw_v_brood(ai):
+		return 0
+	var s := _look(ai)
+	if int(s["spit"]) < OWL_SPITS:
+		return 0
+	var n := mini(OWL_MAX, int(s["spit"]) / OWL_PER)
+	n -= int(s["aa"]) / 2          # (flyer-killers seen: fewer Owls)
+	return maxi(0, n)
+
+
+static func owls_have(ai) -> int:
+	var n := 0
+	for u in ai.game.army(ai.team):
+		if u.kind == "ticking_owl" or (u.kind == Defs.CUCKOO and u.owl_t >= 0.0):
+			n += 1
+	return n
+
+
+## (_air's time) Against the Brood's Spitters the Aviary and the Owl research come at once: a later time is handed back.
+static func air_t(ai, t: float) -> float:
+	if owl_target(ai) > 0:
+		return maxf(t, 2000.0)
+	return t
+
+
+## (the Aviary's Swifts in _produce) Swifts to morph into the Owls still wanted.
+static func swift_want(ai, want: int, swifts: int) -> int:
+	var tg := owl_target(ai)
+	if tg <= 0 or not ai.game.has_tech(ai.team, "owl_morph"):
+		return want
+	var need := tg - owls_have(ai)
+	if need <= 0:
+		return want
+	return maxi(want, _morphing(ai) + mini(need, 2))
+
+
+static func _morphing(ai) -> int:
+	var n := 0
+	for u in ai.game.army(ai.team):
+		if u.kind == Defs.CUCKOO and u.owl_t >= 0.0:
+			n += 1
+	return n
+
+
+## (_produce's Tension kept from the Springers) a morph's Tension while Owls are wanted.
+static func owl_keep(ai) -> float:
+	var tg := owl_target(ai)
+	if tg <= 0 or owls_have(ai) >= tg:
+		return 0.0
+	if not ai.game.has_tech(ai.team, "owl_morph"):
+		return float(Defs.RESEARCH["owl_morph"]["tension"])
+	return float(Defs.OWL_MORPH["tension"])

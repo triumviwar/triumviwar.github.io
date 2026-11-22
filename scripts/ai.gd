@@ -1708,6 +1708,7 @@ var _want_aviary := false           # (its Tension price is kept: no Springers e
 
 
 func _air(t: float) -> void:
+	t = WkB.air_t(self, t)          # (wr1000-clockwork-brood `wkbowls`: the Owls against the Brood's Spitters)
 	var av := _mine(Defs.CW_AIR)
 	_want_aviary = av.is_empty() and (_foe_air() > 0 or t > _lv([1300.0, 780.0, 660.0])) and game.requirement_met(team, Defs.CW_AIR)
 	if av.is_empty():
@@ -4919,6 +4920,7 @@ func _produce() -> void:
 		if _research_keep > 0.0:
 			keep0 += _research_keep        # (SHIELD WALL or HIGH LEAP is wanted: its Tension is kept)
 		keep0 += AICwBrood.pend_keep(self, pends, pend_cap)      # (clockwork-v-brood-coach-2: a Pendulum's Tension kept from the Springers)
+		keep0 += WkB.owl_keep(self)       # (wr1000-clockwork-brood `wkbowls`)
 		var heavy_keep := 0.0             # (Tension kept from the Springers for a heavy machine that waits for its cogs)
 		var heavy_wait := false
 		for hw in _mine(Defs.CW_HEAVY):
@@ -4989,6 +4991,7 @@ func _produce() -> void:
 				var swifts: int = army.filter(func(u: Unit) -> bool: return u.kind == Defs.CUCKOO).size() + av.queue.count(Defs.CUCKOO)
 				var fa := _foe_air()
 				var want := mini(6, fa + 1) if fa > 0 else (2 if game.has_tech(team, "owl_morph") else 0)
+				want = WkB.swift_want(self, want, swifts)       # (wr1000-clockwork-brood `wkbowls`)
 				if fa > 0 and pends > 0:
 					# (pendulum-air: a Pendulum cuts flyers in its arc too; it counts as half a Swift (it is slow and only
 					# reaches what comes to it), and two Swifts stay to chase what keeps away)
