@@ -741,6 +741,10 @@ func _lost(mid: Vector2) -> String:
 	var thr: Vector2 = ai._threat()
 	if thr != Vector2.INF and ai.ch.foe_near() > ai.ch.home_value() * 1.3 + 150.0:
 		return "the base is attacked (%d near home)" % int(ai.ch.foe_near())
+	if _brood():
+		var wh: String = preload("res://scripts/ai_wr1000_crown_brood.gd").home_call(ai, men)
+		if wh != "":
+			return wh           # (wr1000-crown-brood "home": the Brood at our buildings, the push itself not counted at home)
 	return ""
 
 

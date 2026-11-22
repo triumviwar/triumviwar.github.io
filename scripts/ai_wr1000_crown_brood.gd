@@ -101,7 +101,34 @@ static func counter_now(ai, siege, mine: float, sup: int, since_threat: float) -
 	return true
 
 
+# ------------------------------------------------------------------ change "home": the push comes home for its base
+## (block 5, Hollowfen r0: the push went out at 10:13; the Brood attacked the Crown's base with 82 supply at 10:54; the
+## push set up against a Rootmaw at 11:41 while the natural fell at 11:46, and fell back only at 11:51. The siege push's
+## "base attacked" rule weighs the Brood force near home against AICrownHold.home_value, which counts the push's own men
+## too: with the army out the rule could hardly fire.) Against the Brood the push comes home when an enemy force is at our
+## buildings (AICrown._threat) and the Brood seen on our side lately (foe_near) is worth HOME_K times what is at home
+## WITHOUT the push, plus HOME_PAD.
+const HOME_K := 0.8
+const HOME_PAD := 150.0
+static var home_calls := {}     # team -> pushes called home
+
+
+static func home_call(ai, push_men: Dictionary) -> String:
+	if not vs_brood(ai, "home") or ai._threat() == Vector2.INF:
+		return ""
+	var near: float = ai.ch.foe_near()
+	var home := 0.0
+	for u in ai.game.army(ai.team):
+		if push_men.has(u) or u.dead or not u.has_attack() or u.kind == "powder_wagon" or ai._raiders.has(u):
+			continue
+		home += float(Game.unit_value(u))
+	if near <= home * HOME_K + HOME_PAD:
+		return ""
+	home_calls[ai.team] = int(home_calls.get(ai.team, 0)) + 1
+	return "the Brood is at its buildings (%d near home, %d at home without the push)" % [int(near), int(home)]
+
+
 ## (qa_match's result.json "crown_ai": what this job's changes did)
 static func counters(team: int) -> Dictionary:
 	return {"wcb_arm_freed": int(arm_freed.get(team, 0)), "wcb_cap_waits": int(cap_waits.get(team, 0)),
-		"wcb_counters": int(counters_sent.get(team, 0))}
+		"wcb_counters": int(counters_sent.get(team, 0)), "wcb_home_calls": int(home_calls.get(team, 0))}
