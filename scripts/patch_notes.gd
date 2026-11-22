@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.125", "items": [
+		"THE HORSEMAN REDRAWN FROM BEHIND: his sabre blow riding away (north) and toward the upper right now hold one steel blade in his right hand in every frame (it had a red blade, the wrong hand and a horse that turned), and his gallop toward you keeps one straight front angle (it drifted between frames).",
+	]},
 	{"v": "0.38.124", "items": [
 		"THE CROWN'S LAND IS ONLY PURPLE: a region the Crown holds but where people are uneasy now has purple and pale purple stripes and flag (it had red, which is the machine's colour), on the painted and the drawn war map and in the legend.",
 	]},
