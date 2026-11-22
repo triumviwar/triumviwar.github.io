@@ -137,7 +137,31 @@ static func home_call(ai, push_men: Dictionary) -> String:
 	return "the Brood is at its buildings (%d near home, %d at home without the push)" % [int(near), int(home)]
 
 
+# ------------------------------------------------------------------ change "labs": the labourers go on while far ahead
+## (blocks 1-9: the Crown's income stays at 1,100-1,900 a minute from 8:00 while the Brood's grows to 2,000-3,000 from 9:00-10:00;
+## at 10:00-12:00 the Crown had 44-88 Farm posts and only 24-42 labourers on them, and its halls held their labourers for the
+## army ("army_due" in up to 12 of 12 looks): AICrown.army_grows and army_behind weigh the army against the CLOCK's reckoning
+## of the Brood (BROOD_TABLE: 3,800 at 10:00) while the Brood army it had seen was a third of its own.) Against the Brood
+## from LABS_FROM, while the army is at least LABS_MIN and LABS_K times the Brood army seen lately, those two rules do not
+## hold the labourers back (the home line's floor, the defence's alert and an army far behind still do).
+const LABS_FROM := 360.0
+const LABS_MIN := 800.0
+const LABS_K := 2.0
+static var labs_looks := {}     # team -> thinks the rules were lifted
+
+
+static func labs_free(ai) -> bool:
+	if not vs_brood(ai, "labs") or ai.game.clock < LABS_FROM:
+		return false
+	var mine := float(ai.game.army_value(ai.team))
+	if mine < LABS_MIN or mine < LABS_K * float(ai.ch.foe_known()):
+		return false
+	labs_looks[ai.team] = int(labs_looks.get(ai.team, 0)) + 1
+	return true
+
+
 ## (qa_match's result.json "crown_ai": what this job's changes did)
 static func counters(team: int) -> Dictionary:
 	return {"wcb_arm_freed": int(arm_freed.get(team, 0)), "wcb_cap_waits": int(cap_waits.get(team, 0)),
-		"wcb_counters": int(counters_sent.get(team, 0)), "wcb_home_calls": int(home_calls.get(team, 0))}
+		"wcb_counters": int(counters_sent.get(team, 0)), "wcb_home_calls": int(home_calls.get(team, 0)),
+		"wcb_labs_looks": int(labs_looks.get(team, 0))}

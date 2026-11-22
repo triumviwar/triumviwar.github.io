@@ -3275,6 +3275,8 @@ var army_grow_off := OS.get_cmdline_user_args().has("armygrow:off")
 func army_grows() -> bool:
 	if army_grow_off or not blind_guard() or brood_army_off or game.clock < ARMY_GROW_FROM:
 		return false
+	if preload("res://scripts/ai_wr1000_crown_brood.gd").labs_free(self):
+		return false            # (wr1000-crown-brood "labs": far ahead of the Brood army seen: the labourers go on)
 	var want := minf(foe_estimate() * ARMY_GROW_SHARE, ARMY_PER_LAB * float(game.workers(team).size()))
 	return float(game.army_value(team)) < want
 
@@ -3283,6 +3285,8 @@ func army_grows() -> bool:
 func army_behind() -> bool:
 	if not blind_guard() or brood_army_off:
 		return false
+	if preload("res://scripts/ai_wr1000_crown_brood.gd").labs_free(self):
+		return false            # (wr1000-crown-brood "labs")
 	if ch._last_army_t < 0.0 and game.clock < ARMY_RECKON_T:
 		return false        # (no Brood soldier seen yet: the reckoning drives the army from ARMY_RECKON_T on)
 	return float(game.army_value(team)) < foe_estimate() * HOLD_SHARE
