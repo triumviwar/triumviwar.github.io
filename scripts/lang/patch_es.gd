@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.143": ["EL ORDENADOR DEL MECANISMO CONTRA LA NIDADA USA SU TENSIÓN: ahora construye un Muelle Real en cada Torre del Reloj (tenía cuatro Torres con dos), así que su ejército ya no es casi solo Soldados Reloj: los Saltadores llegan en número, y cuando ve a los Escupidores de la Nidada construye enseguida su Casa del Cuco y convierte Cucos en Búhos Tictac, a los que los Escupidores no pueden escupir. En 30 partidas de prueba contra la Nidada Difícil ganó cerca de la mitad (era un tercio) y perdió una de cada cinco (eran tres de cada diez). Los demás enfrentamientos no cambian."],
 	"0.38.142": ["EL MORTERO SE MONTA BIEN: mirando a la derecha, abajo a la derecha o hacia ti, su dotación desengancha el caballo gris, lo aparta y baja el mortero del carro al suelo (era un revoltijo de otras imágenes con un caballo marrón encabritado)."],
 	"0.38.141": ["EL CAÑÓN DE CAMPAÑA SE MONTA SIN GIRAR: al desenganchar de lado, el cañón ya no se vuelve hacia ti con el cañón hacia arriba durante dos cuadros, y al desenganchar hacia ti ya no se pone de lado durante un cuadro."],
 	"0.38.140": ["PEQUEÑAS LIMPIEZAS DE ARTE: el humo de la pipa del Rey es gris (era rosa) y desapareció una mancha rosa en su pelo; sin borde rosa bajo las montañas del mapa de guerra; sin motas azules en el caballo del Molino de Pólvora; sin chispas sueltas alrededor del rebelde de la antorcha; los músicos ya no se hunden en el suelo al caer."],

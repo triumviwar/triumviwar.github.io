@@ -27,6 +27,7 @@ extends RefCounted
 ## No unit numbers change. `-- cwarmy:off` plays the old army code (the "before" columns of the report).
 
 const CwBrood := preload("res://scripts/ai_cw_brood.gd")      # (clockwork-v-brood-coach-2)
+const WkB := preload("res://scripts/ai_wr1000_clockwork_brood.gd")      # (wr1000-clockwork-brood)
 const LOOK_FRESH := 75.0        # s: a report this old or newer is fresh
 const EDGE := 1.25              # the army goes out only worth this many times the reckoning
 const EDGE_PLAN := 1.0          # (the plans that have their own push needs: the Pendulums, the Heavy Works push)
@@ -148,6 +149,7 @@ func reckon(all_kills := false) -> float:
 		return 0.0
 	var seen: float = ai.push.foe_mem() if ai.push != null else 0.0
 	var tab: Array = TABLES.get(game.faction_of(foe), TABLES["crown"])
+	tab = WkB.reckon_table(ai, tab)          # (wr1000-clockwork-brood `wkbtable`: the Brood's army as this pairing's games had it)
 	var floor_v := maxf(0.0, table_at(tab, game.clock) - _killed_for_reckon(all_kills) * KILL_SHARE)
 	return maxf(seen, floor_v) + _rooted_seen() * ROOTED_K
 
@@ -179,6 +181,8 @@ func may_launch(list: Array) -> bool:
 		return false
 	if _counter_ok(mine):
 		return true
+	if WkB.brace(ai, self):
+		return false            # (wr1000-clockwork-brood `wkbbrace`: hold for the Brood's wave, then counter)
 	if CwBrood.push_waits(ai, self, mine, rk):
 		return false            # (clockwork-v-brood-coach-2: into the Brood's land only clearly ahead)
 	if _fail_v > 0.0 and mine < _fail_v * AFTER_FAIL:

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.143", "items": [
+		"THE CLOCKWORK COMPUTER AGAINST THE BROOD USES ITS TENSION: it now lays a Mainspring at every Clocktower (it ran four Clocktowers on two), so its army is no longer nearly all Clock Soldiers: Springers come in numbers, and once it has seen the Brood's Spitters it lays its Clock Aviary at once and turns Swifts into Ticking Owls, which Spitters cannot spit at. In 30 test games against the Hard Brood it won about half (was a third) and lost one in five (was three in ten). Other matchups are unchanged.",
+	]},
 	{"v": "0.38.142", "items": [
 		"THE MORTAR SETS UP PROPERLY: facing right, down-right or toward you, its crew unhitch the grey horse, lead it aside and lift the mortar off the cart onto the ground (it was a jumble of other pictures with a rearing brown horse).",
 	]},

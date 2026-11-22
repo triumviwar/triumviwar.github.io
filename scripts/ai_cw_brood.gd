@@ -16,6 +16,7 @@ extends RefCounted
 ## turns them all off (the computer plays as on main).
 
 static var _args := OS.get_cmdline_user_args()
+const WkB := preload("res://scripts/ai_wr1000_clockwork_brood.gd")      # (wr1000-clockwork-brood)
 
 
 static func off(key: String) -> bool:
@@ -163,7 +164,7 @@ const PEND_MIN := 2
 static func pend_target(ai, others: int) -> int:
 	if off("cvbpend") or not vs_brood(ai):
 		return 0
-	return clampi(PEND_MIN + others / PEND_PER, PEND_MIN, PEND_MAX)
+	return WkB.pend_target(ai, others, clampi(PEND_MIN + others / PEND_PER, PEND_MIN, PEND_MAX))      # (wr1000-clockwork-brood `wkbpends`)
 
 
 ## More Pendulums wanted (the shared rule's swarm branch then makes them first at the Heavy Works).
