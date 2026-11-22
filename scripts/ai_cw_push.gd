@@ -1412,6 +1412,8 @@ var _party_of := {}             # front Unit -> the enemy building or unit it hu
 
 
 func _hunt_parties() -> bool:
+	if WkM.raze(self):
+		return true          # (wr1000-clockwork-mirror "raze")
 	if not hunt_on or foe < 0 or game.faction_of(foe) == "brood":      # (the Brood lives while its Mother does: the push's own goal)
 		_party_of.clear()
 		return false
