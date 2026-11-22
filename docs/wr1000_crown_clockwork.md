@@ -32,7 +32,7 @@ ai-opponent-review. No number of the game was changed: only how the computers pl
 Read aloud: the two computers are **even until about 14:00**; then the Crown pulls ahead and leads at the bell in two
 games of three, but **almost no game ends**: 3 of 20 were decided by 20:00. The Crown reaches its 200 supply at 14:00-16:00
 with 80-110 labourers and banks 7,000-21,000 gold it cannot spend; the Clockwork's Winders peak at ~52 at 10:00 and fall
-to ~43 as its presses run dry, and its pushes into the Crown's line and guns lose about two for one.
+to ~40 as its presses run dry, and its pushes into the Crown's line and guns lose about two for one.
 
 **The blocks**: (filled in below as they finish)
 
