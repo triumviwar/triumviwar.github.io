@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.144", "items": [
+		"THE CLOCKWORK COMPUTER AGAINST ITSELF NO LONGER LOSES TO A DICE THROW: in a Clockwork mirror the computer's opening pick, when its scout sees nothing special, was sometimes the Springer timing (switched to at 3:00 it had almost no army at 8:00 and lost all 4 games it was picked in) or the Economy race (it lost all 7 games against Balanced's waves). In the mirror it now plays Balanced. Measured over 180 Hard games to 20:00: the games end by play, not by the pick, later (the median defeat 15:39 instead of 13:26), and neither start has an edge. Only the mirror changed (switches wkmnospr:off, wkmnoeco:off, or wkm:off for all; the job's other ideas are there to try, off). Also fixed: a Spring Ballista's shot along a line no longer stops with an error when one of the men in it is already gone.",
+	]},
 	{"v": "0.38.143", "items": [
 		"THE CLOCKWORK COMPUTER AGAINST THE BROOD USES ITS TENSION: it now lays a Mainspring at every Clocktower (it ran four Clocktowers on two), so its army is no longer nearly all Clock Soldiers: Springers come in numbers, and once it has seen the Brood's Spitters it lays its Clock Aviary at once and turns Swifts into Ticking Owls, which Spitters cannot spit at. In 30 test games against the Hard Brood it won about half (was a third) and lost one in five (was three in ten). Other matchups are unchanged.",
 	]},

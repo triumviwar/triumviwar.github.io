@@ -329,6 +329,8 @@ static func line_shot(u: Unit, aim: Vector2, dmg: float, first: Entity) -> Array
 	for e in order:
 		if hit.size() >= shares.size():
 			break
+		if not is_instance_valid(e) or e.dead:
+			continue          # (wr1000-clockwork-mirror: one in the line already gone: "has_tag in base Nil", 2 of 130 mirror games)
 		var k := float(shares[hit.size()])
 		var amount := dmg * k
 		if e is Building:

@@ -1085,6 +1085,7 @@ func _retreat(why: String) -> void:
 	stats["retreats"] = int(stats["retreats"]) + 1
 	var left := _value(units)
 	say("pulls back (%s): %d value left of %d, killed %d since it went out" % [why, int(left), int(value0), int(game.stats[team]["value_killed"]) - kill0])
+	set_meta("wkm_kl", [float(int(game.stats[team]["value_killed"]) - kill0), maxf(0.0, maxf(value_in, value0) - left)])     # (wr1000-clockwork-mirror "fairfail")
 	need_up = mini(need_up + 4, 20)
 	piece = null
 	_phase("back")
@@ -1328,6 +1329,7 @@ var _brk_t := 0.0
 func _break_note(tgt: Building) -> void:
 	if _brk_e != null and is_instance_valid(_brk_e) and _brk_e.dead:
 		say("the %s at its goal falls after %d s" % [String(_brk_e.d["name"]), int(game.clock - _brk_t)])
+		set_meta("wkm_fell_t", game.clock)          # (wr1000-clockwork-mirror "raze2")
 		stats["breaks"] = int(stats.get("breaks", 0)) + 1
 		_brk_e = null
 	if _brk_e != tgt:
@@ -1412,6 +1414,8 @@ var _party_of := {}             # front Unit -> the enemy building or unit it hu
 
 
 func _hunt_parties() -> bool:
+	if WkM.raze(self):
+		return true          # (wr1000-clockwork-mirror "raze")
 	if not hunt_on or foe < 0 or game.faction_of(foe) == "brood":      # (the Brood lives while its Mother does: the push's own goal)
 		_party_of.clear()
 		return false

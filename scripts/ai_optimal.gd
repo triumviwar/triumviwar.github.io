@@ -199,6 +199,8 @@ func choose(read: String) -> Array:
 				w = clock_w(w)
 				if AICrownVClock.on("pick"):
 					w = AICrownVClock.pick_w()      # (crown-1000-clockwork 1: Timing or Siege)
+			if fac == "clockwork" and f == "clockwork":
+				w = WkM.normal_w(w)         # (wr1000-clockwork-mirror)
 			var k := _weighted(w)
 			if NORMAL_TRY != "" and fac == "crown":
 				k = NORMAL_TRY

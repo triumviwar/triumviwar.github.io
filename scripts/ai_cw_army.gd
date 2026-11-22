@@ -151,7 +151,7 @@ func reckon(all_kills := false) -> float:
 	var tab: Array = TABLES.get(game.faction_of(foe), TABLES["crown"])
 	tab = WkB.reckon_table(ai, tab)          # (wr1000-clockwork-brood `wkbtable`: the Brood's army as this pairing's games had it)
 	var floor_v := maxf(0.0, table_at(tab, game.clock) - _killed_for_reckon(all_kills) * KILL_SHARE)
-	return maxf(seen, floor_v) + _rooted_seen() * ROOTED_K
+	return WkM.reckon_floor(self, foe, maxf(seen, floor_v)) + _rooted_seen() * ROOTED_K      # (wr1000-clockwork-mirror "mreck")
 
 
 ## The Brood's rooted fighters seen (Rootmaws, Mound Turtles: the push's goals; rooted they fight hard: 16 Clock Soldiers
@@ -185,7 +185,7 @@ func may_launch(list: Array) -> bool:
 		return false            # (wr1000-clockwork-brood `wkbbrace`: hold for the Brood's wave, then counter)
 	if CwBrood.push_waits(ai, self, mine, rk):
 		return false            # (clockwork-v-brood-coach-2: into the Brood's land only clearly ahead)
-	if _fail_v > 0.0 and mine < _fail_v * AFTER_FAIL:
+	if _fail_v > 0.0 and mine < _fail_v * AFTER_FAIL and not WkM.fail_waived(ai, self, mine):
 		stats["waits"] = int(stats["waits"]) + 1
 		say("holds at its gathering point: its last push (%d) had to pull back; the next goes worth %d (it has %d)" % [int(_fail_v), int(_fail_v * AFTER_FAIL), int(mine)], "fail", 45.0)
 		return false
@@ -263,12 +263,13 @@ func _counter_ok(mine: float) -> bool:
 	if not counter_on or game.clock - _held_t > COUNTER_T:
 		return false
 	var foe := _foe()
-	if foe < 0 or game.faction_of(foe) != "brood":
+	var wkm := WkM.counter_on(self, foe)          # (wr1000-clockwork-mirror "counter")
+	if foe < 0 or (game.faction_of(foe) != "brood" and not wkm):
 		return false
 	var seen: float = ai.push.foe_mem() if ai.push != null else 0.0
 	# (round 2, Greenhold 11 at 12:03: a counter of 950 went out against "135 seen alive" while the Brood had 1,500 coming:
 	# at least COUNTER_TAB of the reckoning's table for that minute too)
-	var tab: Array = TABLES.get("brood", [])
+	var tab: Array = TABLES.get("clockwork" if wkm else "brood", [])
 	if mine < maxf(maxf(COUNTER_MIN, seen * COUNTER_K), table_at(tab, game.clock) * COUNTER_TAB):
 		return false
 	_held_t = -999.0
@@ -283,6 +284,7 @@ func _counter_ok(mine: float) -> bool:
 ## back, and lost 700 for 60.)
 const AFTER_FAIL := 1.25
 var _fail_v := 0.0
+var _fail_t := -999.0           # (wr1000-clockwork-mirror: when that push pulled back)
 var _retreats := 0
 
 
@@ -293,6 +295,9 @@ func _note_retreat() -> void:
 	if r > _retreats:
 		_retreats = r
 		_fail_v = maxf(float(ai.push.value_in), float(ai.push.value0))
+		_fail_t = game.clock
+		if WkM.fair_trade(self):
+			_fail_v = 0.0          # (wr1000-clockwork-mirror "fairfail")
 
 
 func _ask_look() -> void:
@@ -857,6 +862,8 @@ func _defend(home: Array, g: Vector2) -> bool:
 	# THE WHOLE ARMY: the biggest raid is worth a good share of it
 	if not home.is_empty() and whole:
 		var main_g: Vector2 = ai._post_spot()
+		if WkM.fall_back(self, home, mine, bv, big["spot"], g):
+			return true          # (wr1000-clockwork-mirror "nofeed")
 		if home_on and mine < bv * HOLD_K and (big["spot"] as Vector2).distance_to(g) > HOLD_FAR and not _spots.is_empty():
 			# (clockwork-home) FAR STRONGER THAN THE WHOLE ARMY (as 0.33.0's rule at the main), away from its gathering point: it
 			# does not walk out into it; it holds together on its gears, wound and mended there, and meets it when it comes.
