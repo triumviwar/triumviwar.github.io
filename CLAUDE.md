@@ -26,6 +26,12 @@
 
 ## Current work
 
+- CROWN V BROOD FIX (owner 2026-11-22 21:27-21:29 "we can't just let it be so lopsided", "Do it"; cloud job crown-brood-fix,
+  branch crown-brood-fix, docs/crown_brood_fix.md; merge on "DONE: crown-brood-fix:"): (1) the Crown computer spends its
+  8:00 lead (a full attack on the Brood Mother while 2x+ the Brood army seen; switch); (2) the far-Rootmaw bonus x2.2 as
+  a match switch, 1.8 measured (BALANCE: owner decides); 30 games each + baseline, side checks in the other Brood
+  matchups; (3) the owner's Raptor idea: a set-piece fight test (Raptors round the guns?), fixes behind switches;
+  (4) outlying halls (labourers lost after 12:00).
 - WR1000, "1000 OVER 10s" (owner 2026-11-22 01:29; six jobs, blocks of 10 Hard OPTIMAL games to 20:00 on the parity maps,
   one change to the computers' play a block, docs/wr1000_<pairing>.md). MERGED 2026-11-22 (0.38.143-0.38.146):
   clockwork-brood (baseline even 7-6; KEPT `owls`: a Mainspring at every Clocktower, the Aviary + Owls v Spitters: 16-6 in
