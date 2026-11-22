@@ -7,7 +7,7 @@ extends RefCounted
 ## beside it. Each change has its own switch: `-- wbm<name>:on` / `:off`; `-- wbm:off` plays the mirror as before this job.
 ## The changes KEPT are on by default (KEPT); the rest were measured and not kept (the doc says what each did).
 
-const KEPT: Array[String] = []
+const KEPT: Array[String] = ["sirewave"]   # (sirewave: blocks 13, 14, 16)
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 
