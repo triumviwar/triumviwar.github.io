@@ -7,7 +7,7 @@ extends RefCounted
 ## its own switch: `-- wkm<name>:on` / `:off`; `-- wkm:off` plays the mirror as before this job. The changes KEPT are on by
 ## default (KEPT); the rest were measured and not kept (the doc says what each did).
 
-const KEPT: Array[String] = ["nospr", "noeco", "nofeed"]     # (nospr: block 3, noeco: block 6, nofeed: blocks 7 and 9)
+const KEPT: Array[String] = ["nospr", "noeco"]     # (nospr: block 3, noeco: block 6; nofeed (blocks 7-16) turned off again: spot B won 25 of 33 decided games)
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 
