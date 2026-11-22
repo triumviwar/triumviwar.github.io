@@ -2114,7 +2114,7 @@ func _tend_wagon() -> void:
 func _research() -> void:
 	if _research_off:
 		return
-	if brood_spend_army() and float(game.army_value(team)) < foe_estimate() * HOLD_SHARE:
+	if brood_spend_army() and float(game.army_value(team)) < foe_estimate() * HOLD_SHARE and not preload("res://scripts/ai_wr1000_crown_brood.gd").research_now(self):
 		_refit_army()
 		return                  # (crown-v-brood-coach: far behind the Brood, the research's gold goes to soldiers)
 	super()
@@ -2657,6 +2657,8 @@ func _gun_share() -> int:
 
 
 func _mid_ok_lagging(k: String) -> bool:
+	if preload("res://scripts/ai_wr1000_crown_brood.gd").armoury_now(self, k):
+		return true             # (wr1000-crown-brood "arm": the Armoury with a lead over the Brood army seen)
 	if k == "horse_breeder" or (k == "foundry" and _mine("foundry").is_empty()):
 		return true
 	if k == "barracks" or k == "foundry":

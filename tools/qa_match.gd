@@ -176,6 +176,7 @@ func _crown_counters() -> Dictionary:
 		for pr in a.get_property_list():
 			if String(pr["name"]).begins_with("c1kb_"):
 				d[pr["name"]] = a.get(pr["name"])      # (crown-1000-brood: its changes' counters)
+		d.merge(preload("res://scripts/ai_wr1000_crown_brood.gd").counters(tm))      # (wr1000-crown-brood: its changes' counters)
 		var sg = a.get("siege")
 		if sg != null:
 			d["siege_pushes"] = sg.get("pushes")       # (crown-1000-brood: every siege push, what it killed, lost and broke)
