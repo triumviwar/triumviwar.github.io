@@ -1,0 +1,12 @@
+run_main test_ai_brood FAIL 
+run_main test_ai_rush PASS 
+run_main test_ai_rush_followup FAIL PASS  two of three riders gone, defenders alive: verdict FAILED (the raiding party was cut down) [failed] FAIL  fresh Horsemen (1, then 2) stay home as defence (farthest 2044 px) [failed] 
+run_main test_ai_scout_sentry PASS 
+run_main test_ai_wall_vs_rush FAIL FAIL  Barracks and Powder Mill are laid by 75 s (58 s, 100 s) 1 FAILED 
+run_main test_ai_worker_safety PASS 
+run_tests test_ai_brood FAIL 
+run_tests test_ai_rush PASS 
+run_tests test_ai_rush_followup FAIL PASS  two of three riders gone, defenders alive: verdict FAILED (the raiding party was cut down) [failed] FAIL  fresh Horsemen (1, then 2) stay home as defence (farthest 1259 px) [failed] 
+run_tests test_ai_scout_sentry PASS 
+run_tests test_ai_wall_vs_rush FAIL FAIL  Barracks and Powder Mill are laid by 75 s (58 s, 100 s) 1 FAILED 
+run_tests test_ai_worker_safety PASS 
