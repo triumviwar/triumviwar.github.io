@@ -214,7 +214,7 @@ func _siege_hold_off(wave: Array, piece: Building, back: Vector2) -> bool:
 
 
 func _hunt_anyway(foe_t: int, army: Array) -> bool:
-	return mirror() != null and cm.hunt_anyway(foe_t, army)
+	return mirror() != null and (cm.hunt_anyway(foe_t, army) or AIWr1000CrownMirror.hunt(self, foe_t))
 
 
 func _hunt_goal(foe_t: int, from: Vector2) -> Vector2:

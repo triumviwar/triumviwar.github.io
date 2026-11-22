@@ -32,3 +32,37 @@ static func mirror(ai) -> bool:
 ## measure is how decisive the games get. Called by AICrownRules.cut when the enemy is a Crown.
 static func cut(name: String) -> bool:
 	return on("cut") and (AICrownRules.CUT["clockwork"] as Array).has(name)
+
+
+## CHANGE `finish` (block 4): THE SIDE FAR AHEAD FINISHES. Block 1, Greenhold r0: from 15:00 P2 had 4,170-6,320 of army
+## against P1's 350-830 (P1 had lost 72 buildings) and the game was still not over at 20:00: the mirror coach's hunt over a
+## token army (AICrownMirror.hunt_anyway) wants the enemy army under 450 whatever ours is, and P2's Siege push set up its
+## guns against every Palisade, Gate and Barracks in turn ("sets up against a Palisade (306 px off)" 6 times in 3 minutes).
+## Now the hunt (AIHunt: the whole army for the nearest enemy hall, then the last buildings) also goes on when our fighters
+## are worth FINISH_MIN or more and the enemy's under FINISH_SHARE of them, and a Siege push out ends and joins it.
+const FINISH_MIN := 1500.0
+const FINISH_SHARE := 0.25
+
+
+## (AICrown._hunt_anyway) true = hunt now.
+static func hunt(ai, foe_t: int) -> bool:
+	if not on("finish") or foe_t < 0:
+		return false
+	var game = ai.game
+	var mine := 0.0
+	var theirs := 0.0
+	for u in game.units:
+		if AIHunt.fighter(u, ai.team):
+			mine += float(Game.unit_value(u))
+		elif AIHunt.fighter(u, foe_t):
+			theirs += float(Game.unit_value(u))
+	return mine >= FINISH_MIN and theirs < mine * FINISH_SHARE
+
+
+## (AICrownSiege.tick) true = the hunt is on: the push ends (its men join the hunt) and no new one goes.
+static func siege_yields(sg) -> bool:
+	if not on("finish") or sg.ai.mirror() == null or sg.ai.hunt == null or not sg.ai.hunt.on:
+		return false
+	if sg.state != "":
+		sg._end("the hunt takes over: the enemy army is a fraction of ours")
+	return true
