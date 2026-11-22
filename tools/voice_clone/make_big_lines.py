@@ -33,16 +33,30 @@ VOICES = {
     "pieter": ("refs/pieter_ref.wav", 0.0, 0.5),
     "sergeant": ("refs/sergeant_ref.wav", 0.0, 0.6),
     "cardinal": ("refs/cardinal_ref.wav", 0.0, 0.4),
+    # designed 2026-11-22 (second batch): until a ref is in refs/, its lines wait (see main)
+    "tomasz": ("refs/tomasz_ref.wav", 0.0, 0.45),
+    "cardinal_dean": ("refs/cardinal_dean_ref.wav", 0.0, 0.35),
+    "printer": ("refs/printer_ref.wav", 0.0, 0.6),
+    "weaver": ("refs/weaver_ref.wav", 0.0, 0.5),
+    "commissary": ("refs/commissary_ref.wav", 0.0, 0.4),
+    "guide": ("refs/guide_ref.wav", 0.0, 0.4),
+    "teles": ("refs/teles_ref.wav", 0.0, 0.6),
+    "joaquim": ("refs/joaquim_ref.wav", 0.0, 0.6),
+    "volunteer": ("refs/volunteer_ref.wav", 0.0, 0.5),
+    "assembly": ("refs/assembly_ref.wav", 0.0, 0.5),
 }
 ORDER = ["ferrer", "lindqvist", "king", "hollweg", "valadares", "fairleigh", "ruggieri", "varenne", "jakob",
-         "delorme", "benedito", "brother", "colonel", "machine", "captain", "pieter", "sergeant", "cardinal"]
+         "delorme", "benedito", "brother", "colonel", "machine", "captain", "pieter", "sergeant", "cardinal",
+         "tomasz", "cardinal_dean", "printer", "weaver", "commissary", "guide", "teles", "joaquim", "volunteer", "assembly"]
 # The same "who" key is two people in a few missions: (voice folder, who) -> the voice, or None (not designed yet).
-SAME_KEY = {("a07", "cardinal"): None}     # the Cardinal Dean, not old Cardinal Tomasz
+SAME_KEY = {("a07", "cardinal"): "cardinal_dean"}     # the Cardinal Dean, not old Cardinal Tomasz
 SKIP_MISSIONS = ["p01_revolt"]             # the engine's test bed, never voiced
 
 
 def voice_of(folder, who):
-    return SAME_KEY.get((folder, who), who if who in VOICES else None)
+    v = SAME_KEY.get((folder, who), who if who in VOICES else None)
+    ref = VOICES.get(v, ("",))[0]
+    return v if v and os.path.exists(os.path.join(HERE, ref)) else None
 
 
 def announcer():

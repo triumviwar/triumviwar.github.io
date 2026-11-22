@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.158", "items": [
+		"No change in the game: ten more campaign voices are designed (young Tomasz, the Cardinal Dean, the printer, the weaver, the Commissary, the guide, Teles, Frei Joaquim, Will Hollins and the Free Assembly), waiting for their samples before their lines go on the recording list.",
+	]},
 	{"v": "0.38.157", "items": [
 		"NEW MUSIC: nineteen new pieces made with ElevenLabs. Two new menu overtures (Clockwork Mourning and Heart of the Mire); new Crown pieces for the opening, the skirmish and the full battle (Ceremonial Advance, Skirmish March, Battle March of Triumph, Battle of the Fallen Banner); a new full battle for the Clockwork (Clockwork Host) and the Brood (Swamp Hunt). Each faction has its own victory and defeat music now. The campaign's three hubs each play their own piece (the King's study, Hollweg's workshop, Lindqvist's station), and the Nuremberg and Rome missions open with their own themes. The new pieces are in the music player too (a CAMPAIGN list under the overtures).",
 	]},
