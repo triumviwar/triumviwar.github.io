@@ -227,3 +227,122 @@ b01__p_eggs | Doctor, there are eggs in her straw.
 [exaggeration 0.4]
 a01__c_open | I was ordained that spring and sent to a parish on the hill. I thought I would baptise silk-weavers' children.
 a01__c_end | I was proud of that spring. I am still. I was also lucky.
+
+# ---- tomasz (49 lines)
+[ref refs/tomasz_ref.wav]
+[pitch 0.0]
+[exaggeration 0.45]
+a01__t_open1 | The papers were on every church door by morning. Nobody saw who nailed them.
+a01__t_open_saved | The Hollins boys wrote to me from Virginia. Their families were safe. I kept the letter in my breviary.
+a01__t_open_left | I still prayed for the families we left on the road in Virginia. Nobody wrote to me about them.
+a01__t_open2 | Captain Delorme came to the presbytery. He said: Father, you know these streets. Help me find the presses.
+a01__t_1 | Then we watch the squares, and follow the runners home.
+a01__t_saved | In Virginia we saved the families. Here, too, it is the people we must save, not only the walls.
+a01__t_left | In Virginia we left the families on the road. I will not leave this city to the fire.
+a01__t_found | Spare the boys who carry the papers if you can. They cannot read what they carry.
+a01__t_sermon | I spoke on the square until my voice went. Some of them listened. Some went home.
+a01__t_2 | Let me speak to them, Captain. They are my parish. Hold the stairs and give me the time.
+a01__t_turn | Bring me to them. They will not turn while I am speaking.
+a01__t_spoken | I told them who I was, and whose son. I told them nobody in that hall had ever printed bread.
+a01__t_3 | The traboules. Captain, the great press is there.
+a01__t_taken | He said Paris. He said it as if it were a threat.
+a01__t_won | The bells rang for Lauds. I had not slept, and I said Mass anyway.
+a01__t_end1 | Rouvière went to Rome in chains. He never said who paid him. He said Paris, again and again.
+a01__t_end_calm | By Pentecost the weavers were back at their looms, and they came to Mass.
+a01__t_end_sullen | The city stayed quiet. Quiet is not the same as calm. I heard them stop talking when I passed.
+a01__t_end_saved | I wrote to the Hollins boys that summer. I told them about Lyon. I did not tell them everything.
+a06__t_1 | There are families behind those shutters, Marshal. They did not all choose this.
+a06__t_saved | I baptised your sister's boy, Will. Keep your head down for him.
+a06__t_2 | Marshal, look at the far bank. They are carrying torches towards Notre-Dame.
+a06__t_lyon | I know some of those faces. From the weavers' square.
+a06__t_nd | The doors are burning! Men onto the parvis!
+a06__t_mercy | Marshal. I ask for his life. Send him away, but let him live. I prayed for his men in Virginia; I pray for him now.
+a06__t_spared | Thank God.
+a06__t_exec | I will stay with him tonight, Marshal. Someone should.
+a06__t_end_spared | I said a Mass of thanksgiving in Notre-Dame. The doors were still black with smoke.
+a06__t_end_exec | I said a Mass for his soul. Some of his men came, and I did not send them away.
+a07__t_1 | Majesty, the Romans were at the doors all day. They hate a clever machine more than they hate the devil.
+a07__t_people | The people are in the squares, Majesty, waiting for someone to tell them where to go. Let me go to them.
+a07__t_call | Come! To Saint Peter's, all of you, over the bridge. Stay together.
+a07__t_3 | The basilica's doors are open, Majesty. Everyone who reaches them is safe.
+a07__t_dawn | They are singing Lauds in the basilica, Majesty. With the doors open.
+a07__t_king | The King is hit! Guard, to the King!
+a07__t_end_people | We counted them on the steps in the morning, and wrote down every name.
+p01__t_open3 | I remember the smell of the drying barns, and how quiet the evenings were. I was reading Augustine under the oak. I thought I knew what evil was.
+p01__t_open5 | He did not raise his voice. He did not need to.
+p01__t_end | I prayed for them that morning, and I pray for them still. But I never again believed that disorder was a kind of mercy.
+p01__t_1 | They carried pitchforks and torches, and some of them were boys. I knelt by the first one who fell. He was already gone.
+p01__t_2 | They burned the curing sheds with families sleeping beside them. I learned that night what their freedom meant.
+p01__t_lauds | Then the sky went grey over the woods, and the chapel bell rang for Lauds.
+p01__t_barn | The first barn fell in. The leaf went up like incense, and the smell was everywhere.
+p01__t_smoke | Smoke to the north, my lord. Hollins Farm. The families there are loyal, and they are trapped.
+p01__t_saved | They came out of the smoke carrying their children. A woman kissed the Governor's hand. He did not know where to look.
+p01__t_toolate | We came too late. I said the prayers for the dead over them, and we marched on.
+p01__t_left | We saw the smoke of Hollins Farm for an hour. No one spoke of it. I have prayed for those families every year since.
+p01__t_band | Riders saw a band on the north road, my lord: militia and a torch. They will be at the farm within the hour.
+p01__t_band_near | The band is past the woods. They are almost at the farm!
+
+# ---- cardinal_dean (2 lines)
+[ref refs/cardinal_dean_ref.wav]
+[pitch 0.0]
+[exaggeration 0.35]
+a07__c_verdict1 | No machine may govern itself. Every machine that winds or mends itself shall be stopped and broken.
+a07__c_verdict2 | The specimens are to be destroyed, and their eggs with them.
+
+# ---- printer (2 lines)
+[ref refs/printer_ref.wav]
+[pitch 0.0]
+[exaggeration 0.6]
+a01__pr_1 | You are too late, Father. Half of France has read us already.
+a01__pr_taken | Take me, then. The paper is made in Paris. So is everything else.
+
+# ---- weaver (2 lines)
+[ref refs/weaver_ref.wav]
+[pitch 0.0]
+[exaggeration 0.5]
+a01__wv_spoken | Go home, all of you. The young Father is right. Go home.
+a01__wv_yard | Father. There is a yard under the hill with no street to it. You go in through the houses.
+
+# ---- commissary (2 lines)
+[ref refs/commissary_ref.wav]
+[pitch 0.0]
+[exaggeration 0.4]
+a02__com_1 | The Crown has read Father Ferrer's letter, Meister. Nothing is built here until I see that stop-work.
+a02__com_2 | Seen and noted. You may build your works.
+
+# ---- guide (2 lines)
+[ref refs/guide_ref.wav]
+[pitch 0.0]
+[exaggeration 0.4]
+a03__g_stair | The stair by the falls. My grandfather went up there for feathers.
+a03__g_split | And the crack in the rock. Narrow, but a man can climb it with his hands.
+
+# ---- teles (1 lines)
+[ref refs/teles_ref.wav]
+[pitch 0.0]
+[exaggeration 0.6]
+b01__t_late | Shots at the station! You three, with me, along the causeway. Hold the ford for them.
+
+# ---- joaquim (1 lines)
+[ref refs/joaquim_ref.wav]
+[pitch 0.0]
+[exaggeration 0.6]
+b01__j_raid | The station is burning! Down to the boats, all of you, in the name of God!
+
+# ---- volunteer (1 lines)
+[ref refs/volunteer_ref.wav]
+[pitch 0.0]
+[exaggeration 0.5]
+a06__v_saved | Sir. The Hollins boys, all six of us. We are here for the Father, and for you.
+
+# ---- assembly (7 lines)
+[ref refs/assembly_ref.wav]
+[pitch 0.0]
+[exaggeration 0.5]
+a01__a_1 | Your presses print in houses like any other. Walk the runners to the squares and the city will rise.
+a01__a_tip | The Crown cannot touch a press it has not found. Keep its men away from your doors.
+a01__a_layout_old_town | Your presses: the hill's west, the slopes, the Presqu'île, Vieux Lyon's north and Guillotière's south.
+a01__a_layout_river | Your presses: the hill's east, the slopes, the Presqu'île, Vieux Lyon's south and Guillotière's north.
+a01__a_layout_hill | Your presses: the hill's west, the slopes, the Presqu'île, Vieux Lyon's north and Guillotière's north.
+a06__a_1 | Hold the barricades. Burn Notre-Dame, bring down the Field Marshal, or get Varenne out by the river: any of them wins Paris.
+a06__a_tip | Your men behind a barricade are safe from the Crown's line. Not from its guns: when a barricade breaks, rush the guns.

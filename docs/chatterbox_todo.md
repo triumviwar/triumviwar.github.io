@@ -27,6 +27,10 @@ Brother Anselm 13, von Rauch 13, the Machine 11, the Captain 7, Pieter 7, Cardin
 Still to design: young Tomasz (49 lines; the owner's first account has a "Tomasz Wierzbicki" voice), the Cardinal Dean
 (a07; make_big_lines.py SAME_KEY keeps him apart from old Cardinal Tomasz), and the one-line parts.
 
+NEXT RUN, FINAL (2026-11-22, 0.38.159): every campaign speaker now has a voice. lines_big.txt holds 235 lines: the 166
+above plus young Tomasz 49, the Free Assembly 7, and the Cardinal Dean, Rouviere, Mere Gautier, the Commissary, the
+guide (2 each), Teles, Frei Joaquim, Will Hollins (1 each). Only the Sergeant has no line outside the test bed.
+
 ## 1. The Brood announcer: a new set in Lindqvist's new voice (owner 2026-11-18 15:55)
 
 "Now that the voice of the naturalist changed we need a completely new voice line set for the Brood announcer."

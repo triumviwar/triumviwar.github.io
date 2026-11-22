@@ -20,3 +20,14 @@ machine   The Machine (Clockwork): cold, flat, every word on a beat like a clock
 brother   Brother Anselm, Ferrer's lay brother: elderly German, gentle, hushed, humble.
 colonel   Colonel von Rauch of the Fürth line: Bavarian colonel, hard, clipped, commanding.
 benedito  Benedito the riverman: Brazilian canoe guide in his fifties, calm, wary, soft and husky.
+Designed 2026-11-22, second batch (the second account; the first of the three previews kept each time):
+tomasz         young Tomasz Wierzbicki: Polish seminarian, early twenties, gentle, sincere, soft-spoken.
+cardinal_dean  the Cardinal Dean of the council of Rome (a07): elderly Italian, solemn, slow, deep.
+printer        Rouviere the printer (a01): French pamphleteer in his fifties, proud, sardonic, raspy.
+weaver         Mere Gautier (a01): old Lyon silk weaver woman, tired, motherly, low alto.
+commissary     the Commissary (a02): Bavarian official, cold, precise, thin nasal tenor.
+guide          the guide from Nazare (a03): Amazon forest guide, quiet, low, grainy.
+teles          Lieutenant Teles (b01): young Portuguese officer, quick, decisive, orders over gunfire.
+joaquim        Frei Joaquim (b01): Portuguese Franciscan in his sixties, fatherly, urgent.
+volunteer      Will Hollins (a06): Virginia farm lad of nineteen, earnest, shy, brave.
+assembly       the Free Assembly's adviser (a01, a06 versus): French woman agitator, sharp, smoky mezzo.

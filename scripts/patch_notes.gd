@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.159", "items": [
+		"No change in the game yet: every speaking part in the campaign now has a voice, and all 235 lines still to record are on one list.",
+	]},
 	{"v": "0.38.158", "items": [
 		"No change in the game: ten more campaign voices are designed (young Tomasz, the Cardinal Dean, the printer, the weaver, the Commissary, the guide, Teles, Frei Joaquim, Will Hollins and the Free Assembly), waiting for their samples before their lines go on the recording list.",
 	]},

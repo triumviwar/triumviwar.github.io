@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.159": ["Todavía nada cambia en el juego: cada personaje que habla en la campaña tiene ya una voz, y las 235 frases que faltan por grabar están en una sola lista."],
 	"0.38.158": ["Nada cambia en el juego: diez voces más de la campaña están diseñadas (el joven Tomasz, el Cardenal Decano, el impresor, la tejedora, el Comisario, el guía, Teles, Fray Joaquim, Will Hollins y la Asamblea Libre), esperando sus muestras antes de que sus frases pasen a la lista de grabación."],
 	"0.38.157": ["MÚSICA NUEVA: diecinueve piezas nuevas hechas con ElevenLabs. Dos oberturas nuevas en el menú (Clockwork Mourning y Heart of the Mire); piezas nuevas de la Corona para la apertura, la escaramuza y la batalla (Ceremonial Advance, Skirmish March, Battle March of Triumph, Battle of the Fallen Banner); una batalla nueva para el Mecanismo (Clockwork Host) y para la Nidada (Swamp Hunt). Cada facción tiene ahora su música de victoria y de derrota. Los tres cuarteles de la campaña tocan cada uno su pieza (el estudio del Rey, el taller de Hollweg, la estación de Lindqvist), y las misiones de Núremberg y de Roma empiezan con sus propios temas. Las piezas nuevas también están en el reproductor de música (una lista CAMPAÑA bajo las oberturas)."],
 	"0.38.156": ["Todavía nada cambia en el juego: el Padre Ferrer ya tiene voz, y sus 51 frases de la campaña están listas para grabar."],
