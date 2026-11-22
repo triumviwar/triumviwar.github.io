@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.168": ["VOZES DA CAMPANHA COM SENTIMENTO: 278 falas da campanha foram gravadas de novo com emoção: as ordens gritadas gritam, as acusações e discussões soam zangadas, os alarmes são urgentes, o luto é lento e baixo. Entre elas Valadares a acusar o doutor e a mandar incendiar o colmo, Ferrer e Hollweg a discutir, os gritos de Varenne e as orações de Tomasz."],
 	"0.38.167": ["Nada muda no jogo: o jogador de teste do Espécime Um sabe agora que a ninhada é de três ovos."],
 	"0.38.166": ["Nada muda no jogo: um ficheiro de um clique para a gravação das vozes com emoção."],
 	"0.38.165": ["SEGUIR: um clique direito com unidades selecionadas numa unidade sua (ou de um aliado) faz agora com que a sigam para onde for, até lhes dar outra ordem, como no StarCraft 2. Antes só iam até onde ela estava.", "ESPÉCIME UM: Linnea põe uma ninhada de três ovos, não cinco, e mais depressa (um a cada 12 segundos), e uma vez livre volta para casa a mais do dobro do passo de uma Mãe da Ninhada, quase acompanhando o Sire."],

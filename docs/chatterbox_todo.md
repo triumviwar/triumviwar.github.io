@@ -34,6 +34,9 @@ guide (2 each), Teles, Frei Joaquim, Will Hollins (1 each). Only the Sergeant ha
 RECORDED 2026-11-22 (0.38.164): the 235 lines of lines_big.txt are in the game (every campaign speaker but the
 Sergeant and the Lyon watchman). lines_big.txt is empty until new lines are written.
 
+EMOTION RUN RECORDED 2026-11-22 (0.38.168): the 278 emotional takes replaced the calm ones (the calm takes are in git
+history before 0.38.168). If some still sound flat, the next step is a second, angry reference per main character.
+
 THE EMOTION RUN (owner 2026-11-22: "certain lines have no emotion at all", Valadares accusing the doctor and firing the
 thatch): tools/voice_clone/emotions.json tags 280 campaign lines shout / angry / urgent / grief / wonder, each with a
 Chatterbox exaggeration and cfg (presets in the file; a line not listed is calm). `make_big_lines.py --emotion` writes
