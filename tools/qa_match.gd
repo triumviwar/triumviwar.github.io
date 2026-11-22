@@ -139,6 +139,16 @@ func _mmss(c: float) -> String:
 
 ## (crown-coach-measure) the Crown computer's coach, line and screen counters, read at the end (result.json "crown_ai"):
 ## which coach rules fired. Read only.
+## (wr1000-crown-clockwork) how often each AIWccr change acted, by team.
+func _wcc_counters() -> Dictionary:
+	var o := {}
+	for tm in n:
+		var a = _ai(tm)
+		if a != null and a.has_meta("wcc"):
+			o[str(tm)] = a.get_meta("wcc")
+	return o
+
+
 func _crown_counters() -> Dictionary:
 	var o := {}
 	for tm in n:
@@ -735,6 +745,7 @@ func _finish() -> void:
 		scouting[str(tm)] = e
 	var res := {"map": map, "seed": seed_, "scouting": scouting, "version": ProjectSettings.get_setting("application/config/version", ""),
 		"crown_ai": _crown_counters(),
+		"wcc": _wcc_counters(),     # (wr1000-crown-clockwork: how often each AIWccr change acted, a side each)
 		"brood_linger": _linger_counters(),
 		"bench": _bench_report(),
 		"slots": slots, "end": int(round(g.clock)), "over": g.over,
