@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.179": ["Misiones de la campaña: lo que una misión no deja construir, entrenar o investigar ahora queda oculto en las tarjetas en vez de aparecer en gris. Lo que la historia retiene un tiempo, con un motivo, sigue en gris con ese motivo."],
 	"0.38.178": ["Todavía nada cambia en el juego: quedaron escritas tres reglas para cada misión de la campaña (decirlo claro, nada de esperas, revisar la sensación), y empezó la construcción del Acto 2."],
 	"0.38.177": ["Nada cambia en el juego: el plan de la campaña gana un aeronauta, que llega con el Globo de Observación y muestra el mundo desde el aire."],
 	"0.38.176": ["Nada cambia en el juego: el plan de la campaña ahora tiene el mar: viajes contados en pinturas, un capitán de barco que vuelve, tormentas y batallas navales en pinturas."],

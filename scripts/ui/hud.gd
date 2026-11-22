@@ -1143,6 +1143,8 @@ func _build_card() -> Array:
 			# every building on one card (it scrolls if they don't fit)
 			# (one list: the card scrolls when they don't fit, see _refresh_card)
 			for k in Defs.build_list(game.faction_of(game.human)):
+				if _mission_hides(k):
+					continue
 				var d: Dictionary = Defs.BUILDINGS[k]
 				var why := ""
 				if not game.requirement_met(game.human, k):
@@ -1348,6 +1350,8 @@ func _build_card() -> Array:
 						toast(w), twhy == "", twhy, str(Defs.TRAINS[tk]["cost"])])
 		# (a soldier with a light and an armoured version: two buttons once Armour is researched)
 		for k in Defs.train_keys(b.d["trains"], game.has_tech(game.human, "armour") or _full_card):
+			if _mission_hides(k):
+				continue
 			var kk: String = k
 			var why := game.can_train(b, k)
 			for sb in game.selected_buildings():
@@ -1434,7 +1438,7 @@ func _research_buttons(list: Array, b: Building, group: Array = []) -> void:
 		var rkk: String = rk
 		var info: Dictionary = Defs.RESEARCH[rk]
 		# done, or already in a queue (it shows there, with its progress): no button
-		if info["at"] != b.kind:
+		if info["at"] != b.kind or _mission_hides(rk):
 			continue
 		if not _full_card and (game.has_tech(game.human, rk) or game.researching(game.human, rk)):
 			continue
@@ -1758,6 +1762,8 @@ func _nb_buttons(list: Array, units: Array) -> void:
 		list.append([BroodNew.MAW, ml, func() -> void: pass, false, Loc.t("Rootmaws rooted on this swamp, of the most it holds."), ""])
 	if q != null:
 		for k in BroodNew.hatch_list():
+			if _mission_hides(k):
+				continue
 			var kk: String = k
 			var why := BroodNew.lay_problem(game, q, kk)
 			list.append([kk, Defs.train_name(kk).to_upper(), func() -> void:
@@ -1951,6 +1957,8 @@ func _nb_research_buttons(list: Array, units: Array) -> void:
 					ru.cmd_nb_research_stop(), true, "", ""])
 		# (busy: the others stay, to QUEUE as at a building; the queue's icons are on the card, a click cancels one)
 		for key in BroodResearch.keys_at(kd):
+			if _mission_hides(key):
+				continue
 			if not _full_card and (game.has_tech(game.human, key) or BroodResearch.in_hand(game, game.human, key)):
 				continue          # (done, in hand or queued: no button, as a building's research)
 			var kk: String = key
@@ -1977,6 +1985,8 @@ const LURE_ICON := {"tyrannosaur": "lure_tyrant", "dilophosaurus": "lure_venom",
 ## morphs (scripts/brood_root.gd). No old Brood buildings.
 func _nb_build_page(list: Array) -> void:
 	for k in BroodRoot.morph_list():
+		if _mission_hides(k):
+			continue
 		var mk: String = k
 		var mwhy := BroodRoot.morph_problem(game, game.human, mk)
 		var mlab := String(Defs.UNITS[mk]["name"]).to_upper()
@@ -2222,7 +2232,7 @@ func _mixed_card(bs: Array) -> Array:
 	var kinds: Array = []
 	for sb in built:
 		for k in Defs.train_keys(sb.d["trains"], game.has_tech(game.human, "armour") or _full_card):
-			if not kinds.has(k):
+			if not kinds.has(k) and not _mission_hides(k):
 				kinds.append(k)
 	for k in kinds:
 		var kk: String = k
@@ -5694,3 +5704,8 @@ func _text(font: Font, p: Vector2, s: String, sz: int, col: Color, align := 0) -
 	var w := TextCache.width(font, s, sz)       # (shaped once and kept: scripts/ui/text_cache.gd)
 	var x := p.x - (w * 0.5 if align == 1 else (w if align == 2 else 0.0))
 	TextCache.draw(_ci, font, Vector2(x, p.y), s, sz, col, 4, Color(0, 0, 0, col.a * 0.8))
+
+
+## A campaign mission keeps this kind from the player: no button for it (MissionRun.hides).
+func _mission_hides(k: String) -> bool:
+	return game.mission != null and not _full_card and game.mission.hides(game.human, Defs.train_kind(k))

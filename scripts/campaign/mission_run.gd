@@ -1326,6 +1326,16 @@ func denied(t: int, k: String) -> bool:
 	return deny.has(t) and (deny[t] as Dictionary).has(k)
 
 
+## Should the card HIDE this kind? (the owner, 2026-11-22: what a mission doesn't let you build or train is not shown at
+## all.) Every denied kind is hidden, except one the story holds back with its own "why" (it shows, greyed, with the
+## reason: a02's commissary, the stop-work), since that one is coming and the reason teaches it.
+func hides(t: int, k: String) -> bool:
+	if not denied(t, k):
+		return false
+	var w: Variant = (deny[t] as Dictionary).get(k, true)
+	return not (w is String and String(w) != "")
+
+
 ## What a refusal says for a denied kind: the deny action's "why" when it gave one, else "Not in this mission.".
 func denied_text(t: int, k: String) -> String:
 	var w: Variant = (deny.get(t, {}) as Dictionary).get(k, true)

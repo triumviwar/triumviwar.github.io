@@ -168,6 +168,27 @@ func _engine() -> void:
 	r.act({"deny": {"team": "guild", "kind": "heavy_works"}})
 	check("deny: and taken away again", r.denied(gt, "heavy_works"))
 	check("a denied unit can't be trained (Game.can_train)", r.denied(gt, "pendulum"))
+	# ---- the card HIDES what the mission keeps from the player (the owner, 2026-11-22), unless the story gives a "why"
+	var wk: Unit = null
+	for u in g.units:
+		if u.team == gt and u.is_worker():
+			wk = u
+			break
+	if g.human == gt and wk != null:
+		g.set_selection([wk])
+		g.hud._build_card()          # (the pick registers first, then BUILD opens: tools/test_card_page_reset.gd)
+		g.hud.page = "build"
+		var keys: Array = g.hud._build_card().map(func(it) -> String: return String(it[0]))
+		check("card: a denied building has no button", not keys.has("heavy_works") and not keys.has("cuckoo_house"), str(keys))
+		check("card: an allowed building keeps its button", keys.has("movement_works"), str(keys))
+		r.act({"deny": {"team": "guild", "kind": "movement_works", "why": "Not yet: the story holds it."}})
+		keys = g.hud._build_card().map(func(it) -> String: return String(it[0]))
+		check("card: a kind held back WITH a reason still shows (greyed)", keys.has("movement_works") and r.hides(gt, "heavy_works") and not r.hides(gt, "movement_works"), str(keys))
+		r.act({"unlock": {"team": "guild", "kind": "movement_works"}})
+		g.hud.page = ""
+		g.set_selection([])
+	else:
+		check("card check: the guild is the player with a worker", false)
 	# ---- counters, exits and their words
 	check("counters start at 0", int(r.counters["saved"]) == 0 and int(r.counters["townsfolk"]) == 0)
 	r.act({"counter": {"name": "townsfolk", "add": 5}})
