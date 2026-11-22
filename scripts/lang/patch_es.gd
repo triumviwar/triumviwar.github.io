@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.151": ["CORRECCIONES DE ARTE: se acabaron los saltos en los ciclos del Mosquetero y del Guardia quietos de espaldas, del sablazo del Jinete hacia ti (el caballo se torcía un cuadro), del Peón sujetando un barril (el barril saltaba por el pecho) y del Cuco volando arriba a la derecha (se ponía de lado un cuadro); quitados puntitos sueltos de algunos soldados, rocas y del icono de Tensión."],
 	"0.38.150": ["CORRECCIONES DE ARTE: el Retador Tirano y el Retador Venenoso muertos mirando hacia ti ahora caen mirando hacia ti (se giraban de lado al morir)."],
 	"0.38.149": ["ARREGLOS DE ARTE: el Carro de Pólvora yendo abajo a la derecha ya no se gira hacia ti dos cuadros de cada vuelta; la cola del Escupidor ya no se encoge al escupir; el Piquero de la campaña caminando arriba a la derecha ya no lleva dos picas en un cuadro."],
 	"0.38.148": ["ARREGLOS DE ARTE: el Misionero vendando a un soldado de espaldas muestra la espalda (mostraba el frente); el Piquero rebelde se afirma y embiste con la pica nivelada hacia ti y abajo a la derecha (apuntaba al suelo), y su embestida alejándose mantiene un solo ángulo (la pica saltaba hacia arriba)."],

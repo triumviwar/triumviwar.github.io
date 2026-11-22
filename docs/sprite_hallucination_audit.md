@@ -158,6 +158,12 @@ full tail.
 0.38.150: 103 the Tyrant Challenger's south death redrawn facing you all the way down (M119); 104 the Venom
 Challenger's south death the same (M120). Its NE and N deaths (M121, M122) still wait: ChatGPT drew NE as a side
 profile again, and that account's attachment limit was reached.
+0.38.151 (tools/audit_low_fixes.py, no redraw): 168 the Musketeer's and Guardsman's north idle frame 2 (a different
+coat) replaced by frame 0; 181 the Horseman's south attack frame 2 (the horse twisting) by frame 1; 161 the Labourer's
+keg idle frame 0 (keg on the chest) by frame 1; 141 the Swift's (cuckoo) north-east fly frame 0 (turned east) by frame 2;
+156, 169 specks by the Armoured Officer's south death and the Guardsman's fire-up removed; 145 the Pendulum's pink pixels
+at the blade; 200 the Tension icon's corner specks; 201 the loose piece by the mossy boulder; 207 the loose specks
+round the snowy rocks (c, d).
 
 ## Redraw requests for the HIGH findings
 
