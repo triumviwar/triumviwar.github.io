@@ -1,0 +1,29 @@
+test_ai_abandoned_site.gd PASS rc=0 7s 
+test_ai_army_response.gd PASS rc=134 12s 
+test_ai_crown_bank.gd PASS rc=134 19s 
+test_ai_expand.gd FAIL rc=134 131s FAIL  [clockwork] still earning in the last 60 s (0) 1 FAILED 
+test_ai_gg_rule.gd PASS rc=0 0s 
+test_ai_optimal.gd PASS rc=134 127s 
+test_ai_r5_hold_spots.gd PASS rc=134 51s 
+test_ai_round6_stall.gd PASS rc=134 19s 
+test_ai_rush_followup.gd FAIL rc=134 22s PASS  two of three riders gone, defenders alive: verdict FAILED (the raiding party was cut down) [failed] FAIL  fresh Horsemen (1, then 2) stay home as defence (farthest 1258 px) [failed] FAIL  never a lone soldier far from home (40 sightin
+test_ai_scout_defence.gd PASS rc=134 9s 
+test_ai_scout_threat.gd PASS rc=134 11s 
+test_ai_worker_safety.gd PASS rc=134 30s 
+test_ai_air_defence.gd PASS rc=134 9s 
+test_ai_brood.gd PASS rc=134 153s 
+test_ai_cw_horse_raid.gd PASS rc=134 38s 
+test_ai_expand_wall.gd PASS rc=134 95s 
+test_ai_harass.gd PASS rc=134 21s 
+test_ai_placement.gd PASS rc=134 151s 
+test_ai_round6.gd PASS rc=134 218s 
+test_ai_rush.gd PASS rc=134 33s 
+test_ai_scout.gd PASS rc=134 36s 
+test_ai_scout_sentry.gd PASS rc=134 47s 
+test_ai_wall_vs_rush.gd FAIL rc=134 23s FAIL  Barracks and Powder Mill are laid by 75 s (58 s, 100 s) 1 FAILED 
+test_brood_mirror.gd [] PASS 
+test_brood_mirror.gd [wbm:off] PASS 
+test_ai_expand.gd [wbm:off] PASS 
+test_ai_rush_followup.gd [wbm:off] FAIL PASS  two of three riders gone, defenders alive: verdict FAILED (the raiding party was cut down) [failed] FAIL  fresh Horsemen (1, then 2) stay home as defence (farthest 1258 px) [failed] 
+test_ai_wall_vs_rush.gd [wbm:off] FAIL FAIL  Barracks and Powder Mill are laid by 75 s (58 s, 100 s) 1 FAILED 
+test_ai_expand.gd [] PASS 

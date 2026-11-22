@@ -226,4 +226,16 @@ tell the two apart: part of the edge looks like the spot (the brood-spot-study's
 
 ## The tests
 
-__TESTS__
+All 23 `tools/test_ai_*.gd` were run on the branch with the kept code on (two at a time; `docs/wr1000_brood_mirror/ai_tests.txt`),
+and the ones that failed again with the whole job off (`-- wbm:off`, which plays exactly as main):
+
+- **20 pass.**
+- `test_ai_expand` ([clockwork] still earning in the last 60 s) failed once and **passed on the rerun**, with the job on and
+  with it off (flaky, as CLAUDE.md says).
+- `test_ai_rush_followup` (the raiding party cut down, fresh Horsemen at home) and `test_ai_wall_vs_rush` (Barracks and Mill
+  by 75 s: 58 / 100 s) **fail the same with the job off**: not from this job (both fail on main, ai-opponent-review).
+- The Brood tests that touch its computer: `test_brood_mirror` passes with the job on and off; `test_brood_mother_uproot_ai`
+  and `test_brood_builds` pass.
+
+The kept change runs only when a Brood computer faces another Brood (AIWr1000BroodMirror.mirror), so against the Crown and
+the Clockwork, in the campaign and the tutorial, the Brood plays exactly as main.
