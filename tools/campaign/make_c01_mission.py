@@ -65,6 +65,7 @@ M = {
     "summary": "Nuremberg, Advent 2767. Meister Hollweg wakes his Perpetual, a clockwork that winds itself, mends itself and builds more of itself. By midnight it has the city.",
     "map": "campaign:nuremberg_advent",
     "voice": "c01",
+    "music": "mission_c01",
     "light": "winter_day",
     "weather": "snow",
     "expansion_spots": False,

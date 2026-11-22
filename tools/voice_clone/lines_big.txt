@@ -70,3 +70,160 @@ c01__h_end_nomill | The mill on the island was still turning when the clock stru
 [pitch 0.0]
 [exaggeration 0.45]
 p01__f_camp2 | The second camp lies further east on the road, before the fort. Take it.
+
+# ---- jakob (26 lines)
+[ref refs/jakob_ref.wav]
+[pitch 0.0]
+[exaggeration 0.5]
+a02__j_1 | I kept the log all winter, Meister. It is quieter in Nuremberg than it should be.
+a02__j_stop | It keeps the beat, Meister. On the beat, every tooth.
+a02__j_tick_s | Listen. Off the beat, south of the river. They are coming by the meadows.
+a02__j_tick_n | Again. North this time, on the road.
+a02__j_tick_cut | No, the road is silent. We cut its links last winter. The meadows again.
+a02__j_tick_3 | More of them. Many more.
+a02__j_mill | The Rednitz mill, Meister. There is a tower turning there.
+a02__tip_heavy | The Heavy Works must stand by a Mainspring, Meister.
+a02__j_hurt | Meister, you are hurt. Stay behind the earthworks.
+a04__j_call | Meister, the presses need you. The big one is off its beat.
+a04__j_word | Father. A word, please. Not in front of the Meister.
+a04__j_bin | I found these in a bin behind the Escapement. Stop-works. Twelve of them.
+a04__j_bin2 | Nobody here took them out, Father. I asked every man.
+c01__tip_2 | Every building must mesh with the Perpetual's gears, Meister, or it stops.
+c01__j_odd | Meister, the new Winders keep turning to face the river.
+c01__j_mill | Meister, there is a press turning on the mill island. We never built a press there.
+c01__tip_net | A Netter's net holds a machine still. Bring Jakob to the bank by the mill.
+c01__j_found | It is a whole works. Meshed, wound, and making more.
+c01__j_mill_down | Meister, the bath houses are still turning.
+c01__j_night | Lights at the market. And at the east gate.
+c01__tip_3 | Townsfolk come out as the machine reaches their streets. Walk them to the west gate.
+c01__j_pend | Meister, it has made a Pendulum.
+c01__j_cut | The links are cut. North of the river they are slowing.
+c01__j_drawings | I have the drawings, Meister. All of them.
+c01__j_hit | I'm hit! Keep them off me, I'm coming back.
+c01__j_hurt | Meister, you are hurt. Keep away from them until the last moment.
+
+# ---- delorme (17 lines)
+[ref refs/delorme_ref.wav]
+[pitch 0.0]
+[exaggeration 0.45]
+a01__d_1 | Six presses at least, Father, hidden in houses like any other. The runners carry the papers to the squares.
+a01__tip_1 | A press looks like a house until our men stand at its door. Every runner who reaches a square stirs the city.
+a01__tip_2 | The riders are quick through the streets. Send them to look. Keep the muskets on the squares.
+a01__tip_powder | Ten shots a musket, Father, then the bayonet. The powder wagon fills them again: keep it near the men.
+a01__d_found | A press! Their men are inside. Break it.
+a01__d_closed | One press silent. The type goes into the river.
+a01__d_temper15 | Father, they are close to the edge. Stop the runners or we lose the city.
+a01__d_2 | Four presses closed. Now the Assembly calls the weavers up the hill, to their hall.
+a01__tip_3 | Father Tomasz must stand on the hall's square. While he is not there, the agitators turn the weavers.
+a01__d_band1 | A band at the Terreaux, coming up the middle stair!
+a01__d_band2 | More from the Saône bridge, for the west stair.
+a01__d_band3 | And from the Rhône, with torches, for the east stair.
+a01__tip_4 | Two passages lead into that yard. Take the printer alive: the King will want to know who pays him.
+a01__d_great | There it is. A press as big as a church organ.
+a01__d_early | A great press in a yard! We will come back for it with more men.
+a01__d_won | The great press is broken. Lyon is quiet.
+a01__d_hurt | The Father is hurt! Men round the priest!
+
+# ---- benedito (16 lines)
+[ref refs/benedito_ref.wav]
+[pitch 0.0]
+[exaggeration 0.45]
+a03__b_1 | Two ways up, Senhor. The stair by the falls, and a crack in the rock to the east. I wait with the canoe.
+a03__b_red | Red crests in the trees, Senhor. The other pack, the one that fought at the station. It came up here too.
+a03__b_linnea | They sleep, Senhor. Do not wake them. Not one step closer.
+a03__b_hurt | Senhor, you are bleeding! Let the soldiers stand between you and them!
+a03__b_rains | The rains, Senhor. The river rises. I cannot wait longer.
+a03__b_push | In! Push off! Paddle!
+a03__b_gone | The canoe is going, Senhor! I cannot hold it!
+a05__b_1 | Here, Doctor! The canoes are ready. Load the cages.
+a05__b_crates | From Lisbon, for the mines in the south. Heavy. A gear stamped on the wood.
+a05__b_room_few | Few paddlers came from Nazaré, Doctor. Two cages, no more.
+a05__b_room_many | All of Nazaré came to paddle. There is room for every cage.
+a05__b_load | One aboard! Bring the next!
+a05__b_full | No more room, Doctor! The canoes are full!
+a05__b_push | Push off! Paddle!
+a05__b_gone | The canoes are going, Doctor! We cannot wait!
+b01__b_leave | Paddle! Do not look back.
+
+# ---- brother (13 lines)
+[ref refs/brother_ref.wav]
+[pitch 0.0]
+[exaggeration 0.4]
+a04__b_tip1 | Walk the Father into each workshop and keep him there a moment. The guild shuts its doors at dusk.
+a04__b_night | Father, a Winder. Alone, out of the yard. Nobody sent it.
+a04__b_tip2 | Keep it within eight tiles. Closer than three and it will see us.
+a04__b_lost | We have lost sight of it, Father. It went that way.
+a04__b_bank | It stopped by the river, below the chapel. There are others there.
+a04__b_pattern | Then the flaw is in the drawings, Father.
+a04__b_people | Then the flaw is in the machine, Father, whatever the drawings say.
+a04__b_gather | Father, the broken ones are gathering on the bank! They will cross the bridge and go out by the gap in the line.
+a04__b_wave | The first of them are on the bridge. They walk as if they were called. They do not even fight.
+a04__b_wave2 | More on the bridge: the Springers and the Winders.
+a04__b_wave3 | The last ones, from the press-house. Hold the gap!
+a04__b_sortie | The machine is coming out to meet them, at the open gap in the line!
+a04__b_hurt | The Father is hurt! Keep the muskets round him!
+
+# ---- colonel (13 lines)
+[ref refs/colonel_ref.wav]
+[pitch 0.0]
+[exaggeration 0.55]
+a02__col_1 | My men are digging, Meister. Your machines stay on your side of the ditch.
+a02__col_rung | They say you rang the bells, Meister. Half my regiment owes you its family. Build what you need.
+a02__col_dug | The line is dug from the woods to the Rednitz. Two gates. Nothing else gets through.
+a02__col_2 | Riders from the river. The gates of Nuremberg are open.
+a02__col_wave | On the meadows! Hold the gate!
+a02__col_wave2 | The road! They are on the road!
+a02__col_wave2c | The meadows again. They know only the one way.
+a02__col_wave3 | Everything it has. Hold, Franconians!
+a02__col_beat | Beaten back. It will try again.
+a02__col_mill | My reserve goes with you. Burn it and the line holds.
+a02__col_tide | The mill has grown a tide. Burn it, Meister, before it sends another.
+a02__col_burnt | The mill is burning. The line holds.
+a02__col_hurt | Your master is hurt, guild! Get soldiers round him.
+
+# ---- machine (11 lines)
+[ref refs/machine_ref.wav]
+[pitch 0.0]
+[exaggeration 0.3]
+a02__m_intro | Tick. Tock. West along the river. The tower at Fürth ticks on the beat. Stop it.
+a02__m_tip | Your seeds by the gates send constructs and cogs while they stand. Off your ground your constructs run down.
+a02__m_mill | A seed at the Rednitz mill. New ground, half way to Fürth.
+a02__m_pend | The mill seed has grown a Pendulum. Its blades bite through walls.
+a02__m_mill_lost | The mill seed is burnt.
+a02__m_warn | Two minutes. The line is almost closed.
+a04__m_intro | Tick. Tock. A priest walks in the guild's yard. Kill him.
+a04__m_tip | Your seed on the meadows pays cogs and Tension while it stands. At night, some of theirs will come to you.
+a04__m_night | Night. By the river, the guild's machines are meshing. Soon they are yours.
+a04__m_riot | They are walking to you. Bring them home: 6 is enough.
+c01__m_intro | Tick. Tock. Tick. Grow, spread, and stop the clockmaker at the gate.
+
+# ---- captain (7 lines)
+[ref refs/captain_ref.wav]
+[pitch 0.0]
+[exaggeration 0.5]
+c01__cap_1 | Six. The Crown thanks the Guild. They are ours now.
+c01__cap_net | One of yours, Meister, in red paint. Or is it?
+c01__cap_back | A seed is down. That gives us a little longer.
+c01__cap_mill_early | The mill seed burned before dark. The machine is late to the streets: we have longer.
+c01__cap_escort | Three of my men go with your journeyman, Meister. North of the river the streets are the machine's.
+c01__cap_riders | Riders from Fürth! They will hold the gate for the last of us.
+c01__cap_cart | One cart left. People or papers, Meister. Not both.
+
+# ---- pieter (7 lines)
+[ref refs/pieter_ref.wav]
+[pitch 0.0]
+[exaggeration 0.5]
+a05__p_book | I have the specimen book, Doctor. I will count every cage.
+a05__p_count | One in the book.
+b01__p_tracks2 | Three toes, deep in the mud at the creek. Too many to count.
+b01__p_set | All three jars are open, Doctor. I can smell it from here.
+b01__p_past | Doctor, they walked past the jars.
+b01__p_sire | Over the palisade. Doctor, it is as big as the house.
+b01__p_eggs | Doctor, there are eggs in her straw.
+
+# ---- cardinal (2 lines)
+[ref refs/cardinal_ref.wav]
+[pitch 0.0]
+[exaggeration 0.4]
+a01__c_open | I was ordained that spring and sent to a parish on the hill. I thought I would baptise silk-weavers' children.
+a01__c_end | I was proud of that spring. I am still. I was also lucky.

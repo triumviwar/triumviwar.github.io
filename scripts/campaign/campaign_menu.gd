@@ -634,6 +634,10 @@ static func _line_data() -> Dictionary:
 	return open[0]
 
 
+## Each storyline's hub piece (a hub's own "music" wins; the owner's ElevenLabs pieces, 2026-11-22).
+const HUB_MUSIC := {"prologue": "hub_study", "clockmaker": "hub_workshop", "naturalist": "hub_station"}
+
+
 ## The CAMPAIGN page: the hub of a storyline (like StarCraft II's ship between missions): its still with HOTSPOTS to
 ## click (the WAR TABLE: the missions; people: a talk that changes after each mission; rooms: the ARMOURY, a stub),
 ## the same hotspots as a list beside it (phones, or when a hotspot is hard to see), and tabs for the storylines.
@@ -643,6 +647,8 @@ static func show(main: Node) -> void:
 	var p := Campaign.progress()
 	var sl := _line_data()
 	var hub := hub_now(sl.get("hub", {}), p)
+	if Music.me:
+		Music.me.hub(String(hub.get("music", HUB_MUSIC.get(String(sl.get("id", "")), ""))))
 	var top := HBoxContainer.new()
 	top.add_theme_constant_override("separation", 8)
 	box.add_child(top)

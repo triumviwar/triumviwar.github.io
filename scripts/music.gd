@@ -35,7 +35,9 @@ const ROLES := {"crown_battle_6": "open", "crown_battle_7": "skirmish", "crown_b
 	# the owner's ElevenLabs pieces (job music-elevenlabs, tools/music/master_elevenlabs.py, docs/music_elevenlabs.md)
 	"crown_battle_12": "open", "crown_battle_13": "skirmish",
 	"clock_battle_14": "open", "clock_battle_15": "skirmish",
-	"brood_battle_14": "open", "brood_battle_15": "skirmish"}
+	"brood_battle_14": "open", "brood_battle_15": "skirmish",
+	# the second batch (2026-11-22)
+	"crown_battle_15": "open", "crown_battle_16": "skirmish"}
 const OPEN_CALM := ["crown_peace", "crown_peace_4", "clock_peace", "brood_peace_4"]
 ## FEATURED pieces (the owner's ElevenLabs Music, job music-elevenlabs) are picked WEIGHT times as often as a
 ## generated piece and come back sooner: a featured piece is kept out only while it is among the last FEATURED_GAP
@@ -43,7 +45,9 @@ const OPEN_CALM := ["crown_peace", "crown_peace_4", "clock_peace", "brood_peace_
 ## MENU_FIRST is the first overture heard at the main menu after the game starts.
 const FEATURED := ["crown_battle_12", "crown_battle_13", "crown_battle_14", "crown_peace_10",
 	"clock_battle_14", "clock_battle_15", "clock_battle_16", "clock_peace_8",
-	"brood_battle_14", "brood_battle_15", "brood_battle_16", "brood_peace_8", "menu_11"]
+	"brood_battle_14", "brood_battle_15", "brood_battle_16", "brood_peace_8", "menu_11",
+	"menu_12", "menu_13", "crown_battle_15", "crown_battle_16", "crown_battle_17", "crown_battle_18",
+	"clock_battle_17", "brood_battle_17"]
 const WEIGHT := 3.0
 const FEATURED_GAP := 2
 const MENU_FIRST := "menu_11"
@@ -288,6 +292,16 @@ static func menu_pieces() -> Array:
 		if s == "menu" or s.begins_with("menu_"):
 			if has_piece(s):
 				out.append(s)
+	return out
+
+
+## The campaign's own pieces: the hubs ("hub_*") and the missions ("mission_*"), for the music player.
+static func campaign_pieces() -> Array:
+	var out: Array = []
+	for stem in titles():
+		var s: String = stem
+		if (s.begins_with("hub_") or s.begins_with("mission_")) and has_piece(s):
+			out.append(s)
 	return out
 
 
@@ -560,7 +574,8 @@ func now_playing() -> String:
 	return titles().get(_current, "")
 
 
-func match_started(faction: String, enemies: Array = []) -> void:
+## `open`: a campaign mission's own piece ("mission_*", the mission's "music"), played first instead of an opening piece.
+func match_started(faction: String, enemies: Array = [], open := "") -> void:
 	_faction = FACTION_KEY.get(faction, "crown")
 	_in_menu = false
 	_enemies = []
@@ -575,7 +590,7 @@ func match_started(faction: String, enemies: Array = []) -> void:
 	_current = ""
 	_recent.clear()
 	_skirmish = false
-	play(_next("open"))
+	play(open if open != "" and has_piece(open) else _next("open"))
 	# on the web: fetch the end-of-match stings and a fighting piece ahead of time
 	for s in [_sting_name(faction, true), _sting_name(faction, false)] + pieces(_faction, "skirmish").slice(0, 1) + pieces(_faction, "battle").slice(0, 1):
 		_fetch(s)
@@ -615,7 +630,22 @@ func match_ended(won: bool, faction: String) -> void:
 
 
 static func _sting_name(faction: String, won: bool) -> String:
-	return "win_" + FACTION_KEY.get(faction, "crown").replace("clock", "clockwork") if won else "defeat"
+	var f: String = String(FACTION_KEY.get(faction, "crown")).replace("clock", "clockwork")
+	if won:
+		return "win_" + f
+	return "defeat_" + f if has_piece("defeat_" + f) else "defeat"
+
+
+## A campaign hub's own piece ("hub_*"), looped while the hub is open; "" or a missing piece = the overtures.
+func hub(stem: String) -> void:
+	if stem == "" or not has_piece(stem):
+		menu()
+		return
+	_amb.stop()
+	_faction = ""
+	_preview = false
+	_in_menu = false
+	play(stem, true)
 
 
 func add_heat(v: float) -> void:

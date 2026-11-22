@@ -20,6 +20,13 @@ refs/ferrer_ref.wav) and the 3 lines added since the big run (Hollweg's two c01 
 p01 line about the second camp). The rest waits on a voice to DESIGN first (section 3): 254 lines, most of them Tomasz
 49, Jakob 26, Delorme 17, Benedito 16.
 
+NEXT RUN, UPDATED (2026-11-22, 0.38.157): ten more voices designed in the second ElevenLabs account (refs/README.txt:
+Jakob, Delorme, Benedito, Brother Anselm, Colonel von Rauch, the Machine, the Captain of the Watch, Pieter, the
+Sergeant, old Cardinal Tomasz). lines_big.txt now holds 166 lines: Ferrer 51, Jakob 26, Delorme 17, Benedito 16,
+Brother Anselm 13, von Rauch 13, the Machine 11, the Captain 7, Pieter 7, Cardinal Tomasz 2, Hollweg 2, Fairleigh 1.
+Still to design: young Tomasz (49 lines; the owner's first account has a "Tomasz Wierzbicki" voice), the Cardinal Dean
+(a07; make_big_lines.py SAME_KEY keeps him apart from old Cardinal Tomasz), and the one-line parts.
+
 ## 1. The Brood announcer: a new set in Lindqvist's new voice (owner 2026-11-18 15:55)
 
 "Now that the voice of the naturalist changed we need a completely new voice line set for the Brood announcer."

@@ -140,6 +140,7 @@ M = {
     "summary": "Paris, July 2769. The Free Assembly holds the city behind its barricades and Varenne sits in the Hôtel de Ville. Field Marshal Fairleigh takes it back street by street.",
     "map": "campaign:paris_barricades",
     "voice": "a06",
+    "music": "mission_a06",
     "light": "dawn",
     "expansion_spots": False,
     "manual_end": True,

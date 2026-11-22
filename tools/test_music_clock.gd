@@ -22,7 +22,7 @@ func _initialize() -> void:
 			missing.append(stem)
 	check(missing.is_empty(), "every piece in music_tracks.gd has its .ogg %s" % str(missing))
 	var all: Array = M.all_pieces("clock")
-	check(all.size() == 24, "the Clockwork has 24 pieces: its 20 and the owner's 4 ElevenLabs ones (%d)" % all.size())
+	check(all.size() == 25, "the Clockwork has 25 pieces: its 20 and the owner's 5 ElevenLabs ones (%d)" % all.size())
 	var want := {
 		"open": ["clock_battle_6", "clock_battle_7", "clock_peace", "clock_battle_14"],
 		"skirmish": ["clock_battle_8", "clock_battle_9", "clock_battle_10", "clock_battle_15"],

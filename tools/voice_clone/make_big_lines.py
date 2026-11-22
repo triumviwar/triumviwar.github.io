@@ -22,8 +22,27 @@ VOICES = {
     "ruggieri": ("refs/ruggieri_ref.wav", 0.0, 0.7),
     "varenne": ("refs/varenne_ref.wav", 0.0, 0.7),
     "ferrer": ("refs/ferrer_ref.wav", 0.0, 0.45),    # designed 2026-11-22: a calm Spanish Jesuit of fifty
+    # designed 2026-11-22 in the second ElevenLabs account (refs/README.txt)
+    "jakob": ("refs/jakob_ref.wav", 0.0, 0.5),
+    "delorme": ("refs/delorme_ref.wav", 0.0, 0.45),
+    "benedito": ("refs/benedito_ref.wav", 0.0, 0.45),
+    "brother": ("refs/brother_ref.wav", 0.0, 0.4),
+    "colonel": ("refs/colonel_ref.wav", 0.0, 0.55),
+    "machine": ("refs/machine_ref.wav", 0.0, 0.3),
+    "captain": ("refs/captain_ref.wav", 0.0, 0.5),
+    "pieter": ("refs/pieter_ref.wav", 0.0, 0.5),
+    "sergeant": ("refs/sergeant_ref.wav", 0.0, 0.6),
+    "cardinal": ("refs/cardinal_ref.wav", 0.0, 0.4),
 }
-ORDER = ["ferrer", "lindqvist", "king", "hollweg", "valadares", "fairleigh", "ruggieri", "varenne"]
+ORDER = ["ferrer", "lindqvist", "king", "hollweg", "valadares", "fairleigh", "ruggieri", "varenne", "jakob",
+         "delorme", "benedito", "brother", "colonel", "machine", "captain", "pieter", "sergeant", "cardinal"]
+# The same "who" key is two people in a few missions: (voice folder, who) -> the voice, or None (not designed yet).
+SAME_KEY = {("a07", "cardinal"): None}     # the Cardinal Dean, not old Cardinal Tomasz
+SKIP_MISSIONS = ["p01_revolt"]             # the engine's test bed, never voiced
+
+
+def voice_of(folder, who):
+    return SAME_KEY.get((folder, who), who if who in VOICES else None)
 
 
 def announcer():
@@ -42,16 +61,17 @@ def mission_lines():
     for f in sorted(glob.glob(os.path.join(ROOT, "campaign", "missions", "*.json"))):
         M = json.load(open(f, encoding="utf-8"))
         folder = M.get("voice")
-        if not folder:
+        if not folder or M.get("id") in SKIP_MISSIONS:
             continue
         for lid, L in M.get("lines", {}).items():
-            if not isinstance(L, dict) or L.get("who") not in VOICES:
+            who = voice_of(folder, L.get("who")) if isinstance(L, dict) else None
+            if who is None:
                 continue
             if os.path.exists(os.path.join(ROOT, "campaign", "voice", folder, lid + ".ogg")):
                 continue
             text = str(L.get("text", "")).replace("|", ",").replace("\n", " ").strip()
             if text:
-                by_who[L["who"]].append(("%s__%s" % (folder, lid), text))
+                by_who[who].append(("%s__%s" % (folder, lid), text))
     return by_who
 
 

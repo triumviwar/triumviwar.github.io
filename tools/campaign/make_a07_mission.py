@@ -227,6 +227,7 @@ M = {
     "summary": "Rome, Lent 2770. The Church sits in council on the new machines and the new creatures. That night the city burns, the specimens break loose and the automata go wrong: the King holds the bridges until dawn.",
     "map": "campaign:rome_council",
     "voice": "a07",
+    "music": "mission_a07",
     "light": "dusk",
     "expansion_spots": False,
     "manual_end": True,

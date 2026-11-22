@@ -48,10 +48,10 @@ func _initialize() -> void:
 		for stem in Music.pieces(f, "battle"):
 			check(not Music.ROLES.has(stem), "%s full battle pool has no role piece (%s)" % [f, stem])
 	# the Brood's twenty generated pieces in the Crown's shape, plus the owner's four ElevenLabs pieces (one per mood)
-	check(Music.all_pieces("brood").size() == 24, "the Brood has 24 pieces (%d)" % Music.all_pieces("brood").size())
+	check(Music.all_pieces("brood").size() == 25, "the Brood has 25 pieces (%d)" % Music.all_pieces("brood").size())
 	check(Music.pieces("brood", "open").size() >= 3, "the Brood has its three opening pieces")
 	check(Music.pieces("brood", "skirmish").size() == 4, "the Brood has four skirmish pieces")
-	check(Music.pieces("brood", "battle").size() == 9, "the Brood has nine full battle pieces")
+	check(Music.pieces("brood", "battle").size() == 10, "the Brood has ten full battle pieces")
 	check(Music.pieces("brood", "peace").size() == 8, "the Brood has eight calm pieces")
 	# the ElevenLabs pieces (job music-elevenlabs): each in its role, featured, and the menu theme heard first
 	var want := {"crown_battle_12": "open", "crown_battle_13": "skirmish", "crown_battle_14": "battle",

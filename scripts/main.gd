@@ -1580,6 +1580,11 @@ func show_music() -> void:
 	ov.add_child(UiStyle.heading("OVERTURES", 18, UiStyle.TRIM))
 	for stem in Music.menu_pieces():
 		ov.add_child(_track_row(stem, titles.get(stem, stem), "menu"))
+	var camp: Array = Music.campaign_pieces()
+	if not camp.is_empty():
+		ov.add_child(UiStyle.heading("CAMPAIGN", 18, UiStyle.TRIM))
+		for stem in camp:
+			ov.add_child(_track_row(stem, titles.get(stem, stem), "menu"))
 	var back := _button("BACK", func() -> void:
 		Music.me.menu()
 		show_settings())
@@ -3230,7 +3235,8 @@ func start(cfg: Dictionary = {}) -> void:
 	for t in game.n_players():
 		if game.hostile(t, game.human):
 			foes.append(game.faction_of(t))
-	Music.me.match_started(game.faction_of(game.human), foes)
+	Music.me.match_started(game.faction_of(game.human), foes,
+			String(game.mission.data.get("music", "")) if game.mission else "")
 	var amb: String = game.mapgen.biome_a if game.mapgen else ""
 	Music.me.ambience(String(MapGen.BIOMES.get(amb, {}).get("amb", amb)))
 	if cfg.has("resume"):

@@ -155,3 +155,24 @@ gives a featured piece about 3x the plays of a generated one.
 about 3x a round, every other overture still plays; in a match a calm piece never follows itself, Dawn Over the
 Colony plays ~3x as often as a generated calm piece, every generated one still plays. `tools/test_music_clock.gd`
 counts the Clockwork's 24 pieces. All pass, as do test_music_mix and test_band_music.
+
+## The second batch (2026-11-22)
+
+Made in the owner's second ElevenLabs account (Music v2.5, instrumental; prompts by Claude), mastered by the same
+chain (tools/music/master_elevenlabs.py; sources in art/audio_src/music_elevenlabs/):
+
+| stem | title | where |
+| --- | --- | --- |
+| menu_12 / menu_13 | Clockwork Mourning / Heart of the Mire | menu overtures (the Clockwork's and the Brood's, 2:30) |
+| crown_battle_15 | Ceremonial Advance | Crown opening |
+| crown_battle_16 | Skirmish March | Crown skirmish |
+| crown_battle_17 / 18 | Battle March of Triumph / Battle of the Fallen Banner | Crown full battle |
+| clock_battle_17 | Clockwork Host | Clockwork full battle |
+| brood_battle_17 | Swamp Hunt | Brood full battle |
+| hub_study / hub_workshop / hub_station | The Last Study / Spring-Wound Remembrance / Riverside Station at Night | the campaign hubs, looped (CampaignMenu.HUB_MUSIC; a hub's own "music" wins) |
+| mission_c01 / mission_a07 | The Thirteenth Hour / Fire Over Rome | a mission's "music": played first instead of an opening piece |
+| win_* / defeat_* | Crown of Triumph, Fall of the Crown, Clockwork Triumph, March of Stalled Gears, Reptile War Triumph, Last Beat in the Swamp | the end-of-match stings (30 s; the old win stings replaced, `defeat` kept as the fallback) |
+
+All of them are FEATURED (the battle and menu ones) like the first batch; the old pieces stay in rotation. The
+Barricades of Paris (mission_a06, a06's "music") was made but not yet sent: until its file is in, a06 opens as before.
+Clockwork Mourning was made before the lyrics switch was set to instrumental: if it has a voice in it, remake it.
