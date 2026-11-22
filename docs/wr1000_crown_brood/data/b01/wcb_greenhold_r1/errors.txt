@@ -1,0 +1,4 @@
+3 error lines
+    1  ERROR: Resource file not found: res://assets/buildings/gate_damaged.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Resource file not found: res://assets/buildings/wall_ew_damaged.png (expected type: unknown)  at: _load (core/io/resource_loader.cpp:325)
+    1  ERROR: Parameter "getcwd(real_current_dir_name, 2048)" is null.  at: DirAccessUnix (drivers/unix/dir_access_unix.cpp:739)

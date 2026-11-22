@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.145", "items": [
+		"A FRESH WIN RATE, THE CROWN AGAINST THE BROOD: 170 computer games (Hard against Hard, to 20:00) measured the matchup again in blocks of 10, with one change to the computers' play a block. Today the Brood computer is ahead in 4 games of 5 at 20:00. Ten changes were tried (the Crown's Armoury in time, its siege push held for a big army or sent back to strike after a beaten wave, called home for its base, its labourers kept working or walked away from a coming wave); none was clearly better, so the game plays as before, and each stays behind its own switch for later tests.",
+	]},
 	{"v": "0.38.144", "items": [
 		"THE CLOCKWORK COMPUTER AGAINST ITSELF NO LONGER LOSES TO A DICE THROW: in a Clockwork mirror the computer's opening pick, when its scout sees nothing special, was sometimes the Springer timing (switched to at 3:00 it had almost no army at 8:00 and lost all 4 games it was picked in) or the Economy race (it lost all 7 games against Balanced's waves). In the mirror it now plays Balanced. Measured over 180 Hard games to 20:00: the games end by play, not by the pick, later (the median defeat 15:39 instead of 13:26), and neither start has an edge. Only the mirror changed (switches wkmnospr:off, wkmnoeco:off, or wkm:off for all; the job's other ideas are there to try, off). Also fixed: a Spring Ballista's shot along a line no longer stops with an error when one of the men in it is already gone.",
 	]},

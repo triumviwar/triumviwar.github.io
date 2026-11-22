@@ -228,6 +228,8 @@ func _maybe_go() -> void:
 		big = true                # (crown-mirror-coach: the side ahead presses, AICrownMirror.press_siege)
 	if not big and (guns.size() < GUNS_GO or cannons < 1 or muskets < LINE_GO):
 		return
+	if _brood() and preload("res://scripts/ai_wr1000_crown_brood.gd").push_waits(ai, sup, self):
+		return                  # (wr1000-crown-brood "cap": against the Brood the push goes only as a big army)
 	var mine := 0.0
 	for u in home:
 		mine += float(Game.unit_value(u)) * (GUN_WEIGHT if GUNS.has(u.kind) else 1.0)
@@ -236,6 +238,9 @@ func _maybe_go() -> void:
 	if ai._threat() != Vector2.INF and near >= THREAT_MIN and not (ai.mirror() != null and ai.cm.threat_small(near, mine)):
 		_threat_t = game.clock
 		_stay("an enemy force (%d) is at our buildings" % int(near))
+		return
+	if _brood() and preload("res://scripts/ai_wr1000_crown_brood.gd").counter_now(ai, self, mine, sup, game.clock - _threat_t):
+		_go(home, mine)         # (wr1000-crown-brood "counter": a Brood wave beaten at home: the push goes now)
 		return
 	if game.clock - _threat_t < QUIET and not (ai.mirror() != null and ai.cm.threat_small(near, mine)):
 		_stay("an enemy force was at our buildings %d s ago" % int(game.clock - _threat_t))
@@ -736,6 +741,10 @@ func _lost(mid: Vector2) -> String:
 	var thr: Vector2 = ai._threat()
 	if thr != Vector2.INF and ai.ch.foe_near() > ai.ch.home_value() * 1.3 + 150.0:
 		return "the base is attacked (%d near home)" % int(ai.ch.foe_near())
+	if _brood():
+		var wh: String = preload("res://scripts/ai_wr1000_crown_brood.gd").home_call(ai, men)
+		if wh != "":
+			return wh           # (wr1000-crown-brood "home": the Brood at our buildings, the push itself not counted at home)
 	return ""
 
 
