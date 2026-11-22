@@ -39,6 +39,18 @@ automata that do not think) is tolerated, grudgingly; a self-winding, self-mendi
 exactly what the world swore off. Crowds should fear or hate the guild's machines (c01's gift, a02's Fürth, a04's riot);
 the Machine's spread is the old nightmare come back.
 
+THE BROOD'S ORIGIN AND THE NATURALIST'S ERROR (owner, 2026-11-22 23:37): the Brood did NOT evolve. It is the other half
+of the Post-Modern Age's disaster: the apostasy also played God in its laboratories, ENGINEERING LIFE, and the Brood is
+what those labs made and lost, gone wild in the deep forest. LINDQVIST'S ERROR mirrors Hollweg's: as Hollweg thinks his
+machines can reason, Lindqvist thinks the Brood EVOLVED, a new branch of nature arising by itself, and that he can study
+and breed it like any animal. The Church corrects him as Ferrer corrects Hollweg: these creatures are no work of nature
+or of God's creation left to itself, but a made thing, the old sin of the labs come back. Writers' checks: the Church and
+the King know the old tales (labs, engineered beasts) as they know THE GHOST IN THE MACHINE; Lindqvist speaks of descent,
+selection, a "living fossil" or a "new species" and is wrong; Valadares, a Crown man, distrusts his theory; the truth
+comes out slowly (signs of the made thing: a too-regular build, beasts that obey calls like a design, perhaps old ruins
+or relics in the forest; the owner writes how). The Brood is still not a person: a made thing gone wild, driven by
+instinct, never by a will.
+
 ## The Brood is not a person (owner, 2026-11-19 15:06)
 
 "Brood is not rational... we can't personalize the brood." The Brood is nature, not a people: no creature has a name of
