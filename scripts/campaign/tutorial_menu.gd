@@ -103,7 +103,15 @@ static func show(main: Node) -> void:
 	var back: Button = main._button("BACK", func() -> void: main.show_menu())
 	main._set_back(back)
 	back.custom_minimum_size = Vector2(240, 56)
-	box.add_child(back)
+	# HOW TO PLAY lives here (the owner, 2026-11-22: one menu button for the tutorial and the help pages)
+	var foot := HBoxContainer.new()
+	foot.add_theme_constant_override("separation", 14)
+	box.add_child(foot)
+	foot.add_child(back)
+	var help: Button = main._button("HOW TO PLAY", func() -> void: main.show_help())
+	help.name = "Tutorial_Help"
+	help.custom_minimum_size = Vector2(240, 56)
+	foot.add_child(help)
 
 
 static func start(main: Node, id: String) -> void:

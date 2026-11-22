@@ -1,6 +1,7 @@
 extends SceneTree
 ## THE MAIN MENU'S FLAT GRID (the owner's layout, 2026-10-31): 3 x 3 slots, row by row
-##   TUTORIAL CAMPAIGN SKIRMISH ONLINE / HOW TO PLAY REPLAYS EDITOR SETTINGS / CONTINUE (only with a save) EXIT (not on the web)
+##   TUTORIAL CAMPAIGN SKIRMISH ONLINE / REPLAYS EDITOR SETTINGS EXIT (not on the web) / CONTINUE (only with a save);
+##   HOW TO PLAY is on the TUTORIAL page (owner 2026-11-22)
 ## (4 x 3 since the TUTORIAL, 0.30)
 ## all inside the painting's top-left sky; Esc does nothing on the menu; every page's BACK returns to it;
 ## MATCH LOGS is on the REPLAYS page.
@@ -56,10 +57,10 @@ func _run() -> void:
 	await process_frame
 	await process_frame
 	var b: Dictionary = main.menu_buttons
-	var fixed := ["tutorial", "campaign", "skirmish", "online", "help", "replays", "editor", "settings", "exit"]
+	var fixed := ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit"]
 	var miss := fixed.filter(func(id: String) -> bool: return not b.has(id))
-	_check("the 9 fixed slots", miss.is_empty(), miss)
-	_check("slot order", main.MENU_SLOTS == ["tutorial", "campaign", "skirmish", "online", "help", "replays", "editor", "settings", "continue", "", "", "exit"], main.MENU_SLOTS)
+	_check("the 8 fixed slots", miss.is_empty(), miss)
+	_check("slot order", main.MENU_SLOTS == ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "continue", "", "", ""], main.MENU_SLOTS)
 	_check("CAMPAIGN enabled (0.30.0)", not b["campaign"].disabled, b["campaign"].text)
 	_check("TUTORIAL next to CAMPAIGN (same row)", b["tutorial"].text == "TUTORIAL" and absf(b["tutorial"].position.y - b["campaign"].position.y) < 1.0 and b["tutorial"].position.x < b["campaign"].position.x, [b["tutorial"].position, b["campaign"].position])
 	_check("SKIRMISH text", b["skirmish"].text == "SKIRMISH", b["skirmish"].text)
@@ -89,8 +90,9 @@ func _run() -> void:
 			lap = lap or (rects[i] as Rect2).intersects(rects[j])
 	_check("no two buttons overlap", not lap, rects)
 	_check("button size ~8.2% x 8.5% (or the computer's minimum width)", (absf(b["online"].size.x / vs.x - 0.082) < 0.01 or b["online"].size.x == main.MENU_MIN_PC.x) and absf(b["online"].size.y / vs.y - 0.085) < 0.01, b["online"].size / vs)
-	_check("SETTINGS in row 2, column 4", absf(b["settings"].position.y - b["help"].position.y) < 1.0 and b["settings"].position.x > b["editor"].position.x, b["settings"].position / vs)
-	_check("EXIT in row 3", b["exit"].position.y > b["settings"].position.y, b["exit"].position / vs)
+	_check("SETTINGS in row 2, column 3", absf(b["settings"].position.y - b["replays"].position.y) < 1.0 and b["settings"].position.x > b["editor"].position.x, b["settings"].position / vs)
+	_check("EXIT in row 2, column 4", absf(b["exit"].position.y - b["settings"].position.y) < 1.0 and b["exit"].position.x > b["settings"].position.x, b["exit"].position / vs)
+	_check("no HOW TO PLAY on the menu", not b.has("help"), b.keys())
 	_check("title box", main._menu_title.position.x <= vs.x * 0.01 and main._menu_title.size.x <= vs.x * 0.53 + 1, Rect2(main._menu_title.position, main._menu_title.size))
 	# a phone (2400 x 1080 shows 1600 x 720) and a 4:3 tablet: no smaller than the mobile minimum, still compact
 	for ph in [Vector2(1600, 720), Vector2(1280, 960)]:
@@ -127,7 +129,20 @@ func _run() -> void:
 	# every page's BACK comes back to the main menu
 	await _back_from("TUTORIAL", func() -> void: main.menu_buttons["tutorial"].pressed.emit())
 	await _back_from("SKIRMISH", func() -> void: main.menu_buttons["skirmish"].pressed.emit())
-	await _back_from("HOW TO PLAY", func() -> void: main.menu_buttons["help"].pressed.emit())
+	# HOW TO PLAY from the TUTORIAL page; its BACK goes to the TUTORIAL page
+	main.menu_buttons["tutorial"].pressed.emit()
+	await process_frame
+	var hb: Button = main.find_child("Tutorial_Help", true, false)
+	_check("HOW TO PLAY on the TUTORIAL page", hb != null and hb.text == "HOW TO PLAY", hb)
+	if hb:
+		hb.pressed.emit()
+		await process_frame
+		_esc()
+		await process_frame
+		await process_frame
+		_check("HOW TO PLAY BACK -> TUTORIAL page", main.find_child("Tutorial_Help", true, false) != null, "")
+	main.show_menu()
+	await process_frame
 	await _back_from("REPLAYS", func() -> void: main.menu_buttons["replays"].pressed.emit())
 	await _back_from("EDITOR", func() -> void: main.menu_buttons["editor"].pressed.emit())
 	await _back_from("SETTINGS", func() -> void: main.menu_buttons["settings"].pressed.emit())

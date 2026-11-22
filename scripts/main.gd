@@ -357,14 +357,15 @@ func show_crash(report: String) -> void:
 ## in a box at the top-left (x 0.5%..53%, y 0.5%..9.5% of the screen) and under it a FLAT grid of 4 x 3 slots (3 x 3
 ## until the TUTORIAL came, 0.30: the owner, 2026-11-04, "a TUTORIAL button and a CAMPAIGN button"), every one inside
 ## the painting's empty top-left sky:
-##   TUTORIAL     CAMPAIGN  SKIRMISH (primary)  ONLINE
-##   HOW TO PLAY  REPLAYS   EDITOR              SETTINGS
-##   CONTINUE (only with a save of this version, else empty)  -  -  EXIT (not on the web; under SETTINGS since 0.37.11,
-##   the owner, 2026-11-14 19:50: "move exit button to the right")
+##   TUTORIAL  CAMPAIGN  SKIRMISH (primary)  ONLINE
+##   REPLAYS   EDITOR    SETTINGS            EXIT (not on the web: the slot stays empty)
+##   CONTINUE (only with a save of this version, else empty)
+## HOW TO PLAY is a button on the TUTORIAL page (the owner, 2026-11-22 21:18: "join the how to play and tutorial in only
+## 1 button, tutorial takes priority", EXIT up into the two main rows).
 ## No levels, no submenus: each page's BACK comes back here. MATCH LOGS is on the REPLAYS page. Esc does nothing
 ## here (the phone's back saves and quits, as before). Flags small top-right, the version small bottom-right.
 ## The grid's slot ids, row by row ("" = an empty slot).
-const MENU_SLOTS := ["tutorial", "campaign", "skirmish", "online", "help", "replays", "editor", "settings", "continue", "", "", "exit"]
+const MENU_SLOTS := ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "continue", "", "", ""]
 const MENU_COLS := 4
 ## Fractions of the screen (the owner's mock-up, 1455 x 819): button size, first column / row, the gaps.
 ## (Four columns since the TUTORIAL: each button 8.2% wide instead of 10.5%, the grid as wide as before plus a little.)
@@ -1770,7 +1771,7 @@ func show_help(section := "BASICS") -> void:
 	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	l.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(l)
-	var back := _button("BACK", func() -> void: show_menu())
+	var back := _button("BACK", func() -> void: show_tutorial())      # (HOW TO PLAY lives on the TUTORIAL page)
 	_set_back(back)
 	back.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	back.custom_minimum_size.x = 220

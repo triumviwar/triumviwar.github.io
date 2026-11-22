@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.174", "items": [
+		"The main menu is tidier: HOW TO PLAY is now a button on the TUTORIAL page (its BACK returns there), and EXIT moved up into the second row, beside SETTINGS.",
+	]},
 	{"v": "0.38.173", "items": [
 		"Nothing changes in the game: the author's answers to the worldwide campaign outline are recorded.",
 	]},

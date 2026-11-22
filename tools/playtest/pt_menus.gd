@@ -122,13 +122,16 @@ const SKIP_ROWS := ["device", "layout", "patch_notes", "anim_viewer", "music_pla
 
 func careful() -> void:
 	# every page of the grid, in order
-	for id in ["tutorial", "campaign", "skirmish", "help", "replays", "editor"]:
+	for id in ["tutorial", "campaign", "skirmish", "replays", "editor"]:
 		if not await menu_press(id):
 			continue
 		await look("page_" + id)
 		match id:
-			"help":
-				await walk_help()
+			"tutorial":          # (HOW TO PLAY lives on the TUTORIAL page since 0.38.174)
+				if await press("HOW TO PLAY"):
+					await look("page_help")
+					await walk_help()
+					await back()
 			"replays":
 				if await press("MATCH LOGS"):
 					await look("match_logs")
@@ -437,7 +440,7 @@ func walk_music() -> void:
 # ------------------------------------------------------------------ the fast player
 
 func fast() -> void:
-	for id in ["tutorial", "campaign", "skirmish", "help", "replays", "editor", "settings", "online"]:
+	for id in ["tutorial", "campaign", "skirmish", "replays", "editor", "settings", "online"]:
 		if not main.menu_buttons.has(id):
 			continue
 		var b: Control = main.menu_buttons[id]
