@@ -46,6 +46,7 @@ the same code differ by about 2 in games decided (block 1: 6, block 4: 8), so a 
 2. **The draws are stalls.** After a push that pulled back, the next goes only 1.25 times bigger; under the 200 cap that
    bar can't be met (Greenhold r0, block 1: a push of 7,315 that killed 4,590 for 4,415 asks 9,143; the side sits at the cap
    with 6,000 cogs to 20:00). Every draw had 5-9 such holds per side after 12:00.
+   (Waiving that bar, `cap`, made it worse three times: more pushes into the other side's gears, fewer games decided.)
 3. **Feeding.** An enemy push far stronger than the army at home, standing AT its gathering point, was met by whatever was
    there: 1, 2, 5 units at a time (Greenhold r0, block 4: 62 lost for 13, out at 12:26).
 4. **Pushes on a stale reckoning** ("goes out worth 7,040 against the 1,580 it reckons, a report 31 s old") meet the whole
