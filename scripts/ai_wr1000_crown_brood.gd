@@ -160,8 +160,116 @@ static func labs_free(ai) -> bool:
 	return true
 
 
+# ------------------------------------------------------------------ change "evac": the labourers leave a hall the Brood comes to
+## (blocks 1 and 3, 20 games: the Crown lost 1,098 labourers, about 50 a game, 1,000 of them from 12:00 on, while the
+## Brood's capped waves took one outlying hall after another; a labourer (74) cannot outrun a Raptor (92, 114 with Pack
+## Hunt), and AI._worker_safety only runs them once the creatures are within FLEE_R of them.) Against the Brood, when a
+## Brood force worth EVAC_MIN or more is in sight within EVAC_R tiles of one of our built halls and the soldiers there are
+## worth less than EVAC_K times it, the labourers within EVAC_WORK tiles of that hall walk to the safest other hall (the
+## farthest from the force, not threatened itself) and come back to their posts once the force there is gone (or after
+## EVAC_MAX s).
+const EVAC_MIN := 400.0
+const EVAC_R := 16.0
+const EVAC_WORK := 15.0
+const EVAC_K := 1.0
+const EVAC_MAX := 90.0
+static var evac := {}           # team -> {labourer: {"since", "hall", "e"}}
+static var evac_sent := {}      # team -> labourers sent away (the counter)
+static var _evac_t := {}        # team -> clock of the last look
+
+
+static func _threat_at(ai, h: Building) -> Array:
+	var c: Vector2 = h.center()
+	var foe := 0.0
+	var mid := Vector2.ZERO
+	var n := 0
+	var mine := 0.0
+	for u in ai.game.units_near(c, EVAC_R * Defs.TILE):
+		if u.dead or u.off_field or not u.has_attack() or u.is_worker():
+			continue
+		if ai.game.hostile(u.team, ai.team):
+			if ai.game.is_visible_to(ai.team, u.position) and not AIHarass.is_static(u):
+				foe += float(Game.unit_value(u))
+				mid += u.position
+				n += 1
+		elif u.team == ai.team and u.kind != "powder_wagon":
+			mine += float(Game.unit_value(u))
+	return [foe, mid / float(maxi(1, n)), mine]
+
+
+static func evac_tick(ai) -> void:
+	if not (ai is AICrown) or not vs_brood(ai, "evac"):
+		return
+	var t: int = ai.team
+	if ai.game.clock - float(_evac_t.get(t, -9.0)) < 1.0:
+		return
+	_evac_t[t] = ai.game.clock
+	if not evac.has(t):
+		evac[t] = {}
+	var mine_e: Dictionary = evac[t]
+	var halls: Array = ai._halls().filter(func(h: Building) -> bool: return h.built and not h.dead)
+	var hot := {}
+	for h in halls:
+		var th := _threat_at(ai, h)
+		if float(th[0]) >= EVAC_MIN and float(th[2]) < EVAC_K * float(th[0]):
+			hot[h] = th
+	# the labourers of a hot hall go
+	for h in hot:
+		var th: Array = hot[h]
+		var safe: Building = null
+		var bd := -1.0
+		for o in halls:
+			if hot.has(o):
+				continue
+			var d: float = o.center().distance_to(th[1])
+			if d > bd:
+				bd = d
+				safe = o
+		if safe == null:
+			continue        # (every hall is hit: AI._worker_safety's own running is all that is left)
+		for w in ai.game.workers(t):
+			if w.dead or mine_e.has(w) or w.keg or ai._escort.has(w) or ai._fighters.has(w):
+				continue
+			if ai.scout != null and ai.scout.is_scout(w):
+				continue
+			if w.position.distance_to(h.center()) > EVAC_WORK * Defs.TILE:
+				continue
+			var e := {"since": ai.game.clock, "site": w.home_mine if w.order == "gather" else null,
+				"build": w.order_target if w.order == "build" else null}
+			mine_e[w] = {"since": ai.game.clock, "hall": h, "e": e}
+			evac_sent[t] = int(evac_sent.get(t, 0)) + 1
+	# keep them away while their hall is hot; back to work once it is calm
+	for w in mine_e.keys():
+		if not is_instance_valid(w) or w.dead:
+			mine_e.erase(w)
+			continue
+		var r: Dictionary = mine_e[w]
+		var h = r["hall"]
+		var calm: bool = not is_instance_valid(h) or h.dead or not hot.has(h)
+		if calm or ai.game.clock - float(r["since"]) > EVAC_MAX:
+			mine_e.erase(w)
+			ai._fled.erase(w)
+			ai._resume(w, r["e"])
+			continue
+		var th: Array = hot[h]
+		var safe: Building = null
+		var bd := -1.0
+		for o in halls:
+			if hot.has(o):
+				continue
+			var d: float = o.center().distance_to(th[1])
+			if d > bd:
+				bd = d
+				safe = o
+		if safe == null:
+			continue
+		ai._fled[w] = r["e"].merged({"since": ai.game.clock})
+		if w.order != "move" and w.position.distance_to(safe.center()) > 3.0 * Defs.TILE:
+			w.cmd_move(safe.center() + Vector2(randf_range(-60, 60), randf_range(-60, 60)))
+
+
 ## (qa_match's result.json "crown_ai": what this job's changes did)
 static func counters(team: int) -> Dictionary:
 	return {"wcb_arm_freed": int(arm_freed.get(team, 0)), "wcb_cap_waits": int(cap_waits.get(team, 0)),
 		"wcb_counters": int(counters_sent.get(team, 0)), "wcb_home_calls": int(home_calls.get(team, 0)),
-		"wcb_labs_looks": int(labs_looks.get(team, 0))}
+		"wcb_labs_looks": int(labs_looks.get(team, 0)), "wcb_evac_sent": int(evac_sent.get(team, 0))}

@@ -1883,6 +1883,8 @@ func _workers() -> void:
 	_escort = _escort.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead)
 	_repair_wall()
 	_worker_safety()
+	if _crown():
+		preload("res://scripts/ai_wr1000_crown_brood.gd").evac_tick(self)      # (wr1000-crown-brood "evac")
 	for u in labs:
 		# (not the scout: idle a moment on its way, it was sent to a Farm and the trip ended "pulled away", ai-optimal)
 		if u.order == "idle" and u.can_gather() and not _escort.has(u) and not _fled.has(u) and not _held_worker(u) and not (scout != null and scout.is_scout(u)):
