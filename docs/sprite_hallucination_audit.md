@@ -152,6 +152,9 @@ collage (its answer drew the horse facing the viewer in the first frames).
 0.38.148: 186 the Missionary's north bandage shows his back (the kneeling priest from missionary_bandage_c laid over
 the old patient); 35, 125 the rebel Pikeman's brace and thrust S and SE redrawn with the pike level (M116, M117: one
 answer of 4 frames each, cut into brace (frame 1) and attack (frames 2-4)); 124 his north thrust at one slant (M118).
+0.38.149: 33 the Crown campaign Pikeman's north-east walk frame 1 (two pike shafts) replaced by frame 3; 188 the Powder
+Wagon's south-east walk frames 0-1 (more front-on) replaced by frames 4-5; 102 the Spitter's east spit frame 3 gets frame 2's
+full tail.
 
 ## Redraw requests for the HIGH findings
 
