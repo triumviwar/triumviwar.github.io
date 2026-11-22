@@ -24,3 +24,11 @@ static func on(name: String) -> bool:
 ## The Crown computer `ai` faces another Crown (the mirror's coach is alive): this job's changes may act.
 static func mirror(ai) -> bool:
 	return ai != null and ai.has_method("mirror") and ai.mirror() != null
+
+
+## CHANGE `cut` (block 3): the crown-rule-cleanup's CUT against the Clockwork (the army clock and floor, the fight group,
+## the hold; AICrownRules.CUT["clockwork"]) played in the mirror too. That job measured them as harm for the Crown against
+## the Clockwork and left the mirror open ("cannot be measured by switching both sides"): here both sides switch and the
+## measure is how decisive the games get. Called by AICrownRules.cut when the enemy is a Crown.
+static func cut(name: String) -> bool:
+	return on("cut") and (AICrownRules.CUT["clockwork"] as Array).has(name)

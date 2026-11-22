@@ -39,4 +39,6 @@ static func cut(ai, name: String) -> bool:
 	var f: int = ai._foe()
 	if f < 0 or ai.game.faction_of(ai.team) != "crown":
 		return false
+	if ai.game.faction_of(f) == "crown":
+		return AIWr1000CrownMirror.cut(name)      # (wr1000-crown-mirror: its mirror experiments, docs/wr1000_crown_mirror.md)
 	return (CUT.get(ai.game.faction_of(f), []) as Array).has(name)
