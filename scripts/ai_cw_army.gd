@@ -259,12 +259,13 @@ func _counter_ok(mine: float) -> bool:
 	if not counter_on or game.clock - _held_t > COUNTER_T:
 		return false
 	var foe := _foe()
-	if foe < 0 or game.faction_of(foe) != "brood":
+	var wkm := WkM.counter_on(self, foe)          # (wr1000-clockwork-mirror "counter")
+	if foe < 0 or (game.faction_of(foe) != "brood" and not wkm):
 		return false
 	var seen: float = ai.push.foe_mem() if ai.push != null else 0.0
 	# (round 2, Greenhold 11 at 12:03: a counter of 950 went out against "135 seen alive" while the Brood had 1,500 coming:
 	# at least COUNTER_TAB of the reckoning's table for that minute too)
-	var tab: Array = TABLES.get("brood", [])
+	var tab: Array = TABLES.get("clockwork" if wkm else "brood", [])
 	if mine < maxf(maxf(COUNTER_MIN, seen * COUNTER_K), table_at(tab, game.clock) * COUNTER_TAB):
 		return false
 	_held_t = -999.0

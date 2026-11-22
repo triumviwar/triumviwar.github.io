@@ -182,3 +182,15 @@ static func fall_back(army, home: Array, mine: float, bv: float, spot: Vector2, 
 	army.defenders.clear()
 	army.say("a push worth %d at its gathering point is far stronger than its %d: the army does not feed it, it gathers at the Clocktower %s away from it" % [int(bv), int(mine), army._where(to)], "wkmfeed", 30.0)
 	return true
+
+
+## CHANGE "counter" (block 8). The mirror's pushes go out on a reckoning of the enemy army up to two minutes old and meet
+## it grown by half: "goes out worth 3,605 against the 2,463 it reckons", then "pulls back (the enemy's army comes, worth
+## 3,505 against its 2,460), killed 345" (Hollowfen r0, block 5, 11:10-12:06); both sides do it in turn and the game is
+## decided by who throws the bigger stone. The moment a push is weakest is when it has just broken on the other side's
+## gears. The Clockwork has that rule against the Brood only (AICwArmy._counter_ok, clockwork-v-brood-coach): when the whole
+## army's defence of the base killed 600 or more and the base is calm again, for 75 s it goes out at 1.4 times the enemy army
+## it has seen alive lately (900 at least, 70% of the reckoning's table for the minute), whatever the last failed push says.
+## In the mirror it now counter-attacks the same way (the Clockwork's own table).
+static func counter_on(army, foe: int) -> bool:
+	return on("counter") and mirror(army.game, army.team, foe)
