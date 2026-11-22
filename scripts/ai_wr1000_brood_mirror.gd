@@ -411,3 +411,72 @@ static func grubs_tick(ai) -> void:
 		best.cmd_sacrifice()
 		w["grub_off_t"] = g.clock
 		w["grubs_off"] = int(w.get("grubs_off", 0)) + 1
+
+
+## The one hook in AIBroodNew._nb_wave_tick: true = it steered the wave this think (the rest is skipped).
+static func wave_tick(ai, q, mid: Vector2) -> bool:
+	if not mirror(ai):
+		return false
+	if chase_tick(ai, q, mid):
+		return true
+	sire_snipe(ai, mid)
+	return false
+
+
+# ------------------------------------------------------------------ THE SIRES FIRST (`wbmsires`)
+## THE SIRES FIRST (blocks 1-6: a wave at the enemy Mother met an army refilled from her clutch as fast as it was killed:
+## at the cap with 2,000-7,000 food banked, 20 eggs a clutch hatch 40-60 Raptors in half a minute, so a broken wave was
+## remade before the next one came, and no wave got through. A warrior egg needs its Sire rooted beside her: the Sires are
+## the enemy's army to come). A wave within SIRE_R tiles of the enemy Mother that sees one of her Sires sends a squad at
+## him: the creatures nearest him that are not biting a warrior beside them, worth SIRE_SQUAD of his health in damage a
+## second or a third of the wave at most; the Tyrant Sire (the Raptor line) first. Every 2 s.
+const SIRE_R := 20.0
+const SIRE_SQUAD := 0.06          # (the squad's damage a second: 6% of his health: about 15 s to fell him)
+
+
+static func sire_snipe(ai, mid: Vector2) -> void:
+	if not on("sires") or ai._wave.is_empty():
+		return
+	var w: Dictionary = ai.wbm
+	if ai.game.clock - float(w.get("sire_t", -9.0)) < 2.0:
+		return
+	w["sire_t"] = ai.game.clock
+	var foe: int = ai._foe()
+	var fq: Unit = BroodNew.queen(ai.game, foe) if foe >= 0 else null
+	if fq == null or mid.distance_to(fq.position) > SIRE_R * Defs.TILE:
+		return
+	var best: Unit = null
+	for fk in BroodNew.FATHERS:
+		var f: Unit = BroodNew.father(ai.game, foe, fk)
+		if f == null or f.dead or not ai.game.is_visible_to(ai.team, f.position) or f.position.distance_to(mid) > SIRE_R * Defs.TILE:
+			continue
+		if best == null or (f.kind == BroodNew.FATHER and best.kind != BroodNew.FATHER) \
+				or (f.kind == best.kind and f.position.distance_to(mid) < best.position.distance_to(mid)):
+			best = f
+	if best == null:
+		return
+	var on_him: Array = ai._wave.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead and u.target == best)
+	var dps := 0.0
+	for u in on_him:
+		dps += float(u.d.get("damage", 0)) / maxf(0.3, float(u.d.get("cooldown", 1.0)))
+	var want := float(best.max_hp) * SIRE_SQUAD
+	if dps >= want or on_him.size() * 3 >= ai._wave.size():
+		return
+	var cands: Array = ai._wave.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead and u.target != best \
+		and not BroodNew.is_father(u.kind) and not u.is_air() and u.position.distance_to(best.position) < 14.0 * Defs.TILE)
+	cands.sort_custom(func(a, b) -> bool: return a.position.distance_to(best.position) < b.position.distance_to(best.position))
+	var n := 0
+	for u in cands:
+		if dps >= want or (on_him.size() + n) * 3 >= ai._wave.size():
+			break
+		var tg = u.target
+		if is_instance_valid(tg) and tg is Unit and not tg.dead and (tg as Unit).has_attack() and not (tg as Unit).is_worker() \
+				and not (tg as Unit)._k_nb and (tg as Unit).position.distance_to(u.position) < 2.0 * Defs.TILE:
+			continue          # (biting a warrior beside it: it finishes that fight)
+		u.cmd_attack(best)
+		dps += float(u.d.get("damage", 0)) / maxf(0.3, float(u.d.get("cooldown", 1.0)))
+		n += 1
+	if n > 0 and ai.game.clock - float(w.get("sire_said", -99.0)) > 20.0:
+		w["sire_said"] = ai.game.clock
+		w["sire_sends"] = int(w.get("sire_sends", 0)) + 1
+		ai.say("sends %d at the enemy %s (%d of %d health)" % [n + on_him.size(), String(Defs.UNITS[best.kind]["name"]), int(best.hp), int(best.max_hp)])

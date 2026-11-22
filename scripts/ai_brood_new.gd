@@ -3712,7 +3712,7 @@ func _nb_wave_tick(q: Unit, army: Array) -> void:
 		say("pulls back: %d of %d left, %d ahead (killed %d)" % [int(left), int(_wave_v0), int(ahead), gained])
 		_wave_end_nb(q, gained < _wave_v0 * 0.6)
 		return
-	if AIWr1000BroodMirror.chase_tick(self, q, mid):          # (wr1000-brood-mirror: a chase of a beaten army)
+	if AIWr1000BroodMirror.wave_tick(self, q, mid):          # (wr1000-brood-mirror: its own wave steering in the mirror)
 		return
 	# THE RAID KEEPS AT ITS PREY (brood-rush-coach): riders who ride off are not chased out into the open
 	_nb_wave_no_chase(mid)
