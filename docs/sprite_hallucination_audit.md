@@ -136,6 +136,9 @@ Soldier's loose heel speck in guard_walk_e removed; 146 the Pendulum's north and
 E redrawn in order and at one size (M107, M108; E is now 4 frames).
 0.38.138: 86 the mounted Missionary's east walk keeps its cross in every frame (M109); 87 his south walk comes toward
 you, the horse head-on (M110).
+0.38.139: 47 the Springer's attack_up keeps its drill arm (the claw arm replaced by the idle frame's drill arm, every
+facing); 48 its death: the two standing frames get the drill arms too (the tumbling wreck keeps the old drawing);
+44 the Pendulum's high swing S and N: the resting hand gets its blade (copied from the other strip's rest pose).
 
 ## Redraw requests for the HIGH findings
 

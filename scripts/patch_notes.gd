@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.139", "items": [
+		"ART FIXES: the Springer keeps its two drill arms when it shoots at a flyer and as it is hit (one arm turned into a claw); the Pendulum swinging at a flyer while facing toward or away from you keeps the blade on its other hand.",
+	]},
 	{"v": "0.38.138", "items": [
 		"THE MOUNTED MISSIONARY: riding sideways he keeps his processional cross in every step (it vanished every few steps), and riding toward you he and his horse face you (they rode sideways).",
 	]},

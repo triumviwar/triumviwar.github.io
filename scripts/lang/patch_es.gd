@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.139": ["ARREGLOS DE ARTE: el Saltador conserva sus dos brazos de taladro al disparar a un volador y al ser alcanzado (un brazo se volvía pinza); el Péndulo golpeando a un volador de frente o de espaldas conserva la hoja en la otra mano."],
 	"0.38.138": ["EL MISIONERO MONTADO: cabalgando de lado sostiene su cruz procesional en cada paso (desaparecía cada pocos pasos), y cabalgando hacia ti él y su caballo te miran (cabalgaban de lado)."],
 	"0.38.137": ["MUERTES DIBUJADAS PARA CADA DIRECCIÓN: el Oficial a pie cae hacia donde mira (siempre caía a la derecha); la caída del Misionero se redibujó en orden y a un solo tamaño (se enredaba y encogía)."],
 	"0.38.136": ["ARREGLOS DE ARTE: el Mortero dispara desde su propio cañón pequeño (el disparo mostraba un cañón mayor) y sus restos ya no se hunden en el suelo; los restos de la Balista de Resorte ya no tienen el resorte cortado arriba; el Búho de Cuerda volando arriba a la derecha ya no te muestra la cara a cada aleteo; el Péndulo caminando alejándose ya no sube y baja del suelo; desapareció una mota suelta tras el talón del Soldado de Reloj."],
