@@ -207,6 +207,7 @@ func hz() -> AIHarass:
 ## `-- swarm:off` on the command line plays the computer as before (0.25.26), for study games.
 const AISwarm := preload("res://scripts/ai_swarm.gd")
 const AICwBrood := preload("res://scripts/ai_cw_brood.gd")      # (clockwork-v-brood-coach-2)
+const WkB := preload("res://scripts/ai_wr1000_clockwork_brood.gd")      # (wr1000-clockwork-brood)
 var swarm_ai = null
 var sw_on := not OS.get_cmdline_user_args().has("swarm:off")
 
@@ -1042,6 +1043,7 @@ func _tier2(t: float) -> void:
 	_heavy_hold()          # (the Heavy Works' cogs, held back on every think)
 	_springer_works()          # (its own clock; the gold it wants is held back on every think)
 	_fresh_spring()            # (MAINSPRINGS EXHAUST: a new one by a fresh Clocktower once the old ones are fatigued)
+	WkB.more_springs(self)     # (wr1000-clockwork-brood: a Mainspring at every Clocktower v the Brood, `wkbsprings`)
 	_research_keep = 0.0
 	if not springs.is_empty():
 		_shield_research()
