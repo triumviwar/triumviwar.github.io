@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.136": ["ARREGLOS DE ARTE: el Mortero dispara desde su propio cañón pequeño (el disparo mostraba un cañón mayor) y sus restos ya no se hunden en el suelo; los restos de la Balista de Resorte ya no tienen el resorte cortado arriba; el Búho de Cuerda volando arriba a la derecha ya no te muestra la cara a cada aleteo; el Péndulo caminando alejándose ya no sube y baja del suelo; desapareció una mota suelta tras el talón del Soldado de Reloj."],
 	"0.38.135": ["EL NETTER TE MIRA: caminando, disparando y rompiéndose hacia abajo en la pantalla, ahora muestra su extremo redondo delantero (mostraba su lado largo, como si caminara de lado)."],
 	"0.38.134": ["EL OFICIAL A PIE GOLPEA HACIA DONDE MIRA: su tajo de sable se dibuja hacia ti, abajo a la derecha, arriba a la derecha y alejándose de ti (todas las direcciones usaban la misma imagen golpeando a la derecha)."],
 	"0.38.133": ["EL OFICIAL A PIE APUNTA HACIA DONDE MIRA: un Oficial sin caballo ahora apunta y dispara la pistola hacia ti, abajo a la derecha, arriba a la derecha y alejándose de ti (todas las direcciones usaban la misma imagen apuntando a la derecha)."],

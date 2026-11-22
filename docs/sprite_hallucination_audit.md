@@ -127,6 +127,11 @@ redrawn (requests M92-M95, one sheet a facing: the aim frame and two fire frames
 0.38.134: his sabre slash too, in S, SE, NE and N (M96-M99). His death is still the east picture in every facing.
 0.38.135: 43 the Netter's south view redrawn end-on (walk_s 8 frames, attack_s 6, death_s 5; idle_s from the new walk;
 requests M100-M102): the barrel points at you, as the north view shows its back.
+0.38.136: 53 the Ticking Owl's north-east fly loop starts from behind (frame 0 was the owl turned east; now the north view's
+wings-up frame, laid on the body); 61 the Mortar's shot is the small bronze mortar with the flash and smoke at its mouth
+(frame 0 was a bigger black barrel); 165 its wreck lifted onto the ground line; 39 the Spring Ballista's wreck: a
+drawing that reached over the cell's top made just small enough to fit (tools/import_ballista.py); 139 the Clock
+Soldier's loose heel speck in guard_walk_e removed; 146 the Pendulum's north and north-east walk on one ground line.
 
 ## Redraw requests for the HIGH findings
 

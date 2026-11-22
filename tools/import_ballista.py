@@ -205,10 +205,13 @@ def wreck_frames(se_fired, cw, ch, cax, cay):
     bx0, bx1, by0, by1 = body(pieces[0])
     # the first drawing (just hit, still whole) as big as the SE fired machine: the smaller of the width and height ratios
     s = GS * min((xs.max() + 1 - xs.min()) / float(bx1 - bx0), (ys.max() + 1 - ys.min()) / float(by1 - by0))
+    # (audit finding 39: the flying spring and the smoke of drawings 2 and 3 were cut by the cell's top, and drawing 2
+    # looked bigger than the others: a drawing that would reach over the top is made just small enough to fit)
     for o in pieces:
         x0, x1, y0, y1 = body(o)
+        si = min(s, (cay - 1) / float(y1))
         # (each on the ground line of its own machine body, centred on it)
-        _wreck_memo.append(cw_palette.snap_team(place(recolour(o), (x0 + x1) / 2.0, float(y1), cw, ch, cax, cay, s)))
+        _wreck_memo.append(cw_palette.snap_team(place(recolour(o), (x0 + x1) / 2.0, float(y1), cw, ch, cax, cay, si)))
     return _wreck_memo
 
 
