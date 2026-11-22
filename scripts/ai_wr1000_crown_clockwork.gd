@@ -101,3 +101,19 @@ static func cw_table(ai, tab: Array) -> Array:
 
 static func cw_recent(ai) -> bool:
 	return on("reckon") and vs(ai, "clockwork")
+
+
+# ------------------------------------------------------------------ decoy: the diversion goes back once
+
+## Block 1, Hollowfen: the Springer timing's diversion (AISpringerRaid._decoy_tick) "goes back to the army (4 Clock Soldiers)"
+## 410 times in 9 minutes: once the opening is over and the raid never leapt, the refill takes four Clock Soldiers from the
+## army each think and the next think sends them back, so they walk to and fro between the army and the enemy's ramp. Here
+## (the Clockwork computer against the Crown) once the diversion has gone back, it is not filled again.
+static func decoy_back(raid) -> void:
+	if on("decoy") and vs(raid.ai, "clockwork"):
+		raid.set_meta("wcc_decoy_back", true)
+		count(raid.ai, "decoy")
+
+
+static func decoy_done(raid) -> bool:
+	return raid.has_meta("wcc_decoy_back")

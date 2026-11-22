@@ -170,7 +170,7 @@ func tick() -> void:
 ## its Clock Soldiers go back to the shared army.
 func _decoy_tick() -> void:
 	decoys = decoys.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead)
-	if leaps == 0 and phase in ["gather", "march", "set"] and decoys.size() < int(ai.plan.get("decoys", 4)):
+	if leaps == 0 and phase in ["gather", "march", "set"] and decoys.size() < int(ai.plan.get("decoys", 4)) and not AIWccr.decoy_done(self):
 		# (the Clock Soldiers made for it after the raid set off join it on the way)
 		for u in game.army(team):
 			if u.kind == "clock_soldier" and not u.dead and not decoys.has(u) and not ai._on_errand(u) and decoys.size() < int(ai.plan.get("decoys", 4)):
@@ -180,6 +180,7 @@ func _decoy_tick() -> void:
 	if not ai.bo_on and (phase == "home" or game.clock - float(log_t.get("decoy_t", game.clock)) > 150.0):
 		say("the diversion goes back to the army (%d Clock Soldiers)" % decoys.size())
 		decoys.clear()
+		AIWccr.decoy_back(self)        # (wr1000-crown-clockwork: not filled again)
 		return
 	if not log_t.has("decoy_t"):
 		log_t["decoy_t"] = game.clock
