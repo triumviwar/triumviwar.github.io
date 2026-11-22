@@ -183,7 +183,7 @@ func dfn_move(u: Unit, spot: Vector2) -> bool:
 
 
 func party_wait() -> bool:
-	return dfn != null and dfn.party_wait()
+	return (dfn != null and dfn.party_wait()) or AIWr1000CrownMirror.maxed(self)     # (wr1000-crown-mirror "maxed")
 
 
 func _def_hold(army: Array, spots: Array) -> bool:

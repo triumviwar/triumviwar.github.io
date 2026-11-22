@@ -99,6 +99,8 @@ static func lab_top(ai, top: int, built: int) -> int:
 static func army_tick(ai) -> void:
 	if on("behind"):
 		_behind(ai)
+	if on("maxed"):
+		_maxed_go(ai)
 
 
 ## CHANGE `behind`: THE SIDE BEHIND KEEPS ITS ARMY. Block 3, Dune Sea r0: P1, behind after a lost field fight at 8:49
@@ -140,3 +142,42 @@ static func _behind(ai) -> void:
 			game.mlog.add("%s is not behind any more: its waves go again (wr1000 behind)" % game.mlog.who(ai.team))
 	elif held:
 		ai._attack_at = maxi(ai._attack_at, HOLD_BAR)
+
+
+## CHANGE `maxed`: AT THE SUPPLY CAP, THE ARMY GOES. 52 of the 200 sides of blocks 1-10 reached the 200 cap (180 or more
+## of it used), 42 of them with 1,000 gold or more banked. Block 10, Greenhold r1: P1 at 200/200 from 16:00 with 3,060 of
+## army against 1,585, 95 labourers, its bank 4,687 at 16:00 and 16,971 at 20:00; its waves went out with 23 supply while
+## up to five balloon parties of four Musketeers each flew at Farms. The enemy was beaten only at 20:00. Now, from
+## MAXED_FROM, a side within MAXED_ROOM supply of a cap of MAXED_CAP or more with MAXED_BANK gold or more sends the army it
+## has ready at once (the wave's bar comes down to it, as the mirror coach's press does: 85%) and forms no new balloon
+## party (the Musketeers stay with the army). A Siege push already goes at the cap by itself (AICrownSiege: "big").
+const MAXED_FROM := 600.0
+const MAXED_ROOM := 8
+const MAXED_CAP := 180
+const MAXED_BANK := 600
+const MAXED_SAY := 60.0
+
+
+static func maxed(ai) -> bool:
+	if not on("maxed") or not mirror(ai):
+		return false
+	var game = ai.game
+	return game.clock >= MAXED_FROM and game.max_supply(ai.team) >= MAXED_CAP \
+			and game.supply_used(ai.team) >= game.max_supply(ai.team) - MAXED_ROOM and int(game.players[ai.team]["gold"]) >= MAXED_BANK
+
+
+static func _maxed_go(ai) -> void:
+	if ai._attacking or ai.siege != null or ai.peaceful or not maxed(ai) or ai._threat() != Vector2.INF:
+		return
+	var game = ai.game
+	var hz = ai.harass
+	var ready: Array = game.army(ai.team).filter(func(u: Unit) -> bool: return not ai._raiders.has(u) and u.kind != "powder_wagon" \
+			and not u.is_worker() and u.armed() and not ai._on_errand(u) and not (hz != null and hz.has(u)) and not ai._horse_coming(u))
+	var sup: int = maxi(6, int(ai._army_supply(ready) * 0.85))
+	if ai._army_supply(ready) < 12 or sup >= ai._attack_at:
+		return
+	ai._attack_at = sup
+	AICrownRules.fire(ai, "wcm_maxed")
+	if game.mlog and game.clock - float(ai.get_meta("wcm_maxed_said", -99.0)) > MAXED_SAY:
+		ai.set_meta("wcm_maxed_said", game.clock)
+		game.mlog.add("%s is at its supply cap with %d gold: the army it has ready goes now (%d supply) (wr1000 maxed)" % [game.mlog.who(ai.team), int(game.players[ai.team]["gold"]), sup])
