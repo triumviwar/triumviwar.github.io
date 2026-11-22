@@ -139,6 +139,9 @@ you, the horse head-on (M110).
 0.38.139: 47 the Springer's attack_up keeps its drill arm (the claw arm replaced by the idle frame's drill arm, every
 facing); 48 its death: the two standing frames get the drill arms too (the tumbling wreck keeps the old drawing);
 44 the Pendulum's high swing S and N: the resting hand gets its blade (copied from the other strip's rest pose).
+0.38.140: 36, 127 the torch-bearer's loose specks while setting fire removed; 114 the Powder Mill horse's navy specks painted
+over; 130 the King's pink pipe smoke made grey and the pink fleck in his hair (hub figure and portrait) removed; 137 the
+pink fringe under the war map's mountains removed; 151 the musicians' death on the feet line.
 
 ## Redraw requests for the HIGH findings
 

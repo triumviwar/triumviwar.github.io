@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.140", "items": [
+		"SMALL ART CLEAN-UPS: the King's pipe smoke is grey (it was pink) and a pink fleck in his hair is gone; no pink fringe under the war map's mountains; no blue specks on the Powder Mill horse; no loose sparks around the rebel torch-bearer; the musicians no longer sink into the ground when they fall.",
+	]},
 	{"v": "0.38.139", "items": [
 		"ART FIXES: the Springer keeps its two drill arms when it shoots at a flyer and as it is hit (one arm turned into a claw); the Pendulum swinging at a flyer while facing toward or away from you keeps the blade on its other hand.",
 	]},

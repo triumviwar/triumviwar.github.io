@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.140": ["PEQUEÑAS LIMPIEZAS DE ARTE: el humo de la pipa del Rey es gris (era rosa) y desapareció una mancha rosa en su pelo; sin borde rosa bajo las montañas del mapa de guerra; sin motas azules en el caballo del Molino de Pólvora; sin chispas sueltas alrededor del rebelde de la antorcha; los músicos ya no se hunden en el suelo al caer."],
 	"0.38.139": ["ARREGLOS DE ARTE: el Saltador conserva sus dos brazos de taladro al disparar a un volador y al ser alcanzado (un brazo se volvía pinza); el Péndulo golpeando a un volador de frente o de espaldas conserva la hoja en la otra mano."],
 	"0.38.138": ["EL MISIONERO MONTADO: cabalgando de lado sostiene su cruz procesional en cada paso (desaparecía cada pocos pasos), y cabalgando hacia ti él y su caballo te miran (cabalgaban de lado)."],
 	"0.38.137": ["MUERTES DIBUJADAS PARA CADA DIRECCIÓN: el Oficial a pie cae hacia donde mira (siempre caía a la derecha); la caída del Misionero se redibujó en orden y a un solo tamaño (se enredaba y encogía)."],
