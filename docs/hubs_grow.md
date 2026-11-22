@@ -225,7 +225,7 @@ gold come from the save itself.
   City), the NEW marks, the purse (earned once, best run, no loss, no other side, no mirror), buying, choosing, picking,
   the loadouts, a real a01 start with and without the upgrades (a musketeer's damage and health, Delorme's two riders,
   the other teams and the Defs untouched), and through the real menu: the tabs, the NEW line, a room's people and
-  layers, buying at the racks, a talk, the briefing's list. 63 checks, all pass.
+  layers, buying at the racks, a talk, the briefing's list. 112 checks, all pass.
 - tools/hubs_grow_checks.sh: every campaign test, then every mission's sim at NORMAL with the active bot, without the
   hub's things and with all of them on each choice's side (the test switch `-- hubgrow:a` / `hubgrow:b`: every upgrade
   of the line open then, each choice on that side, the first blessing, the latest company). Results below.
@@ -355,3 +355,34 @@ PEOPLE (full body, standing, three-quarter view, on flat magenta #FF00FF):
 13. The test switch `hubgrow:a` / `hubgrow:b` (command line only) lets the sims play with everything on; it never
     appears in the game.
 14. The NEW line shows at most three news at once ("(+n)" for the rest); entering a room or talking to a person clears it.
+
+## The checks' results (2026-11-22, on the branch against main 0.38.179)
+
+TESTS (each run alone, one user folder each): the same on main and on the branch. Every test passes on both except
+test_campaign_m1's "no recording yet for Tomasz: the voice hook stays silent" (1 failure on main too: a recording
+exists now). test_campaign, _a01-_a07, _b01, _c01, _heroes, _ironman, _save, test_war_map, test_roster_ladder: 0
+failures. test_hubs_grow: 0 failures. Boot: no SCRIPT ERROR or Parse Error.
+
+SIMS at NORMAL with the active bot (the end clock in game seconds; "a" / "b": every hub thing on, choices a / b):
+
+| mission | main | branch, none | branch, a | branch, b |
+| --- | --- | --- | --- | --- |
+| a01 Lyon | won 718 | won 495 | won 617 | won 314 |
+| a02 Fürth | won 776 | won 528 | won 510 | won 512 |
+| a03 the plateau | won 344 | won 343 | won 342 | won 344 |
+| a04 the visit | won 333 | won 344 | won 335 | won 322 |
+| a05 the specimens | won 342 | won 343 | won 388 | won 343 |
+| a06 Paris | won 316 | won 290 | won 298 | won 264 |
+| a07 Rome | won 768 | won 768 | won 768 | won 768 |
+| b01 Specimen One | LOST 970 (the rival won) | won 501 | lost 1466 | won 572 |
+| c01 Nuremberg | won 1044 | won 1044 | (no hub thing reaches it) | |
+| p01 the Prologue (sim_m1) | 490, not over (the night sim) | | (no hub thing reaches it) | |
+
+Read plainly: every mission the hub reaches is still won at NORMAL with the hub's things off and with all of them on,
+in about the same time (Lyon's and Fürth's times move with the town's layout and the seed, on main too). b01's bot is
+flaky on main as well (it lost there) and nothing from the hub reaches b01, the first mission of its line. a07 ends at
+dawn (a clock) whatever the army. HARD plays the same code as main when nothing is bought (the hub's things are all
+off on a new campaign), so it stays as winnable as before.
+
+The companies were checked to come in (a06: Ruggieri's cannon, a04: von Rauch's 3 musketeers, a05: Valadares' 3
+hunters, a07: Ruggieri's cannon; a02 takes Ulrich's Winders: a Crown company called for a02 stays home).

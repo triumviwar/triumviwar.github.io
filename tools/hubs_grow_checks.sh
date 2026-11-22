@@ -23,7 +23,7 @@ if [ "$WHAT" = tests ] || [ "$WHAT" = all ]; then
 fi
 if [ "$WHAT" = sims ] || [ "$WHAT" = all ]; then
 	for s in a01 a02 a03 a04 a05 a06 a07 b01 c01 m1; do
-		for sw in none hubgrow:a hubgrow:b; do
+		for sw in ${SWITCHES:-none hubgrow:a hubgrow:b}; do
 			f=tools/sim_campaign_$s.gd
 			[ -f "$f" ] || continue
 			args="active diff=normal"

@@ -261,7 +261,7 @@ def main():
             fx["lamps"] = [[lp[0], lp[1], lp[2], [c / 255.0 for c in cfg["light"]]] for lp in cfg["lamps"]]
         if cfg.get("candles"):
             fx["candles"] = cfg["candles"]
-        js = {"room": "res://campaign/hub/rooms/%s.jpg" % rid, "size": [W, H], "layers": [], "fx": fx, "focus": [0.5, 0.5],
+        js = {"room": "res://campaign/hub/rooms/%s.jpg" % rid, "size": [W, H], "layers": [], "fx": fx, "focus": [0.5, 0.8],
               "stand_in": True}
         with open(os.path.join(rdir, rid + ".json"), "w") as f:
             json.dump(js, f, indent=1)

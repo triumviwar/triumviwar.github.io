@@ -364,7 +364,7 @@ static func loadout(mid: String, side := "", p: Dictionary = {}) -> Dictionary:
 	var h := state(p)
 	var all := test_all()
 	if all != "":
-		h = _all_state(lid, p, all)
+		h = _all_state(lid, p, all, _p1_faction(mid))
 	for o in offers(lid, ["upgrades"], p):
 		if (h["bought"] as Array).has(String(o["id"])):
 			_add_mods(out, o.get("mods", {}))
@@ -397,7 +397,15 @@ static func test_all() -> String:
 	return ""
 
 
-static func _all_state(lid: String, p: Dictionary, ab: String) -> Dictionary:
+static func _p1_faction(mid: String) -> String:
+	var m := Campaign.mission(mid)
+	for tm in m.get("teams", []):
+		if Campaign.solo_control(m, tm) == "p1":
+			return Campaign.engine_faction(m, String(tm.get("faction", "crown")))
+	return ""
+
+
+static func _all_state(lid: String, p: Dictionary, ab: String, fac := "") -> Dictionary:
 	var h := {"bought": [], "choices": {}, "bless": {}, "helper": {}, "earned": {}, "spent": {}}
 	for o in offers(lid, ["upgrades"], p):
 		h["bought"].append(String(o["id"]))
@@ -406,7 +414,7 @@ static func _all_state(lid: String, p: Dictionary, ab: String) -> Dictionary:
 	var bls := offers(lid, ["blessings"], p)
 	if not bls.is_empty():
 		h["bless"][lid] = String(bls[0]["id"])
-	var hps := offers(lid, ["helpers"], p)
+	var hps := offers(lid, ["helpers"], p).filter(func(o: Dictionary) -> bool: return fac == "" or String(o.get("faction", fac)) == fac)
 	if not hps.is_empty():
 		h["helper"][lid] = String(hps[-1]["id"])      # (the latest company met: the one a player most likely calls)
 	return h
