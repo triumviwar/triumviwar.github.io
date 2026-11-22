@@ -142,6 +142,9 @@ facing); 48 its death: the two standing frames get the drill arms too (the tumbl
 0.38.140: 36, 127 the torch-bearer's loose specks while setting fire removed; 114 the Powder Mill horse's navy specks painted
 over; 130 the King's pink pipe smoke made grey and the pink fleck in his hair (hub figure and portrait) removed; 137 the
 pink fringe under the war map's mountains removed; 151 the musicians' death on the feet line.
+0.38.141: 54 the Field Cannon's east, south-east and north-east deploy keep the gun side-on while the horse goes (frames 2-3
+flipped to a head-on gun with its barrel up: now frame 1's gun and crew with those frames' horse); 55 the south deploy's
+side-view frame 2 replaced by frame 1. Left: the dithered fading horse, the Mortar's deploy (60, a collage: needs a redraw).
 
 ## Redraw requests for the HIGH findings
 

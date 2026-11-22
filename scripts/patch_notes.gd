@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.141", "items": [
+		"THE FIELD CANNON SETS UP WITHOUT SPINNING: unlimbering to the side, the gun no longer flips to face you with its barrel straight up for two frames, and unlimbering toward you it no longer turns sideways for a frame.",
+	]},
 	{"v": "0.38.140", "items": [
 		"SMALL ART CLEAN-UPS: the King's pipe smoke is grey (it was pink) and a pink fleck in his hair is gone; no pink fringe under the war map's mountains; no blue specks on the Powder Mill horse; no loose sparks around the rebel torch-bearer; the musicians no longer sink into the ground when they fall.",
 	]},
