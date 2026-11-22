@@ -1746,6 +1746,8 @@ func _wave_worth(ready: Array) -> bool:
 		return false            # (cinder-crown-ai: the Timing's wave against the Clockwork only while it is ahead)
 	if not on or difficulty < 1 or strategy == "rush" or not doctrine():
 		return true
+	if _foe_is("brood") and preload("res://scripts/ai_crown_brood_fix.gd").press_wave(self, ready):
+		return true             # (crown-brood-fix "press": far ahead of the Brood seen, the wave goes, AICrownBroodFix)
 	if coach != null and coach.wave_waits_screen():
 		return false            # (the Crown coach: the wave waits for its screen riders)
 	var mine := 0.0
