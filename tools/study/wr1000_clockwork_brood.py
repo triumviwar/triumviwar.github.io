@@ -132,9 +132,10 @@ def summary(name, rows, base=None):
     won = sum(sum(1 for r in rl(x) if r == "W") / len(rl(x)) for x in rows.values())
     bt = [x["beaten"] for x in rows.values() if x["beaten"]]
     mean = lambda k: (lambda v: sum(v) / len(v) if v else None)([x[k] for x in rows.values() if x[k] is not None])
+    med = lambda k: (lambda v: st.median(v) if v else None)([x[k] for x in rows.values() if x[k] is not None])
     s = {"block": name, "n": len(rows), "g": sum(gs) / len(gs) if gs else 0.0, "surv": surv, "wl": wl, "won": won,
-         "beat_med": st.median(bt) if bt else None, "inc8": mean("inc8"), "inc12": mean("inc12"), "army8": mean("army8"),
-         "army12": mean("army12"), "halls12": mean("halls12"), "g14": mean("g14")}
+         "beat_med": st.median(bt) if bt else None, "inc8": med("inc8"), "inc12": med("inc12"), "army8": med("army8"),
+         "army12": med("army12"), "halls12": mean("halls12"), "g14": mean("g14")}
     if base is not None:
         ds = [rows[t]["g"] - base[t]["g"] for t in rows if t in base]
         if len(ds) >= 2:
@@ -204,7 +205,7 @@ if __name__ == "__main__":
         names = [x for x in sys.argv[2:] if not x.startswith("--") and x != arg("--base", None)]
         base = arg("--base", None)
         brow = block(base) if base else None
-        print("| block | n | mean g | CW survived | CW won | CW won/led | median defeat | inc 8 | inc 12 | army 8 | army 12 | halls 12 | v base d (t) | better/worse | g 14:00 | v base d14 (t) |")
+        print("| block | n | mean g | CW survived | CW won | CW won/led | median defeat | inc 8 (med) | inc 12 (med) | army 8 (med) | army 12 (med) | halls 12 | v base d (t) | better/worse | g 14:00 | v base d14 (t) |")
         print("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
         for n in ([base] if base else []) + names:
             s = summary(n, block(n), brow if n != base else None)
