@@ -104,6 +104,16 @@ JOBS += [
      [("1_current_idle_n.png", [("missionary", "idle_n")]), ("2_idle_s_e_model.png", [("missionary", "idle_s"), ("missionary", "idle_e")])]),
 ]
 
+OFF = "the Officer on foot (a brown tricorne hat with a small pure red plume, a white coat with pure red cuffs and sash, pure red breeches, brown boots, a flintlock pistol in his right hand, a sabre at his left hip)"
+_OFF_VIEW = {"s": ("facing the viewer (toward the bottom of the image), his face and chest toward us, the pistol held straight out TOWARD the viewer so it is seen end-on, foreshortened", "the south view: facing the viewer"),
+             "se": ("facing three-quarter toward the lower right, the pistol arm pointing down-right toward the lower right corner", "the south-east view: three-quarter toward the lower right"),
+             "ne": ("facing three-quarter AWAY toward the upper right, his back half turned to us, the pistol arm pointing up-right toward the upper right corner", "the north-east view: three-quarter from behind, toward the upper right"),
+             "n": ("facing straight AWAY from the viewer (toward the top of the image), his back to us, NO face, the pistol arm pointing up the image away from us", "the north view: seen from behind")}
+for _n, _d in ((92, "s"), (93, "se"), (94, "ne"), (95, "n")):
+    JOBS.append((_n, "dismounted", "aimfire_" + _d, 3, OFF, "%s; 3 frames: 1 AIMING, the arm raised and steady; 2 FIRING, a small bright muzzle flash and a puff of white smoke at the pistol's mouth; 3 the recoil, the arm kicked up a little, the smoke drifting. The SAME facing in all three frames, ONE pistol in ONE hand" % _OFF_VIEW[_d][0], _OFF_VIEW[_d][1], "a side profile facing right, a second pistol, the pistol in the left hand,",
+                 [("1_aim_fire_e_pose.png", [("dismounted", "aim_e"), ("dismounted", "fire_e")]), ("2_walk_%s_view.png" % _d, [("dismounted", "walk_" + _d)])]))
+LOOK["dismounted"] = "man, outfit and colours"
+
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."

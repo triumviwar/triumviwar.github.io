@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.133", "items": [
+		"THE OFFICER ON FOOT AIMS WHERE HE FACES: an Officer without a horse now aims and fires his pistol toward you, down-right, up-right and away from you (every facing used the same picture pointing right).",
+	]},
 	{"v": "0.38.132", "items": [
 		"TIDIER SOLDIERS: a fallen Musketeer or Guardsman facing right no longer has a loose red scrap lying beside him, and the riders mounting up in the Barracks drill no longer have bits of rein and a stray hoof floating next to them.",
 	]},

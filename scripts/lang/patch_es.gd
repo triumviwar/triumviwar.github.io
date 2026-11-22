@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.133": ["EL OFICIAL A PIE APUNTA HACIA DONDE MIRA: un Oficial sin caballo ahora apunta y dispara la pistola hacia ti, abajo a la derecha, arriba a la derecha y alejándose de ti (todas las direcciones usaban la misma imagen apuntando a la derecha)."],
 	"0.38.132": ["SOLDADOS MÁS ORDENADOS: un Mosquetero o Guardia caído mirando a la derecha ya no tiene un trozo rojo suelto al lado, y los jinetes que montan en la instrucción del Cuartel ya no tienen trozos de rienda y un casco suelto flotando junto a ellos."],
 	"0.38.131": ["EL MISIONERO DA LA ESPALDA: caminando o quieto hacia el norte se le ve de espaldas (mostraba la cara alejándose de ti), y quieto mirando arriba a la derecha ya no se encorva y se endereza una y otra vez."],
 	"0.38.130": ["MÁS ARREGLOS DE LA PROLE: una Larva que cosecha mirando hacia ti sigue mirándote (giraba de lado para soltar la comida), y cuando un Señor acude a un señuelo el hoyo excavado se queda bajo sus pies en vez de parpadear."],

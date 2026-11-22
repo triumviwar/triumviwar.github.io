@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.133": ["O OFICIAL A PÉ MIRA PARA ONDE ESTÁ VIRADO: um Oficial sem cavalo agora mira e dispara a pistola na sua direção, para baixo à direita, para cima à direita e para longe de você (todas as direções usavam a mesma imagem apontando para a direita)."],
 	"0.38.132": ["SOLDADOS MAIS ARRUMADOS: um Mosqueteiro ou Guarda caído virado para a direita já não tem um pedaço vermelho solto ao lado, e os cavaleiros montando no treino do Quartel já não têm pedaços de rédea e um casco solto flutuando ao lado."],
 	"0.38.131": ["O MISSIONÁRIO VIRA AS COSTAS: andando ou parado virado para o norte ele é visto de costas (mostrava o rosto indo para longe de você), e parado virado para cima à direita já não se curva e se endireita sem parar."],
 	"0.38.130": ["MAIS CORREÇÕES DA NINHADA: uma Larva colhendo virada para você continua virada para você (girava de lado para largar a comida), e quando um Senhor atende a uma isca a cova cavada fica debaixo dos pés dele em vez de piscar."],
