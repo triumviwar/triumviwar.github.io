@@ -675,7 +675,7 @@ new skins.
 | THE CLOCKMAKER'S | the guild's barn at Fürth (a02) | after d02: the barge cabin (one painting, optional); after d04: CONCÓRDIA'S COUNCIL HALL (the brass map on the council table, Hollweg at its head, Varenne by the flag); after d07 `spring` stopped: a fisherman's house at the coast (Hollweg with the honest masters) |
 | THE MACHINE'S CITY (the Machine player's) | Nuremberg | after d07 (a machine win or `spring` running): Concórdia's great spring tower, empty of men |
 | THE NATURALIST'S | the warehouse at the Barra | after d03: THE FAZENDA'S STUDY (Lindqvist, the specimen chart, jars, a window on the pens); after d06: VALADARES' QUARTERS AT THE BARRA (the line's teller changes hands: the Crown's servant now holds the chart; Lindqvist's chair empty) |
-| THE NEST (the Brood player's) | none | after d06 (owner question 10): the Queen's hollow, the nest-floor map |
+| (no Brood hub, ever: owner 2026-11-22 "the brood is not a person"; the Naturalist tells the Brood's story) | | |
 
 ## THE ROSTER LADDER: Act 2's rungs
 
@@ -1009,6 +1009,22 @@ campaign/stills/b01_03.jpg; the Sire = campaign/stills/b01_05.jpg.
 16. THE QUEEN IS LINNEA (owner question 1).
 17. CONCÓRDIA, FORT CONSTANTINE, SÃO RAFAEL and the new characters' names are proposals.
 18. NO NAVAL: d02's ships, d06's and d08's canoes and the crossing to Brazil are stills or exits only.
+
+## OWNER ANSWERS (2026-11-22 20:35-20:39)
+
+- 1: Linnea (the scientists' name) becomes the Queen, AN ANIMAL: "do not personify it".
+- 2-9, 12-15: "I accept all your other recommendations": CONCORDIA on the southern highlands; Ferrer's REPORT; HAMBURG;
+  invented names for the mines' conspiracy; RECLAIM PARTS, not missions; the fields LEFT; the great spring RUNNING; the
+  second front LOCKED until the first is won; the lure book BURNED; the heir UNSEEN until the finale; the King asks
+  "what would you choose?"; eleven missions.
+- 10: NO BROOD HUB AND NO BROOD WAR MAP, in Act 3 either: "the brood is not a person. So we always have to keep the
+  naturalist as the storyteller that's telling the story of the brood." The Brood player keeps the Naturalist's hub.
+- 11: NO CANON: "The player chooses." Both orders are true for the story that follows (Act 3 is written for both: the
+  `d09.first` flag), and the King tells it as the listener's choice (answer 14). (The owner asked whether both could be
+  at once: possible as a single two-front mission where the army is split, but then there is no choice; the choice
+  stays.)
+- WORLDWIDE (new direction): "It would be interesting to expand the campaign to be worldwide. Africa, Asia, Oceania,
+  all the continents." To plan: where Act 2 (or Act 3's global war) reaches Africa, Asia and Oceania.
 
 ## OWNER QUESTIONS
 

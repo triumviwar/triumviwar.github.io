@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.170": ["Nada muda no jogo: as respostas do autor ao plano do Ato 2 ficaram registadas."],
 	"0.38.169": ["Nada muda no jogo: o plano da campanha regista que a Mãe da Ninhada a que os cientistas chamaram Linnea se torna a Rainha, um animal e nada mais."],
 	"0.38.168": ["VOZES DA CAMPANHA COM SENTIMENTO: 278 falas da campanha foram gravadas de novo com emoção: as ordens gritadas gritam, as acusações e discussões soam zangadas, os alarmes são urgentes, o luto é lento e baixo. Entre elas Valadares a acusar o doutor e a mandar incendiar o colmo, Ferrer e Hollweg a discutir, os gritos de Varenne e as orações de Tomasz."],
 	"0.38.167": ["Nada muda no jogo: o jogador de teste do Espécime Um sabe agora que a ninhada é de três ovos."],

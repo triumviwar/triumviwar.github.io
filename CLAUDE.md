@@ -181,6 +181,10 @@
   within the noise). The Brood question: the Crown leads to ~14:00 and loses at 15-19 to the capped Brood army at even income
   and full spending: balance more than AI. 16 threshold variants of the 1000 jobs deleted again; trade, spend, queen, pester,
   maws, guard, farms, foundry2, richlabs kept as off switches. 7 Claude's choices in the doc.
+- ACT 2 ANSWERS (owner 2026-11-22 20:35-20:39; docs/campaign_act2_plan.md "OWNER ANSWERS"): every recommendation
+  accepted; Linnea becomes the Queen AS AN ANIMAL; NO BROOD HUB OR WAR MAP EVER (the Naturalist always tells the Brood's
+  story); the crossing's order has NO CANON (the player chooses); NEW: the campaign should go WORLDWIDE (Africa, Asia,
+  Oceania, every continent).
 - ACT 2 PLANNED (owner 2026-11-19 11:06 "Yes write act 2."; job campaign-act2-plan, branch campaign-act2-plan, docs only:
   docs/campaign_act2_plan.md): THE BREAKING 2771-2780, eleven missions d01-d11 on three lines + the 2nd crossing: the
   Crown (Tomasz) d01_minas (the Assembly's conspiracy at Vila Rica) -> d05_aldeia (the swarm at his mission São Rafael;
