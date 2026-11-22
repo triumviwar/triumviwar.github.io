@@ -546,7 +546,7 @@ func _march(line: Array, guns: Array, mid: Vector2) -> void:
 	# (the guns with the main body: a gun walking out from home as a reinforcement does not hold the line back)
 	var near_guns := guns.filter(func(g: Unit) -> bool: return g.position.distance_to(mid) < 700.0)
 	var gmid := _mid(near_guns) if not near_guns.is_empty() else (_mid(guns) if not guns.is_empty() else mid)
-	var lag := gmid.distance_to(mid) > GUN_LAG and not guns.is_empty() and not press_mode     # (crown-brood-fix "press": the line does not wait for its guns)
+	var lag := gmid.distance_to(mid) > GUN_LAG and not guns.is_empty()
 	for u in line:
 		if u.kind == "cuirassier":
 			# (the riders keep by the guns: the Brood's Raptors and the Clockwork's Springers go for them)

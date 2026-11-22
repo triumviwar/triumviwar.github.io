@@ -32,9 +32,9 @@ static func vs_brood(ai, name: String) -> bool:
 ## From PRESS_FROM to PRESS_UNTIL, while the army at home is worth PRESS_MIN or more AND PRESS_K times the Brood army it has
 ## SEEN lately (AICrownHold.foe_known, never under PRESS_FOE_MIN), with PRESS_SUP supply, and no Brood force at our
 ## buildings: the whole army goes at once for the Brood Mother herself (the siege push in its "queen" march, guns or not;
-## outside the siege plan the wave goes and the reckoning does not hold it). It sets up only against the Brood army on the
-## line, what blocks its way (PRESS_STOP of the usual reach) and her; the line does not wait for its guns (they follow);
-## the push's usual retreat rules stand.
+## outside the siege plan a siege push of its own, AICrown.cbf_push). It sets up only against the Brood army on the
+## line, what blocks its way (PRESS_STOP of the usual reach) and her; the push's usual retreat rules stand. (Tried: the
+## line not waiting for its guns: no better in the trial game, so the guns are waited for as in every push.)
 ## At most PRESS_MAX such pushes a game. With no Brood soldier seen lately it asks the scout for a look first.
 const PRESS_FROM := 480.0
 const PRESS_UNTIL := 660.0
@@ -45,7 +45,7 @@ const PRESS_SUP := 30
 const PRESS_STOP := 0.35
 const PRESS_MAX := 2
 static var presses := {}         # team -> pushes sent by this change (the counters)
-static var press_waves := {}     # team -> waves let go by it outside the siege plan
+static var press_waves := {}     # team -> of the presses, those outside the siege plan (a push of its own)
 static var press_looks := {}     # team -> looks asked for it
 
 
@@ -54,7 +54,7 @@ static func press_ok(ai, mine: float, sup: int) -> bool:
 	if not vs_brood(ai, "press"):
 		return false
 	var c: float = ai.game.clock
-	if c < PRESS_FROM or c > PRESS_UNTIL or int(presses.get(ai.team, 0)) + int(press_waves.get(ai.team, 0)) >= PRESS_MAX:
+	if c < PRESS_FROM or c > PRESS_UNTIL or int(presses.get(ai.team, 0)) >= PRESS_MAX:
 		return false
 	if mine < PRESS_MIN or sup < PRESS_SUP:
 		return false
@@ -84,16 +84,28 @@ static func press_push(ai, siege, home: Array, sup: int) -> bool:
 	return true
 
 
-## AICrown._wave_worth asks (outside the siege plan): the wave goes though the reckoning says wait?
-static func press_wave(ai, ready: Array) -> bool:
-	var raw := 0.0
-	for u in ready:
-		raw += float(Game.unit_value(u))
-	if not press_ok(ai, raw, ai._army_supply(ready)):
-		return false
+## AICrown._army asks, outside the siege plan (Rush, Balanced, Economy...: no siege push of its own): the press goes as a
+## siege push of its own (AICrown.cbf_push, the push's code; its men are on an errand for the rest of the computer).
+static func press_tick(ai) -> void:
+	if not vs_brood(ai, "press"):
+		return
+	if ai.cbf_push == null:
+		ai.cbf_push = AICrownSiege.new(ai)
+	var p = ai.cbf_push
+	if p.active():
+		p.tick()
+		return
+	if ai._attacking or ai.game.clock < p._next_go:
+		return
+	p._next_go = ai.game.clock + 2.0
+	var home: Array = p._home_army()
+	if not press_push(ai, p, home, ai._army_supply(home)):
+		return
+	var pv := 0.0
+	for u in home:
+		pv += float(Game.unit_value(u)) * (AICrownSiege.GUN_WEIGHT if AICrownSiege.GUNS.has(u.kind) else 1.0)
 	press_waves[ai.team] = int(press_waves.get(ai.team, 0)) + 1
-	ai.say("presses its lead on the Brood: %d of army against the %d of Brood seen lately: the wave goes now" % [int(raw), int(ai.ch.foe_known())])
-	return true
+	p._go(home, pv, true)
 
 
 ## (qa_match's result.json "crown_ai": what this job's changes did)
