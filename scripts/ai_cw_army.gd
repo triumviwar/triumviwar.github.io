@@ -149,7 +149,7 @@ func reckon(all_kills := false) -> float:
 	var seen: float = ai.push.foe_mem() if ai.push != null else 0.0
 	var tab: Array = TABLES.get(game.faction_of(foe), TABLES["crown"])
 	var floor_v := maxf(0.0, table_at(tab, game.clock) - _killed_for_reckon(all_kills) * KILL_SHARE)
-	return maxf(seen, floor_v) + _rooted_seen() * ROOTED_K
+	return WkM.reckon_floor(self, foe, maxf(seen, floor_v)) + _rooted_seen() * ROOTED_K      # (wr1000-clockwork-mirror "mreck")
 
 
 ## The Brood's rooted fighters seen (Rootmaws, Mound Turtles: the push's goals; rooted they fight hard: 16 Clock Soldiers

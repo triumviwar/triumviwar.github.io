@@ -194,3 +194,25 @@ static func fall_back(army, home: Array, mine: float, bv: float, spot: Vector2, 
 ## In the mirror it now counter-attacks the same way (the Clockwork's own table).
 static func counter_on(army, foe: int) -> bool:
 	return on("counter") and mirror(army.game, army.team, foe)
+
+
+## CHANGE "mreck" (block 11). The reckoning of the enemy army is what was seen in the last two minutes, never under the
+## Clockwork's table for the minute (3,500 from 12:00 on): late in the mirror both armies are worth 5,000-8,000 and the push
+## goes out "worth 7,040 against the 1,580 it reckons (a report 31 s old)", meets the whole of it on its gears and pulls back
+## having lost 60% (Ashford r0, block 7: five pushes, each lost 55-65%). The other side is the same machine on the same
+## income: in the mirror it is reckoned at MRECK_K of the army we have now, plus what it has killed of ours, less what we have
+## killed of its (units and buildings), never under the old reckoning. A push then goes when we have traded well, or after a
+## held defence ("counter"), or when we see it weaker.
+const MRECK_K := 0.8
+
+
+static func reckon_floor(army, foe: int, rk: float) -> float:
+	var game = army.game
+	if not on("mreck") or not mirror(game, army.team, foe):
+		return rk
+	var mine := 0.0
+	for u in game.army(army.team):
+		if not u.dead and not u.off_field and army.ai._armed(u):
+			mine += army.ai._unit_value(u)
+	var est: float = mine + float(game.stats[foe]["value_killed"]) - float(game.stats[army.team]["value_killed"])
+	return maxf(rk, est * MRECK_K)
