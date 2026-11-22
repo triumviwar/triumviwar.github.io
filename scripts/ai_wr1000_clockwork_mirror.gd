@@ -178,9 +178,12 @@ static func fall_back(army, home: Array, mine: float, bv: float, spot: Vector2, 
 				best = b
 	if best == null:
 		return false
-	var to: Vector2 = best.center()
+	# (the spot beside that Clocktower on the side away from the push: block 7-14 used "below it" (+y) for both starts, which
+	# is not the same for spot A and spot B)
+	var away: Vector2 = (best.center() - spot).normalized()
+	var to: Vector2 = best.center() + away * 90.0
 	for u in home:
-		army._order(u, to + Vector2(randf_range(-60, 60), randf_range(60, 120)), false, 120.0)
+		army._order(u, to + Vector2(randf_range(-40, 40), randf_range(-40, 40)), false, 120.0)
 	army.phase = "hold"
 	army.defenders.clear()
 	army.say("a push worth %d at its gathering point is far stronger than its %d: the army does not feed it, it gathers at the Clocktower %s away from it" % [int(bv), int(mine), army._where(to)], "wkmfeed", 30.0)
