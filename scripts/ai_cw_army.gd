@@ -292,6 +292,8 @@ func _note_retreat() -> void:
 		_retreats = r
 		_fail_v = maxf(float(ai.push.value_in), float(ai.push.value0))
 		_fail_t = game.clock
+		if WkM.fair_trade(self):
+			_fail_v = 0.0          # (wr1000-clockwork-mirror "fairfail")
 
 
 func _ask_look() -> void:

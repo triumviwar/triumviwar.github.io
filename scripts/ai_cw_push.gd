@@ -1085,6 +1085,7 @@ func _retreat(why: String) -> void:
 	stats["retreats"] = int(stats["retreats"]) + 1
 	var left := _value(units)
 	say("pulls back (%s): %d value left of %d, killed %d since it went out" % [why, int(left), int(value0), int(game.stats[team]["value_killed"]) - kill0])
+	set_meta("wkm_kl", [float(int(game.stats[team]["value_killed"]) - kill0), maxf(0.0, maxf(value_in, value0) - left)])     # (wr1000-clockwork-mirror "fairfail")
 	need_up = mini(need_up + 4, 20)
 	piece = null
 	_phase("back")

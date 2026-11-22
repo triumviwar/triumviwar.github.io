@@ -227,3 +227,22 @@ static func reckon_floor(army, foe: int, rk: float) -> float:
 ## Winders alive to 19:00-19:48 (Ashford r0 and r1, Frostfang r1, block 9). "raze2" splits as "raze" does, but only once a
 ## Clocktower (or any building at its goal) has fallen to this push within RAZE2_T s: proof it is winning at their base.
 const RAZE2_T := 120.0
+
+
+## CHANGE "fairfail" (block 15). After a push that pulled back the next goes only 1.25 times bigger; in the mirror the
+## pushes that pull back have often traded EVEN or better: "pulls back (it has lost 5,050 of the 8,340 that went out and
+## joined), killed 4,440" (Ashford r1, block 12, 16:15), "lost 4,415 of 7,315, killed 4,590" (Greenhold r0, block 1). The bar
+## after them (10,425, 9,143) can not be met under the 200 supply cap, and the side sits on 9,000 cogs to 20:00. In the
+## mirror a push that killed FAIR_K or more of what it lost sets no bar (the edge over the reckoned enemy still holds).
+const FAIR_K := 0.8
+
+
+static func fair_trade(army) -> bool:
+	var push = army.ai.push
+	if push == null or not on("fairfail") or not mirror(army.game, army.team, army._foe()) or not push.has_meta("wkm_kl"):
+		return false
+	var kl: Array = push.get_meta("wkm_kl")
+	if float(kl[0]) < float(kl[1]) * FAIR_K:
+		return false
+	army.say("its last push traded fairly (killed %d, lost %d): no bar for the next" % [int(kl[0]), int(kl[1])], "wkmfair", 30.0)
+	return true
