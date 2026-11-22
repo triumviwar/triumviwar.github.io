@@ -159,6 +159,7 @@ static func _raze_clear(push) -> void:
 ## from it (NOFEED_AWAY px at least), out of its reach, and go in together once they are worth NOFEED_K of it.
 const NOFEED_K := 0.55
 const NOFEED_AWAY := 800.0
+const NOFEED_STICK := 20.0      # (s: still falling back this long after the last time the rule fired)
 
 
 static func fall_back(army, home: Array, mine: float, bv: float, spot: Vector2, g: Vector2) -> bool:
@@ -166,7 +167,13 @@ static func fall_back(army, home: Array, mine: float, bv: float, spot: Vector2, 
 	var game = army.game
 	if not on("nofeed") or home.is_empty() or not mirror(game, army.team, army._foe()):
 		return false
-	if mine >= bv * NOFEED_K or spot.distance_to(g) > army.HOLD_FAR:
+	if mine >= bv * NOFEED_K:
+		return false
+	# (once falling back it stays so while it is that much weaker, wherever in the base the push goes: on Hollowfen r0, block
+	# 14, the push stepped past HOLD_FAR and the old rule sent the army back in 2 s later, "the whole army defends the base (10
+	# units, 773) against a raid worth 1,311", eleven times in six minutes)
+	var falling: bool = game.clock - float(army.get_meta("wkm_fb_t", -999.0)) < NOFEED_STICK
+	if spot.distance_to(g) > army.HOLD_FAR and not falling:
 		return false
 	var best = null
 	var bd := NOFEED_AWAY
@@ -186,6 +193,7 @@ static func fall_back(army, home: Array, mine: float, bv: float, spot: Vector2, 
 		army._order(u, to + Vector2(randf_range(-40, 40), randf_range(-40, 40)), false, 120.0)
 	army.phase = "hold"
 	army.defenders.clear()
+	army.set_meta("wkm_fb_t", game.clock)
 	army.say("a push worth %d at its gathering point is far stronger than its %d: the army does not feed it, it gathers at the Clocktower %s away from it" % [int(bv), int(mine), army._where(to)], "wkmfeed", 30.0)
 	return true
 
