@@ -150,12 +150,14 @@ static func _behind(ai) -> void:
 ## up to five balloon parties of four Musketeers each flew at Farms. The enemy was beaten only at 20:00. Now, from
 ## MAXED_FROM, a side within MAXED_ROOM supply of a cap of MAXED_CAP or more with MAXED_BANK gold or more sends the army it
 ## has ready at once (the wave's bar comes down to it, as the mirror coach's press does: 85%) and forms no new balloon
-## party (the Musketeers stay with the army). A Siege push already goes at the cap by itself (AICrownSiege: "big").
+## party (the Musketeers stay with the army); a wave already out takes the men at home with it. A Siege push already goes
+## at the cap by itself (AICrownSiege: "big").
 const MAXED_FROM := 600.0
 const MAXED_ROOM := 8
 const MAXED_CAP := 180
 const MAXED_BANK := 600
 const MAXED_SAY := 60.0
+const MAXED_JOIN := 20.0
 
 
 static func maxed(ai) -> bool:
@@ -167,12 +169,28 @@ static func maxed(ai) -> bool:
 
 
 static func _maxed_go(ai) -> void:
-	if ai._attacking or ai.siege != null or ai.peaceful or not maxed(ai) or ai._threat() != Vector2.INF:
+	if ai.siege != null or ai.peaceful or not maxed(ai) or ai._threat() != Vector2.INF:
 		return
 	var game = ai.game
 	var hz = ai.harass
 	var ready: Array = game.army(ai.team).filter(func(u: Unit) -> bool: return not ai._raiders.has(u) and u.kind != "powder_wagon" \
 			and not u.is_worker() and u.armed() and not ai._on_errand(u) and not (hz != null and hz.has(u)) and not ai._horse_coming(u))
+	if ai._attacking:
+		# (block 12: the wave was out at the cap and the men trained since sat at home, "they never trickle in alone"
+		# (AI._army): at the cap they join it, all together, every MAXED_JOIN s)
+		if game.clock - float(ai.get_meta("wcm_maxed_join", -99.0)) < MAXED_JOIN or ai._wave_target == Vector2.INF:
+			return
+		var home: Array = ready.filter(func(u: Unit) -> bool: return not ai._wave_set.has(u))
+		if ai._army_supply(home) < 12:
+			return
+		ai.set_meta("wcm_maxed_join", game.clock)
+		for u in home:
+			ai._wave_set[u] = true
+			u.cmd_move(ai._wave_target + Vector2(randf_range(-50, 50), randf_range(-50, 50)), true)
+		AICrownRules.fire(ai, "wcm_maxed_join")
+		if game.mlog:
+			game.mlog.add("%s is at its supply cap with %d gold: %d supply at home join the wave out (wr1000 maxed)" % [game.mlog.who(ai.team), int(game.players[ai.team]["gold"]), ai._army_supply(home)])
+		return
 	var sup: int = maxi(6, int(ai._army_supply(ready) * 0.85))
 	if ai._army_supply(ready) < 12 or sup >= ai._attack_at:
 		return
