@@ -1328,6 +1328,7 @@ var _brk_t := 0.0
 func _break_note(tgt: Building) -> void:
 	if _brk_e != null and is_instance_valid(_brk_e) and _brk_e.dead:
 		say("the %s at its goal falls after %d s" % [String(_brk_e.d["name"]), int(game.clock - _brk_t)])
+		set_meta("wkm_fell_t", game.clock)          # (wr1000-clockwork-mirror "raze2")
 		stats["breaks"] = int(stats.get("breaks", 0)) + 1
 		_brk_e = null
 	if _brk_e != tgt:

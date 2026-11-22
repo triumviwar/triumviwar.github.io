@@ -88,7 +88,8 @@ const RAZE_KEEP := 2.0          # (once split it stays so down to 2 times: in th
 
 static func raze(push) -> bool:
 	var game = push.game
-	if not on("raze") or not mirror(game, push.team, push.foe) or not push.committed:
+	var r2 := on("raze2") and not on("raze")
+	if not (on("raze") or r2) or not mirror(game, push.team, push.foe) or not push.committed:
 		_raze_clear(push)
 		return false
 	var v: float = push._value(push.units)
@@ -98,6 +99,8 @@ static func raze(push) -> bool:
 	var split: bool = not (push.get_meta("wkm_raze", {}) as Dictionary).is_empty()
 	if v < RAZE_MIN or v < foe_v * (RAZE_KEEP if split else RAZE_K):
 		_raze_clear(push)
+		return false
+	if r2 and not split and game.clock - float(push.get_meta("wkm_fell_t", -999.0)) > RAZE2_T:
 		return false
 	var hall_kind: String = game.faction_hall(push.foe)
 	var halls: Array = []
@@ -216,3 +219,11 @@ static func reckon_floor(army, foe: int, rk: float) -> float:
 			mine += army.ai._unit_value(u)
 	var est: float = mine + float(game.stats[foe]["value_killed"]) - float(game.stats[army.team]["value_killed"])
 	return maxf(rk, est * MRECK_K)
+
+
+## CHANGE "raze2" (block 12). "raze" split the push the moment it was clearly ahead, on a reckoning often stale (Hollowfen
+## r0, block 5: split at 12:21 against "1,364", met 3,505 and the game ended a draw): 4 of 10 decided. Yet with "nofeed" the
+## games now end with the winner taking one Clocktower every 40 s with 8,500 against 100-275 from 15:00, the loser's last
+## Winders alive to 19:00-19:48 (Ashford r0 and r1, Frostfang r1, block 9). "raze2" splits as "raze" does, but only once a
+## Clocktower (or any building at its goal) has fallen to this push within RAZE2_T s: proof it is winning at their base.
+const RAZE2_T := 120.0
