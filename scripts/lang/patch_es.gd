@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.128": ["DOS PINTURAS DE LA CAMPAÑA CORREGIDAS: en La Línea de Fürth la ciudad que se ve por la puerta del granero ahora es Núremberg (parecía el Kremlin de Moscú), y en La Visita del Padre Ferrer el viejo relojero está de pie sobre sus propias piernas entre los autómatas rotos (estaba hundido en los adoquines hasta la cintura)."],
 	"0.38.127": ["EL MOSQUETERO Y EL GUARDIA REDIBUJADOS: el Mosquetero quieto mirando hacia ti mantiene el mosquete entero en los dos cuadros, y su estocada de bayoneta y su recarga vistas de espaldas sostienen el mosquete en cada cuadro (la estocada era a manos vacías); el Guardia da la estocada alejándose con mosquete y bayoneta, y marcha hacia ti con dos piernas en un paso completo de seis cuadros (tenía una pierna en medio y tres pasos)."],
 	"0.38.126": ["EL DRAGÓN ACORAZADO REDIBUJADO: quieto mirando a la derecha se queda de lado (su caballo se giraba hacia ti en el segundo cuadro), y galopando alejándose mantiene una sola vista de espaldas en cada cuadro (se desviaba a un ángulo de tres cuartos)."],
 	"0.38.125": ["EL JINETE REDIBUJADO DE ESPALDAS: su golpe de sable cabalgando alejándose (norte) y hacia arriba a la derecha ahora lleva una sola hoja de acero en la mano derecha en cada cuadro (tenía hoja roja, la mano equivocada y un caballo que giraba), y su galope hacia ti mantiene un solo ángulo de frente (variaba entre cuadros)."],
