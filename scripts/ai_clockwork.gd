@@ -625,7 +625,7 @@ func _stuck_hand_over() -> bool:
 		_stuck_n = n
 		_stuck_t = game.clock
 		return false
-	if game.clock - _stuck_t < STUCK_T or _gold() < STUCK_BANK:
+	if game.clock - _stuck_t < WkB.stuck_t(self, STUCK_T) or _gold() < WkB.stuck_bank(self, STUCK_BANK):     # (wr1000-clockwork-brood `wkbstuck`)
 		return false
 	_end_build("stuck: no step done for %d s with %d cogs in the bank" % [int(game.clock - _stuck_t), _gold()])
 	super._build_up()

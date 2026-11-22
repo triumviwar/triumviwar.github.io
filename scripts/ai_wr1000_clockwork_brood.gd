@@ -287,3 +287,21 @@ static func brace(ai, army) -> bool:
 		return false
 	army.say("holds on its gears: against the Brood it waits for its wave and counter-attacks after it [wkbbrace]", "wkbbrace", 60.0)
 	return true
+
+
+# ------------------------------------------------------------------ stuck (block 9)
+## STUCK: a written Clockwork build that does no step for 60 s with 1,000 cogs banked hands over to the shared rules
+## (AIClockwork._stuck_hand_over). Against the Brood that fired 17 times in blocks 1-6, mostly in the Owl raids build at
+## 5:00-7:15, with 1,000-2,500 cogs in the bank by then (greenhold r0 b06: 1,317 cogs at 6:27, the army 820, then the
+## Brood's 37 Raptors at 6:49 killed 32 Winders by 8:00). Against the Brood it now hands over after STUCK_T s with
+## STUCK_BANK cogs.
+const STUCK_T := 20.0
+const STUCK_BANK := 450
+
+
+static func stuck_t(ai, t: float) -> float:
+	return STUCK_T if on("stuck") and cw_v_brood(ai) else t
+
+
+static func stuck_bank(ai, b: int) -> int:
+	return STUCK_BANK if on("stuck") and cw_v_brood(ai) else b
