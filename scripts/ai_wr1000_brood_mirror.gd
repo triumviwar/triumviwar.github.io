@@ -49,6 +49,20 @@ static func note(ai) -> void:
 	w["was_out"] = ai._attacking
 	if on("grubs"):
 		grubs_tick(ai)
+	if on("field"):
+		# (the field: the biggest enemy army seen at once in the last FIELD_SEEN s)
+		var v := 0.0
+		for u in ai.game.units:
+			if u.dead or u.off_field or u.team < 0 or not ai.game.hostile(u.team, ai.team) or not u.has_attack() or u.is_worker():
+				continue
+			if u._k_nb or not ai.game.is_visible_to(ai.team, u.position):
+				continue
+			v += float(Game.unit_value(u))
+		var sh: Array = w.get("seen_h", [])
+		sh.append([ai.game.clock, v])
+		while sh.size() > 1 and ai.game.clock - float(sh[0][0]) > FIELD_SEEN:
+			sh.pop_front()
+		w["seen_h"] = sh
 	if on("chase"):
 		# (the chase: the enemy army near its Mother, once a second, and what it was 2 s ago)
 		var q = BroodNew.queen(ai.game, ai.team)
@@ -260,6 +274,9 @@ static func wave_goal(ai, q) -> Vector2:
 	var cg := chase_goal(ai, q)
 	if cg != Vector2.INF:
 		return cg
+	var fg := field_goal(ai, q)
+	if fg != Vector2.INF:
+		return fg
 	return outer_goal(ai, q, ai._qp(q))
 
 
@@ -419,6 +436,8 @@ static func wave_tick(ai, q, mid: Vector2) -> bool:
 		return false
 	if chase_tick(ai, q, mid):
 		return true
+	if field_tick(ai, q, mid):
+		return true
 	sire_snipe(ai, mid)
 	return false
 
@@ -480,3 +499,98 @@ static func sire_snipe(ai, mid: Vector2) -> void:
 		w["sire_said"] = ai.game.clock
 		w["sire_sends"] = int(w.get("sire_sends", 0)) + 1
 		ai.say("sends %d at the enemy %s (%d of %d health)" % [n + on_him.size(), String(Defs.UNITS[best.kind]["name"]), int(best.hp), int(best.max_hp)])
+
+
+# ------------------------------------------------------------------ TAKE THE FIELD (`wbmfield`)
+## TAKE THE FIELD (blocks 1-9: a wave that walked into the enemy's swamp met her Sires, her rooted creatures and an army
+## refilled from her clutch, and lost two or three for one; the games that ended were decided by the fights where the two
+## armies met in the open: both waves out at once and turning to meet, then the winner pressing on). The wave takes the
+## FIELD instead: it marches FIELD_K of the way from its Mother to the enemy's and holds there, off both swamps, in the
+## path of the enemy's next wave (the meeting rule turns it onto an enemy army walking past). It goes on to her only when
+## it is FIELD_PUSH times the enemy army it has seen lately, or after FIELD_MAX s out with no fight (the wave as before).
+const FIELD_K := 0.5
+const FIELD_PUSH := 1.6
+const FIELD_MAX := 100.0
+const FIELD_SEEN := 180.0
+
+
+## The biggest enemy army it has seen at once in the last FIELD_SEEN s.
+static func seen_lately(ai) -> float:
+	var m := 0.0
+	for x in ai.wbm.get("seen_h", []):
+		m = maxf(m, float(x[1]))
+	return m
+
+
+static func field_goal(ai, q) -> Vector2:
+	if not on("field") or ai._rush_on() or (int(ai.plan["grubs0"]) > 0 and not ai._first_out):
+		return Vector2.INF
+	var foe: int = ai._foe()
+	if foe < 0:
+		return Vector2.INF
+	var fq: Unit = BroodNew.queen(ai.game, foe)
+	var to: Vector2 = fq.position if fq != null else (Vector2(ai.game.starts[foe]) + Vector2(2.5, 2.0)) * Defs.TILE
+	var from: Vector2 = ai._qp(q)
+	var p: Vector2 = from.lerp(to, FIELD_K)
+	var c: Vector2i = ai.game.cell_of(p)
+	if not ai._nb_on_map(p) or not ai.game._walkable(c):
+		for k in range(1, 6):
+			var p2: Vector2 = from.lerp(to, FIELD_K + 0.04 * k * (1 if k % 2 == 0 else -1))
+			if ai._nb_on_map(p2) and ai.game._walkable(ai.game.cell_of(p2)):
+				p = p2
+				break
+	ai.wbm["field"] = true
+	ai.wbm["field_t"] = ai.game.clock
+	ai.wbm["field_fought"] = false
+	ai.wbm["fields"] = int(ai.wbm.get("fields", 0)) + 1
+	return p
+
+
+static func field_tick(ai, q, mid: Vector2) -> bool:
+	var w: Dictionary = ai.wbm
+	if not bool(w.get("field", false)):
+		return false
+	if not ai._attacking or ai._wave.is_empty():
+		w["field"] = false
+		return false
+	var left: float = ai._value_of(ai._wave)
+	var ahead := 0.0
+	for u in ai.game.units_near(mid, 14.0 * Defs.TILE):
+		if u.dead or u.off_field or u.team < 0 or not ai.game.hostile(u.team, ai.team) or not u.has_attack() or u.is_worker():
+			continue
+		if u._k_nb or not ai.game.is_visible_to(ai.team, u.position):
+			continue
+		ahead += float(Game.unit_value(u))
+	if ahead > 0.0:
+		w["field_fought"] = true
+		return false          # (a fight: the wave's own rules: bite, close up, pull back)
+	var out: float = ai.game.clock - float(w.get("field_t", ai.game.clock))
+	# (in the mirror an enemy army out of sight is reckoned at 0.8 of its own: the same computer on the same income)
+	var foe_v := maxf(maxf(seen_lately(ai), ai.seen_army), 0.8 * ai._value_of(ai._nb_army_units()))
+	if left >= foe_v * FIELD_PUSH or (out > FIELD_MAX and not bool(w.get("field_fought", false))):
+		w["field"] = false
+		var foe: int = ai._foe()
+		var fq: Unit = BroodNew.queen(ai.game, foe) if foe >= 0 else null
+		var goal: Vector2 = fq.position if fq != null else (Vector2(ai.game.starts[foe]) + Vector2(2.5, 2.0)) * Defs.TILE
+		ai._wave_target = goal
+		for u in ai._wave:
+			if u.target == null or u.order != "attack":
+				u.cmd_move(goal, true)
+		ai.say("its wave leaves the field for the enemy Mother (%d against the %d it has seen lately, %d s out)" % [int(left), int(foe_v), int(out)])
+		return true
+	if out > FIELD_MAX * 2.0:
+		w["field"] = false
+		ai._wave_end_nb(q, false)
+		ai.say("its wave comes home from the field")
+		return true
+	if ai._nb_meet_army(q, mid, left):
+		return true          # (an enemy army walking past toward its Mother: the wave turns to meet it)
+	if mid.distance_to(ai._wave_target) < 6.0 * Defs.TILE:
+		for u in ai._wave:
+			if u.order == "idle" and u.target == null:
+				u.cmd_hold()
+		return true          # (holding the field: no "next goal")
+	for u in ai._wave:
+		if u.order == "idle" and u.target == null:
+			u.cmd_move(ai._wave_target, true)
+	return true
