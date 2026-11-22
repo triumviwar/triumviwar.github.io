@@ -8,7 +8,8 @@
   python clone_lines.py --pitch -1.5              lower the voice 1.5 semitones after generating (0 = off)
 
 lines.txt: one line each, "name | text", e.g.  king_06 | Rome did not fall in a day.
-A line "[ref refs/hollweg_ref.wav]" switches the voice for the lines after it (until the next [ref]); before the
+[exaggeration 0.9] and [cfg 0.3] lines change the emotion for the lines after them (emotions.json: make_big_lines.py
+writes them before each line that needs them). A line "[ref refs/hollweg_ref.wav]" switches the voice for the lines after it (until the next [ref]); before the
 first one the voice is --ref (the King). The campaign characters' references are in refs/ (refs/README.txt).
 Each line becomes out/<name>.wav. The first run downloads the model (a few GB), later runs reuse it.
 It uses the NVIDIA graphics card if there is one (fast), otherwise the processor (slow: about a minute a line)."""
@@ -44,6 +45,7 @@ lines = []
 cur = ref
 pitch = a.pitch
 exag = a.exaggeration
+cfg = a.cfg
 for raw in open(a.lines, encoding="utf-8"):
     raw = raw.strip()
     # [pitch -1.5] / [exaggeration 0.6]: for the lines after it (like [ref ...]); the command-line value is the start.
@@ -51,6 +53,8 @@ for raw in open(a.lines, encoding="utf-8"):
         pitch = float(raw[7:-1])
     elif raw.lower().startswith("[exaggeration ") and raw.endswith("]"):
         exag = float(raw[14:-1])
+    elif raw.lower().startswith("[cfg ") and raw.endswith("]"):
+        cfg = float(raw[5:-1])
     elif raw.lower().startswith("[ref ") and raw.endswith("]"):
         r = raw[5:-1].strip()
         cur = r if os.path.isabs(r) else os.path.join(HERE, r)
@@ -58,14 +62,14 @@ for raw in open(a.lines, encoding="utf-8"):
             sys.exit("lines.txt: no such voice reference: " + cur)
     elif raw and not raw.startswith("#") and "|" in raw:
         name, text = raw.split("|", 1)
-        lines.append((name.strip(), text.strip(), cur, pitch, exag))
+        lines.append((name.strip(), text.strip(), cur, pitch, exag, cfg))
 if not lines:
     sys.exit("lines.txt has no lines like:  king_06 | Your text here.")
-for i, (name, text, voice, pitch, exag) in enumerate(lines, 1):
+for i, (name, text, voice, pitch, exag, cfg) in enumerate(lines, 1):
     if os.path.exists(os.path.join(a.out, name + ".wav")):
         continue    # (already made: a stopped run picks up where it left off; delete a file to make it again)
     print("[%d/%d] %s (%s): %s" % (i, len(lines), name, os.path.basename(voice), text))
-    kw = {"audio_prompt_path": voice, "exaggeration": exag, "cfg_weight": a.cfg}
+    kw = {"audio_prompt_path": voice, "exaggeration": exag, "cfg_weight": cfg}
     if a.lang != "en":
         kw["language_id"] = a.lang
     wav = model.generate(text, **kw)

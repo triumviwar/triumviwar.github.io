@@ -7,7 +7,7 @@ or the King), in one run for the owner's PC (docs/chatterbox_todo.md).
 Names: brood__<key> (the Brood announcer, assets/voice/announcer/brood/<key>.ogg) and <folder>__<line id> (a mission's
 line, campaign/voice/<folder>/<line id>.ogg). Lines that already have a file in the game are left out. Bring the out/
 folder back (a zip) and tools/voice_clone/import_voice.py puts every file where the game plays it."""
-import glob, json, os, re
+import glob, json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 HERE = os.path.join(ROOT, "tools", "voice_clone")
@@ -70,7 +70,23 @@ def announcer():
     return out
 
 
-def mission_lines():
+EMO = json.load(open(os.path.join(HERE, "emotions.json"), encoding="utf-8"))
+
+
+def emotion(name, who):
+    """(exaggeration, cfg) for a line: its emotion in emotions.json (no stronger than needed: a voice whose own
+    exaggeration is already higher keeps it), else the voice's own and the calm cfg 0.3."""
+    base = VOICES[who][2]
+    tag = EMO["lines"].get(name)
+    if not tag:
+        return base, 0.3
+    pr = EMO["presets"][tag]
+    return max(base, pr["exaggeration"]), pr["cfg"]
+
+
+def mission_lines(redo_emotion=False):
+    """Every line still to record, by voice; with redo_emotion, every line with an emotion instead (recorded or not:
+    the owner 2026-11-22 "certain lines have no emotion at all")."""
     by_who = {w: [] for w in VOICES}
     for f in sorted(glob.glob(os.path.join(ROOT, "campaign", "missions", "*.json"))):
         M = json.load(open(f, encoding="utf-8"))
@@ -81,7 +97,10 @@ def mission_lines():
             who = voice_of(folder, L.get("who")) if isinstance(L, dict) else None
             if who is None:
                 continue
-            if os.path.exists(os.path.join(ROOT, "campaign", "voice", folder, lid + ".ogg")):
+            if redo_emotion:
+                if "%s__%s" % (folder, lid) not in EMO["lines"]:
+                    continue
+            elif os.path.exists(os.path.join(ROOT, "campaign", "voice", folder, lid + ".ogg")):
                 continue
             text = str(L.get("text", "")).replace("|", ",").replace("\n", " ").strip()
             if text:
@@ -90,27 +109,35 @@ def mission_lines():
 
 
 def main():
-    rows = ["# The big run (docs/chatterbox_todo.md): run.bat --lines lines_big.txt",
+    redo = "--emotion" in sys.argv
+    out_name = "lines_emotion.txt" if redo else "lines_big.txt"
+    rows = ["# The big run (docs/chatterbox_todo.md): run.bat --lines %s%s" % (out_name, " --out out_emotion" if redo else ""),
             "# A stopped run picks up where it left off. EVERY CAMPAIGN LINE IS A PLACEHOLDER (rewritten later).", ""]
-    ann = announcer()
+    ann = [] if redo else announcer()
     total = 0
     if ann:
         rows += ["# ---- The Brood announcer, Lindqvist's v2 voice (%d)" % len(ann),
                  "[ref refs/lindqvist_ref.wav]", "[pitch 0]", "[exaggeration 0.5]"]
         rows += ["%s | %s" % r for r in ann]
     total += len(ann)
-    ml = mission_lines()
+    ml = mission_lines(redo)
     for who in ORDER:
         ref, pitch, ex = VOICES[who]
         if not ml[who]:
             continue
-        rows += ["", "# ---- %s (%d lines)" % (who, len(ml[who])), "[ref %s]" % ref, "[pitch %s]" % pitch,
-                 "[exaggeration %s]" % ex]
-        rows += ["%s | %s" % r for r in ml[who]]
+        rows += ["", "# ---- %s (%d lines)" % (who, len(ml[who])), "[ref %s]" % ref, "[pitch %s]" % pitch]
+        cur = None
+        for name, text in ml[who]:
+            e = emotion(name, who)
+            if e != cur:
+                tag = EMO["lines"].get(name, "calm")
+                rows += ["# " + tag, "[exaggeration %s]" % e[0], "[cfg %s]" % e[1]]
+                cur = e
+            rows.append("%s | %s" % (name, text))
         total += len(ml[who])
-    with open(os.path.join(HERE, "lines_big.txt"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(HERE, out_name), "w", encoding="utf-8") as fh:
         fh.write("\n".join(rows) + "\n")
-    print("lines_big.txt:", total, "lines;", ", ".join("%s %d" % (w, len(ml[w])) for w in ORDER), "+ announcer", len(ann))
+    print(out_name + ":", total, "lines;", ", ".join("%s %d" % (w, len(ml[w])) for w in ORDER), "+ announcer", len(ann))
 
 
 if __name__ == "__main__":

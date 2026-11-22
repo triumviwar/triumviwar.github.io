@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.164", "items": [
+		"CAMPAIGN VOICES: 235 more lines are spoken now. Father Ferrer, young Tomasz, Jakob, Captain Delorme, Benedito, Brother Anselm, Colonel von Rauch, the Machine, the Captain of the Watch, Pieter, old Cardinal Tomasz, the Cardinal Dean, Rouvière, Mère Gautier, the Commissary, the guide, Teles, Frei Joaquim, Will Hollins and the Free Assembly have their voices. Every line is still a placeholder.",
+	]},
 	{"v": "0.38.163", "items": [
 		"CAMPAIGN: the lines that set the scene (no one speaking) used to show only a place as their speaker, like THE RIO NEGRO or NUREMBERG, as if the place were talking. They now read NARRATION · THE RIO NEGRO.",
 	]},

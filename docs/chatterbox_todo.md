@@ -31,6 +31,20 @@ NEXT RUN, FINAL (2026-11-22, 0.38.159): every campaign speaker now has a voice. 
 above plus young Tomasz 49, the Free Assembly 7, and the Cardinal Dean, Rouviere, Mere Gautier, the Commissary, the
 guide (2 each), Teles, Frei Joaquim, Will Hollins (1 each). Only the Sergeant has no line outside the test bed.
 
+RECORDED 2026-11-22 (0.38.164): the 235 lines of lines_big.txt are in the game (every campaign speaker but the
+Sergeant and the Lyon watchman). lines_big.txt is empty until new lines are written.
+
+THE EMOTION RUN (owner 2026-11-22: "certain lines have no emotion at all", Valadares accusing the doctor and firing the
+thatch): tools/voice_clone/emotions.json tags 280 campaign lines shout / angry / urgent / grief / wonder, each with a
+Chatterbox exaggeration and cfg (presets in the file; a line not listed is calm). `make_big_lines.py --emotion` writes
+lines_emotion.txt: those lines again (recorded or not), with [exaggeration] / [cfg] before each change. Run
+`run.bat --lines lines_emotion.txt --out out_emotion`, listen, and send out_emotion back: import_voice.py replaces the
+calm takes. New lines get their emotion from the same file in the normal run. What Chatterbox can and cannot do:
+exaggeration (0.25-2.0) raises the energy, a lower cfg slows it down and lets the emotion breathe, punctuation helps
+("!" shouts, "..." hesitates), but it copies the REFERENCE clip's delivery most of all: a calm reference speaks calmly.
+The strongest fix is a second reference per main character, the same voice speaking angrily or shouting
+(refs/<name>_angry_ref.wav), used for the shout and angry lines.
+
 ## 1. The Brood announcer: a new set in Lindqvist's new voice (owner 2026-11-18 15:55)
 
 "Now that the voice of the naturalist changed we need a completely new voice line set for the Brood announcer."

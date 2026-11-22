@@ -1,0 +1,837 @@
+# The big run (docs/chatterbox_todo.md): run.bat --lines lines_emotion.txt --out out_emotion
+# A stopped run picks up where it left off. EVERY CAMPAIGN LINE IS A PLACEHOLDER (rewritten later).
+
+
+# ---- ferrer (25 lines)
+[ref refs/ferrer_ref.wav]
+[pitch 0.0]
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a04__f_wind | That Winder is winding another Winder. Who told it to?
+a04__f_bin | Taken out clean. Not broken. Taken out.
+a04__f_log2 | The same signs, Meister. Written down before Nuremberg fell.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a04__f_night | Then I will not sleep. Brothers, we stay up.
+a04__f_follow | Follow it. Quietly.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a04__f_mesh | Nobody built this. They built it.
+a04__f_pattern | Look at them. The Perpetual's pattern, every wheel, with a stop-work bolted on. They took it off themselves.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a04__f_riot | They are going to the machine. Stop them before they reach its ground!
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a04__f_gather | Then we wait for them at the gap. Every man there, now: the escort and the colonel's gate men too.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a04__f_none | Not one reached it. Thank God.
+a04__f_some | Some of them reached it. It will use them.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a04__f_melt | Melt them, Meister. Every wheel.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a04__f_hhurt | Meister Hollweg is hurt. Get men to him.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a04__f_end_melted | The broken ones were melted. Hollweg did not speak to me again until Rome.
+a04__f_end_lost | And some of them reached the machine. I counted them in my report.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a07__f_quarrel | I told him the night before the gift. The ghost in the machine destroyed the apostasy once. It was the enemy then. It is the enemy now.
+c01__f_q2 | You know the ghost in the machine is the enemy. It was then. It is now.
+c01__f_1 | Your soldiers, Meister, or the Crown's?
+c01__f_gift | It is beautiful. That is what frightens me.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+c01__f_found | There is another at the bath houses. It did not start today.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+c01__f_turn | They were never yours, Meister. They were its.
+c01__f_bells | Ring the bells, Meister. Let the city wake and go.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+c01__f_rung | Ring them. Every church. Now.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+c01__f_lost | Get the people to the west gate. The Crown's camp is at Fürth.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+c01__f_warn | Two minutes, Meister. To the gate.
+
+# ---- lindqvist (42 lines)
+[ref refs/lindqvist_ref.wav]
+[pitch 0.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a05__l_1 | Quietly. The young sleep apart from the nest, in the ferns.
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+a05__l_sire | And the young Sire in the middle. A father for my line.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a05__l_pieter | I keep the book myself now. Pieter used to.
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+a05__l_taken | So many young. The pack carried my clutch up here after all.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a05__l_net_m | Gently. He weighs more than three men already. The cart!
+a05__l_net_e | Mind its mouth, it spits even asleep. The cart.
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+a05__l_eggs | The eggs. Warm. I carry them myself.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a05__l_all | All of them. Now down, before the sun.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a05__l_woke | They are awake! The carts, now! Down the mountain!
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a05__l_empty | Nothing. We go down with empty cages.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a05__l_trail | The carts are rolling. Keep the guns round them.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a05__l_raid1 | In the trees! They want the cages!
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a05__l_grown | Those are not hatchlings. Last year's young, grown. Look at them.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a05__l_freed | A cage is broken! It is loose!
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a05__l_lost | Every cage broken. Two years for nothing.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a05__l_sire_comes | The Sire. He has come for the last cart. Hold him off!
+a05__l_hurt | I am hurt. Keep them off me!
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a07__l_oldest | They are not monsters, Eminences. They are the oldest things alive. Study them, and you read a page of creation no one has read.
+a07__l_defy | Burn them, and you burn a page of God's own book. I will not.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a07__l_loose | Not like this! They are frightened. Let them be!
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+b01__l_open1 | I was the happiest man in the world that summer, Majesty. Write that down, whoever writes.
+b01__l_weigh | She called at sunset, as every day. Eleven pounds heavier than Monday. Nothing answered. Not yet.
+b01__l_v1 | Not a lizard. Something no man has named. The Crown will have a cavalry that needs no hay.
+b01__l_tracks | Then she has a family. Two families. Splendid.
+b01__l_kin | Did you see them hunt? Not one beast. A breed, with a breed's manners.
+b01__l_call | Listen. Listen to that. She knows that voice.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+b01__l_quiet | If Teles sees those tracks he will shoot everything in this forest, beginning with her. One night.
+b01__l_stallion | I am calling a stallion for my mare. By morning the Academy will have a pair.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+b01__l_lost | He walked through my station as if it were reeds. He did not want us. He wanted her.
+b01__l_groom | He did not want to eat her. He lay down beside her like a groom.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+b01__l_young | She is too young. She is far too young.
+b01__l_five | Five eggs. Five. And he lay across the gate and would not let a man near.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+b01__l_taken | No. No! She is mine! Shoot him, not her!
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+b01__l_save | Ten years of work. The Crown's beasts are in that straw. I will not leave them to the fire.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+b01__l_crate | The crate, Pieter. The notes on top. I carry it myself.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+b01__l_gone | The straw was empty. I thought the fire had taken them. I believed that for thirty years.
+b01__l_pieter | Pieter. Pieter did not come back from the forest's edge.
+b01__l_end1 | We went down the river at first light with the station burning behind us. She was gone. He took her from me as a thief takes a horse.
+b01__l_end_fire | The fire took her eggs before I reached them. I had nothing left but my word, and no one wanted it.
+b01__l_end_pieter | Pieter sat in the canoe with the specimen book on his knees and did not speak all day.
+b01__l_end_nopieter | Pieter went to the forest's edge with the jars. I have his specimen book still. He does not.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+b01__l_end2 | I meant to give the Crown its beasts, Majesty. I still think I was right.
+
+# ---- king (13 lines)
+[ref king_ref.wav]
+[pitch 0.0]
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a02__k_end_m2 | But it could have gone that way. I have thought so, many nights.
+a04__k_end_kept | Hollweg brought his mended machines to Rome. I let him. That was my mistake, not his.
+a04__k_end_melted | Hollweg came to Rome with nothing but his drawings, and his anger.
+a05__k_end1 | His finest hour, he calls it. He took a mother's young in the night.
+a06__k_end_exec | It was the law. I have read the order a hundred times since. It is still the law.
+a07__k_varenne_exec | Varenne was dead a year. His last friends in Rome had not forgotten.
+a07__k_letgo | They both walked out of the hall. I let them go. My mercy, or my mistake: I still don't know.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a07__k_1 | I sent my guard to the bridges that evening. I did not know why. I only knew the city was angry.
+a07__k_3 | Hold the bridges until dawn. Nothing crosses to Saint Peter's.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a07__k_dawn | Dawn. The bridges held. Rome was black with smoke, and it was still Rome.
+a07__k_end_rome_some | Some of Rome burned. We rebuilt it that summer, street by street.
+a07__k_end_rome_few | Most of the east bank burned. Rome rebuilt it, and has not forgotten.
+b01__k_end2 | She was never stolen. She went home.
+
+# ---- hollweg (35 lines)
+[ref refs/hollweg_ref.wav]
+[pitch 0.0]
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a02__h_com | Then watch closely. You will see it fitted.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a02__h_2 | It is coming to us. Man the earthworks.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a02__h_mill | A seed, half way to us. Burn it before it grows.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a02__h_jakob | Jakob. Not twice.
+a02__h_end_thin | The colonel buried many of his men by the Rednitz. He did not forgive us that.
+a02__h_end_jakob | Jakob kept his log of the ticking. He wrote down every beat.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a04__h_1 | See what you like, Father. There is nothing here to hide.
+a04__h_print | Young men read. I cannot stop them reading.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a04__h_pend | Your men are at the gap, Father. The Pendulum and the guild's line are coming down to you.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a04__h_keep | No. Let me keep them. I must learn what went wrong.
+a04__h_melted | You have burned the only witnesses, Father.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a04__h_jakob | Jakob. Not him too.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a07__h_brass | My machines are not the ghost of the old age, Eminences. They are brass and springs. They could learn.
+a07__h_defy | Then you have judged what you will not understand. I will not break my life's work.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a07__h_demo | Stop! I mended them! I put the stop-works back with my own hands!
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a07__h_demo_melted | The stop-work holds! It must hold. Why does it not hold?
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+c01__h_open1 | Nuremberg in Advent. Snow on the roofs, the market lit, every clock in the city agreeing to the second. I thought we had made it so.
+c01__h_open2 | Forty years I made clocks that stopped. This one would not stop. It would wind itself, mend itself, and make its own successor.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+c01__h_open3 | I did not answer him. I did not think the question was a real one.
+c01__h_q2 | Then there is no ghost in mine, I told him. Only my gears. I believed it.
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+c01__h_gift | There. It needs no hand but its own.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+c01__h_found | Those are my gears. In red.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+c01__h_turn | Stop. Stop! They are out of step.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+c01__h_net | No paint. It made itself that colour.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+c01__h_bells | If the city wakes, the guild is finished. Give me one hour and I will put it right.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+c01__h_night | They are building faster than we can burn.
+c01__h_lost | It cannot be stopped tonight. Save what you can.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+c01__h_end_nomill | The mill on the island was still turning when the clock struck. I hear it at night.
+c01__h_jakob | Jakob. Not Jakob.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+c01__h_people | Put the people on the cart. Let the drawings burn.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+c01__h_pattern | The drawings. We must understand it.
+c01__h_13 | There is no thirteenth hour. There is now.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+c01__h_end1 | The great clock struck thirteen. I told the Crown a tooth had slipped. I asked them to burn every machine I ever sold them.
+c01__h_end_people | I left my drawings in the fire. I do not know if that was wisdom or cowardice.
+c01__h_end_nojakob | Jakob did not come out. I keep his log.
+
+# ---- valadares (26 lines)
+[ref refs/explorer_ref.wav]
+[pitch 0.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a03__v_1 | Up the cliff, before the mist lifts and before the rains. Keep together.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a03__v_pieter_lost | The doctor's boy drew her before he was lost. I carried his drawings, God rest him.
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+a03__v_top | The top. Rock towers, black water, and the cloud lying on everything.
+a03__v_source | The river's source: a black pool, very cold. The flood that brought the egg down came from here.
+a03__v_rim | The rim. Below it a hollow, and in the hollow a swamp that grows, and something huge rooted in it.
+a03__v_linnea | And there, among them. The creature from the pen. Twice the size. She knows her home.
+a03__v_young | Young ones, many, still soft. So the pack carried her eggs up here.
+a03__v_turtle | Two mounds that breathe. A swamp that walked, the doctor's people said. It walked here.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a03__v_run_e | He is coming up the falls behind us! Across the top, down the crack in the rock! To the canoe!
+a03__v_run_w | He is in the crack in the rock! Back across the top, down by the falls! To the canoe!
+a03__v_woke | We were too close. They are awake. Leave the survey: down, to the canoe!
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a03__v_end | We pushed off with the cloud closing behind us.
+a03__v_end1 | We came down to the river with what we had. The mountain kept the rest.
+a03__v_end_some | Not every man came down. Their names are at the end of this report.
+a03__v_end_few | Few of us came down. I write their names first, before the map.
+a03__v_end_withheld | The map is not enclosed. I have sealed it for the Holy See. Forgive me.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+b01__v_2 | You mean to sell this to the army, Doctor? Then why do you whisper when you speak of her?
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+b01__v_tracks | There are two kinds of track up there, Doctor. Two packs, and both came down from the north.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+b01__v_goats | At the goats! Guns, quickly!
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+b01__v_tell | Send to Teles, Doctor. Tell him what is in the forest, and bring the village in before dark.
+b01__v_lure | You are calling something you have never seen, Doctor, to a house full of people.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+b01__v_past | They are not after your scent. They are going to her.
+b01__v_lost | We cannot hold this place. Get the people to the jetty. Benedito has his canoes.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+b01__v_fire | Fire the thatch! They shy from fire. It buys us the jetty.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+b01__v_taken | Let her go, Doctor. Your notes, your people. Now.
+b01__v_burn | Burn them, Doctor. Whatever she was, do not carry her children down this river.
+
+# ---- fairleigh (21 lines)
+[ref refs/fairleigh_ref.wav]
+[pitch 0.0]
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a06__f_1 | Three barricades between us and the Bastille. Don't walk lines into them, gentlemen. Break them with the guns first.
+a06__f_2b | Then we take the bridges at the run. Notre-Dame does not burn while I command here.
+a06__f_3 | Now the Hôtel de Ville. Varenne is in there. I want him alive: the King will judge him, not a musket ball.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a06__f_breach | The palisade is open. Before we go in, men to the west gate: he will run.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a06__f_flight | Riders! After him!
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a06__f_taken | I have taken the man who burned Virginia. That will do for today.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a06__f_exec | The law, then. At dawn, on the Grève.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a06__f_priest | The Father is hurt! Men round the priest!
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a06__f_end_exec | Varenne died on the Grève at dawn. The crowd was very quiet.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+p01__f_open5 | Captain Ruggieri, run out the guns. No man burns the King's leaf while I stand on these steps.
+p01__f_1 | That is their orator. He shouts from the dark and sends others into the light.
+p01__f_leaf | You shall have it, Captain. And they shall have the guns.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+p01__f_barn | A barn is alight. Drive them off it!
+p01__f_manor | They are at the house. To the manor!
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+p01__f_ash | The leaf is ash. Virginia has lost its year, and we have lost Virginia.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+p01__f_choice | Every hour we spend there, they dig in at the fort.
+p01__f_save | We do not leave the King's people to burn. North.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+p01__f_leave | The fort first. God keep them.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+p01__f_late | To the road again. We are late.
+p01__f_canister_load | Bring the guns up. Load canister.
+p01__f_word | Canister. On my word.
+
+# ---- ruggieri (9 lines)
+[ref refs/ruggieri_ref.wav]
+[pitch 0.0]
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a06__r_sortie | They are coming out over the barricade at our camp! While it stands they will keep coming.
+a06__r_rush | They are coming out over the barricade! Canister, load canister!
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a06__r_3 | They have palisaded the whole square. The guns will open it.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a06__r_marshal | The Marshal is hit! Keep him behind the line!
+p01__r_1 | Give fire!
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+p01__r_2 | Steady, gentlemen. Let them close. Then give it to them.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+p01__r_dawn | Limber the guns! Down the road!
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+p01__r_mass | They are massing behind the gate, my lord. Hundreds of them.
+p01__r_dug | They have had time to dig in. More of them than I would like.
+
+# ---- varenne (11 lines)
+[ref refs/varenne_ref.wav]
+[pitch 0.0]
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a06__va_taken | You have taken a man, Marshal. You have not taken an idea.
+a06__va_spared | You will regret your mercy, Marshal. Or I will make you glad of it. We shall see.
+a06__va_exec | Do it in daylight. Let them all see what the Crown is.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+p01__v_1 | No king but the people! Burn the leaf of the tyrants!
+p01__v_2 | Free of priests! Free of lords! Liberty or the grave!
+p01__v_3 | Every barn that burns is a chain broken!
+p01__v_4 | Now, brothers! All of you! Let it burn!
+p01__r_intro | Tonight we burn their leaf and their manor. Out of the fields, brothers!
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+p01__r_dawn_v | Back to the fort! Let them come to our walls.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+p01__v_5 | Brothers! Their guns are few! One charge and Virginia is free!
+p01__v_charge | Forward! For the people!
+
+# ---- jakob (13 lines)
+[ref refs/jakob_ref.wav]
+[pitch 0.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a02__j_tick_s | Listen. Off the beat, south of the river. They are coming by the meadows.
+a02__j_tick_3 | More of them. Many more.
+a02__j_hurt | Meister, you are hurt. Stay behind the earthworks.
+a04__j_word | Father. A word, please. Not in front of the Meister.
+a04__j_bin | I found these in a bin behind the Escapement. Stop-works. Twelve of them.
+a04__j_bin2 | Nobody here took them out, Father. I asked every man.
+c01__j_odd | Meister, the new Winders keep turning to face the river.
+c01__j_mill | Meister, there is a press turning on the mill island. We never built a press there.
+c01__j_found | It is a whole works. Meshed, wound, and making more.
+c01__j_night | Lights at the market. And at the east gate.
+c01__j_pend | Meister, it has made a Pendulum.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+c01__j_hit | I'm hit! Keep them off me, I'm coming back.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+c01__j_hurt | Meister, you are hurt. Keep away from them until the last moment.
+
+# ---- delorme (7 lines)
+[ref refs/delorme_ref.wav]
+[pitch 0.0]
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a01__d_found | A press! Their men are inside. Break it.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a01__d_temper15 | Father, they are close to the edge. Stop the runners or we lose the city.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a01__d_band1 | A band at the Terreaux, coming up the middle stair!
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a01__d_band2 | More from the Saône bridge, for the west stair.
+a01__d_band3 | And from the Rhône, with torches, for the east stair.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a01__d_early | A great press in a yard! We will come back for it with more men.
+a01__d_hurt | The Father is hurt! Men round the priest!
+
+# ---- benedito (12 lines)
+[ref refs/benedito_ref.wav]
+[pitch 0.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a03__b_red | Red crests in the trees, Senhor. The other pack, the one that fought at the station. It came up here too.
+a03__b_linnea | They sleep, Senhor. Do not wake them. Not one step closer.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a03__b_hurt | Senhor, you are bleeding! Let the soldiers stand between you and them!
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a03__b_rains | The rains, Senhor. The river rises. I cannot wait longer.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a03__b_push | In! Push off! Paddle!
+a03__b_gone | The canoe is going, Senhor! I cannot hold it!
+a05__b_1 | Here, Doctor! The canoes are ready. Load the cages.
+a05__b_load | One aboard! Bring the next!
+a05__b_full | No more room, Doctor! The canoes are full!
+a05__b_push | Push off! Paddle!
+a05__b_gone | The canoes are going, Doctor! We cannot wait!
+b01__b_leave | Paddle! Do not look back.
+
+# ---- brother (9 lines)
+[ref refs/brother_ref.wav]
+[pitch 0.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a04__b_night | Father, a Winder. Alone, out of the yard. Nobody sent it.
+a04__b_tip2 | Keep it within eight tiles. Closer than three and it will see us.
+a04__b_lost | We have lost sight of it, Father. It went that way.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a04__b_gather | Father, the broken ones are gathering on the bank! They will cross the bridge and go out by the gap in the line.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a04__b_wave | The first of them are on the bridge. They walk as if they were called. They do not even fight.
+a04__b_wave2 | More on the bridge: the Springers and the Winders.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a04__b_wave3 | The last ones, from the press-house. Hold the gap!
+a04__b_sortie | The machine is coming out to meet them, at the open gap in the line!
+a04__b_hurt | The Father is hurt! Keep the muskets round him!
+
+# ---- colonel (9 lines)
+[ref refs/colonel_ref.wav]
+[pitch 0.0]
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a02__col_1 | My men are digging, Meister. Your machines stay on your side of the ditch.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a02__col_2 | Riders from the river. The gates of Nuremberg are open.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a02__col_wave | On the meadows! Hold the gate!
+a02__col_wave2 | The road! They are on the road!
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a02__col_wave2c | The meadows again. They know only the one way.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a02__col_wave3 | Everything it has. Hold, Franconians!
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a02__col_mill | My reserve goes with you. Burn it and the line holds.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a02__col_tide | The mill has grown a tide. Burn it, Meister, before it sends another.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a02__col_hurt | Your master is hurt, guild! Get soldiers round him.
+
+# ---- captain (4 lines)
+[ref refs/captain_ref.wav]
+[pitch 0.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+c01__cap_net | One of yours, Meister, in red paint. Or is it?
+c01__cap_escort | Three of my men go with your journeyman, Meister. North of the river the streets are the machine's.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+c01__cap_riders | Riders from Fürth! They will hold the gate for the last of us.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+c01__cap_cart | One cart left. People or papers, Meister. Not both.
+
+# ---- pieter (4 lines)
+[ref refs/pieter_ref.wav]
+[pitch 0.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+b01__p_tracks2 | Three toes, deep in the mud at the creek. Too many to count.
+b01__p_past | Doctor, they walked past the jars.
+b01__p_sire | Over the palisade. Doctor, it is as big as the house.
+b01__p_eggs | Doctor, there are eggs in her straw.
+
+# ---- tomasz (30 lines)
+[ref refs/tomasz_ref.wav]
+[pitch 0.0]
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a01__t_open_left | I still prayed for the families we left on the road in Virginia. Nobody wrote to me about them.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a01__t_left | In Virginia we left the families on the road. I will not leave this city to the fire.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a01__t_found | Spare the boys who carry the papers if you can. They cannot read what they carry.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a01__t_sermon | I spoke on the square until my voice went. Some of them listened. Some went home.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a01__t_2 | Let me speak to them, Captain. They are my parish. Hold the stairs and give me the time.
+a01__t_turn | Bring me to them. They will not turn while I am speaking.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a01__t_taken | He said Paris. He said it as if it were a threat.
+a01__t_end_sullen | The city stayed quiet. Quiet is not the same as calm. I heard them stop talking when I passed.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a06__t_1 | There are families behind those shutters, Marshal. They did not all choose this.
+a06__t_2 | Marshal, look at the far bank. They are carrying torches towards Notre-Dame.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a06__t_nd | The doors are burning! Men onto the parvis!
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a06__t_mercy | Marshal. I ask for his life. Send him away, but let him live. I prayed for his men in Virginia; I pray for him now.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a06__t_spared | Thank God.
+a06__t_exec | I will stay with him tonight, Marshal. Someone should.
+a06__t_end_exec | I said a Mass for his soul. Some of his men came, and I did not send them away.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a07__t_1 | Majesty, the Romans were at the doors all day. They hate a clever machine more than they hate the devil.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a07__t_people | The people are in the squares, Majesty, waiting for someone to tell them where to go. Let me go to them.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a07__t_call | Come! To Saint Peter's, all of you, over the bridge. Stay together.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+a07__t_dawn | They are singing Lauds in the basilica, Majesty. With the doors open.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a07__t_king | The King is hit! Guard, to the King!
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+p01__t_end | I prayed for them that morning, and I pray for them still. But I never again believed that disorder was a kind of mercy.
+p01__t_1 | They carried pitchforks and torches, and some of them were boys. I knelt by the first one who fell. He was already gone.
+p01__t_2 | They burned the curing sheds with families sleeping beside them. I learned that night what their freedom meant.
+p01__t_barn | The first barn fell in. The leaf went up like incense, and the smell was everywhere.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+p01__t_smoke | Smoke to the north, my lord. Hollins Farm. The families there are loyal, and they are trapped.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+p01__t_saved | They came out of the smoke carrying their children. A woman kissed the Governor's hand. He did not know where to look.
+p01__t_toolate | We came too late. I said the prayers for the dead over them, and we marched on.
+p01__t_left | We saw the smoke of Hollins Farm for an hour. No one spoke of it. I have prayed for those families every year since.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+p01__t_band | Riders saw a band on the north road, my lord: militia and a torch. They will be at the farm within the hour.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+p01__t_band_near | The band is past the woods. They are almost at the farm!
+
+# ---- cardinal_dean (2 lines)
+[ref refs/cardinal_dean_ref.wav]
+[pitch 0.0]
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a07__c_verdict1 | No machine may govern itself. Every machine that winds or mends itself shall be stopped and broken.
+a07__c_verdict2 | The specimens are to be destroyed, and their eggs with them.
+
+# ---- printer (2 lines)
+[ref refs/printer_ref.wav]
+[pitch 0.0]
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a01__pr_1 | You are too late, Father. Half of France has read us already.
+a01__pr_taken | Take me, then. The paper is made in Paris. So is everything else.
+
+# ---- weaver (1 lines)
+[ref refs/weaver_ref.wav]
+[pitch 0.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+a01__wv_spoken | Go home, all of you. The young Father is right. Go home.
+
+# ---- commissary (1 lines)
+[ref refs/commissary_ref.wav]
+[pitch 0.0]
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a02__com_1 | The Crown has read Father Ferrer's letter, Meister. Nothing is built here until I see that stop-work.
+
+# ---- teles (1 lines)
+[ref refs/teles_ref.wav]
+[pitch 0.0]
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+b01__t_late | Shots at the station! You three, with me, along the causeway. Hold the ford for them.
+
+# ---- joaquim (1 lines)
+[ref refs/joaquim_ref.wav]
+[pitch 0.0]
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+b01__j_raid | The station is burning! Down to the boats, all of you, in the name of God!
