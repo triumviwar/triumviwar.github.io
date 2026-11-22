@@ -5,7 +5,7 @@ extends RefCounted
 
 const NOTES := [
 	{"v": "0.38.999", "items": [
-		"A FRESH WIN RATE, THE CROWN AGAINST THE BROOD: 170 computer games (Hard against Hard, to 20:00) measured the matchup again in blocks of 10, with one change to the computers' play a block. Today the Brood computer is ahead in 4 games of 5 at 20:00. Nine changes were tried (the Crown's Armoury in time, its siege push held for a big army or sent back to strike after a beaten wave, called home for its base, its labourers kept working or walked away from a coming wave); none was clearly better, so the game plays as before, and each stays behind its own switch for later tests.",
+		"A FRESH WIN RATE, THE CROWN AGAINST THE BROOD: 170 computer games (Hard against Hard, to 20:00) measured the matchup again in blocks of 10, with one change to the computers' play a block. Today the Brood computer is ahead in 4 games of 5 at 20:00. Ten changes were tried (the Crown's Armoury in time, its siege push held for a big army or sent back to strike after a beaten wave, called home for its base, its labourers kept working or walked away from a coming wave); none was clearly better, so the game plays as before, and each stays behind its own switch for later tests.",
 	]},
 	{"v": "0.38.124", "items": [
 		"THE CROWN'S LAND IS ONLY PURPLE: a region the Crown holds but where people are uneasy now has purple and pale purple stripes and flag (it had red, which is the machine's colour), on the painted and the drawn war map and in the legend.",
