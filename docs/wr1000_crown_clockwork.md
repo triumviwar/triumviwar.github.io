@@ -117,7 +117,8 @@ What each one did (how often it acted, and what moved):
    Clock Soldiers every think): the owner may want it on whatever the score: `AIWccr.KEPT["decoy"] = true`.
 6. **The hung game** (block 8, Dune Sea round 1, with `fresh`): it ran 40 minutes of CPU (a game usually takes 9-18) and
    was cut; not looked into (it may be the change or a long late game).
-7. 170 games, as asked ("about 17 blocks"); the job ran to the end without a restart.
+7. 170 games, as asked ("about 17 blocks"). Block 7 was started over twice: the first two versions of `labs` capped the
+   labourers only on some plans and in some of the Crown's training paths (its games were thrown away).
 
 ## Proposals
 
