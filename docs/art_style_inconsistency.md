@@ -806,3 +806,18 @@ Drawn in code, to be painted later (stand-ins):
 - The BRAZIL view on the King's parchment: the drawn map (no painting yet); slot painted_brazil.jpg (prompt in the doc).
 - New marks drawn in code: the gear (Concórdia), the Queen's green crown, the church (and burnt), the star fort, the
   siege ring, the dashed routes; the diamond's small clock on a waiting pin.
+
+## Act 2's Brazilian ground: VÁRZEA, HIGHLANDS, SERTÃO (code-drawn stand-ins, act2-terrain-art, docs/act2_terrain_art.md)
+
+Every picture of the three biomes is drawn in code by tools/make_act2_terrain.py (posterised noise, cracks and strokes;
+the props as flat shapes with a one-pixel outline). Each is replaced by the owner's ChatGPT picture through
+tools/import_act2_terrain.py (art/redraws/act2_terrain/<name>.png; one prompt a picture in the doc).
+
+- Ground (64 x 64, six variants each): varzea, varzea_mud, varzea_water (the brown flood water with floating grass),
+  highland, highland_earth (terra roxa), highland_rock, sertao (cracked earth), sertao_dust, sertao_rock.
+- Cliffs (32 x 32, two each): varzea_face / _top, highland_face / _top, sertao_face / _top.
+- Props: varzea_tree, buriti, aninga, floating_grass, varzea_snag; araucaria, araucaria_young, highland_boulder,
+  cold_tussock, mist_wisp (see-through, no outline); mandacaru, caatinga_tree, caatinga_bush, xique_xique, ox_skull,
+  sertao_stones. They are flatter and more outlined than the painted props (no texture inside the shapes).
+- The ramps borrow older sets (moss_ramp, grass_ramp, desert_ramp) and the fords older ones (reeds, shingle); the
+  highlands and the sertão use the plain blue "water" set.

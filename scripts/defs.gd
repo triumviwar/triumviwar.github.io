@@ -2382,6 +2382,7 @@ const BIOME_AVOID := {
 	"tundra": ["Blue", "Teal"], "ashland": ["Red", "Orange"], "pinewood": ["Green", "Orange"],
 	"steppe": ["Yellow", "Orange"], "coast": ["Teal", "Yellow"], "oldkingdom": ["Green"], "bog": ["Green"],
 	"glowwood": ["Teal", "Blue"], "fall": ["Orange", "Yellow", "Red"], "badlands": ["Yellow"],
+	"varzea": ["Green", "Orange"], "highlands": ["Green", "Yellow"], "sertao": ["Orange", "Red", "Yellow"],
 }
 
 
