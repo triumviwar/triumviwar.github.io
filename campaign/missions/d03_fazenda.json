@@ -827,8 +827,8 @@
 			"at": "pen_6",
 			"tag": "storm_sire",
 			"tags": [
-				"young",
-				"sleep_6"
+				"sleep_6",
+				"flyers"
 			],
 			"fixed": true,
 			"if": {
@@ -1632,16 +1632,10 @@
 						"at": "old_pens",
 						"tag": "storm_sire",
 						"tags": [
-							"young",
-							"leashed"
+							"leashed",
+							"flyers"
 						],
 						"fixed": true
-					}
-				},
-				{
-					"counter": {
-						"name": "young_n",
-						"add": 1
 					}
 				},
 				{
@@ -1761,6 +1755,65 @@
 					"spare": {
 						"tag": "hatchling",
 						"on": true
+					}
+				}
+			]
+		},
+		{
+			"id": "storm_spare",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"spare": {
+						"tag": "flyers",
+						"on": true
+					}
+				}
+			]
+		},
+		{
+			"id": "storm_spare__0",
+			"when": {
+				"all": [
+					{
+						"fired": "storm_spare"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"carry": {
+						"tag": "flyers",
+						"on": true,
+						"pace": 1.0
 					}
 				}
 			]
@@ -1950,7 +2003,8 @@
 						"at": "canoes",
 						"tag": "valadares",
 						"tags": [
-							"com_men"
+							"com_men",
+							"searchers"
 						],
 						"fixed": true
 					}
@@ -2754,6 +2808,163 @@
 						"do": "track",
 						"within": 12
 					}
+				}
+			]
+		},
+		{
+			"id": "riders_north",
+			"when": {
+				"all": [
+					{
+						"fired": "parties"
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 140,
+			"do": [
+				{
+					"order": {
+						"tag": "riders",
+						"do": "route",
+						"route": [
+							"fields_w",
+							"ford_w",
+							"pen_5",
+							"pen_1",
+							"ford_w",
+							"fields_w"
+						],
+						"loop": true,
+						"name": "riders"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "riders_north_say",
+			"when": {
+				"all": [
+					{
+						"fired": "riders_north"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"p_riders"
+					]
+				}
+			]
+		},
+		{
+			"id": "v_hunch",
+			"when": {
+				"all": [
+					{
+						"fired": "parties"
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 215,
+			"do": [
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "route",
+						"route": [
+							"ford_m",
+							"pen_5",
+							"pen_2",
+							"pen_3",
+							"ford_e",
+							"fields_e"
+						],
+						"loop": true,
+						"name": "valadares_road"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_m"
+					}
+				}
+			]
+		},
+		{
+			"id": "v_hunch_say",
+			"when": {
+				"fired": "v_hunch"
+			},
+			"do": [
+				{
+					"say": [
+						"v_hunch"
+					]
 				}
 			]
 		},
@@ -4341,7 +4552,7 @@
 			]
 		},
 		{
-			"id": "restless",
+			"id": "restless_pick",
 			"when": {
 				"all": [
 					{
@@ -4367,37 +4578,15 @@
 					}
 				]
 			},
-			"delay": 12,
-			"do": [
-				{
-					"leash": {
-						"tag": "restless",
-						"lure": "lure",
-						"within": 3,
-						"loose": "to",
-						"to": "goats",
-						"name": "restless"
-					}
-				},
-				{
-					"pace": {
-						"tag": "restless",
-						"pace": 0.38
-					}
-				},
-				{
-					"ping": {
-						"tag": "restless"
-					}
-				}
-			]
+			"delay": 11,
+			"do": []
 		},
 		{
-			"id": "restless__0",
+			"id": "restless_pick__0",
 			"when": {
 				"all": [
 					{
-						"fired": "restless"
+						"fired": "restless_pick"
 					},
 					{
 						"playing": "stock"
@@ -4424,11 +4613,11 @@
 			]
 		},
 		{
-			"id": "restless__1",
+			"id": "restless_pick__1",
 			"when": {
 				"all": [
 					{
-						"fired": "restless"
+						"fired": "restless_pick"
 					},
 					{
 						"not": {
@@ -4443,6 +4632,77 @@
 						"tag": "wanderer",
 						"as": "restless",
 						"first": true
+					}
+				}
+			]
+		},
+		{
+			"id": "restless",
+			"when": {
+				"all": [
+					{
+						"fired": "restless_pick"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"leash": {
+						"tag": "restless",
+						"lure": "no_lure",
+						"within": 3,
+						"loose": "to",
+						"to": "goats",
+						"name": "restless"
+					}
+				},
+				{
+					"pace": {
+						"tag": "restless",
+						"pace": 0.38
+					}
+				},
+				{
+					"ping": {
+						"tag": "restless"
+					}
+				}
+			]
+		},
+		{
+			"id": "restless_lure",
+			"when": {
+				"fired": "restless"
+			},
+			"delay": 8,
+			"do": [
+				{
+					"leash": {
+						"tag": "restless",
+						"lure": "lure",
+						"within": 3,
+						"loose": "to",
+						"to": "goats",
+						"name": "restless"
 					}
 				}
 			]
@@ -4491,83 +4751,14 @@
 			"do": []
 		},
 		{
-			"id": "restless_quiet",
-			"when": {
-				"all": [
-					{
-						"fired": "restless"
-					},
-					{
-						"not": {
-							"fired": "restless_went"
-						}
-					},
-					{
-						"playing": "stock"
-					},
-					{
-						"not": {
-							"any": [
-								{
-									"fired": "the_end"
-								},
-								{
-									"fired": "c_end"
-								},
-								{
-									"fired": "lost_found"
-								},
-								{
-									"fired": "lost_fight"
-								}
-							]
-						}
-					}
-				]
-			},
-			"delay": 8,
-			"do": []
-		},
-		{
-			"id": "restless_quiet2",
-			"when": {
-				"all": [
-					{
-						"fired": "restless_quiet"
-					},
-					{
-						"not": {
-							"fired": "restless_went"
-						}
-					}
-				]
-			},
-			"do": [
-				{
-					"objective": {
-						"id": "restless",
-						"set": "done"
-					}
-				},
-				{
-					"say": [
-						"l_held"
-					]
-				},
-				{
-					"clock": {
-						"name": "dawn",
-						"add": -80
-					}
-				}
-			]
-		},
-		{
 			"id": "restless_held",
 			"when": {
 				"all": [
 					{
 						"fired": "restless_went"
+					},
+					{
+						"fired": "restless_lure"
 					},
 					{
 						"not": {
@@ -5607,6 +5798,15 @@
 			"who": "narrator",
 			"text": "Found. They have seen one of the stock. Get it away under a lure before they shoot it.",
 			"to": "stock"
+		},
+		"p_riders": {
+			"who": "pieter",
+			"text": "The riders have crossed the creek at the west ford, Doctor. They are going up the paths now.",
+			"to": "stock"
+		},
+		"v_hunch": {
+			"who": "valadares",
+			"text": "Everything on this island walks from the middle out. We look in the middle."
 		},
 		"v_tracks": {
 			"who": "valadares",

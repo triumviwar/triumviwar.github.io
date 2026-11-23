@@ -554,15 +554,7 @@
 								},
 								"lines": [
 									"The commission has gone down the river. I wrote the Storm Sire's hatching hour in the book myself.",
-									"Rome calls it a monster. I call it a breed, the first of its line. Every breed needs patience and a good fence."
-								]
-							},
-							{
-								"after": "d03_fazenda",
-								"sides": {
-									"d03_fazenda": "stock"
-								},
-								"lines": [
+									"Rome calls it a monster. I call it a breed, the first of its line. Every breed needs patience and a good fence.",
 									"Valadares said it was made, not born. A Crown man's superstition. Everything that lives was born."
 								]
 							},
@@ -575,7 +567,8 @@
 									"d03_fazenda.hidden": "few"
 								},
 								"lines": [
-									"They burned the pens they found. I count the ones that are left every morning. The stud book is thinner."
+									"They burned the pens they found. I count the ones that are left every morning. The stud book is thinner.",
+									"Valadares said it was made, not born. A Crown man's superstition. Everything that lives was born."
 								]
 							},
 							{

@@ -96,6 +96,7 @@ DINNER_SECS = 5              # Lindqvist at the house's door this long: the magi
 DINNER_HOLD = 90             # ... and his party stays at the house this long
 DECOY_SECS = 4               # a keeper at a decoy spot this long sets a lure post
 RESTLESS_PACE = 0.38         # the restless young one's pace to the goats (time to get a lure to it)
+RESTLESS_SLIP = 8            # ... it slips away from its keeper first: no lure holds it this long
 PARTY = 4                    # musketeers a search party (scaled: EASY 3, HARD 5)
 RESTLESS_KINDS = ["raptor", "spitter", "tyrant_challenger", "venom_challenger", "tyrannosaur"]
 
@@ -117,6 +118,8 @@ ROUTE_A = ["mill", "pen_7", "ford_w", "pen_5", "pen_1", "ford_w", "fields_w", "o
 ROUTE_B = ["house", "old_pens", "ford_m", "pen_2", "pen_5", "ford_w", "fields_w", "house"]        # the magistrate's party
 ROUTE_C = ["fields_e", "pen_8", "chapel", "ford_e", "pen_4", "pen_3", "ford_e", "fields_e"]        # the east party
 ROUTE_R = ["fields_w", "old_pens", "house", "fields_e", "chapel", "fields_e", "old_pens"]         # the riders (south)
+ROUTE_RN = ["fields_w", "ford_w", "pen_5", "pen_1", "ford_w", "fields_w"]                        # the riders, later (north-west)
+ROUTE_H = ["ford_m", "pen_5", "pen_2", "pen_3", "ford_e", "fields_e"]                              # Valadares' hunch: the middle
 ROUTE_V = ["house", "ford_m", "pen_3", "ford_e", "fields_e", "house", "ford_m", "pen_5", "ford_w"]  # Valadares, on tracks
 
 
@@ -142,7 +145,7 @@ units = [
     for i, (k, r, c) in enumerate(YOUNG)
 ] + [
     # (the mirror: the Storm Sire already hatched, asleep by her; two young ones loose in the forest leave tracks)
-    {"team": "stock", "kind": "pterodactyl", "count": 1, "at": "pen_6", "tag": "storm_sire", "tags": ["young", "sleep_6"], "fixed": True, "if": NO_STOCK},
+    {"team": "stock", "kind": "pterodactyl", "count": 1, "at": "pen_6", "tag": "storm_sire", "tags": ["sleep_6", "flyers"], "fixed": True, "if": NO_STOCK},
     {"team": "stock", "kind": "raptor", "count": 2, "at": "pen_5", "tag": "wanderer", "tags": ["young"], "fixed": True, "if": NO_STOCK},
     # Lindqvist's people: the lures
     {"team": "stock", "kind": "musketeer", "as": "lindqvist", "count": 1, "at": "old_pens", "tag": "lindqvist", "tags": ["lure", "people"]},
@@ -391,6 +394,11 @@ line("n_party", "narrator", "A search party is coming near a pen. Keep them stil
      "Un grupo de búsqueda se acerca a un corral. Mantenlos quietos, o apártalos bajo un señuelo.", ST)
 line("n_found", "narrator", "Found. They have seen one of the stock. Get it away under a lure before they shoot it.",
      "Encontrado. Viram um do plantel. Afaste-o sob um engodo antes que o abatam.", "Encontrado. Han visto a uno de la cría. Apártalo bajo un señuelo antes de que lo maten.", ST)
+line("p_riders", "pieter", "The riders have crossed the creek at the west ford, Doctor. They are going up the paths now.",
+     "Os cavaleiros atravessaram o igarapé no vau oeste, Doutor. Estão a subir os trilhos agora.",
+     "Los jinetes han cruzado el arroyo por el vado del oeste, doctor. Ahora suben por las sendas.", ST)
+line("v_hunch", "valadares", "Everything on this island walks from the middle out. We look in the middle.",
+     "Tudo nesta ilha anda do meio para fora. Vamos procurar no meio.", "Todo en esta isla camina del medio hacia fuera. Buscaremos en el medio.")
 line("v_tracks", "valadares", "Fresh prints. Three toes, a dragged claw. This way.", "Pegadas frescas. Três dedos, uma garra arrastada. Por aqui.",
      "Huellas frescas. Tres dedos, una garra arrastrada. Por aquí.")
 line("v_found", "valadares", "There. You see it? Sugar and goats, the Doctor said.", "Ali. Está a ver? Açúcar e cabras, disse o Doutor.", "Allí. ¿Lo ve? Azúcar y cabras, dijo el doctor.")
@@ -584,8 +592,8 @@ TR_ += [
     {"id": "mother_rooted", "when": {"all": [{"rooted": {"tag": "mother"}}, {"count": {"tag": "mother", "area": "deep"}}, STOCK]}, "do": [
         {"objective": {"id": "root_mother", "set": "done"}}, {"say": ["n_rooted"]}]},
     {"id": "storm_hatch", "when": {"all": [{"time": STORM_AT}, STOCK]}, "do": [
-        {"spawn": {"team": "stock", "kind": "pterodactyl", "count": 1, "near": "mother", "at": "old_pens", "tag": "storm_sire", "tags": ["young", "leashed"], "fixed": True}},
-        {"counter": {"name": "young_n", "add": 1}}, {"say": ["l_storm", "l_storm2"]}, {"ping": {"tag": "storm_sire"}},
+        {"spawn": {"team": "stock", "kind": "pterodactyl", "count": 1, "near": "mother", "at": "old_pens", "tag": "storm_sire", "tags": ["leashed", "flyers"], "fixed": True}},
+        {"say": ["l_storm", "l_storm2"]}, {"ping": {"tag": "storm_sire"}},
         {"objective": {"id": "storm", "set": "active"}}, {"flag": {"storm": "hatched"}},
         {"give": {"team": "stock", "gold": 200, "powder": 40}}]},
     {"id": "storm_rooted", "when": {"all": [{"rooted": {"tag": "storm_sire"}}, STOCK]}, "do": [{"say": ["l_hatch"]}]},
@@ -593,6 +601,9 @@ TR_ += [
         {"objective": {"id": "storm", "set": "done"}}, {"spare": {"tag": "hatchling", "on": True}}]},
     # (the Hatchlings are the stock's eyes: the commission takes them for birds and never shoots at them)
     {"id": "hatch_spare", "when": {"all": [{"fired": "hatched"}, LIVE]}, "every": 3, "do": [{"spare": {"tag": "hatchling", "on": True}}]},
+    # (the Storm Sire too: over the canopy the commission takes him for a great bird; he dives on nobody while it is here)
+    {"id": "storm_spare", "when": {"all": [{"fired": "part2"}, LIVE]}, "every": 3, "do": [
+        {"spare": {"tag": "flyers", "on": True}}, {"carry": {"tag": "flyers", "on": True, "pace": 1.0, "if": STOCK}}]},
     {"id": "p_warn", "when": {"all": [{"clock_left": {"name": "boat", "below": 45}}, {"not": {"fired": "part2"}}, STOCK]}, "do": [{"say": ["p_warn"]}]},
     # NO WAITING: everything hidden early and the Mother rooted: the canoes come round the point at once
     {"id": "ready", "when": {"all": [{"time": 20}, STOCK, {"done": "root_mother"}, {"not": {"fired": "part2"}},
@@ -612,7 +623,7 @@ TR_ += [
         {"clock": {"name": "dusk", "secs": DUSK["drawn"], "scale": False, "if": DRAWN}},
         {"clock": {"name": "dusk", "secs": DUSK["withheld"], "scale": False, "if": WITHHELD}},
         # the commission lands: Valadares, the magistrate, Benedito with the canoes
-        {"spawn": {"team": "commission", "kind": "dismounted", "as": "valadares", "count": 1, "at": "canoes", "tag": "valadares", "tags": ["com_men"], "fixed": True}},
+        {"spawn": {"team": "commission", "kind": "dismounted", "as": "valadares", "count": 1, "at": "canoes", "tag": "valadares", "tags": ["com_men", "searchers"], "fixed": True}},
         {"spawn": {"team": "commission", "kind": "dismounted", "as": "fonseca", "count": 1, "at": "canoes", "tag": "fonseca", "fixed": True}},
         {"spawn": {"team": "commission", "kind": "labourer", "as": "benedito", "count": 1, "at": "canoes", "tag": "benedito", "fixed": True}},
         {"spare": {"tag": "benedito", "on": True}}, {"spare": {"tag": "fonseca", "on": True}}, {"spare": {"tag": "valadares", "on": True, "if": STOCK}},
@@ -648,6 +659,13 @@ TR_ += [
         {"order": {"tag": "valadares", "do": "track", "within": 14}}]},
     {"id": "parties_track", "when": {"all": [{"fired": "parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 90, "every": 25, "do": [
         {"order": {"tag": "party_a", "do": "track", "within": 12}}, {"order": {"tag": "party_c", "do": "track", "within": 12}}]},
+    # the search tightens (something new every minute or two: NO WAITING)
+    {"id": "riders_north", "when": {"all": [{"fired": "parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 140, "do": [
+        {"order": {"tag": "riders", "do": "route", "route": ROUTE_RN, "loop": True, "name": "riders"}}, {"ping": {"area": "ford_w"}}]},
+    {"id": "riders_north_say", "when": {"all": [{"fired": "riders_north"}, STOCK]}, "do": [{"say": ["p_riders"]}]},
+    {"id": "v_hunch", "when": {"all": [{"fired": "parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 215, "do": [
+        {"order": {"tag": "valadares", "do": "route", "route": ROUTE_H, "loop": True, "name": "valadares_road"}}, {"ping": {"area": "ford_m"}}]},
+    {"id": "v_hunch_say", "when": {"fired": "v_hunch"}, "do": [{"say": ["v_hunch"]}]},
     {"id": "v_tracks_say", "when": {"all": [{"fired": "v_track"}, STOCK]}, "delay": 30, "do": [{"say": ["v_tracks"]}]},
     # the dinner and the decoys (the player's tools)
     {"id": "dinner_obj", "when": {"all": [{"fired": "part2"}, STOCK]}, "delay": 24, "do": [
@@ -716,20 +734,20 @@ TR_ += [
     {"id": "part3_c", "when": {"all": [{"fired": "part3"}, COM]}, "do": [{"say": ["v_c_night"]}]},
     {"id": "camp_hold", "when": {"all": [{"fired": "part3"}, NO_COM]}, "delay": 20, "do": [{"order": {"tag": "searchers", "do": "hold"}}]},
     # the restless young one: up and away for the goats (its own short leash: only a lure right beside it holds it)
-    {"id": "restless", "when": {"all": [{"fired": "part3"}, LIVE]}, "delay": 12, "do": [
+    {"id": "restless_pick", "when": {"all": [{"fired": "part3"}, LIVE]}, "delay": 11, "do": [
         {"retag": {"tag": "leashed", "as": "restless", "kind": RESTLESS_KINDS, "first": True, "far_from": "lure", "within": 4, "if": STOCK}},
-        {"retag": {"tag": "wanderer", "as": "restless", "first": True, "if": NO_STOCK}},
-        {"leash": {"tag": "restless", "lure": "lure", "within": 3, "loose": "to", "to": "goats", "name": "restless"}},
+        {"retag": {"tag": "wanderer", "as": "restless", "first": True, "if": NO_STOCK}}]},
+    {"id": "restless", "when": {"all": [{"fired": "restless_pick"}, LIVE]}, "delay": 1, "do": [
+        # (it slips away first: for a few seconds no lure holds it, then only one right beside it)
+        {"leash": {"tag": "restless", "lure": "no_lure", "within": 3, "loose": "to", "to": "goats", "name": "restless"}},
         {"pace": {"tag": "restless", "pace": RESTLESS_PACE}},
         {"ping": {"tag": "restless"}}]},
+    {"id": "restless_lure", "when": {"fired": "restless"}, "delay": RESTLESS_SLIP, "do": [
+        {"leash": {"tag": "restless", "lure": "lure", "within": 3, "loose": "to", "to": "goats", "name": "restless"}}]},
     {"id": "restless_say", "when": {"all": [{"fired": "restless"}, STOCK]}, "do": [
         {"objective": {"id": "restless", "set": "active"}}, {"say": ["p_restless", "l_restless"]}]},
     {"id": "restless_went", "when": {"all": [{"fired": "restless"}, {"loose": {"name": "restless"}}]}, "do": []},
-    # (a careful player: a keeper already right beside it: it never gets far: the night passes quietly, and quickly)
-    {"id": "restless_quiet", "when": {"all": [{"fired": "restless"}, {"not": {"fired": "restless_went"}}, STOCK, LIVE]}, "delay": 8, "do": []},
-    {"id": "restless_quiet2", "when": {"all": [{"fired": "restless_quiet"}, {"not": {"fired": "restless_went"}}]}, "do": [
-        {"objective": {"id": "restless", "set": "done"}}, {"say": ["l_held"]}, {"clock": {"name": "dawn", "add": -80}}]},
-    {"id": "restless_held", "when": {"all": [{"fired": "restless_went"}, {"not": {"loose": {"name": "restless"}}}, STOCK, LIVE]}, "do": [
+    {"id": "restless_held", "when": {"all": [{"fired": "restless_went"}, {"fired": "restless_lure"}, {"not": {"loose": {"name": "restless"}}}, STOCK, LIVE]}, "do": [
         {"say": ["l_held"]}, {"pace": {"tag": "restless", "pace": 1.0}}]},
     {"id": "restless_back", "when": {"all": [{"fired": "restless_held"}, {"count": {"tag": "restless", "area": "deep", "at_least": 1}},
                                              {"count": {"tag": "restless", "area": "south", "below": 1}}, LIVE]}, "do": [

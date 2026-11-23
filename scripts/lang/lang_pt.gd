@@ -4947,6 +4947,8 @@ const T := {
 	"A lure post set. A search party turns off its road to see what it is.": "Um poste-engodo fincado. Um grupo de busca sai do seu caminho para ver o que é.",
 	"A search party is coming near a pen. Keep them still, or move them away under a lure.": "Um grupo de busca aproxima-se de um curral. Mantenha-os quietos, ou afaste-os sob um engodo.",
 	"Found. They have seen one of the stock. Get it away under a lure before they shoot it.": "Encontrado. Viram um do plantel. Afaste-o sob um engodo antes que o abatam.",
+	"The riders have crossed the creek at the west ford, Doctor. They are going up the paths now.": "Os cavaleiros atravessaram o igarapé no vau oeste, Doutor. Estão a subir os trilhos agora.",
+	"Everything on this island walks from the middle out. We look in the middle.": "Tudo nesta ilha anda do meio para fora. Vamos procurar no meio.",
 	"Fresh prints. Three toes, a dragged claw. This way.": "Pegadas frescas. Três dedos, uma garra arrastada. Por aqui.",
 	"There. You see it? Sugar and goats, the Doctor said.": "Ali. Está a ver? Açúcar e cabras, disse o Doutor.",
 	"No. Not that one. Pieter, move them. Move the others.": "Não. Esse não. Pieter, mexe-os. Mexe os outros.",
