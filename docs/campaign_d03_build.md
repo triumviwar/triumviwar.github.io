@@ -18,7 +18,7 @@ Brood) by default; the solo pick and versus play the commission. EVERY LINE OF T
 | the war map | `campaign/warmap.json`: d03's pin ("The island", the dry season 2772, after a07), a fazenda mark on the Amazon, the rules (below) |
 | the roster ladder | `tools/campaign/roster_ladder.py`: B4 = d03 (THE STORM SIRE + HATCHLINGS), bound team `stock`, NEW cards at 8 s, side `stock`, the cards in pt / es |
 | the roles | `scripts/campaign/rebels.gd`: young_mother (a Brood Mother at 0.42, Linnea's art), keeper (a hired gun), assembly_keeper (a militiaman), fonseca (a dismounted man in black) |
-| the engine | `scripts/campaign/mission_act2.gd` (hide `still`, lies_low, brood_stage, retag, the newest leash rules, tracks' first look, hidden seen under the mist, a renamed leash keeps its loose ones), `mission_run.gd` (counter `sub_counter` / `share_of`), `campaign.gd`; docs/campaign_engine.md "Added by Act 2's d03_fazenda" |
+| the engine | `scripts/campaign/mission_act2.gd` (hide `still`, lies_low, brood_stage, retag, the newest leash rules, tracks' first look, hidden seen under the mist, a renamed leash keeps its loose ones), `mission_run.gd` (counter `sub_counter` / `share_of`), `campaign.gd`, `mission_ui.gd` (a done objective folds to one line); docs/campaign_engine.md "Added by Act 2's d03_fazenda" |
 | tests | `tools/test_campaign_d03.gd` (`godot --headless --path . --script res://tools/test_campaign_d03.gd [-- only=part2,part3]`); d03 added to `tools/test_campaign_save.gd` and `.sh` |
 | the balance sim | `tools/sim_campaign_d03.gd` (`-- active [diff=] [side=commission] [clutch=burned] [eggs=taken] [cages=few/all] [pieter=lost] [map=withheld] [varenne=executed] [lazy] [shots=dir]`) |
 | voices | docs/chatterbox_todo.md "d03_fazenda" (60 lines with their feeling); tools/voice_clone/emotions.json `d03__<id>` |
@@ -156,7 +156,21 @@ on the list.
 
 ## Pictures (docs/shots/d03_fazenda/, CHECK THE FEEL)
 
-SHOTS_NOTE
+The sim's `shots=` under xvfb-run at 1280x720, NORMAL: the stock's run (start in the old pens, the walk, the storm egg,
+the Mother rooted, the Hatchlings, the landing, the dinner, the search, the decoy, a find, the restless one, held, the
+night, dawn) and the commission's (start, the landing, the walk). What they showed and what was done about it:
+
+- The long side objectives (the dinner, the decoy, the Storm Sire's) piled up over the minimap once done: every objective
+  done or failed now folds to its first line (`scripts/campaign/mission_ui.gd`, all missions).
+- The dialogue ran up to 45 s behind the search's events (too many lines at the landing): Lindqvist's "no one bites"
+  line was cut (the objective says it).
+- The young raptors are hard to see on the forest floor at night (their art: green on moss); the LOOSE mark, the lure's
+  ring and the ping show the restless one. For the owner: a brighter rim on Brood units at night, maybe.
+- The NEW card for the Storm Sire comes about 10 s before the egg hatches (the roster ladder's cards come at 8 s in every
+  mission; the test of the ladder wants it so). Left as it is.
+- The commission's player sees its supply as "31/0" in red (it has no houses: it never trains). Left as it is.
+- The young Mother at 0.42 is still big beside the keepers (she is a Mother); the nest clearing holds her and the Storm
+  Sire well.
 
 ## What is placeholder
 
@@ -194,7 +208,9 @@ dismounted man in black, the keepers hired guns). No new sounds.
     campaign's progress file carries them too).
 16. `next` is EMPTY until d06_queen is built; d03 NEEDS a07 (Rome), like d02.
 17. The commission's pages: the King (b01_08) then THE COMMISSION (d03_03) to open; d03_03 then the King to close.
-18. THE KEEPERS are hired guns (b01's hired_gun art); with a06 `varenne` executed they are Assembly militia (the plan).
+18. CHECKPOINTS: only `part2` and `part3` start with "part" (a trigger named "part..." makes a checkpoint); the
+    mission script names its split sub-triggers `if_<id>__n` so they never count as parts.
+19. THE KEEPERS are hired guns (b01's hired_gun art); with a06 `varenne` executed they are Assembly militia (the plan).
 
 ## What is left
 
@@ -205,4 +221,14 @@ dismounted man in black, the keepers hired guns). No new sounds.
 
 ## Tests run
 
-TESTS_RUN
+- tools/test_campaign_d03.gd: 0 failures (the data, every flag path, Part 1 with the hatching and the rooting, Part 2's
+  hiding (still / moving / the shade / found for good), the dinner, a decoy, the warning, Part 3's restless one (slip,
+  held, back, dawn sooner), the losses (found, the fight), the mirror, save and load in each part, ironman, the hubs and
+  the war map after d03).
+- The campaign tests: test_campaign, test_campaign_a01..a07, b01, c01, d02, heroes, ironman, save, test_act2_engine0,
+  test_hubs_grow, test_roster_ladder, test_war_map: 0 failures. test_campaign_m1 has its one older failure (Tomasz's
+  recordings, as in d02's run).
+- test_campaign_save (d03 saved and loaded the same); tools/test_campaign_save.sh d03 (the sim with a save at 3:20: SIM
+  LOAD SAME yes, the same win and flags as straight through).
+- The boot check: no SCRIPT ERROR, no Parse Error.
+- tools/i18n_build.py and tools/i18n_patch_build.py (no version without translation).

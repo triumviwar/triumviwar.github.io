@@ -102,6 +102,7 @@ func _run() -> void:
 			g = await SimSave.reload(self, main)      # (save_at=: player-comforts)
 			r = g.mission
 			_groups = {}
+			_home = {}
 		if shots != "":
 			await _shots(g, r)
 		if OS.get_cmdline_user_args().has("debug") and r.fired.has("part2"):
@@ -177,6 +178,24 @@ func _make_groups(g: Game, r: MissionRun) -> void:
 		_groups[lq[0]] = r.tagged("mother").duplicate()
 		_target[lq[0]] = "nest"
 	var young: Array = r.tagged("young").filter(func(u): return _alive(u) and u.kind != "brood_mother" and u.kind != "pterodactyl")
+	if r.fired.has("part2"):
+		# (a game loaded during the search: every one stays where it lies, with the lure nearest it; nobody walks
+		# across the island in front of the searchers)
+		for l in lures:
+			var best := "pen_5"
+			for pn in pens:
+				if r.area_rect(pn).get_center().distance_to(l.position) < r.area_rect(best).get_center().distance_to(l.position):
+					best = pn
+			_target[l] = best
+		for u in young:
+			var near: Unit = lq[0] if not lq.is_empty() else null
+			for l in lures:
+				if near == null or l.position.distance_to(u.position) < near.position.distance_to(u.position):
+					near = l
+			if near:
+				_groups[near].append(u)
+			_home[u] = u.position
+		return
 	var i := 0
 	for u in young:
 		if lures.is_empty():

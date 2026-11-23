@@ -513,3 +513,4 @@ MissionRun.act2, saved with the mission). Test: tools/test_act2_engine0.gd. Pict
 | `{"counter": {"name", "share_of": other, "share": 0.5}}` | sets the counter to that share of another (rounded up) |
 | THE LEASH: the newest rules | a unit on two leashes obeys the newest one (the restless young one's short leash at night over the stock's); a leash given again under the same name keeps its loose ones loose until a lure holds them |
 | TRACKS | the first look at a unit records where it is without printing a track (no track at the start spots) |
+| OBJECTIVES PANEL | an objective done or failed folds to its first line ("...") so long side tasks do not grow over the minimap (`mission_ui.gd`, every mission) |

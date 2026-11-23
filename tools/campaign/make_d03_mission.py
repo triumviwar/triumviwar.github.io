@@ -627,7 +627,7 @@ TR_ += [
         {"spare": {"tag": "benedito", "on": True}}, {"spare": {"tag": "fonseca", "on": True}}, {"spare": {"tag": "valadares", "on": True, "if": STOCK}},
         {"ping": {"area": "landing"}}]},
     # (a person leads the commission: all its men are his, at the canoes)
-    {"id": "part2_c", "when": {"all": [{"fired": "part2"}, COM]}, "do": [
+    {"id": "c_landed", "when": {"all": [{"fired": "part2"}, COM]}, "do": [
         {"spawn": {"team": "commission", "kind": "musketeer", "count": 12, "at": "landing", "tag": "searchers", "tags": ["com_men"], "fixed": True}},
         {"spawn": {"team": "commission", "kind": "cuirassier", "count": 4, "at": "landing", "tag": "riders", "tags": ["com_men"], "fixed": True}},
         {"camera": {"area": "landing", "side": "commission"}}, {"objective": {"id": "c_dawn", "set": "active"}},
@@ -635,7 +635,7 @@ TR_ += [
         {"clock": {"name": "c_dawn", "secs": DUSK["withheld"] + DAWN_SECS, "scale": False, "if": WITHHELD}},
         {"say": ["v_c_tip", "v_c_tracks"]}, {"ping": {"area": "deep"}}]},
     # the scripted search parties
-    {"id": "parties", "when": {"all": [{"fired": "part2"}, NO_COM]}, "delay": 3, "do":
+    {"id": "search_parties", "when": {"all": [{"fired": "part2"}, NO_COM]}, "delay": 3, "do":
         party("party_a", ROUTE_A, "landing") + party("party_b", ROUTE_B, "landing", extra=[{"order": {"tag": "fonseca", "do": "follow", "leader": "party_b", "within": 2}}])
         + party("party_c", ROUTE_C, "landing")
         + [{"spawn": {"team": "commission", "kind": "cuirassier", "count": 4, "at": "landing", "tag": "riders", "tags": ["searchers", "com_men"], "if": NO_COM}},
@@ -643,25 +643,25 @@ TR_ += [
            {"spawn": {"team": "commission", "kind": "musketeer", "count": 2, "at": "landing", "tag": "v_guard", "tags": ["searchers", "com_men"], "fixed": True, "if": NO_COM}},
            {"order": {"tag": "valadares", "do": "route", "route": ROUTE_V, "loop": True, "name": "valadares_road"}},
            {"order": {"tag": "v_guard", "do": "follow", "leader": "valadares", "within": 2}}]},
-    {"id": "part2_say", "when": {"fired": "part2"}, "delay": 1, "do": [{"say": ["n_land", "f_land"]}]},
-    {"id": "part2_say_s", "when": {"all": [{"fired": "part2_say"}, STOCK]}, "delay": 1, "do": [{"say": ["l_land"]}]},
-    {"id": "part2_v", "when": {"all": [{"fired": "part2_say"}, DRAWN]}, "delay": 8, "do": [{"say": ["v_land"]}]},
-    {"id": "part2_v_w", "when": {"all": [{"fired": "part2_say"}, WITHHELD]}, "delay": 8, "do": [{"say": ["v_land_w"]}]},
+    {"id": "landed_say", "when": {"fired": "part2"}, "delay": 1, "do": [{"say": ["n_land", "f_land"]}]},
+    {"id": "landed_say_s", "when": {"all": [{"fired": "landed_say"}, STOCK]}, "delay": 1, "do": [{"say": ["l_land"]}]},
+    {"id": "landed_v", "when": {"all": [{"fired": "landed_say"}, DRAWN]}, "delay": 8, "do": [{"say": ["v_land"]}]},
+    {"id": "landed_v_w", "when": {"all": [{"fired": "landed_say"}, WITHHELD]}, "delay": 8, "do": [{"say": ["v_land_w"]}]},
     {"id": "quiet", "when": {"all": [{"fired": "part2"}, STOCK]}, "delay": 14, "do": [
         {"say": ["p_still"]}, {"carry": {"tag": "young", "on": True, "pace": 1.0}}, {"carry": {"tag": "people", "on": True, "pace": 1.0}}]},
     # (the quiet rule from the landing on: nobody of the stock bites, its people fire no shot)
     {"id": "quiet_now", "when": {"all": [{"fired": "part2"}, STOCK]}, "do": [
         {"carry": {"tag": "young", "on": True, "pace": 1.0}}, {"carry": {"tag": "people", "on": True, "pace": 1.0}}]},
     # Valadares on hunches: he follows the freshest prints near him
-    {"id": "v_track", "when": {"all": [{"fired": "parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 20, "every": 9, "do": [
+    {"id": "v_track", "when": {"all": [{"fired": "search_parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 20, "every": 9, "do": [
         {"order": {"tag": "valadares", "do": "track", "within": 14}}]},
-    {"id": "parties_track", "when": {"all": [{"fired": "parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 90, "every": 25, "do": [
+    {"id": "track_parties", "when": {"all": [{"fired": "search_parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 90, "every": 25, "do": [
         {"order": {"tag": "party_a", "do": "track", "within": 12}}, {"order": {"tag": "party_c", "do": "track", "within": 12}}]},
     # the search tightens (something new every minute or two: NO WAITING)
-    {"id": "riders_north", "when": {"all": [{"fired": "parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 120, "do": [
+    {"id": "riders_north", "when": {"all": [{"fired": "search_parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 120, "do": [
         {"order": {"tag": "riders", "do": "route", "route": ROUTE_RN, "loop": True, "name": "riders"}}, {"ping": {"area": "ford_w"}}]},
     {"id": "riders_north_say", "when": {"all": [{"fired": "riders_north"}, STOCK]}, "do": [{"say": ["p_riders"]}]},
-    {"id": "v_hunch", "when": {"all": [{"fired": "parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 215, "do": [
+    {"id": "v_hunch", "when": {"all": [{"fired": "search_parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 215, "do": [
         {"order": {"tag": "valadares", "do": "route", "route": ROUTE_H, "loop": True, "name": "valadares_road"}}, {"ping": {"area": "ford_m"}}]},
     {"id": "v_hunch_say", "when": {"fired": "v_hunch"}, "do": [{"say": ["v_hunch"]}]},
     {"id": "v_tracks_say", "when": {"all": [{"fired": "v_track"}, STOCK]}, "delay": 30, "do": [{"say": ["v_tracks"]}]},
@@ -729,7 +729,7 @@ TR_ += [
         {"say": ["n_night"]},
         {"order": {"tag": "searchers", "do": "move", "to": "camp"}}, {"order": {"tag": "valadares", "do": "move", "to": "camp"}},
         {"order": {"tag": "fonseca", "do": "move", "to": "camp"}}]},
-    {"id": "part3_c", "when": {"all": [{"fired": "part3"}, COM]}, "do": [{"say": ["v_c_night"]}]},
+    {"id": "c_night", "when": {"all": [{"fired": "part3"}, COM]}, "do": [{"say": ["v_c_night"]}]},
     {"id": "camp_hold", "when": {"all": [{"fired": "part3"}, NO_COM]}, "delay": 20, "do": [{"order": {"tag": "searchers", "do": "hold"}}]},
     # the restless young one: up and away for the goats (its own short leash: only a lure right beside it holds it)
     {"id": "restless_pick", "when": {"all": [{"fired": "part3"}, LIVE]}, "delay": 11, "do": [
@@ -809,7 +809,8 @@ for t in TR_:
     t["do"] = plain
     fixed.append(t)
     for j, (c, a) in enumerate(cond_acts):
-        fixed.append({"id": "%s__%d" % (t["id"], j), "when": {"all": [{"fired": t["id"]}, c]}, "do": [a]})
+        # (named "if_<id>__n": a sub-trigger of a "part..." trigger must not count as a part of its own: checkpoints)
+        fixed.append({"id": "if_%s__%d" % (t["id"], j), "when": {"all": [{"fired": t["id"]}, c]}, "do": [a]})
 M["triggers"] = [t for t in fixed if not any("spare_kind" in a for a in t["do"])]
 
 # THE ROSTER LADDER (docs/campaign_roster_ladder.md): the stock is bound to B4, the Storm Sire and his Hatchlings

@@ -1797,7 +1797,7 @@
 			]
 		},
 		{
-			"id": "storm_spare__0",
+			"id": "if_storm_spare__0",
 			"when": {
 				"all": [
 					{
@@ -2051,7 +2051,7 @@
 			]
 		},
 		{
-			"id": "part2__0",
+			"id": "if_part2__0",
 			"when": {
 				"all": [
 					{
@@ -2080,7 +2080,7 @@
 			]
 		},
 		{
-			"id": "part2__1",
+			"id": "if_part2__1",
 			"when": {
 				"all": [
 					{
@@ -2107,7 +2107,7 @@
 			]
 		},
 		{
-			"id": "part2__2",
+			"id": "if_part2__2",
 			"when": {
 				"all": [
 					{
@@ -2133,7 +2133,7 @@
 			]
 		},
 		{
-			"id": "part2__3",
+			"id": "if_part2__3",
 			"when": {
 				"all": [
 					{
@@ -2157,7 +2157,7 @@
 			]
 		},
 		{
-			"id": "part2__4",
+			"id": "if_part2__4",
 			"when": {
 				"all": [
 					{
@@ -2178,7 +2178,7 @@
 			]
 		},
 		{
-			"id": "part2_c",
+			"id": "c_landed",
 			"when": {
 				"all": [
 					{
@@ -2242,11 +2242,11 @@
 			]
 		},
 		{
-			"id": "part2_c__0",
+			"id": "if_c_landed__0",
 			"when": {
 				"all": [
 					{
-						"fired": "part2_c"
+						"fired": "c_landed"
 					},
 					{
 						"not": {
@@ -2268,11 +2268,11 @@
 			]
 		},
 		{
-			"id": "part2_c__1",
+			"id": "if_c_landed__1",
 			"when": {
 				"all": [
 					{
-						"fired": "part2_c"
+						"fired": "c_landed"
 					},
 					{
 						"past": {
@@ -2292,7 +2292,7 @@
 			]
 		},
 		{
-			"id": "parties",
+			"id": "search_parties",
 			"when": {
 				"all": [
 					{
@@ -2453,11 +2453,11 @@
 			]
 		},
 		{
-			"id": "parties__0",
+			"id": "if_search_parties__0",
 			"when": {
 				"all": [
 					{
-						"fired": "parties"
+						"fired": "search_parties"
 					},
 					{
 						"not": {
@@ -2488,11 +2488,11 @@
 			]
 		},
 		{
-			"id": "parties__1",
+			"id": "if_search_parties__1",
 			"when": {
 				"all": [
 					{
-						"fired": "parties"
+						"fired": "search_parties"
 					},
 					{
 						"not": {
@@ -2523,11 +2523,11 @@
 			]
 		},
 		{
-			"id": "parties__2",
+			"id": "if_search_parties__2",
 			"when": {
 				"all": [
 					{
-						"fired": "parties"
+						"fired": "search_parties"
 					},
 					{
 						"not": {
@@ -2558,7 +2558,7 @@
 			]
 		},
 		{
-			"id": "part2_say",
+			"id": "landed_say",
 			"when": {
 				"fired": "part2"
 			},
@@ -2573,11 +2573,11 @@
 			]
 		},
 		{
-			"id": "part2_say_s",
+			"id": "landed_say_s",
 			"when": {
 				"all": [
 					{
-						"fired": "part2_say"
+						"fired": "landed_say"
 					},
 					{
 						"playing": "stock"
@@ -2594,11 +2594,11 @@
 			]
 		},
 		{
-			"id": "part2_v",
+			"id": "landed_v",
 			"when": {
 				"all": [
 					{
-						"fired": "part2_say"
+						"fired": "landed_say"
 					},
 					{
 						"not": {
@@ -2619,11 +2619,11 @@
 			]
 		},
 		{
-			"id": "part2_v_w",
+			"id": "landed_v_w",
 			"when": {
 				"all": [
 					{
-						"fired": "part2_say"
+						"fired": "landed_say"
 					},
 					{
 						"past": {
@@ -2710,7 +2710,7 @@
 			"when": {
 				"all": [
 					{
-						"fired": "parties"
+						"fired": "search_parties"
 					},
 					{
 						"not": {
@@ -2755,11 +2755,11 @@
 			]
 		},
 		{
-			"id": "parties_track",
+			"id": "track_parties",
 			"when": {
 				"all": [
 					{
-						"fired": "parties"
+						"fired": "search_parties"
 					},
 					{
 						"not": {
@@ -2815,7 +2815,7 @@
 			"when": {
 				"all": [
 					{
-						"fired": "parties"
+						"fired": "search_parties"
 					},
 					{
 						"not": {
@@ -2897,7 +2897,7 @@
 			"when": {
 				"all": [
 					{
-						"fired": "parties"
+						"fired": "search_parties"
 					},
 					{
 						"not": {
@@ -4486,7 +4486,7 @@
 			]
 		},
 		{
-			"id": "part3__0",
+			"id": "if_part3__0",
 			"when": {
 				"all": [
 					{
@@ -4507,7 +4507,7 @@
 			]
 		},
 		{
-			"id": "part3_c",
+			"id": "c_night",
 			"when": {
 				"all": [
 					{
@@ -4581,7 +4581,7 @@
 			"do": []
 		},
 		{
-			"id": "restless_pick__0",
+			"id": "if_restless_pick__0",
 			"when": {
 				"all": [
 					{
@@ -4612,7 +4612,7 @@
 			]
 		},
 		{
-			"id": "restless_pick__1",
+			"id": "if_restless_pick__1",
 			"when": {
 				"all": [
 					{
@@ -5207,7 +5207,7 @@
 			"do": []
 		},
 		{
-			"id": "flags_mother__0",
+			"id": "if_flags_mother__0",
 			"when": {
 				"all": [
 					{
@@ -5231,7 +5231,7 @@
 			]
 		},
 		{
-			"id": "flags_mother__1",
+			"id": "if_flags_mother__1",
 			"when": {
 				"all": [
 					{
@@ -5253,7 +5253,7 @@
 			]
 		},
 		{
-			"id": "flags_mother__2",
+			"id": "if_flags_mother__2",
 			"when": {
 				"all": [
 					{
@@ -5288,7 +5288,7 @@
 			]
 		},
 		{
-			"id": "flags_mother__3",
+			"id": "if_flags_mother__3",
 			"when": {
 				"all": [
 					{

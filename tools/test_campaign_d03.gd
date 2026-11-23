@@ -492,7 +492,7 @@ func _mirror() -> void:
 	check("the commission picked: the player leads the commission", g.human == r.team_index("commission"))
 	check("the stock scripted: asleep in its deep pens", _young(r).filter(func(u): return u.has_meta("mission_asleep")).size() >= 4)
 	_walk(g, 24.0)
-	check("the canoes land at 0:20: the commission's men are the player's", r.fired.has("part2") and r.fired.has("part2_c")
+	check("the canoes land at 0:20: the commission's men are the player's", r.fired.has("part2") and r.fired.has("c_landed")
 		and r.tagged("searchers").filter(func(u): return u.kind == "musketeer").size() == 12 and r.obj.get("c_find", "") == "active")
 	check("half the stock to destroy", int(r.counters["half"]) == ceili(float(r.counters["young_n"]) / 2.0), "%d of %d" % [r.counters["half"], r.counters["young_n"]])
 	var ys := _young(r)

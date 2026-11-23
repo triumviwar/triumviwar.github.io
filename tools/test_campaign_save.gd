@@ -280,8 +280,9 @@ func _round_trip(mid: String) -> void:
 	var r := g.mission
 	check("%s: SAVE and LOAD in the menu" % mid, _labels(g).has("SAVE") and _labels(g).has("LOAD SAVE") and _labels(g).has("QUIT TO CAMPAIGN") and r.saveable(), str(_labels(g)))
 	await _wait(20.0)
-	# (a05's Part 2 wakes the nest on an idle party: lost; d02's Part 2 with no cart loaded: lost)
-	var tr := _part_trigger(r) if not mid in ["a05_specimens", "d02_exodus"] else {}
+	# (a05's Part 2 wakes the nest on an idle party: lost; d02's Part 2 with no cart loaded: lost; d03's Part 2 with the
+	# stock still in the old pens: all found, lost)
+	var tr := _part_trigger(r) if not mid in ["a05_specimens", "d02_exodus", "d03_fazenda"] else {}
 	if not tr.is_empty() and not g.over:
 		r.fire(tr)                 # (its next part begun at once: more of the mission's machinery on show)
 		await _wait(12.0)
