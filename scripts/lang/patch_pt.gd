@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.196": ["Pinturas dos quartéis corrigidas: o arsenal não tem mais janela (mostrava a vista do Rei para São Pedro) e tem mosquetes certos, a galeria das bandeiras perdeu os bancos e velas da capela, o General Ruggieri está mais velho, de tricórnio e sem espada, Valadares usa um casaco de explorador e leva uma bússola em vez de um mosquete, e Benedito se parece com o seu retrato."],
 	"0.38.195": ["As novas salas e pessoas dos quartéis da campanha estão pintadas: o arsenal, a capela e a galeria das bandeiras em Roma, o pátio da guilda em Fürth, o depósito de espécimes e a sala dos mapas na Barra, e doze pessoas que entram nos quartéis (Ruggieri, Fairleigh, Delorme, o capitão suíço, Jakob, o Padre Ferrer, o Mestre Ulrich, o Coronel von Rauch, o Irmão Anselm, Pieter, Valadares, Benedito) agora têm pinturas a óleo em vez de figuras provisórias."],
 	"0.38.194": ["O chão brasileiro do Ato 2 está pintado: a várzea alagada, as terras altas frias e o sertão seco, seus penhascos e suas árvores, cactos, arbustos e pedras agora têm figuras de verdade em vez de provisórias. Só a névoa das terras altas ainda é provisória."],
 	"0.38.193": ["A morte do Desafiante Venenoso vista de trás (norte) foi redesenhada: cai para longe de você, com a cauda virada para você, em vez de virar de lado. Todas as suas mortes agora combinam com o seu andar."],

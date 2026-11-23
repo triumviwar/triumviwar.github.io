@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.196", "items": [
+		"Hub paintings fixed: the armoury has no window (it showed the King's view of Saint Peter's) and proper muskets, the gallery of flags lost the chapel's pews and candles, General Ruggieri is older with a tricorne and no sword, Valadares wears an explorer's coat and carries a compass instead of a musket, and Benedito looks like his portrait.",
+	]},
 	{"v": "0.38.195", "items": [
 		"The campaign hubs' new rooms and people are painted: the armoury, chapel and gallery of flags in Rome, the guild's yard at Fürth, the specimen store and chart room at the Barra, and twelve people who join the hubs (Ruggieri, Fairleigh, Delorme, the Swiss captain, Jakob, Father Ferrer, Master Ulrich, Colonel von Rauch, Brother Anselm, Pieter, Valadares, Benedito) now have oil paintings instead of stand-ins.",
 	]},
