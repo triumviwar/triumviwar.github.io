@@ -105,7 +105,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | d02_exodus (the Exodus, Act 2) | this file, "d02_exodus" below; docs/campaign_d02_build.md | 63 (+12 narrator, 2 NEW cards) | Hollweg 25, Ulrich* 16, the King 6, Ferrer 6, Colonel von Rauch* 5, Jakob* 3, Commissary Brandt* 2 |
 | d03_fazenda (the Island, Act 2) | this file, "d03_fazenda" below; docs/campaign_d03_build.md | 60 (+13 narrator, 2 NEW cards) | Lindqvist 20, Valadares* 17, Pieter* 12, the King 6, Desembargador Fonseca* 5 |
 | d04_concordia (the City of Gears, Act 2) | this file, "d04_concordia" below; docs/campaign_d04_build.md | 74 (+15 narrator, 2 NEW cards) | Hollweg 31, Ulrich* 18, Captain Arruda* 10, the King 6, Varenne 4, Citizen Morel* 3, Padre Anselmo* 2 |
-| d01_minas (the Gold of Vila Rica, Act 2) | this file, "d01_minas" below; docs/campaign_d01_build.md | 64 (+19 narrator, 3 NEW cards) | Tomasz* 29, Captain Meneses* 18, Lieutenant Ramos* 8, the King 6, Cardinal Tomasz 2, a townsman* 1 |
+| d01_minas (the Gold of Vila Rica, Act 2) | this file, "d01_minas" below; docs/campaign_d01_build.md | 69 (+19 narrator, 3 NEW cards) | Tomasz* 30, Captain Meneses* 21, Lieutenant Ramos* 9, the King 6, Cardinal Tomasz 2, a townsman* 1 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -391,6 +391,11 @@ about thirty (between a01's young priest and the old Cardinal); the Cardinal's t
 | r_taken | Lieutenant Ramos* | Do it quickly, then. The mines will remember me. | DRAMATIC: proud, defeated |
 | t_taken | Tomasz* | He asked me to hear his confession before they took him to the Governor. I did. What he said is between him and God. What he did is between him and the King. | DRAMATIC: gentle, firm, the priest and the King both respected |
 | m_done | Captain Meneses* | The gold is on the coast road. Vila Rica is the King's. | relief |
+| t_calm_hint | Tomasz* | A woman of the Rosário came to me after the rosary. Strangers carry powder into a house with its shutters always closed. I sent word to the Captain. | quiet, passing on a confidence |
+| m_gun | Captain Meneses* | They have a gun up there! They took it from the militia's store. Get the dragoons onto the ridge before it fires on the square. | urgent |
+| r_last | Lieutenant Ramos* | Once more, up the Rua Direita! Every man who can still stand! | DRAMATIC: hoarse, desperate |
+| m_last | Captain Meneses* | Here comes Ramos himself, from the Rosário, up the broad stair. Everyone to the south stair! | urgent, steady |
+| m_raiders | Captain Meneses* | Riders behind us, out of the hollow over the east ford! They are after the carts. Keep men by them! | alarm |
 | r_v1 | Lieutenant Ramos* | Today they read their derrama on our square. Tonight we ring the bell. Walk the pamphlets to the churchyards; let the town hear it. | rousing |
 | r_v_tip | Lieutenant Ramos* | Our armouries hide among the houses until a soldier knocks. Keep them hidden: the agitators come out of them. | conspiratorial |
 | t_end1 | Tomasz* | The gold went down to the coast and across the sea, and Vila Rica paid its derrama. I stayed a year among the miners. | looking back, quiet |

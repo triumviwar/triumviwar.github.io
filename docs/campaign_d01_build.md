@@ -65,7 +65,7 @@ in a town, not a colony.
    must stand). THE RISING comes up the stairs to the square in three waves: from the Rosário (the Rua Direita) and the
    diggings (the north stair) at once, with miners carrying picks among the muskets (three more muskets in a band whose
    quarter's armoury still stands); 55 s later along the ridge from the Pilar with THE CAPTURED GUN, and more from the
-   diggings; 110 s later RAMOS's LAST PUSH up the Rua Direita. The miners are no soldiers: FATHER TOMASZ a moment in the
+   diggings; 95 s later RAMOS's LAST PUSH up the Rua Direita. The miners are no soldiers: FATHER TOMASZ a moment in the
    Rosário's churchyard rings its bell and calls them home (they change side and walk off; the last push then comes
    without its miners). The second armoury, if it still stands, holds the conspiracy's ledger. The rising breaks when
    its last wave is spent and fewer than three are left (or 5:00 after the signal at the latest).
@@ -98,7 +98,7 @@ conspiracy: "That is not how it went." No solo mirror (the plan: versus only).
 | a01 `lyon` calm (canon) / sullen | the pamphlets on the Lyon type: "the last of it" / "Lyon still prints" (0:38) |
 | a01 `lyon` risen (the Assembly won a01) | THE RECLAIM NOTE: Tomasz's letter from Lyon in unrest in the opening; no printer's mark (nothing given away) |
 | a01 `printer` taken (canon: a01 is won only with him) | the printer's mark gives one armoury away at 0:24 |
-| a06 `varenne` executed | VARENNE'S MARTYRS: the temper starts 2 higher, two martyrs in every night band and two more on the ledges, Tomasz's line (he asked for Varenne's life; they made his death a banner) |
+| a06 `varenne` executed | VARENNE'S MARTYRS: the temper starts 2 higher, one martyr in each of the Rosário's, Santa Efigênia's and Ramos's last band and two more on the north ledge, Tomasz's line (he asked for Varenne's life; they made his death a banner) |
 | a07 `rome` few | the temper starts 3 higher; Rome's pamphlet ("ROME BURNED AND THE CHURCH DID NOT FALL") |
 | d04 `crates` opened (if the Clockmaker's d04 was won) | THE D04 HINT made plain: Tomasz reads Concórdia's name in the ledger (the plan's cross-link: the guild's agents' gold) |
 | SETS `minas` | quiet / restless: the temper at the signal (under 10 / 10 or more) |
@@ -138,7 +138,25 @@ Horsemen ride down agitators, at dawn go for Ramos; two Musketeers knock at the 
 break into any armoury found; at night a third of the men at each of the square's stairs and on the ridge; at dawn
 eight climb the ledges (four each) and the rest escort the carts.
 
-BALANCE_TABLE
+`tools/sim_campaign_d01.gd` (a bot: calms the churchyards with Tomasz, knocks on the houses, closes the armouries,
+researches the Armoury's drill, holds the square in Part 2, sends Tomasz to the miners, clears the ledges and walks
+the carts out). One run each on this branch:
+
+| run | result | time | longest idle | flags |
+| --- | --- | --- | --- | --- |
+| NORMAL, careful (x2) | won, won | 8:13, 8:37 | 23 s, 32 s | quiet, gold all; Ramos taken / fled |
+| HARD, careful (x2) | won, won | 8:44, 9:06 | 31 s, 31 s | quiet, gold all, Ramos fled |
+| EASY, careful | won | 7:49 | 23 s | quiet, gold all, Ramos taken |
+| NORMAL, careless (no calming) | won | 9:44 | 34 s | restless (18), gold all |
+| NORMAL, a06 Varenne executed | won | 8:54 | 33 s | quiet, gold all (with 2 martyrs a band it LOST at 7:29) |
+| NORMAL, a07 rome few + a01 lyon risen + p01 families left | won | 8:42 | 31 s | quiet, gold all |
+| NORMAL, saved at 5:00 and loaded | won | 8:19 | 23 s | the load matched (52 units, 49 triggers) |
+| NORMAL, idle player | LOST | 3:17 | 22 s | the town rose (temper 20) |
+| EASY, idle (earlier batch) | LOST | 4:09 | 22 s | the town rose (temper 24) |
+
+The longest idle stretch is always under 45 s (THE THREE RULES' NO WAITING); the HARD run's 45 s in Part 1 (waiting
+for the hint while every churchyard was calm) is closed by Tomasz's hint (`calm_hint`: 12 s after the last churchyard,
+a woman of the Rosário names the first hidden armoury).
 
 ## Stills: the prompts for the owner (ChatGPT, one request each, at most 3 reference images; each prompt stands alone)
 
@@ -161,7 +179,7 @@ The conspiracy's opening reuses d01_02, its ending d01_03 and the King's Rome st
 
 ## The voice lines
 
-The table is in docs/chatterbox_todo.md ("d01_minas"), with each dramatic line's feeling (VOICE_COUNT lines; the
+The table is in docs/chatterbox_todo.md ("d01_minas"), with each dramatic line's feeling (69 lines; the
 narrator's lines and the three NEW cards can stay as text). New voices to design: Tomasz grown (about thirty; one voice
 aged by pitch between a01's young priest and the Cardinal would do), Captain Luís de Meneses, Lieutenant Inácio Ramos,
 "a townsman" (one line).
@@ -206,8 +224,9 @@ theirs). No new sounds (the bell is c01's bell_toll).
    later missions (d07's council, d09's crossing) can read.
 10. RAMOS RUNS FOR THE HOLLOW when his takers are down, 2:30 after the ambush, or the road is done; the player can still
     catch him on the way (45 s at most). Fled = `conspirator` fled and the war map's dashed road to Concórdia.
-11. VARENNE'S MARTYRS are "more", not "twice": two more muskets in every band and on the north ledge, the temper 2
-    higher. Twice the militia measured too hard for a first Act 2 mission at NORMAL.
+11. VARENNE'S MARTYRS are "more", not "twice": one more musket in three of the night's five bands (the Rosário's,
+    Santa Efigênia's, Ramos's last) and two on the north ledge, the temper 2 higher. Two in every band measured too
+    hard: the sim's careful NORMAL player lost the Foundry at 7:29 with the garrison down to one man.
 12. THE KING'S DOUBT ABOUT THE TAX ("Perhaps I should have"): the King narrates truthfully and the Crown is the good
     side; a king who admits a hard tax may have been too hard is honest, not a twist. The owner may cut it.
 13. a01 `lyon` RISEN is a RECLAIM NOTE only (Tomasz's letter, no printer's mark): a whole reclaim part waits on the

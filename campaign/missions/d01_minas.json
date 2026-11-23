@@ -2381,6 +2381,53 @@
 			]
 		},
 		{
+			"id": "calm_hint",
+			"when": {
+				"all": [
+					{
+						"fired": "calm_all"
+					},
+					{
+						"disguised": "armouries"
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"unmask": {
+						"tag": "armouries",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"t_calm_hint"
+					]
+				}
+			]
+		},
+		{
 			"id": "closed_all",
 			"when": {
 				"counter": {
@@ -3225,7 +3272,7 @@
 						"team": "conspiracy",
 						"kind": "musketeer",
 						"as": "martyr",
-						"count": 2,
+						"count": 1,
 						"at": "rise_rosario",
 						"tag": "band_r",
 						"tags": [
@@ -3299,7 +3346,7 @@
 						"team": "conspiracy",
 						"kind": "musketeer",
 						"as": "martyr",
-						"count": 2,
+						"count": 1,
 						"at": "rise_efigenia",
 						"tag": "band_e",
 						"tags": [
@@ -3371,24 +3418,6 @@
 				{
 					"spawn": {
 						"team": "conspiracy",
-						"kind": "musketeer",
-						"as": "martyr",
-						"count": 2,
-						"at": "rise_pilar",
-						"tag": "band_p",
-						"tags": [
-							"rising"
-						],
-						"if": {
-							"past": {
-								"a06_barricades.varenne": "executed"
-							}
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "conspiracy",
 						"kind": "cannon",
 						"as": "captured_gun",
 						"count": 1,
@@ -3432,24 +3461,6 @@
 							"rising"
 						]
 					}
-				},
-				{
-					"spawn": {
-						"team": "conspiracy",
-						"kind": "musketeer",
-						"as": "martyr",
-						"count": 2,
-						"at": "rise_efigenia",
-						"tag": "band_e2",
-						"tags": [
-							"rising"
-						],
-						"if": {
-							"past": {
-								"a06_barricades.varenne": "executed"
-							}
-						}
-					}
 				}
 			]
 		},
@@ -3467,7 +3478,7 @@
 					}
 				]
 			},
-			"delay": 116,
+			"delay": 101,
 			"do": [
 				{
 					"spawn": {
@@ -3487,7 +3498,7 @@
 						"team": "conspiracy",
 						"kind": "musketeer",
 						"as": "martyr",
-						"count": 2,
+						"count": 1,
 						"at": "rise_rosario",
 						"tag": "band_last",
 						"tags": [
@@ -6509,6 +6520,11 @@
 		"t_calm_all": {
 			"who": "tomasz",
 			"text": "Four churches, four sermons, and my voice nearly gone. The town was quiet. Quiet is not the same as at peace.",
+			"to": "crown"
+		},
+		"t_calm_hint": {
+			"who": "tomasz",
+			"text": "A woman of the Rosário came to me after the rosary. Strangers carry powder into a house with its shutters always closed. I sent word to the Captain.",
 			"to": "crown"
 		},
 		"w_runner": {

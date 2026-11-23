@@ -4823,6 +4823,7 @@ const T := {
 	"In the diggings they had pamphlets under every stone. I read one aloud to them, slowly, and asked who would pay for it when the soldiers came. Nobody answered.": "En las minas tenían panfletos bajo cada piedra. Leí uno en voz alta, despacio, y pregunté quién lo pagaría cuando vinieran los soldados. Nadie respondió.",
 	"The quarter is calm. Its temper falls.": "El barrio está en calma. Su ánimo baja.",
 	"Four churches, four sermons, and my voice nearly gone. The town was quiet. Quiet is not the same as at peace.": "Cuatro iglesias, cuatro sermones, y la voz casi perdida. El pueblo estaba tranquilo. Tranquilo no es lo mismo que en paz.",
+	"A woman of the Rosário came to me after the rosary. Strangers carry powder into a house with its shutters always closed. I sent word to the Captain.": "Una mujer del Rosario vino a verme después del rosario. Unos extraños llevan pólvora a una casa de contraventanas siempre cerradas. Mandé aviso al capitán.",
 	"There, a runner with a bundle of pamphlets! He is making for a churchyard. Ride him down.": "¡Ahí, un correo con un fajo de panfletos! Va hacia un atrio. Alcánzalo.",
 	"Behind the door: barrels of powder, muskets in straw, and men who reach for them.": "Tras la puerta: barriles de pólvora, mosquetes en la paja, y hombres que echan mano de ellos.",
 	"An armoury! Break it open and burn what is in it.": "¡Un arsenal! Forzadlo y quemad lo que haya dentro.",

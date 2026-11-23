@@ -89,7 +89,7 @@ HINT = {"easy": 150, "normal": 180, "hard": 220}       # the town's people give 
 SIGNAL_SECS = 360             # Part 1: the signal is expected this long after the reading (a countdown: scaled)
 SIGNAL_SOON = 40              # ... or this soon once both armouries are closed
 BAND_GAP = 55                 # Part 2: the Pilar's band (and the captured gun) comes along the ridge this long after the first two
-LAST_GAP = 110                # ... and Ramos's last push up the Rua Direita this long after them
+LAST_GAP = 95                 # ... and Ramos's last push up the Rua Direita this long after them
 NIGHT_SECS = 300              # ... the rising breaks at the latest this long after the signal
 BREAK_AT = 3                  # ... or when fewer than this are left of it (all of it come)
 MINERS_SECS = 4               # Tomasz this long in the Rosário's churchyard at night calls the miners home
@@ -488,6 +488,9 @@ line("n_calmed", "narrator", "The quarter is calm. Its temper falls.", "O bairro
 line("t_calm_all", "tomasz", "Four churches, four sermons, and my voice nearly gone. The town was quiet. Quiet is not the same as at peace.",
      "Quatro igrejas, quatro sermões, e a voz quase perdida. A vila estava calma. Calma não é o mesmo que em paz.",
      "Cuatro iglesias, cuatro sermones, y la voz casi perdida. El pueblo estaba tranquilo. Tranquilo no es lo mismo que en paz.", CR)
+line("t_calm_hint", "tomasz", "A woman of the Rosário came to me after the rosary. Strangers carry powder into a house with its shutters always closed. I sent word to the Captain.",
+     "Uma mulher do Rosário veio ter comigo depois do terço. Uns estranhos levam pólvora para uma casa de janelas sempre fechadas. Mandei recado ao Capitão.",
+     "Una mujer del Rosario vino a verme después del rosario. Unos extraños llevan pólvora a una casa de contraventanas siempre cerradas. Mandé aviso al capitán.", CR)
 line("w_runner", "meneses", "There, a runner with a bundle of pamphlets! He is making for a churchyard. Ride him down.",
      "Ali, um mensageiro com um maço de panfletos! Vai para um adro. Alcance-o.", "¡Ahí, un correo con un fajo de panfletos! Va hacia un atrio. Alcánzalo.", CR)
 line("n_found", "narrator", "Behind the door: barrels of powder, muskets in straw, and men who reach for them.",
@@ -707,11 +710,13 @@ M["debrief"] = {
 
 
 # ================================================================== the triggers
-def band(tag, at, n_cons, n_miners, route, name, cond_extra=None):
+def band(tag, at, n_cons, n_miners, route, name, cond_extra=None, martyrs=0):
     """A band of the rising: conspirators with muskets (more with an armoury standing, more with Varenne's martyrs) and
     miners with picks; marching for the square (scripted only when no person leads the conspiracy)."""
     out = [{"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "conspirator", "count": n_cons, "at": at, "tag": tag, "tags": ["rising"]}},
-           {"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "martyr", "count": 2, "at": at, "tag": tag, "tags": ["rising"], "if": EXECUTED}}]
+           {"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "martyr", "count": max(martyrs, 1), "at": at, "tag": tag, "tags": ["rising"], "if": EXECUTED}}]
+    if not martyrs:
+        out = out[:1]
     if cond_extra:
         out.append({"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "conspirator", "count": 3, "at": at, "tag": tag, "tags": ["rising"], "if": cond_extra}})
     if n_miners:
@@ -759,6 +764,9 @@ TR_ += [
     {"id": "temper_10", "when": {"all": [{"counter": {"name": "temper", "at_least": 10}}, {"not": {"fired": "signal"}}]}, "do": [{"say": ["n_temper10"]}]},
     {"id": "temper_15", "when": {"all": [{"counter": {"name": "temper", "at_least": 15}}, {"not": {"fired": "signal"}}]}, "do": [{"say": ["n_temper15", "m_temper15"]}]},
     {"id": "calm_all", "when": {"counter": {"name": "calmed", "at_least": 4}}, "do": [{"objective": {"id": "calm", "set": "done"}}, {"say": ["t_calm_all"]}]},
+    # (a calm town talks: the quarters Tomasz spoke to tell him where the strangers carry their powder)
+    {"id": "calm_hint", "when": {"all": [{"fired": "calm_all"}, {"disguised": "armouries"}, {"not": {"fired": "signal"}}, LIVE]}, "delay": 12, "do": [
+        {"unmask": {"tag": "armouries", "first": True}}, {"say": ["t_calm_hint"]}]},
     {"id": "closed_all", "when": {"counter": {"name": "closed", "at_least": 2}}, "do": [{"objective": {"id": "armouries", "set": "done"}}]},
     {"id": "signal_soon", "when": {"all": [{"fired": "closed_all"}, {"not": {"fired": "signal"}}, {"not": {"clock_left": {"name": "signal", "below": SIGNAL_SOON}}}, LIVE]}, "do": [
         {"clock": {"name": "signal", "secs": SIGNAL_SOON, "scale": False}}, {"say": ["m_soon"]}]},
@@ -796,9 +804,9 @@ TR_ += [
     {"id": "part2_ledger", "when": {"all": [{"fired": "part2"}, {"not": {"dead": "armoury_2"}}, {"count": {"tag": "armoury_2", "at_least": 1, "buildings": True}}]}, "do": [
         {"objective": {"id": "ledger", "set": "active"}}, {"ping": {"tag": "armoury_2"}}]},
     {"id": "band_r", "when": {"fired": "part2"}, "delay": 6, "do":
-        band("band_r", "rise_rosario", 4, 3, RISE_R, "band_r", cond_extra={"count": {"tag": "armoury_1", "at_least": 1, "buildings": True}})},
+        band("band_r", "rise_rosario", 4, 3, RISE_R, "band_r", cond_extra={"count": {"tag": "armoury_1", "at_least": 1, "buildings": True}}, martyrs=1)},
     {"id": "band_e", "when": {"fired": "part2"}, "delay": 9, "do":
-        band("band_e", "rise_efigenia", 4, 3, RISE_E, "band_e", cond_extra={"count": {"tag": "armoury_2", "at_least": 1, "buildings": True}})},
+        band("band_e", "rise_efigenia", 4, 3, RISE_E, "band_e", cond_extra={"count": {"tag": "armoury_2", "at_least": 1, "buildings": True}}, martyrs=1)},
     {"id": "band_p", "when": {"fired": "part2"}, "delay": 6 + BAND_GAP, "do":
         band("band_p", "rise_pilar", 5, 0, RISE_P, "band_p")
         + [{"spawn": {"team": "conspiracy", "kind": "cannon", "as": "captured_gun", "count": 1, "fixed": True, "at": "rise_pilar", "tag": "band_p", "tags": ["rising"]}},
@@ -806,7 +814,7 @@ TR_ += [
     {"id": "band_e2", "when": {"fired": "part2"}, "delay": 6 + BAND_GAP + 4, "do": band("band_e2", "rise_efigenia", 3, 0, RISE_E, "band_e2")},
     # Ramos's last push up the Rua Direita (the brotherhood's miners with him, unless Tomasz called them home)
     {"id": "band_last", "when": {"all": [{"fired": "part2"}, {"not": {"fired": "rising_broken"}}]}, "delay": 6 + LAST_GAP, "do":
-        band("band_last", "rise_rosario", 6, 0, RISE_R, "band_last")
+        band("band_last", "rise_rosario", 6, 0, RISE_R, "band_last", martyrs=1)
         + [{"spawn": {"team": "conspiracy", "kind": "pikeman", "as": "miner", "count": 3, "at": "rise_rosario", "tag": "band_last", "tags": ["rising", "miners"],
                       "if": {"not": {"fired": "miners_home"}}}},
            {"say": ["r_last", "m_last"]}, {"ping": {"area": "below_sq_s"}}]},
