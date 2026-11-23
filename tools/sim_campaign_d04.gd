@@ -271,6 +271,10 @@ func _shots(g: Game, r: MissionRun) -> void:
 					at = s[0].position
 			"raid", "night", "turned":
 				at = r.area_rect("ramp_road").get_center() + Vector2(160, -40)
+				var tg := "raid" if k == "raid" else "mob"          # (the camera on the valley's men, wherever they are)
+				var them: Array = r.tagged(tg).filter(func(u): return u is Unit and not u.dead)
+				if not them.is_empty():
+					at = them[0].position
 			"parley", "anselmo":
 				at = r.area_rect("road_top").get_center()
 			"crates", "plates":

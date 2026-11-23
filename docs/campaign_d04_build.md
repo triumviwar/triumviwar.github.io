@@ -168,7 +168,13 @@ Ulrich is already on the list from d02.
 
 ## Pictures (docs/shots/d04_concordia/, CHECK THE FEEL)
 
-PICTURES_NOTE
+The sim's `shots=` under xvfb-run at 1280x720 (`--fixed-fps 10` so a run takes ten minutes), NORMAL: 1 start, 2 the
+tower, 3 the Aviary, 4 a Swift mapping a way (the unmapped land darker round it), 5 the raid, 6 TURNED BACK over the
+crowd at night, 7 the night, 8 Padre Anselmo, 9 the crates (the mid-mission show with its stand-in still), 10 the plates, 11 the dawn attack, 12 won; `parley.jpg`
+from a run with a04 melted (Hollweg, Varenne and the captain on the road). What reads well: the night tint, the dark
+over the unmapped land, the TURNED BACK words, the parley's three figures. What could be better: the objectives
+panel is tall in Part 2 (the temper's line is long: it folds once done), the supply shows 31/30 after the crates' men
+(they come over the cap on purpose), and a shot taken while a show pauses the game shows PAUSED.
 
 ## What is placeholder
 
