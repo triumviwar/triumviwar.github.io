@@ -359,6 +359,7 @@
 					{
 						"id": "war_table",
 						"kind": "war_table",
+						"map": "chart",
 						"label": "SPECIMEN CHART",
 						"rect": [
 							0.179,
@@ -730,6 +731,7 @@
 					{
 						"id": "war_table",
 						"kind": "war_table",
+						"map": "brass",
 						"label": "BRASS MAP",
 						"rect": [
 							0.263,

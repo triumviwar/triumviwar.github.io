@@ -232,8 +232,11 @@ static func war_table(main: Node) -> void:
 	main._set_back(back)
 	back.custom_minimum_size = Vector2(240, 56)
 	brow.add_child(back)
-	# THE WAR MAP (war-map-v1): every war table can open it (the King's parchment until each hub has its own skin)
-	var wm: Button = main._button("WAR MAP", func() -> void: war_map(main))
+	# THE WAR MAP (war-map-v1): every war table can open it, in its own line's skin (act2-warmap: the King's parchment,
+	# the Clockmaker's brass map, the Naturalist's specimen chart)
+	var wm: Button = main._button("WAR MAP", func() -> void:
+		map_skin = skin_for(line)
+		war_map(main))
 	wm.name = "WarTable_Map"
 	wm.custom_minimum_size = Vector2(240, 56)
 	brow.add_child(wm)
@@ -1024,6 +1027,17 @@ static func _talk(box: PanelContainer, tk: Dictionary, lines: Array, choice: Dic
 
 ## The war map page: the map (WarMap) with its views, the LEDGER, the LIST (the old war table) and a card for the pin
 ## picked: its mission, date and line, what came of it, and BRIEFING / WAR TABLE to play it (or what opens it).
+## The war map's skin each storyline's hub reads (act2-warmap): the Crown's line the King's parchment, the Clockmaker's
+## the brass map, the Naturalist's the specimen chart (Lindqvist's, then Valadares': never the Brood's own).
+static func skin_for(l: String) -> String:
+	match l:
+		"clockmaker":
+			return "brass"
+		"naturalist":
+			return "chart"
+	return "parchment"
+
+
 static func war_map(main: Node) -> void:
 	if not map_open:
 		map_home = line
@@ -1034,7 +1048,8 @@ static func war_map(main: Node) -> void:
 	var top := HBoxContainer.new()
 	top.add_theme_constant_override("separation", 8)
 	box.add_child(top)
-	var t := UiStyle.heading(Loc.t(String(d.get("title", "THE WAR MAP"))) + "  ·  " + Loc.t(String(d.get("act_title", ""))), 30 if pc else 22, UiStyle.TRIM)
+	var act_t := String(WarMapData.act().get("act_title", d.get("act_title", "")))
+	var t := UiStyle.heading(Loc.t(WarMapData.skin_title(map_skin)) + "  ·  " + Loc.t(act_t), 30 if pc else 22, UiStyle.TRIM)
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	t.clip_text = true
@@ -1154,7 +1169,7 @@ static func war_map(main: Node) -> void:
 		for c in lv.get_children():
 			c.queue_free()
 		lv.add_child(UiStyle.text(Loc.t("THE LEDGER"), 22, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
-		lv.add_child(_wrap(Loc.t(String(d.get("act_title", ""))), 15, UiStyle.MUTED))
+		lv.add_child(_wrap(Loc.t(act_t), 15, UiStyle.MUTED))
 		var ls: Array = stt.get("ledger", [])
 		if ls.is_empty():
 			lv.add_child(_wrap(Loc.t("Nothing yet: the ledger fills as the missions are played."), 16, UiStyle.MUTED))
@@ -1282,6 +1297,16 @@ static func _pin_card(main: Node, card: PanelContainer, mid: String, stt: Dictio
 	v.add_child(sl2)
 	if state in ["open", "done"]:
 		v.add_child(_wrap(Loc.t(String(m.get("summary", ""))), 16 if pc else 18))
+	elif String(pn.get("about", "")) != "":
+		# SAY IT PLAINLY (Act 2's rules): a mission not open yet still says what it will be about
+		var ab := _wrap(Loc.t(String(pn["about"])), 16 if pc else 18)
+		ab.name = "CardAbout"
+		v.add_child(ab)
+	if String(ps.get("clock", "")) != "":
+		# the diamond's clock (d09's choice): the front not chosen waits, and grows
+		var ck := _wrap(Loc.t(String(ps["clock"])), 16 if pc else 18, UiStyle.BAD)
+		ck.name = "CardClock"
+		v.add_child(ck)
 	var came := WarMapData.ledger_of(stt, mid)
 	if not came.is_empty():
 		v.add_child(UiStyle.text(Loc.t("WHAT CAME OF IT"), 15, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
