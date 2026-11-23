@@ -26,7 +26,7 @@
 
 ## Current work
 
-- d04_concordia BUILT (job d04-concordia, branch d04-concordia, docs/campaign_d04_build.md): Act 2 step 6, "The City of
+- d04_concordia BUILT (job d04-concordia, MERGED 0.38.191, docs/campaign_d04_build.md): Act 2 step 6, "The City of
   Gears" (the Clockmaker after d02, 2773, the southern highlands): map campaign:concordia (HIGHLANDS biome,
   tools/campaign/make_concordia_map.py), mission tools/campaign/make_d04_mission.py; the guild raises Concórdia on a dead
   mine; K5 = CLOCK AVIARY + SWIFT (Cuco in pt/es); THE UNMAPPED (`chart` / `charted`: land dark and people hidden until a
