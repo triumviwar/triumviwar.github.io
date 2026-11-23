@@ -365,7 +365,7 @@ func show_crash(report: String) -> void:
 ## No levels, no submenus: each page's BACK comes back here. MATCH LOGS is on the REPLAYS page. Esc does nothing
 ## here (the phone's back saves and quits, as before). Flags small top-right, the version small bottom-right.
 ## The grid's slot ids, row by row ("" = an empty slot).
-const MENU_SLOTS := ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "continue", "", "", ""]
+const MENU_SLOTS := ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "continue", "worldwar", "", ""]
 const MENU_COLS := 4
 ## Fractions of the screen (the owner's mock-up, 1455 x 819): button size, first column / row, the gaps.
 ## (Four columns since the TUTORIAL: each button 8.2% wide instead of 10.5%, the grid as wide as before plus a little.)
@@ -551,6 +551,8 @@ func _menu_button(id: String, save: Dictionary, pc: bool) -> Button:
 			b.set_meta("fs", 15 if pc else 17)
 		"settings":
 			b = _button("SETTINGS", func() -> void: show_settings())
+		"worldwar":
+			b = _button("WORLD WAR", func() -> void: WWPage.show_setup(self))      # (the world war mode: scripts/worldwar/)
 		"exit":
 			if menu_web:
 				return null       # (a browser tab can't be quit: the slot stays empty)
@@ -2867,8 +2869,8 @@ var _f11_t := 0.0
 ## frame, on frames without a game tick when there are some); any other (leaving, the window losing focus) at once.
 func _autosave(steps := false) -> void:
 	_save_job = null                      # (one at once replaces one still being written)
-	if game == null or game.over or game.demo or game.edit_mode:
-		return
+	if game == null or game.over or game.demo or game.edit_mode or ww_battle != null:
+		return                            # (a world war's battle is no skirmish to CONTINUE: the war keeps it, WWBattle)
 	_save_path = SaveGame.PATH
 	if game.mission and MissionSave.can_save(game):
 		# a CAMPAIGN MISSION (player-comforts): its own save, not the skirmish's autosave (CONTINUE on the mission's card)
@@ -3278,6 +3280,9 @@ func start(cfg: Dictionary = {}) -> void:
 ## QUIT from the match menu: a campaign mission goes back to its storyline's hub (where its card offers CONTINUE), any
 ## other match to the main menu (player-comforts).
 func _quit_match() -> void:
+	if ww_battle != null:
+		_ww_back(ww_battle.leave())       # (a world war's battle left: lost for the player's side, back to the war)
+		return
 	var mid := ""
 	if game and game.mission and not bool(game.mission.data.get("tutorial", false)) and game.net == null:
 		mid = game.mission.id
@@ -3400,7 +3405,30 @@ func _on_end(winner: int) -> void:
 	if game.mission:
 		CampaignMenu.mission_end(self, game, winner, rp_path)      # (won / lost, the story's branch, then the report if wanted)
 		return
+	if ww_battle != null:
+		_ww_back(ww_battle.finish(game, winner))      # (a world war's battle: its survivors back onto the world map)
+		return
 	show_battle_report(winner, rp_path)
+
+
+## THE WORLD WAR (scripts/worldwar/): a battle fought on the field is over (or left): back to the war's map with
+## the result. No skirmish save is kept for it.
+var ww_battle: WWBattle = null
+
+
+func _ww_back(res: Dictionary) -> void:
+	var b := ww_battle
+	ww_battle = null
+	get_tree().paused = false
+	Engine.time_scale = 1.0
+	if game and game.rec and not game.rec.done:
+		game.rec.finish(-1, true)
+	if game:
+		game.queue_free()
+		game = null
+	SaveGame.clear()
+	Game._tex_cache.clear()
+	WWPage.show_war(self, b.war, String(res.get("text", "")))
 
 
 ## The battle report over the finished match (a campaign mission's end screen opens it on request).
