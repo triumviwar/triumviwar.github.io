@@ -1657,6 +1657,55 @@
 			]
 		},
 		{
+			"id": "captain_late",
+			"when": {
+				"all": [
+					{
+						"time": 300
+					},
+					{
+						"not": {
+							"fired": "tower_built"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_late"
+					]
+				},
+				{
+					"clock": {
+						"name": "captain",
+						"secs": 30
+					}
+				},
+				{
+					"objective": {
+						"id": "captain_clock",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
 			"id": "crates_hint",
 			"when": {
 				"fired": "spring_built"
@@ -1836,10 +1885,10 @@
 						}
 					},
 					{
-						"stay": {
+						"count": {
 							"tag": "voice",
 							"area": "parley",
-							"secs": 3
+							"at_least": 1
 						}
 					},
 					{
@@ -2196,12 +2245,6 @@
 					"objective": {
 						"id": "raid",
 						"set": "active"
-					}
-				},
-				{
-					"objective": {
-						"id": "parley",
-						"set": "hidden"
 					}
 				}
 			]
@@ -2694,9 +2737,7 @@
 		{
 			"id": "mob_1",
 			"when": {
-				"all": {
-					"fired": "part2"
-				}
+				"fired": "part2"
 			},
 			"delay": 8,
 			"do": [
@@ -4554,7 +4595,14 @@
 			"when": {
 				"all": [
 					{
-						"fired": "tower_built"
+						"any": [
+							{
+								"fired": "tower_built"
+							},
+							{
+								"fired": "captain_late"
+							}
+						]
 					},
 					{
 						"count": {
@@ -4936,6 +4984,11 @@
 		"h_memory": {
 			"who": "hollweg",
 			"text": "No Heavy Works yet. I build it from memory, and memory is slow. The drawings are in Nuremberg, or in the Crown's hands.",
+			"to": "guild"
+		},
+		"u_late": {
+			"who": "ulrich",
+			"text": "Meister, the valley has seen our tents and our machines for days, and no tower up. They will not wait for us to be ready.",
 			"to": "guild"
 		},
 		"u_captain": {

@@ -514,3 +514,13 @@ MissionRun.act2, saved with the mission). Test: tools/test_act2_engine0.gd. Pict
 | THE LEASH: the newest rules | a unit on two leashes obeys the newest one (the restless young one's short leash at night over the stock's); a leash given again under the same name keeps its loose ones loose until a lure holds them |
 | TRACKS | the first look at a unit records where it is without printing a track (no track at the start spots) |
 | OBJECTIVES PANEL | an objective done or failed folds to its first line ("...") so long side tasks do not grow over the minimap (`mission_ui.gd`, every mission) |
+
+## Added by Act 2's d04_concordia (d04-concordia; docs/campaign_d04_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| `{"chart": {"side" / "team", "known": [areas], "dark": 0.62, "on": true}}` | THE UNMAPPED (MissionAct2): the land is dark (a "dark" share of black over it, 0.62 by default, its own layer under the fog) except the `known` areas and every cell a FLYER of that side has had in its sight; enemy and neutral units standing on unmapped cells are hidden from that side even inside its sight (the fog's own rules still apply on top); `"on": false` lifts it. Saved with the mission (`st["chart"]`: the mask deflated) |
+| `{"charted": {"area", "at_least": 0.6}}` | holds when that share of the area's open cells has been mapped (`MissionAct2.chart_share`) |
+| TAKE rules: item `"label"`, rule `"word"`, rule `"untorch"` | the bar's text over the unit (default TAKING THE CART), the floating word when it is taken (default TAKEN!), and `untorch`: the taken man's torch is put out (d04: TURN THEM BACK) |
+| `{"convert": {..., "untorch": true}}` | converted units lose their torch |
+| mission `"torch_fire": {..., "counter": name}` | every building a torch sets alight adds one to that counter (d04: THE VALLEY'S TEMPER) |

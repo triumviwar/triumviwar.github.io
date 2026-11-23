@@ -83,6 +83,7 @@ LIVE = {"not": {"any": [{"fired": "the_end"}, {"fired": "v_end"}, {"fired": "los
 GOLD = 600                   # the guild's cogs at the start (the sites are paid for: two Swifts 150, the rest for soldiers or presses)
 TENSION = 100                # ... and wound Tension (the Aviary 50, a Swift 15)
 CAPTAIN_SECS = 200           # Part 1: the valley's captain comes up the road this long after the Clocktower stands
+TOWER_LATE = 300             # ... and this long after the start if the tower is still not up (an idle guild)
 CAPTAIN_MAPPED = 20          # ... or this soon once the three ways are mapped
 PARLEY_WAIT = 90             # (a04 melted) the captain waits this long on the road for Hollweg
 PARLEY_SECS = 3              # Hollweg and the council's voice this long by the captain: the parley
@@ -408,6 +409,9 @@ line("h_crates_seen", "hollweg", "Somewhere under us lie the two crates I sent f
 line("h_memory", "hollweg", "No Heavy Works yet. I build it from memory, and memory is slow. The drawings are in Nuremberg, or in the Crown's hands.",
      "Ainda não há Oficina Pesada. Construo-a de memória, e a memória é lenta. Os desenhos estão em Nuremberg, ou nas mãos da Coroa.",
      "Todavía no hay Taller Pesado. Lo construyo de memoria, y la memoria es lenta. Los planos están en Núremberg, o en manos de la Corona.", GU)
+line("u_late", "ulrich", "Meister, the valley has seen our tents and our machines for days, and no tower up. They will not wait for us to be ready.",
+     "Mestre, o vale vê as nossas tendas e as nossas máquinas há dias, e nenhuma torre de pé. Não vão esperar que estejamos prontos.",
+     "Maestro, el valle ve nuestras tiendas y nuestras máquinas desde hace días, y ninguna torre en pie. No van a esperar a que estemos listos.", GU)
 line("u_captain", "ulrich", "A rider from the valley, Meister. Their captain, coming up the cart road.",
      "Um cavaleiro do vale, Mestre. O capitão deles, a subir a estrada dos carros.", "Un jinete del valle, maestro. Su capitán, subiendo por el camino de los carros.", GU)
 line("a_wait", "arruda", "I am Bento Arruda, captain of the valley's militia. I will talk with the master of this place. Here, on the road. Not up there among those things.",
@@ -711,6 +715,9 @@ TR_ += [
     {"id": "captain_soon", "when": {"all": [{"fired": "map_all"}, {"fired": "tower_built"}, {"not": {"fired": "captain"}},
                                            {"not": {"clock_left": {"name": "captain", "below": CAPTAIN_MAPPED}}}]}, "do": [
         {"clock": {"name": "captain", "secs": CAPTAIN_MAPPED}}]},
+    # (a guild that never raises its tower: the valley comes all the same, and the mission can be lost)
+    {"id": "captain_late", "when": {"all": [{"time": TOWER_LATE}, {"not": {"fired": "tower_built"}}, LIVE]}, "do": [
+        {"say": ["u_late"]}, {"clock": {"name": "captain", "secs": 30}}, {"objective": {"id": "captain_clock", "set": "active"}}]},
     {"id": "crates_hint", "when": {"fired": "spring_built"}, "delay": 22, "do": [{"say": ["h_crates_seen"]}]},
     {"id": "presses_tip", "when": {"fired": "spring_built"}, "delay": 8, "do": [{"say": ["u_presses"]}]},
     # the valley's captain comes up the road
@@ -724,8 +731,9 @@ TR_ += [
            {"say": ["u_captain", "a_wait", "u_parley"]}, {"objective": {"id": "parley", "set": "active"}}, {"ping": {"area": "parley"}},
            {"order": {"tag": "voice", "do": "follow", "leader": "hollweg", "within": 2}},
            {"clock": {"name": "parley", "secs": PARLEY_WAIT}}]},
+    # (the voice by him NOW: a second STAY would only start counting once the first holds)
     {"id": "parley", "when": {"all": [{"fired": "parley_go"}, {"stay": {"tag": "hollweg", "area": "parley", "secs": PARLEY_SECS}},
-                                      {"stay": {"tag": "voice", "area": "parley", "secs": PARLEY_SECS}}, {"not": {"fired": "parley_fail"}}, LIVE]}, "do": [
+                                      {"count": {"tag": "voice", "area": "parley", "at_least": 1}}, {"not": {"fired": "parley_fail"}}, LIVE]}, "do": [
         {"say": ["a_parley1", "h_parley"]}, {"objective": {"id": "parley", "set": "done"}}, {"clock": {"name": "parley", "stop": True}}]},
     {"id": "parley_v", "when": {"all": [{"fired": "parley"}, SPARED]}, "do": [{"say": ["v_parley", "a_parley2", "n_parley"]}]},
     {"id": "parley_m", "when": {"all": [{"fired": "parley"}, EXECUTED]}, "do": [{"say": ["m_parley", "a_parley2", "n_parley"]}]},
@@ -742,7 +750,7 @@ TR_ += [
     {"id": "raid", "when": {"all": [{"any": [{"all": [{"fired": "captain"}, KEPT]}, {"fired": "parley_fail"}]}, NO_VAL, LIVE]}, "do":
         militia("raid", [("musketeer", "valley_militia", 3), ("cuirassier", "rancher", 2)], "road_low", route=ROAD[:4] + ["west_field", "tower_area"], name="raid_road")
         + militia("raid", [("cuirassier", "rancher", 2)], "path_w", route=PATH, name="raid_path")
-        + [{"objective": {"id": "raid", "set": "active"}}, {"objective": {"id": "parley", "set": "hidden"}}]},
+        + [{"objective": {"id": "raid", "set": "active"}}]},
     {"id": "raid_say", "when": {"all": [{"fired": "raid"}, {"charted": {"area": "way_road", "at_least": 0.5}}]}, "delay": 2, "do": [{"say": ["u_raid"]}, {"ping": {"area": "road_mid"}}]},
     {"id": "raid_say_dark", "when": {"all": [{"fired": "raid"}, {"not": {"charted": {"area": "way_road", "at_least": 0.5}}}]}, "delay": 2, "do": [{"say": ["u_raid_dark"]}]},
     {"id": "raid_left_n", "when": {"all": [{"fired": "raid"}, LIVE]}, "every": 1, "do": [{"counter": {"name": "raid_left", "count": {"tag": "raid"}}}]},
@@ -771,7 +779,7 @@ TR_ += [
 ]
 # three crowds up the road, MOB_EVERY s apart (a04 `broken` kept: one more in each: the canon)
 for i, n in enumerate(MOB):
-    TR_ += [{"id": "mob_%d" % (i + 1), "when": {"all": [{"fired": "part2"}, {"not": {"fired": "boil"}}, {"time": 1}] if i else {"fired": "part2"}},
+    TR_ += [{"id": "mob_%d" % (i + 1), "when": ({"all": [{"fired": "part2"}, {"not": {"fired": "boil"}}, {"time": 1}]} if i else {"fired": "part2"}),
              "delay": 8 + i * MOB_EVERY, "do": [
         {"spawn": {"team": "town", "kind": "labourer", "as": "colonist_torch", "count": n, "at": "road_low", "tag": "mob"}},
         {"spawn": {"team": "town", "kind": "labourer", "as": "colonist_torch", "count": 1, "at": "road_low", "tag": "mob", "if": KEPT}},
@@ -868,7 +876,7 @@ TR_ += [
     {"id": "flags_fought", "when": {"all": [{"fired": "won"}, {"any": [{"not": {"fired": "parley"}}, {"fired": "boil"}]}]}, "do": [{"flag": {"colonists": "fought"}}]},
     {"id": "the_end", "when": {"fired": "won"}, "delay": 4, "do": [{"win": "guild"}]},
     # the city lost: the Clocktower down (once it stood), every house of the first quarter burnt, or (versus) Hollweg
-    {"id": "tower_lost", "when": {"all": [{"fired": "tower_built"}, {"count": {"tag": "tower", "below": 1}}, LIVE]}, "do": [
+    {"id": "tower_lost", "when": {"all": [{"any": [{"fired": "tower_built"}, {"fired": "captain_late"}]}, {"count": {"tag": "tower", "below": 1}}, LIVE]}, "do": [
         {"say": ["n_tower_lost"]}, {"objective": {"id": "city_tower", "set": "failed"}}]},
     {"id": "quarter_lost", "when": {"all": [{"time": 3}, {"count": {"tag": "houses", "below": 1}}, LIVE]}, "do": [
         {"say": ["n_quarter_lost"]}, {"objective": {"id": "quarter", "set": "failed"}}]},

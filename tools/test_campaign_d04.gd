@@ -87,14 +87,14 @@ func _progress(c01 := {}, a04 := {}, a06 := {}, d02 := {}, diff := "normal", wit
 	Campaign.save_progress(p)
 
 
-func _start(mode := "solo") -> Game:
+func _start(mode := "solo", online := false) -> Game:
 	if main.game:
 		main._to_menu()
 		await process_frame
 	for n in main.ui_layer.get_children():
 		if n.name == "MissionEnd" or n is StillShow:
 			n.queue_free()
-	main.start(Campaign.make_cfg(MID, mode, "p1", false, ""))
+	main.start(Campaign.make_cfg(MID, mode, "p1", online, ""))     # (online: p2's seat "remote", a person: no friend here)
 	await process_frame
 	await process_frame
 	paused = false
@@ -154,6 +154,7 @@ func _finish_site(g: Game, r: MissionRun, tag: String) -> void:
 	for b in r.tagged(tag):
 		if b is Building and not b.built:
 			b.add_progress(99999.0)
+	g.gear_net.solve()        # (the gear network is solved in the game's frame, which these steps skip)
 	_step(g, g.clock + 0.25)
 
 
@@ -172,13 +173,22 @@ func _part1(g: Game, r: MissionRun) -> void:
 		r.act({"spawn": {"team": "guild", "kind": "cuckoo", "count": 1, "at": "aviary_spot", "tag": "test_swifts"}})
 	_walk(g, g.clock + 1.5)
 	for w in ["way_road", "way_path", "way_track"]:
-		_put(g, r.tagged("test_swifts").slice(0, 1), _mid(r, w))
+		var rc := r.area_rect(w)
+		for fx in [0.15, 0.5, 0.85]:          # (a bird sweeping the whole way, as a player's would)
+			for fy in [0.15, 0.5, 0.85]:
+				_put(g, r.tagged("test_swifts").slice(0, 1), rc.position + rc.size * Vector2(fx, fy))
+				_step(g, g.clock + 0.25)
 		_walk(g, g.clock + 1.0)
 	_put(g, r.tagged("test_swifts"), _mid(r, "west_field"))
 
 
 func _run() -> void:
 	await process_frame
+	var only := OS.get_environment("ONLY")      # (ONLY=parley: one section, for a quick look)
+	if only == "parley":
+		await _parley()
+		_finish()
+		return
 	_data()
 	await _flags()
 	await _chart()
@@ -314,10 +324,11 @@ func _play() -> void:
 	var left0 := float(r.clocks["captain"]) - g.clock
 	_part1(g, r)
 	check("three ways mapped: the captain comes sooner", int(r.counters["mapped"]) == 3 and r.fired.has("map_all")
-		and float(r.clocks["captain"]) - g.clock < left0 - 60.0)
+		and float(r.clocks["captain"]) - g.clock < left0 - 60.0, str([r.counters["mapped"], left0, float(r.clocks["captain"]) - g.clock]))
 	_walk(g, float(r.clocks["captain"]) + 1.0)
 	check("a04 broken kept: THE FIRST RAID comes up the road and the pine path", r.fired.has("raid") and r.tagged("raid").size() >= 5
 		and r.obj.get("raid", "") == "active")
+	_walk(g, g.clock + 2.5)
 	check("... the guild was told plainly (the road mapped)", _said(r, "u_raid"))
 	for u in r.tagged("raid"):
 		u.die()
@@ -345,7 +356,7 @@ func _play() -> void:
 	_put(g, _team_units(g, r, "guild", ["winder"]).slice(0, 1), house.center() + Vector2(0, 40))
 	_walk(g, g.clock + 8.0)
 	check("a Winder by the fire puts it out", r.burning_count("city") == 0)
-	_walk(g, float(r.fired["mob_3"]) + 25.0 + 1.0)
+	_walk(g, float(r.fired["part2"]) + 8.0 + 2 * 40.0 + 25.0 + 1.5)   # (the third crowd, then the priest)
 	check("PADRE ANSELMO comes up the road", r.fired.has("anselmo") and r.tagged("anselmo").size() == 1)
 	_put(g, r.tagged("anselmo"), _mid(r, "road_top"))
 	_walk(g, g.clock + 45.0)
@@ -389,16 +400,18 @@ func _parley() -> void:
 	_put(g, r.tagged("voice"), _mid(r, "parley") + Vector2(16, 0))
 	_walk(g, g.clock + 5.0)
 	check("Hollweg and the council's voice by him: THE PARLEY (Hollweg forbids his machines to strike the valley)", r.fired.has("parley")
-		and _said(r, "h_parley") and _said(r, "v_parley"))
+		and _said(r, "h_parley") and _said(r, "v_parley"), str([r.count({"tag": "hollweg", "area": "parley"}), r.count({"tag": "voice", "area": "parley"}),
+		r.tagged("voice").size(), r.fired.has("parley_fail"), r.clocks.get("parley"), g.clock]))
 	_walk(g, g.clock + 30.0)
 	check("the captain rides home: Part 1 over without a blow", r.fired.has("parley_gone") and r.tagged("arruda").is_empty() and r.fired.has("part1_over"))
 	# straight to the end: the night with no fire, the crates, the attack (smaller: half the valley stayed home)
 	_walk(g, float(r.fired["part1_over"]) + 45.0)
-	_walk(g, float(r.fired["part2"]) + 8.0 + 80.0 + 1.0)
+	_walk(g, float(r.fired["part2"]) + 8.0 + 80.0 + 25.0 + 1.5)
 	_put(g, r.tagged("anselmo"), _mid(r, "road_top"))
-	_walk(g, g.clock + 50.0)
+	_walk(g, g.clock + 45.0)
+	_walk(g, float(r.fired.get("anselmo_calls", g.clock)) + 21.0)
 	_put(g, r.tagged("hollweg"), _mid(r, "gallery"))
-	_walk(g, g.clock + 25.0)
+	_walk(g, g.clock + 50.0)
 	check("after the parley the dawn attack is smaller, and no path party", r.fired.has("attack") and r.tagged("attack").size() <= 9
 		and not r.fired.has("attack_path"), str(r.tagged("attack").size()))
 	for u in r.tagged("attack"):
@@ -411,9 +424,10 @@ func _parley() -> void:
 	r = g.mission
 	_part1(g, r)
 	_walk(g, float(r.clocks["captain"]) + 1.0)
-	_walk(g, float(r.clocks["parley"]) + 1.0)
+	var pend := float(r.clocks.get("parley", g.clock + 100.0))
+	_walk(g, pend + 1.0)
 	check("nobody came down to talk: the parley failed and the raid comes", r.fired.has("parley_fail") and r.fired.has("raid")
-		and r.obj.get("parley", "") == "failed")
+		and r.obj.get("parley", "") == "failed", str([pend, g.clock, r.fired.keys()]))
 
 
 # ================================================================== the temper boiled over
@@ -461,10 +475,11 @@ func _defeats() -> void:
 
 func _versus() -> void:
 	_progress()
-	var g: Game = await _start("versus")
+	var g: Game = await _start("versus", true)
 	var r := g.mission
 	check("versus: the guild is the host's (p1); the valley's militia is p2's, with Arruda and men in the town",
-		g.human == r.team_index("guild") and r.tagged("arruda").size() == 1 and r.tagged("militia_men").size() >= 7)
+		g.human == r.team_index("guild") and r.tagged("arruda").size() == 1 and r.tagged("militia_men").size() >= 7,
+		str([g.human, r.team_index("guild"), r.tagged("arruda").size(), r.tagged("militia_men").size()]))
 	check("... no parley in versus and no scripted orders on p2's men", not r.fired.has("parley_go"))
 	for b in r.tagged("houses"):
 		b.die()
@@ -538,7 +553,7 @@ func _hubs() -> void:
 	var sl := Campaign.storyline_of(MID)
 	var hw: Dictionary = sl["hub"]["talks"]["hollweg"]
 	check("the hub: Hollweg talks of the council after d04", str(CampaignMenu.talk_lines(hw, p)).contains("council meets at noon"))
-	check("the hub is Concórdia's council hall after d04", str(sl["hub"]["after"]).contains("Concórdia's Council Hall"))
+	check("the hub is Concórdia's council hall after d04", String(sl["hub"]["after"].get(MID, {}).get("title", "")) == "Concórdia's Council Hall")
 	check("the hub: Ulrich talks of the plates", str(HubGrow.talk_lines(HubGrow.talk("ulrich"), p)).contains("plates lay themselves"))
 	var st: Dictionary = WarMapData.state(p)
 	var led: Array = st.get("ledger", []).map(func(x): return String(x.get("text", "")))
