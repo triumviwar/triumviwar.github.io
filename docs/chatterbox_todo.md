@@ -105,6 +105,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | d02_exodus (the Exodus, Act 2) | this file, "d02_exodus" below; docs/campaign_d02_build.md | 63 (+12 narrator, 2 NEW cards) | Hollweg 25, Ulrich* 16, the King 6, Ferrer 6, Colonel von Rauch* 5, Jakob* 3, Commissary Brandt* 2 |
 | d03_fazenda (the Island, Act 2) | this file, "d03_fazenda" below; docs/campaign_d03_build.md | 60 (+13 narrator, 2 NEW cards) | Lindqvist 20, Valadares* 17, Pieter* 12, the King 6, Desembargador Fonseca* 5 |
 | d04_concordia (the City of Gears, Act 2) | this file, "d04_concordia" below; docs/campaign_d04_build.md | 74 (+15 narrator, 2 NEW cards) | Hollweg 31, Ulrich* 18, Captain Arruda* 10, the King 6, Varenne 4, Citizen Morel* 3, Padre Anselmo* 2 |
+| d01_minas (the Gold of Vila Rica, Act 2) | this file, "d01_minas" below; docs/campaign_d01_build.md | 64 (+19 narrator, 3 NEW cards) | Tomasz* 29, Captain Meneses* 18, Lieutenant Ramos* 8, the King 6, Cardinal Tomasz 2, a townsman* 1 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -332,6 +333,79 @@ the same game (a06 `varenne` spared: Varenne; executed: Morel).
 | k_end_v | the King | The valley burned the city's first houses on its first night. That is not how it went. It stood, and grew. | stern correction |
 | a_end_v | Captain Arruda* | We burned it before it took root. The bishop wrote to thank us. I did not sleep well, all the same. | troubled |
 
+### d01_minas (the Gold of Vila Rica)
+
+Line ids are the mission's (`campaign/voice/d01/<id>.ogg`). The feeling is how the line should sound; lines
+without one are plain. The narrator's 19 lines and the three NEW cards can stay as text. Tomasz here is a grown man of
+about thirty (between a01's young priest and the old Cardinal); the Cardinal's two lines are the old man in the frame.
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | After Rome I sent Tomasz to Brazil. He asked to go. He said the fire would come there next, and he wanted to be standing in it. | warm, a little proud of the young priest |
+| k_open2 | the King | The gold of the mines paid for my armies. In Vila Rica, the men who dug it had been told that it paid only for my chains. | DRAMATIC: grave, a king who knows the gold had a cost |
+| c_open | Cardinal Tomasz | I was thirty, and I thought I had learnt everything in Lyon. Minas taught me the rest. | old, wry, fond of his younger self |
+| t_open1 | Tomasz* | Vila Rica sits on two hills and a ridge, with a church on every height and gold in every stream. The day I came, the derrama was to be read on the square. | a traveller's wonder |
+| t_open2 | Tomasz* | The derrama: the gold the town still owed the Crown, collected house by house in one day. Nobody in the mines had a kind word for it, and some had a plan. | plain, uneasy |
+| t_open_saved | Tomasz* | I had seen what Virginia's families became when someone stood by them. I meant to stand by these. | quiet resolve |
+| t_open_left | Tomasz* | I never stopped praying for the road we left them on, in Virginia. I did not mean to leave anyone on a road again. | DRAMATIC: guilt carried for years |
+| t_open_risen | Tomasz* | I carried a letter from Lyon in my breviary. Lyon had risen behind us. The Assembly's ink had crossed the sea before I did. | worried |
+| m_1 | Captain Meneses* | Father, I have fourteen muskets and four horses for a town of thirty thousand. If they rise, I hold the Foundry House and nothing else. | blunt soldier, worried |
+| t_1 | Tomasz* | Then let us see that they do not rise, Captain. I will go to the churches. Every quarter has one, and every church has its people. | calm, sure |
+| m_tip1 | Captain Meneses* | And the Assembly's men are somewhere in those houses, with powder. My men will knock on doors. Stand a man at a door and we will know what is behind it. | practical |
+| m_tip2 | Captain Meneses* | Their runners carry the pamphlets from house to house. Ride them down before they reach the churchyards: every one that gets there makes the town angrier. | urgent |
+| m_armoury | Captain Meneses* | One more thing, Father. The Crown sent us an Armoury this year, and it has not been used. If there is fighting on those stairs tonight, I want better locks and bayonets that can stay fixed. | dry, a soldier's wish |
+| m_researched | Captain Meneses* | Matchlocks and socket bayonets. Now the men must go to the Armoury to be fitted: turn on AUTO REFIT and send them by. | satisfied, brisk |
+| t_pamphlet_calm | Tomasz* | The pamphlets were printed on the Lyon type. The last of it, the printer swore. The ink was still wet. |  |
+| t_pamphlet_sullen | Tomasz* | The pamphlets were printed on the Lyon type. Lyon still prints. |  |
+| t_pamphlet_rome | Tomasz* | ROME BURNED AND THE CHURCH DID NOT FALL, said the pamphlet. THE NEXT FIRE WILL BE OURS. Half the town had read it. | DRAMATIC: reading the slogan aloud, cold |
+| t_martyrs | Tomasz* | Varenne's face was on every pamphlet, drawn as a saint. I had asked for his life in Paris. They had made his death into a banner. | DRAMATIC: grief, a mercy turned against him |
+| t_printer | Tomasz* | The printer's mark from Lyon was on the pamphlets, and Captain Meneses' men knew it. One house printed nothing but it had the same ink on its step. |  |
+| t_calm_pilar | Tomasz* | The Pilar's people are shopkeepers and clerks. I told them that a tax can be argued, and a rising cannot be taken back. They went home to argue. |  |
+| t_calm_carmo | Tomasz* | At the Carmo the masters of the mines asked me whose side the Church was on. I said: on the side of the souls in this square, all of them. |  |
+| t_calm_rosario | Tomasz* | The Rosário is the miners' own church, built with their own gold dust. They knew the tax better than any officer. I listened before I spoke. | humble, listening |
+| t_calm_efigenia | Tomasz* | In the diggings they had pamphlets under every stone. I read one aloud to them, slowly, and asked who would pay for it when the soldiers came. Nobody answered. | steady, a hard question asked gently |
+| t_calm_all | Tomasz* | Four churches, four sermons, and my voice nearly gone. The town was quiet. Quiet is not the same as at peace. | tired, hoarse, not fooled |
+| w_runner | Captain Meneses* | There, a runner with a bundle of pamphlets! He is making for a churchyard. Ride him down. |  |
+| m_found | Captain Meneses* | An armoury! Break it open and burn what is in it. | sharp command |
+| w_hint | a townsman* | Father! The house with the shutters always closed: men go in at night and nobody comes out. I have marked it for you. | a whisper, frightened |
+| m_temper15 | Captain Meneses* | Father, they are close to the edge. Stop the runners, or speak to them, or we lose the town. | alarmed |
+| m_soon | Captain Meneses* | Both of their armouries closed! They know they are found. They will give the signal now, tonight. Get the men in hand. | urgent |
+| t_ledger | Tomasz* | In the second armoury we found a ledger. The muskets had been paid for in coin from the south, from the agents of a guild of clockmakers. Machines paying for a revolution. | DRAMATIC: disbelief turning to dread |
+| t_ledger_d04 | Tomasz* | Concórdia, the ledger said. The city of gears on the southern highlands. The guild wanted the Crown's metal, and the Assembly wanted money. They had found each other. | slow realisation |
+| r_signal | Lieutenant Ramos* | Vila Rica! The gold is yours, not Lisbon's, not Rome's! Up, and take the Foundry House! | DRAMATIC: a rousing shout, warm and dangerous |
+| m_signal | Captain Meneses* | There it is. They will come up the stairs to the square from below and along the ridge. Hold the stairs, bayonets fixed. Not one of them on the square. | steel, a battle order |
+| t_signal | Tomasz* | The miners with them have picks, not muskets. They are not soldiers, Captain. Some of them sang at the Rosário this morning. | pleading for the miners |
+| m_signal_t | Captain Meneses* | Then go and get them back, Father, if you can. My men will hold the stairs either way. | respect, a nod |
+| t_miners | Tomasz* | I stood in the Rosário's churchyard and rang its own bell, the right bell, and called the brotherhood by name. They came. Not all of them, but they came. | DRAMATIC: relief and sorrow, not all came |
+| m_bayonet | Captain Meneses* | Bayonets! Hold the top of the stairs, and let them climb to you. | a battle cry |
+| r_fall | Lieutenant Ramos* | Enough! Back, back to the gorge! The gold still has to leave this town, and there is only one road. | furious, then cold |
+| t_hurt | Tomasz* | I am hit. Do not stop for me, Captain. | in pain, steady |
+| m_gold | Captain Meneses* | The Governor's order: the gold goes to the coast today, before they try again. Four carts, one road, through the gorge. | brisk orders |
+| m_gorge | Captain Meneses* | If I were Ramos, I would wait on the rocks above the gorge. Send men up the ledges' stairs before the carts go in, and keep a few by every cart. | a soldier thinking aloud |
+| t_gold | Tomasz* | I asked to ride with the gold. The Captain thought I meant to guard it. I meant to bury whoever died on that road. | DRAMATIC: quiet, the priest's real reason |
+| r_ambush | Lieutenant Ramos* | Now! Off the rocks! Take the carts, never mind the soldiers! | a shout |
+| m_ambush | Captain Meneses* | There he is, Ramos himself, on the road ahead! Take him alive if you can: the Governor will want his names. | urgent |
+| m_retake | Captain Meneses* | After it! Get round that cart before it crosses the ford and it is ours again. | urgent |
+| r_run | Lieutenant Ramos* | It is lost here. South, to the free city! They will want a man who knows the mines. | bitter, a man who has lost |
+| m_run | Captain Meneses* | He is running for the hollow beyond the east ford! Catch him before he is across! | a shout |
+| r_taken | Lieutenant Ramos* | Do it quickly, then. The mines will remember me. | DRAMATIC: proud, defeated |
+| t_taken | Tomasz* | He asked me to hear his confession before they took him to the Governor. I did. What he said is between him and God. What he did is between him and the King. | DRAMATIC: gentle, firm, the priest and the King both respected |
+| m_done | Captain Meneses* | The gold is on the coast road. Vila Rica is the King's. | relief |
+| r_v1 | Lieutenant Ramos* | Today they read their derrama on our square. Tonight we ring the bell. Walk the pamphlets to the churchyards; let the town hear it. | rousing |
+| r_v_tip | Lieutenant Ramos* | Our armouries hide among the houses until a soldier knocks. Keep them hidden: the agitators come out of them. | conspiratorial |
+| t_end1 | Tomasz* | The gold went down to the coast and across the sea, and Vila Rica paid its derrama. I stayed a year among the miners. | looking back, quiet |
+| t_end_quiet | Tomasz* | The town was quiet after. Not because of the bayonets. Because someone had come to their churches before the bell rang. | a small pride |
+| t_end_restless | Tomasz* | The town was quiet after, under the bayonet. I learnt that a quiet bought that way has to be bought again every year. | regret |
+| t_end_taken | Tomasz* | Ramos was tried at Vila Rica. I wrote to the King for his life, as I had for Varenne's. | hope |
+| t_end_fled | Tomasz* | Ramos was never found. Years later I heard his name again, from the south, from the city of gears. | foreboding |
+| t_end2 | Tomasz* | In Lyon I had learnt to speak to a crowd. In Minas I learnt to stay with it afterwards. | DRAMATIC: the lesson of his life |
+| k_end1 | the King | I signed Ramos' sentence and Tomasz' letter lay beside it. I commuted it to exile. You may judge whether I learnt from Paris. | DRAMATIC: a king judging himself |
+| k_end_fled | the King | The gold reached Lisbon. The man who wanted it reached the city of gears. Both kept their appointments with me, later. | dry foreboding |
+| k_end2 | the King | The mines stayed mine. I did not lower the tax. Perhaps I should have. Tomasz never said so; he only sent me the names of the dead. | DRAMATIC: honest doubt |
+| c_end | Cardinal Tomasz | Three hundred names. I still have the list. | DRAMATIC: very quiet, an old man's grief |
+| k_end_v | the King | The Assembly took the Foundry House and proclaimed its republic of the mines. That is not how it went. The gold reached the coast. | stern correction |
+| r_end_v | Lieutenant Ramos* | For one night Vila Rica belonged to the men who dug it. They will not forget it, whatever comes. | defiant, proud |
+
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
 Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, ferrer (2026-11-22), explorer (now Valadares? the owner to say). The King
@@ -345,13 +419,15 @@ Commissary Brandt (a dry chancery official, German); d03: Desembargador Fonseca 
 judge, fifties, pompous and comfortable) and Pieter grown (the plan's d03: ten years after b01, a man of thirty);
 d04: Captain Bento Arruda (a southern Brazilian cattleman-officer, forties, plain and stubborn, Portuguese-Brazilian),
 Padre Anselmo (a kind country priest, sixties, a voice that calms a crowd) and Citizen Morel (an Assembly man, French,
-thirties, cold and clipped).
+thirties, cold and clipped); d01: Tomasz grown (about thirty: between the young seminarian and the old Cardinal; one
+voice aged by pitch would do), Captain Luís de Meneses (a Portuguese dragoon officer, forties, blunt and loyal) and
+Lieutenant Inácio Ramos (a Brazilian orator, thirties, warm and dangerous), and "a townsman" (one line).
 
 ## 4. Act 2 (planned, not built)
 
 docs/campaign_act2_plan.md "VOICES" lists Act 2's speakers and the new voices to design (Tomasz grown, Commissary
-Brandt, Desembargador Fonseca, Captain Arruda, Padre Anselmo, Citizen Morel, Matthias, Captain de Meneses, Lieutenant
-Ramos, Brother Tiago, the prince if the heir is named). Each mission's table joins section 2 when it is built.
+Brandt, Desembargador Fonseca, Captain Arruda, Padre Anselmo, Citizen Morel, Matthias, Captain de Meneses (built: d01), Lieutenant
+Ramos (built: d01), Brother Tiago, the prince if the heir is named). Each mission's table joins section 2 when it is built.
 
 ## 5. Later
 
