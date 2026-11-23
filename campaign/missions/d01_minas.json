@@ -1840,7 +1840,7 @@
 				{
 					"clock": {
 						"name": "signal",
-						"secs": 330
+						"secs": 360
 					}
 				},
 				{
@@ -2413,7 +2413,7 @@
 						"not": {
 							"clock_left": {
 								"name": "signal",
-								"below": 25
+								"below": 40
 							}
 						}
 					},
@@ -2438,7 +2438,7 @@
 				{
 					"clock": {
 						"name": "signal",
-						"secs": 25,
+						"secs": 40,
 						"scale": false
 					}
 				},
@@ -2537,7 +2537,7 @@
 					}
 				]
 			},
-			"every": 80,
+			"every": 60,
 			"do": [
 				{
 					"counter": {
@@ -2581,7 +2581,7 @@
 					}
 				]
 			},
-			"every": 80,
+			"every": 60,
 			"do": [
 				{
 					"counter": {
@@ -2625,7 +2625,7 @@
 					}
 				]
 			},
-			"every": 80,
+			"every": 60,
 			"do": [
 				{
 					"counter": {
@@ -2669,7 +2669,7 @@
 					}
 				]
 			},
-			"every": 80,
+			"every": 60,
 			"do": [
 				{
 					"counter": {
@@ -3144,7 +3144,7 @@
 				{
 					"clock": {
 						"name": "night",
-						"secs": 240,
+						"secs": 300,
 						"scale": false
 					}
 				},
@@ -3353,7 +3353,7 @@
 			"when": {
 				"fired": "part2"
 			},
-			"delay": 51,
+			"delay": 61,
 			"do": [
 				{
 					"spawn": {
@@ -3387,13 +3387,147 @@
 					}
 				},
 				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "cannon",
+						"as": "captured_gun",
+						"count": 1,
+						"fixed": true,
+						"at": "rise_pilar",
+						"tag": "band_p",
+						"tags": [
+							"rising"
+						]
+					}
+				},
+				{
 					"say": [
-						"n_ridge"
+						"n_ridge",
+						"m_gun"
 					]
 				},
 				{
 					"ping": {
 						"area": "ridge_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "band_e2",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 65,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 3,
+						"at": "rise_efigenia",
+						"tag": "band_e2",
+						"tags": [
+							"rising"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "martyr",
+						"count": 2,
+						"at": "rise_efigenia",
+						"tag": "band_e2",
+						"tags": [
+							"rising"
+						],
+						"if": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "band_last",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "rising_broken"
+						}
+					}
+				]
+			},
+			"delay": 116,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 6,
+						"at": "rise_rosario",
+						"tag": "band_last",
+						"tags": [
+							"rising"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "martyr",
+						"count": 2,
+						"at": "rise_rosario",
+						"tag": "band_last",
+						"tags": [
+							"rising"
+						],
+						"if": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "pikeman",
+						"as": "miner",
+						"count": 3,
+						"at": "rise_rosario",
+						"tag": "band_last",
+						"tags": [
+							"rising",
+							"miners"
+						],
+						"if": {
+							"not": {
+								"fired": "miners_home"
+							}
+						}
+					}
+				},
+				{
+					"say": [
+						"r_last",
+						"m_last"
+					]
+				},
+				{
+					"ping": {
+						"area": "below_sq_s"
 					}
 				}
 			]
@@ -3487,6 +3621,69 @@
 						],
 						"attack": true,
 						"name": "band_p"
+					}
+				}
+			]
+		},
+		{
+			"id": "band_e2_go",
+			"when": {
+				"all": [
+					{
+						"fired": "band_e2"
+					},
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "band_e2",
+						"do": "route",
+						"route": [
+							"rise_efigenia",
+							"below_sq_n",
+							"sq_n",
+							"praca"
+						],
+						"attack": true,
+						"name": "band_e2"
+					}
+				}
+			]
+		},
+		{
+			"id": "band_last_go",
+			"when": {
+				"all": [
+					{
+						"fired": "band_last"
+					},
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "band_last",
+						"do": "route",
+						"route": [
+							"rise_rosario",
+							"road_w",
+							"below_sq_s",
+							"sq_s",
+							"praca"
+						],
+						"attack": true,
+						"name": "band_last"
 					}
 				}
 			]
@@ -3702,7 +3899,7 @@
 		{
 			"id": "rising_spent",
 			"when": {
-				"fired": "band_p"
+				"fired": "band_last"
 			},
 			"delay": 3,
 			"do": []
@@ -3924,6 +4121,12 @@
 					}
 				},
 				{
+					"pace": {
+						"tag": "carts",
+						"pace": 0.8
+					}
+				},
+				{
 					"objective": {
 						"id": "gold",
 						"set": "active"
@@ -3959,7 +4162,7 @@
 						"team": "conspiracy",
 						"kind": "musketeer",
 						"as": "conspirator",
-						"count": 4,
+						"count": 5,
 						"at": "ledge_n",
 						"tag": "ambush",
 						"tags": [
@@ -3973,7 +4176,7 @@
 						"team": "conspiracy",
 						"kind": "musketeer",
 						"as": "conspirator",
-						"count": 3,
+						"count": 4,
 						"at": "ledge_s",
 						"tag": "ambush",
 						"tags": [
@@ -4259,6 +4462,39 @@
 			]
 		},
 		{
+			"id": "raiders",
+			"when": {
+				"fired": "ambush"
+			},
+			"delay": 8,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "cuirassier",
+						"as": "mule_rider",
+						"count": 3,
+						"at": "hollow",
+						"tag": "takers",
+						"tags": [
+							"ambush",
+							"raiders"
+						]
+					}
+				},
+				{
+					"say": [
+						"m_raiders"
+					]
+				},
+				{
+					"ping": {
+						"area": "ford_e"
+					}
+				}
+			]
+		},
+		{
 			"id": "takers_go",
 			"when": {
 				"all": [
@@ -4323,13 +4559,6 @@
 						}
 					},
 					{
-						"count": {
-							"tag": "carts",
-							"area": "gorge_mid",
-							"at_least": 1
-						}
-					},
-					{
 						"not": {
 							"any": [
 								{
@@ -4346,7 +4575,7 @@
 					}
 				]
 			},
-			"delay": 6,
+			"delay": 4,
 			"do": [
 				{
 					"order": {
@@ -6377,6 +6606,25 @@
 		"n_miners": {
 			"who": "narrator",
 			"text": "The miners lower their picks and go home behind the brotherhood's banner.",
+			"to": "crown"
+		},
+		"m_gun": {
+			"who": "meneses",
+			"text": "They have a gun up there! They took it from the militia's store. Get the dragoons onto the ridge before it fires on the square.",
+			"to": "crown"
+		},
+		"r_last": {
+			"who": "ramos",
+			"text": "Once more, up the Rua Direita! Every man who can still stand!"
+		},
+		"m_last": {
+			"who": "meneses",
+			"text": "Here comes Ramos himself, from the Rosário, up the broad stair. Everyone to the south stair!",
+			"to": "crown"
+		},
+		"m_raiders": {
+			"who": "meneses",
+			"text": "Riders behind us, out of the hollow over the east ford! They are after the carts. Keep men by them!",
 			"to": "crown"
 		},
 		"m_bayonet": {

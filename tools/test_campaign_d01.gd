@@ -165,7 +165,7 @@ func _part1(g: Game, r: MissionRun) -> void:
 
 ## Part 2 by the script: the bands come and every one of them dies.
 func _part2(g: Game, r: MissionRun) -> void:
-	_walk(g, float(r.fired["signal"]) + 10.0 + 6.0 + 45.0 + 4.0)
+	_walk(g, float(r.fired["signal"]) + 10.0 + 6.0 + 110.0 + 4.0)
 	for u in r.tagged("rising"):
 		u.die()
 	_walk(g, g.clock + 2.0)
@@ -195,7 +195,7 @@ func _data() -> void:
 	var pr := Campaign.problems(m)
 	check("d01_minas: data checks out", pr.is_empty(), "; ".join(pr))
 	var extra := ["TAKING THE GOLD", "GOLD TAKEN!", "TAKING IT BACK", "TAKEN BACK!", "Father Tomasz", "Captain Meneses", "Lieutenant Ramos"]
-	for role in ["tomasz_minas", "meneses", "ramos", "conspirator", "martyr", "miner", "agitator", "townsman"]:
+	for role in ["tomasz_minas", "meneses", "ramos", "conspirator", "martyr", "miner", "agitator", "townsman", "captured_gun", "mule_rider"]:
 		extra.append(String(Rebels.ROLES[role]["about"]))
 	var miss: Array = []
 	for t in Campaign.strings_of(m) + Campaign.index_strings() + extra:

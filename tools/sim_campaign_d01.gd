@@ -94,7 +94,7 @@ func _run() -> void:
 			var tz: Array = r.tagged("tomasz")
 			var gt := r.team_index("garrison")
 			print("SIM t=%4d part=%s gold=%d powder=%d temper=%d/%d calmed=%d closed=%d runners=%d rising=%d miners_home=%d carts=%d out=%d lost=%d taken=%d ledge=%d ramos=%s garrison=%d tomasz=%s hp=%d clocks=%s" % [
-				g.clock, part, int(g.players[gt]["gold"]), int(g.players[gt]["powder"]), int(r.counters.get("temper", 0)), int(r.counters.get("temper_top", 0)),
+				g.clock, part, int(g.players[gt]["gold"]), int(g.players[gt].get("res2", 0)), int(r.counters.get("temper", 0)), int(r.counters.get("temper_top", 0)),
 				int(r.counters.get("calmed", 0)), int(r.counters.get("closed", 0)), r.tagged("runner").size(), int(r.counters.get("rising_left", 0)),
 				int(r.counters.get("miners_home", 0)), r.tagged("carts").size(), int(r.counters.get("gold_out", 0)), int(r.counters.get("gold_lost", 0)),
 				int(r.counters.get("carts_taken", 0)), int(r.counters.get("ledge_left", 0)), "taken" if r.captured.has("ramos") else str(r.tagged("ramos").size()),
@@ -177,8 +177,10 @@ func _play(g: Game, r: MissionRun) -> void:
 	for b in r.tagged("armoury"):
 		if b is Building and b.built and b.queue.size() < 1:
 			for k in ["bayonet", "matchlock"]:
-				if not g.has_tech(gt, k) and not b.queue.any(func(q): return str(q) == k):
-					g.train(b, k)
+				if not g.has_tech(gt, k) and not g.researching(gt, k):
+					var why := g.start_research(b, k)
+					if OS.get_cmdline_user_args().has("debug") and why != "":
+						print("SIM research: ", why)
 					break
 			b.auto_refit = true
 	for b in r.tagged("barracks"):

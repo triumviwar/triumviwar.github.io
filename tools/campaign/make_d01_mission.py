@@ -81,19 +81,21 @@ PAY_EVERY = 60                # the Crown pays its garrison 40 gold and 15 powde
 TEMPER_START = 3              # THE TOWN'S TEMPER at the reading (+3 with a07 `rome` few, +2 with a06 Varenne executed)
 TEMPER_TOP = {"easy": 24, "normal": 20, "hard": 16}   # at the top, Vila Rica rises (lost)
 QUIET_UNDER = 10              # the temper at the signal under this: `minas` quiet, else restless
-TAX_FIRST, TAX_EVERY = 45, 80  # a quarter nobody has spoken to: +1 every TAX_EVERY s (from TAX_FIRST)
+TAX_FIRST, TAX_EVERY = 45, 60  # a quarter nobody has spoken to: +1 every TAX_EVERY s (from TAX_FIRST)
 CALM_SECS = 4                 # Father Tomasz this long in a quarter's churchyard calms it (the temper -3)
 SEARCH = 3                    # a Crown man this long at a house's door (2 tiles) sees what it is
 RUNNER = {"easy": 85, "normal": 65, "hard": 50}       # seconds between one armoury's agitators
 HINT = {"easy": 150, "normal": 180, "hard": 220}       # the town's people give an armoury away (the first still hidden)
-SIGNAL_SECS = 330             # Part 1: the signal is expected this long after the reading (a countdown: scaled)
-SIGNAL_SOON = 25              # ... or this soon once both armouries are closed
-BAND_GAP = 45                 # Part 2: the Pilar's band comes along the ridge this long after the first two
-NIGHT_SECS = 240              # ... the rising breaks at the latest this long after the signal
+SIGNAL_SECS = 360             # Part 1: the signal is expected this long after the reading (a countdown: scaled)
+SIGNAL_SOON = 40              # ... or this soon once both armouries are closed
+BAND_GAP = 55                 # Part 2: the Pilar's band (and the captured gun) comes along the ridge this long after the first two
+LAST_GAP = 110                # ... and Ramos's last push up the Rua Direita this long after them
+NIGHT_SECS = 300              # ... the rising breaks at the latest this long after the signal
 BREAK_AT = 3                  # ... or when fewer than this are left of it (all of it come)
 MINERS_SECS = 4               # Tomasz this long in the Rosário's churchyard at night calls the miners home
 CARTS_WAIT = 40               # Part 3: the carts leave the Foundry House this long after the dawn
 CARTS_N = 4
+CART_PACE = 0.8               # the gold carts on the road (58 x 0.8: the escort on foot keeps up with ease)
 RAMOS_RUN = 45                # Ramos, running for the hollow, is gone at the latest this long after he runs
 
 QUARTERS = ["pilar", "carmo", "rosario", "efigenia"]
@@ -536,6 +538,17 @@ line("t_miners", "tomasz", "I stood in the Rosário's churchyard and rang its ow
      "Me quedé en el atrio del Rosario y toqué su propia campana, la campana correcta, y llamé a la hermandad por su nombre. Vinieron. No todos, pero vinieron.", CR)
 line("n_miners", "narrator", "The miners lower their picks and go home behind the brotherhood's banner.", "Os mineiros baixam as picaretas e vão para casa atrás do estandarte da irmandade.",
      "Los mineros bajan los picos y se van a casa tras el estandarte de la hermandad.", CR)
+line("m_gun", "meneses", "They have a gun up there! They took it from the militia's store. Get the dragoons onto the ridge before it fires on the square.",
+     "Eles têm um canhão lá em cima! Tiraram-no do depósito da milícia. Mande os dragões para o espigão antes que dispare sobre a praça.",
+     "¡Tienen un cañón ahí arriba! Lo sacaron del almacén de la milicia. Manda a los dragones a la cresta antes de que dispare sobre la plaza.", CR)
+line("r_last", "ramos", "Once more, up the Rua Direita! Every man who can still stand!", "Mais uma vez, Rua Direita acima! Todo o homem que ainda se aguente de pé!",
+     "¡Una vez más, Rua Direita arriba! ¡Todo hombre que aún se tenga en pie!")
+line("m_last", "meneses", "Here comes Ramos himself, from the Rosário, up the broad stair. Everyone to the south stair!",
+     "Aí vem o próprio Ramos, do Rosário, pela escada larga. Todos para a escada sul!",
+     "¡Ahí viene el propio Ramos, desde el Rosario, por la escalera ancha! ¡Todos a la escalera sur!", CR)
+line("m_raiders", "meneses", "Riders behind us, out of the hollow over the east ford! They are after the carts. Keep men by them!",
+     "Cavaleiros atrás de nós, saídos da depressão pelo vau do leste! Vêm às carroças. Mantenham homens junto delas!",
+     "¡Jinetes detrás de nosotros, desde la hondonada por el vado del este! Van a por los carros. ¡Mantened hombres junto a ellos!", CR)
 line("m_bayonet", "meneses", "Bayonets! Hold the top of the stairs, and let them climb to you.", "Baionetas! Segurem o alto das escadas, e deixem-nos subir até vocês.",
      "¡Bayonetas! Defended lo alto de las escaleras, y dejad que suban hasta vosotros.", CR)
 line("r_fall", "ramos", "Enough! Back, back to the gorge! The gold still has to leave this town, and there is only one road.",
@@ -787,10 +800,21 @@ TR_ += [
     {"id": "band_e", "when": {"fired": "part2"}, "delay": 9, "do":
         band("band_e", "rise_efigenia", 4, 3, RISE_E, "band_e", cond_extra={"count": {"tag": "armoury_2", "at_least": 1, "buildings": True}})},
     {"id": "band_p", "when": {"fired": "part2"}, "delay": 6 + BAND_GAP, "do":
-        band("band_p", "rise_pilar", 5, 0, RISE_P, "band_p") + [{"say": ["n_ridge"]}, {"ping": {"area": "ridge_w"}}]},
+        band("band_p", "rise_pilar", 5, 0, RISE_P, "band_p")
+        + [{"spawn": {"team": "conspiracy", "kind": "cannon", "as": "captured_gun", "count": 1, "fixed": True, "at": "rise_pilar", "tag": "band_p", "tags": ["rising"]}},
+           {"say": ["n_ridge", "m_gun"]}, {"ping": {"area": "ridge_w"}}]},
+    {"id": "band_e2", "when": {"fired": "part2"}, "delay": 6 + BAND_GAP + 4, "do": band("band_e2", "rise_efigenia", 3, 0, RISE_E, "band_e2")},
+    # Ramos's last push up the Rua Direita (the brotherhood's miners with him, unless Tomasz called them home)
+    {"id": "band_last", "when": {"all": [{"fired": "part2"}, {"not": {"fired": "rising_broken"}}]}, "delay": 6 + LAST_GAP, "do":
+        band("band_last", "rise_rosario", 6, 0, RISE_R, "band_last")
+        + [{"spawn": {"team": "conspiracy", "kind": "pikeman", "as": "miner", "count": 3, "at": "rise_rosario", "tag": "band_last", "tags": ["rising", "miners"],
+                      "if": {"not": {"fired": "miners_home"}}}},
+           {"say": ["r_last", "m_last"]}, {"ping": {"area": "below_sq_s"}}]},
     {"id": "band_r_go", "when": {"all": [{"fired": "band_r"}, NO_VAL]}, "do": [{"order": {"tag": "band_r", "do": "route", "route": RISE_R, "attack": True, "name": "band_r"}}]},
     {"id": "band_e_go", "when": {"all": [{"fired": "band_e"}, NO_VAL]}, "do": [{"order": {"tag": "band_e", "do": "route", "route": RISE_E, "attack": True, "name": "band_e"}}]},
     {"id": "band_p_go", "when": {"all": [{"fired": "band_p"}, NO_VAL]}, "do": [{"order": {"tag": "band_p", "do": "route", "route": RISE_P, "attack": True, "name": "band_p"}}]},
+    {"id": "band_e2_go", "when": {"all": [{"fired": "band_e2"}, NO_VAL]}, "do": [{"order": {"tag": "band_e2", "do": "route", "route": RISE_E, "attack": True, "name": "band_e2"}}]},
+    {"id": "band_last_go", "when": {"all": [{"fired": "band_last"}, NO_VAL]}, "do": [{"order": {"tag": "band_last", "do": "route", "route": RISE_R, "attack": True, "name": "band_last"}}]},
     {"id": "bayonet_say", "when": {"fired": "band_r"}, "delay": 20, "do": [{"say": ["m_bayonet"]}]},
     {"id": "rising_n", "when": {"all": [{"fired": "band_r"}, LIVE]}, "every": 1, "do": [{"counter": {"name": "rising_left", "count": {"tag": "rising"}}}]},
     # (the scripted rising never stands about: every so often whatever is left of it goes for the square)
@@ -804,7 +828,7 @@ TR_ += [
         {"say": ["t_miners", "n_miners"]}, {"objective": {"id": "miners", "set": "done"}}]},
     {"id": "gone_home_go", "when": {"all": [{"fired": "miners_home"}, LIVE]}, "delay": 1.5, "every": 3, "do": [
         {"order": {"tag": "gone_home", "only_team": "calmed", "do": "move", "to": "home_town"}}]},
-    {"id": "rising_spent", "when": {"fired": "band_p"}, "delay": 3, "do": []},
+    {"id": "rising_spent", "when": {"fired": "band_last"}, "delay": 3, "do": []},
     {"id": "rising_broken", "when": {"all": [{"any": [{"all": [{"fired": "rising_spent"}, {"counter": {"name": "rising_left", "below": BREAK_AT}}]},
                                                       {"clock_out": "night"}]}, {"fired": "part2"}, LIVE]}, "do": [
         {"say": ["r_fall", "n_broken"]}, {"objective": {"id": "rising", "set": "done"}}, {"objective": {"id": "miners", "set": "hidden"}},
@@ -817,13 +841,13 @@ TR_ += [
         {"light": {"to": "dawn", "secs": 15}}, {"objective": {"id": "foundry", "set": "hidden"}}, {"objective": {"id": "ledger", "set": "hidden"}},
         {"spawn": {"team": "treasury", "kind": "powder_wagon", "as": "gold_cart", "count": CARTS_N, "at": "foundry_door", "tag": "carts", "tags": ["convoy"], "fixed": True}},
         {"load": {"cart": "carts", "cargo": "gold", "amount": 1, "lost": "gold_lost"}},
-        {"spare": {"tag": "carts", "on": True}},
+        {"spare": {"tag": "carts", "on": True}}, {"pace": {"tag": "carts", "pace": CART_PACE}},
         {"objective": {"id": "gold", "set": "active"}}, {"objective": {"id": "carts_clock", "set": "active"}}, {"objective": {"id": "ledges", "set": "active"}},
         {"objective": {"id": "ramos", "set": "active"}},
         {"clock": {"name": "carts", "secs": CARTS_WAIT, "scale": False}},
         # the last band waits on the two ledges over the gorge, Ramos and his takers on the road past it
-        {"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "conspirator", "count": 4, "at": "ledge_n", "tag": "ambush", "tags": ["ledge_men"], "order": "hold"}},
-        {"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "conspirator", "count": 3, "at": "ledge_s", "tag": "ambush", "tags": ["ledge_men"], "order": "hold"}},
+        {"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "conspirator", "count": 5, "at": "ledge_n", "tag": "ambush", "tags": ["ledge_men"], "order": "hold"}},
+        {"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "conspirator", "count": 4, "at": "ledge_s", "tag": "ambush", "tags": ["ledge_men"], "order": "hold"}},
         {"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "martyr", "count": 2, "at": "ledge_n", "tag": "ambush", "tags": ["ledge_men"], "order": "hold", "if": EXECUTED}},
         {"spawn": {"team": "conspiracy", "kind": "dismounted", "as": "ramos", "count": 1, "at": "gorge_e", "tag": "ramos", "order": "hold", "if": NO_VAL}},
         {"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "conspirator", "count": 4, "at": "gorge_e", "tag": "takers", "tags": ["ambush"], "order": "hold"}},
@@ -840,11 +864,15 @@ TR_ += [
     {"id": "ambush", "when": {"all": [{"fired": "cart_go"}, {"any": [{"count": {"tag": "carts", "area": "gorge_w", "at_least": 1}},
                                                                     {"count": {"tag": "carts", "area": "road_mid", "at_least": 1}}]}, LIVE]}, "do": [
         {"say": ["r_ambush", "m_ambush"]}, {"ping": {"tag": "ramos"}}, {"clock": {"name": "ramos_clock", "secs": 150, "scale": False}}]},
+    # the mule-train riders out of the hollow, over the east ford, for the carts from behind
+    {"id": "raiders", "when": {"fired": "ambush"}, "delay": 8, "do": [
+        {"spawn": {"team": "conspiracy", "kind": "cuirassier", "as": "mule_rider", "count": 3, "at": "hollow", "tag": "takers", "tags": ["ambush", "raiders"]}},
+        {"say": ["m_raiders"]}, {"ping": {"area": "ford_e"}}]},
     {"id": "takers_go", "when": {"all": [{"fired": "ambush"}, NO_VAL, LIVE]}, "every": 3, "do": [
         {"order": {"tag": "takers", "only_team": "conspiracy", "do": "take", "carts": "carts", "within": 40, "else": "gorge_mid"}},
         {"order": {"tag": "ramos", "do": "take", "carts": "carts", "within": 12, "else": "gorge_e"}}]},
-    # (the ledges' men come down the stairs to the road once the carts are in the gorge)
-    {"id": "ledges_down", "when": {"all": [{"fired": "ambush"}, NO_VAL, {"count": {"tag": "carts", "area": "gorge_mid", "at_least": 1}}, LIVE]}, "delay": 6, "do": [
+    # (the ledges' men come down the stairs to the road for the carts once the ambush is sprung)
+    {"id": "ledges_down", "when": {"all": [{"fired": "ambush"}, NO_VAL, LIVE]}, "delay": 4, "do": [
         {"order": {"tag": "ledge_men", "do": "take", "carts": "carts", "within": 30, "else": "gorge_mid"}}]},
     # taken carts drive for the hollow beyond the east ford; taken back, they turn for the coast
     {"id": "taken_go", "when": {"all": [{"taken": "carts"}, LIVE]}, "every": 3, "do": [
@@ -918,6 +946,10 @@ for (en, pt, es) in [
     ("A miner of Vila Rica with a pick, angry at the tax.", "Um mineiro de Vila Rica com uma picareta, zangado com o imposto.", "Un minero de Vila Rica con un pico, enfadado con el impuesto."),
     ("An agitator of the Assembly with a bundle of pamphlets.", "Um agitador da Assembleia com um maço de panfletos.", "Un agitador de la Asamblea con un fajo de panfletos."),
     ("A townsman of Vila Rica.", "Um morador de Vila Rica.", "Un vecino de Vila Rica."),
+    ("The militia's field gun, taken by the conspirators from its store.", "O canhão de campanha da milícia, tirado do depósito pelos conspiradores.",
+     "El cañón de campaña de la milicia, sacado del almacén por los conspiradores."),
+    ("A rider of the mule trains of the mines, gone over to the conspiracy.", "Um cavaleiro das tropas de mulas das minas, passado para a conspiração.",
+     "Un jinete de las recuas de mulas de las minas, pasado a la conspiración."),
     # the hub after d01 (the King's study)
     ("Tomasz wrote from Minas: the gold went down to the coast, and he stayed behind with the miners.", "O Tomasz escreveu de Minas: o ouro desceu à costa, e ele ficou com os mineiros.",
      "Tomasz escribió desde Minas: el oro bajó a la costa, y él se quedó con los mineros."),

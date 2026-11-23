@@ -524,3 +524,16 @@ MissionRun.act2, saved with the mission). Test: tools/test_act2_engine0.gd. Pict
 | TAKE rules: item `"label"`, rule `"word"`, rule `"untorch"` | the bar's text over the unit (default TAKING THE CART), the floating word when it is taken (default TAKEN!), and `untorch`: the taken man's torch is put out (d04: TURN THEM BACK) |
 | `{"convert": {..., "untorch": true}}` | converted units lose their torch |
 | mission `"torch_fire": {..., "counter": name}` | every building a torch sets alight adds one to that counter (d04: THE VALLEY'S TEMPER) |
+
+## Added by Act 2's d01_minas (d01-minas; docs/campaign_d01_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| condition `{"researched": {"team", "tech": id or [ids]}}` | (MissionAct2) that team has every one of those researches done (the Armoury's lesson: the Matchlock and the Socket Bayonet); `Campaign.problems()` checks the team and each research id |
+| THE CITY GENERATOR in hills | tools/campaign/city_gen.py `hill_blob` and `stairs` (docs/city_generator.md): Vila Rica on two hills and a ridge |
+| roles `tomasz_minas`, `meneses`, `ramos`, `conspirator`, `martyr`, `miner`, `agitator`, `townsman` | Rebels.ROLES (stand-ins: a Missionary, a Horseman, an Officer, Musketeers, a Pikeman, Labourers) |
+
+Everything else in the Gold of Vila Rica is built from the keys above: disguised buildings (a01's armouries), exits
+counting into a counter (the agitators raise the temper), STAY (Tomasz in a churchyard), `convert` (the miners called
+home), CARGO CARTS with gold and TAKE A CART both ways (d02's), CAPTURE (Ramos), a choice with a random default (where
+the armouries hide), `tally` with shares (`gold`), countdown clocks, `if` by `past` flags.

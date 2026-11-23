@@ -112,6 +112,8 @@ const ROLES := {
 	"miner": {"kind": "pikeman", "art": "c_citizen", "about": "A miner of Vila Rica with a pick, angry at the tax."},
 	"agitator": {"kind": "labourer", "art": "a_runner", "about": "An agitator of the Assembly with a bundle of pamphlets."},
 	"townsman": {"kind": "labourer", "art": "c_citizen", "about": "A townsman of Vila Rica."},
+	"captured_gun": {"kind": "cannon", "about": "The militia's field gun, taken by the conspirators from its store."},
+	"mule_rider": {"kind": "cuirassier", "about": "A rider of the mule trains of the mines, gone over to the conspiracy."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)
