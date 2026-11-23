@@ -530,7 +530,7 @@ func _ui_act2() -> void:
 	check("the brass map opens on BRAZIL (drawn, no painting)", wm.painted == "" and _find("View_brazil") != null
 		and wm.world_rect().has_point(wm.center) and absf(wm.center.x - WarMapData.rect_of(WarMapData.data()["views"][1]["rect"]).get_center().x) < 1.0, str(wm.center))
 	# a planned pin's card: what it is about; the clock
-	wm.tap(wm.pin_screen(WarMapData.pin_of("d04_concordia")))
+	wm.tap(wm.pin_screen(WarMapData.pin_of("d05_aldeia")))
 	await process_frame
 	check("a planned pin's card says what, where and when (SAY IT PLAINLY)", _find("CardAbout") != null and _find("Card_Briefing") == null)
 	_press_back()
