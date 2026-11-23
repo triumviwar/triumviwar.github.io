@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"A new campaign mission, Act 2's THE ISLAND (the Naturalist, after Rome): play Lindqvist's secret stock, the Brood creatures he breeds on a river island, while the Crown's commission searches for them. Lead them under the lures into the deep forest, hatch the first Storm Sire and its Hatchlings, keep everything still while the search parties pass, send the magistrate to dinner, set decoys, and bring back the young one that gets up in the night before it reaches the camp. Or play the commission and find half of them before dawn.",
+	]},
 	{"v": "0.38.185", "items": [
 		"Nothing changes in the game: notes only (the Exodus mission and a 100-war test of WORLD WAR recorded).",
 	]},

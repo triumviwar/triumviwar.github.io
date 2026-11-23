@@ -2848,7 +2848,7 @@
 					}
 				]
 			},
-			"delay": 140,
+			"delay": 120,
 			"do": [
 				{
 					"order": {
@@ -4886,6 +4886,11 @@
 					},
 					{
 						"not": {
+							"fired": "restless_back"
+						}
+					},
+					{
+						"not": {
 							"any": [
 								{
 									"fired": "the_end"
@@ -4901,16 +4906,13 @@
 								}
 							]
 						}
+					},
+					{
+						"playing": "commission"
 					}
 				]
 			},
 			"do": [
-				{
-					"objective": {
-						"id": "restless",
-						"set": "failed"
-					}
-				},
 				{
 					"clock": {
 						"name": "dawn",
@@ -4970,11 +4972,27 @@
 						"fired": "restless"
 					},
 					{
-						"count": {
-							"tag": "restless",
-							"area": "goats",
-							"at_least": 1
-						}
+						"any": [
+							{
+								"count": {
+									"tag": "restless",
+									"area": "goats",
+									"at_least": 1
+								}
+							},
+							{
+								"all": [
+									{
+										"dead": "restless"
+									},
+									{
+										"not": {
+											"fired": "restless_back"
+										}
+									}
+								]
+							}
+						]
 					},
 					{
 						"not": {

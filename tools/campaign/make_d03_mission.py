@@ -18,8 +18,9 @@ Valadares, who drew the cloud mountain for the Crown, and a magistrate, Desembar
   THE LEASH (the act's Brood lesson): the stock obeys only within 8 tiles of a lure (Lindqvist, Pieter, a keeper, a
     lure post); out of every lure's reach a creature is LOOSE and wanders where it likes.
   HIDDEN: the commission does not see the stock until it FINDS it: a creature that keeps STILL for 3 s lies low and is
-    seen only from 3 tiles (4 with a03 `map` drawn: Valadares knows what to look for); one moving is seen as far as a
-    searcher can see. Found is for good. While the commission is on the island the stock is quiet (no creature bites:
+    seen only from 2 tiles (in the undergrowth); one moving is seen as far as a searcher can see, and the island's
+    forest shade cuts the commission's sight to 0.6. (a03 `map` withheld: the search is a minute longer, Valadares
+    searches blind.) Found is for good. While the commission is on the island the stock is quiet (no creature bites:
     Lindqvist's order), and the commission's men do not shoot the fazenda's people.
   THE COMMISSION (Crown, PURPLE; scripted solo, the SOLO PICK, versus p2): Valadares (who reads TRACKS), Fonseca, three
     search parties of musketeers and the riders, Benedito at the canoes.
@@ -660,7 +661,7 @@ TR_ += [
     {"id": "parties_track", "when": {"all": [{"fired": "parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 90, "every": 25, "do": [
         {"order": {"tag": "party_a", "do": "track", "within": 12}}, {"order": {"tag": "party_c", "do": "track", "within": 12}}]},
     # the search tightens (something new every minute or two: NO WAITING)
-    {"id": "riders_north", "when": {"all": [{"fired": "parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 140, "do": [
+    {"id": "riders_north", "when": {"all": [{"fired": "parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 120, "do": [
         {"order": {"tag": "riders", "do": "route", "route": ROUTE_RN, "loop": True, "name": "riders"}}, {"ping": {"area": "ford_w"}}]},
     {"id": "riders_north_say", "when": {"all": [{"fired": "riders_north"}, STOCK]}, "do": [{"say": ["p_riders"]}]},
     {"id": "v_hunch", "when": {"all": [{"fired": "parties"}, NO_COM, {"not": {"fired": "part3"}}, LIVE]}, "delay": 215, "do": [
@@ -755,14 +756,17 @@ TR_ += [
         {"leash": {"tag": "restless", "lure": "lure", "within": 8, "loose": "wander", "name": "restless"}},
         # NO WAITING: the one danger of the night is over: dawn comes quickly
         {"clock": {"name": "dawn", "add": -80}}]},
-    # (the restless one dead, nothing to bring back)
-    {"id": "restless_gone", "when": {"all": [{"fired": "restless"}, {"dead": "restless"}, LIVE]}, "do": [
-        {"objective": {"id": "restless", "set": "failed"}}, {"clock": {"name": "dawn", "add": -80}}]},
+    # (the restless one shot on its way: the camp is up all the same: the fight below. Played as the commission, a
+    # dead wanderer is only one less)
+    {"id": "restless_gone", "when": {"all": [{"fired": "restless"}, {"dead": "restless"}, {"not": {"fired": "restless_back"}}, LIVE, COM]}, "do": [
+        {"clock": {"name": "dawn", "add": -80}}]},
     # (none of the young left awake to go: the night passes quietly, and quickly)
     {"id": "restless_none", "when": {"all": [{"fired": "restless"}, {"count": {"tag": "restless", "below": 1}}, LIVE]}, "delay": 2, "do": [
         {"clock": {"name": "dawn", "add": -80}}]},
     # it reaches the goats: the camp is up, everything is found
-    {"id": "lost_fight", "when": {"all": [{"fired": "restless"}, {"count": {"tag": "restless", "area": "goats", "at_least": 1}}, LIVE, NO_COM]}, "do": [
+    {"id": "lost_fight", "when": {"all": [{"fired": "restless"}, {"any": [{"count": {"tag": "restless", "area": "goats", "at_least": 1}},
+                                                                    {"all": [{"dead": "restless"}, {"not": {"fired": "restless_back"}}]}]},
+                                          LIVE, NO_COM]}, "do": [
         {"say": ["n_fight", "v_fight"]}, {"hide": {"tag": "young", "on": False}}, {"objective": {"id": "restless", "set": "failed"}},
         {"objective": {"id": "night", "set": "failed"}}]},
     # ============================================================ DAWN

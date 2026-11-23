@@ -133,7 +133,7 @@ func _run() -> void:
 				str(r.cond({"rooted": {"tag": "mother"}})), str(r.cond({"rooted": {"tag": "storm_sire"}})),
 				g.units.filter(func(u): return not u.dead and u.team == ct).size(),
 				_left(g, r, "boat"), _left(g, r, "dusk"), _left(g, r, "dawn"),
-				str(r.tagged("restless").map(func(u): return str(g.cell_of(u.position)))), int(g.players[st]["gold"])])
+				str(r.tagged("restless").map(func(u): return "%s %s %s->%s p%.2f" % [u.kind, g.cell_of(u.position), u.order, g.cell_of(u.order_point), u.m_pace])), int(g.players[st]["gold"])])
 			if OS.get_cmdline_user_args().has("debug"):
 				for u in r.tagged("young") + r.tagged("lindqvist") + r.tagged("keeper"):
 					if _alive(u):
@@ -249,6 +249,8 @@ func _play_stock(g: Game, r: MissionRun) -> void:
 		var k := 0
 		for u in grp:
 			k += 1
+			if lazy and rest.has(u):
+				continue          # (the lazy player leaves the restless one be)
 			if u.kind == "brood_mother":
 				if there and not BroodNew.rooted(u) and u.order != "nb_root" and u.position.distance_to(at) < 4.0 * Defs.TILE:
 					BroodRoot.start_root(u, at + Vector2(0, -24))

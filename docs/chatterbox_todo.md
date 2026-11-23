@@ -103,6 +103,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | a05_specimens (the Specimens) | docs/campaign_a05_build.md | 58 | Lindqvist 39, the King 8, Benedito* 8, Pieter* 2 |
 | a07_council (the Council of Rome) | docs/campaign_a07_build.md | 49 | the King 28, Tomasz* 7, Hollweg 4, Ferrer* 3, Lindqvist 3, Valadares* 2, the Cardinal Dean* 2 |
 | d02_exodus (the Exodus, Act 2) | this file, "d02_exodus" below; docs/campaign_d02_build.md | 63 (+12 narrator, 2 NEW cards) | Hollweg 25, Ulrich* 16, the King 6, Ferrer 6, Colonel von Rauch* 5, Jakob* 3, Commissary Brandt* 2 |
+| d03_fazenda (the Island, Act 2) | this file, "d03_fazenda" below; docs/campaign_d03_build.md | 61 (+13 narrator, 2 NEW cards) | Lindqvist 21, Valadares* 17, Pieter* 12, the King 6, Desembargador Fonseca* 5 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -178,6 +179,76 @@ without one are plain. The narrator's 12 lines and the two NEW cards can stay as
 | k_end_c | the King | Hollweg in the Crown's custody, twenty-four years before he came to my fire. That is not how it went. | dry correction |
 | f_end_c | Ferrer | We brought him to Rome in irons, and the carts back to Fürth. The commissary called it a success. | DRAMATIC: bitter, he does not agree |
 
+### d03_fazenda (the Island)
+
+Line ids are the mission's (`campaign/voice/d03_fazenda/<id>.ogg`). The feeling is how the line should sound; lines
+without one are plain. The narrator's 13 lines and the two NEW cards can stay as text. The strongest lines have a preset
+in tools/voice_clone/emotions.json (`d03__<id>`).
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | Lindqvist walked out of Rome with the animals the Council had ordered destroyed. He went home to his river. | flat, a judgement |
+| k_open2 | the King | Two years later I sent Valadares up that river with Rome's order in his satchel. | dry, a little weary |
+| l_open1 | Lindqvist | An island below Óbidos. Sugar for the tax man, and behind the cane, the forest, and in the forest, my pens. | old, fond of the place |
+| l_open2 | Lindqvist | They were not monsters. They were a new kind of animal, and every animal can be bred. I had the lures. They came to the lures. | conviction, a scientist lecturing |
+| l_open_linnea | Lindqvist | And among them her daughter. Out of the clutch we carried from the station. Growing. | tender, proud |
+| l_open_plateau | Lindqvist | And a young Mother we netted on the mountain. My breeding stock. | proud |
+| k_open_c | the King | Valadares wrote me a report from that island. It is the only honest account of it I have. | respect for Valadares |
+| v_open_c | Valadares | We came up the river at first light. Sugar on the banks, a white house, a doctor at the landing with his hat in his hand. | plain report, wary |
+| l_1 | Lindqvist | Pieter! A boat on the river, below the point. The Crown's flag. Get them out of the old pens. All of them. Into the forest, now. | DRAMATIC: urgent, sharp orders, fear held down |
+| p_tip1 | Pieter | They follow the lures, Doctor, nothing else. The keepers go first, and the animals stay inside the ring. Out of it they wander. |  |
+| p_tip2 | Pieter | Over the creek by a ford, then up the paths to the clearings. The young Mother roots best in the nest clearing, in the middle. |  |
+| l_storm | Lindqvist | The big egg. It is cracking. Pieter, the book. Write the hour. | hushed, excited |
+| l_storm2 | Lindqvist | Wings. A Storm Sire. The first one ever bred by a man. Root him by her, and she will lay for him. | DRAMATIC: wonder, a father's pride, almost a prayer |
+| l_hatch | Lindqvist | Hatchlings. They will sit in the canopy and watch the river for me. Nobody looks up at a bird. | pleased, sly |
+| p_ready | Pieter | They are all in the forest, Doctor. Quiet. I can hear the oars. | whispered, relieved |
+| p_warn | Pieter | The canoes are rounding the point, Doctor. Not long now. | tense, low |
+| f_land | Desembargador Fonseca | Doctor Lindqvist. I carry an order of the Holy See and of His Majesty. You know its contents. | formal, cold |
+| l_land | Lindqvist | Sugar, Desembargador. Sugar and a few goats. Search what you like. | too easy, a host's smile |
+| v_land | Valadares | I have seen what you keep, Doctor. On the mountain. I will know its prints. | quiet threat |
+| v_land_w | Valadares | I do not know what I am looking for, Doctor. So I will look at everything. | blunt, patient |
+| p_still | Pieter | Keep them still, Doctor. A still animal in the forest is a shadow. A moving one is an animal. | whispered, urgent |
+| l_quiet | Lindqvist | And no one bites. No one. I told the keepers: not a shot fired on this island while the Crown is here. | stern, an order |
+| l_dinner | Lindqvist | The Desembargador has come a long way. He will be hungry. I will ask him to dine. | smooth, scheming |
+| f_dinner | Desembargador Fonseca | Dinner? Well. The search can spare its magistrate for an hour. Sergeant, your men with me. | pompous, tempted |
+| v_dinner | Valadares | Go and eat, Desembargador. I am not hungry. | dry contempt |
+| f_dinner_end | Desembargador Fonseca | A fine table, Doctor. Now. Back to work, men. | full, satisfied, then brisk |
+| p_decoy | Pieter | A lure post at the west point, or at the old chapel, and they will go and look at it. Men always go and look. | a grin in the voice |
+| p_riders | Pieter | The riders have crossed the creek at the west ford, Doctor. They are going up the paths now. | tense, fast |
+| v_hunch | Valadares | Everything on this island walks from the middle out. We look in the middle. | thinking aloud, sure |
+| v_tracks | Valadares | Fresh prints. Three toes, a dragged claw. This way. | low, a hunter |
+| v_found | Valadares | There. You see it? Sugar and goats, the Doctor said. | DRAMATIC: cold triumph, contempt |
+| l_found | Lindqvist | No. Not that one. Pieter, move them. Move the others. | DRAMATIC: panic, a man losing a child |
+| p_half | Pieter | They have found half of them, Doctor. If they find many more, they will burn the pens and the house with them. | frightened |
+| p_dusk | Pieter | The light is going. They will not search the forest in the dark. | relief |
+| p_restless | Pieter | Doctor! One of the young is up. It smells the goats. It is going for the camp! | DRAMATIC: alarm, shouted in a whisper |
+| l_restless | Lindqvist | A lure under its nose, right under it, or it will not turn. If it reaches those goats they will see everything. | urgent, tight |
+| l_held | Lindqvist | Got it. Easy now. Back to the forest, slowly. | soft, soothing an animal |
+| p_back | Pieter | It is back in the forest, Doctor. It is lying down. | relief, breathless |
+| v_fight | Valadares | Torches! Into the forest, all of you! Now we know where they are. | DRAMATIC: shouted, fierce |
+| p_lost | Pieter | They have found nearly all of them, Doctor. They are bringing the pitch for the pens. | DRAMATIC: despair |
+| f_dawn | Desembargador Fonseca | We found what we found, Doctor. It will all be in my report, and in Rome. | formal, a warning |
+| v_dawn | Valadares | You did not breed them, Doctor. Nobody breeds a thing like that. Somebody made it, long ago, and it is still being made. | DRAMATIC: quiet, grave, almost pity |
+| l_dawn | Lindqvist | Superstition. They evolved. Everything evolves. | dismissive, stubborn |
+| v_c1 | Valadares | Three parties, Desembargador: the west paths, the middle and the east. The riders take the fields. I follow the prints. | commanding, practical |
+| v_c_tip | Valadares | They sleep in the clearings in the day. Walk close, and have your muskets ready: a sleeping one sees you at three steps. | low, careful |
+| v_c_tracks | Valadares | Pale claw marks on the ground are fresh prints. They lead to the ones that walk. |  |
+| f_c_dinner | Desembargador Fonseca | The Doctor asks me to dine. I will go, Valadares. Somebody must watch the man himself. | pompous |
+| v_c_night | Valadares | Night. They will move in the dark: watch the camp and the goats. | alert |
+| v_c_won | Valadares | Enough. Burn the pens. Write it down, Desembargador: we found them. | DRAMATIC: hard, final |
+| v_c_lost | Valadares | Dawn, and the canoes. We found too little. He will say we found nothing. | bitter |
+| l_end1 | Lindqvist | They left at dawn. The Desembargador wrote his report. Valadares wrote another. | old, slow |
+| l_end_all | Lindqvist | They found nothing. Nothing. I stood at the landing and waved my hat. | DRAMATIC: triumph, an old man laughing |
+| l_end_some | Lindqvist | They found some, and burned what they found. The rest lay in the forest and did not move. | stubborn |
+| l_end_few | Lindqvist | They found most of them. I watched the pens burn from the house. I kept what was left. | DRAMATIC: grief, defiant |
+| l_end_storm | Lindqvist | And the Storm Sire flew over the canopy every evening after, and came back to the lure. | wonder, wistful |
+| k_end1 | the King | He tells it as if he won. Valadares found more than he thinks. Valadares found enough to know what was on that island. | firm correction, no anger |
+| k_end2 | the King | And Lindqvist still believes the thing evolved. The Church told him what it was. He did not listen then either. | tired, sorry for him |
+| v_end_c | Valadares | We burned the pens we found. The Doctor stood at the landing with his hat in his hand, and did not look at the smoke. | grave, plain |
+| k_end_c | the King | He told me Valadares found nothing. Valadares found enough. | firm |
+| v_end_c_lost | Valadares | We left at dawn with half a report. I knew they were there. I could smell them. | bitter, sure |
+| h_hurt | Lindqvist | My leg. Pieter, the lures. Keep them together. | pain, clipped |
+
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
 Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, ferrer (2026-11-22), explorer (now Valadares? the owner to say). The King
@@ -187,7 +258,8 @@ ElevenLabs account: its sample would do) and old (the Cardinal), Jakob, Valadare
 Pieter, Benedito, Captain Delorme, Colonel von Rauch, Brother Anselm, Will Hollins, and the one-to-two-line parts
 (Teles, Frei Joaquim, the Captain of the Watch, the Commissary, Rouvière, Mère Gautier, the Sergeant, the guide, the
 Cardinal Dean of a07). Act 2: Ulrich (the guild's foreman: d02, a rough Franconian voice, older than Jakob) and
-Commissary Brandt (a dry chancery official, German).
+Commissary Brandt (a dry chancery official, German); d03: Desembargador Fonseca (a Portuguese-Brazilian high-court
+judge, fifties, pompous and comfortable) and Pieter grown (the plan's d03: ten years after b01, a man of thirty).
 
 ## 4. Act 2 (planned, not built)
 
