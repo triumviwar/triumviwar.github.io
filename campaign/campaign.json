@@ -668,7 +668,8 @@
 				"c01_thirteenth",
 				"a02_furth",
 				"a04_visit",
-				"a07_council"
+				"a07_council",
+				"d02_exodus"
 			],
 			"hub": {
 				"title": "Hollweg's Workshop",
@@ -798,6 +799,26 @@
 									"No machine may govern itself. Very well: mine will not be governed by Rome either.",
 									"Jakob, pack the drawings. We are going south, after the crates."
 								]
+							},
+							{
+								"after": "d02_exodus",
+								"sides": {
+									"d02_exodus": "exodus"
+								},
+								"lines": [
+									"We are on the river. The bargemen sing at night, and the families sleep among the crates.",
+									"At Hamburg we take ship. Nobody there will ask what a clock is for."
+								]
+							},
+							{
+								"after": "d02_exodus",
+								"sides": {
+									"d02_exodus": "commissary"
+								},
+								"lines": [
+									"The commissary has me. He reads Rome's verdict to me every morning, as if I had not heard it.",
+									"(The King: That is not how it went. Hollweg went down the Main, and I let him.)"
+								]
 							}
 						]
 					},
@@ -835,6 +856,12 @@
 								"not_sides": {
 									"a02_furth": "machine"
 								}
+							},
+							{
+								"after": "d02_exodus",
+								"lines": [
+									"The travelling clock rides in a barge's hold, wrapped in sacking. It still keeps Nuremberg's time."
+								]
 							}
 						]
 					},
@@ -879,6 +906,12 @@
 								},
 								"lines": [
 									"The trestle is empty. On it lies a receipt from the foundry, signed by Father Ferrer."
+								]
+							},
+							{
+								"after": "d02_exodus",
+								"lines": [
+									"The trestle stayed in Fürth. The commissary's men will have found it by now."
 								]
 							}
 						]

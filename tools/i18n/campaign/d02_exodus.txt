@@ -1,0 +1,584 @@
+# Act 2's mission d02_exodus, "The Exodus" (campaign/missions/d02_exodus.json, written with its texts by
+# tools/campaign/make_d02_mission.py: change the texts THERE and run it again; the plan: docs/campaign_act2_plan.md; what was
+# built: docs/campaign_d02_build.md). EVERY LINE IS A PLACEHOLDER for the owner. Names as a02 / a04: Winder = Enrolador / Dador de
+# cuerda; Meister = Mestre / maestro; the Perpetual = o Perpétuo / el Perpetuo; the Main = o Meno / el Meno.
+
+> The Honest One
+pt O Honesto
+es El Honrado
+
+> The machine's seed
+pt A semente da máquina
+es La semilla de la máquina
+
+> Fürth fell to the machine: its seed stands in the guild's own works. Burn it before the families can leave.
+pt Fürth caiu para a máquina: a sua semente está nas próprias oficinas da guilda. Queime-a antes que as famílias possam partir.
+es Fürth cayó ante la máquina: su semilla está en los propios talleres del gremio. Quémala antes de que las familias puedan partir.
+
+> Load the family carts: {loaded} of {carts_n}. Move any of your men to a cart at its barn and keep him there a moment: the family climbs in.
+pt Carregue as carroças das famílias: {loaded} de {carts_n}. Leve qualquer um dos seus homens a uma carroça no seu celeiro e mantenha-o lá um momento: a família sobe.
+es Carga los carros de las familias: {loaded} de {carts_n}. Lleva a cualquiera de tus hombres a un carro en su granero y mantenlo allí un momento: la familia sube.
+
+> Load the family carts: {loaded} of {carts_n}. A man at each cart's barn a moment.
+pt Carregue as carroças: {loaded} de {carts_n}. Um homem no celeiro de cada uma, um momento.
+es Carga los carros: {loaded} de {carts_n}. Un hombre en el granero de cada uno, un momento.
+
+> Load the drawings: bring Meister Hollweg to his own barn, west of the yard. Only he knows which chests.
+pt Carregue os desenhos: leve o Mestre Hollweg ao seu próprio celeiro, a oeste do pátio. Só ele sabe quais baús.
+es Carga los planos: lleva al maestro Hollweg a su propio granero, al oeste del patio. Solo él sabe qué baúles.
+
+> Jakob is waiting by the yard. Bring Meister Hollweg to him: he has something to say.
+pt Jakob espera junto ao pátio. Leve o Mestre Hollweg até ele: ele tem algo a dizer.
+es Jakob espera junto al patio. Lleva al maestro Hollweg hasta él: tiene algo que decir.
+
+> The commissary's riders come in {clock:riders}. Whatever is not loaded by then stays behind.
+pt Os cavaleiros do comissário chegam em {clock:riders}. O que não estiver carregado até lá fica para trás.
+es Los jinetes del comisario llegan en {clock:riders}. Lo que no esté cargado para entonces se queda atrás.
+
+> Get the carts down the valley to the barges on the Main: {families_out} of {carts_n} families out. Keep fighters by every cart: riders who stand round a cart with none of yours by it TAKE it.
+pt Leve as carroças pelo vale até as barcaças no Meno: {families_out} de {carts_n} famílias fora. Mantenha combatentes junto a cada carroça: cavaleiros em volta de uma carroça sem nenhum dos seus ao lado a TOMAM.
+es Lleva los carros por el valle hasta las barcazas en el Meno: {families_out} de {carts_n} familias fuera. Mantén combatientes junto a cada carro: los jinetes que rodean un carro sin ninguno de los tuyos al lado lo TOMAN.
+
+> Carts to the barges: {families_out} of {carts_n} out. Keep fighters by every cart.
+pt Carroças às barcaças: {families_out} de {carts_n} fora. Combatentes junto a cada carroça.
+es Carros a las barcazas: {families_out} de {carts_n} fuera. Combatientes junto a cada carro.
+
+> Meister Hollweg must live. Hurt, he falls back to the carts.
+pt O Mestre Hollweg tem de viver. Ferido, ele recua para as carroças.
+es El maestro Hollweg debe vivir. Herido, se retira a los carros.
+
+> Hold the brook bridge until the last barge is loaded: {clock:last_barge}.
+pt Segure a ponte do riacho até a última barcaça estar carregada: {clock:last_barge}.
+es Resiste en el puente del arroyo hasta que la última barcaza esté cargada: {clock:last_barge}.
+
+> Build the Ratchet Turret at the bridge's foot: send a Winder to its site.
+pt Construa a Torreta de Catraca ao pé da ponte: mande um Enrolador ao local.
+es Construye la Torreta de Trinquete al pie del puente: envía un Dador de cuerda al solar.
+
+> The last barge is loaded. Get Meister Hollweg aboard: walk him onto the jetty.
+pt A última barcaça está carregada. Embarque o Mestre Hollweg: leve-o até o cais.
+es La última barcaza está cargada. Sube al maestro Hollweg a bordo: llévalo al embarcadero.
+
+> The bargemen cast off in {clock:cast_off}.
+pt Os barqueiros soltam as amarras em {clock:cast_off}.
+es Los barqueros sueltan amarras en {clock:cast_off}.
+
+> After them: over the Rednitz bridge and down the valley. The guild's only road to the Main runs through it.
+pt Atrás deles: sobre a ponte do Rednitz e pelo vale abaixo. A única estrada da guilda para o Meno passa por ele.
+es Tras ellos: por el puente del Rednitz y valle abajo. El único camino del gremio al Meno pasa por él.
+
+> Take the carts: {carts_taken} taken. Stand men round a cart with none of the guild's fighters by it. Rome's order is to take, not to kill.
+pt Tome as carroças: {carts_taken} tomadas. Ponha homens em volta de uma carroça sem nenhum combatente da guilda ao lado. A ordem de Roma é tomar, não matar.
+es Toma los carros: {carts_taken} tomados. Pon hombres alrededor de un carro sin ningún combatiente del gremio al lado. La orden de Roma es tomar, no matar.
+
+> Take Meister Hollweg alive before the last barge: bring him down and stand a man by him.
+pt Capture o Mestre Hollweg vivo antes da última barcaça: derrube-o e ponha um homem ao lado dele.
+es Apresa al maestro Hollweg vivo antes de la última barcaza: derríbalo y pon a un hombre a su lado.
+
+> The Exodus
+pt O Êxodo
+es El Éxodo
+
+> Fürth, February 2771. The Crown's commissary rides with Rome's verdict. Meister Hollweg does not wait for him: by night the guild leaves the Crown, with its families, down the frozen road to the Main.
+pt Fürth, fevereiro de 2771. O comissário da Coroa cavalga com o veredito de Roma. O Mestre Hollweg não o espera: de noite a guilda deixa a Coroa, com as suas famílias, pela estrada gelada até o Meno.
+es Fürth, febrero de 2771. El comisario de la Corona cabalga con el veredicto de Roma. El maestro Hollweg no lo espera: de noche el gremio deja la Corona, con sus familias, por el camino helado hasta el Meno.
+
+> Meister Hollweg's guild and its families, leaving Fürth by night.
+pt A guilda do Mestre Hollweg e as suas famílias, deixando Fürth de noite.
+es El gremio del maestro Hollweg y sus familias, dejando Fürth de noche.
+
+> The Crown's commissary with Rome's verdict, Colonel von Rauch's riders and guns, and Father Ferrer as Rome's witness.
+pt O comissário da Coroa com o veredito de Roma, os cavaleiros e canhões do Coronel von Rauch e o Padre Ferrer como testemunha de Roma.
+es El comisario de la Corona con el veredicto de Roma, los jinetes y cañones del coronel von Rauch y el Padre Ferrer como testigo de Roma.
+
+> Nuremberg's masters. Fürth is emptying.
+pt Os senhores de Nuremberg. Fürth está a esvaziar-se.
+es Los amos de Núremberg. Fürth se está vaciando.
+
+> Master Ulrich
+pt Mestre Ulrich
+es Maestro Ulrich
+
+> Commissary Brandt
+pt Comissário Brandt
+es Comisario Brandt
+
+> Fürth to the Main
+pt De Fürth ao Meno
+es De Fürth al Meno
+
+> Ten months after Rome I signed the commissary's orders myself. Seize the works at Fürth. Stop every machine that winds itself.
+pt Dez meses depois de Roma, eu mesmo assinei as ordens do comissário. Tomar as oficinas de Fürth. Parar toda máquina que dá corda a si mesma.
+es Diez meses después de Roma, yo mismo firmé las órdenes del comisario. Tomar los talleres de Fürth. Parar toda máquina que se dé cuerda a sí misma.
+
+> Hollweg was told the commissary was coming. He did not wait for him.
+pt Disseram a Hollweg que o comissário vinha. Ele não o esperou.
+es A Hollweg le dijeron que el comisario venía. No lo esperó.
+
+> I called it a rescue. The families had nowhere else. The machines had nowhere at all.
+pt Eu chamei aquilo de resgate. As famílias não tinham outro lugar. As máquinas não tinham lugar nenhum.
+es Yo lo llamé un rescate. Las familias no tenían otro sitio. Las máquinas no tenían ningún sitio.
+
+> We rang the night bell at the barn. By morning Fürth was empty.
+pt Tocamos o sino da noite no celeiro. De manhã Fürth estava vazia.
+es Tocamos la campana de noche en el granero. Por la mañana Fürth estaba vacía.
+
+> Father Ferrer rode with the commissary as Rome's witness. He wrote down what he saw. He always did.
+pt O Padre Ferrer cavalgou com o comissário como testemunha de Roma. Escreveu o que viu. Sempre escrevia.
+es El Padre Ferrer cabalgó con el comisario como testigo de Roma. Escribió lo que vio. Siempre lo hacía.
+
+> We were a day's ride off when the dogs found their scent. The guild was already on the road.
+pt Estávamos a um dia de viagem quando os cães encontraram o rasto. A guilda já estava na estrada.
+es Estábamos a un día de camino cuando los perros encontraron el rastro. El gremio ya estaba en el camino.
+
+> Every family to its cart. Every machine that can walk, wind it. We leave tonight.
+pt Cada família à sua carroça. Toda máquina que possa andar, dê-lhe corda. Partimos esta noite.
+es Cada familia a su carro. Toda máquina que pueda andar, dadle cuerda. Partimos esta noche.
+
+> The carts wait at the barns, Meister. Send one of ours to each and the family climbs in. The marked ones on the map.
+pt As carroças esperam nos celeiros, Mestre. Mande um dos nossos a cada uma e a família sobe. As marcadas no mapa.
+es Los carros esperan en los graneros, maestro. Manda a uno de los nuestros a cada uno y la familia sube. Los marcados en el mapa.
+
+> Your spring cart winds anything that stands on the brass plates round it. Keep the soldiers near it on the road and they never run down.
+pt A sua carroça de mola dá corda a tudo o que estiver nas placas de latão à volta dela. Mantenha os soldados perto dela na estrada e eles nunca param.
+es Tu carro de muelle da cuerda a todo lo que pise las placas de latón a su alrededor. Mantén a los soldados cerca en el camino y nunca se paran.
+
+> The Clock Soldiers know the shield wall now, Meister. Raise their shields with SHIELD FORWARD on their card when the muskets face them.
+pt Os Soldados-Relógio já conhecem a parede de escudos, Mestre. Erga os escudos com ESCUDO À FRENTE no painel deles quando os mosquetes os encararem.
+es Los Soldados Reloj ya conocen el muro de escudos, maestro. Alza sus escudos con ESCUDO AL FRENTE en su panel cuando los mosquetes los encaren.
+
+> A family climbs into its cart.
+pt Uma família sobe na sua carroça.
+es Una familia sube a su carro.
+
+> And the drawings. Every sheet of the Perpetual. Nobody touches those chests but me.
+pt E os desenhos. Cada folha do Perpétuo. Ninguém toca nesses baús além de mim.
+es Y los planos. Cada hoja del Perpetuo. Nadie toca esos baúles sino yo.
+
+> The drawings are aboard. If they take that cart, they take everything I ever made.
+pt Os desenhos estão a bordo. Se tomarem essa carroça, tomam tudo o que eu já fiz.
+es Los planos están a bordo. Si toman ese carro, toman todo lo que he hecho.
+
+> No drawings this time. I left them in Nuremberg for the people. I carry the Perpetual in my head.
+pt Sem desenhos desta vez. Deixei-os em Nuremberg pelo povo. Levo o Perpétuo na cabeça.
+es Sin planos esta vez. Los dejé en Núremberg por la gente. Llevo el Perpetuo en la cabeza.
+
+> Meister. Before you go. Come here, please.
+pt Mestre. Antes de partir. Venha aqui, por favor.
+es Maestro. Antes de que te vayas. Ven aquí, por favor.
+
+> I am not coming, Meister. I told Father Ferrer what I found, and I will tell the commissary.
+pt Eu não vou, Mestre. Contei ao Padre Ferrer o que encontrei, e vou contar ao comissário.
+es No voy, maestro. Le conté al Padre Ferrer lo que encontré, y se lo contaré al comisario.
+
+> They will melt everything, Jakob. Everything we built.
+pt Eles vão derreter tudo, Jakob. Tudo o que construímos.
+es Lo fundirán todo, Jakob. Todo lo que construimos.
+
+> Then let them. I would rather melt a wheel than see it take out its own stop-work again. God keep you, Meister.
+pt Então que derretam. Prefiro derreter uma roda a vê-la tirar a sua própria trava outra vez. Deus o guarde, Mestre.
+es Pues que lo fundan. Prefiero fundir una rueda a verla quitarse su propio tope otra vez. Dios te guarde, maestro.
+
+> Jakob walks up the street to the Crown's camp, and does not look back.
+pt Jakob sobe a rua até o acampamento da Coroa, e não olha para trás.
+es Jakob sube la calle hacia el campamento de la Corona, y no mira atrás.
+
+> Jakob would have known which wheels to leave. Jakob is not here.
+pt Jakob saberia que rodas deixar. Jakob não está aqui.
+es Jakob habría sabido qué ruedas dejar. Jakob no está aquí.
+
+> Riders on the Bamberg road, Meister. Not long now.
+pt Cavaleiros na estrada de Bamberg, Mestre. Falta pouco.
+es Jinetes en el camino de Bamberg, maestro. Queda poco.
+
+> The carts nobody loaded stay at their barns. Those families stay in Fürth.
+pt As carroças que ninguém carregou ficam nos celeiros. Essas famílias ficam em Fürth.
+es Los carros que nadie cargó se quedan en sus graneros. Esas familias se quedan en Fürth.
+
+> The machine sits in my own works. My own tower. Burn its seed, or no cart leaves this yard.
+pt A máquina está nas minhas próprias oficinas. Na minha própria torre. Queimem a sua semente, ou nenhuma carroça sai deste pátio.
+es La máquina está en mis propios talleres. En mi propia torre. Quemad su semilla, o ningún carro sale de este patio.
+
+> It is down. Now the families. Quickly.
+pt Caiu. Agora as famílias. Depressa.
+es Ha caído. Ahora las familias. Deprisa.
+
+> Dogs, Meister! They are early! The carts must go now!
+pt Cães, Mestre! Chegaram cedo! As carroças têm de partir agora!
+es ¡Perros, maestro! ¡Llegan pronto! ¡Los carros tienen que salir ya!
+
+> West over the Rednitz, then down the valley to the Main. Keep a fighter by every cart.
+pt Para oeste sobre o Rednitz, depois pelo vale até o Meno. Mantenham um combatente junto a cada carroça.
+es Al oeste sobre el Rednitz, luego por el valle hasta el Meno. Mantened un combatiente junto a cada carro.
+
+> They will not shoot the carts, Meister. They will stand round one until it is theirs. Drive them off it and the bar empties.
+pt Eles não vão atirar nas carroças, Mestre. Vão ficar à volta de uma até ela ser deles. Afaste-os e a barra esvazia.
+es No dispararán a los carros, maestro. Rodearán uno hasta que sea suyo. Échalos y la barra se vacía.
+
+> Riders in the valley! They came round by the Würzburg track, from the north!
+pt Cavaleiros no vale! Vieram pelo caminho de Würzburg, do norte!
+es ¡Jinetes en el valle! ¡Vinieron por la senda de Wurzburgo, desde el norte!
+
+> Dogs on the slope, Meister, and riders behind them! They have our scent!
+pt Cães na encosta, Mestre, e cavaleiros atrás deles! Têm o nosso rasto!
+es ¡Perros en la ladera, maestro, y jinetes detrás! ¡Tienen nuestro rastro!
+
+> More riders on the track!
+pt Mais cavaleiros no caminho!
+es ¡Más jinetes en la senda!
+
+> The commissary's column is in the yard behind us. Musketeers, and guns.
+pt A coluna do comissário está no pátio atrás de nós. Mosqueteiros, e canhões.
+es La columna del comisario está en el patio detrás de nosotros. Mosqueteros, y cañones.
+
+> The commissary's column is in the yard behind us. Musketeers, and more nets than guns.
+pt A coluna do comissário está no pátio atrás de nós. Mosqueteiros, e mais redes que canhões.
+es La columna del comisario está en el patio detrás de nosotros. Mosqueteros, y más redes que cañones.
+
+> In the empty works, red lights. The machine has come out of Nuremberg for what we left.
+pt Nas oficinas vazias, luzes vermelhas. A máquina saiu de Nuremberg pelo que deixámos.
+es En los talleres vacíos, luces rojas. La máquina ha salido de Núremberg por lo que dejamos.
+
+> Let it have the walls. It will meet the commissary before it meets us.
+pt Que fique com as paredes. Vai encontrar o comissário antes de nos encontrar.
+es Que se quede con las paredes. Se encontrará con el comisario antes que con nosotros.
+
+> A cart is taken. Its family goes back to Fürth under the Crown's guard.
+pt Uma carroça foi tomada. A sua família volta para Fürth sob guarda da Coroa.
+es Un carro ha sido tomado. Su familia vuelve a Fürth bajo guardia de la Corona.
+
+> Get round that cart before it reaches their camp and it is ours again!
+pt Cerquem aquela carroça antes que chegue ao acampamento deles e ela volta a ser nossa!
+es ¡Rodead ese carro antes de que llegue a su campamento y vuelve a ser nuestro!
+
+> The cart is the guild's again, and turns back for the Main.
+pt A carroça é da guilda outra vez, e volta-se para o Meno.
+es El carro vuelve a ser del gremio, y regresa hacia el Meno.
+
+> The drawings! They have the drawings!
+pt Os desenhos! Eles têm os desenhos!
+es ¡Los planos! ¡Tienen los planos!
+
+> Halt. All of you. Let them go, God help them. One minute.
+pt Alto. Todos. Deixem-nos ir, Deus os ajude. Um minuto.
+es Alto. Todos. Dejadlos ir, que Dios los ayude. Un minuto.
+
+> Colonel! You have the Crown's orders!
+pt Coronel! Tem as ordens da Coroa!
+es ¡Coronel! ¡Tiene las órdenes de la Corona!
+
+> Von Rauch remembered the bells of Nuremberg. Go, now, while he looks away!
+pt Von Rauch lembrou-se dos sinos de Nuremberg. Vão, agora, enquanto ele olha para o outro lado!
+es Von Rauch recordó las campanas de Núremberg. ¡Id, ahora, mientras mira hacia otro lado!
+
+> The minute is up. After them.
+pt O minuto acabou. Atrás deles.
+es Se acabó el minuto. Tras ellos.
+
+> The Main at last: the barges at the jetty, the bargemen stamping their feet in the snow.
+pt O Meno, enfim: as barcaças no cais, os barqueiros batendo os pés na neve.
+es El Meno, por fin: las barcazas en el embarcadero, los barqueros pateando la nieve.
+
+> We set up the travelling clock by the brook, Meister. Its field winds anything near it. Five of the journeymen came over on the first barge: they are yours. There is a turret in the crates.
+pt Montámos o relógio de viagem junto ao riacho, Mestre. O seu campo dá corda a tudo o que estiver perto. Cinco dos oficiais vieram na primeira barcaça: são seus. Há uma torreta nos caixotes.
+es Montamos el reloj de viaje junto al arroyo, maestro. Su campo da cuerda a todo lo que esté cerca. Cinco de los oficiales vinieron en la primera barcaza: son suyos. Hay una torreta en las cajas.
+
+> Hold the bridge until the last barge is loaded. The shields in front, the turret behind them.
+pt Segurem a ponte até a última barcaça estar carregada. Os escudos à frente, a torreta atrás deles.
+es Resistid en el puente hasta que la última barcaza esté cargada. Los escudos delante, la torreta detrás.
+
+> Send a Winder to the turret's site at the bridge's foot. It builds it with the guild's last coins.
+pt Mande um Enrolador ao local da torreta ao pé da ponte. Ele a constrói com as últimas moedas da guilda.
+es Envía un Dador de cuerda al solar de la torreta al pie del puente. La construye con las últimas monedas del gremio.
+
+> A barge pushes off down the Main.
+pt Uma barcaça afasta-se pelo Meno abaixo.
+es Una barcaza se aleja Meno abajo.
+
+> The rearguard is gone, Meister! They are on the landing: get to the barges before they lay hands on you!
+pt A retaguarda caiu, Mestre! Estão no cais: vá para as barcaças antes que lhe ponham as mãos!
+es ¡La retaguardia ha caído, maestro! ¡Están en el embarcadero: ve a las barcazas antes de que te echen mano!
+
+> The bank is quiet. The bargemen hurry the last crates aboard.
+pt A margem está calma. Os barqueiros apressam os últimos caixotes a bordo.
+es La orilla está tranquila. Los barqueros apresuran las últimas cajas a bordo.
+
+> The last barge is loaded, Meister! Come aboard, now!
+pt A última barcaça está carregada, Mestre! Embarque, agora!
+es ¡La última barcaza está cargada, maestro! ¡Sube a bordo, ya!
+
+> Cast off. Do not look back. There is nothing behind us now but the Crown.
+pt Soltem as amarras. Não olhem para trás. Já não há nada atrás de nós senão a Coroa.
+es Soltad amarras. No miréis atrás. Ya no hay nada detrás de nosotros sino la Corona.
+
+> The bargemen could wait no longer. The last barge left without the Meister.
+pt Os barqueiros não podiam esperar mais. A última barcaça partiu sem o Mestre.
+es Los barqueros no podían esperar más. La última barcaza partió sin el maestro.
+
+> Every cart was taken on the road. There was nothing left to save.
+pt Todas as carroças foram tomadas na estrada. Não sobrou nada para salvar.
+es Todos los carros fueron tomados en el camino. No quedó nada que salvar.
+
+> I am hit. Keep them off me, they want me alive.
+pt Fui atingido. Afastem-nos de mim, querem-me vivo.
+es Me han dado. Apartadlos de mí, me quieren vivo.
+
+> The commissary's men close round Meister Hollweg. He is taken alive.
+pt Os homens do comissário cercam o Mestre Hollweg. Ele é capturado vivo.
+es Los hombres del comisario rodean al maestro Hollweg. Lo apresan vivo.
+
+> By the Council of Rome and the King's seal: the works at Fürth are the Crown's. Ride.
+pt Pelo Concílio de Roma e pelo selo do Rei: as oficinas de Fürth são da Coroa. Cavalguem.
+es Por el Concilio de Roma y el sello del Rey: los talleres de Fürth son de la Corona. Cabalgad.
+
+> Take the carts, Commissary. Do not harm the families. And I want Hollweg alive, to answer.
+pt Tome as carroças, Comissário. Não faça mal às famílias. E quero Hollweg vivo, para responder.
+es Tome los carros, comisario. No dañe a las familias. Y quiero a Hollweg vivo, para responder.
+
+> My riders take a cart by standing round it with none of theirs by it. Bring Hollweg down and stand a man by him: he is taken.
+pt Os meus cavaleiros tomam uma carroça ficando à volta dela sem nenhum dos deles ao lado. Derrubem Hollweg e ponham um homem ao lado dele: está capturado.
+es Mis jinetes toman un carro rodeándolo sin ninguno de los suyos al lado. Derribad a Hollweg y poned a un hombre a su lado: queda apresado.
+
+> They are on the road west. The barges on the Main will not wait for us.
+pt Estão na estrada para oeste. As barcaças no Meno não vão esperar por nós.
+es Están en el camino del oeste. Las barcazas del Meno no nos esperarán.
+
+> The machine is in the works behind us. Watch the rear.
+pt A máquina está nas oficinas atrás de nós. Cuidado com a retaguarda.
+es La máquina está en los talleres detrás de nosotros. Cuidado con la retaguardia.
+
+> The reserve is on the track, Commissary. Three more muskets and a rider.
+pt A reserva está no caminho, Comissário. Mais três mosquetes e um cavaleiro.
+es La reserva está en la senda, comisario. Tres mosquetes más y un jinete.
+
+> He is taken. God forgive us both, Meister.
+pt Está capturado. Que Deus nos perdoe a ambos, Mestre.
+es Está apresado. Que Dios nos perdone a los dos, maestro.
+
+> The last barge is gone down the Main. He is beyond the Crown now.
+pt A última barcaça desceu o Meno. Ele está fora do alcance da Coroa agora.
+es La última barcaza bajó por el Meno. Ya está fuera del alcance de la Corona.
+
+> Tick. Tock. The works are empty.
+pt Tique. Taque. As oficinas estão vazias.
+es Tic. Tac. Los talleres están vacíos.
+
+> We went down the Main to the sea, and at Hamburg we took ship. Nobody there asked what was in the crates.
+pt Descemos o Meno até o mar, e em Hamburgo embarcámos. Lá ninguém perguntou o que havia nos caixotes.
+es Bajamos el Meno hasta el mar, y en Hamburgo embarcamos. Allí nadie preguntó qué había en las cajas.
+
+> Nearly every family came with us. I counted them on the deck, every morning.
+pt Quase todas as famílias vieram connosco. Eu contava-as no convés, todas as manhãs.
+es Casi todas las familias vinieron con nosotros. Las contaba en la cubierta, cada mañana.
+
+> Some of the families came. The others went back to Fürth in the Crown's carts.
+pt Algumas famílias vieram. As outras voltaram a Fürth nas carroças da Coroa.
+es Algunas familias vinieron. Las otras volvieron a Fürth en los carros de la Corona.
+
+> Few of the families came. The deck was very quiet.
+pt Poucas famílias vieram. O convés estava muito silencioso.
+es Pocas familias vinieron. La cubierta estaba muy callada.
+
+> And the drawings came with me. Every sheet.
+pt E os desenhos vieram comigo. Cada folha.
+es Y los planos vinieron conmigo. Cada hoja.
+
+> The drawings stayed with the Crown. I drew them again from memory, on the ship.
+pt Os desenhos ficaram com a Coroa. Desenhei-os outra vez de memória, no navio.
+es Los planos se quedaron con la Corona. Los dibujé otra vez de memoria, en el barco.
+
+> Jakob stayed. I wrote to him from Hamburg. He never answered.
+pt Jakob ficou. Escrevi-lhe de Hamburgo. Ele nunca respondeu.
+es Jakob se quedó. Le escribí desde Hamburgo. Nunca contestó.
+
+> The ship's manifest said: machinery, for a mine in the southern highlands of Brazil. That was true. It was my mine.
+pt O manifesto do navio dizia: maquinaria, para uma mina nas terras altas do sul do Brasil. Era verdade. Era a minha mina.
+es El manifiesto del barco decía: maquinaria, para una mina en las tierras altas del sur de Brasil. Era verdad. Era mi mina.
+
+> He calls it a rescue. I call it what it was. The guild left the Crown that night, and took its families with it.
+pt Ele chama-lhe resgate. Eu chamo-lhe o que foi. A guilda deixou a Coroa naquela noite, e levou as suas famílias consigo.
+es Él lo llama un rescate. Yo lo llamo lo que fue. El gremio dejó la Corona aquella noche, y se llevó a sus familias.
+
+> I do not blame the families. I blame the man who told them the Crown would melt their children's bread.
+pt Não culpo as famílias. Culpo o homem que lhes disse que a Coroa derreteria o pão dos filhos delas.
+es No culpo a las familias. Culpo al hombre que les dijo que la Corona fundiría el pan de sus hijos.
+
+> Hollweg in the Crown's custody, twenty-four years before he came to my fire. That is not how it went.
+pt Hollweg sob custódia da Coroa, vinte e quatro anos antes de vir para a minha lareira. Não foi assim que aconteceu.
+es Hollweg bajo custodia de la Corona, veinticuatro años antes de venir a mi fuego. No fue así como ocurrió.
+
+> We brought him to Rome in irons, and the carts back to Fürth. The commissary called it a success.
+pt Levámo-lo para Roma acorrentado, e as carroças de volta a Fürth. O comissário chamou-lhe um sucesso.
+es Lo llevamos a Roma con grilletes, y los carros de vuelta a Fürth. El comisario lo llamó un éxito.
+
+> Fürth, February 2771. The night bell: the guild loads its carts.
+pt Fürth, fevereiro de 2771. O sino da noite: a guilda carrega as suas carroças.
+es Fürth, febrero de 2771. La campana de noche: el gremio carga sus carros.
+
+> Jakob stays.
+pt Jakob fica.
+es Jakob se queda.
+
+> The road down the frozen valley.
+pt A estrada pelo vale gelado.
+es El camino por el valle helado.
+
+> Hamburg: the ships to Brazil.
+pt Hamburgo: os navios para o Brasil.
+es Hamburgo: los barcos a Brasil.
+
+> Fürth, February 2771, night. The Crown's commissary is coming with Rome's verdict: seize the works, stop the machines. Meister Hollweg leaves first.
+pt Fürth, fevereiro de 2771, noite. O comissário da Coroa vem com o veredito de Roma: tomar as oficinas, parar as máquinas. O Mestre Hollweg parte primeiro.
+es Fürth, febrero de 2771, de noche. El comisario de la Corona viene con el veredicto de Roma: tomar los talleres, parar las máquinas. El maestro Hollweg se va antes.
+
+> Load the family carts at their barns, then guard them down the valley to the barges on the Main. Riders take any cart with none of your fighters by it.
+pt Carregue as carroças das famílias nos celeiros e escolte-as pelo vale até as barcaças no Meno. Os cavaleiros tomam qualquer carroça sem nenhum dos seus combatentes ao lado.
+es Carga los carros de las familias en sus graneros y escóltalos por el valle hasta las barcazas del Meno. Los jinetes toman cualquier carro sin ninguno de tus combatientes al lado.
+
+> Meister Hollweg must reach the last barge. The commissary wants him alive.
+pt O Mestre Hollweg tem de chegar à última barcaça. O comissário o quer vivo.
+es El maestro Hollweg debe llegar a la última barcaza. El comisario lo quiere vivo.
+
+> Fürth, February 2771. You are the Crown's commissary, with Colonel von Rauch's men and Father Ferrer as Rome's witness.
+pt Fürth, fevereiro de 2771. Você é o comissário da Coroa, com os homens do Coronel von Rauch e o Padre Ferrer como testemunha de Roma.
+es Fürth, febrero de 2771. Eres el comisario de la Corona, con los hombres del coronel von Rauch y el Padre Ferrer como testigo de Roma.
+
+> The guild is fleeing for the Main. Take its carts, and take Meister Hollweg alive before the last barge leaves. The machine is behind you.
+pt A guilda foge para o Meno. Tome as suas carroças, e capture o Mestre Hollweg vivo antes que a última barcaça parta. A máquina está atrás de você.
+es El gremio huye hacia el Meno. Toma sus carros, y apresa al maestro Hollweg vivo antes de que parta la última barcaza. La máquina está detrás de ti.
+
+> The guild left Fürth. {families_out} of {carts_n} families reached the barges; {carts_taken} carts were taken on the road.
+pt A guilda deixou Fürth. {families_out} de {carts_n} famílias chegaram às barcaças; {carts_taken} carroças foram tomadas na estrada.
+es El gremio dejó Fürth. {families_out} de {carts_n} familias llegaron a las barcazas; {carts_taken} carros fueron tomados en el camino.
+
+> The drawings went with Hollweg.
+pt Os desenhos foram com Hollweg.
+es Los planos se fueron con Hollweg.
+
+> The drawings were taken by the Crown.
+pt Os desenhos foram tomados pela Coroa.
+es Los planos fueron tomados por la Corona.
+
+> Jakob stayed with the Crown.
+pt Jakob ficou com a Coroa.
+es Jakob se quedó con la Corona.
+
+> {families_left} families were never loaded.
+pt {families_left} famílias nunca foram carregadas.
+es {families_left} familias nunca fueron cargadas.
+
+> Taken alive
+pt Capturado vivo
+es Apresado vivo
+
+> Meister Hollweg is in the Crown's custody. {carts_taken} carts were taken on the road.
+pt O Mestre Hollweg está sob custódia da Coroa. {carts_taken} carroças foram tomadas na estrada.
+es El maestro Hollweg está bajo custodia de la Corona. {carts_taken} carros fueron tomados en el camino.
+
+> The works are being left: nothing more is built or made in Fürth.
+pt As oficinas estão a ser deixadas: nada mais se constrói nem se faz em Fürth.
+es Los talleres se están abandonando: nada más se construye ni se fabrica en Fürth.
+
+> The travelling clock
+pt O relógio de viagem
+es El reloj de viaje
+
+> NEW: THE RATCHET TURRET. A gun of screws that stands still and fires at ground and air. It must stand linked to a gear field: at the landing a Winder builds one by the travelling clock, the rearguard's last stand.
+pt NOVO: A TORRETA DE CATRACA. Um canhão de parafusos que fica parado e atira contra terra e ar. Tem de estar ligado a um campo de engrenagens: no cais um Enrolador constrói uma junto ao relógio de viagem, a última defesa da retaguarda.
+es NUEVO: LA TORRETA DE TRINQUETE. Un cañón de tornillos que se queda quieto y dispara contra tierra y aire. Debe estar unido a un campo de engranajes: en el embarcadero un Dador de cuerda construye una junto al reloj de viaje, la última defensa de la retaguardia.
+
+> NEW: SHIELD WALL. Your Clock Soldiers are drilled to it: press SHIELD FORWARD on their card and they walk slower but take half from shots in front. Raise it facing the muskets.
+pt NOVO: MURALHA DE ESCUDOS. Os seus Soldados-Relógio foram treinados nela: aperte ESCUDO À FRENTE no painel deles e eles andam mais devagar mas sofrem metade dos tiros pela frente. Erga-a de frente para os mosquetes.
+es NUEVO: MURO DE ESCUDOS. Tus Soldados Reloj están entrenados en él: pulsa ESCUDO AL FRENTE en su panel y caminan más despacio pero reciben la mitad de los disparos de frente. Álzalo de cara a los mosquetes.
+
+> The spring cart
+pt A carroça de mola
+es El carro de muelle
+
+> The drawings cart
+pt A carroça dos desenhos
+es El carro de los planos
+
+> Hollweg's travelling spring on a cart: every machine of the guild on the brass plates round it is wound.
+pt A mola de viagem de Hollweg numa carroça: toda máquina da guilda nas placas de latão à volta dela ganha corda.
+es El muelle de viaje de Hollweg en un carro: toda máquina del gremio sobre las placas de latón a su alrededor recibe cuerda.
+
+> Iron-bound chests: Hollweg's drawings of the Perpetual, every sheet.
+pt Baús com ferragens: os desenhos do Perpétuo de Hollweg, cada folha.
+es Baúles con herrajes: los planos del Perpetuo de Hollweg, cada hoja.
+
+> The Crown's commissary from the chancery, with Rome's verdict in his satchel.
+pt O comissário da Coroa, da chancelaria, com o veredito de Roma na sacola.
+es El comisario de la Corona, de la cancillería, con el veredicto de Roma en la cartera.
+
+> Colonel of the Crown's Franconian army, who held the Fürth line beside the guild.
+pt Coronel do exército franconiano da Coroa, que segurou a linha de Fürth ao lado da guilda.
+es Coronel del ejército franconio de la Corona, que sostuvo la línea de Fürth junto al gremio.
+
+> We are on the river. The bargemen sing at night, and the families sleep among the crates.
+pt Estamos no rio. Os barqueiros cantam à noite, e as famílias dormem entre os caixotes.
+es Estamos en el río. Los barqueros cantan de noche, y las familias duermen entre las cajas.
+
+> At Hamburg we take ship. Nobody there will ask what a clock is for.
+pt Em Hamburgo embarcamos. Lá ninguém vai perguntar para que serve um relógio.
+es En Hamburgo embarcamos. Allí nadie preguntará para qué sirve un reloj.
+
+> The commissary has me. He reads Rome's verdict to me every morning, as if I had not heard it.
+pt O comissário tem-me. Lê-me o veredito de Roma todas as manhãs, como se eu não o tivesse ouvido.
+es El comisario me tiene. Me lee el veredicto de Roma cada mañana, como si no lo hubiera oído.
+
+> (The King: That is not how it went. Hollweg went down the Main, and I let him.)
+pt (O Rei: Não foi assim que aconteceu. Hollweg desceu o Meno, e eu deixei.)
+es (El Rey: No fue así como ocurrió. Hollweg bajó por el Meno, y yo lo dejé.)
+
+> The travelling clock rides in a barge's hold, wrapped in sacking. It still keeps Nuremberg's time.
+pt O relógio de viagem vai no porão de uma barcaça, embrulhado em serapilheira. Ainda marca a hora de Nuremberg.
+es El reloj de viaje va en la bodega de una barcaza, envuelto en arpillera. Todavía marca la hora de Núremberg.
+
+> The trestle stayed in Fürth. The commissary's men will have found it by now.
+pt O cavalete ficou em Fürth. Os homens do comissário já o devem ter encontrado.
+es El caballete se quedó en Fürth. Los hombres del comisario ya lo habrán encontrado.
+
+> Forty years a Winder in Franconia, and now a barge on the Main. My lads wind the soldiers in the hold, in turns, all night.
+pt Quarenta anos Enrolador na Francónia, e agora uma barcaça no Meno. Os meus rapazes dão corda aos soldados no porão, por turnos, a noite toda.
+es Cuarenta años Dador de cuerda en Franconia, y ahora una barcaza en el Meno. Mis muchachos dan cuerda a los soldados en la bodega, por turnos, toda la noche.
+
+> Spend the marks on the bench while we sail. Whatever we fit now comes with us.
+pt Gaste as marcas na bancada enquanto navegamos. O que montarmos agora vem connosco.
+es Gasta las marcas en el banco mientras navegamos. Lo que montemos ahora viene con nosotros.
+
+> The Main
+pt O Meno
+es El Meno
+
+> February 2771
+pt Fevereiro de 2771
+es Febrero de 2771
+
+> The guild's ships, to Brazil
+pt Os navios da guilda, para o Brasil
+es Los barcos del gremio, a Brasil
+
+> The guild left Fürth by night and went down the Main to the sea: it has left the Crown.
+pt A guilda deixou Fürth de noite e desceu o Meno até o mar: deixou a Coroa.
+es El gremio dejó Fürth de noche y bajó por el Meno hasta el mar: ha dejado la Corona.
+
+> Families who left Fürth with the guild: %s.
+pt Famílias que deixaram Fürth com a guilda: %s.
+es Familias que dejaron Fürth con el gremio: %s.
+
+> Hollweg carried the Perpetual's drawings away.
+pt Hollweg levou consigo os desenhos do Perpétuo.
+es Hollweg se llevó los planos del Perpetuo.
+
+> The Perpetual's drawings are in the Crown's hands.
+pt Os desenhos do Perpétuo estão nas mãos da Coroa.
+es Los planos del Perpetuo están en manos de la Corona.
+
+> Jakob stayed at Fürth with the Crown.
+pt Jakob ficou em Fürth com a Coroa.
+es Jakob se quedó en Fürth con la Corona.
+
+> Hollweg taken alive on the road to the Main: not how it went.
+pt Hollweg capturado vivo na estrada para o Meno: não foi assim que aconteceu.
+es Hollweg apresado vivo en el camino al Meno: no fue así como ocurrió.

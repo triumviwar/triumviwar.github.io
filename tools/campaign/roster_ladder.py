@@ -53,7 +53,7 @@ LADDER = {
         ("K1", "c01_thirteenth", ["winder", "clock_soldier"], []),
         ("K2", "a02_furth", ["springer", "netter"], ["escapement"]),
         ("K3", "a04_visit", ["heavy_works", "pendulum"], []),
-        ("K4", "", ["ratchet_turret", "shield_wall"], []),
+        ("K4", "d02_exodus", ["ratchet_turret", "shield_wall"], []),
         ("K5", "", ["cuckoo_house", "cuckoo"], []),
         ("K6", "", ["owl_morph", "high_leap"], ["ticking_owl"]),
         ("K7", "", ["ballista", "long_chain"], []),
@@ -85,6 +85,7 @@ BOUND = {
     "a05_specimens": ("brood", ["creatures"]),
     "a06_barricades": ("crown", ["army", "guns"]),
     "a07_council": ("crown", ["guard", "garrison"]),
+    "d02_exodus": ("clockwork", ["guild"]),           # (Act 2's K4: the solo pick's commissary is not bound: the other side)
 }
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
@@ -104,6 +105,8 @@ CARDS = {
     "netter": "NEW: THE NETTER. Also from the Light Works with an Escapement: its chain and net hold a man fast while the others strike.",
     "heavy_works": "NEW: THE HEAVY WORKS. Beside a Mainspring it builds the great machines.",
     "pendulum": "NEW: THE PENDULUM. A slow giant whose swing cuts everything round it, flyers too.",
+    "ratchet_turret": "NEW: THE RATCHET TURRET. A gun of screws that stands still and fires at ground and air. It must stand linked to a gear field: at the landing a Winder builds one by the travelling clock, the rearguard's last stand.",
+    "shield_wall": "NEW: SHIELD WALL. Your Clock Soldiers are drilled to it: press SHIELD FORWARD on their card and they walk slower but take half from shots in front. Raise it facing the muskets.",
     "tyrannosaur": "NEW: THE TYRANT SIRE. A grub becomes him. Rooted by the Mother, he fathers her warrior eggs; up, he fights; his ROAR calls the pack.",
     "raptor": "NEW: THE RAPTORS. Pick them on the Mother's card: an egg of quick biters that hatches in the Sire's nest. Many and fast; weak alone.",
     "dilophosaurus": "NEW: THE VENOM SIRE. A grub becomes him. Rooted by the Mother he fathers Spitters; up, he spits acid from afar.",
@@ -131,6 +134,8 @@ CARDS_PT = {
     "mortar": "NOVO: O MORTEIRO. Lança a sua granada por cima dos muros: as barricadas são trabalho dele, não da linha.",
     "heavy_works": "NOVO: A OFICINA PESADA. Junto a uma Mola Real, ela constrói as grandes máquinas.",
     "pendulum": "NOVO: O PÊNDULO. Um gigante lento cujo balanço corta tudo à sua volta, voadores também.",
+    "ratchet_turret": "NOVO: A TORRETA DE CATRACA. Um canhão de parafusos que fica parado e atira contra terra e ar. Tem de estar ligado a um campo de engrenagens: no cais um Enrolador constrói uma junto ao relógio de viagem, a última defesa da retaguarda.",
+    "shield_wall": "NOVO: MURALHA DE ESCUDOS. Os seus Soldados-Relógio foram treinados nela: aperte ESCUDO À FRENTE no painel deles e eles andam mais devagar mas sofrem metade dos tiros pela frente. Erga-a de frente para os mosquetes.",
     "stage2": "NOVO: CRESCER. Enraizada, a Mãe cresce ao seu segundo estágio: mais ovos, e os jovens podem AMADURECER.",
     "tyrant_challenger": "NOVO: AMADURECER. Um Raptor crescido muda de pele e vira um Desafiante Tirano; um Cuspidor crescido, um Desafiante Venenoso.",
     "church": "NOVO: A IGREJA. As igrejas de Roma treinam Missionários.",
@@ -153,6 +158,8 @@ CARDS_ES = {
     "mortar": "NUEVO: EL MORTERO. Lanza su granada por encima de los muros: las barricadas son trabajo suyo, no de la línea.",
     "heavy_works": "NUEVO: EL TALLER PESADO. Junto a un Muelle Real, construye las grandes máquinas.",
     "pendulum": "NUEVO: EL PÉNDULO. Un gigante lento cuyo vaivén corta todo a su alrededor, voladores también.",
+    "ratchet_turret": "NUEVO: LA TORRETA DE TRINQUETE. Un cañón de tornillos que se queda quieto y dispara contra tierra y aire. Debe estar unido a un campo de engranajes: en el embarcadero un Dador de cuerda construye una junto al reloj de viaje, la última defensa de la retaguardia.",
+    "shield_wall": "NUEVO: MURO DE ESCUDOS. Tus Soldados Reloj están entrenados en él: pulsa ESCUDO AL FRENTE en su panel y caminan más despacio pero reciben la mitad de los disparos de frente. Álzalo de cara a los mosquetes.",
     "stage2": "NUEVO: CRECER. Enraizada, la Madre crece a su segunda etapa: más huevos, y los jóvenes pueden MADURAR.",
     "tyrant_challenger": "NUEVO: MADURAR. Un Raptor crecido muda la piel y se vuelve un Retador Tirano; un Escupidor crecido, un Retador Venenoso.",
     "church": "NUEVO: LA IGLESIA. Las iglesias de Roma entrenan Misioneros.",
@@ -161,8 +168,8 @@ CARDS_ES = {
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus"}
 
 
 def step_of(mission_id):

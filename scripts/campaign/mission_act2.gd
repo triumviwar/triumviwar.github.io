@@ -292,7 +292,40 @@ func order(us: Array, v: Dictionary) -> bool:
 		"track":
 			track_order(us, v)
 			return true
+		"take":
+			take_order(us, v)
+			return true
 	return false
+
+
+## (d02_exodus) {"order": {..., "do": "take", "carts": tag, "within": 60, "else": area}}: each of them rides to the
+## nearest living cart of the tag held by a side it is at war with and stands by it (TAKE A CART does the rest: "take_carts");
+## a man fighting someone within 4 tiles is left to his fight; none in reach: an attack-move to "else" if given. Give it
+## again with "every" (the commissary's riders on the valley road).
+func take_order(us: Array, v: Dictionary) -> void:
+	var g := run.game
+	var carts: Array = run.tagged(String(v.get("carts", v.get("prey", "")))).filter(func(c) -> bool: return c is Unit and not c.dead)
+	var reach := float(v.get("within", 60)) * _tile()
+	var fallback: Vector2 = run.area_rect(String(v["else"])).get_center() if v.has("else") else Vector2.INF
+	for u in us:
+		if not (u is Unit) or u.dead:
+			continue
+		if u.target != null and is_instance_valid(u.target) and not u.target.dead and u.position.distance_to(_pos(u.target)) <= 4.0 * _tile():
+			continue
+		var best: Unit = null
+		var bd := reach
+		for c in carts:
+			if c.team == u.team or g.allied(u.team, c.team):
+				continue
+			var d: float = u.position.distance_to(c.position)
+			if d < bd:
+				bd = d
+				best = c
+		if best != null:
+			if bd > 1.2 * _tile():
+				g.group_move([u], best.position + Vector2(_noise(u, best) * 24.0 - 12.0, _noise(best, u) * 24.0 - 12.0), false)
+		elif fallback != Vector2.INF and u.velocity.length() < 5.0:
+			g.group_move([u], fallback, true)
 
 
 # ================================================================== CARGO CARTS (d01's gold, d02's families)
@@ -374,19 +407,20 @@ func _tick_takes(dt: float) -> void:
 		if _alive(it.get("cart")):
 			prog[it["cart"]] = it
 	var keep: Array = []
+	var changed := {}          # (a cart taken this tick: no other rule takes it back in the same tick with its old progress)
 	for rule in rules:
 		var by_teams := run.teams_of_side(String(rule.get("by", "")))
 		var within := float(rule.get("within", TAKE_RING)) * _tile()
 		var guard := float(rule.get("guard", GUARD_RING)) * _tile()
 		var secs := float(rule.get("secs", 5.0))
 		for c in run.tagged(String(rule.get("tag", ""))):
-			if not (c is Unit) or by_teams.has(c.team):
+			if not (c is Unit) or by_teams.has(c.team) or changed.has(c):
 				continue
 			var takers := 0
 			var guards := 0
 			for u in g.units:
-				if u.dead or u.off_field or u == c or u.kind == "horse" or not u.has_attack():
-					continue
+				if u.dead or u.off_field or u == c or u.kind == "horse" or not u.has_attack() or u.has_meta("cage_cart"):
+					continue          # (d02: a cart never takes nor guards another cart, armed wagon or not)
 				var d: float = u.position.distance_to(c.position)
 				if by_teams.has(u.team) and d <= within:
 					takers += 1
@@ -399,6 +433,8 @@ func _tick_takes(dt: float) -> void:
 				it["t"] = maxf(0.0, float(it["t"]) - dt * 2.0)
 			if float(it["t"]) >= secs:
 				_take(c, rule)
+				changed[c] = true
+				prog.erase(c)
 				continue
 			if float(it["t"]) > 0.0:
 				it["secs"] = secs

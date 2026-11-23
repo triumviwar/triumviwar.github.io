@@ -430,6 +430,16 @@
 			],
 			"label": "Varenne, into exile",
 			"shown": false
+		},
+		{
+			"id": "exodus_ships",
+			"kind": "ship",
+			"point": [
+				-22.0,
+				18.0
+			],
+			"label": "The guild's ships, to Brazil",
+			"shown": false
 		}
 	],
 	"pins": [
@@ -588,6 +598,23 @@
 				"a04_visit",
 				"a05_specimens",
 				"a06_barricades"
+			]
+		},
+		{
+			"mission": "d02_exodus",
+			"line": "clockmaker",
+			"place": "The Main",
+			"date": "February 2771",
+			"point": [
+				10.55,
+				49.62
+			],
+			"nudge": [
+				-30,
+				-24
+			],
+			"after": [
+				"a07_council"
 			]
 		}
 	],
@@ -1088,6 +1115,65 @@
 			"pin": "a07_council",
 			"seal": "broken",
 			"ledger": "The machines crossed the Tiber into Saint Peter's Square."
+		},
+		{
+			"if": {
+				"won_by": {
+					"d02_exodus": "exodus"
+				}
+			},
+			"mark": "exodus_ships",
+			"show": true,
+			"ledger": "The guild left Fürth by night and went down the Main to the sea: it has left the Crown."
+		},
+		{
+			"if": {
+				"flag": {
+					"d02_exodus.exodus": [
+						"few",
+						"some",
+						"many"
+					]
+				}
+			},
+			"ledger": "Families who left Fürth with the guild: %s.",
+			"args": [
+				"d02_exodus.exodus_n"
+			]
+		},
+		{
+			"if": {
+				"flag": {
+					"d02_exodus.drawings": "carried"
+				}
+			},
+			"ledger": "Hollweg carried the Perpetual's drawings away."
+		},
+		{
+			"if": {
+				"flag": {
+					"d02_exodus.drawings": "taken"
+				}
+			},
+			"ledger": "The Perpetual's drawings are in the Crown's hands."
+		},
+		{
+			"if": {
+				"flag": {
+					"d02_exodus.jakob": "stayed"
+				}
+			},
+			"ledger": "Jakob stayed at Fürth with the Crown."
+		},
+		{
+			"if": {
+				"won_by": {
+					"d02_exodus": "commissary"
+				}
+			},
+			"pin": "d02_exodus",
+			"seal": "broken",
+			"ledger": "Hollweg taken alive on the road to the Main: not how it went."
 		}
 	],
 	"paintings": {

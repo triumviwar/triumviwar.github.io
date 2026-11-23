@@ -102,9 +102,81 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | a06_barricades (Paris) | docs/campaign_a06_build.md | 69 | Fairleigh 28, Tomasz* 10, the King 9, Ruggieri 8, Varenne 3, Will Hollins* 1 |
 | a05_specimens (the Specimens) | docs/campaign_a05_build.md | 58 | Lindqvist 39, the King 8, Benedito* 8, Pieter* 2 |
 | a07_council (the Council of Rome) | docs/campaign_a07_build.md | 49 | the King 28, Tomasz* 7, Hollweg 4, Ferrer* 3, Lindqvist 3, Valadares* 2, the Cardinal Dean* 2 |
+| d02_exodus (the Exodus, Act 2) | this file, "d02_exodus" below; docs/campaign_d02_build.md | 63 (+12 narrator, 2 NEW cards) | Hollweg 25, Ulrich* 16, the King 6, Ferrer 6, Colonel von Rauch* 5, Jakob* 3, Commissary Brandt* 2 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
+
+### d02_exodus (the Exodus)
+
+Line ids are the mission's (`campaign/voice/d02_exodus/<id>.ogg`). The feeling is how the line should sound; lines
+without one are plain. The narrator's 12 lines and the two NEW cards can stay as text.
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | Ten months after Rome I signed the commissary's orders myself. Seize the works at Fürth. Stop every machine that winds itself. | heavy, owning it, no regret in the voice |
+| k_open2 | the King | Hollweg was told the commissary was coming. He did not wait for him. | dry |
+| h_open1 | Hollweg | I called it a rescue. The families had nowhere else. The machines had nowhere at all. | old, defensive, still proud |
+| h_open2 | Hollweg | We rang the night bell at the barn. By morning Fürth was empty. | quiet, remembering |
+| k_open_c | the King | Father Ferrer rode with the commissary as Rome's witness. He wrote down what he saw. He always did. | warm about Ferrer |
+| f_open_c | Ferrer | We were a day's ride off when the dogs found their scent. The guild was already on the road. | tired |
+| h_1 | Hollweg | Every family to its cart. Every machine that can walk, wind it. We leave tonight. | urgent, commanding, low (a night order) |
+| u_tip1 | Ulrich | The carts wait at the barns, Meister. Send one of ours to each and the family climbs in. The marked ones on the map. | |
+| u_tip2 | Ulrich | Your spring cart winds anything that stands on the brass plates round it. Keep the soldiers near it on the road and they never run down. | |
+| u_tip_new | Ulrich | The Clock Soldiers know the shield wall now, Meister. Raise their shields with SHIELD FORWARD on their card when the muskets face them. | |
+| h_draw0 | Hollweg | And the drawings. Every sheet of the Perpetual. Nobody touches those chests but me. | possessive, sharp |
+| h_draw | Hollweg | The drawings are aboard. If they take that cart, they take everything I ever made. | relief with fear under it |
+| h_people | Hollweg | No drawings this time. I left them in Nuremberg for the people. I carry the Perpetual in my head. | bitter pride |
+| j_wait | Jakob | Meister. Before you go. Come here, please. | nervous, young |
+| j_stay1 | Jakob | I am not coming, Meister. I told Father Ferrer what I found, and I will tell the commissary. | DRAMATIC: firm but shaking, he loves the old man |
+| h_stay | Hollweg | They will melt everything, Jakob. Everything we built. | DRAMATIC: hurt, pleading without saying please |
+| j_stay2 | Jakob | Then let them. I would rather melt a wheel than see it take out its own stop-work again. God keep you, Meister. | DRAMATIC: steady, a goodbye; soft on the last words |
+| h_nojakob | Hollweg | Jakob would have known which wheels to leave. Jakob is not here. | grief held down |
+| u_warn | Ulrich | Riders on the Bamberg road, Meister. Not long now. | tense |
+| h_fallen | Hollweg | The machine sits in my own works. My own tower. Burn its seed, or no cart leaves this yard. | anger at himself |
+| h_reclaimed | Hollweg | It is down. Now the families. Quickly. | breathless |
+| u_dogs | Ulrich | Dogs, Meister! They are early! The carts must go now! | alarm, shouted |
+| h_road | Hollweg | West over the Rednitz, then down the valley to the Main. Keep a fighter by every cart. | commanding |
+| u_take | Ulrich | They will not shoot the carts, Meister. They will stand round one until it is theirs. Drive them off it and the bar empties. | |
+| u_riders | Ulrich | Riders in the valley! They came round by the Würzburg track, from the north! | shouted |
+| u_dogs2 | Ulrich | Dogs on the slope, Meister, and riders behind them! They have our scent! | shouted |
+| u_riders2 | Ulrich | More riders on the track! | shouted |
+| u_column | Ulrich | The commissary's column is in the yard behind us. Musketeers, and guns. | grim |
+| u_column_m | Ulrich | The commissary's column is in the yard behind us. Musketeers, and more nets than guns. | grim, a little relieved |
+| h_sortie | Hollweg | Let it have the walls. It will meet the commissary before it meets us. | cold |
+| u_retake | Ulrich | Get round that cart before it reaches their camp and it is ours again! | shouted |
+| h_draw_taken | Hollweg | The drawings! They have the drawings! | DRAMATIC: a cry, real loss |
+| r_minute | von Rauch | Halt. All of you. Let them go, God help them. One minute. | DRAMATIC: an officer's order, but his voice gives (Nuremberg's bells) |
+| b_minute | Brandt | Colonel! You have the Crown's orders! | shocked, thin, officious |
+| h_minute | Hollweg | Von Rauch remembered the bells of Nuremberg. Go, now, while he looks away! | moved, then urgent |
+| r_minute_end | von Rauch | The minute is up. After them. | flat, duty again |
+| u_clock | Ulrich | We set up the travelling clock by the brook, Meister. Its field winds anything near it. Five of the journeymen came over on the first barge: they are yours. There is a turret in the crates. | brisk |
+| h_bridge | Hollweg | Hold the bridge until the last barge is loaded. The shields in front, the turret behind them. | a last stand, calm |
+| u_turret | Ulrich | Send a Winder to the turret's site at the bridge's foot. It builds it with the guild's last coins. | |
+| u_broken | Ulrich | The rearguard is gone, Meister! They are on the landing: get to the barges before they lay hands on you! | DRAMATIC: panic |
+| u_last | Ulrich | The last barge is loaded, Meister! Come aboard, now! | shouted, hopeful |
+| h_aboard | Hollweg | Cast off. Do not look back. There is nothing behind us now but the Crown. | DRAMATIC: exhausted, final, no triumph |
+| h_hurt | Hollweg | I am hit. Keep them off me, they want me alive. | pain, through teeth |
+| b_c1 | Brandt | By the Council of Rome and the King's seal: the works at Fürth are the Crown's. Ride. | reading a document, pompous |
+| f_c1 | Ferrer | Take the carts, Commissary. Do not harm the families. And I want Hollweg alive, to answer. | firm, a priest's authority |
+| r_c_tip | von Rauch | My riders take a cart by standing round it with none of theirs by it. Bring Hollweg down and stand a man by him: he is taken. | soldier's briefing |
+| f_c_road | Ferrer | They are on the road west. The barges on the Main will not wait for us. | |
+| r_c_sortie | von Rauch | The machine is in the works behind us. Watch the rear. | |
+| r_c_push | von Rauch | The reserve is on the track, Commissary. Three more muskets and a rider. | |
+| f_c_won | Ferrer | He is taken. God forgive us both, Meister. | DRAMATIC: sorrow, no victory |
+| f_c_lost | Ferrer | The last barge is gone down the Main. He is beyond the Crown now. | quiet, almost relieved |
+| h_end1 | Hollweg | We went down the Main to the sea, and at Hamburg we took ship. Nobody there asked what was in the crates. | old, storytelling |
+| h_end_many | Hollweg | Nearly every family came with us. I counted them on the deck, every morning. | tender |
+| h_end_some | Hollweg | Some of the families came. The others went back to Fürth in the Crown's carts. | regret |
+| h_end_few | Hollweg | Few of the families came. The deck was very quiet. | DRAMATIC: grief |
+| h_end_draw | Hollweg | And the drawings came with me. Every sheet. | quiet pride |
+| h_end_drawlost | Hollweg | The drawings stayed with the Crown. I drew them again from memory, on the ship. | stubborn |
+| h_end_jakob | Hollweg | Jakob stayed. I wrote to him from Hamburg. He never answered. | DRAMATIC: hurt, held back |
+| h_end_manifest | Hollweg | The ship's manifest said: machinery, for a mine in the southern highlands of Brazil. That was true. It was my mine. | sly, a hint of what is coming |
+| k_end1 | the King | He calls it a rescue. I call it what it was. The guild left the Crown that night, and took its families with it. | DRAMATIC: firm, sad, the verdict |
+| k_end2 | the King | I do not blame the families. I blame the man who told them the Crown would melt their children's bread. | gentle, then hard |
+| k_end_c | the King | Hollweg in the Crown's custody, twenty-four years before he came to my fire. That is not how it went. | dry correction |
+| f_end_c | Ferrer | We brought him to Rome in irons, and the carts back to Fürth. The commissary called it a success. | DRAMATIC: bitter, he does not agree |
 
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
@@ -114,7 +186,8 @@ Still to design: Tomasz young (a01, a06, p01; a "Tomasz Wierzbicki (the young se
 ElevenLabs account: its sample would do) and old (the Cardinal), Jakob, Valadares (or the explorer ref),
 Pieter, Benedito, Captain Delorme, Colonel von Rauch, Brother Anselm, Will Hollins, and the one-to-two-line parts
 (Teles, Frei Joaquim, the Captain of the Watch, the Commissary, Rouvière, Mère Gautier, the Sergeant, the guide, the
-Cardinal Dean of a07).
+Cardinal Dean of a07). Act 2: Ulrich (the guild's foreman: d02, a rough Franconian voice, older than Jakob) and
+Commissary Brandt (a dry chancery official, German).
 
 ## 4. Act 2 (planned, not built)
 

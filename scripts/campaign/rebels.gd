@@ -67,6 +67,12 @@ const ROLES := {
 	# ("speed": a Musketeer walks 62) so an escort never waits for it
 	"family_cart": {"kind": "powder_wagon", "name": "Family cart", "hp": 300, "cart": true, "speed": 58, "about": "A covered cart with a family and its things aboard. Keep it safe to the end of the road."},
 	"gold_cart": {"kind": "powder_wagon", "name": "Gold cart", "hp": 360, "cart": true, "speed": 58, "about": "An iron-bound cart with the mine's gold. Bring it to the coast."},
+	# Act 2's d02_exodus (Fürth to the Main, February 2771): the guild's two other carts, the Crown's commissary and the
+	# colonel of its Franconian army (stand-ins until drawn)
+	"spring_cart": {"kind": "powder_wagon", "art": "d_spring_cart", "name": "The spring cart", "hp": 420, "cart": true, "speed": 58, "about": "Hollweg's travelling spring on a cart: every machine of the guild on the brass plates round it is wound."},
+	"drawings_cart": {"kind": "powder_wagon", "art": "d_drawings_cart", "name": "The drawings cart", "hp": 300, "cart": true, "speed": 58, "about": "Iron-bound chests: Hollweg's drawings of the Perpetual, every sheet."},
+	"brandt": {"kind": "dismounted", "art": "d_brandt", "name": "Commissary Brandt", "hp": 220, "about": "The Crown's commissary from the chancery, with Rome's verdict in his satchel."},
+	"rauch": {"kind": "cuirassier", "art": "d_rauch", "name": "Colonel von Rauch", "hp": 260, "about": "Colonel of the Crown's Franconian army, who held the Fürth line beside the guild."},
 	"young_sire": {"kind": "tyrannosaur", "art": "b_young_sire", "name": "The young Sire", "hp": 480, "scale": 0.55, "about": "A young Tyrant Sire, two years old, asleep in the ferns."},
 	# Act 1's a07_council (Rome, Lent 2770): the young King himself in the field (the mission's hero), the Swiss at Saint
 	# Peter's, the captain of Rome's garrison, the Romans of the quarters and the mob that turns on the machines

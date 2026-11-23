@@ -678,6 +678,9 @@ static func problems(m: Dictionary) -> Array:
 			out.append("team %s: unknown faction" % tm["id"])
 		if tm.has("ai_foe") and not teams.has(String(tm["ai_foe"])):
 			out.append("team %s: ai_foe names an unknown team %s" % [tm["id"], tm["ai_foe"]])
+		for tk in tm.get("techs", []):
+			if not Defs.RESEARCH.has(String(tk)):
+				out.append("team %s: unknown research %s in techs" % [tm["id"], tk])
 		if tm.has("camera") and not areas.has(String(tm["camera"])):
 			out.append("team %s: unknown camera area %s" % [tm["id"], tm["camera"]])
 		for md in modes_of(m):
@@ -995,7 +998,7 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 			if v.get("at") is String and not areas.has(String(v["at"])):
 				out.append("%s: unknown area %s" % [where, v["at"]])
 		"order":
-			if not ["attack", "move", "hold", "stop", "patrol", "hunt", "root", "uproot", "route", "follow", "heel", "track"].has(String(v.get("do", ""))):
+			if not ["attack", "move", "hold", "stop", "patrol", "hunt", "root", "uproot", "route", "follow", "heel", "track", "take"].has(String(v.get("do", ""))):
 				out.append("%s: unknown order %s" % [where, v.get("do")])
 			if String(v.get("do", "")) == "route":
 				if (v.get("route", []) as Array).is_empty():

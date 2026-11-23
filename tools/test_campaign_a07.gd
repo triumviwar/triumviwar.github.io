@@ -148,7 +148,12 @@ func _data() -> void:
 			miss.append(String(t).left(50))
 	check("every text of the mission and the hubs has pt and es", miss.is_empty(), " | ".join(miss))
 	for sl in Campaign.storylines():
-		check("the %s line ends at Rome" % sl["id"], (sl["missions"] as Array).back() == MID)
+		# (Act 2 goes on after Rome: d02_exodus on the clockmaker line; every mission after Rome needs it)
+		var ms: Array = sl["missions"]
+		var after_ok := ms.has(MID)
+		for i in range(ms.find(MID) + 1, ms.size()):
+			after_ok = after_ok and (Campaign.mission(String(ms[i])).get("needs", []) as Array).has(MID)
+		check("the %s line reaches Rome (Act 2 after it)" % sl["id"], after_ok)
 	check("Rome listed once among the missions", Campaign.mission_ids().count(MID) == 1)
 	for a in [["a04_visit", "visit"], ["a05_specimens", "expedition"], ["a06_barricades", "crown"]]:
 		check("%s won by the %s leads to Rome" % a, Campaign.next_of(a[0], a[1]) == MID)
