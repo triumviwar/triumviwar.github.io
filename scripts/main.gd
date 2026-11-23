@@ -2387,11 +2387,15 @@ func _button(t: String, cb: Callable) -> Button:
 	return b
 
 
+## Biome names that capitalize() would spell wrong (Act 2's Brazil keeps its accents).
+const BIOME_WORDS := {"varzea": "Várzea", "sertao": "Sertão"}
+
+
 ## "desert+marsh" -> "Desert & Marsh" in the game language.
 func _biome(b: String) -> String:
 	var parts: PackedStringArray = []
 	for x in b.split("+"):
-		parts.append(Loc.t(x.capitalize()))
+		parts.append(Loc.t(String(BIOME_WORDS.get(x, x.capitalize()))))
 	return " & ".join(parts)
 
 
@@ -2811,7 +2815,7 @@ class MapPreview extends Control:
 
 	func _biome_col(b: String) -> Color:
 		var low: Array = MapGen.BIOMES.get(b, MapGen.BIOMES["grass"])["low"]
-		var c: Color = TerrainData.COLOURS.get(low[0], TerrainData2.COLOURS.get(low[0], Color(0.3, 0.45, 0.2)))
+		var c: Color = TerrainData.COLOURS.get(low[0], TerrainData2.COLOURS.get(low[0], TerrainAct2.COLOURS.get(low[0], Color(0.3, 0.45, 0.2))))
 		return c.darkened(0.1)
 
 

@@ -140,6 +140,31 @@ const BIOMES := {
 		"tree_art": ["dead_tree"], "bush_art": ["thorns"],
 		"scatter": ["antlers", "branches", "stones", "sticks"],
 		"kits": ["ruins", "camp"]},
+	# --- Act 2's Brazil (tools/make_act2_terrain.py stand-ins, tools/import_act2_terrain.py
+	# the owner's pictures; TerrainAct2; docs/act2_terrain_art.md)
+	# VÁRZEA: the flooded forest by the rivers (shallow brown water between trees, mud banks,
+	# floating grass); its water is the brown flood water, its fords the reeds
+	"varzea": {"low": ["varzea", "varzea", "varzea_mud"], "patches": true, "base": "varzea_mud", "high": "varzea",
+		"face": "varzea_face", "ramp": "moss_ramp", "water": "varzea_water", "ford": "reeds",
+		"trees": 0.9, "tint": Color(0.85, 1.0, 0.8), "amb": "marsh",
+		"tree_art": ["varzea_tree", "varzea_tree", "buriti"], "bush_art": ["aninga", "shrub_dark"],
+		"scatter": ["aninga", "floating_grass", "varzea_snag", "grass_reed", "log_moss", "reeds"],
+		"kits": ["riverbank", "lumber"]},
+	# HIGHLANDS: the southern highlands (araucaria pines, cold grass, grey rock, light mist;
+	# a mission can add more mist with its weather "mist")
+	"highlands": {"low": ["highland", "highland", "highland_earth"], "patches": true, "base": "highland_earth", "high": "highland_rock",
+		"face": "highland_face", "ramp": "grass_ramp", "water": "water", "ford": "shingle",
+		"trees": 0.6, "tint": Color(0.9, 0.95, 1.0), "amb": "grass",
+		"tree_art": ["araucaria", "araucaria", "araucaria_young"], "bush_art": ["cold_tussock", "shrub_dark"],
+		"scatter": ["cold_tussock", "cold_tussock", "mist_wisp", "stones", "highland_boulder", "grass_d"],
+		"kits": ["pinheiral", "farm", "watch"]},
+	# SERTÃO: the dry backlands (cracked red-brown earth, thorn scrub, cactus, pale dust)
+	"sertao": {"low": ["sertao", "sertao", "sertao_dust"], "patches": true, "base": "sertao_dust", "high": "sertao_rock",
+		"face": "sertao_face", "ramp": "desert_ramp", "water": "water", "ford": "shingle",
+		"trees": 0.35, "tint": Color(1.1, 0.92, 0.75), "amb": "desert",
+		"tree_art": ["caatinga_tree", "mandacaru", "mandacaru"], "bush_art": ["caatinga_bush", "xique_xique"],
+		"scatter": ["caatinga_bush", "xique_xique", "sertao_stones", "ox_skull", "branches", "mandacaru"],
+		"kits": ["vaqueiro", "camp"]},
 }
 
 
@@ -513,6 +538,12 @@ static func custom_starts(d: Dictionary, sides: Array) -> Array:
 	return out
 
 
+## Example maps that come with the game (map editor format, in campaign/maps): the map editor's
+## LOAD lists them under EXAMPLES and opens a copy; a mission can name them "campaign:<id>".
+## (Act 2's Brazilian biomes, tools/make_act2_demo_maps.py, docs/act2_terrain_art.md)
+const EXAMPLES := ["demo_varzea", "demo_highlands", "demo_sertao"]
+
+
 static func custom_names() -> Array:
 	var out: Array = []
 	var d := DirAccess.open(MAP_DIR)
@@ -599,9 +630,37 @@ func apply_custom(data: Dictionary) -> void:
 		g.expansions.append(best)
 
 
+## Every decoration: the first atlas's (PropData) and Act 2's (TerrainAct2).
+static func has_prop(name: String) -> bool:
+	return PropData.PROPS.has(name) or TerrainAct2.PROPS.has(name)
+
+
+## [width px, height px, cells its foot blocks] of a decoration ([] if there is none).
+static func prop_info(name: String) -> Array:
+	if PropData.PROPS.has(name):
+		return PropData.PROPS[name]
+	return TerrainAct2.PROPS.get(name, [])
+
+
+## How many cells wide a decoration's foot blocks (0: walked through).
+static func prop_cells(name: String) -> int:
+	var a := prop_info(name)
+	return int(a[2]) if a.size() > 2 else 0
+
+
+## A decoration's group in the map editor's palette.
+static func prop_kind(name: String) -> String:
+	return String(PropData.KIND.get(name, TerrainAct2.KIND.get(name, "stores")))
+
+
+## Every decoration's name, the first atlas's first.
+static func prop_names() -> Array:
+	return PropData.PROPS.keys() + TerrainAct2.PROPS.keys()
+
+
 ## The cells a decoration's foot blocks when it stands at `c` (none for one walked through).
 static func prop_foot(name: String, c: Vector2i) -> Array:
-	var w: int = PropData.PROPS[name][2] if PropData.PROPS.has(name) else 0
+	var w: int = prop_cells(name)
 	var foot: Array = []
 	for dx in range(-(w - 1) / 2, w - (w - 1) / 2):
 		foot.append(c + Vector2i(dx, 0))
@@ -616,7 +675,7 @@ func place_props(list: Array) -> void:
 	props.clear()
 	_prop_at.clear()
 	for it in list:
-		if not (it is Array) or (it as Array).size() < 3 or not PropData.PROPS.has(String(it[0])):
+		if not (it is Array) or (it as Array).size() < 3 or not has_prop(String(it[0])):
 			continue
 		var name := String(it[0])
 		var c := Vector2i(int(it[1]), int(it[2]))
@@ -1812,6 +1871,13 @@ const KITS := {
 	"watch": [["watch_frame", 0, 0], ["banner_pole", 2, 0], ["campfire", 0, 2], ["crate_c", -2, 1], ["barrel_c", 2, 2], ["firewood", -1, 3]],
 	"lumber": [["stump_big", 0, 0], ["log", 2, 1], ["log_moss", -2, 1], ["firewood", 1, -1], ["sticks", -1, 2], ["cart_a", 3, 3],
 		["stump", -3, -1], ["stump_moss", 4, -1]],
+	# (Act 2's Brazil, docs/act2_terrain_art.md)
+	"riverbank": [["boat", 0, 0], ["varzea_snag", 2, 1], ["aninga", -2, 1], ["floating_grass", 1, 2], ["cross_wood", -1, -2],
+		["drying_rack", 3, -1], ["firewood", -3, -1], ["aninga", 3, 2]],
+	"pinheiral": [["araucaria", 0, 0], ["araucaria", 3, 1], ["araucaria_young", -2, 2], ["cold_tussock", 1, 2],
+		["highland_boulder", -3, -1], ["mist_wisp", 2, 3], ["cold_tussock", -1, 3]],
+	"vaqueiro": [["campfire", 0, 0], ["cart_b", 3, 0], ["ox_skull", -2, 1], ["mandacaru", -3, -2], ["caatinga_bush", 2, 2],
+		["xique_xique", -1, 2], ["sacks", 1, -1], ["fence", 4, 2]],
 	"forge": [["forge", 0, 0], ["oven", 3, 0], ["cannonballs", -2, 1], ["barrel_tall", 1, 2], ["crate_d", -1, 3], ["chest", 3, 2]],
 }
 
@@ -1839,9 +1905,9 @@ func _deco_ok(c: Vector2i, solid: bool) -> bool:
 ## Put a decoration on this cell, and its twin on the twin cell. Solid ones block the
 ## cells under their foot, like rocks.
 func _put(name: String, c: Vector2i, drng: RandomNumberGenerator) -> bool:
-	if not PropData.PROPS.has(name):
+	if not has_prop(name):
 		return false
-	var w: int = PropData.PROPS[name][2]
+	var w: int = prop_cells(name)
 	var foot: Array = []
 	if w > 0:
 		for dx in range(-(w - 1) / 2, w - (w - 1) / 2):

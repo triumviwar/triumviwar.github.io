@@ -1286,7 +1286,7 @@ func _good(set_name: String) -> Array:
 		var base := set_name
 		if set_name == "grass_calm" or set_name == "grass_mid":
 			base = "grass"
-		var good: Array = TerrainData.GOOD.get(base, TerrainData2.GOOD.get(base, [0]))
+		var good: Array = TerrainData.GOOD.get(base, TerrainData2.GOOD.get(base, TerrainAct2.GOOD.get(base, [0])))
 		if MORE_VARIANTS.has(base):
 			good = good + MORE_VARIANTS[base]
 		good = OWN_VARIANTS.get(base, good)
@@ -1302,7 +1302,8 @@ func _tile_key(set_name: String, rnd: int) -> String:
 ## The second atlas's ground sets are 64 x 64 pictures, each laid over 2 x 2 cells (the
 ## art's own scale: at one cell a tile its detail repeats too tightly).
 static func _is_macro(set_name: String) -> bool:
-	return TerrainData2.COUNTS.has(set_name) and not set_name.ends_with("_face") and not set_name.ends_with("_top")
+	return (TerrainData2.COUNTS.has(set_name) or TerrainAct2.COUNTS.has(set_name)) \
+		and not set_name.ends_with("_face") and not set_name.ends_with("_top")
 
 
 func _tile(set_name: String, rnd: int) -> Image:

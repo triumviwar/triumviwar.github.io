@@ -39,7 +39,10 @@ const MIRROR_NAMES := {"off": "OFF", "rotate": "TURN 180", "mirror_lr": "LEFT | 
 const MIXES := ["diag", "patch", "middle"]
 const MIX_NAMES := {"diag": "DIAGONAL", "patch": "PATCHES", "middle": "MIDDLE"}
 const BIOME_LIST := ["grass", "autumn", "desert", "snow", "marsh", "volcanic", "heath", "jungle", "canyon", "tundra",
-	"ashland", "pinewood", "steppe", "coast", "oldkingdom", "bog", "glowwood", "fall", "badlands"]
+	"ashland", "pinewood", "steppe", "coast", "oldkingdom", "bog", "glowwood", "fall", "badlands",
+	"varzea", "highlands", "sertao"]                      # (the last three: Act 2's Brazil, docs/act2_terrain_art.md)
+## Biome names shown in capitals where plain to_upper() would read wrong.
+const BIOME_TITLES := {"oldkingdom": "OLD KINGDOM", "varzea": "VÁRZEA", "sertao": "SERTÃO"}
 const KIND_ORDER := ["trees", "rocks", "plants", "ruins", "buildings", "camp", "farm", "stores"]
 ## New map sizes: [w, h, what it suits]
 const SIZES := [[64, 64, "tiny 1v1"], [84, 84, "small 1v1"], [110, 80, "classic"], [104, 104, "1v1"],
@@ -512,14 +515,14 @@ func _lava() -> bool:
 
 
 static func biome_title(b: String) -> String:
-	return "OLD KINGDOM" if b == "oldkingdom" else b.to_upper()
+	return String(BIOME_TITLES.get(b, b.to_upper()))
 
 
 ## A biome's look: a small tile of its ground.
 func _swatch(b: String) -> Texture2D:
 	var low: Array = MapGen.BIOMES[b]["low"]
 	var set_name: String = low[0]
-	var good: Array = TerrainData.GOOD.get(set_name, TerrainData2.GOOD.get(set_name, [0]))
+	var good: Array = TerrainData.GOOD.get(set_name, TerrainData2.GOOD.get(set_name, TerrainAct2.GOOD.get(set_name, [0])))
 	var path := "res://assets/terrain/%s_%d.png" % [set_name, good[0]]
 	if not ResourceLoader.exists(path):
 		return null
@@ -653,7 +656,7 @@ func _show_load() -> void:
 	if names.is_empty():
 		v.add_child(UiStyle.text("No saved maps yet.", 17, UiStyle.MUTED))
 	var scroll := ScrollContainer.new()
-	scroll.custom_minimum_size = Vector2(0, mini(names.size(), 7) * 50)
+	scroll.custom_minimum_size = Vector2(0, mini(names.size(), 5) * 50)
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	v.add_child(scroll)
 	var list := VBoxContainer.new()
@@ -681,6 +684,22 @@ func _show_load() -> void:
 			del.add_theme_color_override("font_color", UiStyle.BAD)
 		row.add_child(del)
 		list.add_child(row)
+	# the examples that come with the game: opened as a copy (SAVE keeps it among your maps)
+	v.add_child(_small_label(Loc.t("EXAMPLES")))
+	for ex in MapGen.EXAMPLES:
+		var ed := Campaign.map_data(String(ex))
+		if ed.is_empty():
+			continue
+		var es := MapGen.custom_size(ed)
+		var title := MapEditor.biome_title(String(ed.get("biome", "grass")))
+		var eb := _btn("%s   (%s, %dx%d)" % [Loc.t("Example: %s") % title, MapGen.custom_mode(ed), es.x, es.y], 400, func() -> void:
+			p.queue_free()
+			var copy := ed.duplicate(true)
+			copy["name"] = "%s example" % String(ed.get("biome", "grass")).capitalize()
+			copy.erase("checked")
+			reopen_requested.emit(copy), "Opens a copy of this example")
+		eb.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		v.add_child(eb)
 	v.add_child(_btn("CLOSE", 120, func() -> void: p.queue_free()))
 
 
@@ -758,7 +777,7 @@ func _build_palette(vp: Vector2) -> void:
 	if prop_pick.begins_with("kit:"):
 		pick_txt = "Group: %s (%d pieces)" % [prop_pick.substr(4), (MapGen.KITS[prop_pick.substr(4)] as Array).size()]
 	else:
-		pick_txt = "%s: %s" % [prop_pick.replace("_", " "), "blocks like a rock" if int(PropData.PROPS[prop_pick][2]) > 0 else "walked through"]
+		pick_txt = "%s: %s" % [prop_pick.replace("_", " "), "blocks like a rock" if MapGen.prop_cells(prop_pick) > 0 else "walked through"]
 	var pl := UiStyle.text(pick_txt, 14, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true)
 	pl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	pl.custom_minimum_size = Vector2(w - 28, 36)
@@ -796,8 +815,8 @@ func _build_palette(vp: Vector2) -> void:
 		g.add_theme_constant_override("h_separation", 4)
 		g.add_theme_constant_override("v_separation", 4)
 		list.add_child(g)
-		for nm in PropData.PROPS:
-			if PropData.KIND.get(nm, "stores") != kind:
+		for nm in MapGen.prop_names():
+			if MapGen.prop_kind(nm) != kind:
 				continue
 			var pn: String = nm
 			var b := Button.new()
@@ -806,11 +825,11 @@ func _build_palette(vp: Vector2) -> void:
 			b.expand_icon = true
 			b.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			b.focus_mode = Control.FOCUS_NONE
-			b.tooltip_text = "%s (%s)" % [pn.replace("_", " "), "blocks" if int(PropData.PROPS[pn][2]) > 0 else "walk-through"]
+			b.tooltip_text = "%s (%s)" % [pn.replace("_", " "), "blocks" if MapGen.prop_cells(pn) > 0 else "walk-through"]
 			b.add_theme_constant_override("icon_max_width", 44)
 			if pn == prop_pick:
 				UiStyle.chosen(b, TOOL_COL["prop"])
-			elif int(PropData.PROPS[pn][2]) > 0:
+			elif MapGen.prop_cells(pn) > 0:
 				# blocking ones get a darker frame
 				b.add_theme_stylebox_override("normal", UiStyle.box(Color(0.2, 0.12, 0.08, 0.95), Color(0.6, 0.35, 0.25), 2, 7, 4.0))
 			b.pressed.connect(func() -> void:
@@ -1226,7 +1245,7 @@ func _place_prop(c: Vector2i) -> void:
 	var flip0 := randf() < 0.5
 	for it in items:
 		var nm: String = it[0]
-		if not PropData.PROPS.has(nm):
+		if not MapGen.has_prop(nm):
 			continue
 		for m in MapCheck.mirror_points(Vector2(it[1]) + Vector2(0.5, 0.5), mirror, W, H):
 			var p: Vector2 = m[0]

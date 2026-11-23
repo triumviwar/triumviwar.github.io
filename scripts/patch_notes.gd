@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"NEW GROUND FOR BRAZIL: three new lands for Act 2's missions and the map editor: VÁRZEA (the flooded forest by the rivers: brown flood water between the trees, mud banks, floating grass, buriti palms), HIGHLANDS (the southern highlands: araucaria pines, cold grass, grey rock, banks of light mist) and SERTÃO (the dry backlands: cracked red-brown earth, thorn scrub, mandacaru cactus, pale dust). The map editor's LAND lists them, and LOAD has an EXAMPLES list with a demo map of each to open and change. Their pictures are stand-ins until the painted ones come.",
+	]},
 	{"v": "0.38.189", "items": [
 		"Nothing changes in the game: notes only.",
 	]},
