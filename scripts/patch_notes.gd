@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.189", "items": [
+		"Nothing changes in the game: notes only.",
+	]},
 	{"v": "0.38.188", "items": [
 		"THE CROWN SPENDS ITS LEAD AGAINST THE BROOD: between 8:00 and 11:00, once the Crown computer's army is twice the Brood army it has seen, its whole army goes for the Brood Mother at once instead of waiting (Hard and Normal computers; in 30 test games it was beaten 12 times instead of 15 and the game stood even at 14:00).",
 		"For testing only (no change to the game): a far Rootmaw's pay can be set for a match (farmaw:2.0 and the like), and canister's bonus on light units (canlight:2.0).",

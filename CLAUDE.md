@@ -32,6 +32,17 @@
   the diamond's CLOCK on the waiting front, the BRASS MAP (Clockmaker's hub) and the SPECIMEN CHART (Naturalist's hub)
   skins drawn in code (no Brood skin, ever); tests in tools/test_war_map.gd, pictures tools/shot_war_map_act2.gd ->
   docs/shots/war_map/act2/; 3 ChatGPT prompts and 16 Claude's choices in the doc. Patch note under 0.38.999.
+- CROWN V BROOD FIX MERGED (0.38.188, docs/crown_brood_fix.md, scripts/ai_crown_brood_fix.gd AICrownBroodFix): THE PRESS
+  KEPT (v the Brood only, `cbfpress:off`): 8:00-11:00 with an army 1,000+ and 2x the Brood seen, the whole army goes for
+  the Brood Mother once (fired in every game ~9:05). 30 games an arm Crown won-or-led / Brood won-or-led: today 3/27,
+  press 7/21, x1.8 17/12, press+x1.8 19/9, press+x2.0 11/16. Switches farmaw:<n>, canlight:<n>. Raptors do NOT round the
+  guns (70 of 72 set fights won); labourers die walking after 12:00 (83% to Raptors). RECOMMENDED x2.0 (Defs.FOOD_BONUS
+  1.2 -> 1.0): OWNER DECIDES; default unchanged.
+- d03_fazenda BUILT (job d03-fazenda, 0.38.186, docs/campaign_d03_build.md): "The Island" (the Naturalist after a07, dry
+  season 2772): played as THE STOCK (the Brood, Lindqvist's people on its team carrying the LURES: the leash), hide from
+  Valadares' commission (lying low, tracks, the dinner, decoys), the last night's restless one; B4 = the STORM SIRE +
+  hatchlings; mirror = the commission. 19 Claude's choices. act2-warmap MERGED 0.38.187 (docs/war_map_act2.md): the
+  BRAZIL view, Act 2 regions, pins d01-d13 and rules.
 - d02_exodus BUILT (job d02-exodus, 0.38.184, docs/campaign_d02_build.md): Act 2 step 2, "The Exodus" (the Clockmaker
   line after a07, Feb 2771): map campaign:furth_exodus (from a04's), mission tools/campaign/make_d02_mission.py; the guild
   loads family carts (3/5/7 by c01 `saved`), the drawings cart (c01 gate pattern), Jakob always stays; the road down the
