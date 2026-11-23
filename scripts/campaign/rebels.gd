@@ -88,6 +88,19 @@ const ROLES := {
 	"keeper": {"kind": "musketeer", "art": "b_hired_gun", "name": "Keeper", "hp": 140, "about": "One of Lindqvist's keepers, a musket on his back and a brass lure on a chain."},
 	"assembly_keeper": {"kind": "musketeer", "art": "rebel_militia", "name": "Assembly guard", "about": "A Free Assembly man hired to guard the fazenda after Paris: he asks no questions."},
 	"fonseca": {"kind": "dismounted", "art": "a_delorme", "name": "Desembargador Fonseca", "hp": 220, "about": "The commission's magistrate, a judge of the Relação, with Rome's order."},
+	# Act 2's d04_concordia (the southern highlands, 2773): the guild's settlers, the council's secular voice (Varenne by
+	# a06 `varenne` spared, Citizen Morel by executed: they speak, they don't fight), the valley's militia, ranchers and
+	# people, its priest, the crates' soldiers (stand-ins until drawn)
+	"settler": {"kind": "labourer", "art": "c_citizen", "about": "A settler of the guild: one of the families who came from Fürth."},
+	"varenne_exile": {"kind": "missionary", "art": "rebel_varenne", "name": "Etienne Varenne", "hp": 260, "about": "The Free Assembly's orator, spared at Paris and sent into exile: he came to Concórdia on a ship from Lisbon."},
+	"morel": {"kind": "missionary", "art": "a_runner", "name": "Citizen Morel", "hp": 240, "about": "A man of the Free Assembly who came to Concórdia after Varenne's death: he wants the valley taught."},
+	"arruda": {"kind": "cuirassier", "name": "Captain Arruda", "hp": 320, "about": "Captain of the valley's militia, a cattleman of the highlands."},
+	"valley_militia": {"kind": "musketeer", "about": "A militiaman of the valley: a farmer with his musket."},
+	"rancher": {"kind": "cuirassier", "about": "A rancher of the valley on his working horse."},
+	"colonist": {"kind": "labourer", "art": "c_citizen", "about": "A colonist of the valley: a farmer or a drover of the highlands."},
+	"colonist_torch": {"kind": "labourer", "art": "c_citizen", "torch": true, "about": "A colonist of the valley with a torch and a fear of machines."},
+	"anselmo": {"kind": "missionary", "art": "b_joaquim", "name": "Padre Anselmo", "hp": 240, "about": "The valley's parish priest."},
+	"crate_soldier": {"kind": "clock_soldier", "name": "Pattern of 2767", "about": "A Clock Soldier from the crates of 2767, of a pattern nobody remembers building."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)

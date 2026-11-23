@@ -54,7 +54,7 @@ LADDER = {
         ("K2", "a02_furth", ["springer", "netter"], ["escapement"]),
         ("K3", "a04_visit", ["heavy_works", "pendulum"], []),
         ("K4", "d02_exodus", ["ratchet_turret", "shield_wall"], []),
-        ("K5", "", ["cuckoo_house", "cuckoo"], []),
+        ("K5", "d04_concordia", ["cuckoo_house", "cuckoo"], []),
         ("K6", "", ["owl_morph", "high_leap"], ["ticking_owl"]),
         ("K7", "", ["ballista", "long_chain"], []),
         ("K8", "", ["great_winder"], []),
@@ -87,6 +87,7 @@ BOUND = {
     "a07_council": ("crown", ["guard", "garrison"]),
     "d02_exodus": ("clockwork", ["guild"]),           # (Act 2's K4: the solo pick's commissary is not bound: the other side)
     "d03_fazenda": ("brood", ["stock"]),              # (Act 2's B4: the commission's solo pick is not bound: the other side)
+    "d04_concordia": ("clockwork", ["guild"]),        # (Act 2's K5: the valley (versus) is not bound: the other side)
 }
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
@@ -116,6 +117,8 @@ CARDS = {
     "tyrant_challenger": "NEW: MATURE. A grown Raptor moults into a Tyrant Challenger; a grown Spitter into a Venom Challenger.",
     "pterodactyl": "NEW: THE STORM SIRE. A flying father: up, he flies and dives to bite; ROOTED beside the Mother he lands, and she lays the eggs of his line.",
     "hatchlings": "NEW: THE HATCHLINGS. Pick them on the Mother's card while the Storm Sire is rooted by her: little flyers, two to an egg. They bite only flyers, but they see far over the forest.",
+    "cuckoo_house": "NEW: THE CLOCK AVIARY. A tall clock with little doors: the machines' birds fly from it. It needs a working Escapement, and runs on Tension: a Mainspring in its gear field.",
+    "cuckoo": "NEW: THE SWIFT. A fast brass bird made at the Clock Aviary. It fights only other flyers, but it sees far: here the land off the plateau stays dark until a Swift has flown over it.",
 }
 # (pieces that share a card: the Venom Challenger is told with the Tyrant Challenger)
 SHARED_CARD = {"venom_challenger": "tyrant_challenger"}
@@ -146,6 +149,8 @@ CARDS_PT = {
     "spitter": "NOVO: OS CUSPIDORES. Dois por ovo, fecundados pelo Sire do Veneno: ácido por trás dos Raptores, contra terra e ar.",
     "pterodactyl": "NOVO: O SIRE DA TEMPESTADE. Um pai que voa: de pé, voa e mergulha para morder; ENRAIZADO junto à Mãe, pousa, e ela põe os ovos da linhagem dele.",
     "hatchlings": "NOVO: OS FILHOTES. Escolha-os no painel da Mãe enquanto o Sire da Tempestade estiver enraizado junto a ela: pequenos voadores, dois por ovo. Só mordem voadores, mas veem longe por cima da floresta.",
+    "cuckoo_house": "NOVO: A CASA DO CUCO. Um relógio alto com portinhas: os pássaros das máquinas voam dele. Precisa de um Escape a trabalhar, e funciona com Tensão: uma Mola Real no seu campo de engrenagens.",
+    "cuckoo": "NOVO: O CUCO. Um pássaro de latão rápido feito na Casa do Cuco. Só luta contra outros voadores, mas vê longe: aqui a terra fora do planalto fica escura até um Cuco voar sobre ela.",
 }
 CARDS_ES = {
     "musketeer": "NUEVO: EL MOSQUETERO. El Cuartel lo entrena. Un hombre no es nada; una línea de ellos disparando juntos defiende la plantación. Mantenlos en línea, no en montón.",
@@ -172,11 +177,13 @@ CARDS_ES = {
     "spitter": "NUEVO: LOS ESCUPIDORES. Dos por huevo, fecundados por el Señor del Veneno: ácido desde detrás de los Raptores, contra tierra y aire.",
     "pterodactyl": "NUEVO: EL SEÑOR DE LA TORMENTA. Un padre que vuela: en pie, vuela y se lanza a morder; ENRAIZADO junto a la Madre, se posa, y ella pone los huevos de su línea.",
     "hatchlings": "NUEVO: LAS CRÍAS. Elígelas en el panel de la Madre mientras el Señor de la Tormenta esté enraizado junto a ella: pequeños voladores, dos por huevo. Solo muerden voladores, pero ven lejos por encima del bosque.",
+    "cuckoo_house": "NUEVO: LA CASA DEL CUCO. Un reloj alto con puertecitas: los pájaros de las máquinas vuelan desde él. Necesita un Escape en marcha, y funciona con Tensión: un Muelle Real en su campo de engranajes.",
+    "cuckoo": "NUEVO: EL CUCO. Un pájaro de latón rápido hecho en la Casa del Cuco. Solo lucha contra otros voladores, pero ve lejos: aquí la tierra fuera del altiplano sigue oscura hasta que un Cuco vuela sobre ella.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild"}
 
 
 def step_of(mission_id):

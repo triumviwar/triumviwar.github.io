@@ -719,7 +719,8 @@
 				"a02_furth",
 				"a04_visit",
 				"a07_council",
-				"d02_exodus"
+				"d02_exodus",
+				"d04_concordia"
 			],
 			"hub": {
 				"title": "Hollweg's Workshop",
@@ -870,6 +871,26 @@
 									"The commissary has me. He reads Rome's verdict to me every morning, as if I had not heard it.",
 									"(The King: That is not how it went. Hollweg went down the Main, and I let him.)"
 								]
+							},
+							{
+								"after": "d04_concordia",
+								"not_sides": {
+									"d04_concordia": "valley"
+								},
+								"lines": [
+									"The council meets at noon, when the tower strikes. Every master has a voice, and every voice a wheel.",
+									"The plates in the gallery have reached the shaft. They wind the soldiers on them better than any Winder. A gift."
+								]
+							},
+							{
+								"after": "d04_concordia",
+								"sides": {
+									"d04_concordia": "valley"
+								},
+								"lines": [
+									"The valley burned the first quarter. We sleep in tents again, and the families talk of the coast.",
+									"(The King: That is not how it went. The city stood, and grew.)"
+								]
 							}
 						]
 					},
@@ -912,6 +933,15 @@
 								"after": "d02_exodus",
 								"lines": [
 									"The travelling clock rides in a barge's hold, wrapped in sacking. It still keeps Nuremberg's time."
+								]
+							},
+							{
+								"after": "d04_concordia",
+								"not_sides": {
+									"d04_concordia": "valley"
+								},
+								"lines": [
+									"The travelling clock stands in the council hall now. It keeps the highlands' time; nobody remembers setting it."
 								]
 							}
 						]
@@ -964,6 +994,15 @@
 								"lines": [
 									"The trestle stayed in Fürth. The commissary's men will have found it by now."
 								]
+							},
+							{
+								"after": "d04_concordia",
+								"not_sides": {
+									"d04_concordia": "valley"
+								},
+								"lines": [
+									"A plate from the gallery's floor lies on the trestle. Its teeth fit nothing in the guild's books."
+								]
 							}
 						]
 					},
@@ -1012,6 +1051,22 @@
 						],
 						"sides": {
 							"a02_furth": "machine"
+						}
+					},
+					"d04_concordia": {
+						"title": "Concórdia's Council Hall",
+						"about": "The guild's free city on the southern highlands of Brazil. Hollweg sits at the head of its council.",
+						"still": {
+							"caption": "Concórdia's council hall: the brass map on the council table, the guild's clock on the wall, the highlands through the windows."
+						},
+						"hide_layers": [],
+						"tint": [
+							1.04,
+							0.98,
+							0.9
+						],
+						"not_sides": {
+							"d04_concordia": "valley"
 						}
 					}
 				}

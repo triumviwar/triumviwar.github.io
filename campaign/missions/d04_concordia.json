@@ -1,0 +1,5475 @@
+{
+	"id": "d04_concordia",
+	"title": "The City of Gears",
+	"summary": "The southern highlands of Brazil, 2773. Over an old mine Meister Hollweg founds Concórdia, a city that governs itself. The valley below fears it from the first day.",
+	"map": "campaign:concordia",
+	"voice": "d04",
+	"light": "day",
+	"expansion_spots": false,
+	"manual_end": true,
+	"needs": [
+		"d02_exodus"
+	],
+	"difficulty": {
+		"easy": {
+			"clocks": 1.25,
+			"spawns": 0.75
+		},
+		"hard": {
+			"clocks": 0.9,
+			"spawns": 1.15
+		}
+	},
+	"modes": [
+		"solo",
+		"versus"
+	],
+	"sides": [
+		{
+			"id": "guild",
+			"name": "The Guild",
+			"about": "Meister Hollweg's guild and its families, founding a city on the southern highlands."
+		},
+		{
+			"id": "valley",
+			"name": "The Valley",
+			"about": "The colonists of the valley below: Captain Arruda's militia, the ranchers, the town and its priest."
+		}
+	],
+	"teams": [
+		{
+			"id": "guild",
+			"side": "guild",
+			"faction": "clockwork",
+			"colour": 0,
+			"start": "none",
+			"camera": "camp",
+			"gold": 600,
+			"techs": [
+				"shield_wall"
+			],
+			"control": {
+				"solo": "p1",
+				"versus": "p1"
+			},
+			"roster": {
+				"allow": [
+					"clocktower",
+					"cog_press",
+					"mainspring",
+					"regulator",
+					"movement_works",
+					"winder",
+					"clock_soldier",
+					"springer",
+					"netter",
+					"escapement",
+					"heavy_works",
+					"pendulum",
+					"ratchet_turret",
+					"shield_wall",
+					"cuckoo_house",
+					"cuckoo"
+				],
+				"new": [
+					"cuckoo_house",
+					"cuckoo"
+				]
+			}
+		},
+		{
+			"id": "families",
+			"side": "guild",
+			"faction": "crown",
+			"colour": 0,
+			"start": "none",
+			"camera": "camp",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "calmed",
+			"side": "guild",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "home_exit",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "militia",
+			"side": "valley",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "town_sq",
+			"gold": 400,
+			"powder": 300,
+			"control": {
+				"solo": "script",
+				"versus": "p2"
+			}
+		},
+		{
+			"id": "town",
+			"side": "valley",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "town_sq",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		}
+	],
+	"areas": {
+		"plateau": [
+			54,
+			0,
+			66,
+			52
+		],
+		"camp": [
+			70,
+			27,
+			6,
+			5
+		],
+		"tower_area": [
+			76,
+			14,
+			14,
+			12
+		],
+		"quarter": [
+			64,
+			15,
+			12,
+			17
+		],
+		"west_field": [
+			77,
+			18,
+			3,
+			3
+		],
+		"mine": [
+			102,
+			8,
+			6,
+			6
+		],
+		"gallery": [
+			110,
+			2,
+			5,
+			4
+		],
+		"spring_spot": [
+			90,
+			21,
+			3,
+			3
+		],
+		"aviary_spot": [
+			95,
+			23,
+			2,
+			2
+		],
+		"ramp_road": [
+			46,
+			32,
+			4,
+			4
+		],
+		"ramp_path": [
+			50,
+			9,
+			4,
+			4
+		],
+		"ramp_track": [
+			92,
+			51,
+			4,
+			4
+		],
+		"way_road": [
+			30,
+			36,
+			16,
+			22
+		],
+		"way_path": [
+			6,
+			6,
+			42,
+			14
+		],
+		"way_track": [
+			92,
+			56,
+			12,
+			22
+		],
+		"road_top": [
+			39,
+			32,
+			6,
+			6
+		],
+		"road_mid": [
+			35,
+			40,
+			4,
+			4
+		],
+		"road_low": [
+			30,
+			52,
+			4,
+			4
+		],
+		"parley": [
+			38,
+			33,
+			6,
+			5
+		],
+		"path_w": [
+			5,
+			20,
+			5,
+			5
+		],
+		"path_e": [
+			40,
+			9,
+			5,
+			4
+		],
+		"track_low": [
+			95,
+			64,
+			4,
+			4
+		],
+		"ranch": [
+			94,
+			78,
+			12,
+			8
+		],
+		"town": [
+			0,
+			60,
+			30,
+			34
+		],
+		"town_sq": [
+			12,
+			70,
+			6,
+			6
+		],
+		"home_exit": [
+			12,
+			64,
+			8,
+			8
+		],
+		"valley_view": [
+			0,
+			56,
+			40,
+			38
+		]
+	},
+	"counters": {
+		"swifts": {
+			"start": 0
+		},
+		"mapped": {
+			"start": 0
+		},
+		"houses": {
+			"start": 0
+		},
+		"houses_n": {
+			"start": 0
+		},
+		"raid_left": {
+			"start": 0
+		},
+		"turned_back": {
+			"start": 0
+		},
+		"temper": {
+			"start": 0
+		},
+		"temper_top": {
+			"start": 8
+		},
+		"home_n": {
+			"start": 0
+		},
+		"mob_n": {
+			"start": 0
+		},
+		"attack_left": {
+			"start": 0
+		},
+		"attack_n": {
+			"start": 0
+		}
+	},
+	"take_carts": [
+		{
+			"tag": "mob",
+			"by": "guild",
+			"to": "calmed",
+			"secs": 2,
+			"within": 2,
+			"guard": 0,
+			"counter": "turned_back",
+			"as": "turned",
+			"label": "TURNING BACK",
+			"word": "TURNED BACK!",
+			"untorch": true
+		}
+	],
+	"torch_fire": {
+		"tag": "city",
+		"secs": 50,
+		"douse_side": "guild",
+		"douse_secs": 6,
+		"counter": "temper"
+	},
+	"exits": [
+		{
+			"area": "home_exit",
+			"tag": "turned",
+			"counter": "home_n",
+			"after": "part2"
+		},
+		{
+			"area": "home_exit",
+			"tag": "gone_home",
+			"after": "part2"
+		}
+	],
+	"units": [
+		{
+			"team": "guild",
+			"kind": "missionary",
+			"as": "hollweg",
+			"count": 1,
+			"at": [
+				78,
+				30
+			],
+			"tag": "hollweg"
+		},
+		{
+			"team": "guild",
+			"kind": "winder",
+			"count": 4,
+			"at": "camp",
+			"tag": "army",
+			"fixed": true
+		},
+		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 6,
+			"at": "camp",
+			"tag": "army",
+			"fixed": true
+		},
+		{
+			"team": "guild",
+			"kind": "springer",
+			"count": 2,
+			"at": "camp",
+			"tag": "army",
+			"fixed": true
+		},
+		{
+			"team": "guild",
+			"kind": "netter",
+			"count": 2,
+			"at": "camp",
+			"tag": "army",
+			"fixed": true
+		},
+		{
+			"team": "guild",
+			"kind": "pendulum",
+			"count": 1,
+			"at": "camp",
+			"tag": "army",
+			"fixed": true
+		},
+		{
+			"team": "families",
+			"kind": "labourer",
+			"as": "settler",
+			"count": 4,
+			"at": "camp",
+			"tag": "settlers"
+		},
+		{
+			"team": "families",
+			"kind": "missionary",
+			"as": "varenne_exile",
+			"count": 1,
+			"at": [
+				76,
+				31
+			],
+			"tag": "voice",
+			"tags": [
+				"varenne"
+			],
+			"if": {
+				"not": {
+					"past": {
+						"a06_barricades.varenne": "executed"
+					}
+				}
+			}
+		},
+		{
+			"team": "families",
+			"kind": "missionary",
+			"as": "morel",
+			"count": 1,
+			"at": [
+				76,
+				31
+			],
+			"tag": "voice",
+			"tags": [
+				"morel"
+			],
+			"if": {
+				"past": {
+					"a06_barricades.varenne": "executed"
+				}
+			}
+		},
+		{
+			"team": "militia",
+			"kind": "cuirassier",
+			"as": "arruda",
+			"count": 1,
+			"at": "town_sq",
+			"tag": "arruda",
+			"if": {
+				"playing": "valley"
+			}
+		},
+		{
+			"team": "militia",
+			"kind": "musketeer",
+			"as": "valley_militia",
+			"count": 4,
+			"at": "town_sq",
+			"tag": "militia_men",
+			"if": {
+				"playing": "valley"
+			}
+		},
+		{
+			"team": "militia",
+			"kind": "cuirassier",
+			"as": "rancher",
+			"count": 3,
+			"at": "ranch",
+			"tag": "militia_men",
+			"if": {
+				"playing": "valley"
+			}
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "colonist",
+			"count": 5,
+			"at": "town_sq",
+			"tag": "townsfolk"
+		}
+	],
+	"buildings": [
+		{
+			"team": "guild",
+			"kind": "escapement",
+			"at": [
+				88,
+				17
+			],
+			"tag": "city"
+		},
+		{
+			"team": "guild",
+			"kind": "movement_works",
+			"at": [
+				73,
+				18
+			],
+			"tag": "city"
+		},
+		{
+			"team": "guild",
+			"kind": "regulator",
+			"at": [
+				71,
+				15
+			],
+			"tag": "city"
+		},
+		{
+			"team": "guild",
+			"kind": "regulator",
+			"at": [
+				71,
+				22
+			],
+			"tag": "city"
+		},
+		{
+			"team": "guild",
+			"kind": "heavy_works",
+			"at": [
+				77,
+				25
+			],
+			"tag": "city",
+			"tags": [
+				"heavy"
+			],
+			"if": {
+				"all": [
+					{
+						"not": {
+							"past": {
+								"c01_thirteenth.gate": "people"
+							}
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"d02_exodus.drawings": "taken"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "families",
+			"kind": "cottage",
+			"at": [
+				68,
+				17
+			],
+			"tag": "house_1",
+			"tags": [
+				"houses",
+				"city"
+			],
+			"name": "A family's house"
+		},
+		{
+			"team": "families",
+			"kind": "cottage",
+			"at": [
+				68,
+				21
+			],
+			"tag": "house_2",
+			"tags": [
+				"houses",
+				"city"
+			],
+			"name": "A family's house"
+		},
+		{
+			"team": "families",
+			"kind": "cottage",
+			"at": [
+				71,
+				25
+			],
+			"tag": "house_3",
+			"tags": [
+				"houses",
+				"city"
+			],
+			"name": "A family's house",
+			"if": {
+				"not": {
+					"past": {
+						"d02_exodus.exodus": "few"
+					}
+				}
+			}
+		},
+		{
+			"team": "families",
+			"kind": "cottage",
+			"at": [
+				73,
+				29
+			],
+			"tag": "house_4",
+			"tags": [
+				"houses",
+				"city"
+			],
+			"name": "A family's house",
+			"if": {
+				"past": {
+					"d02_exodus.exodus": "many"
+				}
+			}
+		},
+		{
+			"team": "families",
+			"kind": "cottage",
+			"at": [
+				65,
+				19
+			],
+			"tag": "house_5",
+			"tags": [
+				"houses",
+				"city"
+			],
+			"name": "A family's house",
+			"if": {
+				"past": {
+					"c01_thirteenth.saved": "many"
+				}
+			}
+		},
+		{
+			"team": "town",
+			"kind": "church",
+			"at": [
+				18,
+				68
+			],
+			"tag": "church",
+			"name": "The valley's church"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				8,
+				66
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				10,
+				76
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				22,
+				84
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "militia",
+			"kind": "barracks",
+			"at": [
+				24,
+				72
+			],
+			"tag": "valley_b"
+		},
+		{
+			"team": "militia",
+			"kind": "horse_breeder",
+			"at": [
+				100,
+				82
+			],
+			"tag": "valley_b"
+		}
+	],
+	"objectives": [
+		{
+			"id": "tower",
+			"side": "guild",
+			"primary": true,
+			"kind": "build",
+			"tag": "tower",
+			"text": "Raise the Clocktower over the mine's old shaft: send your Winders to its site. Everything in the city runs from it.",
+			"phone": "Raise the Clocktower: Winders to its site."
+		},
+		{
+			"id": "spring",
+			"side": "guild",
+			"primary": false,
+			"kind": "build",
+			"tag": "spring",
+			"hidden": true,
+			"text": "Build the Mainspring at its site beside the Escapement. It winds the Tension the Clock Aviary and its Swifts are made with."
+		},
+		{
+			"id": "press",
+			"side": "guild",
+			"primary": false,
+			"kind": "build",
+			"tag": "press",
+			"hidden": true,
+			"text": "Build the Cog Press at its site north of the tower: it brings the cogs that pay for soldiers at the Light Works."
+		},
+		{
+			"id": "aviary",
+			"side": "guild",
+			"primary": false,
+			"kind": "build",
+			"tag": "aviary",
+			"hidden": true,
+			"text": "Build the CLOCK AVIARY at its site: the machines' birds fly from it."
+		},
+		{
+			"id": "swifts",
+			"side": "guild",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Make two Swifts at the Clock Aviary: {swifts} of 2. Pick the Aviary and press SWIFT."
+		},
+		{
+			"id": "map",
+			"side": "guild",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Map the three ways up to the plateau: {mapped} of 3. Fly a Swift over the cart road (west), the pine path (north-west) and the ranch track (south). The land stays dark, and whoever walks on it unseen, until a Swift has flown over it.",
+			"phone": "Map the three ways up: {mapped} of 3. Fly a Swift over each."
+		},
+		{
+			"id": "captain_clock",
+			"side": "guild",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "captain",
+			"hidden": true,
+			"text": "The valley's captain rides up the cart road in {clock:captain}."
+		},
+		{
+			"id": "parley",
+			"side": "guild",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The valley's captain waits on the cart road below the west ramp to talk. Walk Meister Hollweg down to him and keep him there a moment: the council's speaker goes with him."
+		},
+		{
+			"id": "raid",
+			"side": "guild",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The valley's men are on the plateau: drive them off. {raid_left} left."
+		},
+		{
+			"id": "quarter",
+			"side": "guild",
+			"primary": true,
+			"kind": "manual",
+			"text": "The first quarter must stand: {houses} of {houses_n} houses."
+		},
+		{
+			"id": "hollweg",
+			"side": "guild",
+			"primary": true,
+			"kind": "protect",
+			"tag": "hollweg",
+			"text": "Meister Hollweg must live. Hurt, he falls back to the tower."
+		},
+		{
+			"id": "fear",
+			"side": "guild",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The valley's people come up the road with torches. Your machines will strike no man of the valley: TURN THEM BACK (stand fighters round one, none of the militia by him, a moment) and PUT OUT the fires (any of your men by a burning building). Turned back: {turned_back}.",
+			"phone": "Turn the torch-bearers back (fighters round one) and put out fires. Turned back: {turned_back}."
+		},
+		{
+			"id": "temper",
+			"side": "guild",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The valley's temper: {temper} of {temper_top}. Every fire raises it, a burnt house twice; at the top the militia rides at once."
+		},
+		{
+			"id": "crates",
+			"side": "guild",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The crates of 2767 lie in the mine's deepest gallery (north-east, behind the spoil heaps). Bring Meister Hollweg there and keep him there a while: only he knows the seal."
+		},
+		{
+			"id": "attack",
+			"side": "guild",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The valley's militia attacks at dawn, up all three ways. Hold the city until the attack breaks: {attack_left} of the attackers left.",
+			"phone": "Hold the city until the attack breaks: {attack_left} left."
+		},
+		{
+			"id": "city_tower",
+			"side": "guild",
+			"primary": true,
+			"kind": "protect",
+			"tag": "tower",
+			"hidden": true,
+			"text": "The Clocktower must stand."
+		},
+		{
+			"id": "v_burn",
+			"side": "valley",
+			"primary": false,
+			"kind": "manual",
+			"text": "Burn the city's first quarter before it takes root: {houses} houses stand. Torches set them alight; muskets do the rest."
+		},
+		{
+			"id": "v_tower",
+			"side": "valley",
+			"primary": false,
+			"kind": "manual",
+			"text": "Or bring down the Clocktower, or Meister Hollweg himself."
+		}
+	],
+	"triggers": [
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "settlers",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "voice",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "townsfolk",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "church",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "town_b",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "valley_b",
+						"on": true
+					}
+				},
+				{
+					"counter": {
+						"name": "houses",
+						"count": {
+							"tag": "houses"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "houses_n",
+						"count": {
+							"tag": "houses"
+						}
+					}
+				},
+				{
+					"build": {
+						"team": "guild",
+						"kind": "clocktower",
+						"at": [
+							80,
+							18
+						],
+						"tag": "tower",
+						"tags": [
+							"city"
+						],
+						"site": true,
+						"name": "Concórdia's tower"
+					}
+				},
+				{
+					"give": {
+						"team": "guild",
+						"tension": 100
+					}
+				},
+				{
+					"wind": {
+						"tag": "army",
+						"share": 1.0
+					}
+				},
+				{
+					"max_hp": {
+						"tag": "houses",
+						"hp": 900
+					}
+				},
+				{
+					"chart": {
+						"side": "guild",
+						"team": "guild",
+						"known": [
+							"plateau",
+							"road_top"
+						]
+					}
+				},
+				{
+					"objective": {
+						"id": "tower",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"tag": "tower"
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_tempers",
+			"when": {
+				"time": 0.6
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper_top",
+						"set": 8
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_easy",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"difficulty": "easy"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper_top",
+						"set": 10
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_hard",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"difficulty": "hard"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper_top",
+						"set": 6
+					}
+				}
+			]
+		},
+		{
+			"id": "voice_name_m",
+			"when": {
+				"all": [
+					{
+						"time": 0.5
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"name": {
+						"tag": "voice",
+						"name": "Citizen Morel"
+					}
+				}
+			]
+		},
+		{
+			"id": "memory",
+			"when": {
+				"all": [
+					{
+						"time": 0.5
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"c01_thirteenth.gate": "people"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"d02_exodus.drawings": "taken"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"deny": {
+						"team": "guild",
+						"kind": [
+							"heavy_works",
+							"pendulum"
+						],
+						"why": "Hollweg is drawing the Heavy Works again from memory: not yet."
+					}
+				}
+			]
+		},
+		{
+			"id": "memory_say",
+			"when": {
+				"all": [
+					{
+						"time": 40
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"c01_thirteenth.gate": "people"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"d02_exodus.drawings": "taken"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"h_memory"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro",
+			"when": {
+				"time": 1.5
+			},
+			"do": [
+				{
+					"say": [
+						"h_1",
+						"u_tip1"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_dark",
+			"when": {
+				"fired": "intro"
+			},
+			"delay": 14,
+			"do": [
+				{
+					"say": [
+						"u_dark"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_v",
+			"when": {
+				"all": [
+					{
+						"fired": "intro"
+					},
+					{
+						"not": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				]
+			},
+			"delay": 26,
+			"do": [
+				{
+					"say": [
+						"v_1",
+						"h_v1",
+						"v_2"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_m",
+			"when": {
+				"all": [
+					{
+						"fired": "intro"
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"delay": 26,
+			"do": [
+				{
+					"say": [
+						"m_1",
+						"h_m1"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_valley",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "valley"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"a_v1",
+						"a_v_tip"
+					]
+				},
+				{
+					"objective": {
+						"id": "v_burn",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "v_tower",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "tower_built",
+			"when": {
+				"all": [
+					{
+						"done": "tower"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"h_tower",
+						"u_field",
+						"u_spring"
+					]
+				},
+				{
+					"build": {
+						"team": "guild",
+						"kind": "mainspring",
+						"at": [
+							90,
+							21
+						],
+						"tag": "spring",
+						"tags": [
+							"city"
+						],
+						"site": true
+					}
+				},
+				{
+					"objective": {
+						"id": "spring",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"tag": "spring"
+					}
+				},
+				{
+					"build": {
+						"team": "guild",
+						"kind": "cog_press",
+						"at": [
+							81,
+							12
+						],
+						"tag": "press",
+						"tags": [
+							"city"
+						],
+						"site": true
+					}
+				},
+				{
+					"objective": {
+						"id": "press",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "city_tower",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "captain",
+						"secs": 200
+					}
+				},
+				{
+					"objective": {
+						"id": "captain_clock",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "spring_built",
+			"when": {
+				"all": [
+					{
+						"done": "spring"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_aviary"
+					]
+				},
+				{
+					"build": {
+						"team": "guild",
+						"kind": "cuckoo_house",
+						"at": [
+							95,
+							23
+						],
+						"tag": "aviary",
+						"tags": [
+							"city"
+						],
+						"site": true
+					}
+				},
+				{
+					"objective": {
+						"id": "aviary",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"tag": "aviary"
+					}
+				}
+			]
+		},
+		{
+			"id": "aviary_built",
+			"when": {
+				"all": [
+					{
+						"done": "aviary"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_swifts"
+					]
+				},
+				{
+					"objective": {
+						"id": "swifts",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "swifts_n",
+			"when": {
+				"all": [
+					{
+						"fired": "aviary_built"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "swifts",
+						"count": {
+							"team": "guild",
+							"kind": "cuckoo"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "swifts_done",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "swifts",
+							"at_least": 2
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "swifts",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "map",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"h_map"
+					]
+				},
+				{
+					"ping": {
+						"area": "way_road"
+					}
+				},
+				{
+					"ping": {
+						"area": "way_path"
+					}
+				},
+				{
+					"ping": {
+						"area": "way_track"
+					}
+				}
+			]
+		},
+		{
+			"id": "map_road",
+			"when": {
+				"charted": {
+					"area": "way_road",
+					"at_least": 0.5
+				}
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "mapped",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_mapped"
+					]
+				}
+			]
+		},
+		{
+			"id": "map_path",
+			"when": {
+				"charted": {
+					"area": "way_path",
+					"at_least": 0.5
+				}
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "mapped",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_mapped"
+					]
+				}
+			]
+		},
+		{
+			"id": "map_track",
+			"when": {
+				"charted": {
+					"area": "way_track",
+					"at_least": 0.5
+				}
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "mapped",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_mapped"
+					]
+				}
+			]
+		},
+		{
+			"id": "map_all",
+			"when": {
+				"counter": {
+					"name": "mapped",
+					"at_least": 3
+				}
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "map",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"h_mapped_all"
+					]
+				}
+			]
+		},
+		{
+			"id": "captain_soon",
+			"when": {
+				"all": [
+					{
+						"fired": "map_all"
+					},
+					{
+						"fired": "tower_built"
+					},
+					{
+						"not": {
+							"fired": "captain"
+						}
+					},
+					{
+						"not": {
+							"clock_left": {
+								"name": "captain",
+								"below": 20
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "captain",
+						"secs": 20
+					}
+				}
+			]
+		},
+		{
+			"id": "crates_hint",
+			"when": {
+				"fired": "spring_built"
+			},
+			"delay": 22,
+			"do": [
+				{
+					"say": [
+						"h_crates_seen"
+					]
+				}
+			]
+		},
+		{
+			"id": "presses_tip",
+			"when": {
+				"fired": "spring_built"
+			},
+			"delay": 8,
+			"do": [
+				{
+					"say": [
+						"u_presses"
+					]
+				}
+			]
+		},
+		{
+			"id": "captain",
+			"when": {
+				"all": [
+					{
+						"clock_out": "captain"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "captain_clock",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "parley_go",
+			"when": {
+				"all": [
+					{
+						"fired": "captain"
+					},
+					{
+						"past": {
+							"a04_visit.broken": "melted"
+						}
+					},
+					{
+						"not": {
+							"playing": "valley"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "cuirassier",
+						"count": 1,
+						"at": "road_top",
+						"tag": "arruda",
+						"tags": [
+							"militia_men"
+						],
+						"as": "arruda"
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "road_top",
+						"tag": "escort",
+						"tags": [
+							"militia_men"
+						],
+						"as": "rancher"
+					}
+				},
+				{
+					"order": {
+						"tag": "arruda",
+						"do": "hold"
+					}
+				},
+				{
+					"order": {
+						"tag": "escort",
+						"do": "hold"
+					}
+				},
+				{
+					"spare": {
+						"tag": "arruda",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "escort",
+						"on": true
+					}
+				},
+				{
+					"say": [
+						"u_captain",
+						"a_wait",
+						"u_parley"
+					]
+				},
+				{
+					"objective": {
+						"id": "parley",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"area": "parley"
+					}
+				},
+				{
+					"order": {
+						"tag": "voice",
+						"do": "follow",
+						"leader": "hollweg",
+						"within": 2
+					}
+				},
+				{
+					"clock": {
+						"name": "parley",
+						"secs": 90
+					}
+				}
+			]
+		},
+		{
+			"id": "parley",
+			"when": {
+				"all": [
+					{
+						"fired": "parley_go"
+					},
+					{
+						"stay": {
+							"tag": "hollweg",
+							"area": "parley",
+							"secs": 3
+						}
+					},
+					{
+						"stay": {
+							"tag": "voice",
+							"area": "parley",
+							"secs": 3
+						}
+					},
+					{
+						"not": {
+							"fired": "parley_fail"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"a_parley1",
+						"h_parley"
+					]
+				},
+				{
+					"objective": {
+						"id": "parley",
+						"set": "done"
+					}
+				},
+				{
+					"clock": {
+						"name": "parley",
+						"stop": true
+					}
+				}
+			]
+		},
+		{
+			"id": "parley_v",
+			"when": {
+				"all": [
+					{
+						"fired": "parley"
+					},
+					{
+						"not": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_parley",
+						"a_parley2",
+						"n_parley"
+					]
+				}
+			]
+		},
+		{
+			"id": "parley_m",
+			"when": {
+				"all": [
+					{
+						"fired": "parley"
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"m_parley",
+						"a_parley2",
+						"n_parley"
+					]
+				}
+			]
+		},
+		{
+			"id": "parley_home",
+			"when": {
+				"fired": "parley"
+			},
+			"delay": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "voice",
+						"do": "move",
+						"to": "tower_area"
+					}
+				},
+				{
+					"order": {
+						"tag": "arruda",
+						"do": "move",
+						"to": "home_exit"
+					}
+				},
+				{
+					"order": {
+						"tag": "escort",
+						"do": "move",
+						"to": "home_exit"
+					}
+				}
+			]
+		},
+		{
+			"id": "parley_gone",
+			"when": {
+				"fired": "parley_home"
+			},
+			"delay": 25,
+			"do": [
+				{
+					"remove": {
+						"tag": "arruda"
+					}
+				},
+				{
+					"remove": {
+						"tag": "escort"
+					}
+				}
+			]
+		},
+		{
+			"id": "parley_fail",
+			"when": {
+				"all": [
+					{
+						"fired": "parley_go"
+					},
+					{
+						"clock_out": "parley"
+					},
+					{
+						"not": {
+							"fired": "parley"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"a_nobody"
+					]
+				},
+				{
+					"objective": {
+						"id": "parley",
+						"set": "failed"
+					}
+				},
+				{
+					"order": {
+						"tag": "voice",
+						"do": "move",
+						"to": "tower_area"
+					}
+				},
+				{
+					"spare": {
+						"tag": "arruda",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "escort",
+						"on": false
+					}
+				},
+				{
+					"order": {
+						"tag": "arruda",
+						"do": "route",
+						"route": [
+							"ramp_road",
+							"quarter",
+							"tower_area"
+						],
+						"attack": true,
+						"name": "arruda_raid"
+					}
+				},
+				{
+					"order": {
+						"tag": "escort",
+						"do": "route",
+						"route": [
+							"ramp_road",
+							"quarter",
+							"tower_area"
+						],
+						"attack": true,
+						"name": "escort_raid"
+					}
+				}
+			]
+		},
+		{
+			"id": "raid",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"all": [
+									{
+										"fired": "captain"
+									},
+									{
+										"not": {
+											"past": {
+												"a04_visit.broken": "melted"
+											}
+										}
+									}
+								]
+							},
+							{
+								"fired": "parley_fail"
+							}
+						]
+					},
+					{
+						"not": {
+							"playing": "valley"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "musketeer",
+						"count": 3,
+						"at": "road_low",
+						"tag": "raid",
+						"tags": [
+							"militia_men"
+						],
+						"as": "valley_militia"
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "road_low",
+						"tag": "raid",
+						"tags": [
+							"militia_men"
+						],
+						"as": "rancher"
+					}
+				},
+				{
+					"order": {
+						"tag": "raid",
+						"do": "route",
+						"route": [
+							"road_low",
+							"road_mid",
+							"road_top",
+							"ramp_road",
+							"west_field",
+							"tower_area"
+						],
+						"attack": true,
+						"name": "raid_road"
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "path_w",
+						"tag": "raid",
+						"tags": [
+							"militia_men"
+						],
+						"as": "rancher"
+					}
+				},
+				{
+					"order": {
+						"tag": "raid",
+						"do": "route",
+						"route": [
+							"path_w",
+							"path_e",
+							"ramp_path",
+							"tower_area"
+						],
+						"attack": true,
+						"name": "raid_path"
+					}
+				},
+				{
+					"objective": {
+						"id": "raid",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "parley",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "raid_say",
+			"when": {
+				"all": [
+					{
+						"fired": "raid"
+					},
+					{
+						"charted": {
+							"area": "way_road",
+							"at_least": 0.5
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"say": [
+						"u_raid"
+					]
+				},
+				{
+					"ping": {
+						"area": "road_mid"
+					}
+				}
+			]
+		},
+		{
+			"id": "raid_say_dark",
+			"when": {
+				"all": [
+					{
+						"fired": "raid"
+					},
+					{
+						"not": {
+							"charted": {
+								"area": "way_road",
+								"at_least": 0.5
+							}
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"say": [
+						"u_raid_dark"
+					]
+				}
+			]
+		},
+		{
+			"id": "raid_left_n",
+			"when": {
+				"all": [
+					{
+						"fired": "raid"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "raid_left",
+						"count": {
+							"tag": "raid"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "raid_over",
+			"when": {
+				"all": [
+					{
+						"fired": "raid"
+					},
+					{
+						"time": 1
+					},
+					{
+						"count": {
+							"tag": "raid",
+							"below": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "arruda",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"objective": {
+						"id": "raid",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"h_raid_over"
+					]
+				}
+			]
+		},
+		{
+			"id": "part1_over",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "raid_over"
+							},
+							{
+								"fired": "parley_gone"
+							},
+							{
+								"all": [
+									{
+										"fired": "captain"
+									},
+									{
+										"playing": "valley"
+									}
+								]
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": []
+		},
+		{
+			"id": "part1_late",
+			"when": {
+				"all": [
+					{
+						"fired": "captain"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 200,
+			"do": []
+		},
+		{
+			"id": "dusk",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "part1_over"
+							},
+							{
+								"fired": "part1_late"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"light": {
+						"to": "dusk",
+						"secs": 12
+					}
+				},
+				{
+					"say": [
+						"u_dusk"
+					]
+				},
+				{
+					"objective": {
+						"id": "spring",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "press",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "aviary",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "swifts",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "map",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "raid",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"fired": "dusk"
+			},
+			"delay": 12,
+			"do": [
+				{
+					"light": {
+						"to": "night",
+						"secs": 15
+					}
+				},
+				{
+					"say": [
+						"n_fear"
+					]
+				},
+				{
+					"objective": {
+						"id": "fear",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "temper",
+						"set": "active"
+					}
+				},
+				{
+					"unlock": {
+						"team": "guild",
+						"kind": [
+							"heavy_works",
+							"pendulum"
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_say",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"h_fear",
+						"u_fear"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2_v",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				]
+			},
+			"delay": 30,
+			"do": [
+				{
+					"say": [
+						"v_fear"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2_m",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"delay": 30,
+			"do": [
+				{
+					"say": [
+						"m_fear",
+						"h_m_fear"
+					]
+				}
+			]
+		},
+		{
+			"id": "memory_done",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"c01_thirteenth.gate": "people"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"d02_exodus.drawings": "taken"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"build": {
+						"team": "guild",
+						"kind": "heavy_works",
+						"at": [
+							77,
+							25
+						],
+						"tag": "heavy",
+						"tags": [
+							"city"
+						],
+						"site": true
+					}
+				}
+			]
+		},
+		{
+			"id": "turned_go",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "turned",
+						"only_team": "calmed",
+						"do": "move",
+						"to": "home_exit"
+					}
+				}
+			]
+		},
+		{
+			"id": "mob_1",
+			"when": {
+				"all": {
+					"fired": "part2"
+				}
+			},
+			"delay": 8,
+			"do": [
+				{
+					"spawn": {
+						"team": "town",
+						"kind": "labourer",
+						"as": "colonist_torch",
+						"count": 3,
+						"at": "road_low",
+						"tag": "mob"
+					}
+				},
+				{
+					"spawn": {
+						"team": "town",
+						"kind": "labourer",
+						"as": "colonist_torch",
+						"count": 1,
+						"at": "road_low",
+						"tag": "mob",
+						"if": {
+							"not": {
+								"past": {
+									"a04_visit.broken": "melted"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spare": {
+						"tag": "mob",
+						"on": true
+					}
+				},
+				{
+					"order": {
+						"tag": "mob",
+						"only_team": "town",
+						"do": "route",
+						"route": [
+							"road_mid",
+							"road_top",
+							"ramp_road",
+							"quarter"
+						],
+						"name": "mob_road_1"
+					}
+				},
+				{
+					"ping": {
+						"area": "road_mid"
+					}
+				}
+			]
+		},
+		{
+			"id": "mob_2",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "boil"
+						}
+					},
+					{
+						"time": 1
+					}
+				]
+			},
+			"delay": 48,
+			"do": [
+				{
+					"spawn": {
+						"team": "town",
+						"kind": "labourer",
+						"as": "colonist_torch",
+						"count": 4,
+						"at": "road_low",
+						"tag": "mob"
+					}
+				},
+				{
+					"spawn": {
+						"team": "town",
+						"kind": "labourer",
+						"as": "colonist_torch",
+						"count": 1,
+						"at": "road_low",
+						"tag": "mob",
+						"if": {
+							"not": {
+								"past": {
+									"a04_visit.broken": "melted"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spare": {
+						"tag": "mob",
+						"on": true
+					}
+				},
+				{
+					"order": {
+						"tag": "mob",
+						"only_team": "town",
+						"do": "route",
+						"route": [
+							"road_mid",
+							"road_top",
+							"ramp_road",
+							"quarter"
+						],
+						"name": "mob_road_2"
+					}
+				},
+				{
+					"ping": {
+						"area": "road_mid"
+					}
+				},
+				{
+					"say": [
+						"n_crowd2"
+					]
+				}
+			]
+		},
+		{
+			"id": "mob_3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "boil"
+						}
+					},
+					{
+						"time": 1
+					}
+				]
+			},
+			"delay": 88,
+			"do": [
+				{
+					"spawn": {
+						"team": "town",
+						"kind": "labourer",
+						"as": "colonist_torch",
+						"count": 4,
+						"at": "road_low",
+						"tag": "mob"
+					}
+				},
+				{
+					"spawn": {
+						"team": "town",
+						"kind": "labourer",
+						"as": "colonist_torch",
+						"count": 1,
+						"at": "road_low",
+						"tag": "mob",
+						"if": {
+							"not": {
+								"past": {
+									"a04_visit.broken": "melted"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spare": {
+						"tag": "mob",
+						"on": true
+					}
+				},
+				{
+					"order": {
+						"tag": "mob",
+						"only_team": "town",
+						"do": "route",
+						"route": [
+							"road_mid",
+							"road_top",
+							"ramp_road",
+							"quarter"
+						],
+						"name": "mob_road_3"
+					}
+				},
+				{
+					"ping": {
+						"area": "road_mid"
+					}
+				},
+				{
+					"say": [
+						"n_crowd3"
+					]
+				}
+			]
+		},
+		{
+			"id": "fire_say",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"counter": {
+							"name": "temper",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_fire"
+					]
+				}
+			]
+		},
+		{
+			"id": "temper_say",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"counter": {
+							"name": "temper",
+							"at_least": 3
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_temper"
+					]
+				}
+			]
+		},
+		{
+			"id": "house_lost_1",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"dead": "house_1"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_house_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "house_lost_2",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"dead": "house_2"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_house_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "house_lost_3",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"dead": "house_3"
+					},
+					{
+						"not": {
+							"past": {
+								"d02_exodus.exodus": "few"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_house_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "house_lost_4",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"dead": "house_4"
+					},
+					{
+						"past": {
+							"d02_exodus.exodus": "many"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_house_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "house_lost_5",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"dead": "house_5"
+					},
+					{
+						"past": {
+							"c01_thirteenth.saved": "many"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_house_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "house_temper_1",
+			"when": {
+				"all": [
+					{
+						"fired": "house_lost_1"
+					},
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "house_temper_2",
+			"when": {
+				"all": [
+					{
+						"fired": "house_lost_2"
+					},
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "house_temper_3",
+			"when": {
+				"all": [
+					{
+						"fired": "house_lost_3"
+					},
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "house_temper_4",
+			"when": {
+				"all": [
+					{
+						"fired": "house_lost_4"
+					},
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "house_temper_5",
+			"when": {
+				"all": [
+					{
+						"fired": "house_lost_5"
+					},
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "houses_n",
+			"when": {
+				"time": 2
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "houses",
+						"count": {
+							"tag": "houses"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "anselmo",
+			"when": {
+				"fired": "mob_3"
+			},
+			"delay": 25,
+			"do": [
+				{
+					"spawn": {
+						"team": "town",
+						"kind": "missionary",
+						"as": "anselmo",
+						"count": 1,
+						"at": "road_low",
+						"tag": "anselmo"
+					}
+				},
+				{
+					"spare": {
+						"tag": "anselmo",
+						"on": true
+					}
+				},
+				{
+					"say": [
+						"n_anselmo"
+					]
+				},
+				{
+					"ping": {
+						"area": "road_low"
+					}
+				},
+				{
+					"order": {
+						"tag": "anselmo",
+						"do": "route",
+						"route": [
+							"road_mid",
+							"road_top"
+						],
+						"name": "anselmo_up"
+					}
+				}
+			]
+		},
+		{
+			"id": "anselmo_calls",
+			"when": {
+				"all": [
+					{
+						"fired": "anselmo"
+					},
+					{
+						"any": [
+							{
+								"route_done": "anselmo_up"
+							},
+							{
+								"fired": "anselmo_late"
+							}
+						]
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"p_1",
+						"p_2",
+						"n_home"
+					]
+				},
+				{
+					"convert": {
+						"tag": "mob",
+						"to": "calmed",
+						"as": "gone_home",
+						"warn": 1,
+						"untorch": true
+					}
+				},
+				{
+					"order": {
+						"tag": "anselmo",
+						"do": "move",
+						"to": "home_exit"
+					}
+				}
+			]
+		},
+		{
+			"id": "anselmo_late",
+			"when": {
+				"fired": "anselmo"
+			},
+			"delay": 40,
+			"do": []
+		},
+		{
+			"id": "anselmo_hollweg",
+			"when": {
+				"fired": "anselmo_calls"
+			},
+			"delay": 6,
+			"do": [
+				{
+					"say": [
+						"h_anselmo"
+					]
+				}
+			]
+		},
+		{
+			"id": "gone_home_go",
+			"when": {
+				"all": [
+					{
+						"fired": "anselmo_calls"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 1.5,
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "gone_home",
+						"only_team": "calmed",
+						"do": "move",
+						"to": "home_exit"
+					}
+				},
+				{
+					"order": {
+						"tag": "anselmo",
+						"do": "move",
+						"to": "home_exit"
+					}
+				}
+			]
+		},
+		{
+			"id": "anselmo_gone",
+			"when": {
+				"fired": "anselmo_calls"
+			},
+			"delay": 30,
+			"do": [
+				{
+					"remove": {
+						"tag": "anselmo"
+					}
+				}
+			]
+		},
+		{
+			"id": "boil",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"any": [
+							{
+								"all": [
+									{
+										"difficulty": "easy"
+									},
+									{
+										"counter": {
+											"name": "temper",
+											"at_least": 10
+										}
+									}
+								]
+							},
+							{
+								"all": [
+									{
+										"difficulty": "normal"
+									},
+									{
+										"counter": {
+											"name": "temper",
+											"at_least": 8
+										}
+									}
+								]
+							},
+							{
+								"all": [
+									{
+										"difficulty": "hard"
+									},
+									{
+										"counter": {
+											"name": "temper",
+											"at_least": 6
+										}
+									}
+								]
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_boil",
+						"h_boil"
+					]
+				},
+				{
+					"flag": {
+						"colonists": "fought"
+					}
+				}
+			]
+		},
+		{
+			"id": "boil_home",
+			"when": {
+				"all": [
+					{
+						"fired": "boil"
+					},
+					{
+						"not": {
+							"fired": "anselmo_calls"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"convert": {
+						"tag": "mob",
+						"to": "calmed",
+						"as": "gone_home",
+						"warn": 1,
+						"untorch": true
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_over",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "anselmo_calls"
+							},
+							{
+								"fired": "boil"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 18,
+			"do": []
+		},
+		{
+			"id": "part2_boil",
+			"when": {
+				"fired": "boil"
+			},
+			"delay": 3,
+			"do": []
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "part2_over"
+							},
+							{
+								"fired": "part2_boil"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"light": {
+						"to": "dawn",
+						"secs": 20
+					}
+				},
+				{
+					"objective": {
+						"id": "fear",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "temper",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "crates",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"area": "gallery"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3_say",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"fired": "boil"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_dawn",
+						"h_crates1",
+						"u_crates"
+					]
+				}
+			]
+		},
+		{
+			"id": "part3_say_b",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"fired": "boil"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"h_crates1",
+						"u_crates"
+					]
+				}
+			]
+		},
+		{
+			"id": "crates_open",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"stay": {
+							"tag": "hollweg",
+							"area": "gallery",
+							"secs": 8
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "guild",
+						"kind": "clock_soldier",
+						"as": "crate_soldier",
+						"count": 2,
+						"at": "gallery",
+						"tag": "army",
+						"tags": [
+							"crate_men"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "guild",
+						"kind": "winder",
+						"count": 1,
+						"at": "gallery",
+						"tag": "army",
+						"tags": [
+							"crate_men"
+						]
+					}
+				},
+				{
+					"show": {
+						"pages": [
+							{
+								"still": "crates",
+								"lines": [
+									"n_opened",
+									"h_opened"
+								]
+							}
+						]
+					}
+				},
+				{
+					"flag": {
+						"crates": "opened"
+					}
+				},
+				{
+					"objective": {
+						"id": "crates",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "plates",
+			"when": {
+				"all": [
+					{
+						"fired": "crates_open"
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"c01_thirteenth.gate": "people"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"d02_exodus.drawings": "taken"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"ground": {
+						"name": "plates",
+						"at": "gallery",
+						"kind": "gear",
+						"team": "guild",
+						"r": 2,
+						"step": 1,
+						"every": 8,
+						"max": 12,
+						"wind": 0.05
+					}
+				}
+			]
+		},
+		{
+			"id": "plates_slow",
+			"when": {
+				"all": [
+					{
+						"fired": "crates_open"
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"c01_thirteenth.gate": "people"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"d02_exodus.drawings": "taken"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"ground": {
+						"name": "plates",
+						"at": "gallery",
+						"kind": "gear",
+						"team": "guild",
+						"r": 2,
+						"step": 1,
+						"every": 14,
+						"max": 9,
+						"wind": 0.05
+					}
+				}
+			]
+		},
+		{
+			"id": "plates_say",
+			"when": {
+				"fired": "crates_open"
+			},
+			"delay": 14,
+			"do": [
+				{
+					"say": [
+						"u_plates",
+						"h_plates"
+					]
+				}
+			]
+		},
+		{
+			"id": "jakob_say",
+			"when": {
+				"fired": "plates_say"
+			},
+			"delay": 10,
+			"do": [
+				{
+					"say": [
+						"h_jakob"
+					]
+				}
+			]
+		},
+		{
+			"id": "attack_time",
+			"when": {
+				"fired": "part3"
+			},
+			"delay": 40,
+			"do": []
+		},
+		{
+			"id": "attack_soon",
+			"when": {
+				"fired": "crates_open"
+			},
+			"delay": 12,
+			"do": []
+		},
+		{
+			"id": "attack",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "attack_time"
+							},
+							{
+								"fired": "attack_soon"
+							},
+							{
+								"fired": "boil"
+							}
+						]
+					},
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "cuirassier",
+						"count": 1,
+						"at": "road_low",
+						"tag": "attack",
+						"tags": [
+							"militia_men",
+							"arruda",
+							"road_men"
+						],
+						"as": "arruda"
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "musketeer",
+						"count": 4,
+						"at": "road_low",
+						"tag": "attack",
+						"tags": [
+							"militia_men",
+							"road_men"
+						],
+						"as": "valley_militia",
+						"if": {
+							"not": {
+								"fired": "parley"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "cuirassier",
+						"count": 1,
+						"at": "road_low",
+						"tag": "attack",
+						"tags": [
+							"militia_men",
+							"road_men"
+						],
+						"as": "rancher",
+						"if": {
+							"not": {
+								"fired": "parley"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "musketeer",
+						"count": 3,
+						"at": "road_low",
+						"tag": "attack",
+						"tags": [
+							"militia_men",
+							"road_men"
+						],
+						"as": "valley_militia",
+						"if": {
+							"fired": "parley"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "cuirassier",
+						"count": 1,
+						"at": "road_low",
+						"tag": "attack",
+						"tags": [
+							"militia_men",
+							"road_men"
+						],
+						"as": "rancher",
+						"if": {
+							"fired": "parley"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "musketeer",
+						"count": 2,
+						"at": "road_low",
+						"tag": "attack",
+						"tags": [
+							"militia_men",
+							"road_men"
+						],
+						"as": "valley_militia",
+						"if": {
+							"fired": "boil"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "cuirassier",
+						"count": 3,
+						"at": "track_low",
+						"tag": "attack",
+						"tags": [
+							"militia_men",
+							"track_men"
+						],
+						"as": "rancher",
+						"if": {
+							"not": {
+								"fired": "parley"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "track_low",
+						"tag": "attack",
+						"tags": [
+							"militia_men",
+							"track_men"
+						],
+						"as": "rancher",
+						"if": {
+							"fired": "parley"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "cuirassier",
+						"count": 1,
+						"at": "track_low",
+						"tag": "attack",
+						"tags": [
+							"militia_men",
+							"track_men"
+						],
+						"as": "rancher",
+						"if": {
+							"fired": "boil"
+						}
+					}
+				},
+				{
+					"objective": {
+						"id": "attack",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"secs": 240
+					}
+				},
+				{
+					"ping": {
+						"area": "road_mid"
+					}
+				},
+				{
+					"ping": {
+						"area": "track_low"
+					}
+				}
+			]
+		},
+		{
+			"id": "attack_go",
+			"when": {
+				"all": [
+					{
+						"fired": "attack"
+					},
+					{
+						"not": {
+							"playing": "valley"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "track_men",
+						"do": "route",
+						"route": [
+							"track_low",
+							"ramp_track",
+							"tower_area"
+						],
+						"attack": true,
+						"name": "attack_track"
+					}
+				},
+				{
+					"order": {
+						"tag": "road_men",
+						"do": "route",
+						"route": [
+							"road_mid",
+							"road_top",
+							"ramp_road",
+							"quarter",
+							"tower_area"
+						],
+						"attack": true,
+						"name": "attack_road"
+					}
+				}
+			]
+		},
+		{
+			"id": "attack_say",
+			"when": {
+				"fired": "attack"
+			},
+			"do": [
+				{
+					"say": [
+						"u_attack",
+						"a_attack",
+						"h_attack"
+					]
+				}
+			]
+		},
+		{
+			"id": "attack_say_p",
+			"when": {
+				"all": [
+					{
+						"fired": "attack"
+					},
+					{
+						"fired": "parley"
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"say": [
+						"a_attack_p"
+					]
+				}
+			]
+		},
+		{
+			"id": "attack_path",
+			"when": {
+				"all": [
+					{
+						"fired": "attack"
+					},
+					{
+						"not": {
+							"fired": "parley"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "musketeer",
+						"count": 2,
+						"at": "path_w",
+						"tag": "attack",
+						"tags": [
+							"militia_men",
+							"path_men"
+						],
+						"as": "valley_militia"
+					}
+				},
+				{
+					"spawn": {
+						"team": "militia",
+						"kind": "cuirassier",
+						"count": 1,
+						"at": "path_w",
+						"tag": "attack",
+						"tags": [
+							"militia_men",
+							"path_men"
+						],
+						"as": "rancher"
+					}
+				},
+				{
+					"say": [
+						"n_path"
+					]
+				}
+			]
+		},
+		{
+			"id": "attack_path_go",
+			"when": {
+				"all": [
+					{
+						"fired": "attack_path"
+					},
+					{
+						"not": {
+							"playing": "valley"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "path_men",
+						"do": "route",
+						"route": [
+							"path_w",
+							"path_e",
+							"ramp_path",
+							"tower_area"
+						],
+						"attack": true,
+						"name": "attack_path"
+					}
+				}
+			]
+		},
+		{
+			"id": "attack_n",
+			"when": {
+				"all": [
+					{
+						"fired": "attack"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "attack_left",
+						"count": {
+							"tag": "attack"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "assault",
+			"when": {
+				"all": [
+					{
+						"fired": "attack"
+					},
+					{
+						"not": {
+							"playing": "valley"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 45,
+			"every": 15,
+			"do": [
+				{
+					"order": {
+						"tag": "attack",
+						"do": "attack",
+						"to": "tower_area",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "attack_spent",
+			"when": {
+				"all": [
+					{
+						"fired": "attack"
+					},
+					{
+						"any": [
+							{
+								"fired": "attack_path"
+							},
+							{
+								"fired": "parley"
+							},
+							{
+								"fired": "boil"
+							}
+						]
+					}
+				]
+			},
+			"delay": 3,
+			"do": []
+		},
+		{
+			"id": "break",
+			"when": {
+				"all": [
+					{
+						"fired": "attack_spent"
+					},
+					{
+						"any": [
+							{
+								"counter": {
+									"name": "attack_left",
+									"below": 4
+								}
+							},
+							{
+								"clock_out": "dawn"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"a_break",
+						"n_break"
+					]
+				},
+				{
+					"objective": {
+						"id": "attack",
+						"set": "done"
+					}
+				},
+				{
+					"order": {
+						"tag": "attack",
+						"do": "move",
+						"to": "home_exit"
+					}
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"stop": true
+					}
+				}
+			]
+		},
+		{
+			"id": "won",
+			"when": {
+				"all": [
+					{
+						"fired": "break"
+					},
+					{
+						"done": "crates"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"h_concord"
+					]
+				},
+				{
+					"light": {
+						"to": "day",
+						"secs": 6
+					}
+				},
+				{
+					"flag": {
+						"crates": "opened"
+					}
+				}
+			]
+		},
+		{
+			"id": "flags_parley",
+			"when": {
+				"all": [
+					{
+						"fired": "won"
+					},
+					{
+						"fired": "parley"
+					},
+					{
+						"not": {
+							"fired": "boil"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"colonists": "parley"
+					}
+				}
+			]
+		},
+		{
+			"id": "flags_fought",
+			"when": {
+				"all": [
+					{
+						"fired": "won"
+					},
+					{
+						"any": [
+							{
+								"not": {
+									"fired": "parley"
+								}
+							},
+							{
+								"fired": "boil"
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"colonists": "fought"
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"fired": "won"
+			},
+			"delay": 4,
+			"do": [
+				{
+					"win": "guild"
+				}
+			]
+		},
+		{
+			"id": "tower_lost",
+			"when": {
+				"all": [
+					{
+						"fired": "tower_built"
+					},
+					{
+						"count": {
+							"tag": "tower",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_tower_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "city_tower",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "quarter_lost",
+			"when": {
+				"all": [
+					{
+						"time": 3
+					},
+					{
+						"count": {
+							"tag": "houses",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_quarter_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "quarter",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "lost_flags",
+			"when": {
+				"any": [
+					{
+						"fired": "tower_lost"
+					},
+					{
+						"fired": "quarter_lost"
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"colonists": "fought"
+					}
+				}
+			]
+		},
+		{
+			"id": "v_won",
+			"when": {
+				"all": [
+					{
+						"playing": "valley"
+					},
+					{
+						"any": [
+							{
+								"fired": "tower_lost"
+							},
+							{
+								"fired": "quarter_lost"
+							},
+							{
+								"dead": "hollweg"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": []
+		},
+		{
+			"id": "v_end",
+			"when": {
+				"fired": "v_won"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"win": "valley"
+				}
+			]
+		},
+		{
+			"id": "lost_end",
+			"when": {
+				"all": [
+					{
+						"not": {
+							"playing": "valley"
+						}
+					},
+					{
+						"any": [
+							{
+								"fired": "tower_lost"
+							},
+							{
+								"fired": "quarter_lost"
+							}
+						]
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"lose": "guild"
+				}
+			]
+		},
+		{
+			"id": "hollweg_hurt",
+			"when": {
+				"hp": {
+					"tag": "hollweg",
+					"below": 0.6
+				}
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"h_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "hollweg"
+					}
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 8
+			},
+			"do": [
+				{
+					"say": [
+						"new_cuckoo_house",
+						"new_cuckoo"
+					]
+				}
+			]
+		}
+	],
+	"heroes": [
+		"hollweg"
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "guild",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"hollweg": {
+			"name": "Meister Hollweg",
+			"side": "guild",
+			"portrait": "res://campaign/hub/nuremberg_hollweg_face.png"
+		},
+		"ulrich": {
+			"name": "Master Ulrich",
+			"side": "guild"
+		},
+		"varenne": {
+			"name": "Etienne Varenne",
+			"side": "guild"
+		},
+		"morel": {
+			"name": "Citizen Morel",
+			"side": "guild"
+		},
+		"arruda": {
+			"name": "Captain Arruda",
+			"side": "valley"
+		},
+		"anselmo": {
+			"name": "Padre Anselmo",
+			"side": "valley"
+		},
+		"narrator": {
+			"name": "Concórdia",
+			"side": "guild"
+		},
+		"new": {
+			"name": "NEW IN YOUR ARMY",
+			"side": "guild"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "He named it for concord. The valley named it otherwise."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "Two years after he left my Crown, Hollweg bought a dead mine at the bottom of the world, and built a city on it that answered to nobody."
+		},
+		"h_open1": {
+			"who": "hollweg",
+			"text": "A city that governs itself. A council of masters, every voice a wheel, and the wheels in time. That was the plan."
+		},
+		"h_open2": {
+			"who": "hollweg",
+			"text": "Rome had said those very words were a sin. I said them louder."
+		},
+		"h_open_v": {
+			"who": "hollweg",
+			"text": "A ship from Lisbon brought us a man I never thought I would need: Etienne Varenne, the Assembly's orator, whom the King had spared and sent away."
+		},
+		"h_open_m": {
+			"who": "hollweg",
+			"text": "A ship from Lisbon brought us one of the Assembly's men, Citizen Morel. Varenne was dead. Morel had not forgiven anyone for it."
+		},
+		"h_1": {
+			"who": "hollweg",
+			"text": "The tower first. Over the old shaft, where the ground is sound. Everything else turns round it.",
+			"to": "guild"
+		},
+		"u_tip1": {
+			"who": "ulrich",
+			"text": "The tower's site is marked by the shaft, Meister. Send the Winders; four hands raise it quickly.",
+			"to": "guild"
+		},
+		"u_dark": {
+			"who": "ulrich",
+			"text": "And look how little we know of this place. Everything off the plateau is dark to us: anyone could walk up those roads and we would not see him.",
+			"to": "guild"
+		},
+		"h_tower": {
+			"who": "hollweg",
+			"text": "The tower stands. Now the spring, then the birds. I want this country mapped from the air, every road, before the first winter.",
+			"to": "guild"
+		},
+		"u_field": {
+			"who": "ulrich",
+			"text": "The tower's gears are turning, Meister. Keep the soldiers on the gear rings round our buildings: there they stay wound. Off the gears they run down in a minute or so.",
+			"to": "guild"
+		},
+		"u_spring": {
+			"who": "ulrich",
+			"text": "The Aviary runs on Tension, Meister, and Tension comes from the Mainspring. Its site is by the Escapement.",
+			"to": "guild"
+		},
+		"u_presses": {
+			"who": "ulrich",
+			"text": "While the Aviary rises: the city has cogs for now, not for ever. The press north of the tower brings more, and the Light Works turns them into soldiers.",
+			"to": "guild"
+		},
+		"u_aviary": {
+			"who": "ulrich",
+			"text": "The spring is wound. Now the Aviary: its site is east of the tower. A Winder or two will raise it.",
+			"to": "guild"
+		},
+		"u_swifts": {
+			"who": "ulrich",
+			"text": "The Aviary is up. Pick it and make Swifts. Little brass birds: they fight only other birds, but they see a long way.",
+			"to": "guild"
+		},
+		"h_map": {
+			"who": "hollweg",
+			"text": "Fly them down the three ways: the cart road west, the pine path north-west, the ranch track south. What a bird has seen, the guild knows.",
+			"to": "guild"
+		},
+		"n_mapped": {
+			"who": "narrator",
+			"text": "A way up is mapped.",
+			"to": "guild"
+		},
+		"h_mapped_all": {
+			"who": "hollweg",
+			"text": "There. The whole country under one eye. From above, every road is only a gear's tooth.",
+			"to": "guild"
+		},
+		"v_1": {
+			"who": "varenne",
+			"text": "A city without a lord, Meister. I have heard this sermon before. I preached it, in Virginia and in Paris.",
+			"to": "guild"
+		},
+		"h_v1": {
+			"who": "hollweg",
+			"text": "Yours was made of men, Varenne. Mine is made of wheels. Wheels keep time.",
+			"to": "guild"
+		},
+		"v_2": {
+			"who": "varenne",
+			"text": "Paris burned keeping time. I watched it from a boat.",
+			"to": "guild"
+		},
+		"m_1": {
+			"who": "morel",
+			"text": "No lord and no bishop. Good. Then let the valley learn it too, Meister, and quickly.",
+			"to": "guild"
+		},
+		"h_m1": {
+			"who": "hollweg",
+			"text": "The valley can learn what it likes. We did not come here to teach.",
+			"to": "guild"
+		},
+		"h_crates_seen": {
+			"who": "hollweg",
+			"text": "Somewhere under us lie the two crates I sent from Nuremberg. They had lain on a quay in the jungle once, I learned later.",
+			"to": "guild"
+		},
+		"h_memory": {
+			"who": "hollweg",
+			"text": "No Heavy Works yet. I build it from memory, and memory is slow. The drawings are in Nuremberg, or in the Crown's hands.",
+			"to": "guild"
+		},
+		"u_captain": {
+			"who": "ulrich",
+			"text": "A rider from the valley, Meister. Their captain, coming up the cart road.",
+			"to": "guild"
+		},
+		"a_wait": {
+			"who": "arruda",
+			"text": "I am Bento Arruda, captain of the valley's militia. I will talk with the master of this place. Here, on the road. Not up there among those things."
+		},
+		"u_parley": {
+			"who": "ulrich",
+			"text": "He wants to talk, Meister. Walk down to him: the council's speaker will go with you. We will keep the machines back.",
+			"to": "guild"
+		},
+		"a_parley1": {
+			"who": "arruda",
+			"text": "My people say you raise the devil's own works up here. Clocks that walk. They say it was such things that ended the old world."
+		},
+		"h_parley": {
+			"who": "hollweg",
+			"text": "They are tools, Captain. I have ordered them never to raise a hand against a man of your valley. Not one."
+		},
+		"v_parley": {
+			"who": "varenne",
+			"text": "Captain, I have stood where you stand, at the head of frightened men. Go home. Nobody here wants your land."
+		},
+		"m_parley": {
+			"who": "morel",
+			"text": "Your priests have told you to fear us. Ask yourself who profits by your fear, Captain."
+		},
+		"a_parley2": {
+			"who": "arruda",
+			"text": "I will take your word down the hill. I cannot promise they will believe it."
+		},
+		"n_parley": {
+			"who": "narrator",
+			"text": "The captain rides home without a blow struck."
+		},
+		"a_nobody": {
+			"who": "arruda",
+			"text": "Nobody comes down to talk. So be it."
+		},
+		"u_raid": {
+			"who": "ulrich",
+			"text": "Riders on the cart road, Meister, and muskets! The valley does not mean to talk.",
+			"to": "guild"
+		},
+		"u_raid_dark": {
+			"who": "ulrich",
+			"text": "I hear horses on the dark roads, Meister, and I cannot see them. The Swifts!",
+			"to": "guild"
+		},
+		"h_raid_over": {
+			"who": "hollweg",
+			"text": "They have gone back down. Let them. Mend what they broke.",
+			"to": "guild"
+		},
+		"u_dusk": {
+			"who": "ulrich",
+			"text": "The sun is going down over the valley, Meister. There are lights on the road. Many lights.",
+			"to": "guild"
+		},
+		"n_fear": {
+			"who": "narrator",
+			"text": "Night. The people of the valley come up the cart road with torches and scythes. No soldiers: farmers, drovers, their wives."
+		},
+		"h_fear": {
+			"who": "hollweg",
+			"text": "Nobody strikes them. Do you hear me? Not one blow. I saw Rome burn. It will not start again here, and not by my machines.",
+			"to": "guild"
+		},
+		"u_fear": {
+			"who": "ulrich",
+			"text": "Then we stand in their way, Meister. Put fighters round a man with a torch and he will think better of it. Shields up: they throw stones.",
+			"to": "guild"
+		},
+		"u_fire": {
+			"who": "ulrich",
+			"text": "A house is burning! Anyone, to the fire: a man of ours beside it puts it out.",
+			"to": "guild"
+		},
+		"n_crowd2": {
+			"who": "narrator",
+			"text": "More torches on the road.",
+			"to": "guild"
+		},
+		"n_crowd3": {
+			"who": "narrator",
+			"text": "The last of them, and the angriest.",
+			"to": "guild"
+		},
+		"m_fear": {
+			"who": "morel",
+			"text": "Let the machines teach them, Meister. One lesson tonight saves a hundred later.",
+			"to": "guild"
+		},
+		"h_m_fear": {
+			"who": "hollweg",
+			"text": "No, Citizen. I have seen the end of that lesson.",
+			"to": "guild"
+		},
+		"v_fear": {
+			"who": "varenne",
+			"text": "Hold, Meister. Hold. A crowd that is not struck goes home in the end. A crowd that is struck never does.",
+			"to": "guild"
+		},
+		"u_temper": {
+			"who": "ulrich",
+			"text": "The fires are seen from the valley, Meister. Every one makes them angrier.",
+			"to": "guild"
+		},
+		"n_anselmo": {
+			"who": "narrator",
+			"text": "A priest comes up the road alone, in a black cassock, with a lantern."
+		},
+		"p_1": {
+			"who": "anselmo",
+			"text": "Enough! Is this how a Christian keeps the Sabbath, with a torch in his hand on a stranger's hill?"
+		},
+		"p_2": {
+			"who": "anselmo",
+			"text": "Home, all of you. If these men are wrong, God and the Church will judge them, not your torches."
+		},
+		"n_home": {
+			"who": "narrator",
+			"text": "The people of the valley lower their torches and go down the road behind their priest."
+		},
+		"h_anselmo": {
+			"who": "hollweg",
+			"text": "He did with one word what all my shields could not do. I wrote that down. I did not understand it until much later."
+		},
+		"n_boil": {
+			"who": "narrator",
+			"text": "The valley sees the plateau burning. The bells ring in the town, and the militia saddles at once."
+		},
+		"h_boil": {
+			"who": "hollweg",
+			"text": "They are coming with muskets now. Into the tower's field, all of you. We hold.",
+			"to": "guild"
+		},
+		"n_house_lost": {
+			"who": "narrator",
+			"text": "A house of the first quarter has burned down.",
+			"to": "guild"
+		},
+		"n_dawn": {
+			"who": "narrator",
+			"text": "Dawn over the highlands, grey and cold. The valley is quiet. Too quiet."
+		},
+		"h_crates1": {
+			"who": "hollweg",
+			"text": "The crates. Before anything else today, I want to see the crates. Ulrich, the lantern.",
+			"to": "guild"
+		},
+		"u_crates": {
+			"who": "ulrich",
+			"text": "The deepest gallery is behind the spoil heaps, Meister, north-east. The seal will know your hand.",
+			"to": "guild"
+		},
+		"n_opened": {
+			"who": "narrator",
+			"text": "The crates of 2767 are opened. Inside, the guild's best work of Nuremberg, packed in straw, perfect.",
+			"to": "guild"
+		},
+		"h_opened": {
+			"who": "hollweg",
+			"text": "Two soldiers of a pattern I do not remember drawing. A Winder. And plates, so many plates. My best work. It must have been.",
+			"to": "guild"
+		},
+		"u_plates": {
+			"who": "ulrich",
+			"text": "The plates are lying across the gallery floor, Meister. I did not see anyone lay them.",
+			"to": "guild"
+		},
+		"h_plates": {
+			"who": "hollweg",
+			"text": "They slid out of the straw. Leave them. They wind whatever stands on them: a gift.",
+			"to": "guild"
+		},
+		"h_jakob": {
+			"who": "hollweg",
+			"text": "Jakob would have counted the teeth on those plates. Jakob was in Fürth.",
+			"to": "guild"
+		},
+		"u_attack": {
+			"who": "ulrich",
+			"text": "Meister! The militia, up all three roads at once! Riders on the ranch track!",
+			"to": "guild"
+		},
+		"a_attack": {
+			"who": "arruda",
+			"text": "For the valley, and for God! Burn the tower!"
+		},
+		"a_attack_p": {
+			"who": "arruda",
+			"text": "I gave them your word, clockmaker. The night gave them theirs. Forgive me."
+		},
+		"h_attack": {
+			"who": "hollweg",
+			"text": "These are soldiers. Defend the city. Shields to the front, the Winders behind.",
+			"to": "guild"
+		},
+		"n_path": {
+			"who": "narrator",
+			"text": "More of them out of the pines, by the north-west path.",
+			"to": "guild"
+		},
+		"a_break": {
+			"who": "arruda",
+			"text": "Back! Back down the hill! Enough have died for one morning."
+		},
+		"n_break": {
+			"who": "narrator",
+			"text": "The militia breaks and goes down the hill. The city stands."
+		},
+		"h_concord": {
+			"who": "hollweg",
+			"text": "Concord.",
+			"to": "guild"
+		},
+		"h_hurt": {
+			"who": "hollweg",
+			"text": "I am hit. Keep them off the tower, never mind me.",
+			"to": "guild"
+		},
+		"n_tower_lost": {
+			"who": "narrator",
+			"text": "The Clocktower has fallen. Without it the city is a camp of tents again."
+		},
+		"n_quarter_lost": {
+			"who": "narrator",
+			"text": "Every house of the first quarter is ash. The families sleep in the tents, and some take the road to the coast."
+		},
+		"a_v1": {
+			"who": "arruda",
+			"text": "There it is, on our hill: the thing the old world died of. Burn their houses before they take root, or bring the tower down.",
+			"to": "valley"
+		},
+		"a_v_tip": {
+			"who": "arruda",
+			"text": "The Barracks in the town and the Horse Breeder at the ranches are ours. The people will go up the road tonight whatever we do.",
+			"to": "valley"
+		},
+		"h_end1": {
+			"who": "hollweg",
+			"text": "By the first winter the city had a wall of timber, a council and a name. I sat at the head of the council table and called it concord."
+		},
+		"h_end_parley": {
+			"who": "hollweg",
+			"text": "The valley's captain had taken my word down the hill. That word was the best thing I built that year."
+		},
+		"h_end_fought": {
+			"who": "hollweg",
+			"text": "The valley never forgave us that dawn. Its people crossed themselves when our birds flew over."
+		},
+		"h_end_v": {
+			"who": "hollweg",
+			"text": "Varenne spoke for the city's people in the council. He was the only one of us who was afraid of it. I thought it was the habit of exile."
+		},
+		"h_end_m": {
+			"who": "hollweg",
+			"text": "Morel spoke for the city's people in the council, and wanted the valley taught. I would not have it. That much I had learned in Rome."
+		},
+		"h_end2": {
+			"who": "hollweg",
+			"text": "I had learned to hold my machines back from the valley. I had not learned to hold them back from themselves."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "The plates in that gallery were not his best work. They were the Perpetual's. He had sent them ahead himself, six years before."
+		},
+		"k_end_people": {
+			"who": "king",
+			"text": "He had left the pattern in Nuremberg. He had already sent it ahead."
+		},
+		"k_end2": {
+			"who": "king",
+			"text": "A priest of the valley stopped a crowd that night with two sentences. Hollweg wrote it down. It took him twenty years to read it."
+		},
+		"k_end_v": {
+			"who": "king",
+			"text": "The valley burned the city's first houses on its first night. That is not how it went. It stood, and grew."
+		},
+		"a_end_v": {
+			"who": "arruda",
+			"text": "We burned it before it took root. The bishop wrote to thank us. I did not sleep well, all the same."
+		},
+		"new_cuckoo_house": {
+			"who": "new",
+			"to": "guild",
+			"text": "NEW: THE CLOCK AVIARY. A tall clock with little doors: the machines' birds fly from it. It needs a working Escapement, and runs on Tension: a Mainspring in its gear field.",
+			"portrait": "res://assets/icons/cuckoo_house.png"
+		},
+		"new_cuckoo": {
+			"who": "new",
+			"to": "guild",
+			"text": "NEW: THE SWIFT. A fast brass bird made at the Clock Aviary. It fights only other flyers, but it sees far: here the land off the plateau stays dark until a Swift has flown over it.",
+			"portrait": "res://assets/icons/cuckoo.png"
+		}
+	},
+	"stills": {
+		"mine": {
+			"image": "res://campaign/stills/d04_01.jpg",
+			"caption": "The southern highlands, 2773. The old mine where the guild raises its tower."
+		},
+		"fear": {
+			"image": "res://campaign/stills/d04_02.jpg",
+			"caption": "The valley's fear: the road at night."
+		},
+		"crates": {
+			"image": "res://campaign/stills/d04_03.jpg",
+			"caption": "The crates of 2767."
+		},
+		"concord": {
+			"image": "res://campaign/stills/d04_04.jpg",
+			"caption": "Concórdia."
+		},
+		"exile": {
+			"image": "res://campaign/stills/d04_05.jpg",
+			"caption": "A ship from Lisbon, and a man the King had spared."
+		},
+		"rome": {
+			"image": "res://campaign/stills/c01_01.jpg",
+			"caption": "Rome, the present. The King listens; the clockmaker tells it."
+		}
+	},
+	"next": {
+		"guild": "",
+		"valley": ""
+	},
+	"opening": {
+		"guild": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2"
+				]
+			},
+			{
+				"still": "mine",
+				"lines": [
+					"h_open1",
+					"h_open2"
+				]
+			},
+			{
+				"still": "exile",
+				"lines": [
+					{
+						"id": "h_open_v",
+						"if": {
+							"not": {
+								"past": {
+									"a06_barricades.varenne": "executed"
+								}
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "mine",
+				"lines": [
+					{
+						"id": "h_open_m",
+						"if": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				]
+			}
+		],
+		"valley": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1"
+				]
+			},
+			{
+				"still": "fear",
+				"lines": [
+					"a_v1"
+				]
+			}
+		]
+	},
+	"ending": {
+		"guild": [
+			{
+				"still": "concord",
+				"lines": [
+					"h_end1",
+					{
+						"id": "h_end_parley",
+						"if": {
+							"flag": {
+								"colonists": "parley"
+							}
+						}
+					},
+					{
+						"id": "h_end_fought",
+						"if": {
+							"flag": {
+								"colonists": "fought"
+							}
+						}
+					},
+					{
+						"id": "h_end_v",
+						"if": {
+							"not": {
+								"past": {
+									"a06_barricades.varenne": "executed"
+								}
+							}
+						}
+					},
+					{
+						"id": "h_end_m",
+						"if": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					},
+					"h_end2"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end1",
+					{
+						"id": "k_end_people",
+						"if": {
+							"not": {
+								"all": [
+									{
+										"not": {
+											"past": {
+												"c01_thirteenth.gate": "people"
+											}
+										}
+									},
+									{
+										"not": {
+											"past": {
+												"d02_exodus.drawings": "taken"
+											}
+										}
+									}
+								]
+							}
+						}
+					},
+					"k_end2"
+				]
+			}
+		],
+		"valley": [
+			{
+				"still": "fear",
+				"lines": [
+					"a_end_v"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_v"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"guild": {
+			"still": "mine",
+			"text": [
+				"The southern highlands of Brazil, 2773. Meister Hollweg's guild has bought an old mine and means to build a city over it: Concórdia, governed by its own council.",
+				"Raise the Clocktower, build the CLOCK AVIARY and fly its Swifts over the three ways up: off the plateau the land is dark until a bird has seen it.",
+				"The valley below fears the machines. Its people will come at night: turn them back without a blow. Then open the crates of 2767, and hold the city at dawn."
+			]
+		},
+		"valley": {
+			"still": "fear",
+			"text": [
+				"The southern highlands, 2773. You lead the valley's militia under Captain Arruda. Strangers with walking machines have taken the old mine on the hill.",
+				"Burn their first houses, bring down their tower, or bring down their master, before the city takes root."
+			]
+		}
+	},
+	"debrief": {
+		"guild": {
+			"still": "concord",
+			"title": "Concórdia",
+			"text": "The city stands. {houses} of {houses_n} houses of the first quarter stand; {turned_back} of the valley's people were turned back without a blow.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"colonists": "parley"
+						}
+					},
+					"text": "The valley's captain parleyed with Hollweg on the road."
+				},
+				{
+					"if": {
+						"flag": {
+							"colonists": "fought"
+						}
+					},
+					"text": "The valley fought the city from its first day."
+				},
+				{
+					"if": {
+						"flag": {
+							"crates": "opened"
+						}
+					},
+					"text": "The crates of 2767 were opened in the mine."
+				}
+			]
+		},
+		"valley": {
+			"still": "fear",
+			"title": "Burned before it took root",
+			"text": "The valley's militia drove the guild's city off the hill."
+		}
+	}
+}
