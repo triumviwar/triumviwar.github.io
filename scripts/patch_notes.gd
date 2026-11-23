@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.185", "items": [
+		"Nothing changes in the game: notes only (the Exodus mission and a 100-war test of WORLD WAR recorded).",
+	]},
 	{"v": "0.38.184", "items": [
 		"A new campaign mission, Act 2's THE EXODUS (the Clockmaker, after Rome): the guild leaves Fürth by night with its families and machines. Load the carts at the barns, take them down the frozen valley to the barges on the Main while the commissary's riders try to take them, and hold the last bridge until the barge is loaded. The Clock Soldiers know the SHIELD WALL and the guild gets the RATCHET TURRET. Or play the commissary, who must take Hollweg alive. All its words and pictures are placeholders.",
 	]},

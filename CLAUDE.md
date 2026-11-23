@@ -26,6 +26,17 @@
 
 ## Current work
 
+- d02_exodus BUILT (job d02-exodus, 0.38.184, docs/campaign_d02_build.md): Act 2 step 2, "The Exodus" (the Clockmaker
+  line after a07, Feb 2771): map campaign:furth_exodus (from a04's), mission tools/campaign/make_d02_mission.py; the guild
+  loads family carts (3/5/7 by c01 `saved`), the drawings cart (c01 gate pattern), Jakob always stays; the road down the
+  switchbacks with rider waves that TAKE carts (new `take` order), the commissary's column, the Machine's sortie, von
+  Rauch's minute (c01 bells rung); the bridge and the barges (travelling clock, journeymen, K4 turret site); mirror =
+  the commissary (Ferrer tells it). K4 = RATCHET TURRET + SHIELD WALL. Tests tools/test_campaign_d02.gd, sim
+  tools/sim_campaign_d02.gd (NORMAL 10/10, idle 13-16 s). 20 Claude's choices in the doc. Next: d03_fazenda.
+- WORLD WAR 100-WAR SIM (owner 2026-11-23 05:04 "Run 100"): 3-side Normal, capitals, 48 seasons: Brood 44, Clockwork 30,
+  Crown 26; 97 of 100 decided by land at the last season (a capital fell in 33, the Queen 3); 40 within 2 regions;
+  ~half the world still free land at s48; no limit: Crown 55, Brood 10, none 35 (Crown snowballs); 2-side wars
+  lopsided (Crown 29/30 v Clockwork, 30/30 v Brood; Brood 27/30 v Clockwork). Tuning proposed, owner to decide.
 - WORLD WAR MODE (owner 2026-11-22 22:55-23:00 "Yes do it", like BFME II's War of the Ring; job world-war-mode, branch
   world-war-mode, docs/world_war_mode.md, scripts/worldwar/ (WWRules numbers, WWWar the war + saving, WWAI, WWMap, WWPage,
   WWBattle FIGHT IT), campaign/worldwar/regions.json + land.json (tools/worldwar/make_regions.py, Natural Earth), tests
