@@ -46,7 +46,7 @@ In plain words:
 
 **Recommended:** keep the press (done). For the balance, the owner's call: **x2.0** (`Defs.FOOD_BONUS` 1.2 -> 1.0, a far Rootmaw paying twice a near one
 instead of 2.2 times). With the press it makes the Crown v Brood game close (Crown won or led 11 of 30, the Brood 16,
-even at 14:00) and it costs the Brood little against the Clockwork (beaten 10 of 20 against 8 of 20 today: within the
+even at 14:00) and it costs the Brood little against the Clockwork (beaten 11 of 20 against 8 of 20 today: within the
 noise). x1.8 goes further than asked: the Crown leads the matchup (19 against 9) and the Brood then loses more to the
 Clockwork too (beaten 13 of 20 against 8). Or leave the number as it is and keep only the press (the Brood still won or
 led 21 of 30).
@@ -138,7 +138,27 @@ were -1.70, -1.10 and -1.15), so only the 30-game pools are read.
 
 ## The side checks (10 games each)
 
-SIDE_TABLE
+Each matchup's 10 games are tools/study/crown_brood_fix.py's ten (the same maps and sides), with seeds of their own;
+"our side" is the first faction named. Won/led/even/behind/lost are our side's.
+
+| matchup | arm | games | won | led | even | behind | lost | mean g | g at 14:00 | v without: d g (t) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Brood v Clockwork | today (two blocks) | 20 | 4 | 3 | 0 | 5 | 8 | -0.53 | -0.28 | |
+| Brood v Clockwork | x1.8 (two blocks) | 20 | 2 | 2 | 0 | 3 | 13 | -1.39 | -0.48 | -0.86 (-1.7), 2 better / 7 worse |
+| Brood v Clockwork | x2.0 (two blocks) | 20 | 4 | 2 | 1 | 2 | 11 | -0.87 | -0.32 | -0.35 (-0.6), 4 better / 5 worse |
+| Brood mirror | today | 10 | 4 | 1 | 1 | 0 | 4 | +0.06 | +0.06 | |
+| Brood mirror | x1.8 | 10 | 5 | 2 | 0 | 0 | 3 | +0.44 | +0.10 | +0.38 (0.6) |
+| Crown v Clockwork | today | 10 | 1 | 9 | 0 | 0 | 0 | +0.75 | +0.23 | |
+| Crown v Clockwork | the press + x1.8 | 10 | 1 | 6 | 1 | 1 | 1 | +0.18 | -0.09 | -0.58 (-1.5) |
+
+- **Brood v Clockwork moves with the Rootmaw pay**: the Brood's far Rootmaws are its income against the Clockwork too.
+  x1.8 cost the Brood clearly (beaten 8 -> 13 of 20); x2.0 less (8 -> 11, within the noise). Before x1.8 were made
+  the default, the Brood would want something back against the Clockwork, which already leads that matchup since
+  wr1000's Owls.
+- **The Brood mirror** does not change: both sides pay the same; decided by 20:00 8 of 10 both ways, no new spot edge.
+- **Crown v Clockwork cannot change**: neither change can act there (the press needs a Brood foe and fired 0 times in
+  the 10 games; the Rootmaw pay touches only the Brood). The swing in the table (-0.58) is therefore the noise of 10
+  games: two runs of the same code in the Crown v Brood baseline differed by 0.6 too.
 
 ## The fight test: do the Raptors go round the guns? (`tools/bench_raptor_flank.gd`)
 
@@ -234,5 +254,8 @@ both copies.
 - `tools/study/crown_brood_fix.py` (wr1000_crown_brood.py with its own data folder and `--me` / `--opp` for the side
   checks): `run BLOCK --extra a,b [--me brood --opp clockwork] [--root DIR]`, `results`, `report --base`.
 - `tools/study/crown_brood_fix_labs.py` (the labourers and halls lost), `tools/bench_raptor_flank.gd` (the fight test).
+- Blocks: b01-b03 (today), p01-p03 (the press), f01-f03 (x1.8), pf01-pf03 (both), pf2a-pf2c (the press and x2.0);
+  side checks bc0/bc0b, bc1/bc1b, bc2/bc2b (Brood v Clockwork: today, x1.8, x2.0; `--me brood --opp clockwork`), bb0/bb1
+  (the Brood mirror; `--me brood --opp brood`), cc0/cc1 (Crown v Clockwork; `--opp clockwork`).
 - Data: `docs/crown_brood_fix/data/<block>/` (result.json, story.txt, planlog.txt with every "Crown's" line, extra.txt),
   `docs/crown_brood_fix/bench/*.json`.
