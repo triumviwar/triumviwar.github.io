@@ -16,7 +16,7 @@ parity maps, the same seeds and sides), each arm played three times: 30 games an
 | the press (the Crown spends its lead) | 1 | 6 | 2 | 9 | 12 | 7 | 21 | -0.80 | +0.07 |
 | the far Rootmaw pays x1.8 (not x2.2) | 1 | 16 | 1 | 6 | 6 | 17 | 12 | -0.03 | +0.35 |
 | the press and x1.8 together | 4 | 15 | 2 | 5 | 4 | 19 | 9 | +0.39 | +0.51 |
-| the press and x2.0 | PF2_ROW |
+| the press and x2.0 | 1 | 10 | 3 | 9 | 7 | 11 | 16 | -0.42 | +0.09 |
 
 (g is the Crown's score against the Brood's, as a log: 0 is even, +0.7 is the Crown twice the Brood, -0.7 the Brood
 twice the Crown; the score is income earned plus twice the army, a beaten side counted a quarter.)
@@ -34,16 +34,22 @@ In plain words:
 3. **The far-Rootmaw pay is the bigger lever** (a balance number: **the owner decides**; the default is unchanged).
    x1.8 instead of x2.2 alone turns the matchup: the Crown won or led 17 of 30, the Brood 12, beaten 6 times. With the
    press on top (which is how the game now plays), the Crown won or led 19 and was beaten 4 times: that leans to the Crown,
-   so x2.0 was measured too (PF2_SHORT).
+   so x2.0 was measured too, with the press: the Crown won or led 11 of 30, the Brood 16, the Crown beaten 7 times, and the
+   score at 14:00 even (+0.09). That is "a bit more equal": the Brood still has the better of it, but no longer by far.
 4. **The Raptors do not get round the guns**: in set-piece fights at equal cost the Crown's line, guns and riders beat
    the Raptor and mixed Brood forces in 70 of 72 fights, killing 2 to 9 times what they lost. Raptors reach the guns when they
    come from the side of a march or in big numbers, and take a gun or two, but they lose the fight. The Crown's trouble
    is the economy and where the fights happen, not the Raptors at the guns.
 5. **The outlying halls**: 75% of the labourers lost after 12:00 die walking or running away, 83% of them to Raptors (a
-   Raptor is faster than a labourer). The halls lost after 12:00 fell from 3.1 to 1.9 a game with x1.8; nothing in the
+   Raptor is faster than a labourer). The halls lost after 12:00 fell from 3.1 to 2.7 a game with the press and to 1.8-2.1 with the far-Rootmaw change; nothing in the
    AI alone saves the labourers. Proposals below.
 
-**Recommended:** keep the press (done). For the balance, the owner's call: OWNER_RECO
+**Recommended:** keep the press (done). For the balance, the owner's call: **x2.0** (`Defs.FOOD_BONUS` 1.2 -> 1.0, a far Rootmaw paying twice a near one
+instead of 2.2 times). With the press it makes the Crown v Brood game close (Crown won or led 11 of 30, the Brood 16,
+even at 14:00) and it costs the Brood little against the Clockwork (beaten 10 of 20 against 8 of 20 today: within the
+noise). x1.8 goes further than asked: the Crown leads the matchup (19 against 9) and the Brood then loses more to the
+Clockwork too (beaten 13 of 20 against 8). Or leave the number as it is and keep only the press (the Brood still won or
+led 21 of 30).
 
 ## The changes
 
@@ -89,12 +95,41 @@ The ten games (Greenhold, Dune Sea, Frostfang, Ashford Crossing on both start sp
 4100 + 97 r + 11 map + 3: the wr1000 crown-brood games. Each block played on a frozen copy of the code (main 0.38.177 for
 the baseline, the branch with every change behind its switch for the rest), two games at a time.
 
-BLOCKS_TABLE
+| block | switches | games | won | led | even | behind | lost | mean g | g14 | inc 8 / 12 | army 8 / 12 | halls 12 | defeats (min) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| b01 | (none) | 10 | 0 | 0 | 0 | 3 | 7 | -1.70 | -0.25 | 1.32 / 0.99 | 2.45 / 3.16 | 3.9 | 14.3, 14.9, 17.5, 17.6, 19.1, 19.5, 19.7 |
+| b02 | (none) | 10 | 0 | 2 | 0 | 4 | 4 | -1.10 | -0.22 | 1.41 / 0.97 | 2.75 / 2.53 | 3.7 | 15.4, 16.5, 17.3, 17.7 |
+| b03 | (none) | 10 | 0 | 1 | 0 | 5 | 4 | -1.15 | -0.07 | 1.36 / 1.00 | 2.36 / 2.34 | 3.6 | 14.1, 18.3, 19.0, 19.8 |
+| p01 | cbfpress:on | 10 | 0 | 4 | 0 | 2 | 4 | -0.68 | +0.14 | 1.38 / 1.28 | 2.86 / 3.47 | 3.8 | 16.3, 16.6, 19.3, 19.9 |
+| p02 | cbfpress:on | 10 | 0 | 1 | 0 | 5 | 4 | -1.17 | -0.06 | 1.40 / 1.05 | 2.31 / 1.36 | 3.9 | 17.1, 18.4, 18.4, 19.8 |
+| p03 | cbfpress:on | 10 | 1 | 1 | 2 | 2 | 4 | -0.57 | +0.14 | 1.33 / 1.18 | 2.44 / 2.03 | 3.9 | 15.0, 18.6, 18.9, 20.0 |
+| f01 | farmaw:1.8 | 10 | 0 | 5 | 0 | 2 | 3 | -0.43 | +0.29 | 1.66 / 1.36 | 2.66 / 1.97 | 4.1 | 16.4, 18.6, 18.9 |
+| f02 | farmaw:1.8 | 10 | 0 | 6 | 1 | 1 | 2 | +0.09 | +0.41 | 1.69 / 1.41 | 2.60 / 4.64 | 3.8 | 18.6, 19.7 |
+| f03 | farmaw:1.8 | 10 | 1 | 5 | 0 | 3 | 1 | +0.25 | +0.37 | 1.61 / 1.43 | 2.43 / 2.44 | 3.9 | 16.1 |
+| pf01 | cbfpress:on farmaw:1.8 | 10 | 1 | 4 | 1 | 3 | 1 | +0.13 | +0.37 | 1.68 / 1.42 | 2.61 / 3.38 | 4.2 | 19.1 |
+| pf02 | cbfpress:on farmaw:1.8 | 10 | 1 | 7 | 0 | 0 | 2 | +0.51 | +0.65 | 1.78 / 1.68 | 2.49 / 3.53 | 4.2 | 18.4, 19.9 |
+| pf03 | cbfpress:on farmaw:1.8 | 10 | 2 | 4 | 1 | 2 | 1 | +0.53 | +0.50 | 1.62 / 1.61 | 2.68 / 7.34 | 3.9 | 16.7 |
+| pf2a | cbfpress:on farmaw:2.0 | 10 | 0 | 4 | 0 | 4 | 2 | -0.48 | +0.07 | 1.50 / 1.16 | 3.05 / 1.98 | 3.8 | 15.3, 19.3 |
+| pf2b | cbfpress:on farmaw:2.0 | 10 | 0 | 4 | 1 | 3 | 2 | -0.39 | +0.15 | 1.58 / 1.21 | 2.81 / 4.06 | 3.6 | 14.3, 17.2 |
+| pf2c | cbfpress:on farmaw:2.0 | 10 | 1 | 2 | 2 | 2 | 3 | -0.40 | +0.05 | 1.48 / 1.27 | 2.91 / 2.94 | 3.6 | 14.6, 18.4, 19.1 |
+| b01+b02+b03 | (none) | 30 | 0 | 3 | 0 | 12 | 15 | -1.32 | -0.18 | 1.36 / 0.99 | 2.52 / 2.68 | 3.7 | 14.1, 14.3, 14.9, 15.4, 16.5, 17.3, 17.5, 17.6, 17.7, 18.3, 19.0, 19.1, 19.5, 19.7, 19.8 |
+| p01+p02+p03 | cbfpress:on | 30 | 1 | 6 | 2 | 9 | 12 | -0.80 | +0.07 | 1.37 / 1.17 | 2.54 / 2.29 | 3.9 | 15.0, 16.3, 16.6, 17.1, 18.4, 18.4, 18.6, 18.9, 19.3, 19.8, 19.9, 20.0 |
+| f01+f02+f03 | farmaw:1.8 | 30 | 1 | 16 | 1 | 6 | 6 | -0.03 | +0.35 | 1.66 / 1.40 | 2.56 / 3.04 | 3.9 | 16.1, 16.4, 18.6, 18.6, 18.9, 19.7 |
+| pf01+pf02+pf03 | cbfpress:on farmaw:1.8 | 30 | 4 | 15 | 2 | 5 | 4 | +0.39 | +0.51 | 1.70 / 1.57 | 2.59 / 4.66 | 4.1 | 16.7, 18.4, 19.1, 19.9 |
+| pf2a+pf2b+pf2c | cbfpress:on farmaw:2.0 | 30 | 1 | 10 | 3 | 9 | 7 | -0.42 | +0.09 | 1.52 / 1.21 | 2.92 / 2.99 | 3.7 | 14.3, 14.6, 15.3, 17.2, 18.4, 19.1, 19.3 |
 
 Against the baseline, game by game (each game's numbers the mean of its three runs; d = the paired mean difference of g,
 t its t value; better/worse = games whose g moved more than 0.05):
 
-PAIRED_TABLE
+| arm (30 games) against | d g (t) | games better / worse | d g at 14:00 (t) |
+|---|---|---|---|
+| the press v today | +0.51 (1.4) | 5 / 4 | +0.25 (3.0) |
+| x1.8 v today | +1.28 (3.4) | 8 / 1 | +0.54 (5.0) |
+| the press and x1.8 v today | +1.71 (4.7) | 9 / 1 | +0.69 (6.9) |
+| the press and x2.0 v today | +0.89 (2.5) | 7 / 2 | +0.27 (2.4) |
+| the press and x1.8 v the press alone | +1.19 (3.7) | 8 / 2 | +0.44 (4.4) |
+| the press and x2.0 v the press alone | +0.38 (1.3) | 7 / 2 | +0.02 (0.2) |
+| the press and x1.8 v x1.8 alone | +0.42 (1.6) | 8 / 2 | +0.15 (1.6) |
 
 Read: income 8 / 12 and army 8 / 12 are the Crown's over the Brood's at 8:00 and 12:00. The far-Rootmaw change already
 shows at 8:00 (the Crown's income share 1.36 -> 1.66): the Brood's far Rootmaws pay from the first one, so the change
@@ -114,7 +149,16 @@ unlimbered behind it, and the Brood comes at the hall behind it; field: the Crow
 at it head on; side: as field, but the Brood comes from the side of the march, at the guns' end. Raptor = all Raptors;
 mixed = half Raptors, a quarter Spitters, a quarter Tyrant Challengers by value.
 
-BENCH_TABLE
+Each cell: creatures that reached a gun / of them, round the line's flank / guns lost · value killed for each lost.
+
+| fight (3 runs each) | today, x1 | today, x3 | canister x2.0, x1 | canister x2.0, x3 |
+|---|---|---|---|---|
+| home, Raptors | 2 / 1 / 0 · 4.4 | 108 / 5 / 2 · 2.9 | 0 / 0 / 0 · 9.0 | 97 / 9 / 1 · 3.4 |
+| home, mixed | 0 / 0 / 0 · 2.4 | 13 / 0 / 1 · 3.3 | 0 / 0 / 0 · 2.6 | 13 / 0 / 1 · 2.8 |
+| field, Raptors | 0 / 0 / 0 · 7.5 | 59 / 31 / 3 · 2.0 | 2 / 0 / 0 · 9.6 | 13 / 1 / 0 · 2.1 |
+| field, mixed | 0 / 0 / 0 · 2.5 | 0 / 0 / 0 · 3.0 | 5 / 1 / 3 · 2.2 | 1 / 0 / 0 · 2.3 |
+| side, Raptors | 64 / 6 / 0 · 4.6 | 171 / 0 / 7 · 2.0 | 53 / 5 / 0 · 7.5 | 157 / 0 / 6 · 2.5 |
+| side, mixed | 54 / 0 / 1 · 4.8 | 63 / 0 / 6 · 2.6 | 51 / 0 / 3 · 2.3 | 24 / 0 / 5 · 3.3 |
 
 - **The Crown won 70 of the 72 fights** (the Brood wiped out, or a handful left when the 75 seconds ran out with the
   Crown far ahead); the two it lost were mixed Brood forces, both in the canister x2.0 runs (noise: x2.0 can only help
@@ -140,6 +184,7 @@ the Crown the fight. The Crown loses the game to the Brood's late income and to 
 | the press | 51.7 | 46.7 | 79% | 78% | 7% | 2.7 |
 | x1.8 | 39.5 | 35.1 | 85% | 78% | 6% | 1.8 |
 | the press and x1.8 | 38.9 | 35.8 | 85% | 76% | 11% | 1.9 |
+| the press and x2.0 | 45.0 | 39.6 | 79% | 79% | 6% | 2.1 |
 
 The labourers die running: a Labourer walks at 74, a Raptor at 92 (114 with Pack Hunt). AI._worker_safety sends them
 away from a force they can't fight; against a faster enemy that only spreads them out to be caught. wr1000's `evac`
