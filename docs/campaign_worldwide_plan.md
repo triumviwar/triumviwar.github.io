@@ -305,3 +305,15 @@ optional missions. The 8 Claude's choices stand.
    the Crown's colonies). Bring any of them in? RECOMMENDED: not now; marks on the world view at most.
 8. THE TWO NEW ACT 2 MISSIONS (Luanda, Goa): add them to Act 2's plan now, or keep Act 2 at eleven and open Act 3
    with them? RECOMMENDED: add them to Act 2 as optional (they set Act 3 up).
+
+## OWNER ANSWER: THE LOCAL PEOPLE ARE MINOR (2026-11-23 15:23)
+
+"It can be a minor character. I was thinking we use the characters we already have and make them deeper."
+
+- The Kongo's king, the Ethiopian commander, the Nagasaki clockmaker and the Viceroy at Goa stay MINOR: a scene, a few
+  lines, an ally's banner. None of them gets a storyline or tells a mission.
+- The worldwide missions are carried by the cast we already have: the King, Tomasz, Fairleigh, Ruggieri, Ferrer,
+  Hollweg, Jakob, Lindqvist, Valadares, Pieter, Varenne. Each theatre is a chance to make one of them deeper (Tomasz in
+  Kongo as a missionary bishop among a Catholic people, Lindqvist taken in Africa facing what his error made, Hollweg's
+  stop-work at Nagasaki, Fairleigh's last ride in the Americas, Varenne and the exiles in the Southern Seas).
+- Every new mission's writing job lists which existing character grows in it and how, before any new name is added.

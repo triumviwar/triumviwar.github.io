@@ -224,6 +224,8 @@
   within the noise). The Brood question: the Crown leads to ~14:00 and loses at 15-19 to the capped Brood army at even income
   and full spending: balance more than AI. 16 threshold variants of the 1000 jobs deleted again; trade, spend, queen, pester,
   maws, guard, farms, foundry2, richlabs kept as off switches. 7 Claude's choices in the doc.
+- LOCAL PEOPLE MINOR (owner 2026-11-23 15:23): the worldwide allies' leaders (Kongo, Ethiopia, Goa, Nagasaki...) are
+  minor characters; the missions use the EXISTING cast and make them deeper (docs/campaign_worldwide_plan.md, end).
 - WORLDWIDE PLAN (owner 2026-11-22 "Yes"; docs/campaign_worldwide_plan.md, an OUTLINE): the dangers leave Brazil by
   TRADE (ships carry seeds and eggs); THE CLIMATE (the Brood can't live in the cold, the Clockwork rusts in the wet;
   a mission rule only); local Catholic allies (Kongo, Ethiopia, Goa, Manila, Nagasaki, New Spain); Act 2 + two optional
