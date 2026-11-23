@@ -1414,6 +1414,9 @@ func convert_tag(v: Dictionary) -> void:
 	for u in list:
 		if not (u is Unit) or u.team == to:
 			continue
+		if bool(v.get("untorch", false)) and u.has_meta("torch"):
+			u.remove_meta("torch")          # (d04: the valley's people put their torches out and go home)
+			u.remove_meta("torch_burning")
 		(u as Unit).stun(warn, true)
 		_turning.append([u, to, game.clock + warn, String(v.get("as", ""))])
 	if not _turning.is_empty():
@@ -1837,6 +1840,8 @@ func set_alight(b: Building, v: Dictionary) -> void:
 		"t": float(sp.get("every", 12.0)), "douse": 0.0, "dside": ds, "dsecs": maxf(float(v.get("douse_secs", 8.0)), 0.5)})
 	if game.mlog:
 		game.mlog.add("(mission) fire: %s" % b.kind)
+	if String(v.get("counter", "")) != "":          # (d04: torch_fire "counter": every fire a torch sets, counted)
+		act({"counter": {"name": String(v["counter"]), "add": 1}})
 
 
 func is_burning(b: Entity) -> bool:

@@ -24,6 +24,12 @@ var under: Node2D = null        # drawn under the units (tracks, gear ground, th
 var over: Node2D = null         # drawn over them (bars, rings, LOOSE, posts)
 var _marks: Array = []          # TRACKS: [position, game clock, angle, side index, seconds it lasts] (not saved: they fade)
 var _loose_t := {}              # unit -> seconds to its next loose order
+var _chart := PackedByteArray() # THE UNMAPPED (d04): 1 where the chart's side has mapped the ground (st["chart"]["mask"] saved)
+var _chart_sprite: Sprite2D = null
+var _chart_img: Image = null
+var _chart_tex: ImageTexture = null
+var _chart_dirty := true
+var _chart_t := 0.0
 
 
 func _init(r: MissionRun) -> void:
@@ -32,7 +38,7 @@ func _init(r: MissionRun) -> void:
 	for k in ["loads", "hidden", "tracks", "leashes", "posts", "spreads", "grounds", "brakes", "saps", "takes"]:
 		if not st.has(k):
 			st[k] = []
-	for k in ["taken", "found", "lured", "turned", "sapped", "fed", "broke", "idle", "gran_t"]:
+	for k in ["taken", "found", "lured", "turned", "sapped", "fed", "broke", "idle", "gran_t", "chart"]:
 		if not st.has(k):
 			st[k] = {}
 
@@ -157,6 +163,7 @@ func tick(dt: float) -> void:
 	_tick_brakes()
 	_tick_saps()
 	_tick_granaries(dt)
+	_tick_chart(dt)
 	_tick_idle(dt)
 	_redraw()
 
@@ -235,6 +242,10 @@ func cond(k: String, v: Variant) -> Array:
 		"fed":
 			# {"fed": {"team", "at_least"}}: what the granaries gave that team so far
 			return [true, _between(int(st["fed"].get(String(v.get("team", "")), 0)), v)]
+		"charted":
+			# (d04) {"charted": {"area", "at_least": share 0..1 (0.6)}}: that share of the area's open cells is mapped;
+			# without "area": of the whole map
+			return [true, chart_share(String(v.get("area", ""))) >= float(v.get("at_least", 0.6))]
 		"version":
 			# {"version": "fresh"} (or a list): the mission's version (FRESH / GROWN), picked at the start
 			var vs: Array = (v if v is Array else [v]).map(func(x) -> String: return String(x))
@@ -285,6 +296,8 @@ func act(k: String, v: Variant) -> bool:
 			brood_stage(v)
 		"retag":
 			retag(v)
+		"chart":
+			chart(v)
 		_:
 			return false
 	return true
@@ -442,6 +455,7 @@ func _tick_takes(dt: float) -> void:
 				continue
 			if float(it["t"]) > 0.0:
 				it["secs"] = secs
+				it["label"] = String(rule.get("label", "TAKING THE CART"))     # (d04: "TURNING BACK" for the valley's people)
 				keep.append(it)
 	st["takes"] = keep
 
@@ -461,13 +475,16 @@ func _take(c: Unit, rule: Dictionary) -> void:
 	if to < 0:
 		return
 	_off_routes(c)
+	if bool(rule.get("untorch", false)) and c.has_meta("torch"):
+		c.remove_meta("torch")          # (d04: a torch-bearer turned back puts his torch out)
+		c.remove_meta("torch_burning")
 	run._turn(c, to, String(rule.get("as", "")))
 	var tag := String(rule.get("tag", ""))
 	st["taken"][tag] = int(st["taken"].get(tag, 0)) + 1
 	_add_counter(String(rule.get("counter", "")), 1)
 	run.game._ping(c.position, Color(1.0, 0.75, 0.25))
 	run._send({"k": "ping", "p": c.position})
-	run.game.float_text(c.position + Vector2(0, -34), "TAKEN!", Color(1.0, 0.7, 0.3))
+	run.game.float_text(c.position + Vector2(0, -34), Loc.t(String(rule.get("word", "TAKEN!"))), Color(1.0, 0.7, 0.3))
 	run.objectives_changed.emit()
 	if run.game.mlog:
 		run.game.mlog.add("(mission) a cart was taken (%s)" % tag)
@@ -577,6 +594,7 @@ func _tick_hidden(dt := 0.25) -> void:
 ## Game._update_vis asks after its own loop: a hidden one is not on the screen of the side it hides from, a sapper under
 ## the ground on no other side's.
 func after_vis(ft: int) -> void:
+	_chart_hide(ft)
 	if st["hidden"].is_empty() and st["saps"].is_empty():
 		return
 	var g := run.game
@@ -1275,10 +1293,175 @@ static func version_of(m: Dictionary, side := "", diff := "") -> String:
 	return String(vs.get("default", ""))
 
 
+
+# ================================================================== THE UNMAPPED (d04_concordia)
+
+## {"chart": {"side": whose map, "team" (else the side's teams): whose FLYERS map it, "known": [areas mapped from the
+## start], "dark": 0.62, "on": false}}: THE FOG OF THE UNMAPPED. The side's screen shows the land dark where nobody has
+## mapped it yet, and the other sides' units there are not on its screen at all (nor its minimap); the ground is mapped
+## only where a FLYER of the team has flown (its sight round it), and in the known areas. "on": false lifts it (the map
+## stays as it is drawn; nothing is hidden any more). Condition {"charted": {"area", "at_least"}}.
+func chart(v: Dictionary) -> void:
+	var g := run.game
+	if not bool(v.get("on", true)):
+		st["chart"]["on"] = false
+		_chart_dirty = true
+		return
+	var c: Dictionary = st["chart"]
+	c["on"] = true
+	c["side"] = String(v.get("side", ""))
+	c["team"] = String(v.get("team", ""))
+	c["dark"] = float(v.get("dark", 0.62))
+	if _chart.size() != g.W * g.H:
+		_chart = PackedByteArray()
+		_chart.resize(g.W * g.H)
+	for a in v.get("known", []):
+		_chart_rect(run.area_rect(String(a)))
+	_chart_dirty = true
+	_chart_save()
+
+
+func _chart_on() -> bool:
+	return bool(st["chart"].get("on", false)) and _chart.size() == run.game.W * run.game.H
+
+
+func _chart_rect(r: Rect2) -> void:
+	var g := run.game
+	var a := g.cell_of(r.position)
+	var b := g.cell_of(r.end)
+	for y in range(maxi(0, a.y), mini(g.H - 1, b.y) + 1):
+		for x in range(maxi(0, a.x), mini(g.W - 1, b.x) + 1):
+			_chart[y * g.W + x] = 1
+
+
+## Is the cell under p mapped (or is there no chart)?
+func charted_at(p: Vector2) -> bool:
+	if not _chart_on():
+		return true
+	var g := run.game
+	var c := g.cell_of(p)
+	return not g.in_map(c) or _chart[g.idx(c)] == 1
+
+
+## The share of the area's open cells (no water, no rock) that is mapped.
+func chart_share(area: String) -> float:
+	var g := run.game
+	if _chart.size() != g.W * g.H:
+		return 0.0
+	var r := run.area_rect(area) if area != "" else Rect2(Vector2.ZERO, Vector2(g.W, g.H) * _tile())
+	var a := g.cell_of(r.position)
+	var b := g.cell_of(r.end - Vector2.ONE)
+	var n := 0
+	var m := 0
+	for y in range(maxi(0, a.y), mini(g.H - 1, b.y) + 1):
+		for x in range(maxi(0, a.x), mini(g.W - 1, b.x) + 1):
+			n += 1
+			m += _chart[y * g.W + x]
+	return float(m) / float(maxi(1, n))
+
+
+func _tick_chart(dt: float) -> void:
+	if not _chart_on():
+		if _chart_sprite and is_instance_valid(_chart_sprite):
+			_chart_sprite.visible = false
+		return
+	var g := run.game
+	var c: Dictionary = st["chart"]
+	var teams: Array = [run.team_index(String(c["team"]))] if String(c["team"]) != "" else run.teams_of_side(String(c["side"]))
+	var changed := false
+	for u in g.units:
+		if u.dead or u.off_field or not teams.has(u.team) or not u.is_air():
+			continue
+		var cc := g.cell_of(u.position)
+		var r := int(u.sight)
+		for dy in range(-r, r + 1):
+			var y := cc.y + dy
+			if y < 0 or y >= g.H:
+				continue
+			for dx in range(-r, r + 1):
+				var x := cc.x + dx
+				if x < 0 or x >= g.W or dx * dx + dy * dy > r * r:
+					continue
+				var i := y * g.W + x
+				if _chart[i] == 0:
+					_chart[i] = 1
+					changed = true
+	if changed:
+		_chart_dirty = true
+	_chart_t -= dt
+	if _chart_dirty and _chart_t <= 0.0:
+		_chart_t = 0.5
+		_chart_dirty = false
+		_chart_save()
+		_chart_draw()
+
+
+func _chart_save() -> void:
+	st["chart"]["mask"] = Marshalls.raw_to_base64(_chart.compress(FileAccess.COMPRESSION_DEFLATE))
+	st["chart"]["n"] = _chart.size()
+
+
+func _chart_load() -> void:
+	var c: Dictionary = st["chart"]
+	if not c.has("mask"):
+		return
+	var raw := Marshalls.base64_to_raw(String(c["mask"]))
+	_chart = raw.decompress(int(c.get("n", 0)), FileAccess.COMPRESSION_DEFLATE)
+	_chart_dirty = true
+
+
+## The dark over the unmapped land (the chart's side's screen only), a picture of the map one pixel a cell under the
+## units: drawn soft at its edges.
+func _chart_draw() -> void:
+	var g := run.game
+	if g == null:
+		return
+	if _chart_sprite == null or not is_instance_valid(_chart_sprite):
+		_chart_sprite = Sprite2D.new()
+		_chart_sprite.name = "Unmapped"
+		_chart_sprite.centered = false
+		_chart_sprite.scale = Vector2(_tile(), _tile())
+		_chart_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+		_chart_sprite.z_index = -15          # (over the ground and its marks, under every building and unit)
+		g.add_child(_chart_sprite)
+	var a := int(clampf(float(st["chart"].get("dark", 0.62)), 0.0, 1.0) * 255.0)
+	var px := PackedByteArray()
+	px.resize(g.W * g.H * 2)
+	for i in g.W * g.H:
+		px[i * 2] = 18
+		px[i * 2 + 1] = 0 if _chart[i] == 1 else a
+	if _chart_img == null:
+		_chart_img = Image.create_from_data(g.W, g.H, false, Image.FORMAT_LA8, px)
+		_chart_tex = ImageTexture.create_from_image(_chart_img)
+		_chart_sprite.texture = _chart_tex
+	else:
+		_chart_img.set_data(g.W, g.H, false, Image.FORMAT_LA8, px)
+		_chart_tex.update(_chart_img)
+	_chart_sprite.visible = _chart_viewer()
+
+
+## Does the screen's own side read this chart?
+func _chart_viewer() -> bool:
+	return _chart_on() and not _sees_all() and _viewer_side() == String(st["chart"].get("side", ""))
+
+
+## (after_vis) the other sides' units on unmapped land are not on the chart side's screen.
+func _chart_hide(ft: int) -> void:
+	if _chart_sprite and is_instance_valid(_chart_sprite):
+		_chart_sprite.visible = _chart_viewer()
+	if not _chart_viewer():
+		return
+	var g := run.game
+	for u in g.units:
+		if u.visible and ft >= 0 and not g.allied(u.team, ft) and not charted_at(u.position):
+			u.visible = false
+
+
 # ================================================================== after a save is loaded
 
 ## The marks a save doesn't keep, put back from the state (MissionRun.load_state).
 func after_load() -> void:
+	_chart_load()
 	for it in st["loads"]:
 		if _alive(it.get("cart")):
 			it["cart"].set_meta("cart_load", String(it["cargo"]))
@@ -1435,7 +1618,7 @@ func _draw_over() -> void:
 		var top: Vector2 = c.position + Vector2(-26, c.radius + 8.0)      # (under the cart: its name and bar stay clear)
 		cv.draw_rect(Rect2(top, Vector2(52, 7)), Color(0, 0, 0, 0.7))
 		cv.draw_rect(Rect2(top + Vector2(1, 1), Vector2(50 * k, 5)), Color(1.0, 0.6, 0.2))
-		_label(cv, font, top + Vector2(26, 22), Loc.t("TAKING THE CART"), Color(1.0, 0.7, 0.35))
+		_label(cv, font, top + Vector2(26, 22), Loc.t(String(it.get("label", "TAKING THE CART"))), Color(1.0, 0.7, 0.35))
 	# CARGO: a bundle (families) or a chest (gold) on a cart
 	for it in st["loads"]:
 		var c = it.get("cart")

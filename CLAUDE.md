@@ -26,6 +26,15 @@
 
 ## Current work
 
+- d04_concordia BUILT (job d04-concordia, branch d04-concordia, docs/campaign_d04_build.md): Act 2 step 6, "The City of
+  Gears" (the Clockmaker after d02, 2773, the southern highlands): map campaign:concordia (HIGHLANDS biome,
+  tools/campaign/make_concordia_map.py), mission tools/campaign/make_d04_mission.py; the guild raises Concórdia on a dead
+  mine; K5 = CLOCK AVIARY + SWIFT (Cuco in pt/es); THE UNMAPPED (`chart` / `charted`: land dark and people hidden until a
+  flyer has seen it); the captain PARLEYS (a04 melted) or raids (kept); the night's crowds are SPARED: TURN THEM BACK,
+  put fires out, THE VALLEY'S TEMPER, Padre Anselmo calls them home; the crates of 2767 opened in the gallery (the
+  plates' gear ground creeps); the dawn attack. Flags `colonists` parley/fought, `crates` opened. Versus only (the valley).
+  Hollweg's growth noted in the doc. Tests tools/test_campaign_d04.gd, sim tools/sim_campaign_d04.gd. 15 Claude's
+  choices. Patch note under 0.38.999.
 - THE WAR MAP's ACT 2 (job act2-warmap, branch act2-warmap, docs/war_map_act2.md; Act 2 build step 4): the BRAZIL view
   (opens after a07; drawn, slot painted_brazil.jpg), Act 2's regions/marks/pins d01-d13 (planned ones with an `about`
   line) and rules by the plan's flags (tools/campaign/warmap_act2.py writes them), new holder `guild` (the free city),

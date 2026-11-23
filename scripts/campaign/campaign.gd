@@ -891,6 +891,10 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 					out.append("%s: fed needs a known team" % where)
 				elif q is Dictionary and q.has("team") and k != "fed" and not teams.has(String(q["team"])):
 					out.append("%s: unknown team %s" % [where, q["team"]])
+			"charted":
+				# (d04) {"charted": {"area", "at_least"}}: THE UNMAPPED's share mapped
+				if not (c[k] is Dictionary) or (c[k].has("area") and not areas.has(String(c[k]["area"]))):
+					out.append("%s: charted needs a known area" % where)
 			"lured", "sapped":
 				if String(c[k]) == "":
 					out.append("%s: %s needs a name" % [where, k])
@@ -1107,6 +1111,18 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: sap needs a tag and \"to\"" % where)
 			elif v["to"] is String and not areas.has(String(v["to"])):
 				out.append("%s: sap to unknown area %s" % [where, v["to"]])
+		"chart":
+			# (d04) {"chart": {"side", "team", "known": [areas], "dark", "on"}}: THE FOG OF THE UNMAPPED
+			if not (v is Dictionary):
+				out.append("%s: chart needs a dictionary" % where)
+			elif bool(v.get("on", true)):
+				if not sides.has(String(v.get("side", ""))):
+					out.append("%s: chart: unknown side %s" % [where, v.get("side")])
+				if v.has("team") and not teams.has(String(v["team"])):
+					out.append("%s: chart: unknown team %s" % [where, v["team"]])
+				for ka in v.get("known", []):
+					if not areas.has(String(ka)):
+						out.append("%s: chart: unknown area %s" % [where, ka])
 		"show":
 			# (a07) {"show": {"pages": [{"still", "lines"}]}}: a MID-MATCH SHOW
 			if not (v is Dictionary) or (v.get("pages", []) as Array).is_empty():

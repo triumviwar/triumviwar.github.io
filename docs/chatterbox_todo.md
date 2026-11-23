@@ -104,6 +104,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | a07_council (the Council of Rome) | docs/campaign_a07_build.md | 49 | the King 28, Tomasz* 7, Hollweg 4, Ferrer* 3, Lindqvist 3, Valadares* 2, the Cardinal Dean* 2 |
 | d02_exodus (the Exodus, Act 2) | this file, "d02_exodus" below; docs/campaign_d02_build.md | 63 (+12 narrator, 2 NEW cards) | Hollweg 25, Ulrich* 16, the King 6, Ferrer 6, Colonel von Rauch* 5, Jakob* 3, Commissary Brandt* 2 |
 | d03_fazenda (the Island, Act 2) | this file, "d03_fazenda" below; docs/campaign_d03_build.md | 60 (+13 narrator, 2 NEW cards) | Lindqvist 20, Valadares* 17, Pieter* 12, the King 6, Desembargador Fonseca* 5 |
+| d04_concordia (the City of Gears, Act 2) | this file, "d04_concordia" below; docs/campaign_d04_build.md | 74 (+15 narrator, 2 NEW cards) | Hollweg 31, Ulrich* 18, Captain Arruda* 10, the King 6, Varenne 4, Citizen Morel* 3, Padre Anselmo* 2 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -248,6 +249,89 @@ in tools/voice_clone/emotions.json (`d03__<id>`).
 | v_end_c_lost | Valadares | We left at dawn with half a report. I knew they were there. I could smell them. | bitter, sure |
 | h_hurt | Lindqvist | My leg. Pieter, the lures. Keep them together. | pain, clipped |
 
+### d04_concordia (the City of Gears)
+
+Line ids are the mission's (`campaign/voice/d04_concordia/<id>.ogg`). The feeling is how the line should sound; lines
+without one are plain. The narrator's 15 lines and the two NEW cards can stay as text. Varenne and Morel never speak in
+the same game (a06 `varenne` spared: Varenne; executed: Morel).
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | He named it for concord. The valley named it otherwise. | dry, a small sad smile |
+| k_open2 | the King | Two years after he left my Crown, Hollweg bought a dead mine at the bottom of the world, and built a city on it that answered to nobody. | measured, a judge reading a record |
+| h_open1 | Hollweg | A city that governs itself. A council of masters, every voice a wheel, and the wheels in time. That was the plan. | old, proud of a dream he now doubts |
+| h_open2 | Hollweg | Rome had said those very words were a sin. I said them louder. | DRAMATIC: defiance remembered, with shame under it |
+| h_open_v | Hollweg | A ship from Lisbon brought us a man I never thought I would need: Etienne Varenne, the Assembly's orator, whom the King had spared and sent away. | wry |
+| h_open_m | Hollweg | A ship from Lisbon brought us one of the Assembly's men, Citizen Morel. Varenne was dead. Morel had not forgiven anyone for it. | uneasy |
+| h_1 | Hollweg | The tower first. Over the old shaft, where the ground is sound. Everything else turns round it. | brisk, a builder again |
+| u_tip1 | Ulrich* | The tower's site is marked by the shaft, Meister. Send the Winders; four hands raise it quickly. |  |
+| u_dark | Ulrich* | And look how little we know of this place. Everything off the plateau is dark to us: anyone could walk up those roads and we would not see him. |  |
+| h_tower | Hollweg | The tower stands. Now the spring, then the birds. I want this country mapped from the air, every road, before the first winter. | pleased, eager |
+| u_field | Ulrich* | The tower's gears are turning, Meister. Keep the soldiers on the gear rings round our buildings: there they stay wound. Off the gears they run down in a minute or so. |  |
+| u_spring | Ulrich* | The Aviary runs on Tension, Meister, and Tension comes from the Mainspring. Its site is by the Escapement. |  |
+| u_presses | Ulrich* | While the Aviary rises: the city has cogs for now, not for ever. The press north of the tower brings more, and the Light Works turns them into soldiers. |  |
+| u_aviary | Ulrich* | The spring is wound. Now the Aviary: its site is east of the tower. A Winder or two will raise it. |  |
+| u_swifts | Ulrich* | The Aviary is up. Pick it and make Swifts. Little brass birds: they fight only other birds, but they see a long way. |  |
+| h_map | Hollweg | Fly them down the three ways: the cart road west, the pine path north-west, the ranch track south. What a bird has seen, the guild knows. | commanding, hungry to know |
+| h_mapped_all | Hollweg | There. The whole country under one eye. From above, every road is only a gear's tooth. | DRAMATIC: rapture, a little too much (the flaw speaking) |
+| v_1 | Varenne | A city without a lord, Meister. I have heard this sermon before. I preached it, in Virginia and in Paris. | ironic, tired |
+| h_v1 | Hollweg | Yours was made of men, Varenne. Mine is made of wheels. Wheels keep time. | gentle certainty |
+| v_2 | Varenne | Paris burned keeping time. I watched it from a boat. | DRAMATIC: quiet, haunted |
+| m_1 | Citizen Morel* | No lord and no bishop. Good. Then let the valley learn it too, Meister, and quickly. | cold, impatient |
+| h_m1 | Hollweg | The valley can learn what it likes. We did not come here to teach. | curt |
+| h_crates_seen | Hollweg | Somewhere under us lie the two crates I sent from Nuremberg. They had lain on a quay in the jungle once, I learned later. | remembering, a shadow over it |
+| h_memory | Hollweg | No Heavy Works yet. I build it from memory, and memory is slow. The drawings are in Nuremberg, or in the Crown's hands. | frustrated, ashamed |
+| u_captain | Ulrich* | A rider from the valley, Meister. Their captain, coming up the cart road. |  |
+| a_wait | Captain Arruda* | I am Bento Arruda, captain of the valley's militia. I will talk with the master of this place. Here, on the road. Not up there among those things. | plain, stubborn, a cattleman |
+| u_parley | Ulrich* | He wants to talk, Meister. Walk down to him: the council's speaker will go with you. We will keep the machines back. |  |
+| a_parley1 | Captain Arruda* | My people say you raise the devil's own works up here. Clocks that walk. They say it was such things that ended the old world. | blunt, honestly afraid |
+| h_parley | Hollweg | They are tools, Captain. I have ordered them never to raise a hand against a man of your valley. Not one. | earnest, a promise |
+| v_parley | Varenne | Captain, I have stood where you stand, at the head of frightened men. Go home. Nobody here wants your land. | DRAMATIC: warm, one exile to a frightened man |
+| m_parley | Citizen Morel* | Your priests have told you to fear us. Ask yourself who profits by your fear, Captain. | cold, needling |
+| a_parley2 | Captain Arruda* | I will take your word down the hill. I cannot promise they will believe it. | grudging respect |
+| a_nobody | Captain Arruda* | Nobody comes down to talk. So be it. | hard, disappointed |
+| u_raid | Ulrich* | Riders on the cart road, Meister, and muskets! The valley does not mean to talk. | alarm |
+| u_raid_dark | Ulrich* | I hear horses on the dark roads, Meister, and I cannot see them. The Swifts! | DRAMATIC: fear of what he cannot see |
+| h_raid_over | Hollweg | They have gone back down. Let them. Mend what they broke. | weary |
+| u_dusk | Ulrich* | The sun is going down over the valley, Meister. There are lights on the road. Many lights. | uneasy, low |
+| h_fear | Hollweg | Nobody strikes them. Do you hear me? Not one blow. I saw Rome burn. It will not start again here, and not by my machines. | DRAMATIC: fierce, almost shouting; Rome is in his voice |
+| u_fear | Ulrich* | Then we stand in their way, Meister. Put fighters round a man with a torch and he will think better of it. Shields up: they throw stones. | steady, practical |
+| u_fire | Ulrich* | A house is burning! Anyone, to the fire: a man of ours beside it puts it out. |  |
+| m_fear | Citizen Morel* | Let the machines teach them, Meister. One lesson tonight saves a hundred later. | cold, reasonable (the danger of it) |
+| h_m_fear | Hollweg | No, Citizen. I have seen the end of that lesson. | DRAMATIC: very quiet, final |
+| v_fear | Varenne | Hold, Meister. Hold. A crowd that is not struck goes home in the end. A crowd that is struck never does. | urgent, kind |
+| u_temper | Ulrich* | The fires are seen from the valley, Meister. Every one makes them angrier. | worried |
+| p_1 | Padre Anselmo* | Enough! Is this how a Christian keeps the Sabbath, with a torch in his hand on a stranger's hill? | DRAMATIC: a country priest's anger, loud, fatherly |
+| p_2 | Padre Anselmo* | Home, all of you. If these men are wrong, God and the Church will judge them, not your torches. | firm, then gentle |
+| h_anselmo | Hollweg | He did with one word what all my shields could not do. I wrote that down. I did not understand it until much later. | DRAMATIC: wonder, the first crack in his certainty |
+| h_boil | Hollweg | They are coming with muskets now. Into the tower's field, all of you. We hold. | grim |
+| h_crates1 | Hollweg | The crates. Before anything else today, I want to see the crates. Ulrich, the lantern. | eager, almost a boy |
+| u_crates | Ulrich* | The deepest gallery is behind the spoil heaps, Meister, north-east. The seal will know your hand. | respectful |
+| h_opened | Hollweg | Two soldiers of a pattern I do not remember drawing. A Winder. And plates, so many plates. My best work. It must have been. | DRAMATIC: awe that should frighten him and does not |
+| u_plates | Ulrich* | The plates are lying across the gallery floor, Meister. I did not see anyone lay them. | uneasy, puzzled |
+| h_plates | Hollweg | They slid out of the straw. Leave them. They wind whatever stands on them: a gift. | dismissive, too quick |
+| h_jakob | Hollweg | Jakob would have counted the teeth on those plates. Jakob was in Fürth. | grief held down |
+| u_attack | Ulrich* | Meister! The militia, up all three roads at once! Riders on the ranch track! | shout |
+| a_attack | Captain Arruda* | For the valley, and for God! Burn the tower! | battle cry |
+| a_attack_p | Captain Arruda* | I gave them your word, clockmaker. The night gave them theirs. Forgive me. | DRAMATIC: sorry, but riding anyway |
+| h_attack | Hollweg | These are soldiers. Defend the city. Shields to the front, the Winders behind. | cold command |
+| a_break | Captain Arruda* | Back! Back down the hill! Enough have died for one morning. | hoarse, beaten |
+| h_concord | Hollweg | Concord. | DRAMATIC: one word, tired, half a prayer |
+| h_hurt | Hollweg | I am hit. Keep them off the tower, never mind me. | pain, through teeth |
+| a_v1 | Captain Arruda* | There it is, on our hill: the thing the old world died of. Burn their houses before they take root, or bring the tower down. | hard, sure of himself |
+| a_v_tip | Captain Arruda* | The Barracks in the town and the Horse Breeder at the ranches are ours. The people will go up the road tonight whatever we do. | plain |
+| h_end1 | Hollweg | By the first winter the city had a wall of timber, a council and a name. I sat at the head of the council table and called it concord. | old, proud |
+| h_end_parley | Hollweg | The valley's captain had taken my word down the hill. That word was the best thing I built that year. | warm, the best memory of the year |
+| h_end_fought | Hollweg | The valley never forgave us that dawn. Its people crossed themselves when our birds flew over. | regret |
+| h_end_v | Hollweg | Varenne spoke for the city's people in the council. He was the only one of us who was afraid of it. I thought it was the habit of exile. | fond, missing the point |
+| h_end_m | Hollweg | Morel spoke for the city's people in the council, and wanted the valley taught. I would not have it. That much I had learned in Rome. | firm |
+| h_end2 | Hollweg | I had learned to hold my machines back from the valley. I had not learned to hold them back from themselves. | DRAMATIC: the old man knows now what the young one did not |
+| k_end1 | the King | The plates in that gallery were not his best work. They were the Perpetual's. He had sent them ahead himself, six years before. | grave, slow |
+| k_end_people | the King | He had left the pattern in Nuremberg. He had already sent it ahead. | grave |
+| k_end2 | the King | A priest of the valley stopped a crowd that night with two sentences. Hollweg wrote it down. It took him twenty years to read it. | DRAMATIC: soft, the King respects the priest |
+| k_end_v | the King | The valley burned the city's first houses on its first night. That is not how it went. It stood, and grew. | stern correction |
+| a_end_v | Captain Arruda* | We burned it before it took root. The bishop wrote to thank us. I did not sleep well, all the same. | troubled |
+
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
 Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, ferrer (2026-11-22), explorer (now Valadares? the owner to say). The King
@@ -258,7 +342,10 @@ Pieter, Benedito, Captain Delorme, Colonel von Rauch, Brother Anselm, Will Holli
 (Teles, Frei Joaquim, the Captain of the Watch, the Commissary, Rouvière, Mère Gautier, the Sergeant, the guide, the
 Cardinal Dean of a07). Act 2: Ulrich (the guild's foreman: d02, a rough Franconian voice, older than Jakob) and
 Commissary Brandt (a dry chancery official, German); d03: Desembargador Fonseca (a Portuguese-Brazilian high-court
-judge, fifties, pompous and comfortable) and Pieter grown (the plan's d03: ten years after b01, a man of thirty).
+judge, fifties, pompous and comfortable) and Pieter grown (the plan's d03: ten years after b01, a man of thirty);
+d04: Captain Bento Arruda (a southern Brazilian cattleman-officer, forties, plain and stubborn, Portuguese-Brazilian),
+Padre Anselmo (a kind country priest, sixties, a voice that calms a crowd) and Citizen Morel (an Assembly man, French,
+thirties, cold and clipped).
 
 ## 4. Act 2 (planned, not built)
 
