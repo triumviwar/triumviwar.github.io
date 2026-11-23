@@ -407,13 +407,14 @@ func _tick_takes(dt: float) -> void:
 		if _alive(it.get("cart")):
 			prog[it["cart"]] = it
 	var keep: Array = []
+	var changed := {}          # (a cart taken this tick: no other rule takes it back in the same tick with its old progress)
 	for rule in rules:
 		var by_teams := run.teams_of_side(String(rule.get("by", "")))
 		var within := float(rule.get("within", TAKE_RING)) * _tile()
 		var guard := float(rule.get("guard", GUARD_RING)) * _tile()
 		var secs := float(rule.get("secs", 5.0))
 		for c in run.tagged(String(rule.get("tag", ""))):
-			if not (c is Unit) or by_teams.has(c.team):
+			if not (c is Unit) or by_teams.has(c.team) or changed.has(c):
 				continue
 			var takers := 0
 			var guards := 0
@@ -432,6 +433,8 @@ func _tick_takes(dt: float) -> void:
 				it["t"] = maxf(0.0, float(it["t"]) - dt * 2.0)
 			if float(it["t"]) >= secs:
 				_take(c, rule)
+				changed[c] = true
+				prog.erase(c)
 				continue
 			if float(it["t"]) > 0.0:
 				it["secs"] = secs

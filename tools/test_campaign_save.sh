@@ -2,7 +2,7 @@
 # player-comforts: every Act 1 mission played to its end by its sim bot (tools/sim_campaign_*.gd, "active") twice: once
 # straight through, once SAVED and LOADED in the middle (save_at=, tools/sim_save_hook.gd), and the flags written at the
 # end compared. Each run has a user folder of its own (the sims write the campaign's progress file).
-#   tools/test_campaign_save.sh [mission ...]          (none: all ten)   JOBS=2 at once; OUT=<dir> for the logs
+#   tools/test_campaign_save.sh [mission ...]          (none: all eleven)   JOBS=2 at once; OUT=<dir> for the logs
 # The quick checks (a save of every mission loaded back, the checkpoints, the menu, QUIT to the hub) are
 # tools/test_campaign_save.gd.
 cd "$(dirname "$0")/.." || exit 1
@@ -19,7 +19,8 @@ a05 a05 170 active
 a06 a06 160 active
 a07 a07 400 active
 b01 b01 300 active
-c01 c01 400 active"
+c01 c01 400 active
+d02 d02 120 active"
 run() {   # tag sim save_at args...
 	tag=$1; sim=$2; at=$3; shift 3
 	for how in plain saved; do

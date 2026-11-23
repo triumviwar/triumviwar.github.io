@@ -4760,7 +4760,7 @@ const T := {
 	"Build the Ratchet Turret at the bridge's foot: send a Winder to its site.": "Construa a Torreta de Catraca ao pé da ponte: mande um Enrolador ao local.",
 	"The last barge is loaded. Get Meister Hollweg aboard: walk him onto the jetty.": "A última barcaça está carregada. Embarque o Mestre Hollweg: leve-o até o cais.",
 	"The bargemen cast off in {clock:cast_off}.": "Os barqueiros soltam as amarras em {clock:cast_off}.",
-	"Ride down the Würzburg track into the valley: the guild's only road to the Main runs through it.": "Desça pelo caminho de Würzburg até o vale: a única estrada da guilda para o Meno passa por ele.",
+	"After them: over the Rednitz bridge and down the valley. The guild's only road to the Main runs through it.": "Atrás deles: sobre a ponte do Rednitz e pelo vale abaixo. A única estrada da guilda para o Meno passa por ele.",
 	"Take the carts: {carts_taken} taken. Stand men round a cart with none of the guild's fighters by it. Rome's order is to take, not to kill.": "Tome as carroças: {carts_taken} tomadas. Ponha homens em volta de uma carroça sem nenhum combatente da guilda ao lado. A ordem de Roma é tomar, não matar.",
 	"Take Meister Hollweg alive before the last barge: bring him down and stand a man by him.": "Capture o Mestre Hollweg vivo antes da última barcaça: derrube-o e ponha um homem ao lado dele.",
 	"The Exodus": "O Êxodo",
