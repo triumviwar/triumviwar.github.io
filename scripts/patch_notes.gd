@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.182", "items": [
+		"THE CAMPAIGN'S HUBS GROW: as you play, people you met join the hubs (General Ruggieri, Jakob, Pieter, Valadares and more, by what you chose), and new rooms open: the King's armoury, chapel and gallery of flags, the guild's yard at Fürth, the Academy's store and chart room. A NEW mark and a line say who joined and why. Some rooms act on the game: winning a line's missions and their optional objectives earns its purse (Royal Favour, Guild Marks, Field Notes), spent on lasting upgrades, either-or choices, a blessing in the chapel or a company called into the next missions. They reach only that line's own missions played solo, and the briefing lists what is on. The new rooms and people are stand-in pictures until their paintings come.",
+	]},
 	{"v": "0.38.181", "items": [
 		"Nothing new to play yet: the campaign engine learned what Act 2's missions need: carts that carry families or gold and can be taken, creatures that hide and leave tracks, the lure's leash and its breaking, buildings that turn to the other side, ground that spreads, the brake on the machines, sappers under the walls, granaries that feed whoever holds them, and missions that change with what you fought first.",
 	]},

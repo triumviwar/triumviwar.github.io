@@ -1,0 +1,786 @@
+# The hubs that grow (campaign/hubs_grow.json, job hubs-grow, docs/hubs_grow.md): the rooms, the people who join them,
+# the counters of the rooms that act on the game. ALL TEXT PLACEHOLDER (the owner rewrites the dialogue himself).
+
+> THE STUDY
+pt O GABINETE
+es EL ESTUDIO
+
+> ROYAL FAVOUR
+pt FAVOR REAL
+es FAVOR REAL
+
+> THE WORKSHOP
+pt A OFICINA
+es EL TALLER
+
+> GUILD MARKS
+pt MARCAS DA GUILDA
+es MARCAS DEL GREMIO
+
+> THE WAREHOUSE
+pt O ARMAZÉM
+es EL ALMACÉN
+
+> FIELD NOTES
+pt NOTAS DE CAMPO
+es NOTAS DE CAMPO
+
+> THE ARMOURY
+pt O ARSENAL
+es LA ARMERÍA
+
+> The palace armoury is open: General Ruggieri keeps the King's guns there.
+pt O arsenal do palácio está aberto: o General Ruggieri guarda ali os canhões do Rei.
+es La armería del palacio está abierta: el General Ruggieri guarda allí los cañones del Rey.
+
+> THE RACKS
+pt OS CAVALETES
+es LOS ARMEROS
+
+> THE MUSTER BOOK
+pt O LIVRO DE ALISTAMENTO
+es EL LIBRO DE REVISTA
+
+> THE CHAPEL
+pt A CAPELA
+es LA CAPILLA
+
+> The palace chapel is open: before a mission, Tomasz blesses the men.
+pt A capela do palácio está aberta: antes de uma missão, Tomasz abençoa os homens.
+es La capilla del palacio está abierta: antes de una misión, Tomasz bendice a los hombres.
+
+> THE ALTAR
+pt O ALTAR
+es EL ALTAR
+
+> THE VOTIVE CANDLES
+pt AS VELAS VOTIVAS
+es LAS VELAS VOTIVAS
+
+> A STONE FROM NOTRE-DAME
+pt UMA PEDRA DE NOTRE-DAME
+es UNA PIEDRA DE NOTRE-DAME
+
+> THE GALLERY OF FLAGS
+pt A GALERIA DAS BANDEIRAS
+es LA GALERÍA DE LAS BANDERAS
+
+> The Gallery of Flags is open: what was taken in Virginia, Lyon and Paris hangs there.
+pt A Galeria das Bandeiras está aberta: o que foi tomado na Virgínia, em Lyon e em Paris está pendurado ali.
+es La Galería de las Banderas está abierta: lo que se tomó en Virginia, Lyon y París cuelga allí.
+
+> THE ASSEMBLY'S FLAG
+pt A BANDEIRA DA ASSEMBLEIA
+es LA BANDERA DE LA ASAMBLEA
+
+> ROUVIÈRE'S TYPE CASE
+pt A CAIXA DE TIPOS DE ROUVIÈRE
+es LA CAJA DE TIPOS DE ROUVIÈRE
+
+> THE BASTILLE'S KEY
+pt A CHAVE DA BASTILHA
+es LA LLAVE DE LA BASTILLA
+
+> VARENNE'S LETTER
+pt A CARTA DE VARENNE
+es LA CARTA DE VARENNE
+
+> THE SENTENCE
+pt A SENTENÇA
+es LA SENTENCIA
+
+> THE COUNCIL'S DECREE
+pt O DECRETO DO CONCÍLIO
+es EL DECRETO DEL CONCILIO
+
+> THE GUILD'S YARD
+pt O PÁTIO DA GUILDA
+es EL PATIO DEL GREMIO
+
+> The guild's yard at Fürth is open: the masters fit new parts there for the next fight.
+pt O pátio da guilda em Fürth está aberto: os mestres montam ali peças novas para a próxima luta.
+es El patio del gremio en Fürth está abierto: los maestros montan allí piezas nuevas para la próxima lucha.
+
+> THE MASTERS' BENCH
+pt A BANCADA DOS MESTRES
+es EL BANCO DE LOS MAESTROS
+
+> JAKOB'S DRAWINGS
+pt OS DESENHOS DE JAKOB
+es LOS DIBUJOS DE JAKOB
+
+> WHO CAN COME
+pt QUEM PODE VIR
+es QUIÉN PUEDE VENIR
+
+> THE HONEST ONE
+pt O HONESTO
+es EL HONRADO
+
+> THE BROKEN ONES
+pt OS QUEBRADOS
+es LOS ROTOS
+
+> THE MELTED BRASS
+pt O LATÃO FUNDIDO
+es EL LATÓN FUNDIDO
+
+> THE SPECIMEN STORE
+pt O DEPÓSITO DE ESPÉCIMES
+es EL DEPÓSITO DE ESPECÍMENES
+
+> The Academy's store room is open: Lindqvist keeps his notes, jars and kit there.
+pt O depósito da Academia está aberto: Lindqvist guarda ali as suas notas, frascos e equipamento.
+es El depósito de la Academia está abierto: Lindqvist guarda allí sus notas, frascos y equipo.
+
+> THE EXPEDITION KIT
+pt O EQUIPAMENTO DA EXPEDIÇÃO
+es EL EQUIPO DE LA EXPEDICIÓN
+
+> THE CAGES
+pt AS JAULAS
+es LAS JAULAS
+
+> THE JARS
+pt OS FRASCOS
+es LOS FRASCOS
+
+> THE LISBON CRATE
+pt O CAIXOTE DE LISBOA
+es EL CAJÓN DE LISBOA
+
+> THE CHART ROOM
+pt A SALA DAS CARTAS
+es LA SALA DE CARTAS
+
+> Valadares drew his map of the plateau, and the chart room is open.
+pt Valadares desenhou o seu mapa do planalto, e a sala das cartas está aberta.
+es Valadares dibujó su mapa de la meseta, y la sala de cartas está abierta.
+
+> THE PLATEAU MAP
+pt O MAPA DO PLANALTO
+es EL MAPA DE LA MESETA
+
+> FIELD MARSHAL FAIRLEIGH
+pt MARECHAL FAIRLEIGH
+es MARISCAL FAIRLEIGH
+
+> Field Marshal Fairleigh is in the study: the King sent for him to tell of Paris.
+pt O Marechal Fairleigh está no gabinete: o Rei mandou chamá-lo para contar Paris.
+es El Mariscal Fairleigh está en el estudio: el Rey lo mandó llamar para contar lo de París.
+
+> GENERAL RUGGIERI
+pt GENERAL RUGGIERI
+es GENERAL RUGGIERI
+
+> General Ruggieri is in the armoury: he was the captain of the guns in Virginia.
+pt O General Ruggieri está no arsenal: ele era o capitão dos canhões na Virgínia.
+es El General Ruggieri está en la armería: era el capitán de los cañones en Virginia.
+
+> CAPTAIN DELORME
+pt CAPITÃO DELORME
+es CAPITÁN DELORME
+
+> Captain Delorme is in the armoury: his riders held Lyon, and they will ride again.
+pt O Capitão Delorme está no arsenal: os seus cavaleiros seguraram Lyon e voltarão a cavalgar.
+es El Capitán Delorme está en la armería: sus jinetes sostuvieron Lyon y volverán a cabalgar.
+
+> THE SWISS CAPTAIN
+pt O CAPITÃO SUÍÇO
+es EL CAPITÁN SUIZO
+
+> The captain of the Swiss Guard is in the armoury: his pikes held the bridges of Rome.
+pt O capitão da Guarda Suíça está no arsenal: os seus piques seguraram as pontes de Roma.
+es El capitán de la Guardia Suiza está en la armería: sus picas sostuvieron los puentes de Roma.
+
+> JAKOB
+pt JAKOB
+es JAKOB
+
+> Jakob, Hollweg's apprentice, works in the barn: he got out of Nuremberg with his drawings.
+pt Jakob, o aprendiz de Hollweg, trabalha no celeiro: saiu de Nuremberga com os seus desenhos.
+es Jakob, el aprendiz de Hollweg, trabaja en el granero: salió de Núremberg con sus dibujos.
+
+> FATHER FERRER
+pt PADRE FERRER
+es PADRE FERRER
+
+> Father Ferrer stays at the barn after his visit: he watches the guild's work for the Church.
+pt O Padre Ferrer fica no celeiro depois da visita: vigia o trabalho da guilda pela Igreja.
+es El Padre Ferrer se queda en el granero tras su visita: vigila el trabajo del gremio por la Iglesia.
+
+> MASTER ULRICH
+pt MESTRE ULRICH
+es MAESTRO ULRICH
+
+> Master Ulrich, the guild's old master Winder, runs the yard: he will send his Winders with you.
+pt Mestre Ulrich, o velho mestre Enrolador da guilda, cuida do pátio: mandará os seus Enroladores consigo.
+es El Maestro Ulrich, el viejo maestro Dador de cuerda del gremio, lleva el patio: enviará a sus Dadores de cuerda contigo.
+
+> COLONEL VON RAUCH
+pt CORONEL VON RAUCH
+es CORONEL VON RAUCH
+
+> Colonel von Rauch comes to the yard: the Crown's camp at Fürth stands beside the guild.
+pt O Coronel von Rauch vem ao pátio: o acampamento da Coroa em Fürth fica ao lado da guilda.
+es El Coronel von Rauch viene al patio: el campamento de la Corona en Fürth está junto al gremio.
+
+> BROTHER ANSELM
+pt IRMÃO ANSELMO
+es HERMANO ANSELMO
+
+> Brother Anselm stayed with Father Ferrer: he keeps the yard's ledger of every machine.
+pt O Irmão Anselmo ficou com o Padre Ferrer: guarda o registo do pátio de cada máquina.
+es El Hermano Anselmo se quedó con el Padre Ferrer: lleva el registro del patio de cada máquina.
+
+> PIETER
+pt PIETER
+es PIETER
+
+> Pieter, Lindqvist's assistant, came out of the station alive: he works at the warehouse table.
+pt Pieter, o assistente de Lindqvist, saiu vivo da estação: trabalha à mesa do armazém.
+es Pieter, el ayudante de Lindqvist, salió vivo de la estación: trabaja en la mesa del almacén.
+
+> BENEDITO
+pt BENEDITO
+es BENEDITO
+
+> Benedito, the canoe-man, keeps the store: he brought the party down the river.
+pt Benedito, o canoeiro, cuida do depósito: trouxe a expedição rio abaixo.
+es Benedito, el canoero, cuida del depósito: bajó a la partida por el río.
+
+> DUARTE VALADARES
+pt DUARTE VALADARES
+es DUARTE VALADARES
+
+> Duarte Valadares is in the chart room: he drew the plateau for the Crown.
+pt Duarte Valadares está na sala das cartas: desenhou o planalto para a Coroa.
+es Duarte Valadares está en la sala de cartas: dibujó la meseta para la Corona.
+
+> PAPER CARTRIDGES
+pt CARTUCHOS DE PAPEL
+es CARTUCHOS DE PAPEL
+
+> Musketeers hit 10% harder.
+pt Os Mosqueteiros acertam 10% mais forte.
+es Los Mosqueteros golpean un 10% más fuerte.
+
+> GOOD BOOTS
+pt BOAS BOTAS
+es BUENAS BOTAS
+
+> Musketeers and Pikemen march 8% faster.
+pt Os Mosqueteiros e os Piqueiros marcham 8% mais depressa.
+es Los Mosqueteros y los Piqueros marchan un 8% más rápido.
+
+> HORSE BREASTPLATES
+pt PEITORAIS PARA OS CAVALOS
+es PETRALES PARA LOS CABALLOS
+
+> Horsemen have 12% more health.
+pt Os Cavaleiros têm 12% mais vida.
+es Los Jinetes tienen un 12% más de vida.
+
+> PROOFED BARRELS
+pt CANOS PROVADOS
+es CAÑONES PROBADOS
+
+> Field Cannons and Mortars have 15% more health.
+pt Os Canhões de Campanha e os Morteiros têm 15% mais vida.
+es Los Cañones de Campaña y los Morteros tienen un 15% más de vida.
+
+> TEMPERED MAINSPRINGS
+pt MOLAS-MESTRAS TEMPERADAS
+es MUELLES REALES TEMPLADOS
+
+> Clock Soldiers run down 15% slower.
+pt Os Soldados-Relógio perdem a corda 15% mais devagar.
+es Los Soldados Reloj pierden la cuerda un 15% más despacio.
+
+> DOUBLE RIVETS
+pt REBITES DUPLOS
+es REMACHES DOBLES
+
+> Clock Soldiers have 10% more health.
+pt Os Soldados-Relógio têm 10% mais vida.
+es Los Soldados Reloj tienen un 10% más de vida.
+
+> WINDERS' OIL
+pt ÓLEO DOS ENROLADORES
+es ACEITE DE LOS DADORES DE CUERDA
+
+> Winders move 15% faster.
+pt Os Enroladores andam 15% mais depressa.
+es Los Dadores de cuerda se mueven un 15% más rápido.
+
+> HARDENED SCREWS
+pt PARAFUSOS ENDURECIDOS
+es TORNILLOS ENDURECIDOS
+
+> Springers hit 10% harder.
+pt Os Saltadores acertam 10% mais forte.
+es Los Saltadores golpean un 10% más fuerte.
+
+> VON RAUCH'S DRILL
+pt A INSTRUÇÃO DE VON RAUCH
+es LA INSTRUCCIÓN DE VON RAUCH
+
+> Musketeers (Father Ferrer's escort) have 10% more health.
+pt Os Mosqueteiros (a escolta do Padre Ferrer) têm 10% mais vida.
+es Los Mosqueteros (la escolta del Padre Ferrer) tienen un 10% más de vida.
+
+> HIRED GUNS' KIT
+pt EQUIPAMENTO DOS MERCENÁRIOS
+es EQUIPO DE LOS MERCENARIOS
+
+> Musketeers have 10% more health.
+pt Os Mosqueteiros têm 10% mais vida.
+es Los Mosqueteros tienen un 10% más de vida.
+
+> LIGHT PACKS
+pt MOCHILAS LEVES
+es MOCHILAS LIGERAS
+
+> Porters and guides (Labourers) move 15% faster.
+pt Os carregadores e os guias (Operários) andam 15% mais depressa.
+es Los porteadores y los guías (Peones) se mueven un 15% más rápido.
+
+> DRY POWDER
+pt PÓLVORA SECA
+es PÓLVORA SECA
+
+> Musketeers hit 8% harder.
+pt Os Mosqueteiros acertam 8% mais forte.
+es Los Mosqueteros golpean un 8% más fuerte.
+
+> SAINT BARBARA
+pt SANTA BÁRBARA
+es SANTA BÁRBARA
+
+> The gunners' patron: Field Cannons and Mortars hit 8% harder.
+pt A padroeira dos artilheiros: os Canhões de Campanha e os Morteiros acertam 8% mais forte.
+es La patrona de los artilleros: los Cañones de Campaña y los Morteros golpean un 8% más fuerte.
+
+> SAINT MICHAEL
+pt SÃO MIGUEL
+es SAN MIGUEL
+
+> The soldiers' patron: Musketeers, Horsemen and Pikemen have 6% more health.
+pt O padroeiro dos soldados: os Mosqueteiros, os Cavaleiros e os Piqueiros têm 6% mais vida.
+es El patrón de los soldados: los Mosqueteros, los Jinetes y los Piqueros tienen un 6% más de vida.
+
+> SAINT ISIDORE
+pt SANTO ISIDRO
+es SAN ISIDRO
+
+> The farmers' patron: 150 more gold at the start.
+pt O padroeiro dos lavradores: mais 150 de ouro no início.
+es El patrón de los labradores: 150 de oro más al empezar.
+
+> DELORME'S RIDERS
+pt OS CAVALEIROS DE DELORME
+es LOS JINETES DE DELORME
+
+> 2 Horsemen join you at the start.
+pt 2 Cavaleiros juntam-se a si no início.
+es 2 Jinetes se unen a ti al empezar.
+
+> RUGGIERI'S GUN CREW
+pt A GUARNIÇÃO DE RUGGIERI
+es LA DOTACIÓN DE RUGGIERI
+
+> 1 Field Cannon joins you at the start.
+pt 1 Canhão de Campanha junta-se a si no início.
+es 1 Cañón de Campaña se une a ti al empezar.
+
+> THE SWISS GUARD
+pt A GUARDA SUÍÇA
+es LA GUARDIA SUIZA
+
+> 3 Pikemen join you at the start (where a mission allows them).
+pt 3 Piqueiros juntam-se a si no início (onde a missão os permitir).
+es 3 Piqueros se unen a ti al empezar (donde la misión los permita).
+
+> MASTER ULRICH'S WINDERS
+pt OS ENROLADORES DO MESTRE ULRICH
+es LOS DADORES DE CUERDA DEL MAESTRO ULRICH
+
+> 2 Winders join you at the start.
+pt 2 Enroladores juntam-se a si no início.
+es 2 Dadores de cuerda se unen a ti al empezar.
+
+> VON RAUCH'S MUSKETEERS
+pt OS MOSQUETEIROS DE VON RAUCH
+es LOS MOSQUETEROS DE VON RAUCH
+
+> 3 Musketeers join Father Ferrer's party at the start.
+pt 3 Mosqueteiros juntam-se ao grupo do Padre Ferrer no início.
+es 3 Mosqueteros se unen a la partida del Padre Ferrer al empezar.
+
+> VALADARES' HUNTERS
+pt OS CAÇADORES DE VALADARES
+es LOS CAZADORES DE VALADARES
+
+> 3 Musketeers join the expedition at the start.
+pt 3 Mosqueteiros juntam-se à expedição no início.
+es 3 Mosqueteros se unen a la expedición al empezar.
+
+> THE DRILL BOOK: THE LINE
+pt O LIVRO DE INSTRUÇÃO: A LINHA
+es EL LIBRO DE INSTRUCCIÓN: LA LÍNEA
+
+> THE STEADY LINE
+pt A LINHA FIRME
+es LA LÍNEA FIRME
+
+> Musketeers have 12% more health.
+pt Os Mosqueteiros têm 12% mais vida.
+es Los Mosqueteros tienen un 12% más de vida.
+
+> THE QUICK MARCH
+pt A MARCHA RÁPIDA
+es LA MARCHA RÁPIDA
+
+> Musketeers march 10% faster.
+pt Os Mosqueteiros marcham 10% mais depressa.
+es Los Mosqueteros marchan un 10% más rápido.
+
+> THE DRILL BOOK: THE GUNS
+pt O LIVRO DE INSTRUÇÃO: OS CANHÕES
+es EL LIBRO DE INSTRUCCIÓN: LOS CAÑONES
+
+> HEAVY SHOT
+pt BALA PESADA
+es BALA PESADA
+
+> Field Cannons and Mortars hit 12% harder.
+pt Os Canhões de Campanha e os Morteiros acertam 12% mais forte.
+es Los Cañones de Campaña y los Morteros golpean un 12% más fuerte.
+
+> LIGHT CARRIAGES
+pt REPAROS LEVES
+es CUREÑAS LIGERAS
+
+> Field Cannons and Mortars move 15% faster.
+pt Os Canhões de Campanha e os Morteiros andam 15% mais depressa.
+es Los Cañones de Campaña y los Morteros se mueven un 15% más rápido.
+
+> THE CLOCK SOLDIER
+pt O SOLDADO-RELÓGIO
+es EL SOLDADO RELOJ
+
+> LONG WIND
+pt CORDA LONGA
+es CUERDA LARGA
+
+> Clock Soldiers run down 20% slower.
+pt Os Soldados-Relógio perdem a corda 20% mais devagar.
+es Los Soldados Reloj pierden la cuerda un 20% más despacio.
+
+> HEAVY PLATE
+pt PLACA PESADA
+es PLACA PESADA
+
+> Clock Soldiers have 15% more health but walk 5% slower.
+pt Os Soldados-Relógio têm 15% mais vida, mas andam 5% mais devagar.
+es Los Soldados Reloj tienen un 15% más de vida, pero andan un 5% más despacio.
+
+> THE SPRINGER
+pt O SALTADOR
+es EL SALTADOR
+
+> SHARP SCREWS
+pt PARAFUSOS AFIADOS
+es TORNILLOS AFILADOS
+
+> Springers hit 12% harder.
+pt Os Saltadores acertam 12% mais forte.
+es Los Saltadores golpean un 12% más fuerte.
+
+> LIGHT FRAME
+pt ARMAÇÃO LEVE
+es ARMAZÓN LIGERO
+
+> Springers move 12% faster.
+pt Os Saltadores andam 12% mais depressa.
+es Los Saltadores se mueven un 12% más rápido.
+
+> THE MAP'S LESSON
+pt A LIÇÃO DO MAPA
+es LA LECCIÓN DEL MAPA
+
+> THE SHORT WAY
+pt O CAMINHO CURTO
+es EL CAMINO CORTO
+
+> THE WATCHFUL CAMP
+pt O ACAMPAMENTO ATENTO
+es EL CAMPAMENTO ATENTO
+
+> Musketeers see 1 tile further.
+pt Os Mosqueteiros veem 1 casa mais longe.
+es Los Mosqueteros ven 1 casilla más lejos.
+
+> Paris, Your Majesty. Three barricades, one street, and the King's patience.
+pt Paris, Majestade. Três barricadas, uma rua e a paciência do Rei.
+es París, Majestad. Tres barricadas, una calle y la paciencia del Rey.
+
+> I am old now. I still hear the canister.
+pt Agora estou velho. Ainda ouço a metralha.
+es Ahora soy viejo. Aún oigo la metralla.
+
+> Varenne went to the scaffold. The Assembly made a saint of him by morning.
+pt Varenne subiu ao cadafalso. Pela manhã, a Assembleia já fazia dele um santo.
+es Varenne subió al cadalso. Por la mañana, la Asamblea ya lo había hecho santo.
+
+> Rome burned one night, and held. I was not there. The young King was.
+pt Roma ardeu uma noite e aguentou. Eu não estava lá. O jovem Rei estava.
+es Roma ardió una noche y resistió. Yo no estaba allí. El joven Rey sí.
+
+> The guns, Highness. In Virginia they were two. In Rome there are more.
+pt Os canhões, Alteza. Na Virgínia eram dois. Em Roma há mais.
+es Los cañones, Alteza. En Virginia eran dos. En Roma hay más.
+
+> Earn the King's favour in the field, and I will spend it here on what the men need.
+pt Ganhe o favor do Rei no campo, e eu gasto-o aqui no que os homens precisam.
+es Gánate el favor del Rey en el campo, y yo lo gastaré aquí en lo que los hombres necesiten.
+
+> Paris wanted the Mortar. My old crew will come with you again, if you call them.
+pt Paris pediu o Morteiro. A minha velha guarnição irá consigo outra vez, se a chamar.
+es París pidió el Mortero. Mi vieja dotación irá contigo otra vez, si la llamas.
+
+> Lyon is quiet. Two of my riders are yours whenever you want them.
+pt Lyon está calma. Dois dos meus cavaleiros são seus quando os quiser.
+es Lyon está tranquila. Dos de mis jinetes son tuyos cuando los quieras.
+
+> Lyon is sullen, not quiet. Still, two of my riders are yours.
+pt Lyon está carrancuda, não calma. Ainda assim, dois dos meus cavaleiros são seus.
+es Lyon está hosca, no tranquila. Aun así, dos de mis jinetes son tuyos.
+
+> The bridges held till dawn. My pikes go where the King sends them.
+pt As pontes aguentaram até ao amanhecer. Os meus piques vão aonde o Rei os mandar.
+es Los puentes resistieron hasta el alba. Mis picas van adonde el Rey las mande.
+
+> A candle burns for the dead of the tobacco country.
+pt Arde uma vela pelos mortos da terra do tabaco.
+es Arde una vela por los muertos de la tierra del tabaco.
+
+> A candle burns for the dead of the tobacco country, and one of thanks from the Hollins families.
+pt Arde uma vela pelos mortos da terra do tabaco, e outra de agradecimento das famílias Hollins.
+es Arde una vela por los muertos de la tierra del tabaco, y otra de gratitud de las familias Hollins.
+
+> A carved stone from the cathedral's porch, kept here so Paris is prayed for.
+pt Uma pedra lavrada do pórtico da catedral, guardada aqui para que se reze por Paris.
+es Una piedra labrada del pórtico de la catedral, guardada aquí para que se rece por París.
+
+> Green and black, taken at the fort gate in Virginia. Scorched at one edge.
+pt Verde e preta, tomada no portão do forte na Virgínia. Chamuscada numa ponta.
+es Verde y negra, tomada en la puerta del fuerte en Virginia. Chamuscada en un borde.
+
+> The printer's letters, taken at Lyon. He set the pamphlets with them. He named Paris.
+pt As letras do impressor, tomadas em Lyon. Com elas compôs os panfletos. Ele disse o nome de Paris.
+es Las letras del impresor, tomadas en Lyon. Con ellas compuso los panfletos. Él nombró París.
+
+> The key of the old fortress's magazine. The Assembly wanted its powder; the King's army took it first.
+pt A chave do paiol da velha fortaleza. A Assembleia queria a pólvora; o exército do Rei tomou-a primeiro.
+es La llave del polvorín de la vieja fortaleza. La Asamblea quería su pólvora; el ejército del Rey la tomó antes.
+
+> A letter from exile, unsigned. The hand is Varenne's. He thanks no one.
+pt Uma carta do exílio, sem assinatura. A letra é de Varenne. Não agradece a ninguém.
+es Una carta desde el exilio, sin firma. La letra es de Varenne. No agradece a nadie.
+
+> The sentence on Etienne Varenne, signed and sealed. Father Tomasz asked for mercy. It was not given.
+pt A sentença de Etienne Varenne, assinada e selada. O Padre Tomasz pediu clemência. Não foi dada.
+es La sentencia de Etienne Varenne, firmada y sellada. El Padre Tomasz pidió clemencia. No se concedió.
+
+> The Council of Rome: no machine may govern itself, and the specimens are to be destroyed.
+pt O Concílio de Roma: nenhuma máquina pode governar-se a si mesma, e os espécimes devem ser destruídos.
+es El Concilio de Roma: ninguna máquina puede gobernarse a sí misma, y los especímenes deben ser destruidos.
+
+> The Council of Rome: no machine may govern itself, and the specimens are to be destroyed. Two men walked out on it.
+pt O Concílio de Roma: nenhuma máquina pode governar-se a si mesma, e os espécimes devem ser destruídos. Dois homens saíram da sala.
+es El Concilio de Roma: ninguna máquina puede gobernarse a sí misma, y los especímenes deben ser destruidos. Dos hombres se marcharon.
+
+> I kept the drawings, Meister. Every part of it. We can do better with honest work.
+pt Guardei os desenhos, Meister. Cada peça. Podemos fazer melhor com trabalho honesto.
+es Guardé los dibujos, Meister. Cada pieza. Podemos hacerlo mejor con trabajo honrado.
+
+> Bring back what you find in the field, and I will draw you a better soldier.
+pt Traga o que encontrar no campo, e eu desenho-lhe um soldado melhor.
+es Trae lo que encuentres en el campo, y te dibujaré un soldado mejor.
+
+> The Honest One stops when it is told. That is all I wanted.
+pt O Honesto para quando lhe mandam. Era só isso que eu queria.
+es El Honrado se para cuando se le ordena. Era todo lo que quería.
+
+> Father Ferrer asks about every gear. I answer. It is better that way.
+pt O Padre Ferrer pergunta por cada engrenagem. Eu respondo. É melhor assim.
+es El Padre Ferrer pregunta por cada engranaje. Yo respondo. Es mejor así.
+
+> I came to see the guild's work. I stay because someone must.
+pt Vim ver o trabalho da guilda. Fico porque alguém tem de ficar.
+es Vine a ver el trabajo del gremio. Me quedo porque alguien debe hacerlo.
+
+> You kept the broken ones. I pray you never need to explain why.
+pt Guardaram os quebrados. Rezo para que nunca tenham de explicar porquê.
+es Guardasteis los rotos. Rezo para que nunca tengáis que explicar por qué.
+
+> The broken ones are brass again. That was right.
+pt Os quebrados voltaram a ser latão. Foi o certo.
+es Los rotos vuelven a ser latón. Fue lo correcto.
+
+> Forty years a Winder. My lads will wind your soldiers in the field, if you want them.
+pt Quarenta anos de Enrolador. Os meus rapazes dão corda aos seus soldados no campo, se os quiser.
+es Cuarenta años de Dador de cuerda. Mis muchachos darán cuerda a tus soldados en el campo, si los quieres.
+
+> Guild marks pay for parts. Earn them, and the bench is yours.
+pt As marcas da guilda pagam as peças. Ganhe-as, e a bancada é sua.
+es Las marcas del gremio pagan las piezas. Gánalas, y el banco es tuyo.
+
+> The line held. My musketeers will march with the Father when he visits you, and I will drill them first.
+pt A linha aguentou. Os meus mosqueteiros marcharão com o Padre quando ele vos visitar, e eu instruo-os antes.
+es La línea resistió. Mis mosqueteros marcharán con el Padre cuando os visite, y antes los instruiré.
+
+> Every machine in this yard is written in my book. Every one.
+pt Cada máquina deste pátio está escrita no meu livro. Cada uma.
+es Cada máquina de este patio está escrita en mi libro. Cada una.
+
+> The guild's first machine with a stop-work. It stands still when it is told to.
+pt A primeira máquina da guilda com um travão. Fica parada quando lhe mandam.
+es La primera máquina del gremio con un freno. Se queda quieta cuando se le ordena.
+
+> Under the tarpaulin, the machines that went wrong. Hollweg kept them to learn.
+pt Debaixo do oleado, as máquinas que deram errado. Hollweg guardou-as para aprender.
+es Bajo la lona, las máquinas que salieron mal. Hollweg las guardó para aprender.
+
+> An ingot of brass. It was a dozen machines once.
+pt Um lingote de latão. Já foi uma dúzia de máquinas.
+es Un lingote de latón. Una vez fue una docena de máquinas.
+
+> I got out on the last canoe. The Doctor's notes came with me.
+pt Saí na última canoa. As notas do Doutor vieram comigo.
+es Salí en la última canoa. Las notas del Doctor vinieron conmigo.
+
+> Field notes buy kit for the next expedition. The store room has it.
+pt As notas de campo compram equipamento para a próxima expedição. O depósito tem-no.
+es Las notas de campo compran equipo para la próxima expedición. El depósito lo tiene.
+
+> We brought the cages down the mountain. I count them every morning.
+pt Trouxemos as jaulas montanha abaixo. Conto-as todas as manhãs.
+es Bajamos las jaulas de la montaña. Las cuento cada mañana.
+
+> The river took us down. The river takes everybody down, senhor.
+pt O rio levou-nos para baixo. O rio leva toda a gente para baixo, senhor.
+es El río nos bajó. El río baja a todo el mundo, senhor.
+
+> The plateau is drawn. Every path up it, for the Crown.
+pt O planalto está desenhado. Cada caminho até lá acima, para a Coroa.
+es La meseta está dibujada. Cada camino hasta arriba, para la Corona.
+
+> Learn the map, and choose how the next party marches.
+pt Aprenda o mapa e escolha como marcha a próxima expedição.
+es Aprende el mapa y elige cómo marcha la próxima partida.
+
+> The animals are caged. I did not draw the map for this.
+pt Os animais estão enjaulados. Não desenhei o mapa para isto.
+es Los animales están enjaulados. No dibujé el mapa para esto.
+
+> Iron cages under the lamps. The animals in them are fed at dusk.
+pt Jaulas de ferro debaixo das lâmpadas. Os animais nelas comem ao anoitecer.
+es Jaulas de hierro bajo las lámparas. A los animales de dentro se les da de comer al anochecer.
+
+> Every cage came down the mountain full. The straw moves at night.
+pt Todas as jaulas desceram a montanha cheias. A palha mexe-se à noite.
+es Todas las jaulas bajaron la montaña llenas. La paja se mueve de noche.
+
+> Most cages are empty. The few that came down are watched day and night.
+pt A maioria das jaulas está vazia. As poucas que desceram são vigiadas dia e noite.
+es La mayoría de las jaulas están vacías. Las pocas que bajaron se vigilan día y noche.
+
+> What came out of the station in jars: eggshell, scales, a tooth.
+pt O que saiu da estação em frascos: casca de ovo, escamas, um dente.
+es Lo que salió de la estación en frascos: cáscara de huevo, escamas, un diente.
+
+> A crate from the quay, stamped LISBON. Inside, a gear. Nobody here made it.
+pt Um caixote do cais, carimbado LISBOA. Lá dentro, uma engrenagem. Ninguém aqui a fez.
+es Un cajón del muelle, sellado LISBOA. Dentro, un engranaje. Nadie aquí lo hizo.
+
+> NEW IN THE HUB
+pt NOVO NO REFÚGIO
+es NUEVO EN EL REFUGIO
+
+> %s to spend: %d (%d earned in all)
+pt %s para gastar: %d (%d ganhos ao todo)
+es %s para gastar: %d (%d ganados en total)
+
+> BUY  (%d)
+pt COMPRAR  (%d)
+es COMPRAR  (%d)
+
+> BOUGHT
+pt COMPRADO
+es COMPRADO
+
+> PICK
+pt ESCOLHER
+es ELEGIR
+
+> PICKED
+pt ESCOLHIDO
+es ELEGIDO
+
+> Opens when %d have been earned in all.
+pt Abre quando se tiver ganho %d ao todo.
+es Se abre cuando se hayan ganado %d en total.
+
+> CHOOSE ONE
+pt ESCOLHA UM
+es ELIGE UNO
+
+> UPGRADES: bought once, for good.
+pt MELHORIAS: compradas uma vez, para sempre.
+es MEJORAS: se compran una vez, para siempre.
+
+> BLESSING: one at a time, for every mission of this line until you change it.
+pt BÊNÇÃO: uma de cada vez, para todas as missões desta linha até a mudar.
+es BENDICIÓN: una cada vez, para todas las misiones de esta línea hasta que la cambies.
+
+> COMPANY: one at a time, called into every mission of this line until you change it.
+pt COMPANHIA: uma de cada vez, chamada para todas as missões desta linha até a mudar.
+es COMPAÑÍA: una cada vez, llamada a todas las misiones de esta línea hasta que la cambies.
+
+> Earn more by winning this line's missions and their optional objectives.
+pt Ganhe mais vencendo as missões desta linha e os seus objetivos opcionais.
+es Gana más venciendo las misiones de esta línea y sus objetivos opcionales.
+
+> FROM THE HUB (solo):
+pt DO REFÚGIO (sozinho):
+es DEL REFUGIO (en solitario):
+
+> (change them in the hub)
+pt (mude-os no refúgio)
+es (cámbialos en el refugio)
+
+> +%d %s (best run of this mission: %d)
+pt +%d %s (melhor partida desta missão: %d)
+es +%d %s (mejor partida de esta misión: %d)
+
+> Already bought.
+pt Já comprado.
+es Ya comprado.
+
+> Not on offer.
+pt Não está à venda.
+es No está a la venta.
+
+> Not open yet.
+pt Ainda não está aberto.
+es Aún no está abierto.
+
+> Only in this line's own missions, played solo.
+pt Só nas missões desta linha, jogadas sozinho.
+es Solo en las misiones de esta línea, jugadas en solitario.
+
+> BACK TO %s
+pt VOLTAR A %s
+es VOLVER A %s

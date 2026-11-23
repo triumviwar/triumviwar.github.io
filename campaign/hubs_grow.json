@@ -1,0 +1,246 @@
+{
+ "about": "HUBS THAT GROW (job hubs-grow, docs/hubs_grow.md): the people who join each hub, the rooms that open, and the rooms' campaign-only upgrades. Read by scripts/campaign/hub_grow.gd. ALL TEXT PLACEHOLDER.",
+ "lines": {
+  "prologue": {
+   "main": "study",
+   "main_title": "THE STUDY",
+   "currency": "ROYAL FAVOUR",
+   "earn": ["p01_leaf", "a01_presses", "a06_barricades", "a07_council", "d01_minas", "d05_aldeia", "d09_crossroads", "d10_jungle", "d11_siege"],
+   "reach": ["a01_presses", "a06_barricades", "a07_council", "d01_minas", "d05_aldeia", "d09_crossroads", "d10_jungle", "d11_siege"]
+  },
+  "clockmaker": {
+   "main": "workshop",
+   "main_title": "THE WORKSHOP",
+   "currency": "GUILD MARKS",
+   "earn": ["c01_thirteenth", "a02_furth", "a04_visit", "d02_exodus", "d04_concordia", "d07_spring"],
+   "reach": ["a02_furth", "a04_visit", "d02_exodus", "d04_concordia", "d07_spring"],
+   "not_sides": {"a02_furth": "machine"}
+  },
+  "naturalist": {
+   "main": "station",
+   "main_title": "THE WAREHOUSE",
+   "currency": "FIELD NOTES",
+   "earn": ["b01_specimen", "a03_plateau", "a05_specimens", "d03_fazenda", "d06_queen", "d08_rivers"],
+   "reach": ["a03_plateau", "a05_specimens", "d03_fazenda", "d08_rivers"]
+  }
+ },
+ "earn": {"win": 2, "optional": 1},
+ "rooms": [
+  {"id": "armoury", "line": "prologue", "title": "THE ARMOURY", "scene": "res://campaign/hub/rooms/armoury.json", "requires": "p01_leaf",
+   "joined": "The palace armoury is open: General Ruggieri keeps the King's guns there.",
+   "hotspots": [
+    {"id": "racks", "kind": "shop", "label": "THE RACKS", "shop": ["upgrades", "choices"], "rect": [0.03, 0.18, 0.36, 0.5]},
+    {"id": "guard_book", "kind": "shop", "label": "THE MUSTER BOOK", "shop": ["helpers"], "rect": [0.42, 0.55, 0.16, 0.14]}
+   ]},
+  {"id": "chapel", "line": "prologue", "title": "THE CHAPEL", "scene": "res://campaign/hub/rooms/chapel.json", "requires": "p01_leaf",
+   "joined": "The palace chapel is open: before a mission, Tomasz blesses the men.",
+   "hotspots": [
+    {"id": "altar", "kind": "shop", "label": "THE ALTAR", "shop": ["blessings"], "rect": [0.36, 0.3, 0.28, 0.42]},
+    {"id": "votive", "kind": "talk", "label": "THE VOTIVE CANDLES", "talk": "votive", "rect": [0.72, 0.44, 0.14, 0.3]},
+    {"id": "notre_dame", "kind": "talk", "label": "A STONE FROM NOTRE-DAME", "talk": "notre_dame", "requires": "a06_barricades", "rect": [0.1, 0.52, 0.12, 0.2]}
+   ]},
+  {"id": "gallery", "line": "prologue", "title": "THE GALLERY OF FLAGS", "scene": "res://campaign/hub/rooms/gallery.json", "requires": "a06_barricades",
+   "joined": "The Gallery of Flags is open: what was taken in Virginia, Lyon and Paris hangs there.",
+   "hotspots": [
+    {"id": "assembly_flag", "kind": "talk", "label": "THE ASSEMBLY'S FLAG", "talk": "assembly_flag", "rect": [0.06, 0.12, 0.2, 0.42]},
+    {"id": "type_case", "kind": "talk", "label": "ROUVIÈRE'S TYPE CASE", "talk": "type_case", "flag": {"a01_presses.printer": "taken"}, "rect": [0.3, 0.55, 0.16, 0.16]},
+    {"id": "bastille_key", "kind": "talk", "label": "THE BASTILLE'S KEY", "talk": "bastille_key", "rect": [0.5, 0.3, 0.12, 0.2]},
+    {"id": "varenne_letter", "kind": "talk", "label": "VARENNE'S LETTER", "talk": "varenne_letter", "flag": {"a06_barricades.varenne": "spared"}, "rect": [0.68, 0.55, 0.14, 0.14]},
+    {"id": "sentence", "kind": "talk", "label": "THE SENTENCE", "talk": "sentence", "flag": {"a06_barricades.varenne": "executed"}, "rect": [0.68, 0.55, 0.14, 0.14]},
+    {"id": "council_decree", "kind": "talk", "label": "THE COUNCIL'S DECREE", "talk": "council_decree", "requires": "a07_council", "rect": [0.84, 0.2, 0.13, 0.3]}
+   ]},
+  {"id": "yard", "line": "clockmaker", "title": "THE GUILD'S YARD", "scene": "res://campaign/hub/rooms/yard.json", "requires": "c01_thirteenth", "not_sides": {"a02_furth": "machine"},
+   "joined": "The guild's yard at Fürth is open: the masters fit new parts there for the next fight.",
+   "hotspots": [
+    {"id": "bench", "kind": "shop", "label": "THE MASTERS' BENCH", "shop": ["upgrades"], "rect": [0.3, 0.5, 0.34, 0.24]},
+    {"id": "drawings", "kind": "shop", "label": "JAKOB'S DRAWINGS", "shop": ["choices"], "rect": [0.68, 0.46, 0.16, 0.2]},
+    {"id": "muster", "kind": "shop", "label": "WHO CAN COME", "shop": ["helpers"], "rect": [0.04, 0.6, 0.14, 0.16]},
+    {"id": "honest_one", "kind": "talk", "label": "THE HONEST ONE", "talk": "honest_one", "flag": {"a02_furth.stopwork": "fitted"}, "rect": [0.86, 0.22, 0.12, 0.46]},
+    {"id": "broken_kept", "kind": "talk", "label": "THE BROKEN ONES", "talk": "broken_kept", "flag": {"a04_visit.broken": "kept"}, "rect": [0.2, 0.2, 0.2, 0.3]},
+    {"id": "broken_melted", "kind": "talk", "label": "THE MELTED BRASS", "talk": "broken_melted", "flag": {"a04_visit.broken": "melted"}, "rect": [0.2, 0.4, 0.16, 0.14]}
+   ]},
+  {"id": "store", "line": "naturalist", "title": "THE SPECIMEN STORE", "scene": "res://campaign/hub/rooms/store.json", "requires": "b01_specimen",
+   "joined": "The Academy's store room is open: Lindqvist keeps his notes, jars and kit there.",
+   "hotspots": [
+    {"id": "kit", "kind": "shop", "label": "THE EXPEDITION KIT", "shop": ["upgrades"], "rect": [0.05, 0.5, 0.3, 0.26]},
+    {"id": "cages", "kind": "talk", "label": "THE CAGES", "talk": "cages", "requires": "a05_specimens", "rect": [0.55, 0.3, 0.4, 0.45]},
+    {"id": "jars", "kind": "talk", "label": "THE JARS", "talk": "jars", "until": "a05_specimens", "rect": [0.55, 0.15, 0.4, 0.35]},
+    {"id": "crates", "kind": "talk", "label": "THE LISBON CRATE", "talk": "lisbon_crate", "flag": {"a05_specimens.crates": "seen"}, "rect": [0.38, 0.62, 0.14, 0.18]}
+   ]},
+  {"id": "chart", "line": "naturalist", "title": "THE CHART ROOM", "scene": "res://campaign/hub/rooms/chart.json", "requires": "a03_plateau", "flag": {"a03_plateau.map": "drawn"},
+   "joined": "Valadares drew his map of the plateau, and the chart room is open.",
+   "hotspots": [
+    {"id": "plateau_map", "kind": "shop", "label": "THE PLATEAU MAP", "shop": ["choices", "helpers"], "rect": [0.22, 0.52, 0.5, 0.24]}
+   ]}
+ ],
+ "people": [
+  {"id": "fairleigh", "line": "prologue", "room": "study", "name": "FIELD MARSHAL FAIRLEIGH", "image": "res://campaign/hub/people/fairleigh.png",
+   "requires": "a06_barricades", "pos": [880, 250], "size": [200, 640], "before": "desk",
+   "joined": "Field Marshal Fairleigh is in the study: the King sent for him to tell of Paris.",
+   "talk": "fairleigh_old"},
+  {"id": "ruggieri", "line": "prologue", "room": "armoury", "name": "GENERAL RUGGIERI", "image": "res://campaign/hub/people/ruggieri.png",
+   "requires": "p01_leaf", "pos": [1120, 270], "size": [230, 630], "shadow": [1235, 900, 110, 15],
+   "joined": "General Ruggieri is in the armoury: he was the captain of the guns in Virginia.",
+   "talk": "ruggieri"},
+  {"id": "delorme", "line": "prologue", "room": "armoury", "name": "CAPTAIN DELORME", "image": "res://campaign/hub/people/delorme.png",
+   "requires": "a01_presses", "not_flag": {"a01_presses.lyon": "risen"}, "pos": [1380, 330], "size": [190, 540], "shadow": [1475, 870, 90, 13],
+   "joined": "Captain Delorme is in the armoury: his riders held Lyon, and they will ride again.",
+   "talk": "delorme"},
+  {"id": "swiss", "line": "prologue", "room": "armoury", "name": "THE SWISS CAPTAIN", "image": "res://campaign/hub/people/swiss.png",
+   "requires": "a07_council", "pos": [800, 360], "size": [170, 480], "shadow": [885, 840, 80, 12],
+   "joined": "The captain of the Swiss Guard is in the armoury: his pikes held the bridges of Rome.",
+   "talk": "swiss"},
+  {"id": "jakob", "line": "clockmaker", "room": "workshop", "name": "JAKOB", "image": "res://campaign/hub/people/jakob.png",
+   "requires": "c01_thirteenth", "flag": {"c01_thirteenth.jakob": "alive"}, "not_flag": {"a02_furth.jakob": "lost", "a04_visit.jakob": "lost"},
+   "not_sides": {"a02_furth": "machine"}, "pos": [60, 400], "size": [180, 520], "shadow": [150, 915, 85, 13],
+   "joined": "Jakob, Hollweg's apprentice, works in the barn: he got out of Nuremberg with his drawings.",
+   "talk": "jakob"},
+  {"id": "ferrer", "line": "clockmaker", "room": "workshop", "name": "FATHER FERRER", "image": "res://campaign/hub/people/ferrer.png",
+   "requires": "a04_visit", "not_sides": {"a02_furth": "machine"}, "pos": [255, 330], "size": [190, 560], "shadow": [350, 885, 90, 13],
+   "joined": "Father Ferrer stays at the barn after his visit: he watches the guild's work for the Church.",
+   "talk": "ferrer"},
+  {"id": "ulrich", "line": "clockmaker", "room": "yard", "name": "MASTER ULRICH", "image": "res://campaign/hub/people/ulrich.png",
+   "requires": "c01_thirteenth", "pos": [1120, 300], "size": [210, 600], "shadow": [1225, 895, 100, 14],
+   "joined": "Master Ulrich, the guild's old master Winder, runs the yard: he will send his Winders with you.",
+   "talk": "ulrich"},
+  {"id": "rauch", "line": "clockmaker", "room": "yard", "name": "COLONEL VON RAUCH", "portrait": "colonel", "image": "res://campaign/hub/people/rauch.png",
+   "requires": "a02_furth", "not_flag": {"a02_furth.furth": "fallen"}, "pos": [1380, 330], "size": [200, 570], "shadow": [1480, 895, 95, 14],
+   "joined": "Colonel von Rauch comes to the yard: the Crown's camp at Fürth stands beside the guild.",
+   "talk": "rauch"},
+  {"id": "anselm", "line": "clockmaker", "room": "yard", "name": "BROTHER ANSELM", "portrait": "brother", "image": "res://campaign/hub/people/anselm.png",
+   "requires": "a04_visit", "pos": [880, 380], "size": [160, 460], "shadow": [960, 838, 75, 11],
+   "joined": "Brother Anselm stayed with Father Ferrer: he keeps the yard's ledger of every machine.",
+   "talk": "anselm"},
+  {"id": "pieter", "line": "naturalist", "room": "station", "name": "PIETER", "image": "res://campaign/hub/people/pieter.png",
+   "requires": "b01_specimen", "flag": {"b01_specimen.pieter": "alive"}, "not_flag": {"a05_specimens.pieter": "lost"},
+   "pos": [1000, 245], "size": [160, 500], "behind": 596,
+   "joined": "Pieter, Lindqvist's assistant, came out of the station alive: he works at the warehouse table.",
+   "talk": "pieter"},
+  {"id": "benedito", "line": "naturalist", "room": "store", "name": "BENEDITO", "image": "res://campaign/hub/people/benedito.png",
+   "requires": "a03_plateau", "pos": [1200, 330], "size": [190, 560], "shadow": [1295, 888, 90, 13],
+   "joined": "Benedito, the canoe-man, keeps the store: he brought the party down the river.",
+   "talk": "benedito"},
+  {"id": "valadares", "line": "naturalist", "room": "chart", "name": "DUARTE VALADARES", "image": "res://campaign/hub/people/valadares.png",
+   "requires": "a03_plateau", "flag": {"a03_plateau.map": "drawn"}, "pos": [1180, 270], "size": [220, 630], "shadow": [1290, 898, 105, 14],
+   "joined": "Duarte Valadares is in the chart room: he drew the plateau for the Crown.",
+   "talk": "valadares"}
+ ],
+ "upgrades": [
+  {"id": "cr_cartridges", "line": "prologue", "label": "PAPER CARTRIDGES", "about": "Musketeers hit 10% harder.", "cost": 3, "mods": {"musketeer": {"damage": 1.10}}},
+  {"id": "cr_boots", "line": "prologue", "label": "GOOD BOOTS", "about": "Musketeers and Pikemen march 8% faster.", "cost": 2, "mods": {"musketeer": {"speed": 1.08}, "pikeman": {"speed": 1.08}}},
+  {"id": "cr_breastplates", "line": "prologue", "label": "HORSE BREASTPLATES", "about": "Horsemen have 12% more health.", "cost": 3, "requires": "a01_presses", "mods": {"cuirassier": {"hp": 1.12}}},
+  {"id": "cr_proofed", "line": "prologue", "label": "PROOFED BARRELS", "about": "Field Cannons and Mortars have 15% more health.", "cost": 3, "mods": {"cannon": {"hp": 1.15}, "mortar": {"hp": 1.15}}},
+  {"id": "ck_springs", "line": "clockmaker", "label": "TEMPERED MAINSPRINGS", "about": "Clock Soldiers run down 15% slower.", "cost": 3, "mods": {"clock_soldier": {"wind_drain": 0.85}}},
+  {"id": "ck_rivets", "line": "clockmaker", "label": "DOUBLE RIVETS", "about": "Clock Soldiers have 10% more health.", "cost": 3, "mods": {"clock_soldier": {"hp": 1.10}}},
+  {"id": "ck_oil", "line": "clockmaker", "label": "WINDERS' OIL", "about": "Winders move 15% faster.", "cost": 2, "mods": {"winder": {"speed": 1.15}}},
+  {"id": "ck_screws", "line": "clockmaker", "label": "HARDENED SCREWS", "about": "Springers hit 10% harder.", "cost": 3, "requires": "a02_furth", "mods": {"springer": {"damage": 1.10}}},
+  {"id": "ck_rauch", "line": "clockmaker", "label": "VON RAUCH'S DRILL", "about": "Musketeers (Father Ferrer's escort) have 10% more health.", "cost": 2, "requires": "a02_furth", "not_flag": {"a02_furth.furth": "fallen"}, "mods": {"musketeer": {"hp": 1.10}}},
+  {"id": "nt_kit", "line": "naturalist", "label": "HIRED GUNS' KIT", "about": "Musketeers have 10% more health.", "cost": 3, "mods": {"musketeer": {"hp": 1.10}}},
+  {"id": "nt_packs", "line": "naturalist", "label": "LIGHT PACKS", "about": "Porters and guides (Labourers) move 15% faster.", "cost": 2, "mods": {"labourer": {"speed": 1.15}}},
+  {"id": "nt_powder", "line": "naturalist", "label": "DRY POWDER", "about": "Musketeers hit 8% harder.", "cost": 3, "requires": "a03_plateau", "mods": {"musketeer": {"damage": 1.08}}}
+ ],
+ "choices": [
+  {"id": "crc_line", "line": "prologue", "label": "THE DRILL BOOK: THE LINE", "at": 4, "who": "ruggieri",
+   "a": {"label": "THE STEADY LINE", "about": "Musketeers have 12% more health.", "mods": {"musketeer": {"hp": 1.12}}},
+   "b": {"label": "THE QUICK MARCH", "about": "Musketeers march 10% faster.", "mods": {"musketeer": {"speed": 1.10}}}},
+  {"id": "crc_guns", "line": "prologue", "label": "THE DRILL BOOK: THE GUNS", "at": 8, "who": "ruggieri",
+   "a": {"label": "HEAVY SHOT", "about": "Field Cannons and Mortars hit 12% harder.", "mods": {"cannon": {"damage": 1.12}, "mortar": {"damage": 1.12}}},
+   "b": {"label": "LIGHT CARRIAGES", "about": "Field Cannons and Mortars move 15% faster.", "mods": {"cannon": {"speed": 1.15}, "mortar": {"speed": 1.15}}}},
+  {"id": "ckc_soldier", "line": "clockmaker", "label": "THE CLOCK SOLDIER", "at": 3, "who": "jakob",
+   "a": {"label": "LONG WIND", "about": "Clock Soldiers run down 20% slower.", "mods": {"clock_soldier": {"wind_drain": 0.80}}},
+   "b": {"label": "HEAVY PLATE", "about": "Clock Soldiers have 15% more health but walk 5% slower.", "mods": {"clock_soldier": {"hp": 1.15, "speed": 0.95}}}},
+  {"id": "ckc_springer", "line": "clockmaker", "label": "THE SPRINGER", "at": 6, "who": "jakob", "requires": "a02_furth",
+   "a": {"label": "SHARP SCREWS", "about": "Springers hit 12% harder.", "mods": {"springer": {"damage": 1.12}}},
+   "b": {"label": "LIGHT FRAME", "about": "Springers move 12% faster.", "mods": {"springer": {"speed": 1.12}}}},
+  {"id": "ntc_way", "line": "naturalist", "label": "THE MAP'S LESSON", "at": 3, "who": "valadares",
+   "a": {"label": "THE SHORT WAY", "about": "Musketeers march 10% faster.", "mods": {"musketeer": {"speed": 1.10}}},
+   "b": {"label": "THE WATCHFUL CAMP", "about": "Musketeers see 1 tile further.", "mods": {"musketeer": {"sight": 1}}}}
+ ],
+ "blessings": [
+  {"id": "bl_barbara", "line": "prologue", "label": "SAINT BARBARA", "about": "The gunners' patron: Field Cannons and Mortars hit 8% harder.", "mods": {"cannon": {"damage": 1.08}, "mortar": {"damage": 1.08}}},
+  {"id": "bl_michael", "line": "prologue", "label": "SAINT MICHAEL", "about": "The soldiers' patron: Musketeers, Horsemen and Pikemen have 6% more health.", "mods": {"musketeer": {"hp": 1.06}, "cuirassier": {"hp": 1.06}, "pikeman": {"hp": 1.06}}},
+  {"id": "bl_isidore", "line": "prologue", "label": "SAINT ISIDORE", "about": "The farmers' patron: 150 more gold at the start.", "gold": 150}
+ ],
+ "helpers": [
+  {"id": "h_delorme", "line": "prologue", "label": "DELORME'S RIDERS", "about": "2 Horsemen join you at the start.", "kind": "cuirassier", "count": 2, "faction": "crown",
+   "requires": "a01_presses", "not_flag": {"a01_presses.lyon": "risen"}},
+  {"id": "h_ruggieri", "line": "prologue", "label": "RUGGIERI'S GUN CREW", "about": "1 Field Cannon joins you at the start.", "kind": "cannon", "count": 1, "faction": "crown",
+   "requires": "a06_barricades"},
+  {"id": "h_swiss", "line": "prologue", "label": "THE SWISS GUARD", "about": "3 Pikemen join you at the start (where a mission allows them).", "kind": "pikeman", "count": 3, "faction": "crown",
+   "requires": "a07_council"},
+  {"id": "h_ulrich", "line": "clockmaker", "label": "MASTER ULRICH'S WINDERS", "about": "2 Winders join you at the start.", "kind": "winder", "count": 2, "faction": "clockwork",
+   "requires": "c01_thirteenth"},
+  {"id": "h_rauch", "line": "clockmaker", "label": "VON RAUCH'S MUSKETEERS", "about": "3 Musketeers join Father Ferrer's party at the start.", "kind": "musketeer", "count": 3, "faction": "crown",
+   "requires": "a02_furth", "not_flag": {"a02_furth.furth": "fallen"}},
+  {"id": "h_hunters", "line": "naturalist", "label": "VALADARES' HUNTERS", "about": "3 Musketeers join the expedition at the start.", "kind": "musketeer", "count": 3, "faction": "crown",
+   "requires": "a03_plateau", "flag": {"a03_plateau.map": "drawn"}}
+ ],
+ "talks": {
+  "fairleigh_old": {"name": "FIELD MARSHAL FAIRLEIGH", "colour": 4, "portrait": "res://campaign/portraits/fairleigh.png", "entries": [
+   {"after": "a06_barricades", "lines": ["Paris, Your Majesty. Three barricades, one street, and the King's patience.", "I am old now. I still hear the canister."]},
+   {"after": "a06_barricades", "flag": {"a06_barricades.varenne": "executed"}, "lines": ["Varenne went to the scaffold. The Assembly made a saint of him by morning."]},
+   {"after": "a07_council", "lines": ["Rome burned one night, and held. I was not there. The young King was."]}]},
+  "ruggieri": {"name": "GENERAL RUGGIERI", "colour": 4, "portrait": "res://campaign/portraits/ruggieri.png", "entries": [
+   {"after": "p01_leaf", "lines": ["The guns, Highness. In Virginia they were two. In Rome there are more.", "Earn the King's favour in the field, and I will spend it here on what the men need."]},
+   {"after": "a06_barricades", "lines": ["Paris wanted the Mortar. My old crew will come with you again, if you call them."]}]},
+  "delorme": {"name": "CAPTAIN DELORME", "colour": 4, "entries": [
+   {"after": "a01_presses", "lines": ["Lyon is quiet. Two of my riders are yours whenever you want them."]},
+   {"after": "a01_presses", "flag": {"a01_presses.lyon": "sullen"}, "lines": ["Lyon is sullen, not quiet. Still, two of my riders are yours."]}]},
+  "swiss": {"name": "THE SWISS CAPTAIN", "colour": 4, "entries": [
+   {"after": "a07_council", "lines": ["The bridges held till dawn. My pikes go where the King sends them."]}]},
+  "votive": {"name": "THE VOTIVE CANDLES", "colour": 4, "entries": [
+   {"after": "p01_leaf", "lines": ["A candle burns for the dead of the tobacco country."]},
+   {"after": "p01_leaf", "flag": {"p01_leaf.families": "save"}, "lines": ["A candle burns for the dead of the tobacco country, and one of thanks from the Hollins families."]}]},
+  "notre_dame": {"name": "A STONE FROM NOTRE-DAME", "colour": 4, "entries": [
+   {"after": "a06_barricades", "lines": ["A carved stone from the cathedral's porch, kept here so Paris is prayed for."]}]},
+  "assembly_flag": {"name": "THE ASSEMBLY'S FLAG", "colour": 4, "entries": [
+   {"after": "", "lines": ["Green and black, taken at the fort gate in Virginia. Scorched at one edge."]}]},
+  "type_case": {"name": "ROUVIÈRE'S TYPE CASE", "colour": 4, "entries": [
+   {"after": "a01_presses", "lines": ["The printer's letters, taken at Lyon. He set the pamphlets with them. He named Paris."]}]},
+  "bastille_key": {"name": "THE BASTILLE'S KEY", "colour": 4, "entries": [
+   {"after": "a06_barricades", "lines": ["The key of the old fortress's magazine. The Assembly wanted its powder; the King's army took it first."]}]},
+  "varenne_letter": {"name": "VARENNE'S LETTER", "colour": 4, "entries": [
+   {"after": "a06_barricades", "lines": ["A letter from exile, unsigned. The hand is Varenne's. He thanks no one."]}]},
+  "sentence": {"name": "THE SENTENCE", "colour": 4, "entries": [
+   {"after": "a06_barricades", "lines": ["The sentence on Etienne Varenne, signed and sealed. Father Tomasz asked for mercy. It was not given."]}]},
+  "council_decree": {"name": "THE COUNCIL'S DECREE", "colour": 4, "entries": [
+   {"after": "a07_council", "lines": ["The Council of Rome: no machine may govern itself, and the specimens are to be destroyed."]},
+   {"after": "a07_council", "flag": {"a07_council.hollweg": "defied"}, "lines": ["The Council of Rome: no machine may govern itself, and the specimens are to be destroyed. Two men walked out on it."]}]},
+  "jakob": {"name": "JAKOB", "colour": 5, "entries": [
+   {"after": "c01_thirteenth", "lines": ["I kept the drawings, Meister. Every part of it. We can do better with honest work.", "Bring back what you find in the field, and I will draw you a better soldier."]},
+   {"after": "a02_furth", "lines": ["The Honest One stops when it is told. That is all I wanted."]},
+   {"after": "a04_visit", "lines": ["Father Ferrer asks about every gear. I answer. It is better that way."]}]},
+  "ferrer": {"name": "FATHER FERRER", "colour": 4, "entries": [
+   {"after": "a04_visit", "lines": ["I came to see the guild's work. I stay because someone must."]},
+   {"after": "a04_visit", "flag": {"a04_visit.broken": "kept"}, "lines": ["You kept the broken ones. I pray you never need to explain why."]},
+   {"after": "a04_visit", "flag": {"a04_visit.broken": "melted"}, "lines": ["The broken ones are brass again. That was right."]}]},
+  "ulrich": {"name": "MASTER ULRICH", "colour": 5, "entries": [
+   {"after": "c01_thirteenth", "lines": ["Forty years a Winder. My lads will wind your soldiers in the field, if you want them.", "Guild marks pay for parts. Earn them, and the bench is yours."]}]},
+  "rauch": {"name": "COLONEL VON RAUCH", "colour": 4, "entries": [
+   {"after": "a02_furth", "lines": ["The line held. My musketeers will march with the Father when he visits you, and I will drill them first."]}]},
+  "anselm": {"name": "BROTHER ANSELM", "colour": 4, "entries": [
+   {"after": "a04_visit", "lines": ["Every machine in this yard is written in my book. Every one."]}]},
+  "honest_one": {"name": "THE HONEST ONE", "colour": 5, "entries": [
+   {"after": "a02_furth", "lines": ["The guild's first machine with a stop-work. It stands still when it is told to."]}]},
+  "broken_kept": {"name": "THE BROKEN ONES", "colour": 5, "entries": [
+   {"after": "a04_visit", "lines": ["Under the tarpaulin, the machines that went wrong. Hollweg kept them to learn."]}]},
+  "broken_melted": {"name": "THE MELTED BRASS", "colour": 5, "entries": [
+   {"after": "a04_visit", "lines": ["An ingot of brass. It was a dozen machines once."]}]},
+  "pieter": {"name": "PIETER", "colour": 2, "entries": [
+   {"after": "b01_specimen", "lines": ["I got out on the last canoe. The Doctor's notes came with me.", "Field notes buy kit for the next expedition. The store room has it."]},
+   {"after": "a05_specimens", "lines": ["We brought the cages down the mountain. I count them every morning."]}]},
+  "benedito": {"name": "BENEDITO", "colour": 2, "entries": [
+   {"after": "a03_plateau", "lines": ["The river took us down. The river takes everybody down, senhor."]}]},
+  "valadares": {"name": "DUARTE VALADARES", "colour": 2, "portrait": "res://campaign/portraits/valadares.png", "entries": [
+   {"after": "a03_plateau", "lines": ["The plateau is drawn. Every path up it, for the Crown.", "Learn the map, and choose how the next party marches."]},
+   {"after": "a05_specimens", "lines": ["The animals are caged. I did not draw the map for this."]}]},
+  "cages": {"name": "THE CAGES", "colour": 2, "entries": [
+   {"after": "a05_specimens", "lines": ["Iron cages under the lamps. The animals in them are fed at dusk."]},
+   {"after": "a05_specimens", "flag": {"a05_specimens.cages": "all"}, "lines": ["Every cage came down the mountain full. The straw moves at night."]},
+   {"after": "a05_specimens", "flag": {"a05_specimens.cages": "few"}, "lines": ["Most cages are empty. The few that came down are watched day and night."]}]},
+  "jars": {"name": "THE JARS", "colour": 2, "entries": [
+   {"after": "b01_specimen", "lines": ["What came out of the station in jars: eggshell, scales, a tooth."]}]},
+  "lisbon_crate": {"name": "THE LISBON CRATE", "colour": 2, "entries": [
+   {"after": "a05_specimens", "lines": ["A crate from the quay, stamped LISBON. Inside, a gear. Nobody here made it."]}]}
+ }
+}
