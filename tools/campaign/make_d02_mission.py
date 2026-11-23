@@ -304,7 +304,7 @@ M = {
         "brandt": {"name": T("Commissary Brandt", "Comissário Brandt", "Comisario Brandt"), "side": "commissary"},
         "rauch": {"name": T("Colonel von Rauch", "Coronel von Rauch", "Coronel von Rauch"), "side": "commissary"},
         "ferrer": {"name": T("Father Ferrer", "Padre Ferrer", "Padre Ferrer"), "side": "commissary"},
-        "narrator": {"name": T("Narration · Fürth to the Main", "Narração · De Fürth ao Meno", "Narración · De Fürth al Meno"), "side": "exodus"},
+        "narrator": {"name": T("Fürth to the Main", "De Fürth ao Meno", "De Fürth al Meno"), "side": "exodus"},
         "machine": {"name": T("The Machine", "A Máquina", "La Máquina"), "side": "machine"},
     },
     "lines": {},

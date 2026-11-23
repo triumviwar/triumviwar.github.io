@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"A new campaign mission, Act 2's THE EXODUS (the Clockmaker, after Rome): the guild leaves Fürth by night with its families and machines. Load the carts at the barns, take them down the frozen valley to the barges on the Main while the commissary's riders try to take them, and hold the last bridge until the barge is loaded. The Clock Soldiers know the SHIELD WALL and the guild gets the RATCHET TURRET. Or play the commissary, who must take Hollweg alive. All its words and pictures are placeholders.",
+	]},
 	{"v": "0.38.183", "items": [
 		"WORLD WAR, a new mode on the main menu (not the campaign's story): the Crown, the Clockwork and the Brood fight for the whole world on the war map, region by region, one season a turn. March your armies over land and by sea, raise soldiers, put up forts, churches, works, trade posts, nests and swamps, and fight every battle yourself on a skirmish map with exactly the armies you brought (the survivors go back to the map) or let it be decided at once. The Clockwork rusts in the wet, the Brood can't live in the cold, far lands grow restless, capitals are hard to take, story heroes lead armies. Play against the computers or with friends on one device; the war is saved every turn.",
 	]},

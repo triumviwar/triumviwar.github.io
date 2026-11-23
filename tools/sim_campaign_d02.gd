@@ -9,6 +9,7 @@ const SimSave = preload("res://tools/sim_save_hook.gd")
 ##   godot --headless --fixed-fps 30 --script res://tools/sim_campaign_d02.gd -- [active] [side=exodus|commissary]
 ##        [diff=easy|normal|hard] [bells=quiet|rung] [saved=few|some|many] [gate=pattern|people] [jakob=alive|lost]
 ##        [furth=strong|thin|fallen] [broken=kept|melted] [lost=0..] [until=<seconds>] [none] [save_at=<s>]
+##        [shots=<dir>] (pictures of the parts; needs a window: xvfb-run, not --headless)
 ## The earlier missions' flags are written into the progress file for the run (and the player's own progress put back).
 var main: Node
 var until := 1800.0
@@ -21,6 +22,9 @@ var a04 := {"broken": "kept", "lost_to_machine": 0, "stopworks": "found", "jakob
 var no_flags := false
 var _saved_progress := ""
 var _barn_of := {}
+var shots := ""
+var _shot_n := 0
+var _shot_done := {}
 var blob := false          # a careless player: every fighter round the first cart (the convoy's others left alone)
 
 
@@ -28,6 +32,8 @@ func _initialize() -> void:
 	for a in OS.get_cmdline_user_args():
 		if a == "active":
 			active = true
+		elif a.begins_with("shots="):
+			shots = a.substr(6)
 		elif a == "blob":
 			blob = true
 		elif a == "none":
@@ -42,7 +48,7 @@ func _initialize() -> void:
 			c01["jakob"] = a.substr(6)
 		elif a.begins_with("lost="):
 			a04["lost_to_machine"] = int(a.substr(5))
-		elif a.contains("=") and not a.begins_with("save_at") and not a.begins_with("load"):
+		elif a.contains("=") and not a.begins_with("save_at") and not a.begins_with("shots") and not a.begins_with("load"):
 			var kv := a.split("=")
 			if c01.has(kv[0]):
 				c01[kv[0]] = kv[1]
@@ -85,6 +91,8 @@ func _run() -> void:
 		if SimSave.due(g):
 			g = await SimSave.reload(self, main)      # (save_at=: player-comforts)
 			r = g.mission
+		if shots != "":
+			await _shots(g, r)
 		if active and g.clock >= think:
 			think = g.clock + 0.75
 			if side == "commissary":
@@ -268,3 +276,44 @@ func _play_commissary(g: Game, r: MissionRun) -> void:
 					u.cmd_attack(f)
 				else:
 					u.cmd_attack(h)
+
+
+## CHECK THE FEEL: pictures of each part, the camera on what matters then (docs/shots/d02_exodus/).
+func _shots(g: Game, r: MissionRun) -> void:
+	var f := func(id: String, after: float) -> bool: return r.fired.has(id) and g.clock > float(r.fired.get(id, 0)) + after
+	var want := {"start": g.clock > 3.0, "load": f.call("load_1", 1.0) or f.call("load_2", 1.0),
+		"bridge": f.call("part2", 12.0), "valley": f.call("part2", 45.0), "riders": f.call("riders2", 6.0),
+		"taken": int(r.counters.get("carts_taken", 0)) >= 1, "landing": f.call("part3", 8.0), "bank": f.call("part3", 45.0),
+		"aboard": f.call("aboard_won", 1.0), "captured": f.call("hollweg_taken", 1.0)}
+	for k in want:
+		if not want[k] or _shot_done.has(k):
+			continue
+		_shot_done[k] = true
+		var at := Vector2.INF
+		match k:
+			"start", "load", "aboard", "captured", "landing":
+				var hw: Array = r.tagged("hollweg")
+				if not hw.is_empty():
+					at = hw[0].position
+			"bridge", "valley", "riders":
+				var cs: Array = r.tagged("convoy").filter(func(c): return not c.dead)
+				if not cs.is_empty():
+					at = Vector2.ZERO
+					for c in cs:
+						at += c.position
+					at /= cs.size()
+			"taken":
+				var ts: Array = r.tagged("carts").filter(func(c): return not c.dead and c.team == r.team_index("seized"))
+				if not ts.is_empty():
+					at = ts[0].position
+			"bank":
+				at = r.area_rect("brook_s").get_center()
+		if at == Vector2.INF:
+			at = r.area_rect("landing").get_center()
+		g.camera.position = at
+		for i in 4:
+			await process_frame
+		var img := root.get_viewport().get_texture().get_image()
+		_shot_n += 1
+		img.save_jpg("%s/%d_%s_%s.jpg" % [shots, _shot_n, side, k], 0.85)
+		print("SIM shot %s" % k)

@@ -492,3 +492,11 @@ MissionRun.act2, saved with the mission). Test: tools/test_act2_engine0.gd. Pict
 | campaign.json `"heir": "unseen" / "named"`; condition `{"heir": ...}`; hub talk entry `"heir"` | THE HEIR: one setting for the whole frame (Campaign.heir) |
 | hub talk entry `"choice": {"flag", "options": [{"id", "label", "lines"}]}`, entry `"hub_flag": {name: value}`, condition `{"hub_flag": {...}}` | THE FRAME AT THE CHOICE: after the entry's lines the buttons are the listener's answer, kept in the progress file (Campaign.set_hub_flag); the option's lines follow |
 | MissionRun.longest_idle() (and a match-log line at the end) | THE IDLE METER (NO WAITING): the longest stretch with no line, objective, counter or choice, no fight of the player's men and nothing new made; a mission's sim reads it (target under 45 s) |
+
+## Added by Act 2's d02_exodus (d02-exodus; docs/campaign_d02_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| `{"order": {..., "do": "take", "carts": tag, "within": 40, "else": area}}` | each scripted man rides to the nearest living cart of the tag held by an enemy team and stands by it (closer than 1.2 tiles he waits there, so the TAKE A CART bar fills); a man fighting someone within 4 tiles is left to his fight; no cart within `within` tiles: an attack-move to `else` |
+| team `"techs": [research ids]` | that team starts with those researches done (d02: the guild's SHIELD WALL, K4); `Campaign.problems()` checks each id is in Defs.RESEARCH |
+| TAKE A CART fixes | a cart taken in a tick is not taken again in the same tick by a later rule; cage carts never take or guard carts |
