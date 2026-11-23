@@ -8,7 +8,7 @@ extends RefCounted
 ## The balance switch of this job (the far-Rootmaw pay, `farmaw:X`) is not here: it is a match switch read by Game
 ## (Game.food_bonus) and changes no default.
 
-const KEPT: Array[String] = []
+const KEPT: Array[String] = ["press"]     # (press: 30 games on, 30 off: mean g +0.51, g at 14:00 +0.25 (t 3.0); docs/crown_brood_fix.md)
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 
