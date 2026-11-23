@@ -1,0 +1,7025 @@
+{
+	"id": "d02_exodus",
+	"title": "The Exodus",
+	"summary": "Fürth, February 2771. The Crown's commissary rides with Rome's verdict. Meister Hollweg does not wait for him: by night the guild leaves the Crown, with its families, down the frozen road to the Main.",
+	"map": "campaign:furth_exodus",
+	"voice": "d02",
+	"light": "winter_night",
+	"weather": "snow",
+	"expansion_spots": false,
+	"manual_end": true,
+	"needs": [
+		"a07_council"
+	],
+	"difficulty": {
+		"easy": {
+			"clocks": 1.25,
+			"spawns": 0.75
+		},
+		"hard": {
+			"clocks": 0.85,
+			"spawns": 1.25
+		}
+	},
+	"modes": [
+		"solo",
+		"versus"
+	],
+	"solo_sides": [
+		"exodus",
+		"commissary"
+	],
+	"sides": [
+		{
+			"id": "exodus",
+			"name": "The Exodus",
+			"about": "Meister Hollweg's guild and its families, leaving Fürth by night."
+		},
+		{
+			"id": "commissary",
+			"name": "The Commissary",
+			"about": "The Crown's commissary with Rome's verdict, Colonel von Rauch's riders and guns, and Father Ferrer as Rome's witness."
+		},
+		{
+			"id": "machine",
+			"name": "The Machine",
+			"about": "Nuremberg's masters. Fürth is emptying."
+		}
+	],
+	"teams": [
+		{
+			"id": "guild",
+			"side": "exodus",
+			"faction": "clockwork",
+			"colour": 0,
+			"start": "none",
+			"camera": "yard_w",
+			"gold": 0,
+			"techs": [
+				"shield_wall"
+			],
+			"control": {
+				"solo": "p1",
+				"versus": "p1",
+				"foe": "script"
+			},
+			"roster": {
+				"allow": [
+					"clocktower",
+					"cog_press",
+					"mainspring",
+					"regulator",
+					"movement_works",
+					"winder",
+					"clock_soldier",
+					"springer",
+					"netter",
+					"escapement",
+					"heavy_works",
+					"pendulum",
+					"ratchet_turret",
+					"shield_wall"
+				],
+				"new": [
+					"ratchet_turret",
+					"shield_wall"
+				]
+			}
+		},
+		{
+			"id": "families",
+			"side": "exodus",
+			"faction": "crown",
+			"colour": 0,
+			"start": "none",
+			"camera": "yard_w",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "works",
+			"side": "exodus",
+			"faction": "clockwork",
+			"colour": 0,
+			"start": "none",
+			"camera": "yard",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "crown",
+			"side": "commissary",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "column_in",
+			"gold": 0,
+			"powder": 400,
+			"control": {
+				"solo": "script",
+				"versus": "p2"
+			}
+		},
+		{
+			"id": "seized",
+			"side": "commissary",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "camp",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "machine",
+			"side": "machine",
+			"faction": "clockwork",
+			"colour": 1,
+			"start": "none",
+			"camera": "north_gate",
+			"gold": 0,
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		}
+	],
+	"areas": {
+		"barn_1": [
+			31,
+			14,
+			4,
+			6
+		],
+		"barn_2": [
+			35,
+			8,
+			4,
+			3
+		],
+		"barn_3": [
+			45,
+			8,
+			4,
+			3
+		],
+		"barn_4": [
+			55,
+			12,
+			3,
+			4
+		],
+		"barn_5": [
+			44,
+			41,
+			4,
+			3
+		],
+		"barn_6": [
+			50,
+			44,
+			4,
+			3
+		],
+		"barn_7": [
+			48,
+			30,
+			4,
+			4
+		],
+		"town": [
+			36,
+			2,
+			14,
+			6
+		],
+		"muster": [
+			37,
+			14,
+			6,
+			5
+		],
+		"yard": [
+			32,
+			11,
+			23,
+			17
+		],
+		"yard_w": [
+			30,
+			15,
+			4,
+			5
+		],
+		"jakob_at": [
+			39,
+			13,
+			3,
+			3
+		],
+		"camp": [
+			52,
+			2,
+			10,
+			5
+		],
+		"column_in": [
+			56,
+			1,
+			8,
+			5
+		],
+		"north_gate": [
+			102,
+			14,
+			11,
+			9
+		],
+		"south_gate": [
+			102,
+			44,
+			11,
+			9
+		],
+		"bridge_e": [
+			30,
+			17,
+			3,
+			5
+		],
+		"bridge_w": [
+			19,
+			16,
+			4,
+			6
+		],
+		"track_n": [
+			13,
+			0,
+			4,
+			3
+		],
+		"track_s": [
+			13,
+			11,
+			4,
+			4
+		],
+		"v1": [
+			10,
+			17,
+			4,
+			4
+		],
+		"s1": [
+			18,
+			23,
+			3,
+			3
+		],
+		"s2": [
+			8,
+			29,
+			3,
+			3
+		],
+		"s3": [
+			18,
+			35,
+			3,
+			3
+		],
+		"s4": [
+			8,
+			41,
+			3,
+			3
+		],
+		"s5": [
+			18,
+			46,
+			3,
+			3
+		],
+		"s6": [
+			18,
+			51,
+			3,
+			2
+		],
+		"v3": [
+			12,
+			34,
+			4,
+			4
+		],
+		"brook_n": [
+			12,
+			51,
+			4,
+			3
+		],
+		"brook": [
+			11,
+			53,
+			6,
+			4
+		],
+		"brook_s": [
+			12,
+			56,
+			4,
+			3
+		],
+		"landing": [
+			3,
+			56,
+			18,
+			18
+		],
+		"barges": [
+			3,
+			60,
+			4,
+			8
+		],
+		"clock_spot": [
+			16,
+			61,
+			5,
+			4
+		],
+		"turret_spot": [
+			13,
+			56,
+			2,
+			2
+		],
+		"valley": [
+			7,
+			15,
+			15,
+			40
+		],
+		"road_w": [
+			7,
+			15,
+			17,
+			9
+		],
+		"west": [
+			0,
+			0,
+			31,
+			80
+		]
+	},
+	"counters": {
+		"loaded": {
+			"start": 0
+		},
+		"carts_n": {
+			"start": 0
+		},
+		"to_load": {
+			"start": 0
+		},
+		"families_out": {
+			"start": 0
+		},
+		"families_left": {
+			"start": 0
+		},
+		"drawings_out": {
+			"start": 0
+		},
+		"carts_taken": {
+			"start": 0
+		},
+		"retaken": {
+			"start": 0
+		},
+		"carts_gone": {
+			"start": 0
+		},
+		"minute": {
+			"start": 0
+		},
+		"automata_out": {
+			"start": 0
+		}
+	},
+	"take_carts": [
+		{
+			"tag": "carts",
+			"by": "commissary",
+			"to": "seized",
+			"secs": 5,
+			"counter": "carts_taken",
+			"as": "taken"
+		},
+		{
+			"tag": "taken",
+			"by": "exodus",
+			"to": "families",
+			"secs": 4,
+			"counter": "retaken",
+			"as": "retaken"
+		}
+	],
+	"exits": [
+		{
+			"area": "barges",
+			"tag": "fcarts",
+			"cargo": true,
+			"cargo_counter": "families_out",
+			"after": "part3"
+		},
+		{
+			"area": "barges",
+			"tag": "drawings_cart",
+			"cargo": true,
+			"cargo_counter": "drawings_out",
+			"after": "part3"
+		},
+		{
+			"area": "camp",
+			"tag": "taken",
+			"counter": "carts_gone",
+			"after": "part2"
+		}
+	],
+	"units": [
+		{
+			"team": "guild",
+			"kind": "missionary",
+			"as": "hollweg",
+			"count": 1,
+			"at": [
+				41,
+				20
+			],
+			"tag": "hollweg",
+			"tags": [
+				"guild_men"
+			]
+		},
+		{
+			"team": "guild",
+			"kind": "winder",
+			"count": 4,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"playing": "exodus"
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 8,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"playing": "exodus"
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "springer",
+			"count": 2,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"playing": "exodus"
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "netter",
+			"count": 2,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"playing": "exodus"
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "pendulum",
+			"count": 1,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"playing": "exodus"
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "winder",
+			"count": 3,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"playing": "exodus"
+				}
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 5,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"playing": "exodus"
+				}
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "springer",
+			"count": 1,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"playing": "exodus"
+				}
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "netter",
+			"count": 1,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"playing": "exodus"
+				}
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "pendulum",
+			"count": 1,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"playing": "exodus"
+				}
+			}
+		},
+		{
+			"team": "families",
+			"kind": "labourer",
+			"as": "jakob",
+			"count": 1,
+			"at": "jakob_at",
+			"tag": "jakob",
+			"if": {
+				"all": [
+					{
+						"not": {
+							"past": {
+								"c01_thirteenth.jakob": "lost"
+							}
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"a02_furth.jakob": "lost"
+							}
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"a04_visit.jakob": "lost"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "families",
+			"kind": "powder_wagon",
+			"as": "family_cart",
+			"count": 1,
+			"at": "barn_1",
+			"tag": "cart_1",
+			"tags": [
+				"fcarts",
+				"carts",
+				"convoy"
+			],
+			"fixed": true
+		},
+		{
+			"team": "families",
+			"kind": "powder_wagon",
+			"as": "family_cart",
+			"count": 1,
+			"at": "barn_2",
+			"tag": "cart_2",
+			"tags": [
+				"fcarts",
+				"carts",
+				"convoy"
+			],
+			"fixed": true
+		},
+		{
+			"team": "families",
+			"kind": "powder_wagon",
+			"as": "family_cart",
+			"count": 1,
+			"at": "barn_3",
+			"tag": "cart_3",
+			"tags": [
+				"fcarts",
+				"carts",
+				"convoy"
+			],
+			"fixed": true
+		},
+		{
+			"team": "families",
+			"kind": "powder_wagon",
+			"as": "family_cart",
+			"count": 1,
+			"at": "barn_4",
+			"tag": "cart_4",
+			"tags": [
+				"fcarts",
+				"carts",
+				"convoy"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"c01_thirteenth.saved": "few"
+					}
+				}
+			}
+		},
+		{
+			"team": "families",
+			"kind": "powder_wagon",
+			"as": "family_cart",
+			"count": 1,
+			"at": "barn_5",
+			"tag": "cart_5",
+			"tags": [
+				"fcarts",
+				"carts",
+				"convoy"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"c01_thirteenth.saved": "few"
+					}
+				}
+			}
+		},
+		{
+			"team": "families",
+			"kind": "powder_wagon",
+			"as": "family_cart",
+			"count": 1,
+			"at": "barn_6",
+			"tag": "cart_6",
+			"tags": [
+				"fcarts",
+				"carts",
+				"convoy"
+			],
+			"fixed": true,
+			"if": {
+				"past": {
+					"c01_thirteenth.saved": "many"
+				}
+			}
+		},
+		{
+			"team": "families",
+			"kind": "powder_wagon",
+			"as": "family_cart",
+			"count": 1,
+			"at": "barn_7",
+			"tag": "cart_7",
+			"tags": [
+				"fcarts",
+				"carts",
+				"convoy"
+			],
+			"fixed": true,
+			"if": {
+				"past": {
+					"c01_thirteenth.saved": "many"
+				}
+			}
+		},
+		{
+			"team": "families",
+			"kind": "powder_wagon",
+			"as": "drawings_cart",
+			"count": 1,
+			"at": [
+				32,
+				21
+			],
+			"tag": "drawings_cart",
+			"tags": [
+				"carts",
+				"convoy"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"c01_thirteenth.gate": "people"
+					}
+				}
+			}
+		},
+		{
+			"team": "families",
+			"kind": "powder_wagon",
+			"as": "spring_cart",
+			"count": 1,
+			"at": [
+				36,
+				16
+			],
+			"tag": "spring_cart",
+			"tags": [
+				"convoy"
+			],
+			"fixed": true
+		},
+		{
+			"team": "machine",
+			"kind": "clock_soldier",
+			"count": 4,
+			"at": "yard",
+			"tag": "m_works_guard",
+			"order": "hold",
+			"if": {
+				"past": {
+					"a02_furth.furth": "fallen"
+				}
+			}
+		},
+		{
+			"team": "machine",
+			"kind": "springer",
+			"count": 1,
+			"at": "yard",
+			"tag": "m_works_guard",
+			"order": "hold",
+			"if": {
+				"past": {
+					"a02_furth.furth": "fallen"
+				}
+			}
+		}
+	],
+	"buildings": [
+		{
+			"team": "works",
+			"kind": "clocktower",
+			"at": [
+				44,
+				16
+			],
+			"tag": "honest",
+			"name": "The Honest One",
+			"if": {
+				"not": {
+					"past": {
+						"a02_furth.furth": "fallen"
+					}
+				}
+			}
+		},
+		{
+			"team": "works",
+			"kind": "movement_works",
+			"at": [
+				35,
+				11
+			],
+			"tag": "works",
+			"if": {
+				"not": {
+					"past": {
+						"a02_furth.furth": "fallen"
+					}
+				}
+			}
+		},
+		{
+			"team": "works",
+			"kind": "escapement",
+			"at": [
+				51,
+				11
+			],
+			"tag": "works",
+			"if": {
+				"not": {
+					"past": {
+						"a02_furth.furth": "fallen"
+					}
+				}
+			}
+		},
+		{
+			"team": "works",
+			"kind": "cog_press",
+			"at": [
+				35,
+				19
+			],
+			"tag": "works",
+			"if": {
+				"not": {
+					"past": {
+						"a02_furth.furth": "fallen"
+					}
+				}
+			}
+		},
+		{
+			"team": "works",
+			"kind": "mainspring",
+			"at": [
+				51,
+				22
+			],
+			"tag": "works",
+			"if": {
+				"not": {
+					"past": {
+						"a02_furth.furth": "fallen"
+					}
+				}
+			}
+		},
+		{
+			"team": "works",
+			"kind": "cog_press",
+			"at": [
+				40,
+				24
+			],
+			"tag": "works",
+			"if": {
+				"not": {
+					"past": {
+						"a02_furth.furth": "fallen"
+					}
+				}
+			}
+		},
+		{
+			"team": "works",
+			"kind": "heavy_works",
+			"at": [
+				45,
+				24
+			],
+			"tag": "works",
+			"if": {
+				"not": {
+					"past": {
+						"a02_furth.furth": "fallen"
+					}
+				}
+			}
+		},
+		{
+			"team": "machine",
+			"kind": "clocktower",
+			"at": [
+				44,
+				16
+			],
+			"tag": "seed_works",
+			"name": "The machine's seed",
+			"if": {
+				"past": {
+					"a02_furth.furth": "fallen"
+				}
+			}
+		},
+		{
+			"team": "machine",
+			"kind": "regulator",
+			"at": [
+				38,
+				24
+			],
+			"tag": "m_links",
+			"if": {
+				"past": {
+					"a02_furth.furth": "fallen"
+				}
+			}
+		},
+		{
+			"team": "machine",
+			"kind": "clocktower",
+			"at": "north_gate",
+			"tag": "seed_n"
+		},
+		{
+			"team": "machine",
+			"kind": "clocktower",
+			"at": "south_gate",
+			"tag": "seed_s"
+		},
+		{
+			"team": "machine",
+			"kind": "clocktower",
+			"at": [
+				78,
+				43
+			],
+			"tag": "seed_meadow"
+		},
+		{
+			"team": "machine",
+			"kind": "regulator",
+			"at": [
+				70,
+				46
+			],
+			"tag": "m_links"
+		}
+	],
+	"objectives": [
+		{
+			"id": "reclaim",
+			"side": "exodus",
+			"primary": true,
+			"kind": "destroy",
+			"tag": "seed_works",
+			"hidden": true,
+			"text": "Fürth fell to the machine: its seed stands in the guild's own works. Burn it before the families can leave."
+		},
+		{
+			"id": "load",
+			"side": "exodus",
+			"primary": true,
+			"kind": "manual",
+			"text": "Load the family carts: {loaded} of {carts_n}. Move any of your men to a cart at its barn and keep him there a moment: the family climbs in.",
+			"phone": "Load the family carts: {loaded} of {carts_n}. A man at each cart's barn a moment."
+		},
+		{
+			"id": "drawings",
+			"side": "exodus",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Load the drawings: bring Meister Hollweg to his own barn, west of the yard. Only he knows which chests."
+		},
+		{
+			"id": "jakob_bye",
+			"side": "exodus",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Jakob is waiting by the yard. Bring Meister Hollweg to him: he has something to say."
+		},
+		{
+			"id": "riders_clock",
+			"side": "exodus",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "riders",
+			"text": "The commissary's riders come in {clock:riders}. Whatever is not loaded by then stays behind."
+		},
+		{
+			"id": "road",
+			"side": "exodus",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Get the carts down the valley to the barges on the Main: {families_out} of {carts_n} families out. Keep fighters by every cart: riders who stand round a cart with none of yours by it TAKE it.",
+			"phone": "Carts to the barges: {families_out} of {carts_n} out. Keep fighters by every cart."
+		},
+		{
+			"id": "hollweg",
+			"side": "exodus",
+			"primary": true,
+			"kind": "protect",
+			"tag": "hollweg",
+			"text": "Meister Hollweg must live. Hurt, he falls back to the carts."
+		},
+		{
+			"id": "bridge",
+			"side": "exodus",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "last_barge",
+			"hidden": true,
+			"text": "Hold the brook bridge until the last barge is loaded: {clock:last_barge}."
+		},
+		{
+			"id": "turret",
+			"side": "exodus",
+			"primary": false,
+			"kind": "build",
+			"tag": "turret",
+			"hidden": true,
+			"text": "Build the Ratchet Turret at the bridge's foot: send a Winder to its site."
+		},
+		{
+			"id": "aboard",
+			"side": "exodus",
+			"primary": true,
+			"kind": "reach",
+			"area": "barges",
+			"tag": "hollweg",
+			"secs": 2,
+			"hidden": true,
+			"text": "The last barge is loaded. Get Meister Hollweg aboard: walk him onto the jetty."
+		},
+		{
+			"id": "cast_off",
+			"side": "exodus",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "cast_off",
+			"hidden": true,
+			"fail": true,
+			"text": "The bargemen cast off in {clock:cast_off}."
+		},
+		{
+			"id": "c_ride",
+			"side": "commissary",
+			"primary": false,
+			"kind": "reach",
+			"area": "valley",
+			"side_units": "commissary",
+			"count": 3,
+			"hidden": true,
+			"text": "After them: over the Rednitz bridge and down the valley. The guild's only road to the Main runs through it."
+		},
+		{
+			"id": "c_take",
+			"side": "commissary",
+			"primary": false,
+			"kind": "manual",
+			"text": "Take the carts: {carts_taken} taken. Stand men round a cart with none of the guild's fighters by it. Rome's order is to take, not to kill."
+		},
+		{
+			"id": "c_hollweg",
+			"side": "commissary",
+			"primary": true,
+			"kind": "capture",
+			"tag": "hollweg",
+			"by": "commissary",
+			"share": 0.25,
+			"within": 3,
+			"hidden": true,
+			"text": "Take Meister Hollweg alive before the last barge: bring him down and stand a man by him."
+		}
+	],
+	"triggers": [
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "carts",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "spring_cart",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "jakob",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "ferrer",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "seed_n",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "seed_s",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "seed_meadow",
+						"on": true
+					}
+				},
+				{
+					"counter": {
+						"name": "carts_n",
+						"count": {
+							"tag": "fcarts"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"count": {
+							"tag": "carts"
+						}
+					}
+				},
+				{
+					"pace": {
+						"tag": "convoy",
+						"pace": 0.6
+					}
+				},
+				{
+					"ground": {
+						"name": "spring",
+						"from": "spring_cart",
+						"kind": "gear",
+						"team": "guild",
+						"r": 4,
+						"max": 4,
+						"wind": 0.06
+					}
+				},
+				{
+					"wind": {
+						"tag": "army",
+						"share": 0.7
+					}
+				},
+				{
+					"deny": {
+						"team": "guild",
+						"kind": [
+							"clocktower",
+							"cog_press",
+							"mainspring",
+							"movement_works",
+							"escapement",
+							"heavy_works",
+							"winder",
+							"clock_soldier",
+							"springer",
+							"netter",
+							"pendulum"
+						],
+						"why": "The works are being left: nothing more is built or made in Fürth."
+					}
+				}
+			]
+		},
+		{
+			"id": "riders_clock_go",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"not": {
+							"past": {
+								"a02_furth.furth": "fallen"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "riders",
+						"secs": 300
+					}
+				}
+			]
+		},
+		{
+			"id": "riders_clock_fallen",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"past": {
+							"a02_furth.furth": "fallen"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "riders",
+						"secs": 390
+					}
+				}
+			]
+		},
+		{
+			"id": "intro",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"h_1",
+						"u_tip1"
+					]
+				},
+				{
+					"ping": {
+						"area": "barn_1"
+					}
+				},
+				{
+					"ping": {
+						"area": "barn_2"
+					}
+				},
+				{
+					"ping": {
+						"area": "barn_3"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro_spring",
+			"when": {
+				"fired": "intro"
+			},
+			"delay": 18,
+			"do": [
+				{
+					"say": [
+						"u_tip2"
+					]
+				},
+				{
+					"ping": {
+						"tag": "spring_cart"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro_shield",
+			"when": {
+				"fired": "intro"
+			},
+			"delay": 40,
+			"do": [
+				{
+					"say": [
+						"u_tip_new"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_c",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "commissary"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"b_c1",
+						"f_c1",
+						"r_c_tip"
+					]
+				},
+				{
+					"ping": {
+						"area": "yard"
+					}
+				}
+			]
+		},
+		{
+			"id": "capture_on",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "commissary"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "c_hollweg",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "machine_1",
+			"when": {
+				"time": 4
+			},
+			"do": [
+				{
+					"say": [
+						"m_1"
+					]
+				}
+			]
+		},
+		{
+			"id": "reclaim_go",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"past": {
+							"a02_furth.furth": "fallen"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "reclaim",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"tag": "seed_works"
+					}
+				}
+			]
+		},
+		{
+			"id": "reclaim_say",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"past": {
+							"a02_furth.furth": "fallen"
+						}
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"h_fallen"
+					]
+				}
+			]
+		},
+		{
+			"id": "reclaimed",
+			"when": {
+				"all": [
+					{
+						"done": "reclaim"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"h_reclaimed"
+					]
+				}
+			]
+		},
+		{
+			"id": "reclaim_c",
+			"when": {
+				"all": [
+					{
+						"time": 60
+					},
+					{
+						"past": {
+							"a02_furth.furth": "fallen"
+						}
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					},
+					{
+						"not": {
+							"done": "reclaim"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"hurt": {
+						"tag": "seed_works",
+						"amount": 99999
+					}
+				}
+			]
+		},
+		{
+			"id": "load_1",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"team": "guild",
+							"area": "barn_1",
+							"secs": 3
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_1",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_1",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				},
+				{
+					"say": [
+						"n_loaded"
+					]
+				}
+			]
+		},
+		{
+			"id": "autoload_1",
+			"when": {
+				"all": [
+					{
+						"time": 7
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_1",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "load_1"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_1",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "left_1",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "load_1"
+						}
+					},
+					{
+						"not": {
+							"fired": "autoload_1"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_1",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"remove": {
+						"tag": "cart_1"
+					}
+				},
+				{
+					"counter": {
+						"name": "families_left",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "carts_n",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "load_2",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"team": "guild",
+							"area": "barn_2",
+							"secs": 3
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_2",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_2",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				},
+				{
+					"say": [
+						"n_loaded"
+					]
+				}
+			]
+		},
+		{
+			"id": "autoload_2",
+			"when": {
+				"all": [
+					{
+						"time": 10
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_2",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "load_2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_2",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "left_2",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "load_2"
+						}
+					},
+					{
+						"not": {
+							"fired": "autoload_2"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_2",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"remove": {
+						"tag": "cart_2"
+					}
+				},
+				{
+					"counter": {
+						"name": "families_left",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "carts_n",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "load_3",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"team": "guild",
+							"area": "barn_3",
+							"secs": 3
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_3",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_3",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				},
+				{
+					"say": [
+						"n_loaded"
+					]
+				}
+			]
+		},
+		{
+			"id": "autoload_3",
+			"when": {
+				"all": [
+					{
+						"time": 13
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_3",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "load_3"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_3",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "left_3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "load_3"
+						}
+					},
+					{
+						"not": {
+							"fired": "autoload_3"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_3",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"remove": {
+						"tag": "cart_3"
+					}
+				},
+				{
+					"counter": {
+						"name": "families_left",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "carts_n",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "load_4",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"team": "guild",
+							"area": "barn_4",
+							"secs": 3
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_4",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_4",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				},
+				{
+					"say": [
+						"n_loaded"
+					]
+				}
+			]
+		},
+		{
+			"id": "autoload_4",
+			"when": {
+				"all": [
+					{
+						"time": 16
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_4",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "load_4"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_4",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "left_4",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "load_4"
+						}
+					},
+					{
+						"not": {
+							"fired": "autoload_4"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_4",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"remove": {
+						"tag": "cart_4"
+					}
+				},
+				{
+					"counter": {
+						"name": "families_left",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "carts_n",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "load_5",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"team": "guild",
+							"area": "barn_5",
+							"secs": 3
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_5",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_5",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				},
+				{
+					"say": [
+						"n_loaded"
+					]
+				}
+			]
+		},
+		{
+			"id": "autoload_5",
+			"when": {
+				"all": [
+					{
+						"time": 19
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_5",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "load_5"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_5",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "left_5",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "load_5"
+						}
+					},
+					{
+						"not": {
+							"fired": "autoload_5"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_5",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"remove": {
+						"tag": "cart_5"
+					}
+				},
+				{
+					"counter": {
+						"name": "families_left",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "carts_n",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "load_6",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"team": "guild",
+							"area": "barn_6",
+							"secs": 3
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_6",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_6",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				},
+				{
+					"say": [
+						"n_loaded"
+					]
+				}
+			]
+		},
+		{
+			"id": "autoload_6",
+			"when": {
+				"all": [
+					{
+						"time": 22
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_6",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "load_6"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_6",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "left_6",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "load_6"
+						}
+					},
+					{
+						"not": {
+							"fired": "autoload_6"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_6",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"remove": {
+						"tag": "cart_6"
+					}
+				},
+				{
+					"counter": {
+						"name": "families_left",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "carts_n",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "load_7",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"team": "guild",
+							"area": "barn_7",
+							"secs": 3
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_7",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_7",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				},
+				{
+					"say": [
+						"n_loaded"
+					]
+				}
+			]
+		},
+		{
+			"id": "autoload_7",
+			"when": {
+				"all": [
+					{
+						"time": 25
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_7",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "load_7"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "cart_7",
+						"cargo": "families",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "loaded",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "left_7",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "load_7"
+						}
+					},
+					{
+						"not": {
+							"fired": "autoload_7"
+						}
+					},
+					{
+						"count": {
+							"tag": "cart_7",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"remove": {
+						"tag": "cart_7"
+					}
+				},
+				{
+					"counter": {
+						"name": "families_left",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "carts_n",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "load_done",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"counter": {
+							"name": "loaded",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"objective": {
+						"id": "load",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "load_none",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"counter": {
+							"name": "loaded",
+							"below": 1
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"n_all_taken"
+					]
+				},
+				{
+					"objective": {
+						"id": "load",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "draw_obj",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"not": {
+							"past": {
+								"c01_thirteenth.gate": "people"
+							}
+						}
+					},
+					{
+						"playing": "exodus"
+					},
+					{
+						"not": {
+							"fired": "draw_load"
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"objective": {
+						"id": "drawings",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"h_draw0"
+					]
+				},
+				{
+					"ping": {
+						"area": "barn_1"
+					}
+				}
+			]
+		},
+		{
+			"id": "people_line",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"past": {
+							"c01_thirteenth.gate": "people"
+						}
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"delay": 25,
+			"do": [
+				{
+					"say": [
+						"h_people"
+					]
+				}
+			]
+		},
+		{
+			"id": "draw_load",
+			"when": {
+				"all": [
+					{
+						"not": {
+							"past": {
+								"c01_thirteenth.gate": "people"
+							}
+						}
+					},
+					{
+						"stay": {
+							"tag": "hollweg",
+							"area": "barn_1",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "drawings_cart",
+						"cargo": "drawings",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				},
+				{
+					"objective": {
+						"id": "drawings",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"h_draw"
+					]
+				}
+			]
+		},
+		{
+			"id": "draw_auto",
+			"when": {
+				"all": [
+					{
+						"time": 25
+					},
+					{
+						"not": {
+							"past": {
+								"c01_thirteenth.gate": "people"
+							}
+						}
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					},
+					{
+						"not": {
+							"fired": "draw_load"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"load": {
+						"cart": "drawings_cart",
+						"cargo": "drawings",
+						"amount": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "to_load",
+						"add": -1
+					}
+				}
+			]
+		},
+		{
+			"id": "draw_left",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"past": {
+								"c01_thirteenth.gate": "people"
+							}
+						}
+					},
+					{
+						"not": {
+							"fired": "draw_load"
+						}
+					},
+					{
+						"not": {
+							"fired": "draw_auto"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"remove": {
+						"tag": "drawings_cart"
+					}
+				},
+				{
+					"objective": {
+						"id": "drawings",
+						"set": "failed"
+					}
+				},
+				{
+					"flag": {
+						"drawings": "taken"
+					}
+				}
+			]
+		},
+		{
+			"id": "jakob_obj",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"c01_thirteenth.jakob": "lost"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"a02_furth.jakob": "lost"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"a04_visit.jakob": "lost"
+									}
+								}
+							}
+						]
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"delay": 50,
+			"do": [
+				{
+					"objective": {
+						"id": "jakob_bye",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"j_wait"
+					]
+				},
+				{
+					"ping": {
+						"tag": "jakob"
+					}
+				}
+			]
+		},
+		{
+			"id": "jakob_talk",
+			"when": {
+				"all": [
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"c01_thirteenth.jakob": "lost"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"a02_furth.jakob": "lost"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"a04_visit.jakob": "lost"
+									}
+								}
+							}
+						]
+					},
+					{
+						"any": [
+							{
+								"all": [
+									{
+										"fired": "jakob_obj"
+									},
+									{
+										"near": {
+											"tag": "hollweg",
+											"to": "jakob",
+											"within": 2
+										}
+									}
+								]
+							},
+							{
+								"all": [
+									{
+										"not": {
+											"playing": "exodus"
+										}
+									},
+									{
+										"time": 30
+									}
+								]
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"j_stay1",
+						"h_stay",
+						"j_stay2",
+						"n_jakob_goes"
+					]
+				},
+				{
+					"objective": {
+						"id": "jakob_bye",
+						"set": "done"
+					}
+				},
+				{
+					"order": {
+						"tag": "jakob",
+						"do": "route",
+						"route": [
+							"town",
+							"camp"
+						],
+						"name": "jakob_walk"
+					}
+				},
+				{
+					"flag": {
+						"jakob": "stayed"
+					}
+				}
+			]
+		},
+		{
+			"id": "jakob_gone",
+			"when": {
+				"route_done": "jakob_walk"
+			},
+			"do": [
+				{
+					"remove": {
+						"tag": "jakob"
+					}
+				}
+			]
+		},
+		{
+			"id": "jakob_late",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"c01_thirteenth.jakob": "lost"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"a02_furth.jakob": "lost"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"a04_visit.jakob": "lost"
+									}
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "jakob_talk"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "jakob",
+						"do": "route",
+						"route": [
+							"town",
+							"camp"
+						],
+						"name": "jakob_walk"
+					}
+				},
+				{
+					"flag": {
+						"jakob": "stayed"
+					}
+				}
+			]
+		},
+		{
+			"id": "nojakob",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"c01_thirteenth.jakob": "lost"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a02_furth.jakob": "lost"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a04_visit.jakob": "lost"
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"delay": 50,
+			"do": [
+				{
+					"say": [
+						"h_nojakob"
+					]
+				},
+				{
+					"flag": {
+						"jakob": "lost"
+					}
+				}
+			]
+		},
+		{
+			"id": "nojakob_flag",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"c01_thirteenth.jakob": "lost"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a02_furth.jakob": "lost"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a04_visit.jakob": "lost"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"jakob": "lost"
+					}
+				}
+			]
+		},
+		{
+			"id": "riders_warn",
+			"when": {
+				"all": [
+					{
+						"clock_left": {
+							"name": "riders",
+							"below": 60
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_warn"
+					]
+				}
+			]
+		},
+		{
+			"id": "ready",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "to_load",
+							"below": 1
+						}
+					},
+					{
+						"any": [
+							{
+								"not": {
+									"all": [
+										{
+											"not": {
+												"past": {
+													"c01_thirteenth.jakob": "lost"
+												}
+											}
+										},
+										{
+											"not": {
+												"past": {
+													"a02_furth.jakob": "lost"
+												}
+											}
+										},
+										{
+											"not": {
+												"past": {
+													"a04_visit.jakob": "lost"
+												}
+											}
+										}
+									]
+								}
+							},
+							{
+								"fired": "jakob_talk"
+							}
+						]
+					},
+					{
+						"any": [
+							{
+								"not": {
+									"past": {
+										"a02_furth.furth": "fallen"
+									}
+								}
+							},
+							{
+								"done": "reclaim"
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": []
+		},
+		{
+			"id": "part2",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "ready"
+							},
+							{
+								"clock_out": "riders"
+							},
+							{
+								"all": [
+									{
+										"playing": "commissary"
+									},
+									{
+										"time": 30
+									}
+								]
+							}
+						]
+					},
+					{
+						"any": [
+							{
+								"not": {
+									"past": {
+										"a02_furth.furth": "fallen"
+									}
+								}
+							},
+							{
+								"done": "reclaim"
+							},
+							{
+								"clock_out": "riders"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"clock": {
+						"name": "riders",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "riders_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "reclaim",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "road",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "drawings",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "jakob_bye",
+						"set": "hidden"
+					}
+				},
+				{
+					"light": {
+						"to": "dawn",
+						"secs": 90
+					}
+				},
+				{
+					"order": {
+						"tag": "convoy",
+						"do": "route",
+						"route": [
+							"yard_w",
+							"bridge_w",
+							"v1",
+							"s1",
+							"s2",
+							"s3",
+							"s4",
+							"s5",
+							"s6",
+							"brook_n",
+							"brook_s",
+							"barges"
+						],
+						"name": "road"
+					}
+				},
+				{
+					"ping": {
+						"area": "bridge_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_say",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_dogs",
+						"h_road",
+						"u_take"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2_left",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"counter": {
+							"name": "families_left",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"say": [
+						"n_left"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2_c",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "commissary"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_c_road"
+					]
+				},
+				{
+					"ping": {
+						"area": "bridge_w"
+					}
+				},
+				{
+					"objective": {
+						"id": "c_ride",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "g_escort",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "army",
+						"do": "follow",
+						"leader": "fcarts",
+						"within": 3,
+						"fight": 6
+					}
+				},
+				{
+					"order": {
+						"tag": "hollweg",
+						"do": "follow",
+						"leader": "spring_cart",
+						"within": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "column",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "commissary"
+						}
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "dismounted",
+						"as": "brandt",
+						"count": 1,
+						"at": "camp",
+						"tag": "brandt",
+						"tags": [
+							"column",
+							"crown_men"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"as": "rauch",
+						"count": 1,
+						"at": "camp",
+						"tag": "rauch",
+						"tags": [
+							"column",
+							"crown_men"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "missionary",
+						"as": "ferrer",
+						"count": 1,
+						"at": "camp",
+						"tag": "ferrer"
+					}
+				},
+				{
+					"spare": {
+						"tag": "ferrer",
+						"on": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "musketeer",
+						"count": 4,
+						"at": "camp",
+						"tag": "column",
+						"tags": [
+							"crown_men"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"all": [
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "thin"
+												}
+											}
+										},
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "fallen"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "musketeer",
+						"count": 3,
+						"at": "camp",
+						"tag": "column",
+						"tags": [
+							"crown_men"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.furth": "thin"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cannon",
+						"count": 1,
+						"at": "camp",
+						"tag": "column",
+						"tags": [
+							"crown_men"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"all": [
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "thin"
+												}
+											}
+										},
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "fallen"
+												}
+											}
+										}
+									]
+								},
+								{
+									"not": {
+										"past": {
+											"a04_visit.broken": "melted"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cannon",
+						"count": 1,
+						"at": "camp",
+						"tag": "column",
+						"tags": [
+							"crown_men"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.furth": "thin"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a04_visit.broken": "melted"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "column",
+						"do": "route",
+						"route": [
+							"yard"
+						],
+						"attack": true,
+						"name": "column_yard"
+					}
+				},
+				{
+					"order": {
+						"tag": "ferrer",
+						"do": "follow",
+						"leader": "brandt",
+						"within": 3
+					}
+				}
+			]
+		},
+		{
+			"id": "column_on",
+			"when": {
+				"all": [
+					{
+						"fired": "column"
+					},
+					{
+						"any": [
+							{
+								"route_done": "column_yard"
+							},
+							{
+								"dead": "column"
+							}
+						]
+					},
+					{
+						"not": {
+							"counter": {
+								"name": "minute",
+								"at_least": 1
+							}
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 25,
+			"do": [
+				{
+					"order": {
+						"tag": "column",
+						"only_team": "crown",
+						"do": "route",
+						"route": [
+							"yard_w",
+							"bridge_w",
+							"v1",
+							"s1",
+							"s2",
+							"s3",
+							"s4",
+							"s5",
+							"s6",
+							"brook_n",
+							"brook_s"
+						],
+						"attack": true,
+						"name": "column_road"
+					}
+				}
+			]
+		},
+		{
+			"id": "column_c",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "commissary"
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "dismounted",
+						"as": "brandt",
+						"count": 1,
+						"at": "camp",
+						"tag": "brandt",
+						"tags": [
+							"column"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"as": "rauch",
+						"count": 1,
+						"at": "camp",
+						"tag": "rauch",
+						"tags": [
+							"column"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "missionary",
+						"as": "ferrer",
+						"count": 1,
+						"at": "camp",
+						"tag": "ferrer"
+					}
+				},
+				{
+					"spare": {
+						"tag": "ferrer",
+						"on": true
+					}
+				},
+				{
+					"camera": {
+						"area": "camp",
+						"side": "commissary"
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "musketeer",
+						"count": 4,
+						"at": "camp",
+						"tag": "column",
+						"tags": [
+							"c_start"
+						],
+						"fixed": true,
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a02_furth.furth": "thin"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a02_furth.furth": "fallen"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 3,
+						"at": "camp",
+						"tag": "column",
+						"tags": [
+							"c_start",
+							"riders"
+						],
+						"fixed": true,
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a02_furth.furth": "thin"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a02_furth.furth": "fallen"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cannon",
+						"count": 1,
+						"at": "camp",
+						"tag": "column",
+						"tags": [
+							"c_start"
+						],
+						"fixed": true,
+						"if": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a02_furth.furth": "thin"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a02_furth.furth": "fallen"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "musketeer",
+						"count": 3,
+						"at": "camp",
+						"tag": "column",
+						"tags": [
+							"c_start"
+						],
+						"fixed": true,
+						"if": {
+							"past": {
+								"a02_furth.furth": "thin"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "camp",
+						"tag": "column",
+						"tags": [
+							"c_start",
+							"riders"
+						],
+						"fixed": true,
+						"if": {
+							"past": {
+								"a02_furth.furth": "thin"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cannon",
+						"count": 1,
+						"at": "camp",
+						"tag": "column",
+						"tags": [
+							"c_start"
+						],
+						"fixed": true,
+						"if": {
+							"past": {
+								"a02_furth.furth": "thin"
+							}
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "column_say",
+			"when": {
+				"all": [
+					{
+						"fired": "column"
+					},
+					{
+						"playing": "exodus"
+					},
+					{
+						"not": {
+							"past": {
+								"a04_visit.broken": "melted"
+							}
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"say": [
+						"u_column"
+					]
+				},
+				{
+					"ping": {
+						"area": "yard"
+					}
+				}
+			]
+		},
+		{
+			"id": "column_say_m",
+			"when": {
+				"all": [
+					{
+						"fired": "column"
+					},
+					{
+						"playing": "exodus"
+					},
+					{
+						"past": {
+							"a04_visit.broken": "melted"
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"say": [
+						"u_column_m"
+					]
+				},
+				{
+					"ping": {
+						"area": "yard"
+					}
+				}
+			]
+		},
+		{
+			"id": "riders1",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "commissary"
+						}
+					}
+				]
+			},
+			"delay": 10,
+			"do": [
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 3,
+						"at": "track_n",
+						"tag": "riders",
+						"tags": [
+							"crown_men",
+							"riders"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"all": [
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "thin"
+												}
+											}
+										},
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "fallen"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "track_n",
+						"tag": "riders",
+						"tags": [
+							"crown_men",
+							"riders"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.furth": "thin"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "track_n",
+						"tag": "riders",
+						"tags": [
+							"crown_men"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"past": {
+										"a04_visit.broken": "melted"
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "riders1_say",
+			"when": {
+				"all": [
+					{
+						"fired": "riders1"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_riders"
+					]
+				},
+				{
+					"ping": {
+						"area": "track_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "riders2",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"tag": "convoy",
+									"area": "s2",
+									"at_least": 1
+								}
+							},
+							{
+								"fired": "riders2_late"
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "track_n",
+						"tag": "riders",
+						"tags": [
+							"crown_men",
+							"riders"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"all": [
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "thin"
+												}
+											}
+										},
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "fallen"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "track_n",
+						"tag": "riders",
+						"tags": [
+							"crown_men",
+							"riders"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.furth": "thin"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "track_n",
+						"tag": "riders",
+						"tags": [
+							"crown_men"
+						],
+						"if": {
+							"playing": "commissary"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "riders2_late",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 70,
+			"do": []
+		},
+		{
+			"id": "riders2_say",
+			"when": {
+				"all": [
+					{
+						"fired": "riders2"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_riders2"
+					]
+				},
+				{
+					"ping": {
+						"area": "track_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "riders3_late",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 120,
+			"do": []
+		},
+		{
+			"id": "riders3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "commissary"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"tag": "convoy",
+									"area": "s4",
+									"at_least": 1
+								}
+							},
+							{
+								"fired": "riders3_late"
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "track_n",
+						"tag": "riders",
+						"tags": [
+							"crown_men",
+							"riders"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"all": [
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "thin"
+												}
+											}
+										},
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "fallen"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 2,
+						"at": "track_n",
+						"tag": "riders",
+						"tags": [
+							"crown_men",
+							"riders"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.furth": "thin"
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "riders3_say",
+			"when": {
+				"all": [
+					{
+						"fired": "riders3"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_dogs2"
+					]
+				},
+				{
+					"ping": {
+						"area": "s4"
+					}
+				}
+			]
+		},
+		{
+			"id": "riders_take",
+			"when": {
+				"all": [
+					{
+						"fired": "riders1"
+					},
+					{
+						"not": {
+							"playing": "commissary"
+						}
+					},
+					{
+						"not": {
+							"counter": {
+								"name": "minute",
+								"at_least": 1
+							}
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "riders",
+						"only_team": "crown",
+						"do": "take",
+						"carts": "carts",
+						"within": 70,
+						"else": "brook_n"
+					}
+				}
+			]
+		},
+		{
+			"id": "taken_go",
+			"when": {
+				"all": [
+					{
+						"taken": "carts"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "taken",
+						"only_team": "seized",
+						"do": "move",
+						"to": "camp"
+					}
+				},
+				{
+					"order": {
+						"tag": "taken",
+						"only_team": "families",
+						"do": "move",
+						"to": "barges"
+					}
+				}
+			]
+		},
+		{
+			"id": "taken_say",
+			"when": {
+				"all": [
+					{
+						"taken": "carts"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_taken",
+						"u_retake"
+					]
+				}
+			]
+		},
+		{
+			"id": "retaken_say",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "retaken",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_retaken"
+					]
+				}
+			]
+		},
+		{
+			"id": "draw_taken",
+			"when": {
+				"all": [
+					{
+						"not": {
+							"past": {
+								"c01_thirteenth.gate": "people"
+							}
+						}
+					},
+					{
+						"taken": "drawings_cart"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"h_draw_taken"
+					]
+				},
+				{
+					"ping": {
+						"tag": "drawings_cart"
+					}
+				}
+			]
+		},
+		{
+			"id": "sortie",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 5,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 8,
+						"at": "north_gate",
+						"tag": "sortie"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "springer",
+						"count": 2,
+						"at": "north_gate",
+						"tag": "sortie"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "north_gate",
+						"tag": "sortie",
+						"if": {
+							"any": [
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 2
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 3
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 4
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 5
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 6
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 7
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 8
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 9
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 10
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 11
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 12
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 13
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 14
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 15
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 16
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 17
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 18
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 19
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 20
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 21
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 22
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 23
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 24
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 25
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 26
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 27
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 28
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 29
+									}
+								},
+								{
+									"past": {
+										"a04_visit.lost_to_machine": 30
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "sortie",
+						"do": "route",
+						"route": [
+							"yard",
+							"yard_w",
+							"bridge_w",
+							"v1",
+							"s1",
+							"s2",
+							"s3",
+							"s4",
+							"s5",
+							"s6",
+							"brook_n",
+							"brook_s"
+						],
+						"attack": true,
+						"name": "sortie_road"
+					}
+				},
+				{
+					"say": [
+						"n_sortie"
+					]
+				},
+				{
+					"ping": {
+						"area": "yard"
+					}
+				}
+			]
+		},
+		{
+			"id": "sortie_say",
+			"when": {
+				"all": [
+					{
+						"fired": "sortie"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"say": [
+						"h_sortie"
+					]
+				}
+			]
+		},
+		{
+			"id": "sortie_c",
+			"when": {
+				"all": [
+					{
+						"fired": "sortie"
+					},
+					{
+						"playing": "commissary"
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"say": [
+						"r_c_sortie"
+					]
+				}
+			]
+		},
+		{
+			"id": "sortie_wound",
+			"when": {
+				"all": [
+					{
+						"fired": "sortie"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 5,
+			"do": [
+				{
+					"wind": {
+						"tag": "sortie",
+						"share": 1.0
+					}
+				},
+				{
+					"wind": {
+						"tag": "m_works_guard",
+						"share": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "minute",
+			"when": {
+				"all": [
+					{
+						"fired": "column"
+					},
+					{
+						"past": {
+							"c01_thirteenth.bells": "rung"
+						}
+					},
+					{
+						"not": {
+							"playing": "commissary"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 30,
+			"do": [
+				{
+					"counter": {
+						"name": "minute",
+						"set": 1
+					}
+				},
+				{
+					"clock": {
+						"name": "minute",
+						"secs": 60
+					}
+				},
+				{
+					"order": {
+						"team": "crown",
+						"do": "hold"
+					}
+				},
+				{
+					"say": [
+						"r_minute",
+						"b_minute"
+					]
+				}
+			]
+		},
+		{
+			"id": "minute_say",
+			"when": {
+				"all": [
+					{
+						"fired": "minute"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"h_minute"
+					]
+				}
+			]
+		},
+		{
+			"id": "minute_end",
+			"when": {
+				"all": [
+					{
+						"fired": "minute"
+					},
+					{
+						"clock_out": "minute"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "minute",
+						"set": 0
+					}
+				},
+				{
+					"say": [
+						"r_minute_end"
+					]
+				},
+				{
+					"order": {
+						"tag": "column",
+						"only_team": "crown",
+						"do": "route",
+						"route": [
+							"yard_w",
+							"bridge_w",
+							"v1",
+							"s1",
+							"s2",
+							"s3",
+							"s4",
+							"s5",
+							"s6",
+							"brook_n",
+							"brook_s"
+						],
+						"attack": true,
+						"name": "column_road"
+					}
+				}
+			]
+		},
+		{
+			"id": "all_taken",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"counter": {
+							"name": "loaded",
+							"at_least": 1
+						}
+					},
+					{
+						"loaded": {
+							"tag": "fcarts",
+							"cargo": "families",
+							"below": 1
+						}
+					},
+					{
+						"counter": {
+							"name": "families_out",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": []
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"tag": "convoy",
+									"area": "landing",
+									"at_least": 1
+								}
+							},
+							{
+								"route_done": "road"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"build": {
+						"team": "guild",
+						"kind": "clocktower",
+						"at": [
+							16,
+							61
+						],
+						"tag": "travelling_clock",
+						"name": "The travelling clock"
+					}
+				},
+				{
+					"objective": {
+						"id": "bridge",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "last_barge",
+						"secs": 180
+					}
+				},
+				{
+					"light": {
+						"to": "winter_day",
+						"secs": 40
+					}
+				},
+				{
+					"ping": {
+						"area": "brook"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3_say",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_landing",
+						"u_clock",
+						"h_bridge"
+					]
+				}
+			]
+		},
+		{
+			"id": "turret_site",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"build": {
+						"team": "guild",
+						"kind": "ratchet_turret",
+						"at": [
+							13,
+							57
+						],
+						"tag": "turret",
+						"site": true
+					}
+				},
+				{
+					"give": {
+						"team": "guild",
+						"gold": 200
+					}
+				},
+				{
+					"objective": {
+						"id": "turret",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "turret_say",
+			"when": {
+				"fired": "turret_site"
+			},
+			"delay": 12,
+			"do": [
+				{
+					"say": [
+						"u_turret"
+					]
+				},
+				{
+					"ping": {
+						"tag": "turret"
+					}
+				}
+			]
+		},
+		{
+			"id": "turret_auto",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"build": {
+						"team": "guild",
+						"kind": "ratchet_turret",
+						"at": [
+							13,
+							57
+						],
+						"tag": "turret"
+					}
+				},
+				{
+					"order": {
+						"tag": "army",
+						"do": "attack",
+						"to": "brook_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "barge_away",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"counter": {
+							"name": "families_out",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_barge"
+					]
+				}
+			]
+		},
+		{
+			"id": "push",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "commissary"
+						}
+					}
+				]
+			},
+			"delay": 30,
+			"do": [
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "musketeer",
+						"count": 2,
+						"at": "track_s",
+						"tag": "push",
+						"tags": [
+							"crown_men"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"all": [
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "thin"
+												}
+											}
+										},
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "fallen"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 1,
+						"at": "track_s",
+						"tag": "push",
+						"tags": [
+							"crown_men",
+							"riders"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"all": [
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "thin"
+												}
+											}
+										},
+										{
+											"not": {
+												"past": {
+													"a02_furth.furth": "fallen"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "musketeer",
+						"count": 2,
+						"at": "track_s",
+						"tag": "push",
+						"tags": [
+							"crown_men"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.furth": "thin"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 1,
+						"at": "track_s",
+						"tag": "push",
+						"tags": [
+							"crown_men",
+							"riders"
+						],
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "commissary"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.furth": "thin"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "push",
+						"do": "route",
+						"route": [
+							"s4",
+							"s5",
+							"s6",
+							"brook_n",
+							"brook_s"
+						],
+						"attack": true,
+						"name": "push"
+					}
+				}
+			]
+		},
+		{
+			"id": "push_riders",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "commissary"
+						}
+					},
+					{
+						"not": {
+							"counter": {
+								"name": "minute",
+								"at_least": 1
+							}
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "column",
+						"only_team": "crown",
+						"kind": [
+							"cuirassier"
+						],
+						"do": "take",
+						"carts": "carts",
+						"within": 40
+					}
+				}
+			]
+		},
+		{
+			"id": "assault",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "commissary"
+						}
+					},
+					{
+						"not": {
+							"counter": {
+								"name": "minute",
+								"at_least": 1
+							}
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"every": 12,
+			"do": [
+				{
+					"order": {
+						"team": "crown",
+						"do": "attack",
+						"to": "brook_s",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "assault_m",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 30,
+			"every": 12,
+			"do": [
+				{
+					"order": {
+						"tag": "sortie",
+						"do": "attack",
+						"to": "brook_s",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "push_c",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "commissary"
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "musketeer",
+						"count": 3,
+						"at": "track_s",
+						"tag": "column"
+					}
+				},
+				{
+					"spawn": {
+						"team": "crown",
+						"kind": "cuirassier",
+						"count": 1,
+						"at": "track_s",
+						"tag": "column",
+						"tags": [
+							"riders"
+						]
+					}
+				},
+				{
+					"say": [
+						"r_c_push"
+					]
+				},
+				{
+					"ping": {
+						"area": "track_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "quiet",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"fired": "push"
+					},
+					{
+						"not": {
+							"fired": "last_call"
+						}
+					},
+					{
+						"count": {
+							"team": "crown",
+							"area": "west",
+							"kind": [
+								"musketeer",
+								"cuirassier",
+								"cannon",
+								"dismounted"
+							],
+							"below": 1
+						}
+					},
+					{
+						"count": {
+							"side": "machine",
+							"area": "west",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"clock": {
+						"name": "last_barge",
+						"add": -12
+					}
+				}
+			]
+		},
+		{
+			"id": "quiet_say",
+			"when": {
+				"all": [
+					{
+						"fired": "quiet"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_quiet"
+					]
+				}
+			]
+		},
+		{
+			"id": "rearguard_gone",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "commissary"
+						}
+					},
+					{
+						"count": {
+							"team": "guild",
+							"area": "landing",
+							"kind": [
+								"clock_soldier",
+								"springer",
+								"netter",
+								"pendulum"
+							],
+							"below": 1
+						}
+					},
+					{
+						"stay": {
+							"side": "commissary",
+							"area": "landing",
+							"secs": 8,
+							"count": 3
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "c_hollweg",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"u_broken"
+					]
+				},
+				{
+					"ping": {
+						"tag": "hollweg"
+					}
+				}
+			]
+		},
+		{
+			"id": "last_call",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"clock_out": "last_barge"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "bridge",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "aboard",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "cast_off",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "cast_off",
+						"secs": 60
+					}
+				},
+				{
+					"ping": {
+						"area": "barges"
+					}
+				}
+			]
+		},
+		{
+			"id": "last_say",
+			"when": {
+				"all": [
+					{
+						"fired": "last_call"
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_last"
+					]
+				}
+			]
+		},
+		{
+			"id": "last_g",
+			"when": {
+				"all": [
+					{
+						"fired": "last_call"
+					},
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "hollweg",
+						"do": "move",
+						"to": "barges"
+					}
+				}
+			]
+		},
+		{
+			"id": "aboard_won",
+			"when": {
+				"all": [
+					{
+						"done": "aboard"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"captured": "hollweg"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"h_aboard"
+					]
+				},
+				{
+					"objective": {
+						"id": "road",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "cast_off",
+						"set": "hidden"
+					}
+				},
+				{
+					"counter": {
+						"name": "automata_out",
+						"count": {
+							"team": "guild",
+							"area": "landing"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "aboard_c",
+			"when": {
+				"all": [
+					{
+						"fired": "aboard_won"
+					},
+					{
+						"playing": "commissary"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_c_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "flags_exodus",
+			"when": {
+				"fired": "aboard_won"
+			},
+			"do": [
+				{
+					"tally": {
+						"flag": "exodus",
+						"counter": "families_out",
+						"of": "carts_n",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.4,
+								"some"
+							],
+							[
+								0.75,
+								"many"
+							]
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "flags_draw",
+			"when": {
+				"all": [
+					{
+						"fired": "aboard_won"
+					},
+					{
+						"not": {
+							"past": {
+								"c01_thirteenth.gate": "people"
+							}
+						}
+					},
+					{
+						"counter": {
+							"name": "drawings_out",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"drawings": "carried"
+					}
+				}
+			]
+		},
+		{
+			"id": "flags_draw2",
+			"when": {
+				"all": [
+					{
+						"fired": "aboard_won"
+					},
+					{
+						"not": {
+							"past": {
+								"c01_thirteenth.gate": "people"
+							}
+						}
+					},
+					{
+						"counter": {
+							"name": "drawings_out",
+							"below": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"drawings": "taken"
+					}
+				}
+			]
+		},
+		{
+			"id": "won",
+			"when": {
+				"fired": "flags_exodus"
+			},
+			"delay": 4,
+			"do": [
+				{
+					"light": {
+						"to": "winter_day",
+						"secs": 5
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"fired": "won"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"win": "exodus"
+				}
+			]
+		},
+		{
+			"id": "hollweg_taken",
+			"when": {
+				"all": [
+					{
+						"captured": "hollweg"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_captured"
+					]
+				},
+				{
+					"flag": {
+						"hollweg": "taken"
+					}
+				},
+				{
+					"tally": {
+						"flag": "exodus",
+						"counter": "families_out",
+						"of": "carts_n",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.4,
+								"some"
+							],
+							[
+								0.75,
+								"many"
+							]
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "hollweg_taken_c",
+			"when": {
+				"all": [
+					{
+						"fired": "hollweg_taken"
+					},
+					{
+						"playing": "commissary"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_c_won"
+					]
+				}
+			]
+		},
+		{
+			"id": "c_end",
+			"when": {
+				"fired": "hollweg_taken"
+			},
+			"delay": 4,
+			"do": [
+				{
+					"win": "commissary"
+				}
+			]
+		},
+		{
+			"id": "cast_off_lost",
+			"when": {
+				"all": [
+					{
+						"clock_out": "cast_off"
+					},
+					{
+						"not": {
+							"done": "aboard"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_cast_off"
+					]
+				},
+				{
+					"objective": {
+						"id": "aboard",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "all_taken_lost",
+			"when": {
+				"all": [
+					{
+						"fired": "all_taken"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_all_taken"
+					]
+				},
+				{
+					"objective": {
+						"id": "road",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "c_take_done",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "carts_taken",
+							"at_least": 2
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "c_take",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "hollweg_hurt",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "hollweg",
+							"below": 0.6
+						}
+					},
+					{
+						"playing": "exodus"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"h_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "hollweg"
+					}
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 8
+			},
+			"do": [
+				{
+					"say": [
+						"new_ratchet_turret",
+						"new_shield_wall"
+					]
+				}
+			]
+		}
+	],
+	"heroes": [
+		"hollweg"
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "exodus",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"hollweg": {
+			"name": "Meister Hollweg",
+			"side": "exodus",
+			"portrait": "res://campaign/hub/nuremberg_hollweg_face.png"
+		},
+		"jakob": {
+			"name": "Jakob",
+			"side": "exodus"
+		},
+		"ulrich": {
+			"name": "Master Ulrich",
+			"side": "exodus"
+		},
+		"brandt": {
+			"name": "Commissary Brandt",
+			"side": "commissary"
+		},
+		"rauch": {
+			"name": "Colonel von Rauch",
+			"side": "commissary"
+		},
+		"ferrer": {
+			"name": "Father Ferrer",
+			"side": "commissary"
+		},
+		"narrator": {
+			"name": "Narration · Fürth to the Main",
+			"side": "exodus"
+		},
+		"machine": {
+			"name": "The Machine",
+			"side": "machine"
+		},
+		"new": {
+			"name": "NEW IN YOUR ARMY",
+			"side": "exodus"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "Ten months after Rome I signed the commissary's orders myself. Seize the works at Fürth. Stop every machine that winds itself."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "Hollweg was told the commissary was coming. He did not wait for him."
+		},
+		"h_open1": {
+			"who": "hollweg",
+			"text": "I called it a rescue. The families had nowhere else. The machines had nowhere at all."
+		},
+		"h_open2": {
+			"who": "hollweg",
+			"text": "We rang the night bell at the barn. By morning Fürth was empty."
+		},
+		"k_open_c": {
+			"who": "king",
+			"text": "Father Ferrer rode with the commissary as Rome's witness. He wrote down what he saw. He always did."
+		},
+		"f_open_c": {
+			"who": "ferrer",
+			"text": "We were a day's ride off when the dogs found their scent. The guild was already on the road."
+		},
+		"h_1": {
+			"who": "hollweg",
+			"text": "Every family to its cart. Every machine that can walk, wind it. We leave tonight.",
+			"to": "exodus"
+		},
+		"u_tip1": {
+			"who": "ulrich",
+			"text": "The carts wait at the barns, Meister. Send one of ours to each and the family climbs in. The marked ones on the map.",
+			"to": "exodus"
+		},
+		"u_tip2": {
+			"who": "ulrich",
+			"text": "Your spring cart winds anything that stands on the brass plates round it. Keep the soldiers near it on the road and they never run down.",
+			"to": "exodus"
+		},
+		"u_tip_new": {
+			"who": "ulrich",
+			"text": "The Clock Soldiers know the shield wall now, Meister. Raise their shields with SHIELD FORWARD on their card when the muskets face them.",
+			"to": "exodus"
+		},
+		"n_loaded": {
+			"who": "narrator",
+			"text": "A family climbs into its cart.",
+			"to": "exodus"
+		},
+		"h_draw0": {
+			"who": "hollweg",
+			"text": "And the drawings. Every sheet of the Perpetual. Nobody touches those chests but me.",
+			"to": "exodus"
+		},
+		"h_draw": {
+			"who": "hollweg",
+			"text": "The drawings are aboard. If they take that cart, they take everything I ever made.",
+			"to": "exodus"
+		},
+		"h_people": {
+			"who": "hollweg",
+			"text": "No drawings this time. I left them in Nuremberg for the people. I carry the Perpetual in my head.",
+			"to": "exodus"
+		},
+		"j_wait": {
+			"who": "jakob",
+			"text": "Meister. Before you go. Come here, please.",
+			"to": "exodus"
+		},
+		"j_stay1": {
+			"who": "jakob",
+			"text": "I am not coming, Meister. I told Father Ferrer what I found, and I will tell the commissary.",
+			"to": "exodus"
+		},
+		"h_stay": {
+			"who": "hollweg",
+			"text": "They will melt everything, Jakob. Everything we built.",
+			"to": "exodus"
+		},
+		"j_stay2": {
+			"who": "jakob",
+			"text": "Then let them. I would rather melt a wheel than see it take out its own stop-work again. God keep you, Meister.",
+			"to": "exodus"
+		},
+		"n_jakob_goes": {
+			"who": "narrator",
+			"text": "Jakob walks up the street to the Crown's camp, and does not look back.",
+			"to": "exodus"
+		},
+		"h_nojakob": {
+			"who": "hollweg",
+			"text": "Jakob would have known which wheels to leave. Jakob is not here.",
+			"to": "exodus"
+		},
+		"u_warn": {
+			"who": "ulrich",
+			"text": "Riders on the Bamberg road, Meister. Not long now.",
+			"to": "exodus"
+		},
+		"n_left": {
+			"who": "narrator",
+			"text": "The carts nobody loaded stay at their barns. Those families stay in Fürth.",
+			"to": "exodus"
+		},
+		"h_fallen": {
+			"who": "hollweg",
+			"text": "The machine sits in my own works. My own tower. Burn its seed, or no cart leaves this yard.",
+			"to": "exodus"
+		},
+		"h_reclaimed": {
+			"who": "hollweg",
+			"text": "It is down. Now the families. Quickly.",
+			"to": "exodus"
+		},
+		"u_dogs": {
+			"who": "ulrich",
+			"text": "Dogs, Meister! They are early! The carts must go now!",
+			"to": "exodus"
+		},
+		"h_road": {
+			"who": "hollweg",
+			"text": "West over the Rednitz, then down the valley to the Main. Keep a fighter by every cart.",
+			"to": "exodus"
+		},
+		"u_take": {
+			"who": "ulrich",
+			"text": "They will not shoot the carts, Meister. They will stand round one until it is theirs. Drive them off it and the bar empties.",
+			"to": "exodus"
+		},
+		"u_riders": {
+			"who": "ulrich",
+			"text": "Riders in the valley! They came round by the Würzburg track, from the north!",
+			"to": "exodus"
+		},
+		"u_dogs2": {
+			"who": "ulrich",
+			"text": "Dogs on the slope, Meister, and riders behind them! They have our scent!",
+			"to": "exodus"
+		},
+		"u_riders2": {
+			"who": "ulrich",
+			"text": "More riders on the track!",
+			"to": "exodus"
+		},
+		"u_column": {
+			"who": "ulrich",
+			"text": "The commissary's column is in the yard behind us. Musketeers, and guns.",
+			"to": "exodus"
+		},
+		"u_column_m": {
+			"who": "ulrich",
+			"text": "The commissary's column is in the yard behind us. Musketeers, and more nets than guns.",
+			"to": "exodus"
+		},
+		"n_sortie": {
+			"who": "narrator",
+			"text": "In the empty works, red lights. The machine has come out of Nuremberg for what we left."
+		},
+		"h_sortie": {
+			"who": "hollweg",
+			"text": "Let it have the walls. It will meet the commissary before it meets us.",
+			"to": "exodus"
+		},
+		"n_taken": {
+			"who": "narrator",
+			"text": "A cart is taken. Its family goes back to Fürth under the Crown's guard."
+		},
+		"u_retake": {
+			"who": "ulrich",
+			"text": "Get round that cart before it reaches their camp and it is ours again!",
+			"to": "exodus"
+		},
+		"n_retaken": {
+			"who": "narrator",
+			"text": "The cart is the guild's again, and turns back for the Main."
+		},
+		"h_draw_taken": {
+			"who": "hollweg",
+			"text": "The drawings! They have the drawings!",
+			"to": "exodus"
+		},
+		"r_minute": {
+			"who": "rauch",
+			"text": "Halt. All of you. Let them go, God help them. One minute."
+		},
+		"b_minute": {
+			"who": "brandt",
+			"text": "Colonel! You have the Crown's orders!"
+		},
+		"h_minute": {
+			"who": "hollweg",
+			"text": "Von Rauch remembered the bells of Nuremberg. Go, now, while he looks away!",
+			"to": "exodus"
+		},
+		"r_minute_end": {
+			"who": "rauch",
+			"text": "The minute is up. After them."
+		},
+		"n_landing": {
+			"who": "narrator",
+			"text": "The Main at last: the barges at the jetty, the bargemen stamping their feet in the snow."
+		},
+		"u_clock": {
+			"who": "ulrich",
+			"text": "We set up the travelling clock by the brook, Meister. Its field winds anything near it. There is a turret in the crates.",
+			"to": "exodus"
+		},
+		"h_bridge": {
+			"who": "hollweg",
+			"text": "Hold the bridge until the last barge is loaded. The shields in front, the turret behind them.",
+			"to": "exodus"
+		},
+		"u_turret": {
+			"who": "ulrich",
+			"text": "Send a Winder to the turret's site at the bridge's foot. It builds it with the guild's last coins.",
+			"to": "exodus"
+		},
+		"n_barge": {
+			"who": "narrator",
+			"text": "A barge pushes off down the Main."
+		},
+		"u_broken": {
+			"who": "ulrich",
+			"text": "The rearguard is gone, Meister! They are on the landing: get to the barges before they lay hands on you!",
+			"to": "exodus"
+		},
+		"n_quiet": {
+			"who": "narrator",
+			"text": "The bank is quiet. The bargemen hurry the last crates aboard."
+		},
+		"u_last": {
+			"who": "ulrich",
+			"text": "The last barge is loaded, Meister! Come aboard, now!",
+			"to": "exodus"
+		},
+		"h_aboard": {
+			"who": "hollweg",
+			"text": "Cast off. Do not look back. There is nothing behind us now but the Crown.",
+			"to": "exodus"
+		},
+		"n_cast_off": {
+			"who": "narrator",
+			"text": "The bargemen could wait no longer. The last barge left without the Meister."
+		},
+		"n_all_taken": {
+			"who": "narrator",
+			"text": "Every cart was taken on the road. There was nothing left to save."
+		},
+		"h_hurt": {
+			"who": "hollweg",
+			"text": "I am hit. Keep them off me, they want me alive.",
+			"to": "exodus"
+		},
+		"n_captured": {
+			"who": "narrator",
+			"text": "The commissary's men close round Meister Hollweg. He is taken alive."
+		},
+		"b_c1": {
+			"who": "brandt",
+			"text": "By the Council of Rome and the King's seal: the works at Fürth are the Crown's. Ride.",
+			"to": "commissary"
+		},
+		"f_c1": {
+			"who": "ferrer",
+			"text": "Take the carts, Commissary. Do not harm the families. And I want Hollweg alive, to answer.",
+			"to": "commissary"
+		},
+		"r_c_tip": {
+			"who": "rauch",
+			"text": "My riders take a cart by standing round it with none of theirs by it. Bring Hollweg down and stand a man by him: he is taken.",
+			"to": "commissary"
+		},
+		"f_c_road": {
+			"who": "ferrer",
+			"text": "They are on the road west. The barges on the Main will not wait for us.",
+			"to": "commissary"
+		},
+		"r_c_sortie": {
+			"who": "rauch",
+			"text": "The machine is in the works behind us. Watch the rear.",
+			"to": "commissary"
+		},
+		"r_c_push": {
+			"who": "rauch",
+			"text": "The reserve is on the track, Commissary. Three more muskets and a rider.",
+			"to": "commissary"
+		},
+		"f_c_won": {
+			"who": "ferrer",
+			"text": "He is taken. God forgive us both, Meister.",
+			"to": "commissary"
+		},
+		"f_c_lost": {
+			"who": "ferrer",
+			"text": "The last barge is gone down the Main. He is beyond the Crown now.",
+			"to": "commissary"
+		},
+		"m_1": {
+			"who": "machine",
+			"text": "Tick. Tock. The works are empty.",
+			"to": "machine"
+		},
+		"h_end1": {
+			"who": "hollweg",
+			"text": "We went down the Main to the sea, and at Hamburg we took ship. Nobody there asked what was in the crates."
+		},
+		"h_end_many": {
+			"who": "hollweg",
+			"text": "Nearly every family came with us. I counted them on the deck, every morning."
+		},
+		"h_end_some": {
+			"who": "hollweg",
+			"text": "Some of the families came. The others went back to Fürth in the Crown's carts."
+		},
+		"h_end_few": {
+			"who": "hollweg",
+			"text": "Few of the families came. The deck was very quiet."
+		},
+		"h_end_draw": {
+			"who": "hollweg",
+			"text": "And the drawings came with me. Every sheet."
+		},
+		"h_end_drawlost": {
+			"who": "hollweg",
+			"text": "The drawings stayed with the Crown. I drew them again from memory, on the ship."
+		},
+		"h_end_jakob": {
+			"who": "hollweg",
+			"text": "Jakob stayed. I wrote to him from Hamburg. He never answered."
+		},
+		"h_end_manifest": {
+			"who": "hollweg",
+			"text": "The ship's manifest said: machinery, for a mine in the southern highlands of Brazil. That was true. It was my mine."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "He calls it a rescue. I call it what it was. The guild left the Crown that night, and took its families with it."
+		},
+		"k_end2": {
+			"who": "king",
+			"text": "I do not blame the families. I blame the man who told them the Crown would melt their children's bread."
+		},
+		"k_end_c": {
+			"who": "king",
+			"text": "Hollweg in the Crown's custody, twenty-four years before he came to my fire. That is not how it went."
+		},
+		"f_end_c": {
+			"who": "ferrer",
+			"text": "We brought him to Rome in irons, and the carts back to Fürth. The commissary called it a success."
+		},
+		"new_ratchet_turret": {
+			"who": "new",
+			"to": "exodus",
+			"text": "NEW: THE RATCHET TURRET. A gun of screws that stands still and fires at ground and air. It must stand linked to a gear field: at the landing a Winder builds one by the travelling clock, the rearguard's last stand.",
+			"portrait": "res://assets/icons/ratchet_turret.png"
+		},
+		"new_shield_wall": {
+			"who": "new",
+			"to": "exodus",
+			"text": "NEW: SHIELD WALL. Your Clock Soldiers are drilled to it: press SHIELD FORWARD on their card and they walk slower but take half from shots in front. Raise it facing the muskets."
+		}
+	},
+	"stills": {
+		"night_bell": {
+			"image": "res://campaign/stills/d02_01.jpg",
+			"caption": "Fürth, February 2771. The night bell: the guild loads its carts."
+		},
+		"jakob": {
+			"image": "res://campaign/stills/d02_02.jpg",
+			"caption": "Jakob stays."
+		},
+		"road": {
+			"image": "res://campaign/stills/d02_03.jpg",
+			"caption": "The road down the frozen valley."
+		},
+		"ships": {
+			"image": "res://campaign/stills/d02_04.jpg",
+			"caption": "Hamburg: the ships to Brazil."
+		},
+		"rome": {
+			"image": "res://campaign/stills/c01_01.jpg",
+			"caption": "Rome, the present. The King listens; the clockmaker tells it."
+		}
+	},
+	"next": {
+		"exodus": "",
+		"commissary": ""
+	},
+	"opening": {
+		"exodus": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2"
+				]
+			},
+			{
+				"still": "night_bell",
+				"lines": [
+					"h_open1",
+					"h_open2"
+				]
+			}
+		],
+		"commissary": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open_c"
+				]
+			},
+			{
+				"still": "road",
+				"lines": [
+					"f_open_c"
+				]
+			}
+		]
+	},
+	"ending": {
+		"exodus": [
+			{
+				"still": "ships",
+				"lines": [
+					"h_end1",
+					{
+						"id": "h_end_many",
+						"if": {
+							"flag": {
+								"exodus": "many"
+							}
+						}
+					},
+					{
+						"id": "h_end_some",
+						"if": {
+							"flag": {
+								"exodus": "some"
+							}
+						}
+					},
+					{
+						"id": "h_end_few",
+						"if": {
+							"flag": {
+								"exodus": "few"
+							}
+						}
+					},
+					{
+						"id": "h_end_draw",
+						"if": {
+							"flag": {
+								"drawings": "carried"
+							}
+						}
+					},
+					{
+						"id": "h_end_drawlost",
+						"if": {
+							"flag": {
+								"drawings": "taken"
+							}
+						}
+					},
+					{
+						"id": "h_end_jakob",
+						"if": {
+							"flag": {
+								"jakob": "stayed"
+							}
+						}
+					},
+					"h_end_manifest"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end1",
+					"k_end2"
+				]
+			}
+		],
+		"commissary": [
+			{
+				"still": "road",
+				"lines": [
+					"f_end_c"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_c"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"exodus": {
+			"still": "night_bell",
+			"text": [
+				"Fürth, February 2771, night. The Crown's commissary is coming with Rome's verdict: seize the works, stop the machines. Meister Hollweg leaves first.",
+				"Load the family carts at their barns, then guard them down the valley to the barges on the Main. Riders take any cart with none of your fighters by it.",
+				"Meister Hollweg must reach the last barge. The commissary wants him alive."
+			]
+		},
+		"commissary": {
+			"still": "road",
+			"text": [
+				"Fürth, February 2771. You are the Crown's commissary, with Colonel von Rauch's men and Father Ferrer as Rome's witness.",
+				"The guild is fleeing for the Main. Take its carts, and take Meister Hollweg alive before the last barge leaves. The machine is behind you."
+			]
+		}
+	},
+	"debrief": {
+		"exodus": {
+			"still": "ships",
+			"title": "The Exodus",
+			"text": "The guild left Fürth. {families_out} of {carts_n} families reached the barges; {carts_taken} carts were taken on the road.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"drawings": "carried"
+						}
+					},
+					"text": "The drawings went with Hollweg."
+				},
+				{
+					"if": {
+						"flag": {
+							"drawings": "taken"
+						}
+					},
+					"text": "The drawings were taken by the Crown."
+				},
+				{
+					"if": {
+						"flag": {
+							"jakob": "stayed"
+						}
+					},
+					"text": "Jakob stayed with the Crown."
+				},
+				{
+					"if": {
+						"counter": {
+							"name": "families_left",
+							"at_least": 1
+						}
+					},
+					"text": "{families_left} families were never loaded."
+				}
+			]
+		},
+		"commissary": {
+			"still": "road",
+			"title": "Taken alive",
+			"text": "Meister Hollweg is in the Crown's custody. {carts_taken} carts were taken on the road."
+		}
+	}
+}

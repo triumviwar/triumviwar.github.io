@@ -273,6 +273,10 @@ func after_start() -> void:
 			game.players[t]["gold"] = int(tm["gold"])
 		if tm.has("powder"):
 			game.players[t]["res2"] = float(tm["powder"])
+		for tk in tm.get("techs", []):
+			# (d02_exodus: a team that starts with a research done: the guild's Clock Soldiers drilled to SHIELD WALL with
+			# no Escapement to drill them at; its new units get it as they are made: Game.apply_drills)
+			game.players[t]["tech"][String(tk)] = true
 	for b in data.get("buildings", []):
 		if _in_mode(b):
 			_place_building(b)
