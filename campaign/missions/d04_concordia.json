@@ -731,6 +731,7 @@
 			"id": "spring",
 			"side": "guild",
 			"primary": false,
+			"task": true,
 			"kind": "build",
 			"tag": "spring",
 			"hidden": true,
@@ -749,6 +750,7 @@
 			"id": "aviary",
 			"side": "guild",
 			"primary": false,
+			"task": true,
 			"kind": "build",
 			"tag": "aviary",
 			"hidden": true,
@@ -758,6 +760,7 @@
 			"id": "swifts",
 			"side": "guild",
 			"primary": false,
+			"task": true,
 			"kind": "manual",
 			"hidden": true,
 			"text": "Make two Swifts at the Clock Aviary: {swifts} of 2. Pick the Aviary and press SWIFT."
@@ -766,6 +769,7 @@
 			"id": "map",
 			"side": "guild",
 			"primary": false,
+			"task": true,
 			"kind": "manual",
 			"hidden": true,
 			"text": "Map the three ways up to the plateau: {mapped} of 3. Fly a Swift over the cart road (west), the pine path (north-west) and the ranch track (south). The land stays dark, and whoever walks on it unseen, until a Swift has flown over it.",
@@ -775,6 +779,7 @@
 			"id": "captain_clock",
 			"side": "guild",
 			"primary": false,
+			"task": true,
 			"kind": "countdown",
 			"clock": "captain",
 			"hidden": true,
@@ -784,6 +789,7 @@
 			"id": "parley",
 			"side": "guild",
 			"primary": false,
+			"task": true,
 			"kind": "manual",
 			"hidden": true,
 			"text": "The valley's captain waits on the cart road below the west ramp to talk. Walk Meister Hollweg down to him and keep him there a moment: the council's speaker goes with him."
@@ -792,6 +798,7 @@
 			"id": "raid",
 			"side": "guild",
 			"primary": false,
+			"task": true,
 			"kind": "manual",
 			"hidden": true,
 			"text": "The valley's men are on the plateau: drive them off. {raid_left} left."
@@ -815,6 +822,7 @@
 			"id": "fear",
 			"side": "guild",
 			"primary": false,
+			"task": true,
 			"kind": "manual",
 			"hidden": true,
 			"text": "The valley's people come up the road with torches. Your machines will strike no man of the valley: TURN THEM BACK (stand fighters round one, none of the militia by him, a moment) and PUT OUT the fires (any of your men by a burning building). Turned back: {turned_back}.",
@@ -824,6 +832,7 @@
 			"id": "temper",
 			"side": "guild",
 			"primary": false,
+			"task": true,
 			"kind": "manual",
 			"hidden": true,
 			"text": "The valley's temper: {temper} of {temper_top}. Every fire raises it, a burnt house twice; at the top the militia rides at once."
@@ -2742,6 +2751,12 @@
 			"delay": 8,
 			"do": [
 				{
+					"clock": {
+						"name": "crowd",
+						"secs": 40
+					}
+				},
+				{
 					"spawn": {
 						"team": "town",
 						"kind": "labourer",
@@ -2800,7 +2815,10 @@
 			"when": {
 				"all": [
 					{
-						"fired": "part2"
+						"fired": "mob_1"
+					},
+					{
+						"clock_out": "crowd"
 					},
 					{
 						"not": {
@@ -2808,12 +2826,30 @@
 						}
 					},
 					{
-						"time": 1
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
 					}
 				]
 			},
-			"delay": 48,
+			"delay": 0,
 			"do": [
+				{
+					"clock": {
+						"name": "crowd",
+						"secs": 40
+					}
+				},
 				{
 					"spawn": {
 						"team": "town",
@@ -2878,7 +2914,10 @@
 			"when": {
 				"all": [
 					{
-						"fired": "part2"
+						"fired": "mob_2"
+					},
+					{
+						"clock_out": "crowd"
 					},
 					{
 						"not": {
@@ -2886,12 +2925,30 @@
 						}
 					},
 					{
-						"time": 1
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
 					}
 				]
 			},
-			"delay": 88,
+			"delay": 0,
 			"do": [
+				{
+					"clock": {
+						"name": "priest",
+						"secs": 25
+					}
+				},
 				{
 					"spawn": {
 						"team": "town",
@@ -3264,9 +3321,35 @@
 		{
 			"id": "anselmo",
 			"when": {
-				"fired": "mob_3"
+				"all": [
+					{
+						"fired": "mob_3"
+					},
+					{
+						"clock_out": "priest"
+					},
+					{
+						"not": {
+							"fired": "boil"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
 			},
-			"delay": 25,
 			"do": [
 				{
 					"spawn": {

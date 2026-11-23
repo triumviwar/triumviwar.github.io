@@ -186,7 +186,7 @@ objectives = [
                "Erga a Torre do Relógio sobre o velho poço da mina: mande os seus Enroladores ao local. Tudo na cidade funciona a partir dela.",
                "Alza la Torre del Reloj sobre el viejo pozo de la mina: envía a tus Dadores de cuerda al solar. Todo en la ciudad funciona desde ella."),
      "phone": T("Raise the Clocktower: Winders to its site.", "Erga a Torre do Relógio: Enroladores ao local.", "Alza la Torre del Reloj: Dadores de cuerda al solar.")},
-    {"id": "spring", "side": "guild", "primary": False, "kind": "build", "tag": "spring", "hidden": True,
+    {"id": "spring", "side": "guild", "primary": False, "task": True, "kind": "build", "tag": "spring", "hidden": True,
      "text": T("Build the Mainspring at its site beside the Escapement. It winds the Tension the Clock Aviary and its Swifts are made with.",
                "Construa a Mola Real no seu local ao lado do Escape. Ela dá a Tensão com que se fazem a Casa do Cuco e os seus Cucos.",
                "Construye el Muelle Real en su solar junto al Escape. Da la Tensión con la que se hacen la Casa del Cuco y sus Cucos.")},
@@ -194,27 +194,27 @@ objectives = [
      "text": T("Build the Cog Press at its site north of the tower: it brings the cogs that pay for soldiers at the Light Works.",
                "Construa a Prensa de Engrenagens no seu local a norte da torre: traz as engrenagens que pagam os soldados da Oficina Leve.",
                "Construye la Prensa de Engranajes en su solar al norte de la torre: trae los engranajes que pagan los soldados del Taller Ligero.")},
-    {"id": "aviary", "side": "guild", "primary": False, "kind": "build", "tag": "aviary", "hidden": True,
+    {"id": "aviary", "side": "guild", "primary": False, "task": True, "kind": "build", "tag": "aviary", "hidden": True,
      "text": T("Build the CLOCK AVIARY at its site: the machines' birds fly from it.", "Construa a CASA DO CUCO no seu local: os pássaros das máquinas voam dela.",
                "Construye la CASA DEL CUCO en su solar: los pájaros de las máquinas vuelan desde él.")},
-    {"id": "swifts", "side": "guild", "primary": False, "kind": "manual", "hidden": True,
+    {"id": "swifts", "side": "guild", "primary": False, "task": True, "kind": "manual", "hidden": True,
      "text": T("Make two Swifts at the Clock Aviary: {swifts} of 2. Pick the Aviary and press SWIFT.",
                "Faça dois Cucos na Casa do Cuco: {swifts} de 2. Escolha a Casa do Cuco e aperte CUCO.",
                "Haz dos Cucos en la Casa del Cuco: {swifts} de 2. Elige la Casa del Cuco y pulsa CUCO.")},
-    {"id": "map", "side": "guild", "primary": False, "kind": "manual", "hidden": True,
+    {"id": "map", "side": "guild", "primary": False, "task": True, "kind": "manual", "hidden": True,
      "text": T("Map the three ways up to the plateau: {mapped} of 3. Fly a Swift over the cart road (west), the pine path (north-west) and the ranch track (south). The land stays dark, and whoever walks on it unseen, until a Swift has flown over it.",
                "Mapeie os três caminhos para o planalto: {mapped} de 3. Voe um Cuco sobre a estrada dos carros (oeste), o trilho dos pinheiros (noroeste) e o trilho das fazendas (sul). A terra fica escura, e quem anda nela sem ser visto, até um Cuco voar sobre ela.",
                "Cartografía los tres caminos al altiplano: {mapped} de 3. Vuela un Cuco sobre el camino de los carros (oeste), la senda de los pinos (noroeste) y la senda de los ranchos (sur). La tierra sigue oscura, y quien camina por ella sin ser visto, hasta que un Cuco vuela sobre ella."),
      "phone": T("Map the three ways up: {mapped} of 3. Fly a Swift over each.", "Mapeie os três caminhos: {mapped} de 3. Um Cuco sobre cada um.",
                 "Cartografía los tres caminos: {mapped} de 3. Un Cuco sobre cada uno.")},
-    {"id": "captain_clock", "side": "guild", "primary": False, "kind": "countdown", "clock": "captain", "hidden": True,
+    {"id": "captain_clock", "side": "guild", "primary": False, "task": True, "kind": "countdown", "clock": "captain", "hidden": True,
      "text": T("The valley's captain rides up the cart road in {clock:captain}.", "O capitão do vale sobe a estrada dos carros em {clock:captain}.",
                "El capitán del valle sube por el camino de los carros en {clock:captain}.")},
-    {"id": "parley", "side": "guild", "primary": False, "kind": "manual", "hidden": True,
+    {"id": "parley", "side": "guild", "primary": False, "task": True, "kind": "manual", "hidden": True,
      "text": T("The valley's captain waits on the cart road below the west ramp to talk. Walk Meister Hollweg down to him and keep him there a moment: the council's speaker goes with him.",
                "O capitão do vale espera na estrada dos carros abaixo da rampa oeste para conversar. Leve o Mestre Hollweg até ele e mantenha-o lá um momento: o porta-voz do conselho vai com ele.",
                "El capitán del valle espera en el camino de los carros bajo la rampa oeste para hablar. Lleva al maestro Hollweg hasta él y mantenlo allí un momento: el portavoz del consejo va con él.")},
-    {"id": "raid", "side": "guild", "primary": False, "kind": "manual", "hidden": True,
+    {"id": "raid", "side": "guild", "primary": False, "task": True, "kind": "manual", "hidden": True,
      "text": T("The valley's men are on the plateau: drive them off. {raid_left} left.", "Os homens do vale estão no planalto: expulse-os. Restam {raid_left}.",
                "Los hombres del valle están en el altiplano: échalos. Quedan {raid_left}.")},
     # ---- always
@@ -225,14 +225,14 @@ objectives = [
      "text": T("Meister Hollweg must live. Hurt, he falls back to the tower.", "O Mestre Hollweg tem de viver. Ferido, recua para a torre.",
                "El maestro Hollweg debe vivir. Herido, se retira a la torre.")},
     # ---- part 2: the valley's fear
-    {"id": "fear", "side": "guild", "primary": False, "kind": "manual", "hidden": True,
+    {"id": "fear", "side": "guild", "primary": False, "task": True, "kind": "manual", "hidden": True,
      "text": T("The valley's people come up the road with torches. Your machines will strike no man of the valley: TURN THEM BACK (stand fighters round one, none of the militia by him, a moment) and PUT OUT the fires (any of your men by a burning building). Turned back: {turned_back}.",
                "O povo do vale sobe a estrada com tochas. As suas máquinas não vão ferir nenhum homem do vale: FAÇA-OS VOLTAR (ponha combatentes à volta de um, sem ninguém da milícia ao lado dele, um momento) e APAGUE os incêndios (qualquer um dos seus homens junto a um edifício a arder). Mandados de volta: {turned_back}.",
                "La gente del valle sube por el camino con antorchas. Tus máquinas no herirán a ningún hombre del valle: HAZLOS VOLVER (pon combatientes alrededor de uno, sin nadie de la milicia a su lado, un momento) y APAGA los fuegos (cualquiera de tus hombres junto a un edificio en llamas). Devueltos: {turned_back}."),
      "phone": T("Turn the torch-bearers back (fighters round one) and put out fires. Turned back: {turned_back}.",
                 "Faça voltar os portadores de tochas (combatentes à volta de um) e apague os incêndios. De volta: {turned_back}.",
                 "Haz volver a los portadores de antorchas (combatientes alrededor de uno) y apaga los fuegos. Devueltos: {turned_back}.")},
-    {"id": "temper", "side": "guild", "primary": False, "kind": "manual", "hidden": True,
+    {"id": "temper", "side": "guild", "primary": False, "task": True, "kind": "manual", "hidden": True,
      "text": T("The valley's temper: {temper} of {temper_top}. Every fire raises it, a burnt house twice; at the top the militia rides at once.",
                "O ânimo do vale: {temper} de {temper_top}. Cada incêndio o aumenta, uma casa queimada duas vezes; no topo a milícia cavalga de imediato.",
                "El ánimo del valle: {temper} de {temper_top}. Cada fuego lo sube, una casa quemada dos veces; en lo alto la milicia cabalga enseguida.")},
@@ -779,8 +779,10 @@ TR_ += [
 ]
 # three crowds up the road, MOB_EVERY s apart (a04 `broken` kept: one more in each: the canon)
 for i, n in enumerate(MOB):
-    TR_ += [{"id": "mob_%d" % (i + 1), "when": ({"all": [{"fired": "part2"}, {"not": {"fired": "boil"}}, {"time": 1}]} if i else {"fired": "part2"}),
-             "delay": 8 + i * MOB_EVERY, "do": [
+    # (the next crowd on a clock, not a delay: a delay's condition is judged once, and a boiled-over valley sends no more)
+    TR_ += [{"id": "mob_%d" % (i + 1), "when": ({"all": [{"fired": "mob_%d" % i}, {"clock_out": "crowd"}, {"not": {"fired": "boil"}}, LIVE]} if i else {"fired": "part2"}),
+             "delay": 0 if i else 8, "do": [
+        {"clock": {"name": "crowd", "secs": MOB_EVERY}} if i < len(MOB) - 1 else {"clock": {"name": "priest", "secs": ANSELMO_AFTER}},
         {"spawn": {"team": "town", "kind": "labourer", "as": "colonist_torch", "count": n, "at": "road_low", "tag": "mob"}},
         {"spawn": {"team": "town", "kind": "labourer", "as": "colonist_torch", "count": 1, "at": "road_low", "tag": "mob", "if": KEPT}},
         {"spare": {"tag": "mob", "on": True}},
@@ -800,7 +802,7 @@ TR_ += [
 ] + [
     {"id": "houses_n", "when": {"time": 2}, "every": 1, "do": [{"counter": {"name": "houses", "count": {"tag": "houses"}}}]},
     # PADRE ANSELMO comes up the road and calls his people home
-    {"id": "anselmo", "when": {"fired": "mob_3"}, "delay": ANSELMO_AFTER, "do": [
+    {"id": "anselmo", "when": {"all": [{"fired": "mob_3"}, {"clock_out": "priest"}, {"not": {"fired": "boil"}}, LIVE]}, "do": [
         {"spawn": {"team": "town", "kind": "missionary", "as": "anselmo", "count": 1, "at": "road_low", "tag": "anselmo"}},
         {"spare": {"tag": "anselmo", "on": True}}, {"say": ["n_anselmo"]}, {"ping": {"area": "road_low"}},
         {"order": {"tag": "anselmo", "do": "route", "route": ["road_mid", "road_top"], "name": "anselmo_up"}}]},

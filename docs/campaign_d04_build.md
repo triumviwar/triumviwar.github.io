@@ -122,9 +122,19 @@ the three ways; the Light Works makes Clock Soldiers while there are cogs; Hollw
 the fighters hold the west field inside the tower's gear ring (raid, night, attack), two of them round each
 torch-bearer at night; shields up for the attack.
 
-BALANCE_TABLE
+| run | result |
+| --- | --- |
+| NORMAL x4 (canon: a04 kept, Varenne, the pattern) | won 4 of 4, 9:34-10:02, all houses standing, 10-12 torch-bearers turned back, longest idle 35-36 s |
+| HARD x3 | won 3 of 3, 9:39-9:59, idle 35 s |
+| EASY x2 | won 2 of 2, 9:29-9:45, idle 34-35 s |
+| broken=melted (the parley), NORMAL | won, 9:22, flag `colonists` parley, the smaller dawn attack; idle 44 s (the wait for the night after the captain rides home) |
+| varenne=executed (Morel), NORMAL | won, 9:36 |
+| gate=people (from memory), NORMAL | won, 9:58 |
+| save_at=300 (saved and loaded half way), NORMAL | won, 9:54, the same story after the load |
+| careless (nobody stands by the torches), NORMAL x2 | LOST both: the temper boils over at ~6:15, the militia rides at once, no priest, the quarter burns (8:34-8:52) |
+| passive (no orders), NORMAL x2 | LOST: the valley comes at 5:00 without a tower; the quarter burns at 9:12-9:37 |
 
-The longest idle at NORMAL is about 35 s (NO WAITING: under 45 s). The passive player's idle is long, as it should be.
+The longest idle at NORMAL is 35-36 s, 44 s once after a parley (NO WAITING: under 45 s). The passive player's idle is long, as it should be.
 
 ## Stills: the prompts for the owner (ChatGPT, one request each, at most 3 reference images; each prompt stands alone)
 
@@ -209,4 +219,7 @@ Every line of text (en, pt, es). The five stills. Arruda, Anselmo, Morel and the
 
 ## Tests run
 
-TESTS_RUN
+- `tools/test_campaign_d04.gd`: 83 checks, 0 failures (the data and every text in pt / es, the flags read, THE UNMAPPED and its save, the whole mission played by the script, the parley and the missed parley, the temper boiling over, the defeats, versus, save and load, ironman, the hubs and the war map).
+- `tools/test_campaign_d02.gd`, `tools/test_campaign_d03.gd`, `tools/test_roster_ladder.gd`: 0 failures. `tools/test_war_map.gd`: 0 failures after its "planned pin" check moved from d04 (now built) to d05.
+- Boot: `godot --headless --path . --quit-after 120`: no SCRIPT ERROR, no Parse Error.
+- Every godot run here ends with an abort (exit 134) AFTER its last line, on quitting: main's tests do the same in this machine.
