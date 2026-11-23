@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.193", "items": [
+		"The Venom Challenger's death seen from behind (north) is redrawn: it falls away from you, its tail toward you, instead of turning into a side view. All its deaths now match the way it walks.",
+	]},
 	{"v": "0.38.192", "items": [
 		"The Venom Challenger's death seen from behind and to the right (north-east) is redrawn: it now falls away from you the way it walks, instead of turning into a side view.",
 	]},
