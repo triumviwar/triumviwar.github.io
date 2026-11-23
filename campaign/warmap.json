@@ -879,8 +879,8 @@
 			"id": "honest_coast",
 			"kind": "village",
 			"point": [
-				-48.6,
-				-26.3
+				-49.0,
+				-26.4
 			],
 			"label": "The honest masters, at the coast",
 			"act2": true
@@ -939,8 +939,8 @@
 			"id": "salvador",
 			"kind": "town",
 			"point": [
-				-38.5,
-				-12.97
+				-38.9,
+				-12.9
 			],
 			"label": "Salvador",
 			"act2": true
@@ -1340,8 +1340,8 @@
 			"place": "Goa",
 			"date": "2779",
 			"point": [
-				73.83,
-				15.49
+				74.0,
+				15.4
 			],
 			"title": "The Mining Machines",
 			"after": [

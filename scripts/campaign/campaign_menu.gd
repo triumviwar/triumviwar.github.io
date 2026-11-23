@@ -1049,7 +1049,10 @@ static func war_map(main: Node) -> void:
 	top.add_theme_constant_override("separation", 8)
 	box.add_child(top)
 	var act_t := String(WarMapData.act().get("act_title", d.get("act_title", "")))
-	var t := UiStyle.heading(Loc.t(WarMapData.skin_title(map_skin)) + "  ·  " + Loc.t(act_t), 30 if pc else 22, UiStyle.TRIM)
+	# (the act's dates live in the ledger and the cartouche: the heading keeps "Act 2" so the views' buttons fit)
+	var act_short := Loc.t(act_t).split(":")[0]
+	var t := UiStyle.heading(Loc.t(WarMapData.skin_title(map_skin)) + "  ·  " + act_short, 30 if pc else 22, UiStyle.TRIM)
+	t.tooltip_text = Loc.t(act_t)
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	t.clip_text = true
@@ -1190,12 +1193,13 @@ static func war_map(main: Node) -> void:
 			var sw := ColorRect.new()
 			var hc: Dictionary = WarMap.SKINS[wm.skin]["holders"][h]
 			sw.color = Color(hc["fill"], 0.9) if h != "unknown" else hc["fill"]
+			var first: Color = Color(hc["fill"], 1.0) if wm.skin == "brass" else Color(hc["line"], 1.0)      # (the brass map's rims are all brass)
 			sw.custom_minimum_size = Vector2(16, 16)
 			sw.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 			if h == "contested" or h == "unrest":
 				# (the two colours its stripes alternate: the Crown's and the machine's, the Assembly's green and black)
 				sw.custom_minimum_size = Vector2(8, 16)
-				sw.color = Color(hc["line"], 1.0) if h == "contested" else Color(0.20, 0.50, 0.22)
+				sw.color = first if h == "contested" else Color(0.20, 0.50, 0.22)
 				row.add_child(sw)
 				sw = ColorRect.new()
 				sw.custom_minimum_size = Vector2(8, 16)
@@ -1214,7 +1218,9 @@ static func war_map(main: Node) -> void:
 		card.visible = mid != ""
 		if mid != "":
 			_pin_card(main, card, mid, wm.st, pc, keep_cam)
-			wm.free_rect = Rect2(0, 0, wm.size.x - 440, wm.size.y) if pc else Rect2(0, 0, wm.size.x, wm.size.y * 0.42)
+			# (the card's side, not a rectangle measured now: the page may not be laid out yet, act2-warmap)
+			wm.card_right = 440.0 if pc else 0.0
+			wm.card_top = 0.0 if pc else 0.42
 			wm.bring_into_view.call_deferred(mid)
 	wm.pin_tapped.connect(show_card)
 	if map_pick != "":
@@ -1245,7 +1251,7 @@ static func _pin_card(main: Node, card: PanelContainer, mid: String, stt: Dictio
 	var pn := WarMapData.pin_of(mid)
 	var ps: Dictionary = stt.get("pins", {}).get(mid, {"state": "planned"})
 	var state := String(ps.get("state", "planned"))
-	var built := state != "planned"
+	var built := state != "planned" and not Campaign.storyline_of(mid).is_empty()      # (a test's progress may "finish" a planned one)
 	var m: Dictionary = Campaign.mission(mid) if built else {}
 	var lines_d: Dictionary = WarMapData.data().get("lines", {})
 	var col: Color = WarMap.SKINS["parchment"]["lines"].get(String(pn.get("line", "")), UiStyle.TRIM)
@@ -1295,7 +1301,7 @@ static func _pin_card(main: Node, card: PanelContainer, mid: String, stt: Dictio
 	sl2.name = "CardState"
 	sl2.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	v.add_child(sl2)
-	if state in ["open", "done"]:
+	if state in ["open", "done"] and built:
 		v.add_child(_wrap(Loc.t(String(m.get("summary", ""))), 16 if pc else 18))
 	elif String(pn.get("about", "")) != "":
 		# SAY IT PLAINLY (Act 2's rules): a mission not open yet still says what it will be about
@@ -1319,7 +1325,7 @@ static func _pin_card(main: Node, card: PanelContainer, mid: String, stt: Dictio
 	if not pc:
 		bv.custom_minimum_size.x = 260
 	outer.add_child(bv)
-	if state in ["open", "done"]:
+	if state in ["open", "done"] and built:
 		var sl := Campaign.storyline_of(mid)
 		if MissionSave.has(mid, "auto") or MissionSave.has(mid, "save") or MissionSave.has(mid, "checkpoint"):
 			_save_row(main, bv, mid)      # (the pin's card too: CONTINUE and the rest, player-comforts)

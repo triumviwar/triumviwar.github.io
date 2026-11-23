@@ -108,6 +108,7 @@ var _pinch0 := 0.0
 var _zoom0 := 1.0
 var _t := 0.0
 var _fitted := false
+var _shown := false                # the camera has been put on its first view
 var _view_rect := Rect2()
 var pending_cam := {}              # {"c": center, "z": zoom, "v": painted} to put back once sized (the page came back)
 ## THE CATHOLIC PAINTINGS (owner 2026-11-21 21:52: "why isn't it showing the Catholic map?"): each view (THE WORLD,
@@ -167,6 +168,10 @@ func _fit_once() -> void:
 			_clamp()
 		else:
 			show_rect(_view_rect if _view_rect.has_area() else home_rect(), false)
+			_shown = true
+			if _bring_pin != "":
+				bring_into_view(_bring_pin, false)
+	_shown = true
 	queue_redraw()
 
 
@@ -352,13 +357,16 @@ func show_rect(r: Rect2, glide := true) -> void:
 	var z := clampf(minf(size.x / r.size.x, size.y / r.size.y) * (1.0 if painted != "" else 0.92), min_zoom(), max_zoom())
 	var c := r.get_center()
 	if glide and is_inside_tree():
+		_stop_glide()
 		var tw := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		_tw = tw
 		tw.tween_method(func(k: float) -> void:
 			center = center.lerp(c, k)
 			zoom = lerpf(zoom, z, k)
 			_clamp()
 			queue_redraw(), 0.0, 1.0, 0.35)
 	else:
+		_stop_glide()
 		center = c
 		zoom = z
 		_clamp()
@@ -384,6 +392,7 @@ func show_view(id: String, glide := true) -> void:
 
 func zoom_by(f: float, at := Vector2(-1, -1)) -> void:
 	_fitted = true
+	_stop_glide()
 	if at.x < 0:
 		at = size * 0.5
 	var before := to_mapp(at)
@@ -399,6 +408,10 @@ func _clamp() -> void:
 	for ax in 2:
 		var lo: float = w.position[ax] + half[ax]
 		var hi: float = w.end[ax] - half[ax]
+		if painted == "":
+			# (a pin's card covers the right side or the lower part: the sheet's edge may go under it, so a pin near
+			# the edge can still come out beside the card, act2-warmap)
+			hi += (card_right if ax == 0 else size.y * (1.0 - card_top) if card_top > 0.0 else 0.0) / zoom
 		if lo > hi and painted != "":
 			center[ax] = clampf(center[ax], hi, lo)        # (a sheet smaller than the view slides inside it: room for the card)
 		else:
@@ -464,6 +477,7 @@ func _gui_input(e: InputEvent) -> void:
 
 func _pan(rel: Vector2) -> void:
 	_fitted = true
+	_stop_glide()
 	_moved += rel.length()
 	center -= rel / zoom
 	_clamp()
@@ -472,6 +486,7 @@ func _pan(rel: Vector2) -> void:
 
 ## A tap at a screen point: the nearest pin within reach is picked (pin_tapped), else none.
 func tap(at: Vector2) -> void:
+	_bring_pin = ""
 	var best := ""
 	var bd := seal_r * 1.7
 	for pn in WarMapData.data().get("pins", []):
@@ -490,23 +505,58 @@ func tap(at: Vector2) -> void:
 var free_rect := Rect2()
 
 
-func bring_into_view(mid: String) -> void:
+func bring_into_view(mid: String, glide := true) -> void:
 	var pn := WarMapData.pin_of(mid)
-	if pn.is_empty() or size.x <= 10:
+	if pn.is_empty():
 		return
-	var fr := free_rect if free_rect.size.x > 120 and free_rect.size.y > 120 else Rect2(Vector2.ZERO, size)
+	_bring_pin = mid          # (the first fit, and a fit after a resize, put the view in place and then this pin)
+	if size.x <= 10 or not _shown:
+		return
+	var fr := free_area()
 	var c := pin_screen(pn)
 	if fr.grow(-seal_r * 3.0).abs().has_point(c):
 		return
 	var want := fr.get_center()
 	var goal := center + (c - want) / zoom
-	_fitted = true
+	if not glide or not is_inside_tree():
+		_stop_glide()
+		center = goal
+		_clamp()
+		queue_redraw()
+		return
 	var from := center
+	_stop_glide()
 	var tw := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_tw = tw
 	tw.tween_method(func(k: float) -> void:
 		center = from.lerp(goal, k)
 		_clamp()
 		queue_redraw(), 0.0, 1.0, 0.3)
+
+
+## The part of the map the pin's card leaves seen: free_rect when the page set one, else the card's side
+## (card_right pixels on the right, or the top card_top share of the height on a phone), else all of it.
+var card_right := 0.0
+var card_top := 0.0
+var _bring_pin := ""
+var _tw: Tween
+
+
+## A glide still running (an older view or pin) stops: the newest camera move wins.
+func _stop_glide() -> void:
+	if _tw and _tw.is_valid():
+		_tw.kill()
+	_tw = null
+
+
+func free_area() -> Rect2:
+	if free_rect.size.x > 120 and free_rect.size.y > 120:
+		return free_rect
+	if card_right > 0.0 and size.x - card_right > 120:
+		return Rect2(0, 0, size.x - card_right, size.y)
+	if card_top > 0.0:
+		return Rect2(0, 0, size.x, size.y * card_top)
+	return Rect2(Vector2.ZERO, size)
 
 
 ## Where a pin's seal stands on screen: its point, moved by its "nudge" (pixels: pins on the same town side by side).
@@ -748,6 +798,8 @@ func _gear_poly(c: Vector2, r: float, teeth: int, a: float, col: Color, w: float
 
 ## The skin's notes (WarMapData.state "notes"): the chart's in ink with a pencil leader, the brass map's engraved.
 func _draw_notes(s: Dictionary, style: String, font: Font) -> void:
+	if zoom < maxf(min_zoom() * 2.2, 14.0):
+		return               # (written small: they show once the map is zoomed past a whole country)
 	var fs := 13 if Settings.pc() else 16
 	for n in st.get("notes", []):
 		var p := to_screen(geo(n["point"]))
@@ -795,7 +847,7 @@ func _draw_frame(s: Dictionary, style: String) -> void:
 			# a pencil scale: a hundred leagues (a degree at the equator ~ 20 leagues, near enough for a field chart)
 			var deg := 5.0 * zoom
 			if deg > 20.0 and deg < size.x * 0.4:
-				var a := Vector2(24, size.y - 28)
+				var a := Vector2(size.x * 0.5 - deg * 0.5, size.y - 24)
 				draw_line(a, a + Vector2(deg, 0), Color(ink, 0.7), 1.5)
 				for i in 6:
 					draw_line(a + Vector2(deg * i / 5.0, -4 if i % 5 == 0 else -2), a + Vector2(deg * i / 5.0, 0), Color(ink, 0.7), 1.0)
@@ -1080,7 +1132,8 @@ func _draw_mark(mk: Dictionary, font: Font) -> void:
 				if i % 2 == 0:
 					draw_arc(c, rr, TAU * i / 16.0, TAU * (i + 1) / 16.0, 4, s["lines"]["crown"], 3.0, true)
 	var lab := Loc.t(String(mk.get("label", "")))
-	if lab != "" and zoom > min_zoom() * 2.2:
+	# (on the drawn map, names only once zoomed past a whole country: BRAZIL's view keeps them off its crowded rivers)
+	if lab != "" and zoom > (min_zoom() * 2.2 if painted != "" else maxf(min_zoom() * 2.2, 14.0)):
 		var fs := 13 if Settings.pc() else 16
 		draw_string(font, c + Vector2(9, -6), lab, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Color(ink, 0.9))
 

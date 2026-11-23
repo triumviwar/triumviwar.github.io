@@ -17,7 +17,7 @@ MOUNT = os.path.join(ROOT, "campaign/warmap_mountains.json")
 
 # the places (lon, lat)
 VILA_RICA = [-43.5, -20.39]
-SALVADOR = [-38.5, -12.97]
+SALVADOR = [-38.9, -12.9]       # (a step inland: the 1:50m coast)
 FORT = [-43.14, -11.09]          # Fort Constantine (proposed): the crossroads of the Sao Francisco and the Rio Grande
 CONCORDIA = [-51.6, -27.3]       # the southern highlands above the Rio Uruguai (proposed)
 VALLEY = [-52.9, -27.6]
@@ -26,8 +26,8 @@ OBIDOS = [-55.52, -1.9]
 ISLAND = [-55.5, -1.95]          # d03's pin: Lindqvist's island below Obidos
 BARRA = [-60.0, -3.1]
 LUANDA = [13.23, -8.84]
-GOA = [73.83, 15.49]
-COAST = [-48.6, -26.3]           # Sao Francisco do Sul: the guild's landing, the honest masters' coast
+GOA = [74.0, 15.4]
+COAST = [-49.0, -26.4]          # Sao Francisco do Sul: the guild's landing, the honest masters' coast
 QUEEN = [-57.4, 0.6]             # "beyond the map": the forest north of the river where nobody has been
 
 VIEW = {"id": "brazil", "label": "BRAZIL", "rect": [-74.0, -34.0, -33.0, 6.0]}
