@@ -1,7 +1,7 @@
 extends SceneTree
 ## player-comforts (docs/player_comforts.md): SAVING INSIDE A CAMPAIGN MISSION and its CHECKPOINTS, QUIT to the hub,
 ## the PAUSE keys, the questions, the phone's compact layout's rules.
-##   - every Act 1 mission (p01, a01-a07, b01, c01) and Act 2's d02 played a little, its next part begun, SAVED and LOADED: the mission's
+##   - every Act 1 mission (p01, a01-a07, b01, c01) and Act 2's d02 and d03 played a little, its next part begun, SAVED and LOADED: the mission's
 ##     state comes back the same (flags, counters, objectives, triggers fired, clocks, tags, the denied pieces, the
 ##     light, weather and mist, the cages, carts, fires, sleepers, routes, disguises, the units and buildings, their
 ##     health and what the mission put on them), and it plays on with no script error;
@@ -20,7 +20,7 @@ var _kept := ""
 var _errs: Array = []
 var only := ""
 const MISSIONS := ["p01_leaf", "a01_presses", "a02_furth", "a03_plateau", "a04_visit", "a05_specimens", "a06_barricades",
-	"a07_council", "b01_specimen", "c01_thirteenth", "d02_exodus"]
+	"a07_council", "b01_specimen", "c01_thirteenth", "d02_exodus", "d03_fazenda"]
 
 
 class Catch extends Logger:
@@ -280,8 +280,9 @@ func _round_trip(mid: String) -> void:
 	var r := g.mission
 	check("%s: SAVE and LOAD in the menu" % mid, _labels(g).has("SAVE") and _labels(g).has("LOAD SAVE") and _labels(g).has("QUIT TO CAMPAIGN") and r.saveable(), str(_labels(g)))
 	await _wait(20.0)
-	# (a05's Part 2 wakes the nest on an idle party: lost; d02's Part 2 with no cart loaded: lost)
-	var tr := _part_trigger(r) if not mid in ["a05_specimens", "d02_exodus"] else {}
+	# (a05's Part 2 wakes the nest on an idle party: lost; d02's Part 2 with no cart loaded: lost; d03's Part 2 with the
+	# stock still in the old pens: all found, lost)
+	var tr := _part_trigger(r) if not mid in ["a05_specimens", "d02_exodus", "d03_fazenda"] else {}
 	if not tr.is_empty() and not g.over:
 		r.fire(tr)                 # (its next part begun at once: more of the mission's machinery on show)
 		await _wait(12.0)

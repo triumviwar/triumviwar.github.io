@@ -440,6 +440,16 @@
 			],
 			"label": "The guild's ships, to Brazil",
 			"shown": false
+		},
+		{
+			"id": "fazenda",
+			"kind": "village",
+			"point": [
+				-55.5,
+				-1.95
+			],
+			"label": "Lindqvist's fazenda",
+			"shown": false
 		}
 	],
 	"pins": [
@@ -612,6 +622,23 @@
 			"nudge": [
 				-30,
 				-24
+			],
+			"after": [
+				"a07_council"
+			]
+		},
+		{
+			"mission": "d03_fazenda",
+			"line": "naturalist",
+			"place": "The island",
+			"date": "Dry season 2772",
+			"point": [
+				-55.5,
+				-1.95
+			],
+			"nudge": [
+				12,
+				10
 			],
 			"after": [
 				"a07_council"
@@ -1174,6 +1201,73 @@
 			"pin": "d02_exodus",
 			"seal": "broken",
 			"ledger": "Hollweg taken alive on the road to the Main: not how it went."
+		},
+		{
+			"if": {
+				"won_by": {
+					"d03_fazenda": "stock"
+				}
+			},
+			"mark": "fazenda",
+			"show": true,
+			"ledger": "Lindqvist breeds the specimens on an island below Óbidos, against Rome's verdict."
+		},
+		{
+			"if": {
+				"flag": {
+					"d03_fazenda.hidden": "all"
+				}
+			},
+			"ledger": "The commission searched the island and found nothing of what Lindqvist keeps."
+		},
+		{
+			"if": {
+				"flag": {
+					"d03_fazenda.hidden": "some"
+				}
+			},
+			"ledger": "The commission found some of Lindqvist's stock and burned it; the rest was never found."
+		},
+		{
+			"if": {
+				"flag": {
+					"d03_fazenda.hidden": "few"
+				}
+			},
+			"ledger": "The commission found most of Lindqvist's stock and burned the pens."
+		},
+		{
+			"if": {
+				"flag": {
+					"d03_fazenda.hidden": [
+						"few",
+						"some",
+						"all"
+					]
+				}
+			},
+			"ledger": "Young never found on the island: %s.",
+			"args": [
+				"d03_fazenda.hidden_n"
+			]
+		},
+		{
+			"if": {
+				"flag": {
+					"d03_fazenda.storm": "hatched"
+				}
+			},
+			"ledger": "A Storm Sire hatched on the island: the first bred by a man."
+		},
+		{
+			"if": {
+				"won_by": {
+					"d03_fazenda": "commission"
+				}
+			},
+			"mark": "fazenda",
+			"show": true,
+			"ledger": "Valadares' commission destroyed half of Lindqvist's stock."
 		}
 	],
 	"paintings": {

@@ -301,6 +301,23 @@
   "p01__v_3": "shout",
   "p01__v_4": "shout",
   "p01__v_5": "shout",
-  "p01__v_charge": "shout"
+  "p01__v_charge": "shout",
+  "d03__l_1": "urgent",
+  "d03__l_storm2": "wonder",
+  "d03__l_hatch": "wonder",
+  "d03__p_warn": "urgent",
+  "d03__p_still": "urgent",
+  "d03__l_found": "urgent",
+  "d03__v_found": "angry",
+  "d03__p_restless": "urgent",
+  "d03__l_restless": "urgent",
+  "d03__v_fight": "shout",
+  "d03__p_lost": "grief",
+  "d03__l_end_few": "grief",
+  "d03__l_end_storm": "wonder",
+  "d03__v_c_won": "angry",
+  "d03__p_half": "urgent",
+  "d03__p_riders": "urgent",
+  "d03__l_dawn": "angry"
  }
 }

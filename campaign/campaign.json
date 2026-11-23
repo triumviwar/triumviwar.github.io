@@ -346,7 +346,8 @@
 				"b01_specimen",
 				"a03_plateau",
 				"a05_specimens",
-				"a07_council"
+				"a07_council",
+				"d03_fazenda"
 			],
 			"hub": {
 				"title": "Lindqvist's Station",
@@ -545,6 +546,39 @@
 									"Destroyed, the cardinals said. Every one.",
 									"I left Rome that night with what I could carry. They will not find the rest."
 								]
+							},
+							{
+								"after": "d03_fazenda",
+								"sides": {
+									"d03_fazenda": "stock"
+								},
+								"lines": [
+									"The commission has gone down the river. I wrote the Storm Sire's hatching hour in the book myself.",
+									"Rome calls it a monster. I call it a breed, the first of its line. Every breed needs patience and a good fence.",
+									"Valadares said it was made, not born. A Crown man's superstition. Everything that lives was born."
+								]
+							},
+							{
+								"after": "d03_fazenda",
+								"sides": {
+									"d03_fazenda": "stock"
+								},
+								"flag": {
+									"d03_fazenda.hidden": "few"
+								},
+								"lines": [
+									"They burned the pens they found. I count the ones that are left every morning. The stud book is thinner.",
+									"Valadares said it was made, not born. A Crown man's superstition. Everything that lives was born."
+								]
+							},
+							{
+								"after": "d03_fazenda",
+								"sides": {
+									"d03_fazenda": "commission"
+								},
+								"lines": [
+									"Valadares found half of them and burned them. He wrote that he could smell the rest."
+								]
 							}
 						]
 					},
@@ -655,6 +689,21 @@
 						],
 						"sides": {
 							"a05_specimens": "expedition"
+						}
+					},
+					"d03_fazenda": {
+						"title": "The Fazenda's Study",
+						"about": "Lindqvist's study in the big house on the island: jars, the stud book, a window on the forest where the pens are.",
+						"still": {
+							"caption": "The fazenda's study on the island below Óbidos: the stud book open on the desk, the forest dark in the window."
+						},
+						"tint": [
+							0.92,
+							0.88,
+							0.78
+						],
+						"sides": {
+							"d03_fazenda": "stock"
 						}
 					}
 				}

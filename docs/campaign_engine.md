@@ -500,3 +500,17 @@ MissionRun.act2, saved with the mission). Test: tools/test_act2_engine0.gd. Pict
 | `{"order": {..., "do": "take", "carts": tag, "within": 40, "else": area}}` | each scripted man rides to the nearest living cart of the tag held by an enemy team and stands by it (closer than 1.2 tiles he waits there, so the TAKE A CART bar fills); a man fighting someone within 4 tiles is left to his fight; no cart within `within` tiles: an attack-move to `else` |
 | team `"techs": [research ids]` | that team starts with those researches done (d02: the guild's SHIELD WALL, K4); `Campaign.problems()` checks each id is in Defs.RESEARCH |
 | TAKE A CART fixes | a cart taken in a tick is not taken again in the same tick by a later rule; cage carts never take or guard carts |
+
+## Added by Act 2's d03_fazenda (d03-fazenda; docs/campaign_d03_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| `{"hide": {..., "still": secs}}` | (HIDDEN) a hidden unit that has stood still (and is not a flyer) this long LIES LOW: seen only within `within` tiles, as one asleep; moving again, it is seen as far as a searcher sees. `MissionAct2.lies_low(e)` |
+| HIDDEN under the MIST | an awake hidden unit is seen within the searcher's sight under the mission's mist (`MissionRun.sight_of`), no longer its plain sight |
+| `{"brood_stage": n}` (with `tag`) | the tagged Brood Mothers' growth stage set at once (d03: the young Mother at stage 2, so she can lay Hatchlings) |
+| `{"retag": {"tag": from, "as": tag, "kind": [kinds], "first": true, "far_from": tag, "within": tiles}}` | the living units of `tag` (of those kinds; rooted rooters skipped) get a second tag; `first`: the first only; `far_from`: only ones farther than `within` tiles from every unit of that tag |
+| `{"counter": {"name", "sub_counter": other}}` | takes another counter's value away (with `min`) |
+| `{"counter": {"name", "share_of": other, "share": 0.5}}` | sets the counter to that share of another (rounded up) |
+| THE LEASH: the newest rules | a unit on two leashes obeys the newest one (the restless young one's short leash at night over the stock's); a leash given again under the same name keeps its loose ones loose until a lure holds them |
+| TRACKS | the first look at a unit records where it is without printing a track (no track at the start spots) |
+| OBJECTIVES PANEL | an objective done or failed folds to its first line ("...") so long side tasks do not grow over the minimap (`mission_ui.gd`, every mission) |

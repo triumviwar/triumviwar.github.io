@@ -64,7 +64,7 @@ LADDER = {
         ("B1", "b01_specimen", ["tyrannosaur", "raptor"], []),
         ("B2", "a03_plateau", ["dilophosaurus", "spitter"], []),
         ("B3", "a05_specimens", ["stage2", "tyrant_challenger", "venom_challenger"], []),
-        ("B4", "", ["pterodactyl", "hatchlings"], []),
+        ("B4", "d03_fazenda", ["pterodactyl", "hatchlings"], []),
         ("B5", "", ["nb_clutch_raptor", "nb_pack_hunt", "nb_quick_roots"], []),
         ("B6", "", ["stage3", "brute"], []),
         ("B7", "", ["mist_toad", "nb_fog", "nb_miasma"], []),
@@ -86,6 +86,7 @@ BOUND = {
     "a06_barricades": ("crown", ["army", "guns"]),
     "a07_council": ("crown", ["guard", "garrison"]),
     "d02_exodus": ("clockwork", ["guild"]),           # (Act 2's K4: the solo pick's commissary is not bound: the other side)
+    "d03_fazenda": ("brood", ["stock"]),              # (Act 2's B4: the commission's solo pick is not bound: the other side)
 }
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
@@ -113,6 +114,8 @@ CARDS = {
     "spitter": "NEW: THE SPITTERS. Two to an egg, fathered by the Venom Sire: acid from behind the Raptors, at ground and air.",
     "stage2": "NEW: GROW. Rooted, the Mother grows to her second stage: more eggs, and the young may MATURE.",
     "tyrant_challenger": "NEW: MATURE. A grown Raptor moults into a Tyrant Challenger; a grown Spitter into a Venom Challenger.",
+    "pterodactyl": "NEW: THE STORM SIRE. A flying father: up, he flies and dives to bite; ROOTED beside the Mother he lands, and she lays the eggs of his line.",
+    "hatchlings": "NEW: THE HATCHLINGS. Pick them on the Mother's card while the Storm Sire is rooted by her: little flyers, two to an egg. They bite only flyers, but they see far over the forest.",
 }
 # (pieces that share a card: the Venom Challenger is told with the Tyrant Challenger)
 SHARED_CARD = {"venom_challenger": "tyrant_challenger"}
@@ -141,6 +144,8 @@ CARDS_PT = {
     "church": "NOVO: A IGREJA. As igrejas de Roma treinam Missionários.",
     "missionary": "NOVO: O MISSIONÁRIO. Traz de volta os caídos e guia o povo onde um soldado não consegue.",
     "spitter": "NOVO: OS CUSPIDORES. Dois por ovo, fecundados pelo Sire do Veneno: ácido por trás dos Raptores, contra terra e ar.",
+    "pterodactyl": "NOVO: O SIRE DA TEMPESTADE. Um pai que voa: de pé, voa e mergulha para morder; ENRAIZADO junto à Mãe, pousa, e ela põe os ovos da linhagem dele.",
+    "hatchlings": "NOVO: OS FILHOTES. Escolha-os no painel da Mãe enquanto o Sire da Tempestade estiver enraizado junto a ela: pequenos voadores, dois por ovo. Só mordem voadores, mas veem longe por cima da floresta.",
 }
 CARDS_ES = {
     "musketeer": "NUEVO: EL MOSQUETERO. El Cuartel lo entrena. Un hombre no es nada; una línea de ellos disparando juntos defiende la plantación. Mantenlos en línea, no en montón.",
@@ -165,11 +170,13 @@ CARDS_ES = {
     "church": "NUEVO: LA IGLESIA. Las iglesias de Roma entrenan Misioneros.",
     "missionary": "NUEVO: EL MISIONERO. Trae de vuelta a los caídos y guía al pueblo donde un soldado no puede.",
     "spitter": "NUEVO: LOS ESCUPIDORES. Dos por huevo, fecundados por el Señor del Veneno: ácido desde detrás de los Raptores, contra tierra y aire.",
+    "pterodactyl": "NUEVO: EL SEÑOR DE LA TORMENTA. Un padre que vuela: en pie, vuela y se lanza a morder; ENRAIZADO junto a la Madre, se posa, y ella pone los huevos de su línea.",
+    "hatchlings": "NUEVO: LAS CRÍAS. Elígelas en el panel de la Madre mientras el Señor de la Tormenta esté enraizado junto a ella: pequeños voladores, dos por huevo. Solo muerden voladores, pero ven lejos por encima del bosque.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock"}
 
 
 def step_of(mission_id):

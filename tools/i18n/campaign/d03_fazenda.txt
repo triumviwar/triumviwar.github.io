@@ -1,0 +1,576 @@
+# Act 2's mission d03_fazenda, "The Island" (campaign/missions/d03_fazenda.json, written with its texts by
+# tools/campaign/make_d03_mission.py: change the texts THERE and run it again; the plan: docs/campaign_act2_plan.md; what was
+# built: docs/campaign_d03_build.md). EVERY LINE IS A PLACEHOLDER for the owner. Names: lure = engodo / señuelo; stock = plantel /
+# cría; keeper = tratador / cuidador; the Storm Sire = o Sire da Tempestade / el Señor de la Tormenta.
+
+> The big house
+pt A casa-grande
+es La casa grande
+
+> The cane field
+pt O canavial
+es El cañaveral
+
+> Move the stock into the deep forest, north of the creek: {deep} of {young_n} there. A creature follows orders only within reach of a lure (the green rings round Lindqvist, Pieter and the keepers): walk a keeper ahead and the creatures with him.
+pt Leve o plantel para a floresta funda, ao norte do igarapé: {deep} de {young_n} lá. Uma criatura só obedece dentro do alcance de um engodo (os anéis verdes à volta de Lindqvist, Pieter e os tratadores): leve um tratador à frente e as criaturas com ele.
+es Lleva la cría al bosque hondo, al norte del arroyo: {deep} de {young_n} allí. Una criatura solo obedece al alcance de un señuelo (los anillos verdes alrededor de Lindqvist, Pieter y los cuidadores): lleva a un cuidador delante y a las criaturas con él.
+
+> Stock into the deep forest: {deep} of {young_n}. Keep them inside a lure's green ring.
+pt Plantel para a floresta funda: {deep} de {young_n}. Mantenha-os dentro do anel verde de um engodo.
+es Cría al bosque hondo: {deep} de {young_n}. Mantenlos dentro del anillo verde de un señuelo.
+
+> Root the young Mother in the nest clearing (marked, in the middle of the deep forest): select her and press ROOT there.
+pt Enraíze a jovem Mãe na clareira do ninho (marcada, no meio da floresta funda): selecione-a e aperte ENRAIZAR lá.
+es Enraíza a la joven Madre en el claro del nido (marcado, en medio del bosque hondo): selecciónala y pulsa ENRAIZAR allí.
+
+> The commission's canoes land in {clock:boat}.
+pt As canoas da comissão desembarcam em {clock:boat}.
+es Las canoas de la comisión desembarcan en {clock:boat}.
+
+> The Storm Sire has hatched. Root him beside the young Mother (within a few steps of her), then pick HATCHLINGS on her card: a clutch of little flyers to watch the commission from above.
+pt O Sire da Tempestade chocou. Enraíze-o ao lado da jovem Mãe (a poucos passos dela), depois escolha FILHOTES no painel dela: uma ninhada de pequenos voadores para vigiar a comissão do alto.
+es El Señor de la Tormenta ha eclosionado. Enraízalo junto a la joven Madre (a pocos pasos de ella), luego elige CRÍAS en su panel: una nidada de pequeños voladores para vigilar a la comisión desde arriba.
+
+> Keep the stock hidden until dusk ({clock:dusk}): {found} of {young_n} found. A creature that keeps STILL is seen only up close; one that moves is seen as far as a soldier can see. Three quarters found and Rome's order is carried out.
+pt Mantenha o plantel escondido até o anoitecer ({clock:dusk}): {found} de {young_n} encontrados. Uma criatura PARADA só é vista de perto; uma que se mexe é vista tão longe quanto um soldado vê. Três quartos encontrados e a ordem de Roma é cumprida.
+es Mantén la cría escondida hasta el anochecer ({clock:dusk}): {found} de {young_n} encontrados. Una criatura QUIETA solo se ve de cerca; una que se mueve se ve tan lejos como ve un soldado. Tres cuartos encontrados y la orden de Roma se cumple.
+
+> Hide the stock till dusk ({clock:dusk}): {found} of {young_n} found. Still = seen only up close.
+pt Esconda o plantel até o anoitecer ({clock:dusk}): {found} de {young_n} encontrados. Parado = visto só de perto.
+es Esconde la cría hasta el anochecer ({clock:dusk}): {found} de {young_n} encontrados. Quieta = vista solo de cerca.
+
+> THE DINNER: walk Lindqvist to the big house's door and keep him there a moment. The magistrate and his party will dine with him for a while instead of searching.
+pt O JANTAR: leve Lindqvist à porta da casa-grande e mantenha-o lá um momento. O magistrado e o seu grupo vão jantar com ele por um tempo em vez de procurar.
+es LA CENA: lleva a Lindqvist a la puerta de la casa grande y mantenlo allí un momento. El magistrado y su grupo cenarán con él un rato en vez de buscar.
+
+> A DECOY: stand a keeper (or Pieter) at the west point or the burnt chapel for a moment. He sets a lure post there, and the nearest search party goes to see what it is.
+pt UM ENGANO: ponha um tratador (ou Pieter) na ponta oeste ou na capela queimada por um momento. Ele finca ali um poste-engodo, e o grupo de busca mais próximo vai ver o que é.
+es UN SEÑUELO FALSO: pon a un cuidador (o a Pieter) en la punta oeste o en la capilla quemada un momento. Clava allí un poste-señuelo, y el grupo de búsqueda más cercano va a ver qué es.
+
+> Keep the stock hidden through the night until the commission leaves at dawn ({clock:dawn}): {found} of {young_n} found.
+pt Mantenha o plantel escondido durante a noite até a comissão partir de madrugada ({clock:dawn}): {found} de {young_n} encontrados.
+es Mantén la cría escondida durante la noche hasta que la comisión parta al alba ({clock:dawn}): {found} de {young_n} encontrados.
+
+> A young one is up and going for the goats by the commission's camp. Get a lure RIGHT BESIDE it (3 steps: a keeper or Lindqvist) before it reaches them, then walk it back into the deep forest.
+pt Um jovem levantou-se e vai atrás das cabras junto ao acampamento da comissão. Ponha um engodo MESMO AO LADO dele (3 passos: um tratador ou Lindqvist) antes que chegue a elas, depois leve-o de volta à floresta funda.
+es Un joven se ha levantado y va a por las cabras junto al campamento de la comisión. Pon un señuelo JUSTO A SU LADO (3 pasos: un cuidador o Lindqvist) antes de que llegue a ellas, luego llévalo de vuelta al bosque hondo.
+
+> Find the specimens and destroy them by Rome's order: {destroyed} destroyed, {half} needed ({found} found). Walk your parties through the forest: a sleeping creature is seen only from 3 steps, and it wakes and fights. Pale claw marks on the ground are fresh tracks.
+pt Encontre os espécimes e destrua-os por ordem de Roma: {destroyed} destruídos, {half} necessários ({found} encontrados). Leve os seus grupos pela floresta: uma criatura adormecida só é vista a 3 passos, e acorda e luta. Marcas de garras claras no chão são rastos frescos.
+es Encuentra los especímenes y destrúyelos por orden de Roma: {destroyed} destruidos, {half} necesarios ({found} encontrados). Lleva a tus grupos por el bosque: una criatura dormida solo se ve a 3 pasos, y despierta y lucha. Las marcas de garras claras en el suelo son rastros frescos.
+
+> Duarte Valadares must live.
+pt Duarte Valadares tem de viver.
+es Duarte Valadares debe vivir.
+
+> The canoes leave at dawn: {clock:c_dawn}.
+pt As canoas partem de madrugada: {clock:c_dawn}.
+es Las canoas parten al alba: {clock:c_dawn}.
+
+> The Island
+pt A Ilha
+es La Isla
+
+> The lower Amazon, the dry season 2772. On a river island below Óbidos Lindqvist breeds the creatures Rome ordered destroyed. The Crown's commission comes up the river to search it.
+pt O baixo Amazonas, a estação seca de 2772. Numa ilha do rio abaixo de Óbidos, Lindqvist cria as criaturas que Roma mandou destruir. A comissão da Coroa sobe o rio para a revistar.
+es El bajo Amazonas, la estación seca de 2772. En una isla del río por debajo de Óbidos, Lindqvist cría a las criaturas que Roma ordenó destruir. La comisión de la Corona sube el río para registrarla.
+
+> The Stock
+pt O Plantel
+es La Cría
+
+> Lindqvist's breeding stock on the island, and the people who keep it with the lures.
+pt O plantel de criação de Lindqvist na ilha, e as pessoas que o guardam com os engodos.
+es La cría de Lindqvist en la isla, y la gente que la guarda con los señuelos.
+
+> The Commission
+pt A Comissão
+es La Comisión
+
+> The Crown's commission with Rome's order: Duarte Valadares, Desembargador Fonseca and their musketeers.
+pt A comissão da Coroa com a ordem de Roma: Duarte Valadares, o Desembargador Fonseca e os seus mosqueteiros.
+es La comisión de la Corona con la orden de Roma: Duarte Valadares, el Desembargador Fonseca y sus mosqueteros.
+
+> Duarte Valadares
+pt Duarte Valadares
+es Duarte Valadares
+
+> Desembargador Fonseca
+pt Desembargador Fonseca
+es Desembargador Fonseca
+
+> Lindqvist walked out of Rome with the animals the Council had ordered destroyed. He went home to his river.
+pt Lindqvist saiu de Roma com os animais que o Concílio mandara destruir. Voltou para o seu rio.
+es Lindqvist salió de Roma con los animales que el Concilio había ordenado destruir. Volvió a su río.
+
+> Two years later I sent Valadares up that river with Rome's order in his satchel.
+pt Dois anos depois mandei Valadares subir esse rio com a ordem de Roma na sacola.
+es Dos años después mandé a Valadares subir ese río con la orden de Roma en la cartera.
+
+> An island below Óbidos. Sugar for the tax man, and behind the cane, the forest, and in the forest, my pens.
+pt Uma ilha abaixo de Óbidos. Açúcar para o cobrador, e atrás da cana, a floresta, e na floresta, os meus currais.
+es Una isla por debajo de Óbidos. Azúcar para el recaudador, y detrás de la caña, el bosque, y en el bosque, mis corrales.
+
+> They were not monsters. They were a new kind of animal, and every animal can be bred. I had the lures. They came to the lures.
+pt Não eram monstros. Eram um novo tipo de animal, e todo animal pode ser criado. Eu tinha os engodos. Eles vinham aos engodos.
+es No eran monstruos. Eran una nueva clase de animal, y todo animal se puede criar. Yo tenía los señuelos. Venían a los señuelos.
+
+> And among them her daughter. Out of the clutch we carried from the station. Growing.
+pt E entre eles a filha dela. Da ninhada que trouxemos da estação. Crescendo.
+es Y entre ellos su hija. De la nidada que sacamos de la estación. Creciendo.
+
+> And a young Mother we netted on the mountain. My breeding stock.
+pt E uma jovem Mãe que apanhámos na montanha. O meu plantel de criação.
+es Y una joven Madre que atrapamos en la montaña. Mi cría.
+
+> Valadares wrote me a report from that island. It is the only honest account of it I have.
+pt Valadares escreveu-me um relatório daquela ilha. É o único relato honesto dela que tenho.
+es Valadares me escribió un informe de aquella isla. Es el único relato honesto de ella que tengo.
+
+> We came up the river at first light. Sugar on the banks, a white house, a doctor at the landing with his hat in his hand.
+pt Subimos o rio ao primeiro clarão. Açúcar nas margens, uma casa branca, um doutor no desembarque de chapéu na mão.
+es Subimos el río con la primera luz. Azúcar en las orillas, una casa blanca, un doctor en el embarcadero con el sombrero en la mano.
+
+> Pieter! A boat on the river, below the point. The Crown's flag. Get them out of the old pens. All of them. Into the forest, now.
+pt Pieter! Um barco no rio, abaixo da ponta. A bandeira da Coroa. Tirem-nos dos currais velhos. Todos. Para a floresta, já.
+es ¡Pieter! Un barco en el río, por debajo de la punta. La bandera de la Corona. Sacadlos de los corrales viejos. A todos. Al bosque, ya.
+
+> They follow the lures, Doctor, nothing else. The keepers go first, and the animals stay inside the ring. Out of it they wander.
+pt Eles seguem os engodos, Doutor, nada mais. Os tratadores vão à frente, e os animais ficam dentro do anel. Fora dele, vagueiam.
+es Siguen a los señuelos, doctor, nada más. Los cuidadores van delante, y los animales se quedan dentro del anillo. Fuera de él, vagan.
+
+> Over the creek by a ford, then up the paths to the clearings. The young Mother roots best in the nest clearing, in the middle.
+pt Pelo igarapé num vau, depois pelos trilhos até as clareiras. A jovem Mãe enraíza melhor na clareira do ninho, no meio.
+es Por el arroyo por un vado, luego por las sendas hasta los claros. La joven Madre enraíza mejor en el claro del nido, en el medio.
+
+> A creature out of every lure's reach goes its own way. Bring a keeper to it.
+pt Uma criatura fora do alcance de todo engodo segue o seu próprio caminho. Leve-lhe um tratador.
+es Una criatura fuera del alcance de todo señuelo va a su aire. Llévale un cuidador.
+
+> The young Mother settles in the nest clearing.
+pt A jovem Mãe assenta na clareira do ninho.
+es La joven Madre se asienta en el claro del nido.
+
+> The big egg. It is cracking. Pieter, the book. Write the hour.
+pt O ovo grande. Está a rachar. Pieter, o livro. Escreve a hora.
+es El huevo grande. Se está rompiendo. Pieter, el libro. Escribe la hora.
+
+> Wings. A Storm Sire. The first one ever bred by a man. Root him by her, and she will lay for him.
+pt Asas. Um Sire da Tempestade. O primeiro alguma vez criado por um homem. Enraíza-o junto a ela, e ela porá para ele.
+es Alas. Un Señor de la Tormenta. El primero jamás criado por un hombre. Enraízalo junto a ella, y pondrá para él.
+
+> Hatchlings. They will sit in the canopy and watch the river for me. Nobody looks up at a bird.
+pt Filhotes. Vão pousar na copa e vigiar o rio por mim. Ninguém olha para cima para um pássaro.
+es Crías. Se posarán en la copa y vigilarán el río por mí. Nadie mira arriba a un pájaro.
+
+> They are all in the forest, Doctor. Quiet. I can hear the oars.
+pt Estão todos na floresta, Doutor. Quietos. Já ouço os remos.
+es Están todos en el bosque, doctor. Quietos. Ya oigo los remos.
+
+> The canoes are rounding the point, Doctor. Not long now.
+pt As canoas estão a dobrar a ponta, Doutor. Falta pouco.
+es Las canoas están doblando la punta, doctor. Queda poco.
+
+> The commission lands: musketeers in purple, a magistrate in black, and a man with a map case who looks at the ground before he looks at the house.
+pt A comissão desembarca: mosqueteiros de roxo, um magistrado de preto, e um homem com um estojo de mapas que olha para o chão antes de olhar para a casa.
+es La comisión desembarca: mosqueteros de púrpura, un magistrado de negro, y un hombre con un estuche de mapas que mira al suelo antes de mirar la casa.
+
+> Doctor Lindqvist. I carry an order of the Holy See and of His Majesty. You know its contents.
+pt Doutor Lindqvist. Trago uma ordem da Santa Sé e de Sua Majestade. Conhece o seu conteúdo.
+es Doctor Lindqvist. Traigo una orden de la Santa Sede y de Su Majestad. Conoce su contenido.
+
+> Sugar, Desembargador. Sugar and a few goats. Search what you like.
+pt Açúcar, Desembargador. Açúcar e umas cabras. Procure o que quiser.
+es Azúcar, Desembargador. Azúcar y unas cabras. Registre lo que quiera.
+
+> I have seen what you keep, Doctor. On the mountain. I will know its prints.
+pt Eu vi o que o senhor guarda, Doutor. Na montanha. Vou reconhecer as pegadas.
+es He visto lo que usted guarda, doctor. En la montaña. Conoceré sus huellas.
+
+> I do not know what I am looking for, Doctor. So I will look at everything.
+pt Não sei o que procuro, Doutor. Por isso vou olhar para tudo.
+es No sé lo que busco, doctor. Así que lo miraré todo.
+
+> Keep them still, Doctor. A still animal in the forest is a shadow. A moving one is an animal.
+pt Mantenha-os quietos, Doutor. Um animal parado na floresta é uma sombra. Um que se mexe é um animal.
+es Manténgalos quietos, doctor. Un animal quieto en el bosque es una sombra. Uno que se mueve es un animal.
+
+> The Desembargador has come a long way. He will be hungry. I will ask him to dine.
+pt O Desembargador veio de longe. Terá fome. Vou convidá-lo para jantar.
+es El Desembargador ha venido de lejos. Tendrá hambre. Lo invitaré a cenar.
+
+> Dinner? Well. The search can spare its magistrate for an hour. Sergeant, your men with me.
+pt Jantar? Bem. A busca pode dispensar o seu magistrado por uma hora. Sargento, os seus homens comigo.
+es ¿Cena? Bien. La búsqueda puede prescindir de su magistrado una hora. Sargento, sus hombres conmigo.
+
+> Go and eat, Desembargador. I am not hungry.
+pt Vá comer, Desembargador. Eu não tenho fome.
+es Vaya a comer, Desembargador. Yo no tengo hambre.
+
+> A fine table, Doctor. Now. Back to work, men.
+pt Uma bela mesa, Doutor. Agora, ao trabalho, homens.
+es Una buena mesa, doctor. Ahora, a trabajar, hombres.
+
+> A lure post at the west point, or at the old chapel, and they will go and look at it. Men always go and look.
+pt Um poste-engodo na ponta oeste, ou na capela velha, e eles vão lá olhar. Os homens vão sempre olhar.
+es Un poste-señuelo en la punta oeste, o en la capilla vieja, y irán a mirarlo. Los hombres siempre van a mirar.
+
+> A lure post set. A search party turns off its road to see what it is.
+pt Um poste-engodo fincado. Um grupo de busca sai do seu caminho para ver o que é.
+es Un poste-señuelo clavado. Un grupo de búsqueda deja su camino para ver qué es.
+
+> A search party is coming near a pen. Keep them still, or move them away under a lure.
+pt Um grupo de busca aproxima-se de um curral. Mantenha-os quietos, ou afaste-os sob um engodo.
+es Un grupo de búsqueda se acerca a un corral. Mantenlos quietos, o apártalos bajo un señuelo.
+
+> Found. They have seen one of the stock. Get it away under a lure before they shoot it.
+pt Encontrado. Viram um do plantel. Afaste-o sob um engodo antes que o abatam.
+es Encontrado. Han visto a uno de la cría. Apártalo bajo un señuelo antes de que lo maten.
+
+> The riders have crossed the creek at the west ford, Doctor. They are going up the paths now.
+pt Os cavaleiros atravessaram o igarapé no vau oeste, Doutor. Estão a subir os trilhos agora.
+es Los jinetes han cruzado el arroyo por el vado del oeste, doctor. Ahora suben por las sendas.
+
+> Everything on this island walks from the middle out. We look in the middle.
+pt Tudo nesta ilha anda do meio para fora. Vamos procurar no meio.
+es Todo en esta isla camina del medio hacia fuera. Buscaremos en el medio.
+
+> Fresh prints. Three toes, a dragged claw. This way.
+pt Pegadas frescas. Três dedos, uma garra arrastada. Por aqui.
+es Huellas frescas. Tres dedos, una garra arrastrada. Por aquí.
+
+> There. You see it? Sugar and goats, the Doctor said.
+pt Ali. Está a ver? Açúcar e cabras, disse o Doutor.
+es Allí. ¿Lo ve? Azúcar y cabras, dijo el doctor.
+
+> No. Not that one. Pieter, move them. Move the others.
+pt Não. Esse não. Pieter, mexe-os. Mexe os outros.
+es No. Ese no. Pieter, muévelos. Mueve a los otros.
+
+> They have found half of them, Doctor. If they find many more, they will burn the pens and the house with them.
+pt Encontraram metade, Doutor. Se encontrarem muitos mais, queimam os currais e a casa com eles.
+es Han encontrado la mitad, doctor. Si encuentran muchos más, quemarán los corrales y la casa con ellos.
+
+> The light is going. They will not search the forest in the dark.
+pt A luz está a ir-se. Não vão procurar na floresta às escuras.
+es La luz se va. No buscarán en el bosque a oscuras.
+
+> Night. The commission camps at the landing to leave at dawn. Fires, a guard, the goats penned by the boats.
+pt Noite. A comissão acampa no desembarque para partir de madrugada. Fogueiras, uma guarda, as cabras presas junto aos barcos.
+es Noche. La comisión acampa en el embarcadero para partir al alba. Hogueras, una guardia, las cabras encerradas junto a las barcas.
+
+> Doctor! One of the young is up. It smells the goats. It is going for the camp!
+pt Doutor! Um dos jovens levantou-se. Sente o cheiro das cabras. Vai para o acampamento!
+es ¡Doctor! Uno de los jóvenes se ha levantado. Huele las cabras. ¡Va hacia el campamento!
+
+> A lure under its nose, right under it, or it will not turn. If it reaches those goats they will see everything.
+pt Um engodo debaixo do nariz, mesmo debaixo, ou não se vira. Se chegar àquelas cabras, eles vão ver tudo.
+es Un señuelo bajo su hocico, justo debajo, o no se volverá. Si llega a esas cabras lo verán todo.
+
+> Got it. Easy now. Back to the forest, slowly.
+pt Apanhei-o. Calma. De volta à floresta, devagar.
+es Lo tengo. Tranquilo. De vuelta al bosque, despacio.
+
+> It is back in the forest, Doctor. It is lying down.
+pt Está de volta à floresta, Doutor. Está a deitar-se.
+es Está de vuelta en el bosque, doctor. Se está echando.
+
+> The young one is among the goats. A sentry fires; the camp is up with torches; the forest is full of eyes.
+pt O jovem está entre as cabras. Uma sentinela dispara; o acampamento levanta-se com tochas; a floresta está cheia de olhos.
+es El joven está entre las cabras. Un centinela dispara; el campamento se levanta con antorchas; el bosque está lleno de ojos.
+
+> Torches! Into the forest, all of you! Now we know where they are.
+pt Tochas! Para a floresta, todos! Agora sabemos onde estão.
+es ¡Antorchas! ¡Al bosque, todos! Ahora sabemos dónde están.
+
+> They have found nearly all of them, Doctor. They are bringing the pitch for the pens.
+pt Encontraram quase todos, Doutor. Estão a trazer o breu para os currais.
+es Han encontrado casi a todos, doctor. Traen la brea para los corrales.
+
+> Dawn. The commission walks down to its canoes.
+pt Madrugada. A comissão desce para as suas canoas.
+es El alba. La comisión baja a sus canoas.
+
+> We found what we found, Doctor. It will all be in my report, and in Rome.
+pt Encontrámos o que encontrámos, Doutor. Tudo estará no meu relatório, e em Roma.
+es Encontramos lo que encontramos, doctor. Todo estará en mi informe, y en Roma.
+
+> You did not breed them, Doctor. Nobody breeds a thing like that. Somebody made it, long ago, and it is still being made.
+pt O senhor não os criou, Doutor. Ninguém cria uma coisa destas. Alguém a fez, há muito tempo, e ela continua a ser feita.
+es Usted no los crió, doctor. Nadie cría una cosa así. Alguien la hizo, hace mucho, y se sigue haciendo.
+
+> Superstition. They evolved. Everything evolves.
+pt Superstição. Eles evoluíram. Tudo evolui.
+es Superstición. Evolucionaron. Todo evoluciona.
+
+> Three parties, Desembargador: the west paths, the middle and the east. The riders take the fields. I follow the prints.
+pt Três grupos, Desembargador: os trilhos a oeste, o meio e o leste. Os cavaleiros ficam com os campos. Eu sigo as pegadas.
+es Tres grupos, Desembargador: las sendas del oeste, el medio y el este. Los jinetes, los campos. Yo sigo las huellas.
+
+> They sleep in the clearings in the day. Walk close, and have your muskets ready: a sleeping one sees you at three steps.
+pt Dormem nas clareiras de dia. Andem perto, e tenham os mosquetes prontos: um adormecido vê-vos a três passos.
+es Duermen en los claros de día. Caminad cerca, y tened los mosquetes listos: uno dormido os ve a tres pasos.
+
+> Pale claw marks on the ground are fresh prints. They lead to the ones that walk.
+pt Marcas de garras claras no chão são pegadas frescas. Levam aos que andam.
+es Las marcas de garras claras en el suelo son huellas frescas. Llevan a los que caminan.
+
+> The Doctor asks me to dine. I will go, Valadares. Somebody must watch the man himself.
+pt O Doutor convida-me para jantar. Irei, Valadares. Alguém tem de vigiar o próprio homem.
+es El doctor me invita a cenar. Iré, Valadares. Alguien debe vigilar al hombre mismo.
+
+> Night. They will move in the dark: watch the camp and the goats.
+pt Noite. Vão mexer-se no escuro: vigiem o acampamento e as cabras.
+es Noche. Se moverán en la oscuridad: vigilad el campamento y las cabras.
+
+> Enough. Burn the pens. Write it down, Desembargador: we found them.
+pt Basta. Queimem os currais. Escreva, Desembargador: encontrámo-los.
+es Basta. Quemad los corrales. Escríbalo, Desembargador: los encontramos.
+
+> Dawn, and the canoes. We found too little. He will say we found nothing.
+pt Madrugada, e as canoas. Encontrámos pouco demais. Ele vai dizer que não encontrámos nada.
+es El alba, y las canoas. Encontramos demasiado poco. Él dirá que no encontramos nada.
+
+> A specimen found. It wakes.
+pt Um espécime encontrado. Acorda.
+es Un espécimen encontrado. Despierta.
+
+> They left at dawn. The Desembargador wrote his report. Valadares wrote another.
+pt Partiram de madrugada. O Desembargador escreveu o seu relatório. Valadares escreveu outro.
+es Partieron al alba. El Desembargador escribió su informe. Valadares escribió otro.
+
+> They found nothing. Nothing. I stood at the landing and waved my hat.
+pt Não encontraram nada. Nada. Fiquei no desembarque a acenar o chapéu.
+es No encontraron nada. Nada. Me quedé en el embarcadero agitando el sombrero.
+
+> They found some, and burned what they found. The rest lay in the forest and did not move.
+pt Encontraram alguns, e queimaram o que encontraram. O resto ficou na floresta e não se mexeu.
+es Encontraron algunos, y quemaron lo que encontraron. El resto se quedó en el bosque y no se movió.
+
+> They found most of them. I watched the pens burn from the house. I kept what was left.
+pt Encontraram a maioria. Vi os currais arder da casa. Guardei o que sobrou.
+es Encontraron a la mayoría. Vi arder los corrales desde la casa. Guardé lo que quedó.
+
+> And the Storm Sire flew over the canopy every evening after, and came back to the lure.
+pt E o Sire da Tempestade voava sobre a copa todas as tardes depois, e voltava ao engodo.
+es Y el Señor de la Tormenta volaba sobre la copa cada tarde después, y volvía al señuelo.
+
+> He tells it as if he won. Valadares found more than he thinks. Valadares found enough to know what was on that island.
+pt Ele conta como se tivesse ganhado. Valadares encontrou mais do que ele pensa. Valadares encontrou o bastante para saber o que havia naquela ilha.
+es Él lo cuenta como si hubiera ganado. Valadares encontró más de lo que él cree. Valadares encontró lo bastante para saber qué había en aquella isla.
+
+> And Lindqvist still believes the thing evolved. The Church told him what it was. He did not listen then either.
+pt E Lindqvist ainda acredita que a coisa evoluiu. A Igreja disse-lhe o que era. Também não ouviu nessa altura.
+es Y Lindqvist todavía cree que la cosa evolucionó. La Iglesia le dijo lo que era. Tampoco escuchó entonces.
+
+> We burned the pens we found. The Doctor stood at the landing with his hat in his hand, and did not look at the smoke.
+pt Queimámos os currais que encontrámos. O Doutor ficou no desembarque de chapéu na mão, e não olhou para o fumo.
+es Quemamos los corrales que encontramos. El doctor se quedó en el embarcadero con el sombrero en la mano, y no miró el humo.
+
+> He told me Valadares found nothing. Valadares found enough.
+pt Ele disse-me que Valadares não encontrou nada. Valadares encontrou o bastante.
+es Él me dijo que Valadares no encontró nada. Valadares encontró lo bastante.
+
+> We left at dawn with half a report. I knew they were there. I could smell them.
+pt Partimos de madrugada com meio relatório. Eu sabia que estavam lá. Sentia-lhes o cheiro.
+es Partimos al alba con medio informe. Sabía que estaban allí. Los olía.
+
+> The commission has found the stock. By Rome's order the pens are burned.
+pt A comissão encontrou o plantel. Por ordem de Roma os currais são queimados.
+es La comisión ha encontrado la cría. Por orden de Roma los corrales se queman.
+
+> My leg. Pieter, the lures. Keep them together.
+pt A minha perna. Pieter, os engodos. Mantém-nos juntos.
+es Mi pierna. Pieter, los señuelos. Mantenlos juntos.
+
+> Lindqvist's guards are Assembly men now, paid in sugar and silence.
+pt Os guardas de Lindqvist são agora homens da Assembleia, pagos em açúcar e silêncio.
+es Los guardias de Lindqvist son ahora hombres de la Asamblea, pagados en azúcar y silencio.
+
+> Pieter did not come back from the mountain. Two keepers carry the lures.
+pt Pieter não voltou da montanha. Dois tratadores levam os engodos.
+es Pieter no volvió de la montaña. Dos cuidadores llevan los señuelos.
+
+> An island below Óbidos, the dry season 2772: the fazenda.
+pt Uma ilha abaixo de Óbidos, a estação seca de 2772: a fazenda.
+es Una isla por debajo de Óbidos, la estación seca de 2772: la fazenda.
+
+> The pens in the forest, and the lure.
+pt Os currais na floresta, e o engodo.
+es Los corrales en el bosque, y el señuelo.
+
+> The Crown's commission lands.
+pt A comissão da Coroa desembarca.
+es La comisión de la Corona desembarca.
+
+> The Storm Sire over the canopy.
+pt O Sire da Tempestade sobre a copa.
+es El Señor de la Tormenta sobre la copa.
+
+> The lower Amazon, the dry season 2772. You are Lindqvist's breeding stock on his island, and the people who keep it with the lures.
+pt O baixo Amazonas, a estação seca de 2772. Você é o plantel de criação de Lindqvist na sua ilha, e as pessoas que o guardam com os engodos.
+es El bajo Amazonas, la estación seca de 2772. Eres la cría de Lindqvist en su isla, y la gente que la guarda con los señuelos.
+
+> The creatures obey only near a lure. Walk them from the old pens into the deep forest before the Crown's commission lands, then keep them still and hidden until it leaves at dawn.
+pt As criaturas só obedecem perto de um engodo. Leve-as dos currais velhos para a floresta funda antes que a comissão da Coroa desembarque, depois mantenha-as quietas e escondidas até ela partir de madrugada.
+es Las criaturas solo obedecen cerca de un señuelo. Llévalas de los corrales viejos al bosque hondo antes de que desembarque la comisión de la Corona, y luego mantenlas quietas y escondidas hasta que se vaya al alba.
+
+> Nothing bites while the commission is on the island. If it finds three quarters of the stock, Rome's order is carried out.
+pt Nada morde enquanto a comissão estiver na ilha. Se encontrar três quartos do plantel, a ordem de Roma é cumprida.
+es Nada muerde mientras la comisión esté en la isla. Si encuentra tres cuartos de la cría, la orden de Roma se cumple.
+
+> The lower Amazon, the dry season 2772. You are the Crown's commission: Duarte Valadares, Desembargador Fonseca and their musketeers, with Rome's order.
+pt O baixo Amazonas, a estação seca de 2772. Você é a comissão da Coroa: Duarte Valadares, o Desembargador Fonseca e os seus mosqueteiros, com a ordem de Roma.
+es El bajo Amazonas, la estación seca de 2772. Eres la comisión de la Corona: Duarte Valadares, el Desembargador Fonseca y sus mosqueteros, con la orden de Roma.
+
+> Search the island. Find the specimens Lindqvist hides in the forest and destroy half of them before your canoes leave at dawn. Valadares must live.
+pt Reviste a ilha. Encontre os espécimes que Lindqvist esconde na floresta e destrua metade deles antes que as suas canoas partam de madrugada. Valadares tem de viver.
+es Registra la isla. Encuentra los especímenes que Lindqvist esconde en el bosque y destruye la mitad antes de que tus canoas partan al alba. Valadares debe vivir.
+
+> The commission left at dawn. It found {found} of the {young_n} young; {unfound} were never found.
+pt A comissão partiu de madrugada. Encontrou {found} dos {young_n} jovens; {unfound} nunca foram encontrados.
+es La comisión partió al alba. Encontró {found} de los {young_n} jóvenes; {unfound} nunca fueron encontrados.
+
+> The Storm Sire hatched on the island.
+pt O Sire da Tempestade chocou na ilha.
+es El Señor de la Tormenta eclosionó en la isla.
+
+> The magistrate dined at the big house.
+pt O magistrado jantou na casa-grande.
+es El magistrado cenó en la casa grande.
+
+> Found
+pt Encontrados
+es Encontrados
+
+> The commission found {found} specimens and destroyed {destroyed} by Rome's order.
+pt A comissão encontrou {found} espécimes e destruiu {destroyed} por ordem de Roma.
+es La comisión encontró {found} especímenes y destruyó {destroyed} por orden de Roma.
+
+> Not on the island: Lindqvist breeds only from his stock.
+pt Não na ilha: Lindqvist só cria a partir do seu plantel.
+es No en la isla: Lindqvist solo cría a partir de su cría.
+
+> NEW: THE STORM SIRE. A flying father: up, he flies and dives to bite; ROOTED beside the Mother he lands, and she lays the eggs of his line.
+pt NOVO: O SIRE DA TEMPESTADE. Um pai que voa: de pé, voa e mergulha para morder; ENRAIZADO junto à Mãe, pousa, e ela põe os ovos da linhagem dele.
+es NUEVO: EL SEÑOR DE LA TORMENTA. Un padre que vuela: en pie, vuela y se lanza a morder; ENRAIZADO junto a la Madre, se posa, y ella pone los huevos de su línea.
+
+> NEW: THE HATCHLINGS. Pick them on the Mother's card while the Storm Sire is rooted by her: little flyers, two to an egg. They bite only flyers, but they see far over the forest.
+pt NOVO: OS FILHOTES. Escolha-os no painel da Mãe enquanto o Sire da Tempestade estiver enraizado junto a ela: pequenos voadores, dois por ovo. Só mordem voadores, mas veem longe por cima da floresta.
+es NUEVO: LAS CRÍAS. Elígelas en el panel de la Madre mientras el Señor de la Tormenta esté enraizado junto a ella: pequeños voladores, dos por huevo. Solo muerden voladores, pero ven lejos por encima del bosque.
+
+> The young Mother
+pt A jovem Mãe
+es La joven Madre
+
+> A young Brood Mother of Lindqvist's stock, not yet grown: his breeding animal.
+pt Uma jovem Mãe da Ninhada do plantel de Lindqvist, ainda não crescida: o seu animal de criação.
+es Una joven Madre de la Prole de la cría de Lindqvist, aún no crecida: su animal de cría.
+
+> Keeper
+pt Tratador
+es Cuidador
+
+> One of Lindqvist's keepers, a musket on his back and a brass lure on a chain.
+pt Um dos tratadores de Lindqvist, um mosquete às costas e um engodo de latão numa corrente.
+es Uno de los cuidadores de Lindqvist, un mosquete a la espalda y un señuelo de latón en una cadena.
+
+> Assembly guard
+pt Guarda da Assembleia
+es Guardia de la Asamblea
+
+> A Free Assembly man hired to guard the fazenda after Paris: he asks no questions.
+pt Um homem da Assembleia Livre contratado para guardar a fazenda depois de Paris: não faz perguntas.
+es Un hombre de la Asamblea Libre contratado para guardar la fazenda después de París: no hace preguntas.
+
+> The commission's magistrate, a judge of the Relação, with Rome's order.
+pt O magistrado da comissão, um juiz da Relação, com a ordem de Roma.
+es El magistrado de la comisión, un juez de la Relação, con la orden de Roma.
+
+> Lindqvist's fazenda
+pt A fazenda de Lindqvist
+es La fazenda de Lindqvist
+
+> The island
+pt A ilha
+es La isla
+
+> Dry season 2772
+pt Estação seca de 2772
+es Estación seca de 2772
+
+> Lindqvist breeds the specimens on an island below Óbidos, against Rome's verdict.
+pt Lindqvist cria os espécimes numa ilha abaixo de Óbidos, contra o veredito de Roma.
+es Lindqvist cría los especímenes en una isla por debajo de Óbidos, contra el veredicto de Roma.
+
+> The commission searched the island and found nothing of what Lindqvist keeps.
+pt A comissão revistou a ilha e não encontrou nada do que Lindqvist guarda.
+es La comisión registró la isla y no encontró nada de lo que Lindqvist guarda.
+
+> The commission found some of Lindqvist's stock and burned it; the rest was never found.
+pt A comissão encontrou parte do plantel de Lindqvist e queimou-a; o resto nunca foi encontrado.
+es La comisión encontró parte de la cría de Lindqvist y la quemó; el resto nunca se encontró.
+
+> The commission found most of Lindqvist's stock and burned the pens.
+pt A comissão encontrou a maior parte do plantel de Lindqvist e queimou os currais.
+es La comisión encontró la mayor parte de la cría de Lindqvist y quemó los corrales.
+
+> Young never found on the island: %s.
+pt Jovens nunca encontrados na ilha: %s.
+es Jóvenes nunca encontrados en la isla: %s.
+
+> A Storm Sire hatched on the island: the first bred by a man.
+pt Um Sire da Tempestade chocou na ilha: o primeiro criado por um homem.
+es Un Señor de la Tormenta eclosionó en la isla: el primero criado por un hombre.
+
+> Valadares' commission destroyed half of Lindqvist's stock.
+pt A comissão de Valadares destruiu metade do plantel de Lindqvist.
+es La comisión de Valadares destruyó la mitad de la cría de Lindqvist.
+
+> The Fazenda's Study
+pt O Escritório da Fazenda
+es El Estudio de la Fazenda
+
+> Lindqvist's study in the big house on the island: jars, the stud book, a window on the forest where the pens are.
+pt O escritório de Lindqvist na casa-grande da ilha: frascos, o livro de criação, uma janela para a floresta onde estão os currais.
+es El estudio de Lindqvist en la casa grande de la isla: frascos, el libro de cría, una ventana al bosque donde están los corrales.
+
+> The fazenda's study on the island below Óbidos: the stud book open on the desk, the forest dark in the window.
+pt O escritório da fazenda na ilha abaixo de Óbidos: o livro de criação aberto na secretária, a floresta escura na janela.
+es El estudio de la fazenda en la isla por debajo de Óbidos: el libro de cría abierto en el escritorio, el bosque oscuro en la ventana.
+
+> The commission has gone down the river. I wrote the Storm Sire's hatching hour in the book myself.
+pt A comissão desceu o rio. Escrevi eu mesmo no livro a hora em que o Sire da Tempestade chocou.
+es La comisión ha bajado el río. Escribí yo mismo en el libro la hora en que eclosionó el Señor de la Tormenta.
+
+> Rome calls it a monster. I call it a breed, the first of its line. Every breed needs patience and a good fence.
+pt Roma chama-lhe monstro. Eu chamo-lhe uma raça, a primeira da sua linhagem. Toda raça precisa de paciência e de uma boa cerca.
+es Roma lo llama monstruo. Yo lo llamo una raza, la primera de su línea. Toda raza necesita paciencia y una buena cerca.
+
+> Valadares said it was made, not born. A Crown man's superstition. Everything that lives was born.
+pt Valadares disse que foi feito, não nascido. Superstição de um homem da Coroa. Tudo o que vive nasceu.
+es Valadares dijo que fue hecho, no nacido. Superstición de un hombre de la Corona. Todo lo que vive nació.
+
+> They burned the pens they found. I count the ones that are left every morning. The stud book is thinner.
+pt Queimaram os currais que encontraram. Conto os que restam todas as manhãs. O livro de criação está mais fino.
+es Quemaron los corrales que encontraron. Cuento los que quedan cada mañana. El libro de cría está más delgado.
+
+> Valadares found half of them and burned them. He wrote that he could smell the rest.
+pt Valadares encontrou metade e queimou-os. Escreveu que sentia o cheiro do resto.
+es Valadares encontró la mitad y los quemó. Escribió que olía al resto.
+
+> The Storm Sire's hour is in the stud book in my hand. The Doctor checks it twice.
+pt A hora do Sire da Tempestade está no livro de criação, pela minha mão. O Doutor confere-a duas vezes.
+es La hora del Señor de la Tormenta está en el libro de cría, de mi mano. El doctor la comprueba dos veces.
+
+> I paddled the commission down to Óbidos. The judge slept. Senhor Valadares did not.
+pt Levei a comissão até Óbidos. O juiz dormiu. O senhor Valadares não.
+es Llevé a la comisión hasta Óbidos. El juez durmió. El señor Valadares no.
+
+> The cages stand empty in the store. The animals are on the island now, in the forest.
+pt As jaulas estão vazias no armazém. Os animais estão agora na ilha, na floresta.
+es Las jaulas están vacías en el almacén. Los animales están ahora en la isla, en el bosque.
+
+> I searched his island for the Crown. I found enough to know, and not enough to end it.
+pt Revistei a ilha dele pela Coroa. Encontrei o bastante para saber, e não o bastante para acabar com isto.
+es Registré su isla por la Corona. Encontré lo bastante para saber, y no lo bastante para acabar con esto.

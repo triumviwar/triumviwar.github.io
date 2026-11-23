@@ -81,6 +81,13 @@ const ROLES := {
 	"captain_rome": {"kind": "dismounted", "art": "a_delorme", "name": "Captain of the Garrison", "hp": 220, "about": "Captain of Rome's garrison on the east bank."},
 	"roman": {"kind": "labourer", "art": "c_citizen", "about": "A Roman of the quarters on the east bank."},
 	"roman_mob": {"kind": "pikeman", "art": "c_citizen", "about": "A Roman with a pike and a grudge against clever machines."},
+	# Act 2's d03_fazenda (the island below Óbidos, the dry season 2772): Lindqvist's breeding Mother (a Brood Mother's
+	# kind drawn small, as Linnea in b01), his keepers with the lures, the Assembly men he hired after Paris (a06 `varenne`
+	# executed), the commission's magistrate (stand-ins until drawn)
+	"young_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "The young Mother", "hp": 1000, "scale": 0.42, "about": "A young Brood Mother of Lindqvist's stock, not yet grown: his breeding animal."},
+	"keeper": {"kind": "musketeer", "art": "b_hired_gun", "name": "Keeper", "hp": 140, "about": "One of Lindqvist's keepers, a musket on his back and a brass lure on a chain."},
+	"assembly_keeper": {"kind": "musketeer", "art": "rebel_militia", "name": "Assembly guard", "about": "A Free Assembly man hired to guard the fazenda after Paris: he asks no questions."},
+	"fonseca": {"kind": "dismounted", "art": "a_delorme", "name": "Desembargador Fonseca", "hp": 220, "about": "The commission's magistrate, a judge of the Relação, with Rome's order."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)
