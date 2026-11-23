@@ -1051,7 +1051,8 @@ static func war_map(main: Node) -> void:
 	var act_t := String(WarMapData.act().get("act_title", d.get("act_title", "")))
 	# (the act's dates live in the ledger and the cartouche: the heading keeps "Act 2" so the views' buttons fit)
 	var act_short := Loc.t(act_t).split(":")[0]
-	var t := UiStyle.heading(Loc.t(WarMapData.skin_title(map_skin)) + "  ·  " + act_short, 30 if pc else 22, UiStyle.TRIM)
+	var ttxt := Loc.t(WarMapData.skin_title(map_skin)) + "  ·  " + act_short
+	var t := UiStyle.heading(ttxt, (30 if ttxt.length() <= 22 else 24) if pc else (22 if ttxt.length() <= 22 else 18), UiStyle.TRIM)
 	t.tooltip_text = Loc.t(act_t)
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL

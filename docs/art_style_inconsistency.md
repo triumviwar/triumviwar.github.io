@@ -794,3 +794,15 @@ Drawn in code, to be painted later (stand-ins):
 - SAPPING: the gallery as a dark trench with a dashed earth line, a dashed line still to dig and a brown mound over the
   sappers.
 - A Brood team's swamp past the first two teams is painted by the mission with the swamp tile (no edges or blending).
+
+## The war map's BRASS MAP and SPECIMEN CHART, and the BRAZIL view (code-drawn, act2-warmap, docs/war_map_act2.md)
+
+- The Clockmaker's BRASS MAP (scripts/campaign/war_map.gd SKINS "brass"): the plate's brushed sheen and lathe rings, the
+  engraved coasts, enamel regions with brass rims, the creeping gears, the gear seals, the rim, rivets and turning dial
+  are all drawn in code. Slots for the owner's art: campaign/warmap_art/brass_plate.jpg (the plate, screen space) and
+  the skin's "base" (the land). Prompt in docs/war_map_act2.md.
+- The Naturalist's SPECIMEN CHART (SKINS "chart"): the paper's stains, pencil grid, blue-ink rivers, green-ink stipple,
+  the pinned specimen labels, the margin notes, the scale bar and north arrow, in code. Slot: chart_paper.jpg.
+- The BRAZIL view on the King's parchment: the drawn map (no painting yet); slot painted_brazil.jpg (prompt in the doc).
+- New marks drawn in code: the gear (Concórdia), the Queen's green crown, the church (and burnt), the star fort, the
+  siege ring, the dashed routes; the diamond's small clock on a waiting pin.
