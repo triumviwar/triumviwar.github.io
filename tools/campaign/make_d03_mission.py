@@ -375,9 +375,6 @@ line("v_land_w", "valadares", "I do not know what I am looking for, Doctor. So I
 line("p_still", "pieter", "Keep them still, Doctor. A still animal in the forest is a shadow. A moving one is an animal.",
      "Mantenha-os quietos, Doutor. Um animal parado na floresta é uma sombra. Um que se mexe é um animal.",
      "Manténgalos quietos, doctor. Un animal quieto en el bosque es una sombra. Uno que se mueve es un animal.", ST)
-line("l_quiet", "lindqvist", "And no one bites. No one. I told the keepers: not a shot fired on this island while the Crown is here.",
-     "E ninguém morde. Ninguém. Disse aos tratadores: nem um tiro nesta ilha enquanto a Coroa estiver cá.",
-     "Y nadie muerde. Nadie. Dije a los cuidadores: ni un tiro en esta isla mientras la Corona esté aquí.", ST)
 line("l_dinner", "lindqvist", "The Desembargador has come a long way. He will be hungry. I will ask him to dine.",
      "O Desembargador veio de longe. Terá fome. Vou convidá-lo para jantar.", "El Desembargador ha venido de lejos. Tendrá hambre. Lo invitaré a cenar.", ST)
 line("f_dinner", "fonseca", "Dinner? Well. The search can spare its magistrate for an hour. Sergeant, your men with me.",
@@ -651,7 +648,7 @@ TR_ += [
     {"id": "part2_v", "when": {"all": [{"fired": "part2_say"}, DRAWN]}, "delay": 8, "do": [{"say": ["v_land"]}]},
     {"id": "part2_v_w", "when": {"all": [{"fired": "part2_say"}, WITHHELD]}, "delay": 8, "do": [{"say": ["v_land_w"]}]},
     {"id": "quiet", "when": {"all": [{"fired": "part2"}, STOCK]}, "delay": 14, "do": [
-        {"say": ["p_still", "l_quiet"]}, {"carry": {"tag": "young", "on": True, "pace": 1.0}}, {"carry": {"tag": "people", "on": True, "pace": 1.0}}]},
+        {"say": ["p_still"]}, {"carry": {"tag": "young", "on": True, "pace": 1.0}}, {"carry": {"tag": "people", "on": True, "pace": 1.0}}]},
     # (the quiet rule from the landing on: nobody of the stock bites, its people fire no shot)
     {"id": "quiet_now", "when": {"all": [{"fired": "part2"}, STOCK]}, "do": [
         {"carry": {"tag": "young", "on": True, "pace": 1.0}}, {"carry": {"tag": "people", "on": True, "pace": 1.0}}]},

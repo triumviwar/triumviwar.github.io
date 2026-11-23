@@ -21,7 +21,7 @@ Brood) by default; the solo pick and versus play the commission. EVERY LINE OF T
 | the engine | `scripts/campaign/mission_act2.gd` (hide `still`, lies_low, brood_stage, retag, the newest leash rules, tracks' first look, hidden seen under the mist, a renamed leash keeps its loose ones), `mission_run.gd` (counter `sub_counter` / `share_of`), `campaign.gd`; docs/campaign_engine.md "Added by Act 2's d03_fazenda" |
 | tests | `tools/test_campaign_d03.gd` (`godot --headless --path . --script res://tools/test_campaign_d03.gd [-- only=part2,part3]`); d03 added to `tools/test_campaign_save.gd` and `.sh` |
 | the balance sim | `tools/sim_campaign_d03.gd` (`-- active [diff=] [side=commission] [clutch=burned] [eggs=taken] [cages=few/all] [pieter=lost] [map=withheld] [varenne=executed] [lazy] [shots=dir]`) |
-| voices | docs/chatterbox_todo.md "d03_fazenda" (61 lines with their feeling); tools/voice_clone/emotions.json `d03__<id>` |
+| voices | docs/chatterbox_todo.md "d03_fazenda" (60 lines with their feeling); tools/voice_clone/emotions.json `d03__<id>` |
 
 ## The map: the island below Óbidos (120 x 84, jungle, the dry season)
 
@@ -103,7 +103,25 @@ pens).
 
 ## Balance (tools/sim_campaign_d03.gd; the last runs)
 
-BALANCE_TABLE
+| run (NORMAL unless named; canon flags unless named) | winner | young | found | `hidden` | the end | longest idle |
+| --- | --- | --- | --- | --- | --- | --- |
+| active | the stock | 6 | 2 | some | 6:49 | 28 s |
+| active EASY | the stock | 6 | 1 | some | 6:47 | 28 s |
+| active HARD | the stock | 6 | 2 | some | 6:48 | 28 s |
+| active, a03 `map` withheld (a longer search) | the stock | 6 | 2 | some | 7:48 | 29 s |
+| active, a05 `cages` few | the stock | 4 | 2 | some | 6:48 | 28 s |
+| active, a05 `cages` all (the young Sire) | the stock | 8 | 3 | some | 7:11 | 36 s |
+| active, b01 `eggs` taken | the stock | 8 | 3 | some | 7:11 | 33 s |
+| active, b01 `clutch` burned (`mother` plateau) | the stock | 6 | 2 | some | 6:49 | 28 s |
+| active, `pieter` lost | the stock | 6 | 1 | some | 6:46 | 37 s |
+| active, a06 `varenne` executed | the stock | 6 | 2 | some | 7:11 | 34 s |
+| lazy (leaves the restless one be) | the commission (the night lost) | 6 | 2 | - | 7:11 | 63 s |
+| passive (does nothing) | the commission (found in the old pens) | 6 | 6 | - | 3:46 | 113 s |
+| the commission, active | the commission | 6 | 5 (5 destroyed) | few | 1:04 | 12 s |
+| the commission, passive | the stock | 6 | 0 | all | 7:05 | 196 s |
+
+No SCRIPT ERROR in any run. Each run had a user folder of its own (two sims sharing one overwrite each other's
+campaign progress: the first batch's flag runs were wrong for that reason).
 
 The bot plays the stock as a careful person would: each keeper leads its share of the young to a pen, Lindqvist takes the
 Mother (and then the Storm Sire) to the nest, roots them, lays Hatchlings, gives the dinner, sends Pieter to the chapel,

@@ -4938,7 +4938,6 @@ const T := {
 	"I have seen what you keep, Doctor. On the mountain. I will know its prints.": "Eu vi o que o senhor guarda, Doutor. Na montanha. Vou reconhecer as pegadas.",
 	"I do not know what I am looking for, Doctor. So I will look at everything.": "Não sei o que procuro, Doutor. Por isso vou olhar para tudo.",
 	"Keep them still, Doctor. A still animal in the forest is a shadow. A moving one is an animal.": "Mantenha-os quietos, Doutor. Um animal parado na floresta é uma sombra. Um que se mexe é um animal.",
-	"And no one bites. No one. I told the keepers: not a shot fired on this island while the Crown is here.": "E ninguém morde. Ninguém. Disse aos tratadores: nem um tiro nesta ilha enquanto a Coroa estiver cá.",
 	"The Desembargador has come a long way. He will be hungry. I will ask him to dine.": "O Desembargador veio de longe. Terá fome. Vou convidá-lo para jantar.",
 	"Dinner? Well. The search can spare its magistrate for an hour. Sergeant, your men with me.": "Jantar? Bem. A busca pode dispensar o seu magistrado por uma hora. Sargento, os seus homens comigo.",
 	"Go and eat, Desembargador. I am not hungry.": "Vá comer, Desembargador. Eu não tenho fome.",

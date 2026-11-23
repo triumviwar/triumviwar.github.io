@@ -2657,8 +2657,7 @@
 			"do": [
 				{
 					"say": [
-						"p_still",
-						"l_quiet"
+						"p_still"
 					]
 				},
 				{
@@ -5773,11 +5772,6 @@
 		"p_still": {
 			"who": "pieter",
 			"text": "Keep them still, Doctor. A still animal in the forest is a shadow. A moving one is an animal.",
-			"to": "stock"
-		},
-		"l_quiet": {
-			"who": "lindqvist",
-			"text": "And no one bites. No one. I told the keepers: not a shot fired on this island while the Crown is here.",
 			"to": "stock"
 		},
 		"l_dinner": {

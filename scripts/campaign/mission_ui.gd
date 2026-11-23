@@ -404,6 +404,10 @@ class ObjectivesPanel extends Control:
 					var left := maxi(0, int(ceil(float(o.get("time", 0)) - run.game.clock)))
 					txt += "  %d:%02d" % [left / 60, left % 60]
 				var wrapped := _wrap(font, txt, w - fs - 26)
+				# (d03_fazenda, CHECK THE FEEL: an objective already done or failed shrinks to its first line, so a list of
+				# long tasks does not grow over the minimap)
+				if wrapped.size() > 1 and not bool(o.get("task", false)) and o["state"] != "active":
+					wrapped = [String(wrapped[0]).strip_edges() + "..."]
 				lines.append([o, wrapped])
 				total += wrapped.size() * (fs + 4) + 6
 		size = Vector2(w, total + 6)

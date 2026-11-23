@@ -103,7 +103,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | a05_specimens (the Specimens) | docs/campaign_a05_build.md | 58 | Lindqvist 39, the King 8, Benedito* 8, Pieter* 2 |
 | a07_council (the Council of Rome) | docs/campaign_a07_build.md | 49 | the King 28, Tomasz* 7, Hollweg 4, Ferrer* 3, Lindqvist 3, Valadares* 2, the Cardinal Dean* 2 |
 | d02_exodus (the Exodus, Act 2) | this file, "d02_exodus" below; docs/campaign_d02_build.md | 63 (+12 narrator, 2 NEW cards) | Hollweg 25, Ulrich* 16, the King 6, Ferrer 6, Colonel von Rauch* 5, Jakob* 3, Commissary Brandt* 2 |
-| d03_fazenda (the Island, Act 2) | this file, "d03_fazenda" below; docs/campaign_d03_build.md | 61 (+13 narrator, 2 NEW cards) | Lindqvist 21, Valadares* 17, Pieter* 12, the King 6, Desembargador Fonseca* 5 |
+| d03_fazenda (the Island, Act 2) | this file, "d03_fazenda" below; docs/campaign_d03_build.md | 60 (+13 narrator, 2 NEW cards) | Lindqvist 20, Valadares* 17, Pieter* 12, the King 6, Desembargador Fonseca* 5 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -208,7 +208,6 @@ in tools/voice_clone/emotions.json (`d03__<id>`).
 | v_land | Valadares | I have seen what you keep, Doctor. On the mountain. I will know its prints. | quiet threat |
 | v_land_w | Valadares | I do not know what I am looking for, Doctor. So I will look at everything. | blunt, patient |
 | p_still | Pieter | Keep them still, Doctor. A still animal in the forest is a shadow. A moving one is an animal. | whispered, urgent |
-| l_quiet | Lindqvist | And no one bites. No one. I told the keepers: not a shot fired on this island while the Crown is here. | stern, an order |
 | l_dinner | Lindqvist | The Desembargador has come a long way. He will be hungry. I will ask him to dine. | smooth, scheming |
 | f_dinner | Desembargador Fonseca | Dinner? Well. The search can spare its magistrate for an hour. Sergeant, your men with me. | pompous, tempted |
 | v_dinner | Valadares | Go and eat, Desembargador. I am not hungry. | dry contempt |
