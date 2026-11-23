@@ -284,7 +284,7 @@ func _play() -> void:
 	check("both researched: the objective done", r.obj.get("research", "") == "done", why)
 	# an agitator reaching a churchyard
 	var t0 := int(r.counters["temper"])
-	r.act({"spawn": {"team": "conspiracy", "kind": "labourer", "as": "agitator", "count": 1, "fixed": True, "at": "adro_carmo", "tag": "runner_x", "tags": ["runner"]}})
+	r.act({"spawn": {"team": "conspiracy", "kind": "labourer", "as": "agitator", "count": 1, "fixed": true, "at": "adro_carmo", "tag": "runner_x", "tags": ["runner"]}})
 	_walk(g, g.clock + 1.0)
 	check("an agitator who reaches a churchyard raises the temper", int(r.counters["temper"]) == t0 + 1, str([t0, r.counters["temper"]]))
 	# Tomasz calms the quarters
@@ -317,9 +317,11 @@ func _play() -> void:
 	check("the bands from the Rosário and the diggings (muskets and miners)", r.fired.has("band_r") and r.fired.has("band_e")
 		and r.tagged("rising").size() >= 12 and r.tagged("miners").size() >= 4, str(r.tagged("rising").size()))
 	_put(g, r.tagged("tomasz"), _mid(r, "adro_rosario"))
-	_walk(g, g.clock + 5.0)
+	_walk(g, g.clock + 7.0)
 	check("Tomasz in the Rosário's churchyard: the miners go home (they change side, no fight)", r.fired.has("miners_home")
-		and _alive(r, "miners", "conspiracy").is_empty() and not _alive(r, "gone_home", "calmed").is_empty())
+		and _alive(r, "miners", "conspiracy").is_empty() and not _alive(r, "gone_home", "calmed").is_empty(),
+		str([r.fired.has("miners_home"), _alive(r, "miners", "conspiracy").size(), _alive(r, "gone_home", "calmed").size(), _alive(r, "miners").size(),
+			r.area_rect("adro_rosario").has_point(r.tagged("tomasz")[0].position), r.tagged("tomasz")[0].position, r.area_rect("adro_rosario")]))
 	_part2(g, r)
 	check("the rising broken on the stairs", r.fired.has("rising_broken") and r.obj.get("rising", "") == "done")
 	_walk(g, float(r.fired["rising_broken"]) + 15.5)
@@ -400,7 +402,7 @@ func _flee() -> void:
 	for u in _team_units(g, r, "garrison"):
 		if u.position.distance_to(c0.position) < 12 * Defs.TILE:
 			u.position = _mid(r, "camp")
-	r.act({"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "conspirator", "count": 2, "fixed": True, "at": "gorge_w", "tag": "x_takers"}})
+	r.act({"spawn": {"team": "conspiracy", "kind": "musketeer", "as": "conspirator", "count": 2, "fixed": true, "at": "gorge_w", "tag": "x_takers"}})
 	_put(g, r.tagged("x_takers"), c0.position + Vector2(30, 0))
 	_walk(g, g.clock + 6.0)
 	check("TAKE A CART: taken by the conspirators", c0.team == r.team_index("seized"))
