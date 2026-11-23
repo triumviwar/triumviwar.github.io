@@ -17,8 +17,8 @@
 			"spawns": 0.75
 		},
 		"hard": {
-			"clocks": 0.85,
-			"spawns": 1.25
+			"clocks": 0.9,
+			"spawns": 1.1
 		}
 	},
 	"modes": [
@@ -378,6 +378,12 @@
 			0,
 			31,
 			80
+		],
+		"bank": [
+			3,
+			46,
+			19,
+			28
 		]
 	},
 	"counters": {
@@ -591,7 +597,7 @@
 		{
 			"team": "guild",
 			"kind": "netter",
-			"count": 1,
+			"count": 2,
 			"at": "muster",
 			"tag": "army",
 			"tags": [
@@ -618,6 +624,55 @@
 				"not": {
 					"playing": "exodus"
 				}
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 2,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					},
+					{
+						"difficulty": [
+							"normal",
+							"hard"
+						]
+					}
+				]
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 2,
+			"at": "muster",
+			"tag": "army",
+			"tags": [
+				"guild_men"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "exodus"
+						}
+					},
+					{
+						"difficulty": "hard"
+					}
+				]
 			}
 		},
 		{
@@ -3261,6 +3316,9 @@
 			"when": {
 				"all": [
 					{
+						"time": 5
+					},
+					{
 						"counter": {
 							"name": "to_load",
 							"below": 1
@@ -4733,7 +4791,7 @@
 					"spawn": {
 						"team": "machine",
 						"kind": "clock_soldier",
-						"count": 8,
+						"count": 6,
 						"at": "north_gate",
 						"tag": "sortie"
 					}
@@ -5238,6 +5296,30 @@
 					}
 				},
 				{
+					"spawn": {
+						"team": "guild",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "clock_spot",
+						"tag": "army",
+						"if": {
+							"playing": "exodus"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "guild",
+						"kind": "netter",
+						"count": 1,
+						"at": "clock_spot",
+						"tag": "army",
+						"if": {
+							"playing": "exodus"
+						}
+					}
+				},
+				{
 					"objective": {
 						"id": "bridge",
 						"set": "active"
@@ -5658,8 +5740,14 @@
 				{
 					"order": {
 						"team": "crown",
+						"kind": [
+							"musketeer",
+							"cuirassier",
+							"cannon",
+							"dismounted"
+						],
 						"do": "attack",
-						"to": "brook_s",
+						"to": "barges",
 						"idle": true
 					}
 				}
@@ -5693,7 +5781,7 @@
 					"order": {
 						"tag": "sortie",
 						"do": "attack",
-						"to": "brook_s",
+						"to": "barges",
 						"idle": true
 					}
 				}
@@ -5754,7 +5842,14 @@
 						"fired": "part3"
 					},
 					{
-						"fired": "push"
+						"any": [
+							{
+								"fired": "push"
+							},
+							{
+								"fired": "push_c"
+							}
+						]
 					},
 					{
 						"not": {
@@ -5764,7 +5859,7 @@
 					{
 						"count": {
 							"team": "crown",
-							"area": "west",
+							"area": "bank",
 							"kind": [
 								"musketeer",
 								"cuirassier",
@@ -5777,7 +5872,7 @@
 					{
 						"count": {
 							"side": "machine",
-							"area": "west",
+							"area": "bank",
 							"below": 1
 						}
 					},
@@ -6662,7 +6757,7 @@
 		},
 		"u_clock": {
 			"who": "ulrich",
-			"text": "We set up the travelling clock by the brook, Meister. Its field winds anything near it. There is a turret in the crates.",
+			"text": "We set up the travelling clock by the brook, Meister. Its field winds anything near it. Five of the journeymen came over on the first barge: they are yours. There is a turret in the crates.",
 			"to": "exodus"
 		},
 		"h_bridge": {

@@ -97,9 +97,9 @@ MINUTE = 60                  # von Rauch's minute
 CART_PACE = 0.6              # the carts on the snow (a share of their walk; 58 x 0.6 = 35: every escort keeps up)
 # the commissary's men by a02 `furth`: (musketeers, first riders, second riders, guns)
 CROWN = {"strong": (4, 3, 2, 1), "thin": (3, 2, 2, 1)}
-SORTIE = (8, 2)              # the machine's sortie: Clock Soldiers, Springers (+3 Clock Soldiers with a04's lost 2+)
+SORTIE = (6, 2)              # the machine's sortie: Clock Soldiers, Springers (+3 Clock Soldiers with a04's lost 2+)
 GUILD = {"winder": 4, "clock_soldier": 8, "springer": 2, "netter": 2, "pendulum": 1}
-GUILD_M = {"winder": 3, "clock_soldier": 5, "springer": 1, "netter": 1, "pendulum": 1}     # (the commissary's mirror: the guild scripted)
+GUILD_M = {"winder": 3, "clock_soldier": 5, "springer": 1, "netter": 2, "pendulum": 1}     # (the commissary's mirror: the guild scripted)
 
 # the barns, where each family waits with its things (the 1st is Hollweg's own: the drawings are loaded there too)
 BARNS = [[31, 14, 4, 6], [35, 8, 4, 3], [45, 8, 4, 3], [55, 12, 3, 4], [44, 41, 4, 3], [50, 44, 4, 3], [48, 30, 4, 4]]
@@ -123,6 +123,12 @@ units = [
 ] + [
     {"team": "guild", "kind": k, "count": n, "at": "muster", "tag": "army", "tags": ["guild_men"], "fixed": True, "if": NO_EXO}
     for k, n in GUILD_M.items()
+] + [
+    # (the mirror's difficulty is the guild's size: +2 Clock Soldiers at NORMAL, +4 at HARD)
+    {"team": "guild", "kind": "clock_soldier", "count": 2, "at": "muster", "tag": "army", "tags": ["guild_men"], "fixed": True,
+     "if": {"all": [NO_EXO, {"difficulty": ["normal", "hard"]}]}},
+    {"team": "guild", "kind": "clock_soldier", "count": 2, "at": "muster", "tag": "army", "tags": ["guild_men"], "fixed": True,
+     "if": {"all": [NO_EXO, {"difficulty": "hard"}]}},
 ] + [
     {"team": "families", "kind": "labourer", "as": "jakob", "count": 1, "at": "jakob_at", "tag": "jakob", "if": JAKOB},
     # ---- the families: the carts at the barns, the drawings cart and the spring cart at Hollweg's
@@ -161,7 +167,7 @@ areas = dict(
     v1=[10, 17, 4, 4], s1=[18, 23, 3, 3], s2=[8, 29, 3, 3], s3=[18, 35, 3, 3], s4=[8, 41, 3, 3], s5=[18, 46, 3, 3], s6=[18, 51, 3, 2],
     v3=[12, 34, 4, 4], brook_n=[12, 51, 4, 3], brook=[11, 53, 6, 4],
     brook_s=[12, 56, 4, 3], landing=[3, 56, 18, 18], barges=[3, 60, 4, 8], clock_spot=[16, 61, 5, 4], turret_spot=[13, 56, 2, 2],
-    valley=[7, 15, 15, 40], road_w=[7, 15, 17, 9], west=[0, 0, 31, 80],
+    valley=[7, 15, 15, 40], road_w=[7, 15, 17, 9], west=[0, 0, 31, 80], bank=[3, 46, 19, 28],
 )
 
 TAKE = [
@@ -246,7 +252,7 @@ M = {
     "expansion_spots": False,
     "manual_end": True,
     "needs": ["a07_council"],
-    "difficulty": {"easy": {"clocks": 1.25, "spawns": 0.75}, "hard": {"clocks": 0.85, "spawns": 1.25}},
+    "difficulty": {"easy": {"clocks": 1.25, "spawns": 0.75}, "hard": {"clocks": 0.9, "spawns": 1.1}},
     "modes": ["solo", "versus"],
     "solo_sides": ["exodus", "commissary"],
     "sides": [
@@ -418,9 +424,9 @@ line("r_minute_end", "rauch", "The minute is up. After them.", "O minuto acabou.
 # ---- part 3
 line("n_landing", "narrator", "The Main at last: the barges at the jetty, the bargemen stamping their feet in the snow.",
      "O Meno, enfim: as barcaças no cais, os barqueiros batendo os pés na neve.", "El Meno, por fin: las barcazas en el embarcadero, los barqueros pateando la nieve.")
-line("u_clock", "ulrich", "We set up the travelling clock by the brook, Meister. Its field winds anything near it. There is a turret in the crates.",
-     "Montámos o relógio de viagem junto ao riacho, Mestre. O seu campo dá corda a tudo o que estiver perto. Há uma torreta nos caixotes.",
-     "Montamos el reloj de viaje junto al arroyo, maestro. Su campo da cuerda a todo lo que esté cerca. Hay una torreta en las cajas.", EX)
+line("u_clock", "ulrich", "We set up the travelling clock by the brook, Meister. Its field winds anything near it. Five of the journeymen came over on the first barge: they are yours. There is a turret in the crates.",
+     "Montámos o relógio de viagem junto ao riacho, Mestre. O seu campo dá corda a tudo o que estiver perto. Cinco dos oficiais vieram na primeira barcaça: são seus. Há uma torreta nos caixotes.",
+     "Montamos el reloj de viaje junto al arroyo, maestro. Su campo da cuerda a todo lo que esté cerca. Cinco de los oficiales vinieron en la primera barcaza: son suyos. Hay una torreta en las cajas.", EX)
 line("h_bridge", "hollweg", "Hold the bridge until the last barge is loaded. The shields in front, the turret behind them.",
      "Segurem a ponte até a última barcaça estar carregada. Os escudos à frente, a torreta atrás deles.",
      "Resistid en el puente hasta que la última barcaza esté cargada. Los escudos delante, la torreta detrás.", EX)
@@ -645,7 +651,7 @@ TR_ += [
     {"id": "nojakob_flag", "when": {"all": [{"time": 2}, NO_JAKOB]}, "do": [{"flag": {"jakob": "lost"}}]},
     {"id": "riders_warn", "when": {"all": [{"clock_left": {"name": "riders", "below": 60}}, {"not": {"fired": "part2"}}, EXO]}, "do": [{"say": ["u_warn"]}]},
     # Part 2 begins: everything loaded (and Jakob's word said), or the riders' time is up. Fürth fallen: the seed first.
-    {"id": "ready", "when": {"all": [{"counter": {"name": "to_load", "below": 1}}, {"any": [NO_JAKOB, {"fired": "jakob_talk"}]},
+    {"id": "ready", "when": {"all": [{"time": 5}, {"counter": {"name": "to_load", "below": 1}}, {"any": [NO_JAKOB, {"fired": "jakob_talk"}]},
                                      {"any": [STANDING, {"done": "reclaim"}]}, {"not": {"fired": "part2"}}, LIVE]}, "do": []},
     {"id": "part2", "when": {"all": [{"any": [{"fired": "ready"}, {"clock_out": "riders"},
                                               {"all": [COM, {"time": 30}]}]},
@@ -740,6 +746,10 @@ TR_ += [
     {"id": "part3", "when": {"all": [{"fired": "part2"}, {"any": [{"count": {"tag": "convoy", "area": "landing", "at_least": 1}}, {"route_done": "road"}]}, LIVE]}, "do": [
         {"build": {"team": "guild", "kind": "clocktower", "at": [16, 61], "tag": "travelling_clock",
                    "name": T("The travelling clock", "O relógio de viagem", "El reloj de viaje")}},
+        # (Ulrich's journeymen, gone ahead with the first barge, hold the landing: the player's rearguard is never only
+        # what survived the valley)
+        {"spawn": {"team": "guild", "kind": "clock_soldier", "count": 4, "at": "clock_spot", "tag": "army", "if": EXO}},
+        {"spawn": {"team": "guild", "kind": "netter", "count": 1, "at": "clock_spot", "tag": "army", "if": EXO}},
         {"objective": {"id": "bridge", "set": "active"}}, {"clock": {"name": "last_barge", "secs": BARGE_SECS}},
         {"light": {"to": "winter_day", "secs": 40}}, {"ping": {"area": "brook"}}]},
     {"id": "part3_say", "when": {"all": [{"fired": "part3"}, EXO]}, "do": [{"say": ["n_landing", "u_clock", "h_bridge"]}]},
@@ -761,18 +771,18 @@ TR_ += [
     # the last barge loaded: Hollweg aboard (the guild scripted: he walks there himself)
     # (the scripted Crown never stands about on the far bank: every so often whatever is left of it goes for the bridge)
     {"id": "assault", "when": {"all": [{"fired": "part3"}, NO_COM, NOT_MINUTE, LIVE]}, "delay": 20, "every": 12, "do": [
-        {"order": {"team": "crown", "do": "attack", "to": "brook_s", "idle": True}}]},
+        {"order": {"team": "crown", "kind": ["musketeer", "cuirassier", "cannon", "dismounted"], "do": "attack", "to": "barges", "idle": True}}]},
     {"id": "assault_m", "when": {"all": [{"fired": "part3"}, LIVE]}, "delay": 30, "every": 12, "do": [
-        {"order": {"tag": "sortie", "do": "attack", "to": "brook_s", "idle": True}}]},
+        {"order": {"tag": "sortie", "do": "attack", "to": "barges", "idle": True}}]},
     # (the commissary's player: his reserve comes down the track to the brook when the barges start loading)
     {"id": "push_c", "when": {"all": [{"fired": "part3"}, COM]}, "delay": 20, "do": [
         {"spawn": {"team": "crown", "kind": "musketeer", "count": 3, "at": "track_s", "tag": "column"}},
         {"spawn": {"team": "crown", "kind": "cuirassier", "count": 1, "at": "track_s", "tag": "column", "tags": ["riders"]}},
         {"say": ["r_c_push"]}, {"ping": {"area": "track_s"}}]},
     # (NO WAITING: the bank quiet, every enemy beaten or gone, the bargemen load the last barge quickly)
-    {"id": "quiet", "when": {"all": [{"fired": "part3"}, {"fired": "push"}, {"not": {"fired": "last_call"}},
-        {"count": {"team": "crown", "area": "west", "kind": ["musketeer", "cuirassier", "cannon", "dismounted"], "below": 1}},
-        {"count": {"side": "machine", "area": "west", "below": 1}}, LIVE]}, "every": 3, "do": [{"clock": {"name": "last_barge", "add": -12}}]},
+    {"id": "quiet", "when": {"all": [{"fired": "part3"}, {"any": [{"fired": "push"}, {"fired": "push_c"}]}, {"not": {"fired": "last_call"}},
+        {"count": {"team": "crown", "area": "bank", "kind": ["musketeer", "cuirassier", "cannon", "dismounted"], "below": 1}},
+        {"count": {"side": "machine", "area": "bank", "below": 1}}, LIVE]}, "every": 3, "do": [{"clock": {"name": "last_barge", "add": -12}}]},
     {"id": "quiet_say", "when": {"all": [{"fired": "quiet"}, EXO]}, "do": [{"say": ["n_quiet"]}]},
     # THE REARGUARD BROKEN: the guild has no fighter left at the landing and the commissary's men are on it: they will
     # take Hollweg alive (solo with the guild; the commissary's player may take him any time)

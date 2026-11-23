@@ -92,12 +92,15 @@ func _run() -> void:
 			else:
 				_play_guild(g, r)
 		if g.clock >= next:
-			next += 30.0
+			next += 10.0 if (OS.get_cmdline_user_args().has("debug") and r.fired.has("part3")) else 30.0
 			var part := "1" if not r.fired.has("part2") else ("2" if not r.fired.has("part3") else "3")
 			if OS.get_cmdline_user_args().has("debug") and part == "1":
 				for i in 7:
 					var bu = _barn_of.get(i, null)
 					print("  barn %d loaded=%s unit=%s at %s" % [i + 1, r.fired.has("load_%d" % (i + 1)), bu.kind if bu else "-", str(g.cell_of(bu.position)) if bu else "-"])
+			if OS.get_cmdline_user_args().has("debug") and part == "3":
+				var foes: Array = g.units.filter(func(u): return not u.dead and (u.team == r.team_index("crown") or u.team == r.team_index("machine")))
+				print("  idle now=%d foes=%s quiet=%s" % [int(float(r.a2.st["idle"].get("now", 0.0))), str(foes.map(func(u): return "%s%s%s" % [u.kind.substr(0, 4), str(g.cell_of(u.position)), u.order.substr(0, 3)])), r.fired.has("quiet")])
 			var hw: Array = r.tagged("hollweg")
 			var carts: Array = r.tagged("convoy").map(func(c): return "%s%s" % [str(g.cell_of(c.position)), "T" if c.team != r.team_index("families") else ""])
 			print("SIM t=%4d part=%s loaded=%d/%d carts=%s taken=%d retaken=%d out=%d left=%d guild=%d crown=%d machine=%d hollweg=%s hp=%d riders=%s barge=%s" % [

@@ -4814,7 +4814,7 @@ const T := {
 	"Von Rauch remembered the bells of Nuremberg. Go, now, while he looks away!": "Von Rauch lembrou-se dos sinos de Nuremberg. Vão, agora, enquanto ele olha para o outro lado!",
 	"The minute is up. After them.": "O minuto acabou. Atrás deles.",
 	"The Main at last: the barges at the jetty, the bargemen stamping their feet in the snow.": "O Meno, enfim: as barcaças no cais, os barqueiros batendo os pés na neve.",
-	"We set up the travelling clock by the brook, Meister. Its field winds anything near it. There is a turret in the crates.": "Montámos o relógio de viagem junto ao riacho, Mestre. O seu campo dá corda a tudo o que estiver perto. Há uma torreta nos caixotes.",
+	"We set up the travelling clock by the brook, Meister. Its field winds anything near it. Five of the journeymen came over on the first barge: they are yours. There is a turret in the crates.": "Montámos o relógio de viagem junto ao riacho, Mestre. O seu campo dá corda a tudo o que estiver perto. Cinco dos oficiais vieram na primeira barcaça: são seus. Há uma torreta nos caixotes.",
 	"Hold the bridge until the last barge is loaded. The shields in front, the turret behind them.": "Segurem a ponte até a última barcaça estar carregada. Os escudos à frente, a torreta atrás deles.",
 	"Send a Winder to the turret's site at the bridge's foot. It builds it with the guild's last coins.": "Mande um Enrolador ao local da torreta ao pé da ponte. Ele a constrói com as últimas moedas da guilda.",
 	"A barge pushes off down the Main.": "Uma barcaça afasta-se pelo Meno abaixo.",
