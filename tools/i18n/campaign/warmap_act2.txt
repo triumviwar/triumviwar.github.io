@@ -1,0 +1,527 @@
+# THE WAR MAP's ACT 2 (job act2-warmap, docs/war_map_act2.md): the BRAZIL view, Act 2's regions, marks, pins, rules,
+# the skins' titles (THE BRASS MAP, THE SPECIMEN CHART) and their notes. EVERY LINE IS A PLACEHOLDER for the owner.
+# (Written by hand with campaign/warmap.json's texts from tools/campaign/warmap_act2.py.)
+
+> BRAZIL
+pt BRASIL
+es BRASIL
+
+> The free city (the guild's)
+pt A cidade livre (da guilda)
+es La ciudad libre (del gremio)
+
+> The lower Amazon
+pt O baixo Amazonas
+es El bajo Amazonas
+
+> Lindqvist's island
+pt A ilha de Lindqvist
+es La isla de Lindqvist
+
+> The Tapajós
+pt O Tapajós
+es El Tapajós
+
+> The sertão
+pt O sertão
+es El sertón
+
+> São Paulo
+pt São Paulo
+es São Paulo
+
+> The southern highlands
+pt O planalto do sul
+es La meseta del sur
+
+> The valley
+pt O vale
+es El valle
+
+> Concórdia
+pt Concórdia
+es Concórdia
+
+> Hamburg
+pt Hamburgo
+es Hamburgo
+
+> The old mine: the crates of 2767
+pt A mina velha: os caixotes de 2767
+es La mina vieja: los cajones de 2767
+
+> The honest masters, at the coast
+pt Os mestres honestos, na costa
+es Los maestros honrados, en la costa
+
+> São Rafael
+pt São Rafael
+es São Rafael
+
+> São Rafael, its fields burned
+pt São Rafael, os campos queimados
+es São Rafael, sus campos quemados
+
+> The fazenda, fallen
+pt A fazenda, caída
+es La hacienda, caída
+
+> The Queen: where nobody has been
+pt A Rainha: onde ninguém esteve
+es La Reina: donde nadie ha estado
+
+> Fort Constantine
+pt Forte Constantino
+es Fuerte Constantino
+
+> Salvador
+pt Salvador
+es Salvador
+
+> The siege lines
+pt As linhas do cerco
+es Las líneas del asedio
+
+> Vila Rica
+pt Vila Rica
+es Vila Rica
+
+> 2772
+pt 2772
+es 2772
+
+> 2773
+pt 2773
+es 2773
+
+> 2777
+pt 2777
+es 2777
+
+> 2778
+pt 2778
+es 2778
+
+> 2779
+pt 2779
+es 2779
+
+> 2780
+pt 2780
+es 2780
+
+> The Gold of Vila Rica
+pt O Ouro de Vila Rica
+es El Oro de Vila Rica
+
+> The City of Gears
+pt A Cidade das Engrenagens
+es La Ciudad de los Engranajes
+
+> São Rafael, on the Tapajós
+pt São Rafael, no Tapajós
+es São Rafael, en el Tapajós
+
+> Wet season 2776
+pt Estação das chuvas de 2776
+es Estación de lluvias de 2776
+
+> Wet season 2775
+pt Estação das chuvas de 2775
+es Estación de lluvias de 2775
+
+> The Mission of São Rafael
+pt A Missão de São Rafael
+es La Misión de São Rafael
+
+> The Queen
+pt A Rainha
+es La Reina
+
+> The Council of Gears
+pt O Conselho das Engrenagens
+es El Consejo de los Engranajes
+
+> The Barra do Rio Negro
+pt A Barra do Rio Negro
+es La Barra do Rio Negro
+
+> Down the Rivers
+pt Rios Abaixo
+es Río Abajo
+
+> The São Francisco
+pt O São Francisco
+es El São Francisco
+
+> Dry season 2780
+pt Estação seca de 2780
+es Estación seca de 2780
+
+> Between Two Fires
+pt Entre Dois Fogos
+es Entre Dos Fuegos
+
+> Óbidos
+pt Óbidos
+es Óbidos
+
+> The Jungle Front
+pt A Frente da Selva
+es El Frente de la Selva
+
+> Concórdia's outer works
+pt As obras exteriores de Concórdia
+es Las obras exteriores de Concórdia
+
+> The Siege of Concórdia
+pt O Cerco de Concórdia
+es El Asedio de Concórdia
+
+> The Hold
+pt O Porão
+es La Bodega
+
+> The Mining Machines
+pt As Máquinas de Mineração
+es Las Máquinas de Minería
+
+> The rising of the mines was broken at Vila Rica on the day of the tax.
+pt A revolta das minas foi quebrada em Vila Rica no dia do imposto.
+es La rebelión de las minas fue quebrada en Vila Rica el día del impuesto.
+
+> The clergy went house to house before the signal: Vila Rica is quiet.
+pt O clero foi de casa em casa antes do sinal: Vila Rica está calma.
+es El clero fue de casa en casa antes de la señal: Vila Rica está en calma.
+
+> Vila Rica is quiet only under the bayonet: the mines are restless.
+pt Vila Rica só está calma sob a baioneta: as minas estão inquietas.
+es Vila Rica solo está en calma bajo la bayoneta: las minas están inquietas.
+
+> All of the Foundry House's gold reached the coast.
+pt Todo o ouro da Casa de Fundição chegou à costa.
+es Todo el oro de la Casa de Fundición llegó a la costa.
+
+> Some of the Foundry House's gold reached the coast; the gorge took the rest.
+pt Parte do ouro da Casa de Fundição chegou à costa; o desfiladeiro levou o resto.
+es Parte del oro de la Casa de Fundición llegó a la costa; el desfiladero se llevó el resto.
+
+> Little of the Foundry House's gold reached the coast.
+pt Pouco do ouro da Casa de Fundição chegou à costa.
+es Poco del oro de la Casa de Fundición llegó a la costa.
+
+> The conspirators' leader was taken alive.
+pt O chefe dos conspiradores foi preso vivo.
+es El jefe de los conspiradores fue capturado vivo.
+
+> The conspirators' leader escaped south, to the city of gears.
+pt O chefe dos conspiradores fugiu para o sul, para a cidade das engrenagens.
+es El jefe de los conspiradores huyó al sur, a la ciudad de los engranajes.
+
+> The conspiracy took the Foundry House: not how it went.
+pt A conspiração tomou a Casa de Fundição: não foi assim que aconteceu.
+es La conspiración tomó la Casa de Fundición: no fue así como ocurrió.
+
+> Hollweg founded Concórdia on the southern highlands: a city that governs itself.
+pt Hollweg fundou Concórdia no planalto do sul: uma cidade que governa a si mesma.
+es Hollweg fundó Concórdia en la meseta del sur: una ciudad que se gobierna a sí misma.
+
+> Varenne's ship of exile ended at Concórdia: he speaks for the city now.
+pt O navio do exílio de Varenne terminou em Concórdia: agora ele fala pela cidade.
+es El barco del exilio de Varenne terminó en Concórdia: ahora él habla por la ciudad.
+
+> The valley's captain parleyed with Hollweg on the road.
+pt O capitão do vale parlamentou com Hollweg na estrada.
+es El capitán del valle parlamentó con Hollweg en el camino.
+
+> The valley fought the city from its first day.
+pt O vale lutou contra a cidade desde o primeiro dia.
+es El valle luchó contra la ciudad desde su primer día.
+
+> In the mine Hollweg opened the two crates of 2767.
+pt Na mina, Hollweg abriu os dois caixotes de 2767.
+es En la mina, Hollweg abrió los dos cajones de 2767.
+
+> The valley burned the city's first quarter: not how it went.
+pt O vale queimou o primeiro bairro da cidade: não foi assim que aconteceu.
+es El valle quemó el primer barrio de la ciudad: no fue así como ocurrió.
+
+> Tomasz left the fields standing for the people's return: the swarm fed on them.
+pt Tomasz deixou os campos de pé para a volta do povo: o enxame se alimentou deles.
+es Tomasz dejó los campos en pie para el regreso del pueblo: el enjambre se alimentó de ellos.
+
+> The fields and the granary of São Rafael were burned: the swarm found nothing to eat.
+pt Os campos e o celeiro de São Rafael foram queimados: o enxame não achou nada para comer.
+es Los campos y el granero de São Rafael fueron quemados: el enjambre no encontró nada que comer.
+
+> Most of São Rafael's people reached the river fort.
+pt A maior parte do povo de São Rafael chegou ao forte do rio.
+es La mayor parte del pueblo de São Rafael llegó al fuerte del río.
+
+> Some of São Rafael's people reached the river fort.
+pt Parte do povo de São Rafael chegou ao forte do rio.
+es Parte del pueblo de São Rafael llegó al fuerte del río.
+
+> Few of São Rafael's people reached the river fort.
+pt Poucos do povo de São Rafael chegaram ao forte do rio.
+es Pocos del pueblo de São Rafael llegaron al fuerte del río.
+
+> The swarm broke the church of São Rafael before the people reached the fort.
+pt O enxame quebrou a igreja de São Rafael antes que o povo chegasse ao forte.
+es El enjambre rompió la iglesia de São Rafael antes de que el pueblo llegara al fuerte.
+
+> The fazenda fell in a night of flood. In its pens the strongest Mother grew into a Queen, and every bred creature turned to it.
+pt A fazenda caiu numa noite de cheia. Nos currais a Mãe mais forte cresceu e virou Rainha, e toda criatura criada se voltou para ela.
+es La hacienda cayó en una noche de crecida. En los corrales la Madre más fuerte creció hasta ser Reina, y toda criatura criada se volvió hacia ella.
+
+> Nearly all of the bred creatures went to the Queen.
+pt Quase todas as criaturas criadas foram para a Rainha.
+es Casi todas las criaturas criadas fueron hacia la Reina.
+
+> Some of the bred creatures went to the Queen.
+pt Parte das criaturas criadas foi para a Rainha.
+es Parte de las criaturas criadas fue hacia la Reina.
+
+> Few of the bred creatures went to the Queen: Lindqvist burned the rest.
+pt Poucas criaturas criadas foram para a Rainha: Lindqvist queimou o resto.
+es Pocas criaturas criadas fueron hacia la Reina: Lindqvist quemó el resto.
+
+> Pieter did not reach the canoes.
+pt Pieter não chegou às canoas.
+es Pieter no llegó a las canoas.
+
+> The great spring was left running: the city ran on, and Hollweg called it saved.
+pt A grande mola ficou correndo: a cidade seguiu andando, e Hollweg disse que ela estava salva.
+es El gran resorte quedó en marcha: la ciudad siguió andando, y Hollweg la dio por salvada.
+
+> Hollweg stopped the great spring: the city is dead brass; the honest masters went to the coast.
+pt Hollweg parou a grande mola: a cidade é latão morto; os mestres honestos foram para a costa.
+es Hollweg detuvo el gran resorte: la ciudad es latón muerto; los maestros honrados se fueron a la costa.
+
+> Most of the honest masters stood with Hollweg.
+pt A maior parte dos mestres honestos ficou com Hollweg.
+es La mayor parte de los maestros honrados se quedó con Hollweg.
+
+> Some of the honest masters stood with Hollweg.
+pt Parte dos mestres honestos ficou com Hollweg.
+es Parte de los maestros honrados se quedó con Hollweg.
+
+> Few of the honest masters stood with Hollweg.
+pt Poucos dos mestres honestos ficaram com Hollweg.
+es Pocos de los maestros honrados se quedaron con Hollweg.
+
+> The machine meshed the council hall before dawn.
+pt A máquina engrenou a sala do conselho antes do amanhecer.
+es La máquina engranó la sala del consejo antes del amanecer.
+
+> The swarm came down the rivers in the floods; the towns above the Barra are empty.
+pt O enxame desceu os rios nas cheias; as vilas acima da Barra estão vazias.
+es El enjambre bajó por los ríos con las crecidas; los pueblos sobre la Barra están vacíos.
+
+> Valadares held the Barra, every quarter standing.
+pt Valadares segurou a Barra, com todos os bairros de pé.
+es Valadares sostuvo la Barra, con todos los barrios en pie.
+
+> Valadares held the bluff, but the Barra's lower town burned.
+pt Valadares segurou o barranco, mas a cidade baixa da Barra queimou.
+es Valadares sostuvo el barranco, pero la ciudad baja de la Barra ardió.
+
+> The lure book was burned, as Rome ordered.
+pt O livro das iscas foi queimado, como Roma mandou.
+es El libro de los señuelos fue quemado, como Roma ordenó.
+
+> The lure book was used once, to draw the great wave into the flooded forest.
+pt O livro das iscas foi usado uma vez, para atrair a grande onda para a floresta alagada.
+es El libro de los señuelos se usó una vez, para atraer la gran oleada al bosque inundado.
+
+> All of Nazaré was brought down the river.
+pt Toda Nazaré foi trazida rio abaixo.
+es Toda Nazaré fue traída río abajo.
+
+> Some of Nazaré was brought down the river.
+pt Parte de Nazaré foi trazida rio abaixo.
+es Parte de Nazaré fue traída río abajo.
+
+> Few of Nazaré's people were brought down the river.
+pt Poucos do povo de Nazaré foram trazidos rio abaixo.
+es Pocos del pueblo de Nazaré fueron traídos río abajo.
+
+> The swarm took the Barra's bluff and its guns: not how it went.
+pt O enxame tomou o barranco da Barra e seus canhões: não foi assim que aconteceu.
+es El enjambre tomó el barranco de la Barra y sus cañones: no fue así como ocurrió.
+
+> The army of Brazil relieved the fort at the crossroads of the São Francisco.
+pt O exército do Brasil socorreu o forte da encruzilhada do São Francisco.
+es El ejército de Brasil socorrió el fuerte de la encrucijada del São Francisco.
+
+> Ruggieri chose the swarm first: the army went up the rivers.
+pt Ruggieri escolheu o enxame primeiro: o exército subiu os rios.
+es Ruggieri eligió primero el enjambre: el ejército subió por los ríos.
+
+> Ruggieri chose the city first: the army went south to the highlands.
+pt Ruggieri escolheu a cidade primeiro: o exército foi para o sul, ao planalto.
+es Ruggieri eligió primero la ciudad: el ejército fue al sur, a la meseta.
+
+> Most of the road's villages came into the fort.
+pt A maior parte das aldeias da estrada entrou no forte.
+es La mayor parte de las aldeas del camino entró en el fuerte.
+
+> Some of the road's villages came into the fort.
+pt Parte das aldeias da estrada entrou no forte.
+es Parte de las aldeas del camino entró en el fuerte.
+
+> Few of the road's villages came into the fort.
+pt Poucas aldeias da estrada entraram no forte.
+es Pocas aldeas del camino entraron en el fuerte.
+
+> The army's scouts saw it from the road: Concórdia is the machine's.
+pt Os batedores do exército viram da estrada: Concórdia é da máquina.
+es Los exploradores del ejército lo vieron desde el camino: Concórdia es de la máquina.
+
+> Waits: the army is in the north, and the city grows while it waits.
+pt Espera: o exército está no norte, e a cidade cresce enquanto espera.
+es Espera: el ejército está en el norte, y la ciudad crece mientras espera.
+
+> Waits: the army is in the south, and the swarm spreads while it waits.
+pt Espera: o exército está no sul, e o enxame se espalha enquanto espera.
+es Espera: el ejército está en el sur, y el enjambre se extiende mientras espera.
+
+> The swarm's nests on the river were broken in time: the river towns hold.
+pt Os ninhos do enxame no rio foram quebrados a tempo: as vilas do rio resistem.
+es Los nidos del enjambre en el río fueron rotos a tiempo: los pueblos del río resisten.
+
+> The nests were broken too late: the lower river is the swarm's.
+pt Os ninhos foram quebrados tarde demais: o baixo rio é do enxame.
+es Los nidos fueron rotos demasiado tarde: el bajo río es del enjambre.
+
+> The swarm held the river till the dry season.
+pt O enxame segurou o rio até a estação seca.
+es El enjambre sostuvo el río hasta la estación seca.
+
+> The great spring's tower was blown from the old mine: the city is crippled and besieged.
+pt A torre da grande mola foi explodida pela mina velha: a cidade está aleijada e cercada.
+es La torre del gran resorte fue volada desde la mina vieja: la ciudad está lisiada y asediada.
+
+> The army holds the road, but the city stands whole behind its walls.
+pt O exército segura a estrada, mas a cidade está inteira atrás das muralhas.
+es El ejército sostiene el camino, pero la ciudad sigue entera tras sus murallas.
+
+> Jakob fell before the walls of Concórdia.
+pt Jakob caiu diante das muralhas de Concórdia.
+es Jakob cayó ante las murallas de Concórdia.
+
+> The city broke the siege's batteries.
+pt A cidade quebrou as baterias do cerco.
+es La ciudad rompió las baterías del asedio.
+
+> Every egg in the hold at Luanda was found and burned.
+pt Todos os ovos do porão em Luanda foram achados e queimados.
+es Todos los huevos de la bodega en Luanda fueron hallados y quemados.
+
+> Some of the eggs at Luanda were carried off by the tide: the first of the Brood in Africa.
+pt Alguns ovos em Luanda foram levados pela maré: a primeira Ninhada na África.
+es Algunos huevos en Luanda se los llevó la marea: la primera Nidada en África.
+
+> The mining machines at Goa were smashed in the Viceroy's arsenal.
+pt As máquinas de mineração em Goa foram esmagadas no arsenal do Vice-Rei.
+es Las máquinas de minería en Goa fueron destrozadas en el arsenal del Virrey.
+
+> Some of the mining machines were shipped on from Goa: the first seed in Asia.
+pt Algumas máquinas de mineração seguiram de navio desde Goa: a primeira semente na Ásia.
+es Algunas máquinas de minería siguieron en barco desde Goa: la primera semilla en Asia.
+
+> Tomasz, a missionary in Brazil now, and the garrison stop the Free Assembly's rising in the gold town.
+pt Tomasz, agora missionário no Brasil, e a guarnição detêm a revolta da Assembleia Livre na vila do ouro.
+es Tomasz, ahora misionero en Brasil, y la guarnición detienen la rebelión de la Asamblea Libre en el pueblo del oro.
+
+> The guild founds a free city over an old mine; the valley below fears it from the first day.
+pt A guilda funda uma cidade livre sobre uma mina velha; o vale abaixo a teme desde o primeiro dia.
+es El gremio funda una ciudad libre sobre una mina vieja; el valle de abajo la teme desde el primer día.
+
+> The swarm comes out of the flooded forest at Tomasz's mission: bring the people to the river fort.
+pt O enxame sai da floresta alagada na missão de Tomasz: leve o povo ao forte do rio.
+es El enjambre sale del bosque inundado en la misión de Tomasz: lleva al pueblo al fuerte del río.
+
+> The flood comes to Lindqvist's island; in the pens the strongest Mother grows into a Queen.
+pt A cheia chega à ilha de Lindqvist; nos currais a Mãe mais forte vira Rainha.
+es La crecida llega a la isla de Lindqvist; en los corrales la Madre más fuerte se hace Reina.
+
+> The city's machines begin to vote through the masters who wind them. Hollweg at the great spring.
+pt As máquinas da cidade começam a votar pelos mestres que lhes dão corda. Hollweg na grande mola.
+es Las máquinas de la ciudad empiezan a votar a través de los maestros que les dan cuerda. Hollweg en el gran resorte.
+
+> Valadares holds the Barra against the swarm in the floods and brings the people of Nazaré out.
+pt Valadares segura a Barra contra o enxame nas cheias e tira o povo de Nazaré.
+es Valadares sostiene la Barra contra el enjambre en las crecidas y saca al pueblo de Nazaré.
+
+> The army of Brazil marches to the fort at the crossroads; both fires find it. The Crown chooses which first.
+pt O exército do Brasil marcha ao forte da encruzilhada; os dois fogos o encontram. A Coroa escolhe qual primeiro.
+es El ejército de Brasil marcha al fuerte de la encrucijada; los dos fuegos lo encuentran. La Corona elige cuál primero.
+
+> The army's jungle column breaks the swarm's nests on the river, Valadares leading it.
+pt A coluna da selva do exército quebra os ninhos do enxame no rio, com Valadares à frente.
+es La columna de la selva del ejército rompe los nidos del enjambre en el río, con Valadares al frente.
+
+> The army's southern column lays siege to the city of gears, Father Ferrer as Rome's witness.
+pt A coluna do sul do exército cerca a cidade das engrenagens, com o Padre Ferrer como testemunha de Roma.
+es La columna del sur del ejército asedia la ciudad de los engranajes, con el Padre Ferrer como testigo de Roma.
+
+> Optional. Eggs found in a Brazilian ship's hold at Luanda: hunt what hatched before the tide takes it.
+pt Opcional. Ovos achados no porão de um navio brasileiro em Luanda: cace o que nasceu antes que a maré o leve.
+es Opcional. Huevos hallados en la bodega de un barco brasileño en Luanda: caza lo que nació antes de que la marea se lo lleve.
+
+> Optional. Concórdia's mining machines wake in the Viceroy's arsenal at Goa, Father Ferrer arriving.
+pt Opcional. As máquinas de mineração de Concórdia acordam no arsenal do Vice-Rei em Goa, quando chega o Padre Ferrer.
+es Opcional. Las máquinas de minería de Concórdia despiertan en el arsenal del Virrey en Goa, cuando llega el Padre Ferrer.
+
+> Act 2: 2771-2780
+pt Ato 2: 2771-2780
+es Acto 2: 2771-2780
+
+> THE BRASS MAP
+pt O MAPA DE LATÃO
+es EL MAPA DE LATÓN
+
+> THE SPECIMEN CHART
+pt A CARTA DOS ESPÉCIMES
+es LA CARTA DE LOS ESPECÍMENES
+
+> Specimen notes: where the floods go, the creatures go.
+pt Notas dos espécimes: aonde vão as cheias, vão as criaturas.
+es Notas de los especímenes: adonde van las crecidas, van las criaturas.
+
+> The station. Burnt, Saint John's Eve 2767.
+pt A estação. Queimada, véspera de São João de 2767.
+es La estación. Quemada, víspera de San Juan de 2767.
+
+> The nest, drawn by Valadares.
+pt O ninho, desenhado por Valadares.
+es El nido, dibujado por Valadares.
+
+> The pens, kept against Rome's verdict.
+pt Os currais, mantidos contra o veredito de Roma.
+es Los corrales, mantenidos contra el veredicto de Roma.
+
+> Something roots here. No one has gone to look.
+pt Algo se enraíza aqui. Ninguém foi ver.
+es Algo echa raíces aquí. Nadie ha ido a mirar.
+
+> Their ground creeps in the flood: a mile a week (V.).
+pt O chão deles avança na cheia: uma milha por semana (V.).
+es Su suelo avanza con la crecida: una milla por semana (V.).
+
+> Nuremberg, Advent 2767.
+pt Nuremberg, Advento de 2767.
+es Núremberg, Adviento de 2767.
+
+> Landed, 2771.
+pt Desembarcados, 2771.
+es Desembarcados, 2771.
+
+> CONCORDIA. Founded 2773.
+pt CONCORDIA. Fundada em 2773.
+es CONCORDIA. Fundada en 2773.
+
+> 100 leagues
+pt 100 léguas
+es 100 leguas

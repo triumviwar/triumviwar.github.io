@@ -6,7 +6,11 @@ extends RefCounted
 ## seal, and the ledger's lines; WarMap draws that.
 
 const PATH := "res://campaign/warmap.json"
-const HOLDERS := ["empire", "crown", "contested", "machine", "brood", "unrest", "unknown"]
+const HOLDERS := ["empire", "crown", "contested", "machine", "brood", "unrest", "unknown", "guild"]
+## The skins (WarMap.SKINS): the King's parchment, the Clockmaker's brass map, the Naturalist's specimen chart
+## (act2-warmap, docs/war_map_act2.md). Same data; a rule may name the skins it is for ("skins").
+const SKINS := ["parchment", "brass", "chart"]
+const MARK_KINDS := ["dot", "village", "town", "burnt", "question", "ship", "route", "gear", "queen", "church", "church_burnt", "fort", "siege"]
 const PIN_STATES := ["planned", "locked", "open", "done"]
 
 static var _data := {}
@@ -217,8 +221,11 @@ static func pin_state(mid: String, p: Dictionary) -> String:
 
 
 ## The map as the progress leaves it: {"regions": {id: holder}, "marks": {id: shown}, "pins": {mission: {"state",
-## "seal" ("" / "seal" / "broken"), "won_by"}}, "ledger": [{"text", "args": [strings], "missions": [ids]}]}.
-static func state(p: Dictionary = {}) -> Dictionary:
+## "seal" ("" / "seal" / "broken"), "won_by", "clock" (the diamond's waiting front: its words, or "")}},
+## "ledger": [{"text", "args": [strings], "missions": [ids]}], "notes": [the skin's margin notes shown]}.
+## `skin`: a rule with "skins" runs only for those (Concórdia turns red on the King's parchment and the Naturalist's
+## chart; Hollweg's brass map never shows it red: docs/war_map_act2.md).
+static func state(p: Dictionary = {}, skin := "parchment") -> Dictionary:
 	if p.is_empty():
 		p = Campaign.progress()
 	var d := data()
@@ -232,10 +239,12 @@ static func state(p: Dictionary = {}) -> Dictionary:
 	for pn in d.get("pins", []):
 		var mid := String(pn["mission"])
 		var s := pin_state(mid, p)
-		pins[mid] = {"state": s, "seal": "seal" if s == "done" else "",
+		pins[mid] = {"state": s, "seal": "seal" if s == "done" else "", "clock": "",
 			"won_by": String(((p.get("done", {}) as Dictionary).get(mid, {}) as Dictionary).get("won_by", ""))}
 	var ledger: Array = []
 	for r in d.get("rules", []):
+		if r.has("skins") and not (r["skins"] as Array).has(skin):
+			continue
 		if not cond_ok(r.get("if", {}), p):
 			continue
 		var to := String(r.get("to", ""))
@@ -250,7 +259,10 @@ static func state(p: Dictionary = {}) -> Dictionary:
 		for id in mids:
 			marks[String(id)] = bool(r.get("show", true))
 		if r.has("pin") and pins.has(String(r["pin"])):
-			pins[String(r["pin"])]["seal"] = String(r.get("seal", "seal"))
+			if r.has("clock"):
+				pins[String(r["pin"])]["clock"] = String(r["clock"])
+			else:
+				pins[String(r["pin"])]["seal"] = String(r.get("seal", "seal"))
 		if String(r.get("ledger", "")) != "":
 			var args: Array = (r.get("args", []) as Array).map(func(k) -> String:
 				var v: Variant = flag_in(p, String(k))
@@ -258,7 +270,32 @@ static func state(p: Dictionary = {}) -> Dictionary:
 					v = int(v)          # (a count from the saved progress comes back as 34.0)
 				return "?" if v == null else str(v))
 			ledger.append({"text": String(r["ledger"]), "args": args, "missions": cond_missions(r.get("if", {}))})
-	return {"regions": regions, "marks": marks, "pins": pins, "ledger": ledger}
+	var notes: Array = []
+	for n in d.get("notes", []):
+		if (n.get("skins", SKINS) as Array).has(skin) and cond_ok(n.get("if", {}), p):
+			notes.append(n)
+	return {"regions": regions, "marks": marks, "pins": pins, "ledger": ledger, "notes": notes}
+
+
+## THE ACT the progress has reached (data "acts", a later one wins): {"act", "act_title", "view"} (the view the map
+## opens on: Act 2 unrolls BRAZIL).
+static func act(p: Dictionary = {}) -> Dictionary:
+	if p.is_empty():
+		p = Campaign.progress()
+	var d := data()
+	var vs: Array = d.get("views", [])
+	var out := {"act": int(d.get("act", 1)), "act_title": String(d.get("act_title", "")), "view": String(vs[0]["id"]) if not vs.is_empty() else ""}
+	for a in d.get("acts", []):
+		if cond_ok(a.get("if", {}), p):
+			for k in ["act", "act_title", "view"]:
+				if a.has(k):
+					out[k] = a[k]
+	return out
+
+
+## A skin's title (THE WAR MAP, THE BRASS MAP, THE SPECIMEN CHART).
+static func skin_title(skin: String) -> String:
+	return String(data().get("skins", {}).get(skin, {}).get("title", data().get("title", "THE WAR MAP")))
 
 
 ## The ledger lines of one mission (its pin card's WHAT CAME OF IT).
@@ -333,6 +370,30 @@ static func problems() -> Array:
 	for mid in Campaign.mission_ids():
 		if not pins.has(mid):
 			out.append("mission %s has no pin on the war map" % mid)
+	for mk in d.get("marks", []):
+		if not MARK_KINDS.has(String(mk.get("kind", "dot"))):
+			out.append("mark %s: unknown kind %s" % [mk["id"], mk.get("kind", "")])
+		if String(mk.get("kind", "")) == "route" and (mk.get("points", []) as Array).size() < 2:
+			out.append("mark %s: a route needs points" % mk["id"])
+	for v in d.get("views", []):
+		if (v.get("rect", []) as Array).size() != 4:
+			out.append("view %s: no rect" % v.get("id", "?"))
+	var vids: Array = (d.get("views", []) as Array).map(func(v) -> String: return String(v["id"]))
+	var ai := 0
+	for a in d.get("acts", []):
+		if a.has("view") and not vids.has(String(a["view"])):
+			out.append("act %d: unknown view %s" % [ai, a["view"]])
+		_check_cond(a.get("if", {}), "act %d" % ai, pins, out)
+		ai += 1
+	var ni := 0
+	for n in d.get("notes", []):
+		for sk in n.get("skins", []):
+			if not SKINS.has(String(sk)):
+				out.append("note %d: unknown skin %s" % [ni, sk])
+		if (n.get("point", []) as Array).size() != 2 or String(n.get("text", "")) == "":
+			out.append("note %d: no point or text" % ni)
+		_check_cond(n.get("if", {}), "note %d" % ni, pins, out)
+		ni += 1
 	for rg in d.get("regions", []):
 		if not HOLDERS.has(String(rg.get("holder", "empire"))):
 			out.append("region %s: unknown holder" % rg["id"])
@@ -353,6 +414,11 @@ static func problems() -> Array:
 				out.append("%s: unknown mark %s" % [w, id])
 		if r.has("pin") and not pins.has(String(r["pin"])):
 			out.append("%s: unknown pin %s" % [w, r["pin"]])
+		if r.has("clock") and not r.has("pin"):
+			out.append("%s: a clock needs a pin" % w)
+		for sk in r.get("skins", []):
+			if not SKINS.has(String(sk)):
+				out.append("%s: unknown skin %s" % [w, sk])
 		_check_cond(r.get("if", {}), w, pins, out)
 	return out
 
@@ -412,4 +478,13 @@ static func strings() -> Array:
 		out.append_array([String(pn.get("place", "")), String(pn.get("date", "")), String(pn.get("title", ""))])
 	for r in d.get("rules", []):
 		out.append(String(r.get("ledger", "")))
+		out.append(String(r.get("clock", "")))
+	for pn in d.get("pins", []):
+		out.append(String(pn.get("about", "")))
+	for a in d.get("acts", []):
+		out.append(String(a.get("act_title", "")))
+	for k in d.get("skins", {}):
+		out.append(String(d["skins"][k].get("title", "")))
+	for n in d.get("notes", []):
+		out.append(String(n.get("text", "")))
 	return out.filter(func(s: String) -> bool: return s != "")

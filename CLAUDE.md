@@ -26,6 +26,12 @@
 
 ## Current work
 
+- THE WAR MAP's ACT 2 (job act2-warmap, branch act2-warmap, docs/war_map_act2.md; Act 2 build step 4): the BRAZIL view
+  (opens after a07; drawn, slot painted_brazil.jpg), Act 2's regions/marks/pins d01-d13 (planned ones with an `about`
+  line) and rules by the plan's flags (tools/campaign/warmap_act2.py writes them), new holder `guild` (the free city),
+  the diamond's CLOCK on the waiting front, the BRASS MAP (Clockmaker's hub) and the SPECIMEN CHART (Naturalist's hub)
+  skins drawn in code (no Brood skin, ever); tests in tools/test_war_map.gd, pictures tools/shot_war_map_act2.gd ->
+  docs/shots/war_map/act2/; 3 ChatGPT prompts and 16 Claude's choices in the doc. Patch note under 0.38.999.
 - d02_exodus BUILT (job d02-exodus, 0.38.184, docs/campaign_d02_build.md): Act 2 step 2, "The Exodus" (the Clockmaker
   line after a07, Feb 2771): map campaign:furth_exodus (from a04's), mission tools/campaign/make_d02_mission.py; the guild
   loads family carts (3/5/7 by c01 `saved`), the drawings cart (c01 gate pattern), Jakob always stays; the road down the

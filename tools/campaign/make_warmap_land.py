@@ -15,7 +15,10 @@ from shapely.geometry import shape, box, Polygon, MultiPolygon, LineString, Mult
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 RIVERS = {"Amazonas", "Negro", "Rhine", "Rhein", "Rhône", "Seine", "Danube", "Donau", "Loire", "Po", "Potomac",
-          "Ohio", "Mississippi", "Tejo", "Elbe", "Orinoco"}
+          "Ohio", "Mississippi", "Tejo", "Elbe", "Orinoco",
+          # Act 2's Brazil (act2-warmap): the rivers its missions stand on
+          "Tapajós", "São  Francisco", "São Francisco", "Madeira", "Xingu", "Tocantins", "Araguaia", "Paraná", "Uruguay",
+          "Grande", "Paranaíba", "Branco", "Japurá", "Purús", "Jequitinhonha"}
 TOL = 0.05          # simplification (degrees)
 MIN_AREA = 0.15     # smaller islands left out (square degrees)
 

@@ -232,8 +232,11 @@ static func war_table(main: Node) -> void:
 	main._set_back(back)
 	back.custom_minimum_size = Vector2(240, 56)
 	brow.add_child(back)
-	# THE WAR MAP (war-map-v1): every war table can open it (the King's parchment until each hub has its own skin)
-	var wm: Button = main._button("WAR MAP", func() -> void: war_map(main))
+	# THE WAR MAP (war-map-v1): every war table can open it, in its own line's skin (act2-warmap: the King's parchment,
+	# the Clockmaker's brass map, the Naturalist's specimen chart)
+	var wm: Button = main._button("WAR MAP", func() -> void:
+		map_skin = skin_for(line)
+		war_map(main))
 	wm.name = "WarTable_Map"
 	wm.custom_minimum_size = Vector2(240, 56)
 	brow.add_child(wm)
@@ -1024,6 +1027,17 @@ static func _talk(box: PanelContainer, tk: Dictionary, lines: Array, choice: Dic
 
 ## The war map page: the map (WarMap) with its views, the LEDGER, the LIST (the old war table) and a card for the pin
 ## picked: its mission, date and line, what came of it, and BRIEFING / WAR TABLE to play it (or what opens it).
+## The war map's skin each storyline's hub reads (act2-warmap): the Crown's line the King's parchment, the Clockmaker's
+## the brass map, the Naturalist's the specimen chart (Lindqvist's, then Valadares': never the Brood's own).
+static func skin_for(l: String) -> String:
+	match l:
+		"clockmaker":
+			return "brass"
+		"naturalist":
+			return "chart"
+	return "parchment"
+
+
 static func war_map(main: Node) -> void:
 	if not map_open:
 		map_home = line
@@ -1034,7 +1048,12 @@ static func war_map(main: Node) -> void:
 	var top := HBoxContainer.new()
 	top.add_theme_constant_override("separation", 8)
 	box.add_child(top)
-	var t := UiStyle.heading(Loc.t(String(d.get("title", "THE WAR MAP"))) + "  ·  " + Loc.t(String(d.get("act_title", ""))), 30 if pc else 22, UiStyle.TRIM)
+	var act_t := String(WarMapData.act().get("act_title", d.get("act_title", "")))
+	# (the act's dates live in the ledger and the cartouche: the heading keeps "Act 2" so the views' buttons fit)
+	var act_short := Loc.t(act_t).split(":")[0]
+	var ttxt := Loc.t(WarMapData.skin_title(map_skin)) + "  ·  " + act_short
+	var t := UiStyle.heading(ttxt, (30 if ttxt.length() <= 22 else 24) if pc else (22 if ttxt.length() <= 22 else 18), UiStyle.TRIM)
+	t.tooltip_text = Loc.t(act_t)
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	t.clip_text = true
@@ -1154,7 +1173,7 @@ static func war_map(main: Node) -> void:
 		for c in lv.get_children():
 			c.queue_free()
 		lv.add_child(UiStyle.text(Loc.t("THE LEDGER"), 22, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
-		lv.add_child(_wrap(Loc.t(String(d.get("act_title", ""))), 15, UiStyle.MUTED))
+		lv.add_child(_wrap(Loc.t(act_t), 15, UiStyle.MUTED))
 		var ls: Array = stt.get("ledger", [])
 		if ls.is_empty():
 			lv.add_child(_wrap(Loc.t("Nothing yet: the ledger fills as the missions are played."), 16, UiStyle.MUTED))
@@ -1175,12 +1194,13 @@ static func war_map(main: Node) -> void:
 			var sw := ColorRect.new()
 			var hc: Dictionary = WarMap.SKINS[wm.skin]["holders"][h]
 			sw.color = Color(hc["fill"], 0.9) if h != "unknown" else hc["fill"]
+			var first: Color = Color(hc["fill"], 1.0) if wm.skin == "brass" else Color(hc["line"], 1.0)      # (the brass map's rims are all brass)
 			sw.custom_minimum_size = Vector2(16, 16)
 			sw.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 			if h == "contested" or h == "unrest":
 				# (the two colours its stripes alternate: the Crown's and the machine's, the Assembly's green and black)
 				sw.custom_minimum_size = Vector2(8, 16)
-				sw.color = Color(hc["line"], 1.0) if h == "contested" else Color(0.20, 0.50, 0.22)
+				sw.color = first if h == "contested" else Color(0.20, 0.50, 0.22)
 				row.add_child(sw)
 				sw = ColorRect.new()
 				sw.custom_minimum_size = Vector2(8, 16)
@@ -1199,7 +1219,9 @@ static func war_map(main: Node) -> void:
 		card.visible = mid != ""
 		if mid != "":
 			_pin_card(main, card, mid, wm.st, pc, keep_cam)
-			wm.free_rect = Rect2(0, 0, wm.size.x - 440, wm.size.y) if pc else Rect2(0, 0, wm.size.x, wm.size.y * 0.42)
+			# (the card's side, not a rectangle measured now: the page may not be laid out yet, act2-warmap)
+			wm.card_right = 440.0 if pc else 0.0
+			wm.card_top = 0.0 if pc else 0.42
 			wm.bring_into_view.call_deferred(mid)
 	wm.pin_tapped.connect(show_card)
 	if map_pick != "":
@@ -1230,7 +1252,7 @@ static func _pin_card(main: Node, card: PanelContainer, mid: String, stt: Dictio
 	var pn := WarMapData.pin_of(mid)
 	var ps: Dictionary = stt.get("pins", {}).get(mid, {"state": "planned"})
 	var state := String(ps.get("state", "planned"))
-	var built := state != "planned"
+	var built := state != "planned" and not Campaign.storyline_of(mid).is_empty()      # (a test's progress may "finish" a planned one)
 	var m: Dictionary = Campaign.mission(mid) if built else {}
 	var lines_d: Dictionary = WarMapData.data().get("lines", {})
 	var col: Color = WarMap.SKINS["parchment"]["lines"].get(String(pn.get("line", "")), UiStyle.TRIM)
@@ -1280,8 +1302,18 @@ static func _pin_card(main: Node, card: PanelContainer, mid: String, stt: Dictio
 	sl2.name = "CardState"
 	sl2.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	v.add_child(sl2)
-	if state in ["open", "done"]:
+	if state in ["open", "done"] and built:
 		v.add_child(_wrap(Loc.t(String(m.get("summary", ""))), 16 if pc else 18))
+	elif String(pn.get("about", "")) != "":
+		# SAY IT PLAINLY (Act 2's rules): a mission not open yet still says what it will be about
+		var ab := _wrap(Loc.t(String(pn["about"])), 16 if pc else 18)
+		ab.name = "CardAbout"
+		v.add_child(ab)
+	if String(ps.get("clock", "")) != "":
+		# the diamond's clock (d09's choice): the front not chosen waits, and grows
+		var ck := _wrap(Loc.t(String(ps["clock"])), 16 if pc else 18, UiStyle.BAD)
+		ck.name = "CardClock"
+		v.add_child(ck)
 	var came := WarMapData.ledger_of(stt, mid)
 	if not came.is_empty():
 		v.add_child(UiStyle.text(Loc.t("WHAT CAME OF IT"), 15, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
@@ -1294,7 +1326,7 @@ static func _pin_card(main: Node, card: PanelContainer, mid: String, stt: Dictio
 	if not pc:
 		bv.custom_minimum_size.x = 260
 	outer.add_child(bv)
-	if state in ["open", "done"]:
+	if state in ["open", "done"] and built:
 		var sl := Campaign.storyline_of(mid)
 		if MissionSave.has(mid, "auto") or MissionSave.has(mid, "save") or MissionSave.has(mid, "checkpoint"):
 			_save_row(main, bv, mid)      # (the pin's card too: CONTINUE and the rest, player-comforts)

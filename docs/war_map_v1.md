@@ -1,5 +1,7 @@
 # THE WAR MAP v1 (job war-map-v1, 0.38.56)
 
+(Act 2's BRAZIL view, pins and rules, and the BRASS MAP and SPECIMEN CHART skins: docs/war_map_act2.md.)
+
 Step 4 of docs/campaign_act1_plan.md's build order: the King's study's PARCHMENT only, drawn in code as a stand-in for
 the owner's painting, with all of Act 1's regions, pins and rules. The war table's LIST stays. ALL TEXT PLACEHOLDER.
 

@@ -50,6 +50,14 @@ SHEETS = {
     },
 }
 
+# BRAZIL (act2-warmap, docs/war_map_act2.md): no painting yet. When art/campaign/warmap_brazil_chatgpt.png comes, add
+# "brazil": {"affine": False, "fit": [[lon, lat, x, y], ...], "cart": [x, y, w]} to SHEETS with these places' pixels
+# read off the painting (the mouths and bends of the rivers are the surest; at least 8):
+#   the Amazon's mouth at Belem [-48.5, -1.45]; Obidos [-55.52, -1.9]; the Negro meets the Amazon (the Barra) [-60.0, -3.1];
+#   the Tapajos meets the Amazon (Santarem) [-54.7, -2.44]; Salvador [-38.9, -12.9]; Cape Sao Roque [-35.2, -5.4];
+#   Rio de Janeiro's bay [-43.2, -22.9]; Vila Rica [-43.5, -20.39]; the Sao Francisco's mouth [-36.4, -10.5];
+#   Santa Catarina island [-48.5, -27.6]; the Rio de la Plata's mouth [-57.0, -35.0]; the Uruguay at the highlands [-52.0, -27.2].
+# The view's rect (campaign/warmap.json "views" brazil) is [-74, -34, -33, 6]: the painting should cover it.
 
 def feats(lon, lat, affine):
     return [1, lon, lat] if affine else [1, lon, lat, lon * lon, lon * lat, lat * lat]

@@ -326,5 +326,243 @@ func _run() -> void:
 	await process_frame
 	_data()
 	_states()
+	_act2()
 	await _ui()
+	await _ui_act2()
 	_finish()
+
+
+# ------------------------------------------------------------------ ACT 2 (act2-warmap, docs/war_map_act2.md)
+
+## Act 1 played through (the canon-ish run): Act 2's pins open from here.
+const ACT1 := {
+	"a02_furth": ["guild", {"furth": "strong"}],
+	"a03_plateau": ["party", {"map": "drawn", "party": "some"}],
+	"a01_presses": ["crown", {"lyon": "calm"}],
+	"a06_barricades": ["crown", {"varenne": "spared"}],
+	"a04_visit": ["visit", {"broken": "kept", "lost_to_machine": 2}],
+	"a05_specimens": ["expedition", {"cages": "some", "cages_n": 2}],
+	"a07_council": ["crown", {"rome": "some"}],
+}
+
+const ACT2_PINS := ["d01_minas", "d02_exodus", "d03_fazenda", "d04_concordia", "d05_aldeia", "d06_queen", "d07_spring",
+	"d08_rivers", "d09_crossroads", "d10_jungle", "d11_siege", "d12_luanda", "d13_goa"]
+
+
+func _act1(extra: Dictionary) -> Dictionary:
+	var d := PRO.duplicate(true)
+	d.merge(ACT1, true)
+	d.merge(extra, true)
+	return _p(d)
+
+
+## Is a place (lon, lat) on land (Natural Earth's coasts, as the drawn map has them)?
+func _on_land(pt: Array) -> bool:
+	var q := WarMapData.pt(pt)
+	for flat in WarMapData.land().get("land", []):
+		if Geometry2D.is_point_in_polygon(q, WarMapData.ring(flat)):
+			return true
+	return false
+
+
+func _act2() -> void:
+	var d := WarMapData.data()
+	# ---- the view, the act, the skins
+	var vids: Array = (d["views"] as Array).map(func(v) -> String: return String(v["id"]))
+	check("act 2: a BRAZIL view, second after THE WORLD", vids.size() >= 2 and vids[1] == "brazil")
+	var br := WarMapData.rect_of(d["views"][1]["rect"])
+	for pl in [[-43.5, -20.39], [-51.6, -27.3], [-55.5, -1.95], [-60.0, -3.1], [-38.5, -12.97]]:
+		check("act 2: the Brazil view holds %s" % str(pl), br.has_point(WarMapData.pt(pl)))
+	check("act 2: before Rome the map opens on THE WORLD, Act 1", WarMapData.act(_with({}))["view"] == "world" and int(WarMapData.act(_with({}))["act"]) == 1)
+	var a2 := WarMapData.act(_act1({}))
+	check("act 2: after Rome the map opens on BRAZIL, Act 2's title", a2["view"] == "brazil" and int(a2["act"]) == 2 and String(a2["act_title"]).begins_with("Act 2"))
+	for sk in WarMapData.SKINS:
+		var ok: bool = WarMap.SKINS.has(sk)
+		for h in WarMapData.HOLDERS:
+			if h != "empire" and ok and not (WarMap.SKINS[sk]["holders"] as Dictionary).has(h):
+				ok = false
+		check("skin %s: drawn, every holder has its colours" % sk, ok)
+		check("skin %s: a title (%s)" % [sk, WarMapData.skin_title(sk)], WarMapData.skin_title(sk) != "")
+	check("only the King's parchment shows the Catholic paintings", WarMap.SKINS["parchment"]["paintings"] and not WarMap.SKINS["brass"]["paintings"] and not WarMap.SKINS["chart"]["paintings"])
+	check("no Brood skin (owner 2026-11-22: no Brood war map, ever)", not WarMap.SKINS.has("brood") and not WarMap.SKINS.has("nest"))
+	check("each line's hub reads its own skin", CampaignMenu.skin_for("prologue") == "parchment" and CampaignMenu.skin_for("clockmaker") == "brass" and CampaignMenu.skin_for("naturalist") == "chart")
+	# ---- the pins: every Act 2 mission, on land, with a place, a date and what it is about
+	var off: Array = []
+	for mid in ACT2_PINS:
+		var pn := WarMapData.pin_of(mid)
+		if pn.is_empty():
+			off.append(mid + " (no pin)")
+			continue
+		if not _on_land(pn["point"]):
+			off.append(mid)
+		if Campaign.storyline_of(mid).is_empty() and String(pn.get("about", "")) == "":
+			off.append(mid + " (no about)")
+	check("act 2: every pin (d01-d13) is there, on land, and a planned one says what it is about", off.is_empty(), " ".join(off))
+	var moff: Array = []
+	for mk in d["marks"]:
+		if bool(mk.get("act2", false)) and String(mk["kind"]) != "route" and not _on_land(mk["point"]):
+			moff.append(String(mk["id"]))
+	check("act 2: its marks stand on land (the routes go by sea)", moff.is_empty(), " ".join(moff))
+	# ---- states: Rome won opens the three lines' first Act 2 missions
+	var st := WarMapData.state(_act1({}))
+	check("act 2: after Rome d02 and d03 (built) are open", st["pins"]["d02_exodus"]["state"] == "open" and st["pins"]["d03_fazenda"]["state"] == "open")
+	check("act 2: d01 and the rest still planned (not written)", st["pins"]["d01_minas"]["state"] == "planned" and st["pins"]["d11_siege"]["state"] == "planned")
+	check("act 2: Salvador on the map once Brazil is unrolled", st["marks"]["salvador"] and not WarMapData.state(_with({}))["marks"]["salvador"])
+	check("act 2: Brazil's regions start as the empire's", st["regions"]["minas"] == "empire" and st["regions"]["concordia"] == "empire" and st["regions"]["lower_amazon"] == "empire")
+	# d02 won: the ships' line from Hamburg
+	st = WarMapData.state(_act1({"d02_exodus": ["exodus", {"exodus": "some", "exodus_n": 5}]}))
+	check("d02 won: the guild's ships from Hamburg (a line by sea)", st["marks"]["exodus_route"] and st["marks"]["hamburg"])
+	# d01
+	st = WarMapData.state(_act1({"d01_minas": ["crown", {"minas": "restless", "gold": "some", "conspirator": "fled"}]}))
+	check("d01 restless: Minas uneasy, the conspirator's road south", st["regions"]["minas"] == "contested" and st["marks"]["ramos_road"])
+	st = WarMapData.state(_act1({"d01_minas": ["crown", {"minas": "quiet", "gold": "all", "conspirator": "taken"}]}))
+	check("d01 quiet: Minas purple, no road", st["regions"]["minas"] == "crown" and not st["marks"]["ramos_road"] and WarMapData.ledger_of(st, "d01_minas").size() == 4)
+	st = WarMapData.state(_act1({"d01_minas": ["conspiracy", {}]}))
+	check("d01 won by the conspiracy: Minas in unrest, the seal broken", st["regions"]["minas"] == "unrest" and st["pins"]["d01_minas"]["seal"] == "broken")
+	# d04 / d07: Concórdia, and what each map knows
+	var base := {"d02_exodus": ["exodus", {}], "d04_concordia": ["guild", {"colonists": "fought", "crates": "opened"}]}
+	st = WarMapData.state(_act1(base))
+	check("d04 won: Concórdia the free city's (blue), its gear and the mine", st["regions"]["concordia"] == "guild" and st["marks"]["concordia_city"] and st["marks"]["crates_mine"])
+	check("d04 colonists fought: the valley uneasy", st["regions"]["valley"] == "contested")
+	check("d04 with Varenne spared: his ship's line ends at Concórdia", st["marks"]["varenne_route"])
+	var b7 := base.duplicate(true)
+	b7["d07_spring"] = ["honest", {"spring": "running", "honest": "some"}]
+	for sk in WarMapData.SKINS:
+		check("d07 running, before d09: Concórdia still blue on the %s (what was known)" % sk, WarMapData.state(_act1(b7), sk)["regions"]["concordia"] == "guild")
+	b7["d09_crossroads"] = ["crown", {"first": "brood", "sertao": "some"}]
+	check("d07 running, after d09: the King's parchment shows Concórdia red", WarMapData.state(_act1(b7), "parchment")["regions"]["concordia"] == "machine")
+	check("d07 running, after d09: the chart too", WarMapData.state(_act1(b7), "chart")["regions"]["concordia"] == "machine")
+	check("d07 running, after d09: Hollweg's brass map never shows it red", WarMapData.state(_act1(b7), "brass")["regions"]["concordia"] == "guild")
+	var b7s := base.duplicate(true)
+	b7s["d07_spring"] = ["honest", {"spring": "stopped", "honest": "many"}]
+	st = WarMapData.state(_act1(b7s))
+	check("d07 stopped: red at once on the parchment, the honest masters at the coast", st["regions"]["concordia"] == "machine" and st["marks"]["honest_coast"])
+	check("d07 stopped: still blue on the brass map", WarMapData.state(_act1(b7s), "brass")["regions"]["concordia"] == "guild")
+	# the diamond's clock
+	st = WarMapData.state(_act1(b7))
+	check("d09 the Brood first: the siege's pin wears the clock, the jungle's does not", String(st["pins"]["d11_siege"]["clock"]) != "" and String(st["pins"]["d10_jungle"]["clock"]) == "")
+	check("d09: the fort and the sertão", st["marks"]["fort"] and st["regions"]["sertao"] == "crown")
+	var b9 := b7.duplicate(true)
+	b9["d09_crossroads"] = ["crown", {"first": "clockwork", "sertao": "few"}]
+	st = WarMapData.state(_act1(b9))
+	check("d09 the Clockwork first: the jungle's pin wears the clock", String(st["pins"]["d10_jungle"]["clock"]) != "" and String(st["pins"]["d11_siege"]["clock"]) == "")
+	b9["d10_jungle"] = ["column", {"jungle": "thin"}]
+	st = WarMapData.state(_act1(b9))
+	check("the waiting front fought: its clock stops", String(st["pins"]["d10_jungle"]["clock"]) == "" and st["regions"]["lower_amazon"] == "brood")
+	# d05, d06, d08
+	st = WarMapData.state(_act1({"d05_aldeia": ["crown", {"fields": "burned", "aldeia": "some"}]}))
+	check("d05 fields burned: the Tapajós uneasy, the burnt church", st["regions"]["tapajos"] == "contested" and st["marks"]["sao_rafael_burnt"] and not st["marks"]["sao_rafael"])
+	st = WarMapData.state(_act1({"d05_aldeia": ["crown", {"fields": "left", "aldeia": "many"}]}))
+	check("d05 fields left: the Tapajós the creatures', the church standing", st["regions"]["tapajos"] == "brood" and st["marks"]["sao_rafael"] and not st["marks"]["sao_rafael_burnt"])
+	st = WarMapData.state(_act1({"d03_fazenda": ["stock", {"hidden": "some"}], "d06_queen": ["brood", {"brood_n": "some", "pieter": "lost"}]}))
+	check("d06: the island green, the fazenda fallen, the Queen's mark", st["regions"]["island"] == "brood" and st["marks"]["fazenda_burnt"] and st["marks"]["queen"] and not st["marks"]["fazenda"])
+	st = WarMapData.state(_act1({"d08_rivers": ["barra", {"barra": "held", "lure": "burned", "nazare": "some"}]}))
+	check("d08 the Barra held: the Barra purple, the upper river the creatures'", st["regions"]["barra_rio_negro"] == "crown" and st["regions"]["upper_rio_negro"] == "brood")
+	st = WarMapData.state(_act1({"d08_rivers": ["swarm", {}]}))
+	check("d08 won by the swarm: the Barra the creatures', the seal broken", st["regions"]["barra_rio_negro"] == "brood" and st["pins"]["d08_rivers"]["seal"] == "broken")
+	st = WarMapData.state(_act1({"d11_siege": ["column", {"siege": "close", "jakob": "lost"}]}))
+	check("d11 close: Concórdia red with the siege lines round it", st["regions"]["concordia"] == "machine" and st["marks"]["siege_ring"])
+	check("d11 close: the brass map keeps it blue (and no siege lines change that)", WarMapData.state(_act1({"d04_concordia": ["guild", {}], "d11_siege": ["column", {"siege": "close"}]}), "brass")["regions"]["concordia"] == "guild")
+	st = WarMapData.state(_act1({"d12_luanda": ["garrison", {"luanda": "escaped"}], "d13_goa": ["ferrer", {"goa_seed": "smashed"}]}))
+	check("d12 some got away: Luanda uneasy; d13 smashed: Goa purple", st["regions"]["luanda"] == "contested" and st["regions"]["goa"] == "crown")
+	# notes: the chart's and the brass map's own
+	var cn: Array = WarMapData.state(_act1({"d06_queen": ["brood", {}]}), "chart")["notes"]
+	check("the chart's notes: the station and the Queen's forest", cn.size() >= 3 and cn.any(func(n) -> bool: return String(n["text"]).contains("No one has gone")))
+	check("the King's parchment has no margin notes", (WarMapData.state(_act1({"d06_queen": ["brood", {}]}), "parchment")["notes"] as Array).is_empty())
+	check("the brass map's words: Concórdia founded", (WarMapData.state(_act1(base), "brass")["notes"] as Array).any(func(n) -> bool: return String(n["text"]).contains("CONCORDIA")))
+	# ---- every combination of Act 2's flags (the plan's names): a sound map in every skin
+	var n := 0
+	var bad: Array = []
+	for mn in ["quiet", "restless"]:
+		for fields in ["burned", "left"]:
+			for spring in ["running", "stopped"]:
+				for barra in ["held", "burned"]:
+					for first in ["brood", "clockwork"]:
+						for jungle in ["held", "thin"]:
+							for siege in ["close", "held_off"]:
+								var x := {"d01_minas": ["crown", {"minas": mn, "gold": "some", "conspirator": "fled"}],
+									"d02_exodus": ["exodus", {"exodus": "some", "exodus_n": 5}],
+									"d04_concordia": ["guild", {"colonists": "parley", "crates": "opened"}],
+									"d05_aldeia": ["crown", {"fields": fields, "aldeia": "some"}],
+									"d06_queen": ["brood", {"brood_n": "some"}],
+									"d07_spring": ["honest", {"spring": spring, "honest": "some"}],
+									"d08_rivers": ["barra", {"barra": barra, "lure": "burned", "nazare": "all"}],
+									"d09_crossroads": ["crown", {"first": first, "sertao": "some"}],
+									"d10_jungle": ["column", {"jungle": jungle}],
+									"d11_siege": ["column", {"siege": siege}]}
+								for sk in WarMapData.SKINS:
+									var s2 := WarMapData.state(_act1(x), sk)
+									n += 1
+									for k in s2["regions"]:
+										if not WarMapData.HOLDERS.has(String(s2["regions"][k])):
+											bad.append("%s=%s" % [k, s2["regions"][k]])
+									if s2["regions"]["concordia"] != ("guild" if sk == "brass" else "machine"):
+										bad.append("concordia %s %s" % [sk, spring])
+									for k in s2["pins"]:
+										if String(s2["pins"][k]["clock"]) != "":
+											bad.append("clock left on %s" % k)
+									for e in s2["ledger"]:
+										if WarMapData.ledger_text(e).contains("%"):
+											bad.append("ledger " + String(e["text"]).left(30))
+	check("every Act 2 flag combination (%d maps, three skins) gives a sound map" % n, bad.is_empty(), " ".join(bad.slice(0, 8)))
+
+
+func _ui_act2() -> void:
+	# the Clockmaker's hub: its war table opens THE BRASS MAP on Brazil
+	Campaign.save_progress(_act1({"d02_exodus": ["exodus", {}]}))
+	CampaignMenu.map_open = false
+	CampaignMenu.map_cam = {}
+	CampaignMenu.map_pick = ""
+	CampaignMenu.line = "clockmaker"
+	CampaignMenu.show(main)
+	await process_frame
+	var hs: Button = _find("Hotspot_war_table")
+	check("act 2: the Clockmaker's hub has its war table", hs != null)
+	if hs:
+		hs.pressed.emit()
+	await process_frame
+	await process_frame
+	var wm := _wm()
+	check("the Clockmaker's war table opens THE BRASS MAP", wm != null and wm.skin == "brass")
+	if wm == null:
+		return
+	await process_frame
+	check("the brass map opens on BRAZIL (drawn, no painting)", wm.painted == "" and _find("View_brazil") != null
+		and wm.world_rect().has_point(wm.center) and absf(wm.center.x - WarMapData.rect_of(WarMapData.data()["views"][1]["rect"]).get_center().x) < 1.0, str(wm.center))
+	# a planned pin's card: what it is about; the clock
+	wm.tap(wm.pin_screen(WarMapData.pin_of("d04_concordia")))
+	await process_frame
+	check("a planned pin's card says what, where and when (SAY IT PLAINLY)", _find("CardAbout") != null and _find("Card_Briefing") == null)
+	_press_back()
+	await process_frame
+	# the Naturalist's war table (the list) opens THE SPECIMEN CHART
+	CampaignMenu.line = "naturalist"
+	CampaignMenu.war_table(main)
+	await process_frame
+	(_find("WarTable_Map") as Button).pressed.emit()
+	await process_frame
+	wm = _wm()
+	check("the Naturalist's war table opens THE SPECIMEN CHART", wm != null and wm.skin == "chart")
+	_press_back()
+	await process_frame
+	# the King's parchment after the crossing: the clock on the waiting front's card
+	Campaign.save_progress(_act1({"d07_spring": ["honest", {"spring": "running"}], "d09_crossroads": ["crown", {"first": "brood"}]}))
+	CampaignMenu.line = "prologue"
+	CampaignMenu.map_skin = "parchment"
+	CampaignMenu.map_open = false
+	CampaignMenu.map_pick = "d11_siege"
+	CampaignMenu.war_map(main)
+	await process_frame
+	await process_frame
+	wm = _wm()
+	check("the King's parchment opens on BRAZIL in Act 2", wm != null and wm.painted == "" and String(wm.act.get("view", "")) == "brazil")
+	check("the waiting front's card wears the clock", _find("CardClock") != null)
+	for sk in WarMapData.SKINS:
+		wm.skin = sk
+		wm.refresh()
+		wm.queue_redraw()
+		await process_frame
+	check("every skin draws Act 2 without an error", true)
+	_press_back()
+	await process_frame
+	CampaignMenu.map_skin = "parchment"
