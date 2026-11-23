@@ -531,6 +531,7 @@ MissionRun.act2, saved with the mission). Test: tools/test_act2_engine0.gd. Pict
 | --- | --- |
 | condition `{"researched": {"team", "tech": id or [ids]}}` | (MissionAct2) that team has every one of those researches done (the Armoury's lesson: the Matchlock and the Socket Bayonet); `Campaign.problems()` checks the team and each research id |
 | THE CITY GENERATOR in hills | tools/campaign/city_gen.py `hill_blob` and `stairs` (docs/city_generator.md): Vila Rica on two hills and a ridge |
+| a line's `"until": trigger id` | (MissionRun.line, MissionUi.advance) a line still WAITING in the dialogue queue is dropped unseen once that trigger has fired: d01's Part 1 chatter (the churchyards, the tips) does not read out in the middle of the night's fight. A line already on show stays |
 | roles `tomasz_minas`, `meneses`, `ramos`, `conspirator`, `martyr`, `miner`, `agitator`, `townsman` | Rebels.ROLES (stand-ins: a Missionary, a Horseman, an Officer, Musketeers, a Pikeman, Labourers) |
 
 Everything else in the Gold of Vila Rica is built from the keys above: disguised buildings (a01's armouries), exits

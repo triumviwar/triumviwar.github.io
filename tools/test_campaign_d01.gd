@@ -251,12 +251,16 @@ func _flags() -> void:
 	check("a01 lyon risen: no printer's mark (nothing given away)", not r.fired.has("printer_shown"))
 	pages = r.pages_now(Campaign.show_pages(r.data, "opening", "crown"))
 	check("... Tomasz's letter from Lyon in the opening; p01 left: his line for the road", str(pages).contains("t_open_risen") and str(pages).contains("t_open_left"))
-	_walk(g, 54.0)
+	while g.clock < 140.0 and not g.over and not _said(r, "t_pamphlet_rome"):
+		r.talk_busy = false               # (a flavour line waits for a quiet moment in the dialogue box: the
+		_walk(g, g.clock + 2.0)          # test steps the match by hand, so the box never reads its lines out)
 	check("a07 rome few: Rome's pamphlet", _said(r, "t_pamphlet_rome"))
 	_progress({}, {}, {"varenne": "executed"})
 	g = await _start()
 	r = g.mission
-	_walk(g, 68.0)
+	while g.clock < 140.0 and not g.over and not _said(r, "t_martyrs"):
+		r.talk_busy = false
+		_walk(g, g.clock + 2.0)
 	check("a06 Varenne executed: the temper starts higher, Varenne's martyrs on the pamphlets", int(r.counters["temper"]) >= 5 and _said(r, "t_martyrs"))
 	_progress({}, {}, {}, {}, "hard")
 	g = await _start()

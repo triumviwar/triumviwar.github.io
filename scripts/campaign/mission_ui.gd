@@ -214,6 +214,13 @@ func advance() -> void:
 		current = {}
 		_box.visible = false
 		return
+	# a line with "until": a trigger id is dropped unseen if that trigger has fired while it waited (Part 1's
+	# chatter does not read out in the middle of the night's fight; d01, CHECK THE FEEL)
+	queue = queue.filter(func(q: Dictionary) -> bool: return String(q.get("until", "")) == "" or not run.fired.has(String(q["until"])))
+	if queue.is_empty():
+		current = {}
+		_box.visible = false
+		return
 	current = queue.pop_front()
 	_shown = 0.0
 	var txt := Loc.t(String(current["text"]))

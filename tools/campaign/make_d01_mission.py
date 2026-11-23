@@ -724,6 +724,12 @@ def band(tag, at, n_cons, n_miners, route, name, cond_extra=None, martyrs=0):
     return out
 
 
+# Part 1's chatter is dropped unseen if the signal has rung while it waited (MissionUi: a line's "until")
+for _lid in ["m_tip1", "m_tip2", "t_pamphlet_calm", "t_pamphlet_sullen", "t_pamphlet_rome", "t_martyrs", "m_researched", "w_runner",
+             "n_found", "m_found", "n_temper10", "n_temper15", "m_temper15", "t_calm_all", "t_calm_hint", "n_calmed", "n_closed",
+             "w_hint"] + ["t_calm_" + _q for _q in QUARTERS]:
+    L[_lid]["until"] = "signal"
+
 TR_ = M["triggers"]
 TR_ += [
     # ============================================================ THE START
@@ -745,10 +751,10 @@ TR_ += [
     {"id": "intro_v", "when": {"all": [{"time": 1.5}, VAL]}, "do": [{"say": ["n_derrama", "r_v1", "r_v_tip"]}]},
     {"id": "intro_tips", "when": {"fired": "intro"}, "delay": 14, "do": [{"say": ["m_tip1", "m_tip2"]}]},
     {"id": "intro_calm", "when": {"time": 1.5}, "do": [{"ping": {"tag": "tomasz"}}]},
-    {"id": "flavour_calm", "when": {"all": [{"time": 38}, LYON_CALM]}, "do": [{"say": ["t_pamphlet_calm"]}]},
-    {"id": "flavour_sullen", "when": {"all": [{"time": 38}, LYON_SULLEN]}, "do": [{"say": ["t_pamphlet_sullen"]}]},
-    {"id": "flavour_rome", "when": {"all": [{"time": 52}, ROME_FEW]}, "do": [{"say": ["t_pamphlet_rome"]}]},
-    {"id": "flavour_martyrs", "when": {"all": [{"time": 66}, EXECUTED]}, "do": [{"say": ["t_martyrs"]}]},
+    {"id": "flavour_calm", "when": {"all": [{"time": 38}, LYON_CALM, {"talked": True}, {"not": {"fired": "signal"}}]}, "do": [{"say": ["t_pamphlet_calm"]}]},
+    {"id": "flavour_sullen", "when": {"all": [{"time": 38}, LYON_SULLEN, {"talked": True}, {"not": {"fired": "signal"}}]}, "do": [{"say": ["t_pamphlet_sullen"]}]},
+    {"id": "flavour_rome", "when": {"all": [{"time": 52}, ROME_FEW, {"talked": True}, {"not": {"fired": "signal"}}]}, "do": [{"say": ["t_pamphlet_rome"]}]},
+    {"id": "flavour_martyrs", "when": {"all": [{"time": 66}, EXECUTED, {"talked": True}, {"not": {"fired": "signal"}}]}, "do": [{"say": ["t_martyrs"]}]},
     # a01's printer taken (the canon): the printer's mark gives one armoury away at once
     {"id": "printer_shown", "when": {"all": [{"fired": "layout"}, {"time": 24}, PRINTER, {"disguised": "armouries"}]}, "do": [
         {"unmask": {"tag": "armouries", "first": True}}, {"say": ["t_printer"]}]},
@@ -765,8 +771,10 @@ TR_ += [
     {"id": "temper_15", "when": {"all": [{"counter": {"name": "temper", "at_least": 15}}, {"not": {"fired": "signal"}}]}, "do": [{"say": ["n_temper15", "m_temper15"]}]},
     {"id": "calm_all", "when": {"counter": {"name": "calmed", "at_least": 4}}, "do": [{"objective": {"id": "calm", "set": "done"}}, {"say": ["t_calm_all"]}]},
     # (a calm town talks: the quarters Tomasz spoke to tell him where the strangers carry their powder)
-    {"id": "calm_hint", "when": {"all": [{"fired": "calm_all"}, {"disguised": "armouries"}, {"not": {"fired": "signal"}}, LIVE]}, "delay": 12, "do": [
+    {"id": "calm_hint", "when": {"all": [{"fired": "calm_all"}, {"disguised": "armouries"}, {"not": {"fired": "signal"}}, {"talked": True}, LIVE]}, "delay": 8, "do": [
         {"unmask": {"tag": "armouries", "first": True}}, {"say": ["t_calm_hint"]}]},
+    # the first churchyard calmed: the narrator says what it did (once; Tomasz speaks for the others)
+    {"id": "calmed_first", "when": {"counter": {"name": "calmed", "at_least": 1}}, "do": [{"say": ["n_calmed"]}]},
     {"id": "closed_all", "when": {"counter": {"name": "closed", "at_least": 2}}, "do": [{"objective": {"id": "armouries", "set": "done"}}]},
     {"id": "signal_soon", "when": {"all": [{"fired": "closed_all"}, {"not": {"fired": "signal"}}, {"not": {"clock_left": {"name": "signal", "below": SIGNAL_SOON}}}, LIVE]}, "do": [
         {"clock": {"name": "signal", "secs": SIGNAL_SOON, "scale": False}}, {"say": ["m_soon"]}]},
@@ -779,7 +787,7 @@ TR_ += [
      "every": TAX_EVERY, "do": [{"counter": {"name": "temper", "add": 1}}]} for i, q in enumerate(QUARTERS)
 ] + [
     {"id": "calm_" + q, "when": {"all": [{"stay": {"tag": "tomasz", "area": "adro_" + q, "secs": CALM_SECS}}, {"not": {"fired": "signal"}}, LIVE]}, "do": [
-        {"counter": {"name": "temper", "add": -3, "min": 0}}, {"counter": {"name": "calmed", "add": 1}}, {"say": ["t_calm_" + q, "n_calmed"]}]}
+        {"counter": {"name": "temper", "add": -3, "min": 0}}, {"counter": {"name": "calmed", "add": 1}}, {"say": ["t_calm_" + q]}]}
     for q in QUARTERS
 ] + [
     # THE TOWN'S TEMPER at its top: Vila Rica rises (lost; versus: the conspiracy's win)

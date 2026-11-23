@@ -151,6 +151,8 @@ the carts out). One run each on this branch:
 | NORMAL, a06 Varenne executed | won | 8:54 | 33 s | quiet, gold all (with 2 martyrs a band it LOST at 7:29) |
 | NORMAL, a07 rome few + a01 lyon risen + p01 families left | won | 8:42 | 31 s | quiet, gold all |
 | NORMAL, saved at 5:00 and loaded | won | 8:19 | 23 s | the load matched (52 units, 49 triggers) |
+| NORMAL, with the window and dialogue box (the pictures' run) | won | 8:56 | 38 s | quiet, gold all, Ramos taken |
+| HARD, with the window and dialogue box | won | 9:58 | 34 s | quiet, gold all, Ramos fled |
 | NORMAL, idle player | LOST | 3:17 | 22 s | the town rose (temper 20) |
 | EASY, idle (earlier batch) | LOST | 4:09 | 22 s | the town rose (temper 24) |
 
@@ -186,7 +188,20 @@ aged by pitch between a01's young priest and the Cardinal would do), Captain Lu√
 
 ## Pictures (docs/shots/d01_minas/, CHECK THE FEEL)
 
-SHOTS_NOTE
+Ten pictures from `xvfb-run ... tools/sim_campaign_d01.gd -- active shots=docs/shots/d01_minas` (a careful NORMAL
+player, 1280 x 720): 1_start (the derrama read on the square), 2_found (the first armoury unmasked by the printer's
+mark), 3_runner (an agitator out of an armoury), 4_calm (a churchyard), 5_signal, 6_stairs (the first bands at the
+square's stairs), 7_miners (Tomasz at the Ros√°rio), 8_ridge (the Pilar's band along the ridge), 9_dawn (the carts
+loaded), 10_gorge. What they showed and what was done:
+
+- Scale and shadows read right: houses, churches and the Foundry House sit with the troops; the two hills read as
+  high ground; the night is dim but every unit is visible against the ground.
+- THE DIALOGUE QUEUE RAN LATE: before the fix a line said at 0:51 was read at 3:04 and Tomasz's hint about a hidden
+  armoury showed after both were closed. Fixed (Claude's choice 16): fewer Part 1 lines, flavour lines wait for a quiet
+  moment, and Part 1's small talk is dropped once the signal rings (`"until"`). After it the ledger line came within
+  seconds of the second armoury and the ridge warning with the ridge band.
+- 10_gorge's camera sits on the gorge's west end while the fight is further east: the picture tool, not the mission
+  (the camera follows the first cart; left as it is).
 
 ## What is placeholder
 
@@ -234,6 +249,12 @@ theirs). No new sounds (the bell is c01's bell_toll).
 14. THE KING COMMUTES RAMOS TO EXILE when he was taken ("You may judge whether I learnt from Paris"): the echo of
     Varenne. If the owner wants him hanged, one line changes.
 15. THE CONSPIRACY'S COLOUR is ORANGE (a07's choice for the Assembly; GREEN is the creatures').
+16. PART 1'S CHATTER GIVES WAY TO THE NIGHT: the pictures showed lines read out two minutes late (a player who never
+    presses NEXT heard "Matchlocks and socket bayonets" at 3:04 for research done at 0:51). Three fixes: one line a
+    churchyard (the narrator explains the calming once), the flavour lines wait for a quiet moment (`talked`), and the
+    small talk of Part 1 carries `"until": "signal"` (new engine key): once the bell rings, what has not been read is
+    dropped. Tomasz's hint (`calm_hint`) also waits for a quiet moment, so it never names a house the soldiers
+    already found.
 
 ## What is left
 
@@ -243,4 +264,8 @@ theirs). No new sounds (the bell is c01's bell_toll).
 
 ## Tests run
 
-TESTS_RUN
+On this branch (Godot 4.7, `--headless --fixed-fps 30`): tools/test_campaign_d01.gd 0 failures (the data, every
+flag's effect, a played mission, Ramos fleeing, the defeats, versus, save and load, Ironman, the hubs),
+tools/test_campaign_d04.gd 0, tools/test_campaign_d02.gd 0, tools/test_war_map.gd 0, tools/test_roster_ladder.gd 0,
+tools/test_campaign.gd 0; the boot check (`godot --headless --path . --quit-after 120`) shows no SCRIPT ERROR or Parse
+Error. The sims in "Balance" above.

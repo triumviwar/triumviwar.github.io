@@ -2065,6 +2065,14 @@
 								}
 							}
 						]
+					},
+					{
+						"talked": true
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
 					}
 				]
 			},
@@ -2086,6 +2094,14 @@
 					{
 						"past": {
 							"a01_presses.lyon": "sullen"
+						}
+					},
+					{
+						"talked": true
+					},
+					{
+						"not": {
+							"fired": "signal"
 						}
 					}
 				]
@@ -2109,6 +2125,14 @@
 						"past": {
 							"a07_council.rome": "few"
 						}
+					},
+					{
+						"talked": true
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
 					}
 				]
 			},
@@ -2130,6 +2154,14 @@
 					{
 						"past": {
 							"a06_barricades.varenne": "executed"
+						}
+					},
+					{
+						"talked": true
+					},
+					{
+						"not": {
+							"fired": "signal"
 						}
 					}
 				]
@@ -2396,6 +2428,9 @@
 						}
 					},
 					{
+						"talked": true
+					},
+					{
 						"not": {
 							"any": [
 								{
@@ -2412,7 +2447,7 @@
 					}
 				]
 			},
-			"delay": 12,
+			"delay": 8,
 			"do": [
 				{
 					"unmask": {
@@ -2423,6 +2458,22 @@
 				{
 					"say": [
 						"t_calm_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "calmed_first",
+			"when": {
+				"counter": {
+					"name": "calmed",
+					"at_least": 1
+				}
+			},
+			"do": [
+				{
+					"say": [
+						"n_calmed"
 					]
 				}
 			]
@@ -2775,8 +2826,7 @@
 				},
 				{
 					"say": [
-						"t_calm_pilar",
-						"n_calmed"
+						"t_calm_pilar"
 					]
 				}
 			]
@@ -2830,8 +2880,7 @@
 				},
 				{
 					"say": [
-						"t_calm_carmo",
-						"n_calmed"
+						"t_calm_carmo"
 					]
 				}
 			]
@@ -2885,8 +2934,7 @@
 				},
 				{
 					"say": [
-						"t_calm_rosario",
-						"n_calmed"
+						"t_calm_rosario"
 					]
 				}
 			]
@@ -2940,8 +2988,7 @@
 				},
 				{
 					"say": [
-						"t_calm_efigenia",
-						"n_calmed"
+						"t_calm_efigenia"
 					]
 				}
 			]
@@ -6450,12 +6497,14 @@
 		"m_tip1": {
 			"who": "meneses",
 			"text": "And the Assembly's men are somewhere in those houses, with powder. My men will knock on doors. Stand a man at a door and we will know what is behind it.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"m_tip2": {
 			"who": "meneses",
 			"text": "Their runners carry the pamphlets from house to house. Ride them down before they reach the churchyards: every one that gets there makes the town angrier.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"m_armoury": {
 			"who": "meneses",
@@ -6465,27 +6514,32 @@
 		"m_researched": {
 			"who": "meneses",
 			"text": "Matchlocks and socket bayonets. Now the men must go to the Armoury to be fitted: turn on AUTO REFIT and send them by.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"t_pamphlet_calm": {
 			"who": "tomasz",
 			"text": "The pamphlets were printed on the Lyon type. The last of it, the printer swore. The ink was still wet.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"t_pamphlet_sullen": {
 			"who": "tomasz",
 			"text": "The pamphlets were printed on the Lyon type. Lyon still prints.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"t_pamphlet_rome": {
 			"who": "tomasz",
 			"text": "ROME BURNED AND THE CHURCH DID NOT FALL, said the pamphlet. THE NEXT FIRE WILL BE OURS. Half the town had read it.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"t_martyrs": {
 			"who": "tomasz",
 			"text": "Varenne's face was on every pamphlet, drawn as a saint. I had asked for his life in Paris. They had made his death into a banner.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"t_printer": {
 			"who": "tomasz",
@@ -6495,77 +6549,92 @@
 		"t_calm_pilar": {
 			"who": "tomasz",
 			"text": "The Pilar's people are shopkeepers and clerks. I told them that a tax can be argued, and a rising cannot be taken back. They went home to argue.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"t_calm_carmo": {
 			"who": "tomasz",
 			"text": "At the Carmo the masters of the mines asked me whose side the Church was on. I said: on the side of the souls in this square, all of them.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"t_calm_rosario": {
 			"who": "tomasz",
 			"text": "The Rosário is the miners' own church, built with their own gold dust. They knew the tax better than any officer. I listened before I spoke.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"t_calm_efigenia": {
 			"who": "tomasz",
 			"text": "In the diggings they had pamphlets under every stone. I read one aloud to them, slowly, and asked who would pay for it when the soldiers came. Nobody answered.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"n_calmed": {
 			"who": "narrator",
 			"text": "The quarter is calm. Its temper falls.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"t_calm_all": {
 			"who": "tomasz",
 			"text": "Four churches, four sermons, and my voice nearly gone. The town was quiet. Quiet is not the same as at peace.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"t_calm_hint": {
 			"who": "tomasz",
 			"text": "A woman of the Rosário came to me after the rosary. Strangers carry powder into a house with its shutters always closed. I sent word to the Captain.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"w_runner": {
 			"who": "meneses",
 			"text": "There, a runner with a bundle of pamphlets! He is making for a churchyard. Ride him down.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"n_found": {
 			"who": "narrator",
 			"text": "Behind the door: barrels of powder, muskets in straw, and men who reach for them.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"m_found": {
 			"who": "meneses",
 			"text": "An armoury! Break it open and burn what is in it.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"n_closed": {
 			"who": "narrator",
 			"text": "An armoury is closed. The muskets in it will not be fired tonight.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"w_hint": {
 			"who": "townsman",
 			"text": "Father! The house with the shutters always closed: men go in at night and nobody comes out. I have marked it for you.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"n_temper10": {
 			"who": "narrator",
 			"text": "Shutters close along the Rua Direita. Men gather at the fountains and stop talking when soldiers pass.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"n_temper15": {
 			"who": "narrator",
 			"text": "Stones fly at the tax collectors in the lower town. Vila Rica is close to rising.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"m_temper15": {
 			"who": "meneses",
 			"text": "Father, they are close to the edge. Stop the runners, or speak to them, or we lose the town.",
-			"to": "crown"
+			"to": "crown",
+			"until": "signal"
 		},
 		"n_risen": {
 			"who": "narrator",
