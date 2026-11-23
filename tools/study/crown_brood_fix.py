@@ -206,7 +206,8 @@ if __name__ == "__main__":
         # (the win rate of every block: won / led / even / behind / lost at 20:00, as the job's summary table has it)
         print("| block | switches | games | won | led | even | behind | lost | mean g | g14 | inc 8 / 12 | army 8 / 12 | halls 12 | defeats (min) |")
         print("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
-        for n in [x for x in sys.argv[2:] if not x.startswith("--")]:
+        _vals = {sys.argv[i + 1] for i, x in enumerate(sys.argv[:-1]) if x.startswith("--")}
+        for n in [x for x in sys.argv[2:] if not x.startswith("--") and x not in _vals]:
             rows = {}
             for part in n.split("+"):
                 for t, x in block(part).items():
@@ -220,7 +221,8 @@ if __name__ == "__main__":
                 n, ex or "(none)", len(rows), c["W"], c["w"], c["="], c["l"], c["L"], s["g"], s["g14"], f2(s["inc8"]),
                 f2(s["inc12"]), f2(s["army8"]), f2(s["army12"]), "%.1f" % s["halls12"], ", ".join("%.1f" % v for v in dm)))
     elif cmd == "report":
-        names = [x for x in sys.argv[2:] if not x.startswith("--") and x != arg("--base", None)]
+        _vals = {sys.argv[i + 1] for i, x in enumerate(sys.argv[:-1]) if x.startswith("--")}
+        names = [x for x in sys.argv[2:] if not x.startswith("--") and x not in _vals]
         base = arg("--base", None)
         brow = block(base) if base else None
         print("| block | n | mean g | survived | won/led | median defeat | inc 8 | inc 12 | army 8 | army 12 | halls 12 | v base d (t) | better/worse | g 14:00 | v base d14 (t) |")
