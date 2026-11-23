@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.194", "items": [
+		"Act 2's Brazilian ground is painted: the flooded várzea, the cold highlands and the dry sertão, their cliffs, and their trees, cacti, bushes and stones now have real pictures instead of stand-ins. Only the highland mist is still a stand-in.",
+	]},
 	{"v": "0.38.193", "items": [
 		"The Venom Challenger's death seen from behind (north) is redrawn: it falls away from you, its tail toward you, instead of turning into a side view. All its deaths now match the way it walks.",
 	]},

@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.194": ["El suelo brasileño del Acto 2 está pintado: la várzea inundada, las tierras altas frías y el sertón seco, sus acantilados y sus árboles, cactus, arbustos y piedras ahora tienen dibujos de verdad en vez de provisionales. Solo la niebla de las tierras altas sigue siendo provisional."],
 	"0.38.193": ["La muerte del Retador Venenoso vista de espaldas (norte) está redibujada: cae alejándose de ti, con la cola hacia ti, en vez de ponerse de lado. Todas sus muertes combinan ahora con su andar."],
 	"0.38.192": ["La muerte del Retador Venenoso vista de espaldas y hacia la derecha (noreste) está redibujada: ahora cae alejándose de ti como camina, en vez de ponerse de lado."],
 	"0.38.191": ["Una nueva misión de la campaña, LA CIUDAD DE LOS ENGRANAJES del Acto 2 (el Relojero, después del Éxodo): el gremio funda su propia ciudad en una mina vieja del altiplano del sur. Levanta la Torre del Reloj, construye la CASA DEL CUCO y manda a sus CUCOS a cartografiar la tierra (lo que ningún pájaro ha sobrevolado queda a oscuras), encuentra al capitán del valle en el camino, sostén la ciudad de noche contra la gente asustada sin golpear a ninguno (rodea a un hombre con una antorcha para que se vuelva, apaga los incendios), abre los dos cajones de Núremberg en la galería más honda y resiste el ataque del alba. O juega con la milicia del valle. Todas sus palabras e imágenes son provisionales."],

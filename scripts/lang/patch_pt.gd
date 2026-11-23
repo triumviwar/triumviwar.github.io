@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.194": ["O chão brasileiro do Ato 2 está pintado: a várzea alagada, as terras altas frias e o sertão seco, seus penhascos e suas árvores, cactos, arbustos e pedras agora têm figuras de verdade em vez de provisórias. Só a névoa das terras altas ainda é provisória."],
 	"0.38.193": ["A morte do Desafiante Venenoso vista de trás (norte) foi redesenhada: cai para longe de você, com a cauda virada para você, em vez de virar de lado. Todas as suas mortes agora combinam com o seu andar."],
 	"0.38.192": ["A morte do Desafiante Venenoso vista de trás e para a direita (nordeste) foi redesenhada: agora cai para longe de você como anda, em vez de virar de lado."],
 	"0.38.191": ["Uma nova missão da campanha, A CIDADE DAS ENGRENAGENS do Ato 2 (o Relojoeiro, depois do Êxodo): a guilda funda a sua própria cidade numa mina velha no planalto do sul. Levante a Torre do Relógio, construa a CASA DO CUCO e mande os seus CUCOS mapear a terra (o que nenhum pássaro sobrevoou fica escuro), encontre o capitão do vale na estrada, segure a cidade de noite contra o povo assustado sem bater em nenhum deles (cerque um homem com uma tocha para o fazer voltar, apague os incêndios), abra os dois caixotes de Nuremberg na galeria mais funda e segure o ataque da madrugada. Ou jogue com a milícia do vale. Todas as suas palavras e imagens são provisórias."],

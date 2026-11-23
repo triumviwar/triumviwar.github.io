@@ -60,6 +60,15 @@ ground.
   each demo map, the computers stopped, Crown, Clockwork and Brood soldiers stood about for scale;
   tools/shot_act2_terrain.gd), `editor_land.png`, `editor_load.png`, `editor_sertao.png` (tools/shot_act2_editor.gd).
 
+## The pictures are in (2026-11-23)
+
+Claude made the pictures in ChatGPT from the prompts below, one request a picture, and put them in with
+`tools/import_act2_terrain.py`: 27 of 31. All nine grounds, the three cliff strips and 15 decorations
+(araucaria, young araucaria, mandacaru, the várzea tree, buriti, caatinga tree and bush, highland boulder,
+aninga, floating grass, várzea snag, cold tussock, xique-xique, ox skull, sertão stones) are painted now.
+The three cliff tops are cut from their cliff strips (no picture of their own). The only stand-in left is
+the mist wisp (it needs a see-through picture ChatGPT would not give). Pictures from the game: docs/shots/act2_terrain/painted/.
+
 ## How to use it
 
 - **A campaign map**: in the map editor pick LAND: VÁRZEA / HIGHLANDS / SERTÃO (or MIX one with another biome, e.g.
