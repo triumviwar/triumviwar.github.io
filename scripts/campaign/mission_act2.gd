@@ -556,8 +556,8 @@ func _tick_hidden(dt := 0.25) -> void:
 					if d <= r:
 						found = true
 						break
-				elif d <= float(u.sight) * _tile():
-					found = true          # (awake and in a searcher's sight: seen)
+				elif d <= float(run.sight_of(u, int(u.sight))) * _tile():
+					found = true          # (awake and in a searcher's sight (under the mission's mist): seen)
 					break
 		it["hp"] = e.hp
 		if found:
@@ -720,9 +720,10 @@ func leash(v: Dictionary) -> void:
 		if String(l["name"]) == nm:
 			old = l
 	st["leashes"] = (st["leashes"] as Array).filter(func(l) -> bool: return String(l["name"]) != nm)
+	var keep: Array = group(v) if bool(v.get("on", true)) else []
 	for u in old.get("units", []):
-		if _alive(u) and u.has_meta("leash_loose"):
-			u.remove_meta("leash_loose")
+		if _alive(u) and u.has_meta("leash_loose") and not keep.has(u):
+			u.remove_meta("leash_loose")          # (one the new leash of that name keeps stays loose till a lure holds it)
 	if not bool(v.get("on", true)):
 		return
 	var q := v.duplicate()
