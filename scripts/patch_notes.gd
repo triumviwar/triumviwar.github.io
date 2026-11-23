@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.192", "items": [
+		"The Venom Challenger's death seen from behind and to the right (north-east) is redrawn: it now falls away from you the way it walks, instead of turning into a side view.",
+	]},
 	{"v": "0.38.191", "items": [
 		"A new campaign mission, Act 2's THE CITY OF GEARS (the Clockmaker, after the Exodus): the guild founds its own city on an old mine in the southern highlands. Raise the Clocktower, build the CLOCK AVIARY and send its SWIFTS to map the country (what no bird has flown over stays dark), meet the valley's captain on the road, hold the city by night against the frightened townsfolk without striking one of them (stand round a man with a torch to turn him back, put the fires out), open the two crates from Nuremberg in the deepest gallery and hold the dawn attack. Or play the valley's militia. All its words and pictures are placeholders.",
 	]},
