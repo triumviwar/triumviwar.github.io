@@ -27,6 +27,7 @@ reads the town's `areas` (squares, bridges, stairs, quarters, traboules, yards) 
 next to the map.
 """
 import json
+import math
 import os
 import random
 
@@ -129,6 +130,48 @@ class City:
         """High ground over a rectangle (water and trees left as they are). Its edges are cliffs: add ramps."""
         self.fill(r, ch, only={"."})
         self.area(name, r)
+
+    # ------------------------------------------------------------------ hills (Act 2's d01_minas: a hill town)
+    def hill_blob(self, name, cx, cy, rx, ry, wob=0.1):
+        """High ground over a rounded hill (an ellipse with a gentle wobble, the same from the same numbers: no rng), so
+        a hill town's edges are not ruler-straight. Water and trees are left as they are; the edges are cliffs."""
+        for y in range(int(cy - ry - 2), int(cy + ry + 3)):
+            for x in range(int(cx - rx - 2), int(cx + rx + 3)):
+                a = math.atan2(y - cy, x - cx)
+                k = 1 + wob * math.sin(3 * a + cx * 0.7) * math.cos(2 * a + cy * 0.3)
+                if ((x + 0.5 - cx) / rx) ** 2 + ((y + 0.5 - cy) / ry) ** 2 <= k * k and self.get(x, y) == ".":
+                    self.put(x, y, "h")
+        self.area(name, [int(cx - rx), int(cy - ry), int(cx + rx) + 1, int(cy + ry) + 1])
+
+    def stairs(self, name, at, way, width=3):
+        """A town's STAIRS down a hill's edge: from `at` (a cell on the high ground) going `way` (n, s, e, w) to the
+        edge, `width` cells across. Where the edge is ragged the high ground is squared off first, so the stairs (one
+        row of ramp on the low side) meet a straight edge. Returns the ramp's rect; the area is the ramp's with a cell
+        round it, as ramp()."""
+        dx, dy = {"n": (0, -1), "s": (0, 1), "e": (1, 0), "w": (-1, 0)}[way]
+        x, y = at
+        lanes = [(x + i * abs(dy), y + i * abs(dx)) for i in range(width)]     # (across the way)
+        ends = []
+        for (lx, ly) in lanes:
+            px, py = lx, ly
+            while self.get(px + dx, py + dy) == "h":
+                px += dx
+                py += dy
+            ends.append((px, py))
+        far = max(ends, key=lambda c: c[0] * dx + c[1] * dy)
+        reach = far[0] * dx + far[1] * dy
+        cells = []
+        for (lx, ly), (ex, ey) in zip(lanes, ends):
+            while ex * dx + ey * dy < reach:          # (square the edge off with high ground)
+                ex += dx
+                ey += dy
+                self.put(ex, ey, "h")
+            cells.append((ex + dx, ey + dy))
+        xs = [c[0] for c in cells]
+        ys = [c[1] for c in cells]
+        r = [min(xs), min(ys), max(xs) + 1, max(ys) + 1]
+        self.ramp(name, r)
+        return r
 
     def ramp(self, name, r):
         """A ramp (a town's stairs) on [x0, y0, x1, y1]: the low cells next to the high ground's edge."""

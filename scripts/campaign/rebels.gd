@@ -101,6 +101,17 @@ const ROLES := {
 	"colonist_torch": {"kind": "labourer", "art": "c_citizen", "torch": true, "about": "A colonist of the valley with a torch and a fear of machines."},
 	"anselmo": {"kind": "missionary", "art": "b_joaquim", "name": "Padre Anselmo", "hp": 240, "about": "The valley's parish priest."},
 	"crate_soldier": {"kind": "clock_soldier", "name": "Pattern of 2767", "about": "A Clock Soldier from the crates of 2767, of a pattern nobody remembers building."},
+	# Act 2's d01_minas (Vila Rica, Minas Gerais, 2772): Tomasz the missionary, the garrison's captain, the Free Assembly's
+	# cell in the mines (its lieutenant, its men, Varenne's martyrs with a06 `varenne` executed, the miners it stirs up,
+	# its agitators), the townsfolk (stand-ins until drawn)
+	"tomasz_minas": {"kind": "missionary", "art": "a_tomasz", "name": "Father Tomasz", "hp": 360, "about": "A missionary in Brazil since the Council of Rome, sent to the gold country."},
+	"meneses": {"kind": "cuirassier", "name": "Captain Meneses", "hp": 300, "about": "Captain Luís de Meneses, of the Governor's dragoons, commanding Vila Rica's garrison."},
+	"ramos": {"kind": "dismounted", "name": "Lieutenant Ramos", "hp": 300, "about": "Lieutenant Inácio Ramos, the Free Assembly's man in the mines: an orator with a pistol."},
+	"conspirator": {"kind": "musketeer", "art": "rebel_militia", "about": "A conspirator of the Free Assembly's cell, with a musket paid for in southern gold."},
+	"martyr": {"kind": "musketeer", "art": "rebel_militia", "about": "One of Varenne's martyrs: he carries the dead orator's face on his sleeve."},
+	"miner": {"kind": "pikeman", "art": "c_citizen", "about": "A miner of Vila Rica with a pick, angry at the tax."},
+	"agitator": {"kind": "labourer", "art": "a_runner", "about": "An agitator of the Assembly with a bundle of pamphlets."},
+	"townsman": {"kind": "labourer", "art": "c_citizen", "about": "A townsman of Vila Rica."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)

@@ -891,6 +891,15 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 					out.append("%s: fed needs a known team" % where)
 				elif q is Dictionary and q.has("team") and k != "fed" and not teams.has(String(q["team"])):
 					out.append("%s: unknown team %s" % [where, q["team"]])
+			"researched":
+				# (d01) {"researched": {"team", "tech"}}: a team's research done
+				var q2: Variant = c[k]
+				if not (q2 is Dictionary) or not teams.has(String(q2.get("team", ""))):
+					out.append("%s: researched needs a known team" % where)
+				else:
+					for tk in (q2["tech"] if q2.get("tech") is Array else [q2.get("tech", "")]):
+						if not Defs.RESEARCH.has(String(tk)):
+							out.append("%s: researched: unknown research %s" % [where, tk])
 			"charted":
 				# (d04) {"charted": {"area", "at_least"}}: THE UNMAPPED's share mapped
 				if not (c[k] is Dictionary) or (c[k].has("area") and not areas.has(String(c[k]["area"]))):

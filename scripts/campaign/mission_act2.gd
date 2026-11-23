@@ -242,6 +242,13 @@ func cond(k: String, v: Variant) -> Array:
 		"fed":
 			# {"fed": {"team", "at_least"}}: what the granaries gave that team so far
 			return [true, _between(int(st["fed"].get(String(v.get("team", "")), 0)), v)]
+		"researched":
+			# (d01) {"researched": {"team", "tech": id or [ids]}}: that team has every one of those researches done
+			var tm := run.team_index(String(v.get("team", "")))
+			if tm < 0:
+				return [true, false]
+			var ts: Array = v["tech"] if v.get("tech") is Array else [v.get("tech", "")]
+			return [true, ts.all(func(k) -> bool: return run.game.has_tech(tm, String(k)))]
 		"charted":
 			# (d04) {"charted": {"area", "at_least": share 0..1 (0.6)}}: that share of the area's open cells is mapped;
 			# without "area": of the whole map

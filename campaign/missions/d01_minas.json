@@ -1,0 +1,6805 @@
+{
+	"id": "d01_minas",
+	"title": "The Gold of Vila Rica",
+	"summary": "Minas Gerais, 2772. On the day of the gold tax the Free Assembly's cell means to seize Vila Rica's Royal Foundry House. Father Tomasz, a missionary in Brazil now, and the garrison stand in its way.",
+	"map": "campaign:vila_rica",
+	"voice": "d01",
+	"light": "day",
+	"expansion_spots": false,
+	"manual_end": true,
+	"needs": [
+		"a07_council"
+	],
+	"difficulty": {
+		"easy": {
+			"clocks": 1.25,
+			"spawns": 0.75
+		},
+		"hard": {
+			"clocks": 0.9,
+			"spawns": 1.15
+		}
+	},
+	"modes": [
+		"solo",
+		"versus"
+	],
+	"factions": {
+		"free_assembly": {
+			"name": "The Free Assembly",
+			"stand_in": "crown",
+			"campaign_only": true
+		}
+	},
+	"sides": [
+		{
+			"id": "crown",
+			"name": "The Crown",
+			"about": "Captain Meneses' garrison and Father Tomasz, in the gold town of Vila Rica."
+		},
+		{
+			"id": "conspiracy",
+			"name": "The Conspiracy",
+			"about": "The Free Assembly's cell in the mines: Lieutenant Ramos, his militia and the miners he stirs up."
+		}
+	],
+	"teams": [
+		{
+			"id": "garrison",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "camp",
+			"gold": 400,
+			"powder": 400,
+			"control": {
+				"solo": "p1",
+				"versus": "p1"
+			},
+			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon",
+					"horse_breeder",
+					"cuirassier",
+					"horse",
+					"dismounted",
+					"messenger",
+					"foundry",
+					"mortar",
+					"church",
+					"missionary",
+					"armoury",
+					"matchlock",
+					"bayonet"
+				],
+				"new": [
+					"armoury",
+					"matchlock",
+					"bayonet"
+				],
+				"deny": [
+					"town_hall",
+					"cottage",
+					"farm",
+					"wall",
+					"gate",
+					"labourer",
+					"messenger",
+					"foundry",
+					"mortar",
+					"church",
+					"missionary",
+					"powder_mill"
+				]
+			}
+		},
+		{
+			"id": "treasury",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "praca",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "town",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "praca",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "calmed",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "adro_rosario",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "conspiracy",
+			"side": "conspiracy",
+			"faction": "free_assembly",
+			"colour": 5,
+			"start": "none",
+			"camera": "rise_rosario",
+			"gold": 0,
+			"roster": {
+				"deny": [
+					"town_hall",
+					"cottage",
+					"farm",
+					"foundry",
+					"horse_breeder",
+					"armoury",
+					"church",
+					"powder_mill",
+					"barracks",
+					"wall",
+					"gate",
+					"musketeer",
+					"labourer",
+					"cuirassier",
+					"cannon",
+					"missionary"
+				]
+			},
+			"control": {
+				"solo": "script",
+				"versus": "p2"
+			}
+		},
+		{
+			"id": "seized",
+			"side": "conspiracy",
+			"faction": "free_assembly",
+			"colour": 5,
+			"start": "none",
+			"camera": "hollow",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		}
+	],
+	"areas": {
+		"pilar_hill": [
+			6,
+			17,
+			45,
+			41
+		],
+		"carmo_hill": [
+			78,
+			15,
+			45,
+			41
+		],
+		"ridge": [
+			46,
+			33,
+			36,
+			8
+		],
+		"praca": [
+			56,
+			28,
+			16,
+			18
+		],
+		"gorge_n": [
+			104,
+			54,
+			21,
+			7
+		],
+		"gorge_s": [
+			104,
+			68,
+			21,
+			8
+		],
+		"sq_s": [
+			61,
+			44,
+			6,
+			5
+		],
+		"sq_n": [
+			61,
+			25,
+			6,
+			5
+		],
+		"pilar_s1": [
+			11,
+			48,
+			5,
+			5
+		],
+		"pilar_s2": [
+			35,
+			52,
+			5,
+			5
+		],
+		"pilar_n": [
+			26,
+			14,
+			5,
+			5
+		],
+		"carmo_s": [
+			87,
+			50,
+			5,
+			5
+		],
+		"carmo_n": [
+			99,
+			11,
+			5,
+			5
+		],
+		"gorge_up": [
+			107,
+			59,
+			5,
+			5
+		],
+		"gorge_s_up": [
+			115,
+			74,
+			5,
+			5
+		],
+		"pilar": [
+			6,
+			17,
+			44,
+			41
+		],
+		"carmo": [
+			79,
+			15,
+			43,
+			39
+		],
+		"efigenia": [
+			44,
+			3,
+			40,
+			23
+		],
+		"rosario": [
+			3,
+			60,
+			43,
+			22
+		],
+		"lower": [
+			80,
+			69,
+			23,
+			13
+		],
+		"road": [
+			40,
+			61,
+			88,
+			7
+		],
+		"road_w": [
+			3,
+			59,
+			49,
+			3
+		],
+		"ridge_street": [
+			46,
+			35,
+			36,
+			4
+		],
+		"rua_direita": [
+			61,
+			47,
+			6,
+			15
+		],
+		"to_sq_n": [
+			61,
+			22,
+			6,
+			6
+		],
+		"pilar_up": [
+			25,
+			27,
+			5,
+			11
+		],
+		"carmo_up": [
+			99,
+			25,
+			5,
+			11
+		],
+		"pilar_down": [
+			11,
+			40,
+			6,
+			20
+		],
+		"pilar_down2": [
+			35,
+			40,
+			6,
+			20
+		],
+		"carmo_down": [
+			87,
+			40,
+			6,
+			21
+		],
+		"diggings_way": [
+			44,
+			14,
+			40,
+			3
+		],
+		"garrison": [
+			50,
+			47,
+			30,
+			13
+		],
+		"adro_pilar": [
+			19,
+			20,
+			11,
+			9
+		],
+		"adro_carmo": [
+			97,
+			18,
+			11,
+			9
+		],
+		"adro_rosario": [
+			16,
+			65,
+			12,
+			9
+		],
+		"adro_efigenia": [
+			58,
+			5,
+			12,
+			9
+		],
+		"ford_w": [
+			28,
+			79,
+			5,
+			11
+		],
+		"ford_e": [
+			78,
+			78,
+			5,
+			11
+		],
+		"hollow": [
+			72,
+			89,
+			18,
+			5
+		],
+		"foundry": [
+			60,
+			28,
+			7,
+			6
+		],
+		"church_pilar": [
+			22,
+			21,
+			5,
+			5
+		],
+		"church_carmo": [
+			100,
+			19,
+			5,
+			5
+		],
+		"church_rosario": [
+			19,
+			66,
+			5,
+			5
+		],
+		"church_efigenia": [
+			61,
+			6,
+			5,
+			5
+		],
+		"cand_1": [
+			19,
+			45,
+			4,
+			4
+		],
+		"cand_2": [
+			38,
+			26,
+			4,
+			4
+		],
+		"cand_3": [
+			85,
+			37,
+			4,
+			4
+		],
+		"cand_4": [
+			115,
+			27,
+			4,
+			4
+		],
+		"cand_5": [
+			5,
+			76,
+			4,
+			4
+		],
+		"cand_6": [
+			37,
+			71,
+			4,
+			4
+		],
+		"cand_7": [
+			46,
+			9,
+			4,
+			4
+		],
+		"cand_8": [
+			77,
+			16,
+			4,
+			4
+		],
+		"home_1": [
+			19,
+			49,
+			4,
+			4
+		],
+		"home_2": [
+			43,
+			41,
+			4,
+			4
+		],
+		"home_3": [
+			9,
+			30,
+			4,
+			4
+		],
+		"home_4": [
+			94,
+			46,
+			4,
+			4
+		],
+		"home_5": [
+			111,
+			43,
+			4,
+			4
+		],
+		"home_6": [
+			85,
+			23,
+			4,
+			4
+		],
+		"home_7": [
+			33,
+			76,
+			4,
+			4
+		],
+		"home_8": [
+			5,
+			64,
+			4,
+			4
+		],
+		"home_9": [
+			68,
+			23,
+			4,
+			4
+		],
+		"home_10": [
+			46,
+			19,
+			4,
+			4
+		],
+		"home_11": [
+			90,
+			75,
+			4,
+			4
+		],
+		"home_12": [
+			90,
+			70,
+			4,
+			4
+		],
+		"quarter_pilar": [
+			6,
+			17,
+			44,
+			41
+		],
+		"quarter_carmo": [
+			79,
+			15,
+			43,
+			39
+		],
+		"quarter_efigenia": [
+			44,
+			3,
+			40,
+			23
+		],
+		"quarter_rosario": [
+			3,
+			60,
+			43,
+			22
+		],
+		"foundry_door": [
+			60,
+			33,
+			7,
+			4
+		],
+		"camp": [
+			52,
+			50,
+			20,
+			8
+		],
+		"road_sq": [
+			61,
+			50,
+			6,
+			6
+		],
+		"road_turn": [
+			64,
+			62,
+			6,
+			5
+		],
+		"road_mid": [
+			84,
+			62,
+			8,
+			5
+		],
+		"gorge_w": [
+			96,
+			61,
+			8,
+			7
+		],
+		"gorge_mid": [
+			106,
+			61,
+			10,
+			7
+		],
+		"gorge_e": [
+			116,
+			61,
+			8,
+			7
+		],
+		"coast": [
+			125,
+			61,
+			3,
+			7
+		],
+		"ledge_n": [
+			109,
+			55,
+			14,
+			5
+		],
+		"ledge_s": [
+			107,
+			69,
+			16,
+			5
+		],
+		"rise_rosario": [
+			8,
+			68,
+			12,
+			8
+		],
+		"rise_efigenia": [
+			52,
+			8,
+			12,
+			8
+		],
+		"rise_pilar": [
+			10,
+			30,
+			10,
+			8
+		],
+		"below_sq_n": [
+			60,
+			22,
+			8,
+			4
+		],
+		"below_sq_s": [
+			60,
+			48,
+			8,
+			4
+		],
+		"ridge_w": [
+			46,
+			34,
+			8,
+			6
+		],
+		"home_town": [
+			3,
+			86,
+			20,
+			8
+		]
+	},
+	"counters": {
+		"temper": {
+			"start": 3
+		},
+		"temper_top": {
+			"start": 20
+		},
+		"calmed": {
+			"start": 0
+		},
+		"closed": {
+			"start": 0
+		},
+		"rising_left": {
+			"start": 0
+		},
+		"miners_home": {
+			"start": 0
+		},
+		"gold_out": {
+			"start": 0
+		},
+		"gold_lost": {
+			"start": 0
+		},
+		"carts_n": {
+			"start": 4
+		},
+		"carts_taken": {
+			"start": 0
+		},
+		"retaken": {
+			"start": 0
+		},
+		"ledge_left": {
+			"start": 0
+		},
+		"ramos_gone": {
+			"start": 0
+		},
+		"carts_left": {
+			"start": 0
+		},
+		"taken_left": {
+			"start": 0
+		}
+	},
+	"take_carts": [
+		{
+			"tag": "carts",
+			"by": "conspiracy",
+			"to": "seized",
+			"secs": 5,
+			"counter": "carts_taken",
+			"as": "taken",
+			"label": "TAKING THE GOLD",
+			"word": "GOLD TAKEN!"
+		},
+		{
+			"tag": "taken",
+			"by": "crown",
+			"to": "treasury",
+			"secs": 4,
+			"counter": "retaken",
+			"as": "retaken",
+			"label": "TAKING IT BACK",
+			"word": "TAKEN BACK!"
+		}
+	],
+	"exits": [
+		{
+			"area": "adro_pilar",
+			"tag": "runner",
+			"counter": "temper"
+		},
+		{
+			"area": "adro_carmo",
+			"tag": "runner",
+			"counter": "temper"
+		},
+		{
+			"area": "adro_rosario",
+			"tag": "runner",
+			"counter": "temper"
+		},
+		{
+			"area": "adro_efigenia",
+			"tag": "runner",
+			"counter": "temper"
+		},
+		{
+			"area": "praca",
+			"tag": "runner",
+			"counter": "temper"
+		},
+		{
+			"area": "home_town",
+			"tag": "gone_home",
+			"counter": "miners_home",
+			"after": "part2"
+		},
+		{
+			"area": "coast",
+			"tag": "carts",
+			"cargo": true,
+			"cargo_counter": "gold_out",
+			"after": "part3"
+		},
+		{
+			"area": "hollow",
+			"tag": "taken",
+			"cargo": true,
+			"cargo_counter": "gold_lost",
+			"after": "part3"
+		},
+		{
+			"area": "hollow",
+			"tag": "ramos",
+			"counter": "ramos_gone",
+			"after": "ramos_run"
+		}
+	],
+	"units": [
+		{
+			"team": "garrison",
+			"kind": "cuirassier",
+			"as": "meneses",
+			"count": 1,
+			"at": "camp",
+			"tag": "meneses"
+		},
+		{
+			"team": "garrison",
+			"kind": "missionary",
+			"as": "tomasz_minas",
+			"count": 1,
+			"at": [
+				62,
+				56
+			],
+			"tag": "tomasz"
+		},
+		{
+			"team": "garrison",
+			"kind": "musketeer",
+			"count": 14,
+			"at": "camp",
+			"tag": "garrison_men",
+			"fixed": true
+		},
+		{
+			"team": "garrison",
+			"kind": "cuirassier",
+			"count": 4,
+			"at": "camp",
+			"tag": "riders",
+			"fixed": true
+		},
+		{
+			"team": "garrison",
+			"kind": "cannon",
+			"count": 1,
+			"at": "camp",
+			"tag": "gun",
+			"fixed": true
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "townsman",
+			"count": 8,
+			"at": "praca",
+			"tag": "townsfolk",
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "townsman",
+			"count": 2,
+			"at": "adro_pilar",
+			"tag": "townsfolk",
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "townsman",
+			"count": 2,
+			"at": "adro_carmo",
+			"tag": "townsfolk",
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "townsman",
+			"count": 2,
+			"at": "adro_rosario",
+			"tag": "townsfolk",
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "town",
+			"kind": "labourer",
+			"as": "townsman",
+			"count": 2,
+			"at": "adro_efigenia",
+			"tag": "townsfolk",
+			"order": "hold",
+			"fixed": true
+		},
+		{
+			"team": "conspiracy",
+			"kind": "dismounted",
+			"as": "ramos",
+			"count": 1,
+			"at": "rise_rosario",
+			"tag": "ramos",
+			"if": {
+				"playing": "conspiracy"
+			}
+		},
+		{
+			"team": "conspiracy",
+			"kind": "musketeer",
+			"as": "conspirator",
+			"count": 4,
+			"at": "rise_rosario",
+			"tag": "v_men",
+			"if": {
+				"playing": "conspiracy"
+			}
+		}
+	],
+	"buildings": [
+		{
+			"team": "garrison",
+			"kind": "barracks",
+			"at": [
+				51,
+				49
+			],
+			"tag": "barracks"
+		},
+		{
+			"team": "garrison",
+			"kind": "armoury",
+			"at": [
+				56,
+				49
+			],
+			"tag": "armoury"
+		},
+		{
+			"team": "garrison",
+			"kind": "horse_breeder",
+			"at": [
+				68,
+				49
+			],
+			"tag": "breeder"
+		},
+		{
+			"team": "garrison",
+			"kind": "cottage",
+			"at": [
+				51,
+				55
+			],
+			"tag": "quarters"
+		},
+		{
+			"team": "garrison",
+			"kind": "cottage",
+			"at": [
+				54,
+				55
+			],
+			"tag": "quarters"
+		},
+		{
+			"team": "garrison",
+			"kind": "cottage",
+			"at": [
+				57,
+				55
+			],
+			"tag": "quarters"
+		},
+		{
+			"team": "garrison",
+			"kind": "cottage",
+			"at": [
+				68,
+				55
+			],
+			"tag": "quarters"
+		},
+		{
+			"team": "garrison",
+			"kind": "cottage",
+			"at": [
+				71,
+				55
+			],
+			"tag": "quarters"
+		},
+		{
+			"team": "treasury",
+			"kind": "town_hall",
+			"at": [
+				61,
+				29
+			],
+			"tag": "foundry",
+			"name": "The Royal Foundry House"
+		},
+		{
+			"team": "town",
+			"kind": "church",
+			"at": [
+				23,
+				22
+			],
+			"tag": "church_pilar",
+			"tags": [
+				"churches"
+			],
+			"name": "The Pilar"
+		},
+		{
+			"team": "town",
+			"kind": "church",
+			"at": [
+				101,
+				20
+			],
+			"tag": "church_carmo",
+			"tags": [
+				"churches"
+			],
+			"name": "The Carmo"
+		},
+		{
+			"team": "town",
+			"kind": "church",
+			"at": [
+				20,
+				67
+			],
+			"tag": "church_rosario",
+			"tags": [
+				"churches"
+			],
+			"name": "The Rosário"
+		},
+		{
+			"team": "town",
+			"kind": "church",
+			"at": [
+				62,
+				7
+			],
+			"tag": "church_efigenia",
+			"tags": [
+				"churches"
+			],
+			"name": "Santa Efigênia"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				20,
+				50
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				44,
+				42
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				10,
+				31
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				95,
+				47
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				112,
+				44
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				86,
+				24
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				34,
+				77
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				6,
+				65
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				69,
+				24
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				47,
+				20
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				91,
+				76
+			],
+			"tag": "town_b"
+		},
+		{
+			"team": "town",
+			"kind": "cottage",
+			"at": [
+				91,
+				71
+			],
+			"tag": "town_b"
+		}
+	],
+	"objectives": [
+		{
+			"id": "temper",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"text": "THE TOWN'S TEMPER: {temper} of {temper_top}. It rises in every quarter nobody has spoken to, and for every agitator who reaches a churchyard or the square. At the top, Vila Rica rises.",
+			"phone": "The town's temper: {temper} of {temper_top}. At the top, Vila Rica rises."
+		},
+		{
+			"id": "calm",
+			"side": "crown",
+			"primary": false,
+			"task": true,
+			"kind": "manual",
+			"text": "Father Tomasz goes to the people: bring him to each quarter's churchyard (the cross before its church) and keep him there a moment. The Pilar (west hill), the Carmo (east hill), the Rosário (south-west), Santa Efigênia (the diggings, north). Calmed: {calmed} of 4.",
+			"phone": "Bring Father Tomasz to each churchyard a moment: {calmed} of 4."
+		},
+		{
+			"id": "armouries",
+			"side": "crown",
+			"primary": false,
+			"task": true,
+			"kind": "manual",
+			"text": "Find the conspiracy's two hidden armouries and close them before the signal: {closed} of 2. They look like any house until one of your men stands at its door a moment. The agitators come out of them: your horsemen can ride them down.",
+			"phone": "Find and close the two hidden armouries: {closed} of 2. A man at a door a moment."
+		},
+		{
+			"id": "signal_clock",
+			"side": "crown",
+			"primary": false,
+			"task": true,
+			"kind": "countdown",
+			"clock": "signal",
+			"text": "The conspirators' signal is expected tonight: {clock:signal}."
+		},
+		{
+			"id": "research",
+			"side": "crown",
+			"primary": false,
+			"task": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "At the Armoury (the lower town, beside the barracks), research the MATCHLOCK and the SOCKET BAYONET before night, then turn on AUTO REFIT there so your Musketeers are fitted.",
+			"phone": "Armoury: research MATCHLOCK and SOCKET BAYONET, then AUTO REFIT."
+		},
+		{
+			"id": "tomasz",
+			"side": "crown",
+			"primary": true,
+			"kind": "protect",
+			"tag": "tomasz",
+			"text": "Father Tomasz must live. Hurt, he falls back to the barracks."
+		},
+		{
+			"id": "foundry",
+			"side": "crown",
+			"primary": true,
+			"kind": "protect",
+			"tag": "foundry",
+			"hidden": true,
+			"text": "Hold the Royal Foundry House on the square: the gold is in it."
+		},
+		{
+			"id": "rising",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The rising comes up the stairs to the square, from the Rosário (the Rua Direita), the diggings (the north stair) and the Pilar (the ridge). Hold the stairs with the bayonet: {rising_left} of the rising left.",
+			"phone": "Hold the square's stairs: {rising_left} of the rising left."
+		},
+		{
+			"id": "miners",
+			"side": "crown",
+			"primary": false,
+			"task": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The miners with picks are no soldiers. Bring Father Tomasz to the Rosário's churchyard (south-west) a moment: the brotherhood's priest may call them home."
+		},
+		{
+			"id": "ledger",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The second armoury still stands: the conspiracy's papers are kept in it. Close it."
+		},
+		{
+			"id": "gold",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Bring the gold to the coast: {gold_out} of {carts_n} carts arrived. The carts take the road east through the gorge. Keep soldiers by every cart: conspirators who stand round a cart with none of yours by it TAKE it.",
+			"phone": "Gold to the coast: {gold_out} of {carts_n}. Soldiers by every cart."
+		},
+		{
+			"id": "carts_clock",
+			"side": "crown",
+			"primary": false,
+			"task": true,
+			"kind": "countdown",
+			"clock": "carts",
+			"hidden": true,
+			"text": "The carts leave the Foundry House in {clock:carts}: put an escort with them."
+		},
+		{
+			"id": "ledges",
+			"side": "crown",
+			"primary": false,
+			"task": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Men wait on the two rock ledges over the gorge. Send soldiers up the ledges' stairs (from the road, and from the scrub south of it) and clear them before the carts pass: {ledge_left} up there."
+		},
+		{
+			"id": "ramos",
+			"side": "crown",
+			"primary": false,
+			"kind": "capture",
+			"tag": "ramos",
+			"hidden": true,
+			"text": "Take Lieutenant Ramos ALIVE: wear him down, then a man of yours beside him."
+		},
+		{
+			"id": "v_town",
+			"side": "conspiracy",
+			"primary": false,
+			"kind": "manual",
+			"text": "Raise Vila Rica: walk your agitators to the churchyards and the square. The town's temper: {temper} of {temper_top}."
+		},
+		{
+			"id": "v_gold",
+			"side": "conspiracy",
+			"primary": false,
+			"kind": "manual",
+			"text": "Or burn the Royal Foundry House at night, or take its gold on the road."
+		}
+	],
+	"triggers": [
+		{
+			"id": "layout",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"choice": {
+						"id": "layout",
+						"side": "conspiracy",
+						"title": "WHERE THE ARMOURIES HIDE",
+						"default": "random",
+						"time": 30,
+						"options": [
+							{
+								"id": "hills",
+								"label": "ON THE TWO HILLS",
+								"about": "One on the Pilar's slope, one on the Carmo's.",
+								"do": [
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												20,
+												46
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "conspiracy",
+											"kind": "cottage",
+											"at": [
+												39,
+												27
+											],
+											"tag": "armouries",
+											"tags": [
+												"armoury_1"
+											],
+											"name": "Hidden armoury",
+											"disguise": {
+												"as": "town",
+												"within": 2,
+												"by": "crown",
+												"secs": 3
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												86,
+												38
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "conspiracy",
+											"kind": "cottage",
+											"at": [
+												116,
+												28
+											],
+											"tag": "armouries",
+											"tags": [
+												"armoury_2"
+											],
+											"name": "Hidden armoury",
+											"disguise": {
+												"as": "town",
+												"within": 2,
+												"by": "crown",
+												"secs": 3
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												6,
+												77
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												38,
+												72
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												47,
+												10
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												78,
+												17
+											],
+											"tag": "town_b"
+										}
+									}
+								]
+							},
+							{
+								"id": "low",
+								"label": "IN THE LOW QUARTERS",
+								"about": "One in the Rosário, one in the diggings north of the square.",
+								"do": [
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												20,
+												46
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												39,
+												27
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												86,
+												38
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												116,
+												28
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "conspiracy",
+											"kind": "cottage",
+											"at": [
+												6,
+												77
+											],
+											"tag": "armouries",
+											"tags": [
+												"armoury_1"
+											],
+											"name": "Hidden armoury",
+											"disguise": {
+												"as": "town",
+												"within": 2,
+												"by": "crown",
+												"secs": 3
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												38,
+												72
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												47,
+												10
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "conspiracy",
+											"kind": "cottage",
+											"at": [
+												78,
+												17
+											],
+											"tag": "armouries",
+											"tags": [
+												"armoury_2"
+											],
+											"name": "Hidden armoury",
+											"disguise": {
+												"as": "town",
+												"within": 2,
+												"by": "crown",
+												"secs": 3
+											}
+										}
+									}
+								]
+							},
+							{
+								"id": "west",
+								"label": "THE PILAR AND THE DIGGINGS",
+								"about": "One low on the Pilar, one in the diggings.",
+								"do": [
+									{
+										"build": {
+											"team": "conspiracy",
+											"kind": "cottage",
+											"at": [
+												20,
+												46
+											],
+											"tag": "armouries",
+											"tags": [
+												"armoury_1"
+											],
+											"name": "Hidden armoury",
+											"disguise": {
+												"as": "town",
+												"within": 2,
+												"by": "crown",
+												"secs": 3
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												39,
+												27
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												86,
+												38
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												116,
+												28
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												6,
+												77
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												38,
+												72
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "conspiracy",
+											"kind": "cottage",
+											"at": [
+												47,
+												10
+											],
+											"tag": "armouries",
+											"tags": [
+												"armoury_2"
+											],
+											"name": "Hidden armoury",
+											"disguise": {
+												"as": "town",
+												"within": 2,
+												"by": "crown",
+												"secs": 3
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												78,
+												17
+											],
+											"tag": "town_b"
+										}
+									}
+								]
+							},
+							{
+								"id": "east",
+								"label": "THE CARMO AND THE ROSÁRIO",
+								"about": "One low on the Carmo, one in the Rosário.",
+								"do": [
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												20,
+												46
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												39,
+												27
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "conspiracy",
+											"kind": "cottage",
+											"at": [
+												86,
+												38
+											],
+											"tag": "armouries",
+											"tags": [
+												"armoury_1"
+											],
+											"name": "Hidden armoury",
+											"disguise": {
+												"as": "town",
+												"within": 2,
+												"by": "crown",
+												"secs": 3
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												116,
+												28
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												6,
+												77
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "conspiracy",
+											"kind": "cottage",
+											"at": [
+												38,
+												72
+											],
+											"tag": "armouries",
+											"tags": [
+												"armoury_2"
+											],
+											"name": "Hidden armoury",
+											"disguise": {
+												"as": "town",
+												"within": 2,
+												"by": "crown",
+												"secs": 3
+											}
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												47,
+												10
+											],
+											"tag": "town_b"
+										}
+									},
+									{
+										"build": {
+											"team": "town",
+											"kind": "cottage",
+											"at": [
+												78,
+												17
+											],
+											"tag": "town_b"
+										}
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "townsfolk",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "churches",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "town_b",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "foundry",
+						"on": true
+					}
+				},
+				{
+					"clock": {
+						"name": "signal",
+						"secs": 330
+					}
+				},
+				{
+					"ping": {
+						"area": "adro_pilar"
+					}
+				},
+				{
+					"ping": {
+						"area": "adro_carmo"
+					}
+				},
+				{
+					"ping": {
+						"area": "adro_rosario"
+					}
+				},
+				{
+					"ping": {
+						"area": "adro_efigenia"
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_tempers",
+			"when": {
+				"time": 0.6
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper_top",
+						"set": 20
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_easy",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"difficulty": "easy"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper_top",
+						"set": 24
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_hard",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"difficulty": "hard"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper_top",
+						"set": 16
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_rome",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"past": {
+							"a07_council.rome": "few"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 3
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_martyrs",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "intro",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_derrama",
+						"m_1",
+						"t_1"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_v",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "conspiracy"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_derrama",
+						"r_v1",
+						"r_v_tip"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_tips",
+			"when": {
+				"fired": "intro"
+			},
+			"delay": 14,
+			"do": [
+				{
+					"say": [
+						"m_tip1",
+						"m_tip2"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_calm",
+			"when": {
+				"time": 1.5
+			},
+			"do": [
+				{
+					"ping": {
+						"tag": "tomasz"
+					}
+				}
+			]
+		},
+		{
+			"id": "flavour_calm",
+			"when": {
+				"all": [
+					{
+						"time": 38
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"a01_presses.lyon": "risen"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"a01_presses.lyon": "sullen"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"t_pamphlet_calm"
+					]
+				}
+			]
+		},
+		{
+			"id": "flavour_sullen",
+			"when": {
+				"all": [
+					{
+						"time": 38
+					},
+					{
+						"past": {
+							"a01_presses.lyon": "sullen"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"t_pamphlet_sullen"
+					]
+				}
+			]
+		},
+		{
+			"id": "flavour_rome",
+			"when": {
+				"all": [
+					{
+						"time": 52
+					},
+					{
+						"past": {
+							"a07_council.rome": "few"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"t_pamphlet_rome"
+					]
+				}
+			]
+		},
+		{
+			"id": "flavour_martyrs",
+			"when": {
+				"all": [
+					{
+						"time": 66
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"t_martyrs"
+					]
+				}
+			]
+		},
+		{
+			"id": "printer_shown",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"time": 24
+					},
+					{
+						"not": {
+							"past": {
+								"a01_presses.lyon": "risen"
+							}
+						}
+					},
+					{
+						"disguised": "armouries"
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "armouries",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"t_printer"
+					]
+				}
+			]
+		},
+		{
+			"id": "armoury_tip",
+			"when": {
+				"time": 30
+			},
+			"do": [
+				{
+					"say": [
+						"m_armoury"
+					]
+				},
+				{
+					"objective": {
+						"id": "research",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"tag": "armoury"
+					}
+				}
+			]
+		},
+		{
+			"id": "researched",
+			"when": {
+				"researched": {
+					"team": "garrison",
+					"tech": [
+						"matchlock",
+						"bayonet"
+					]
+				}
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "research",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"m_researched"
+					]
+				}
+			]
+		},
+		{
+			"id": "pay",
+			"when": {
+				"all": [
+					{
+						"time": 60
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 60,
+			"do": [
+				{
+					"give": {
+						"team": "garrison",
+						"gold": 40,
+						"powder": 15
+					}
+				}
+			]
+		},
+		{
+			"id": "first_runner",
+			"when": {
+				"all": [
+					{
+						"count": {
+							"tag": "runner",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"w_runner"
+					]
+				},
+				{
+					"ping": {
+						"tag": "runner"
+					}
+				}
+			]
+		},
+		{
+			"id": "first_found",
+			"when": {
+				"unmasked": "armouries"
+			},
+			"do": [
+				{
+					"say": [
+						"n_found",
+						"m_found"
+					]
+				}
+			]
+		},
+		{
+			"id": "temper_10",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "temper",
+							"at_least": 10
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_temper10"
+					]
+				}
+			]
+		},
+		{
+			"id": "temper_15",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "temper",
+							"at_least": 15
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_temper15",
+						"m_temper15"
+					]
+				}
+			]
+		},
+		{
+			"id": "calm_all",
+			"when": {
+				"counter": {
+					"name": "calmed",
+					"at_least": 4
+				}
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "calm",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"t_calm_all"
+					]
+				}
+			]
+		},
+		{
+			"id": "closed_all",
+			"when": {
+				"counter": {
+					"name": "closed",
+					"at_least": 2
+				}
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "armouries",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "signal_soon",
+			"when": {
+				"all": [
+					{
+						"fired": "closed_all"
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"clock_left": {
+								"name": "signal",
+								"below": 25
+							}
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "signal",
+						"secs": 25,
+						"scale": false
+					}
+				},
+				{
+					"say": [
+						"m_soon"
+					]
+				}
+			]
+		},
+		{
+			"id": "ledger",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"dead": "armoury_2"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"t_ledger"
+					]
+				},
+				{
+					"flag": {
+						"ledger": "found"
+					}
+				},
+				{
+					"objective": {
+						"id": "ledger",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "ledger_d04",
+			"when": {
+				"all": [
+					{
+						"fired": "ledger"
+					},
+					{
+						"past": {
+							"d04_concordia.crates": "opened"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"t_ledger_d04"
+					]
+				}
+			]
+		},
+		{
+			"id": "tax_pilar",
+			"when": {
+				"all": [
+					{
+						"time": 45
+					},
+					{
+						"not": {
+							"fired": "calm_pilar"
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 80,
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "tax_carmo",
+			"when": {
+				"all": [
+					{
+						"time": 57
+					},
+					{
+						"not": {
+							"fired": "calm_carmo"
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 80,
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "tax_rosario",
+			"when": {
+				"all": [
+					{
+						"time": 69
+					},
+					{
+						"not": {
+							"fired": "calm_rosario"
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 80,
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "tax_efigenia",
+			"when": {
+				"all": [
+					{
+						"time": 81
+					},
+					{
+						"not": {
+							"fired": "calm_efigenia"
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 80,
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "calm_pilar",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"tag": "tomasz",
+							"area": "adro_pilar",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": -3,
+						"min": 0
+					}
+				},
+				{
+					"counter": {
+						"name": "calmed",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"t_calm_pilar",
+						"n_calmed"
+					]
+				}
+			]
+		},
+		{
+			"id": "calm_carmo",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"tag": "tomasz",
+							"area": "adro_carmo",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": -3,
+						"min": 0
+					}
+				},
+				{
+					"counter": {
+						"name": "calmed",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"t_calm_carmo",
+						"n_calmed"
+					]
+				}
+			]
+		},
+		{
+			"id": "calm_rosario",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"tag": "tomasz",
+							"area": "adro_rosario",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": -3,
+						"min": 0
+					}
+				},
+				{
+					"counter": {
+						"name": "calmed",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"t_calm_rosario",
+						"n_calmed"
+					]
+				}
+			]
+		},
+		{
+			"id": "calm_efigenia",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"tag": "tomasz",
+							"area": "adro_efigenia",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "temper",
+						"add": -3,
+						"min": 0
+					}
+				},
+				{
+					"counter": {
+						"name": "calmed",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"t_calm_efigenia",
+						"n_calmed"
+					]
+				}
+			]
+		},
+		{
+			"id": "risen",
+			"when": {
+				"all": [
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					},
+					{
+						"any": [
+							{
+								"all": [
+									{
+										"difficulty": "easy"
+									},
+									{
+										"counter": {
+											"name": "temper",
+											"at_least": 24
+										}
+									}
+								]
+							},
+							{
+								"all": [
+									{
+										"difficulty": "normal"
+									},
+									{
+										"counter": {
+											"name": "temper",
+											"at_least": 20
+										}
+									}
+								]
+							},
+							{
+								"all": [
+									{
+										"difficulty": "hard"
+									},
+									{
+										"counter": {
+											"name": "temper",
+											"at_least": 16
+										}
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_risen"
+					]
+				},
+				{
+					"objective": {
+						"id": "temper",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "signal",
+			"when": {
+				"all": [
+					{
+						"clock_out": "signal"
+					},
+					{
+						"not": {
+							"fired": "risen"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"light": {
+						"to": "dusk",
+						"secs": 8
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/bell_toll",
+						"area": "adro_efigenia",
+						"vol": 0.9
+					}
+				},
+				{
+					"tally": {
+						"flag": "minas",
+						"counter": "temper",
+						"bands": [
+							[
+								0,
+								"quiet"
+							],
+							[
+								10,
+								"restless"
+							]
+						]
+					}
+				},
+				{
+					"objective": {
+						"id": "temper",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "signal_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "calm",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "armouries",
+						"set": "hidden"
+					}
+				},
+				{
+					"say": [
+						"n_signal",
+						"r_signal"
+					]
+				},
+				{
+					"unmask": {
+						"tag": "armouries"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"all": [
+					{
+						"fired": "signal"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 10,
+			"do": [
+				{
+					"light": {
+						"to": "night",
+						"secs": 12
+					}
+				},
+				{
+					"say": [
+						"m_signal",
+						"t_signal",
+						"m_signal_t"
+					]
+				},
+				{
+					"spare": {
+						"tag": "foundry",
+						"on": false
+					}
+				},
+				{
+					"objective": {
+						"id": "foundry",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "rising",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "miners",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "night",
+						"secs": 240,
+						"scale": false
+					}
+				},
+				{
+					"ping": {
+						"area": "below_sq_s"
+					}
+				},
+				{
+					"ping": {
+						"area": "below_sq_n"
+					}
+				},
+				{
+					"ping": {
+						"area": "adro_rosario"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_ledger",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"dead": "armoury_2"
+						}
+					},
+					{
+						"count": {
+							"tag": "armoury_2",
+							"at_least": 1,
+							"buildings": true
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "ledger",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"tag": "armoury_2"
+					}
+				}
+			]
+		},
+		{
+			"id": "band_r",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 6,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 4,
+						"at": "rise_rosario",
+						"tag": "band_r",
+						"tags": [
+							"rising"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "martyr",
+						"count": 2,
+						"at": "rise_rosario",
+						"tag": "band_r",
+						"tags": [
+							"rising"
+						],
+						"if": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 3,
+						"at": "rise_rosario",
+						"tag": "band_r",
+						"tags": [
+							"rising"
+						],
+						"if": {
+							"count": {
+								"tag": "armoury_1",
+								"at_least": 1,
+								"buildings": true
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "pikeman",
+						"as": "miner",
+						"count": 3,
+						"at": "rise_rosario",
+						"tag": "band_r",
+						"tags": [
+							"rising",
+							"miners"
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "band_e",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 9,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 4,
+						"at": "rise_efigenia",
+						"tag": "band_e",
+						"tags": [
+							"rising"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "martyr",
+						"count": 2,
+						"at": "rise_efigenia",
+						"tag": "band_e",
+						"tags": [
+							"rising"
+						],
+						"if": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 3,
+						"at": "rise_efigenia",
+						"tag": "band_e",
+						"tags": [
+							"rising"
+						],
+						"if": {
+							"count": {
+								"tag": "armoury_2",
+								"at_least": 1,
+								"buildings": true
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "pikeman",
+						"as": "miner",
+						"count": 3,
+						"at": "rise_efigenia",
+						"tag": "band_e",
+						"tags": [
+							"rising",
+							"miners"
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "band_p",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 51,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 5,
+						"at": "rise_pilar",
+						"tag": "band_p",
+						"tags": [
+							"rising"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "martyr",
+						"count": 2,
+						"at": "rise_pilar",
+						"tag": "band_p",
+						"tags": [
+							"rising"
+						],
+						"if": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				},
+				{
+					"say": [
+						"n_ridge"
+					]
+				},
+				{
+					"ping": {
+						"area": "ridge_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "band_r_go",
+			"when": {
+				"all": [
+					{
+						"fired": "band_r"
+					},
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "band_r",
+						"do": "route",
+						"route": [
+							"rise_rosario",
+							"road_w",
+							"below_sq_s",
+							"sq_s",
+							"praca"
+						],
+						"attack": true,
+						"name": "band_r"
+					}
+				}
+			]
+		},
+		{
+			"id": "band_e_go",
+			"when": {
+				"all": [
+					{
+						"fired": "band_e"
+					},
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "band_e",
+						"do": "route",
+						"route": [
+							"rise_efigenia",
+							"below_sq_n",
+							"sq_n",
+							"praca"
+						],
+						"attack": true,
+						"name": "band_e"
+					}
+				}
+			]
+		},
+		{
+			"id": "band_p_go",
+			"when": {
+				"all": [
+					{
+						"fired": "band_p"
+					},
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "band_p",
+						"do": "route",
+						"route": [
+							"rise_pilar",
+							"ridge_w",
+							"praca"
+						],
+						"attack": true,
+						"name": "band_p"
+					}
+				}
+			]
+		},
+		{
+			"id": "bayonet_say",
+			"when": {
+				"fired": "band_r"
+			},
+			"delay": 20,
+			"do": [
+				{
+					"say": [
+						"m_bayonet"
+					]
+				}
+			]
+		},
+		{
+			"id": "rising_n",
+			"when": {
+				"all": [
+					{
+						"fired": "band_r"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "rising_left",
+						"count": {
+							"tag": "rising"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "assault",
+			"when": {
+				"all": [
+					{
+						"fired": "band_r"
+					},
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					},
+					{
+						"not": {
+							"fired": "rising_broken"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"every": 15,
+			"do": [
+				{
+					"order": {
+						"tag": "rising",
+						"only_team": "conspiracy",
+						"do": "attack",
+						"to": "praca",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "miners_home",
+			"when": {
+				"all": [
+					{
+						"fired": "band_e"
+					},
+					{
+						"stay": {
+							"tag": "tomasz",
+							"area": "adro_rosario",
+							"secs": 4
+						}
+					},
+					{
+						"count": {
+							"tag": "miners",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "rising_broken"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"sound": {
+						"name": "campaign/bell_toll",
+						"area": "adro_rosario",
+						"vol": 0.7
+					}
+				},
+				{
+					"convert": {
+						"tag": "miners",
+						"to": "calmed",
+						"as": "gone_home",
+						"warn": 1,
+						"untorch": true
+					}
+				},
+				{
+					"say": [
+						"t_miners",
+						"n_miners"
+					]
+				},
+				{
+					"objective": {
+						"id": "miners",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "gone_home_go",
+			"when": {
+				"all": [
+					{
+						"fired": "miners_home"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 1.5,
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "gone_home",
+						"only_team": "calmed",
+						"do": "move",
+						"to": "home_town"
+					}
+				}
+			]
+		},
+		{
+			"id": "rising_spent",
+			"when": {
+				"fired": "band_p"
+			},
+			"delay": 3,
+			"do": []
+		},
+		{
+			"id": "rising_broken",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"all": [
+									{
+										"fired": "rising_spent"
+									},
+									{
+										"counter": {
+											"name": "rising_left",
+											"below": 3
+										}
+									}
+								]
+							},
+							{
+								"clock_out": "night"
+							}
+						]
+					},
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"r_fall",
+						"n_broken"
+					]
+				},
+				{
+					"objective": {
+						"id": "rising",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "miners",
+						"set": "hidden"
+					}
+				},
+				{
+					"order": {
+						"tag": "rising",
+						"only_team": "conspiracy",
+						"do": "move",
+						"to": "home_town"
+					}
+				},
+				{
+					"clock": {
+						"name": "night",
+						"stop": true
+					}
+				}
+			]
+		},
+		{
+			"id": "rising_gone",
+			"when": {
+				"fired": "rising_broken"
+			},
+			"delay": 14,
+			"do": [
+				{
+					"remove": {
+						"tag": "rising"
+					}
+				},
+				{
+					"remove": {
+						"tag": "armoury_men"
+					}
+				},
+				{
+					"remove": {
+						"tag": "runner"
+					}
+				}
+			]
+		},
+		{
+			"id": "foundry_lost",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"dead": "foundry"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_foundry_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "foundry",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"fired": "rising_broken"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 15,
+			"do": [
+				{
+					"light": {
+						"to": "dawn",
+						"secs": 15
+					}
+				},
+				{
+					"objective": {
+						"id": "foundry",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "ledger",
+						"set": "hidden"
+					}
+				},
+				{
+					"spawn": {
+						"team": "treasury",
+						"kind": "powder_wagon",
+						"as": "gold_cart",
+						"count": 4,
+						"at": "foundry_door",
+						"tag": "carts",
+						"tags": [
+							"convoy"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"load": {
+						"cart": "carts",
+						"cargo": "gold",
+						"amount": 1,
+						"lost": "gold_lost"
+					}
+				},
+				{
+					"spare": {
+						"tag": "carts",
+						"on": true
+					}
+				},
+				{
+					"objective": {
+						"id": "gold",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "carts_clock",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "ledges",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "ramos",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "carts",
+						"secs": 40,
+						"scale": false
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 4,
+						"at": "ledge_n",
+						"tag": "ambush",
+						"tags": [
+							"ledge_men"
+						],
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 3,
+						"at": "ledge_s",
+						"tag": "ambush",
+						"tags": [
+							"ledge_men"
+						],
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "martyr",
+						"count": 2,
+						"at": "ledge_n",
+						"tag": "ambush",
+						"tags": [
+							"ledge_men"
+						],
+						"order": "hold",
+						"if": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "dismounted",
+						"as": "ramos",
+						"count": 1,
+						"at": "gorge_e",
+						"tag": "ramos",
+						"order": "hold",
+						"if": {
+							"not": {
+								"playing": "conspiracy"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 4,
+						"at": "gorge_e",
+						"tag": "takers",
+						"tags": [
+							"ambush"
+						],
+						"order": "hold"
+					}
+				},
+				{
+					"ping": {
+						"area": "ledge_n"
+					}
+				},
+				{
+					"ping": {
+						"area": "ledge_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3_say",
+			"when": {
+				"fired": "part3"
+			},
+			"do": [
+				{
+					"say": [
+						"n_dawn",
+						"m_gold",
+						"m_gorge"
+					]
+				}
+			]
+		},
+		{
+			"id": "part3_t",
+			"when": {
+				"fired": "part3"
+			},
+			"delay": 18,
+			"do": [
+				{
+					"say": [
+						"t_gold"
+					]
+				}
+			]
+		},
+		{
+			"id": "ledge_n_count",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "ledge_left",
+						"count": {
+							"tag": "ledge_men"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "ledges_clear",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"time": 1
+					},
+					{
+						"count": {
+							"tag": "ledge_men",
+							"below": 1
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"objective": {
+						"id": "ledges",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "cart_go",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"clock_out": "carts"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "carts_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"order": {
+						"tag": "carts",
+						"only_team": "treasury",
+						"do": "route",
+						"route": [
+							"foundry_door",
+							"sq_s",
+							"road_turn",
+							"road_mid",
+							"gorge_w",
+							"gorge_mid",
+							"gorge_e",
+							"coast"
+						],
+						"name": "gold_road"
+					}
+				},
+				{
+					"say": [
+						"n_carts_go"
+					]
+				}
+			]
+		},
+		{
+			"id": "ambush",
+			"when": {
+				"all": [
+					{
+						"fired": "cart_go"
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"tag": "carts",
+									"area": "gorge_w",
+									"at_least": 1
+								}
+							},
+							{
+								"count": {
+									"tag": "carts",
+									"area": "road_mid",
+									"at_least": 1
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"r_ambush",
+						"m_ambush"
+					]
+				},
+				{
+					"ping": {
+						"tag": "ramos"
+					}
+				},
+				{
+					"clock": {
+						"name": "ramos_clock",
+						"secs": 150,
+						"scale": false
+					}
+				}
+			]
+		},
+		{
+			"id": "takers_go",
+			"when": {
+				"all": [
+					{
+						"fired": "ambush"
+					},
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "takers",
+						"only_team": "conspiracy",
+						"do": "take",
+						"carts": "carts",
+						"within": 40,
+						"else": "gorge_mid"
+					}
+				},
+				{
+					"order": {
+						"tag": "ramos",
+						"do": "take",
+						"carts": "carts",
+						"within": 12,
+						"else": "gorge_e"
+					}
+				}
+			]
+		},
+		{
+			"id": "ledges_down",
+			"when": {
+				"all": [
+					{
+						"fired": "ambush"
+					},
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					},
+					{
+						"count": {
+							"tag": "carts",
+							"area": "gorge_mid",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "ledge_men",
+						"do": "take",
+						"carts": "carts",
+						"within": 30,
+						"else": "gorge_mid"
+					}
+				}
+			]
+		},
+		{
+			"id": "taken_go",
+			"when": {
+				"all": [
+					{
+						"taken": "carts"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "taken",
+						"only_team": "seized",
+						"do": "move",
+						"to": "hollow"
+					}
+				},
+				{
+					"order": {
+						"tag": "taken",
+						"only_team": "treasury",
+						"do": "move",
+						"to": "coast"
+					}
+				}
+			]
+		},
+		{
+			"id": "taken_say",
+			"when": {
+				"taken": "carts"
+			},
+			"do": [
+				{
+					"say": [
+						"n_taken",
+						"m_retake"
+					]
+				},
+				{
+					"ping": {
+						"tag": "taken"
+					}
+				}
+			]
+		},
+		{
+			"id": "retaken_say",
+			"when": {
+				"counter": {
+					"name": "retaken",
+					"at_least": 1
+				}
+			},
+			"do": [
+				{
+					"say": [
+						"n_retaken"
+					]
+				}
+			]
+		},
+		{
+			"id": "cart_out_say",
+			"when": {
+				"counter": {
+					"name": "gold_out",
+					"at_least": 1
+				}
+			},
+			"do": [
+				{
+					"say": [
+						"n_cart_out"
+					]
+				}
+			]
+		},
+		{
+			"id": "carts_n",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "carts_left",
+						"count": {
+							"tag": "carts"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "taken_left",
+						"count": {
+							"tag": "taken"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "ramos_taken",
+			"when": {
+				"captured": "ramos"
+			},
+			"do": [
+				{
+					"say": [
+						"r_taken"
+					]
+				},
+				{
+					"flag": {
+						"conspirator": "taken"
+					}
+				}
+			]
+		},
+		{
+			"id": "ramos_run",
+			"when": {
+				"all": [
+					{
+						"fired": "ambush"
+					},
+					{
+						"not": {
+							"captured": "ramos"
+						}
+					},
+					{
+						"count": {
+							"tag": "ramos",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"tag": "takers",
+									"below": 1
+								}
+							},
+							{
+								"clock_out": "ramos_clock"
+							},
+							{
+								"all": [
+									{
+										"fired": "cart_go"
+									},
+									{
+										"counter": {
+											"name": "carts_left",
+											"below": 1
+										}
+									},
+									{
+										"counter": {
+											"name": "taken_left",
+											"below": 1
+										}
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"r_run",
+						"m_run"
+					]
+				},
+				{
+					"order": {
+						"tag": "ramos",
+						"do": "move",
+						"to": "hollow"
+					}
+				},
+				{
+					"pace": {
+						"tag": "ramos",
+						"pace": 0.85
+					}
+				},
+				{
+					"clock": {
+						"name": "ramos_away",
+						"secs": 45,
+						"scale": false
+					}
+				},
+				{
+					"ping": {
+						"area": "hollow"
+					}
+				}
+			]
+		},
+		{
+			"id": "ramos_on",
+			"when": {
+				"all": [
+					{
+						"fired": "ramos_run"
+					},
+					{
+						"not": {
+							"captured": "ramos"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "ramos",
+						"do": "move",
+						"to": "hollow"
+					}
+				}
+			]
+		},
+		{
+			"id": "ramos_late",
+			"when": {
+				"all": [
+					{
+						"fired": "ramos_run"
+					},
+					{
+						"clock_out": "ramos_away"
+					},
+					{
+						"not": {
+							"captured": "ramos"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"remove": {
+						"tag": "ramos"
+					}
+				},
+				{
+					"counter": {
+						"name": "ramos_gone",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "ramos_fled",
+			"when": {
+				"all": [
+					{
+						"fired": "ramos_run"
+					},
+					{
+						"counter": {
+							"name": "ramos_gone",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"captured": "ramos"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_fled"
+					]
+				},
+				{
+					"flag": {
+						"conspirator": "fled"
+					}
+				},
+				{
+					"objective": {
+						"id": "ramos",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "road_done",
+			"when": {
+				"all": [
+					{
+						"fired": "cart_go"
+					},
+					{
+						"time": 1
+					},
+					{
+						"counter": {
+							"name": "carts_left",
+							"below": 1
+						}
+					},
+					{
+						"counter": {
+							"name": "taken_left",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"tally": {
+						"flag": "gold",
+						"counter": "gold_out",
+						"of": "carts_n",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.5,
+								"some"
+							],
+							[
+								1,
+								"all"
+							]
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "gold_zero",
+			"when": {
+				"all": [
+					{
+						"fired": "road_done"
+					},
+					{
+						"counter": {
+							"name": "gold_out",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_gold_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "gold",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "won",
+			"when": {
+				"all": [
+					{
+						"fired": "road_done"
+					},
+					{
+						"counter": {
+							"name": "gold_out",
+							"at_least": 1
+						}
+					},
+					{
+						"any": [
+							{
+								"captured": "ramos"
+							},
+							{
+								"fired": "ramos_fled"
+							},
+							{
+								"playing": "conspiracy"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"say": [
+						"m_done"
+					]
+				},
+				{
+					"objective": {
+						"id": "gold",
+						"set": "done"
+					}
+				},
+				{
+					"light": {
+						"to": "day",
+						"secs": 6
+					}
+				}
+			]
+		},
+		{
+			"id": "won_ramos_v",
+			"when": {
+				"all": [
+					{
+						"fired": "won"
+					},
+					{
+						"playing": "conspiracy"
+					},
+					{
+						"not": {
+							"captured": "ramos"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"conspirator": "fled"
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"fired": "won"
+			},
+			"delay": 4,
+			"do": [
+				{
+					"win": "crown"
+				}
+			]
+		},
+		{
+			"id": "v_won",
+			"when": {
+				"all": [
+					{
+						"playing": "conspiracy"
+					},
+					{
+						"any": [
+							{
+								"fired": "risen"
+							},
+							{
+								"fired": "foundry_lost"
+							},
+							{
+								"fired": "gold_zero"
+							},
+							{
+								"dead": "tomasz"
+							},
+							{
+								"counter": {
+									"name": "gold_lost",
+									"at_least": 3
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": []
+		},
+		{
+			"id": "v_end",
+			"when": {
+				"fired": "v_won"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"win": "conspiracy"
+				}
+			]
+		},
+		{
+			"id": "lost_end",
+			"when": {
+				"all": [
+					{
+						"not": {
+							"playing": "conspiracy"
+						}
+					},
+					{
+						"any": [
+							{
+								"fired": "risen"
+							},
+							{
+								"fired": "foundry_lost"
+							},
+							{
+								"fired": "gold_zero"
+							}
+						]
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"lose": "crown"
+				}
+			]
+		},
+		{
+			"id": "tomasz_hurt",
+			"when": {
+				"hp": {
+					"tag": "tomasz",
+					"below": 0.6
+				}
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"t_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "tomasz"
+					}
+				}
+			]
+		},
+		{
+			"id": "run_1_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 30.0
+					},
+					{
+						"not": {
+							"dead": "armoury_1"
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 85,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "labourer",
+						"as": "agitator",
+						"count": 1,
+						"fixed": true,
+						"near": "armoury_1",
+						"at": "rise_rosario",
+						"tag": "runner_1",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_1",
+						"do": "move",
+						"to": "praca",
+						"to_if": [
+							{
+								"if": {
+									"not": {
+										"fired": "calm_rosario"
+									}
+								},
+								"to": "adro_rosario"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_pilar"
+									}
+								},
+								"to": "adro_pilar"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_efigenia"
+									}
+								},
+								"to": "adro_efigenia"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_carmo"
+									}
+								},
+								"to": "adro_carmo"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_1_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 30.0
+					},
+					{
+						"not": {
+							"dead": "armoury_1"
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 65,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "labourer",
+						"as": "agitator",
+						"count": 1,
+						"fixed": true,
+						"near": "armoury_1",
+						"at": "rise_rosario",
+						"tag": "runner_1",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_1",
+						"do": "move",
+						"to": "praca",
+						"to_if": [
+							{
+								"if": {
+									"not": {
+										"fired": "calm_rosario"
+									}
+								},
+								"to": "adro_rosario"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_pilar"
+									}
+								},
+								"to": "adro_pilar"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_efigenia"
+									}
+								},
+								"to": "adro_efigenia"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_carmo"
+									}
+								},
+								"to": "adro_carmo"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_1_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 30.0
+					},
+					{
+						"not": {
+							"dead": "armoury_1"
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "labourer",
+						"as": "agitator",
+						"count": 1,
+						"fixed": true,
+						"near": "armoury_1",
+						"at": "rise_rosario",
+						"tag": "runner_1",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_1",
+						"do": "move",
+						"to": "praca",
+						"to_if": [
+							{
+								"if": {
+									"not": {
+										"fired": "calm_rosario"
+									}
+								},
+								"to": "adro_rosario"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_pilar"
+									}
+								},
+								"to": "adro_pilar"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_efigenia"
+									}
+								},
+								"to": "adro_efigenia"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_carmo"
+									}
+								},
+								"to": "adro_carmo"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_2_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 72.5
+					},
+					{
+						"not": {
+							"dead": "armoury_2"
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 85,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "labourer",
+						"as": "agitator",
+						"count": 1,
+						"fixed": true,
+						"near": "armoury_2",
+						"at": "rise_rosario",
+						"tag": "runner_2",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_2",
+						"do": "move",
+						"to": "praca",
+						"to_if": [
+							{
+								"if": {
+									"not": {
+										"fired": "calm_carmo"
+									}
+								},
+								"to": "adro_carmo"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_efigenia"
+									}
+								},
+								"to": "adro_efigenia"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_pilar"
+									}
+								},
+								"to": "adro_pilar"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_rosario"
+									}
+								},
+								"to": "adro_rosario"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_2_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 62.5
+					},
+					{
+						"not": {
+							"dead": "armoury_2"
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 65,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "labourer",
+						"as": "agitator",
+						"count": 1,
+						"fixed": true,
+						"near": "armoury_2",
+						"at": "rise_rosario",
+						"tag": "runner_2",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_2",
+						"do": "move",
+						"to": "praca",
+						"to_if": [
+							{
+								"if": {
+									"not": {
+										"fired": "calm_carmo"
+									}
+								},
+								"to": "adro_carmo"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_efigenia"
+									}
+								},
+								"to": "adro_efigenia"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_pilar"
+									}
+								},
+								"to": "adro_pilar"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_rosario"
+									}
+								},
+								"to": "adro_rosario"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "run_2_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 55.0
+					},
+					{
+						"not": {
+							"dead": "armoury_2"
+						}
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "labourer",
+						"as": "agitator",
+						"count": 1,
+						"fixed": true,
+						"near": "armoury_2",
+						"at": "rise_rosario",
+						"tag": "runner_2",
+						"tags": [
+							"runner"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "runner_2",
+						"do": "move",
+						"to": "praca",
+						"to_if": [
+							{
+								"if": {
+									"not": {
+										"fired": "calm_carmo"
+									}
+								},
+								"to": "adro_carmo"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_efigenia"
+									}
+								},
+								"to": "adro_efigenia"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_pilar"
+									}
+								},
+								"to": "adro_pilar"
+							},
+							{
+								"if": {
+									"not": {
+										"fired": "calm_rosario"
+									}
+								},
+								"to": "adro_rosario"
+							}
+						],
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "found_1",
+			"when": {
+				"unmasked": "armoury_1"
+			},
+			"do": [
+				{
+					"hurt": {
+						"tag": "armoury_1",
+						"amount": 120
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 2,
+						"near": "armoury_1",
+						"at": "rise_rosario",
+						"tag": "armoury_men",
+						"order": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "closed_1",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"dead": "armoury_1"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "closed",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "temper",
+						"add": -2,
+						"min": 0
+					}
+				},
+				{
+					"give": {
+						"team": "garrison",
+						"gold": 60
+					}
+				},
+				{
+					"say": [
+						"n_closed"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_1_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 150
+					},
+					{
+						"disguised": "armouries"
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "armouries",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_1_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 180
+					},
+					{
+						"disguised": "armouries"
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "armouries",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_1_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 220
+					},
+					{
+						"disguised": "armouries"
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "armouries",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "found_2",
+			"when": {
+				"unmasked": "armoury_2"
+			},
+			"do": [
+				{
+					"hurt": {
+						"tag": "armoury_2",
+						"amount": 120
+					}
+				},
+				{
+					"spawn": {
+						"team": "conspiracy",
+						"kind": "musketeer",
+						"as": "conspirator",
+						"count": 2,
+						"near": "armoury_2",
+						"at": "rise_rosario",
+						"tag": "armoury_men",
+						"order": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "closed_2",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"dead": "armoury_2"
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "closed",
+						"add": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "temper",
+						"add": -2,
+						"min": 0
+					}
+				},
+				{
+					"give": {
+						"team": "garrison",
+						"gold": 60
+					}
+				},
+				{
+					"say": [
+						"n_closed"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_2_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"time": 240
+					},
+					{
+						"disguised": "armouries"
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "armouries",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_2_normal",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"time": 270
+					},
+					{
+						"disguised": "armouries"
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "armouries",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "hint_2_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "layout"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"time": 310
+					},
+					{
+						"disguised": "armouries"
+					},
+					{
+						"not": {
+							"fired": "signal"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "v_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"unmask": {
+						"tag": "armouries",
+						"first": true
+					}
+				},
+				{
+					"say": [
+						"w_hint"
+					]
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 8
+			},
+			"do": [
+				{
+					"say": [
+						"new_armoury",
+						"new_matchlock",
+						"new_bayonet"
+					]
+				}
+			]
+		}
+	],
+	"heroes": [
+		"tomasz",
+		"meneses"
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "crown",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"cardinal": {
+			"name": "Cardinal Tomasz",
+			"side": "crown",
+			"portrait": "res://campaign/hub/rome_tomasz_face.png"
+		},
+		"tomasz": {
+			"name": "Father Tomasz",
+			"side": "crown"
+		},
+		"meneses": {
+			"name": "Captain Meneses",
+			"side": "crown"
+		},
+		"ramos": {
+			"name": "Lieutenant Ramos",
+			"side": "conspiracy"
+		},
+		"townsman": {
+			"name": "A townsman",
+			"side": "crown"
+		},
+		"narrator": {
+			"name": "Vila Rica",
+			"side": "crown"
+		},
+		"new": {
+			"name": "NEW IN YOUR ARMY",
+			"side": "crown"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "After Rome I sent Tomasz to Brazil. He asked to go. He said the fire would come there next, and he wanted to be standing in it."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "The gold of the mines paid for my armies. In Vila Rica, the men who dug it had been told that it paid only for my chains."
+		},
+		"c_open": {
+			"who": "cardinal",
+			"text": "I was thirty, and I thought I had learnt everything in Lyon. Minas taught me the rest."
+		},
+		"t_open1": {
+			"who": "tomasz",
+			"text": "Vila Rica sits on two hills and a ridge, with a church on every height and gold in every stream. The day I came, the derrama was to be read on the square."
+		},
+		"t_open2": {
+			"who": "tomasz",
+			"text": "The derrama: the gold the town still owed the Crown, collected house by house in one day. Nobody in the mines had a kind word for it, and some had a plan."
+		},
+		"t_open_saved": {
+			"who": "tomasz",
+			"text": "I had seen what Virginia's families became when someone stood by them. I meant to stand by these."
+		},
+		"t_open_left": {
+			"who": "tomasz",
+			"text": "I never stopped praying for the road we left them on, in Virginia. I did not mean to leave anyone on a road again."
+		},
+		"t_open_risen": {
+			"who": "tomasz",
+			"text": "I carried a letter from Lyon in my breviary. Lyon had risen behind us. The Assembly's ink had crossed the sea before I did."
+		},
+		"n_derrama": {
+			"who": "narrator",
+			"text": "On the square the Crown's officer reads the decree of the derrama from the steps of the Foundry House. The crowd listens in silence."
+		},
+		"m_1": {
+			"who": "meneses",
+			"text": "Father, I have fourteen muskets and four horses for a town of thirty thousand. If they rise, I hold the Foundry House and nothing else.",
+			"to": "crown"
+		},
+		"t_1": {
+			"who": "tomasz",
+			"text": "Then let us see that they do not rise, Captain. I will go to the churches. Every quarter has one, and every church has its people.",
+			"to": "crown"
+		},
+		"m_tip1": {
+			"who": "meneses",
+			"text": "And the Assembly's men are somewhere in those houses, with powder. My men will knock on doors. Stand a man at a door and we will know what is behind it.",
+			"to": "crown"
+		},
+		"m_tip2": {
+			"who": "meneses",
+			"text": "Their runners carry the pamphlets from house to house. Ride them down before they reach the churchyards: every one that gets there makes the town angrier.",
+			"to": "crown"
+		},
+		"m_armoury": {
+			"who": "meneses",
+			"text": "One more thing, Father. The Crown sent us an Armoury this year, and it has not been used. If there is fighting on those stairs tonight, I want better locks and bayonets that can stay fixed.",
+			"to": "crown"
+		},
+		"m_researched": {
+			"who": "meneses",
+			"text": "Matchlocks and socket bayonets. Now the men must go to the Armoury to be fitted: turn on AUTO REFIT and send them by.",
+			"to": "crown"
+		},
+		"t_pamphlet_calm": {
+			"who": "tomasz",
+			"text": "The pamphlets were printed on the Lyon type. The last of it, the printer swore. The ink was still wet.",
+			"to": "crown"
+		},
+		"t_pamphlet_sullen": {
+			"who": "tomasz",
+			"text": "The pamphlets were printed on the Lyon type. Lyon still prints.",
+			"to": "crown"
+		},
+		"t_pamphlet_rome": {
+			"who": "tomasz",
+			"text": "ROME BURNED AND THE CHURCH DID NOT FALL, said the pamphlet. THE NEXT FIRE WILL BE OURS. Half the town had read it.",
+			"to": "crown"
+		},
+		"t_martyrs": {
+			"who": "tomasz",
+			"text": "Varenne's face was on every pamphlet, drawn as a saint. I had asked for his life in Paris. They had made his death into a banner.",
+			"to": "crown"
+		},
+		"t_printer": {
+			"who": "tomasz",
+			"text": "The printer's mark from Lyon was on the pamphlets, and Captain Meneses' men knew it. One house printed nothing but it had the same ink on its step.",
+			"to": "crown"
+		},
+		"t_calm_pilar": {
+			"who": "tomasz",
+			"text": "The Pilar's people are shopkeepers and clerks. I told them that a tax can be argued, and a rising cannot be taken back. They went home to argue.",
+			"to": "crown"
+		},
+		"t_calm_carmo": {
+			"who": "tomasz",
+			"text": "At the Carmo the masters of the mines asked me whose side the Church was on. I said: on the side of the souls in this square, all of them.",
+			"to": "crown"
+		},
+		"t_calm_rosario": {
+			"who": "tomasz",
+			"text": "The Rosário is the miners' own church, built with their own gold dust. They knew the tax better than any officer. I listened before I spoke.",
+			"to": "crown"
+		},
+		"t_calm_efigenia": {
+			"who": "tomasz",
+			"text": "In the diggings they had pamphlets under every stone. I read one aloud to them, slowly, and asked who would pay for it when the soldiers came. Nobody answered.",
+			"to": "crown"
+		},
+		"n_calmed": {
+			"who": "narrator",
+			"text": "The quarter is calm. Its temper falls.",
+			"to": "crown"
+		},
+		"t_calm_all": {
+			"who": "tomasz",
+			"text": "Four churches, four sermons, and my voice nearly gone. The town was quiet. Quiet is not the same as at peace.",
+			"to": "crown"
+		},
+		"w_runner": {
+			"who": "meneses",
+			"text": "There, a runner with a bundle of pamphlets! He is making for a churchyard. Ride him down.",
+			"to": "crown"
+		},
+		"n_found": {
+			"who": "narrator",
+			"text": "Behind the door: barrels of powder, muskets in straw, and men who reach for them.",
+			"to": "crown"
+		},
+		"m_found": {
+			"who": "meneses",
+			"text": "An armoury! Break it open and burn what is in it.",
+			"to": "crown"
+		},
+		"n_closed": {
+			"who": "narrator",
+			"text": "An armoury is closed. The muskets in it will not be fired tonight.",
+			"to": "crown"
+		},
+		"w_hint": {
+			"who": "townsman",
+			"text": "Father! The house with the shutters always closed: men go in at night and nobody comes out. I have marked it for you.",
+			"to": "crown"
+		},
+		"n_temper10": {
+			"who": "narrator",
+			"text": "Shutters close along the Rua Direita. Men gather at the fountains and stop talking when soldiers pass.",
+			"to": "crown"
+		},
+		"n_temper15": {
+			"who": "narrator",
+			"text": "Stones fly at the tax collectors in the lower town. Vila Rica is close to rising.",
+			"to": "crown"
+		},
+		"m_temper15": {
+			"who": "meneses",
+			"text": "Father, they are close to the edge. Stop the runners, or speak to them, or we lose the town.",
+			"to": "crown"
+		},
+		"n_risen": {
+			"who": "narrator",
+			"text": "Vila Rica rises. The Assembly's flag goes up over the Rosário and the garrison is driven down to the barracks."
+		},
+		"m_soon": {
+			"who": "meneses",
+			"text": "Both of their armouries closed! They know they are found. They will give the signal now, tonight. Get the men in hand.",
+			"to": "crown"
+		},
+		"t_ledger": {
+			"who": "tomasz",
+			"text": "In the second armoury we found a ledger. The muskets had been paid for in coin from the south, from the agents of a guild of clockmakers. Machines paying for a revolution.",
+			"to": "crown"
+		},
+		"t_ledger_d04": {
+			"who": "tomasz",
+			"text": "Concórdia, the ledger said. The city of gears on the southern highlands. The guild wanted the Crown's metal, and the Assembly wanted money. They had found each other.",
+			"to": "crown"
+		},
+		"n_signal": {
+			"who": "narrator",
+			"text": "Night. A bell rings from the wrong church at the wrong hour: the signal."
+		},
+		"r_signal": {
+			"who": "ramos",
+			"text": "Vila Rica! The gold is yours, not Lisbon's, not Rome's! Up, and take the Foundry House!"
+		},
+		"m_signal": {
+			"who": "meneses",
+			"text": "There it is. They will come up the stairs to the square from below and along the ridge. Hold the stairs, bayonets fixed. Not one of them on the square.",
+			"to": "crown"
+		},
+		"t_signal": {
+			"who": "tomasz",
+			"text": "The miners with them have picks, not muskets. They are not soldiers, Captain. Some of them sang at the Rosário this morning.",
+			"to": "crown"
+		},
+		"m_signal_t": {
+			"who": "meneses",
+			"text": "Then go and get them back, Father, if you can. My men will hold the stairs either way.",
+			"to": "crown"
+		},
+		"n_ridge": {
+			"who": "narrator",
+			"text": "More of them along the ridge street, from the Pilar.",
+			"to": "crown"
+		},
+		"t_miners": {
+			"who": "tomasz",
+			"text": "I stood in the Rosário's churchyard and rang its own bell, the right bell, and called the brotherhood by name. They came. Not all of them, but they came.",
+			"to": "crown"
+		},
+		"n_miners": {
+			"who": "narrator",
+			"text": "The miners lower their picks and go home behind the brotherhood's banner.",
+			"to": "crown"
+		},
+		"m_bayonet": {
+			"who": "meneses",
+			"text": "Bayonets! Hold the top of the stairs, and let them climb to you.",
+			"to": "crown"
+		},
+		"r_fall": {
+			"who": "ramos",
+			"text": "Enough! Back, back to the gorge! The gold still has to leave this town, and there is only one road."
+		},
+		"n_broken": {
+			"who": "narrator",
+			"text": "The rising breaks on the stairs. What is left of it runs into the dark."
+		},
+		"n_foundry_lost": {
+			"who": "narrator",
+			"text": "The Royal Foundry House burns, and the gold with it."
+		},
+		"t_hurt": {
+			"who": "tomasz",
+			"text": "I am hit. Do not stop for me, Captain.",
+			"to": "crown"
+		},
+		"n_dawn": {
+			"who": "narrator",
+			"text": "Dawn over the hills. Smoke over the Rosário, and the gold still in the Foundry House."
+		},
+		"m_gold": {
+			"who": "meneses",
+			"text": "The Governor's order: the gold goes to the coast today, before they try again. Four carts, one road, through the gorge.",
+			"to": "crown"
+		},
+		"m_gorge": {
+			"who": "meneses",
+			"text": "If I were Ramos, I would wait on the rocks above the gorge. Send men up the ledges' stairs before the carts go in, and keep a few by every cart.",
+			"to": "crown"
+		},
+		"t_gold": {
+			"who": "tomasz",
+			"text": "I asked to ride with the gold. The Captain thought I meant to guard it. I meant to bury whoever died on that road.",
+			"to": "crown"
+		},
+		"n_carts_go": {
+			"who": "narrator",
+			"text": "The gold carts roll down the Rua Direita and take the road east.",
+			"to": "crown"
+		},
+		"r_ambush": {
+			"who": "ramos",
+			"text": "Now! Off the rocks! Take the carts, never mind the soldiers!"
+		},
+		"m_ambush": {
+			"who": "meneses",
+			"text": "There he is, Ramos himself, on the road ahead! Take him alive if you can: the Governor will want his names.",
+			"to": "crown"
+		},
+		"n_taken": {
+			"who": "narrator",
+			"text": "A gold cart is taken. The conspirators drive it back for the east ford.",
+			"to": "crown"
+		},
+		"m_retake": {
+			"who": "meneses",
+			"text": "After it! Get round that cart before it crosses the ford and it is ours again.",
+			"to": "crown"
+		},
+		"n_retaken": {
+			"who": "narrator",
+			"text": "The cart is the Crown's again and turns back for the coast.",
+			"to": "crown"
+		},
+		"n_cart_out": {
+			"who": "narrator",
+			"text": "A gold cart is through the gorge, on the road to the coast.",
+			"to": "crown"
+		},
+		"r_run": {
+			"who": "ramos",
+			"text": "It is lost here. South, to the free city! They will want a man who knows the mines."
+		},
+		"m_run": {
+			"who": "meneses",
+			"text": "He is running for the hollow beyond the east ford! Catch him before he is across!",
+			"to": "crown"
+		},
+		"r_taken": {
+			"who": "ramos",
+			"text": "Do it quickly, then. The mines will remember me."
+		},
+		"t_taken": {
+			"who": "tomasz",
+			"text": "He asked me to hear his confession before they took him to the Governor. I did. What he said is between him and God. What he did is between him and the King.",
+			"to": "crown"
+		},
+		"n_fled": {
+			"who": "narrator",
+			"text": "Ramos is across the ford and gone into the scrub, south.",
+			"to": "crown"
+		},
+		"m_done": {
+			"who": "meneses",
+			"text": "The gold is on the coast road. Vila Rica is the King's.",
+			"to": "crown"
+		},
+		"n_gold_lost": {
+			"who": "narrator",
+			"text": "Not one cart reached the coast. The gold of Vila Rica will buy muskets for the next rising."
+		},
+		"r_v1": {
+			"who": "ramos",
+			"text": "Today they read their derrama on our square. Tonight we ring the bell. Walk the pamphlets to the churchyards; let the town hear it.",
+			"to": "conspiracy"
+		},
+		"r_v_tip": {
+			"who": "ramos",
+			"text": "Our armouries hide among the houses until a soldier knocks. Keep them hidden: the agitators come out of them.",
+			"to": "conspiracy"
+		},
+		"t_end1": {
+			"who": "tomasz",
+			"text": "The gold went down to the coast and across the sea, and Vila Rica paid its derrama. I stayed a year among the miners."
+		},
+		"t_end_quiet": {
+			"who": "tomasz",
+			"text": "The town was quiet after. Not because of the bayonets. Because someone had come to their churches before the bell rang."
+		},
+		"t_end_restless": {
+			"who": "tomasz",
+			"text": "The town was quiet after, under the bayonet. I learnt that a quiet bought that way has to be bought again every year."
+		},
+		"t_end_taken": {
+			"who": "tomasz",
+			"text": "Ramos was tried at Vila Rica. I wrote to the King for his life, as I had for Varenne's."
+		},
+		"t_end_fled": {
+			"who": "tomasz",
+			"text": "Ramos was never found. Years later I heard his name again, from the south, from the city of gears."
+		},
+		"t_end2": {
+			"who": "tomasz",
+			"text": "In Lyon I had learnt to speak to a crowd. In Minas I learnt to stay with it afterwards."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "I signed Ramos' sentence and Tomasz' letter lay beside it. I commuted it to exile. You may judge whether I learnt from Paris."
+		},
+		"k_end_fled": {
+			"who": "king",
+			"text": "The gold reached Lisbon. The man who wanted it reached the city of gears. Both kept their appointments with me, later."
+		},
+		"k_end2": {
+			"who": "king",
+			"text": "The mines stayed mine. I did not lower the tax. Perhaps I should have. Tomasz never said so; he only sent me the names of the dead."
+		},
+		"c_end": {
+			"who": "cardinal",
+			"text": "Three hundred names. I still have the list."
+		},
+		"k_end_v": {
+			"who": "king",
+			"text": "The Assembly took the Foundry House and proclaimed its republic of the mines. That is not how it went. The gold reached the coast."
+		},
+		"r_end_v": {
+			"who": "ramos",
+			"text": "For one night Vila Rica belonged to the men who dug it. They will not forget it, whatever comes."
+		},
+		"new_armoury": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE ARMOURY. The garrison's own, in the lower town: it researches better muskets and bayonets for the Musketeers. Pick it to see what it teaches.",
+			"portrait": "res://assets/icons/armoury.png"
+		},
+		"new_matchlock": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE MATCHLOCK. Research it at the Armoury: the Musketeers reload faster. Men already in the ranks get it by a REFIT: turn on AUTO REFIT on the Armoury and idle men near it go to be fitted."
+		},
+		"new_bayonet": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE SOCKET BAYONET. Research it at the Armoury: the bayonet hits harder and quicker, and the musket can still fire with it fixed. On the town's stairs, where the fighting is close, it decides the night."
+		}
+	},
+	"stills": {
+		"rome": {
+			"image": "res://campaign/stills/p01_01.jpg",
+			"caption": "Rome, the present. The King tells it; the Cardinal remembers."
+		},
+		"town": {
+			"image": "res://campaign/stills/d01_01.jpg",
+			"caption": "Vila Rica, Minas Gerais, 2772: the gold town on its hills."
+		},
+		"derrama": {
+			"image": "res://campaign/stills/d01_02.jpg",
+			"caption": "The derrama read on the square."
+		},
+		"stairs": {
+			"image": "res://campaign/stills/d01_03.jpg",
+			"caption": "The night of the signal: the stairs."
+		},
+		"road": {
+			"image": "res://campaign/stills/d01_04.jpg",
+			"caption": "The gold road through the gorge."
+		}
+	},
+	"next": {
+		"crown": "",
+		"conspiracy": ""
+	},
+	"opening": {
+		"crown": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2",
+					"c_open"
+				]
+			},
+			{
+				"still": "town",
+				"lines": [
+					"t_open1",
+					{
+						"id": "t_open_saved",
+						"if": {
+							"past": {
+								"p01_leaf.families": "save"
+							}
+						}
+					},
+					{
+						"id": "t_open_left",
+						"if": {
+							"not": {
+								"past": {
+									"p01_leaf.families": "save"
+								}
+							}
+						}
+					},
+					{
+						"id": "t_open_risen",
+						"if": {
+							"past": {
+								"a01_presses.lyon": "risen"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "derrama",
+				"lines": [
+					"t_open2"
+				]
+			}
+		],
+		"conspiracy": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open2"
+				]
+			},
+			{
+				"still": "derrama",
+				"lines": [
+					"r_v1"
+				]
+			}
+		]
+	},
+	"ending": {
+		"crown": [
+			{
+				"still": "road",
+				"lines": [
+					"t_end1",
+					{
+						"id": "t_end_quiet",
+						"if": {
+							"flag": {
+								"minas": "quiet"
+							}
+						}
+					},
+					{
+						"id": "t_end_restless",
+						"if": {
+							"flag": {
+								"minas": "restless"
+							}
+						}
+					},
+					{
+						"id": "t_end_taken",
+						"if": {
+							"flag": {
+								"conspirator": "taken"
+							}
+						}
+					},
+					{
+						"id": "t_end_fled",
+						"if": {
+							"flag": {
+								"conspirator": "fled"
+							}
+						}
+					},
+					"t_end2"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					{
+						"id": "k_end1",
+						"if": {
+							"flag": {
+								"conspirator": "taken"
+							}
+						}
+					},
+					{
+						"id": "k_end_fled",
+						"if": {
+							"flag": {
+								"conspirator": "fled"
+							}
+						}
+					},
+					"k_end2",
+					"c_end"
+				]
+			}
+		],
+		"conspiracy": [
+			{
+				"still": "stairs",
+				"lines": [
+					"r_end_v"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_v"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"crown": {
+			"still": "derrama",
+			"text": [
+				"Minas Gerais, 2772. In Vila Rica, the gold town, the Crown reads the derrama today: the gold tax owed, collected in one day. The Free Assembly's cell means to use it.",
+				"Keep the town's temper down: Father Tomasz goes to each quarter's church, your horsemen ride down the agitators, your men find the two hidden armouries.",
+				"At night hold the Royal Foundry House on the square. At dawn take its gold to the coast through the gorge."
+			]
+		},
+		"conspiracy": {
+			"still": "derrama",
+			"text": [
+				"Minas Gerais, 2772. You lead the Free Assembly's cell in Vila Rica under Lieutenant Ramos. Today the Crown reads its derrama on the square.",
+				"Raise the town with your agitators, burn the Royal Foundry House on the night of the signal, or take its gold on the road to the coast."
+			]
+		}
+	},
+	"debrief": {
+		"crown": {
+			"still": "road",
+			"title": "The gold of Vila Rica",
+			"text": "Vila Rica held. {gold_out} of {carts_n} gold carts reached the coast; {calmed} of 4 quarters were calmed before the signal.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"minas": "quiet"
+						}
+					},
+					"text": "The mines are quiet."
+				},
+				{
+					"if": {
+						"flag": {
+							"minas": "restless"
+						}
+					},
+					"text": "The mines are quiet only under the bayonet."
+				},
+				{
+					"if": {
+						"flag": {
+							"conspirator": "taken"
+						}
+					},
+					"text": "Lieutenant Ramos was taken alive."
+				},
+				{
+					"if": {
+						"flag": {
+							"conspirator": "fled"
+						}
+					},
+					"text": "Lieutenant Ramos escaped south."
+				},
+				{
+					"if": {
+						"flag": {
+							"ledger": "found"
+						}
+					},
+					"text": "The conspiracy's ledger was read: its muskets were paid with a southern guild's gold."
+				}
+			]
+		},
+		"conspiracy": {
+			"still": "stairs",
+			"title": "The republic of the mines",
+			"text": "The conspiracy took Vila Rica for a night."
+		}
+	}
+}
