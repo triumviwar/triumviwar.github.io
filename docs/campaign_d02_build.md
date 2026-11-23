@@ -177,9 +177,16 @@ The table is in docs/chatterbox_todo.md ("d02_exodus"), with each dramatic line'
 Commissary Brandt (a dry chancery official, German), Colonel von Rauch, Ulrich (the guild's foreman). Jakob is already
 on the list from Act 1; Ferrer's voice was designed on 2026-11-22.
 
+## Pictures (docs/shots/d02_exodus/, CHECK THE FEEL)
+
+The sim's `shots=` under xvfb-run at 1280x720, NORMAL: the guild's run (1 start, 2 loading, 3 the bridge, 4 the valley,
+5 the riders, 6 the landing, 7 the bank with the travelling clock and the turret, 8 aboard) and the commissary's (1 start,
+2 a cart taken, 3 the bridge, 4 the valley with the TAKING THE CART bar, 5 the riders, 6 Hollweg taken). The snow night,
+the carts' and machines' sizes and the clock at the landing read well.
+
 ## What is placeholder
 
-Every line of text (en, pt, es). The four stills. The roles' art (Brandt is a dismounted Cuirassier, von Rauch a
+Every line of text (en, pt, es). The four stills. Master Ulrich has no portrait yet (his initials show). The roles' art (Brandt is a dismounted Cuirassier, von Rauch a
 Cuirassier, the carts are powder wagons). The sounds (none new).
 
 ## Claude's choices for the owner
@@ -214,6 +221,7 @@ Cuirassier, the carts are powder wagons). The sounds (none new).
 18. THE MIRROR'S DIFFICULTY is the guild's size (5 / 7 / 9 Clock Soldiers), not the spawns: the scripted guild is
     placed at the start, and the Machine's smaller EASY sortie had made EASY the hardest.
 19. HARD here is spawns x1.1 and clocks x0.9 (not the default x1.25 / x0.85): at x1.25 the bot lost every HARD run.
+20. COMMISSARY BRANDT is a02's unnamed Commissary (his portrait, commissary.png); von Rauch uses a02's colonel.png.
 
 ## What is left
 

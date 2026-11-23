@@ -301,8 +301,10 @@ M = {
         "hollweg": {"name": T("Meister Hollweg", "Mestre Hollweg", "Maestro Hollweg"), "side": "exodus", "portrait": "res://campaign/hub/nuremberg_hollweg_face.png"},
         "jakob": {"name": T("Jakob", "Jakob", "Jakob"), "side": "exodus"},
         "ulrich": {"name": T("Master Ulrich", "Mestre Ulrich", "Maestro Ulrich"), "side": "exodus"},
-        "brandt": {"name": T("Commissary Brandt", "Comissário Brandt", "Comisario Brandt"), "side": "commissary"},
-        "rauch": {"name": T("Colonel von Rauch", "Coronel von Rauch", "Coronel von Rauch"), "side": "commissary"},
+        "brandt": {"name": T("Commissary Brandt", "Comissário Brandt", "Comisario Brandt"), "side": "commissary",
+                   "portrait": "res://campaign/portraits/commissary.png"},     # (a02's commissary: the same man)
+        "rauch": {"name": T("Colonel von Rauch", "Coronel von Rauch", "Coronel von Rauch"), "side": "commissary",
+                  "portrait": "res://campaign/portraits/colonel.png"},
         "ferrer": {"name": T("Father Ferrer", "Padre Ferrer", "Padre Ferrer"), "side": "commissary"},
         "narrator": {"name": T("Fürth to the Main", "De Fürth ao Meno", "De Fürth al Meno"), "side": "exodus"},
         "machine": {"name": T("The Machine", "A Máquina", "La Máquina"), "side": "machine"},

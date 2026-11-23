@@ -6529,11 +6529,13 @@
 		},
 		"brandt": {
 			"name": "Commissary Brandt",
-			"side": "commissary"
+			"side": "commissary",
+			"portrait": "res://campaign/portraits/commissary.png"
 		},
 		"rauch": {
 			"name": "Colonel von Rauch",
-			"side": "commissary"
+			"side": "commissary",
+			"portrait": "res://campaign/portraits/colonel.png"
 		},
 		"ferrer": {
 			"name": "Father Ferrer",
