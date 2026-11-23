@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.195": ["Las nuevas salas y personas de los cuarteles de la campaña están pintadas: la armería, la capilla y la galería de banderas en Roma, el patio del gremio en Fürth, el almacén de especímenes y la sala de mapas en la Barra, y doce personas que se unen a los cuarteles (Ruggieri, Fairleigh, Delorme, el capitán suizo, Jakob, el Padre Ferrer, el Maestro Ulrich, el Coronel von Rauch, el Hermano Anselm, Pieter, Valadares, Benedito) ahora tienen pinturas al óleo en vez de figuras provisionales."],
 	"0.38.194": ["El suelo brasileño del Acto 2 está pintado: la várzea inundada, las tierras altas frías y el sertón seco, sus acantilados y sus árboles, cactus, arbustos y piedras ahora tienen dibujos de verdad en vez de provisionales. Solo la niebla de las tierras altas sigue siendo provisional."],
 	"0.38.193": ["La muerte del Retador Venenoso vista de espaldas (norte) está redibujada: cae alejándose de ti, con la cola hacia ti, en vez de ponerse de lado. Todas sus muertes combinan ahora con su andar."],
 	"0.38.192": ["La muerte del Retador Venenoso vista de espaldas y hacia la derecha (noreste) está redibujada: ahora cae alejándose de ti como camina, en vez de ponerse de lado."],

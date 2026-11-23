@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.195", "items": [
+		"The campaign hubs' new rooms and people are painted: the armoury, chapel and gallery of flags in Rome, the guild's yard at Fürth, the specimen store and chart room at the Barra, and twelve people who join the hubs (Ruggieri, Fairleigh, Delorme, the Swiss captain, Jakob, Father Ferrer, Master Ulrich, Colonel von Rauch, Brother Anselm, Pieter, Valadares, Benedito) now have oil paintings instead of stand-ins.",
+	]},
 	{"v": "0.38.194", "items": [
 		"Act 2's Brazilian ground is painted: the flooded várzea, the cold highlands and the dry sertão, their cliffs, and their trees, cacti, bushes and stones now have real pictures instead of stand-ins. Only the highland mist is still a stand-in.",
 	]},

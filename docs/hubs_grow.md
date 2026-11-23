@@ -260,6 +260,17 @@ importer).
   Yard"): the room's name now shows only on its tab.
 - The briefing's FROM THE HUB list is under the objectives, in the part that scrolls.
 
+## The paintings are in (2026-11-23)
+
+Claude made all 18 requests below in ChatGPT (one request a picture, the references named) and put them in with
+`tools/import_hubs_grow.py`: the six rooms (cropped to 1672 x 941, saved over the stand-ins, "stand_in" dropped) and the
+twelve people (keyed out of the magenta with tools/hub_key.py, scaled to the stand-in's height, toned into the room's
+light, feet and middle kept where the stand-in stood). The rooms' hotspots were moved onto the painted things, and in
+the guild's yard Anselm, Ulrich and von Rauch stand a little further left (clear of the crates by the door). The
+sources are in art/campaign/hub/grow/<name>_chatgpt.png; run the importer again after replacing one. Pictures of the
+hubs with them in: docs/shots/hubs_grow/painted/. Small differences from the requests: Valadares and Delorme came in
+Crown purple, the gallery picked up a pew and votive candles from the chapel request.
+
 ## ChatGPT requests for the owner (Act 1 first, most needed first)
 
 Each request stands alone. Attach at most the three images named, from the repo. Oil-painting style matching the hub
