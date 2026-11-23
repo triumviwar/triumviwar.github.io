@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"WORLD WAR, a new mode on the main menu (not the campaign's story): the Crown, the Clockwork and the Brood fight for the whole world on the war map, region by region, one season a turn. March your armies over land and by sea, raise soldiers, put up forts, churches, works, trade posts, nests and swamps, and fight every battle yourself on a skirmish map with exactly the armies you brought (the survivors go back to the map) or let it be decided at once. The Clockwork rusts in the wet, the Brood can't live in the cold, far lands grow restless, capitals are hard to take, story heroes lead armies. Play against the computers or with friends on one device; the war is saved every turn.",
+	]},
 	{"v": "0.38.179", "items": [
 		"Campaign missions: what a mission doesn't let you build, train or research is now hidden from the cards instead of showing greyed out. Things the story holds back for a while, with a reason, still show greyed with that reason.",
 	]},

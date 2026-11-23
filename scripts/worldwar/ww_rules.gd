@@ -12,8 +12,10 @@ const NAME := {"crown": "The Crown", "clockwork": "The Clockwork", "brood": "The
 const COLOUR := {"crown": Color("#7b4bb8"), "clockwork": Color("#c0392b"), "brood": Color("#3f9c3a"), "": Color("#b9a98a")}
 const CAPITAL := {"crown": "rome", "clockwork": "nuremberg", "brood": "amazon"}
 ## The lands each side holds when the war begins (the capital first). The same worth for each (8).
-const START := {"crown": ["rome", "naples", "milan", "lyon"], "clockwork": ["nuremberg", "saxony", "poland"],
+## (the Crown's fourth region, Lyon, only in a three-side war: it stands between the other two: START_THIRD)
+const START := {"crown": ["rome", "naples", "milan"], "clockwork": ["nuremberg", "saxony", "poland"],
 	"brood": ["amazon", "para", "new_granada"]}
+const START_THIRD := {"crown": ["lyon"], "clockwork": [], "brood": []}
 const START_GOLD := 600
 
 const SEASONS := ["Spring", "Summer", "Autumn", "Winter"]
@@ -70,7 +72,7 @@ const BIOME_INCOME := {
 	"brood": {"temperate": 0.75, "wet": 1.0, "cold": 0.0, "desert": 0.6, "jungle": 1.0},
 }
 const UPKEEP := 0.08               # an army costs 8% of its worth a season (veterans 2% more a rank)
-const UPKEEP_SIDE := {"clockwork": 0.10}    # (the Clockwork must be wound: 10%)
+const UPKEEP_SIDE := {"clockwork": 0.09}    # (the Clockwork must be wound: 9%)
 const UPKEEP_VET := 0.02
 const FAR_HOPS := 3                # regions more than 3 steps from the capital cost FAR_GOLD a season for each step more
 const FAR_GOLD := 15
@@ -117,11 +119,13 @@ const GUARD := 100
 const FREE_GUARD := 250
 const FREE_GUARD_BASE := 150
 const CAPITAL_GUARD := 1500
+const CAPITAL_FADE := 40.0         # ...that fades: x (1 - season / 40), never under 40% (defender's advantage early, a winner can finish)
+const CAPITAL_FLOOR := 0.4
 const DEFEND := 1.2
 const DEFEND_CAPITAL := 1.35
 const LUCK := 0.15
 const LOSER_LOSS := 0.6
-const BIOME_FIGHT := {"crown": {"temperate": 1.1}, "brood": {"jungle": 1.15, "wet": 1.1, "temperate": 0.9, "desert": 0.85, "cold": 0.75}, "clockwork": {"wet": 0.85, "jungle": 0.85}}
+const BIOME_FIGHT := {"crown": {"temperate": 1.05}, "brood": {"jungle": 1.15, "wet": 1.1, "temperate": 0.9, "desert": 0.85, "cold": 0.75}, "clockwork": {"wet": 0.85, "jungle": 0.85}}
 
 ## HEROES (optional, the setup's STORY HEROES): story generals, each with one army; +10% strength and a gift.
 ## A hero whose army is destroyed is wounded, never killed: back at the capital after 2 seasons. The Brood has none

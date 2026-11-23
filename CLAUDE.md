@@ -26,6 +26,15 @@
 
 ## Current work
 
+- WORLD WAR MODE (owner 2026-11-22 22:55-23:00 "Yes do it", like BFME II's War of the Ring; job world-war-mode, branch
+  world-war-mode, docs/world_war_mode.md, scripts/worldwar/ (WWRules numbers, WWWar the war + saving, WWAI, WWMap, WWPage,
+  WWBattle FIGHT IT), campaign/worldwar/regions.json + land.json (tools/worldwar/make_regions.py, Natural Earth), tests
+  tools/test_world_war.gd, sim tools/sim_world_war.gd, pictures docs/shots/world_war/): main menu WORLD WAR (MENU_SLOTS 10th);
+  60 regions, one season a turn, sides in turn; march / sail, one building a region, regiments of real skirmish units;
+  battles FIGHT IT (a 1v1 skirmish map of the land, exactly the armies, survivors back) or AUTO-RESOLVE; rust, cold,
+  unrest/risings, bent income, far upkeep, fading capital guard, mending, heroes (none for the Brood), events; win by
+  capitals / 8 of 15 keys / most land at the last season (48); hot-seat; a file a war. 3-side sims balanced (Normal 10/7/13
+  of 30); 2-side computer wars lopsided (left to tune). 18 Claude's choices in the doc. Patch note under 0.38.999.
 - CROWN V BROOD FIX (owner 2026-11-22 21:27-21:29 "we can't just let it be so lopsided", "Do it"; cloud job crown-brood-fix,
   branch crown-brood-fix, docs/crown_brood_fix.md; merge on "DONE: crown-brood-fix:"): (1) the Crown computer spends its
   8:00 lead (a full attack on the Brood Mother while 2x+ the Brood army seen; switch); (2) the far-Rootmaw bonus x2.2 as

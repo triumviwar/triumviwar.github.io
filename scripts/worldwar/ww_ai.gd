@@ -80,7 +80,7 @@ static func _defence_here(w: WWWar, rid: String, f: String) -> float:
 		D += w.army_value(a) * (1.0 + WWRules.VET_STEP * int(a["vet"]))
 	D += WWRules.worth(rid) * WWRules.GUARD + float(WWRules.building(f, String(w.d["regions"][rid]["build"])).get("defence", 0))
 	if rid == w.capital(f):
-		D += WWRules.CAPITAL_GUARD
+		D += w.capital_guard()
 	return D * (WWRules.DEFEND_CAPITAL if rid == w.capital(f) else WWRules.DEFEND)
 
 
@@ -225,8 +225,9 @@ static func _target(w: WWWar, a: Dictionary, margin: float) -> String:
 				score = 2.0 + (4.0 if to == w.capital(f) else 0.0)
 			elif hurt and climate == 0.0:
 				score = 1.0
-			elif mine < 500.0 and not w.armies_at(to, f).is_empty():
-				score = 0.6
+			elif not w.armies_at(to, f).is_empty() and WWRules.units_count(a["units"]) + WWRules.units_count(w.armies_at(to, f)[0]["units"]) <= WWRules.ARMY_CAP \
+					and (mine < 500.0 or _frontier(w, to, f)):
+				score = 0.6 if mine < 500.0 else 1.1          # (armies gather into one big enough to take a capital)
 			elif mine >= 1200.0 and int(ed.get(to, 99)) < int(ed.get(at, 99)):
 				score = 0.9          # (a strong army marches toward the enemy)
 			score -= climate * 6.0

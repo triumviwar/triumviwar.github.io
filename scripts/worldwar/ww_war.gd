@@ -31,7 +31,7 @@ static func make(setup: Dictionary) -> WWWar:
 	for f in order:
 		w.d["factions"][f] = {"who": String(players[f]), "gold": WWRules.START_GOLD, "capital": WWRules.CAPITAL[f],
 			"out": false, "income_last": 0, "upkeep_last": 0}
-		for rid in WWRules.START[f]:
+		for rid in WWRules.START[f] + (WWRules.START_THIRD.get(f, []) if order.size() == 3 else []):
 			w.d["regions"][rid]["owner"] = f
 			w.d["regions"][rid]["unrest"] = 0.0
 		var a := w.new_army(f, WWRules.CAPITAL[f], WWRules.START_ARMY[f].duplicate())
@@ -209,6 +209,11 @@ func hops(f: String) -> Dictionary:
 					q.append(n)
 		_hops[f] = dist
 	return _hops[f]
+
+
+## A capital's own guard: strong at first, fading as the war goes on (WWRules.CAPITAL_FADE).
+func capital_guard() -> float:
+	return WWRules.CAPITAL_GUARD * maxf(WWRules.CAPITAL_FLOOR, 1.0 - int(d.get("season", 0)) / WWRules.CAPITAL_FADE)
 
 
 func is_muster(rid: String, f: String) -> bool:
@@ -482,7 +487,7 @@ func strengths(b: Dictionary) -> Dictionary:
 			guard = float(WWRules.worth(to) * WWRules.GUARD)
 			guard += float(WWRules.building(own, String(d["regions"][to]["build"])).get("defence", 0))
 			if capital(own) == to:
-				guard += WWRules.CAPITAL_GUARD
+				guard += capital_guard()
 	D = army_part * (1.0 + WWRules.VET_STEP * vet_def) * (WWRules.HERO_BONUS if hero_def else 1.0) + guard
 	if df != "":
 		D *= float(WWRules.BIOME_FIGHT.get(df, {}).get(bio, 1.0))

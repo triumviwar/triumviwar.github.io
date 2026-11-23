@@ -2869,8 +2869,8 @@ var _f11_t := 0.0
 ## frame, on frames without a game tick when there are some); any other (leaving, the window losing focus) at once.
 func _autosave(steps := false) -> void:
 	_save_job = null                      # (one at once replaces one still being written)
-	if game == null or game.over or game.demo or game.edit_mode:
-		return
+	if game == null or game.over or game.demo or game.edit_mode or ww_battle != null:
+		return                            # (a world war's battle is no skirmish to CONTINUE: the war keeps it, WWBattle)
 	_save_path = SaveGame.PATH
 	if game.mission and MissionSave.can_save(game):
 		# a CAMPAIGN MISSION (player-comforts): its own save, not the skirmish's autosave (CONTINUE on the mission's card)

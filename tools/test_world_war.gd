@@ -82,7 +82,7 @@ func _setup() -> void:
 	var ok := true
 	for f in WWRules.FACTIONS:
 		ok = ok and w.owner(WWRules.CAPITAL[f]) == f and w.gold(f) >= 0
-		for rid in WWRules.START[f]:
+		for rid in WWRules.START[f] + WWRules.START_THIRD.get(f, []):
 			ok = ok and w.owner(rid) == f
 		ok = ok and w.armies_of(f).size() == 1 and String(w.armies_of(f)[0]["at"]) == WWRules.CAPITAL[f]
 	check("each side holds its start and has its army at its capital", ok, "")
@@ -220,8 +220,8 @@ func _upkeep_unrest() -> void:
 	var cwu := w.upkeep("clockwork")
 	var cwv := 0.0
 	for a in w.armies_of("clockwork"):
-		cwv += w.army_value(a) * 0.10
-	check("the Clockwork's upkeep is 10% (it must be wound)", cwu == int(round(cwv)), [cwu, cwv])
+		cwv += w.army_value(a) * 0.09
+	check("the Clockwork's upkeep is 9% (it must be wound)", cwu == int(round(cwv)), [cwu, cwv])
 	# income is bent: twice the land is not twice the gold
 	var i1: int = w.income("crown")[1]
 	for rid in ["paris", "brittany", "castile", "andalusia", "vienna", "hungary", "low_countries"]:

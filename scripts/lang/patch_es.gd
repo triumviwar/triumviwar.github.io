@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["GUERRA MUNDIAL, un nuevo modo en el menú principal (no es la historia de la campaña): la Corona, el Mecanismo y la Nidada luchan por el mundo entero en el mapa de guerra, región por región, una estación por turno. Marcha con tus ejércitos por tierra y por mar, recluta soldados, levanta fuertes, iglesias, talleres, puestos comerciales, nidos y pantanos, y libra cada batalla tú mismo en un mapa de escaramuza con exactamente los ejércitos que llevaste (los supervivientes vuelven al mapa) o deja que se decida al momento. El Mecanismo se oxida en la humedad, la Nidada no puede vivir en el frío, las tierras lejanas se agitan, las capitales son difíciles de tomar, los héroes de la historia mandan ejércitos. Juega contra los ordenadores o con amigos en un solo dispositivo; la guerra se guarda cada turno."],
 	"0.38.179": ["Misiones de la campaña: lo que una misión no deja construir, entrenar o investigar ahora queda oculto en las tarjetas en vez de aparecer en gris. Lo que la historia retiene un tiempo, con un motivo, sigue en gris con ese motivo."],
 	"0.38.178": ["Todavía nada cambia en el juego: quedaron escritas tres reglas para cada misión de la campaña (decirlo claro, nada de esperas, revisar la sensación), y empezó la construcción del Acto 2."],
 	"0.38.177": ["Nada cambia en el juego: el plan de la campaña gana un aeronauta, que llega con el Globo de Observación y muestra el mundo desde el aire."],
