@@ -63,6 +63,10 @@ const ROLES := {
 	"porter": {"kind": "labourer", "art": "b_villager", "about": "A porter hired at the Barra for the Academy's expedition."},
 	"hired_gun": {"kind": "musketeer", "art": "b_hired_gun", "about": "A musketeer hired at the Barra to guard the cages."},
 	"cage_cart": {"kind": "powder_wagon", "art": "b_cage_cart", "name": "Cage cart", "hp": 320, "cart": true, "about": "An ox cart with a cage of iron bars: a creature in it, the expedition's powder under it."},
+	# act2-engine0: CARGO CARTS (d02's families, d01's gold): a cart that never blows up, at the column's walking pace
+	# ("speed": a Musketeer walks 62) so an escort never waits for it
+	"family_cart": {"kind": "powder_wagon", "name": "Family cart", "hp": 300, "cart": true, "speed": 58, "about": "A covered cart with a family and its things aboard. Keep it safe to the end of the road."},
+	"gold_cart": {"kind": "powder_wagon", "name": "Gold cart", "hp": 360, "cart": true, "speed": 58, "about": "An iron-bound cart with the mine's gold. Bring it to the coast."},
 	"young_sire": {"kind": "tyrannosaur", "art": "b_young_sire", "name": "The young Sire", "hp": 480, "scale": 0.55, "about": "A young Tyrant Sire, two years old, asleep in the ferns."},
 	# Act 1's a07_council (Rome, Lent 2770): the young King himself in the field (the mission's hero), the Swiss at Saint
 	# Peter's, the captain of Rome's garrison, the Romans of the quarters and the mob that turns on the machines
@@ -106,6 +110,11 @@ static func apply(u: Unit, r: String) -> void:
 		if u.sprite:
 			u._set_anim(u.anim if u.anim != "" else "idle", true)
 		u.radius = maxf(8.0, u.radius * float(ro["scale"]))
+	if ro.has("speed"):
+		if not ro.has("scale"):
+			u.d = u.d.duplicate()
+		u.d["speed"] = float(ro["speed"])     # (act2-engine0: a cargo cart keeps the column's pace)
+		u.speed = float(ro["speed"])
 	if ro.has("hp"):
 		u.max_hp = float(ro["hp"])     # (a hero of the story: harder to kill than the stand-in he plays)
 		u.hp = u.max_hp

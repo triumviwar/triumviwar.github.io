@@ -86,6 +86,11 @@ var unmasked := {}                   # tag -> the game clock a building with it 
 var _carts: Array = []               # {"u": the creature, "cart": the cart, "freed": counter, "freed_tag": tag}
 # campaign-fixes-1121: the story's must-live people are WOUNDED, not killed (scripts/campaign/mission_heroes.gd)
 var heroes: MissionHeroes = null
+# act2-engine0: Act 2's pieces (cargo carts, take a cart, hidden / found / tracks, the leash, lure posts, buildings that
+# convert, the spreading ground, the brake, sapping, granaries, versions, the heir, the idle meter): scripts/campaign/
+# mission_act2.gd (MissionAct2); its state is this dictionary, saved with the rest
+var act2 := {}
+var a2: MissionAct2 = null
 
 
 func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
@@ -110,6 +115,10 @@ func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
 	solo_side = String(camp.get("side", "")) if md == "solo" else ""
 	if m.get("mist") is Dictionary:
 		set_mist(m["mist"], false)      # (the picture of it comes in _ready)
+	a2 = MissionAct2.new(self)
+	if m.get("versions") is Dictionary:
+		# (act2-engine0: the mission's VERSION, FRESH / GROWN, picked once before anything is placed)
+		flags["version"] = MissionAct2.version_of(m, solo_side, difficulty)
 	for o in m.get("objectives", []):
 		if String(o.get("kind", "")) == "capture":
 			_capture_share[String(o.get("tag", ""))] = float(o.get("share", 0.25))
@@ -443,6 +452,8 @@ func _process(_delta: float) -> void:
 			u.queue_redraw()
 	if not remote:
 		_carry_cages()
+		if a2 != null:
+			a2.frame(_delta)
 
 
 func _physics_process(delta: float) -> void:
@@ -456,6 +467,9 @@ func _physics_process(delta: float) -> void:
 	if heroes == null:
 		heroes = MissionHeroes.new(self)
 	heroes.tick(TICK)
+	if a2 == null:
+		a2 = MissionAct2.new(self)
+	a2.tick(TICK)
 	_tick_turning()
 	_tick_exits()
 	_tick_carts()
@@ -648,7 +662,9 @@ func cond(c: Variant) -> bool:
 					"placing", "order", "res", "talked":
 				ok = _tutorial_cond(String(k), v)
 			_:
-				ok = false
+				# (act2-engine0: Act 2's conditions, MissionAct2.cond)
+				var r2: Array = a2.cond(String(k), v) if a2 != null else [false, false]
+				ok = bool(r2[0]) and bool(r2[1])
 		if not ok:
 			return false
 	return true
@@ -919,6 +935,26 @@ func act(a: Dictionary) -> void:
 							e.set_meta("mission_root", true)
 						elif e.has_meta("mission_root"):
 							e.remove_meta("mission_root")
+			_:
+				if a2 != null:
+					a2.act(String(k), v)          # (act2-engine0: Act 2's actions, MissionAct2.act)
+
+
+## (act2-engine0) Game._update_vis asks after its own loop: a HIDDEN unit stays off the screen of the side it hides from,
+## a sapper under the ground off every other side's.
+func after_vis(ft: int) -> void:
+	if a2 != null:
+		a2.after_vis(ft)
+
+
+## (act2-engine0) Game._update_swamp asks: the mission's spreading swamp of a team ([centre in tiles, radius]).
+func swamp_sources(t: int) -> Array:
+	return a2.swamp_sources(t) if a2 != null else []
+
+
+## (act2-engine0) The longest stretch so far with nothing for the player to do (a mission's sim reads it: NO WAITING).
+func longest_idle() -> Dictionary:
+	return a2.longest_idle() if a2 != null else {"secs": 0.0, "from": 0.0}
 
 
 ## Scripted orders go only to units no person plays (a co-op friend's or versus foe's units are theirs).
@@ -1015,6 +1051,9 @@ func _order(us: Array, v: Dictionary) -> void:
 						best = e
 				if best:
 					u.cmd_attack(best)
+		_:
+			if a2 != null:
+				a2.order(us, v)        # (act2-engine0: "track")
 
 
 ## THE LIGHT (campaign-m1): the scene tinted for the time of day ("night" blue and dim, "dawn" warm, "day" as
@@ -1295,6 +1334,10 @@ func finish(side_id: String) -> void:
 	if game.over:
 		return
 	winner_side = side_id
+	if game.mlog and a2 != null:
+		# (act2-engine0, the owner's rule NO WAITING: the longest stretch the player had nothing to do, for the sims)
+		var li := a2.longest_idle()
+		game.mlog.add("(mission) longest idle stretch %.0f s (from %.0f s)" % [float(li["secs"]), float(li["from"])])
 	var w := -1
 	for t in team_ids.size():
 		if side_of_team(t) == side_id:
@@ -1430,8 +1473,16 @@ func _tick_exits() -> void:
 				break
 			if u is Unit and not u.dead and r.has_point(u.position) and not keep.has(u):
 				if cargo:
-					var c = u.get_meta("cage_cargo", null)
+					var c = u.get_meta("cage_cargo") if u.has_meta("cage_cargo") else null
 					if c == null or not is_instance_valid(c) or c.dead:
+						# (act2-engine0: a cart with families or gold aboard leaves with its load, counted by its amount)
+						var ld: int = a2.cart_leaves(u) if a2 != null and u.has_meta("cart_load") else 0
+						if ld <= 0:
+							continue
+						if ex.has("cargo_counter"):
+							counters[String(ex["cargo_counter"])] = int(counters.get(String(ex["cargo_counter"]), 0)) + ld
+						game.consume_unit(u)
+						n += 1
 						continue
 					_drop_cart(c)
 					game.consume_unit(c)
@@ -2511,7 +2562,7 @@ func stamp_reveals() -> void:
 const SAVE_KEYS := ["obj", "fired", "_met", "reveals", "said_ids", "winner_side", "_side_had", "flags", "choice_open",
 	"light_name", "counters", "clocks", "deny", "_next", "_times", "_turning", "_caged", "_burning", "out_sides", "fires_out",
 	"_stay", "route_done", "_routes", "_follows", "sleeping", "woke", "mist_sight", "mist_teams", "captured", "weather_name",
-	"_disguised", "unmasked", "_carts", "tags", "checkpoints"]
+	"_disguised", "unmasked", "_carts", "tags", "checkpoints", "act2"]
 ## The metas the mission puts on a unit or building that a save keeps (object metas, "on_cart" / "cage_cargo", come back
 ## from the carts' list).
 const SAVE_METAS := ["mission_tag", "mission_name", "rebel_role", "torch_burning", "torch_t", "disguise_team", "disguise",
@@ -2649,6 +2700,8 @@ func load_state(d: Dictionary, mu: Array, mb: Array) -> void:
 	for k in SAVE_KEYS:
 		if (st as Dictionary).has(k):
 			set(k, unpack(st[k], mu, mb))
+	a2 = MissionAct2.new(self)      # (act2-engine0: its state was loaded; the marks it keeps on units put back)
+	a2.after_load()
 	# the cages on the carts: their bars and ties back
 	for it in _carts:
 		var u = it.get("u")

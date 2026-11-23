@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.181": ["Ainda nada novo para jogar: o motor da campanha aprendeu o que as missões do Ato 2 precisam: carroças que levam famílias ou ouro e podem ser tomadas, criaturas que se escondem e deixam rastros, a trela da isca e como ela se rompe, edifícios que passam para o outro lado, terreno que se espalha, o travão das máquinas, sapadores sob as muralhas, celeiros que alimentam quem os segura, e missões que mudam conforme o que você combateu primeiro."],
 	"0.38.180": ["Nada muda no jogo: as notas da história agora registram de onde veio a Ninhada (feita nos laboratórios da era antiga, não evoluída) e o erro do Naturalista."],
 	"0.38.179": ["Missões da campanha: o que uma missão não deixa construir, treinar ou pesquisar agora fica escondido nos cartões em vez de aparecer acinzentado. O que a história segura por um tempo, com um motivo, continua acinzentado com esse motivo."],
 	"0.38.178": ["Ainda nada muda no jogo: ficaram escritas três regras para cada missão da campanha (dizer as coisas claramente, nada de esperas, verificar a sensação), e começou a construção do Ato 2."],

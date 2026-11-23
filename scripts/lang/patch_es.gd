@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.181": ["Todavía nada nuevo para jugar: el motor de la campaña aprendió lo que necesitan las misiones del Acto 2: carros que llevan familias u oro y pueden ser tomados, criaturas que se esconden y dejan rastros, la correa del cebo y cómo se rompe, edificios que pasan al otro bando, terreno que se extiende, el freno de las máquinas, zapadores bajo las murallas, graneros que alimentan a quien los tiene, y misiones que cambian según lo que combatiste primero."],
 	"0.38.180": ["Nada cambia en el juego: las notas de la historia ahora registran de dónde vino la Nidada (hecha en los laboratorios de la era antigua, no evolucionada) y el error del Naturalista."],
 	"0.38.179": ["Misiones de la campaña: lo que una misión no deja construir, entrenar o investigar ahora queda oculto en las tarjetas en vez de aparecer en gris. Lo que la historia retiene un tiempo, con un motivo, sigue en gris con ese motivo."],
 	"0.38.178": ["Todavía nada cambia en el juego: quedaron escritas tres reglas para cada misión de la campaña (decirlo claro, nada de esperas, revisar la sensación), y empezó la construcción del Acto 2."],

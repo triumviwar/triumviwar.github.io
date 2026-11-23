@@ -251,6 +251,30 @@ static func difficulty() -> String:
 	return d if DIFFICULTIES.has(d) else "normal"
 
 
+## THE HEIR (act2-engine0; docs/campaign_act2_plan.md "THE FRAME"): who the King tells his story to, ONE setting for
+## the whole campaign, campaign.json "heir": "unseen" (the listener never named: the King speaks to "you") or "named"
+## (the prince, seen). Frame scenes and hub talks read it ({"heir": "named"} in a condition, "heir" on a talk entry).
+const HEIRS := ["unseen", "named"]
+
+
+static func heir() -> String:
+	var h := String(index().get("heir", "unseen"))
+	return h if HEIRS.has(h) else "unseen"
+
+
+## An answer given in a hub talk's choice (the frame's question: "what would you choose?"), kept in the progress file.
+static func hub_flag(name: String) -> Variant:
+	return (progress().get("hub_flags", {}) as Dictionary).get(name, null)
+
+
+static func set_hub_flag(name: String, value: Variant) -> void:
+	var p := progress()
+	if not (p.get("hub_flags") is Dictionary):
+		p["hub_flags"] = {}
+	p["hub_flags"][name] = value
+	save_progress(p)
+
+
 static func set_difficulty(d: String) -> void:
 	if not DIFFICULTIES.has(d):
 		return
@@ -508,6 +532,11 @@ static func cond_before(c: Variant, side: String, diff: String) -> bool:
 				ok = ok and (v if v is Array else [v]).map(func(x) -> String: return String(x)).has(diff)
 			"playing":
 				ok = ok and String(v) == side
+			"heir":
+				ok = ok and heir() == String(v)          # (act2-engine0: the King's listener, campaign.json "heir")
+			"hub_flag":
+				for fk in v:
+					ok = ok and str(hub_flag(String(fk))) == str(v[fk])
 			_:
 				push_warning("Campaign.cond_before: '%s' can't be decided before the match (taken as false)" % k)
 				ok = false
@@ -535,6 +564,10 @@ static func index_strings() -> Array:
 			for e in tk.get("entries", []):
 				for ln in e.get("lines", []):
 					out.append(String(ln))
+				for o in e.get("choice", {}).get("options", []):
+					out.append(String(o.get("label", "")))          # (act2-engine0: the frame's answers)
+					for ln in o.get("lines", []):
+						out.append(String(ln))
 	for k in index().get("rooms", {}):
 		out.append_array([String(index()["rooms"][k].get("title", "")), String(index()["rooms"][k].get("text", ""))])
 	return out.filter(func(s: String) -> bool: return s != "")
@@ -575,6 +608,9 @@ static func strings_of(m: Dictionary) -> Array:
 				for o in a["choice"].get("options", []):
 					out.append(String(o.get("label", "")))
 					out.append(String(o.get("about", "")))
+	if m.get("versions") is Dictionary:
+		for vk in m["versions"].get("labels", {}):
+			out.append(String(m["versions"]["labels"][vk]))      # (act2-engine0: the version said on the briefing)
 	for x in m.get("learn", []):
 		out.append(String(x))          # (a TUTORIAL lesson's list of what it teaches, and its words after a loss)
 	out.append(String(m.get("lost", "")))
@@ -666,6 +702,35 @@ static func problems(m: Dictionary) -> Array:
 	for at in m.get("auto_tags", []):
 		if not teams.has(String(at.get("team", ""))) or String(at.get("tag", "")) == "" or not Defs.UNITS.has(String(at.get("kind", ""))):
 			out.append("auto_tags: needs a known team, a unit kind and a tag")
+	# act2-engine0: TAKE A CART, GRANARIES, VERSIONS (docs/act2_engine0.md)
+	for tc in m.get("take_carts", []):
+		if String(tc.get("tag", "")) == "" or not sides.has(String(tc.get("by", ""))):
+			out.append("take_carts: needs the carts' tag and \"by\" (a side)")
+		if tc.has("to") and not teams.has(String(tc["to"])):
+			out.append("take_carts: unknown team %s" % tc["to"])
+		if tc.has("counter") and not (m.get("counters", {}) as Dictionary).has(String(tc["counter"])):
+			out.append("take_carts: unknown counter %s" % tc["counter"])
+	for gr in m.get("granaries", []):
+		if String(gr.get("tag", "")) == "":
+			out.append("granaries: needs a tag")
+		if gr.has("counter") and not (m.get("counters", {}) as Dictionary).has(String(gr["counter"])):
+			out.append("granaries: unknown counter %s" % gr["counter"])
+	var vids: Array = []
+	if m.has("versions"):
+		var vs: Variant = m["versions"]
+		if not (vs is Dictionary) or String(vs.get("default", "")) == "":
+			out.append("versions: needs a default")
+		else:
+			vids.append(String(vs["default"]))
+			for pk in vs.get("pick", []):
+				vids.append(String(pk.get("id", "")))
+				_check_cond(pk.get("if", {}), "versions", out, sides, teams, areas, objs, trig)
+			for lb in vs.get("labels", {}):
+				if not vids.has(String(lb)):
+					out.append("versions: a label for an unknown version %s" % lb)
+	for vid in _versions_used(m):
+		if not vids.has(vid):
+			out.append("version %s: not one of the mission's \"versions\"" % vid)
 	for n in m.get("needs", []):
 		if mission(String(n)).is_empty():
 			out.append("needs: unknown mission %s" % n)
@@ -778,6 +843,22 @@ static func problems(m: Dictionary) -> Array:
 	return out
 
 
+## Every {"version": ...} the mission's conditions name (act2-engine0), to check them against its "versions".
+static func _versions_used(v: Variant) -> Array:
+	var out: Array = []
+	if v is Dictionary:
+		for k in v:
+			if String(k) == "version" and (v[k] is String or v[k] is Array):
+				for x in (v[k] if v[k] is Array else [v[k]]):
+					out.append(String(x))
+			else:
+				out.append_array(_versions_used(v[k]))
+	elif v is Array:
+		for x in v:
+			out.append_array(_versions_used(x))
+	return out
+
+
 ## a01's keys on a unit, a building, a spawn or a build: "tags" (a list), "near" (a tag), "disguise" ({"as": team}).
 static func _check_placed(it: Dictionary, where: String, out: Array, teams: Array) -> void:
 	if it.has("tags") and not (it["tags"] is Array):
@@ -798,6 +879,29 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 			"time", "dead", "hurt", "flag", "past", "clock_out", "clock_left", "counter", "netted", "hp", "awake", "asleep", \
 					"captured", "route_done", "unmasked", "disguised":
 				pass
+			# act2-engine0 (docs/act2_engine0.md)
+			"loaded", "taken", "found", "loose", "broke", "turned", "fed":
+				var q: Variant = c[k]
+				if k == "loaded" and not (q is Dictionary):
+					out.append("%s: loaded needs {\"tag\": carts}" % where)
+				elif k == "fed" and not (q is Dictionary and teams.has(String(q.get("team", "")))):
+					out.append("%s: fed needs a known team" % where)
+				elif q is Dictionary and q.has("team") and k != "fed" and not teams.has(String(q["team"])):
+					out.append("%s: unknown team %s" % [where, q["team"]])
+			"lured", "sapped":
+				if String(c[k]) == "":
+					out.append("%s: %s needs a name" % [where, k])
+			"ground":
+				if not (c[k] is Dictionary and c[k].has("name")):
+					out.append("%s: ground needs a name" % where)
+			"version":
+				pass       # (checked against the mission's "versions" in problems())
+			"heir":
+				if not HEIRS.has(String(c[k])):
+					out.append("%s: unknown heir %s (unseen / named)" % [where, c[k]])
+			"hub_flag":
+				if not (c[k] is Dictionary):
+					out.append("%s: hub_flag needs {name: value}" % where)
 			"out":
 				# (a07) {"out": side}: that side has lost (more than two sides: the match may go on without it)
 				if not sides.has(String(c[k])):
@@ -891,7 +995,7 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 			if v.get("at") is String and not areas.has(String(v["at"])):
 				out.append("%s: unknown area %s" % [where, v["at"]])
 		"order":
-			if not ["attack", "move", "hold", "stop", "patrol", "hunt", "root", "uproot", "route", "follow", "heel"].has(String(v.get("do", ""))):
+			if not ["attack", "move", "hold", "stop", "patrol", "hunt", "root", "uproot", "route", "follow", "heel", "track"].has(String(v.get("do", ""))):
 				out.append("%s: unknown order %s" % [where, v.get("do")])
 			if String(v.get("do", "")) == "route":
 				if (v.get("route", []) as Array).is_empty():
@@ -939,6 +1043,67 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: a spreading fire needs the tag it spreads to" % where)
 			elif k == "burn" and v.has("douse_side") and not sides.has(String(v["douse_side"])):
 				out.append("%s: burn: unknown douse side %s" % [where, v["douse_side"]])
+		# ---- act2-engine0 (docs/act2_engine0.md)
+		"load", "unload":
+			if not (v is Dictionary and (v.has("cart") or v.has("tag"))):
+				out.append("%s: %s needs the carts' tag" % [where, k])
+			elif v.has("lost") and not (m.get("counters", {}) as Dictionary).has(String(v["lost"])):
+				out.append("%s: load: unknown counter %s" % [where, v["lost"]])
+		"hide", "tracks", "leash", "brake":
+			if not (v is Dictionary) or not (v.has("tag") or v.has("team") or v.has("side") or v.has("name") or (k == "brake" and v.has("faction"))):
+				out.append("%s: %s needs a tag, team or side" % [where, k])
+			else:
+				if v.has("team") and not teams.has(String(v["team"])):
+					out.append("%s: %s of unknown team %s" % [where, k, v["team"]])
+				for sk in ["side", "from", "for"]:
+					if v.has(sk) and not sides.has(String(v[sk])):
+						out.append("%s: %s: unknown side %s" % [where, k, v[sk]])
+				if k == "hide" and not v.has("from") and bool(v.get("on", true)):
+					out.append("%s: hide needs the side it hides from (\"from\")" % where)
+				if k == "tracks" and not v.has("for") and bool(v.get("on", true)):
+					out.append("%s: tracks need the side that reads them (\"for\")" % where)
+				if k == "leash" and bool(v.get("on", true)):
+					if String(v.get("lure", "")) == "":
+						out.append("%s: a leash needs its lure tag" % where)
+					if not ["wander", "hunt", "root", "to"].has(String(v.get("loose", "wander"))):
+						out.append("%s: leash: unknown loose %s" % [where, v.get("loose")])
+					if String(v.get("loose", "")) == "to" and not areas.has(String(v.get("to", ""))):
+						out.append("%s: leash: loose to an unknown area %s" % [where, v.get("to")])
+					var br: Variant = v.get("breaks", {})
+					if br is Dictionary and not br.is_empty() and (String(br.get("near", "")) == "" or not teams.has(String(br.get("to", "")))):
+						out.append("%s: leash breaks need \"near\" (a tag) and \"to\" (a team)" % where)
+				if k == "brake" and v.has("faction") and not Defs.FACTIONS.has(String(v["faction"])):
+					out.append("%s: brake: unknown faction %s" % [where, v["faction"]])
+		"lure_post":
+			if not (v is Dictionary) or String(v.get("tag", "")) == "":
+				out.append("%s: a lure post needs a tag" % where)
+			elif not bool(v.get("remove", false)):
+				if v.get("at") is String and not areas.has(String(v["at"])) and String(v["at"]) == "":
+					out.append("%s: a lure post needs \"at\"" % where)
+				elif not v.has("at"):
+					out.append("%s: a lure post needs \"at\"" % where)
+				if v.get("pull") is Dictionary and v["pull"].has("then") and not areas.has(String(v["pull"]["then"])):
+					out.append("%s: lure post: pull then to an unknown area %s" % [where, v["pull"]["then"]])
+		"spread_convert":
+			if not (v is Dictionary) or String(v.get("name", v.get("tag", ""))) == "":
+				out.append("%s: spread_convert needs a name or tag" % where)
+			elif not bool(v.get("stop", false)) and (String(v.get("tag", "")) == "" or not teams.has(String(v.get("to", "")))):
+				out.append("%s: spread_convert needs the buildings' tag and \"to\" (a team)" % where)
+		"ground":
+			if not (v is Dictionary) or String(v.get("name", v.get("from", ""))) == "":
+				out.append("%s: ground needs a name or from" % where)
+			elif not bool(v.get("stop", false)):
+				if not ["swamp", "gear"].has(String(v.get("kind", "gear"))):
+					out.append("%s: ground: unknown kind %s (swamp / gear)" % [where, v.get("kind")])
+				if v.has("team") and not teams.has(String(v["team"])):
+					out.append("%s: ground of unknown team %s" % [where, v["team"]])
+				if not v.has("from") and not v.has("at"):
+					out.append("%s: ground needs \"from\" (a tag) or \"at\"" % where)
+		"sap":
+			if not (v is Dictionary) or not v.has("tag") or not v.has("to"):
+				out.append("%s: sap needs a tag and \"to\"" % where)
+			elif v["to"] is String and not areas.has(String(v["to"])):
+				out.append("%s: sap to unknown area %s" % [where, v["to"]])
 		"show":
 			# (a07) {"show": {"pages": [{"still", "lines"}]}}: a MID-MATCH SHOW
 			if not (v is Dictionary) or (v.get("pages", []) as Array).is_empty():
