@@ -148,7 +148,7 @@ func tick(dt: float) -> void:
 	ensure_nodes()
 	_tick_takes(dt)
 	_tick_loads()
-	_tick_hidden()
+	_tick_hidden(dt)
 	_tick_tracks(dt)
 	_tick_leash(dt)
 	_tick_posts()
@@ -281,6 +281,10 @@ func act(k: String, v: Variant) -> bool:
 			brake(v)
 		"sap":
 			sap(v)
+		"brood_stage":
+			brood_stage(v)
+		"retag":
+			retag(v)
 		_:
 			return false
 	return true
@@ -500,7 +504,7 @@ func hide(v: Dictionary) -> void:
 			continue
 		st["hidden"].append({"e": e, "from": from, "within": float(v.get("within", 3.0)),
 			"awake": float(v.get("awake_within", -1.0)), "key": key, "counter": String(v.get("counter", "")),
-			"spared": e.spared, "hp": e.hp})
+			"spared": e.spared, "hp": e.hp, "still": float(v.get("still", -1.0)), "still_t": 0.0})
 		e.spared = true          # (nobody of the searching side aims at what it doesn't know is there)
 		e.set_meta("mission_hidden", from)
 	run.game._vis_t = 0.0
@@ -516,7 +520,7 @@ func _unhide(it: Dictionary) -> void:
 	run.game._vis_t = 0.0
 
 
-func _tick_hidden() -> void:
+func _tick_hidden(dt := 0.25) -> void:
 	if st["hidden"].is_empty():
 		return
 	var g := run.game
@@ -533,6 +537,15 @@ func _tick_hidden() -> void:
 			found = true                                                 # (it went for one of them)
 		if not found:
 			var asleep: bool = e.has_meta("mission_asleep")
+			# (d03_fazenda) "still": secs: one that has stood still that long LIES LOW: seen only within `within` tiles,
+			# as one asleep; moving, it is seen in a searcher's sight (the stock kept still in the forest)
+			if float(it.get("still", -1.0)) >= 0.0 and e is Unit:
+				if (e as Unit).velocity.length() < 6.0 and not (e as Unit).is_air():
+					it["still_t"] = float(it.get("still_t", 0.0)) + dt
+				else:
+					it["still_t"] = 0.0
+				if float(it["still_t"]) >= float(it["still"]):
+					asleep = true
 			var reach := float(it["within"]) * _tile()
 			for u in g.units:
 				if u.dead or u.off_field or not from_teams.has(u.team) or u.kind == "horse":
@@ -584,6 +597,44 @@ func is_hidden(e: Entity) -> bool:
 	return e.has_meta("mission_hidden")
 
 
+## (d03_fazenda) LYING LOW: a hidden unit with "still" that has stood still long enough (seen only close up, as asleep).
+func lies_low(e: Entity) -> bool:
+	for it in st["hidden"]:
+		if it.get("e") == e:
+			return float(it.get("still", -1.0)) >= 0.0 and float(it.get("still_t", 0.0)) >= float(it["still"])
+	return false
+
+
+## (d03_fazenda) {"retag": {"tag": from, "as": tag, "kind": [kinds], "first": true}}: the living units of the tag (of
+## those kinds) get a second tag too (the first only: the night's restless young one is whichever is still alive).
+func retag(v: Dictionary) -> void:
+	var list := group({"tag": String(v.get("tag", "")), "kind": v["kind"]} if v.has("kind") else {"tag": String(v.get("tag", ""))})
+	if v.has("far_from"):
+		# (those farther than `within` tiles from every one of `far_from` first: the restless one is one nobody watches)
+		var lures := lures_of(String(v["far_from"]))
+		var reach := float(v.get("within", 4.0)) * _tile()
+		var far := list.filter(func(e) -> bool: return not lures.any(func(p) -> bool: return (p as Vector2).distance_to(_pos(e)) <= reach))
+		list = far + list.filter(func(e) -> bool: return not far.has(e))
+	for e in list:
+		if not _alive(e) or (bool(v.get("rooted_too", false)) == false and e is Unit and BroodNew.ROOTERS.has(e.kind) and e.tesla_mode == "deployed"):
+			continue
+		run._tag(String(v.get("as", "")), e)
+		if bool(v.get("first", false)):
+			return
+
+
+## (d03_fazenda) {"brood_stage": {"tag", "stage": 2}}: the Brood Mothers of the tag are at that growth stage at once (a
+## mission's breeding animal kept by a naturalist: the Storm Sire's Hatchlings need her at stage 2).
+func brood_stage(v: Dictionary) -> void:
+	var to := clampi(int(v.get("stage", 2)) - 1, 0, (Defs.NB["stages"] as Array).size() - 1)
+	for e in run.tagged(String(v.get("tag", ""))):
+		if e is Unit and not e.dead and e.kind == BroodNew.QUEEN:
+			e.nb["stage"] = to
+			BroodNew.apply_stage(e)
+			BroodNew.recount(run.game, e.team)
+			run.game.swamp_dirty = true
+
+
 # ================================================================== TRACKS (d03: Valadares reads them)
 
 ## {"tracks": {"tag" / "team" / "side", "for": side, "secs": 60, "every": 2, "name", "on": true}}: where they walk
@@ -614,6 +665,9 @@ func _tick_tracks(dt: float) -> void:
 			var last: Variant = (tr["last"] as Dictionary).get(id, null)
 			if last is Vector2 and (last as Vector2).distance_to(u.position) < _tile() * 0.8:
 				continue          # (standing: no new track)
+			if not (last is Vector2):
+				tr["last"][id] = u.position
+				continue          # (d03: the first look only notes where it stands: a creature lying still leaves no print)
 			var ang: float = 0.0 if not (last is Vector2) else (u.position - (last as Vector2)).angle()
 			tr["last"][id] = u.position
 			_marks.append([u.position, g.clock, ang, si, float(tr["secs"])])
@@ -690,7 +744,14 @@ func lures_of(tag: String) -> Array:
 
 
 func _tick_leash(dt: float) -> void:
-	for l in st["leashes"]:
+	# (d03: a creature on two leashes is ruled by the NEWEST one: the restless young one's short leash at night overrides
+	# the stock's)
+	var newest := {}
+	for li in (st["leashes"] as Array).size():
+		for u in st["leashes"][li]["units"]:
+			newest[u] = li
+	for li in (st["leashes"] as Array).size():
+		var l: Dictionary = st["leashes"][li]
 		var units: Array = (l["units"] as Array).filter(func(u) -> bool: return _alive(u))
 		if bool(l.get("open", false)):
 			for u in group(l["q"]):
@@ -701,6 +762,8 @@ func _tick_leash(dt: float) -> void:
 		var br: Dictionary = l.get("breaks", {})
 		var breakers: Array = run.tagged(String(br.get("near", ""))) if not br.is_empty() else []
 		for u in units.duplicate():
+			if int(newest.get(u, li)) > li:
+				continue          # (a newer leash rules this one)
 			# THE BREAKING: near the one who calls them, they are hers
 			if not breakers.is_empty():
 				var bw := float(br.get("within", 5.0)) * _tile()

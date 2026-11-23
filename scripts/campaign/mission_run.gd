@@ -812,6 +812,12 @@ func act(a: Dictionary) -> void:
 				elif v.has("add_counter"):
 					# (a03: another counter's number added: the party left on the mountain plus those already down)
 					counters[cn] = int(counters.get(cn, 0)) + int(counters.get(String(v["add_counter"]), 0))
+				elif v.has("sub_counter"):
+					# (d03: another counter's number taken away: the young never found = the stock less those found)
+					counters[cn] = int(counters.get(cn, 0)) - int(counters.get(String(v["sub_counter"]), 0))
+				elif v.has("share_of"):
+					# (d03: a share of another counter, rounded up: half the stock)
+					counters[cn] = int(ceil(float(counters.get(String(v["share_of"]), 0)) * float(v.get("share", 0.5)) - 0.001))
 				else:
 					counters[cn] = int(v["set"]) if v.has("set") else int(counters.get(cn, 0)) + int(v.get("add", 1))
 				if v.has("min"):

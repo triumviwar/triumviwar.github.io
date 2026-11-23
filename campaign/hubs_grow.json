@@ -229,16 +229,20 @@
    {"after": "a04_visit", "lines": ["An ingot of brass. It was a dozen machines once."]}]},
   "pieter": {"name": "PIETER", "colour": 2, "entries": [
    {"after": "b01_specimen", "lines": ["I got out on the last canoe. The Doctor's notes came with me.", "Field notes buy kit for the next expedition. The store room has it."]},
-   {"after": "a05_specimens", "lines": ["We brought the cages down the mountain. I count them every morning."]}]},
+   {"after": "a05_specimens", "lines": ["We brought the cages down the mountain. I count them every morning."]},
+   {"after": "d03_fazenda", "sides": {"d03_fazenda": "stock"}, "lines": ["The Storm Sire's hour is in the stud book in my hand. The Doctor checks it twice."]}]},
   "benedito": {"name": "BENEDITO", "colour": 2, "entries": [
-   {"after": "a03_plateau", "lines": ["The river took us down. The river takes everybody down, senhor."]}]},
+   {"after": "a03_plateau", "lines": ["The river took us down. The river takes everybody down, senhor."]},
+   {"after": "d03_fazenda", "lines": ["I paddled the commission down to Óbidos. The judge slept. Senhor Valadares did not."]}]},
   "valadares": {"name": "DUARTE VALADARES", "colour": 2, "portrait": "res://campaign/portraits/valadares.png", "entries": [
    {"after": "a03_plateau", "lines": ["The plateau is drawn. Every path up it, for the Crown.", "Learn the map, and choose how the next party marches."]},
-   {"after": "a05_specimens", "lines": ["The animals are caged. I did not draw the map for this."]}]},
+   {"after": "a05_specimens", "lines": ["The animals are caged. I did not draw the map for this."]},
+   {"after": "d03_fazenda", "lines": ["I searched his island for the Crown. I found enough to know, and not enough to end it."]}]},
   "cages": {"name": "THE CAGES", "colour": 2, "entries": [
    {"after": "a05_specimens", "lines": ["Iron cages under the lamps. The animals in them are fed at dusk."]},
    {"after": "a05_specimens", "flag": {"a05_specimens.cages": "all"}, "lines": ["Every cage came down the mountain full. The straw moves at night."]},
-   {"after": "a05_specimens", "flag": {"a05_specimens.cages": "few"}, "lines": ["Most cages are empty. The few that came down are watched day and night."]}]},
+   {"after": "a05_specimens", "flag": {"a05_specimens.cages": "few"}, "lines": ["Most cages are empty. The few that came down are watched day and night."]},
+   {"after": "d03_fazenda", "sides": {"d03_fazenda": "stock"}, "lines": ["The cages stand empty in the store. The animals are on the island now, in the forest."]}]},
   "jars": {"name": "THE JARS", "colour": 2, "entries": [
    {"after": "b01_specimen", "lines": ["What came out of the station in jars: eggshell, scales, a tooth."]}]},
   "lisbon_crate": {"name": "THE LISBON CRATE", "colour": 2, "entries": [

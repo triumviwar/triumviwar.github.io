@@ -1,0 +1,5979 @@
+{
+	"id": "d03_fazenda",
+	"title": "The Island",
+	"summary": "The lower Amazon, the dry season 2772. On a river island below Óbidos Lindqvist breeds the creatures Rome ordered destroyed. The Crown's commission comes up the river to search it.",
+	"map": "campaign:obidos_island",
+	"voice": "d03",
+	"light": "jungle_day",
+	"floor": [
+		0.74,
+		0.76,
+		0.66
+	],
+	"expansion_spots": false,
+	"mist": {
+		"sight": 0.6,
+		"side": "commission",
+		"weather": false
+	},
+	"manual_end": true,
+	"needs": [
+		"a07_council"
+	],
+	"modes": [
+		"solo",
+		"versus"
+	],
+	"solo_sides": [
+		"stock",
+		"commission"
+	],
+	"sides": [
+		{
+			"id": "stock",
+			"name": "The Stock",
+			"about": "Lindqvist's breeding stock on the island, and the people who keep it with the lures."
+		},
+		{
+			"id": "commission",
+			"name": "The Commission",
+			"about": "The Crown's commission with Rome's order: Duarte Valadares, Desembargador Fonseca and their musketeers."
+		}
+	],
+	"teams": [
+		{
+			"id": "stock",
+			"side": "stock",
+			"faction": "brood",
+			"colour": 2,
+			"start": "none",
+			"camera": "old_pens",
+			"gold": 300,
+			"powder": 60,
+			"control": {
+				"solo": "p1",
+				"versus": "p1",
+				"foe": "script"
+			},
+			"roster": {
+				"allow": [
+					"brood_mother",
+					"grub",
+					"rootmaw",
+					"mound_turtle",
+					"tyrannosaur",
+					"raptor",
+					"dilophosaurus",
+					"spitter",
+					"stage2",
+					"tyrant_challenger",
+					"venom_challenger",
+					"pterodactyl",
+					"hatchlings"
+				],
+				"new": [
+					"pterodactyl",
+					"hatchlings"
+				]
+			}
+		},
+		{
+			"id": "fazenda",
+			"side": "stock",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "house",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "commission",
+			"side": "commission",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "landing",
+			"gold": 0,
+			"powder": 300,
+			"control": {
+				"solo": "script",
+				"versus": "p2"
+			}
+		}
+	],
+	"areas": {
+		"pen_1": [
+			18,
+			10,
+			12,
+			8
+		],
+		"pen_2": [
+			44,
+			7,
+			12,
+			7
+		],
+		"pen_3": [
+			74,
+			8,
+			12,
+			8
+		],
+		"pen_4": [
+			93,
+			22,
+			11,
+			8
+		],
+		"pen_5": [
+			30,
+			26,
+			12,
+			8
+		],
+		"pen_6": [
+			59,
+			23,
+			14,
+			10
+		],
+		"pen_7": [
+			12,
+			51,
+			9,
+			7
+		],
+		"pen_8": [
+			96,
+			47,
+			9,
+			7
+		],
+		"old_pens": [
+			37,
+			52,
+			12,
+			9
+		],
+		"house": [
+			54,
+			52,
+			12,
+			7
+		],
+		"house_door": [
+			55,
+			59,
+			10,
+			4
+		],
+		"mill": [
+			44,
+			50,
+			8,
+			6
+		],
+		"fields_w": [
+			26,
+			56,
+			14,
+			10
+		],
+		"fields_e": [
+			72,
+			56,
+			16,
+			10
+		],
+		"landing": [
+			48,
+			64,
+			24,
+			10
+		],
+		"camp": [
+			52,
+			64,
+			16,
+			5
+		],
+		"canoes": [
+			52,
+			70,
+			16,
+			3
+		],
+		"goats": [
+			70,
+			63,
+			4,
+			4
+		],
+		"ford_w": [
+			21,
+			39,
+			7,
+			7
+		],
+		"ford_m": [
+			57,
+			39,
+			7,
+			7
+		],
+		"ford_e": [
+			91,
+			36,
+			7,
+			7
+		],
+		"deep": [
+			6,
+			0,
+			108,
+			38
+		],
+		"west_point": [
+			7,
+			45,
+			8,
+			8
+		],
+		"chapel": [
+			99,
+			43,
+			12,
+			11
+		],
+		"nest": [
+			61,
+			24,
+			10,
+			8
+		],
+		"south": [
+			6,
+			46,
+			108,
+			30
+		],
+		"near_pen_1": [
+			12,
+			4,
+			24,
+			20
+		],
+		"near_pen_2": [
+			38,
+			1,
+			24,
+			19
+		],
+		"near_pen_3": [
+			68,
+			2,
+			24,
+			20
+		],
+		"near_pen_4": [
+			87,
+			16,
+			23,
+			20
+		],
+		"near_pen_5": [
+			24,
+			20,
+			24,
+			20
+		],
+		"near_pen_6": [
+			53,
+			17,
+			26,
+			22
+		],
+		"near_pen_7": [
+			6,
+			45,
+			21,
+			19
+		],
+		"near_pen_8": [
+			90,
+			41,
+			21,
+			19
+		]
+	},
+	"counters": {
+		"young_n": {
+			"start": 0
+		},
+		"deep": {
+			"start": 0
+		},
+		"found": {
+			"start": 0
+		},
+		"destroyed": {
+			"start": 0
+		},
+		"half": {
+			"start": 0
+		},
+		"lost_at": {
+			"start": 0
+		},
+		"unfound": {
+			"start": 0
+		},
+		"alive": {
+			"start": 0
+		},
+		"warned": {
+			"start": 0
+		},
+		"left": {
+			"start": 0
+		}
+	},
+	"exits": [
+		{
+			"area": "canoes",
+			"team": "commission",
+			"counter": "left",
+			"after": "dawn_go",
+			"except": [
+				"valadares",
+				"fonseca",
+				"benedito"
+			]
+		}
+	],
+	"units": [
+		{
+			"team": "stock",
+			"kind": "brood_mother",
+			"as": "young_mother",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "mother",
+			"tags": [
+				"young",
+				"leashed"
+			],
+			"fixed": true,
+			"if": {
+				"playing": "stock"
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "brood_mother",
+			"as": "young_mother",
+			"count": 1,
+			"at": "pen_6",
+			"tag": "mother",
+			"tags": [
+				"young",
+				"sleep_6"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"playing": "stock"
+				}
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "young_1",
+			"tags": [
+				"young",
+				"leashed"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "stock"
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "young_2",
+			"tags": [
+				"young",
+				"leashed"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "stock"
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "spitter",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "young_3",
+			"tags": [
+				"young",
+				"leashed"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "stock"
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "tyrant_challenger",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "young_4",
+			"tags": [
+				"young",
+				"leashed"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"past": {
+								"a05_specimens.cages": "few"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "spitter",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "young_5",
+			"tags": [
+				"young",
+				"leashed"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"past": {
+								"a05_specimens.cages": "few"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "tyrannosaur",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "young_6",
+			"tags": [
+				"young",
+				"leashed"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "stock"
+					},
+					{
+						"past": {
+							"a05_specimens.cages": "all"
+						}
+					}
+				]
+			},
+			"as": "young_sire"
+		},
+		{
+			"team": "stock",
+			"kind": "venom_challenger",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "young_7",
+			"tags": [
+				"young",
+				"leashed"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "stock"
+					},
+					{
+						"past": {
+							"a05_specimens.cages": "all"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "young_8",
+			"tags": [
+				"young",
+				"leashed"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "stock"
+					},
+					{
+						"past": {
+							"b01_specimen.eggs": "taken"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "young_9",
+			"tags": [
+				"young",
+				"leashed"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "stock"
+					},
+					{
+						"past": {
+							"b01_specimen.eggs": "taken"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "pen_1",
+			"tag": "young_1",
+			"tags": [
+				"young",
+				"sleep_1"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "stock"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "pen_2",
+			"tag": "young_2",
+			"tags": [
+				"young",
+				"sleep_2"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "stock"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "spitter",
+			"count": 1,
+			"at": "pen_3",
+			"tag": "young_3",
+			"tags": [
+				"young",
+				"sleep_3"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "stock"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "tyrant_challenger",
+			"count": 1,
+			"at": "pen_4",
+			"tag": "young_4",
+			"tags": [
+				"young",
+				"sleep_4"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "stock"
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"a05_specimens.cages": "few"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "spitter",
+			"count": 1,
+			"at": "pen_5",
+			"tag": "young_5",
+			"tags": [
+				"young",
+				"sleep_5"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "stock"
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"a05_specimens.cages": "few"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "tyrannosaur",
+			"count": 1,
+			"at": "pen_1",
+			"tag": "young_6",
+			"tags": [
+				"young",
+				"sleep_1"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "stock"
+						}
+					},
+					{
+						"past": {
+							"a05_specimens.cages": "all"
+						}
+					}
+				]
+			},
+			"as": "young_sire"
+		},
+		{
+			"team": "stock",
+			"kind": "venom_challenger",
+			"count": 1,
+			"at": "pen_3",
+			"tag": "young_7",
+			"tags": [
+				"young",
+				"sleep_3"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "stock"
+						}
+					},
+					{
+						"past": {
+							"a05_specimens.cages": "all"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "pen_2",
+			"tag": "young_8",
+			"tags": [
+				"young",
+				"sleep_2"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "stock"
+						}
+					},
+					{
+						"past": {
+							"b01_specimen.eggs": "taken"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "pen_5",
+			"tag": "young_9",
+			"tags": [
+				"young",
+				"sleep_5"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "stock"
+						}
+					},
+					{
+						"past": {
+							"b01_specimen.eggs": "taken"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "pterodactyl",
+			"count": 1,
+			"at": "pen_6",
+			"tag": "storm_sire",
+			"tags": [
+				"young",
+				"sleep_6"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"playing": "stock"
+				}
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 2,
+			"at": "pen_5",
+			"tag": "wanderer",
+			"tags": [
+				"young"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"playing": "stock"
+				}
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "musketeer",
+			"as": "lindqvist",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "lindqvist",
+			"tags": [
+				"lure",
+				"people"
+			]
+		},
+		{
+			"team": "stock",
+			"kind": "labourer",
+			"as": "pieter",
+			"count": 1,
+			"at": "old_pens",
+			"tag": "pieter",
+			"tags": [
+				"lure",
+				"people",
+				"keepers"
+			],
+			"if": {
+				"all": [
+					{
+						"not": {
+							"past": {
+								"b01_specimen.pieter": "lost"
+							}
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"a05_specimens.pieter": "lost"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "musketeer",
+			"as": "keeper",
+			"count": 2,
+			"at": "old_pens",
+			"tag": "keeper",
+			"tags": [
+				"lure",
+				"people",
+				"keepers"
+			],
+			"fixed": true
+		},
+		{
+			"team": "stock",
+			"kind": "musketeer",
+			"as": "assembly_keeper",
+			"count": 2,
+			"at": "house",
+			"tag": "guards",
+			"tags": [
+				"people"
+			],
+			"fixed": true,
+			"if": {
+				"past": {
+					"a06_barricades.varenne": "executed"
+				}
+			}
+		},
+		{
+			"team": "fazenda",
+			"kind": "labourer",
+			"as": "villager",
+			"count": 3,
+			"at": "fields_w",
+			"tag": "hands",
+			"fixed": true
+		},
+		{
+			"team": "fazenda",
+			"kind": "labourer",
+			"as": "villager",
+			"count": 3,
+			"at": "fields_e",
+			"tag": "hands",
+			"fixed": true
+		}
+	],
+	"buildings": [
+		{
+			"team": "fazenda",
+			"kind": "town_hall",
+			"at": [
+				58,
+				54
+			],
+			"tag": "big_house",
+			"name": "The big house"
+		},
+		{
+			"team": "fazenda",
+			"kind": "farm",
+			"at": [
+				74,
+				60
+			],
+			"tag": "fazenda_b",
+			"name": "The cane field"
+		},
+		{
+			"team": "fazenda",
+			"kind": "farm",
+			"at": [
+				30,
+				58
+			],
+			"tag": "fazenda_b",
+			"name": "The cane field"
+		},
+		{
+			"team": "fazenda",
+			"kind": "cottage",
+			"at": [
+				48,
+				64
+			],
+			"tag": "fazenda_b"
+		},
+		{
+			"team": "fazenda",
+			"kind": "cottage",
+			"at": [
+				70,
+				52
+			],
+			"tag": "fazenda_b"
+		}
+	],
+	"objectives": [
+		{
+			"id": "hide_stock",
+			"side": "stock",
+			"primary": false,
+			"kind": "manual",
+			"text": "Move the stock into the deep forest, north of the creek: {deep} of {young_n} there. A creature follows orders only within reach of a lure (the green rings round Lindqvist, Pieter and the keepers): walk a keeper ahead and the creatures with him.",
+			"phone": "Stock into the deep forest: {deep} of {young_n}. Keep them inside a lure's green ring."
+		},
+		{
+			"id": "root_mother",
+			"side": "stock",
+			"primary": false,
+			"kind": "manual",
+			"text": "Root the young Mother in the nest clearing (marked, in the middle of the deep forest): select her and press ROOT there."
+		},
+		{
+			"id": "boat_clock",
+			"side": "stock",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "boat",
+			"text": "The commission's canoes land in {clock:boat}."
+		},
+		{
+			"id": "storm",
+			"side": "stock",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The Storm Sire has hatched. Root him beside the young Mother (within a few steps of her), then pick HATCHLINGS on her card: a clutch of little flyers to watch the commission from above."
+		},
+		{
+			"id": "search",
+			"side": "stock",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Keep the stock hidden until dusk ({clock:dusk}): {found} of {young_n} found. A creature that keeps STILL is seen only up close; one that moves is seen as far as a soldier can see. Three quarters found and Rome's order is carried out.",
+			"phone": "Hide the stock till dusk ({clock:dusk}): {found} of {young_n} found. Still = seen only up close."
+		},
+		{
+			"id": "dinner",
+			"side": "stock",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE DINNER: walk Lindqvist to the big house's door and keep him there a moment. The magistrate and his party will dine with him for a while instead of searching."
+		},
+		{
+			"id": "decoy",
+			"side": "stock",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "A DECOY: stand a keeper (or Pieter) at the west point or the burnt chapel for a moment. He sets a lure post there, and the nearest search party goes to see what it is."
+		},
+		{
+			"id": "lindqvist",
+			"side": "stock",
+			"primary": true,
+			"kind": "protect",
+			"tag": "lindqvist",
+			"text": "Dr. Lindqvist must live."
+		},
+		{
+			"id": "night",
+			"side": "stock",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Keep the stock hidden through the night until the commission leaves at dawn ({clock:dawn}): {found} of {young_n} found."
+		},
+		{
+			"id": "restless",
+			"side": "stock",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "A young one is up and going for the goats by the commission's camp. Get a lure RIGHT BESIDE it (3 steps: a keeper or Lindqvist) before it reaches them, then walk it back into the deep forest."
+		},
+		{
+			"id": "c_find",
+			"side": "commission",
+			"primary": true,
+			"kind": "manual",
+			"text": "Find the specimens and destroy them by Rome's order: {destroyed} destroyed, {half} needed ({found} found). Walk your parties through the forest: a sleeping creature is seen only from 3 steps, and it wakes and fights. Pale claw marks on the ground are fresh tracks."
+		},
+		{
+			"id": "c_valadares",
+			"side": "commission",
+			"primary": true,
+			"kind": "protect",
+			"tag": "valadares",
+			"text": "Duarte Valadares must live."
+		},
+		{
+			"id": "c_dawn",
+			"side": "commission",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "c_dawn",
+			"hidden": true,
+			"text": "The canoes leave at dawn: {clock:c_dawn}."
+		}
+	],
+	"triggers": [
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "hands",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "big_house",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "fazenda_b",
+						"on": true
+					}
+				},
+				{
+					"counter": {
+						"name": "young_n",
+						"count": {
+							"tag": "young"
+						}
+					}
+				},
+				{
+					"brood_stage": {
+						"tag": "mother",
+						"stage": 2
+					}
+				},
+				{
+					"deny": {
+						"team": "stock",
+						"kind": [
+							"grub",
+							"rootmaw",
+							"mound_turtle",
+							"raptor",
+							"spitter",
+							"tyrannosaur",
+							"dilophosaurus"
+						],
+						"why": "Not on the island: Lindqvist breeds only from his stock."
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_stock",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"leash": {
+						"tag": "leashed",
+						"lure": "lure",
+						"within": 8,
+						"loose": "wander",
+						"name": "stock"
+					}
+				},
+				{
+					"ground": {
+						"name": "pens_swamp",
+						"from": "mother",
+						"kind": "swamp",
+						"team": "stock",
+						"r": 3,
+						"max": 3,
+						"every": 30
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_mirror",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"not": {
+							"playing": "stock"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"sleep": {
+						"tag": "sleep_1",
+						"name": "pen_1",
+						"within": 3,
+						"by": "commission",
+						"hurt": true,
+						"then": {
+							"do": "hunt",
+							"prey": "com_men",
+							"within": 14
+						}
+					}
+				},
+				{
+					"sleep": {
+						"tag": "sleep_2",
+						"name": "pen_2",
+						"within": 3,
+						"by": "commission",
+						"hurt": true,
+						"then": {
+							"do": "hunt",
+							"prey": "com_men",
+							"within": 14
+						}
+					}
+				},
+				{
+					"sleep": {
+						"tag": "sleep_3",
+						"name": "pen_3",
+						"within": 3,
+						"by": "commission",
+						"hurt": true,
+						"then": {
+							"do": "hunt",
+							"prey": "com_men",
+							"within": 14
+						}
+					}
+				},
+				{
+					"sleep": {
+						"tag": "sleep_4",
+						"name": "pen_4",
+						"within": 3,
+						"by": "commission",
+						"hurt": true,
+						"then": {
+							"do": "hunt",
+							"prey": "com_men",
+							"within": 14
+						}
+					}
+				},
+				{
+					"sleep": {
+						"tag": "sleep_5",
+						"name": "pen_5",
+						"within": 3,
+						"by": "commission",
+						"hurt": true,
+						"then": {
+							"do": "hunt",
+							"prey": "com_men",
+							"within": 14
+						}
+					}
+				},
+				{
+					"sleep": {
+						"tag": "sleep_6",
+						"name": "pen_6",
+						"within": 3,
+						"by": "commission",
+						"hurt": true,
+						"then": {
+							"do": "hunt",
+							"prey": "com_men",
+							"within": 14
+						}
+					}
+				},
+				{
+					"leash": {
+						"tag": "wanderer",
+						"lure": "no_lure",
+						"within": 1,
+						"loose": "wander",
+						"name": "wanderers"
+					}
+				},
+				{
+					"order": {
+						"tag": "people",
+						"do": "move",
+						"to": "house"
+					}
+				}
+			]
+		},
+		{
+			"id": "boat_clock_go",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "boat",
+						"secs": 210
+					}
+				}
+			]
+		},
+		{
+			"id": "boat_clock_c",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"not": {
+							"playing": "stock"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "boat",
+						"secs": 20,
+						"scale": false
+					}
+				},
+				{
+					"objective": {
+						"id": "boat_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "hide_stock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "root_mother",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_1",
+						"p_tip1"
+					]
+				},
+				{
+					"ping": {
+						"area": "deep"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_m"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro2",
+			"when": {
+				"fired": "intro"
+			},
+			"delay": 16,
+			"do": [
+				{
+					"say": [
+						"p_tip2"
+					]
+				},
+				{
+					"ping": {
+						"area": "nest"
+					}
+				}
+			]
+		},
+		{
+			"id": "no_pieter",
+			"when": {
+				"all": [
+					{
+						"fired": "intro"
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"b01_specimen.pieter": "lost"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a05_specimens.pieter": "lost"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 30,
+			"do": [
+				{
+					"say": [
+						"n_no_pieter"
+					]
+				}
+			]
+		},
+		{
+			"id": "guards",
+			"when": {
+				"all": [
+					{
+						"fired": "intro"
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"delay": 34,
+			"do": [
+				{
+					"say": [
+						"n_guards"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_c",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "commission"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_c1"
+					]
+				}
+			]
+		},
+		{
+			"id": "deep_count",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"counter": {
+						"name": "deep",
+						"count": {
+							"tag": "young",
+							"area": "deep"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "loose_say",
+			"when": {
+				"all": [
+					{
+						"loose": {
+							"name": "stock"
+						}
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_loose"
+					]
+				}
+			]
+		},
+		{
+			"id": "mother_rooted",
+			"when": {
+				"all": [
+					{
+						"rooted": {
+							"tag": "mother"
+						}
+					},
+					{
+						"count": {
+							"tag": "mother",
+							"area": "deep"
+						}
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "root_mother",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_rooted"
+					]
+				}
+			]
+		},
+		{
+			"id": "storm_hatch",
+			"when": {
+				"all": [
+					{
+						"time": 45
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "stock",
+						"kind": "pterodactyl",
+						"count": 1,
+						"near": "mother",
+						"at": "old_pens",
+						"tag": "storm_sire",
+						"tags": [
+							"young",
+							"leashed"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"counter": {
+						"name": "young_n",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"l_storm",
+						"l_storm2"
+					]
+				},
+				{
+					"ping": {
+						"tag": "storm_sire"
+					}
+				},
+				{
+					"objective": {
+						"id": "storm",
+						"set": "active"
+					}
+				},
+				{
+					"flag": {
+						"storm": "hatched"
+					}
+				},
+				{
+					"give": {
+						"team": "stock",
+						"gold": 200,
+						"powder": 40
+					}
+				}
+			]
+		},
+		{
+			"id": "storm_rooted",
+			"when": {
+				"all": [
+					{
+						"rooted": {
+							"tag": "storm_sire"
+						}
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_hatch"
+					]
+				}
+			]
+		},
+		{
+			"id": "hatched",
+			"when": {
+				"all": [
+					{
+						"count": {
+							"team": "stock",
+							"kind": "hatchlings",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "storm",
+						"set": "done"
+					}
+				},
+				{
+					"spare": {
+						"tag": "hatchling",
+						"on": true
+					}
+				}
+			]
+		},
+		{
+			"id": "hatch_spare",
+			"when": {
+				"all": [
+					{
+						"fired": "hatched"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"spare": {
+						"tag": "hatchling",
+						"on": true
+					}
+				}
+			]
+		},
+		{
+			"id": "p_warn",
+			"when": {
+				"all": [
+					{
+						"clock_left": {
+							"name": "boat",
+							"below": 45
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"p_warn"
+					]
+				}
+			]
+		},
+		{
+			"id": "ready",
+			"when": {
+				"all": [
+					{
+						"time": 20
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"done": "root_mother"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"any": [
+							{
+								"done": "storm"
+							},
+							{
+								"time": 105
+							}
+						]
+					},
+					{
+						"count": {
+							"tag": "young",
+							"area": "south",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"p_ready"
+					]
+				},
+				{
+					"clock": {
+						"name": "boat",
+						"add": -600
+					}
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"all": [
+					{
+						"clock_out": "boat"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "boat",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "boat_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "hide_stock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "root_mother",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "search",
+						"set": "active"
+					}
+				},
+				{
+					"tracks": {
+						"tag": "young",
+						"for": "commission",
+						"secs": 60
+					}
+				},
+				{
+					"spare": {
+						"tag": "people",
+						"on": true
+					}
+				},
+				{
+					"counter": {
+						"name": "lost_at",
+						"count": {
+							"tag": "young"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "commission",
+						"kind": "dismounted",
+						"as": "valadares",
+						"count": 1,
+						"at": "canoes",
+						"tag": "valadares",
+						"tags": [
+							"com_men"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "commission",
+						"kind": "dismounted",
+						"as": "fonseca",
+						"count": 1,
+						"at": "canoes",
+						"tag": "fonseca",
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "commission",
+						"kind": "labourer",
+						"as": "benedito",
+						"count": 1,
+						"at": "canoes",
+						"tag": "benedito",
+						"fixed": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "benedito",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "fonseca",
+						"on": true
+					}
+				},
+				{
+					"ping": {
+						"area": "landing"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2__0",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"past": {
+								"a03_plateau.map": "withheld"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"hide": {
+						"tag": "young",
+						"from": "commission",
+						"within": 2,
+						"still": 3,
+						"name": "pens",
+						"counter": "found"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2__1",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"past": {
+							"a03_plateau.map": "withheld"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"hide": {
+						"tag": "young",
+						"from": "commission",
+						"within": 2,
+						"still": 3,
+						"name": "pens",
+						"counter": "found"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2__2",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"past": {
+								"a03_plateau.map": "withheld"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "dusk",
+						"secs": 270,
+						"scale": false
+					}
+				}
+			]
+		},
+		{
+			"id": "part2__3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"past": {
+							"a03_plateau.map": "withheld"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "dusk",
+						"secs": 330,
+						"scale": false
+					}
+				}
+			]
+		},
+		{
+			"id": "part2__4",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "valadares",
+						"on": true
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_c",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "commission"
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "commission",
+						"kind": "musketeer",
+						"count": 12,
+						"at": "landing",
+						"tag": "searchers",
+						"tags": [
+							"com_men"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "commission",
+						"kind": "cuirassier",
+						"count": 4,
+						"at": "landing",
+						"tag": "riders",
+						"tags": [
+							"com_men"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"camera": {
+						"area": "landing",
+						"side": "commission"
+					}
+				},
+				{
+					"objective": {
+						"id": "c_dawn",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"v_c_tip",
+						"v_c_tracks"
+					]
+				},
+				{
+					"ping": {
+						"area": "deep"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_c__0",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_c"
+					},
+					{
+						"not": {
+							"past": {
+								"a03_plateau.map": "withheld"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "c_dawn",
+						"secs": 390,
+						"scale": false
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_c__1",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_c"
+					},
+					{
+						"past": {
+							"a03_plateau.map": "withheld"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "c_dawn",
+						"secs": 450,
+						"scale": false
+					}
+				}
+			]
+		},
+		{
+			"id": "parties",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"spawn": {
+						"team": "commission",
+						"kind": "musketeer",
+						"count": 4,
+						"at": "landing",
+						"tag": "party_a",
+						"tags": [
+							"searchers",
+							"com_men"
+						],
+						"if": {
+							"not": {
+								"playing": "commission"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "commission",
+						"kind": "musketeer",
+						"count": 4,
+						"at": "landing",
+						"tag": "party_b",
+						"tags": [
+							"searchers",
+							"com_men"
+						],
+						"if": {
+							"not": {
+								"playing": "commission"
+							}
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "fonseca",
+						"do": "follow",
+						"leader": "party_b",
+						"within": 2
+					}
+				},
+				{
+					"spawn": {
+						"team": "commission",
+						"kind": "musketeer",
+						"count": 4,
+						"at": "landing",
+						"tag": "party_c",
+						"tags": [
+							"searchers",
+							"com_men"
+						],
+						"if": {
+							"not": {
+								"playing": "commission"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "commission",
+						"kind": "cuirassier",
+						"count": 4,
+						"at": "landing",
+						"tag": "riders",
+						"tags": [
+							"searchers",
+							"com_men"
+						],
+						"if": {
+							"not": {
+								"playing": "commission"
+							}
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "riders",
+						"do": "route",
+						"route": [
+							"fields_w",
+							"old_pens",
+							"house",
+							"fields_e",
+							"chapel",
+							"fields_e",
+							"old_pens"
+						],
+						"loop": true,
+						"name": "riders"
+					}
+				},
+				{
+					"spawn": {
+						"team": "commission",
+						"kind": "musketeer",
+						"count": 2,
+						"at": "landing",
+						"tag": "v_guard",
+						"tags": [
+							"searchers",
+							"com_men"
+						],
+						"fixed": true,
+						"if": {
+							"not": {
+								"playing": "commission"
+							}
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "route",
+						"route": [
+							"house",
+							"ford_m",
+							"pen_3",
+							"ford_e",
+							"fields_e",
+							"house",
+							"ford_m",
+							"pen_5",
+							"ford_w"
+						],
+						"loop": true,
+						"name": "valadares_road"
+					}
+				},
+				{
+					"order": {
+						"tag": "v_guard",
+						"do": "follow",
+						"leader": "valadares",
+						"within": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "parties__0",
+			"when": {
+				"all": [
+					{
+						"fired": "parties"
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "party_a",
+						"do": "route",
+						"route": [
+							"mill",
+							"pen_7",
+							"ford_w",
+							"pen_5",
+							"pen_1",
+							"ford_w",
+							"fields_w",
+							"old_pens"
+						],
+						"loop": true,
+						"name": "party_a"
+					}
+				}
+			]
+		},
+		{
+			"id": "parties__1",
+			"when": {
+				"all": [
+					{
+						"fired": "parties"
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "party_b",
+						"do": "route",
+						"route": [
+							"house",
+							"old_pens",
+							"ford_m",
+							"pen_2",
+							"pen_5",
+							"ford_w",
+							"fields_w",
+							"house"
+						],
+						"loop": true,
+						"name": "party_b"
+					}
+				}
+			]
+		},
+		{
+			"id": "parties__2",
+			"when": {
+				"all": [
+					{
+						"fired": "parties"
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "party_c",
+						"do": "route",
+						"route": [
+							"fields_e",
+							"pen_8",
+							"chapel",
+							"ford_e",
+							"pen_4",
+							"pen_3",
+							"ford_e",
+							"fields_e"
+						],
+						"loop": true,
+						"name": "party_c"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_say",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"n_land",
+						"f_land"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2_say_s",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_say"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"l_land"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2_v",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_say"
+					},
+					{
+						"not": {
+							"past": {
+								"a03_plateau.map": "withheld"
+							}
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"do": [
+				{
+					"say": [
+						"v_land"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2_v_w",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_say"
+					},
+					{
+						"past": {
+							"a03_plateau.map": "withheld"
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"do": [
+				{
+					"say": [
+						"v_land_w"
+					]
+				}
+			]
+		},
+		{
+			"id": "quiet",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"delay": 14,
+			"do": [
+				{
+					"say": [
+						"p_still",
+						"l_quiet"
+					]
+				},
+				{
+					"carry": {
+						"tag": "young",
+						"on": true,
+						"pace": 1.0
+					}
+				},
+				{
+					"carry": {
+						"tag": "people",
+						"on": true,
+						"pace": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "quiet_now",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"carry": {
+						"tag": "young",
+						"on": true,
+						"pace": 1.0
+					}
+				},
+				{
+					"carry": {
+						"tag": "people",
+						"on": true,
+						"pace": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "v_track",
+			"when": {
+				"all": [
+					{
+						"fired": "parties"
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"every": 9,
+			"do": [
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "track",
+						"within": 14
+					}
+				}
+			]
+		},
+		{
+			"id": "parties_track",
+			"when": {
+				"all": [
+					{
+						"fired": "parties"
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 90,
+			"every": 25,
+			"do": [
+				{
+					"order": {
+						"tag": "party_a",
+						"do": "track",
+						"within": 12
+					}
+				},
+				{
+					"order": {
+						"tag": "party_c",
+						"do": "track",
+						"within": 12
+					}
+				}
+			]
+		},
+		{
+			"id": "v_tracks_say",
+			"when": {
+				"all": [
+					{
+						"fired": "v_track"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"delay": 30,
+			"do": [
+				{
+					"say": [
+						"v_tracks"
+					]
+				}
+			]
+		},
+		{
+			"id": "dinner_obj",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"delay": 24,
+			"do": [
+				{
+					"objective": {
+						"id": "dinner",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"l_dinner"
+					]
+				},
+				{
+					"ping": {
+						"area": "house_door"
+					}
+				}
+			]
+		},
+		{
+			"id": "dinner",
+			"when": {
+				"all": [
+					{
+						"fired": "dinner_obj"
+					},
+					{
+						"stay": {
+							"tag": "lindqvist",
+							"area": "house_door",
+							"secs": 5
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "dinner",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"dinner": "given"
+					}
+				},
+				{
+					"say": [
+						"f_dinner",
+						"v_dinner"
+					]
+				},
+				{
+					"order": {
+						"tag": "party_b",
+						"do": "move",
+						"to": "house"
+					}
+				},
+				{
+					"order": {
+						"tag": "fonseca",
+						"do": "move",
+						"to": "house"
+					}
+				}
+			]
+		},
+		{
+			"id": "dinner_hold",
+			"when": {
+				"fired": "dinner"
+			},
+			"delay": 15,
+			"do": [
+				{
+					"order": {
+						"tag": "party_b",
+						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "dinner_end",
+			"when": {
+				"all": [
+					{
+						"fired": "dinner"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 90,
+			"do": [
+				{
+					"say": [
+						"f_dinner_end"
+					]
+				},
+				{
+					"order": {
+						"tag": "party_b",
+						"do": "route",
+						"route": [
+							"house",
+							"old_pens",
+							"ford_m",
+							"pen_2",
+							"pen_5",
+							"ford_w",
+							"fields_w",
+							"house"
+						],
+						"loop": true,
+						"name": "party_b"
+					}
+				},
+				{
+					"order": {
+						"tag": "fonseca",
+						"do": "follow",
+						"leader": "party_b",
+						"within": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "dinner_c",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "commission"
+					}
+				]
+			},
+			"delay": 60,
+			"do": [
+				{
+					"say": [
+						"f_c_dinner"
+					]
+				},
+				{
+					"order": {
+						"tag": "fonseca",
+						"do": "move",
+						"to": "house"
+					}
+				}
+			]
+		},
+		{
+			"id": "decoy_obj",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"delay": 45,
+			"do": [
+				{
+					"objective": {
+						"id": "decoy",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"p_decoy"
+					]
+				},
+				{
+					"ping": {
+						"area": "west_point"
+					}
+				},
+				{
+					"ping": {
+						"area": "chapel"
+					}
+				}
+			]
+		},
+		{
+			"id": "decoy_west",
+			"when": {
+				"all": [
+					{
+						"fired": "decoy_obj"
+					},
+					{
+						"stay": {
+							"tag": "keepers",
+							"area": "west_point",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"lure_post": {
+						"tag": "decoy_west",
+						"at": "west_point",
+						"secs": 90,
+						"pull": {
+							"tag": "searchers",
+							"within": 40,
+							"then": "west_point",
+							"name": "decoyed_west"
+						}
+					}
+				},
+				{
+					"objective": {
+						"id": "decoy",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_decoy"
+					]
+				},
+				{
+					"ping": {
+						"area": "west_point"
+					}
+				}
+			]
+		},
+		{
+			"id": "decoy_west_back",
+			"when": {
+				"all": [
+					{
+						"fired": "decoy_west"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 45,
+			"do": [
+				{
+					"order": {
+						"tag": "party_a",
+						"do": "route",
+						"route": [
+							"mill",
+							"pen_7",
+							"ford_w",
+							"pen_5",
+							"pen_1",
+							"ford_w",
+							"fields_w",
+							"old_pens"
+						],
+						"loop": true,
+						"name": "party_a"
+					}
+				},
+				{
+					"order": {
+						"tag": "party_c",
+						"do": "route",
+						"route": [
+							"fields_e",
+							"pen_8",
+							"chapel",
+							"ford_e",
+							"pen_4",
+							"pen_3",
+							"ford_e",
+							"fields_e"
+						],
+						"loop": true,
+						"name": "party_c"
+					}
+				},
+				{
+					"order": {
+						"tag": "riders",
+						"do": "route",
+						"route": [
+							"fields_w",
+							"old_pens",
+							"house",
+							"fields_e",
+							"chapel",
+							"fields_e",
+							"old_pens"
+						],
+						"loop": true,
+						"name": "riders"
+					}
+				}
+			]
+		},
+		{
+			"id": "decoy_chapel",
+			"when": {
+				"all": [
+					{
+						"fired": "decoy_obj"
+					},
+					{
+						"stay": {
+							"tag": "keepers",
+							"area": "chapel",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"lure_post": {
+						"tag": "decoy_chapel",
+						"at": "chapel",
+						"secs": 90,
+						"pull": {
+							"tag": "searchers",
+							"within": 40,
+							"then": "chapel",
+							"name": "decoyed_chapel"
+						}
+					}
+				},
+				{
+					"objective": {
+						"id": "decoy",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_decoy"
+					]
+				},
+				{
+					"ping": {
+						"area": "chapel"
+					}
+				}
+			]
+		},
+		{
+			"id": "decoy_chapel_back",
+			"when": {
+				"all": [
+					{
+						"fired": "decoy_chapel"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 45,
+			"do": [
+				{
+					"order": {
+						"tag": "party_a",
+						"do": "route",
+						"route": [
+							"mill",
+							"pen_7",
+							"ford_w",
+							"pen_5",
+							"pen_1",
+							"ford_w",
+							"fields_w",
+							"old_pens"
+						],
+						"loop": true,
+						"name": "party_a"
+					}
+				},
+				{
+					"order": {
+						"tag": "party_c",
+						"do": "route",
+						"route": [
+							"fields_e",
+							"pen_8",
+							"chapel",
+							"ford_e",
+							"pen_4",
+							"pen_3",
+							"ford_e",
+							"fields_e"
+						],
+						"loop": true,
+						"name": "party_c"
+					}
+				},
+				{
+					"order": {
+						"tag": "riders",
+						"do": "route",
+						"route": [
+							"fields_w",
+							"old_pens",
+							"house",
+							"fields_e",
+							"chapel",
+							"fields_e",
+							"old_pens"
+						],
+						"loop": true,
+						"name": "riders"
+					}
+				}
+			]
+		},
+		{
+			"id": "warn_pen_1",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"count": {
+							"tag": "searchers",
+							"area": "near_pen_1",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "young",
+							"area": "pen_1",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 30,
+			"do": [
+				{
+					"ping": {
+						"area": "pen_1"
+					}
+				},
+				{
+					"counter": {
+						"name": "warned",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "warn_pen_2",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"count": {
+							"tag": "searchers",
+							"area": "near_pen_2",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "young",
+							"area": "pen_2",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 30,
+			"do": [
+				{
+					"ping": {
+						"area": "pen_2"
+					}
+				},
+				{
+					"counter": {
+						"name": "warned",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "warn_pen_3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"count": {
+							"tag": "searchers",
+							"area": "near_pen_3",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "young",
+							"area": "pen_3",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 30,
+			"do": [
+				{
+					"ping": {
+						"area": "pen_3"
+					}
+				},
+				{
+					"counter": {
+						"name": "warned",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "warn_pen_4",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"count": {
+							"tag": "searchers",
+							"area": "near_pen_4",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "young",
+							"area": "pen_4",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 30,
+			"do": [
+				{
+					"ping": {
+						"area": "pen_4"
+					}
+				},
+				{
+					"counter": {
+						"name": "warned",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "warn_pen_5",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"count": {
+							"tag": "searchers",
+							"area": "near_pen_5",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "young",
+							"area": "pen_5",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 30,
+			"do": [
+				{
+					"ping": {
+						"area": "pen_5"
+					}
+				},
+				{
+					"counter": {
+						"name": "warned",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "warn_pen_6",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"count": {
+							"tag": "searchers",
+							"area": "near_pen_6",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "young",
+							"area": "pen_6",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 30,
+			"do": [
+				{
+					"ping": {
+						"area": "pen_6"
+					}
+				},
+				{
+					"counter": {
+						"name": "warned",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_party"
+					]
+				}
+			]
+		},
+		{
+			"id": "warn_pen_7",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"count": {
+							"tag": "searchers",
+							"area": "near_pen_7",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "young",
+							"area": "pen_7",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 30,
+			"do": [
+				{
+					"ping": {
+						"area": "pen_7"
+					}
+				},
+				{
+					"counter": {
+						"name": "warned",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "warn_pen_8",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"count": {
+							"tag": "searchers",
+							"area": "near_pen_8",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "young",
+							"area": "pen_8",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 30,
+			"do": [
+				{
+					"ping": {
+						"area": "pen_8"
+					}
+				},
+				{
+					"counter": {
+						"name": "warned",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "party_say",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "warned",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_party"
+					]
+				}
+			]
+		},
+		{
+			"id": "found_1",
+			"when": {
+				"all": [
+					{
+						"found": {
+							"name": "pens",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_found",
+						"v_found",
+						"l_found"
+					]
+				}
+			]
+		},
+		{
+			"id": "found_c",
+			"when": {
+				"all": [
+					{
+						"found": {
+							"name": "pens",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "commission"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_c_found"
+					]
+				}
+			]
+		},
+		{
+			"id": "found_tick",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"counter": {
+						"name": "alive",
+						"count": {
+							"tag": "young"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "destroyed",
+						"set": 0
+					}
+				},
+				{
+					"counter": {
+						"name": "destroyed",
+						"add_counter": "lost_at"
+					}
+				},
+				{
+					"counter": {
+						"name": "destroyed",
+						"sub_counter": "alive"
+					}
+				}
+			]
+		},
+		{
+			"id": "dusk_warn",
+			"when": {
+				"all": [
+					{
+						"clock_left": {
+							"name": "dusk",
+							"below": 40
+						}
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"p_dusk"
+					]
+				}
+			]
+		},
+		{
+			"id": "half_set",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 0.5,
+			"do": [
+				{
+					"counter": {
+						"name": "half",
+						"share_of": "young_n",
+						"share": 0.5
+					}
+				}
+			]
+		},
+		{
+			"id": "lost_check",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"tally": {
+						"flag": "found_share",
+						"counter": "found",
+						"of": "young_n",
+						"bands": [
+							[
+								0,
+								"low"
+							],
+							[
+								0.5,
+								"half"
+							],
+							[
+								0.75,
+								"most"
+							]
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "half_found",
+			"when": {
+				"all": [
+					{
+						"flag": {
+							"found_share": "half"
+						}
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"p_half"
+					]
+				}
+			]
+		},
+		{
+			"id": "lost_found",
+			"when": {
+				"all": [
+					{
+						"flag": {
+							"found_share": "most"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"p_lost",
+						"n_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "lost_found2",
+			"when": {
+				"all": [
+					{
+						"fired": "lost_found"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "search",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "lost_found3",
+			"when": {
+				"all": [
+					{
+						"fired": "lost_found"
+					},
+					{
+						"fired": "part3"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "night",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"clock_out": "dusk"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "search",
+						"set": "done"
+					}
+				},
+				{
+					"light": {
+						"to": "jungle_night",
+						"secs": 20
+					}
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"secs": 120,
+						"scale": false
+					}
+				},
+				{
+					"say": [
+						"n_night"
+					]
+				},
+				{
+					"order": {
+						"tag": "searchers",
+						"do": "move",
+						"to": "camp"
+					}
+				},
+				{
+					"order": {
+						"tag": "valadares",
+						"do": "move",
+						"to": "camp"
+					}
+				},
+				{
+					"order": {
+						"tag": "fonseca",
+						"do": "move",
+						"to": "camp"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3__0",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "night",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3_c",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "commission"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_c_night"
+					]
+				}
+			]
+		},
+		{
+			"id": "camp_hold",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"order": {
+						"tag": "searchers",
+						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "restless",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"leash": {
+						"tag": "restless",
+						"lure": "lure",
+						"within": 3,
+						"loose": "to",
+						"to": "goats",
+						"name": "restless"
+					}
+				},
+				{
+					"pace": {
+						"tag": "restless",
+						"pace": 0.38
+					}
+				},
+				{
+					"ping": {
+						"tag": "restless"
+					}
+				}
+			]
+		},
+		{
+			"id": "restless__0",
+			"when": {
+				"all": [
+					{
+						"fired": "restless"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"retag": {
+						"tag": "leashed",
+						"as": "restless",
+						"kind": [
+							"raptor",
+							"spitter",
+							"tyrant_challenger",
+							"venom_challenger",
+							"tyrannosaur"
+						],
+						"first": true,
+						"far_from": "lure",
+						"within": 4
+					}
+				}
+			]
+		},
+		{
+			"id": "restless__1",
+			"when": {
+				"all": [
+					{
+						"fired": "restless"
+					},
+					{
+						"not": {
+							"playing": "stock"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"retag": {
+						"tag": "wanderer",
+						"as": "restless",
+						"first": true
+					}
+				}
+			]
+		},
+		{
+			"id": "restless_say",
+			"when": {
+				"all": [
+					{
+						"fired": "restless"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "restless",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"p_restless",
+						"l_restless"
+					]
+				}
+			]
+		},
+		{
+			"id": "restless_went",
+			"when": {
+				"all": [
+					{
+						"fired": "restless"
+					},
+					{
+						"loose": {
+							"name": "restless"
+						}
+					}
+				]
+			},
+			"do": []
+		},
+		{
+			"id": "restless_quiet",
+			"when": {
+				"all": [
+					{
+						"fired": "restless"
+					},
+					{
+						"not": {
+							"fired": "restless_went"
+						}
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"do": []
+		},
+		{
+			"id": "restless_quiet2",
+			"when": {
+				"all": [
+					{
+						"fired": "restless_quiet"
+					},
+					{
+						"not": {
+							"fired": "restless_went"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "restless",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"l_held"
+					]
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"add": -80
+					}
+				}
+			]
+		},
+		{
+			"id": "restless_held",
+			"when": {
+				"all": [
+					{
+						"fired": "restless_went"
+					},
+					{
+						"not": {
+							"loose": {
+								"name": "restless"
+							}
+						}
+					},
+					{
+						"playing": "stock"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_held"
+					]
+				},
+				{
+					"pace": {
+						"tag": "restless",
+						"pace": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "restless_back",
+			"when": {
+				"all": [
+					{
+						"fired": "restless_held"
+					},
+					{
+						"count": {
+							"tag": "restless",
+							"area": "deep",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "restless",
+							"area": "south",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "restless",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"p_back"
+					]
+				},
+				{
+					"leash": {
+						"tag": "restless",
+						"lure": "lure",
+						"within": 8,
+						"loose": "wander",
+						"name": "restless"
+					}
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"add": -80
+					}
+				}
+			]
+		},
+		{
+			"id": "restless_gone",
+			"when": {
+				"all": [
+					{
+						"fired": "restless"
+					},
+					{
+						"dead": "restless"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "restless",
+						"set": "failed"
+					}
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"add": -80
+					}
+				}
+			]
+		},
+		{
+			"id": "restless_none",
+			"when": {
+				"all": [
+					{
+						"fired": "restless"
+					},
+					{
+						"count": {
+							"tag": "restless",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"clock": {
+						"name": "dawn",
+						"add": -80
+					}
+				}
+			]
+		},
+		{
+			"id": "lost_fight",
+			"when": {
+				"all": [
+					{
+						"fired": "restless"
+					},
+					{
+						"count": {
+							"tag": "restless",
+							"area": "goats",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_fight",
+						"v_fight"
+					]
+				},
+				{
+					"hide": {
+						"tag": "young",
+						"on": false
+					}
+				},
+				{
+					"objective": {
+						"id": "restless",
+						"set": "failed"
+					}
+				},
+				{
+					"objective": {
+						"id": "night",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "dawn_go",
+			"when": {
+				"all": [
+					{
+						"clock_out": "dawn"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_dawn",
+						"f_dawn"
+					]
+				},
+				{
+					"order": {
+						"tag": "com_men",
+						"do": "move",
+						"to": "canoes"
+					}
+				},
+				{
+					"order": {
+						"tag": "fonseca",
+						"do": "move",
+						"to": "canoes"
+					}
+				},
+				{
+					"light": {
+						"to": "jungle_day",
+						"secs": 20
+					}
+				}
+			]
+		},
+		{
+			"id": "dawn_say",
+			"when": {
+				"all": [
+					{
+						"fired": "dawn_go"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"v_dawn",
+						"l_dawn"
+					]
+				}
+			]
+		},
+		{
+			"id": "flags",
+			"when": {
+				"all": [
+					{
+						"fired": "dawn_go"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 10,
+			"do": [
+				{
+					"counter": {
+						"name": "unfound",
+						"set": 0
+					}
+				},
+				{
+					"counter": {
+						"name": "unfound",
+						"add_counter": "young_n"
+					}
+				},
+				{
+					"counter": {
+						"name": "unfound",
+						"sub_counter": "found",
+						"min": 0
+					}
+				},
+				{
+					"tally": {
+						"flag": "hidden",
+						"counter": "unfound",
+						"of": "young_n",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.5,
+								"some"
+							],
+							[
+								1,
+								"all"
+							]
+						]
+					}
+				},
+				{
+					"flag": {
+						"storm": "hatched"
+					}
+				}
+			]
+		},
+		{
+			"id": "flags_mother",
+			"when": {
+				"fired": "flags"
+			},
+			"do": []
+		},
+		{
+			"id": "flags_mother__0",
+			"when": {
+				"all": [
+					{
+						"fired": "flags_mother"
+					},
+					{
+						"not": {
+							"past": {
+								"b01_specimen.clutch": "burned"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"mother": "linnea"
+					}
+				}
+			]
+		},
+		{
+			"id": "flags_mother__1",
+			"when": {
+				"all": [
+					{
+						"fired": "flags_mother"
+					},
+					{
+						"past": {
+							"b01_specimen.clutch": "burned"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"mother": "plateau"
+					}
+				}
+			]
+		},
+		{
+			"id": "flags_mother__2",
+			"when": {
+				"all": [
+					{
+						"fired": "flags_mother"
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"b01_specimen.pieter": "lost"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"a05_specimens.pieter": "lost"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"pieter": "alive"
+					}
+				}
+			]
+		},
+		{
+			"id": "flags_mother__3",
+			"when": {
+				"all": [
+					{
+						"fired": "flags_mother"
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"b01_specimen.pieter": "lost"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a05_specimens.pieter": "lost"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"pieter": "lost"
+					}
+				}
+			]
+		},
+		{
+			"id": "night_done",
+			"when": {
+				"all": [
+					{
+						"fired": "flags"
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "night",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"all": [
+					{
+						"fired": "flags"
+					},
+					{
+						"not": {
+							"playing": "commission"
+						}
+					}
+				]
+			},
+			"delay": 6,
+			"do": [
+				{
+					"win": "stock"
+				}
+			]
+		},
+		{
+			"id": "c_won",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "commission"
+					},
+					{
+						"counter": {
+							"name": "destroyed",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					},
+					{
+						"flag": {
+							"c_half": "met"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_c_won"
+					]
+				},
+				{
+					"objective": {
+						"id": "c_find",
+						"set": "done"
+					}
+				},
+				{
+					"counter": {
+						"name": "unfound",
+						"set": 0
+					}
+				},
+				{
+					"counter": {
+						"name": "unfound",
+						"add_counter": "young_n"
+					}
+				},
+				{
+					"counter": {
+						"name": "unfound",
+						"sub_counter": "found",
+						"min": 0
+					}
+				},
+				{
+					"tally": {
+						"flag": "hidden",
+						"counter": "unfound",
+						"of": "young_n",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.5,
+								"some"
+							],
+							[
+								1,
+								"all"
+							]
+						]
+					}
+				},
+				{
+					"flag": {
+						"storm": "hatched"
+					}
+				}
+			]
+		},
+		{
+			"id": "c_half_tick",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "commission"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"tally": {
+						"flag": "c_half",
+						"counter": "destroyed",
+						"of": "young_n",
+						"bands": [
+							[
+								0,
+								"no"
+							],
+							[
+								0.5,
+								"met"
+							]
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "c_end",
+			"when": {
+				"fired": "c_won"
+			},
+			"delay": 4,
+			"do": [
+				{
+					"win": "commission"
+				}
+			]
+		},
+		{
+			"id": "c_lost",
+			"when": {
+				"all": [
+					{
+						"fired": "flags"
+					},
+					{
+						"playing": "commission"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "c_end"
+								},
+								{
+									"fired": "lost_found"
+								},
+								{
+									"fired": "lost_fight"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"say": [
+						"v_c_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "c_find",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "l_hurt",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "lindqvist",
+							"below": 0.6
+						}
+					},
+					{
+						"playing": "stock"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"h_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "lindqvist"
+					}
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 8
+			},
+			"do": [
+				{
+					"say": [
+						"new_pterodactyl",
+						"new_hatchlings"
+					]
+				}
+			]
+		}
+	],
+	"heroes": [
+		"lindqvist"
+	],
+	"auto_tags": [
+		{
+			"team": "stock",
+			"kind": "hatchlings",
+			"tag": "hatchling"
+		}
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "stock",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"lindqvist": {
+			"name": "Dr. Lindqvist",
+			"side": "stock",
+			"portrait": "res://campaign/hub/station_lindqvist_face.png"
+		},
+		"pieter": {
+			"name": "Pieter",
+			"side": "stock"
+		},
+		"valadares": {
+			"name": "Duarte Valadares",
+			"side": "commission"
+		},
+		"fonseca": {
+			"name": "Desembargador Fonseca",
+			"side": "commission"
+		},
+		"benedito": {
+			"name": "Benedito",
+			"side": "commission"
+		},
+		"narrator": {
+			"name": "The Island",
+			"side": "stock"
+		},
+		"new": {
+			"name": "NEW IN YOUR ARMY",
+			"side": "stock"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "Lindqvist walked out of Rome with the animals the Council had ordered destroyed. He went home to his river."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "Two years later I sent Valadares up that river with Rome's order in his satchel."
+		},
+		"l_open1": {
+			"who": "lindqvist",
+			"text": "An island below Óbidos. Sugar for the tax man, and behind the cane, the forest, and in the forest, my pens."
+		},
+		"l_open2": {
+			"who": "lindqvist",
+			"text": "They were not monsters. They were a new kind of animal, and every animal can be bred. I had the lures. They came to the lures."
+		},
+		"l_open_linnea": {
+			"who": "lindqvist",
+			"text": "And among them her daughter. Out of the clutch we carried from the station. Growing."
+		},
+		"l_open_plateau": {
+			"who": "lindqvist",
+			"text": "And a young Mother we netted on the mountain. My breeding stock."
+		},
+		"k_open_c": {
+			"who": "king",
+			"text": "Valadares wrote me a report from that island. It is the only honest account of it I have."
+		},
+		"v_open_c": {
+			"who": "valadares",
+			"text": "We came up the river at first light. Sugar on the banks, a white house, a doctor at the landing with his hat in his hand."
+		},
+		"l_1": {
+			"who": "lindqvist",
+			"text": "Pieter! A boat on the river, below the point. The Crown's flag. Get them out of the old pens. All of them. Into the forest, now.",
+			"to": "stock"
+		},
+		"p_tip1": {
+			"who": "pieter",
+			"text": "They follow the lures, Doctor, nothing else. The keepers go first, and the animals stay inside the ring. Out of it they wander.",
+			"to": "stock"
+		},
+		"p_tip2": {
+			"who": "pieter",
+			"text": "Over the creek by a ford, then up the paths to the clearings. The young Mother roots best in the nest clearing, in the middle.",
+			"to": "stock"
+		},
+		"n_loose": {
+			"who": "narrator",
+			"text": "A creature out of every lure's reach goes its own way. Bring a keeper to it.",
+			"to": "stock"
+		},
+		"n_rooted": {
+			"who": "narrator",
+			"text": "The young Mother settles in the nest clearing.",
+			"to": "stock"
+		},
+		"l_storm": {
+			"who": "lindqvist",
+			"text": "The big egg. It is cracking. Pieter, the book. Write the hour.",
+			"to": "stock"
+		},
+		"l_storm2": {
+			"who": "lindqvist",
+			"text": "Wings. A Storm Sire. The first one ever bred by a man. Root him by her, and she will lay for him.",
+			"to": "stock"
+		},
+		"l_hatch": {
+			"who": "lindqvist",
+			"text": "Hatchlings. They will sit in the canopy and watch the river for me. Nobody looks up at a bird.",
+			"to": "stock"
+		},
+		"p_ready": {
+			"who": "pieter",
+			"text": "They are all in the forest, Doctor. Quiet. I can hear the oars.",
+			"to": "stock"
+		},
+		"p_warn": {
+			"who": "pieter",
+			"text": "The canoes are rounding the point, Doctor. Not long now.",
+			"to": "stock"
+		},
+		"n_land": {
+			"who": "narrator",
+			"text": "The commission lands: musketeers in purple, a magistrate in black, and a man with a map case who looks at the ground before he looks at the house."
+		},
+		"f_land": {
+			"who": "fonseca",
+			"text": "Doctor Lindqvist. I carry an order of the Holy See and of His Majesty. You know its contents."
+		},
+		"l_land": {
+			"who": "lindqvist",
+			"text": "Sugar, Desembargador. Sugar and a few goats. Search what you like.",
+			"to": "stock"
+		},
+		"v_land": {
+			"who": "valadares",
+			"text": "I have seen what you keep, Doctor. On the mountain. I will know its prints."
+		},
+		"v_land_w": {
+			"who": "valadares",
+			"text": "I do not know what I am looking for, Doctor. So I will look at everything."
+		},
+		"p_still": {
+			"who": "pieter",
+			"text": "Keep them still, Doctor. A still animal in the forest is a shadow. A moving one is an animal.",
+			"to": "stock"
+		},
+		"l_quiet": {
+			"who": "lindqvist",
+			"text": "And no one bites. No one. I told the keepers: not a shot fired on this island while the Crown is here.",
+			"to": "stock"
+		},
+		"l_dinner": {
+			"who": "lindqvist",
+			"text": "The Desembargador has come a long way. He will be hungry. I will ask him to dine.",
+			"to": "stock"
+		},
+		"f_dinner": {
+			"who": "fonseca",
+			"text": "Dinner? Well. The search can spare its magistrate for an hour. Sergeant, your men with me."
+		},
+		"v_dinner": {
+			"who": "valadares",
+			"text": "Go and eat, Desembargador. I am not hungry."
+		},
+		"f_dinner_end": {
+			"who": "fonseca",
+			"text": "A fine table, Doctor. Now. Back to work, men."
+		},
+		"p_decoy": {
+			"who": "pieter",
+			"text": "A lure post at the west point, or at the old chapel, and they will go and look at it. Men always go and look.",
+			"to": "stock"
+		},
+		"n_decoy": {
+			"who": "narrator",
+			"text": "A lure post set. A search party turns off its road to see what it is.",
+			"to": "stock"
+		},
+		"n_party": {
+			"who": "narrator",
+			"text": "A search party is coming near a pen. Keep them still, or move them away under a lure.",
+			"to": "stock"
+		},
+		"n_found": {
+			"who": "narrator",
+			"text": "Found. They have seen one of the stock. Get it away under a lure before they shoot it.",
+			"to": "stock"
+		},
+		"v_tracks": {
+			"who": "valadares",
+			"text": "Fresh prints. Three toes, a dragged claw. This way."
+		},
+		"v_found": {
+			"who": "valadares",
+			"text": "There. You see it? Sugar and goats, the Doctor said."
+		},
+		"l_found": {
+			"who": "lindqvist",
+			"text": "No. Not that one. Pieter, move them. Move the others.",
+			"to": "stock"
+		},
+		"p_half": {
+			"who": "pieter",
+			"text": "They have found half of them, Doctor. If they find many more, they will burn the pens and the house with them.",
+			"to": "stock"
+		},
+		"p_dusk": {
+			"who": "pieter",
+			"text": "The light is going. They will not search the forest in the dark.",
+			"to": "stock"
+		},
+		"n_night": {
+			"who": "narrator",
+			"text": "Night. The commission camps at the landing to leave at dawn. Fires, a guard, the goats penned by the boats."
+		},
+		"p_restless": {
+			"who": "pieter",
+			"text": "Doctor! One of the young is up. It smells the goats. It is going for the camp!",
+			"to": "stock"
+		},
+		"l_restless": {
+			"who": "lindqvist",
+			"text": "A lure under its nose, right under it, or it will not turn. If it reaches those goats they will see everything.",
+			"to": "stock"
+		},
+		"l_held": {
+			"who": "lindqvist",
+			"text": "Got it. Easy now. Back to the forest, slowly.",
+			"to": "stock"
+		},
+		"p_back": {
+			"who": "pieter",
+			"text": "It is back in the forest, Doctor. It is lying down.",
+			"to": "stock"
+		},
+		"n_fight": {
+			"who": "narrator",
+			"text": "The young one is among the goats. A sentry fires; the camp is up with torches; the forest is full of eyes."
+		},
+		"v_fight": {
+			"who": "valadares",
+			"text": "Torches! Into the forest, all of you! Now we know where they are."
+		},
+		"p_lost": {
+			"who": "pieter",
+			"text": "They have found nearly all of them, Doctor. They are bringing the pitch for the pens.",
+			"to": "stock"
+		},
+		"n_dawn": {
+			"who": "narrator",
+			"text": "Dawn. The commission walks down to its canoes."
+		},
+		"f_dawn": {
+			"who": "fonseca",
+			"text": "We found what we found, Doctor. It will all be in my report, and in Rome."
+		},
+		"v_dawn": {
+			"who": "valadares",
+			"text": "You did not breed them, Doctor. Nobody breeds a thing like that. Somebody made it, long ago, and it is still being made."
+		},
+		"l_dawn": {
+			"who": "lindqvist",
+			"text": "Superstition. They evolved. Everything evolves.",
+			"to": "stock"
+		},
+		"v_c1": {
+			"who": "valadares",
+			"text": "Three parties, Desembargador: the west paths, the middle and the east. The riders take the fields. I follow the prints.",
+			"to": "commission"
+		},
+		"v_c_tip": {
+			"who": "valadares",
+			"text": "They sleep in the clearings in the day. Walk close, and have your muskets ready: a sleeping one sees you at three steps.",
+			"to": "commission"
+		},
+		"v_c_tracks": {
+			"who": "valadares",
+			"text": "Pale claw marks on the ground are fresh prints. They lead to the ones that walk.",
+			"to": "commission"
+		},
+		"f_c_dinner": {
+			"who": "fonseca",
+			"text": "The Doctor asks me to dine. I will go, Valadares. Somebody must watch the man himself.",
+			"to": "commission"
+		},
+		"v_c_night": {
+			"who": "valadares",
+			"text": "Night. They will move in the dark: watch the camp and the goats.",
+			"to": "commission"
+		},
+		"v_c_won": {
+			"who": "valadares",
+			"text": "Enough. Burn the pens. Write it down, Desembargador: we found them.",
+			"to": "commission"
+		},
+		"v_c_lost": {
+			"who": "valadares",
+			"text": "Dawn, and the canoes. We found too little. He will say we found nothing.",
+			"to": "commission"
+		},
+		"n_c_found": {
+			"who": "narrator",
+			"text": "A specimen found. It wakes.",
+			"to": "commission"
+		},
+		"l_end1": {
+			"who": "lindqvist",
+			"text": "They left at dawn. The Desembargador wrote his report. Valadares wrote another."
+		},
+		"l_end_all": {
+			"who": "lindqvist",
+			"text": "They found nothing. Nothing. I stood at the landing and waved my hat."
+		},
+		"l_end_some": {
+			"who": "lindqvist",
+			"text": "They found some, and burned what they found. The rest lay in the forest and did not move."
+		},
+		"l_end_few": {
+			"who": "lindqvist",
+			"text": "They found most of them. I watched the pens burn from the house. I kept what was left."
+		},
+		"l_end_storm": {
+			"who": "lindqvist",
+			"text": "And the Storm Sire flew over the canopy every evening after, and came back to the lure."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "He tells it as if he won. Valadares found more than he thinks. Valadares found enough to know what was on that island."
+		},
+		"k_end2": {
+			"who": "king",
+			"text": "And Lindqvist still believes the thing evolved. The Church told him what it was. He did not listen then either."
+		},
+		"v_end_c": {
+			"who": "valadares",
+			"text": "We burned the pens we found. The Doctor stood at the landing with his hat in his hand, and did not look at the smoke."
+		},
+		"k_end_c": {
+			"who": "king",
+			"text": "He told me Valadares found nothing. Valadares found enough."
+		},
+		"v_end_c_lost": {
+			"who": "valadares",
+			"text": "We left at dawn with half a report. I knew they were there. I could smell them."
+		},
+		"n_lost": {
+			"who": "narrator",
+			"text": "The commission has found the stock. By Rome's order the pens are burned."
+		},
+		"h_hurt": {
+			"who": "lindqvist",
+			"text": "My leg. Pieter, the lures. Keep them together.",
+			"to": "stock"
+		},
+		"n_guards": {
+			"who": "narrator",
+			"text": "Lindqvist's guards are Assembly men now, paid in sugar and silence.",
+			"to": "stock"
+		},
+		"n_no_pieter": {
+			"who": "narrator",
+			"text": "Pieter did not come back from the mountain. Two keepers carry the lures.",
+			"to": "stock"
+		},
+		"new_pterodactyl": {
+			"who": "new",
+			"to": "stock",
+			"text": "NEW: THE STORM SIRE. A flying father: up, he flies and dives to bite; ROOTED beside the Mother he lands, and she lays the eggs of his line.",
+			"portrait": "res://assets/icons/pterodactyl.png"
+		},
+		"new_hatchlings": {
+			"who": "new",
+			"to": "stock",
+			"text": "NEW: THE HATCHLINGS. Pick them on the Mother's card while the Storm Sire is rooted by her: little flyers, two to an egg. They bite only flyers, but they see far over the forest.",
+			"portrait": "res://assets/icons/hatchlings.png"
+		}
+	},
+	"stills": {
+		"island": {
+			"image": "res://campaign/stills/d03_01.jpg",
+			"caption": "An island below Óbidos, the dry season 2772: the fazenda."
+		},
+		"pens": {
+			"image": "res://campaign/stills/d03_02.jpg",
+			"caption": "The pens in the forest, and the lure."
+		},
+		"commission": {
+			"image": "res://campaign/stills/d03_03.jpg",
+			"caption": "The Crown's commission lands."
+		},
+		"storm": {
+			"image": "res://campaign/stills/d03_04.jpg",
+			"caption": "The Storm Sire over the canopy."
+		},
+		"rome": {
+			"image": "res://campaign/stills/b01_08.jpg",
+			"caption": "Rome, the present. The King and his prisoner, the doctor."
+		}
+	},
+	"next": {
+		"stock": "",
+		"commission": ""
+	},
+	"opening": {
+		"stock": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2"
+				]
+			},
+			{
+				"still": "island",
+				"lines": [
+					"l_open1",
+					"l_open2",
+					{
+						"id": "l_open_linnea",
+						"if": {
+							"not": {
+								"past": {
+									"b01_specimen.clutch": "burned"
+								}
+							}
+						}
+					},
+					{
+						"id": "l_open_plateau",
+						"if": {
+							"past": {
+								"b01_specimen.clutch": "burned"
+							}
+						}
+					}
+				]
+			}
+		],
+		"commission": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open_c"
+				]
+			},
+			{
+				"still": "commission",
+				"lines": [
+					"v_open_c"
+				]
+			}
+		]
+	},
+	"ending": {
+		"stock": [
+			{
+				"still": "storm",
+				"lines": [
+					"l_end1",
+					{
+						"id": "l_end_all",
+						"if": {
+							"flag": {
+								"hidden": "all"
+							}
+						}
+					},
+					{
+						"id": "l_end_some",
+						"if": {
+							"flag": {
+								"hidden": "some"
+							}
+						}
+					},
+					{
+						"id": "l_end_few",
+						"if": {
+							"flag": {
+								"hidden": "few"
+							}
+						}
+					},
+					"l_end_storm"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end1",
+					"k_end2"
+				]
+			}
+		],
+		"commission": [
+			{
+				"still": "commission",
+				"lines": [
+					"v_end_c"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_c"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"stock": {
+			"still": "pens",
+			"text": [
+				"The lower Amazon, the dry season 2772. You are Lindqvist's breeding stock on his island, and the people who keep it with the lures.",
+				"The creatures obey only near a lure. Walk them from the old pens into the deep forest before the Crown's commission lands, then keep them still and hidden until it leaves at dawn.",
+				"Nothing bites while the commission is on the island. If it finds three quarters of the stock, Rome's order is carried out."
+			]
+		},
+		"commission": {
+			"still": "commission",
+			"text": [
+				"The lower Amazon, the dry season 2772. You are the Crown's commission: Duarte Valadares, Desembargador Fonseca and their musketeers, with Rome's order.",
+				"Search the island. Find the specimens Lindqvist hides in the forest and destroy half of them before your canoes leave at dawn. Valadares must live."
+			]
+		}
+	},
+	"debrief": {
+		"stock": {
+			"still": "storm",
+			"title": "The Island",
+			"text": "The commission left at dawn. It found {found} of the {young_n} young; {unfound} were never found.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"storm": "hatched"
+						}
+					},
+					"text": "The Storm Sire hatched on the island."
+				},
+				{
+					"if": {
+						"flag": {
+							"dinner": "given"
+						}
+					},
+					"text": "The magistrate dined at the big house."
+				}
+			]
+		},
+		"commission": {
+			"still": "commission",
+			"title": "Found",
+			"text": "The commission found {found} specimens and destroyed {destroyed} by Rome's order."
+		}
+	}
+}
