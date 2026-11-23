@@ -5,6 +5,7 @@ extends SceneTree
 ##   home   the Crown force stands in a line on its own side, the guns unlimbered behind it, the riders by them; the Brood
 ##          comes on at the Crown's hall behind the line (an attack-move, as its waves do)
 ##   field  the Crown force marches as a wave toward the Brood's side (the wave loop: line, guns, screen); the Brood comes on
+##   side   as field, but the Brood comes on from the wave's flank (out to one side of its march), at the guns' end
 ## Brood forces: raptor (all Raptors) / mixed (half Raptors, a quarter Spitters, a quarter Tyrant Challengers, by value).
 ## Counts, per run (from the first contact, 75 s): the Brood units that reached a gun (within 70 px), how many of those had
 ## crossed the line's front OUTSIDE its ends (round the flank), the first time one did, guns lost, value killed and lost.
@@ -79,7 +80,7 @@ func _value(list: Array) -> float:
 
 
 func _run() -> void:
-	var only := _arg("only", "home-raptor,home-mixed,field-raptor,field-mixed").split(",")
+	var only := _arg("only", "home-raptor,home-mixed,field-raptor,field-mixed,side-raptor,side-mixed").split(",")
 	var runs := int(_arg("runs", "3"))
 	var map := _arg("map", "greenhold")
 	for sc in only:
@@ -167,6 +168,8 @@ func _one(sc: String, r: int, map: String) -> void:
 	var kinds: Array = ["raptor"] if mix == "raptor" else ["raptor", "raptor", "spitter", "tyrant_challenger"]
 	var foes: Array = []
 	var foe_at: Vector2 = at + front * (1300.0 if where == "home" else 1500.0)
+	if where == "side":
+		foe_at = at + side * 1100.0 - front * 150.0
 	var bv := 0.0
 	var i := 0
 	while bv < cv and i < 600:
@@ -178,6 +181,11 @@ func _one(sc: String, r: int, map: String) -> void:
 		i += 1
 	await _until(g.clock + (2.0 if where == "home" else 4.0))
 	var target: Vector2 = hall if where == "home" else at
+	if where == "side":
+		var gc := Vector2.ZERO
+		for c in _alive(guns):
+			gc += c.position
+		target = gc / float(maxi(1, _alive(guns).size())) if not _alive(guns).is_empty() else at
 	for f in _alive(foes):
 		f.cmd_move(target, true)
 	var contact_t := -1.0
