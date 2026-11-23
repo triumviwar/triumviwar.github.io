@@ -1,0 +1,7 @@
+Reruns of the tests that failed in ai_tests_after.txt (frozen copy of the branch with the press kept, a82e74fb8):
+final test_ai_rush run1: ALL PASS (the rush killed grubs, workers before the Brood Mother)
+final test_ai_rush run2: ALL PASS
+final test_ai_cw_horse_raid run1: 1 FAILED (a different check than in ai_tests_after.txt: flaky, as CLAUDE.md lists it)
+final test_ai_cw_horse_raid run2: ALL PASS
+main test_ai_rush run1: ALL PASS
+main test_ai_rush run2: ALL PASS

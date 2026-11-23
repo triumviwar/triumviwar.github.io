@@ -63,6 +63,8 @@ const C1KB_QUEEN_EDGE := 2.5
 const C1KB_QUEEN_FOE_MIN := 400.0
 const C1KB_QUEEN_STOP := 0.45
 var queen_mode := false
+const CBF := preload("res://scripts/ai_crown_brood_fix.gd")
+var press_mode := false         # (crown-brood-fix "press": this push spends the lead on the Mother)
 ## (crown-1000-brood, change "guard") A HOME GUARD: the push took the whole army at home, and the Brood's waves went for the
 ## halls it left (block 14: "falls back: the base is attacked", halls lost at 14:00-19:00 while the push was out). Against
 ## the Brood C1KB_GUARD of the Musketeers (the nearest home) and one gun of four stay home on the post.
@@ -228,6 +230,12 @@ func _maybe_go() -> void:
 	var big := sup >= BIG_GO or game.supply_used(ai.team) >= game.max_supply(ai.team) - 4
 	if not big and ai.mirror() != null and ai.cm.press_siege(home, guns.size()):
 		big = true                # (crown-mirror-coach: the side ahead presses, AICrownMirror.press_siege)
+	if _brood() and CBF.press_push(ai, self, home, sup):
+		var pv := 0.0
+		for u in home:
+			pv += float(Game.unit_value(u)) * (GUN_WEIGHT if GUNS.has(u.kind) else 1.0)
+		_go(home, pv, true)     # (crown-brood-fix "press": the lead spent on the Brood Mother, AICrownBroodFix)
+		return
 	if not big and (guns.size() < GUNS_GO or cannons < 1 or muskets < LINE_GO):
 		return
 	if _brood() and preload("res://scripts/ai_wr1000_crown_brood.gd").push_waits(ai, sup, self):
@@ -267,7 +275,7 @@ func _stay(why: String) -> void:
 		say("stays home: " + why)
 
 
-func _go(home: Array, value: float) -> void:
+func _go(home: Array, value: float, press := false) -> void:
 	men.clear()
 	if _brood() and C1kB.on("guard"):
 		home = _c1kb_guard(home)
@@ -299,6 +307,11 @@ func _go(home: Array, value: float) -> void:
 			cur["queen"] = true
 			ai.c1kb_queen_pushes += 1
 			say("goes for the Brood Mother herself: %d against the %d of Brood it has seen lately" % [int(value), int(ai.ch.foe_known())])
+	press_mode = press
+	if press:
+		queen_mode = true         # (crown-brood-fix "press": the march goes for the Mother, AICrownBroodFix.press_push)
+		cur["queen"] = true
+		cur["press"] = true
 	say("goes out: %d supply (%d guns, %d in the line), worth %d" % [cur["sup"], g.size(), home.size() - g.size(), int(value)])
 	_orders_t = 0.0
 
@@ -502,7 +515,7 @@ func _army_on(mid: Vector2) -> Variant:
 
 func _march(line: Array, guns: Array, mid: Vector2) -> void:
 	# contact: a defence near, or the enemy army on the line
-	var a = _next_anchor(mid, STOP_D * (C1KB_QUEEN_STOP if queen_mode else 1.0))
+	var a = _next_anchor(mid, STOP_D * (CBF.PRESS_STOP if press_mode else (C1KB_QUEEN_STOP if queen_mode else 1.0)))
 	var q: Unit = BroodNew.queen(game, ai._foe()) if queen_mode else null
 	if q != null and q.position.distance_to(mid) < STOP_D:
 		a = q                     # (crown-1000-brood "queen": the Mother first when she is in reach)

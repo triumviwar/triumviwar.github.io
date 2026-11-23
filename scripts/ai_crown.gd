@@ -2708,6 +2708,8 @@ func _on_errand(u: Unit) -> bool:
 		return true
 	if siege != null and siege.has(u):
 		return true
+	if cbf_push != null and cbf_push.has(u):
+		return true           # (crown-brood-fix "press" outside the siege plan: its push's men)
 	if bl != null and bl.has(u):
 		return true           # (the harass's balloons and men: the army, the post and the waves leave them be)
 	return super(u)
@@ -2834,9 +2836,14 @@ func siege_on() -> bool:
 	return on and difficulty >= 1 and bool(plan.get("siege", false))
 
 
+var cbf_push = null              # (crown-brood-fix "press" outside the siege plan: a siege push of its own, AICrownBroodFix)
+
+
 func _army() -> void:
 	if siege != null and not peaceful:
 		siege.tick()
+	elif siege == null and not peaceful and _foe_is("brood"):
+		preload("res://scripts/ai_crown_brood_fix.gd").press_tick(self)    # (crown-brood-fix "press": the other plans)
 	defence().tick()        # (crown-coach-defence: the push seen coming)
 	if vb() != null:
 		vbr.track()             # (crown-coach-v-brood: the kills of the last minute, for the counter)

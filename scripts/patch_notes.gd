@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.188", "items": [
+		"THE CROWN SPENDS ITS LEAD AGAINST THE BROOD: between 8:00 and 11:00, once the Crown computer's army is twice the Brood army it has seen, its whole army goes for the Brood Mother at once instead of waiting (Hard and Normal computers; in 30 test games it was beaten 12 times instead of 15 and the game stood even at 14:00).",
+		"For testing only (no change to the game): a far Rootmaw's pay can be set for a match (farmaw:2.0 and the like), and canister's bonus on light units (canlight:2.0).",
+	]},
 	{"v": "0.38.187", "items": [
 		"THE WAR MAP GOES TO BRAZIL: after the Council of Rome the map opens on a new BRAZIL view with the places of Act 2 (Vila Rica, the city of gears on the southern highlands, Lindqvist's island below Óbidos, the Barra, São Rafael on the Tapajós, the fort on the São Francisco) and a seal for every Act 2 mission, also the ones not written yet, each saying what it will be about. The Clockmaker's hub now reads THE BRASS MAP (an engraved brass plate, the machine's land a creeping ground of small gears) and the Naturalist's hub THE SPECIMEN CHART (a field chart in ink and pencil with notes in the margins). After the crossing, the front that waits wears a small clock. All its words and pictures are placeholders.",
 	]},

@@ -3225,8 +3225,29 @@ static func food_at(d: float, gap: float) -> float:
 
 
 ## (brood-nerf-study) Defs.FOOD_BONUS unless a measuring tool overrides it (tools/play_ai_optimal.gd `fb:1.5`); the
-## game itself never changes it.
-static var food_bonus: float = Defs.FOOD_BONUS
+## game itself never changes it. (crown-brood-fix, docs/crown_brood_fix.md) the match switch `farmaw:X` sets the far
+## Rootmaw's pay to X times the near one's (the default x2.2 is 1 + FOOD_BONUS; `farmaw:1.8` = a bonus of 0.8), for any
+## tool or game started with it; without it nothing changes.
+static var food_bonus: float = _farmaw_bonus()
+
+
+## (crown-brood-fix) canister's bonus on LIGHT units: Defs.CANISTER "vs_light" (1.5) unless the match switch `canlight:X`
+## sets it (a measuring switch for the Raptor fight test; the default is unchanged).
+static var canister_light: float = _canlight_arg()
+
+
+static func _canlight_arg() -> float:
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("canlight:"):
+			return maxf(1.0, float(a.substr(9)))
+	return float(Defs.CANISTER["vs_light"])
+
+
+static func _farmaw_bonus() -> float:
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("farmaw:"):
+			return maxf(0.0, float(a.substr(7)) - 1.0)
+	return Defs.FOOD_BONUS
 
 
 ## THE DISTANCE PAY (0.24.22, the owner: "buffing that isn't snowball"): how much richer the Brood's food is from a
@@ -7254,7 +7275,7 @@ func canister_at(u: Unit, aim: Vector2, dmg: float, e: Entity = null) -> void:
 			continue
 		var to: Vector2 = o.center() - from
 		if to.length() <= reach + o.radius and dir.dot(to.normalized()) > float(Defs.CANISTER["cone"]):
-			var bonus: float = Defs.CANISTER["vs_light"] if o.has_tag("light") else 1.0
+			var bonus: float = canister_light if o.has_tag("light") else 1.0
 			o.take_damage(dmg * bonus * (1.3 if to.length() < reach * 0.5 else 1.0), u)
 	for sh in BrassSerpent.cone(self, from, dir, reach, float(Defs.CANISTER["cone"]), u):
 		sh[0].take_damage(dmg * (1.3 if float(sh[1]) < reach * 0.5 else 1.0) * BrassSerpent.split_mult(int(sh[2])), u)

@@ -1,0 +1,158 @@
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P2 Crown's base layout at its main: 8 Cottage spots in 2 blocks at the back, 4 production rows' spots, 1 Farm and 1 Mill spots by the hall
+[00:00] P2 Crown's build order: the ramp Cottage (supply 6, 4 labourers, 100 gold)
+[00:23] P2 Crown's build order: the ramp Gate (supply 7, 5 labourers, 0 gold)
+[00:36] P2 Crown's ramp wall stands (1 pieces, 13 s after it was laid)
+[00:46] P2 Crown's build order: Farm 2 (supply 9, 7 labourers, 180 gold)
+[00:49] P1 Clockwork sends 1 Winder after the Crown's scouting Labourer
+[00:57] P1 Clockwork lets the Crown's scouting Labourer go (away past the leash)
+[01:10] P2 Crown's plan: Timing attack, a build order of 12 steps from here (scripts/ai_crown.gd)
+[01:10] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: picks Timing attack (a timing attack)
+[01:46] P2 Crown's build order: a Cottage (supply 13/18) (supply 13, 11 labourers, 210 gold)
+[02:18] P2 Crown's build order: Town Hall 2 (supply 15, 13 labourers, 90 gold)
+[02:18] P2 Crown's build order: the ramp Cottage (supply 15, 13 labourers, 90 gold)
+[02:18] P2 Crown's build order: the ramp Gate (supply 15, 13 labourers, 90 gold)
+[02:30] P2 Crown's plan: optimal: reads GREEDY [no army and no production at its base]: keeps Timing attack (it switched once this stage already; Siege push waits)
+[03:01] P2 Crown's plan: a Farm at its new hall at once (13 s after it stood)
+[03:02] P2 Crown's build order: Barracks 1 (supply 19, 16 labourers, 20 gold)
+[03:11] P2 Crown's build order: Powder Mill 1 (supply 19, 16 labourers, 200 gold)
+[03:11] P2 Crown's build order: Farm 2 (supply 19, 16 labourers, 200 gold)
+[03:11] P2 Crown's build order: Musketeers from now on (supply 19, 16 labourers, 200 gold)
+[03:43] P2 Crown's plan: the army first: 0 of army against the 109 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[03:49] P2 Crown's build order: Foundry 1 (supply 26, 22 labourers, 30 gold)
+[03:59] P2 Crown's build order: Horse Breeder 1 (supply 26, 23 labourers, 310 gold)
+[03:59] P2 Crown's build order: labourers up to 30 (supply 26, 23 labourers, 310 gold)
+[03:59] P2 Crown's build order: Barracks 2 (supply 26, 23 labourers, 160 gold)
+[04:33] P2 Crown's build order: a Cottage (supply 31/44) (supply 31, 27 labourers, 90 gold)
+[04:39] P1 Clockwork sends 2 Clock Soldiers after the Crown's scouting Labourer
+[04:44] P2 Crown's plan: the army first: 0 of army against the 350 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:49] P2 Crown's plan: optimal: reads AGGRESSIVE [a big early army]: keeps Timing attack (what it plays already answers it)
+[04:49] P1 Clockwork killed the Crown's scouting Labourer at 4:49
+[04:49] P2 Crown's plan: a rush is scouted: soldiers before labourers, no new hall till it is held
+[05:04] P2 Crown's first gun crewman went out of a Foundry to fetch a gun's horse (no hauler free)
+[05:15] P2 Crown's build order: a Cottage (supply 45/52) (supply 45, 30 labourers, 360 gold)
+[05:33] P2 Crown's first Officer mounted (Horseman)
+[05:34] P2 Crown's scouts know: an enemy army of 420 (seen in the last 120 s), 2 enemy halls, tech none seen
+[05:44] P2 Crown's build order: a Cottage (supply 56/60) (supply 56, 30 labourers, 430 gold)
+[05:54] P2 Crown's first horse hauled by a hauler
+[05:56] P2 Crown's first pistol shot (Horseman)
+[06:04] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[06:04] P2 Crown's scout found workers to hunt: it hands over to the raid
+[06:10] P2 Crown's Horseman goes home (hurt)
+[06:22] P2 Crown's first Field Cannon with a team of 2 horses
+[06:22] P2 Crown's build order: a Cottage (supply 62/68) (supply 62, 30 labourers, 400 gold)
+[06:29] P2 Crown's fight at 5:49 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 860, lost 180
+[06:32] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[06:32] P2 Crown's scout found workers to hunt: it hands over to the raid
+[06:33] P2 Crown's Horseman pulls back from Springer
+[06:34] P1 Clockwork's Netter caught P2 Crown's Horseman
+[06:34] P1 Clockwork sends 2 Springers after the Crown's scouting Horseman
+[06:40] P2 Crown's plan: the opening is over (the timing's window is shut: the Clockwork's economy is paying off; its waves weigh what it reckons from here): the milestones take over
+[06:43] P1 Clockwork lets the Crown's scouting Horseman go (away past the leash)
+[06:50] P2 Crown's Horseman keeps away from Clock Soldier
+[06:51] P2 Crown's Horseman goes home (hurt)
+[07:31] P1 Clockwork's Netter caught P2 Crown's Musketeer
+[07:34] P2 Crown's plan: milestone: Armoury 1 (42 labourers, 3 halls, army 31 supply)
+[07:37] P1 Clockwork's Netter caught P2 Crown's Musketeer
+[07:43] P2 Crown's plan: milestone: Foundry 2 (42 labourers, 3 halls, army 31 supply)
+[07:54] P2 Crown's first attack goes out (25 supply, 0 Horsemen)
+[08:07] P2 Crown's scouts know: an enemy army of 100 (seen in the last 120 s), 3 enemy halls, tech none seen
+[08:08] P2 Crown's fight at 7:28 at home (unformed): 2 guns near, 1 set at contact, 0 fired in its first 10 s; killed 815, lost 180
+[08:30] P2 Crown's plan: trains a Drummer for its Marching Band (19 soldiers)
+[08:32] P2 Crown's plan: trains a Fifer for its Marching Band (18 soldiers)
+[08:35] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[08:35] P2 Crown's scout found workers to hunt: it hands over to the raid
+[08:37] P1 Clockwork sends 2 Clock Soldier and Springer after the Crown's scouting Labourer
+[08:42] P1 Clockwork killed the Crown's scouting Labourer at 8:42
+[08:51] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[08:51] P2 Crown's scout found workers to hunt: it hands over to the raid
+[08:57] P2 Crown's Horseman was killed and a horse bolted loose (the first: anyone's to catch)
+[09:42] P2 Crown's first Musketeer mounted (Dragoon)
+[09:52] P2 Crown's fight at 8:08 out (unformed): 2 guns near, 0 set at contact, 0 fired in its first 10 s; killed 1910, lost 1470
+[10:26] P2 Crown's Fifer: solo
+[10:28] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Timing attack (what it plays already answers it)
+[10:51] P2 Crown's Drummer: solo
+[11:04] P2 Crown's fight at 9:57 at home (unformed): 1 gun near, 0 set at contact, 0 fired in its first 10 s; killed 1660, lost 60
+[11:06] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[11:06] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[11:06] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[11:12] P2 Crown's plan: trains a Piper for its Marching Band (20 soldiers)
+[11:36] P2 Crown's fight at 11:04 out (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 0, lost 470
+[11:54] P2 Crown's Fifer: solo
+[12:09] P2 Crown's Drummer: solo
+[12:33] P2 Crown's wave 2 goes out (36 supply; the next waits for 38)
+[12:39] P1 Clockwork sends 2 Clock Soldiers after the Crown's scouting Labourer
+[12:42] P1 Clockwork lets the Crown's scouting Labourer go (its friends are near)
+[12:43] P2 Crown's plan: trains a Drummer for its Marching Band (30 soldiers)
+[12:49] P2 Crown's scouts know: an enemy army of 525 (seen in the last 120 s), 5 enemy halls, tech movement_works
+[13:02] P2 Crown's Missionary raised a fallen Guardsman
+[13:07] P2 Crown's plan: trains a Fifer for its Marching Band (30 soldiers)
+[13:19] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[13:19] P2 Crown's scout found workers to hunt: it hands over to the raid
+[13:25] P1 Clockwork's Netter caught P2 Crown's Guardsman
+[13:25] P1 Clockwork's Netter caught P2 Crown's Guardsman
+[13:26] P1 Clockwork's Netter caught P2 Crown's Guardsman
+[13:29] P2 Crown's Horseman goes home (hurt)
+[13:38] P2 Crown's Fifer: solo (band)
+[13:40] P1 Clockwork sends 1 Springer after the Crown's scouting Observation Balloon
+[13:40] P1 Clockwork's Netter caught P2 Crown's Field Cannon
+[14:05] P2 Crown's scouts know: an enemy army of 1105 (seen in the last 120 s), 5 enemy halls, tech movement_works, cuckoo_house
+[14:07] P1 Clockwork killed the Crown's scouting Observation Balloon at 14:07
+[14:09] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[14:09] P2 Crown's scout found workers to hunt: it hands over to the raid
+[14:11] P2 Crown's Horseman keeps away from Clock Soldier
+[14:12] P2 Crown's Horseman goes home (hurt)
+[14:42] P2 Crown's Fifer: solo (band)
+[14:48] P2 Crown's plan: trains a Piper for its Marching Band (25 soldiers)
+[14:52] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[14:52] P2 Crown's scout found workers to hunt: it hands over to the raid
+[14:57] P2 Crown's Horseman pulls back from Clock Soldier
+[14:57] P1 Clockwork sends 1 Springer after the Crown's scouting Horseman
+[14:57] P1 Clockwork sends 2 Clock Soldiers after the Crown's scouting Missionary
+[15:01] P1 Clockwork killed the Crown's scouting Horseman at 15:01
+[15:05] P1 Clockwork killed the Crown's scouting Missionary at 15:05
+[15:17] P2 Crown's Fifer: solo
+[15:20] P2 Crown's plan: trains a Drummer for its Marching Band (31 soldiers)
+[15:20] P2 Crown's scouts know: an enemy army of 1745 (seen in the last 120 s), 6 enemy halls, tech movement_works, cuckoo_house
+[15:26] P2 Crown's plan: trains a Fifer for its Marching Band (30 soldiers)
+[15:28] P2 Crown's plan: trains a Piper for its Marching Band (30 soldiers)
+[15:32] P1 Clockwork's Netter caught P2 Crown's Guardsman
+[15:38] P1 Clockwork's Netter caught P2 Crown's Field Cannon
+[15:41] P2 Crown's Piper: solo (band)
+[15:45] P2 Crown's plan: trains a Piper for its Marching Band (36 soldiers)
+[15:49] P2 Crown's plan: trains a Drummer for its Marching Band (33 soldiers)
+[15:58] P2 Crown's Horseman keeps away from Clock Soldier (the raid stays)
+[16:05] P1 Clockwork's Netter caught P2 Crown's Guardsman
+[16:06] P1 Clockwork's Netter caught P2 Crown's Guardsman
+[16:08] P2 Crown's fight at 11:40 at home (unformed): 2 guns near, 0 set at contact, 0 fired in its first 10 s; killed 11825, lost 5205
+[16:10] P1 Clockwork's Netter caught P2 Crown's Guardsman
+[16:13] P1 Clockwork's Netter caught P2 Crown's Guardsman
+[16:19] P2 Crown's Fifer: solo
+[16:36] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[16:36] P2 Crown's scout found workers to hunt: it hands over to the raid
+[16:36] P2 Crown's scouts know: an enemy army of 400 (seen in the last 120 s), 5 enemy halls, tech movement_works, cuckoo_house
+[16:45] P2 Crown's Horseman goes home (hurt)
+[17:20] P2 Crown's Fifer: solo (band)
+[17:31] P2 Crown's plan: its wave stays out: only scouts by its buildings at home (the wave is worth 2953)
+[17:46] P2 Crown's first keg hauled by a hauler
+[17:51] P2 Crown's scouts know: an enemy army of 0 (seen in the last 120 s), 4 enemy halls, tech movement_works
+[18:02] P2 Crown's fight at 16:08 out (unformed): 6 guns near, 2 set at contact, 4 fired in its first 10 s; killed 6955, lost 600
+[18:03] P2 Crown's Fifer: solo (band)
+[18:07] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:15] P2 Crown's Fifer: solo (band)
+[18:17] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:18] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:20] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:22] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:22] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:24] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:32] P2 Crown's plan: its wave stays out: only scouts by its buildings at home (the wave is worth 2566)
+[18:33] P2 Crown's plan: Siege push, a build order of 1 steps from here (scripts/ai_crown.gd)
+[18:33] P2 Crown's plan: optimal: reads DEFENSIVE [turrets or rooted defenders]: picks Siege push (a siege to break its defences)
+[18:33] P2 Crown's siege push: goes out: 58 supply (7 guns, 30 in the line), worth 3510
+[18:34] P2 Crown's siege push: sets up against a Clocktower (278 px off)
+[18:37] P2 Crown's Piper: solo (band)
+[18:43] P2 Crown's siege push: sets up against a Ratchet Turret (346 px off)
+[18:55] P2 Crown's siege push: 9 supply joins it
+[19:07] P2 Crown's scouts know: an enemy army of 0 (seen in the last 120 s), 3 enemy halls, tech movement_works
+[19:19] P2 Crown's Fifer: solo (band)

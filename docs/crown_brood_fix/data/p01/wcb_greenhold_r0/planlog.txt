@@ -1,0 +1,191 @@
+[00:00] P1 Crown's plan: optimal: leans to Rush before it scouts (Horsemen are good against the Brood's grubs)
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P1 Crown's plan: Rush, a build order of 10 steps (scripts/ai_crown.gd)
+[00:00] P1 Crown's build order: the ramp Cottage (supply 5, 4 labourers, 150 gold)
+[00:42] P1 Crown's build order: Barracks 1 (supply 9, 7 labourers, 180 gold)
+[00:49] P1 Crown's build order: Horse Breeder 1 (supply 9, 8 labourers, 80 gold)
+[01:19] P2 Brood sends 2 Grubs after the Crown's scouting Labourer
+[01:29] P1 Crown's plan: optimal: reads GREEDY [a second base and little army]: keeps Rush (punish the greed: the Horse Breeder at once, the riders before its army)
+[01:30] P2 Brood killed the Crown's scouting Labourer at 1:30
+[01:42] P1 Crown's build order: a Cottage (supply 10/18) (supply 10, 9 labourers, 260 gold)
+[01:42] P1 Crown's build order: Farm 2 (supply 11, 9 labourers, 70 gold)
+[01:42] P1 Crown's build order: Horsemans from now on (supply 11, 9 labourers, 70 gold)
+[01:42] P1 Crown's build order: labourers up to 99 (supply 11, 9 labourers, 70 gold)
+[01:54] P1 Crown's build order: the ramp Gate (supply 11, 10 labourers, 20 gold)
+[02:07] P1 Crown's ramp wall stands (1 pieces, 13 s after it was laid)
+[02:33] P1 Crown's build order: a Cottage (supply 16/26) (supply 16, 11 labourers, 100 gold)
+[03:00] P1 Crown's first Officer mounted (Horseman)
+[03:16] P1 Crown's build order: a Cottage (supply 24/34) (supply 24, 13 labourers, 80 gold)
+[03:40] P1 Crown's build order: a Cottage (supply 32/42) (supply 32, 15 labourers, 20 gold)
+[03:44] P1 Crown's rush: goes out (3 Horsemen together)
+[03:45] P1 Crown's build order: the first attack (9 supply) (supply 32, 15 labourers, 20 gold)
+[04:00] P1 Crown's plan: the army floor (a look at the Brood's army) waits for a fresh scout report: no enemy soldier seen for the whole game and its main not looked at for the whole game
+[04:00] P1 Crown's plan: against the Brood the line comes before more buildings: 0 of Musketeers and guns against the 125 it wants by now
+[04:13] P1 Crown's build order: Powder Mill 1 (supply 33, 17 labourers, 250 gold)
+[04:13] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[04:15] P1 Crown's build order: Town Hall 2 (supply 34, 17 labourers, 180 gold)
+[04:15] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[04:38] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[04:47] P2 Brood sends 2 Raptors after the Crown's scouting Labourer
+[04:55] P2 Brood killed the Crown's scouting Labourer at 4:55
+[05:00] P1 Crown's plan: milestone Barracks waits: the army comes first (its home line is short of its floor)
+[05:00] P1 Crown's plan: against the Brood the line comes before more buildings: 60 of Musketeers and guns against the 425 it wants by now
+[05:01] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[05:13] P1 Crown's plan: the army floor against the Brood: 120 of line (with what trains) against the 450 its scouting asks for: the soldiers' gold first
+[05:14] P1 Crown's rush: FAILED (no headway in 90 s): the riders ride home, no more go out alone; it builds up and attacks only with a proper force
+[05:15] P1 Crown's base layout at its main: 12 Cottage spots in 3 blocks at the back, 4 production rows' spots, 0 Farm and 0 Mill spots by the hall
+[05:15] P1 Crown's base layout at its new hall: 0 Cottage spots in 0 blocks at the back, 2 production rows' spots, 2 Farm and 1 Mill spots by the hall
+[05:15] P1 Crown's plan: the Brood is seen (its army in sight): the Foundry before the Horse Breeder, a Field Cannon for the ramp post first
+[05:15] P1 Crown's plan: Siege push, a build order of 0 steps from here (scripts/ai_crown.gd)
+[05:15] P1 Crown's plan: the rush is over (failed): balanced hands it to the Siege push (guns, then a push on its rooted ground)
+[05:15] P1 Crown's scouts know: an enemy army of 450 (seen in the last 120 s), 0 enemy halls, tech none seen
+[05:26] P1 Crown's Horseman goes on to harass the workers (the scout found workers)
+[05:26] P1 Crown's scout found workers to hunt: it hands over to the raid
+[05:30] P1 Crown's Horseman pulls back from Raptors
+[05:44] P1 Crown's plan: against the Brood the line needs more Barracks: 300 of line against the 577 the Brood's army asks for
+[05:50] P1 Crown's Horseman pulls back from Raptors
+[05:58] P1 Crown's Horseman goes on to harass the workers (the scout found workers)
+[05:58] P1 Crown's scout found workers to hunt: it hands over to the raid
+[06:00] P1 Crown's plan: milestone Foundry waits: the army comes first (620 against the 652 of Brood it estimates)
+[06:00] P1 Crown's plan: against the Brood the line comes before more buildings: 240 of Musketeers and guns against the 706 it wants by now
+[06:01] P1 Crown's Horseman pulls back from Raptors
+[06:04] P1 Crown's Horseman pulls back from Raptors
+[06:06] P1 Crown's scout rides home (chased)
+[06:11] P1 Crown's Horseman goes home (driven back too often)
+[06:13] P2 Brood sends 2 Raptors after the Crown's scouting Labourer
+[06:14] P1 Crown's plan: the army floor against the Brood: 360 of line (with what trains) against the 740 its scouting asks for: the soldiers' gold first
+[06:19] P2 Brood lets the Crown's scouting Labourer go (its friends are near)
+[06:21] P1 Crown's Horseman pulls back from Raptors
+[06:22] P1 Crown's scout rides home (chased)
+[06:32] P1 Crown's scouts know: an enemy army of 650 (seen in the last 120 s), 0 enemy halls, tech none seen
+[06:36] P1 Crown's Horseman pulls back from Raptors
+[06:39] P2 Brood sends 2 Raptors after the Crown's scouting Labourer
+[06:42] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Siege push (what it plays already answers it)
+[06:42] P2 Brood killed the Crown's scouting Labourer at 6:42
+[06:45] P1 Crown's Horseman goes home (driven back too often)
+[06:50] P1 Crown's plan: against the Brood the line needs more Barracks: 600 of line against the 944 the Brood's army asks for
+[07:00] P1 Crown's plan: milestone Foundry waits: the army comes first (860 against the 1255 of Brood it estimates)
+[07:01] P1 Crown's plan: against the Brood the line comes before more buildings: 480 of Musketeers and guns against the 1055 it wants by now
+[07:08] P1 Crown's first pistol shot (Horseman)
+[07:31] P1 Crown's plan: the army floor against the Brood: 1020 of line (with what trains) against the 1103 its scouting asks for: the soldiers' gold first
+[07:48] P1 Crown's scouts know: an enemy army of 750 (seen in the last 120 s), 0 enemy halls, tech none seen
+[07:55] P1 Crown's siege push: trains a Field Cannon
+[07:55] P2 Brood sends 2 Raptors after the Crown's scouting Labourer
+[08:00] P1 Crown's plan: milestone Armoury waits: the army comes first (1400 against the 2143 of Brood it estimates)
+[08:01] P1 Crown's plan: against the Brood the line comes before more buildings: 1020 of Musketeers and guns against the 1345 it wants by now
+[08:02] P1 Crown's first horse hauled by a hauler
+[08:03] P1 Crown's plan: milestone: Foundry 2 (36 labourers, 2 halls, army 33 supply)
+[08:05] P2 Brood killed the Crown's scouting Labourer at 8:05
+[08:18] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[08:21] P1 Crown's fight at 7:59 at home (formed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 25, lost 50
+[08:23] P1 Crown's scout rides home (chased)
+[08:30] P1 Crown's scout rides home (chased)
+[08:31] P1 Crown's siege push: presses its lead on the Brood: 1550 of army against the 600 of Brood seen lately: the whole army goes for the Brood Mother
+[08:31] P1 Crown's siege push: goes out: 31 supply (1 guns, 23 in the line), worth 1635
+[08:37] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[08:51] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[08:54] P1 Crown's siege push: trains a Field Cannon
+[08:54] P1 Crown's first Field Cannon with a team of 2 horses
+[08:54] P1 Crown's siege push: trains a Field Cannon
+[08:57] P1 Crown's picket sees a force coming (175: 7 soldiers) and rides back to the post
+[09:00] P1 Crown's plan: milestone Armoury waits: the army comes first (1770 against the 2845 of Brood it estimates)
+[09:01] P1 Crown's plan: against the Brood the line comes before more buildings: 1430 of Musketeers and guns against the 1626 it wants by now
+[09:03] P1 Crown's scouts know: an enemy army of 415 (seen in the last 120 s), 0 enemy halls, tech none seen
+[09:05] P1 Crown's Field Cannon shells 4 bodies so the Brood can't harvest them
+[09:20] P1 Crown's first gun crewman went out of a Foundry to fetch a gun's horse (no hauler free)
+[09:21] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Siege push (what it plays already answers it)
+[09:31] P1 Crown's Field Cannon shells 5 bodies so the Brood can't harvest them
+[09:40] P1 Crown's plan: its riders are chased off the grubs there: they pull back and come again at another Rootmaw
+[09:47] P1 Crown's fight at 8:57 at home (unformed): 1 gun near, 0 set at contact, 0 fired in its first 10 s; killed 1445, lost 0
+[09:58] P1 Crown's siege push: 7 supply joins it
+[10:00] P1 Crown's plan: milestone Armoury waits: the army comes first (2240 against the 2897 of Brood it estimates)
+[10:01] P1 Crown's plan: against the Brood the line comes before more buildings: 1780 of Musketeers and guns against the 1908 it wants by now
+[10:10] P1 Crown's siege push: trains a Field Cannon
+[10:16] P1 Crown's siege push: trains a Mortar
+[10:19] P1 Crown's scouts know: an enemy army of 660 (seen in the last 120 s), 0 enemy halls, tech none seen
+[10:22] P1 Crown's Field Cannon shells 4 bodies so the Brood can't harvest them
+[10:30] P1 Crown's siege push: sets up against the Tyrant Sire (269 px off)
+[10:32] P1 Crown's siege push: 7 supply joins it
+[10:36] P1 Crown's siege push: sets up against the Mound Turtle (248 px off)
+[10:47] P1 Crown's siege push: 10 supply joins it
+[11:00] P1 Crown's plan: milestone Armoury waits: the army comes first (1775 against the 2791 of Brood it estimates)
+[11:01] P1 Crown's plan: against the Brood the line comes before more buildings: 1365 of Musketeers and guns against the 2070 it wants by now
+[11:14] P1 Crown's scout rides home (chased)
+[11:14] P1 Crown's siege push: 7 supply joins it
+[11:18] P1 Crown's siege push: trains a Mortar
+[11:42] P1 Crown's siege push: 6 supply joins it
+[11:57] P1 Crown's siege push: 7 supply joins it
+[12:01] P1 Crown's plan: milestone Armoury waits: the army comes first (2460 against the 2962 of Brood it estimates)
+[12:01] P1 Crown's plan: against the Brood the line comes before more buildings: 2050 of Musketeers and guns against the 2070 it wants by now
+[12:12] P1 Crown's siege push: 6 supply joins it
+[12:28] P1 Crown's siege push: falls back: 1835 of the 4200 that went out is left
+[13:01] P1 Crown's plan: milestone Armoury waits: the army comes first (2705 against the 2900 of Brood it estimates)
+[13:05] P1 Crown's fight at 9:47 out (unformed): 1 gun near, 0 set at contact, 0 fired in its first 10 s; killed 2605, lost 2280
+[13:12] P1 Crown's plan: milestone: Armoury 1 (53 labourers, 5 halls, army 66 supply)
+[13:21] P1 Crown's plan: against the Brood the line comes before more buildings: 2555 of Musketeers and guns against the 2600 it wants by now
+[13:29] P1 Crown's siege push: is over (1835 of the 4200 that went out is left): killed 4050, lost 2340, broke { "mound_turtle": 1 }
+[13:29] P1 Crown's scouts know: an enemy army of 405 (seen in the last 120 s), 0 enemy halls, tech none seen
+[13:56] P1 Crown's scout rides home (chased)
+[14:01] P1 Crown's plan: milestone Church waits: the army comes first (a Barracks or a Foundry stands idle for want of gold)
+[14:03] P1 Crown's plan: milestone: Church 1 (62 labourers, 5 halls, army 70 supply)
+[14:12] P1 Crown's plan: trains a Drummer for its Marching Band (45 soldiers)
+[14:20] P1 Crown's picket sees a force coming (150: 6 soldiers) and rides back to the post
+[14:26] P1 Crown's scout rides home (chased)
+[14:29] P1 Crown's siege push: stays home: an enemy force (400) is at our buildings
+[14:42] P1 Crown's Horseman was killed and a horse bolted loose (the first: anyone's to catch)
+[14:50] P1 Crown's scouts know: an enemy army of 580 (seen in the last 120 s), 0 enemy halls, tech none seen
+[14:52] P1 Crown's plan: trains a Drummer for its Marching Band (46 soldiers)
+[15:01] P1 Crown's plan: trains a Fifer for its Marching Band (49 soldiers)
+[15:02] P1 Crown's plan: trains a Fifer for its Marching Band (49 soldiers)
+[15:10] P1 Crown's fight at 14:20 at home (unformed): 7 guns near, 7 set at contact, 5 fired in its first 10 s; killed 1600, lost 510
+[15:10] P1 Crown's Field Cannon shells 10 bodies so the Brood can't harvest them
+[15:29] P1 Crown's plan: trains a Piper for its Marching Band (52 soldiers)
+[15:30] P1 Crown's siege push: stays home: an enemy force was at our buildings 41 s ago
+[15:33] P1 Crown's scout rides home (chased)
+[15:50] P1 Crown's siege push: goes out: 75 supply (7 guns, 42 in the line), worth 4192
+[15:56] P1 Crown's siege push: 6 supply joins it
+[16:03] P1 Crown's siege push: 7 supply joins it
+[16:05] P1 Crown's scouts know: an enemy army of 1030 (seen in the last 120 s), 0 enemy halls, tech none seen
+[16:06] P1 Crown's Mortar shells 4 bodies so the Brood can't harvest them
+[16:28] P1 Crown's scout rides home (chased)
+[16:30] P1 Crown's picket sees a force coming (150: 6 soldiers) and rides back to the post
+[16:32] P1 Crown's fight at 16:17 out (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 75, lost 365
+[16:33] P1 Crown's scout rides home (chased)
+[16:33] P1 Crown's scout rides home (chased)
+[16:39] P1 Crown's siege push: sets up against the Rootmaw (318 px off)
+[16:46] P1 Crown's fight at 16:32 at home (unformed): 7 guns near, 0 set at contact, 0 fired in its first 10 s; killed 475, lost 995
+[16:49] P1 Crown's siege push: sets up against the Rootmaw (323 px off)
+[16:58] P1 Crown's siege push: sets up against the Mound Turtle (295 px off)
+[17:19] P1 Crown's scout rides home (chased)
+[17:21] P1 Crown's scouts know: an enemy army of 3375 (seen in the last 120 s), 0 enemy halls, tech none seen
+[17:21] P1 Crown's Fifer: solo
+[17:25] P1 Crown's siege push: sets up against the Rootmaw (287 px off)
+[17:34] P1 Crown's first keg hauled by a hauler
+[17:35] P1 Crown's fight at 16:46 out (unformed): 7 guns near, 0 set at contact, 0 fired in its first 10 s; killed 2625, lost 3005
+[17:38] P1 Crown's fight at 17:35 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 100, lost 0
+[17:51] P1 Crown's siege push: sets up against the Mound Turtle (317 px off)
+[17:59] P2 Brood's Mist Toad staggered P1 Crown's Field Cannon
+[18:01] P1 Crown's Fifer: solo
+[18:03] P2 Brood's Mist Toad staggered P1 Crown's Field Cannon
+[18:05] P2 Brood's Mist Toad staggered P1 Crown's Field Cannon
+[18:09] P2 Brood's Mist Toad staggered P1 Crown's Field Cannon
+[18:10] P1 Crown's scout rides home (chased)
+[18:10] P1 Crown's scout rides home (chased)
+[18:21] P1 Crown's Drummer: solo
+[18:22] P1 Crown's siege push: trains a Field Cannon
+[18:26] P1 Crown's siege push: falls back: 2070 of the 4732 that went out is left
+[18:31] P1 Crown's scout rides home (chased)
+[18:33] P2 Brood's Mist Toad staggered P1 Crown's Mortar
+[18:34] P1 Crown's plan: against the Brood the line comes before more buildings: 2090 of Musketeers and guns against the 2205 it wants by now
+[18:37] P1 Crown's scouts know: an enemy army of 2575 (seen in the last 120 s), 0 enemy halls, tech none seen
+[18:38] P1 Crown's scout rides home (chased)
+[18:59] P1 Crown's Horseman keeps away from Rootmaw (the raid stays)
+[19:01] P1 Crown's fight at 17:38 out (unformed): 7 guns near, 0 set at contact, 0 fired in its first 10 s; killed 2475, lost 3485
+[19:03] P1 Crown's plan: trains a Piper for its Marching Band (38 soldiers)
+[19:05] P1 Crown's siege push: trains a Field Cannon
+[19:06] P1 Crown's siege push: trains a Field Cannon
+[19:09] P1 Crown's siege push: trains a Field Cannon
+[19:09] P1 Crown's Piper: solo (band)
+[19:17] P1 Crown's siege push: is over (2070 of the 4732 that went out is left): killed 5750, lost 7850, broke { "rootmaw": 3, "mound_turtle": 2 }
+[19:34] P1 Crown's plan: against the Brood the line comes before more buildings: 2090 of Musketeers and guns against the 2205 it wants by now
+[19:52] P1 Crown's scouts know: an enemy army of 2400 (seen in the last 120 s), 0 enemy halls, tech none seen
