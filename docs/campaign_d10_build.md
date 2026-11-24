@@ -273,3 +273,8 @@ one by one:
 
 - tools/test_campaign_d10.gd: 0 failures (data, flags, every part, reclaim, defeat, the mirror both ways, versus, save,
   ironman, hubs, no script error).
+- Every other tools/test_campaign_*.gd (a01-a07, b01, c01, d01-d09, heroes, ironman, save), tools/test_roster_ladder.gd
+  and tools/test_war_map.gd: 0 failures, but test_campaign_m1's "no recording yet for Tomasz" check, which fails on main
+  too. test_war_map's Act 2 state check now expects d10 (built) locked, and d11 (built by another job at the same time)
+  locked or planned.
+- tools/i18n_build.py and tools/i18n_patch_build.py ([]).
