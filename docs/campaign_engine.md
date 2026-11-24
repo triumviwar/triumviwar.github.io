@@ -602,3 +602,17 @@ Everything else in the Council of Gears is built from keys already there: `sprea
 mirror's taking), `convert` with `warn` (the doors' machines, the masters), `brake` (THE GREAT SPRING stopped), `ground`
 gear (the plates), a mid-match `show`, `choice` with a default and a time, `stay` with `kind` and `count`, `near`,
 counters, `tally` with shares, countdown clocks, `if` by `past` flags and `playing`, the solo pick.
+
+## Added by Act 2's d09_crossroads (d09-crossroads; docs/campaign_d09_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| unit / spawn `"kit": {"armour": true, "lock": "matchlock", "bayonet": true}` | the soldier comes out with that kit (Unit.set_kit: THE ROSTER LADDER's C7, the army's Guardsmen and Cuirassiers in their armour; a lock and a bayonet already fitted); saved with the unit like any refit |
+| clock `"scale": false` | a countdown the player survives (the night to dawn) is not made longer on EASY nor shorter on HARD (MissionRun.clock_scales already read it) |
+| action `light` (fixed) | a new light now stops the one still on its way (MissionRun._light_tw): before, a slow dusk (240 s) still running kept pulling the colour back while the night came in, so the night never looked dark |
+| roles `ruggieri_general`, `tomasz_vicar`, `hollins_sergeant`, `fort_commander`, `sertanejo` | Rebels.ROLES (stand-ins: Act 1's Ruggieri, Tomasz and volunteer art; a plain Officer; Nazaré's villagers) |
+
+Everything else in Between Two Fires is built from keys already there: more than two sides (a07), THE VERSUS PICK, a
+mid-match `show` with if-lines, `choice` with `"default": "random"` (no canon: the match's seed picks when nobody answers),
+`follow`, `retag`, `exits`, `hunt` with `prey` / `prey_team`, `wind` by team, `remove`, countdown clocks, `tally` with
+shares, `heir` and `playing` conditions, the war map's "first" clock (act2-warmap).

@@ -363,6 +363,16 @@
   "d07__mt_stop": "grief",
   "d07__h_end_stop": "grief",
   "d07__u_turn": "urgent",
-  "d07__u_leap": "urgent"
+  "d07__u_leap": "urgent",
+  "d09__r_owls": "shout",
+  "d09__c_arrive": "grief",
+  "d09__ms_1": "urgent",
+  "d09__t_night": "urgent",
+  "d09__t_hurt": "urgent",
+  "d09__t_end_few": "grief",
+  "d09__t_end_some": "grief",
+  "d09__t_skies": "wonder",
+  "d09__v_3": "grief",
+  "d09__t_counsel1": "urgent"
  }
 }

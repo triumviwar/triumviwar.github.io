@@ -6007,6 +6007,7 @@ const T := {
 	"The wagons! Muskets up, at the owls!": "¡Los carros! ¡Mosquetes arriba, a los búhos!",
 	"The owls are down.": "Los búhos han caído.",
 	"Raptors again, between you and the fort, with a big one among them.": "Raptores otra vez, entre tú y el fuerte, con uno grande entre ellos.",
+	"The machines again, out of a dry wash to the south. Netters among them: their chains hold a man fast while the others strike.": "Las máquinas otra vez, saliendo de un cauce seco al sur. Rederos entre ellas: sus cadenas sujetan a un hombre mientras las otras atacan.",
 	"A powder wagon is lost. Keep the other one close.": "Se ha perdido un carro de pólvora. Mantén el otro cerca.",
 	"The fort's guns are firing. The siege has begun without you.": "Los cañones del fuerte están disparando. El asedio ha empezado sin ti.",
 	"The first of the road's people are inside the fort.": "Los primeros del pueblo del camino están dentro del fuerte.",

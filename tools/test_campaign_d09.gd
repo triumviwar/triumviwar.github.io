@@ -241,7 +241,7 @@ func _data() -> void:
 		and (tm["roster"]["allow"] as Array).has("powder_wagon") and (tm["roster"]["new"] as Array) == ["armour", "powder_wagon"]
 		and not (tm["roster"]["allow"] as Array).has("balloon"))
 	check("the army comes with the C5 and C6 drills and Armour researched", (tm.get("techs", []) as Array) == ["matchlock", "bayonet", "charge", "armour"])
-	check("the needs: d05, d07, d08", m.get("needs", []) == ["d05_aldeia", "d07_spring", "d08_rivers"])
+	check("the needs: Rome, d05, d07, d08", m.get("needs", []) == ["a07_council", "d05_aldeia", "d07_spring", "d08_rivers"])
 	check("hubs-grow: d09 earns on the Crown line", (HubGrow.line("prologue")["earn"] as Array).has(MID))
 	var all := " ".join(Campaign.strings_of(m))
 	check("no creature named or given a will (Linnea, her young, wants, comes for)", not all.contains("Linnea") and not all.contains("her young")
@@ -417,7 +417,7 @@ func _part3() -> void:
 		var mine := "n_m0" if first == "brood" else "n_c0"
 		var not_mine := "n_c0" if first == "brood" else "n_m0"
 		check("%s first: the OTHER fire strikes the fort (%s), not the chosen" % [first, mine], r.tagged(mine).size() >= 4 and r.tagged(not_mine).is_empty())
-		_walk(g, float(r.fired["night"]) + 104.0)
+		_walk(g, float(r.fired["night"]) + 92.0)
 		check("the night's last and biggest wave", _said(r, "n_night_big"))
 		_kill(r.tagged("c_wave") + r.tagged("m_wave"))
 		r.clocks["dawn"] = g.clock + 0.5

@@ -91,9 +91,9 @@ P3 = {"fired": "part3"}
 # clocks x1.25 / x0.85, the raids x0.7 / x1.4)
 FORT_SECS = 330           # Part 1: the fort holds out this long before the siege begins without the army
 SIEGE_SECS = 240          # Part 2: at dusk what is left of both draws back anyway
-NIGHT_SECS = 150          # Part 3: the night to hold
+NIGHT_SECS = 125          # Part 3: the night to hold (the same on every difficulty: a longer night is no easier)
 JOIN = 6                  # tiles: one of the army this near a village's people: they join the column
-PEOPLE_PACE = 0.85        # the people walk carrying water and children (a Labourer's pace times this): a Musketeer's pace
+PEOPLE_PACE = 0.75        # the people walk carrying water and children (a Labourer's pace times this): a little under a Musketeer's
 GOLD, POWDER = 300, 160
 PAY_CHEST = 300           # at the fort: the army's pay chest (reinforcements before the night)
 FRIEND_EVERY = 10         # versus: the friend's side's supplies (food / cogs) this often
@@ -158,10 +158,11 @@ buildings = [
      "name": T("Fort Constantine's palisade", "A paliçada do Forte Constantino", "La empalizada del Fuerte Constantino")} for c in WALL
 ]
 
+E = 24       # (the map draws everything east of the fort's ground 24 cells farther east: make_sao_francisco_map.py's `ex`)
 areas = dict(
     # the road
     road_start=[124, 42, 10, 12], riacho=[96, 33, 16, 12], riacho_in=[101, 37, 6, 4], lagoa=[64, 55, 16, 12], lagoa_in=[69, 59, 6, 4],
-    road_mid=[84, 46, 8, 8], road_west=[56, 45, 8, 8], fort_approach=[48, 40, 16, 16],
+    road_mid=[84, 46, 8, 8], road_west=[56, 45, 8, 8], fort_approach=[40, 40, 16, 16],
     # the fort
     fort=[FX0, FY0, FX1 - FX0 + 1, FY1 - FY0 + 1], fort_in=[29, 43, 15, 10], fort_mid=[33, 46, 8, 4], fort_wide=[20, 28, 36, 42],
     north_in=[34, 39, 6, 3], south_in=[34, 55, 6, 3], north_gate=[33, 34, 8, 4], south_gate=[33, 59, 8, 4],
@@ -174,6 +175,10 @@ areas = dict(
     north_scrub=[88, 8, 14, 10], south_scrub=[62, 76, 16, 10], west_scrub=[50, 26, 12, 8],
     sky_nw=[66, 1, 16, 6], sky_sw=[78, 88, 16, 6], sky_meet=[106, 38, 10, 10],
 )
+areas = {k: ([v[0] + E] + v[1:] if v[0] >= 50 else v) for k, v in areas.items()}
+areas["fort_approach"] = [48, 40, 18, 16]      # (the ground before the east gate)
+areas["dry_stretch"] = [58, 44, 16, 10]       # (the long dry stretch between Lagoa Branca and the fort)
+areas["south_dry"] = [60, 66, 12, 8]          # (a dry wash south of it: the machines' second raid)
 
 # ================================================================== the objectives
 objectives = [
@@ -240,7 +245,7 @@ M = {
     "manual_end": True,
     "difficulty": {"easy": {"clocks": 1.25, "spawns": 0.7}, "hard": {"clocks": 0.85, "spawns": 1.4}},
     # THE SECOND CROSSING: locked until each line's last mission before it is won (the plan's gating)
-    "needs": ["d05_aldeia", "d07_spring", "d08_rivers"],
+    "needs": ["a07_council", "d05_aldeia", "d07_spring", "d08_rivers"],
     "modes": ["solo", "coop", "versus"],
     "solo_sides": ["crown"],
     "versus_pick": ["creatures", "automata"],
@@ -390,6 +395,9 @@ line("r_owls", "ruggieri", "The wagons! Muskets up, at the owls!", "As carroças
 line("n_owls_down", "narrator", "The owls are down.", "As corujas caíram.", "Los búhos han caído.", CR)
 line("n_r2", "narrator", "Raptors again, between you and the fort, with a big one among them.", "Raptores outra vez, entre si e o forte, com um grande entre eles.",
      "Raptores otra vez, entre tú y el fuerte, con uno grande entre ellos.", CR)
+line("n_m2", "narrator", "The machines again, out of a dry wash to the south. Netters among them: their chains hold a man fast while the others strike.",
+     "As máquinas outra vez, a sair de um leito seco a sul. Redeiros entre elas: as suas correntes prendem um homem enquanto as outras atacam.",
+     "Las máquinas otra vez, saliendo de un cauce seco al sur. Rederos entre ellas: sus cadenas sujetan a un hombre mientras las otras atacan.", CR)
 line("n_wagon_lost", "narrator", "A powder wagon is lost. Keep the other one close.", "Perdeu-se uma carroça de pólvora. Mantenha a outra perto.",
      "Se ha perdido un carro de pólvora. Mantén el otro cerca.", CR)
 line("n_fort_late", "fortn", "The fort's guns are firing. The siege has begun without you.", "Os canhões do forte estão a disparar. O cerco começou sem si.",
@@ -533,7 +541,7 @@ line("k_end_s", "king", "That is not how it went. The fort stood. Hear it again 
      "No fue así como pasó. El fuerte siguió en pie. Óyelo otra vez de boca de Tomasz.")
 
 # (a quick player is past the part a chatty line belongs to: those lines are dropped unseen once the next part begins)
-for lid in ["n_wagon", "t_skies", "r_skies", "n_v1", "t_join", "n_r1", "n_v2", "n_m1", "h_m1", "t_m1", "n_owls", "r_owls", "n_owls_down", "n_r2", "n_wagon_lost",
+for lid in ["n_wagon", "t_skies", "r_skies", "n_v1", "t_join", "n_r1", "n_v2", "n_m1", "h_m1", "t_m1", "n_owls", "r_owls", "n_owls_down", "n_r2", "n_m2", "n_wagon_lost",
             "n_in_first"]:
     L[lid]["until"] = "part2"
 for lid in ["n_ford", "t_ford", "n_wave2", "c_relieved", "n_fort_yours"]:
@@ -719,7 +727,7 @@ TR_ += [
            line_ids=["n_m1"], extra=[("springer", 2, None)]),
     {"id": "m1_vol", "when": {"all": [{"fired": "m1"}, VOL]}, "delay": 3, "do": [{"say": ["h_m1", "t_m1"]}]},
     # OWLS on the wagons, a little after the machines
-    {"id": "owls", "when": {"all": [{"fired": "m1"}, P1, LIVE, {"count": {"tag": "wagons", "at_least": 1}}]}, "delay": 28, "do": [
+    {"id": "owls", "when": {"all": [{"fired": "m1"}, P1, LIVE, {"count": {"tag": "wagons", "at_least": 1}}]}, "delay": 16, "do": [
         {"spawn": {"team": "automata", "kind": "ticking_owl", "count": 2, "at": "sky_sw", "tag": "owls", "tags": ["m_wave", "m_all"], "fixed": True}},
         {"wind": {"team": "automata", "share": 1.0}},
         {"say": ["n_owls", "r_owls"]}, {"objective": {"id": "owls", "set": "active"}}, {"ping": {"tag": "wagons"}}]},
@@ -730,6 +738,9 @@ TR_ += [
     # RAID 3: Raptors and a Tyrant Challenger between the army and the fort (as it passes the dry pond, or at 3:10)
     c_wave("r2", {"all": [{"any": [{"count": {"team": "army", "area": "road_west", "at_least": 2}}, {"time": 190}]}, P1, LIVE]}, "west_scrub", "road_west", 5,
            line_ids=["n_r2"], extra=[("tyrant_challenger", 1, NORMAL_UP)], fed=False),
+    # RAID 4: the machines again in the dry stretch, Netters among them (as the army crosses it, or at 4:20)
+    m_wave("m2", {"all": [{"any": [{"count": {"team": "army", "area": "dry_stretch", "at_least": 2}}, {"time": 260}]}, P1, LIVE]}, "south_dry", "dry_stretch", 3,
+           line_ids=["n_m2"], extra=[("netter", 2, None), ("springer", 1, NORMAL_UP)]),
     # the scripted raids: the Raptors go for the people; the machines press on to their mark
     {"id": "c_hunt", "when": {"all": [{"fired": "setup"}, NO_CRE, LIVE]}, "every": 3, "do": [
         {"order": {"tag": "c_wave", "do": "hunt", "prey": "people", "within": 14}}]},
@@ -743,15 +754,19 @@ TR_ += [
     {"id": "in_first", "when": {"counter": {"name": "in_fort", "at_least": 1}}, "do": [{"say": ["n_in_first"]}]},
     # ============================================================ PART 2: THE FORT
     {"id": "fort_late", "when": {"all": [{"clock_out": "fort"}, P1, LIVE]}, "do": [{"say": ["n_fort_late"]}]},
-    {"id": "part2", "when": {"all": [{"any": [{"count": {"team": "army", "area": "fort_approach", "at_least": 4}}, {"clock_out": "fort"}]}, LIVE]}, "do": [
+    {"id": "part2", "when": {"all": [{"any": [{"count": {"team": "army", "area": "fort_approach", "at_least": 10}}, {"clock_out": "fort"}]}, LIVE]}, "do": [
         {"clock": {"name": "fort", "stop": True}}, {"objective": {"id": "fort_clock", "set": "hidden"}},
-        {"objective": {"id": "march", "set": "done"}}, {"objective": {"id": "owls", "set": "hidden"}},
+        {"objective": {"id": "owls", "set": "hidden"}},
         {"objective": {"id": "siege", "set": "active"}}, {"objective": {"id": "siege_clock", "set": "active"}},
         {"clock": {"name": "siege", "secs": SIEGE_SECS}},
         {"light": {"to": "dusk", "secs": 240}},
         {"give": {"team": "army", "gold": PAY_CHEST}},
         {"reveal": {"area": "fort_wide", "side": "crown"}},
         {"ping": {"area": "north_gate"}}, {"ping": {"area": "south_gate"}}]},
+    # (the march done only if the army got there; the siege begun without it leaves the march undone, not failed)
+    {"id": "arrived", "when": {"all": [{"count": {"team": "army", "area": "fort_approach", "at_least": 10}}, LIVE]}, "do": [
+        {"objective": {"id": "march", "set": "done"}}]},
+    {"id": "march_late", "when": {"all": [{"fired": "part2"}, {"not": {"fired": "arrived"}}]}, "do": [{"objective": {"id": "march", "set": "hidden"}}]},
     {"id": "p2_say", "when": {"fired": "part2"}, "delay": 1, "do": [{"say": ["n_arrive", "c_arrive", "r_arrive", "n_siege"]}]},
     {"id": "p2_say_y", "when": {"all": [{"fired": "part2"}, CROWN]}, "delay": 22, "do": [{"say": ["n_fort_yours"]}, {"ping": {"tag": "f_barracks"}}]},
     # THE SIEGE: three waves each, the creatures at the north gate, the machines at the south gate
@@ -827,7 +842,7 @@ TR_ += [
     {"id": "night", "when": {"all": [{"any": [FIRST_BROOD, FIRST_CLOCK]}, P3, LIVE]}, "delay": 2, "do": [
         {"light": {"to": "night", "secs": 8}},
         {"objective": {"id": "night", "set": "active"}}, {"objective": {"id": "dawn", "set": "active"}},
-        {"clock": {"name": "dawn", "secs": NIGHT_SECS}}]},
+        {"clock": {"name": "dawn", "secs": NIGHT_SECS, "scale": False}}]},
     {"id": "night_ping_c", "when": {"all": [{"fired": "night"}, FIRST_CLOCK]}, "do": [{"ping": {"area": "north_gate"}}]},
     {"id": "night_ping_m", "when": {"all": [{"fired": "night"}, FIRST_BROOD]}, "do": [{"ping": {"area": "south_gate"}}]},
 ] + [
@@ -835,19 +850,19 @@ TR_ += [
     c_wave("n_c%d" % i, {"all": [{"fired": "night"}, FIRST_CLOCK, LIVE]}, at, "north_gate", base, delay=d,
            extra=ex, line_ids=lid)
     for i, (at, base, d, ex, lid) in enumerate([
-        ("north_out", 6, 6, [("spitter", 2, None)], None),
-        ("north_ford", 6, 38, [("tyrant_challenger", 1, None)], ["n_night_w"]),
-        ("north_out", 6, 70, [("spitter", 2, None), ("tyrant_challenger", 1, HARD)], ["n_night_w"]),
-        ("north_ford", 5, 102, [("brute", 1, NORMAL_UP), ("tyrant_challenger", 1, None), ("spitter", 1, None)], ["n_night_big"]),
+        ("north_out", 7, 6, [("spitter", 2, None)], None),
+        ("north_ford", 7, 34, [("tyrant_challenger", 1, None)], ["n_night_w"]),
+        ("north_out", 7, 62, [("spitter", 2, None), ("tyrant_challenger", 1, HARD)], ["n_night_w"]),
+        ("north_ford", 6, 90, [("brute", 1, NORMAL_UP), ("tyrant_challenger", 1, None), ("spitter", 1, None)], ["n_night_big"]),
     ])
 ] + [
     m_wave("n_m%d" % i, {"all": [{"fired": "night"}, FIRST_BROOD, LIVE]}, at, "south_gate", base, delay=d,
            extra=ex, line_ids=lid)
     for i, (at, base, d, ex, lid) in enumerate([
-        ("south_out", 5, 6, [("springer", 2, None)], None),
-        ("south_ford", 4, 38, [("netter", 2, None), ("ticking_owl", 2, NORMAL_UP)], ["n_night_w"]),
-        ("south_out", 5, 70, [("springer", 2, None), ("pendulum", 1, HARD)], ["n_night_w"]),
-        ("south_ford", 5, 102, [("pendulum", 1, NORMAL_UP), ("ballista", 1, None), ("springer", 1, None)], ["n_night_big"]),
+        ("south_out", 6, 6, [("springer", 2, None)], None),
+        ("south_ford", 5, 34, [("netter", 2, None), ("ticking_owl", 2, NORMAL_UP)], ["n_night_w"]),
+        ("south_out", 6, 62, [("springer", 2, None), ("pendulum", 1, HARD)], ["n_night_w"]),
+        ("south_ford", 6, 90, [("pendulum", 1, NORMAL_UP), ("ballista", 1, None), ("springer", 1, None)], ["n_night_big"]),
     ])
 ] + [
     {"id": "night_press_c", "when": {"all": [{"fired": "night"}, NO_CRE, LIVE]}, "every": 6, "do": [

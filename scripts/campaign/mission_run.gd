@@ -1106,6 +1106,9 @@ const LIGHTS := {"night": Color(0.40, 0.45, 0.66), "dusk": Color(0.78, 0.66, 0.7
 	"fire_night": Color(0.7, 0.54, 0.48), "grey_dawn": Color(0.66, 0.68, 0.74)}
 
 
+var _light_tw: Tween = null
+
+
 func set_light(to: String, secs: float) -> void:
 	light_name = to
 	if game == null:
@@ -1116,11 +1119,15 @@ func set_light(to: String, secs: float) -> void:
 		light_node.color = Color(1, 1, 1)
 		game.add_child(light_node)
 	var col: Color = LIGHTS.get(to, Color(1, 1, 1))
+	# (a new light stops the one still on its way: two tweens on the colour fight, and a slow dusk would undo the night)
+	if _light_tw != null and _light_tw.is_valid():
+		_light_tw.kill()
+	_light_tw = null
 	if secs <= 0.0 or not light_node.is_inside_tree():
 		light_node.color = col
 		return
-	var tw := light_node.create_tween()
-	tw.tween_property(light_node, "color", col, secs)
+	_light_tw = light_node.create_tween()
+	_light_tw.tween_property(light_node, "color", col, secs)
 
 
 ## A CHOICE (campaign-m1): {"id", "side", "line": a line id said with it, "options": [{"id", "label", "about", "do":

@@ -23,6 +23,7 @@
 		}
 	},
 	"needs": [
+		"a07_council",
 		"d05_aldeia",
 		"d07_spring",
 		"d08_rivers"
@@ -233,43 +234,43 @@
 	],
 	"areas": {
 		"road_start": [
-			124,
+			148,
 			42,
 			10,
 			12
 		],
 		"riacho": [
-			96,
+			120,
 			33,
 			16,
 			12
 		],
 		"riacho_in": [
-			101,
+			125,
 			37,
 			6,
 			4
 		],
 		"lagoa": [
-			64,
+			88,
 			55,
 			16,
 			12
 		],
 		"lagoa_in": [
-			69,
+			93,
 			59,
 			6,
 			4
 		],
 		"road_mid": [
-			84,
+			108,
 			46,
 			8,
 			8
 		],
 		"road_west": [
-			56,
+			80,
 			45,
 			8,
 			8
@@ -277,7 +278,7 @@
 		"fort_approach": [
 			48,
 			40,
-			16,
+			18,
 			16
 		],
 		"fort": [
@@ -401,40 +402,52 @@
 			8
 		],
 		"north_scrub": [
-			88,
+			112,
 			8,
 			14,
 			10
 		],
 		"south_scrub": [
-			62,
+			86,
 			76,
 			16,
 			10
 		],
 		"west_scrub": [
-			50,
+			74,
 			26,
 			12,
 			8
 		],
 		"sky_nw": [
-			66,
+			90,
 			1,
 			16,
 			6
 		],
 		"sky_sw": [
-			78,
+			102,
 			88,
 			16,
 			6
 		],
 		"sky_meet": [
-			106,
+			130,
 			38,
 			10,
 			10
+		],
+		"dry_stretch": [
+			58,
+			44,
+			16,
+			10
+		],
+		"south_dry": [
+			60,
+			66,
+			12,
+			8
 		]
 	},
 	"counters": {
@@ -1655,7 +1668,7 @@
 				{
 					"pace": {
 						"tag": "people",
-						"pace": 0.85
+						"pace": 0.75
 					}
 				},
 				{
@@ -2542,7 +2555,7 @@
 					}
 				]
 			},
-			"delay": 28,
+			"delay": 16,
 			"do": [
 				{
 					"spawn": {
@@ -2830,6 +2843,151 @@
 			]
 		},
 		{
+			"id": "m2",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"count": {
+									"team": "army",
+									"area": "dry_stretch",
+									"at_least": 2
+								}
+							},
+							{
+								"time": 260
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "south_dry",
+						"tag": "m_wave",
+						"tags": [
+							"m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "dry_stretch"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "south_dry",
+						"tag": "m_wave",
+						"tags": [
+							"m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "dry_stretch"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "netter",
+						"count": 2,
+						"at": "south_dry",
+						"tag": "m_wave",
+						"tags": [
+							"m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "dry_stretch"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "springer",
+						"count": 1,
+						"at": "south_dry",
+						"tag": "m_wave",
+						"tags": [
+							"m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "dry_stretch"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_dry"
+					}
+				},
+				{
+					"say": [
+						"n_m2"
+					]
+				}
+			]
+		},
+		{
 			"id": "c_hunt",
 			"when": {
 				"all": [
@@ -3057,7 +3215,7 @@
 								"count": {
 									"team": "army",
 									"area": "fort_approach",
-									"at_least": 4
+									"at_least": 10
 								}
 							},
 							{
@@ -3093,12 +3251,6 @@
 					"objective": {
 						"id": "fort_clock",
 						"set": "hidden"
-					}
-				},
-				{
-					"objective": {
-						"id": "march",
-						"set": "done"
 					}
 				},
 				{
@@ -3151,6 +3303,66 @@
 				{
 					"ping": {
 						"area": "south_gate"
+					}
+				}
+			]
+		},
+		{
+			"id": "arrived",
+			"when": {
+				"all": [
+					{
+						"count": {
+							"team": "army",
+							"area": "fort_approach",
+							"at_least": 10
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "march",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "march_late",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "arrived"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "march",
+						"set": "hidden"
 					}
 				}
 			]
@@ -4654,7 +4866,8 @@
 				{
 					"clock": {
 						"name": "dawn",
-						"secs": 150
+						"secs": 125,
+						"scale": false
 					}
 				}
 			]
@@ -4737,7 +4950,7 @@
 					"spawn": {
 						"team": "creatures",
 						"kind": "raptor",
-						"count": 6,
+						"count": 7,
 						"at": "north_out",
 						"tag": "c_wave",
 						"tags": [
@@ -4761,7 +4974,7 @@
 					"spawn": {
 						"team": "creatures",
 						"kind": "raptor",
-						"count": 5,
+						"count": 6,
 						"at": "north_out",
 						"tag": "c_wave",
 						"tags": [
@@ -4886,7 +5099,7 @@
 					"spawn": {
 						"team": "creatures",
 						"kind": "raptor",
-						"count": 6,
+						"count": 7,
 						"at": "north_ford",
 						"tag": "c_wave",
 						"tags": [
@@ -4910,7 +5123,7 @@
 					"spawn": {
 						"team": "creatures",
 						"kind": "raptor",
-						"count": 5,
+						"count": 6,
 						"at": "north_ford",
 						"tag": "c_wave",
 						"tags": [
@@ -5004,7 +5217,7 @@
 					]
 				}
 			],
-			"delay": 38
+			"delay": 34
 		},
 		{
 			"id": "n_c2",
@@ -5040,7 +5253,7 @@
 					"spawn": {
 						"team": "creatures",
 						"kind": "raptor",
-						"count": 6,
+						"count": 7,
 						"at": "north_out",
 						"tag": "c_wave",
 						"tags": [
@@ -5064,7 +5277,7 @@
 					"spawn": {
 						"team": "creatures",
 						"kind": "raptor",
-						"count": 5,
+						"count": 6,
 						"at": "north_out",
 						"tag": "c_wave",
 						"tags": [
@@ -5180,7 +5393,7 @@
 					]
 				}
 			],
-			"delay": 70
+			"delay": 62
 		},
 		{
 			"id": "n_c3",
@@ -5216,7 +5429,7 @@
 					"spawn": {
 						"team": "creatures",
 						"kind": "raptor",
-						"count": 5,
+						"count": 6,
 						"at": "north_ford",
 						"tag": "c_wave",
 						"tags": [
@@ -5240,7 +5453,7 @@
 					"spawn": {
 						"team": "creatures",
 						"kind": "raptor",
-						"count": 4,
+						"count": 5,
 						"at": "north_ford",
 						"tag": "c_wave",
 						"tags": [
@@ -5374,7 +5587,7 @@
 					]
 				}
 			],
-			"delay": 102
+			"delay": 90
 		},
 		{
 			"id": "n_m0",
@@ -5410,7 +5623,7 @@
 					"spawn": {
 						"team": "automata",
 						"kind": "clock_soldier",
-						"count": 5,
+						"count": 6,
 						"at": "south_out",
 						"tag": "m_wave",
 						"tags": [
@@ -5434,7 +5647,7 @@
 					"spawn": {
 						"team": "automata",
 						"kind": "clock_soldier",
-						"count": 4,
+						"count": 5,
 						"at": "south_out",
 						"tag": "m_wave",
 						"tags": [
@@ -5517,7 +5730,7 @@
 					"spawn": {
 						"team": "automata",
 						"kind": "clock_soldier",
-						"count": 4,
+						"count": 5,
 						"at": "south_ford",
 						"tag": "m_wave",
 						"tags": [
@@ -5541,7 +5754,7 @@
 					"spawn": {
 						"team": "automata",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 4,
 						"at": "south_ford",
 						"tag": "m_wave",
 						"tags": [
@@ -5616,7 +5829,7 @@
 					]
 				}
 			],
-			"delay": 38
+			"delay": 34
 		},
 		{
 			"id": "n_m2",
@@ -5652,7 +5865,7 @@
 					"spawn": {
 						"team": "automata",
 						"kind": "clock_soldier",
-						"count": 5,
+						"count": 6,
 						"at": "south_out",
 						"tag": "m_wave",
 						"tags": [
@@ -5676,7 +5889,7 @@
 					"spawn": {
 						"team": "automata",
 						"kind": "clock_soldier",
-						"count": 4,
+						"count": 5,
 						"at": "south_out",
 						"tag": "m_wave",
 						"tags": [
@@ -5750,7 +5963,7 @@
 					]
 				}
 			],
-			"delay": 70
+			"delay": 62
 		},
 		{
 			"id": "n_m3",
@@ -5786,7 +5999,7 @@
 					"spawn": {
 						"team": "automata",
 						"kind": "clock_soldier",
-						"count": 5,
+						"count": 6,
 						"at": "south_ford",
 						"tag": "m_wave",
 						"tags": [
@@ -5810,7 +6023,7 @@
 					"spawn": {
 						"team": "automata",
 						"kind": "clock_soldier",
-						"count": 4,
+						"count": 5,
 						"at": "south_ford",
 						"tag": "m_wave",
 						"tags": [
@@ -5902,7 +6115,7 @@
 					]
 				}
 			],
-			"delay": 102
+			"delay": 90
 		},
 		{
 			"id": "night_press_c",
@@ -6555,6 +6768,12 @@
 		"n_r2": {
 			"who": "narrator",
 			"text": "Raptors again, between you and the fort, with a big one among them.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_m2": {
+			"who": "narrator",
+			"text": "The machines again, out of a dry wash to the south. Netters among them: their chains hold a man fast while the others strike.",
 			"to": "crown",
 			"until": "part2"
 		},

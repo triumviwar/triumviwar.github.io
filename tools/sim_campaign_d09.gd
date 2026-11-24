@@ -36,8 +36,8 @@ var fl := {
 	"d07_spring": ["guild", {"spring": "running", "honest": "some"}],
 	"d08_rivers": ["barra", {"lure": "burned", "barra": "held", "nazare": "some"}],
 }
-const ROAD := [Vector2i(122, 47), Vector2i(112, 45), Vector2i(104, 43), Vector2i(96, 46), Vector2i(88, 51), Vector2i(80, 55),
-	Vector2i(72, 57), Vector2i(64, 53), Vector2i(56, 49), Vector2i(52, 48)]
+const ROAD := [Vector2i(146, 47), Vector2i(136, 45), Vector2i(128, 43), Vector2i(120, 46), Vector2i(112, 51), Vector2i(104, 55),
+	Vector2i(96, 57), Vector2i(88, 53), Vector2i(76, 50), Vector2i(62, 49), Vector2i(54, 48)]
 
 
 func _initialize() -> void:

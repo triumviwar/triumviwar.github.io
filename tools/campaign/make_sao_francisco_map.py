@@ -23,7 +23,7 @@ import os
 import random
 import sys
 
-W, H = 136, 96
+W, H = 160, 96
 cells = [["."] * W for _ in range(H)]
 props = []
 rnd = random.Random(2780)
@@ -84,9 +84,16 @@ for y in range(H):
         CLEAR.add((x, y))
 
 # ---------------------------------------------------------------- the road, the villages, the fort
-ROAD = [(135, 48), (122, 47), (112, 45), (104, 43), (96, 46), (88, 51), (80, 55), (72, 57), (64, 53), (56, 49), (48, 48)]
+E = 24          # (everything east of the fort's ground is drawn 24 cells farther east: the long dry stretch before the fort)
+
+
+def ex(x):
+    return x + E if x >= 50 else x
+
+
+ROAD = [(159, 48), (146, 47), (136, 45), (128, 43), (120, 46), (112, 51), (104, 55), (96, 57), (88, 53), (76, 50), (62, 49), (48, 48)]
 path(ROAD, 2)
-VILLAGES = {"riacho": (104, 39, 7, 5), "lagoa": (72, 61, 7, 5)}
+VILLAGES = {"riacho": (128, 39, 7, 5), "lagoa": (96, 61, 7, 5)}
 for nm, (cx, cy, rx, ry) in VILLAGES.items():
     clear_rect(cx - rx - 2, cy - ry - 2, cx + rx + 3, cy + ry + 3)
 FORT = (26, 37, 50, 60)          # (x0, y0, x1, y1): the palisade's ring and a cleared margin round it
@@ -102,6 +109,7 @@ path([(river_x(82) + 4, 82), (30, 72), (37, 63)], 1)
 # ---------------------------------------------------------------- red sandstone mesas (high ground, a ramp each)
 MESAS = [(90, 24, 8, 5, "s"), (56, 22, 6, 4, "s"), (60, 80, 9, 5, "n"), (118, 76, 7, 5, "w"), (120, 20, 6, 4, "s"),
          (96, 74, 5, 4, "n"), (8, 30, 4, 6, "e"), (8, 64, 4, 6, "e")]
+MESAS = [(ex(cx), cy, rx, ry, ramp) for (cx, cy, rx, ry, ramp) in MESAS]
 for (cx, cy, rx, ry, ramp) in MESAS:
     ellipse(cx, cy, rx, ry, "h", wob=0.12)
     if ramp == "s":
@@ -128,7 +136,7 @@ for (cx, cy, rx, ry, ramp) in MESAS:
 # where the raids come out and gather (kept open)
 for (x0, y0, x1, y1) in [(88, 8, 102, 18), (62, 74, 78, 86), (2, 2, 14, 14), (2, 82, 14, 94), (66, 1, 82, 8), (78, 88, 94, 95),
                          (104, 34, 116, 50), (78, 44, 92, 54), (54, 42, 64, 54), (28, 24, 46, 36), (28, 61, 46, 72)]:
-    clear_rect(x0, y0, x1, y1)
+    clear_rect(ex(x0), y0, ex(x0) + (x1 - x0), y1)
 
 # ---------------------------------------------------------------- the caatinga: thorn trees and cactus, a few rock piles
 for y in range(H):
@@ -141,7 +149,8 @@ for y in range(H):
         elif r < 0.088:
             put(x, y, "k")
 # a few thicker thorn brakes (the raids' cover) off the road
-for (cx, cy, rx, ry) in [(82, 34, 5, 3), (116, 60, 5, 3), (48, 70, 4, 3), (46, 28, 4, 3), (126, 32, 4, 3), (100, 58, 3, 2)]:
+for (cx, cy, rx, ry) in [(82, 34, 5, 3), (116, 60, 5, 3), (48, 70, 4, 3), (46, 28, 4, 3), (126, 32, 4, 3), (100, 58, 3, 2), (62, 36, 4, 3), (66, 62, 4, 3)]:
+    cx = ex(cx)
     for y in range(cy - ry, cy + ry + 1):
         for x in range(cx - rx, cx + rx + 1):
             if get(x, y) == "." and (x, y) not in CLEAR and rnd.random() < 0.42:
@@ -170,13 +179,14 @@ props += [
     # the trails beyond the river
     ["cross_stone", 7, 10, False], ["ox_skull", 6, 87, False], ["branches", 9, 47, False],
 ]
-for _ in range(110):
+props = [[nm, ex(x), y, fl] for (nm, x, y, fl) in props]
+for _ in range(130):
     x, y = rnd.randrange(2, W - 2), rnd.randrange(2, H - 2)
     if get(x, y) == "." and (x, y) not in CLEAR:
         props.append([rnd.choice(["caatinga_bush", "xique_xique", "xique_xique", "sertao_stones", "mandacaru", "branches", "ox_skull"]),
                       x, y, rnd.random() < 0.5])
 
-starts = [[130, 48], [38, 48]]
+starts = [[154, 48], [38, 48]]
 teams = [0, 1]
 
 data = {
