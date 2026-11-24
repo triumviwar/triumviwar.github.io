@@ -188,6 +188,7 @@ func _crown_counters() -> Dictionary:
 				d[pr["name"]] = a.get(pr["name"])      # (crown-1000-brood: its changes' counters)
 		d.merge(preload("res://scripts/ai_wr1000_crown_brood.gd").counters(tm))      # (wr1000-crown-brood: its changes' counters)
 		d.merge(preload("res://scripts/ai_crown_brood_fix.gd").counters(tm))      # (crown-brood-fix: its changes' counters)
+		d.merge(preload("res://scripts/ai_crown_brood_late.gd").counters(tm))     # (crown-brood-late: its parts' counters)
 		var sg = a.get("siege")
 		if sg != null:
 			d["siege_pushes"] = sg.get("pushes")       # (crown-1000-brood: every siege push, what it killed, lost and broke)
@@ -267,7 +268,7 @@ func _side(tm: int) -> Dictionary:
 		"idle_w": g.workers(tm).filter(func(w: Unit) -> bool: return w.order == "idle").size(),
 		"idle_w_avg": snappedf(float(_idle_w[tm][0]) / maxf(1.0, float(_idle_w[tm][1])), 0.1),
 		"push": _push_phase(tm), "crown": _crown_econ(tm, a), "drink": _drinkers(tm), "home": _home_share(tm),
-		"kinds": _kinds(tm)}
+		"kinds": _kinds(tm), "sb": (g.stats[tm].get("spent_by", {}) as Dictionary).duplicate()}
 
 
 ## (brood-v-clockwork-army, a measure) the side's army by kind now: kind -> count (no workers, no rooted Brood creatures)

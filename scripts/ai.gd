@@ -5443,6 +5443,11 @@ func _tend_wagon() -> void:
 var hunt: AIHunt = null          # (rules-fixes 3: the winner hunts, scripts/ai_hunt.gd)
 
 
+## (crown-brood-late) the wave's ready men; AICrown leaves its home guard out (AICrownBroodLate.wave_ready).
+func _late_ready(ready: Array) -> Array:
+	return ready
+
+
 func _army() -> void:
 	_screen_tick()          # (crown-rider-screen: the Crown's riders ahead of its wave's line and the picket at home)
 	var army: Array = game.army(team).filter(func(u: Unit) -> bool: return not _raiders.has(u) and not _on_errand(u) and u.kind != "powder_wagon" and u.kind != Defs.GREAT_WINDER_KIND and u.order != "sacrifice")      # (a Great Winder walks behind it: _great_winder_follow)
@@ -5512,6 +5517,7 @@ func _army() -> void:
 	var regrouping := game.clock < _regroup_until and sup < 60
 	# (riders still on foot, their horses on the way, don't count yet: they follow mounted)
 	var ready := army.filter(func(u: Unit) -> bool: return not _horse_coming(u))
+	ready = _late_ready(ready)          # (crown-brood-late "home": the Crown's home guard stays out of the wave)
 	if r6_cw and _pull_until > 0.0 and game.clock >= _pull_until:
 		_pull_until = 0.0
 		_attack_at = mini(_attack_at, _pull_at0)     # (round 6: a pull-back's higher bar lasts PULL_FOR s, no longer)
