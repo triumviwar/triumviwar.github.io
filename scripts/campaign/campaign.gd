@@ -423,7 +423,16 @@ static func unlocked(id: String, p: Dictionary = {}) -> bool:
 	# a CROSSING (a07: "needs": [missions]): open only once every one of them is finished, whichever led to it
 	var needs: Array = mission(id).get("needs", []) if not sl.is_empty() else []
 	if not needs.is_empty():
-		return open_all or needs.all(func(n) -> bool: return (p["done"] as Dictionary).has(String(n)))
+		if open_all:
+			return true
+		# (d10 / d11) "needs_if": [{"flag": "<mission>.<flag>", "is": value, "needs": [missions]}]: THE CROSSING's second
+		# front is LOCKED until the first is won (owner question 9: the front not chosen waits)
+		for nf in mission(id).get("needs_if", []):
+			var pr := String(nf.get("flag", "")).split(".")
+			var fv: Variant = ((p["done"] as Dictionary).get(pr[0], {}) as Dictionary).get("flags", {}).get(pr[1], null) if pr.size() == 2 else null
+			if fv != null and str(fv) == str(nf.get("is", "")):
+				needs = needs + (nf.get("needs", []) as Array)
+		return needs.all(func(n) -> bool: return (p["done"] as Dictionary).has(String(n)))
 	if not sl.is_empty() and storyline_open(sl, p) and String((sl["missions"] as Array)[0]) == id:
 		return true
 	return (p["reached"] as Array).has(id)
@@ -737,6 +746,10 @@ static func problems(m: Dictionary) -> Array:
 	for n in m.get("needs", []):
 		if mission(String(n)).is_empty():
 			out.append("needs: unknown mission %s" % n)
+	for nf in m.get("needs_if", []):
+		if not (nf is Dictionary) or String(nf.get("flag", "")).split(".").size() != 2:
+			out.append("needs_if: needs {\"flag\": \"<mission>.<flag>\", \"is\", \"needs\"}")
+			continue      # (its missions may be planned, not built yet: d10 names d11, built on its own branch)
 	# the SOLO SIDE PICK, the DIFFICULTY and the MIST (act1-engine0)
 	for sd in m.get("solo_sides", []):
 		if not sides.has(String(sd)):
@@ -916,6 +929,10 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 					out.append("%s: ground needs a name" % where)
 			"version":
 				pass       # (checked against the mission's "versions" in problems())
+			"won_by":
+				# (d10) {"won_by": {"<mission>": side}}: who won a mission played before
+				if not (c[k] is Dictionary):
+					out.append("%s: won_by needs {mission: side}" % where)
 			"heir":
 				if not HEIRS.has(String(c[k])):
 					out.append("%s: unknown heir %s (unseen / named)" % [where, c[k]])
@@ -1128,6 +1145,18 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				out.append("%s: sap needs a tag and \"to\"" % where)
 			elif v["to"] is String and not areas.has(String(v["to"])):
 				out.append("%s: sap to unknown area %s" % [where, v["to"]])
+		"cast":
+			# (d10) {"cast": {"tag", "spell", "near_foe"}}: scripted Mist Toads lay their fog
+			if not (v is Dictionary and v.has("tag")) or not ["fog", "miasma"].has(String(v.get("spell", "fog"))):
+				out.append("%s: cast needs a tag and a spell (fog / miasma)" % where)
+		"tech":
+			# (d10) {"tech": {"team", "id"}}: researches done at once
+			if not (v is Dictionary) or not teams.has(String(v.get("team", ""))):
+				out.append("%s: tech needs a known team" % where)
+			else:
+				for tk in (v["id"] if v.get("id") is Array else [v.get("id", "")]):
+					if not Defs.RESEARCH.has(String(tk)):
+						out.append("%s: tech: unknown research %s" % [where, tk])
 		"chart":
 			# (d04) {"chart": {"side", "team", "known": [areas], "dark", "on"}}: THE FOG OF THE UNMAPPED
 			if not (v is Dictionary):

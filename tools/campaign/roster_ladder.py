@@ -43,7 +43,7 @@ LADDER = {
         ("C5", "d01_minas", ["armoury", "matchlock", "bayonet"], []),
         ("C6", "d05_aldeia", ["dragoon", "charge"], []),
         ("C7", "d09_crossroads", ["armour", "powder_wagon"], []),
-        ("C8", "", ["balloon"], []),
+        ("C8", "d10_jungle", ["balloon"], []),
         ("C9", "", ["charges", "quadrant"], []),
         ("C10", "", ["band"], []),
         ("C11", "", ["band_fifer", "band_piper"], []),
@@ -68,7 +68,7 @@ LADDER = {
         # (B5 and B6 SWAPPED by Act 2's plan, Claude's choice 13: the Queen IS stage 3, so d06 gives it)
         ("B5", "d06_queen", ["stage3", "brute"], []),
         ("B6", "d08_rivers", ["nb_clutch_raptor", "nb_pack_hunt", "nb_quick_roots"], []),
-        ("B7", "", ["mist_toad", "nb_fog", "nb_miasma"], []),
+        ("B7", "d10_jungle", ["mist_toad", "nb_fog", "nb_miasma"], []),
         ("B8", "", ["storm_challenger", "nb_updraft", "nb_clutch_hatchlings"], []),
         ("B9", "", ["nb_clutch_spitter", "nb_slither", "nb_long_spit", "nb_battering_horns", "nb_swamp_mending"], []),
     ],
@@ -95,7 +95,14 @@ BOUND = {
     "d08_rivers": ("brood", ["swarm"]),               # (Act 2's B6, was B5: the swarm, the solo pick and versus; the Barra is not bound)
     "d07_spring": ("clockwork", ["guild"]),           # (Act 2's K6: the machine (solo pick, versus) is not bound: the other side)
     "d09_crossroads": ("crown", ["army"]),            # (Act 2's C7: the army; the fort's garrison (co-op) and the versus pick are not bound)
+    "d10_jungle": ("crown", ["column"]),              # (Act 2's C8: the jungle column; Óbidos' garrison (co-op) is not bound)
 }
+# A mission on TWO ladders (d10: the column's C8 and the swarm's B7 in the mirror and versus): the second ladder's teams and
+# its side. Its NEW cards have a speaker and a trigger of their own ("new_<faction>", "ladder_new_<faction>").
+EXTRA_BOUND = {
+    "d10_jungle": {"brood": ["swarm"]},               # (Act 2's B7: the swarm, the solo pick and versus)
+}
+EXTRA_SIDE = {"d10_jungle": {"brood": "swarm"}}
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
 # ALL TEXT PLACEHOLDER.
@@ -139,6 +146,10 @@ CARDS = {
     "nb_quick_roots": "NEW: QUICK ROOTS. Research it on a Mother's card: every creature roots and uproots in half the time. A forward Mother walks down the bank and is rooted again before the guns find her.",
     "bayonet": "NEW: THE SOCKET BAYONET. Research it at the Armoury: the bayonet hits harder and quicker, and the musket can still fire with it fixed. On the town's stairs, where the fighting is close, it decides the night.",
     "armour": "NEW: ARMOUR. The army of Brazil wears it: your Guardsmen are Musketeers in breastplates, your Cuirassiers Horsemen in cuirasses. They take more before they fall and walk a little slower. The fort's Barracks trains them armoured; its Armoury refits a plain man.",
+    "balloon": "NEW: THE OBSERVATION BALLOON. Father Inácio's: it flies over the forest and sees 14 tiles round it, so your Field Cannons can fire as far as they reach at what it sees. Here the land under the canopy stays dark until a balloon has flown over it. The Foundry at Óbidos builds more; it can also carry four men over the flood.",
+    "mist_toad": "NEW: THE MIST TOAD. Laid by a Mother grown to her third stage with the Venom Sire rooted beside her: a slow swamp caster. Its TONGUE drags one enemy to its feet; its spells need research.",
+    "nb_fog": "NEW: FOG BANK. Research it on the Venom Sire's card: a Mist Toad lays a fog bank where shots fired from or into it miss half the time. Lay it over your Mothers when the guns come.",
+    "nb_miasma": "NEW: MIASMA. Research it on the Venom Sire's card: a Mist Toad lays a green cloud in which the Brood heal. Lay it where your creatures fight.",
     "powder_wagon": "NEW: THE POWDER WAGON. There is no Mill on the road: the wagons carry the army's powder. Musketeers and guns within 3 tiles of one refill from it, so keep it just behind the line, and guard it: it blows up when it is destroyed. It fills again at a Barracks; the fort's Foundry builds more.",
 }
 # (pieces that share a card: the Venom Challenger is told with the Tyrant Challenger)
@@ -185,6 +196,10 @@ CARDS_PT = {
     "nb_quick_roots": "NOVO: RAÍZES RÁPIDAS. Pesquise-as no painel de uma Mãe: todas as criaturas enraízam e desenraízam na metade do tempo. Uma Mãe avançada desce a margem e já está enraizada de novo antes que os canhões a encontrem.",
     "bayonet": "NOVO: A BAIONETA DE ENCAIXE. Pesquise-a no Arsenal: a baioneta fere mais forte e mais depressa, e o mosquete ainda dispara com ela calada. Nas escadas da vila, onde a luta é de perto, ela decide a noite.",
     "armour": "NOVO: A ARMADURA. O exército do Brasil usa-a: os seus Guardas são Mosqueteiros de couraça, os seus Couraceiros Cavaleiros de couraça. Aguentam mais antes de cair e andam um pouco mais devagar. O Quartel do forte treina-os com armadura; o seu Arsenal equipa um homem simples.",
+    "balloon": "NOVO: O BALÃO DE OBSERVAÇÃO. O do Padre Inácio: voa sobre a floresta e vê 14 casas à sua volta, por isso os seus Canhões de Campanha podem atirar tão longe quanto alcançam ao que ele vê. Aqui a terra debaixo da copa fica escura até um balão voar sobre ela. A Fundição de Óbidos faz mais; também pode levar quatro homens por cima da cheia.",
+    "mist_toad": "NOVO: O SAPO DA NÉVOA. Posto por uma Mãe crescida ao terceiro estágio com o Sire do Veneno enraizado ao lado: um lançador lento do pântano. A sua LÍNGUA arrasta um inimigo até aos seus pés; os seus feitiços precisam de pesquisa.",
+    "nb_fog": "NOVO: BANCO DE NÉVOA. Pesquise-o no painel do Sire do Veneno: um Sapo da Névoa põe um banco de névoa onde os tiros disparados de dentro ou para dentro falham metade das vezes. Ponha-o sobre as suas Mães quando os canhões vierem.",
+    "nb_miasma": "NOVO: MIASMA. Pesquise-o no painel do Sire do Veneno: um Sapo da Névoa põe uma nuvem verde onde a Ninhada se cura. Ponha-a onde as suas criaturas lutam.",
     "powder_wagon": "NOVO: A CARROÇA DE PÓLVORA. Não há Moinho na estrada: as carroças levam a pólvora do exército. Mosqueteiros e canhões a 3 casas de uma recarregam dela, por isso mantenha-a logo atrás da linha, e guarde-a: explode quando é destruída. Enche-se outra vez num Quartel; a Fundição do forte faz mais.",
 }
 CARDS_ES = {
@@ -227,16 +242,22 @@ CARDS_ES = {
     "nb_quick_roots": "NUEVO: RAÍCES RÁPIDAS. Investígalas en el panel de una Madre: todas las criaturas enraízan y desenraízan en la mitad de tiempo. Una Madre de avanzada baja por la orilla y vuelve a estar enraizada antes de que los cañones la encuentren.",
     "bayonet": "NUEVO: LA BAYONETA DE CUBO. Investígala en la Armería: la bayoneta hiere más fuerte y más deprisa, y el mosquete aún dispara con ella calada. En las escaleras del pueblo, donde se lucha de cerca, decide la noche.",
     "armour": "NUEVO: LA ARMADURA. El ejército de Brasil la lleva: tus Guardias son Mosqueteros con coraza, tus Coraceros Jinetes con coraza. Aguantan más antes de caer y andan un poco más despacio. El Cuartel del fuerte los entrena con armadura; su Armería equipa a un hombre sencillo.",
+    "balloon": "NUEVO: EL GLOBO DE OBSERVACIÓN. El del Padre Inácio: vuela sobre la selva y ve 14 casillas a su alrededor, así que tus Cañones de Campaña pueden disparar tan lejos como alcanzan a lo que él ve. Aquí la tierra bajo la copa sigue oscura hasta que un globo vuela sobre ella. La Fundición de Óbidos hace más; también puede llevar a cuatro hombres por encima de la crecida.",
+    "mist_toad": "NUEVO: EL SAPO DE NIEBLA. Lo pone una Madre crecida a su tercera etapa con el Señor del Veneno enraizado a su lado: un lanzador lento del pantano. Su LENGUA arrastra a un enemigo hasta sus pies; sus hechizos necesitan investigación.",
+    "nb_fog": "NUEVO: BANCO DE NIEBLA. Investígalo en el panel del Señor del Veneno: un Sapo de Niebla pone un banco de niebla donde los disparos hechos desde dentro o hacia dentro fallan la mitad de las veces. Ponlo sobre tus Madres cuando vengan los cañones.",
+    "nb_miasma": "NUEVO: MIASMA. Investígalo en el panel del Señor del Veneno: un Sapo de Niebla pone una nube verde donde la Prole se cura. Ponla donde luchan tus criaturas.",
     "powder_wagon": "NUEVO: EL CARRO DE PÓLVORA. No hay Molino en el camino: los carros llevan la pólvora del ejército. Mosqueteros y cañones a 3 casillas de uno recargan de él, así que mantenlo justo detrás de la línea, y guárdalo: estalla cuando lo destruyen. Se llena otra vez en un Cuartel; la Fundición del fuerte hace más.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8, "d08_rivers": 8, "d07_spring": 8, "d09_crossroads": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown", "d08_rivers": "swarm", "d07_spring": "guild", "d09_crossroads": "crown"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8, "d08_rivers": 8, "d07_spring": 8, "d09_crossroads": 8, "d10_jungle": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown", "d08_rivers": "swarm", "d07_spring": "guild", "d09_crossroads": "crown", "d10_jungle": "column"}
 
 
-def step_of(mission_id):
+def step_of(mission_id, faction=None):
     for fac, steps in LADDER.items():
+        if faction and fac != faction:
+            continue
         for i, st in enumerate(steps):
             if st[1] == mission_id:
                 return fac, i
@@ -259,17 +280,19 @@ ICON = {c: "res://assets/icons/%s.png" % c for c in CARDS
         if os.path.exists(os.path.join(_ROOT, "assets", "icons", c + ".png"))}
 
 
-def roster_of(mission_id):
-    fac, i = step_of(mission_id)
+def roster_of(mission_id, faction=None):
+    fac, i = step_of(mission_id, faction)
     return {"allow": allow_of(fac, i), "new": list(LADDER[fac][i][2])}
 
 
-def apply(M, mission_id, story_deny=None, at=None):
+def apply(M, mission_id, story_deny=None, at=None, faction=None):
     """Sets the bound teams' roster (the ladder's allow-list, its NEW pieces, the story's own deny on top) and adds the
-    NEW card: a speaker "new", a line per new piece, a trigger "ladder_new" that says them, to the ladder side only."""
-    fac, i = step_of(mission_id)
-    r = roster_of(mission_id)
-    teams = BOUND[mission_id][1]
+    NEW card: a speaker "new", a line per new piece, a trigger "ladder_new" that says them, to the ladder side only.
+    `faction`: a mission's SECOND ladder (EXTRA_BOUND: d10's swarm): its own speaker "new_<faction>" and trigger."""
+    fac, i = step_of(mission_id, faction)
+    r = roster_of(mission_id, faction)
+    extra = faction is not None and faction != BOUND[mission_id][0]
+    teams = EXTRA_BOUND[mission_id][faction] if extra else BOUND[mission_id][1]
     for tm in M["teams"]:
         if tm["id"] in teams:
             ros = {"allow": list(r["allow"]), "new": list(r["new"])}
@@ -277,20 +300,22 @@ def apply(M, mission_id, story_deny=None, at=None):
             if deny:
                 ros["deny"] = list(deny)
             tm["roster"] = ros
-    side = SIDE[mission_id]
+    side = EXTRA_SIDE[mission_id][faction] if extra else SIDE[mission_id]
+    who = "new_" + faction if extra else "new"
+    trig = "ladder_new_" + faction if extra else "ladder_new"
     ids = []
     for k in r["new"]:
         card = SHARED_CARD.get(k, k)
         lid = "new_" + card
         if lid in ids:
             continue
-        M["lines"][lid] = {"who": "new", "to": side, "text": CARDS[card]}
+        M["lines"][lid] = {"who": who, "to": side, "text": CARDS[card]}
         if card in ICON:      # the dialogue box's face: the new piece's own icon (0.38.162, the owner: "what is this NEW?")
             M["lines"][lid]["portrait"] = ICON[card]
         ids.append(lid)
-    M["speakers"]["new"] = {"name": NEW_NAME, "side": side}
-    M["triggers"] = [t for t in M["triggers"] if t["id"] != "ladder_new"]
-    M["triggers"].append({"id": "ladder_new", "when": {"time": at if at is not None else CARD_AT.get(mission_id, 5)},
+    M["speakers"][who] = {"name": NEW_NAME, "side": side}
+    M["triggers"] = [t for t in M["triggers"] if t["id"] != trig]
+    M["triggers"].append({"id": trig, "when": {"time": at if at is not None else CARD_AT.get(mission_id, 5)},
                           "do": [{"say": ids}]})
     return M
 
@@ -300,7 +325,8 @@ def table():
     rows = ["| step | mission | teams | new | comes with | allow-list (code ids) |", "| --- | --- | --- | --- | --- | --- |"]
     for fac, steps in LADDER.items():
         for i, st in enumerate(steps):
-            teams = " ".join(BOUND[st[1]][1]) if st[1] in BOUND else "-"
+            teams = " ".join(BOUND[st[1]][1]) if st[1] in BOUND and BOUND[st[1]][0] == fac else \
+                (" ".join(EXTRA_BOUND[st[1]][fac]) if fac in EXTRA_BOUND.get(st[1], {}) else "-")
             rows.append("| %s | %s | %s | %s | %s | %s |" % (st[0], st[1] or "(slot)", teams, " ".join(st[2]),
                                                           " ".join(st[3]) or "-", " ".join(allow_of(fac, i))))
     return "\n".join(rows)

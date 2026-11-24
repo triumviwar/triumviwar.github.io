@@ -707,6 +707,64 @@ Hollins grown (thirties, a Virginian); the prince's two lines only if the owner 
 | k_end2 | the King | That is what a crown is, in the end: choosing which fire burns longer. | weary wisdom, quiet |
 | k_end_s | the King | That is not how it went. The fort stood. Hear it again from Tomasz. | stern, correcting |
 
+### d10_jungle (The Jungle Front)
+
+Line ids are the mission's (`campaign/voice/d10/<id>.ogg`). The feeling is how the line should sound. The narrator's
+lines ("The Amazon") and the NEW cards can stay as text. The strongest lines have a preset in
+tools/voice_clone/emotions.json (`d10__<id>`). Valadares is the d08 voice (ten years after d03: older); Ruggieri has
+his ref; the Barra's sergeant is d08's. NEW (*): Father Inácio Lourenço (a Brazilian priest-aeronaut, forties, bright,
+quick, a man delighted by the sky; Portuguese-Brazilian, no accent caricature) and the captain of Óbidos (a garrison
+officer, thirties, steady under fire; or Captain Sobral's voice reused).
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | The army split at the São Francisco. One column went up the rivers, and Valadares led it. | slow, setting the scene |
+| k_fresh | the King | We went north first. The swarm was young on the lower river then. | plain, a little relief |
+| k_grown | the King | We went north last. The swarm had a year on the rivers without us. | grave, the cost of the wait |
+| r_order | General Ruggieri | Valadares, you know the rivers. Take the column to Óbidos and break their nests before the rains. | crisp orders, trusting him |
+| r_inacio | General Ruggieri | And take the priest with the balloon. He swears he can see the whole river from up there. | dry, half amused |
+| v_open1 | Valadares | Óbidos, on the narrows of the Amazon, 2780. The fog lay on the water every morning. | quiet, remembering the place |
+| v_open2 | Valadares | I had walked those banks for ten years. I could not see a thing under that canopy. | frank, a woodsman beaten by the dark |
+| k_open_s | the King | Valadares wrote this down as it happened. Here is how it would have gone if the river had been theirs. | cold, a test of the listener |
+| v_1 | Valadares | The forest is dark under the canopy. Whatever roots in it, we will not see it from the ground. | low, practical |
+| i_1 | Father Inácio* | Then let me go up, Senhor Valadares. The sky over a river is the clearest map God ever drew. | bright, eager, a little too cheerful |
+| v_map | Valadares | I know their road down from the plateau: the east creek. That much I have drawn already. | confident, dry |
+| v_sealed | Valadares | My map of the plateau is under seal in Rome. I know nothing of their road that the priest cannot see. | bitter, under his breath |
+| v_barra_burned | Valadares | The Barra's lower town burned two years ago. We rebuilt it on the bluff. I think of it every time I see a roof. | quiet grief, held in |
+| c_gate | the captain of Óbidos* | Senhor! Something moving in the trees west of the gate. We cannot see what. | urgent, uneasy |
+| v_raid | Valadares | Line, at the gate. Let them come into the open. | calm command |
+| i_up | Father Inácio* | Up we go! Mind the rope, my sons, it is the only one I have. | delighted, a joke to the soldiers |
+| i_look | Father Inácio* | Hold her here a little, the wind is kind. I am counting. | concentrating, soft |
+| i_high | Father Inácio* | Higher than the herons now. The fog is under me like milk in a bowl. | wonder, almost laughing |
+| s_bat | the Barra's sergeant | Senhor Valadares! Those of us who got out of the Barra. They are on the old battery, west of the gate. They came down after us. | breathless, ashamed, urgent |
+| v_bat | Valadares | Then we take it back before anything else. The guns there cover the levee. | hard, decided |
+| i_see1 | Father Inácio* | There! I see the river from the narrows to the bend. The island in the middle, and a ruin on it. | wonder, calling down |
+| i_see2 | Father Inácio* | On the banks, where the ground is dry, the green has gone bare in rings. Something great lies in each ring. | slower, uneasy, the wonder going cold |
+| i_see3 | Father Inácio* | I count them for you, Senhor. Mark them on your map, and God keep the men who go in under those trees. | grave, a blessing |
+| v_see | Valadares | Forward Mothers, rooted where the bank is dry. Every one of them is a wave at our gate. | grim arithmetic |
+| v_nests | Valadares | Riders to the near one on the bank. The guns behind them, under the priest. | crisp orders |
+| i_west | Father Inácio* | There is more up the west creek, Senhor, and on the upriver bank. I cannot see through it from here. | calling down, worried |
+| c_gate2 | the captain of Óbidos* | At the gate again, Senhor! Canister! | shouting over the fire |
+| v_fwd_dead | Valadares | One less. Mark it, Father. | dry, tired |
+| v_fog | Valadares | Fog out of a toad's throat. I have seen everything now. | dry disbelief |
+| v_lure | Valadares | I used the old lure once, at the Barra. God forgive me, I kept the recipe. Once more, under our guns. | ashamed, then hard |
+| v_island | Valadares | Lindqvist's island. Their oldest ground is on the ruins of his house. Over the shallows, and burn it. | grim, decided |
+| i_ruins | Father Inácio* | I see the ruin plainly now. The ground round it is the colour of a bruise. | quiet, unsettled |
+| i_last | Father Inácio* | Senhor! Up the levee, out of the west: more than I can count. Coming down to the island and to the town both. | shouting down, alarmed |
+| c_last | the captain of Óbidos* | We hold the gate, Senhor! Mind the island! | shouting, steady |
+| v_won | Valadares | Ring the bell in Óbidos. Then count the men. | exhausted, plain |
+| i_won | Father Inácio* | From up here the river is quiet. I will say Mass for them all on the island, if you let me land. | gentle, tired, grateful |
+| v_hurt | Valadares | I am hit. Keep the line, keep the line. | in pain, steady |
+| i_hurt | Father Inácio* | They have torn the silk! I am coming down, Senhor, slowly, I hope. | alarmed, then trying to joke |
+| v_end1 | Valadares | We broke their ground on the island and burned the ruin over it. Father Inácio said Mass there. | quiet, tired |
+| v_end1b | Valadares | We did not reach the island in time. Their old ground is still there, under the ruin. | flat, regret |
+| v_end_held | Valadares | Every nest on the river was broken before the rains. The towns below Óbidos had a quiet year. | quiet satisfaction |
+| v_end_thin | Valadares | Some of the nests outlived the rains. We held Óbidos; the river above it we only watched. | sober |
+| v_end_inacio | Valadares | The priest stayed with the army. He said the river had made him a soldier, and the soldiers made him their chaplain. | warm, fond |
+| k_end1 | the King | That was the jungle front. Valadares held the river, and a priest in a basket showed him where. | plain, fond |
+| k_end2 | the King | The Queen was never on that map. She was further up, beyond anything we had drawn. | low, ominous |
+| k_end_s | the King | That is not how it went. Valadares broke their nests on the river. But I have kept this page. | stern, correcting |
+
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
 Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, ferrer (2026-11-22), explorer (now Valadares? the owner to say). The King
@@ -732,13 +790,14 @@ voice reused); d07: Matthias (Jakob's son, about twenty, Franconian, earnest and
 would do) and Master Ortlieb (the council's chairman, a comfortable Franconian master, sixties; one line); d09: Major
 Teixeira (the fort's commander, a Portuguese-Brazilian officer in his fifties, worn out; or Sobral's voice reused), the
 frontier's rider (a young dragoon, breathless; two lines a mission) and Sergeant Hollins (Will Hollins grown, a Virginian
-in his thirties).
+in his thirties); d10: Father Inácio Lourenço (the balloonist priest, forties, bright and quick; Brazilian) and the
+captain of Óbidos (a garrison officer, thirties, steady; or Sobral's voice reused).
 
 ## 4. Act 2 (planned, not built)
 
 docs/campaign_act2_plan.md "VOICES" lists Act 2's speakers and the new voices to design (Tomasz grown, Commissary
 Brandt, Desembargador Fonseca, Captain Arruda, Padre Anselmo, Citizen Morel, Matthias (built: d07), Captain de Meneses (built: d01), Lieutenant
-Ramos (built: d01), Brother Tiago (built: d05), Major Teixeira and the frontier's rider (built: d09), the prince if the
+Ramos (built: d01), Brother Tiago (built: d05), Major Teixeira and the frontier's rider (built: d09), Father Inácio and the captain of Óbidos (built: d10), the prince if the
 heir is named (d09 has his two lines)). Each mission's table joins section 2 when it is built.
 
 ## 5. Later

@@ -407,9 +407,9 @@ func _act2() -> void:
 	var st := WarMapData.state(_act1({}))
 	check("act 2: after Rome d01, d02 and d03 (built) are open", st["pins"]["d01_minas"]["state"] == "open" and st["pins"]["d02_exodus"]["state"] == "open"
 		and st["pins"]["d03_fazenda"]["state"] == "open")
-	check("act 2: d05, d07, d08 and d09 (built) locked until their line's mission before; d10 and the rest still planned (not written)", st["pins"]["d05_aldeia"]["state"] == "locked"
+	check("act 2: d05, d07, d08, d09 and d10 (built) locked until the mission before; d11 (being built at the same time) locked or planned", st["pins"]["d05_aldeia"]["state"] == "locked"
 		and st["pins"]["d07_spring"]["state"] == "locked" and st["pins"]["d08_rivers"]["state"] == "locked" and st["pins"]["d09_crossroads"]["state"] == "locked"
-		and st["pins"]["d10_jungle"]["state"] == "planned" and st["pins"]["d11_siege"]["state"] == "planned", "d08 %s d09 %s d10 %s" % [st["pins"]["d08_rivers"]["state"], st["pins"]["d09_crossroads"]["state"], st["pins"]["d10_jungle"]["state"]])
+		and st["pins"]["d10_jungle"]["state"] == "locked" and st["pins"]["d11_siege"]["state"] in ["planned", "locked"], "d08 %s d09 %s d10 %s" % [st["pins"]["d08_rivers"]["state"], st["pins"]["d09_crossroads"]["state"], st["pins"]["d10_jungle"]["state"]])
 	check("act 2: d05 open once d01 is won", WarMapData.state(_act1({"d01_minas": ["crown", {"minas": "quiet"}]}))["pins"]["d05_aldeia"]["state"] == "open")
 	check("act 2: Salvador on the map once Brazil is unrolled", st["marks"]["salvador"] and not WarMapData.state(_with({}))["marks"]["salvador"])
 	check("act 2: Brazil's regions start as the empire's", st["regions"]["minas"] == "empire" and st["regions"]["concordia"] == "empire" and st["regions"]["lower_amazon"] == "empire")

@@ -129,16 +129,19 @@ func _run() -> void:
 				"extra %s, missing %s" % [_minus(have, r["allow"]), _minus(r["allow"], have)])
 			check("%s: team %s's NEW pieces are the table's" % [mid, tid], _same(ros.get("new", []), r["new"]), "%s" % [ros.get("new", [])])
 		# the NEW card: one line of the speaker "new" per new piece (the Venom Challenger shares the Tyrant's), to one side
+		# (a mission on two ladders, d10: the second ladder's cards have a speaker and a trigger of their own, "new_<faction>")
+		var spk := "new_%s" % r["faction"] if (m["speakers"] as Dictionary).has("new_%s" % r["faction"]) else "new"
+		var trg := "ladder_new_%s" % r["faction"] if spk != "new" else "ladder_new"
 		var cards: Array = []
 		for k in m["lines"]:
-			if String(m["lines"][k].get("who", "")) == "new":
+			if String(m["lines"][k].get("who", "")) == spk:
 				cards.append(k)
 		var want: Array = []
 		for k in r["new"]:
 			if k != "venom_challenger":
 				want.append("new_" + k)
 		check("%s: a NEW card per new piece" % mid, _same(cards, want), "%s" % [cards])
-		var side := String(m["speakers"].get("new", {}).get("side", ""))
+		var side := String(m["speakers"].get(spk, {}).get("side", ""))
 		var to_side := side != ""
 		for k in cards:
 			if String(m["lines"][k].get("to", "")) != side:
@@ -146,7 +149,7 @@ func _run() -> void:
 		check("%s: the cards go to the ladder side only" % mid, to_side)
 		var early := false
 		for tr in m["triggers"]:
-			if String(tr["id"]) == "ladder_new" and float(tr["when"].get("time", 999)) <= 10.0 and _same(tr["do"][0]["say"], cards):
+			if String(tr["id"]) == trg and float(tr["when"].get("time", 999)) <= 10.0 and _same(tr["do"][0]["say"], cards):
 				early = true
 		check("%s: the cards are said early" % mid, early)
 		var miss: Array = []

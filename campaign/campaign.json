@@ -14,7 +14,8 @@
 				"a07_council",
 				"d01_minas",
 				"d05_aldeia",
-				"d09_crossroads"
+				"d09_crossroads",
+				"d10_jungle"
 			],
 			"hub": {
 				"title": "The King's Study",
@@ -261,6 +262,24 @@
 									"You chose the city first, as Ruggieri did. Father Ferrer had his siege lines by the spring.",
 									"And the swarm came down the rivers the whole year we were away."
 								]
+							},
+							{
+								"after": "d10_jungle",
+								"flag": {
+									"d10_jungle.jungle": "held"
+								},
+								"lines": [
+									"Valadares broke every nest on the lower river before the rains. A priest in a basket showed him where."
+								]
+							},
+							{
+								"after": "d10_jungle",
+								"flag": {
+									"d10_jungle.jungle": "thin"
+								},
+								"lines": [
+									"Valadares held Óbidos. Some of their nests outlived the rains, and the river above it was theirs that year."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_king_face.png"
@@ -457,6 +476,12 @@
 								"lines": [
 									"Fort Constantine, at the crossroads of the São Francisco. Relieved. Both enemies seen at its gates in the same week.",
 									"The army marches south at noon, to the highlands. The rivers are watched, not held."
+								]
+							},
+							{
+								"after": "d10_jungle",
+								"lines": [
+									"Óbidos, the lower Amazon. The column's work is done; the priest's balloon has mapped the river from the narrows to the bend."
 								]
 							}
 						]
@@ -1074,6 +1099,30 @@
 								},
 								"lines": [
 									"Ruggieri's rider came up the rivers with the word: the army has gone south first. I am to hold the Barra a year more, with what I have."
+								]
+							},
+							{
+								"after": "d10_jungle",
+								"lines": [
+									"Father Inácio drew the river from above. My maps are better for it. I tell him so, and he laughs."
+								]
+							},
+							{
+								"after": "d10_jungle",
+								"flag": {
+									"d10_jungle.island": "burned"
+								},
+								"lines": [
+									"We burned the old ground on Lindqvist's island. The ruin is ash. I did not feel what I thought I would."
+								]
+							},
+							{
+								"after": "d10_jungle",
+								"sides": {
+									"d10_jungle": "swarm"
+								},
+								"lines": [
+									"In that telling the river stayed green. In mine we broke the nests, and I was there."
 								]
 							}
 						]

@@ -147,6 +147,14 @@ const ROLES := {
 	"hollins_sergeant": {"kind": "musketeer", "art": "a_volunteer", "name": "Sergeant Hollins", "hp": 200, "about": "Will Hollins of the Virginia volunteers, a sergeant now."},
 	"fort_commander": {"kind": "dismounted", "name": "Major Teixeira", "hp": 320, "about": "Major Teixeira, commanding Fort Constantine on the São Francisco."},
 	"sertanejo": {"kind": "labourer", "art": "b_villager", "about": "A villager of the sertão, from a village on the road."},
+	# Act 2's d10_jungle (Óbidos, 2780): THE BALLOONIST (docs/campaign_worldwide_plan.md "THE BALLOONIST": Father Inácio
+	# Lourenço, a Brazilian priest-aeronaut, proposed) in his own Observation Balloon; the swarm's forward Mothers rooted on
+	# the river (animals with no names but what the column calls them); the old mound on Lindqvist's island; the captain of
+	# Óbidos (a local man: a minor part)
+	"inacio": {"kind": "balloon", "name": "Father Inácio", "hp": 360, "about": "Father Inácio Lourenço, priest and aeronaut, in his own balloon: he sees over the canopy."},
+	"river_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "A forward Mother", "hp": 1600, "scale": 0.46, "about": "A Brood Mother of the swarm, rooted on the river's bank: what she lays comes down the levee."},
+	"old_mound": {"kind": "mound_turtle", "name": "The old mound", "hp": 1500, "about": "The swarm's oldest ground, on the ruins of Lindqvist's fazenda: a great Mound Turtle rooted there for years."},
+	"obidos_captain": {"kind": "dismounted", "name": "The captain of Óbidos", "hp": 300, "about": "The captain of the fort at Óbidos, on the narrows of the Amazon."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)
