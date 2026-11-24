@@ -96,7 +96,7 @@ BURN_DELAY = 60              # ... the big pen burned before the Queen: her cloc
 GROW_DENY = ["raptor", "hatchlings", "spitter", "tyrant_challenger", "venom_challenger", "storm_challenger"]
 QUEEN_FOOD, QUEEN_SPOILS = 45, 6     # every 8 s after the Queen (a Brute about every 30 s)
 HOUSE_HP = 3000            # the big house
-BAND_SOME, BAND_ALL = 0.25, 0.55
+BAND_SOME, BAND_ALL = 0.2, 0.4
 GROW_FOOD, GROW_SPOILS = 520, 80           # given at Part 3: her growth (500 / 75) and a little over
 BRUTE_FOOD, BRUTE_SPOILS = 640, 85         # given at the Queen: four Brutes (150 / 20 each) and a little over
 

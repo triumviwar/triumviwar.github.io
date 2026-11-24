@@ -99,7 +99,7 @@ Set:
 | flag | values |
 | --- | --- |
 | `queen` | grown (the Brood's GROW, or the fazenda's clock running out) |
-| `brood_n` (+ `brood_n_n`) | the bred creatures on the Queen's side when she grows, as a share of all the bred creatures on the island: few under 25%, some, all from 55%; the fazenda's win: few |
+| `brood_n` (+ `brood_n_n`) | the bred creatures on the Queen's side when she grows, as a share of all the bred creatures on the island: few under 20%, some, all from 40%; the fazenda's win: few |
 | `pieter` | alive / lost (alive if he reached the canoes or still stands) |
 | `lindqvist` | fled (always) |
 | `book` | left (the Brood's win: the lure book stays in the house, for d08) / taken (the fazenda's) |
@@ -107,7 +107,34 @@ Set:
 
 ## Balance (tools/sim_campaign_d06.gd; the last runs)
 
-SIM_TABLE
+On the last mission numbers (the guns: one on EASY; the Queen's food: four Brutes, then 45 a 8 s), the sim's player
+(`active`: the young walked up with the keepers, the army round the Mother, she uproots for a rival Mother near her and
+roots again, Raptors laid; GROW at once; the fall in waves of four Brutes from the north side of the palisade) and the
+fazenda's (three pens, then the canoes). Times are game seconds; "idle" is the longest stretch with nothing to do (the
+THREE RULES' 45 s). `brood_n` counts the bred creatures on the Queen's side when she grows out of all the bred ones on
+the island (the rival packs too): "few" under 20%, "all" from 40%.
+
+| run | result | time | brood_n (went / bred) | pieter | idle |
+| --- | --- | --- | --- | --- | --- |
+| NORMAL, the canon flags (three runs) | Brood wins | 7:20, 7:42, 8:46 | 4/15, 4/15, 3/15: some, some, some (20%) | alive | 21 s |
+| EASY | Brood wins | 5:20 | 5/15: some | alive | 20 s |
+| HARD | Brood wins | 9:09 | 6/17: some | alive | 21 s |
+| NORMAL, d03 hidden few, b01 clutch burned, rival driven, Pieter lost, Varenne executed | Brood wins | 13:10 | 6/12: all | lost (not on the island) | 22 s |
+| NORMAL, d03 hidden all, a05 cages all | Brood wins | 6:25 | 7/18: some | alive | 21 s |
+| NORMAL, the Brood passive (`lazy`) | lost (the Mother killed) | 5:07 | | | 108 s (passive) |
+| the fazenda, active | the fazenda wins (three pens burned, both at the canoes) | 2:52 | few | alive | 19 s |
+| the fazenda, passive | lost (the Queen grows) | 7:17 | | | 242 s (passive) |
+
+(The bands were 25% / 55% while these ran; the column gives the band on today's 20% / 40%.) What the sims taught:
+
+- THE FALL was a grinder: two or three Brutes at a time died to the two swivel guns behind the palisade before a stake
+  fell, and the bot first went for a corner it could not reach. Now the Queen's gift pays four Brutes, the trickle one
+  more about every 30 s, EASY has one gun, and the bot attacks the north side (the way down from the big pen) in waves.
+  A person who sends Brutes one by one will still lose them.
+- Part 1 is short for a player who walks the young up with the keepers (0:30 in the sim): the call over the water only
+  matters to a slow one.
+- `brood_n` never reached "all" on the old 55% (the rival packs count among the bred ones, and most of them die in the
+  Mothers' fight): the bands are 20% / 40% now.
 
 ## Pictures (docs/shots/d06_queen/, CHECK THE FEEL)
 
@@ -181,7 +208,7 @@ anything).
    real enemy: the sims lost wave after wave of two or three Brutes to them; four Brutes at once (the food given at the
    Queen) break in. A person may also uproot the Queen and take her to the palisade (2000 hp; her death still loses).
 9. `brood_n` is counted when the Queen grows (the bred creatures on her side then, out of all the bred ones the island
-   started with): few under 25%, all from 55% (the NORMAL sims end "some" most often). Counting at the end would count
+   started with): few under 20%, all from 40% (the NORMAL sims end "some"; the rival packs count among the bred ones). Counting at the end would count
    the Brutes' deaths at the palisade.
 10. B5 and B6 swapped as the plan said: d06 is B5 (GROW to stage 3 + the Brute). Hatchlings and the Storm Sire stay from
     d03 (B4).
@@ -215,4 +242,18 @@ anything).
 
 ## Tests run
 
-TESTS_RUN
+- tools/test_campaign_d06.gd: 0 failures (the data and the pt / es of every text; every flag path read; Part 1 (the
+  keepers' rings, the call, all in early, the flood); Part 2 (the wild and east Mothers, a stray creature going over, one
+  held in its own ring staying, both Mothers down, the joined); Part 3 (the eggs held while she grows, the Queen, the
+  show, the fall, the canoes, `brood_n`, Pieter lost); the defeat (the Mother killed); the mirror (burning, the clock,
+  the win, the loss); save and load in each part; ironman; the hubs and the war map after d06).
+- test_campaign_save (d06 saved and loaded the same); tools/test_campaign_save.sh d06 (the sim with a save at 2:30: SIM
+  LOAD SAME yes, the same winner; `brood_n` some / all on either side of the 40% line, the fight going a little
+  differently after a load).
+- The campaign tests: test_campaign, test_campaign_a01..a06, b01, c01, d01..d04, heroes, ironman, save, test_act2_engine0,
+  test_hubs_grow, test_roster_ladder, test_war_map: 0 failures. test_campaign_a07 has ONE failure that is not d06's:
+  "the clockmaker line reaches Rome (Act 2 after it)" (d04_concordia's `needs` is ["d02_exodus"] without "a07_council";
+  on main too since d04 merged). d06 itself now needs a07 and d03, so the Naturalist line passes it.
+- The boot check: no SCRIPT ERROR, no Parse Error.
+- tools/i18n_build.py and tools/i18n_patch_build.py (no version without translation).
+- `python3 tools/campaign/make_d03_mission.py` writes d03 exactly as committed (its `next` is d06).
