@@ -1,0 +1,288 @@
+=== test_ai_scout_sentry.gd
+   121 s  posted
+   163 s  peek
+   186 s  peek
+   189 s  lost
+   256 s  posted
+   299 s  peek
+   389 s  posted
+PASS  the walled ramp is recognised
+PASS  a sentry was posted (3)
+FAIL  it flees from the guard that steps out, or stays unharmed (0 flees, alive 146 of 300 s)
+PASS  the computer keeps getting sightings of the guard behind the wall (a sighting in 4 of 29 ten-second windows)
+PASS  one unit at a time, a few replacements at most
+1 FAILED
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_band_music.gd
+CHECK pipes: every tune of the list comes round                                      ok ["pipes_grenadiers", "pipes_garryowen", "pipes_minstrel", "pipes_scotland"]
+CHECK pipes: standing idle a while, a slow air may come next (and not another after it) ok 
+CHECK in turn when marching: the band's list from the first tune to the second       ok 
+CHECK marching: The Pipe Calls after every other tune                                ok 
+CHECK marching: after The Pipe Calls the recordings go on in turn                    ok 
+CHECK fighting: The Drums Lead after every other tune, and straight after a march's main tune ok 
+CHECK at rest: the lament comes next                                                 ok 
+CHECK never two slow airs in a row (the lament, then not The Mist Covered Mountains) ok 
+CHECK a playlist after a tune's end and the pause goes on to the next, its clock carried on ok band_scotland at 2.00 s
+CHECK ... in the pause between two tunes the playlist waits (a real band's breath)   ok band_scotland
+CHECK fighting during the slow air: it stops at its next phrase end (not mid-phrase) ok cut at 25.70
+CHECK ... fading over its last moment (no click)                                     ok -57.5 dB
+CHECK ... then a march or a quickstep                                                ok band_drumslead at 0.30
+NOTE the audio driver mixes nothing here (run with --write-movie, see the top of this file): the sound checks are skipped
+RESULT PASS (0 failed)
+=== test_ai_expand_wall.gd
+    | [04:37] P1 Crown plans palisade for an empty wall slot at its new hall (4 pieces, laid later)
+    | [04:37] P1 Crown plans palisade for an empty wall slot at its new hall (3 pieces, laid later)
+    | [04:37] P1 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+    | [04:37] P1 Crown plans palisade for an empty wall slot at its new hall (2 pieces, laid later)
+    |     busy with: units 371.6 ms/s (8640 calls/s), hud draw 126.6 ms/s (292 calls/s), ai 101.1 ms/s (268 calls/s), hud/top 87.8 ms/s (120 calls/s), buildings 77.9 ms/s (3730 calls/s), hud 72.7 ms/s (268 calls/s), game 72.0 ms/s (268 calls/s), hud/look 63.8 ms/s (134 calls/s), replay/record 39.4 ms/s (30 calls/s), game/fog 25.5 ms/s (34 calls/s), game/fog/units 22.1 ms/s (34 calls/s), ai/workers 18.4 ms/s (12 calls/s), game/unit grid 17.0 ms/s (268 calls/s), overlay draw 14.3 ms/s (34 calls/s), ai/produce 13.5 ms/s (12 calls/s), hud/spec story 12.2 ms/s (8 calls/s), building draw 11.8 ms/s (578 calls/s), ai/workers/xwall 11.2 ms/s (12 calls/s), ai/army 9.8 ms/s (12 calls/s), hud/spec prod 8.9 ms/s (34 calls/s), hud/minimap 7.8 ms/s (45 calls/s), ai/build 7.1 ms/s (12 calls/s), hud/groups 6.1 ms/s (9 calls/s), ai/horses 6.0 ms/s (12 calls/s), silhouettes 5.9 ms/s (268 calls/s), ai/econ 5.5 ms/s (12 calls/s), game/paths 5.3 ms/s (268 calls/s), ai/build/econ 5.3 ms/s (12 calls/s), silhouettes/scan 5.0 ms/s (67 calls/s), game/gears 4.7 ms/s (268 calls/s), ai/abil 3.5 ms/s (12 calls/s), ai/build/supply 2.5 ms/s (12 calls/s), game/fog/buildings 1.6 ms/s (34 calls/s), effects 1.5 ms/s (592 calls/s), game/path smoothing 1.5 ms/s (27 calls/s), hud/card build 1.5 ms/s (19 calls/s), ai/sites_warm 1.5 ms/s (207 calls/s), game/econ 1.1 ms/s (268 calls/s), replay/write 1.0 ms/s (1 calls/s), game/pathfinder 1.0 ms/s (27 calls/s), hud/spec army 1.0 ms/s (9 calls/s), powder smoke 0.9 ms/s (268 calls/s), hud/rest 0.8 ms/s (8 calls/s), game/swamp 0.7 ms/s (268 calls/s), ai/gg 0.7 ms/s (12 calls/s), ai/micro 0.6 ms/s (12 calls/s), game/line net 0.5 ms/s (268 calls/s), hud/tip check 0.5 ms/s (134 calls/s), game/end+ghosts 0.4 ms/s (9 calls/s), game/refit 0.4 ms/s (9 calls/s), hud/map view 0.4 ms/s (8 calls/s), game/zones 0.4 ms/s (268 calls/s), hud/selection 0.4 ms/s (8 calls/s), ai/workers/wall 0.3 ms/s (12 calls/s), hud/command card 0.2 ms/s (8 calls/s), game/stats 0.2 ms/s (2 calls/s), ai/raid 0.1 ms/s (12 calls/s), ai/loose 0.1 ms/s (12 calls/s), unit draw 0.1 ms/s (2 calls/s), hud/chat 0.1 ms/s (8 calls/s), hud/tooltip 0.0 ms/s (8 calls/s), hud/glow 0.0 ms/s (8 calls/s), hud/pause 0.0 ms/s (8 calls/s)
+    | [05:05] P1 Crown lays 3 wall pieces at its new hall (2 labourers on it)
+    | [05:11] P1 Crown lays 2 wall pieces at its new hall (2 labourers on it)
+    | [05:45] P1 Crown lays 7 wall pieces at its new hall (2 labourers on it)
+    |     busy with: units 370.0 ms/s (8664 calls/s), hud draw 108.9 ms/s (250 calls/s), ai 104.1 ms/s (225 calls/s), buildings 95.1 ms/s (5325 calls/s), game 75.6 ms/s (225 calls/s), hud/top 74.5 ms/s (105 calls/s), hud 68.4 ms/s (225 calls/s), hud/look 61.1 ms/s (112 calls/s), replay/record 40.1 ms/s (25 calls/s), game/fog 29.4 ms/s (28 calls/s), game/fog/units 24.2 ms/s (28 calls/s), ai/workers 17.4 ms/s (10 calls/s), game/unit grid 17.4 ms/s (225 calls/s), building draw 14.5 ms/s (695 calls/s), ai/army 14.3 ms/s (10 calls/s), ai/produce 13.7 ms/s (10 calls/s), overlay draw 12.6 ms/s (28 calls/s), hud/spec story 10.7 ms/s (7 calls/s), ai/build 10.0 ms/s (10 calls/s), ai/workers/xwall 8.6 ms/s (10 calls/s), hud/spec prod 7.9 ms/s (29 calls/s), hud/minimap 7.0 ms/s (38 calls/s), ai/horses 6.7 ms/s (10 calls/s), silhouettes 6.2 ms/s (225 calls/s), ai/build/econ 6.1 ms/s (10 calls/s), game/paths 5.6 ms/s (225 calls/s), hud/groups 5.5 ms/s (7 calls/s), silhouettes/scan 5.4 ms/s (56 calls/s), game/gears 5.3 ms/s (225 calls/s), ai/econ 4.2 ms/s (10 calls/s), ai/abil 4.2 ms/s (10 calls/s), game/fog/buildings 3.0 ms/s (28 calls/s), ai/build/supply 2.4 ms/s (10 calls/s), game/path smoothing 1.9 ms/s (23 calls/s), effects 1.5 ms/s (583 calls/s), ai/sites_warm 1.4 ms/s (174 calls/s), hud/card build 1.4 ms/s (16 calls/s), game/econ 1.1 ms/s (225 calls/s), game/pathfinder 0.8 ms/s (23 calls/s), replay/write 0.8 ms/s (1 calls/s), hud/rest 0.7 ms/s (7 calls/s), hud/spec army 0.7 ms/s (7 calls/s), powder smoke 0.7 ms/s (225 calls/s), ai/gg 0.7 ms/s (10 calls/s), game/end+ghosts 0.6 ms/s (7 calls/s), game/swamp 0.6 ms/s (225 calls/s), ai/micro 0.6 ms/s (10 calls/s), game/line net 0.5 ms/s (225 calls/s), hud/tip check 0.4 ms/s (112 calls/s), game/refit 0.4 ms/s (7 calls/s), hud/map view 0.4 ms/s (7 calls/s), hud/selection 0.3 ms/s (7 calls/s), ai/workers/wall 0.3 ms/s (10 calls/s), game/zones 0.3 ms/s (225 calls/s), hud/command card 0.2 ms/s (7 calls/s), game/stats 0.2 ms/s (1 calls/s), ai/loose 0.1 ms/s (10 calls/s), ai/raid 0.1 ms/s (10 calls/s), unit draw 0.1 ms/s (2 calls/s), hud/chat 0.0 ms/s (7 calls/s), hud/tooltip 0.0 ms/s (7 calls/s), hud/pause 0.0 ms/s (7 calls/s), hud/glow 0.0 ms/s (7 calls/s)
+    | [06:15] P1 Crown lays 2 wall pieces at its new hall (2 labourers on it)
+    | [06:18] P1 Crown lays 7 wall pieces at its new hall (2 labourers on it)
+    |     busy with: units 358.1 ms/s (9187 calls/s), ai 117.0 ms/s (200 calls/s), buildings 101.3 ms/s (7782 calls/s), hud draw 100.3 ms/s (227 calls/s), game 74.2 ms/s (200 calls/s), hud/top 70.4 ms/s (97 calls/s), hud 66.2 ms/s (200 calls/s), hud/look 60.2 ms/s (100 calls/s), replay/record 39.9 ms/s (22 calls/s), game/fog 29.6 ms/s (25 calls/s), game/fog/units 23.5 ms/s (25 calls/s), ai/produce 19.6 ms/s (9 calls/s), ai/workers 17.7 ms/s (9 calls/s), ai/army 17.6 ms/s (9 calls/s), game/unit grid 15.7 ms/s (200 calls/s), building draw 15.2 ms/s (885 calls/s), ai/build 12.0 ms/s (9 calls/s), overlay draw 11.1 ms/s (25 calls/s), hud/spec story 8.0 ms/s (6 calls/s), silhouettes 8.0 ms/s (200 calls/s), ai/build/econ 7.9 ms/s (9 calls/s), hud/minimap 7.6 ms/s (34 calls/s), silhouettes/scan 7.1 ms/s (50 calls/s), hud/spec prod 6.9 ms/s (26 calls/s), ai/horses 6.4 ms/s (9 calls/s), ai/abil 6.1 ms/s (9 calls/s), game/gears 5.6 ms/s (200 calls/s), ai/workers/xwall 5.4 ms/s (9 calls/s), game/paths 5.3 ms/s (200 calls/s), hud/groups 4.8 ms/s (7 calls/s), ai/build/supply 4.0 ms/s (9 calls/s), game/fog/buildings 3.9 ms/s (25 calls/s), ai/econ 3.5 ms/s (9 calls/s), game/path smoothing 1.9 ms/s (25 calls/s), hud/card build 1.5 ms/s (14 calls/s), effects 1.5 ms/s (671 calls/s), ai/sites_warm 1.1 ms/s (155 calls/s), game/econ 1.0 ms/s (200 calls/s), game/pathfinder 0.8 ms/s (25 calls/s), game/end+ghosts 0.8 ms/s (6 calls/s), replay/write 0.7 ms/s (1 calls/s), powder smoke 0.7 ms/s (200 calls/s), ai/gg 0.6 ms/s (9 calls/s), hud/spec army 0.6 ms/s (7 calls/s), ai/micro 0.6 ms/s (9 calls/s), game/swamp 0.5 ms/s (200 calls/s), hud/rest 0.5 ms/s (6 calls/s), game/refit 0.4 ms/s (6 calls/s), game/line net 0.4 ms/s (200 calls/s), hud/tip check 0.4 ms/s (100 calls/s), hud/map view 0.3 ms/s (6 calls/s), game/zones 0.3 ms/s (200 calls/s), ai/workers/wall 0.3 ms/s (9 calls/s), hud/selection 0.3 ms/s (6 calls/s), hud/command card 0.2 ms/s (6 calls/s), game/stats 0.1 ms/s (1 calls/s), unit draw 0.1 ms/s (3 calls/s), ai/loose 0.1 ms/s (9 calls/s), ai/raid 0.1 ms/s (9 calls/s), hud/chat 0.0 ms/s (6 calls/s), hud/tooltip 0.0 ms/s (6 calls/s), hud/pause 0.0 ms/s (6 calls/s), hud/glow 0.0 ms/s (6 calls/s)
+RESULT: PASS
+WARNING: 15 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_brood_mirror.gd
+PASS  an enemy Raptor is no rider
+PASS  OPTIMAL's mirror dice hold no Rush
+PASS  P1: no rider read or rider guard against the other Brood (0 lines)
+PASS  P1: the other Brood's opening is not read GREEDY (0)
+PASS  P1: a Mother and one turtle on new ground are no greed
+PASS  P1: a third base early with little army is
+PASS  P1: its economy grows (35 grubs at 5:00)
+PASS  P2: no rider read or rider guard against the other Brood (0 lines)
+PASS  P2: the other Brood's opening is not read GREEDY (0)
+PASS  P2: a Mother and one turtle on new ground are no greed
+PASS  P2: a third base early with little army is
+PASS  P2: its economy grows (35 grubs at 5:00)
+ALL PASS
+WARNING: 1 RID of type "CanvasItem" was leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2733)
+=== test_campaign_ironman.gd
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/main.gd:2580)
+       [1] _page (res://scripts/main.gd:184)
+       [2] _frame (res://scripts/campaign/campaign_menu.gd:46)
+       [3] show (res://scripts/campaign/campaign_menu.gd:663)
+       [4] back_to_hub (res://scripts/campaign/campaign_menu.gd:286)
+       [5] _quit_match (res://scripts/main.gd:3295)
+       [6] _run (res://tools/test_campaign_ironman.gd:92)
+       [7] _frames (res://tools/test_campaign_ironman.gd:61)
+CHECK on: quitting keeps where you left it                                   ok 
+CHECK on: the briefing's START is shut while the mission goes on             FAIL 
+CHECK on: a mission won is played for good                                   FAIL 
+campaign_ironman: 6 failures
+WARNING: 12 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_campaign_a04.gd
+=== test_cliff_horse.gd
+       [0] _draw_swamp (res://scripts/game.gd:6075)
+ERROR: Required object "rp_texture" is null.
+   at: draw_texture (scene/main/canvas_item.cpp:993)
+   GDScript backtrace (most recent call first):
+       [0] _draw_swamp (res://scripts/game.gd:6075)
+ERROR: Required object "rp_texture" is null.
+   at: draw_texture (scene/main/canvas_item.cpp:993)
+   GDScript backtrace (most recent call first):
+       [0] _draw_swamp (res://scripts/game.gd:6075)
+ERROR: Required object "rp_texture" is null.
+   at: draw_texture (scene/main/canvas_item.cpp:993)
+   GDScript backtrace (most recent call first):
+       [0] _draw_swamp (res://scripts/game.gd:6075)
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+       [3] _to_menu (res://scripts/main.gd:3369)
+       [4] _hub (res://tools/test_campaign_a04.gd:583)
+       [5] _run (res://tools/test_campaign_a04.gd:180)
+       [6] _difficulty (res://tools/test_campaign_a04.gd:576)
+       [7] _start (res://tools/test_campaign_a04.gd:82)
+CHECK the Fürth hub after a04: still the guild's barn                            ok 
+CHECK Hollweg after a04, kept: he will mend them                                 ok 
+CHECK Hollweg after a04, melted: slag                                            ok 
+CHECK the automaton after a04, kept / melted                                     ok 
+CHECK Hollweg before a04: the line held                                          ok 
+CHECK the King after a04, kept / melted                                          ok 
+CHECK Hollweg in exile after a04                                                 ok 
+campaign_a04: 0 failures
+WARNING: 14 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_crown_defence.gd
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] musket_shot (res://scripts/game.gd:7198)
+              [3] _strike (res://scripts/unit.gd:5335)
+              [4] _attack_cycle (res://scripts/unit.gd:5251)
+              [5] _engage (res://scripts/unit.gd:5142)
+              [6] _tick_unit (res://scripts/unit.gd:4136)
+              [7] _physics_process (res://scripts/unit.gd:3703)
+PASS  [muster] the army musters at the hall against a force it cannot beat (1)
+PASS  [muster] no Musketeer goes to the Farm alone (0 looks)
+PASS  [muster] when they come at the hall the gathered army fights as one (1 engaged; 8 of 12 Clock Soldiers left, 5 of 5 Musketeers)
+test_crown_defence: ALL PASS (0 failed)
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_crown_rider_screen.gd
+       [2] _gate (res://scripts/building.gd:1306)
+       [3] _tick_building (res://scripts/building.gd:1119)
+       [4] _physics_process (res://scripts/building.gd:1086)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  the picket rides back toward the post (88 px from it, was 553)
+FAILS 1
+SOME FAILED
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_cw_couple.gd
+       [1] _draw (res://scripts/building.gd:1629)
+CHECK a coupled Tesla Locomotive fires from the train                ok foe hp 0 of 70
+CHECK coupled cars carry their place in the save                     FAIL 0 tagged
+SCRIPT ERROR: Invalid access to property or key 'clock' on a base object of type 'Dictionary'.
+          at: restore (res://scripts/save_game.gd:494)
+          GDScript backtrace (most recent call first):
+              [0] restore (res://scripts/save_game.gd:494)
+              [1] _run (res://tools/test_cw_couple.gd:259)
+              [2] step (res://tools/cw_test_util.gd:68)
+CHECK the trains come back after a load                              FAIL 4 before, 0 after
+FAILS: 2
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 376 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_cw_storm.gd
+   at: load (core/io/resource_format_binary.cpp:1156)
+ERROR: Failed loading resource: res://.godot/imported/hoe_4.wav-a3b427147a3e3ea4ecd4ecd7cc49552f.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/work/hoe_4.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Cannot open file 'res://.godot/imported/hoe_5.wav-62ee4ba8b76db1b58dff49e4ad5d4fa7.sample'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+ERROR: Failed loading resource: res://.godot/imported/hoe_5.wav-62ee4ba8b76db1b58dff49e4ad5d4fa7.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/work/hoe_5.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 360 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_egg_tooltips.gd
+       [3] _add_building (res://scripts/game.gd:3474)
+       [4] _run (res://tools/test_egg_tooltips.gd:201)
+ERROR: Failed loading resource: res://assets/buildings/horse_breeder_built.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] tex (res://scripts/game.gd:216)
+       [1] _update_sprite (res://scripts/building.gd:1487)
+       [2] _ready (res://scripts/building.gd:260)
+       [3] _add_building (res://scripts/game.gd:3474)
+       [4] _run (res://tools/test_egg_tooltips.gd:201)
+PASS  a horse_breeder placed
+PASS  the horse_breeder's workers: chip "0/0" (label "0/0"), tooltip "Haulers: 0 assigned, 0 needed"
+egg_tooltips: 0 failures
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_game_name.gd
+
+ok    the name is project.godot's config/name: Triumviwar
+ok    the shown name is not Holdfast
+ok    the user folder stays Pocket RTS
+ok    a new match log header reads
+ok    an old Holdfast match log header reads
+ok    an old Working Title match log header reads
+ok    the name is Triumviwar (owner, 2026-11-13)
+ok    the big heading is the name alone, no subtitle (owner 2026-11-13 20:32): TRIUMVIWAR
+ok    a timeline line is not a header
+ok    export_presets.cfg parses
+ok    the Android app name follows config/name
+ok    the Android package id is unchanged
+ok    the web loading page shows config/name
+FAILS: 0
+=== test_clockwork_springer_timing.gd
+  [5:34] 4 Clock Soldier queued (step 14)
+  [5:34] the opening build is over (its end step) at 46 supply: the computer plays on (Springer timing numbers)
+  [5:34] picks a landing spot at (88.0, 77.0) (stage (85.0, 78.0); 19 tiles from the ramp's top, its hall 11)
+  [5:35] its next Clocktower's spot: (28, 25), room for 9 of its ring's buildings (96% open ground beyond), 28 steps from its halls
+  [6:12] the Swift looks up onto the enemy main (2 economy buildings, 0 guns seen)
+  [6:32] leap: 4 Springers leap in at (89.0, 78.0) (0 armed enemies' worth by it) [1]
+  [6:51] army: the army rests on its gears: 1 run-down units step onto the gears to wind
+PASS  READY (4 Springers, HIGH LEAP, a Swift) by 5:30: 5:20
+PASS  the Springer attack leaves: 5:21
+PASS  the Springers leap up onto the enemy main by 7:00: 6:32
+PASS  the economy grows behind it: 33 Winders at 6:00 (want 16+)
+PASS  a second Clocktower laid by 7:30: 1:49
+RESULT: PASS (0 failed)
+WARNING: 5 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_gear_turn.gd
+              [0] _farm_art (res://scripts/building.gd:284)
+              [1] _ready (res://scripts/building.gd:247)
+              [2] _add_building (res://scripts/game.gd:3474)
+              [3] _start_positions (res://scripts/game.gd:2258)
+              [4] _ready (res://scripts/game.gd:366)
+              [5] make (res://tools/gear_test_util.gd:18)
+              [6] _scene_hash (res://tools/test_gear_turn.gd:290)
+              [7] _run (res://tools/test_gear_turn.gd:274)
+              [8] _scene_hash (res://tools/test_gear_turn.gd:314)
+CHECK the same scene twice gives the same hash                                     ok 3163326482 / 3163326482
+RESULT PASS (0 failed)
+WARNING: 6 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_haulers.gd
+[8] 4685a5d (main+4285a5d) - /tmp/Godot_v4.7-stable_linux.x86_64() [0x4685a5d]
+[9] 4685de4 (main+4285de4) - /tmp/Godot_v4.7-stable_linux.x86_64() [0x4685de4]
+[10] 4978a64 (main+4578a64) - /tmp/Godot_v4.7-stable_linux.x86_64() [0x4978a64]
+[11] 2b4caf2 (main+274caf2) - /tmp/Godot_v4.7-stable_linux.x86_64() [0x2b4caf2]
+[12] 56284d (main+16284d) - /tmp/Godot_v4.7-stable_linux.x86_64() [0x56284d]
+[13] 42c58f (main+2c58f) - /tmp/Godot_v4.7-stable_linux.x86_64() [0x42c58f]
+[14] 7fd95ea2a1ca (libc.so.6+2a1ca) - /lib/x86_64-linux-gnu/libc.so.6(+0x2a1ca) [0x7fd95ea2a1ca]
+[15] 7fd95ea2a28b (libc.so.6+2a28b) - /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x8b) [0x7fd95ea2a28b]
+[16] 4870fa (main+870fa) - /tmp/Godot_v4.7-stable_linux.x86_64() [0x4870fa]
+-- END OF C++ BACKTRACE --
+================================================================
+GDScript backtrace (most recent call first):
+    [0] _save_load (res://tools/test_haulers.gd:455)
+-- END OF GDSCRIPT BACKTRACE --
+================================================================
+=== test_main_clear.gd
+              [3] _ready (res://scripts/game.gd:342)
+              [4] _run (res://tools/test_main_clear.gd:29)
+SCRIPT ERROR: Cannot call method 'get_pixel' on a null value.
+          at: Game._paint_ramps (res://scripts/game.gd:2069)
+          GDScript backtrace (most recent call first):
+              [0] _paint_ramps (res://scripts/game.gd:2069)
+              [1] _render_ground (res://scripts/game.gd:1945)
+              [2] _ready (res://scripts/game.gd:342)
+              [3] _run (res://tools/test_main_clear.gd:29)
+sundered_realm         8 players  main cells 4290  cleared 200  thinned  338  trees/rocks 1510  ok
+main clear: PASS
+WARNING: 44 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 44 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_mount_anim.gd
+ERROR: Unable to open file: res://.godot/imported/patrol.png-f3bb13a7af08742dad26a499d46f682d.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/cursors.gd:47)
+       [1] _ready (res://scripts/main.gd:145)
+ERROR: Failed loading resource: res://.godot/imported/patrol.png-f3bb13a7af08742dad26a499d46f682d.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/cursors.gd:47)
+       [1] _ready (res://scripts/main.gd:145)
+ERROR: Failed loading resource: res://assets/ui/cursors/clockwork/patrol.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/cursors.gd:47)
+       [1] _ready (res://scripts/main.gd:145)

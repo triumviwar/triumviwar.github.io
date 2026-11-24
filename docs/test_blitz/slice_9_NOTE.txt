@@ -1,0 +1,4 @@
+Slice 9 caveat: the one-time `--import` hit its 4-minute cap (rc 124) before finishing, so many textures
+were not imported. Most FAILs here show "Cannot call method 'get_width'/'get_image' on a null value"
+(a missing imported texture), so they are likely import artefacts, not game bugs; rerun after a full import.
+Godot 4.7-stable linux, repo at origin/main ed7b0589 (0.38.199).

@@ -1,0 +1,27 @@
+test_ai_scout_sentry.gd FAIL rc=134 91s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_band_music.gd FAIL rc=0 8s 
+test_ai_expand_wall.gd FAIL rc=134 142s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'heath_6' on a base object of type 'Dictionary'. 
+test_brood_voices.gd PASS rc=0 7s 
+test_brood_mirror.gd FAIL rc=134 68s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_campaign_ironman.gd FAIL rc=134 17s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_campaign_a04.gd FAIL rc=134 52s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'autumn_5' on a base object of type 'Dictionary'. 
+test_cliff_horse.gd FAIL rc=134 14s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'bog_4' on a base object of type 'Dictionary'. 
+test_crown_defence.gd FAIL rc=134 17s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_crown_rider_screen.gd FAIL rc=134 18s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_cw_couple.gd FAIL rc=1 22s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'heath_6' on a base object of type 'Dictionary'. 
+test_cw_storm.gd FAIL rc=0 12s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'heath_6' on a base object of type 'Dictionary'. 
+test_egg_tooltips.gd FAIL rc=134 13s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'bog_4' on a base object of type 'Dictionary'. 
+test_game_name.gd FAIL rc=0 0s FAILS: 0 
+test_clockwork_springer_timing.gd FAIL rc=134 97s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_gear_turn.gd FAIL rc=0 23s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'heath_6' on a base object of type 'Dictionary'. 
+test_haulers.gd FAIL rc=134 22s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'bog_4' on a base object of type 'Dictionary'. 
+test_main_clear.gd FAIL rc=0 207s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_orphan_imports.gd NOTRUN deadline
+test_qa_save_continue.gd NOTRUN deadline
+test_replay.gd NOTRUN deadline
+test_scout_deny.gd NOTRUN deadline
+test_start_layout.gd NOTRUN deadline
+test_vet_chevrons.gd NOTRUN deadline
+test_world_war.gd NOTRUN deadline
+test_kegs.gd TIMEOUT rc=124 240s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_mount_anim.gd FAIL rc=137 15s 
