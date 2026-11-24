@@ -139,6 +139,14 @@ const ROLES := {
 	"ortlieb": {"kind": "missionary", "art": "c_citizen", "name": "Master Ortlieb", "hp": 200, "about": "A master of Concórdia's council who winds a machine every night."},
 	"concordia_citizen": {"kind": "labourer", "art": "c_citizen", "about": "A citizen of Concórdia."},
 	"city_master": {"kind": "missionary", "art": "c_citizen", "hp": 200, "about": "A master of one of Concórdia's quarters, at home with his machines."},
+	# Act 2's d09_crossroads (the sertão, the dry season 2780; the second crossing): the army of Brazil's general and its
+	# vicar general, the Virginia volunteers' sergeant (p01 `families` save), the fort's commander, the road's villagers
+	# (stand-ins until drawn; new keys: Act 1's "ruggieri" and "tomasz" are the younger men)
+	"ruggieri_general": {"kind": "dismounted", "art": "a_ruggieri", "name": "General Ruggieri", "hp": 420, "about": "Matteo Ruggieri, General of the army of Brazil, the guns' man since Virginia."},
+	"tomasz_vicar": {"kind": "missionary", "art": "a_tomasz", "name": "Father Tomasz", "hp": 360, "about": "Father Tomasz, the frontier's vicar general, with the army of Brazil."},
+	"hollins_sergeant": {"kind": "musketeer", "art": "a_volunteer", "name": "Sergeant Hollins", "hp": 200, "about": "Will Hollins of the Virginia volunteers, a sergeant now."},
+	"fort_commander": {"kind": "dismounted", "name": "Major Teixeira", "hp": 320, "about": "Major Teixeira, commanding Fort Constantine on the São Francisco."},
+	"sertanejo": {"kind": "labourer", "art": "b_villager", "about": "A villager of the sertão, from a village on the road."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)

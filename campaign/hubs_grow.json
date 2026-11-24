@@ -182,7 +182,8 @@
    {"after": "a07_council", "lines": ["Rome burned one night, and held. I was not there. The young King was."]}]},
   "ruggieri": {"name": "GENERAL RUGGIERI", "colour": 4, "portrait": "res://campaign/portraits/ruggieri.png", "entries": [
    {"after": "p01_leaf", "lines": ["The guns, Highness. In Virginia they were two. In Rome there are more.", "Earn the King's favour in the field, and I will spend it here on what the men need."]},
-   {"after": "a06_barricades", "lines": ["Paris wanted the Mortar. My old crew will come with you again, if you call them."]}]},
+   {"after": "a06_barricades", "lines": ["Paris wanted the Mortar. My old crew will come with you again, if you call them."]},
+   {"after": "d09_crossroads", "lines": ["The fort held, Highness. Two sieges in a week and a council in an evening. I chose, and I have not slept well since."]}]},
   "delorme": {"name": "CAPTAIN DELORME", "colour": 4, "entries": [
    {"after": "a01_presses", "lines": ["Lyon is quiet. Two of my riders are yours whenever you want them."]},
    {"after": "a01_presses", "flag": {"a01_presses.lyon": "sullen"}, "lines": ["Lyon is sullen, not quiet. Still, two of my riders are yours."]}]},

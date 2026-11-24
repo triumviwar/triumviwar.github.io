@@ -386,6 +386,10 @@ func _spawn(it: Dictionary) -> Array:
 			_tag(String(tg), u)
 		if it.has("as"):
 			Rebels.apply(u, String(it["as"]))       # (a rebel's role: its art, name, torch: scripts/campaign/rebels.gd)
+		if it.get("kit") is Dictionary:
+			# (d09) "kit": {"armour", "lock", "bayonet"}: the soldier's kit as he comes out (THE ROSTER LADDER's C7: the
+			# army's Guardsmen and Cuirassiers in their armour; a Matchlock and a Socket Bayonet already fitted)
+			u.set_kit(it["kit"])
 		if it.has("name"):
 			u.set_meta("mission_name", String(it["name"]))
 		out.append(u)

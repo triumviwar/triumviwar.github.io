@@ -191,7 +191,8 @@ RULES = [
     R({"done": "d08_rivers"}, mark="nazare", show=False),
     R({"won_by": {"d08_rivers": "swarm"}}, region="barra_rio_negro", to="brood", pin="d08_rivers", seal="broken",
       ledger="The swarm took the Barra's bluff and its guns: not how it went."),
-    # d09 BETWEEN TWO FIRES (planned: first brood / clockwork, sertao few / some / many)
+    # d09 BETWEEN TWO FIRES (built: docs/campaign_d09_build.md; first brood / clockwork (no canon: the player chooses), sertao
+    # few / some / many, fort held; a versus friend's win (the magazine blown): not how it went, the seal broken)
     R({"done": "d09_crossroads"}, region="sertao", to="crown", mark="fort", show=True,
       ledger="The army of Brazil relieved the fort at the crossroads of the São Francisco."),
     R({"flag": {"d09_crossroads.first": "brood"}}, ledger="Ruggieri chose the swarm first: the army went up the rivers."),
@@ -201,6 +202,10 @@ RULES = [
     R({"flag": {"d09_crossroads.sertao": "few"}}, ledger="Few of the road's villages came into the fort."),
     R({"done": "d09_crossroads", "flag": {"d07_spring.spring": "running"}}, region="concordia", to="machine", skins=PC,
       ledger="The army's scouts saw it from the road: Concórdia is the machine's."),
+    R({"won_by": {"d09_crossroads": "creatures"}}, pin="d09_crossroads", seal="broken",
+      ledger="The swarm blew the fort's magazine at the crossroads: not how it went."),
+    R({"won_by": {"d09_crossroads": "automata"}}, pin="d09_crossroads", seal="broken",
+      ledger="The machines blew the fort's magazine at the crossroads: not how it went."),
     # the diamond's "first" clock: the front not chosen waits, and grows
     R({"flag": {"d09_crossroads.first": "brood"}, "not_done": "d11_siege"}, pin="d11_siege",
       clock="Waits: the army is in the north, and the city grows while it waits."),
