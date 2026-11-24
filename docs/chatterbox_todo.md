@@ -107,6 +107,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | d04_concordia (the City of Gears, Act 2) | this file, "d04_concordia" below; docs/campaign_d04_build.md | 74 (+15 narrator, 2 NEW cards) | Hollweg 31, Ulrich* 18, Captain Arruda* 10, the King 6, Varenne 4, Citizen Morel* 3, Padre Anselmo* 2 |
 | d01_minas (the Gold of Vila Rica, Act 2) | this file, "d01_minas" below; docs/campaign_d01_build.md | 69 (+19 narrator, 3 NEW cards) | Tomasz* 30, Captain Meneses* 21, Lieutenant Ramos* 9, the King 6, Cardinal Tomasz 2, a townsman* 1 |
 | d06_queen (the Queen, Act 2) | this file, "d06_queen" below; docs/campaign_d06_build.md | 38 (+28 narrator, 2 NEW cards) | Lindqvist 24, Pieter* 8, the King 6 |
+| d08_rivers (Down the Rivers, Act 2) | this file, "d08_rivers" below; docs/campaign_d08_build.md | 37 (+34 narrator, 3 NEW cards) | Valadares* 19, the King 8, Benedito* 7, the Barra's sergeant* 3 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -459,6 +460,54 @@ have a preset in tools/voice_clone/emotions.json (`d06__<id>`). Pieter is the gr
 | k_end_f | the King | He told me he burned them. He did not burn enough. | firm |
 | h_hurt | Lindqvist | My arm. Pieter, the torch. | pain, clipped |
 
+### d08_rivers (Down the Rivers)
+
+Line ids are the mission's (`campaign/voice/d08/<id>.ogg`). The feeling is how the line should sound; lines without one
+are plain. The narrator's 34 lines (the Rio Negro) and the three NEW cards (to the swarm's player only) can stay as
+text. The strongest lines have a preset in tools/voice_clone/emotions.json (`d08__<id>`). Valadares is the a03 / d03
+Valadares, about twenty years older than on the plateau; the Barra's sergeant is a new small part (an old
+Portuguese-Brazilian soldier, a parade-ground voice).
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | Three years after the island, the floods came higher than the last. The swarm came down with them. | flat, a judgement |
+| k_open2 | the King | Valadares held the Barra that season. This is his report, as he wrote it. | dry, a record read out |
+| k_linnea | the King | He told me later he had seen the first of them on the plateau, years before. He knew them at once. | quiet, almost respect for the man |
+| v_open1 | Valadares* | The Rio Negro, the floods of 2778. Every town above the Barra was empty by Lent. | weathered, plain, a report |
+| v_open2 | Valadares* | Nazaré was the last. Its people had nowhere to go but our canoes. | heavy |
+| k_open_s | the King | Valadares wrote this down as it happened. Here is how it would have gone if the bluff had fallen. | dry, a test of the page |
+| v_1 | Valadares* | Column, with me. Up the bank trail to Nazaré, and quickly. Benedito has the canoes at the beach. | DRAMATIC: urgent orders, calm on top |
+| v_map | Valadares* | I drew their road down from the plateau myself. They will cross where the river is shallow: the rapids, the middle, the Barra. | sure of himself, grim |
+| v_sealed | Valadares* | My map of the plateau is under seal in Rome. I will learn their road the hard way, as they come. | rueful, a soldier's shrug |
+| b_party_few | Benedito* | Senhor, I am the last of the plateau's party still on the river. Let us not lose anyone else. | DRAMATIC: old grief, quiet |
+| b_first | Benedito* | The first are in the canoes, Senhor. I can take them all, if they get here. | relief, busy |
+| b_wait | Benedito* | I cannot wait much longer, Senhor! Whoever is not on the beach stays. | DRAMATIC: shouting over the water |
+| b_away | Benedito* | We are away! Down to the Barra, Senhor. Do not stay up here. | urgent |
+| v_2 | Valadares* | Back to the Barra, all of you. Down the trail. They will be at the shallows before us. | DRAMATIC: urgent, a run home |
+| s_2 | the Barra's sergeant* | Senhor Valadares! Creatures on the far bank, opposite the lower town. The guns are loaded. | DRAMATIC: shouting from the wall |
+| v_fwd_dead | Valadares* | Good. Back over the water before the next wave. | grim satisfaction |
+| s_quarter | the Barra's sergeant* | A house in the lower town is burning, Senhor! | alarm |
+| v_mend | Valadares* | Labourers to the palisade. Mend what they break. | clipped orders |
+| b_book | Benedito* | Senhor. Your men brought this from the fazenda's ruins. The Doctor's lure book. | low, uneasy, as if the book were hot |
+| b_book_taken | Benedito* | Senhor. The Doctor left this at the Barra's warehouse for his passage downriver. His lure book. | low, uneasy |
+| b_lure | Benedito* | I know the old lure. A post on the far point, a jar on it, and they turn off their road into the flooded forest. | careful, he knows the cost |
+| v_rome | Valadares* | Rome ordered every one of these books burned. | heavy, the weight of the order |
+| v_burn | Valadares* | No man should call them. Not even once. Into the fire with it. | DRAMATIC: firm, a man choosing the hard way |
+| v_use | Valadares* | Once, for the town. Then it goes in the fire. Benedito, take two men and the canoe. | DRAMATIC: tight, guilty already |
+| v_vs_burn | Valadares* | Rome ordered the books burned. This one too. We hold the Barra with what we have. | firm |
+| s_great | the Barra's sergeant* | Here they come! Canister, at the shallows! | DRAMATIC: shout |
+| v_won | Valadares* | The Barra stands. Ring the bell, sergeant. Then count the houses. | DRAMATIC: exhausted, relief, then duty |
+| v_hurt | Valadares* | I am hit. Keep the line, keep the line. | pain, clipped |
+| v_end1 | Valadares* | We held the bluff. Nazaré's people slept in the church, the canoes on the bank below. | tired, warm |
+| v_end_held | Valadares* | The lower town stood. Every roof. | quiet pride |
+| v_end_burned | Valadares* | The lower town burned. We held only what stood on the bluff. | grief held down |
+| v_end_burnt_book | Valadares* | I burned the book with my own hand, as Rome ordered. | plain, no pride |
+| v_end_used_book | Valadares* | I used the book once. Then I burned it. I have confessed it. | DRAMATIC: confession, steady |
+| k_end1 | the King | He held the river for me that year. He did it with muskets, and once, with a dead man's book. | respect, a little sorrow |
+| k_end1b | the King | He held the river for me that year. With muskets, and without the book. That was harder. | respect |
+| k_end2 | the King | The swarm did not go back up the rivers. It waited in the flooded forest for the next floods. | cold warning |
+| k_end_s | the King | That is not how it went. Valadares held the bluff. But I have kept this page. | firm correction |
+
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
 Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, ferrer (2026-11-22), explorer (now Valadares? the owner to say). The King
@@ -474,7 +523,8 @@ d04: Captain Bento Arruda (a southern Brazilian cattleman-officer, forties, plai
 Padre Anselmo (a kind country priest, sixties, a voice that calms a crowd) and Citizen Morel (an Assembly man, French,
 thirties, cold and clipped); d01: Tomasz grown (about thirty: between the young seminarian and the old Cardinal; one
 voice aged by pitch would do), Captain Luís de Meneses (a Portuguese dragoon officer, forties, blunt and loyal) and
-Lieutenant Inácio Ramos (a Brazilian orator, thirties, warm and dangerous), and "a townsman" (one line).
+Lieutenant Inácio Ramos (a Brazilian orator, thirties, warm and dangerous), and "a townsman" (one line); d08: Valadares
+(the d03 voice, older), Benedito and the Barra's sergeant (an old Portuguese-Brazilian soldier, a parade-ground voice).
 
 ## 4. Act 2 (planned, not built)
 

@@ -1,0 +1,548 @@
+# Act 2's mission d08_rivers, "Down the Rivers" (campaign/missions/d08_rivers.json, written with its texts by
+# tools/campaign/make_d08_mission.py: change the texts THERE and run it again; the plan: docs/campaign_act2_plan.md; what was
+# built: docs/campaign_d08_build.md). EVERY LINE IS A PLACEHOLDER for the owner. Names: shallows = baixios / bajíos; swarm =
+# enxame / enjambre; forward Mother = Mãe avançada / Madre de avanzada; lure = engodo / señuelo; bluff = alto / alto.
+
+> The Barra's Town Hall
+pt A Câmara da Barra
+es El Cabildo de la Barra
+
+> Our Lady of the Conception
+pt Nossa Senhora da Conceição
+es Nuestra Señora de la Concepción
+
+> The lower town
+pt A cidade baixa
+es La ciudad baja
+
+> The Barra's palisade
+pt A paliçada da Barra
+es La empalizada de la Barra
+
+> The church on the bluff must stand.
+pt A igreja no alto tem de ficar de pé.
+es La iglesia del alto debe seguir en pie.
+
+> The Barra's Town Hall must stand.
+pt A Câmara da Barra tem de ficar de pé.
+es El Cabildo de la Barra debe seguir en pie.
+
+> NAZARÉ: take the column north up the bank trail to the village. Walk a man up to each group of its people (the chapel, the houses, the fields): they then go to Benedito's canoes on the beach by themselves. {out_n} of {vill_n} away.
+pt NAZARÉ: leve a coluna para norte pelo trilho da margem até à aldeia. Leve um homem até cada grupo da sua gente (a capela, as casas, os campos): depois vão sozinhos para as canoas de Benedito na praia. {out_n} de {vill_n} a salvo.
+es NAZARÉ: lleva la columna al norte por la senda de la orilla hasta la aldea. Lleva a un hombre hasta cada grupo de su gente (la capilla, las casas, los campos): luego van solos a las canoas de Benedito en la playa. {out_n} de {vill_n} a salvo.
+
+> Nazaré: a man to each group; they go to the canoes. {out_n} of {vill_n} away.
+pt Nazaré: um homem a cada grupo; vão às canoas. {out_n} de {vill_n} a salvo.
+es Nazaré: un hombre a cada grupo; van a las canoas. {out_n} de {vill_n} a salvo.
+
+> The forward Mother across the river roots in {clock:nazare}: then the creatures come over the rapids in numbers.
+pt A Mãe avançada do outro lado do rio enraíza-se em {clock:nazare}: depois as criaturas atravessam os rápidos em grande número.
+es La Madre de avanzada al otro lado del río enraíza en {clock:nazare}: luego las criaturas cruzan los rápidos en masa.
+
+> THE BLUFF: bring the column home down the bank trail. The creatures come over the shallows in waves: hold the lower town by the river and the three gates of the bluff. Train Musketeers at the Barracks; your Labourers mend the palisade.
+pt O ALTO: traga a coluna para casa pelo trilho da margem. As criaturas atravessam os baixios em vagas: defenda a cidade baixa junto ao rio e as três portas do alto. Treine Mosqueteiros no Quartel; os seus Trabalhadores consertam a paliçada.
+es EL ALTO: trae la columna a casa por la senda de la orilla. Las criaturas cruzan los bajíos en oleadas: defiende la ciudad baja junto al río y las tres puertas del alto. Entrena Mosqueteros en el Cuartel; tus Peones reparan la empalizada.
+
+> The bluff: hold the lower town and the three gates. Wave {wave_n} of 5.
+pt O alto: defenda a cidade baixa e as três portas. Vaga {wave_n} de 5.
+es El alto: defiende la ciudad baja y las tres puertas. Oleada {wave_n} de 5.
+
+> THE FORWARD MOTHERS: two more walk down the far bank to root on it; every one rooted puts more creatures in every wave. Cross a shallows with the Dragoons and kill one while she walks ({fwd_killed} killed, {fwd_rooted} rooted).
+pt AS MÃES AVANÇADAS: mais duas descem a outra margem para lá enraizar; cada uma enraizada põe mais criaturas em cada vaga. Atravesse um baixio com os Dragões e mate uma enquanto anda ({fwd_killed} mortas, {fwd_rooted} enraizadas).
+es LAS MADRES DE AVANZADA: dos más bajan por la otra orilla para enraizar en ella; cada una enraizada pone más criaturas en cada oleada. Cruza un bajío con los Dragones y mata a una mientras camina ({fwd_killed} muertas, {fwd_rooted} enraizadas).
+
+> Kill a forward Mother before she roots: {fwd_killed} killed, {fwd_rooted} rooted.
+pt Mate uma Mãe avançada antes que enraíze: {fwd_killed} mortas, {fwd_rooted} enraizadas.
+es Mata a una Madre de avanzada antes de que enraíce: {fwd_killed} muertas, {fwd_rooted} enraizadas.
+
+> THE GREAT WAVE: it comes over the Barra shallows in the dark. Break it, or hold the bluff until first light.
+pt A GRANDE VAGA: atravessa os baixios da Barra no escuro. Quebre-a, ou segure o alto até ao primeiro clarão.
+es LA GRAN OLEADA: cruza los bajíos de la Barra en la oscuridad. Rómpela, o aguanta el alto hasta la primera luz.
+
+> First light in {clock:dawn}.
+pt O primeiro clarão em {clock:dawn}.
+es La primera luz en {clock:dawn}.
+
+> Hold the church and the Town Hall until the floods fall: {clock:floods}.
+pt Segure a igreja e a Câmara até a cheia baixar: {clock:floods}.
+es Aguanta la iglesia y el Cabildo hasta que baje la crecida: {clock:floods}.
+
+> At least one of your forward Mothers must live.
+pt Pelo menos uma das suas Mães avançadas tem de viver.
+es Al menos una de tus Madres de avanzada debe vivir.
+
+> NAZARÉ: the village across the rapids is emptying into Benedito's canoes. Cross the rapids with your Raptors and catch its people before they are away.
+pt NAZARÉ: a aldeia do outro lado dos rápidos está a esvaziar-se nas canoas de Benedito. Atravesse os rápidos com os seus Raptores e apanhe a sua gente antes que fujam.
+es NAZARÉ: la aldea al otro lado de los rápidos se vacía en las canoas de Benedito. Cruza los rápidos con tus Raptores y atrapa a su gente antes de que se vayan.
+
+> THE FAR BANK: walk your second Mother down the far bank and ROOT her in the clearing opposite the Barra (south-west of it, across the Barra shallows). Her swamp then reaches the river.
+pt A OUTRA MARGEM: leve a sua segunda Mãe pela outra margem abaixo e ENRAÍZE-A na clareira em frente da Barra (a sudoeste, do outro lado dos baixios da Barra). O pântano dela chega então ao rio.
+es LA OTRA ORILLA: lleva a tu segunda Madre por la otra orilla y ENRAÍZALA en el claro frente a la Barra (al suroeste, al otro lado de los bajíos de la Barra). Su pantano llega entonces al río.
+
+> BREAK THE BARRA: kill the two guns on the bluff's river edge and break the church ({guns_left} guns left). Brutes break palisades; GROW a Mother to stage 3 for them.
+pt ROMPA A BARRA: mate os dois canhões na beira do alto sobre o rio e derrube a igreja ({guns_left} canhões restam). Os Brutamontes rompem paliçadas; faça uma Mãe CRESCER ao terceiro estágio para os ter.
+es ROMPE LA BARRA: mata los dos cañones del borde del alto sobre el río y derriba la iglesia ({guns_left} cañones quedan). Los Brutos rompen empalizadas; haz CRECER a una Madre a la tercera etapa para tenerlos.
+
+> Kill the two guns ({guns_left} left) and break the church.
+pt Mate os dois canhões ({guns_left} restam) e derrube a igreja.
+es Mata los dos cañones ({guns_left} quedan) y derriba la iglesia.
+
+> The floods fall in {clock:floods}: then the far bank dries and the Barra holds.
+pt A cheia baixa em {clock:floods}: depois a outra margem seca e a Barra aguenta.
+es La crecida baja en {clock:floods}: luego la otra orilla se seca y la Barra aguanta.
+
+> The Rio Negro in the floods of 2778. The swarm comes down the rivers; Valadares brings Nazaré's people out and holds the Barra on its bluff.
+pt O Rio Negro na cheia de 2778. O enxame desce os rios; Valadares tira a gente de Nazaré e defende a Barra no seu alto.
+es El Río Negro en la crecida de 2778. El enjambre baja por los ríos; Valadares saca a la gente de Nazaré y defiende la Barra en su alto.
+
+> Valadares and the Barra do Rio Negro: the column, the garrison on the bluff, two guns, the church; Nazaré's people upriver.
+pt Valadares e a Barra do Rio Negro: a coluna, a guarnição no alto, dois canhões, a igreja; a gente de Nazaré rio acima.
+es Valadares y la Barra del Río Negro: la columna, la guarnición del alto, dos cañones, la iglesia; la gente de Nazaré río arriba.
+
+> The Swarm
+pt O Enxame
+es El Enjambre
+
+> The Brood coming down the rivers in the floods: forward Mothers rooting on the far bank, and what they lay.
+pt A Ninhada a descer os rios na cheia: Mães avançadas a enraizar na outra margem, e o que elas põem.
+es La Prole bajando por los ríos en la crecida: Madres de avanzada enraizando en la otra orilla, y lo que ponen.
+
+> The Barra's sergeant
+pt O sargento da Barra
+es El sargento de la Barra
+
+> Three years after the island, the floods came higher than the last. The swarm came down with them.
+pt Três anos depois da ilha, a cheia veio mais alta do que a anterior. O enxame desceu com ela.
+es Tres años después de la isla, la crecida vino más alta que la anterior. El enjambre bajó con ella.
+
+> Valadares held the Barra that season. This is his report, as he wrote it.
+pt Valadares segurou a Barra nessa estação. Este é o relatório dele, tal como o escreveu.
+es Valadares sostuvo la Barra aquella estación. Este es su informe, tal como lo escribió.
+
+> He told me later he had seen the first of them on the plateau, years before. He knew them at once.
+pt Disse-me mais tarde que tinha visto as primeiras no planalto, anos antes. Reconheceu-as logo.
+es Me dijo después que había visto a las primeras en la meseta, años antes. Las reconoció enseguida.
+
+> The Rio Negro, the floods of 2778. Every town above the Barra was empty by Lent.
+pt O Rio Negro, a cheia de 2778. Todas as vilas acima da Barra estavam vazias pela Quaresma.
+es El Río Negro, la crecida de 2778. Todos los pueblos por encima de la Barra estaban vacíos para Cuaresma.
+
+> Nazaré was the last. Its people had nowhere to go but our canoes.
+pt Nazaré era a última. A sua gente não tinha para onde ir senão as nossas canoas.
+es Nazaré era la última. Su gente no tenía adónde ir sino a nuestras canoas.
+
+> Valadares wrote this down as it happened. Here is how it would have gone if the bluff had fallen.
+pt Valadares escreveu isto à medida que acontecia. Eis como teria sido se o alto tivesse caído.
+es Valadares lo escribió según ocurría. He aquí cómo habría sido si el alto hubiera caído.
+
+> The floods. Forward Mothers root on the far bank, and the ground creeps out from them toward the river.
+pt A cheia. Mães avançadas enraízam na outra margem, e o chão rasteja delas para o rio.
+es La crecida. Madres de avanzada enraízan en la otra orilla, y el suelo se arrastra de ellas hacia el río.
+
+> Column, with me. Up the bank trail to Nazaré, and quickly. Benedito has the canoes at the beach.
+pt Coluna, comigo. Pelo trilho da margem até Nazaré, e depressa. Benedito tem as canoas na praia.
+es Columna, conmigo. Por la senda de la orilla hasta Nazaré, y deprisa. Benedito tiene las canoas en la playa.
+
+> Nazaré is north, up the bank trail. Its people are in three groups: by the chapel, in the houses, in the fields. Walk any of your men up to a group and it goes to the canoes by itself.
+pt Nazaré fica a norte, pelo trilho da margem. A sua gente está em três grupos: junto à capela, nas casas, nos campos. Leve qualquer um dos seus homens até um grupo e ele vai sozinho para as canoas.
+es Nazaré está al norte, por la senda de la orilla. Su gente está en tres grupos: junto a la capilla, en las casas, en los campos. Lleva a cualquiera de tus hombres hasta un grupo y irá solo a las canoas.
+
+> The Barra is yours as well: Labourers on the Farms, Musketeers from the Barracks. The waves will come here when Nazaré is out.
+pt A Barra também é sua: Trabalhadores nas Quintas, Mosqueteiros do Quartel. As vagas virão para aqui quando Nazaré estiver a salvo.
+es La Barra también es tuya: Peones en las Granjas, Mosqueteros del Cuartel. Las oleadas vendrán aquí cuando Nazaré esté a salvo.
+
+> I drew their road down from the plateau myself. They will cross where the river is shallow: the rapids, the middle, the Barra.
+pt Fui eu que desenhei o caminho deles desde o planalto. Vão atravessar onde o rio é baixo: os rápidos, o meio, a Barra.
+es Yo mismo dibujé su camino desde la meseta. Cruzarán donde el río es bajo: los rápidos, el medio, la Barra.
+
+> My map of the plateau is under seal in Rome. I will learn their road the hard way, as they come.
+pt O meu mapa do planalto está selado em Roma. Vou aprender o caminho deles à minha custa, à medida que vêm.
+es Mi mapa de la meseta está sellado en Roma. Aprenderé su camino a la fuerza, según vengan.
+
+> Senhor, I am the last of the plateau's party still on the river. Let us not lose anyone else.
+pt Senhor, sou o último do grupo do planalto ainda no rio. Não percamos mais ninguém.
+es Señor, soy el último de la partida de la meseta que queda en el río. No perdamos a nadie más.
+
+> The people by the chapel take up their bundles and go down to the beach.
+pt A gente junto à capela pega nas trouxas e desce à praia.
+es La gente junto a la capilla coge sus fardos y baja a la playa.
+
+> The families in the houses come out and go down to the beach.
+pt As famílias das casas saem e descem à praia.
+es Las familias de las casas salen y bajan a la playa.
+
+> The people in the manioc fields leave their baskets and run for the beach.
+pt A gente nos campos de mandioca deixa os cestos e corre para a praia.
+es La gente de los campos de mandioca deja los cestos y corre a la playa.
+
+> The first are in the canoes, Senhor. I can take them all, if they get here.
+pt Os primeiros já estão nas canoas, Senhor. Posso levá-los todos, se chegarem cá.
+es Los primeros ya están en las canoas, señor. Puedo llevarlos a todos, si llegan.
+
+> Creatures come over the rapids from the far bank, after the people. Keep your men between them and the villagers.
+pt Criaturas atravessam os rápidos vindas da outra margem, atrás da gente. Mantenha os seus homens entre elas e os aldeões.
+es Criaturas cruzan los rápidos desde la otra orilla, tras la gente. Mantén a tus hombres entre ellas y los aldeanos.
+
+> Across the river the forward Mother roots. Her ground creeps toward the water, and more come over the rapids.
+pt Do outro lado do rio a Mãe avançada enraíza. O chão dela rasteja para a água, e mais atravessam os rápidos.
+es Al otro lado del río la Madre de avanzada enraíza. Su suelo se arrastra hacia el agua, y más cruzan los rápidos.
+
+> I cannot wait much longer, Senhor! Whoever is not on the beach stays.
+pt Não posso esperar muito mais, Senhor! Quem não estiver na praia fica.
+es ¡No puedo esperar mucho más, señor! Quien no esté en la playa se queda.
+
+> We are away! Down to the Barra, Senhor. Do not stay up here.
+pt Estamos a caminho! Para a Barra, Senhor. Não fique aqui em cima.
+es ¡Nos vamos! A la Barra, señor. No se quede aquí arriba.
+
+> Some of Nazaré's people did not reach the beach. They went into the forest, and nobody saw them again.
+pt Parte da gente de Nazaré não chegou à praia. Foi para a floresta, e ninguém mais a viu.
+es Parte de la gente de Nazaré no llegó a la playa. Se fue al bosque, y nadie la volvió a ver.
+
+> Back to the Barra, all of you. Down the trail. They will be at the shallows before us.
+pt De volta à Barra, todos. Pelo trilho abaixo. Vão estar nos baixios antes de nós.
+es De vuelta a la Barra, todos. Por la senda abajo. Estarán en los bajíos antes que nosotros.
+
+> Senhor Valadares! Creatures on the far bank, opposite the lower town. The guns are loaded.
+pt Senhor Valadares! Criaturas na outra margem, em frente da cidade baixa. Os canhões estão carregados.
+es ¡Señor Valadares! Criaturas en la otra orilla, frente a la ciudad baja. Los cañones están cargados.
+
+> They come in waves, over the Barra shallows into the lower town and over the middle shallows down the bank trail. The guns on the bluff reach the shallows.
+pt Vêm em vagas, pelos baixios da Barra para a cidade baixa e pelos baixios do meio pelo trilho abaixo. Os canhões no alto alcançam os baixios.
+es Vienen en oleadas, por los bajíos de la Barra a la ciudad baja y por los bajíos del medio senda abajo. Los cañones del alto alcanzan los bajíos.
+
+> A forward Mother walks down the far bank to root. Rooted, her ground creeps, and every wave grows by what she lays. Cross a shallows with the Dragoons and kill her on the way.
+pt Uma Mãe avançada desce a outra margem para enraizar. Enraizada, o chão dela rasteja, e cada vaga cresce com o que ela põe. Atravesse um baixio com os Dragões e mate-a pelo caminho.
+es Una Madre de avanzada baja por la otra orilla para enraizar. Enraizada, su suelo se arrastra, y cada oleada crece con lo que pone. Cruza un bajío con los Dragones y mátala por el camino.
+
+> Another forward Mother sets off down the far bank, toward the clearing opposite the Barra.
+pt Outra Mãe avançada desce a outra margem, rumo à clareira em frente da Barra.
+es Otra Madre de avanzada baja por la otra orilla, hacia el claro frente a la Barra.
+
+> A forward Mother has rooted on the far bank. More will come in every wave now.
+pt Uma Mãe avançada enraizou na outra margem. Agora virão mais em cada vaga.
+es Una Madre de avanzada ha enraizado en la otra orilla. Ahora vendrán más en cada oleada.
+
+> A forward Mother is dead before she could root. The waves stay smaller.
+pt Uma Mãe avançada está morta antes de conseguir enraizar. As vagas ficam mais pequenas.
+es Una Madre de avanzada ha muerto antes de poder enraizar. Las oleadas siguen siendo más pequeñas.
+
+> Good. Back over the water before the next wave.
+pt Bom. De volta pela água antes da próxima vaga.
+es Bien. De vuelta por el agua antes de la próxima oleada.
+
+> A wave is coming over the shallows.
+pt Uma vaga atravessa os baixios.
+es Una oleada cruza los bajíos.
+
+> A house in the lower town is burning, Senhor!
+pt Está a arder uma casa na cidade baixa, Senhor!
+es ¡Arde una casa en la ciudad baja, señor!
+
+> Labourers to the palisade. Mend what they break.
+pt Trabalhadores para a paliçada. Consertem o que eles partem.
+es Peones a la empalizada. Reparad lo que rompan.
+
+> Dusk. On the far bank they are gathering, more than in any wave before.
+pt Anoitece. Na outra margem estão a juntar-se, mais do que em qualquer vaga antes.
+es Anochece. En la otra orilla se están reuniendo, más que en ninguna oleada antes.
+
+> Senhor. Your men brought this from the fazenda's ruins. The Doctor's lure book.
+pt Senhor. Os seus homens trouxeram isto das ruínas da fazenda. O livro dos engodos do Doutor.
+es Señor. Sus hombres trajeron esto de las ruinas de la fazenda. El libro de los señuelos del doctor.
+
+> Senhor. The Doctor left this at the Barra's warehouse for his passage downriver. His lure book.
+pt Senhor. O Doutor deixou isto no armazém da Barra para pagar a passagem rio abaixo. O livro dos engodos dele.
+es Señor. El doctor dejó esto en el almacén de la Barra para pagar su pasaje río abajo. Su libro de los señuelos.
+
+> I know the old lure. A post on the far point, a jar on it, and they turn off their road into the flooded forest.
+pt Conheço o engodo antigo. Um poste na ponta da outra margem, um frasco nele, e eles desviam-se do caminho para a floresta alagada.
+es Conozco el señuelo antiguo. Un poste en la punta de la otra orilla, un frasco en él, y se desvían de su camino al bosque inundado.
+
+> Rome ordered every one of these books burned.
+pt Roma mandou queimar todos estes livros.
+es Roma ordenó quemar todos estos libros.
+
+> No man should call them. Not even once. Into the fire with it.
+pt Nenhum homem os deve chamar. Nem uma vez. Para o fogo com ele.
+es Ningún hombre debe llamarlos. Ni una sola vez. Al fuego con él.
+
+> The book burns. The whole wave will come over the Barra shallows: hold the lower town and the west gate.
+pt O livro arde. A vaga inteira vai atravessar os baixios da Barra: segure a cidade baixa e a porta oeste.
+es El libro arde. La oleada entera cruzará los bajíos de la Barra: aguanta la ciudad baja y la puerta oeste.
+
+> Once, for the town. Then it goes in the fire. Benedito, take two men and the canoe.
+pt Uma vez, pela vila. Depois vai para o fogo. Benedito, leva dois homens e a canoa.
+es Una vez, por el pueblo. Luego va al fuego. Benedito, llévate a dos hombres y la canoa.
+
+> Benedito sets the lure post on the far point. Part of the wave will turn off its road into the flooded forest.
+pt Benedito põe o poste do engodo na ponta da outra margem. Parte da vaga vai desviar-se do caminho para a floresta alagada.
+es Benedito planta el poste del señuelo en la punta de la otra orilla. Parte de la oleada se desviará de su camino al bosque inundado.
+
+> Rome ordered the books burned. This one too. We hold the Barra with what we have.
+pt Roma mandou queimar os livros. Este também. Seguramos a Barra com o que temos.
+es Roma ordenó quemar los libros. Este también. Sostenemos la Barra con lo que tenemos.
+
+> Night. The great wave comes down to the far bank.
+pt Noite. A grande vaga desce para a outra margem.
+es Noche. La gran oleada baja a la otra orilla.
+
+> The great wave goes into the water at the Barra shallows.
+pt A grande vaga entra na água nos baixios da Barra.
+es La gran oleada entra en el agua en los bajíos de la Barra.
+
+> Half the wave turns toward the far point, past it, into the flooded forest.
+pt Metade da vaga vira-se para a ponta, passa por ela, e entra na floresta alagada.
+es La mitad de la oleada se vuelve hacia la punta, la pasa, y entra en el bosque inundado.
+
+> The water closes over their road. They do not come out of the flooded forest tonight.
+pt A água fecha-se sobre o caminho deles. Não saem da floresta alagada esta noite.
+es El agua se cierra sobre su camino. No salen del bosque inundado esta noche.
+
+> Here they come! Canister, at the shallows!
+pt Aí vêm eles! Metralha, nos baixios!
+es ¡Ahí vienen! ¡Metralla, en los bajíos!
+
+> The great wave is broken. What is left of it goes back into the dark.
+pt A grande vaga está quebrada. O que resta dela volta para o escuro.
+es La gran oleada está rota. Lo que queda de ella vuelve a la oscuridad.
+
+> First light. The far bank is quiet; the swarm has gone back into the flooded forest.
+pt Primeiro clarão. A outra margem está calma; o enxame voltou para a floresta alagada.
+es Primera luz. La otra orilla está en calma; el enjambre ha vuelto al bosque inundado.
+
+> The Barra stands. Ring the bell, sergeant. Then count the houses.
+pt A Barra aguenta. Toque o sino, sargento. Depois conte as casas.
+es La Barra resiste. Toque la campana, sargento. Luego cuente las casas.
+
+> I am hit. Keep the line, keep the line.
+pt Fui atingido. Mantenham a linha, mantenham a linha.
+es Me han dado. Mantened la línea, mantened la línea.
+
+> The bluff is broken. The Barra is lost.
+pt O alto está quebrado. A Barra está perdida.
+es El alto está roto. La Barra está perdida.
+
+> Your forward Mother is rooted across the rapids from Nazaré, your Sires by her. Lay eggs on her card; the grubs make Rootmaws on her swamp for food.
+pt A sua Mãe avançada está enraizada do outro lado dos rápidos, em frente de Nazaré, com os seus Sires. Ponha ovos no painel dela; as larvas fazem Bocarraízes no pântano dela para comida.
+es Tu Madre de avanzada está enraizada al otro lado de los rápidos, frente a Nazaré, con tus Señores. Pon huevos en su panel; las larvas hacen Bocarraíces en su pantano para comida.
+
+> Your second Mother waits on the far bank's middle. Walk her south and root her opposite the Barra.
+pt A sua segunda Mãe espera no meio da outra margem. Leve-a para sul e enraíze-a em frente da Barra.
+es Tu segunda Madre espera en el medio de la otra orilla. Llévala al sur y enraízala frente a la Barra.
+
+> Nazaré's people reach the canoes and are gone down the river.
+pt A gente de Nazaré chega às canoas e desce o rio.
+es La gente de Nazaré llega a las canoas y baja por el río.
+
+> A Mother roots opposite the Barra. Her swamp reaches the water.
+pt Uma Mãe enraíza em frente da Barra. O pântano dela chega à água.
+es Una Madre enraíza frente a la Barra. Su pantano llega al agua.
+
+> Canoes come up from downriver: more men for the Barra.
+pt Chegam canoas de rio abaixo: mais homens para a Barra.
+es Llegan canoas de río abajo: más hombres para la Barra.
+
+> A gun on the bluff is silent.
+pt Um canhão no alto calou-se.
+es Un cañón del alto ha callado.
+
+> The guns are silent and the church is down. The bluff is the swarm's.
+pt Os canhões calaram-se e a igreja caiu. O alto é do enxame.
+es Los cañones han callado y la iglesia ha caído. El alto es del enjambre.
+
+> The floods fall. The far bank dries, and the Barra still stands.
+pt A cheia baixa. A outra margem seca, e a Barra continua de pé.
+es La crecida baja. La otra orilla se seca, y la Barra sigue en pie.
+
+> We held the bluff. Nazaré's people slept in the church, the canoes on the bank below.
+pt Segurámos o alto. A gente de Nazaré dormiu na igreja, as canoas na margem lá em baixo.
+es Sostuvimos el alto. La gente de Nazaré durmió en la iglesia, las canoas en la orilla de abajo.
+
+> The lower town stood. Every roof.
+pt A cidade baixa ficou de pé. Todos os telhados.
+es La ciudad baja quedó en pie. Todos los tejados.
+
+> The lower town burned. We held only what stood on the bluff.
+pt A cidade baixa ardeu. Só segurámos o que estava no alto.
+es La ciudad baja ardió. Solo sostuvimos lo que estaba en el alto.
+
+> I burned the book with my own hand, as Rome ordered.
+pt Queimei o livro com a minha mão, como Roma mandou.
+es Quemé el libro con mi propia mano, como Roma ordenó.
+
+> I used the book once. Then I burned it. I have confessed it.
+pt Usei o livro uma vez. Depois queimei-o. Já me confessei disso.
+es Usé el libro una vez. Luego lo quemé. Ya me he confesado de ello.
+
+> He held the river for me that year. He did it with muskets, and once, with a dead man's book.
+pt Ele segurou o rio para mim nesse ano. Fê-lo com mosquetes, e uma vez com o livro de um homem perdido.
+es Él me sostuvo el río aquel año. Lo hizo con mosquetes, y una vez con el libro de un hombre perdido.
+
+> He held the river for me that year. With muskets, and without the book. That was harder.
+pt Ele segurou o rio para mim nesse ano. Com mosquetes, e sem o livro. Isso foi mais difícil.
+es Él me sostuvo el río aquel año. Con mosquetes, y sin el libro. Eso fue más difícil.
+
+> The swarm did not go back up the rivers. It waited in the flooded forest for the next floods.
+pt O enxame não voltou a subir os rios. Esperou na floresta alagada pela cheia seguinte.
+es El enjambre no volvió a subir los ríos. Esperó en el bosque inundado a la siguiente crecida.
+
+> That is not how it went. Valadares held the bluff. But I have kept this page.
+pt Não foi assim que aconteceu. Valadares segurou o alto. Mas guardei esta página.
+es No fue así como ocurrió. Valadares sostuvo el alto. Pero he guardado esta página.
+
+> The church burned on the bluff. The swarm's ground crept over the Barra by the dry season.
+pt A igreja ardeu no alto. O chão do enxame rastejou sobre a Barra antes da estação seca.
+es La iglesia ardió en el alto. El suelo del enjambre se arrastró sobre la Barra antes de la estación seca.
+
+> The Barra do Rio Negro, where the black river meets the brown, the floods of 2778.
+pt A Barra do Rio Negro, onde o rio negro encontra o pardo, a cheia de 2778.
+es La Barra del Río Negro, donde el río negro se junta con el pardo, la crecida de 2778.
+
+> Nazaré, the canoes.
+pt Nazaré, as canoas.
+es Nazaré, las canoas.
+
+> The lure book, by the fire.
+pt O livro dos engodos, junto ao fogo.
+es El libro de los señuelos, junto al fuego.
+
+> The bluff at first light.
+pt O alto ao primeiro clarão.
+es El alto a la primera luz.
+
+> The Rio Negro, the floods of 2778. You are Valadares and the Barra do Rio Negro: a column at the north gate, the garrison on the bluff, two guns and the town.
+pt O Rio Negro, a cheia de 2778. Você é Valadares e a Barra do Rio Negro: uma coluna na porta norte, a guarnição no alto, dois canhões e a vila.
+es El Río Negro, la crecida de 2778. Eres Valadares y la Barra del Río Negro: una columna en la puerta norte, la guarnición del alto, dos cañones y el pueblo.
+
+> First take the column up the bank trail to Nazaré and send its people to Benedito's canoes. Then come home: the swarm crosses the shallows in waves.
+pt Primeiro leve a coluna pelo trilho da margem até Nazaré e mande a sua gente para as canoas de Benedito. Depois volte: o enxame atravessa os baixios em vagas.
+es Primero lleva la columna por la senda de la orilla hasta Nazaré y manda a su gente a las canoas de Benedito. Luego vuelve: el enjambre cruza los bajíos en oleadas.
+
+> At dusk you will decide what to do with Lindqvist's lure book. The church and the Town Hall must stand.
+pt Ao anoitecer vai decidir o que fazer com o livro dos engodos de Lindqvist. A igreja e a Câmara têm de ficar de pé.
+es Al anochecer decidirás qué hacer con el libro de los señuelos de Lindqvist. La iglesia y el Cabildo deben seguir en pie.
+
+> The Rio Negro, the floods of 2778. You are the swarm: two forward Mothers on the far bank, their Sires, and what they lay.
+pt O Rio Negro, a cheia de 2778. Você é o enxame: duas Mães avançadas na outra margem, os seus Sires, e o que elas põem.
+es El Río Negro, la crecida de 2778. Eres el enjambre: dos Madres de avanzada en la otra orilla, sus Señores, y lo que ponen.
+
+> Catch Nazaré's people before the canoes take them, root a Mother opposite the Barra, and break the Barra: its two guns and its church, before the floods fall.
+pt Apanhe a gente de Nazaré antes que as canoas a levem, enraíze uma Mãe em frente da Barra, e rompa a Barra: os seus dois canhões e a igreja, antes que a cheia baixe.
+es Atrapa a la gente de Nazaré antes de que se la lleven las canoas, enraíza a una Madre frente a la Barra, y rompe la Barra: sus dos cañones y su iglesia, antes de que baje la crecida.
+
+> The Barra Holds
+pt A Barra Aguenta
+es La Barra Resiste
+
+> Of Nazaré's {vill_n} people, {out_n} came down the river. {q_left} of the lower town's {q_n} houses stand.
+pt Das {vill_n} pessoas de Nazaré, {out_n} desceram o rio. {q_left} das {q_n} casas da cidade baixa estão de pé.
+es De las {vill_n} personas de Nazaré, {out_n} bajaron por el río. {q_left} de las {q_n} casas de la ciudad baja siguen en pie.
+
+> The lure book was used once, then burned.
+pt O livro dos engodos foi usado uma vez, depois queimado.
+es El libro de los señuelos se usó una vez, luego se quemó.
+
+> The Bluff Falls
+pt O Alto Cai
+es El Alto Cae
+
+> The guns are silent and the church is down. Of Nazaré's {vill_n} people, {out_n} got away.
+pt Os canhões calaram-se e a igreja caiu. Das {vill_n} pessoas de Nazaré, {out_n} escaparam.
+es Los cañones han callado y la iglesia ha caído. De las {vill_n} personas de Nazaré, {out_n} escaparon.
+
+> THE LURE BOOK
+pt O LIVRO DOS ENGODOS
+es EL LIBRO DE LOS SEÑUELOS
+
+> BURN IT
+pt QUEIMÁ-LO
+es QUEMARLO
+
+> Rome's order. The whole great wave comes over the Barra shallows tonight: the Barra holds by arms.
+pt A ordem de Roma. A grande vaga inteira atravessa os baixios da Barra esta noite: a Barra aguenta pelas armas.
+es La orden de Roma. La gran oleada entera cruza los bajíos de la Barra esta noche: la Barra resiste por las armas.
+
+> USE IT ONCE
+pt USÁ-LO UMA VEZ
+es USARLO UNA VEZ
+
+> Benedito sets the old lure on the far point: half the great wave turns into the flooded forest. Then the book burns.
+pt Benedito põe o engodo antigo na ponta da outra margem: metade da grande vaga desvia-se para a floresta alagada. Depois o livro arde.
+es Benedito planta el señuelo antiguo en la punta de la otra orilla: la mitad de la gran oleada se desvía al bosque inundado. Luego el libro arde.
+
+> NEW: BIGGER CLUTCH. Research it on the Tyrant Sire's card: Raptors hatch three to an egg instead of two (the egg costs more, each Raptor the same). More teeth at the shallows.
+pt NOVO: NINHADA MAIOR. Pesquise-a no painel do Sire Tirano: os Raptores nascem três por ovo em vez de dois (o ovo custa mais, cada Raptor o mesmo). Mais dentes nos baixios.
+es NUEVO: NIDADA MAYOR. Investígala en el panel del Señor Tirano: los Raptores nacen tres por huevo en vez de dos (el huevo cuesta más, cada Raptor lo mismo). Más dientes en los bajíos.
+
+> NEW: PACK HUNT. Research it on the Tyrant Sire's card: Raptors, Tyrant Challengers and the Sire run faster; a Raptor then outruns a horse. Catch the people before the canoes.
+pt NOVO: CAÇA EM BANDO. Pesquise-a no painel do Sire Tirano: os Raptores, os Desafiantes Tiranos e o Sire correm mais depressa; um Raptor passa então um cavalo. Apanhe a gente antes das canoas.
+es NUEVO: CAZA EN MANADA. Investígala en el panel del Señor Tirano: los Raptores, los Retadores Tiranos y el Señor corren más deprisa; un Raptor entonces deja atrás a un caballo. Atrapa a la gente antes de las canoas.
+
+> NEW: QUICK ROOTS. Research it on a Mother's card: every creature roots and uproots in half the time. A forward Mother walks down the bank and is rooted again before the guns find her.
+pt NOVO: RAÍZES RÁPIDAS. Pesquise-as no painel de uma Mãe: todas as criaturas enraízam e desenraízam na metade do tempo. Uma Mãe avançada desce a margem e já está enraizada de novo antes que os canhões a encontrem.
+es NUEVO: RAÍCES RÁPIDAS. Investígalas en el panel de una Madre: todas las criaturas enraízan y desenraízan en la mitad de tiempo. Una Madre de avanzada baja por la orilla y vuelve a estar enraizada antes de que los cañones la encuentren.
+
+> A forward Mother
+pt Uma Mãe avançada
+es Una Madre de avanzada
+
+> A Brood Mother of the swarm, walking down the far bank to root on it.
+pt Uma Mãe da Ninhada do enxame, a descer a outra margem para lá enraizar.
+es Una Madre de la Prole del enjambre, bajando por la otra orilla para enraizar en ella.
+
+> The sergeant of the Barra's garrison, twenty years on the Rio Negro.
+pt O sargento da guarnição da Barra, vinte anos no Rio Negro.
+es El sargento de la guarnición de la Barra, veinte años en el Río Negro.
+
+> Valadares' Quarters at the Barra
+pt Os Aposentos de Valadares na Barra
+es Los Aposentos de Valadares en la Barra
+
+> After the floods the Naturalist's chart is in a Crown hand: Valadares' quarters in the fort at the Barra, the swarm's spread inked in green.
+pt Depois da cheia a carta do Naturalista está numa mão da Coroa: os aposentos de Valadares no forte da Barra, a expansão do enxame desenhada a verde.
+es Tras la crecida la carta del Naturalista está en una mano de la Corona: los aposentos de Valadares en el fuerte de la Barra, la expansión del enjambre trazada en verde.
+
+> Valadares' quarters in the fort at the Barra: the chart on the table, the river through the window.
+pt Os aposentos de Valadares no forte da Barra: a carta na mesa, o rio pela janela.
+es Los aposentos de Valadares en el fuerte de la Barra: la carta en la mesa, el río por la ventana.
+
+> VALADARES
+pt VALADARES
+es VALADARES
+
+> The floods are going down. Their ground does not.
+pt A cheia está a baixar. O chão deles não.
+es La crecida está bajando. Su suelo no.
+
+> Every forward Mother roots a little nearer each season. A mile a week, in the floods.
+pt Cada Mãe avançada enraíza um pouco mais perto a cada estação. Uma milha por semana, na cheia.
+es Cada Madre de avanzada enraíza un poco más cerca cada estación. Una milla por semana, en la crecida.
+
+> I burned the book. I would burn it again. I do not sleep well.
+pt Queimei o livro. Voltaria a queimá-lo. Não durmo bem.
+es Quemé el libro. Volvería a quemarlo. No duermo bien.
+
+> I used the book once. The confessor gave me a penance, and I have done it.
+pt Usei o livro uma vez. O confessor deu-me uma penitência, e já a cumpri.
+es Usé el libro una vez. El confesor me dio una penitencia, y ya la he cumplido.
+
+> Nazaré's people are in the church. All of them. The vicar counts them at every Mass.
+pt A gente de Nazaré está na igreja. Toda. O padre conta-a em cada missa.
+es La gente de Nazaré está en la iglesia. Toda. El padre la cuenta en cada misa.
+
+> Some of Nazaré never reached the beach. I write their names in the report, one by one.
+pt Parte de Nazaré nunca chegou à praia. Escrevo os nomes deles no relatório, um a um.
+es Parte de Nazaré nunca llegó a la playa. Escribo sus nombres en el informe, uno a uno.
+
+> The lower town burned. We are rebuilding it on the bluff, inside the palisade.
+pt A cidade baixa ardeu. Estamos a reconstruí-la no alto, dentro da paliçada.
+es La ciudad baja ardió. La estamos reconstruyendo en el alto, dentro de la empalizada.
+
+> Lindqvist is somewhere downriver. Rome wants him. So do I.
+pt Lindqvist anda algures rio abaixo. Roma quer-no. Eu também.
+es Lindqvist anda en algún lugar río abajo. Roma lo quiere. Yo también.
+
+> The bluff fell in that telling. In mine it stood, and I was on it.
+pt Naquele relato o alto caiu. No meu ficou de pé, e eu estava lá.
+es En ese relato el alto cayó. En el mío resistió, y yo estaba allí.

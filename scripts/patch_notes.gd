@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"A new campaign mission, Act 2's DOWN THE RIVERS (the Naturalist's line, after The Queen): the Rio Negro in the floods of 2778, told by Valadares. Take the column up the bank trail to the mission village of Nazaré and send its people to Benedito's canoes before the swarm's forward Mother roots across the river; then hold the Barra do Rio Negro on its bluff while the swarm crosses the shallows in waves (cross the water and kill a forward Mother while she walks, or every wave grows). At dusk you decide what to do with Lindqvist's lure book: burn it as Rome ordered, or use it once to draw half the great wave into the flooded forest. The solo pick plays the swarm (new for it: BIGGER CLUTCH, PACK HUNT and QUICK ROOTS): catch Nazaré's people, root a Mother opposite the Barra and break its guns and church before the floods fall. All its words and pictures are stand-ins for now.",
+	]},
 	{"v": "0.38.199", "items": [
 		"The Queen: your Brood Mother is now called Linnea (Lindqvist named her after the first one). She is still only an animal.",
 	]},

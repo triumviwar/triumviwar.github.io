@@ -712,6 +712,9 @@ func count(q: Dictionary) -> int:
 			continue
 		if not kinds.is_empty() and not kinds.has(e.kind):
 			continue
+		# (d08) "rooted": true: only Brood creatures rooted now (a forward Mother rooted in the clearing opposite the Barra)
+		if bool(q.get("rooted", false)) and not (e is Unit and BroodNew.rooted(e)):
+			continue
 		n += 1
 	return n
 

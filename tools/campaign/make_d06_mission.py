@@ -302,7 +302,7 @@ M = {
     },
     "lines": {},
     "stills": {},
-    "next": {"brood": "", "fazenda": ""},
+    "next": {"brood": "d08_rivers", "fazenda": "d08_rivers"},
 }
 
 L = M["lines"]

@@ -330,6 +330,17 @@
   "d06__l_book": "angry",
   "d06__l_f_lost": "grief",
   "d06__l_end_all": "grief",
-  "d06__l_end_few": "grief"
+  "d06__l_end_few": "grief",
+  "d08__v_1": "urgent",
+  "d08__b_wait": "shout",
+  "d08__v_2": "urgent",
+  "d08__s_2": "shout",
+  "d08__v_burn": "angry",
+  "d08__v_use": "grief",
+  "d08__s_great": "shout",
+  "d08__v_won": "wonder",
+  "d08__b_party_few": "grief",
+  "d08__v_end_used_book": "grief",
+  "d08__s_quarter": "urgent"
  }
 }

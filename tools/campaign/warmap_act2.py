@@ -179,7 +179,7 @@ RULES = [
     R({"flag": {"d07_spring.honest": "some"}}, ledger="Some of the honest masters stood with Hollweg."),
     R({"flag": {"d07_spring.honest": "few"}}, ledger="Few of the honest masters stood with Hollweg."),
     R({"won_by": {"d07_spring": "machine"}}, ledger="The machine meshed the council hall before dawn."),
-    # d08 DOWN THE RIVERS (planned: lure burned / used, barra held / burned, nazare few / some / all)
+    # d08 DOWN THE RIVERS (built: docs/campaign_d08_build.md; lure burned / used, barra held / burned, nazare few / some / all)
     R({"done": "d08_rivers"}, region="upper_rio_negro", to="brood", ledger="The swarm came down the rivers in the floods; the towns above the Barra are empty."),
     R({"flag": {"d08_rivers.barra": "held"}}, region="barra_rio_negro", to="crown", ledger="Valadares held the Barra, every quarter standing."),
     R({"flag": {"d08_rivers.barra": "burned"}}, region="barra_rio_negro", to="contested", ledger="Valadares held the bluff, but the Barra's lower town burned."),
