@@ -26,6 +26,15 @@
 
 ## Current work
 
+- d11_siege BUILT (job d11-siege, MERGED 0.38.206, docs/campaign_d11_build.md): Act 2's crossing branch v the machines,
+  "The Siege of Concórdia" (2780, old Father Ferrer tells it to Rome; Jakob hears the city ticking): FRESH (d09 `first`
+  clockwork: the wall unfinished, the pioneers mine under it and blow the great spring's tower: `siege` close) / GROWN
+  (the swarm first: the wall finished, Ballistas, owls; hold the camp v the great sortie till dusk: `siege` held_off);
+  Hollweg a prisoner who asked to come (d07 spring stopped) or on his wall (running); map campaign:concordia_siege (d07's
+  city moved east). C9 = PREPARED CHARGES + GUNNER'S QUADRANT; mirror THE CITY on K7 = SPRING BALLISTA + LONG CHAIN. At
+  the merge d11's own second-rung code (BOUND_MORE) was folded into d10's (EXTRA_BOUND: speaker new_<faction>, trigger
+  ladder_new_<faction>) and campaign.gd keeps both `needs_if` (d10) and conditional `needs` entries (d11). Tests
+  tools/test_campaign_d11.gd, sim tools/sim_campaign_d11.gd. ALL TEXT PLACEHOLDER.
 - d10_jungle BUILT (job d10-jungle, MERGED 0.38.205, docs/campaign_d10_build.md): Act 2's crossing branch v the swarm,
   "The Jungle Front" (2780, Valadares tells it): a column up the Amazon to Óbidos breaks the forward nests; FRESH (d09
   `first` brood: 3 Mothers) / GROWN (the city first: 5 Mothers, Mist Toads, needs d11 won); map campaign:obidos_front
