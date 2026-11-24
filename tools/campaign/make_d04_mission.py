@@ -270,7 +270,7 @@ M = {
     "light": "day",
     "expansion_spots": False,
     "manual_end": True,
-    "needs": ["d02_exodus"],
+    "needs": ["a07_council", "d02_exodus"],
     "difficulty": {"easy": {"clocks": 1.25, "spawns": 0.75}, "hard": {"clocks": 0.9, "spawns": 1.15}},
     "modes": ["solo", "versus"],
     "sides": [

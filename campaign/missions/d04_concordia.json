@@ -8,6 +8,7 @@
 	"expansion_spots": false,
 	"manual_end": true,
 	"needs": [
+		"a07_council",
 		"d02_exodus"
 	],
 	"difficulty": {

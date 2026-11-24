@@ -281,7 +281,7 @@ M = {
     "light": "dusk",
     "expansion_spots": False,
     "manual_end": True,
-    "needs": ["d04_concordia"],
+    "needs": ["a07_council", "d04_concordia"],
     "difficulty": {"easy": {"clocks": 1.25, "spawns": 0.75}, "hard": {"clocks": 0.9, "spawns": 1.2}},
     "modes": ["solo", "versus"],
     "solo_sides": ["guild", "machine"],

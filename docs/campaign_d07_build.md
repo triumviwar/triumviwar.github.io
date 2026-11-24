@@ -226,5 +226,10 @@ Every line, every objective text, the masters' names (Ortlieb, Kessler, Brandl, 
 
 - tools/test_campaign_d07.gd: data, every text in pt / es, the flags at the start, Parts 1-3, defeat, the mirror, SAVE /
   LOAD in Part 2, IRONMAN, the hubs and the war map after d07: all pass.
-- Every tools/test_campaign_*.gd, tools/test_war_map.gd, tools/test_roster_ladder.gd: see the job's last commit.
+- Every tools/test_campaign_*.gd (a01-a07, b01, c01, d01-d07, heroes, ironman, m1, save), tools/test_war_map.gd and
+  tools/test_roster_ladder.gd: 0 failures, except test_campaign_m1's "no recording yet for Tomasz" check, which fails on
+  main too (campaign/voice/p01/t_open3.ogg has been recorded since; the check is stale, left for the owner's call).
+- test_campaign_a07's "the clockmaker line reaches Rome" check failed on main (d04 did not list a07_council in its
+  `needs`): d04 and d07 now list it, as d01 / d03 / d05 / d06 do.
+- The game boots with no script error.
 - `python3 tools/i18n_patch_build.py` prints [].
