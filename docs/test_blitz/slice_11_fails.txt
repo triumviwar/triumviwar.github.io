@@ -1,0 +1,385 @@
+=== test_ai_wall_vs_rush.gd
+PASS  the ramp Cottage stands by 45 s (24 s)
+PASS  Cottage and Gate stand by 70 s (37 s)
+FAIL  Barracks and Powder Mill are laid by 75 s (58 s, 100 s)
+PASS  ... before the first Brood fighter arrives (105 s)
+Musketeers at 2:00: 1 (army value 60); first Musketeers at [115.0, 130.0, 145.0, 177.0, 192.0]
+PASS  at least 3 Musketeers (Horsemen on the rush plan) by 2:40 ([115.0, 130.0, 145.0, 177.0, 192.0])
+PASS  at most 2 units lost by 200 s (1)
+PASS  no wall piece was dropped for lack of a builder
+PASS  Raptors are no proof that the Brood is not rushing (foot-soldier proof is for the Crown only)
+PASS  the scout recorded the fast units and classified the opening as a rush (rush)
+PASS  the match log has no 'not a horse rush' line against the Brood
+PASS  the wall had a built gate (own men can pass)
+1 FAILED
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_ai_harass.gd
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  [raid] a Tyrant Sire comes: the riders ride home (3061 -> 2968 px from home)
+ai harass: ALL PASS (0 failed)
+WARNING: 7 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_brood_mother_uproot_ai.gd
+       [0] _draw_swamp (res://scripts/game.gd:6075)
+PASS  a raid worth 210 strikes at her: she gets up to fight
+PASS  meanwhile her Rootmaw waits on her lingering swamp
+PASS  the raid over, she roots again (0 s)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  no Rootmaw lost its swamp (0), hers still rooted
+ALL PASS
+WARNING: 1 RID of type "CanvasItem" was leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2733)
+=== test_bars_audit.gd
+=== test_build_grid.gd
+PASS terrain tile
+PASS building tile
+PASS wall tile
+PASS farm field tile
+PASS off the map
+PASS a cottage on open ground cuts nothing
+PASS and narrows nothing
+PASS the door is a one-tile gap
+PASS the wall beside it is not
+PASS a cottage on the door's mouth cuts the route ((2, 2))
+PASS a cottage beside the door leaves the route
+PASS narrow count works
+ALL PASS
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  brood: the rooting creatures' bars stand just above their pictures (the Mother at stages 1-3 too), one row each
+bars_audit: 0 failures
+WARNING: 7 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_campaign_a06.gd
+              [8] _step (res://tools/test_campaign_a06.gd:93)
+              [9] _to_part2 (res://tools/test_campaign_a06.gd:132)
+              [10] _to_part3 (res://tools/test_campaign_a06.gd:137)
+              [11] _difficulty (res://tools/test_campaign_a06.gd:500)
+              [12] _start (res://tools/test_campaign_a06.gd:80)
+CHECK hard: Varenne not yet away                                                 ok 
+CHECK hard: he runs 6 s after the Crown is in his square                         ok 
+CHECK the King's talk after a06 (spared)                                         ok ["I sent Varenne to sea on Fairleigh\'s word and the Cardinal\'s prayer.", "Remember that mercy is a weapon too. It cuts the one who holds it, sometimes."]
+CHECK the Cardinal's talk after a06 (spared)                                     ok ["I asked for his life and the Marshal gave it. I still do not know if I asked well.", "Notre-Dame\'s doors were black for a year. I made them leave the marks."]
+CHECK the King's talk after a06 (executed)                                       ok ["Varenne died on the Grève by the King\'s law, and I signed it.", "A martyr is harder to fight than a man. I learnt that too late."]
+CHECK the Cardinal's talk after a06 (executed)                                   ok ["I stayed with Varenne the last night. He did not confess. He did let me pray.", "Notre-Dame\'s doors were black for a year. I made them leave the marks."]
+CHECK Fairleigh's letter after a06                                               ok 
+campaign_a06: 0 failures
+WARNING: 18 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_clock_charge.gd
+CHECK playing: our own still is                                              ok 
+CHECK the Springer's screw flies at fly_scale                                ok 0.52
+CHECK it is at least 1.6x its old size                                       FAIL 
+CHECK its sparks stay at shot_scale                                          ok 
+CHECK netted: held by its net, not stunned                                   ok 
+CHECK netted: it does not move                                               ok 0.0 px
+CHECK netted: it still fires its musket at a target in reach                 ok 5000 -> 4981
+CHECK netted: still in place                                                 ok 0.0 px
+CHECK netted: no spells (spell_problem says so)                              ok 
+CHECK free again, it moves                                                   ok 58.9 px
+RESULT FAIL (1 failed)
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_cog_scatter.gd
+              [2] _ready (res://scripts/game.gd:342)
+              [3] make (res://tools/gear_test_util.gd:18)
+              [4] _computer (res://tools/test_cog_scatter.gd:299)
+              [5] _run (res://tools/test_cog_scatter.gd:37)
+              [6] _online (res://tools/test_cog_scatter.gd:293)
+CHECK the computer does not throw on a clump standing still                          ok 
+CHECK on 6 charging Raptors it throws SCATTER COGS (they are seen: true)             ok 
+CHECK aimed ahead of them, toward it                                                 ok 58 vs 156
+ALL PASS
+WARNING: 9 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 18 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+ERROR: 3 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
+=== test_crown_farms.gd
+              [3] _physics_process (res://scripts/building.gd:1086)
+SCRIPT ERROR: Cannot call method 'get_width' on a null value.
+          at: BuildingLife._place_horse (res://scripts/building_life.gd:748)
+          GDScript backtrace (most recent call first):
+              [0] _place_horse (res://scripts/building_life.gd:748)
+              [1] _paddock (res://scripts/building_life.gd:702)
+              [2] tick (res://scripts/building_life.gd:368)
+              [3] _tick_building (res://scripts/building.gd:1126)
+              [4] _physics_process (res://scripts/building.gd:1086)
+PASS  [strays] ... they walk home (1339 -> 897 px)
+PASS  [brood] the Mother and a far turtle alone are not a greedy Brood (balanced: the Mother and 1 turtle on new ground, 0 Rootmaws and 0 grubs seen, 0 Sires, 0 supply of army seen near its base)
+PASS  [brood] (0.27.0 called it greedy: the check catches the old fault: greedy)
+RESULT: PASS (0 failed)
+WARNING: 5 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_campaign_save.gd
+=== test_cw_gun_rush.gd
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+RESULT map greenhold guns 3 guard 2 army 16+4: guns left 0 (all down at 16 s), guard left 0, Clockwork lost 1218 of 1498, pulled back true, gun rushes 1
+KILLS crown { "cannon": 9, "musketeer": 7 }  clockwork { "clock_soldier": 5 }
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_crown_stall.gd
+              [0] play (res://scripts/sfx.gd:258)
+              [1] grub_tick (res://scripts/brood_new.gd:1936)
+              [2] _gather (res://scripts/unit.gd:5540)
+              [3] _tick_unit (res://scripts/unit.gd:4138)
+              [4] _physics_process (res://scripts/unit.gd:3703)
+  foundry stood 277 s, opening over 295 s (the build order is done), labourers at most 48 on two halls (479 s), bank at 8:00 40 (top 390), army 1765, stalls []
+PASS  [foundry] a Foundry stands by 330 s (277)
+PASS  [opening] the opening is over by 390 s (295: the build order is done)
+PASS  [labs] at most 50 labourers on two halls (48)
+PASS  [bank] under 1000 gold at 8:00 (40)
+PASS  [bank] under 1000 gold 80% of the time from 5:00 (181 of 181 s)
+PASS  [army] an army of 900 or more at 8:00 (1765)
+RESULT: PASS (0 failed)
+WARNING: 5 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_cw_tier2.gd
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] tex (res://scripts/game.gd:216)
+       [1] _draw_crane (res://scripts/heavy_works.gd:142)
+       [2] _draw (res://scripts/heavy_works.gd:136)
+ERROR: Failed loading resource: res://assets/buildings/heavy_works_hook.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] tex (res://scripts/game.gd:216)
+       [1] _draw_crane (res://scripts/heavy_works.gd:142)
+       [2] _draw (res://scripts/heavy_works.gd:136)
+WARNING: 4 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_exhaust.gd
+   at: draw_texture (scene/main/canvas_item.cpp:993)
+   GDScript backtrace (most recent call first):
+       [0] _draw_swamp (res://scripts/game.gd:6075)
+ERROR: Required object "rp_texture" is null.
+   at: draw_texture (scene/main/canvas_item.cpp:993)
+   GDScript backtrace (most recent call first):
+       [0] _draw_swamp (res://scripts/game.gd:6075)
+ERROR: Required object "rp_texture" is null.
+   at: draw_texture (scene/main/canvas_item.cpp:993)
+   GDScript backtrace (most recent call first):
+       [0] _draw_swamp (res://scripts/game.gd:6075)
+WARNING: 4 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_gear_unlinked.gd
+       [0] _strip (res://scripts/gear_art.gd:35)
+       [1] plate (res://scripts/gear_art.gd:180)
+       [2] draw_plate (res://scripts/gear.gd:1026)
+       [3] _draw (res://scripts/gear.gd:885)
+ERROR: Failed loading resource: res://assets/gear/floor_plate_brass.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _strip (res://scripts/gear_art.gd:35)
+       [1] plate (res://scripts/gear_art.gd:180)
+       [2] draw_plate (res://scripts/gear.gd:1026)
+       [3] _draw (res://scripts/gear.gd:885)
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_gate_on_wall_plan.gd
+              [6] _physics_process (res://scripts/unit.gd:3703)
+[save] 2:46  9 units, 26 buildings  mem 476 MB
+[save] done
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  a 2-piece gate over a wall being built: 8 walls and 2 gates (8, 2; 2 begun)
+PASS  its builders still work on it
+DONE  0 failure(s)
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_horse_care.gd
+              [3] _physics_process (res://scripts/unit.gd:3703)
+ERROR: Required object "rp_texture" is null.
+   at: draw_texture (scene/main/canvas_item.cpp:993)
+   GDScript backtrace (most recent call first):
+       [0] _draw_unit (res://scripts/unit.gd:8475)
+       [1] _draw (res://scripts/unit.gd:8292)
+ERROR: Required object "rp_texture" is null.
+   at: draw_texture (scene/main/canvas_item.cpp:993)
+   GDScript backtrace (most recent call first):
+       [0] _draw_unit (res://scripts/unit.gd:8475)
+       [1] _draw (res://scripts/unit.gd:8292)
+PASS  both back on, the Horseman healed (mounted_missionary cuirassier, 90/90)
+ALL PASS
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_marching_band.gd
+CHECK ... already a band                                                         ok 
+CHECK ... its wounds shared out (70 of 105: two thirds each)                     ok 26.7 23.3
+CHECK ... its solo goes on with the Fifer, his cooldown kept                     ok 
+CHECK an old band with an old save's PIPES research: a Piper comes with it       ok 
+CHECK the online snapshot carries a musician's state                             ok { "id": 2, "se": 115.93, "cd": 150.93, "b": 1 }
+CHECK the snapshot's lists match its values                                      ok 
+CHECK a replay records the field                                                 ok 
+CHECK an old FULL replay's band picture is drawn as before (its Fifer and Piper with it) ok 
+CHECK killed, his buff is gone after its linger                                  ok 
+CHECK an old cfg's marching_band switch is not read                              ok 
+marching band: 0 failures
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 377 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_music_clock.gd
+PASS  clock_battle_12 plays as the full battle and has no other role
+PASS  clock_battle_13 plays as the full battle and has no other role
+PASS  clock_battle_16 plays as the full battle and has no other role
+PASS  clock_battle_17 plays as the full battle and has no other role
+PASS  clock_battle_6 has a title (The Great Escapement)
+PASS  clock_battle_7 has a title (Calibration)
+PASS  clock_battle_8 has a title (Tick, Tock, Alarm)
+PASS  clock_battle_9 has a title (The Watchful Gear)
+PASS  clock_battle_10 has a title (Pressure Rising)
+PASS  clock_battle_11 has a title (Cathedral of Gears)
+PASS  clock_battle_12 has a title (Anvil Chorus of a Thousand Hands)
+PASS  clock_battle_13 has a title (The Grand Calculation)
+PASS  clock_peace_6 has a title (The Clockmaker's Lament)
+PASS  clock_peace_7 has a title (Canon of Perfect Order)
+FAILS: 0
+=== test_qa_settings_persist.gd
+       [5] <anonymous lambda> (res://scripts/main.gd:2384)
+       [6] _run (res://tools/test_qa_settings_persist.gd:189)
+ERROR: Failed loading resource: res://assets/menu/brood.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/main.gd:2580)
+       [1] _page (res://scripts/main.gd:184)
+       [2] _settings_page (res://scripts/main.gd:1179)
+       [3] show_settings (res://scripts/main.gd:1046)
+       [4] <anonymous lambda> (res://scripts/main.gd:1391)
+       [5] <anonymous lambda> (res://scripts/main.gd:2384)
+       [6] _run (res://tools/test_qa_settings_persist.gd:189)
+CHECK reset: choices back to the start, saved                          ok { "device": "pc", "drag_mode": "box", "fullscreen": true, "window_full": false, "ui_size": 0, "grid_keys": false, "tooltips": true, "build_grid": true, "area_marks": true, "powder_smoke": -1, "expansion_spots": true, "rootmaw_spots": true, "health_bars": 0, "band_marks": 1, "charge_bars": true, "gear_turn": true, "mini_alpha": 0.6, "overlay_alpha": 0.6, "relay_url": "wss://example.invalid/keep", "language": "en", "replays_keep": 30, "replay_rec": "", "narrator": true, "narrator_volume": 80, "narrator_rate": 1.1 }
+CHECK reset: the relay address stays                                   ok 
+settings_persist: 0 failures
+=== test_replay_render.gd
+   GDScript backtrace (most recent call first):
+       [0] _draw_swamp (res://scripts/game.gd:6075)
+ERROR: Required object "rp_texture" is null.
+   at: draw_texture (scene/main/canvas_item.cpp:993)
+   GDScript backtrace (most recent call first):
+       [0] _draw_swamp (res://scripts/game.gd:6075)
+ERROR: Required object "rp_texture" is null.
+   at: draw_texture (scene/main/canvas_item.cpp:993)
+   GDScript backtrace (most recent call first):
+       [0] _draw_swamp (res://scripts/game.gd:6075)
+CHECK seek_sprites OK 70 units; wrong: {  }
+LIVE ANIMS { "labourer": ["walk", "build", "idle", "mine", "shovel", "walk_shovel"], "brood_mother": ["idle"], "rootmaw": ["idle"], "grub": ["idle", "walk"], "tyrannosaur": ["idle"], "musketeer": ["idle", "walk", "aimup", "fireup", "reload", "mount", "aim", "fire", "melee"], "cannon": ["idle", "walk", "deploy", "fire", "reload"], "mortar": ["idle", "idle_packed", "walk", "deploy", "fire", "reload"], "powder_wagon": ["idle", "walk", "unload"], "cuirassier": ["idle", "walk", "mount", "pistol"], "horse": ["idle", "walk", "graze"], "messenger": ["idle", "walk"], "dragoon": ["idle", "walk", "mount"], "dismounted": ["idle", "walk", "mount", "aim"], "gun_crewman": ["idle", "walk"], "pikeman": ["idle", "walk", "attack"], "balloon": ["idle", "drift"], "band": ["idle", "walk"], "band_fifer": ["idle", "walk"], "band_piper": ["idle", "walk"], "missionary": ["idle", "walk", "bandage", "mount"], "mounted_missionary": ["idle", "walk", "mount"], "raptor": ["idle", "walk", "leap", "attack"], "spitter": ["idle", "walk", "attack"], "brute": ["idle", "walk", "charge", "attack"], "dilophosaurus": ["idle"], "pterodactyl": ["idle"], "tyrant_challenger": ["idle", "walk", "attack"], "venom_challenger": ["idle", "walk", "attack"], "hatchlings": ["idle"], "storm_challenger": ["idle", "walk", "attack"], "brood_egg": ["idle"], "mound_turtle": ["idle"], "food_pile": ["idle"], "mist_toad": ["idle", "walk", "tongue"] }
+ALL OK
+WARNING: 11 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_settings_tabs.gd
+PASS  music: a small mute button beside its bar
+PASS  music: the mute button is small (44 px)
+PASS  music: the button mutes it
+PASS  music: its bus follows
+PASS  music: pressed again, back
+PASS  sound: a small mute button beside its bar
+PASS  sound: the mute button is small (44 px)
+PASS  sound: the button mutes it
+PASS  sound: its bus follows
+PASS  sound: pressed again, back
+PASS  ambience: a small mute button beside its bar
+PASS  ambience: the mute button is small (44 px)
+PASS  ambience: the button mutes it
+PASS  ambience: pressed again, back
+ALL PASS
+=== test_stun_mark.gd
+CHECK its stars show for the stagger, 2.5 s                          ok 2.50 s
+CHECK and it stays where it was (not pulled)                         ok 0 px
+CHECK the Storm Challenger is flying                                 ok 
+CHECK the Toad marks a flyer (the crosshair: windup)                 ok 
+CHECK the tongue pulls the Storm Challenger, stunned with stars      ok 
+CHECK it ends just over the Toad                                     ok 6.0 px
+CHECK and stays in the air                                           ok sky air
+CHECK its stars go after the stun                                    ok 
+CHECK a flyer flown out of reach breaks the windup                   ok 
+CHECK (a storm's top-up stun still marks safely)                     ok 
+FAILS: 0
+WARNING: 5 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_wall_cancel_part.gd
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+ok    a stretch cancelled: the other 12 pieces stay planned or built (12 left)
+ok    a stretch cancelled: the Labourers keep building the rest (["build", "build"])
+FAILS: 0
+WARNING: 4 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_pathing.gd
+ok     thornwood_maze/edge_high_spread/clock      arrived 10/10 time   4.0 ideal   4.5 (x0.88) stuck  0.0 cliff  4 bld  0 far  0 jitter  0.3 same-spot  0 overlap  0
+ok     thornwood_maze/ramp_amove/brood            arrived 11/11 time   6.3 ideal   6.5 (x0.98) stuck  1.5 cliff  0 bld  0 far  0 jitter  1.3 same-spot  0 overlap  0
+ok     thornwood_maze/ramp_up/guns                arrived  7/7  time   8.4 ideal   9.5 (x0.88) stuck  1.8 cliff  0 bld  0 far  0 jitter  0.9 same-spot  0 overlap  0
+ok     thornwood_maze/ramp_attack_bld/brood       arrived 11/11 time   5.2 ideal   5.3 (x0.98) stuck  0.0 cliff  2 bld  2 far  0 jitter 11.2 same-spot  0 overlap  0
+ok     thornwood_maze/gap/crown                   arrived 11/11 time  16.2 ideal  18.0 (x0.90) stuck  0.0 cliff  0 bld  0 far  0 jitter  0.8 same-spot  0 overlap  0
+ok     thornwood_maze/gap/brood                   arrived 11/11 time  12.1 ideal  12.2 (x0.99) stuck  1.7 cliff  0 bld  0 far  0 jitter  0.5 same-spot  0 overlap  0
+ok     thornwood_maze/gap/clock                   arrived 10/10 time  14.1 ideal  14.8 (x0.96) stuck  1.8 cliff  0 bld  0 far  0 jitter  0.4 same-spot  0 overlap  0
+ok     thornwood_maze/gap/guns                    arrived  6/6  time  16.7 ideal  18.0 (x0.93) stuck  0.0 cliff  0 bld  0 far  0 jitter  0.6 same-spot  0 overlap  0
+ok     thornwood_maze/gap/crowd40                 arrived 40/40 time  11.7 ideal  12.3 (x0.95) stuck  0.0 cliff  0 bld  0 far  0 jitter  0.2 same-spot  0 overlap  0
+ok     thornwood_maze/base/crown                  arrived 11/11 time  16.2 ideal  18.0 (x0.90) stuck  1.8 cliff  0 bld  0 far  0 jitter  0.5 same-spot  0 overlap  0
+ok     thornwood_maze/base/brood                  arrived 11/11 time   9.8 ideal  11.6 (x0.85) stuck  0.0 cliff  0 bld  0 far  0 jitter  0.2 same-spot  0 overlap  0
+ok     thornwood_maze/across/mixed                arrived 19/19 time  75.5 ideal  83.7 (x0.90) stuck  0.0 cliff  1 bld  0 far  0 jitter  0.6 same-spot  0 overlap  0
+pathing: FAIL (2)
+WARNING: 10 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)

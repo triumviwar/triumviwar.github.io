@@ -1,0 +1,5 @@
+Slice 11 of 12, run 2026-11-24 10:35-10:44 UTC on origin/main ed7b0589 (0.38.199), Godot 4.7-stable headless.
+The --import step hit its 4-minute cap (rc=124) before finishing, so imported textures/sounds were missing:
+almost every FAIL here is "Cannot call method 'get_width'/'get_length' on a null value" from unimported assets,
+not a real test failure. Rerun these on a fully imported project before reading them as regressions.
+Real-looking results: test_ladder_ticket PASS; test_music_clock printed "FAILS: 0" (likely a pass the grep misread).
