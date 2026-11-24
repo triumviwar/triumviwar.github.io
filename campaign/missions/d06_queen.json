@@ -51,8 +51,8 @@
 			"colour": 2,
 			"start": "none",
 			"camera": "big_pen",
-			"gold": 200,
-			"powder": 20,
+			"gold": 400,
+			"powder": 30,
 			"control": {
 				"solo": "p1",
 				"versus": "p1",
@@ -128,6 +128,18 @@
 			17,
 			13
 		],
+		"turtle_w": [
+			56,
+			30,
+			2,
+			2
+		],
+		"turtle_e": [
+			74,
+			22,
+			2,
+			2
+		],
 		"mother_spot": [
 			65,
 			27,
@@ -135,14 +147,14 @@
 			2
 		],
 		"sire_spot": [
-			59,
-			25,
+			61,
+			27,
 			2,
 			2
 		],
 		"storm_spot": [
-			71,
-			29,
+			69,
+			30,
 			2,
 			2
 		],
@@ -398,6 +410,22 @@
 				"bred",
 				"sires"
 			],
+			"fixed": true
+		},
+		{
+			"team": "stock",
+			"kind": "mound_turtle",
+			"count": 1,
+			"at": "turtle_w",
+			"tag": "turtles",
+			"fixed": true
+		},
+		{
+			"team": "stock",
+			"kind": "mound_turtle",
+			"count": 1,
+			"at": "turtle_e",
+			"tag": "turtles",
 			"fixed": true
 		},
 		{
@@ -896,7 +924,7 @@
 			"kind": "musketeer",
 			"as": "keeper",
 			"count": 2,
-			"at": "pen_5_dry",
+			"at": "pen_5",
 			"tag": "keeper_w",
 			"tags": [
 				"lure",
@@ -918,7 +946,7 @@
 			"kind": "musketeer",
 			"as": "keeper",
 			"count": 2,
-			"at": "pen_4_dry",
+			"at": "pen_4",
 			"tag": "keeper_e",
 			"tags": [
 				"lure",
@@ -940,7 +968,7 @@
 			"kind": "musketeer",
 			"as": "assembly_keeper",
 			"count": 2,
-			"at": "pen_5_dry",
+			"at": "pen_5",
 			"tag": "keeper_w",
 			"tags": [
 				"lure",
@@ -960,7 +988,7 @@
 			"kind": "musketeer",
 			"as": "assembly_keeper",
 			"count": 2,
-			"at": "pen_4_dry",
+			"at": "pen_4",
 			"tag": "keeper_e",
 			"tags": [
 				"lure",
@@ -1885,24 +1913,18 @@
 					}
 				},
 				{
-					"order": {
-						"tag": "mother",
-						"do": "root",
-						"to": "mother_spot"
+					"root_now": {
+						"tag": "mother"
 					}
 				},
 				{
-					"order": {
-						"tag": "tyrant_sire",
-						"do": "root",
-						"to": "sire_spot"
+					"root_now": {
+						"tag": "sires"
 					}
 				},
 				{
-					"order": {
-						"tag": "storm_sire",
-						"do": "root",
-						"to": "storm_spot"
+					"root_now": {
+						"tag": "turtles"
 					}
 				},
 				{
@@ -1922,6 +1944,12 @@
 						"tag": "faz_all",
 						"on": true,
 						"pace": 1.0
+					}
+				},
+				{
+					"max_hp": {
+						"tag": "big_house",
+						"hp": 3000
 					}
 				},
 				{
@@ -2291,7 +2319,7 @@
 				{
 					"pace": {
 						"tag": "keepers",
-						"pace": 0.8
+						"pace": 0.65
 					}
 				}
 			]
@@ -2346,7 +2374,7 @@
 			"when": {
 				"all": [
 					{
-						"time": 50
+						"time": 35
 					},
 					{
 						"not": {
@@ -2449,23 +2477,9 @@
 					},
 					{
 						"count": {
-							"tag": "young_w",
-							"area": "pen_5",
+							"tag": "young",
+							"not_area": "big_pen",
 							"below": 1
-						}
-					},
-					{
-						"count": {
-							"tag": "young_e",
-							"area": "pen_4",
-							"below": 1
-						}
-					},
-					{
-						"not": {
-							"loose": {
-								"name": "stock"
-							}
 						}
 					},
 					{
@@ -2616,14 +2630,6 @@
 					}
 				},
 				{
-					"counter": {
-						"name": "bred_n",
-						"count": {
-							"tag": "bred"
-						}
-					}
-				},
-				{
 					"spawn": {
 						"team": "wild",
 						"kind": "brood_mother",
@@ -2643,7 +2649,7 @@
 					"spawn": {
 						"team": "wild",
 						"kind": "raptor",
-						"count": 4,
+						"count": 2,
 						"at": "nw_shore",
 						"tag": "wild_pack",
 						"tags": [
@@ -2670,26 +2676,6 @@
 					"spawn": {
 						"team": "wild",
 						"kind": "raptor",
-						"count": 2,
-						"at": "nw_shore",
-						"tag": "wild_pack",
-						"tags": [
-							"bred",
-							"rivals"
-						],
-						"if": {
-							"not": {
-								"past": {
-									"b01_specimen.rival": "driven"
-								}
-							}
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "wild",
-						"kind": "tyrannosaur",
 						"count": 1,
 						"at": "nw_shore",
 						"tag": "wild_pack",
@@ -2697,7 +2683,6 @@
 							"bred",
 							"rivals"
 						],
-						"fixed": true,
 						"if": {
 							"not": {
 								"past": {
@@ -2720,6 +2705,13 @@
 					}
 				},
 				{
+					"sound": {
+						"name": "campaign/linnea_call",
+						"area": "nw_shore",
+						"vol": -4
+					}
+				},
+				{
 					"order": {
 						"tag": "people",
 						"do": "move",
@@ -2730,16 +2722,17 @@
 					"leash": {
 						"team": "stock",
 						"lure": "call",
-						"within": 12,
+						"within": 13,
 						"loose": "wander",
 						"name": "stock",
 						"breaks": {
 							"near": "rival_mother",
-							"within": 6,
+							"within": 5,
 							"to": "near",
 							"loose_only": true,
 							"counter": "lost_n",
-							"warn": 2
+							"warn": 2,
+							"as": "rivals"
 						}
 					}
 				},
@@ -2767,6 +2760,23 @@
 					"objective": {
 						"id": "mothers",
 						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "bred_count",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 0.5,
+			"do": [
+				{
+					"counter": {
+						"name": "bred_n",
+						"count": {
+							"tag": "bred"
+						}
 					}
 				}
 			]
@@ -2933,14 +2943,52 @@
 				{
 					"order": {
 						"team": "wild",
-						"do": "route",
-						"route": [
-							"pen_5",
-							"way_w",
-							"big_pen"
-						],
-						"attack": true,
-						"name": "wild_road"
+						"do": "attack",
+						"to": "way_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "wild_go2",
+			"when": {
+				"all": [
+					{
+						"fired": "wild_go"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 25,
+			"do": [
+				{
+					"order": {
+						"team": "wild",
+						"do": "attack",
+						"to": "big_pen",
+						"idle": true
 					}
 				}
 			]
@@ -2972,7 +3020,7 @@
 					}
 				]
 			},
-			"delay": 40,
+			"delay": 75,
 			"do": [
 				{
 					"cage": {
@@ -3006,14 +3054,8 @@
 				{
 					"order": {
 						"team": "pens",
-						"do": "route",
-						"route": [
-							"pen_3",
-							"way_n",
-							"big_pen"
-						],
-						"attack": true,
-						"name": "east_road"
+						"do": "attack",
+						"to": "way_n"
 					}
 				},
 				{
@@ -3025,6 +3067,50 @@
 					"say": [
 						"n_east"
 					]
+				}
+			]
+		},
+		{
+			"id": "east_go2",
+			"when": {
+				"all": [
+					{
+						"fired": "east_go"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 14,
+			"do": [
+				{
+					"order": {
+						"team": "pens",
+						"do": "attack",
+						"to": "big_pen",
+						"idle": true
+					}
 				}
 			]
 		},
@@ -3338,6 +3424,20 @@
 					}
 				},
 				{
+					"deny": {
+						"team": "stock",
+						"kind": [
+							"raptor",
+							"hatchlings",
+							"spitter",
+							"tyrant_challenger",
+							"venom_challenger",
+							"storm_challenger"
+						],
+						"why": "Not now: everything she has goes into growing. GROW her first."
+					}
+				},
+				{
 					"say": [
 						"n_part3",
 						"l_house"
@@ -3436,6 +3536,154 @@
 					"order": {
 						"tag": "keepers",
 						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "faz_hands",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "fazenda"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "fazenda",
+						"kind": "musketeer",
+						"as": "keeper",
+						"count": 2,
+						"at": "house_in",
+						"tag": "hands",
+						"tags": [
+							"people",
+							"faz_all"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "hands",
+						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "sally",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "fazenda"
+						}
+					},
+					{
+						"playing": "brood"
+					},
+					{
+						"rooted": {
+							"tag": "mother"
+						}
+					},
+					{
+						"count": {
+							"tag": "mother",
+							"area": "big_pen"
+						}
+					},
+					{
+						"not": {
+							"fired": "queen"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 12,
+			"do": [
+				{
+					"say": [
+						"p_changing",
+						"l_shoot"
+					]
+				},
+				{
+					"order": {
+						"tag": "keepers",
+						"do": "attack",
+						"to": "big_pen"
+					}
+				},
+				{
+					"ping": {
+						"area": "way_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "sally_back",
+			"when": {
+				"all": [
+					{
+						"fired": "sally"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 70,
+			"do": [
+				{
+					"order": {
+						"tag": "keepers",
+						"do": "move",
+						"to": "house_in"
 					}
 				}
 			]
@@ -3552,6 +3800,37 @@
 									"l_show"
 								]
 							}
+						]
+					}
+				},
+				{
+					"leash": {
+						"name": "stock",
+						"on": false
+					}
+				},
+				{
+					"leash": {
+						"name": "wild",
+						"on": false
+					}
+				},
+				{
+					"leash": {
+						"name": "pens",
+						"on": false
+					}
+				},
+				{
+					"unlock": {
+						"team": "stock",
+						"kind": [
+							"raptor",
+							"hatchlings",
+							"spitter",
+							"tyrant_challenger",
+							"venom_challenger",
+							"storm_challenger"
 						]
 					}
 				},
@@ -3916,11 +4195,11 @@
 								"few"
 							],
 							[
-								0.35,
+								0.25,
 								"some"
 							],
 							[
-								0.7,
+								0.55,
 								"all"
 							]
 						]
@@ -4723,7 +5002,7 @@
 		},
 		"n_wild_rival": {
 			"who": "narrator",
-			"text": "Big for a wild one, with a Tyrant Sire of her own. A pack off the Rio Negro, perhaps."
+			"text": "A big pack for a wild Mother. A pack off the Rio Negro, perhaps."
 		},
 		"l_drop": {
 			"who": "lindqvist",
@@ -4777,6 +5056,14 @@
 		"l_house": {
 			"who": "lindqvist",
 			"text": "Close the shutters. Load the swivel guns. Pieter, bring the stud book down."
+		},
+		"p_changing": {
+			"who": "pieter",
+			"text": "Doctor, the big one in the middle is changing. She is getting bigger."
+		},
+		"l_shoot": {
+			"who": "lindqvist",
+			"text": "Keepers! To the big pen. Shoot her. Shoot her now, before it is done."
 		},
 		"n_growing": {
 			"who": "narrator",

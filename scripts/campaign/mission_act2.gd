@@ -308,6 +308,8 @@ func act(k: String, v: Variant) -> bool:
 			sap(v)
 		"brood_stage":
 			brood_stage(v)
+		"root_now":
+			root_now(v)
 		"retag":
 			retag(v)
 		"chart":
@@ -655,6 +657,31 @@ func retag(v: Dictionary) -> void:
 			return
 
 
+## (d06_queen) {"root_now": {"tag"}}: the Brood creatures of the tag (a person's too: the scene as the mission sets it,
+## at its start) root where they stand (BroodRoot.start_root at their own spot, a father nesting wherever he is).
+func root_now(v: Dictionary) -> void:
+	for e in run.tagged(String(v.get("tag", ""))):
+		if e is Unit and not e.dead and BroodNew.ROOTERS.has(e.kind) and e.tesla_mode == "packed":
+			if BroodNew.is_father(e.kind):
+				e.set_meta("mission_root", true)
+			# (where it stands, else the nearest free spot within 4 tiles: two rooted ones never overlap)
+			var at: Vector2 = e.position
+			var g := run.game
+			var sc := BroodRoot.scale_of(e)
+			if BroodRoot.place_problem(g, e.team, e.kind, at, e, false, sc) != "":
+				var found := false
+				for rr in range(1, 5):
+					for k in 12:
+						var p: Vector2 = e.position + Vector2.from_angle(TAU * float(k) / 12.0) * float(rr) * _tile()
+						if BroodRoot.place_problem(g, e.team, e.kind, p, e, false, sc) == "":
+							at = p
+							found = true
+							break
+					if found:
+						break
+			BroodRoot.start_root(e, at)
+
+
 ## (d03_fazenda) {"brood_stage": {"tag", "stage": 2}}: the Brood Mothers of the tag are at that growth stage at once (a
 ## mission's breeding animal kept by a naturalist: the Storm Sire's Hatchlings need her at stage 2).
 func brood_stage(v: Dictionary) -> void:
@@ -800,6 +827,11 @@ func _tick_leash(dt: float) -> void:
 		for u in units.duplicate():
 			if int(newest.get(u, li)) > li:
 				continue          # (a newer leash rules this one)
+			if u.has_meta("leash_turning"):
+				if float(u.get_meta("leash_turning")) > run.game.clock:
+					units.erase(u)
+					continue      # (d06: changing side already: an open leash takes it up again each round meanwhile)
+				u.remove_meta("leash_turning")
 			# THE BREAKING: near the one who calls them, they are hers
 			var held: bool = lures.any(func(p) -> bool: return (p as Vector2).distance_to(u.position) <= reach)
 			# (d06 "loose_only": a creature held by its own lure never breaks: the Mothers' fight, her call beside it)
@@ -876,6 +908,7 @@ func _break(u: Unit, l: Dictionary, br: Dictionary, by: Entity = null) -> void:
 		return
 	_off_routes(u)
 	var warn := float(br.get("warn", 2.0))
+	u.set_meta("leash_turning", run.game.clock + warn + 0.5)
 	u.stun(warn, true)
 	run._turning.append([u, to, run.game.clock + warn, String(br.get("as", ""))])
 	var nm := String(l["name"])

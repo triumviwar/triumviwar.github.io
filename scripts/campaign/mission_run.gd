@@ -701,8 +701,12 @@ func count(q: Dictionary) -> int:
 	# (d06) "of_team": of a tag, only those on that team now (the bred creatures that went to the Queen)
 	var of_team := team_index(String(q["of_team"])) if q.has("of_team") else -2
 	var n := 0
+	# (d06) "not_area": only those standing outside that area (the young not yet up in the big pen)
+	var outside := area_rect(String(q["not_area"])) if q.has("not_area") else Rect2()
 	for e in list:
 		if of_team != -2 and e.team != of_team:
+			continue
+		if q.has("not_area") and outside.has_point(e.position if e is Unit else e.center()):
 			continue
 		if q.has("area") and not area.has_point(e.position if e is Unit else e.center()):
 			continue

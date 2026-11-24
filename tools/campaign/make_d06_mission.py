@@ -82,18 +82,20 @@ LIVE = {"not": {"any": ENDED}}
 
 # ---------------------------------------------------------------- numbers
 FLOOD_SECS = 150             # Part 1: the water reaches the paths (NORMAL; EASY x1.25, HARD x0.85)
-CALL_AT = 50                 # the call over the water
-CALL_R = 12                  # tiles: a Mother's call holds her creatures (her ring)
-BREAK_R = 6                  # tiles: a loose creature this near another Mother goes to her
+CALL_AT = 35                 # the call over the water
+CALL_R = 13                  # tiles: a Mother's call holds her creatures (her ring)
+BREAK_R = 5                  # tiles: a loose creature this near another Mother goes to her
 JOIN_R = 9                   # tiles: a loose creature of a fallen Mother this near the Queen joins her
 LURE_R = 8                   # tiles: a keeper's lure (Part 1)
 WILD_GO = 4                  # Part 2: the wild pack moves on the big pen
-EAST_GO = 40                 # ... the east pen's Mother breaks out
+EAST_GO = 75                 # ... the east pen's Mother breaks out
 MOTHER_PACE = 1.8            # the rival Mothers walk faster than a Mother would (NO WAITING: they come to the fight)
 QUEEN_SECS = 420             # the mirror: the Queen grows when this runs out (scaled)
 BURN_SECS = 4                # the mirror: a man in a pen this long burns it
 BURN_DELAY = 60              # ... the big pen burned before the Queen: her clock this much longer
-BAND_SOME, BAND_ALL = 0.35, 0.7
+GROW_DENY = ["raptor", "hatchlings", "spitter", "tyrant_challenger", "venom_challenger", "storm_challenger"]
+HOUSE_HP = 3000            # the big house
+BAND_SOME, BAND_ALL = 0.25, 0.55
 GROW_FOOD, GROW_SPOILS = 520, 80           # given at Part 3: her growth (500 / 75) and a little over
 BRUTE_FOOD, BRUTE_SPOILS = 330, 45         # given at the Queen: two Brutes (150 / 20 each) and a little over
 
@@ -106,8 +108,6 @@ YOUNG = [
 # the mirror: the stock asleep in the pens the fazenda must burn
 MIRROR_AT = ["big_pen_w", "big_pen_e", "pen_2", "big_pen_w", "pen_2", "big_pen_e", "pen_2", "big_pen_w"]
 
-R_WILD = ["pen_5", "way_w", "big_pen"]
-R_EAST = ["pen_3", "way_n", "big_pen"]
 
 # ================================================================== the units
 units = [
@@ -116,6 +116,9 @@ units = [
      "tags": ["call", "mothers", "bred_m"], "fixed": True},
     {"team": "stock", "kind": "tyrannosaur", "count": 1, "at": "sire_spot", "tag": "tyrant_sire", "tags": ["bred", "sires"], "fixed": True},
     {"team": "stock", "kind": "pterodactyl", "count": 1, "at": "storm_spot", "tag": "storm_sire", "tags": ["bred", "sires"], "fixed": True},
+    # (two Mound Turtles rooted at the big pen's rim: the stock's room to grow, its supply)
+    {"team": "stock", "kind": "mound_turtle", "count": 1, "at": "turtle_w", "tag": "turtles", "fixed": True},
+    {"team": "stock", "kind": "mound_turtle", "count": 1, "at": "turtle_e", "tag": "turtles", "fixed": True},
 ] + [
     {"team": "stock", "kind": k, "count": 1, "at": "pen_5" if i % 2 == 0 else "pen_4", "tag": "young_%d" % (i + 1),
      "tags": ["young", "bred", "young_w" if i % 2 == 0 else "young_e"], "fixed": True, "if": {"all": [BROOD] + ([c] if c else [])}}
@@ -136,13 +139,13 @@ units = [
      "tags": ["lure", "people", "runners", "faz_all"], "fixed": True},
     {"team": "fazenda", "kind": "labourer", "as": "pieter", "count": 1, "at": "big_pen_s", "tag": "pieter",
      "tags": ["lure", "people", "runners", "faz_all"], "fixed": True, "if": PIETER},
-    {"team": "fazenda", "kind": "musketeer", "as": "keeper", "count": 2, "at": "pen_5_dry", "tag": "keeper_w",
+    {"team": "fazenda", "kind": "musketeer", "as": "keeper", "count": 2, "at": "pen_5", "tag": "keeper_w",
      "tags": ["lure", "people", "keepers", "faz_all"], "fixed": True, "if": SPARED},
-    {"team": "fazenda", "kind": "musketeer", "as": "keeper", "count": 2, "at": "pen_4_dry", "tag": "keeper_e",
+    {"team": "fazenda", "kind": "musketeer", "as": "keeper", "count": 2, "at": "pen_4", "tag": "keeper_e",
      "tags": ["lure", "people", "keepers", "faz_all"], "fixed": True, "if": SPARED},
-    {"team": "fazenda", "kind": "musketeer", "as": "assembly_keeper", "count": 2, "at": "pen_5_dry", "tag": "keeper_w",
+    {"team": "fazenda", "kind": "musketeer", "as": "assembly_keeper", "count": 2, "at": "pen_5", "tag": "keeper_w",
      "tags": ["lure", "people", "keepers", "faz_all"], "fixed": True, "if": EXECUTED},
-    {"team": "fazenda", "kind": "musketeer", "as": "assembly_keeper", "count": 2, "at": "pen_4_dry", "tag": "keeper_e",
+    {"team": "fazenda", "kind": "musketeer", "as": "assembly_keeper", "count": 2, "at": "pen_4", "tag": "keeper_e",
      "tags": ["lure", "people", "keepers", "faz_all"], "fixed": True, "if": EXECUTED},
     # (the mirror: more hands with muskets for the fazenda's player)
     {"team": "fazenda", "kind": "musketeer", "as": "keeper", "count": 4, "at": "house_in", "tag": "hands",
@@ -167,7 +170,7 @@ buildings = [
 ]
 
 areas = dict(
-    big_pen=[58, 21, 17, 13], mother_spot=[65, 27, 2, 2], sire_spot=[59, 25, 2, 2], storm_spot=[71, 29, 2, 2],
+    big_pen=[58, 21, 17, 13], turtle_w=[56, 30, 2, 2], turtle_e=[74, 22, 2, 2], mother_spot=[65, 27, 2, 2], sire_spot=[61, 27, 2, 2], storm_spot=[69, 30, 2, 2],
     big_pen_s=[62, 31, 8, 3], big_pen_w=[58, 23, 5, 8], big_pen_e=[70, 23, 5, 8],
     pen_5=[30, 26, 12, 8], pen_4=[93, 22, 11, 8], pen_5_dry=[43, 28, 4, 4], pen_4_dry=[86, 26, 4, 4],
     pen_1=[17, 9, 15, 10], pen_2=[43, 6, 14, 8], pen_3=[74, 7, 14, 9],
@@ -262,7 +265,7 @@ M = {
                     "Otra de las Madres de cría de Lindqvist, cercada en el corral del noreste, y los jóvenes a su alrededor.")},
     ],
     "teams": [
-        {"id": "stock", "side": "brood", "faction": "brood", "colour": 2, "start": "none", "camera": "big_pen", "gold": 200, "powder": 20,
+        {"id": "stock", "side": "brood", "faction": "brood", "colour": 2, "start": "none", "camera": "big_pen", "gold": 400, "powder": 30,
          "control": {"solo": "p1", "versus": "p1", "foe": "script"}},
         {"id": "fazenda", "side": "fazenda", "faction": "crown", "colour": 3, "start": "none", "camera": "house", "gold": 0, "powder": 300,
          "control": {"solo": "script", "versus": "p2"}},
@@ -357,9 +360,9 @@ line("p_late", "pieter", "The water is on the paths, Doctor. We cannot wait for 
 line("n_wild", "narrator", "The flood has carried a wild Mother onto the north-west shore, and a pack with her.",
      "A cheia trouxe uma Mãe selvagem para a margem noroeste, e uma matilha com ela.",
      "La crecida ha traído a una Madre salvaje a la orilla noroeste, y una manada con ella.")
-line("n_wild_rival", "narrator", "Big for a wild one, with a Tyrant Sire of her own. A pack off the Rio Negro, perhaps.",
-     "Grande para uma selvagem, com um Sire Tirano próprio. Uma matilha do Rio Negro, talvez.",
-     "Grande para una salvaje, con un Señor Tirano propio. Una manada del Río Negro, quizá.")
+line("n_wild_rival", "narrator", "A big pack for a wild Mother. A pack off the Rio Negro, perhaps.",
+     "Uma matilha grande para uma Mãe selvagem. Uma matilha do Rio Negro, talvez.",
+     "Una manada grande para una Madre salvaje. Una manada del Río Negro, quizá.")
 line("l_drop", "lindqvist", "Leave the lures. Everyone to the house. Shut the gate.", "Larguem os engodos. Todos para a casa. Fechem o portão.",
      "Dejad los señuelos. Todos a la casa. Cerrad el portón.")
 line("n_mring", "narrator", "The keepers are gone. Now your creatures follow only their own Mother: they obey inside her ring. Out of it, near another Mother, they go over to her.",
@@ -392,6 +395,11 @@ line("n_part3", "narrator", "One Mother is left on the island. Root her in the b
 line("l_house", "lindqvist", "Close the shutters. Load the swivel guns. Pieter, bring the stud book down.",
      "Fechem as portadas. Carreguem os pedreiros. Pieter, traz o livro de criação cá para baixo.",
      "Cerrad los postigos. Cargad los pedreros. Pieter, baja el libro de cría.")
+line("p_changing", "pieter", "Doctor, the big one in the middle is changing. She is getting bigger.",
+     "Doutor, a grande do meio está a mudar. Está a ficar maior.", "Doctor, la grande del medio está cambiando. Se está haciendo más grande.")
+line("l_shoot", "lindqvist", "Keepers! To the big pen. Shoot her. Shoot her now, before it is done.",
+     "Tratadores! Ao curral grande. Disparem sobre ela. Disparem já, antes que acabe.",
+     "¡Cuidadores! Al corral grande. Disparadle. Disparadle ya, antes de que termine.")
 line("n_growing", "narrator", "She is growing. Lay eggs meanwhile, with the Sires rooted beside her.",
      "Ela está a crescer. Ponha ovos entretanto, com os Sires enraizados ao lado dela.",
      "Está creciendo. Pon huevos mientras tanto, con los Señores enraizados a su lado.", BR)
@@ -525,12 +533,13 @@ TR_ += [
         {"counter": {"name": "young_n", "count": {"tag": "young"}}},
         {"brood_stage": {"tag": "mothers", "stage": 2}},
         {"nest_free": {"tag": "sires", "on": True}},
-        {"order": {"tag": "mother", "do": "root", "to": "mother_spot"}},
-        {"order": {"tag": "tyrant_sire", "do": "root", "to": "sire_spot"}},
-        {"order": {"tag": "storm_sire", "do": "root", "to": "storm_spot"}},
+        # (the scene as it stands: she and the two Sires rooted in the big pen, the player's from the start)
+        {"root_now": {"tag": "mother"}}, {"root_now": {"tag": "sires"}}, {"root_now": {"tag": "turtles"}},
         # (the night's truce: until the Mothers' fight is settled nobody of the fazenda is a target, and they fire at nothing)
         {"spare": {"tag": "faz_all", "on": True}}, {"spare": {"tag": "fazenda_b", "on": True}},
         {"carry": {"tag": "faz_all", "on": True, "pace": 1.0}},
+        # (the big house is stone below and timber above: harder to break than a town hall)
+        {"max_hp": {"tag": "big_house", "hp": HOUSE_HP}},
         # (the east pen's Mother and her young are fenced in: kept in place until Part 2)
         {"cage": {"tag": "pen_mother", "on": True}}, {"sleep": {"team": "pens", "name": "east_pen", "within": 0}},
         {"spare": {"tag": "pen_mother", "on": True}}, {"spare": {"tag": "pen_pack", "on": True}},
@@ -560,7 +569,7 @@ TR_ += [
     {"id": "keepers_go", "when": {"all": [{"time": 9}, NO_FAZ, BROOD]}, "do": [
         {"order": {"tag": "keeper_w", "do": "route", "route": ["pen_5", "way_w", "big_pen_w"], "name": "keeper_w"}},
         {"order": {"tag": "keeper_e", "do": "route", "route": ["pen_4", "way_e", "big_pen_e"], "name": "keeper_e"}},
-        {"pace": {"tag": "keepers", "pace": 0.8}}]},
+        {"pace": {"tag": "keepers", "pace": 0.65}}]},
     {"id": "in_count", "when": {"all": [{"time": 2}, {"not": {"fired": "part2"}}, LIVE]}, "every": 2, "do": [
         {"counter": {"name": "in_pen", "count": {"tag": "young", "area": "big_pen"}}}]},
     {"id": "call", "when": {"all": [{"time": CALL_AT}, {"not": {"fired": "part2"}}, BROOD]}, "do": [
@@ -570,8 +579,7 @@ TR_ += [
     {"id": "loose_say", "when": {"all": [{"fired": "call"}, {"loose": {"name": "stock"}}, BROOD, {"not": {"fired": "part2"}}]}, "do": [{"say": ["n_loose"]}]},
     {"id": "all_in", "when": {"all": [{"time": 12}, BROOD, {"not": {"fired": "part2"}}, {"counter": {"name": "in_pen", "at_least": 1}},
                                       {"count": {"tag": "young", "area": "big_pen", "at_least": 1}},
-                                      {"count": {"tag": "young_w", "area": "pen_5", "below": 1}}, {"count": {"tag": "young_e", "area": "pen_4", "below": 1}},
-                                      {"not": {"loose": {"name": "stock"}}}, LIVE]}, "do": [
+                                      {"count": {"tag": "young", "not_area": "big_pen", "below": 1}}, LIVE]}, "do": [
         {"objective": {"id": "flood", "set": "done"}}, {"objective": {"id": "f_flood", "set": "done"}}, {"say": ["p_in"]},
         {"clock": {"name": "flood", "add": -900}}]},
     {"id": "flood_late", "when": {"all": [{"clock_out": "flood"}, BROOD, {"not": {"fired": "all_in"}}, LIVE]}, "do": [
@@ -580,22 +588,22 @@ TR_ += [
     {"id": "part2", "when": {"all": [{"clock_out": "flood"}, LIVE]}, "do": [
         {"clock": {"name": "flood", "stop": True}}, {"objective": {"id": "flood_clock", "set": "hidden"}},
         {"objective": {"id": "flood", "set": "hidden"}}, {"objective": {"id": "f_flood", "set": "hidden"}},
-        {"counter": {"name": "bred_n", "count": {"tag": "bred"}}},
         # the wild Mother lands on the north-west shore with her pack
         {"spawn": {"team": "wild", "kind": "brood_mother", "as": "wild_mother", "count": 1, "at": "nw_shore", "tag": "wild_mother",
                    "tags": ["rival_mother", "mothers", "bred_m"], "fixed": True}},
-        {"spawn": {"team": "wild", "kind": "raptor", "count": 4, "at": "nw_shore", "tag": "wild_pack", "tags": ["bred", "rivals"]}},
+        {"spawn": {"team": "wild", "kind": "raptor", "count": 2, "at": "nw_shore", "tag": "wild_pack", "tags": ["bred", "rivals"]}},
         {"spawn": {"team": "wild", "kind": "tyrant_challenger", "count": 1, "at": "nw_shore", "tag": "wild_pack", "tags": ["bred", "rivals"], "fixed": True}},
-        {"spawn": {"team": "wild", "kind": "raptor", "count": 2, "at": "nw_shore", "tag": "wild_pack", "tags": ["bred", "rivals"], "if": RIVAL}},
-        {"spawn": {"team": "wild", "kind": "tyrannosaur", "count": 1, "at": "nw_shore", "tag": "wild_pack", "tags": ["bred", "rivals"], "fixed": True, "if": RIVAL}},
+        {"spawn": {"team": "wild", "kind": "raptor", "count": 1, "at": "nw_shore", "tag": "wild_pack", "tags": ["bred", "rivals"], "if": RIVAL}},
         {"ping": {"area": "nw_shore"}}, {"sound": {"name": "campaign/sire_roar", "area": "nw_shore", "vol": -6}},
+        {"sound": {"name": "campaign/linnea_call", "area": "nw_shore", "vol": -4}},
         # the keepers drop the lures and run for the house; the creatures follow only their Mothers now
         {"order": {"tag": "people", "do": "move", "to": "house_in"}},
         {"leash": {"team": "stock", "lure": "call", "within": CALL_R, "loose": "wander", "name": "stock",
-                   "breaks": {"near": "rival_mother", "within": BREAK_R, "to": "near", "loose_only": True, "counter": "lost_n", "warn": 2}}},
+                   "breaks": {"near": "rival_mother", "within": BREAK_R, "to": "near", "loose_only": True, "counter": "lost_n", "warn": 2, "as": "rivals"}}},
         {"leash": {"team": "wild", "lure": "wild_mother", "within": 90, "loose": "to", "to": "big_pen", "name": "wild"}},
         {"leash": {"team": "pens", "lure": "pen_mother", "within": 90, "loose": "to", "to": "big_pen", "name": "pens"}},
         {"objective": {"id": "mothers", "set": "active"}}]},
+    {"id": "bred_count", "when": {"fired": "part2"}, "delay": 0.5, "do": [{"counter": {"name": "bred_n", "count": {"tag": "bred"}}}]},
     {"id": "part2_say", "when": {"fired": "part2"}, "delay": 1, "do": [{"say": ["n_wild", "l_drop"]}]},
     {"id": "part2_rival", "when": {"all": [{"fired": "part2"}, RIVAL]}, "delay": 6, "do": [{"say": ["n_wild_rival"]}]},
     {"id": "part2_ring", "when": {"all": [{"fired": "part2"}, BROOD]}, "delay": 3, "do": [{"say": ["n_mring", "n_uproot"]}, {"ping": {"tag": "mother"}}]},
@@ -607,14 +615,18 @@ TR_ += [
     # the wild pack comes for the big pen at once; the east pen's Mother breaks out a little later
     {"id": "wild_go", "when": {"fired": "part2"}, "delay": WILD_GO, "do": [
         {"pace": {"tag": "wild_mother", "pace": MOTHER_PACE}},
-        {"order": {"team": "wild", "do": "route", "route": R_WILD, "attack": True, "name": "wild_road"}}]},
+        {"order": {"team": "wild", "do": "attack", "to": "way_w"}}]},
+    {"id": "wild_go2", "when": {"all": [{"fired": "wild_go"}, {"not": {"fired": "part3"}}, LIVE]}, "delay": 25, "do": [
+        {"order": {"team": "wild", "do": "attack", "to": "big_pen", "idle": True}}]},
     {"id": "east_go", "when": {"all": [{"fired": "part2"}, LIVE]}, "delay": EAST_GO, "do": [
         {"cage": {"tag": "pen_mother", "on": False}}, {"wake": {"name": "east_pen"}},
         {"spare": {"tag": "pen_mother", "on": False}}, {"spare": {"tag": "pen_pack", "on": False}},
         {"pace": {"tag": "pen_mother", "pace": MOTHER_PACE}},
-        {"order": {"team": "pens", "do": "route", "route": R_EAST, "attack": True, "name": "east_road"}},
+        {"order": {"team": "pens", "do": "attack", "to": "way_n"}},
         {"ping": {"area": "pen_3"}}, {"say": ["n_east"]}]},
     # (a pack that reached the big pen and stands: it presses on to the nearest Mother of another side)
+    {"id": "east_go2", "when": {"all": [{"fired": "east_go"}, {"not": {"fired": "part3"}}, LIVE]}, "delay": 14, "do": [
+        {"order": {"team": "pens", "do": "attack", "to": "big_pen", "idle": True}}]},
     {"id": "rivals_press", "when": {"all": [{"fired": "wild_go"}, {"not": {"fired": "part3"}}, LIVE]}, "delay": 30, "every": 6, "do": [
         {"order": {"tag": "rivals", "do": "hunt", "prey": "mothers", "within": 22, "idle": True}},
         {"order": {"tag": "rival_mother", "do": "hunt", "prey": "mothers", "within": 22, "idle": True}}]},
@@ -635,6 +647,10 @@ TR_ += [
     {"id": "part3", "when": {"all": [{"fired": "wild_down"}, {"fired": "east_down"}, {"not": {"dead": "mother"}}, LIVE]}, "delay": 2, "do": [
         {"objective": {"id": "mothers", "set": "done"}}, {"objective": {"id": "queen", "set": "active", "if": BROOD}},
         {"give": {"team": "stock", "gold": GROW_FOOD, "powder": GROW_SPOILS}},
+        # (all she has goes into growing: no eggs and no moults until she is the Queen, so the food for it is never spent)
+        {"deny": {"team": "stock", "kind": GROW_DENY, "why": T("Not now: everything she has goes into growing. GROW her first.",
+                                                              "Agora não: tudo o que ela tem vai para crescer. Faça-a CRESCER primeiro.",
+                                                              "Ahora no: todo lo que tiene se va en crecer. Hazla CRECER primero.")}},
         {"say": ["n_part3", "l_house"]}, {"ping": {"area": "mother_spot"}}]},
     # (the fazenda wakes: the truce is over; the keepers and the guns hold the palisade)
     {"id": "faz_wake", "when": {"all": [{"fired": "part3"}, NO_FAZ]}, "do": [
@@ -642,6 +658,14 @@ TR_ += [
         {"spare": {"tag": "lindqvist", "on": True}},
         {"order": {"tag": "keepers", "do": "move", "to": "house_in"}}, {"order": {"tag": "guns", "do": "hold"}}]},
     {"id": "faz_hold", "when": {"fired": "faz_wake"}, "delay": 12, "do": [{"order": {"tag": "keepers", "do": "hold"}}]},
+    {"id": "faz_hands", "when": {"all": [{"fired": "part3"}, NO_FAZ]}, "do": [
+        {"spawn": {"team": "fazenda", "kind": "musketeer", "as": "keeper", "count": 2, "at": "house_in", "tag": "hands", "tags": ["people", "faz_all"]}},
+        {"order": {"tag": "hands", "do": "hold"}}]},
+    # NO WAITING while she grows: Lindqvist sends the keepers out to shoot her before it is done
+    {"id": "sally", "when": {"all": [{"fired": "part3"}, NO_FAZ, BROOD, {"rooted": {"tag": "mother"}}, {"count": {"tag": "mother", "area": "big_pen"}},
+                                     {"not": {"fired": "queen"}}, LIVE]}, "delay": 12, "do": [
+        {"say": ["p_changing", "l_shoot"]}, {"order": {"tag": "keepers", "do": "attack", "to": "big_pen"}}, {"ping": {"area": "way_w"}}]},
+    {"id": "sally_back", "when": {"all": [{"fired": "sally"}, LIVE]}, "delay": 70, "do": [{"order": {"tag": "keepers", "do": "move", "to": "house_in"}}]},
     {"id": "grow_hint", "when": {"all": [{"fired": "part3"}, BROOD, {"rooted": {"tag": "mother"}}, {"count": {"tag": "mother", "area": "big_pen"}}]},
      "delay": 4, "do": [{"say": ["n_growing"]}]},
     # the Queen: she has grown to stage 3 (the player's GROW, or the mirror's clock)
@@ -651,7 +675,10 @@ TR_ += [
         {"sound": {"name": "campaign/forest_answer", "area": "big_pen", "vol": -2}},
         {"show": {"pages": [{"still": "flood", "lines": ["s_1"]}, {"still": "fight", "lines": ["s_2"]},
                             {"still": "queen", "lines": ["s_3", "l_show"]}]}},
-        # every bred creature still loose on the island turns to her
+        # every bred creature still loose on the island turns to her; no leash holds anything any more (her call is the
+        # whole island's: the Brood's creatures are free to go where the player sends them)
+        {"leash": {"name": "stock", "on": False}}, {"leash": {"name": "wild", "on": False}}, {"leash": {"name": "pens", "on": False}},
+        {"unlock": {"team": "stock", "kind": GROW_DENY}},
         {"convert": {"tag": "rivals", "to": "stock", "warn": 2}},
         {"convert": {"tag": "rival_mother", "to": "stock", "warn": 2}}]},
     {"id": "fall", "when": {"all": [{"fired": "queen"}, BROOD, LIVE]}, "delay": 3, "do": [
