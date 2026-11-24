@@ -698,8 +698,12 @@ func count(q: Dictionary) -> int:
 				if not b.dead and not b.ghost and teams.has(b.team) and (b.built or not bool(q.get("built", false))):
 					list.append(b)
 	var kinds: Array = (q["kind"] if q["kind"] is Array else [q["kind"]]) if q.has("kind") else []
+	# (d06) "of_team": of a tag, only those on that team now (the bred creatures that went to the Queen)
+	var of_team := team_index(String(q["of_team"])) if q.has("of_team") else -2
 	var n := 0
 	for e in list:
+		if of_team != -2 and e.team != of_team:
+			continue
 		if q.has("area") and not area.has_point(e.position if e is Unit else e.center()):
 			continue
 		if not kinds.is_empty() and not kinds.has(e.kind):
@@ -1055,6 +1059,8 @@ func _order(us: Array, v: Dictionary) -> void:
 				var best: Entity = null
 				var bd := reach
 				for e in prey:
+					if e.team == u.team:
+						continue          # (d06: never its own side's: the rival Mothers hunt "mothers", not their own)
 					var dd: float = u.position.distance_to(e.position)
 					if dd < bd:
 						bd = dd

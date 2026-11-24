@@ -373,7 +373,8 @@
 				"a03_plateau",
 				"a05_specimens",
 				"a07_council",
-				"d03_fazenda"
+				"d03_fazenda",
+				"d06_queen"
 			],
 			"hub": {
 				"title": "Lindqvist's Station",
@@ -606,6 +607,41 @@
 								"lines": [
 									"Valadares found half of them and burned them. He wrote that he could smell the rest."
 								]
+							},
+							{
+								"after": "d06_queen",
+								"sides": {
+									"d06_queen": "brood"
+								},
+								"lines": [
+									"The flood did it. Something in the water, something from the north shore. I bred them well.",
+									"They fought in my pens, Mother against Mother. The one that won grew in a minute what should take a year.",
+									"The lure book is still in the house. Whoever finds it can call them."
+								]
+							},
+							{
+								"after": "d06_queen",
+								"sides": {
+									"d06_queen": "brood"
+								},
+								"flag": {
+									"d06_queen.pieter": "lost"
+								},
+								"lines": [
+									"The flood did it. Something in the water, something from the north shore. I bred them well.",
+									"I am alone now. Pieter stayed on the island.",
+									"The lure book is still in the house. Whoever finds it can call them."
+								]
+							},
+							{
+								"after": "d06_queen",
+								"sides": {
+									"d06_queen": "fazenda"
+								},
+								"lines": [
+									"I burned three pens and the book went with me. Rome will say I burned too little.",
+									"The stud book is wet through. I dried it page by page by the lamp."
+								]
 							}
 						]
 					},
@@ -732,6 +768,18 @@
 						"sides": {
 							"d03_fazenda": "stock"
 						}
+					},
+					"d06_queen": {
+						"title": "The Boat House at Óbidos",
+						"about": "Lindqvist's refuge after the island: a boat house on the river at Óbidos, a few crates saved, the stud book if Pieter kept it.",
+						"still": {
+							"caption": "A boat house on the river at Óbidos: wet crates, a lamp, the island's smoke far up the river."
+						},
+						"tint": [
+							0.78,
+							0.82,
+							0.9
+						]
 					}
 				}
 			}

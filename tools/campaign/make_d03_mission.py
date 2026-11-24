@@ -294,7 +294,7 @@ M = {
     },
     "lines": {},
     "stills": {},
-    "next": {"stock": "", "commission": ""},
+    "next": {"stock": "d06_queen", "commission": "d06_queen"},
 }
 
 L = M["lines"]

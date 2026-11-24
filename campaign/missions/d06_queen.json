@@ -1,0 +1,5125 @@
+{
+	"id": "d06_queen",
+	"title": "The Queen",
+	"summary": "The lower Amazon, the wet season 2775. The flood comes to Lindqvist's island; in the pens the Mothers fight, and the strongest grows into a Queen.",
+	"map": "campaign:obidos_flood",
+	"voice": "d06",
+	"light": "jungle_dusk",
+	"weather": "rain",
+	"floor": [
+		0.72,
+		0.74,
+		0.66
+	],
+	"expansion_spots": false,
+	"manual_end": true,
+	"modes": [
+		"solo",
+		"versus"
+	],
+	"solo_sides": [
+		"brood",
+		"fazenda"
+	],
+	"sides": [
+		{
+			"id": "brood",
+			"name": "The Brood",
+			"about": "The creatures on Lindqvist's island: one Mother, her Sires and the young of the stock."
+		},
+		{
+			"id": "fazenda",
+			"name": "The Fazenda",
+			"about": "Lindqvist, Pieter and the keepers, with the lures, two swivel guns and the big house."
+		},
+		{
+			"id": "wild",
+			"name": "The Wild Mother",
+			"about": "A wild Brood Mother and her pack, carried onto the island by the flood."
+		},
+		{
+			"id": "pens",
+			"name": "The East Pen",
+			"about": "Another of Lindqvist's breeding Mothers, fenced in the north-east pen, and the young round her."
+		}
+	],
+	"teams": [
+		{
+			"id": "stock",
+			"side": "brood",
+			"faction": "brood",
+			"colour": 2,
+			"start": "none",
+			"camera": "big_pen",
+			"gold": 200,
+			"powder": 20,
+			"control": {
+				"solo": "p1",
+				"versus": "p1",
+				"foe": "script"
+			},
+			"roster": {
+				"allow": [
+					"brood_mother",
+					"grub",
+					"rootmaw",
+					"mound_turtle",
+					"tyrannosaur",
+					"raptor",
+					"dilophosaurus",
+					"spitter",
+					"stage2",
+					"tyrant_challenger",
+					"venom_challenger",
+					"pterodactyl",
+					"hatchlings",
+					"stage3",
+					"brute"
+				],
+				"new": [
+					"stage3",
+					"brute"
+				]
+			}
+		},
+		{
+			"id": "fazenda",
+			"side": "fazenda",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "house",
+			"gold": 0,
+			"powder": 300,
+			"control": {
+				"solo": "script",
+				"versus": "p2"
+			}
+		},
+		{
+			"id": "wild",
+			"side": "wild",
+			"faction": "brood",
+			"colour": 1,
+			"start": "none",
+			"camera": "nw_shore",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "pens",
+			"side": "pens",
+			"faction": "brood",
+			"colour": 5,
+			"start": "none",
+			"camera": "pen_3",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		}
+	],
+	"areas": {
+		"big_pen": [
+			58,
+			21,
+			17,
+			13
+		],
+		"mother_spot": [
+			65,
+			27,
+			2,
+			2
+		],
+		"sire_spot": [
+			59,
+			25,
+			2,
+			2
+		],
+		"storm_spot": [
+			71,
+			29,
+			2,
+			2
+		],
+		"big_pen_s": [
+			62,
+			31,
+			8,
+			3
+		],
+		"big_pen_w": [
+			58,
+			23,
+			5,
+			8
+		],
+		"big_pen_e": [
+			70,
+			23,
+			5,
+			8
+		],
+		"pen_5": [
+			30,
+			26,
+			12,
+			8
+		],
+		"pen_4": [
+			93,
+			22,
+			11,
+			8
+		],
+		"pen_5_dry": [
+			43,
+			28,
+			4,
+			4
+		],
+		"pen_4_dry": [
+			86,
+			26,
+			4,
+			4
+		],
+		"pen_1": [
+			17,
+			9,
+			15,
+			10
+		],
+		"pen_2": [
+			43,
+			6,
+			14,
+			8
+		],
+		"pen_3": [
+			74,
+			7,
+			14,
+			9
+		],
+		"nw_shore": [
+			13,
+			17,
+			12,
+			8
+		],
+		"way_w": [
+			46,
+			28,
+			6,
+			4
+		],
+		"way_e": [
+			80,
+			26,
+			6,
+			4
+		],
+		"way_n": [
+			70,
+			16,
+			6,
+			5
+		],
+		"house": [
+			52,
+			52,
+			16,
+			8
+		],
+		"house_in": [
+			53,
+			57,
+			14,
+			2
+		],
+		"guns_spot": [
+			55,
+			53,
+			3,
+			3
+		],
+		"gate_s": [
+			57,
+			61,
+			6,
+			2
+		],
+		"landing": [
+			50,
+			63,
+			20,
+			7
+		],
+		"canoes": [
+			52,
+			70,
+			16,
+			3
+		],
+		"deep": [
+			6,
+			0,
+			108,
+			38
+		],
+		"south": [
+			6,
+			46,
+			108,
+			30
+		],
+		"ford_w": [
+			21,
+			40,
+			7,
+			5
+		],
+		"ford_m": [
+			57,
+			40,
+			7,
+			5
+		],
+		"ford_e": [
+			91,
+			37,
+			7,
+			5
+		],
+		"burn_big": [
+			60,
+			23,
+			13,
+			9
+		]
+	},
+	"counters": {
+		"young_n": {
+			"start": 0
+		},
+		"in_pen": {
+			"start": 0
+		},
+		"bred_n": {
+			"start": 0
+		},
+		"went": {
+			"start": 0
+		},
+		"lost_n": {
+			"start": 0
+		},
+		"joined": {
+			"start": 0
+		},
+		"mothers_down": {
+			"start": 0
+		},
+		"burned": {
+			"start": 0
+		},
+		"fled_l": {
+			"start": 0
+		},
+		"fled_p": {
+			"start": 0
+		}
+	},
+	"exits": [
+		{
+			"area": "canoes",
+			"tag": "lindqvist",
+			"counter": "fled_l",
+			"after": "run_go"
+		},
+		{
+			"area": "canoes",
+			"tag": "pieter",
+			"counter": "fled_p",
+			"after": "run_go"
+		},
+		{
+			"area": "canoes",
+			"tag": "lindqvist",
+			"counter": "fled_l",
+			"after": "f_burned_all"
+		},
+		{
+			"area": "canoes",
+			"tag": "pieter",
+			"counter": "fled_p",
+			"after": "f_burned_all"
+		}
+	],
+	"units": [
+		{
+			"team": "stock",
+			"kind": "brood_mother",
+			"as": "grown_mother",
+			"count": 1,
+			"at": "mother_spot",
+			"tag": "mother",
+			"tags": [
+				"call",
+				"mothers",
+				"bred_m"
+			],
+			"fixed": true
+		},
+		{
+			"team": "stock",
+			"kind": "tyrannosaur",
+			"count": 1,
+			"at": "sire_spot",
+			"tag": "tyrant_sire",
+			"tags": [
+				"bred",
+				"sires"
+			],
+			"fixed": true
+		},
+		{
+			"team": "stock",
+			"kind": "pterodactyl",
+			"count": 1,
+			"at": "storm_spot",
+			"tag": "storm_sire",
+			"tags": [
+				"bred",
+				"sires"
+			],
+			"fixed": true
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "pen_5",
+			"tag": "young_1",
+			"tags": [
+				"young",
+				"bred",
+				"young_w"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "brood"
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "pen_4",
+			"tag": "young_2",
+			"tags": [
+				"young",
+				"bred",
+				"young_e"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "brood"
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "spitter",
+			"count": 1,
+			"at": "pen_5",
+			"tag": "young_3",
+			"tags": [
+				"young",
+				"bred",
+				"young_w"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "brood"
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "tyrant_challenger",
+			"count": 1,
+			"at": "pen_4",
+			"tag": "young_4",
+			"tags": [
+				"young",
+				"bred",
+				"young_e"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "brood"
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "spitter",
+			"count": 1,
+			"at": "pen_5",
+			"tag": "young_5",
+			"tags": [
+				"young",
+				"bred",
+				"young_w"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "brood"
+					},
+					{
+						"not": {
+							"past": {
+								"d03_fazenda.hidden": "few"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "venom_challenger",
+			"count": 1,
+			"at": "pen_4",
+			"tag": "young_6",
+			"tags": [
+				"young",
+				"bred",
+				"young_e"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "brood"
+					},
+					{
+						"not": {
+							"past": {
+								"d03_fazenda.hidden": "few"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "pen_5",
+			"tag": "young_7",
+			"tags": [
+				"young",
+				"bred",
+				"young_w"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "brood"
+					},
+					{
+						"past": {
+							"d03_fazenda.hidden": "all"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "tyrant_challenger",
+			"count": 1,
+			"at": "pen_4",
+			"tag": "young_8",
+			"tags": [
+				"young",
+				"bred",
+				"young_e"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "brood"
+					},
+					{
+						"past": {
+							"d03_fazenda.hidden": "all"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "big_pen_w",
+			"tag": "young_1",
+			"tags": [
+				"young",
+				"bred",
+				"sleep_big_pen_w"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "brood"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "big_pen_e",
+			"tag": "young_2",
+			"tags": [
+				"young",
+				"bred",
+				"sleep_big_pen_e"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "brood"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "spitter",
+			"count": 1,
+			"at": "pen_2",
+			"tag": "young_3",
+			"tags": [
+				"young",
+				"bred",
+				"sleep_pen_2"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "brood"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "tyrant_challenger",
+			"count": 1,
+			"at": "big_pen_w",
+			"tag": "young_4",
+			"tags": [
+				"young",
+				"bred",
+				"sleep_big_pen_w"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "brood"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "spitter",
+			"count": 1,
+			"at": "pen_2",
+			"tag": "young_5",
+			"tags": [
+				"young",
+				"bred",
+				"sleep_pen_2"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "brood"
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"d03_fazenda.hidden": "few"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "venom_challenger",
+			"count": 1,
+			"at": "big_pen_e",
+			"tag": "young_6",
+			"tags": [
+				"young",
+				"bred",
+				"sleep_big_pen_e"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "brood"
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"d03_fazenda.hidden": "few"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "raptor",
+			"count": 1,
+			"at": "pen_2",
+			"tag": "young_7",
+			"tags": [
+				"young",
+				"bred",
+				"sleep_pen_2"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "brood"
+						}
+					},
+					{
+						"past": {
+							"d03_fazenda.hidden": "all"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "stock",
+			"kind": "tyrant_challenger",
+			"count": 1,
+			"at": "big_pen_w",
+			"tag": "young_8",
+			"tags": [
+				"young",
+				"bred",
+				"sleep_big_pen_w"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "brood"
+						}
+					},
+					{
+						"past": {
+							"d03_fazenda.hidden": "all"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "pens",
+			"kind": "brood_mother",
+			"as": "pen_mother",
+			"count": 1,
+			"at": "pen_3",
+			"tag": "pen_mother",
+			"tags": [
+				"rival_mother",
+				"mothers",
+				"bred_m"
+			],
+			"fixed": true
+		},
+		{
+			"team": "pens",
+			"kind": "raptor",
+			"count": 2,
+			"at": "pen_3",
+			"tag": "pen_pack",
+			"tags": [
+				"bred",
+				"rivals"
+			]
+		},
+		{
+			"team": "pens",
+			"kind": "spitter",
+			"count": 1,
+			"at": "pen_3",
+			"tag": "pen_pack",
+			"tags": [
+				"bred",
+				"rivals"
+			]
+		},
+		{
+			"team": "pens",
+			"kind": "tyrant_challenger",
+			"count": 1,
+			"at": "pen_3",
+			"tag": "pen_pack",
+			"tags": [
+				"bred",
+				"rivals"
+			],
+			"if": {
+				"past": {
+					"d03_fazenda.hidden": "all"
+				}
+			}
+		},
+		{
+			"team": "fazenda",
+			"kind": "musketeer",
+			"as": "lindqvist",
+			"count": 1,
+			"at": "big_pen_s",
+			"tag": "lindqvist",
+			"tags": [
+				"lure",
+				"people",
+				"runners",
+				"faz_all"
+			],
+			"fixed": true
+		},
+		{
+			"team": "fazenda",
+			"kind": "labourer",
+			"as": "pieter",
+			"count": 1,
+			"at": "big_pen_s",
+			"tag": "pieter",
+			"tags": [
+				"lure",
+				"people",
+				"runners",
+				"faz_all"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"past": {
+								"b01_specimen.pieter": "lost"
+							}
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"a05_specimens.pieter": "lost"
+							}
+						}
+					},
+					{
+						"not": {
+							"past": {
+								"d03_fazenda.pieter": "lost"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "fazenda",
+			"kind": "musketeer",
+			"as": "keeper",
+			"count": 2,
+			"at": "pen_5_dry",
+			"tag": "keeper_w",
+			"tags": [
+				"lure",
+				"people",
+				"keepers",
+				"faz_all"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"a06_barricades.varenne": "executed"
+					}
+				}
+			}
+		},
+		{
+			"team": "fazenda",
+			"kind": "musketeer",
+			"as": "keeper",
+			"count": 2,
+			"at": "pen_4_dry",
+			"tag": "keeper_e",
+			"tags": [
+				"lure",
+				"people",
+				"keepers",
+				"faz_all"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"a06_barricades.varenne": "executed"
+					}
+				}
+			}
+		},
+		{
+			"team": "fazenda",
+			"kind": "musketeer",
+			"as": "assembly_keeper",
+			"count": 2,
+			"at": "pen_5_dry",
+			"tag": "keeper_w",
+			"tags": [
+				"lure",
+				"people",
+				"keepers",
+				"faz_all"
+			],
+			"fixed": true,
+			"if": {
+				"past": {
+					"a06_barricades.varenne": "executed"
+				}
+			}
+		},
+		{
+			"team": "fazenda",
+			"kind": "musketeer",
+			"as": "assembly_keeper",
+			"count": 2,
+			"at": "pen_4_dry",
+			"tag": "keeper_e",
+			"tags": [
+				"lure",
+				"people",
+				"keepers",
+				"faz_all"
+			],
+			"fixed": true,
+			"if": {
+				"past": {
+					"a06_barricades.varenne": "executed"
+				}
+			}
+		},
+		{
+			"team": "fazenda",
+			"kind": "musketeer",
+			"as": "keeper",
+			"count": 4,
+			"at": "house_in",
+			"tag": "hands",
+			"tags": [
+				"people",
+				"keepers",
+				"faz_all"
+			],
+			"fixed": true,
+			"if": {
+				"playing": "fazenda"
+			}
+		},
+		{
+			"team": "fazenda",
+			"kind": "cannon",
+			"count": 2,
+			"at": "guns_spot",
+			"tag": "guns",
+			"tags": [
+				"faz_all"
+			],
+			"fixed": true
+		}
+	],
+	"buildings": [
+		{
+			"team": "fazenda",
+			"kind": "town_hall",
+			"at": [
+				59,
+				55
+			],
+			"tag": "big_house",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The big house"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				50,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				50,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				51,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				51,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				52,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				52,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				53,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				53,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				54,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				54,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				55,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				55,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				56,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				56,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				57,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				57,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				58,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				58,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				59,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "gate",
+			"at": [
+				59,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				60,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "gate",
+			"at": [
+				60,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				61,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				61,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				62,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				62,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				63,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				63,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				64,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				64,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				65,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				65,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				66,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				66,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				67,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				67,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				68,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				68,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				69,
+				51
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				69,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				50,
+				52
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				69,
+				52
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				50,
+				53
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				69,
+				53
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				50,
+				54
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				69,
+				54
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				50,
+				55
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				69,
+				55
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "gate",
+			"at": [
+				50,
+				56
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "gate",
+			"at": [
+				69,
+				56
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				50,
+				57
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				69,
+				57
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				50,
+				58
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				69,
+				58
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				50,
+				59
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				69,
+				59
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				50,
+				60
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		},
+		{
+			"team": "fazenda",
+			"kind": "wall",
+			"at": [
+				69,
+				60
+			],
+			"tag": "palisade",
+			"tags": [
+				"fazenda_b"
+			],
+			"name": "The fazenda's palisade"
+		}
+	],
+	"objectives": [
+		{
+			"id": "mother_live",
+			"side": "brood",
+			"primary": true,
+			"kind": "protect",
+			"tag": "mother",
+			"text": "Your Mother must live."
+		},
+		{
+			"id": "flood",
+			"side": "brood",
+			"primary": false,
+			"kind": "manual",
+			"text": "THE FLOOD: bring the young out of the two flooded pens up to the big pen: {in_pen} of {young_n} there. They obey only inside a keeper's green ring, so move them along with the keepers.",
+			"phone": "Young to the big pen: {in_pen} of {young_n}. Keep them in a keeper's green ring."
+		},
+		{
+			"id": "flood_clock",
+			"side": "brood",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "flood",
+			"text": "The water covers the paths in {clock:flood}."
+		},
+		{
+			"id": "mothers",
+			"side": "brood",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE MOTHERS FIGHT: kill the other two Mothers ({mothers_down} of 2 down). Your creatures obey only inside your Mother's ring: out of it, near another Mother, they go over to her. Take your Mother to the fight.",
+			"phone": "Kill the other Mothers: {mothers_down} of 2. Fight inside your Mother's ring."
+		},
+		{
+			"id": "queen",
+			"side": "brood",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE QUEEN: root your Mother in the big pen (ROOT on her card) and press GROW. She grows for a minute; lay eggs meanwhile."
+		},
+		{
+			"id": "fall",
+			"side": "brood",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE FALL: lay BRUTES on the Queen's card (the Tyrant Sire rooted beside her) and break the palisade, then the big house."
+		},
+		{
+			"id": "f_flood",
+			"side": "fazenda",
+			"primary": false,
+			"kind": "manual",
+			"text": "THE FLOOD: walk your keepers up to the big pen: the animals follow only inside a lure's ring ({in_pen} of {young_n} there)."
+		},
+		{
+			"id": "f_burn",
+			"side": "fazenda",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "BURN THE PENS before the Queen grows: a keeper or Lindqvist stands 4 seconds in each of the big pen, the north pen and the east pen ({burned} of 3). Sleeping creatures wake 3 steps away: clear them with the guns first.",
+			"phone": "Burn the pens: {burned} of 3. A man stands 4 s in each."
+		},
+		{
+			"id": "f_canoes",
+			"side": "fazenda",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Then get Lindqvist to the canoes at the landing (Pieter too, with the stud book, if you can)."
+		},
+		{
+			"id": "f_queen",
+			"side": "fazenda",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "queen",
+			"hidden": true,
+			"text": "The strongest Mother grows into a Queen in {clock:queen}. The Mothers are too big for muskets."
+		}
+	],
+	"triggers": [
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "young_n",
+						"count": {
+							"tag": "young"
+						}
+					}
+				},
+				{
+					"brood_stage": {
+						"tag": "mothers",
+						"stage": 2
+					}
+				},
+				{
+					"nest_free": {
+						"tag": "sires",
+						"on": true
+					}
+				},
+				{
+					"order": {
+						"tag": "mother",
+						"do": "root",
+						"to": "mother_spot"
+					}
+				},
+				{
+					"order": {
+						"tag": "tyrant_sire",
+						"do": "root",
+						"to": "sire_spot"
+					}
+				},
+				{
+					"order": {
+						"tag": "storm_sire",
+						"do": "root",
+						"to": "storm_spot"
+					}
+				},
+				{
+					"spare": {
+						"tag": "faz_all",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "fazenda_b",
+						"on": true
+					}
+				},
+				{
+					"carry": {
+						"tag": "faz_all",
+						"on": true,
+						"pace": 1.0
+					}
+				},
+				{
+					"cage": {
+						"tag": "pen_mother",
+						"on": true
+					}
+				},
+				{
+					"sleep": {
+						"team": "pens",
+						"name": "east_pen",
+						"within": 0
+					}
+				},
+				{
+					"spare": {
+						"tag": "pen_mother",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "pen_pack",
+						"on": true
+					}
+				},
+				{
+					"deny": {
+						"team": "stock",
+						"kind": [
+							"grub",
+							"rootmaw",
+							"mound_turtle",
+							"dilophosaurus"
+						],
+						"why": "Not on the island: the flood has drowned the ground."
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_brood",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"playing": "brood"
+					}
+				]
+			},
+			"do": [
+				{
+					"leash": {
+						"tag": "young",
+						"lure": "lure",
+						"within": 8,
+						"loose": "wander",
+						"name": "stock"
+					}
+				},
+				{
+					"clock": {
+						"name": "flood",
+						"secs": 150
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_mirror",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"not": {
+							"playing": "brood"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"sleep": {
+						"tag": "sleep_big_pen_w",
+						"name": "big_pen_w",
+						"within": 3,
+						"by": "fazenda",
+						"hurt": true,
+						"then": {
+							"do": "hunt",
+							"prey": "people",
+							"within": 12
+						}
+					}
+				},
+				{
+					"sleep": {
+						"tag": "sleep_big_pen_e",
+						"name": "big_pen_e",
+						"within": 3,
+						"by": "fazenda",
+						"hurt": true,
+						"then": {
+							"do": "hunt",
+							"prey": "people",
+							"within": 12
+						}
+					}
+				},
+				{
+					"sleep": {
+						"tag": "sleep_pen_2",
+						"name": "pen_2",
+						"within": 3,
+						"by": "fazenda",
+						"hurt": true,
+						"then": {
+							"do": "hunt",
+							"prey": "people",
+							"within": 12
+						}
+					}
+				},
+				{
+					"floor": {
+						"tag": "mothers",
+						"share": 0.35
+					}
+				},
+				{
+					"objective": {
+						"id": "flood",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "flood_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "f_flood",
+						"set": "hidden"
+					}
+				},
+				{
+					"order": {
+						"tag": "keeper_w",
+						"do": "move",
+						"to": "house_in"
+					}
+				},
+				{
+					"order": {
+						"tag": "keeper_e",
+						"do": "move",
+						"to": "house_in"
+					}
+				},
+				{
+					"clock": {
+						"name": "flood",
+						"secs": 15,
+						"scale": false
+					}
+				}
+			]
+		},
+		{
+			"id": "no_pieter",
+			"when": {
+				"all": [
+					{
+						"time": 20
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"b01_specimen.pieter": "lost"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a05_specimens.pieter": "lost"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"d03_fazenda.pieter": "lost"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_no_pieter"
+					]
+				}
+			]
+		},
+		{
+			"id": "guards",
+			"when": {
+				"all": [
+					{
+						"time": 26
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_guards"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "brood"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_1",
+						"p_tip1",
+						"n_lesson"
+					]
+				},
+				{
+					"ping": {
+						"area": "pen_5"
+					}
+				},
+				{
+					"ping": {
+						"area": "pen_4"
+					}
+				},
+				{
+					"ping": {
+						"area": "big_pen"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro_sire",
+			"when": {
+				"all": [
+					{
+						"time": 30
+					},
+					{
+						"playing": "brood"
+					},
+					{
+						"past": {
+							"a05_specimens.cages": "all"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_sire_all"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_f",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "fazenda"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_f1",
+						"p_f1"
+					]
+				}
+			]
+		},
+		{
+			"id": "keepers_go",
+			"when": {
+				"all": [
+					{
+						"time": 9
+					},
+					{
+						"not": {
+							"playing": "fazenda"
+						}
+					},
+					{
+						"playing": "brood"
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "keeper_w",
+						"do": "route",
+						"route": [
+							"pen_5",
+							"way_w",
+							"big_pen_w"
+						],
+						"name": "keeper_w"
+					}
+				},
+				{
+					"order": {
+						"tag": "keeper_e",
+						"do": "route",
+						"route": [
+							"pen_4",
+							"way_e",
+							"big_pen_e"
+						],
+						"name": "keeper_e"
+					}
+				},
+				{
+					"pace": {
+						"tag": "keepers",
+						"pace": 0.8
+					}
+				}
+			]
+		},
+		{
+			"id": "in_count",
+			"when": {
+				"all": [
+					{
+						"time": 2
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"counter": {
+						"name": "in_pen",
+						"count": {
+							"tag": "young",
+							"area": "big_pen"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "call",
+			"when": {
+				"all": [
+					{
+						"time": 50
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"playing": "brood"
+					}
+				]
+			},
+			"do": [
+				{
+					"sound": {
+						"name": "campaign/linnea_call",
+						"area": "nw_shore",
+						"vol": -4
+					}
+				},
+				{
+					"ping": {
+						"area": "nw_shore"
+					}
+				},
+				{
+					"say": [
+						"n_call",
+						"p_call"
+					]
+				},
+				{
+					"leash": {
+						"tag": "young",
+						"lure": "lure",
+						"within": 8,
+						"loose": "to",
+						"to": "nw_shore",
+						"name": "stock"
+					}
+				}
+			]
+		},
+		{
+			"id": "loose_say",
+			"when": {
+				"all": [
+					{
+						"fired": "call"
+					},
+					{
+						"loose": {
+							"name": "stock"
+						}
+					},
+					{
+						"playing": "brood"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_loose"
+					]
+				}
+			]
+		},
+		{
+			"id": "all_in",
+			"when": {
+				"all": [
+					{
+						"time": 12
+					},
+					{
+						"playing": "brood"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"counter": {
+							"name": "in_pen",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "young",
+							"area": "big_pen",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "young_w",
+							"area": "pen_5",
+							"below": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "young_e",
+							"area": "pen_4",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"loose": {
+								"name": "stock"
+							}
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "flood",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "f_flood",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"p_in"
+					]
+				},
+				{
+					"clock": {
+						"name": "flood",
+						"add": -900
+					}
+				}
+			]
+		},
+		{
+			"id": "flood_late",
+			"when": {
+				"all": [
+					{
+						"clock_out": "flood"
+					},
+					{
+						"playing": "brood"
+					},
+					{
+						"not": {
+							"fired": "all_in"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"p_late"
+					]
+				},
+				{
+					"objective": {
+						"id": "flood",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"all": [
+					{
+						"clock_out": "flood"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "flood",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "flood_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "flood",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "f_flood",
+						"set": "hidden"
+					}
+				},
+				{
+					"counter": {
+						"name": "bred_n",
+						"count": {
+							"tag": "bred"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "wild",
+						"kind": "brood_mother",
+						"as": "wild_mother",
+						"count": 1,
+						"at": "nw_shore",
+						"tag": "wild_mother",
+						"tags": [
+							"rival_mother",
+							"mothers",
+							"bred_m"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "wild",
+						"kind": "raptor",
+						"count": 4,
+						"at": "nw_shore",
+						"tag": "wild_pack",
+						"tags": [
+							"bred",
+							"rivals"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "wild",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "nw_shore",
+						"tag": "wild_pack",
+						"tags": [
+							"bred",
+							"rivals"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "wild",
+						"kind": "raptor",
+						"count": 2,
+						"at": "nw_shore",
+						"tag": "wild_pack",
+						"tags": [
+							"bred",
+							"rivals"
+						],
+						"if": {
+							"not": {
+								"past": {
+									"b01_specimen.rival": "driven"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "wild",
+						"kind": "tyrannosaur",
+						"count": 1,
+						"at": "nw_shore",
+						"tag": "wild_pack",
+						"tags": [
+							"bred",
+							"rivals"
+						],
+						"fixed": true,
+						"if": {
+							"not": {
+								"past": {
+									"b01_specimen.rival": "driven"
+								}
+							}
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "nw_shore"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/sire_roar",
+						"area": "nw_shore",
+						"vol": -6
+					}
+				},
+				{
+					"order": {
+						"tag": "people",
+						"do": "move",
+						"to": "house_in"
+					}
+				},
+				{
+					"leash": {
+						"team": "stock",
+						"lure": "call",
+						"within": 12,
+						"loose": "wander",
+						"name": "stock",
+						"breaks": {
+							"near": "rival_mother",
+							"within": 6,
+							"to": "near",
+							"loose_only": true,
+							"counter": "lost_n",
+							"warn": 2
+						}
+					}
+				},
+				{
+					"leash": {
+						"team": "wild",
+						"lure": "wild_mother",
+						"within": 90,
+						"loose": "to",
+						"to": "big_pen",
+						"name": "wild"
+					}
+				},
+				{
+					"leash": {
+						"team": "pens",
+						"lure": "pen_mother",
+						"within": 90,
+						"loose": "to",
+						"to": "big_pen",
+						"name": "pens"
+					}
+				},
+				{
+					"objective": {
+						"id": "mothers",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_say",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"n_wild",
+						"l_drop"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2_rival",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"past": {
+								"b01_specimen.rival": "driven"
+							}
+						}
+					}
+				]
+			},
+			"delay": 6,
+			"do": [
+				{
+					"say": [
+						"n_wild_rival"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2_ring",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "brood"
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"n_mring",
+						"n_uproot"
+					]
+				},
+				{
+					"ping": {
+						"tag": "mother"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_f",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "fazenda"
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"spare": {
+						"tag": "faz_all",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "fazenda_b",
+						"on": false
+					}
+				},
+				{
+					"carry": {
+						"tag": "faz_all",
+						"on": false
+					}
+				},
+				{
+					"objective": {
+						"id": "f_burn",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "f_canoes",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_fq",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "fazenda"
+					},
+					{
+						"not": {
+							"playing": "brood"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"objective": {
+						"id": "f_queen",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "queen",
+						"secs": 420
+					}
+				}
+			]
+		},
+		{
+			"id": "wild_go",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 4,
+			"do": [
+				{
+					"pace": {
+						"tag": "wild_mother",
+						"pace": 1.8
+					}
+				},
+				{
+					"order": {
+						"team": "wild",
+						"do": "route",
+						"route": [
+							"pen_5",
+							"way_w",
+							"big_pen"
+						],
+						"attack": true,
+						"name": "wild_road"
+					}
+				}
+			]
+		},
+		{
+			"id": "east_go",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 40,
+			"do": [
+				{
+					"cage": {
+						"tag": "pen_mother",
+						"on": false
+					}
+				},
+				{
+					"wake": {
+						"name": "east_pen"
+					}
+				},
+				{
+					"spare": {
+						"tag": "pen_mother",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "pen_pack",
+						"on": false
+					}
+				},
+				{
+					"pace": {
+						"tag": "pen_mother",
+						"pace": 1.8
+					}
+				},
+				{
+					"order": {
+						"team": "pens",
+						"do": "route",
+						"route": [
+							"pen_3",
+							"way_n",
+							"big_pen"
+						],
+						"attack": true,
+						"name": "east_road"
+					}
+				},
+				{
+					"ping": {
+						"area": "pen_3"
+					}
+				},
+				{
+					"say": [
+						"n_east"
+					]
+				}
+			]
+		},
+		{
+			"id": "rivals_press",
+			"when": {
+				"all": [
+					{
+						"fired": "wild_go"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 30,
+			"every": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "rivals",
+						"do": "hunt",
+						"prey": "mothers",
+						"within": 22,
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "rival_mother",
+						"do": "hunt",
+						"prey": "mothers",
+						"within": 22,
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "fight_say",
+			"when": {
+				"all": [
+					{
+						"fired": "east_go"
+					},
+					{
+						"any": [
+							{
+								"near": {
+									"tag": "wild_pack",
+									"to": "pen_pack",
+									"within": 6
+								}
+							},
+							{
+								"near": {
+									"tag": "rivals",
+									"to_team": "stock",
+									"within": 6
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"p_fight",
+						"l_fight"
+					]
+				}
+			]
+		},
+		{
+			"id": "lost_say",
+			"when": {
+				"all": [
+					{
+						"broke": {
+							"name": "stock",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "brood"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "wild_down",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"dead": "wild_mother"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "mothers_down",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_wild_down"
+					]
+				},
+				{
+					"leash": {
+						"team": "wild",
+						"lure": "call",
+						"within": 1,
+						"loose": "to",
+						"to": "big_pen",
+						"name": "wild",
+						"breaks": {
+							"near": "call",
+							"within": 9,
+							"to": "stock",
+							"counter": "joined",
+							"warn": 2
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "east_down",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"dead": "pen_mother"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "mothers_down",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_east_down"
+					]
+				},
+				{
+					"leash": {
+						"team": "pens",
+						"lure": "call",
+						"within": 1,
+						"loose": "to",
+						"to": "big_pen",
+						"name": "pens",
+						"breaks": {
+							"near": "call",
+							"within": 9,
+							"to": "stock",
+							"counter": "joined",
+							"warn": 2
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "joined_say",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "joined",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "brood"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_joined"
+					]
+				}
+			]
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"fired": "wild_down"
+					},
+					{
+						"fired": "east_down"
+					},
+					{
+						"not": {
+							"dead": "mother"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"objective": {
+						"id": "mothers",
+						"set": "done"
+					}
+				},
+				{
+					"give": {
+						"team": "stock",
+						"gold": 520,
+						"powder": 80
+					}
+				},
+				{
+					"say": [
+						"n_part3",
+						"l_house"
+					]
+				},
+				{
+					"ping": {
+						"area": "mother_spot"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_part3__0",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "brood"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "queen",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "faz_wake",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "fazenda"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "faz_all",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "fazenda_b",
+						"on": false
+					}
+				},
+				{
+					"carry": {
+						"tag": "faz_all",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "lindqvist",
+						"on": true
+					}
+				},
+				{
+					"order": {
+						"tag": "keepers",
+						"do": "move",
+						"to": "house_in"
+					}
+				},
+				{
+					"order": {
+						"tag": "guns",
+						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "faz_hold",
+			"when": {
+				"fired": "faz_wake"
+			},
+			"delay": 12,
+			"do": [
+				{
+					"order": {
+						"tag": "keepers",
+						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "grow_hint",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "brood"
+					},
+					{
+						"rooted": {
+							"tag": "mother"
+						}
+					},
+					{
+						"count": {
+							"tag": "mother",
+							"area": "big_pen"
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"say": [
+						"n_growing"
+					]
+				}
+			]
+		},
+		{
+			"id": "queen",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"brood_stage": {
+							"tag": "mother",
+							"at_least": 3
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "queen",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"queen": "grown"
+					}
+				},
+				{
+					"name": {
+						"tag": "mother",
+						"name": "The Queen"
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/forest_answer",
+						"area": "big_pen",
+						"vol": -2
+					}
+				},
+				{
+					"show": {
+						"pages": [
+							{
+								"still": "flood",
+								"lines": [
+									"s_1"
+								]
+							},
+							{
+								"still": "fight",
+								"lines": [
+									"s_2"
+								]
+							},
+							{
+								"still": "queen",
+								"lines": [
+									"s_3",
+									"l_show"
+								]
+							}
+						]
+					}
+				},
+				{
+					"convert": {
+						"tag": "rivals",
+						"to": "stock",
+						"warn": 2
+					}
+				},
+				{
+					"convert": {
+						"tag": "rival_mother",
+						"to": "stock",
+						"warn": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "fall",
+			"when": {
+				"all": [
+					{
+						"fired": "queen"
+					},
+					{
+						"playing": "brood"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"objective": {
+						"id": "fall",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"n_fall"
+					]
+				},
+				{
+					"give": {
+						"team": "stock",
+						"gold": 330,
+						"powder": 45
+					}
+				},
+				{
+					"ping": {
+						"tag": "big_house"
+					}
+				}
+			]
+		},
+		{
+			"id": "run_go",
+			"when": {
+				"all": [
+					{
+						"fired": "queen"
+					},
+					{
+						"not": {
+							"playing": "fazenda"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 6,
+			"do": [
+				{
+					"say": [
+						"l_run",
+						"p_book",
+						"l_book"
+					]
+				},
+				{
+					"flag": {
+						"book": "left"
+					}
+				},
+				{
+					"order": {
+						"tag": "runners",
+						"do": "move",
+						"to": "canoes"
+					}
+				},
+				{
+					"pace": {
+						"tag": "runners",
+						"pace": 1.3
+					}
+				}
+			]
+		},
+		{
+			"id": "run_again",
+			"when": {
+				"all": [
+					{
+						"fired": "run_go"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"every": 8,
+			"do": [
+				{
+					"order": {
+						"tag": "runners",
+						"do": "move",
+						"to": "canoes"
+					}
+				}
+			]
+		},
+		{
+			"id": "breach",
+			"when": {
+				"all": [
+					{
+						"fired": "fall"
+					},
+					{
+						"hurt": "palisade"
+					},
+					{
+						"count": {
+							"tag": "palisade",
+							"buildings": true,
+							"below": 58
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_breach"
+					]
+				}
+			]
+		},
+		{
+			"id": "canoe_2",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "fled_l",
+							"at_least": 1
+						}
+					},
+					{
+						"counter": {
+							"name": "fled_p",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_canoe"
+					]
+				}
+			]
+		},
+		{
+			"id": "canoe_1",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "fled_l",
+							"at_least": 1
+						}
+					},
+					{
+						"dead": "pieter"
+					},
+					{
+						"counter": {
+							"name": "fled_p",
+							"below": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_canoe1"
+					]
+				}
+			]
+		},
+		{
+			"id": "pieter_lost",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"dead": "pieter"
+					},
+					{
+						"counter": {
+							"name": "fled_p",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_pieter_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "house_down",
+			"when": {
+				"all": [
+					{
+						"fired": "queen"
+					},
+					{
+						"dead": "big_house"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_house"
+					]
+				},
+				{
+					"objective": {
+						"id": "fall",
+						"set": "done"
+					}
+				},
+				{
+					"counter": {
+						"name": "went",
+						"count": {
+							"tag": "bred",
+							"of_team": "stock"
+						}
+					}
+				},
+				{
+					"tally": {
+						"flag": "brood_n",
+						"counter": "went",
+						"of": "bred_n",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.35,
+								"some"
+							],
+							[
+								0.7,
+								"all"
+							]
+						]
+					}
+				},
+				{
+					"flag": {
+						"lindqvist": "fled"
+					}
+				},
+				{
+					"flag": {
+						"book": "left"
+					}
+				}
+			]
+		},
+		{
+			"id": "house_pieter",
+			"when": {
+				"fired": "house_down"
+			},
+			"do": []
+		},
+		{
+			"id": "if_house_pieter__0",
+			"when": {
+				"all": [
+					{
+						"fired": "house_pieter"
+					},
+					{
+						"any": [
+							{
+								"counter": {
+									"name": "fled_p",
+									"at_least": 1
+								}
+							},
+							{
+								"count": {
+									"tag": "pieter",
+									"at_least": 1
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"pieter": "alive"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_house_pieter__1",
+			"when": {
+				"all": [
+					{
+						"fired": "house_pieter"
+					},
+					{
+						"all": [
+							{
+								"counter": {
+									"name": "fled_p",
+									"below": 1
+								}
+							},
+							{
+								"count": {
+									"tag": "pieter",
+									"below": 1
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"pieter": "lost"
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"all": [
+					{
+						"fired": "house_down"
+					},
+					{
+						"playing": "brood"
+					}
+				]
+			},
+			"delay": 6,
+			"do": [
+				{
+					"win": "brood"
+				}
+			]
+		},
+		{
+			"id": "lost_mother",
+			"when": {
+				"all": [
+					{
+						"dead": "mother"
+					},
+					{
+						"playing": "brood"
+					},
+					{
+						"not": {
+							"fired": "queen"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_mother_dead"
+					]
+				}
+			]
+		},
+		{
+			"id": "burn_big",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_f"
+					},
+					{
+						"stay": {
+							"tag": "people",
+							"area": "burn_big",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "queen"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "burned",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_f_burn"
+					]
+				},
+				{
+					"ping": {
+						"area": "burn_big"
+					}
+				},
+				{
+					"flag": {
+						"burned_big": "yes"
+					}
+				}
+			]
+		},
+		{
+			"id": "burn_north",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_f"
+					},
+					{
+						"stay": {
+							"tag": "people",
+							"area": "pen_2",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "queen"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "burned",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_f_burn"
+					]
+				},
+				{
+					"ping": {
+						"area": "pen_2"
+					}
+				},
+				{
+					"flag": {
+						"burned_north": "yes"
+					}
+				}
+			]
+		},
+		{
+			"id": "burn_east",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_f"
+					},
+					{
+						"stay": {
+							"tag": "people",
+							"area": "pen_3",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "queen"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "burned",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_f_burn"
+					]
+				},
+				{
+					"ping": {
+						"area": "pen_3"
+					}
+				},
+				{
+					"flag": {
+						"burned_east": "yes"
+					}
+				}
+			]
+		},
+		{
+			"id": "burn_big_delay",
+			"when": {
+				"all": [
+					{
+						"fired": "burn_big"
+					},
+					{
+						"not": {
+							"playing": "brood"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_f_big"
+					]
+				},
+				{
+					"clock": {
+						"name": "queen",
+						"add": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "f_burned_all",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "burned",
+							"at_least": 3
+						}
+					},
+					{
+						"playing": "fazenda"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "f_burn",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"l_f_go"
+					]
+				}
+			]
+		},
+		{
+			"id": "f_warn",
+			"when": {
+				"all": [
+					{
+						"clock_left": {
+							"name": "queen",
+							"below": 60
+						}
+					},
+					{
+						"playing": "fazenda"
+					},
+					{
+						"not": {
+							"playing": "brood"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"p_f_warn"
+					]
+				}
+			]
+		},
+		{
+			"id": "f_queen_grows",
+			"when": {
+				"all": [
+					{
+						"clock_out": "queen"
+					},
+					{
+						"not": {
+							"playing": "brood"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"brood_stage": {
+						"tag": "mother",
+						"stage": 3
+					}
+				},
+				{
+					"objective": {
+						"id": "f_queen",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "f_lost",
+			"when": {
+				"all": [
+					{
+						"fired": "queen"
+					},
+					{
+						"playing": "fazenda"
+					},
+					{
+						"not": {
+							"fired": "f_won"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_f_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "f_burn",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "f_won",
+			"when": {
+				"all": [
+					{
+						"fired": "f_burned_all"
+					},
+					{
+						"counter": {
+							"name": "fled_l",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "fazenda"
+					},
+					{
+						"not": {
+							"fired": "queen"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"l_f_won"
+					]
+				},
+				{
+					"objective": {
+						"id": "f_canoes",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"brood_n": "few"
+					}
+				},
+				{
+					"flag": {
+						"lindqvist": "fled"
+					}
+				},
+				{
+					"flag": {
+						"book": "taken"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_f_won__0",
+			"when": {
+				"all": [
+					{
+						"fired": "f_won"
+					},
+					{
+						"any": [
+							{
+								"counter": {
+									"name": "fled_p",
+									"at_least": 1
+								}
+							},
+							{
+								"count": {
+									"tag": "pieter",
+									"at_least": 1
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"pieter": "alive"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_f_won__1",
+			"when": {
+				"all": [
+					{
+						"fired": "f_won"
+					},
+					{
+						"all": [
+							{
+								"counter": {
+									"name": "fled_p",
+									"below": 1
+								}
+							},
+							{
+								"count": {
+									"tag": "pieter",
+									"below": 1
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"pieter": "lost"
+					}
+				}
+			]
+		},
+		{
+			"id": "f_end",
+			"when": {
+				"fired": "f_won"
+			},
+			"delay": 4,
+			"do": [
+				{
+					"win": "fazenda"
+				}
+			]
+		},
+		{
+			"id": "l_hurt",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "lindqvist",
+							"below": 0.6
+						}
+					},
+					{
+						"playing": "fazenda"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"h_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "lindqvist"
+					}
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 8
+			},
+			"do": [
+				{
+					"say": [
+						"new_stage3",
+						"new_brute"
+					]
+				}
+			]
+		}
+	],
+	"heroes": [
+		"lindqvist"
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "brood",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"lindqvist": {
+			"name": "Dr. Lindqvist",
+			"side": "fazenda",
+			"portrait": "res://campaign/hub/station_lindqvist_face.png"
+		},
+		"pieter": {
+			"name": "Pieter",
+			"side": "fazenda"
+		},
+		"narrator": {
+			"name": "The Island",
+			"side": "brood"
+		},
+		"new": {
+			"name": "NEW IN YOUR ARMY",
+			"side": "brood"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "Three years after the commission the river rose higher than anyone on it could remember."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "Lindqvist still tells that night as a breeding season that went wrong."
+		},
+		"l_open1": {
+			"who": "lindqvist",
+			"text": "The wet season of 2775. The water came up into the cane, then into the low pens."
+		},
+		"l_open2": {
+			"who": "lindqvist",
+			"text": "I had two breeding Mothers on the island by then. I thought I was a rich man."
+		},
+		"l_open_saved": {
+			"who": "lindqvist",
+			"text": "The first from the clutch we carried out of the station. The second bred from her."
+		},
+		"l_open_burned": {
+			"who": "lindqvist",
+			"text": "The first netted on the mountain. The second bred from her."
+		},
+		"k_open_f": {
+			"who": "king",
+			"text": "Lindqvist says he burned the pens that night. Listen to how much he burned."
+		},
+		"l_open_f": {
+			"who": "lindqvist",
+			"text": "The water was in the cane. Something was calling from the north shore. I sent for the torches."
+		},
+		"l_1": {
+			"who": "lindqvist",
+			"text": "The low pens are under water. Pieter, the keepers. Bring the stock up to the big pen. All of it.",
+			"to": "brood"
+		},
+		"p_tip1": {
+			"who": "pieter",
+			"text": "They follow the lures, Doctor, nothing else. The keepers walk up the paths; the animals have to stay inside their rings.",
+			"to": "brood"
+		},
+		"n_lesson": {
+			"who": "narrator",
+			"text": "Your creatures obey only inside a keeper's green ring. Select them and move them with the keepers, a little at a time.",
+			"to": "brood"
+		},
+		"n_call": {
+			"who": "narrator",
+			"text": "A deep sound comes over the water from the north-west shore. Every head in the pens turns toward it."
+		},
+		"p_call": {
+			"who": "pieter",
+			"text": "Doctor, the ones outside the rings are walking toward it.",
+			"to": "brood"
+		},
+		"n_loose": {
+			"who": "narrator",
+			"text": "A creature out of every ring walks toward the sound. Bring a keeper's ring back over it.",
+			"to": "brood"
+		},
+		"p_in": {
+			"who": "pieter",
+			"text": "They are all up in the big pen, Doctor. Wet, but all there.",
+			"to": "brood"
+		},
+		"p_late": {
+			"who": "pieter",
+			"text": "The water is on the paths, Doctor. We cannot wait for the rest.",
+			"to": "brood"
+		},
+		"n_wild": {
+			"who": "narrator",
+			"text": "The flood has carried a wild Mother onto the north-west shore, and a pack with her."
+		},
+		"n_wild_rival": {
+			"who": "narrator",
+			"text": "Big for a wild one, with a Tyrant Sire of her own. A pack off the Rio Negro, perhaps."
+		},
+		"l_drop": {
+			"who": "lindqvist",
+			"text": "Leave the lures. Everyone to the house. Shut the gate."
+		},
+		"n_mring": {
+			"who": "narrator",
+			"text": "The keepers are gone. Now your creatures follow only their own Mother: they obey inside her ring. Out of it, near another Mother, they go over to her.",
+			"to": "brood"
+		},
+		"n_uproot": {
+			"who": "narrator",
+			"text": "Your Mother can fight. UPROOT her on her card and walk her to the fight; rooted, she only waits.",
+			"to": "brood"
+		},
+		"n_east": {
+			"who": "narrator",
+			"text": "In the north-east pen the other bred Mother breaks her fence. The young round her go with her."
+		},
+		"p_fight": {
+			"who": "pieter",
+			"text": "They are fighting each other, Doctor. Mother against Mother."
+		},
+		"l_fight": {
+			"who": "lindqvist",
+			"text": "Write it down, Pieter. Every hour of it. Nobody has ever seen this."
+		},
+		"n_lost": {
+			"who": "narrator",
+			"text": "One of yours strayed out of your Mother's ring and has gone over to another Mother.",
+			"to": "brood"
+		},
+		"n_wild_down": {
+			"who": "narrator",
+			"text": "The wild Mother is down. Her pack wanders, and turns toward the strongest call left."
+		},
+		"n_east_down": {
+			"who": "narrator",
+			"text": "The east pen's Mother is down. Her young wander, and turn toward the strongest call left."
+		},
+		"n_joined": {
+			"who": "narrator",
+			"text": "Loose creatures of the fallen Mothers come into your Mother's ring and stay.",
+			"to": "brood"
+		},
+		"n_part3": {
+			"who": "narrator",
+			"text": "One Mother is left on the island. Root her in the big pen and press GROW on her card.",
+			"to": "brood"
+		},
+		"l_house": {
+			"who": "lindqvist",
+			"text": "Close the shutters. Load the swivel guns. Pieter, bring the stud book down."
+		},
+		"n_growing": {
+			"who": "narrator",
+			"text": "She is growing. Lay eggs meanwhile, with the Sires rooted beside her.",
+			"to": "brood"
+		},
+		"s_1": {
+			"who": "narrator",
+			"text": "The flood."
+		},
+		"s_2": {
+			"who": "narrator",
+			"text": "The pens."
+		},
+		"s_3": {
+			"who": "narrator",
+			"text": "The Queen."
+		},
+		"l_show": {
+			"who": "lindqvist",
+			"text": "Every animal on the island turned toward the big pen. I had no lure for that."
+		},
+		"n_fall": {
+			"who": "narrator",
+			"text": "Every bred creature on the island turns to the Queen. Lay BRUTES on her card and break the palisade, then the big house.",
+			"to": "brood"
+		},
+		"l_run": {
+			"who": "lindqvist",
+			"text": "Pieter! The canoes. Leave everything."
+		},
+		"p_book": {
+			"who": "pieter",
+			"text": "The book, Doctor! The lure book is upstairs!"
+		},
+		"l_book": {
+			"who": "lindqvist",
+			"text": "Leave it!"
+		},
+		"n_breach": {
+			"who": "narrator",
+			"text": "The palisade is open.",
+			"to": "brood"
+		},
+		"n_canoe": {
+			"who": "narrator",
+			"text": "A canoe goes down the river in the dark with two men in it."
+		},
+		"n_canoe1": {
+			"who": "narrator",
+			"text": "A canoe goes down the river in the dark with one man in it."
+		},
+		"n_pieter_lost": {
+			"who": "narrator",
+			"text": "Pieter did not reach the canoes."
+		},
+		"n_house": {
+			"who": "narrator",
+			"text": "The big house falls. The island belongs to the Queen."
+		},
+		"n_mother_dead": {
+			"who": "narrator",
+			"text": "Your Mother is dead. Another will root in the big pen.",
+			"to": "brood"
+		},
+		"l_f1": {
+			"who": "lindqvist",
+			"text": "Torches. We burn the pens before they settle it among themselves. Then the canoes.",
+			"to": "fazenda"
+		},
+		"p_f1": {
+			"who": "pieter",
+			"text": "The guns first, Doctor. They are asleep in the straw, and they wake when you walk up to them.",
+			"to": "fazenda"
+		},
+		"n_f_burn": {
+			"who": "narrator",
+			"text": "A pen burns: straw, fences, the troughs.",
+			"to": "fazenda"
+		},
+		"l_f_big": {
+			"who": "lindqvist",
+			"text": "The big pen is burning. They will have to settle it somewhere else, and that takes time.",
+			"to": "fazenda"
+		},
+		"l_f_go": {
+			"who": "lindqvist",
+			"text": "Enough. To the canoes, all of you.",
+			"to": "fazenda"
+		},
+		"p_f_warn": {
+			"who": "pieter",
+			"text": "Doctor, the big one in the middle is changing. It is getting bigger.",
+			"to": "fazenda"
+		},
+		"l_f_won": {
+			"who": "lindqvist",
+			"text": "Push off, Pieter. Do not look back.",
+			"to": "fazenda"
+		},
+		"l_f_lost": {
+			"who": "lindqvist",
+			"text": "Too late. It is growing. Everything on the island is turning to it."
+		},
+		"l_end1": {
+			"who": "lindqvist",
+			"text": "I stood up in the canoe and looked back. The whole island was moving."
+		},
+		"l_end_all": {
+			"who": "lindqvist",
+			"text": "Every animal I had bred was on that bank. Not one came to the lure."
+		},
+		"l_end_some": {
+			"who": "lindqvist",
+			"text": "Half my stock was on that bank. The rest lay dead in the pens."
+		},
+		"l_end_few": {
+			"who": "lindqvist",
+			"text": "Few of mine were on that bank. The pens had killed most of them."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "He says the flood did it. He bred nothing. He kept animals that were made long ago to become exactly that."
+		},
+		"k_end2": {
+			"who": "king",
+			"text": "The Church told him what they were. He still says they evolved."
+		},
+		"l_end_f": {
+			"who": "lindqvist",
+			"text": "We burned three pens and went down the river at first light. I have the stud book. I burned the rest."
+		},
+		"k_end_f": {
+			"who": "king",
+			"text": "He told me he burned them. He did not burn enough."
+		},
+		"h_hurt": {
+			"who": "lindqvist",
+			"text": "My arm. Pieter, the torch.",
+			"to": "fazenda"
+		},
+		"n_guards": {
+			"who": "narrator",
+			"text": "The keepers are Assembly men now, paid in sugar and silence."
+		},
+		"n_no_pieter": {
+			"who": "narrator",
+			"text": "Pieter is not on the island any more. Two keepers carry the lures on each side."
+		},
+		"n_sire_all": {
+			"who": "narrator",
+			"text": "The Tyrant Sire beside her is the young Sire of the plateau's cages, grown.",
+			"to": "brood"
+		},
+		"new_stage3": {
+			"who": "new",
+			"to": "brood",
+			"text": "NEW: GROW TO THE THIRD STAGE. Rooted, the Mother grows once more: more eggs, faster laying, and the Brute's eggs. It takes a minute and she must stay rooted."
+		},
+		"new_brute": {
+			"who": "new",
+			"to": "brood",
+			"text": "NEW: THE BRUTE. Laid by the Mother at her third stage with the Tyrant Sire rooted beside her: a huge horned beast that batters down palisades and gates.",
+			"portrait": "res://assets/icons/brute.png"
+		}
+	},
+	"stills": {
+		"flood": {
+			"image": "res://campaign/stills/d06_01.jpg",
+			"caption": "The island below Óbidos, the wet season 2775: the flood."
+		},
+		"fight": {
+			"image": "res://campaign/stills/d06_02.jpg",
+			"caption": "The Mothers in the pens."
+		},
+		"queen": {
+			"image": "res://campaign/stills/d06_03.jpg",
+			"caption": "The Queen in the big pen."
+		},
+		"canoes": {
+			"image": "res://campaign/stills/d06_04.jpg",
+			"caption": "The canoes from the burning house."
+		},
+		"rome": {
+			"image": "res://campaign/stills/b01_08.jpg",
+			"caption": "Rome, the present. The King and his prisoner, the doctor."
+		}
+	},
+	"next": {
+		"brood": "",
+		"fazenda": ""
+	},
+	"opening": {
+		"brood": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2"
+				]
+			},
+			{
+				"still": "flood",
+				"lines": [
+					"l_open1",
+					"l_open2",
+					{
+						"id": "l_open_saved",
+						"if": {
+							"not": {
+								"past": {
+									"b01_specimen.clutch": "burned"
+								}
+							}
+						}
+					},
+					{
+						"id": "l_open_burned",
+						"if": {
+							"past": {
+								"b01_specimen.clutch": "burned"
+							}
+						}
+					}
+				]
+			}
+		],
+		"fazenda": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open_f"
+				]
+			},
+			{
+				"still": "flood",
+				"lines": [
+					"l_open1",
+					"l_open_f"
+				]
+			}
+		]
+	},
+	"ending": {
+		"brood": [
+			{
+				"still": "canoes",
+				"lines": [
+					"l_end1",
+					{
+						"id": "l_end_all",
+						"if": {
+							"flag": {
+								"brood_n": "all"
+							}
+						}
+					},
+					{
+						"id": "l_end_some",
+						"if": {
+							"flag": {
+								"brood_n": "some"
+							}
+						}
+					},
+					{
+						"id": "l_end_few",
+						"if": {
+							"flag": {
+								"brood_n": "few"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end1",
+					"k_end2"
+				]
+			}
+		],
+		"fazenda": [
+			{
+				"still": "canoes",
+				"lines": [
+					"l_end_f"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_f"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"brood": {
+			"still": "fight",
+			"text": [
+				"The lower Amazon, the wet season 2775. You are the creatures on Lindqvist's island: one Brood Mother, her two Sires and the young of the stock.",
+				"First the flood: walk the young up to the big pen inside the keepers' rings. Then the other Mothers come: kill them, keeping your creatures inside your own Mother's ring.",
+				"Then root her in the big pen and GROW her into the Queen, and break the fazenda."
+			]
+		},
+		"fazenda": {
+			"still": "flood",
+			"text": [
+				"The lower Amazon, the wet season 2775. You are Lindqvist's people on the island: Lindqvist, Pieter, the keepers and two swivel guns.",
+				"The Mothers in the pens are fighting. Burn three pens before the strongest grows into a Queen, then get Lindqvist to the canoes."
+			]
+		}
+	},
+	"debrief": {
+		"brood": {
+			"still": "queen",
+			"title": "The Queen",
+			"text": "The fazenda fell in a night. Of the {bred_n} bred creatures on the island, {went} ended with the Queen.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"pieter": "lost"
+						}
+					},
+					"text": "Pieter did not reach the canoes."
+				},
+				{
+					"if": {
+						"flag": {
+							"book": "left"
+						}
+					},
+					"text": "The lure book was left in the house."
+				}
+			]
+		},
+		"fazenda": {
+			"still": "canoes",
+			"title": "The Canoes",
+			"text": "Lindqvist burned {burned} pens and went down the river."
+		}
+	}
+}

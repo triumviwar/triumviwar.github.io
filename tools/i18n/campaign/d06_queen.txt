@@ -1,0 +1,468 @@
+# Act 2's mission d06_queen, "The Queen" (campaign/missions/d06_queen.json, written with its texts by
+# tools/campaign/make_d06_mission.py: change the texts THERE and run it again; the plan: docs/campaign_act2_plan.md; what was
+# built: docs/campaign_d06_build.md). EVERY LINE IS A PLACEHOLDER for the owner. Names: lure = engodo / señuelo; stock = plantel /
+# cría; keeper = tratador / cuidador; Brood Mother = Mãe da Ninhada / Madre de la Prole; swivel gun = pedreiro / pedrero.
+
+> The fazenda's palisade
+pt A paliçada da fazenda
+es La empalizada de la fazenda
+
+> Your Mother must live.
+pt A sua Mãe tem de viver.
+es Tu Madre debe vivir.
+
+> THE FLOOD: bring the young out of the two flooded pens up to the big pen: {in_pen} of {young_n} there. They obey only inside a keeper's green ring, so move them along with the keepers.
+pt A CHEIA: tire os jovens dos dois currais alagados e leve-os ao curral grande: {in_pen} de {young_n} lá. Só obedecem dentro do anel verde de um tratador, por isso leve-os junto com os tratadores.
+es LA CRECIDA: saca a los jóvenes de los dos corrales inundados y llévalos al corral grande: {in_pen} de {young_n} allí. Solo obedecen dentro del anillo verde de un cuidador, así que llévalos junto a los cuidadores.
+
+> Young to the big pen: {in_pen} of {young_n}. Keep them in a keeper's green ring.
+pt Jovens ao curral grande: {in_pen} de {young_n}. Dentro do anel verde de um tratador.
+es Jóvenes al corral grande: {in_pen} de {young_n}. Dentro del anillo verde de un cuidador.
+
+> The water covers the paths in {clock:flood}.
+pt A água cobre os trilhos em {clock:flood}.
+es El agua cubre las sendas en {clock:flood}.
+
+> THE MOTHERS FIGHT: kill the other two Mothers ({mothers_down} of 2 down). Your creatures obey only inside your Mother's ring: out of it, near another Mother, they go over to her. Take your Mother to the fight.
+pt AS MÃES LUTAM: mate as outras duas Mães ({mothers_down} de 2 abatidas). As suas criaturas só obedecem dentro do anel da sua Mãe: fora dele, perto de outra Mãe, passam para ela. Leve a sua Mãe para a luta.
+es LAS MADRES LUCHAN: mata a las otras dos Madres ({mothers_down} de 2 abatidas). Tus criaturas solo obedecen dentro del anillo de tu Madre: fuera de él, cerca de otra Madre, se pasan a ella. Lleva a tu Madre a la lucha.
+
+> Kill the other Mothers: {mothers_down} of 2. Fight inside your Mother's ring.
+pt Mate as outras Mães: {mothers_down} de 2. Lute dentro do anel da sua Mãe.
+es Mata a las otras Madres: {mothers_down} de 2. Lucha dentro del anillo de tu Madre.
+
+> THE QUEEN: root your Mother in the big pen (ROOT on her card) and press GROW. She grows for a minute; lay eggs meanwhile.
+pt A RAINHA: enraíze a sua Mãe no curral grande (ENRAIZAR no painel dela) e aperte CRESCER. Ela cresce durante um minuto; ponha ovos entretanto.
+es LA REINA: enraíza a tu Madre en el corral grande (ENRAIZAR en su panel) y pulsa CRECER. Crece durante un minuto; pon huevos mientras tanto.
+
+> THE FALL: lay BRUTES on the Queen's card (the Tyrant Sire rooted beside her) and break the palisade, then the big house.
+pt A QUEDA: ponha BRUTAMONTES no painel da Rainha (o Sire Tirano enraizado ao lado dela) e rompa a paliçada, depois a casa-grande.
+es LA CAÍDA: pon BRUTOS en el panel de la Reina (el Señor Tirano enraizado a su lado) y rompe la empalizada, luego la casa grande.
+
+> THE FLOOD: walk your keepers up to the big pen: the animals follow only inside a lure's ring ({in_pen} of {young_n} there).
+pt A CHEIA: leve os seus tratadores ao curral grande: os animais só seguem dentro do anel de um engodo ({in_pen} de {young_n} lá).
+es LA CRECIDA: lleva a tus cuidadores al corral grande: los animales solo siguen dentro del anillo de un señuelo ({in_pen} de {young_n} allí).
+
+> BURN THE PENS before the Queen grows: a keeper or Lindqvist stands 4 seconds in each of the big pen, the north pen and the east pen ({burned} of 3). Sleeping creatures wake 3 steps away: clear them with the guns first.
+pt QUEIME OS CURRAIS antes que a Rainha cresça: um tratador ou Lindqvist fica 4 segundos em cada um, o curral grande, o curral do norte e o curral do leste ({burned} de 3). As criaturas a dormir acordam a 3 passos: limpe-as primeiro com os canhões.
+es QUEMA LOS CORRALES antes de que crezca la Reina: un cuidador o Lindqvist se queda 4 segundos en cada uno, el corral grande, el corral del norte y el corral del este ({burned} de 3). Las criaturas dormidas despiertan a 3 pasos: límpialas antes con los cañones.
+
+> Burn the pens: {burned} of 3. A man stands 4 s in each.
+pt Queime os currais: {burned} de 3. Um homem fica 4 s em cada.
+es Quema los corrales: {burned} de 3. Un hombre se queda 4 s en cada uno.
+
+> Then get Lindqvist to the canoes at the landing (Pieter too, with the stud book, if you can).
+pt Depois leve Lindqvist às canoas no desembarque (e Pieter, com o livro de criação, se puder).
+es Luego lleva a Lindqvist a las canoas del embarcadero (y a Pieter, con el libro de cría, si puedes).
+
+> The strongest Mother grows into a Queen in {clock:queen}. The Mothers are too big for muskets.
+pt A Mãe mais forte cresce até ser Rainha em {clock:queen}. As Mães são grandes demais para mosquetes.
+es La Madre más fuerte se convierte en Reina en {clock:queen}. Las Madres son demasiado grandes para los mosquetes.
+
+> The lower Amazon, the wet season 2775. The flood comes to Lindqvist's island; in the pens the Mothers fight, and the strongest grows into a Queen.
+pt O baixo Amazonas, a estação das chuvas de 2775. A cheia chega à ilha de Lindqvist; nos currais as Mães lutam, e a mais forte cresce até ser Rainha.
+es El bajo Amazonas, la estación de lluvias de 2775. La crecida llega a la isla de Lindqvist; en los corrales las Madres luchan, y la más fuerte se convierte en Reina.
+
+> The creatures on Lindqvist's island: one Mother, her Sires and the young of the stock.
+pt As criaturas na ilha de Lindqvist: uma Mãe, os seus Sires e os jovens do plantel.
+es Las criaturas de la isla de Lindqvist: una Madre, sus Señores y los jóvenes de la cría.
+
+> The Fazenda
+pt A Fazenda
+es La Fazenda
+
+> Lindqvist, Pieter and the keepers, with the lures, two swivel guns and the big house.
+pt Lindqvist, Pieter e os tratadores, com os engodos, dois pedreiros e a casa-grande.
+es Lindqvist, Pieter y los cuidadores, con los señuelos, dos pedreros y la casa grande.
+
+> The Wild Mother
+pt A Mãe Selvagem
+es La Madre Salvaje
+
+> A wild Brood Mother and her pack, carried onto the island by the flood.
+pt Uma Mãe da Ninhada selvagem e a sua matilha, trazidas para a ilha pela cheia.
+es Una Madre de la Prole salvaje y su manada, traídas a la isla por la crecida.
+
+> The East Pen
+pt O Curral do Leste
+es El Corral del Este
+
+> Another of Lindqvist's breeding Mothers, fenced in the north-east pen, and the young round her.
+pt Outra das Mães de criação de Lindqvist, cercada no curral do nordeste, e os jovens à volta dela.
+es Otra de las Madres de cría de Lindqvist, cercada en el corral del noreste, y los jóvenes a su alrededor.
+
+> Three years after the commission the river rose higher than anyone on it could remember.
+pt Três anos depois da comissão o rio subiu mais alto do que alguém ali se lembrava.
+es Tres años después de la comisión el río subió más alto de lo que nadie allí recordaba.
+
+> Lindqvist still tells that night as a breeding season that went wrong.
+pt Lindqvist ainda conta aquela noite como uma época de criação que correu mal.
+es Lindqvist todavía cuenta aquella noche como una temporada de cría que salió mal.
+
+> The wet season of 2775. The water came up into the cane, then into the low pens.
+pt A estação das chuvas de 2775. A água subiu para o canavial, depois para os currais baixos.
+es La estación de lluvias de 2775. El agua subió al cañaveral, luego a los corrales bajos.
+
+> I had two breeding Mothers on the island by then. I thought I was a rich man.
+pt Por essa altura eu tinha duas Mães de criação na ilha. Julguei que era um homem rico.
+es Para entonces tenía dos Madres de cría en la isla. Creí que era un hombre rico.
+
+> The first from the clutch we carried out of the station. The second bred from her.
+pt A primeira da ninhada que trouxemos da estação. A segunda criada a partir dela.
+es La primera de la nidada que sacamos de la estación. La segunda criada a partir de ella.
+
+> The first netted on the mountain. The second bred from her.
+pt A primeira apanhada na montanha. A segunda criada a partir dela.
+es La primera atrapada en la montaña. La segunda criada a partir de ella.
+
+> Lindqvist says he burned the pens that night. Listen to how much he burned.
+pt Lindqvist diz que queimou os currais naquela noite. Ouve quanto queimou.
+es Lindqvist dice que quemó los corrales aquella noche. Escucha cuánto quemó.
+
+> The water was in the cane. Something was calling from the north shore. I sent for the torches.
+pt A água estava no canavial. Algo chamava da margem norte. Mandei buscar as tochas.
+es El agua estaba en el cañaveral. Algo llamaba desde la orilla norte. Mandé traer las antorchas.
+
+> The low pens are under water. Pieter, the keepers. Bring the stock up to the big pen. All of it.
+pt Os currais baixos estão debaixo de água. Pieter, os tratadores. Tragam o plantel para o curral grande. Todo.
+es Los corrales bajos están bajo el agua. Pieter, los cuidadores. Subid la cría al corral grande. Toda.
+
+> They follow the lures, Doctor, nothing else. The keepers walk up the paths; the animals have to stay inside their rings.
+pt Seguem os engodos, Doutor, mais nada. Os tratadores sobem os trilhos; os animais têm de ficar dentro dos anéis.
+es Siguen a los señuelos, doctor, nada más. Los cuidadores suben por las sendas; los animales tienen que quedarse dentro de sus anillos.
+
+> Your creatures obey only inside a keeper's green ring. Select them and move them with the keepers, a little at a time.
+pt As suas criaturas só obedecem dentro do anel verde de um tratador. Selecione-as e leve-as com os tratadores, aos poucos.
+es Tus criaturas solo obedecen dentro del anillo verde de un cuidador. Selecciónalas y llévalas con los cuidadores, poco a poco.
+
+> A deep sound comes over the water from the north-west shore. Every head in the pens turns toward it.
+pt Um som fundo chega pela água da margem noroeste. Todas as cabeças nos currais se viram para ele.
+es Un sonido hondo llega por el agua desde la orilla noroeste. Todas las cabezas de los corrales se vuelven hacia él.
+
+> Doctor, the ones outside the rings are walking toward it.
+pt Doutor, os que estão fora dos anéis vão na direção dele.
+es Doctor, los que están fuera de los anillos caminan hacia él.
+
+> A creature out of every ring walks toward the sound. Bring a keeper's ring back over it.
+pt Uma criatura fora de todos os anéis caminha para o som. Volte a pôr-lhe por cima o anel de um tratador.
+es Una criatura fuera de todos los anillos camina hacia el sonido. Vuelve a ponerle encima el anillo de un cuidador.
+
+> They are all up in the big pen, Doctor. Wet, but all there.
+pt Estão todos no curral grande, Doutor. Molhados, mas todos.
+es Están todos en el corral grande, doctor. Mojados, pero todos.
+
+> The water is on the paths, Doctor. We cannot wait for the rest.
+pt A água está nos trilhos, Doutor. Não podemos esperar pelos outros.
+es El agua está en las sendas, doctor. No podemos esperar a los demás.
+
+> The flood has carried a wild Mother onto the north-west shore, and a pack with her.
+pt A cheia trouxe uma Mãe selvagem para a margem noroeste, e uma matilha com ela.
+es La crecida ha traído a una Madre salvaje a la orilla noroeste, y una manada con ella.
+
+> Big for a wild one, with a Tyrant Sire of her own. A pack off the Rio Negro, perhaps.
+pt Grande para uma selvagem, com um Sire Tirano próprio. Uma matilha do Rio Negro, talvez.
+es Grande para una salvaje, con un Señor Tirano propio. Una manada del Río Negro, quizá.
+
+> Leave the lures. Everyone to the house. Shut the gate.
+pt Larguem os engodos. Todos para a casa. Fechem o portão.
+es Dejad los señuelos. Todos a la casa. Cerrad el portón.
+
+> The keepers are gone. Now your creatures follow only their own Mother: they obey inside her ring. Out of it, near another Mother, they go over to her.
+pt Os tratadores foram-se. Agora as suas criaturas só seguem a sua própria Mãe: obedecem dentro do anel dela. Fora dele, perto de outra Mãe, passam para ela.
+es Los cuidadores se han ido. Ahora tus criaturas solo siguen a su propia Madre: obedecen dentro de su anillo. Fuera de él, cerca de otra Madre, se pasan a ella.
+
+> Your Mother can fight. UPROOT her on her card and walk her to the fight; rooted, she only waits.
+pt A sua Mãe pode lutar. DESENRAÍZE-A no painel dela e leve-a para a luta; enraizada, só espera.
+es Tu Madre puede luchar. DESENRAÍZALA en su panel y llévala a la lucha; enraizada, solo espera.
+
+> In the north-east pen the other bred Mother breaks her fence. The young round her go with her.
+pt No curral do nordeste a outra Mãe de criação rompe a cerca. Os jovens à volta dela vão com ela.
+es En el corral del noreste la otra Madre de cría rompe su cerca. Los jóvenes de su alrededor van con ella.
+
+> They are fighting each other, Doctor. Mother against Mother.
+pt Estão a lutar umas contra as outras, Doutor. Mãe contra Mãe.
+es Están luchando entre ellas, doctor. Madre contra Madre.
+
+> Write it down, Pieter. Every hour of it. Nobody has ever seen this.
+pt Escreve, Pieter. Cada hora. Ninguém nunca viu isto.
+es Escríbelo, Pieter. Cada hora. Nadie ha visto nunca esto.
+
+> One of yours strayed out of your Mother's ring and has gone over to another Mother.
+pt Um dos seus saiu do anel da sua Mãe e passou para outra Mãe.
+es Uno de los tuyos salió del anillo de tu Madre y se ha pasado a otra Madre.
+
+> The wild Mother is down. Her pack wanders, and turns toward the strongest call left.
+pt A Mãe selvagem caiu. A matilha dela vagueia, e vira-se para o chamado mais forte que resta.
+es La Madre salvaje ha caído. Su manada vaga, y se vuelve hacia la llamada más fuerte que queda.
+
+> The east pen's Mother is down. Her young wander, and turn toward the strongest call left.
+pt A Mãe do curral do leste caiu. Os jovens dela vagueiam, e viram-se para o chamado mais forte que resta.
+es La Madre del corral del este ha caído. Sus jóvenes vagan, y se vuelven hacia la llamada más fuerte que queda.
+
+> Loose creatures of the fallen Mothers come into your Mother's ring and stay.
+pt Criaturas soltas das Mães caídas entram no anel da sua Mãe e ficam.
+es Criaturas sueltas de las Madres caídas entran en el anillo de tu Madre y se quedan.
+
+> One Mother is left on the island. Root her in the big pen and press GROW on her card.
+pt Resta uma Mãe na ilha. Enraíze-a no curral grande e aperte CRESCER no painel dela.
+es Queda una Madre en la isla. Enraízala en el corral grande y pulsa CRECER en su panel.
+
+> Close the shutters. Load the swivel guns. Pieter, bring the stud book down.
+pt Fechem as portadas. Carreguem os pedreiros. Pieter, traz o livro de criação cá para baixo.
+es Cerrad los postigos. Cargad los pedreros. Pieter, baja el libro de cría.
+
+> She is growing. Lay eggs meanwhile, with the Sires rooted beside her.
+pt Ela está a crescer. Ponha ovos entretanto, com os Sires enraizados ao lado dela.
+es Está creciendo. Pon huevos mientras tanto, con los Señores enraizados a su lado.
+
+> The flood.
+pt A cheia.
+es La crecida.
+
+> The pens.
+pt Os currais.
+es Los corrales.
+
+> The Queen.
+pt A Rainha.
+es La Reina.
+
+> Every animal on the island turned toward the big pen. I had no lure for that.
+pt Todos os animais da ilha se viraram para o curral grande. Eu não tinha engodo para aquilo.
+es Todos los animales de la isla se volvieron hacia el corral grande. Yo no tenía señuelo para aquello.
+
+> Every bred creature on the island turns to the Queen. Lay BRUTES on her card and break the palisade, then the big house.
+pt Todas as criaturas criadas na ilha se viram para a Rainha. Ponha BRUTAMONTES no painel dela e rompa a paliçada, depois a casa-grande.
+es Todas las criaturas criadas en la isla se vuelven hacia la Reina. Pon BRUTOS en su panel y rompe la empalizada, luego la casa grande.
+
+> Pieter! The canoes. Leave everything.
+pt Pieter! As canoas. Deixa tudo.
+es ¡Pieter! Las canoas. Déjalo todo.
+
+> The book, Doctor! The lure book is upstairs!
+pt O livro, Doutor! O livro dos engodos está lá em cima!
+es ¡El libro, doctor! ¡El libro de los señuelos está arriba!
+
+> Leave it!
+pt Deixa-o!
+es ¡Déjalo!
+
+> The palisade is open.
+pt A paliçada está aberta.
+es La empalizada está abierta.
+
+> A canoe goes down the river in the dark with two men in it.
+pt Uma canoa desce o rio no escuro com dois homens.
+es Una canoa baja por el río en la oscuridad con dos hombres.
+
+> A canoe goes down the river in the dark with one man in it.
+pt Uma canoa desce o rio no escuro com um homem.
+es Una canoa baja por el río en la oscuridad con un hombre.
+
+> The big house falls. The island belongs to the Queen.
+pt A casa-grande cai. A ilha é da Rainha.
+es La casa grande cae. La isla es de la Reina.
+
+> Your Mother is dead. Another will root in the big pen.
+pt A sua Mãe morreu. Outra vai enraizar no curral grande.
+es Tu Madre ha muerto. Otra enraizará en el corral grande.
+
+> Torches. We burn the pens before they settle it among themselves. Then the canoes.
+pt Tochas. Queimamos os currais antes que elas o resolvam entre si. Depois as canoas.
+es Antorchas. Quemamos los corrales antes de que lo resuelvan entre ellas. Luego las canoas.
+
+> The guns first, Doctor. They are asleep in the straw, and they wake when you walk up to them.
+pt Os canhões primeiro, Doutor. Estão a dormir na palha, e acordam quando se chega perto.
+es Los cañones primero, doctor. Están dormidos en la paja, y despiertan cuando uno se acerca.
+
+> A pen burns: straw, fences, the troughs.
+pt Um curral arde: palha, cercas, os cochos.
+es Un corral arde: paja, cercas, los comederos.
+
+> The big pen is burning. They will have to settle it somewhere else, and that takes time.
+pt O curral grande está a arder. Vão ter de o resolver noutro lado, e isso leva tempo.
+es El corral grande arde. Tendrán que resolverlo en otro sitio, y eso lleva tiempo.
+
+> Enough. To the canoes, all of you.
+pt Basta. Para as canoas, todos.
+es Basta. A las canoas, todos.
+
+> Doctor, the big one in the middle is changing. It is getting bigger.
+pt Doutor, a grande do meio está a mudar. Está a ficar maior.
+es Doctor, la grande del medio está cambiando. Se está haciendo más grande.
+
+> Push off, Pieter. Do not look back.
+pt Empurra, Pieter. Não olhes para trás.
+es Empuja, Pieter. No mires atrás.
+
+> Too late. It is growing. Everything on the island is turning to it.
+pt Tarde demais. Está a crescer. Tudo na ilha se vira para ela.
+es Demasiado tarde. Está creciendo. Todo en la isla se vuelve hacia ella.
+
+> I stood up in the canoe and looked back. The whole island was moving.
+pt Pus-me de pé na canoa e olhei para trás. A ilha inteira mexia-se.
+es Me puse de pie en la canoa y miré atrás. La isla entera se movía.
+
+> Every animal I had bred was on that bank. Not one came to the lure.
+pt Todos os animais que eu criara estavam naquela margem. Nem um veio ao engodo.
+es Todos los animales que había criado estaban en aquella orilla. Ni uno vino al señuelo.
+
+> Half my stock was on that bank. The rest lay dead in the pens.
+pt Metade do meu plantel estava naquela margem. O resto jazia morto nos currais.
+es La mitad de mi cría estaba en aquella orilla. El resto yacía muerto en los corrales.
+
+> Few of mine were on that bank. The pens had killed most of them.
+pt Poucos dos meus estavam naquela margem. Os currais tinham matado a maioria.
+es Pocos de los míos estaban en aquella orilla. Los corrales habían matado a la mayoría.
+
+> He says the flood did it. He bred nothing. He kept animals that were made long ago to become exactly that.
+pt Ele diz que foi a cheia. Ele não criou nada. Guardou animais que foram feitos há muito tempo para se tornarem exatamente aquilo.
+es Él dice que fue la crecida. No crió nada. Guardó animales que fueron hechos hace mucho para convertirse exactamente en eso.
+
+> The Church told him what they were. He still says they evolved.
+pt A Igreja disse-lhe o que eram. Ele ainda diz que evoluíram.
+es La Iglesia le dijo lo que eran. Él todavía dice que evolucionaron.
+
+> We burned three pens and went down the river at first light. I have the stud book. I burned the rest.
+pt Queimámos três currais e descemos o rio ao primeiro clarão. Tenho o livro de criação. Queimei o resto.
+es Quemamos tres corrales y bajamos el río con la primera luz. Tengo el libro de cría. Quemé el resto.
+
+> He told me he burned them. He did not burn enough.
+pt Ele disse-me que os queimou. Não queimou o bastante.
+es Él me dijo que los quemó. No quemó lo bastante.
+
+> My arm. Pieter, the torch.
+pt O meu braço. Pieter, a tocha.
+es Mi brazo. Pieter, la antorcha.
+
+> The keepers are Assembly men now, paid in sugar and silence.
+pt Os tratadores são agora homens da Assembleia, pagos em açúcar e silêncio.
+es Los cuidadores son ahora hombres de la Asamblea, pagados en azúcar y silencio.
+
+> Pieter is not on the island any more. Two keepers carry the lures on each side.
+pt Pieter já não está na ilha. Dois tratadores levam os engodos de cada lado.
+es Pieter ya no está en la isla. Dos cuidadores llevan los señuelos a cada lado.
+
+> The Tyrant Sire beside her is the young Sire of the plateau's cages, grown.
+pt O Sire Tirano ao lado dela é o jovem Sire das jaulas do planalto, crescido.
+es El Señor Tirano a su lado es el joven Señor de las jaulas de la meseta, crecido.
+
+> The island below Óbidos, the wet season 2775: the flood.
+pt A ilha abaixo de Óbidos, a estação das chuvas de 2775: a cheia.
+es La isla por debajo de Óbidos, la estación de lluvias de 2775: la crecida.
+
+> The Mothers in the pens.
+pt As Mães nos currais.
+es Las Madres en los corrales.
+
+> The Queen in the big pen.
+pt A Rainha no curral grande.
+es La Reina en el corral grande.
+
+> The canoes from the burning house.
+pt As canoas da casa a arder.
+es Las canoas desde la casa en llamas.
+
+> The lower Amazon, the wet season 2775. You are the creatures on Lindqvist's island: one Brood Mother, her two Sires and the young of the stock.
+pt O baixo Amazonas, a estação das chuvas de 2775. Você é as criaturas na ilha de Lindqvist: uma Mãe da Ninhada, os seus dois Sires e os jovens do plantel.
+es El bajo Amazonas, la estación de lluvias de 2775. Eres las criaturas de la isla de Lindqvist: una Madre de la Prole, sus dos Señores y los jóvenes de la cría.
+
+> First the flood: walk the young up to the big pen inside the keepers' rings. Then the other Mothers come: kill them, keeping your creatures inside your own Mother's ring.
+pt Primeiro a cheia: leve os jovens ao curral grande dentro dos anéis dos tratadores. Depois vêm as outras Mães: mate-as, com as suas criaturas dentro do anel da sua Mãe.
+es Primero la crecida: lleva a los jóvenes al corral grande dentro de los anillos de los cuidadores. Luego vienen las otras Madres: mátalas, con tus criaturas dentro del anillo de tu Madre.
+
+> Then root her in the big pen and GROW her into the Queen, and break the fazenda.
+pt Depois enraíze-a no curral grande, faça-a CRESCER até Rainha, e rompa a fazenda.
+es Luego enraízala en el corral grande, hazla CRECER hasta Reina, y rompe la fazenda.
+
+> The lower Amazon, the wet season 2775. You are Lindqvist's people on the island: Lindqvist, Pieter, the keepers and two swivel guns.
+pt O baixo Amazonas, a estação das chuvas de 2775. Você é a gente de Lindqvist na ilha: Lindqvist, Pieter, os tratadores e dois pedreiros.
+es El bajo Amazonas, la estación de lluvias de 2775. Eres la gente de Lindqvist en la isla: Lindqvist, Pieter, los cuidadores y dos pedreros.
+
+> The Mothers in the pens are fighting. Burn three pens before the strongest grows into a Queen, then get Lindqvist to the canoes.
+pt As Mães nos currais estão a lutar. Queime três currais antes que a mais forte cresça até ser Rainha, depois leve Lindqvist às canoas.
+es Las Madres de los corrales están luchando. Quema tres corrales antes de que la más fuerte se convierta en Reina, luego lleva a Lindqvist a las canoas.
+
+> The fazenda fell in a night. Of the {bred_n} bred creatures on the island, {went} ended with the Queen.
+pt A fazenda caiu numa noite. Das {bred_n} criaturas criadas na ilha, {went} acabaram com a Rainha.
+es La fazenda cayó en una noche. De las {bred_n} criaturas criadas en la isla, {went} acabaron con la Reina.
+
+> The lure book was left in the house.
+pt O livro dos engodos ficou na casa.
+es El libro de los señuelos se quedó en la casa.
+
+> The Canoes
+pt As Canoas
+es Las Canoas
+
+> Lindqvist burned {burned} pens and went down the river.
+pt Lindqvist queimou {burned} currais e desceu o rio.
+es Lindqvist quemó {burned} corrales y bajó el río.
+
+> Not on the island: the flood has drowned the ground.
+pt Não na ilha: a cheia afogou o chão.
+es No en la isla: la crecida ha ahogado el suelo.
+
+> NEW: GROW TO THE THIRD STAGE. Rooted, the Mother grows once more: more eggs, faster laying, and the Brute's eggs. It takes a minute and she must stay rooted.
+pt NOVO: CRESCER AO TERCEIRO ESTÁGIO. Enraizada, a Mãe cresce mais uma vez: mais ovos, postura mais rápida, e os ovos do Brutamontes. Leva um minuto e ela tem de ficar enraizada.
+es NUEVO: CRECER A LA TERCERA ETAPA. Enraizada, la Madre crece una vez más: más huevos, puesta más rápida, y los huevos del Bruto. Lleva un minuto y debe seguir enraizada.
+
+> NEW: THE BRUTE. Laid by the Mother at her third stage with the Tyrant Sire rooted beside her: a huge horned beast that batters down palisades and gates.
+pt NOVO: O BRUTAMONTES. Posto pela Mãe no seu terceiro estágio com o Sire Tirano enraizado ao lado: uma enorme besta com chifres que derruba paliçadas e portões.
+es NUEVO: EL BRUTO. Lo pone la Madre en su tercera etapa con el Señor Tirano enraizado a su lado: una enorme bestia con cuernos que derriba empalizadas y portones.
+
+> A Brood Mother of Lindqvist's stock, three years grown, rooted in the big pen.
+pt Uma Mãe da Ninhada do plantel de Lindqvist, crescida há três anos, enraizada no curral grande.
+es Una Madre de la Prole de la cría de Lindqvist, crecida desde hace tres años, enraizada en el corral grande.
+
+> The east pen's Mother
+pt A Mãe do curral do leste
+es La Madre del corral del este
+
+> Another of Lindqvist's breeding Mothers, younger, fenced in the north-east pen.
+pt Outra das Mães de criação de Lindqvist, mais nova, cercada no curral do nordeste.
+es Otra de las Madres de cría de Lindqvist, más joven, cercada en el corral del noreste.
+
+> The wild Mother
+pt A Mãe selvagem
+es La Madre salvaje
+
+> A wild Brood Mother carried onto the island by the flood.
+pt Uma Mãe da Ninhada selvagem trazida para a ilha pela cheia.
+es Una Madre de la Prole salvaje traída a la isla por la crecida.
+
+> The Boat House at Óbidos
+pt O Barracão de Óbidos
+es El Cobertizo de Óbidos
+
+> Lindqvist's refuge after the island: a boat house on the river at Óbidos, a few crates saved, the stud book if Pieter kept it.
+pt O refúgio de Lindqvist depois da ilha: um barracão no rio em Óbidos, umas poucas caixas salvas, o livro de criação se Pieter o guardou.
+es El refugio de Lindqvist después de la isla: un cobertizo en el río en Óbidos, unas pocas cajas salvadas, el libro de cría si Pieter lo guardó.
+
+> A boat house on the river at Óbidos: wet crates, a lamp, the island's smoke far up the river.
+pt Um barracão no rio em Óbidos: caixas molhadas, um candeeiro, o fumo da ilha lá longe rio acima.
+es Un cobertizo en el río en Óbidos: cajas mojadas, un candil, el humo de la isla lejos río arriba.
+
+> The flood did it. Something in the water, something from the north shore. I bred them well.
+pt Foi a cheia. Alguma coisa na água, alguma coisa da margem norte. Eu criei-os bem.
+es Fue la crecida. Algo en el agua, algo de la orilla norte. Yo los crié bien.
+
+> They fought in my pens, Mother against Mother. The one that won grew in a minute what should take a year.
+pt Lutaram nos meus currais, Mãe contra Mãe. A que ganhou cresceu num minuto o que devia levar um ano.
+es Lucharon en mis corrales, Madre contra Madre. La que ganó creció en un minuto lo que debería llevar un año.
+
+> The lure book is still in the house. Whoever finds it can call them.
+pt O livro dos engodos ainda está na casa. Quem o encontrar pode chamá-los.
+es El libro de los señuelos sigue en la casa. Quien lo encuentre puede llamarlos.
+
+> I burned three pens and the book went with me. Rome will say I burned too little.
+pt Queimei três currais e o livro veio comigo. Roma vai dizer que queimei pouco.
+es Quemé tres corrales y el libro vino conmigo. Roma dirá que quemé poco.
+
+> I am alone now. Pieter stayed on the island.
+pt Estou sozinho agora. Pieter ficou na ilha.
+es Ahora estoy solo. Pieter se quedó en la isla.
+
+> The stud book is wet through. I dried it page by page by the lamp.
+pt O livro de criação ficou encharcado. Sequei-o página a página junto ao candeeiro.
+es El libro de cría se empapó. Lo sequé página a página junto al candil.
