@@ -1,0 +1,713 @@
+# Act 2's SECOND CROSSING d09_crossroads, "Between Two Fires" (campaign/missions/d09_crossroads.json, written with its texts
+# by tools/campaign/make_d09_mission.py: change the texts THERE and run it again; the plan: docs/campaign_act2_plan.md; what
+# was built: docs/campaign_d09_build.md). EVERY LINE IS A PLACEHOLDER for the owner. Names: sertão = sertão / sertón; swarm =
+# enxame / enjambre; powder wagon = carroça de pólvora / carro de pólvora; magazine = paiol / polvorín; Fort Constantine =
+# Forte Constantino / Fuerte Constantino.
+
+> The army's quarters
+pt Os quartéis do exército
+es Los cuarteles del ejército
+
+> The fort's magazine
+pt O paiol do forte
+es El polvorín del fuerte
+
+> The fort's chapel
+pt A capela do forte
+es La capilla del fuerte
+
+> The fort's barracks
+pt O quartel do forte
+es El cuartel del fuerte
+
+> The fort's armoury
+pt O arsenal do forte
+es La armería del fuerte
+
+> The fort's foundry
+pt A fundição do forte
+es La fundición del fuerte
+
+> The fort's horse lines
+pt As cavalariças do forte
+es Las caballerizas del fuerte
+
+> Fort Constantine's palisade
+pt A paliçada do Forte Constantino
+es La empalizada del Fuerte Constantino
+
+> Fort Constantine's magazine must stand.
+pt O paiol do Forte Constantino tem de ficar de pé.
+es El polvorín del Fuerte Constantino debe seguir en pie.
+
+> THE ROAD: march the army west along the road to Fort Constantine on the São Francisco. There is no Mill on the road: your powder is in the two wagons.
+pt A ESTRADA: leve o exército para oeste pela estrada até ao Forte Constantino, no São Francisco. Não há Moinho na estrada: a sua pólvora vai nas duas carroças.
+es EL CAMINO: lleva al ejército hacia el oeste por el camino hasta el Fuerte Constantino, en el São Francisco. No hay Molino en el camino: tu pólvora va en los dos carros.
+
+> March west to Fort Constantine. Your powder is in the wagons.
+pt Marche para oeste até ao Forte Constantino. A pólvora vai nas carroças.
+es Marcha al oeste hasta el Fuerte Constantino. La pólvora va en los carros.
+
+> The fort holds out for {clock:fort}.
+pt O forte aguenta {clock:fort}.
+es El fuerte aguanta {clock:fort}.
+
+> THE PEOPLE OF THE ROAD: the two villages' people join the column when your men reach them, and follow Father Tomasz. Keep him with the army. In the fort {in_fort} of {people_n}.
+pt O POVO DA ESTRADA: o povo das duas aldeias junta-se à coluna quando os seus homens lá chegam, e segue o Padre Tomasz. Mantenha-o com o exército. No forte {in_fort} de {people_n}.
+es EL PUEBLO DEL CAMINO: la gente de las dos aldeas se une a la columna cuando llegan tus hombres, y sigue al Padre Tomasz. Mantenlo con el ejército. En el fuerte {in_fort} de {people_n}.
+
+> The villagers follow Father Tomasz: in the fort {in_fort} of {people_n}.
+pt Os aldeões seguem o Padre Tomasz: no forte {in_fort} de {people_n}.
+es Los aldeanos siguen al Padre Tomasz: en el fuerte {in_fort} de {people_n}.
+
+> Shoot down the brass owls before they reach the powder wagons.
+pt Abata as corujas de latão antes que cheguem às carroças de pólvora.
+es Derriba a los búhos de latón antes de que lleguen a los carros de pólvora.
+
+> THE FORT: drive both off: the creatures at the north gate, the machines at the south gate. Split your guns. Round the fort: {siege_left}.
+pt O FORTE: afaste os dois: as criaturas no portão norte, as máquinas no portão sul. Divida os canhões. À volta do forte: {siege_left}.
+es EL FUERTE: echa a los dos: las criaturas en la puerta norte, las máquinas en la puerta sur. Divide los cañones. Alrededor del fuerte: {siege_left}.
+
+> Drive both off the fort: north gate the creatures, south gate the machines ({siege_left} left).
+pt Afaste os dois do forte: portão norte as criaturas, portão sul as máquinas ({siege_left} restam).
+es Echa a los dos del fuerte: puerta norte las criaturas, puerta sur las máquinas ({siege_left} quedan).
+
+> Dusk in {clock:siege}.
+pt Anoitece em {clock:siege}.
+es Anochece en {clock:siege}.
+
+> THE NIGHT: the fire you did not choose strikes the fort first. Hold it until dawn. The fort's Barracks and Foundry are yours: train what the pay chest allows.
+pt A NOITE: o fogo que não escolheu ataca o forte primeiro. Aguente até ao amanhecer. O Quartel e a Fundição do forte são seus: treine o que o cofre do soldo permitir.
+es LA NOCHE: el fuego que no elegiste ataca primero el fuerte. Resiste hasta el alba. El Cuartel y la Fundición del fuerte son tuyos: entrena lo que permita el cofre de la paga.
+
+> Hold the fort until dawn.
+pt Aguente o forte até ao amanhecer.
+es Resiste en el fuerte hasta el alba.
+
+> THE RAID: break Fort Constantine's magazine (in the fort's middle) before dawn. More of the swarm comes over the north ford as the day goes.
+pt O ASSALTO: derrube o paiol do Forte Constantino (no meio do forte) antes do amanhecer. Mais do enxame vem pelo vau do norte ao longo do dia.
+es EL ASALTO: derriba el polvorín del Fuerte Constantino (en el centro del fuerte) antes del alba. Más del enjambre viene por el vado del norte a lo largo del día.
+
+> Break the fort's magazine before dawn.
+pt Derrube o paiol do forte antes do amanhecer.
+es Derriba el polvorín del fuerte antes del alba.
+
+> THE RAID: break Fort Constantine's magazine (in the fort's middle) before dawn. More machines come over the south ford as the day goes; they are wound for the road.
+pt O ASSALTO: derrube o paiol do Forte Constantino (no meio do forte) antes do amanhecer. Mais máquinas vêm pelo vau do sul ao longo do dia; vêm com corda para a estrada.
+es EL ASALTO: derriba el polvorín del Fuerte Constantino (en el centro del fuerte) antes del alba. Más máquinas vienen por el vado del sur a lo largo del día; vienen con cuerda para el camino.
+
+> The sertão, the dry season 2780. The army of Brazil marches to the fort at the crossroads of the São Francisco, and both fires find it. The Crown chooses which to fight first.
+pt O sertão, a estação seca de 2780. O exército do Brasil marcha para o forte na encruzilhada do São Francisco, e os dois fogos encontram-no. A Coroa escolhe qual combater primeiro.
+es El sertón, la estación seca de 2780. El ejército de Brasil marcha al fuerte en la encrucijada del São Francisco, y los dos fuegos lo encuentran. La Corona elige cuál combatir primero.
+
+> The Army of Brazil
+pt O Exército do Brasil
+es El Ejército de Brasil
+
+> General Ruggieri, Father Tomasz and the Crown's army of Brazil on the road to the São Francisco; the fort's garrison.
+pt O General Ruggieri, o Padre Tomasz e o exército da Coroa no Brasil na estrada para o São Francisco; a guarnição do forte.
+es El General Ruggieri, el Padre Tomasz y el ejército de la Corona en Brasil en el camino al São Francisco; la guarnición del fuerte.
+
+> The creatures out of the north-west, far from their rivers: Raptors, Spitters, flyers.
+pt As criaturas vindas do noroeste, longe dos seus rios: Raptores, Cuspidores, voadores.
+es Las criaturas venidas del noroeste, lejos de sus ríos: Raptores, Escupidores, voladores.
+
+> The Machines
+pt As Máquinas
+es Las Máquinas
+
+> The city's machines on the highlands' road from the south-west: Clock Soldiers, Springers, brass birds.
+pt As máquinas da cidade na estrada do planalto, vindas do sudoeste: Soldados de Corda, Saltadores, pássaros de latão.
+es Las máquinas de la ciudad en el camino del altiplano, venidas del suroeste: Soldados de Cuerda, Saltadores, pájaros de latón.
+
+> General Ruggieri
+pt General Ruggieri
+es General Ruggieri
+
+> Major Teixeira
+pt Major Teixeira
+es Mayor Teixeira
+
+> Sergeant Hollins
+pt Sargento Hollins
+es Sargento Hollins
+
+> The frontier's rider
+pt O cavaleiro da fronteira
+es El jinete de la frontera
+
+> The Prince
+pt O Príncipe
+es El Príncipe
+
+> The Sertão
+pt O Sertão
+es El Sertón
+
+> The Fort
+pt O Forte
+es El Fuerte
+
+> The Scrub
+pt O Mato
+es El Matorral
+
+> The Highlands' Road
+pt A Estrada do Planalto
+es El Camino del Altiplano
+
+> Ten years after Rome, Brazil had two fires in it, and one army.
+pt Dez anos depois de Roma, o Brasil tinha dois fogos dentro dele, e um exército.
+es Diez años después de Roma, Brasil tenía dos fuegos dentro, y un ejército.
+
+> Tomasz was the frontier's vicar general by then. He walked beside the guns, as he always had.
+pt Tomasz era por então vigário-geral da fronteira. Caminhava ao lado dos canhões, como sempre fizera.
+es Tomasz era para entonces vicario general de la frontera. Caminaba junto a los cañones, como siempre había hecho.
+
+> The dry season of 2780. We marched out of Salvador into the sertão, where nothing is green until it rains.
+pt A estação seca de 2780. Saímos de Salvador para o sertão, onde nada é verde até chover.
+es La estación seca de 2780. Salimos de Salvador hacia el sertón, donde nada es verde hasta que llueve.
+
+> General Ruggieri had every gun in Brazil behind him, and no town, no mill, no farm between us and the river.
+pt O General Ruggieri trazia atrás de si todos os canhões do Brasil, e nem vila, nem moinho, nem fazenda entre nós e o rio.
+es El General Ruggieri llevaba tras de sí todos los cañones de Brasil, y ni villa, ni molino, ni hacienda entre nosotros y el río.
+
+> The Virginia volunteers marched with us. Hollins was a sergeant now. He had been a boy at his father's farm the night the Governor came.
+pt Os voluntários da Virgínia marchavam connosco. Hollins era agora sargento. Era um rapaz na quinta do pai na noite em que o Governador chegou.
+es Los voluntarios de Virginia marchaban con nosotros. Hollins era ahora sargento. Era un muchacho en la granja de su padre la noche en que llegó el Gobernador.
+
+> Our colours had been blessed at Notre-Dame. The men touched them before we left.
+pt As nossas bandeiras tinham sido bentas em Notre-Dame. Os homens tocaram-lhes antes de partirmos.
+es Nuestras banderas habían sido bendecidas en Notre-Dame. Los hombres las tocaron antes de partir.
+
+> Word of Rome still ran ahead of me. The villages on the road came out to meet the priest.
+pt A notícia de Roma ainda corria à minha frente. As aldeias da estrada saíam ao encontro do padre.
+es La noticia de Roma aún corría delante de mí. Las aldeas del camino salían al encuentro del sacerdote.
+
+> At the crossroads of the São Francisco stood the fort. From there the army could strike either way.
+pt Na encruzilhada do São Francisco estava o forte. Dali o exército podia atacar para um lado ou para o outro.
+es En la encrucijada del São Francisco estaba el fuerte. Desde allí el ejército podía atacar hacia un lado o hacia el otro.
+
+> Tomasz tells it from the road. Here it is from the scrub north of the river, where nobody kept count.
+pt Tomasz conta-o da estrada. Aqui está visto do mato a norte do rio, onde ninguém contava.
+es Tomasz lo cuenta desde el camino. Aquí está visto desde el matorral al norte del río, donde nadie llevaba la cuenta.
+
+> The dry season. The swarm has come far from the rivers, after the herds. The road smells of horses and powder.
+pt A estação seca. O enxame veio para longe dos rios, atrás dos rebanhos. A estrada cheira a cavalos e a pólvora.
+es La estación seca. El enjambre ha venido lejos de los ríos, detrás de los rebaños. El camino huele a caballos y a pólvora.
+
+> Tomasz tells it from the road. Here it is from the highlands' road, where the machines walk at night.
+pt Tomasz conta-o da estrada. Aqui está visto da estrada do planalto, onde as máquinas andam de noite.
+es Tomasz lo cuenta desde el camino. Aquí está visto desde el camino del altiplano, donde las máquinas andan de noche.
+
+> The dry season. The city's machines have come north along the highlands' road. Nobody in the city will say who sent them.
+pt A estação seca. As máquinas da cidade subiram para norte pela estrada do planalto. Ninguém na cidade diz quem as mandou.
+es La estación seca. Las máquinas de la ciudad han subido al norte por el camino del altiplano. Nadie en la ciudad dice quién las mandó.
+
+> Column of march. Guns in the middle, the wagons behind the guns. We reach the fort before it falls.
+pt Coluna de marcha. Os canhões no meio, as carroças atrás dos canhões. Chegamos ao forte antes que caia.
+es Columna de marcha. Los cañones en medio, los carros detrás de los cañones. Llegamos al fuerte antes de que caiga.
+
+> March the army west along the road to Fort Constantine on the São Francisco. Your men's powder is in the two wagons: there is no Mill on the road.
+pt Leve o exército para oeste pela estrada até ao Forte Constantino, no São Francisco. A pólvora dos seus homens vai nas duas carroças: não há Moinho na estrada.
+es Lleva al ejército hacia el oeste por el camino hasta el Fuerte Constantino, en el São Francisco. La pólvora de tus hombres va en los dos carros: no hay Molino en el camino.
+
+> Musketeers and guns refill their shot from a powder wagon within 3 tiles. Keep the wagons just behind the line, and guard them: a wagon blows up when it is destroyed.
+pt Mosqueteiros e canhões recarregam de uma carroça de pólvora a 3 casas. Mantenha as carroças logo atrás da linha, e guarde-as: uma carroça explode quando é destruída.
+es Mosqueteros y cañones recargan de un carro de pólvora a 3 casillas. Mantén los carros justo detrás de la línea, y guárdalos: un carro estalla cuando lo destruyen.
+
+> Over the road, two kinds of flyers: brass birds from the south-west, small green flyers from the north-west. They go for each other, not for your men.
+pt Sobre a estrada, dois tipos de voadores: pássaros de latão do sudoeste, pequenos voadores verdes do noroeste. Atacam-se uns aos outros, não aos seus homens.
+es Sobre el camino, dos clases de voladores: pájaros de latón del suroeste, pequeños voladores verdes del noroeste. Se atacan entre sí, no a tus hombres.
+
+> I had seen each of them before. Never both in one sky.
+pt Já tinha visto cada um deles antes. Nunca os dois no mesmo céu.
+es Había visto a cada uno de ellos antes. Nunca a los dos en el mismo cielo.
+
+> Let them fight. Keep marching.
+pt Deixem-nos lutar. Continuem a marchar.
+es Que peleen. Seguid marchando.
+
+> Riacho Seco, the first village. Its people come with you when your men reach them: they follow Father Tomasz.
+pt Riacho Seco, a primeira aldeia. O seu povo vem consigo quando os seus homens lá chegam: segue o Padre Tomasz.
+es Riacho Seco, la primera aldea. Su gente viene contigo cuando llegan tus hombres: sigue al Padre Tomasz.
+
+> Come with us, all of you. Bring water, leave the rest. The fort is a day's walk.
+pt Venham connosco, todos. Tragam água, deixem o resto. O forte fica a um dia de caminho.
+es Venid con nosotros, todos. Traed agua, dejad lo demás. El fuerte está a un día de camino.
+
+> Out of the scrub to the north: Raptors, going for the village.
+pt Do mato a norte: Raptores, a caminho da aldeia.
+es Del matorral al norte: Raptores, camino de la aldea.
+
+> Lagoa Branca, the second village. Its people join the column too.
+pt Lagoa Branca, a segunda aldeia. O seu povo junta-se também à coluna.
+es Lagoa Branca, la segunda aldea. Su gente se une también a la columna.
+
+> From the south, a column of machines out of the thorns: Clock Soldiers and Springers.
+pt Do sul, uma coluna de máquinas a sair dos espinhos: Soldados de Corda e Saltadores.
+es Del sur, una columna de máquinas saliendo de los espinos: Soldados de Cuerda y Saltadores.
+
+> Machines, Father? This far north?
+pt Máquinas, Padre? Tão a norte?
+es ¿Máquinas, Padre? ¿Tan al norte?
+
+> This far from anywhere, Sergeant.
+pt Tão longe de tudo, Sargento.
+es Tan lejos de todo, Sargento.
+
+> Two brass owls drop out of the sky on the powder wagons. Shoot them down before they reach them.
+pt Duas corujas de latão caem do céu sobre as carroças de pólvora. Abata-as antes que lá cheguem.
+es Dos búhos de latón caen del cielo sobre los carros de pólvora. Derríbalos antes de que lleguen.
+
+> The wagons! Muskets up, at the owls!
+pt As carroças! Mosquetes para cima, às corujas!
+es ¡Los carros! ¡Mosquetes arriba, a los búhos!
+
+> The owls are down.
+pt As corujas caíram.
+es Los búhos han caído.
+
+> Raptors again, between you and the fort, with a big one among them.
+pt Raptores outra vez, entre si e o forte, com um grande entre eles.
+es Raptores otra vez, entre tú y el fuerte, con uno grande entre ellos.
+
+> The machines again, out of a dry wash to the south. Netters among them: their chains hold a man fast while the others strike.
+pt As máquinas outra vez, a sair de um leito seco a sul. Redeiros entre elas: as suas correntes prendem um homem enquanto as outras atacam.
+es Las máquinas otra vez, saliendo de un cauce seco al sur. Rederos entre ellas: sus cadenas sujetan a un hombre mientras las otras atacan.
+
+> A powder wagon is lost. Keep the other one close.
+pt Perdeu-se uma carroça de pólvora. Mantenha a outra perto.
+es Se ha perdido un carro de pólvora. Mantén el otro cerca.
+
+> The fort's guns are firing. The siege has begun without you.
+pt Os canhões do forte estão a disparar. O cerco começou sem si.
+es Los cañones del fuerte están disparando. El asedio ha empezado sin ti.
+
+> The first of the road's people are inside the fort.
+pt Os primeiros do povo da estrada estão dentro do forte.
+es Los primeros del pueblo del camino están dentro del fuerte.
+
+> Fort Constantine. Both of them are at it: the swarm at the north gate, the machines at the south gate.
+pt O Forte Constantino. Estão lá os dois: o enxame no portão norte, as máquinas no portão sul.
+es El Fuerte Constantino. Están los dos: el enjambre en la puerta norte, las máquinas en la puerta sur.
+
+> General! Thank God. They came the same week, from both sides. We have not slept.
+pt General! Graças a Deus. Vieram na mesma semana, dos dois lados. Não dormimos.
+es ¡General! Gracias a Dios. Vinieron la misma semana, por los dos lados. No hemos dormido.
+
+> Two sieges at one fort. The north gate is the beasts', the south gate the machines'. Split the guns.
+pt Dois cercos a um só forte. O portão norte é das feras, o portão sul das máquinas. Dividam os canhões.
+es Dos asedios a un solo fuerte. La puerta norte es de las bestias, la puerta sur de las máquinas. Dividid los cañones.
+
+> Drive both off the fort. The fort's magazine, in its middle, must stand: if it goes up, the fort goes with it.
+pt Afaste os dois do forte. O paiol do forte, no meio dele, tem de ficar de pé: se explodir, o forte vai com ele.
+es Echa a los dos del fuerte. El polvorín del fuerte, en su centro, debe seguir en pie: si estalla, el fuerte se va con él.
+
+> At the ford under the west wall the creatures and the machines meet, and tear at each other.
+pt No vau sob a muralha oeste as criaturas e as máquinas encontram-se, e despedaçam-se umas às outras.
+es En el vado bajo el muro oeste las criaturas y las máquinas se encuentran, y se despedazan entre sí.
+
+> God forgive me, I was glad to see them fight.
+pt Deus me perdoe, fiquei contente por os ver lutar.
+es Dios me perdone, me alegré de verlos pelear.
+
+> More come over the fords, at both gates.
+pt Mais vêm pelos vaus, aos dois portões.
+es Más vienen por los vados, a las dos puertas.
+
+> The fort is relieved. What is left of both draws back over the river.
+pt O forte está socorrido. O que resta dos dois recua para lá do rio.
+es El fuerte está socorrido. Lo que queda de los dos se retira al otro lado del río.
+
+> The fort is yours, General. Its barracks, its foundry, its powder.
+pt O forte é vosso, General. O quartel, a fundição, a pólvora.
+es El fuerte es vuestro, General. Su cuartel, su fundición, su pólvora.
+
+> At dusk both draw back over the river. They will be back.
+pt Ao anoitecer os dois recuam para lá do rio. Hão de voltar.
+es Al anochecer los dos se retiran al otro lado del río. Volverán.
+
+> In the fort your wagons fill again at the Barracks. The Barracks trains armoured men, the Foundry guns and wagons: the army's pay chest came with you.
+pt No forte as suas carroças enchem-se outra vez no Quartel. O Quartel treina homens com armadura, a Fundição canhões e carroças: o cofre do soldo veio consigo.
+es En el fuerte tus carros se llenan otra vez en el Cuartel. El Cuartel entrena hombres con armadura, la Fundición cañones y carros: el cofre de la paga vino contigo.
+
+> That evening, in the commander's room: General Ruggieri, Father Tomasz, a map of Brazil on the table. Two riders come in within the hour.
+pt Nessa noite, no quarto do comandante: o General Ruggieri, o Padre Tomasz, um mapa do Brasil na mesa. Chegam dois cavaleiros na mesma hora.
+es Esa noche, en el cuarto del comandante: el General Ruggieri, el Padre Tomasz, un mapa de Brasil en la mesa. Llegan dos jinetes en la misma hora.
+
+> From the Amazon frontier, General. The swarm is on the rivers.
+pt Da fronteira do Amazonas, General. O enxame está nos rios.
+es De la frontera del Amazonas, General. El enjambre está en los ríos.
+
+> It fed all season on the Tapajós. It is bigger than last year.
+pt Comeu a estação toda no Tapajós. Está maior do que no ano passado.
+es Comió toda la estación en el Tapajós. Es mayor que el año pasado.
+
+> On the Tapajós it starved where the fields were burned. Everywhere else it fed.
+pt No Tapajós passou fome onde os campos foram queimados. Em todo o resto comeu.
+es En el Tapajós pasó hambre donde los campos fueron quemados. En todo lo demás comió.
+
+> Valadares holds the Barra. He asks for guns before the floods.
+pt Valadares segura a Barra. Pede canhões antes das cheias.
+es Valadares resiste en la Barra. Pide cañones antes de las crecidas.
+
+> Valadares holds the bluff at the Barra. The lower town is ash.
+pt Valadares segura o barranco da Barra. A cidade baixa é cinza.
+es Valadares resiste en el barranco de la Barra. La ciudad baja es ceniza.
+
+> He says the lure worked once. Now the swarm comes to the smell of it.
+pt Diz que o engodo resultou uma vez. Agora o enxame vem ao cheiro dele.
+es Dice que el señuelo funcionó una vez. Ahora el enjambre viene al olor de él.
+
+> Etienne Varenne, for the free city of Concórdia. I come under a white flag.
+pt Etienne Varenne, pela cidade livre de Concórdia. Venho sob bandeira branca.
+es Etienne Varenne, por la ciudad libre de Concórdia. Vengo bajo bandera blanca.
+
+> The city asks one thing: to be left to govern itself, as it has these seven years.
+pt A cidade pede uma coisa: que a deixem governar-se a si mesma, como fez nestes sete anos.
+es La ciudad pide una cosa: que la dejen gobernarse a sí misma, como lo ha hecho estos siete años.
+
+> Its machines are on my road and at my south gate.
+pt As máquinas dela estão na minha estrada e no meu portão sul.
+es Sus máquinas están en mi camino y en mi puerta sur.
+
+> Those are not the city's. The city has not sent anyone. I... do not know whose they are.
+pt Essas não são da cidade. A cidade não mandou ninguém. Eu... não sei de quem são.
+es Esas no son de la ciudad. La ciudad no ha mandado a nadie. Yo... no sé de quién son.
+
+> Since Hollweg stopped the great spring, the city runs without him. It runs very well.
+pt Desde que Hollweg parou a grande mola, a cidade anda sem ele. Anda muito bem.
+es Desde que Hollweg paró el gran resorte, la ciudad funciona sin él. Funciona muy bien.
+
+> Nobody comes from the south. At the ford's post a letter is nailed, unsigned: the free city asks to be left to govern itself.
+pt Ninguém vem do sul. No poste do vau está pregada uma carta, sem assinatura: a cidade livre pede que a deixem governar-se a si mesma.
+es Nadie viene del sur. En el poste del vado hay una carta clavada, sin firma: la ciudad libre pide que la dejen gobernarse a sí misma.
+
+> Most of the honest masters stood with Hollweg that night in Concórdia. The ones who stayed are the city's now.
+pt A maior parte dos mestres honestos ficou com Hollweg naquela noite em Concórdia. Os que ficaram são agora da cidade.
+es La mayoría de los maestros honrados se quedó con Hollweg aquella noche en Concórdia. Los que se quedaron son ahora de la ciudad.
+
+> General, the people under the swarm cannot wait. The city can.
+pt General, o povo debaixo do enxame não pode esperar. A cidade pode.
+es General, el pueblo bajo el enjambre no puede esperar. La ciudad sí.
+
+> But the city grows while it waits, and it never sleeps. I do not know which is worse.
+pt Mas a cidade cresce enquanto espera, e nunca dorme. Não sei qual é pior.
+es Pero la ciudad crece mientras espera, y nunca duerme. No sé cuál es peor.
+
+> One army. Two fires. I can go north up the rivers, or south to the highlands. Not both.
+pt Um exército. Dois fogos. Posso ir para norte pelos rios acima, ou para sul, para o planalto. Não os dois.
+es Un ejército. Dos fuegos. Puedo ir al norte río arriba, o al sur, al altiplano. No a los dos.
+
+> Here I stop. I will tell you what we chose. First, tell me what you would choose.
+pt Aqui paro. Vou dizer-te o que escolhemos. Primeiro, diz-me o que escolherias tu.
+es Aquí me detengo. Te diré lo que elegimos. Primero, dime qué elegirías tú.
+
+> Which fire first? The one you leave strikes the fort tonight, and grows while it waits.
+pt Que fogo primeiro? O que deixares ataca o forte esta noite, e cresce enquanto espera.
+es ¿Qué fuego primero? El que dejes ataca el fuerte esta noche, y crece mientras espera.
+
+> The swarm. The people first.
+pt O enxame. O povo primeiro.
+es El enjambre. El pueblo primero.
+
+> The city. Before it grows.
+pt A cidade. Antes que cresça.
+es La ciudad. Antes de que crezca.
+
+> The swarm first. So Ruggieri chose, before dawn, and so it was.
+pt O enxame primeiro. Assim escolheu Ruggieri, antes do amanhecer, e assim foi.
+es El enjambre primero. Así eligió Ruggieri, antes del alba, y así fue.
+
+> The city first. So Ruggieri chose, before dawn, and so it was.
+pt A cidade primeiro. Assim escolheu Ruggieri, antes do amanhecer, e assim foi.
+es La ciudad primero. Así eligió Ruggieri, antes del alba, y así fue.
+
+> North, then. Up the rivers. Send word to Valadares.
+pt Para norte, então. Rio acima. Mandem aviso a Valadares.
+es Al norte, entonces. Río arriba. Mandad aviso a Valadares.
+
+> South, then. To the highlands. Send word to Father Ferrer.
+pt Para sul, então. Para o planalto. Mandem aviso ao Padre Ferrer.
+es Al sur, entonces. Al altiplano. Mandad aviso al Padre Ferrer.
+
+> The machines did not wait for morning. They come at the south gate in the dark. Hold the fort until dawn.
+pt As máquinas não esperaram pela manhã. Vêm ao portão sul no escuro. Aguente o forte até ao amanhecer.
+es Las máquinas no esperaron a la mañana. Vienen a la puerta sur en la oscuridad. Resiste en el fuerte hasta el alba.
+
+> The swarm did not wait for morning. It comes at the north gate in the dark. Hold the fort until dawn.
+pt O enxame não esperou pela manhã. Vem ao portão norte no escuro. Aguente o forte até ao amanhecer.
+es El enjambre no esperó a la mañana. Viene a la puerta norte en la oscuridad. Resiste en el fuerte hasta el alba.
+
+> Get the people into the chapel. All of them.
+pt Levem o povo para a capela. Todos.
+es Llevad al pueblo a la capilla. A todos.
+
+> Another wave at the gate.
+pt Outra vaga no portão.
+es Otra oleada en la puerta.
+
+> The last of them, and the biggest, before the light.
+pt Os últimos, e os maiores, antes da luz.
+es Los últimos, y los mayores, antes de la luz.
+
+> Dawn over the São Francisco. The fort stands.
+pt Amanhece sobre o São Francisco. O forte está de pé.
+es Amanece sobre el São Francisco. El fuerte sigue en pie.
+
+> Strike the tents. We march at noon.
+pt Levantem as tendas. Marchamos ao meio-dia.
+es Levantad las tiendas. Marchamos a mediodía.
+
+> The magazine goes up. Fort Constantine burns.
+pt O paiol explode. O Forte Constantino arde.
+es El polvorín estalla. El Fuerte Constantino arde.
+
+> I am hit. Keep them walking, Sergeant.
+pt Fui atingido. Mantenha-os a andar, Sargento.
+es Me han dado. Que sigan andando, Sargento.
+
+> A scratch. Mind the guns, not me.
+pt Um arranhão. Cuidem dos canhões, não de mim.
+es Un rasguño. Cuidad de los cañones, no de mí.
+
+> You lead the swarm on the north bank: Raptors, Spitters, a Tyrant Challenger and Hatchlings. More come over the north ford as the day goes. Break the fort's magazine before dawn.
+pt Você conduz o enxame na margem norte: Raptores, Cuspidores, um Desafiante Tirano e Crias. Mais vêm pelo vau do norte ao longo do dia. Derrube o paiol do forte antes do amanhecer.
+es Diriges el enjambre en la orilla norte: Raptores, Escupidores, un Retador Tirano y Crías. Más vienen por el vado del norte a lo largo del día. Derriba el polvorín del fuerte antes del alba.
+
+> You lead the machines on the south bank: Clock Soldiers, Springers, a Netter and Swifts, wound for the road. More come over the south ford. Break the fort's magazine before dawn.
+pt Você conduz as máquinas na margem sul: Soldados de Corda, Saltadores, um Redeiro e Andorinhas, com corda para a estrada. Mais vêm pelo vau do sul. Derrube o paiol do forte antes do amanhecer.
+es Diriges las máquinas en la orilla sur: Soldados de Cuerda, Saltadores, un Redero y Vencejos, con cuerda para el camino. Más vienen por el vado del sur. Derriba el polvorín del fuerte antes del alba.
+
+> More of the swarm comes over the north ford: they are yours.
+pt Mais do enxame vem pelo vau do norte: são seus.
+es Más del enjambre viene por el vado del norte: son tuyos.
+
+> More machines come over the south ford: they are yours.
+pt Mais máquinas vêm pelo vau do sul: são suas.
+es Más máquinas vienen por el vado del sur: son tuyas.
+
+> The city's machines are on this land too. They go for anything that is not theirs.
+pt As máquinas também andam por esta terra. Atacam tudo o que não é delas.
+es Las máquinas también andan por esta tierra. Atacan todo lo que no es suyo.
+
+> The swarm is on this land too. It goes for anything that moves.
+pt O enxame também anda por esta terra. Ataca tudo o que se mexe.
+es El enjambre también anda por esta tierra. Ataca todo lo que se mueve.
+
+> The magazine goes up. Nobody counts what is left.
+pt O paiol explode. Ninguém conta o que resta.
+es El polvorín estalla. Nadie cuenta lo que queda.
+
+> Dawn. The fort still stands.
+pt Amanhece. O forte continua de pé.
+es Amanece. El fuerte sigue en pie.
+
+> We left the fort at noon, with the road's people behind its walls.
+pt Deixámos o forte ao meio-dia, com o povo da estrada atrás das suas muralhas.
+es Dejamos el fuerte a mediodía, con el pueblo del camino tras sus muros.
+
+> Most of them had come in. I counted twice to be sure.
+pt A maior parte tinha entrado. Contei duas vezes para ter a certeza.
+es La mayoría había entrado. Conté dos veces para estar seguro.
+
+> Some of them had come in. I said the others' names at Mass.
+pt Alguns tinham entrado. Disse os nomes dos outros na Missa.
+es Algunos habían entrado. Dije los nombres de los otros en la Misa.
+
+> Few of them had come in. I have their villages' names still.
+pt Poucos tinham entrado. Ainda tenho os nomes das aldeias deles.
+es Pocos habían entrado. Todavía tengo los nombres de sus aldeas.
+
+> We went north, up the rivers, to the swarm.
+pt Fomos para norte, rio acima, ao encontro do enxame.
+es Fuimos al norte, río arriba, al encuentro del enjambre.
+
+> We went south, to the highlands, to the city.
+pt Fomos para sul, para o planalto, ao encontro da cidade.
+es Fuimos al sur, al altiplano, al encuentro de la ciudad.
+
+> One army, two fires. You chose, and the army went.
+pt Um exército, dois fogos. Escolheste, e o exército foi.
+es Un ejército, dos fuegos. Elegiste, y el ejército fue.
+
+> Up the rivers it went. The city waited in the highlands, and grew.
+pt Foi rio acima. A cidade esperou no planalto, e cresceu.
+es Fue río arriba. La ciudad esperó en el altiplano, y creció.
+
+> South it went. The swarm waited on the rivers, and spread.
+pt Foi para sul. O enxame esperou nos rios, e espalhou-se.
+es Fue al sur. El enjambre esperó en los ríos, y se extendió.
+
+> That is what a crown is, in the end: choosing which fire burns longer.
+pt É isso uma coroa, no fim: escolher que fogo arde mais tempo.
+es Eso es una corona, al final: elegir qué fuego arde más tiempo.
+
+> That is not how it went. The fort stood. Hear it again from Tomasz.
+pt Não foi assim que aconteceu. O forte ficou de pé. Ouve outra vez da boca de Tomasz.
+es No fue así como pasó. El fuerte siguió en pie. Óyelo otra vez de boca de Tomasz.
+
+> The army of Brazil in the sertão, the dry season 2780.
+pt O exército do Brasil no sertão, a estação seca de 2780.
+es El ejército de Brasil en el sertón, la estación seca de 2780.
+
+> Two skies over the road.
+pt Dois céus sobre a estrada.
+es Dos cielos sobre el camino.
+
+> The council of war at Fort Constantine.
+pt O conselho de guerra no Forte Constantino.
+es El consejo de guerra en el Fuerte Constantino.
+
+> The sertão, the dry season 2780. You are the army of Brazil: General Ruggieri, Father Tomasz, Musketeers and Guardsmen, Dragoons and Cuirassiers, two Field Cannons, a Mortar and two powder wagons.
+pt O sertão, a estação seca de 2780. Você é o exército do Brasil: o General Ruggieri, o Padre Tomasz, Mosqueteiros e Guardas, Dragões e Couraceiros, dois Canhões de Campanha, um Morteiro e duas carroças de pólvora.
+es El sertón, la estación seca de 2780. Eres el ejército de Brasil: el General Ruggieri, el Padre Tomasz, Mosqueteros y Guardias, Dragones y Coraceros, dos Cañones de Campaña, un Mortero y dos carros de pólvora.
+
+> March west to Fort Constantine on the São Francisco, bringing the road's villagers with you. There is no Mill on the road: keep the wagons with the line. At the fort both the swarm and the city's machines are waiting.
+pt Marche para oeste até ao Forte Constantino, no São Francisco, levando consigo os aldeões da estrada. Não há Moinho na estrada: mantenha as carroças com a linha. No forte esperam o enxame e as máquinas da cidade.
+es Marcha al oeste hasta el Fuerte Constantino, en el São Francisco, llevando contigo a los aldeanos del camino. No hay Molino en el camino: mantén los carros con la línea. En el fuerte esperan el enjambre y las máquinas de la ciudad.
+
+> Then the council of war: one army, two fires. You choose which the army fights first; the other waits, and grows.
+pt Depois o conselho de guerra: um exército, dois fogos. Você escolhe qual o exército combate primeiro; o outro espera, e cresce.
+es Luego el consejo de guerra: un ejército, dos fuegos. Tú eliges cuál combate primero el ejército; el otro espera, y crece.
+
+> The sertão, the dry season 2780. You are the swarm on the north bank of the São Francisco, far from its rivers.
+pt O sertão, a estação seca de 2780. Você é o enxame na margem norte do São Francisco, longe dos seus rios.
+es El sertón, la estación seca de 2780. Eres el enjambre en la orilla norte del São Francisco, lejos de sus ríos.
+
+> Break the fort's magazine before dawn. The Crown's army is on the road; the city's machines come from the south and go for you too.
+pt Derrube o paiol do forte antes do amanhecer. O exército da Coroa vem pela estrada; as máquinas da cidade vêm do sul e atacam-no também.
+es Derriba el polvorín del fuerte antes del alba. El ejército de la Corona viene por el camino; las máquinas de la ciudad vienen del sur y te atacan también.
+
+> The sertão, the dry season 2780. You are the city's machines on the south bank of the São Francisco, wound for the road.
+pt O sertão, a estação seca de 2780. Você é as máquinas da cidade na margem sul do São Francisco, com corda para a estrada.
+es El sertón, la estación seca de 2780. Eres las máquinas de la ciudad en la orilla sur del São Francisco, con cuerda para el camino.
+
+> Break the fort's magazine before dawn. The Crown's army is on the road; the swarm comes from the north and goes for you too.
+pt Derrube o paiol do forte antes do amanhecer. O exército da Coroa vem pela estrada; o enxame vem do norte e ataca-o também.
+es Derriba el polvorín del fuerte antes del alba. El ejército de la Corona viene por el camino; el enjambre viene del norte y te ataca también.
+
+> {in_fort} of the {people_n} people of the road reached the fort.
+pt {in_fort} das {people_n} pessoas da estrada chegaram ao forte.
+es {in_fort} de las {people_n} personas del camino llegaron al fuerte.
+
+> The army went north first, up the rivers to the swarm. The city waits, and grows: its siege will be harder.
+pt O exército foi primeiro para norte, rio acima, contra o enxame. A cidade espera, e cresce: o seu cerco será mais duro.
+es El ejército fue primero al norte, río arriba, contra el enjambre. La ciudad espera, y crece: su asedio será más duro.
+
+> The army went south first, to the city of gears. The swarm waits, and spreads: the jungle front will be harder.
+pt O exército foi primeiro para sul, contra a cidade das engrenagens. O enxame espera, e espalha-se: a frente da selva será mais dura.
+es El ejército fue primero al sur, contra la ciudad de engranajes. El enjambre espera, y se extiende: el frente de la selva será más duro.
+
+> Fort Constantine's magazine went up before dawn.
+pt O paiol do Forte Constantino explodiu antes do amanhecer.
+es El polvorín del Fuerte Constantino estalló antes del alba.
+
+> WHICH FIRE FIRST
+pt QUE FOGO PRIMEIRO
+es QUÉ FUEGO PRIMERO
+
+> THE SWARM FIRST
+pt O ENXAME PRIMEIRO
+es EL ENJAMBRE PRIMERO
+
+> The army goes north, up the rivers: the jungle front is fought first, while the swarm is fresh. The city waits and grows: its siege comes second, harder. Tonight the machines strike the fort.
+pt O exército vai para norte, rio acima: a frente da selva combate-se primeiro, com o enxame ainda fresco. A cidade espera e cresce: o seu cerco vem depois, mais duro. Esta noite as máquinas atacam o forte.
+es El ejército va al norte, río arriba: el frente de la selva se combate primero, con el enjambre aún fresco. La ciudad espera y crece: su asedio viene después, más duro. Esta noche las máquinas atacan el fuerte.
+
+> THE CITY FIRST
+pt A CIDADE PRIMEIRO
+es LA CIUDAD PRIMERO
+
+> The army goes south, to the highlands: the siege of Concórdia is fought first, while the city is fresh. The swarm waits and spreads: the jungle front comes second, harder. Tonight the swarm strikes the fort.
+pt O exército vai para sul, para o planalto: o cerco de Concórdia combate-se primeiro, com a cidade ainda fresca. O enxame espera e espalha-se: a frente da selva vem depois, mais dura. Esta noite o enxame ataca o forte.
+es El ejército va al sur, al altiplano: el asedio de Concórdia se combate primero, con la ciudad aún fresca. El enjambre espera y se extiende: el frente de la selva viene después, más duro. Esta noche el enjambre ataca el fuerte.
+
+> NEW: ARMOUR. The army of Brazil wears it: your Guardsmen are Musketeers in breastplates, your Cuirassiers Horsemen in cuirasses. They take more before they fall and walk a little slower. The fort's Barracks trains them armoured; its Armoury refits a plain man.
+pt NOVO: A ARMADURA. O exército do Brasil usa-a: os seus Guardas são Mosqueteiros de couraça, os seus Couraceiros Cavaleiros de couraça. Aguentam mais antes de cair e andam um pouco mais devagar. O Quartel do forte treina-os com armadura; o seu Arsenal equipa um homem simples.
+es NUEVO: LA ARMADURA. El ejército de Brasil la lleva: tus Guardias son Mosqueteros con coraza, tus Coraceros Jinetes con coraza. Aguantan más antes de caer y andan un poco más despacio. El Cuartel del fuerte los entrena con armadura; su Armería equipa a un hombre sencillo.
+
+> NEW: THE POWDER WAGON. There is no Mill on the road: the wagons carry the army's powder. Musketeers and guns within 3 tiles of one refill from it, so keep it just behind the line, and guard it: it blows up when it is destroyed. It fills again at a Barracks; the fort's Foundry builds more.
+pt NOVO: A CARROÇA DE PÓLVORA. Não há Moinho na estrada: as carroças levam a pólvora do exército. Mosqueteiros e canhões a 3 casas de uma recarregam dela, por isso mantenha-a logo atrás da linha, e guarde-a: explode quando é destruída. Enche-se outra vez num Quartel; a Fundição do forte faz mais.
+es NUEVO: EL CARRO DE PÓLVORA. No hay Molino en el camino: los carros llevan la pólvora del ejército. Mosqueteros y cañones a 3 casillas de uno recargan de él, así que mantenlo justo detrás de la línea, y guárdalo: estalla cuando lo destruyen. Se llena otra vez en un Cuartel; la Fundición del fuerte hace más.
+
+> Matteo Ruggieri, General of the army of Brazil, the guns' man since Virginia.
+pt Matteo Ruggieri, General do exército do Brasil, homem dos canhões desde a Virgínia.
+es Matteo Ruggieri, General del ejército de Brasil, hombre de los cañones desde Virginia.
+
+> Father Tomasz, the frontier's vicar general, with the army of Brazil.
+pt O Padre Tomasz, vigário-geral da fronteira, com o exército do Brasil.
+es El Padre Tomasz, vicario general de la frontera, con el ejército de Brasil.
+
+> Will Hollins of the Virginia volunteers, a sergeant now.
+pt Will Hollins, dos voluntários da Virgínia, agora sargento.
+es Will Hollins, de los voluntarios de Virginia, ahora sargento.
+
+> Major Teixeira, commanding Fort Constantine on the São Francisco.
+pt Major Teixeira, comandante do Forte Constantino no São Francisco.
+es Mayor Teixeira, al mando del Fuerte Constantino en el São Francisco.
+
+> A villager of the sertão, from a village on the road.
+pt Um aldeão do sertão, de uma aldeia da estrada.
+es Un aldeano del sertón, de una aldea del camino.
+
+> You chose the swarm first, as Ruggieri did. Valadares had his guns before the floods.
+pt Escolheste o enxame primeiro, como Ruggieri. Valadares teve os seus canhões antes das cheias.
+es Elegiste el enjambre primero, como Ruggieri. Valadares tuvo sus cañones antes de las crecidas.
+
+> And the city of gears had a year it should not have had.
+pt E a cidade das engrenagens teve um ano que não devia ter tido.
+es Y la ciudad de engranajes tuvo un año que no debía haber tenido.
+
+> You chose the city first, as Ruggieri did. Father Ferrer had his siege lines by the spring.
+pt Escolheste a cidade primeiro, como Ruggieri. O Padre Ferrer teve as suas linhas de cerco na primavera.
+es Elegiste la ciudad primero, como Ruggieri. El Padre Ferrer tuvo sus líneas de asedio en la primavera.
+
+> And the swarm came down the rivers the whole year we were away.
+pt E o enxame desceu os rios o ano inteiro em que estivemos fora.
+es Y el enjambre bajó por los ríos todo el año que estuvimos fuera.
+
+> At the São Francisco a general asked me what to do, and I told him I did not know. He chose anyway. That is a general.
+pt No São Francisco um general perguntou-me o que fazer, e eu disse-lhe que não sabia. Ele escolheu na mesma. Isso é um general.
+es En el São Francisco un general me preguntó qué hacer, y le dije que no lo sabía. Él eligió de todos modos. Eso es un general.
+
+> RUGGIERI'S DISPATCH
+pt O DESPACHO DE RUGGIERI
+es EL DESPACHO DE RUGGIERI
+
+> Ruggieri's dispatch
+pt O despacho de Ruggieri
+es El despacho de Ruggieri
+
+> Fort Constantine, at the crossroads of the São Francisco. Relieved. Both enemies seen at its gates in the same week.
+pt Forte Constantino, na encruzilhada do São Francisco. Socorrido. Os dois inimigos vistos aos seus portões na mesma semana.
+es Fuerte Constantino, en la encrucijada del São Francisco. Socorrido. Los dos enemigos vistos a sus puertas en la misma semana.
+
+> The army marches north at noon, up the rivers. The southern road is watched, not held.
+pt O exército marcha para norte ao meio-dia, rio acima. A estrada do sul fica vigiada, não guardada.
+es El ejército marcha al norte a mediodía, río arriba. El camino del sur queda vigilado, no guardado.
+
+> The army marches south at noon, to the highlands. The rivers are watched, not held.
+pt O exército marcha para sul ao meio-dia, para o planalto. Os rios ficam vigiados, não guardados.
+es El ejército marcha al sur a mediodía, al altiplano. Los ríos quedan vigilados, no guardados.
+
+> The fort held, Highness. Two sieges in a week and a council in an evening. I chose, and I have not slept well since.
+pt O forte aguentou, Alteza. Dois cercos numa semana e um conselho numa noite. Escolhi, e não durmo bem desde então.
+es El fuerte resistió, Alteza. Dos asedios en una semana y un consejo en una noche. Elegí, y no duermo bien desde entonces.
+
+> Varenne went to the São Francisco under a white flag, for the city. He came back and did not speak at the council for a week.
+pt Varenne foi ao São Francisco sob bandeira branca, pela cidade. Voltou e não falou no conselho durante uma semana.
+es Varenne fue al São Francisco bajo bandera blanca, por la ciudad. Volvió y no habló en el consejo durante una semana.
+
+> The Crown's army is at the crossroads. The masters say it will come here. I tell them the city has done nothing. They agree, all of them, at once.
+pt O exército da Coroa está na encruzilhada. Os mestres dizem que virá aqui. Digo-lhes que a cidade não fez nada. Concordam, todos, ao mesmo tempo.
+es El ejército de la Corona está en la encrucijada. Los maestros dicen que vendrá aquí. Les digo que la ciudad no ha hecho nada. Están de acuerdo, todos, a la vez.
+
+> Ruggieri's rider came up the rivers with the word: the army is coming north. I have kept the Barra for this.
+pt O cavaleiro de Ruggieri subiu os rios com a notícia: o exército vem para norte. Guardei a Barra para isto.
+es El jinete de Ruggieri subió por los ríos con la noticia: el ejército viene al norte. He guardado la Barra para esto.
+
+> Ruggieri's rider came up the rivers with the word: the army has gone south first. I am to hold the Barra a year more, with what I have.
+pt O cavaleiro de Ruggieri subiu os rios com a notícia: o exército foi primeiro para sul. Tenho de segurar a Barra mais um ano, com o que tenho.
+es El jinete de Ruggieri subió por los ríos con la noticia: el ejército fue primero al sur. Debo resistir en la Barra un año más, con lo que tengo.

@@ -323,7 +323,7 @@ M = {
     },
     "lines": {},
     "stills": {},
-    "next": {"barra": "", "swarm": ""},
+    "next": {"barra": "d09_crossroads", "swarm": ""},
 }
 
 L = M["lines"]

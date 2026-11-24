@@ -635,6 +635,78 @@ line for Kessler, Brandl or Weiss (any older German master's voice).
 | k_end_m | the King | The council hall's lamps went red before dawn. It did not need to win that night. It had all the nights it wanted. | cold, a warning |
 | k_end_ml | the King | Hollweg reached his brake that morning. It changed nothing that mattered: the city had all the nights it wanted. | grave, weary |
 
+### d09_crossroads (Between Two Fires: the second crossing)
+
+Line ids are the mission's (`campaign/voice/d09/<id>.ogg`). The feeling is how the line should sound. The narrator's
+41 lines ("The Sertão", "The Fort", and "The Scrub" / "The Highlands' Road" for the versus friend's sides) and the two
+NEW cards can stay as text. The strongest lines have a preset in tools/voice_clone/emotions.json (`d09__<id>`). Tomasz is
+the grown Tomasz of d01 / d05 (about forty now); Ruggieri and Varenne have their refs (older by ten years: pitch a
+little down); Major Teixeira (the fort's commander, a Portuguese-Brazilian officer in his fifties, worn out) and the
+frontier's rider (a young dragoon, breathless) are new voices to design or reused officers; Sergeant Hollins is Will
+Hollins grown (thirties, a Virginian); the prince's two lines only if the owner names the heir (campaign.json "heir").
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | Ten years after Rome, Brazil had two fires in it, and one army. | slow, heavy, setting the scene |
+| k_open2 | the King | Tomasz was the frontier's vicar general by then. He walked beside the guns, as he always had. | fond of him, dry |
+| t_open1 | Father Tomasz* | The dry season of 2780. We marched out of Salvador into the sertão, where nothing is green until it rains. | weary, plain, the heat in it |
+| t_open2 | Father Tomasz* | General Ruggieri had every gun in Brazil behind him, and no town, no mill, no farm between us and the river. | sober, a man counting what they have |
+| t_open_vol | Father Tomasz* | The Virginia volunteers marched with us. Hollins was a sergeant now. He had been a boy at his father's farm the night the Governor came. | warm, remembering |
+| t_open_paris | Father Tomasz* | Our colours had been blessed at Notre-Dame. The men touched them before we left. | quiet pride |
+| t_open_many | Father Tomasz* | Word of Rome still ran ahead of me. The villages on the road came out to meet the priest. | humbled |
+| t_open3 | Father Tomasz* | At the crossroads of the São Francisco stood the fort. From there the army could strike either way. | low, the stakes |
+| k_open_c | the King | Tomasz tells it from the road. Here it is from the scrub north of the river, where nobody kept count. | cold, a test of the listener |
+| k_open_m | the King | Tomasz tells it from the road. Here it is from the highlands' road, where the machines walk at night. | cold, a test of the listener |
+| r_march | General Ruggieri | Column of march. Guns in the middle, the wagons behind the guns. We reach the fort before it falls. | crisp parade-ground orders |
+| t_skies | Father Tomasz* | I had seen each of them before. Never both in one sky. | awe, almost a whisper |
+| r_skies | General Ruggieri | Let them fight. Keep marching. | dry, unimpressed |
+| t_join | Father Tomasz* | Come with us, all of you. Bring water, leave the rest. The fort is a day's walk. | kind, urgent |
+| h_m1 | Sergeant Hollins* | Machines, Father? This far north? | startled |
+| t_m1 | Father Tomasz* | This far from anywhere, Sergeant. | grim, quiet |
+| r_owls | General Ruggieri | The wagons! Muskets up, at the owls! | shouting, alarmed |
+| c_arrive | Major Teixeira* | General! Thank God. They came the same week, from both sides. We have not slept. | exhausted relief, close to tears |
+| r_arrive | General Ruggieri | Two sieges at one fort. The north gate is the beasts', the south gate the machines'. Split the guns. | cool, a gunner's arithmetic |
+| t_ford | Father Tomasz* | God forgive me, I was glad to see them fight. | ashamed of a small gladness |
+| c_relieved | Major Teixeira* | The fort is yours, General. Its barracks, its foundry, its powder. | grateful, formal |
+| ms_1 | The frontier's rider* | From the Amazon frontier, General. The swarm is on the rivers. | breathless, dusty, urgent |
+| ms_left | The frontier's rider* | It fed all season on the Tapajós. It is bigger than last year. | grim |
+| ms_burned | The frontier's rider* | On the Tapajós it starved where the fields were burned. Everywhere else it fed. | grim |
+| ms_barra_held | The frontier's rider* | Valadares holds the Barra. He asks for guns before the floods. | urgent, asking |
+| ms_barra_burned | The frontier's rider* | Valadares holds the bluff at the Barra. The lower town is ash. | grim |
+| ms_lure | The frontier's rider* | He says the lure worked once. Now the swarm comes to the smell of it. | uneasy |
+| v_1 | Etienne Varenne | Etienne Varenne, for the free city of Concórdia. I come under a white flag. | formal, dignified |
+| v_2 | Etienne Varenne | The city asks one thing: to be left to govern itself, as it has these seven years. | measured, persuasive |
+| r_v | General Ruggieri | Its machines are on my road and at my south gate. | flat, hard |
+| v_3 | Etienne Varenne | Those are not the city's. The city has not sent anyone. I... do not know whose they are. | faltering, for the first time unsure |
+| v_stopped | Etienne Varenne | Since Hollweg stopped the great spring, the city runs without him. It runs very well. | proud, and something wrong under it |
+| t_honest | Father Tomasz* | Most of the honest masters stood with Hollweg that night in Concórdia. The ones who stayed are the city's now. | sad |
+| t_counsel1 | Father Tomasz* | General, the people under the swarm cannot wait. The city can. | earnest, pleading for the people |
+| t_counsel2 | Father Tomasz* | But the city grows while it waits, and it never sleeps. I do not know which is worse. | troubled, honest |
+| r_think | General Ruggieri | One army. Two fires. I can go north up the rivers, or south to the highlands. Not both. | heavy, alone with it |
+| k_frame | the King | Here I stop. I will tell you what we chose. First, tell me what you would choose. | quiet, turning to the listener: intimate |
+| q_first | the King | Which fire first? The one you leave strikes the fort tonight, and grows while it waits. | quiet, direct |
+| p_brood | The Prince* | The swarm. The people first. | firm, young |
+| p_clock | The Prince* | The city. Before it grows. | firm, young |
+| k_brood | the King | The swarm first. So Ruggieri chose, before dawn, and so it was. | grave, final |
+| k_clock | the King | The city first. So Ruggieri chose, before dawn, and so it was. | grave, final |
+| r_brood | General Ruggieri | North, then. Up the rivers. Send word to Valadares. | decided |
+| r_clock | General Ruggieri | South, then. To the highlands. Send word to Father Ferrer. | decided |
+| t_night | Father Tomasz* | Get the people into the chapel. All of them. | urgent, calm under it |
+| r_dawn | General Ruggieri | Strike the tents. We march at noon. | tired, plain |
+| t_hurt | Father Tomasz* | I am hit. Keep them walking, Sergeant. | in pain, steady |
+| r_hurt | General Ruggieri | A scratch. Mind the guns, not me. | gruff, brushing it off |
+| t_end1 | Father Tomasz* | We left the fort at noon, with the road's people behind its walls. | tired, quiet |
+| t_end_many | Father Tomasz* | Most of them had come in. I counted twice to be sure. | grateful |
+| t_end_some | Father Tomasz* | Some of them had come in. I said the others' names at Mass. | grief held in |
+| t_end_few | Father Tomasz* | Few of them had come in. I have their villages' names still. | grief |
+| t_end_brood | Father Tomasz* | We went north, up the rivers, to the swarm. | resolve |
+| t_end_clock | Father Tomasz* | We went south, to the highlands, to the city. | resolve |
+| k_end1 | the King | One army, two fires. You chose, and the army went. | plain, a king's weight |
+| k_end_brood | the King | Up the rivers it went. The city waited in the highlands, and grew. | sober |
+| k_end_clock | the King | South it went. The swarm waited on the rivers, and spread. | sober |
+| k_end2 | the King | That is what a crown is, in the end: choosing which fire burns longer. | weary wisdom, quiet |
+| k_end_s | the King | That is not how it went. The fort stood. Hear it again from Tomasz. | stern, correcting |
+
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
 Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, ferrer (2026-11-22), explorer (now Valadares? the owner to say). The King
@@ -657,13 +729,17 @@ voice reused).
 Lieutenant Inácio Ramos (a Brazilian orator, thirties, warm and dangerous), and "a townsman" (one line); d08: Valadares
 (the d03 voice, older), Benedito and the Barra's sergeant (an old Portuguese-Brazilian soldier, a parade-ground voice).
 voice reused); d07: Matthias (Jakob's son, about twenty, Franconian, earnest and sharp; Jakob's voice made younger
-would do) and Master Ortlieb (the council's chairman, a comfortable Franconian master, sixties; one line).
+would do) and Master Ortlieb (the council's chairman, a comfortable Franconian master, sixties; one line); d09: Major
+Teixeira (the fort's commander, a Portuguese-Brazilian officer in his fifties, worn out; or Sobral's voice reused), the
+frontier's rider (a young dragoon, breathless; two lines a mission) and Sergeant Hollins (Will Hollins grown, a Virginian
+in his thirties).
 
 ## 4. Act 2 (planned, not built)
 
 docs/campaign_act2_plan.md "VOICES" lists Act 2's speakers and the new voices to design (Tomasz grown, Commissary
 Brandt, Desembargador Fonseca, Captain Arruda, Padre Anselmo, Citizen Morel, Matthias (built: d07), Captain de Meneses (built: d01), Lieutenant
-Ramos (built: d01), Brother Tiago (built: d05), the prince if the heir is named). Each mission's table joins section 2 when it is built.
+Ramos (built: d01), Brother Tiago (built: d05), Major Teixeira and the frontier's rider (built: d09), the prince if the
+heir is named (d09 has his two lines)). Each mission's table joins section 2 when it is built.
 
 ## 5. Later
 

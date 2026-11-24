@@ -42,7 +42,7 @@ LADDER = {
         ("C4", "a07_council", ["church", "missionary"], []),
         ("C5", "d01_minas", ["armoury", "matchlock", "bayonet"], []),
         ("C6", "d05_aldeia", ["dragoon", "charge"], []),
-        ("C7", "", ["armour", "powder_wagon"], []),
+        ("C7", "d09_crossroads", ["armour", "powder_wagon"], []),
         ("C8", "", ["balloon"], []),
         ("C9", "", ["charges", "quadrant"], []),
         ("C10", "", ["band"], []),
@@ -94,6 +94,7 @@ BOUND = {
     "d05_aldeia": ("crown", ["mission"]),             # (Act 2's C6: the swarm (solo pick, versus) is not bound beyond its deny)
     "d08_rivers": ("brood", ["swarm"]),               # (Act 2's B6, was B5: the swarm, the solo pick and versus; the Barra is not bound)
     "d07_spring": ("clockwork", ["guild"]),           # (Act 2's K6: the machine (solo pick, versus) is not bound: the other side)
+    "d09_crossroads": ("crown", ["army"]),            # (Act 2's C7: the army; the fort's garrison (co-op) and the versus pick are not bound)
 }
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
@@ -137,6 +138,8 @@ CARDS = {
     "nb_pack_hunt": "NEW: PACK HUNT. Research it on the Tyrant Sire's card: Raptors, Tyrant Challengers and the Sire run faster; a Raptor then outruns a horse. Catch the people before the canoes.",
     "nb_quick_roots": "NEW: QUICK ROOTS. Research it on a Mother's card: every creature roots and uproots in half the time. A forward Mother walks down the bank and is rooted again before the guns find her.",
     "bayonet": "NEW: THE SOCKET BAYONET. Research it at the Armoury: the bayonet hits harder and quicker, and the musket can still fire with it fixed. On the town's stairs, where the fighting is close, it decides the night.",
+    "armour": "NEW: ARMOUR. The army of Brazil wears it: your Guardsmen are Musketeers in breastplates, your Cuirassiers Horsemen in cuirasses. They take more before they fall and walk a little slower. The fort's Barracks trains them armoured; its Armoury refits a plain man.",
+    "powder_wagon": "NEW: THE POWDER WAGON. There is no Mill on the road: the wagons carry the army's powder. Musketeers and guns within 3 tiles of one refill from it, so keep it just behind the line, and guard it: it blows up when it is destroyed. It fills again at a Barracks; the fort's Foundry builds more.",
 }
 # (pieces that share a card: the Venom Challenger is told with the Tyrant Challenger)
 SHARED_CARD = {"venom_challenger": "tyrant_challenger"}
@@ -181,6 +184,8 @@ CARDS_PT = {
     "nb_pack_hunt": "NOVO: CAÇA EM BANDO. Pesquise-a no painel do Sire Tirano: os Raptores, os Desafiantes Tiranos e o Sire correm mais depressa; um Raptor passa então um cavalo. Apanhe a gente antes das canoas.",
     "nb_quick_roots": "NOVO: RAÍZES RÁPIDAS. Pesquise-as no painel de uma Mãe: todas as criaturas enraízam e desenraízam na metade do tempo. Uma Mãe avançada desce a margem e já está enraizada de novo antes que os canhões a encontrem.",
     "bayonet": "NOVO: A BAIONETA DE ENCAIXE. Pesquise-a no Arsenal: a baioneta fere mais forte e mais depressa, e o mosquete ainda dispara com ela calada. Nas escadas da vila, onde a luta é de perto, ela decide a noite.",
+    "armour": "NOVO: A ARMADURA. O exército do Brasil usa-a: os seus Guardas são Mosqueteiros de couraça, os seus Couraceiros Cavaleiros de couraça. Aguentam mais antes de cair e andam um pouco mais devagar. O Quartel do forte treina-os com armadura; o seu Arsenal equipa um homem simples.",
+    "powder_wagon": "NOVO: A CARROÇA DE PÓLVORA. Não há Moinho na estrada: as carroças levam a pólvora do exército. Mosqueteiros e canhões a 3 casas de uma recarregam dela, por isso mantenha-a logo atrás da linha, e guarde-a: explode quando é destruída. Enche-se outra vez num Quartel; a Fundição do forte faz mais.",
 }
 CARDS_ES = {
     "musketeer": "NUEVO: EL MOSQUETERO. El Cuartel lo entrena. Un hombre no es nada; una línea de ellos disparando juntos defiende la plantación. Mantenlos en línea, no en montón.",
@@ -221,15 +226,13 @@ CARDS_ES = {
     "nb_pack_hunt": "NUEVO: CAZA EN MANADA. Investígala en el panel del Señor Tirano: los Raptores, los Retadores Tiranos y el Señor corren más deprisa; un Raptor entonces deja atrás a un caballo. Atrapa a la gente antes de las canoas.",
     "nb_quick_roots": "NUEVO: RAÍCES RÁPIDAS. Investígalas en el panel de una Madre: todas las criaturas enraízan y desenraízan en la mitad de tiempo. Una Madre de avanzada baja por la orilla y vuelve a estar enraizada antes de que los cañones la encuentren.",
     "bayonet": "NUEVO: LA BAYONETA DE CUBO. Investígala en la Armería: la bayoneta hiere más fuerte y más deprisa, y el mosquete aún dispara con ella calada. En las escaleras del pueblo, donde se lucha de cerca, decide la noche.",
+    "armour": "NUEVO: LA ARMADURA. El ejército de Brasil la lleva: tus Guardias son Mosqueteros con coraza, tus Coraceros Jinetes con coraza. Aguantan más antes de caer y andan un poco más despacio. El Cuartel del fuerte los entrena con armadura; su Armería equipa a un hombre sencillo.",
+    "powder_wagon": "NUEVO: EL CARRO DE PÓLVORA. No hay Molino en el camino: los carros llevan la pólvora del ejército. Mosqueteros y cañones a 3 casillas de uno recargan de él, así que mantenlo justo detrás de la línea, y guárdalo: estalla cuando lo destruyen. Se llena otra vez en un Cuartel; la Fundición del fuerte hace más.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown"}
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d08_rivers": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d08_rivers": "swarm"}
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8, "d07_spring": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown", "d07_spring": "guild"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8, "d08_rivers": 8, "d07_spring": 8, "d09_crossroads": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown", "d08_rivers": "swarm", "d07_spring": "guild", "d09_crossroads": "crown"}
 
 
 def step_of(mission_id):

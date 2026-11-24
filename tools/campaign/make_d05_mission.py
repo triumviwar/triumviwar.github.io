@@ -308,7 +308,7 @@ M = {
     },
     "lines": {},
     "stills": {},
-    "next": {"crown": "", "swarm": ""},
+    "next": {"crown": "d09_crossroads", "swarm": ""},
     "debrief": {},
 }
 

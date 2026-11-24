@@ -26,6 +26,12 @@
 
 ## Current work
 
+- d09_crossroads BUILT (job d09-crossroads, MERGED 0.38.204, docs/campaign_d09_build.md): Act 2's SECOND CROSSING,
+  "Between Two Fires" (dry season 2780, Tomasz tells it): General Ruggieri's army of Brazil marches through the sertão to
+  Fort Constantine (proposed) on the São Francisco; the swarm from the north-west, the machines from the south-west;
+  choice WHICH FIRE FIRST (flag `first`, NO canon: the King asks the listener); the last mission of all three lines (after
+  d05, d07, d08); map campaign:sao_francisco (SERTÃO); C7 = ARMOUR + THE POWDER WAGON; engine: a unit's/spawn's `kit`.
+  Tests tools/test_campaign_d09.gd, sim tools/sim_campaign_d09.gd. ALL TEXT PLACEHOLDER. Next: d10_jungle / d11_siege.
 - d08_rivers BUILT (job d08-rivers, MERGED 0.38.201, docs/campaign_d08_build.md): Act 2 step 11, "Down the Rivers" (the
   Naturalist after d06, the floods of 2778, Valadares tells it): the swarm comes down the rivers, Valadares brings
   Nazaré's people out and holds the Barra do Rio Negro; THE LURE BOOK choice (flag `lure`); map campaign:barra_rivers;

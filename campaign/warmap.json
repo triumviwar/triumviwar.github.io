@@ -2538,6 +2538,28 @@
 		},
 		{
 			"if": {
+				"won_by": {
+					"d09_crossroads": "creatures"
+				}
+			},
+			"pin": "d09_crossroads",
+			"seal": "broken",
+			"ledger": "The swarm blew the fort's magazine at the crossroads: not how it went.",
+			"act2": true
+		},
+		{
+			"if": {
+				"won_by": {
+					"d09_crossroads": "automata"
+				}
+			},
+			"pin": "d09_crossroads",
+			"seal": "broken",
+			"ledger": "The machines blew the fort's magazine at the crossroads: not how it went.",
+			"act2": true
+		},
+		{
+			"if": {
 				"flag": {
 					"d09_crossroads.first": "brood"
 				},

@@ -1,0 +1,7349 @@
+{
+	"id": "d09_crossroads",
+	"title": "Between Two Fires",
+	"summary": "The sertão, the dry season 2780. The army of Brazil marches to the fort at the crossroads of the São Francisco, and both fires find it. The Crown chooses which to fight first.",
+	"map": "campaign:sao_francisco",
+	"voice": "d09",
+	"light": "day",
+	"floor": [
+		1.0,
+		0.96,
+		0.9
+	],
+	"expansion_spots": false,
+	"manual_end": true,
+	"difficulty": {
+		"easy": {
+			"clocks": 1.25,
+			"spawns": 0.7
+		},
+		"hard": {
+			"clocks": 0.85,
+			"spawns": 1.4
+		}
+	},
+	"needs": [
+		"a07_council",
+		"d05_aldeia",
+		"d07_spring",
+		"d08_rivers"
+	],
+	"modes": [
+		"solo",
+		"coop",
+		"versus"
+	],
+	"solo_sides": [
+		"crown"
+	],
+	"versus_pick": [
+		"creatures",
+		"automata"
+	],
+	"sides": [
+		{
+			"id": "crown",
+			"name": "The Army of Brazil",
+			"about": "General Ruggieri, Father Tomasz and the Crown's army of Brazil on the road to the São Francisco; the fort's garrison."
+		},
+		{
+			"id": "creatures",
+			"name": "The Swarm",
+			"about": "The creatures out of the north-west, far from their rivers: Raptors, Spitters, flyers."
+		},
+		{
+			"id": "automata",
+			"name": "The Machines",
+			"about": "The city's machines on the highlands' road from the south-west: Clock Soldiers, Springers, brass birds."
+		}
+	],
+	"teams": [
+		{
+			"id": "army",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "road_start",
+			"gold": 300,
+			"powder": 160,
+			"techs": [
+				"matchlock",
+				"bayonet",
+				"charge",
+				"armour"
+			],
+			"control": {
+				"solo": "p1",
+				"coop": "p1",
+				"versus": "p1"
+			},
+			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon",
+					"horse_breeder",
+					"cuirassier",
+					"horse",
+					"dismounted",
+					"messenger",
+					"foundry",
+					"mortar",
+					"church",
+					"missionary",
+					"armoury",
+					"matchlock",
+					"bayonet",
+					"dragoon",
+					"charge",
+					"armour",
+					"powder_wagon"
+				],
+				"new": [
+					"armour",
+					"powder_wagon"
+				],
+				"deny": [
+					"town_hall",
+					"cottage",
+					"farm",
+					"wall",
+					"gate",
+					"labourer",
+					"messenger",
+					"church",
+					"missionary",
+					"powder_mill",
+					"barracks",
+					"horse_breeder",
+					"foundry",
+					"armoury"
+				]
+			}
+		},
+		{
+			"id": "fort",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 0,
+			"start": "none",
+			"camera": "fort_mid",
+			"gold": 150,
+			"powder": 200,
+			"techs": [
+				"matchlock",
+				"bayonet"
+			],
+			"roster": {
+				"deny": [
+					"town_hall",
+					"cottage",
+					"farm",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"horse_breeder",
+					"foundry",
+					"armoury",
+					"church",
+					"labourer",
+					"missionary"
+				]
+			},
+			"control": {
+				"solo": "script",
+				"coop": "p2",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "sertao",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "riacho",
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "creatures",
+			"side": "creatures",
+			"faction": "brood",
+			"colour": 2,
+			"start": "none",
+			"camera": "nw_camp",
+			"gold": 200,
+			"powder": 0,
+			"roster": {
+				"deny": [
+					"grub",
+					"rootmaw",
+					"mound_turtle",
+					"stage3",
+					"brute",
+					"mist_toad",
+					"dilophosaurus",
+					"pterodactyl"
+				]
+			},
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "p2"
+			}
+		},
+		{
+			"id": "automata",
+			"side": "automata",
+			"faction": "clockwork",
+			"colour": 1,
+			"start": "none",
+			"camera": "sw_camp",
+			"gold": 200,
+			"powder": 0,
+			"roster": {
+				"deny": [
+					"clocktower",
+					"cog_press",
+					"mainspring",
+					"regulator",
+					"movement_works",
+					"winder",
+					"heavy_works"
+				]
+			},
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "p2"
+			}
+		}
+	],
+	"areas": {
+		"road_start": [
+			148,
+			42,
+			10,
+			12
+		],
+		"riacho": [
+			120,
+			33,
+			16,
+			12
+		],
+		"riacho_in": [
+			125,
+			37,
+			6,
+			4
+		],
+		"lagoa": [
+			88,
+			55,
+			16,
+			12
+		],
+		"lagoa_in": [
+			93,
+			59,
+			6,
+			4
+		],
+		"road_mid": [
+			108,
+			46,
+			8,
+			8
+		],
+		"road_west": [
+			80,
+			45,
+			8,
+			8
+		],
+		"fort_approach": [
+			48,
+			40,
+			18,
+			16
+		],
+		"fort": [
+			26,
+			38,
+			23,
+			21
+		],
+		"fort_in": [
+			29,
+			43,
+			15,
+			10
+		],
+		"fort_mid": [
+			33,
+			46,
+			8,
+			4
+		],
+		"fort_wide": [
+			20,
+			28,
+			36,
+			42
+		],
+		"north_in": [
+			34,
+			39,
+			6,
+			3
+		],
+		"south_in": [
+			34,
+			55,
+			6,
+			3
+		],
+		"north_gate": [
+			33,
+			34,
+			8,
+			4
+		],
+		"south_gate": [
+			33,
+			59,
+			8,
+			4
+		],
+		"north_out": [
+			30,
+			26,
+			14,
+			7
+		],
+		"south_out": [
+			30,
+			63,
+			14,
+			7
+		],
+		"east_gate": [
+			47,
+			45,
+			4,
+			7
+		],
+		"ford": [
+			12,
+			44,
+			9,
+			8
+		],
+		"ford_east": [
+			21,
+			44,
+			5,
+			8
+		],
+		"ford_post": [
+			23,
+			50,
+			3,
+			3
+		],
+		"north_ford": [
+			13,
+			11,
+			9,
+			6
+		],
+		"south_ford": [
+			13,
+			79,
+			9,
+			6
+		],
+		"nw_camp": [
+			2,
+			3,
+			11,
+			10
+		],
+		"sw_camp": [
+			2,
+			83,
+			11,
+			10
+		],
+		"nw_trail": [
+			4,
+			22,
+			8,
+			8
+		],
+		"sw_trail": [
+			4,
+			66,
+			8,
+			8
+		],
+		"north_scrub": [
+			112,
+			8,
+			14,
+			10
+		],
+		"south_scrub": [
+			86,
+			76,
+			16,
+			10
+		],
+		"west_scrub": [
+			74,
+			26,
+			12,
+			8
+		],
+		"sky_nw": [
+			90,
+			1,
+			16,
+			6
+		],
+		"sky_sw": [
+			102,
+			88,
+			16,
+			6
+		],
+		"sky_meet": [
+			130,
+			38,
+			10,
+			10
+		],
+		"dry_stretch": [
+			58,
+			44,
+			16,
+			10
+		],
+		"south_dry": [
+			60,
+			66,
+			12,
+			8
+		]
+	},
+	"counters": {
+		"people_n": {
+			"start": 0
+		},
+		"in_fort": {
+			"start": 0
+		},
+		"joined": {
+			"start": 0
+		},
+		"siege_left": {
+			"start": 0
+		},
+		"siege_c": {
+			"start": 0
+		},
+		"night_n": {
+			"start": 0
+		}
+	},
+	"exits": [
+		{
+			"area": "fort_in",
+			"tag": "people",
+			"counter": "in_fort"
+		}
+	],
+	"units": [
+		{
+			"team": "army",
+			"at": "road_start",
+			"fixed": true,
+			"kind": "dismounted",
+			"as": "ruggieri_general",
+			"count": 1,
+			"tag": "ruggieri",
+			"tags": [
+				"leaders"
+			]
+		},
+		{
+			"team": "army",
+			"at": "road_start",
+			"fixed": true,
+			"kind": "missionary",
+			"as": "tomasz_vicar",
+			"count": 1,
+			"tag": "tomasz",
+			"tags": [
+				"leaders"
+			]
+		},
+		{
+			"team": "army",
+			"at": "road_start",
+			"fixed": true,
+			"kind": "musketeer",
+			"count": 6,
+			"tag": "line",
+			"kit": {
+				"lock": "matchlock",
+				"bayonet": true
+			}
+		},
+		{
+			"team": "army",
+			"at": "road_start",
+			"fixed": true,
+			"kind": "musketeer",
+			"count": 4,
+			"tag": "line",
+			"tags": [
+				"armoured"
+			],
+			"kit": {
+				"armour": true,
+				"lock": "matchlock",
+				"bayonet": true
+			}
+		},
+		{
+			"team": "army",
+			"at": "road_start",
+			"fixed": true,
+			"kind": "dragoon",
+			"count": 3,
+			"tag": "riders"
+		},
+		{
+			"team": "army",
+			"at": "road_start",
+			"fixed": true,
+			"kind": "cuirassier",
+			"count": 3,
+			"tag": "riders",
+			"tags": [
+				"armoured"
+			],
+			"kit": {
+				"armour": true
+			}
+		},
+		{
+			"team": "army",
+			"at": "road_start",
+			"fixed": true,
+			"kind": "cannon",
+			"count": 2,
+			"tag": "guns"
+		},
+		{
+			"team": "army",
+			"at": "road_start",
+			"fixed": true,
+			"kind": "mortar",
+			"count": 1,
+			"tag": "guns"
+		},
+		{
+			"team": "army",
+			"at": "road_start",
+			"fixed": true,
+			"kind": "powder_wagon",
+			"count": 2,
+			"tag": "wagons"
+		},
+		{
+			"team": "army",
+			"at": "road_start",
+			"fixed": true,
+			"kind": "musketeer",
+			"as": "hollins_sergeant",
+			"count": 1,
+			"tag": "hollins",
+			"tags": [
+				"line",
+				"volunteers"
+			],
+			"if": {
+				"not": {
+					"past": {
+						"p01_leaf.families": "leave"
+					}
+				}
+			},
+			"kit": {
+				"lock": "matchlock",
+				"bayonet": true
+			}
+		},
+		{
+			"team": "army",
+			"at": "road_start",
+			"fixed": true,
+			"kind": "musketeer",
+			"as": "volunteer",
+			"count": 4,
+			"tag": "volunteers",
+			"tags": [
+				"line"
+			],
+			"if": {
+				"not": {
+					"past": {
+						"p01_leaf.families": "leave"
+					}
+				}
+			},
+			"kit": {
+				"lock": "matchlock",
+				"bayonet": true
+			}
+		},
+		{
+			"team": "fort",
+			"kind": "dismounted",
+			"as": "fort_commander",
+			"count": 1,
+			"at": "fort_mid",
+			"tag": "commander",
+			"fixed": true
+		},
+		{
+			"team": "fort",
+			"kind": "musketeer",
+			"count": 4,
+			"at": "north_in",
+			"tag": "garrison",
+			"tags": [
+				"garrison_n"
+			],
+			"fixed": true,
+			"order": "hold"
+		},
+		{
+			"team": "fort",
+			"kind": "musketeer",
+			"count": 4,
+			"at": "south_in",
+			"tag": "garrison",
+			"tags": [
+				"garrison_s"
+			],
+			"fixed": true,
+			"order": "hold"
+		},
+		{
+			"team": "fort",
+			"kind": "cannon",
+			"count": 1,
+			"at": "fort_mid",
+			"tag": "garrison",
+			"tags": [
+				"fort_gun"
+			],
+			"fixed": true
+		},
+		{
+			"team": "sertao",
+			"kind": "labourer",
+			"as": "sertanejo",
+			"count": 8,
+			"at": "riacho_in",
+			"tag": "folk_v1",
+			"tags": [
+				"people"
+			],
+			"fixed": true
+		},
+		{
+			"team": "sertao",
+			"kind": "labourer",
+			"as": "sertanejo",
+			"count": 8,
+			"at": "lagoa_in",
+			"tag": "folk_v2",
+			"tags": [
+				"people"
+			],
+			"fixed": true
+		}
+	],
+	"buildings": [
+		{
+			"team": "fort",
+			"kind": "powder_mill",
+			"at": [
+				37,
+				47
+			],
+			"tag": "magazine",
+			"name": "The fort's magazine"
+		},
+		{
+			"team": "fort",
+			"kind": "church",
+			"at": [
+				28,
+				46
+			],
+			"tag": "chapel",
+			"name": "The fort's chapel"
+		},
+		{
+			"team": "army",
+			"kind": "barracks",
+			"at": [
+				28,
+				40
+			],
+			"tag": "depot",
+			"tags": [
+				"f_barracks"
+			],
+			"name": "The fort's barracks"
+		},
+		{
+			"team": "army",
+			"kind": "armoury",
+			"at": [
+				42,
+				40
+			],
+			"tag": "depot",
+			"tags": [
+				"f_armoury"
+			],
+			"name": "The fort's armoury"
+		},
+		{
+			"team": "army",
+			"kind": "foundry",
+			"at": [
+				28,
+				53
+			],
+			"tag": "depot",
+			"tags": [
+				"f_foundry"
+			],
+			"name": "The fort's foundry"
+		},
+		{
+			"team": "army",
+			"kind": "horse_breeder",
+			"at": [
+				43,
+				53
+			],
+			"tag": "depot",
+			"tags": [
+				"f_breeder"
+			],
+			"name": "The fort's horse lines"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				32,
+				40
+			],
+			"tag": "depot",
+			"tags": [
+				"quarters"
+			],
+			"name": "The army's quarters"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				39,
+				40
+			],
+			"tag": "depot",
+			"tags": [
+				"quarters"
+			],
+			"name": "The army's quarters"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				32,
+				56
+			],
+			"tag": "depot",
+			"tags": [
+				"quarters"
+			],
+			"name": "The army's quarters"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				39,
+				56
+			],
+			"tag": "depot",
+			"tags": [
+				"quarters"
+			],
+			"name": "The army's quarters"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				44,
+				44
+			],
+			"tag": "depot",
+			"tags": [
+				"quarters"
+			],
+			"name": "The army's quarters"
+		},
+		{
+			"team": "army",
+			"kind": "cottage",
+			"at": [
+				44,
+				50
+			],
+			"tag": "depot",
+			"tags": [
+				"quarters"
+			],
+			"name": "The army's quarters"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				27,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				28,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				29,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				30,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				31,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				32,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				33,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				34,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				39,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				40,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				41,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				42,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				43,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				44,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				45,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				46,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				47,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				38
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				27,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				28,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				29,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				30,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				31,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				32,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				33,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				34,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				39,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				40,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				41,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				42,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				43,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				44,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				45,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				46,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				47,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				58
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				39
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				40
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				41
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				42
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				43
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				44
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				45
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				46
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				47
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				48
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				49
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				50
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				51
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				52
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				53
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				54
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				55
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				56
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				26,
+				57
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				39
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				40
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				41
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				42
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				43
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				44
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				45
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				51
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				52
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				53
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				54
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				55
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				56
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		},
+		{
+			"team": "fort",
+			"kind": "wall",
+			"at": [
+				48,
+				57
+			],
+			"tag": "palisade",
+			"name": "Fort Constantine's palisade"
+		}
+	],
+	"objectives": [
+		{
+			"id": "magazine",
+			"side": "crown",
+			"primary": true,
+			"kind": "protect",
+			"tag": "magazine",
+			"text": "Fort Constantine's magazine must stand."
+		},
+		{
+			"id": "march",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"text": "THE ROAD: march the army west along the road to Fort Constantine on the São Francisco. There is no Mill on the road: your powder is in the two wagons.",
+			"phone": "March west to Fort Constantine. Your powder is in the wagons."
+		},
+		{
+			"id": "fort_clock",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "fort",
+			"text": "The fort holds out for {clock:fort}."
+		},
+		{
+			"id": "people",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"text": "THE PEOPLE OF THE ROAD: the two villages' people join the column when your men reach them, and follow Father Tomasz. Keep him with the army. In the fort {in_fort} of {people_n}.",
+			"phone": "The villagers follow Father Tomasz: in the fort {in_fort} of {people_n}."
+		},
+		{
+			"id": "owls",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Shoot down the brass owls before they reach the powder wagons."
+		},
+		{
+			"id": "siege",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE FORT: drive both off: the creatures at the north gate, the machines at the south gate. Split your guns. Round the fort: {siege_left}.",
+			"phone": "Drive both off the fort: north gate the creatures, south gate the machines ({siege_left} left)."
+		},
+		{
+			"id": "siege_clock",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "siege",
+			"hidden": true,
+			"text": "Dusk in {clock:siege}."
+		},
+		{
+			"id": "night",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE NIGHT: the fire you did not choose strikes the fort first. Hold it until dawn. The fort's Barracks and Foundry are yours: train what the pay chest allows.",
+			"phone": "Hold the fort until dawn."
+		},
+		{
+			"id": "dawn",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "dawn",
+			"hidden": true,
+			"text": "Dawn in {clock:dawn}."
+		},
+		{
+			"id": "c_raid",
+			"side": "creatures",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE RAID: break Fort Constantine's magazine (in the fort's middle) before dawn. More of the swarm comes over the north ford as the day goes.",
+			"phone": "Break the fort's magazine before dawn."
+		},
+		{
+			"id": "m_raid",
+			"side": "automata",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE RAID: break Fort Constantine's magazine (in the fort's middle) before dawn. More machines come over the south ford as the day goes; they are wound for the road.",
+			"phone": "Break the fort's magazine before dawn."
+		}
+	],
+	"triggers": [
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "people_n",
+						"count": {
+							"tag": "people"
+						}
+					}
+				},
+				{
+					"pace": {
+						"tag": "people",
+						"pace": 0.75
+					}
+				},
+				{
+					"order": {
+						"tag": "people",
+						"do": "hold"
+					}
+				},
+				{
+					"clock": {
+						"name": "fort",
+						"secs": 330
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_c",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"playing": "creatures"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "c_raid",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"sc_1",
+						"sc_other"
+					]
+				},
+				{
+					"ping": {
+						"area": "fort"
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 8,
+						"at": "nw_camp",
+						"tag": "c_band",
+						"tags": [
+							"c_all"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 2,
+						"at": "nw_camp",
+						"tag": "c_band",
+						"tags": [
+							"c_all"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "nw_camp",
+						"tag": "c_band",
+						"tags": [
+							"c_all"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "hatchlings",
+						"count": 4,
+						"at": "nw_camp",
+						"tag": "c_band",
+						"tags": [
+							"c_all"
+						],
+						"fixed": true
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_m",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"playing": "automata"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "m_raid",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"hr_1",
+						"hr_other"
+					]
+				},
+				{
+					"ping": {
+						"area": "fort"
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 6,
+						"at": "sw_camp",
+						"tag": "m_band",
+						"tags": [
+							"m_all"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "springer",
+						"count": 2,
+						"at": "sw_camp",
+						"tag": "m_band",
+						"tags": [
+							"m_all"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "netter",
+						"count": 1,
+						"at": "sw_camp",
+						"tag": "m_band",
+						"tags": [
+							"m_all"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "cuckoo",
+						"count": 2,
+						"at": "sw_camp",
+						"tag": "m_band",
+						"tags": [
+							"m_all"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "wind_m",
+			"when": {
+				"time": 4
+			},
+			"every": 4,
+			"do": [
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "friend_food",
+			"when": {
+				"all": [
+					{
+						"time": 10
+					},
+					{
+						"any": [
+							{
+								"playing": "creatures"
+							},
+							{
+								"playing": "automata"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 10,
+			"do": [
+				{
+					"give": {
+						"team": "creatures",
+						"gold": 15
+					}
+				},
+				{
+					"give": {
+						"team": "automata",
+						"gold": 15
+					}
+				}
+			]
+		},
+		{
+			"id": "garrison_hold",
+			"when": {
+				"time": 1.0
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "garrison_n",
+						"do": "hold"
+					}
+				},
+				{
+					"order": {
+						"tag": "garrison_s",
+						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "march",
+			"when": {
+				"time": 2.0
+			},
+			"do": [
+				{
+					"say": [
+						"r_march",
+						"n_road"
+					]
+				},
+				{
+					"ping": {
+						"area": "fort"
+					}
+				},
+				{
+					"reveal": {
+						"area": "fort",
+						"side": "crown"
+					}
+				},
+				{
+					"ping": {
+						"area": "riacho"
+					}
+				}
+			]
+		},
+		{
+			"id": "wagon_say",
+			"when": {
+				"all": [
+					{
+						"time": 32
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_wagon"
+					]
+				},
+				{
+					"ping": {
+						"tag": "wagons"
+					}
+				}
+			]
+		},
+		{
+			"id": "skies",
+			"when": {
+				"all": [
+					{
+						"time": 14
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "hatchlings",
+						"count": 6,
+						"at": "sky_nw",
+						"tag": "sky_c",
+						"tags": [
+							"c_all"
+						],
+						"order": {
+							"do": "patrol",
+							"to": "sky_meet"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "cuckoo",
+						"count": 4,
+						"at": "sky_sw",
+						"tag": "sky_m",
+						"tags": [
+							"m_all"
+						],
+						"order": {
+							"do": "patrol",
+							"to": "sky_meet"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "skies_say",
+			"when": {
+				"fired": "skies"
+			},
+			"delay": 6,
+			"do": [
+				{
+					"say": [
+						"n_skies",
+						"t_skies",
+						"r_skies"
+					]
+				},
+				{
+					"ping": {
+						"area": "sky_meet"
+					}
+				}
+			]
+		},
+		{
+			"id": "join_folk_v1",
+			"when": {
+				"all": [
+					{
+						"near": {
+							"team": "army",
+							"to": "folk_v1",
+							"within": 6
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "folk_v1",
+						"do": "follow",
+						"leader": "tomasz",
+						"within": 3
+					}
+				},
+				{
+					"retag": {
+						"tag": "folk_v1",
+						"as": "column"
+					}
+				},
+				{
+					"counter": {
+						"name": "joined",
+						"count": {
+							"tag": "column"
+						}
+					}
+				},
+				{
+					"say": [
+						"n_v1",
+						"t_join"
+					]
+				},
+				{
+					"ping": {
+						"area": "riacho"
+					}
+				}
+			]
+		},
+		{
+			"id": "join_folk_v2",
+			"when": {
+				"all": [
+					{
+						"near": {
+							"team": "army",
+							"to": "folk_v2",
+							"within": 6
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "folk_v2",
+						"do": "follow",
+						"leader": "tomasz",
+						"within": 3
+					}
+				},
+				{
+					"retag": {
+						"tag": "folk_v2",
+						"as": "column"
+					}
+				},
+				{
+					"counter": {
+						"name": "joined",
+						"count": {
+							"tag": "column"
+						}
+					}
+				},
+				{
+					"say": [
+						"n_v2"
+					]
+				},
+				{
+					"ping": {
+						"area": "lagoa"
+					}
+				}
+			]
+		},
+		{
+			"id": "village_ping2",
+			"when": {
+				"all": [
+					{
+						"fired": "join_folk_v1"
+					},
+					{
+						"not": {
+							"fired": "join_folk_v2"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"do": [
+				{
+					"ping": {
+						"area": "lagoa"
+					}
+				}
+			]
+		},
+		{
+			"id": "r1",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "join_folk_v1"
+							},
+							{
+								"time": 60
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 5,
+						"at": "north_scrub",
+						"tag": "c_wave",
+						"tags": [
+							"r1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "riacho"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 4,
+						"at": "north_scrub",
+						"tag": "c_wave",
+						"tags": [
+							"r1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "riacho"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_scrub",
+						"tag": "c_wave",
+						"tags": [
+							"r1",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "riacho"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "north_scrub"
+					}
+				},
+				{
+					"say": [
+						"n_r1"
+					]
+				}
+			],
+			"delay": 6
+		},
+		{
+			"id": "m1",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"near": {
+									"team": "army",
+									"to": "folk_v2",
+									"within": 14
+								}
+							},
+							{
+								"time": 110
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "south_scrub",
+						"tag": "m_wave",
+						"tags": [
+							"m1",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "lagoa"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "south_scrub",
+						"tag": "m_wave",
+						"tags": [
+							"m1",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "lagoa"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "springer",
+						"count": 2,
+						"at": "south_scrub",
+						"tag": "m_wave",
+						"tags": [
+							"m1",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "lagoa"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_scrub"
+					}
+				},
+				{
+					"say": [
+						"n_m1"
+					]
+				}
+			]
+		},
+		{
+			"id": "m1_vol",
+			"when": {
+				"all": [
+					{
+						"fired": "m1"
+					},
+					{
+						"not": {
+							"past": {
+								"p01_leaf.families": "leave"
+							}
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"h_m1",
+						"t_m1"
+					]
+				}
+			]
+		},
+		{
+			"id": "owls",
+			"when": {
+				"all": [
+					{
+						"fired": "m1"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					},
+					{
+						"count": {
+							"tag": "wagons",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"delay": 16,
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "ticking_owl",
+						"count": 2,
+						"at": "sky_sw",
+						"tag": "owls",
+						"tags": [
+							"m_wave",
+							"m_all"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				},
+				{
+					"say": [
+						"n_owls",
+						"r_owls"
+					]
+				},
+				{
+					"objective": {
+						"id": "owls",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"tag": "wagons"
+					}
+				}
+			]
+		},
+		{
+			"id": "owls_go",
+			"when": {
+				"all": [
+					{
+						"fired": "owls"
+					},
+					{
+						"not": {
+							"playing": "automata"
+						}
+					},
+					{
+						"count": {
+							"tag": "owls",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "owls",
+						"do": "hunt",
+						"prey": "wagons",
+						"within": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "owls_down",
+			"when": {
+				"all": [
+					{
+						"fired": "owls"
+					},
+					{
+						"dead": "owls"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "owls",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_owls_down"
+					]
+				}
+			]
+		},
+		{
+			"id": "wagon_lost",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"count": {
+							"tag": "wagons",
+							"below": 2
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_wagon_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "r2",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"count": {
+									"team": "army",
+									"area": "road_west",
+									"at_least": 2
+								}
+							},
+							{
+								"time": 190
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 5,
+						"at": "west_scrub",
+						"tag": "c_wave",
+						"tags": [
+							"r2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "road_west"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 4,
+						"at": "west_scrub",
+						"tag": "c_wave",
+						"tags": [
+							"r2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "road_west"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "west_scrub",
+						"tag": "c_wave",
+						"tags": [
+							"r2",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "road_west"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "west_scrub",
+						"tag": "c_wave",
+						"tags": [
+							"r2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "road_west"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "west_scrub"
+					}
+				},
+				{
+					"say": [
+						"n_r2"
+					]
+				}
+			]
+		},
+		{
+			"id": "m2",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"count": {
+									"team": "army",
+									"area": "dry_stretch",
+									"at_least": 2
+								}
+							},
+							{
+								"time": 260
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "south_dry",
+						"tag": "m_wave",
+						"tags": [
+							"m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "dry_stretch"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "south_dry",
+						"tag": "m_wave",
+						"tags": [
+							"m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "dry_stretch"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "netter",
+						"count": 2,
+						"at": "south_dry",
+						"tag": "m_wave",
+						"tags": [
+							"m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "dry_stretch"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "springer",
+						"count": 1,
+						"at": "south_dry",
+						"tag": "m_wave",
+						"tags": [
+							"m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "dry_stretch"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_dry"
+					}
+				},
+				{
+					"say": [
+						"n_m2"
+					]
+				}
+			]
+		},
+		{
+			"id": "c_hunt",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "c_wave",
+						"do": "hunt",
+						"prey": "people",
+						"within": 14
+					}
+				}
+			]
+		},
+		{
+			"id": "c_hunt_army",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 5,
+			"do": [
+				{
+					"order": {
+						"tag": "c_wave",
+						"do": "hunt",
+						"prey_team": "army",
+						"within": 10
+					}
+				}
+			]
+		},
+		{
+			"id": "m_press",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"not": {
+							"playing": "automata"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 5,
+			"do": [
+				{
+					"order": {
+						"tag": "m_wave",
+						"do": "hunt",
+						"prey_team": "army",
+						"within": 12
+					}
+				}
+			]
+		},
+		{
+			"id": "skies_circle",
+			"when": {
+				"all": [
+					{
+						"fired": "skies"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 10,
+			"do": [
+				{
+					"order": {
+						"tag": "sky_c",
+						"do": "patrol",
+						"to": "sky_meet"
+					}
+				},
+				{
+					"order": {
+						"tag": "sky_m",
+						"do": "patrol",
+						"to": "sky_meet"
+					}
+				}
+			]
+		},
+		{
+			"id": "in_first",
+			"when": {
+				"counter": {
+					"name": "in_fort",
+					"at_least": 1
+				}
+			},
+			"do": [
+				{
+					"say": [
+						"n_in_first"
+					]
+				}
+			]
+		},
+		{
+			"id": "fort_late",
+			"when": {
+				"all": [
+					{
+						"clock_out": "fort"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_fort_late"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"count": {
+									"team": "army",
+									"area": "fort_approach",
+									"at_least": 10
+								}
+							},
+							{
+								"clock_out": "fort"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "fort",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "fort_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "owls",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "siege",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "siege_clock",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "siege",
+						"secs": 240
+					}
+				},
+				{
+					"light": {
+						"to": "dusk",
+						"secs": 240
+					}
+				},
+				{
+					"give": {
+						"team": "army",
+						"gold": 300
+					}
+				},
+				{
+					"reveal": {
+						"area": "fort_wide",
+						"side": "crown"
+					}
+				},
+				{
+					"ping": {
+						"area": "north_gate"
+					}
+				},
+				{
+					"ping": {
+						"area": "south_gate"
+					}
+				}
+			]
+		},
+		{
+			"id": "arrived",
+			"when": {
+				"all": [
+					{
+						"count": {
+							"team": "army",
+							"area": "fort_approach",
+							"at_least": 10
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "march",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "march_late",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "arrived"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "march",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "p2_say",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"n_arrive",
+						"c_arrive",
+						"r_arrive",
+						"n_siege"
+					]
+				}
+			]
+		},
+		{
+			"id": "p2_say_y",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 22,
+			"do": [
+				{
+					"say": [
+						"n_fort_yours"
+					]
+				},
+				{
+					"ping": {
+						"tag": "f_barracks"
+					}
+				}
+			]
+		},
+		{
+			"id": "siege_c1",
+			"when": {
+				"fired": "part2"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 6,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 5,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c1",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c1",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d05_aldeia.fields": "burned"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 2,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				}
+			]
+		},
+		{
+			"id": "siege_m1",
+			"when": {
+				"fired": "part2"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 5,
+						"at": "south_out",
+						"tag": "m_wave",
+						"tags": [
+							"siege_m1",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "south_out",
+						"tag": "m_wave",
+						"tags": [
+							"siege_m1",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "netter",
+						"count": 2,
+						"at": "south_out",
+						"tag": "m_wave",
+						"tags": [
+							"siege_m1",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_out"
+					}
+				}
+			]
+		},
+		{
+			"id": "siege_c2",
+			"when": {
+				"fired": "part2"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 6,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 5,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c2",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c2",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d05_aldeia.fields": "burned"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "north_ford"
+					}
+				},
+				{
+					"say": [
+						"n_wave2"
+					]
+				}
+			],
+			"delay": 45
+		},
+		{
+			"id": "siege_m2",
+			"when": {
+				"fired": "part2"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"siege_m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"siege_m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "springer",
+						"count": 2,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"siege_m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_ford"
+					}
+				}
+			],
+			"delay": 45
+		},
+		{
+			"id": "siege_c3",
+			"when": {
+				"fired": "part2"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 5,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 4,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c3",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c3",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d05_aldeia.fields": "burned"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"siege_c3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "north_ford"
+					}
+				}
+			],
+			"delay": 90
+		},
+		{
+			"id": "siege_m3",
+			"when": {
+				"fired": "part2"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"siege_m3",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"siege_m3",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "pendulum",
+						"count": 1,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"siege_m3",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_ford"
+					}
+				}
+			],
+			"delay": 90
+		},
+		{
+			"id": "more_c",
+			"when": {
+				"all": [
+					{
+						"fired": "siege_c2"
+					},
+					{
+						"playing": "creatures"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"sc_more"
+					]
+				}
+			]
+		},
+		{
+			"id": "more_m",
+			"when": {
+				"all": [
+					{
+						"fired": "siege_m2"
+					},
+					{
+						"playing": "automata"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"hr_more"
+					]
+				}
+			]
+		},
+		{
+			"id": "ford_meet",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 20,
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 4,
+						"at": "ford",
+						"tag": "c_ford",
+						"tags": [
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "ford_east"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "south_ford",
+						"tag": "m_ford",
+						"tags": [
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "ford_east"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "ford_fight",
+			"when": {
+				"all": [
+					{
+						"fired": "ford_meet"
+					},
+					{
+						"near": {
+							"side": "creatures",
+							"to_side": "automata",
+							"within": 6
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_ford",
+						"t_ford"
+					]
+				},
+				{
+					"ping": {
+						"area": "ford_east"
+					}
+				},
+				{
+					"reveal": {
+						"area": "ford",
+						"side": "crown",
+						"secs": 30
+					}
+				}
+			]
+		},
+		{
+			"id": "siege_count",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"counter": {
+						"name": "siege_left",
+						"count": {
+							"team": "creatures",
+							"area": "fort_wide"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "siege_left",
+						"count": {
+							"team": "automata",
+							"area": "fort_wide"
+						},
+						"plus": true
+					}
+				}
+			]
+		},
+		{
+			"id": "siege_press_c",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 7,
+			"do": [
+				{
+					"order": {
+						"tag": "c_wave",
+						"do": "attack",
+						"to": "north_gate",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "siege_press_m",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "automata"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 7,
+			"do": [
+				{
+					"order": {
+						"tag": "m_wave",
+						"do": "attack",
+						"to": "south_gate",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "relieved",
+			"when": {
+				"all": [
+					{
+						"fired": "siege_c3"
+					},
+					{
+						"fired": "siege_m3"
+					},
+					{
+						"counter": {
+							"name": "siege_left",
+							"below": 3
+						}
+					},
+					{
+						"all": [
+							{
+								"fired": "part2"
+							},
+							{
+								"not": {
+									"fired": "part3"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"objective": {
+						"id": "siege",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_relieved",
+						"c_relieved"
+					]
+				}
+			]
+		},
+		{
+			"id": "draw_back",
+			"when": {
+				"all": [
+					{
+						"clock_out": "siege"
+					},
+					{
+						"not": {
+							"fired": "relieved"
+						}
+					},
+					{
+						"all": [
+							{
+								"fired": "part2"
+							},
+							{
+								"not": {
+									"fired": "part3"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_draw_back"
+					]
+				},
+				{
+					"objective": {
+						"id": "siege",
+						"set": "done"
+					}
+				},
+				{
+					"order": {
+						"tag": "c_wave",
+						"do": "move",
+						"to": "nw_trail"
+					}
+				},
+				{
+					"order": {
+						"tag": "m_wave",
+						"do": "move",
+						"to": "sw_trail"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "relieved"
+							},
+							{
+								"fired": "draw_back"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 5,
+			"do": [
+				{
+					"clock": {
+						"name": "siege",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "siege_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "siege",
+						"set": "hidden"
+					}
+				},
+				{
+					"remove": {
+						"tag": "c_wave"
+					}
+				},
+				{
+					"remove": {
+						"tag": "m_wave"
+					}
+				},
+				{
+					"remove": {
+						"tag": "c_ford"
+					}
+				},
+				{
+					"remove": {
+						"tag": "m_ford"
+					}
+				},
+				{
+					"remove": {
+						"tag": "sky_c"
+					}
+				},
+				{
+					"remove": {
+						"tag": "sky_m"
+					}
+				},
+				{
+					"light": {
+						"to": "dusk",
+						"secs": 4
+					}
+				},
+				{
+					"show": {
+						"pages": [
+							{
+								"still": "council",
+								"lines": [
+									"n_council",
+									"ms_1",
+									{
+										"id": "ms_left",
+										"if": {
+											"not": {
+												"past": {
+													"d05_aldeia.fields": "burned"
+												}
+											}
+										}
+									},
+									{
+										"id": "ms_burned",
+										"if": {
+											"past": {
+												"d05_aldeia.fields": "burned"
+											}
+										}
+									},
+									{
+										"id": "ms_barra_held",
+										"if": {
+											"not": {
+												"past": {
+													"d08_rivers.barra": "burned"
+												}
+											}
+										}
+									},
+									{
+										"id": "ms_barra_burned",
+										"if": {
+											"past": {
+												"d08_rivers.barra": "burned"
+											}
+										}
+									},
+									{
+										"id": "ms_lure",
+										"if": {
+											"past": {
+												"d08_rivers.lure": "used"
+											}
+										}
+									}
+								]
+							},
+							{
+								"still": "council",
+								"lines": [
+									{
+										"id": "v_1",
+										"if": {
+											"not": {
+												"past": {
+													"a06_barricades.varenne": "executed"
+												}
+											}
+										}
+									},
+									{
+										"id": "v_2",
+										"if": {
+											"not": {
+												"past": {
+													"a06_barricades.varenne": "executed"
+												}
+											}
+										}
+									},
+									{
+										"id": "r_v",
+										"if": {
+											"not": {
+												"past": {
+													"a06_barricades.varenne": "executed"
+												}
+											}
+										}
+									},
+									{
+										"id": "v_3",
+										"if": {
+											"not": {
+												"past": {
+													"a06_barricades.varenne": "executed"
+												}
+											}
+										}
+									},
+									{
+										"id": "v_stopped",
+										"if": {
+											"all": [
+												{
+													"not": {
+														"past": {
+															"a06_barricades.varenne": "executed"
+														}
+													}
+												},
+												{
+													"past": {
+														"d07_spring.spring": "stopped"
+													}
+												}
+											]
+										}
+									},
+									{
+										"id": "n_letter",
+										"if": {
+											"past": {
+												"a06_barricades.varenne": "executed"
+											}
+										}
+									},
+									{
+										"id": "t_honest",
+										"if": {
+											"past": {
+												"d07_spring.honest": "many"
+											}
+										}
+									}
+								]
+							},
+							{
+								"still": "council",
+								"lines": [
+									"t_counsel1",
+									"t_counsel2",
+									"r_think"
+								]
+							},
+							{
+								"still": "rome",
+								"lines": [
+									"k_frame"
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "first_ask",
+			"when": {
+				"fired": "part3"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"choice": {
+						"id": "first",
+						"side": "crown",
+						"title": "WHICH FIRE FIRST",
+						"line": "q_first",
+						"default": "random",
+						"time": 120,
+						"options": [
+							{
+								"id": "brood",
+								"label": "THE SWARM FIRST",
+								"about": "The army goes north, up the rivers: the jungle front is fought first, while the swarm is fresh. The city waits and grows: its siege comes second, harder. Tonight the machines strike the fort.",
+								"do": [
+									{
+										"say": [
+											"k_brood",
+											"r_brood",
+											"n_night_m",
+											"t_night"
+										]
+									}
+								]
+							},
+							{
+								"id": "clockwork",
+								"label": "THE CITY FIRST",
+								"about": "The army goes south, to the highlands: the siege of Concórdia is fought first, while the city is fresh. The swarm waits and spreads: the jungle front comes second, harder. Tonight the swarm strikes the fort.",
+								"do": [
+									{
+										"say": [
+											"k_clock",
+											"r_clock",
+											"n_night_c",
+											"t_night"
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "prince_b",
+			"when": {
+				"all": [
+					{
+						"flag": {
+							"first": "brood"
+						}
+					},
+					{
+						"heir": "named"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"p_brood"
+					]
+				}
+			]
+		},
+		{
+			"id": "prince_c",
+			"when": {
+				"all": [
+					{
+						"flag": {
+							"first": "clockwork"
+						}
+					},
+					{
+						"heir": "named"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"p_clock"
+					]
+				}
+			]
+		},
+		{
+			"id": "night",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"flag": {
+									"first": "brood"
+								}
+							},
+							{
+								"flag": {
+									"first": "clockwork"
+								}
+							}
+						]
+					},
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"light": {
+						"to": "night",
+						"secs": 8
+					}
+				},
+				{
+					"objective": {
+						"id": "night",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "dawn",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"secs": 125,
+						"scale": false
+					}
+				}
+			]
+		},
+		{
+			"id": "night_ping_c",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"flag": {
+							"first": "clockwork"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"ping": {
+						"area": "north_gate"
+					}
+				}
+			]
+		},
+		{
+			"id": "night_ping_m",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"flag": {
+							"first": "brood"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"ping": {
+						"area": "south_gate"
+					}
+				}
+			]
+		},
+		{
+			"id": "n_c0",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"flag": {
+							"first": "clockwork"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 7,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"n_c0",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 6,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"n_c0",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"n_c0",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"n_c0",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d05_aldeia.fields": "burned"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 2,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"n_c0",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				}
+			],
+			"delay": 6
+		},
+		{
+			"id": "n_c1",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"flag": {
+							"first": "clockwork"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 7,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 6,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c1",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c1",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d05_aldeia.fields": "burned"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "north_ford"
+					}
+				},
+				{
+					"say": [
+						"n_night_w"
+					]
+				}
+			],
+			"delay": 34
+		},
+		{
+			"id": "n_c2",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"flag": {
+							"first": "clockwork"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 7,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"n_c2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 6,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"n_c2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"n_c2",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"n_c2",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d05_aldeia.fields": "burned"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 2,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"n_c2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "north_out",
+						"tag": "c_wave",
+						"tags": [
+							"n_c2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"difficulty": [
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				},
+				{
+					"say": [
+						"n_night_w"
+					]
+				}
+			],
+			"delay": 62
+		},
+		{
+			"id": "n_c3",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"flag": {
+							"first": "clockwork"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 6,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 5,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c3",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "raptor",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c3",
+							"c_all"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d05_aldeia.fields": "burned"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "brute",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "creatures",
+						"kind": "spitter",
+						"count": 1,
+						"at": "north_ford",
+						"tag": "c_wave",
+						"tags": [
+							"n_c3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "north_gate"
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "north_ford"
+					}
+				},
+				{
+					"say": [
+						"n_night_big"
+					]
+				}
+			],
+			"delay": 90
+		},
+		{
+			"id": "n_m0",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"flag": {
+							"first": "brood"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 6,
+						"at": "south_out",
+						"tag": "m_wave",
+						"tags": [
+							"n_m0",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 5,
+						"at": "south_out",
+						"tag": "m_wave",
+						"tags": [
+							"n_m0",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "springer",
+						"count": 2,
+						"at": "south_out",
+						"tag": "m_wave",
+						"tags": [
+							"n_m0",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_out"
+					}
+				}
+			],
+			"delay": 6
+		},
+		{
+			"id": "n_m1",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"flag": {
+							"first": "brood"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 5,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"n_m1",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"n_m1",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "netter",
+						"count": 2,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"n_m1",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "ticking_owl",
+						"count": 2,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"n_m1",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_ford"
+					}
+				},
+				{
+					"say": [
+						"n_night_w"
+					]
+				}
+			],
+			"delay": 34
+		},
+		{
+			"id": "n_m2",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"flag": {
+							"first": "brood"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 6,
+						"at": "south_out",
+						"tag": "m_wave",
+						"tags": [
+							"n_m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 5,
+						"at": "south_out",
+						"tag": "m_wave",
+						"tags": [
+							"n_m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "springer",
+						"count": 2,
+						"at": "south_out",
+						"tag": "m_wave",
+						"tags": [
+							"n_m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "pendulum",
+						"count": 1,
+						"at": "south_out",
+						"tag": "m_wave",
+						"tags": [
+							"n_m2",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"difficulty": [
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_out"
+					}
+				},
+				{
+					"say": [
+						"n_night_w"
+					]
+				}
+			],
+			"delay": 62
+		},
+		{
+			"id": "n_m3",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"flag": {
+							"first": "brood"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 6,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"n_m3",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "clock_soldier",
+						"count": 5,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"n_m3",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "pendulum",
+						"count": 1,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"n_m3",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "ballista",
+						"count": 1,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"n_m3",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "automata",
+						"kind": "springer",
+						"count": 1,
+						"at": "south_ford",
+						"tag": "m_wave",
+						"tags": [
+							"n_m3",
+							"m_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "south_gate"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "automata",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_ford"
+					}
+				},
+				{
+					"say": [
+						"n_night_big"
+					]
+				}
+			],
+			"delay": 90
+		},
+		{
+			"id": "night_press_c",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"not": {
+							"playing": "creatures"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "c_wave",
+						"do": "attack",
+						"to": "fort_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "night_press_m",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"not": {
+							"playing": "automata"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "m_wave",
+						"do": "attack",
+						"to": "fort_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "night_owls",
+			"when": {
+				"all": [
+					{
+						"fired": "night"
+					},
+					{
+						"not": {
+							"playing": "automata"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "m_wave",
+						"kind": "ticking_owl",
+						"do": "attack",
+						"to": "fort_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "hurt_t",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "tomasz",
+							"below": 0.5
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"t_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "tomasz"
+					}
+				}
+			]
+		},
+		{
+			"id": "hurt_r",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "ruggieri",
+							"below": 0.5
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"r_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "ruggieri"
+					}
+				}
+			]
+		},
+		{
+			"id": "dawn",
+			"when": {
+				"all": [
+					{
+						"clock_out": "dawn"
+					},
+					{
+						"fired": "night"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_mag"
+								},
+								{
+									"fired": "f_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "dawn",
+						"stop": true
+					}
+				},
+				{
+					"light": {
+						"to": "dawn",
+						"secs": 6
+					}
+				},
+				{
+					"say": [
+						"n_dawn",
+						"r_dawn"
+					]
+				},
+				{
+					"tally": {
+						"flag": "sertao",
+						"counter": "in_fort",
+						"of": "people_n",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.4,
+								"some"
+							],
+							[
+								0.7,
+								"many"
+							]
+						]
+					}
+				},
+				{
+					"flag": {
+						"fort": "held"
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"fired": "dawn"
+			},
+			"delay": 3,
+			"do": [
+				{
+					"objective": {
+						"id": "night",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "c_raid",
+						"set": "failed"
+					}
+				},
+				{
+					"objective": {
+						"id": "m_raid",
+						"set": "failed"
+					}
+				},
+				{
+					"say": [
+						"f_lost"
+					]
+				},
+				{
+					"win": "crown"
+				}
+			]
+		},
+		{
+			"id": "lost_mag",
+			"when": {
+				"all": [
+					{
+						"dead": "magazine"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"fired": "f_won"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"playing": "creatures"
+								},
+								{
+									"playing": "automata"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_mag_down"
+					]
+				},
+				{
+					"objective": {
+						"id": "magazine",
+						"set": "failed"
+					}
+				},
+				{
+					"lose": "crown"
+				}
+			]
+		},
+		{
+			"id": "f_won",
+			"when": {
+				"all": [
+					{
+						"dead": "magazine"
+					},
+					{
+						"any": [
+							{
+								"playing": "creatures"
+							},
+							{
+								"playing": "automata"
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_won"
+					]
+				},
+				{
+					"objective": {
+						"id": "magazine",
+						"set": "failed"
+					}
+				},
+				{
+					"flag": {
+						"fort": "fallen"
+					}
+				}
+			]
+		},
+		{
+			"id": "f_won_c",
+			"when": {
+				"all": [
+					{
+						"fired": "f_won"
+					},
+					{
+						"playing": "creatures"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "c_raid",
+						"set": "done"
+					}
+				},
+				{
+					"win": "creatures"
+				}
+			]
+		},
+		{
+			"id": "f_won_m",
+			"when": {
+				"all": [
+					{
+						"fired": "f_won"
+					},
+					{
+						"playing": "automata"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "m_raid",
+						"set": "done"
+					}
+				},
+				{
+					"win": "automata"
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 8
+			},
+			"do": [
+				{
+					"say": [
+						"new_armour",
+						"new_powder_wagon"
+					]
+				}
+			]
+		}
+	],
+	"heroes": [
+		"ruggieri",
+		"tomasz",
+		"commander"
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "crown",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"tomasz": {
+			"name": "Father Tomasz",
+			"side": "crown"
+		},
+		"ruggieri": {
+			"name": "General Ruggieri",
+			"side": "crown"
+		},
+		"commander": {
+			"name": "Major Teixeira",
+			"side": "crown"
+		},
+		"hollins": {
+			"name": "Sergeant Hollins",
+			"side": "crown"
+		},
+		"rider": {
+			"name": "The frontier's rider",
+			"side": "crown"
+		},
+		"varenne": {
+			"name": "Etienne Varenne",
+			"side": "crown"
+		},
+		"prince": {
+			"name": "The Prince",
+			"side": "crown"
+		},
+		"narrator": {
+			"name": "The Sertão",
+			"side": "crown"
+		},
+		"fortn": {
+			"name": "The Fort",
+			"side": "crown"
+		},
+		"scrub": {
+			"name": "The Scrub",
+			"side": "creatures"
+		},
+		"road": {
+			"name": "The Highlands' Road",
+			"side": "automata"
+		},
+		"new": {
+			"name": "NEW IN YOUR ARMY",
+			"side": "crown"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "Ten years after Rome, Brazil had two fires in it, and one army."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "Tomasz was the frontier's vicar general by then. He walked beside the guns, as he always had."
+		},
+		"t_open1": {
+			"who": "tomasz",
+			"text": "The dry season of 2780. We marched out of Salvador into the sertão, where nothing is green until it rains."
+		},
+		"t_open2": {
+			"who": "tomasz",
+			"text": "General Ruggieri had every gun in Brazil behind him, and no town, no mill, no farm between us and the river."
+		},
+		"t_open_vol": {
+			"who": "tomasz",
+			"text": "The Virginia volunteers marched with us. Hollins was a sergeant now. He had been a boy at his father's farm the night the Governor came."
+		},
+		"t_open_paris": {
+			"who": "tomasz",
+			"text": "Our colours had been blessed at Notre-Dame. The men touched them before we left."
+		},
+		"t_open_many": {
+			"who": "tomasz",
+			"text": "Word of Rome still ran ahead of me. The villages on the road came out to meet the priest."
+		},
+		"t_open3": {
+			"who": "tomasz",
+			"text": "At the crossroads of the São Francisco stood the fort. From there the army could strike either way."
+		},
+		"k_open_c": {
+			"who": "king",
+			"text": "Tomasz tells it from the road. Here it is from the scrub north of the river, where nobody kept count."
+		},
+		"sc_open": {
+			"who": "scrub",
+			"text": "The dry season. The swarm has come far from the rivers, after the herds. The road smells of horses and powder."
+		},
+		"k_open_m": {
+			"who": "king",
+			"text": "Tomasz tells it from the road. Here it is from the highlands' road, where the machines walk at night."
+		},
+		"hr_open": {
+			"who": "road",
+			"text": "The dry season. The city's machines have come north along the highlands' road. Nobody in the city will say who sent them."
+		},
+		"r_march": {
+			"who": "ruggieri",
+			"text": "Column of march. Guns in the middle, the wagons behind the guns. We reach the fort before it falls.",
+			"to": "crown"
+		},
+		"n_road": {
+			"who": "narrator",
+			"text": "March the army west along the road to Fort Constantine on the São Francisco. Your men's powder is in the two wagons: there is no Mill on the road.",
+			"to": "crown"
+		},
+		"n_wagon": {
+			"who": "narrator",
+			"text": "Musketeers and guns refill their shot from a powder wagon within 3 tiles. Keep the wagons just behind the line, and guard them: a wagon blows up when it is destroyed.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_skies": {
+			"who": "narrator",
+			"text": "Over the road, two kinds of flyers: brass birds from the south-west, small green flyers from the north-west. They go for each other, not for your men."
+		},
+		"t_skies": {
+			"who": "tomasz",
+			"text": "I had seen each of them before. Never both in one sky.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"r_skies": {
+			"who": "ruggieri",
+			"text": "Let them fight. Keep marching.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_v1": {
+			"who": "narrator",
+			"text": "Riacho Seco, the first village. Its people come with you when your men reach them: they follow Father Tomasz.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"t_join": {
+			"who": "tomasz",
+			"text": "Come with us, all of you. Bring water, leave the rest. The fort is a day's walk.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_r1": {
+			"who": "narrator",
+			"text": "Out of the scrub to the north: Raptors, going for the village.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_v2": {
+			"who": "narrator",
+			"text": "Lagoa Branca, the second village. Its people join the column too.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_m1": {
+			"who": "narrator",
+			"text": "From the south, a column of machines out of the thorns: Clock Soldiers and Springers.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"h_m1": {
+			"who": "hollins",
+			"text": "Machines, Father? This far north?",
+			"to": "crown",
+			"until": "part2"
+		},
+		"t_m1": {
+			"who": "tomasz",
+			"text": "This far from anywhere, Sergeant.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_owls": {
+			"who": "narrator",
+			"text": "Two brass owls drop out of the sky on the powder wagons. Shoot them down before they reach them.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"r_owls": {
+			"who": "ruggieri",
+			"text": "The wagons! Muskets up, at the owls!",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_owls_down": {
+			"who": "narrator",
+			"text": "The owls are down.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_r2": {
+			"who": "narrator",
+			"text": "Raptors again, between you and the fort, with a big one among them.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_m2": {
+			"who": "narrator",
+			"text": "The machines again, out of a dry wash to the south. Netters among them: their chains hold a man fast while the others strike.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_wagon_lost": {
+			"who": "narrator",
+			"text": "A powder wagon is lost. Keep the other one close.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_fort_late": {
+			"who": "fortn",
+			"text": "The fort's guns are firing. The siege has begun without you.",
+			"to": "crown"
+		},
+		"n_in_first": {
+			"who": "fortn",
+			"text": "The first of the road's people are inside the fort.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_arrive": {
+			"who": "fortn",
+			"text": "Fort Constantine. Both of them are at it: the swarm at the north gate, the machines at the south gate."
+		},
+		"c_arrive": {
+			"who": "commander",
+			"text": "General! Thank God. They came the same week, from both sides. We have not slept.",
+			"to": "crown"
+		},
+		"r_arrive": {
+			"who": "ruggieri",
+			"text": "Two sieges at one fort. The north gate is the beasts', the south gate the machines'. Split the guns.",
+			"to": "crown"
+		},
+		"n_siege": {
+			"who": "fortn",
+			"text": "Drive both off the fort. The fort's magazine, in its middle, must stand: if it goes up, the fort goes with it.",
+			"to": "crown"
+		},
+		"n_ford": {
+			"who": "fortn",
+			"text": "At the ford under the west wall the creatures and the machines meet, and tear at each other.",
+			"until": "part3"
+		},
+		"t_ford": {
+			"who": "tomasz",
+			"text": "God forgive me, I was glad to see them fight.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_wave2": {
+			"who": "fortn",
+			"text": "More come over the fords, at both gates.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_relieved": {
+			"who": "fortn",
+			"text": "The fort is relieved. What is left of both draws back over the river."
+		},
+		"c_relieved": {
+			"who": "commander",
+			"text": "The fort is yours, General. Its barracks, its foundry, its powder.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_draw_back": {
+			"who": "fortn",
+			"text": "At dusk both draw back over the river. They will be back."
+		},
+		"n_fort_yours": {
+			"who": "fortn",
+			"text": "In the fort your wagons fill again at the Barracks. The Barracks trains armoured men, the Foundry guns and wagons: the army's pay chest came with you.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_council": {
+			"who": "fortn",
+			"text": "That evening, in the commander's room: General Ruggieri, Father Tomasz, a map of Brazil on the table. Two riders come in within the hour."
+		},
+		"ms_1": {
+			"who": "rider",
+			"text": "From the Amazon frontier, General. The swarm is on the rivers."
+		},
+		"ms_left": {
+			"who": "rider",
+			"text": "It fed all season on the Tapajós. It is bigger than last year."
+		},
+		"ms_burned": {
+			"who": "rider",
+			"text": "On the Tapajós it starved where the fields were burned. Everywhere else it fed."
+		},
+		"ms_barra_held": {
+			"who": "rider",
+			"text": "Valadares holds the Barra. He asks for guns before the floods."
+		},
+		"ms_barra_burned": {
+			"who": "rider",
+			"text": "Valadares holds the bluff at the Barra. The lower town is ash."
+		},
+		"ms_lure": {
+			"who": "rider",
+			"text": "He says the lure worked once. Now the swarm comes to the smell of it."
+		},
+		"v_1": {
+			"who": "varenne",
+			"text": "Etienne Varenne, for the free city of Concórdia. I come under a white flag."
+		},
+		"v_2": {
+			"who": "varenne",
+			"text": "The city asks one thing: to be left to govern itself, as it has these seven years."
+		},
+		"r_v": {
+			"who": "ruggieri",
+			"text": "Its machines are on my road and at my south gate."
+		},
+		"v_3": {
+			"who": "varenne",
+			"text": "Those are not the city's. The city has not sent anyone. I... do not know whose they are."
+		},
+		"v_stopped": {
+			"who": "varenne",
+			"text": "Since Hollweg stopped the great spring, the city runs without him. It runs very well."
+		},
+		"n_letter": {
+			"who": "fortn",
+			"text": "Nobody comes from the south. At the ford's post a letter is nailed, unsigned: the free city asks to be left to govern itself."
+		},
+		"t_honest": {
+			"who": "tomasz",
+			"text": "Most of the honest masters stood with Hollweg that night in Concórdia. The ones who stayed are the city's now."
+		},
+		"t_counsel1": {
+			"who": "tomasz",
+			"text": "General, the people under the swarm cannot wait. The city can."
+		},
+		"t_counsel2": {
+			"who": "tomasz",
+			"text": "But the city grows while it waits, and it never sleeps. I do not know which is worse."
+		},
+		"r_think": {
+			"who": "ruggieri",
+			"text": "One army. Two fires. I can go north up the rivers, or south to the highlands. Not both."
+		},
+		"k_frame": {
+			"who": "king",
+			"text": "Here I stop. I will tell you what we chose. First, tell me what you would choose."
+		},
+		"q_first": {
+			"who": "king",
+			"text": "Which fire first? The one you leave strikes the fort tonight, and grows while it waits."
+		},
+		"p_brood": {
+			"who": "prince",
+			"text": "The swarm. The people first."
+		},
+		"p_clock": {
+			"who": "prince",
+			"text": "The city. Before it grows."
+		},
+		"k_brood": {
+			"who": "king",
+			"text": "The swarm first. So Ruggieri chose, before dawn, and so it was."
+		},
+		"k_clock": {
+			"who": "king",
+			"text": "The city first. So Ruggieri chose, before dawn, and so it was."
+		},
+		"r_brood": {
+			"who": "ruggieri",
+			"text": "North, then. Up the rivers. Send word to Valadares."
+		},
+		"r_clock": {
+			"who": "ruggieri",
+			"text": "South, then. To the highlands. Send word to Father Ferrer."
+		},
+		"n_night_m": {
+			"who": "fortn",
+			"text": "The machines did not wait for morning. They come at the south gate in the dark. Hold the fort until dawn."
+		},
+		"n_night_c": {
+			"who": "fortn",
+			"text": "The swarm did not wait for morning. It comes at the north gate in the dark. Hold the fort until dawn."
+		},
+		"t_night": {
+			"who": "tomasz",
+			"text": "Get the people into the chapel. All of them.",
+			"to": "crown"
+		},
+		"n_night_w": {
+			"who": "fortn",
+			"text": "Another wave at the gate.",
+			"to": "crown"
+		},
+		"n_night_big": {
+			"who": "fortn",
+			"text": "The last of them, and the biggest, before the light.",
+			"to": "crown"
+		},
+		"n_dawn": {
+			"who": "fortn",
+			"text": "Dawn over the São Francisco. The fort stands."
+		},
+		"r_dawn": {
+			"who": "ruggieri",
+			"text": "Strike the tents. We march at noon.",
+			"to": "crown"
+		},
+		"n_mag_down": {
+			"who": "fortn",
+			"text": "The magazine goes up. Fort Constantine burns."
+		},
+		"t_hurt": {
+			"who": "tomasz",
+			"text": "I am hit. Keep them walking, Sergeant.",
+			"to": "crown"
+		},
+		"r_hurt": {
+			"who": "ruggieri",
+			"text": "A scratch. Mind the guns, not me.",
+			"to": "crown"
+		},
+		"sc_1": {
+			"who": "scrub",
+			"text": "You lead the swarm on the north bank: Raptors, Spitters, a Tyrant Challenger and Hatchlings. More come over the north ford as the day goes. Break the fort's magazine before dawn.",
+			"to": "creatures"
+		},
+		"hr_1": {
+			"who": "road",
+			"text": "You lead the machines on the south bank: Clock Soldiers, Springers, a Netter and Swifts, wound for the road. More come over the south ford. Break the fort's magazine before dawn.",
+			"to": "automata"
+		},
+		"sc_more": {
+			"who": "scrub",
+			"text": "More of the swarm comes over the north ford: they are yours.",
+			"to": "creatures"
+		},
+		"hr_more": {
+			"who": "road",
+			"text": "More machines come over the south ford: they are yours.",
+			"to": "automata"
+		},
+		"sc_other": {
+			"who": "scrub",
+			"text": "The city's machines are on this land too. They go for anything that is not theirs.",
+			"to": "creatures"
+		},
+		"hr_other": {
+			"who": "road",
+			"text": "The swarm is on this land too. It goes for anything that moves.",
+			"to": "automata"
+		},
+		"f_won": {
+			"who": "fortn",
+			"text": "The magazine goes up. Nobody counts what is left."
+		},
+		"f_lost": {
+			"who": "fortn",
+			"text": "Dawn. The fort still stands."
+		},
+		"t_end1": {
+			"who": "tomasz",
+			"text": "We left the fort at noon, with the road's people behind its walls."
+		},
+		"t_end_many": {
+			"who": "tomasz",
+			"text": "Most of them had come in. I counted twice to be sure."
+		},
+		"t_end_some": {
+			"who": "tomasz",
+			"text": "Some of them had come in. I said the others' names at Mass."
+		},
+		"t_end_few": {
+			"who": "tomasz",
+			"text": "Few of them had come in. I have their villages' names still."
+		},
+		"t_end_brood": {
+			"who": "tomasz",
+			"text": "We went north, up the rivers, to the swarm."
+		},
+		"t_end_clock": {
+			"who": "tomasz",
+			"text": "We went south, to the highlands, to the city."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "One army, two fires. You chose, and the army went."
+		},
+		"k_end_brood": {
+			"who": "king",
+			"text": "Up the rivers it went. The city waited in the highlands, and grew."
+		},
+		"k_end_clock": {
+			"who": "king",
+			"text": "South it went. The swarm waited on the rivers, and spread."
+		},
+		"k_end2": {
+			"who": "king",
+			"text": "That is what a crown is, in the end: choosing which fire burns longer."
+		},
+		"k_end_s": {
+			"who": "king",
+			"text": "That is not how it went. The fort stood. Hear it again from Tomasz."
+		},
+		"new_armour": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: ARMOUR. The army of Brazil wears it: your Guardsmen are Musketeers in breastplates, your Cuirassiers Horsemen in cuirasses. They take more before they fall and walk a little slower. The fort's Barracks trains them armoured; its Armoury refits a plain man."
+		},
+		"new_powder_wagon": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE POWDER WAGON. There is no Mill on the road: the wagons carry the army's powder. Musketeers and guns within 3 tiles of one refill from it, so keep it just behind the line, and guard it: it blows up when it is destroyed. It fills again at a Barracks; the fort's Foundry builds more.",
+			"portrait": "res://assets/icons/powder_wagon.png"
+		}
+	},
+	"stills": {
+		"rome": {
+			"image": "res://campaign/stills/p01_01.jpg",
+			"caption": "Rome, the present. The King tells it."
+		},
+		"army": {
+			"image": "res://campaign/stills/d09_01.jpg",
+			"caption": "The army of Brazil in the sertão, the dry season 2780."
+		},
+		"skies": {
+			"image": "res://campaign/stills/d09_02.jpg",
+			"caption": "Two skies over the road."
+		},
+		"council": {
+			"image": "res://campaign/stills/d09_03.jpg",
+			"caption": "The council of war at Fort Constantine."
+		}
+	},
+	"next": {
+		"crown": "",
+		"creatures": "",
+		"automata": ""
+	},
+	"debrief": {
+		"crown": {
+			"still": "council",
+			"title": "Fort Constantine",
+			"text": "{in_fort} of the {people_n} people of the road reached the fort.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"first": "brood"
+						}
+					},
+					"text": "The army went north first, up the rivers to the swarm. The city waits, and grows: its siege will be harder."
+				},
+				{
+					"if": {
+						"flag": {
+							"first": "clockwork"
+						}
+					},
+					"text": "The army went south first, to the city of gears. The swarm waits, and spreads: the jungle front will be harder."
+				}
+			]
+		},
+		"creatures": {
+			"still": "skies",
+			"title": "The Scrub",
+			"text": "Fort Constantine's magazine went up before dawn."
+		},
+		"automata": {
+			"still": "skies",
+			"title": "The Highlands' Road",
+			"text": "Fort Constantine's magazine went up before dawn."
+		}
+	},
+	"opening": {
+		"crown": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2"
+				]
+			},
+			{
+				"still": "army",
+				"lines": [
+					"t_open1",
+					"t_open2",
+					{
+						"id": "t_open_vol",
+						"if": {
+							"not": {
+								"past": {
+									"p01_leaf.families": "leave"
+								}
+							}
+						}
+					},
+					{
+						"id": "t_open_paris",
+						"if": {
+							"past": {
+								"a06_barricades.paris": "stood"
+							}
+						}
+					},
+					{
+						"id": "t_open_many",
+						"if": {
+							"past": {
+								"a07_council.people": "many"
+							}
+						}
+					},
+					"t_open3"
+				]
+			}
+		],
+		"creatures": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open_c"
+				]
+			},
+			{
+				"still": "skies",
+				"lines": [
+					"sc_open"
+				]
+			}
+		],
+		"automata": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open_m"
+				]
+			},
+			{
+				"still": "skies",
+				"lines": [
+					"hr_open"
+				]
+			}
+		]
+	},
+	"ending": {
+		"crown": [
+			{
+				"still": "army",
+				"lines": [
+					"t_end1",
+					{
+						"id": "t_end_many",
+						"if": {
+							"flag": {
+								"sertao": "many"
+							}
+						}
+					},
+					{
+						"id": "t_end_some",
+						"if": {
+							"flag": {
+								"sertao": "some"
+							}
+						}
+					},
+					{
+						"id": "t_end_few",
+						"if": {
+							"flag": {
+								"sertao": "few"
+							}
+						}
+					},
+					{
+						"id": "t_end_brood",
+						"if": {
+							"flag": {
+								"first": "brood"
+							}
+						}
+					},
+					{
+						"id": "t_end_clock",
+						"if": {
+							"flag": {
+								"first": "clockwork"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end1",
+					{
+						"id": "k_end_brood",
+						"if": {
+							"flag": {
+								"first": "brood"
+							}
+						}
+					},
+					{
+						"id": "k_end_clock",
+						"if": {
+							"flag": {
+								"first": "clockwork"
+							}
+						}
+					},
+					"k_end2"
+				]
+			}
+		],
+		"creatures": [
+			{
+				"still": "skies",
+				"lines": [
+					"f_won"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_s"
+				]
+			}
+		],
+		"automata": [
+			{
+				"still": "skies",
+				"lines": [
+					"f_won"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_s"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"crown": {
+			"still": "army",
+			"text": [
+				"The sertão, the dry season 2780. You are the army of Brazil: General Ruggieri, Father Tomasz, Musketeers and Guardsmen, Dragoons and Cuirassiers, two Field Cannons, a Mortar and two powder wagons.",
+				"March west to Fort Constantine on the São Francisco, bringing the road's villagers with you. There is no Mill on the road: keep the wagons with the line. At the fort both the swarm and the city's machines are waiting.",
+				"Then the council of war: one army, two fires. You choose which the army fights first; the other waits, and grows."
+			]
+		},
+		"creatures": {
+			"still": "skies",
+			"text": [
+				"The sertão, the dry season 2780. You are the swarm on the north bank of the São Francisco, far from its rivers.",
+				"Break the fort's magazine before dawn. The Crown's army is on the road; the city's machines come from the south and go for you too."
+			]
+		},
+		"automata": {
+			"still": "skies",
+			"text": [
+				"The sertão, the dry season 2780. You are the city's machines on the south bank of the São Francisco, wound for the road.",
+				"Break the fort's magazine before dawn. The Crown's army is on the road; the swarm comes from the north and goes for you too."
+			]
+		}
+	}
+}

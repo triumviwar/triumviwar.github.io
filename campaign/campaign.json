@@ -13,7 +13,8 @@
 				"a06_barricades",
 				"a07_council",
 				"d01_minas",
-				"d05_aldeia"
+				"d05_aldeia",
+				"d09_crossroads"
 			],
 			"hub": {
 				"title": "The King's Study",
@@ -93,6 +94,20 @@
 						"label": "DR. LINDQVIST",
 						"talk": "lindqvist_held",
 						"requires": "b01_specimen",
+						"rect": [
+							0,
+							0,
+							0.1,
+							0.1
+						],
+						"list_only": true
+					},
+					{
+						"id": "dispatch",
+						"kind": "talk",
+						"label": "RUGGIERI'S DISPATCH",
+						"talk": "dispatch",
+						"requires": "d09_crossroads",
 						"rect": [
 							0,
 							0,
@@ -226,6 +241,26 @@
 									"Tomasz wrote from the river fort. He brought them out of São Rafael, and asked me for nothing but a priest for the fort.",
 									"He burned the fields behind them. He confesses it every year. It was hard, and it was his to choose."
 								]
+							},
+							{
+								"after": "d09_crossroads",
+								"flag": {
+									"d09_crossroads.first": "brood"
+								},
+								"lines": [
+									"You chose the swarm first, as Ruggieri did. Valadares had his guns before the floods.",
+									"And the city of gears had a year it should not have had."
+								]
+							},
+							{
+								"after": "d09_crossroads",
+								"flag": {
+									"d09_crossroads.first": "clockwork"
+								},
+								"lines": [
+									"You chose the city first, as Ruggieri did. Father Ferrer had his siege lines by the spring.",
+									"And the swarm came down the rivers the whole year we were away."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_king_face.png"
@@ -294,6 +329,12 @@
 								"lines": [
 									"On the Tapajós I learnt that the swarm does not hate anyone. It eats. That is worse.",
 									"Tiago still writes to me from the fort. He says the children have stopped looking into the water."
+								]
+							},
+							{
+								"after": "d09_crossroads",
+								"lines": [
+									"At the São Francisco a general asked me what to do, and I told him I did not know. He chose anyway. That is a general."
 								]
 							}
 						],
@@ -387,6 +428,38 @@
 								]
 							}
 						]
+					},
+					"dispatch": {
+						"name": "Ruggieri's dispatch",
+						"colour": 4,
+						"entries": [
+							{
+								"after": "d09_crossroads",
+								"lines": [
+									"Fort Constantine, at the crossroads of the São Francisco. Relieved. Both enemies seen at its gates in the same week."
+								]
+							},
+							{
+								"after": "d09_crossroads",
+								"flag": {
+									"d09_crossroads.first": "brood"
+								},
+								"lines": [
+									"Fort Constantine, at the crossroads of the São Francisco. Relieved. Both enemies seen at its gates in the same week.",
+									"The army marches north at noon, up the rivers. The southern road is watched, not held."
+								]
+							},
+							{
+								"after": "d09_crossroads",
+								"flag": {
+									"d09_crossroads.first": "clockwork"
+								},
+								"lines": [
+									"Fort Constantine, at the crossroads of the São Francisco. Relieved. Both enemies seen at its gates in the same week.",
+									"The army marches south at noon, to the highlands. The rivers are watched, not held."
+								]
+							}
+						]
 					}
 				},
 				"scene": "res://campaign/hub/rome.json"
@@ -403,7 +476,8 @@
 				"a07_council",
 				"d03_fazenda",
 				"d06_queen",
-				"d08_rivers"
+				"d08_rivers",
+				"d09_crossroads"
 			],
 			"hub": {
 				"title": "Lindqvist's Station",
@@ -977,6 +1051,30 @@
 									"The bluff fell in that telling. In mine it stood, and I was on it.",
 									"Lindqvist is somewhere downriver. Rome wants him. So do I."
 								]
+							},
+							{
+								"after": "d09_crossroads",
+								"flag": {
+									"d09_crossroads.first": "brood"
+								},
+								"not_sides": {
+									"d08_rivers": "swarm"
+								},
+								"lines": [
+									"Ruggieri's rider came up the rivers with the word: the army is coming north. I have kept the Barra for this."
+								]
+							},
+							{
+								"after": "d09_crossroads",
+								"flag": {
+									"d09_crossroads.first": "clockwork"
+								},
+								"not_sides": {
+									"d08_rivers": "swarm"
+								},
+								"lines": [
+									"Ruggieri's rider came up the rivers with the word: the army has gone south first. I am to hold the Barra a year more, with what I have."
+								]
 							}
 						]
 					}
@@ -1081,7 +1179,8 @@
 				"a07_council",
 				"d02_exodus",
 				"d04_concordia",
-				"d07_spring"
+				"d07_spring",
+				"d09_crossroads"
 			],
 			"hub": {
 				"title": "Hollweg's Workshop",
@@ -1286,6 +1385,30 @@
 								},
 								"lines": [
 									"The council hall's lamps are red. Nobody sits at the table. (The King: It did not need to win that night. It had all the nights it wanted.)"
+								]
+							},
+							{
+								"after": "d09_crossroads",
+								"flag": {
+									"d07_spring.spring": "running"
+								},
+								"not_sides": {
+									"d07_spring": "machine"
+								},
+								"lines": [
+									"The Crown's army is at the crossroads. The masters say it will come here. I tell them the city has done nothing. They agree, all of them, at once."
+								]
+							},
+							{
+								"after": "d09_crossroads",
+								"flag": {
+									"d07_spring.spring": "stopped"
+								},
+								"not_sides": {
+									"d07_spring": "machine"
+								},
+								"lines": [
+									"Varenne went to the São Francisco under a white flag, for the city. He came back and did not speak at the council for a week."
 								]
 							}
 						]
