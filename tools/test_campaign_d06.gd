@@ -290,7 +290,7 @@ func _part1() -> void:
 	check("the NEW cards for B5 are said", _said(r, "new_stage3") and _said(r, "new_brute"))
 	check("the objectives say what to do: the flood, its clock, the Mother must live", r.obj.get("flood", "") == "active"
 		and r.obj.get("flood_clock", "") == "active" and r.obj.get("mother_live", "") == "active")
-	check("the intro lines teach the rings (SAY IT PLAINLY)", _said(r, "l_1") and _said(r, "p_tip1") and _said(r, "n_lesson"))
+	check("the intro lines teach the rings (SAY IT PLAINLY)", _said(r, "l_1") and _said(r, "n_lesson"))
 	var rp: Unit = r.tagged("young").filter(func(u): return u.kind == "raptor")[0]
 	_put(g, [rp], _mid(r, "way_e") + Vector2(0, 6 * Defs.TILE))
 	_walk(g, g.clock + 1.0)

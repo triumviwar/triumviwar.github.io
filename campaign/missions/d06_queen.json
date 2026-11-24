@@ -1838,7 +1838,7 @@
 		{
 			"id": "queen",
 			"side": "brood",
-			"primary": false,
+			"primary": true,
 			"kind": "manual",
 			"hidden": true,
 			"text": "THE QUEEN: root your Mother in the big pen (ROOT on her card) and press GROW. She grows for a minute; lay eggs meanwhile."
@@ -2207,7 +2207,6 @@
 				{
 					"say": [
 						"l_1",
-						"p_tip1",
 						"n_lesson"
 					]
 				},
@@ -2379,6 +2378,11 @@
 					{
 						"not": {
 							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"fired": "all_in"
 						}
 					},
 					{
@@ -3925,6 +3929,12 @@
 					}
 				},
 				{
+					"reveal": {
+						"area": "house",
+						"side": "brood"
+					}
+				},
+				{
 					"ping": {
 						"tag": "big_house"
 					}
@@ -5017,11 +5027,6 @@
 		"l_1": {
 			"who": "lindqvist",
 			"text": "The low pens are under water. Pieter, the keepers. Bring the stock up to the big pen. All of it.",
-			"to": "brood"
-		},
-		"p_tip1": {
-			"who": "pieter",
-			"text": "They follow the lures, Doctor, nothing else. The keepers walk up the paths; the animals have to stay inside their rings.",
 			"to": "brood"
 		},
 		"n_lesson": {

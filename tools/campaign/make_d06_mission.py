@@ -19,10 +19,10 @@ the island turns to the strongest call: the leash breaks. Nobody "comes for her 
     palisade ring, the canoes.
   THE EAST PEN'S MOTHER (ORANGE, scripted) and THE WILD MOTHER (RED, scripted; a bigger pack with b01 `rival` standing).
   PART 1, THE FLOOD: the low pens are under water; the keepers walk up to the big pen with their lures: the young obey
-    only inside a keeper's ring (THE LEASH, d03's lesson), so the player walks them up with the keepers. At 0:50 a deep
-    call comes over the water: a creature out of every ring walks toward it.
+    only inside a keeper's ring (THE LEASH, d03's lesson), so the player walks them up with the keepers. At 0:35 a deep
+    call comes over the water (not when all are in already): a creature out of every ring walks toward it.
   PART 2, THE MOTHERS FIGHT: the wild Mother lands on the north-west shore; the keepers drop the lures and run for the
-    house. Now the creatures follow only their own MOTHER'S CALL (a ring of 12 steps round her): inside it they obey; out
+    house. Now the creatures follow only their own MOTHER'S CALL (a ring of 13 steps round her): inside it they obey; out
     of it, near another Mother, they go to that Mother (THE LEASH BREAKS: "to": "near"). The east pen's Mother breaks out;
     both packs come for the big pen and fight each other too. Kill both other Mothers; their creatures, loose, come to
     the strongest call and join.
@@ -203,7 +203,7 @@ objectives = [
      "phone": T("Kill the other Mothers: {mothers_down} of 2. Fight inside your Mother's ring.",
                 "Mate as outras Mães: {mothers_down} de 2. Lute dentro do anel da sua Mãe.",
                 "Mata a las otras Madres: {mothers_down} de 2. Lucha dentro del anillo de tu Madre.")},
-    {"id": "queen", "side": "brood", "primary": False, "kind": "manual", "hidden": True,
+    {"id": "queen", "side": "brood", "primary": True, "kind": "manual", "hidden": True,
      "text": T("THE QUEEN: root your Mother in the big pen (ROOT on her card) and press GROW. She grows for a minute; lay eggs meanwhile.",
                "A RAINHA: enraíze a sua Mãe no curral grande (ENRAIZAR no painel dela) e aperte CRESCER. Ela cresce durante um minuto; ponha ovos entretanto.",
                "LA REINA: enraíza a tu Madre en el corral grande (ENRAIZAR en su panel) y pulsa CRECER. Crece durante un minuto; pon huevos mientras tanto.")},
@@ -339,9 +339,6 @@ line("l_open_f", "lindqvist", "The water was in the cane. Something was calling 
 line("l_1", "lindqvist", "The low pens are under water. Pieter, the keepers. Bring the stock up to the big pen. All of it.",
      "Os currais baixos estão debaixo de água. Pieter, os tratadores. Tragam o plantel para o curral grande. Todo.",
      "Los corrales bajos están bajo el agua. Pieter, los cuidadores. Subid la cría al corral grande. Toda.", BR)
-line("p_tip1", "pieter", "They follow the lures, Doctor, nothing else. The keepers walk up the paths; the animals have to stay inside their rings.",
-     "Seguem os engodos, Doutor, mais nada. Os tratadores sobem os trilhos; os animais têm de ficar dentro dos anéis.",
-     "Siguen a los señuelos, doctor, nada más. Los cuidadores suben por las sendas; los animales tienen que quedarse dentro de sus anillos.", BR)
 line("n_lesson", "narrator", "Your creatures obey only inside a keeper's green ring. Select them and move them with the keepers, a little at a time.",
      "As suas criaturas só obedecem dentro do anel verde de um tratador. Selecione-as e leve-as com os tratadores, aos poucos.",
      "Tus criaturas solo obedecen dentro del anillo verde de un cuidador. Selecciónalas y llévalas con los cuidadores, poco a poco.", BR)
@@ -562,7 +559,7 @@ TR_ += [
            {"clock": {"name": "flood", "secs": 15, "scale": False}}]},
     {"id": "no_pieter", "when": {"all": [{"time": 20}, NO_PIETER]}, "do": [{"say": ["n_no_pieter"]}]},
     {"id": "guards", "when": {"all": [{"time": 26}, EXECUTED]}, "do": [{"say": ["n_guards"]}]},
-    {"id": "intro", "when": {"all": [{"time": 1.5}, BROOD]}, "do": [{"say": ["l_1", "p_tip1", "n_lesson"]}, {"ping": {"area": "pen_5"}},
+    {"id": "intro", "when": {"all": [{"time": 1.5}, BROOD]}, "do": [{"say": ["l_1", "n_lesson"]}, {"ping": {"area": "pen_5"}},
                                                                     {"ping": {"area": "pen_4"}}, {"ping": {"area": "big_pen"}}]},
     {"id": "intro_sire", "when": {"all": [{"time": 30}, BROOD, SIRE_ALL]}, "do": [{"say": ["n_sire_all"]}]},
     {"id": "intro_f", "when": {"all": [{"time": 1.5}, FAZ]}, "do": [{"say": ["l_f1", "p_f1"]}]},
@@ -573,7 +570,7 @@ TR_ += [
         {"pace": {"tag": "keepers", "pace": 0.65}}]},
     {"id": "in_count", "when": {"all": [{"time": 2}, {"not": {"fired": "part2"}}, LIVE]}, "every": 2, "do": [
         {"counter": {"name": "in_pen", "count": {"tag": "young", "area": "big_pen"}}}]},
-    {"id": "call", "when": {"all": [{"time": CALL_AT}, {"not": {"fired": "part2"}}, BROOD]}, "do": [
+    {"id": "call", "when": {"all": [{"time": CALL_AT}, {"not": {"fired": "part2"}}, {"not": {"fired": "all_in"}}, BROOD]}, "do": [
         {"sound": {"name": "campaign/linnea_call", "area": "nw_shore", "vol": -4}}, {"ping": {"area": "nw_shore"}},
         {"say": ["n_call", "p_call"]},
         {"leash": {"tag": "young", "lure": "lure", "within": LURE_R, "loose": "to", "to": "nw_shore", "name": "stock"}}]},
@@ -688,6 +685,8 @@ TR_ += [
         # (the bred creatures that reached the Queen: hers when she grew, the turned ones counted in)
         {"counter": {"name": "went", "count": {"tag": "bred", "of_team": "stock"}}},
         {"give": {"team": "stock", "gold": BRUTE_FOOD, "powder": BRUTE_SPOILS}},
+        # (SAY IT PLAINLY: the house and its palisade shown, not left in the dark for the player to look for)
+        {"reveal": {"area": "house", "side": "brood"}},
         {"ping": {"tag": "big_house"}}]},
     # (no grubs on the flooded island: the drowned cane and the carrion feed the Queen's swamp a little at a time, so the
     # fall never stalls for want of food)

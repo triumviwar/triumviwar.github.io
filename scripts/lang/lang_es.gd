@@ -5406,7 +5406,6 @@ const T := {
 	"Lindqvist says he burned the pens that night. Listen to how much he burned.": "Lindqvist dice que quemó los corrales aquella noche. Escucha cuánto quemó.",
 	"The water was in the cane. Something was calling from the north shore. I sent for the torches.": "El agua estaba en el cañaveral. Algo llamaba desde la orilla norte. Mandé traer las antorchas.",
 	"The low pens are under water. Pieter, the keepers. Bring the stock up to the big pen. All of it.": "Los corrales bajos están bajo el agua. Pieter, los cuidadores. Subid la cría al corral grande. Toda.",
-	"They follow the lures, Doctor, nothing else. The keepers walk up the paths; the animals have to stay inside their rings.": "Siguen a los señuelos, doctor, nada más. Los cuidadores suben por las sendas; los animales tienen que quedarse dentro de sus anillos.",
 	"Your creatures obey only inside a keeper's green ring. Select them and move them with the keepers, a little at a time.": "Tus criaturas solo obedecen dentro del anillo verde de un cuidador. Selecciónalas y llévalas con los cuidadores, poco a poco.",
 	"A deep sound comes over the water from the north-west shore. Every head in the pens turns toward it.": "Un sonido hondo llega por el agua desde la orilla noroeste. Todas las cabezas de los corrales se vuelven hacia él.",
 	"Doctor, the ones outside the rings are walking toward it.": "Doctor, los que están fuera de los anillos caminan hacia él.",

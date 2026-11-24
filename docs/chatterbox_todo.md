@@ -106,7 +106,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | d03_fazenda (the Island, Act 2) | this file, "d03_fazenda" below; docs/campaign_d03_build.md | 60 (+13 narrator, 2 NEW cards) | Lindqvist 20, Valadares* 17, Pieter* 12, the King 6, Desembargador Fonseca* 5 |
 | d04_concordia (the City of Gears, Act 2) | this file, "d04_concordia" below; docs/campaign_d04_build.md | 74 (+15 narrator, 2 NEW cards) | Hollweg 31, Ulrich* 18, Captain Arruda* 10, the King 6, Varenne 4, Citizen Morel* 3, Padre Anselmo* 2 |
 | d01_minas (the Gold of Vila Rica, Act 2) | this file, "d01_minas" below; docs/campaign_d01_build.md | 69 (+19 narrator, 3 NEW cards) | Tomasz* 30, Captain Meneses* 21, Lieutenant Ramos* 9, the King 6, Cardinal Tomasz 2, a townsman* 1 |
-| d06_queen (the Queen, Act 2) | this file, "d06_queen" below; docs/campaign_d06_build.md | 39 (+28 narrator, 2 NEW cards) | Lindqvist 24, Pieter* 9, the King 6 |
+| d06_queen (the Queen, Act 2) | this file, "d06_queen" below; docs/campaign_d06_build.md | 38 (+28 narrator, 2 NEW cards) | Lindqvist 24, Pieter* 8, the King 6 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -429,7 +429,6 @@ have a preset in tools/voice_clone/emotions.json (`d06__<id>`). Pieter is the gr
 | k_open_f | the King | Lindqvist says he burned the pens that night. Listen to how much he burned. | dry, a test of the witness |
 | l_open_f | Lindqvist | The water was in the cane. Something was calling from the north shore. I sent for the torches. | tense memory |
 | l_1 | Lindqvist | The low pens are under water. Pieter, the keepers. Bring the stock up to the big pen. All of it. | DRAMATIC: urgent orders, fear held down |
-| p_tip1 | Pieter* | They follow the lures, Doctor, nothing else. The keepers walk up the paths; the animals have to stay inside their rings. | quick, practical |
 | p_call | Pieter* | Doctor, the ones outside the rings are walking toward it. | uneasy |
 | p_in | Pieter* | They are all up in the big pen, Doctor. Wet, but all there. | relief, out of breath |
 | p_late | Pieter* | The water is on the paths, Doctor. We cannot wait for the rest. | urgent |
