@@ -301,6 +301,8 @@
   OPTIMAL's GREEDY-read Rush scores like Balanced, the forced Rush/Economy worse), mirror Balanced 6 of 8 (OPTIMAL picks
   Timing). The AIR RUSH plan builds no flyers (Storm Lure never in 10 of 24, else ~8:15). Proposed pick table in the doc;
   rerun the v-Crown column on 0.38.79+. OWNER DECISIONS WAITING.
+- LINNEA OK, NO REASONS (owner 2026-11-24 07:06 "Its ok to use linnea, but don't give it reason"): people (Lindqvist,
+  Valadares) may call a Brood Mother "Linnea"; the creature never gets a reason, motive, want or plan.
 - THE BROOD IS NOT A PERSON (owner 2026-11-19 15:06: "Brood is not rational, by naming Linnea we cant give a personality
   like that. There are broodmothers of course and they fight among themselves, we cant personalize the brood"):
   docs/campaign_timeline.md "The Brood is not a person". No creature has a name, will, plan or feelings; Brood Mothers
