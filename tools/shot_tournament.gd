@@ -22,6 +22,8 @@ func _initialize() -> void:
 	if a.size() > 2:
 		Settings.set_language(a[2])        # (a third word: the language, "pt" or "es")
 		sfx += "_" + a[2]
+	else:
+		Settings.set_language("en")
 	Settings.apply()
 	DirAccess.make_dir_recursive_absolute(out)
 	main = load("res://scenes/main.tscn").instantiate()
@@ -148,7 +150,7 @@ func _run() -> void:
 	for nm in ["Ana", "Bruno", "Carla", "Diego", "Elena"]:
 		o.add_player(nm, "random")
 	for pl in o.players():
-		if pl["name"] != "Elena":
+		if pl["name"] != "Elena" and pl["name"] != "Diego":
 			o.check_in(int(pl["id"]))
 	o.save()
 	TournamentPage.show_tournament(main, String(o.d["id"]))
