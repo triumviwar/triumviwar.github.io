@@ -26,6 +26,12 @@
 
 ## Current work
 
+- d06_queen BUILT (job d06-queen, MERGED 0.38.198, docs/campaign_d06_build.md): Act 2 step 8, "The Queen" (the Naturalist
+  after d03, the wet season 2775): map campaign:obidos_flood (d03's island flooded); played as THE BROOD: several Brood
+  Mothers fight in the flood, the strongest roots in the big pen and GROWS into the Queen, the leash breaks, the fazenda
+  falls; NO creature named or given a mind ("Linnea" not used); mirror = LINDQVIST'S PEOPLE. B5 = GROW stage 3 + BRUTE
+  (B5/B6 swapped). New hub after d06: the boat house at Óbidos. Flags `brood_n`, `pieter`, `lindqvist` fled. Tests
+  tools/test_campaign_d06.gd, sim tools/sim_campaign_d06.gd. ALL TEXT PLACEHOLDER.
 - d01_minas BUILT (job d01-minas, MERGED 0.38.197, docs/campaign_d01_build.md): Act 2 step 7, "The Gold of Vila Rica" (the
   Crown after a07, Minas Gerais 2772, Father Tomasz tells it): the DERRAMA day, the Assembly's cell means to seize the
   Royal Foundry House; map campaign:vila_rica (HIGHLANDS, the city generator in hills); C5 = ARMOURY + MATCHLOCK + SOCKET
