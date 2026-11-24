@@ -15,7 +15,12 @@ extends RefCounted
 ## Design: docs/design_principles.md 1 (the computer plays the player's own tools well) and 2 (retreat: a lost battle is a lost
 ## territory, not a lost game).
 
-const KEPT: Array[String] = ["guns", "cap", "home"]
+## MEASURED (docs/crown_brood_late.md: 20 games today, then each part alone and all three together, 10-30 games each, the same
+## games every block): none moved the result beyond the noise, so NONE is on by default. "guns" did what it was built for
+## (out of home the guns set at contact 6% -> 68%, the fights out traded 1.25 killed for each lost, was 1.01) and left the
+## result where it was (mean g -0.65 against -0.60, 30 games); "home" (-0.97, t -2.8) and "cap" (-0.55, t -2.5) made it
+## worse. `-- cbl<name>:on` plays a part.
+const KEPT: Array[String] = []
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 static var _n := {}             # team -> {counter -> n} (qa_match's result.json "crown_ai")
