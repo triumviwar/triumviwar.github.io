@@ -44,7 +44,7 @@ LADDER = {
         ("C6", "d05_aldeia", ["dragoon", "charge"], []),
         ("C7", "d09_crossroads", ["armour", "powder_wagon"], []),
         ("C8", "", ["balloon"], []),
-        ("C9", "", ["charges", "quadrant"], []),
+        ("C9", "d11_siege", ["charges", "quadrant"], []),
         ("C10", "", ["band"], []),
         ("C11", "", ["band_fifer", "band_piper"], []),
         ("C12", "", ["flintlock", "caplock", "pouch"], ["mounted_missionary"]),
@@ -56,7 +56,7 @@ LADDER = {
         ("K4", "d02_exodus", ["ratchet_turret", "shield_wall"], []),
         ("K5", "d04_concordia", ["cuckoo_house", "cuckoo"], []),
         ("K6", "d07_spring", ["owl_morph", "high_leap"], ["ticking_owl"]),
-        ("K7", "", ["ballista", "long_chain"], []),
+        ("K7", "d11_siege", ["ballista", "long_chain"], []),
         ("K8", "", ["great_winder"], []),
         ("K9", "", ["brass_serpent"], ["serpent_gear_s", "serpent_gear_b"]),
     ],
@@ -95,6 +95,12 @@ BOUND = {
     "d08_rivers": ("brood", ["swarm"]),               # (Act 2's B6, was B5: the swarm, the solo pick and versus; the Barra is not bound)
     "d07_spring": ("clockwork", ["guild"]),           # (Act 2's K6: the machine (solo pick, versus) is not bound: the other side)
     "d09_crossroads": ("crown", ["army"]),            # (Act 2's C7: the army; the fort's garrison (co-op) and the versus pick are not bound)
+    "d11_siege": ("crown", ["column"]),               # (Act 2's C9: the southern column; the valley (co-op) is not bound)
+}
+# A mission with a second rung (the line's own side and its mirror bound both: Claude's choice 15 of Act 2's plan): the
+# other faction's bound teams, by mission (d11_siege: the city, the solo pick and versus, on K7).
+BOUND_MORE = {
+    "d11_siege": {"clockwork": ["city"]},
 }
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
@@ -139,6 +145,10 @@ CARDS = {
     "nb_quick_roots": "NEW: QUICK ROOTS. Research it on a Mother's card: every creature roots and uproots in half the time. A forward Mother walks down the bank and is rooted again before the guns find her.",
     "bayonet": "NEW: THE SOCKET BAYONET. Research it at the Armoury: the bayonet hits harder and quicker, and the musket can still fire with it fixed. On the town's stairs, where the fighting is close, it decides the night.",
     "armour": "NEW: ARMOUR. The army of Brazil wears it: your Guardsmen are Musketeers in breastplates, your Cuirassiers Horsemen in cuirasses. They take more before they fall and walk a little slower. The fort's Barracks trains them armoured; its Armoury refits a plain man.",
+    "charges": "NEW: PREPARED CHARGES. Research it at the camp's Armoury (it needs the Foundry): the powder comes in ready-made bags, and every Field Cannon and Mortar reloads a fifth faster. Against plates that must be hit again and again, it is the guns' science.",
+    "quadrant": "NEW: THE GUNNER'S QUADRANT. Research it at the Armoury after Prepared Charges: the guns are laid by the quadrant, and every Field Cannon and Mortar reaches a tile farther, from behind the earthworks to the gates.",
+    "ballista": "NEW: THE SPRING BALLISTA. Made at the arsenal's Heavy Works: a bolt thrower on cog wheels whose screw goes through its target into the men behind. Hard on guns and earthworks; it cannot shoot what is close or in the air.",
+    "long_chain": "NEW: LONG CHAIN. Research it at the arsenal's Escapement: every Netter throws its net much farther, from behind the Clock Soldiers onto the gunners.",
     "powder_wagon": "NEW: THE POWDER WAGON. There is no Mill on the road: the wagons carry the army's powder. Musketeers and guns within 3 tiles of one refill from it, so keep it just behind the line, and guard it: it blows up when it is destroyed. It fills again at a Barracks; the fort's Foundry builds more.",
 }
 # (pieces that share a card: the Venom Challenger is told with the Tyrant Challenger)
@@ -185,6 +195,10 @@ CARDS_PT = {
     "nb_quick_roots": "NOVO: RAÍZES RÁPIDAS. Pesquise-as no painel de uma Mãe: todas as criaturas enraízam e desenraízam na metade do tempo. Uma Mãe avançada desce a margem e já está enraizada de novo antes que os canhões a encontrem.",
     "bayonet": "NOVO: A BAIONETA DE ENCAIXE. Pesquise-a no Arsenal: a baioneta fere mais forte e mais depressa, e o mosquete ainda dispara com ela calada. Nas escadas da vila, onde a luta é de perto, ela decide a noite.",
     "armour": "NOVO: A ARMADURA. O exército do Brasil usa-a: os seus Guardas são Mosqueteiros de couraça, os seus Couraceiros Cavaleiros de couraça. Aguentam mais antes de cair e andam um pouco mais devagar. O Quartel do forte treina-os com armadura; o seu Arsenal equipa um homem simples.",
+    "charges": "NOVO: CARGAS PREPARADAS. Pesquise-as no Arsenal do acampamento (precisa da Fundição): a pólvora vem em sacos já feitos, e cada Canhão de Campanha e Morteiro recarrega um quinto mais depressa. Contra placas que têm de ser atingidas uma e outra vez, é a ciência dos canhões.",
+    "quadrant": "NOVO: O QUADRANTE DO ARTILHEIRO. Pesquise-o no Arsenal depois das Cargas Preparadas: os canhões são apontados pelo quadrante, e cada Canhão de Campanha e Morteiro alcança uma casa mais longe, de trás das trincheiras até aos portões.",
+    "ballista": "NOVO: A BALESTRA DE MOLA. Feita na Oficina Pesada do arsenal: um lança-virotes sobre rodas dentadas cujo parafuso atravessa o alvo e entra nos homens atrás. Duro contra canhões e trincheiras; não atira ao que está perto nem no ar.",
+    "long_chain": "NOVO: CORRENTE LONGA. Pesquise-a no Escape do arsenal: cada Lança-Redes atira a rede muito mais longe, de trás dos Soldados-Relógio para cima dos artilheiros.",
     "powder_wagon": "NOVO: A CARROÇA DE PÓLVORA. Não há Moinho na estrada: as carroças levam a pólvora do exército. Mosqueteiros e canhões a 3 casas de uma recarregam dela, por isso mantenha-a logo atrás da linha, e guarde-a: explode quando é destruída. Enche-se outra vez num Quartel; a Fundição do forte faz mais.",
 }
 CARDS_ES = {
@@ -227,16 +241,23 @@ CARDS_ES = {
     "nb_quick_roots": "NUEVO: RAÍCES RÁPIDAS. Investígalas en el panel de una Madre: todas las criaturas enraízan y desenraízan en la mitad de tiempo. Una Madre de avanzada baja por la orilla y vuelve a estar enraizada antes de que los cañones la encuentren.",
     "bayonet": "NUEVO: LA BAYONETA DE CUBO. Investígala en la Armería: la bayoneta hiere más fuerte y más deprisa, y el mosquete aún dispara con ella calada. En las escaleras del pueblo, donde se lucha de cerca, decide la noche.",
     "armour": "NUEVO: LA ARMADURA. El ejército de Brasil la lleva: tus Guardias son Mosqueteros con coraza, tus Coraceros Jinetes con coraza. Aguantan más antes de caer y andan un poco más despacio. El Cuartel del fuerte los entrena con armadura; su Armería equipa a un hombre sencillo.",
+    "charges": "NUEVO: CARGAS PREPARADAS. Investígalas en la Armería del campamento (necesita la Fundición): la pólvora viene en saquitos ya hechos, y cada Cañón de Campaña y Mortero recarga una quinta parte más rápido. Contra placas que hay que golpear una y otra vez, es la ciencia de los cañones.",
+    "quadrant": "NUEVO: EL CUADRANTE DEL ARTILLERO. Investígalo en la Armería después de las Cargas Preparadas: los cañones se apuntan con el cuadrante, y cada Cañón de Campaña y Mortero alcanza una casilla más lejos, desde detrás de las trincheras hasta las puertas.",
+    "ballista": "NUEVO: LA BALLESTA DE MUELLE. Hecha en el Taller Pesado del arsenal: un lanzavirotes sobre ruedas dentadas cuyo tornillo atraviesa el blanco y entra en los hombres de detrás. Duro contra cañones y trincheras; no dispara a lo que está cerca ni en el aire.",
+    "long_chain": "NUEVO: CADENA LARGA. Investígala en el Escape del arsenal: cada Lanzarredes lanza su red mucho más lejos, desde detrás de los Soldados Reloj sobre los artilleros.",
     "powder_wagon": "NUEVO: EL CARRO DE PÓLVORA. No hay Molino en el camino: los carros llevan la pólvora del ejército. Mosqueteros y cañones a 3 casillas de uno recargan de él, así que mantenlo justo detrás de la línea, y guárdalo: estalla cuando lo destruyen. Se llena otra vez en un Cuartel; la Fundición del fuerte hace más.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8, "d08_rivers": 8, "d07_spring": 8, "d09_crossroads": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown", "d08_rivers": "swarm", "d07_spring": "guild", "d09_crossroads": "crown"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8, "d08_rivers": 8, "d07_spring": 8, "d09_crossroads": 8, "d11_siege": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown", "d08_rivers": "swarm", "d07_spring": "guild", "d09_crossroads": "crown", "d11_siege": "crown"}
+SIDE_MORE = {"d11_siege": {"clockwork": "city"}}      # (a second rung's side: BOUND_MORE)
 
 
-def step_of(mission_id):
+def step_of(mission_id, faction=None):
     for fac, steps in LADDER.items():
+        if faction and fac != faction:
+            continue
         for i, st in enumerate(steps):
             if st[1] == mission_id:
                 return fac, i
@@ -259,17 +280,25 @@ ICON = {c: "res://assets/icons/%s.png" % c for c in CARDS
         if os.path.exists(os.path.join(_ROOT, "assets", "icons", c + ".png"))}
 
 
-def roster_of(mission_id):
-    fac, i = step_of(mission_id)
+def teams_of(mission_id, faction):
+    """The teams a step binds: BOUND's for the mission's line, BOUND_MORE's for its second rung."""
+    if mission_id in BOUND and BOUND[mission_id][0] == faction:
+        return BOUND[mission_id][1]
+    return BOUND_MORE.get(mission_id, {}).get(faction, [])
+
+
+def roster_of(mission_id, faction=None):
+    fac, i = step_of(mission_id, faction)
     return {"allow": allow_of(fac, i), "new": list(LADDER[fac][i][2])}
 
 
-def apply(M, mission_id, story_deny=None, at=None):
+def apply(M, mission_id, story_deny=None, at=None, faction=None):
     """Sets the bound teams' roster (the ladder's allow-list, its NEW pieces, the story's own deny on top) and adds the
-    NEW card: a speaker "new", a line per new piece, a trigger "ladder_new" that says them, to the ladder side only."""
-    fac, i = step_of(mission_id)
-    r = roster_of(mission_id)
-    teams = BOUND[mission_id][1]
+    NEW card: a speaker "new", a line per new piece, a trigger "ladder_new" that says them, to the ladder side only.
+    `faction`: a mission's second rung (BOUND_MORE: its cards go to that side, said by the same trigger)."""
+    fac, i = step_of(mission_id, faction)
+    r = roster_of(mission_id, faction)
+    teams = teams_of(mission_id, fac)
     for tm in M["teams"]:
         if tm["id"] in teams:
             ros = {"allow": list(r["allow"]), "new": list(r["new"])}
@@ -277,7 +306,7 @@ def apply(M, mission_id, story_deny=None, at=None):
             if deny:
                 ros["deny"] = list(deny)
             tm["roster"] = ros
-    side = SIDE[mission_id]
+    side = SIDE_MORE[mission_id][fac] if faction else SIDE[mission_id]
     ids = []
     for k in r["new"]:
         card = SHARED_CARD.get(k, k)
@@ -288,8 +317,12 @@ def apply(M, mission_id, story_deny=None, at=None):
         if card in ICON:      # the dialogue box's face: the new piece's own icon (0.38.162, the owner: "what is this NEW?")
             M["lines"][lid]["portrait"] = ICON[card]
         ids.append(lid)
-    M["speakers"]["new"] = {"name": NEW_NAME, "side": side}
+    if not faction:
+        M["speakers"]["new"] = {"name": NEW_NAME, "side": side}
+    old = [t for t in M["triggers"] if t["id"] == "ladder_new"]
     M["triggers"] = [t for t in M["triggers"] if t["id"] != "ladder_new"]
+    if faction and old:
+        ids = list(old[0]["do"][0]["say"]) + ids          # (the second rung's cards after the first's, in one trigger)
     M["triggers"].append({"id": "ladder_new", "when": {"time": at if at is not None else CARD_AT.get(mission_id, 5)},
                           "do": [{"say": ids}]})
     return M
@@ -300,7 +333,7 @@ def table():
     rows = ["| step | mission | teams | new | comes with | allow-list (code ids) |", "| --- | --- | --- | --- | --- | --- |"]
     for fac, steps in LADDER.items():
         for i, st in enumerate(steps):
-            teams = " ".join(BOUND[st[1]][1]) if st[1] in BOUND else "-"
+            teams = " ".join(teams_of(st[1], fac)) if st[1] in BOUND else "-"
             rows.append("| %s | %s | %s | %s | %s | %s |" % (st[0], st[1] or "(slot)", teams, " ".join(st[2]),
                                                           " ".join(st[3]) or "-", " ".join(allow_of(fac, i))))
     return "\n".join(rows)

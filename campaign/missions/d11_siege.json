@@ -1,0 +1,7772 @@
+{
+	"id": "d11_siege",
+	"title": "The Siege of Concórdia",
+	"summary": "The southern highlands, 2780. The army's southern column lays siege to the city of gears. Father Ferrer comes with it as Rome's witness.",
+	"map": "campaign:concordia_siege",
+	"voice": "d11",
+	"light": "day",
+	"expansion_spots": false,
+	"manual_end": true,
+	"difficulty": {
+		"easy": {
+			"clocks": 1.25,
+			"spawns": 0.7
+		},
+		"hard": {
+			"clocks": 0.85,
+			"spawns": 1.3
+		}
+	},
+	"needs": [
+		"a07_council",
+		"d09_crossroads",
+		{
+			"id": "d10_jungle",
+			"if": {
+				"past": {
+					"d09_crossroads.first": "brood"
+				}
+			}
+		}
+	],
+	"versions": {
+		"pick": [
+			{
+				"if": {
+					"past": {
+						"d09_crossroads.first": "clockwork"
+					}
+				},
+				"id": "fresh"
+			}
+		],
+		"default": "grown",
+		"labels": {
+			"fresh": "FRESH: the city fought first. Its wall is not finished and its army is out on the roads: a true siege.",
+			"grown": "GROWN: the city waited a year. Its wall is finished, the bolt-throwers stand on it, owls fly over the camp."
+		}
+	},
+	"modes": [
+		"solo",
+		"coop",
+		"versus"
+	],
+	"solo_sides": [
+		"crown",
+		"city"
+	],
+	"sides": [
+		{
+			"id": "crown",
+			"name": "The Southern Column",
+			"about": "Father Ferrer, Jakob, General Ruggieri's siege train and the army's southern column on the plateau before Concórdia; the valley's militia."
+		},
+		{
+			"id": "city",
+			"name": "The City",
+			"about": "Concórdia: its wall, its works, its machines, and the great spring that drives them."
+		}
+	],
+	"teams": [
+		{
+			"id": "column",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "camp_mid",
+			"gold": 500,
+			"powder": 300,
+			"techs": [
+				"matchlock",
+				"bayonet",
+				"charge",
+				"armour"
+			],
+			"control": {
+				"solo": "p1",
+				"coop": "p1",
+				"versus": "p1",
+				"foe": "script"
+			},
+			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon",
+					"horse_breeder",
+					"cuirassier",
+					"horse",
+					"dismounted",
+					"messenger",
+					"foundry",
+					"mortar",
+					"church",
+					"missionary",
+					"armoury",
+					"matchlock",
+					"bayonet",
+					"dragoon",
+					"charge",
+					"armour",
+					"powder_wagon",
+					"balloon",
+					"charges",
+					"quadrant"
+				],
+				"new": [
+					"charges",
+					"quadrant"
+				],
+				"deny": [
+					"town_hall",
+					"farm",
+					"church",
+					"missionary",
+					"balloon",
+					"labourer",
+					"messenger",
+					"powder_mill"
+				]
+			}
+		},
+		{
+			"id": "valley",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 0,
+			"start": "none",
+			"camera": "valley_camp",
+			"gold": 100,
+			"powder": 100,
+			"techs": [
+				"matchlock"
+			],
+			"roster": {
+				"deny": [
+					"town_hall",
+					"cottage",
+					"farm",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"horse_breeder",
+					"foundry",
+					"armoury",
+					"church",
+					"labourer",
+					"missionary"
+				]
+			},
+			"control": {
+				"solo": "script",
+				"coop": "p2",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "masters",
+			"side": "crown",
+			"faction": "clockwork",
+			"colour": 0,
+			"start": "none",
+			"camera": "masters_camp",
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "city",
+			"side": "city",
+			"faction": "clockwork",
+			"colour": 1,
+			"start": "none",
+			"camera": "arsenal_mid",
+			"gold": 250,
+			"powder": 200,
+			"control": {
+				"solo": "script",
+				"coop": "script",
+				"versus": "p2"
+			},
+			"roster": {
+				"allow": [
+					"clocktower",
+					"cog_press",
+					"mainspring",
+					"regulator",
+					"movement_works",
+					"winder",
+					"clock_soldier",
+					"springer",
+					"netter",
+					"escapement",
+					"heavy_works",
+					"pendulum",
+					"ratchet_turret",
+					"shield_wall",
+					"cuckoo_house",
+					"cuckoo",
+					"owl_morph",
+					"high_leap",
+					"ticking_owl",
+					"ballista",
+					"long_chain"
+				],
+				"new": [
+					"ballista",
+					"long_chain"
+				],
+				"deny": [
+					"clocktower",
+					"cog_press",
+					"mainspring"
+				]
+			}
+		}
+	],
+	"areas": {
+		"mine_hill": [
+			128,
+			7,
+			43,
+			31
+		],
+		"stair_w": [
+			125,
+			16,
+			3,
+			7
+		],
+		"stair_s": [
+			145,
+			35,
+			5,
+			5
+		],
+		"north": [
+			104,
+			8,
+			24,
+			30
+		],
+		"upper": [
+			128,
+			7,
+			41,
+			31
+		],
+		"forge": [
+			125,
+			41,
+			44,
+			23
+		],
+		"mill": [
+			124,
+			66,
+			45,
+			16
+		],
+		"market": [
+			60,
+			45,
+			62,
+			37
+		],
+		"quarter_road": [
+			100,
+			44,
+			6,
+			5
+		],
+		"square_e": [
+			121,
+			45,
+			9,
+			4
+		],
+		"square_s": [
+			110,
+			53,
+			6,
+			9
+		],
+		"square_n": [
+			110,
+			34,
+			6,
+			8
+		],
+		"north_road": [
+			102,
+			17,
+			29,
+			4
+		],
+		"under_stair_s": [
+			143,
+			37,
+			8,
+			7
+		],
+		"forge_road": [
+			128,
+			45,
+			41,
+			3
+		],
+		"mill_road": [
+			116,
+			64,
+			53,
+			3
+		],
+		"yard_way": [
+			144,
+			26,
+			7,
+			12
+		],
+		"market_road": [
+			54,
+			55,
+			68,
+			4
+		],
+		"south_way": [
+			54,
+			74,
+			16,
+			4
+		],
+		"west_road": [
+			54,
+			8,
+			6,
+			78
+		],
+		"arsenal": [
+			57,
+			9,
+			45,
+			32
+		],
+		"council_sq": [
+			104,
+			41,
+			19,
+			14
+		],
+		"spring_yard": [
+			138,
+			10,
+			22,
+			18
+		],
+		"ford_w": [
+			62,
+			79,
+			5,
+			11
+		],
+		"ford_e": [
+			146,
+			79,
+			5,
+			11
+		],
+		"hall": [
+			110,
+			41,
+			7,
+			6
+		],
+		"spring": [
+			146,
+			13,
+			7,
+			6
+		],
+		"u_works": [
+			133,
+			27,
+			8,
+			7
+		],
+		"u_press": [
+			155,
+			28,
+			7,
+			7
+		],
+		"n_press": [
+			115,
+			17,
+			7,
+			7
+		],
+		"f_works": [
+			135,
+			49,
+			8,
+			7
+		],
+		"f_esc": [
+			157,
+			53,
+			7,
+			7
+		],
+		"m_press": [
+			135,
+			73,
+			7,
+			7
+		],
+		"m_reg": [
+			157,
+			73,
+			6,
+			6
+		],
+		"k_press": [
+			91,
+			67,
+			7,
+			7
+		],
+		"k_reg": [
+			67,
+			69,
+			6,
+			6
+		],
+		"camp": [
+			6,
+			34,
+			26,
+			28
+		],
+		"camp_mid": [
+			14,
+			44,
+			8,
+			6
+		],
+		"park": [
+			8,
+			52,
+			8,
+			6
+		],
+		"mine_mouth": [
+			22,
+			10,
+			5,
+			5
+		],
+		"mine_near": [
+			18,
+			6,
+			13,
+			13
+		],
+		"bat_n": [
+			36,
+			19,
+			8,
+			11
+		],
+		"bat_w": [
+			36,
+			52,
+			8,
+			11
+		],
+		"bat_s": [
+			36,
+			71,
+			8,
+			11
+		],
+		"lines": [
+			34,
+			8,
+			16,
+			80
+		],
+		"north_out": [
+			46,
+			20,
+			6,
+			9
+		],
+		"west_out": [
+			46,
+			53,
+			6,
+			9
+		],
+		"south_out": [
+			46,
+			72,
+			6,
+			9
+		],
+		"north_in": [
+			56,
+			20,
+			6,
+			9
+		],
+		"west_in": [
+			56,
+			53,
+			6,
+			9
+		],
+		"south_in": [
+			56,
+			72,
+			6,
+			9
+		],
+		"postern_out": [
+			47,
+			37,
+			5,
+			7
+		],
+		"postern_in": [
+			56,
+			37,
+			5,
+			7
+		],
+		"arsenal_mid": [
+			76,
+			17,
+			14,
+			12
+		],
+		"spring_top": [
+			140,
+			12,
+			18,
+			15
+		],
+		"spring_foot": [
+			145,
+			19,
+			9,
+			3
+		],
+		"hall_door": [
+			109,
+			46,
+			9,
+			5
+		],
+		"below_stair_w": [
+			122,
+			16,
+			6,
+			6
+		],
+		"wall_walk": [
+			54,
+			6,
+			4,
+			80
+		],
+		"hollweg_post": [
+			141,
+			12,
+			4,
+			4
+		],
+		"valley_camp": [
+			8,
+			70,
+			10,
+			8
+		],
+		"masters_camp": [
+			44,
+			36,
+			6,
+			8
+		],
+		"outside": [
+			0,
+			0,
+			53,
+			96
+		],
+		"earth_n": [
+			43,
+			21,
+			3,
+			7
+		],
+		"earth_w": [
+			43,
+			54,
+			3,
+			7
+		],
+		"earth_s": [
+			43,
+			73,
+			3,
+			7
+		]
+	},
+	"counters": {
+		"sortie_n": {
+			"start": 0
+		},
+		"out_n": {
+			"start": 0
+		},
+		"dug_n": {
+			"start": 0
+		}
+	},
+	"units": [
+		{
+			"team": "column",
+			"at": "camp_mid",
+			"fixed": true,
+			"kind": "missionary",
+			"as": "ferrer_siege",
+			"count": 1,
+			"tag": "ferrer",
+			"tags": [
+				"leaders"
+			]
+		},
+		{
+			"team": "column",
+			"at": "camp_mid",
+			"fixed": true,
+			"kind": "dismounted",
+			"as": "ruggieri_general",
+			"count": 1,
+			"tag": "ruggieri",
+			"tags": [
+				"leaders"
+			]
+		},
+		{
+			"team": "column",
+			"at": "camp_mid",
+			"fixed": true,
+			"kind": "labourer",
+			"as": "jakob_siege",
+			"count": 1,
+			"tag": "jakob",
+			"tags": [
+				"pioneers"
+			],
+			"if": {
+				"not": {
+					"any": [
+						{
+							"past": {
+								"c01_thirteenth.jakob": "lost"
+							}
+						},
+						{
+							"past": {
+								"a02_furth.jakob": "lost"
+							}
+						},
+						{
+							"past": {
+								"a04_visit.jakob": "lost"
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"team": "column",
+			"at": "camp_mid",
+			"fixed": true,
+			"kind": "missionary",
+			"as": "hollweg_prisoner",
+			"count": 1,
+			"tag": "hollweg",
+			"if": {
+				"past": {
+					"d07_spring.spring": "stopped"
+				}
+			}
+		},
+		{
+			"team": "column",
+			"at": "camp_mid",
+			"fixed": true,
+			"kind": "labourer",
+			"as": "pioneer",
+			"count": 5,
+			"tag": "pioneers"
+		},
+		{
+			"team": "column",
+			"at": "camp_mid",
+			"fixed": true,
+			"kind": "musketeer",
+			"count": 8,
+			"tag": "line",
+			"kit": {
+				"lock": "matchlock",
+				"bayonet": true
+			}
+		},
+		{
+			"team": "column",
+			"at": "camp_mid",
+			"fixed": true,
+			"kind": "musketeer",
+			"count": 4,
+			"tag": "line",
+			"tags": [
+				"armoured"
+			],
+			"kit": {
+				"lock": "matchlock",
+				"bayonet": true,
+				"armour": true
+			}
+		},
+		{
+			"team": "column",
+			"at": "camp_mid",
+			"fixed": true,
+			"kind": "cuirassier",
+			"count": 3,
+			"tag": "riders",
+			"tags": [
+				"armoured"
+			],
+			"kit": {
+				"armour": true
+			}
+		},
+		{
+			"team": "column",
+			"at": "camp_mid",
+			"fixed": true,
+			"kind": "cannon",
+			"count": 3,
+			"tag": "guns"
+		},
+		{
+			"team": "column",
+			"at": "camp_mid",
+			"fixed": true,
+			"kind": "mortar",
+			"count": 2,
+			"tag": "guns"
+		},
+		{
+			"team": "column",
+			"at": "camp_mid",
+			"fixed": true,
+			"kind": "powder_wagon",
+			"count": 1,
+			"tag": "wagons"
+		},
+		{
+			"team": "valley",
+			"kind": "cuirassier",
+			"as": "arruda",
+			"count": 1,
+			"at": "valley_camp",
+			"tag": "arruda",
+			"fixed": true
+		},
+		{
+			"team": "valley",
+			"kind": "musketeer",
+			"as": "valley_militia",
+			"count": 7,
+			"at": "valley_camp",
+			"tag": "militia",
+			"fixed": true,
+			"if": {
+				"past": {
+					"d04_concordia.colonists": "fought"
+				}
+			}
+		},
+		{
+			"team": "valley",
+			"kind": "cuirassier",
+			"as": "rancher",
+			"count": 2,
+			"at": "valley_camp",
+			"tag": "militia",
+			"fixed": true,
+			"if": {
+				"past": {
+					"d04_concordia.colonists": "fought"
+				}
+			}
+		},
+		{
+			"team": "valley",
+			"kind": "musketeer",
+			"as": "valley_militia",
+			"count": 3,
+			"at": "valley_camp",
+			"tag": "militia",
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"d04_concordia.colonists": "fought"
+					}
+				}
+			}
+		},
+		{
+			"team": "masters",
+			"kind": "winder",
+			"as": "matthias",
+			"count": 1,
+			"at": "masters_camp",
+			"tag": "matthias",
+			"if": {
+				"past": {
+					"d07_spring.spring": "stopped"
+				}
+			}
+		},
+		{
+			"team": "masters",
+			"kind": "clock_soldier",
+			"count": 2,
+			"at": "masters_camp",
+			"tag": "masters",
+			"fixed": true,
+			"if": {
+				"past": {
+					"d07_spring.spring": "stopped"
+				}
+			}
+		},
+		{
+			"team": "masters",
+			"kind": "clock_soldier",
+			"count": 2,
+			"at": "masters_camp",
+			"tag": "masters",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"past": {
+							"d07_spring.spring": "stopped"
+						}
+					},
+					{
+						"past": {
+							"d07_spring.honest": "many"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "city",
+			"kind": "winder",
+			"count": 3,
+			"at": "arsenal_mid",
+			"tag": "city_winders"
+		},
+		{
+			"team": "city",
+			"kind": "clock_soldier",
+			"count": 6,
+			"at": "arsenal_mid",
+			"tag": "garrison",
+			"if": {
+				"version": "fresh"
+			}
+		},
+		{
+			"team": "city",
+			"kind": "clock_soldier",
+			"count": 10,
+			"at": "arsenal_mid",
+			"tag": "garrison",
+			"if": {
+				"version": "grown"
+			}
+		},
+		{
+			"team": "city",
+			"kind": "springer",
+			"count": 2,
+			"at": "arsenal_mid",
+			"tag": "garrison",
+			"if": {
+				"version": "fresh"
+			}
+		},
+		{
+			"team": "city",
+			"kind": "springer",
+			"count": 3,
+			"at": "arsenal_mid",
+			"tag": "garrison",
+			"if": {
+				"version": "grown"
+			}
+		},
+		{
+			"team": "city",
+			"kind": "netter",
+			"count": 2,
+			"at": "arsenal_mid",
+			"tag": "garrison"
+		},
+		{
+			"team": "city",
+			"kind": "pendulum",
+			"count": 2,
+			"at": "arsenal_mid",
+			"tag": "garrison",
+			"if": {
+				"version": "grown"
+			}
+		},
+		{
+			"team": "city",
+			"kind": "ticking_owl",
+			"count": 2,
+			"at": "spring_top",
+			"tag": "city_owls",
+			"if": {
+				"version": "grown"
+			}
+		},
+		{
+			"team": "city",
+			"kind": "ballista",
+			"count": 1,
+			"at": "north_in",
+			"tag": "wall_guns",
+			"tags": [
+				"garrison"
+			],
+			"if": {
+				"version": "grown"
+			}
+		},
+		{
+			"team": "city",
+			"kind": "ballista",
+			"count": 1,
+			"at": "west_in",
+			"tag": "wall_guns",
+			"tags": [
+				"garrison"
+			],
+			"if": {
+				"version": "grown"
+			}
+		},
+		{
+			"team": "city",
+			"kind": "ballista",
+			"count": 1,
+			"at": "south_in",
+			"tag": "wall_guns",
+			"tags": [
+				"garrison"
+			],
+			"if": {
+				"version": "grown"
+			}
+		},
+		{
+			"team": "city",
+			"kind": "missionary",
+			"as": "hollweg_walls",
+			"count": 1,
+			"at": "hollweg_post",
+			"tag": "hollweg_w",
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"d07_spring.spring": "stopped"
+					}
+				}
+			}
+		}
+	],
+	"buildings": [
+		{
+			"team": "column",
+			"kind": "powder_mill",
+			"at": [
+				10,
+				54
+			],
+			"tag": "park",
+			"name": "The siege park's magazine"
+		},
+		{
+			"team": "column",
+			"kind": "barracks",
+			"at": [
+				12,
+				40
+			],
+			"tag": "depot",
+			"tags": [
+				"c_barracks"
+			],
+			"name": "The camp's barracks"
+		},
+		{
+			"team": "column",
+			"kind": "armoury",
+			"at": [
+				20,
+				20
+			],
+			"tag": "depot",
+			"tags": [
+				"c_armoury",
+				"camp_n"
+			],
+			"name": "The camp's armoury"
+		},
+		{
+			"team": "column",
+			"kind": "foundry",
+			"at": [
+				20,
+				64
+			],
+			"tag": "depot",
+			"tags": [
+				"c_foundry"
+			],
+			"name": "The siege train's foundry"
+		},
+		{
+			"team": "column",
+			"kind": "horse_breeder",
+			"at": [
+				4,
+				28
+			],
+			"tag": "depot",
+			"tags": [
+				"c_breeder"
+			],
+			"name": "The camp's horse lines"
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				28,
+				44
+			],
+			"tag": "depot",
+			"tags": [
+				"tents"
+			],
+			"name": "The column's tents"
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				28,
+				48
+			],
+			"tag": "depot",
+			"tags": [
+				"tents"
+			],
+			"name": "The column's tents"
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				4,
+				44
+			],
+			"tag": "depot",
+			"tags": [
+				"tents"
+			],
+			"name": "The column's tents"
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				4,
+				48
+			],
+			"tag": "depot",
+			"tags": [
+				"tents"
+			],
+			"name": "The column's tents"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				22
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_n"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				22
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_n"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				23
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_n"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				23
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_n"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				25
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_n"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				25
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_n"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				26
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_n"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				26
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_n"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				55
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_w"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				55
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_w"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				56
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_w"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				56
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_w"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				58
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_w"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				58
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_w"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				59
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_w"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				59
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_w"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				74
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_s"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				74
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_s"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				75
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_s"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				75
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_s"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				77
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_s"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				77
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_s"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				78
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_s"
+			],
+			"site": true,
+			"if": {
+				"playing": "crown"
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "column",
+			"kind": "wall",
+			"at": [
+				44,
+				78
+			],
+			"tag": "earthworks",
+			"tags": [
+				"ew_bat_s"
+			],
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			},
+			"name": "The earthworks"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				23
+			],
+			"tag": "gates",
+			"tags": [
+				"g_north"
+			],
+			"name": "A gate of Concórdia"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				24
+			],
+			"tag": "gates",
+			"tags": [
+				"g_north"
+			],
+			"name": "A gate of Concórdia"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				25
+			],
+			"tag": "gates",
+			"tags": [
+				"g_north"
+			],
+			"name": "A gate of Concórdia"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				56
+			],
+			"tag": "gates",
+			"tags": [
+				"g_west"
+			],
+			"name": "A gate of Concórdia"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				57
+			],
+			"tag": "gates",
+			"tags": [
+				"g_west"
+			],
+			"name": "A gate of Concórdia"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				58
+			],
+			"tag": "gates",
+			"tags": [
+				"g_west"
+			],
+			"name": "A gate of Concórdia"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				75
+			],
+			"tag": "gates",
+			"tags": [
+				"g_south"
+			],
+			"name": "A gate of Concórdia"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				76
+			],
+			"tag": "gates",
+			"tags": [
+				"g_south"
+			],
+			"name": "A gate of Concórdia"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				77
+			],
+			"tag": "gates",
+			"tags": [
+				"g_south"
+			],
+			"name": "A gate of Concórdia"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				11
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_n"
+			],
+			"if": {
+				"version": "fresh"
+			},
+			"name": "The wall's scaffolding (unfinished)"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				11
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_n"
+			],
+			"if": {
+				"version": "grown"
+			},
+			"name": "Concórdia's wall"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				12
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_n"
+			],
+			"if": {
+				"version": "fresh"
+			},
+			"name": "The wall's scaffolding (unfinished)"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				12
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_n"
+			],
+			"if": {
+				"version": "grown"
+			},
+			"name": "Concórdia's wall"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				13
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_n"
+			],
+			"if": {
+				"version": "fresh"
+			},
+			"name": "The wall's scaffolding (unfinished)"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				13
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_n"
+			],
+			"if": {
+				"version": "grown"
+			},
+			"name": "Concórdia's wall"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				66
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_s"
+			],
+			"if": {
+				"version": "fresh"
+			},
+			"name": "The wall's scaffolding (unfinished)"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				66
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_s"
+			],
+			"if": {
+				"version": "grown"
+			},
+			"name": "Concórdia's wall"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				67
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_s"
+			],
+			"if": {
+				"version": "fresh"
+			},
+			"name": "The wall's scaffolding (unfinished)"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				67
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_s"
+			],
+			"if": {
+				"version": "grown"
+			},
+			"name": "Concórdia's wall"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				68
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_s"
+			],
+			"if": {
+				"version": "fresh"
+			},
+			"name": "The wall's scaffolding (unfinished)"
+		},
+		{
+			"team": "city",
+			"kind": "wall",
+			"at": [
+				53,
+				68
+			],
+			"tag": "breaches",
+			"tags": [
+				"breach_s"
+			],
+			"if": {
+				"version": "grown"
+			},
+			"name": "Concórdia's wall"
+		},
+		{
+			"team": "masters",
+			"kind": "gate",
+			"at": [
+				53,
+				39
+			],
+			"tag": "postern",
+			"if": {
+				"past": {
+					"d07_spring.spring": "stopped"
+				}
+			},
+			"name": "The postern of the old quarter"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				39
+			],
+			"tag": "postern",
+			"tags": [
+				"gates"
+			],
+			"if": {
+				"not": {
+					"past": {
+						"d07_spring.spring": "stopped"
+					}
+				}
+			},
+			"name": "The postern of the old quarter"
+		},
+		{
+			"team": "masters",
+			"kind": "gate",
+			"at": [
+				53,
+				40
+			],
+			"tag": "postern",
+			"if": {
+				"past": {
+					"d07_spring.spring": "stopped"
+				}
+			},
+			"name": "The postern of the old quarter"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				40
+			],
+			"tag": "postern",
+			"tags": [
+				"gates"
+			],
+			"if": {
+				"not": {
+					"past": {
+						"d07_spring.spring": "stopped"
+					}
+				}
+			},
+			"name": "The postern of the old quarter"
+		},
+		{
+			"team": "masters",
+			"kind": "gate",
+			"at": [
+				53,
+				41
+			],
+			"tag": "postern",
+			"if": {
+				"past": {
+					"d07_spring.spring": "stopped"
+				}
+			},
+			"name": "The postern of the old quarter"
+		},
+		{
+			"team": "city",
+			"kind": "gate",
+			"at": [
+				53,
+				41
+			],
+			"tag": "postern",
+			"tags": [
+				"gates"
+			],
+			"if": {
+				"not": {
+					"past": {
+						"d07_spring.spring": "stopped"
+					}
+				}
+			},
+			"name": "The postern of the old quarter"
+		},
+		{
+			"team": "city",
+			"kind": "clocktower",
+			"at": [
+				147,
+				14
+			],
+			"tag": "spring",
+			"name": "The Great Spring"
+		},
+		{
+			"team": "city",
+			"kind": "clocktower",
+			"at": [
+				82,
+				22
+			],
+			"tag": "arsenal",
+			"tags": [
+				"works"
+			],
+			"name": "The arsenal's tower"
+		},
+		{
+			"team": "city",
+			"kind": "escapement",
+			"at": [
+				90,
+				21
+			],
+			"tag": "escapement",
+			"tags": [
+				"works"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "movement_works",
+			"at": [
+				75,
+				22
+			],
+			"tag": "light_works",
+			"tags": [
+				"works"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "heavy_works",
+			"at": [
+				79,
+				29
+			],
+			"tag": "heavy_works",
+			"tags": [
+				"works"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "mainspring",
+			"at": [
+				92,
+				25
+			],
+			"tag": "mainspring",
+			"tags": [
+				"works"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "cuckoo_house",
+			"at": [
+				97,
+				27
+			],
+			"tag": "aviary",
+			"tags": [
+				"works"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "cog_press",
+			"at": [
+				83,
+				16
+			],
+			"tag": "works"
+		},
+		{
+			"team": "city",
+			"kind": "regulator",
+			"at": [
+				73,
+				19
+			],
+			"tag": "works"
+		},
+		{
+			"team": "city",
+			"kind": "regulator",
+			"at": [
+				73,
+				26
+			],
+			"tag": "works"
+		},
+		{
+			"team": "city",
+			"kind": "movement_works",
+			"at": [
+				135,
+				29
+			],
+			"tag": "city_works",
+			"tags": [
+				"w_u_works"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "cog_press",
+			"at": [
+				157,
+				30
+			],
+			"tag": "city_works",
+			"tags": [
+				"w_u_press"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "cog_press",
+			"at": [
+				117,
+				19
+			],
+			"tag": "city_works",
+			"tags": [
+				"w_n_press"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "movement_works",
+			"at": [
+				137,
+				51
+			],
+			"tag": "city_works",
+			"tags": [
+				"w_f_works"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "escapement",
+			"at": [
+				159,
+				55
+			],
+			"tag": "city_works",
+			"tags": [
+				"w_f_esc"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "cog_press",
+			"at": [
+				137,
+				75
+			],
+			"tag": "city_works",
+			"tags": [
+				"w_m_press"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "regulator",
+			"at": [
+				159,
+				75
+			],
+			"tag": "city_works",
+			"tags": [
+				"w_m_reg"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "cog_press",
+			"at": [
+				93,
+				69
+			],
+			"tag": "city_works",
+			"tags": [
+				"w_k_press"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "regulator",
+			"at": [
+				69,
+				71
+			],
+			"tag": "city_works",
+			"tags": [
+				"w_k_reg"
+			]
+		}
+	],
+	"objectives": [
+		{
+			"id": "park",
+			"side": "crown",
+			"primary": true,
+			"kind": "protect",
+			"tag": "park",
+			"text": "The siege park's magazine (in the camp) must stand."
+		},
+		{
+			"id": "lines",
+			"side": "crown",
+			"primary": false,
+			"kind": "build",
+			"tag": "earthworks",
+			"text": "THE LINES: your pioneers (the Labourers) dig the earthworks marked before the three gates. Select them and right-click a marked palisade. Then set the guns behind the earthworks.",
+			"phone": "Dig the marked earthworks with the pioneers; guns behind them."
+		},
+		{
+			"id": "dusk",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "dusk",
+			"text": "The city comes out at nightfall: {clock:dusk}."
+		},
+		{
+			"id": "charges",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"text": "At the camp's Armoury (north of the camp) research PREPARED CHARGES, then the GUNNER'S QUADRANT: your guns reload faster and reach farther.",
+			"phone": "Armoury: research PREPARED CHARGES, then the QUADRANT."
+		},
+		{
+			"id": "jakob",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Keep Jakob alive: he hears the city's ticking. Nothing will bring him back if he falls."
+		},
+		{
+			"id": "breach",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Knock down a gate with the guns. The weak ones are marked (their stop-works were taken out)."
+		},
+		{
+			"id": "sorties",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE SORTIES: the city comes out of its gates at the batteries. Beat each sortie back and keep the guns. Sortie {sortie_n} of 3.",
+			"phone": "Beat back the sorties at the batteries ({sortie_n} of 3)."
+		},
+		{
+			"id": "dawn_clock",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "dawn",
+			"hidden": true,
+			"text": "Full day in {clock:dawn}."
+		},
+		{
+			"id": "mine",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE MINE: bring at least two pioneers (Labourers) to the old mine's mouth in the north of the camp (pinged). They go down the galleries under the wall to the great spring's tower.",
+			"phone": "Two pioneers to the old mine's mouth (north of the camp)."
+		},
+		{
+			"id": "mine_clock",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "mine",
+			"hidden": true,
+			"text": "The pioneers are under the ground. Hold the mine's mouth: they reach the spring in {clock:mine}."
+		},
+		{
+			"id": "hold",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE GREAT SORTIE: the city comes out with everything. Hold the camp and the siege park until dusk.",
+			"phone": "Hold the camp and the park until dusk."
+		},
+		{
+			"id": "relief",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "relief",
+			"hidden": true,
+			"text": "Dusk in {clock:relief}."
+		},
+		{
+			"id": "diggers",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "diggers",
+			"hidden": true,
+			"text": "The city's diggers come up at the old mine's mouth in {clock:diggers}: have men there."
+		},
+		{
+			"id": "c_break",
+			"side": "city",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "BREAK THE SIEGE: blow the siege park's magazine (in the Crown's camp, west), or bring down Father Ferrer, the old priest. Before the Crown's work is done.",
+			"phone": "Blow the siege park's magazine or bring down Father Ferrer."
+		}
+	],
+	"triggers": [
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "dusk",
+						"secs": 240
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"wind": {
+						"team": "masters",
+						"share": 1.0
+					}
+				},
+				{
+					"max_hp": {
+						"tag": "spring",
+						"hp": 6000
+					}
+				},
+				{
+					"spare": {
+						"tag": "hollweg_w"
+					}
+				},
+				{
+					"order": {
+						"tag": "garrison",
+						"do": "hold"
+					}
+				},
+				{
+					"order": {
+						"tag": "city_winders",
+						"do": "hold"
+					}
+				},
+				{
+					"counter": {
+						"name": "dug_n",
+						"count": {
+							"tag": "earthworks"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "if_setup__0",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"past": {
+										"c01_thirteenth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a04_visit.jakob": "lost"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "jakob",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "walls_fresh_running",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"version": "fresh"
+					},
+					{
+						"not": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"max_hp": {
+						"tag": "gates",
+						"hp": 900
+					}
+				},
+				{
+					"max_hp": {
+						"tag": "breaches",
+						"hp": 140
+					}
+				}
+			]
+		},
+		{
+			"id": "walls_fresh_stopped",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"version": "fresh"
+					},
+					{
+						"past": {
+							"d07_spring.spring": "stopped"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"max_hp": {
+						"tag": "gates",
+						"hp": 675
+					}
+				},
+				{
+					"max_hp": {
+						"tag": "breaches",
+						"hp": 105
+					}
+				}
+			]
+		},
+		{
+			"id": "walls_grown_running",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"version": "grown"
+					},
+					{
+						"not": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"max_hp": {
+						"tag": "gates",
+						"hp": 2000
+					}
+				},
+				{
+					"max_hp": {
+						"tag": "breaches",
+						"hp": 1500
+					}
+				}
+			]
+		},
+		{
+			"id": "walls_grown_stopped",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"version": "grown"
+					},
+					{
+						"past": {
+							"d07_spring.spring": "stopped"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"max_hp": {
+						"tag": "gates",
+						"hp": 1500
+					}
+				},
+				{
+					"max_hp": {
+						"tag": "breaches",
+						"hp": 1125
+					}
+				}
+			]
+		},
+		{
+			"id": "weak_found",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"a04_visit.stopworks": "logged"
+									}
+								}
+							},
+							{
+								"not": {
+									"any": [
+										{
+											"past": {
+												"c01_thirteenth.jakob": "lost"
+											}
+										},
+										{
+											"past": {
+												"a02_furth.jakob": "lost"
+											}
+										},
+										{
+											"past": {
+												"a04_visit.jakob": "lost"
+											}
+										}
+									]
+								}
+							}
+						]
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"max_hp": {
+						"tag": "g_north",
+						"hp": 315
+					}
+				},
+				{
+					"max_hp": {
+						"tag": "g_south",
+						"hp": 315
+					}
+				}
+			]
+		},
+		{
+			"id": "weak_found_g",
+			"when": {
+				"all": [
+					{
+						"fired": "weak_found"
+					},
+					{
+						"version": "grown"
+					}
+				]
+			},
+			"do": [
+				{
+					"max_hp": {
+						"tag": "g_north",
+						"hp": 700
+					}
+				},
+				{
+					"max_hp": {
+						"tag": "g_south",
+						"hp": 700
+					}
+				}
+			]
+		},
+		{
+			"id": "weak_say",
+			"when": {
+				"all": [
+					{
+						"time": 14
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"a04_visit.stopworks": "logged"
+									}
+								}
+							},
+							{
+								"not": {
+									"any": [
+										{
+											"past": {
+												"c01_thirteenth.jakob": "lost"
+											}
+										},
+										{
+											"past": {
+												"a02_furth.jakob": "lost"
+											}
+										},
+										{
+											"past": {
+												"a04_visit.jakob": "lost"
+											}
+										}
+									]
+								}
+							}
+						]
+					},
+					{
+						"playing": "crown"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"j_weak",
+						"n_weak"
+					]
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				},
+				{
+					"ping": {
+						"area": "south_out"
+					}
+				},
+				{
+					"objective": {
+						"id": "breach",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "wind_city",
+			"when": {
+				"time": 4
+			},
+			"every": 4,
+			"do": [
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"wind": {
+						"team": "masters",
+						"share": 1.0
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_c",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"playing": "city"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "c_break",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"cn_1",
+						"cn_k7"
+					]
+				},
+				{
+					"ping": {
+						"area": "park"
+					}
+				}
+			]
+		},
+		{
+			"id": "city_cogs",
+			"when": {
+				"all": [
+					{
+						"time": 10
+					},
+					{
+						"playing": "city"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 10,
+			"do": [
+				{
+					"give": {
+						"team": "city",
+						"gold": 20
+					}
+				}
+			]
+		},
+		{
+			"id": "lines",
+			"when": {
+				"time": 2.0
+			},
+			"do": [
+				{
+					"say": [
+						"r_lines",
+						"n_lines",
+						"n_dusk"
+					]
+				},
+				{
+					"ping": {
+						"area": "earth_n"
+					}
+				},
+				{
+					"ping": {
+						"area": "earth_w"
+					}
+				},
+				{
+					"ping": {
+						"area": "earth_s"
+					}
+				},
+				{
+					"reveal": {
+						"area": "lines",
+						"side": "crown"
+					}
+				}
+			]
+		},
+		{
+			"id": "valley_hi",
+			"when": {
+				"all": [
+					{
+						"time": 24
+					},
+					{
+						"playing": "crown"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": []
+		},
+		{
+			"id": "if_valley_hi__0",
+			"when": {
+				"all": [
+					{
+						"fired": "valley_hi"
+					},
+					{
+						"past": {
+							"d04_concordia.colonists": "fought"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"a_hello"
+					]
+				}
+			]
+		},
+		{
+			"id": "if_valley_hi__1",
+			"when": {
+				"all": [
+					{
+						"fired": "valley_hi"
+					},
+					{
+						"not": {
+							"past": {
+								"d04_concordia.colonists": "fought"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"a_hello_few"
+					]
+				}
+			]
+		},
+		{
+			"id": "hollweg_seen",
+			"when": {
+				"all": [
+					{
+						"time": 34
+					},
+					{
+						"not": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					},
+					{
+						"playing": "crown"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_hollweg"
+					]
+				},
+				{
+					"ping": {
+						"area": "hollweg_post"
+					}
+				},
+				{
+					"reveal": {
+						"area": "hollweg_post",
+						"side": "crown",
+						"secs": 20
+					}
+				}
+			]
+		},
+		{
+			"id": "if_hollweg_seen__0",
+			"when": {
+				"all": [
+					{
+						"fired": "hollweg_seen"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"past": {
+										"c01_thirteenth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a04_visit.jakob": "lost"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"j_hollweg"
+					]
+				}
+			]
+		},
+		{
+			"id": "hollweg_here",
+			"when": {
+				"all": [
+					{
+						"time": 34
+					},
+					{
+						"past": {
+							"d07_spring.spring": "stopped"
+						}
+					},
+					{
+						"playing": "crown"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"h_prisoner",
+						"f_prisoner"
+					]
+				}
+			]
+		},
+		{
+			"id": "charges_say",
+			"when": {
+				"all": [
+					{
+						"time": 52
+					},
+					{
+						"playing": "crown"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"r_charges"
+					]
+				},
+				{
+					"ping": {
+						"tag": "c_armoury"
+					}
+				}
+			]
+		},
+		{
+			"id": "charges_done",
+			"when": {
+				"researched": {
+					"team": "column",
+					"tech": "charges"
+				}
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "charges",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_charges_done"
+					]
+				}
+			]
+		},
+		{
+			"id": "col_hold",
+			"when": {
+				"all": [
+					{
+						"time": 1.0
+					},
+					{
+						"not": {
+							"playing": "crown"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "line",
+						"do": "move",
+						"to": "bat_w"
+					}
+				},
+				{
+					"order": {
+						"tag": "riders",
+						"do": "move",
+						"to": "camp_mid"
+					}
+				},
+				{
+					"order": {
+						"tag": "guns",
+						"do": "move",
+						"to": "bat_w"
+					}
+				},
+				{
+					"order": {
+						"tag": "pioneers",
+						"do": "move",
+						"to": "camp_mid"
+					}
+				}
+			]
+		},
+		{
+			"id": "valley_hold",
+			"when": {
+				"time": 1.0
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "militia",
+						"do": "move",
+						"to": "bat_s"
+					}
+				},
+				{
+					"order": {
+						"tag": "arruda",
+						"do": "move",
+						"to": "bat_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "probe1",
+			"when": {
+				"all": [
+					{
+						"time": 42
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"probe1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_n"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"probe1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_n"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "springer",
+						"count": 1,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"probe1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_n"
+						},
+						"if": {
+							"difficulty": [
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				},
+				{
+					"say": [
+						"n_probe",
+						"r_probe"
+					]
+				}
+			]
+		},
+		{
+			"id": "probe2",
+			"when": {
+				"all": [
+					{
+						"time": 105
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "south_in",
+						"tag": "sortie",
+						"tags": [
+							"probe2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_s"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "south_in",
+						"tag": "sortie",
+						"tags": [
+							"probe2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_s"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "netter",
+						"count": 1,
+						"at": "south_in",
+						"tag": "sortie",
+						"tags": [
+							"probe2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_s"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_out"
+					}
+				},
+				{
+					"say": [
+						"n_probe2"
+					]
+				}
+			]
+		},
+		{
+			"id": "owls_camp",
+			"when": {
+				"all": [
+					{
+						"time": 75
+					},
+					{
+						"version": "grown"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "ticking_owl",
+						"count": 2,
+						"at": "spring_top",
+						"tag": "sortie",
+						"tags": [
+							"owls_camp",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"say": [
+						"n_owls_camp"
+					]
+				},
+				{
+					"ping": {
+						"area": "camp_mid"
+					}
+				}
+			]
+		},
+		{
+			"id": "dug_count",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"counter": {
+						"name": "dug_n",
+						"count": {
+							"tag": "earthworks"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "lines_done",
+			"when": {
+				"all": [
+					{
+						"done": "lines"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_lines_done"
+					]
+				},
+				{
+					"ping": {
+						"tag": "guns"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"all": [
+									{
+										"fired": "lines_done"
+									},
+									{
+										"time": 60
+									}
+								]
+							},
+							{
+								"clock_out": "dusk"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"clock": {
+						"name": "dusk",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "dusk",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "sorties",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "dawn_clock",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"secs": 200
+					}
+				},
+				{
+					"light": {
+						"to": "night",
+						"secs": 8
+					}
+				},
+				{
+					"say": [
+						"n_night"
+					]
+				}
+			]
+		},
+		{
+			"id": "if_part2__0",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_night"
+					]
+				}
+			]
+		},
+		{
+			"id": "lines_late",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"done": "lines"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "lines",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "breach_on",
+			"when": {
+				"fired": "part2"
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "breach",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "read_log",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"a04_visit.stopworks": "logged"
+										}
+									}
+								},
+								{
+									"not": {
+										"any": [
+											{
+												"past": {
+													"c01_thirteenth.jakob": "lost"
+												}
+											},
+											{
+												"past": {
+													"a02_furth.jakob": "lost"
+												}
+											},
+											{
+												"past": {
+													"a04_visit.jakob": "lost"
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 18,
+			"do": [
+				{
+					"max_hp": {
+						"tag": "g_west",
+						"hp": 315
+					}
+				},
+				{
+					"ping": {
+						"area": "west_out"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_read_log__0",
+			"when": {
+				"all": [
+					{
+						"fired": "read_log"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_log"
+					]
+				}
+			]
+		},
+		{
+			"id": "read_log_g",
+			"when": {
+				"all": [
+					{
+						"fired": "read_log"
+					},
+					{
+						"version": "grown"
+					}
+				]
+			},
+			"do": [
+				{
+					"max_hp": {
+						"tag": "g_west",
+						"hp": 700
+					}
+				}
+			]
+		},
+		{
+			"id": "postern_say",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"past": {
+							"d07_spring.spring": "stopped"
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 30,
+			"do": [
+				{
+					"say": [
+						"m_postern"
+					]
+				},
+				{
+					"ping": {
+						"area": "postern_out"
+					}
+				}
+			]
+		},
+		{
+			"id": "s1",
+			"when": {
+				"fired": "part2"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"s1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 1,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"s1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "netter",
+						"count": 2,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"s1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "ticking_owl",
+						"count": 2,
+						"at": "spring_top",
+						"tag": "sortie",
+						"tags": [
+							"s1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						},
+						"if": {
+							"version": "fresh"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "ticking_owl",
+						"count": 4,
+						"at": "spring_top",
+						"tag": "sortie",
+						"tags": [
+							"s1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						},
+						"if": {
+							"version": "grown"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "west_out"
+					}
+				},
+				{
+					"say": [
+						"n_s1"
+					]
+				}
+			],
+			"delay": 8
+		},
+		{
+			"id": "s1_n",
+			"when": {
+				"fired": "s1"
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "sortie_n",
+						"set": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "s2",
+			"when": {
+				"fired": "part2"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"s2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_n"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"s2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_n"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "south_in",
+						"tag": "sortie",
+						"tags": [
+							"s2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_s"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "south_in",
+						"tag": "sortie",
+						"tags": [
+							"s2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_s"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "springer",
+						"count": 2,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"s2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_n"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "springer",
+						"count": 1,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"s2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_n"
+						},
+						"if": {
+							"version": "grown"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				},
+				{
+					"ping": {
+						"area": "south_out"
+					}
+				},
+				{
+					"say": [
+						"n_s2"
+					]
+				}
+			],
+			"delay": 58
+		},
+		{
+			"id": "s2_dawn",
+			"when": {
+				"fired": "s2"
+			},
+			"do": [
+				{
+					"light": {
+						"to": "dawn",
+						"secs": 10
+					}
+				},
+				{
+					"counter": {
+						"name": "sortie_n",
+						"set": 2
+					}
+				}
+			]
+		},
+		{
+			"id": "s3",
+			"when": {
+				"fired": "part2"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 5,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"s3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"s3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "pendulum",
+						"count": 1,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"s3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "netter",
+						"count": 2,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"s3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "springer",
+						"count": 2,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"s3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						},
+						"if": {
+							"version": "grown"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "ballista",
+						"count": 1,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"s3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						},
+						"if": {
+							"version": "grown"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "west_out"
+					}
+				},
+				{
+					"say": [
+						"n_s3"
+					]
+				}
+			],
+			"delay": 108
+		},
+		{
+			"id": "s3_n",
+			"when": {
+				"fired": "s3"
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "sortie_n",
+						"set": 3
+					}
+				}
+			]
+		},
+		{
+			"id": "if_s3_n__0",
+			"when": {
+				"all": [
+					{
+						"fired": "s3_n"
+					},
+					{
+						"version": "grown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_s3_grown"
+					]
+				}
+			]
+		},
+		{
+			"id": "more_c",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "s1"
+							},
+							{
+								"fired": "s2"
+							},
+							{
+								"fired": "s3"
+							}
+						]
+					},
+					{
+						"playing": "city"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"cn_more"
+					]
+				}
+			]
+		},
+		{
+			"id": "sortie_press",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"not": {
+							"playing": "city"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "sortie",
+						"do": "hunt",
+						"prey_team": "column",
+						"within": 12
+					}
+				}
+			]
+		},
+		{
+			"id": "sortie_owls",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"not": {
+							"playing": "city"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 5,
+			"do": [
+				{
+					"order": {
+						"tag": "sortie",
+						"kind": "ticking_owl",
+						"do": "hunt",
+						"prey": "guns",
+						"within": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "out_count",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"counter": {
+						"name": "out_n",
+						"count": {
+							"team": "city",
+							"area": "outside"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "breached",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"dead": "g_north"
+							},
+							{
+								"dead": "g_west"
+							},
+							{
+								"dead": "g_south"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "breach",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_breach"
+					]
+				}
+			]
+		},
+		{
+			"id": "sorties_done",
+			"when": {
+				"all": [
+					{
+						"fired": "s3"
+					},
+					{
+						"counter": {
+							"name": "out_n",
+							"below": 3
+						}
+					},
+					{
+						"all": [
+							{
+								"fired": "part2"
+							},
+							{
+								"not": {
+									"fired": "part3"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"objective": {
+						"id": "sorties",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_sorties_done"
+					]
+				}
+			]
+		},
+		{
+			"id": "full_day",
+			"when": {
+				"all": [
+					{
+						"clock_out": "dawn"
+					},
+					{
+						"not": {
+							"fired": "sorties_done"
+						}
+					},
+					{
+						"all": [
+							{
+								"fired": "part2"
+							},
+							{
+								"not": {
+									"fired": "part3"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_full_day"
+					]
+				},
+				{
+					"objective": {
+						"id": "sorties",
+						"set": "done"
+					}
+				},
+				{
+					"order": {
+						"tag": "sortie",
+						"do": "move",
+						"to": "arsenal_mid"
+					}
+				}
+			]
+		},
+		{
+			"id": "jakob_hurt",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "jakob",
+							"below": 0.5
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"times": 1,
+			"do": [
+				{
+					"say": [
+						"j_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "jakob"
+					}
+				}
+			]
+		},
+		{
+			"id": "jakob_down",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"past": {
+										"c01_thirteenth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a04_visit.jakob": "lost"
+									}
+								}
+							]
+						}
+					},
+					{
+						"dead": "jakob"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_jakob_down"
+					]
+				},
+				{
+					"objective": {
+						"id": "jakob",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_jakob_down__0",
+			"when": {
+				"all": [
+					{
+						"fired": "jakob_down"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_jakob_down"
+					]
+				}
+			]
+		},
+		{
+			"id": "hurt_f",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "ferrer",
+							"below": 0.5
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"f_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "ferrer"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "sorties_done"
+							},
+							{
+								"fired": "full_day"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"clock": {
+						"name": "dawn",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "dawn_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "sorties",
+						"set": "hidden"
+					}
+				},
+				{
+					"light": {
+						"to": "day",
+						"secs": 8
+					}
+				}
+			]
+		},
+		{
+			"id": "mine_on",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"version": "fresh"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "mine",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"n_mine"
+					]
+				},
+				{
+					"ping": {
+						"area": "mine_mouth"
+					}
+				},
+				{
+					"reveal": {
+						"area": "mine_near",
+						"side": "crown"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_mine_on__0",
+			"when": {
+				"all": [
+					{
+						"fired": "mine_on"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"past": {
+										"c01_thirteenth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a04_visit.jakob": "lost"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"j_mine"
+					]
+				}
+			]
+		},
+		{
+			"id": "if_mine_on__1",
+			"when": {
+				"all": [
+					{
+						"fired": "mine_on"
+					},
+					{
+						"all": [
+							{
+								"any": [
+									{
+										"past": {
+											"c01_thirteenth.jakob": "lost"
+										}
+									},
+									{
+										"past": {
+											"a02_furth.jakob": "lost"
+										}
+									},
+									{
+										"past": {
+											"a04_visit.jakob": "lost"
+										}
+									}
+								]
+							},
+							{
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"h_mine"
+					]
+				}
+			]
+		},
+		{
+			"id": "if_mine_on__2",
+			"when": {
+				"all": [
+					{
+						"fired": "mine_on"
+					},
+					{
+						"all": [
+							{
+								"any": [
+									{
+										"past": {
+											"c01_thirteenth.jakob": "lost"
+										}
+									},
+									{
+										"past": {
+											"a02_furth.jakob": "lost"
+										}
+									},
+									{
+										"past": {
+											"a04_visit.jakob": "lost"
+										}
+									}
+								]
+							},
+							{
+								"not": {
+									"past": {
+										"d07_spring.spring": "stopped"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_mine"
+					]
+				}
+			]
+		},
+		{
+			"id": "if_mine_on__3",
+			"when": {
+				"all": [
+					{
+						"fired": "mine_on"
+					},
+					{
+						"playing": "city"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"cn_mine"
+					]
+				}
+			]
+		},
+		{
+			"id": "reserve",
+			"when": {
+				"all": [
+					{
+						"fired": "mine_on"
+					},
+					{
+						"count": {
+							"tag": "pioneers",
+							"below": 2
+						}
+					},
+					{
+						"not": {
+							"fired": "sap_go"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "column",
+						"kind": "labourer",
+						"as": "pioneer",
+						"count": 3,
+						"at": "camp_mid",
+						"tag": "pioneers",
+						"fixed": true
+					}
+				}
+			]
+		},
+		{
+			"id": "if_reserve__0",
+			"when": {
+				"all": [
+					{
+						"fired": "reserve"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_reserve"
+					]
+				}
+			]
+		},
+		{
+			"id": "mine_go_s",
+			"when": {
+				"all": [
+					{
+						"fired": "mine_on"
+					},
+					{
+						"not": {
+							"playing": "crown"
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"every": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "pioneers",
+						"do": "move",
+						"to": "mine_mouth"
+					}
+				}
+			]
+		},
+		{
+			"id": "sap_go",
+			"when": {
+				"all": [
+					{
+						"fired": "mine_on"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"stay": {
+							"tag": "pioneers",
+							"area": "mine_mouth",
+							"count": 2,
+							"secs": 3
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"sap": {
+						"tag": "pioneers",
+						"to": "spring_foot",
+						"secs": 45,
+						"name": "mine",
+						"blast": {
+							"tag": "spring",
+							"amount": 99999,
+							"within": 6
+						}
+					}
+				},
+				{
+					"clock": {
+						"name": "mine",
+						"secs": 45,
+						"scale": false
+					}
+				}
+			]
+		},
+		{
+			"id": "sap_go_easy",
+			"when": {
+				"all": [
+					{
+						"fired": "mine_on"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"stay": {
+							"tag": "pioneers",
+							"area": "mine_mouth",
+							"count": 2,
+							"secs": 3
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "sap_go"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"sap": {
+						"tag": "pioneers",
+						"to": "spring_foot",
+						"secs": 36,
+						"name": "mine",
+						"blast": {
+							"tag": "spring",
+							"amount": 99999,
+							"within": 6
+						}
+					}
+				},
+				{
+					"clock": {
+						"name": "mine",
+						"secs": 36,
+						"scale": false
+					}
+				}
+			]
+		},
+		{
+			"id": "sap_go_hard",
+			"when": {
+				"all": [
+					{
+						"fired": "mine_on"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"stay": {
+							"tag": "pioneers",
+							"area": "mine_mouth",
+							"count": 2,
+							"secs": 3
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "sap_go"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"sap": {
+						"tag": "pioneers",
+						"to": "spring_foot",
+						"secs": 54,
+						"name": "mine",
+						"blast": {
+							"tag": "spring",
+							"amount": 99999,
+							"within": 6
+						}
+					}
+				},
+				{
+					"clock": {
+						"name": "mine",
+						"secs": 54,
+						"scale": false
+					}
+				}
+			]
+		},
+		{
+			"id": "sap_said",
+			"when": {
+				"any": [
+					{
+						"fired": "sap_go"
+					},
+					{
+						"fired": "sap_go_easy"
+					},
+					{
+						"fired": "sap_go_hard"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "mine",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "mine_clock",
+						"set": "active"
+					}
+				},
+				{
+					"say": [
+						"n_under",
+						"r_under"
+					]
+				}
+			]
+		},
+		{
+			"id": "m1",
+			"when": {
+				"fired": "sap_said"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"m1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "mine_near"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"m1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "mine_near"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "springer",
+						"count": 2,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"m1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "mine_near"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "netter",
+						"count": 1,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"m1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "mine_near"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				}
+			],
+			"delay": 4
+		},
+		{
+			"id": "m2",
+			"when": {
+				"fired": "sap_said"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"m2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "mine_near"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"m2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "mine_near"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"m2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "mine_near"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"m2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "mine_near"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "pendulum",
+						"count": 1,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"m2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "mine_near"
+						},
+						"if": {
+							"difficulty": [
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "springer",
+						"count": 1,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"m2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "mine_near"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "west_out"
+					}
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				}
+			],
+			"delay": 24
+		},
+		{
+			"id": "m_press",
+			"when": {
+				"all": [
+					{
+						"fired": "sap_said"
+					},
+					{
+						"not": {
+							"playing": "city"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "spring_down"
+						}
+					}
+				]
+			},
+			"every": 5,
+			"do": [
+				{
+					"order": {
+						"tag": "sortie",
+						"do": "attack",
+						"to": "mine_near",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "spring_down",
+			"when": {
+				"all": [
+					{
+						"dead": "spring"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"brake": {
+						"team": "city",
+						"name": "spring"
+					}
+				},
+				{
+					"say": [
+						"n_spring_down"
+					]
+				},
+				{
+					"clock": {
+						"name": "mine",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "mine_clock",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_spring_down__0",
+			"when": {
+				"all": [
+					{
+						"fired": "spring_down"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_spring1",
+						"f_spring2"
+					]
+				}
+			]
+		},
+		{
+			"id": "if_spring_down__1",
+			"when": {
+				"all": [
+					{
+						"fired": "spring_down"
+					},
+					{
+						"playing": "city"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"cn_lost_spring"
+					]
+				}
+			]
+		},
+		{
+			"id": "come_back",
+			"when": {
+				"sapped": "mine"
+			},
+			"delay": 2,
+			"do": [
+				{
+					"sap": {
+						"tag": "pioneers",
+						"to": "mine_mouth",
+						"secs": 10,
+						"name": "back"
+					}
+				}
+			]
+		},
+		{
+			"id": "back_say",
+			"when": {
+				"sapped": "back"
+			},
+			"do": [
+				{
+					"say": [
+						"n_back"
+					]
+				}
+			]
+		},
+		{
+			"id": "close",
+			"when": {
+				"all": [
+					{
+						"fired": "spring_down"
+					},
+					{
+						"any": [
+							{
+								"sapped": "back"
+							},
+							{
+								"not": {
+									"any": [
+										{
+											"fired": "sap_go"
+										},
+										{
+											"fired": "sap_go_easy"
+										},
+										{
+											"fired": "sap_go_hard"
+										}
+									]
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"flag": {
+						"siege": "close"
+					}
+				}
+			]
+		},
+		{
+			"id": "hold_on",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"version": "grown"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "hold",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "relief",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "diggers",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "relief",
+						"secs": 180
+					}
+				},
+				{
+					"clock": {
+						"name": "diggers",
+						"secs": 40
+					}
+				},
+				{
+					"say": [
+						"n_hold"
+					]
+				},
+				{
+					"ping": {
+						"area": "mine_mouth"
+					}
+				},
+				{
+					"reveal": {
+						"area": "mine_near",
+						"side": "crown"
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "spring_foot",
+						"tag": "diggers",
+						"tags": [
+							"c_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "springer",
+						"count": 2,
+						"at": "spring_foot",
+						"tag": "diggers",
+						"tags": [
+							"c_all"
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "if_hold_on__0",
+			"when": {
+				"all": [
+					{
+						"fired": "hold_on"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"past": {
+										"c01_thirteenth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a04_visit.jakob": "lost"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"j_dig"
+					]
+				}
+			]
+		},
+		{
+			"id": "if_hold_on__1",
+			"when": {
+				"all": [
+					{
+						"fired": "hold_on"
+					},
+					{
+						"any": [
+							{
+								"past": {
+									"c01_thirteenth.jakob": "lost"
+								}
+							},
+							{
+								"past": {
+									"a02_furth.jakob": "lost"
+								}
+							},
+							{
+								"past": {
+									"a04_visit.jakob": "lost"
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_dig"
+					]
+				}
+			]
+		},
+		{
+			"id": "if_hold_on__2",
+			"when": {
+				"all": [
+					{
+						"fired": "hold_on"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_diggers"
+					]
+				}
+			]
+		},
+		{
+			"id": "dig_go",
+			"when": {
+				"fired": "hold_on"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"sap": {
+						"tag": "diggers",
+						"to": "mine_mouth",
+						"secs": 39,
+						"name": "diggers"
+					}
+				}
+			]
+		},
+		{
+			"id": "dig_up",
+			"when": {
+				"sapped": "diggers"
+			},
+			"do": [
+				{
+					"say": [
+						"n_up"
+					]
+				},
+				{
+					"ping": {
+						"area": "mine_mouth"
+					}
+				},
+				{
+					"objective": {
+						"id": "diggers",
+						"set": "hidden"
+					}
+				},
+				{
+					"clock": {
+						"name": "diggers",
+						"stop": true
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"retag": {
+						"tag": "diggers",
+						"as": "sortie"
+					}
+				}
+			]
+		},
+		{
+			"id": "g1",
+			"when": {
+				"fired": "hold_on"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"g1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"g1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"g1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"g1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "springer",
+						"count": 2,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"g1",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				},
+				{
+					"ping": {
+						"area": "west_out"
+					}
+				}
+			],
+			"delay": 8
+		},
+		{
+			"id": "g2",
+			"when": {
+				"fired": "hold_on"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 5,
+						"at": "south_in",
+						"tag": "sortie",
+						"tags": [
+							"g2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 4,
+						"at": "south_in",
+						"tag": "sortie",
+						"tags": [
+							"g2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "netter",
+						"count": 2,
+						"at": "south_in",
+						"tag": "sortie",
+						"tags": [
+							"g2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "pendulum",
+						"count": 1,
+						"at": "south_in",
+						"tag": "sortie",
+						"tags": [
+							"g2",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "south_out"
+					}
+				},
+				{
+					"say": [
+						"n_wave"
+					]
+				}
+			],
+			"delay": 55
+		},
+		{
+			"id": "g3",
+			"when": {
+				"fired": "hold_on"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"g3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"g3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"g3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"g3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "south_in",
+						"tag": "sortie",
+						"tags": [
+							"g3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "south_in",
+						"tag": "sortie",
+						"tags": [
+							"g3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "ballista",
+						"count": 2,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"g3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "pendulum",
+						"count": 1,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"g3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "springer",
+						"count": 2,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"g3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				},
+				{
+					"ping": {
+						"area": "west_out"
+					}
+				},
+				{
+					"ping": {
+						"area": "south_out"
+					}
+				},
+				{
+					"say": [
+						"n_wave_big"
+					]
+				}
+			],
+			"delay": 100
+		},
+		{
+			"id": "g4",
+			"when": {
+				"fired": "hold_on"
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"g4",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "park"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"g4",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "park"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "ticking_owl",
+						"count": 3,
+						"at": "spring_top",
+						"tag": "sortie",
+						"tags": [
+							"g4",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "park"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "netter",
+						"count": 2,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"g4",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "park"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "west_out"
+					}
+				},
+				{
+					"say": [
+						"n_wave"
+					]
+				}
+			],
+			"delay": 140
+		},
+		{
+			"id": "g_press",
+			"when": {
+				"all": [
+					{
+						"fired": "hold_on"
+					},
+					{
+						"not": {
+							"playing": "city"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "sortie",
+						"do": "attack",
+						"to": "park",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "held_off",
+			"when": {
+				"all": [
+					{
+						"clock_out": "relief"
+					},
+					{
+						"fired": "hold_on"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_dusk_end"
+					]
+				},
+				{
+					"light": {
+						"to": "dusk",
+						"secs": 6
+					}
+				},
+				{
+					"order": {
+						"tag": "sortie",
+						"do": "move",
+						"to": "arsenal_mid"
+					}
+				},
+				{
+					"flag": {
+						"siege": "held_off"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_held_off__0",
+			"when": {
+				"all": [
+					{
+						"fired": "held_off"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_grown_end"
+					]
+				}
+			]
+		},
+		{
+			"id": "if_held_off__1",
+			"when": {
+				"all": [
+					{
+						"fired": "held_off"
+					},
+					{
+						"playing": "city"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"cn_lost_dusk"
+					]
+				}
+			]
+		},
+		{
+			"id": "jakob_flag",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "close"
+							},
+							{
+								"fired": "held_off"
+							}
+						]
+					},
+					{
+						"count": {
+							"tag": "jakob",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"jakob": "alive"
+					}
+				}
+			]
+		},
+		{
+			"id": "jakob_flag_l",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "close"
+							},
+							{
+								"fired": "held_off"
+							}
+						]
+					},
+					{
+						"count": {
+							"tag": "jakob",
+							"below": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"jakob": "lost"
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"any": [
+					{
+						"fired": "close"
+					},
+					{
+						"fired": "held_off"
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"objective": {
+						"id": "hold",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "c_break",
+						"set": "failed"
+					}
+				},
+				{
+					"win": "crown"
+				}
+			]
+		},
+		{
+			"id": "if_the_end__0",
+			"when": {
+				"all": [
+					{
+						"fired": "the_end"
+					},
+					{
+						"count": {
+							"tag": "jakob",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "jakob",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "lost_park",
+			"when": {
+				"all": [
+					{
+						"dead": "park"
+					},
+					{
+						"not": {
+							"playing": "city"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_park_down"
+					]
+				},
+				{
+					"objective": {
+						"id": "park",
+						"set": "failed"
+					}
+				},
+				{
+					"lose": "crown"
+				}
+			]
+		},
+		{
+			"id": "c_won",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"dead": "park"
+							},
+							{
+								"dead": "ferrer"
+							}
+						]
+					},
+					{
+						"playing": "city"
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "c_break",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "park",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "c_won_ferrer",
+			"when": {
+				"all": [
+					{
+						"fired": "c_won"
+					},
+					{
+						"dead": "ferrer"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"cn_ferrer"
+					]
+				}
+			]
+		},
+		{
+			"id": "c_won_park",
+			"when": {
+				"all": [
+					{
+						"fired": "c_won"
+					},
+					{
+						"dead": "park"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"cn_won"
+					]
+				}
+			]
+		},
+		{
+			"id": "c_won_end",
+			"when": {
+				"fired": "c_won"
+			},
+			"delay": 2,
+			"do": [
+				{
+					"win": "city"
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 8
+			},
+			"do": [
+				{
+					"say": [
+						"new_charges",
+						"new_quadrant",
+						"new_ballista",
+						"new_long_chain"
+					]
+				}
+			]
+		}
+	],
+	"heroes": [
+		"ferrer",
+		"ruggieri",
+		"hollweg",
+		"matthias",
+		"arruda"
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "crown",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"ferrer": {
+			"name": "Father Ferrer",
+			"side": "crown"
+		},
+		"jakob": {
+			"name": "Jakob",
+			"side": "crown"
+		},
+		"ruggieri": {
+			"name": "General Ruggieri",
+			"side": "crown"
+		},
+		"hollweg": {
+			"name": "Meister Hollweg",
+			"side": "crown"
+		},
+		"matthias": {
+			"name": "Matthias",
+			"side": "crown"
+		},
+		"arruda": {
+			"name": "Captain Arruda",
+			"side": "crown"
+		},
+		"narrator": {
+			"name": "The Siege Lines",
+			"side": "crown"
+		},
+		"cityn": {
+			"name": "The City",
+			"side": "city"
+		},
+		"new": {
+			"name": "NEW IN YOUR ARMY",
+			"side": "crown"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "Father Ferrer was old by then. Rome sent him to the highlands anyway, to see the city of gears with his own eyes."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "His report is on my desk still. He wrote it as a priest writes: what he saw, and nothing he did not."
+		},
+		"f_open1": {
+			"who": "ferrer",
+			"text": "Concórdia, 2780. The army's southern column came up onto the plateau in the dry winter. General Ruggieri had the guns. I had Rome's letter."
+		},
+		"f_open_fresh": {
+			"who": "ferrer",
+			"text": "We had come early. The city had not finished its wall, and its machines were out on the southern roads."
+		},
+		"f_open_grown": {
+			"who": "ferrer",
+			"text": "We came a year late. The wall was finished, brass on timber, and the great bolt-throwers stood on it."
+		},
+		"f_open_jakob": {
+			"who": "ferrer",
+			"text": "Jakob had come with me from Fürth, an old man now. He said he could hear the city ticking from the road."
+		},
+		"f_open_nojakob": {
+			"who": "ferrer",
+			"text": "Jakob was not with me. I had his log of Nuremberg, and I read it every night by the lantern."
+		},
+		"f_open_held": {
+			"who": "ferrer",
+			"text": "The jungle front had held. The army came south with the river towns safe behind it."
+		},
+		"f_open_thin": {
+			"who": "ferrer",
+			"text": "The jungle front was thin when the army left it. Nobody spoke of it on the road south."
+		},
+		"k_open_c": {
+			"who": "king",
+			"text": "Ferrer tells it from the lines. Here it is from inside the wall, where nobody wrote anything down."
+		},
+		"cn_open": {
+			"who": "cityn",
+			"text": "The plateau is full of the Crown's tents. The city's works turn day and night. Nobody in the council says who gives the orders."
+		},
+		"r_lines": {
+			"who": "ruggieri",
+			"text": "Dig in, Father. Three batteries, one before each gate. Nobody walks up to that wall in daylight.",
+			"to": "crown"
+		},
+		"n_lines": {
+			"who": "narrator",
+			"text": "THE LINES: your pioneers (the Labourers) dig the marked earthworks before the three gates. Select them and right-click a marked palisade. Then bring the guns up behind the earthworks.",
+			"to": "crown"
+		},
+		"n_dusk": {
+			"who": "narrator",
+			"text": "The city's machines come out at nightfall. Get the lines dug before then.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"j_weak": {
+			"who": "jakob",
+			"text": "The north gate and the south gate, Father. Their stop-works are gone. I hear them run on, a beat too fast. They will break first.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_weak": {
+			"who": "narrator",
+			"text": "Jakob marked the two weak gates (pinged). Your guns knock them down sooner than the others.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"f_hollweg": {
+			"who": "ferrer",
+			"text": "On the wall by the great spring stood an old man in a master's coat. He was watching our guns.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"j_hollweg": {
+			"who": "jakob",
+			"text": "It is the Meister. He does not see us, Father. He is listening to the city.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"h_prisoner": {
+			"who": "hollweg",
+			"text": "I asked to come, Father. I know the city's ways in. Let me show them, and then do with me what Rome asks.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"f_prisoner": {
+			"who": "ferrer",
+			"text": "Stand by me and say what you see. That is all Rome asks of you today.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"a_hello": {
+			"who": "arruda",
+			"text": "The valley is here, Father. We fought that city the day it was founded. We will fight it now.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"a_hello_few": {
+			"who": "arruda",
+			"text": "A few of the valley came, Father. The rest gave their word to the city once, and keep it.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_probe": {
+			"who": "narrator",
+			"text": "A few machines come out of the north gate at the diggers.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"r_probe": {
+			"who": "ruggieri",
+			"text": "Muskets forward! Cover the diggers!",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_probe2": {
+			"who": "narrator",
+			"text": "Machines out of the south gate.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_owls_camp": {
+			"who": "narrator",
+			"text": "Brass owls over the camp: the city sees everything you do. Muskets at them.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"r_charges": {
+			"who": "ruggieri",
+			"text": "Father, the Armoury. Prepared charges, the powder bagged ready, and the gunner's quadrant. My guns will fire faster and farther.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_lines_done": {
+			"who": "narrator",
+			"text": "The lines are dug. Set the guns behind the earthworks: at nightfall the city comes out.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_charges_done": {
+			"who": "narrator",
+			"text": "The guns have their prepared charges.",
+			"to": "crown"
+		},
+		"n_night": {
+			"who": "narrator",
+			"text": "Night. The city comes out of its gates. THE SORTIES: beat each one back at the batteries."
+		},
+		"f_night": {
+			"who": "ferrer",
+			"text": "We heard them before we saw them: the ticking under the wall, then the gates.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_s1": {
+			"who": "narrator",
+			"text": "Brass owls out of the dark, and machines with chains at the west gate.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_s2": {
+			"who": "narrator",
+			"text": "Dawn. Clock Soldiers out of the north and the south gates.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_s3": {
+			"who": "narrator",
+			"text": "The last sortie, the heaviest, out of the west gate: a Pendulum among them.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_s3_grown": {
+			"who": "narrator",
+			"text": "Behind them, a bolt-thrower on its cog wheels. Its screw goes through one man into the next.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"f_log": {
+			"who": "ferrer",
+			"text": "I read the log again by the lantern. The west gate: its stop-work was taken out, as at Nuremberg. I marked it for the guns.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"m_postern": {
+			"who": "matthias",
+			"text": "The postern by our old quarter is still ours, Father. It opens for you, and not for them.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_breach": {
+			"who": "narrator",
+			"text": "A gate is down. The way into the city is open.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"j_hurt": {
+			"who": "jakob",
+			"text": "I'm hit, Father. It is nothing. I'll walk back.",
+			"to": "crown"
+		},
+		"n_jakob_down": {
+			"who": "narrator",
+			"text": "Jakob has fallen.",
+			"to": "crown"
+		},
+		"f_jakob_down": {
+			"who": "ferrer",
+			"text": "He had walked from Nuremberg to the end of the world to stand by me. I buried him on the plateau, facing the city.",
+			"to": "crown"
+		},
+		"n_sorties_done": {
+			"who": "narrator",
+			"text": "The sorties are beaten back. The city shuts its gates."
+		},
+		"n_full_day": {
+			"who": "narrator",
+			"text": "Full day. The city calls its machines back behind the wall."
+		},
+		"n_mine": {
+			"who": "narrator",
+			"text": "THE MINE: bring at least two pioneers to the old mine's mouth in the north of the camp. They go down the old galleries, under the wall, to the great spring's tower.",
+			"to": "crown"
+		},
+		"j_mine": {
+			"who": "jakob",
+			"text": "The old adits, Father. I hear the spring down there, louder than up here. The galleries go right under its tower.",
+			"to": "crown"
+		},
+		"h_mine": {
+			"who": "hollweg",
+			"text": "I set the spring over the old shaft myself. The galleries run under it. Send your men down.",
+			"to": "crown"
+		},
+		"f_mine": {
+			"who": "ferrer",
+			"text": "Jakob's log had the mine's plan, copied at Fürth from the guild's own papers. The galleries ran under the spring.",
+			"to": "crown"
+		},
+		"n_reserve": {
+			"who": "narrator",
+			"text": "Your pioneers have all fallen. Three more come up from the baggage at the camp.",
+			"to": "crown"
+		},
+		"n_under": {
+			"who": "narrator",
+			"text": "The pioneers are under the ground. Hold the mine's mouth until they reach the spring.",
+			"to": "crown"
+		},
+		"r_under": {
+			"who": "ruggieri",
+			"text": "The city knows. Here they come. Hold the mouth!",
+			"to": "crown"
+		},
+		"n_spring_down": {
+			"who": "narrator",
+			"text": "The great spring's tower falls into the old shaft. Every machine in Concórdia runs down where it stands."
+		},
+		"f_spring1": {
+			"who": "ferrer",
+			"text": "The ticking stopped. For the first time in seven years the city was quiet.",
+			"to": "crown"
+		},
+		"f_spring2": {
+			"who": "ferrer",
+			"text": "We did not take it. We had not come to take it. We had come to stop it.",
+			"to": "crown"
+		},
+		"n_back": {
+			"who": "narrator",
+			"text": "The pioneers come back up the gallery.",
+			"to": "crown"
+		},
+		"n_hold": {
+			"who": "narrator",
+			"text": "THE GREAT SORTIE: the city comes out with everything. Hold the camp and the siege park until dusk."
+		},
+		"j_dig": {
+			"who": "jakob",
+			"text": "Father, under us. Picks, and a spring. They are in the old galleries, coming to the camp.",
+			"to": "crown"
+		},
+		"f_dig": {
+			"who": "ferrer",
+			"text": "In the night the sentries heard digging under the camp. The galleries were the city's now.",
+			"to": "crown"
+		},
+		"n_diggers": {
+			"who": "narrator",
+			"text": "The city's machines are coming up the old mine's mouth in the north of the camp. Have men there when they come up.",
+			"to": "crown"
+		},
+		"n_up": {
+			"who": "narrator",
+			"text": "They come up at the old mine's mouth!",
+			"to": "crown"
+		},
+		"n_wave": {
+			"who": "narrator",
+			"text": "Another wave out of the gates.",
+			"to": "crown"
+		},
+		"n_wave_big": {
+			"who": "narrator",
+			"text": "Out of every gate at once, with the bolt-throwers.",
+			"to": "crown"
+		},
+		"n_dusk_end": {
+			"who": "narrator",
+			"text": "Dusk. The city's machines go back behind the wall. The siege holds the road, and nothing more."
+		},
+		"f_grown_end": {
+			"who": "ferrer",
+			"text": "We held the road. The wall held the city. Neither of us moved for a year.",
+			"to": "crown"
+		},
+		"n_park_down": {
+			"who": "narrator",
+			"text": "The siege park's magazine goes up. The column goes back down off the plateau."
+		},
+		"f_hurt": {
+			"who": "ferrer",
+			"text": "A scratch. I have been hurt by worse things than a machine.",
+			"to": "crown"
+		},
+		"cn_1": {
+			"who": "cityn",
+			"text": "You are the city: its works, its gates, its machines on the wall. The Crown digs its lines on the plateau. Break the siege: blow the siege park's magazine in the camp, or bring down the old priest, Father Ferrer.",
+			"to": "city"
+		},
+		"cn_k7": {
+			"who": "cityn",
+			"text": "The arsenal's Heavy Works makes Spring Ballistas; its Escapement teaches the Netters the Long Chain. The plates under the streets keep everything wound.",
+			"to": "city"
+		},
+		"cn_more": {
+			"who": "cityn",
+			"text": "More machines come out of the works: they are yours.",
+			"to": "city"
+		},
+		"cn_mine": {
+			"who": "cityn",
+			"text": "Something moves in the old galleries under the wall, toward the great spring.",
+			"to": "city"
+		},
+		"cn_won": {
+			"who": "cityn",
+			"text": "The siege park's magazine goes up. The Crown's column goes back down off the plateau."
+		},
+		"cn_ferrer": {
+			"who": "cityn",
+			"text": "The old priest falls before the wall."
+		},
+		"cn_lost_spring": {
+			"who": "cityn",
+			"text": "The great spring falls into the shaft. The city runs down."
+		},
+		"cn_lost_dusk": {
+			"who": "cityn",
+			"text": "Dusk. The siege still holds the road."
+		},
+		"f_end_close": {
+			"who": "ferrer",
+			"text": "I wrote to Rome that the city was crippled, not taken. Its works still turned, slowly, without their great spring."
+		},
+		"f_end_held": {
+			"who": "ferrer",
+			"text": "I wrote to Rome that the city stood whole behind its wall, and the Crown held only the road."
+		},
+		"f_end_jakob": {
+			"who": "ferrer",
+			"text": "Jakob walked the lines with me every night after. He said the city ticked like a sick man's heart."
+		},
+		"f_end_nojakob": {
+			"who": "ferrer",
+			"text": "I have Jakob's log on my desk. I have written his name at the end of it."
+		},
+		"f_end_walls": {
+			"who": "ferrer",
+			"text": "Hollweg stood on his wall to the end. He never looked away from his city."
+		},
+		"f_end_prisoner": {
+			"who": "ferrer",
+			"text": "Hollweg asked to see the lines at the end. He stood there a long time, and then asked me to hear his confession."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "Ferrer's report came to Rome in the spring. I read it twice."
+		},
+		"k_end_close": {
+			"who": "king",
+			"text": "The city of gears was crippled that year. Not dead. Crippled things do not stop; they limp."
+		},
+		"k_end_held": {
+			"who": "king",
+			"text": "The city of gears stood whole behind its wall. It had been given a year, and it had used every hour of it."
+		},
+		"k_end_fresh": {
+			"who": "king",
+			"text": "And all that year the swarm came down the rivers, while the army was in the south."
+		},
+		"k_end_grown": {
+			"who": "king",
+			"text": "Two fires, and the army had gone to both. Neither was out."
+		},
+		"k_end_c": {
+			"who": "king",
+			"text": "That is not how it went. The siege held. Hear it again from Ferrer."
+		},
+		"new_charges": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: PREPARED CHARGES. Research it at the camp's Armoury (it needs the Foundry): the powder comes in ready-made bags, and every Field Cannon and Mortar reloads a fifth faster. Against plates that must be hit again and again, it is the guns' science."
+		},
+		"new_quadrant": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE GUNNER'S QUADRANT. Research it at the Armoury after Prepared Charges: the guns are laid by the quadrant, and every Field Cannon and Mortar reaches a tile farther, from behind the earthworks to the gates."
+		},
+		"new_ballista": {
+			"who": "new",
+			"to": "city",
+			"text": "NEW: THE SPRING BALLISTA. Made at the arsenal's Heavy Works: a bolt thrower on cog wheels whose screw goes through its target into the men behind. Hard on guns and earthworks; it cannot shoot what is close or in the air.",
+			"portrait": "res://assets/icons/ballista.png"
+		},
+		"new_long_chain": {
+			"who": "new",
+			"to": "city",
+			"text": "NEW: LONG CHAIN. Research it at the arsenal's Escapement: every Netter throws its net much farther, from behind the Clock Soldiers onto the gunners."
+		}
+	},
+	"stills": {
+		"rome": {
+			"image": "res://campaign/stills/p01_01.jpg",
+			"caption": "Rome, the present. The King tells it."
+		},
+		"lines": {
+			"image": "res://campaign/stills/d11_01.jpg",
+			"caption": "The siege lines before Concórdia, 2780."
+		},
+		"sortie": {
+			"image": "res://campaign/stills/d11_02.jpg",
+			"caption": "The sortie at dawn."
+		},
+		"walls": {
+			"image": "res://campaign/stills/d11_03.jpg",
+			"caption": "On the walls of Concórdia."
+		}
+	},
+	"next": {
+		"crown": "",
+		"city": ""
+	},
+	"debrief": {
+		"crown": {
+			"still": "lines",
+			"title": "Concórdia",
+			"text": "The siege of Concórdia, 2780.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"siege": "close"
+						}
+					},
+					"text": "The great spring's tower was blown from the old mine: the city is crippled and besieged."
+				},
+				{
+					"if": {
+						"flag": {
+							"siege": "held_off"
+						}
+					},
+					"text": "The army holds the road, but the city stands whole behind its wall."
+				},
+				{
+					"if": {
+						"flag": {
+							"jakob": "lost"
+						}
+					},
+					"text": "Jakob is not with Father Ferrer."
+				}
+			]
+		},
+		"city": {
+			"still": "walls",
+			"title": "The City",
+			"text": "The siege of Concórdia was broken."
+		}
+	},
+	"opening": {
+		"crown": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2"
+				]
+			},
+			{
+				"still": "lines",
+				"lines": [
+					"f_open1",
+					{
+						"id": "f_open_fresh",
+						"if": {
+							"version": "fresh"
+						}
+					},
+					{
+						"id": "f_open_grown",
+						"if": {
+							"version": "grown"
+						}
+					},
+					{
+						"id": "f_open_held",
+						"if": {
+							"all": [
+								{
+									"version": "grown"
+								},
+								{
+									"past": {
+										"d10_jungle.jungle": "held"
+									}
+								}
+							]
+						}
+					},
+					{
+						"id": "f_open_thin",
+						"if": {
+							"all": [
+								{
+									"version": "grown"
+								},
+								{
+									"past": {
+										"d10_jungle.jungle": "thin"
+									}
+								}
+							]
+						}
+					},
+					{
+						"id": "f_open_jakob",
+						"if": {
+							"not": {
+								"any": [
+									{
+										"past": {
+											"c01_thirteenth.jakob": "lost"
+										}
+									},
+									{
+										"past": {
+											"a02_furth.jakob": "lost"
+										}
+									},
+									{
+										"past": {
+											"a04_visit.jakob": "lost"
+										}
+									}
+								]
+							}
+						}
+					},
+					{
+						"id": "f_open_nojakob",
+						"if": {
+							"any": [
+								{
+									"past": {
+										"c01_thirteenth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a02_furth.jakob": "lost"
+									}
+								},
+								{
+									"past": {
+										"a04_visit.jakob": "lost"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"city": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open_c"
+				]
+			},
+			{
+				"still": "walls",
+				"lines": [
+					"cn_open"
+				]
+			}
+		]
+	},
+	"ending": {
+		"crown": [
+			{
+				"still": "lines",
+				"lines": [
+					{
+						"id": "f_end_close",
+						"if": {
+							"flag": {
+								"siege": "close"
+							}
+						}
+					},
+					{
+						"id": "f_end_held",
+						"if": {
+							"flag": {
+								"siege": "held_off"
+							}
+						}
+					},
+					{
+						"id": "f_end_jakob",
+						"if": {
+							"flag": {
+								"jakob": "alive"
+							}
+						}
+					},
+					{
+						"id": "f_end_nojakob",
+						"if": {
+							"flag": {
+								"jakob": "lost"
+							}
+						}
+					},
+					{
+						"id": "f_end_walls",
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					},
+					{
+						"id": "f_end_prisoner",
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end1",
+					{
+						"id": "k_end_close",
+						"if": {
+							"flag": {
+								"siege": "close"
+							}
+						}
+					},
+					{
+						"id": "k_end_held",
+						"if": {
+							"flag": {
+								"siege": "held_off"
+							}
+						}
+					},
+					{
+						"id": "k_end_fresh",
+						"if": {
+							"version": "fresh"
+						}
+					},
+					{
+						"id": "k_end_grown",
+						"if": {
+							"version": "grown"
+						}
+					}
+				]
+			}
+		],
+		"city": [
+			{
+				"still": "walls",
+				"lines": [
+					"cn_won"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_c"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"crown": {
+			"still": "lines",
+			"text": [
+				"The southern highlands, 2780. You are the army's southern column before Concórdia: Father Ferrer, Jakob, General Ruggieri's siege train, Musketeers and Guardsmen, Cuirassiers and the pioneers who dig.",
+				"Dig the siege lines before the three gates, beat back the city's sorties, and keep the siege park's magazine standing.",
+				"If the city was fought first, its wall is unfinished: the old mine runs under it. If it waited a year, hold the road against everything it has."
+			]
+		},
+		"city": {
+			"still": "walls",
+			"text": [
+				"The southern highlands, 2780. You are Concórdia: its wall, its arsenal in the old Nuremberg quarter, its machines and the great spring on the mine hill.",
+				"Break the siege: blow the siege park's magazine in the Crown's camp, or bring down Father Ferrer, before the Crown's work is done."
+			]
+		}
+	}
+}

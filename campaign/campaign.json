@@ -14,7 +14,8 @@
 				"a07_council",
 				"d01_minas",
 				"d05_aldeia",
-				"d09_crossroads"
+				"d09_crossroads",
+				"d11_siege"
 			],
 			"hub": {
 				"title": "The King's Study",
@@ -261,6 +262,24 @@
 									"You chose the city first, as Ruggieri did. Father Ferrer had his siege lines by the spring.",
 									"And the swarm came down the rivers the whole year we were away."
 								]
+							},
+							{
+								"after": "d11_siege",
+								"flag": {
+									"d11_siege.siege": "close"
+								},
+								"lines": [
+									"Ferrer blew the great spring from under its own hill. The city limps now. It does not stop."
+								]
+							},
+							{
+								"after": "d11_siege",
+								"flag": {
+									"d11_siege.siege": "held_off"
+								},
+								"lines": [
+									"Ferrer held the road a whole year before that wall. The city stood whole behind it, and grew."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_king_face.png"
@@ -458,6 +477,24 @@
 									"Fort Constantine, at the crossroads of the São Francisco. Relieved. Both enemies seen at its gates in the same week.",
 									"The army marches south at noon, to the highlands. The rivers are watched, not held."
 								]
+							},
+							{
+								"after": "d11_siege",
+								"flag": {
+									"d11_siege.siege": "close"
+								},
+								"lines": [
+									"Concórdia, the siege. The great spring's tower blown from the old mine. The city crippled, not taken."
+								]
+							},
+							{
+								"after": "d11_siege",
+								"flag": {
+									"d11_siege.siege": "held_off"
+								},
+								"lines": [
+									"Concórdia, the siege. The great sortie held. The road is ours, the city still its own."
+								]
 							}
 						]
 					}
@@ -477,7 +514,8 @@
 				"d03_fazenda",
 				"d06_queen",
 				"d08_rivers",
-				"d09_crossroads"
+				"d09_crossroads",
+				"d11_siege"
 			],
 			"hub": {
 				"title": "Lindqvist's Station",
@@ -1180,7 +1218,8 @@
 				"d02_exodus",
 				"d04_concordia",
 				"d07_spring",
-				"d09_crossroads"
+				"d09_crossroads",
+				"d11_siege"
 			],
 			"hub": {
 				"title": "Hollweg's Workshop",
@@ -1409,6 +1448,21 @@
 								},
 								"lines": [
 									"Varenne went to the São Francisco under a white flag, for the city. He came back and did not speak at the council for a week."
+								]
+							},
+							{
+								"after": "d11_siege",
+								"lines": [
+									"They brought the Crown's guns up the plateau. I stood on the wall by the spring and listened. The city did not tick any faster. It was not afraid."
+								]
+							},
+							{
+								"after": "d11_siege",
+								"flag": {
+									"d07_spring.spring": "stopped"
+								},
+								"lines": [
+									"I went up with Father Ferrer to the siege of my own city. I showed them the old shaft. Then I asked him to hear my confession."
 								]
 							}
 						]

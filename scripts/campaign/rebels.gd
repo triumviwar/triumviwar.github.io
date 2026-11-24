@@ -147,6 +147,14 @@ const ROLES := {
 	"hollins_sergeant": {"kind": "musketeer", "art": "a_volunteer", "name": "Sergeant Hollins", "hp": 200, "about": "Will Hollins of the Virginia volunteers, a sergeant now."},
 	"fort_commander": {"kind": "dismounted", "name": "Major Teixeira", "hp": 320, "about": "Major Teixeira, commanding Fort Constantine on the São Francisco."},
 	"sertanejo": {"kind": "labourer", "art": "b_villager", "about": "A villager of the sertão, from a village on the road."},
+	# Act 2's d11_siege (Concórdia, 2780): Father Ferrer old, Rome's witness at the siege; Jakob, who hears the city's
+	# ticking (no floor: he can fall); the siege train's pioneers; Hollweg with the column (d07 `spring` stopped) or on his
+	# wall (running: spared, seen not met) (stand-ins until drawn; new keys: Act 1's "ferrer", "jakob", "hollweg" are younger)
+	"ferrer_siege": {"kind": "missionary", "art": "c_ferrer", "name": "Father Ferrer", "hp": 320, "about": "Father Ferrer, old now, sent by Rome to the siege of Concórdia as its witness."},
+	"jakob_siege": {"kind": "labourer", "art": "c_jakob", "name": "Jakob", "hp": 180, "about": "Jakob, Hollweg's old journeyman: he hears the city's ticking."},
+	"pioneer": {"kind": "labourer", "about": "A pioneer of the siege train: he digs the earthworks and the mines."},
+	"hollweg_prisoner": {"kind": "missionary", "art": "c_hollweg", "name": "Meister Hollweg", "hp": 260, "about": "Meister Hollweg, with the Crown's column: a prisoner who asked to come."},
+	"hollweg_walls": {"kind": "missionary", "art": "c_hollweg", "name": "Meister Hollweg", "hp": 260, "about": "Meister Hollweg on the wall of his city, by the great spring."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)

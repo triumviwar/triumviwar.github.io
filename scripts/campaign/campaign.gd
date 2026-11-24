@@ -423,10 +423,20 @@ static func unlocked(id: String, p: Dictionary = {}) -> bool:
 	# a CROSSING (a07: "needs": [missions]): open only once every one of them is finished, whichever led to it
 	var needs: Array = mission(id).get("needs", []) if not sl.is_empty() else []
 	if not needs.is_empty():
-		return open_all or needs.all(func(n) -> bool: return (p["done"] as Dictionary).has(String(n)))
+		return open_all or needs.all(func(n) -> bool: return (p["done"] as Dictionary).has(need_id(n)) or not need_holds(n))
 	if not sl.is_empty() and storyline_open(sl, p) and String((sl["missions"] as Array)[0]) == id:
 		return true
 	return (p["reached"] as Array).has(id)
+
+
+## A crossing's "needs" entry: a mission id, or {"id", "if": a condition decided before the match} (d11: the second
+## front of the diamond waits for the first only when the first was chosen first: {"past": {"d09_crossroads.first": ...}}).
+static func need_id(n: Variant) -> String:
+	return String(n.get("id", "")) if n is Dictionary else String(n)
+
+
+static func need_holds(n: Variant) -> bool:
+	return not (n is Dictionary) or not n.has("if") or cond_before(n["if"], "", difficulty())
 
 
 ## The mission after `id` when `side_id` won it ("" none: not written yet). "next" is {side: id} (the story's branch
@@ -735,8 +745,10 @@ static func problems(m: Dictionary) -> Array:
 		if not vids.has(vid):
 			out.append("version %s: not one of the mission's \"versions\"" % vid)
 	for n in m.get("needs", []):
-		if mission(String(n)).is_empty():
+		if mission(need_id(n)).is_empty() and not (n is Dictionary):      # (a conditional need may wait for a mission still planned: d10)
 			out.append("needs: unknown mission %s" % n)
+		if n is Dictionary:
+			_check_cond(n.get("if", {}), "needs", out, sides, teams, areas, objs, trig)
 	# the SOLO SIDE PICK, the DIFFICULTY and the MIST (act1-engine0)
 	for sd in m.get("solo_sides", []):
 		if not sides.has(String(sd)):

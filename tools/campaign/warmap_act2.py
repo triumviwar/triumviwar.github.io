@@ -222,7 +222,8 @@ RULES = [
       ledger="The army holds the road, but the city stands whole behind its walls."),
     R({"flag": {"d11_siege.siege": "held_off"}}, region="valley", to="contested"),
     R({"flag": {"d11_siege.jakob": "lost"}}, ledger="Jakob fell before the walls of Concórdia."),
-    R({"won_by": {"d11_siege": "city"}}, region="concordia", to="machine", skins=PC, ledger="The city broke the siege's batteries."),
+    R({"won_by": {"d11_siege": "city"}}, region="concordia", to="machine", skins=PC, pin="d11_siege", seal="broken",
+      ledger="The city broke the siege's batteries: not how it went."),      # (d11-siege: a city's win is not the King's story)
     # d12 THE HOLD (planned, optional: luanda clean / escaped)
     R({"flag": {"d12_luanda.luanda": "clean"}}, region="luanda", to="crown", ledger="Every egg in the hold at Luanda was found and burned."),
     R({"flag": {"d12_luanda.luanda": "escaped"}}, region="luanda", to="contested",
