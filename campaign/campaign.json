@@ -11,7 +11,8 @@
 				"p01_leaf",
 				"a01_presses",
 				"a06_barricades",
-				"a07_council"
+				"a07_council",
+				"d01_minas"
 			],
 			"hub": {
 				"title": "The King's Study",
@@ -186,6 +187,24 @@
 									"Rome burned for one night and stood in the morning. I walked the bridges at dawn with Tomasz.",
 									"Hollweg and Lindqvist were gone before the bells. I should have held them. I let them go."
 								]
+							},
+							{
+								"after": "d01_minas",
+								"lines": [
+									"Tomasz wrote from Minas: the gold went down to the coast, and he stayed behind with the miners.",
+									"He sent me the names of the dead of both sides, and asked me to pray for all of them. I did."
+								]
+							},
+							{
+								"after": "d01_minas",
+								"flag": {
+									"d01_minas.conspirator": "fled"
+								},
+								"lines": [
+									"Tomasz wrote from Minas: the gold went down to the coast, and he stayed behind with the miners.",
+									"He sent me the names of the dead of both sides, and asked me to pray for all of them. I did.",
+									"The lieutenant who led them went south. Remember the city of gears; we will come back to it."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_king_face.png"
@@ -240,6 +259,13 @@
 								"lines": [
 									"We counted the people on the steps of Saint Peter's. I knew some of the faces from Mass.",
 									"The Romans broke two machines with their bare hands in the Piazza Navona. Nobody had to tell them to."
+								]
+							},
+							{
+								"after": "d01_minas",
+								"lines": [
+									"In Minas I learnt that a sermon is the easy part. Staying afterwards is the work.",
+									"I still have the list of the dead from that night. I read it every year on the feast of the Rosary."
 								]
 							}
 						],

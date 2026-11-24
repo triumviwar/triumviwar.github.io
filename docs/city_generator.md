@@ -12,6 +12,12 @@ cells and props like every other map, and opens in the MAP EDITOR.
 - BRIDGES: fords across a river at a row (a river running north-south) or a column (east-west), with the banks at both
   ends kept clear so a street reaches them.
 - HILLS and their STAIRS: high ground over a rectangle (a cliff all round) and ramps (a town's stairs) up it.
+- A HILL TOWN (Act 2's d01_minas, Vila Rica; tools/campaign/make_vila_rica_map.py): `hill_blob(name, cx, cy, rx, ry)`
+  raises a rounded hill (an ellipse with a gentle wobble, the same every time from the same numbers), so a town on two
+  hills and a ridge is not all ruler-straight edges; `stairs(name, at, way, width)` walks from a cell on the high ground
+  to the hill's edge in that way (n, s, e, w) and puts a stair there, squaring the ragged edge off first so the ramp
+  meets a straight cliff. The engine has two heights only (low and high), so a hill town is high ground with stairs
+  down every side, and the squares and streets on top.
 - DISTRICTS: a grid of streets and house BLOCKS over a rectangle (block sizes and street widths given; every third
   street a cell wider); a block that crosses a hill's edge is cut there.
 - SQUARES and STREETS cut through the blocks: kept free of houses, each an area the mission can name.

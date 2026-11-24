@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.197", "items": [
+		"A new campaign mission, Act 2's THE GOLD OF VILA RICA (the Crown, after the Council of Rome): Father Tomasz, a missionary in Brazil now, and Captain Meneses' garrison in the gold town of Minas Gerais on the day of the hated gold tax. Keep the town's temper down (bring Tomasz to each quarter's church, ride down the agitators), find the Free Assembly's two hidden armouries, hold the Royal Foundry House on the stairs on the night of the signal, then take its gold to the coast through the gorge and catch the conspirators' lieutenant alive. NEW in the Crown's army: the ARMOURY with the MATCHLOCK and the SOCKET BAYONET. Versus: a friend leads the conspiracy.",
+	]},
 	{"v": "0.38.196", "items": [
 		"Hub paintings fixed: the armoury has no window (it showed the King's view of Saint Peter's) and proper muskets, the gallery of flags lost the chapel's pews and candles, General Ruggieri is older with a tricorne and no sword, Valadares wears an explorer's coat and carries a compass instead of a musket, and Benedito looks like his portrait.",
 	]},

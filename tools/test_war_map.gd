@@ -405,8 +405,9 @@ func _act2() -> void:
 	check("act 2: its marks stand on land (the routes go by sea)", moff.is_empty(), " ".join(moff))
 	# ---- states: Rome won opens the three lines' first Act 2 missions
 	var st := WarMapData.state(_act1({}))
-	check("act 2: after Rome d02 and d03 (built) are open", st["pins"]["d02_exodus"]["state"] == "open" and st["pins"]["d03_fazenda"]["state"] == "open")
-	check("act 2: d01 and the rest still planned (not written)", st["pins"]["d01_minas"]["state"] == "planned" and st["pins"]["d11_siege"]["state"] == "planned")
+	check("act 2: after Rome d01, d02 and d03 (built) are open", st["pins"]["d01_minas"]["state"] == "open" and st["pins"]["d02_exodus"]["state"] == "open"
+		and st["pins"]["d03_fazenda"]["state"] == "open")
+	check("act 2: d05 and the rest still planned (not written)", st["pins"]["d05_aldeia"]["state"] == "planned" and st["pins"]["d11_siege"]["state"] == "planned")
 	check("act 2: Salvador on the map once Brazil is unrolled", st["marks"]["salvador"] and not WarMapData.state(_with({}))["marks"]["salvador"])
 	check("act 2: Brazil's regions start as the empire's", st["regions"]["minas"] == "empire" and st["regions"]["concordia"] == "empire" and st["regions"]["lower_amazon"] == "empire")
 	# d02 won: the ships' line from Hamburg
