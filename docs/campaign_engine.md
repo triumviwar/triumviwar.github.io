@@ -567,6 +567,8 @@ Queen's food), `stay` (the mirror's burning), countdown clocks, `tally` with sha
 | key / action / condition | what it does |
 | --- | --- |
 | mission `"wade": {"pace": 0.5, "free": ["brood"]}` | THE VÁRZEA: a ground unit standing on a ford cell (the map's `f`: the flooded forest's shallow water) walks at `pace` (MissionRun.wade, read in Unit's speed), except the factions in `free` (MissionRun.wade_free: the creatures go through the flood at their own pace); flyers are not touched; nothing is built on a ford cell (Game.placement_problem: "Not in the flooded forest: nothing stands in the várzea's water.") |
+| custom map `"water"` / `"ford"` | a map editor map (campaign/maps/<name>.json) may name the ground sets its water and ford cells are drawn with, as a named map does (MapGen.apply_custom fills water_set / ford_set); São Rafael draws its flood with `"ford": "swamp"` |
+| a line's `"until": "<trigger id>"` | (used here on every chatty line of Parts 1 and 2) a line still queued once that trigger has fired is dropped, so a part's talk never plays in the next part |
 | roles `tomasz_rafael`, `tiago`, `mission_militia`, `rafael_villager`, `sobral`, `forward_mother` | Rebels.ROLES (stand-ins: Missionaries, a Musketeer, a Labourer, a Horseman, a Brood Mother drawn at 0.44) |
 
 Everything else in the Mission of São Rafael is built from the keys above: GRANARIES (act2-engine0's, here for the first

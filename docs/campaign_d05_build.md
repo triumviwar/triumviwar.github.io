@@ -33,8 +33,10 @@ carries the mission.
 
 ## The map: São Rafael on the Tapajós (104 x 128, the VÁRZEA biome, rain, night then day)
 
-The painted várzea ground of the act2-terrain job (the flood water and reeds, the wet grass and mud, the várzea trees and
-buriti palms, aninga, floating grass, snags).
+The painted várzea ground of the act2-terrain job (the wet grass and mud, the várzea trees and buriti palms, aninga,
+floating grass, snags). The flooded forest's shallow water is drawn with the "swamp" ground set (dark standing water
+with lilies), named by the map's own `"ford"` key (a custom map may now name its water and ford sets like a named map:
+MapGen.apply_custom); the várzea's own "water" set is silt with grass and read as mud in the first pictures.
 
 - THE VÁRZEA: everything off the dry ground is shallow flood water (ford cells) among drowned trees (a quarter of the
   cells): open enough that the creatures cross it anywhere.
@@ -127,11 +129,34 @@ Set:
 
 ## Balance (tools/sim_campaign_d05.gd; the last runs)
 
-SIM_TABLE
+All on 0.38.198 + this branch, `godot --headless --fixed-fps 30 --script res://tools/sim_campaign_d05.gd -- <args>`:
+
+| run | result | time | aldeia (at the fort of 30) | longest idle |
+| --- | --- | --- | --- | --- |
+| active (NORMAL) | WON | 4:53 | many (22) | 9 s |
+| active diff=hard | WON | 4:57 | some (20) | 9 s |
+| active diff=easy | WON | 5:28 | many (30) | 9 s |
+| active fields=burned (with pictures) | WON | 5:34 | many (25) | 16 s |
+| lazy (nothing done) | LOST (the church broken, the swarm wins) | 7:05 | none | 9 s |
+| side=swarm active | the SWARM WON (more than half caught) | 4:17 | few | 8 s |
+| side=swarm (the swarm idle) | the Crown won | 6:22 | many (30) | 9 s |
+
+Earlier runs on the same build (before the last text/ground fixes, same rules): burned + brood_n all + people many WON many
+(26); a05 cages all / d01 gold few / minas restless WON many (25); save_at=200: the loaded run ends the same (SIM LOAD
+SAME yes). No SCRIPT ERROR in any run. The longest idle (16 s) is the walk to the fort while the choice's fire burns.
 
 ## Pictures (docs/shots/d05_aldeia/, CHECK THE FEEL)
 
-SHOTS_NOTES
+Fifteen pictures from `xvfb-run ... sim_campaign_d05.gd -- active fields=burned shots=docs/shots/d05_aldeia` (1280 x 720):
+1 the start in the rain, 2 a field's people called (the narration says what to do), 3-4 the first waves and the people
+gathered at the church, 5 the dragoons at dawn, 6 the hamlet, 7 the hatchlings, 8 the flank, 9 the hamlet's people out,
+10 Part 3, 11 THE FIELDS choice, 12 Tomasz on the trail through the flood, 13 the fields burnt, 14 the fort, 15 the end.
+
+Looked at and fixed: the flood read as mud (now dark water, see the map); a "spent" worker label hung over the farms
+(the farms are the people's now, labels are drawn only for the player's team); Part 2's lines still queued in Part 3
+(chatty lines now end with their part: `"until"`). Still seen: the supply shows over the cap (26/24) once the burnt
+granary-cottage is gone (only a number: nothing is trained in Part 3); the scale of the people next to the church is
+right; the rain and the night light read as a wet night.
 
 ## Stills: the prompts for the owner (ChatGPT, one request each, at most 3 reference images; each prompt stands alone)
 
@@ -222,4 +247,9 @@ Mother's art drawn small. The granary is a Cottage named "The granary" and the f
 
 ## Tests run
 
-TESTS_RUN
+- tools/test_campaign_d05.gd: 0 failures (data, the várzea's wade rule, flags, the three parts, defeats, the mirror,
+  save and load, ironman, hubs and the war map).
+- tools/test_campaign_d01..d04, d06, test_campaign, test_war_map (its d05 check updated: locked until d01, open after),
+  test_hubs_grow, test_roster_ladder, test_act2_terrain (mapgen changed), test_campaign_save: 0 failures each, no
+  SCRIPT ERROR.
+- tools/i18n_build.py and tools/i18n_patch_build.py ([]).
