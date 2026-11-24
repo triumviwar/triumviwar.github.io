@@ -107,6 +107,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | d04_concordia (the City of Gears, Act 2) | this file, "d04_concordia" below; docs/campaign_d04_build.md | 74 (+15 narrator, 2 NEW cards) | Hollweg 31, Ulrich* 18, Captain Arruda* 10, the King 6, Varenne 4, Citizen Morel* 3, Padre Anselmo* 2 |
 | d01_minas (the Gold of Vila Rica, Act 2) | this file, "d01_minas" below; docs/campaign_d01_build.md | 69 (+19 narrator, 3 NEW cards) | Tomasz* 30, Captain Meneses* 21, Lieutenant Ramos* 9, the King 6, Cardinal Tomasz 2, a townsman* 1 |
 | d06_queen (the Queen, Act 2) | this file, "d06_queen" below; docs/campaign_d06_build.md | 38 (+28 narrator, 2 NEW cards) | Lindqvist 24, Pieter* 8, the King 6 |
+| d05_aldeia (the Mission of São Rafael, Act 2) | this file, "d05_aldeia" below; docs/campaign_d05_build.md | 45 (+35 narrator, 2 NEW cards) | Tomasz* 23, Captain Sobral* 8, the King 7, Brother Tiago* 7 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -459,6 +460,62 @@ have a preset in tools/voice_clone/emotions.json (`d06__<id>`). Pieter is the gr
 | k_end_f | the King | He told me he burned them. He did not burn enough. | firm |
 | h_hurt | Lindqvist | My arm. Pieter, the torch. | pain, clipped |
 
+### d05_aldeia (the Mission of São Rafael)
+
+Line ids are the mission's (`campaign/voice/d05/<id>.ogg`). The feeling is how the line should sound; lines without one
+are plain. The narrator's 35 lines ("São Rafael", and "The Flood" for the swarm's side) and the two NEW cards can stay as
+text. The strongest lines have a preset in tools/voice_clone/emotions.json (`d05__<id>`). Tomasz is the grown Tomasz of
+d01 (about thirty-five); Brother Tiago is a young catechist of the village, gentle (a designed voice: no accent
+caricature); Captain Sobral a Portuguese-Brazilian dragoon officer in his forties, tired and plain.
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | After Minas, Tomasz asked for the hardest place in Brazil. They sent him up the Tapajós. | dry, fond of him |
+| k_open2 | the King | In the wet season of 2776 he met the swarm. You will hear how it was born. He met it first. | heavy, a warning |
+| t_open1 | Tomasz* | São Rafael. Thirty families, a church of timber, fields on the dry ground above the flood. | warm, a man describing home |
+| t_open2 | Tomasz* | Brother Tiago taught the catechism in his own tongue. I taught it badly in mine. | self-mocking, fond |
+| t_open_many | Tomasz* | Word of Rome had come up the river before me. They trusted me before I had earned it. | humbled |
+| t_open_minas | Tomasz* | I had left Minas uneasy. I thought the frontier would be quieter. | rueful |
+| t_open_fled | Tomasz* | Ramos was somewhere in the south by then. I prayed for him on the boat. | quiet, a prayer |
+| t_open3 | Tomasz* | That year the river came up into the forest and did not go down. | low, ominous |
+| k_open_s | the King | Tomasz tells that night as a priest. Here it is from the flooded forest, where nobody was keeping count. | cold, a test of the listener |
+| t_bell | Tomasz* | Tiago, the bell! Ring it! | urgent, shouting over rain |
+| ti_bell | Brother Tiago* | They are out in the fields, Father. In this rain they will not hear it. | urgent, afraid |
+| t_field | Tomasz* | To the church! All of you! Leave the baskets! | shouting, out of breath |
+| ti_w1 | Brother Tiago* | Those are not jaguars, Father. | fear, hushed |
+| ti_in | Brother Tiago* | Everyone from the fields is in the churchyard, Father. The children too. | relief |
+| t_pray | Tomasz* | Kneel, all of you, and stay down. Let the men shoot over you. | steady, calming the people |
+| t_dawn | Tomasz* | Dawn. I have never been so glad of a grey sky. | exhausted relief, almost a laugh |
+| c_arrive | Captain Sobral* | Captain Sobral, of the river fort. Your canoe reached us yesterday. We rode all night. | brisk, soldierly, tired |
+| c_small | Captain Sobral* | The Governor's purse is thin since Minas. I could bring only a few. | apologetic, blunt |
+| t_hamlet | Tomasz* | Santa Luzia. The hamlet on the causeway. Nobody came in from there. | worried |
+| ti_hamlet | Brother Tiago* | My sister's family is there. They will have gone into the chapel. | afraid for his own, holding it in |
+| c_charge | Captain Sobral* | My horsemen are drilled for the charge, if the fort gives them the time. A charge breaks the small ones like reeds. | confident |
+| c_hatch | Captain Sobral* | Shoot those birds down! They are not birds. | shouting, alarmed |
+| ti_found | Brother Tiago* | They hid in the chapel all night. They prayed the whole time, my sister says. | tearful joy |
+| ti_back | Brother Tiago* | They are in, Father. All we could find. | relief, tired |
+| c_sire | Captain Sobral* | And that Sire beside her. My men call him the Lindqvist Sire. They say he came out of the doctor's cages. | wry, uneasy |
+| c_cannot | Captain Sobral* | We cannot hold this, Father. Not with these men. The fort can. | grim, honest |
+| t_go | Tomasz* | Then we go. Everyone. The old ones in the middle. | decided, firm |
+| c_burn | Captain Sobral* | Burn the fields and the granary, Father. Leave them nothing to eat. | hard, practical |
+| t_bread | Tomasz* | That is the people's bread for the winter. | pained |
+| ti_choose | Brother Tiago* | They ask you to choose, Father. They will do what you say. | gentle, grave |
+| t_burned | Tomasz* | God forgive me. Burn them. | anguish, a whisper |
+| t_left | Tomasz* | No. It is their bread. We will pay for it with powder, not with their hunger. | firm, sorrowful |
+| c_mother_dead | Captain Sobral* | The big one in the flood is down! They come slower now. | triumphant shout |
+| t_hurt | Tomasz* | I am hit. Keep them walking, Tiago. | in pain, steady |
+| t_lead | Tomasz* | Stay close to me. Do not look into the water. | tender, to frightened people |
+| t_end1 | Tomasz* | We came through the fort's gate at dusk, and I counted them. | tired, quiet |
+| t_end_many | Tomasz* | Most of them were there. I counted twice to be sure. | grateful |
+| t_end_some | Tomasz* | Some of them were there. I named the others that night, on my knees. | grief held in |
+| t_end_few | Tomasz* | Few of them were there. I have their names still. | grief |
+| t_end_burned | Tomasz* | Behind us the smoke of the fields stood over the forest all night. | guilt |
+| t_end_left | Tomasz* | Behind us the fields stood green in the rain. The swarm fed on them all season. | sober, accepting the cost |
+| k_end1 | the King | A priest, a catechist and a handful of dragoons brought a village through the flood. | proud, plain |
+| k_end_left | the King | He would not burn the poor's bread. My soldiers paid for that bread on the Tapajós for years. I would have done the same. | approving, a king's weight |
+| k_end_burned | the King | He burned the poor's bread to starve the swarm. He has confessed it every year since. It was a hard thing, and he chose it. | grave, respectful |
+| k_end_s | the King | That is not how it went. Tomasz brought them to the fort. Hear it again from him. | stern, correcting |
+
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
 Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, ferrer (2026-11-22), explorer (now Valadares? the owner to say). The King
@@ -474,13 +531,16 @@ d04: Captain Bento Arruda (a southern Brazilian cattleman-officer, forties, plai
 Padre Anselmo (a kind country priest, sixties, a voice that calms a crowd) and Citizen Morel (an Assembly man, French,
 thirties, cold and clipped); d01: Tomasz grown (about thirty: between the young seminarian and the old Cardinal; one
 voice aged by pitch would do), Captain Luís de Meneses (a Portuguese dragoon officer, forties, blunt and loyal) and
-Lieutenant Inácio Ramos (a Brazilian orator, thirties, warm and dangerous), and "a townsman" (one line).
+Lieutenant Inácio Ramos (a Brazilian orator, thirties, warm and dangerous), and "a townsman" (one line); d05: Brother
+Tiago (a young catechist of a mission village on the Tapajós, twenties, gentle and grave; a designed voice, no accent
+caricature) and Captain Duarte Sobral (a Portuguese-Brazilian dragoon officer, forties, tired and plain; or Meneses'
+voice reused).
 
 ## 4. Act 2 (planned, not built)
 
 docs/campaign_act2_plan.md "VOICES" lists Act 2's speakers and the new voices to design (Tomasz grown, Commissary
 Brandt, Desembargador Fonseca, Captain Arruda, Padre Anselmo, Citizen Morel, Matthias, Captain de Meneses (built: d01), Lieutenant
-Ramos (built: d01), Brother Tiago, the prince if the heir is named). Each mission's table joins section 2 when it is built.
+Ramos (built: d01), Brother Tiago (built: d05), the prince if the heir is named). Each mission's table joins section 2 when it is built.
 
 ## 5. Later
 

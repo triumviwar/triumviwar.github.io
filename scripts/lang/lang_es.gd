@@ -5445,7 +5445,7 @@ const T := {
 	"The flyers are down. The pack comes on blind.": "Los voladores han caído. La manada viene a ciegas.",
 	"The people of Santa Luzia come out of the chapel. They follow your men back along the causeway.": "La gente de Santa Lucía sale de la capilla. Sigue a tus hombres de vuelta por la calzada.",
 	"They hid in the chapel all night. They prayed the whole time, my sister says.": "Se escondieron en la capilla toda la noche. Rezaron todo el tiempo, dice mi hermana.",
-	"The flyers still circle: the pack comes at the causeway out of the flood on both sides.": "Los voladores aún giran: la manada viene a la calzada desde la crecida a ambos lados.",
+	"The flyers still circle over you: more of the pack comes at the causeway out of the flood.": "Los voladores aún giran sobre vosotros: más de la manada viene a la calzada desde la crecida.",
 	"A few come up at the village while your riders are away.": "Algunos suben a la aldea mientras tus jinetes están fuera.",
 	"The chapel at Santa Luzia is broken. Nobody comes out.": "La capilla de Santa Lucía ha caído. Nadie sale.",
 	"They are in, Father. All we could find.": "Están dentro, Padre. Todos los que encontramos.",

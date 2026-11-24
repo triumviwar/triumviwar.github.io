@@ -77,21 +77,22 @@ CROWN = {"playing": "crown"}
 NO_CROWN = {"not": CROWN}                  # the village scripted (the swarm is the solo pick)
 SWARM = {"playing": "swarm"}
 NO_SWARM = {"not": SWARM}                  # the swarm scripted: its waves come
-ENDED = [{"fired": "the_end"}, {"fired": "lost_all"}, {"fired": "lost_church"}, {"fired": "s_won"}, {"fired": "s_lost"}]
+ENDED = [{"fired": "the_end"}, {"fired": "lost_all"}, {"fired": "lost_church"}, {"fired": "s_won"}, {"fired": "s_lost"}, {"fired": "road_done"}]
 LIVE = {"not": {"any": ENDED}}
 P1 = {"not": {"fired": "part2"}}
 P2 = {"all": [{"fired": "part2"}, {"not": {"fired": "part3"}}]}
 P3 = {"fired": "part3"}
 
-# ---------------------------------------------------------------- numbers (NORMAL; EASY / HARD: the engine's defaults,
-# clocks x1.25 / x0.85, the swarm's waves x0.75 / x1.25)
+# ---------------------------------------------------------------- numbers (NORMAL; EASY / HARD: the mission's "difficulty",
+# clocks x1.25 / x0.85, the swarm's waves x0.7 / x1.6)
 NIGHT_SECS = 240          # Part 1: dawn comes anyway
 HAMLET_SECS = 240         # Part 2: the hamlet holds out this long
 COLUMN_SECS = 300         # Part 3: the fort shuts its gate at dusk
 WADE = 0.5                # men and horses in the flooded forest
 FIELD_CALL = 5            # tiles: a soldier or Tomasz this near a field's people sends them to the church
-PEOPLE_PACE = 0.6         # the people walk carrying their things (the column in Part 3)
-WAVE_EVERY = 26           # Part 3: a wave out of the flood this often
+PEOPLE_RUN = 0.8          # the people running in from the fields (a Labourer's pace times this)
+PEOPLE_PACE = 0.4         # the column in Part 3: the people walk carrying their things, the old ones in the middle
+WAVE_EVERY = 22           # Part 3: a wave out of the flood this often
 GRANARY_GOLD, GRANARY_EVERY = 20, 10
 GOLD, POWDER = 300, 300
 RELIEF_GOLD = 200         # the relief brings the fort's pay chest (the Charge's drill and a few more men)
@@ -151,12 +152,12 @@ buildings = [
      "name": T("A house of the mission", "Uma casa da missão", "Una casa de la misión")},
     {"team": "mission", "kind": "cottage", "at": [67, 26], "tag": "houses", "tags": ["village_b"],
      "name": T("A house of the mission", "Uma casa da missão", "Una casa de la misión")},
-    # the fields: the mission's bread
-    {"team": "mission", "kind": "farm", "at": [28, 28], "tag": "fields", "tags": ["fields_b"],
+    # the fields: the mission's bread (the people's: no crew label over them)
+    {"team": "people", "kind": "farm", "at": [28, 28], "tag": "fields", "tags": ["fields_b"],
      "name": T("The mission's fields", "Os campos da missão", "Los campos de la misión")},
-    {"team": "mission", "kind": "farm", "at": [55, 9], "tag": "fields", "tags": ["fields_b"],
+    {"team": "people", "kind": "farm", "at": [55, 9], "tag": "fields", "tags": ["fields_b"],
      "name": T("The mission's fields", "Os campos da missão", "Los campos de la misión")},
-    {"team": "mission", "kind": "farm", "at": [80, 41], "tag": "fields", "tags": ["fields_b"],
+    {"team": "people", "kind": "farm", "at": [80, 41], "tag": "fields", "tags": ["fields_b"],
      "name": T("The mission's fields", "Os campos da missão", "Los campos de la misión")},
     # the hamlet of Santa Luzia: two houses and its little chapel
     {"team": "people", "kind": "cottage", "at": [9, 52], "tag": "hamlet_b",
@@ -261,6 +262,8 @@ M = {
     "floor": [0.82, 0.84, 0.78],
     "expansion_spots": False,
     "manual_end": True,
+    # (the swarm's waves a good deal bigger on HARD: the sims' careful player lost no more there with the default x1.25)
+    "difficulty": {"easy": {"clocks": 1.25, "spawns": 0.7}, "hard": {"clocks": 0.85, "spawns": 1.6}},
     "needs": ["a07_council", "d01_minas"],
     "modes": ["solo", "versus"],
     "solo_sides": ["crown", "swarm"],
@@ -310,6 +313,9 @@ M = {
 }
 
 L = M["lines"]
+
+
+UNTIL = {}         # line id -> a trigger: still waiting in the dialogue box when it fires, the line is dropped (d01's `until`)
 
 
 def line(lid, who, en, pt, es, to=None):
@@ -406,8 +412,8 @@ line("n_free", "narrator", "The people of Santa Luzia come out of the chapel. Th
      "O povo de Santa Luzia sai da capela. Segue os seus homens de volta pela calçada.", "La gente de Santa Lucía sale de la capilla. Sigue a tus hombres de vuelta por la calzada.")
 line("ti_found", "tiago", "They hid in the chapel all night. They prayed the whole time, my sister says.",
      "Esconderam-se na capela a noite toda. Rezaram o tempo todo, diz a minha irmã.", "Se escondieron en la capilla toda la noche. Rezaron todo el tiempo, dice mi hermana.", CR)
-line("n_flank", "narrator", "The flyers still circle: the pack comes at the causeway out of the flood on both sides.",
-     "Os voadores ainda rodam: a matilha vem à calçada da cheia dos dois lados.", "Los voladores aún giran: la manada viene a la calzada desde la crecida a ambos lados.", CR)
+line("n_flank", "narrator", "The flyers still circle over you: more of the pack comes at the causeway out of the flood.",
+     "Os voadores ainda rodam sobre vós: mais da matilha vem à calçada saída da cheia.", "Los voladores aún giran sobre vosotros: más de la manada viene a la calzada desde la crecida.", CR)
 line("n_probe", "narrator", "A few come up at the village while your riders are away.", "Alguns sobem à aldeia enquanto os seus cavaleiros estão fora.",
      "Algunos suben a la aldea mientras tus jinetes están fuera.", CR)
 line("n_hamlet_late", "narrator", "The chapel at Santa Luzia is broken. Nobody comes out.", "A capela de Santa Luzia foi derrubada. Ninguém sai.",
@@ -490,6 +496,15 @@ line("k_end_burned", "king", "He burned the poor's bread to starve the swarm. He
      "Quemó el pan de los pobres para matar de hambre al enjambre. Lo ha confesado cada año desde entonces. Fue algo duro, y él lo eligió.")
 line("k_end_s", "king", "That is not how it went. Tomasz brought them to the fort. Hear it again from him.",
      "Não foi assim que aconteceu. Tomasz levou-os ao forte. Ouve outra vez da boca dele.", "No fue así como pasó. Tomasz los llevó al fuerte. Óyelo otra vez de su boca.")
+
+# (a quick player is past the part a chatty line belongs to: those lines are dropped unseen once the next part begins)
+for lid in ["ti_bell", "n_varzea", "ti_w1", "n_w2", "n_w3", "ti_in", "t_pray"]:
+    L[lid]["until"] = "part2"
+for lid in ["c_small", "t_hamlet", "ti_hamlet", "n_hamlet", "c_charge", "n_charge", "n_charged", "n_hatch", "c_hatch", "n_hatch_down",
+            "n_probe", "ti_found", "n_flank"]:
+    L[lid]["until"] = "part3"
+for lid in ["t_lead", "c_burn", "t_bread", "ti_choose", "n_fed", "n_wave", "c_sire", "n_mother"]:
+    L[lid]["until"] = "road_done"
 
 # ---- stills
 M["stills"] = {
@@ -584,7 +599,7 @@ def road_extra(i):
         ex.append(("raptor", 1, alive))
     if i >= 4:
         ex.append(("raptor", 1, alive))
-    if i >= 3:
+    if i >= 2:
         ex.append(("tyrant_challenger", 1, {"difficulty": ["normal", "hard"]}))
     return ex
 
@@ -600,7 +615,7 @@ TR_ += [
         # (the hamlet's people are shut in their chapel: nothing reaches them until your men come)
         {"spare": {"tag": "hamlet_folk", "on": True}}, {"spare": {"tag": "chapel", "on": True}},
         # (the people carry their things: they walk slower than a soldier)
-        {"pace": {"tag": "people", "pace": PEOPLE_PACE}},
+        {"pace": {"tag": "people", "pace": PEOPLE_RUN}},
         # (the old ones by the church kneel in the yard)
         {"order": {"tag": "village_folk", "do": "hold"}},
         # (the fields and the granary are spared by the creatures' teeth: only THE CHOICE's fire takes them)
@@ -627,14 +642,14 @@ TR_ += [
     t for (tg, fa) in [("folk_w", "field_w"), ("folk_n", "field_n"), ("folk_r", "field_r")] for t in [
         {"id": "call_" + fa, "when": {"all": [{"fired": "bell"}, {"near": {"team": "mission", "to": tg, "within": FIELD_CALL}}, LIVE]},
          "do": [{"order": {"tag": tg, "do": "move", "to": "church_yard"}}, {"say": ["t_field"]}, {"ping": {"area": fa}}]},
-        {"id": "run_" + fa, "when": {"all": [{"fired": "call_" + fa}, {"count": {"tag": tg, "not_area": "church_yard", "at_least": 1}}, LIVE]},
+        {"id": "run_" + fa, "when": {"all": [{"fired": "call_" + fa}, {"count": {"tag": tg, "not_area": "church_yard", "at_least": 1}}, P1, LIVE]},
          "delay": 4, "every": 4, "do": [{"order": {"tag": tg, "do": "move", "to": "church_yard"}}]},
     ]
 ] + [
     # the mirror's village: the bell is heard (the people come in by themselves); the militia hold the bluff
     {"id": "m_bell", "when": {"all": [{"time": 12}, NO_CROWN]}, "do": [
         {"order": {"tag": "field_folk", "do": "move", "to": "church_yard"}}, {"order": {"tag": "militia", "do": "attack", "to": "bluff_s"}}]},
-    {"id": "m_bell2", "when": {"all": [{"fired": "m_bell"}, {"count": {"tag": "field_folk", "not_area": "church_yard", "at_least": 1}}, LIVE]},
+    {"id": "m_bell2", "when": {"all": [{"fired": "m_bell"}, {"count": {"tag": "field_folk", "not_area": "church_yard", "at_least": 1}}, {"not": {"fired": "part3"}}, LIVE]},
      "delay": 5, "every": 5, "do": [{"order": {"tag": "field_folk", "do": "move", "to": "church_yard"}}]},
     {"id": "count_in", "when": {"all": [{"time": 1}, LIVE]}, "every": 2, "do": [
         {"counter": {"name": "sheltered", "count": {"tag": "field_folk", "area": "church_yard"}}},
@@ -655,7 +670,7 @@ TR_ += [
     {"id": "all_in", "when": {"all": [{"time": 6}, P1, {"count": {"tag": "field_folk", "not_area": "church_yard", "below": 1}}, LIVE]}, "do": [
         {"objective": {"id": "fields_in", "set": "done"}}, {"say": ["ti_in"]}]},
     # the push on the bluff: at 1:40, or soon after everyone is in (NO WAITING)
-    wave("w_push", {"all": [NO_SWARM, P1, LIVE, {"any": [{"time": 100}, {"all": [{"fired": "all_in"}, {"fired": "w2"}]}]}]}, "flood_n", "church_yard", 4,
+    wave("w_push", {"all": [NO_SWARM, P1, LIVE, {"any": [{"time": 100}, {"all": [{"fired": "all_in"}, {"fired": "w2"}]}]}]}, "flood_n", "church_yard", 5,
          delay=6, line_ids=["n_push", "t_pray"], extra=[("raptor", 2, None)]),
     {"id": "swarm_hunt", "when": {"all": [{"time": 21}, NO_SWARM, P1, LIVE]}, "every": 3, "do": [
         {"order": {"team": "swarm", "do": "hunt", "prey": "people", "within": 14, "idle": True}}]},
@@ -684,7 +699,7 @@ TR_ += [
         {"give": {"team": "mission", "gold": RELIEF_GOLD}},
         {"ping": {"area": "relief_in"}},
         # the hamlet: a pack round the chapel at Santa Luzia
-        {"spawn": {"team": "swarm", "kind": "raptor", "count": 5, "at": "hamlet", "tag": "hamlet_pack", "tags": ["wave"],
+        {"spawn": {"team": "swarm", "kind": "raptor", "count": 7, "at": "hamlet", "tag": "hamlet_pack", "tags": ["wave"],
                    "order": {"do": "attack", "to": "hamlet_in"}, "if": NO_SWARM}},
         {"spawn": {"team": "swarm", "kind": "tyrant_challenger", "count": 1, "at": "hamlet", "tag": "hamlet_pack", "tags": ["wave"], "fixed": True,
                    "order": {"do": "attack", "to": "hamlet_in"}, "if": {"all": [NO_SWARM, NOT_FEW]}}},
@@ -704,7 +719,7 @@ TR_ += [
         {"order": {"tag": "relief_men", "do": "attack", "to": "hamlet", "idle": True}}]},
     # the flyers over the village (the swarm scripted): where they circle, the pack follows
     {"id": "hatch", "when": {"all": [{"fired": "part2"}, NO_SWARM, LIVE]}, "delay": 30, "do": [
-        {"spawn": {"team": "swarm", "kind": "hatchlings", "count": 4, "at": "flood_nw", "tag": "hatch", "order": {"do": "patrol", "to": "village"}}},
+        {"spawn": {"team": "swarm", "kind": "hatchlings", "count": 6, "at": "flood_nw", "tag": "hatch", "order": {"do": "patrol", "to": "village"}}},
         {"say": ["n_hatch", "c_hatch"]}, {"objective": {"id": "hatch", "set": "active", "if": CROWN}}, {"ping": {"area": "village"}}]},
     {"id": "hatch_circle", "when": {"all": [{"fired": "hatch"}, {"count": {"tag": "hatch", "at_least": 1}}, LIVE]}, "delay": 8, "every": 12, "do": [
         {"order": {"tag": "hatch", "do": "move", "to": "village", "idle": True}}]},
@@ -718,11 +733,12 @@ TR_ += [
         {"spare": {"tag": "hamlet_folk", "on": False}}, {"spare": {"tag": "chapel", "on": False}},
         {"order": {"tag": "hamlet_folk", "do": "move", "to": "church_yard"}}, {"say": ["n_free", "ti_found"]},
         {"clock": {"name": "hamlet", "stop": True}}, {"objective": {"id": "hamlet_clock", "set": "hidden"}}]},
-    {"id": "hamlet_run", "when": {"all": [{"fired": "hamlet_free"}, {"count": {"tag": "hamlet_folk", "not_area": "church_yard", "at_least": 1}}, LIVE]},
+    {"id": "hamlet_run", "when": {"all": [{"fired": "hamlet_free"}, {"count": {"tag": "hamlet_folk", "not_area": "church_yard", "at_least": 1}}, P2, LIVE]},
      "delay": 4, "every": 4, "do": [{"order": {"tag": "hamlet_folk", "do": "move", "to": "church_yard"}}]},
-    # while the flyers still circle, the pack comes at the causeway from the flood on both sides
-    wave("w_flank", {"all": [{"fired": "hamlet_free"}, {"count": {"tag": "hatch", "at_least": 1}}, NO_SWARM, P2, LIVE]}, "flood_cw", "causeway", 3,
-         delay=6, line_ids=["n_flank"], extra=[("raptor", 2, None)]),
+    # on the way back the pack comes at the causeway out of the flood; more of them while the flyers still circle
+    wave("w_flank", {"all": [{"fired": "hamlet_free"}, NO_SWARM, P2, LIVE]}, "flood_cw", "causeway", 3, delay=8,
+         extra=[("raptor", 3, {"count": {"tag": "hatch", "at_least": 1}})]),
+    {"id": "flank_say", "when": {"all": [{"fired": "w_flank"}, {"count": {"tag": "hatch", "at_least": 1}}]}, "do": [{"say": ["n_flank"]}]},
     # the chapel's clock out: the pack breaks in; nobody comes out
     {"id": "hamlet_late", "when": {"all": [{"clock_out": "hamlet"}, {"not": {"fired": "hamlet_free"}}, LIVE]}, "do": [
         {"say": ["n_hamlet_late"]}, {"spare": {"tag": "hamlet_folk", "on": False}}, {"spare": {"tag": "chapel", "on": False}},
@@ -739,6 +755,7 @@ TR_ += [
         {"clock": {"name": "column", "secs": COLUMN_SECS}},
         # every one of the people follows Tomasz (the player walks him down the trail)
         {"order": {"tag": "people", "do": "follow", "leader": "tomasz", "within": 3}},
+        {"pace": {"tag": "people", "pace": PEOPLE_PACE}},
         {"say": ["c_cannot", "t_go", "n_road"]}, {"ping": {"area": "trail_1"}}, {"ping": {"area": "fort_in"}},
         {"reveal": {"area": "fort", "side": "crown"}}]},
     # the forward Mother roots on the mud bank (the swarm scripted): while she lives the waves grow
@@ -750,7 +767,8 @@ TR_ += [
         {"brood_stage": {"tag": "fwd_mother", "stage": 2}}, {"nest_free": {"tag": "sires", "on": True}},
         {"root_now": {"tag": "fwd_mother"}}, {"root_now": {"tag": "fwd_sire"}}]},
     {"id": "fwd_say", "when": {"all": [{"fired": "fwd_root"}, CROWN]}, "delay": 14, "do": [
-        {"say": ["n_mother"]}, {"objective": {"id": "fwd", "set": "active"}}, {"ping": {"area": "mud_bank"}}]},
+        {"say": ["n_mother"]}, {"objective": {"id": "fwd", "set": "active"}}, {"ping": {"area": "mud_bank"}},
+        {"reveal": {"area": "mud_bank", "side": "crown", "secs": 40}}]},
     {"id": "fwd_sire_say", "when": {"all": [{"fired": "fwd_say"}, SIRE_ALL]}, "delay": 8, "do": [{"say": ["c_sire"]}]},
     {"id": "lead_say", "when": {"all": [{"fired": "part3"}, CROWN]}, "delay": 8, "do": [{"say": ["t_lead"]}]},
     # the mirror: the scripted village walks the trail by itself (Tomasz first, the soldiers alongside)
@@ -779,9 +797,9 @@ TR_ += [
                          "do": [{"say": ["t_left"]}]}]}}]},
     {"id": "fed_say", "when": {"all": [{"flag": {"fields": "left"}}, CROWN, P3]}, "delay": 30, "do": [{"say": ["n_fed"]}]},
     # the waves on the column: out of the flood beside the trail, every WAVE_EVERY s; bigger while the forward Mother lives
-    # (one more from the third wave, another from the fifth) and while the fields feed them (left)
+    # (one more from the third wave, another from the fifth; a Tyrant Challenger from the third) and while the fields feed them (left)
 ] + [
-    wave("w_road_%d" % i, {"all": [{"fired": "part3"}, NO_SWARM, LIVE]}, WAVE_AT[i % len(WAVE_AT)], TRAIL[min(1 + i, 6)], 3,
+    wave("w_road_%d" % i, {"all": [{"fired": "part3"}, NO_SWARM, LIVE]}, WAVE_AT[i % len(WAVE_AT)], TRAIL[min(1 + i, 6)], 4,
          delay=12 + i * WAVE_EVERY, every=(WAVE_EVERY * len(WAVE_AT) if i < len(WAVE_AT) else None),
          extra=road_extra(i))
     for i in range(len(WAVE_AT))
@@ -802,6 +820,9 @@ TR_ += [
         {"flag": {"forward": "rooted", "if": {"not": {"flag": {"forward": "killed"}}}}}]},
     {"id": "the_end", "when": {"all": [{"fired": "road_done"}, {"counter": {"name": "at_fort", "at_least": 1}}, {"not": {"fired": "s_won"}}]}, "delay": 3, "do": [
         {"objective": {"id": "road", "set": "done"}}, {"win": "crown"}]},
+    # the gate shut at dusk with nobody inside: lost
+    {"id": "lost_road", "when": {"all": [{"fired": "road_done"}, {"counter": {"name": "at_fort", "below": 1}}, {"not": {"fired": "s_won"}}]}, "delay": 3, "do": [
+        {"objective": {"id": "road", "set": "failed"}}]},
     {"id": "lost_all", "when": {"all": [{"fired": "setup"}, {"count": {"tag": "people", "below": 1}}, {"counter": {"name": "at_fort", "below": 1}},
                                         {"not": {"fired": "s_won"}}, {"not": {"fired": "the_end"}}]}, "delay": 1, "do": [
         {"say": ["n_all_lost"]}, {"objective": {"id": "road", "set": "failed"}}, {"lose": "crown"}]},

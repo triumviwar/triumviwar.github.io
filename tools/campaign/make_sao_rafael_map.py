@@ -164,6 +164,8 @@ teams = [0, 1]
 data = {
     "name": "sao_rafael", "size": [W, H], "cells": "".join("".join(r) for r in cells),
     "mirror": "off", "mix": "diag", "biome": "varzea",
+    # (the flooded forest's shallow water drawn as the várzea's flood water, not as reeds: MapGen.apply_custom reads it)
+    "ford": "varzea_water",
     "starts": starts, "teams": teams, "mode": "1v1", "halls": [],
     "props": props, "checked": True,
 }

@@ -561,3 +561,17 @@ Everything else in The Queen is built from the keys above: THE LEASH (d03's) wit
 on the Mother herself, `convert` (every loose creature to the Queen), a mid-match `show`, `exits` with `after` counted for
 a scripted side (Lindqvist and Pieter), `deny` / `unlock` (the eggs held back while she grows), a repeating `give` (the
 Queen's food), `stay` (the mirror's burning), countdown clocks, `tally` with shares (`brood_n`), `if` by `past` flags.
+
+## Added by Act 2's d05_aldeia (d05-aldeia; docs/campaign_d05_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| mission `"wade": {"pace": 0.5, "free": ["brood"]}` | THE VÁRZEA: a ground unit standing on a ford cell (the map's `f`: the flooded forest's shallow water) walks at `pace` (MissionRun.wade, read in Unit's speed), except the factions in `free` (MissionRun.wade_free: the creatures go through the flood at their own pace); flyers are not touched; nothing is built on a ford cell (Game.placement_problem: "Not in the flooded forest: nothing stands in the várzea's water.") |
+| roles `tomasz_rafael`, `tiago`, `mission_militia`, `rafael_villager`, `sobral`, `forward_mother` | Rebels.ROLES (stand-ins: Missionaries, a Musketeer, a Labourer, a Horseman, a Brood Mother drawn at 0.44) |
+
+Everything else in the Mission of São Rafael is built from the keys above: GRANARIES (act2-engine0's, here for the first
+time: the mission's or the swarm's food by who stands round it), `near` (a soldier at a field), `spare` (the hamlet's
+people in their chapel; the fields kept from the creatures' teeth), FOLLOW (the people after Tomasz), `pace`, a choice
+with a default, `burn` with `douse_side` / `douse_secs` (a fire the rain does not put out), `root_now`, `brood_stage`,
+`nest_free`, `exits` with `after`, counters with `share_of` / `sub_counter` (the swarm's tally), `tally` with shares,
+countdown clocks, the mission's `difficulty`, `if` by `past` flags and `playing`.
