@@ -1,0 +1,6 @@
+Slice 2 of 12, run 10:43-10:48 UTC on main ed7b05891, Godot 4.7-stable (downloaded).
+The one-time `--import` was capped at 4 minutes and timed out before finishing, so many textures
+were not imported. Most FAILs share the same first errors (null texture -> get_width/get_image, a
+missing terrain key like heath_6 / grass_calm_3 / bog_4 / snow_1): that is the unfinished import,
+not necessarily the test. Trust only failures with other messages (test_cursor_sets, test_files).
+Rerun this slice after a full import to get real results. rc=134 is Godot aborting on exit.
