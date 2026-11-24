@@ -8,6 +8,21 @@
 #   leaves): tools/test_online_spectators.gd (docs/online_spectators.md). SHOTS=<dir> takes pictures (xvfb-run).
 #   The upload in a real fight: HOST_ARGS=ai GUEST_ARGS=match:300 SPEC2_AFTER=220 SPEC2_ARGS=stay:60 tools/test_online.sh spectators
 cd "$(dirname "$0")/.." || exit 1
+if [ "$1" = "tournament" ]; then
+	# TOURNAMENTS online (docs/tournament.md): the desk, ten players, a match's room, in one process
+	PORT=${PORT:-8799}
+	OUT=${TMPDIR:-/tmp}/triumviwar_tournament_$$
+	mkdir -p "$OUT"
+	node tools/relay/local_relay.mjs $PORT > "$OUT/relay.log" 2>&1 &
+	RELAY=$!
+	sleep 1
+	godot --headless --script res://tools/test_tournament_online.gd -- relay:ws://127.0.0.1:$PORT > "$OUT/run.log" 2>&1
+	RC=$?
+	kill $RELAY 2>/dev/null
+	grep -h "CHECK\|ALL OK\|SOME FAILED\|SCRIPT ERROR\|checks" "$OUT/run.log"
+	echo "(full log in $OUT)"
+	exit $RC
+fi
 if [ "$1" = "spectators" ]; then
 	PORT=${PORT:-8798}
 	OUT=${TMPDIR:-/tmp}/triumviwar_spectators_$$

@@ -43,6 +43,10 @@ func open_desk(relay_url: String, tour: Tournament) -> void:
 
 func _connect(as_host: bool) -> void:
 	if link:
+		# (the old connection's own close must not end the new call: its signals are let go first)
+		for sg in [["opened", _on_opened], ["message", _on_message], ["notice", _on_notice], ["closed", _on_closed]]:
+			if link.is_connected(sg[0], sg[1]):
+				link.disconnect(sg[0], sg[1])
 		link.close("again")
 		link.queue_free()
 	link = NetLink.new()
@@ -69,9 +73,8 @@ func _on_opened(_id: int) -> void:
 		link.send(_pending)
 
 
-func _on_notice(d: Dictionary) -> void:
-	if String(d.get("t", "")) == "error" and not desk and String(d.get("m", "")).contains("full"):
-		_retry_full()
+func _on_notice(_d: Dictionary) -> void:
+	pass         # (a refusal, "The room is full.", is followed by the close: _on_closed waits and calls again)
 
 
 func _on_closed(why: String) -> void:
