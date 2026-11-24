@@ -869,7 +869,7 @@
 			"kind": "musketeer",
 			"as": "lindqvist",
 			"count": 1,
-			"at": "big_pen_s",
+			"at": "house_in",
 			"tag": "lindqvist",
 			"tags": [
 				"lure",
@@ -884,7 +884,7 @@
 			"kind": "labourer",
 			"as": "pieter",
 			"count": 1,
-			"at": "big_pen_s",
+			"at": "house_in",
 			"tag": "pieter",
 			"tags": [
 				"lure",
@@ -2720,24 +2720,6 @@
 				},
 				{
 					"leash": {
-						"team": "stock",
-						"lure": "call",
-						"within": 13,
-						"loose": "wander",
-						"name": "stock",
-						"breaks": {
-							"near": "rival_mother",
-							"within": 5,
-							"to": "near",
-							"loose_only": true,
-							"counter": "lost_n",
-							"warn": 2,
-							"as": "rivals"
-						}
-					}
-				},
-				{
-					"leash": {
 						"team": "wild",
 						"lure": "wild_mother",
 						"within": 90,
@@ -2760,6 +2742,39 @@
 					"objective": {
 						"id": "mothers",
 						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_part2__0",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "brood"
+					}
+				]
+			},
+			"do": [
+				{
+					"leash": {
+						"team": "stock",
+						"lure": "call",
+						"within": 13,
+						"loose": "wander",
+						"name": "stock",
+						"breaks": {
+							"near": "rival_mother",
+							"within": 5,
+							"to": "near",
+							"loose_only": true,
+							"counter": "lost_n",
+							"warn": 2,
+							"as": "rivals"
+						}
 					}
 				}
 			]
@@ -3894,6 +3909,15 @@
 					]
 				},
 				{
+					"counter": {
+						"name": "went",
+						"count": {
+							"tag": "bred",
+							"of_team": "stock"
+						}
+					}
+				},
+				{
 					"give": {
 						"team": "stock",
 						"gold": 330,
@@ -3903,6 +3927,48 @@
 				{
 					"ping": {
 						"tag": "big_house"
+					}
+				}
+			]
+		},
+		{
+			"id": "queen_food",
+			"when": {
+				"all": [
+					{
+						"fired": "queen"
+					},
+					{
+						"playing": "brood"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_mother"
+								},
+								{
+									"fired": "f_lost"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"every": 8,
+			"do": [
+				{
+					"give": {
+						"team": "stock",
+						"gold": 30,
+						"powder": 4
 					}
 				}
 			]
@@ -4173,15 +4239,6 @@
 					"objective": {
 						"id": "fall",
 						"set": "done"
-					}
-				},
-				{
-					"counter": {
-						"name": "went",
-						"count": {
-							"tag": "bred",
-							"of_team": "stock"
-						}
 					}
 				},
 				{

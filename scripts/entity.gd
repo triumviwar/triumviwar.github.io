@@ -149,7 +149,7 @@ func die() -> void:
 func _process_acid(delta: float) -> void:
 	if acid_t > 0.0 and not dead:
 		acid_t -= delta
-		hp -= 2.5 * delta
+		hp -= minf(2.5 * delta, maxf(0.0, hp - hp_floor)) if hp_floor > 0.0 else 2.5 * delta      # (d06: a mission's floor holds against acid too)
 		if hp <= 0.0:
 			hp = 0.0
 			die()

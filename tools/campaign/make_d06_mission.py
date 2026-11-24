@@ -94,6 +94,7 @@ QUEEN_SECS = 420             # the mirror: the Queen grows when this runs out (s
 BURN_SECS = 4                # the mirror: a man in a pen this long burns it
 BURN_DELAY = 60              # ... the big pen burned before the Queen: her clock this much longer
 GROW_DENY = ["raptor", "hatchlings", "spitter", "tyrant_challenger", "venom_challenger", "storm_challenger"]
+QUEEN_FOOD, QUEEN_SPOILS = 30, 4     # every 8 s after the Queen
 HOUSE_HP = 3000            # the big house
 BAND_SOME, BAND_ALL = 0.25, 0.55
 GROW_FOOD, GROW_SPOILS = 520, 80           # given at Part 3: her growth (500 / 75) and a little over
@@ -135,9 +136,9 @@ units = [
     {"team": "pens", "kind": "spitter", "count": 1, "at": "pen_3", "tag": "pen_pack", "tags": ["bred", "rivals"]},
     {"team": "pens", "kind": "tyrant_challenger", "count": 1, "at": "pen_3", "tag": "pen_pack", "tags": ["bred", "rivals"], "if": H_ALL},
     # ---- Lindqvist's people (YELLOW): the lures in Part 1; the house, the palisade and the guns after
-    {"team": "fazenda", "kind": "musketeer", "as": "lindqvist", "count": 1, "at": "big_pen_s", "tag": "lindqvist",
+    {"team": "fazenda", "kind": "musketeer", "as": "lindqvist", "count": 1, "at": "house_in", "tag": "lindqvist",
      "tags": ["lure", "people", "runners", "faz_all"], "fixed": True},
-    {"team": "fazenda", "kind": "labourer", "as": "pieter", "count": 1, "at": "big_pen_s", "tag": "pieter",
+    {"team": "fazenda", "kind": "labourer", "as": "pieter", "count": 1, "at": "house_in", "tag": "pieter",
      "tags": ["lure", "people", "runners", "faz_all"], "fixed": True, "if": PIETER},
     {"team": "fazenda", "kind": "musketeer", "as": "keeper", "count": 2, "at": "pen_5", "tag": "keeper_w",
      "tags": ["lure", "people", "keepers", "faz_all"], "fixed": True, "if": SPARED},
@@ -599,7 +600,8 @@ TR_ += [
         # the keepers drop the lures and run for the house; the creatures follow only their Mothers now
         {"order": {"tag": "people", "do": "move", "to": "house_in"}},
         {"leash": {"team": "stock", "lure": "call", "within": CALL_R, "loose": "wander", "name": "stock",
-                   "breaks": {"near": "rival_mother", "within": BREAK_R, "to": "near", "loose_only": True, "counter": "lost_n", "warn": 2, "as": "rivals"}}},
+                   "breaks": {"near": "rival_mother", "within": BREAK_R, "to": "near", "loose_only": True, "counter": "lost_n", "warn": 2, "as": "rivals"},
+                   "if": BROOD}},
         {"leash": {"team": "wild", "lure": "wild_mother", "within": 90, "loose": "to", "to": "big_pen", "name": "wild"}},
         {"leash": {"team": "pens", "lure": "pen_mother", "within": 90, "loose": "to", "to": "big_pen", "name": "pens"}},
         {"objective": {"id": "mothers", "set": "active"}}]},
@@ -683,8 +685,14 @@ TR_ += [
         {"convert": {"tag": "rival_mother", "to": "stock", "warn": 2}}]},
     {"id": "fall", "when": {"all": [{"fired": "queen"}, BROOD, LIVE]}, "delay": 3, "do": [
         {"objective": {"id": "fall", "set": "active"}}, {"say": ["n_fall"]},
+        # (the bred creatures that reached the Queen: hers when she grew, the turned ones counted in)
+        {"counter": {"name": "went", "count": {"tag": "bred", "of_team": "stock"}}},
         {"give": {"team": "stock", "gold": BRUTE_FOOD, "powder": BRUTE_SPOILS}},
         {"ping": {"tag": "big_house"}}]},
+    # (no grubs on the flooded island: the drowned cane and the carrion feed the Queen's swamp a little at a time, so the
+    # fall never stalls for want of food)
+    {"id": "queen_food", "when": {"all": [{"fired": "queen"}, BROOD, LIVE]}, "delay": 8, "every": 8, "do": [
+        {"give": {"team": "stock", "gold": QUEEN_FOOD, "powder": QUEEN_SPOILS}}]},
     # Lindqvist and Pieter run for the canoes (the exit opens), the lure book left upstairs
     {"id": "run_go", "when": {"all": [{"fired": "queen"}, NO_FAZ, LIVE]}, "delay": 6, "do": [
         {"say": ["l_run", "p_book", "l_book"]}, {"flag": {"book": "left"}},
@@ -699,7 +707,6 @@ TR_ += [
     # ============================================================ THE END (the Brood): the big house broken
     {"id": "house_down", "when": {"all": [{"fired": "queen"}, {"dead": "big_house"}, LIVE]}, "do": [
         {"say": ["n_house"]}, {"objective": {"id": "fall", "set": "done"}},
-        {"counter": {"name": "went", "count": {"tag": "bred", "of_team": "stock"}}},
         {"tally": {"flag": "brood_n", "counter": "went", "of": "bred_n", "bands": [[0, "few"], [BAND_SOME, "some"], [BAND_ALL, "all"]]}},
         {"flag": {"lindqvist": "fled"}}, {"flag": {"book": "left"}}]},
     {"id": "house_pieter", "when": {"fired": "house_down"}, "do": [
