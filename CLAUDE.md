@@ -26,6 +26,12 @@
 
 ## Current work
 
+- d08_rivers BUILT (job d08-rivers, MERGED 0.38.201, docs/campaign_d08_build.md): Act 2 step 11, "Down the Rivers" (the
+  Naturalist after d06, the floods of 2778, Valadares tells it): the swarm comes down the rivers, Valadares brings
+  Nazaré's people out and holds the Barra do Rio Negro; THE LURE BOOK choice (flag `lure`); map campaign:barra_rivers;
+  B6 = BIGGER CLUTCH + PACK HUNT + QUICK ROOTS (bound team `swarm`); default side the Barra, solo pick / versus THE SWARM;
+  roles bank_mother (renamed from forward_mother at the merge: d05 has its own), barra_sergeant; hub VALADARES' QUARTERS
+  AT THE BARRA. Tests tools/test_campaign_d08.gd, sim tools/sim_campaign_d08.gd. ALL TEXT PLACEHOLDER.
 - d05_aldeia BUILT (job d05-aldeia, MERGED 0.38.200, docs/campaign_d05_build.md): Act 2 step 9, "The Mission of São
   Rafael" (the Crown after d01, the Tapajós, wet season 2776, Father Tomasz tells it): the Crown meets THE BROOD as a
   swarm at Tomasz's mission village; map campaign:sao_rafael (VÁRZEA biome, mission `wade`: slow in the flood, nothing

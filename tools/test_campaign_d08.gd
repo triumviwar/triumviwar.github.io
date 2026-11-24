@@ -195,7 +195,7 @@ func _data() -> void:
 	var pr := Campaign.problems(m)
 	check("d08_rivers: data checks out", pr.is_empty(), "; ".join(pr))
 	var extra := ["A forward Mother", "The Barra's sergeant", "Valadares' Quarters at the Barra", "VALADARES"]
-	for role in ["forward_mother", "barra_sergeant"]:
+	for role in ["bank_mother", "barra_sergeant"]:
 		extra.append(String(Rebels.ROLES[role]["about"]))
 	var miss: Array = []
 	for t in Campaign.strings_of(m) + Campaign.index_strings() + extra:

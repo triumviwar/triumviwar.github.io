@@ -157,11 +157,11 @@ units = [
     for g, rows in VILL.items() for (n, c) in rows
 ] + [
     # ---- the swarm: the forward Mother across from Nazaré (both games), her guard; the mirror's own pieces
-    {"team": "swarm", "kind": "brood_mother", "as": "forward_mother", "count": 1, "at": "fb_n_spot", "tag": "fwd_n",
+    {"team": "swarm", "kind": "brood_mother", "as": "bank_mother", "count": 1, "at": "fb_n_spot", "tag": "fwd_n",
      "tags": ["fwd", "mothers"], "fixed": True},
     {"team": "swarm", "kind": "raptor", "count": 3, "at": "fb_n", "tag": "fwd_guard", "tags": ["swarm_all"], "if": NO_SWARM},
     # (the mirror: the player's swarm: the second Mother on the far bank's middle, the Sires, a turtle, grubs, raiders)
-    {"team": "swarm", "kind": "brood_mother", "as": "forward_mother", "count": 1, "at": "fb_m_spot", "tag": "fwd_m",
+    {"team": "swarm", "kind": "brood_mother", "as": "bank_mother", "count": 1, "at": "fb_m_spot", "tag": "fwd_m",
      "tags": ["fwd", "mothers"], "fixed": True, "if": SWARM},
     {"team": "swarm", "kind": "tyrannosaur", "count": 1, "at": "sire_spot", "tag": "sires", "fixed": True, "if": SWARM},
     {"team": "swarm", "kind": "dilophosaurus", "count": 1, "at": "venom_spot", "tag": "sires", "fixed": True, "if": SWARM},
@@ -742,7 +742,7 @@ TR_ += [
     {"id": "p2_raiders", "when": {"all": [{"fired": "part2"}, NO_SWARM]}, "do": [{"order": {"tag": "raiders", "do": "attack", "to": "trail_mid", "idle": True}}]},
     # ============================================================ PART 2: THE FORWARD MOTHERS (the solo Barra)
     {"id": "fwd_m_go", "when": {"all": [{"fired": "part2"}, SOLO_B, LIVE]}, "delay": FWD_M_AT, "do": [
-        {"spawn": {"team": "swarm", "kind": "brood_mother", "as": "forward_mother", "count": 1, "at": "road_n", "tag": "fwd_m", "tags": ["fwd", "mothers"], "fixed": True}},
+        {"spawn": {"team": "swarm", "kind": "brood_mother", "as": "bank_mother", "count": 1, "at": "road_n", "tag": "fwd_m", "tags": ["fwd", "mothers"], "fixed": True}},
         {"spawn": {"team": "swarm", "kind": "raptor", "count": 2, "at": "road_n", "tag": "fwd_m_guard", "tags": ["swarm_all"]}},
         {"objective": {"id": "fwd", "set": "active"}}]},
     {"id": "fwd_m_walk", "when": {"fired": "fwd_m_go"}, "delay": 0.5, "do": [
@@ -751,7 +751,7 @@ TR_ += [
         {"order": {"tag": "fwd_m_guard", "do": "follow", "leader": "fwd_m", "within": 3}},
         {"say": ["n_fwd"]}, {"ping": {"tag": "fwd_m"}}]},
     {"id": "fwd_s_go", "when": {"all": [{"fired": "part2"}, SOLO_B, LIVE]}, "delay": FWD_S_AT, "do": [
-        {"spawn": {"team": "swarm", "kind": "brood_mother", "as": "forward_mother", "count": 1, "at": "fb_m", "tag": "fwd_s", "tags": ["fwd", "mothers"], "fixed": True}},
+        {"spawn": {"team": "swarm", "kind": "brood_mother", "as": "bank_mother", "count": 1, "at": "fb_m", "tag": "fwd_s", "tags": ["fwd", "mothers"], "fixed": True}},
         {"spawn": {"team": "swarm", "kind": "raptor", "count": 2, "at": "fb_m", "tag": "fwd_s_guard", "tags": ["swarm_all"]}}]},
     {"id": "fwd_s_walk", "when": {"fired": "fwd_s_go"}, "delay": 0.5, "do": [
         {"brood_stage": {"tag": "fwd_s", "stage": 2}},

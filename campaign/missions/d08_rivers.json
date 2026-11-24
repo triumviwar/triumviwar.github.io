@@ -773,7 +773,7 @@
 		{
 			"team": "swarm",
 			"kind": "brood_mother",
-			"as": "forward_mother",
+			"as": "bank_mother",
 			"count": 1,
 			"at": "fb_n_spot",
 			"tag": "fwd_n",
@@ -801,7 +801,7 @@
 		{
 			"team": "swarm",
 			"kind": "brood_mother",
-			"as": "forward_mother",
+			"as": "bank_mother",
 			"count": 1,
 			"at": "fb_m_spot",
 			"tag": "fwd_m",
@@ -3084,7 +3084,7 @@
 					"spawn": {
 						"team": "swarm",
 						"kind": "brood_mother",
-						"as": "forward_mother",
+						"as": "bank_mother",
 						"count": 1,
 						"at": "road_n",
 						"tag": "fwd_m",
@@ -3205,7 +3205,7 @@
 					"spawn": {
 						"team": "swarm",
 						"kind": "brood_mother",
-						"as": "forward_mother",
+						"as": "bank_mother",
 						"count": 1,
 						"at": "fb_m",
 						"tag": "fwd_s",

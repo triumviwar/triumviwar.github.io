@@ -582,7 +582,7 @@ countdown clocks, the mission's `difficulty`, `if` by `past` flags and `playing`
 | key / action / condition | what it does |
 | --- | --- |
 | count `"rooted": true` | (MissionRun.count) only Brood creatures rooted now (the swarm's player: a Mother ROOTED in the clearing opposite the Barra, not one standing in it) |
-| roles `forward_mother`, `barra_sergeant` | Rebels.ROLES: the swarm's forward Mothers (a Brood Mother drawn small, 0.46, 600 health: an animal with no name but what Valadares' men called her) and the Barra's sergeant (a Musketeer, a speaking part) |
+| roles `bank_mother`, `barra_sergeant` | Rebels.ROLES: the swarm's forward Mothers (a Brood Mother drawn small, 0.46, 600 health: an animal with no name but what Valadares' men called her) and the Barra's sergeant (a Musketeer, a speaking part) |
 
 Everything else in Down the Rivers is built from the keys above: THE LURE POST with its `pull` (act2-engine0's, its
 first use: the choice USE IT ONCE), THE SPREADING GROUND (the forward Mothers' swamp), STAY (a man by each group of
