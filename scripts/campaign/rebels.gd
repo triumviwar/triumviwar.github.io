@@ -87,6 +87,12 @@ const ROLES := {
 	"young_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "The young Mother", "hp": 1000, "scale": 0.42, "about": "A young Brood Mother of Lindqvist's stock, not yet grown: his breeding animal."},
 	"keeper": {"kind": "musketeer", "art": "b_hired_gun", "name": "Keeper", "hp": 140, "about": "One of Lindqvist's keepers, a musket on his back and a brass lure on a chain."},
 	"assembly_keeper": {"kind": "musketeer", "art": "rebel_militia", "name": "Assembly guard", "about": "A Free Assembly man hired to guard the fazenda after Paris: he asks no questions."},
+	# Act 2's d06_queen (the island in the wet season 2775): three Brood Mothers, animals all (THE BROOD IS NOT A PERSON:
+	# no names): the player's, grown three years; the second one Lindqvist bred; a wild one off the flood (stand-ins: the
+	# Brood Mother's art drawn small, as in b01 / d03)
+	"grown_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "The Mother", "hp": 2000, "scale": 0.5, "about": "A Brood Mother of Lindqvist's stock, three years grown, rooted in the big pen."},
+	"pen_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "The east pen's Mother", "hp": 800, "scale": 0.44, "about": "Another of Lindqvist's breeding Mothers, younger, fenced in the north-east pen."},
+	"wild_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "The wild Mother", "hp": 1000, "scale": 0.48, "about": "A wild Brood Mother carried onto the island by the flood."},
 	"fonseca": {"kind": "dismounted", "art": "a_delorme", "name": "Desembargador Fonseca", "hp": 220, "about": "The commission's magistrate, a judge of the Relação, with Rome's order."},
 	# Act 2's d04_concordia (the southern highlands, 2773): the guild's settlers, the council's secular voice (Varenne by
 	# a06 `varenne` spared, Citizen Morel by executed: they speak, they don't fight), the valley's militia, ranchers and

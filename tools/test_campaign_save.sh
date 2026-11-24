@@ -21,7 +21,8 @@ a07 a07 400 active
 b01 b01 300 active
 c01 c01 400 active
 d02 d02 120 active
-d03 d03 200 active"
+d03 d03 200 active
+d06 d06 150 active"
 run() {   # tag sim save_at args...
 	tag=$1; sim=$2; at=$3; shift 3
 	for how in plain saved; do

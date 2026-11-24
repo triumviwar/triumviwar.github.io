@@ -698,8 +698,16 @@ func count(q: Dictionary) -> int:
 				if not b.dead and not b.ghost and teams.has(b.team) and (b.built or not bool(q.get("built", false))):
 					list.append(b)
 	var kinds: Array = (q["kind"] if q["kind"] is Array else [q["kind"]]) if q.has("kind") else []
+	# (d06) "of_team": of a tag, only those on that team now (the bred creatures that went to the Queen)
+	var of_team := team_index(String(q["of_team"])) if q.has("of_team") else -2
 	var n := 0
+	# (d06) "not_area": only those standing outside that area (the young not yet up in the big pen)
+	var outside := area_rect(String(q["not_area"])) if q.has("not_area") else Rect2()
 	for e in list:
+		if of_team != -2 and e.team != of_team:
+			continue
+		if q.has("not_area") and outside.has_point(e.position if e is Unit else e.center()):
+			continue
 		if q.has("area") and not area.has_point(e.position if e is Unit else e.center()):
 			continue
 		if not kinds.is_empty() and not kinds.has(e.kind):
@@ -909,6 +917,7 @@ func act(a: Dictionary) -> void:
 				for e in tagged(String(v.get("tag", ""))):
 					e.max_hp = float(v.get("hp", e.max_hp))
 					e.hp = e.max_hp
+					e.set_meta("mission_max_hp", e.max_hp)      # (d06: kept with a save: SaveGame makes it again at its kind's)
 			"heal":
 				# {"heal": {"tag", "share"}}: their health back up to that share at least
 				for e in tagged(String(v.get("tag", ""))):
@@ -1055,6 +1064,8 @@ func _order(us: Array, v: Dictionary) -> void:
 				var best: Entity = null
 				var bd := reach
 				for e in prey:
+					if e.team == u.team:
+						continue          # (d06: never its own side's: the rival Mothers hunt "mothers", not their own)
 					var dd: float = u.position.distance_to(e.position)
 					if dd < bd:
 						bd = dd
@@ -2657,6 +2668,8 @@ func save_entity(e: Entity, uid: Dictionary, bid: Dictionary) -> String:
 		x["spared"] = true
 	if e.hp_floor > 0.0:
 		x["floor"] = e.hp_floor
+	if e.has_meta("mission_max_hp"):
+		x["mhp"] = float(e.get_meta("mission_max_hp"))
 	if e is Unit:
 		var u: Unit = e
 		if u.m_pace != 1.0:
@@ -2698,6 +2711,9 @@ func load_state(d: Dictionary, mu: Array, mb: Array) -> void:
 					e.set_meta(String(k).substr(2), x[k])
 			e.spared = bool(x.get("spared", false))
 			e.hp_floor = float(x.get("floor", 0.0))
+			if x.has("mhp"):
+				e.max_hp = float(x["mhp"])
+				e.set_meta("mission_max_hp", e.max_hp)
 			e.hp = minf(float(x.get("hp", e.hp)), e.max_hp)
 			if e is Unit:
 				e.m_pace = float(x.get("pace", 1.0))

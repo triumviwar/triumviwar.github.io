@@ -538,3 +538,26 @@ Everything else in the Gold of Vila Rica is built from the keys above: disguised
 counting into a counter (the agitators raise the temper), STAY (Tomasz in a churchyard), `convert` (the miners called
 home), CARGO CARTS with gold and TAKE A CART both ways (d02's), CAPTURE (Ramos), a choice with a random default (where
 the armouries hide), `tally` with shares (`gold`), countdown clocks, `if` by `past` flags.
+
+## Added by Act 2's d06_queen (d06-queen; docs/campaign_d06_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| leash `"breaks": {..., "to": "near"}` | (MissionAct2) THE STRONGEST CALL: the creature goes to the team of the one it came near (several Mothers calling on one island), not to a fixed team; `Campaign.problems()` takes "near" as a team |
+| leash `"breaks": {..., "loose_only": true}` | one still held by a lure of its own leash never breaks (the player's creatures fighting beside their own Mother stay hers next to another Mother; a stray one goes over) |
+| THE LEASH, an open leash's breaking | a creature changing side is not taken up again by its open (team / side) leash during its warning (it broke once, not every round) |
+| condition `{"brood_stage": {"tag", "at_least": 3}}` | (MissionAct2) one Brood Mother of the tag has grown to that stage (1 to 3): the Queen |
+| `{"root_now": {"tag"}}` | (MissionAct2) the Brood creatures of the tag root where they stand, a person's too (the scene as the mission sets it at its start: the Mother and her Sires rooted in the big pen); a blocked spot: the nearest free one within 4 tiles; a father may nest anywhere (`mission_root`) |
+| count `"not_area": area` | (MissionRun.count) only those standing outside that area ("every young one up in the big pen" = none of the tag outside it) |
+| count `"of_team": team` | (MissionRun.count) of a tag, only those on that team now (the bred creatures that ended on the Queen's side) |
+| order `"hunt"` | never goes for a unit of its own team (the rival Mothers hunt the tag "mothers" and pass their own) |
+| `{"max_hp": ...}` kept with a save | the health it sets is saved with the unit or building (`"mhp"` in its "mx") and set again on a load (a building was made again at its kind's health) |
+| a deny's `"why"` on the Brood Mother's eggs | BroodNew.lay_problem says the deny's own reason (d06: "Not now: everything she has goes into growing. GROW her first.") |
+| a mission's `floor` and ACID | the acid's burn (Entity._process_acid) no longer takes health under a mission's floor |
+| MissionHeroes and exits | a hero taken off the map by an exit (Lindqvist in his canoe) no longer raises a script error |
+| roles `grown_mother`, `pen_mother`, `wild_mother` | Rebels.ROLES: Brood Mothers drawn small (0.5, 0.44, 0.48), animals with no names but their place |
+
+Everything else in The Queen is built from the keys above: THE LEASH (d03's) with lures on another team, the call's ring
+on the Mother herself, `convert` (every loose creature to the Queen), a mid-match `show`, `exits` with `after` counted for
+a scripted side (Lindqvist and Pieter), `deny` / `unlock` (the eggs held back while she grows), a repeating `give` (the
+Queen's food), `stay` (the mirror's burning), countdown clocks, `tally` with shares (`brood_n`), `if` by `past` flags.

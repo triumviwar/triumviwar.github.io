@@ -65,8 +65,9 @@ LADDER = {
         ("B2", "a03_plateau", ["dilophosaurus", "spitter"], []),
         ("B3", "a05_specimens", ["stage2", "tyrant_challenger", "venom_challenger"], []),
         ("B4", "d03_fazenda", ["pterodactyl", "hatchlings"], []),
-        ("B5", "", ["nb_clutch_raptor", "nb_pack_hunt", "nb_quick_roots"], []),
-        ("B6", "", ["stage3", "brute"], []),
+        # (B5 and B6 SWAPPED by Act 2's plan, Claude's choice 13: the Queen IS stage 3, so d06 gives it)
+        ("B5", "d06_queen", ["stage3", "brute"], []),
+        ("B6", "", ["nb_clutch_raptor", "nb_pack_hunt", "nb_quick_roots"], []),
         ("B7", "", ["mist_toad", "nb_fog", "nb_miasma"], []),
         ("B8", "", ["storm_challenger", "nb_updraft", "nb_clutch_hatchlings"], []),
         ("B9", "", ["nb_clutch_spitter", "nb_slither", "nb_long_spit", "nb_battering_horns", "nb_swamp_mending"], []),
@@ -89,6 +90,7 @@ BOUND = {
     "d03_fazenda": ("brood", ["stock"]),              # (Act 2's B4: the commission's solo pick is not bound: the other side)
     "d04_concordia": ("clockwork", ["guild"]),        # (Act 2's K5: the valley (versus) is not bound: the other side)
     "d01_minas": ("crown", ["garrison"]),             # (Act 2's C5: the conspiracy (versus) is not bound: the other side)
+    "d06_queen": ("brood", ["stock"]),                # (Act 2's B5, was B6: the fazenda (solo pick, versus) is not bound)
 }
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
@@ -115,6 +117,8 @@ CARDS = {
     "dilophosaurus": "NEW: THE VENOM SIRE. A grub becomes him. Rooted by the Mother he fathers Spitters; up, he spits acid from afar.",
     "spitter": "NEW: THE SPITTERS. Two to an egg, fathered by the Venom Sire: acid from behind the Raptors, at ground and air.",
     "stage2": "NEW: GROW. Rooted, the Mother grows to her second stage: more eggs, and the young may MATURE.",
+    "stage3": "NEW: GROW TO THE THIRD STAGE. Rooted, the Mother grows once more: more eggs, faster laying, and the Brute's eggs. It takes a minute and she must stay rooted.",
+    "brute": "NEW: THE BRUTE. Laid by the Mother at her third stage with the Tyrant Sire rooted beside her: a huge horned beast that batters down palisades and gates.",
     "tyrant_challenger": "NEW: MATURE. A grown Raptor moults into a Tyrant Challenger; a grown Spitter into a Venom Challenger.",
     "pterodactyl": "NEW: THE STORM SIRE. A flying father: up, he flies and dives to bite; ROOTED beside the Mother he lands, and she lays the eggs of his line.",
     "hatchlings": "NEW: THE HATCHLINGS. Pick them on the Mother's card while the Storm Sire is rooted by her: little flyers, two to an egg. They bite only flyers, but they see far over the forest.",
@@ -147,6 +151,8 @@ CARDS_PT = {
     "ratchet_turret": "NOVO: A TORRETA DE CATRACA. Um canhão de parafusos que fica parado e atira contra terra e ar. Tem de estar ligado a um campo de engrenagens: no cais um Enrolador constrói uma junto ao relógio de viagem, a última defesa da retaguarda.",
     "shield_wall": "NOVO: MURALHA DE ESCUDOS. Os seus Soldados-Relógio foram treinados nela: aperte ESCUDO À FRENTE no painel deles e eles andam mais devagar mas sofrem metade dos tiros pela frente. Erga-a de frente para os mosquetes.",
     "stage2": "NOVO: CRESCER. Enraizada, a Mãe cresce ao seu segundo estágio: mais ovos, e os jovens podem AMADURECER.",
+    "stage3": "NOVO: CRESCER AO TERCEIRO ESTÁGIO. Enraizada, a Mãe cresce mais uma vez: mais ovos, postura mais rápida, e os ovos do Brutamontes. Leva um minuto e ela tem de ficar enraizada.",
+    "brute": "NOVO: O BRUTAMONTES. Posto pela Mãe no seu terceiro estágio com o Sire Tirano enraizado ao lado: uma enorme besta com chifres que derruba paliçadas e portões.",
     "tyrant_challenger": "NOVO: AMADURECER. Um Raptor crescido muda de pele e vira um Desafiante Tirano; um Cuspidor crescido, um Desafiante Venenoso.",
     "church": "NOVO: A IGREJA. As igrejas de Roma treinam Missionários.",
     "missionary": "NOVO: O MISSIONÁRIO. Traz de volta os caídos e guia o povo onde um soldado não consegue.",
@@ -178,6 +184,8 @@ CARDS_ES = {
     "ratchet_turret": "NUEVO: LA TORRETA DE TRINQUETE. Un cañón de tornillos que se queda quieto y dispara contra tierra y aire. Debe estar unido a un campo de engranajes: en el embarcadero un Dador de cuerda construye una junto al reloj de viaje, la última defensa de la retaguardia.",
     "shield_wall": "NUEVO: MURO DE ESCUDOS. Tus Soldados Reloj están entrenados en él: pulsa ESCUDO AL FRENTE en su panel y caminan más despacio pero reciben la mitad de los disparos de frente. Álzalo de cara a los mosquetes.",
     "stage2": "NUEVO: CRECER. Enraizada, la Madre crece a su segunda etapa: más huevos, y los jóvenes pueden MADURAR.",
+    "stage3": "NUEVO: CRECER A LA TERCERA ETAPA. Enraizada, la Madre crece una vez más: más huevos, puesta más rápida, y los huevos del Bruto. Lleva un minuto y debe seguir enraizada.",
+    "brute": "NUEVO: EL BRUTO. Lo pone la Madre en su tercera etapa con el Señor Tirano enraizado a su lado: una enorme bestia con cuernos que derriba empalizadas y portones.",
     "tyrant_challenger": "NUEVO: MADURAR. Un Raptor crecido muda la piel y se vuelve un Retador Tirano; un Escupidor crecido, un Retador Venenoso.",
     "church": "NUEVO: LA IGLESIA. Las iglesias de Roma entrenan Misioneros.",
     "missionary": "NUEVO: EL MISIONERO. Trae de vuelta a los caídos y guía al pueblo donde un soldado no puede.",
@@ -192,8 +200,8 @@ CARDS_ES = {
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood"}
 
 
 def step_of(mission_id):

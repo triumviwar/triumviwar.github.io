@@ -249,6 +249,13 @@ func cond(k: String, v: Variant) -> Array:
 				return [true, false]
 			var ts: Array = v["tech"] if v.get("tech") is Array else [v.get("tech", "")]
 			return [true, ts.all(func(k) -> bool: return run.game.has_tech(tm, String(k)))]
+		"brood_stage":
+			# (d06) {"brood_stage": {"tag", "at_least": 3}}: one Brood Mother of the tag has grown to that stage (1 to 3)
+			var need := int(v.get("at_least", 3))
+			for e in run.tagged(String(v.get("tag", ""))):
+				if e is Unit and not e.dead and e.kind == BroodNew.QUEEN and BroodNew.stage(e) + 1 >= need:
+					return [true, true]
+			return [true, false]
 		"charted":
 			# (d04) {"charted": {"area", "at_least": share 0..1 (0.6)}}: that share of the area's open cells is mapped;
 			# without "area": of the whole map
@@ -301,6 +308,8 @@ func act(k: String, v: Variant) -> bool:
 			sap(v)
 		"brood_stage":
 			brood_stage(v)
+		"root_now":
+			root_now(v)
 		"retag":
 			retag(v)
 		"chart":
@@ -648,6 +657,31 @@ func retag(v: Dictionary) -> void:
 			return
 
 
+## (d06_queen) {"root_now": {"tag"}}: the Brood creatures of the tag (a person's too: the scene as the mission sets it,
+## at its start) root where they stand (BroodRoot.start_root at their own spot, a father nesting wherever he is).
+func root_now(v: Dictionary) -> void:
+	for e in run.tagged(String(v.get("tag", ""))):
+		if e is Unit and not e.dead and BroodNew.ROOTERS.has(e.kind) and e.tesla_mode == "packed":
+			if BroodNew.is_father(e.kind):
+				e.set_meta("mission_root", true)
+			# (where it stands, else the nearest free spot within 4 tiles: two rooted ones never overlap)
+			var at: Vector2 = e.position
+			var g := run.game
+			var sc := BroodRoot.scale_of(e)
+			if BroodRoot.place_problem(g, e.team, e.kind, at, e, false, sc) != "":
+				var found := false
+				for rr in range(1, 5):
+					for k in 12:
+						var p: Vector2 = e.position + Vector2.from_angle(TAU * float(k) / 12.0) * float(rr) * _tile()
+						if BroodRoot.place_problem(g, e.team, e.kind, p, e, false, sc) == "":
+							at = p
+							found = true
+							break
+					if found:
+						break
+			BroodRoot.start_root(e, at)
+
+
 ## (d03_fazenda) {"brood_stage": {"tag", "stage": 2}}: the Brood Mothers of the tag are at that growth stage at once (a
 ## mission's breeding animal kept by a naturalist: the Storm Sire's Hatchlings need her at stage 2).
 func brood_stage(v: Dictionary) -> void:
@@ -730,14 +764,17 @@ func track_marks() -> Array:
 # ================================================================== THE LEASH and its BREAKING (d03, d06)
 
 ## {"leash": {"tag" / "team" / "side", "lure": tag, "within": 8, "loose": "wander" / "hunt" / "root" / "to", "to": area,
-## "name", "breaks": {"near": tag, "within": 5, "to": team, "as": tag, "counter", "warn": 2}, "on": true}}: these
+## "name", "breaks": {"near": tag, "within": 5, "to": team or "near", "as": tag, "counter", "warn": 2, "loose_only"},
+## "on": true}}: these
 ## creatures OBEY (a person's orders, a script's) only within `within` tiles of a LURE: a living unit or building with
 ## the lure tag, or a lure post with it. Out of every lure's reach they are LOOSE: they go their own way every few
 ## seconds (wander round where they are, hunt the nearest foe, root where they stand, or walk to `to`), whatever
 ## they were told; back in reach they wait for orders again. The lures' reach is a ring on their side's screen, and a
 ## loose creature has LOOSE over it. A leash on a team or side takes its new units too.
 ## BREAKS: one that comes within `within` tiles of a unit with the `near` tag leaves the leash and changes side for
-## good (after `warn` seconds of stars, as a04's convert), counted in "counter" and {"broke": name}.
+## good (after `warn` seconds of stars, as a04's convert), counted in "counter" and {"broke": name}. (d06) "to": "near"
+## gives it to the team of the one it came near (several Mothers calling); "loose_only": one still held by a lure of its
+## own leash never breaks.
 func leash(v: Dictionary) -> void:
 	var nm := String(v.get("name", v.get("tag", v.get("team", v.get("side", "leash")))))
 	var old: Dictionary = {}
@@ -790,14 +827,25 @@ func _tick_leash(dt: float) -> void:
 		for u in units.duplicate():
 			if int(newest.get(u, li)) > li:
 				continue          # (a newer leash rules this one)
+			if u.has_meta("leash_turning"):
+				if float(u.get_meta("leash_turning")) > run.game.clock:
+					units.erase(u)
+					continue      # (d06: changing side already: an open leash takes it up again each round meanwhile)
+				u.remove_meta("leash_turning")
 			# THE BREAKING: near the one who calls them, they are hers
-			if not breakers.is_empty():
+			var held: bool = lures.any(func(p) -> bool: return (p as Vector2).distance_to(u.position) <= reach)
+			# (d06 "loose_only": a creature held by its own lure never breaks: the Mothers' fight, her call beside it)
+			if not breakers.is_empty() and not (held and bool(br.get("loose_only", false))):
 				var bw := float(br.get("within", 5.0)) * _tile()
-				if breakers.any(func(b) -> bool: return b != u and _pos(b).distance_to(u.position) <= bw):
-					_break(u, l, br)
+				var by: Entity = null
+				for b in breakers:
+					if b != u and _alive(b) and _pos(b).distance_to(u.position) <= bw and (b.team != u.team or String(br.get("to", "")) != "near"):
+						by = b
+						break
+				if by != null:
+					_break(u, l, br, by)
 					units.erase(u)
 					continue
-			var held: bool = lures.any(func(p) -> bool: return (p as Vector2).distance_to(u.position) <= reach)
 			if held:
 				if u.has_meta("leash_loose"):
 					u.remove_meta("leash_loose")
@@ -851,14 +899,16 @@ func _go_loose(u: Unit, l: Dictionary) -> void:
 		g.group_move([u], p, false)
 
 
-func _break(u: Unit, l: Dictionary, br: Dictionary) -> void:
+func _break(u: Unit, l: Dictionary, br: Dictionary, by: Entity = null) -> void:
 	if u.has_meta("leash_loose"):
 		u.remove_meta("leash_loose")
-	var to := run.team_index(String(br.get("to", "")))
+	# (d06 "to": "near": the side of the one it came near: whichever Mother's call is strongest there)
+	var to := by.team if String(br.get("to", "")) == "near" and by != null else run.team_index(String(br.get("to", "")))
 	if to < 0 or u.team == to:
 		return
 	_off_routes(u)
 	var warn := float(br.get("warn", 2.0))
+	u.set_meta("leash_turning", run.game.clock + warn + 0.5)
 	u.stun(warn, true)
 	run._turning.append([u, to, run.game.clock + warn, String(br.get("as", ""))])
 	var nm := String(l["name"])

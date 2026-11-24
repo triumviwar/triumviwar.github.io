@@ -318,6 +318,18 @@
   "d03__v_c_won": "angry",
   "d03__p_half": "urgent",
   "d03__p_riders": "urgent",
-  "d03__l_dawn": "angry"
+  "d03__l_dawn": "angry",
+  "d06__l_1": "urgent",
+  "d06__l_drop": "urgent",
+  "d06__l_fight": "wonder",
+  "d06__p_changing": "urgent",
+  "d06__l_shoot": "shout",
+  "d06__l_show": "grief",
+  "d06__l_run": "shout",
+  "d06__p_book": "shout",
+  "d06__l_book": "angry",
+  "d06__l_f_lost": "grief",
+  "d06__l_end_all": "grief",
+  "d06__l_end_few": "grief"
  }
 }

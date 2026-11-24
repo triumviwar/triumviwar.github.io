@@ -60,8 +60,10 @@ func tick(dt: float) -> void:
 		_find()
 	var g := run.game
 	for it in heroes:
+		if not is_instance_valid(it[0]):
+			continue          # (d06: a hero taken off the map by an exit: Lindqvist in his canoe)
 		var u: Unit = it[0]
-		if not is_instance_valid(u) or u.dead:
+		if u.dead:
 			continue
 		if wounded.has(u):
 			u.hp = minf(u.max_hp, u.hp + u.max_hp * HEAL * dt)

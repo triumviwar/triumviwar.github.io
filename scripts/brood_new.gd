@@ -784,7 +784,7 @@ static func lay_problem(g: Game, q: Unit, k: String) -> String:
 			return "A grub turns into it now: pick it on a grub's card."
 		return "Not in the Brood yet."
 	if g.mission and g.mission.denied(q.team, k):
-		return "Not in this mission."      # (the roster ladder: docs/campaign_roster_ladder.md)
+		return g.mission.denied_text(q.team, k)      # (the roster ladder: docs/campaign_roster_ladder.md; a deny's own "why", d06)
 	if int(q.nb.get("eggs", 0)) < 1:
 		return "No eggs ready."
 	var u: Dictionary = Defs.UNITS[k]

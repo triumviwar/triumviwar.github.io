@@ -900,6 +900,10 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 					for tk in (q2["tech"] if q2.get("tech") is Array else [q2.get("tech", "")]):
 						if not Defs.RESEARCH.has(String(tk)):
 							out.append("%s: researched: unknown research %s" % [where, tk])
+			"brood_stage":
+				# (d06) {"brood_stage": {"tag", "at_least": 3}}: a Brood Mother of the tag grown to that stage
+				if not (c[k] is Dictionary and c[k].has("tag")):
+					out.append("%s: brood_stage needs {\"tag\", \"at_least\"}" % where)
 			"charted":
 				# (d04) {"charted": {"area", "at_least"}}: THE UNMAPPED's share mapped
 				if not (c[k] is Dictionary) or (c[k].has("area") and not areas.has(String(c[k]["area"]))):
@@ -1052,7 +1056,7 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 			for ck in ["freed", "caged"]:
 				if v is Dictionary and v.has(ck) and not (m.get("counters", {}) as Dictionary).has(String(v[ck])):
 					out.append("%s: cart: unknown counter %s" % [where, v[ck]])
-		"cage", "pin", "carry", "spare", "pace", "floor", "heal", "max_hp", "burn", "nest_free", "wind", "remove", "douse", "brood_stage", "retag":
+		"cage", "pin", "carry", "spare", "pace", "floor", "heal", "max_hp", "burn", "nest_free", "wind", "remove", "douse", "brood_stage", "retag", "root_now":
 			if not (v is Dictionary and v.has("tag")):
 				out.append("%s: %s needs a tag" % [where, k])
 			elif k == "burn" and v.get("spread") is Dictionary and String(v["spread"].get("tag", "")) == "":
@@ -1086,8 +1090,8 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 					if String(v.get("loose", "")) == "to" and not areas.has(String(v.get("to", ""))):
 						out.append("%s: leash: loose to an unknown area %s" % [where, v.get("to")])
 					var br: Variant = v.get("breaks", {})
-					if br is Dictionary and not br.is_empty() and (String(br.get("near", "")) == "" or not teams.has(String(br.get("to", "")))):
-						out.append("%s: leash breaks need \"near\" (a tag) and \"to\" (a team)" % where)
+					if br is Dictionary and not br.is_empty() and (String(br.get("near", "")) == "" or not (teams.has(String(br.get("to", ""))) or String(br.get("to", "")) == "near")):
+						out.append("%s: leash breaks need \"near\" (a tag) and \"to\" (a team, or \"near\": the team of the one it came near)" % where)
 				if k == "brake" and v.has("faction") and not Defs.FACTIONS.has(String(v["faction"])):
 					out.append("%s: brake: unknown faction %s" % [where, v["faction"]])
 		"lure_post":

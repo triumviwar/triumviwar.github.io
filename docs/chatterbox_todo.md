@@ -106,6 +106,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | d03_fazenda (the Island, Act 2) | this file, "d03_fazenda" below; docs/campaign_d03_build.md | 60 (+13 narrator, 2 NEW cards) | Lindqvist 20, Valadares* 17, Pieter* 12, the King 6, Desembargador Fonseca* 5 |
 | d04_concordia (the City of Gears, Act 2) | this file, "d04_concordia" below; docs/campaign_d04_build.md | 74 (+15 narrator, 2 NEW cards) | Hollweg 31, Ulrich* 18, Captain Arruda* 10, the King 6, Varenne 4, Citizen Morel* 3, Padre Anselmo* 2 |
 | d01_minas (the Gold of Vila Rica, Act 2) | this file, "d01_minas" below; docs/campaign_d01_build.md | 69 (+19 narrator, 3 NEW cards) | Tomasz* 30, Captain Meneses* 21, Lieutenant Ramos* 9, the King 6, Cardinal Tomasz 2, a townsman* 1 |
+| d06_queen (the Queen, Act 2) | this file, "d06_queen" below; docs/campaign_d06_build.md | 38 (+28 narrator, 2 NEW cards) | Lindqvist 24, Pieter* 8, the King 6 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -410,6 +411,53 @@ about thirty (between a01's young priest and the old Cardinal); the Cardinal's t
 | c_end | Cardinal Tomasz | Three hundred names. I still have the list. | DRAMATIC: very quiet, an old man's grief |
 | k_end_v | the King | The Assembly took the Foundry House and proclaimed its republic of the mines. That is not how it went. The gold reached the coast. | stern correction |
 | r_end_v | Lieutenant Ramos* | For one night Vila Rica belonged to the men who dug it. They will not forget it, whatever comes. | defiant, proud |
+
+### d06_queen (the Queen)
+
+Line ids are the mission's (`campaign/voice/d06_queen/<id>.ogg`). The feeling is how the line should sound; lines
+without one are plain. The narrator's 28 lines (the Island) and the two NEW cards can stay as text. The strongest lines
+have a preset in tools/voice_clone/emotions.json (`d06__<id>`). Pieter is the grown Pieter of d03 (about thirty).
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | Three years after the commission the river rose higher than anyone on it could remember. | flat, a judgement |
+| k_open2 | the King | Lindqvist still tells that night as a breeding season that went wrong. | dry |
+| l_open1 | Lindqvist | The wet season of 2775. The water came up into the cane, then into the low pens. | old, remembering water |
+| l_open2 | Lindqvist | I had two breeding Mothers on the island by then. I thought I was a rich man. | rueful, a laugh at himself |
+| l_open_saved | Lindqvist | The first from the clutch we carried out of the station. The second bred from her. | tender |
+| l_open_burned | Lindqvist | The first netted on the mountain. The second bred from her. | proud, then quiet |
+| k_open_f | the King | Lindqvist says he burned the pens that night. Listen to how much he burned. | dry, a test of the witness |
+| l_open_f | Lindqvist | The water was in the cane. Something was calling from the north shore. I sent for the torches. | tense memory |
+| l_1 | Lindqvist | The low pens are under water. Pieter, the keepers. Bring the stock up to the big pen. All of it. | DRAMATIC: urgent orders, fear held down |
+| p_call | Pieter* | Doctor, the ones outside the rings are walking toward it. | uneasy |
+| p_in | Pieter* | They are all up in the big pen, Doctor. Wet, but all there. | relief, out of breath |
+| p_late | Pieter* | The water is on the paths, Doctor. We cannot wait for the rest. | urgent |
+| l_drop | Lindqvist | Leave the lures. Everyone to the house. Shut the gate. | DRAMATIC: sharp, frightened |
+| p_fight | Pieter* | They are fighting each other, Doctor. Mother against Mother. | awe and fear |
+| l_fight | Lindqvist | Write it down, Pieter. Every hour of it. Nobody has ever seen this. | DRAMATIC: wonder, a scientist forgetting the danger |
+| l_house | Lindqvist | Close the shutters. Load the swivel guns. Pieter, bring the stud book down. | clipped, giving orders |
+| p_changing | Pieter* | Doctor, the big one in the middle is changing. She is getting bigger. | DRAMATIC: dread |
+| l_shoot | Lindqvist | Keepers! To the big pen. Shoot her. Shoot her now, before it is done. | DRAMATIC: shout, panic |
+| l_show | Lindqvist | Every animal on the island turned toward the big pen. I had no lure for that. | DRAMATIC: hollow, an old man still shaken |
+| l_run | Lindqvist | Pieter! The canoes. Leave everything. | DRAMATIC: shout |
+| p_book | Pieter* | The book, Doctor! The lure book is upstairs! | urgent, shouted |
+| l_book | Lindqvist | Leave it! | DRAMATIC: angry, final |
+| l_f1 | Lindqvist | Torches. We burn the pens before they settle it among themselves. Then the canoes. | hard, decided |
+| p_f1 | Pieter* | The guns first, Doctor. They are asleep in the straw, and they wake when you walk up to them. | low, careful |
+| l_f_big | Lindqvist | The big pen is burning. They will have to settle it somewhere else, and that takes time. | grim satisfaction |
+| l_f_go | Lindqvist | Enough. To the canoes, all of you. | tired command |
+| p_f_warn | Pieter* | Doctor, the big one in the middle is changing. It is getting bigger. | dread |
+| l_f_won | Lindqvist | Push off, Pieter. Do not look back. | quiet, grief |
+| l_f_lost | Lindqvist | Too late. It is growing. Everything on the island is turning to it. | DRAMATIC: despair |
+| l_end1 | Lindqvist | I stood up in the canoe and looked back. The whole island was moving. | old, slow |
+| l_end_all | Lindqvist | Every animal I had bred was on that bank. Not one came to the lure. | DRAMATIC: grief and awe |
+| l_end_some | Lindqvist | Half my stock was on that bank. The rest lay dead in the pens. | heavy |
+| l_end_few | Lindqvist | Few of mine were on that bank. The pens had killed most of them. | DRAMATIC: grief |
+| k_end1 | the King | He says the flood did it. He bred nothing. He kept animals that were made long ago to become exactly that. | firm correction, no anger |
+| k_end2 | the King | The Church told him what they were. He still says they evolved. | tired, sorry for him |
+| l_end_f | Lindqvist | We burned three pens and went down the river at first light. I have the stud book. I burned the rest. | defensive |
+| k_end_f | the King | He told me he burned them. He did not burn enough. | firm |
+| h_hurt | Lindqvist | My arm. Pieter, the torch. | pain, clipped |
 
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
