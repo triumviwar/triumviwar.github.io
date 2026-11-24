@@ -26,6 +26,11 @@
 
 ## Current work
 
+- d05_aldeia BUILT (job d05-aldeia, MERGED 0.38.200, docs/campaign_d05_build.md): Act 2 step 9, "The Mission of São
+  Rafael" (the Crown after d01, the Tapajós, wet season 2776, Father Tomasz tells it): the Crown meets THE BROOD as a
+  swarm at Tomasz's mission village; map campaign:sao_rafael (VÁRZEA biome, mission `wade`: slow in the flood, nothing
+  built in it); C6 = THE DRAGOON + THE CAVALRY CHARGE; choice THE FIELDS (flag `fields`); mirror = THE SWARM. Tests
+  tools/test_campaign_d05.gd, sim tools/sim_campaign_d05.gd. ALL TEXT PLACEHOLDER.
 - d06_queen BUILT (job d06-queen, MERGED 0.38.198, docs/campaign_d06_build.md): Act 2 step 8, "The Queen" (the Naturalist
   after d03, the wet season 2775): map campaign:obidos_flood (d03's island flooded); played as THE BROOD: several Brood
   Mothers fight in the flood, the strongest roots in the big pen and GROWS into the Queen, the leash breaks, the fazenda
