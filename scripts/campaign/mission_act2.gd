@@ -260,6 +260,13 @@ func cond(k: String, v: Variant) -> Array:
 			# (d04) {"charted": {"area", "at_least": share 0..1 (0.6)}}: that share of the area's open cells is mapped;
 			# without "area": of the whole map
 			return [true, chart_share(String(v.get("area", ""))) >= float(v.get("at_least", 0.6))]
+		"won_by":
+			# (d10) {"won_by": {"<mission>": side}}: who won that mission when it was played (a mirror's win: THE RECLAIM PART)
+			var done: Dictionary = Campaign.progress()["done"]
+			for mk in v:
+				if str((done.get(String(mk), {}) as Dictionary).get("won_by", "")) != str(v[mk]):
+					return [true, false]
+			return [true, true]
 		"version":
 			# {"version": "fresh"} (or a list): the mission's version (FRESH / GROWN), picked at the start
 			var vs: Array = (v if v is Array else [v]).map(func(x) -> String: return String(x))
@@ -314,9 +321,38 @@ func act(k: String, v: Variant) -> bool:
 			retag(v)
 		"chart":
 			chart(v)
+		"cast":
+			cast(v)
+		"tech":
+			# (d10) {"tech": {"team", "id": research or [ids]}}: those researches done for that team at once (the siege
+			# train's drill brought north in the GROWN jungle front)
+			var t := run.team_index(String(v.get("team", "")))
+			if t >= 0:
+				for tk in (v["id"] if v.get("id") is Array else [v.get("id", "")]):
+					run.game.players[t]["tech"][String(tk)] = true
 		_:
 			return false
 	return true
+
+
+## (d10) {"cast": {"tag", "spell": "fog" / "miasma", "near_foe": tiles}}: the SCRIPTED Mist Toads of the tag cast the
+## spell on their own spot (the fog over their Mother), each only with an enemy within `near_foe` tiles (when given);
+## the mission pays the energy and the research (a scripted swarm's toads lay the fog the ladder's B7 teaches).
+func cast(v: Dictionary) -> void:
+	var g := run.game
+	var spell := String(v.get("spell", "fog"))
+	var info: Dictionary = Game.spell_info(spell)
+	var near := float(v.get("near_foe", 0.0)) * Defs.TILE
+	for u in run.tagged(String(v.get("tag", ""))):
+		if not (u is Unit) or u.dead or u.kind != "mist_toad" or u.order == "cast":
+			continue
+		if near > 0.0 and not g.units_near(u.position, near).any(func(o) -> bool: return not o.dead and g.hostile(o.team, u.team)):
+			continue
+		var rk := Game.spell_research(spell)
+		if rk != "":
+			g.players[u.team]["tech"][rk] = true
+		u.charge = maxf(u.charge, float(info.get("cost", 0.0)))
+		g.cast_spell(u, spell, u.position)
 
 
 ## Act 2's orders ({"order": {"do": ...}}): true when handled (only "track").

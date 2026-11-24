@@ -1,0 +1,560 @@
+# Act 2's mission d10_jungle, "The Jungle Front" (campaign/missions/d10_jungle.json, written with its texts by
+# tools/campaign/make_d10_mission.py: change the texts THERE and run it again; the plan: docs/campaign_act2_plan.md; what was
+# built: docs/campaign_d10_build.md). EVERY LINE IS A PLACEHOLDER for the owner. Names: forward Mother = Mãe avançada / Madre
+# de avanzada; levee = dique / dique; shallows = baixios / bajíos; balloon = balão / globo; Mist Toad = Sapo da Névoa / Sapo de Niebla.
+
+> The Fort of Óbidos
+pt O Forte de Óbidos
+es El Fuerte de Óbidos
+
+> Óbidos' church
+pt A igreja de Óbidos
+es La iglesia de Óbidos
+
+> The column's quarters
+pt Os quartéis da coluna
+es Los cuarteles de la columna
+
+> Óbidos' palisade
+pt A paliçada de Óbidos
+es La empalizada de Óbidos
+
+> The Fort of Óbidos must stand.
+pt O Forte de Óbidos tem de ficar de pé.
+es El Fuerte de Óbidos debe seguir en pie.
+
+> THE UPRIVER BATTERY: when the Barra fell, the swarm came down as far as Óbidos' outwork west of the fort. Retake it: kill every creature on the little rise west of the gate ({bat_left} left).
+pt A BATERIA DE RIO ACIMA: quando a Barra caiu, o enxame desceu até à obra exterior de Óbidos, a oeste do forte. Retome-a: mate todas as criaturas no pequeno alto a oeste da porta ({bat_left} restam).
+es LA BATERÍA DE RÍO ARRIBA: cuando cayó la Barra, el enjambre bajó hasta la obra exterior de Óbidos, al oeste del fuerte. Recupérala: mata a todas las criaturas del pequeño alto al oeste de la puerta ({bat_left} quedan).
+
+> Retake the upriver battery west of the gate: {bat_left} left.
+pt Retome a bateria a oeste da porta: {bat_left} restam.
+es Recupera la batería al oeste de la puerta: {bat_left} quedan.
+
+> THE FOG ON THE RIVER: under the canopy the forest is dark, and whatever is in it stays hidden. Send Father Inácio's balloon west over the water to the island (select it, right-click there) and keep it there while he looks: from up there he sees where they root.
+pt A NÉVOA NO RIO: debaixo da copa a floresta está escura, e o que lá estiver fica escondido. Mande o balão do Padre Inácio para oeste por cima da água até à ilha (selecione-o, clique com o botão direito lá) e mantenha-o lá enquanto ele olha: lá de cima ele vê onde eles enraízam.
+es LA NIEBLA EN EL RÍO: bajo la copa la selva está oscura, y lo que haya en ella sigue oculto. Manda el globo del Padre Inácio al oeste por encima del agua hasta la isla (selecciónalo, clic derecho allí) y mantenlo allí mientras mira: desde arriba ve dónde enraízan.
+
+> Fly Father Inácio's balloon west to the island.
+pt Leve o balão do Padre Inácio para oeste até à ilha.
+es Lleva el globo del Padre Inácio al oeste hasta la isla.
+
+> Hold Óbidos meanwhile: creatures come out of the forest at the west gate. The Barracks and the Foundry in the fort are the column's: train there.
+pt Entretanto segure Óbidos: saem criaturas da floresta para a porta oeste. O Quartel e a Fundição do forte são da coluna: treine lá.
+es Mientras tanto sostén Óbidos: salen criaturas de la selva hacia la puerta oeste. El Cuartel y la Fundición del fuerte son de la columna: entrena allí.
+
+> THE NESTS: break every forward Mother rooted on the river ({fwd_killed} of {fwd_n}). While one stands, what she lays comes down the levee to Óbidos. The balloon spots for the guns: they fire as far as it sees.
+pt OS NINHOS: quebre todas as Mães avançadas enraizadas no rio ({fwd_killed} de {fwd_n}). Enquanto uma estiver de pé, o que ela põe desce o dique até Óbidos. O balão aponta para os canhões: atiram tão longe quanto ele vê.
+es LOS NIDOS: rompe a todas las Madres de avanzada enraizadas en el río ({fwd_killed} de {fwd_n}). Mientras una siga en pie, lo que pone baja por el dique hasta Óbidos. El globo apunta para los cañones: disparan tan lejos como él ve.
+
+> Break the forward Mothers: {fwd_killed} of {fwd_n}.
+pt Quebre as Mães avançadas: {fwd_killed} de {fwd_n}.
+es Rompe a las Madres de avanzada: {fwd_killed} de {fwd_n}.
+
+> UPRIVER: Father Inácio saw only so far. More of them root up the west creek and on the upriver bank, still under the fog: fly the balloon west to find them.
+pt RIO ACIMA: o Padre Inácio só viu até certo ponto. Mais delas enraízam no igarapé do oeste e na margem rio acima, ainda debaixo da névoa: leve o balão para oeste para as encontrar.
+es RÍO ARRIBA: el Padre Inácio solo vio hasta cierto punto. Más de ellas enraízan en el arroyo del oeste y en la orilla río arriba, aún bajo la niebla: lleva el globo al oeste para encontrarlas.
+
+> The rains come back in {clock:nests}: then the flood carries what the nests lay down to the river towns.
+pt As chuvas voltam em {clock:nests}: depois a cheia leva o que os ninhos põem para as vilas do rio.
+es Las lluvias vuelven en {clock:nests}: luego la crecida lleva lo que ponen los nidos a los pueblos del río.
+
+> THE ISLAND: cross the shallows to Lindqvist's old island and break the swarm's oldest ground on the fazenda's ruins: the old mound and its Rootmaws ({isl_left} left).
+pt A ILHA: atravesse os baixios até à velha ilha de Lindqvist e quebre o chão mais antigo do enxame nas ruínas da fazenda: o velho monte e as suas Bocarraízes ({isl_left} restam).
+es LA ISLA: cruza los bajíos hasta la vieja isla de Lindqvist y rompe el suelo más antiguo del enjambre en las ruinas de la fazenda: el viejo montículo y sus Bocarraíces ({isl_left} quedan).
+
+> Break the old ground on the island: {isl_left} left.
+pt Quebre o chão velho da ilha: {isl_left} restam.
+es Rompe el suelo viejo de la isla: {isl_left} quedan.
+
+> THE LAST WAVE: it comes down the levee from upriver, to the island and to Óbidos. Break it, or hold until it ebbs.
+pt A ÚLTIMA VAGA: desce o dique de rio acima, para a ilha e para Óbidos. Quebre-a, ou aguente até ela recuar.
+es LA ÚLTIMA OLEADA: baja por el dique desde río arriba, hacia la isla y hacia Óbidos. Rómpela, o aguanta hasta que se retire.
+
+> It ebbs in {clock:ebb}.
+pt Recua em {clock:ebb}.
+es Se retira en {clock:ebb}.
+
+> Bring the swarm's forward Mothers down to one before the dry season ({clock:dry}).
+pt Reduza as Mães avançadas do enxame a uma antes da estação seca ({clock:dry}).
+es Reduce a las Madres de avanzada del enjambre a una antes de la estación seca ({clock:dry}).
+
+> HOLD THE RIVER: keep at least two of your forward Mothers alive until the dry season ({fwd_left} alive). Lay at them; GROW one and lay a Mist Toad, and cover them with FOG when the guns come.
+pt SEGURE O RIO: mantenha pelo menos duas das suas Mães avançadas vivas até à estação seca ({fwd_left} vivas). Ponha ovos nelas; faça uma CRESCER e ponha um Sapo da Névoa, e cubra-as com NÉVOA quando os canhões vierem.
+es SOSTÉN EL RÍO: mantén al menos dos de tus Madres de avanzada vivas hasta la estación seca ({fwd_left} vivas). Pon huevos en ellas; haz CRECER a una y pon un Sapo de Niebla, y cúbrelas con NIEBLA cuando vengan los cañones.
+
+> Keep two forward Mothers alive: {fwd_left} alive.
+pt Mantenha duas Mães avançadas vivas: {fwd_left} vivas.
+es Mantén dos Madres de avanzada vivas: {fwd_left} vivas.
+
+> OR BREAK ÓBIDOS: break the fort's keep on the bluff over the narrows. Brutes break palisades.
+pt OU ROMPA ÓBIDOS: derrube a torre do forte no alto sobre o estreito. Os Brutamontes rompem paliçadas.
+es O ROMPE ÓBIDOS: derriba la torre del fuerte en el alto sobre el estrecho. Los Brutos rompen empalizadas.
+
+> The dry season in {clock:dry}: the river falls and the column must go home.
+pt A estação seca em {clock:dry}: o rio baixa e a coluna tem de voltar para casa.
+es La estación seca en {clock:dry}: el río baja y la columna debe volver a casa.
+
+> Óbidos and the lower Amazon, 2780. The army's jungle column breaks the swarm's nests on the river, Valadares leading it, Father Inácio's balloon above.
+pt Óbidos e o baixo Amazonas, 2780. A coluna da selva do exército quebra os ninhos do enxame no rio, com Valadares à frente e o balão do Padre Inácio por cima.
+es Óbidos y el bajo Amazonas, 2780. La columna de la selva del ejército rompe los nidos del enjambre en el río, con Valadares al frente y el globo del Padre Inácio arriba.
+
+> FRESH: the swarm first. Its nests are young below the Barra.
+pt FRESCO: o enxame primeiro. Os ninhos dele são novos abaixo da Barra.
+es FRESCO: el enjambre primero. Sus nidos son jóvenes por debajo de la Barra.
+
+> GROWN: the city first. A year on, the swarm has spread down the rivers.
+pt CRESCIDO: a cidade primeiro. Um ano depois, o enxame espalhou-se rios abaixo.
+es CRECIDO: la ciudad primero. Un año después, el enjambre se ha extendido ríos abajo.
+
+> The Jungle Column
+pt A Coluna da Selva
+es La Columna de la Selva
+
+> Valadares and the army's jungle column at Óbidos: the line, the riders, two guns and Father Inácio's balloon; the fort's garrison.
+pt Valadares e a coluna da selva do exército em Óbidos: a linha, os cavaleiros, dois canhões e o balão do Padre Inácio; a guarnição do forte.
+es Valadares y la columna de la selva del ejército en Óbidos: la línea, los jinetes, dos cañones y el globo del Padre Inácio; la guarnición del fuerte.
+
+> The Brood rooted on the lower Amazon: forward Mothers on the banks and the creeks, and what they lay.
+pt A Ninhada enraizada no baixo Amazonas: Mães avançadas nas margens e nos igarapés, e o que elas põem.
+es La Prole enraizada en el bajo Amazonas: Madres de avanzada en las orillas y los arroyos, y lo que ponen.
+
+> Father Inácio
+pt Padre Inácio
+es Padre Inácio
+
+> The captain of Óbidos
+pt O capitão de Óbidos
+es El capitán de Óbidos
+
+> The army split at the São Francisco. One column went up the rivers, and Valadares led it.
+pt O exército dividiu-se no São Francisco. Uma coluna subiu os rios, e Valadares comandou-a.
+es El ejército se dividió en el São Francisco. Una columna subió por los ríos, y Valadares la mandó.
+
+> We went north first. The swarm was young on the lower river then.
+pt Fomos primeiro para norte. O enxame ainda era novo no baixo rio.
+es Fuimos primero al norte. El enjambre aún era joven en el bajo río.
+
+> We went north last. The swarm had a year on the rivers without us.
+pt Fomos para norte por último. O enxame teve um ano nos rios sem nós.
+es Fuimos al norte los últimos. El enjambre tuvo un año en los ríos sin nosotros.
+
+> Valadares, you know the rivers. Take the column to Óbidos and break their nests before the rains.
+pt Valadares, conhece os rios. Leve a coluna a Óbidos e quebre os ninhos deles antes das chuvas.
+es Valadares, conoce los ríos. Lleve la columna a Óbidos y rompa sus nidos antes de las lluvias.
+
+> And take the priest with the balloon. He swears he can see the whole river from up there.
+pt E leve o padre do balão. Jura que consegue ver o rio inteiro lá de cima.
+es Y llévese al cura del globo. Jura que puede ver el río entero desde arriba.
+
+> Óbidos, on the narrows of the Amazon, 2780. The fog lay on the water every morning.
+pt Óbidos, no estreito do Amazonas, 2780. A névoa pousava na água todas as manhãs.
+es Óbidos, en el estrecho del Amazonas, 2780. La niebla se posaba en el agua cada mañana.
+
+> I had walked those banks for ten years. I could not see a thing under that canopy.
+pt Tinha andado por aquelas margens dez anos. Não via nada debaixo daquela copa.
+es Había andado por aquellas orillas diez años. No veía nada bajo aquella copa.
+
+> Valadares wrote this down as it happened. Here is how it would have gone if the river had been theirs.
+pt Valadares escreveu isto à medida que acontecia. Eis como teria sido se o rio tivesse sido deles.
+es Valadares lo escribió según ocurría. He aquí cómo habría sido si el río hubiera sido suyo.
+
+> The lower Amazon. Forward Mothers rooted on the banks and up the creeks; a column of the Crown at Óbidos.
+pt O baixo Amazonas. Mães avançadas enraizadas nas margens e nos igarapés; uma coluna da Coroa em Óbidos.
+es El bajo Amazonas. Madres de avanzada enraizadas en las orillas y en los arroyos; una columna de la Corona en Óbidos.
+
+> The forest is dark under the canopy. Whatever roots in it, we will not see it from the ground.
+pt A floresta está escura debaixo da copa. O que lá enraíza, não o veremos do chão.
+es La selva está oscura bajo la copa. Lo que enraíza en ella, no lo veremos desde el suelo.
+
+> Then let me go up, Senhor Valadares. The sky over a river is the clearest map God ever drew.
+pt Então deixe-me subir, Senhor Valadares. O céu sobre um rio é o mapa mais claro que Deus alguma vez desenhou.
+es Entonces déjeme subir, señor Valadares. El cielo sobre un río es el mapa más claro que Dios dibujó jamás.
+
+> Father Inácio's balloon is yours. Select it and send it west over the water to the island: what it flies over is mapped, and the creatures there can be seen.
+pt O balão do Padre Inácio é seu. Selecione-o e mande-o para oeste por cima da água até à ilha: o que ele sobrevoa fica no mapa, e as criaturas lá podem ser vistas.
+es El globo del Padre Inácio es tuyo. Selecciónalo y mándalo al oeste por encima del agua hasta la isla: lo que sobrevuela queda en el mapa, y las criaturas de allí se pueden ver.
+
+> Keep the line at the west gate meanwhile. The Barracks and the Foundry in the fort train for the column.
+pt Entretanto mantenha a linha na porta oeste. O Quartel e a Fundição do forte treinam para a coluna.
+es Mientras tanto mantén la línea en la puerta oeste. El Cuartel y la Fundición del fuerte entrenan para la columna.
+
+> I know their road down from the plateau: the east creek. That much I have drawn already.
+pt Conheço o caminho deles desde o planalto: o igarapé do leste. Isso já o desenhei.
+es Conozco su camino desde la meseta: el arroyo del este. Eso ya lo he dibujado.
+
+> My map of the plateau is under seal in Rome. I know nothing of their road that the priest cannot see.
+pt O meu mapa do planalto está selado em Roma. Não sei nada do caminho deles que o padre não consiga ver.
+es Mi mapa de la meseta está sellado en Roma. No sé nada de su camino que el cura no pueda ver.
+
+> The Barra's lower town burned two years ago. We rebuilt it on the bluff. I think of it every time I see a roof.
+pt A cidade baixa da Barra ardeu há dois anos. Reconstruímo-la no alto. Penso nisso sempre que vejo um telhado.
+es La ciudad baja de la Barra ardió hace dos años. La reconstruimos en el alto. Pienso en ello cada vez que veo un tejado.
+
+> Senhor! Something moving in the trees west of the gate. We cannot see what.
+pt Senhor! Algo se mexe nas árvores a oeste da porta. Não vemos o quê.
+es ¡Señor! Algo se mueve en los árboles al oeste de la puerta. No vemos qué.
+
+> Creatures come out of the forest at Óbidos' west gate.
+pt Criaturas saem da floresta para a porta oeste de Óbidos.
+es Criaturas salen de la selva hacia la puerta oeste de Óbidos.
+
+> Line, at the gate. Let them come into the open.
+pt Linha, à porta. Deixem-nos vir para o descampado.
+es Línea, a la puerta. Dejadlos salir a campo abierto.
+
+> Up we go! Mind the rope, my sons, it is the only one I have.
+pt Para cima! Cuidado com a corda, meus filhos, é a única que tenho.
+es ¡Arriba! Cuidado con la cuerda, hijos míos, es la única que tengo.
+
+> Hold her here a little, the wind is kind. I am counting.
+pt Segure-o aqui um pouco, o vento está bom. Estou a contar.
+es Sosténgalo aquí un poco, el viento es amable. Estoy contando.
+
+> The Mother lays as the column comes: young ones out of the swamp round her.
+pt A Mãe põe ovos quando a coluna chega: crias saem do pântano à volta dela.
+es La Madre pone huevos cuando llega la columna: crías salen del pantano a su alrededor.
+
+> Higher than the herons now. The fog is under me like milk in a bowl.
+pt Mais alto do que as garças agora. A névoa está debaixo de mim como leite numa tigela.
+es Más alto que las garzas ahora. La niebla está debajo de mí como leche en un cuenco.
+
+> Senhor Valadares! Those of us who got out of the Barra. They are on the old battery, west of the gate. They came down after us.
+pt Senhor Valadares! Os que escapámos da Barra. Eles estão na velha bateria, a oeste da porta. Desceram atrás de nós.
+es ¡Señor Valadares! Los que salimos de la Barra. Ellos están en la vieja batería, al oeste de la puerta. Bajaron tras nosotros.
+
+> Then we take it back before anything else. The guns there cover the levee.
+pt Então retomamo-la antes de mais nada. Os canhões de lá cobrem o dique.
+es Entonces la recuperamos antes que nada. Los cañones de allí cubren el dique.
+
+> The upriver battery is the Crown's again. The Barra's survivors come out of the fort to man it.
+pt A bateria de rio acima é da Coroa outra vez. Os sobreviventes da Barra saem do forte para a guarnecer.
+es La batería de río arriba es de la Corona otra vez. Los supervivientes de la Barra salen del fuerte para guarnecerla.
+
+> There! I see the river from the narrows to the bend. The island in the middle, and a ruin on it.
+pt Ali! Vejo o rio do estreito até à curva. A ilha no meio, e uma ruína nela.
+es ¡Allí! Veo el río desde el estrecho hasta la curva. La isla en medio, y una ruina en ella.
+
+> On the banks, where the ground is dry, the green has gone bare in rings. Something great lies in each ring.
+pt Nas margens, onde o chão é seco, o verde ficou careca em anéis. Há uma coisa grande deitada em cada anel.
+es En las orillas, donde el suelo es seco, el verde se ha quedado pelado en anillos. Hay algo grande tumbado en cada anillo.
+
+> I count them for you, Senhor. Mark them on your map, and God keep the men who go in under those trees.
+pt Conto-as para si, Senhor. Marque-as no seu mapa, e Deus guarde os homens que entrarem debaixo daquelas árvores.
+es Se las cuento, señor. Márquelas en su mapa, y Dios guarde a los hombres que entren bajo esos árboles.
+
+> Forward Mothers, rooted where the bank is dry. Every one of them is a wave at our gate.
+pt Mães avançadas, enraizadas onde a margem é seca. Cada uma é uma vaga à nossa porta.
+es Madres de avanzada, enraizadas donde la orilla es seca. Cada una es una oleada en nuestra puerta.
+
+> A canoe comes down from the creeks with word of where they root. The column has it now, if not from above.
+pt Uma canoa desce dos igarapés com notícias de onde eles enraízam. A coluna já sabe, ainda que não de cima.
+es Una canoa baja de los arroyos con noticias de dónde enraízan. La columna ya lo sabe, aunque no desde arriba.
+
+> Break each forward Mother. While one stands, what she lays comes down the levee. The rains come back before long.
+pt Quebre cada Mãe avançada. Enquanto uma estiver de pé, o que ela põe desce o dique. As chuvas não tardam a voltar.
+es Rompe a cada Madre de avanzada. Mientras una siga en pie, lo que pone baja por el dique. Las lluvias no tardan en volver.
+
+> Riders to the near one on the bank. The guns behind them, under the priest.
+pt Cavaleiros para a mais próxima, na margem. Os canhões atrás deles, debaixo do padre.
+es Jinetes a la más cercana, en la orilla. Los cañones tras ellos, bajo el cura.
+
+> There is more up the west creek, Senhor, and on the upriver bank. I cannot see through it from here.
+pt Há mais no igarapé do oeste, Senhor, e na margem rio acima. Daqui não consigo ver através.
+es Hay más en el arroyo del oeste, señor, y en la orilla río arriba. Desde aquí no puedo ver a través.
+
+> From over the west creek the priest sees two more rings on the bank.
+pt Por cima do igarapé do oeste o padre vê mais dois anéis na margem.
+es Desde encima del arroyo del oeste el cura ve dos anillos más en la orilla.
+
+> A wave comes down the levee to the west gate.
+pt Uma vaga desce o dique até à porta oeste.
+es Una oleada baja por el dique hasta la puerta oeste.
+
+> At the gate again, Senhor! Canister!
+pt Outra vez à porta, Senhor! Metralha!
+es ¡Otra vez en la puerta, señor! ¡Metralla!
+
+> A forward Mother is broken. Her ground stops creeping, and her waves stop.
+pt Uma Mãe avançada está quebrada. O chão dela deixa de rastejar, e as vagas dela param.
+es Una Madre de avanzada está rota. Su suelo deja de arrastrarse, y sus oleadas paran.
+
+> One less. Mark it, Father.
+pt Menos uma. Marque-a, Padre.
+es Una menos. Márquela, Padre.
+
+> A Mist Toad by the nest lays a fog bank: shots into it miss half the time. Go in with bayonets, or wait for it to thin.
+pt Um Sapo da Névoa junto ao ninho põe um banco de névoa: os tiros para dentro falham metade das vezes. Entre com baionetas, ou espere que se desfaça.
+es Un Sapo de Niebla junto al nido pone un banco de niebla: los disparos hacia dentro fallan la mitad de las veces. Entra con bayonetas, o espera a que se disipe.
+
+> Fog out of a toad's throat. I have seen everything now.
+pt Névoa da garganta de um sapo. Agora já vi tudo.
+es Niebla de la garganta de un sapo. Ahora ya lo he visto todo.
+
+> I used the old lure once, at the Barra. God forgive me, I kept the recipe. Once more, under our guns.
+pt Usei o engodo antigo uma vez, na Barra. Deus me perdoe, guardei a receita. Uma vez mais, debaixo dos nossos canhões.
+es Usé el señuelo antiguo una vez, en la Barra. Dios me perdone, guardé la receta. Una vez más, bajo nuestros cañones.
+
+> The wave turns off the levee toward the lure post, into the open ground under the guns.
+pt A vaga desvia-se do dique para o poste do engodo, para o descampado debaixo dos canhões.
+es La oleada se desvía del dique hacia el poste del señuelo, al campo abierto bajo los cañones.
+
+> Every forward Mother on this river is broken.
+pt Todas as Mães avançadas deste rio estão quebradas.
+es Todas las Madres de avanzada de este río están rotas.
+
+> With the rains the nests still rooted send everything they have laid down the levee at once: THE FLOOD comes at Óbidos.
+pt Com as chuvas os ninhos ainda enraizados mandam tudo o que puseram dique abaixo de uma vez: A CHEIA vem sobre Óbidos.
+es Con las lluvias los nidos aún enraizados mandan todo lo que han puesto dique abajo a la vez: LA CRECIDA viene sobre Óbidos.
+
+> A boat from Ruggieri's army comes down to Óbidos' landing with the column's pay and powder: train at the Barracks and the Foundry.
+pt Um barco do exército de Ruggieri desce ao cais de Óbidos com o soldo e a pólvora da coluna: treine no Quartel e na Fundição.
+es Una barca del ejército de Ruggieri baja al embarcadero de Óbidos con la paga y la pólvora de la columna: entrena en el Cuartel y en la Fundición.
+
+> The rains come back. The nests still rooted will send their young down with the flood.
+pt As chuvas voltam. Os ninhos ainda enraizados vão mandar as crias com a cheia.
+es Las lluvias vuelven. Los nidos aún enraizados mandarán a sus crías con la crecida.
+
+> Lindqvist's island. Their oldest ground is on the ruins of his house. Over the shallows, and burn it.
+pt A ilha de Lindqvist. O chão mais antigo deles está nas ruínas da casa dele. Pelos baixios, e queimem-no.
+es La isla de Lindqvist. Su suelo más antiguo está en las ruinas de su casa. Por los bajíos, y quemadlo.
+
+> Cross either shallows to the island. The old mound and its Rootmaws sit on the fazenda's ruins.
+pt Atravesse qualquer dos baixios até à ilha. O velho monte e as suas Bocarraízes estão nas ruínas da fazenda.
+es Cruza cualquiera de los bajíos hasta la isla. El viejo montículo y sus Bocarraíces están en las ruinas de la fazenda.
+
+> I see the ruin plainly now. The ground round it is the colour of a bruise.
+pt Agora vejo a ruína com clareza. O chão à volta tem a cor de uma nódoa negra.
+es Ahora veo la ruina con claridad. El suelo a su alrededor tiene el color de un moratón.
+
+> The old mound is broken. The ruins burn, and the ground round them goes grey.
+pt O velho monte está quebrado. As ruínas ardem, e o chão à volta fica cinzento.
+es El viejo montículo está roto. Las ruinas arden, y el suelo a su alrededor se vuelve gris.
+
+> Senhor! Up the levee, out of the west: more than I can count. Coming down to the island and to the town both.
+pt Senhor! Dique acima, do oeste: mais do que consigo contar. A descer para a ilha e para a vila ao mesmo tempo.
+es ¡Señor! Dique arriba, desde el oeste: más de los que puedo contar. Bajando hacia la isla y hacia el pueblo a la vez.
+
+> The last wave comes down the levee from upriver. Break it, or hold until it ebbs.
+pt A última vaga desce o dique de rio acima. Quebre-a, ou aguente até ela recuar.
+es La última oleada baja por el dique desde río arriba. Rómpela, o aguanta hasta que se retire.
+
+> We hold the gate, Senhor! Mind the island!
+pt Seguramos a porta, Senhor! Cuidado com a ilha!
+es ¡Sostenemos la puerta, señor! ¡Cuidado con la isla!
+
+> More come down the levee to the place where the lure was set. They follow the smell of it.
+pt Mais descem o dique até ao sítio onde o engodo foi posto. Seguem o cheiro dele.
+es Más bajan por el dique hasta el lugar donde se puso el señuelo. Siguen su olor.
+
+> The last wave ebbs. What is left of it goes back up the levee into the fog.
+pt A última vaga recua. O que resta dela volta dique acima para a névoa.
+es La última oleada se retira. Lo que queda de ella vuelve dique arriba a la niebla.
+
+> Ring the bell in Óbidos. Then count the men.
+pt Toquem o sino em Óbidos. Depois contem os homens.
+es Tocad la campana en Óbidos. Luego contad a los hombres.
+
+> From up here the river is quiet. I will say Mass for them all on the island, if you let me land.
+pt Daqui de cima o rio está calmo. Direi missa por todos na ilha, se me deixar aterrar.
+es Desde aquí arriba el río está en calma. Diré misa por todos en la isla, si me deja aterrizar.
+
+> They have torn the silk! I am coming down, Senhor, slowly, I hope.
+pt Rasgaram a seda! Estou a descer, Senhor, devagar, espero.
+es ¡Han rasgado la seda! Estoy bajando, señor, despacio, espero.
+
+> The Fort of Óbidos is broken. The narrows are the swarm's.
+pt O Forte de Óbidos está quebrado. O estreito é do enxame.
+es El Fuerte de Óbidos está roto. El estrecho es del enjambre.
+
+> Your forward Mothers are rooted on the river's banks and up the creeks. Lay at them; your grubs make Rootmaws on their swamp for food.
+pt As suas Mães avançadas estão enraizadas nas margens do rio e nos igarapés. Ponha ovos nelas; as larvas fazem Bocarraízes no pântano delas para comida.
+es Tus Madres de avanzada están enraizadas en las orillas del río y en los arroyos. Pon huevos en ellas; tus larvas hacen Bocarraíces en su pantano para comida.
+
+> The Mother at the creek mouth is grown to her third stage, the Venom Sire rooted by her: she can lay Mist Toads. Research FOG on the Sire's card.
+pt A Mãe da boca do igarapé cresceu ao terceiro estágio, com o Sire do Veneno enraizado ao lado: pode pôr Sapos da Névoa. Pesquise NÉVOA no painel do Sire.
+es La Madre de la boca del arroyo ha crecido a su tercera etapa, con el Señor del Veneno enraizado a su lado: puede poner Sapos de Niebla. Investiga NIEBLA en el panel del Señor.
+
+> The column comes out of Óbidos with its guns, the balloon over it.
+pt A coluna sai de Óbidos com os canhões, o balão por cima.
+es La columna sale de Óbidos con sus cañones, el globo encima.
+
+> Boats come up from downriver: more men for Óbidos.
+pt Chegam barcos de rio abaixo: mais homens para Óbidos.
+es Llegan barcas de río abajo: más hombres para Óbidos.
+
+> Riders come out of Óbidos to look at the nearest nest.
+pt Cavaleiros saem de Óbidos para ver o ninho mais próximo.
+es Jinetes salen de Óbidos para mirar el nido más cercano.
+
+> One of your forward Mothers is broken.
+pt Uma das suas Mães avançadas está quebrada.
+es Una de tus Madres de avanzada está rota.
+
+> The dry season comes and the river falls. The column goes home, and the swarm is still rooted on the river.
+pt A estação seca chega e o rio baixa. A coluna volta para casa, e o enxame continua enraizado no rio.
+es Llega la estación seca y el río baja. La columna vuelve a casa, y el enjambre sigue enraizado en el río.
+
+> Only one forward Mother is left on the river. The column has broken the nests.
+pt Só resta uma Mãe avançada no rio. A coluna quebrou os ninhos.
+es Solo queda una Madre de avanzada en el río. La columna ha roto los nidos.
+
+> We broke their ground on the island and burned the ruin over it. Father Inácio said Mass there.
+pt Quebrámos o chão deles na ilha e queimámos a ruína por cima. O Padre Inácio disse missa lá.
+es Rompimos su suelo en la isla y quemamos la ruina encima. El Padre Inácio dijo misa allí.
+
+> We did not reach the island in time. Their old ground is still there, under the ruin.
+pt Não chegámos à ilha a tempo. O chão velho deles ainda lá está, debaixo da ruína.
+es No llegamos a la isla a tiempo. Su suelo viejo sigue allí, bajo la ruina.
+
+> Every nest on the river was broken before the rains. The towns below Óbidos had a quiet year.
+pt Todos os ninhos do rio foram quebrados antes das chuvas. As vilas abaixo de Óbidos tiveram um ano calmo.
+es Todos los nidos del río se rompieron antes de las lluvias. Los pueblos por debajo de Óbidos tuvieron un año tranquilo.
+
+> Some of the nests outlived the rains. We held Óbidos; the river above it we only watched.
+pt Alguns ninhos sobreviveram às chuvas. Segurámos Óbidos; o rio acima dele só o vigiámos.
+es Algunos nidos sobrevivieron a las lluvias. Sostuvimos Óbidos; el río por encima solo lo vigilamos.
+
+> The priest stayed with the army. He said the river had made him a soldier, and the soldiers made him their chaplain.
+pt O padre ficou com o exército. Dizia que o rio o tinha feito soldado, e os soldados fizeram-no capelão deles.
+es El cura se quedó con el ejército. Decía que el río lo había hecho soldado, y los soldados lo hicieron su capellán.
+
+> That was the jungle front. Valadares held the river, and a priest in a basket showed him where.
+pt Essa foi a frente da selva. Valadares segurou o rio, e um padre num cesto mostrou-lhe onde.
+es Ese fue el frente de la selva. Valadares sostuvo el río, y un cura en un cesto le mostró dónde.
+
+> The Queen was never on that map. She was further up, beyond anything we had drawn.
+pt A Rainha nunca esteve naquele mapa. Estava mais acima, para lá de tudo o que tínhamos desenhado.
+es La Reina nunca estuvo en ese mapa. Estaba más arriba, más allá de todo lo que habíamos dibujado.
+
+> That is not how it went. Valadares broke their nests on the river. But I have kept this page.
+pt Não foi assim que aconteceu. Valadares quebrou os ninhos deles no rio. Mas guardei esta página.
+es No fue así como ocurrió. Valadares rompió sus nidos en el río. Pero he guardado esta página.
+
+> The column went home with the dry season. The swarm stayed rooted on the lower river.
+pt A coluna voltou para casa com a estação seca. O enxame ficou enraizado no baixo rio.
+es La columna volvió a casa con la estación seca. El enjambre se quedó enraizado en el bajo río.
+
+> Óbidos on the narrows of the Amazon, 2780: the fog on the water.
+pt Óbidos no estreito do Amazonas, 2780: a névoa na água.
+es Óbidos en el estrecho del Amazonas, 2780: la niebla en el agua.
+
+> Father Inácio's balloon over the canopy.
+pt O balão do Padre Inácio sobre a copa.
+es El globo del Padre Inácio sobre la copa.
+
+> The nests burn.
+pt Os ninhos ardem.
+es Los nidos arden.
+
+> Mass on the island, at the fazenda's ruins.
+pt Missa na ilha, nas ruínas da fazenda.
+es Misa en la isla, en las ruinas de la fazenda.
+
+> Óbidos on the lower Amazon, 2780. You are Valadares and the army's jungle column: the line, the riders, two guns, a Powder Wagon and Father Inácio's balloon. Óbidos' garrison holds the fort.
+pt Óbidos no baixo Amazonas, 2780. Você é Valadares e a coluna da selva do exército: a linha, os cavaleiros, dois canhões, uma Carroça de Pólvora e o balão do Padre Inácio. A guarnição de Óbidos segura o forte.
+es Óbidos en el bajo Amazonas, 2780. Eres Valadares y la columna de la selva del ejército: la línea, los jinetes, dos cañones, un Carro de Pólvora y el globo del Padre Inácio. La guarnición de Óbidos sostiene el fuerte.
+
+> The forest is dark under the fog: send the balloon over the river to find the swarm's forward Mothers, then break each one before the rains. Last, cross to Lindqvist's old island and burn their oldest ground.
+pt A floresta está escura debaixo da névoa: mande o balão por cima do rio para encontrar as Mães avançadas do enxame, depois quebre cada uma antes das chuvas. Por fim, atravesse até à velha ilha de Lindqvist e queime o chão mais antigo deles.
+es La selva está oscura bajo la niebla: manda el globo por encima del río para encontrar a las Madres de avanzada del enjambre, luego rompe a cada una antes de las lluvias. Por último, cruza a la vieja isla de Lindqvist y quema su suelo más antiguo.
+
+> The lower Amazon, 2780. You are the swarm: forward Mothers rooted on the banks and up the creeks, and what they lay.
+pt O baixo Amazonas, 2780. Você é o enxame: Mães avançadas enraizadas nas margens e nos igarapés, e o que elas põem.
+es El bajo Amazonas, 2780. Eres el enjambre: Madres de avanzada enraizadas en las orillas y en los arroyos, y lo que ponen.
+
+> A column of the Crown comes out of Óbidos with guns and a balloon. Keep two of your Mothers alive until the dry season, or break the fort's keep.
+pt Uma coluna da Coroa sai de Óbidos com canhões e um balão. Mantenha duas das suas Mães vivas até à estação seca, ou derrube a torre do forte.
+es Una columna de la Corona sale de Óbidos con cañones y un globo. Mantén vivas a dos de tus Madres hasta la estación seca, o derriba la torre del fuerte.
+
+> The River Holds
+pt O Rio Aguenta
+es El Río Resiste
+
+> {fwd_killed} of the {fwd_n} forward Mothers broken.
+pt {fwd_killed} das {fwd_n} Mães avançadas quebradas.
+es {fwd_killed} de las {fwd_n} Madres de avanzada rotas.
+
+> Every nest was broken before the rains.
+pt Todos os ninhos foram quebrados antes das chuvas.
+es Todos los nidos se rompieron antes de las lluvias.
+
+> Some nests outlived the rains.
+pt Alguns ninhos sobreviveram às chuvas.
+es Algunos nidos sobrevivieron a las lluvias.
+
+> The swarm's oldest ground on the island was burned.
+pt O chão mais antigo do enxame na ilha foi queimado.
+es El suelo más antiguo del enjambre en la isla fue quemado.
+
+> The River Stays Green
+pt O Rio Fica Verde
+es El Río Sigue Verde
+
+> {fwd_left} forward Mothers still rooted on the river.
+pt {fwd_left} Mães avançadas ainda enraizadas no rio.
+es {fwd_left} Madres de avanzada aún enraizadas en el río.
+
+> NEW: THE OBSERVATION BALLOON. Father Inácio's: it flies over the forest and sees 14 tiles round it, so your Field Cannons can fire as far as they reach at what it sees. Here the land under the canopy stays dark until a balloon has flown over it. The Foundry at Óbidos builds more; it can also carry four men over the flood.
+pt NOVO: O BALÃO DE OBSERVAÇÃO. O do Padre Inácio: voa sobre a floresta e vê 14 casas à sua volta, por isso os seus Canhões de Campanha podem atirar tão longe quanto alcançam ao que ele vê. Aqui a terra debaixo da copa fica escura até um balão voar sobre ela. A Fundição de Óbidos faz mais; também pode levar quatro homens por cima da cheia.
+es NUEVO: EL GLOBO DE OBSERVACIÓN. El del Padre Inácio: vuela sobre la selva y ve 14 casillas a su alrededor, así que tus Cañones de Campaña pueden disparar tan lejos como alcanzan a lo que él ve. Aquí la tierra bajo la copa sigue oscura hasta que un globo vuela sobre ella. La Fundición de Óbidos hace más; también puede llevar a cuatro hombres por encima de la crecida.
+
+> NEW: THE MIST TOAD. Laid by a Mother grown to her third stage with the Venom Sire rooted beside her: a slow swamp caster. Its TONGUE drags one enemy to its feet; its spells need research.
+pt NOVO: O SAPO DA NÉVOA. Posto por uma Mãe crescida ao terceiro estágio com o Sire do Veneno enraizado ao lado: um lançador lento do pântano. A sua LÍNGUA arrasta um inimigo até aos seus pés; os seus feitiços precisam de pesquisa.
+es NUEVO: EL SAPO DE NIEBLA. Lo pone una Madre crecida a su tercera etapa con el Señor del Veneno enraizado a su lado: un lanzador lento del pantano. Su LENGUA arrastra a un enemigo hasta sus pies; sus hechizos necesitan investigación.
+
+> NEW: FOG BANK. Research it on the Venom Sire's card: a Mist Toad lays a fog bank where shots fired from or into it miss half the time. Lay it over your Mothers when the guns come.
+pt NOVO: BANCO DE NÉVOA. Pesquise-o no painel do Sire do Veneno: um Sapo da Névoa põe um banco de névoa onde os tiros disparados de dentro ou para dentro falham metade das vezes. Ponha-o sobre as suas Mães quando os canhões vierem.
+es NUEVO: BANCO DE NIEBLA. Investígalo en el panel del Señor del Veneno: un Sapo de Niebla pone un banco de niebla donde los disparos hechos desde dentro o hacia dentro fallan la mitad de las veces. Ponlo sobre tus Madres cuando vengan los cañones.
+
+> NEW: MIASMA. Research it on the Venom Sire's card: a Mist Toad lays a green cloud in which the Brood heal. Lay it where your creatures fight.
+pt NOVO: MIASMA. Pesquise-o no painel do Sire do Veneno: um Sapo da Névoa põe uma nuvem verde onde a Ninhada se cura. Ponha-a onde as suas criaturas lutam.
+es NUEVO: MIASMA. Investígalo en el panel del Señor del Veneno: un Sapo de Niebla pone una nube verde donde la Prole se cura. Ponla donde luchan tus criaturas.
+
+> Father Inácio Lourenço, priest and aeronaut, in his own balloon: he sees over the canopy.
+pt O Padre Inácio Lourenço, padre e aeronauta, no seu próprio balão: vê por cima da copa.
+es El Padre Inácio Lourenço, cura y aeronauta, en su propio globo: ve por encima de la copa.
+
+> A Brood Mother of the swarm, rooted on the river's bank: what she lays comes down the levee.
+pt Uma Mãe da Ninhada do enxame, enraizada na margem do rio: o que ela põe desce o dique.
+es Una Madre de la Prole del enjambre, enraizada en la orilla del río: lo que pone baja por el dique.
+
+> The old mound
+pt O velho monte
+es El viejo montículo
+
+> The swarm's oldest ground, on the ruins of Lindqvist's fazenda: a great Mound Turtle rooted there for years.
+pt O chão mais antigo do enxame, nas ruínas da fazenda de Lindqvist: uma grande Tartaruga-Monte enraizada lá há anos.
+es El suelo más antiguo del enjambre, en las ruinas de la fazenda de Lindqvist: una gran Tortuga Montículo enraizada allí desde hace años.
+
+> The captain of the fort at Óbidos, on the narrows of the Amazon.
+pt O capitão do forte de Óbidos, no estreito do Amazonas.
+es El capitán del fuerte de Óbidos, en el estrecho del Amazonas.
+
+> The jungle column came home, Highness. Valadares sends you a map drawn from a balloon. I have hung it in the armoury.
+pt A coluna da selva voltou, Alteza. Valadares manda-vos um mapa desenhado de um balão. Pendurei-o no arsenal.
+es La columna de la selva volvió, Alteza. Valadares os manda un mapa dibujado desde un globo. Lo he colgado en la armería.
+
+> Valadares broke every nest on the lower river before the rains. A priest in a basket showed him where.
+pt Valadares quebrou todos os ninhos do baixo rio antes das chuvas. Um padre num cesto mostrou-lhe onde.
+es Valadares rompió todos los nidos del bajo río antes de las lluvias. Un cura en un cesto le mostró dónde.
+
+> Valadares held Óbidos. Some of their nests outlived the rains, and the river above it was theirs that year.
+pt Valadares segurou Óbidos. Alguns ninhos sobreviveram às chuvas, e o rio acima foi deles nesse ano.
+es Valadares sostuvo Óbidos. Algunos nidos sobrevivieron a las lluvias, y el río por encima fue suyo aquel año.
+
+> Óbidos, the lower Amazon. The column's work is done; the priest's balloon has mapped the river from the narrows to the bend.
+pt Óbidos, o baixo Amazonas. O trabalho da coluna está feito; o balão do padre cartografou o rio do estreito até à curva.
+es Óbidos, el bajo Amazonas. El trabajo de la columna está hecho; el globo del cura ha cartografiado el río desde el estrecho hasta la curva.
+
+> Father Inácio drew the river from above. My maps are better for it. I tell him so, and he laughs.
+pt O Padre Inácio desenhou o rio de cima. Os meus mapas ficaram melhores. Digo-lho, e ele ri-se.
+es El Padre Inácio dibujó el río desde arriba. Mis mapas son mejores por ello. Se lo digo, y se ríe.
+
+> We burned the old ground on Lindqvist's island. The ruin is ash. I did not feel what I thought I would.
+pt Queimámos o chão velho na ilha de Lindqvist. A ruína é cinza. Não senti o que pensava que ia sentir.
+es Quemamos el suelo viejo en la isla de Lindqvist. La ruina es ceniza. No sentí lo que pensaba que sentiría.
+
+> In that telling the river stayed green. In mine we broke the nests, and I was there.
+pt Nesse relato o rio ficou verde. No meu quebrámos os ninhos, e eu estava lá.
+es En ese relato el río siguió verde. En el mío rompimos los nidos, y yo estaba allí.

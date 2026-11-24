@@ -2604,13 +2604,37 @@
 		},
 		{
 			"if": {
+				"flag": {
+					"d10_jungle.island": "burned"
+				}
+			},
+			"ledger": "The swarm's oldest ground on Lindqvist's island was burned with the fazenda's ruins.",
+			"act2": true
+		},
+		{
+			"if": {
+				"flag": {
+					"d10_jungle.reclaim": "barra"
+				}
+			},
+			"pin": "d08_rivers",
+			"seal": "seal",
+			"region": "barra_rio_negro",
+			"to": "contested",
+			"ledger": "Óbidos' upriver battery was taken back from the swarm: the Barra's survivors hold it.",
+			"act2": true
+		},
+		{
+			"if": {
 				"won_by": {
 					"d10_jungle": "swarm"
 				}
 			},
 			"region": "lower_amazon",
 			"to": "brood",
-			"ledger": "The swarm held the river till the dry season.",
+			"pin": "d10_jungle",
+			"seal": "broken",
+			"ledger": "The swarm held the river till the dry season: not how it went.",
 			"act2": true
 		},
 		{

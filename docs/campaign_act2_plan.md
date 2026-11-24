@@ -578,6 +578,8 @@ fires find it. At the fort, in the same hour, two messengers ride in. THE CROWN 
 
 ### d10_jungle: THE JUNGLE FRONT (Óbidos and the Barra, 2780; the crossing's branch)
 
+BUILT (job d10-jungle): docs/campaign_d10_build.md says what was built and where it differs from this plan.
+
 The army's jungle column goes up the Amazon to break the swarm's forward nests before they reach the river towns.
 Valadares leads it (he knows the rivers and, by a03 `map`, the swarm's road). FRESH (the Brood first): the swarm still
 young below the Barra. GROWN (the Brood second): it has spread down the rivers while the army was in the south.

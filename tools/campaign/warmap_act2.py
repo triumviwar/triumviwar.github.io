@@ -211,10 +211,15 @@ RULES = [
       clock="Waits: the army is in the north, and the city grows while it waits."),
     R({"flag": {"d09_crossroads.first": "clockwork"}, "not_done": "d10_jungle"}, pin="d10_jungle",
       clock="Waits: the army is in the south, and the swarm spreads while it waits."),
-    # d10 THE JUNGLE FRONT (planned: jungle held / thin)
+    # d10 THE JUNGLE FRONT (built: docs/campaign_d10_build.md; jungle held / thin, island burned / standing, reclaim barra
+    # (the RECLAIM PART won: d08's broken seal mends); a swarm's win (the solo pick or versus): not how it went, a broken seal)
     R({"flag": {"d10_jungle.jungle": "held"}}, region="lower_amazon", to="contested", ledger="The swarm's nests on the river were broken in time: the river towns hold."),
     R({"flag": {"d10_jungle.jungle": "thin"}}, region="lower_amazon", to="brood", ledger="The nests were broken too late: the lower river is the swarm's."),
-    R({"won_by": {"d10_jungle": "swarm"}}, region="lower_amazon", to="brood", ledger="The swarm held the river till the dry season."),
+    R({"flag": {"d10_jungle.island": "burned"}}, ledger="The swarm's oldest ground on Lindqvist's island was burned with the fazenda's ruins."),
+    R({"flag": {"d10_jungle.reclaim": "barra"}}, pin="d08_rivers", seal="seal", region="barra_rio_negro", to="contested",
+      ledger="Óbidos' upriver battery was taken back from the swarm: the Barra's survivors hold it."),
+    R({"won_by": {"d10_jungle": "swarm"}}, region="lower_amazon", to="brood", pin="d10_jungle", seal="broken",
+      ledger="The swarm held the river till the dry season: not how it went."),
     # d11 THE SIEGE OF CONCORDIA (planned: siege close / held_off, jakob alive / lost)
     R({"flag": {"d11_siege.siege": "close"}}, region="concordia", to="machine", skins=PC, mark="siege_ring", show=True,
       ledger="The great spring's tower was blown from the old mine: the city is crippled and besieged."),

@@ -616,3 +616,20 @@ Everything else in Between Two Fires is built from keys already there: more than
 mid-match `show` with if-lines, `choice` with `"default": "random"` (no canon: the match's seed picks when nobody answers),
 `follow`, `retag`, `exits`, `hunt` with `prey` / `prey_team`, `wind` by team, `remove`, countdown clocks, `tally` with
 shares, `heir` and `playing` conditions, the war map's "first" clock (act2-warmap).
+
+## Added by Act 2's d10_jungle (d10-jungle; docs/campaign_d10_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| condition `"won_by": {"<mission>": "<side>"}` | true when that mission is done and was won by that side (a seal broken: d08 won by the swarm brings THE RECLAIM PART); MissionAct2, Campaign.problems knows it |
+| action `"cast": {"tag", "spell", "near_foe"}` | the tag's scripted creatures (Mist Toads) lay their spell (`fog` or `miasma`) where they stand when an enemy is within `near_foe` tiles: the research and the charge are given, then Game.cast_spell (d10 GROWN: the Toads' fog over their Mothers) |
+| action `"tech": {"team", "id"}` | a research is done for that team at once (one id or a list): GROWN's siege-train science (PREPARED CHARGES, GUNNER'S QUADRANT) next to the `unlock` that opens them |
+| mission `"needs_if": [{"flag": "<mission>.<flag>", "is": "<value>", "needs": [...]}]` | more needs only when an earlier flag is so (Campaign.unlocked): the jungle front waits for d11 when Ruggieri chose the city first; Campaign.problems checks the shape only (the other mission may not be built yet) |
+| roster ladder: a SECOND ladder in one mission | tools/campaign/roster_ladder.py EXTRA_BOUND / EXTRA_SIDE: the swarm's B7 cards use the speaker `new_brood` and the trigger `ladder_new_brood` next to the column's `new` / `ladder_new` |
+| roles `inacio`, `river_mother`, `old_mound`, `obidos_captain` | Rebels.ROLES (Father Inácio in the Observation Balloon, 360 hp; a forward Brood Mother in the b_linnea art at 0.46; the island's great Mound Turtle; a plain Officer) |
+
+Everything else in The Jungle Front is built from keys already there: THE UNMAPPED (`chart`, `charted`; d04) as the fog
+on the river, `versions` (FRESH / GROWN by d09's `first`), the mission `wade` rule (d05), `stay` (the balloon over the
+lookout), `lure_post` (d08's lure once more), `ground` swamp from a source, `root_now`, `brood_stage`, `max_hp`,
+`nest_free`, routes with `attack`, countdown clocks with `"scale": false`, `if` by `past` flags, `playing` and
+`difficulty`, the solo pick, versus.

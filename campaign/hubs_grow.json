@@ -183,7 +183,8 @@
   "ruggieri": {"name": "GENERAL RUGGIERI", "colour": 4, "portrait": "res://campaign/portraits/ruggieri.png", "entries": [
    {"after": "p01_leaf", "lines": ["The guns, Highness. In Virginia they were two. In Rome there are more.", "Earn the King's favour in the field, and I will spend it here on what the men need."]},
    {"after": "a06_barricades", "lines": ["Paris wanted the Mortar. My old crew will come with you again, if you call them."]},
-   {"after": "d09_crossroads", "lines": ["The fort held, Highness. Two sieges in a week and a council in an evening. I chose, and I have not slept well since."]}]},
+   {"after": "d09_crossroads", "lines": ["The fort held, Highness. Two sieges in a week and a council in an evening. I chose, and I have not slept well since."]},
+   {"after": "d10_jungle", "lines": ["The jungle column came home, Highness. Valadares sends you a map drawn from a balloon. I have hung it in the armoury."]}]},
   "delorme": {"name": "CAPTAIN DELORME", "colour": 4, "entries": [
    {"after": "a01_presses", "lines": ["Lyon is quiet. Two of my riders are yours whenever you want them."]},
    {"after": "a01_presses", "flag": {"a01_presses.lyon": "sullen"}, "lines": ["Lyon is sullen, not quiet. Still, two of my riders are yours."]}]},
