@@ -24,20 +24,32 @@ static func make(setup: Dictionary) -> WWWar:
 	w.d = {"v": 1, "seed": seed, "season": 0, "order": order, "turn": 0, "next_id": 1, "winner": "", "log": [],
 		"win": String(setup.get("win", "capitals")), "keys": int(setup.get("keys", WWRules.KEYS_NEEDED)),
 		"seasons": int(setup.get("seasons", WWRules.SEASON_LIMIT)), "heroes_on": bool(setup.get("heroes", true)),
-		"storms": -1, "event": "", "factions": {}, "regions": {}, "armies": {}, "heroes": {}, "name": String(setup.get("name", ""))}
+		"storms": -1, "event": "", "factions": {}, "regions": {}, "armies": {}, "heroes": {}, "name": String(setup.get("name", "")),
+		"rv": int(setup.get("rv", WWRules.RULES_VERSION)), "tune": WWRules.parse_tune(setup.get("tune", {}))}
 	for r in WWRules.region_list():
 		var id := String(r["id"])
 		d_region(w, id)
 	for f in order:
-		w.d["factions"][f] = {"who": String(players[f]), "gold": WWRules.START_GOLD, "capital": WWRules.CAPITAL[f],
+		w.d["factions"][f] = {"who": String(players[f]), "gold": int(w.numf("START_GOLD")), "capital": WWRules.CAPITAL[f],
 			"out": false, "income_last": 0, "upkeep_last": 0}
-		for rid in WWRules.START[f] + (WWRules.START_THIRD.get(f, []) if order.size() == 3 else []):
+		var extra: Array = w.num("START_THIRD", f, null, []) if order.size() == 3 else []
+		if order.size() == 2:
+			for o in order:
+				if o != f:
+					extra = extra + (w.num("START_TWO", f, o, []) as Array)
+		for rid in WWRules.START[f] + extra:
 			w.d["regions"][rid]["owner"] = f
 			w.d["regions"][rid]["unrest"] = 0.0
 		var a := w.new_army(f, WWRules.CAPITAL[f], WWRules.START_ARMY[f].duplicate())
 		if w.d["heroes_on"]:
 			for h in WWRules.HEROES.get(f, []):
 				w.d["heroes"][String(h["id"])] = {"f": f, "army": String(a["id"]), "back": 0}
+	# a side not in the war: its home lands stand as strong free countries (the free land round each start decides a
+	# two-side war; this keeps one side from taking the absent one's whole homeland for nothing)
+	for f in WWRules.FACTIONS:
+		if not order.has(f) and order.size() >= 2:
+			for rid in WWRules.START[f]:
+				w.d["regions"][rid]["guard"] = int(float(w.d["regions"][rid]["guard"]) * w.numf("ABSENT_GUARD", f, null, 1.0))
 	if w.d["name"] == "":
 		w.d["name"] = "war_%d" % (Time.get_unix_time_from_system() as int)
 	w.log_line(["The war begins: %s.", WWRules.season_name(0)])
@@ -46,7 +58,7 @@ static func make(setup: Dictionary) -> WWWar:
 
 
 static func d_region(w: WWWar, id: String) -> void:
-	w.d["regions"][id] = {"owner": "", "build": "", "unrest": 0.0, "guard": WWRules.worth(id) * WWRules.FREE_GUARD + WWRules.FREE_GUARD_BASE}
+	w.d["regions"][id] = {"owner": "", "build": "", "unrest": 0.0, "guard": WWRules.worth(id) * w.numf("FREE_GUARD") + w.numf("FREE_GUARD_BASE")}
 
 
 static func path_of(name: String) -> String:
@@ -117,6 +129,38 @@ static func saved_wars() -> Array:
 
 static func delete_war(name: String) -> void:
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(path_of(name)))
+
+
+# ------------------------------------------------------------------ the rules' numbers (docs/world_war_tune.md)
+
+## A rule's number for this war: a tuning override (d.tune, "NAME" or "NAME.a.b"), else the war's rules version (a war
+## saved before the tuning plays on the old numbers: WWRules.V1), else WWRules' constant. a / b go into a dictionary
+## rule (BIOME_INCOME.brood.temperate); dflt when it has no such entry.
+func num(k: String, a: Variant = null, b: Variant = null, dflt: Variant = null) -> Variant:
+	var t: Dictionary = d.get("tune", {})
+	if a != null:
+		var ka := k + "." + str(a)
+		if b != null and t.has(ka + "." + str(b)):
+			return t[ka + "." + str(b)]
+		if b == null and t.has(ka):
+			return t[ka]
+	elif t.has(k):
+		return t[k]
+	var v: Variant = WWRules.value(k, int(d.get("rv", 1)))
+	if a != null:
+		v = (v as Dictionary).get(a, null) if v is Dictionary else null
+		if b != null:
+			v = (v as Dictionary).get(b, null) if v is Dictionary else null
+	return dflt if v == null else v
+
+
+func numf(k: String, a: Variant = null, b: Variant = null, dflt: Variant = 0.0) -> float:
+	return float(num(k, a, b, dflt))
+
+
+## A rule switch (WWRules: true / false; a tuning override 0 / 1).
+func rule_on(k: String) -> bool:
+	return bool(num(k, null, null, false))
 
 
 # ------------------------------------------------------------------ reading the war
@@ -196,24 +240,68 @@ func army_value(a: Dictionary) -> int:
 	return WWRules.units_value(a["units"])
 
 
-## Steps (land or sea) from a side's capital to every region.
+## Steps from a side's capital to every region: a land step is 1, a sea lane SEA_HOP (overseas lands are far: their
+## upkeep and unrest grow as far lands' do).
 func hops(f: String) -> Dictionary:
 	if not _hops.has(f):
-		var dist := {WWRules.CAPITAL[f]: 0}
-		var q: Array = [WWRules.CAPITAL[f]]
-		while not q.is_empty():
-			var r: String = q.pop_front()
-			for n in WWRules.neighbours(r):
-				if not dist.has(n):
-					dist[n] = int(dist[r]) + 1
-					q.append(n)
-		_hops[f] = dist
+		_hops[f] = _steps_from([WWRules.CAPITAL[f]])
 	return _hops[f]
 
 
+## Steps from the nearest SEAT of a side (its capital or a muster building: a Fort, a Works, a Nest) to every region:
+## with SEATS on, a region's unrest grows with this, not with the way to the capital (a province held from a fort).
+func seat_hops(f: String) -> Dictionary:
+	if not rule_on("SEATS"):
+		return hops(f)
+	var seats: Array = []
+	for rid in regions_of(f):
+		if is_muster(rid, f):
+			seats.append(rid)
+	if seats.is_empty():
+		return hops(f)
+	return _steps_from(seats)
+
+
+func _steps_from(starts: Array) -> Dictionary:
+	if true:
+		var sea := int(numf("SEA_HOP", null, null, 1.0))
+		var dist := {}
+		for st in starts:
+			dist[st] = 0
+		var q: Array = starts.duplicate()
+		while not q.is_empty():
+			# (the nearest first: a sea lane may cost more than a land step)
+			var bi := 0
+			for i in q.size():
+				if int(dist[q[i]]) < int(dist[q[bi]]):
+					bi = i
+			var r: String = q[bi]
+			q.remove_at(bi)
+			for n in WWRules.land_nb(r):
+				if not dist.has(n) or int(dist[n]) > int(dist[r]) + 1:
+					dist[n] = int(dist[r]) + 1
+					q.append(n)
+			for n in WWRules.sea_nb(r):
+				if not dist.has(n) or int(dist[n]) > int(dist[r]) + sea:
+					dist[n] = int(dist[r]) + sea
+					q.append(n)
+		return dist
+	return {}
+
+
+## SUPPLY LINES: an army fighting far from its capital is weaker: x (1 - SUPPLY_STEP for each step past SUPPLY_FROM),
+## never under SUPPLY_FLOOR (a quiet brake on the side that reaches round the world; the region's own guard is not hit).
+func supply(f: String, rid: String) -> float:
+	var step := numf("SUPPLY_STEP")
+	if step <= 0.0 or f == "":
+		return 1.0
+	var far := maxi(0, int(hops(f).get(rid, 9)) - int(numf("SUPPLY_FROM")))
+	return maxf(numf("SUPPLY_FLOOR"), 1.0 - step * far)
+
+
 ## A capital's own guard: strong at first, fading as the war goes on (WWRules.CAPITAL_FADE).
-func capital_guard() -> float:
-	return WWRules.CAPITAL_GUARD * maxf(WWRules.CAPITAL_FLOOR, 1.0 - int(d.get("season", 0)) / WWRules.CAPITAL_FADE)
+func capital_guard(_f := "") -> float:
+	return numf("CAPITAL_GUARD") * maxf(numf("CAPITAL_FLOOR"), 1.0 - int(d.get("season", 0)) / numf("CAPITAL_FADE"))
 
 
 func is_muster(rid: String, f: String) -> bool:
@@ -229,14 +317,14 @@ func income(f: String) -> Array:
 	var raw := 0.0
 	for rid in regions_of(f):
 		raw += region_income(rid, f)
-	var bent := raw * WWRules.INCOME_K / (raw + WWRules.INCOME_K) if raw > 0 else 0.0
-	return [int(raw), int(round(bent * float(WWRules.AI_INCOME.get(who(f), 1.0))))]
+	var bent := raw * numf("INCOME_K") / (raw + numf("INCOME_K")) if raw > 0 else 0.0
+	return [int(raw), int(round(bent * (numf("AI_INCOME", who(f), null, 1.0))))]
 
 
 func region_income(rid: String, f: String) -> float:
 	var b := WWRules.building(f, String(d["regions"][rid]["build"]))
 	var bio := WWRules.biome(rid)
-	var g := float(WWRules.worth(rid) * WWRules.WORTH_GOLD) * float(WWRules.BIOME_INCOME[f].get(bio, 1.0))
+	var g := float(WWRules.worth(rid) * numf("WORTH_GOLD")) * (numf("BIOME_INCOME", f, bio, 1.0))
 	var mult := 1.0 + float(b.get("income", 0.0))
 	if bool(b.get("trade", false)):
 		for n in WWRules.neighbours(rid):
@@ -248,10 +336,10 @@ func region_income(rid: String, f: String) -> float:
 func upkeep(f: String) -> int:
 	var u := 0.0
 	for a in armies_of(f):
-		u += army_value(a) * (float(WWRules.UPKEEP_SIDE.get(f, WWRules.UPKEEP)) + WWRules.UPKEEP_VET * int(a["vet"]))
+		u += army_value(a) * (numf("UPKEEP_SIDE", f, null, numf("UPKEEP")) + numf("UPKEEP_VET") * int(a["vet"]))
 	var hp := hops(f)
 	for rid in regions_of(f):
-		u += WWRules.FAR_GOLD * maxi(0, int(hp.get(rid, 9)) - WWRules.FAR_HOPS)
+		u += numf("FAR_GOLD") * maxi(0, int(hp.get(rid, 9)) - int(numf("FAR_HOPS")))
 	return int(round(u))
 
 
@@ -415,8 +503,9 @@ func move(aid: String, to: String) -> Dictionary:
 		if not has_hero(aid, "valadares") and rng.randf() < storm:
 			log_line(["A storm at sea: %s's army sailing to %s loses a fifth of its men.", fname(f), rname(to)])
 			lose(a, WWRules.STORM_LOSS)
-		if f == "clockwork" and not has_hero(aid, "hollweg") and d["armies"].has(aid):
-			lose(a, WWRules.SEA_RUST)
+		var sea_loss := numf("SEA_LOSS", f, null, 0.0)
+		if sea_loss > 0.0 and not has_hero(aid, "hollweg") and d["armies"].has(aid):
+			lose(a, sea_loss)          # (the Clockwork rusts at sea; the Brood's creatures die in the holds)
 		if not d["armies"].has(aid):
 			return {"kind": "lost", "text": "The army was lost at sea."}
 	var foes: Array = armies_at(to).filter(func(x) -> bool: return String(x["f"]) != f)
@@ -427,7 +516,7 @@ func move(aid: String, to: String) -> Dictionary:
 		a["at"] = to
 		if not mates.is_empty():
 			var m: Dictionary = mates[0]
-			if WWRules.units_count(m["units"]) + WWRules.units_count(a["units"]) <= WWRules.ARMY_CAP:
+			if WWRules.units_count(m["units"]) + WWRules.units_count(a["units"]) <= numf("ARMY_CAP"):
 				add_units(m, a["units"])
 				m["vet"] = int(a["vet"]) if army_value(a) > army_value(m) else int(m["vet"])
 				for hid in heroes_with(aid):
@@ -458,14 +547,16 @@ func strengths(b: Dictionary) -> Dictionary:
 	var af := String(b["att_f"])
 	var df := String(b["def_f"])
 	var bio := biome_now(to)
-	var A := float(army_value(att)) * (1.0 + WWRules.VET_STEP * int(att.get("vet", 0)))
+	var A := float(army_value(att)) * (1.0 + numf("VET_STEP") * int(att.get("vet", 0)))
 	if not heroes_with(String(att["id"])).is_empty():
-		A *= WWRules.HERO_BONUS
-	A *= float(WWRules.BIOME_FIGHT.get(af, {}).get(bio, 1.0))
+		A *= numf("HERO_BONUS")
+	A *= (numf("BIOME_FIGHT", af, bio, 1.0))
 	if has_hero(String(att["id"]), "valadares") and bio == "jungle":
-		A *= 1.1 / float(WWRules.BIOME_FIGHT.get(af, {}).get(bio, 1.0))
+		A *= 1.1 / (numf("BIOME_FIGHT", af, bio, 1.0))
 	if has_hero(String(att["id"]), "ruggieri") and (String(d["regions"][to]["build"]) != "" or (df != "" and capital(df) == to)):
 		A *= 1.15
+	A *= supply(af, to)
+	A *= numf("VS", af, df, 1.0)
 	var D := 0.0
 	var army_part := 0.0
 	var hero_def := false
@@ -484,28 +575,30 @@ func strengths(b: Dictionary) -> Dictionary:
 		if own == "":
 			guard = float(d["regions"][to]["guard"])
 		else:
-			guard = float(WWRules.worth(to) * WWRules.GUARD)
+			guard = float(WWRules.worth(to) * numf("GUARD"))
 			guard += float(WWRules.building(own, String(d["regions"][to]["build"])).get("defence", 0))
 			if capital(own) == to:
-				guard += capital_guard()
-	D = army_part * (1.0 + WWRules.VET_STEP * vet_def) * (WWRules.HERO_BONUS if hero_def else 1.0) + guard
+				guard += capital_guard(own)
+	D = army_part * (1.0 + numf("VET_STEP") * vet_def) * (numf("HERO_BONUS") if hero_def else 1.0) * (supply(df, to) * numf("VS", df, af, 1.0) if df != "" else 1.0) + guard
 	if df != "":
-		D *= float(WWRules.BIOME_FIGHT.get(df, {}).get(bio, 1.0))
-	D *= WWRules.DEFEND_CAPITAL if (own != "" and own == df and capital(own) == to) else WWRules.DEFEND
+		D *= (numf("BIOME_FIGHT", df, bio, 1.0))
+	D *= numf("DEFEND_CAPITAL") if (own != "" and own == df and capital(own) == to) else numf("DEFEND")
 	return {"att": A, "def": D, "guard": guard, "army": army_part}
 
 
 ## Auto-resolve a battle now (and apply it). Returns {"won": attacker won, "text", "att_loss", "def_loss"}.
 func resolve(b: Dictionary) -> Dictionary:
 	var s := strengths(b)
-	var A: float = float(s["att"]) * (1.0 + rng.randf_range(-WWRules.LUCK, WWRules.LUCK))
-	var D: float = float(s["def"]) * (1.0 + rng.randf_range(-WWRules.LUCK, WWRules.LUCK))
+	var A: float = float(s["att"]) * (1.0 + rng.randf_range(-numf("LUCK"), numf("LUCK")))
+	var D: float = float(s["def"]) * (1.0 + rng.randf_range(-numf("LUCK"), numf("LUCK")))
 	var won := A > D
 	var hi := maxf(A, D)
 	var lo := minf(A, D)
 	var r := lo / maxf(hi, 1.0)
-	var win_loss := 0.05 + 0.55 * r * r
-	return apply_result(b, won, win_loss, WWRules.LOSER_LOSS)
+	var win_loss := numf("WIN_LOSS_BASE") + numf("WIN_LOSS_K") * r * r
+	if String(b.get("def_f", "")) == "" and (b.get("defs", []) as Array).is_empty():
+		win_loss *= numf("FREE_LOSS")          # (a free land's militia: farmers with old muskets, not an army)
+	return apply_result(b, won, win_loss, numf("LOSER_LOSS"))
 
 
 ## The battle's outcome on the map: the winner's losses (a share), the loser's (a share; it falls back if it can).
@@ -535,7 +628,7 @@ func apply_result(b: Dictionary, att_won: bool, win_loss: float, lose_loss: floa
 			da["vet"] = mini(WWRules.VET_MAX, int(da["vet"]) + 1)
 	if df == "" and defs.is_empty():
 		var g := int(d["regions"][to]["guard"])
-		d["regions"][to]["guard"] = maxi(WWRules.FREE_GUARD_BASE, int(g * (1.0 - win_loss * 0.5)))
+		d["regions"][to]["guard"] = maxi(int(numf("FREE_GUARD_BASE")), int(g * (1.0 - win_loss * 0.5)))
 	var share := lose_loss * (0.5 if has_hero(String(att["id"]), "fairleigh") else 1.0)
 	lose(att, share)
 	if d["armies"].has(String(att["id"])):
@@ -571,7 +664,7 @@ func _take(rid: String, f: String) -> void:
 	if f == "brood" and WWRules.biome(rid) == "cold":
 		reg["owner"] = ""
 		reg["build"] = ""
-		reg["guard"] = WWRules.FREE_GUARD_BASE
+		reg["guard"] = int(numf("FREE_GUARD_BASE"))
 		log_line(["The Brood can't live in the cold: %s is laid waste and left free.", rname(rid)])
 	else:
 		reg["owner"] = f
@@ -589,10 +682,17 @@ func _fall(f: String, by: String) -> void:
 		log_line(["The Queen is dead: %s took %s and the Brood is broken.", fname(by), rname(capital(f))])
 	else:
 		log_line(["%s has fallen: %s took %s.", fname(f), fname(by), rname(capital(f))])
+	# THE SPOILS (a rule switch): the taker of a capital takes the fallen side's other lands too, restless, their
+	# buildings pulled down (the Brood still can't hold the cold); without it they all become free land
+	var spoils := rule_on("SPOILS") and by != "" and alive(by)
 	for rid in regions_of(f):
-		d["regions"][rid]["owner"] = ""
 		d["regions"][rid]["build"] = ""
-		d["regions"][rid]["guard"] = WWRules.worth(rid) * WWRules.GUARD + WWRules.FREE_GUARD_BASE
+		if spoils and not (by == "brood" and WWRules.biome(rid) == "cold"):
+			d["regions"][rid]["owner"] = by
+			d["regions"][rid]["unrest"] = numf("SPOILS_UNREST")
+			continue
+		d["regions"][rid]["owner"] = ""
+		d["regions"][rid]["guard"] = WWRules.worth(rid) * numf("GUARD") + numf("FREE_GUARD_BASE")
 	for a in armies_of(f):
 		remove_army(String(a["id"]))
 	for hid in d["heroes"].keys():
@@ -732,7 +832,7 @@ func recruit(rid: String, reg_id: String) -> Dictionary:
 	var r := WWRules.regiment(f, reg_id)
 	d["factions"][f]["gold"] = gold(f) - WWRules.regiment_cost(r)
 	# (it joins the army there with room for it; with none, or all full, it is a new army)
-	var mates: Array = armies_at(rid, f).filter(func(x) -> bool: return WWRules.units_count(x["units"]) + WWRules.units_count(r["units"]) <= WWRules.ARMY_CAP)
+	var mates: Array = armies_at(rid, f).filter(func(x) -> bool: return WWRules.units_count(x["units"]) + WWRules.units_count(r["units"]) <= numf("ARMY_CAP"))
 	if mates.is_empty():
 		var na := new_army(f, rid, (r["units"] as Dictionary).duplicate())
 		na["moved"] = true          # (new soldiers march next season)
@@ -765,17 +865,17 @@ func begin_turn() -> Array:
 	rep.append(["Income %d gold, upkeep of armies and far lands %d.", int(inc[1]), up])
 	if g < 0:
 		g = 0
-		rep.append(["The treasury is empty: unpaid soldiers desert (each army loses %d%%).", int(WWRules.DEBT_LOSS * 100)])
+		rep.append(["The treasury is empty: unpaid soldiers desert (each army loses %d%%).", int(numf("DEBT_LOSS") * 100)])
 		for a in armies_of(f):
-			lose(a, WWRules.DEBT_LOSS)
+			lose(a, numf("DEBT_LOSS"))
 	fd["gold"] = g
 	# the climate
 	var winter := int(d["season"]) % 4 == 3
 	for a in armies_of(f):
 		var bio := biome_now(String(a["at"]))
-		var loss := float(WWRules.ATTRITION.get(f, {}).get(bio, 0.0))
+		var loss := (numf("ATTRITION", f, bio, 0.0))
 		if f == "brood" and bio == "cold" and winter:
-			loss *= WWRules.WINTER_COLD
+			loss *= numf("WINTER_COLD")
 		if has_hero(String(a["id"]), "hollweg"):
 			loss = 0.0
 		if loss > 0.0:
@@ -787,7 +887,7 @@ func begin_turn() -> Array:
 		if owner(at) != f:
 			continue
 		if at == capital(f) or (WWRules.MEND_AT[f] as Array).has(String(d["regions"][at]["build"])):
-			grow(a, WWRules.MEND)
+			grow(a, numf("MEND"))
 	# heroes back from their wounds join an army at the capital
 	for hid in d["heroes"]:
 		var h: Dictionary = d["heroes"][hid]
@@ -797,31 +897,31 @@ func begin_turn() -> Array:
 				h["army"] = String(at_cap[0]["id"])
 				rep.append(["%s is back and leads the army at %s.", WWRules.hero(hid).get("name", hid), rname(capital(f))])
 	# unrest and risings
-	var hp := hops(f)
+	var hp := seat_hops(f)
 	var held := regions_of(f)
-	var stretch := WWRules.UNREST_SIZE * maxi(0, held.size() - WWRules.UNREST_SIZE_FROM)
+	var stretch := numf("UNREST_SIZE") * maxi(0, held.size() - int(numf("UNREST_SIZE_FROM")))
 	for rid in held:
 		if rid == capital(f):
 			continue
 		var reg: Dictionary = d["regions"][rid]
 		var u := float(reg["unrest"]) + stretch
-		u += WWRules.UNREST_FAR * maxi(0, int(hp.get(rid, 9)) - 2)
-		if (WWRules.HATED[f] as Array).has(WWRules.biome(rid)):
-			u += WWRules.UNREST_CLIMATE
+		u += numf("UNREST_FAR") * maxi(0, int(hp.get(rid, 9)) - 2)
+		if (num("HATED", f, null, []) as Array).has(WWRules.biome(rid)):
+			u += numf("UNREST_CLIMATE")
 		if not armies_at(rid, f).is_empty():
-			u -= WWRules.UNREST_ARMY
+			u -= numf("UNREST_ARMY")
 		u -= float(WWRules.building(f, String(reg["build"])).get("calm", 0))
-		u -= WWRules.UNREST_FALL
+		u -= numf("UNREST_FALL")
 		if String(d.get("event", "")) == "council" and f == "crown" and owner("rome") == "crown" and int(d.get("event_s", -1)) == int(d["season"]):
 			u -= 20.0
 		reg["unrest"] = clampf(u, 0.0, 100.0)
-		if float(reg["unrest"]) > WWRules.REBEL_FROM and armies_at(rid, f).is_empty():
-			var chance := (float(reg["unrest"]) - WWRules.REBEL_FROM) / WWRules.REBEL_DIV
+		if float(reg["unrest"]) > numf("REBEL_FROM") and armies_at(rid, f).is_empty():
+			var chance := (float(reg["unrest"]) - numf("REBEL_FROM")) / numf("REBEL_DIV")
 			if rng.randf() < chance:
 				reg["owner"] = ""
 				reg["build"] = ""
 				reg["unrest"] = 0.0
-				reg["guard"] = WWRules.worth(rid) * 150 + WWRules.FREE_GUARD_BASE
+				reg["guard"] = WWRules.worth(rid) * 150 + numf("FREE_GUARD_BASE")
 				rep.append(["%s rises against %s and is free again.", rname(rid), fname(f)])
 				log_line(["%s rises against %s and is free again.", rname(rid), fname(f)])
 	return rep

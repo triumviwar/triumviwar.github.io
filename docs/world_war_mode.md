@@ -49,6 +49,11 @@ armies placed), `_11_after_battle`, `_12_victory`.
 
 ## The rules, with their numbers
 
+TUNED (job world-war-tune, docs/world_war_tune.md): the numbers below are the FIRST rules (rules version 1, still
+played by wars saved before the tuning). The tuning pass changed some of them (sea lanes count two steps, supply lines,
+the guards, seats, the sides' lands, one side against another, the starts, the computers' coalition): its doc has the
+table of old and new.
+
 ### The map
 - 60 regions (the list is at the end), each with a land (temperate, cold, wet, jungle, desert), a worth (1-3), maybe a
   port, maybe a key region (15). Each region's shape is the land nearer its town than any other town, cut to the coasts

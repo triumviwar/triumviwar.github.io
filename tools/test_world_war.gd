@@ -40,6 +40,7 @@ func _run() -> void:
 	_save_load()
 	_climate()
 	_upkeep_unrest()
+	_tuning()
 	_battle_rules()
 	await _fight_it()
 	await _menu()
@@ -89,7 +90,7 @@ func _setup() -> void:
 	var worth := {}
 	for f in WWRules.FACTIONS:
 		worth[f] = w.land_worth(f)
-	check("the starts are close in worth (7-9)", worth.values().all(func(v) -> bool: return int(v) >= 7 and int(v) <= 9), worth)
+	check("the starts are close in worth (7-12: the Crown and the Clockwork more in a three-side war)", worth.values().all(func(v) -> bool: return int(v) >= 7 and int(v) <= 12), worth)
 	check("heroes with the Crown's and the Clockwork's armies, none with the Brood",
 		w.heroes_with(String(w.armies_of("crown")[0]["id"])).size() == 3 and w.heroes_with(String(w.armies_of("clockwork")[0]["id"])) == ["hollweg"]
 		and w.heroes_with(String(w.armies_of("brood")[0]["id"])).is_empty(), "")
@@ -206,6 +207,35 @@ func _climate() -> void:
 		return w.biome_now("minas") == "wet").call(), "")
 
 
+## The tuning pass (docs/world_war_tune.md): sea lanes count double, supply lines, one side against another, the starts
+## of a two-side war, an absent side's walled home, an old war plays on with the old numbers.
+func _tuning() -> void:
+	var w := _war()
+	check("a sea lane counts as two steps from the capital", int(w.hops("crown")["lisbon"]) == 2 and int(w.hops("crown")["rio"]) == 4, [w.hops("crown")["lisbon"], w.hops("crown")["rio"]])
+	check("supply lines: full near home, weaker far away", is_equal_approx(w.supply("crown", "milan"), 1.0) and w.supply("crown", "canton") < 1.0 and w.supply("crown", "canton") >= WWRules.SUPPLY_FLOOR, w.supply("crown", "canton"))
+	var br: Dictionary = w.armies_of("brood")[0]
+	var cr: Dictionary = w.armies_of("crown")[0]
+	br["at"] = "rio"
+	w.d["regions"]["rio"]["owner"] = "crown"
+	cr["at"] = "rio"
+	var b := {"att": String(br["id"]), "region": "rio", "att_f": "brood", "def_f": "crown", "defs": [String(cr["id"])]}
+	var a1 := float(w.strengths(b)["att"])
+	w.d["tune"]["VS.brood.crown"] = 1.0
+	var a0 := float(w.strengths(b)["att"])
+	check("one side against another (VS): the Brood's creatures x1.25 against the Crown", is_equal_approx(a1 / a0, 1.25), [a1, a0])
+	var two := _war({"crown": "normal", "clockwork": "off", "brood": "normal"})
+	check("a two-side war: the Brood starts with more against the Crown; the Crown without its three-side lands",
+		two.owner("mato_grosso") == "brood" and two.owner("minas") == "brood" and two.owner("lyon") == "" and two.owner("lisbon") == "", [two.regions_of("brood"), two.regions_of("crown")])
+	check("an absent side's home is walled free land", int(two.d["regions"]["nuremberg"]["guard"]) > int(two.d["regions"]["vienna"]["guard"]) * 2, [two.d["regions"]["nuremberg"]["guard"], two.d["regions"]["vienna"]["guard"]])
+	var old := _war({"crown": "normal", "clockwork": "normal", "brood": "normal"}, {"rv": 1})
+	check("a war saved before the tuning plays on with the old numbers", old.numf("GUARD") == 100.0 and int(old.hops("crown")["rio"]) == 2 and old.owner("lisbon") == "" and old.numf("BIOME_INCOME", "brood", "temperate") == 0.75,
+		[old.numf("GUARD"), old.hops("crown")["rio"], old.owner("lisbon")])
+	var loaded := WWWar.from_dict(JSON.parse_string(JSON.stringify(w.d)))
+	check("the rules' version and the tuning are saved with the war", loaded.numf("VS", "brood", "crown") == 1.0 and int(loaded.d["rv"]) == WWRules.RULES_VERSION, loaded.d.get("tune"))
+	var fresh := WWWar.from_dict({"regions": w.d["regions"].duplicate(true), "armies": {}, "factions": w.d["factions"].duplicate(true), "order": w.d["order"], "heroes": {}, "log": [], "winner": ""})
+	check("a war file with no rules' version is an old war (version 1)", fresh.numf("GUARD") == 100.0, fresh.numf("GUARD"))
+
+
 func _upkeep_unrest() -> void:
 	var w := _war()
 	var f := "crown"
@@ -220,8 +250,8 @@ func _upkeep_unrest() -> void:
 	var cwu := w.upkeep("clockwork")
 	var cwv := 0.0
 	for a in w.armies_of("clockwork"):
-		cwv += w.army_value(a) * 0.09
-	check("the Clockwork's upkeep is 9% (it must be wound)", cwu == int(round(cwv)), [cwu, cwv])
+		cwv += w.army_value(a) * float(WWRules.UPKEEP_SIDE["clockwork"])
+	check("the Clockwork's upkeep is its own (it must be wound)", cwu == int(round(cwv)), [cwu, cwv])
 	# income is bent: twice the land is not twice the gold
 	var i1: int = w.income("crown")[1]
 	for rid in ["paris", "brittany", "castile", "andalusia", "vienna", "hungary", "low_countries"]:
