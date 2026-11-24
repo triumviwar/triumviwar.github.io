@@ -115,14 +115,14 @@ func _run() -> void:
 		if g.clock >= next:
 			next += float(OS.get_environment("SIMSTEP")) if OS.get_environment("SIMSTEP") != "" else 30.0
 			var part := "1" if not r.fired.has("part2") else ("2" if not r.fired.has("part3") else ("3" if not r.fired.has("queen") else "Q"))
-			print("SIM t=%4d part=%s young=%d in_pen=%d loose=%d broke=%d joined=%d down=%d M=%s W=%s E=%s stock=%d wild=%d pens=%d faz=%d walls=%d house=%s burned=%d fled=%d/%d flood=%s queen=%s gold=%d" % [
+			print("SIM t=%4d part=%s young=%d in_pen=%d loose=%d broke=%d joined=%d down=%d M=%s W=%s E=%s stock=%d wild=%d pens=%d faz=%d walls=%d house=%s burned=%d fled=%d/%d flood=%s queen=%s gold=%d spent=%d" % [
 				g.clock, part, int(r.counters.get("young_n", 0)), int(r.counters.get("in_pen", 0)), r.a2.loose_count("", ""),
 				int(r.counters.get("lost_n", 0)), int(r.counters.get("joined", 0)), int(r.counters.get("mothers_down", 0)),
 				_hp(r, "mother"), _hp(r, "wild_mother"), _hp(r, "pen_mother"),
 				_n(g, r, "stock"), _n(g, r, "wild"), _n(g, r, "pens"), _n(g, r, "fazenda"),
 				r.tagged("palisade").size(), _hp(r, "big_house"), int(r.counters.get("burned", 0)),
 				int(r.counters.get("fled_l", 0)), int(r.counters.get("fled_p", 0)), _left(g, r, "flood"), _left(g, r, "queen"),
-				int(g.players[r.team_index("stock")]["gold"])])
+				int(g.players[r.team_index("stock")]["gold"]), int(g.stats[r.team_index("stock")].get("spent", 0))])
 	var idle: Dictionary = r.longest_idle()
 	print("SIM end t=%d over=%s winner=%s flags=%s counters=%s objectives=%s" % [g.clock, g.over, r.winner_side, r.flags, r.counters, r.obj])
 	print("SIM longest_idle %d s (from %d s)%s" % [int(idle.get("secs", 0.0)), int(idle.get("from", 0.0)), "" if float(idle.get("secs", 0.0)) < 45.0 else "  OVER 45 s"])
@@ -229,7 +229,8 @@ func _play_brood(g: Game, r: MissionRun) -> void:
 		var why := BroodNew.lay(g, q, "brute")
 		if OS.get_cmdline_user_args().has("debug") and why != "" and int(g.clock) % 10 == 0:
 			print("  brute: ", why, " sires=", r.tagged("tyrant_sire").map(func(u): return "%s %s" % [g.cell_of(u.position), BroodNew.rooted(u)]))
-		if army.size() < 30:
+		# (a player saves the food for Brutes: a Raptor only with a Brute's food to spare)
+		if army.size() < 30 and int(g.players[r.team_index("stock")]["gold"]) >= 260:
 			BroodNew.lay(g, q, "raptor")
 		# THE FALL: the Brutes at the west gate of the palisade, the rest after them on to the house
 		var house: Array = r.tagged("big_house")
@@ -239,7 +240,9 @@ func _play_brood(g: Game, r: MissionRun) -> void:
 			if wall == null or w.center().distance_to(gate) < wall.center().distance_to(gate):
 				wall = w
 		var breached: bool = r.fired.has("breach")
-		var ready: bool = army.filter(func(u): return u.kind == "brute").size() >= 2 or g.clock > float(r.fired.get("fall", 0)) + 70.0
+		# (in waves: three Brutes, or two after 70 s; a beaten wave gathers again)
+		var brutes: int = army.filter(func(u): return u.kind == "brute").size()
+		var ready: bool = brutes >= 3 or (brutes >= 2 and g.clock > float(r.fired.get("fall", 0)) + 70.0)
 		for u in army:
 			if u.target != null and is_instance_valid(u.target) and not u.target.dead:
 				continue

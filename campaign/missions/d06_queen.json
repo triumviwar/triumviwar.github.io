@@ -13,6 +13,10 @@
 	],
 	"expansion_spots": false,
 	"manual_end": true,
+	"needs": [
+		"a07_council",
+		"d03_fazenda"
+	],
 	"modes": [
 		"solo",
 		"versus"
@@ -2103,6 +2107,18 @@
 					}
 				},
 				{
+					"objective": {
+						"id": "f_burn",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "f_canoes",
+						"set": "active"
+					}
+				},
+				{
 					"order": {
 						"tag": "keeper_w",
 						"do": "move",
@@ -3570,6 +3586,12 @@
 						"not": {
 							"playing": "fazenda"
 						}
+					},
+					{
+						"difficulty": [
+							"normal",
+							"hard"
+						]
 					}
 				]
 			},
@@ -3924,8 +3946,8 @@
 				{
 					"give": {
 						"team": "stock",
-						"gold": 330,
-						"powder": 45
+						"gold": 480,
+						"powder": 65
 					}
 				},
 				{
@@ -3977,8 +3999,8 @@
 				{
 					"give": {
 						"team": "stock",
-						"gold": 30,
-						"powder": 4
+						"gold": 45,
+						"powder": 6
 					}
 				}
 			]
@@ -4406,7 +4428,21 @@
 			"when": {
 				"all": [
 					{
-						"fired": "p2_f"
+						"any": [
+							{
+								"fired": "p2_f"
+							},
+							{
+								"all": [
+									{
+										"fired": "setup_mirror"
+									},
+									{
+										"playing": "fazenda"
+									}
+								]
+							}
+						]
 					},
 					{
 						"stay": {
@@ -4469,7 +4505,21 @@
 			"when": {
 				"all": [
 					{
-						"fired": "p2_f"
+						"any": [
+							{
+								"fired": "p2_f"
+							},
+							{
+								"all": [
+									{
+										"fired": "setup_mirror"
+									},
+									{
+										"playing": "fazenda"
+									}
+								]
+							}
+						]
 					},
 					{
 						"stay": {
@@ -4532,7 +4582,21 @@
 			"when": {
 				"all": [
 					{
-						"fired": "p2_f"
+						"any": [
+							{
+								"fired": "p2_f"
+							},
+							{
+								"all": [
+									{
+										"fired": "setup_mirror"
+									},
+									{
+										"playing": "fazenda"
+									}
+								]
+							}
+						]
 					},
 					{
 						"stay": {

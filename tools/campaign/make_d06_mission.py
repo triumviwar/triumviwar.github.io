@@ -94,11 +94,11 @@ QUEEN_SECS = 420             # the mirror: the Queen grows when this runs out (s
 BURN_SECS = 4                # the mirror: a man in a pen this long burns it
 BURN_DELAY = 60              # ... the big pen burned before the Queen: her clock this much longer
 GROW_DENY = ["raptor", "hatchlings", "spitter", "tyrant_challenger", "venom_challenger", "storm_challenger"]
-QUEEN_FOOD, QUEEN_SPOILS = 30, 4     # every 8 s after the Queen
+QUEEN_FOOD, QUEEN_SPOILS = 45, 6     # every 8 s after the Queen (a Brute about every 30 s)
 HOUSE_HP = 3000            # the big house
 BAND_SOME, BAND_ALL = 0.25, 0.55
 GROW_FOOD, GROW_SPOILS = 520, 80           # given at Part 3: her growth (500 / 75) and a little over
-BRUTE_FOOD, BRUTE_SPOILS = 330, 45         # given at the Queen: two Brutes (150 / 20 each) and a little over
+BRUTE_FOOD, BRUTE_SPOILS = 480, 65         # given at the Queen: three Brutes (150 / 20 each) and a little over
 
 # the stock's young: (kind, condition) in the two flooded low pens (west: even, east: odd)
 YOUNG = [
@@ -245,6 +245,7 @@ M = {
     "floor": [0.72, 0.74, 0.66],
     "expansion_spots": False,
     "manual_end": True,
+    "needs": ["a07_council", "d03_fazenda"],     # (Act 2: after Rome, like every mission after it; and after d03)
     "modes": ["solo", "versus"],
     "solo_sides": ["brood", "fazenda"],
     "sides": [
@@ -555,6 +556,8 @@ TR_ += [
         + [{"floor": {"tag": "mothers", "share": 0.35}},
            {"objective": {"id": "flood", "set": "hidden"}}, {"objective": {"id": "flood_clock", "set": "hidden"}},
            {"objective": {"id": "f_flood", "set": "hidden"}},
+           # (SAY IT PLAINLY: the fazenda's player sees the job from the first second, not after the flood's 15 s)
+           {"objective": {"id": "f_burn", "set": "active"}}, {"objective": {"id": "f_canoes", "set": "active"}},
            {"order": {"tag": "keeper_w", "do": "move", "to": "house_in"}}, {"order": {"tag": "keeper_e", "do": "move", "to": "house_in"}},
            {"clock": {"name": "flood", "secs": 15, "scale": False}}]},
     {"id": "no_pieter", "when": {"all": [{"time": 20}, NO_PIETER]}, "do": [{"say": ["n_no_pieter"]}]},
@@ -657,7 +660,7 @@ TR_ += [
         {"spare": {"tag": "lindqvist", "on": True}},
         {"order": {"tag": "keepers", "do": "move", "to": "house_in"}}, {"order": {"tag": "guns", "do": "hold"}}]},
     {"id": "faz_hold", "when": {"fired": "faz_wake"}, "delay": 12, "do": [{"order": {"tag": "keepers", "do": "hold"}}]},
-    {"id": "faz_hands", "when": {"all": [{"fired": "part3"}, NO_FAZ]}, "do": [
+    {"id": "faz_hands", "when": {"all": [{"fired": "part3"}, NO_FAZ, {"difficulty": ["normal", "hard"]}]}, "do": [
         {"spawn": {"team": "fazenda", "kind": "musketeer", "as": "keeper", "count": 2, "at": "house_in", "tag": "hands", "tags": ["people", "faz_all"]}},
         {"order": {"tag": "hands", "do": "hold"}}]},
     # NO WAITING while she grows: Lindqvist sends the keepers out to shoot her before it is done
@@ -717,7 +720,7 @@ TR_ += [
     # ============================================================ THE FAZENDA (the solo pick, versus): burn three pens, then the canoes
 ] + [
     t for (pen, area) in [("big", "burn_big"), ("north", "pen_2"), ("east", "pen_3")] for t in [
-        {"id": "burn_" + pen, "when": {"all": [{"fired": "p2_f"}, {"stay": {"tag": "people", "area": area, "secs": BURN_SECS}},
+        {"id": "burn_" + pen, "when": {"all": [{"any": [{"fired": "p2_f"}, {"all": [{"fired": "setup_mirror"}, FAZ]}]}, {"stay": {"tag": "people", "area": area, "secs": BURN_SECS}},
                                                {"not": {"fired": "queen"}}, LIVE]}, "do": [
             {"counter": {"name": "burned", "add": 1}}, {"say": ["n_f_burn"]}, {"ping": {"area": area}},
             {"flag": {"burned_" + pen: "yes"}}]},
