@@ -26,6 +26,12 @@
 
 ## Current work
 
+- d10_jungle BUILT (job d10-jungle, MERGED 0.38.205, docs/campaign_d10_build.md): Act 2's crossing branch v the swarm,
+  "The Jungle Front" (2780, Valadares tells it): a column up the Amazon to Óbidos breaks the forward nests; FRESH (d09
+  `first` brood: 3 Mothers) / GROWN (the city first: 5 Mothers, Mist Toads, needs d11 won); map campaign:obidos_front
+  (VÁRZEA); C8 = OBSERVATION BALLOON with FATHER INÁCIO LOURENÇO (lifts the fog), mirror on B7 = MIST TOAD; the reclaim of
+  d08's battery; engine `won_by`, `cast`, `tech`, `needs_if`. Tests tools/test_campaign_d10.gd, sim
+  tools/sim_campaign_d10.gd. ALL TEXT PLACEHOLDER.
 - d09_crossroads BUILT (job d09-crossroads, MERGED 0.38.204, docs/campaign_d09_build.md): Act 2's SECOND CROSSING,
   "Between Two Fires" (dry season 2780, Tomasz tells it): General Ruggieri's army of Brazil marches through the sertão to
   Fort Constantine (proposed) on the São Francisco; the swarm from the north-west, the machines from the south-west;
