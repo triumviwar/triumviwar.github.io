@@ -12,18 +12,18 @@ extends RefCounted
 static func step(w: WWWar) -> Dictionary:
 	var f := w.current()
 	var lvl := w.who(f)
-	var margin := float(WWRules.AI_MARGIN.get(lvl, 1.25))
+	var margin := w.numf("AI_MARGIN", lvl, null, 1.25)
 	var st: Dictionary = w.d.get("ai_turn", {})
 	if int(st.get("s", -1)) != int(w.d["season"]) or String(st.get("f", "")) != f:
 		st = {"s": int(w.d["season"]), "f": f, "phase": 0, "done": []}
 		w.d["ai_turn"] = st
 	# 1. an army big enough for its lands first, then buildings, then more soldiers with what is left
 	if int(st["phase"]) == 0:
-		var want := 1400.0 + 260.0 * w.regions_of(f).size()
+		var want := w.numf("AI_WANT_BASE") + w.numf("AI_WANT_REGION") * w.regions_of(f).size()
 		var have := 0.0
 		for a in w.armies_of(f):
 			have += w.army_value(a)
-		if have < want:
+		if have < want * w.numf("AI_BUILD_AT"):
 			var r0 := _recruit_one(w, f, 120)
 			if not r0.is_empty():
 				return r0
@@ -70,18 +70,18 @@ static func _threat(w: WWWar, rid: String, f: String) -> float:
 	for n in WWRules.neighbours(rid):
 		for a in w.armies_at(n):
 			if String(a["f"]) != f:
-				t = maxf(t, float(w.army_value(a)) * (1.0 + WWRules.VET_STEP * int(a["vet"])))
+				t = maxf(t, float(w.army_value(a)) * (1.0 + w.numf("VET_STEP") * int(a["vet"])))
 	return t
 
 
 static func _defence_here(w: WWWar, rid: String, f: String) -> float:
 	var D := 0.0
 	for a in w.armies_at(rid, f):
-		D += w.army_value(a) * (1.0 + WWRules.VET_STEP * int(a["vet"]))
-	D += WWRules.worth(rid) * WWRules.GUARD + float(WWRules.building(f, String(w.d["regions"][rid]["build"])).get("defence", 0))
+		D += w.army_value(a) * (1.0 + w.numf("VET_STEP") * int(a["vet"]))
+	D += WWRules.worth(rid) * w.numf("GUARD") + float(WWRules.building(f, String(w.d["regions"][rid]["build"])).get("defence", 0))
 	if rid == w.capital(f):
-		D += w.capital_guard()
-	return D * (WWRules.DEFEND_CAPITAL if rid == w.capital(f) else WWRules.DEFEND)
+		D += w.capital_guard(f)
+	return D * (w.numf("DEFEND_CAPITAL") if rid == w.capital(f) else w.numf("DEFEND"))
 
 
 static func _frontier(w: WWWar, rid: String, f: String) -> bool:
@@ -114,7 +114,7 @@ static func _build_one(w: WWWar, f: String) -> Dictionary:
 			pick = {"crown": "market", "clockwork": "trade_post", "brood": "swamp"}[f]
 			if f == "brood" and not ["temperate", "wet", "jungle"].has(WWRules.biome(rid)):
 				pick = "nest"
-			score += 1.0 + float(WWRules.BIOME_INCOME[f].get(WWRules.biome(rid), 1.0))
+			score += 1.0 + w.numf("BIOME_INCOME", f, WWRules.biome(rid), 1.0)
 		# a muster place near the front when the only one is far
 		if pick != WWRules.BUILDINGS[f][0]["id"] and front and not _has_muster_near(w, f, rid):
 			pick = WWRules.BUILDINGS[f][0]["id"]
@@ -194,28 +194,31 @@ static func _recruit_one(w: WWWar, f: String, keep_at := -1) -> Dictionary:
 static func _target(w: WWWar, a: Dictionary, margin: float) -> String:
 	var f := String(a["f"])
 	var at := String(a["at"])
-	var mine := float(w.army_value(a)) * (1.0 + WWRules.VET_STEP * int(a["vet"]))
+	var mine := float(w.army_value(a)) * (1.0 + w.numf("VET_STEP") * int(a["vet"]))
 	if not w.heroes_with(String(a["id"])).is_empty():
-		mine *= WWRules.HERO_BONUS
+		mine *= w.numf("HERO_BONUS")
 	# a guard at home: the capital's army stays while an enemy next door could take it
 	if at == w.capital(f):
 		var th := _threat2(w, at, f)
-		var without := _defence_here(w, at, f) - mine * WWRules.DEFEND_CAPITAL
+		var without := _defence_here(w, at, f) - mine * w.numf("DEFEND_CAPITAL")
 		if th > without * 0.9:
 			# (only a part may go: the rest keeps the capital safe; WWWar.split leaves half)
 			if mine > th * 2.2 and WWRules.units_count(a["units"]) >= 8:
 				w.split(String(a["id"]))
 			return ""
 	# the climate hurts here: leave
-	var hurt := float(WWRules.ATTRITION.get(f, {}).get(w.biome_now(at), 0.0)) > 0.0
+	var hurt := w.numf("ATTRITION", f, w.biome_now(at), 0.0) > 0.0
 	var best := ""
 	var best_score := 0.5 if hurt else 0.0
 	var ed := _enemy_dist(w, f)
+	# THE MARCH ON A CAPITAL: a big army (AI_MARCH and more) later in the war heads for the nearest enemy capital
+	var march := mine >= w.numf("AI_MARCH") and int(w.d["season"]) >= int(w.numf("AI_MARCH_FROM"))
+	var cd := _capital_dist(w, f) if march else {}
 	for m in w.moves_for(String(a["id"])):
 		var to := String(m["to"])
 		var own := w.owner(to)
 		var bio := w.biome_now(to)
-		var climate := float(WWRules.ATTRITION.get(f, {}).get(bio, 0.0))
+		var climate := w.numf("ATTRITION", f, bio, 0.0)
 		var score := 0.0
 		if own == f:
 			# to a threatened region of its own, or to join a bigger army near the front
@@ -225,9 +228,11 @@ static func _target(w: WWWar, a: Dictionary, margin: float) -> String:
 				score = 2.0 + (4.0 if to == w.capital(f) else 0.0)
 			elif hurt and climate == 0.0:
 				score = 1.0
-			elif not w.armies_at(to, f).is_empty() and WWRules.units_count(a["units"]) + WWRules.units_count(w.armies_at(to, f)[0]["units"]) <= WWRules.ARMY_CAP \
+			elif not w.armies_at(to, f).is_empty() and WWRules.units_count(a["units"]) + WWRules.units_count(w.armies_at(to, f)[0]["units"]) <= w.numf("ARMY_CAP") \
 					and (mine < 500.0 or _frontier(w, to, f)):
 				score = 0.6 if mine < 500.0 else 1.1          # (armies gather into one big enough to take a capital)
+			elif march and int(cd.get(to, 99)) < int(cd.get(at, 99)):
+				score = 1.3          # (on toward the enemy capital)
 			elif mine >= 1200.0 and int(ed.get(to, 99)) < int(ed.get(at, 99)):
 				score = 0.9          # (a strong army marches toward the enemy)
 			score -= climate * 6.0
@@ -235,7 +240,8 @@ static func _target(w: WWWar, a: Dictionary, margin: float) -> String:
 			var b := {"att": String(a["id"]), "region": to, "att_f": f, "def_f": own,
 				"defs": w.armies_at(to).filter(func(x) -> bool: return String(x["f"]) != f).map(func(x) -> String: return String(x["id"]))}
 			var s := w.strengths(b)
-			if float(s["att"]) < float(s["def"]) * margin:
+			var need := margin * (w.numf("AI_CAPITAL_MARGIN") if own != "" and w.capital(own) == to else 1.0)
+			if float(s["att"]) < float(s["def"]) * need:
 				continue
 			if f == "brood" and WWRules.biome(to) == "cold" and (b["defs"] as Array).is_empty():
 				continue          # (nothing to win there: the cold land can't be held)
@@ -246,12 +252,19 @@ static func _target(w: WWWar, a: Dictionary, margin: float) -> String:
 				score += 1.5
 			if own != "":
 				score += 1.0
-				if own == _leader(w, f):
-					score += 3.0          # (the side with the most land is everyone's first enemy: anti-snowball)
+				var lead := _leader(w, f)
+				var real := not w.rule_on("AI_LEADER_REAL") or w.land_worth(lead) > w.land_worth(f)
+				if own == lead and real:
+					score += w.numf("AI_LEADER")          # (the side with the most land is everyone's first enemy: anti-snowball)
+				elif own != lead and lead != "" and real and w.land_worth(lead) >= w.numf("AI_TRUCE_GAP") * w.land_worth(own) \
+						and w.capital(own) != to:
+					score -= w.numf("AI_TRUCE")          # (THE COALITION: while one side runs ahead, the others leave each other be)
 			score -= climate * 8.0
+			if march and int(cd.get(to, 99)) < int(cd.get(at, 99)):
+				score += 2.0
 			if bool(m["sea"]):
 				score -= 1.5
-			score -= 0.4 * maxi(0, int(w.hops(f).get(to, 9)) - 3)          # (far lands cost upkeep and rise: stay near)
+			score -= w.numf("AI_FAR") * maxi(0, int(w.hops(f).get(to, 9)) - 3)          # (far lands cost upkeep and rise: stay near)
 			# leaving the capital bare to an enemy next door: not worth it
 			if at == w.capital(f) and _threat(w, at, f) > 0.0:
 				score -= 2.0
@@ -270,6 +283,23 @@ static func _enemy_dist(w: WWWar, f: String) -> Dictionary:
 		if o != "" and o != f and w.alive(o):
 			dist[rid] = 0
 			q.append(rid)
+	while not q.is_empty():
+		var r: String = q.pop_front()
+		for n in WWRules.neighbours(r):
+			if not dist.has(n):
+				dist[n] = int(dist[r]) + 1
+				q.append(n)
+	return dist
+
+
+## Steps from every region to the nearest capital of a side still in the war (not f's).
+static func _capital_dist(w: WWWar, f: String) -> Dictionary:
+	var dist := {}
+	var q: Array = []
+	for o in w.d["order"]:
+		if o != f and w.alive(o):
+			dist[w.capital(o)] = 0
+			q.append(w.capital(o))
 	while not q.is_empty():
 		var r: String = q.pop_front()
 		for n in WWRules.neighbours(r):

@@ -26,6 +26,16 @@
 
 ## Current work
 
+- WORLD WAR TUNED (owner "Yes" to Claude choosing the changes, he checks after; job world-war-tune, branch world-war-tune,
+  docs/world_war_tune.md, tools/sim_world_war_tune.gd + tools/study/ww_tune.sh, data docs/world_war_tune/): every tuned
+  number read through WWWar.num (a tuning override d.tune, else WWRules.V1 for a war of rules version 1 (saved before),
+  else the constant; new wars d.rv 2). Sea lanes count 2 steps, SUPPLY lines, held guard x250 / free x180, half losses
+  v militia, unrest from the nearest SEAT, the sides' climates, SEA_LOSS (Brood 10%), VS (Brood x1.25 v Crown, x1.05 v
+  Clockwork), START_THIRD (Crown Lyon+Lisbon, Clockwork Vienna), START_TWO (Brood v Crown +Mato Grosso, Minas),
+  ABSENT_GUARD (Clockwork home x3), AI builds at 70%, real leader, COALITION (truce 8 at 1.1x), MARCH on capitals;
+  SPOILS built OFF. 100 wars x 5 setups x 2 seed sets: 3-side 39/28.5/32.5 (was 27/34/39), 2-side 49 / 54.5 / 58.5
+  (was Crown 95, Crown 98, Brood 83), no-limit: no runaway (none 87-92); still decided by land at s48 (capitals fell
+  62, was 37). 14 Claude's choices in the doc. Patch note under 0.38.999.
 - d06_queen BUILT (job d06-queen, MERGED 0.38.198, docs/campaign_d06_build.md): Act 2 step 8, "The Queen" (the Naturalist
   after d03, the wet season 2775): map campaign:obidos_flood (d03's island flooded); played as THE BROOD: several Brood
   Mothers fight in the flood, the strongest roots in the big pen and GROWS into the Queen, the leash breaks, the fazenda

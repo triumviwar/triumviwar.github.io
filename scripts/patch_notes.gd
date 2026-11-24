@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"WORLD WAR is retuned so that no side runs away: in a three-side war each side now wins about a third of the time, and two-side wars are close for every pairing (the Crown used to win nearly all of them). Sea lanes count as two steps from your capital, armies fight a little weaker far from home (supply lines), your own regions have a real guard (no more marching into an empty province for free), free militia cost less to beat, and a province held from a Fort, Works or Nest grows less restless. The Crown dislikes the jungle and the desert, the Clockwork earns well in the cold, the Brood's creatures hunt men well but die in ships' holds, and the computers leave each other be while one side runs ahead. A war saved before this keeps its old rules to the end.",
+	]},
 	{"v": "0.38.199", "items": [
 		"The Queen: your Brood Mother is now called Linnea (Lindqvist named her after the first one). She is still only an animal.",
 	]},
