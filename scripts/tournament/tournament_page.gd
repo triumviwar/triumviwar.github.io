@@ -286,7 +286,7 @@ func _create() -> void:
 	v.add_child(_row("TIME LIMIT", _choice(["None", "15 minutes", "20 minutes", "30 minutes"], [0, 900, 1200, 1800], f, "time_limit")))
 	v.add_child(_row("GROUPS", _choice(["2 groups", "4 groups", "8 groups"], [2, 4, 8], f, "groups")))
 	v.add_child(_row("OUT OF EACH GROUP", _choice(["Top 2", "Top 1", "Top 4"], [2, 1, 4], f, "advance")))
-	v.add_child(_label("The time limit: at the bell, the side clearly ahead (its income earned plus twice its army, at least 10% more than the other's) wins the game; with no clear leader the game is played again (at most twice, then the higher score wins). Groups apply only to \"Groups, then playoffs\".", 14, UiStyle.MUTED))
+	v.add_child(_label("The time limit: at the bell, the side clearly ahead (its income earned plus twice its army, at least 10% more than the other's) wins the game; with no clear leader the game is played again (at most twice, then the higher score wins). Groups apply only to 'Groups, then playoffs'.", 14, UiStyle.MUTED))
 	# the map pool
 	v.add_child(UiStyle.heading(Loc.t("MAP POOL"), 22, UiStyle.TRIM))
 	var pool := HFlowContainer.new()
@@ -667,6 +667,8 @@ func _table(v: VBoxContainer, rows: Array, title: String) -> void:
 
 func _places(v: VBoxContainer) -> void:
 	v.add_child(UiStyle.heading(Loc.t("FINAL PLACES") if t.done() else Loc.t("KNOCKED OUT SO FAR"), 20, UiStyle.TRIM))
+	if t.placings().is_empty():
+		v.add_child(_label("Nobody is out yet.", 16, UiStyle.MUTED))
 	for pl in t.placings():
 		var p := t.player(int(pl["id"]))
 		var l := _label("%d.  %s  (%s)" % [int(pl["place"]), p.get("name", "?"), Loc.t(String(p.get("faction", "")).capitalize())], 16,

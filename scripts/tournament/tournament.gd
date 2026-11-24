@@ -1062,15 +1062,15 @@ func match_label(m: Dictionary) -> String:
 		"lb":
 			return _round_name(m, "lb", "Lower round %d", "Lower final")
 		"gf":
-			return "Grand final (reset)" if m.get("reset", false) else "Grand final"
+			return Loc.t("Grand final (reset)") if m.get("reset", false) else Loc.t("Grand final")
 		"po":
 			return _round_name(m, "po", "Playoff round %d")
 		"rr":
-			return "Round %d" % int(m["round"])
+			return Loc.t("Round %d") % int(m["round"])
 		"sw":
-			return "Swiss round %d" % int(m["round"])
+			return Loc.t("Swiss round %d") % int(m["round"])
 		"grp":
-			return "Group %s, round %d" % [char(65 + int(m["group"])), int(m["round"])]
+			return Loc.t("Group %s, round %d") % [char(65 + int(m["group"])), int(m["round"])]
 	return ""
 
 
@@ -1082,14 +1082,14 @@ func _round_name(m: Dictionary, stage: String, fmt: String, last := "") -> Strin
 	var r := int(m["round"])
 	if stage != "lb" and (d["format"] == "single" or stage == "po"):
 		if r == top:
-			return "Final"
+			return Loc.t("Final")
 		if r == top - 1:
-			return "Semi-finals"
+			return Loc.t("Semi-finals")
 		if r == top - 2:
-			return "Quarter-finals"
+			return Loc.t("Quarter-finals")
 	if r == top and last != "":
-		return last
-	return fmt % r
+		return Loc.t(last)
+	return Loc.t(fmt) % r
 
 
 ## The rounds of a stage, for drawing: [[match, ...], ...] by round (empty rounds left out).

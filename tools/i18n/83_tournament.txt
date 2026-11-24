@@ -1,0 +1,854 @@
+# TOURNAMENTS (scripts/tournament/, docs/tournament.md): the pages, the bracket, the desk's answers.
+# Bracket = a chave / el cuadro; seed = cabeça de chave / cabeza de serie; walkover = W.O. / incomparecencia.
+
+> TOURNAMENTS
+pt TORNEIOS
+es TORNEOS
+
+> Run a whole tournament inside the game: brackets, best-of series, map vetoes, faction rules, check-in, results reported by the games themselves, replays and spectators. Online, offline or between computer players.
+pt Organize um torneio inteiro dentro do jogo: chaves, séries melhor de, vetos de mapas, regras de facções, check-in, resultados informados pelas próprias partidas, replays e espectadores. Online, offline ou entre jogadores do computador.
+es Organiza un torneo entero dentro del juego: cuadros, series al mejor de, vetos de mapas, reglas de facciones, registro de llegada, resultados que informan las propias partidas, repeticiones y espectadores. En línea, sin conexión o entre jugadores de la máquina.
+
+> MAKE A TOURNAMENT
+pt CRIAR UM TORNEIO
+es CREAR UN TORNEO
+
+> JOIN ONE
+pt ENTRAR EM UM
+es UNIRSE A UNO
+
+> TOURNAMENT CODE
+pt CÓDIGO DO TORNEIO
+es CÓDIGO DEL TORNEO
+
+> YOUR NAME
+pt SEU NOME
+es TU NOMBRE
+
+> Type the code the organiser gave you.
+pt Digite o código que o organizador lhe deu.
+es Escribe el código que te dio el organizador.
+
+> Type your name.
+pt Digite seu nome.
+es Escribe tu nombre.
+
+> Set the relay address on the ONLINE page first.
+pt Primeiro defina o endereço do relay na página ONLINE.
+es Primero pon la dirección del relay en la página EN LÍNEA.
+
+> PASTE A TOURNAMENT FILE CODE (TOUR1:...)
+pt COLE O CÓDIGO DE ARQUIVO DE UM TORNEIO (TOUR1:...)
+es PEGA EL CÓDIGO DE ARCHIVO DE UN TORNEO (TOUR1:...)
+
+> OPEN IT
+pt ABRIR
+es ABRIRLO
+
+> That is not a tournament code.
+pt Isso não é um código de torneio.
+es Eso no es un código de torneo.
+
+> YOUR TOURNAMENTS
+pt SEUS TORNEIOS
+es TUS TORNEOS
+
+> Delete this tournament?
+pt Apagar este torneio?
+es ¿Borrar este torneo?
+
+> TOURNAMENTS YOU JOINED
+pt TORNEIOS EM QUE VOCÊ ENTROU
+es TORNEOS A LOS QUE TE UNISTE
+
+> sign-up open
+pt inscrições abertas
+es inscripción abierta
+
+> under way
+pt em andamento
+es en curso
+
+> over
+pt encerrado
+es terminado
+
+> players
+pt jogadores
+es jugadores
+
+> champion: %s
+pt campeão: %s
+es campeón: %s
+
+> My tournament
+pt Meu torneio
+es Mi torneo
+
+> NAME
+pt NOME
+es NOMBRE
+
+> KIND
+pt TIPO
+es TIPO
+
+> FORMAT
+pt FORMATO
+es FORMATO
+
+> SERIES
+pt SÉRIES
+es SERIES
+
+> Best of 1
+pt Melhor de 1
+es Al mejor de 1
+
+> Best of 3
+pt Melhor de 3
+es Al mejor de 3
+
+> Best of 5
+pt Melhor de 5
+es Al mejor de 5
+
+> Best of 7
+pt Melhor de 7
+es Al mejor de 7
+
+> THE FINAL
+pt A FINAL
+es LA FINAL
+
+> MAPS
+pt MAPAS
+es MAPAS
+
+> NEXT MAP
+pt PRÓXIMO MAPA
+es SIGUIENTE MAPA
+
+> The loser of a game picks the next map
+pt Quem perde uma partida escolhe o próximo mapa
+es Quien pierde una partida elige el siguiente mapa
+
+> SEEDING
+pt CABEÇAS DE CHAVE
+es CABEZAS DE SERIE
+
+> By hand (the players' list order)
+pt À mão (a ordem da lista de jogadores)
+es A mano (el orden de la lista de jugadores)
+
+> CHECK-IN
+pt CHECK-IN
+es REGISTRO DE LLEGADA
+
+> Yes: only those who check in play
+pt Sim: só jogam os que fizerem check-in
+es Sí: solo juegan los que se registren
+
+> TIME LIMIT
+pt LIMITE DE TEMPO
+es LÍMITE DE TIEMPO
+
+> 15 minutes
+pt 15 minutos
+es 15 minutos
+
+> 20 minutes
+pt 20 minutos
+es 20 minutos
+
+> 30 minutes
+pt 30 minutos
+es 30 minutos
+
+> 2 groups
+pt 2 grupos
+es 2 grupos
+
+> 4 groups
+pt 4 grupos
+es 4 grupos
+
+> 8 groups
+pt 8 grupos
+es 8 grupos
+
+> OUT OF EACH GROUP
+pt DE CADA GRUPO
+es DE CADA GRUPO
+
+> Top 1
+pt O 1º
+es El 1.º
+
+> Top 2
+pt Os 2 primeiros
+es Los 2 primeros
+
+> Top 4
+pt Os 4 primeiros
+es Los 4 primeros
+
+> The time limit: at the bell, the side clearly ahead (its income earned plus twice its army, at least 10% more than the other's) wins the game; with no clear leader the game is played again (at most twice, then the higher score wins). Groups apply only to 'Groups, then playoffs'.
+pt O limite de tempo: no sinal, o lado claramente à frente (sua renda ganha mais duas vezes seu exército, pelo menos 10% a mais que o do outro) vence a partida; sem um líder claro a partida é jogada de novo (no máximo duas vezes, depois vence a maior pontuação). Os grupos valem só para 'Grupos, depois mata-mata'.
+es El límite de tiempo: en la campana, el bando claramente por delante (sus ingresos ganados más el doble de su ejército, al menos un 10% más que el del otro) gana la partida; sin un líder claro la partida se juega otra vez (como mucho dos veces, después gana la puntuación más alta). Los grupos solo cuentan en 'Grupos, luego eliminatorias'.
+
+> MAP POOL
+pt MAPAS DO TORNEIO
+es MAPAS DEL TORNEO
+
+> MAKE IT
+pt CRIAR
+es CREARLO
+
+> Tournament
+pt Torneio
+es Torneo
+
+> Calling the desk...
+pt Chamando a mesa...
+es Llamando a la mesa...
+
+> Opening the desk...
+pt Abrindo a mesa...
+es Abriendo la mesa...
+
+> The desk is open: players join with the code %s.
+pt A mesa está aberta: os jogadores entram com o código %s.
+es La mesa está abierta: los jugadores se unen con el código %s.
+
+> The desk closed (%s). It opens again in a few seconds.
+pt A mesa fechou (%s). Ela abre de novo em alguns segundos.
+es La mesa se cerró (%s). Se abre otra vez en unos segundos.
+
+> The desk is busy, waiting a moment...
+pt A mesa está ocupada, esperando um momento...
+es La mesa está ocupada, esperando un momento...
+
+> The desk is busy. Try again in a moment.
+pt A mesa está ocupada. Tente de novo em um momento.
+es La mesa está ocupada. Inténtalo de nuevo en un momento.
+
+> The desk did not answer. Is the organiser's game open?
+pt A mesa não respondeu. O jogo do organizador está aberto?
+es La mesa no respondió. ¿Está abierto el juego del organizador?
+
+> The tournament has already started.
+pt O torneio já começou.
+es El torneo ya ha empezado.
+
+> The tournament is full.
+pt O torneio está cheio.
+es El torneo está lleno.
+
+> That name is taken in this tournament.
+pt Esse nome já está em uso neste torneio.
+es Ese nombre ya está en uso en este torneo.
+
+> You are not in this tournament.
+pt Você não está neste torneio.
+es No estás en este torneo.
+
+> No such match.
+pt Esse confronto não existe.
+es Ese enfrentamiento no existe.
+
+> That is not your match.
+pt Esse não é o seu confronto.
+es Ese no es tu enfrentamiento.
+
+> Not your ban now, or not a map in the pool.
+pt Não é a sua vez de vetar, ou o mapa não está na lista.
+es No te toca vetar, o el mapa no está en la lista.
+
+> Not your pick now.
+pt Não é a sua vez de escolher.
+es No te toca elegir.
+
+> That faction can't be played now.
+pt Essa facção não pode ser jogada agora.
+es Esa facción no se puede jugar ahora.
+
+> At least 2 players are needed.
+pt São precisos pelo menos 2 jogadores.
+es Hacen falta al menos 2 jugadores.
+
+> At least 2 players are needed (checked in).
+pt São precisos pelo menos 2 jogadores (com check-in).
+es Hacen falta al menos 2 jugadores (registrados).
+
+> Each group needs at least 2 players.
+pt Cada grupo precisa de pelo menos 2 jogadores.
+es Cada grupo necesita al menos 2 jugadores.
+
+> The map pool is empty.
+pt A lista de mapas está vazia.
+es La lista de mapas está vacía.
+
+> Best of %d
+pt Melhor de %d
+es Al mejor de %d
+
+> CODE %s
+pt CÓDIGO %s
+es CÓDIGO %s
+
+> COPY CODE
+pt COPIAR CÓDIGO
+es COPIAR CÓDIGO
+
+> YOUR MATCH: against %s  ›
+pt SEU CONFRONTO: contra %s  ›
+es TU ENFRENTAMIENTO: contra %s  ›
+
+> BRACKET
+pt CHAVE
+es CUADRO
+
+> STANDINGS
+pt CLASSIFICAÇÃO
+es CLASIFICACIÓN
+
+> SCHEDULE
+pt PROGRAMAÇÃO
+es CALENDARIO
+
+> PLAYERS
+pt JOGADORES
+es JUGADORES
+
+> RULES
+pt REGRAS
+es REGLAS
+
+> THE CHAMPION
+pt O CAMPEÃO
+es EL CAMPEÓN
+
+> The bracket is drawn when the organiser starts the tournament. Until then players join on the PLAYERS tab.
+pt A chave é sorteada quando o organizador começa o torneio. Até lá, os jogadores entram pela aba JOGADORES.
+es El cuadro se sortea cuando el organizador empieza el torneo. Hasta entonces los jugadores se unen en la pestaña JUGADORES.
+
+> FIT
+pt AJUSTAR
+es AJUSTAR
+
+> PLAY EVERY GAME QUICKLY
+pt JOGAR TODAS AS PARTIDAS RAPIDAMENTE
+es JUGAR TODAS LAS PARTIDAS RÁPIDO
+
+> WATCH THE NEXT GAME
+pt ASSISTIR À PRÓXIMA PARTIDA
+es VER LA SIGUIENTE PARTIDA
+
+> Nothing played yet.
+pt Nada jogado ainda.
+es Aún no se ha jugado nada.
+
+> GROUP
+pt GRUPO
+es GRUPO
+
+> THE FACTIONS' GAMES
+pt AS PARTIDAS DAS FACÇÕES
+es LAS PARTIDAS DE LAS FACCIONES
+
+> won
+pt vencidas
+es ganadas
+
+> lost
+pt perdidas
+es perdidas
+
+> WON
+pt VITÓRIAS
+es GANADOS
+
+> LOST
+pt DERROTAS
+es PERDIDOS
+
+> GAMES
+pt PARTIDAS
+es PARTIDAS
+
+> DIFF
+pt SALDO
+es DIFERENCIA
+
+> BUCHHOLZ
+pt BUCHHOLZ
+es BUCHHOLZ
+
+> FINAL PLACES
+pt COLOCAÇÕES FINAIS
+es PUESTOS FINALES
+
+> KNOCKED OUT SO FAR
+pt ELIMINADOS ATÉ AGORA
+es ELIMINADOS HASTA AHORA
+
+> PLAY NOW
+pt JOGAR AGORA
+es JUGAR AHORA
+
+> WAITING FOR PLAYERS
+pt ESPERANDO JOGADORES
+es ESPERANDO JUGADORES
+
+> PLAYED
+pt JOGADOS
+es JUGADOS
+
+> a bye
+pt folga
+es pase libre
+
+> DISPUTED
+pt CONTESTADO
+es IMPUGNADO
+
+> PLAYERS (%d of %d)
+pt JOGADORES (%d de %d)
+es JUGADORES (%d de %d)
+
+> Players join from TOURNAMENTS > JOIN with the code %s and their name. Keep this page open (or the game running) while they join: your game is the tournament's desk.
+pt Os jogadores entram por TORNEIOS > ENTRAR com o código %s e seu nome. Mantenha esta página aberta (ou o jogo rodando) enquanto eles entram: o seu jogo é a mesa do torneio.
+es Los jugadores se unen desde TORNEOS > UNIRSE con el código %s y su nombre. Mantén esta página abierta (o el juego en marcha) mientras se unen: tu juego es la mesa del torneo.
+
+> person
+pt pessoa
+es persona
+
+> checked in
+pt check-in feito
+es registrado
+
+> not checked in
+pt sem check-in
+es sin registrar
+
+> left
+pt saiu
+es se fue
+
+> CHECK IN
+pt FAZER CHECK-IN
+es REGISTRARSE
+
+> Drop %s? Their matches still to play are lost by walkover.
+pt Desclassificar %s? Os confrontos que faltam são perdidos por W.O.
+es ¿Retirar a %s? Sus enfrentamientos pendientes se pierden por incomparecencia.
+
+> START THE TOURNAMENT
+pt COMEÇAR O TORNEIO
+es EMPEZAR EL TORNEO
+
+> LEAVE THE TOURNAMENT
+pt SAIR DO TORNEIO
+es DEJAR EL TORNEO
+
+> ADD A PLAYER
+pt ADICIONAR UM JOGADOR
+es AÑADIR UN JUGADOR
+
+> ADD
+pt ADICIONAR
+es AÑADIR
+
+> ADD MYSELF
+pt ME ADICIONAR
+es AÑADIRME
+
+> ADD A COMPUTER
+pt ADICIONAR UM COMPUTADOR
+es AÑADIR UNA MÁQUINA
+
+> FILL WITH A FIELD OF 16
+pt PREENCHER COM 16 PARTICIPANTES
+es LLENAR CON 16 PARTICIPANTES
+
+> Format
+pt Formato
+es Formato
+
+> Series
+pt Séries
+es Series
+
+> the final best of %d
+pt a final melhor de %d
+es la final al mejor de %d
+
+> Maps
+pt Mapas
+es Mapas
+
+> the loser picks the next map
+pt quem perde escolhe o próximo mapa
+es quien pierde elige el siguiente mapa
+
+> Map pool
+pt Lista de mapas
+es Lista de mapas
+
+> Factions
+pt Facções
+es Facciones
+
+> Seeding
+pt Cabeças de chave
+es Cabezas de serie
+
+> By hand
+pt À mão
+es A mano
+
+> Check-in
+pt Check-in
+es Registro de llegada
+
+> Time limit
+pt Limite de tempo
+es Límite de tiempo
+
+> %d minutes
+pt %d minutos
+es %d minutos
+
+> KEEP IT SAFE
+pt GUARDE-O BEM
+es GUÁRDALO BIEN
+
+> The tournament is saved on this device after every change. Its file code below holds all of it: paste it on TOURNAMENTS to open it again on another device (a new organiser), or keep it as a record.
+pt O torneio é salvo neste aparelho a cada mudança. O código de arquivo abaixo guarda tudo: cole-o em TORNEIOS para abri-lo de novo em outro aparelho (um novo organizador), ou guarde-o como registro.
+es El torneo se guarda en este dispositivo tras cada cambio. El código de archivo de abajo lo contiene todo: pégalo en TORNEOS para abrirlo de nuevo en otro dispositivo (un nuevo organizador), o guárdalo como registro.
+
+> COPY THE FILE CODE
+pt COPIAR O CÓDIGO DE ARQUIVO
+es COPIAR EL CÓDIGO DE ARCHIVO
+
+> WHAT HAPPENED
+pt O QUE ACONTECEU
+es LO QUE PASÓ
+
+> winner: %s
+pt vencedor: %s
+es ganador: %s
+
+> DISPUTE: 
+pt CONTESTAÇÃO: 
+es IMPUGNACIÓN: 
+
+> %s reported the game; waiting for the other player (or the organiser).
+pt %s informou a partida; esperando o outro jogador (ou o organizador).
+es %s informó la partida; esperando al otro jugador (o al organizador).
+
+> Banned: %s
+pt Vetados: %s
+es Vetados: %s
+
+> at the time limit
+pt no limite de tempo
+es en el límite de tiempo
+
+> walkover
+pt W.O.
+es incomparecencia
+
+> set by the organiser
+pt definido pelo organizador
+es fijado por el organizador
+
+> Game %d
+pt Partida %d
+es Partida %d
+
+> (replay on a player's device)
+pt (replay no aparelho de um jogador)
+es (repetición en el dispositivo de un jugador)
+
+> Waiting for the matches before it.
+pt Esperando os confrontos anteriores.
+es Esperando a los enfrentamientos anteriores.
+
+> GAME %d
+pt PARTIDA %d
+es PARTIDA %d
+
+> %s bans a map.
+pt %s veta um mapa.
+es %s veta un mapa.
+
+> %s picks the map.
+pt %s escolhe o mapa.
+es %s elige el mapa.
+
+> Map: %s
+pt Mapa: %s
+es Mapa: %s
+
+> %s: choose your faction for this game.
+pt %s: escolha sua facção para esta partida.
+es %s: elige tu facción para esta partida.
+
+> Waiting for %s to choose a faction (they see it on their own screen).
+pt Esperando %s escolher uma facção (na própria tela).
+es Esperando a que %s elija una facción (lo ve en su propia pantalla).
+
+> WATCH THIS GAME
+pt ASSISTIR A ESTA PARTIDA
+es VER ESTA PARTIDA
+
+> PLAY IT QUICKLY
+pt JOGAR RAPIDAMENTE
+es JUGARLA RÁPIDO
+
+> Play the game on your own devices (a skirmish or a friendly room), then enter who won.
+pt Joguem a partida nos seus próprios aparelhos (uma escaramuça ou uma sala amistosa) e depois informe quem venceu.
+es Jugad la partida en vuestros propios dispositivos (una escaramuza o una sala amistosa) y luego indica quién ganó.
+
+> %s WON THIS GAME
+pt %s VENCEU ESTA PARTIDA
+es %s GANÓ ESTA PARTIDA
+
+> PLAY YOUR MATCH
+pt JOGAR SEU CONFRONTO
+es JUGAR TU ENFRENTAMIENTO
+
+> You host the room %s: your opponent joins it from here.
+pt Você cria a sala %s: seu adversário entra nela por aqui.
+es Tú abres la sala %s: tu rival entra en ella desde aquí.
+
+> Your opponent hosts the room %s: you join it from here (wait until they are in it).
+pt Seu adversário cria a sala %s: você entra nela por aqui (espere ele estar nela).
+es Tu rival abre la sala %s: tú entras en ella desde aquí (espera a que esté dentro).
+
+> I WON THIS GAME
+pt EU VENCI ESTA PARTIDA
+es GANÉ ESTA PARTIDA
+
+> I LOST THIS GAME
+pt EU PERDI ESTA PARTIDA
+es PERDÍ ESTA PARTIDA
+
+> ORGANISER
+pt ORGANIZADOR
+es ORGANIZADOR
+
+> ACCEPT THE REPORT
+pt ACEITAR O RESULTADO
+es ACEPTAR EL RESULTADO
+
+> SET %d-%d
+pt DEFINIR %d-%d
+es FIJAR %d-%d
+
+> Set %s %d-%d %s?
+pt Definir %s %d-%d %s?
+es ¿Fijar %s %d-%d %s?
+
+> SET
+pt DEFINIR
+es FIJAR
+
+> A result can't be changed once a match after it has been played.
+pt Um resultado não pode mudar depois que um confronto seguinte foi jogado.
+es Un resultado no se puede cambiar una vez jugado un enfrentamiento posterior.
+
+> WALKOVER TO %s
+pt W.O. PARA %s
+es VICTORIA POR INCOMPARECENCIA PARA %s
+
+> No clear leader at the time limit: the game is played again.
+pt Sem líder claro no limite de tempo: a partida é jogada de novo.
+es Sin un líder claro en el límite de tiempo: la partida se juega otra vez.
+
+> Your result was sent to the organiser.
+pt Seu resultado foi enviado ao organizador.
+es Tu resultado se envió al organizador.
+
+> The game was left before its end: no result was recorded.
+pt A partida foi deixada antes do fim: nenhum resultado foi registrado.
+es Se dejó la partida antes del final: no se registró ningún resultado.
+
+> STOP AFTER THIS GAME
+pt PARAR DEPOIS DESTA PARTIDA
+es PARAR TRAS ESTA PARTIDA
+
+> PLAYING A TOURNAMENT GAME QUICKLY
+pt JOGANDO RAPIDAMENTE UMA PARTIDA DO TORNEIO
+es JUGANDO RÁPIDO UNA PARTIDA DEL TORNEO
+
+> game time
+pt tempo de jogo
+es tiempo de juego
+
+> CHAMPION
+pt CAMPEÃO
+es CAMPEÓN
+
+> THE BRACKET
+pt A CHAVE
+es EL CUADRO
+
+> UPPER BRACKET
+pt CHAVE SUPERIOR
+es CUADRO SUPERIOR
+
+> LOWER BRACKET
+pt CHAVE INFERIOR
+es CUADRO INFERIOR
+
+> GRAND FINAL
+pt GRANDE FINAL
+es GRAN FINAL
+
+> PLAYOFFS
+pt MATA-MATA
+es ELIMINATORIAS
+
+> Round %d
+pt Rodada %d
+es Ronda %d
+
+> The bracket is drawn when the tournament starts.
+pt A chave é sorteada quando o torneio começa.
+es El cuadro se sortea cuando empieza el torneo.
+
+> not needed
+pt não foi preciso
+es no hizo falta
+
+> Single elimination
+pt Eliminação simples
+es Eliminación simple
+
+> Double elimination
+pt Eliminação dupla
+es Doble eliminación
+
+> Round robin
+pt Todos contra todos
+es Todos contra todos
+
+> Swiss
+pt Suíço
+es Suizo
+
+> Groups, then playoffs
+pt Grupos, depois mata-mata
+es Grupos, luego eliminatorias
+
+> Free: pick before every game
+pt Livre: escolha antes de cada partida
+es Libre: elige antes de cada partida
+
+> Locked for a series
+pt Fixa durante a série
+es Fija durante la serie
+
+> Locked for the whole tournament
+pt Fixa durante todo o torneio
+es Fija durante todo el torneo
+
+> Each faction once in a series
+pt Cada facção uma vez por série
+es Cada facción una vez por serie
+
+> Random from the pool
+pt Aleatório da lista
+es Al azar de la lista
+
+> Each player bans one, then random
+pt Cada jogador veta um, depois aleatório
+es Cada jugador veta uno, luego al azar
+
+> Each player bans one, the higher seed picks game 1
+pt Cada jogador veta um, o cabeça de chave escolhe a partida 1
+es Cada jugador veta uno, la mejor cabeza de serie elige la partida 1
+
+> Online (players join by code)
+pt Online (os jogadores entram por código)
+es En línea (los jugadores se unen con un código)
+
+> Offline / LAN (results by hand)
+pt Offline / LAN (resultados à mão)
+es Sin conexión / LAN (resultados a mano)
+
+> All computer players
+pt Só jogadores do computador
+es Solo jugadores de la máquina
+
+> Upper round %d
+pt Rodada superior %d
+es Ronda superior %d
+
+> Upper final
+pt Final superior
+es Final superior
+
+> Lower round %d
+pt Rodada inferior %d
+es Ronda inferior %d
+
+> Lower final
+pt Final inferior
+es Final inferior
+
+> Grand final
+pt Grande final
+es Gran final
+
+> Grand final (reset)
+pt Grande final (desempate)
+es Gran final (reinicio)
+
+> Playoff round %d
+pt Rodada do mata-mata %d
+es Ronda eliminatoria %d
+
+> Swiss round %d
+pt Rodada suíça %d
+es Ronda suiza %d
+
+> Group %s, round %d
+pt Grupo %s, rodada %d
+es Grupo %s, ronda %d
+
+> Final
+pt Final
+es Final
+
+> Semi-finals
+pt Semifinais
+es Semifinales
+
+> Quarter-finals
+pt Quartas de final
+es Cuartos de final
+
+> The organiser plays version %s: both need the same version.
+pt O organizador joga a versão %s: os dois precisam da mesma versão.
+es El organizador juega la versión %s: ambos necesitan la misma versión.
+
+> No
+pt Não
+es No
+
+> None
+pt Nenhum
+es Ninguno
+
+> Yes
+pt Sim
+es Sí
+
+> Nobody is out yet.
+pt Ninguém foi eliminado ainda.
+es Aún no han eliminado a nadie.

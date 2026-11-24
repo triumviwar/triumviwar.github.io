@@ -4,7 +4,7 @@ extends SceneTree
 ## (bracket, a match's card, standings, schedule, players, rules), the champion, a groups tournament, a Swiss one, an
 ## online one at sign-up and a match card with bans to make. Uses a scratch user folder of its own tournaments only
 ## (they are deleted after).
-##   xvfb-run -a godot --rendering-driver opengl3 --resolution 1280x720 --script res://tools/shot_tournament.gd -- <outdir> [pc|mobile]
+##   xvfb-run -a godot --rendering-driver opengl3 --resolution 1280x720 --script res://tools/shot_tournament.gd -- <outdir> [pc|mobile] [pt|es]
 var main
 var out := ""
 var sfx := ""
@@ -19,6 +19,9 @@ func _initialize() -> void:
 	Settings.load_all()
 	Settings.device = a[1] if a.size() > 1 else "pc"
 	sfx = "" if Settings.device == "pc" else "_phone"
+	if a.size() > 2:
+		Settings.set_language(a[2])        # (a third word: the language, "pt" or "es")
+		sfx += "_" + a[2]
 	Settings.apply()
 	DirAccess.make_dir_recursive_absolute(out)
 	main = load("res://scenes/main.tscn").instantiate()
@@ -163,9 +166,11 @@ func _run() -> void:
 	_press("Tour_Tab_bracket")
 	await _snap("15_online_bracket")
 	var pg := _page()
+	var pick_m: Dictionary = pg.t.ready_matches()[0]
 	for m in pg.t.ready_matches():
 		if pg.t.side_of(m, mine) != "":
-			pg._open_match(int(m["id"]))
+			pick_m = m
+	pg._open_match(int(pick_m["id"]))
 	await _snap("16_online_ban")
 	_press("Tour_MatchClose")
 	# clean up this run's tournaments

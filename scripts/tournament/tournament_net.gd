@@ -67,7 +67,7 @@ func close_desk() -> void:
 
 func _on_opened(_id: int) -> void:
 	if desk:
-		status = "The desk is open: players join with the code %s." % t.d["id"]
+		status = Loc.t("The desk is open: players join with the code %s.") % t.d["id"]
 		updated.emit()
 	else:
 		link.send(_pending)
@@ -79,7 +79,7 @@ func _on_notice(_d: Dictionary) -> void:
 
 func _on_closed(why: String) -> void:
 	if desk:
-		status = "The desk closed (%s). It opens again in a few seconds." % why
+		status = Loc.t("The desk closed (%s). It opens again in a few seconds.") % Loc.t(why)
 		updated.emit()
 		get_tree().create_timer(4.0, true, false, true).timeout.connect(func() -> void:
 			if desk and is_inside_tree():
