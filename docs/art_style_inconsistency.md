@@ -821,3 +821,12 @@ tools/import_act2_terrain.py (art/redraws/act2_terrain/<name>.png; one prompt a 
   sertao_stones. They are flatter and more outlined than the painted props (no texture inside the shapes).
 - The ramps borrow older sets (moss_ramp, grass_ramp, desert_ramp) and the fords older ones (reeds, shingle); the
   highlands and the sertão use the plain blue "water" set.
+
+## Tournaments (job tournament, docs/tournament.md)
+
+Drawn in code in scripts/tournament/tournament_page.gd (class Trophy) and scripts/tournament/bracket_view.gd:
+
+- The champion's TROPHY: a flat gold cup (bowl, handles, stem, a star) on a dark plinth with a band of the champion's
+  faction colour, slow rays behind it. A painted trophy (oil style, gold cup with the three factions' seals on the
+  bowl, transparent background, about 512 x 512) would replace it.
+- The bracket's match boxes, lines and headings: plain panels (UI, not art; listed for completeness).
