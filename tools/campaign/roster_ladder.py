@@ -41,7 +41,7 @@ LADDER = {
         ("C3", "a06_barricades", ["foundry", "mortar"], []),
         ("C4", "a07_council", ["church", "missionary"], []),
         ("C5", "d01_minas", ["armoury", "matchlock", "bayonet"], []),
-        ("C6", "", ["dragoon", "charge"], []),
+        ("C6", "d05_aldeia", ["dragoon", "charge"], []),
         ("C7", "", ["armour", "powder_wagon"], []),
         ("C8", "", ["balloon"], []),
         ("C9", "", ["charges", "quadrant"], []),
@@ -91,6 +91,7 @@ BOUND = {
     "d04_concordia": ("clockwork", ["guild"]),        # (Act 2's K5: the valley (versus) is not bound: the other side)
     "d01_minas": ("crown", ["garrison"]),             # (Act 2's C5: the conspiracy (versus) is not bound: the other side)
     "d06_queen": ("brood", ["stock"]),                # (Act 2's B5, was B6: the fazenda (solo pick, versus) is not bound)
+    "d05_aldeia": ("crown", ["mission"]),             # (Act 2's C6: the swarm (solo pick, versus) is not bound beyond its deny)
 }
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
@@ -126,6 +127,8 @@ CARDS = {
     "cuckoo": "NEW: THE SWIFT. A fast brass bird made at the Clock Aviary. It fights only other flyers, but it sees far: here the land off the plateau stays dark until a Swift has flown over it.",
     "armoury": "NEW: THE ARMOURY. The garrison's own, in the lower town: it researches better muskets and bayonets for the Musketeers. Pick it to see what it teaches.",
     "matchlock": "NEW: THE MATCHLOCK. Research it at the Armoury: the Musketeers reload faster. Men already in the ranks get it by a REFIT: turn on AUTO REFIT on the Armoury and idle men near it go to be fitted.",
+    "dragoon": "NEW: THE DRAGOON. A Musketeer on a horse: he rides fast down the trails and fires on foot. The relief brings four; the river fort's Barracks trains more beside its Horse Breeder.",
+    "charge": "NEW: THE CAVALRY CHARGE. Drill it at a Horse Breeder: a Horseman's first blow after a gallop hits more than twice as hard on light creatures, and throws them back.",
     "bayonet": "NEW: THE SOCKET BAYONET. Research it at the Armoury: the bayonet hits harder and quicker, and the musket can still fire with it fixed. On the town's stairs, where the fighting is close, it decides the night.",
 }
 # (pieces that share a card: the Venom Challenger is told with the Tyrant Challenger)
@@ -163,6 +166,8 @@ CARDS_PT = {
     "cuckoo": "NOVO: O CUCO. Um pássaro de latão rápido feito na Casa do Cuco. Só luta contra outros voadores, mas vê longe: aqui a terra fora do planalto fica escura até um Cuco voar sobre ela.",
     "armoury": "NOVO: O ARSENAL. O da guarnição, na cidade baixa: pesquisa mosquetes e baionetas melhores para os Mosqueteiros. Escolha-o para ver o que ensina.",
     "matchlock": "NOVO: A MECHA. Pesquise-a no Arsenal: os Mosqueteiros recarregam mais depressa. Os homens que já estão nas fileiras recebem-na ao serem reequipados: ligue AUTO-REEQUIPAR no Arsenal e os homens parados perto dele vão ser equipados.",
+    "dragoon": "NOVO: O DRAGÃO. Um Mosqueteiro a cavalo: corre depressa pelos trilhos e dispara a pé. O socorro traz quatro; o Quartel do forte do rio treina mais junto ao seu Criador de Cavalos.",
+    "charge": "NOVO: A CARGA DE CAVALARIA. Treine-a num Criador de Cavalos: o primeiro golpe de um Cavaleiro depois de um galope fere mais do dobro nas criaturas leves, e atira-as para trás.",
     "bayonet": "NOVO: A BAIONETA DE ENCAIXE. Pesquise-a no Arsenal: a baioneta fere mais forte e mais depressa, e o mosquete ainda dispara com ela calada. Nas escadas da vila, onde a luta é de perto, ela decide a noite.",
 }
 CARDS_ES = {
@@ -196,12 +201,14 @@ CARDS_ES = {
     "cuckoo": "NUEVO: EL CUCO. Un pájaro de latón rápido hecho en la Casa del Cuco. Solo lucha contra otros voladores, pero ve lejos: aquí la tierra fuera del altiplano sigue oscura hasta que un Cuco vuela sobre ella.",
     "armoury": "NUEVO: LA ARMERÍA. La de la guarnición, en la ciudad baja: investiga mosquetes y bayonetas mejores para los Mosqueteros. Elígela para ver lo que enseña.",
     "matchlock": "NUEVO: LA MECHA. Investígala en la Armería: los Mosqueteros recargan más deprisa. Los hombres que ya están en las filas la reciben al reequiparse: activa AUTOEQUIPAR en la Armería y los hombres ociosos cerca de ella van a equiparse.",
+    "dragoon": "NUEVO: EL DRAGÓN. Un Mosquetero a caballo: corre deprisa por las sendas y dispara a pie. El socorro trae cuatro; el Cuartel del fuerte del río entrena más junto a su Criadero de Caballos.",
+    "charge": "NUEVO: LA CARGA DE CABALLERÍA. Entrénala en un Criadero de Caballos: el primer golpe de un Jinete tras un galope hiere más del doble a las criaturas ligeras, y las echa atrás.",
     "bayonet": "NUEVO: LA BAYONETA DE CUBO. Investígala en la Armería: la bayoneta hiere más fuerte y más deprisa, y el mosquete aún dispara con ella calada. En las escaleras del pueblo, donde se lucha de cerca, decide la noche.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown"}
 
 
 def step_of(mission_id):

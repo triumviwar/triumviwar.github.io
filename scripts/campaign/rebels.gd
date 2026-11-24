@@ -118,6 +118,15 @@ const ROLES := {
 	"miner": {"kind": "pikeman", "art": "c_citizen", "about": "A miner of Vila Rica with a pick, angry at the tax."},
 	"agitator": {"kind": "labourer", "art": "a_runner", "about": "An agitator of the Assembly with a bundle of pamphlets."},
 	"townsman": {"kind": "labourer", "art": "c_citizen", "about": "A townsman of Vila Rica."},
+	# Act 2's d05_aldeia (São Rafael on the Tapajós, the wet season 2776): Tomasz at his own mission, its catechist (a son of
+	# the village), its militia and people, the river fort's captain, the swarm's forward Mother (an animal: no name but
+	# what it is, THE BROOD IS NOT A PERSON) (stand-ins until drawn)
+	"tomasz_rafael": {"kind": "missionary", "art": "a_tomasz", "name": "Father Tomasz", "hp": 360, "about": "Father Tomasz at his mission of São Rafael on the Tapajós."},
+	"tiago": {"kind": "missionary", "art": "b_joaquim", "name": "Brother Tiago", "hp": 260, "about": "The catechist of São Rafael, a son of the village: he teaches in his own tongue."},
+	"mission_militia": {"kind": "musketeer", "art": "b_hired_gun", "about": "A militiaman of the mission, armed by the Crown in 2773."},
+	"rafael_villager": {"kind": "labourer", "art": "b_villager", "about": "A villager of São Rafael."},
+	"sobral": {"kind": "cuirassier", "name": "Captain Sobral", "hp": 320, "about": "Captain Duarte Sobral, commanding the river fort on the Tapajós."},
+	"forward_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "The forward Mother", "hp": 1400, "scale": 0.44, "about": "A Brood Mother rooted on a mud bank in the flooded forest."},
 	"captured_gun": {"kind": "cannon", "about": "The militia's field gun, taken by the conspirators from its store."},
 	"mule_rider": {"kind": "cuirassier", "about": "A rider of the mule trains of the mines, gone over to the conspiracy."},
 }
