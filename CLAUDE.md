@@ -26,6 +26,14 @@
 
 ## Current work
 
+- CROWN BROOD LATE (owner 2026-11-24, from two filmed games; job crown-brood-late, MERGED 0.38.207,
+  docs/crown_brood_late.md, scripts/ai_crown_brood_late.gd AICrownBroodLate): the Crown computer v the Brood, three parts
+  built, ALL OFF by default (`cbl<name>:on`): `cblguns` (the press waits for 2 guns, a rider ahead, the push goes by BOUNDS
+  with guns set; guns set at contact away from home 6% -> 68%, fights traded 1.25 v 1.01, results unchanged), `cblcap`
+  (the cause of the 134 supply is gold and powder, not Cottages: the Mill crew v the Brood from 10:00 + 60 labourers from
+  11:00; dry powder gone but worse results), `cblhome` (a home guard: worse, beaten 6 of 10). `farmaw:2.0` is still the
+  lever (all three + x2.0: won or led 11 of 20, beaten 5; without 3 of 20, beaten 8). Recommended: all off; `cblguns:on` is
+  free if the owner wants guns set before fights.
 - d11_siege BUILT (job d11-siege, MERGED 0.38.206, docs/campaign_d11_build.md): Act 2's crossing branch v the machines,
   "The Siege of Concórdia" (2780, old Father Ferrer tells it to Rome; Jakob hears the city ticking): FRESH (d09 `first`
   clockwork: the wall unfinished, the pioneers mine under it and blow the great spring's tower: `siege` close) / GROWN
