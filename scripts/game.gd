@@ -5208,6 +5208,8 @@ func placement_problem(t: int, k: String, c: Vector2i, ai := false, limits_check
 			var cc := c + Vector2i(x, y)
 			if in_map(cc) and ramp.size() > idx(cc) and ramp[idx(cc)] == 1:
 				return "Can't build on a ramp: build at the top or the bottom of it."
+			if mission != null and mission.wade < 1.0 and in_map(cc) and mapgen != null and mapgen.ford.size() > idx(cc) and mapgen.ford[idx(cc)] == 1:
+				return "Not in the flooded forest: nothing stands in the várzea's water."
 			if not in_map(cc) or solid[idx(cc)] != 0:
 				if k == "gate" and in_map(cc) and solid[idx(cc)] == 4 and _own_wall_at(t, cc) != null:
 					continue     # a gate can replace a piece of your own wall

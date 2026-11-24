@@ -394,7 +394,7 @@ M = {
     },
     "lines": {},
     "stills": {},
-    "next": {"crown": "", "conspiracy": ""},
+    "next": {"crown": "d05_aldeia", "conspiracy": "d05_aldeia"},
 }
 
 L = M["lines"]

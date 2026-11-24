@@ -330,6 +330,16 @@
   "d06__l_book": "angry",
   "d06__l_f_lost": "grief",
   "d06__l_end_all": "grief",
-  "d06__l_end_few": "grief"
+  "d06__l_end_few": "grief",
+  "d05__t_bell": "urgent",
+  "d05__t_field": "shout",
+  "d05__c_hatch": "shout",
+  "d05__ti_found": "grief",
+  "d05__t_burned": "grief",
+  "d05__c_mother_dead": "shout",
+  "d05__t_end_few": "grief",
+  "d05__t_pray": "urgent",
+  "d05__ti_hamlet": "urgent",
+  "d05__t_end_some": "grief"
  }
 }

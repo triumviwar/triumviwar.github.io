@@ -1,0 +1,597 @@
+# Act 2's mission d05_aldeia, "The Mission of São Rafael" (campaign/missions/d05_aldeia.json, written with its texts by
+# tools/campaign/make_d05_mission.py: change the texts THERE and run it again; the plan: docs/campaign_act2_plan.md; what was
+# built: docs/campaign_d05_build.md). EVERY LINE IS A PLACEHOLDER for the owner. Names: swarm = enxame / enjambre; várzea =
+# várzea / várzea (the flooded forest: floresta alagada / bosque inundado); hamlet = aldeola / aldehuela; river fort = forte do rio /
+# fuerte del río; Brood Mother = Mãe da Ninhada / Madre de la Prole.
+
+> The church of São Rafael
+pt A igreja de São Rafael
+es La iglesia de San Rafael
+
+> The granary
+pt O celeiro
+es El granero
+
+> A house of the mission
+pt Uma casa da missão
+es Una casa de la misión
+
+> The mission's fields
+pt Os campos da missão
+es Los campos de la misión
+
+> A house of Santa Luzia
+pt Uma casa de Santa Luzia
+es Una casa de Santa Lucía
+
+> The chapel of Santa Luzia
+pt A capela de Santa Luzia
+es La capilla de Santa Lucía
+
+> The river fort's barracks
+pt O quartel do forte do rio
+es El cuartel del fuerte del río
+
+> The river fort's horse breeder
+pt O criador de cavalos do forte do rio
+es El criadero de caballos del fuerte del río
+
+> The river fort's palisade
+pt A paliçada do forte do rio
+es La empalizada del fuerte del río
+
+> The church of São Rafael must stand until the people leave it.
+pt A igreja de São Rafael tem de ficar de pé até o povo a deixar.
+es La iglesia de San Rafael debe seguir en pie hasta que el pueblo la deje.
+
+> THE FIRST NIGHT: the people in the three fields can't hear the bell. Send a soldier or Father Tomasz to each field: its people run for the church when one of yours reaches them. In the churchyard: {sheltered} of {field_n}.
+pt A PRIMEIRA NOITE: o povo dos três campos não ouve o sino. Mande um soldado ou o Padre Tomasz a cada campo: o povo de lá corre para a igreja quando um dos seus lá chega. No adro: {sheltered} de {field_n}.
+es LA PRIMERA NOCHE: la gente de los tres campos no oye la campana. Manda a un soldado o al Padre Tomasz a cada campo: su gente corre a la iglesia cuando llega uno de los tuyos. En el atrio: {sheltered} de {field_n}.
+
+> Fetch the people from the three fields: {sheltered} of {field_n} at the church.
+pt Traga o povo dos três campos: {sheltered} de {field_n} na igreja.
+es Trae a la gente de los tres campos: {sheltered} de {field_n} en la iglesia.
+
+> Dawn in {clock:night}.
+pt Amanhece em {clock:night}.
+es Amanece en {clock:night}.
+
+> THE HAMLET: ride out along the causeway (west) to Santa Luzia. Drive the Raptors off: its people come out of the chapel and follow your men back to the church ({hamlet_in} of {hamlet_n}).
+pt A ALDEOLA: siga pela calçada (oeste) até Santa Luzia. Afaste os Raptores: o povo sai da capela e segue os seus homens até à igreja ({hamlet_in} de {hamlet_n}).
+es LA ALDEHUELA: cabalga por la calzada (oeste) hasta Santa Lucía. Echa a los Raptores: su gente sale de la capilla y sigue a tus hombres hasta la iglesia ({hamlet_in} de {hamlet_n}).
+
+> Santa Luzia (west, the causeway): drive the pack off, bring its people back ({hamlet_in} of {hamlet_n}).
+pt Santa Luzia (oeste, a calçada): afaste a matilha, traga o povo ({hamlet_in} de {hamlet_n}).
+es Santa Lucía (oeste, la calzada): echa a la manada, trae a su gente ({hamlet_in} de {hamlet_n}).
+
+> The chapel at Santa Luzia holds for {clock:hamlet}.
+pt A capela de Santa Luzia aguenta {clock:hamlet}.
+es La capilla de Santa Lucía aguanta {clock:hamlet}.
+
+> Drill the CAVALRY CHARGE at the river fort's Horse Breeder (far down the trail: select it on the map). A Horseman's first blow after a gallop then hits more than twice as hard on light creatures.
+pt Treine a CARGA DE CAVALARIA no Criador de Cavalos do forte do rio (lá em baixo no trilho: escolha-o no mapa). O primeiro golpe de um Cavaleiro depois de um galope fere então mais do dobro nas criaturas leves.
+es Entrena la CARGA DE CABALLERÍA en el Criadero de Caballos del fuerte del río (abajo en la senda: elígelo en el mapa). El primer golpe de un Jinete tras un galope hiere entonces más del doble a las criaturas ligeras.
+
+> Shoot down the flyers over the village: where they circle, the pack follows ({hatch_left} left).
+pt Abata os voadores sobre a aldeia: onde eles rodam, a matilha segue ({hatch_left} restam).
+es Derriba a los voladores sobre la aldea: donde ellos giran, la manada sigue ({hatch_left} quedan).
+
+> THE ROAD TO THE FORT: the people follow Father Tomasz. Walk him down the trail to the river fort and keep the column covered: at the fort {at_fort} of {people_n}. The flood on both sides is the creatures' road, not yours.
+pt A ESTRADA PARA O FORTE: o povo segue o Padre Tomasz. Leve-o pelo trilho até ao forte do rio e cubra a coluna: no forte {at_fort} de {people_n}. A cheia dos dois lados é o caminho das criaturas, não o seu.
+es EL CAMINO AL FUERTE: el pueblo sigue al Padre Tomasz. Llévalo por la senda hasta el fuerte del río y cubre la columna: en el fuerte {at_fort} de {people_n}. La crecida a ambos lados es el camino de las criaturas, no el tuyo.
+
+> The people follow Tomasz: walk him to the river fort. At the fort {at_fort} of {people_n}.
+pt O povo segue Tomasz: leve-o ao forte do rio. No forte {at_fort} de {people_n}.
+es El pueblo sigue a Tomasz: llévalo al fuerte del río. En el fuerte {at_fort} de {people_n}.
+
+> The fort shuts its gate at dusk: {clock:column}.
+pt O forte fecha o portão ao anoitecer: {clock:column}.
+es El fuerte cierra su portón al anochecer: {clock:column}.
+
+> A forward Mother has rooted on the mud bank in the north flood. While she lives every wave is bigger. Kill her if you can spare the men.
+pt Uma Mãe avançada enraizou no banco de lama da cheia do norte. Enquanto viver, cada vaga é maior. Mate-a se puder dispensar os homens.
+es Una Madre adelantada ha enraizado en el banco de barro de la crecida del norte. Mientras viva, cada oleada es mayor. Mátala si puedes prescindir de los hombres.
+
+> THE RAID: break the church of São Rafael, or catch more than half of the people before they reach the river fort: caught {dead_p} of {people_n} (more than {half} wins). Lay eggs on your Mother's card; the granary feeds whoever holds it.
+pt O ASSALTO: derrube a igreja de São Rafael, ou apanhe mais de metade do povo antes que chegue ao forte do rio: apanhados {dead_p} de {people_n} (mais de {half} ganha). Ponha ovos no painel da sua Mãe; o celeiro alimenta quem o tem.
+es EL ASALTO: derriba la iglesia de San Rafael, o atrapa a más de la mitad del pueblo antes de que llegue al fuerte del río: atrapados {dead_p} de {people_n} (más de {half} gana). Pon huevos en el panel de tu Madre; el granero alimenta a quien lo tiene.
+
+> Break the church, or catch more than {half} of {people_n} people ({dead_p} now).
+pt Derrube a igreja, ou apanhe mais de {half} de {people_n} pessoas ({dead_p} agora).
+es Derriba la iglesia, o atrapa a más de {half} de {people_n} personas ({dead_p} ahora).
+
+> The Tapajós, the wet season 2776. The swarm comes out of the flooded forest at Father Tomasz's mission village. Bring the people to the river fort.
+pt O Tapajós, a estação das chuvas de 2776. O enxame sai da floresta alagada na aldeia de missão do Padre Tomasz. Leve o povo ao forte do rio.
+es El Tapajós, la estación de lluvias de 2776. El enjambre sale del bosque inundado en la aldea de misión del Padre Tomasz. Lleva al pueblo al fuerte del río.
+
+> The Mission
+pt A Missão
+es La Misión
+
+> Father Tomasz, Brother Tiago and the mission's militia at São Rafael; the river fort down the trail.
+pt O Padre Tomasz, o Irmão Tiago e a milícia da missão em São Rafael; o forte do rio lá em baixo no trilho.
+es El Padre Tomasz, el Hermano Tiago y la milicia de la misión en San Rafael; el fuerte del río abajo en la senda.
+
+> The Swarm
+pt O Enxame
+es El Enjambre
+
+> The creatures out of the flooded forest: a forward Mother, her Sires, Raptors and flyers.
+pt As criaturas da floresta alagada: uma Mãe avançada, os seus Sires, Raptores e voadores.
+es Las criaturas del bosque inundado: una Madre adelantada, sus Señores, Raptores y voladores.
+
+> Brother Tiago
+pt Irmão Tiago
+es Hermano Tiago
+
+> Captain Sobral
+pt Capitão Sobral
+es Capitán Sobral
+
+> The Flood
+pt A Cheia
+es La Crecida
+
+> After Minas, Tomasz asked for the hardest place in Brazil. They sent him up the Tapajós.
+pt Depois de Minas, Tomasz pediu o lugar mais difícil do Brasil. Mandaram-no subir o Tapajós.
+es Después de Minas, Tomasz pidió el lugar más difícil de Brasil. Lo mandaron a remontar el Tapajós.
+
+> In the wet season of 2776 he met the swarm. You will hear how it was born. He met it first.
+pt Na estação das chuvas de 2776 ele encontrou o enxame. Hás de ouvir como nasceu. Ele encontrou-o primeiro.
+es En la estación de lluvias de 2776 se encontró con el enjambre. Oirás cómo nació. Él lo encontró primero.
+
+> São Rafael. Thirty families, a church of timber, fields on the dry ground above the flood.
+pt São Rafael. Trinta famílias, uma igreja de madeira, campos no chão seco acima da cheia.
+es San Rafael. Treinta familias, una iglesia de madera, campos en el suelo seco sobre la crecida.
+
+> Brother Tiago taught the catechism in his own tongue. I taught it badly in mine.
+pt O Irmão Tiago ensinava o catecismo na sua língua. Eu ensinava-o mal na minha.
+es El Hermano Tiago enseñaba el catecismo en su lengua. Yo lo enseñaba mal en la mía.
+
+> Word of Rome had come up the river before me. They trusted me before I had earned it.
+pt A notícia de Roma tinha subido o rio antes de mim. Confiaram em mim antes de eu o merecer.
+es La noticia de Roma había remontado el río antes que yo. Confiaron en mí antes de que lo mereciera.
+
+> I had left Minas uneasy. I thought the frontier would be quieter.
+pt Eu tinha deixado Minas inquieta. Pensei que a fronteira seria mais calma.
+es Había dejado Minas inquieta. Pensé que la frontera sería más tranquila.
+
+> Ramos was somewhere in the south by then. I prayed for him on the boat.
+pt Por essa altura Ramos estava algures no sul. Rezei por ele no barco.
+es Para entonces Ramos estaba en algún lugar del sur. Recé por él en el barco.
+
+> That year the river came up into the forest and did not go down.
+pt Nesse ano o rio subiu para dentro da floresta e não desceu.
+es Aquel año el río subió dentro del bosque y no bajó.
+
+> Tomasz tells that night as a priest. Here it is from the flooded forest, where nobody was keeping count.
+pt Tomasz conta essa noite como padre. Aqui está ela vista da floresta alagada, onde ninguém contava.
+es Tomasz cuenta esa noche como sacerdote. Aquí está vista desde el bosque inundado, donde nadie llevaba la cuenta.
+
+> The wet season. The forest stands in the river. The pack is hungry, and the village smells of grain and smoke.
+pt A estação das chuvas. A floresta está dentro do rio. A matilha tem fome, e a aldeia cheira a grão e a fumo.
+es La estación de lluvias. El bosque está dentro del río. La manada tiene hambre, y la aldea huele a grano y a humo.
+
+> Tiago, the bell! Ring it!
+pt Tiago, o sino! Toca-o!
+es ¡Tiago, la campana! ¡Tócala!
+
+> They are out in the fields, Father. In this rain they will not hear it.
+pt Estão lá fora nos campos, Padre. Com esta chuva não o vão ouvir.
+es Están en los campos, Padre. Con esta lluvia no la oirán.
+
+> The people in the three fields can't hear the bell. Send a soldier or Father Tomasz to each field: its people run for the church when one of yours reaches them.
+pt O povo dos três campos não ouve o sino. Mande um soldado ou o Padre Tomasz a cada campo: o povo de lá corre para a igreja quando um dos seus lá chega.
+es La gente de los tres campos no oye la campana. Manda a un soldado o al Padre Tomasz a cada campo: su gente corre a la iglesia cuando llega uno de los tuyos.
+
+> Your men wade the flooded forest at half pace. The creatures go through it as fast as on dry ground. Keep to the dry paths.
+pt Os seus homens atravessam a floresta alagada a meio passo. As criaturas passam por ela tão depressa como em terra seca. Fique nos caminhos secos.
+es Tus hombres vadean el bosque inundado a medio paso. Las criaturas lo cruzan tan rápido como en tierra seca. Quédate en los caminos secos.
+
+> To the church! All of you! Leave the baskets!
+pt Para a igreja! Todos! Deixem os cestos!
+es ¡A la iglesia! ¡Todos! ¡Dejad las cestas!
+
+> Something comes out of the flood at the west field. Raptors.
+pt Alguma coisa sai da cheia no campo do oeste. Raptores.
+es Algo sale de la crecida en el campo del oeste. Raptores.
+
+> Those are not jaguars, Father.
+pt Aquilo não são onças, Padre.
+es Eso no son jaguares, Padre.
+
+> More come out of the flood at the north field.
+pt Mais saem da cheia no campo do norte.
+es Más salen de la crecida en el campo del norte.
+
+> And at the river field, by the landing.
+pt E no campo do rio, junto ao desembarque.
+es Y en el campo del río, junto al embarcadero.
+
+> Everyone from the fields is in the churchyard, Father. The children too.
+pt Todos os dos campos estão no adro, Padre. As crianças também.
+es Todos los de los campos están en el atrio, Padre. Los niños también.
+
+> They come up the bluff for the churchyard. Hold the line on the bluff.
+pt Sobem o barranco para o adro. Segure a linha no barranco.
+es Suben el barranco hacia el atrio. Mantén la línea en el barranco.
+
+> Kneel, all of you, and stay down. Let the men shoot over you.
+pt Ajoelhem-se, todos, e fiquem em baixo. Deixem os homens atirar por cima.
+es Arrodillaos, todos, y quedaos abajo. Dejad que los hombres disparen por encima.
+
+> Dawn. I have never been so glad of a grey sky.
+pt Amanhecer. Nunca fiquei tão contente com um céu cinzento.
+es El alba. Nunca me alegré tanto de un cielo gris.
+
+> Dawn. Whoever was still out in the fields runs in now, if they can.
+pt Amanhecer. Quem ainda estava nos campos corre agora para dentro, se puder.
+es El alba. Quien seguía en los campos corre ahora adentro, si puede.
+
+> Horses on the trail from the south: the relief from the river fort.
+pt Cavalos no trilho do sul: o socorro do forte do rio.
+es Caballos en la senda del sur: el socorro del fuerte del río.
+
+> Captain Sobral, of the river fort. Your canoe reached us yesterday. We rode all night.
+pt Capitão Sobral, do forte do rio. A sua canoa chegou ontem. Cavalgámos a noite toda.
+es Capitán Sobral, del fuerte del río. Su canoa nos llegó ayer. Cabalgamos toda la noche.
+
+> The Governor's purse is thin since Minas. I could bring only a few.
+pt A bolsa do Governador está magra desde Minas. Só pude trazer poucos.
+es La bolsa del Gobernador anda flaca desde Minas. Solo pude traer a unos pocos.
+
+> Santa Luzia. The hamlet on the causeway. Nobody came in from there.
+pt Santa Luzia. A aldeola na calçada. Ninguém veio de lá.
+es Santa Lucía. La aldehuela de la calzada. Nadie vino de allí.
+
+> My sister's family is there. They will have gone into the chapel.
+pt A família da minha irmã está lá. Devem ter ido para a capela.
+es La familia de mi hermana está allí. Se habrán metido en la capilla.
+
+> Ride out along the causeway (west) to Santa Luzia. Drive the Raptors off, and its people come out and follow your men back.
+pt Siga pela calçada (oeste) até Santa Luzia. Afaste os Raptores, e o povo sai e segue os seus homens de volta.
+es Cabalga por la calzada (oeste) hasta Santa Lucía. Echa a los Raptores, y su gente sale y sigue a tus hombres de vuelta.
+
+> My horsemen are drilled for the charge, if the fort gives them the time. A charge breaks the small ones like reeds.
+pt Os meus cavaleiros estão treinados para a carga, se o forte lhes der tempo. Uma carga parte os pequenos como canas.
+es Mis jinetes están entrenados para la carga, si el fuerte les da tiempo. Una carga rompe a los pequeños como cañas.
+
+> Select the river fort's Horse Breeder (down the trail) and press CHARGE: the drill needs nobody there.
+pt Escolha o Criador de Cavalos do forte do rio (lá em baixo no trilho) e aperte CARGA: o treino não precisa de ninguém lá.
+es Elige el Criadero de Caballos del fuerte del río (abajo en la senda) y pulsa CARGA: el entrenamiento no necesita a nadie allí.
+
+> The Charge is drilled. Gallop your Horsemen into the light ones.
+pt A Carga está treinada. Lance os seus Cavaleiros a galope contra os leves.
+es La Carga está entrenada. Lanza a tus Jinetes al galope contra los ligeros.
+
+> Small flyers circle over the village. Where they circle, the pack follows.
+pt Pequenos voadores rodam sobre a aldeia. Onde eles rodam, a matilha segue.
+es Pequeños voladores giran sobre la aldea. Donde ellos giran, la manada sigue.
+
+> Shoot those birds down! They are not birds.
+pt Abatam esses pássaros! Não são pássaros.
+es ¡Derribad esos pájaros! No son pájaros.
+
+> The flyers are down. The pack comes on blind.
+pt Os voadores caíram. A matilha vem às cegas.
+es Los voladores han caído. La manada viene a ciegas.
+
+> The people of Santa Luzia come out of the chapel. They follow your men back along the causeway.
+pt O povo de Santa Luzia sai da capela. Segue os seus homens de volta pela calçada.
+es La gente de Santa Lucía sale de la capilla. Sigue a tus hombres de vuelta por la calzada.
+
+> They hid in the chapel all night. They prayed the whole time, my sister says.
+pt Esconderam-se na capela a noite toda. Rezaram o tempo todo, diz a minha irmã.
+es Se escondieron en la capilla toda la noche. Rezaron todo el tiempo, dice mi hermana.
+
+> The flyers still circle over you: more of the pack comes at the causeway out of the flood.
+pt Os voadores ainda rodam sobre vós: mais da matilha vem à calçada saída da cheia.
+es Los voladores aún giran sobre vosotros: más de la manada viene a la calzada desde la crecida.
+
+> A few come up at the village while your riders are away.
+pt Alguns sobem à aldeia enquanto os seus cavaleiros estão fora.
+es Algunos suben a la aldea mientras tus jinetes están fuera.
+
+> The chapel at Santa Luzia is broken. Nobody comes out.
+pt A capela de Santa Luzia foi derrubada. Ninguém sai.
+es La capilla de Santa Lucía ha caído. Nadie sale.
+
+> They are in, Father. All we could find.
+pt Estão dentro, Padre. Todos os que encontrámos.
+es Están dentro, Padre. Todos los que encontramos.
+
+> In the north flood a big one has rooted on the mud bank: a forward Mother. While she lives, every wave is bigger than the last.
+pt Na cheia do norte uma grande enraizou no banco de lama: uma Mãe avançada. Enquanto viver, cada vaga é maior do que a anterior.
+es En la crecida del norte una grande ha enraizado en el banco de barro: una Madre adelantada. Mientras viva, cada oleada es mayor que la anterior.
+
+> And that Sire beside her. My men call him the Lindqvist Sire. They say he came out of the doctor's cages.
+pt E aquele Sire ao lado dela. Os meus homens chamam-lhe o Sire do Lindqvist. Dizem que saiu das jaulas do doutor.
+es Y ese Señor a su lado. Mis hombres lo llaman el Señor de Lindqvist. Dicen que salió de las jaulas del doctor.
+
+> We cannot hold this, Father. Not with these men. The fort can.
+pt Não podemos segurar isto, Padre. Não com estes homens. O forte pode.
+es No podemos sostener esto, Padre. No con estos hombres. El fuerte sí.
+
+> Then we go. Everyone. The old ones in the middle.
+pt Então vamos. Todos. Os velhos no meio.
+es Entonces nos vamos. Todos. Los viejos en el medio.
+
+> The people follow Father Tomasz. Walk him down the trail to the river fort, and keep the column covered.
+pt O povo segue o Padre Tomasz. Leve-o pelo trilho até ao forte do rio, e cubra a coluna.
+es El pueblo sigue al Padre Tomasz. Llévalo por la senda hasta el fuerte del río, y cubre la columna.
+
+> Burn the fields and the granary, Father. Leave them nothing to eat.
+pt Queime os campos e o celeiro, Padre. Não lhes deixe nada para comer.
+es Queme los campos y el granero, Padre. No les deje nada que comer.
+
+> That is the people's bread for the winter.
+pt Isso é o pão do povo para o inverno.
+es Ese es el pan del pueblo para el invierno.
+
+> They ask you to choose, Father. They will do what you say.
+pt Pedem-lhe que escolha, Padre. Farão o que disser.
+es Le piden que elija, Padre. Harán lo que usted diga.
+
+> Captain Sobral would burn the fields and the granary so the swarm finds nothing to eat. They are the people's bread for the winter.
+pt O Capitão Sobral queimaria os campos e o celeiro para o enxame não achar nada para comer. São o pão do povo para o inverno.
+es El Capitán Sobral quemaría los campos y el granero para que el enjambre no encuentre nada que comer. Son el pan del pueblo para el invierno.
+
+> God forgive me. Burn them.
+pt Deus me perdoe. Queimem-nos.
+es Dios me perdone. Quemadlos.
+
+> No. It is their bread. We will pay for it with powder, not with their hunger.
+pt Não. É o pão deles. Pagamos isto com pólvora, não com a fome deles.
+es No. Es su pan. Lo pagaremos con pólvora, no con su hambre.
+
+> The fields and the granary burn behind the column.
+pt Os campos e o celeiro ardem atrás da coluna.
+es Los campos y el granero arden detrás de la columna.
+
+> Behind the column the swarm comes up into the fields and feeds. Its waves come bigger.
+pt Atrás da coluna o enxame sobe aos campos e come. As suas vagas vêm maiores.
+es Detrás de la columna el enjambre sube a los campos y come. Sus oleadas vienen mayores.
+
+> They come out of the flood at the column.
+pt Saem da cheia sobre a coluna.
+es Salen de la crecida sobre la columna.
+
+> The big one in the flood is down! They come slower now.
+pt A grande na cheia caiu! Agora vêm mais devagar.
+es ¡La grande de la crecida ha caído! Ahora vienen más despacio.
+
+> The first of the people reach the river fort.
+pt Os primeiros do povo chegam ao forte do rio.
+es Los primeros del pueblo llegan al fuerte del río.
+
+> I am hit. Keep them walking, Tiago.
+pt Fui atingido. Mantém-nos a andar, Tiago.
+es Me han dado. Que sigan andando, Tiago.
+
+> Stay close to me. Do not look into the water.
+pt Fiquem perto de mim. Não olhem para a água.
+es Quedaos cerca de mí. No miréis al agua.
+
+> Dusk. The river fort shuts its gate. Whoever is still on the trail is left to the flood.
+pt Anoitece. O forte do rio fecha o portão. Quem ainda está no trilho fica entregue à cheia.
+es Anochece. El fuerte del río cierra su portón. Quien sigue en la senda queda a merced de la crecida.
+
+> The church of São Rafael falls with the people in its yard.
+pt A igreja de São Rafael cai com o povo no adro.
+es La iglesia de San Rafael cae con el pueblo en su atrio.
+
+> Nobody of São Rafael is left alive.
+pt Não resta ninguém vivo de São Rafael.
+es No queda nadie vivo de San Rafael.
+
+> Your Mother is rooted on the mud bank. Lay eggs on her card: Raptors by the Tyrant Sire, flyers by the Storm Sire.
+pt A sua Mãe está enraizada no banco de lama. Ponha ovos no painel dela: Raptores pelo Sire Tirano, voadores pelo Sire da Tempestade.
+es Tu Madre está enraizada en el banco de barro. Pon huevos en su panel: Raptores por el Señor Tirano, voladores por el Señor de la Tormenta.
+
+> The flood is your road: your creatures cross it at full pace, the men wade it slowly. The granary feeds whoever stands round it.
+pt A cheia é o seu caminho: as suas criaturas atravessam-na a toda a velocidade, os homens vadeiam-na devagar. O celeiro alimenta quem está à volta dele.
+es La crecida es tu camino: tus criaturas la cruzan a toda velocidad, los hombres la vadean despacio. El granero alimenta a quien está a su alrededor.
+
+> Horses on the trail from the south: the men from the river fort.
+pt Cavalos no trilho do sul: os homens do forte do rio.
+es Caballos en la senda del sur: los hombres del fuerte del río.
+
+> The people leave the bluff and go down the trail in a long line.
+pt O povo deixa o barranco e desce o trilho numa longa fila.
+es El pueblo deja el barranco y baja por la senda en una larga fila.
+
+> The column breaks in the flood. Nobody counts what is left.
+pt A coluna desfaz-se na cheia. Ninguém conta o que resta.
+es La columna se deshace en la crecida. Nadie cuenta lo que queda.
+
+> The fort's gate shuts on the last of them.
+pt O portão do forte fecha-se sobre os últimos.
+es El portón del fuerte se cierra tras los últimos.
+
+> The Mother is dead. The pack scatters into the flood.
+pt A Mãe morreu. A matilha espalha-se pela cheia.
+es La Madre ha muerto. La manada se dispersa por la crecida.
+
+> We came through the fort's gate at dusk, and I counted them.
+pt Entrámos pelo portão do forte ao anoitecer, e contei-os.
+es Entramos por el portón del fuerte al anochecer, y los conté.
+
+> Most of them were there. I counted twice to be sure.
+pt A maior parte estava lá. Contei duas vezes para ter a certeza.
+es La mayoría estaba allí. Conté dos veces para estar seguro.
+
+> Some of them were there. I named the others that night, on my knees.
+pt Alguns estavam lá. Os outros nomeei-os nessa noite, de joelhos.
+es Algunos estaban allí. A los otros los nombré esa noche, de rodillas.
+
+> Few of them were there. I have their names still.
+pt Poucos estavam lá. Ainda tenho os nomes deles.
+es Pocos estaban allí. Todavía tengo sus nombres.
+
+> Behind us the smoke of the fields stood over the forest all night.
+pt Atrás de nós o fumo dos campos ficou sobre a floresta a noite toda.
+es Detrás de nosotros el humo de los campos se quedó sobre el bosque toda la noche.
+
+> Behind us the fields stood green in the rain. The swarm fed on them all season.
+pt Atrás de nós os campos ficaram verdes na chuva. O enxame comeu deles a estação toda.
+es Detrás de nosotros los campos quedaron verdes bajo la lluvia. El enjambre comió de ellos toda la estación.
+
+> A priest, a catechist and a handful of dragoons brought a village through the flood.
+pt Um padre, um catequista e um punhado de dragões levaram uma aldeia através da cheia.
+es Un sacerdote, un catequista y un puñado de dragones llevaron una aldea a través de la crecida.
+
+> He would not burn the poor's bread. My soldiers paid for that bread on the Tapajós for years. I would have done the same.
+pt Ele não quis queimar o pão dos pobres. Os meus soldados pagaram esse pão no Tapajós durante anos. Eu teria feito o mesmo.
+es No quiso quemar el pan de los pobres. Mis soldados pagaron ese pan en el Tapajós durante años. Yo habría hecho lo mismo.
+
+> He burned the poor's bread to starve the swarm. He has confessed it every year since. It was a hard thing, and he chose it.
+pt Ele queimou o pão dos pobres para matar o enxame à fome. Confessou-o todos os anos desde então. Foi uma coisa dura, e ele escolheu-a.
+es Quemó el pan de los pobres para matar de hambre al enjambre. Lo ha confesado cada año desde entonces. Fue algo duro, y él lo eligió.
+
+> That is not how it went. Tomasz brought them to the fort. Hear it again from him.
+pt Não foi assim que aconteceu. Tomasz levou-os ao forte. Ouve outra vez da boca dele.
+es No fue así como pasó. Tomasz los llevó al fuerte. Óyelo otra vez de su boca.
+
+> Rome, the present. The King tells it.
+pt Roma, o presente. O Rei conta.
+es Roma, el presente. El Rey lo cuenta.
+
+> São Rafael, on the Tapajós, the wet season 2776.
+pt São Rafael, no Tapajós, a estação das chuvas de 2776.
+es San Rafael, en el Tapajós, la estación de lluvias de 2776.
+
+> The bell in the night.
+pt O sino na noite.
+es La campana en la noche.
+
+> The relief from the river fort.
+pt O socorro do forte do rio.
+es El socorro del fuerte del río.
+
+> The fields at dusk.
+pt Os campos ao entardecer.
+es Los campos al atardecer.
+
+> The Tapajós, the wet season 2776. You are Tomasz's mission village of São Rafael: Father Tomasz, Brother Tiago and the mission's militia.
+pt O Tapajós, a estação das chuvas de 2776. Você é a aldeia de missão de Tomasz, São Rafael: o Padre Tomasz, o Irmão Tiago e a milícia da missão.
+es El Tapajós, la estación de lluvias de 2776. Eres la aldea de misión de Tomasz, San Rafael: el Padre Tomasz, el Hermano Tiago y la milicia de la misión.
+
+> Something hunts in the flooded forest round the village. First bring the people in from the fields to the church; then the relief rides up from the river fort, and the hamlet of Santa Luzia must be fetched.
+pt Alguma coisa caça na floresta alagada à volta da aldeia. Primeiro traga o povo dos campos para a igreja; depois o socorro sobe do forte do rio, e é preciso ir buscar a aldeola de Santa Luzia.
+es Algo caza en el bosque inundado alrededor de la aldea. Primero trae a la gente de los campos a la iglesia; luego el socorro sube del fuerte del río, y hay que ir a buscar la aldehuela de Santa Lucía.
+
+> Then lead everyone down the trail to the river fort. Men wade the flood slowly; the creatures do not.
+pt Depois leve todos pelo trilho até ao forte do rio. Os homens vadeiam a cheia devagar; as criaturas não.
+es Luego lleva a todos por la senda hasta el fuerte del río. Los hombres vadean la crecida despacio; las criaturas no.
+
+> The Tapajós, the wet season 2776. You are the swarm in the flooded forest: a forward Mother rooted on a mud bank, her two Sires and a pack.
+pt O Tapajós, a estação das chuvas de 2776. Você é o enxame na floresta alagada: uma Mãe avançada enraizada num banco de lama, os seus dois Sires e uma matilha.
+es El Tapajós, la estación de lluvias de 2776. Eres el enjambre en el bosque inundado: una Madre adelantada enraizada en un banco de barro, sus dos Señores y una manada.
+
+> The village on the bluff has grain and people. Break its church, or catch more than half of its people before they reach the river fort down the trail.
+pt A aldeia no barranco tem grão e gente. Derrube a igreja, ou apanhe mais de metade do povo antes que chegue ao forte do rio no fundo do trilho.
+es La aldea del barranco tiene grano y gente. Derriba su iglesia, o atrapa a más de la mitad de su gente antes de que llegue al fuerte del río al final de la senda.
+
+> The River Fort
+pt O Forte do Rio
+es El Fuerte del Río
+
+> {at_fort} of the {people_n} people of São Rafael reached the river fort.
+pt {at_fort} das {people_n} pessoas de São Rafael chegaram ao forte do rio.
+es {at_fort} de las {people_n} personas de San Rafael llegaron al fuerte del río.
+
+> The fields and the granary were burned behind them.
+pt Os campos e o celeiro foram queimados atrás deles.
+es Los campos y el granero fueron quemados detrás de ellos.
+
+> The fields were left standing for their return. The swarm fed on them.
+pt Os campos ficaram de pé para o regresso deles. O enxame comeu deles.
+es Los campos quedaron en pie para su regreso. El enjambre comió de ellos.
+
+> The forward Mother on the mud bank was killed.
+pt A Mãe avançada do banco de lama foi morta.
+es La Madre adelantada del banco de barro fue muerta.
+
+> Of the {people_n} people of São Rafael, {dead_p} never reached the fort.
+pt Das {people_n} pessoas de São Rafael, {dead_p} nunca chegaram ao forte.
+es De las {people_n} personas de San Rafael, {dead_p} nunca llegaron al fuerte.
+
+> THE FIELDS
+pt OS CAMPOS
+es LOS CAMPOS
+
+> BURN THEM
+pt QUEIMÁ-LOS
+es QUEMARLOS
+
+> The swarm finds nothing to eat here: its waves come no bigger. The people come home to ashes.
+pt O enxame não acha aqui nada para comer: as suas vagas não crescem. O povo volta a casa para cinzas.
+es El enjambre no encuentra aquí nada que comer: sus oleadas no crecen. El pueblo vuelve a casa a las cenizas.
+
+> LEAVE THEM
+pt DEIXÁ-LOS
+es DEJARLOS
+
+> The people's bread for their return. The swarm will feed on it: its waves come bigger.
+pt O pão do povo para o regresso. O enxame vai comer dele: as suas vagas vêm maiores.
+es El pan del pueblo para su regreso. El enjambre comerá de él: sus oleadas vienen mayores.
+
+> NEW: THE DRAGOON. A Musketeer on a horse: he rides fast down the trails and fires on foot. The relief brings four; the river fort's Barracks trains more beside its Horse Breeder.
+pt NOVO: O DRAGÃO. Um Mosqueteiro a cavalo: corre depressa pelos trilhos e dispara a pé. O socorro traz quatro; o Quartel do forte do rio treina mais junto ao seu Criador de Cavalos.
+es NUEVO: EL DRAGÓN. Un Mosquetero a caballo: corre deprisa por las sendas y dispara a pie. El socorro trae cuatro; el Cuartel del fuerte del río entrena más junto a su Criadero de Caballos.
+
+> NEW: THE CAVALRY CHARGE. Drill it at a Horse Breeder: a Horseman's first blow after a gallop hits more than twice as hard on light creatures, and throws them back.
+pt NOVO: A CARGA DE CAVALARIA. Treine-a num Criador de Cavalos: o primeiro golpe de um Cavaleiro depois de um galope fere mais do dobro nas criaturas leves, e atira-as para trás.
+es NUEVO: LA CARGA DE CABALLERÍA. Entrénala en un Criadero de Caballos: el primer golpe de un Jinete tras un galope hiere más del doble a las criaturas ligeras, y las echa atrás.
+
+> The forward Mother
+pt A Mãe avançada
+es La Madre adelantada
+
+> Father Tomasz at his mission of São Rafael on the Tapajós.
+pt O Padre Tomasz na sua missão de São Rafael, no Tapajós.
+es El Padre Tomasz en su misión de San Rafael, en el Tapajós.
+
+> The catechist of São Rafael, a son of the village: he teaches in his own tongue.
+pt O catequista de São Rafael, um filho da aldeia: ensina na sua própria língua.
+es El catequista de San Rafael, un hijo de la aldea: enseña en su propia lengua.
+
+> A militiaman of the mission, armed by the Crown in 2773.
+pt Um miliciano da missão, armado pela Coroa em 2773.
+es Un miliciano de la misión, armado por la Corona en 2773.
+
+> A villager of São Rafael.
+pt Um aldeão de São Rafael.
+es Un aldeano de San Rafael.
+
+> Captain Duarte Sobral, commanding the river fort on the Tapajós.
+pt Capitão Duarte Sobral, comandante do forte do rio no Tapajós.
+es Capitán Duarte Sobral, al mando del fuerte del río en el Tapajós.
+
+> A Brood Mother rooted on a mud bank in the flooded forest.
+pt Uma Mãe da Ninhada enraizada num banco de lama na floresta alagada.
+es Una Madre de la Prole enraizada en un banco de barro en el bosque inundado.
+
+> Not in the flooded forest: nothing stands in the várzea's water.
+pt Não na floresta alagada: nada fica de pé na água da várzea.
+es No en el bosque inundado: nada se sostiene en el agua de la várzea.
+
+> Tomasz wrote from the river fort. He brought them out of São Rafael, and asked me for nothing but a priest for the fort.
+pt Tomasz escreveu do forte do rio. Tirou-os de São Rafael, e só me pediu um padre para o forte.
+es Tomasz escribió desde el fuerte del río. Los sacó de San Rafael, y solo me pidió un sacerdote para el fuerte.
+
+> He left the fields standing. My soldiers paid for that bread for years. I would have done the same.
+pt Deixou os campos de pé. Os meus soldados pagaram esse pão durante anos. Eu teria feito o mesmo.
+es Dejó los campos en pie. Mis soldados pagaron ese pan durante años. Yo habría hecho lo mismo.
+
+> He burned the fields behind them. He confesses it every year. It was hard, and it was his to choose.
+pt Queimou os campos atrás deles. Confessa-o todos os anos. Foi duro, e a escolha era dele.
+es Quemó los campos detrás de ellos. Lo confiesa cada año. Fue duro, y la elección era suya.
+
+> On the Tapajós I learnt that the swarm does not hate anyone. It eats. That is worse.
+pt No Tapajós aprendi que o enxame não odeia ninguém. Come. Isso é pior.
+es En el Tapajós aprendí que el enjambre no odia a nadie. Come. Eso es peor.
+
+> Tiago still writes to me from the fort. He says the children have stopped looking into the water.
+pt O Tiago ainda me escreve do forte. Diz que as crianças deixaram de olhar para a água.
+es Tiago todavía me escribe desde el fuerte. Dice que los niños han dejado de mirar al agua.

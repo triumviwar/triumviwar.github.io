@@ -12,7 +12,8 @@
 				"a01_presses",
 				"a06_barricades",
 				"a07_council",
-				"d01_minas"
+				"d01_minas",
+				"d05_aldeia"
 			],
 			"hub": {
 				"title": "The King's Study",
@@ -205,6 +206,26 @@
 									"He sent me the names of the dead of both sides, and asked me to pray for all of them. I did.",
 									"The lieutenant who led them went south. Remember the city of gears; we will come back to it."
 								]
+							},
+							{
+								"after": "d05_aldeia",
+								"flag": {
+									"d05_aldeia.fields": "left"
+								},
+								"lines": [
+									"Tomasz wrote from the river fort. He brought them out of São Rafael, and asked me for nothing but a priest for the fort.",
+									"He left the fields standing. My soldiers paid for that bread for years. I would have done the same."
+								]
+							},
+							{
+								"after": "d05_aldeia",
+								"flag": {
+									"d05_aldeia.fields": "burned"
+								},
+								"lines": [
+									"Tomasz wrote from the river fort. He brought them out of São Rafael, and asked me for nothing but a priest for the fort.",
+									"He burned the fields behind them. He confesses it every year. It was hard, and it was his to choose."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_king_face.png"
@@ -266,6 +287,13 @@
 								"lines": [
 									"In Minas I learnt that a sermon is the easy part. Staying afterwards is the work.",
 									"I still have the list of the dead from that night. I read it every year on the feast of the Rosary."
+								]
+							},
+							{
+								"after": "d05_aldeia",
+								"lines": [
+									"On the Tapajós I learnt that the swarm does not hate anyone. It eats. That is worse.",
+									"Tiago still writes to me from the fort. He says the children have stopped looking into the water."
 								]
 							}
 						],

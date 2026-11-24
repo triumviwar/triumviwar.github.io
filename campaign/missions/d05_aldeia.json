@@ -1,0 +1,6978 @@
+{
+	"id": "d05_aldeia",
+	"title": "The Mission of São Rafael",
+	"summary": "The Tapajós, the wet season 2776. The swarm comes out of the flooded forest at Father Tomasz's mission village. Bring the people to the river fort.",
+	"map": "campaign:sao_rafael",
+	"voice": "d05",
+	"light": "jungle_night",
+	"weather": "rain",
+	"floor": [
+		0.82,
+		0.84,
+		0.78
+	],
+	"expansion_spots": false,
+	"manual_end": true,
+	"difficulty": {
+		"easy": {
+			"clocks": 1.25,
+			"spawns": 0.7
+		},
+		"hard": {
+			"clocks": 0.85,
+			"spawns": 1.6
+		}
+	},
+	"needs": [
+		"a07_council",
+		"d01_minas"
+	],
+	"modes": [
+		"solo",
+		"versus"
+	],
+	"solo_sides": [
+		"crown",
+		"swarm"
+	],
+	"wade": {
+		"pace": 0.5,
+		"free": [
+			"brood"
+		]
+	},
+	"granaries": [
+		{
+			"tag": "granary",
+			"gold": 20,
+			"every": 10,
+			"hold_within": 4,
+			"counter": "fed"
+		}
+	],
+	"sides": [
+		{
+			"id": "crown",
+			"name": "The Mission",
+			"about": "Father Tomasz, Brother Tiago and the mission's militia at São Rafael; the river fort down the trail."
+		},
+		{
+			"id": "swarm",
+			"name": "The Swarm",
+			"about": "The creatures out of the flooded forest: a forward Mother, her Sires, Raptors and flyers."
+		}
+	],
+	"teams": [
+		{
+			"id": "mission",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "church_yard",
+			"gold": 300,
+			"powder": 300,
+			"techs": [
+				"matchlock",
+				"bayonet"
+			],
+			"control": {
+				"solo": "p1",
+				"versus": "p1",
+				"foe": "script"
+			},
+			"roster": {
+				"allow": [
+					"town_hall",
+					"labourer",
+					"farm",
+					"cottage",
+					"wall",
+					"gate",
+					"barracks",
+					"powder_mill",
+					"musketeer",
+					"cannon",
+					"horse_breeder",
+					"cuirassier",
+					"horse",
+					"dismounted",
+					"messenger",
+					"foundry",
+					"mortar",
+					"church",
+					"missionary",
+					"armoury",
+					"matchlock",
+					"bayonet",
+					"dragoon",
+					"charge"
+				],
+				"new": [
+					"dragoon",
+					"charge"
+				],
+				"deny": [
+					"town_hall",
+					"cottage",
+					"farm",
+					"wall",
+					"gate",
+					"labourer",
+					"messenger",
+					"foundry",
+					"mortar",
+					"church",
+					"powder_mill",
+					"barracks",
+					"horse_breeder",
+					"armoury",
+					"cannon"
+				]
+			}
+		},
+		{
+			"id": "people",
+			"side": "crown",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "church_yard",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "swarm",
+			"side": "swarm",
+			"faction": "brood",
+			"colour": 2,
+			"start": "none",
+			"camera": "mud_bank",
+			"gold": 300,
+			"powder": 40,
+			"roster": {
+				"deny": [
+					"grub",
+					"rootmaw",
+					"mound_turtle",
+					"dilophosaurus",
+					"stage3",
+					"brute",
+					"spitter",
+					"mist_toad"
+				]
+			},
+			"control": {
+				"solo": "script",
+				"versus": "p2"
+			}
+		}
+	],
+	"areas": {
+		"village": [
+			44,
+			20,
+			30,
+			21
+		],
+		"village_wide": [
+			38,
+			15,
+			42,
+			32
+		],
+		"church_yard": [
+			52,
+			26,
+			12,
+			6
+		],
+		"church_door": [
+			56,
+			27,
+			4,
+			2
+		],
+		"bluff_s": [
+			53,
+			34,
+			10,
+			4
+		],
+		"bluff_w": [
+			45,
+			28,
+			5,
+			5
+		],
+		"granary": [
+			63,
+			30,
+			5,
+			4
+		],
+		"field_w": [
+			25,
+			27,
+			13,
+			9
+		],
+		"field_n": [
+			50,
+			9,
+			17,
+			6
+		],
+		"field_r": [
+			78,
+			40,
+			11,
+			9
+		],
+		"landing": [
+			84,
+			26,
+			8,
+			11
+		],
+		"ramp_w": [
+			41,
+			28,
+			4,
+			5
+		],
+		"ramp_s": [
+			55,
+			38,
+			7,
+			4
+		],
+		"causeway": [
+			24,
+			39,
+			8,
+			6
+		],
+		"hamlet": [
+			5,
+			49,
+			17,
+			15
+		],
+		"hamlet_in": [
+			11,
+			58,
+			5,
+			3
+		],
+		"trail_1": [
+			56,
+			43,
+			5,
+			5
+		],
+		"trail_2": [
+			48,
+			54,
+			5,
+			5
+		],
+		"trail_3": [
+			40,
+			64,
+			5,
+			5
+		],
+		"trail_4": [
+			38,
+			74,
+			5,
+			5
+		],
+		"trail_5": [
+			46,
+			84,
+			5,
+			5
+		],
+		"trail_6": [
+			60,
+			92,
+			5,
+			5
+		],
+		"trail_7": [
+			66,
+			100,
+			5,
+			5
+		],
+		"fort_gate": [
+			59,
+			106,
+			7,
+			4
+		],
+		"fort_in": [
+			56,
+			118,
+			13,
+			5
+		],
+		"fort": [
+			46,
+			106,
+			32,
+			20
+		],
+		"relief_in": [
+			54,
+			44,
+			9,
+			5
+		],
+		"mud_bank": [
+			28,
+			6,
+			13,
+			7
+		],
+		"mother_spot": [
+			33,
+			8,
+			3,
+			2
+		],
+		"sire_spot": [
+			29,
+			7,
+			3,
+			2
+		],
+		"storm_spot": [
+			37,
+			10,
+			3,
+			2
+		],
+		"flood_w": [
+			2,
+			22,
+			7,
+			10
+		],
+		"flood_n": [
+			50,
+			1,
+			16,
+			4
+		],
+		"flood_nw": [
+			10,
+			3,
+			12,
+			6
+		],
+		"flood_e": [
+			84,
+			56,
+			8,
+			8
+		],
+		"flood_cw": [
+			18,
+			30,
+			6,
+			6
+		],
+		"flood_cs": [
+			30,
+			48,
+			6,
+			6
+		],
+		"flood_hw": [
+			3,
+			58,
+			4,
+			8
+		],
+		"flood_tw2": [
+			34,
+			50,
+			6,
+			6
+		],
+		"flood_te3": [
+			56,
+			62,
+			6,
+			6
+		],
+		"flood_tw4": [
+			26,
+			74,
+			6,
+			6
+		],
+		"flood_te5": [
+			60,
+			80,
+			6,
+			6
+		],
+		"flood_tw6": [
+			40,
+			94,
+			6,
+			6
+		],
+		"flood_te7": [
+			78,
+			96,
+			6,
+			6
+		]
+	},
+	"counters": {
+		"people_n": {
+			"start": 0
+		},
+		"field_n": {
+			"start": 0
+		},
+		"sheltered": {
+			"start": 0
+		},
+		"hamlet_n": {
+			"start": 0
+		},
+		"hamlet_in": {
+			"start": 0
+		},
+		"at_fort": {
+			"start": 0
+		},
+		"dead_p": {
+			"start": 0
+		},
+		"half": {
+			"start": 0
+		},
+		"margin": {
+			"start": 0
+		},
+		"alive_p": {
+			"start": 0
+		},
+		"wave_n": {
+			"start": 0
+		},
+		"fed": {
+			"start": 0
+		},
+		"hatch_left": {
+			"start": 0
+		}
+	},
+	"exits": [
+		{
+			"area": "fort_in",
+			"tag": "people",
+			"counter": "at_fort",
+			"after": "part3"
+		}
+	],
+	"units": [
+		{
+			"team": "mission",
+			"kind": "missionary",
+			"as": "tomasz_rafael",
+			"count": 1,
+			"at": "church_door",
+			"tag": "tomasz",
+			"tags": [
+				"leader"
+			],
+			"fixed": true
+		},
+		{
+			"team": "mission",
+			"kind": "missionary",
+			"as": "tiago",
+			"count": 1,
+			"at": "church_door",
+			"tag": "tiago",
+			"fixed": true
+		},
+		{
+			"team": "mission",
+			"kind": "musketeer",
+			"as": "mission_militia",
+			"count": 8,
+			"at": "bluff_s",
+			"tag": "militia",
+			"fixed": true
+		},
+		{
+			"team": "mission",
+			"kind": "musketeer",
+			"as": "mission_militia",
+			"count": 2,
+			"at": "bluff_s",
+			"tag": "militia",
+			"fixed": true,
+			"if": {
+				"past": {
+					"a07_council.people": "many"
+				}
+			}
+		},
+		{
+			"team": "people",
+			"kind": "labourer",
+			"as": "rafael_villager",
+			"count": 6,
+			"at": "church_yard",
+			"tag": "village_folk",
+			"tags": [
+				"people"
+			],
+			"fixed": true
+		},
+		{
+			"team": "people",
+			"kind": "labourer",
+			"as": "rafael_villager",
+			"count": 6,
+			"at": "field_w",
+			"tag": "folk_w",
+			"tags": [
+				"people",
+				"field_folk"
+			],
+			"fixed": true
+		},
+		{
+			"team": "people",
+			"kind": "labourer",
+			"as": "rafael_villager",
+			"count": 6,
+			"at": "field_n",
+			"tag": "folk_n",
+			"tags": [
+				"people",
+				"field_folk"
+			],
+			"fixed": true
+		},
+		{
+			"team": "people",
+			"kind": "labourer",
+			"as": "rafael_villager",
+			"count": 6,
+			"at": "field_r",
+			"tag": "folk_r",
+			"tags": [
+				"people",
+				"field_folk"
+			],
+			"fixed": true
+		},
+		{
+			"team": "people",
+			"kind": "labourer",
+			"as": "rafael_villager",
+			"count": 6,
+			"at": "hamlet_in",
+			"tag": "hamlet_folk",
+			"tags": [
+				"people"
+			],
+			"fixed": true
+		},
+		{
+			"team": "swarm",
+			"kind": "brood_mother",
+			"as": "forward_mother",
+			"count": 1,
+			"at": "mother_spot",
+			"tag": "fwd_mother",
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "tyrannosaur",
+			"count": 1,
+			"at": "sire_spot",
+			"tag": "fwd_sire",
+			"tags": [
+				"sires"
+			],
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "pterodactyl",
+			"count": 1,
+			"at": "storm_spot",
+			"tag": "storm_sire",
+			"tags": [
+				"sires"
+			],
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "raptor",
+			"count": 8,
+			"at": "mud_bank",
+			"tag": "pack",
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "raptor",
+			"count": 2,
+			"at": "mud_bank",
+			"tag": "pack",
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"playing": "swarm"
+					},
+					{
+						"past": {
+							"d06_queen.brood_n": "all"
+						}
+					}
+				]
+			}
+		},
+		{
+			"team": "mission",
+			"kind": "musketeer",
+			"as": "mission_militia",
+			"count": 4,
+			"at": "bluff_s",
+			"tag": "militia",
+			"fixed": true,
+			"if": {
+				"not": {
+					"playing": "crown"
+				}
+			}
+		}
+	],
+	"buildings": [
+		{
+			"team": "mission",
+			"kind": "church",
+			"at": [
+				57,
+				23
+			],
+			"tag": "church",
+			"tags": [
+				"village_b"
+			],
+			"name": "The church of São Rafael"
+		},
+		{
+			"team": "mission",
+			"kind": "cottage",
+			"at": [
+				65,
+				31
+			],
+			"tag": "granary",
+			"tags": [
+				"village_b",
+				"fields_b"
+			],
+			"name": "The granary"
+		},
+		{
+			"team": "mission",
+			"kind": "barracks",
+			"at": [
+				48,
+				31
+			],
+			"tag": "v_barracks",
+			"tags": [
+				"village_b"
+			]
+		},
+		{
+			"team": "mission",
+			"kind": "cottage",
+			"at": [
+				51,
+				25
+			],
+			"tag": "houses",
+			"tags": [
+				"village_b"
+			],
+			"name": "A house of the mission"
+		},
+		{
+			"team": "mission",
+			"kind": "cottage",
+			"at": [
+				53,
+				35
+			],
+			"tag": "houses",
+			"tags": [
+				"village_b"
+			],
+			"name": "A house of the mission"
+		},
+		{
+			"team": "mission",
+			"kind": "cottage",
+			"at": [
+				62,
+				36
+			],
+			"tag": "houses",
+			"tags": [
+				"village_b"
+			],
+			"name": "A house of the mission"
+		},
+		{
+			"team": "mission",
+			"kind": "cottage",
+			"at": [
+				67,
+				26
+			],
+			"tag": "houses",
+			"tags": [
+				"village_b"
+			],
+			"name": "A house of the mission"
+		},
+		{
+			"team": "people",
+			"kind": "farm",
+			"at": [
+				28,
+				28
+			],
+			"tag": "fields",
+			"tags": [
+				"fields_b"
+			],
+			"name": "The mission's fields"
+		},
+		{
+			"team": "people",
+			"kind": "farm",
+			"at": [
+				55,
+				9
+			],
+			"tag": "fields",
+			"tags": [
+				"fields_b"
+			],
+			"name": "The mission's fields"
+		},
+		{
+			"team": "people",
+			"kind": "farm",
+			"at": [
+				80,
+				41
+			],
+			"tag": "fields",
+			"tags": [
+				"fields_b"
+			],
+			"name": "The mission's fields"
+		},
+		{
+			"team": "people",
+			"kind": "cottage",
+			"at": [
+				9,
+				52
+			],
+			"tag": "hamlet_b",
+			"name": "A house of Santa Luzia"
+		},
+		{
+			"team": "people",
+			"kind": "cottage",
+			"at": [
+				16,
+				59
+			],
+			"tag": "hamlet_b",
+			"name": "A house of Santa Luzia"
+		},
+		{
+			"team": "people",
+			"kind": "church",
+			"at": [
+				12,
+				55
+			],
+			"tag": "chapel",
+			"name": "The chapel of Santa Luzia"
+		},
+		{
+			"team": "mission",
+			"kind": "barracks",
+			"at": [
+				55,
+				114
+			],
+			"tag": "f_barracks",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's barracks"
+		},
+		{
+			"team": "mission",
+			"kind": "horse_breeder",
+			"at": [
+				64,
+				114
+			],
+			"tag": "breeder",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's horse breeder"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				52,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				53,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				54,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				55,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				56,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				57,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				58,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				66,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				67,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				68,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				69,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				70,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				71,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				72,
+				109
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				52,
+				110
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				52,
+				111
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				52,
+				112
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				52,
+				113
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				52,
+				114
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				52,
+				115
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				72,
+				110
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				72,
+				111
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				72,
+				112
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				72,
+				113
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				72,
+				114
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		},
+		{
+			"team": "mission",
+			"kind": "wall",
+			"at": [
+				72,
+				115
+			],
+			"tag": "fort_wall",
+			"tags": [
+				"fort_b"
+			],
+			"name": "The river fort's palisade"
+		}
+	],
+	"objectives": [
+		{
+			"id": "church_live",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"text": "The church of São Rafael must stand until the people leave it."
+		},
+		{
+			"id": "fields_in",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"text": "THE FIRST NIGHT: the people in the three fields can't hear the bell. Send a soldier or Father Tomasz to each field: its people run for the church when one of yours reaches them. In the churchyard: {sheltered} of {field_n}.",
+			"phone": "Fetch the people from the three fields: {sheltered} of {field_n} at the church."
+		},
+		{
+			"id": "night",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "night",
+			"text": "Dawn in {clock:night}."
+		},
+		{
+			"id": "hamlet",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE HAMLET: ride out along the causeway (west) to Santa Luzia. Drive the Raptors off: its people come out of the chapel and follow your men back to the church ({hamlet_in} of {hamlet_n}).",
+			"phone": "Santa Luzia (west, the causeway): drive the pack off, bring its people back ({hamlet_in} of {hamlet_n})."
+		},
+		{
+			"id": "hamlet_clock",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "hamlet",
+			"hidden": true,
+			"text": "The chapel at Santa Luzia holds for {clock:hamlet}."
+		},
+		{
+			"id": "charge",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Drill the CAVALRY CHARGE at the river fort's Horse Breeder (far down the trail: select it on the map). A Horseman's first blow after a gallop then hits more than twice as hard on light creatures."
+		},
+		{
+			"id": "hatch",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Shoot down the flyers over the village: where they circle, the pack follows ({hatch_left} left)."
+		},
+		{
+			"id": "road",
+			"side": "crown",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE ROAD TO THE FORT: the people follow Father Tomasz. Walk him down the trail to the river fort and keep the column covered: at the fort {at_fort} of {people_n}. The flood on both sides is the creatures' road, not yours.",
+			"phone": "The people follow Tomasz: walk him to the river fort. At the fort {at_fort} of {people_n}."
+		},
+		{
+			"id": "column",
+			"side": "crown",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "column",
+			"hidden": true,
+			"text": "The fort shuts its gate at dusk: {clock:column}."
+		},
+		{
+			"id": "fwd",
+			"side": "crown",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "A forward Mother has rooted on the mud bank in the north flood. While she lives every wave is bigger. Kill her if you can spare the men."
+		},
+		{
+			"id": "s_mother",
+			"side": "swarm",
+			"primary": true,
+			"kind": "protect",
+			"tag": "fwd_mother",
+			"hidden": true,
+			"text": "Your Mother must live."
+		},
+		{
+			"id": "s_hunt",
+			"side": "swarm",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE RAID: break the church of São Rafael, or catch more than half of the people before they reach the river fort: caught {dead_p} of {people_n} (more than {half} wins). Lay eggs on your Mother's card; the granary feeds whoever holds it.",
+			"phone": "Break the church, or catch more than {half} of {people_n} people ({dead_p} now)."
+		}
+	],
+	"triggers": [
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "people_n",
+						"count": {
+							"tag": "people"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "field_n",
+						"count": {
+							"tag": "field_folk"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "hamlet_n",
+						"count": {
+							"tag": "hamlet_folk"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "half",
+						"share_of": "people_n",
+						"share": 0.5
+					}
+				},
+				{
+					"spare": {
+						"tag": "hamlet_folk",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "chapel",
+						"on": true
+					}
+				},
+				{
+					"pace": {
+						"tag": "people",
+						"pace": 0.8
+					}
+				},
+				{
+					"order": {
+						"tag": "village_folk",
+						"do": "hold"
+					}
+				},
+				{
+					"spare": {
+						"tag": "fields_b",
+						"on": true
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_crown",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "night",
+						"secs": 240
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_swarm",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"playing": "swarm"
+					}
+				]
+			},
+			"do": [
+				{
+					"brood_stage": {
+						"tag": "fwd_mother",
+						"stage": 2
+					}
+				},
+				{
+					"nest_free": {
+						"tag": "sires",
+						"on": true
+					}
+				},
+				{
+					"root_now": {
+						"tag": "fwd_mother"
+					}
+				},
+				{
+					"root_now": {
+						"tag": "sires"
+					}
+				},
+				{
+					"objective": {
+						"id": "s_mother",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "s_hunt",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "night",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "swarm_food",
+			"when": {
+				"all": [
+					{
+						"time": 10
+					},
+					{
+						"playing": "swarm"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 10,
+			"do": [
+				{
+					"give": {
+						"team": "swarm",
+						"gold": 30
+					}
+				}
+			]
+		},
+		{
+			"id": "intro_s",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "swarm"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_1",
+						"f_2"
+					]
+				},
+				{
+					"ping": {
+						"area": "village"
+					}
+				}
+			]
+		},
+		{
+			"id": "bell",
+			"when": {
+				"time": 2.0
+			},
+			"do": [
+				{
+					"say": [
+						"t_bell",
+						"ti_bell",
+						"n_lesson"
+					]
+				},
+				{
+					"sound": {
+						"name": "campaign/bell_toll",
+						"area": "church_yard",
+						"vol": -4
+					}
+				},
+				{
+					"ping": {
+						"area": "field_w"
+					}
+				},
+				{
+					"ping": {
+						"area": "field_n"
+					}
+				},
+				{
+					"ping": {
+						"area": "field_r"
+					}
+				}
+			]
+		},
+		{
+			"id": "varzea_say",
+			"when": {
+				"all": [
+					{
+						"time": 24
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_varzea"
+					]
+				}
+			]
+		},
+		{
+			"id": "call_field_w",
+			"when": {
+				"all": [
+					{
+						"fired": "bell"
+					},
+					{
+						"near": {
+							"team": "mission",
+							"to": "folk_w",
+							"within": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "folk_w",
+						"do": "move",
+						"to": "church_yard"
+					}
+				},
+				{
+					"say": [
+						"t_field"
+					]
+				},
+				{
+					"ping": {
+						"area": "field_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "run_field_w",
+			"when": {
+				"all": [
+					{
+						"fired": "call_field_w"
+					},
+					{
+						"count": {
+							"tag": "folk_w",
+							"not_area": "church_yard",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"every": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "folk_w",
+						"do": "move",
+						"to": "church_yard"
+					}
+				}
+			]
+		},
+		{
+			"id": "call_field_n",
+			"when": {
+				"all": [
+					{
+						"fired": "bell"
+					},
+					{
+						"near": {
+							"team": "mission",
+							"to": "folk_n",
+							"within": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "folk_n",
+						"do": "move",
+						"to": "church_yard"
+					}
+				},
+				{
+					"say": [
+						"t_field"
+					]
+				},
+				{
+					"ping": {
+						"area": "field_n"
+					}
+				}
+			]
+		},
+		{
+			"id": "run_field_n",
+			"when": {
+				"all": [
+					{
+						"fired": "call_field_n"
+					},
+					{
+						"count": {
+							"tag": "folk_n",
+							"not_area": "church_yard",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"every": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "folk_n",
+						"do": "move",
+						"to": "church_yard"
+					}
+				}
+			]
+		},
+		{
+			"id": "call_field_r",
+			"when": {
+				"all": [
+					{
+						"fired": "bell"
+					},
+					{
+						"near": {
+							"team": "mission",
+							"to": "folk_r",
+							"within": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "folk_r",
+						"do": "move",
+						"to": "church_yard"
+					}
+				},
+				{
+					"say": [
+						"t_field"
+					]
+				},
+				{
+					"ping": {
+						"area": "field_r"
+					}
+				}
+			]
+		},
+		{
+			"id": "run_field_r",
+			"when": {
+				"all": [
+					{
+						"fired": "call_field_r"
+					},
+					{
+						"count": {
+							"tag": "folk_r",
+							"not_area": "church_yard",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"every": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "folk_r",
+						"do": "move",
+						"to": "church_yard"
+					}
+				}
+			]
+		},
+		{
+			"id": "m_bell",
+			"when": {
+				"all": [
+					{
+						"time": 12
+					},
+					{
+						"not": {
+							"playing": "crown"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "field_folk",
+						"do": "move",
+						"to": "church_yard"
+					}
+				},
+				{
+					"order": {
+						"tag": "militia",
+						"do": "attack",
+						"to": "bluff_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "m_bell2",
+			"when": {
+				"all": [
+					{
+						"fired": "m_bell"
+					},
+					{
+						"count": {
+							"tag": "field_folk",
+							"not_area": "church_yard",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 5,
+			"every": 5,
+			"do": [
+				{
+					"order": {
+						"tag": "field_folk",
+						"do": "move",
+						"to": "church_yard"
+					}
+				}
+			]
+		},
+		{
+			"id": "count_in",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"counter": {
+						"name": "sheltered",
+						"count": {
+							"tag": "field_folk",
+							"area": "church_yard"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "hamlet_in",
+						"count": {
+							"tag": "hamlet_folk",
+							"area": "church_yard"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "alive_p",
+						"count": {
+							"tag": "people"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "dead_p",
+						"share_of": "people_n",
+						"share": 1.0
+					}
+				},
+				{
+					"counter": {
+						"name": "dead_p",
+						"sub_counter": "alive_p",
+						"min": 0
+					}
+				},
+				{
+					"counter": {
+						"name": "dead_p",
+						"sub_counter": "at_fort",
+						"min": 0
+					}
+				},
+				{
+					"counter": {
+						"name": "margin",
+						"share_of": "dead_p",
+						"share": 1.0
+					}
+				},
+				{
+					"counter": {
+						"name": "margin",
+						"sub_counter": "half",
+						"min": 0
+					}
+				},
+				{
+					"counter": {
+						"name": "hatch_left",
+						"count": {
+							"tag": "hatch"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "w1",
+			"when": {
+				"all": [
+					{
+						"time": 20
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_w",
+						"tag": "wave",
+						"tags": [
+							"w1"
+						],
+						"order": {
+							"do": "attack",
+							"to": "field_w"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "flood_w",
+						"tag": "wave",
+						"tags": [
+							"w1"
+						],
+						"order": {
+							"do": "attack",
+							"to": "field_w"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_w",
+						"tag": "wave",
+						"tags": [
+							"w1"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "field_w"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_w"
+					}
+				},
+				{
+					"say": [
+						"n_w1",
+						"ti_w1"
+					]
+				}
+			]
+		},
+		{
+			"id": "w2",
+			"when": {
+				"all": [
+					{
+						"time": 45
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_n",
+						"tag": "wave",
+						"tags": [
+							"w2"
+						],
+						"order": {
+							"do": "attack",
+							"to": "field_n"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "flood_n",
+						"tag": "wave",
+						"tags": [
+							"w2"
+						],
+						"order": {
+							"do": "attack",
+							"to": "field_n"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_n",
+						"tag": "wave",
+						"tags": [
+							"w2"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "field_n"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_n"
+					}
+				},
+				{
+					"say": [
+						"n_w2"
+					]
+				}
+			]
+		},
+		{
+			"id": "w3",
+			"when": {
+				"all": [
+					{
+						"time": 70
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_e",
+						"tag": "wave",
+						"tags": [
+							"w3"
+						],
+						"order": {
+							"do": "attack",
+							"to": "field_r"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "flood_e",
+						"tag": "wave",
+						"tags": [
+							"w3"
+						],
+						"order": {
+							"do": "attack",
+							"to": "field_r"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_e",
+						"tag": "wave",
+						"tags": [
+							"w3"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "field_r"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "flood_e",
+						"tag": "wave",
+						"tags": [
+							"w3"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "field_r"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_e"
+					}
+				},
+				{
+					"say": [
+						"n_w3"
+					]
+				}
+			]
+		},
+		{
+			"id": "all_in",
+			"when": {
+				"all": [
+					{
+						"time": 6
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"count": {
+							"tag": "field_folk",
+							"not_area": "church_yard",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "fields_in",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"ti_in"
+					]
+				}
+			]
+		},
+		{
+			"id": "w_push",
+			"when": {
+				"all": [
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					},
+					{
+						"any": [
+							{
+								"time": 100
+							},
+							{
+								"all": [
+									{
+										"fired": "all_in"
+									},
+									{
+										"fired": "w2"
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 5,
+						"at": "flood_n",
+						"tag": "wave",
+						"tags": [
+							"w_push"
+						],
+						"order": {
+							"do": "attack",
+							"to": "church_yard"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 4,
+						"at": "flood_n",
+						"tag": "wave",
+						"tags": [
+							"w_push"
+						],
+						"order": {
+							"do": "attack",
+							"to": "church_yard"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_n",
+						"tag": "wave",
+						"tags": [
+							"w_push"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "church_yard"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "flood_n",
+						"tag": "wave",
+						"tags": [
+							"w_push"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "church_yard"
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_n"
+					}
+				},
+				{
+					"say": [
+						"n_push",
+						"t_pray"
+					]
+				}
+			],
+			"delay": 6
+		},
+		{
+			"id": "swarm_hunt",
+			"when": {
+				"all": [
+					{
+						"time": 21
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"team": "swarm",
+						"do": "hunt",
+						"prey": "people",
+						"within": 14,
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "swarm_press",
+			"when": {
+				"all": [
+					{
+						"time": 30
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 9,
+			"do": [
+				{
+					"order": {
+						"tag": "wave",
+						"do": "attack",
+						"to": "church_yard",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "dawn_clear",
+			"when": {
+				"all": [
+					{
+						"fired": "w_push"
+					},
+					{
+						"fired": "all_in"
+					},
+					{
+						"count": {
+							"tag": "wave",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"clock": {
+						"name": "night",
+						"add": -9000
+					}
+				}
+			]
+		},
+		{
+			"id": "dawn_late",
+			"when": {
+				"all": [
+					{
+						"clock_out": "night"
+					},
+					{
+						"not": {
+							"fired": "all_in"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_dawn_late"
+					]
+				},
+				{
+					"objective": {
+						"id": "fields_in",
+						"set": "failed"
+					}
+				},
+				{
+					"order": {
+						"tag": "field_folk",
+						"do": "move",
+						"to": "church_yard"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"all": [
+									{
+										"clock_out": "night"
+									},
+									{
+										"not": {
+											"playing": "swarm"
+										}
+									}
+								]
+							},
+							{
+								"all": [
+									{
+										"time": 150
+									},
+									{
+										"playing": "swarm"
+									}
+								]
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "night",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "night",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "fields_in",
+						"set": "hidden"
+					}
+				},
+				{
+					"light": {
+						"to": "grey_dawn",
+						"secs": 6
+					}
+				},
+				{
+					"spawn": {
+						"team": "mission",
+						"kind": "cuirassier",
+						"as": "sobral",
+						"count": 1,
+						"at": "relief_in",
+						"tag": "sobral",
+						"tags": [
+							"relief_men"
+						],
+						"fixed": true,
+						"if": {
+							"playing": "crown"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "mission",
+						"kind": "dragoon",
+						"count": 4,
+						"at": "relief_in",
+						"tag": "relief_men",
+						"fixed": true,
+						"if": {
+							"all": [
+								{
+									"playing": "crown"
+								},
+								{
+									"not": {
+										"past": {
+											"d01_minas.gold": "few"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "mission",
+						"kind": "dragoon",
+						"count": 2,
+						"at": "relief_in",
+						"tag": "relief_men",
+						"fixed": true,
+						"if": {
+							"all": [
+								{
+									"playing": "crown"
+								},
+								{
+									"past": {
+										"d01_minas.gold": "few"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "mission",
+						"kind": "cuirassier",
+						"count": 3,
+						"at": "relief_in",
+						"tag": "relief_men",
+						"fixed": true,
+						"if": {
+							"playing": "crown"
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "mission",
+						"kind": "cuirassier",
+						"as": "sobral",
+						"count": 1,
+						"at": "relief_in",
+						"tag": "sobral",
+						"tags": [
+							"relief_men"
+						],
+						"fixed": true,
+						"if": {
+							"not": {
+								"playing": "crown"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "mission",
+						"kind": "dragoon",
+						"count": 4,
+						"at": "relief_in",
+						"tag": "relief_men",
+						"fixed": true,
+						"if": {
+							"not": {
+								"playing": "crown"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "mission",
+						"kind": "cuirassier",
+						"count": 3,
+						"at": "relief_in",
+						"tag": "relief_men",
+						"fixed": true,
+						"if": {
+							"not": {
+								"playing": "crown"
+							}
+						}
+					}
+				},
+				{
+					"give": {
+						"team": "mission",
+						"gold": 200
+					}
+				},
+				{
+					"ping": {
+						"area": "relief_in"
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 7,
+						"at": "hamlet",
+						"tag": "hamlet_pack",
+						"tags": [
+							"wave"
+						],
+						"order": {
+							"do": "attack",
+							"to": "hamlet_in"
+						},
+						"if": {
+							"not": {
+								"playing": "swarm"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "hamlet",
+						"tag": "hamlet_pack",
+						"tags": [
+							"wave"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "hamlet_in"
+						},
+						"if": {
+							"all": [
+								{
+									"not": {
+										"playing": "swarm"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"d06_queen.brood_n": "few"
+										}
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"objective": {
+						"id": "hamlet",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "hamlet_clock",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "hamlet",
+						"secs": 240
+					}
+				},
+				{
+					"ping": {
+						"area": "hamlet"
+					}
+				}
+			]
+		},
+		{
+			"id": "p2_light",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 30,
+			"do": [
+				{
+					"light": {
+						"to": "jungle_day",
+						"secs": 20
+					}
+				}
+			]
+		},
+		{
+			"id": "p2_say",
+			"when": {
+				"fired": "part2"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"t_dawn",
+						"n_relief",
+						"c_arrive"
+					]
+				}
+			]
+		},
+		{
+			"id": "p2_small",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"past": {
+							"d01_minas.gold": "few"
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"do": [
+				{
+					"say": [
+						"c_small"
+					]
+				}
+			]
+		},
+		{
+			"id": "p2_hamlet",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 9,
+			"do": [
+				{
+					"say": [
+						"t_hamlet",
+						"ti_hamlet",
+						"n_hamlet"
+					]
+				}
+			]
+		},
+		{
+			"id": "p2_charge",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 24,
+			"do": [
+				{
+					"say": [
+						"c_charge",
+						"n_charge"
+					]
+				},
+				{
+					"objective": {
+						"id": "charge",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"tag": "breeder"
+					}
+				}
+			]
+		},
+		{
+			"id": "charged",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"researched": {
+							"team": "mission",
+							"tech": "charge"
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "charge",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_charged"
+					]
+				}
+			]
+		},
+		{
+			"id": "s_relief",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "swarm"
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"f_relief"
+					]
+				}
+			]
+		},
+		{
+			"id": "m_relief",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "crown"
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"every": 10,
+			"times": 12,
+			"do": [
+				{
+					"order": {
+						"tag": "relief_men",
+						"do": "attack",
+						"to": "hamlet",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "hatch",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 30,
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "hatchlings",
+						"count": 6,
+						"at": "flood_nw",
+						"tag": "hatch",
+						"order": {
+							"do": "patrol",
+							"to": "village"
+						}
+					}
+				},
+				{
+					"say": [
+						"n_hatch",
+						"c_hatch"
+					]
+				},
+				{
+					"ping": {
+						"area": "village"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_hatch__0",
+			"when": {
+				"all": [
+					{
+						"fired": "hatch"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "hatch",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "hatch_circle",
+			"when": {
+				"all": [
+					{
+						"fired": "hatch"
+					},
+					{
+						"count": {
+							"tag": "hatch",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"every": 12,
+			"do": [
+				{
+					"order": {
+						"tag": "hatch",
+						"do": "move",
+						"to": "village",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "hatch_down",
+			"when": {
+				"all": [
+					{
+						"fired": "hatch"
+					},
+					{
+						"dead": "hatch"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "hatch",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_hatch_down"
+					]
+				}
+			]
+		},
+		{
+			"id": "w_probe",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"all": [
+							{
+								"fired": "part2"
+							},
+							{
+								"not": {
+									"fired": "part3"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_n",
+						"tag": "wave",
+						"tags": [
+							"w_probe"
+						],
+						"order": {
+							"do": "attack",
+							"to": "church_yard"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "flood_n",
+						"tag": "wave",
+						"tags": [
+							"w_probe"
+						],
+						"order": {
+							"do": "attack",
+							"to": "church_yard"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_n",
+						"tag": "wave",
+						"tags": [
+							"w_probe"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "church_yard"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_n"
+					}
+				},
+				{
+					"say": [
+						"n_probe"
+					]
+				}
+			],
+			"delay": 55
+		},
+		{
+			"id": "hamlet_free",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"near": {
+							"team": "mission",
+							"to": "hamlet_folk",
+							"within": 7
+						}
+					},
+					{
+						"count": {
+							"team": "swarm",
+							"area": "hamlet",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "hamlet_folk",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "chapel",
+						"on": false
+					}
+				},
+				{
+					"order": {
+						"tag": "hamlet_folk",
+						"do": "move",
+						"to": "church_yard"
+					}
+				},
+				{
+					"say": [
+						"n_free",
+						"ti_found"
+					]
+				},
+				{
+					"clock": {
+						"name": "hamlet",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "hamlet_clock",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "hamlet_run",
+			"when": {
+				"all": [
+					{
+						"fired": "hamlet_free"
+					},
+					{
+						"count": {
+							"tag": "hamlet_folk",
+							"not_area": "church_yard",
+							"at_least": 1
+						}
+					},
+					{
+						"all": [
+							{
+								"fired": "part2"
+							},
+							{
+								"not": {
+									"fired": "part3"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"every": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "hamlet_folk",
+						"do": "move",
+						"to": "church_yard"
+					}
+				}
+			]
+		},
+		{
+			"id": "w_flank",
+			"when": {
+				"all": [
+					{
+						"fired": "hamlet_free"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"all": [
+							{
+								"fired": "part2"
+							},
+							{
+								"not": {
+									"fired": "part3"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_cw",
+						"tag": "wave",
+						"tags": [
+							"w_flank"
+						],
+						"order": {
+							"do": "attack",
+							"to": "causeway"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "flood_cw",
+						"tag": "wave",
+						"tags": [
+							"w_flank"
+						],
+						"order": {
+							"do": "attack",
+							"to": "causeway"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_cw",
+						"tag": "wave",
+						"tags": [
+							"w_flank"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "causeway"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_cw",
+						"tag": "wave",
+						"tags": [
+							"w_flank"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "causeway"
+						},
+						"if": {
+							"count": {
+								"tag": "hatch",
+								"at_least": 1
+							}
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_cw"
+					}
+				}
+			],
+			"delay": 8
+		},
+		{
+			"id": "flank_say",
+			"when": {
+				"all": [
+					{
+						"fired": "w_flank"
+					},
+					{
+						"count": {
+							"tag": "hatch",
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_flank"
+					]
+				}
+			]
+		},
+		{
+			"id": "hamlet_late",
+			"when": {
+				"all": [
+					{
+						"clock_out": "hamlet"
+					},
+					{
+						"not": {
+							"fired": "hamlet_free"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_hamlet_late"
+					]
+				},
+				{
+					"spare": {
+						"tag": "hamlet_folk",
+						"on": false
+					}
+				},
+				{
+					"spare": {
+						"tag": "chapel",
+						"on": false
+					}
+				},
+				{
+					"hurt": {
+						"tag": "hamlet_folk",
+						"amount": 9999
+					}
+				},
+				{
+					"objective": {
+						"id": "hamlet",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "hamlet_back",
+			"when": {
+				"all": [
+					{
+						"fired": "hamlet_free"
+					},
+					{
+						"count": {
+							"tag": "hamlet_folk",
+							"not_area": "church_yard",
+							"below": 1
+						}
+					},
+					{
+						"all": [
+							{
+								"fired": "part2"
+							},
+							{
+								"not": {
+									"fired": "part3"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "hamlet",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"ti_back"
+					]
+				}
+			]
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"any": [
+							{
+								"fired": "hamlet_back"
+							},
+							{
+								"fired": "hamlet_late"
+							},
+							{
+								"all": [
+									{
+										"time": 300
+									},
+									{
+										"not": {
+											"playing": "crown"
+										}
+									}
+								]
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"objective": {
+						"id": "hamlet",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "hamlet_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "charge",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "hatch",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "church_live",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "road",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "column",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "column",
+						"secs": 300
+					}
+				},
+				{
+					"order": {
+						"tag": "people",
+						"do": "follow",
+						"leader": "tomasz",
+						"within": 3
+					}
+				},
+				{
+					"pace": {
+						"tag": "people",
+						"pace": 0.4
+					}
+				},
+				{
+					"say": [
+						"c_cannot",
+						"t_go",
+						"n_road"
+					]
+				},
+				{
+					"ping": {
+						"area": "trail_1"
+					}
+				},
+				{
+					"ping": {
+						"area": "fort_in"
+					}
+				},
+				{
+					"reveal": {
+						"area": "fort",
+						"side": "crown"
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_root",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "brood_mother",
+						"as": "forward_mother",
+						"count": 1,
+						"at": "mother_spot",
+						"tag": "fwd_mother",
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrannosaur",
+						"count": 1,
+						"at": "sire_spot",
+						"tag": "fwd_sire",
+						"tags": [
+							"sires"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"ping": {
+						"area": "mud_bank"
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_root2",
+			"when": {
+				"fired": "fwd_root"
+			},
+			"delay": 0.5,
+			"do": [
+				{
+					"brood_stage": {
+						"tag": "fwd_mother",
+						"stage": 2
+					}
+				},
+				{
+					"nest_free": {
+						"tag": "sires",
+						"on": true
+					}
+				},
+				{
+					"root_now": {
+						"tag": "fwd_mother"
+					}
+				},
+				{
+					"root_now": {
+						"tag": "fwd_sire"
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_say",
+			"when": {
+				"all": [
+					{
+						"fired": "fwd_root"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 14,
+			"do": [
+				{
+					"say": [
+						"n_mother"
+					]
+				},
+				{
+					"objective": {
+						"id": "fwd",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"area": "mud_bank"
+					}
+				},
+				{
+					"reveal": {
+						"area": "mud_bank",
+						"side": "crown",
+						"secs": 40
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_sire_say",
+			"when": {
+				"all": [
+					{
+						"fired": "fwd_say"
+					},
+					{
+						"past": {
+							"a05_specimens.cages": "all"
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"do": [
+				{
+					"say": [
+						"c_sire"
+					]
+				}
+			]
+		},
+		{
+			"id": "lead_say",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"delay": 8,
+			"do": [
+				{
+					"say": [
+						"t_lead"
+					]
+				}
+			]
+		},
+		{
+			"id": "m_road",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "crown"
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"order": {
+						"tag": "tomasz",
+						"do": "route",
+						"route": [
+							"trail_1",
+							"trail_2",
+							"trail_3",
+							"trail_4",
+							"trail_5",
+							"trail_6",
+							"trail_7",
+							"fort_gate",
+							"fort_in"
+						],
+						"name": "m_tomasz"
+					}
+				},
+				{
+					"order": {
+						"tag": "militia",
+						"do": "follow",
+						"leader": "tomasz",
+						"within": 4,
+						"fight": 6
+					}
+				},
+				{
+					"order": {
+						"tag": "relief_men",
+						"do": "follow",
+						"leader": "tomasz",
+						"within": 5,
+						"fight": 8
+					}
+				},
+				{
+					"order": {
+						"tag": "tiago",
+						"do": "follow",
+						"leader": "tomasz",
+						"within": 3
+					}
+				},
+				{
+					"say": [
+						"f_road"
+					]
+				}
+			]
+		},
+		{
+			"id": "fields_ask",
+			"when": {
+				"fired": "part3"
+			},
+			"delay": 16,
+			"do": [
+				{
+					"say": [
+						"c_burn",
+						"t_bread",
+						"ti_choose"
+					]
+				},
+				{
+					"choice": {
+						"id": "fields",
+						"side": "crown",
+						"title": "THE FIELDS",
+						"line": "q_fields",
+						"default": "left",
+						"time": 60,
+						"options": [
+							{
+								"id": "burned",
+								"label": "BURN THEM",
+								"about": "The swarm finds nothing to eat here: its waves come no bigger. The people come home to ashes.",
+								"do": [
+									{
+										"say": [
+											"t_burned",
+											"n_burned"
+										]
+									},
+									{
+										"burn": {
+											"tag": "fields_b",
+											"secs": 25,
+											"douse_side": "swarm",
+											"douse_secs": 99999
+										}
+									}
+								]
+							},
+							{
+								"id": "left",
+								"label": "LEAVE THEM",
+								"about": "The people's bread for their return. The swarm will feed on it: its waves come bigger.",
+								"do": [
+									{
+										"say": [
+											"t_left"
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "fed_say",
+			"when": {
+				"all": [
+					{
+						"flag": {
+							"fields": "left"
+						}
+					},
+					{
+						"playing": "crown"
+					},
+					{
+						"fired": "part3"
+					}
+				]
+			},
+			"delay": 30,
+			"do": [
+				{
+					"say": [
+						"n_fed"
+					]
+				}
+			]
+		},
+		{
+			"id": "w_road_0",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 4,
+						"at": "flood_tw2",
+						"tag": "wave",
+						"tags": [
+							"w_road_0"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_2"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_tw2",
+						"tag": "wave",
+						"tags": [
+							"w_road_0"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_2"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_tw2",
+						"tag": "wave",
+						"tags": [
+							"w_road_0"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_2"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_tw2",
+						"tag": "wave",
+						"tags": [
+							"w_road_0"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_2"
+						},
+						"if": {
+							"flag": {
+								"fields": "left"
+							}
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_tw2"
+					}
+				}
+			],
+			"delay": 12,
+			"every": 132
+		},
+		{
+			"id": "w_road_1",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 4,
+						"at": "flood_te3",
+						"tag": "wave",
+						"tags": [
+							"w_road_1"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_3"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_te3",
+						"tag": "wave",
+						"tags": [
+							"w_road_1"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_3"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_te3",
+						"tag": "wave",
+						"tags": [
+							"w_road_1"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_3"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_te3",
+						"tag": "wave",
+						"tags": [
+							"w_road_1"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_3"
+						},
+						"if": {
+							"flag": {
+								"fields": "left"
+							}
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_te3"
+					}
+				}
+			],
+			"delay": 34,
+			"every": 132
+		},
+		{
+			"id": "w_road_2",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 4,
+						"at": "flood_tw4",
+						"tag": "wave",
+						"tags": [
+							"w_road_2"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_4"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_tw4",
+						"tag": "wave",
+						"tags": [
+							"w_road_2"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_4"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_tw4",
+						"tag": "wave",
+						"tags": [
+							"w_road_2"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_4"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_tw4",
+						"tag": "wave",
+						"tags": [
+							"w_road_2"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_4"
+						},
+						"if": {
+							"flag": {
+								"fields": "left"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_tw4",
+						"tag": "wave",
+						"tags": [
+							"w_road_2"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_4"
+						},
+						"if": {
+							"not": {
+								"dead": "fwd_mother"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "flood_tw4",
+						"tag": "wave",
+						"tags": [
+							"w_road_2"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_4"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_tw4"
+					}
+				}
+			],
+			"delay": 56,
+			"every": 132
+		},
+		{
+			"id": "w_road_3",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 4,
+						"at": "flood_te5",
+						"tag": "wave",
+						"tags": [
+							"w_road_3"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_5"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_te5",
+						"tag": "wave",
+						"tags": [
+							"w_road_3"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_5"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_te5",
+						"tag": "wave",
+						"tags": [
+							"w_road_3"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_5"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_te5",
+						"tag": "wave",
+						"tags": [
+							"w_road_3"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_5"
+						},
+						"if": {
+							"flag": {
+								"fields": "left"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_te5",
+						"tag": "wave",
+						"tags": [
+							"w_road_3"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_5"
+						},
+						"if": {
+							"not": {
+								"dead": "fwd_mother"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "flood_te5",
+						"tag": "wave",
+						"tags": [
+							"w_road_3"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_5"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_te5"
+					}
+				}
+			],
+			"delay": 78,
+			"every": 132
+		},
+		{
+			"id": "w_road_4",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 4,
+						"at": "flood_tw6",
+						"tag": "wave",
+						"tags": [
+							"w_road_4"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_6"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_tw6",
+						"tag": "wave",
+						"tags": [
+							"w_road_4"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_6"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_tw6",
+						"tag": "wave",
+						"tags": [
+							"w_road_4"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_6"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_tw6",
+						"tag": "wave",
+						"tags": [
+							"w_road_4"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_6"
+						},
+						"if": {
+							"flag": {
+								"fields": "left"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_tw6",
+						"tag": "wave",
+						"tags": [
+							"w_road_4"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_6"
+						},
+						"if": {
+							"not": {
+								"dead": "fwd_mother"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_tw6",
+						"tag": "wave",
+						"tags": [
+							"w_road_4"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_6"
+						},
+						"if": {
+							"not": {
+								"dead": "fwd_mother"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "flood_tw6",
+						"tag": "wave",
+						"tags": [
+							"w_road_4"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_6"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_tw6"
+					}
+				}
+			],
+			"delay": 100,
+			"every": 132
+		},
+		{
+			"id": "w_road_5",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 4,
+						"at": "flood_te7",
+						"tag": "wave",
+						"tags": [
+							"w_road_5"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_7"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "flood_te7",
+						"tag": "wave",
+						"tags": [
+							"w_road_5"
+						],
+						"order": {
+							"do": "attack",
+							"to": "trail_7"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "few"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_te7",
+						"tag": "wave",
+						"tags": [
+							"w_road_5"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_7"
+						},
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_te7",
+						"tag": "wave",
+						"tags": [
+							"w_road_5"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_7"
+						},
+						"if": {
+							"flag": {
+								"fields": "left"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_te7",
+						"tag": "wave",
+						"tags": [
+							"w_road_5"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_7"
+						},
+						"if": {
+							"not": {
+								"dead": "fwd_mother"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "flood_te7",
+						"tag": "wave",
+						"tags": [
+							"w_road_5"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_7"
+						},
+						"if": {
+							"not": {
+								"dead": "fwd_mother"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "flood_te7",
+						"tag": "wave",
+						"tags": [
+							"w_road_5"
+						],
+						"fixed": true,
+						"order": {
+							"do": "attack",
+							"to": "trail_7"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "flood_te7"
+					}
+				}
+			],
+			"delay": 122,
+			"every": 132
+		},
+		{
+			"id": "w_road_say",
+			"when": {
+				"fired": "w_road_0"
+			},
+			"do": [
+				{
+					"say": [
+						"n_wave"
+					]
+				}
+			]
+		},
+		{
+			"id": "road_hunt",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"order": {
+						"tag": "wave",
+						"do": "hunt",
+						"prey": "people",
+						"within": 22
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_dead",
+			"when": {
+				"all": [
+					{
+						"fired": "fwd_root"
+					},
+					{
+						"dead": "fwd_mother"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "fwd",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"c_mother_dead"
+					]
+				},
+				{
+					"flag": {
+						"forward": "killed"
+					}
+				}
+			]
+		},
+		{
+			"id": "fort_first",
+			"when": {
+				"counter": {
+					"name": "at_fort",
+					"at_least": 1
+				}
+			},
+			"do": [
+				{
+					"say": [
+						"n_fort"
+					]
+				}
+			]
+		},
+		{
+			"id": "tomasz_hurt",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "tomasz",
+							"below": 0.6
+						}
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"t_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "tomasz"
+					}
+				}
+			]
+		},
+		{
+			"id": "road_done",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"tag": "people",
+									"below": 1
+								}
+							},
+							{
+								"clock_out": "column"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_all"
+								},
+								{
+									"fired": "lost_church"
+								},
+								{
+									"fired": "s_won"
+								},
+								{
+									"fired": "s_lost"
+								},
+								{
+									"fired": "road_done"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_gate"
+					]
+				},
+				{
+					"clock": {
+						"name": "column",
+						"stop": true
+					}
+				},
+				{
+					"tally": {
+						"flag": "aldeia",
+						"counter": "at_fort",
+						"of": "people_n",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.4,
+								"some"
+							],
+							[
+								0.7,
+								"many"
+							]
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "if_road_done__0",
+			"when": {
+				"all": [
+					{
+						"fired": "road_done"
+					},
+					{
+						"not": {
+							"flag": {
+								"fields": "burned"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"fields": "left"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_road_done__1",
+			"when": {
+				"all": [
+					{
+						"fired": "road_done"
+					},
+					{
+						"not": {
+							"flag": {
+								"forward": "killed"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"forward": "rooted"
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"all": [
+					{
+						"fired": "road_done"
+					},
+					{
+						"counter": {
+							"name": "at_fort",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "s_won"
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"objective": {
+						"id": "road",
+						"set": "done"
+					}
+				},
+				{
+					"win": "crown"
+				}
+			]
+		},
+		{
+			"id": "lost_road",
+			"when": {
+				"all": [
+					{
+						"fired": "road_done"
+					},
+					{
+						"counter": {
+							"name": "at_fort",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "s_won"
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"objective": {
+						"id": "road",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "lost_all",
+			"when": {
+				"all": [
+					{
+						"fired": "setup"
+					},
+					{
+						"count": {
+							"tag": "people",
+							"below": 1
+						}
+					},
+					{
+						"counter": {
+							"name": "at_fort",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "s_won"
+						}
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"n_all_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "road",
+						"set": "failed"
+					}
+				},
+				{
+					"lose": "crown"
+				}
+			]
+		},
+		{
+			"id": "lost_church",
+			"when": {
+				"all": [
+					{
+						"dead": "church"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					},
+					{
+						"not": {
+							"fired": "s_won"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_church_down"
+					]
+				},
+				{
+					"objective": {
+						"id": "church_live",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "s_won",
+			"when": {
+				"all": [
+					{
+						"playing": "swarm"
+					},
+					{
+						"any": [
+							{
+								"dead": "church"
+							},
+							{
+								"counter": {
+									"name": "margin",
+									"at_least": 1
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "the_end"
+						}
+					},
+					{
+						"not": {
+							"fired": "s_lost"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_won"
+					]
+				},
+				{
+					"objective": {
+						"id": "s_hunt",
+						"set": "done"
+					}
+				},
+				{
+					"flag": {
+						"aldeia": "few"
+					}
+				},
+				{
+					"flag": {
+						"fields": "left"
+					}
+				},
+				{
+					"win": "swarm"
+				}
+			]
+		},
+		{
+			"id": "s_lost",
+			"when": {
+				"all": [
+					{
+						"playing": "swarm"
+					},
+					{
+						"fired": "road_done"
+					},
+					{
+						"not": {
+							"fired": "s_won"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "s_hunt",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "s_mother",
+			"when": {
+				"all": [
+					{
+						"playing": "swarm"
+					},
+					{
+						"dead": "fwd_mother"
+					},
+					{
+						"fired": "setup_swarm"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"f_mother_dead"
+					]
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 8
+			},
+			"do": [
+				{
+					"say": [
+						"new_dragoon",
+						"new_charge"
+					]
+				}
+			]
+		}
+	],
+	"heroes": [
+		"tomasz",
+		"tiago"
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "crown",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"tomasz": {
+			"name": "Father Tomasz",
+			"side": "crown"
+		},
+		"tiago": {
+			"name": "Brother Tiago",
+			"side": "crown"
+		},
+		"sobral": {
+			"name": "Captain Sobral",
+			"side": "crown"
+		},
+		"narrator": {
+			"name": "São Rafael",
+			"side": "crown"
+		},
+		"flood": {
+			"name": "The Flood",
+			"side": "swarm"
+		},
+		"new": {
+			"name": "NEW IN YOUR ARMY",
+			"side": "crown"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "After Minas, Tomasz asked for the hardest place in Brazil. They sent him up the Tapajós."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "In the wet season of 2776 he met the swarm. You will hear how it was born. He met it first."
+		},
+		"t_open1": {
+			"who": "tomasz",
+			"text": "São Rafael. Thirty families, a church of timber, fields on the dry ground above the flood."
+		},
+		"t_open2": {
+			"who": "tomasz",
+			"text": "Brother Tiago taught the catechism in his own tongue. I taught it badly in mine."
+		},
+		"t_open_many": {
+			"who": "tomasz",
+			"text": "Word of Rome had come up the river before me. They trusted me before I had earned it."
+		},
+		"t_open_minas": {
+			"who": "tomasz",
+			"text": "I had left Minas uneasy. I thought the frontier would be quieter."
+		},
+		"t_open_fled": {
+			"who": "tomasz",
+			"text": "Ramos was somewhere in the south by then. I prayed for him on the boat."
+		},
+		"t_open3": {
+			"who": "tomasz",
+			"text": "That year the river came up into the forest and did not go down."
+		},
+		"k_open_s": {
+			"who": "king",
+			"text": "Tomasz tells that night as a priest. Here it is from the flooded forest, where nobody was keeping count."
+		},
+		"f_open": {
+			"who": "flood",
+			"text": "The wet season. The forest stands in the river. The pack is hungry, and the village smells of grain and smoke."
+		},
+		"t_bell": {
+			"who": "tomasz",
+			"text": "Tiago, the bell! Ring it!",
+			"to": "crown"
+		},
+		"ti_bell": {
+			"who": "tiago",
+			"text": "They are out in the fields, Father. In this rain they will not hear it.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_lesson": {
+			"who": "narrator",
+			"text": "The people in the three fields can't hear the bell. Send a soldier or Father Tomasz to each field: its people run for the church when one of yours reaches them.",
+			"to": "crown"
+		},
+		"n_varzea": {
+			"who": "narrator",
+			"text": "Your men wade the flooded forest at half pace. The creatures go through it as fast as on dry ground. Keep to the dry paths.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"t_field": {
+			"who": "tomasz",
+			"text": "To the church! All of you! Leave the baskets!",
+			"to": "crown"
+		},
+		"n_w1": {
+			"who": "narrator",
+			"text": "Something comes out of the flood at the west field. Raptors.",
+			"to": "crown"
+		},
+		"ti_w1": {
+			"who": "tiago",
+			"text": "Those are not jaguars, Father.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_w2": {
+			"who": "narrator",
+			"text": "More come out of the flood at the north field.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_w3": {
+			"who": "narrator",
+			"text": "And at the river field, by the landing.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"ti_in": {
+			"who": "tiago",
+			"text": "Everyone from the fields is in the churchyard, Father. The children too.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_push": {
+			"who": "narrator",
+			"text": "They come up the bluff for the churchyard. Hold the line on the bluff.",
+			"to": "crown"
+		},
+		"t_pray": {
+			"who": "tomasz",
+			"text": "Kneel, all of you, and stay down. Let the men shoot over you.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"t_dawn": {
+			"who": "tomasz",
+			"text": "Dawn. I have never been so glad of a grey sky."
+		},
+		"n_dawn_late": {
+			"who": "narrator",
+			"text": "Dawn. Whoever was still out in the fields runs in now, if they can.",
+			"to": "crown"
+		},
+		"n_relief": {
+			"who": "narrator",
+			"text": "Horses on the trail from the south: the relief from the river fort."
+		},
+		"c_arrive": {
+			"who": "sobral",
+			"text": "Captain Sobral, of the river fort. Your canoe reached us yesterday. We rode all night."
+		},
+		"c_small": {
+			"who": "sobral",
+			"text": "The Governor's purse is thin since Minas. I could bring only a few.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"t_hamlet": {
+			"who": "tomasz",
+			"text": "Santa Luzia. The hamlet on the causeway. Nobody came in from there.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"ti_hamlet": {
+			"who": "tiago",
+			"text": "My sister's family is there. They will have gone into the chapel.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_hamlet": {
+			"who": "narrator",
+			"text": "Ride out along the causeway (west) to Santa Luzia. Drive the Raptors off, and its people come out and follow your men back.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"c_charge": {
+			"who": "sobral",
+			"text": "My horsemen are drilled for the charge, if the fort gives them the time. A charge breaks the small ones like reeds.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_charge": {
+			"who": "narrator",
+			"text": "Select the river fort's Horse Breeder (down the trail) and press CHARGE: the drill needs nobody there.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_charged": {
+			"who": "narrator",
+			"text": "The Charge is drilled. Gallop your Horsemen into the light ones.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_hatch": {
+			"who": "narrator",
+			"text": "Small flyers circle over the village. Where they circle, the pack follows.",
+			"until": "part3"
+		},
+		"c_hatch": {
+			"who": "sobral",
+			"text": "Shoot those birds down! They are not birds.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_hatch_down": {
+			"who": "narrator",
+			"text": "The flyers are down. The pack comes on blind.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_free": {
+			"who": "narrator",
+			"text": "The people of Santa Luzia come out of the chapel. They follow your men back along the causeway."
+		},
+		"ti_found": {
+			"who": "tiago",
+			"text": "They hid in the chapel all night. They prayed the whole time, my sister says.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_flank": {
+			"who": "narrator",
+			"text": "The flyers still circle over you: more of the pack comes at the causeway out of the flood.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_probe": {
+			"who": "narrator",
+			"text": "A few come up at the village while your riders are away.",
+			"to": "crown",
+			"until": "part3"
+		},
+		"n_hamlet_late": {
+			"who": "narrator",
+			"text": "The chapel at Santa Luzia is broken. Nobody comes out.",
+			"to": "crown"
+		},
+		"ti_back": {
+			"who": "tiago",
+			"text": "They are in, Father. All we could find.",
+			"to": "crown"
+		},
+		"n_mother": {
+			"who": "narrator",
+			"text": "In the north flood a big one has rooted on the mud bank: a forward Mother. While she lives, every wave is bigger than the last.",
+			"to": "crown",
+			"until": "road_done"
+		},
+		"c_sire": {
+			"who": "sobral",
+			"text": "And that Sire beside her. My men call him the Lindqvist Sire. They say he came out of the doctor's cages.",
+			"until": "road_done"
+		},
+		"c_cannot": {
+			"who": "sobral",
+			"text": "We cannot hold this, Father. Not with these men. The fort can."
+		},
+		"t_go": {
+			"who": "tomasz",
+			"text": "Then we go. Everyone. The old ones in the middle."
+		},
+		"n_road": {
+			"who": "narrator",
+			"text": "The people follow Father Tomasz. Walk him down the trail to the river fort, and keep the column covered.",
+			"to": "crown"
+		},
+		"c_burn": {
+			"who": "sobral",
+			"text": "Burn the fields and the granary, Father. Leave them nothing to eat.",
+			"to": "crown",
+			"until": "road_done"
+		},
+		"t_bread": {
+			"who": "tomasz",
+			"text": "That is the people's bread for the winter.",
+			"to": "crown",
+			"until": "road_done"
+		},
+		"ti_choose": {
+			"who": "tiago",
+			"text": "They ask you to choose, Father. They will do what you say.",
+			"to": "crown",
+			"until": "road_done"
+		},
+		"q_fields": {
+			"who": "narrator",
+			"text": "Captain Sobral would burn the fields and the granary so the swarm finds nothing to eat. They are the people's bread for the winter.",
+			"to": "crown"
+		},
+		"t_burned": {
+			"who": "tomasz",
+			"text": "God forgive me. Burn them."
+		},
+		"t_left": {
+			"who": "tomasz",
+			"text": "No. It is their bread. We will pay for it with powder, not with their hunger."
+		},
+		"n_burned": {
+			"who": "narrator",
+			"text": "The fields and the granary burn behind the column.",
+			"to": "crown"
+		},
+		"n_fed": {
+			"who": "narrator",
+			"text": "Behind the column the swarm comes up into the fields and feeds. Its waves come bigger.",
+			"to": "crown",
+			"until": "road_done"
+		},
+		"n_wave": {
+			"who": "narrator",
+			"text": "They come out of the flood at the column.",
+			"to": "crown",
+			"until": "road_done"
+		},
+		"c_mother_dead": {
+			"who": "sobral",
+			"text": "The big one in the flood is down! They come slower now.",
+			"to": "crown"
+		},
+		"n_fort": {
+			"who": "narrator",
+			"text": "The first of the people reach the river fort."
+		},
+		"t_hurt": {
+			"who": "tomasz",
+			"text": "I am hit. Keep them walking, Tiago.",
+			"to": "crown"
+		},
+		"t_lead": {
+			"who": "tomasz",
+			"text": "Stay close to me. Do not look into the water.",
+			"to": "crown",
+			"until": "road_done"
+		},
+		"n_gate": {
+			"who": "narrator",
+			"text": "Dusk. The river fort shuts its gate. Whoever is still on the trail is left to the flood."
+		},
+		"n_church_down": {
+			"who": "narrator",
+			"text": "The church of São Rafael falls with the people in its yard."
+		},
+		"n_all_lost": {
+			"who": "narrator",
+			"text": "Nobody of São Rafael is left alive."
+		},
+		"f_1": {
+			"who": "flood",
+			"text": "Your Mother is rooted on the mud bank. Lay eggs on her card: Raptors by the Tyrant Sire, flyers by the Storm Sire.",
+			"to": "swarm"
+		},
+		"f_2": {
+			"who": "flood",
+			"text": "The flood is your road: your creatures cross it at full pace, the men wade it slowly. The granary feeds whoever stands round it.",
+			"to": "swarm"
+		},
+		"f_relief": {
+			"who": "flood",
+			"text": "Horses on the trail from the south: the men from the river fort.",
+			"to": "swarm"
+		},
+		"f_road": {
+			"who": "flood",
+			"text": "The people leave the bluff and go down the trail in a long line.",
+			"to": "swarm"
+		},
+		"f_won": {
+			"who": "flood",
+			"text": "The column breaks in the flood. Nobody counts what is left.",
+			"to": "swarm"
+		},
+		"f_lost": {
+			"who": "flood",
+			"text": "The fort's gate shuts on the last of them.",
+			"to": "swarm"
+		},
+		"f_mother_dead": {
+			"who": "flood",
+			"text": "The Mother is dead. The pack scatters into the flood.",
+			"to": "swarm"
+		},
+		"t_end1": {
+			"who": "tomasz",
+			"text": "We came through the fort's gate at dusk, and I counted them."
+		},
+		"t_end_many": {
+			"who": "tomasz",
+			"text": "Most of them were there. I counted twice to be sure."
+		},
+		"t_end_some": {
+			"who": "tomasz",
+			"text": "Some of them were there. I named the others that night, on my knees."
+		},
+		"t_end_few": {
+			"who": "tomasz",
+			"text": "Few of them were there. I have their names still."
+		},
+		"t_end_burned": {
+			"who": "tomasz",
+			"text": "Behind us the smoke of the fields stood over the forest all night."
+		},
+		"t_end_left": {
+			"who": "tomasz",
+			"text": "Behind us the fields stood green in the rain. The swarm fed on them all season."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "A priest, a catechist and a handful of dragoons brought a village through the flood."
+		},
+		"k_end_left": {
+			"who": "king",
+			"text": "He would not burn the poor's bread. My soldiers paid for that bread on the Tapajós for years. I would have done the same."
+		},
+		"k_end_burned": {
+			"who": "king",
+			"text": "He burned the poor's bread to starve the swarm. He has confessed it every year since. It was a hard thing, and he chose it."
+		},
+		"k_end_s": {
+			"who": "king",
+			"text": "That is not how it went. Tomasz brought them to the fort. Hear it again from him."
+		},
+		"new_dragoon": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE DRAGOON. A Musketeer on a horse: he rides fast down the trails and fires on foot. The relief brings four; the river fort's Barracks trains more beside its Horse Breeder.",
+			"portrait": "res://assets/icons/dragoon.png"
+		},
+		"new_charge": {
+			"who": "new",
+			"to": "crown",
+			"text": "NEW: THE CAVALRY CHARGE. Drill it at a Horse Breeder: a Horseman's first blow after a gallop hits more than twice as hard on light creatures, and throws them back."
+		}
+	},
+	"stills": {
+		"rome": {
+			"image": "res://campaign/stills/p01_01.jpg",
+			"caption": "Rome, the present. The King tells it."
+		},
+		"village": {
+			"image": "res://campaign/stills/d05_01.jpg",
+			"caption": "São Rafael, on the Tapajós, the wet season 2776."
+		},
+		"bell": {
+			"image": "res://campaign/stills/d05_02.jpg",
+			"caption": "The bell in the night."
+		},
+		"dragoons": {
+			"image": "res://campaign/stills/d05_03.jpg",
+			"caption": "The relief from the river fort."
+		},
+		"fields": {
+			"image": "res://campaign/stills/d05_04.jpg",
+			"caption": "The fields at dusk."
+		}
+	},
+	"next": {
+		"crown": "",
+		"swarm": ""
+	},
+	"debrief": {
+		"crown": {
+			"still": "fields",
+			"title": "The River Fort",
+			"text": "{at_fort} of the {people_n} people of São Rafael reached the river fort.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"fields": "burned"
+						}
+					},
+					"text": "The fields and the granary were burned behind them."
+				},
+				{
+					"if": {
+						"flag": {
+							"fields": "left"
+						}
+					},
+					"text": "The fields were left standing for their return. The swarm fed on them."
+				},
+				{
+					"if": {
+						"flag": {
+							"forward": "killed"
+						}
+					},
+					"text": "The forward Mother on the mud bank was killed."
+				}
+			]
+		},
+		"swarm": {
+			"still": "bell",
+			"title": "The Flood",
+			"text": "Of the {people_n} people of São Rafael, {dead_p} never reached the fort."
+		}
+	},
+	"opening": {
+		"crown": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2"
+				]
+			},
+			{
+				"still": "village",
+				"lines": [
+					"t_open1",
+					"t_open2",
+					{
+						"id": "t_open_many",
+						"if": {
+							"past": {
+								"a07_council.people": "many"
+							}
+						}
+					},
+					{
+						"id": "t_open_minas",
+						"if": {
+							"past": {
+								"d01_minas.minas": "restless"
+							}
+						}
+					},
+					{
+						"id": "t_open_fled",
+						"if": {
+							"past": {
+								"d01_minas.conspirator": "fled"
+							}
+						}
+					},
+					"t_open3"
+				]
+			}
+		],
+		"swarm": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open_s"
+				]
+			},
+			{
+				"still": "bell",
+				"lines": [
+					"f_open"
+				]
+			}
+		]
+	},
+	"ending": {
+		"crown": [
+			{
+				"still": "fields",
+				"lines": [
+					"t_end1",
+					{
+						"id": "t_end_many",
+						"if": {
+							"flag": {
+								"aldeia": "many"
+							}
+						}
+					},
+					{
+						"id": "t_end_some",
+						"if": {
+							"flag": {
+								"aldeia": "some"
+							}
+						}
+					},
+					{
+						"id": "t_end_few",
+						"if": {
+							"flag": {
+								"aldeia": "few"
+							}
+						}
+					},
+					{
+						"id": "t_end_burned",
+						"if": {
+							"flag": {
+								"fields": "burned"
+							}
+						}
+					},
+					{
+						"id": "t_end_left",
+						"if": {
+							"flag": {
+								"fields": "left"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end1",
+					{
+						"id": "k_end_left",
+						"if": {
+							"flag": {
+								"fields": "left"
+							}
+						}
+					},
+					{
+						"id": "k_end_burned",
+						"if": {
+							"flag": {
+								"fields": "burned"
+							}
+						}
+					}
+				]
+			}
+		],
+		"swarm": [
+			{
+				"still": "bell",
+				"lines": [
+					"f_won"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_s"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"crown": {
+			"still": "village",
+			"text": [
+				"The Tapajós, the wet season 2776. You are Tomasz's mission village of São Rafael: Father Tomasz, Brother Tiago and the mission's militia.",
+				"Something hunts in the flooded forest round the village. First bring the people in from the fields to the church; then the relief rides up from the river fort, and the hamlet of Santa Luzia must be fetched.",
+				"Then lead everyone down the trail to the river fort. Men wade the flood slowly; the creatures do not."
+			]
+		},
+		"swarm": {
+			"still": "bell",
+			"text": [
+				"The Tapajós, the wet season 2776. You are the swarm in the flooded forest: a forward Mother rooted on a mud bank, her two Sires and a pack.",
+				"The village on the bluff has grain and people. Break its church, or catch more than half of its people before they reach the river fort down the trail."
+			]
+		}
+	}
+}

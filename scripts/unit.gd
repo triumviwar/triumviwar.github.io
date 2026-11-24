@@ -3805,6 +3805,11 @@ func _tick_unit(delta: float) -> void:
 	if slow_t > 0.0:
 		slow_t -= delta
 		speed *= Defs.ACID_SLOW
+	if game.mission != null and game.mission.wade < 1.0 and not _air_k and not game.mission.wade_free.has(_k_fac):
+		# (d05's VÁRZEA: men and horses wade the flooded forest's shallow water slowly; the creatures don't)
+		var wi := clampi(int(position.y / Game.T), 0, Game.H - 1) * Game.W + clampi(int(position.x / Game.T), 0, Game.W - 1)
+		if game.mapgen != null and wi < game.mapgen.ford.size() and game.mapgen.ford[wi] == 1:
+			speed *= game.mission.wade
 	if litter_t > 0.0:
 		speed *= CogScatter.speed_mul(self)       # (in a Great Winder's SCATTER COGS litter: scripts/cog_scatter.gd)
 		litter_t -= delta

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.200", "items": [
+		"A new campaign mission, Act 2's THE MISSION OF SÃO RAFAEL (the Crown, after The Gold of Vila Rica): Father Tomasz's mission village on the Tapajós in the wet season, and the first time the Crown meets the swarm. In the night bring the people in from the three fields (they can't hear the bell: send a soldier to each), hold the bluff; at dawn the relief rides up from the river fort with Dragoons and Horsemen (NEW: the DRAGOON and the CAVALRY CHARGE), ride out to the hamlet of Santa Luzia and bring its people back; then lead everyone down the trail to the fort, the waves coming out of the flood, and choose whether to burn the fields behind you. The flooded forest (várzea) is the creatures' road: men wade it at half pace, nothing is built in it. You can also play the swarm (the solo pick or versus).",
+	]},
 	{"v": "0.38.199", "items": [
 		"The Queen: your Brood Mother is now called Linnea (Lindqvist named her after the first one). She is still only an animal.",
 	]},

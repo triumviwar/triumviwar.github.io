@@ -91,6 +91,12 @@ var heroes: MissionHeroes = null
 # mission_act2.gd (MissionAct2); its state is this dictionary, saved with the rest
 var act2 := {}
 var a2: MissionAct2 = null
+# Act 2's d05_aldeia (docs/campaign_d05_build.md): THE VÁRZEA. Mission "wade": {"pace": 0.5, "free": [factions]}: a
+# ground unit standing on a ford cell (the flooded forest's shallow water) walks at `pace` (Unit's speed), except the
+# factions in `free` (the Brood: the creatures go through the flood at their own pace); nothing is built on a ford cell
+# (Game.placement_problem). 1.0: no rule.
+var wade := 1.0
+var wade_free := {}
 
 
 func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
@@ -115,6 +121,10 @@ func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
 	solo_side = String(camp.get("side", "")) if md == "solo" else ""
 	if m.get("mist") is Dictionary:
 		set_mist(m["mist"], false)      # (the picture of it comes in _ready)
+	if m.get("wade") is Dictionary:
+		wade = clampf(float(m["wade"].get("pace", 0.5)), 0.05, 1.0)
+		for fac in m["wade"].get("free", ["brood"]):
+			wade_free[String(fac)] = true
 	a2 = MissionAct2.new(self)
 	if m.get("versions") is Dictionary:
 		# (act2-engine0: the mission's VERSION, FRESH / GROWN, picked once before anything is placed)

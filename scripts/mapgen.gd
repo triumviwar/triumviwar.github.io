@@ -596,6 +596,10 @@ func apply_custom(data: Dictionary) -> void:
 	biome_a = parts[0] if BIOMES.has(parts[0]) else "grass"
 	biome_b = parts[1] if parts.size() > 1 and BIOMES.has(parts[1]) else biome_a
 	mix = String(data.get("mix", "diag"))
+	# (d05_aldeia: a custom map may name the ground sets of its water and its fords, as a named map does: the várzea's
+	# flooded forest drawn as flood water, not reeds)
+	water_set = String(data.get("water", ""))
+	ford_set = String(data.get("ford", ""))
 	read_cells(String(data.get("cells", "")))
 	_square_ramps()
 	_cliffs()
