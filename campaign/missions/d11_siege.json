@@ -602,6 +602,12 @@
 			10,
 			8
 		],
+		"park_near": [
+			16,
+			50,
+			5,
+			5
+		],
 		"masters_camp": [
 			44,
 			36,
@@ -1130,6 +1136,58 @@
 			"kind": "cottage",
 			"at": [
 				4,
+				48
+			],
+			"tag": "depot",
+			"tags": [
+				"tents"
+			],
+			"name": "The column's tents"
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				28,
+				40
+			],
+			"tag": "depot",
+			"tags": [
+				"tents"
+			],
+			"name": "The column's tents"
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				28,
+				56
+			],
+			"tag": "depot",
+			"tags": [
+				"tents"
+			],
+			"name": "The column's tents"
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				32,
+				44
+			],
+			"tag": "depot",
+			"tags": [
+				"tents"
+			],
+			"name": "The column's tents"
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				32,
 				48
 			],
 			"tag": "depot",
@@ -2302,7 +2360,7 @@
 			"kind": "countdown",
 			"clock": "diggers",
 			"hidden": true,
-			"text": "The city's diggers come up at the old mine's mouth in {clock:diggers}: have men there."
+			"text": "The city's diggers come up by the siege park in {clock:diggers}, with a mine: have men there."
 		},
 		{
 			"id": "c_break",
@@ -2751,6 +2809,68 @@
 					"ping": {
 						"area": "park"
 					}
+				}
+			]
+		},
+		{
+			"id": "pay",
+			"when": {
+				"all": [
+					{
+						"time": 30
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 30,
+			"do": [
+				{
+					"give": {
+						"team": "column",
+						"gold": 60,
+						"powder": 20
+					}
+				}
+			]
+		},
+		{
+			"id": "pay_say",
+			"when": {
+				"fired": "pay"
+			},
+			"do": []
+		},
+		{
+			"id": "if_pay_say__0",
+			"when": {
+				"all": [
+					{
+						"fired": "pay_say"
+					},
+					{
+						"playing": "crown"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_pay"
+					]
 				}
 			]
 		},
@@ -3354,6 +3474,117 @@
 				{
 					"say": [
 						"n_probe2"
+					]
+				}
+			]
+		},
+		{
+			"id": "probe3",
+			"when": {
+				"all": [
+					{
+						"time": 168
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 3,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"probe3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"probe3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "springer",
+						"count": 1,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"probe3",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_w"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "west_out"
+					}
+				},
+				{
+					"say": [
+						"n_probe3"
 					]
 				}
 			]
@@ -5285,6 +5516,170 @@
 			]
 		},
 		{
+			"id": "m_wait",
+			"when": {
+				"all": [
+					{
+						"fired": "mine_on"
+					},
+					{
+						"not": {
+							"fired": "sap_said"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"m_wait",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 1,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"m_wait",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"m_wait",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 1,
+						"at": "west_in",
+						"tag": "sortie",
+						"tags": [
+							"m_wait",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "springer",
+						"count": 1,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"m_wait",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "camp_mid"
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				},
+				{
+					"ping": {
+						"area": "west_out"
+					}
+				},
+				{
+					"say": [
+						"n_wait"
+					]
+				}
+			],
+			"delay": 50,
+			"every": 50
+		},
+		{
 			"id": "m1",
 			"when": {
 				"fired": "sap_said"
@@ -5818,7 +6213,7 @@
 				},
 				{
 					"ping": {
-						"area": "mine_mouth"
+						"area": "park_near"
 					}
 				},
 				{
@@ -5957,9 +6352,14 @@
 				{
 					"sap": {
 						"tag": "diggers",
-						"to": "mine_mouth",
+						"to": "park_near",
 						"secs": 39,
-						"name": "diggers"
+						"name": "diggers",
+						"blast": {
+							"tag": "park",
+							"amount": 220,
+							"within": 6
+						}
 					}
 				}
 			]
@@ -5977,7 +6377,7 @@
 				},
 				{
 					"ping": {
-						"area": "mine_mouth"
+						"area": "park_near"
 					}
 				},
 				{
@@ -6016,7 +6416,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 4,
+						"count": 3,
 						"at": "north_in",
 						"tag": "sortie",
 						"tags": [
@@ -6040,7 +6440,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "north_in",
 						"tag": "sortie",
 						"tags": [
@@ -6062,7 +6462,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 4,
+						"count": 3,
 						"at": "west_in",
 						"tag": "sortie",
 						"tags": [
@@ -6086,7 +6486,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "west_in",
 						"tag": "sortie",
 						"tags": [
@@ -6108,7 +6508,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "springer",
-						"count": 2,
+						"count": 1,
 						"at": "north_in",
 						"tag": "sortie",
 						"tags": [
@@ -6150,7 +6550,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 5,
+						"count": 4,
 						"at": "south_in",
 						"tag": "sortie",
 						"tags": [
@@ -6174,7 +6574,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 4,
+						"count": 3,
 						"at": "south_in",
 						"tag": "sortie",
 						"tags": [
@@ -6196,7 +6596,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "netter",
-						"count": 2,
+						"count": 1,
 						"at": "south_in",
 						"tag": "sortie",
 						"tags": [
@@ -6223,6 +6623,12 @@
 						"order": {
 							"do": "attack",
 							"to": "camp_mid"
+						},
+						"if": {
+							"difficulty": [
+								"normal",
+								"hard"
+							]
 						}
 					}
 				},
@@ -6255,7 +6661,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "north_in",
 						"tag": "sortie",
 						"tags": [
@@ -6279,7 +6685,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 2,
+						"count": 1,
 						"at": "north_in",
 						"tag": "sortie",
 						"tags": [
@@ -6301,7 +6707,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "west_in",
 						"tag": "sortie",
 						"tags": [
@@ -6325,7 +6731,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 2,
+						"count": 1,
 						"at": "west_in",
 						"tag": "sortie",
 						"tags": [
@@ -6347,7 +6753,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "south_in",
 						"tag": "sortie",
 						"tags": [
@@ -6371,7 +6777,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 2,
+						"count": 1,
 						"at": "south_in",
 						"tag": "sortie",
 						"tags": [
@@ -6393,7 +6799,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "ballista",
-						"count": 2,
+						"count": 1,
 						"at": "north_in",
 						"tag": "sortie",
 						"tags": [
@@ -6433,7 +6839,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "springer",
-						"count": 2,
+						"count": 1,
 						"at": "north_in",
 						"tag": "sortie",
 						"tags": [
@@ -6485,7 +6891,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "west_in",
 						"tag": "sortie",
 						"tags": [
@@ -6509,7 +6915,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "clock_soldier",
-						"count": 2,
+						"count": 1,
 						"at": "west_in",
 						"tag": "sortie",
 						"tags": [
@@ -6531,7 +6937,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "ticking_owl",
-						"count": 3,
+						"count": 2,
 						"at": "spring_top",
 						"tag": "sortie",
 						"tags": [
@@ -6548,7 +6954,7 @@
 					"spawn": {
 						"team": "city",
 						"kind": "netter",
-						"count": 2,
+						"count": 1,
 						"at": "west_in",
 						"tag": "sortie",
 						"tags": [
@@ -6747,6 +7153,12 @@
 					"flag": {
 						"jakob": "alive"
 					}
+				},
+				{
+					"objective": {
+						"id": "jakob",
+						"set": "done"
+					}
 				}
 			]
 		},
@@ -6796,12 +7208,6 @@
 			"do": [
 				{
 					"objective": {
-						"id": "hold",
-						"set": "done"
-					}
-				},
-				{
-					"objective": {
 						"id": "c_break",
 						"set": "failed"
 					}
@@ -6819,17 +7225,14 @@
 						"fired": "the_end"
 					},
 					{
-						"count": {
-							"tag": "jakob",
-							"at_least": 1
-						}
+						"version": "grown"
 					}
 				]
 			},
 			"do": [
 				{
 					"objective": {
-						"id": "jakob",
+						"id": "hold",
 						"set": "done"
 					}
 				}
@@ -7156,6 +7559,12 @@
 			"to": "crown",
 			"until": "part2"
 		},
+		"n_probe3": {
+			"who": "narrator",
+			"text": "Machines out of the west gate at the diggers.",
+			"to": "crown",
+			"until": "part2"
+		},
 		"n_owls_camp": {
 			"who": "narrator",
 			"text": "Brass owls over the camp: the city sees everything you do. Muskets at them.",
@@ -7171,6 +7580,12 @@
 		"n_lines_done": {
 			"who": "narrator",
 			"text": "The lines are dug. Set the guns behind the earthworks: at nightfall the city comes out.",
+			"to": "crown",
+			"until": "part2"
+		},
+		"n_pay": {
+			"who": "narrator",
+			"text": "A convoy comes up the valley road with the army's pay: gold every half minute. The camp's Barracks trains Musketeers, its Foundry guns.",
 			"to": "crown",
 			"until": "part2"
 		},
@@ -7279,6 +7694,11 @@
 			"text": "Your pioneers have all fallen. Three more come up from the baggage at the camp.",
 			"to": "crown"
 		},
+		"n_wait": {
+			"who": "narrator",
+			"text": "The city will not wait for you: its machines come out at the camp. Send the pioneers down the old mine.",
+			"to": "crown"
+		},
 		"n_under": {
 			"who": "narrator",
 			"text": "The pioneers are under the ground. Hold the mine's mouth until they reach the spring.",
@@ -7324,12 +7744,12 @@
 		},
 		"n_diggers": {
 			"who": "narrator",
-			"text": "The city's machines are coming up the old mine's mouth in the north of the camp. Have men there when they come up.",
+			"text": "The city's machines are digging from the old galleries toward the siege park (pinged). They come up beside it with a mine: have men there when they come up.",
 			"to": "crown"
 		},
 		"n_up": {
 			"who": "narrator",
-			"text": "They come up at the old mine's mouth!",
+			"text": "They come up beside the siege park!",
 			"to": "crown"
 		},
 		"n_wave": {

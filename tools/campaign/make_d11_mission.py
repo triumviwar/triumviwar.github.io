@@ -105,6 +105,7 @@ BREACH_HP = {"fresh": 140, "grown": 1500}             # the unfinished stretches
 WEAK = 0.35               # a weak gate (its stop-work taken out) keeps this share
 SPRING_HP = 6000          # the great spring's tower: the mine's work, not the guns'
 CITY_EVERY = 10           # the city's player: cogs this often
+PAY_EVERY, PAY = 30, 60   # the column's pay convoy (gold) up the valley road
 
 # the map's places
 G = smap.GATES
@@ -210,7 +211,7 @@ buildings = (
      {"team": "column", "kind": "horse_breeder", "at": [4, 28], "tag": "depot", "tags": ["c_breeder"],
       "name": T("The camp's horse lines", "As cavalariças do acampamento", "Las caballerizas del campamento")}]
     + [{"team": "column", "kind": "cottage", "at": c, "tag": "depot", "tags": ["tents"],
-        "name": T("The column's tents", "As tendas da coluna", "Las tiendas de la columna")} for c in [[28, 44], [28, 48], [4, 44], [4, 48]]]
+        "name": T("The column's tents", "As tendas da coluna", "Las tiendas de la columna")} for c in [[28, 44], [28, 48], [4, 44], [4, 48], [28, 40], [28, 56], [32, 44], [32, 48]]]
     + earthworks
     # ---- the city: the wall's gates, its stretches, the postern
     + city_walls
@@ -234,7 +235,7 @@ buildings = (
 areas = dict(CITY.areas)
 areas.update(smap.areas_extra(CITY))
 areas.update({
-    "valley_camp": [8, 70, 10, 8], "masters_camp": [44, 36, 6, 8], "outside": [0, 0, smap.WALL_X, 96],
+    "valley_camp": [8, 70, 10, 8], "park_near": [16, 50, 5, 5], "masters_camp": [44, 36, 6, 8], "outside": [0, 0, smap.WALL_X, 96],
     "earth_n": [EARTH_X - 1, G["north_gate"] - 3, 3, 7], "earth_w": [EARTH_X - 1, G["west_gate"] - 3, 3, 7],
     "earth_s": [EARTH_X - 1, G["south_gate"] - 3, 3, 7],
 })
@@ -295,9 +296,9 @@ objectives = [
     {"id": "relief", "side": "crown", "primary": False, "kind": "countdown", "clock": "relief", "hidden": True,
      "text": T("Dusk in {clock:relief}.", "Anoitece em {clock:relief}.", "Anochece en {clock:relief}.")},
     {"id": "diggers", "side": "crown", "primary": False, "kind": "countdown", "clock": "diggers", "hidden": True,
-     "text": T("The city's diggers come up at the old mine's mouth in {clock:diggers}: have men there.",
-               "Os escavadores da cidade saem pela boca da mina velha em {clock:diggers}: tenha homens lá.",
-               "Los excavadores de la ciudad salen por la boca de la mina vieja en {clock:diggers}: ten hombres allí.")},
+     "text": T("The city's diggers come up by the siege park in {clock:diggers}, with a mine: have men there.",
+               "Os escavadores da cidade saem junto ao parque de cerco em {clock:diggers}, com uma mina: tenha homens lá.",
+               "Los excavadores de la ciudad salen junto al parque de asedio en {clock:diggers}, con una mina: ten hombres allí.")},
     # ---- the city (the solo pick, or versus)
     {"id": "c_break", "side": "city", "primary": True, "kind": "manual", "hidden": True,
      "text": T("BREAK THE SIEGE: blow the siege park's magazine (in the Crown's camp, west), or bring down Father Ferrer, the old priest. Before the Crown's work is done.",
@@ -460,6 +461,8 @@ line("n_probe", "narrator", "A few machines come out of the north gate at the di
      "Unas pocas máquinas salen de la puerta norte contra los que cavan.", CR)
 line("r_probe", "ruggieri", "Muskets forward! Cover the diggers!", "Mosquetes à frente! Cubram os que cavam!", "¡Mosquetes adelante! ¡Cubrid a los que cavan!", CR)
 line("n_probe2", "narrator", "Machines out of the south gate.", "Máquinas a sair do portão sul.", "Máquinas saliendo de la puerta sur.", CR)
+line("n_probe3", "narrator", "Machines out of the west gate at the diggers.", "Máquinas a sair do portão oeste contra os que cavam.",
+     "Máquinas saliendo de la puerta oeste contra los que cavan.", CR)
 line("n_owls_camp", "narrator", "Brass owls over the camp: the city sees everything you do. Muskets at them.",
      "Corujas de latão sobre o acampamento: a cidade vê tudo o que faz. Mosquetes contra elas.",
      "Búhos de latón sobre el campamento: la ciudad ve todo lo que haces. Mosquetes contra ellos.", CR)
@@ -469,6 +472,9 @@ line("r_charges", "ruggieri", "Father, the Armoury. Prepared charges, the powder
 line("n_lines_done", "narrator", "The lines are dug. Set the guns behind the earthworks: at nightfall the city comes out.",
      "As linhas estão cavadas. Ponha os canhões atrás das trincheiras: ao anoitecer a cidade sai.",
      "Las líneas están cavadas. Pon los cañones detrás de las trincheras: al anochecer la ciudad sale.", CR)
+line("n_pay", "narrator", "A convoy comes up the valley road with the army's pay: gold every half minute. The camp's Barracks trains Musketeers, its Foundry guns.",
+     "Um comboio sobe a estrada do vale com o soldo do exército: ouro a cada meio minuto. O Quartel do acampamento treina Mosqueteiros, a sua Fundição canhões.",
+     "Un convoy sube por el camino del valle con la paga del ejército: oro cada medio minuto. El Cuartel del campamento entrena Mosqueteros, su Fundición cañones.", CR)
 line("n_charges_done", "narrator", "The guns have their prepared charges.", "Os canhões têm as suas cargas preparadas.", "Los cañones tienen sus cargas preparadas.", CR)
 # ---- part 2: the sorties
 line("n_night", "narrator", "Night. The city comes out of its gates. THE SORTIES: beat each one back at the batteries.",
@@ -517,6 +523,9 @@ line("f_mine", "ferrer", "Jakob's log had the mine's plan, copied at Fürth from
      "El diario de Jakob tenía el plano de la mina, copiado en Fürth de los papeles del propio gremio. Las galerías pasaban bajo el muelle.", CR)
 line("n_reserve", "narrator", "Your pioneers have all fallen. Three more come up from the baggage at the camp.",
      "Todos os seus sapadores caíram. Vêm mais três da bagagem no acampamento.", "Todos tus zapadores han caído. Llegan tres más del bagaje en el campamento.", CR)
+line("n_wait", "narrator", "The city will not wait for you: its machines come out at the camp. Send the pioneers down the old mine.",
+     "A cidade não espera por si: as suas máquinas saem contra o acampamento. Mande os sapadores descer pela mina velha.",
+     "La ciudad no te espera: sus máquinas salen contra el campamento. Manda a los zapadores bajar por la mina vieja.", CR)
 line("n_under", "narrator", "The pioneers are under the ground. Hold the mine's mouth until they reach the spring.",
      "Os sapadores estão debaixo da terra. Guarde a boca da mina até chegarem à mola.", "Los zapadores están bajo tierra. Guarda la boca de la mina hasta que lleguen al muelle.", CR)
 line("r_under", "ruggieri", "The city knows. Here they come. Hold the mouth!", "A cidade sabe. Aí vêm eles. Guardem a boca!", "La ciudad lo sabe. Ahí vienen. ¡Guardad la boca!", CR)
@@ -538,10 +547,10 @@ line("j_dig", "jakob", "Father, under us. Picks, and a spring. They are in the o
 line("f_dig", "ferrer", "In the night the sentries heard digging under the camp. The galleries were the city's now.",
      "De noite as sentinelas ouviram cavar debaixo do acampamento. As galerias eram agora da cidade.",
      "De noche los centinelas oyeron cavar bajo el campamento. Las galerías eran ahora de la ciudad.", CR)
-line("n_diggers", "narrator", "The city's machines are coming up the old mine's mouth in the north of the camp. Have men there when they come up.",
-     "As máquinas da cidade estão a subir pela boca da mina velha, no norte do acampamento. Tenha homens lá quando saírem.",
-     "Las máquinas de la ciudad suben por la boca de la mina vieja, al norte del campamento. Ten hombres allí cuando salgan.", CR)
-line("n_up", "narrator", "They come up at the old mine's mouth!", "Saem pela boca da mina velha!", "¡Salen por la boca de la mina vieja!", CR)
+line("n_diggers", "narrator", "The city's machines are digging from the old galleries toward the siege park (pinged). They come up beside it with a mine: have men there when they come up.",
+     "As máquinas da cidade estão a cavar das galerias velhas em direção ao parque de cerco (assinalado). Saem ao lado dele com uma mina: tenha homens lá quando saírem.",
+     "Las máquinas de la ciudad cavan desde las galerías viejas hacia el parque de asedio (señalado). Salen a su lado con una mina: ten hombres allí cuando salgan.", CR)
+line("n_up", "narrator", "They come up beside the siege park!", "Saem ao lado do parque de cerco!", "¡Salen junto al parque de asedio!", CR)
 line("n_wave", "narrator", "Another wave out of the gates.", "Outra vaga a sair dos portões.", "Otra oleada saliendo de las puertas.", CR)
 line("n_wave_big", "narrator", "Out of every gate at once, with the bolt-throwers.", "De todos os portões ao mesmo tempo, com as balestras.",
      "De todas las puertas a la vez, con las ballestas.", CR)
@@ -605,8 +614,8 @@ line("k_end_c", "king", "That is not how it went. The siege held. Hear it again 
      "No fue así como pasó. El asedio resistió. Óyelo otra vez de boca de Ferrer.")
 
 # (a quick player is past the part a chatty line belongs to: those lines are dropped unseen once the next part begins)
-for lid in ["n_dusk", "j_weak", "n_weak", "f_hollweg", "j_hollweg", "h_prisoner", "f_prisoner", "a_hello", "a_hello_few", "n_probe", "r_probe",
-            "n_probe2", "n_owls_camp", "r_charges", "n_lines_done"]:
+for lid in ["n_pay", "n_dusk", "j_weak", "n_weak", "f_hollweg", "j_hollweg", "h_prisoner", "f_prisoner", "a_hello", "a_hello_few", "n_probe", "r_probe",
+            "n_probe2", "n_probe3", "n_owls_camp", "r_charges", "n_lines_done"]:
     L[lid]["until"] = "part2"
 for lid in ["f_night", "n_s1", "n_s2", "n_s3", "n_s3_grown", "f_log", "m_postern", "n_breach"]:
     L[lid]["until"] = "part3"
@@ -672,7 +681,7 @@ M["debrief"] = {
 
 
 # ================================================================== the triggers
-def sortie(sid, when, gates, base, extra=(), delay=None, line_ids=None, to=None):
+def sortie(sid, when, gates, base, extra=(), delay=None, line_ids=None, to=None, every=None):
     """A sortie of the city (its team: the city's player's when he plays it) out of `gates`: `base` Clock Soldiers a gate
     (scaled by the difficulty), one fewer with d07 `spring` stopped (the city smaller: never under one); the `extra` spawns
     ([kind, count, condition]) at the first gate; ordered at the gate's battery (or `to`), wound from the plates."""
@@ -694,6 +703,8 @@ def sortie(sid, when, gates, base, extra=(), delay=None, line_ids=None, to=None)
          + ([{"say": line_ids}] if line_ids else [])}
     if delay is not None:
         t["delay"] = delay
+    if every is not None:
+        t["every"] = every
     return t
 
 
@@ -732,6 +743,9 @@ TR_ += [
     # the city's player: his objective, his lines, his cogs
     {"id": "setup_c", "when": {"all": [{"time": 0.6}, CITY_P]}, "do": [
         {"objective": {"id": "c_break", "set": "active"}}, {"say": ["cn_1", "cn_k7"]}, {"ping": {"area": "park"}}]},
+    # the column's pay: a convoy up the valley road every half minute (the siege lasts; there is no farm on the plateau)
+    {"id": "pay", "when": {"all": [{"time": PAY_EVERY}, LIVE]}, "every": PAY_EVERY, "do": [{"give": {"team": "column", "gold": PAY, "powder": 20}}]},
+    {"id": "pay_say", "when": {"fired": "pay"}, "do": [{"say": ["n_pay"], "if": CROWN}]},
     {"id": "city_cogs", "when": {"all": [{"time": CITY_EVERY}, CITY_P, LIVE]}, "every": CITY_EVERY, "do": [{"give": {"team": "city", "gold": 20}}]},
     # ============================================================ PART 1: THE LINES
     {"id": "lines", "when": {"time": 2.0}, "do": [{"say": ["r_lines", "n_lines", "n_dusk"]}, {"ping": {"area": "earth_n"}}, {"ping": {"area": "earth_w"}},
@@ -751,6 +765,7 @@ TR_ += [
     # PROBES: a few machines at the diggers (the north battery, then the south)
     sortie("probe1", {"all": [{"time": 42}, P1, LIVE]}, ["north_gate"], 3, extra=[("springer", 1, HARD)], line_ids=["n_probe", "r_probe"]),
     sortie("probe2", {"all": [{"time": 105}, P1, LIVE]}, ["south_gate"], 3, extra=[("netter", 1, NORMAL_UP)], line_ids=["n_probe2"]),
+    sortie("probe3", {"all": [{"time": 168}, P1, LIVE]}, ["west_gate"], 3, extra=[("springer", 1, None)], line_ids=["n_probe3"]),
     # GROWN: the owls over the camp (the city sees everything)
     {"id": "owls_camp", "when": {"all": [{"time": 75}, GROWN, P1, LIVE]}, "do": [
         {"spawn": {"team": "city", "kind": "ticking_owl", "count": 2, "at": "spring_top", "tag": "sortie", "tags": ["owls_camp", "c_all"],
@@ -834,6 +849,9 @@ TR_ += [
 ] + [
     {"id": "sap_said", "when": {"any": [{"fired": "sap_go"}, {"fired": "sap_go_easy"}, {"fired": "sap_go_hard"}]}, "do": [
         {"objective": {"id": "mine", "set": "done"}}, {"objective": {"id": "mine_clock", "set": "active"}}, {"say": ["n_under", "r_under"]}]},
+    # (nobody sent down: the city does not wait either; it comes out at the camp until the pioneers go down: NO WAITING)
+    sortie("m_wait", {"all": [{"fired": "mine_on"}, {"not": {"fired": "sap_said"}}, LIVE]}, ["north_gate", "west_gate"], 2, delay=50, every=50,
+           to="camp_mid", extra=[("springer", 1, None)], line_ids=["n_wait"]),
     # THE GREAT SORTIE at the mouth while they are under the ground
     sortie("m1", {"fired": "sap_said"}, ["north_gate"], 4, delay=4, to="mine_near", extra=[("springer", 2, None), ("netter", 1, NORMAL_UP)],
            line_ids=None),
@@ -855,20 +873,20 @@ TR_ += [
         {"objective": {"id": "hold", "set": "active"}}, {"objective": {"id": "relief", "set": "active"}}, {"objective": {"id": "diggers", "set": "active"}},
         {"clock": {"name": "relief", "secs": RELIEF_SECS}}, {"clock": {"name": "diggers", "secs": DIG_SECS}},
         {"say": ["n_hold"]}, {"say": ["j_dig"], "if": JAKOB_ALIVE}, {"say": ["f_dig"], "if": JAKOB_LOST}, {"say": ["n_diggers"], "if": CROWN},
-        {"ping": {"area": "mine_mouth"}}, {"reveal": {"area": "mine_near", "side": "crown"}},
+        {"ping": {"area": "park_near"}}, {"reveal": {"area": "mine_near", "side": "crown"}},
         # the city's diggers go down from the spring yard (under the wall, to the camp)
         {"spawn": {"team": "city", "kind": "clock_soldier", "count": 3, "at": "spring_foot", "tag": "diggers", "tags": ["c_all"]}},
         {"spawn": {"team": "city", "kind": "springer", "count": 2, "at": "spring_foot", "tag": "diggers", "tags": ["c_all"]}}]},
     {"id": "dig_go", "when": {"fired": "hold_on"}, "delay": 1, "do": [
-        {"sap": {"tag": "diggers", "to": "mine_mouth", "secs": DIG_SECS - 1, "name": "diggers"}}]},
+        {"sap": {"tag": "diggers", "to": "park_near", "secs": DIG_SECS - 1, "name": "diggers", "blast": {"tag": "park", "amount": 220, "within": 6}}}]},
     {"id": "dig_up", "when": {"sapped": "diggers"}, "do": [
-        {"say": ["n_up"]}, {"ping": {"area": "mine_mouth"}}, {"objective": {"id": "diggers", "set": "hidden"}}, {"clock": {"name": "diggers", "stop": True}},
+        {"say": ["n_up"]}, {"ping": {"area": "park_near"}}, {"objective": {"id": "diggers", "set": "hidden"}}, {"clock": {"name": "diggers", "stop": True}},
         {"wind": {"team": "city", "share": 1.0}}, {"retag": {"tag": "diggers", "as": "sortie"}}]},
-    sortie("g1", {"fired": "hold_on"}, ["north_gate", "west_gate"], 4, delay=8, to="camp_mid", extra=[("springer", 2, None)]),
-    sortie("g2", {"fired": "hold_on"}, ["south_gate"], 5, delay=55, to="camp_mid", extra=[("netter", 2, None), ("pendulum", 1, None)], line_ids=["n_wave"]),
-    sortie("g3", {"fired": "hold_on"}, ["north_gate", "west_gate", "south_gate"], 3, delay=100, to="camp_mid",
-           extra=[("ballista", 2, None), ("pendulum", 1, NORMAL_UP), ("springer", 2, None)], line_ids=["n_wave_big"]),
-    sortie("g4", {"fired": "hold_on"}, ["west_gate"], 3, delay=140, to="park", extra=[("ticking_owl", 3, None), ("netter", 2, NORMAL_UP)], line_ids=["n_wave"]),
+    sortie("g1", {"fired": "hold_on"}, ["north_gate", "west_gate"], 3, delay=8, to="camp_mid", extra=[("springer", 1, None)]),
+    sortie("g2", {"fired": "hold_on"}, ["south_gate"], 4, delay=55, to="camp_mid", extra=[("netter", 1, None), ("pendulum", 1, NORMAL_UP)], line_ids=["n_wave"]),
+    sortie("g3", {"fired": "hold_on"}, ["north_gate", "west_gate", "south_gate"], 2, delay=100, to="camp_mid",
+           extra=[("ballista", 1, None), ("pendulum", 1, NORMAL_UP), ("springer", 1, None)], line_ids=["n_wave_big"]),
+    sortie("g4", {"fired": "hold_on"}, ["west_gate"], 2, delay=140, to="park", extra=[("ticking_owl", 2, None), ("netter", 1, NORMAL_UP)], line_ids=["n_wave"]),
     {"id": "g_press", "when": {"all": [{"fired": "hold_on"}, NO_CITY, LIVE]}, "every": 6, "do": [
         {"order": {"tag": "sortie", "do": "attack", "to": "park", "idle": True}}]},
     {"id": "held_off", "when": {"all": [{"clock_out": "relief"}, {"fired": "hold_on"}, LIVE]}, "do": [
@@ -876,11 +894,12 @@ TR_ += [
         {"light": {"to": "dusk", "secs": 6}}, {"order": {"tag": "sortie", "do": "move", "to": "arsenal_mid"}}, {"flag": {"siege": "held_off"}}]},
     # ============================================================ THE END
     # the Crown's work done (the spring blown, or dusk held): WON for the Crown, LOST for the city's player
-    {"id": "jakob_flag", "when": {"all": [{"any": [{"fired": "close"}, {"fired": "held_off"}]}, {"count": {"tag": "jakob", "at_least": 1}}]}, "do": [{"flag": {"jakob": "alive"}}]},
+    {"id": "jakob_flag", "when": {"all": [{"any": [{"fired": "close"}, {"fired": "held_off"}]}, {"count": {"tag": "jakob", "at_least": 1}}]}, "do": [
+        {"flag": {"jakob": "alive"}}, {"objective": {"id": "jakob", "set": "done"}}]},
     {"id": "jakob_flag_l", "when": {"all": [{"any": [{"fired": "close"}, {"fired": "held_off"}]}, {"count": {"tag": "jakob", "below": 1}}]}, "do": [{"flag": {"jakob": "lost"}}]},
     {"id": "the_end", "when": {"any": [{"fired": "close"}, {"fired": "held_off"}]}, "delay": 4, "do": [
-        {"objective": {"id": "hold", "set": "done"}}, {"objective": {"id": "c_break", "set": "failed"}},
-        {"objective": {"id": "jakob", "set": "done", "if": {"count": {"tag": "jakob", "at_least": 1}}}}, {"win": "crown"}]},
+        {"objective": {"id": "hold", "set": "done", "if": GROWN}}, {"objective": {"id": "c_break", "set": "failed"}},
+        {"win": "crown"}]},
     # THE SIEGE PARK'S MAGAZINE GOES UP, or Father Ferrer brought down by the city's player: lost (the city's win)
     {"id": "lost_park", "when": {"all": [{"dead": "park"}, NO_CITY, {"not": {"fired": "the_end"}}]}, "do": [
         {"say": ["n_park_down"]}, {"objective": {"id": "park", "set": "failed"}}, {"lose": "crown"}]},

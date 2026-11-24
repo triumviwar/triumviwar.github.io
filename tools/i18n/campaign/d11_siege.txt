@@ -120,9 +120,9 @@ es Resiste en el campamento y el parque hasta el anochecer.
 pt Anoitece em {clock:relief}.
 es Anochece en {clock:relief}.
 
-> The city's diggers come up at the old mine's mouth in {clock:diggers}: have men there.
-pt Os escavadores da cidade saem pela boca da mina velha em {clock:diggers}: tenha homens lá.
-es Los excavadores de la ciudad salen por la boca de la mina vieja en {clock:diggers}: ten hombres allí.
+> The city's diggers come up by the siege park in {clock:diggers}, with a mine: have men there.
+pt Os escavadores da cidade saem junto ao parque de cerco em {clock:diggers}, com uma mina: tenha homens lá.
+es Los excavadores de la ciudad salen junto al parque de asedio en {clock:diggers}, con una mina: ten hombres allí.
 
 > BREAK THE SIEGE: blow the siege park's magazine (in the Crown's camp, west), or bring down Father Ferrer, the old priest. Before the Crown's work is done.
 pt QUEBRAR O CERCO: faça explodir o paiol do parque de cerco (no acampamento da Coroa, a oeste), ou derrube o Padre Ferrer, o velho padre. Antes que a Coroa acabe o seu trabalho.
@@ -264,6 +264,10 @@ es ¡Mosquetes adelante! ¡Cubrid a los que cavan!
 pt Máquinas a sair do portão sul.
 es Máquinas saliendo de la puerta sur.
 
+> Machines out of the west gate at the diggers.
+pt Máquinas a sair do portão oeste contra os que cavam.
+es Máquinas saliendo de la puerta oeste contra los que cavan.
+
 > Brass owls over the camp: the city sees everything you do. Muskets at them.
 pt Corujas de latão sobre o acampamento: a cidade vê tudo o que faz. Mosquetes contra elas.
 es Búhos de latón sobre el campamento: la ciudad ve todo lo que haces. Mosquetes contra ellos.
@@ -275,6 +279,10 @@ es Padre, la Armería. Cargas preparadas, la pólvora ya en saquitos, y el cuadr
 > The lines are dug. Set the guns behind the earthworks: at nightfall the city comes out.
 pt As linhas estão cavadas. Ponha os canhões atrás das trincheiras: ao anoitecer a cidade sai.
 es Las líneas están cavadas. Pon los cañones detrás de las trincheras: al anochecer la ciudad sale.
+
+> A convoy comes up the valley road with the army's pay: gold every half minute. The camp's Barracks trains Musketeers, its Foundry guns.
+pt Um comboio sobe a estrada do vale com o soldo do exército: ouro a cada meio minuto. O Quartel do acampamento treina Mosqueteiros, a sua Fundição canhões.
+es Un convoy sube por el camino del valle con la paga del ejército: oro cada medio minuto. El Cuartel del campamento entrena Mosqueteros, su Fundición cañones.
 
 > The guns have their prepared charges.
 pt Os canhões têm as suas cargas preparadas.
@@ -356,6 +364,10 @@ es El diario de Jakob tenía el plano de la mina, copiado en Fürth de los papel
 pt Todos os seus sapadores caíram. Vêm mais três da bagagem no acampamento.
 es Todos tus zapadores han caído. Llegan tres más del bagaje en el campamento.
 
+> The city will not wait for you: its machines come out at the camp. Send the pioneers down the old mine.
+pt A cidade não espera por si: as suas máquinas saem contra o acampamento. Mande os sapadores descer pela mina velha.
+es La ciudad no te espera: sus máquinas salen contra el campamento. Manda a los zapadores bajar por la mina vieja.
+
 > The pioneers are under the ground. Hold the mine's mouth until they reach the spring.
 pt Os sapadores estão debaixo da terra. Guarde a boca da mina até chegarem à mola.
 es Los zapadores están bajo tierra. Guarda la boca de la mina hasta que lleguen al muelle.
@@ -388,13 +400,13 @@ es Padre, debajo de nosotros. Picos, y un muelle. Están en las galerías viejas
 pt De noite as sentinelas ouviram cavar debaixo do acampamento. As galerias eram agora da cidade.
 es De noche los centinelas oyeron cavar bajo el campamento. Las galerías eran ahora de la ciudad.
 
-> The city's machines are coming up the old mine's mouth in the north of the camp. Have men there when they come up.
-pt As máquinas da cidade estão a subir pela boca da mina velha, no norte do acampamento. Tenha homens lá quando saírem.
-es Las máquinas de la ciudad suben por la boca de la mina vieja, al norte del campamento. Ten hombres allí cuando salgan.
+> The city's machines are digging from the old galleries toward the siege park (pinged). They come up beside it with a mine: have men there when they come up.
+pt As máquinas da cidade estão a cavar das galerias velhas em direção ao parque de cerco (assinalado). Saem ao lado dele com uma mina: tenha homens lá quando saírem.
+es Las máquinas de la ciudad cavan desde las galerías viejas hacia el parque de asedio (señalado). Salen a su lado con una mina: ten hombres allí cuando salgan.
 
-> They come up at the old mine's mouth!
-pt Saem pela boca da mina velha!
-es ¡Salen por la boca de la mina vieja!
+> They come up beside the siege park!
+pt Saem ao lado do parque de cerco!
+es ¡Salen junto al parque de asedio!
 
 > Another wave out of the gates.
 pt Outra vaga a sair dos portões.

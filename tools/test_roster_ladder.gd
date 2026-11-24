@@ -129,16 +129,22 @@ func _run() -> void:
 				"extra %s, missing %s" % [_minus(have, r["allow"]), _minus(r["allow"], have)])
 			check("%s: team %s's NEW pieces are the table's" % [mid, tid], _same(ros.get("new", []), r["new"]), "%s" % [ros.get("new", [])])
 		# the NEW card: one line of the speaker "new" per new piece (the Venom Challenger shares the Tyrant's), to one side
-		var cards: Array = []
+		# (a mission with two rungs, d11_siege: the line's side and its mirror; each row checks its own cards, the trigger
+		# says them all)
+		var all_cards: Array = []
 		for k in m["lines"]:
 			if String(m["lines"][k].get("who", "")) == "new":
-				cards.append(k)
+				all_cards.append(k)
 		var want: Array = []
 		for k in r["new"]:
 			if k != "venom_challenger":
 				want.append("new_" + k)
+		var rows_here: Array = rows.filter(func(x): return String(x["mission"]) == mid)
+		var cards: Array = all_cards.filter(func(k): return want.has(k)) if rows_here.size() > 1 else all_cards
 		check("%s: a NEW card per new piece" % mid, _same(cards, want), "%s" % [cards])
 		var side := String(m["speakers"].get("new", {}).get("side", ""))
+		if rows_here.size() > 1 and not cards.is_empty():
+			side = String(m["lines"][cards[0]].get("to", ""))
 		var to_side := side != ""
 		for k in cards:
 			if String(m["lines"][k].get("to", "")) != side:
@@ -146,7 +152,7 @@ func _run() -> void:
 		check("%s: the cards go to the ladder side only" % mid, to_side)
 		var early := false
 		for tr in m["triggers"]:
-			if String(tr["id"]) == "ladder_new" and float(tr["when"].get("time", 999)) <= 10.0 and _same(tr["do"][0]["say"], cards):
+			if String(tr["id"]) == "ladder_new" and float(tr["when"].get("time", 999)) <= 10.0 and _same(tr["do"][0]["say"], all_cards):
 				early = true
 		check("%s: the cards are said early" % mid, early)
 		var miss: Array = []

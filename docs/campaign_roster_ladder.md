@@ -63,7 +63,7 @@ The economy a faction cannot play without; the first mission of the line teaches
 | C6 | Act 2, slot 2 | DRAGOON + CAVALRY CHARGE | mounted infantry and the charge for a war of distances (Brazil, the crossing) | raids and the charge into light Brood creatures |
 | C7 | d09_crossroads | ARMOUR (Guardsmen, Cuirassiers) + POWDER WAGON | a long campaign away from the halls: armour and powder that travels | a march without a base (the wagon refills the line) |
 | C8 | Act 2, slot 4 | OBSERVATION BALLOON | seeing over the forest / the Clockwork's walls | spot for the guns at long range |
-| C9 | Act 2, slot 5 | PREPARED CHARGES + GUNNER'S QUADRANT | the guns' science, against the machines' plates | a siege of a Clockwork works |
+| C9 | d11_siege (the column) | PREPARED CHARGES + GUNNER'S QUADRANT | the guns' science, against the machines' plates | Part 2: the guns against the sorties' plates, from behind the earthworks |
 | C10 | Act 3, slot 1 | THE DRUMMER | the army marching to the global war | a long march against the clock |
 | C11 | Act 3, slot 2 | FIFER + PIPER (a full BAND) | the band complete for the great battles | a band's solo at the decisive moment |
 | C12 | Act 3, slot 3 | FLINTLOCK, CAPLOCK, SHOT POUCH (the Mounted Missionary with them) | the last of the Crown: everything | the finale: the whole roster |
@@ -78,7 +78,7 @@ The economy a faction cannot play without; the first mission of the line teaches
 | K4 | d02_exodus (built) | RATCHET TURRET + SHIELD WALL | the guild's rearguard at the last bridge before the Main's barges (d02) (the turret only as a reactive answer: the owner's rule, static defence is not a build) | the commissary's riders and muskets at the bridge |
 | K5 | d04_concordia (Act 2) | CLOCK AVIARY + SWIFT | the machines take to the air | scouting a jungle the Brood owns |
 | K6 | d07_spring (Act 2) | TICKING OWL (the morph) + HIGH LEAP | Swifts grown into owls; Springers that leap farther | the owls break the turned works; the Springers leap the mine hill's cliff to the great spring |
-| K7 | Act 2, slot 4 | SPRING BALLISTA + LONG CHAIN | the guild's siege engines | a siege of a Crown fort or a Brood nest |
+| K7 | d11_siege (the city: solo pick and versus) | SPRING BALLISTA + LONG CHAIN | the guild's siege engines | the city's wall and sorties against the siege lines |
 | K8 | Act 3, slot 1 | GREAT WINDER | the war's wrecks swept and mended | a long battle won by mending |
 | K9 | Act 3, slot 2 | BRASS SERPENT (and its gears) | the Machine's masterpiece in the guild's hands | the finale |
 
@@ -153,7 +153,7 @@ ladder there, never here by hand.
 | C6 | d05_aldeia | mission | dragoon charge | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge |
 | C7 | d09_crossroads | army | armour powder_wagon | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon |
 | C8 | (slot) | - | balloon | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon |
-| C9 | (slot) | - | charges quadrant | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant |
+| C9 | d11_siege | column | charges quadrant | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant |
 | C10 | (slot) | - | band | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant band |
 | C11 | (slot) | - | band_fifer band_piper | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant band band_fifer band_piper |
 | C12 | (slot) | - | flintlock caplock pouch | mounted_missionary | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant band band_fifer band_piper flintlock caplock pouch mounted_missionary |
@@ -163,7 +163,7 @@ ladder there, never here by hand.
 | K4 | d02_exodus | guild | ratchet_turret shield_wall | - | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall |
 | K5 | d04_concordia | guild | cuckoo_house cuckoo | - | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo |
 | K6 | d07_spring | guild | owl_morph high_leap | ticking_owl | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo owl_morph high_leap ticking_owl |
-| K7 | (slot) | - | ballista long_chain | - | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo owl_morph high_leap ticking_owl ballista long_chain |
+| K7 | d11_siege | city | ballista long_chain | - | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo owl_morph high_leap ticking_owl ballista long_chain |
 | K8 | (slot) | - | great_winder | - | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo owl_morph high_leap ticking_owl ballista long_chain great_winder |
 | K9 | (slot) | - | brass_serpent | serpent_gear_s serpent_gear_b | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo owl_morph high_leap ticking_owl ballista long_chain great_winder brass_serpent serpent_gear_s serpent_gear_b |
 | B1 | b01_specimen | sire | tyrannosaur raptor | - | brood_mother grub rootmaw mound_turtle tyrannosaur raptor |
