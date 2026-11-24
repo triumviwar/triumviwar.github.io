@@ -1,0 +1,289 @@
+=== test_ai_crown_bank.gd FAIL rc=134
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  supply-blocked with a pile: a Cottage goes up (2 -> 4)
+PASS  the pile is spent, not banked (2500 -> 460)
+ALL PASS
+
+=== test_ai_rush_followup.gd FAIL rc=134
+              [0] play (res://scripts/sfx.gd:258)
+              [1] grub_tick (res://scripts/brood_new.gd:1936)
+              [2] _gather (res://scripts/unit.gd:5540)
+              [3] _tick_unit (res://scripts/unit.gd:4138)
+              [4] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] grub_tick (res://scripts/brood_new.gd:1953)
+              [2] _gather (res://scripts/unit.gd:5540)
+              [3] _tick_unit (res://scripts/unit.gd:4138)
+              [4] _physics_process (res://scripts/unit.gd:3703)
+FAIL  new cavalry stays home as defence (2519 px, 45 lone sightings) [wave]
+FAILS: 14
+
+=== test_ballista.gd FAIL rc=1
+ERROR: Lambda capture at index 0 was freed. Passed "null" instead.
+   at: call (modules/gdscript/gdscript_lambda_callable.cpp:110)
+ERROR: Lambda capture at index 0 was freed. Passed "null" instead.
+   at: call (modules/gdscript/gdscript_lambda_callable.cpp:110)
+CHECK online: the guest sees the Ballista fired (winding)                        FAIL 
+CHECK online: the guest knows its crewman                                        FAIL 
+CHECK online: and then loaded                                                    FAIL 
+CHECK online: the check lists match                                              ok 
+FAIL (4)
+ERROR: Lambda capture at index 0 was freed. Passed "null" instead.
+   at: call (modules/gdscript/gdscript_lambda_callable.cpp:110)
+WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
+
+=== test_brood_fix3.gd FAIL rc=134
+              [2] _gather (res://scripts/unit.gd:5540)
+              [3] _tick_unit (res://scripts/unit.gd:4138)
+              [4] _physics_process (res://scripts/unit.gd:3703)
+[save] 1:45  12 units, 2 buildings  mem 582 MB
+[save] done
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] grub_tick (res://scripts/brood_new.gd:1953)
+              [2] _gather (res://scripts/unit.gd:5540)
+              [3] _tick_unit (res://scripts/unit.gd:4138)
+              [4] _physics_process (res://scripts/unit.gd:3703)
+PASS     then back on HOLD where it was (5 px off)
+brood_fix3: 3 failures
+
+=== test_brood_sounds.gd FAIL rc=134
+FAIL  heard the venom_challenger's blow
+FAIL  heard the storm_challenger's blow
+FAIL  heard the mound_turtle's blow
+FAIL  heard the mist_toad's blow
+PASS  no fallback: clash
+PASS  no fallback: combat/brood_death
+PASS  no fallback: death_brood
+FAIL  heard the pack's brood/wings_big
+FAIL  heard the pack's brood/wings_small
+FAIL  heard the pack's combat/spitter_hit
+FAIL  heard the pack's brood/root
+FAIL  heard the pack's brood/uproot
+FAIL  heard the pack's brood/error
+PASS  no synth bite: every Brood blow is a real one
+DONE  258 failure(s)
+
+=== test_campaign_a01.gd FAIL rc=134
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] _countdown (res://scripts/ui/hud.gd:143)
+              [3] _tick_hud (res://scripts/ui/hud.gd:189)
+              [4] _process (res://scripts/ui/hud.gd:179)
+CHECK hard: the runners on its own timetable                                     ok 
+CHECK hard: a press's militia scaled (3)                                         ok 3
+CHECK hard: the garrison is the player's: never scaled                           ok 
+CHECK hard: the first hint has come, the second not yet                          ok 
+CHECK hard: the second hint at 510 s                                             ok 
+CHECK the King's talk after a01                                                  ok 
+CHECK the Cardinal's talk after a01                                              ok 
+campaign_a01: 5 failures
+
+=== test_campaign_d04.gd FAIL rc=134
+              [0] play (res://scripts/sfx.gd:258)
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] _countdown (res://scripts/ui/hud.gd:143)
+              [3] _tick_hud (res://scripts/ui/hud.gd:189)
+              [4] _process (res://scripts/ui/hud.gd:179)
+CHECK IRONMAN: no SAVE nor LOAD SAVE in the match menu                           ok ["PAUSE", "MUSIC", "SOUND", "AMBIENCE", "MINIMAP", "SETTINGS", "SURRENDER", "QUIT TO CAMPAIGN", "BACK TO THE MATCH"]
+[save] 0:02  26 units, 15 buildings  mem 554 MB
+[save] done
+CHECK the hub: Hollweg talks of the council after d04                            ok 
+CHECK the hub is Concórdia's council hall after d04                              ok 
+CHECK the hub: Ulrich talks of the plates                                        ok 
+CHECK the war map's ledger: Concórdia founded, the valley fought, the crates opened ok ["Hollweg founded Concórdia on the southern highlands: a city that governs itself.", "Varenne\'s ship of exile ended at Concórdia: he speaks for the city now.", "The valley fought the city from its first day.", "In the mine Hollweg opened the two crates of 2767."]
+CHECK the war map's data has no problem                                          ok 
+CHECK no script error in the whole run                                           FAIL ["Cannot call method \'get_width\' on a null value. @ res://scripts/building_life.gd:407 BuildingLife._foot_offset", "Cannot call method \'get_width\' on a null value. @ res://scripts/building_life.gd:407 BuildingLife._foot_offset", "Cannot call method \'get_length\' on a null value. @ res://scripts/sfx.gd:258 play"]
+campaign_d04: 3 failures
+
+=== test_chat_gg.gd FAIL rc=134
+       [1] has (res://scripts/sfx.gd:110)
+       [2] play_any (res://scripts/sfx.gd:137)
+       [3] _quick_press (res://scripts/ui/hud.gd:3283)
+       [4] _press (res://scripts/ui/hud.gd:729)
+       [5] _run (res://tools/test_chat_gg.gd:305)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] _quick_press (res://scripts/ui/hud.gd:3283)
+              [3] _press (res://scripts/ui/hud.gd:729)
+              [4] _run (res://tools/test_chat_gg.gd:305)
+PASS  a tap outside closes the panel
+ALL PASS
+
+=== test_crown_balloon_coach.gd FAIL rc=134
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _econ (res://scripts/building.gd:1015)
+              [2] _tick_building (res://scripts/building.gd:1130)
+              [3] _physics_process (res://scripts/building.gd:1086)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _econ (res://scripts/building.gd:1018)
+              [2] _tick_building (res://scripts/building.gd:1130)
+              [3] _physics_process (res://scripts/building.gd:1086)
+PASS  [switch] with the coaching off the empty balloon floats out to look (58 tiles)
+test_crown_balloon_coach: ALL PASS (0 failed)
+
+=== test_crown_mirror.gd FAIL rc=134
+       [2] die (res://scripts/building.gd:1579)
+       [3] _press_and_target (res://tools/test_crown_mirror.gd:124)
+       [4] _run (res://tools/test_crown_mirror.gd:209)
+       [5] _until (res://tools/test_crown_mirror.gd:34)
+ERROR: Failed loading resource: res://assets/audio/combat/explosion_big_2.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _find (res://scripts/sfx.gd:95)
+       [1] play (res://scripts/sfx.gd:215)
+       [2] die (res://scripts/building.gd:1579)
+       [3] _press_and_target (res://tools/test_crown_mirror.gd:124)
+       [4] _run (res://tools/test_crown_mirror.gd:209)
+       [5] _until (res://tools/test_crown_mirror.gd:34)
+FAILS 0
+ALL PASS
+
+=== test_cw_scout_workers.gd FAIL rc=134
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _econ (res://scripts/building.gd:1018)
+              [2] _tick_building (res://scripts/building.gd:1130)
+              [3] _physics_process (res://scripts/building.gd:1086)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SENTRY alive true blows 6
+PASS  the sentry lives (two Labourers after it)
+ALL PASS
+
+=== test_dragoon_remount.gd FAIL rc=134
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  armoured after the player's DISMOUNT a MOVE keeps him on foot (a Musketeer)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] die (res://scripts/unit.gd:7062)
+              [3] _run (res://tools/test_dragoon_remount.gd:114)
+              [4] wait (res://tools/test_dragoon_remount.gd:26)
+dragoon remount: 0 failures
+
+=== test_fog_shot_reveal.gd FAIL rc=134
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] musket_shot (res://scripts/game.gd:7198)
+              [3] _strike (res://scripts/unit.gd:5335)
+              [4] _attack_cycle (res://scripts/unit.gd:5251)
+              [5] _engage (res://scripts/unit.gd:5142)
+              [6] _tick_unit (res://scripts/unit.gd:4136)
+              [7] _physics_process (res://scripts/unit.gd:3703)
+PASS  after it fires, the low side sees the shooter
+PASS  the idle unit on the plateau stays hidden
+PASS  the rest of the plateau stays hidden
+PASS  hidden again about 2 s after the last shot (1.97 s)
+PASS  a low ground shooter firing up reveals nothing
+PASS  a low ground shooter firing at low ground reveals nothing
+PASS  no reveal on a friendly target
+fog shot reveal: PASS
+
+=== test_gear_press.gd FAIL rc=0
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Cannot open file 'res://.godot/imported/breath_tyrannosaur.wav-bc0b3fd55de0dad53bb199969d9b022c.sample'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+ERROR: Failed loading resource: res://.godot/imported/breath_tyrannosaur.wav-bc0b3fd55de0dad53bb199969d9b022c.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/brood/breath_tyrannosaur.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Cannot open file 'res://.godot/imported/built.wav-0265c6b222cd84de9744e1a84751e7c1.sample'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+ERROR: Failed loading resource: res://.godot/imported/built.wav-0265c6b222cd84de9744e1a84751e7c1.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/brood/built.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+WARNING: 11 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+
+=== test_gun_mass.gd FAIL rc=134
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  a labourer was trained (5 workers, were 4)
+PASS  a rally on the Town Hall makes no hauler (0 haulers, were 0)
+PASS  a horse ignores move orders (idle)
+ALL PASS
+
+=== test_hubs_grow.gd FAIL rc=134
+              [2] <anonymous lambda> (res://scripts/main.gd:2383)
+              [3] _menu (res://tools/test_hubs_grow.gd:260)
+CHECK menu: the racks' counter offers the breastplates                         ok 
+CHECK menu: bought (6 - 3 = 3 left)                                            ok 
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] <anonymous lambda> (res://scripts/main.gd:2383)
+              [3] _menu (res://tools/test_hubs_grow.gd:267)
+CHECK menu: Ruggieri talks                                                     ok 
+CHECK menu: talking marks him seen                                             ok 
+CHECK menu: the briefing lists what the hub gives                              ok 
+hubs-grow: 0 failures
+
+=== test_clockwork_home.gd FAIL rc=134
+  [7:46] the army rests on its gears: 1 run-down units step onto the gears to wind
+  [8:15] holds at its gathering point: against the Brood it goes out only clearly ahead (worth 2130, it goes at 7336 with 2 Pendulums; it has 1)
+  [8:20] the army rests on its gears at (48, 58), where the enemy's way in reaches the base
+  [8:46] the army rests on its gears: 2 run-down units step onto the gears to wind
+  [8:48] a small raid worth 25 at (42, 50), far from the army: sends 3 units (370) at it, the rest stays on its gears
+  [8:49] the whole army defends the base (22 units, 2120, with its Winders) against a raid worth 388 at (42, 49)
+  [9:03] the base is calm again: the army walks back to rest on its gears
+  [9:03] holds at its gathering point: a Brood army of 366 is at its door; it meets it on its gears first
+  [9:08] counter-attacks: its defence killed 1230, it goes out worth 2600 against the 1101 it has seen alive lately
+  [9:19] a Springer jumps in to shoot at a Raptors
+  [9:42] a Springer jumps in to shoot at a Raptors
+  [9:58] the army rests on its gears at (54, 53), where the enemy's way in reaches the base
+PASS  the idle army stays wound: 0.92 on average at home (want 0.80+)
+SKIP  a base attack draws the whole army: no attack of 600+ on the base
+RESULT: PASS (0 failed)
+

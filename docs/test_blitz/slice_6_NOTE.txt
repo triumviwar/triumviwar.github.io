@@ -1,0 +1,8 @@
+test-blitz-6 note (cloud run, Godot 4.7.stable.official.5b4e0cb0f, main ed7b0589 / 0.38.199)
+The asset import did NOT finish inside the time box: capped at 4 min (reached 53%), then another 4.5 min (reached 68%).
+Most FAIL lines here are therefore NOT real failures: "Cannot call method 'get_width'/'get_length'/'get_image' on a null
+value" and missing dictionary keys (grass_calm_3, heath_6, bog_4, 'clock') come from textures and sounds not yet imported
+(.godot/imported incomplete). Only a FAIL without those null-resource errors may be a real one; rerun this slice after a
+full `godot --headless --import` before trusting any of it.
+slice_6.txt = the run after 68% import; slice_6_attempt1_import53pct.txt = the first run (killed early, 53% import).
+Tests not started by 10:50 UTC are marked NOTRUN.

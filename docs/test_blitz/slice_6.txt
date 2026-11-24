@@ -1,0 +1,27 @@
+test_ai_crown_bank.gd FAIL rc=134 31s SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
+test_ai_rush_followup.gd FAIL rc=134 42s SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
+test_ballista.gd FAIL rc=1 19s SCRIPT ERROR: Invalid access to property or key 'clock' on a base object of type 'Dictionary'. CHECK a save keeps the Ballista, its crew and its reload                         FAIL 0, crew -1, -1.00 CHECK online: the guest sees the Ballista
+test_brood_fix3.gd FAIL rc=134 17s SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
+test_brood_sounds.gd FAIL rc=134 19s FAIL  voice/grub/select: loads, 0.1-2.6 s, levelled FAIL  voice/grub/move: loads, 0.1-2.6 s, levelled FAIL  voice/grub/attack: loads, 0.1-2.6 s, levelled 
+test_campaign_a01.gd FAIL rc=134 30s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_width' on a null value. 
+test_campaign_d04.gd FAIL rc=134 37s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
+test_chat_gg.gd FAIL rc=134 20s SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
+test_crown_balloon_coach.gd FAIL rc=134 38s SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
+test_crown_mirror.gd FAIL rc=134 34s SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
+test_cw_army.gd PASS rc=0 12s 
+test_cw_scout_workers.gd FAIL rc=134 20s SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
+test_dragoon_remount.gd FAIL rc=134 14s SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
+test_fog_shot_reveal.gd FAIL rc=134 11s SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
+test_gear_press.gd FAIL rc=0 12s 
+test_gun_mass.gd FAIL rc=134 12s SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
+test_line_rails.gd NOTRUN deadline
+test_missionary_safe.gd NOTRUN deadline
+test_online_anim.gd NOTRUN deadline
+test_powder_smoke.gd NOTRUN deadline
+test_raptor_rider_fight.gd NOTRUN deadline
+test_roster_ladder.gd NOTRUN deadline
+test_spectator.gd NOTRUN deadline
+test_unit_stats.gd NOTRUN deadline
+test_winder_escort.gd NOTRUN deadline
+test_hubs_grow.gd FAIL rc=134 11s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_width' on a null value. 
+test_clockwork_home.gd FAIL rc=134 197s SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. SCRIPT ERROR: Cannot call method 'get_length' on a null value. 
