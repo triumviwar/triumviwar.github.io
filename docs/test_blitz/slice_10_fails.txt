@@ -1,0 +1,192 @@
+=== test_ai_scout_threat.gd
+              [0] play (res://scripts/sfx.gd:258)
+              [1] recruit (res://scripts/sfx.gd:405)
+              [2] spawn_trained (res://scripts/game.gd:4936)
+              [3] _tick_building (res://scripts/building.gd:1171)
+              [4] _physics_process (res://scripts/building.gd:1086)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] trained (res://scripts/building_life.gd:358)
+              [2] _tick_building (res://scripts/building.gd:1173)
+              [3] _physics_process (res://scripts/building.gd:1086)
+ALL PASS
+WARNING: 6 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_barren_gather.gd
+       [0] tex (res://scripts/game.gd:216)
+       [1] _update_sprite (res://scripts/building.gd:1536)
+       [2] _update_fire (res://scripts/building.gd:1385)
+       [3] _tick_building (res://scripts/building.gd:1180)
+       [4] _physics_process (res://scripts/building.gd:1086)
+ERROR: Failed loading resource: res://assets/buildings/farm_field_ripe.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] tex (res://scripts/game.gd:216)
+       [1] _update_sprite (res://scripts/building.gd:1536)
+       [2] _update_fire (res://scripts/building.gd:1385)
+       [3] _tick_building (res://scripts/building.gd:1180)
+       [4] _physics_process (res://scripts/building.gd:1086)
+WARNING: 4 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_brood_mother_uproot.gd
+       [0] tex (res://scripts/game.gd:216)
+       [1] _update_sprite (res://scripts/building.gd:1487)
+       [2] add_progress (res://scripts/building.gd:592)
+       [3] _tick_building (res://scripts/building.gd:1136)
+       [4] _physics_process (res://scripts/building.gd:1086)
+ERROR: Failed loading resource: res://assets/buildings/regulator_construction.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] tex (res://scripts/game.gd:216)
+       [1] _update_sprite (res://scripts/building.gd:1487)
+       [2] add_progress (res://scripts/building.gd:592)
+       [3] _tick_building (res://scripts/building.gd:1136)
+       [4] _physics_process (res://scripts/building.gd:1086)
+WARNING: 1 RID of type "CanvasItem" was leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2733)
+=== test_brute_siege.gd
+       [0] tex (res://scripts/game.gd:216)
+       [1] _update_sprite (res://scripts/building.gd:1487)
+       [2] die (res://scripts/building.gd:1580)
+       [3] take_damage (res://scripts/entity.gd:142)
+       [4] _strike (res://scripts/unit.gd:5421)
+       [5] _attack_cycle (res://scripts/unit.gd:5251)
+       [6] _engage (res://scripts/unit.gd:5142)
+       [7] _tick_unit (res://scripts/unit.gd:4060)
+       [8] _physics_process (res://scripts/unit.gd:3703)
+  a Brute through the gate's hole to the high ground: 7.8 s
+brute4     4 x brute         gate BROKEN  order->fall   7.1s  first hit   4.7s  hitting   2.4s
+raptor24  24 x raptor        gate BROKEN  order->fall   8.8s  first hit   3.5s  hitting   5.3s
+BRUTE SIEGE DONE, 0 failed
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_campaign_a05.gd
+       [5] _run (res://tools/test_campaign_a05.gd:147)
+       [6] _difficulty (res://tools/test_campaign_a05.gd:629)
+       [7] _start (res://tools/test_campaign_a05.gd:82)
+CHECK hub after a05: the warehouse with the cages                                ok 
+CHECK Lindqvist after a05: the cages in the cellar                               ok 
+CHECK Lindqvist after a05, few: few is enough                                    ok 
+CHECK Lindqvist after a05 won by the creatures: the carts came down empty        ok 
+CHECK the egg and the specimen jar in the hub after a05                          ok 
+CHECK war map: a05's pin locked until a03                                        ok 
+CHECK war map: a05's pin open after a03                                          ok 
+CHECK war map: a05 done, every cage counted in the ledger                        ok 
+CHECK war map: the creatures' win breaks the seal                                ok 
+campaign_a05: 0 failures
+WARNING: 21 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_campaign_m1.gd
+       [2] _frame (res://scripts/campaign/campaign_menu.gd:46)
+       [3] briefing (res://scripts/campaign/campaign_menu.gd:311)
+       [4] _run (res://tools/test_campaign_m1.gd:348)
+ERROR: Failed loading resource: res://assets/menu/brood.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/main.gd:2580)
+       [1] _page (res://scripts/main.gd:184)
+       [2] _frame (res://scripts/campaign/campaign_menu.gd:46)
+       [3] briefing (res://scripts/campaign/campaign_menu.gd:311)
+       [4] _run (res://tools/test_campaign_m1.gd:348)
+CHECK the briefing has START                                             ok 
+campaign_m1: 1 failures
+WARNING: 42 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_clock_ai_swarm.gd
+  log: [07:07] P1 Clockwork lays a Heavy Works on the spot it kept by a Mainspring
+  log: [07:32] P1 Clockwork finished a Clocktower (expansion)
+  log: [07:38] P1 Clockwork's Clockwork: army: holds at its gathering point: against the Brood it goes out only clearly ahead (worth 1865, it goes at 2979 with 2 Pendulums; it has 0)
+  log: [07:57] P1 Clockwork finished a Heavy Works
+  log: [08:23] P1 Clockwork's Clockwork: army: holds at its gathering point: against the Brood it goes out only clearly ahead (worth 2430, it goes at 3360 with 2 Pendulums; it has 0)
+  log: [08:44] P1 Clockwork is expanding to fresh ore (left at its best hall: 98%), 41 tiles from its main
+  log: [08:49] P1 Clockwork got its first Pendulum
+Heavy Works laid at 7:07, first Pendulum at 8:49, "no room" lines 0, Winders with a wave in the field: 2+ in 0 of 0 samples (most 0)
+FAIL  the Heavy Works is laid by 6:30
+PASS  the first Pendulum is out by 9:00
+PASS  no "workers left and no defenders" verdict against the Brood
+PASS  2+ Winders with the wave in the field at least half the time
+RESULT: FAIL (1 failures)
+WARNING: 1 RID of type "CanvasItem" was leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2733)
+=== test_crown_dragoon_raid.gd
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  [others] the Balanced plan makes no raids
+test_crown_dragoon_raid: FAILED (1 failed)
+WARNING: 14 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_crown_siege.gd
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  [back] ... its guns go home (1 alive)
+test_crown_siege: ALL PASS (0 failed)
+WARNING: 9 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_cw_tesla.gd
+   at: draw_texture_rect_region (scene/main/canvas_item.cpp:1009)
+   GDScript backtrace (most recent call first):
+       [0] _draw_building (res://scripts/building.gd:1781)
+       [1] _draw (res://scripts/building.gd:1629)
+ERROR: Required object "rp_texture" is null.
+   at: draw_texture_rect_region (scene/main/canvas_item.cpp:1009)
+   GDScript backtrace (most recent call first):
+       [0] _draw_building (res://scripts/building.gd:1781)
+       [1] _draw (res://scripts/building.gd:1629)
+CHECK units far from it are not                                      ok 
+FAILS: 0
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_escapement_research.gd
+CHECK loaded: LONG CHAIN is still researched                                       ok 
+CHECK loaded: the Netters reach 240                                                ok [240.0, 240.0]
+CHECK loaded: SHIELD WALL queued at a Light Works is gone from its queue           ok 
+CHECK loaded: and paid back in full (100 cogs + 50 Tension)                        ok 50287 -> 50387, 4900 -> 4950
+CHECK loaded: the Light Works' clock is not carried to the next entry              ok 0.0
+CHECK (the loaded Escapement works)                                                ok 
+CHECK the computer does not buy LONG CHAIN for 1 Netter                            ok 
+CHECK the computer buys LONG CHAIN at the Escapement once it has 2 Netters         ok 
+CHECK the computer researches SHIELD WALL at the Escapement once it meets shooters ok 
+CHECK ... and never at a Light Works                                               ok 
+ALL PASS
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 5 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_gate_lock.gd
+       [6] _draw (res://scripts/ui/hud.gd:277)
+ERROR: Failed loading resource: res://assets/ui/stats/armour.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] texture (res://scripts/ui/unit_stats.gd:491)
+       [1] draw_icon (res://scripts/ui/unit_stats.gd:600)
+       [2] draw_row (res://scripts/ui/unit_stats.gd:554)
+       [3] _draw_stats (res://scripts/ui/hud.gd:4417)
+       [4] _draw_panel (res://scripts/ui/hud.gd:4333)
+       [5] _draw_layer (res://scripts/ui/hud.gd:318)
+       [6] _draw (res://scripts/ui/hud.gd:277)
+PASS  something in the gateway: it will not lock
+gate lock: PASS
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)

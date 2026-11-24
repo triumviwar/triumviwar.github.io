@@ -1,0 +1,28 @@
+test_ai_gg_rule.gd PASS rc=0 1s 
+test_barren_gather.gd FAIL rc=134 14s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_ai_scout_threat.gd FAIL rc=134 23s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_brute_siege.gd FAIL rc=134 15s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_brood_mother_uproot.gd FAIL rc=134 25s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'bog_4' on a base object of type 'Dictionary'. 
+test_campaign_m1.gd FAIL rc=134 33s CHECK no recording yet for Tomasz: the voice hook stays silent           FAIL  SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. 
+test_campaign_a05.gd FAIL rc=134 122s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'fern_1' on a base object of type 'Dictionary'. 
+test_clock_ai_swarm.gd FAIL rc=134 187s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'autumn_5' on a base object of type 'Dictionary'. 
+test_crown_dragoon_raid.gd FAIL rc=134 147s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_cog_press_anim.gd TIMEOUT rc=124 240s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_crown_siege.gd FAIL rc=134 85s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'grass_calm_3' on a base object of type 'Dictionary'. 
+test_cw_tesla.gd FAIL rc=0 11s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'heath_6' on a base object of type 'Dictionary'. 
+test_escapement_research.gd FAIL rc=0 13s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'heath_6' on a base object of type 'Dictionary'. 
+test_gate_lock.gd FAIL rc=134 12s SCRIPT ERROR: Cannot call method 'get_width' on a null value. SCRIPT ERROR: Cannot call method 'get_image' on a null value. SCRIPT ERROR: Invalid access to property or key 'bog_4' on a base object of type 'Dictionary'. 
+test_cw_crate_build.gd NOTRUN deadline (killed/not reached)
+test_gear_turn_match.gd NOTRUN deadline (killed/not reached)
+test_hold_fire.gd NOTRUN deadline (killed/not reached)
+test_labourer_anim.gd NOTRUN deadline (killed/not reached)
+test_map_editor_buttons.gd NOTRUN deadline (killed/not reached)
+test_mount_select.gd NOTRUN deadline (killed/not reached)
+test_overlay_alpha.gd NOTRUN deadline (killed/not reached)
+test_qa_save_roundtrip.gd NOTRUN deadline (killed/not reached)
+test_replay_names_local.gd NOTRUN deadline (killed/not reached)
+test_selection_panel.gd NOTRUN deadline (killed/not reached)
+test_stuck_gap.gd NOTRUN deadline (killed/not reached)
+test_view_map.gd NOTRUN deadline (killed/not reached)
+test_xwall_plan.gd NOTRUN deadline (killed/not reached)
+NOTE: the asset import was capped at 4 min and stopped at 50%; most FAILs show null textures (get_width/get_image on null), likely from the unfinished import, not code faults.
