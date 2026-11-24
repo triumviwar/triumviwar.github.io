@@ -324,7 +324,7 @@ M = {
     },
     "lines": {},
     "stills": {},
-    "next": {"guild": "", "valley": ""},
+    "next": {"guild": "d07_spring", "valley": "d07_spring"},
 }
 
 L = M["lines"]

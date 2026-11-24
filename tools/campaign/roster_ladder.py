@@ -55,7 +55,7 @@ LADDER = {
         ("K3", "a04_visit", ["heavy_works", "pendulum"], []),
         ("K4", "d02_exodus", ["ratchet_turret", "shield_wall"], []),
         ("K5", "d04_concordia", ["cuckoo_house", "cuckoo"], []),
-        ("K6", "", ["owl_morph", "high_leap"], ["ticking_owl"]),
+        ("K6", "d07_spring", ["owl_morph", "high_leap"], ["ticking_owl"]),
         ("K7", "", ["ballista", "long_chain"], []),
         ("K8", "", ["great_winder"], []),
         ("K9", "", ["brass_serpent"], ["serpent_gear_s", "serpent_gear_b"]),
@@ -92,6 +92,7 @@ BOUND = {
     "d01_minas": ("crown", ["garrison"]),             # (Act 2's C5: the conspiracy (versus) is not bound: the other side)
     "d06_queen": ("brood", ["stock"]),                # (Act 2's B5, was B6: the fazenda (solo pick, versus) is not bound)
     "d05_aldeia": ("crown", ["mission"]),             # (Act 2's C6: the swarm (solo pick, versus) is not bound beyond its deny)
+    "d07_spring": ("clockwork", ["guild"]),           # (Act 2's K6: the machine (solo pick, versus) is not bound: the other side)
 }
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
@@ -125,6 +126,8 @@ CARDS = {
     "hatchlings": "NEW: THE HATCHLINGS. Pick them on the Mother's card while the Storm Sire is rooted by her: little flyers, two to an egg. They bite only flyers, but they see far over the forest.",
     "cuckoo_house": "NEW: THE CLOCK AVIARY. A tall clock with little doors: the machines' birds fly from it. It needs a working Escapement, and runs on Tension: a Mainspring in its gear field.",
     "cuckoo": "NEW: THE SWIFT. A fast brass bird made at the Clock Aviary. It fights only other flyers, but it sees far: here the land off the plateau stays dark until a Swift has flown over it.",
+    "owl_morph": "NEW: THE TICKING OWL. Research it at the Clock Aviary, then pick a Swift and press MORPH TO OWL: a heavy brass owl that sees far in the dark, swoops on machines and drops its weight on buildings. It cannot hit flyers.",
+    "high_leap": "NEW: HIGH LEAP. Research it at the Escapement: your Springers can JUMP UP onto high ground too, a cliff included, wherever one of yours (an owl above it) sees the top.",
     "armoury": "NEW: THE ARMOURY. The garrison's own, in the lower town: it researches better muskets and bayonets for the Musketeers. Pick it to see what it teaches.",
     "matchlock": "NEW: THE MATCHLOCK. Research it at the Armoury: the Musketeers reload faster. Men already in the ranks get it by a REFIT: turn on AUTO REFIT on the Armoury and idle men near it go to be fitted.",
     "dragoon": "NEW: THE DRAGOON. A Musketeer on a horse: he rides fast down the trails and fires on foot. The relief brings four; the river fort's Barracks trains more beside its Horse Breeder.",
@@ -164,6 +167,8 @@ CARDS_PT = {
     "hatchlings": "NOVO: OS FILHOTES. Escolha-os no painel da Mãe enquanto o Sire da Tempestade estiver enraizado junto a ela: pequenos voadores, dois por ovo. Só mordem voadores, mas veem longe por cima da floresta.",
     "cuckoo_house": "NOVO: A CASA DO CUCO. Um relógio alto com portinhas: os pássaros das máquinas voam dele. Precisa de um Escape a trabalhar, e funciona com Tensão: uma Mola Real no seu campo de engrenagens.",
     "cuckoo": "NOVO: O CUCO. Um pássaro de latão rápido feito na Casa do Cuco. Só luta contra outros voadores, mas vê longe: aqui a terra fora do planalto fica escura até um Cuco voar sobre ela.",
+    "owl_morph": "NOVO: A CORUJA TIQUE-TAQUE. Pesquise-a na Casa do Cuco, depois escolha um Cuco e aperte VIRAR CORUJA: uma coruja pesada de latão que vê longe no escuro, ataca as máquinas e deixa cair o seu peso sobre os edifícios. Não acerta em voadores.",
+    "high_leap": "NOVO: PULO ALTO. Pesquise-o no Escape: os seus Saltadores podem SALTAR PARA CIMA para terreno alto também, uma falésia incluída, onde quer que um dos seus (uma coruja por cima) veja o topo.",
     "armoury": "NOVO: O ARSENAL. O da guarnição, na cidade baixa: pesquisa mosquetes e baionetas melhores para os Mosqueteiros. Escolha-o para ver o que ensina.",
     "matchlock": "NOVO: A MECHA. Pesquise-a no Arsenal: os Mosqueteiros recarregam mais depressa. Os homens que já estão nas fileiras recebem-na ao serem reequipados: ligue AUTO-REEQUIPAR no Arsenal e os homens parados perto dele vão ser equipados.",
     "dragoon": "NOVO: O DRAGÃO. Um Mosqueteiro a cavalo: corre depressa pelos trilhos e dispara a pé. O socorro traz quatro; o Quartel do forte do rio treina mais junto ao seu Criador de Cavalos.",
@@ -199,6 +204,8 @@ CARDS_ES = {
     "hatchlings": "NUEVO: LAS CRÍAS. Elígelas en el panel de la Madre mientras el Señor de la Tormenta esté enraizado junto a ella: pequeños voladores, dos por huevo. Solo muerden voladores, pero ven lejos por encima del bosque.",
     "cuckoo_house": "NUEVO: LA CASA DEL CUCO. Un reloj alto con puertecitas: los pájaros de las máquinas vuelan desde él. Necesita un Escape en marcha, y funciona con Tensión: un Muelle Real en su campo de engranajes.",
     "cuckoo": "NUEVO: EL CUCO. Un pájaro de latón rápido hecho en la Casa del Cuco. Solo lucha contra otros voladores, pero ve lejos: aquí la tierra fuera del altiplano sigue oscura hasta que un Cuco vuela sobre ella.",
+    "owl_morph": "NUEVO: EL BÚHO TICTAC. Investígalo en la Casa del Cuco, luego elige un Cuco y pulsa CONVERTIR EN BÚHO: un pesado búho de latón que ve lejos en la oscuridad, se lanza sobre las máquinas y deja caer su peso sobre los edificios. No alcanza a los voladores.",
+    "high_leap": "NUEVO: SALTO ALTO. Investígalo en el Escape: tus Saltadores pueden SALTAR ARRIBA al terreno alto también, un acantilado incluido, dondequiera que uno de los tuyos (un búho encima) vea la cima.",
     "armoury": "NUEVO: LA ARMERÍA. La de la guarnición, en la ciudad baja: investiga mosquetes y bayonetas mejores para los Mosqueteros. Elígela para ver lo que enseña.",
     "matchlock": "NUEVO: LA MECHA. Investígala en la Armería: los Mosqueteros recargan más deprisa. Los hombres que ya están en las filas la reciben al reequiparse: activa AUTOEQUIPAR en la Armería y los hombres ociosos cerca de ella van a equiparse.",
     "dragoon": "NUEVO: EL DRAGÓN. Un Mosquetero a caballo: corre deprisa por las sendas y dispara a pie. El socorro trae cuatro; el Cuartel del fuerte del río entrena más junto a su Criadero de Caballos.",
@@ -207,8 +214,8 @@ CARDS_ES = {
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8, "d07_spring": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown", "d07_spring": "guild"}
 
 
 def step_of(mission_id):

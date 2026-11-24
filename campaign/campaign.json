@@ -822,7 +822,8 @@
 				"a04_visit",
 				"a07_council",
 				"d02_exodus",
-				"d04_concordia"
+				"d04_concordia",
+				"d07_spring"
 			],
 			"hub": {
 				"title": "Hollweg's Workshop",
@@ -993,6 +994,41 @@
 									"The valley burned the first quarter. We sleep in tents again, and the families talk of the coast.",
 									"(The King: That is not how it went. The city stood, and grew.)"
 								]
+							},
+							{
+								"after": "d07_spring",
+								"flag": {
+									"d07_spring.spring": "stopped"
+								},
+								"not_sides": {
+									"d07_spring": "machine"
+								},
+								"lines": [
+									"I pulled the brake. Every machine I ever made stood still at once, the honest ones too. It was the first thing I ever stopped.",
+									"Matthias says his father would be glad. I have not written to Jakob. I do not know what I would say."
+								]
+							},
+							{
+								"after": "d07_spring",
+								"flag": {
+									"d07_spring.spring": "running"
+								},
+								"not_sides": {
+									"d07_spring": "machine"
+								},
+								"lines": [
+									"The council met at noon. Half the chairs were empty, but the city held. I let the spring run.",
+									"The masters who stayed vote as one now. It is very peaceful. I tell myself that is concord."
+								]
+							},
+							{
+								"after": "d07_spring",
+								"sides": {
+									"d07_spring": "machine"
+								},
+								"lines": [
+									"The council hall's lamps are red. Nobody sits at the table. (The King: It did not need to win that night. It had all the nights it wanted.)"
+								]
 							}
 						]
 					},
@@ -1105,6 +1141,15 @@
 								"lines": [
 									"A plate from the gallery's floor lies on the trestle. Its teeth fit nothing in the guild's books."
 								]
+							},
+							{
+								"after": "d07_spring",
+								"flag": {
+									"d07_spring.spring": "running"
+								},
+								"lines": [
+									"Every master's chair is wound now. They vote at noon, and none of them is tired."
+								]
 							}
 						]
 					},
@@ -1169,6 +1214,43 @@
 						],
 						"not_sides": {
 							"d04_concordia": "valley"
+						}
+					},
+					"d07_spring@coast": {
+						"title": "A Fisherman's House on the Coast",
+						"about": "Hollweg and the honest masters, out of the dead city, waiting for a ship.",
+						"still": {
+							"caption": "A fisherman's house on the coast: the brass map on a net-mender's table, the sea through the door."
+						},
+						"hide_layers": [],
+						"tint": [
+							0.86,
+							0.93,
+							1.02
+						],
+						"flag": {
+							"d07_spring.spring": "stopped"
+						},
+						"not_sides": {
+							"d07_spring": "machine"
+						}
+					},
+					"d07_spring@tower": {
+						"title": "The Great Spring's Tower",
+						"about": "Concórdia runs by itself. The council's chairs are empty; the spring turns.",
+						"still": {
+							"caption": "The great spring's tower over the mine: nobody winds anything here any more."
+						},
+						"hide_layers": [
+							"hollweg"
+						],
+						"tint": [
+							1.0,
+							0.78,
+							0.74
+						],
+						"sides": {
+							"d07_spring": "machine"
 						}
 					}
 				}

@@ -577,3 +577,16 @@ people in their chapel; the fields kept from the creatures' teeth), FOLLOW (the 
 with a default, `burn` with `douse_side` / `douse_secs` (a fire the rain does not put out), `root_now`, `brood_stage`,
 `nest_free`, `exits` with `after`, counters with `share_of` / `sub_counter` (the swarm's tally), `tally` with shares,
 countdown clocks, the mission's `difficulty`, `if` by `past` flags and `playing`.
+
+## Added by Act 2's d07_spring (d07-spring; docs/campaign_d07_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| `"wind": {"team": ...}` / `{"side": ...}` | wind every unit of a team or side (new ones too, when repeated) up to `share`, as `{"tag"}` did: Concórdia's plated streets (MissionRun's wind reads group_of(tag, team, side); Campaign's check accepts team / side) |
+| hub `"after": ["<mission>@<name>"]` with `"flag"` | one mission may lead to two hub rooms: the key's part before "@" is the mission done, the room's `flag` / `sides` choose (CampaignMenu.hub_now) |
+| roles `matthias`, `ortlieb`, `concordia_citizen`, `city_master` | Rebels.ROLES (stand-ins: a Winder in Jakob's art, Labourers) |
+
+Everything else in the Council of Gears is built from keys already there: `spread_convert` (THE TURNING, the hall, the
+mirror's taking), `convert` with `warn` (the doors' machines, the masters), `brake` (THE GREAT SPRING stopped), `ground`
+gear (the plates), a mid-match `show`, `choice` with a default and a time, `stay` with `kind` and `count`, `near`,
+counters, `tally` with shares, countdown clocks, `if` by `past` flags and `playing`, the solo pick.

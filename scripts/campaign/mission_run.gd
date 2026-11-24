@@ -935,7 +935,8 @@ func act(a: Dictionary) -> void:
 			"wind":
 				# (a04) {"wind": {"tag", "share"}}: Clockwork units wound up to that share at least (the broken ones wind each
 				# other before they march: run down to nothing they would stand still)
-				for e in tagged(String(v.get("tag", ""))):
+				# (d07: or "team" / "side": every unit of them, new ones too: the plated streets of Concórdia)
+				for e in group_of(String(v.get("tag", "")), String(v.get("team", "")), String(v.get("side", ""))):
 					if e is Unit:
 						(e as Unit).wind = maxf((e as Unit).wind, clampf(float(v.get("share", 1.0)), 0.0, 1.0))
 			"burn":

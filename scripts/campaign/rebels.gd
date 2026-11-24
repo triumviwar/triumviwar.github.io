@@ -129,6 +129,12 @@ const ROLES := {
 	"forward_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "The forward Mother", "hp": 1400, "scale": 0.44, "about": "A Brood Mother rooted on a mud bank in the flooded forest."},
 	"captured_gun": {"kind": "cannon", "about": "The militia's field gun, taken by the conspirators from its store."},
 	"mule_rider": {"kind": "cuirassier", "about": "A rider of the mule trains of the mines, gone over to the conspiracy."},
+	# Act 2's d07_spring (Concórdia, 2777): Jakob's son, the honest masters' speaker (a Winder: he builds and winds); the
+	# master who moves the vote; the city's people; the masters at home in the quarters (stand-ins until drawn)
+	"matthias": {"kind": "winder", "art": "c_jakob", "name": "Matthias", "hp": 220, "about": "Jakob's son, a Winder of the Nuremberg quarter: the honest masters' speaker."},
+	"ortlieb": {"kind": "missionary", "art": "c_citizen", "name": "Master Ortlieb", "hp": 200, "about": "A master of Concórdia's council who winds a machine every night."},
+	"concordia_citizen": {"kind": "labourer", "art": "c_citizen", "about": "A citizen of Concórdia."},
+	"city_master": {"kind": "missionary", "art": "c_citizen", "hp": 200, "about": "A master of one of Concórdia's quarters, at home with his machines."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)

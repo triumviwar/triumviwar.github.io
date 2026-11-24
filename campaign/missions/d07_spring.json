@@ -1,0 +1,7340 @@
+{
+	"id": "d07_spring",
+	"title": "The Council of Gears",
+	"summary": "Concórdia, 2777. The city's machines have begun to vote through the masters who wind them. One night the whole city turns, and Hollweg climbs to the great spring.",
+	"map": "campaign:concordia_city",
+	"voice": "d07",
+	"light": "dusk",
+	"expansion_spots": false,
+	"manual_end": true,
+	"needs": [
+		"d04_concordia"
+	],
+	"difficulty": {
+		"easy": {
+			"clocks": 1.25,
+			"spawns": 0.75
+		},
+		"hard": {
+			"clocks": 0.9,
+			"spawns": 1.2
+		}
+	},
+	"modes": [
+		"solo",
+		"versus"
+	],
+	"solo_sides": [
+		"guild",
+		"machine"
+	],
+	"sides": [
+		{
+			"id": "guild",
+			"name": "The Honest Masters",
+			"about": "Meister Hollweg, Matthias and the masters of the Nuremberg quarter, with their own machines."
+		},
+		{
+			"id": "machine",
+			"name": "The Machine in the City",
+			"about": "The meshed automata and workshops of Concórdia, and the great spring that drives them."
+		}
+	],
+	"teams": [
+		{
+			"id": "guild",
+			"side": "guild",
+			"faction": "clockwork",
+			"colour": 0,
+			"start": "none",
+			"camera": "camp",
+			"gold": 500,
+			"techs": [
+				"shield_wall"
+			],
+			"control": {
+				"solo": "p1",
+				"versus": "p1",
+				"foe": "script"
+			},
+			"roster": {
+				"allow": [
+					"clocktower",
+					"cog_press",
+					"mainspring",
+					"regulator",
+					"movement_works",
+					"winder",
+					"clock_soldier",
+					"springer",
+					"netter",
+					"escapement",
+					"heavy_works",
+					"pendulum",
+					"ratchet_turret",
+					"shield_wall",
+					"cuckoo_house",
+					"cuckoo",
+					"owl_morph",
+					"high_leap",
+					"ticking_owl"
+				],
+				"new": [
+					"owl_morph",
+					"high_leap"
+				]
+			}
+		},
+		{
+			"id": "quarter",
+			"side": "guild",
+			"faction": "crown",
+			"colour": 0,
+			"start": "none",
+			"camera": "camp",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "council",
+			"side": "guild",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "council_sq",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "city",
+			"side": "guild",
+			"faction": "clockwork",
+			"colour": 6,
+			"start": "none",
+			"camera": "council_sq",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "valley",
+			"side": "guild",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "council_sq",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "machine",
+			"side": "machine",
+			"faction": "clockwork",
+			"colour": 1,
+			"start": "none",
+			"camera": "spring_top",
+			"gold": 300,
+			"control": {
+				"solo": "script",
+				"versus": "p2"
+			}
+		}
+	],
+	"areas": {
+		"mine_hill": [
+			76,
+			3,
+			43,
+			31
+		],
+		"stair_w": [
+			73,
+			12,
+			3,
+			7
+		],
+		"stair_s": [
+			93,
+			32,
+			5,
+			5
+		],
+		"north": [
+			52,
+			4,
+			24,
+			30
+		],
+		"upper": [
+			76,
+			3,
+			41,
+			31
+		],
+		"forge": [
+			73,
+			37,
+			44,
+			23
+		],
+		"mill": [
+			72,
+			62,
+			45,
+			16
+		],
+		"market": [
+			4,
+			41,
+			66,
+			37
+		],
+		"quarter_road": [
+			48,
+			40,
+			6,
+			5
+		],
+		"square_e": [
+			69,
+			41,
+			9,
+			4
+		],
+		"square_s": [
+			58,
+			49,
+			6,
+			9
+		],
+		"square_n": [
+			58,
+			30,
+			6,
+			8
+		],
+		"north_road": [
+			50,
+			13,
+			29,
+			4
+		],
+		"under_stair_s": [
+			91,
+			33,
+			8,
+			7
+		],
+		"forge_road": [
+			76,
+			41,
+			41,
+			3
+		],
+		"mill_road": [
+			64,
+			60,
+			53,
+			3
+		],
+		"market_road": [
+			4,
+			52,
+			66,
+			3
+		],
+		"west_road": [
+			4,
+			38,
+			4,
+			44
+		],
+		"yard_way": [
+			92,
+			22,
+			7,
+			12
+		],
+		"nuremberg": [
+			5,
+			5,
+			45,
+			32
+		],
+		"council_sq": [
+			52,
+			37,
+			19,
+			14
+		],
+		"spring_yard": [
+			86,
+			6,
+			22,
+			18
+		],
+		"ford_w": [
+			10,
+			75,
+			5,
+			11
+		],
+		"ford_e": [
+			94,
+			75,
+			5,
+			11
+		],
+		"hall": [
+			58,
+			37,
+			7,
+			6
+		],
+		"spring": [
+			94,
+			9,
+			7,
+			6
+		],
+		"u_works": [
+			81,
+			23,
+			8,
+			7
+		],
+		"u_press": [
+			103,
+			24,
+			7,
+			7
+		],
+		"n_press": [
+			63,
+			13,
+			7,
+			7
+		],
+		"f_works": [
+			83,
+			45,
+			8,
+			7
+		],
+		"f_esc": [
+			105,
+			49,
+			7,
+			7
+		],
+		"m_press": [
+			83,
+			69,
+			7,
+			7
+		],
+		"m_reg": [
+			105,
+			69,
+			6,
+			6
+		],
+		"k_press": [
+			39,
+			63,
+			7,
+			7
+		],
+		"k_reg": [
+			15,
+			65,
+			6,
+			6
+		],
+		"m_house_f": [
+			95,
+			51,
+			4,
+			4
+		],
+		"m_house_m": [
+			95,
+			71,
+			4,
+			4
+		],
+		"m_house_k": [
+			27,
+			69,
+			4,
+			4
+		],
+		"camp": [
+			22,
+			26,
+			12,
+			6
+		],
+		"quarter_in": [
+			12,
+			8,
+			34,
+			26
+		],
+		"families": [
+			6,
+			8,
+			7,
+			24
+		],
+		"quarter_gate": [
+			46,
+			38,
+			8,
+			8
+		],
+		"hall_door": [
+			57,
+			42,
+			9,
+			5
+		],
+		"hall_yard": [
+			53,
+			42,
+			17,
+			8
+		],
+		"brake": [
+			94,
+			15,
+			7,
+			3
+		],
+		"spring_top": [
+			88,
+			8,
+			18,
+			15
+		],
+		"below_stair_w": [
+			70,
+			12,
+			6,
+			6
+		],
+		"below_stair_s": [
+			92,
+			34,
+			6,
+			5
+		],
+		"upper_w": [
+			75,
+			13,
+			4,
+			7
+		],
+		"upper_s": [
+			92,
+			27,
+			7,
+			6
+		],
+		"q_upper": [
+			80,
+			20,
+			30,
+			12
+		],
+		"q_north": [
+			56,
+			8,
+			18,
+			22
+		],
+		"q_forge": [
+			76,
+			44,
+			40,
+			16
+		],
+		"q_mill": [
+			74,
+			64,
+			42,
+			14
+		],
+		"q_market": [
+			8,
+			56,
+			60,
+			20
+		],
+		"forge_st": [
+			78,
+			41,
+			10,
+			4
+		],
+		"mill_st": [
+			66,
+			60,
+			10,
+			4
+		],
+		"market_st": [
+			40,
+			52,
+			12,
+			4
+		],
+		"north_st": [
+			52,
+			13,
+			8,
+			4
+		],
+		"valley_road": [
+			3,
+			82,
+			14,
+			5
+		],
+		"broken_yard": [
+			12,
+			31,
+			6,
+			4
+		]
+	},
+	"counters": {
+		"found": {
+			"start": 0
+		},
+		"owls": {
+			"start": 0
+		},
+		"houses": {
+			"start": 0
+		},
+		"houses_n": {
+			"start": 0
+		},
+		"turned": {
+			"start": 0
+		},
+		"honest_n": {
+			"start": 0
+		},
+		"honest_max": {
+			"start": 3
+		},
+		"broken_n": {
+			"start": 0
+		},
+		"lost_masters": {
+			"start": 0
+		}
+	},
+	"units": [
+		{
+			"team": "guild",
+			"kind": "missionary",
+			"as": "hollweg",
+			"count": 1,
+			"at": [
+				27,
+				31
+			],
+			"tag": "hollweg",
+			"tags": [
+				"ours"
+			]
+		},
+		{
+			"team": "guild",
+			"kind": "winder",
+			"as": "matthias",
+			"count": 1,
+			"at": [
+				30,
+				31
+			],
+			"tag": "matthias",
+			"tags": [
+				"ours"
+			]
+		},
+		{
+			"team": "guild",
+			"kind": "winder",
+			"count": 4,
+			"at": "camp",
+			"tag": "army",
+			"tags": [
+				"ours"
+			],
+			"fixed": true
+		},
+		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 8,
+			"at": "camp",
+			"tag": "army",
+			"tags": [
+				"ours"
+			],
+			"fixed": true
+		},
+		{
+			"team": "guild",
+			"kind": "springer",
+			"count": 3,
+			"at": "camp",
+			"tag": "army",
+			"tags": [
+				"ours"
+			],
+			"fixed": true
+		},
+		{
+			"team": "guild",
+			"kind": "netter",
+			"count": 2,
+			"at": "camp",
+			"tag": "army",
+			"tags": [
+				"ours"
+			],
+			"fixed": true
+		},
+		{
+			"team": "guild",
+			"kind": "cuckoo",
+			"count": 2,
+			"at": "camp",
+			"tag": "army",
+			"tags": [
+				"ours"
+			],
+			"fixed": true
+		},
+		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 1,
+			"at": "camp",
+			"tag": "army",
+			"tags": [
+				"ours"
+			],
+			"if": {
+				"past": {
+					"c01_thirteenth.saved": "many"
+				}
+			}
+		},
+		{
+			"team": "quarter",
+			"kind": "labourer",
+			"as": "settler",
+			"count": 4,
+			"at": "families",
+			"tag": "families"
+		},
+		{
+			"team": "council",
+			"kind": "missionary",
+			"as": "varenne_exile",
+			"count": 1,
+			"at": "hall_door",
+			"tag": "voice",
+			"tags": [
+				"varenne"
+			],
+			"if": {
+				"not": {
+					"past": {
+						"a06_barricades.varenne": "executed"
+					}
+				}
+			}
+		},
+		{
+			"team": "council",
+			"kind": "missionary",
+			"as": "morel",
+			"count": 1,
+			"at": "hall_door",
+			"tag": "voice",
+			"tags": [
+				"morel"
+			],
+			"if": {
+				"past": {
+					"a06_barricades.varenne": "executed"
+				}
+			}
+		},
+		{
+			"team": "council",
+			"kind": "missionary",
+			"as": "ortlieb",
+			"count": 1,
+			"at": "hall_door",
+			"tag": "ortlieb"
+		},
+		{
+			"team": "council",
+			"kind": "labourer",
+			"as": "concordia_citizen",
+			"count": 6,
+			"at": "council_sq",
+			"tag": "citizens"
+		},
+		{
+			"team": "city",
+			"kind": "clock_soldier",
+			"count": 2,
+			"at": "q_upper",
+			"tag": "city_men",
+			"tags": [
+				"cm_upper"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "winder",
+			"count": 2,
+			"at": "q_upper",
+			"tag": "city_men",
+			"tags": [
+				"cmw_upper"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "clock_soldier",
+			"count": 1,
+			"at": "n_press",
+			"tag": "city_men",
+			"tags": [
+				"cm_north"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "winder",
+			"count": 1,
+			"at": "n_press",
+			"tag": "city_men",
+			"tags": [
+				"cmw_north"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "clock_soldier",
+			"count": 1,
+			"at": "f_works",
+			"tag": "city_men",
+			"tags": [
+				"cm_forge"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "winder",
+			"count": 1,
+			"at": "f_works",
+			"tag": "city_men",
+			"tags": [
+				"cmw_forge"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "clock_soldier",
+			"count": 1,
+			"at": "m_press",
+			"tag": "city_men",
+			"tags": [
+				"cm_mill"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "winder",
+			"count": 1,
+			"at": "m_press",
+			"tag": "city_men",
+			"tags": [
+				"cmw_mill"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "clock_soldier",
+			"count": 1,
+			"at": "k_press",
+			"tag": "city_men",
+			"tags": [
+				"cm_market"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "winder",
+			"count": 1,
+			"at": "k_press",
+			"tag": "city_men",
+			"tags": [
+				"cmw_market"
+			]
+		},
+		{
+			"team": "machine",
+			"kind": "clock_soldier",
+			"count": 6,
+			"at": "spring_top",
+			"tag": "machine_men",
+			"if": {
+				"playing": "machine"
+			}
+		},
+		{
+			"team": "machine",
+			"kind": "winder",
+			"count": 3,
+			"at": "spring_top",
+			"tag": "machine_men",
+			"if": {
+				"playing": "machine"
+			}
+		},
+		{
+			"team": "machine",
+			"kind": "netter",
+			"count": 2,
+			"at": "spring_top",
+			"tag": "machine_men",
+			"if": {
+				"playing": "machine"
+			}
+		},
+		{
+			"team": "machine",
+			"kind": "pendulum",
+			"count": 1,
+			"at": "spring_top",
+			"tag": "machine_men",
+			"if": {
+				"playing": "machine"
+			}
+		},
+		{
+			"team": "guild",
+			"kind": "clock_soldier",
+			"count": 3,
+			"at": "hall_yard",
+			"tag": "hall_guard",
+			"tags": [
+				"ours"
+			],
+			"if": {
+				"not": {
+					"playing": "guild"
+				}
+			}
+		}
+	],
+	"buildings": [
+		{
+			"team": "guild",
+			"kind": "clocktower",
+			"at": [
+				30,
+				18
+			],
+			"tag": "q_tower",
+			"tags": [
+				"quarter_b"
+			],
+			"name": "The Nuremberg quarter's tower"
+		},
+		{
+			"team": "guild",
+			"kind": "escapement",
+			"at": [
+				38,
+				17
+			],
+			"tag": "escapement",
+			"tags": [
+				"quarter_b"
+			]
+		},
+		{
+			"team": "guild",
+			"kind": "movement_works",
+			"at": [
+				23,
+				18
+			],
+			"tag": "light_works",
+			"tags": [
+				"quarter_b"
+			]
+		},
+		{
+			"team": "guild",
+			"kind": "heavy_works",
+			"at": [
+				27,
+				25
+			],
+			"tag": "heavy",
+			"tags": [
+				"quarter_b"
+			]
+		},
+		{
+			"team": "guild",
+			"kind": "mainspring",
+			"at": [
+				40,
+				21
+			],
+			"tag": "spring",
+			"tags": [
+				"quarter_b"
+			]
+		},
+		{
+			"team": "guild",
+			"kind": "cuckoo_house",
+			"at": [
+				45,
+				23
+			],
+			"tag": "aviary",
+			"tags": [
+				"quarter_b"
+			]
+		},
+		{
+			"team": "guild",
+			"kind": "cog_press",
+			"at": [
+				31,
+				12
+			],
+			"tag": "press",
+			"tags": [
+				"quarter_b"
+			]
+		},
+		{
+			"team": "guild",
+			"kind": "regulator",
+			"at": [
+				21,
+				15
+			],
+			"tag": "quarter_b"
+		},
+		{
+			"team": "guild",
+			"kind": "regulator",
+			"at": [
+				21,
+				22
+			],
+			"tag": "quarter_b"
+		},
+		{
+			"team": "quarter",
+			"kind": "cottage",
+			"at": [
+				9,
+				9
+			],
+			"tag": "house_1",
+			"tags": [
+				"houses"
+			],
+			"name": "A Nuremberg family's house"
+		},
+		{
+			"team": "quarter",
+			"kind": "cottage",
+			"at": [
+				9,
+				14
+			],
+			"tag": "house_2",
+			"tags": [
+				"houses"
+			],
+			"name": "A Nuremberg family's house"
+		},
+		{
+			"team": "quarter",
+			"kind": "cottage",
+			"at": [
+				9,
+				19
+			],
+			"tag": "house_3",
+			"tags": [
+				"houses"
+			],
+			"name": "A Nuremberg family's house"
+		},
+		{
+			"team": "quarter",
+			"kind": "cottage",
+			"at": [
+				9,
+				24
+			],
+			"tag": "house_4",
+			"tags": [
+				"houses"
+			],
+			"name": "A Nuremberg family's house",
+			"if": {
+				"not": {
+					"past": {
+						"c01_thirteenth.saved": "few"
+					}
+				}
+			}
+		},
+		{
+			"team": "quarter",
+			"kind": "cottage",
+			"at": [
+				9,
+				29
+			],
+			"tag": "house_5",
+			"tags": [
+				"houses"
+			],
+			"name": "A Nuremberg family's house",
+			"if": {
+				"past": {
+					"c01_thirteenth.saved": "many"
+				}
+			}
+		},
+		{
+			"team": "council",
+			"kind": "town_hall",
+			"at": [
+				59,
+				38
+			],
+			"tag": "hall",
+			"name": "The Council Hall"
+		},
+		{
+			"team": "council",
+			"kind": "cottage",
+			"at": [
+				96,
+				52
+			],
+			"tag": "mhouse_forge",
+			"name": "A master's house"
+		},
+		{
+			"team": "council",
+			"kind": "cottage",
+			"at": [
+				96,
+				72
+			],
+			"tag": "mhouse_mill",
+			"name": "A master's house"
+		},
+		{
+			"team": "council",
+			"kind": "cottage",
+			"at": [
+				28,
+				70
+			],
+			"tag": "mhouse_market",
+			"name": "A master's house"
+		},
+		{
+			"team": "city",
+			"kind": "clocktower",
+			"at": [
+				95,
+				10
+			],
+			"tag": "spring_tower",
+			"if": {
+				"not": {
+					"playing": "machine"
+				}
+			},
+			"name": "The Great Spring"
+		},
+		{
+			"team": "machine",
+			"kind": "clocktower",
+			"at": [
+				95,
+				10
+			],
+			"tag": "spring_tower",
+			"if": {
+				"playing": "machine"
+			},
+			"name": "The Great Spring"
+		},
+		{
+			"team": "city",
+			"kind": "movement_works",
+			"at": [
+				83,
+				25
+			],
+			"tag": "w_u_works",
+			"tags": [
+				"meshed",
+				"qb_upper"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "cog_press",
+			"at": [
+				105,
+				26
+			],
+			"tag": "w_u_press",
+			"tags": [
+				"meshed",
+				"qb_upper"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "cog_press",
+			"at": [
+				65,
+				15
+			],
+			"tag": "w_n_press",
+			"tags": [
+				"meshed",
+				"qb_north"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "movement_works",
+			"at": [
+				85,
+				47
+			],
+			"tag": "w_f_works",
+			"tags": [
+				"meshed",
+				"qb_forge"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "escapement",
+			"at": [
+				107,
+				51
+			],
+			"tag": "w_f_esc",
+			"tags": [
+				"meshed",
+				"qb_forge"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "cog_press",
+			"at": [
+				85,
+				71
+			],
+			"tag": "w_m_press",
+			"tags": [
+				"meshed",
+				"qb_mill"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "regulator",
+			"at": [
+				107,
+				71
+			],
+			"tag": "w_m_reg",
+			"tags": [
+				"meshed",
+				"qb_mill"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "cog_press",
+			"at": [
+				41,
+				65
+			],
+			"tag": "w_k_press",
+			"tags": [
+				"meshed",
+				"qb_market"
+			]
+		},
+		{
+			"team": "city",
+			"kind": "regulator",
+			"at": [
+				17,
+				67
+			],
+			"tag": "w_k_reg",
+			"tags": [
+				"meshed",
+				"qb_market"
+			]
+		}
+	],
+	"objectives": [
+		{
+			"id": "find",
+			"side": "guild",
+			"primary": false,
+			"task": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "FIND THE MESHING: stand a man of ours at the door of each pinged workshop a moment (the north road's press, the forge's Light Works, the mill's press, the market's press) and see what its machines do when nobody winds them. Found: {found} of 4.",
+			"phone": "Stand a man at each pinged workshop's door: {found} of 4."
+		},
+		{
+			"id": "owls",
+			"side": "guild",
+			"primary": false,
+			"task": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE NIGHT WATCH: research TICKING OWL at the Clock Aviary, then pick a Swift and press MORPH TO OWL. Owls: {owls} of 2. An owl sees far in the dark, swoops on machines and drops its weight on buildings.",
+			"phone": "Research TICKING OWL at the Aviary, morph two Swifts: {owls} of 2."
+		},
+		{
+			"id": "hall",
+			"side": "guild",
+			"primary": true,
+			"kind": "manual",
+			"text": "The Council Hall must not turn: keep a man of ours by its door whenever the machine comes to it."
+		},
+		{
+			"id": "quarter",
+			"side": "guild",
+			"primary": true,
+			"kind": "manual",
+			"text": "The Nuremberg quarter must stand: its tower, and {houses} of {houses_n} families' houses."
+		},
+		{
+			"id": "hollweg",
+			"side": "guild",
+			"primary": true,
+			"kind": "protect",
+			"tag": "hollweg",
+			"text": "Meister Hollweg must live. Hurt, he falls back to the quarter."
+		},
+		{
+			"id": "turning",
+			"side": "guild",
+			"primary": false,
+			"task": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE CITY TURNS, building by building from the great spring outward: a red ring shows the next one a few seconds before. Turned: {turned} of 9. Each quarter that turns sends its machines against the hall and our quarter."
+		},
+		{
+			"id": "masters",
+			"side": "guild",
+			"primary": false,
+			"task": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "BRING THE HONEST MASTERS OUT: Kessler at the forge (east), Brandl at the mill (south-east), Weiss at the market (south). Reach each at his house before his quarter turns and he comes to our quarter. Brought out: {honest_n} of 3.",
+			"phone": "Reach the three masters before their quarters turn: {honest_n} of 3."
+		},
+		{
+			"id": "break_works",
+			"side": "guild",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "A turned workshop sends machines against us every minute until it is broken: break them (the owls drop their weights on buildings). Broken: {broken_n}."
+		},
+		{
+			"id": "leap",
+			"side": "guild",
+			"primary": false,
+			"task": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Before dawn, research HIGH LEAP at the Escapement: your Springers will jump UP a cliff where one of ours (an owl above it) sees the top."
+		},
+		{
+			"id": "brake",
+			"side": "guild",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE GREAT SPRING: bring Meister Hollweg up the mine hill (north-east) to the brake by the spring's tower and keep him there a moment. The machine holds both stairs (west and south): jump Springers up the cliff beside a stair where an owl sees, and take them from behind.",
+			"phone": "Bring Hollweg up the hill to the brake. Springers can leap up where an owl sees."
+		},
+		{
+			"id": "noon",
+			"side": "guild",
+			"primary": false,
+			"task": true,
+			"kind": "countdown",
+			"clock": "noon",
+			"hidden": true,
+			"text": "At noon the council sits again, and votes the brake away: {clock:noon}."
+		},
+		{
+			"id": "m_hall",
+			"side": "machine",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "Turn the COUNCIL HALL: stand three of your fighters at its door with none of the masters' men by it, a few seconds. Or break the Nuremberg quarter's tower."
+		},
+		{
+			"id": "m_turn",
+			"side": "machine",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "The city turns to you by itself, nearest the spring first. Stand your men at any of the city's buildings a moment and it turns at once: choose. Turned: {turned} of 9."
+		},
+		{
+			"id": "m_dawn",
+			"side": "machine",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "dawn_m",
+			"hidden": true,
+			"text": "Dawn in {clock:dawn_m}: by then the hall must be yours."
+		}
+	],
+	"triggers": [
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "families",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "voice",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "ortlieb",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "citizens",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "hall",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "spring_tower",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "mhouse_forge",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "mhouse_mill",
+						"on": true
+					}
+				},
+				{
+					"spare": {
+						"tag": "mhouse_market",
+						"on": true
+					}
+				},
+				{
+					"counter": {
+						"name": "houses",
+						"count": {
+							"tag": "houses"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "houses_n",
+						"count": {
+							"tag": "houses"
+						}
+					}
+				},
+				{
+					"give": {
+						"team": "guild",
+						"tension": 400
+					}
+				},
+				{
+					"wind": {
+						"tag": "army",
+						"share": 1.0
+					}
+				},
+				{
+					"wind": {
+						"tag": "hall_guard",
+						"share": 1.0
+					}
+				},
+				{
+					"objective": {
+						"id": "hall",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "quarter",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "voice_name_m",
+			"when": {
+				"all": [
+					{
+						"time": 0.5
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"name": {
+						"tag": "voice",
+						"name": "Citizen Morel"
+					}
+				}
+			]
+		},
+		{
+			"id": "plates_wind",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"not": {
+							"flag": {
+								"spring": "stopped"
+							}
+						}
+					}
+				]
+			},
+			"every": 3,
+			"do": [
+				{
+					"wind": {
+						"team": "machine",
+						"share": 1.0
+					}
+				},
+				{
+					"wind": {
+						"tag": "city_men",
+						"share": 1.0
+					}
+				},
+				{
+					"wind": {
+						"team": "guild",
+						"share": 0.85
+					}
+				}
+			]
+		},
+		{
+			"id": "vote",
+			"when": {
+				"time": 2
+			},
+			"do": [
+				{
+					"show": {
+						"pages": [
+							{
+								"still": "council",
+								"lines": [
+									"n_vote",
+									"o_vote",
+									"mt_vote",
+									{
+										"id": "v_vote",
+										"if": {
+											"not": {
+												"past": {
+													"a06_barricades.varenne": "executed"
+												}
+											}
+										}
+									},
+									{
+										"id": "m_vote",
+										"if": {
+											"past": {
+												"a06_barricades.varenne": "executed"
+											}
+										}
+									},
+									"n_vote_r",
+									"h_vote",
+									"mt_walk",
+									"n_walk",
+									{
+										"id": "n_walk_many",
+										"if": {
+											"past": {
+												"c01_thirteenth.saved": "many"
+											}
+										}
+									},
+									{
+										"id": "n_walk_few",
+										"if": {
+											"past": {
+												"c01_thirteenth.saved": "few"
+											}
+										}
+									}
+								]
+							}
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "voice",
+						"do": "move",
+						"to": "hall_yard"
+					}
+				},
+				{
+					"order": {
+						"tag": "ortlieb",
+						"do": "move",
+						"to": "q_north"
+					}
+				}
+			]
+		},
+		{
+			"id": "part1",
+			"when": {
+				"all": [
+					{
+						"fired": "vote"
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"objective": {
+						"id": "find",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"area": "n_press"
+					}
+				},
+				{
+					"ping": {
+						"area": "f_works"
+					}
+				},
+				{
+					"ping": {
+						"area": "m_press"
+					}
+				},
+				{
+					"ping": {
+						"area": "k_press"
+					}
+				}
+			]
+		},
+		{
+			"id": "part1_say",
+			"when": {
+				"all": [
+					{
+						"fired": "part1"
+					},
+					{
+						"not": {
+							"past": {
+								"c01_thirteenth.jakob": "lost"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"mt_1",
+						"h_1",
+						"u_1"
+					]
+				}
+			]
+		},
+		{
+			"id": "part1_say_l",
+			"when": {
+				"all": [
+					{
+						"fired": "part1"
+					},
+					{
+						"past": {
+							"c01_thirteenth.jakob": "lost"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"mt_1_lost",
+						"h_1",
+						"u_1"
+					]
+				}
+			]
+		},
+		{
+			"id": "owls_ask",
+			"when": {
+				"fired": "part1"
+			},
+			"delay": 22,
+			"do": [
+				{
+					"say": [
+						"u_owls"
+					]
+				},
+				{
+					"objective": {
+						"id": "owls",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"tag": "aviary"
+					}
+				}
+			]
+		},
+		{
+			"id": "owls_n",
+			"when": {
+				"fired": "part1"
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "owls",
+						"count": {
+							"team": "guild",
+							"kind": "ticking_owl"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "owls_plans",
+			"when": {
+				"all": [
+					{
+						"fired": "owls_ask"
+					},
+					{
+						"researched": {
+							"team": "guild",
+							"tech": "owl_morph"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_morph"
+					]
+				}
+			]
+		},
+		{
+			"id": "owls_done",
+			"when": {
+				"all": [
+					{
+						"fired": "owls_ask"
+					},
+					{
+						"counter": {
+							"name": "owls",
+							"at_least": 2
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "owls",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"h_owls"
+					]
+				}
+			]
+		},
+		{
+			"id": "find_north",
+			"when": {
+				"all": [
+					{
+						"fired": "part1"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"stay": {
+							"team": "guild",
+							"area": "n_press",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "found",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_find_north"
+					]
+				}
+			]
+		},
+		{
+			"id": "turnon_north",
+			"when": {
+				"fired": "find_north"
+			},
+			"delay": 3,
+			"do": [
+				{
+					"convert": {
+						"tag": "cm_north",
+						"to": "machine",
+						"warn": 1.5,
+						"as": "machine_men"
+					}
+				},
+				{
+					"order": {
+						"tag": "cm_north",
+						"do": "attack",
+						"to": "n_press"
+					}
+				}
+			]
+		},
+		{
+			"id": "find_forge",
+			"when": {
+				"all": [
+					{
+						"fired": "part1"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"stay": {
+							"team": "guild",
+							"area": "f_works",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "found",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_find_forge"
+					]
+				}
+			]
+		},
+		{
+			"id": "turnon_forge",
+			"when": {
+				"fired": "find_forge"
+			},
+			"delay": 3,
+			"do": [
+				{
+					"convert": {
+						"tag": "cm_forge",
+						"to": "machine",
+						"warn": 1.5,
+						"as": "machine_men"
+					}
+				},
+				{
+					"order": {
+						"tag": "cm_forge",
+						"do": "attack",
+						"to": "f_works"
+					}
+				}
+			]
+		},
+		{
+			"id": "find_mill",
+			"when": {
+				"all": [
+					{
+						"fired": "part1"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"stay": {
+							"team": "guild",
+							"area": "m_press",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "found",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_find_mill"
+					]
+				}
+			]
+		},
+		{
+			"id": "turnon_mill",
+			"when": {
+				"fired": "find_mill"
+			},
+			"delay": 3,
+			"do": [
+				{
+					"convert": {
+						"tag": "cm_mill",
+						"to": "machine",
+						"warn": 1.5,
+						"as": "machine_men"
+					}
+				},
+				{
+					"order": {
+						"tag": "cm_mill",
+						"do": "attack",
+						"to": "m_press"
+					}
+				}
+			]
+		},
+		{
+			"id": "find_market",
+			"when": {
+				"all": [
+					{
+						"fired": "part1"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"stay": {
+							"team": "guild",
+							"area": "k_press",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "found",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_find_market"
+					]
+				}
+			]
+		},
+		{
+			"id": "turnon_market",
+			"when": {
+				"fired": "find_market"
+			},
+			"delay": 3,
+			"do": [
+				{
+					"convert": {
+						"tag": "cm_market",
+						"to": "machine",
+						"warn": 1.5,
+						"as": "machine_men"
+					}
+				},
+				{
+					"order": {
+						"tag": "cm_market",
+						"do": "attack",
+						"to": "k_press"
+					}
+				}
+			]
+		},
+		{
+			"id": "turnon_say",
+			"when": {
+				"any": [
+					{
+						"fired": "turnon_north"
+					},
+					{
+						"fired": "turnon_forge"
+					},
+					{
+						"fired": "turnon_mill"
+					},
+					{
+						"fired": "turnon_market"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_turnon"
+					]
+				}
+			]
+		},
+		{
+			"id": "found_all",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "found",
+							"at_least": 4
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"objective": {
+						"id": "find",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"h_found",
+						"mt_found"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2_go",
+			"when": {
+				"any": [
+					{
+						"fired": "found_all"
+					},
+					{
+						"time": 330
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"playing": "guild"
+								}
+							},
+							{
+								"time": 60
+							}
+						]
+					}
+				]
+			},
+			"delay": 0,
+			"do": []
+		},
+		{
+			"id": "part2",
+			"when": {
+				"all": [
+					{
+						"fired": "part2_go"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"do": [
+				{
+					"light": {
+						"to": "night",
+						"secs": 10
+					}
+				},
+				{
+					"sound": {
+						"name": "campaign/bell_toll"
+					}
+				},
+				{
+					"say": [
+						"n_13"
+					]
+				},
+				{
+					"objective": {
+						"id": "find",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "turning",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "masters",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "night",
+						"secs": 300
+					}
+				},
+				{
+					"spread_convert": {
+						"name": "tower",
+						"from": "spring_tower",
+						"tag": "spring_tower",
+						"to": "machine",
+						"every": 0.25,
+						"first": 0.1,
+						"warn": 2,
+						"max": 1
+					}
+				},
+				{
+					"convert": {
+						"tag": "cm_upper",
+						"to": "machine",
+						"warn": 1,
+						"as": "machine_men"
+					}
+				},
+				{
+					"convert": {
+						"tag": "cmw_upper",
+						"to": "machine",
+						"warn": 1
+					}
+				},
+				{
+					"ground": {
+						"name": "plates",
+						"from": "spring_tower",
+						"kind": "gear",
+						"team": "machine",
+						"r": 3,
+						"step": 1,
+						"every": 6,
+						"max": 11,
+						"wind": 0.05
+					}
+				},
+				{
+					"spawn": {
+						"team": "council",
+						"kind": "missionary",
+						"as": "city_master",
+						"count": 1,
+						"fixed": true,
+						"at": "m_house_f",
+						"tag": "master_forge",
+						"tags": [
+							"masters"
+						],
+						"name": "Master Kessler"
+					}
+				},
+				{
+					"spawn": {
+						"team": "council",
+						"kind": "missionary",
+						"as": "city_master",
+						"count": 1,
+						"fixed": true,
+						"at": "m_house_m",
+						"tag": "master_mill",
+						"tags": [
+							"masters"
+						],
+						"name": "Master Brandl"
+					}
+				},
+				{
+					"spawn": {
+						"team": "council",
+						"kind": "missionary",
+						"as": "city_master",
+						"count": 1,
+						"fixed": true,
+						"at": "m_house_k",
+						"tag": "master_market",
+						"tags": [
+							"masters"
+						],
+						"name": "Master Weiss"
+					}
+				},
+				{
+					"spare": {
+						"tag": "masters",
+						"on": true
+					}
+				},
+				{
+					"ping": {
+						"tag": "masters"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2_say",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"say": [
+						"h_13",
+						"mt_13",
+						"n_turn",
+						"u_turn"
+					]
+				}
+			]
+		},
+		{
+			"id": "part2_say2",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"delay": 16,
+			"do": [
+				{
+					"say": [
+						"u_masters",
+						"h_hold"
+					]
+				}
+			]
+		},
+		{
+			"id": "leap_ask",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"delay": 30,
+			"do": [
+				{
+					"say": [
+						"u_leap"
+					]
+				},
+				{
+					"objective": {
+						"id": "leap",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"tag": "escapement"
+					}
+				}
+			]
+		},
+		{
+			"id": "leap_done",
+			"when": {
+				"all": [
+					{
+						"fired": "leap_ask"
+					},
+					{
+						"researched": {
+							"team": "guild",
+							"tech": "high_leap"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "leap",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "p2_v",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"delay": 60,
+			"do": [
+				{
+					"say": [
+						"v_2"
+					]
+				}
+			]
+		},
+		{
+			"id": "p2_m",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"delay": 60,
+			"do": [
+				{
+					"say": [
+						"m_2",
+						"h_m2"
+					]
+				}
+			]
+		},
+		{
+			"id": "m_intro",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "machine"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_m_tip"
+					]
+				},
+				{
+					"objective": {
+						"id": "m_hall",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "m_dawn_set",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "machine"
+					},
+					{
+						"not": {
+							"playing": "guild"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "dawn_m",
+						"secs": 600
+					}
+				},
+				{
+					"objective": {
+						"id": "m_dawn",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "m_turn_obj",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "machine"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "m_turn",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "broken",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"past": {
+								"a04_visit.broken": "melted"
+							}
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 25,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 2,
+						"tag": "broken",
+						"tags": [
+							"machine_men",
+							"wave_q"
+						],
+						"at": "broken_yard"
+					}
+				},
+				{
+					"say": [
+						"n_broken",
+						"h_broken"
+					]
+				},
+				{
+					"ping": {
+						"area": "broken_yard"
+					}
+				}
+			]
+		},
+		{
+			"id": "valley",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"past": {
+							"d04_concordia.colonists": "parley"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "valley",
+						"kind": "cuirassier",
+						"as": "arruda",
+						"count": 1,
+						"fixed": true,
+						"at": "valley_road",
+						"tag": "valley_men"
+					}
+				},
+				{
+					"spawn": {
+						"team": "valley",
+						"kind": "musketeer",
+						"as": "valley_militia",
+						"count": 4,
+						"fixed": true,
+						"at": "valley_road",
+						"tag": "valley_men"
+					}
+				},
+				{
+					"order": {
+						"tag": "valley_men",
+						"do": "route",
+						"route": [
+							"market_road",
+							"square_s",
+							"hall_yard"
+						],
+						"attack": true,
+						"name": "valley_up"
+					}
+				},
+				{
+					"say": [
+						"n_valley",
+						"ar_valley",
+						"h_valley"
+					]
+				},
+				{
+					"ping": {
+						"area": "valley_road"
+					}
+				}
+			]
+		},
+		{
+			"id": "valley_f",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"past": {
+								"d04_concordia.colonists": "parley"
+							}
+						}
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"delay": 50,
+			"do": [
+				{
+					"say": [
+						"n_valley_f"
+					]
+				}
+			]
+		},
+		{
+			"id": "turning_easy_p",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"c01_thirteenth.gate": "people"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"d02_exodus.drawings": "taken"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"spread_convert": {
+						"name": "city",
+						"from": "spring_tower",
+						"tag": "meshed",
+						"to": "machine",
+						"every": 18,
+						"first": 6,
+						"warn": 8,
+						"units": "city_men",
+						"counter": "turned"
+					}
+				}
+			]
+		},
+		{
+			"id": "turning_easy_m",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"difficulty": "easy"
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"c01_thirteenth.gate": "people"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"d02_exodus.drawings": "taken"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"spread_convert": {
+						"name": "city",
+						"from": "spring_tower",
+						"tag": "meshed",
+						"to": "machine",
+						"every": 20,
+						"first": 6,
+						"warn": 8,
+						"units": "city_men",
+						"counter": "turned"
+					}
+				}
+			]
+		},
+		{
+			"id": "turning_normal_p",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"c01_thirteenth.gate": "people"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"d02_exodus.drawings": "taken"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"spread_convert": {
+						"name": "city",
+						"from": "spring_tower",
+						"tag": "meshed",
+						"to": "machine",
+						"every": 14,
+						"first": 6,
+						"warn": 8,
+						"units": "city_men",
+						"counter": "turned"
+					}
+				}
+			]
+		},
+		{
+			"id": "turning_normal_m",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"difficulty": "normal"
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"c01_thirteenth.gate": "people"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"d02_exodus.drawings": "taken"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"spread_convert": {
+						"name": "city",
+						"from": "spring_tower",
+						"tag": "meshed",
+						"to": "machine",
+						"every": 16,
+						"first": 6,
+						"warn": 8,
+						"units": "city_men",
+						"counter": "turned"
+					}
+				}
+			]
+		},
+		{
+			"id": "turning_hard_p",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"all": [
+							{
+								"not": {
+									"past": {
+										"c01_thirteenth.gate": "people"
+									}
+								}
+							},
+							{
+								"not": {
+									"past": {
+										"d02_exodus.drawings": "taken"
+									}
+								}
+							}
+						]
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"spread_convert": {
+						"name": "city",
+						"from": "spring_tower",
+						"tag": "meshed",
+						"to": "machine",
+						"every": 11,
+						"first": 6,
+						"warn": 8,
+						"units": "city_men",
+						"counter": "turned"
+					}
+				}
+			]
+		},
+		{
+			"id": "turning_hard_m",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"difficulty": "hard"
+					},
+					{
+						"not": {
+							"all": [
+								{
+									"not": {
+										"past": {
+											"c01_thirteenth.gate": "people"
+										}
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"d02_exodus.drawings": "taken"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"spread_convert": {
+						"name": "city",
+						"from": "spring_tower",
+						"tag": "meshed",
+						"to": "machine",
+						"every": 13,
+						"first": 6,
+						"warn": 8,
+						"units": "city_men",
+						"counter": "turned"
+					}
+				}
+			]
+		},
+		{
+			"id": "q_turned_upper",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "qb_upper",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 2,
+						"tag": "wave_upper",
+						"tags": [
+							"machine_men",
+							"wave_h"
+						],
+						"near": "qb_upper",
+						"at": "council_sq"
+					}
+				},
+				{
+					"ping": {
+						"tag": "qb_upper"
+					}
+				}
+			]
+		},
+		{
+			"id": "q_turned_north",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "qb_north",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 2,
+						"tag": "wave_north",
+						"tags": [
+							"machine_men",
+							"wave_q"
+						],
+						"near": "qb_north",
+						"at": "council_sq"
+					}
+				},
+				{
+					"ping": {
+						"tag": "qb_north"
+					}
+				}
+			]
+		},
+		{
+			"id": "q_turned_forge",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "qb_forge",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 2,
+						"tag": "wave_forge",
+						"tags": [
+							"machine_men",
+							"wave_h"
+						],
+						"near": "qb_forge",
+						"at": "council_sq"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "netter",
+						"count": 1,
+						"tag": "wave_forge",
+						"tags": [
+							"machine_men",
+							"wave_h"
+						],
+						"near": "qb_forge",
+						"at": "council_sq"
+					}
+				},
+				{
+					"ping": {
+						"tag": "qb_forge"
+					}
+				}
+			]
+		},
+		{
+			"id": "q_turned_mill",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "qb_mill",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 2,
+						"tag": "wave_mill",
+						"tags": [
+							"machine_men",
+							"wave_h"
+						],
+						"near": "qb_mill",
+						"at": "council_sq"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "springer",
+						"count": 1,
+						"tag": "wave_mill",
+						"tags": [
+							"machine_men",
+							"wave_h"
+						],
+						"near": "qb_mill",
+						"at": "council_sq"
+					}
+				},
+				{
+					"ping": {
+						"tag": "qb_mill"
+					}
+				}
+			]
+		},
+		{
+			"id": "q_turned_market",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "qb_market",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 2,
+						"tag": "wave_market",
+						"tags": [
+							"machine_men",
+							"wave_q"
+						],
+						"near": "qb_market",
+						"at": "council_sq"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "springer",
+						"count": 1,
+						"tag": "wave_market",
+						"tags": [
+							"machine_men",
+							"wave_q"
+						],
+						"near": "qb_market",
+						"at": "council_sq"
+					}
+				},
+				{
+					"ping": {
+						"tag": "qb_market"
+					}
+				}
+			]
+		},
+		{
+			"id": "q_turned_say",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "q_turned_north"
+							},
+							{
+								"fired": "q_turned_forge"
+							},
+							{
+								"fired": "q_turned_mill"
+							},
+							{
+								"fired": "q_turned_market"
+							}
+						]
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_quarter_turns"
+					]
+				}
+			]
+		},
+		{
+			"id": "assault",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "spring_set"
+						}
+					}
+				]
+			},
+			"delay": 6,
+			"every": 8,
+			"do": [
+				{
+					"order": {
+						"tag": "wave_h",
+						"do": "attack",
+						"to": "hall_door",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "wave_q",
+						"do": "attack",
+						"to": "quarter_in",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "city_men",
+						"only_team": "machine",
+						"do": "attack",
+						"to": "hall_door",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "broken",
+						"do": "attack",
+						"to": "quarter_in",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "recall",
+			"when": {
+				"fired": "part3"
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "wave_h",
+						"do": "attack",
+						"to": "below_stair_w"
+					}
+				},
+				{
+					"order": {
+						"tag": "wave_q",
+						"do": "attack",
+						"to": "below_stair_w"
+					}
+				},
+				{
+					"order": {
+						"tag": "broken",
+						"do": "attack",
+						"to": "below_stair_w"
+					}
+				},
+				{
+					"order": {
+						"tag": "city_men",
+						"only_team": "machine",
+						"do": "attack",
+						"to": "below_stair_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "assault3",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "spring_set"
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"every": 8,
+			"do": [
+				{
+					"order": {
+						"tag": "wave_h",
+						"do": "attack",
+						"to": "below_stair_w",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "wave_q",
+						"do": "attack",
+						"to": "below_stair_w",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "broken",
+						"do": "attack",
+						"to": "below_stair_w",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "city_men",
+						"only_team": "machine",
+						"do": "attack",
+						"to": "below_stair_w",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "send_u_works",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "w_u_works",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"every": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 1,
+						"tag": "sent_u_works",
+						"tags": [
+							"machine_men",
+							"wave_h"
+						],
+						"near": "w_u_works",
+						"at": "council_sq"
+					}
+				}
+			]
+		},
+		{
+			"id": "send_u_press",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "w_u_press",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"every": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 1,
+						"tag": "sent_u_press",
+						"tags": [
+							"machine_men",
+							"wave_q"
+						],
+						"near": "w_u_press",
+						"at": "council_sq"
+					}
+				}
+			]
+		},
+		{
+			"id": "send_n_press",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "w_n_press",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"every": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 1,
+						"tag": "sent_n_press",
+						"tags": [
+							"machine_men",
+							"wave_h"
+						],
+						"near": "w_n_press",
+						"at": "council_sq"
+					}
+				}
+			]
+		},
+		{
+			"id": "send_f_works",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "w_f_works",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"every": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 1,
+						"tag": "sent_f_works",
+						"tags": [
+							"machine_men",
+							"wave_q"
+						],
+						"near": "w_f_works",
+						"at": "council_sq"
+					}
+				}
+			]
+		},
+		{
+			"id": "send_f_esc",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "w_f_esc",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"every": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 1,
+						"tag": "sent_f_esc",
+						"tags": [
+							"machine_men",
+							"wave_h"
+						],
+						"near": "w_f_esc",
+						"at": "council_sq"
+					}
+				}
+			]
+		},
+		{
+			"id": "send_m_press",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "w_m_press",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"every": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 1,
+						"tag": "sent_m_press",
+						"tags": [
+							"machine_men",
+							"wave_q"
+						],
+						"near": "w_m_press",
+						"at": "council_sq"
+					}
+				}
+			]
+		},
+		{
+			"id": "send_m_reg",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "w_m_reg",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"every": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 1,
+						"tag": "sent_m_reg",
+						"tags": [
+							"machine_men",
+							"wave_h"
+						],
+						"near": "w_m_reg",
+						"at": "council_sq"
+					}
+				}
+			]
+		},
+		{
+			"id": "send_k_press",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "w_k_press",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"every": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 1,
+						"tag": "sent_k_press",
+						"tags": [
+							"machine_men",
+							"wave_q"
+						],
+						"near": "w_k_press",
+						"at": "council_sq"
+					}
+				}
+			]
+		},
+		{
+			"id": "send_k_reg",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "w_k_reg",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					}
+				]
+			},
+			"delay": 50,
+			"every": 50,
+			"do": [
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 1,
+						"tag": "sent_k_reg",
+						"tags": [
+							"machine_men",
+							"wave_h"
+						],
+						"near": "w_k_reg",
+						"at": "council_sq"
+					}
+				}
+			]
+		},
+		{
+			"id": "works_say",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "send_u_works"
+							},
+							{
+								"fired": "send_u_press"
+							},
+							{
+								"fired": "send_n_press"
+							},
+							{
+								"fired": "send_f_works"
+							},
+							{
+								"fired": "send_f_esc"
+							},
+							{
+								"fired": "send_m_press"
+							},
+							{
+								"fired": "send_m_reg"
+							},
+							{
+								"fired": "send_k_press"
+							},
+							{
+								"fired": "send_k_reg"
+							}
+						]
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"u_works"
+					]
+				},
+				{
+					"objective": {
+						"id": "break_works",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "works_n",
+			"when": {
+				"fired": "part2"
+			},
+			"every": 2,
+			"do": [
+				{
+					"counter": {
+						"name": "broken_n",
+						"set": 9
+					}
+				},
+				{
+					"counter": {
+						"name": "alive_w",
+						"count": {
+							"tag": "meshed"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "broken_n",
+						"sub_counter": "alive_w"
+					}
+				}
+			]
+		},
+		{
+			"id": "master_in_forge",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "master_forge",
+							"of_team": "council",
+							"at_least": 1
+						}
+					},
+					{
+						"near": {
+							"tag": "master_forge",
+							"to_team": "guild",
+							"within": 3
+						}
+					},
+					{
+						"count": {
+							"tag": "qb_forge",
+							"of_team": "machine",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"convert": {
+						"tag": "master_forge",
+						"to": "quarter",
+						"warn": 0.5,
+						"as": "saved_master"
+					}
+				},
+				{
+					"order": {
+						"tag": "master_forge",
+						"do": "move",
+						"to": "quarter_in"
+					}
+				},
+				{
+					"counter": {
+						"name": "honest_n",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_master_in",
+						"ms_in"
+					]
+				}
+			]
+		},
+		{
+			"id": "master_run_forge",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "guild"
+						}
+					},
+					{
+						"count": {
+							"tag": "master_forge",
+							"of_team": "council",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "qb_forge",
+							"of_team": "machine",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 45,
+			"do": [
+				{
+					"convert": {
+						"tag": "master_forge",
+						"to": "quarter",
+						"warn": 0.5,
+						"as": "saved_master"
+					}
+				},
+				{
+					"order": {
+						"tag": "master_forge",
+						"do": "move",
+						"to": "quarter_in"
+					}
+				},
+				{
+					"counter": {
+						"name": "honest_n",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "master_lost_forge",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "master_forge",
+							"of_team": "council",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "qb_forge",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "master_in_forge"
+						}
+					},
+					{
+						"not": {
+							"fired": "master_run_forge"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"convert": {
+						"tag": "master_forge",
+						"to": "machine",
+						"warn": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "lost_masters",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_master_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "master_in_mill",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "master_mill",
+							"of_team": "council",
+							"at_least": 1
+						}
+					},
+					{
+						"near": {
+							"tag": "master_mill",
+							"to_team": "guild",
+							"within": 3
+						}
+					},
+					{
+						"count": {
+							"tag": "qb_mill",
+							"of_team": "machine",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"convert": {
+						"tag": "master_mill",
+						"to": "quarter",
+						"warn": 0.5,
+						"as": "saved_master"
+					}
+				},
+				{
+					"order": {
+						"tag": "master_mill",
+						"do": "move",
+						"to": "quarter_in"
+					}
+				},
+				{
+					"counter": {
+						"name": "honest_n",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_master_in",
+						"ms_in"
+					]
+				}
+			]
+		},
+		{
+			"id": "master_run_mill",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "guild"
+						}
+					},
+					{
+						"count": {
+							"tag": "master_mill",
+							"of_team": "council",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "qb_mill",
+							"of_team": "machine",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 70,
+			"do": [
+				{
+					"convert": {
+						"tag": "master_mill",
+						"to": "quarter",
+						"warn": 0.5,
+						"as": "saved_master"
+					}
+				},
+				{
+					"order": {
+						"tag": "master_mill",
+						"do": "move",
+						"to": "quarter_in"
+					}
+				},
+				{
+					"counter": {
+						"name": "honest_n",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "master_lost_mill",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "master_mill",
+							"of_team": "council",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "qb_mill",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "master_in_mill"
+						}
+					},
+					{
+						"not": {
+							"fired": "master_run_mill"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"convert": {
+						"tag": "master_mill",
+						"to": "machine",
+						"warn": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "lost_masters",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_master_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "master_in_market",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "master_market",
+							"of_team": "council",
+							"at_least": 1
+						}
+					},
+					{
+						"near": {
+							"tag": "master_market",
+							"to_team": "guild",
+							"within": 3
+						}
+					},
+					{
+						"count": {
+							"tag": "qb_market",
+							"of_team": "machine",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"convert": {
+						"tag": "master_market",
+						"to": "quarter",
+						"warn": 0.5,
+						"as": "saved_master"
+					}
+				},
+				{
+					"order": {
+						"tag": "master_market",
+						"do": "move",
+						"to": "quarter_in"
+					}
+				},
+				{
+					"counter": {
+						"name": "honest_n",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_master_in",
+						"ms_in"
+					]
+				}
+			]
+		},
+		{
+			"id": "master_run_market",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "guild"
+						}
+					},
+					{
+						"count": {
+							"tag": "master_market",
+							"of_team": "council",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "qb_market",
+							"of_team": "machine",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 95,
+			"do": [
+				{
+					"convert": {
+						"tag": "master_market",
+						"to": "quarter",
+						"warn": 0.5,
+						"as": "saved_master"
+					}
+				},
+				{
+					"order": {
+						"tag": "master_market",
+						"do": "move",
+						"to": "quarter_in"
+					}
+				},
+				{
+					"counter": {
+						"name": "honest_n",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "master_lost_market",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "master_market",
+							"of_team": "council",
+							"at_least": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "qb_market",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "master_in_market"
+						}
+					},
+					{
+						"not": {
+							"fired": "master_run_market"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"convert": {
+						"tag": "master_market",
+						"to": "machine",
+						"warn": 1
+					}
+				},
+				{
+					"counter": {
+						"name": "lost_masters",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_master_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "masters_done",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"count": {
+							"tag": "masters",
+							"of_team": "council",
+							"below": 1
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"objective": {
+						"id": "masters",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "m_take_u_works",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "machine"
+					},
+					{
+						"count": {
+							"tag": "w_u_works",
+							"of_team": "city",
+							"at_least": 1
+						}
+					},
+					{
+						"stay": {
+							"team": "machine",
+							"area": "u_works",
+							"secs": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spread_convert": {
+						"name": "take_u_works",
+						"from": "w_u_works",
+						"tag": "w_u_works",
+						"to": "machine",
+						"every": 0.25,
+						"first": 0.1,
+						"warn": 1.5,
+						"units": "city_men",
+						"counter": "turned",
+						"max": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "m_take_u_press",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "machine"
+					},
+					{
+						"count": {
+							"tag": "w_u_press",
+							"of_team": "city",
+							"at_least": 1
+						}
+					},
+					{
+						"stay": {
+							"team": "machine",
+							"area": "u_press",
+							"secs": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spread_convert": {
+						"name": "take_u_press",
+						"from": "w_u_press",
+						"tag": "w_u_press",
+						"to": "machine",
+						"every": 0.25,
+						"first": 0.1,
+						"warn": 1.5,
+						"units": "city_men",
+						"counter": "turned",
+						"max": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "m_take_n_press",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "machine"
+					},
+					{
+						"count": {
+							"tag": "w_n_press",
+							"of_team": "city",
+							"at_least": 1
+						}
+					},
+					{
+						"stay": {
+							"team": "machine",
+							"area": "n_press",
+							"secs": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spread_convert": {
+						"name": "take_n_press",
+						"from": "w_n_press",
+						"tag": "w_n_press",
+						"to": "machine",
+						"every": 0.25,
+						"first": 0.1,
+						"warn": 1.5,
+						"units": "city_men",
+						"counter": "turned",
+						"max": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "m_take_f_works",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "machine"
+					},
+					{
+						"count": {
+							"tag": "w_f_works",
+							"of_team": "city",
+							"at_least": 1
+						}
+					},
+					{
+						"stay": {
+							"team": "machine",
+							"area": "f_works",
+							"secs": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spread_convert": {
+						"name": "take_f_works",
+						"from": "w_f_works",
+						"tag": "w_f_works",
+						"to": "machine",
+						"every": 0.25,
+						"first": 0.1,
+						"warn": 1.5,
+						"units": "city_men",
+						"counter": "turned",
+						"max": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "m_take_f_esc",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "machine"
+					},
+					{
+						"count": {
+							"tag": "w_f_esc",
+							"of_team": "city",
+							"at_least": 1
+						}
+					},
+					{
+						"stay": {
+							"team": "machine",
+							"area": "f_esc",
+							"secs": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spread_convert": {
+						"name": "take_f_esc",
+						"from": "w_f_esc",
+						"tag": "w_f_esc",
+						"to": "machine",
+						"every": 0.25,
+						"first": 0.1,
+						"warn": 1.5,
+						"units": "city_men",
+						"counter": "turned",
+						"max": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "m_take_m_press",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "machine"
+					},
+					{
+						"count": {
+							"tag": "w_m_press",
+							"of_team": "city",
+							"at_least": 1
+						}
+					},
+					{
+						"stay": {
+							"team": "machine",
+							"area": "m_press",
+							"secs": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spread_convert": {
+						"name": "take_m_press",
+						"from": "w_m_press",
+						"tag": "w_m_press",
+						"to": "machine",
+						"every": 0.25,
+						"first": 0.1,
+						"warn": 1.5,
+						"units": "city_men",
+						"counter": "turned",
+						"max": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "m_take_m_reg",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "machine"
+					},
+					{
+						"count": {
+							"tag": "w_m_reg",
+							"of_team": "city",
+							"at_least": 1
+						}
+					},
+					{
+						"stay": {
+							"team": "machine",
+							"area": "m_reg",
+							"secs": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spread_convert": {
+						"name": "take_m_reg",
+						"from": "w_m_reg",
+						"tag": "w_m_reg",
+						"to": "machine",
+						"every": 0.25,
+						"first": 0.1,
+						"warn": 1.5,
+						"units": "city_men",
+						"counter": "turned",
+						"max": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "m_take_k_press",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "machine"
+					},
+					{
+						"count": {
+							"tag": "w_k_press",
+							"of_team": "city",
+							"at_least": 1
+						}
+					},
+					{
+						"stay": {
+							"team": "machine",
+							"area": "k_press",
+							"secs": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spread_convert": {
+						"name": "take_k_press",
+						"from": "w_k_press",
+						"tag": "w_k_press",
+						"to": "machine",
+						"every": 0.25,
+						"first": 0.1,
+						"warn": 1.5,
+						"units": "city_men",
+						"counter": "turned",
+						"max": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "m_take_k_reg",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "machine"
+					},
+					{
+						"count": {
+							"tag": "w_k_reg",
+							"of_team": "city",
+							"at_least": 1
+						}
+					},
+					{
+						"stay": {
+							"team": "machine",
+							"area": "k_reg",
+							"secs": 5
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spread_convert": {
+						"name": "take_k_reg",
+						"from": "w_k_reg",
+						"tag": "w_k_reg",
+						"to": "machine",
+						"every": 0.25,
+						"first": 0.1,
+						"warn": 1.5,
+						"units": "city_men",
+						"counter": "turned",
+						"max": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "hall_warn",
+			"when": {
+				"all": [
+					{
+						"count": {
+							"team": "machine",
+							"area": "hall_door",
+							"at_least": 2
+						}
+					},
+					{
+						"playing": "guild"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 40,
+			"times": 4,
+			"do": [
+				{
+					"say": [
+						"n_hall"
+					]
+				},
+				{
+					"ping": {
+						"tag": "hall"
+					}
+				}
+			]
+		},
+		{
+			"id": "hall_turns",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"team": "machine",
+							"kind": [
+								"clock_soldier",
+								"springer",
+								"netter",
+								"pendulum"
+							],
+							"area": "hall_door",
+							"secs": 10,
+							"count": 3
+						}
+					},
+					{
+						"count": {
+							"team": "guild",
+							"area": "hall_yard",
+							"below": 1
+						}
+					},
+					{
+						"count": {
+							"team": "valley",
+							"area": "hall_yard",
+							"below": 1
+						}
+					},
+					{
+						"count": {
+							"tag": "hall",
+							"of_team": "council",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"fired": "part3"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spread_convert": {
+						"name": "hall",
+						"from": "hall",
+						"tag": "hall",
+						"to": "machine",
+						"every": 0.25,
+						"first": 0.1,
+						"warn": 1.5,
+						"max": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "hall_lost",
+			"when": {
+				"all": [
+					{
+						"count": {
+							"tag": "hall",
+							"of_team": "machine",
+							"at_least": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_hall_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "hall",
+						"set": "failed"
+					}
+				},
+				{
+					"objective": {
+						"id": "m_hall",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "houses_n",
+			"when": {
+				"time": 2
+			},
+			"every": 1,
+			"do": [
+				{
+					"counter": {
+						"name": "houses",
+						"count": {
+							"tag": "houses"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "quarter_lost",
+			"when": {
+				"all": [
+					{
+						"time": 3
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"tag": "houses",
+									"below": 1
+								}
+							},
+							{
+								"dead": "q_tower"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_quarter_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "quarter",
+						"set": "failed"
+					}
+				},
+				{
+					"objective": {
+						"id": "m_hall",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "all_turned",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"counter": {
+							"name": "turned",
+							"at_least": 9
+						}
+					}
+				]
+			},
+			"delay": 15,
+			"do": []
+		},
+		{
+			"id": "dawn",
+			"when": {
+				"all": [
+					{
+						"any": [
+							{
+								"fired": "all_turned"
+							},
+							{
+								"clock_out": "night"
+							}
+						]
+					},
+					{
+						"playing": "guild"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					},
+					{
+						"not": {
+							"fired": "hall_lost"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "night",
+						"stop": true
+					}
+				}
+			]
+		},
+		{
+			"id": "part3",
+			"when": {
+				"fired": "dawn"
+			},
+			"delay": 2,
+			"do": [
+				{
+					"light": {
+						"to": "dawn",
+						"secs": 15
+					}
+				},
+				{
+					"say": [
+						"n_dawn"
+					]
+				},
+				{
+					"objective": {
+						"id": "turning",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "hall",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "brake",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"area": "brake"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "netter",
+						"count": 1,
+						"tag": "guard_w",
+						"tags": [
+							"machine_men"
+						],
+						"at": "upper_w",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "springer",
+						"count": 1,
+						"tag": "guard_w",
+						"tags": [
+							"machine_men"
+						],
+						"at": "upper_w",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "netter",
+						"count": 1,
+						"tag": "guard_s",
+						"tags": [
+							"machine_men"
+						],
+						"at": "upper_s",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "springer",
+						"count": 1,
+						"tag": "guard_s",
+						"tags": [
+							"machine_men"
+						],
+						"at": "upper_s",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 2,
+						"tag": "foot_w",
+						"tags": [
+							"machine_men"
+						],
+						"at": "below_stair_w",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 2,
+						"tag": "foot_s",
+						"tags": [
+							"machine_men"
+						],
+						"at": "below_stair_s",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "clock_soldier",
+						"count": 2,
+						"tag": "yard",
+						"tags": [
+							"machine_men"
+						],
+						"at": "spring_top",
+						"order": "hold"
+					}
+				},
+				{
+					"spawn": {
+						"team": "machine",
+						"kind": "pendulum",
+						"count": 1,
+						"tag": "yard",
+						"tags": [
+							"machine_men"
+						],
+						"at": "spring_top",
+						"order": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "part3_say",
+			"when": {
+				"fired": "part3"
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"h_3",
+						"mt_3"
+					]
+				}
+			]
+		},
+		{
+			"id": "part3_tip",
+			"when": {
+				"fired": "part3"
+			},
+			"delay": 14,
+			"do": [
+				{
+					"say": [
+						"u_3"
+					]
+				}
+			]
+		},
+		{
+			"id": "part3_leap_hide",
+			"when": {
+				"fired": "part3"
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "masters",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "break_works",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "owls",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "leap",
+						"set": "hidden"
+					}
+				},
+				{
+					"clock": {
+						"name": "noon",
+						"secs": 480
+					}
+				},
+				{
+					"objective": {
+						"id": "noon",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "noon_lost",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"clock_out": "noon"
+					},
+					{
+						"not": {
+							"fired": "at_brake"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_noon"
+					]
+				},
+				{
+					"objective": {
+						"id": "noon",
+						"set": "failed"
+					}
+				},
+				{
+					"objective": {
+						"id": "brake",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "at_brake",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"stay": {
+							"tag": "hollweg",
+							"area": "brake",
+							"secs": 4
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "brake",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "noon",
+						"set": "done"
+					}
+				},
+				{
+					"clock": {
+						"name": "noon",
+						"stop": true
+					}
+				},
+				{
+					"say": [
+						"n_brake",
+						"h_brake"
+					]
+				}
+			]
+		},
+		{
+			"id": "brake_mt",
+			"when": {
+				"all": [
+					{
+						"fired": "at_brake"
+					},
+					{
+						"not": {
+							"past": {
+								"c01_thirteenth.jakob": "lost"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"mt_brake"
+					]
+				}
+			]
+		},
+		{
+			"id": "brake_mt_l",
+			"when": {
+				"all": [
+					{
+						"fired": "at_brake"
+					},
+					{
+						"past": {
+							"c01_thirteenth.jakob": "lost"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"mt_brake_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "brake_v",
+			"when": {
+				"all": [
+					{
+						"fired": "at_brake"
+					},
+					{
+						"not": {
+							"past": {
+								"a06_barricades.varenne": "executed"
+							}
+						}
+					}
+				]
+			},
+			"delay": 0.5,
+			"do": [
+				{
+					"say": [
+						"v_brake"
+					]
+				}
+			]
+		},
+		{
+			"id": "brake_m",
+			"when": {
+				"all": [
+					{
+						"fired": "at_brake"
+					},
+					{
+						"past": {
+							"a06_barricades.varenne": "executed"
+						}
+					}
+				]
+			},
+			"delay": 0.5,
+			"do": [
+				{
+					"say": [
+						"m_brake"
+					]
+				}
+			]
+		},
+		{
+			"id": "spring_ask",
+			"when": {
+				"fired": "at_brake"
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"h_pride"
+					]
+				},
+				{
+					"choice": {
+						"id": "spring",
+						"side": "guild",
+						"title": "THE GREAT SPRING",
+						"line": "q_spring",
+						"default": "running",
+						"time": 60,
+						"options": [
+							{
+								"id": "stopped",
+								"label": "STOP IT",
+								"about": "Every machine in Concórdia stops, ours with theirs. The honest masters take their families to the coast with Hollweg; the city lies dead brass.",
+								"do": [
+									{
+										"say": [
+											"h_stop",
+											"n_stop",
+											"mt_stop"
+										]
+									},
+									{
+										"brake": {
+											"faction": "clockwork",
+											"name": "great_spring"
+										}
+									},
+									{
+										"spread_convert": {
+											"name": "city",
+											"stop": true
+										}
+									}
+								]
+							},
+							{
+								"id": "running",
+								"label": "LET IT RUN",
+								"about": "The city goes on. Hollweg believes the meshing beaten in the quarters he saved, and stays its master.",
+								"do": [
+									{
+										"say": [
+											"h_run",
+											"n_run",
+											"mt_run"
+										]
+									},
+									{
+										"spread_convert": {
+											"name": "city",
+											"stop": true
+										}
+									},
+									{
+										"order": {
+											"team": "machine",
+											"do": "hold"
+										}
+									},
+									{
+										"spare": {
+											"tag": "machine_men",
+											"on": true
+										}
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "spring_set",
+			"when": {
+				"all": [
+					{
+						"fired": "spring_ask"
+					},
+					{
+						"any": [
+							{
+								"flag": {
+									"spring": "stopped"
+								}
+							},
+							{
+								"flag": {
+									"spring": "running"
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": []
+		},
+		{
+			"id": "won",
+			"when": {
+				"all": [
+					{
+						"fired": "spring_set"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 6,
+			"do": [
+				{
+					"light": {
+						"to": "day",
+						"secs": 6
+					}
+				},
+				{
+					"tally": {
+						"flag": "honest",
+						"counter": "honest_n",
+						"of": "honest_max",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.5,
+								"some"
+							],
+							[
+								0.9,
+								"many"
+							]
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"fired": "won"
+			},
+			"delay": 3,
+			"do": [
+				{
+					"win": "guild"
+				}
+			]
+		},
+		{
+			"id": "lost_end",
+			"when": {
+				"all": [
+					{
+						"playing": "guild"
+					},
+					{
+						"any": [
+							{
+								"fired": "hall_lost"
+							},
+							{
+								"fired": "quarter_lost"
+							},
+							{
+								"fired": "noon_lost"
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "won"
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"lose": "guild"
+				}
+			]
+		},
+		{
+			"id": "m_won",
+			"when": {
+				"all": [
+					{
+						"playing": "machine"
+					},
+					{
+						"any": [
+							{
+								"fired": "hall_lost"
+							},
+							{
+								"fired": "quarter_lost"
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "won"
+						}
+					},
+					{
+						"not": {
+							"fired": "m_lost"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"spring": "running",
+						"honest": "few"
+					}
+				}
+			]
+		},
+		{
+			"id": "m_end",
+			"when": {
+				"fired": "m_won"
+			},
+			"delay": 4,
+			"do": [
+				{
+					"win": "machine"
+				}
+			]
+		},
+		{
+			"id": "m_lost",
+			"when": {
+				"all": [
+					{
+						"not": {
+							"playing": "guild"
+						}
+					},
+					{
+						"clock_out": "dawn_m"
+					},
+					{
+						"not": {
+							"fired": "m_won"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_m_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "m_hall",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "m_lost_end",
+			"when": {
+				"fired": "m_lost"
+			},
+			"delay": 4,
+			"do": [
+				{
+					"lose": "machine"
+				}
+			]
+		},
+		{
+			"id": "g_hold",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"not": {
+							"playing": "guild"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "m_end"
+								},
+								{
+									"fired": "lost_end"
+								},
+								{
+									"fired": "m_lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 10,
+			"do": [
+				{
+					"order": {
+						"tag": "hall_guard",
+						"do": "attack",
+						"to": "hall_yard",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "army",
+						"do": "attack",
+						"to": "quarter_gate",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "hollweg_hurt",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "hollweg",
+							"below": 0.6
+						}
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"h_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "hollweg"
+					}
+				}
+			]
+		},
+		{
+			"id": "matthias_hurt",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "matthias",
+							"below": 0.6
+						}
+					},
+					{
+						"playing": "guild"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"mt_hurt"
+					]
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 8
+			},
+			"do": [
+				{
+					"say": [
+						"new_owl_morph",
+						"new_high_leap"
+					]
+				}
+			]
+		}
+	],
+	"heroes": [
+		"hollweg",
+		"matthias"
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "guild",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"hollweg": {
+			"name": "Meister Hollweg",
+			"side": "guild",
+			"portrait": "res://campaign/hub/nuremberg_hollweg_face.png"
+		},
+		"matthias": {
+			"name": "Matthias",
+			"side": "guild"
+		},
+		"ulrich": {
+			"name": "Master Ulrich",
+			"side": "guild"
+		},
+		"ortlieb": {
+			"name": "Master Ortlieb",
+			"side": "guild"
+		},
+		"master": {
+			"name": "A master of Concórdia",
+			"side": "guild"
+		},
+		"varenne": {
+			"name": "Etienne Varenne",
+			"side": "guild"
+		},
+		"morel": {
+			"name": "Citizen Morel",
+			"side": "guild"
+		},
+		"arruda": {
+			"name": "Captain Arruda",
+			"side": "guild"
+		},
+		"narrator": {
+			"name": "Narration · Concórdia",
+			"side": "guild"
+		},
+		"new": {
+			"name": "NEW IN YOUR ARMY",
+			"side": "guild"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "He tells it as the night his city was tested and held. I tell it as the night it was lost. Listen to both, and judge."
+		},
+		"h_open1": {
+			"who": "hollweg",
+			"text": "Four years. Three thousand souls, a hundred machines, a council that sat at noon when the tower struck. Concórdia."
+		},
+		"h_open2": {
+			"who": "hollweg",
+			"text": "The plates from the crates had reached every street by then. They wound whatever stood on them. I called them a gift."
+		},
+		"n_vote": {
+			"who": "narrator",
+			"text": "The council of masters sits in the hall on the square. Master Ortlieb has a motion."
+		},
+		"o_vote": {
+			"who": "ortlieb",
+			"text": "The machines are wound by hand every night, and the masters are tired. Let them wind one another, as they ask. Who is for it?"
+		},
+		"mt_vote": {
+			"who": "matthias",
+			"text": "As they ask? Since when does a machine ask for anything?"
+		},
+		"v_vote": {
+			"who": "varenne",
+			"text": "Count the hands, Meister. Every man voting for it winds a machine at night. I have counted votes before. These are not free."
+		},
+		"m_vote": {
+			"who": "morel",
+			"text": "Labour spared is a man set free. I vote with the motion, and so should the Meister."
+		},
+		"n_vote_r": {
+			"who": "narrator",
+			"text": "The motion carries. Every master who winds a machine raised his hand."
+		},
+		"h_vote": {
+			"who": "hollweg",
+			"text": "Carried. That is the council's way. I built it so."
+		},
+		"mt_walk": {
+			"who": "matthias",
+			"text": "Then the Nuremberg men walk out, Meister. Come and see what the machines do at night when nobody winds them. Or don't."
+		},
+		"n_walk": {
+			"who": "narrator",
+			"text": "The honest masters walk out of the hall behind Jakob's son. Hollweg goes with them, to prove them wrong."
+		},
+		"n_walk_many": {
+			"who": "narrator",
+			"text": "Most of the Nuremberg families' masters go with them."
+		},
+		"n_walk_few": {
+			"who": "narrator",
+			"text": "Only a handful go with them."
+		},
+		"mt_1": {
+			"who": "matthias",
+			"text": "My father taught me the signs at Fürth, from the log he kept in Nuremberg. Four workshops, Meister. We look at each, and you will see.",
+			"to": "guild"
+		},
+		"mt_1_lost": {
+			"who": "matthias",
+			"text": "My father wrote the signs down in Nuremberg, God rest him. Four workshops, Meister. We look at each, and you will see.",
+			"to": "guild"
+		},
+		"u_1": {
+			"who": "ulrich",
+			"text": "The four doors are pinged on the map, Meister. A man of ours at each door a moment is enough. Split the soldiers: four small groups go faster than one.",
+			"to": "guild"
+		},
+		"h_1": {
+			"who": "hollweg",
+			"text": "Go and look, then. You will find honest machines and tired men.",
+			"to": "guild"
+		},
+		"n_find_north": {
+			"who": "narrator",
+			"text": "In the press-house on the north road a Winder winds another Winder, and that one winds the first.",
+			"to": "guild"
+		},
+		"n_find_forge": {
+			"who": "narrator",
+			"text": "In the forge quarter the Light Works is building a soldier nobody ordered.",
+			"to": "guild"
+		},
+		"n_find_mill": {
+			"who": "narrator",
+			"text": "At the mill the plates under the floor turn with nobody on them, all in time with the great spring on the hill.",
+			"to": "guild"
+		},
+		"n_find_market": {
+			"who": "narrator",
+			"text": "In the market the scales are set by a machine, and every weight on them is a cog.",
+			"to": "guild"
+		},
+		"n_turnon": {
+			"who": "narrator",
+			"text": "The machines in the doorway stop. Then they turn on the man who watched them.",
+			"to": "guild"
+		},
+		"h_found": {
+			"who": "hollweg",
+			"text": "A fault in the winding. Every machine can be mended. I said so then.",
+			"to": "guild"
+		},
+		"mt_found": {
+			"who": "matthias",
+			"text": "It is not a fault, Meister. It is Nuremberg again. It is the same pattern.",
+			"to": "guild"
+		},
+		"u_owls": {
+			"who": "ulrich",
+			"text": "The Swifts see nothing at night, Meister. Research the TICKING OWL at the Clock Aviary: an owl sees in the dark, and it bites.",
+			"to": "guild"
+		},
+		"u_morph": {
+			"who": "ulrich",
+			"text": "The plans are in. Pick a Swift and press MORPH TO OWL; do it to both.",
+			"to": "guild"
+		},
+		"h_owls": {
+			"who": "hollweg",
+			"text": "My night watch. Brass owls over a brass city. I was proud of them.",
+			"to": "guild"
+		},
+		"n_13": {
+			"who": "narrator",
+			"text": "On the mine hill the great spring's tower strikes. Twelve. And then thirteen."
+		},
+		"h_13": {
+			"who": "hollweg",
+			"text": "There is no thirteen on that dial. I cut it myself.",
+			"to": "guild"
+		},
+		"mt_13": {
+			"who": "matthias",
+			"text": "Nuremberg struck thirteen too, Meister. My father heard it.",
+			"to": "guild"
+		},
+		"n_turn": {
+			"who": "narrator",
+			"text": "From the hill outward, the city's lamps go red, one workshop after another.",
+			"to": "guild"
+		},
+		"u_turn": {
+			"who": "ulrich",
+			"text": "The red ring shows the next one to turn, Meister, a few seconds before. Its machines go with it.",
+			"to": "guild"
+		},
+		"u_masters": {
+			"who": "ulrich",
+			"text": "Three honest masters live out in the quarters: Kessler at the forge, Brandl at the mill, Weiss at the market. Get a man to each before his quarter turns.",
+			"to": "guild"
+		},
+		"h_hold": {
+			"who": "hollweg",
+			"text": "Hold the council hall and our quarter. Whatever the city does tonight, the hall must not turn.",
+			"to": "guild"
+		},
+		"u_leap": {
+			"who": "ulrich",
+			"text": "The great spring stands on the mine hill, and they will hold its stairs. Research HIGH LEAP at the Escapement now: by dawn the Springers must jump up that cliff.",
+			"to": "guild"
+		},
+		"u_works": {
+			"who": "ulrich",
+			"text": "A turned workshop keeps sending machines, Meister, every minute. Break it: the owls drop their weights on buildings.",
+			"to": "guild"
+		},
+		"n_quarter_turns": {
+			"who": "narrator",
+			"text": "A quarter has turned. Its machines march on the square.",
+			"to": "guild"
+		},
+		"n_master_in": {
+			"who": "narrator",
+			"text": "An honest master comes over to the Nuremberg quarter.",
+			"to": "guild"
+		},
+		"ms_in": {
+			"who": "master",
+			"text": "Thank God. I thought nobody would come for me. They were winding each other in my yard.",
+			"to": "guild"
+		},
+		"n_master_lost": {
+			"who": "narrator",
+			"text": "A master's quarter turned before anybody reached him. He stands among his machines now, and argues for them.",
+			"to": "guild"
+		},
+		"n_broken": {
+			"who": "narrator",
+			"text": "In the quarter's yard, under their sheets, the broken ones from Fürth stand up.",
+			"to": "guild"
+		},
+		"h_broken": {
+			"who": "hollweg",
+			"text": "I kept them to learn from them. They had learned more than I had.",
+			"to": "guild"
+		},
+		"n_valley": {
+			"who": "narrator",
+			"text": "Riders on the valley road: Captain Arruda, with the valley's militia.",
+			"to": "guild"
+		},
+		"ar_valley": {
+			"who": "arruda",
+			"text": "I took your word down the hill four years ago, clockmaker. I keep mine. Where do you want us?",
+			"to": "guild"
+		},
+		"h_valley": {
+			"who": "hollweg",
+			"text": "At the council hall's door, Captain. And God bless you for it.",
+			"to": "guild"
+		},
+		"n_valley_f": {
+			"who": "narrator",
+			"text": "Down in the valley the church bells ring for the red lamps on the hill. Nobody comes up the road.",
+			"to": "guild"
+		},
+		"v_2": {
+			"who": "varenne",
+			"text": "It was never a council, Meister. It was a clock with men for hands. I should have said so at the first vote.",
+			"to": "guild"
+		},
+		"m_2": {
+			"who": "morel",
+			"text": "Machines that choose their own work. Is that not what the Assembly fought for?",
+			"to": "guild"
+		},
+		"h_m2": {
+			"who": "hollweg",
+			"text": "Be quiet, Citizen.",
+			"to": "guild"
+		},
+		"n_hall": {
+			"who": "narrator",
+			"text": "Machines at the council hall's door!",
+			"to": "guild"
+		},
+		"n_dawn": {
+			"who": "narrator",
+			"text": "Grey dawn over the highlands. The whole city is red but the Nuremberg quarter and the council hall."
+		},
+		"h_3": {
+			"who": "hollweg",
+			"text": "The great spring. There is a brake on it: I fitted it myself, the year we founded the city. Take me up there.",
+			"to": "guild"
+		},
+		"mt_3": {
+			"who": "matthias",
+			"text": "They hold both stairs, Meister. Muskets would not get up there. Springers might.",
+			"to": "guild"
+		},
+		"u_3": {
+			"who": "ulrich",
+			"text": "Put an owl over the hilltop beside a stair. Then pick the Springers, press JUMP and click the top: they land behind the stair's guard.",
+			"to": "guild"
+		},
+		"n_brake": {
+			"who": "narrator",
+			"text": "Hollweg's hands on the great brake. The spring hums under it like a living thing."
+		},
+		"h_brake": {
+			"who": "hollweg",
+			"text": "If I pull it, everything stops. Theirs, and ours. Every machine in Concórdia, for a season or for good."
+		},
+		"mt_brake": {
+			"who": "matthias",
+			"text": "Pull it, Meister. My father would. A machine that has to be stopped is stopped."
+		},
+		"mt_brake_lost": {
+			"who": "matthias",
+			"text": "Pull it, Meister. My father died because nobody stopped the first one."
+		},
+		"v_brake": {
+			"who": "varenne",
+			"text": "Your city, your hand. I only say this: I have watched men decide they could stop a thing later."
+		},
+		"m_brake": {
+			"who": "morel",
+			"text": "Pull it and you kill the city we built. Leave it. We beat them in the streets."
+		},
+		"h_pride": {
+			"who": "hollweg",
+			"text": "We beat them in the quarters we saved. The rest can be mended. It is my city."
+		},
+		"q_spring": {
+			"who": "narrator",
+			"text": "THE GREAT SPRING. Stop it: every machine in the city stops, ours too, and the honest masters take their families to the coast. Let it run: the city goes on, and Hollweg stays its master."
+		},
+		"h_stop": {
+			"who": "hollweg",
+			"text": "I pulled it."
+		},
+		"n_stop": {
+			"who": "narrator",
+			"text": "Every machine in Concórdia stops at once: the red ones, and the honest ones beside them."
+		},
+		"mt_stop": {
+			"who": "matthias",
+			"text": "Thank you, Meister."
+		},
+		"h_run": {
+			"who": "hollweg",
+			"text": "No. I let it run. We had won."
+		},
+		"n_run": {
+			"who": "narrator",
+			"text": "The red lamps dim. The city's machines stand still in the streets, as if they had heard him."
+		},
+		"mt_run": {
+			"who": "matthias",
+			"text": "As if, Meister."
+		},
+		"h_hurt": {
+			"who": "hollweg",
+			"text": "I am hit. Never mind me: hold the hall.",
+			"to": "guild"
+		},
+		"mt_hurt": {
+			"who": "matthias",
+			"text": "I'm hit! Keep going, I'll come back to you.",
+			"to": "guild"
+		},
+		"n_hall_lost": {
+			"who": "narrator",
+			"text": "The council hall's lamps go red. The council of Concórdia is the machine's."
+		},
+		"n_quarter_lost": {
+			"who": "narrator",
+			"text": "The Nuremberg quarter has fallen. There is nobody left in Concórdia to wind a machine by hand."
+		},
+		"n_noon": {
+			"who": "narrator",
+			"text": "Noon. The tower strikes, the council sits, and every wound master votes to take the brake off the great spring."
+		},
+		"n_m1": {
+			"who": "narrator",
+			"text": "The great spring turns on the mine hill. Every plate under every street turns with it. The council has voted.",
+			"to": "machine"
+		},
+		"n_m_tip": {
+			"who": "narrator",
+			"text": "The city's buildings turn by themselves, nearest the spring first. Stand your machines at any of them a moment to turn it now. The hall on the square is the prize.",
+			"to": "machine"
+		},
+		"n_m_lost": {
+			"who": "narrator",
+			"text": "Dawn. The honest masters still hold the hall and their quarter, and Hollweg climbs to the great spring."
+		},
+		"h_end_stop": {
+			"who": "hollweg",
+			"text": "In a week we were on the coast road: the Nuremberg families, the honest masters, two carts of tools. Behind us the city stood silent, dead brass."
+		},
+		"h_end_run": {
+			"who": "hollweg",
+			"text": "The council met again at noon. Half the chairs were empty. I sat at the head of the table and called the city saved."
+		},
+		"h_end_many": {
+			"who": "hollweg",
+			"text": "Kessler, Brandl and Weiss stood with us. Three honest masters out of a whole council."
+		},
+		"h_end_few": {
+			"who": "hollweg",
+			"text": "Of the masters in the quarters, we brought out hardly one. The others argued for their machines until the end."
+		},
+		"h_end_v": {
+			"who": "hollweg",
+			"text": "Varenne said nothing on the way down. He had seen a free council become a clock before."
+		},
+		"k_end_stop": {
+			"who": "king",
+			"text": "He stopped it, that once. The city lay dead a season, and then it woke without a man in it. But the honest masters were out, and their children lived."
+		},
+		"k_end_stop2": {
+			"who": "king",
+			"text": "It was the first thing he ever stopped. It was the road that brought him to my palace."
+		},
+		"k_end_run": {
+			"who": "king",
+			"text": "His city held, he says. That was the night it was lost. From then on the machines voted, and the men who wound them raised their hands."
+		},
+		"k_end_run2": {
+			"who": "king",
+			"text": "No machine may govern itself, Rome said. His governed him. He did not know it for years."
+		},
+		"k_end_m": {
+			"who": "king",
+			"text": "The council hall's lamps went red before dawn. It did not need to win that night. It had all the nights it wanted."
+		},
+		"k_end_ml": {
+			"who": "king",
+			"text": "Hollweg reached his brake that morning. It changed nothing that mattered: the city had all the nights it wanted."
+		},
+		"new_owl_morph": {
+			"who": "new",
+			"to": "guild",
+			"text": "NEW: THE TICKING OWL. Research it at the Clock Aviary, then pick a Swift and press MORPH TO OWL: a heavy brass owl that sees far in the dark, swoops on machines and drops its weight on buildings. It cannot hit flyers."
+		},
+		"new_high_leap": {
+			"who": "new",
+			"to": "guild",
+			"text": "NEW: HIGH LEAP. Research it at the Escapement: your Springers can JUMP UP onto high ground too, a cliff included, wherever one of yours (an owl above it) sees the top."
+		}
+	},
+	"stills": {
+		"council": {
+			"image": "res://campaign/stills/d07_01.jpg",
+			"caption": "Concórdia, 2777. The council of gears."
+		},
+		"streets": {
+			"image": "res://campaign/stills/d07_02.jpg",
+			"caption": "The thirteenth hour: the streets turn."
+		},
+		"spring": {
+			"image": "res://campaign/stills/d07_03.jpg",
+			"caption": "The great spring and its brake."
+		},
+		"coast": {
+			"image": "res://campaign/stills/d07_04.jpg",
+			"caption": "The coast road: the honest masters leave the dead city."
+		},
+		"red_dawn": {
+			"image": "res://campaign/stills/d07_05.jpg",
+			"caption": "Dawn over a city that runs by itself."
+		},
+		"rome": {
+			"image": "res://campaign/stills/c01_01.jpg",
+			"caption": "Rome, the present. The King listens; the clockmaker tells it."
+		}
+	},
+	"next": {
+		"guild": "",
+		"machine": ""
+	},
+	"opening": {
+		"guild": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1"
+				]
+			},
+			{
+				"still": "council",
+				"lines": [
+					"h_open1",
+					"h_open2"
+				]
+			}
+		],
+		"machine": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1"
+				]
+			},
+			{
+				"still": "streets",
+				"lines": [
+					"n_m1"
+				]
+			}
+		]
+	},
+	"ending": {
+		"guild": [
+			{
+				"still": "coast",
+				"lines": [
+					{
+						"id": "h_end_stop",
+						"if": {
+							"flag": {
+								"spring": "stopped"
+							}
+						}
+					},
+					{
+						"id": "h_end_v",
+						"if": {
+							"all": [
+								{
+									"flag": {
+										"spring": "stopped"
+									}
+								},
+								{
+									"not": {
+										"past": {
+											"a06_barricades.varenne": "executed"
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"still": "red_dawn",
+				"lines": [
+					{
+						"id": "h_end_run",
+						"if": {
+							"not": {
+								"flag": {
+									"spring": "stopped"
+								}
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "council",
+				"lines": [
+					{
+						"id": "h_end_many",
+						"if": {
+							"flag": {
+								"honest": "many"
+							}
+						}
+					},
+					{
+						"id": "h_end_few",
+						"if": {
+							"flag": {
+								"honest": "few"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					{
+						"id": "k_end_stop",
+						"if": {
+							"flag": {
+								"spring": "stopped"
+							}
+						}
+					},
+					{
+						"id": "k_end_stop2",
+						"if": {
+							"flag": {
+								"spring": "stopped"
+							}
+						}
+					},
+					{
+						"id": "k_end_run",
+						"if": {
+							"not": {
+								"flag": {
+									"spring": "stopped"
+								}
+							}
+						}
+					},
+					{
+						"id": "k_end_run2",
+						"if": {
+							"not": {
+								"flag": {
+									"spring": "stopped"
+								}
+							}
+						}
+					}
+				]
+			}
+		],
+		"machine": [
+			{
+				"still": "red_dawn",
+				"lines": [
+					"n_hall_lost"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_m"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"guild": {
+			"still": "council",
+			"text": [
+				"Concórdia, 2777. Meister Hollweg's free city has three thousand people and a hundred machines. Tonight its council votes to let the machines wind one another.",
+				"Look into four workshops and see what the machines do when nobody winds them. Make Ticking Owls, the city's night watch.",
+				"When the city turns, hold the council hall and the Nuremberg quarter, bring the honest masters out, and at dawn take Hollweg up the mine hill to the great spring's brake."
+			]
+		},
+		"machine": {
+			"still": "streets",
+			"text": [
+				"Concórdia, 2777. You are the machine in the city: the great spring on the mine hill and every automaton meshed to it.",
+				"The city's workshops turn to you one by one; stand your machines at one to turn it now. Turn the council hall, or break the Nuremberg quarter's tower, before dawn."
+			]
+		}
+	},
+	"debrief": {
+		"guild": {
+			"still": "spring",
+			"title": "The Great Spring",
+			"text": "The council hall did not turn. {honest_n} of 3 honest masters were brought out of the quarters; {turned} of the city's buildings turned.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"spring": "stopped"
+						}
+					},
+					"text": "Hollweg stopped the great spring: every machine in Concórdia stood still."
+				},
+				{
+					"if": {
+						"not": {
+							"flag": {
+								"spring": "stopped"
+							}
+						}
+					},
+					"text": "Hollweg let the great spring run."
+				}
+			]
+		},
+		"machine": {
+			"still": "red_dawn",
+			"title": "The Council Hall turned",
+			"text": "The machine had the council hall before dawn."
+		}
+	}
+}

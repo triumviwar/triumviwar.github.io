@@ -108,6 +108,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | d01_minas (the Gold of Vila Rica, Act 2) | this file, "d01_minas" below; docs/campaign_d01_build.md | 69 (+19 narrator, 3 NEW cards) | Tomasz* 30, Captain Meneses* 21, Lieutenant Ramos* 9, the King 6, Cardinal Tomasz 2, a townsman* 1 |
 | d06_queen (the Queen, Act 2) | this file, "d06_queen" below; docs/campaign_d06_build.md | 38 (+28 narrator, 2 NEW cards) | Lindqvist 24, Pieter* 8, the King 6 |
 | d05_aldeia (the Mission of São Rafael, Act 2) | this file, "d05_aldeia" below; docs/campaign_d05_build.md | 45 (+35 narrator, 2 NEW cards) | Tomasz* 23, Captain Sobral* 8, the King 7, Brother Tiago* 7 |
+| d07_spring (the Council of Gears, Act 2) | this file, "d07_spring" below; docs/campaign_d07_build.md | 58 (+30 narrator, 2 NEW cards) | Hollweg 22, Matthias* 12, Ulrich* 8, the King 7, Varenne 3, Citizen Morel* 3, Master Ortlieb* 1, a rescued master* 1, Captain Arruda* 1 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -516,6 +517,76 @@ caricature); Captain Sobral a Portuguese-Brazilian dragoon officer in his fortie
 | k_end_burned | the King | He burned the poor's bread to starve the swarm. He has confessed it every year since. It was a hard thing, and he chose it. | grave, respectful |
 | k_end_s | the King | That is not how it went. Tomasz brought them to the fort. Hear it again from him. | stern, correcting |
 
+### d07_spring (the Council of Gears)
+
+Line ids are the mission's (`campaign/voice/d07/<id>.ogg`). The feeling is how the line should sound. The narrator's 30
+lines ("Concórdia", and "The Machine" for the machine's side) and the two NEW cards can stay as text. The strongest lines
+have a preset in tools/voice_clone/emotions.json (`d07__<id>`). Hollweg is the Hollweg of d04, four years on, proud of
+his city; Matthias is Jakob's son (about twenty: young, earnest, sharper than his master); Ulrich, Varenne, Morel and
+Arruda as in d04; Master Ortlieb chairs the council (a comfortable Franconian master, sixties); "a rescued master" is one
+line for Kessler, Brandl or Weiss (any older German master's voice).
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | He tells it as the night his city was tested and held. I tell it as the night it was lost. Listen to both, and judge. | grave, even-handed, a judge |
+| h_open1 | Hollweg | Four years. Three thousand souls, a hundred machines, a council that sat at noon when the tower struck. Concórdia. | proud, a founder |
+| h_open2 | Hollweg | The plates from the crates had reached every street by then. They wound whatever stood on them. I called them a gift. | rueful, hindsight |
+| o_vote | Master Ortlieb* | The machines are wound by hand every night, and the masters are tired. Let them wind one another, as they ask. Who is for it? | reasonable, a tired chairman |
+| mt_vote | Matthias* | As they ask? Since when does a machine ask for anything? | sharp, disbelieving |
+| v_vote | Varenne | Count the hands, Meister. Every man voting for it winds a machine at night. I have counted votes before. These are not free. | dry, a man who has seen this |
+| m_vote | Citizen Morel* | Labour spared is a man set free. I vote with the motion, and so should the Meister. | smooth, a slogan |
+| h_vote | Hollweg | Carried. That is the council's way. I built it so. | satisfied, a little smug |
+| mt_walk | Matthias* | Then the Nuremberg men walk out, Meister. Come and see what the machines do at night when nobody winds them. Or don't. | angry, a challenge |
+| mt_1 | Matthias* | My father taught me the signs at Fürth, from the log he kept in Nuremberg. Four workshops, Meister. We look at each, and you will see. | earnest, steady |
+| mt_1_lost | Matthias* | My father wrote the signs down in Nuremberg, God rest him. Four workshops, Meister. We look at each, and you will see. | earnest, grief under it |
+| u_1 | Ulrich* | The four doors are pinged on the map, Meister. A man of ours at each door a moment is enough. Split the soldiers: four small groups go faster than one. | practical, brisk |
+| h_1 | Hollweg | Go and look, then. You will find honest machines and tired men. | dismissive, patient with a boy |
+| h_found | Hollweg | A fault in the winding. Every machine can be mended. I said so then. | stubborn, hindsight shame |
+| mt_found | Matthias* | It is not a fault, Meister. It is Nuremberg again. It is the same pattern. | quiet, certain, frightened |
+| u_owls | Ulrich* | The Swifts see nothing at night, Meister. Research the TICKING OWL at the Clock Aviary: an owl sees in the dark, and it bites. | practical |
+| u_morph | Ulrich* | The plans are in. Pick a Swift and press MORPH TO OWL; do it to both. | brisk |
+| h_owls | Hollweg | My night watch. Brass owls over a brass city. I was proud of them. | fond, then rueful |
+| h_13 | Hollweg | There is no thirteen on that dial. I cut it myself. | disbelief, a whisper |
+| mt_13 | Matthias* | Nuremberg struck thirteen too, Meister. My father heard it. | dread |
+| u_turn | Ulrich* | The red ring shows the next one to turn, Meister, a few seconds before. Its machines go with it. | urgent, plain |
+| u_masters | Ulrich* | Three honest masters live out in the quarters: Kessler at the forge, Brandl at the mill, Weiss at the market. Get a man to each before his quarter turns. | urgent, plain |
+| h_hold | Hollweg | Hold the council hall and our quarter. Whatever the city does tonight, the hall must not turn. | commanding, shaken |
+| u_leap | Ulrich* | The great spring stands on the mine hill, and they will hold its stairs. Research HIGH LEAP at the Escapement now: by dawn the Springers must jump up that cliff. | urgent, practical |
+| u_works | Ulrich* | A turned workshop keeps sending machines, Meister, every minute. Break it: the owls drop their weights on buildings. | practical |
+| ms_in | a rescued master* | Thank God. I thought nobody would come for me. They were winding each other in my yard. | shaking relief |
+| h_broken | Hollweg | I kept them to learn from them. They had learned more than I had. | bitter, self-knowing |
+| ar_valley | Captain Arruda* | I took your word down the hill four years ago, clockmaker. I keep mine. Where do you want us? | gruff, loyal |
+| h_valley | Hollweg | At the council hall's door, Captain. And God bless you for it. | moved, grateful |
+| v_2 | Varenne | It was never a council, Meister. It was a clock with men for hands. I should have said so at the first vote. | regret, low |
+| m_2 | Citizen Morel* | Machines that choose their own work. Is that not what the Assembly fought for? | eager, wrong |
+| h_m2 | Hollweg | Be quiet, Citizen. | cold, cutting |
+| h_3 | Hollweg | The great spring. There is a brake on it: I fitted it myself, the year we founded the city. Take me up there. | decided, quiet |
+| mt_3 | Matthias* | They hold both stairs, Meister. Muskets would not get up there. Springers might. | plain |
+| u_3 | Ulrich* | Put an owl over the hilltop beside a stair. Then pick the Springers, press JUMP and click the top: they land behind the stair's guard. | practical, step by step |
+| h_brake | Hollweg | If I pull it, everything stops. Theirs, and ours. Every machine in Concórdia, for a season or for good. | heavy, afraid of his own hand |
+| mt_brake | Matthias* | Pull it, Meister. My father would. A machine that has to be stopped is stopped. | pleading, firm |
+| mt_brake_lost | Matthias* | Pull it, Meister. My father died because nobody stopped the first one. | grief, pleading |
+| v_brake | Varenne | Your city, your hand. I only say this: I have watched men decide they could stop a thing later. | quiet warning |
+| m_brake | Citizen Morel* | Pull it and you kill the city we built. Leave it. We beat them in the streets. | hot, persuasive |
+| h_pride | Hollweg | We beat them in the quarters we saved. The rest can be mended. It is my city. | proud, stubborn, a tremor in it |
+| h_stop | Hollweg | I pulled it. | hollow, spent |
+| mt_stop | Matthias* | Thank you, Meister. | grateful, near tears |
+| h_run | Hollweg | No. I let it run. We had won. | proud, sure |
+| mt_run | Matthias* | As if, Meister. | bitter, under his breath |
+| h_hurt | Hollweg | I am hit. Never mind me: hold the hall. | in pain, commanding |
+| mt_hurt | Matthias* | I'm hit! Keep going, I'll come back to you. | in pain, shouting |
+| h_end_stop | Hollweg | In a week we were on the coast road: the Nuremberg families, the honest masters, two carts of tools. Behind us the city stood silent, dead brass. | tired, mourning a city |
+| h_end_run | Hollweg | The council met again at noon. Half the chairs were empty. I sat at the head of the table and called the city saved. | proud, blind to it |
+| h_end_many | Hollweg | Kessler, Brandl and Weiss stood with us. Three honest masters out of a whole council. | warm, grateful |
+| h_end_few | Hollweg | Of the masters in the quarters, we brought out hardly one. The others argued for their machines until the end. | regret |
+| h_end_v | Hollweg | Varenne said nothing on the way down. He had seen a free council become a clock before. | quiet, thoughtful |
+| k_end_stop | the King | He stopped it, that once. The city lay dead a season, and then it woke without a man in it. But the honest masters were out, and their children lived. | grave, a little hope |
+| k_end_stop2 | the King | It was the first thing he ever stopped. It was the road that brought him to my palace. | warm, final |
+| k_end_run | the King | His city held, he says. That was the night it was lost. From then on the machines voted, and the men who wound them raised their hands. | grave, a verdict |
+| k_end_run2 | the King | No machine may govern itself, Rome said. His governed him. He did not know it for years. | cold, sorrowful |
+| k_end_m | the King | The council hall's lamps went red before dawn. It did not need to win that night. It had all the nights it wanted. | cold, a warning |
+| k_end_ml | the King | Hollweg reached his brake that morning. It changed nothing that mattered: the city had all the nights it wanted. | grave, weary |
+
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
 Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, ferrer (2026-11-22), explorer (now Valadares? the owner to say). The King
@@ -534,12 +605,13 @@ voice aged by pitch would do), Captain Luís de Meneses (a Portuguese dragoon of
 Lieutenant Inácio Ramos (a Brazilian orator, thirties, warm and dangerous), and "a townsman" (one line); d05: Brother
 Tiago (a young catechist of a mission village on the Tapajós, twenties, gentle and grave; a designed voice, no accent
 caricature) and Captain Duarte Sobral (a Portuguese-Brazilian dragoon officer, forties, tired and plain; or Meneses'
-voice reused).
+voice reused); d07: Matthias (Jakob's son, about twenty, Franconian, earnest and sharp; Jakob's voice made younger
+would do) and Master Ortlieb (the council's chairman, a comfortable Franconian master, sixties; one line).
 
 ## 4. Act 2 (planned, not built)
 
 docs/campaign_act2_plan.md "VOICES" lists Act 2's speakers and the new voices to design (Tomasz grown, Commissary
-Brandt, Desembargador Fonseca, Captain Arruda, Padre Anselmo, Citizen Morel, Matthias, Captain de Meneses (built: d01), Lieutenant
+Brandt, Desembargador Fonseca, Captain Arruda, Padre Anselmo, Citizen Morel, Matthias (built: d07), Captain de Meneses (built: d01), Lieutenant
 Ramos (built: d01), Brother Tiago (built: d05), the prince if the heir is named). Each mission's table joins section 2 when it is built.
 
 ## 5. Later

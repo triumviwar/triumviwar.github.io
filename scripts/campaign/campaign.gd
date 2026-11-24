@@ -1057,7 +1057,11 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 				if v is Dictionary and v.has(ck) and not (m.get("counters", {}) as Dictionary).has(String(v[ck])):
 					out.append("%s: cart: unknown counter %s" % [where, v[ck]])
 		"cage", "pin", "carry", "spare", "pace", "floor", "heal", "max_hp", "burn", "nest_free", "wind", "remove", "douse", "brood_stage", "retag", "root_now":
-			if not (v is Dictionary and v.has("tag")):
+			if k == "wind" and v is Dictionary and (v.has("team") or v.has("side")):
+				# (d07) a wind of a whole team or side
+				if v.has("team") and not teams.has(String(v["team"])):
+					out.append("%s: wind of unknown team %s" % [where, v["team"]])
+			elif not (v is Dictionary and v.has("tag")):
 				out.append("%s: %s needs a tag" % [where, k])
 			elif k == "burn" and v.get("spread") is Dictionary and String(v["spread"].get("tag", "")) == "":
 				out.append("%s: a spreading fire needs the tag it spreads to" % where)

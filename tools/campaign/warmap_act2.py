@@ -171,7 +171,7 @@ RULES = [
     R({"flag": {"d06_queen.brood_n": "some"}}, ledger="Some of the bred creatures went to the Queen."),
     R({"flag": {"d06_queen.brood_n": "few"}}, ledger="Few of the bred creatures went to the Queen: Lindqvist burned the rest."),
     R({"flag": {"d06_queen.pieter": "lost"}}, ledger="Pieter did not reach the canoes."),
-    # d07 THE COUNCIL OF GEARS (planned: spring stopped / running, honest few / some / many)
+    # d07 THE COUNCIL OF GEARS (built, d07-spring: spring stopped / running, honest few / some / many; a machine win canon-compatible: a count, no broken seal)
     R({"flag": {"d07_spring.spring": "running"}}, ledger="The great spring was left running: the city ran on, and Hollweg called it saved."),
     R({"flag": {"d07_spring.spring": "stopped"}}, region="concordia", to="machine", skins=PC, marks=["honest_coast"], show=True,
       ledger="Hollweg stopped the great spring: the city is dead brass; the honest masters went to the coast."),

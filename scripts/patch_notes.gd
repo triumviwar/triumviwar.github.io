@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"A new campaign mission, Act 2's THE COUNCIL OF GEARS (the Clockmaker, after The City of Gears): Concórdia four years on, a city of clockwork on a dead mine, and the night its machines turn. In the day find the four workshops where the masters' automata have meshed into one (stand a man at each door), and make TICKING OWLS (NEW: the Swift's morph). At the thirteenth hour the great spring's tower on the mine hill takes the city over, workshop by workshop, and their machines with them: bring the three honest masters out before their quarters turn, break the turned workshops with the owls, and keep the machine from the council hall. At dawn leap the hill's cliff with the Springers (NEW: HIGH LEAP), take Hollweg to the brake at noon, and choose: stop THE GREAT SPRING, or let it run. You can also play the machine (the solo pick or versus). All its words and pictures are placeholders.",
+	]},
 	{"v": "0.38.200", "items": [
 		"A new campaign mission, Act 2's THE MISSION OF SÃO RAFAEL (the Crown, after The Gold of Vila Rica): Father Tomasz's mission village on the Tapajós in the wet season, and the first time the Crown meets the swarm. In the night bring the people in from the three fields (they can't hear the bell: send a soldier to each), hold the bluff; at dawn the relief rides up from the river fort with Dragoons and Horsemen (NEW: the DRAGOON and the CAVALRY CHARGE), ride out to the hamlet of Santa Luzia and bring its people back; then lead everyone down the trail to the fort, the waves coming out of the flood, and choose whether to burn the fields behind you. The flooded forest (várzea) is the creatures' road: men wade it at half pace, nothing is built in it. You can also play the swarm (the solo pick or versus).",
 	]},
