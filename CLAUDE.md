@@ -26,6 +26,11 @@
 
 ## Current work
 
+- d01_minas BUILT (job d01-minas, MERGED 0.38.197, docs/campaign_d01_build.md): Act 2 step 7, "The Gold of Vila Rica" (the
+  Crown after a07, Minas Gerais 2772, Father Tomasz tells it): the DERRAMA day, the Assembly's cell means to seize the
+  Royal Foundry House; map campaign:vila_rica (HIGHLANDS, the city generator in hills); C5 = ARMOURY + MATCHLOCK + SOCKET
+  BAYONET; flags `minas` quiet/restless, `gold` few/some/all, `conspirator` taken/fled. Tests tools/test_campaign_d01.gd,
+  sim tools/sim_campaign_d01.gd. ALL TEXT PLACEHOLDER.
 - d04_concordia BUILT (job d04-concordia, MERGED 0.38.191, docs/campaign_d04_build.md): Act 2 step 6, "The City of
   Gears" (the Clockmaker after d02, 2773, the southern highlands): map campaign:concordia (HIGHLANDS biome,
   tools/campaign/make_concordia_map.py), mission tools/campaign/make_d04_mission.py; the guild raises Concórdia on a dead
