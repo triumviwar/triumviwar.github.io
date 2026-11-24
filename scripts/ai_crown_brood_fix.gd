@@ -78,6 +78,8 @@ static func press_push(ai, siege, home: Array, sup: int) -> bool:
 		raw += float(Game.unit_value(u))
 	if not press_ok(ai, raw, sup):
 		return false
+	if not preload("res://scripts/ai_crown_brood_late.gd").press_guns_ok(ai, siege, home):
+		return false            # (crown-brood-late "guns": the press waits for its guns)
 	presses[ai.team] = int(presses.get(ai.team, 0)) + 1
 	siege.say("presses its lead on the Brood: %d of army against the %d of Brood seen lately: the whole army goes for the Brood Mother" % [
 		int(raw), int(ai.ch.foe_known())])

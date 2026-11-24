@@ -2839,6 +2839,10 @@ func siege_on() -> bool:
 var cbf_push = null              # (crown-brood-fix "press" outside the siege plan: a siege push of its own, AICrownBroodFix)
 
 
+func _late_ready(ready: Array) -> Array:
+	return preload("res://scripts/ai_crown_brood_late.gd").wave_ready(self, ready)
+
+
 func _army() -> void:
 	if siege != null and not peaceful:
 		siege.tick()
@@ -3549,6 +3553,9 @@ func owner_lab_cap() -> int:
 	var top := OWNER_LAB_MAX + OWNER_LAB_PER_HALL * maxi(0, built - 2) + (SAT_PRETRAIN if going and built >= 2 else 0)
 	top = AIWr1000CrownMirror.lab_top(self, top, built)     # (wr1000-crown-mirror "labcap")
 	var cap := _posts() + OWNER_SPARE_LABS + (SAT_PRETRAIN if going else 0)
+	var cbl_top: int = preload("res://scripts/ai_crown_brood_late.gd").lab_top(self)
+	if cbl_top >= 0:
+		top = mini(top, cbl_top)          # (crown-brood-late "cap": against the Brood the late labourers stop, AICrownBroodLate)
 	if AIWccr.lab_cap(self) >= 0:
 		return mini(mini(cap, top), AIWccr.lab_cap(self))      # (wr1000-crown-clockwork: labourers stop at 70)
 	if AICrownVClock.rich_labs(self) >= 0:
@@ -3559,6 +3566,9 @@ func owner_lab_cap() -> int:
 func _lab_want(want: int) -> int:
 	if AIWccr.lab_cap(self) >= 0:
 		want = mini(want, AIWccr.lab_cap(self))       # (wr1000-crown-clockwork: labourers stop at 70, whatever the plan)
+	var cbl_top: int = preload("res://scripts/ai_crown_brood_late.gd").lab_top(self)
+	if cbl_top >= 0:
+		want = mini(want, cbl_top)          # (crown-brood-late "cap": against the Brood the late labourers stop, AICrownBroodLate)
 	if not owner_on() or lab_cap_off:
 		return want
 	if difficulty < 2:

@@ -203,6 +203,16 @@ var resigned: Array = []        # computers that resigned after a gg
 var _first_of := {}             # "team:kind" -> true once that player has had one
 
 
+## (crown-brood-late, a measure) the gold spent by what it went on: "u:<unit>", "b:<building>", "research" (read by
+## tools/qa_match.gd; refunds are not taken off).
+func spent_by(t: int, what: String, v: int) -> void:
+	if t < 0 or t >= stats.size():
+		return
+	if not stats[t].has("spent_by"):
+		stats[t]["spent_by"] = {}
+	stats[t]["spent_by"][what] = int(stats[t]["spent_by"].get(what, 0)) + v
+
+
 static func _new_stats() -> Dictionary:
 	return {"lost": 0, "killed": 0, "gold": 0, "spent": 0, "trained": 0, "built": 0,
 		"razed": 0, "bld_lost": 0, "damage": 0.0, "peak_army": 0, "value_killed": 0, "res2_in": 0.0, "sacrificed": 0, "sacrifice_essence": 0, "revived": 0,
@@ -4492,6 +4502,7 @@ func start_research(b: Building, key: String) -> String:
 	add_res2(b.team, -float(Defs.RESEARCH[key].get("cost2", 0)))
 	add_tension(b.team, -float(Defs.tension_cost(Defs.RESEARCH[key])))
 	stats[b.team]["spent"] += int(Defs.RESEARCH[key]["cost"])
+	spent_by(b.team, "research", int(Defs.RESEARCH[key]["cost"]))
 	if b.queue.is_empty():
 		b.prod_t = 0.0
 	b.add_entry("@" + key)
@@ -4796,6 +4807,7 @@ func train(b: Building, key: String) -> String:
 	else:
 		add_res2(b.team, -price[1])
 	stats[b.team]["spent"] += price[0]
+	spent_by(b.team, "u:" + k, price[0])
 	var kit := kit_for_new(b.team, key)
 	if Defs.UNITS[k].get("needs_horse", false):
 		# the horse at the building is his: it stands hitched beside it till he comes out on it
@@ -5390,6 +5402,7 @@ func place_building(t: int, k: String, c: Vector2i, builders: Array, queued := f
 	players[t]["gold"] -= price
 	add_tension(t, -float(Defs.tension_cost(Defs.BUILDINGS[k])))
 	stats[t]["spent"] += price
+	spent_by(t, "b:" + k, price)
 	stats[t]["built"] += 1
 	var b := _add_building(k, t, c, false, true)     # a ghost until its building starts
 	b.placed_clk = clock
@@ -11674,6 +11687,7 @@ func _reserve_horse(b: Building, k: String, rid: int, pay: bool) -> bool:
 			return false
 		players[b.team]["gold"] -= c
 		stats[b.team]["spent"] += c
+		spent_by(b.team, "u:horse", c)
 	br.add_entry("horse", {"rid": rid, "coat": HorseCoat.pick()})
 	return true
 

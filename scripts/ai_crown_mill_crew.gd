@@ -66,6 +66,8 @@ func enabled() -> bool:
 	if forced:
 		return true
 	var f: int = ai._foe()
+	if f >= 0 and game.faction_of(f) == "brood" and preload("res://scripts/ai_crown_brood_late.gd").mills_on(ai):
+		return true             # (crown-brood-late "cap": against the Brood from 10:00, the powder of the late army)
 	return f >= 0 and MATCHUPS.has(game.faction_of(f))
 
 

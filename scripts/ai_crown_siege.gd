@@ -64,6 +64,7 @@ const C1KB_QUEEN_FOE_MIN := 400.0
 const C1KB_QUEEN_STOP := 0.45
 var queen_mode := false
 const CBF := preload("res://scripts/ai_crown_brood_fix.gd")
+const CBL := preload("res://scripts/ai_crown_brood_late.gd")     # (crown-brood-late: the brace, the eyes, the home guard)
 var press_mode := false         # (crown-brood-fix "press": this push spends the lead on the Mother)
 ## (crown-1000-brood, change "guard") A HOME GUARD: the push took the whole army at home, and the Brood's waves went for the
 ## halls it left (block 14: "falls back: the base is attacked", halls lost at 14:00-19:00 while the push was out). Against
@@ -282,6 +283,13 @@ func _go(home: Array, value: float, press := false) -> void:
 		value = 0.0
 		for u in home:
 			value += float(Game.unit_value(u)) * (GUN_WEIGHT if GUNS.has(u.kind) else 1.0)
+	elif _brood() and CBL.vs_brood(ai, "home"):
+		var n0 := home.size()
+		home = CBL.push_guard(self, home)       # (crown-brood-late "home": the guard stays, AICrownBroodLate.guard_of)
+		if home.size() != n0:
+			value = 0.0
+			for u in home:
+				value += float(Game.unit_value(u)) * (GUN_WEIGHT if GUNS.has(u.kind) else 1.0)
 	for u in home:
 		men[u] = true
 	state = "march"
@@ -514,6 +522,8 @@ func _army_on(mid: Vector2) -> Variant:
 # ------------------------------------------------------------------ the march
 
 func _march(line: Array, guns: Array, mid: Vector2) -> void:
+	if _brood() and CBL.brace(self, line, guns, mid):
+		return                    # (crown-brood-late "guns": a Brood force near and the guns limbered: the push braces)
 	# contact: a defence near, or the enemy army on the line
 	var a = _next_anchor(mid, STOP_D * (CBF.PRESS_STOP if press_mode else (C1KB_QUEEN_STOP if queen_mode else 1.0)))
 	var q: Unit = BroodNew.queen(game, ai._foe()) if queen_mode else null
@@ -547,7 +557,12 @@ func _march(line: Array, guns: Array, mid: Vector2) -> void:
 	var near_guns := guns.filter(func(g: Unit) -> bool: return g.position.distance_to(mid) < 700.0)
 	var gmid := _mid(near_guns) if not near_guns.is_empty() else (_mid(guns) if not guns.is_empty() else mid)
 	var lag := gmid.distance_to(mid) > GUN_LAG and not guns.is_empty()
+	var eye: Unit = CBL.eye(self, line, mid, goal) if _brood() else null     # (crown-brood-late "guns": a rider ahead)
+	if _brood() and CBL.bounds(self, line, guns, mid, goal, eye):
+		return                    # (crown-brood-late "guns": near the Brood the push goes in bounds, the guns set)
 	for u in line:
+		if u == eye:
+			continue
 		if u.kind == "cuirassier":
 			# (the riders keep by the guns: the Brood's Raptors and the Clockwork's Springers go for them)
 			if u.position.distance_to(gmid) > 120.0 and u.target == null:
@@ -601,6 +616,8 @@ func _spot(p: Vector2) -> Vector2:
 
 
 func _siege_set(line: Array, guns: Array, mid: Vector2) -> void:
+	if _brood() and not (_alive(anchor) and anchor is Unit and not _static_target(anchor)) and CBL.brace(self, line, guns, mid):
+		return                    # (crown-brood-late "guns": set against a defence, the Brood army comes and the guns are limbered)
 	# the anchor gone: the next within reach, else march on. (A wall piece the enemy turns into a gate, or a site it drops,
 	# is freed at once by Game._remove_quietly without dying: forget it, or every `is` below fails on a freed instance;
 	# qa-matches saw 201 errors in one game and the siege stuck. rules-fixes 4)
@@ -608,7 +625,8 @@ func _siege_set(line: Array, guns: Array, mid: Vector2) -> void:
 		anchor = null
 	var alive: bool = _alive(anchor) and (not (anchor is Building) or not anchor.ghost)
 	if alive and anchor is Unit and not _static_target(anchor):
-		alive = game.is_visible_to(ai.team, anchor.position) and anchor.position.distance_to(mid) < ARMY_STOP_D + 150.0
+		var hold_d := maxf(ARMY_STOP_D + 150.0, CBL.army_hold_d(self) if _brood() else 0.0)
+		alive = game.is_visible_to(ai.team, anchor.position) and anchor.position.distance_to(mid) < hold_d
 	if not alive:
 		var nx = _army_on(mid)          # (the enemy army still on the line first: the fight goes on where it is)
 		if nx == null:
@@ -759,7 +777,10 @@ func _lost(mid: Vector2) -> String:
 	if _brood():
 		var wh: String = preload("res://scripts/ai_wr1000_crown_brood.gd").home_call(ai, men)
 		if wh != "":
-			return wh           # (wr1000-crown-brood "home": the Brood at our buildings, the push itself not counted at home)
+			return wh
+		wh = CBL.home_call(self, mid)
+		if wh != "":
+			return wh           # (crown-brood-late "home": the Brood heads for our buildings, home without the push can't beat it)           # (wr1000-crown-brood "home": the Brood at our buildings, the push itself not counted at home)
 	return ""
 
 

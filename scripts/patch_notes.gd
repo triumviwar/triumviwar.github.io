@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.207", "items": [
+		"THE CROWN AGAINST THE BROOD, LATE GAME, A STUDY (nothing changes in the game): three ways for the Crown computer's late game were built and measured in 132 games, each behind a test switch that is off: its guns set before an attack (a rider ahead, the push going forward in bounds with its guns unlimbered), its supply filled (the Mill crew against the Brood and the labourers stopping at 60), and a home guard left behind. The guns stood set when a fight began 68% of the time instead of 6%, but no part improved the result, so the game plays as before.",
+	]},
 	{"v": "0.38.206", "items": [
 		"A new campaign mission, Act 2's THE SIEGE OF CONCÓRDIA (after Between Two Fires; if you chose the swarm first, after The Jungle Front too): the army's southern column before the city of gears on the southern highlands, Father Ferrer telling it in his report to Rome, old Jakob listening to the city's ticking. Have your pioneers dig the earthworks before the three gates (Jakob marks the weak ones), set the guns behind them and beat back the city's sorties by night and at dawn; at the camp's Armoury research PREPARED CHARGES and the GUNNER'S QUADRANT (NEW). If the city was fought first its wall is unfinished and the old mine runs under it: send the pioneers down the galleries to blow the great spring's tower from beneath. If it waited a year, hold the camp against its great sortie and the diggers coming up in your camp until dusk. Jakob can fall. You can also play the city (the solo pick or versus; new for it: the SPRING BALLISTA and LONG CHAIN): blow the siege park's magazine or bring down Father Ferrer. All its words and pictures are placeholders.",
 	]},
