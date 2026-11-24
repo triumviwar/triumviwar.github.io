@@ -98,7 +98,7 @@ QUEEN_FOOD, QUEEN_SPOILS = 45, 6     # every 8 s after the Queen (a Brute about 
 HOUSE_HP = 3000            # the big house
 BAND_SOME, BAND_ALL = 0.25, 0.55
 GROW_FOOD, GROW_SPOILS = 520, 80           # given at Part 3: her growth (500 / 75) and a little over
-BRUTE_FOOD, BRUTE_SPOILS = 480, 65         # given at the Queen: three Brutes (150 / 20 each) and a little over
+BRUTE_FOOD, BRUTE_SPOILS = 640, 85         # given at the Queen: four Brutes (150 / 20 each) and a little over
 
 # the stock's young: (kind, condition) in the two flooded low pens (west: even, east: odd)
 YOUNG = [
@@ -151,7 +151,10 @@ units = [
     # (the mirror: more hands with muskets for the fazenda's player)
     {"team": "fazenda", "kind": "musketeer", "as": "keeper", "count": 4, "at": "house_in", "tag": "hands",
      "tags": ["people", "keepers", "faz_all"], "fixed": True, "if": FAZ},
-    {"team": "fazenda", "kind": "cannon", "count": 2, "at": "guns_spot", "tag": "guns", "tags": ["faz_all"], "fixed": True},
+    # (two swivel guns; one on EASY: the Brutes' waves go in against them)
+    {"team": "fazenda", "kind": "cannon", "count": 1, "at": "guns_spot", "tag": "guns", "tags": ["faz_all"], "fixed": True},
+    {"team": "fazenda", "kind": "cannon", "count": 1, "at": "guns_spot", "tag": "guns", "tags": ["faz_all"], "fixed": True,
+     "if": {"difficulty": ["normal", "hard"]}},
 ]
 
 # the palisade ring round the big house's rise (gates west, east and south: the fazenda's own pass)

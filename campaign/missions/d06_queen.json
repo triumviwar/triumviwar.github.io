@@ -1027,13 +1027,30 @@
 		{
 			"team": "fazenda",
 			"kind": "cannon",
-			"count": 2,
+			"count": 1,
 			"at": "guns_spot",
 			"tag": "guns",
 			"tags": [
 				"faz_all"
 			],
 			"fixed": true
+		},
+		{
+			"team": "fazenda",
+			"kind": "cannon",
+			"count": 1,
+			"at": "guns_spot",
+			"tag": "guns",
+			"tags": [
+				"faz_all"
+			],
+			"fixed": true,
+			"if": {
+				"difficulty": [
+					"normal",
+					"hard"
+				]
+			}
 		}
 	],
 	"buildings": [
@@ -3946,8 +3963,8 @@
 				{
 					"give": {
 						"team": "stock",
-						"gold": 480,
-						"powder": 65
+						"gold": 640,
+						"powder": 85
 					}
 				},
 				{

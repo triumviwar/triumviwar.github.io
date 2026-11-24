@@ -103,6 +103,15 @@ func _run() -> void:
 				print("  young ", u.kind, " ", g.cell_of(u.position), " in big_pen=", r.area_rect("big_pen").has_point(u.position))
 		if OS.get_cmdline_user_args().has("debug") and int(g.clock) % 15 == 0 and not _spot.has("d%d" % int(g.clock)):
 			_spot["d%d" % int(g.clock)] = true
+			if r.fired.has("queen"):
+				var kinds := {}
+				for u in g.units:
+					if u.team == r.team_index("stock") and not u.dead:
+						kinds[u.kind] = int(kinds.get(u.kind, 0)) + 1
+				print("  t=%d stock kinds %s" % [g.clock, kinds])
+				for u in g.units:
+					if (u.kind == "brute" or u.team == r.team_index("fazenda")) and not u.dead:
+						print("    %s t%d %s hp=%d order=%s tgt=%s" % [u.kind, u.team, g.cell_of(u.position), u.hp, u.order, u.target.kind if u.target and is_instance_valid(u.target) else "-"])
 			for tg in ["pen_mother", "pen_pack", "wild_mother"]:
 				for u in r.tagged(tg):
 					print("  t=%d %s %s %s order=%s team=%d stun=%s caged=%s asleep=%s pace=%.2f" % [g.clock, tg, u.kind, g.cell_of(u.position), u.order, u.team, u.stunned if "stunned" in u else "?", u.has_meta("held"), u.has_meta("asleep"), u.m_pace])
@@ -232,25 +241,29 @@ func _play_brood(g: Game, r: MissionRun) -> void:
 		# (a player saves the food for Brutes: a Raptor only with a Brute's food to spare)
 		if army.size() < 30 and int(g.players[r.team_index("stock")]["gold"]) >= 260:
 			BroodNew.lay(g, q, "raptor")
-		# THE FALL: the Brutes at the west gate of the palisade, the rest after them on to the house
+		# THE FALL: the Brutes at the palisade's north side, the rest after them on to the house
 		var house: Array = r.tagged("big_house")
-		var gate := r.area_rect("house").get_center() + Vector2(-9.5 * Defs.TILE, 0)
+		# (the north side of the palisade: the way the Brutes come down from the big pen)
+		var hr: Rect2 = r.area_rect("house")
+		var gate := Vector2(hr.get_center().x, hr.position.y - 0.5 * Defs.TILE)
 		var wall: Entity = null
 		for w in r.tagged("palisade"):
 			if wall == null or w.center().distance_to(gate) < wall.center().distance_to(gate):
 				wall = w
 		var breached: bool = r.fired.has("breach")
-		# (in waves: three Brutes, or two after 70 s; a beaten wave gathers again)
+		# (in waves: four Brutes (the first wave three, after 70 s); a beaten wave gathers again)
 		var brutes: int = army.filter(func(u): return u.kind == "brute").size()
-		var ready: bool = brutes >= 3 or (brutes >= 2 and g.clock > float(r.fired.get("fall", 0)) + 70.0)
+		var ready: bool = brutes >= 4 or (brutes >= 3 and not _spot.has("wave") and g.clock > float(r.fired.get("fall", 0)) + 70.0)
+		if ready:
+			_spot["wave"] = true
 		for u in army:
 			if u.target != null and is_instance_valid(u.target) and not u.target.dead:
 				continue
 			var foe := _nearest_foe(g, st, u.position, 5.0 * Defs.TILE)
-			if foe:
+			if foe and (ready or foe.position.distance_to(r.area_rect("guns_spot").get_center()) > 14.0 * Defs.TILE):
 				u.cmd_attack(foe)
 			elif not ready:
-				_go(g, u, gate + Vector2(-7.0 * Defs.TILE, 0))       # (wait for the Brutes out of the guns' reach)
+				_go(g, u, r.area_rect("big_pen_s").get_center())       # (wait for the Brutes out of the guns' reach: 13 tiles)
 			elif not breached and wall:
 				u.cmd_attack(wall)
 			else:

@@ -40,7 +40,7 @@ d03's island three years on, in the wet season (the map script starts from d03's
 - THE NORTH-EAST PEN (pen 3): the east pen's Mother, fenced in with her young.
 - THE NORTH-WEST SHORE: a new mud bank where the flood drives the wild Mother onto the island.
 - THE BIG HOUSE on its rise stays dry; the mission rings it with a palisade (four gates) and two swivel guns (Field
-  Cannons). THE LANDING keeps a strip of beach for the canoes.
+  Cannons; one on EASY). THE LANDING keeps a strip of beach for the canoes.
 
 ## How it plays: THE BROOD (solo; versus p1)
 
@@ -67,7 +67,8 @@ pens. Lindqvist's people are on another team in a TRUCE until Part 3 (spared, no
   becomes THE QUEEN: a mid-match show (three stills: the flood, the pens, the Queen; Lindqvist's line), every leash ends,
   every creature of the fallen Mothers still alive turns to her, and the eggs come back. Lindqvist and Pieter run for the
   canoes (the lure book left upstairs). THE FALL: lay BRUTES on the Queen's card (the Tyrant Sire rooted beside her; food
-  for two given, and a trickle of food every 8 s from the drowned cane), break the palisade, then the big house (3000 hp,
+  for four given, and a trickle of food every 8 s from the drowned cane: a Brute about every 30 s), break the palisade,
+  then the big house (3000 hp,
   shown on the map): WON.
 - LOST: the Mother killed before she is the Queen.
 
@@ -171,12 +172,14 @@ anything).
    ring never does (`loose_only`). Fallen Mothers' packs come to the player's within 9 tiles.
 5. Two Mound Turtles rooted at the big pen's rim are given (16 + 24 supply = 40): without them there is no room for the
    Brutes. No grubs, no Rootmaws on the flooded island (denied): the food comes as gifts at Part 3 and the fall and a
-   trickle after the Queen (30 food, 4 spoils every 8 s), so the fall never stalls.
+   trickle after the Queen (45 food, 6 spoils every 8 s), so the fall never stalls.
 6. While she grows her eggs are held back (a deny with its reason on the card), so the food given for GROW is never
    spent on Raptors first.
 7. Lindqvist sends the keepers out to shoot her while she grows (NO WAITING: the minute of growing has a fight in it).
 8. The big house has 3000 hp (a Town Hall at a mission's max_hp), ringed with a palisade of four gates and two swivel
-   guns; two more hands come out at Part 3.
+   guns (one on EASY); two more hands come out at Part 3 (NORMAL and HARD). The guns behind the palisade are the fall's
+   real enemy: the sims lost wave after wave of two or three Brutes to them; four Brutes at once (the food given at the
+   Queen) break in. A person may also uproot the Queen and take her to the palisade (2000 hp; her death still loses).
 9. `brood_n` is counted when the Queen grows (the bred creatures on her side then, out of all the bred ones the island
    started with): few under 25%, all from 55% (the NORMAL sims end "some" most often). Counting at the end would count
    the Brutes' deaths at the palisade.
@@ -199,6 +202,9 @@ anything).
 18. Lindqvist is a hero (wounded, not killed) on the fazenda's side; Pieter is not (he can be lost: the flag).
 19. The rival Mothers walk at 1.8x a Mother's pace (NO WAITING: they come to the fight rather than the player waiting for
     them).
+20. d06 `needs` a07_council and d03_fazenda (a crossing's rule, as d03 needs Rome): it opens once both are won.
+21. The fazenda's player (solo) sees its two objectives from the first second, and may burn from then on; the creatures
+    sleep until a man comes near.
 
 ## What is left
 
