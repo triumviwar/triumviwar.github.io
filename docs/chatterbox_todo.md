@@ -110,7 +110,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | d05_aldeia (the Mission of São Rafael, Act 2) | this file, "d05_aldeia" below; docs/campaign_d05_build.md | 45 (+35 narrator, 2 NEW cards) | Tomasz* 23, Captain Sobral* 8, the King 7, Brother Tiago* 7 |
 | d08_rivers (Down the Rivers, Act 2) | this file, "d08_rivers" below; docs/campaign_d08_build.md | 37 (+34 narrator, 3 NEW cards) | Valadares* 19, the King 8, Benedito* 7, the Barra's sergeant* 3 |
 | d07_spring (the Council of Gears, Act 2) | this file, "d07_spring" below; docs/campaign_d07_build.md | 58 (+30 narrator, 2 NEW cards) | Hollweg 22, Matthias* 12, Ulrich* 8, the King 7, Varenne 3, Citizen Morel* 3, Master Ortlieb* 1, a rescued master* 1, Captain Arruda* 1 |
-| d11_siege (the Siege of Concórdia, Act 2) | this file, "d11_siege" below; docs/campaign_d11_build.md | 47 (+39 narrator, 4 NEW cards) | Father Ferrer 24, the King 9, Jakob* 5, General Ruggieri 4, Meister Hollweg 2, Captain Arruda* 2, Matthias* 1 |
+| d11_siege (the Siege of Concórdia, Act 2) | this file, "d11_siege" below; docs/campaign_d11_build.md | 47 (+42 narrator, 4 NEW cards) | Father Ferrer 24, the King 9, Jakob* 5, General Ruggieri 4, Meister Hollweg 2, Captain Arruda* 2, Matthias* 1 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -711,7 +711,7 @@ Hollins grown (thirties, a Virginian); the prince's two lines only if the owner 
 ### d11_siege (the Siege of Concórdia: the crossing's branch against the machines)
 
 Line ids are the mission's (`campaign/voice/d11/<id>.ogg`). The feeling is how the line should sound. The narrator's
-39 lines ("The Siege Lines", and "The City" for the city's player) and the four NEW cards can stay as text. The strongest
+42 lines ("The Siege Lines", and "The City" for the city's player) and the four NEW cards can stay as text. The strongest
 lines have a preset in tools/voice_clone/emotions.json (`d11__<id>`). Father Ferrer is old now (a07's and a04's voice,
 ferrer_ref.wav, older: pitch a little down, slower); Jakob is old too (Act 1's Jakob, to design: a Franconian journeyman
 in his sixties); Hollweg and Ruggieri have their refs (ten years older than in Act 1); Matthias is d07's; Captain Arruda

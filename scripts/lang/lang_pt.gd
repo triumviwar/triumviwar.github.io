@@ -6201,6 +6201,7 @@ const T := {
 	"Jakob has fallen.": "O Jakob caiu.",
 	"He had walked from Nuremberg to the end of the world to stand by me. I buried him on the plateau, facing the city.": "Tinha caminhado de Nuremberga até ao fim do mundo para estar ao meu lado. Enterrei-o no planalto, de frente para a cidade.",
 	"The sorties are beaten back. The city shuts its gates.": "As surtidas foram repelidas. A cidade fecha os portões.",
+	"The machines outside the wall stop waiting. They come at the camp: beat them back and the night is over.": "As máquinas fora da muralha deixam de esperar. Vêm contra o acampamento: repele-as e a noite acaba.",
 	"Full day. The city calls its machines back behind the wall.": "Dia pleno. A cidade chama as máquinas para trás da muralha.",
 	"THE MINE: bring at least two pioneers to the old mine's mouth in the north of the camp. They go down the old galleries, under the wall, to the great spring's tower.": "A MINA: leve pelo menos dois sapadores à boca da mina velha, no norte do acampamento. Descem pelas galerias velhas, por baixo da muralha, até à torre da grande mola.",
 	"The old adits, Father. I hear the spring down there, louder than up here. The galleries go right under its tower.": "As galerias velhas, Padre. Ouço a mola lá em baixo, mais alto do que aqui em cima. As galerias passam mesmo por baixo da torre dela.",

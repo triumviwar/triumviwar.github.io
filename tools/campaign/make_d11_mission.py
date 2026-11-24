@@ -506,6 +506,9 @@ line("f_jakob_down", "ferrer", "He had walked from Nuremberg to the end of the w
      "Había caminado desde Núremberg hasta el fin del mundo para estar a mi lado. Lo enterré en el altiplano, frente a la ciudad.", CR)
 line("n_sorties_done", "narrator", "The sorties are beaten back. The city shuts its gates.", "As surtidas foram repelidas. A cidade fecha os portões.",
      "Las salidas han sido rechazadas. La ciudad cierra sus puertas.")
+line("n_charge", "narrator", "The machines outside the wall stop waiting. They come at the camp: beat them back and the night is over.",
+     "As máquinas fora da muralha deixam de esperar. Vêm contra o acampamento: repele-as e a noite acaba.",
+     "Las máquinas fuera de la muralla dejan de esperar. Vienen contra el campamento: recházalas y la noche termina.")
 line("n_full_day", "narrator", "Full day. The city calls its machines back behind the wall.", "Dia pleno. A cidade chama as máquinas para trás da muralha.",
      "Pleno día. La ciudad llama a sus máquinas tras la muralla.")
 # ---- part 3, FRESH: the mine
@@ -764,8 +767,9 @@ TR_ += [
     {"id": "valley_hold", "when": {"time": 1.0}, "do": [{"order": {"tag": "militia", "do": "move", "to": "bat_s"}}, {"order": {"tag": "arruda", "do": "move", "to": "bat_s"}}]},
     # PROBES: a few machines at the diggers (the north battery, then the south)
     sortie("probe1", {"all": [{"time": 42}, P1, LIVE]}, ["north_gate"], 3, extra=[("springer", 1, HARD)], line_ids=["n_probe", "r_probe"]),
-    sortie("probe2", {"all": [{"time": 105}, P1, LIVE]}, ["south_gate"], 3, extra=[("netter", 1, NORMAL_UP)], line_ids=["n_probe2"]),
-    sortie("probe3", {"all": [{"time": 168}, P1, LIVE]}, ["west_gate"], 3, extra=[("springer", 1, None)], line_ids=["n_probe3"]),
+    sortie("probe2", {"all": [{"time": 90}, P1, LIVE]}, ["south_gate"], 3, extra=[("netter", 1, NORMAL_UP)], line_ids=["n_probe2"]),
+    sortie("probe3", {"all": [{"time": 140}, P1, LIVE]}, ["west_gate"], 3, extra=[("springer", 1, None)], line_ids=["n_probe3"]),
+    sortie("probe4", {"all": [{"time": 190}, P1, LIVE]}, ["north_gate"], 2, line_ids=["n_probe"]),
     # GROWN: the owls over the camp (the city sees everything)
     {"id": "owls_camp", "when": {"all": [{"time": 75}, GROWN, P1, LIVE]}, "do": [
         {"spawn": {"team": "city", "kind": "ticking_owl", "count": 2, "at": "spring_top", "tag": "sortie", "tags": ["owls_camp", "c_all"],
@@ -805,6 +809,11 @@ TR_ += [
         {"order": {"tag": "sortie", "do": "hunt", "prey_team": "column", "within": 12}}]},
     {"id": "sortie_owls", "when": {"all": [{"fired": "setup"}, NO_CITY, LIVE]}, "every": 5, "do": [
         {"order": {"tag": "sortie", "kind": "ticking_owl", "do": "hunt", "prey": "guns", "within": 60}}]},
+    # NO WAITING: the third sortie out, the ones still outside come at the camp after 25 s (a player who keeps back)
+    {"id": "s_charge", "when": {"all": [{"fired": "s3"}, {"not": {"fired": "sorties_done"}}, P2, NO_CITY, LIVE]}, "delay": 25, "times": 1, "do": [
+        {"say": ["n_charge"]}, {"ping": {"area": "camp_mid"}}]},
+    {"id": "s_charge_go", "when": {"all": [{"fired": "s_charge"}, {"not": {"fired": "sorties_done"}}, P2, NO_CITY, LIVE]}, "every": 8, "do": [
+        {"order": {"tag": "sortie", "do": "attack", "to": "camp_mid", "idle": True}}]},
     # (the city's machines outside the wall, counted)
     {"id": "out_count", "when": {"all": [{"fired": "setup"}, LIVE]}, "every": 2, "do": [
         {"counter": {"name": "out_n", "count": {"team": "city", "area": "outside"}}}]},
@@ -850,7 +859,7 @@ TR_ += [
     {"id": "sap_said", "when": {"any": [{"fired": "sap_go"}, {"fired": "sap_go_easy"}, {"fired": "sap_go_hard"}]}, "do": [
         {"objective": {"id": "mine", "set": "done"}}, {"objective": {"id": "mine_clock", "set": "active"}}, {"say": ["n_under", "r_under"]}]},
     # (nobody sent down: the city does not wait either; it comes out at the camp until the pioneers go down: NO WAITING)
-    sortie("m_wait", {"all": [{"fired": "mine_on"}, {"not": {"fired": "sap_said"}}, LIVE]}, ["north_gate", "west_gate"], 2, delay=50, every=50,
+    sortie("m_wait", {"all": [{"fired": "mine_on"}, {"not": {"fired": "sap_said"}}, LIVE]}, ["north_gate", "west_gate"], 2, delay=40, every=40,
            to="camp_mid", extra=[("springer", 1, None)], line_ids=["n_wait"]),
     # THE GREAT SORTIE at the mouth while they are under the ground
     sortie("m1", {"fired": "sap_said"}, ["north_gate"], 4, delay=4, to="mine_near", extra=[("springer", 2, None), ("netter", 1, NORMAL_UP)],
@@ -891,14 +900,15 @@ TR_ += [
         {"order": {"tag": "sortie", "do": "attack", "to": "park", "idle": True}}]},
     {"id": "held_off", "when": {"all": [{"clock_out": "relief"}, {"fired": "hold_on"}, LIVE]}, "do": [
         {"say": ["n_dusk_end"]}, {"say": ["f_grown_end"], "if": CROWN}, {"say": ["cn_lost_dusk"], "if": CITY_P},
-        {"light": {"to": "dusk", "secs": 6}}, {"order": {"tag": "sortie", "do": "move", "to": "arsenal_mid"}}, {"flag": {"siege": "held_off"}}]},
+        {"light": {"to": "dusk", "secs": 6}}, {"order": {"tag": "sortie", "do": "move", "to": "arsenal_mid"}}, {"flag": {"siege": "held_off"}},
+        {"objective": {"id": "hold", "set": "done"}}]},
     # ============================================================ THE END
     # the Crown's work done (the spring blown, or dusk held): WON for the Crown, LOST for the city's player
     {"id": "jakob_flag", "when": {"all": [{"any": [{"fired": "close"}, {"fired": "held_off"}]}, {"count": {"tag": "jakob", "at_least": 1}}]}, "do": [
         {"flag": {"jakob": "alive"}}, {"objective": {"id": "jakob", "set": "done"}}]},
     {"id": "jakob_flag_l", "when": {"all": [{"any": [{"fired": "close"}, {"fired": "held_off"}]}, {"count": {"tag": "jakob", "below": 1}}]}, "do": [{"flag": {"jakob": "lost"}}]},
     {"id": "the_end", "when": {"any": [{"fired": "close"}, {"fired": "held_off"}]}, "delay": 4, "do": [
-        {"objective": {"id": "hold", "set": "done", "if": GROWN}}, {"objective": {"id": "c_break", "set": "failed"}},
+        {"objective": {"id": "c_break", "set": "failed"}},
         {"win": "crown"}]},
     # THE SIEGE PARK'S MAGAZINE GOES UP, or Father Ferrer brought down by the city's player: lost (the city's win)
     {"id": "lost_park", "when": {"all": [{"dead": "park"}, NO_CITY, {"not": {"fired": "the_end"}}]}, "do": [

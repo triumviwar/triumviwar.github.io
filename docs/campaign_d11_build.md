@@ -71,22 +71,24 @@ both explained by their NEW card and asked for by Ruggieri at 0:52 (an optional 
 - PART 1, THE LINES. The pioneers dig the earthworks: twelve palisade sites, four before each gate, pinged. Jakob marks
   the two weak gates at 0:14 (their stop-works were taken out: the guns knock them down sooner). Captain Arruda says the
   valley is here; Hollweg is seen on his wall (or speaks with Ferrer, a prisoner who asked to come). Small sorties come
-  out at the diggers (0:42 the north gate, 1:45 the south gate); GROWN: two owls over the camp at 1:15. Nightfall comes
+  out at the diggers (0:42 the north gate, 1:30 the south gate, 2:20 the west gate, 3:10 the north gate again); GROWN: two owls over the camp at 1:15. Nightfall comes
   when the lines are dug (after the first minute at least) or when its clock runs out (4:00 NORMAL).
 - PART 2, THE SORTIES. Night. Three sorties, 50 s apart: owls and chains at the west gate, then at dawn Clock Soldiers out
   of the north and south gates, then the heaviest at the west gate with a Pendulum (GROWN: and a Spring Ballista).
   Optional: knock a gate down. With the stop-works only in Jakob's old log (or Jakob lost) Ferrer reads it by the lantern
   and marks the west gate. With d07 `spring` stopped Matthias says the postern is still the masters' (it opens for the
   Crown, never for the city). The sorties are beaten when the third is out and fewer than three of the city's men stand
-  outside the wall; at full day (3:20) they go back behind the wall anyway (NO WAITING).
+  outside the wall; 25 s after the third comes out, the ones still outside come at the camp (a player who keeps back
+  still has a fight); at full day (3:20) they go back behind the wall anyway (NO WAITING).
 - PART 3, FRESH: THE MINE. Bring two pioneers to the old mine's mouth (pinged); after three seconds every pioneer goes
   down the galleries (Jakob with them). Hold the mouth while they are under the ground (45 s NORMAL, 36 EASY, 54 HARD:
   two waves of the city come at it). They come up under the great spring and blow its tower: every machine in Concórdia
   runs down where it stands (the brake), they come back up the gallery, WON: `siege` close. (No pioneer left: three more
-  come from the baggage. The guns may bring the spring down too: the same end.)
+  come from the baggage. The guns may bring the spring down too: the same end. A player who waits and sends nobody gets
+  a small sortie every 40 s and Ruggieri's reminder: NO WAITING.)
 - PART 3, GROWN: THE GREAT SORTIE. Hold the camp and the siege park until dusk (3:00 NORMAL). Jakob hears them digging
-  under the camp (or the sentries do): the city's diggers come up at the old mine's mouth after 40 s, in the middle of the
-  camp, and four waves come out of the gates (the third out of all three at once, with a Spring Ballista). At dusk they go
+  under the camp (or the sentries do): after 40 s the city's diggers come up beside the siege park with a mine of their
+  own (220 damage to the magazine, a third of it: kill them fast or the next wave finishes it), and four waves come out of the gates (the third out of all three at once, with a Spring Ballista). At dusk they go
   back: WON, `siege` held_off.
 - LOST: the siege park's magazine blown (any time).
 
@@ -126,9 +128,28 @@ Set:
 
 The bot sends the pioneers to dig every earthwork, sets the line and the guns behind the west and north batteries, keeps
 Ferrer and Ruggieri at the camp, researches both C9 pieces, trains Musketeers with the pay, fights what comes out of the
-gates; FRESH: walks two pioneers to the mine's mouth and holds it; GROWN: holds the camp with a few men at the mouth.
+gates; FRESH: walks two pioneers to the mine's mouth and holds it; GROWN: keeps a few men by the siege park. The LAZY bot only
+stands where it starts (it never digs, never sends the pioneers): it shows the longest quiet stretch a passive player sees.
 
-BALANCE_TABLE
+NORMAL unless said; "column" = the column's men alive at the end (of ~31 at the start, pay-trained Musketeers added);
+"idle" = the longest stretch with nothing new on screen (NO WAITING: under 45 s).
+
+| run | result | end | column | idle |
+| --- | --- | --- | --- | --- |
+| FRESH EASY | WON, `siege` close | 4:16 | 31 | 31 s |
+| FRESH NORMAL | WON, close | 4:25 | 26 | 27 s |
+| FRESH HARD | WON, close | 4:34 | 26 | 20 s |
+| FRESH, Jakob lost, stop-works logged, spring stopped, colonists fought | WON, close, `jakob` lost | 4:24 | 29 | 29 s |
+| GROWN EASY | WON, `siege` held_off | 6:49 | 35 | 39 s |
+| GROWN NORMAL | WON, held_off (the diggers' mine took the park to 381 of 600) | 6:04 | 26 | 21 s |
+| GROWN HARD | WON, held_off | 6:14 | 18 | 20 s |
+| GROWN, the other flags | WON, held_off, `jakob` lost | 6:04 | 34 | 25 s |
+| GROWN, saved at 2:30 and loaded | the same state after the load, then WON | 6:03 | 29 | 22 s |
+| LAZY GROWN (stands still) | LOST at 9:56: the park blown | - | 12 | 43 s |
+| LAZY FRESH (stands still) | not over by 11:40 (no pioneers sent: small sorties every 40 s) | - | 26 | 43 s |
+
+A player who never sends the pioneers in FRESH is not beaten by the city (the camp holds the small sorties): the mission
+waits for him, but never quietly. HARD costs the GROWN column about half its men.
 
 ## Pictures (docs/shots/d11_siege/, CHECK THE FEEL)
 
@@ -138,7 +159,17 @@ Hollweg on his wall, the lines dug, the night's sortie, the dawn sortie, the thi
 the ground, the spring falling; GROWN: the owls over the camp, the great sortie, the diggers coming up, the big wave, dusk.
 What was looked at is in "Looked at" below.
 
-LOOKED_AT
+Both versions were played by the bot with pictures (fresh_*.jpg, grown_*.jpg):
+
+- The camp at the start reads well: the tents (Cottages) and the column in purple, the earthworks' sites marked, Ruggieri's
+  opening line on the card. The minimap shows the wall as a line of red dots on the right.
+- The NEW cards (PREPARED CHARGES, the QUADRANT) are long but say what to do and where (the camp's Armoury).
+- Night darkens the plateau and the sorties' Clock Soldiers stand out against it; the objectives panel shows "1 of 3".
+- FRESH's end: the great spring's tower falls in a heap of timber and brass; the line says what it means.
+- GROWN: the diggers' line names the park and is pinged; the big wave comes out between the tents and is a real fight.
+- Not good enough: the "hollweg" picture caught the NEW card instead of Hollweg on his wall (the camera is the bot's, not
+  the player's: the ping takes a player there). The siege park's magazine (a Powder Mill) is small among the tents: a
+  player should find it from the ping and the objective, but a marked flag over it would help (left for the art pass).
 
 ## Stills: the prompts for the owner (ChatGPT, one request each, at most 3 reference images; each prompt stands alone)
 
@@ -163,7 +194,7 @@ landscape (cut to 1280 x 853), no text. Save each as `art/campaign/stills/d11_0N
 ## The voice lines
 
 docs/chatterbox_todo.md "d11_siege": 47 spoken lines (Ferrer 24, the King 9, Jakob 5, Ruggieri 4, Hollweg 2, Arruda 2,
-Matthias 1) with the feeling of each; the 39 narrator lines ("The Siege Lines", and "The City" for the city's player) and
+Matthias 1) with the feeling of each; the 42 narrator lines ("The Siege Lines", and "The City" for the city's player) and
 the four NEW cards can stay as text. Ten lines have a preset in tools/voice_clone/emotions.json (`d11__<id>`). New voice to
 design: Jakob old (section 3 of that file); Ferrer is ferrer_ref.wav aged a little.
 
@@ -191,7 +222,11 @@ and stones.
    breaking in), it is the same end: the city braked, `siege` close.
 7. THE CITY RUNS DOWN when its spring falls: THE BRAKE on the city's team (d07's), the "crippled, not taken" of the plan.
 8. GROWN's PART 3 is a fight to dusk with the city's DIGGERS coming up in the camp: "the galleries are the city's now"
-   made into something to do (have men at the mouth), not only a line.
+   made into something to do (keep men by the siege park), not only a line. They come up beside the park, not at the old
+   mouth: at the mouth an idle player never felt them, and a GROWN game must have a real threat to the one thing that
+   loses it.
+18. THE NO-WAITING GUARDS: four probes 50 s apart so Part 1 never runs quiet; FRESH, while the pioneers are
+   not sent down, a small sortie every 40 s and Ruggieri's line; GROWN's third wave brings a Pendulum from NORMAL up.
 9. THE PAY CONVOY (60 gold and 20 powder every 30 s): a siege lasts; without it the bot ran out of gold in Part 1 and lost
    the great sortie.
 10. NO BALLOON in d11 whichever front comes first (the story's deny): C8 stays the jungle's rung (Act 2's choice 14).
@@ -221,4 +256,12 @@ See "Pictures" above.
 
 ## Tests run
 
-TESTS_RUN
+Run one after another (they share the campaign's progress file), on this branch:
+
+- tools/test_campaign_d11.gd: 0 failures (data, flags, Part 1, Part 2, FRESH, GROWN, defeat, the city's side, save and
+  load, ironman, the hubs).
+- tools/test_campaign.gd and every other tools/test_campaign_*.gd (a01-a07, b01, c01, d01-d09, heroes, ironman, save):
+  0 failures, except test_campaign_m1's "no recording yet for Tomasz" check, which fails the same way without this
+  job's changes (a voice file the check does not expect; not d11's).
+- tools/test_roster_ladder.gd: 0 failures. tools/test_war_map.gd: 0 failures.
+- tools/sim_campaign_d11.gd: the runs in "Balance" above.

@@ -3366,7 +3366,7 @@
 			"when": {
 				"all": [
 					{
-						"time": 105
+						"time": 90
 					},
 					{
 						"not": {
@@ -3483,7 +3483,7 @@
 			"when": {
 				"all": [
 					{
-						"time": 168
+						"time": 140
 					},
 					{
 						"not": {
@@ -3585,6 +3585,100 @@
 				{
 					"say": [
 						"n_probe3"
+					]
+				}
+			]
+		},
+		{
+			"id": "probe4",
+			"when": {
+				"all": [
+					{
+						"time": 190
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 2,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"probe4",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_n"
+						},
+						"if": {
+							"not": {
+								"past": {
+									"d07_spring.spring": "stopped"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "city",
+						"kind": "clock_soldier",
+						"count": 1,
+						"at": "north_in",
+						"tag": "sortie",
+						"tags": [
+							"probe4",
+							"c_all"
+						],
+						"order": {
+							"do": "attack",
+							"to": "bat_n"
+						},
+						"if": {
+							"past": {
+								"d07_spring.spring": "stopped"
+							}
+						}
+					}
+				},
+				{
+					"wind": {
+						"team": "city",
+						"share": 1.0
+					}
+				},
+				{
+					"ping": {
+						"area": "north_out"
+					}
+				},
+				{
+					"say": [
+						"n_probe"
 					]
 				}
 			]
@@ -4605,6 +4699,125 @@
 						"do": "hunt",
 						"prey": "guns",
 						"within": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "s_charge",
+			"when": {
+				"all": [
+					{
+						"fired": "s3"
+					},
+					{
+						"not": {
+							"fired": "sorties_done"
+						}
+					},
+					{
+						"all": [
+							{
+								"fired": "part2"
+							},
+							{
+								"not": {
+									"fired": "part3"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"playing": "city"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 25,
+			"times": 1,
+			"do": [
+				{
+					"say": [
+						"n_charge"
+					]
+				},
+				{
+					"ping": {
+						"area": "camp_mid"
+					}
+				}
+			]
+		},
+		{
+			"id": "s_charge_go",
+			"when": {
+				"all": [
+					{
+						"fired": "s_charge"
+					},
+					{
+						"not": {
+							"fired": "sorties_done"
+						}
+					},
+					{
+						"all": [
+							{
+								"fired": "part2"
+							},
+							{
+								"not": {
+									"fired": "part3"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"playing": "city"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "lost_park"
+								},
+								{
+									"fired": "c_won"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 8,
+			"do": [
+				{
+					"order": {
+						"tag": "sortie",
+						"do": "attack",
+						"to": "camp_mid",
+						"idle": true
 					}
 				}
 			]
@@ -5676,8 +5889,8 @@
 					]
 				}
 			],
-			"delay": 50,
-			"every": 50
+			"delay": 40,
+			"every": 40
 		},
 		{
 			"id": "m1",
@@ -7083,6 +7296,12 @@
 					"flag": {
 						"siege": "held_off"
 					}
+				},
+				{
+					"objective": {
+						"id": "hold",
+						"set": "done"
+					}
 				}
 			]
 		},
@@ -7214,27 +7433,6 @@
 				},
 				{
 					"win": "crown"
-				}
-			]
-		},
-		{
-			"id": "if_the_end__0",
-			"when": {
-				"all": [
-					{
-						"fired": "the_end"
-					},
-					{
-						"version": "grown"
-					}
-				]
-			},
-			"do": [
-				{
-					"objective": {
-						"id": "hold",
-						"set": "done"
-					}
 				}
 			]
 		},
@@ -7664,6 +7862,10 @@
 		"n_sorties_done": {
 			"who": "narrator",
 			"text": "The sorties are beaten back. The city shuts its gates."
+		},
+		"n_charge": {
+			"who": "narrator",
+			"text": "The machines outside the wall stop waiting. They come at the camp: beat them back and the night is over."
 		},
 		"n_full_day": {
 			"who": "narrator",
