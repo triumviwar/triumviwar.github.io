@@ -2700,7 +2700,9 @@
 				"parchment",
 				"chart"
 			],
-			"ledger": "The city broke the siege's batteries.",
+			"pin": "d11_siege",
+			"seal": "broken",
+			"ledger": "The city broke the siege's batteries: not how it went.",
 			"act2": true
 		},
 		{

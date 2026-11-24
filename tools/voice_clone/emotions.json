@@ -382,6 +382,16 @@
   "d10__i_last": "shout",
   "d10__c_last": "shout",
   "d10__i_hurt": "urgent",
-  "d10__v_barra_burned": "grief"
+  "d10__v_barra_burned": "grief",
+  "d11__j_weak": "urgent",
+  "d11__r_probe": "shout",
+  "d11__f_jakob_down": "grief",
+  "d11__j_mine": "wonder",
+  "d11__r_under": "shout",
+  "d11__f_spring1": "wonder",
+  "d11__j_dig": "urgent",
+  "d11__j_hurt": "urgent",
+  "d11__f_end_nojakob": "grief",
+  "d11__f_end_prisoner": "grief"
  }
 }

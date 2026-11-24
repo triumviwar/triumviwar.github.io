@@ -140,6 +140,8 @@ func _run() -> void:
 		for k in r["new"]:
 			if k != "venom_challenger":
 				want.append("new_" + k)
+		var rows_here: Array = rows.filter(func(x): return String(x["mission"]) == mid)
+		var cards: Array = all_cards.filter(func(k): return want.has(k)) if rows_here.size() > 1 else all_cards
 		check("%s: a NEW card per new piece" % mid, _same(cards, want), "%s" % [cards])
 		var side := String(m["speakers"].get(spk, {}).get("side", ""))
 		var to_side := side != ""

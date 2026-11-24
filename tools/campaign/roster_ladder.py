@@ -44,7 +44,7 @@ LADDER = {
         ("C6", "d05_aldeia", ["dragoon", "charge"], []),
         ("C7", "d09_crossroads", ["armour", "powder_wagon"], []),
         ("C8", "d10_jungle", ["balloon"], []),
-        ("C9", "", ["charges", "quadrant"], []),
+        ("C9", "d11_siege", ["charges", "quadrant"], []),
         ("C10", "", ["band"], []),
         ("C11", "", ["band_fifer", "band_piper"], []),
         ("C12", "", ["flintlock", "caplock", "pouch"], ["mounted_missionary"]),
@@ -56,7 +56,7 @@ LADDER = {
         ("K4", "d02_exodus", ["ratchet_turret", "shield_wall"], []),
         ("K5", "d04_concordia", ["cuckoo_house", "cuckoo"], []),
         ("K6", "d07_spring", ["owl_morph", "high_leap"], ["ticking_owl"]),
-        ("K7", "", ["ballista", "long_chain"], []),
+        ("K7", "d11_siege", ["ballista", "long_chain"], []),
         ("K8", "", ["great_winder"], []),
         ("K9", "", ["brass_serpent"], ["serpent_gear_s", "serpent_gear_b"]),
     ],
@@ -96,13 +96,15 @@ BOUND = {
     "d07_spring": ("clockwork", ["guild"]),           # (Act 2's K6: the machine (solo pick, versus) is not bound: the other side)
     "d09_crossroads": ("crown", ["army"]),            # (Act 2's C7: the army; the fort's garrison (co-op) and the versus pick are not bound)
     "d10_jungle": ("crown", ["column"]),              # (Act 2's C8: the jungle column; Óbidos' garrison (co-op) is not bound)
+    "d11_siege": ("crown", ["column"]),               # (Act 2's C9: the southern column; the valley (co-op) is not bound)
 }
 # A mission on TWO ladders (d10: the column's C8 and the swarm's B7 in the mirror and versus): the second ladder's teams and
 # its side. Its NEW cards have a speaker and a trigger of their own ("new_<faction>", "ladder_new_<faction>").
 EXTRA_BOUND = {
     "d10_jungle": {"brood": ["swarm"]},               # (Act 2's B7: the swarm, the solo pick and versus)
+    "d11_siege": {"clockwork": ["city"]},             # (Act 2's K7: the city, the solo pick and versus)
 }
-EXTRA_SIDE = {"d10_jungle": {"brood": "swarm"}}
+EXTRA_SIDE = {"d10_jungle": {"brood": "swarm"}, "d11_siege": {"clockwork": "city"}}
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
 # ALL TEXT PLACEHOLDER.
@@ -150,6 +152,10 @@ CARDS = {
     "mist_toad": "NEW: THE MIST TOAD. Laid by a Mother grown to her third stage with the Venom Sire rooted beside her: a slow swamp caster. Its TONGUE drags one enemy to its feet; its spells need research.",
     "nb_fog": "NEW: FOG BANK. Research it on the Venom Sire's card: a Mist Toad lays a fog bank where shots fired from or into it miss half the time. Lay it over your Mothers when the guns come.",
     "nb_miasma": "NEW: MIASMA. Research it on the Venom Sire's card: a Mist Toad lays a green cloud in which the Brood heal. Lay it where your creatures fight.",
+    "charges": "NEW: PREPARED CHARGES. Research it at the camp's Armoury (it needs the Foundry): the powder comes in ready-made bags, and every Field Cannon and Mortar reloads a fifth faster. Against plates that must be hit again and again, it is the guns' science.",
+    "quadrant": "NEW: THE GUNNER'S QUADRANT. Research it at the Armoury after Prepared Charges: the guns are laid by the quadrant, and every Field Cannon and Mortar reaches a tile farther, from behind the earthworks to the gates.",
+    "ballista": "NEW: THE SPRING BALLISTA. Made at the arsenal's Heavy Works: a bolt thrower on cog wheels whose screw goes through its target into the men behind. Hard on guns and earthworks; it cannot shoot what is close or in the air.",
+    "long_chain": "NEW: LONG CHAIN. Research it at the arsenal's Escapement: every Netter throws its net much farther, from behind the Clock Soldiers onto the gunners.",
     "powder_wagon": "NEW: THE POWDER WAGON. There is no Mill on the road: the wagons carry the army's powder. Musketeers and guns within 3 tiles of one refill from it, so keep it just behind the line, and guard it: it blows up when it is destroyed. It fills again at a Barracks; the fort's Foundry builds more.",
 }
 # (pieces that share a card: the Venom Challenger is told with the Tyrant Challenger)
@@ -200,6 +206,10 @@ CARDS_PT = {
     "mist_toad": "NOVO: O SAPO DA NÉVOA. Posto por uma Mãe crescida ao terceiro estágio com o Sire do Veneno enraizado ao lado: um lançador lento do pântano. A sua LÍNGUA arrasta um inimigo até aos seus pés; os seus feitiços precisam de pesquisa.",
     "nb_fog": "NOVO: BANCO DE NÉVOA. Pesquise-o no painel do Sire do Veneno: um Sapo da Névoa põe um banco de névoa onde os tiros disparados de dentro ou para dentro falham metade das vezes. Ponha-o sobre as suas Mães quando os canhões vierem.",
     "nb_miasma": "NOVO: MIASMA. Pesquise-o no painel do Sire do Veneno: um Sapo da Névoa põe uma nuvem verde onde a Ninhada se cura. Ponha-a onde as suas criaturas lutam.",
+    "charges": "NOVO: CARGAS PREPARADAS. Pesquise-as no Arsenal do acampamento (precisa da Fundição): a pólvora vem em sacos já feitos, e cada Canhão de Campanha e Morteiro recarrega um quinto mais depressa. Contra placas que têm de ser atingidas uma e outra vez, é a ciência dos canhões.",
+    "quadrant": "NOVO: O QUADRANTE DO ARTILHEIRO. Pesquise-o no Arsenal depois das Cargas Preparadas: os canhões são apontados pelo quadrante, e cada Canhão de Campanha e Morteiro alcança uma casa mais longe, de trás das trincheiras até aos portões.",
+    "ballista": "NOVO: A BALESTRA DE MOLA. Feita na Oficina Pesada do arsenal: um lança-virotes sobre rodas dentadas cujo parafuso atravessa o alvo e entra nos homens atrás. Duro contra canhões e trincheiras; não atira ao que está perto nem no ar.",
+    "long_chain": "NOVO: CORRENTE LONGA. Pesquise-a no Escape do arsenal: cada Lança-Redes atira a rede muito mais longe, de trás dos Soldados-Relógio para cima dos artilheiros.",
     "powder_wagon": "NOVO: A CARROÇA DE PÓLVORA. Não há Moinho na estrada: as carroças levam a pólvora do exército. Mosqueteiros e canhões a 3 casas de uma recarregam dela, por isso mantenha-a logo atrás da linha, e guarde-a: explode quando é destruída. Enche-se outra vez num Quartel; a Fundição do forte faz mais.",
 }
 CARDS_ES = {
@@ -246,12 +256,16 @@ CARDS_ES = {
     "mist_toad": "NUEVO: EL SAPO DE NIEBLA. Lo pone una Madre crecida a su tercera etapa con el Señor del Veneno enraizado a su lado: un lanzador lento del pantano. Su LENGUA arrastra a un enemigo hasta sus pies; sus hechizos necesitan investigación.",
     "nb_fog": "NUEVO: BANCO DE NIEBLA. Investígalo en el panel del Señor del Veneno: un Sapo de Niebla pone un banco de niebla donde los disparos hechos desde dentro o hacia dentro fallan la mitad de las veces. Ponlo sobre tus Madres cuando vengan los cañones.",
     "nb_miasma": "NUEVO: MIASMA. Investígalo en el panel del Señor del Veneno: un Sapo de Niebla pone una nube verde donde la Prole se cura. Ponla donde luchan tus criaturas.",
+    "charges": "NUEVO: CARGAS PREPARADAS. Investígalas en la Armería del campamento (necesita la Fundición): la pólvora viene en saquitos ya hechos, y cada Cañón de Campaña y Mortero recarga una quinta parte más rápido. Contra placas que hay que golpear una y otra vez, es la ciencia de los cañones.",
+    "quadrant": "NUEVO: EL CUADRANTE DEL ARTILLERO. Investígalo en la Armería después de las Cargas Preparadas: los cañones se apuntan con el cuadrante, y cada Cañón de Campaña y Mortero alcanza una casilla más lejos, desde detrás de las trincheras hasta las puertas.",
+    "ballista": "NUEVO: LA BALLESTA DE MUELLE. Hecha en el Taller Pesado del arsenal: un lanzavirotes sobre ruedas dentadas cuyo tornillo atraviesa el blanco y entra en los hombres de detrás. Duro contra cañones y trincheras; no dispara a lo que está cerca ni en el aire.",
+    "long_chain": "NUEVO: CADENA LARGA. Investígala en el Escape del arsenal: cada Lanzarredes lanza su red mucho más lejos, desde detrás de los Soldados Reloj sobre los artilleros.",
     "powder_wagon": "NUEVO: EL CARRO DE PÓLVORA. No hay Molino en el camino: los carros llevan la pólvora del ejército. Mosqueteros y cañones a 3 casillas de uno recargan de él, así que mantenlo justo detrás de la línea, y guárdalo: estalla cuando lo destruyen. Se llena otra vez en un Cuartel; la Fundición del fuerte hace más.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8, "d08_rivers": 8, "d07_spring": 8, "d09_crossroads": 8, "d10_jungle": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown", "d08_rivers": "swarm", "d07_spring": "guild", "d09_crossroads": "crown", "d10_jungle": "column"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8, "d08_rivers": 8, "d07_spring": 8, "d09_crossroads": 8, "d10_jungle": 8, "d11_siege": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown", "d08_rivers": "swarm", "d07_spring": "guild", "d09_crossroads": "crown", "d10_jungle": "column", "d11_siege": "crown"}
 
 
 def step_of(mission_id, faction=None):

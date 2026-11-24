@@ -155,6 +155,14 @@ const ROLES := {
 	"river_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "A forward Mother", "hp": 1600, "scale": 0.46, "about": "A Brood Mother of the swarm, rooted on the river's bank: what she lays comes down the levee."},
 	"old_mound": {"kind": "mound_turtle", "name": "The old mound", "hp": 1500, "about": "The swarm's oldest ground, on the ruins of Lindqvist's fazenda: a great Mound Turtle rooted there for years."},
 	"obidos_captain": {"kind": "dismounted", "name": "The captain of Óbidos", "hp": 300, "about": "The captain of the fort at Óbidos, on the narrows of the Amazon."},
+	# Act 2's d11_siege (Concórdia, 2780): Father Ferrer old, Rome's witness at the siege; Jakob, who hears the city's
+	# ticking (no floor: he can fall); the siege train's pioneers; Hollweg with the column (d07 `spring` stopped) or on his
+	# wall (running: spared, seen not met) (stand-ins until drawn; new keys: Act 1's "ferrer", "jakob", "hollweg" are younger)
+	"ferrer_siege": {"kind": "missionary", "art": "c_ferrer", "name": "Father Ferrer", "hp": 320, "about": "Father Ferrer, old now, sent by Rome to the siege of Concórdia as its witness."},
+	"jakob_siege": {"kind": "labourer", "art": "c_jakob", "name": "Jakob", "hp": 180, "about": "Jakob, Hollweg's old journeyman: he hears the city's ticking."},
+	"pioneer": {"kind": "labourer", "about": "A pioneer of the siege train: he digs the earthworks and the mines."},
+	"hollweg_prisoner": {"kind": "missionary", "art": "c_hollweg", "name": "Meister Hollweg", "hp": 260, "about": "Meister Hollweg, with the Crown's column: a prisoner who asked to come."},
+	"hollweg_walls": {"kind": "missionary", "art": "c_hollweg", "name": "Meister Hollweg", "hp": 260, "about": "Meister Hollweg on the wall of his city, by the great spring."},
 }
 
 const TORCH_DPS := 6.0               # a torch-bearer's fire on a building he stands at, per second (armour ignored)

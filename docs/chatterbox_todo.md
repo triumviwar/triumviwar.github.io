@@ -110,6 +110,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | d05_aldeia (the Mission of São Rafael, Act 2) | this file, "d05_aldeia" below; docs/campaign_d05_build.md | 45 (+35 narrator, 2 NEW cards) | Tomasz* 23, Captain Sobral* 8, the King 7, Brother Tiago* 7 |
 | d08_rivers (Down the Rivers, Act 2) | this file, "d08_rivers" below; docs/campaign_d08_build.md | 37 (+34 narrator, 3 NEW cards) | Valadares* 19, the King 8, Benedito* 7, the Barra's sergeant* 3 |
 | d07_spring (the Council of Gears, Act 2) | this file, "d07_spring" below; docs/campaign_d07_build.md | 58 (+30 narrator, 2 NEW cards) | Hollweg 22, Matthias* 12, Ulrich* 8, the King 7, Varenne 3, Citizen Morel* 3, Master Ortlieb* 1, a rescued master* 1, Captain Arruda* 1 |
+| d11_siege (the Siege of Concórdia, Act 2) | this file, "d11_siege" below; docs/campaign_d11_build.md | 47 (+42 narrator, 4 NEW cards) | Father Ferrer 24, the King 9, Jakob* 5, General Ruggieri 4, Meister Hollweg 2, Captain Arruda* 2, Matthias* 1 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -764,6 +765,64 @@ officer, thirties, steady under fire; or Captain Sobral's voice reused).
 | k_end1 | the King | That was the jungle front. Valadares held the river, and a priest in a basket showed him where. | plain, fond |
 | k_end2 | the King | The Queen was never on that map. She was further up, beyond anything we had drawn. | low, ominous |
 | k_end_s | the King | That is not how it went. Valadares broke their nests on the river. But I have kept this page. | stern, correcting |
+### d11_siege (the Siege of Concórdia: the crossing's branch against the machines)
+
+Line ids are the mission's (`campaign/voice/d11/<id>.ogg`). The feeling is how the line should sound. The narrator's
+42 lines ("The Siege Lines", and "The City" for the city's player) and the four NEW cards can stay as text. The strongest
+lines have a preset in tools/voice_clone/emotions.json (`d11__<id>`). Father Ferrer is old now (a07's and a04's voice,
+ferrer_ref.wav, older: pitch a little down, slower); Jakob is old too (Act 1's Jakob, to design: a Franconian journeyman
+in his sixties); Hollweg and Ruggieri have their refs (ten years older than in Act 1); Matthias is d07's; Captain Arruda
+is d04's. Speakers: Father Ferrer 24, the King 9, Jakob* 5, General Ruggieri 4, Meister Hollweg 2, Captain Arruda* 2, Matthias* 1.
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | Father Ferrer was old by then. Rome sent him to the highlands anyway, to see the city of gears with his own eyes. | slow, heavy, fond of the old man |
+| k_open2 | the King | His report is on my desk still. He wrote it as a priest writes: what he saw, and nothing he did not. | dry respect |
+| f_open1 | Father Ferrer | Concórdia, 2780. The army's southern column came up onto the plateau in the dry winter. General Ruggieri had the guns. I had Rome's letter. | an old man's plain report, steady |
+| f_open_fresh | Father Ferrer | We had come early. The city had not finished its wall, and its machines were out on the southern roads. | quiet, careful hope |
+| f_open_grown | Father Ferrer | We came a year late. The wall was finished, brass on timber, and the great bolt-throwers stood on it. | sober, a weight in it |
+| f_open_jakob | Father Ferrer | Jakob had come with me from Fürth, an old man now. He said he could hear the city ticking from the road. | warm, a little amused |
+| f_open_nojakob | Father Ferrer | Jakob was not with me. I had his log of Nuremberg, and I read it every night by the lantern. | grief held in, gentle |
+| f_open_held | Father Ferrer | The jungle front had held. The army came south with the river towns safe behind it. | relief, brief |
+| f_open_thin | Father Ferrer | The jungle front was thin when the army left it. Nobody spoke of it on the road south. | low, something not said |
+| k_open_c | the King | Ferrer tells it from the lines. Here it is from inside the wall, where nobody wrote anything down. | cold, a test of the listener |
+| r_lines | General Ruggieri | Dig in, Father. Three batteries, one before each gate. Nobody walks up to that wall in daylight. | crisp, a gunner's orders |
+| j_weak | Jakob* | The north gate and the south gate, Father. Their stop-works are gone. I hear them run on, a beat too fast. They will break first. | urgent, listening hard, sure |
+| f_hollweg | Father Ferrer | On the wall by the great spring stood an old man in a master's coat. He was watching our guns. | hushed, sorrowful |
+| j_hollweg | Jakob* | It is the Meister. He does not see us, Father. He is listening to the city. | quiet, pained (his old master) |
+| h_prisoner | Meister Hollweg | I asked to come, Father. I know the city's ways in. Let me show them, and then do with me what Rome asks. | humbled, steady, a proud man asking |
+| f_prisoner | Father Ferrer | Stand by me and say what you see. That is all Rome asks of you today. | kind but firm |
+| a_hello | Captain Arruda* | The valley is here, Father. We fought that city the day it was founded. We will fight it now. | plain, stubborn, proud |
+| a_hello_few | Captain Arruda* | A few of the valley came, Father. The rest gave their word to the city once, and keep it. | apologetic, honest |
+| r_probe | General Ruggieri | Muskets forward! Cover the diggers! | shouted orders |
+| r_charges | General Ruggieri | Father, the Armoury. Prepared charges, the powder bagged ready, and the gunner's quadrant. My guns will fire faster and farther. | eager, a craftsman's pleasure |
+| f_night | Father Ferrer | We heard them before we saw them: the ticking under the wall, then the gates. | hushed, dread |
+| f_log | Father Ferrer | I read the log again by the lantern. The west gate: its stop-work was taken out, as at Nuremberg. I marked it for the guns. | tired, careful, a discovery |
+| m_postern | Matthias* | The postern by our old quarter is still ours, Father. It opens for you, and not for them. | earnest, quick |
+| j_hurt | Jakob* | I'm hit, Father. It is nothing. I'll walk back. | pain, waving it off |
+| f_jakob_down | Father Ferrer | He had walked from Nuremberg to the end of the world to stand by me. I buried him on the plateau, facing the city. | grief, very quiet, slow |
+| j_mine | Jakob* | The old adits, Father. I hear the spring down there, louder than up here. The galleries go right under its tower. | wonder and fear together |
+| h_mine | Meister Hollweg | I set the spring over the old shaft myself. The galleries run under it. Send your men down. | flat, a confession in it |
+| f_mine | Father Ferrer | Jakob's log had the mine's plan, copied at Fürth from the guild's own papers. The galleries ran under the spring. | careful, reading aloud |
+| r_under | General Ruggieri | The city knows. Here they come. Hold the mouth! | urgent, shouted |
+| f_spring1 | Father Ferrer | The ticking stopped. For the first time in seven years the city was quiet. | awe, very quiet |
+| f_spring2 | Father Ferrer | We did not take it. We had not come to take it. We had come to stop it. | firm, plain, a priest's certainty |
+| j_dig | Jakob* | Father, under us. Picks, and a spring. They are in the old galleries, coming to the camp. | urgent whisper, fear |
+| f_dig | Father Ferrer | In the night the sentries heard digging under the camp. The galleries were the city's now. | low, uneasy |
+| f_grown_end | Father Ferrer | We held the road. The wall held the city. Neither of us moved for a year. | weary, flat |
+| f_hurt | Father Ferrer | A scratch. I have been hurt by worse things than a machine. | dry, wry, waving it off |
+| f_end_close | Father Ferrer | I wrote to Rome that the city was crippled, not taken. Its works still turned, slowly, without their great spring. | sober report |
+| f_end_held | Father Ferrer | I wrote to Rome that the city stood whole behind its wall, and the Crown held only the road. | sober, disappointed |
+| f_end_jakob | Father Ferrer | Jakob walked the lines with me every night after. He said the city ticked like a sick man's heart. | warm, sad |
+| f_end_nojakob | Father Ferrer | I have Jakob's log on my desk. I have written his name at the end of it. | grief, quiet |
+| f_end_walls | Father Ferrer | Hollweg stood on his wall to the end. He never looked away from his city. | pity |
+| f_end_prisoner | Father Ferrer | Hollweg asked to see the lines at the end. He stood there a long time, and then asked me to hear his confession. | gentle, moved |
+| k_end1 | the King | Ferrer's report came to Rome in the spring. I read it twice. | plain, a king's weight |
+| k_end_close | the King | The city of gears was crippled that year. Not dead. Crippled things do not stop; they limp. | grim, knowing |
+| k_end_held | the King | The city of gears stood whole behind its wall. It had been given a year, and it had used every hour of it. | grim, a reproach to himself |
+| k_end_fresh | the King | And all that year the swarm came down the rivers, while the army was in the south. | sober |
+| k_end_grown | the King | Two fires, and the army had gone to both. Neither was out. | weary |
+| k_end_c | the King | That is not how it went. The siege held. Hear it again from Ferrer. | stern, correcting |
 
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
@@ -792,6 +851,7 @@ Teixeira (the fort's commander, a Portuguese-Brazilian officer in his fifties, w
 frontier's rider (a young dragoon, breathless; two lines a mission) and Sergeant Hollins (Will Hollins grown, a Virginian
 in his thirties); d10: Father Inácio Lourenço (the balloonist priest, forties, bright and quick; Brazilian) and the
 captain of Óbidos (a garrison officer, thirties, steady; or Sobral's voice reused).
+in his thirties); d11: Jakob old (a Franconian journeyman in his sixties, gentle; Act 1's Jakob voice aged by pitch would do).
 
 ## 4. Act 2 (planned, not built)
 

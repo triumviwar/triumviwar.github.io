@@ -633,3 +633,17 @@ on the river, `versions` (FRESH / GROWN by d09's `first`), the mission `wade` ru
 lookout), `lure_post` (d08's lure once more), `ground` swamp from a source, `root_now`, `brood_stage`, `max_hp`,
 `nest_free`, routes with `attack`, countdown clocks with `"scale": false`, `if` by `past` flags, `playing` and
 `difficulty`, the solo pick, versus.
+## Added by Act 2's d11_siege (d11-siege; docs/campaign_d11_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| mission `"needs"` entry `{"id": mission, "if": condition}` | (Campaign.need_id / need_holds) a CONDITIONAL NEED, decided before the match from the progress file (`past`, `difficulty`, `heir`, `hub_flag`): the mission waits for that one only while the condition holds. THE DIAMOND's lock (owner question 9): d11 needs d10 only when d09 `first` was the swarm. The mission it names may still be planned (not written yet): `Campaign.problems()` checks only plain ids and the condition |
+| tools/campaign/roster_ladder.py `BOUND_MORE`, `SIDE_MORE`, `apply(..., faction=)` | a mission with TWO RUNGS (the line's own side and its mirror bound both, Act 2's choice 15): d11 binds the column to C9 and the city to K7; each rung's NEW cards go to its own side, said by the one `ladder_new` trigger; tools/test_roster_ladder.gd checks each row's own cards |
+| roles `ferrer_siege`, `jakob_siege`, `pioneer`, `hollweg_prisoner`, `hollweg_walls` | Rebels.ROLES (stand-ins: Act 1's Ferrer, Jakob and Hollweg art; a plain Labourer) |
+
+Everything else in the Siege of Concórdia is built from keys already there: TWO VERSIONS (`versions`, `{"version": ...}`),
+SAPPING both ways (`sap` with a `blast` under the great spring; the city's diggers coming up in the camp), THE BRAKE (the
+city run down when its spring falls), building sites (`"site": true`) and the `build` objective (the earthworks), the
+`researched` condition (PREPARED CHARGES), `stay` with a `count`, `max_hp` (the gates by version, by d07 `spring`, the weak
+ones), `spare` (Hollweg on his wall), `retag`, `wind` by team (the plates), countdown clocks, `if` by `past` flags and
+`playing`, the solo pick and versus.
