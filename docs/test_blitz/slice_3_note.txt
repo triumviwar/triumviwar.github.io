@@ -1,0 +1,5 @@
+Slice 3 of 12 (27 tests), run 10:35-10:51 UTC 2026-11-24 on main ed7b0589, Godot 4.7-stable headless.
+CAVEAT: the one-time `--import` was capped at 4 minutes and stopped at ~53% of the reimport.
+Nearly every FAIL shows null textures/sounds ("get_width on a null value", missing terrain keys like
+grass_calm_3 / heath_6) = assets not yet imported, NOT necessarily real test failures. Rerun these
+after a full import before trusting them. Only test_brood_builds.gd passed; test_ai_round6.gd timed out.

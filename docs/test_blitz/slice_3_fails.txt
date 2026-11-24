@@ -1,0 +1,389 @@
+=== test_ai_air_defence.gd rc=134
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Cannot open file 'res://.godot/imported/tesla_deploy.wav-d7a5d6f74b406ea39fb754917593df3e.sample'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+ERROR: Failed loading resource: res://.godot/imported/tesla_deploy.wav-d7a5d6f74b406ea39fb754917593df3e.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/combat/tesla_deploy.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Cannot open file 'res://.godot/imported/ticking_owl_attack_1.wav-ac5769f4b1192dd30c1878c79be5ba07.sample'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+ERROR: Failed loading resource: res://.godot/imported/ticking_owl_attack_1.wav-ac5769f4b1192dd30c1878c79be5ba07.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/combat/ticking_owl_attack_1.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_announcers.gd rc=0
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+announcers: 22 lines named by the scripts: sire_lost, research_done, building_lost, site_lost, depleted, no_powder, bad_place, expansion, horse_stolen, under_attack, ally_attack, base_attack, mother_attack, workers_attack, building_done, victory, defeat, no_gold, no_res2, no_supply, paused, resumed
+announcers: 93 checks, 0 failures
+=== test_brood_production.gd rc=134
+       [1] _page (res://scripts/main.gd:184)
+       [2] show_menu (res://scripts/main.gd:396)
+       [3] _to_menu (res://scripts/main.gd:3369)
+       [4] _run (res://tools/test_brood_production.gd:42)
+ERROR: Failed loading resource: res://assets/menu/brood.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/main.gd:2580)
+       [1] _page (res://scripts/main.gd:184)
+       [2] show_menu (res://scripts/main.gd:396)
+       [3] _to_menu (res://scripts/main.gd:3369)
+       [4] _run (res://tools/test_brood_production.gd:42)
+ALL OK
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_camera_margin.gd rc=134
+       [2] command_sound (res://scripts/game.gd:10904)
+       [3] group_move (res://scripts/game.gd:10934)
+       [4] _run (res://tools/test_camera_margin.gd:67)
+ERROR: Failed loading resource: res://assets/voice/musketeer/move_3.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _find (res://scripts/sfx.gd:95)
+       [1] voice (res://scripts/sfx.gd:420)
+       [2] command_sound (res://scripts/game.gd:10904)
+       [3] group_move (res://scripts/game.gd:10934)
+       [4] _run (res://tools/test_camera_margin.gd:67)
+PASS  a move ordered past the edge stays on the map (16)
+camera margin: ALL PASS
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_campaign_d01.gd rc=134
+       [0] _ready (res://scripts/main.gd:2580)
+       [1] _page (res://scripts/main.gd:184)
+       [2] show_menu (res://scripts/main.gd:396)
+       [3] _to_menu (res://scripts/main.gd:3369)
+       [4] _ironman (res://tools/test_campaign_d01.gd:524)
+       [5] _start (res://tools/test_campaign_d01.gd:103)
+CHECK the hub: the King talks of Tomasz's letter from Minas, and the man who went south ok 
+CHECK the hub: the Cardinal remembers Minas                                      ok 
+CHECK the war map: Minas uneasy (restless), the road south for the man who fled  ok 
+CHECK the war map's ledger: the rising broken, the gold some                     ok ["The rising of the mines was broken at Vila Rica on the day of the tax.", "Vila Rica is quiet only under the bayonet: the mines are restless.", "Some of the Foundry House\'s gold reached the coast; the gorge took the rest.", "The conspirators\' leader escaped south, to the city of gears."]
+CHECK the war map's data has no problem                                          ok 
+CHECK no script error in the whole run                                           FAIL ["Cannot call method \'get_width\' on a null value. @ res://scripts/game.gd:1015 Game._setup_astar", "Cannot call method \'get_image\' on a null value. @ res://scripts/game.gd:1330 Game._load_set", "Invalid access to property or key \'highland_0\' on a base object of type \'Dictionary\'. @ res://scripts/game.gd:1313 Game._tile"]
+campaign_d01: 2 failures
+WARNING: 14 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_cav_gate.gd rc=134
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] _strike (res://scripts/unit.gd:5437)
+              [3] _attack_cycle (res://scripts/unit.gd:5251)
+              [4] _engage (res://scripts/unit.gd:5142)
+              [5] steer (res://scripts/ride_by.gd:181)
+              [6] _tick_unit (res://scripts/unit.gd:4136)
+              [7] _physics_process (res://scripts/unit.gd:3703)
+PASS  7. a cavalry wave (4 Horsemen) at the walled base, no defender, breaks through: a piece is down in 9 s (rider 0: order attack, target gate, 37 px from the gate; wave out)
+cav_gate: 0 failures
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_clockwork_builds_a.gd rc=134
+  [6:53] rush: over (failed); 6 Clock Soldiers back to the army, 650 value killed in all, 0 menders cut at
+  [6:53] push: 7 fresh units walk out to join it (8 supply)
+  [7:10] push: holds short of the enemy's main: worth 545, the enemy's army seen lately 60
+  [7:11] push: heads for the enemy's base at (97, 70)
+  [7:43] push: 1 fast rider (60 value) round it: it does not chase them, the march goes on
+  [7:51] push: holds short of the enemy's main: worth 1140, the enemy's army seen lately 120
+  [8:00] push: 3 fresh units walk out to join it (6 supply)
+PASS  the rush goes out by 3:45: 2:42
+PASS  it reaches the enemy's base: 3:47
+PASS  it is judged by 7:00: 6:17
+PASS  the economy goes on: 22 Winders at 6:00 (want 14+)
+PASS  a second Clocktower laid by 8:00: 4:04
+RESULT: PASS (0 failed)
+WARNING: 5 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_crown_line.gd rc=134
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  a wave knowing of no enemy halts out of reach of the enemy's base and forms ([[20.8, "\'s wave forms its line before the enemy army ahead (360): 10 muskets in 1 rank, 2 guns behind (its screen saw it 823 px off)"], [53.8, "\'s wave halts out of reach of the enemy\'s base and forms its line: 8 muskets in 1 rank, 1 gun behind"]])
+PASS  ... out of the base's reach (898 px from it)
+PASS  line_orders gives each man his own spot in order along the line ([1685.0, 1735.0, 1785.0, 1835.0])
+FAILS 0
+ALL PASS
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_cw_ai.gd rc=134
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _find (res://scripts/sfx.gd:95)
+       [1] voice (res://scripts/sfx.gd:420)
+       [2] spawn_trained (res://scripts/game.gd:4938)
+       [3] _tick_building (res://scripts/building.gd:1171)
+       [4] _physics_process (res://scripts/building.gd:1086)
+PASS  the match ran 3 minutes
+PASS  it has units (18)
+PASS  it kept spending (2235)
+PASS  it trained none of the experimental units
+PASS  it built no Rail Yard
+ALL PASS
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_cw_plate.gd rc=0
+   at: load (core/io/resource_format_binary.cpp:1156)
+ERROR: Failed loading resource: res://.godot/imported/placed.wav-d344bc02469516d0cd2c1725f266178e.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/crown/placed.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Cannot open file 'res://.godot/imported/ready.wav-c15ec59fe9fbdabfa05cc34432676024.sample'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+ERROR: Failed loading resource: res://.godot/imported/ready.wav-c15ec59fe9fbdabfa05cc34432676024.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/crown/ready.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 271 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_crcw_coach.gd rc=134
+              [1] trained (res://scripts/building_life.gd:358)
+              [2] _tick_building (res://scripts/building.gd:1173)
+              [3] _physics_process (res://scripts/building.gd:1086)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  [brood] against the Brood the Timing attack opens as before (bo)
+PASS  [brood] the matchup's rules are off against the Brood
+test_crcw_coach: ALL PASS (0 failed)
+WARNING: 14 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_flyer_pick.gd rc=0
+       [0] tex (res://scripts/game.gd:216)
+       [1] _gear_anim (res://scripts/building.gd:830)
+       [2] _econ (res://scripts/building.gd:1033)
+       [3] _tick_building (res://scripts/building.gd:1130)
+       [4] _physics_process (res://scripts/building.gd:1086)
+       [5] step (res://tools/gear_test_util.gd:39)
+       [6] _run (res://tools/test_flyer_pick.gd:32)
+PASS  ticking_owl: a click on its body (52 px over its shadow) picks it
+PASS  ticking_owl: a click on its shadow picks it
+PASS  a Winder is picked at his feet
+DONE 0 FAIL
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_gear_levels.gd rc=0
+  ramp pair: Clocktower at (70, 22) (level 1), Regulator spot at (65, 27) (level 0), ring gap 38 px (link gap 64)
+CHECK [ramp] the ring reaches the Clocktower's, but on the other level: no link  ok { "state": "far", "level": true }
+CHECK [ramp] the ghost says NO LINK: OTHER LEVEL                                 ok NO LINK: OTHER LEVEL
+CHECK [ramp] placing it is refused, and the reason names the ground level        ok Gears mesh only on the same ground level: its ring would touch your field only across a cliff or a ramp.
+CHECK [ramp] the efficiency preview has no % there                               ok 
+CHECK [ramp] a Regulator put there anyway stays UNLINKED                         ok 
+CHECK [ramp] with no idler and no drive                                          ok 
+CHECK [ramp] (no same-level spot by this Clocktower: skipped)                    ok 
+CHECK [ramp] the computer's room_spot by the Clocktower stays on its level       ok (-1, -1)
+CHECK [ramp] ring_spot towards the low spot stays on the Clocktower's level      ok (-1, -1) at 153 deg
+RESULT: 0 failures
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_group_keys.gd rc=134
+       [1] _page (res://scripts/main.gd:184)
+       [2] show_menu (res://scripts/main.gd:396)
+       [3] _to_menu (res://scripts/main.gd:3369)
+       [4] _run (res://tools/test_group_keys.gd:83)
+ERROR: Failed loading resource: res://assets/menu/brood.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/main.gd:2580)
+       [1] _page (res://scripts/main.gd:184)
+       [2] show_menu (res://scripts/main.gd:396)
+       [3] _to_menu (res://scripts/main.gd:3369)
+       [4] _run (res://tools/test_group_keys.gd:83)
+ALL OK
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_horse_vanish.gd rc=134
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  a delayed horse is brought to the hitch, not deleted
+ALL PASSED
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_line_build.gd rc=0
+   at: draw_texture_rect_region (scene/main/canvas_item.cpp:1009)
+   GDScript backtrace (most recent call first):
+       [0] _draw_building (res://scripts/building.gd:1781)
+       [1] _draw (res://scripts/building.gd:1629)
+ERROR: Required object "rp_texture" is null.
+   at: draw_texture_rect_region (scene/main/canvas_item.cpp:1009)
+   GDScript backtrace (most recent call first):
+       [0] _draw_building (res://scripts/building.gd:1781)
+       [1] _draw (res://scripts/building.gd:1629)
+CHECK a Winder repairs a pipe segment                          ok 140/140
+RESULT ALL OK (0 failed)
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 376 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_menu_grid.gd rc=134
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/main.gd:2580)
+       [1] _page (res://scripts/main.gd:184)
+       [2] show_menu (res://scripts/main.gd:396)
+       [3] <anonymous lambda> (res://scripts/ui/multiplayer_menu.gd:157)
+       [4] <anonymous lambda> (res://scripts/main.gd:2384)
+       [5] menu_back (res://scripts/main.gd:771)
+       [6] _unhandled_input (res://scripts/main.gd:777)
+       [7] _esc (res://tools/test_menu_grid.gd:36)
+       [8] _back_from (res://tools/test_menu_grid.gd:49)
+PASS ONLINE BACK -> main menu  ONLINE
+menu_grid: 0 fails
+WARNING: 1 RID of type "CanvasItem" was leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2733)
+=== test_net_fog.gd rc=134
+FOG game 300 s on twin_fords: 68749 unit rows (6505 of enemies), 867 enemy building rows, 150 keyframes per side, 21293 effects
+FOG the 0.33 keyframes would have sent 3996 rows of enemies the side could not see (13 per keyframe)
+CHECK the sides met (enemy units were sent at all)               ok 6505 rows
+CHECK no enemy row a side could not see (keyframes too)          ok 0 leaks
+CHECK a keyframe's id list names only what the side was sent     ok 0 ids
+CHECK strict: the enemy's bank is never sent                     ok 0
+CHECK strict: no battle report before the end                    ok 0
+CHECK effects only where the side sees                           ok 0 of 21293
+CHECK the guest holds exactly what the host listed after each keyframe ok worst 0, 0 snapshots off
+CHECK spectator: its picture goes to it alone, and never a player's to it ok 0
+CHECK spectator: every side's units in its pictures              ok rows by side [16488, 45756] in 4500 pictures
+CHECK spectator: its game holds every unit after each keyframe (full vision) ok short 0, worst 0
+FOG ALL OK
+WARNING: 20 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_phone_crew.gd rc=134
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] tex (res://scripts/game.gd:216)
+       [1] _icon_file (res://scripts/ui/hud.gd:5698)
+       [2] _icon (res://scripts/ui/hud.gd:5676)
+       [3] _unit_icon (res://scripts/ui/hud.gd:4569)
+       [4] _draw_panel (res://scripts/ui/hud.gd:3819)
+       [5] _draw_layer (res://scripts/ui/hud.gd:318)
+       [6] _draw (res://scripts/ui/hud.gd:277)
+PASS  the Farm's + WORKER pressed
+PASS  it took the idle Labourer, not one off the Mill
+PASS  the computer's card has them too
+phone crew: ALL PASS
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_rally_freed_unit.gd rc=0
+       [4] _physics_process (res://scripts/building.gd:1086)
+ERROR: Failed loading resource: res://assets/buildings/farm_field_ripe.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] tex (res://scripts/game.gd:216)
+       [1] _update_sprite (res://scripts/building.gd:1536)
+       [2] _update_fire (res://scripts/building.gd:1385)
+       [3] _tick_building (res://scripts/building.gd:1180)
+       [4] _physics_process (res://scripts/building.gd:1086)
+CHECK the rally lets go of a freed unit and the tick runs on: ran true, rally (518.0, 392.0) (he was at (518.0, 392.0))
+PASS
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_rooted_key_note.gd rc=134
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Cannot open file 'res://.godot/imported/building_collapse_2.wav-f6b1532b28af378a87e75c7d35fb9754.sample'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+ERROR: Failed loading resource: res://.godot/imported/building_collapse_2.wav-f6b1532b28af378a87e75c7d35fb9754.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/combat/building_collapse_2.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Cannot open file 'res://.godot/imported/cannon_attack.wav-fac5448c8b60a94366ba6ce84cf0572e.sample'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+ERROR: Failed loading resource: res://.godot/imported/cannon_attack.wav-fac5448c8b60a94366ba6ce84cf0572e.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/combat/cannon_attack.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+WARNING: 3 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_cw_written_openings.gd rc=134
+              [8] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] play_f_once (res://scripts/sfx.gd:129)
+              [3] on_building_complete (res://scripts/game.gd:4157)
+              [4] add_progress (res://scripts/building.gd:591)
+              [5] _tick_building (res://scripts/building.gd:1136)
+              [6] _physics_process (res://scripts/building.gd:1086)
+PASS  rush: turned to the economy at 240 s (by 240)
+RESULT: PASS (0 failed)
+WARNING: 20 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+=== test_sound_pool.gd rc=1
+       [1] play (res://scripts/sfx.gd:215)
+       [2] _run (res://tools/test_sound_pool.gd:85)
+ERROR: Failed loading resource: res://assets/audio/horse/neigh_4.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _find (res://scripts/sfx.gd:95)
+       [1] play (res://scripts/sfx.gd:215)
+       [2] _run (res://tools/test_sound_pool.gd:85)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _run (res://tools/test_sound_pool.gd:85)
+PASS a horse call gets a player in a full pool
+FAILS 1
+=== test_toad_research.gd rc=0
+       [2] _update_fire (res://scripts/building.gd:1385)
+       [3] _tick_building (res://scripts/building.gd:1180)
+       [4] _physics_process (res://scripts/building.gd:1086)
+CHECK FOG refused before the research                                    ok Research Fog Bank at the Venom Sire first.
+CHECK MIASMA refused before the research                                 ok Research Miasma Cloud at the Venom Sire first.
+CHECK TONGUE needs no research                                           ok 
+CHECK FOG once researched                                                ok 
+CHECK MIASMA still locked                                                ok 
+CHECK MIASMA once researched                                             ok 
+CHECK the Brood computer researches FOG and MIASMA once it has Toads     ok 
+toad research: 0 failures
+WARNING: 2 RIDs of type "CanvasItem" were leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2735)
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+=== test_war_map.gd rc=134
+       [7] _ui_act2 (res://tools/test_war_map.gd:567)
+ERROR: Failed loading resource: res://assets/menu/brood.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://scripts/main.gd:2580)
+       [1] _page (res://scripts/main.gd:184)
+       [2] _frame (res://scripts/campaign/campaign_menu.gd:46)
+       [3] show (res://scripts/campaign/campaign_menu.gd:663)
+       [4] <anonymous lambda> (res://scripts/campaign/campaign_menu.gd:1238)
+       [5] <anonymous lambda> (res://scripts/main.gd:2384)
+       [6] _press_back (res://tools/test_war_map.gd:321)
+       [7] _ui_act2 (res://tools/test_war_map.gd:567)
+war map: 0 failures
+WARNING: 1 RID of type "CanvasItem" was leaked.
+   at: _free_rids (servers/rendering/renderer_canvas_cull.cpp:2733)
