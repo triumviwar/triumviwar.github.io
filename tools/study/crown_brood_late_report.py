@@ -62,6 +62,7 @@ def report(name):
     at = collections.defaultdict(list)
     lab = lab12 = halls_lost = 0
     fights = guns_near = set_n = nogun_set = 0
+    out_f = out_near = out_set = 0
     spend = collections.Counter()
     spend_n = 0
     cbl = collections.Counter()
@@ -95,6 +96,10 @@ def report(name):
         c = g.get("crown_ai", {}).get(str(si), {})
         for f in c.get("guns", {}).get("fights", []):
             fights += 1
+            if not f[1]:
+                out_f += 1
+                out_near += int(f[3])
+                out_set += int(f[4])
             if int(f[3]) > 0:
                 guns_near += int(f[3])
                 set_n += int(f[4])
@@ -122,6 +127,8 @@ def report(name):
     print("labourers lost a game %.1f (from 12:00 %.1f); Crown halls lost from 12:00 %.1f a game" % (lab / n, lab12 / n, halls_lost / n))
     print("fights %.1f a game; guns near at contact %d, of them set %d (%.0f%%); fights with guns near and none set: %d" % (
         fights / n, guns_near, set_n, 100.0 * set_n / max(1, guns_near), nogun_set))
+    print("fights out of home %.1f a game; guns near at contact %d, of them set %d (%.0f%%)" % (out_f / n, out_near, out_set,
+          100.0 * out_set / max(1, out_near)))
     print("siege pushes %.1f a game; counters: %s" % (pushes / n, ", ".join("%s %.1f" % (k, v / n) for k, v in sorted(cbl.items()))))
     if spend_n:
         tot = sum(spend.values()) or 1

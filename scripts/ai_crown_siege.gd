@@ -558,6 +558,8 @@ func _march(line: Array, guns: Array, mid: Vector2) -> void:
 	var gmid := _mid(near_guns) if not near_guns.is_empty() else (_mid(guns) if not guns.is_empty() else mid)
 	var lag := gmid.distance_to(mid) > GUN_LAG and not guns.is_empty()
 	var eye: Unit = CBL.eye(self, line, mid, goal) if _brood() else null     # (crown-brood-late "guns": a rider ahead)
+	if _brood() and CBL.bounds(self, line, guns, mid, goal, eye):
+		return                    # (crown-brood-late "guns": near the Brood the push goes in bounds, the guns set)
 	for u in line:
 		if u == eye:
 			continue

@@ -216,6 +216,124 @@ static func brace(siege, line: Array, guns: Array, mid: Vector2) -> bool:
 	return true
 
 
+## THE BOUNDS (AICrownSiege._march asks, every order think; true: it gave the line's and the guns' orders). The brace alone
+## did not set the guns before contact (out of home, 3-7% of the guns near were set when the fight began, as before): a Brood
+## soldier is first seen at a musket's sight (256 px), and a Raptor covers that before a gun unlimbers. So near the Brood
+## (a Brood soldier seen lately, a Rootmaw known, or the march's goal within DANGER_D) the push goes forward in BOUNDS, as
+## guns and foot do: the guns stand set; the line walks on toward the goal but no man goes more than COVER ahead of the set
+## guns (he halts on HOLD there); when the line stands at that edge, the rearmost set gun limbers, rolls up to BOUND_BACK
+## behind the line and sets again, one gun at a time (with one gun, the line waits while it moves). Whatever comes at the
+## line meets it with guns set behind it.
+const DANGER_D := 950.0         # (px) the Brood this near the line's middle: the push goes in bounds
+const DANGER_SEEN := 25.0       # (s) a Brood soldier seen this lately counts
+const DANGER_HOLD := 15.0       # (s) in bounds this long after the last danger
+const COVER := 230.0            # (px) the line's men at most this far ahead of the set guns (a gun reaches 430)
+const BOUND_BACK := 100.0       # (px) a gun rolls up to this far behind the line's middle
+const BOUND_EDGE := 50.0        # (px) the line at COVER less this: the next gun goes up
+static var _bound := {}         # AICrownSiege -> {"until": clock, "moving": {gun: spot}}
+
+
+static func _danger(siege, mid: Vector2, goal: Vector2) -> bool:
+	var ai = siege.ai
+	var game: Game = siege.game
+	if goal != Vector2.INF and goal.distance_to(mid) < DANGER_D:
+		return true
+	if ai.ch != null:
+		for u in ai.ch._seen:
+			var e: Array = ai.ch._seen[u]
+			if game.clock - float(e[0]) <= DANGER_SEEN and (e[1] as Vector2).distance_to(mid) < DANGER_D:
+				return true
+	for u in ai._maws_seen.keys():
+		if is_instance_valid(u) and not u.dead and u.position.distance_to(mid) < DANGER_D:
+			return true
+	return false
+
+
+static func bounds(siege, line: Array, guns: Array, mid: Vector2, goal: Vector2, eye: Unit) -> bool:
+	var ai = siege.ai
+	if not vs_brood(ai, "guns") or goal == Vector2.INF:
+		return false
+	var game: Game = siege.game
+	var st: Dictionary = _bound.get(siege, {})
+	var near_guns := guns.filter(func(g: Unit) -> bool: return g.position.distance_to(mid) < BRACE_GUN_R)
+	if near_guns.is_empty():
+		_bound.erase(siege)
+		return false
+	if _danger(siege, mid, goal):
+		if st.is_empty():
+			st = {"moving": {}}
+			count(ai.team, "bounds")
+			siege.say("goes on in bounds: the Brood is near, the guns stand set and the line keeps within their cover")
+		st["until"] = game.clock + DANGER_HOLD
+		_bound[siege] = st
+	elif st.is_empty() or game.clock > float(st.get("until", 0.0)):
+		_bound.erase(siege)
+		return false
+	var dir := goal - mid
+	if dir.length() < 1.0:
+		return false
+	dir = dir.normalized()
+	var side := Vector2(-dir.y, dir.x)
+	var moving: Dictionary = st["moving"]
+	for g in moving.keys():
+		if not _alive(g) or not near_guns.has(g):
+			moving.erase(g)
+	var set_guns := near_guns.filter(func(g: Unit) -> bool: return g.tesla_mode == "deployed" and not moving.has(g))
+	# the guns: a moving gun rolls to its spot and sets there; a limbered gun not moving sets where it stands (near the line)
+	# or rolls up first
+	for g in near_guns:
+		if moving.has(g):
+			var sp: Vector2 = moving[g]
+			if g.tesla_mode == "deployed":
+				moving.erase(g)
+			elif g.tesla_mode == "packed":
+				if g.position.distance_to(sp) < 50.0:
+					g.cmd_deploy()
+				elif g.order != "move" or g.order_point.distance_to(sp) > 40.0:
+					g.cmd_move(sp)
+			continue
+		if g.tesla_mode == "packed":
+			if g.position.distance_to(mid) > COVER:
+				var sp2: Vector2 = siege._spot(mid - dir * BOUND_BACK + side * randf_range(-60.0, 60.0))
+				moving[g] = sp2
+				g.cmd_move(sp2)
+			else:
+				g.cmd_deploy()
+	# the line: on toward the goal, none more than COVER ahead of the set guns
+	var foot := line.filter(func(u: Unit) -> bool: return u.kind != "cuirassier" and u != eye)
+	var front := -INF
+	if set_guns.is_empty():
+		for u in foot:
+			if u.target == null and u.order != "hold":
+				u.cmd_hold()
+	else:
+		var gm: Vector2 = siege._mid(set_guns)
+		for u in foot:
+			var proj: float = (u.position - gm).dot(dir)
+			front = maxf(front, proj)
+			if proj > COVER:
+				if u.target == null and u.order != "hold":
+					u.cmd_hold()
+			elif u.order in ["idle", "hold"] or u.order_point.distance_to(goal) > 120.0:
+				u.cmd_move(goal + Vector2(randf_range(-50, 50), randf_range(-50, 50)), true)
+		# the line at the edge of the cover: the rearmost set gun goes up (one at a time; all of them set first)
+		if front >= COVER - BOUND_EDGE and moving.is_empty() and set_guns.size() == near_guns.size():
+			var back: Unit = set_guns[0]
+			for g in set_guns:
+				if (g.position - gm).dot(dir) < (back.position - gm).dot(dir):
+					back = g
+			var sp3: Vector2 = siege._spot(mid - dir * BOUND_BACK + side * randf_range(-60.0, 60.0))
+			moving[back] = sp3
+			back.cmd_move(sp3)
+			count(ai.team, "bound_steps")
+	# the riders by the guns
+	var gmid: Vector2 = siege._mid(near_guns)
+	for u in line:
+		if u.kind == "cuirassier" and u != eye and u.target == null and u.position.distance_to(gmid) > 120.0 and u.order != "move":
+			u.cmd_move(gmid + Vector2(randf_range(-60, 60), randf_range(-60, 60)))
+	return true
+
+
 ## AICrownSiege._siege_set: a braced push set against a Brood force keeps it while it stands this near (else it would
 ## limber and roll on while the swarm waits just out of sight).
 static func army_hold_d(siege) -> float:
