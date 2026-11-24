@@ -67,7 +67,7 @@ LADDER = {
         ("B4", "d03_fazenda", ["pterodactyl", "hatchlings"], []),
         # (B5 and B6 SWAPPED by Act 2's plan, Claude's choice 13: the Queen IS stage 3, so d06 gives it)
         ("B5", "d06_queen", ["stage3", "brute"], []),
-        ("B6", "", ["nb_clutch_raptor", "nb_pack_hunt", "nb_quick_roots"], []),
+        ("B6", "d08_rivers", ["nb_clutch_raptor", "nb_pack_hunt", "nb_quick_roots"], []),
         ("B7", "", ["mist_toad", "nb_fog", "nb_miasma"], []),
         ("B8", "", ["storm_challenger", "nb_updraft", "nb_clutch_hatchlings"], []),
         ("B9", "", ["nb_clutch_spitter", "nb_slither", "nb_long_spit", "nb_battering_horns", "nb_swamp_mending"], []),
@@ -92,6 +92,7 @@ BOUND = {
     "d01_minas": ("crown", ["garrison"]),             # (Act 2's C5: the conspiracy (versus) is not bound: the other side)
     "d06_queen": ("brood", ["stock"]),                # (Act 2's B5, was B6: the fazenda (solo pick, versus) is not bound)
     "d05_aldeia": ("crown", ["mission"]),             # (Act 2's C6: the swarm (solo pick, versus) is not bound beyond its deny)
+    "d08_rivers": ("brood", ["swarm"]),               # (Act 2's B6, was B5: the swarm, the solo pick and versus; the Barra is not bound)
 }
 
 # The NEW card: one line per new piece, said a few seconds in (to the ladder side only: never the other player's).
@@ -129,6 +130,9 @@ CARDS = {
     "matchlock": "NEW: THE MATCHLOCK. Research it at the Armoury: the Musketeers reload faster. Men already in the ranks get it by a REFIT: turn on AUTO REFIT on the Armoury and idle men near it go to be fitted.",
     "dragoon": "NEW: THE DRAGOON. A Musketeer on a horse: he rides fast down the trails and fires on foot. The relief brings four; the river fort's Barracks trains more beside its Horse Breeder.",
     "charge": "NEW: THE CAVALRY CHARGE. Drill it at a Horse Breeder: a Horseman's first blow after a gallop hits more than twice as hard on light creatures, and throws them back.",
+    "nb_clutch_raptor": "NEW: BIGGER CLUTCH. Research it on the Tyrant Sire's card: Raptors hatch three to an egg instead of two (the egg costs more, each Raptor the same). More teeth at the shallows.",
+    "nb_pack_hunt": "NEW: PACK HUNT. Research it on the Tyrant Sire's card: Raptors, Tyrant Challengers and the Sire run faster; a Raptor then outruns a horse. Catch the people before the canoes.",
+    "nb_quick_roots": "NEW: QUICK ROOTS. Research it on a Mother's card: every creature roots and uproots in half the time. A forward Mother walks down the bank and is rooted again before the guns find her.",
     "bayonet": "NEW: THE SOCKET BAYONET. Research it at the Armoury: the bayonet hits harder and quicker, and the musket can still fire with it fixed. On the town's stairs, where the fighting is close, it decides the night.",
 }
 # (pieces that share a card: the Venom Challenger is told with the Tyrant Challenger)
@@ -168,6 +172,9 @@ CARDS_PT = {
     "matchlock": "NOVO: A MECHA. Pesquise-a no Arsenal: os Mosqueteiros recarregam mais depressa. Os homens que já estão nas fileiras recebem-na ao serem reequipados: ligue AUTO-REEQUIPAR no Arsenal e os homens parados perto dele vão ser equipados.",
     "dragoon": "NOVO: O DRAGÃO. Um Mosqueteiro a cavalo: corre depressa pelos trilhos e dispara a pé. O socorro traz quatro; o Quartel do forte do rio treina mais junto ao seu Criador de Cavalos.",
     "charge": "NOVO: A CARGA DE CAVALARIA. Treine-a num Criador de Cavalos: o primeiro golpe de um Cavaleiro depois de um galope fere mais do dobro nas criaturas leves, e atira-as para trás.",
+    "nb_clutch_raptor": "NOVO: NINHADA MAIOR. Pesquise-a no painel do Sire Tirano: os Raptores nascem três por ovo em vez de dois (o ovo custa mais, cada Raptor o mesmo). Mais dentes nos baixios.",
+    "nb_pack_hunt": "NOVO: CAÇA EM BANDO. Pesquise-a no painel do Sire Tirano: os Raptores, os Desafiantes Tiranos e o Sire correm mais depressa; um Raptor passa então um cavalo. Apanhe a gente antes das canoas.",
+    "nb_quick_roots": "NOVO: RAÍZES RÁPIDAS. Pesquise-as no painel de uma Mãe: todas as criaturas enraízam e desenraízam na metade do tempo. Uma Mãe avançada desce a margem e já está enraizada de novo antes que os canhões a encontrem.",
     "bayonet": "NOVO: A BAIONETA DE ENCAIXE. Pesquise-a no Arsenal: a baioneta fere mais forte e mais depressa, e o mosquete ainda dispara com ela calada. Nas escadas da vila, onde a luta é de perto, ela decide a noite.",
 }
 CARDS_ES = {
@@ -203,12 +210,17 @@ CARDS_ES = {
     "matchlock": "NUEVO: LA MECHA. Investígala en la Armería: los Mosqueteros recargan más deprisa. Los hombres que ya están en las filas la reciben al reequiparse: activa AUTOEQUIPAR en la Armería y los hombres ociosos cerca de ella van a equiparse.",
     "dragoon": "NUEVO: EL DRAGÓN. Un Mosquetero a caballo: corre deprisa por las sendas y dispara a pie. El socorro trae cuatro; el Cuartel del fuerte del río entrena más junto a su Criadero de Caballos.",
     "charge": "NUEVO: LA CARGA DE CABALLERÍA. Entrénala en un Criadero de Caballos: el primer golpe de un Jinete tras un galope hiere más del doble a las criaturas ligeras, y las echa atrás.",
+    "nb_clutch_raptor": "NUEVO: NIDADA MAYOR. Investígala en el panel del Señor Tirano: los Raptores nacen tres por huevo en vez de dos (el huevo cuesta más, cada Raptor lo mismo). Más dientes en los bajíos.",
+    "nb_pack_hunt": "NUEVO: CAZA EN MANADA. Investígala en el panel del Señor Tirano: los Raptores, los Retadores Tiranos y el Señor corren más deprisa; un Raptor entonces deja atrás a un caballo. Atrapa a la gente antes de las canoas.",
+    "nb_quick_roots": "NUEVO: RAÍCES RÁPIDAS. Investígalas en el panel de una Madre: todas las criaturas enraízan y desenraízan en la mitad de tiempo. Una Madre de avanzada baja por la orilla y vuelve a estar enraizada antes de que los cañones la encuentren.",
     "bayonet": "NUEVO: LA BAYONETA DE CUBO. Investígala en la Armería: la bayoneta hiere más fuerte y más deprisa, y el mosquete aún dispara con ella calada. En las escaleras del pueblo, donde se lucha de cerca, decide la noche.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
 CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8}
 SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d08_rivers": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d08_rivers": "swarm"}
 
 
 def step_of(mission_id):

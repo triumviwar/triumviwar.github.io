@@ -577,3 +577,15 @@ people in their chapel; the fields kept from the creatures' teeth), FOLLOW (the 
 with a default, `burn` with `douse_side` / `douse_secs` (a fire the rain does not put out), `root_now`, `brood_stage`,
 `nest_free`, `exits` with `after`, counters with `share_of` / `sub_counter` (the swarm's tally), `tally` with shares,
 countdown clocks, the mission's `difficulty`, `if` by `past` flags and `playing`.
+## Added by Act 2's d08_rivers (d08-rivers; docs/campaign_d08_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| count `"rooted": true` | (MissionRun.count) only Brood creatures rooted now (the swarm's player: a Mother ROOTED in the clearing opposite the Barra, not one standing in it) |
+| roles `forward_mother`, `barra_sergeant` | Rebels.ROLES: the swarm's forward Mothers (a Brood Mother drawn small, 0.46, 600 health: an animal with no name but what Valadares' men called her) and the Barra's sergeant (a Musketeer, a speaking part) |
+
+Everything else in Down the Rivers is built from the keys above: THE LURE POST with its `pull` (act2-engine0's, its
+first use: the choice USE IT ONCE), THE SPREADING GROUND (the forward Mothers' swamp), STAY (a man by each group of
+Nazaré's people), `exits` (the canoes), routes with `attack` (the waves over the shallows), a choice with a default,
+`remove` (the people left behind, the drowned half of the wave), `tally` with shares (`nazare`, `barra`), countdown
+clocks, a line's `until` (Part 1's chatter dropped once the canoes are gone), `if` by `past` flags and `difficulty`.

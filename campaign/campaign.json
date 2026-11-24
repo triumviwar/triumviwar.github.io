@@ -402,7 +402,8 @@
 				"a05_specimens",
 				"a07_council",
 				"d03_fazenda",
-				"d06_queen"
+				"d06_queen",
+				"d08_rivers"
 			],
 			"hub": {
 				"title": "Lindqvist's Station",
@@ -434,7 +435,8 @@
 							0.293,
 							0.153,
 							0.68
-						]
+						],
+						"until": "d08_rivers"
 					},
 					{
 						"id": "egg",
@@ -511,6 +513,19 @@
 							0.47,
 							0.1,
 							0.14
+						]
+					},
+					{
+						"id": "valadares",
+						"kind": "talk",
+						"label": "VALADARES",
+						"talk": "valadares",
+						"requires": "d08_rivers",
+						"rect": [
+							0.804,
+							0.293,
+							0.153,
+							0.68
 						]
 					}
 				],
@@ -736,6 +751,234 @@
 								]
 							}
 						]
+					},
+					"valadares": {
+						"name": "Valadares",
+						"colour": 4,
+						"portrait": "res://campaign/portraits/valadares.png",
+						"entries": [
+							{
+								"after": "d08_rivers",
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"Lindqvist is somewhere downriver. Rome wants him. So do I."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "burned",
+									"d08_rivers.barra": "held",
+									"d08_rivers.nazare": "few"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I burned the book. I would burn it again. I do not sleep well.",
+									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
+									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "burned",
+									"d08_rivers.barra": "held",
+									"d08_rivers.nazare": "some"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I burned the book. I would burn it again. I do not sleep well.",
+									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
+									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "burned",
+									"d08_rivers.barra": "held",
+									"d08_rivers.nazare": "all"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I burned the book. I would burn it again. I do not sleep well.",
+									"Nazaré's people are in the church. All of them. The vicar counts them at every Mass.",
+									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "burned",
+									"d08_rivers.barra": "burned",
+									"d08_rivers.nazare": "few"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I burned the book. I would burn it again. I do not sleep well.",
+									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
+									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "burned",
+									"d08_rivers.barra": "burned",
+									"d08_rivers.nazare": "some"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I burned the book. I would burn it again. I do not sleep well.",
+									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
+									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "burned",
+									"d08_rivers.barra": "burned",
+									"d08_rivers.nazare": "all"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I burned the book. I would burn it again. I do not sleep well.",
+									"Nazaré's people are in the church. All of them. The vicar counts them at every Mass.",
+									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "used",
+									"d08_rivers.barra": "held",
+									"d08_rivers.nazare": "few"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I used the book once. The confessor gave me a penance, and I have done it.",
+									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
+									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "used",
+									"d08_rivers.barra": "held",
+									"d08_rivers.nazare": "some"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I used the book once. The confessor gave me a penance, and I have done it.",
+									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
+									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "used",
+									"d08_rivers.barra": "held",
+									"d08_rivers.nazare": "all"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I used the book once. The confessor gave me a penance, and I have done it.",
+									"Nazaré's people are in the church. All of them. The vicar counts them at every Mass.",
+									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "used",
+									"d08_rivers.barra": "burned",
+									"d08_rivers.nazare": "few"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I used the book once. The confessor gave me a penance, and I have done it.",
+									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
+									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "used",
+									"d08_rivers.barra": "burned",
+									"d08_rivers.nazare": "some"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I used the book once. The confessor gave me a penance, and I have done it.",
+									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
+									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "barra"
+								},
+								"flag": {
+									"d08_rivers.lure": "used",
+									"d08_rivers.barra": "burned",
+									"d08_rivers.nazare": "all"
+								},
+								"lines": [
+									"The floods are going down. Their ground does not.",
+									"I used the book once. The confessor gave me a penance, and I have done it.",
+									"Nazaré's people are in the church. All of them. The vicar counts them at every Mass.",
+									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
+								]
+							},
+							{
+								"after": "d08_rivers",
+								"sides": {
+									"d08_rivers": "swarm"
+								},
+								"lines": [
+									"The bluff fell in that telling. In mine it stood, and I was on it.",
+									"Lindqvist is somewhere downriver. Rome wants him. So do I."
+								]
+							}
+						]
 					}
 				},
 				"scene": "res://campaign/hub/station.json",
@@ -807,6 +1050,21 @@
 							0.78,
 							0.82,
 							0.9
+						]
+					},
+					"d08_rivers": {
+						"title": "Valadares' Quarters at the Barra",
+						"about": "After the floods the Naturalist's chart is in a Crown hand: Valadares' quarters in the fort at the Barra, the swarm's spread inked in green.",
+						"still": {
+							"caption": "Valadares' quarters in the fort at the Barra: the chart on the table, the river through the window."
+						},
+						"tint": [
+							0.86,
+							0.84,
+							0.8
+						],
+						"hide_layers": [
+							"lindqvist"
 						]
 					}
 				}

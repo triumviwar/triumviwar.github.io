@@ -257,4 +257,7 @@ func _gates(g: Game, mr: MissionRun, t: int, r: Dictionary) -> void:
 	var gw := BroodNew.grow_problem(g, q)
 	check("%s: GROW to stage 2: refused only when off the list" % mid, (gw == NOT) == mr.denied(t, "stage2"), gw)
 	var rq := BroodResearch.problem(g, q, "nb_quick_roots")
-	check("%s: her research Quick Roots refused (off every Act 1 list)" % mid, rq == NOT or rq == "Can't research that here." , rq)
+	if allow.has("nb_quick_roots"):
+		check("%s: her research Quick Roots not refused for the roster (on this list)" % mid, rq != NOT, rq)
+	else:
+		check("%s: her research Quick Roots refused (off the list)" % mid, rq == NOT or rq == "Can't research that here." , rq)

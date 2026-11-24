@@ -93,6 +93,10 @@ const ROLES := {
 	"grown_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "The Mother", "hp": 2000, "scale": 0.5, "about": "A Brood Mother of Lindqvist's stock, three years grown, rooted in the big pen."},
 	"pen_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "The east pen's Mother", "hp": 800, "scale": 0.44, "about": "Another of Lindqvist's breeding Mothers, younger, fenced in the north-east pen."},
 	"wild_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "The wild Mother", "hp": 1000, "scale": 0.48, "about": "A wild Brood Mother carried onto the island by the flood."},
+	# Act 2's d08_rivers (the Rio Negro in the floods, 2778): the swarm's forward Mothers rooting down the far bank
+	# (animals, no names: "a forward Mother" is what Valadares' men called them), the Barra's garrison
+	"forward_mother": {"kind": "brood_mother", "art": "b_linnea", "name": "A forward Mother", "hp": 600, "scale": 0.46, "about": "A Brood Mother of the swarm, walking down the far bank to root on it."},
+	"barra_sergeant": {"kind": "musketeer", "name": "The Barra's sergeant", "hp": 160, "about": "The sergeant of the Barra's garrison, twenty years on the Rio Negro."},
 	"fonseca": {"kind": "dismounted", "art": "a_delorme", "name": "Desembargador Fonseca", "hp": 220, "about": "The commission's magistrate, a judge of the Relação, with Rome's order."},
 	# Act 2's d04_concordia (the southern highlands, 2773): the guild's settlers, the council's secular voice (Varenne by
 	# a06 `varenne` spared, Citizen Morel by executed: they speak, they don't fight), the valley's militia, ranchers and

@@ -1,0 +1,7195 @@
+{
+	"id": "d08_rivers",
+	"title": "Down the Rivers",
+	"summary": "The Rio Negro in the floods of 2778. The swarm comes down the rivers; Valadares brings Nazaré's people out and holds the Barra on its bluff.",
+	"map": "campaign:barra_rivers",
+	"voice": "d08",
+	"light": "jungle_day",
+	"weather": "rain",
+	"floor": [
+		0.76,
+		0.78,
+		0.72
+	],
+	"expansion_spots": false,
+	"manual_end": true,
+	"needs": [
+		"a07_council",
+		"d06_queen"
+	],
+	"modes": [
+		"solo",
+		"versus"
+	],
+	"solo_sides": [
+		"barra",
+		"swarm"
+	],
+	"sides": [
+		{
+			"id": "barra",
+			"name": "The Barra",
+			"about": "Valadares and the Barra do Rio Negro: the column, the garrison on the bluff, two guns, the church; Nazaré's people upriver."
+		},
+		{
+			"id": "swarm",
+			"name": "The Swarm",
+			"about": "The Brood coming down the rivers in the floods: forward Mothers rooting on the far bank, and what they lay."
+		}
+	],
+	"teams": [
+		{
+			"id": "barra",
+			"side": "barra",
+			"faction": "crown",
+			"colour": 4,
+			"start": "none",
+			"camera": "col_start",
+			"gold": 500,
+			"powder": 200,
+			"control": {
+				"solo": "p1",
+				"versus": "p1",
+				"foe": "script"
+			},
+			"roster": {
+				"deny": [
+					"town_hall",
+					"foundry",
+					"mortar",
+					"horse_breeder",
+					"armoury",
+					"church",
+					"nitre_beds",
+					"balloon",
+					"missionary",
+					"cuirassier"
+				]
+			}
+		},
+		{
+			"id": "nazare",
+			"side": "barra",
+			"faction": "crown",
+			"colour": 3,
+			"start": "none",
+			"camera": "nazare",
+			"control": {
+				"solo": "script",
+				"versus": "script"
+			}
+		},
+		{
+			"id": "swarm",
+			"side": "swarm",
+			"faction": "brood",
+			"colour": 2,
+			"start": "none",
+			"camera": "fb_n",
+			"gold": 0,
+			"powder": 0,
+			"control": {
+				"solo": "script",
+				"versus": "p2"
+			},
+			"roster": {
+				"allow": [
+					"brood_mother",
+					"grub",
+					"rootmaw",
+					"mound_turtle",
+					"tyrannosaur",
+					"raptor",
+					"dilophosaurus",
+					"spitter",
+					"stage2",
+					"tyrant_challenger",
+					"venom_challenger",
+					"pterodactyl",
+					"hatchlings",
+					"stage3",
+					"brute",
+					"nb_clutch_raptor",
+					"nb_pack_hunt",
+					"nb_quick_roots"
+				],
+				"new": [
+					"nb_clutch_raptor",
+					"nb_pack_hunt",
+					"nb_quick_roots"
+				]
+			}
+		}
+	],
+	"areas": {
+		"fb_n": [
+			6,
+			3,
+			12,
+			9
+		],
+		"fb_n_spot": [
+			11,
+			6,
+			3,
+			3
+		],
+		"fb_m": [
+			8,
+			36,
+			12,
+			9
+		],
+		"fb_m_spot": [
+			13,
+			39,
+			3,
+			3
+		],
+		"fb_s": [
+			14,
+			56,
+			13,
+			9
+		],
+		"fb_s_spot": [
+			19,
+			59,
+			3,
+			3
+		],
+		"far_stage": [
+			7,
+			48,
+			11,
+			9
+		],
+		"far_point": [
+			30,
+			55,
+			4,
+			4
+		],
+		"drowned": [
+			1,
+			69,
+			10,
+			8
+		],
+		"road_n": [
+			5,
+			0,
+			8,
+			3
+		],
+		"sire_spot": [
+			7,
+			8,
+			2,
+			2
+		],
+		"venom_spot": [
+			15,
+			8,
+			2,
+			2
+		],
+		"turtle_spot": [
+			9,
+			2,
+			2,
+			2
+		],
+		"rapids": [
+			23,
+			1,
+			16,
+			4
+		],
+		"rapids_w": [
+			17,
+			1,
+			6,
+			5
+		],
+		"rapids_e": [
+			39,
+			1,
+			5,
+			5
+		],
+		"ford_mid": [
+			32,
+			40,
+			16,
+			4
+		],
+		"mid_w": [
+			24,
+			39,
+			7,
+			6
+		],
+		"landing_mid": [
+			47,
+			38,
+			8,
+			9
+		],
+		"ford_s": [
+			36,
+			61,
+			17,
+			5
+		],
+		"s_w": [
+			27,
+			59,
+			8,
+			7
+		],
+		"nazare": [
+			40,
+			3,
+			28,
+			20
+		],
+		"g_chapel": [
+			46,
+			6,
+			5,
+			4
+		],
+		"g_houses": [
+			53,
+			15,
+			6,
+			5
+		],
+		"g_fields": [
+			59,
+			4,
+			8,
+			6
+		],
+		"canoes_n": [
+			40,
+			12,
+			3,
+			9
+		],
+		"beach": [
+			40,
+			14,
+			3,
+			4
+		],
+		"trail_n": [
+			42,
+			22,
+			6,
+			5
+		],
+		"trail_mid": [
+			44,
+			30,
+			6,
+			6
+		],
+		"trail_s": [
+			52,
+			46,
+			8,
+			4
+		],
+		"north_gate": [
+			72,
+			45,
+			10,
+			4
+		],
+		"col_start": [
+			73,
+			51,
+			8,
+			4
+		],
+		"bluff": [
+			62,
+			50,
+			33,
+			27
+		],
+		"bluff_mid": [
+			70,
+			57,
+			16,
+			10
+		],
+		"hall_area": [
+			76,
+			61,
+			8,
+			7
+		],
+		"west_gate": [
+			62,
+			61,
+			4,
+			8
+		],
+		"north_in": [
+			73,
+			51,
+			7,
+			3
+		],
+		"east_gate": [
+			90,
+			58,
+			5,
+			8
+		],
+		"guns_n": [
+			64,
+			55,
+			2,
+			2
+		],
+		"guns_s": [
+			64,
+			70,
+			2,
+			2
+		],
+		"church_go": [
+			66,
+			52,
+			6,
+			6
+		],
+		"lower_town": [
+			50,
+			52,
+			11,
+			25
+		],
+		"s_e": [
+			51,
+			60,
+			7,
+			7
+		],
+		"landing_s": [
+			50,
+			72,
+			10,
+			5
+		],
+		"fields": [
+			96,
+			52,
+			20,
+			24
+		],
+		"downriver": [
+			104,
+			73,
+			12,
+			4
+		]
+	},
+	"counters": {
+		"vill_n": {
+			"start": 0
+		},
+		"out_n": {
+			"start": 0
+		},
+		"called": {
+			"start": 0
+		},
+		"wave_n": {
+			"start": 0
+		},
+		"fwd_killed": {
+			"start": 0
+		},
+		"fwd_rooted": {
+			"start": 0
+		},
+		"q_n": {
+			"start": 0
+		},
+		"q_left": {
+			"start": 0
+		},
+		"guns_left": {
+			"start": 0
+		},
+		"great_n": {
+			"start": 0
+		}
+	},
+	"exits": [
+		{
+			"area": "canoes_n",
+			"tag": "villagers",
+			"counter": "out_n"
+		}
+	],
+	"units": [
+		{
+			"team": "barra",
+			"kind": "dismounted",
+			"as": "valadares",
+			"count": 1,
+			"at": "col_start",
+			"tag": "valadares",
+			"tags": [
+				"column",
+				"barra_men"
+			],
+			"fixed": true
+		},
+		{
+			"team": "barra",
+			"kind": "musketeer",
+			"count": 6,
+			"at": "col_start",
+			"tag": "column",
+			"tags": [
+				"barra_men"
+			],
+			"fixed": true
+		},
+		{
+			"team": "barra",
+			"kind": "dragoon",
+			"count": 2,
+			"at": "col_start",
+			"tag": "column",
+			"tags": [
+				"barra_men",
+				"riders"
+			],
+			"fixed": true
+		},
+		{
+			"team": "barra",
+			"kind": "musketeer",
+			"as": "barra_sergeant",
+			"count": 1,
+			"at": "bluff_mid",
+			"tag": "sergeant",
+			"tags": [
+				"garrison",
+				"barra_men"
+			],
+			"fixed": true
+		},
+		{
+			"team": "barra",
+			"kind": "musketeer",
+			"count": 5,
+			"at": "bluff_mid",
+			"tag": "garrison",
+			"tags": [
+				"barra_men"
+			],
+			"fixed": true
+		},
+		{
+			"team": "barra",
+			"kind": "cannon",
+			"count": 1,
+			"at": "guns_n",
+			"tag": "guns",
+			"tags": [
+				"barra_men"
+			],
+			"fixed": true
+		},
+		{
+			"team": "barra",
+			"kind": "cannon",
+			"count": 1,
+			"at": "guns_s",
+			"tag": "guns",
+			"tags": [
+				"barra_men"
+			],
+			"fixed": true
+		},
+		{
+			"team": "barra",
+			"kind": "labourer",
+			"count": 5,
+			"at": "hall_area",
+			"tag": "labs",
+			"fixed": true
+		},
+		{
+			"team": "barra",
+			"kind": "musketeer",
+			"count": 3,
+			"at": "bluff_mid",
+			"tag": "garrison",
+			"tags": [
+				"barra_men"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"playing": "barra"
+				}
+			}
+		},
+		{
+			"team": "barra",
+			"kind": "musketeer",
+			"count": 3,
+			"at": "bluff_mid",
+			"tag": "garrison",
+			"tags": [
+				"barra_men"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "barra"
+						}
+					},
+					{
+						"difficulty": [
+							"normal",
+							"hard"
+						]
+					}
+				]
+			}
+		},
+		{
+			"team": "barra",
+			"kind": "musketeer",
+			"count": 4,
+			"at": "bluff_mid",
+			"tag": "garrison",
+			"tags": [
+				"barra_men"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "barra"
+						}
+					},
+					{
+						"difficulty": "hard"
+					}
+				]
+			}
+		},
+		{
+			"team": "barra",
+			"kind": "cannon",
+			"count": 1,
+			"at": "west_gate",
+			"tag": "guns_in",
+			"tags": [
+				"barra_men"
+			],
+			"fixed": true,
+			"if": {
+				"all": [
+					{
+						"not": {
+							"playing": "barra"
+						}
+					},
+					{
+						"difficulty": "hard"
+					}
+				]
+			}
+		},
+		{
+			"team": "nazare",
+			"kind": "labourer",
+			"as": "benedito",
+			"count": 1,
+			"at": "beach",
+			"tag": "benedito",
+			"fixed": true
+		},
+		{
+			"team": "nazare",
+			"kind": "labourer",
+			"as": "villager",
+			"count": 2,
+			"at": "g_chapel",
+			"tag": "g_chapel",
+			"tags": [
+				"villagers"
+			],
+			"fixed": true
+		},
+		{
+			"team": "nazare",
+			"kind": "labourer",
+			"as": "villager",
+			"count": 1,
+			"at": "g_chapel",
+			"tag": "g_chapel",
+			"tags": [
+				"villagers"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"b01_specimen.saved": "few"
+					}
+				}
+			}
+		},
+		{
+			"team": "nazare",
+			"kind": "labourer",
+			"as": "villager",
+			"count": 1,
+			"at": "g_chapel",
+			"tag": "g_chapel",
+			"tags": [
+				"villagers"
+			],
+			"fixed": true,
+			"if": {
+				"past": {
+					"b01_specimen.saved": "many"
+				}
+			}
+		},
+		{
+			"team": "nazare",
+			"kind": "labourer",
+			"as": "villager",
+			"count": 2,
+			"at": "g_houses",
+			"tag": "g_houses",
+			"tags": [
+				"villagers"
+			],
+			"fixed": true
+		},
+		{
+			"team": "nazare",
+			"kind": "labourer",
+			"as": "villager",
+			"count": 1,
+			"at": "g_houses",
+			"tag": "g_houses",
+			"tags": [
+				"villagers"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"b01_specimen.saved": "few"
+					}
+				}
+			}
+		},
+		{
+			"team": "nazare",
+			"kind": "labourer",
+			"as": "villager",
+			"count": 1,
+			"at": "g_houses",
+			"tag": "g_houses",
+			"tags": [
+				"villagers"
+			],
+			"fixed": true,
+			"if": {
+				"past": {
+					"b01_specimen.saved": "many"
+				}
+			}
+		},
+		{
+			"team": "nazare",
+			"kind": "labourer",
+			"as": "villager",
+			"count": 2,
+			"at": "g_fields",
+			"tag": "g_fields",
+			"tags": [
+				"villagers"
+			],
+			"fixed": true
+		},
+		{
+			"team": "nazare",
+			"kind": "labourer",
+			"as": "villager",
+			"count": 2,
+			"at": "g_fields",
+			"tag": "g_fields",
+			"tags": [
+				"villagers"
+			],
+			"fixed": true,
+			"if": {
+				"not": {
+					"past": {
+						"b01_specimen.saved": "few"
+					}
+				}
+			}
+		},
+		{
+			"team": "nazare",
+			"kind": "labourer",
+			"as": "villager",
+			"count": 2,
+			"at": "g_fields",
+			"tag": "g_fields",
+			"tags": [
+				"villagers"
+			],
+			"fixed": true,
+			"if": {
+				"past": {
+					"b01_specimen.saved": "many"
+				}
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "brood_mother",
+			"as": "forward_mother",
+			"count": 1,
+			"at": "fb_n_spot",
+			"tag": "fwd_n",
+			"tags": [
+				"fwd",
+				"mothers"
+			],
+			"fixed": true
+		},
+		{
+			"team": "swarm",
+			"kind": "raptor",
+			"count": 3,
+			"at": "fb_n",
+			"tag": "fwd_guard",
+			"tags": [
+				"swarm_all"
+			],
+			"if": {
+				"not": {
+					"playing": "swarm"
+				}
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "brood_mother",
+			"as": "forward_mother",
+			"count": 1,
+			"at": "fb_m_spot",
+			"tag": "fwd_m",
+			"tags": [
+				"fwd",
+				"mothers"
+			],
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "tyrannosaur",
+			"count": 1,
+			"at": "sire_spot",
+			"tag": "sires",
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "dilophosaurus",
+			"count": 1,
+			"at": "venom_spot",
+			"tag": "sires",
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "mound_turtle",
+			"count": 1,
+			"at": "turtle_spot",
+			"tag": "turtles",
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "grub",
+			"count": 4,
+			"at": "fb_n",
+			"tag": "grubs",
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "raptor",
+			"count": 4,
+			"at": "fb_n",
+			"tag": "raiders",
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "spitter",
+			"count": 2,
+			"at": "fb_n",
+			"tag": "raiders",
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		},
+		{
+			"team": "swarm",
+			"kind": "raptor",
+			"count": 2,
+			"at": "fb_m",
+			"tag": "raiders",
+			"fixed": true,
+			"if": {
+				"playing": "swarm"
+			}
+		}
+	],
+	"buildings": [
+		{
+			"team": "barra",
+			"kind": "town_hall",
+			"at": [
+				77,
+				62
+			],
+			"tag": "hall",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's Town Hall"
+		},
+		{
+			"team": "barra",
+			"kind": "church",
+			"at": [
+				68,
+				54
+			],
+			"tag": "church",
+			"tags": [
+				"barra_b"
+			],
+			"name": "Our Lady of the Conception"
+		},
+		{
+			"team": "barra",
+			"kind": "barracks",
+			"at": [
+				70,
+				70
+			],
+			"tag": "barracks",
+			"tags": [
+				"barra_b"
+			]
+		},
+		{
+			"team": "barra",
+			"kind": "farm",
+			"at": [
+				84,
+				54
+			],
+			"tag": "farms",
+			"tags": [
+				"barra_b"
+			]
+		},
+		{
+			"team": "barra",
+			"kind": "farm",
+			"at": [
+				84,
+				68
+			],
+			"tag": "farms",
+			"tags": [
+				"barra_b"
+			]
+		},
+		{
+			"team": "barra",
+			"kind": "powder_mill",
+			"at": [
+				89,
+				62
+			],
+			"tag": "mill",
+			"tags": [
+				"barra_b"
+			]
+		},
+		{
+			"team": "barra",
+			"kind": "cottage",
+			"at": [
+				68,
+				62
+			],
+			"tag": "bluff_houses",
+			"tags": [
+				"barra_b"
+			]
+		},
+		{
+			"team": "barra",
+			"kind": "cottage",
+			"at": [
+				90,
+				52
+			],
+			"tag": "bluff_houses",
+			"tags": [
+				"barra_b"
+			]
+		},
+		{
+			"team": "barra",
+			"kind": "cottage",
+			"at": [
+				51,
+				52
+			],
+			"tag": "quarters",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The lower town"
+		},
+		{
+			"team": "barra",
+			"kind": "cottage",
+			"at": [
+				55,
+				53
+			],
+			"tag": "quarters",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The lower town"
+		},
+		{
+			"team": "barra",
+			"kind": "cottage",
+			"at": [
+				51,
+				56
+			],
+			"tag": "quarters",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The lower town"
+		},
+		{
+			"team": "barra",
+			"kind": "cottage",
+			"at": [
+				57,
+				57
+			],
+			"tag": "quarters",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The lower town"
+		},
+		{
+			"team": "barra",
+			"kind": "cottage",
+			"at": [
+				52,
+				69
+			],
+			"tag": "quarters",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The lower town"
+		},
+		{
+			"team": "barra",
+			"kind": "cottage",
+			"at": [
+				56,
+				71
+			],
+			"tag": "quarters",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The lower town"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				73,
+				50
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				74,
+				50
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				75,
+				50
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "gate",
+			"at": [
+				76,
+				50
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "gate",
+			"at": [
+				77,
+				50
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				78,
+				50
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				79,
+				50
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				62,
+				62
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				62,
+				63
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				62,
+				64
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "gate",
+			"at": [
+				62,
+				65
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "gate",
+			"at": [
+				62,
+				66
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				62,
+				67
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				62,
+				68
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				94,
+				59
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				94,
+				60
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				94,
+				61
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "gate",
+			"at": [
+				94,
+				62
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				94,
+				63
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				94,
+				64
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		},
+		{
+			"team": "barra",
+			"kind": "wall",
+			"at": [
+				94,
+				65
+			],
+			"tag": "palisade",
+			"tags": [
+				"barra_b"
+			],
+			"name": "The Barra's palisade"
+		}
+	],
+	"objectives": [
+		{
+			"id": "church_live",
+			"side": "barra",
+			"primary": true,
+			"kind": "protect",
+			"tag": "church",
+			"text": "The church on the bluff must stand."
+		},
+		{
+			"id": "hall_live",
+			"side": "barra",
+			"primary": true,
+			"kind": "protect",
+			"tag": "hall",
+			"text": "The Barra's Town Hall must stand."
+		},
+		{
+			"id": "nazare",
+			"side": "barra",
+			"primary": false,
+			"kind": "manual",
+			"text": "NAZARÉ: take the column north up the bank trail to the village. Walk a man up to each group of its people (the chapel, the houses, the fields): they then go to Benedito's canoes on the beach by themselves. {out_n} of {vill_n} away.",
+			"phone": "Nazaré: a man to each group; they go to the canoes. {out_n} of {vill_n} away."
+		},
+		{
+			"id": "nazare_clock",
+			"side": "barra",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "nazare",
+			"text": "The forward Mother across the river roots in {clock:nazare}: then the creatures come over the rapids in numbers."
+		},
+		{
+			"id": "bluff",
+			"side": "barra",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE BLUFF: bring the column home down the bank trail. The creatures come over the shallows in waves: hold the lower town by the river and the three gates of the bluff. Train Musketeers at the Barracks; your Labourers mend the palisade.",
+			"phone": "The bluff: hold the lower town and the three gates. Wave {wave_n} of 5."
+		},
+		{
+			"id": "fwd",
+			"side": "barra",
+			"primary": false,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE FORWARD MOTHERS: two more walk down the far bank to root on it; every one rooted puts more creatures in every wave. Cross a shallows with the Dragoons and kill one while she walks ({fwd_killed} killed, {fwd_rooted} rooted).",
+			"phone": "Kill a forward Mother before she roots: {fwd_killed} killed, {fwd_rooted} rooted."
+		},
+		{
+			"id": "night",
+			"side": "barra",
+			"primary": true,
+			"kind": "manual",
+			"hidden": true,
+			"text": "THE GREAT WAVE: it comes over the Barra shallows in the dark. Break it, or hold the bluff until first light."
+		},
+		{
+			"id": "dawn_clock",
+			"side": "barra",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "dawn",
+			"hidden": true,
+			"text": "First light in {clock:dawn}."
+		},
+		{
+			"id": "v_hold",
+			"side": "barra",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "floods",
+			"hidden": true,
+			"text": "Hold the church and the Town Hall until the floods fall: {clock:floods}."
+		},
+		{
+			"id": "s_mothers",
+			"side": "swarm",
+			"primary": true,
+			"kind": "protect",
+			"tag": "fwd",
+			"text": "At least one of your forward Mothers must live."
+		},
+		{
+			"id": "s_nazare",
+			"side": "swarm",
+			"primary": false,
+			"kind": "manual",
+			"text": "NAZARÉ: the village across the rapids is emptying into Benedito's canoes. Cross the rapids with your Raptors and catch its people before they are away."
+		},
+		{
+			"id": "s_root",
+			"side": "swarm",
+			"primary": false,
+			"kind": "manual",
+			"text": "THE FAR BANK: walk your second Mother down the far bank and ROOT her in the clearing opposite the Barra (south-west of it, across the Barra shallows). Her swamp then reaches the river."
+		},
+		{
+			"id": "s_barra",
+			"side": "swarm",
+			"primary": true,
+			"kind": "manual",
+			"text": "BREAK THE BARRA: kill the two guns on the bluff's river edge and break the church ({guns_left} guns left). Brutes break palisades; GROW a Mother to stage 3 for them.",
+			"phone": "Kill the two guns ({guns_left} left) and break the church."
+		},
+		{
+			"id": "s_clock",
+			"side": "swarm",
+			"primary": false,
+			"kind": "countdown",
+			"clock": "floods",
+			"text": "The floods fall in {clock:floods}: then the far bank dries and the Barra holds."
+		}
+	],
+	"triggers": [
+		{
+			"id": "setup",
+			"when": {
+				"time": 0.5
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "vill_n",
+						"count": {
+							"tag": "villagers"
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "q_n",
+						"count": {
+							"tag": "quarters",
+							"buildings": true
+						}
+					}
+				},
+				{
+					"counter": {
+						"name": "guns_left",
+						"count": {
+							"tag": "guns"
+						}
+					}
+				},
+				{
+					"brood_stage": {
+						"tag": "mothers",
+						"stage": 2
+					}
+				},
+				{
+					"spare": {
+						"tag": "benedito",
+						"on": true
+					}
+				},
+				{
+					"order": {
+						"tag": "villagers",
+						"do": "hold"
+					}
+				},
+				{
+					"order": {
+						"tag": "benedito",
+						"do": "hold"
+					}
+				},
+				{
+					"order": {
+						"tag": "guns",
+						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_barra",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"playing": "barra"
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "nazare",
+						"secs": 150
+					}
+				},
+				{
+					"objective": {
+						"id": "s_nazare",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_guard",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "fwd_n",
+						"on": true
+					}
+				},
+				{
+					"order": {
+						"tag": "fwd_guard",
+						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_swarm",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"playing": "swarm"
+					}
+				]
+			},
+			"do": [
+				{
+					"root_now": {
+						"tag": "fwd_n"
+					}
+				},
+				{
+					"nest_free": {
+						"tag": "sires",
+						"on": true
+					}
+				},
+				{
+					"root_now": {
+						"tag": "sires"
+					}
+				},
+				{
+					"root_now": {
+						"tag": "turtles"
+					}
+				},
+				{
+					"give": {
+						"team": "swarm",
+						"gold": 300,
+						"powder": 60
+					}
+				},
+				{
+					"ground": {
+						"name": "fwd_n",
+						"from": "fwd_n",
+						"kind": "swamp",
+						"team": "swarm",
+						"r": 4,
+						"step": 1,
+						"every": 8,
+						"max": 11
+					}
+				},
+				{
+					"clock": {
+						"name": "floods",
+						"secs": 1200
+					}
+				},
+				{
+					"max_hp": {
+						"tag": "guns",
+						"hp": 900
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_sb",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"not": {
+							"playing": "barra"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "church_live",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "hall_live",
+						"set": "hidden"
+					}
+				},
+				{
+					"max_hp": {
+						"tag": "church",
+						"hp": 2400
+					}
+				},
+				{
+					"order": {
+						"tag": "garrison",
+						"do": "hold"
+					}
+				},
+				{
+					"order": {
+						"tag": "guns_in",
+						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_noswarm_obj",
+			"when": {
+				"all": [
+					{
+						"time": 0.6
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "s_nazare",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "s_root",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "s_barra",
+						"set": "hidden"
+					}
+				},
+				{
+					"objective": {
+						"id": "s_clock",
+						"set": "hidden"
+					}
+				}
+			]
+		},
+		{
+			"id": "setup_vs",
+			"when": {
+				"all": [
+					{
+						"time": 0.7
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"playing": "swarm"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "v_hold",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "barra"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_1",
+						"n_lesson"
+					]
+				},
+				{
+					"ping": {
+						"area": "trail_mid"
+					}
+				},
+				{
+					"ping": {
+						"area": "nazare"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro_base",
+			"when": {
+				"all": [
+					{
+						"time": 22
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_base"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_map",
+			"when": {
+				"all": [
+					{
+						"time": 12
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"not": {
+							"past": {
+								"a03_plateau.map": "withheld"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_map"
+					]
+				},
+				{
+					"ping": {
+						"area": "rapids"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_mid"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_s"
+					}
+				},
+				{
+					"reveal": {
+						"area": "ford_s",
+						"side": "barra"
+					}
+				},
+				{
+					"reveal": {
+						"area": "ford_mid",
+						"side": "barra"
+					}
+				},
+				{
+					"reveal": {
+						"area": "rapids",
+						"side": "barra"
+					}
+				}
+			]
+		},
+		{
+			"id": "intro_sealed",
+			"when": {
+				"all": [
+					{
+						"time": 12
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"past": {
+							"a03_plateau.map": "withheld"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_sealed"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_party",
+			"when": {
+				"all": [
+					{
+						"time": 34
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"past": {
+							"a03_plateau.party": "few"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"b_party_few"
+					]
+				}
+			]
+		},
+		{
+			"id": "intro_s",
+			"when": {
+				"all": [
+					{
+						"time": 1.5
+					},
+					{
+						"playing": "swarm"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_s1",
+						"n_s2"
+					]
+				},
+				{
+					"ping": {
+						"area": "fb_s"
+					}
+				},
+				{
+					"ping": {
+						"area": "nazare"
+					}
+				}
+			]
+		},
+		{
+			"id": "call_g_chapel",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"team": "barra",
+							"area": "g_chapel",
+							"secs": 3
+						}
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "g_chapel",
+						"do": "move",
+						"to": "canoes_n"
+					}
+				},
+				{
+					"pace": {
+						"tag": "g_chapel",
+						"pace": 0.7
+					}
+				},
+				{
+					"counter": {
+						"name": "called",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"g_chapel"
+					]
+				}
+			]
+		},
+		{
+			"id": "self_g_chapel",
+			"when": {
+				"all": [
+					{
+						"time": 20
+					},
+					{
+						"not": {
+							"playing": "barra"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "g_chapel",
+						"do": "move",
+						"to": "canoes_n"
+					}
+				},
+				{
+					"pace": {
+						"tag": "g_chapel",
+						"pace": 0.7
+					}
+				},
+				{
+					"counter": {
+						"name": "called",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "call_g_houses",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"team": "barra",
+							"area": "g_houses",
+							"secs": 3
+						}
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "g_houses",
+						"do": "move",
+						"to": "canoes_n"
+					}
+				},
+				{
+					"pace": {
+						"tag": "g_houses",
+						"pace": 0.7
+					}
+				},
+				{
+					"counter": {
+						"name": "called",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"g_houses"
+					]
+				}
+			]
+		},
+		{
+			"id": "self_g_houses",
+			"when": {
+				"all": [
+					{
+						"time": 28
+					},
+					{
+						"not": {
+							"playing": "barra"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "g_houses",
+						"do": "move",
+						"to": "canoes_n"
+					}
+				},
+				{
+					"pace": {
+						"tag": "g_houses",
+						"pace": 0.7
+					}
+				},
+				{
+					"counter": {
+						"name": "called",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "call_g_fields",
+			"when": {
+				"all": [
+					{
+						"stay": {
+							"team": "barra",
+							"area": "g_fields",
+							"secs": 3
+						}
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "g_fields",
+						"do": "move",
+						"to": "canoes_n"
+					}
+				},
+				{
+					"pace": {
+						"tag": "g_fields",
+						"pace": 0.7
+					}
+				},
+				{
+					"counter": {
+						"name": "called",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"g_fields"
+					]
+				}
+			]
+		},
+		{
+			"id": "self_g_fields",
+			"when": {
+				"all": [
+					{
+						"time": 36
+					},
+					{
+						"not": {
+							"playing": "barra"
+						}
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "g_fields",
+						"do": "move",
+						"to": "canoes_n"
+					}
+				},
+				{
+					"pace": {
+						"tag": "g_fields",
+						"pace": 0.7
+					}
+				},
+				{
+					"counter": {
+						"name": "called",
+						"add": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "first_out",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "out_n",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"b_first"
+					]
+				}
+			]
+		},
+		{
+			"id": "out_say_s",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "out_n",
+							"at_least": 1
+						}
+					},
+					{
+						"playing": "swarm"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_s_canoes"
+					]
+				}
+			]
+		},
+		{
+			"id": "raid_1",
+			"when": {
+				"all": [
+					{
+						"time": 30
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "rapids_w",
+						"tag": "raiders",
+						"tags": [
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "spitter",
+						"count": 1,
+						"at": "rapids_w",
+						"tag": "raiders",
+						"tags": [
+							"swarm_all"
+						],
+						"if": {
+							"time": 90
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "villagers",
+						"within": 60
+					}
+				},
+				{
+					"ping": {
+						"area": "rapids"
+					}
+				},
+				{
+					"say": [
+						"n_raid"
+					]
+				}
+			]
+		},
+		{
+			"id": "raid_2",
+			"when": {
+				"all": [
+					{
+						"time": 75
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "rapids_w",
+						"tag": "raiders",
+						"tags": [
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "spitter",
+						"count": 1,
+						"at": "rapids_w",
+						"tag": "raiders",
+						"tags": [
+							"swarm_all"
+						],
+						"if": {
+							"time": 90
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "villagers",
+						"within": 60
+					}
+				},
+				{
+					"ping": {
+						"area": "rapids"
+					}
+				}
+			]
+		},
+		{
+			"id": "raid_3",
+			"when": {
+				"all": [
+					{
+						"time": 130
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "rapids_w",
+						"tag": "raiders",
+						"tags": [
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "spitter",
+						"count": 1,
+						"at": "rapids_w",
+						"tag": "raiders",
+						"tags": [
+							"swarm_all"
+						],
+						"if": {
+							"time": 90
+						}
+					}
+				},
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "villagers",
+						"within": 60
+					}
+				},
+				{
+					"ping": {
+						"area": "rapids"
+					}
+				}
+			]
+		},
+		{
+			"id": "raid_press",
+			"when": {
+				"all": [
+					{
+						"fired": "raid_1"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"every": 10,
+			"do": [
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "attack",
+						"to": "nazare",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "rooted_n",
+			"when": {
+				"all": [
+					{
+						"clock_out": "nazare"
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"not": {
+							"fired": "part2"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"spare": {
+						"tag": "fwd_n",
+						"on": false
+					}
+				},
+				{
+					"root_now": {
+						"tag": "fwd_n"
+					}
+				},
+				{
+					"ground": {
+						"name": "fwd_n",
+						"from": "fwd_n",
+						"kind": "swamp",
+						"team": "swarm",
+						"r": 4,
+						"step": 1,
+						"every": 8,
+						"max": 11
+					}
+				},
+				{
+					"say": [
+						"n_rooted",
+						"b_wait"
+					]
+				},
+				{
+					"ping": {
+						"area": "fb_n"
+					}
+				},
+				{
+					"clock": {
+						"name": "canoes",
+						"secs": 30,
+						"scale": false
+					}
+				},
+				{
+					"order": {
+						"tag": "villagers",
+						"do": "move",
+						"to": "canoes_n"
+					}
+				}
+			]
+		},
+		{
+			"id": "rooted_raid",
+			"when": {
+				"all": [
+					{
+						"fired": "rooted_n"
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 4,
+						"at": "rapids_w",
+						"tag": "raiders",
+						"tags": [
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "rapids_w",
+						"tag": "raiders",
+						"tags": [
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "hunt",
+						"prey": "villagers",
+						"within": 60
+					}
+				}
+			]
+		},
+		{
+			"id": "objs_p1",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"playing": "barra"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "nazare",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "part2",
+			"when": {
+				"all": [
+					{
+						"time": 10
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					},
+					{
+						"any": [
+							{
+								"all": [
+									{
+										"counter": {
+											"name": "called",
+											"at_least": 3
+										}
+									},
+									{
+										"count": {
+											"tag": "villagers",
+											"below": 1
+										}
+									}
+								]
+							},
+							{
+								"clock_out": "canoes"
+							},
+							{
+								"all": [
+									{
+										"playing": "swarm"
+									},
+									{
+										"time": 150
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"tally": {
+						"flag": "nazare",
+						"counter": "out_n",
+						"of": "vill_n",
+						"bands": [
+							[
+								0,
+								"few"
+							],
+							[
+								0.5,
+								"some"
+							],
+							[
+								0.9,
+								"all"
+							]
+						]
+					}
+				},
+				{
+					"remove": {
+						"tag": "villagers"
+					}
+				},
+				{
+					"remove": {
+						"tag": "benedito"
+					}
+				},
+				{
+					"clock": {
+						"name": "nazare",
+						"stop": true
+					}
+				},
+				{
+					"clock": {
+						"name": "canoes",
+						"stop": true
+					}
+				},
+				{
+					"objective": {
+						"id": "nazare_clock",
+						"set": "hidden"
+					}
+				},
+				{
+					"spawn": {
+						"team": "nazare",
+						"kind": "labourer",
+						"as": "benedito",
+						"count": 1,
+						"at": "landing_s",
+						"tag": "benedito",
+						"fixed": true
+					}
+				}
+			]
+		},
+		{
+			"id": "p2_nazare_done",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"flag": {
+							"nazare": "all"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "nazare",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "p2_nazare_some",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"flag": {
+								"nazare": "all"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "nazare",
+						"set": "failed"
+					}
+				},
+				{
+					"say": [
+						"n_left"
+					]
+				}
+			]
+		},
+		{
+			"id": "p2_barra",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "barra"
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"say": [
+						"b_away",
+						"v_2"
+					]
+				},
+				{
+					"spare": {
+						"tag": "benedito",
+						"on": true
+					}
+				},
+				{
+					"order": {
+						"tag": "benedito",
+						"do": "hold"
+					}
+				},
+				{
+					"objective": {
+						"id": "bluff",
+						"set": "active"
+					}
+				},
+				{
+					"ping": {
+						"area": "bluff_mid"
+					}
+				},
+				{
+					"light": {
+						"to": "jungle_dusk",
+						"secs": 400
+					}
+				}
+			]
+		},
+		{
+			"id": "p2_say",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					}
+				]
+			},
+			"delay": 14,
+			"do": [
+				{
+					"say": [
+						"s_2",
+						"n_waves"
+					]
+				},
+				{
+					"ping": {
+						"area": "ford_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "p2_raiders",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "swarm"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "raiders",
+						"do": "attack",
+						"to": "trail_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_m_go",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 5,
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "brood_mother",
+						"as": "forward_mother",
+						"count": 1,
+						"at": "road_n",
+						"tag": "fwd_m",
+						"tags": [
+							"fwd",
+							"mothers"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "road_n",
+						"tag": "fwd_m_guard",
+						"tags": [
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"objective": {
+						"id": "fwd",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_m_walk",
+			"when": {
+				"fired": "fwd_m_go"
+			},
+			"delay": 0.5,
+			"do": [
+				{
+					"brood_stage": {
+						"tag": "fwd_m",
+						"stage": 2
+					}
+				},
+				{
+					"order": {
+						"tag": "fwd_m",
+						"do": "route",
+						"route": [
+							"road_n",
+							"fb_n",
+							"fb_m_spot"
+						],
+						"name": "fwd_m"
+					}
+				},
+				{
+					"pace": {
+						"tag": "fwd_m",
+						"pace": 0.8
+					}
+				},
+				{
+					"order": {
+						"tag": "fwd_m_guard",
+						"do": "follow",
+						"leader": "fwd_m",
+						"within": 3
+					}
+				},
+				{
+					"say": [
+						"n_fwd"
+					]
+				},
+				{
+					"ping": {
+						"tag": "fwd_m"
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_s_go",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 70,
+			"do": [
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "brood_mother",
+						"as": "forward_mother",
+						"count": 1,
+						"at": "fb_m",
+						"tag": "fwd_s",
+						"tags": [
+							"fwd",
+							"mothers"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "fb_m",
+						"tag": "fwd_s_guard",
+						"tags": [
+							"swarm_all"
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_s_walk",
+			"when": {
+				"fired": "fwd_s_go"
+			},
+			"delay": 0.5,
+			"do": [
+				{
+					"brood_stage": {
+						"tag": "fwd_s",
+						"stage": 2
+					}
+				},
+				{
+					"order": {
+						"tag": "fwd_s",
+						"do": "route",
+						"route": [
+							"fb_m",
+							"far_stage",
+							"fb_s_spot"
+						],
+						"name": "fwd_s"
+					}
+				},
+				{
+					"pace": {
+						"tag": "fwd_s",
+						"pace": 0.8
+					}
+				},
+				{
+					"order": {
+						"tag": "fwd_s_guard",
+						"do": "follow",
+						"leader": "fwd_s",
+						"within": 3
+					}
+				},
+				{
+					"say": [
+						"n_fwd2"
+					]
+				},
+				{
+					"ping": {
+						"tag": "fwd_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_m_root",
+			"when": {
+				"all": [
+					{
+						"route_done": "fwd_m"
+					},
+					{
+						"not": {
+							"dead": "fwd_m"
+						}
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"root_now": {
+						"tag": "fwd_m"
+					}
+				},
+				{
+					"counter": {
+						"name": "fwd_rooted",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_fwd_root"
+					]
+				},
+				{
+					"ping": {
+						"tag": "fwd_m"
+					}
+				},
+				{
+					"ground": {
+						"name": "fwd_m",
+						"from": "fwd_m",
+						"kind": "swamp",
+						"team": "swarm",
+						"r": 4,
+						"step": 1,
+						"every": 6,
+						"max": 12
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_m_dead",
+			"when": {
+				"all": [
+					{
+						"dead": "fwd_m"
+					},
+					{
+						"not": {
+							"fired": "fwd_m_root"
+						}
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "fwd_killed",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_fwd_dead",
+						"v_fwd_dead"
+					]
+				}
+			]
+		},
+		{
+			"id": "fwd_s_root",
+			"when": {
+				"all": [
+					{
+						"route_done": "fwd_s"
+					},
+					{
+						"not": {
+							"dead": "fwd_s"
+						}
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"root_now": {
+						"tag": "fwd_s"
+					}
+				},
+				{
+					"counter": {
+						"name": "fwd_rooted",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_fwd_root"
+					]
+				},
+				{
+					"ping": {
+						"tag": "fwd_s"
+					}
+				},
+				{
+					"ground": {
+						"name": "fwd_s",
+						"from": "fwd_s",
+						"kind": "swamp",
+						"team": "swarm",
+						"r": 4,
+						"step": 1,
+						"every": 6,
+						"max": 12
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_s_dead",
+			"when": {
+				"all": [
+					{
+						"dead": "fwd_s"
+					},
+					{
+						"not": {
+							"fired": "fwd_s_root"
+						}
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "fwd_killed",
+						"add": 1
+					}
+				},
+				{
+					"say": [
+						"n_fwd_dead",
+						"v_fwd_dead"
+					]
+				}
+			]
+		},
+		{
+			"id": "fwd_done",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "fwd_killed",
+							"at_least": 1
+						}
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "fwd",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "fwd_failed",
+			"when": {
+				"all": [
+					{
+						"counter": {
+							"name": "fwd_rooted",
+							"at_least": 2
+						}
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "fwd",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "quarter_hit",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"hurt": "quarters"
+					},
+					{
+						"playing": "barra"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"s_quarter"
+					]
+				},
+				{
+					"ping": {
+						"area": "lower_town"
+					}
+				}
+			]
+		},
+		{
+			"id": "palisade_hit",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"hurt": "palisade"
+					},
+					{
+						"playing": "barra"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"v_mend"
+					]
+				}
+			]
+		},
+		{
+			"id": "wave_1",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 45,
+			"do": [
+				{
+					"counter": {
+						"name": "wave_n",
+						"set": 1
+					}
+				},
+				{
+					"say": [
+						"n_wave"
+					]
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "fb_s",
+						"tag": "w1s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "fb_s",
+						"tag": "w1s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "spitter",
+						"count": 1,
+						"at": "fb_s",
+						"tag": "w1s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"near": "fwd_m",
+						"at": "fb_m",
+						"tag": "w1m",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"all": [
+								{
+									"fired": "fwd_m_root"
+								},
+								{
+									"not": {
+										"dead": "fwd_m"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"near": "fwd_s",
+						"at": "fb_s",
+						"tag": "w1s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"all": [
+								{
+									"fired": "fwd_s_root"
+								},
+								{
+									"not": {
+										"dead": "fwd_s"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "fb_s",
+						"tag": "w1s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_1_go",
+			"when": {
+				"fired": "wave_1"
+			},
+			"delay": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "w1s",
+						"do": "route",
+						"route": [
+							"s_w",
+							"ford_s",
+							"s_e",
+							"west_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "w1s"
+					}
+				},
+				{
+					"order": {
+						"tag": "w1m",
+						"do": "route",
+						"route": [
+							"mid_w",
+							"ford_mid",
+							"landing_mid",
+							"trail_s",
+							"north_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "w1m"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_1_push",
+			"when": {
+				"all": [
+					{
+						"fired": "wave_1_go"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 40,
+			"every": 15,
+			"times": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "w1s",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "w1m",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_2",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 105,
+			"do": [
+				{
+					"counter": {
+						"name": "wave_n",
+						"set": 2
+					}
+				},
+				{
+					"say": [
+						"n_wave"
+					]
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "fb_m",
+						"tag": "w2m",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "fb_s",
+						"tag": "w2s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "spitter",
+						"count": 2,
+						"at": "fb_s",
+						"tag": "w2s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"not": {
+								"past": {
+									"b01_specimen.clutch": "burned"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"near": "fwd_m",
+						"at": "fb_m",
+						"tag": "w2m",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"all": [
+								{
+									"fired": "fwd_m_root"
+								},
+								{
+									"not": {
+										"dead": "fwd_m"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"near": "fwd_s",
+						"at": "fb_s",
+						"tag": "w2s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"all": [
+								{
+									"fired": "fwd_s_root"
+								},
+								{
+									"not": {
+										"dead": "fwd_s"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "fb_s",
+						"tag": "w2s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_2_go",
+			"when": {
+				"fired": "wave_2"
+			},
+			"delay": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "w2s",
+						"do": "route",
+						"route": [
+							"s_w",
+							"ford_s",
+							"s_e",
+							"west_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "w2s"
+					}
+				},
+				{
+					"order": {
+						"tag": "w2m",
+						"do": "route",
+						"route": [
+							"mid_w",
+							"ford_mid",
+							"landing_mid",
+							"trail_s",
+							"north_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "w2m"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_s"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_mid"
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_2_push",
+			"when": {
+				"all": [
+					{
+						"fired": "wave_2_go"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 40,
+			"every": 15,
+			"times": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "w2s",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "w2m",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_3",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 165,
+			"do": [
+				{
+					"counter": {
+						"name": "wave_n",
+						"set": 3
+					}
+				},
+				{
+					"say": [
+						"n_wave"
+					]
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 4,
+						"at": "fb_s",
+						"tag": "w3s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "fb_s",
+						"tag": "w3s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "spitter",
+						"count": 2,
+						"at": "fb_s",
+						"tag": "w3s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "fb_s",
+						"tag": "w3s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"near": "fwd_m",
+						"at": "fb_m",
+						"tag": "w3m",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"all": [
+								{
+									"fired": "fwd_m_root"
+								},
+								{
+									"not": {
+										"dead": "fwd_m"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"near": "fwd_s",
+						"at": "fb_s",
+						"tag": "w3s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"all": [
+								{
+									"fired": "fwd_s_root"
+								},
+								{
+									"not": {
+										"dead": "fwd_s"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "fb_s",
+						"tag": "w3s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_3_go",
+			"when": {
+				"fired": "wave_3"
+			},
+			"delay": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "w3s",
+						"do": "route",
+						"route": [
+							"s_w",
+							"ford_s",
+							"s_e",
+							"west_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "w3s"
+					}
+				},
+				{
+					"order": {
+						"tag": "w3m",
+						"do": "route",
+						"route": [
+							"mid_w",
+							"ford_mid",
+							"landing_mid",
+							"trail_s",
+							"north_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "w3m"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_s"
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_3_push",
+			"when": {
+				"all": [
+					{
+						"fired": "wave_3_go"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 40,
+			"every": 15,
+			"times": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "w3s",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "w3m",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_4",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 225,
+			"do": [
+				{
+					"counter": {
+						"name": "wave_n",
+						"set": 4
+					}
+				},
+				{
+					"say": [
+						"n_wave"
+					]
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 4,
+						"at": "fb_m",
+						"tag": "w4m",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "venom_challenger",
+						"count": 1,
+						"at": "fb_m",
+						"tag": "w4m",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "fb_s",
+						"tag": "w4s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"not": {
+								"past": {
+									"b01_specimen.clutch": "burned"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "spitter",
+						"count": 2,
+						"at": "fb_s",
+						"tag": "w4s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"near": "fwd_m",
+						"at": "fb_m",
+						"tag": "w4m",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"all": [
+								{
+									"fired": "fwd_m_root"
+								},
+								{
+									"not": {
+										"dead": "fwd_m"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"near": "fwd_s",
+						"at": "fb_s",
+						"tag": "w4s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"all": [
+								{
+									"fired": "fwd_s_root"
+								},
+								{
+									"not": {
+										"dead": "fwd_s"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "fb_s",
+						"tag": "w4s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_4_go",
+			"when": {
+				"fired": "wave_4"
+			},
+			"delay": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "w4s",
+						"do": "route",
+						"route": [
+							"s_w",
+							"ford_s",
+							"s_e",
+							"west_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "w4s"
+					}
+				},
+				{
+					"order": {
+						"tag": "w4m",
+						"do": "route",
+						"route": [
+							"mid_w",
+							"ford_mid",
+							"landing_mid",
+							"trail_s",
+							"north_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "w4m"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_s"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_mid"
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_4_push",
+			"when": {
+				"all": [
+					{
+						"fired": "wave_4_go"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 40,
+			"every": 15,
+			"times": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "w4s",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "w4m",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_5",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 285,
+			"do": [
+				{
+					"counter": {
+						"name": "wave_n",
+						"set": 5
+					}
+				},
+				{
+					"say": [
+						"n_wave"
+					]
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 5,
+						"at": "fb_s",
+						"tag": "w5s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 1,
+						"at": "fb_s",
+						"tag": "w5s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "spitter",
+						"count": 3,
+						"at": "fb_s",
+						"tag": "w5s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "fb_s",
+						"tag": "w5s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "fb_m",
+						"tag": "w5m",
+						"tags": [
+							"waves",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"near": "fwd_m",
+						"at": "fb_m",
+						"tag": "w5m",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"all": [
+								{
+									"fired": "fwd_m_root"
+								},
+								{
+									"not": {
+										"dead": "fwd_m"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"near": "fwd_s",
+						"at": "fb_s",
+						"tag": "w5s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"all": [
+								{
+									"fired": "fwd_s_root"
+								},
+								{
+									"not": {
+										"dead": "fwd_s"
+									}
+								}
+							]
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "fb_s",
+						"tag": "w5s",
+						"tags": [
+							"waves",
+							"swarm_all"
+						],
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_5_go",
+			"when": {
+				"fired": "wave_5"
+			},
+			"delay": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "w5s",
+						"do": "route",
+						"route": [
+							"s_w",
+							"ford_s",
+							"s_e",
+							"west_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "w5s"
+					}
+				},
+				{
+					"order": {
+						"tag": "w5m",
+						"do": "route",
+						"route": [
+							"mid_w",
+							"ford_mid",
+							"landing_mid",
+							"trail_s",
+							"north_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "w5m"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_s"
+					}
+				},
+				{
+					"ping": {
+						"area": "ford_mid"
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_5_push",
+			"when": {
+				"all": [
+					{
+						"fired": "wave_5_go"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 40,
+			"every": 15,
+			"times": 6,
+			"do": [
+				{
+					"order": {
+						"tag": "w5s",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				},
+				{
+					"order": {
+						"tag": "w5m",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "wave_5_late",
+			"when": {
+				"fired": "wave_5"
+			},
+			"delay": 75,
+			"do": []
+		},
+		{
+			"id": "part3",
+			"when": {
+				"all": [
+					{
+						"fired": "wave_5_go"
+					},
+					{
+						"all": [
+							{
+								"playing": "barra"
+							},
+							{
+								"not": {
+									"playing": "swarm"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					},
+					{
+						"any": [
+							{
+								"count": {
+									"tag": "waves",
+									"below": 3
+								}
+							},
+							{
+								"fired": "wave_5_late"
+							}
+						]
+					}
+				]
+			},
+			"delay": 8,
+			"do": [
+				{
+					"objective": {
+						"id": "bluff",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_dusk"
+					]
+				},
+				{
+					"light": {
+						"to": "jungle_night",
+						"secs": 20
+					}
+				},
+				{
+					"order": {
+						"tag": "waves",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "book_left",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"not": {
+							"past": {
+								"d06_queen.book": "taken"
+							}
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"b_book"
+					]
+				}
+			]
+		},
+		{
+			"id": "book_taken",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"past": {
+							"d06_queen.book": "taken"
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"b_book_taken"
+					]
+				}
+			]
+		},
+		{
+			"id": "the_choice",
+			"when": {
+				"fired": "part3"
+			},
+			"delay": 5,
+			"do": [
+				{
+					"say": [
+						"b_lure"
+					]
+				},
+				{
+					"choice": {
+						"id": "lure",
+						"side": "barra",
+						"default": "burned",
+						"time": 75,
+						"title": "THE LURE BOOK",
+						"line": "v_rome",
+						"options": [
+							{
+								"id": "burned",
+								"label": "BURN IT",
+								"about": "Rome's order. The whole great wave comes over the Barra shallows tonight: the Barra holds by arms.",
+								"do": [
+									{
+										"say": [
+											"v_burn",
+											"n_burn"
+										]
+									}
+								]
+							},
+							{
+								"id": "used",
+								"label": "USE IT ONCE",
+								"about": "Benedito sets the old lure on the far point: half the great wave turns into the flooded forest. Then the book burns.",
+								"do": [
+									{
+										"say": [
+											"v_use",
+											"n_use"
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "great",
+			"when": {
+				"all": [
+					{
+						"fired": "the_choice"
+					},
+					{
+						"any": [
+							{
+								"flag": {
+									"lure": "burned"
+								}
+							},
+							{
+								"flag": {
+									"lure": "used"
+								}
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"objective": {
+						"id": "night",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "dawn_clock",
+						"set": "active"
+					}
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"secs": 180
+					}
+				},
+				{
+					"say": [
+						"n_night"
+					]
+				},
+				{
+					"ping": {
+						"area": "far_stage"
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 5,
+						"at": "far_stage",
+						"tag": "great_a",
+						"tags": [
+							"great",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "spitter",
+						"count": 2,
+						"at": "far_stage",
+						"tag": "great_a",
+						"tags": [
+							"great",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrant_challenger",
+						"count": 1,
+						"at": "far_stage",
+						"tag": "great_a",
+						"tags": [
+							"great",
+							"swarm_all"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 2,
+						"at": "far_stage",
+						"tag": "great_a",
+						"tags": [
+							"great",
+							"swarm_all"
+						],
+						"if": {
+							"not": {
+								"past": {
+									"d06_queen.brood_n": "few"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 5,
+						"at": "fb_s",
+						"tag": "great_b",
+						"tags": [
+							"great",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "spitter",
+						"count": 2,
+						"at": "fb_s",
+						"tag": "great_b",
+						"tags": [
+							"great",
+							"swarm_all"
+						]
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "brute",
+						"count": 1,
+						"at": "fb_s",
+						"tag": "great_b",
+						"tags": [
+							"great",
+							"swarm_all"
+						],
+						"fixed": true
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "tyrannosaur",
+						"count": 1,
+						"at": "fb_s",
+						"tag": "great_b",
+						"tags": [
+							"great",
+							"swarm_all"
+						],
+						"fixed": true,
+						"if": {
+							"not": {
+								"past": {
+									"b01_specimen.clutch": "burned"
+								}
+							}
+						}
+					}
+				},
+				{
+					"spawn": {
+						"team": "swarm",
+						"kind": "raptor",
+						"count": 3,
+						"at": "fb_s",
+						"tag": "great_b",
+						"tags": [
+							"great",
+							"swarm_all"
+						],
+						"if": {
+							"past": {
+								"d06_queen.brood_n": "all"
+							}
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "great_count",
+			"when": {
+				"fired": "great"
+			},
+			"delay": 0.5,
+			"do": [
+				{
+					"counter": {
+						"name": "great_n",
+						"count": {
+							"tag": "great"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "lure_set",
+			"when": {
+				"all": [
+					{
+						"fired": "great"
+					},
+					{
+						"flag": {
+							"lure": "used"
+						}
+					}
+				]
+			},
+			"delay": 1,
+			"do": [
+				{
+					"lure_post": {
+						"tag": "far_lure",
+						"at": "far_point",
+						"pull": {
+							"tag": "great_a",
+							"within": 25,
+							"then": "drowned",
+							"name": "drowned"
+						}
+					}
+				},
+				{
+					"ping": {
+						"area": "far_point"
+					}
+				}
+			]
+		},
+		{
+			"id": "lured_say",
+			"when": {
+				"lured": "far_lure"
+			},
+			"delay": 2,
+			"do": [
+				{
+					"say": [
+						"n_lured"
+					]
+				}
+			]
+		},
+		{
+			"id": "drowned",
+			"when": {
+				"all": [
+					{
+						"route_done": "drowned"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 3,
+			"do": [
+				{
+					"say": [
+						"n_drowned"
+					]
+				},
+				{
+					"remove": {
+						"tag": "great_a"
+					}
+				},
+				{
+					"ping": {
+						"area": "drowned"
+					}
+				}
+			]
+		},
+		{
+			"id": "great_go",
+			"when": {
+				"all": [
+					{
+						"fired": "great"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"say": [
+						"n_go",
+						"s_great"
+					]
+				},
+				{
+					"ping": {
+						"area": "ford_s"
+					}
+				},
+				{
+					"order": {
+						"tag": "great_b",
+						"do": "route",
+						"route": [
+							"s_w",
+							"ford_s",
+							"s_e",
+							"west_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "great_b"
+					}
+				}
+			]
+		},
+		{
+			"id": "great_go_a",
+			"when": {
+				"all": [
+					{
+						"fired": "great"
+					},
+					{
+						"flag": {
+							"lure": "burned"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 24,
+			"do": [
+				{
+					"order": {
+						"tag": "great_a",
+						"do": "route",
+						"route": [
+							"s_w",
+							"ford_s",
+							"s_e",
+							"west_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "great_a"
+					}
+				}
+			]
+		},
+		{
+			"id": "great_push",
+			"when": {
+				"all": [
+					{
+						"fired": "great_go"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 45,
+			"every": 12,
+			"do": [
+				{
+					"order": {
+						"tag": "great_b",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "if_great_push__0",
+			"when": {
+				"all": [
+					{
+						"fired": "great_push"
+					},
+					{
+						"flag": {
+							"lure": "burned"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "great_a",
+						"do": "attack",
+						"to": "bluff_mid",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "great_ebb",
+			"when": {
+				"all": [
+					{
+						"fired": "great_go"
+					},
+					{
+						"count": {
+							"tag": "great",
+							"below": 4
+						}
+					},
+					{
+						"not": {
+							"fired": "broken"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 20,
+			"do": [
+				{
+					"order": {
+						"tag": "great",
+						"do": "move",
+						"to": "drowned"
+					}
+				}
+			]
+		},
+		{
+			"id": "great_gone",
+			"when": {
+				"all": [
+					{
+						"fired": "great_ebb"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 8,
+			"do": [
+				{
+					"remove": {
+						"tag": "great"
+					}
+				}
+			]
+		},
+		{
+			"id": "broken",
+			"when": {
+				"all": [
+					{
+						"fired": "great_go"
+					},
+					{
+						"count": {
+							"tag": "great",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"say": [
+						"n_broken"
+					]
+				}
+			]
+		},
+		{
+			"id": "dawn",
+			"when": {
+				"all": [
+					{
+						"fired": "great"
+					},
+					{
+						"any": [
+							{
+								"fired": "broken"
+							},
+							{
+								"clock_out": "dawn"
+							}
+						]
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 2,
+			"do": [
+				{
+					"objective": {
+						"id": "night",
+						"set": "done"
+					}
+				},
+				{
+					"objective": {
+						"id": "dawn_clock",
+						"set": "done"
+					}
+				},
+				{
+					"clock": {
+						"name": "dawn",
+						"stop": true
+					}
+				},
+				{
+					"light": {
+						"to": "grey_dawn",
+						"secs": 8
+					}
+				},
+				{
+					"say": [
+						"n_dawn",
+						"v_won"
+					]
+				},
+				{
+					"order": {
+						"tag": "swarm_all",
+						"do": "move",
+						"to": "drowned"
+					}
+				}
+			]
+		},
+		{
+			"id": "vs_book",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"playing": "swarm"
+					}
+				]
+			},
+			"delay": 120,
+			"do": [
+				{
+					"say": [
+						"v_vs_burn"
+					]
+				},
+				{
+					"flag": {
+						"lure": "burned"
+					}
+				}
+			]
+		},
+		{
+			"id": "vs_floods",
+			"when": {
+				"all": [
+					{
+						"clock_out": "floods"
+					},
+					{
+						"playing": "barra"
+					},
+					{
+						"playing": "swarm"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_s_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "v_hold",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "count_end",
+			"when": {
+				"any": [
+					{
+						"fired": "dawn"
+					},
+					{
+						"fired": "vs_floods"
+					},
+					{
+						"all": [
+							{
+								"clock_out": "floods"
+							},
+							{
+								"not": {
+									"playing": "barra"
+								}
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"counter": {
+						"name": "q_left",
+						"count": {
+							"tag": "quarters",
+							"buildings": true
+						}
+					}
+				},
+				{
+					"tally": {
+						"flag": "barra",
+						"counter": "q_left",
+						"of": "q_n",
+						"bands": [
+							[
+								0,
+								"burned"
+							],
+							[
+								0.75,
+								"held"
+							]
+						]
+					}
+				}
+			]
+		},
+		{
+			"id": "if_count_end__0",
+			"when": {
+				"all": [
+					{
+						"fired": "count_end"
+					},
+					{
+						"not": {
+							"flag": {
+								"lure": "used"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"lure": "burned"
+					}
+				}
+			]
+		},
+		{
+			"id": "the_end",
+			"when": {
+				"all": [
+					{
+						"fired": "count_end"
+					},
+					{
+						"any": [
+							{
+								"fired": "dawn"
+							},
+							{
+								"fired": "vs_floods"
+							},
+							{
+								"all": [
+									{
+										"clock_out": "floods"
+									},
+									{
+										"not": {
+											"playing": "barra"
+										}
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			"delay": 5,
+			"do": [
+				{
+					"win": "barra"
+				}
+			]
+		},
+		{
+			"id": "hall_lost",
+			"when": {
+				"any": [
+					{
+						"dead": "hall"
+					},
+					{
+						"dead": "church"
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_hall_lost"
+					]
+				}
+			]
+		},
+		{
+			"id": "s_objs",
+			"when": {
+				"all": [
+					{
+						"time": 1
+					},
+					{
+						"playing": "swarm"
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "s_nazare",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "s_root",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "s_barra",
+						"set": "active"
+					}
+				},
+				{
+					"objective": {
+						"id": "s_clock",
+						"set": "active"
+					}
+				}
+			]
+		},
+		{
+			"id": "s_nazare_end",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"playing": "swarm"
+					}
+				]
+			},
+			"do": []
+		},
+		{
+			"id": "if_s_nazare_end__0",
+			"when": {
+				"all": [
+					{
+						"fired": "s_nazare_end"
+					},
+					{
+						"not": {
+							"flag": {
+								"nazare": "all"
+							}
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "s_nazare",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "if_s_nazare_end__1",
+			"when": {
+				"all": [
+					{
+						"fired": "s_nazare_end"
+					},
+					{
+						"flag": {
+							"nazare": "all"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "s_nazare",
+						"set": "failed"
+					}
+				}
+			]
+		},
+		{
+			"id": "s_rooted",
+			"when": {
+				"all": [
+					{
+						"playing": "swarm"
+					},
+					{
+						"count": {
+							"tag": "fwd",
+							"area": "fb_s",
+							"rooted": true,
+							"at_least": 1
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "s_root",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_s_root"
+					]
+				}
+			]
+		},
+		{
+			"id": "s_food",
+			"when": {
+				"all": [
+					{
+						"playing": "swarm"
+					},
+					{
+						"time": 10
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 10,
+			"do": [
+				{
+					"give": {
+						"team": "swarm",
+						"gold": 40,
+						"powder": 4
+					}
+				}
+			]
+		},
+		{
+			"id": "s_guns",
+			"when": {
+				"all": [
+					{
+						"playing": "swarm"
+					},
+					{
+						"fired": "setup"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 2,
+			"do": [
+				{
+					"counter": {
+						"name": "guns_left",
+						"count": {
+							"tag": "guns"
+						}
+					}
+				}
+			]
+		},
+		{
+			"id": "s_gun_say",
+			"when": {
+				"all": [
+					{
+						"playing": "swarm"
+					},
+					{
+						"counter": {
+							"name": "guns_left",
+							"below": 2
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_s_gun"
+					]
+				}
+			]
+		},
+		{
+			"id": "s_broke",
+			"when": {
+				"all": [
+					{
+						"playing": "swarm"
+					},
+					{
+						"dead": "guns"
+					},
+					{
+						"dead": "church"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"objective": {
+						"id": "s_barra",
+						"set": "done"
+					}
+				},
+				{
+					"say": [
+						"n_s_won"
+					]
+				},
+				{
+					"flag": {
+						"barra": "burned"
+					}
+				},
+				{
+					"flag": {
+						"lure": "burned"
+					}
+				}
+			]
+		},
+		{
+			"id": "s_end",
+			"when": {
+				"fired": "s_broke"
+			},
+			"delay": 4,
+			"do": [
+				{
+					"win": "swarm"
+				}
+			]
+		},
+		{
+			"id": "vs_broke",
+			"when": {
+				"all": [
+					{
+						"playing": "barra"
+					},
+					{
+						"playing": "swarm"
+					},
+					{
+						"any": [
+							{
+								"dead": "church"
+							},
+							{
+								"dead": "hall"
+							}
+						]
+					}
+				]
+			},
+			"do": [
+				{
+					"flag": {
+						"barra": "burned"
+					}
+				},
+				{
+					"flag": {
+						"lure": "burned"
+					}
+				}
+			]
+		},
+		{
+			"id": "s_floods",
+			"when": {
+				"all": [
+					{
+						"playing": "swarm"
+					},
+					{
+						"not": {
+							"playing": "barra"
+						}
+					},
+					{
+						"clock_out": "floods"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"say": [
+						"n_s_lost"
+					]
+				},
+				{
+					"objective": {
+						"id": "s_clock",
+						"set": "done"
+					}
+				}
+			]
+		},
+		{
+			"id": "sb_column",
+			"when": {
+				"all": [
+					{
+						"time": 6
+					},
+					{
+						"not": {
+							"playing": "barra"
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "column",
+						"do": "route",
+						"route": [
+							"north_gate",
+							"trail_mid",
+							"trail_n",
+							"g_houses"
+						],
+						"attack": true,
+						"name": "column_up"
+					}
+				},
+				{
+					"order": {
+						"tag": "garrison",
+						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "sb_home",
+			"when": {
+				"all": [
+					{
+						"fired": "part2"
+					},
+					{
+						"not": {
+							"playing": "barra"
+						}
+					}
+				]
+			},
+			"delay": 4,
+			"do": [
+				{
+					"order": {
+						"tag": "column",
+						"do": "route",
+						"route": [
+							"trail_n",
+							"trail_mid",
+							"north_gate",
+							"bluff_mid"
+						],
+						"attack": true,
+						"name": "column_home"
+					}
+				}
+			]
+		},
+		{
+			"id": "sb_hold",
+			"when": {
+				"route_done": "column_home"
+			},
+			"do": [
+				{
+					"order": {
+						"tag": "column",
+						"do": "hold"
+					}
+				}
+			]
+		},
+		{
+			"id": "sb_reinf",
+			"when": {
+				"all": [
+					{
+						"time": 90
+					},
+					{
+						"not": {
+							"playing": "barra"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"every": 90,
+			"do": [
+				{
+					"spawn": {
+						"team": "barra",
+						"kind": "musketeer",
+						"count": 3,
+						"at": "downriver",
+						"tag": "reinf",
+						"tags": [
+							"barra_men"
+						]
+					}
+				},
+				{
+					"order": {
+						"tag": "reinf",
+						"do": "attack",
+						"to": "bluff_mid"
+					}
+				},
+				{
+					"say": [
+						"n_s_reinf"
+					]
+				}
+			]
+		},
+		{
+			"id": "sb_reinf_hold",
+			"when": {
+				"all": [
+					{
+						"fired": "sb_reinf"
+					},
+					{
+						"not": {
+							"playing": "barra"
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "s_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"delay": 40,
+			"every": 20,
+			"do": [
+				{
+					"order": {
+						"tag": "reinf",
+						"do": "hold",
+						"idle": true
+					}
+				}
+			]
+		},
+		{
+			"id": "v_hurt",
+			"when": {
+				"all": [
+					{
+						"hp": {
+							"tag": "valadares",
+							"below": 0.4
+						}
+					},
+					{
+						"playing": "barra"
+					}
+				]
+			},
+			"every": 60,
+			"times": 2,
+			"do": [
+				{
+					"say": [
+						"v_hurt"
+					]
+				},
+				{
+					"ping": {
+						"tag": "valadares"
+					}
+				}
+			]
+		},
+		{
+			"id": "ladder_new",
+			"when": {
+				"time": 8
+			},
+			"do": [
+				{
+					"say": [
+						"new_nb_clutch_raptor",
+						"new_nb_pack_hunt",
+						"new_nb_quick_roots"
+					]
+				}
+			]
+		}
+	],
+	"heroes": [
+		"valadares"
+	],
+	"speakers": {
+		"king": {
+			"name": "The King",
+			"side": "barra",
+			"portrait": "res://campaign/hub/rome_king_face.png"
+		},
+		"valadares": {
+			"name": "Valadares",
+			"side": "barra"
+		},
+		"benedito": {
+			"name": "Benedito",
+			"side": "barra"
+		},
+		"sergeant": {
+			"name": "The Barra's sergeant",
+			"side": "barra"
+		},
+		"narrator": {
+			"name": "The Rio Negro",
+			"side": "barra"
+		},
+		"new": {
+			"name": "NEW IN YOUR ARMY",
+			"side": "swarm"
+		}
+	},
+	"lines": {
+		"k_open1": {
+			"who": "king",
+			"text": "Three years after the island, the floods came higher than the last. The swarm came down with them."
+		},
+		"k_open2": {
+			"who": "king",
+			"text": "Valadares held the Barra that season. This is his report, as he wrote it."
+		},
+		"k_linnea": {
+			"who": "king",
+			"text": "He told me later he had seen the first of them on the plateau, years before. He knew them at once."
+		},
+		"v_open1": {
+			"who": "valadares",
+			"text": "The Rio Negro, the floods of 2778. Every town above the Barra was empty by Lent."
+		},
+		"v_open2": {
+			"who": "valadares",
+			"text": "Nazaré was the last. Its people had nowhere to go but our canoes."
+		},
+		"k_open_s": {
+			"who": "king",
+			"text": "Valadares wrote this down as it happened. Here is how it would have gone if the bluff had fallen."
+		},
+		"n_open_s": {
+			"who": "narrator",
+			"text": "The floods. Forward Mothers root on the far bank, and the ground creeps out from them toward the river."
+		},
+		"v_1": {
+			"who": "valadares",
+			"text": "Column, with me. Up the bank trail to Nazaré, and quickly. Benedito has the canoes at the beach.",
+			"to": "barra"
+		},
+		"n_lesson": {
+			"who": "narrator",
+			"text": "Nazaré is north, up the bank trail. Its people are in three groups: by the chapel, in the houses, in the fields. Walk any of your men up to a group and it goes to the canoes by itself.",
+			"to": "barra"
+		},
+		"n_base": {
+			"who": "narrator",
+			"text": "The Barra is yours as well: Labourers on the Farms, Musketeers from the Barracks. The waves will come here when Nazaré is out.",
+			"to": "barra",
+			"until": "part2"
+		},
+		"v_map": {
+			"who": "valadares",
+			"text": "I drew their road down from the plateau myself. They will cross where the river is shallow: the rapids, the middle, the Barra.",
+			"to": "barra",
+			"until": "part2"
+		},
+		"v_sealed": {
+			"who": "valadares",
+			"text": "My map of the plateau is under seal in Rome. I will learn their road the hard way, as they come.",
+			"to": "barra",
+			"until": "part2"
+		},
+		"b_party_few": {
+			"who": "benedito",
+			"text": "Senhor, I am the last of the plateau's party still on the river. Let us not lose anyone else.",
+			"to": "barra",
+			"until": "part2"
+		},
+		"g_chapel": {
+			"who": "narrator",
+			"text": "The people by the chapel take up their bundles and go down to the beach.",
+			"until": "part2"
+		},
+		"g_houses": {
+			"who": "narrator",
+			"text": "The families in the houses come out and go down to the beach.",
+			"until": "part2"
+		},
+		"g_fields": {
+			"who": "narrator",
+			"text": "The people in the manioc fields leave their baskets and run for the beach.",
+			"until": "part2"
+		},
+		"b_first": {
+			"who": "benedito",
+			"text": "The first are in the canoes, Senhor. I can take them all, if they get here.",
+			"to": "barra",
+			"until": "part2"
+		},
+		"n_raid": {
+			"who": "narrator",
+			"text": "Creatures come over the rapids from the far bank, after the people. Keep your men between them and the villagers.",
+			"to": "barra",
+			"until": "part2"
+		},
+		"n_rooted": {
+			"who": "narrator",
+			"text": "Across the river the forward Mother roots. Her ground creeps toward the water, and more come over the rapids."
+		},
+		"b_wait": {
+			"who": "benedito",
+			"text": "I cannot wait much longer, Senhor! Whoever is not on the beach stays.",
+			"to": "barra"
+		},
+		"b_away": {
+			"who": "benedito",
+			"text": "We are away! Down to the Barra, Senhor. Do not stay up here.",
+			"to": "barra"
+		},
+		"n_left": {
+			"who": "narrator",
+			"text": "Some of Nazaré's people did not reach the beach. They went into the forest, and nobody saw them again."
+		},
+		"v_2": {
+			"who": "valadares",
+			"text": "Back to the Barra, all of you. Down the trail. They will be at the shallows before us.",
+			"to": "barra"
+		},
+		"s_2": {
+			"who": "sergeant",
+			"text": "Senhor Valadares! Creatures on the far bank, opposite the lower town. The guns are loaded.",
+			"to": "barra"
+		},
+		"n_waves": {
+			"who": "narrator",
+			"text": "They come in waves, over the Barra shallows into the lower town and over the middle shallows down the bank trail. The guns on the bluff reach the shallows.",
+			"to": "barra",
+			"until": "part3"
+		},
+		"n_fwd": {
+			"who": "narrator",
+			"text": "A forward Mother walks down the far bank to root. Rooted, her ground creeps, and every wave grows by what she lays. Cross a shallows with the Dragoons and kill her on the way.",
+			"to": "barra"
+		},
+		"n_fwd2": {
+			"who": "narrator",
+			"text": "Another forward Mother sets off down the far bank, toward the clearing opposite the Barra.",
+			"to": "barra",
+			"until": "part3"
+		},
+		"n_fwd_root": {
+			"who": "narrator",
+			"text": "A forward Mother has rooted on the far bank. More will come in every wave now.",
+			"to": "barra",
+			"until": "part3"
+		},
+		"n_fwd_dead": {
+			"who": "narrator",
+			"text": "A forward Mother is dead before she could root. The waves stay smaller.",
+			"to": "barra",
+			"until": "part3"
+		},
+		"v_fwd_dead": {
+			"who": "valadares",
+			"text": "Good. Back over the water before the next wave.",
+			"to": "barra",
+			"until": "part3"
+		},
+		"n_wave": {
+			"who": "narrator",
+			"text": "A wave is coming over the shallows.",
+			"to": "barra",
+			"until": "part3"
+		},
+		"s_quarter": {
+			"who": "sergeant",
+			"text": "A house in the lower town is burning, Senhor!",
+			"to": "barra",
+			"until": "part3"
+		},
+		"v_mend": {
+			"who": "valadares",
+			"text": "Labourers to the palisade. Mend what they break.",
+			"to": "barra",
+			"until": "part3"
+		},
+		"n_dusk": {
+			"who": "narrator",
+			"text": "Dusk. On the far bank they are gathering, more than in any wave before."
+		},
+		"b_book": {
+			"who": "benedito",
+			"text": "Senhor. Your men brought this from the fazenda's ruins. The Doctor's lure book.",
+			"to": "barra"
+		},
+		"b_book_taken": {
+			"who": "benedito",
+			"text": "Senhor. The Doctor left this at the Barra's warehouse for his passage downriver. His lure book.",
+			"to": "barra"
+		},
+		"b_lure": {
+			"who": "benedito",
+			"text": "I know the old lure. A post on the far point, a jar on it, and they turn off their road into the flooded forest.",
+			"to": "barra"
+		},
+		"v_rome": {
+			"who": "valadares",
+			"text": "Rome ordered every one of these books burned.",
+			"to": "barra"
+		},
+		"v_burn": {
+			"who": "valadares",
+			"text": "No man should call them. Not even once. Into the fire with it.",
+			"to": "barra"
+		},
+		"n_burn": {
+			"who": "narrator",
+			"text": "The book burns. The whole wave will come over the Barra shallows: hold the lower town and the west gate.",
+			"to": "barra"
+		},
+		"v_use": {
+			"who": "valadares",
+			"text": "Once, for the town. Then it goes in the fire. Benedito, take two men and the canoe.",
+			"to": "barra"
+		},
+		"n_use": {
+			"who": "narrator",
+			"text": "Benedito sets the lure post on the far point. Part of the wave will turn off its road into the flooded forest.",
+			"to": "barra"
+		},
+		"v_vs_burn": {
+			"who": "valadares",
+			"text": "Rome ordered the books burned. This one too. We hold the Barra with what we have.",
+			"to": "barra"
+		},
+		"n_night": {
+			"who": "narrator",
+			"text": "Night. The great wave comes down to the far bank."
+		},
+		"n_go": {
+			"who": "narrator",
+			"text": "The great wave goes into the water at the Barra shallows.",
+			"to": "barra"
+		},
+		"n_lured": {
+			"who": "narrator",
+			"text": "Half the wave turns toward the far point, past it, into the flooded forest.",
+			"to": "barra"
+		},
+		"n_drowned": {
+			"who": "narrator",
+			"text": "The water closes over their road. They do not come out of the flooded forest tonight.",
+			"to": "barra"
+		},
+		"s_great": {
+			"who": "sergeant",
+			"text": "Here they come! Canister, at the shallows!",
+			"to": "barra"
+		},
+		"n_broken": {
+			"who": "narrator",
+			"text": "The great wave is broken. What is left of it goes back into the dark."
+		},
+		"n_dawn": {
+			"who": "narrator",
+			"text": "First light. The far bank is quiet; the swarm has gone back into the flooded forest."
+		},
+		"v_won": {
+			"who": "valadares",
+			"text": "The Barra stands. Ring the bell, sergeant. Then count the houses.",
+			"to": "barra"
+		},
+		"v_hurt": {
+			"who": "valadares",
+			"text": "I am hit. Keep the line, keep the line.",
+			"to": "barra"
+		},
+		"n_hall_lost": {
+			"who": "narrator",
+			"text": "The bluff is broken. The Barra is lost."
+		},
+		"n_s1": {
+			"who": "narrator",
+			"text": "Your forward Mother is rooted across the rapids from Nazaré, your Sires by her. Lay eggs on her card; the grubs make Rootmaws on her swamp for food.",
+			"to": "swarm"
+		},
+		"n_s2": {
+			"who": "narrator",
+			"text": "Your second Mother waits on the far bank's middle. Walk her south and root her opposite the Barra.",
+			"to": "swarm"
+		},
+		"n_s_canoes": {
+			"who": "narrator",
+			"text": "Nazaré's people reach the canoes and are gone down the river.",
+			"to": "swarm",
+			"until": "part2"
+		},
+		"n_s_root": {
+			"who": "narrator",
+			"text": "A Mother roots opposite the Barra. Her swamp reaches the water.",
+			"to": "swarm"
+		},
+		"n_s_reinf": {
+			"who": "narrator",
+			"text": "Canoes come up from downriver: more men for the Barra.",
+			"to": "swarm"
+		},
+		"n_s_gun": {
+			"who": "narrator",
+			"text": "A gun on the bluff is silent.",
+			"to": "swarm"
+		},
+		"n_s_won": {
+			"who": "narrator",
+			"text": "The guns are silent and the church is down. The bluff is the swarm's."
+		},
+		"n_s_lost": {
+			"who": "narrator",
+			"text": "The floods fall. The far bank dries, and the Barra still stands."
+		},
+		"v_end1": {
+			"who": "valadares",
+			"text": "We held the bluff. Nazaré's people slept in the church, the canoes on the bank below."
+		},
+		"v_end_held": {
+			"who": "valadares",
+			"text": "The lower town stood. Every roof."
+		},
+		"v_end_burned": {
+			"who": "valadares",
+			"text": "The lower town burned. We held only what stood on the bluff."
+		},
+		"v_end_burnt_book": {
+			"who": "valadares",
+			"text": "I burned the book with my own hand, as Rome ordered."
+		},
+		"v_end_used_book": {
+			"who": "valadares",
+			"text": "I used the book once. Then I burned it. I have confessed it."
+		},
+		"k_end1": {
+			"who": "king",
+			"text": "He held the river for me that year. He did it with muskets, and once, with a dead man's book."
+		},
+		"k_end1b": {
+			"who": "king",
+			"text": "He held the river for me that year. With muskets, and without the book. That was harder."
+		},
+		"k_end2": {
+			"who": "king",
+			"text": "The swarm did not go back up the rivers. It waited in the flooded forest for the next floods."
+		},
+		"k_end_s": {
+			"who": "king",
+			"text": "That is not how it went. Valadares held the bluff. But I have kept this page."
+		},
+		"n_end_s": {
+			"who": "narrator",
+			"text": "The church burned on the bluff. The swarm's ground crept over the Barra by the dry season."
+		},
+		"new_nb_clutch_raptor": {
+			"who": "new",
+			"to": "swarm",
+			"text": "NEW: BIGGER CLUTCH. Research it on the Tyrant Sire's card: Raptors hatch three to an egg instead of two (the egg costs more, each Raptor the same). More teeth at the shallows."
+		},
+		"new_nb_pack_hunt": {
+			"who": "new",
+			"to": "swarm",
+			"text": "NEW: PACK HUNT. Research it on the Tyrant Sire's card: Raptors, Tyrant Challengers and the Sire run faster; a Raptor then outruns a horse. Catch the people before the canoes."
+		},
+		"new_nb_quick_roots": {
+			"who": "new",
+			"to": "swarm",
+			"text": "NEW: QUICK ROOTS. Research it on a Mother's card: every creature roots and uproots in half the time. A forward Mother walks down the bank and is rooted again before the guns find her."
+		}
+	},
+	"stills": {
+		"rome": {
+			"image": "res://campaign/stills/b01_01.jpg",
+			"caption": "Rome, the present. The King with the mapmaker's report."
+		},
+		"waters": {
+			"image": "res://campaign/stills/d08_01.jpg",
+			"caption": "The Barra do Rio Negro, where the black river meets the brown, the floods of 2778."
+		},
+		"nazare": {
+			"image": "res://campaign/stills/d08_02.jpg",
+			"caption": "Nazaré, the canoes."
+		},
+		"book": {
+			"image": "res://campaign/stills/d08_03.jpg",
+			"caption": "The lure book, by the fire."
+		},
+		"dawn": {
+			"image": "res://campaign/stills/d08_04.jpg",
+			"caption": "The bluff at first light."
+		}
+	},
+	"next": {
+		"barra": "",
+		"swarm": ""
+	},
+	"opening": {
+		"barra": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open1",
+					"k_open2",
+					{
+						"id": "k_linnea",
+						"if": {
+							"not": {
+								"past": {
+									"a03_plateau.linnea": "unseen"
+								}
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "waters",
+				"lines": [
+					"v_open1",
+					"v_open2"
+				]
+			}
+		],
+		"swarm": [
+			{
+				"still": "rome",
+				"lines": [
+					"k_open_s"
+				]
+			},
+			{
+				"still": "waters",
+				"lines": [
+					"n_open_s"
+				]
+			}
+		]
+	},
+	"ending": {
+		"barra": [
+			{
+				"still": "dawn",
+				"lines": [
+					"v_end1",
+					{
+						"id": "v_end_held",
+						"if": {
+							"flag": {
+								"barra": "held"
+							}
+						}
+					},
+					{
+						"id": "v_end_burned",
+						"if": {
+							"flag": {
+								"barra": "burned"
+							}
+						}
+					},
+					{
+						"id": "v_end_burnt_book",
+						"if": {
+							"flag": {
+								"lure": "burned"
+							}
+						}
+					},
+					{
+						"id": "v_end_used_book",
+						"if": {
+							"flag": {
+								"lure": "used"
+							}
+						}
+					}
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					{
+						"id": "k_end1",
+						"if": {
+							"flag": {
+								"lure": "used"
+							}
+						}
+					},
+					{
+						"id": "k_end1b",
+						"if": {
+							"not": {
+								"flag": {
+									"lure": "used"
+								}
+							}
+						}
+					},
+					"k_end2"
+				]
+			}
+		],
+		"swarm": [
+			{
+				"still": "waters",
+				"lines": [
+					"n_end_s"
+				]
+			},
+			{
+				"still": "rome",
+				"lines": [
+					"k_end_s"
+				]
+			}
+		]
+	},
+	"briefing": {
+		"barra": {
+			"still": "waters",
+			"text": [
+				"The Rio Negro, the floods of 2778. You are Valadares and the Barra do Rio Negro: a column at the north gate, the garrison on the bluff, two guns and the town.",
+				"First take the column up the bank trail to Nazaré and send its people to Benedito's canoes. Then come home: the swarm crosses the shallows in waves.",
+				"At dusk you will decide what to do with Lindqvist's lure book. The church and the Town Hall must stand."
+			]
+		},
+		"swarm": {
+			"still": "waters",
+			"text": [
+				"The Rio Negro, the floods of 2778. You are the swarm: two forward Mothers on the far bank, their Sires, and what they lay.",
+				"Catch Nazaré's people before the canoes take them, root a Mother opposite the Barra, and break the Barra: its two guns and its church, before the floods fall."
+			]
+		}
+	},
+	"debrief": {
+		"barra": {
+			"still": "dawn",
+			"title": "The Barra Holds",
+			"text": "Of Nazaré's {vill_n} people, {out_n} came down the river. {q_left} of the lower town's {q_n} houses stand.",
+			"text_if": [
+				{
+					"if": {
+						"flag": {
+							"lure": "used"
+						}
+					},
+					"text": "The lure book was used once, then burned."
+				},
+				{
+					"if": {
+						"flag": {
+							"lure": "burned"
+						}
+					},
+					"text": "The lure book was burned, as Rome ordered."
+				}
+			]
+		},
+		"swarm": {
+			"still": "waters",
+			"title": "The Bluff Falls",
+			"text": "The guns are silent and the church is down. Of Nazaré's {vill_n} people, {out_n} got away."
+		}
+	}
+}
