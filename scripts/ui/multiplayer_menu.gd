@@ -212,6 +212,11 @@ func _draw_room() -> void:
 		if l.mode == pm:
 			UiStyle.chosen(b)
 		top.add_child(b)
+	if not l.tour.is_empty():
+		# (a room made from a tournament's bracket, docs/tournament.md: its map and factions are the bracket's)
+		var tn := UiStyle.text(Loc.t("TOURNAMENT MATCH: the map and the factions come from the bracket; the result goes to the organiser when the game ends."), 16, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT)
+		tn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_box.add_child(tn)
 	var body := HBoxContainer.new()
 	body.add_theme_constant_override("separation", 14)
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
