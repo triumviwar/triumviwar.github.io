@@ -1,0 +1,5 @@
+Slice 7 of 12 (2026-11-24). Godot 4.7-stable, downloaded. The --import pass was capped at 4 minutes as instructed
+and stopped at ~53%, so many textures were not imported: most FAILs here show "Cannot call method 'get_width' on a
+null value" / "Invalid access to property or key 'grass_calm_3'" (terrain art not loaded) and are very likely caused
+by the unfinished import, not the game code. The first run was cut at 10:46 by the tool's 10-minute limit; the rest
+was restarted and tests not started by 10:50 are marked NOTRUN.
