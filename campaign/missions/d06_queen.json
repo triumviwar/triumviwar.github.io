@@ -2797,7 +2797,7 @@
 			]
 		},
 		{
-			"id": "part2_say",
+			"id": "p2_say",
 			"when": {
 				"fired": "part2"
 			},
@@ -2812,7 +2812,7 @@
 			]
 		},
 		{
-			"id": "part2_rival",
+			"id": "p2_rival",
 			"when": {
 				"all": [
 					{
@@ -2837,7 +2837,7 @@
 			]
 		},
 		{
-			"id": "part2_ring",
+			"id": "p2_ring",
 			"when": {
 				"all": [
 					{
@@ -2864,7 +2864,7 @@
 			]
 		},
 		{
-			"id": "part2_f",
+			"id": "p2_f",
 			"when": {
 				"all": [
 					{
@@ -2910,7 +2910,7 @@
 			]
 		},
 		{
-			"id": "part2_fq",
+			"id": "p2_fq",
 			"when": {
 				"all": [
 					{
@@ -4396,7 +4396,7 @@
 			"when": {
 				"all": [
 					{
-						"fired": "part2_f"
+						"fired": "p2_f"
 					},
 					{
 						"stay": {
@@ -4459,7 +4459,7 @@
 			"when": {
 				"all": [
 					{
-						"fired": "part2_f"
+						"fired": "p2_f"
 					},
 					{
 						"stay": {
@@ -4522,7 +4522,7 @@
 			"when": {
 				"all": [
 					{
-						"fired": "part2_f"
+						"fired": "p2_f"
 					},
 					{
 						"stay": {

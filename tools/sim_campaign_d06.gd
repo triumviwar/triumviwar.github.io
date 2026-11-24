@@ -291,7 +291,7 @@ func _play_brood(g: Game, r: MissionRun) -> void:
 func _play_fazenda(g: Game, r: MissionRun) -> void:
 	var ft := r.team_index("fazenda")
 	var men: Array = g.units.filter(func(u): return not u.dead and u.team == ft and u.kind != "horse")
-	if men.is_empty() or not r.fired.has("part2_f"):
+	if men.is_empty() or not r.fired.has("p2_f"):
 		return
 	var order := ["pen_2", "burn_big", "pen_3"]
 	var done := {"pen_2": r.flags.has("burned_north"), "burn_big": r.flags.has("burned_big"), "pen_3": r.flags.has("burned_east")}

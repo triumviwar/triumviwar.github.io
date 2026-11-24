@@ -1,7 +1,7 @@
 extends SceneTree
 ## player-comforts (docs/player_comforts.md): SAVING INSIDE A CAMPAIGN MISSION and its CHECKPOINTS, QUIT to the hub,
 ## the PAUSE keys, the questions, the phone's compact layout's rules.
-##   - every Act 1 mission (p01, a01-a07, b01, c01) and Act 2's d02 and d03 played a little, its next part begun, SAVED and LOADED: the mission's
+##   - every Act 1 mission (p01, a01-a07, b01, c01) and Act 2's d02, d03 and d06 played a little, its next part begun, SAVED and LOADED: the mission's
 ##     state comes back the same (flags, counters, objectives, triggers fired, clocks, tags, the denied pieces, the
 ##     light, weather and mist, the cages, carts, fires, sleepers, routes, disguises, the units and buildings, their
 ##     health and what the mission put on them), and it plays on with no script error;
@@ -20,7 +20,7 @@ var _kept := ""
 var _errs: Array = []
 var only := ""
 const MISSIONS := ["p01_leaf", "a01_presses", "a02_furth", "a03_plateau", "a04_visit", "a05_specimens", "a06_barricades",
-	"a07_council", "b01_specimen", "c01_thirteenth", "d02_exodus", "d03_fazenda"]
+	"a07_council", "b01_specimen", "c01_thirteenth", "d02_exodus", "d03_fazenda", "d06_queen"]
 
 
 class Catch extends Logger:

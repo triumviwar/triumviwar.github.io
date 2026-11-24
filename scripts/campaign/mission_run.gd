@@ -917,6 +917,7 @@ func act(a: Dictionary) -> void:
 				for e in tagged(String(v.get("tag", ""))):
 					e.max_hp = float(v.get("hp", e.max_hp))
 					e.hp = e.max_hp
+					e.set_meta("mission_max_hp", e.max_hp)      # (d06: kept with a save: SaveGame makes it again at its kind's)
 			"heal":
 				# {"heal": {"tag", "share"}}: their health back up to that share at least
 				for e in tagged(String(v.get("tag", ""))):
@@ -2667,6 +2668,8 @@ func save_entity(e: Entity, uid: Dictionary, bid: Dictionary) -> String:
 		x["spared"] = true
 	if e.hp_floor > 0.0:
 		x["floor"] = e.hp_floor
+	if e.has_meta("mission_max_hp"):
+		x["mhp"] = float(e.get_meta("mission_max_hp"))
 	if e is Unit:
 		var u: Unit = e
 		if u.m_pace != 1.0:
@@ -2708,6 +2711,9 @@ func load_state(d: Dictionary, mu: Array, mb: Array) -> void:
 					e.set_meta(String(k).substr(2), x[k])
 			e.spared = bool(x.get("spared", false))
 			e.hp_floor = float(x.get("floor", 0.0))
+			if x.has("mhp"):
+				e.max_hp = float(x["mhp"])
+				e.set_meta("mission_max_hp", e.max_hp)
 			e.hp = minf(float(x.get("hp", e.hp)), e.max_hp)
 			if e is Unit:
 				e.m_pace = float(x.get("pace", 1.0))

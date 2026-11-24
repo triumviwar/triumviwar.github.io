@@ -606,13 +606,13 @@ TR_ += [
         {"leash": {"team": "pens", "lure": "pen_mother", "within": 90, "loose": "to", "to": "big_pen", "name": "pens"}},
         {"objective": {"id": "mothers", "set": "active"}}]},
     {"id": "bred_count", "when": {"fired": "part2"}, "delay": 0.5, "do": [{"counter": {"name": "bred_n", "count": {"tag": "bred"}}}]},
-    {"id": "part2_say", "when": {"fired": "part2"}, "delay": 1, "do": [{"say": ["n_wild", "l_drop"]}]},
-    {"id": "part2_rival", "when": {"all": [{"fired": "part2"}, RIVAL]}, "delay": 6, "do": [{"say": ["n_wild_rival"]}]},
-    {"id": "part2_ring", "when": {"all": [{"fired": "part2"}, BROOD]}, "delay": 3, "do": [{"say": ["n_mring", "n_uproot"]}, {"ping": {"tag": "mother"}}]},
-    {"id": "part2_f", "when": {"all": [{"fired": "part2"}, FAZ]}, "delay": 1, "do": [
+    {"id": "p2_say", "when": {"fired": "part2"}, "delay": 1, "do": [{"say": ["n_wild", "l_drop"]}]},
+    {"id": "p2_rival", "when": {"all": [{"fired": "part2"}, RIVAL]}, "delay": 6, "do": [{"say": ["n_wild_rival"]}]},
+    {"id": "p2_ring", "when": {"all": [{"fired": "part2"}, BROOD]}, "delay": 3, "do": [{"say": ["n_mring", "n_uproot"]}, {"ping": {"tag": "mother"}}]},
+    {"id": "p2_f", "when": {"all": [{"fired": "part2"}, FAZ]}, "delay": 1, "do": [
         {"spare": {"tag": "faz_all", "on": False}}, {"spare": {"tag": "fazenda_b", "on": False}}, {"carry": {"tag": "faz_all", "on": False}},
         {"objective": {"id": "f_burn", "set": "active"}}, {"objective": {"id": "f_canoes", "set": "active"}}]},
-    {"id": "part2_fq", "when": {"all": [{"fired": "part2"}, FAZ, NO_BROOD]}, "delay": 1, "do": [
+    {"id": "p2_fq", "when": {"all": [{"fired": "part2"}, FAZ, NO_BROOD]}, "delay": 1, "do": [
         {"objective": {"id": "f_queen", "set": "active"}}, {"clock": {"name": "queen", "secs": QUEEN_SECS}}]},
     # the wild pack comes for the big pen at once; the east pen's Mother breaks out a little later
     {"id": "wild_go", "when": {"fired": "part2"}, "delay": WILD_GO, "do": [
@@ -718,7 +718,7 @@ TR_ += [
     # ============================================================ THE FAZENDA (the solo pick, versus): burn three pens, then the canoes
 ] + [
     t for (pen, area) in [("big", "burn_big"), ("north", "pen_2"), ("east", "pen_3")] for t in [
-        {"id": "burn_" + pen, "when": {"all": [{"fired": "part2_f"}, {"stay": {"tag": "people", "area": area, "secs": BURN_SECS}},
+        {"id": "burn_" + pen, "when": {"all": [{"fired": "p2_f"}, {"stay": {"tag": "people", "area": area, "secs": BURN_SECS}},
                                                {"not": {"fired": "queen"}}, LIVE]}, "do": [
             {"counter": {"name": "burned", "add": 1}}, {"say": ["n_f_burn"]}, {"ping": {"area": area}},
             {"flag": {"burned_" + pen: "yes"}}]},
