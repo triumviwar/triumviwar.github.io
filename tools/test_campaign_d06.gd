@@ -230,8 +230,9 @@ func _data() -> void:
 	check("hubs-grow: d06 earns FIELD NOTES", (HubGrow.line("naturalist")["earn"] as Array).has(MID))
 	# THE BROOD IS NOT A PERSON: no creature is named Linnea, no line gives one a will
 	var all := " ".join(Campaign.strings_of(m))
-	check("no creature named (no Linnea) and no 'her young' in the mission's texts", not all.contains("Linnea") and not all.contains("her young")
-		and not all.contains("comes for"), "")
+	# owner 2026-11-24: Linnea may be named, never given a reason
+	check("no creature given a reason (no 'her young', 'comes for', 'wants')", not all.contains("her young")
+		and not all.contains("comes for") and not all.contains("she wants") and not all.contains("Linnea wants"), "")
 
 
 # ================================================================== the flags at the start

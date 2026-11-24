@@ -113,7 +113,7 @@ MIRROR_AT = ["big_pen_w", "big_pen_e", "pen_2", "big_pen_w", "pen_2", "big_pen_e
 # ================================================================== the units
 units = [
     # ---- the Brood (the player): the Mother, the two Sires by her, the young in the flooded pens
-    {"team": "stock", "kind": "brood_mother", "as": "grown_mother", "count": 1, "at": "mother_spot", "tag": "mother",
+    {"team": "stock", "kind": "brood_mother", "as": "grown_mother", "count": 1, "at": "mother_spot", "tag": "mother", "name": "Linnea",
      "tags": ["call", "mothers", "bred_m"], "fixed": True},
     {"team": "stock", "kind": "tyrannosaur", "count": 1, "at": "sire_spot", "tag": "tyrant_sire", "tags": ["bred", "sires"], "fixed": True},
     {"team": "stock", "kind": "pterodactyl", "count": 1, "at": "storm_spot", "tag": "storm_sire", "tags": ["bred", "sires"], "fixed": True},
@@ -189,7 +189,7 @@ areas = dict(
 objectives = [
     # ---- the Brood
     {"id": "mother_live", "side": "brood", "primary": True, "kind": "protect", "tag": "mother",
-     "text": T("Your Mother must live.", "A sua Mãe tem de viver.", "Tu Madre debe vivir.")},
+     "text": T("Linnea, your Mother, must live.", "Linnea, a sua Mãe, tem de viver.", "Linnea, tu Madre, debe vivir.")},
     {"id": "flood", "side": "brood", "primary": False, "kind": "manual",
      "text": T("THE FLOOD: bring the young out of the two flooded pens up to the big pen: {in_pen} of {young_n} there. They obey only inside a keeper's green ring, so move them along with the keepers.",
                "A CHEIA: tire os jovens dos dois currais alagados e leve-os ao curral grande: {in_pen} de {young_n} lá. Só obedecem dentro do anel verde de um tratador, por isso leve-os junto com os tratadores.",
@@ -329,11 +329,12 @@ line("l_open1", "lindqvist", "The wet season of 2775. The water came up into the
 line("l_open2", "lindqvist", "I had two breeding Mothers on the island by then. I thought I was a rich man.",
      "Por essa altura eu tinha duas Mães de criação na ilha. Julguei que era um homem rico.",
      "Para entonces tenía dos Madres de cría en la isla. Creí que era un hombre rico.")
-line("l_open_saved", "lindqvist", "The first from the clutch we carried out of the station. The second bred from her.",
-     "A primeira da ninhada que trouxemos da estação. A segunda criada a partir dela.",
-     "La primera de la nidada que sacamos de la estación. La segunda criada a partir de ella.")
-line("l_open_burned", "lindqvist", "The first netted on the mountain. The second bred from her.",
-     "A primeira apanhada na montanha. A segunda criada a partir dela.", "La primera atrapada en la montaña. La segunda criada a partir de ella.")
+line("l_open_saved", "lindqvist", "The first from the clutch we carried out of the station. I named her Linnea, like her mother. The second bred from her.",
+     "A primeira da ninhada que trouxemos da estação. Dei-lhe o nome de Linnea, como a mãe. A segunda criada a partir dela.",
+     "La primera de la nidada que sacamos de la estación. La llamé Linnea, como a su madre. La segunda criada a partir de ella.")
+line("l_open_burned", "lindqvist", "The first netted on the mountain. I named her Linnea, like the one at the station. The second bred from her.",
+     "A primeira apanhada na montanha. Dei-lhe o nome de Linnea, como a da estação. A segunda criada a partir dela.",
+     "La primera atrapada en la montaña. La llamé Linnea, como la de la estación. La segunda criada a partir de ella.")
 line("k_open_f", "king", "Lindqvist says he burned the pens that night. Listen to how much he burned.",
      "Lindqvist diz que queimou os currais naquela noite. Ouve quanto queimou.", "Lindqvist dice que quemó los corrales aquella noche. Escucha cuánto quemó.")
 line("l_open_f", "lindqvist", "The water was in the cane. Something was calling from the north shore. I sent for the torches.",
@@ -425,8 +426,8 @@ line("n_canoe1", "narrator", "A canoe goes down the river in the dark with one m
 line("n_pieter_lost", "narrator", "Pieter did not reach the canoes.", "Pieter não chegou às canoas.", "Pieter no llegó a las canoas.")
 line("n_house", "narrator", "The big house falls. The island belongs to the Queen.", "A casa-grande cai. A ilha é da Rainha.",
      "La casa grande cae. La isla es de la Reina.")
-line("n_mother_dead", "narrator", "Your Mother is dead. Another will root in the big pen.", "A sua Mãe morreu. Outra vai enraizar no curral grande.",
-     "Tu Madre ha muerto. Otra enraizará en el corral grande.", BR)
+line("n_mother_dead", "narrator", "Linnea is dead. Another will root in the big pen.", "Linnea morreu. Outra vai enraizar no curral grande.",
+     "Linnea ha muerto. Otra enraizará en el corral grande.", BR)
 # ---- the fazenda's (the solo pick) lines
 line("l_f1", "lindqvist", "Torches. We burn the pens before they settle it among themselves. Then the canoes.",
      "Tochas. Queimamos os currais antes que elas o resolvam entre si. Depois as canoas.",

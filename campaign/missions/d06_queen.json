@@ -385,6 +385,7 @@
 			"count": 1,
 			"at": "mother_spot",
 			"tag": "mother",
+			"name": "Linnea",
 			"tags": [
 				"call",
 				"mothers",
@@ -1829,7 +1830,7 @@
 			"primary": true,
 			"kind": "protect",
 			"tag": "mother",
-			"text": "Your Mother must live."
+			"text": "Linnea, your Mother, must live."
 		},
 		{
 			"id": "flood",
@@ -5091,11 +5092,11 @@
 		},
 		"l_open_saved": {
 			"who": "lindqvist",
-			"text": "The first from the clutch we carried out of the station. The second bred from her."
+			"text": "The first from the clutch we carried out of the station. I named her Linnea, like her mother. The second bred from her."
 		},
 		"l_open_burned": {
 			"who": "lindqvist",
-			"text": "The first netted on the mountain. The second bred from her."
+			"text": "The first netted on the mountain. I named her Linnea, like the one at the station. The second bred from her."
 		},
 		"k_open_f": {
 			"who": "king",
@@ -5269,7 +5270,7 @@
 		},
 		"n_mother_dead": {
 			"who": "narrator",
-			"text": "Your Mother is dead. Another will root in the big pen.",
+			"text": "Linnea is dead. Another will root in the big pen.",
 			"to": "brood"
 		},
 		"l_f1": {

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.199", "items": [
+		"The Queen: your Brood Mother is now called Linnea (Lindqvist named her after the first one). She is still only an animal.",
+	]},
 	{"v": "0.38.198", "items": [
 		"A new campaign mission, Act 2's THE QUEEN (the Naturalist's line, after The Island): Lindqvist's island in the wet season's flood, played as the Brood. Walk the young out of the flooded pens inside the keepers' rings; then a wild Mother lands and the other bred Mother breaks out, and the Mothers fight: your creatures obey only inside your own Mother's ring, and a stray one near another Mother goes over to her. Kill the other two, root your Mother in the big pen and GROW her to the third stage (new: GROW to stage 3 and the BRUTE), then break the fazenda's palisade and the big house while Lindqvist and Pieter run for the canoes. The solo pick plays the fazenda: burn three pens and get Lindqvist away before the Queen grows. All its words are stand-ins for now.",
 	]},

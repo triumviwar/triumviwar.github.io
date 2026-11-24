@@ -7,7 +7,7 @@ on it can remember, and the flood comes onto Lindqvist's island below Óbidos (p
 Mothers; in the flood they FIGHT EACH OTHER; the strongest roots in the biggest pen and GROWS into the Queen; every bred
 creature turns to the strongest call, and the leash breaks. Played as THE BROOD by default (the Naturalist line's second
 Brood play); the solo pick and versus play LINDQVIST'S PEOPLE (THE FAZENDA). EVERY LINE OF TEXT IS A PLACEHOLDER for the
-owner. "Linnea" is not used: the player's Mother is "your Mother", the others "the east pen's Mother" and "a wild Mother".
+owner. OWNER 2026-11-24: "Its ok to use linnea, but don't give it reason": the player's Mother is LINNEA (Lindqvist named her after b01's Linnea; the unit's name, the objective, his opening line, the death line); she is still only an animal, with no reason, want or plan. The others are "the east pen's Mother" and "a wild Mother".
 
 ## Files
 
