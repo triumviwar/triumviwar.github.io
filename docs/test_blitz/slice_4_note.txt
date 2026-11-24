@@ -1,0 +1,5 @@
+Slice 4 of 12 (27 tests). All 27 recorded FAIL, but the run is NOT a valid verdict on the code:
+Godot 4.7 had to be downloaded fresh in this cloud box, and the capped asset import
+(`--import`, 4 min cap) only reached ~59%. Every failure shows "Cannot call method
+'get_width'/'get_length' on a null value": textures/sounds not yet imported.
+Rerun this slice on a machine with a completed .godot/ import for real results.
