@@ -228,9 +228,19 @@ static func army_hold_d(siege) -> float:
 ## Barracks "stands idle for want of gold"; the Crown's labourers grow with its halls (AICrown.owner_lab_cap, the halls'
 ## saturation: 58-99 at 16:00-18:00) and from 12:00 the Brood's Raptors kill about 40 of them a game, so the gold of the
 ## late game goes on labourers who die walking, on their halls and Farms again, while the army sits at 60-70 supply.)
-## From LABS_FROM, against the Brood, the labourers stop at LATE_LABS: every coin past that goes to the army.
+## And in a quarter of the games the POWDER ran dry from 13:00-14:00 (0 banked) while the gold piled up (1,000-5,000) and
+## the army was not rebuilt: 4-8 hands on 4 Mills with thousands of saltpetre left. So:
+##  a. from LABS_FROM, against the Brood, the labourers stop at LATE_LABS: every coin past that goes to the army;
+##  b. from MILLS_FROM the Mill crew (AICrownMillCrew, on by default against the Clockwork only) works against the Brood
+##     too: when the army wants powder, every Mill is crewed toward its full 6.
 const LABS_FROM := 660.0        # (s) from 11:00
 const LATE_LABS := 60
+const MILLS_FROM := 600.0       # (s) from 10:00
+
+
+## AICrownMillCrew.enabled asks: the Mill crew on against the Brood now?
+static func mills_on(ai) -> bool:
+	return vs_brood(ai, "cap") and ai.game.clock >= MILLS_FROM
 
 
 ## The most labourers the Crown trains now (-1: no ceiling from this part).
