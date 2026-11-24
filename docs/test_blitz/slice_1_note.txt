@@ -1,0 +1,7 @@
+Slice 1 of 12 (tests at index i % 12 == 1 of the sorted tools/test_*.gd), main at ed7b05891 (0.38.199), Godot 4.7-stable headless, 2 cores.
+CAUTION: the asset import did NOT finish (capped: 200 s + 75 s before the run, ~10 min more during it, reached ~40%).
+Most "Cannot call method 'get_length' on a null value" failures (rc=134) are very likely un-imported audio in this
+environment, not real bugs: rerun those on a fully imported checkout before trusting them.
+Lines marked PASS with rc=134 printed a pass line and then crashed on exit (same missing-import noise).
+Failures worth a real look: test_gear_econ / test_great_winder / test_ride_by ('clock' on a base object),
+test_raid_kite ([kite] check), test_cw_lab (verdict FAIL only because "FAILS: 0" matched the grep), test_ai_placement (timeout 240 s).

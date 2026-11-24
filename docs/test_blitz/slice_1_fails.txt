@@ -1,0 +1,272 @@
+=== test_alert_all.gd FAIL rc=134
+   GDScript backtrace (most recent call first):
+       [0] _find (res://scripts/sfx.gd:92)
+       [1] has (res://scripts/sfx.gd:110)
+       [2] play_any (res://scripts/sfx.gd:137)
+       [3] under_attack (res://scripts/game.gd:10756)
+       [4] _run (res://tools/test_alert_all.gd:32)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] under_attack (res://scripts/game.gd:10756)
+              [3] _run (res://tools/test_alert_all.gd:32)
+PASS  clockwork: an attack on a unit raises the alarm
+DONE  0 failure(s)
+
+=== test_breeders_share.gd FAIL rc=134
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  computer: the 6 Horsemen ride out (52 s)
+PASS  computer: another Horseman queued ()
+PASS  computer: another Horseman queued ()
+PASS  computer: another Horseman queued ()
+PASS  computer: with 2 breeders done they hold the 3 horses
+PASS  computer: the breeder finished late takes over a waiting horse (queues 1 1 1)
+PASS  computer: all 3 breed again
+breeders share: ALL PASS
+
+=== test_brood_new_defence.gd FAIL rc=134
+              [5] _check_end (res://scripts/game.gd:10235)
+              [6] _tick_game (res://scripts/game.gd:10135)
+              [7] _physics_process (res://scripts/game.gd:10010)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] die (res://scripts/unit.gd:7062)
+              [3] _check_end (res://scripts/game.gd:10235)
+              [4] _tick_game (res://scripts/game.gd:10135)
+              [5] _physics_process (res://scripts/game.gd:10010)
+   killed by: {  }
+FAIL  muskets   [rooted] the Mother DIES, 0 hp of 2400 left after 76 s; 5 of 5 attackers left; 3 grubs
+brood_new_defence [rooted]: 1 failures
+
+=== test_campaign_b01.gd FAIL rc=134
+              [0] play (res://scripts/sfx.gd:258)
+              [1] play_any (res://scripts/sfx.gd:138)
+              [2] die (res://scripts/unit.gd:7062)
+              [3] _kill (res://tools/test_campaign_b01.gd:114)
+              [4] _defeats (res://tools/test_campaign_b01.gd:521)
+              [5] _start (res://tools/test_campaign_b01.gd:69)
+CHECK the Old Mother killed: the mission is lost                             ok 
+CHECK hub before: Lindqvist's Station, her crate, no egg of the plateau yet  ok 
+CHECK hub after (eggs saved): the warehouse at the Barra, the crate in the cellar ok 
+CHECK hub after (eggs burned): the singed notebook                           ok 
+CHECK the crate's talk: it grows                                             ok 
+CHECK the King's study after b01: Lindqvist held there                       ok 
+CHECK the King's words after b01                                             ok 
+CHECK the hub page: THE CRATE IN THE CELLAR listed                           ok 
+campaign_b01: 0 failures
+
+=== test_card_page_reset.gd FAIL rc=134
+       [2] draw_row (res://scripts/ui/unit_stats.gd:554)
+       [3] _draw_stats (res://scripts/ui/hud.gd:4417)
+       [4] _draw_panel (res://scripts/ui/hud.gd:4333)
+       [5] _draw_layer (res://scripts/ui/hud.gd:318)
+       [6] _draw (res://scripts/ui/hud.gd:277)
+ERROR: Failed loading resource: res://assets/ui/stats/health.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] texture (res://scripts/ui/unit_stats.gd:491)
+       [1] draw_icon (res://scripts/ui/unit_stats.gd:600)
+       [2] draw_row (res://scripts/ui/unit_stats.gd:554)
+       [3] _draw_stats (res://scripts/ui/hud.gd:4417)
+       [4] _draw_panel (res://scripts/ui/hud.gd:4333)
+       [5] _draw_layer (res://scripts/ui/hud.gd:318)
+       [6] _draw (res://scripts/ui/hud.gd:277)
+
+=== test_clock_soldier_shield.gd FAIL rc=134
+       [4] _draw_panel (res://scripts/ui/hud.gd:4333)
+       [5] _draw_layer (res://scripts/ui/hud.gd:318)
+       [6] _draw (res://scripts/ui/hud.gd:277)
+ERROR: Failed loading resource: res://assets/ui/stats/health.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] texture (res://scripts/ui/unit_stats.gd:491)
+       [1] draw_icon (res://scripts/ui/unit_stats.gd:600)
+       [2] draw_row (res://scripts/ui/unit_stats.gd:554)
+       [3] _draw_stats (res://scripts/ui/hud.gd:4417)
+       [4] _draw_panel (res://scripts/ui/hud.gd:4333)
+       [5] _draw_layer (res://scripts/ui/hud.gd:318)
+       [6] _draw (res://scripts/ui/hud.gd:277)
+CHECK online: the guest has the soldier                                            FAIL 
+FAIL (1)
+
+=== test_ai_placement.gd TIMEOUT rc=124
+[session] v0.38.199 menu
+[session] v0.38.199 match on whitecap_pass: crown vs crown (seed 777)
+[match] map ready
+whitecap_pass        crown     placed 54  other level 34 ["barracks", "horse_breeder", "foundry", "armoury", "church", "barracks", "foundry", "cottage", "barracks", "cottage", "foundry", "barracks", "cottage", "barracks", "cottage", "barracks", "cottage", "barracks", "horse_breeder", "foundry", "armoury", "church", "cottage", "barracks", "foundry", "cottage", "barracks", "cottage", "foundry", "barracks", "cottage", "barracks", "cottage", "barracks"]  with room up top  0  ok
+[session] v0.38.199 menu
+[session] v0.38.199 match on whitecap_pass: clockwork vs crown (seed 777)
+[match] map ready
+whitecap_pass        clockwork placed 18  other level  0 []  with room up top  0  ok
+[session] v0.38.199 menu
+[session] v0.38.199 match on kingsfield: crown vs crown (seed 777)
+[match] map ready
+kingsfield           crown     placed 54  other level 33 ["barracks", "horse_breeder", "foundry", "armoury", "barracks", "foundry", "cottage", "barracks", "cottage", "foundry", "barracks", "cottage", "barracks", "cottage", "barracks", "cottage", "barracks", "horse_breeder", "foundry", "armoury", "church", "cottage", "barracks", "foundry", "cottage", "barracks", "cottage", "foundry", "barracks", "cottage", "barracks", "cottage", "barracks"]  with room up top  0  ok
+[session] v0.38.199 menu
+[session] v0.38.199 match on kingsfield: clockwork vs crown (seed 777)
+[match] map ready
+
+=== test_crown_ghosts.gd FAIL rc=134
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  (i) Labourer sent away: the 8 unstarted pieces go, 120 refunded; 4 begun or built stay
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  (j) Shift-queued wall: every piece stays while queued (12 / 12)
+crown ghosts: PASS
+
+=== test_cw_lab.gd FAIL rc=0
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Cannot open file 'res://.godot/imported/zap.wav-51ca5993ec2cd41267f45d94af0c9e32.sample'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+ERROR: Failed loading resource: res://.godot/imported/zap.wav-51ca5993ec2cd41267f45d94af0c9e32.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/zap.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+CHECK a batch of Tin Militia comes out of the Works                  ok { "tin_militia": 4, "work_car": 1, "plate_wagon": 1 }
+CHECK a Work Car comes out of the Rail Yard, on the Line             ok { "tin_militia": 4, "work_car": 1, "plate_wagon": 1 }
+CHECK and a Plate Wagon                                              ok { "tin_militia": 4, "work_car": 1, "plate_wagon": 1 }
+CHECK work_car stands on the rails                                   ok 
+CHECK plate_wagon stands on the rails                                ok 
+FAILS: 0
+WARNING: 374 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+
+=== test_farm_square.gd FAIL rc=134
+ERROR: Failed loading resource: res://.godot/imported/zap.wav-51ca5993ec2cd41267f45d94af0c9e32.sample.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/audio/zap.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  labourers work the farm (crew 3)
+PASS  all 3 labourers are inside the footprint (3)
+PASS  the farm grows while worked (0.13)
+ALL PASS
+
+=== test_gear_econ.gd FAIL rc=1
+          at: restore (res://scripts/save_game.gd:494)
+          GDScript backtrace (most recent call first):
+              [0] restore (res://scripts/save_game.gd:494)
+              [1] _run (res://tools/test_gear_econ.gd:250)
+CHECK loaded: the big Mainspring and its store (400)                         FAIL 0
+CHECK loaded: the Tension (321; it may have wound a frame since)             FAIL 0.00
+CHECK loaded: the Works' drive comes back from the field (1)                 FAIL 
+CHECK loaded: the Works may still make Springers (it meshes with the Mainspring) FAIL 
+CHECK the guest sees the Tension and the store (of 400)                      ok 321 of 400
+CHECK the guest works out the same drive and Mainspring mesh for the Works   ok 
+RESULT: 4 failures
+WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2535)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
+
+=== test_cw_tier3_ai.gd FAIL rc=134
+       [4] _physics_process (res://scripts/building.gd:1086)
+ERROR: Failed loading resource: res://assets/voice/pendulum/select_3.wav.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _find (res://scripts/sfx.gd:95)
+       [1] voice (res://scripts/sfx.gd:420)
+       [2] spawn_trained (res://scripts/game.gd:4938)
+       [3] _tick_building (res://scripts/building.gd:1171)
+       [4] _physics_process (res://scripts/building.gd:1086)
+CHECK it trains Pendulums                                                    ok 1 after 114 s
+CHECK and Netters                                                            ok 3
+CHECK the Light Works stay on the small gear and never queued a Pendulum     ok 
+CHECK a few, not a whole army of them                                        ok 1 Pendulums, 3 Netters, 6 others
+CHECK its Netter nets the most dangerous enemy in reach (the Cuirassier)     ok cuirassier 1, labourer 0, 0.0 s
+ALL PASS
+
+=== test_horse_gate.gd FAIL rc=134
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+PASS  unlocked: horse follows through again (horse x=513)
+horse gate: ALL PASS
+
+=== test_great_winder.gd FAIL rc=134
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _work_sound (res://scripts/unit.gd:1948)
+              [2] _tick_unit (res://scripts/unit.gd:3733)
+              [3] _physics_process (res://scripts/unit.gd:3703)
+SCRIPT ERROR: Cannot call method 'get_length' on a null value.
+          at: play (res://scripts/sfx.gd:258)
+          GDScript backtrace (most recent call first):
+              [0] play (res://scripts/sfx.gd:258)
+              [1] _press_stamp (res://scripts/building.gd:857)
+              [2] _econ (res://scripts/building.gd:1033)
+              [3] _tick_building (res://scripts/building.gd:1130)
+              [4] _physics_process (res://scripts/building.gd:1086)
+CHECK the computer's Great Winder sweeps a fallen soldier by the army into cogs  ok swept 1, cogs +30
+CHECK and never leaves the army (at most 426 px from its middle)                 ok 57 px
+FAIL (3)
+
+=== test_raid_kite.gd FAIL rc=134
+[session] v0.38.199 match on greenhold: crown vs brood (seed 7)
+[match] map ready
+PASS  (set-up) the Rootmaw is rooted (deployed, idle)
+    kite: 1 grubs killed, 1 riders lost, 30 kite steps, raiders still out: 2, sire hp 968
+FAIL  [kite] 3 Horsemen with a Tyrant Sire chasing them kill at least 4 grubs in 30 s (1)
+PASS  [kite] ... and lose at most 1 rider (1)
+PASS  [kite] ... by keeping away from the Sire (30 kite steps)
+PASS  [swarm] with 8 Raptors coming the raid rides home (1972 -> 1306 px from home, 2 alive)
+[session] v0.38.199 menu
+[session] v0.38.199 match on greenhold: crown vs brood (seed 7)
+[match] map ready
+PASS  (set-up) the Rootmaw is rooted (deployed, idle)
+    smart Brood: 7 grubs killed, 0 riders lost, Sire went 0 px from where he was put (deployed); its notes: [[2.93333333333333, "a grub goes to root a Mound Turtle on new ground, 22 tiles out"], [16.2666666666666, "guards its grubs with 0 (0) against 1 riders at the Mother: no chase past 15 tiles"], [16.8, "rider read: 2 riders in its land at 0:16: Raptors now, its grubs kept by them, no chase"], [16.8, "riders in its land (2): grubs to the warriors, the warriors guard them, no chase"], [16.8, "scouted: AGGRESSIVE [a Horse Breeder or riders early] (1 halls, 0 production, 0 static defences, 120 of army seen): a rush is coming; defends first: its army home, warriors laid"], [21.2666666666669, "a Rootmaw under attack uproots to fight back (1 cuirassier)"], [36.5333333333338, "guards its grubs with 0 (0) against 3 riders at the Mother: no chase past 15 tiles"]]
+PASS  [smart] the Brood's computer never sends its Tyrant Sire after the fast riders (0 half-seconds on one)
+raid kite: FAILURES (1 failed)
+
+=== test_ride_by.gd FAIL rc=134
+[save] done
+PASS  HOLD POSITION: he stands and fights as before (moved 0 px, 72 damage, 0 passing blows)
+PASS  stopped, on guard: he stands and fights as before (moved 0 px, 72 damage)
+[save] 1:45  11 units, 2 buildings  mem 612 MB
+[save] done
+PASS  the Dragoon is unchanged: he rides up, dismounts and fires (20 damage)
+SCRIPT ERROR: Invalid access to property or key 'clock' on a base object of type 'Dictionary'.
+          at: restore (res://scripts/save_game.gd:494)
+          GDScript backtrace (most recent call first):
+              [0] restore (res://scripts/save_game.gd:494)
+              [1] _save_load (res://tools/test_ride_by.gd:419)
+              [2] wait (res://tools/test_ride_by.gd:58)
+FAIL  save and load in a fight keep the ride ([1, 112.0, 0.0, (-0.967, 0.253)] / []; order -)
+PASS  deterministic: two separate runs ride the same fight to the frame (450 frames 341ec300752c791f37a10f3edeb8e7f2 / 450 frames 341ec300752c791f37a10f3edeb8e7f2)
+1 FAILED
+
