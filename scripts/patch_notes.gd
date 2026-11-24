@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"THE CROWN AGAINST THE BROOD, LATE GAME, A STUDY (nothing changes in the game): three ways for the Crown computer's late game were built and measured in 132 games, each behind a test switch that is off: its guns set before an attack (a rider ahead, the push going forward in bounds with its guns unlimbered), its supply filled (the Mill crew against the Brood and the labourers stopping at 60), and a home guard left behind. The guns stood set when a fight began 68% of the time instead of 6%, but no part improved the result, so the game plays as before.",
+	]},
 	{"v": "0.38.199", "items": [
 		"The Queen: your Brood Mother is now called Linnea (Lindqvist named her after the first one). She is still only an animal.",
 	]},
