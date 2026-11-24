@@ -868,15 +868,19 @@ static func _hub_ironman(main: Node, list: VBoxContainer) -> void:
 ## A hub as the story has left it (clockwork-prologue-build): "after": {mission id: {"title", "about", "still",
 ## "hide_layers": [layer ids of the painting], "tint": [r, g, b]}} replaces those once that mission is finished (the
 ## later one wins), and a hotspot with "requires": a mission shows only after it, one with "until": a mission only
-## before it (Hollweg's workshop after the fall: he is gone, the machine keeps it).
+## before it (Hollweg's workshop after the fall: he is gone, the machine keeps it). An "after" key may be
+## "<mission>@<name>" with a "flag" (several versions after one mission: d07_spring).
 static func hub_now(hub: Dictionary, p: Dictionary) -> Dictionary:
 	var out: Dictionary = hub.duplicate()
 	var done: Dictionary = p.get("done", {})
 	for mid in hub.get("after", {}):
 		var af: Dictionary = hub["after"][mid]
-		if done.has(mid) and sides_ok(af, p):
+		# (d07-spring: a key "<mission>@<name>" is one of several versions after that mission, told apart by "flag"
+		# {"<mission>.<flag>": value} as a talk entry's: the coast after the great spring stopped, the spring's tower for
+		# the machine's player)
+		if done.has(String(mid).split("@")[0]) and sides_ok(af, p) and flags_ok(af.get("flag", {}), p):
 			for k in af:
-				if not (k in ["sides", "not_sides"]):
+				if not (k in ["sides", "not_sides", "flag"]):
 					out[k] = af[k]
 	out["hotspots"] = (hub.get("hotspots", []) as Array).filter(func(hs: Dictionary) -> bool:
 		return (String(hs.get("requires", "")) == "" or done.has(String(hs["requires"]))) \

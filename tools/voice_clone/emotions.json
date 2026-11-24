@@ -351,6 +351,18 @@
   "d08__v_won": "wonder",
   "d08__b_party_few": "grief",
   "d08__v_end_used_book": "grief",
-  "d08__s_quarter": "urgent"
+  "d08__s_quarter": "urgent",
+  "d07__mt_walk": "angry",
+  "d07__h_13": "wonder",
+  "d07__mt_13": "grief",
+  "d07__h_hold": "urgent",
+  "d07__ms_in": "grief",
+  "d07__h_hurt": "shout",
+  "d07__mt_hurt": "shout",
+  "d07__mt_brake_lost": "grief",
+  "d07__mt_stop": "grief",
+  "d07__h_end_stop": "grief",
+  "d07__u_turn": "urgent",
+  "d07__u_leap": "urgent"
  }
 }

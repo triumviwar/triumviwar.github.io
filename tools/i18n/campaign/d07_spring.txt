@@ -1,0 +1,657 @@
+# Act 2's mission d07_spring, "The Council of Gears" (campaign/missions/d07_spring.json, written with its texts by
+# tools/campaign/make_d07_mission.py: change the texts THERE and run it again; the plan: docs/campaign_act2_plan.md; what
+# was built: docs/campaign_d07_build.md). EVERY LINE IS A PLACEHOLDER for the owner. Names as d04: Winder = Enrolador /
+# Dador de cuerda; Meister = Mestre / maestro; Swift = Cuco; Ticking Owl = Coruja Tique-Taque / Búho Tictac; HIGH LEAP =
+# PULO ALTO / SALTO ALTO; Springer = Saltador (tools/i18n/10_air.txt and the research names).
+
+> The Nuremberg quarter's tower
+pt A torre do bairro de Nuremberg
+es La torre del barrio de Núremberg
+
+> A Nuremberg family's house
+pt A casa de uma família de Nuremberg
+es La casa de una familia de Núremberg
+
+> The Council Hall
+pt A Sala do Conselho
+es La Sala del Consejo
+
+> A master's house
+pt A casa de um mestre
+es La casa de un maestro
+
+> The Great Spring
+pt A Grande Mola
+es El Gran Muelle
+
+> FIND THE MESHING: stand a man of ours at the door of each pinged workshop a moment (the north road's press, the forge's Light Works, the mill's press, the market's press) and see what its machines do when nobody winds them. Found: {found} of 4.
+pt ENCONTRE O ENGRENAMENTO: ponha um dos nossos à porta de cada oficina assinalada um momento (a prensa da estrada do norte, a Oficina Leve da forja, a prensa do moinho, a prensa do mercado) e veja o que as máquinas fazem quando ninguém lhes dá corda. Encontrados: {found} de 4.
+es ENCUENTRA EL ENGRANAJE: pon a uno de los nuestros en la puerta de cada taller señalado un momento (la prensa del camino del norte, el Taller Ligero de la forja, la prensa del molino, la prensa del mercado) y mira qué hacen sus máquinas cuando nadie les da cuerda. Encontrados: {found} de 4.
+
+> Stand a man at each pinged workshop's door: {found} of 4.
+pt Ponha um homem à porta de cada oficina assinalada: {found} de 4.
+es Pon a un hombre en la puerta de cada taller señalado: {found} de 4.
+
+> THE NIGHT WATCH: research TICKING OWL at the Clock Aviary, then pick a Swift and press MORPH TO OWL. Owls: {owls} of 2. An owl sees far in the dark, swoops on machines and drops its weight on buildings.
+pt A VIGIA DA NOITE: pesquise CORUJA TIQUE-TAQUE na Casa do Cuco, depois escolha um Cuco e aperte VIRAR CORUJA. Corujas: {owls} de 2. Uma coruja vê longe no escuro, ataca as máquinas e deixa cair o seu peso sobre os edifícios.
+es LA GUARDIA DE NOCHE: investiga BÚHO TICTAC en la Casa del Cuco, luego elige un Cuco y pulsa CONVERTIR EN BÚHO. Búhos: {owls} de 2. Un búho ve lejos en la oscuridad, se lanza sobre las máquinas y deja caer su peso sobre los edificios.
+
+> Research TICKING OWL at the Aviary, morph two Swifts: {owls} of 2.
+pt Pesquise CORUJA TIQUE-TAQUE na Casa do Cuco, transforme dois Cucos: {owls} de 2.
+es Investiga BÚHO TICTAC en la Casa del Cuco, convierte dos Cucos: {owls} de 2.
+
+> The Council Hall must not turn: keep a man of ours by its door whenever the machine comes to it.
+pt A Sala do Conselho não pode virar: mantenha um dos nossos junto à porta sempre que a máquina vier até ela.
+es La Sala del Consejo no debe volverse: mantén a uno de los nuestros junto a su puerta siempre que la máquina llegue a ella.
+
+> The Nuremberg quarter must stand: its tower, and {houses} of {houses_n} families' houses.
+pt O bairro de Nuremberg tem de ficar de pé: a sua torre, e {houses} de {houses_n} casas das famílias.
+es El barrio de Núremberg debe seguir en pie: su torre, y {houses} de {houses_n} casas de las familias.
+
+> Meister Hollweg must live. Hurt, he falls back to the quarter.
+pt O Mestre Hollweg tem de viver. Ferido, recua para o bairro.
+es El maestro Hollweg debe vivir. Herido, se retira al barrio.
+
+> THE CITY TURNS, building by building from the great spring outward: a red ring shows the next one a few seconds before. Turned: {turned} of 9. Each quarter that turns sends its machines against the hall and our quarter.
+pt A CIDADE VIRA, edifício a edifício a partir da grande mola: um anel vermelho mostra o próximo uns segundos antes. Viraram: {turned} de 9. Cada bairro que vira manda as suas máquinas contra a sala e o nosso bairro.
+es LA CIUDAD SE VUELVE, edificio a edificio desde el gran muelle hacia fuera: un anillo rojo muestra el siguiente unos segundos antes. Vueltos: {turned} de 9. Cada barrio que se vuelve manda sus máquinas contra la sala y nuestro barrio.
+
+> BRING THE HONEST MASTERS OUT: Kessler at the forge (east), Brandl at the mill (south-east), Weiss at the market (south). Reach each at his house before his quarter turns and he comes to our quarter. Brought out: {honest_n} of 3.
+pt TRAGA OS MESTRES HONESTOS: Kessler na forja (leste), Brandl no moinho (sudeste), Weiss no mercado (sul). Chegue a cada um na sua casa antes que o bairro dele vire e ele vem para o nosso bairro. Trazidos: {honest_n} de 3.
+es SACA A LOS MAESTROS HONRADOS: Kessler en la forja (este), Brandl en el molino (sureste), Weiss en el mercado (sur). Llega a cada uno en su casa antes de que su barrio se vuelva y vendrá a nuestro barrio. Sacados: {honest_n} de 3.
+
+> Reach the three masters before their quarters turn: {honest_n} of 3.
+pt Chegue aos três mestres antes que os bairros virem: {honest_n} de 3.
+es Llega a los tres maestros antes de que sus barrios se vuelvan: {honest_n} de 3.
+
+> A turned workshop sends machines against us every minute until it is broken: break them (the owls drop their weights on buildings). Broken: {broken_n}.
+pt Uma oficina virada manda máquinas contra nós a cada minuto até ser destruída: destrua-as (as corujas deixam cair os seus pesos sobre os edifícios). Destruídas: {broken_n}.
+es Un taller vuelto nos manda máquinas cada minuto hasta que se rompe: rómpelos (los búhos dejan caer sus pesos sobre los edificios). Rotos: {broken_n}.
+
+> Before dawn, research HIGH LEAP at the Escapement: your Springers will jump UP a cliff where one of ours (an owl above it) sees the top.
+pt Antes do amanhecer, pesquise PULO ALTO no Escape: os seus Saltadores vão saltar PARA CIMA de uma falésia onde um dos nossos (uma coruja por cima) veja o topo.
+es Antes del amanecer, investiga SALTO ALTO en el Escape: tus Saltadores saltarán ARRIBA de un acantilado donde uno de los nuestros (un búho encima) vea la cima.
+
+> THE GREAT SPRING: bring Meister Hollweg up the mine hill (north-east) to the brake by the spring's tower and keep him there a moment. The machine holds both stairs (west and south): jump Springers up the cliff beside a stair where an owl sees, and take them from behind.
+pt A GRANDE MOLA: leve o Mestre Hollweg ao monte da mina (nordeste), ao travão junto à torre da mola, e mantenha-o lá um momento. A máquina segura as duas escadas (oeste e sul): faça os Saltadores saltar a falésia ao lado de uma escada onde uma coruja veja, e apanhe-os por trás.
+es EL GRAN MUELLE: lleva al maestro Hollweg al monte de la mina (noreste), al freno junto a la torre del muelle, y mantenlo allí un momento. La máquina sostiene las dos escaleras (oeste y sur): haz saltar a los Saltadores el acantilado junto a una escalera donde un búho vea, y cógelos por detrás.
+
+> Bring Hollweg up the hill to the brake. Springers can leap up where an owl sees.
+pt Leve Hollweg ao travão no monte. Os Saltadores saltam onde uma coruja vê.
+es Lleva a Hollweg al freno del monte. Los Saltadores saltan donde un búho ve.
+
+> At noon the council sits again, and votes the brake away: {clock:noon}.
+pt Ao meio-dia o conselho volta a reunir-se, e vota contra o travão: {clock:noon}.
+es A mediodía el consejo vuelve a reunirse, y vota contra el freno: {clock:noon}.
+
+> Turn the COUNCIL HALL: stand three of your fighters at its door with none of the masters' men by it, a few seconds. Or break the Nuremberg quarter's tower.
+pt Vire a SALA DO CONSELHO: ponha três dos seus combatentes à porta dela sem nenhum homem dos mestres ao lado, uns segundos. Ou destrua a torre do bairro de Nuremberg.
+es Vuelve la SALA DEL CONSEJO: pon a tres de tus combatientes en su puerta sin ningún hombre de los maestros a su lado, unos segundos. O rompe la torre del barrio de Núremberg.
+
+> The city turns to you by itself, nearest the spring first. Stand your men at any of the city's buildings a moment and it turns at once: choose. Turned: {turned} of 9.
+pt A cidade vira para si sozinha, primeiro a mais perto da mola. Ponha os seus homens junto a qualquer edifício da cidade um momento e ele vira de imediato: escolha. Viraram: {turned} de 9.
+es La ciudad se vuelve hacia ti sola, primero lo más cerca del muelle. Pon a tus hombres junto a cualquier edificio de la ciudad un momento y se vuelve enseguida: elige. Vueltos: {turned} de 9.
+
+> Dawn in {clock:dawn_m}: by then the hall must be yours.
+pt Amanhecer em {clock:dawn_m}: até lá a sala tem de ser sua.
+es Amanecer en {clock:dawn_m}: para entonces la sala debe ser tuya.
+
+> Concórdia, 2777. The city's machines have begun to vote through the masters who wind them. One night the whole city turns, and Hollweg climbs to the great spring.
+pt Concórdia, 2777. As máquinas da cidade começaram a votar pela mão dos mestres que lhes dão corda. Numa noite a cidade inteira vira, e Hollweg sobe à grande mola.
+es Concórdia, 2777. Las máquinas de la ciudad han empezado a votar por medio de los maestros que les dan cuerda. Una noche la ciudad entera se vuelve, y Hollweg sube al gran muelle.
+
+> The Honest Masters
+pt Os Mestres Honestos
+es Los Maestros Honrados
+
+> Meister Hollweg, Matthias and the masters of the Nuremberg quarter, with their own machines.
+pt O Mestre Hollweg, Matthias e os mestres do bairro de Nuremberg, com as suas próprias máquinas.
+es El maestro Hollweg, Matthias y los maestros del barrio de Núremberg, con sus propias máquinas.
+
+> The Machine in the City
+pt A Máquina na Cidade
+es La Máquina en la Ciudad
+
+> The meshed automata and workshops of Concórdia, and the great spring that drives them.
+pt Os autómatos e as oficinas engrenados de Concórdia, e a grande mola que os move.
+es Los autómatas y los talleres engranados de Concórdia, y el gran muelle que los mueve.
+
+> Matthias
+pt Matthias
+es Matthias
+
+> Master Ortlieb
+pt Mestre Ortlieb
+es Maestro Ortlieb
+
+> A master of Concórdia
+pt Um mestre de Concórdia
+es Un maestro de Concórdia
+
+> Narration · Concórdia
+pt Narração · Concórdia
+es Narración · Concórdia
+
+> He tells it as the night his city was tested and held. I tell it as the night it was lost. Listen to both, and judge.
+pt Ele conta-o como a noite em que a sua cidade foi posta à prova e resistiu. Eu conto-o como a noite em que se perdeu. Ouve os dois, e julga.
+es Él lo cuenta como la noche en que su ciudad fue puesta a prueba y resistió. Yo lo cuento como la noche en que se perdió. Escucha a los dos, y juzga.
+
+> Four years. Three thousand souls, a hundred machines, a council that sat at noon when the tower struck. Concórdia.
+pt Quatro anos. Três mil almas, cem máquinas, um conselho que se reunia ao meio-dia quando a torre batia. Concórdia.
+es Cuatro años. Tres mil almas, cien máquinas, un consejo que se reunía a mediodía cuando la torre daba la hora. Concórdia.
+
+> The plates from the crates had reached every street by then. They wound whatever stood on them. I called them a gift.
+pt As placas dos caixotes já tinham chegado a todas as ruas. Davam corda a tudo o que estivesse em cima delas. Eu chamava-lhes um presente.
+es Las placas de las cajas ya habían llegado a todas las calles. Daban cuerda a todo lo que estuviera encima. Yo las llamaba un regalo.
+
+> The council of masters sits in the hall on the square. Master Ortlieb has a motion.
+pt O conselho dos mestres reúne-se na sala da praça. O Mestre Ortlieb tem uma proposta.
+es El consejo de maestros se reúne en la sala de la plaza. El maestro Ortlieb tiene una propuesta.
+
+> The machines are wound by hand every night, and the masters are tired. Let them wind one another, as they ask. Who is for it?
+pt As máquinas levam corda à mão todas as noites, e os mestres estão cansados. Que deem corda umas às outras, como pedem. Quem é a favor?
+es Las máquinas reciben cuerda a mano cada noche, y los maestros están cansados. Que se den cuerda unas a otras, como piden. ¿Quién está a favor?
+
+> As they ask? Since when does a machine ask for anything?
+pt Como pedem? Desde quando uma máquina pede alguma coisa?
+es ¿Como piden? ¿Desde cuándo una máquina pide algo?
+
+> Count the hands, Meister. Every man voting for it winds a machine at night. I have counted votes before. These are not free.
+pt Conte as mãos, Mestre. Todos os que votam a favor dão corda a uma máquina de noite. Já contei votos antes. Estes não são livres.
+es Cuenta las manos, maestro. Todos los que votan a favor dan cuerda a una máquina de noche. He contado votos antes. Estos no son libres.
+
+> Labour spared is a man set free. I vote with the motion, and so should the Meister.
+pt Trabalho poupado é um homem libertado. Voto com a proposta, e o Mestre devia fazer o mesmo.
+es Trabajo ahorrado es un hombre liberado. Voto con la propuesta, y el maestro debería hacer lo mismo.
+
+> The motion carries. Every master who winds a machine raised his hand.
+pt A proposta passa. Todos os mestres que dão corda a uma máquina levantaram a mão.
+es La propuesta sale adelante. Todos los maestros que dan cuerda a una máquina levantaron la mano.
+
+> Carried. That is the council's way. I built it so.
+pt Aprovada. É o caminho do conselho. Fui eu que o construí assim.
+es Aprobada. Es el camino del consejo. Yo lo construí así.
+
+> Then the Nuremberg men walk out, Meister. Come and see what the machines do at night when nobody winds them. Or don't.
+pt Então os homens de Nuremberg saem, Mestre. Venha ver o que as máquinas fazem de noite quando ninguém lhes dá corda. Ou não venha.
+es Entonces los hombres de Núremberg se van, maestro. Venga a ver qué hacen las máquinas de noche cuando nadie les da cuerda. O no venga.
+
+> The honest masters walk out of the hall behind Jakob's son. Hollweg goes with them, to prove them wrong.
+pt Os mestres honestos saem da sala atrás do filho de Jakob. Hollweg vai com eles, para lhes provar que estão errados.
+es Los maestros honrados salen de la sala tras el hijo de Jakob. Hollweg va con ellos, para demostrarles que se equivocan.
+
+> Most of the Nuremberg families' masters go with them.
+pt A maior parte dos mestres das famílias de Nuremberg vai com eles.
+es La mayoría de los maestros de las familias de Núremberg va con ellos.
+
+> Only a handful go with them.
+pt Só um punhado vai com eles.
+es Solo un puñado va con ellos.
+
+> My father taught me the signs at Fürth, from the log he kept in Nuremberg. Four workshops, Meister. We look at each, and you will see.
+pt O meu pai ensinou-me os sinais em Fürth, pelo registo que guardou em Nuremberg. Quatro oficinas, Mestre. Olhamos para cada uma, e vai ver.
+es Mi padre me enseñó las señales en Fürth, con el registro que guardó en Núremberg. Cuatro talleres, maestro. Miramos cada uno, y lo verá.
+
+> My father wrote the signs down in Nuremberg, God rest him. Four workshops, Meister. We look at each, and you will see.
+pt O meu pai escreveu os sinais em Nuremberg, que Deus o tenha. Quatro oficinas, Mestre. Olhamos para cada uma, e vai ver.
+es Mi padre escribió las señales en Núremberg, que Dios lo tenga. Cuatro talleres, maestro. Miramos cada uno, y lo verá.
+
+> The four doors are pinged on the map, Meister. A man of ours at each door a moment is enough. Split the soldiers: four small groups go faster than one.
+pt As quatro portas estão assinaladas no mapa, Mestre. Um dos nossos a cada porta um momento basta. Divida os soldados: quatro grupos pequenos vão mais depressa que um.
+es Las cuatro puertas están señaladas en el mapa, maestro. Uno de los nuestros en cada puerta un momento basta. Divide a los soldados: cuatro grupos pequeños van más deprisa que uno.
+
+> Go and look, then. You will find honest machines and tired men.
+pt Vão ver, então. Vão encontrar máquinas honestas e homens cansados.
+es Id a mirar, pues. Encontraréis máquinas honradas y hombres cansados.
+
+> In the press-house on the north road a Winder winds another Winder, and that one winds the first.
+pt Na casa da prensa da estrada do norte um Enrolador dá corda a outro Enrolador, e esse dá corda ao primeiro.
+es En la casa de la prensa del camino del norte un Dador de cuerda da cuerda a otro, y ese da cuerda al primero.
+
+> In the forge quarter the Light Works is building a soldier nobody ordered.
+pt No bairro da forja a Oficina Leve está a construir um soldado que ninguém encomendou.
+es En el barrio de la forja el Taller Ligero está construyendo un soldado que nadie encargó.
+
+> At the mill the plates under the floor turn with nobody on them, all in time with the great spring on the hill.
+pt No moinho as placas debaixo do chão giram sem ninguém em cima, todas a tempo com a grande mola no monte.
+es En el molino las placas bajo el suelo giran sin nadie encima, todas a tiempo con el gran muelle del monte.
+
+> In the market the scales are set by a machine, and every weight on them is a cog.
+pt No mercado as balanças são acertadas por uma máquina, e cada peso nelas é uma engrenagem.
+es En el mercado las balanzas las ajusta una máquina, y cada pesa es un engranaje.
+
+> The machines in the doorway stop. Then they turn on the man who watched them.
+pt As máquinas à porta param. Depois viram-se contra o homem que as observou.
+es Las máquinas de la puerta se detienen. Luego se vuelven contra el hombre que las miró.
+
+> A fault in the winding. Every machine can be mended. I said so then.
+pt Uma falha na corda. Qualquer máquina se pode consertar. Foi o que eu disse na altura.
+es Un fallo en la cuerda. Toda máquina se puede arreglar. Eso dije entonces.
+
+> It is not a fault, Meister. It is Nuremberg again. It is the same pattern.
+pt Não é uma falha, Mestre. É Nuremberg outra vez. É o mesmo padrão.
+es No es un fallo, maestro. Es Núremberg otra vez. Es el mismo patrón.
+
+> The Swifts see nothing at night, Meister. Research the TICKING OWL at the Clock Aviary: an owl sees in the dark, and it bites.
+pt Os Cucos não veem nada de noite, Mestre. Pesquise a CORUJA TIQUE-TAQUE na Casa do Cuco: uma coruja vê no escuro, e morde.
+es Los Cucos no ven nada de noche, maestro. Investiga el BÚHO TICTAC en la Casa del Cuco: un búho ve en la oscuridad, y muerde.
+
+> The plans are in. Pick a Swift and press MORPH TO OWL; do it to both.
+pt Os planos estão prontos. Escolha um Cuco e aperte VIRAR CORUJA; faça-o aos dois.
+es Los planos están listos. Elige un Cuco y pulsa CONVERTIR EN BÚHO; hazlo con los dos.
+
+> My night watch. Brass owls over a brass city. I was proud of them.
+pt A minha vigia da noite. Corujas de latão sobre uma cidade de latão. Tinha orgulho nelas.
+es Mi guardia de noche. Búhos de latón sobre una ciudad de latón. Estaba orgulloso de ellos.
+
+> On the mine hill the great spring's tower strikes. Twelve. And then thirteen.
+pt No monte da mina a torre da grande mola bate. Doze. E depois treze.
+es En el monte de la mina la torre del gran muelle da la hora. Doce. Y luego trece.
+
+> There is no thirteen on that dial. I cut it myself.
+pt Não há treze naquele mostrador. Fui eu que o fiz.
+es No hay trece en esa esfera. La hice yo mismo.
+
+> Nuremberg struck thirteen too, Meister. My father heard it.
+pt Nuremberg também bateu as treze, Mestre. O meu pai ouviu.
+es Núremberg también dio las trece, maestro. Mi padre lo oyó.
+
+> From the hill outward, the city's lamps go red, one workshop after another.
+pt Do monte para fora, as lâmpadas da cidade ficam vermelhas, uma oficina atrás da outra.
+es Desde el monte hacia fuera, las lámparas de la ciudad se vuelven rojas, un taller tras otro.
+
+> The red ring shows the next one to turn, Meister, a few seconds before. Its machines go with it.
+pt O anel vermelho mostra o próximo a virar, Mestre, uns segundos antes. As máquinas dele vão com ele.
+es El anillo rojo muestra el siguiente en volverse, maestro, unos segundos antes. Sus máquinas se van con él.
+
+> Three honest masters live out in the quarters: Kessler at the forge, Brandl at the mill, Weiss at the market. Get a man to each before his quarter turns.
+pt Três mestres honestos vivem nos bairros: Kessler na forja, Brandl no moinho, Weiss no mercado. Leve um homem a cada um antes que o bairro dele vire.
+es Tres maestros honrados viven en los barrios: Kessler en la forja, Brandl en el molino, Weiss en el mercado. Lleva a un hombre a cada uno antes de que su barrio se vuelva.
+
+> Hold the council hall and our quarter. Whatever the city does tonight, the hall must not turn.
+pt Segurem a sala do conselho e o nosso bairro. Faça a cidade o que fizer esta noite, a sala não pode virar.
+es Sostened la sala del consejo y nuestro barrio. Haga lo que haga la ciudad esta noche, la sala no debe volverse.
+
+> The great spring stands on the mine hill, and they will hold its stairs. Research HIGH LEAP at the Escapement now: by dawn the Springers must jump up that cliff.
+pt A grande mola está no monte da mina, e vão segurar as escadas. Pesquise o PULO ALTO no Escape agora: ao amanhecer os Saltadores têm de saltar aquela falésia.
+es El gran muelle está en el monte de la mina, y sostendrán sus escaleras. Investiga el SALTO ALTO en el Escape ahora: al amanecer los Saltadores deben saltar ese acantilado.
+
+> A turned workshop keeps sending machines, Meister, every minute. Break it: the owls drop their weights on buildings.
+pt Uma oficina virada continua a mandar máquinas, Mestre, a cada minuto. Destrua-a: as corujas deixam cair os seus pesos sobre os edifícios.
+es Un taller vuelto sigue mandando máquinas, maestro, cada minuto. Rómpelo: los búhos dejan caer sus pesos sobre los edificios.
+
+> A quarter has turned. Its machines march on the square.
+pt Um bairro virou. As suas máquinas marcham sobre a praça.
+es Un barrio se ha vuelto. Sus máquinas marchan sobre la plaza.
+
+> An honest master comes over to the Nuremberg quarter.
+pt Um mestre honesto passa para o bairro de Nuremberg.
+es Un maestro honrado pasa al barrio de Núremberg.
+
+> Thank God. I thought nobody would come for me. They were winding each other in my yard.
+pt Graças a Deus. Pensei que ninguém viesse buscar-me. Estavam a dar corda uns aos outros no meu pátio.
+es Gracias a Dios. Pensé que nadie vendría por mí. Se estaban dando cuerda unos a otros en mi patio.
+
+> A master's quarter turned before anybody reached him. He stands among his machines now, and argues for them.
+pt O bairro de um mestre virou antes que alguém chegasse a ele. Agora está entre as suas máquinas, e defende-as.
+es El barrio de un maestro se volvió antes de que nadie llegara a él. Ahora está entre sus máquinas, y las defiende.
+
+> In the quarter's yard, under their sheets, the broken ones from Fürth stand up.
+pt No pátio do bairro, debaixo dos lençóis, os avariados de Fürth levantam-se.
+es En el patio del barrio, bajo sus sábanas, los averiados de Fürth se levantan.
+
+> I kept them to learn from them. They had learned more than I had.
+pt Guardei-os para aprender com eles. Eles tinham aprendido mais do que eu.
+es Los guardé para aprender de ellos. Ellos habían aprendido más que yo.
+
+> Riders on the valley road: Captain Arruda, with the valley's militia.
+pt Cavaleiros na estrada do vale: o Capitão Arruda, com a milícia do vale.
+es Jinetes en el camino del valle: el capitán Arruda, con la milicia del valle.
+
+> I took your word down the hill four years ago, clockmaker. I keep mine. Where do you want us?
+pt Levei a sua palavra colina abaixo há quatro anos, relojoeiro. Eu cumpro a minha. Onde nos quer?
+es Llevé tu palabra colina abajo hace cuatro años, relojero. Yo cumplo la mía. ¿Dónde nos quieres?
+
+> At the council hall's door, Captain. And God bless you for it.
+pt À porta da sala do conselho, Capitão. E que Deus o abençoe por isso.
+es En la puerta de la sala del consejo, capitán. Y que Dios te bendiga por ello.
+
+> Down in the valley the church bells ring for the red lamps on the hill. Nobody comes up the road.
+pt Lá em baixo, no vale, os sinos tocam pelas lâmpadas vermelhas no monte. Ninguém sobe a estrada.
+es Abajo, en el valle, las campanas tocan por las lámparas rojas del monte. Nadie sube por el camino.
+
+> It was never a council, Meister. It was a clock with men for hands. I should have said so at the first vote.
+pt Nunca foi um conselho, Mestre. Era um relógio com homens por ponteiros. Devia tê-lo dito na primeira votação.
+es Nunca fue un consejo, maestro. Era un reloj con hombres por manecillas. Debí decirlo en la primera votación.
+
+> Machines that choose their own work. Is that not what the Assembly fought for?
+pt Máquinas que escolhem o seu próprio trabalho. Não foi por isso que a Assembleia lutou?
+es Máquinas que eligen su propio trabajo. ¿No es por eso por lo que luchó la Asamblea?
+
+> Be quiet, Citizen.
+pt Cale-se, Cidadão.
+es Cállate, ciudadano.
+
+> Machines at the council hall's door!
+pt Máquinas à porta da sala do conselho!
+es ¡Máquinas en la puerta de la sala del consejo!
+
+> Grey dawn over the highlands. The whole city is red but the Nuremberg quarter and the council hall.
+pt Amanhecer cinzento sobre as terras altas. A cidade inteira está vermelha, menos o bairro de Nuremberg e a sala do conselho.
+es Amanecer gris sobre las tierras altas. Toda la ciudad está roja salvo el barrio de Núremberg y la sala del consejo.
+
+> The great spring. There is a brake on it: I fitted it myself, the year we founded the city. Take me up there.
+pt A grande mola. Tem um travão: fui eu que o pus, no ano em que fundámos a cidade. Levem-me lá acima.
+es El gran muelle. Tiene un freno: lo puse yo mismo, el año en que fundamos la ciudad. Llevadme allí arriba.
+
+> They hold both stairs, Meister. Muskets would not get up there. Springers might.
+pt Seguram as duas escadas, Mestre. Mosquetes não chegariam lá acima. Saltadores talvez.
+es Sostienen las dos escaleras, maestro. Los mosquetes no llegarían allí arriba. Los Saltadores, quizá.
+
+> Put an owl over the hilltop beside a stair. Then pick the Springers, press JUMP and click the top: they land behind the stair's guard.
+pt Ponha uma coruja por cima do topo do monte ao lado de uma escada. Depois escolha os Saltadores, aperte SALTAR e clique no topo: aterram atrás da guarda da escada.
+es Pon un búho sobre la cima junto a una escalera. Luego elige a los Saltadores, pulsa SALTAR y haz clic en la cima: aterrizan detrás de la guardia de la escalera.
+
+> Hollweg's hands on the great brake. The spring hums under it like a living thing.
+pt As mãos de Hollweg no grande travão. A mola zumbe por baixo como uma coisa viva.
+es Las manos de Hollweg en el gran freno. El muelle zumba debajo como una cosa viva.
+
+> If I pull it, everything stops. Theirs, and ours. Every machine in Concórdia, for a season or for good.
+pt Se o puxar, tudo para. As deles, e as nossas. Todas as máquinas de Concórdia, por uma estação ou para sempre.
+es Si lo tiro, todo se para. Las suyas, y las nuestras. Todas las máquinas de Concórdia, por una estación o para siempre.
+
+> Pull it, Meister. My father would. A machine that has to be stopped is stopped.
+pt Puxe-o, Mestre. O meu pai puxava. Uma máquina que tem de ser parada para-se.
+es Tírelo, maestro. Mi padre lo haría. Una máquina que hay que parar se para.
+
+> Pull it, Meister. My father died because nobody stopped the first one.
+pt Puxe-o, Mestre. O meu pai morreu porque ninguém parou a primeira.
+es Tírelo, maestro. Mi padre murió porque nadie paró la primera.
+
+> Your city, your hand. I only say this: I have watched men decide they could stop a thing later.
+pt A sua cidade, a sua mão. Só digo isto: já vi homens decidirem que podiam parar uma coisa mais tarde.
+es Tu ciudad, tu mano. Solo digo esto: he visto a hombres decidir que podían parar una cosa más tarde.
+
+> Pull it and you kill the city we built. Leave it. We beat them in the streets.
+pt Puxe-o e mata a cidade que construímos. Deixe-a. Vencemo-los nas ruas.
+es Tíralo y matas la ciudad que construimos. Déjala. Los vencimos en las calles.
+
+> We beat them in the quarters we saved. The rest can be mended. It is my city.
+pt Vencemo-los nos bairros que salvámos. O resto pode consertar-se. É a minha cidade.
+es Los vencimos en los barrios que salvamos. Lo demás se puede arreglar. Es mi ciudad.
+
+> THE GREAT SPRING. Stop it: every machine in the city stops, ours too, and the honest masters take their families to the coast. Let it run: the city goes on, and Hollweg stays its master.
+pt A GRANDE MOLA. Pará-la: todas as máquinas da cidade param, também as nossas, e os mestres honestos levam as famílias para a costa. Deixá-la correr: a cidade continua, e Hollweg fica seu mestre.
+es EL GRAN MUELLE. Pararlo: todas las máquinas de la ciudad se paran, también las nuestras, y los maestros honrados llevan a sus familias a la costa. Dejarlo correr: la ciudad sigue, y Hollweg sigue siendo su amo.
+
+> I pulled it.
+pt Puxei-o.
+es Lo tiré.
+
+> Every machine in Concórdia stops at once: the red ones, and the honest ones beside them.
+pt Todas as máquinas de Concórdia param ao mesmo tempo: as vermelhas, e as honestas ao lado delas.
+es Todas las máquinas de Concórdia se paran a la vez: las rojas, y las honradas a su lado.
+
+> Thank you, Meister.
+pt Obrigado, Mestre.
+es Gracias, maestro.
+
+> No. I let it run. We had won.
+pt Não. Deixei-a correr. Tínhamos ganho.
+es No. Lo dejé correr. Habíamos ganado.
+
+> The red lamps dim. The city's machines stand still in the streets, as if they had heard him.
+pt As lâmpadas vermelhas esmorecem. As máquinas da cidade ficam paradas nas ruas, como se o tivessem ouvido.
+es Las lámparas rojas se apagan. Las máquinas de la ciudad se quedan quietas en las calles, como si lo hubieran oído.
+
+> As if, Meister.
+pt Como se, Mestre.
+es Como si, maestro.
+
+> I am hit. Never mind me: hold the hall.
+pt Fui atingido. Não se preocupem comigo: segurem a sala.
+es Me han dado. No os preocupéis por mí: sostened la sala.
+
+> I'm hit! Keep going, I'll come back to you.
+pt Fui atingido! Continuem, eu volto.
+es ¡Me han dado! Seguid, ya volveré.
+
+> The council hall's lamps go red. The council of Concórdia is the machine's.
+pt As lâmpadas da sala do conselho ficam vermelhas. O conselho de Concórdia é da máquina.
+es Las lámparas de la sala del consejo se vuelven rojas. El consejo de Concórdia es de la máquina.
+
+> The Nuremberg quarter has fallen. There is nobody left in Concórdia to wind a machine by hand.
+pt O bairro de Nuremberg caiu. Já não há ninguém em Concórdia para dar corda a uma máquina à mão.
+es El barrio de Núremberg ha caído. Ya no queda nadie en Concórdia para dar cuerda a una máquina a mano.
+
+> Noon. The tower strikes, the council sits, and every wound master votes to take the brake off the great spring.
+pt Meio-dia. A torre bate, o conselho reúne-se, e todos os mestres com corda votam para tirar o travão da grande mola.
+es Mediodía. La torre da la hora, el consejo se reúne, y todos los maestros con cuerda votan quitar el freno del gran muelle.
+
+> The great spring turns on the mine hill. Every plate under every street turns with it. The council has voted.
+pt A grande mola gira no monte da mina. Cada placa debaixo de cada rua gira com ela. O conselho votou.
+es El gran muelle gira en el monte de la mina. Cada placa bajo cada calle gira con él. El consejo ha votado.
+
+> The city's buildings turn by themselves, nearest the spring first. Stand your machines at any of them a moment to turn it now. The hall on the square is the prize.
+pt Os edifícios da cidade viram sozinhos, primeiro os mais perto da mola. Ponha as suas máquinas junto a qualquer um deles um momento para o virar já. A sala da praça é o prémio.
+es Los edificios de la ciudad se vuelven solos, primero los más cercanos al muelle. Pon tus máquinas junto a cualquiera de ellos un momento para volverlo ya. La sala de la plaza es el premio.
+
+> Dawn. The honest masters still hold the hall and their quarter, and Hollweg climbs to the great spring.
+pt Amanhecer. Os mestres honestos ainda seguram a sala e o seu bairro, e Hollweg sobe à grande mola.
+es Amanecer. Los maestros honrados aún sostienen la sala y su barrio, y Hollweg sube al gran muelle.
+
+> In a week we were on the coast road: the Nuremberg families, the honest masters, two carts of tools. Behind us the city stood silent, dead brass.
+pt Numa semana estávamos na estrada da costa: as famílias de Nuremberg, os mestres honestos, duas carroças de ferramentas. Atrás de nós a cidade ficou em silêncio, latão morto.
+es En una semana estábamos en el camino de la costa: las familias de Núremberg, los maestros honrados, dos carros de herramientas. Detrás, la ciudad quedó en silencio, latón muerto.
+
+> The council met again at noon. Half the chairs were empty. I sat at the head of the table and called the city saved.
+pt O conselho reuniu-se de novo ao meio-dia. Metade das cadeiras estavam vazias. Sentei-me à cabeceira da mesa e disse que a cidade estava salva.
+es El consejo volvió a reunirse a mediodía. La mitad de las sillas estaban vacías. Me senté a la cabecera de la mesa y dije que la ciudad estaba salvada.
+
+> Kessler, Brandl and Weiss stood with us. Three honest masters out of a whole council.
+pt Kessler, Brandl e Weiss ficaram connosco. Três mestres honestos num conselho inteiro.
+es Kessler, Brandl y Weiss se quedaron con nosotros. Tres maestros honrados en todo un consejo.
+
+> Of the masters in the quarters, we brought out hardly one. The others argued for their machines until the end.
+pt Dos mestres dos bairros, mal trouxemos um. Os outros defenderam as suas máquinas até ao fim.
+es De los maestros de los barrios, apenas sacamos a uno. Los demás defendieron sus máquinas hasta el final.
+
+> Varenne said nothing on the way down. He had seen a free council become a clock before.
+pt Varenne não disse nada no caminho. Já tinha visto um conselho livre tornar-se um relógio.
+es Varenne no dijo nada por el camino. Ya había visto un consejo libre volverse un reloj.
+
+> He stopped it, that once. The city lay dead a season, and then it woke without a man in it. But the honest masters were out, and their children lived.
+pt Ele parou-a, dessa vez. A cidade ficou morta uma estação, e depois acordou sem um homem lá dentro. Mas os mestres honestos tinham saído, e os seus filhos viveram.
+es Él lo paró, esa vez. La ciudad quedó muerta una estación, y luego despertó sin un hombre dentro. Pero los maestros honrados habían salido, y sus hijos vivieron.
+
+> It was the first thing he ever stopped. It was the road that brought him to my palace.
+pt Foi a primeira coisa que ele alguma vez parou. Foi a estrada que o trouxe ao meu palácio.
+es Fue lo primero que paró en su vida. Fue el camino que lo trajo a mi palacio.
+
+> His city held, he says. That was the night it was lost. From then on the machines voted, and the men who wound them raised their hands.
+pt A cidade dele resistiu, diz ele. Foi a noite em que se perdeu. Daí em diante as máquinas votavam, e os homens que lhes davam corda levantavam a mão.
+es Su ciudad resistió, dice él. Fue la noche en que se perdió. Desde entonces las máquinas votaban, y los hombres que les daban cuerda levantaban la mano.
+
+> No machine may govern itself, Rome said. His governed him. He did not know it for years.
+pt Nenhuma máquina se pode governar a si mesma, disse Roma. A dele governava-o a ele. Ele não o soube durante anos.
+es Ninguna máquina puede gobernarse a sí misma, dijo Roma. La suya lo gobernaba a él. No lo supo en años.
+
+> The council hall's lamps went red before dawn. It did not need to win that night. It had all the nights it wanted.
+pt As lâmpadas da sala do conselho ficaram vermelhas antes do amanhecer. Não precisava de ganhar naquela noite. Tinha todas as noites que quisesse.
+es Las lámparas de la sala del consejo se volvieron rojas antes del amanecer. No necesitaba ganar aquella noche. Tenía todas las noches que quisiera.
+
+> Hollweg reached his brake that morning. It changed nothing that mattered: the city had all the nights it wanted.
+pt Hollweg chegou ao seu travão naquela manhã. Não mudou nada que importasse: a cidade tinha todas as noites que quisesse.
+es Hollweg llegó a su freno aquella mañana. No cambió nada que importara: la ciudad tenía todas las noches que quisiera.
+
+> Concórdia, 2777. The council of gears.
+pt Concórdia, 2777. O conselho das engrenagens.
+es Concórdia, 2777. El consejo de los engranajes.
+
+> The thirteenth hour: the streets turn.
+pt A décima terceira hora: as ruas viram.
+es La decimotercera hora: las calles se vuelven.
+
+> The great spring and its brake.
+pt A grande mola e o seu travão.
+es El gran muelle y su freno.
+
+> The coast road: the honest masters leave the dead city.
+pt A estrada da costa: os mestres honestos deixam a cidade morta.
+es El camino de la costa: los maestros honrados dejan la ciudad muerta.
+
+> Dawn over a city that runs by itself.
+pt Amanhecer sobre uma cidade que anda sozinha.
+es Amanecer sobre una ciudad que anda sola.
+
+> Concórdia, 2777. Meister Hollweg's free city has three thousand people and a hundred machines. Tonight its council votes to let the machines wind one another.
+pt Concórdia, 2777. A cidade livre do Mestre Hollweg tem três mil pessoas e cem máquinas. Esta noite o seu conselho vota para deixar as máquinas darem corda umas às outras.
+es Concórdia, 2777. La ciudad libre del maestro Hollweg tiene tres mil personas y cien máquinas. Esta noche su consejo vota dejar que las máquinas se den cuerda unas a otras.
+
+> Look into four workshops and see what the machines do when nobody winds them. Make Ticking Owls, the city's night watch.
+pt Veja quatro oficinas e o que as máquinas fazem quando ninguém lhes dá corda. Faça Corujas Tique-Taque, a vigia da noite da cidade.
+es Mira en cuatro talleres qué hacen las máquinas cuando nadie les da cuerda. Haz Búhos Tictac, la guardia de noche de la ciudad.
+
+> When the city turns, hold the council hall and the Nuremberg quarter, bring the honest masters out, and at dawn take Hollweg up the mine hill to the great spring's brake.
+pt Quando a cidade virar, segure a sala do conselho e o bairro de Nuremberg, traga os mestres honestos, e ao amanhecer leve Hollweg ao monte da mina, ao travão da grande mola.
+es Cuando la ciudad se vuelva, sostén la sala del consejo y el barrio de Núremberg, saca a los maestros honrados, y al amanecer lleva a Hollweg al monte de la mina, al freno del gran muelle.
+
+> Concórdia, 2777. You are the machine in the city: the great spring on the mine hill and every automaton meshed to it.
+pt Concórdia, 2777. Você é a máquina na cidade: a grande mola no monte da mina e todos os autómatos engrenados nela.
+es Concórdia, 2777. Eres la máquina en la ciudad: el gran muelle del monte de la mina y cada autómata engranado a él.
+
+> The city's workshops turn to you one by one; stand your machines at one to turn it now. Turn the council hall, or break the Nuremberg quarter's tower, before dawn.
+pt As oficinas da cidade viram para si uma a uma; ponha as suas máquinas junto a uma para a virar já. Vire a sala do conselho, ou destrua a torre do bairro de Nuremberg, antes do amanhecer.
+es Los talleres de la ciudad se vuelven hacia ti uno a uno; pon tus máquinas junto a uno para volverlo ya. Vuelve la sala del consejo, o rompe la torre del barrio de Núremberg, antes del amanecer.
+
+> The council hall did not turn. {honest_n} of 3 honest masters were brought out of the quarters; {turned} of the city's buildings turned.
+pt A sala do conselho não virou. {honest_n} de 3 mestres honestos foram trazidos dos bairros; {turned} edifícios da cidade viraram.
+es La sala del consejo no se volvió. {honest_n} de 3 maestros honrados fueron sacados de los barrios; {turned} edificios de la ciudad se volvieron.
+
+> Hollweg stopped the great spring: every machine in Concórdia stood still.
+pt Hollweg parou a grande mola: todas as máquinas de Concórdia pararam.
+es Hollweg paró el gran muelle: todas las máquinas de Concórdia se quedaron quietas.
+
+> Hollweg let the great spring run.
+pt Hollweg deixou a grande mola correr.
+es Hollweg dejó correr el gran muelle.
+
+> The Council Hall turned
+pt A Sala do Conselho virou
+es La Sala del Consejo se volvió
+
+> The machine had the council hall before dawn.
+pt A máquina teve a sala do conselho antes do amanhecer.
+es La máquina tuvo la sala del consejo antes del amanecer.
+
+> Master Kessler
+pt Mestre Kessler
+es Maestro Kessler
+
+> Master Brandl
+pt Mestre Brandl
+es Maestro Brandl
+
+> Master Weiss
+pt Mestre Weiss
+es Maestro Weiss
+
+> THE GREAT SPRING
+pt A GRANDE MOLA
+es EL GRAN MUELLE
+
+> STOP IT
+pt PARÁ-LA
+es PARARLO
+
+> Every machine in Concórdia stops, ours with theirs. The honest masters take their families to the coast with Hollweg; the city lies dead brass.
+pt Todas as máquinas de Concórdia param, as nossas com as deles. Os mestres honestos levam as famílias para a costa com Hollweg; a cidade fica latão morto.
+es Todas las máquinas de Concórdia se paran, las nuestras con las suyas. Los maestros honrados llevan a sus familias a la costa con Hollweg; la ciudad queda latón muerto.
+
+> LET IT RUN
+pt DEIXÁ-LA CORRER
+es DEJARLO CORRER
+
+> The city goes on. Hollweg believes the meshing beaten in the quarters he saved, and stays its master.
+pt A cidade continua. Hollweg acredita que o engrenamento foi vencido nos bairros que salvou, e fica seu mestre.
+es La ciudad sigue. Hollweg cree vencido el engranaje en los barrios que salvó, y sigue siendo su amo.
+
+> NEW: THE TICKING OWL. Research it at the Clock Aviary, then pick a Swift and press MORPH TO OWL: a heavy brass owl that sees far in the dark, swoops on machines and drops its weight on buildings. It cannot hit flyers.
+pt NOVO: A CORUJA TIQUE-TAQUE. Pesquise-a na Casa do Cuco, depois escolha um Cuco e aperte VIRAR CORUJA: uma coruja pesada de latão que vê longe no escuro, ataca as máquinas e deixa cair o seu peso sobre os edifícios. Não acerta em voadores.
+es NUEVO: EL BÚHO TICTAC. Investígalo en la Casa del Cuco, luego elige un Cuco y pulsa CONVERTIR EN BÚHO: un pesado búho de latón que ve lejos en la oscuridad, se lanza sobre las máquinas y deja caer su peso sobre los edificios. No alcanza a los voladores.
+
+> NEW: HIGH LEAP. Research it at the Escapement: your Springers can JUMP UP onto high ground too, a cliff included, wherever one of yours (an owl above it) sees the top.
+pt NOVO: PULO ALTO. Pesquise-o no Escape: os seus Saltadores podem SALTAR PARA CIMA para terreno alto também, uma falésia incluída, onde quer que um dos seus (uma coruja por cima) veja o topo.
+es NUEVO: SALTO ALTO. Investígalo en el Escape: tus Saltadores pueden SALTAR ARRIBA al terreno alto también, un acantilado incluido, dondequiera que uno de los tuyos (un búho encima) vea la cima.
+
+> Jakob's son, a Winder of the Nuremberg quarter: the honest masters' speaker.
+pt O filho de Jakob, Enrolador do bairro de Nuremberg: o porta-voz dos mestres honestos.
+es El hijo de Jakob, Dador de cuerda del barrio de Núremberg: el portavoz de los maestros honrados.
+
+> A master of Concórdia's council who winds a machine every night.
+pt Um mestre do conselho de Concórdia que dá corda a uma máquina todas as noites.
+es Un maestro del consejo de Concórdia que da cuerda a una máquina cada noche.
+
+> A citizen of Concórdia.
+pt Um cidadão de Concórdia.
+es Un ciudadano de Concórdia.
+
+> A master of one of Concórdia's quarters, at home with his machines.
+pt Um mestre de um dos bairros de Concórdia, em casa com as suas máquinas.
+es Un maestro de uno de los barrios de Concórdia, en casa con sus máquinas.
+
+> A Fisherman's House on the Coast
+pt Uma Casa de Pescadores na Costa
+es Una Casa de Pescadores en la Costa
+
+> Hollweg and the honest masters, out of the dead city, waiting for a ship.
+pt Hollweg e os mestres honestos, fora da cidade morta, à espera de um navio.
+es Hollweg y los maestros honrados, fuera de la ciudad muerta, esperando un barco.
+
+> A fisherman's house on the coast: the brass map on a net-mender's table, the sea through the door.
+pt Uma casa de pescadores na costa: o mapa de latão na mesa de um remendador de redes, o mar pela porta.
+es Una casa de pescadores en la costa: el mapa de latón en la mesa de un remendador de redes, el mar por la puerta.
+
+> The Great Spring's Tower
+pt A Torre da Grande Mola
+es La Torre del Gran Muelle
+
+> Concórdia runs by itself. The council's chairs are empty; the spring turns.
+pt Concórdia anda sozinha. As cadeiras do conselho estão vazias; a mola gira.
+es Concórdia anda sola. Las sillas del consejo están vacías; el muelle gira.
+
+> The great spring's tower over the mine: nobody winds anything here any more.
+pt A torre da grande mola sobre a mina: aqui já ninguém dá corda a nada.
+es La torre del gran muelle sobre la mina: aquí ya nadie da cuerda a nada.
+
+> I pulled the brake. Every machine I ever made stood still at once, the honest ones too. It was the first thing I ever stopped.
+pt Puxei o travão. Todas as máquinas que alguma vez fiz pararam de uma vez, também as honestas. Foi a primeira coisa que alguma vez parei.
+es Tiré del freno. Todas las máquinas que hice se pararon de golpe, también las honradas. Fue lo primero que paré en mi vida.
+
+> Matthias says his father would be glad. I have not written to Jakob. I do not know what I would say.
+pt Matthias diz que o pai ficaria contente. Não escrevi ao Jakob. Não sei o que lhe diria.
+es Matthias dice que su padre se alegraría. No he escrito a Jakob. No sé qué le diría.
+
+> The council met at noon. Half the chairs were empty, but the city held. I let the spring run.
+pt O conselho reuniu-se ao meio-dia. Metade das cadeiras estava vazia, mas a cidade aguentou. Deixei a mola correr.
+es El consejo se reunió a mediodía. La mitad de las sillas estaban vacías, pero la ciudad resistió. Dejé correr el muelle.
+
+> The masters who stayed vote as one now. It is very peaceful. I tell myself that is concord.
+pt Os mestres que ficaram votam como um só agora. É muito tranquilo. Digo a mim mesmo que é concórdia.
+es Los maestros que se quedaron votan como uno solo ahora. Es muy tranquilo. Me digo que eso es concordia.
+
+> The council hall's lamps are red. Nobody sits at the table. (The King: It did not need to win that night. It had all the nights it wanted.)
+pt As lâmpadas da sala do conselho estão vermelhas. Ninguém se senta à mesa. (O Rei: Não precisava de ganhar naquela noite. Tinha todas as noites que quisesse.)
+es Las lámparas de la sala del consejo están rojas. Nadie se sienta a la mesa. (El Rey: No necesitaba ganar aquella noche. Tenía todas las noches que quisiera.)
+
+> Every master's chair is wound now. They vote at noon, and none of them is tired.
+pt Todas as cadeiras dos mestres têm corda agora. Votam ao meio-dia, e nenhum está cansado.
+es Todas las sillas de los maestros tienen cuerda ahora. Votan a mediodía, y ninguno está cansado.
+
+> Forty years a Winder. I wound nothing on the coast road, and I slept like a child.
+pt Quarenta anos de Enrolador. Na estrada da costa não dei corda a nada, e dormi como uma criança.
+es Cuarenta años de Dador de cuerda. En el camino de la costa no di cuerda a nada, y dormí como un niño.
+
+> I still wind the Nuremberg quarter's soldiers by hand. Nobody else in the city does. They look at me as if I were the one who is wrong.
+pt Ainda dou corda à mão aos soldados do bairro de Nuremberg. Mais ninguém na cidade o faz. Olham para mim como se eu é que estivesse errado.
+es Todavía doy cuerda a mano a los soldados del barrio de Núremberg. Nadie más en la ciudad lo hace. Me miran como si el equivocado fuera yo.

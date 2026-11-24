@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.203", "items": [
+		"A new campaign mission, Act 2's THE COUNCIL OF GEARS (the Clockmaker, after The City of Gears): Concórdia four years on, a city of clockwork on a dead mine, and the night its machines turn. In the day find the four workshops where the masters' automata have meshed into one (stand a man at each door), and make TICKING OWLS (NEW: the Swift's morph). At the thirteenth hour the great spring's tower on the mine hill takes the city over, workshop by workshop, and their machines with them: bring the three honest masters out before their quarters turn, break the turned workshops with the owls, and keep the machine from the council hall. At dawn leap the hill's cliff with the Springers (NEW: HIGH LEAP), take Hollweg to the brake at noon, and choose: stop THE GREAT SPRING, or let it run. You can also play the machine (the solo pick or versus). All its words and pictures are placeholders.",
+	]},
 	{"v": "0.38.202", "items": [
 		"WORLD WAR is retuned so that no side runs away: in a three-side war each side now wins about a third of the time, and two-side wars are close for every pairing (the Crown used to win nearly all of them). Sea lanes count as two steps from your capital, armies fight a little weaker far from home (supply lines), your own regions have a real guard (no more marching into an empty province for free), free militia cost less to beat, and a province held from a Fort, Works or Nest grows less restless. The Crown dislikes the jungle and the desert, the Clockwork earns well in the cold, the Brood's creatures hunt men well but die in ships' holds, and the computers leave each other be while one side runs ahead. A war saved before this keeps its old rules to the end.",
 	]},

@@ -32,6 +32,14 @@
   B6 = BIGGER CLUTCH + PACK HUNT + QUICK ROOTS (bound team `swarm`); default side the Barra, solo pick / versus THE SWARM;
   roles bank_mother (renamed from forward_mother at the merge: d05 has its own), barra_sergeant; hub VALADARES' QUARTERS
   AT THE BARRA. Tests tools/test_campaign_d08.gd, sim tools/sim_campaign_d08.gd. ALL TEXT PLACEHOLDER.
+- d07_spring BUILT (job d07-spring, MERGED 0.38.203, docs/campaign_d07_build.md): Act 2, "The Council of Gears" (the
+  Clockmaker after d04, Concórdia 2777, Hollweg tells it): map campaign:concordia_city (the city generator on the mine
+  hill, tools/campaign/make_concordia_city_map.py); the vote, four doors (the meshing found), THE TURNING building by
+  building from the great spring (spread_convert), the honest masters brought out, the hall held, a dawn LEAP up the hill,
+  Hollweg at the brake by noon; choice THE GREAT SPRING (flag `spring` stopped/running, canon running; `honest`
+  few/some/many); K6 = TICKING OWL + HIGH LEAP; mirror = THE MACHINE IN THE CITY. Hubs: the coast (stopped), the
+  great spring's tower (machine). Tests tools/test_campaign_d07.gd, sim tools/sim_campaign_d07.gd. 17 Claude's
+  choices. ALL TEXT PLACEHOLDER. Patch note under 0.38.999.
 - d05_aldeia BUILT (job d05-aldeia, MERGED 0.38.200, docs/campaign_d05_build.md): Act 2 step 9, "The Mission of São
   Rafael" (the Crown after d01, the Tapajós, wet season 2776, Father Tomasz tells it): the Crown meets THE BROOD as a
   swarm at Tomasz's mission village; map campaign:sao_rafael (VÁRZEA biome, mission `wade`: slow in the flood, nothing

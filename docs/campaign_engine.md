@@ -589,3 +589,16 @@ first use: the choice USE IT ONCE), THE SPREADING GROUND (the forward Mothers' s
 Nazaré's people), `exits` (the canoes), routes with `attack` (the waves over the shallows), a choice with a default,
 `remove` (the people left behind, the drowned half of the wave), `tally` with shares (`nazare`, `barra`), countdown
 clocks, a line's `until` (Part 1's chatter dropped once the canoes are gone), `if` by `past` flags and `difficulty`.
+
+## Added by Act 2's d07_spring (d07-spring; docs/campaign_d07_build.md)
+
+| key / action / condition | what it does |
+| --- | --- |
+| `"wind": {"team": ...}` / `{"side": ...}` | wind every unit of a team or side (new ones too, when repeated) up to `share`, as `{"tag"}` did: Concórdia's plated streets (MissionRun's wind reads group_of(tag, team, side); Campaign's check accepts team / side) |
+| hub `"after": ["<mission>@<name>"]` with `"flag"` | one mission may lead to two hub rooms: the key's part before "@" is the mission done, the room's `flag` / `sides` choose (CampaignMenu.hub_now) |
+| roles `matthias`, `ortlieb`, `concordia_citizen`, `city_master` | Rebels.ROLES (stand-ins: a Winder in Jakob's art, Labourers) |
+
+Everything else in the Council of Gears is built from keys already there: `spread_convert` (THE TURNING, the hall, the
+mirror's taking), `convert` with `warn` (the doors' machines, the masters), `brake` (THE GREAT SPRING stopped), `ground`
+gear (the plates), a mid-match `show`, `choice` with a default and a time, `stay` with `kind` and `count`, `near`,
+counters, `tally` with shares, countdown clocks, `if` by `past` flags and `playing`, the solo pick.

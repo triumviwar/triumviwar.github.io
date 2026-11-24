@@ -8,6 +8,7 @@
 	"expansion_spots": false,
 	"manual_end": true,
 	"needs": [
+		"a07_council",
 		"d02_exodus"
 	],
 	"difficulty": {
@@ -5401,8 +5402,8 @@
 		}
 	},
 	"next": {
-		"guild": "",
-		"valley": ""
+		"guild": "d07_spring",
+		"valley": "d07_spring"
 	},
 	"opening": {
 		"guild": [

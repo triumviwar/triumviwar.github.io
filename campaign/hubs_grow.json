@@ -217,7 +217,9 @@
   "ulrich": {"name": "MASTER ULRICH", "colour": 5, "entries": [
    {"after": "c01_thirteenth", "lines": ["Forty years a Winder. My lads will wind your soldiers in the field, if you want them.", "Guild marks pay for parts. Earn them, and the bench is yours."]},
    {"after": "d02_exodus", "sides": {"d02_exodus": "exodus"}, "lines": ["Forty years a Winder in Franconia, and now a barge on the Main. My lads wind the soldiers in the hold, in turns, all night.", "Spend the marks on the bench while we sail. Whatever we fit now comes with us."]},
-   {"after": "d04_concordia", "not_sides": {"d04_concordia": "valley"}, "lines": ["Forty years a Winder, and I have never seen plates lay themselves. The Meister says a gift. I wind the soldiers by hand all the same.", "The Aviary's birds are out every morning. The valley crosses itself when they pass."]}]},
+   {"after": "d04_concordia", "not_sides": {"d04_concordia": "valley"}, "lines": ["Forty years a Winder, and I have never seen plates lay themselves. The Meister says a gift. I wind the soldiers by hand all the same.", "The Aviary's birds are out every morning. The valley crosses itself when they pass."]},
+   {"after": "d07_spring", "flag": {"d07_spring.spring": "stopped"}, "not_sides": {"d07_spring": "machine"}, "lines": ["Forty years a Winder. I wound nothing on the coast road, and I slept like a child."]},
+   {"after": "d07_spring", "flag": {"d07_spring.spring": "running"}, "not_sides": {"d07_spring": "machine"}, "lines": ["I still wind the Nuremberg quarter's soldiers by hand. Nobody else in the city does. They look at me as if I were the one who is wrong."]}]},
   "rauch": {"name": "COLONEL VON RAUCH", "colour": 4, "entries": [
    {"after": "a02_furth", "lines": ["The line held. My musketeers will march with the Father when he visits you, and I will drill them first."]}]},
   "anselm": {"name": "BROTHER ANSELM", "colour": 4, "entries": [
