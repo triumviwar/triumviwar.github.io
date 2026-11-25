@@ -60,8 +60,8 @@ At equal cost, in a straight fight, the three factions are NOT even.
   of every fight in the open (65 early, 68 mid). At 4,000 it is close to even (53).
 - **The Brood crushes the Clockwork.** The Clockwork gets 6 early and 30 mid. Venom Challengers and Brutes beat almost
   every Clockwork army.
-- **The Brood beats the Crown** (the battle-matrix job's finding: the Crown's share 39 early, 39 mid, 57 late, mostly
-  because of the Tyrant Sire; without him the Crown gets 57 to 61).
+- **The Brood beats the Crown early and mid** (the battle-matrix job's open-field numbers: the Crown's share 39 early,
+  39 mid, 57 late). This is mostly the Tyrant Sire: without him the Crown gets 57 to 61, and wins.
 
 So in fights alone the order is Brood, then Crown, then Clockwork. In real games the Clockwork wins its share on economy
 and repair, not in fights at equal cost. The championship study found a circle (Crown beats Clockwork, Clockwork beats
@@ -329,6 +329,15 @@ This one is a real **rock, paper, scissors**:
   fog and miasma do not help in a straight fight.
 - Plain Raptors (R) are the best of the cheap armies: they beat every Raptor and Spitter mix.
 
+## What was not done
+
+- The mirrors were run only in the open field, at 600 and 1,500, with 4 fights a cell. No set lines or ramps there.
+- The late size (4,000) is a sample: 6 by 6 or 6 by 7 armies, 2 seeds, open field only.
+- "A ramp, side B on top" was not run for the new matchups.
+- The Crown v Brood grounds were not run again with the Dragoon fix (the Dragoons were only on the open field there).
+- The filmed fights are three, with three pictures each. More can be made with the lab's `shots:<dir>` (it needs a
+  screen: `xvfb-run`, not `--headless`).
+
 ## Files
 
 - tools/battle_lab.gd: the lab (any two factions; a job line `<faction A> <comp A> <faction B> <comp B> <size> <ground>
@@ -336,4 +345,6 @@ This one is a real **rock, paper, scissors**:
 - tools/study/battle_lab.py: makes the jobs (`jobs --fa crown --fb clockwork`), runs them on every core (`run`,
   `--extra` for more lab arguments).
 - tools/study/battle_matrix_all_report.py: the tables (docs/battle_matrix_all/tables.md, data/analysis.json).
-- docs/battle_matrix_all/data/rows_<a>_<b>.jsonl: one line a fight.
+- docs/battle_matrix_all/data/rows_<a>_<b>.jsonl: one line a fight. In a row, "fa"/"ca" are side A's faction and
+  army, "fb"/"cb" side B's; the "c_" fields are side A's, the "b_" fields side B's, and "crown_n"/"brood_n" are side A's
+  and side B's counts (the old names, kept). "wind_down" counts Clockwork constructs that ran down, per side.
