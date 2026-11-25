@@ -287,13 +287,16 @@ see, `safe` (the Winders out of the shooters' reach), as the "with" block.
 | g_crown_off | opp:crown cwmic:off | 10 | 0 | 1 | 2 | 4 | 3 | -1.01 | -0.14 | 1.11 | 16.4, 18.8, 19.0 |
 | g_crown_safe | opp:crown cwmicsafe:on | 10 | 0 | 0 | 2 | 6 | 2 | -0.82 | -0.22 | 0.89 | 16.0, 16.4 |
 | g_brood_off | opp:brood cwmic:off | 10 | 5 | 0 | 1 | 1 | 3 | +0.55 | +0.25 | 2.19 | 15.8, 16.6, 18.9 |
-| g_mirror_off | opp:clockwork cwmic:off cwmicteam:0 | 9 | 3 | 1 | 1 | 1 | 3 | +0.07 | +0.04 | 2.84 | 13.7, 14.2, 18.0 |
+| g_brood_safe | opp:brood cwmicsafe:on | 4 | 1 | 0 | 0 | 2 | 1 | -0.22 | -0.21 | 0.75 | 15.2 |
+| g_mirror_off | opp:clockwork cwmic:off cwmicteam:0 | 10 | 3 | 1 | 1 | 1 | 4 | -0.16 | -0.00 | 2.56 | 13.7, 14.2, 18.0, 19.2 |
+| g_mirror_safe | opp:clockwork cwmicsafe:on cwmicteam:0 | 6 | 0 | 0 | 0 | 1 | 5 | -2.16 | -0.86 | 0.17 | 13.2, 14.2, 14.8, 15.1, 17.6 |
 
 With `safe` against without, game by game:
 
 ```
 g_crown_safe v g_crown_off: n 10  d g +0.20 (t 0.62, better 5 worse 5)  d g14 -0.08 (t -0.65)
-g_mirror_safe v g_mirror_off: n 0  d g +0.00 (t 0.00, better 0 worse 0)  d g14 +0.00 (t 0.00)
+g_brood_safe v g_brood_off: n 4  d g -0.82 (t -0.62, better 2 worse 2)  d g14 -0.58 (t -1.47)
+g_mirror_safe v g_mirror_off: n 6  d g -2.70 (t -2.76, better 0 worse 5)  d g14 -1.13 (t -3.13)
 ```
 
 The trade (armies only, by value, what the Clockwork killed for what it lost) and the economy (income earned, ours over
@@ -304,8 +307,9 @@ theirs):
 | g_crown_off | 10 | 61290 / 128420 | 0.48 | 2250 / 48060 | 1.05 | 0.72 |
 | g_crown_safe | 10 | 67105 / 143175 | 0.47 | 2150 / 35460 | 0.99 | 0.72 |
 | g_brood_off | 10 | 91995 / 62695 | 1.47 | 5650 / 23160 | 1.27 | 0.78 |
-| g_mirror_off | 9 | 76695 / 70790 | 1.08 | 20040 / 17460 | 1.07 | 1.09 |
-| g_mirror_safe | 0 | 0 / 0 | 0.00 | 0 / 0 | - | - |
+| g_brood_safe | 4 | 28395 / 38910 | 0.73 | 775 / 11160 | 1.20 | 0.70 |
+| g_mirror_off | 10 | 84420 / 81935 | 1.03 | 21360 / 21780 | 1.04 | 1.09 |
+| g_mirror_safe | 6 | 18765 / 50490 | 0.37 | 3300 / 21720 | 0.82 | 0.70 |
 
 What the games say:
 
@@ -324,7 +328,7 @@ What the games say:
 |---|---|---|---|---|---|
 | v the Crown | 0 won, 1 led, 2 even, 4 behind, 3 lost | 0.48 | 1.05 | -0.62 (needs ~2x the value) | the army it builds and the units' matchup: not the fighting |
 | v the Brood | 5 won, 1 even, 1 behind, 3 lost | 1.47 | 1.27 | +0.07 (wins v Raptors, loses v Spitters) | an edge, from its economy and the Brood's Raptor-heavy army |
-| mirror | 3 won, 1 led, 1 even, 1 behind, 3 lost (9 games) | 1.08 | 1.07 | even | no gap |
+| mirror | 3 won, 1 led, 1 even, 1 behind, 4 lost (10 games) | 1.08 | 1.07 | even | no gap |
 
 **What I would do next (proposals, not built):**
 
