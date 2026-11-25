@@ -1,0 +1,966 @@
+{
+"args": "cwmicclose:on",
+"sets": [
+"crown",
+"brood",
+"mirror"
+],
+"runs": [
+{
+"contact": 13.7,
+"cw_left": 0.04,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.66,
+"foe_value": 2445,
+"foes": 32,
+"killed": 530,
+"lost": 2475,
+"micro": {
+"cwmic_close": 55
+},
+"run": 0,
+"sc": "open-m-crown",
+"score": -0.61,
+"secs": 30.5
+},
+{
+"contact": 14.1,
+"cw_left": 0.01,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.52,
+"foe_value": 2445,
+"foes": 32,
+"killed": 1145,
+"lost": 3415,
+"micro": {
+"cwmic_close": 50
+},
+"run": 1,
+"sc": "open-m-crown",
+"score": -0.51,
+"secs": 82.1
+},
+{
+"contact": 13.8,
+"cw_left": 0.05,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.74,
+"foe_value": 2445,
+"foes": 32,
+"killed": 420,
+"lost": 2295,
+"micro": {
+"cwmic_close": 19
+},
+"run": 2,
+"sc": "open-m-crown",
+"score": -0.69,
+"secs": 24.7
+},
+{
+"contact": 17.5,
+"cw_left": 0.01,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.51,
+"foe_value": 2445,
+"foes": 32,
+"killed": 960,
+"lost": 2415,
+"micro": {
+"cwmic_close": 22
+},
+"run": 0,
+"sc": "home-m-crown",
+"score": -0.49,
+"secs": 27.1
+},
+{
+"contact": 16.9,
+"cw_left": 0.06,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.55,
+"foe_value": 2445,
+"foes": 32,
+"killed": 960,
+"lost": 2295,
+"micro": {
+"cwmic_close": 20
+},
+"run": 1,
+"sc": "home-m-crown",
+"score": -0.48,
+"secs": 28.9
+},
+{
+"contact": 16.5,
+"cw_left": 0.04,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.62,
+"foe_value": 2445,
+"foes": 32,
+"killed": 840,
+"lost": 2355,
+"micro": {
+"cwmic_close": 26
+},
+"run": 2,
+"sc": "home-m-crown",
+"score": -0.59,
+"secs": 31.1
+},
+{
+"contact": 9.8,
+"cw_left": 0.02,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.63,
+"foe_value": 2445,
+"foes": 32,
+"killed": 990,
+"lost": 3045,
+"micro": {
+"cwmic_close": 72
+},
+"run": 0,
+"sc": "side-m-crown",
+"score": -0.61,
+"secs": 90.0
+},
+{
+"contact": 9.5,
+"cw_left": 0.34,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.83,
+"foe_value": 2445,
+"foes": 32,
+"killed": 375,
+"lost": 2595,
+"micro": {
+"cwmic_close": 38
+},
+"run": 1,
+"sc": "side-m-crown",
+"score": -0.49,
+"secs": 69.0
+},
+{
+"contact": 9.2,
+"cw_left": 0.22,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.71,
+"foe_value": 2445,
+"foes": 32,
+"killed": 580,
+"lost": 2795,
+"micro": {
+"cwmic_close": 40
+},
+"run": 2,
+"sc": "side-m-crown",
+"score": -0.49,
+"secs": 71.4
+},
+{
+"contact": 14.1,
+"cw_left": 0.0,
+"cw_value": 1005,
+"down_end": 0,
+"foe_left": 0.86,
+"foe_value": 1060,
+"foes": 14,
+"killed": 120,
+"lost": 1005,
+"micro": {
+"cwmic_close": 7
+},
+"run": 0,
+"sc": "open-s-crown",
+"score": -0.86,
+"secs": 21.5
+},
+{
+"contact": 14.1,
+"cw_left": 0.06,
+"cw_value": 1005,
+"down_end": 0,
+"foe_left": 0.85,
+"foe_value": 1060,
+"foes": 14,
+"killed": 120,
+"lost": 945,
+"micro": {
+"cwmic_close": 6
+},
+"run": 1,
+"sc": "open-s-crown",
+"score": -0.79,
+"secs": 13.9
+},
+{
+"contact": 14.0,
+"cw_left": 0.04,
+"cw_value": 1005,
+"down_end": 0,
+"foe_left": 0.85,
+"foe_value": 1060,
+"foes": 14,
+"killed": 120,
+"lost": 885,
+"micro": {
+"cwmic_close": 8
+},
+"run": 2,
+"sc": "open-s-crown",
+"score": -0.8,
+"secs": 34.8
+},
+{
+"contact": 13.8,
+"cw_left": 0.0,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.66,
+"foe_value": 4290,
+"foes": 54,
+"killed": 1140,
+"lost": 4225,
+"micro": {
+"cwmic_close": 32
+},
+"run": 0,
+"sc": "open-l-crown",
+"score": -0.66,
+"secs": 33.6
+},
+{
+"contact": 13.0,
+"cw_left": 0.03,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.81,
+"foe_value": 4290,
+"foes": 54,
+"killed": 540,
+"lost": 4105,
+"micro": {
+"cwmic_close": 47
+},
+"run": 1,
+"sc": "open-l-crown",
+"score": -0.78,
+"secs": 27.5
+},
+{
+"contact": 13.7,
+"cw_left": 0.0,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.75,
+"foe_value": 4290,
+"foes": 54,
+"killed": 960,
+"lost": 4285,
+"micro": {
+"cwmic_close": 52
+},
+"run": 2,
+"sc": "open-l-crown",
+"score": -0.75,
+"secs": 28.5
+},
+{
+"contact": 16.9,
+"cw_left": 0.02,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.68,
+"foe_value": 4290,
+"foes": 54,
+"killed": 1080,
+"lost": 4305,
+"micro": {
+"cwmic_close": 41
+},
+"run": 0,
+"sc": "home-l-crown",
+"score": -0.66,
+"secs": 28.6
+},
+{
+"contact": 17.3,
+"cw_left": 0.03,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.63,
+"foe_value": 4290,
+"foes": 54,
+"killed": 1440,
+"lost": 4305,
+"micro": {
+"cwmic_close": 43
+},
+"run": 1,
+"sc": "home-l-crown",
+"score": -0.6,
+"secs": 34.9
+},
+{
+"contact": 16.7,
+"cw_left": 0.07,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.71,
+"foe_value": 4290,
+"foes": 54,
+"killed": 1020,
+"lost": 4065,
+"micro": {
+"cwmic_close": 40
+},
+"run": 2,
+"sc": "home-l-crown",
+"score": -0.64,
+"secs": 30.6
+},
+{
+"contact": 13.7,
+"cw_left": 0.21,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.0,
+"foe_value": 2425,
+"foes": 97,
+"killed": 2425,
+"lost": 1865,
+"micro": {},
+"run": 0,
+"sc": "open-m-raptor",
+"score": 0.21,
+"secs": 31.6
+},
+{
+"contact": 14.0,
+"cw_left": 0.25,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.0,
+"foe_value": 2425,
+"foes": 97,
+"killed": 2425,
+"lost": 1560,
+"micro": {},
+"run": 1,
+"sc": "open-m-raptor",
+"score": 0.25,
+"secs": 24.4
+},
+{
+"contact": 13.5,
+"cw_left": 0.13,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.01,
+"foe_value": 2425,
+"foes": 97,
+"killed": 2400,
+"lost": 2095,
+"micro": {},
+"run": 2,
+"sc": "open-m-raptor",
+"score": 0.12,
+"secs": 90.0
+},
+{
+"contact": 14.0,
+"cw_left": 0.07,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.59,
+"foe_value": 2435,
+"foes": 51,
+"killed": 600,
+"lost": 2235,
+"micro": {
+"cwmic_close": 18
+},
+"run": 0,
+"sc": "open-m-mixed",
+"score": -0.51,
+"secs": 19.2
+},
+{
+"contact": 13.8,
+"cw_left": 0.07,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.45,
+"foe_value": 2435,
+"foes": 51,
+"killed": 745,
+"lost": 2375,
+"micro": {
+"cwmic_close": 17
+},
+"run": 1,
+"sc": "open-m-mixed",
+"score": -0.38,
+"secs": 25.8
+},
+{
+"contact": 14.6,
+"cw_left": 0.07,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.38,
+"foe_value": 2435,
+"foes": 51,
+"killed": 1000,
+"lost": 2235,
+"micro": {
+"cwmic_close": 21
+},
+"run": 2,
+"sc": "open-m-mixed",
+"score": -0.31,
+"secs": 30.0
+},
+{
+"contact": 13.7,
+"cw_left": 0.07,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.53,
+"foe_value": 2435,
+"foes": 39,
+"killed": 1020,
+"lost": 2235,
+"micro": {
+"cwmic_close": 18
+},
+"run": 0,
+"sc": "open-m-late",
+"score": -0.46,
+"secs": 26.9
+},
+{
+"contact": 13.9,
+"cw_left": 0.07,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.64,
+"foe_value": 2435,
+"foes": 39,
+"killed": 520,
+"lost": 2235,
+"micro": {
+"cwmic_close": 15
+},
+"run": 1,
+"sc": "open-m-late",
+"score": -0.57,
+"secs": 28.2
+},
+{
+"contact": 14.4,
+"cw_left": 0.07,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.55,
+"foe_value": 2435,
+"foes": 39,
+"killed": 740,
+"lost": 2235,
+"micro": {
+"cwmic_close": 19
+},
+"run": 2,
+"sc": "open-m-late",
+"score": -0.48,
+"secs": 27.0
+},
+{
+"contact": 19.0,
+"cw_left": 0.35,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.0,
+"foe_value": 2435,
+"foes": 51,
+"killed": 2435,
+"lost": 1515,
+"micro": {
+"cwmic_close": 14
+},
+"run": 0,
+"sc": "home-m-mixed",
+"score": 0.35,
+"secs": 31.4
+},
+{
+"contact": 19.0,
+"cw_left": 0.05,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.26,
+"foe_value": 2435,
+"foes": 51,
+"killed": 1450,
+"lost": 2355,
+"micro": {
+"cwmic_close": 2
+},
+"run": 1,
+"sc": "home-m-mixed",
+"score": -0.21,
+"secs": 40.4
+},
+{
+"contact": 19.0,
+"cw_left": 0.2,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.0,
+"foe_value": 2435,
+"foes": 51,
+"killed": 2435,
+"lost": 1860,
+"micro": {
+"cwmic_close": 5
+},
+"run": 2,
+"sc": "home-m-mixed",
+"score": 0.2,
+"secs": 34.3
+},
+{
+"contact": 12.6,
+"cw_left": 0.65,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.08,
+"foe_value": 2435,
+"foes": 51,
+"killed": 2045,
+"lost": 715,
+"micro": {
+"cwmic_close": 73
+},
+"run": 0,
+"sc": "side-m-mixed",
+"score": 0.57,
+"secs": 90.0
+},
+{
+"contact": 15.2,
+"cw_left": 0.59,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.0,
+"foe_value": 2435,
+"foes": 51,
+"killed": 2310,
+"lost": 1215,
+"micro": {
+"cwmic_close": 100
+},
+"run": 1,
+"sc": "side-m-mixed",
+"score": 0.59,
+"secs": 61.6
+},
+{
+"contact": 13.5,
+"cw_left": 0.0,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.44,
+"foe_value": 2435,
+"foes": 51,
+"killed": 1010,
+"lost": 2655,
+"micro": {
+"cwmic_close": 32
+},
+"run": 2,
+"sc": "side-m-mixed",
+"score": -0.44,
+"secs": 78.6
+},
+{
+"contact": 14.0,
+"cw_left": 0.07,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.71,
+"foe_value": 2415,
+"foes": 63,
+"killed": 590,
+"lost": 2235,
+"micro": {
+"cwmic_close": 22
+},
+"run": 0,
+"sc": "open-m-spit",
+"score": -0.64,
+"secs": 25.1
+},
+{
+"contact": 14.2,
+"cw_left": 0.07,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.36,
+"foe_value": 2415,
+"foes": 63,
+"killed": 1380,
+"lost": 2235,
+"micro": {
+"cwmic_close": 30
+},
+"run": 1,
+"sc": "open-m-spit",
+"score": -0.29,
+"secs": 37.2
+},
+{
+"contact": 14.5,
+"cw_left": 0.07,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.64,
+"foe_value": 2415,
+"foes": 63,
+"killed": 700,
+"lost": 2235,
+"micro": {
+"cwmic_close": 21
+},
+"run": 2,
+"sc": "open-m-spit",
+"score": -0.57,
+"secs": 24.9
+},
+{
+"contact": 15.1,
+"cw_left": 0.32,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.01,
+"foe_value": 4290,
+"foes": 66,
+"killed": 4245,
+"lost": 2875,
+"micro": {
+"cwmic_close": 67
+},
+"run": 0,
+"sc": "open-l-late",
+"score": 0.31,
+"secs": 90.0
+},
+{
+"contact": 14.0,
+"cw_left": 0.35,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.11,
+"foe_value": 4290,
+"foes": 66,
+"killed": 3730,
+"lost": 2620,
+"micro": {
+"cwmic_close": 69
+},
+"run": 1,
+"sc": "open-l-late",
+"score": 0.23,
+"secs": 90.0
+},
+{
+"contact": 13.7,
+"cw_left": 0.33,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.1,
+"foe_value": 4290,
+"foes": 66,
+"killed": 3840,
+"lost": 2830,
+"micro": {
+"cwmic_close": 186
+},
+"run": 2,
+"sc": "open-l-late",
+"score": 0.22,
+"secs": 90.0
+},
+{
+"contact": 18.4,
+"cw_left": 0.23,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.0,
+"foe_value": 4225,
+"foes": 169,
+"killed": 4225,
+"lost": 2850,
+"micro": {},
+"run": 0,
+"sc": "home-l-raptor",
+"score": 0.23,
+"secs": 20.6
+},
+{
+"contact": 18.3,
+"cw_left": 0.01,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.34,
+"foe_value": 4225,
+"foes": 169,
+"killed": 2025,
+"lost": 4285,
+"micro": {},
+"run": 1,
+"sc": "home-l-raptor",
+"score": -0.33,
+"secs": 19.7
+},
+{
+"contact": 18.0,
+"cw_left": 0.17,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.0,
+"foe_value": 4225,
+"foes": 169,
+"killed": 4225,
+"lost": 3235,
+"micro": {},
+"run": 2,
+"sc": "home-l-raptor",
+"score": 0.17,
+"secs": 20.9
+},
+{
+"contact": 45.7,
+"cw_left": 1.0,
+"cw_value": 1005,
+"down_end": 0,
+"foe_left": 1.0,
+"foe_value": 1005,
+"foes": 13,
+"killed": 560,
+"lost": 560,
+"micro": {},
+"run": 0,
+"sc": "open-s-cw",
+"score": 0.0,
+"secs": 90.0
+},
+{
+"contact": 44.7,
+"cw_left": 0.92,
+"cw_value": 1005,
+"down_end": 0,
+"foe_left": 1.0,
+"foe_value": 1005,
+"foes": 13,
+"killed": 0,
+"lost": 0,
+"micro": {},
+"run": 1,
+"sc": "open-s-cw",
+"score": -0.08,
+"secs": 90.0
+},
+{
+"contact": 16.7,
+"cw_left": 0.06,
+"cw_value": 1005,
+"down_end": 0,
+"foe_left": 0.71,
+"foe_value": 1005,
+"foes": 13,
+"killed": 295,
+"lost": 945,
+"micro": {
+"cwmic_close": 22
+},
+"run": 2,
+"sc": "open-s-cw",
+"score": -0.65,
+"secs": 77.6
+},
+{
+"contact": 16.6,
+"cw_left": 0.22,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.34,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1595,
+"lost": 1935,
+"micro": {
+"cwmic_close": 54
+},
+"run": 0,
+"sc": "open-m-cw",
+"score": -0.12,
+"secs": 90.0
+},
+{
+"contact": 15.9,
+"cw_left": 0.19,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.66,
+"foe_value": 2415,
+"foes": 28,
+"killed": 705,
+"lost": 2395,
+"micro": {
+"cwmic_close": 59
+},
+"run": 1,
+"sc": "open-m-cw",
+"score": -0.47,
+"secs": 90.0
+},
+{
+"contact": 15.5,
+"cw_left": 0.08,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.6,
+"foe_value": 2415,
+"foes": 28,
+"killed": 860,
+"lost": 2205,
+"micro": {
+"cwmic_close": 26
+},
+"run": 2,
+"sc": "open-m-cw",
+"score": -0.52,
+"secs": 90.0
+},
+{
+"contact": 28.2,
+"cw_left": 0.34,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.27,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1705,
+"lost": 1585,
+"micro": {
+"cwmic_close": 22
+},
+"run": 0,
+"sc": "home-m-cw",
+"score": 0.07,
+"secs": 90.0
+},
+{
+"contact": 29.7,
+"cw_left": 0.13,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.32,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1565,
+"lost": 2165,
+"micro": {
+"cwmic_close": 22
+},
+"run": 1,
+"sc": "home-m-cw",
+"score": -0.19,
+"secs": 90.0
+},
+{
+"contact": 29.9,
+"cw_left": 0.26,
+"cw_value": 2415,
+"down_end": 0,
+"foe_left": 0.33,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1605,
+"lost": 1785,
+"micro": {
+"cwmic_close": 21
+},
+"run": 2,
+"sc": "home-m-cw",
+"score": -0.07,
+"secs": 90.0
+},
+{
+"contact": 16.2,
+"cw_left": 0.38,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.17,
+"foe_value": 4225,
+"foes": 48,
+"killed": 3545,
+"lost": 2485,
+"micro": {
+"cwmic_close": 54
+},
+"run": 0,
+"sc": "open-l-cw",
+"score": 0.21,
+"secs": 90.0
+},
+{
+"contact": 16.9,
+"cw_left": 0.04,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.71,
+"foe_value": 4225,
+"foes": 48,
+"killed": 940,
+"lost": 3870,
+"micro": {
+"cwmic_close": 39
+},
+"run": 1,
+"sc": "open-l-cw",
+"score": -0.66,
+"secs": 90.0
+},
+{
+"contact": 15.9,
+"cw_left": 0.02,
+"cw_value": 4225,
+"down_end": 0,
+"foe_left": 0.53,
+"foe_value": 4225,
+"foes": 48,
+"killed": 1840,
+"lost": 3845,
+"micro": {
+"cwmic_close": 35
+},
+"run": 2,
+"sc": "open-l-cw",
+"score": -0.51,
+"secs": 90.0
+}
+]
+}

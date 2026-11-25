@@ -360,9 +360,24 @@ func _one(sc: String, r: int, map: String) -> void:
 		"cw_left": snappedf(cl / maxf(1.0, cv), 0.01), "foe_left": snappedf(bl / maxf(1.0, ev), 0.01),
 		"score": snappedf(cl / maxf(1.0, cv) - bl / maxf(1.0, ev), 0.01),
 		"down_end": _alive(army).filter(func(u: Unit) -> bool: return u.powered_down()).size(),
-		"micro": AICwMicro.counters(0)}
+		"micro": AICwMicro.counters(0), "dead": _dead_by_kind(army), "foe_dead": _dead_by_kind(foes)}
 	res.append(x)
 	print("  %s run %d: %s" % [sc, r, str(x)])
+
+
+## "kind": "dead/all" of a list (who fell).
+func _dead_by_kind(list: Array) -> Dictionary:
+	var all := {}
+	var dead := {}
+	for u in list:
+		var k: String = u.kind if is_instance_valid(u) else "?"
+		all[k] = int(all.get(k, 0)) + 1
+		if not is_instance_valid(u) or u.dead:
+			dead[k] = int(dead.get(k, 0)) + 1
+	var o := {}
+	for k in all:
+		o[k] = "%d/%d" % [int(dead.get(k, 0)), int(all[k])]
+	return o
 
 
 ## A Clockwork army of `size` at `at`: the fighters in rows facing `front`, the machines behind, the Winders behind them.

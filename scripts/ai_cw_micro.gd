@@ -16,8 +16,13 @@ class_name AICwMicro
 ##   bail      the push pulls back early from a fight it is clearly losing (it has lost BAIL_LOST of its value there and
 ##             killed less than BAIL_K of what it lost), before the rest is shot down on the way home
 ##   pick      a Clock Soldier on a melee foe with a shooter just beside it goes for the shooter
+##   charge    the push in a fight with enemy shooters standing off out of its screen: the whole front goes at them together
+##             (its anchor moves onto them), not each machine on its own (that was `close`: worse)
+##   flank     the enemy's guns and shooters stand behind its melee front (the bench: 0 of 13 Spitters, 0 of 4 Field
+##             Cannons ever reached): a FLANK GROUP (a share of the Clock Soldiers on the outer end of the line, and the
+##             Springers) walks round the side of the fight and falls on that back line
 
-const PARTS := ["close", "mend", "springpick", "bail", "pick"]
+const PARTS := ["close", "mend", "springpick", "bail", "pick", "charge", "flank"]
 const KEPT: Array[String] = []
 const EVERY := 0.2               # (s) looked at this often
 
@@ -45,7 +50,13 @@ const MEND_MAX := 14.0
 const SPRING_LAND := 0.75        # lands this share of its reach from the target
 static var BAIL_LOST := knob("baillost", 0.35)
 static var BAIL_K := knob("bailk", 0.45)
-const BAIL_AFTER := 5.0          # (s) of fight at least
+const BAIL_AFTER := 5.0
+static var CHARGE_SHARE := knob("chargeshare", 0.35)  # the shooters this share of the foes near at least
+const CHARGE_R := 560.0          # (px) shooters this near the anchor
+const CHARGE_GAP := 200.0        # (px) the nearest shooter farther than this from the anchor: the front is not on them
+const CHARGE_STEP := 160.0       # (px) the anchor moves this far toward them a look
+static var PICK_R := knob("pickr", 90.0)        # (px) a shooter this near ...
+static var PICK_N := knob("pickn", 1.0)         # ... and at least this many shooters that near          # (s) of fight at least
 
 
 func _init(a) -> void:
@@ -112,6 +123,10 @@ func tick(delta: float) -> void:
 		_close(army)
 	if on("pick"):
 		_pick(army)
+	if on("charge"):
+		_charge()
+	if on("flank"):
+		_flank()
 
 
 ## The micro's own order this moment: the push and the one army leave the unit be.
@@ -182,14 +197,16 @@ func _pick(army: Array) -> void:
 		if t == null or not is_instance_valid(t) or t.dead or not (t is Unit) or _shooter(t):
 			continue
 		var best: Unit = null
-		var bd := 90.0
-		for o in game.units_near(u.position, 90.0):
+		var bd := PICK_R
+		var n := 0
+		for o in game.units_near(u.position, PICK_R):
 			if _hostile_unit(o) and _shooter(o) and u.can_hit(o):
+				n += 1
 				var dd: float = o.position.distance_to(u.position)
 				if dd < bd:
 					bd = dd
 					best = o
-		if best != null:
+		if best != null and n >= int(PICK_N):
 			u.cmd_attack(best)
 			_mine[u] = game.clock + 3.0
 			count(team, "pick")
@@ -298,3 +315,145 @@ func _bail() -> void:
 		count(team, "bail")
 		p._retreat("micro: a losing fight, lost %d of %d here, killed %d" % [int(lost), int(_fight_v), int(killed)])
 		_fight_v = -1.0
+
+
+# ------------------------------------------------------------------ charge: the whole front at the shooters
+
+var _charging := false
+
+
+func _charge() -> void:
+	var p = ai.push
+	if p == null or p.phase != "fight" or p.anchor == Vector2.INF:
+		_charging = false
+		return
+	var foes: Array = p._foes_near(p.anchor, CHARGE_R)
+	if foes.is_empty():
+		return
+	var sv := 0.0
+	var fv := 0.0
+	var c := Vector2.ZERO
+	var nd := INF
+	var lv: int = game.level_of(p.anchor)
+	for o in foes:
+		var v: float = ai._unit_value(o)
+		fv += v
+		if _shooter(o) and game.level_of(o.position) <= lv:
+			sv += v
+			c += o.position * v
+			nd = minf(nd, o.position.distance_to(p.anchor))
+	if sv <= 0.0 or sv < fv * CHARGE_SHARE or nd <= CHARGE_GAP:
+		return
+	c /= sv
+	var to: Vector2 = p.anchor.move_toward(c, CHARGE_STEP)
+	if game.level_of(to) > lv:
+		return
+	p.anchor = to
+	if not _charging:
+		_charging = true
+		count(team, "charge")
+
+
+# ------------------------------------------------------------------ flank: round the side onto the back line
+
+static var FLANK_SHARE := knob("flankshare", 0.33)   # of the push's Clock Soldiers
+static var FLANK_BACK := knob("flankback", 100.0)       # (px) a shooter this far behind the enemy's nearest to us is "the back line"
+const FLANK_WIDE := 260.0        # (px) the way round passes this far out to the side of the back line
+const FLANK_MIN := 6             # Clock Soldiers at least in the push
+const FLANK_T := 20.0            # (s) a flank lasts at most this
+var _flank_g := {}               # Unit -> {"stage", "wp"}
+var _flank_t := -99.0
+
+
+func _flank() -> void:
+	var p = ai.push
+	for u in _flank_g.keys():
+		if not is_instance_valid(u) or u.dead:
+			_flank_g.erase(u)
+	if p == null or p.phase != "fight" or p.anchor == Vector2.INF:
+		for u in _flank_g.keys():
+			_mine.erase(u)
+		_flank_g.clear()
+		return
+	if not _flank_g.is_empty():
+		_flank_go()
+		return
+	if game.clock - _flank_t < FLANK_T:
+		return
+	var foes: Array = p._foes_near(p.anchor, 700.0)
+	var front: Array = p.units.filter(func(u: Unit) -> bool: return u.kind == "clock_soldier" and not _busy(u))
+	if foes.is_empty() or front.size() < FLANK_MIN:
+		return
+	var fc: Vector2 = p._centre(front)
+	var near_d := INF
+	for o in foes:
+		near_d = minf(near_d, o.position.distance_to(fc))
+	var back: Array = foes.filter(func(o: Unit) -> bool: return (_shooter(o) or o.kind in ["cannon", "mortar"]) and o.position.distance_to(fc) > near_d + FLANK_BACK)
+	var bv := 0.0
+	var fv := 0.0
+	for o in foes:
+		fv += ai._unit_value(o)
+	for o in back:
+		bv += ai._unit_value(o)
+	if back.size() < 2 or bv < fv * 0.18:
+		return
+	var bc: Vector2 = p._centre(back)
+	var dir: Vector2 = (bc - fc).normalized()
+	var side := Vector2(-dir.y, dir.x)
+	# (round the side with fewer enemies; the units at that end of our line go)
+	var lv := 0.0
+	for o in foes:
+		lv += signf((o.position - fc).dot(side)) * ai._unit_value(o)
+	var sgn := -1.0 if lv > 0.0 else 1.0
+	front.sort_custom(func(a: Unit, b: Unit) -> bool: return (a.position - fc).dot(side) * sgn > (b.position - fc).dot(side) * sgn)
+	var n := maxi(3, int(round(float(front.size()) * FLANK_SHARE)))
+	var group: Array = front.slice(0, n)
+	for u in p.units:
+		if u.kind == Defs.SPRINGER and not _busy(u):
+			group.append(u)
+	var wp: Vector2 = bc + side * sgn * FLANK_WIDE - dir * 60.0
+	if game.level_of(wp) != game.level_of(bc):
+		wp = bc + side * sgn * FLANK_WIDE * 0.6
+	for u in group:
+		_flank_g[u] = {"stage": 0, "wp": wp, "bc": bc, "t": game.clock}
+		u.cmd_move(wp, false)
+		_mine[u] = game.clock + FLANK_T
+	_flank_t = game.clock
+	count(team, "flank")
+	count(team, "flank_units", group.size())
+
+
+func _flank_go() -> void:
+	for u in _flank_g.keys():
+		var e: Dictionary = _flank_g[u]
+		if game.clock - float(e["t"]) > FLANK_T:
+			_flank_g.erase(u)
+			_mine.erase(u)
+			continue
+		_mine[u] = game.clock + 1.0
+		if int(e["stage"]) == 0:
+			if u.position.distance_to(e["wp"]) < 70.0 or game.clock - float(e["t"]) > 7.0 or (u.order == "idle"):
+				e["stage"] = 1
+				var best: Unit = null
+				var bd := 520.0
+				for o in game.units_near(u.position, 520.0):
+					if _hostile_unit(o) and (_shooter(o) or o.kind in ["cannon", "mortar"]):
+						var dd: float = o.position.distance_to(e["bc"])
+						if dd < bd:
+							bd = dd
+							best = o
+				if best != null:
+					u.cmd_attack(best)
+				else:
+					u.cmd_move(e["bc"], true)
+		elif u.target == null or not is_instance_valid(u.target) or u.target.dead:
+			var best2: Unit = null
+			var bd2 := 300.0
+			for o in game.units_near(u.position, 300.0):
+				if _hostile_unit(o):
+					var dd2: float = o.position.distance_to(u.position) - (120.0 if _shooter(o) else 0.0)
+					if dd2 < bd2:
+						bd2 = dd2
+						best2 = o
+			if best2 != null:
+				u.cmd_attack(best2)

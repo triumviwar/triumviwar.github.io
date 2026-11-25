@@ -213,6 +213,7 @@ def run_games(name):
         f.write("opp:%s %s\n" % (opp, " ".join(extra)))
     qm.RUN_ROOT = os.path.abspath(arg("--root", qm.ROOT))
     qm.KEEP_CW = True
+    qm.TIMEOUT = 9000
     out = os.path.abspath(arg("--out", "/tmp/claude-0/cwm_out/" + name))
     with ThreadPoolExecutor(int(arg("--jobs", "2"))) as ex:
         for t in ex.map(lambda g: qm.run_one(g, out, 1200, dd, extra), queue(opp)):
