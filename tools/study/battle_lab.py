@@ -23,6 +23,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 GODOT = os.environ.get("GODOT", "/home/claude/godot/godot")
 CROWN = ["M", "MC", "MCH", "MMo", "MCMo", "MH", "H", "D", "MD", "MO", "MB", "MMi", "CH"]
 BROOD = ["R", "R3S1", "R1S1", "R1S3", "S", "B", "RSB", "TC", "TCS", "VC", "StC", "RSTd", "RSy"]
+CLOCKWORK = ["K", "KW", "KN", "KP", "P", "Sp", "KSp", "KB", "Se", "KSe", "O", "CW", "KGW", "KPN"]
+COMPS = {"crown": CROWN, "brood": BROOD, "clockwork": CLOCKWORK}
 CROWN_NAMES = {
     "M": "Musketeers", "MC": "Musketeers + Field Cannons", "MCH": "the computer's wave (Musketeers, Cannons, Horsemen)",
     "MMo": "Musketeers + Mortars", "MCMo": "Musketeers + Cannons + Mortars", "MH": "Musketeers + Horsemen",
@@ -33,12 +35,33 @@ BROOD_NAMES = {
     "R1S3": "Spitters, a few Raptors (3:1)", "S": "Spitters", "B": "Brutes", "RSB": "Raptors, Spitters, Brutes",
     "TC": "Tyrant Challengers", "TCS": "Tyrant Challengers + Spitters", "VC": "Venom Challengers",
     "StC": "Storm Challengers (flyers)", "RSTd": "Raptors, Spitters, Mist Toads", "RSy": "Raptors and Spitters with the Tyrant Sire"}
+CLOCKWORK_NAMES = {
+    "K": "Clock Soldiers, no Winders", "KW": "Clock Soldiers + Winders", "KN": "Clock Soldiers + Netters",
+    "KP": "Clock Soldiers + Pendulums", "P": "Pendulums", "Sp": "Springers", "KSp": "Clock Soldiers + Springers",
+    "KB": "Clock Soldiers + Spring Ballistas", "Se": "Brass Serpents", "KSe": "Clock Soldiers + Brass Serpents",
+    "O": "the air: Ticking Owls + Swifts", "CW": "the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)",
+    "KGW": "Clock Soldiers + the Great Winder (no Winders)", "KPN": "Clock Soldiers + Pendulums + Netters"}
+NAMES = {"crown": CROWN_NAMES, "brood": BROOD_NAMES, "clockwork": CLOCKWORK_NAMES}
 SIZE_NAME = {600: "early (600)", 1500: "mid (1,500)", 4000: "late (4,000)"}
 GROUND_NAME = {"open": "open field", "set": "the set line (open ground, the Crown formed, guns up)", "block": "the set block (open ground, the Crown in a close block, guns up)", "choke": "a choke", "up": "a ramp, the Crown on top", "down": "a ramp, the Brood on top"}
 
 
+def side(r):
+    """(faction A, comp A, faction B, comp B) of a row (old rows: Crown v Brood)"""
+    if "fa" in r:
+        return (r["fa"], r["ca"], r["fb"], r["cb"])
+    return ("crown", r["crown"], "brood", r["brood"])
+
+
 def key(r):
-    return (r["crown"], r["brood"], int(r["size"]), r["ground"], int(r["seed"]))
+    return side(r) + (int(r["size"]), r["ground"], int(r["seed"]))
+
+
+def job_key(j):
+    """a job line's key: five words = the old Crown v Brood line, seven = any two factions"""
+    if len(j) == 5:
+        return ("crown", j[0], "brood", j[1], int(j[2]), j[3], int(j[4]))
+    return (j[0], j[1], j[2], j[3], int(j[4]), j[5], int(j[6]))
 
 
 def load_rows(path):
@@ -57,6 +80,18 @@ def load_rows(path):
 def cmd_jobs(a):
     sizes = [int(x) for x in a.sizes.split(",")]
     grounds = a.grounds.split(",")
+    if a.fa:
+        # (battle-matrix-all) any two factions: every comp of A against every comp of B (a mirror: each pairing once
+        # each way round, so both spots are played)
+        ca = a.ca.split(",") if a.ca else COMPS[a.fa]
+        cb = a.cb.split(",") if a.cb else COMPS[a.fb]
+        for g in grounds:
+            for sz in sizes:
+                for s in range(a.seed0, a.seed0 + a.seeds):
+                    for c in ca:
+                        for b in cb:
+                            print(f"{a.fa} {c} {a.fb} {b} {sz} {g} {s}")
+        return
     crown = a.crown.split(",") if a.crown else CROWN
     brood = a.brood.split(",") if a.brood else BROOD
     for g in grounds:
@@ -72,7 +107,7 @@ def cmd_run(a):
     out = os.path.abspath(a.out)
     os.makedirs(os.path.dirname(out), exist_ok=True)
     done = {key(r) for r in load_rows(out)}
-    todo = [j for j in jobs if (j[0], j[1], int(j[2]), j[3], int(j[4])) not in done]
+    todo = [j for j in jobs if job_key(j) not in done]
     print(f"{len(jobs)} jobs, {len(todo)} to do", flush=True)
     chunks = [todo[i:i + a.chunk] for i in range(0, len(todo), a.chunk)]
     tmp = tempfile.mkdtemp(prefix="battle_lab_")
@@ -208,6 +243,10 @@ def main():
     j.add_argument("--seed0", type=int, default=0)
     j.add_argument("--crown", default="")
     j.add_argument("--brood", default="")
+    j.add_argument("--fa", default="", help="any two factions: side A's faction (then --fb, --ca, --cb)")
+    j.add_argument("--fb", default="")
+    j.add_argument("--ca", default="")
+    j.add_argument("--cb", default="")
     r = sp.add_parser("run")
     r.add_argument("jobs")
     r.add_argument("--workers", type=int, default=os.cpu_count() or 2)
