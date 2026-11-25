@@ -750,6 +750,7 @@ func _finish() -> void:
 		"crown_ai": _crown_counters(),
 		"wcc": _wcc_counters(),     # (wr1000-crown-clockwork: how often each AIWccr change acted, a side each)
 		"brood_linger": _linger_counters(),
+		"brood_micro": AIBroodMicro.counts.duplicate(true),      # (brood-micro: its parts' counters, a side each)
 		"bench": _bench_report(),
 		"slots": slots, "end": int(round(g.clock)), "over": g.over,
 		"winner": g.winner if g.over else -1, "winner_side": (g.sides[g.winner] if g.over and g.winner >= 0 else -1),
