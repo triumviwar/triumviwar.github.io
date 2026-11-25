@@ -10,10 +10,17 @@ class_name AICrownMicro
 ##   focus     the Musketeers share out their volleys: no more balls into a creature than it takes to kill it, the
 ##             Spitters (the only Brood that shoots back from range) first, then the most hurt in reach
 ##   hurt      a badly hurt Musketeer with a creature on him steps back behind his friends (he lives to fire again)
+##   riders    a Horseman standing out of the fight (on the screen's flank post, idle) while the Brood is at our men or
+##             guns rides in at the creature nearest the guns (the hit and run, AICavMicro, takes him from there)
+##   gunpick   a set Field Cannon's round shot goes for the armoured creatures (Brutes, Challengers: it hits them 1.75 times)
+##             and a Mortar's shell for the thickest clump, never where our own men are
+##   kite      a reloading Musketeer steps back from a melee creature slower than he is (the Brute)
+##   brace     a Brood force coming at the marching wave: the men halt where they are and the guns set, so the Brood walks
+##             into their fire instead of the men walking into it in a column
 ## Read only for the others: `has(u)` (a man under the micro's own order this moment).
 
-const PARTS := ["canister", "focus", "hurt"]
-const KEPT: Array[String] = ["canister", "focus", "hurt"]
+const PARTS := ["canister", "focus", "hurt", "riders", "gunpick", "kite", "brace"]
+const KEPT: Array[String] = ["riders", "brace", "kite", "gunpick"]
 const EVERY := 0.2               # (s) looked at this often
 
 # canister
@@ -32,6 +39,26 @@ static var NEAR_W := knob("near", 0.15)         # the score lost a pixel of dist
 static var LOW_W := knob("low", 0.4)            # ... a hit point left
 static var KILL_B := knob("kill", 60.0)         # ... won by a kill with this ball
 
+# riders
+const RIDE_FIGHT_R := 650.0      # (px) Brood soldiers this near our men or guns: a fight the riders join
+const RIDE_IDLE_R := 300.0       # (px) a rider with no Brood soldier this near is out of the fight
+const RIDE_COOL := 3.0
+static var RIDE_WHO := knob("ridewho", 0.0)     # 1: only for creatures at the guns and Spitters
+
+# gunpick
+const MORTAR_CLUMP := 48.0       # (px) the shell's splash counted this wide
+
+# kite
+const KITE_R := 75.0
+const KITE_STEP := 55.0
+const KITE_T := 0.8
+
+# brace
+const BRACE_R := 620.0           # (px) a Brood force this near the wave's middle, coming on
+const BRACE_SHARE := 0.25        # ... worth this share of the wave
+const BRACE_MAX := 7.0           # (s) halted at most this long (the fight comes or the march goes on)
+const BRACE_COOL := 25.0
+
 # hurt
 const HURT := 0.35               # a Musketeer under this share of his hit points ...
 const HURT_FOE_R := 80.0         # ... with a melee creature this near ...
@@ -47,6 +74,11 @@ var game: Game
 var _t := 0.0
 var _can_quiet := {}             # gun -> clock when Brood were last near
 var _back := {}                  # man -> {"until": t, "o": order, "p": point, "cool": t}
+var _ride := {}                  # rider -> clock he was last sent in
+var _kite := {}                  # man -> clock his step back ends
+var _brace_until := 0.0
+var _brace_next := 0.0
+var _braced: Array = []
 
 
 func _init(a) -> void:
@@ -96,7 +128,7 @@ func active() -> bool:
 
 
 func has(u: Unit) -> bool:
-	return _back.has(u)
+	return _back.has(u) or _kite.has(u)
 
 
 ## The Musketeer's target is the focus's to pick (AI._micro leaves it be).
@@ -116,8 +148,18 @@ func tick() -> void:
 	for u in game.units:
 		if u.team == t and not u.dead and not u.off_field and not u.aboard:
 			mine.append(u)
+	if on("brace"):
+		_brace(mine)
 	if on("hurt"):
 		_hurt_tick(mine)
+	if on("kite"):
+		_kite_tick(mine)
+	if on("riders"):
+		_riders(mine)
+	if on("gunpick"):
+		for u in mine:
+			if u.kind == "cannon" or u.kind == "mortar":
+				_gunpick(u)
 	if on("canister"):
 		for u in mine:
 			if u.kind == "cannon":
@@ -305,3 +347,169 @@ func _hurt_tick(mine: Array) -> void:
 		_back[u] = {"until": game.clock + HURT_T, "o": u.order, "p": u.order_point, "cool": game.clock + HURT_T + HURT_COOL}
 		u.cmd_move(p)
 		count(ai.team, "hurt")
+
+
+# ------------------------------------------------------------------ riders
+
+func _riders(mine: Array) -> void:
+	var anchors: Array = mine.filter(func(u: Unit) -> bool: return u.has_attack() and not u.kind in ["cuirassier", "dragoon"])
+	for u in mine:
+		if u.kind != "cuirassier" or u.is_worker():
+			continue
+		var screened: bool = ai.sc != null and ai.sc.has(u)
+		if u.hp < u.max_hp * 0.4 or (ai._on_errand(u) and not screened) or (ai.cav != null and ai.cav.has(u)):
+			continue
+		if game.clock - float(_ride.get(u, -99.0)) < RIDE_COOL:
+			continue
+		if not u.order in ["idle", "move", "hold"]:
+			continue
+		if not _foes_near(u.position, RIDE_IDLE_R).is_empty():
+			continue
+		# the fight: Brood soldiers at our men or guns, within reach of a ride
+		var best: Unit = null
+		var bs := INF
+		for a in anchors:
+			if a.position.distance_to(u.position) > RIDE_FIGHT_R + 400.0:
+				continue
+			for e in _foes_near(a.position, 200.0 if a.kind in ["cannon", "mortar"] else 140.0):
+				if not e.has_attack():
+					continue
+				if RIDE_WHO >= 1.0 and not (a.kind in ["cannon", "mortar"] or e.kind == "spitter"):
+					continue          # (the line's own fight is the Musketeers': the riders come for the guns and the Spitters)
+				var s: float = e.position.distance_to(u.position) - (250.0 if a.kind in ["cannon", "mortar"] else 0.0) \
+						- (150.0 if e.kind == "spitter" else 0.0) + (200.0 if e.kind == "brute" else 0.0)
+				if s < bs:
+					bs = s
+					best = e
+		if best == null:
+			continue
+		_ride[u] = game.clock
+		if screened:
+			ai.sc._release(u, "")         # (off the screen: the fight is here)
+			count(ai.team, "riders_screen")
+		u.cmd_move(best.position, true)
+		count(ai.team, "riders")
+
+
+# ------------------------------------------------------------------ gunpick
+
+func _gunpick(u: Unit) -> void:
+	if u.tesla_mode != "deployed" or u.mode == "canister" or u.phase != "" or u.cooldown > 0.5 or u.hold_fire:
+		return
+	if not u.order in ["hold", "amove", "idle"]:
+		return
+	var r: float = u._range()
+	var min_r := float(u.d.get("min_range", 0.0))
+	var best: Unit = null
+	var bs := 0.0
+	for e in _foes_near(u.position, r + 30.0):
+		var dd: float = e.edge_distance(u.position) - u.radius
+		if dd > r or dd < min_r or not u.can_hit(e) or not game.side_sees(ai.team, e.position):
+			continue
+		var s := 0.0
+		if u.kind == "cannon":
+			s = 1.0 + (1.2 if e.armor >= 1.0 else 0.0) + (0.8 if e.kind == "brute" else 0.0)
+			# (the ball tears through the line behind it)
+			var dir: Vector2 = (e.position - u.position).normalized()
+			for o in _foes_near(e.position, 90.0):
+				if o != e and dir.dot((o.position - e.position).normalized()) > 0.85:
+					s += 0.3
+		else:
+			for o in _foes_near(e.position, MORTAR_CLUMP):
+				s += 1.0
+		if s <= bs or not game.aoe_worth_it(u, e):
+			continue
+		bs = s
+		best = e
+	if best != null and best != u.target:
+		u.target = best
+		u.scan_t = maxf(u.scan_t, EVERY + 0.15)
+		count(ai.team, "gunpick")
+	elif best != null:
+		u.scan_t = maxf(u.scan_t, EVERY + 0.15)
+
+
+# ------------------------------------------------------------------ kite
+
+func _kite_tick(mine: Array) -> void:
+	for u in _kite.keys():
+		if not _ok(u):
+			_kite.erase(u)
+		elif game.clock >= float(_kite[u]):
+			_kite.erase(u)
+			if u.order == "move":
+				if ai._attacking and ai._wave_set.has(u):
+					u.cmd_move(ai._wave_target, true)
+				else:
+					u.cmd_hold()
+	for u in mine:
+		if not u.foot_musket() or _kite.has(u) or _back.has(u) or u.phase != "" or u.cooldown < 0.9:
+			continue
+		if not (u.order in ["hold", "amove", "idle"]):
+			continue
+		var close: Unit = null
+		var cd := KITE_R
+		for e in _foes_near(u.position, KITE_R + 20.0):
+			if not _melee(e) or e.speed >= u.speed * 0.97:
+				continue
+			var d: float = e.position.distance_to(u.position)
+			if d < cd:
+				cd = d
+				close = e
+		if close == null:
+			continue
+		u.cmd_move(game.on_map(u.position + (u.position - close.position).normalized() * KITE_STEP))
+		_kite[u] = game.clock + KITE_T
+		count(ai.team, "kite")
+
+
+# ------------------------------------------------------------------ brace
+
+func _brace(mine: Array) -> void:
+	if not _braced.is_empty() and (game.clock >= _brace_until or _contact(_braced)):
+		for u in _braced:
+			if _ok(u) and u.order == "hold" and ai._attacking and ai._wave_set.has(u):
+				u.cmd_move(ai._wave_target, true)
+		if game.clock >= _brace_until:
+			count(ai.team, "brace_timeout")
+		_braced.clear()
+		return
+	if not _braced.is_empty() or game.clock < _brace_next or not ai._attacking:
+		return
+	var wave: Array = mine.filter(func(u: Unit) -> bool: return ai._wave_set.has(u) and u.has_attack())
+	if wave.size() < 4:
+		return
+	var mid := Vector2.ZERO
+	var wv := 0.0
+	for u in wave:
+		mid += u.position
+		wv += float(Game.unit_value(u))
+	mid /= float(wave.size())
+	if _contact(wave):
+		return
+	var fv := 0.0
+	for e in _foes_near(mid, BRACE_R):
+		if e.has_attack() and game.side_sees(ai.team, e.position) and e.velocity.dot(mid - e.position) > 0.0:
+			fv += float(Game.unit_value(e))
+	if fv < wv * BRACE_SHARE:
+		return
+	_braced = []
+	for u in wave:
+		if u.kind == "cuirassier":
+			continue
+		if u.deploys():
+			if u.tesla_mode == "packed":
+				u.cmd_deploy()
+		elif u.order in ["amove", "move"]:
+			u.cmd_hold()
+		_braced.append(u)
+	_brace_until = game.clock + BRACE_MAX
+	_brace_next = game.clock + BRACE_COOL
+	count(ai.team, "brace")
+
+
+func _contact(list: Array) -> bool:
+	for u in list:
+		if _ok(u) and not _foes_near(u.position, 200.0).filter(func(e: Unit) -> bool: return e.has_attack()).is_empty():
+			return true
+	return false

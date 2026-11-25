@@ -15,7 +15,10 @@ extends SceneTree
 ## Counts per fight (from first contact, at most `fight` s, default 90): value killed and lost, the share of each army left,
 ## the score (Crown share left - Brood share left: +1 a clean Crown win, -1 a clean loss).
 ##   godot --headless --fixed-fps 30 --path . --script res://tools/bench_crown_micro.gd -- [only:open-m-mixed,...|set:core]
-##       [runs:3] [map:greenhold] [seed:0] [out:/abs/file.json] [shots:/abs/dir] [cmic:off ...]
+##       [runs:3] [map:greenhold] [seed:0] [tech:1] [fight:90] [out:/abs/file.json] [shots:/abs/dir] [cmic:off ...]
+## ratio:1.5 the Brood army worth that many times the Crown's (where does the Crown stop winning?).
+## dry:0.3 that share of the Musketeers start with no powder. Sizes M and L: the armies the computer fields (riders, a band).
+## tech:1 both sides fight with their late research (see _one).
 ## A measuring tool: it changes no rule.
 var main: Node
 var g: Game
@@ -26,18 +29,25 @@ const SETS := {
 	"core": ["open-m-raptor", "open-m-mixed", "open-m-late", "home-m-raptor", "home-m-mixed", "ramp-m-mixed",
 		"side-m-mixed", "open-s-mixed", "open-l-mixed", "open-l-late", "open-m-spit", "home-l-late"],
 	"quick": ["open-m-raptor", "open-m-mixed", "home-m-mixed", "open-l-late"],
+	# (the armies the computers really field at 12:00-20:00, docs/crown_brood_late data: run with tech:1 dry:0.3)
+	"real": ["open-M-real", "home-M-real", "side-M-real", "ramp-M-real", "open-L-real", "home-L-real", "open-L-late",
+		"side-L-real"],
 }
 
 const CROWN := {
 	"s": {"musketeer": 8, "cannon": 1, "cuirassier": 2},
 	"m": {"musketeer": 14, "cannon": 3, "cuirassier": 3, "mortar": 1},
 	"l": {"musketeer": 26, "cannon": 5, "cuirassier": 4, "mortar": 2},
+	"M": {"musketeer": 14, "cannon": 3, "cuirassier": 6, "mortar": 1},
+	"L": {"musketeer": 24, "cannon": 5, "cuirassier": 12, "mortar": 2, "band": 1, "band_fifer": 1, "band_piper": 1},
 }
 const MIX := {
 	"raptor": ["raptor"],
 	"mixed": ["raptor", "raptor", "spitter", "tyrant_challenger"],
 	"late": ["raptor", "raptor", "spitter", "tyrant_challenger", "spitter", "brute"],
 	"spit": ["spitter", "spitter", "raptor"],
+	"real": ["raptor", "raptor", "raptor", "tyrant_challenger", "raptor", "spitter", "raptor", "brute", "raptor", "raptor",
+		"mist_toad", "tyrant_challenger"],
 }
 
 
@@ -195,6 +205,13 @@ func _one(sc: String, r: int, map: String) -> void:
 		at = mid - to_goal * 900.0
 		front = to_goal
 	var side := Vector2(-front.y, front.x)
+	if _arg("tech", "0") == "1":
+		# (late-game research on both sides: the Brood's Pack Hunt, Battering Horns, Slither, Long Spit; the Crown's
+		# Cavalry Charge, Prepared Charges, Gunner's Quadrant)
+		for k in ["nb_pack_hunt", "nb_battering_horns", "nb_slither", "nb_long_spit"]:
+			g.players[1]["tech"][k] = true
+		for k in ["charge", "charges", "quadrant"]:
+			g.players[0]["tech"][k] = true
 	var wave: Array = []
 	var comp: Dictionary = CROWN[size]
 	var nm: int = comp.get("musketeer", 0)
@@ -205,6 +222,15 @@ func _one(sc: String, r: int, map: String) -> void:
 			wave.append(_spawn(k, 0, at - front * (90.0 + (60.0 if k == "mortar" else 0.0)) + side * (float(i) - float(comp[k] - 1) * 0.5) * 70.0))
 	for i in int(comp.get("cuirassier", 0)):
 		wave.append(_spawn("cuirassier", 0, at - front * 50.0 + side * (i % 2 * 2 - 1) * (190.0 + float(i / 2) * 40.0)))
+	for k in ["band", "band_fifer", "band_piper"]:
+		for i in int(comp.get(k, 0)):
+			wave.append(_spawn(k, 0, at - front * 60.0 + side * (["band", "band_fifer", "band_piper"].find(k) - 1) * 24.0))
+	# dry:<share> that share of the Musketeers have no powder left (the real games' late fights: docs/crown_micro.md)
+	var dry := float(_arg("dry", "0"))
+	if dry > 0.0:
+		var mk: Array = wave.filter(func(u: Unit) -> bool: return u.kind == "musketeer")
+		for j in int(round(float(mk.size()) * dry)):
+			mk[j * mk.size() / maxi(1, int(round(float(mk.size()) * dry)))].powder = 0.0
 	var cv := _value(wave)
 	var guns: Array = wave.filter(func(u: Unit) -> bool: return u.kind in ["cannon", "mortar"])
 	var n_guns := guns.size()
@@ -231,7 +257,8 @@ func _one(sc: String, r: int, map: String) -> void:
 			foe_at = at + front * 1500.0
 	var bv := 0.0
 	var i := 0
-	while bv < cv and i < 800:
+	var ratio := float(_arg("ratio", "1"))       # ratio:1.5 the Brood brings 1.5 times the Crown's value
+	while bv < cv * ratio and i < 1200:
 		var k: String = kinds[i % kinds.size()]
 		var f := _spawn(k, 1, foe_at + side * float((i % 14) - 7) * 30.0 + front * float(i / 14) * 30.0)
 		foes.append(f)
