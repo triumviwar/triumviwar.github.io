@@ -588,12 +588,20 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 	var guns_set_contact := -1
 	var guns_set_10 := -1
 	var guns_fired_20 := -1
+	var ffk := {}
+	var ffb := {}
 	var shot_n := 0
 	var next_shot := 0.0
 	while not g.over:
 		await _wait(0.5)
 		var cf := _fighters(cl)
 		var bf := _fighters(bl)
+		for u in _alive(cl):
+			if u.friendly_kills > 0:
+				ffk[u] = u.friendly_kills       # (our own men a Crown blow finished off: splash from guns and mortars)
+		for u in _alive(bl):
+			if u.friendly_kills > 0:
+				ffb[u] = u.friendly_kills
 		if args.has("debug"):
 			var st := {}
 			for u in _alive(cl):
@@ -727,6 +735,14 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 	r["riders_lost"] = 0
 	for k in RIDERS:
 		r["riders_lost"] += int(r["c_lost_k"].get(k, 0))
+	var ff := 0
+	for u in ffk:
+		ff += int(ffk[u])
+	r["c_friendly_kills"] = ff
+	ff = 0
+	for u in ffb:
+		ff += int(ffb[u])
+	r["b_friendly_kills"] = ff
 	r["guns_lost"] = int(r["c_lost_k"].get("cannon", 0)) + int(r["c_lost_k"].get("mortar", 0))
 	_orig.clear()
 	r["map"] = map

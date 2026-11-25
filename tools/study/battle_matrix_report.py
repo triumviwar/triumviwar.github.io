@@ -190,6 +190,52 @@ def main():
                         d.append(sum(r["score"] for r in r1) / len(r1) - sum(r["score"] for r in r0) / len(r0))
                 line.append(f"{d and '%+d' % round(sum(d) / len(d) * 100) or ''}")
             md.append("| " + " | ".join(line) + " |")
+    # THE FIGHTING OR THE NUMBERS: the same armies, the Crown marching under its computer (open) and set by hand (set)
+    if "open" in grounds and "set" in grounds:
+        md.append("\n## The fighting or the numbers: open field (the computer marches) against the set line (formed, guns up)\n")
+        md.append("| size | mean score, open | mean score, set | pairings the Brood wins open but the Crown wins set | "
+                  "the Brood wins both | the Crown wins both |")
+        md.append("|---|---|---|---|---|---|")
+        fx = {}
+        for sz in sizes:
+            o_all, s_all, flip, bb, cc = [], [], [], [], []
+            for c in bl.CROWN:
+                for b in bl.BROOD:
+                    ro = cl.get((c, b, sz, "open"))
+                    rs = cl.get((c, b, sz, "set"))
+                    if not ro or not rs:
+                        continue
+                    mo, ho = bl.ci95([r["score"] for r in ro])
+                    ms, hs = bl.ci95([r["score"] for r in rs])
+                    o_all.append(mo)
+                    s_all.append(ms)
+                    vo, vs = bl.verdict(mo, ho), bl.verdict(ms, hs)
+                    if vo == "B" and vs == "C":
+                        flip.append(f"{c}-{b}")
+                    if vo == "B" and vs == "B":
+                        bb.append(f"{c}-{b}")
+                    if vo == "C" and vs == "C":
+                        cc.append(f"{c}-{b}")
+            if not o_all:
+                continue
+            fx[sz] = {"open": round(sum(o_all) / len(o_all), 3), "set": round(sum(s_all) / len(s_all), 3), "flip": flip,
+                      "brood_both": bb, "crown_both": cc}
+            md.append(f"| {sz} | {pct(sum(o_all) / len(o_all))} | {pct(sum(s_all) / len(s_all))} | {len(flip)} | {len(bb)} | {len(cc)} |")
+        md.append("")
+        for sz in fx:
+            md.append(f"- {sz}: the Brood wins open but the Crown wins set: {', '.join(fx[sz]['flip']) or 'none'}. "
+                      f"The Brood wins both: {', '.join(fx[sz]['brood_both']) or 'none'}.")
+        # by Crown composition
+        md.append("\n| Crown composition | " + " | ".join(f"open {sz} | set {sz}" for sz in sizes) + " |")
+        md.append("|---|" + "---|---|" * len(sizes))
+        for c in bl.CROWN:
+            line = [c]
+            for sz in sizes:
+                for g in ("open", "set"):
+                    sc = [r["score"] for b in bl.BROOD for r in cl.get((c, b, sz, g), [])]
+                    line.append(pct(sum(sc) / len(sc)) if sc else "")
+            md.append("| " + " | ".join(line) + " |")
+        out["fighting_or_numbers"] = fx
     open(a.md, "w").write("\n".join(md) + "\n")
     json.dump(out, open(a.json, "w"), indent=1, sort_keys=True)
     print(f"wrote {a.md}, {a.json}")
