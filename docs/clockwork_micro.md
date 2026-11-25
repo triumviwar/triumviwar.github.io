@@ -10,7 +10,22 @@ The method is the crown-micro job's (branch `crown-micro`, docs/crown_micro.md t
 
 ## The short answer
 
-@@VERDICT@@
+**The Clockwork computer already fights about as well as simple rules can make it fight. Its gap against the Crown is the
+army it builds and the units' matchup, not its fighting. Against the Brood it has an edge, and the mirror is even.**
+
+- Ten ways of fighting were tried on hundreds of equal-value battles (Clock Soldiers going for the shooters, a flank
+  group, the whole push charging, Springers jumping at the guns, hurt machines stepping back, early retreats, Winders
+  kept out of the shooters' reach...). **None helped beyond the noise. The ones that pull machines out of the block made it
+  clearly worse.** Nothing was kept; the game is unchanged. The parts stay in the code, off.
+- **Against the Crown**, at equal value, the Clockwork loses every fight (it kills a quarter of what it loses) and needs about
+  twice the Crown's value to come out even. In real games it earns as much as the Crown and has the bigger army at 12:00,
+  and still wins none of 10 games, because its army trades at 0.48. **But the same computer, fighting the same way, with
+  five Spring Ballistas instead of ten Clock Soldiers, closes most of the gap** (-0.62 to -0.23 in the open, even at home).
+  So: not the fighting, the army it builds (macro), and behind that a hard matchup for a melee army against muskets and guns.
+- **Against the Brood** the Clockwork wins (5 of 10 games, trade 1.47): its economy is bigger and the Brood's real army,
+  mostly Raptors, is what the Clock Soldiers beat. Its one weak spot (Spitters behind a Raptor screen) is again fixed by
+  Ballistas, not by fighting differently.
+- **In the mirror** it is even, as a mirror should be; on the bench the Springers-heavy army beats the computer's own.
 
 ## What was built
 
@@ -259,11 +274,68 @@ With the army it builds, the Clockwork needs about **twice the Crown's value** t
 
 ## Real games
 
-@@GAMES@@
+Hard OPTIMAL against Hard OPTIMAL, to 20:00, the six parity maps (round 0 on all six, round 1 with the starts swapped on
+the first four), 10 games a block, the same 10 pairings in every block of a matchup. "Won" and "lost" are games that ended;
+"led", "even", "behind" are the score at the bell (income earned + 2 x army, 10% either way is even). g is the log of the
+score ratio, ours over theirs (+0.69 = twice theirs).
+
+**No part was kept, so "with the micro" can only mean a part on trial.** I ran the one part whose target the bench cannot
+see, `safe` (the Winders out of the shooters' reach), as the "with" block.
+
+| block | switches | games | won | led | even | behind | lost | mean g | g at 14:00 | army 12:00 | defeats (min) |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| g_crown_off | opp:crown cwmic:off | 10 | 0 | 1 | 2 | 4 | 3 | -1.01 | -0.14 | 1.11 | 16.4, 18.8, 19.0 |
+| g_crown_safe | opp:crown cwmicsafe:on | 10 | 0 | 0 | 2 | 6 | 2 | -0.82 | -0.22 | 0.89 | 16.0, 16.4 |
+| g_brood_off | opp:brood cwmic:off | 10 | 5 | 0 | 1 | 1 | 3 | +0.55 | +0.25 | 2.19 | 15.8, 16.6, 18.9 |
+| g_mirror_off | opp:clockwork cwmic:off cwmicteam:0 | 9 | 3 | 1 | 1 | 1 | 3 | +0.07 | +0.04 | 2.84 | 13.7, 14.2, 18.0 |
+
+With `safe` against without, game by game:
+
+```
+g_crown_safe v g_crown_off: n 10  d g +0.20 (t 0.62, better 5 worse 5)  d g14 -0.08 (t -0.65)
+g_mirror_safe v g_mirror_off: n 0  d g +0.00 (t 0.00, better 0 worse 0)  d g14 +0.00 (t 0.00)
+```
+
+The trade (armies only, by value, what the Clockwork killed for what it lost) and the economy (income earned, ours over
+theirs):
+
+| block | games | army killed / lost (value) | k/l | workers killed / lost | income ours / theirs at 12:00 | at 20:00 |
+|---|---|---|---|---|---|---|
+| g_crown_off | 10 | 61290 / 128420 | 0.48 | 2250 / 48060 | 1.05 | 0.72 |
+| g_crown_safe | 10 | 67105 / 143175 | 0.47 | 2150 / 35460 | 0.99 | 0.72 |
+| g_brood_off | 10 | 91995 / 62695 | 1.47 | 5650 / 23160 | 1.27 | 0.78 |
+| g_mirror_off | 9 | 76695 / 70790 | 1.08 | 20040 / 17460 | 1.07 | 1.09 |
+| g_mirror_safe | 0 | 0 / 0 | 0.00 | 0 / 0 | - | - |
+
+What the games say:
+
+- **Against the Crown the Clockwork earns as much (1.05 at 12:00) and has the bigger army at 12:00 (1.11), but it trades
+  badly: 0.48 of value killed for each value lost, and it loses about 80 Winders a game besides (4,800 in value).**
+  It won none of 10, lost 3, was behind in 4. The bench says the same thing: at equal value it loses every kind of fight.
+- `safe` cut the Winders lost by a quarter (48,060 to 35,460 in value over 10 games) but changed nothing else: the trade
+  stayed 0.47, the result d g +0.20 (t 0.6, 5 games better, 5 worse). Not kept.
+- **Against the Brood the Clockwork wins** (5 won, 3 lost, g +0.55): it out-earns the Brood (1.27 at 12:00) and trades 1.47.
+  The bench agrees: the Brood computer's real army is mostly Raptors, and the Clockwork beats Raptors.
+- **The mirror is even** (g +0.07, trade 1.08), as it should be.
 
 ## The verdict, matchup by matchup
 
-@@VERDICT2@@
+| matchup | real games (10) | trade (k/l) | income at 12:00 | bench at equal value | the gap is... |
+|---|---|---|---|---|---|
+| v the Crown | 0 won, 1 led, 2 even, 4 behind, 3 lost | 0.48 | 1.05 | -0.62 (needs ~2x the value) | the army it builds and the units' matchup: not the fighting |
+| v the Brood | 5 won, 1 even, 1 behind, 3 lost | 1.47 | 1.27 | +0.07 (wins v Raptors, loses v Spitters) | an edge, from its economy and the Brood's Raptor-heavy army |
+| mirror | 3 won, 1 led, 1 even, 1 behind, 3 lost (9 games) | 1.08 | 1.07 | even | no gap |
+
+**What I would do next (proposals, not built):**
+
+1. A coached BUILD job for the Clockwork: more Spring Ballistas in every push (against the Crown and against Spitters),
+   more Springers in the mirror. The bench says this is worth far more than any fighting rule. It must be measured in real
+   games: Ballistas are slow (34) and the push marches at its slowest machine's pace.
+2. Against the Crown, the balance question for the owner: a melee army needs about twice the value to beat a Musketeer
+   line with guns in a set fight. The Clockwork makes up for it today with its economy and its repairs; whether that is the
+   wanted shape of the matchup is the owner's call (docs/design_principles.md, "fairness before perfect balance").
+3. The Winders lost against the Crown (about 80 a game) are worth a look in the macro: `safe` saved a quarter of them in
+   real games but did not change results.
 
 ## Claude's choices
 
