@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"A STUDY, nothing changes in the game: the battle lab now fights any two factions, mirrors too. Thousands of fights at equal cost between fixed armies of the Crown, the Clockwork and the Brood, to learn what beats what in every matchup. A fault of the lab was found and fixed: Dragoons never fired there, because the computer sends them home whenever they get off their horses.",
+	]},
 	{"v": "0.38.208", "items": [
 		"TOURNAMENTS, a new page on the main menu: run a whole tournament inside the game, no outside website needed. Single or double elimination (with a bracket reset), round robin, Swiss, or groups then playoffs, for up to 64 players; best-of-1 to 7 series (the final can differ), a map pool with bans and the loser picking the next map, faction rules (free, locked for a series or the whole tournament, each faction once), random or hand seeding, check-in, and a time limit decided by who is clearly ahead. ONLINE: players join with the tournament's code through the same relay as friendly rooms (the organiser's game keeps the bracket), PLAY YOUR MATCH opens the match's room with the bracket's map and factions, the games report their own results (a dispute goes to the organiser, who can also set a result, award a walkover or drop a player), replays are kept and linked, and anyone can WATCH a match from the bracket. OFFLINE / LAN: the organiser enters the results. ALL COMPUTER: pick computer players by faction, plan and level and watch every game, or play them all quickly. A drawn bracket you can zoom and drag, standings, a schedule, and the champion's trophy. A tournament's file code keeps it safe across restarts.",
 	]},
