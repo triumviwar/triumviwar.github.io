@@ -61,6 +61,17 @@ def bench(name):
 
 
 def load(name):
+    if "+" in name:
+        # (a pooled base: several runs of the same code, each fight's numbers the mean of its runs)
+        parts = [load(x)[0] for x in name.split("+")]
+        rows = {}
+        for k in parts[0]:
+            xs = [p[k] for p in parts if k in p]
+            r = dict(xs[0])
+            for f in ("score", "killed", "lost"):
+                r[f] = sum(x[f] for x in xs) / len(xs)
+            rows[k] = r
+        return rows, ""
     d = json.load(open(os.path.join(BENCH, name + ".json")))
     return {(r["sc"], r["run"]): r for r in d["runs"]}, d.get("args", "")
 
