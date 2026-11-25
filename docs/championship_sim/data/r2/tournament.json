@@ -1,0 +1,2075 @@
+{
+ "advance": 2,
+ "bo": 3,
+ "bo_final": 3,
+ "champion": 13,
+ "checkin": false,
+ "factions": "event",
+ "format": "double",
+ "groups": 2,
+ "id": "ZCMKU",
+ "level": "hard",
+ "log": [
+  "Crown Optimal joined",
+  "Crown Balanced joined",
+  "Crown Economy joined",
+  "Crown Timing joined",
+  "Crown Siege joined",
+  "Clockwork Optimal joined",
+  "Clockwork Balanced joined",
+  "Clockwork Economy joined",
+  "Clockwork Rush joined",
+  "Clockwork Owls joined",
+  "Clockwork Heavy joined",
+  "Brood Optimal joined",
+  "Brood Balanced joined",
+  "Brood Economy joined",
+  "Brood Rush joined",
+  "Brood Spitter joined",
+  "The tournament began (16 players)",
+  "Clockwork Heavy bans cinder_steps",
+  "Brood Economy bans hollowfen",
+  "Crown Optimal bans dune_sea",
+  "Clockwork Owls bans frostfang",
+  "Clockwork Balanced bans dune_sea",
+  "Brood Rush bans greenhold",
+  "Clockwork Economy bans dune_sea",
+  "Clockwork Optimal bans greenhold",
+  "Crown Balanced bans cinder_steps",
+  "Brood Balanced bans greenhold",
+  "Crown Siege bans ashford_crossing",
+  "Crown Timing bans cinder_steps",
+  "Brood Optimal bans frostfang",
+  "Clockwork Rush bans dune_sea",
+  "Brood Spitter bans greenhold",
+  "Crown Economy bans ashford_crossing",
+  "Crown Optimal 1-0 Clockwork Owls",
+  "Clockwork Owls picks ashford_crossing",
+  "Clockwork Heavy 1-0 Brood Economy",
+  "Brood Economy picks frostfang",
+  "Crown Optimal 2-0 Clockwork Owls",
+  "Clockwork Heavy 2-0 Brood Economy",
+  "Clockwork Heavy bans hollowfen",
+  "Crown Optimal bans dune_sea",
+  "Brood Economy bans cinder_steps",
+  "Clockwork Owls bans dune_sea",
+  "Clockwork Balanced 1-0 Brood Rush",
+  "Brood Rush picks cinder_steps",
+  "Clockwork Economy 0-1 Clockwork Optimal",
+  "Clockwork Economy picks hollowfen",
+  "Clockwork Balanced 2-0 Brood Rush",
+  "Clockwork Economy 0-2 Clockwork Optimal",
+  "Clockwork Balanced bans cinder_steps",
+  "Clockwork Optimal bans hollowfen",
+  "Brood Rush bans greenhold",
+  "Clockwork Economy bans dune_sea",
+  "Crown Balanced 0-1 Brood Balanced",
+  "Crown Balanced picks hollowfen",
+  "Crown Siege 0-1 Crown Timing",
+  "Crown Siege picks dune_sea",
+  "Crown Balanced 0-2 Brood Balanced",
+  "Brood Optimal 1-0 Clockwork Rush",
+  "Clockwork Rush picks greenhold",
+  "Crown Siege 0-2 Crown Timing",
+  "Brood Balanced bans greenhold",
+  "Crown Timing bans cinder_steps",
+  "Crown Balanced bans cinder_steps",
+  "Crown Siege bans ashford_crossing",
+  "Brood Optimal 2-0 Clockwork Rush",
+  "Brood Spitter 1-0 Crown Economy",
+  "Crown Economy picks frostfang",
+  "Clockwork Heavy 0-1 Crown Optimal",
+  "Clockwork Heavy picks cinder_steps",
+  "Brood Spitter 2-0 Crown Economy",
+  "Brood Optimal bans frostfang",
+  "Brood Spitter bans ashford_crossing",
+  "Clockwork Rush bans frostfang",
+  "Crown Economy bans cinder_steps",
+  "Clockwork Heavy 0-2 Crown Optimal",
+  "Clockwork Balanced 1-0 Clockwork Optimal",
+  "Clockwork Optimal picks dune_sea",
+  "Brood Balanced 1-0 Crown Timing",
+  "Crown Timing picks dune_sea",
+  "Brood Balanced 2-0 Crown Timing",
+  "Clockwork Balanced 1-1 Clockwork Optimal",
+  "Clockwork Balanced picks greenhold",
+  "Brood Optimal 0-1 Brood Spitter",
+  "Brood Optimal picks dune_sea",
+  "Clockwork Balanced 2-1 Clockwork Optimal",
+  "Crown Optimal bans ashford_crossing",
+  "Clockwork Balanced bans frostfang",
+  "Brood Optimal 1-1 Brood Spitter",
+  "Brood Spitter picks hollowfen",
+  "Crown Optimal 0-1 Clockwork Balanced",
+  "Crown Optimal picks hollowfen",
+  "Brood Optimal 1-2 Brood Spitter",
+  "Brood Balanced bans cinder_steps",
+  "Brood Spitter bans greenhold",
+  "Crown Optimal v Clockwork Balanced: a game is played again (no clear leader at the bell)",
+  "Brood Balanced 0-1 Brood Spitter",
+  "Brood Balanced picks ashford_crossing",
+  "Brood Balanced 1-1 Brood Spitter",
+  "Brood Spitter picks frostfang",
+  "Crown Optimal 1-1 Clockwork Balanced",
+  "Clockwork Balanced picks dune_sea",
+  "Brood Balanced 2-1 Brood Spitter",
+  "Crown Optimal 2-1 Clockwork Balanced",
+  "Crown Optimal bans frostfang",
+  "Brood Balanced bans ashford_crossing",
+  "Brood Economy 0-1 Clockwork Owls",
+  "Brood Economy picks frostfang",
+  "Crown Optimal 0-1 Brood Balanced",
+  "Crown Optimal picks hollowfen",
+  "Brood Economy 0-2 Clockwork Owls",
+  "Clockwork Owls bans cinder_steps",
+  "Brood Optimal bans dune_sea",
+  "Crown Optimal 0-2 Brood Balanced",
+  "Crown Balanced 1-0 Crown Siege",
+  "Crown Siege picks greenhold",
+  "Brood Rush 0-1 Clockwork Economy",
+  "Brood Rush picks ashford_crossing",
+  "Crown Balanced 1-1 Crown Siege",
+  "Crown Balanced picks dune_sea",
+  "Brood Rush 0-2 Clockwork Economy",
+  "Clockwork Economy bans cinder_steps",
+  "Crown Timing bans dune_sea",
+  "Clockwork Rush 0-1 Crown Economy",
+  "Clockwork Rush picks greenhold",
+  "Crown Balanced 2-1 Crown Siege",
+  "Crown Balanced bans frostfang",
+  "Clockwork Optimal bans greenhold",
+  "Clockwork Owls 1-0 Brood Optimal",
+  "Brood Optimal picks hollowfen",
+  "Clockwork Rush v Crown Economy: a game is played again (no clear leader at the bell)",
+  "Clockwork Rush 0-2 Crown Economy",
+  "Crown Economy bans frostfang",
+  "Clockwork Heavy bans ashford_crossing",
+  "Clockwork Owls 2-0 Brood Optimal",
+  "Clockwork Economy 1-0 Crown Timing",
+  "Crown Timing picks greenhold",
+  "Crown Balanced 0-1 Clockwork Optimal",
+  "Crown Balanced picks ashford_crossing",
+  "Clockwork Economy 1-1 Crown Timing",
+  "Clockwork Economy picks ashford_crossing",
+  "Crown Balanced 0-2 Clockwork Optimal",
+  "Clockwork Economy v Crown Timing: a game is played again (no clear leader at the bell)",
+  "Crown Economy 1-0 Clockwork Heavy",
+  "Clockwork Heavy picks hollowfen",
+  "Clockwork Economy 1-2 Crown Timing",
+  "Clockwork Owls bans hollowfen",
+  "Crown Timing bans ashford_crossing",
+  "Crown Economy 1-1 Clockwork Heavy",
+  "Crown Economy picks greenhold",
+  "Clockwork Owls 0-1 Crown Timing",
+  "Clockwork Owls picks greenhold",
+  "Clockwork Owls 0-2 Crown Timing",
+  "Crown Timing bans hollowfen",
+  "Clockwork Balanced bans ashford_crossing",
+  "Crown Economy 1-2 Clockwork Heavy",
+  "Clockwork Optimal bans greenhold",
+  "Clockwork Heavy bans ashford_crossing",
+  "Clockwork Optimal 1-0 Clockwork Heavy",
+  "Clockwork Heavy picks dune_sea",
+  "Crown Timing 0-1 Clockwork Balanced",
+  "Crown Timing picks greenhold",
+  "Clockwork Optimal 2-0 Clockwork Heavy",
+  "Clockwork Optimal bans hollowfen",
+  "Brood Spitter bans greenhold",
+  "Crown Timing 1-1 Clockwork Balanced",
+  "Clockwork Balanced picks dune_sea",
+  "Clockwork Optimal 1-0 Brood Spitter",
+  "Brood Spitter picks frostfang",
+  "Clockwork Optimal 2-0 Brood Spitter",
+  "Crown Timing 2-1 Clockwork Balanced",
+  "Crown Timing bans greenhold",
+  "Clockwork Optimal bans dune_sea",
+  "Crown Timing 0-1 Clockwork Optimal",
+  "Crown Timing picks cinder_steps",
+  "Crown Timing 1-1 Clockwork Optimal",
+  "Clockwork Optimal picks frostfang",
+  "Crown Timing v Clockwork Optimal: a game is played again (no clear leader at the bell)",
+  "Crown Timing 2-1 Clockwork Optimal",
+  "Crown Timing bans cinder_steps",
+  "Crown Optimal bans dune_sea",
+  "Crown Timing 0-1 Crown Optimal",
+  "Crown Timing picks ashford_crossing",
+  "Crown Timing 0-2 Crown Optimal",
+  "Brood Balanced bans frostfang",
+  "Crown Optimal bans hollowfen",
+  "Brood Balanced 1-0 Crown Optimal",
+  "Crown Optimal picks greenhold",
+  "Brood Balanced 2-0 Crown Optimal",
+  "Brood Balanced is the champion"
+ ],
+ "loser_picks": true,
+ "made": "2026-11-24T15:01:54",
+ "map_rule": "veto",
+ "maps": [
+  "greenhold",
+  "dune_sea",
+  "frostfang",
+  "ashford_crossing",
+  "hollowfen",
+  "cinder_steps"
+ ],
+ "matches": [
+  {
+   "a": 11,
+   "b": 14,
+   "bans": [
+    "cinder_steps",
+    "hollowfen"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [],
+   "from_b": [],
+   "games": [
+    {
+     "fa": "clockwork",
+     "fb": "brood",
+     "how": "time",
+     "len": 1200,
+     "map": "greenhold",
+     "replay": "0_0_0",
+     "seed": 456998711,
+     "win": "a"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "brood",
+     "how": "played",
+     "len": 851,
+     "map": "frostfang",
+     "replay": "0_1_0",
+     "seed": 456999800,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 0,
+   "loser": 14,
+   "picks": {
+    "1": "frostfang"
+   },
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "wb",
+   "state": "done",
+   "winner": 11
+  },
+  {
+   "a": 1,
+   "b": 10,
+   "bans": [
+    "dune_sea",
+    "frostfang"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [],
+   "from_b": [],
+   "games": [
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 860,
+     "map": "cinder_steps",
+     "replay": "1_0_0",
+     "seed": 458184632,
+     "win": "a"
+    },
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "ashford_crossing",
+     "replay": "1_1_0",
+     "seed": 458185721,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 1,
+   "loser": 10,
+   "picks": {
+    "1": "ashford_crossing"
+   },
+   "pos": 1,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "wb",
+   "state": "done",
+   "winner": 1
+  },
+  {
+   "a": 7,
+   "b": 15,
+   "bans": [
+    "dune_sea",
+    "greenhold"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [],
+   "from_b": [],
+   "games": [
+    {
+     "fa": "clockwork",
+     "fb": "brood",
+     "how": "played",
+     "len": 644,
+     "map": "frostfang",
+     "replay": "2_0_0",
+     "seed": 459370553,
+     "win": "a"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "brood",
+     "how": "played",
+     "len": 876,
+     "map": "cinder_steps",
+     "replay": "2_1_0",
+     "seed": 459371642,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 2,
+   "loser": 15,
+   "picks": {
+    "1": "cinder_steps"
+   },
+   "pos": 2,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "wb",
+   "state": "done",
+   "winner": 7
+  },
+  {
+   "a": 8,
+   "b": 6,
+   "bans": [
+    "dune_sea",
+    "greenhold"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [],
+   "from_b": [],
+   "games": [
+    {
+     "fa": "clockwork",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 862,
+     "map": "frostfang",
+     "replay": "3_0_0",
+     "seed": 460556474,
+     "win": "b"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 1080,
+     "map": "hollowfen",
+     "replay": "3_1_0",
+     "seed": 460557563,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 3,
+   "loser": 8,
+   "picks": {
+    "1": "hollowfen"
+   },
+   "pos": 3,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "wb",
+   "state": "done",
+   "winner": 6
+  },
+  {
+   "a": 2,
+   "b": 13,
+   "bans": [
+    "cinder_steps",
+    "greenhold"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [],
+   "from_b": [],
+   "games": [
+    {
+     "fa": "crown",
+     "fb": "brood",
+     "how": "played",
+     "len": 953,
+     "map": "frostfang",
+     "replay": "4_0_0",
+     "seed": 461742395,
+     "win": "b"
+    },
+    {
+     "fa": "crown",
+     "fb": "brood",
+     "how": "played",
+     "len": 1027,
+     "map": "hollowfen",
+     "replay": "4_1_0",
+     "seed": 461743484,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 4,
+   "loser": 2,
+   "picks": {
+    "1": "hollowfen"
+   },
+   "pos": 4,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "wb",
+   "state": "done",
+   "winner": 13
+  },
+  {
+   "a": 5,
+   "b": 4,
+   "bans": [
+    "ashford_crossing",
+    "cinder_steps"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [],
+   "from_b": [],
+   "games": [
+    {
+     "fa": "crown",
+     "fb": "crown",
+     "how": "time",
+     "len": 1200,
+     "map": "frostfang",
+     "replay": "5_0_0",
+     "seed": 462928316,
+     "win": "b"
+    },
+    {
+     "fa": "crown",
+     "fb": "crown",
+     "how": "time",
+     "len": 1200,
+     "map": "dune_sea",
+     "replay": "5_1_0",
+     "seed": 462929405,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 5,
+   "loser": 5,
+   "picks": {
+    "1": "dune_sea"
+   },
+   "pos": 5,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "wb",
+   "state": "done",
+   "winner": 4
+  },
+  {
+   "a": 12,
+   "b": 9,
+   "bans": [
+    "frostfang",
+    "dune_sea"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [],
+   "from_b": [],
+   "games": [
+    {
+     "fa": "brood",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 710,
+     "map": "cinder_steps",
+     "replay": "6_0_0",
+     "seed": 464114237,
+     "win": "a"
+    },
+    {
+     "fa": "brood",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 677,
+     "map": "greenhold",
+     "replay": "6_1_0",
+     "seed": 464115326,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 6,
+   "loser": 9,
+   "picks": {
+    "1": "greenhold"
+   },
+   "pos": 6,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "wb",
+   "state": "done",
+   "winner": 12
+  },
+  {
+   "a": 16,
+   "b": 3,
+   "bans": [
+    "greenhold",
+    "ashford_crossing"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [],
+   "from_b": [],
+   "games": [
+    {
+     "fa": "brood",
+     "fb": "crown",
+     "how": "time",
+     "len": 1200,
+     "map": "cinder_steps",
+     "replay": "7_0_0",
+     "seed": 465300158,
+     "win": "a"
+    },
+    {
+     "fa": "brood",
+     "fb": "crown",
+     "how": "played",
+     "len": 851,
+     "map": "frostfang",
+     "replay": "7_1_0",
+     "seed": 465301247,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 7,
+   "loser": 3,
+   "picks": {
+    "1": "frostfang"
+   },
+   "pos": 7,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "wb",
+   "state": "done",
+   "winner": 16
+  },
+  {
+   "a": 11,
+   "b": 1,
+   "bans": [
+    "hollowfen",
+    "dune_sea"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    0
+   ],
+   "from_b": [
+    "w",
+    1
+   ],
+   "games": [
+    {
+     "fa": "clockwork",
+     "fb": "crown",
+     "how": "time",
+     "len": 1200,
+     "map": "frostfang",
+     "replay": "8_0_0",
+     "seed": 466486079,
+     "win": "b"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "crown",
+     "how": "time",
+     "len": 1200,
+     "map": "cinder_steps",
+     "replay": "8_1_0",
+     "seed": 466487168,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 8,
+   "loser": 11,
+   "picks": {
+    "1": "cinder_steps"
+   },
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "round": 2,
+   "stage": "wb",
+   "state": "done",
+   "winner": 1
+  },
+  {
+   "a": 7,
+   "b": 6,
+   "bans": [
+    "cinder_steps",
+    "hollowfen"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    2
+   ],
+   "from_b": [
+    "w",
+    3
+   ],
+   "games": [
+    {
+     "fa": "clockwork",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 1028,
+     "map": "ashford_crossing",
+     "replay": "9_0_0",
+     "seed": 467672000,
+     "win": "a"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "dune_sea",
+     "replay": "9_1_0",
+     "seed": 467673089,
+     "win": "b"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 865,
+     "map": "greenhold",
+     "replay": "9_2_0",
+     "seed": 467674178,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 9,
+   "loser": 6,
+   "picks": {
+    "1": "dune_sea",
+    "2": "greenhold"
+   },
+   "pos": 1,
+   "replays": 0,
+   "reports": {},
+   "round": 2,
+   "stage": "wb",
+   "state": "done",
+   "winner": 7
+  },
+  {
+   "a": 13,
+   "b": 4,
+   "bans": [
+    "greenhold",
+    "cinder_steps"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    4
+   ],
+   "from_b": [
+    "w",
+    5
+   ],
+   "games": [
+    {
+     "fa": "brood",
+     "fb": "crown",
+     "how": "played",
+     "len": 1017,
+     "map": "hollowfen",
+     "replay": "10_0_0",
+     "seed": 1799171176,
+     "win": "a"
+    },
+    {
+     "fa": "brood",
+     "fb": "crown",
+     "how": "played",
+     "len": 750,
+     "map": "dune_sea",
+     "replay": "10_1_0",
+     "seed": 1799172265,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 10,
+   "loser": 4,
+   "picks": {
+    "1": "dune_sea"
+   },
+   "pos": 2,
+   "replays": 0,
+   "reports": {},
+   "round": 2,
+   "stage": "wb",
+   "state": "done",
+   "winner": 13
+  },
+  {
+   "a": 12,
+   "b": 16,
+   "bans": [
+    "frostfang",
+    "ashford_crossing"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    6
+   ],
+   "from_b": [
+    "w",
+    7
+   ],
+   "games": [
+    {
+     "fa": "brood",
+     "fb": "brood",
+     "how": "played",
+     "len": 913,
+     "map": "cinder_steps",
+     "replay": "11_0_0",
+     "seed": 1800357097,
+     "win": "b"
+    },
+    {
+     "fa": "brood",
+     "fb": "brood",
+     "how": "played",
+     "len": 839,
+     "map": "dune_sea",
+     "replay": "11_1_0",
+     "seed": 1800358186,
+     "win": "a"
+    },
+    {
+     "fa": "brood",
+     "fb": "brood",
+     "how": "played",
+     "len": 688,
+     "map": "hollowfen",
+     "replay": "11_2_0",
+     "seed": 1800359275,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 11,
+   "loser": 12,
+   "picks": {
+    "1": "dune_sea",
+    "2": "hollowfen"
+   },
+   "pos": 3,
+   "replays": 0,
+   "reports": {},
+   "round": 2,
+   "stage": "wb",
+   "state": "done",
+   "winner": 16
+  },
+  {
+   "a": 1,
+   "b": 7,
+   "bans": [
+    "ashford_crossing",
+    "frostfang"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    8
+   ],
+   "from_b": [
+    "w",
+    9
+   ],
+   "games": [
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "cinder_steps",
+     "replay": "12_0_0",
+     "seed": 1801543018,
+     "win": "b"
+    },
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "hollowfen",
+     "replay": "12_1_1",
+     "seed": 1801544108,
+     "win": "a"
+    },
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "dune_sea",
+     "replay": "12_2_0",
+     "seed": 1801545196,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 12,
+   "loser": 7,
+   "picks": {
+    "1": "hollowfen",
+    "2": "dune_sea"
+   },
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "round": 3,
+   "stage": "wb",
+   "state": "done",
+   "winner": 1
+  },
+  {
+   "a": 13,
+   "b": 16,
+   "bans": [
+    "cinder_steps",
+    "greenhold"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    10
+   ],
+   "from_b": [
+    "w",
+    11
+   ],
+   "games": [
+    {
+     "fa": "brood",
+     "fb": "brood",
+     "how": "time",
+     "len": 1200,
+     "map": "hollowfen",
+     "replay": "13_0_0",
+     "seed": 1802728939,
+     "win": "b"
+    },
+    {
+     "fa": "brood",
+     "fb": "brood",
+     "how": "played",
+     "len": 994,
+     "map": "ashford_crossing",
+     "replay": "13_1_0",
+     "seed": 1802730028,
+     "win": "a"
+    },
+    {
+     "fa": "brood",
+     "fb": "brood",
+     "how": "played",
+     "len": 720,
+     "map": "frostfang",
+     "replay": "13_2_0",
+     "seed": 1802731117,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 13,
+   "loser": 16,
+   "picks": {
+    "1": "ashford_crossing",
+    "2": "frostfang"
+   },
+   "pos": 1,
+   "replays": 0,
+   "reports": {},
+   "round": 3,
+   "stage": "wb",
+   "state": "done",
+   "winner": 13
+  },
+  {
+   "a": 1,
+   "b": 13,
+   "bans": [
+    "frostfang",
+    "ashford_crossing"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    12
+   ],
+   "from_b": [
+    "w",
+    13
+   ],
+   "games": [
+    {
+     "fa": "crown",
+     "fb": "brood",
+     "how": "played",
+     "len": 1120,
+     "map": "dune_sea",
+     "replay": "14_0_0",
+     "seed": 1803914860,
+     "win": "b"
+    },
+    {
+     "fa": "crown",
+     "fb": "brood",
+     "how": "time",
+     "len": 1200,
+     "map": "hollowfen",
+     "replay": "14_1_0",
+     "seed": 1803915949,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 14,
+   "loser": 1,
+   "picks": {
+    "1": "hollowfen"
+   },
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "round": 4,
+   "stage": "wb",
+   "state": "done",
+   "winner": 13
+  },
+  {
+   "a": 14,
+   "b": 10,
+   "bans": [
+    "cinder_steps",
+    "dune_sea"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "l",
+    0
+   ],
+   "from_b": [
+    "l",
+    1
+   ],
+   "games": [
+    {
+     "fa": "brood",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 1124,
+     "map": "ashford_crossing",
+     "replay": "15_0_0",
+     "seed": 1805100781,
+     "win": "b"
+    },
+    {
+     "fa": "brood",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "frostfang",
+     "replay": "15_1_0",
+     "seed": 1805101870,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 15,
+   "loser": 14,
+   "picks": {
+    "1": "frostfang"
+   },
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "lb",
+   "state": "done",
+   "winner": 10
+  },
+  {
+   "a": 15,
+   "b": 8,
+   "bans": [
+    "greenhold",
+    "dune_sea"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "l",
+    2
+   ],
+   "from_b": [
+    "l",
+    3
+   ],
+   "games": [
+    {
+     "fa": "brood",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "hollowfen",
+     "replay": "16_0_0",
+     "seed": 1806286702,
+     "win": "b"
+    },
+    {
+     "fa": "brood",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 1082,
+     "map": "ashford_crossing",
+     "replay": "16_1_0",
+     "seed": 1806287791,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 16,
+   "loser": 15,
+   "picks": {
+    "1": "ashford_crossing"
+   },
+   "pos": 1,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "lb",
+   "state": "done",
+   "winner": 8
+  },
+  {
+   "a": 2,
+   "b": 5,
+   "bans": [
+    "cinder_steps",
+    "ashford_crossing"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "l",
+    4
+   ],
+   "from_b": [
+    "l",
+    5
+   ],
+   "games": [
+    {
+     "fa": "crown",
+     "fb": "crown",
+     "how": "played",
+     "len": 933,
+     "map": "hollowfen",
+     "replay": "17_0_0",
+     "seed": 1807472623,
+     "win": "a"
+    },
+    {
+     "fa": "crown",
+     "fb": "crown",
+     "how": "time",
+     "len": 1200,
+     "map": "greenhold",
+     "replay": "17_1_0",
+     "seed": 1807473712,
+     "win": "b"
+    },
+    {
+     "fa": "crown",
+     "fb": "crown",
+     "how": "time",
+     "len": 1200,
+     "map": "dune_sea",
+     "replay": "17_2_0",
+     "seed": 1807474801,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 17,
+   "loser": 5,
+   "picks": {
+    "1": "greenhold",
+    "2": "dune_sea"
+   },
+   "pos": 2,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "lb",
+   "state": "done",
+   "winner": 2
+  },
+  {
+   "a": 9,
+   "b": 3,
+   "bans": [
+    "frostfang",
+    "cinder_steps"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "l",
+    6
+   ],
+   "from_b": [
+    "l",
+    7
+   ],
+   "games": [
+    {
+     "fa": "clockwork",
+     "fb": "crown",
+     "how": "played",
+     "len": 1083,
+     "map": "dune_sea",
+     "replay": "18_0_0",
+     "seed": 1808658544,
+     "win": "b"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "crown",
+     "how": "played",
+     "len": 934,
+     "map": "greenhold",
+     "replay": "18_1_1",
+     "seed": 1808659634,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 18,
+   "loser": 9,
+   "picks": {
+    "1": "greenhold"
+   },
+   "pos": 3,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "lb",
+   "state": "done",
+   "winner": 3
+  },
+  {
+   "a": 10,
+   "b": 12,
+   "bans": [
+    "cinder_steps",
+    "dune_sea"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    15
+   ],
+   "from_b": [
+    "l",
+    11
+   ],
+   "games": [
+    {
+     "fa": "clockwork",
+     "fb": "brood",
+     "how": "played",
+     "len": 951,
+     "map": "greenhold",
+     "replay": "19_0_0",
+     "seed": 1809844465,
+     "win": "a"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "brood",
+     "how": "played",
+     "len": 1148,
+     "map": "hollowfen",
+     "replay": "19_1_0",
+     "seed": 1809845554,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 19,
+   "loser": 12,
+   "picks": {
+    "1": "hollowfen"
+   },
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "round": 2,
+   "stage": "lb",
+   "state": "done",
+   "winner": 10
+  },
+  {
+   "a": 8,
+   "b": 4,
+   "bans": [
+    "cinder_steps",
+    "dune_sea"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    16
+   ],
+   "from_b": [
+    "l",
+    10
+   ],
+   "games": [
+    {
+     "fa": "clockwork",
+     "fb": "crown",
+     "how": "time",
+     "len": 1200,
+     "map": "hollowfen",
+     "replay": "20_0_0",
+     "seed": 1838306569,
+     "win": "a"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "crown",
+     "how": "time",
+     "len": 1200,
+     "map": "greenhold",
+     "replay": "20_1_0",
+     "seed": 1838307658,
+     "win": "b"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "crown",
+     "how": "time",
+     "len": 1200,
+     "map": "ashford_crossing",
+     "replay": "20_2_1",
+     "seed": 1838308748,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 20,
+   "loser": 8,
+   "picks": {
+    "1": "greenhold",
+    "2": "ashford_crossing"
+   },
+   "pos": 1,
+   "replays": 0,
+   "reports": {},
+   "round": 2,
+   "stage": "lb",
+   "state": "done",
+   "winner": 4
+  },
+  {
+   "a": 2,
+   "b": 6,
+   "bans": [
+    "frostfang",
+    "greenhold"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    17
+   ],
+   "from_b": [
+    "l",
+    9
+   ],
+   "games": [
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "cinder_steps",
+     "replay": "21_0_0",
+     "seed": 1839492490,
+     "win": "b"
+    },
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "ashford_crossing",
+     "replay": "21_1_0",
+     "seed": 1839493579,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 21,
+   "loser": 2,
+   "picks": {
+    "1": "ashford_crossing"
+   },
+   "pos": 2,
+   "replays": 0,
+   "reports": {},
+   "round": 2,
+   "stage": "lb",
+   "state": "done",
+   "winner": 6
+  },
+  {
+   "a": 3,
+   "b": 11,
+   "bans": [
+    "frostfang",
+    "ashford_crossing"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    18
+   ],
+   "from_b": [
+    "l",
+    8
+   ],
+   "games": [
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "dune_sea",
+     "replay": "22_0_0",
+     "seed": 1840678411,
+     "win": "a"
+    },
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "hollowfen",
+     "replay": "22_1_0",
+     "seed": 1840679500,
+     "win": "b"
+    },
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "greenhold",
+     "replay": "22_2_0",
+     "seed": 1840680589,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 22,
+   "loser": 3,
+   "picks": {
+    "1": "hollowfen",
+    "2": "greenhold"
+   },
+   "pos": 3,
+   "replays": 0,
+   "reports": {},
+   "round": 2,
+   "stage": "lb",
+   "state": "done",
+   "winner": 11
+  },
+  {
+   "a": 10,
+   "b": 4,
+   "bans": [
+    "hollowfen",
+    "ashford_crossing"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    19
+   ],
+   "from_b": [
+    "w",
+    20
+   ],
+   "games": [
+    {
+     "fa": "clockwork",
+     "fb": "crown",
+     "how": "played",
+     "len": 973,
+     "map": "cinder_steps",
+     "replay": "23_0_0",
+     "seed": 1841864332,
+     "win": "b"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "crown",
+     "how": "played",
+     "len": 1083,
+     "map": "greenhold",
+     "replay": "23_1_0",
+     "seed": 1841865421,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 23,
+   "loser": 10,
+   "picks": {
+    "1": "greenhold"
+   },
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "round": 3,
+   "stage": "lb",
+   "state": "done",
+   "winner": 4
+  },
+  {
+   "a": 6,
+   "b": 11,
+   "bans": [
+    "greenhold",
+    "ashford_crossing"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    21
+   ],
+   "from_b": [
+    "w",
+    22
+   ],
+   "games": [
+    {
+     "fa": "clockwork",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 659,
+     "map": "cinder_steps",
+     "replay": "24_0_0",
+     "seed": 1843050253,
+     "win": "a"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 1123,
+     "map": "dune_sea",
+     "replay": "24_1_0",
+     "seed": 1843051342,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 24,
+   "loser": 11,
+   "picks": {
+    "1": "dune_sea"
+   },
+   "pos": 1,
+   "replays": 0,
+   "reports": {},
+   "round": 3,
+   "stage": "lb",
+   "state": "done",
+   "winner": 6
+  },
+  {
+   "a": 4,
+   "b": 7,
+   "bans": [
+    "hollowfen",
+    "ashford_crossing"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    23
+   ],
+   "from_b": [
+    "l",
+    12
+   ],
+   "games": [
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "cinder_steps",
+     "replay": "25_0_0",
+     "seed": 1844236174,
+     "win": "b"
+    },
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "greenhold",
+     "replay": "25_1_0",
+     "seed": 1844237263,
+     "win": "a"
+    },
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "dune_sea",
+     "replay": "25_2_0",
+     "seed": 1844238352,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 25,
+   "loser": 7,
+   "picks": {
+    "1": "greenhold",
+    "2": "dune_sea"
+   },
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "round": 4,
+   "stage": "lb",
+   "state": "done",
+   "winner": 4
+  },
+  {
+   "a": 6,
+   "b": 16,
+   "bans": [
+    "hollowfen",
+    "greenhold"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    24
+   ],
+   "from_b": [
+    "l",
+    13
+   ],
+   "games": [
+    {
+     "fa": "clockwork",
+     "fb": "brood",
+     "how": "played",
+     "len": 816,
+     "map": "ashford_crossing",
+     "replay": "26_0_0",
+     "seed": 1845422095,
+     "win": "a"
+    },
+    {
+     "fa": "clockwork",
+     "fb": "brood",
+     "how": "played",
+     "len": 737,
+     "map": "frostfang",
+     "replay": "26_1_0",
+     "seed": 1845423184,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 26,
+   "loser": 16,
+   "picks": {
+    "1": "frostfang"
+   },
+   "pos": 1,
+   "replays": 0,
+   "reports": {},
+   "round": 4,
+   "stage": "lb",
+   "state": "done",
+   "winner": 6
+  },
+  {
+   "a": 4,
+   "b": 6,
+   "bans": [
+    "greenhold",
+    "dune_sea"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    25
+   ],
+   "from_b": [
+    "w",
+    26
+   ],
+   "games": [
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 995,
+     "map": "ashford_crossing",
+     "replay": "27_0_0",
+     "seed": 1846608016,
+     "win": "b"
+    },
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "played",
+     "len": 912,
+     "map": "cinder_steps",
+     "replay": "27_1_0",
+     "seed": 1846609105,
+     "win": "a"
+    },
+    {
+     "fa": "crown",
+     "fb": "clockwork",
+     "how": "time",
+     "len": 1200,
+     "map": "frostfang",
+     "replay": "27_2_1",
+     "seed": 1846610195,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 27,
+   "loser": 6,
+   "picks": {
+    "1": "cinder_steps",
+    "2": "frostfang"
+   },
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "round": 5,
+   "stage": "lb",
+   "state": "done",
+   "winner": 4
+  },
+  {
+   "a": 4,
+   "b": 1,
+   "bans": [
+    "cinder_steps",
+    "dune_sea"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    27
+   ],
+   "from_b": [
+    "l",
+    14
+   ],
+   "games": [
+    {
+     "fa": "crown",
+     "fb": "crown",
+     "how": "time",
+     "len": 1200,
+     "map": "frostfang",
+     "replay": "28_0_0",
+     "seed": 1847793937,
+     "win": "b"
+    },
+    {
+     "fa": "crown",
+     "fb": "crown",
+     "how": "played",
+     "len": 839,
+     "map": "ashford_crossing",
+     "replay": "28_1_0",
+     "seed": 1847795026,
+     "win": "b"
+    }
+   ],
+   "group": -1,
+   "id": 28,
+   "loser": 4,
+   "picks": {
+    "1": "ashford_crossing"
+   },
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "round": 6,
+   "stage": "lb",
+   "state": "done",
+   "winner": 1
+  },
+  {
+   "a": 13,
+   "b": 1,
+   "bans": [
+    "frostfang",
+    "hollowfen"
+   ],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    14
+   ],
+   "from_b": [
+    "w",
+    28
+   ],
+   "games": [
+    {
+     "fa": "brood",
+     "fb": "crown",
+     "how": "played",
+     "len": 981,
+     "map": "dune_sea",
+     "replay": "29_0_0",
+     "seed": 1848979858,
+     "win": "a"
+    },
+    {
+     "fa": "brood",
+     "fb": "crown",
+     "how": "played",
+     "len": 982,
+     "map": "greenhold",
+     "replay": "29_1_0",
+     "seed": 1848980947,
+     "win": "a"
+    }
+   ],
+   "group": -1,
+   "id": 29,
+   "loser": 1,
+   "picks": {
+    "1": "greenhold"
+   },
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "round": 1,
+   "stage": "gf",
+   "state": "done",
+   "winner": 13
+  },
+  {
+   "a": 13,
+   "b": 1,
+   "bans": [],
+   "bo": 3,
+   "dispute": "",
+   "from_a": [
+    "w",
+    29
+   ],
+   "from_b": [
+    "l",
+    29
+   ],
+   "games": [],
+   "group": -1,
+   "id": 30,
+   "loser": 1,
+   "picks": {},
+   "pos": 0,
+   "replays": 0,
+   "reports": {},
+   "reset": true,
+   "round": 2,
+   "skip": true,
+   "stage": "gf",
+   "state": "done",
+   "winner": 13
+  }
+ ],
+ "mode": "computer",
+ "name": "Championship r2",
+ "next_pid": 17,
+ "players": [
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "crown",
+   "id": 1,
+   "key": "d30af2883a4d",
+   "name": "Crown Optimal",
+   "plan": "optimal",
+   "seed": 8,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "crown",
+   "id": 2,
+   "key": "71425cabfd77",
+   "name": "Crown Balanced",
+   "plan": "balanced",
+   "seed": 2,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "crown",
+   "id": 3,
+   "key": "7a4b467ec042",
+   "name": "Crown Economy",
+   "plan": "economy",
+   "seed": 11,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "crown",
+   "id": 4,
+   "key": "f0005bdca542",
+   "name": "Crown Timing",
+   "plan": "timing",
+   "seed": 10,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "crown",
+   "id": 5,
+   "key": "d6a30aa46ba2",
+   "name": "Crown Siege",
+   "plan": "siege",
+   "seed": 7,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "clockwork",
+   "id": 6,
+   "key": "289c9524d967",
+   "name": "Clockwork Optimal",
+   "plan": "optimal",
+   "seed": 12,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "clockwork",
+   "id": 7,
+   "key": "ebac8dd4630f",
+   "name": "Clockwork Balanced",
+   "plan": "balanced",
+   "seed": 4,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "clockwork",
+   "id": 8,
+   "key": "d171d107c666",
+   "name": "Clockwork Economy",
+   "plan": "economy",
+   "seed": 5,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "clockwork",
+   "id": 9,
+   "key": "3e161ce8cc5d",
+   "name": "Clockwork Rush",
+   "plan": "rush",
+   "seed": 14,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "clockwork",
+   "id": 10,
+   "key": "854caacf2e79",
+   "name": "Clockwork Owls",
+   "plan": "owls",
+   "seed": 9,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "clockwork",
+   "id": 11,
+   "key": "069d8bbd6f7f",
+   "name": "Clockwork Heavy",
+   "plan": "heavy",
+   "seed": 1,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "brood",
+   "id": 12,
+   "key": "35f8358a227d",
+   "name": "Brood Optimal",
+   "plan": "optimal",
+   "seed": 3,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "brood",
+   "id": 13,
+   "key": "a63cbf4db2ac",
+   "name": "Brood Balanced",
+   "plan": "balanced",
+   "seed": 15,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "brood",
+   "id": 14,
+   "key": "ec41bcd50f73",
+   "name": "Brood Economy",
+   "plan": "economy",
+   "seed": 16,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "brood",
+   "id": 15,
+   "key": "75a9c83c17a0",
+   "name": "Brood Rush",
+   "plan": "rush",
+   "seed": 13,
+   "who": "hard"
+  },
+  {
+   "checked": true,
+   "dropped": false,
+   "faction": "brood",
+   "id": 16,
+   "key": "4fa088c89c3a",
+   "name": "Brood Spitter",
+   "plan": "spitter",
+   "seed": 6,
+   "who": "hard"
+  }
+ ],
+ "rev": 190,
+ "seed": 202,
+ "seeding": "random",
+ "state": "done",
+ "swiss_rounds": 0,
+ "time_limit": 1200,
+ "v": 1
+}
