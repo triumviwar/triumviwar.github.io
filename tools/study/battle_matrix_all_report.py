@@ -123,7 +123,8 @@ def section(rows, fa, fb, ground, size, md, summ):
         for a in A:
             i = A.index(a)
             beats = [B[j] for j in range(len(B)) if (a, B[j]) in cells and verdict(cells[(a, B[j])]) == "A"]
-            md.append(f"| {a} ({name(fa, a)}) | {best_vs_a[a][0]} ({round((1 - best_vs_a[a][1]) * 100)}) | {', '.join(beats) or 'none'} |")
+            ctr = f"{best_vs_a[a][0]} ({round((1 - best_vs_a[a][1]) * 100)})" if best_vs_a[a][0] != a else "nothing beats it"
+            md.append(f"| {a} ({name(fa, a)}) | {ctr} | {', '.join(beats) or 'none'} |")
     else:
         md.append(f"| {FNAME[fa]} comp | {FNAME[fb]}'s best answer ({FNAME[fa]} share) | {FNAME[fb]} comp | {FNAME[fa]}'s best answer ({FNAME[fa]} share) |")
         md.append("|---|---|---|---|")

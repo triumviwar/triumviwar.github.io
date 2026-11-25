@@ -1,7 +1,96 @@
 # The battle matrix, all matchups: the tables
 
-4436 fights (tools/study/battle_matrix_all_report.py). Side A is the first faction named. The score is side A's share of the value lost in a fight (50 = an even trade).
+6572 fights (tools/study/battle_matrix_all_report.py). Side A is the first faction named. The score is side A's share of the value lost in a fight (50 = an even trade).
 
+
+## Brood v Brood
+
+
+### Brood v Brood: open field, early (600) (676 results)
+
+Each cell: the **row's share** of the value lost (50 = even; bold: the row clearly ahead, italic: the column clearly ahead), then how many fights.
+
+| row \ column | R | R3S1 | R1S1 | R1S3 | S | B | RSB | TC | TCS | VC | StC | RSTd | RSy | mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **R** | 50 (4) | **75 (4)** | **76 (4)** | **71 (4)** | 62 (4) | 49 (4) | **76 (4)** | **79 (4)** | **74 (4)** | *0 (4)* | *0 (4)* | **79 (4)** | *20 (4)* | 55 |
+| **R3S1** | *25 (4)* | 50 (4) | **62 (4)** | **66 (4)** | 54 (4) | **65 (4)** | 60 (4) | **73 (4)** | 50 (4) | *10 (4)* | *0 (4)* | **70 (4)** | *20 (4)* | 47 |
+| **R1S1** | *24 (4)* | *38 (4)* | 50 (4) | **59 (4)** | 39 (4) | 42 (4) | 49 (4) | **61 (4)** | 46 (4) | *0 (4)* | *0 (4)* | **67 (4)** | *20 (4)* | 38 |
+| **R1S3** | *29 (4)* | *34 (4)* | *41 (4)* | 50 (4) | *33 (4)* | 32 (4) | 52 (4) | 41 (4) | *41 (4)* | *5 (4)* | *0 (4)* | **73 (4)** | *26 (4)* | 35 |
+| **S** | 38 (4) | 46 (4) | 61 (4) | **67 (4)** | 50 (4) | 39 (4) | **75 (4)** | **69 (4)** | **66 (4)** | *14 (4)* | *0 (4)* | **80 (4)** | *26 (4)* | 49 |
+| **B** | 51 (4) | *35 (4)* | 58 (4) | 68 (4) | 61 (4) | 50 (4) | **75 (4)** | 63 (4) | **70 (4)** | **73 (4)** | *0 (4)* | **84 (4)** | *25 (4)* | 55 |
+| **RSB** | *24 (4)* | 40 (4) | 51 (4) | 48 (4) | *25 (4)* | *25 (4)* | 50 (4) | **62 (4)** | 41 (4) | *10 (4)* | *0 (4)* | **73 (4)** | *20 (4)* | 36 |
+| **TC** | *21 (4)* | *27 (4)* | *39 (4)* | 59 (4) | *31 (4)* | 37 (4) | *38 (4)* | 50 (4) | 48 (4) | 33 (4) | *0 (4)* | **78 (4)** | *24 (4)* | 37 |
+| **TCS** | *26 (4)* | 50 (4) | 54 (4) | **59 (4)** | *34 (4)* | *30 (4)* | 59 (4) | 52 (4) | 50 (4) | *15 (4)* | *0 (4)* | **71 (4)** | *20 (4)* | 40 |
+| **VC** | **100 (4)** | **90 (4)** | **100 (4)** | **95 (4)** | **86 (4)** | *27 (4)* | **90 (4)** | 67 (4) | **85 (4)** | 50 (4) | **84 (4)** | **100 (4)** | *25 (4)* | 77 |
+| **StC** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | *16 (4)* | 50 (4) | **100 (4)** | **100 (4)** | 90 |
+| **RSTd** | *21 (4)* | *30 (4)* | *33 (4)* | *27 (4)* | *20 (4)* | *16 (4)* | *27 (4)* | *22 (4)* | *29 (4)* | *0 (4)* | *0 (4)* | 50 (4) | *20 (4)* | 23 |
+| **RSy** | **80 (4)** | **80 (4)** | **80 (4)** | **75 (4)** | **74 (4)** | **75 (4)** | **80 (4)** | **76 (4)** | **80 (4)** | **75 (4)** | *0 (4)* | **80 (4)** | 50 (4) | 70 |
+
+| comp | its best counter (its share) | it beats clearly |
+|---|---|---|
+| R (Raptors) | VC (100) | R3S1, R1S1, R1S3, RSB, TC, TCS, RSTd |
+| R3S1 (Raptors, a few Spitters (3:1)) | StC (100) | R1S1, R1S3, B, TC, RSTd |
+| R1S1 (Raptors and Spitters (1:1)) | VC (100) | R1S3, TC, RSTd |
+| R1S3 (Spitters, a few Raptors (3:1)) | StC (100) | RSTd |
+| S (Spitters) | StC (100) | R1S3, RSB, TC, TCS, RSTd |
+| B (Brutes) | StC (100) | RSB, TCS, VC, RSTd |
+| RSB (Raptors, Spitters, Brutes) | StC (100) | TC, RSTd |
+| TC (Tyrant Challengers) | StC (100) | RSTd |
+| TCS (Tyrant Challengers + Spitters) | StC (100) | R1S3, RSTd |
+| VC (Venom Challengers) | RSy (75) | R, R3S1, R1S1, R1S3, S, RSB, TCS, StC, RSTd |
+| StC (Storm Challengers (flyers)) | VC (84) | R, R3S1, R1S1, R1S3, S, B, RSB, TC, TCS, RSTd, RSy |
+| RSTd (Raptors, Spitters, Mist Toads) | VC (100) | none |
+| RSy (Raptors and Spitters with the Tyrant Sire) | StC (100) | R, R3S1, R1S1, R1S3, S, B, RSB, TC, TCS, VC, RSTd |
+
+Best on average: Brood StC 90, VC 77, RSy 70, B 55
+
+Safest (best at its worst): VC 25, StC 16, R 0.
+
+**The best blind mix** (each side picks blind, each at its best mix): VC 46%, RSy 31%, StC 23%.
+Without the Tyrant Sire (RSy left out): Brood's share **53**.
+
+### Brood v Brood: open field, mid (1,500) (676 results)
+
+Each cell: the **row's share** of the value lost (50 = even; bold: the row clearly ahead, italic: the column clearly ahead), then how many fights.
+
+| row \ column | R | R3S1 | R1S1 | R1S3 | S | B | RSB | TC | TCS | VC | StC | RSTd | RSy | mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **R** | 50 (4) | **77 (4)** | **81 (4)** | **74 (4)** | **72 (4)** | **64 (4)** | **73 (4)** | **81 (4)** | **76 (4)** | *5 (4)* | *0 (4)* | **82 (4)** | *34 (4)* | 59 |
+| **R3S1** | *23 (4)* | 50 (4) | **71 (4)** | **66 (4)** | 47 (4) | 45 (4) | **66 (4)** | **71 (4)** | **65 (4)** | *5 (4)* | *0 (4)* | **78 (4)** | *31 (4)* | 48 |
+| **R1S1** | *19 (4)* | *29 (4)* | 50 (4) | *41 (4)* | *28 (4)* | *36 (4)* | 54 (4) | 51 (4) | 44 (4) | *3 (4)* | *0 (4)* | **62 (4)** | *32 (4)* | 34 |
+| **R1S3** | *26 (4)* | *34 (4)* | **59 (4)** | 50 (4) | *24 (4)* | *40 (4)* | **60 (4)** | *38 (4)* | 57 (4) | *5 (4)* | *0 (4)* | **70 (4)** | *31 (4)* | 38 |
+| **S** | *28 (4)* | 53 (4) | **72 (4)** | **76 (4)** | 50 (4) | **61 (4)** | **75 (4)** | **72 (4)** | **74 (4)** | *12 (4)* | *0 (4)* | **87 (4)** | *40 (4)* | 54 |
+| **B** | *36 (4)* | 55 (4) | **64 (4)** | **60 (4)** | *39 (4)* | 50 (4) | **72 (4)** | 63 (4) | 56 (4) | 53 (4) | *0 (4)* | **72 (4)** | *32 (4)* | 50 |
+| **RSB** | *27 (4)* | *34 (4)* | 46 (4) | *40 (4)* | *25 (4)* | *28 (4)* | 50 (4) | 44 (4) | *40 (4)* | *8 (4)* | *0 (4)* | **68 (4)** | *32 (4)* | 34 |
+| **TC** | *19 (4)* | *29 (4)* | 49 (4) | **62 (4)** | *28 (4)* | 37 (4) | 56 (4) | 50 (4) | 44 (4) | *20 (4)* | *0 (4)* | **80 (4)** | *30 (4)* | 39 |
+| **TCS** | *24 (4)* | *35 (4)* | 56 (4) | 43 (4) | *26 (4)* | 44 (4) | **60 (4)** | 56 (4) | 50 (4) | *8 (4)* | *0 (4)* | **73 (4)** | *32 (4)* | 39 |
+| **VC** | **95 (4)** | **95 (4)** | **97 (4)** | **95 (4)** | **88 (4)** | 47 (4) | **92 (4)** | **80 (4)** | **92 (4)** | 50 (4) | **90 (4)** | **100 (4)** | *35 (4)* | 81 |
+| **StC** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | *10 (4)* | 50 (4) | **100 (4)** | **100 (4)** | 89 |
+| **RSTd** | *18 (4)* | *22 (4)* | *38 (4)* | *30 (4)* | *13 (4)* | *28 (4)* | *32 (4)* | *20 (4)* | *27 (4)* | *0 (4)* | *0 (4)* | 50 (4) | *29 (4)* | 24 |
+| **RSy** | **66 (4)** | **69 (4)** | **68 (4)** | **69 (4)** | **60 (4)** | **68 (4)** | **68 (4)** | **70 (4)** | **68 (4)** | **65 (4)** | *0 (4)* | **71 (4)** | 50 (4) | 61 |
+
+| comp | its best counter (its share) | it beats clearly |
+|---|---|---|
+| R (Raptors) | StC (100) | R3S1, R1S1, R1S3, S, B, RSB, TC, TCS, RSTd |
+| R3S1 (Raptors, a few Spitters (3:1)) | StC (100) | R1S1, R1S3, RSB, TC, TCS, RSTd |
+| R1S1 (Raptors and Spitters (1:1)) | StC (100) | RSTd |
+| R1S3 (Spitters, a few Raptors (3:1)) | StC (100) | R1S1, RSB, RSTd |
+| S (Spitters) | StC (100) | R1S1, R1S3, B, RSB, TC, TCS, RSTd |
+| B (Brutes) | StC (100) | R1S1, R1S3, RSB, RSTd |
+| RSB (Raptors, Spitters, Brutes) | StC (100) | RSTd |
+| TC (Tyrant Challengers) | StC (100) | R1S3, RSTd |
+| TCS (Tyrant Challengers + Spitters) | StC (100) | RSB, RSTd |
+| VC (Venom Challengers) | RSy (65) | R, R3S1, R1S1, R1S3, S, RSB, TC, TCS, StC, RSTd |
+| StC (Storm Challengers (flyers)) | VC (90) | R, R3S1, R1S1, R1S3, S, B, RSB, TC, TCS, RSTd, RSy |
+| RSTd (Raptors, Spitters, Mist Toads) | VC (100) | none |
+| RSy (Raptors and Spitters with the Tyrant Sire) | StC (100) | R, R3S1, R1S1, R1S3, S, B, RSB, TC, TCS, VC, RSTd |
+
+Best on average: Brood StC 89, VC 81, RSy 61, R 59
+
+Safest (best at its worst): VC 35, StC 10, R 0.
+
+**The best blind mix** (each side picks blind, each at its best mix): VC 48%, RSy 38%, StC 14%.
+Without the Tyrant Sire (RSy left out): Brood's share **55**.
 
 ## Clockwork v Brood
 
@@ -217,6 +306,97 @@ Best on average: Clockwork O 75, P 55, KB 47, KP 32
 Safest (best at its worst): Clockwork P 12, KP 11, O 10; Brood VC 48, StC 8, R1S1 0.
 
 **The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **34**. Clockwork's mix: KB 43%, P 33%, O 23%. Brood's: VC 57%, B 25%, StC 17%.
+
+## Clockwork v Clockwork
+
+
+### Clockwork v Clockwork: open field, early (600) (784 results)
+
+Each cell: the **row's share** of the value lost (50 = even; bold: the row clearly ahead, italic: the column clearly ahead), then how many fights.
+
+| row \ column | K | KW | KN | KP | P | Sp | KSp | KB | Se | KSe | O | CW | KGW | KPN | mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **K** | 50 (4) | **74 (4)** | **77 (4)** | *33 (4)* | *0 (4)* | **80 (4)** | **72 (4)** | **86 (4)** | **87 (4)** | **87 (4)** | *0 (4)* | *25 (4)* | **83 (4)** | *30 (4)* | 56 |
+| **KW** | *26 (4)* | 50 (4) | **74 (4)** | *31 (4)* | *0 (4)* | **72 (4)** | 62 (4) | **82 (4)** | **76 (4)** | **87 (4)** | *0 (4)* | *26 (4)* | **74 (4)** | *24 (4)* | 49 |
+| **KN** | *23 (4)* | *26 (4)* | 50 (4) | *27 (4)* | *0 (4)* | 51 (4) | *24 (4)* | 61 (4) | 34 (4) | **81 (4)** | 59 (4) | *20 (4)* | **80 (4)** | *21 (4)* | 40 |
+| **KP** | **67 (4)** | **68 (4)** | **73 (4)** | 50 (4) | *0 (4)* | **69 (4)** | **68 (4)** | **83 (4)** | **71 (4)** | **84 (4)** | *10 (4)* | *30 (4)* | **77 (4)** | 45 (4) | 57 |
+| **P** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | 50 (4) | **92 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | 76 (4) | 69 (4) | **100 (4)** | **100 (4)** | 92 |
+| **Sp** | *20 (4)* | *28 (4)* | 49 (4) | *31 (4)* | *8 (4)* | 50 (4) | *17 (4)* | *15 (4)* | **90 (4)** | **80 (4)** | 61 (4) | 43 (4) | **58 (4)** | 54 (4) | 43 |
+| **KSp** | *28 (4)* | 38 (4) | **76 (4)** | *32 (4)* | *0 (4)* | **83 (4)** | 50 (4) | **80 (4)** | **74 (4)** | **84 (4)** | *25 (4)* | 43 (4) | **74 (4)** | *24 (4)* | 51 |
+| **KB** | *14 (4)* | *18 (4)* | 39 (4) | *17 (4)* | *0 (4)* | **85 (4)** | *20 (4)* | 50 (4) | **71 (4)** | **91 (4)** | *0 (4)* | *30 (4)* | 52 (4) | *28 (4)* | 37 |
+| **Se** | *13 (4)* | *24 (4)* | 66 (4) | *29 (4)* | *0 (4)* | *10 (4)* | *26 (4)* | *29 (4)* | 50 (4) | **90 (4)** | *0 (4)* | *16 (4)* | **65 (4)** | *28 (4)* | 32 |
+| **KSe** | *13 (4)* | *13 (4)* | *19 (4)* | *16 (4)* | *0 (4)* | *20 (4)* | *16 (4)* | *9 (4)* | *10 (4)* | 50 (4) | *0 (4)* | *12 (4)* | *17 (4)* | *15 (4)* | 15 |
+| **O** | **100 (4)** | **100 (4)** | 41 (4) | **90 (4)** | 24 (4) | 39 (4) | **75 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | 50 (4) | 65 (4) | **100 (4)** | 35 (4) | 73 |
+| **CW** | **75 (4)** | **74 (4)** | **80 (4)** | **70 (4)** | 31 (4) | 57 (4) | 57 (4) | **70 (4)** | **84 (4)** | **88 (4)** | 35 (4) | 50 (4) | **74 (4)** | **71 (4)** | 65 |
+| **KGW** | *17 (4)* | *26 (4)* | *20 (4)* | *23 (4)* | *0 (4)* | *42 (4)* | *26 (4)* | 48 (4) | *35 (4)* | **83 (4)** | *0 (4)* | *26 (4)* | 50 (4) | 32 (4) | 30 |
+| **KPN** | **70 (4)** | **76 (4)** | **79 (4)** | 55 (4) | *0 (4)* | 46 (4) | **76 (4)** | **72 (4)** | **72 (4)** | **85 (4)** | 65 (4) | *29 (4)* | 68 (4) | 50 (4) | 60 |
+
+| comp | its best counter (its share) | it beats clearly |
+|---|---|---|
+| K (Clock Soldiers, no Winders) | P (100) | KW, KN, Sp, KSp, KB, Se, KSe, KGW |
+| KW (Clock Soldiers + Winders) | P (100) | KN, Sp, KB, Se, KSe, KGW |
+| KN (Clock Soldiers + Netters) | P (100) | KSe, KGW |
+| KP (Clock Soldiers + Pendulums) | P (100) | K, KW, KN, Sp, KSp, KB, Se, KSe, KGW |
+| P (Pendulums) | nothing beats it | K, KW, KN, KP, Sp, KSp, KB, Se, KSe, KGW, KPN |
+| Sp (Springers) | P (92) | Se, KSe, KGW |
+| KSp (Clock Soldiers + Springers) | P (100) | KN, Sp, KB, Se, KSe, KGW |
+| KB (Clock Soldiers + Spring Ballistas) | P (100) | Sp, Se, KSe |
+| Se (Brass Serpents) | P (100) | KSe, KGW |
+| KSe (Clock Soldiers + Brass Serpents) | P (100) | none |
+| O (the air: Ticking Owls + Swifts) | P (76) | K, KW, KP, KSp, KB, Se, KSe, KGW |
+| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | P (69) | K, KW, KN, KP, KB, Se, KSe, KGW, KPN |
+| KGW (Clock Soldiers + the Great Winder (no Winders)) | P (100) | KSe |
+| KPN (Clock Soldiers + Pendulums + Netters) | P (100) | K, KW, KN, KSp, KB, Se, KSe |
+
+Best on average: Clockwork P 92, O 73, CW 65, KPN 60
+
+Safest (best at its worst): P 50, CW 31, O 24.
+
+**The best blind mix** (each side picks blind, each at its best mix): P 100%.
+
+### Clockwork v Clockwork: open field, mid (1,500) (784 results)
+
+Each cell: the **row's share** of the value lost (50 = even; bold: the row clearly ahead, italic: the column clearly ahead), then how many fights.
+
+| row \ column | K | KW | KN | KP | P | Sp | KSp | KB | Se | KSe | O | CW | KGW | KPN | mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **K** | 50 (4) | **66 (4)** | **83 (4)** | *17 (4)* | *16 (4)* | **86 (4)** | **81 (4)** | 37 (4) | **87 (4)** | **92 (4)** | *0 (4)* | *22 (4)* | **76 (4)** | *24 (4)* | 53 |
+| **KW** | *34 (4)* | 50 (4) | **77 (4)** | *19 (4)* | *4 (4)* | **81 (4)** | **77 (4)** | *31 (4)* | **81 (4)** | **88 (4)** | *0 (4)* | *24 (4)* | **71 (4)** | *15 (4)* | 47 |
+| **KN** | *17 (4)* | *23 (4)* | 50 (4) | *12 (4)* | *4 (4)* | **87 (4)** | 33 (4) | *10 (4)* | 56 (4) | **82 (4)** | 68 (4) | *11 (4)* | 34 (4) | *6 (4)* | 35 |
+| **KP** | **83 (4)** | **81 (4)** | **88 (4)** | 50 (4) | *15 (4)* | **83 (4)** | **83 (4)** | **80 (4)** | **70 (4)** | **82 (4)** | *11 (4)* | 56 (4) | **78 (4)** | **56 (4)** | 65 |
+| **P** | **84 (4)** | **96 (4)** | **96 (4)** | **85 (4)** | 50 (4) | **81 (4)** | **88 (4)** | **84 (4)** | **96 (4)** | **100 (4)** | 59 (4) | **84 (4)** | **100 (4)** | **100 (4)** | 86 |
+| **Sp** | *14 (4)* | *19 (4)* | *13 (4)* | *17 (4)* | *19 (4)* | 50 (4) | *28 (4)* | *7 (4)* | **82 (4)** | 65 (4) | 55 (4) | *30 (4)* | *15 (4)* | *9 (4)* | 30 |
+| **KSp** | *19 (4)* | *23 (4)* | 67 (4) | *17 (4)* | *12 (4)* | **72 (4)** | 50 (4) | *8 (4)* | **81 (4)** | **78 (4)** | *35 (4)* | *20 (4)* | 35 (4) | *9 (4)* | 38 |
+| **KB** | 63 (4) | **69 (4)** | **90 (4)** | *20 (4)* | *16 (4)* | **93 (4)** | **92 (4)** | 50 (4) | **84 (4)** | **89 (4)** | *0 (4)* | 50 (4) | **80 (4)** | *28 (4)* | 59 |
+| **Se** | *13 (4)* | *19 (4)* | 44 (4) | *30 (4)* | *4 (4)* | *18 (4)* | *19 (4)* | *16 (4)* | 50 (4) | **75 (4)** | *0 (4)* | *20 (4)* | *31 (4)* | 51 (4) | 28 |
+| **KSe** | *8 (4)* | *12 (4)* | *18 (4)* | *18 (4)* | *0 (4)* | 35 (4) | *22 (4)* | *11 (4)* | *25 (4)* | 50 (4) | *0 (4)* | *24 (4)* | *15 (4)* | *21 (4)* | 18 |
+| **O** | **100 (4)** | **100 (4)** | 32 (4) | **89 (4)** | 41 (4) | 45 (4) | **65 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | 50 (4) | 59 (4) | **100 (4)** | 40 (4) | 73 |
+| **CW** | **78 (4)** | **76 (4)** | **89 (4)** | 44 (4) | *16 (4)* | **70 (4)** | **80 (4)** | 50 (4) | **80 (4)** | **76 (4)** | 41 (4) | 50 (4) | **68 (4)** | **74 (4)** | 64 |
+| **KGW** | *24 (4)* | *29 (4)* | 66 (4) | *22 (4)* | *0 (4)* | **85 (4)** | 65 (4) | *20 (4)* | **69 (4)** | **85 (4)** | *0 (4)* | *32 (4)* | 50 (4) | *20 (4)* | 40 |
+| **KPN** | **76 (4)** | **85 (4)** | **94 (4)** | *44 (4)* | *0 (4)* | **91 (4)** | **91 (4)** | **72 (4)** | 49 (4) | **79 (4)** | 60 (4) | *26 (4)* | **80 (4)** | 50 (4) | 64 |
+
+| comp | its best counter (its share) | it beats clearly |
+|---|---|---|
+| K (Clock Soldiers, no Winders) | O (100) | KW, KN, Sp, KSp, Se, KSe, KGW |
+| KW (Clock Soldiers + Winders) | O (100) | KN, Sp, KSp, Se, KSe, KGW |
+| KN (Clock Soldiers + Netters) | P (96) | Sp, KSe |
+| KP (Clock Soldiers + Pendulums) | O (89) | K, KW, KN, Sp, KSp, KB, Se, KSe, KGW, KPN |
+| P (Pendulums) | nothing beats it | K, KW, KN, KP, Sp, KSp, KB, Se, KSe, CW, KGW, KPN |
+| Sp (Springers) | KB (93) | Se |
+| KSp (Clock Soldiers + Springers) | KB (92) | Sp, Se, KSe |
+| KB (Clock Soldiers + Spring Ballistas) | O (100) | KW, KN, Sp, KSp, Se, KSe, KGW |
+| Se (Brass Serpents) | O (100) | KSe |
+| KSe (Clock Soldiers + Brass Serpents) | P (100) | none |
+| O (the air: Ticking Owls + Swifts) | KN (68) | K, KW, KP, KSp, KB, Se, KSe, KGW |
+| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | P (84) | K, KW, KN, Sp, KSp, Se, KSe, KGW, KPN |
+| KGW (Clock Soldiers + the Great Winder (no Winders)) | P (100) | Sp, Se, KSe |
+| KPN (Clock Soldiers + Pendulums + Netters) | P (100) | K, KW, KN, Sp, KSp, KB, KSe, KGW |
+
+Best on average: Clockwork P 86, O 73, KP 65, KPN 64
+
+Safest (best at its worst): P 50, O 32, CW 16.
+
+**The best blind mix** (each side picks blind, each at its best mix): P 100%.
 
 ## Crown v Clockwork
 
@@ -515,10 +695,100 @@ Safest (best at its worst): Clockwork KP 0, P 0, Sp 0; Crown H 100, MH 37, MO 28
 
 **The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **0**. Clockwork's mix: KP 100%. Crown's: H 100%.
 
+## Crown v Crown
+
+
+### Crown v Crown: open field, early (600) (676 results)
+
+Each cell: the **row's share** of the value lost (50 = even; bold: the row clearly ahead, italic: the column clearly ahead), then how many fights.
+
+| row \ column | M | MC | MCH | MMo | MCMo | MH | H | D | MD | MO | MB | MMi | CH | mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **M** | 50 (4) | **76 (4)** | **81 (4)** | **80 (4)** | **87 (4)** | **72 (4)** | **95 (4)** | **90 (4)** | **87 (4)** | 36 (4) | 33 (4) | **76 (4)** | **94 (4)** | 74 |
+| **MC** | *24 (4)* | 50 (4) | 64 (4) | **85 (4)** | 47 (4) | 48 (4) | **93 (4)** | 55 (4) | 54 (4) | 34 (4) | *14 (4)* | 51 (4) | 68 (4) | 53 |
+| **MCH** | *19 (4)* | 36 (4) | 50 (4) | *27 (4)* | 64 (4) | 31 (4) | **85 (4)** | 44 (4) | **80 (4)** | *8 (4)* | *11 (4)* | *17 (4)* | **91 (4)** | 43 |
+| **MMo** | *20 (4)* | *15 (4)* | **73 (4)** | 50 (4) | *20 (4)* | 25 (4) | **89 (4)** | 42 (4) | 73 (4) | *13 (4)* | *14 (4)* | 41 (4) | **73 (4)** | 42 |
+| **MCMo** | *13 (4)* | 53 (4) | 36 (4) | **80 (4)** | 50 (4) | 30 (4) | 64 (4) | 35 (4) | **80 (4)** | *5 (4)* | 28 (4) | 25 (4) | 47 (4) | 42 |
+| **MH** | *28 (4)* | 52 (4) | 69 (4) | 75 (4) | 70 (4) | 50 (4) | 74 (4) | **78 (4)** | 77 (4) | *23 (4)* | *32 (4)* | 32 (4) | 64 (4) | 56 |
+| **H** | *5 (4)* | *7 (4)* | *15 (4)* | *11 (4)* | 36 (4) | 26 (4) | 50 (4) | *32 (4)* | *15 (4)* | *8 (4)* | *7 (4)* | *16 (4)* | 67 (4) | 23 |
+| **D** | *10 (4)* | 45 (4) | 56 (4) | 58 (4) | 65 (4) | *22 (4)* | **68 (4)** | 50 (4) | 47 (4) | *13 (4)* | *2 (4)* | *0 (4)* | 39 (4) | 37 |
+| **MD** | *13 (4)* | 46 (4) | *20 (4)* | 27 (4) | *20 (4)* | 23 (4) | **85 (4)** | 53 (4) | 50 (4) | *17 (4)* | 42 (4) | 46 (4) | 53 (4) | 38 |
+| **MO** | 64 (4) | 66 (4) | **92 (4)** | **87 (4)** | **95 (4)** | **77 (4)** | **92 (4)** | **87 (4)** | **83 (4)** | 50 (4) | 34 (4) | **84 (4)** | **88 (4)** | 77 |
+| **MB** | 67 (4) | **86 (4)** | **89 (4)** | **86 (4)** | 72 (4) | **68 (4)** | **93 (4)** | **98 (4)** | 58 (4) | 66 (4) | 50 (4) | 62 (4) | **79 (4)** | 75 |
+| **MMi** | *24 (4)* | 49 (4) | **83 (4)** | 59 (4) | 75 (4) | 68 (4) | **84 (4)** | **100 (4)** | 54 (4) | *16 (4)* | 38 (4) | 50 (4) | 73 (4) | 59 |
+| **CH** | *6 (4)* | 32 (4) | *9 (4)* | *27 (4)* | 53 (4) | 36 (4) | 33 (4) | 61 (4) | 47 (4) | *12 (4)* | *21 (4)* | 27 (4) | 50 (4) | 32 |
+
+| comp | its best counter (its share) | it beats clearly |
+|---|---|---|
+| M (Musketeers) | MB (67) | MC, MCH, MMo, MCMo, MH, H, D, MD, MMi, CH |
+| MC (Musketeers + Field Cannons) | MB (86) | MMo, H |
+| MCH (the computer's wave (Musketeers, Cannons, Horsemen)) | MO (92) | H, MD, CH |
+| MMo (Musketeers + Mortars) | MO (87) | MCH, H, CH |
+| MCMo (Musketeers + Cannons + Mortars) | MO (95) | MMo, MD |
+| MH (Musketeers + Horsemen) | MO (77) | D |
+| H (Horsemen) | M (95) | none |
+| D (Dragoons) | MMi (100) | H |
+| MD (Musketeers + Dragoons) | M (87) | H |
+| MO (Musketeers + Officers) | MB (66) | MCH, MMo, MCMo, MH, H, D, MD, MMi, CH |
+| MB (Musketeers + the band) | nothing beats it | MC, MCH, MMo, MH, H, D, CH |
+| MMi (Musketeers + a Missionary) | MO (84) | MCH, H, D |
+| CH (Cannons + Horsemen) | M (94) | none |
+
+Best on average: Crown MO 77, MB 75, M 74, MMi 59
+
+Safest (best at its worst): MB 50, MO 34, M 33.
+
+**The best blind mix** (each side picks blind, each at its best mix): MB 100%.
+
+### Crown v Crown: open field, mid (1,500) (676 results)
+
+Each cell: the **row's share** of the value lost (50 = even; bold: the row clearly ahead, italic: the column clearly ahead), then how many fights.
+
+| row \ column | M | MC | MCH | MMo | MCMo | MH | H | D | MD | MO | MB | MMi | CH | mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **M** | 50 (4) | 55 (4) | **67 (4)** | 65 (4) | 62 (4) | 57 (4) | **95 (4)** | **91 (4)** | **81 (4)** | 29 (4) | 50 (4) | *25 (4)* | 61 (4) | 61 |
+| **MC** | 45 (4) | 50 (4) | 62 (4) | 68 (4) | 50 (4) | 40 (4) | **95 (4)** | 65 (4) | 46 (4) | *32 (4)* | 55 (4) | 48 (4) | 70 (4) | 56 |
+| **MCH** | *33 (4)* | 38 (4) | 50 (4) | 45 (4) | *35 (4)* | 42 (4) | **78 (4)** | **70 (4)** | 53 (4) | *34 (4)* | *30 (4)* | 37 (4) | 65 (4) | 47 |
+| **MMo** | 35 (4) | 32 (4) | 55 (4) | 50 (4) | 36 (4) | 42 (4) | **90 (4)** | **73 (4)** | 43 (4) | *25 (4)* | *16 (4)* | *25 (4)* | **71 (4)** | 46 |
+| **MCMo** | 38 (4) | 50 (4) | **65 (4)** | 64 (4) | 50 (4) | 25 (4) | **98 (4)** | **70 (4)** | 38 (4) | *27 (4)* | 51 (4) | 34 (4) | 71 (4) | 52 |
+| **MH** | 43 (4) | 60 (4) | 58 (4) | 58 (4) | 75 (4) | 50 (4) | **79 (4)** | 56 (4) | 33 (4) | 46 (4) | 33 (4) | 62 (4) | **84 (4)** | 57 |
+| **H** | *5 (4)* | *5 (4)* | *22 (4)* | *10 (4)* | *2 (4)* | *21 (4)* | 50 (4) | *23 (4)* | *33 (4)* | *15 (4)* | *6 (4)* | *7 (4)* | 52 (4) | 19 |
+| **D** | *9 (4)* | 35 (4) | *30 (4)* | *27 (4)* | *30 (4)* | 44 (4) | **77 (4)** | 50 (4) | 37 (4) | *13 (4)* | *17 (4)* | *14 (4)* | 50 (4) | 33 |
+| **MD** | *19 (4)* | 54 (4) | 47 (4) | 57 (4) | 62 (4) | 67 (4) | **67 (4)** | 63 (4) | 50 (4) | *9 (4)* | *26 (4)* | 27 (4) | 64 (4) | 47 |
+| **MO** | 71 (4) | **68 (4)** | **66 (4)** | **75 (4)** | **73 (4)** | 54 (4) | **85 (4)** | **87 (4)** | **91 (4)** | 50 (4) | 59 (4) | 65 (4) | 68 (4) | 70 |
+| **MB** | 50 (4) | 45 (4) | **70 (4)** | **84 (4)** | 49 (4) | 67 (4) | **94 (4)** | **83 (4)** | **74 (4)** | 41 (4) | 50 (4) | 51 (4) | 69 (4) | 64 |
+| **MMi** | **75 (4)** | 52 (4) | 63 (4) | **75 (4)** | 66 (4) | 38 (4) | **93 (4)** | **86 (4)** | 73 (4) | 35 (4) | 49 (4) | 50 (4) | **64 (4)** | 63 |
+| **CH** | 39 (4) | 30 (4) | 35 (4) | *29 (4)* | 29 (4) | *16 (4)* | 48 (4) | 50 (4) | 36 (4) | 32 (4) | 31 (4) | *36 (4)* | 50 (4) | 35 |
+
+| comp | its best counter (its share) | it beats clearly |
+|---|---|---|
+| M (Musketeers) | MMi (75) | MCH, H, D, MD |
+| MC (Musketeers + Field Cannons) | MO (68) | H |
+| MCH (the computer's wave (Musketeers, Cannons, Horsemen)) | MB (70) | H, D |
+| MMo (Musketeers + Mortars) | MB (84) | H, D, CH |
+| MCMo (Musketeers + Cannons + Mortars) | MH (75) | MCH, H, D |
+| MH (Musketeers + Horsemen) | MB (67) | H, CH |
+| H (Horsemen) | MCMo (98) | none |
+| D (Dragoons) | M (91) | H |
+| MD (Musketeers + Dragoons) | MO (91) | H |
+| MO (Musketeers + Officers) | nothing beats it | MC, MCH, MMo, MCMo, H, D, MD |
+| MB (Musketeers + the band) | MO (59) | MCH, MMo, H, D, MD |
+| MMi (Musketeers + a Missionary) | MO (65) | M, MMo, H, D, CH |
+| CH (Cannons + Horsemen) | MH (84) | none |
+
+Best on average: Crown MO 70, MB 64, MMi 63, M 61
+
+Safest (best at its worst): MO 50, MB 41, MMi 35.
+
+**The best blind mix** (each side picks blind, each at its best mix): MO 100%.
+
 ## The fighting counts (all grounds and sizes)
 
 | matchup | fights | fight length s (mean) | pulls a minute, side A / B | Clockwork constructs run down (a fight) | under a quarter wind | Crown guns set at contact | guns fired in the first 20 s | own men killed by own splash |
 |---|---|---|---|---|---|---|---|---|
+| Brood v Brood | 676 | 23 | 3.2 / 2.7 | - | - | - | - | 0.00 |
 | Clockwork v Brood | 2044 | 23 | 4.0 / 1.0 | 0.00 | 0.00 | - | - | 0.00 |
+| Clockwork v Clockwork | 784 | 37 | 5.1 / 4.6 | 0.05 | 0.09 | - | - | 0.00 |
 | Clockwork v Crown | 432 | 35 | 0.0 / 3.1 | 1.13 | 1.28 | 0% | 90% | 0.22 |
 | Crown v Clockwork | 1960 | 31 | 6.2 / 4.4 | 0.04 | 0.06 | 20% | 75% | 0.31 |
+| Crown v Crown | 676 | 40 | 11.1 / 10.2 | - | - | 0% | 74% | 0.00 |

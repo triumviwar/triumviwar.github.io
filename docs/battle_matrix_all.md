@@ -25,7 +25,8 @@ work for any two factions, and for mirrors.
 - Sizes: 600 (early), 1,500 (mid), 4,000 (late). Research grows with the size.
 - Grounds: open field, the set line (the defender formed by hand and ready), a choke, and a ramp with the defender on top.
 
-A fight takes the lab about 3 to 6 seconds. Two cores ran about 9,000 fights for this job.
+A fight takes the lab about 3 to 6 seconds. Two cores ran 7,000 fights for this job (6,572 in the tables, 208 Dragoon
+fights, 216 with the wind at half), plus the first, faulty runs that were thrown away.
 
 ### The comps
 
@@ -194,8 +195,12 @@ A Clockwork army runs down off its gear ground in about 80 seconds. In these fig
 | Crown v Clockwork (Crown holding or both coming) | 1,960 | 31 | 6.2 / 4.4 | 0.04 | 20% | 75% |
 | Clockwork holding v Crown | 432 | 35 | 0 / 3.1 | 1.13 | 0% | 90% |
 | Clockwork v Brood | 2,044 | 23 | 4.0 / 1.0 | 0.00 | - | - |
+| Crown v Crown | 676 | 40 | 11.1 / 10.2 | - | 0% | 74% |
+| Clockwork v Clockwork | 784 | 37 | 5.1 / 4.6 | 0.05 | - | - |
+| Brood v Brood | 676 | 23 | 3.2 / 2.7 | - | - | - |
 
-- **Pulls.** The Crown computer wants out of its wave about 6 times a minute. The Clockwork's push wants to turn about 4
+- **Pulls.** The Crown computer wants out of its wave about 6 times a minute (11 in the mirror, against another
+  line of muskets). The Clockwork's push wants to turn about 4
   times a minute (the lab keeps it in). The Brood about once.
 - **The Crown's guns are never set at contact in the open.** They march limbered and set up only after the fight starts
   (0% set at contact in the open; 20% overall comes from the set grounds, where the lab sets them by hand).
@@ -277,10 +282,52 @@ These are observations, not changes. No number was changed.
 5. **Plain Musketeers** (with Officers) are the Crown's best army against both other factions; guns and mortars in the
    army make it worse in the open, not better (they are slow, set late, and hit their own men).
 6. **Winders do not pay in a short fight;** arriving wound does.
+7. **Inside each faction one army is best:** the Crown's Musketeers with Officers or the band, the Clockwork's
+   Pendulums. Only the Brood has a true circle (flyers, Venom Challengers, the Sire).
 
 ## The mirrors
 
-(The mirror results are added below when the runs end.)
+Open field, 600 and 1,500. Every comp against every comp, each pairing played from both sides of the field (2 seeds each
+way, so 4 fights a cell). The question here is which army beats which inside one faction. No side of the field had an
+edge: side A's share was 49, 48 and 50.
+
+### Crown against Crown (676 fights)
+
+- **Musketeers with Officers (MO) and Musketeers with the band (MB) are the best.** Early nothing beats the band army
+  (MB is the best blind pick, 100%). Mid, nothing beats Musketeers and Officers (MO is the best blind pick, 100%).
+- **Plain Musketeers** are third: they beat almost every army with guns, mortars or riders, but lose to MO and MB, and
+  mid to Musketeers with a Missionary (25).
+- **Horsemen alone, Dragoons alone and Cannons with Horsemen are the worst** (19 to 37 on average). Horsemen lose to
+  almost everything (Musketeers get 95 against them).
+- **Guns and mortars do not pay in the open** in the mirror either: no army with them gets more than 56 on average.
+- There is no real circle here: one army (MO or MB) simply beats the rest.
+
+### Clockwork against Clockwork (784 fights)
+
+- **Pendulums (P) beat everything.** Early they beat 11 of the 13 other armies clearly and are ahead of the last two; mid
+  they beat 12 of 13 clearly. The best blind pick is
+  Pendulums, 100%, at both sizes.
+- **Owls (O)** are second (73 on average). They beat every army with no anti-air (Clock Soldiers, Ballistas, Serpents),
+  and lose to Netters, Pendulums and Springers, which can hit flyers.
+- **The computer's push (CW), Clock Soldiers with Pendulums (KP) and with Pendulums and Netters (KPN)** come next (57 to
+  65). These all have Pendulums in them.
+- **Clock Soldiers with Brass Serpents (KSe) are the worst** (15 and 18 on average): they beat nothing. Serpents alone are
+  little better (28 to 32).
+- Clock Soldiers without Winders (K) beat Clock Soldiers with them (KW): 74 early, 66 mid. Winders do not pay in a short
+  fight, again.
+
+### Brood against Brood (676 fights)
+
+This one is a real **rock, paper, scissors**:
+
+- **Storm Challengers (the flyers) beat every ground army** (100 against all of them, even the Tyrant Sire).
+- **Venom Challengers beat the Storm Challengers** (84 early, 90 mid) and almost every ground army.
+- **The Tyrant Sire's army (RSy) beats the Venom Challengers** (75 early, 65 mid) and every other ground army.
+- So: flyers beat the Sire, Venom beats flyers, the Sire beats Venom.
+- The best blind mix: Venom Challengers 46 to 48%, the Sire's army 31 to 38%, Storm Challengers 14 to 23%.
+- **Raptors, Spitters and Mist Toads (RSTd) are the worst** (23 and 24 on average): they beat nothing. The Mist Toads'
+  fog and miasma do not help in a straight fight.
+- Plain Raptors (R) are the best of the cheap armies: they beat every Raptor and Spitter mix.
 
 ## Files
 
