@@ -23,7 +23,8 @@ The method is the crown-micro job's (branch `crown-micro`, docs/crown_micro.md t
    - the mirror: the other Clockwork computer's own push.
 2. **The Clockwork's fight micro**, `scripts/ai_cw_micro.gd` (AICwMicro). Eight parts were tried, each behind a switch.
    `-- cwmic<name>:on` turns one on. `-- cwmic:off` turns them all off. `-- cwmicteam:0` coaches only team 0 (for the mirror).
-   @@KEPTLINE@@
+   None of them is kept: none helped beyond the noise (the chapters below). They stay in the code, all off, for the next
+   coach to try again (`-- cwmic<name>:on`).
 3. **The study**, `tools/study/clockwork_micro.py`: the bench runs, the paired comparisons, and the real games (Hard
    OPTIMAL against Hard OPTIMAL, to 20:00, the six parity maps, 10 games a block). Bench data in
    `docs/clockwork_micro/bench/`, games in `docs/clockwork_micro/data/`.
@@ -161,16 +162,16 @@ group's t moves by up to about 0.9 with no change at all).
 
 | part | what it does | v Crown | v Brood | mirror | all 54 | kept? |
 |---|---|---|---|---|---|---|
-| close | a Clock Soldier or Pendulum in the enemy's fire with nothing of its own in reach goes for the nearest shooter | -0.046 (-1.4) | -0.139 (-2.1) | -0.154 (-1.8) | -0.111 (-3.1) | @@K_close@@ |
-| pick, wide (dive) | a Clock Soldier on a melee foe goes for a shooter within 220 px when 3 or more are there | -0.121 (-3.8) | -0.115 (-2.0) | +0.037 (0.3) | -0.083 (-2.1) | @@K_pick@@ |
-| pick | a Clock Soldier on a melee foe goes for a shooter right beside it (90 px) | +0.010 (0.2) | -0.031 (-1.1) | +0.215 (2.5) | +0.037 (1.3) | @@K_pick@@ |
-| flank | a third of the Clock Soldiers and the Springers walk round the side onto the enemy's back line | -0.056 (-1.1) | -0.128 (-2.7) | +0.001 (0.0) | -0.075 (-2.0) | @@K_flank@@ |
-| charge | enemy shooters standing off: the whole push front goes at them together | -0.008 (-0.2) | +0.013 (0.3) | -0.087 (-0.9) | -0.016 (-0.5) | @@K_charge@@ |
-| springpick | a ready Springer jumps at the guns or the Spitters, not the nearest foe | -0.018 (-0.7) | -0.068 (-1.6) | +0.141 (1.6) | -0.005 (-0.2) | @@K_springpick@@ |
-| mend | a hurt Pendulum, Netter, Springer or Ballista steps back to a Winder | -0.046 (-1.1) | +0.004 (0.1) | +0.022 (0.2) | -0.009 (-0.2) | @@K_mend@@ |
-| bail | the push pulls back early from a fight it is clearly losing (lost 35%, killed under 0.45 of it) | +0.025 (0.5) | -0.011 (-0.2) | +0.163 (1.6) | +0.039 (1.0) | @@K_bail@@ |
-| bail, sooner | the same, sooner (lost 20%, killed under 0.6 of it) | -0.068 (-2.5) | -0.010 (-0.2) | +0.102 (0.7) | -0.005 (-0.1) | @@K_bail@@ |
-| safe | the escort Winders keep out of the enemy shooters' reach | +0.002 (0.1) | -0.059 (-1.4) | +0.076 (0.7) | -0.009 (-0.3) | @@K_safe@@ |
+| close | a Clock Soldier or Pendulum in the enemy's fire with nothing of its own in reach goes for the nearest shooter | -0.046 (-1.4) | -0.139 (-2.1) | -0.154 (-1.8) | -0.111 (-3.1) | no |
+| pick, wide (dive) | a Clock Soldier on a melee foe goes for a shooter within 220 px when 3 or more are there | -0.121 (-3.8) | -0.115 (-2.0) | +0.037 (0.3) | -0.083 (-2.1) | no |
+| pick | a Clock Soldier on a melee foe goes for a shooter right beside it (90 px) | +0.010 (0.2) | -0.031 (-1.1) | +0.215 (2.5) | +0.037 (1.3) | no |
+| flank | a third of the Clock Soldiers and the Springers walk round the side onto the enemy's back line | -0.056 (-1.1) | -0.128 (-2.7) | +0.001 (0.0) | -0.075 (-2.0) | no |
+| charge | enemy shooters standing off: the whole push front goes at them together | -0.008 (-0.2) | +0.013 (0.3) | -0.087 (-0.9) | -0.016 (-0.5) | no |
+| springpick | a ready Springer jumps at the guns or the Spitters, not the nearest foe | -0.018 (-0.7) | -0.068 (-1.6) | +0.141 (1.6) | -0.005 (-0.2) | no |
+| mend | a hurt Pendulum, Netter, Springer or Ballista steps back to a Winder | -0.046 (-1.1) | +0.004 (0.1) | +0.022 (0.2) | -0.009 (-0.2) | no |
+| bail | the push pulls back early from a fight it is clearly losing (lost 35%, killed under 0.45 of it) | +0.025 (0.5) | -0.011 (-0.2) | +0.163 (1.6) | +0.039 (1.0) | no |
+| bail, sooner | the same, sooner (lost 20%, killed under 0.6 of it) | -0.068 (-2.5) | -0.010 (-0.2) | +0.102 (0.7) | -0.005 (-0.1) | no |
+| safe | the escort Winders keep out of the enemy shooters' reach | +0.002 (0.1) | -0.059 (-1.4) | +0.076 (0.7) | -0.009 (-0.3) | no |
 
 Each cell: the change in the mean score, and its t in brackets.
 
@@ -186,7 +187,8 @@ What each result means:
   the enemy's shooters come into the screen by themselves.
 - **`pick`** (a Clock Soldier fighting a melee foe takes the shooter right beside it instead) did nothing against the Crown
   (the Musketeers are the front line: it is already on a shooter) and nothing against the Brood, but helped in the mirror
-  (+0.22, t 2.5): there the shooters beside the Clock Soldiers are the enemy's Springers and Netters. @@PICKREP@@
+  (+0.22, t 2.5): there the shooters beside the Clock Soldiers are the enemy's Springers and Netters. I ran it again on 12 new mirror fights (seeds 3 to 5) against a fresh plain run of the same fights: **-0.19 (t -1.2)**.
+So the first +0.22 was the noise, and `pick` is not kept.
 - **`springpick`, `bail`**: a little better in the mirror, a little worse against the Brood, all inside the noise.
 - **`bail`, sooner**: worse against the Crown (t -2.5). Pulling back from the Crown's line does not save the machines: the
   Cuirassiers and the volleys follow a push walking home at the pace of its slowest machine.
@@ -197,7 +199,13 @@ What each result means:
 
 ## What was kept
 
-@@KEPT@@
+**Nothing.** Ten parts (eight ideas, two with a second setting) were tried; none made the Clockwork fight better beyond the
+noise, and the three that pull machines out of the block (close, dive, flank) made it clearly worse. Every part stays in
+`scripts/ai_cw_micro.gd`, off, behind its switch. The game plays exactly as before this job.
+
+This is a result, not a failure: the Clockwork computer's fighting is not where its games are lost. The earlier coaching
+jobs (clockwork-army, cinder-clockwork-ai, clockwork-v-brood-coach-2, the escort, the shields) already made its push fight
+as one block, and with this army that is the best of the simple rules I could find.
 
 ## Other armies at the same value
 

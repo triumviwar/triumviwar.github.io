@@ -1,0 +1,387 @@
+{
+"args": "seed:3",
+"sets": [
+"mirror"
+],
+"runs": [
+{
+"contact": 16.4,
+"cw_left": 0.12,
+"cw_value": 1005,
+"dead": {
+"clock_soldier": "8/8",
+"netter": "1/1",
+"springer": "2/2",
+"winder": "0/2"
+},
+"down_end": 0,
+"foe_dead": {
+"clock_soldier": "1/8",
+"netter": "1/1",
+"springer": "1/2",
+"winder": "0/2"
+},
+"foe_left": 0.7,
+"foe_value": 1005,
+"foes": 13,
+"killed": 295,
+"lost": 885,
+"micro": {},
+"run": 3,
+"sc": "open-s-cw",
+"score": -0.58,
+"secs": 83.1
+},
+{
+"contact": 45.5,
+"cw_left": 1.0,
+"cw_value": 1005,
+"dead": {
+"clock_soldier": "0/8",
+"netter": "0/1",
+"springer": "0/2",
+"winder": "0/2"
+},
+"down_end": 0,
+"foe_dead": {
+"clock_soldier": "0/8",
+"netter": "0/1",
+"springer": "0/2",
+"winder": "0/2"
+},
+"foe_left": 1.0,
+"foe_value": 1005,
+"foes": 13,
+"killed": 500,
+"lost": 440,
+"micro": {},
+"run": 4,
+"sc": "open-s-cw",
+"score": 0.0,
+"secs": 90.0
+},
+{
+"contact": 16.7,
+"cw_left": 0.75,
+"cw_value": 1005,
+"dead": {
+"clock_soldier": "0/8",
+"netter": "1/1",
+"springer": "1/2",
+"winder": "0/2"
+},
+"down_end": 0,
+"foe_dead": {
+"clock_soldier": "8/8",
+"netter": "1/1",
+"springer": "2/2",
+"winder": "0/2"
+},
+"foe_left": 0.12,
+"foe_value": 1005,
+"foes": 13,
+"killed": 945,
+"lost": 225,
+"micro": {},
+"run": 5,
+"sc": "open-s-cw",
+"score": 0.64,
+"secs": 77.7
+},
+{
+"contact": 15.5,
+"cw_left": 0.41,
+"cw_value": 2415,
+"dead": {
+"ballista": "0/1",
+"clock_soldier": "17/18",
+"netter": "0/1",
+"pendulum": "0/2",
+"springer": "1/3",
+"winder": "0/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "1/1",
+"clock_soldier": "18/18",
+"netter": "1/1",
+"pendulum": "2/2",
+"springer": "3/3",
+"winder": "2/3"
+},
+"foe_left": 0.02,
+"foe_value": 2415,
+"foes": 28,
+"killed": 2415,
+"lost": 1290,
+"micro": {},
+"run": 3,
+"sc": "open-m-cw",
+"score": 0.4,
+"secs": 77.9
+},
+{
+"contact": 16.8,
+"cw_left": 0.82,
+"cw_value": 2415,
+"dead": {
+"ballista": "0/1",
+"clock_soldier": "3/18",
+"netter": "1/1",
+"pendulum": "0/2",
+"springer": "1/3",
+"winder": "0/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/1",
+"clock_soldier": "11/18",
+"netter": "1/1",
+"pendulum": "0/2",
+"springer": "3/3",
+"winder": "1/3"
+},
+"foe_left": 0.37,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1615,
+"lost": 435,
+"micro": {},
+"run": 4,
+"sc": "open-m-cw",
+"score": 0.45,
+"secs": 90.0
+},
+{
+"contact": 16.7,
+"cw_left": 0.12,
+"cw_value": 2415,
+"dead": {
+"ballista": "1/1",
+"clock_soldier": "18/18",
+"netter": "1/1",
+"pendulum": "1/2",
+"springer": "2/3",
+"winder": "3/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "0/1",
+"pendulum": "0/2",
+"springer": "1/3",
+"winder": "1/3"
+},
+"foe_left": 0.41,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1420,
+"lost": 2175,
+"micro": {},
+"run": 5,
+"sc": "open-m-cw",
+"score": -0.29,
+"secs": 90.0
+},
+{
+"contact": 28.2,
+"cw_left": 0.56,
+"cw_value": 2415,
+"dead": {
+"ballista": "0/1",
+"clock_soldier": "15/18",
+"netter": "0/1",
+"pendulum": "0/2",
+"springer": "0/3",
+"winder": "0/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "1/1",
+"pendulum": "1/2",
+"springer": "1/3",
+"winder": "1/3"
+},
+"foe_left": 0.28,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1805,
+"lost": 1050,
+"micro": {},
+"run": 3,
+"sc": "home-m-cw",
+"score": 0.28,
+"secs": 90.0
+},
+{
+"contact": 28.0,
+"cw_left": 0.48,
+"cw_value": 2415,
+"dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "0/1",
+"pendulum": "0/2",
+"springer": "0/3",
+"winder": "0/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "1/1",
+"pendulum": "2/2",
+"springer": "1/3",
+"winder": "1/3"
+},
+"foe_left": 0.19,
+"foe_value": 2415,
+"foes": 28,
+"killed": 2005,
+"lost": 1320,
+"micro": {},
+"run": 4,
+"sc": "home-m-cw",
+"score": 0.28,
+"secs": 90.0
+},
+{
+"contact": 28.4,
+"cw_left": 0.77,
+"cw_value": 2415,
+"dead": {
+"ballista": "0/1",
+"clock_soldier": "8/18",
+"netter": "0/1",
+"pendulum": "0/2",
+"springer": "0/3",
+"winder": "0/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/1",
+"clock_soldier": "16/18",
+"netter": "1/1",
+"pendulum": "1/2",
+"springer": "0/3",
+"winder": "1/3"
+},
+"foe_left": 0.38,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1505,
+"lost": 560,
+"micro": {},
+"run": 5,
+"sc": "home-m-cw",
+"score": 0.39,
+"secs": 90.0
+},
+{
+"contact": 61.5,
+"cw_left": 1.0,
+"cw_value": 4225,
+"dead": {
+"ballista": "0/2",
+"clock_soldier": "0/30",
+"great_winder": "0/1",
+"netter": "0/2",
+"pendulum": "0/3",
+"springer": "0/5",
+"winder": "0/5"
+},
+"down_end": 14,
+"foe_dead": {
+"ballista": "0/2",
+"clock_soldier": "0/30",
+"great_winder": "0/1",
+"netter": "0/2",
+"pendulum": "0/3",
+"springer": "0/5",
+"winder": "0/5"
+},
+"foe_left": 1.0,
+"foe_value": 4225,
+"foes": 48,
+"killed": 700,
+"lost": 500,
+"micro": {},
+"run": 3,
+"sc": "open-l-cw",
+"score": 0.0,
+"secs": 90.0
+},
+{
+"contact": 16.5,
+"cw_left": 0.32,
+"cw_value": 4225,
+"dead": {
+"ballista": "0/2",
+"clock_soldier": "27/30",
+"great_winder": "0/1",
+"netter": "0/2",
+"pendulum": "1/3",
+"springer": "4/5",
+"winder": "1/5"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/2",
+"clock_soldier": "30/30",
+"great_winder": "0/1",
+"netter": "2/2",
+"pendulum": "3/3",
+"springer": "5/5",
+"winder": "1/5"
+},
+"foe_left": 0.17,
+"foe_value": 4225,
+"foes": 48,
+"killed": 3510,
+"lost": 2550,
+"micro": {},
+"run": 4,
+"sc": "open-l-cw",
+"score": 0.15,
+"secs": 90.0
+},
+{
+"contact": 16.5,
+"cw_left": 0.13,
+"cw_value": 4225,
+"dead": {
+"ballista": "2/2",
+"clock_soldier": "30/30",
+"great_winder": "0/1",
+"netter": "2/2",
+"pendulum": "2/3",
+"springer": "3/5",
+"winder": "4/5"
+},
+"down_end": 0,
+"foe_dead": {
+"?": "1/1",
+"ballista": "0/2",
+"clock_soldier": "29/29",
+"great_winder": "0/1",
+"netter": "0/2",
+"pendulum": "0/3",
+"springer": "2/5",
+"winder": "0/5"
+},
+"foe_left": 0.45,
+"foe_value": 4225,
+"foes": 48,
+"killed": 2300,
+"lost": 3590,
+"micro": {},
+"run": 5,
+"sc": "open-l-cw",
+"score": -0.32,
+"secs": 90.0
+}
+]
+}
