@@ -1,0 +1,513 @@
+{
+ "args": "out:/tmp/claude-0/cm/rrid2.json set:real runs:3 tech:1 dry:0.3 cmicriders:on cmicridewho:1",
+ "runs": [
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 12.4,
+   "crown_left": 0.7,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 0,
+   "killed": 1910,
+   "lost": 300,
+   "micro": {
+    "cmic_riders": 2,
+    "cmic_riders_screen": 2
+   },
+   "run": 0,
+   "sc": "open-M-real",
+   "score": 0.7,
+   "secs": 20.2
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 12.2,
+   "crown_left": 0.71,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 0,
+   "killed": 1910,
+   "lost": 300,
+   "micro": {
+    "cmic_riders": 7,
+    "cmic_riders_screen": 5
+   },
+   "run": 1,
+   "sc": "open-M-real",
+   "score": 0.71,
+   "secs": 30.4
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 12.7,
+   "crown_left": 0.62,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 0,
+   "killed": 1910,
+   "lost": 420,
+   "micro": {
+    "cmic_riders": 3,
+    "cmic_riders_screen": 3
+   },
+   "run": 2,
+   "sc": "open-M-real",
+   "score": 0.62,
+   "secs": 23.4
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 14.0,
+   "crown_left": 0.66,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 0,
+   "killed": 1910,
+   "lost": 650,
+   "micro": {
+    "cmic_riders": 1
+   },
+   "run": 0,
+   "sc": "home-M-real",
+   "score": 0.66,
+   "secs": 50.6
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 13.1,
+   "crown_left": 0.61,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 0,
+   "killed": 1910,
+   "lost": 530,
+   "micro": {
+    "cmic_riders": 1
+   },
+   "run": 1,
+   "sc": "home-M-real",
+   "score": 0.61,
+   "secs": 27.4
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 11.6,
+   "crown_left": 0.75,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 0,
+   "killed": 1910,
+   "lost": 410,
+   "micro": {
+    "cmic_riders": 4
+   },
+   "run": 2,
+   "sc": "home-M-real",
+   "score": 0.75,
+   "secs": 43.8
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 7.3,
+   "crown_left": 0.62,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 0,
+   "killed": 1910,
+   "lost": 540,
+   "micro": {
+    "cmic_riders": 4,
+    "cmic_riders_screen": 4
+   },
+   "run": 0,
+   "sc": "side-M-real",
+   "score": 0.62,
+   "secs": 34.4
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 8.7,
+   "crown_left": 0.53,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 0,
+   "killed": 1910,
+   "lost": 600,
+   "micro": {
+    "cmic_riders": 6,
+    "cmic_riders_screen": 6
+   },
+   "run": 1,
+   "sc": "side-M-real",
+   "score": 0.53,
+   "secs": 36.8
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 7.4,
+   "crown_left": 0.79,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 0,
+   "killed": 1910,
+   "lost": 240,
+   "micro": {
+    "cmic_riders": 6,
+    "cmic_riders_screen": 6
+   },
+   "run": 2,
+   "sc": "side-M-real",
+   "score": 0.79,
+   "secs": 18.5
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 10.3,
+   "crown_left": 0.76,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 0,
+   "killed": 1885,
+   "lost": 240,
+   "micro": {
+    "cmic_riders": 8,
+    "cmic_riders_screen": 6
+   },
+   "run": 0,
+   "sc": "ramp-M-real",
+   "score": 0.76,
+   "secs": 42.3
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 10.1,
+   "crown_left": 0.47,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 1,
+   "killed": 1910,
+   "lost": 940,
+   "micro": {
+    "cmic_riders": 5,
+    "cmic_riders_screen": 4
+   },
+   "run": 1,
+   "sc": "ramp-M-real",
+   "score": 0.47,
+   "secs": 65.3
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1910,
+   "contact": 9.9,
+   "crown_left": 0.63,
+   "crown_value": 1855,
+   "foes": 35,
+   "guns_lost": 0,
+   "killed": 1960,
+   "lost": 420,
+   "micro": {
+    "cmic_riders": 7,
+    "cmic_riders_screen": 6
+   },
+   "run": 2,
+   "sc": "ramp-M-real",
+   "score": 0.63,
+   "secs": 55.2
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3525,
+   "contact": 10.4,
+   "crown_left": 0.59,
+   "crown_value": 3495,
+   "foes": 64,
+   "guns_lost": 0,
+   "killed": 3525,
+   "lost": 1260,
+   "micro": {
+    "cmic_riders": 10,
+    "cmic_riders_screen": 5
+   },
+   "run": 0,
+   "sc": "open-L-real",
+   "score": 0.59,
+   "secs": 43.9
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3525,
+   "contact": 10.3,
+   "crown_left": 0.56,
+   "crown_value": 3495,
+   "foes": 64,
+   "guns_lost": 0,
+   "killed": 3525,
+   "lost": 1330,
+   "micro": {
+    "cmic_riders": 13,
+    "cmic_riders_screen": 5
+   },
+   "run": 1,
+   "sc": "open-L-real",
+   "score": 0.56,
+   "secs": 32.0
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3525,
+   "contact": 10.5,
+   "crown_left": 0.62,
+   "crown_value": 3495,
+   "foes": 64,
+   "guns_lost": 0,
+   "killed": 3525,
+   "lost": 1140,
+   "micro": {
+    "cmic_riders": 6,
+    "cmic_riders_screen": 4
+   },
+   "run": 2,
+   "sc": "open-L-real",
+   "score": 0.62,
+   "secs": 31.1
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3525,
+   "contact": 12.5,
+   "crown_left": 0.66,
+   "crown_value": 3495,
+   "foes": 64,
+   "guns_lost": 0,
+   "killed": 3525,
+   "lost": 950,
+   "micro": {
+    "cmic_riders": 9
+   },
+   "run": 0,
+   "sc": "home-L-real",
+   "score": 0.66,
+   "secs": 29.0
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3525,
+   "contact": 13.5,
+   "crown_left": 0.55,
+   "crown_value": 3495,
+   "foes": 64,
+   "guns_lost": 0,
+   "killed": 3525,
+   "lost": 1550,
+   "micro": {
+    "cmic_riders": 6
+   },
+   "run": 1,
+   "sc": "home-L-real",
+   "score": 0.55,
+   "secs": 24.0
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3525,
+   "contact": 12.7,
+   "crown_left": 0.67,
+   "crown_value": 3495,
+   "foes": 64,
+   "guns_lost": 1,
+   "killed": 3525,
+   "lost": 1000,
+   "micro": {
+    "cmic_riders": 9
+   },
+   "run": 2,
+   "sc": "home-L-real",
+   "score": 0.67,
+   "secs": 62.2
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3510,
+   "contact": 10.5,
+   "crown_left": 0.51,
+   "crown_value": 3495,
+   "foes": 54,
+   "guns_lost": 0,
+   "killed": 3510,
+   "lost": 1560,
+   "micro": {
+    "cmic_riders": 6,
+    "cmic_riders_screen": 6
+   },
+   "run": 0,
+   "sc": "open-L-late",
+   "score": 0.51,
+   "secs": 35.0
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3510,
+   "contact": 10.4,
+   "crown_left": 0.37,
+   "crown_value": 3495,
+   "foes": 54,
+   "guns_lost": 1,
+   "killed": 3510,
+   "lost": 1970,
+   "micro": {
+    "cmic_riders": 8,
+    "cmic_riders_screen": 6
+   },
+   "run": 1,
+   "sc": "open-L-late",
+   "score": 0.37,
+   "secs": 39.3
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3510,
+   "contact": 10.4,
+   "crown_left": 0.41,
+   "crown_value": 3495,
+   "foes": 54,
+   "guns_lost": 0,
+   "killed": 3560,
+   "lost": 1885,
+   "micro": {
+    "cmic_riders": 7,
+    "cmic_riders_screen": 6
+   },
+   "run": 2,
+   "sc": "open-L-late",
+   "score": 0.41,
+   "secs": 79.1
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3525,
+   "contact": 6.5,
+   "crown_left": 0.61,
+   "crown_value": 3495,
+   "foes": 64,
+   "guns_lost": 0,
+   "killed": 3525,
+   "lost": 1080,
+   "micro": {
+    "cmic_riders": 12,
+    "cmic_riders_screen": 12
+   },
+   "run": 0,
+   "sc": "side-L-real",
+   "score": 0.61,
+   "secs": 21.4
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3525,
+   "contact": 7.2,
+   "crown_left": 0.49,
+   "crown_value": 3495,
+   "foes": 64,
+   "guns_lost": 1,
+   "killed": 3525,
+   "lost": 1490,
+   "micro": {
+    "cmic_riders": 11,
+    "cmic_riders_screen": 11
+   },
+   "run": 1,
+   "sc": "side-L-real",
+   "score": 0.49,
+   "secs": 40.1
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 3525,
+   "contact": 6.7,
+   "crown_left": 0.43,
+   "crown_value": 3495,
+   "foes": 64,
+   "guns_lost": 0,
+   "killed": 3525,
+   "lost": 1850,
+   "micro": {
+    "cmic_riders": 10,
+    "cmic_riders_screen": 10
+   },
+   "run": 2,
+   "sc": "side-L-real",
+   "score": 0.43,
+   "secs": 29.4
+  }
+ ],
+ "total": {
+  "home-L-real": {
+   "killed": 10575,
+   "lost": 3500,
+   "n": 3,
+   "score": 1.88,
+   "wins": 3
+  },
+  "home-M-real": {
+   "killed": 5730,
+   "lost": 1590,
+   "n": 3,
+   "score": 2.02,
+   "wins": 3
+  },
+  "open-L-late": {
+   "killed": 10580,
+   "lost": 5415,
+   "n": 3,
+   "score": 1.29,
+   "wins": 3
+  },
+  "open-L-real": {
+   "killed": 10575,
+   "lost": 3730,
+   "n": 3,
+   "score": 1.77,
+   "wins": 3
+  },
+  "open-M-real": {
+   "killed": 5730,
+   "lost": 1020,
+   "n": 3,
+   "score": 2.03,
+   "wins": 3
+  },
+  "ramp-M-real": {
+   "killed": 5755,
+   "lost": 1600,
+   "n": 3,
+   "score": 1.86,
+   "wins": 3
+  },
+  "side-L-real": {
+   "killed": 10575,
+   "lost": 4420,
+   "n": 3,
+   "score": 1.53,
+   "wins": 3
+  },
+  "side-M-real": {
+   "killed": 5730,
+   "lost": 1380,
+   "n": 3,
+   "score": 1.94,
+   "wins": 3
+  }
+ }
+}

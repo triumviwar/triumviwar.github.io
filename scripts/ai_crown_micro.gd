@@ -2,13 +2,15 @@ class_name AICrownMicro
 ## THE CROWN'S FIGHT MICRO (crown-micro, docs/crown_micro.md; the owner 2026-11-25: "until we know the Crown is doing all it
 ## really can... micro training the AI"). How the Crown COMPUTER's men fight once a fight is on, against the Brood: no unit
 ## or balance number changes, only what the computer tells its men to do. Each part was coached on the set-piece bench
-## tools/bench_crown_micro.gd (equal-value fights) and kept only if it helped there beyond the noise (the doc has every
-## measure). The macro (when to attack, where the wave goes) is not touched here.
+## tools/bench_crown_micro.gd (equal-value fights); KEPT (on by default) are the four that helped there: riders, brace,
+## kite, gunpick (together +0.09 of the score on the real armies, k/l 2.4 -> 3.5). canister, hurt and focus measured no
+## better or worse and are off (the doc has every measure). The macro (when to attack, where the wave goes) is not touched here.
 ## Parts (each a switch: `-- cmic:off` all of them, `-- cmic<name>:off` one; a part not KEPT is tried with `cmic<name>:on`):
 ##   canister  a set Field Cannon loads CANISTER when Brood soldiers are close on it and none of our men stand in its cone,
 ##             round shot again when they are gone (the computer never used canister: the gun's answer to a swarm)
 ##   focus     the Musketeers share out their volleys: no more balls into a creature than it takes to kill it, the
-##             Spitters (the only Brood that shoots back from range) first, then the most hurt in reach
+##             Spitters (the only Brood that shoots back from range) first (`cmicspit:` its bonus, 0 = none), then the
+##             most hurt in reach; shooting the Spitters first measured WORSE (the Raptors in front must die first)
 ##   hurt      a badly hurt Musketeer with a creature on him steps back behind his friends (he lives to fire again)
 ##   riders    a Horseman standing out of the fight (on the screen's flank post, idle) while the Brood is at our men or
 ##             guns rides in at the creature nearest the guns (the hit and run, AICavMicro, takes him from there)

@@ -8,7 +8,33 @@ The macro (when to attack, where the wave goes, the kill decisions of the crown-
 
 ## The short answer
 
-@@VERDICT@@
+**Yes: the Crown already wins fair fights against the Brood, and now wins them by more.** At equal value, with the armies
+the computers really field and with late research, the Crown computer won 22 of 24 set-piece battles before this job and
+24 of 24 after, killing 3.5 times what it lost (was 2.4). It even beats one and a half times its value of Brood in most
+fights. The only fight it loses is the Brutes-and-Spitters mix at 1.5 times its value.
+
+Four coaching parts are kept (on by default, against the Brood only, `-- cmic:off` turns them off):
+
+| part | what the Crown's men now do |
+|---|---|
+| riders | Horsemen standing out of a fight ride in for the creatures at our guns and men |
+| brace | a marching army halts and sets its guns when a Brood force comes at it |
+| kite | a reloading Musketeer steps back from a Brute |
+| gunpick | the Field Cannons aim at armoured creatures, the Mortars at the thickest clump |
+
+In 30 real games (15 with the parts, 15 without) the Crown stood better at 14:00 (10 of 15 games, t 2.3) and was beaten
+later, but by 20:00 the difference is inside the noise (won or led 5 of 15 against 3 of 15).
+
+**So the remaining gap is not the fighting.** The Crown loses the real games because it fights the Brood's fights on
+the Brood's terms: a Brood army bigger than its own (the Brood out-earns it from about 10:00: the far-Rootmaw bonus),
+Musketeers with empty muskets (11 to 13 of them dry in the late games: the powder supply), and pushes into the Brood's base
+without the guns set (the macro: the press and the siege push). The first is the economy number the owner holds back
+(crown-brood-fix measured x2.0 and x1.8); the other two are macro work (crown-finish, the Mill crew), not micro.
+
+One caveat: the bench's Brood is its creatures on an attack-move, not the Brood computer (Claude's choice 1); its real fight code is about the wave, so this is close.
+
+My recommendation: in a fight the Crown computer is now doing most of what it can; what is left is small next to the economy. If the owner wants the matchup closer, the
+Rootmaw bonus (`Defs.FOOD_BONUS`, crown-brood-fix's x2.0) is the lever, together with the powder supply.
 
 ## What was built
 
@@ -65,7 +91,49 @@ Plus 1 is a clean Crown win, minus 1 a clean loss, 0 even. "k/l" is the value th
 
 ## The Crown before the coaching
 
-@@BASE@@
+On the core set (72 fights, two runs) the Crown computer already won 67 of 72 fights at equal value, killing 2.4
+times what it lost. On the real set (24 fights) it won 22 of 24, killing 2.4 times what it lost, even with late research
+on the Brood side and 3 Musketeers in 10 dry. The crown-brood-fix job had found the same with its own fight test (70 of
+72 won).
+
+| fight | fights | Crown won | score | k/l | score after | k/l after |
+|---|---|---|---|---|---|---|
+| open-m-raptor | 6 | 6 | +0.73 | 5.23 | +0.62 | 3.22 |
+| open-m-mixed | 6 | 6 | +0.49 | 2.59 | +0.53 | 3.30 |
+| open-m-late | 6 | 4 | +0.18 | 1.23 | +0.24 | 1.41 |
+| home-m-raptor | 6 | 6 | +0.62 | 2.93 | +0.66 | 3.16 |
+| home-m-mixed | 6 | 6 | +0.55 | 2.41 | +0.53 | 2.33 |
+| ramp-m-mixed | 6 | 6 | +0.56 | 2.53 | +0.42 | 1.99 |
+| side-m-mixed | 6 | 5 | +0.12 | 1.27 | +0.13 | 1.19 |
+| open-s-mixed | 6 | 6 | +0.55 | 3.55 | +0.72 | 7.09 |
+| open-l-mixed | 6 | 6 | +0.65 | 3.73 | +0.70 | 4.40 |
+| open-l-late | 6 | 6 | +0.49 | 2.30 | +0.57 | 2.80 |
+| open-m-spit | 6 | 4 | +0.16 | 1.29 | +0.42 | 1.97 |
+| home-l-late | 6 | 6 | +0.72 | 4.05 | +0.75 | 4.19 |
+| all (core) | 72 | 67 | +0.48 | 2.36 | +0.52 | 2.55 |
+
+("after": the kept parts on, 72 fights.)
+
+The real set:
+
+| fight | fights | Crown won | score | k/l | score after | k/l after |
+|---|---|---|---|---|---|---|
+| open-M-real | 3 | 3 | +0.61 | 3.41 | +0.55 | 2.92 |
+| home-M-real | 3 | 3 | +0.70 | 3.90 | +0.63 | 3.13 |
+| side-M-real | 3 | 3 | +0.68 | 4.01 | +0.75 | 5.97 |
+| ramp-M-real | 3 | 3 | +0.52 | 2.49 | +0.66 | 3.91 |
+| open-L-real | 3 | 3 | +0.53 | 2.45 | +0.64 | 3.67 |
+| home-L-real | 3 | 3 | +0.61 | 3.07 | +0.68 | 3.56 |
+| open-L-late | 3 | 1 | +0.15 | 1.18 | +0.57 | 3.09 |
+| side-L-real | 3 | 3 | +0.57 | 2.68 | +0.62 | 3.20 |
+| all (real) | 24 | 22 | +0.55 | 2.41 | +0.64 | 3.47 |
+
+The weak spots were the Brood's late mix (Brutes and Spitters), the Spitter army, and the attack from the side at the guns.
+
+**How far does the Crown's edge go?** The same real fights, the Brood bringing 1.5 times the Crown's value (16 fights
+each): before, the Crown still won 11 of 16 (score +0.15, k/l 1.70); with the kept parts 9 of 16 (score +0.17, k/l
+1.79: the same, within the noise). So in a fair fight the Crown beats about one and a half times its value of Brood.
+Only the Brood's Brute-and-Spitter mix beats it at 1.5 times (score -0.31 before, -0.20 after).
 
 ## The films: the mistakes found
 
@@ -134,11 +202,73 @@ What each result means:
 
 ## What was kept
 
-@@KEPT@@
+Four parts are on by default, against the Brood only (Normal and up): **riders, brace, kite, gunpick**.
+`AICrownMicro.KEPT` lists them. Together, against the Crown before:
+
+| set | fights | score before | score after | change (t) | k/l before | k/l after | Crown won before / after |
+|---|---|---|---|---|---|---|---|
+| core | 72 / 72 | +0.48 | +0.52 | +0.04 (0.95) | 2.36 | 2.55 | 67 / 68 |
+| real | 24 / 24 | +0.55 | +0.64 | +0.09 (2.0) | 2.41 | 3.47 | 22 / 24 |
+
+On the real set the Crown now keeps 64% of its army in an equal fight where it kept 55%, and kills three and a half times
+what it loses. The biggest gain is against the Brutes and Spitters (open-L-late +0.15 -> +0.57), the Crown's old weak spot.
+
+How often they act: in 72 core fights the riders went in 67 times (60 of them taken off the screen), the brace halted the
+wave 45 times, a Musketeer stepped back from a Brute 133 times, and the guns changed target 996 times.
+
+Three parts are written but off (`-- cmic<name>:on`): canister, hurt, focus (with its knobs `cmicspit:`, `cmicnear:`,
+`cmiclow:`, `cmickill:`, `cmicdmg:` for anyone who wants to try again).
 
 ## Real games
 
-@@GAMES@@
+The same 10 games as the crown-brood-fix and crown-brood-late jobs (Hard OPTIMAL against Hard OPTIMAL, to 20:00, the
+six parity maps, the same seeds and start spots). Each block played on a frozen copy of this branch. "off" is
+`-- cmic:off` (the Crown as before), "on" is the kept parts. Two blocks of each: the full 10 games once (off1, on1), then
+the first 5 games again (off2, on2). 30 games in all, 15 a side, paired game by game.
+
+| block | games | won | led | even | behind | lost | Crown won or led | mean g | g at 14:00 | defeats (minute) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| off1 | 10 | 1 | 2 | 1 | 3 | 3 | 3 | -0.45 | +0.03 | 14.4, 18.1, 18.9 |
+| on1 | 10 | 0 | 4 | 1 | 1 | 4 | 4 | -0.72 | +0.16 | 17.7, 18.2, 19.3, 19.9 |
+| off2 | 5 | 0 | 0 | 0 | 0 | 5 | 0 | -2.22 | -0.45 | 14.6, 16.7, 17.2, 18.3, 18.4 |
+| on2 | 5 | 0 | 1 | 0 | 2 | 2 | 1 | -1.03 | +0.01 | 18.2, 19.6 |
+| **off, all** | 15 | 1 | 2 | 1 | 3 | 8 | 3 | -1.04 | -0.13 | median 17.65 |
+| **on, all** | 15 | 0 | 5 | 1 | 3 | 6 | 5 | -0.82 | +0.11 | median 18.75 |
+
+(g is the Crown's score against the Brood's as a log, as in the earlier jobs: 0 even, +0.7 the Crown twice the Brood,
+-0.7 the Brood twice the Crown. The score is income plus twice the army, a beaten side counted a quarter.)
+
+Paired game by game (15 pairs):
+
+| measure | on minus off | t | games better / worse |
+|---|---|---|---|
+| g at 20:00 | +0.22 | 0.5 | 9 / 6 |
+| g at 14:00 | +0.25 | 2.3 | 10 / 5 |
+
+The fights in those games (the crown-guns-coach count: every fight worth 60 or more):
+
+| block | fights | Crown killed | Crown lost | killed for each lost |
+|---|---|---|---|---|
+| off (all) | 77 | 146,910 | 136,875 | 1.07 |
+| on (all) | 80 | 144,105 | 159,065 | 0.91 |
+
+In plain words:
+
+1. **The micro works in the games**: the riders went in about 50 times a game, the guns changed target about 100 times,
+   Musketeers stepped back from Brutes about 10 times. The brace never fired in a real game: the waves meet the Brood
+   on the line's own terms or at a base, not on the march.
+2. **The middle game is better**: at 14:00 the Crown stood better in 10 of 15 games (t 2.3), and it was beaten later
+   (median 18:45 against 17:40), 6 times against 8.
+3. **By 20:00 it is within the noise**: the Crown won or led 5 of 15 against 3 of 15. The two "off" blocks alone show
+   how wide the noise is: the same 5 games gave 0 won or led and 5 beaten the second time, 3 won or led the first time.
+4. **The fights in the games did not trade better** (0.91 against 1.07). The count is driven by a few huge fights each
+   game, and it swung just as much between the two "off" blocks (1.36 and 0.62). I looked at the worst ones: they are the
+   siege push going out to the Brood's base against an army it reckoned bigger than itself ("goes out: 3,427 against the
+   4,190 of Brood it estimates"), guns not set at contact, half the Musketeers dry. The micro cannot fix a fight that should
+   not have been taken.
+5. The AI tests: 21 of 23 tools/test_ai_*.gd pass; the 2 that fail (rush_followup, wall_vs_rush) are the known failures
+   of the earlier jobs. The Crown fight tests (cav_micro, crown_defence, crown_line, crown_rider_screen, crown_v_brood,
+   crown_siege, crown_hold) all pass.
 
 ## The Brood's own micro
 
@@ -185,4 +315,8 @@ godot ... -- only:open-L-real ratio:1.5                   (the Brood brings 1.5 
 xvfb-run -a godot --rendering-driver opengl3 --resolution 1280x720 ... -- only:side-m-mixed runs:1 shots:/abs/dir
 python3 tools/study/crown_micro.py run BLOCK [--extra cmic:off] [--jobs 2] [--root /frozen/copy]
 python3 tools/study/crown_micro.py results BLOCK ...
+python3 tools/study/crown_micro_bench_cmp.py base1+base2 rid1 combo1     (the bench arms, docs/crown_micro/bench/README.md)
 ```
+
+Data: the bench arms in `docs/crown_micro/bench/`, the real games in `docs/crown_micro/data/` (off1, on1, off2, on2), the AI
+tests' lines in `docs/crown_micro/ai_tests.txt`, pictures in `docs/shots/crown_micro/`.
