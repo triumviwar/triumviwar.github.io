@@ -1,6 +1,6 @@
 # The battle matrix, all matchups: the tables
 
-3898 fights (tools/study/battle_matrix_all_report.py). Side A is the first faction named. The score is side A's share of the value lost in a fight (50 = an even trade).
+4436 fights (tools/study/battle_matrix_all_report.py). Side A is the first faction named. The score is side A's share of the value lost in a fight (50 = an even trade).
 
 
 ## Clockwork v Brood
@@ -98,35 +98,125 @@ Safest (best at its worst): Clockwork KP 11, P 10, KSp 8; Brood VC 52, StC 22, R
 **The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **30**. Clockwork's mix: KB 46%, P 38%, O 16%. Brood's: VC 48%, B 30%, StC 22%.
 Without the Tyrant Sire (RSy left out): Clockwork's share **30**.
 
-### Clockwork v Brood: the set line (side A formed by hand, ready), mid (1,500) (50 results)
+### Clockwork v Brood: open field, late (4,000) (84 results)
 
 Each cell: the **Clockwork row's share** of the value lost (50 = even; bold: the row clearly ahead, italic: the column clearly ahead), then how many fights.
 
 | Clockwork \ Brood | R1S1 | S | B | RSB | TC | VC | StC | mean |
 |---|---|---|---|---|---|---|---|---|
-| **KP** | *35 (2)* | 0 (1) | 0 (1) | 26 (1) | 0 (1) | 0 (1) | 0 (1) | 9 |
-| **P** | *34 (2)* | *0 (2)* | *0 (2)* | *25 (2)* | 62 (2) | *0 (2)* | 68 (2) | 27 |
-| **KB** | 61 (1) | 78 (1) | 11 (1) | 32 (1) | 7 (1) | 61 (1) | 0 (1) | 36 |
-| **O** | 100 (1) | 100 (1) | 100 (1) | 100 (1) | 100 (1) | 0 (1) | 0 (1) | 71 |
-| **CW** | 37 (1) | 3 (1) | 0 (1) | 31 (1) | 8 (1) | 0 (1) | 11 (1) | 13 |
-| **KPN** | 36 (1) | 0 (1) | 0 (1) | 28 (1) | 0 (1) | 0 (1) | 0 (1) | 9 |
+| **KP** | 49 (2) | 39 (2) | *11 (2)* | 42 (2) | 53 (2) | *4 (2)* | 36 (2) | 33 |
+| **P** | 77 (2) | 33 (2) | *13 (2)* | *37 (2)* | **81 (2)** | 9 (2) | **78 (2)** | 47 |
+| **KB** | 41 (2) | 69 (2) | 52 (2) | 51 (2) | 32 (2) | *39 (2)* | *0 (2)* | 41 |
+| **O** | **100 (2)** | **100 (2)** | **100 (2)** | **100 (2)** | **100 (2)** | *6 (2)* | *0 (2)* | 72 |
+| **CW** | **70 (2)** | *29 (2)* | 17 (2) | *42 (2)* | 26 (2) | *2 (2)* | 13 (2) | 29 |
+| **KPN** | 44 (2) | *23 (2)* | *6 (2)* | *32 (2)* | 36 (2) | *4 (2)* | 63 (2) | 30 |
 
 | Clockwork comp | Brood's best answer (Clockwork share) | Brood comp | Clockwork's best answer (Clockwork share) |
 |---|---|---|---|
-| KP (Clock Soldiers + Pendulums) | S (0) | R1S1 (Raptors and Spitters (1:1)) | O (100) |
-| P (Pendulums) | S (0) | S (Spitters) | O (100) |
+| KP (Clock Soldiers + Pendulums) | VC (4) | R1S1 (Raptors and Spitters (1:1)) | O (100) |
+| P (Pendulums) | VC (9) | S (Spitters) | O (100) |
 | KB (Clock Soldiers + Spring Ballistas) | StC (0) | B (Brutes) | O (100) |
-| O (the air: Ticking Owls + Swifts) | VC (0) | RSB (Raptors, Spitters, Brutes) | O (100) |
-| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | B (0) | TC (Tyrant Challengers) | O (100) |
-| KPN (Clock Soldiers + Pendulums + Netters) | S (0) | VC (Venom Challengers) | KB (61) |
-|  |  | StC (Storm Challengers (flyers)) | P (68) |
+| O (the air: Ticking Owls + Swifts) | StC (0) | RSB (Raptors, Spitters, Brutes) | O (100) |
+| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | VC (2) | TC (Tyrant Challengers) | O (100) |
+| KPN (Clock Soldiers + Pendulums + Netters) | VC (4) | VC (Venom Challengers) | KB (39) |
+|  |  | StC (Storm Challengers (flyers)) | P (78) |
 
-Best on average: Clockwork O 71, KB 36, P 27, CW 13
-; Brood VC 90, StC 87, B 82, TC 70 (its own share).
+Best on average: Clockwork O 72, P 47, KB 41, KP 33
+; Brood VC 89, StC 68, B 67, S 51 (its own share).
 
-Safest (best at its worst): Clockwork KP 0, P 0, KB 0; Brood VC 39, StC 32, R1S1 0.
+Safest (best at its worst): Clockwork P 9, KPN 4, KP 4; Brood VC 61, StC 22, R1S1 0.
 
-**The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **25**. Clockwork's mix: KB 42%, P 37%, O 21%. Brood's: StC 37%, VC 37%, B 25%.
+**The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **28**. Clockwork's mix: KB 64%, P 36%. Brood's: VC 72%, StC 28%.
+
+### Clockwork v Brood: the set line (side A formed by hand, ready), mid (1,500) (168 results)
+
+Each cell: the **Clockwork row's share** of the value lost (50 = even; bold: the row clearly ahead, italic: the column clearly ahead), then how many fights.
+
+| Clockwork \ Brood | R1S1 | S | B | RSB | TC | VC | StC | mean |
+|---|---|---|---|---|---|---|---|---|
+| **KP** | **68 (4)** | *20 (4)* | *14 (4)* | *36 (4)* | 51 (4) | *10 (4)* | *11 (4)* | 30 |
+| **P** | **79 (4)** | *37 (4)* | *12 (4)* | *38 (4)* | **79 (4)** | *25 (4)* | **88 (4)** | 51 |
+| **KB** | **61 (4)** | 56 (4) | *10 (4)* | **63 (4)** | *22 (4)* | 55 (4) | *0 (4)* | 38 |
+| **O** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | *5 (4)* | *0 (4)* | 72 |
+| **CW** | *39 (4)* | *9 (4)* | *11 (4)* | *29 (4)* | *15 (4)* | *5 (4)* | *19 (4)* | 18 |
+| **KPN** | *34 (4)* | *4 (4)* | *11 (4)* | *27 (4)* | *12 (4)* | *10 (4)* | 28 (4) | 18 |
+
+| Clockwork comp | Brood's best answer (Clockwork share) | Brood comp | Clockwork's best answer (Clockwork share) |
+|---|---|---|---|
+| KP (Clock Soldiers + Pendulums) | VC (10) | R1S1 (Raptors and Spitters (1:1)) | O (100) |
+| P (Pendulums) | B (12) | S (Spitters) | O (100) |
+| KB (Clock Soldiers + Spring Ballistas) | StC (0) | B (Brutes) | O (100) |
+| O (the air: Ticking Owls + Swifts) | StC (0) | RSB (Raptors, Spitters, Brutes) | O (100) |
+| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | VC (5) | TC (Tyrant Challengers) | O (100) |
+| KPN (Clock Soldiers + Pendulums + Netters) | S (4) | VC (Venom Challengers) | KB (55) |
+|  |  | StC (Storm Challengers (flyers)) | P (88) |
+
+Best on average: Clockwork O 72, P 51, KB 38, KP 30
+; Brood VC 82, StC 76, B 74, S 62 (its own share).
+
+Safest (best at its worst): Clockwork P 12, KP 10, CW 5; Brood VC 45, StC 12, R1S1 0.
+
+**The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **32**. Clockwork's mix: KB 40%, P 37%, O 24%. Brood's: VC 53%, B 30%, StC 18%.
+
+### Clockwork v Brood: a choke (side A holds the gap), mid (1,500) (168 results)
+
+Each cell: the **Clockwork row's share** of the value lost (50 = even; bold: the row clearly ahead, italic: the column clearly ahead), then how many fights.
+
+| Clockwork \ Brood | R1S1 | S | B | RSB | TC | VC | StC | mean |
+|---|---|---|---|---|---|---|---|---|
+| **KP** | **71 (4)** | *22 (4)* | *13 (4)* | *35 (4)* | *45 (4)* | *12 (4)* | *14 (4)* | 30 |
+| **P** | **92 (4)** | *33 (4)* | *10 (4)* | *36 (4)* | **85 (4)** | *22 (4)* | **81 (4)** | 51 |
+| **KB** | **63 (4)** | 39 (4) | *15 (4)* | **63 (4)** | *25 (4)* | **63 (4)** | *0 (4)* | 38 |
+| **O** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | *5 (4)* | *0 (4)* | 72 |
+| **CW** | *41 (4)* | *6 (4)* | *10 (4)* | *28 (4)* | *15 (4)* | *5 (4)* | *11 (4)* | 16 |
+| **KPN** | *37 (4)* | *5 (4)* | *11 (4)* | *27 (4)* | *14 (4)* | *8 (4)* | 26 (4) | 18 |
+
+| Clockwork comp | Brood's best answer (Clockwork share) | Brood comp | Clockwork's best answer (Clockwork share) |
+|---|---|---|---|
+| KP (Clock Soldiers + Pendulums) | VC (12) | R1S1 (Raptors and Spitters (1:1)) | O (100) |
+| P (Pendulums) | B (10) | S (Spitters) | O (100) |
+| KB (Clock Soldiers + Spring Ballistas) | StC (0) | B (Brutes) | O (100) |
+| O (the air: Ticking Owls + Swifts) | StC (0) | RSB (Raptors, Spitters, Brutes) | O (100) |
+| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | VC (5) | TC (Tyrant Challengers) | O (100) |
+| KPN (Clock Soldiers + Pendulums + Netters) | S (5) | VC (Venom Challengers) | KB (63) |
+|  |  | StC (Storm Challengers (flyers)) | P (81) |
+
+Best on average: Clockwork O 72, P 51, KB 38, KP 30
+; Brood VC 81, StC 78, B 74, S 66 (its own share).
+
+Safest (best at its worst): Clockwork KP 12, P 10, KPN 5; Brood VC 37, StC 19, R1S1 0.
+
+**The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **33**. Clockwork's mix: P 41%, KB 36%, O 23%. Brood's: VC 45%, B 31%, StC 24%.
+
+### Clockwork v Brood: a ramp, side A on top, mid (1,500) (168 results)
+
+Each cell: the **Clockwork row's share** of the value lost (50 = even; bold: the row clearly ahead, italic: the column clearly ahead), then how many fights.
+
+| Clockwork \ Brood | R1S1 | S | B | RSB | TC | VC | StC | mean |
+|---|---|---|---|---|---|---|---|---|
+| **KP** | 58 (4) | *22 (4)* | *18 (4)* | *42 (4)* | 53 (4) | *21 (4)* | *11 (4)* | 32 |
+| **P** | **88 (4)** | 55 (4) | *12 (4)* | *39 (4)* | **72 (4)** | *26 (4)* | **92 (4)** | 55 |
+| **KB** | **76 (4)** | **69 (4)** | *14 (4)* | **80 (4)** | 40 (4) | 52 (4) | *0 (4)* | 47 |
+| **O** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | **100 (4)** | *10 (4)* | *13 (4)* | 75 |
+| **CW** | *37 (4)* | *19 (4)* | *10 (4)* | *34 (4)* | *18 (4)* | *18 (4)* | *24 (4)* | 23 |
+| **KPN** | *27 (4)* | *11 (4)* | *11 (4)* | *25 (4)* | *12 (4)* | *8 (4)* | *26 (4)* | 17 |
+
+| Clockwork comp | Brood's best answer (Clockwork share) | Brood comp | Clockwork's best answer (Clockwork share) |
+|---|---|---|---|
+| KP (Clock Soldiers + Pendulums) | StC (11) | R1S1 (Raptors and Spitters (1:1)) | O (100) |
+| P (Pendulums) | B (12) | S (Spitters) | O (100) |
+| KB (Clock Soldiers + Spring Ballistas) | StC (0) | B (Brutes) | O (100) |
+| O (the air: Ticking Owls + Swifts) | VC (10) | RSB (Raptors, Spitters, Brutes) | O (100) |
+| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | B (10) | TC (Tyrant Challengers) | O (100) |
+| KPN (Clock Soldiers + Pendulums + Netters) | VC (8) | VC (Venom Challengers) | KB (52) |
+|  |  | StC (Storm Challengers (flyers)) | P (92) |
+
+Best on average: Clockwork O 75, P 55, KB 47, KP 32
+; Brood VC 78, B 72, StC 72, S 54 (its own share).
+
+Safest (best at its worst): Clockwork P 12, KP 11, O 10; Brood VC 48, StC 8, R1S1 0.
+
+**The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **34**. Clockwork's mix: KB 43%, P 33%, O 23%. Brood's: VC 57%, B 25%, StC 17%.
 
 ## Crown v Clockwork
 
@@ -344,26 +434,26 @@ Each cell: the **Clockwork row's share** of the value lost (50 = even; bold: the
 
 | Clockwork \ Crown | M | MC | MCH | MH | H | MO | mean |
 |---|---|---|---|---|---|---|---|
-| **KP** | *0 (4)* | *0 (4)* | *12 (4)* | *21 (4)* | *0 (4)* | *0 (4)* | 6 |
-| **P** | *0 (4)* | *0 (4)* | *12 (4)* | *22 (4)* | *0 (4)* | *23 (4)* | 10 |
+| **KP** | *14 (4)* | *28 (4)* | *37 (4)* | *26 (4)* | *0 (4)* | *14 (4)* | 20 |
+| **P** | 60 (4) | *43 (4)* | *41 (4)* | 44 (4) | *0 (4)* | *35 (4)* | 37 |
 | **Sp** | *9 (4)* | *12 (4)* | *18 (4)* | *23 (4)* | *0 (4)* | *3 (4)* | 11 |
-| **KB** | **65 (4)** | 54 (4) | **62 (4)** | *20 (4)* | *0 (4)* | 37 (4) | 40 |
-| **CW** | *0 (4)* | *4 (4)* | *12 (4)* | *16 (4)* | *0 (4)* | *1 (4)* | 6 |
-| **KPN** | *0 (4)* | *0 (4)* | *8 (4)* | *6 (4)* | *0 (4)* | *0 (4)* | 2 |
+| **KB** | 57 (4) | **62 (4)** | **62 (4)** | 51 (4) | *0 (4)* | 34 (4) | 44 |
+| **CW** | *10 (4)* | *26 (4)* | *28 (4)* | *27 (4)* | *0 (4)* | *7 (4)* | 16 |
+| **KPN** | *11 (4)* | *15 (4)* | *21 (4)* | *22 (4)* | *0 (4)* | *5 (4)* | 12 |
 
 | Clockwork comp | Crown's best answer (Clockwork share) | Crown comp | Clockwork's best answer (Clockwork share) |
 |---|---|---|---|
-| KP (Clock Soldiers + Pendulums) | M (0) | M (Musketeers) | KB (65) |
-| P (Pendulums) | M (0) | MC (Musketeers + Field Cannons) | KB (54) |
+| KP (Clock Soldiers + Pendulums) | H (0) | M (Musketeers) | P (60) |
+| P (Pendulums) | H (0) | MC (Musketeers + Field Cannons) | KB (62) |
 | Sp (Springers) | H (0) | MCH (the computer's wave (Musketeers, Cannons, Horsemen)) | KB (62) |
-| KB (Clock Soldiers + Spring Ballistas) | H (0) | MH (Musketeers + Horsemen) | Sp (23) |
-| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | M (0) | H (Horsemen) | KP (0) |
-| KPN (Clock Soldiers + Pendulums + Netters) | M (0) | MO (Musketeers + Officers) | KB (37) |
+| KB (Clock Soldiers + Spring Ballistas) | H (0) | MH (Musketeers + Horsemen) | KB (51) |
+| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | H (0) | H (Horsemen) | KP (0) |
+| KPN (Clock Soldiers + Pendulums + Netters) | H (0) | MO (Musketeers + Officers) | P (35) |
 
-Best on average: Clockwork KB 40, Sp 11, P 10, CW 6
-; Crown H 100, MO 89, MC 88, M 88 (its own share).
+Best on average: Clockwork KB 44, P 37, KP 20, CW 16
+; Crown H 100, MO 84, M 73, MC 69 (its own share).
 
-Safest (best at its worst): Clockwork KP 0, P 0, Sp 0; Crown H 100, MH 77, MO 63.
+Safest (best at its worst): Clockwork KP 0, P 0, Sp 0; Crown H 100, MO 65, MH 49.
 
 **The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **0**. Clockwork's mix: KP 100%. Crown's: H 100%.
 
@@ -373,28 +463,28 @@ Each cell: the **Clockwork row's share** of the value lost (50 = even; bold: the
 
 | Clockwork \ Crown | M | MC | MCH | MH | H | MO | mean |
 |---|---|---|---|---|---|---|---|
-| **KP** | *0 (4)* | *0 (4)* | *12 (4)* | *20 (4)* | *0 (4)* | *0 (4)* | 5 |
-| **P** | *0 (4)* | *0 (4)* | *12 (4)* | *22 (4)* | 37 (4) | *23 (4)* | 16 |
+| **KP** | *18 (4)* | *27 (4)* | *33 (4)* | *28 (4)* | *8 (4)* | *16 (4)* | 22 |
+| **P** | 60 (4) | 43 (4) | *41 (4)* | 43 (4) | 43 (4) | *40 (4)* | 45 |
 | **Sp** | *8 (4)* | *11 (4)* | *16 (4)* | *23 (4)* | *3 (4)* | *3 (4)* | 11 |
-| **KB** | 66 (4) | **64 (4)** | **64 (4)** | *23 (4)* | *6 (4)* | 34 (4) | 43 |
-| **CW** | *0 (4)* | *1 (4)* | *15 (4)* | *16 (4)* | *0 (4)* | *2 (4)* | 6 |
-| **KPN** | *0 (4)* | *0 (4)* | *8 (4)* | *6 (4)* | *0 (4)* | *0 (4)* | 2 |
+| **KB** | 56 (4) | **62 (4)** | **62 (4)** | 40 (4) | *15 (4)* | 41 (4) | 46 |
+| **CW** | *8 (4)* | *29 (4)* | *30 (4)* | *26 (4)* | *5 (4)* | *6 (4)* | 17 |
+| **KPN** | *11 (4)* | *18 (4)* | *22 (4)* | *23 (4)* | *5 (4)* | *5 (4)* | 14 |
 
 | Clockwork comp | Crown's best answer (Clockwork share) | Crown comp | Clockwork's best answer (Clockwork share) |
 |---|---|---|---|
-| KP (Clock Soldiers + Pendulums) | M (0) | M (Musketeers) | KB (66) |
-| P (Pendulums) | M (0) | MC (Musketeers + Field Cannons) | KB (64) |
-| Sp (Springers) | MO (3) | MCH (the computer's wave (Musketeers, Cannons, Horsemen)) | KB (64) |
-| KB (Clock Soldiers + Spring Ballistas) | H (6) | MH (Musketeers + Horsemen) | Sp (23) |
-| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | M (0) | H (Horsemen) | P (37) |
-| KPN (Clock Soldiers + Pendulums + Netters) | M (0) | MO (Musketeers + Officers) | KB (34) |
+| KP (Clock Soldiers + Pendulums) | H (8) | M (Musketeers) | P (60) |
+| P (Pendulums) | MO (40) | MC (Musketeers + Field Cannons) | KB (62) |
+| Sp (Springers) | MO (3) | MCH (the computer's wave (Musketeers, Cannons, Horsemen)) | KB (62) |
+| KB (Clock Soldiers + Spring Ballistas) | H (15) | MH (Musketeers + Horsemen) | P (43) |
+| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | H (5) | H (Horsemen) | P (43) |
+| KPN (Clock Soldiers + Pendulums + Netters) | H (5) | MO (Musketeers + Officers) | KB (41) |
 
-Best on average: Clockwork KB 43, P 16, Sp 11, CW 6
-; Crown H 92, MO 90, M 88, MC 87 (its own share).
+Best on average: Clockwork KB 46, P 45, KP 22, CW 17
+; Crown H 87, MO 81, M 73, MH 70 (its own share).
 
-Safest (best at its worst): Clockwork KB 6, Sp 3, KP 0; Crown MH 77, MO 66, H 63.
+Safest (best at its worst): Clockwork P 40, KB 15, KP 8; Crown MO 59, H 57, MH 57.
 
-**The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **22**. Clockwork's mix: P 53%, KB 32%, Sp 15%. Crown's: MH 97%, H 3%.
+**The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **40**. Clockwork's mix: P 90%, KB 10%. Crown's: MO 97%, H 3%.
 
 ### Clockwork v Crown: a ramp, side A on top, mid (1,500) (144 results)
 
@@ -402,26 +492,26 @@ Each cell: the **Clockwork row's share** of the value lost (50 = even; bold: the
 
 | Clockwork \ Crown | M | MC | MCH | MH | H | MO | mean |
 |---|---|---|---|---|---|---|---|
-| **KP** | *0 (4)* | *0 (4)* | *12 (4)* | *17 (4)* | *0 (4)* | *1 (4)* | 5 |
-| **P** | *0 (4)* | *0 (4)* | *12 (4)* | *22 (4)* | *0 (4)* | *24 (4)* | 10 |
-| **Sp** | *12 (4)* | *21 (4)* | *17 (4)* | *13 (4)* | *0 (4)* | *10 (4)* | 12 |
-| **KB** | **70 (4)** | **72 (4)** | 53 (4) | 64 (4) | *0 (4)* | 52 (4) | 52 |
-| **CW** | *7 (4)* | *6 (4)* | *12 (4)* | *0 (4)* | *0 (4)* | *1 (4)* | 4 |
-| **KPN** | *0 (4)* | *0 (4)* | *9 (4)* | *2 (4)* | *0 (4)* | *0 (4)* | 2 |
+| **KP** | *23 (4)* | 52 (4) | 63 (4) | 36 (4) | *0 (4)* | *19 (4)* | 32 |
+| **P** | **79 (4)** | **82 (4)** | **74 (4)** | **63 (4)** | *0 (4)* | **72 (4)** | 62 |
+| **Sp** | *12 (4)* | *21 (4)* | *17 (4)* | *12 (4)* | *0 (4)* | *10 (4)* | 12 |
+| **KB** | **82 (4)** | **71 (4)** | **62 (4)** | **63 (4)** | *0 (4)* | 44 (4) | 54 |
+| **CW** | *24 (4)* | 38 (4) | *32 (4)* | *22 (4)* | *0 (4)* | *14 (4)* | 21 |
+| **KPN** | *17 (4)* | *21 (4)* | *20 (4)* | *11 (4)* | *0 (4)* | *7 (4)* | 13 |
 
 | Clockwork comp | Crown's best answer (Clockwork share) | Crown comp | Clockwork's best answer (Clockwork share) |
 |---|---|---|---|
-| KP (Clock Soldiers + Pendulums) | M (0) | M (Musketeers) | KB (70) |
-| P (Pendulums) | M (0) | MC (Musketeers + Field Cannons) | KB (72) |
-| Sp (Springers) | H (0) | MCH (the computer's wave (Musketeers, Cannons, Horsemen)) | KB (53) |
-| KB (Clock Soldiers + Spring Ballistas) | H (0) | MH (Musketeers + Horsemen) | KB (64) |
-| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | MH (0) | H (Horsemen) | KP (0) |
-| KPN (Clock Soldiers + Pendulums + Netters) | M (0) | MO (Musketeers + Officers) | KB (52) |
+| KP (Clock Soldiers + Pendulums) | H (0) | M (Musketeers) | KB (82) |
+| P (Pendulums) | H (0) | MC (Musketeers + Field Cannons) | P (82) |
+| Sp (Springers) | H (0) | MCH (the computer's wave (Musketeers, Cannons, Horsemen)) | P (74) |
+| KB (Clock Soldiers + Spring Ballistas) | H (0) | MH (Musketeers + Horsemen) | KB (63) |
+| CW (the computer's push (Soldiers, Pendulums, Ballistas, Netters, a Springer)) | H (0) | H (Horsemen) | KP (0) |
+| KPN (Clock Soldiers + Pendulums + Netters) | H (0) | MO (Musketeers + Officers) | P (72) |
 
-Best on average: Clockwork KB 52, Sp 12, P 10, KP 5
-; Crown H 100, MO 85, M 85, MC 83 (its own share).
+Best on average: Clockwork P 62, KB 54, KP 32, CW 21
+; Crown H 100, MO 72, MH 65, M 61 (its own share).
 
-Safest (best at its worst): Clockwork KP 0, P 0, Sp 0; Crown H 100, MO 48, MCH 47.
+Safest (best at its worst): Clockwork KP 0, P 0, Sp 0; Crown H 100, MH 37, MO 28.
 
 **The game's value at equal cost** (both pick blind, each its best mix): Clockwork's share **0**. Clockwork's mix: KP 100%. Crown's: H 100%.
 
@@ -429,6 +519,6 @@ Safest (best at its worst): Clockwork KP 0, P 0, Sp 0; Crown H 100, MO 48, MCH 4
 
 | matchup | fights | fight length s (mean) | pulls a minute, side A / B | Clockwork constructs run down (a fight) | under a quarter wind | Crown guns set at contact | guns fired in the first 20 s | own men killed by own splash |
 |---|---|---|---|---|---|---|---|---|
-| Clockwork v Brood | 1506 | 21 | 5.1 / 0.8 | 0.00 | 0.00 | - | - | 0.00 |
-| Clockwork v Crown | 432 | 31 | 0.0 / 0.8 | 1.13 | 1.22 | 0% | 57% | 0.00 |
+| Clockwork v Brood | 2044 | 23 | 4.0 / 1.0 | 0.00 | 0.00 | - | - | 0.00 |
+| Clockwork v Crown | 432 | 35 | 0.0 / 3.1 | 1.13 | 1.28 | 0% | 90% | 0.22 |
 | Crown v Clockwork | 1960 | 31 | 6.2 / 4.4 | 0.04 | 0.06 | 20% | 75% | 0.31 |
