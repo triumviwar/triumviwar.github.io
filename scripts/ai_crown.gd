@@ -125,7 +125,13 @@ func _line_keeps(u: Unit) -> bool:
 	return gn != null and gn.keeps(u)
 
 
+var mic: AICrownMicro = null     # (crown-micro) the men's fight against the Brood (scripts/ai_crown_micro.gd)
 var cav: AICavMicro = null       # (crown-coach-cavalry) the riders' hit and run (scripts/ai_cav_micro.gd)
+
+
+## (crown-micro) the micro shares the Musketeers' volleys out (AI._micro's lowest-health pick leaves them be).
+func _mic_focus(u: Unit) -> bool:
+	return mic != null and mic.focuses(u)
 
 
 ## (crown-coach-cavalry) the riders' hit and run, Normal and up, every matchup; `-- cavmicro:off` plays as before.
@@ -138,6 +144,10 @@ func _cav_tick() -> void:
 		cav = AICavMicro.new(self)
 	if cav != null:
 		cav.tick()
+	if mic == null and on and difficulty >= 1:
+		mic = AICrownMicro.new(self)
+	if mic != null:
+		mic.tick()            # (crown-micro: the men's own fight against the Brood, scripts/ai_crown_micro.gd)
 
 
 func _screen_has(u: Unit) -> bool:
