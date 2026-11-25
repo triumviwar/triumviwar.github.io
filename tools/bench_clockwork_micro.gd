@@ -33,6 +33,8 @@ const SETS := {
 	"brood": ["open-m-raptor", "open-m-mixed", "open-m-late", "home-m-mixed", "side-m-mixed", "open-m-spit", "open-l-late",
 		"home-l-raptor"],
 	"mirror": ["open-s-cw", "open-m-cw", "home-m-cw", "open-l-cw"],
+	"mixes": ["open-B-crown", "home-B-crown", "open-P-crown", "open-S-crown", "home-S-crown", "open-B-late", "open-P-late",
+		"open-S-spit", "open-B-spit", "open-P-cw", "open-B-cw", "open-S-cw"],
 	"real": ["open-M-crown", "home-M-crown", "open-L-crown", "open-M-real", "home-M-real", "open-L-real", "open-M-cw",
 		"open-L-cw"],
 }
@@ -43,6 +45,10 @@ const CW := {
 	"l": {"clock_soldier": 30, "pendulum": 3, "springer": 5, "netter": 2, "ballista": 2, "great_winder": 1, "winder": 5},
 	"M": {"clock_soldier": 28, "pendulum": 2, "springer": 3, "netter": 1, "ballista": 1, "winder": 4},
 	"L": {"clock_soldier": 56, "pendulum": 4, "springer": 7, "netter": 1, "ballista": 3, "great_winder": 1, "winder": 7},
+	# (not what the computer builds: other mixes of about the "m" value, to ask whether a different army would do better)
+	"B": {"clock_soldier": 8, "pendulum": 2, "springer": 3, "netter": 2, "ballista": 5, "winder": 4},       # machines and bolts
+	"P": {"clock_soldier": 8, "pendulum": 7, "springer": 2, "netter": 1, "winder": 3},                     # Pendulums
+	"S": {"clock_soldier": 6, "springer": 15, "netter": 2, "winder": 3},                                  # Springers
 }
 # (the Crown army is built to the value in this order, a round of the crown-micro bench's "m" army)
 const CROWN_ROUND := ["musketeer", "musketeer", "musketeer", "musketeer", "cannon", "musketeer", "musketeer", "musketeer",
@@ -258,7 +264,7 @@ func _one(sc: String, r: int, map: String) -> void:
 	var ff := _foe_faction(foe)
 	var ratio := float(_arg("ratio", "1"))
 	if ff == "clockwork":
-		foes = _cw_army(1, size, foe_at, -front, -side, down)
+		foes = _cw_army(1, "m" if size in ["B", "P", "S"] else size, foe_at, -front, -side, down)
 		while _value(foes) < cv * ratio - 60.0:
 			foes.append(_spawn("clock_soldier", 1, foe_at - side * 200.0))
 	elif ff == "crown":

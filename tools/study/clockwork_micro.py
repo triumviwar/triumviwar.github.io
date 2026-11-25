@@ -220,6 +220,55 @@ def run_games(name):
             print("done", t, flush=True)
 
 
+_COST = None
+
+
+def cost(kind):
+    # (a unit's value as Game.unit_value has it: its cost over its "spawn", read from scripts/defs.gd)
+    global _COST
+    if _COST is None:
+        import re
+        _COST = {}
+        lines = open(os.path.join(ROOT, "scripts/defs.gd")).read().splitlines()
+        for i, l in enumerate(lines):
+            m = re.match(r'^\t"(\w+)": \{', l)
+            if not m or m.group(1) in _COST:
+                continue
+            blob = " ".join(lines[i:i + 10])
+            c = re.search(r'"cost": (\d+)', blob)
+            sp = re.search(r'"spawn": (\d+)', blob)
+            if c:
+                _COST[m.group(1)] = int(c.group(1)) / (int(sp.group(1)) if sp else 1)
+    return _COST.get(kind, 0)
+
+
+WORKERS = {"labourer", "winder", "grub", "horse"}
+
+
+def trade(d, opp):
+    """What the Clockwork killed and lost in a real game, armies only (workers and horses apart), by value."""
+    g = json.load(open(os.path.join(d, "result.json")))
+    si = our_side(g, opp)
+    k = l = kw = lw = 0.0
+    for x in g.get("deaths", []):
+        t, kind, team, kk, kt = x[0], x[1], x[2], x[3], x[4]
+        if t > 1200:
+            continue
+        v = cost(kind)
+        w = kind in WORKERS
+        if team == si:
+            if w:
+                lw += v
+            else:
+                l += v
+        elif kt == si:
+            if w:
+                kw += v
+            else:
+                k += v
+    return k, l, kw, lw
+
+
 def report():
     print("| block | switches | games | won | led | even | behind | lost | mean g | g at 14:00 | army 12:00 | defeats (min) |")
     print("|---|---|---|---|---|---|---|---|---|---|---|---|")
@@ -267,6 +316,33 @@ if __name__ == "__main__":
         run_games(sys.argv[2])
     elif cmd == "report":
         report()
+    elif cmd == "trade":
+        # the real games' trade and economy, block by block (the verdict's numbers)
+        print("| block | games | army killed / lost (value) | k/l | workers killed / lost | income ours / theirs at 12:00 | at 20:00 |")
+        print("|---|---|---|---|---|---|---|")
+        for n in sys.argv[2:]:
+            ex = open(os.path.join(DATA, n, "extra.txt")).read().strip()
+            opp = ex.split()[0][4:]
+            K = L = KW = LW = 0.0
+            i12 = []
+            i20 = []
+            ds = sorted(glob.glob(os.path.join(DATA, n, "cwm_*")))
+            ng = 0
+            for d in ds:
+                if not os.path.exists(os.path.join(d, "result.json")):
+                    continue
+                ng += 1
+                k, l, kw, lw = trade(d, opp)
+                K += k; L += l; KW += kw; LW += lw
+                g = json.load(open(os.path.join(d, "result.json")))
+                si = our_side(g, opp)
+                at = {(x["p"], int(round(x["t"] / 60))): x for x in g["minutes"]}
+                for mm, lst in ((12, i12), (20, i20)):
+                    a, b = at.get((si, mm)), at.get((1 - si, mm))
+                    if a and b and b["income"]:
+                        lst.append(a["income"] / b["income"])
+            avg = lambda v: "%.2f" % (sum(v) / len(v)) if v else "-"
+            print("| %s | %d | %d / %d | %.2f | %d / %d | %s | %s |" % (n, ng, K, L, K / max(1, L), KW, LW, avg(i12), avg(i20)))
     elif cmd == "paired":
         paired_games()
     else:

@@ -21,8 +21,11 @@ class_name AICwMicro
 ##   flank     the enemy's guns and shooters stand behind its melee front (the bench: 0 of 13 Spitters, 0 of 4 Field
 ##             Cannons ever reached): a FLANK GROUP (a share of the Clock Soldiers on the outer end of the line, and the
 ##             Springers) walks round the side of the fight and falls on that back line
+##   safe      the escort Winders keep out of the enemy shooters' reach: no winding or mending a machine that stands in
+##             it (unless it has run down), and a Winder standing in it steps back (real games v the Crown: ~80 Winders
+##             lost a game, 236 of 470 to Musketeers, a fifth of them while winding)
 
-const PARTS := ["close", "mend", "springpick", "bail", "pick", "charge", "flank"]
+const PARTS := ["close", "mend", "springpick", "bail", "pick", "charge", "flank", "safe"]
 const KEPT: Array[String] = []
 const EVERY := 0.2               # (s) looked at this often
 
@@ -127,6 +130,8 @@ func tick(delta: float) -> void:
 		_charge()
 	if on("flank"):
 		_flank()
+	if on("safe"):
+		_safe()
 
 
 ## The micro's own order this moment: the push and the one army leave the unit be.
@@ -457,3 +462,46 @@ func _flank_go() -> void:
 						best2 = o
 			if best2 != null:
 				u.cmd_attack(best2)
+
+
+# ------------------------------------------------------------------ safe: the Winders out of the shooters' reach
+
+const SAFE_MARGIN := 30.0        # (px) past a shooter's reach
+const SAFE_STEP := 110.0         # (px) a Winder in reach steps back this far
+
+
+## The nearest visible enemy shooter that reaches p (with SAFE_MARGIN), or null.
+func _shot_at(p: Vector2) -> Unit:
+	for e in game.units_near(p, 300.0):
+		if e.dead or e.off_field or not game.hostile(e.team, team) or e.is_worker() or not e.has_attack():
+			continue
+		var r := float(e.d.get("range", 0.0))
+		if r < 100.0 or r > 260.0 or e.position.distance_to(p) > r + SAFE_MARGIN or not game.is_visible_to(team, e.position):
+			continue
+		return e
+	return null
+
+
+## (AI._escort_wind asks) a machine the escort should not go to now: it stands in reach of an enemy shooter (a run-down
+## one is still fetched: it is lost for good otherwise).
+func unsafe(o: Unit) -> bool:
+	if not on("safe") or o.powered_down():
+		return false
+	if _shot_at(o.position) != null:
+		count(team, "safe_skip")
+		return true
+	return false
+
+
+func _safe() -> void:
+	for w in ai._escort:
+		if not is_instance_valid(w) or w.dead or w.order == "build":
+			continue
+		var t = w.order_target if w.order == "repair" else null
+		if t != null and is_instance_valid(t) and t is Unit and t.powered_down():
+			continue
+		var e := _shot_at(w.position)
+		if e == null:
+			continue
+		w.cmd_move(w.position + (w.position - e.position).normalized() * SAFE_STEP)
+		count(team, "safe_step")
