@@ -885,6 +885,15 @@ func _keep(t: int, a: AI, list: Array, goal: Vector2, foes: Array, holding: bool
 ## Clockwork's Winders wind and mend the line (the lowest wind first), its flyers go at the enemy.
 func _keep_set(t: int, list: Array, foes: Array, set_at: Dictionary) -> void:
 	var fc := _centre(_fighters(foes), Vector2.INF)
+	var nl := {}          # (the enemies within 8 tiles of any of the melee line)
+	if fac[t] != "crown":
+		for u in _alive(list):
+			if float(u.d.get("range", 0)) >= 60.0 or u.is_worker() or u.is_air():
+				continue
+			for o in g.units_near(u.position, 8.0 * Defs.TILE):
+				if o.team != t and not o.dead and foes.has(o) and o.position.distance_to(u.position) < 8.0 * Defs.TILE:
+					nl[o] = true
+	var near_line: Array = nl.keys()
 	for u in _alive(list):
 		var sp: Vector2 = set_at.get(u, u.position)
 		if u.kind in RIDERS:
@@ -921,6 +930,32 @@ func _keep_set(t: int, list: Array, foes: Array, set_at: Dictionary) -> void:
 		if fac[t] == "crown" and u.deploys():
 			if u.tesla_mode == "packed" and u.order == "idle":
 				u.cmd_deploy()
+			continue
+		if fac[t] != "crown" and float(u.d.get("range", 0)) < 60.0:
+			# (a MELEE line (the Clockwork's Soldiers, Pendulums, Serpents; the Brood's) set by hand: on HOLD it only
+			# strikes what walks into its blade, and shooters and riders shot it to pieces from out of reach (the first
+			# run of the Clockwork's set line: 0 of 432). A careful player's melee line goes out TOGETHER at what comes
+			# near any of it (8 tiles: beyond a Musketeer's reach), each man at the nearest, never chasing past 14 tiles
+			# from his place, and walks back to it when nothing is near.)
+			if u.target != null and is_instance_valid(u.target) and not u.target.dead and u.position.distance_to(sp) < 14.0 * Defs.TILE:
+				continue
+			var near: Unit = null
+			var nd := 12.0 * Defs.TILE
+			for o in near_line:
+				if not is_instance_valid(o) or o.dead or (o.is_air() and not u.can_hit(o)):
+					continue
+				var dd: float = o.position.distance_to(u.position)
+				if dd < nd and o.position.distance_to(sp) < 14.0 * Defs.TILE:
+					nd = dd
+					near = o
+			if near != null:
+				if u.order != "attack" or u.target != near:
+					u.cmd_attack(near)
+				continue
+			if u.position.distance_to(sp) > 2.0 * Defs.TILE and u.order != "move":
+				u.cmd_move(sp)
+			elif u.position.distance_to(sp) <= 2.0 * Defs.TILE and u.order != "hold":
+				u.cmd_hold()
 			continue
 		if u.target == null and u.order != "hold" and u.position.distance_to(sp) > 3.0 * Defs.TILE:
 			u.cmd_move(sp)
