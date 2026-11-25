@@ -142,11 +142,38 @@ What each result means:
 
 ## The Brood's own micro
 
-@@BROOD@@
+The bench's Brood fights the way its waves go in: every creature on an attack-move at the Crown, each picking its own
+target. I looked for anything broken that would make the bench meaningless. I found nothing broken:
+
+- The Raptors run in and bite, the Challengers and Brutes walk in behind them, the Spitters stop at their reach and spit.
+- The Brood computer's own fight code is mostly about the wave (gather, meet the army, do not chase riders), not about
+  each creature in a fight. So the attack-move is close to how its waves really fight.
+- What the bench leaves out, and what favours the Brood in real games: its waves are often bigger than the Crown army
+  (the economy), they fight on their own swamp beside the Brood Mother and the Tyrant Sire, and they meet Crown pushes
+  far from home with dry muskets and the guns left behind. None of that is "the Brood fighting better".
+
+One thing for the owner to know: no Brood creature kites. A Spitter does not step back from a Musketeer, a Raptor
+does not dance out of a volley. If the Brood computer is ever coached the same way, that is where it would gain.
 
 ## Claude's choices
 
-@@CHOICES@@
+1. **The bench's Brood is not the Brood computer.** The Brood computer is taken off for the bench (it would build and
+   send its own waves) and its creatures attack-move. Its real fight code is about the wave, not the creature, so this is
+   close; but it means the bench measures the Crown's fighting, not the Brood's.
+2. **Kept all four positive parts together**, though alone only the riders are near the edge of the noise. Together they
+   gained +0.09 on the real set (t 2.0) and +0.04 on the core set (t 0.95). Each part is cheap and none measured harmful.
+3. **gunpick kept** though alone it measured about nothing (+0.02): it is the part that should matter most against Brutes
+   and Challengers, and the real set's Brute fight (open-L-late) is where the whole package gained most (+0.42).
+4. **The riders go in at any creature at our guns or men**, not only at the guns and the Spitters. The narrower version
+   measured the same.
+5. **The micro acts against the Brood only.** It was measured only there. It is cheap to open it to the other matchups
+   later, after a measure there (the crown-rule-cleanup job found Crown coaching that helps against one enemy can hurt
+   against another).
+6. **The score** of a fight is the share of the Crown army left minus the share of the Brood army left, with hit points
+   counted. It rewards winning with fewer losses, not only winning.
+7. **Dry muskets in the real set**: 3 Musketeers in 10 start with no powder, which is about what the real late games show
+   at the moment of a fight (often worse).
+8. **No change to the line, the guns' march or the press.** Those are the macro side and the crown-finish job's.
 
 ## How to run it
 
