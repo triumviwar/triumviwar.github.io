@@ -69,11 +69,68 @@ Plus 1 is a clean Crown win, minus 1 a clean loss, 0 even. "k/l" is the value th
 
 ## The films: the mistakes found
 
-@@FILMS@@
+I filmed bench fights (`shots:`) and one whole real game (tools/shot_ai_match.gd, Greenhold, seed 4103, Crown OPTIMAL
+against Brood OPTIMAL, fights from 8:00 to 12:30). Pictures in `docs/shots/crown_micro/`. What the films showed:
+
+1. **The riders stand out of the fight.** When the Brood comes in from the side and reaches the guns, the Horsemen of the
+   rider screen sit on their flank posts 300 px away and do nothing. The guns are eaten. (The screen sends its riders to
+   the line's flanks only once the line itself is fighting; a fight at the guns is not "the line's fight".)
+2. **The wave walks into the Brood in a column.** In the open, the Brood comes on fast. The line has no time to form.
+   The Musketeers arrive in clumps of 4 to 12, the guns still limbered behind them.
+3. **Against Spitters the Musketeers walk into them.** The musket reaches 190, a Spitter 165. Standing still and firing
+   wins. Walking on (the wave's attack-move) closes the gap for nothing.
+4. **The Field Cannons never load canister.** The computer had no code for it. But canister is a cone that hits our own men
+   too, and our guns stand behind our own line: in the bench, the moments when canister is safe and useful were rare
+   (about one a fight).
+5. **Musketeers stand still while a Brute walks up and hits them.** A Brute (56) is slower than a Musketeer (62).
+6. **In the real game, most late fights are fought with empty muskets.** The red NO AMMO mark is over most Musketeers in
+   the fights after 10:00 (in the crown-brood-late games 11 to 13 of 17 to 27 Musketeers were dry at 20:00 in two of
+   three games). Dry, a Musketeer is a 70-health man with a bayonet. This is powder supply (macro), not micro.
+7. **In the real game the late fights are in the Brood's base**, on its swamp, against Tyrant Challengers, with no guns
+   along. These pushes are the macro's decision (the press, crown-finish's job).
+
+What the films did NOT show: the Musketeers' choice of target is good already. They shoot the nearest creature, and
+the computer's old rule moves them onto the most hurt one in reach. Shooting the Spitters first was tried and is worse.
 
 ## Each part, measured
 
-@@PARTS@@
+Each part alone, on the core set (36 fights), against the Crown before the coaching (72 fights: two runs of the core
+set). "t" says how far the change is beyond the noise: under 1 it is noise, about 2 is a real change.
+
+| part | what it does | score (before +0.49) | change | t | k/l (before 2.36) | kept? |
+|---|---|---|---|---|---|---|
+| riders | a Horseman out of the fight rides in at the creatures at our guns or men | +0.54 | +0.06 | 1.35 | 2.65 | yes |
+| brace | a Brood force coming at the marching wave: the men halt, the guns set | +0.53 | +0.05 | 1.11 | 2.56 | yes |
+| kite | a reloading Musketeer steps back from a slower creature (the Brute) | +0.52 | +0.03 | 0.66 | 2.55 | yes |
+| gunpick | the round shot goes for the armoured creatures, the Mortar's shell for the thickest clump | +0.51 | +0.02 | 0.42 | 2.48 | yes |
+| canister | a set cannon loads canister when creatures are on it and none of our men are in its cone | +0.48 | -0.01 | -0.11 | 2.37 | no |
+| hurt | a badly hurt Musketeer with a creature on him steps back behind his friends | +0.44 | -0.04 | -0.75 | 2.13 | no |
+| focus (Spitters first) | the volleys shared out, no overkill, the Spitters first | +0.38 | -0.11 | -1.76 | 1.91 | no |
+| focus, no Spitter bonus | the volleys shared out, no overkill, the most hurt first | +0.48 | -0.01 | -0.18 | 2.25 | no |
+| focus, nearest first | the volleys shared out, no overkill, the nearest first | +0.48 | -0.01 | -0.13 | 2.22 | no |
+
+The riders on the real set (24 fights, real armies, late research, 3 in 10 Musketeers dry): +0.55 -> +0.61 (t 1.5),
+k/l 2.41 -> 3.15.
+
+What each result means:
+
+- **riders**: the biggest single gain, and on both sets. In the flank attack (side-m-mixed) the score went from +0.12 to
+  +0.37: the riders now come back for the guns. It cost a little against pure Raptor swarms in the open (a Horseman riding
+  into 60 Raptors dies); a version that sends riders only for the guns and the Spitters (`cmicridewho:1`) measured the
+  same overall (+0.06), so the simpler one is kept.
+- **brace**: halting the wave when the Brood comes at it lets the rear catch up and the guns set. It helps most against
+  Spitters (+0.13) and Brutes (+0.32 in open-m-late).
+- **kite**: it only acts against Brutes (55 steps back in 36 fights), and there it helps (open-m-late +0.45). Elsewhere it
+  does nothing. Kept because it never hurts.
+- **gunpick**: alone about nothing. Kept because together with the others the real set gained most where Brutes and
+  Challengers are (open-L-late +0.42). Choice 3 below.
+- **canister**: it fired about once a fight. Our guns stand behind our own line, so the cone is almost never clear. Not
+  kept. (The cannon's canister stays the player's tool.)
+- **hurt**: stepping back with a Raptor on him does not save a Musketeer: the Raptor is faster and follows. Not kept.
+- **focus**: the surprise. "Shoot the Spitters first" is WORSE (-0.11): the Raptors and Challengers in front are what
+  kill the line, and they must die first. Sharing the volleys out (no two balls into a creature that one kills) changed
+  nothing: the computer already moves its Musketeers onto the most hurt creature in reach, and with 85% of balls hitting,
+  "overkill" is rare. Not kept.
 
 ## What was kept
 

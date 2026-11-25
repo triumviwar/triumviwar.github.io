@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"The Crown computer fights the Brood better once a fight is on (crown-micro): Horsemen standing out of a fight ride in for the creatures at the guns and the men, a marching army halts and sets its guns when a Brood force comes at it instead of walking into it in a column, Musketeers step back from a Brute while they reload, and the Field Cannons aim at the armoured creatures and the Mortars at the thickest clump. No unit or number changed. In equal-value test battles the Crown now keeps about 64% of its army where it kept 55%.",
+	]},
 	{"v": "0.38.208", "items": [
 		"TOURNAMENTS, a new page on the main menu: run a whole tournament inside the game, no outside website needed. Single or double elimination (with a bracket reset), round robin, Swiss, or groups then playoffs, for up to 64 players; best-of-1 to 7 series (the final can differ), a map pool with bans and the loser picking the next map, faction rules (free, locked for a series or the whole tournament, each faction once), random or hand seeding, check-in, and a time limit decided by who is clearly ahead. ONLINE: players join with the tournament's code through the same relay as friendly rooms (the organiser's game keeps the bracket), PLAY YOUR MATCH opens the match's room with the bracket's map and factions, the games report their own results (a dispute goes to the organiser, who can also set a result, award a walkover or drop a player), replays are kept and linked, and anyone can WATCH a match from the bracket. OFFLINE / LAN: the organiser enters the results. ALL COMPUTER: pick computer players by faction, plan and level and watch every game, or play them all quickly. A drawn bracket you can zoom and drag, standings, a schedule, and the champion's trophy. A tournament's file code keeps it safe across restarts.",
 	]},
