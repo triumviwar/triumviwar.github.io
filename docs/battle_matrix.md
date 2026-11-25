@@ -9,6 +9,9 @@ This is that round of battles. No game number was changed. The tools: `tools/bat
 analysis). The data: `docs/battle_matrix/data/rows.jsonl` (one line a fight). The full tables: `docs/battle_matrix/tables.md`.
 The machine-made analysis: `docs/battle_matrix/analysis.md`. Pictures: `docs/shots/battle_matrix/`.
 
+In all, **8,450 fights**: 13 Crown armies against 13 Brood armies (169 pairings), at three sizes and at the supply cap,
+on six grounds, two to four times each.
+
 ## The short answer
 
 - **At equal value, the Crown wins most of its fights with the armies the computers really use.** The Crown computer's
@@ -24,11 +27,11 @@ The machine-made analysis: `docs/battle_matrix/analysis.md`. Pictures: `docs/sho
   Crown edge at equal cost, not a Brood one.
 - **Two Brood things are far stronger per coin than anything else:** the **Tyrant Sire** in a fight (one 150-food
   creature with 1,000 health turns any Raptor and Spitter army into the strongest army in the lab early and mid), and
-  **Venom Challengers** (they beat every Crown composition that has no riders). The Brood computer does not bring the
-  Sire into its waves against the Crown, and it makes few Venom Challengers.
+  **Venom Challengers** (they beat every Crown composition but the two with Musketeers and Horsemen). The Brood
+  computer does not bring the Sire into its waves against the Crown.
 - **Two Crown things are much weaker than their price:** **Dragoons** (as an army they lose nearly everything: score 0 to
-  28 in the open) and **Mortars in a field fight** (they cannot fire inside 5 tiles, and the 30% of the army they cost is missing
-  from the line).
+  28 in the open) and **Mortars in a field fight** (they cannot fire inside 5 tiles, and the 30% of the army they cost
+  is missing from the line).
 - **The Crown's biggest FIGHTING problem is its guns.** In the open field the computer never had a single gun set up
   when the fight began (0 of 3,627 guns in 832 fights; 0 of 468 going up the ramp). Set up beforehand, the same army is
   far stronger: Musketeers with Cannons go from 42 to 57 at mid and from 56 to 78 late. Guns not set are dead weight;
@@ -38,9 +41,10 @@ The machine-made analysis: `docs/battle_matrix/analysis.md`. Pictures: `docs/sho
   in the open** at mid and late (76 on average; late it out-trades every Brood army, though not all clearly).
 - **For the Rootmaw question:** these fights do not show the Brood winning fights it should not win. At equal value the
   Crown's real army trades better than the Brood's real army, and the gap grows with size. If the Crown loses late games
-  to the Brood, it is not because a coin's worth of Brood beats a coin's worth of Crown. It is because the Brood has more
-  on the field, or brings it at better moments. That points at the economy, the army size and the fighting around the
-  fights, which this lab does not measure. See the last section.
+  to the Brood, it is not because a coin's worth of Brood beats a coin's worth of Crown. It must come from what the lab
+  leaves out: how and where the fights happen (guns not set, reinforcements one by one, labourers caught walking), how
+  fast each side refills, and the economy behind it. This lab cannot weigh the economy, so it cannot clear or convict the
+  Rootmaw bonus. See "What this matrix can and cannot say about the Rootmaw bonus".
 
 ## How a fight is made
 
@@ -55,7 +59,7 @@ The machine-made analysis: `docs/battle_matrix/analysis.md`. Pictures: `docs/sho
   guns, rider screen and cavalry hit and run; the Brood's wave, its no-chase of riders, the Mist Toads' fog and tongue.
 - One thing is taken away: retreat. When a computer pulls its wave back, the lab sends it in again. Every fight is fought
   to the end, so the result measures the fight, not the decision to leave it. (The Crown's computer wanted to pull back
-  1 to 10 times a fight; the Brood's 1 to 2.)
+  up to 20 times a fight, the Brood's up to 6; mostly once or twice.)
 - The fight ends when one side has nothing left that fights, or three minutes after first contact. Most were over in 15
   to 25 seconds.
 - Research by size: early, the Crown has the bayonet and the Brood nothing. Mid, the Crown adds the Matchlock, the
@@ -142,7 +146,7 @@ is the column's average (low = good for that Brood composition). The other sizes
 | **column** | 34 | 46 | 48 | 40 | 34 | 50 | 44 | 60 | 54 | 20 | 64 | 58 | 32 |  |
 
 How to read a row: the Crown's computer wave (MCH) beats Raptors (72), Raptors with a few Spitters (70), Venom
-Challengers (79) and flyers (82), trades evenly with the half-and-half mix (59), and loses to Spitters alone (36) and to
+Challengers (79) and flyers (82), leans its way against the half-and-half mix (59), and loses to Spitters alone (36) and to
 the Sire (33). Musketeers with Horsemen (MH) beat everything but the Sire.
 
 ## What counters what
@@ -185,9 +189,10 @@ the Sire (33). Musketeers with Horsemen (MH) beat everything but the Sire.
 
 ### The counters in plain words
 
-- **Riders counter Venom Challengers and Spitters.** Venom Challengers beat every Crown army without riders, often by
-  9 to 1. Add Horsemen (MCH, MH) and at mid and late they lose badly (79 to 92 for the Crown). Spitters alone beat the plain musket line
-  (33 at mid) but lose to Musketeers with Horsemen (79). The riders' hit and run gets in among shooters.
+- **Riders counter Venom Challengers and Spitters.** Venom Challengers beat every Crown army but the two with Musketeers
+  and Horsemen, often by 9 to 1. Against those two (MCH, MH) they lose badly at mid and late (79 to 92 for the Crown).
+  Spitters alone beat the plain musket line (33 at mid) but lose to Musketeers with Horsemen (79). The riders' hit and
+  run gets in among shooters.
 - **The musket line counters Brutes, Tyrant Challengers and flyers.** Brutes and Tyrant Challengers lose to Musketeers
   alone and to Musketeers with Officers, Horsemen or the band (75 to 97); Musketeers with guns in the open do less well.
   Storm Challengers (the flyers) lose to every army with Musketeers (64 to 95) and beat only the armies without them
@@ -249,10 +254,11 @@ The Crown won **286 of the 338 fights**: clearly ahead in 72 pairings, the Brood
 Venom Challengers (85 a supply, as dear as a Guardsman) and Spitters held their own. Musketeers with Horsemen scored 79 on
 average; the computer's wave 72.
 
-This is NOT how the real games look. In the Crown-against-Brood games of the crown-brood-late job (docs/crown_brood_late.md),
-at 16:00 the Crown's army was worth 2,305 and the Brood's 2,485, because the Crown's supply is full of labourers (46 to
-57 of them), while the Brood's Rootmaws and Mound Turtles cost it no army supply. So the
-real late fights are close to the lab's EQUAL VALUE fights at 1,500 to 4,000, not to its equal supply fights.
+This is NOT how the real games look. In the Crown-against-Brood games of the crown-brood-late job
+(docs/crown_brood_late.md), at 16:00 the Crown's army was worth 2,305 and the Brood's 2,485. Neither side had a capped
+army of soldiers: the Crown stood at about 116 supply, 46 to 57 of it labourers, held back by gold and powder (that job's
+finding); and the Brood's Rootmaws and Mound Turtles cost it no army supply. So the real late fights are close to the
+lab's EQUAL VALUE fights at 1,500 to 4,000, not to its equal supply fights.
 
 ## The fighting or the numbers
 
@@ -292,9 +298,9 @@ What it says:
    with Horsemen 76 against 40 at mid. HOLD keeps men from closing up and helping each other, and riders on HOLD lose their
    hit and run. The Crown computer's rider micro (AICavMicro) is worth the most: with it, Musketeers with Horsemen are
    the best Crown army in the open; without it, they are ordinary.
-4. **Dragoons are a fighting problem too, but mostly a design one.** As an army they score 0 to 28 in the open (35 at the cap). They ride
-   into the swarm, take 0.8 seconds to get off, and fire a third slower; at 121 to 125 each they cost a Musketeer and a
-   half. Mixed in (MD) they still pull the score down.
+4. **Dragoons are a fighting problem too, but mostly a design one.** As an army they score 0 to 28 in the open (35 at
+   the cap). They ride into the swarm, take 0.8 seconds to get off, and fire a third slower; at 121 to 125 each
+   they cost a Musketeer and a half. Mixed in (MD) they still pull the score down.
 5. **Officers are cheap and good per coin.** Musketeers with Officers are the best Crown army early (73) and good later.
    The Officer costs 65 here (60 gold and his pistol's powder), less than a Musketeer, with 80 health, armour, a pistol
    and a sabre. But he takes 3 supply, so at the cap he is dear: there Musketeers with Officers fall to 60, below plain
@@ -316,6 +322,49 @@ What it says:
 - **Dragoons.** `D_R1S1_1500_open_s0_00/01.jpg`: twelve Dragoons ride into the Raptors, get off among them and die; 3
   Raptors killed (score 5).
 
+## The grounds compared
+
+Every ground at every size (the score's mean over all 169 pairings; the blind-pick value with the Sire at home; the
+best three armies of each side on average):
+
+| ground | size | fights | mean score | pairings the Crown wins clearly / the Brood / even | blind pick, the Crown's share (Sire at home) | best Crown armies | best Brood armies |
+|---|---|---|---|---|---|---|---|
+| open field | 600 | 676 | 40 | 27 / 84 / 58 | 57 | MO 73, M 72, MCH 58 | VC 85, RSy 74, S 69 |
+| open field | 1500 | 676 | 45 | 40 / 78 / 51 | 59 | MH 76, MCH 60, M 59 | VC 80, RSy 68, S 66 |
+| open field | 4000 | 676 | 54 | 72 / 50 / 47 | 61 | MH 76, CH 67, MCH 67 | VC 69, RSy 61, S 59 |
+| the set line (open ground, the Crown formed, guns up) | 600 | 507 | 35 | 17 / 85 / 67 | 21 | M 49, CH 46, MH 44 | B 92, VC 86, TCS 78 |
+| the set line (open ground, the Crown formed, guns up) | 1500 | 507 | 41 | 28 / 91 / 50 | 34 | CH 69, MCH 58, MC 57 | VC 88, B 73, S 71 |
+| the set line (open ground, the Crown formed, guns up) | 4000 | 507 | 52 | 69 / 74 / 26 | 62 | MC 78, MCH 73, CH 72 | VC 72, S 58, RSy 53 |
+| the set block (open ground, the Crown in a close block, guns up) | 600 | 338 | 35 | 10 / 56 / 103 | 25 | M 49, CH 49, MH 45 | B 93, VC 92, TCS 75 |
+| the set block (open ground, the Crown in a close block, guns up) | 1500 | 338 | 42 | 16 / 49 / 104 | 35 | CH 68, MCH 61, MC 59 | VC 88, B 72, S 68 |
+| the set block (open ground, the Crown in a close block, guns up) | 4000 | 338 | 53 | 45 / 35 / 89 | 66 | MC 76, CH 72, MCH 72 | VC 69, S 57, RSy 54 |
+| a choke | 600 | 338 | 34 | 9 / 55 / 105 | 25 | M 51, CH 47, MH 42 | B 91, VC 90, TCS 77 |
+| a choke | 1500 | 507 | 41 | 27 / 93 / 49 | 38 | CH 67, MC 57, MCH 57 | VC 86, B 74, S 70 |
+| a choke | 4000 | 338 | 53 | 43 / 52 / 74 | 65 | MC 80, MCH 75, CH 72 | VC 72, S 57, RSy 52 |
+| a ramp, the Crown on top | 600 | 338 | 37 | 13 / 56 / 100 | 35 | MH 54, M 51, CH 48 | B 89, VC 82, RSy 77 |
+| a ramp, the Crown on top | 1500 | 507 | 46 | 31 / 73 / 65 | 36 | CH 68, MC 64, MCH 62 | VC 86, B 68, RSy 67 |
+| a ramp, the Crown on top | 4000 | 338 | 55 | 48 / 41 / 80 | 76 | MC 85, MCH 79, MCMo 78 | VC 65, S 51, RSy 50 |
+| a ramp, the Brood on top | 600 | 338 | 38 | 8 / 59 / 102 | 53 | MO 73, M 67, MB 54 | VC 84, RSy 84, TCS 76 |
+| a ramp, the Brood on top | 1500 | 507 | 55 | 55 / 42 / 72 | 43 | MO 73, M 72, MMi 67 | VC 85, RSy 68, R 50 |
+| a ramp, the Brood on top | 4000 | 338 | 57 | 47 / 16 / 106 | 52 | MO 70, M 69, MMi 66 | VC 65, RSy 55, S 54 |
+
+What the grounds add, compared like for like:
+
+- **The choke changes nothing at equal value.** The Crown set behind a 6-tile gap scores the same as the Crown set on
+  open ground (34 against 35 early, 41 against 41 at mid, 53 against 52 late). The Brood's swarm comes through the gap
+  in a stream, but the Crown's line on HOLD cannot make use of it.
+- **The high ground helps the Crown a little.** Set on a ramp's top, the Crown scores 2 to 5 points more than set on flat
+  ground (37 against 35, 46 against 41, 55 against 52). The guns gain most: Musketeers with Cannons go from 78 to 85 late.
+- **The Brood holding a ramp's top is weak, but that is its computer, not the hill.** Going up at the Brood, the Crown's
+  computer scores 55 at mid against 45 on flat open ground. The Brood's creatures, told to hold a spot, seem to come
+  down in ones and twos instead of as one wave (not filmed). Many of these fights ran to the bell (74 of 507 at
+  mid) with the Brood's computer pulling back again and again. Read it as "the Brood should not sit on a hill and wait", not as a fact about
+  hills.
+- **The same armies come out on top everywhere:** Venom Challengers for the Brood (and Brutes early against a Crown set
+  by hand), and
+  for the Crown the gun armies (MC, MCH, CH) wherever the Crown stands ready, Musketeers with Horsemen or Officers wherever
+  its computer fights.
+
 ## What this matrix can and cannot say about the Rootmaw bonus
 
 The Rootmaw bonus (Defs.FOOD_BONUS, the far Rootmaws' pay) is an ECONOMY number. This lab has no economy. So it cannot
@@ -335,15 +384,16 @@ What it does say:
   championship: the Brood beat the Crown in 97% of games).
 - **So the gap lies in what the lab takes away, not in the units' numbers:**
   1. *How the fights are fought*: the Crown's guns are never set when a fight starts, and an army with guns not set
-     trades 15 to 20 points worse than the same army ready. The computer's waves also pull back (1 to 10 times a fight
-     here) where the lab sent them in again.
-  2. *Which armies are brought*: the Crown computer's armies are gun-heavy (its usual wave of 12 Musketeers, 3 Cannons and 2 Horsemen is about a third guns by value) and rider-light;
-     the lab's best Crown army is Musketeers with Horsemen.
+     trades 15 to 20 points worse than the same army ready. The computer's waves also pull back (often, up to 20 times
+     a fight here) where the lab sent them in again.
+  2. *Which armies are brought*: the Crown computer's armies are gun-heavy (its usual wave of 12 Musketeers, 3 Cannons
+     and 2 Horsemen is about a third guns by value) and rider-light; the lab's best Crown army is Musketeers with
+     Horsemen.
   3. *Where and when the fights happen*: reinforcements arriving one by one, fights at the Crown's outlying halls,
      labourers caught walking (docs/crown_brood_fix.md: 83% of labourers lost after 12:00 die to Raptors). None of these
      are in the lab.
   4. *Remaking the army and the supply it takes*: how fast each side refills after a fight, and the supply: in the
-     crown-brood-late games the Crown's supply was full of labourers late while the Brood's Rootmaws and Mound Turtles
+     crown-brood-late games much of the Crown's supply was labourers late, while the Brood's Rootmaws and Mound Turtles
      cost it no army supply. Not measured here.
 - **The honest verdict for the owner's question:** this matrix gives **no evidence** that the Brood's fighting is the
   problem, and it shows a clear Crown fighting problem (the guns). It does **not** prove that the Rootmaw bonus is fine:
@@ -365,10 +415,6 @@ What it does say:
   spoils) would value its units differently; and the Tyrant Sire is counted at his food price (150), not at what he is
   worth to the Brood as its father.
 - The research by size is one plausible set, not what every game has.
-
-## The grounds
-
-@@GROUNDS@@
 
 ## Claude's choices (for the owner to check)
 

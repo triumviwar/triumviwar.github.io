@@ -1,6 +1,6 @@
 # The battle matrix: the analysis (made by tools/study/battle_matrix_report.py)
 
-7502 fights. Score = the Crown's share of the value lost in the fight (50 = even). C = the Crown clearly ahead (the 95% interval above 50), B = the Brood clearly ahead, = = not told apart.
+8450 fights. Score = the Crown's share of the value lost in the fight (50 = even). C = the Crown clearly ahead (the 95% interval above 50), B = the Brood clearly ahead, = = not told apart.
 
 
 ## open field, at the supply cap (150 army supply each, late research) (338 fights)
@@ -648,38 +648,91 @@ Brood compositions that out-trade EVERY Crown composition: RSy (clearly, every o
 **The game's value at equal cost** (both sides pick their army blind, each at its best mix): the Crown's share **36**. The Crown's best mix: CH 59%, M 41%. The Brood's: VC 70%, StC 30%.
 Without the Tyrant Sire (RSy left out: he is one unit a game, not an army to buy): the Crown's share **36**. The Crown's best mix: CH 59%, M 41%. The Brood's: VC 70%, StC 30%.
 
-## a ramp, the Crown on top, late (4,000) (66 fights)
+## a ramp, the Crown on top, late (4,000) (338 fights)
 
-Pairings: the Crown clearly ahead in **0**, the Brood in **0**, even in 66 (of 66). Mean score over all pairings: 71.
+Pairings: the Crown clearly ahead in **48**, the Brood in **41**, even in 80 (of 169). Mean score over all pairings: 55.
 
 | Brood composition | best Crown answer (score) | 2nd | worst Crown choice (score) | Crown compositions that beat it clearly |
 |---|---|---|---|---|
-| R (Raptors) | MMo (89) | MCH (87) | M (28) | none |
-| R3S1 (Raptors, a few Spitters (3:1)) | MCH (89) | MC (89) | M (37) | none |
-| R1S1 (Raptors and Spitters (1:1)) | MCH (82) | MC (81) | M (41) | none |
-| R1S3 (Spitters, a few Raptors (3:1)) | MCH (81) | MCMo (78) | M (42) | none |
-| S (Spitters) | MMo (82) | MC (82) | M (32) | none |
-| B (Brutes) | MC (98) | MCMo (94) | M (69) | none |
-| RSB (Raptors, Spitters, Brutes) | MC (81) | MCMo (73) | M (43) | none |
-| TC (Tyrant Challengers) | MCH (90) | MCMo (87) | M (84) | none |
-| TCS (Tyrant Challengers + Spitters) | MCMo (78) | MCH (78) | M (47) | none |
-| VC (Venom Challengers) | MC (81) | MCMo (67) | M (18) | none |
-| StC (Storm Challengers (flyers)) | M (89) | MC (72) | MCMo (18) | none |
-| RSTd (Raptors, Spitters, Mist Toads) | MC (94) | MCMo (92) | M (47) | none |
-| RSy (Raptors and Spitters with the Tyrant Sire) | MC (81) | MCMo (80) | M (38) | none |
+| R (Raptors) | MMo (88) | MCH (88) | H (23) | MC, MCH, MMo, MCMo, CH |
+| R3S1 (Raptors, a few Spitters (3:1)) | MCH (88) | MC (88) | H (21) | MC, MCH, MMo, MCMo |
+| R1S1 (Raptors and Spitters (1:1)) | MC (84) | CH (84) | H (20) | MMo, MCMo |
+| R1S3 (Spitters, a few Raptors (3:1)) | MCMo (79) | MCH (79) | H (18) | MC, MCH, MMo, MCMo |
+| S (Spitters) | CH (86) | MC (81) | D (14) | MC, MCH, CH |
+| B (Brutes) | MC (99) | MCMo (95) | D (23) | M, MC, MCH, MCMo, MH, MO, CH |
+| RSB (Raptors, Spitters, Brutes) | MC (82) | CH (78) | H (18) | MC |
+| TC (Tyrant Challengers) | MC (93) | MCH (91) | D (36) | M, MCH, MMo, MCMo, MH, H, MO, MMi |
+| TCS (Tyrant Challengers + Spitters) | MCH (81) | MC (81) | H (21) | MCMo, CH |
+| VC (Venom Challengers) | CH (97) | MC (78) | D (4) | MCH, CH |
+| StC (Storm Challengers (flyers)) | M (89) | MMi (85) | CH (0) | M, MH, MB, MMi |
+| RSTd (Raptors, Spitters, Mist Toads) | MC (94) | MCMo (92) | H (28) | MC, MCH, MCMo, CH |
+| RSy (Raptors and Spitters with the Tyrant Sire) | MC (84) | MCH (77) | H (23) | MCH, MMo |
 
 | Crown composition | best Brood answer (score) | 2nd | worst Brood choice (score) | Brood compositions that beat it clearly |
 |---|---|---|---|---|
-| M (Musketeers) | VC (18) | R (28) | StC (89) | none |
-| MC (Musketeers + Field Cannons) | StC (72) | TCS (77) | B (98) | none |
-| MCH (the computer's wave (Musketeers, Cannons, Horsemen)) | StC (47) | VC (65) | B (92) | none |
-| MMo (Musketeers + Mortars) | StC (37) | VC (39) | R (89) | none |
-| MCMo (Musketeers + Cannons + Mortars) | StC (18) | VC (67) | B (94) | none |
-| MH (Musketeers + Horsemen) | R (36) |  | R (36) | none |
+| M (Musketeers) | VC (14) | R (28) | StC (89) | R, R1S1, R1S3, S, TCS, RSy |
+| MC (Musketeers + Field Cannons) | StC (76) | R1S3 (77) | B (99) | none |
+| MCH (the computer's wave (Musketeers, Cannons, Horsemen)) | StC (44) | VC (66) | B (94) | none |
+| MMo (Musketeers + Mortars) | VC (35) | StC (42) | TC (90) | none |
+| MCMo (Musketeers + Cannons + Mortars) | StC (26) | VC (73) | B (95) | none |
+| MH (Musketeers + Horsemen) | VC (9) | S (26) | TC (82) | S, RSy |
+| H (Horsemen) | StC (0) | VC (6) | B (69) | R3S1, R1S3, RSB, TCS, StC, RSy |
+| D (Dragoons) | VC (4) | S (14) | StC (37) | R, R1S1, R1S3, S, B, RSB, TC, VC, RSTd, RSy |
+| MD (Musketeers + Dragoons) | VC (18) | R (30) | StC (85) | R, R1S1, R1S3, VC, RSy |
+| MO (Musketeers + Officers) | VC (13) | S (40) | B (85) | R1S1, R1S3, RSB, TCS, VC |
+| MB (Musketeers + the band) | VC (22) | R (27) | StC (85) | R, R3S1, R1S3, S |
+| MMi (Musketeers + a Missionary) | VC (14) | R (25) | StC (85) | R, RSy |
+| CH (Cannons + Horsemen) | StC (0) | RSy (68) | VC (97) | StC |
 
-Best Crown compositions on average: MC 84, MCH 79, MCMo 77, MMo 72. Safest (best at its worst): MC 72, MCH 47, MMo 37.
-Best Brood compositions on average: StC 47, VC 46, RSB 34, R 32 (the Brood's own share). Safest: TCS 21, R1S3 19, RSy 19.
+Best Crown compositions on average: MC 85, MCH 79, MCMo 78, CH 76. Safest (best at its worst): MC 76, MCH 44, MMo 35.
+Best Brood compositions on average: VC 65, S 51, RSy 50, R1S3 50 (the Brood's own share). Safest: R1S3 21, TCS 19, RSB 18.
 Brood compositions that out-trade EVERY Crown composition: none (clearly, every one: none). Crown compositions that out-trade every Brood composition: MC (clearly: none).
+
+**The game's value at equal cost** (both sides pick their army blind, each at its best mix): the Crown's share **76**. The Crown's best mix: MC 97%, M 3%. The Brood's: StC 72%, R1S3 28%.
+Without the Tyrant Sire (RSy left out: he is one unit a game, not an army to buy): the Crown's share **76**. The Crown's best mix: MC 97%, M 3%. The Brood's: StC 72%, R1S3 28%.
+
+## a ramp, the Brood on top, early (600) (338 fights)
+
+Pairings: the Crown clearly ahead in **8**, the Brood in **59**, even in 102 (of 169). Mean score over all pairings: 38.
+
+| Brood composition | best Crown answer (score) | 2nd | worst Crown choice (score) | Crown compositions that beat it clearly |
+|---|---|---|---|---|
+| R (Raptors) | CH (100) | MMo (85) | D (0) | CH |
+| R3S1 (Raptors, a few Spitters (3:1)) | MB (79) | MO (74) | D (0) | none |
+| R1S1 (Raptors and Spitters (1:1)) | MO (85) | M (84) | D (0) | none |
+| R1S3 (Spitters, a few Raptors (3:1)) | MMi (83) | MO (77) | D (0) | none |
+| S (Spitters) | M (84) | MO (66) | D (0) | none |
+| B (Brutes) | MO (88) | M (83) | D (0) | MO |
+| RSB (Raptors, Spitters, Brutes) | MO (80) | M (74) | D (0) | MO |
+| TC (Tyrant Challengers) | MO (88) | MMi (86) | D (0) | M, MO |
+| TCS (Tyrant Challengers + Spitters) | MO (57) | M (51) | D (0) | none |
+| VC (Venom Challengers) | CH (100) | MO (48) | D (0) | CH |
+| StC (Storm Challengers (flyers)) | M (89) | MO (83) | CH (0) | none |
+| RSTd (Raptors, Spitters, Mist Toads) | MO (94) | M (88) | D (0) | M, CH |
+| RSy (Raptors and Spitters with the Tyrant Sire) | MO (36) | MH (35) | D (0) | none |
+
+| Crown composition | best Brood answer (score) | 2nd | worst Brood choice (score) | Brood compositions that beat it clearly |
+|---|---|---|---|---|
+| M (Musketeers) | VC (22) | RSy (23) | StC (89) | VC |
+| MC (Musketeers + Field Cannons) | RSy (0) | VC (0) | R (85) | S, B, VC, StC, RSy |
+| MCH (the computer's wave (Musketeers, Cannons, Horsemen)) | VC (11) | StC (22) | R (62) | RSB, StC, RSy |
+| MMo (Musketeers + Mortars) | RSy (0) | VC (0) | R (85) | S, TCS, VC, RSy |
+| MCMo (Musketeers + Cannons + Mortars) | B (0) | StC (0) | R (59) | R3S1, S, B, RSB, TC, TCS, VC, StC |
+| MH (Musketeers + Horsemen) | VC (0) | S (21) | TC (63) | S, B, VC, RSy |
+| H (Horsemen) | B (0) | R (0) | R3S1 (23) | R, R3S1, R1S3, S, B, RSB, TC, TCS, VC, StC, RSy |
+| D (Dragoons) | B (0) | R (0) | VC (0) | R, R3S1, R1S1, R1S3, S, B, RSB, TC, TCS, VC, StC, RSTd, RSy |
+| MD (Musketeers + Dragoons) | VC (0) | StC (12) | R1S1 (52) | TC, TCS, VC, RSy |
+| MO (Musketeers + Officers) | RSy (36) | VC (48) | RSTd (94) | none |
+| MB (Musketeers + the band) | VC (25) | RSy (33) | RSTd (81) | R1S1, VC, RSy |
+| MMi (Musketeers + a Missionary) | VC (0) | RSy (20) | TC (86) | VC |
+| CH (Cannons + Horsemen) | StC (0) | R1S3 (2) | VC (100) | R1S3, StC |
+
+Best Crown compositions on average: MO 73, M 67, MB 54, MMi 49. Safest (best at its worst): MO 36, MB 25, M 22.
+Best Brood compositions on average: VC 84, RSy 84, TCS 76, StC 67 (the Brood's own share). Safest: RSy 64, TCS 43, R3S1 21.
+Brood compositions that out-trade EVERY Crown composition: RSy (clearly, every one: none). Crown compositions that out-trade every Brood composition: none (clearly: none).
+
+**The game's value at equal cost** (both sides pick their army blind, each at its best mix): the Crown's share **36**. The Crown's best mix: MO 100%. The Brood's: RSy 100%.
+Without the Tyrant Sire (RSy left out: he is one unit a game, not an army to buy): the Crown's share **53**. The Crown's best mix: MO 92%, CH 8%. The Brood's: TCS 53%, VC 47%.
 
 ## a ramp, the Brood on top, mid (1,500) (507 fights)
 
@@ -724,6 +777,49 @@ Brood compositions that out-trade EVERY Crown composition: none (clearly, every 
 **The game's value at equal cost** (both sides pick their army blind, each at its best mix): the Crown's share **42**. The Crown's best mix: H 44%, MCH 30%, MC 22%, MO 5%. The Brood's: RSy 50%, VC 25%, StC 22%, R 3%.
 Without the Tyrant Sire (RSy left out: he is one unit a game, not an army to buy): the Crown's share **43**. The Crown's best mix: MCH 74%, H 26%. The Brood's: VC 75%, StC 25%.
 
+## a ramp, the Brood on top, late (4,000) (338 fights)
+
+Pairings: the Crown clearly ahead in **47**, the Brood in **16**, even in 106 (of 169). Mean score over all pairings: 57.
+
+| Brood composition | best Crown answer (score) | 2nd | worst Crown choice (score) | Crown compositions that beat it clearly |
+|---|---|---|---|---|
+| R (Raptors) | MO (68) | CH (66) | D (20) | M, MCH, MO |
+| R3S1 (Raptors, a few Spitters (3:1)) | MO (74) | MMi (69) | D (15) | MO, MMi |
+| R1S1 (Raptors and Spitters (1:1)) | MO (71) | M (67) | D (30) | MMo, MO |
+| R1S3 (Spitters, a few Raptors (3:1)) | MH (62) | M (62) | D (20) | none |
+| S (Spitters) | CH (71) | MO (60) | D (13) | none |
+| B (Brutes) | MB (100) | MD (99) | H (0) | M, MC, MCH, MMo, MCMo, MH, MD, MO, MB, MMi, CH |
+| RSB (Raptors, Spitters, Brutes) | MO (76) | MMi (67) | D (18) | M, MO, MMi |
+| TC (Tyrant Challengers) | MMi (92) | MB (92) | D (32) | M, MC, MCMo, MD, MO, MB, MMi |
+| TCS (Tyrant Challengers + Spitters) | MO (74) | M (73) | D (31) | M, MC, MH, MD, MB, MMi |
+| VC (Venom Challengers) | CH (67) | MCMo (61) | D (0) | none |
+| StC (Storm Challengers (flyers)) | MMi (99) | MMo (96) | H (0) | M, MC, MCH, MMo, MCMo, MH, MD, MO, MB, MMi |
+| RSTd (Raptors, Spitters, Mist Toads) | MO (76) | M (75) | H (33) | M, MCH, MMi |
+| RSy (Raptors and Spitters with the Tyrant Sire) | MO (65) | H (63) | D (26) | none |
+
+| Crown composition | best Brood answer (score) | 2nd | worst Brood choice (score) | Brood compositions that beat it clearly |
+|---|---|---|---|---|
+| M (Musketeers) | VC (28) | S (52) | B (99) | none |
+| MC (Musketeers + Field Cannons) | RSy (44) | R1S1 (49) | B (95) | RSB |
+| MCH (the computer's wave (Musketeers, Cannons, Horsemen)) | RSB (42) | S (43) | StC (90) | S |
+| MMo (Musketeers + Mortars) | RSy (32) | VC (45) | B (98) | RSy |
+| MCMo (Musketeers + Cannons + Mortars) | RSy (35) | RSB (41) | B (89) | RSy |
+| MH (Musketeers + Horsemen) | VC (30) | S (38) | B (94) | none |
+| H (Horsemen) | B (0) | StC (0) | TC (72) | B, VC, StC |
+| D (Dragoons) | VC (0) | S (13) | RSTd (34) | S, B, RSB, VC |
+| MD (Musketeers + Dragoons) | VC (32) | RSy (37) | B (99) | R1S3, S, RSy |
+| MO (Musketeers + Officers) | VC (11) | R1S3 (57) | B (98) | VC |
+| MB (Musketeers + the band) | VC (31) | R1S3 (38) | B (100) | none |
+| MMi (Musketeers + a Missionary) | VC (30) | RSy (37) | StC (99) | RSy |
+| CH (Cannons + Horsemen) | R1S3 (38) | R1S1 (39) | TC (77) | none |
+
+Best Crown compositions on average: MO 70, M 69, MMi 67, MC 64. Safest (best at its worst): MC 44, MCH 42, CH 38.
+Best Brood compositions on average: VC 65, RSy 55, S 54, R1S3 51 (the Brood's own share). Safest: R1S3 38, RSy 35, VC 33.
+Brood compositions that out-trade EVERY Crown composition: none (clearly, every one: none). Crown compositions that out-trade every Brood composition: none (clearly: none).
+
+**The game's value at equal cost** (both sides pick their army blind, each at its best mix): the Crown's share **51**. The Crown's best mix: CH 37%, M 33%, MC 24%, MCH 6%. The Brood's: RSy 32%, VC 31%, R1S3 22%, RSB 15%.
+Without the Tyrant Sire (RSy left out: he is one unit a game, not an army to buy): the Crown's share **52**. The Crown's best mix: MC 73%, MMi 18%, MCH 8%. The Brood's: VC 38%, RSB 31%, R1S1 31%.
+
 ## The fighting (micro) counts
 
 | ground, size | Crown armies with guns | guns set at contact | guns set 10 s after | guns that fired by 20 s | guns lost per gun | riders lost per rider | the Crown's pulls a fight | the Brood's pulls a fight |
@@ -743,8 +839,10 @@ Without the Tyrant Sire (RSy left out: he is one unit a game, not an army to buy
 | a choke, 4000 | 130 | 100% | 81% | 42% | 0.16 | 0.87 | 0.0 | 2.2 |
 | a ramp, the Crown on top, 600 | 130 | 100% | 82% | 17% | 0.77 | 0.85 | 0.0 | 0.6 |
 | a ramp, the Crown on top, 1500 | 195 | 100% | 85% | 31% | 0.43 | 0.88 | 0.0 | 1.3 |
-| a ramp, the Crown on top, 4000 | 52 | 97% | 85% | 12% | 0.08 | 0.59 | 0.0 | 3.3 |
+| a ramp, the Crown on top, 4000 | 130 | 98% | 74% | 8% | 0.12 | 0.85 | 0.0 | 2.0 |
+| a ramp, the Brood on top, 600 | 130 | 0% | 32% | 46% | 0.76 | 0.87 | 20.8 | 1.5 |
 | a ramp, the Brood on top, 1500 | 195 | 0% | 57% | 75% | 0.43 | 0.75 | 8.0 | 6.0 |
+| a ramp, the Brood on top, 4000 | 130 | 0% | 65% | 90% | 0.33 | 0.76 | 2.4 | 6.3 |
 
 ## What the guns, riders and the rest add (score against the plain Musketeer line, same Brood army)
 
@@ -769,11 +867,11 @@ Without the Tyrant Sire (RSy left out: he is one unit a game, not an army to buy
 | up, -150 |  |  |  |  |  |  |  |  |  |  |  |  |
 | up, 600 | -5 | -5 | -23 | -31 | +3 | -21 | -42 | -18 | -14 | -16 | -9 | -3 |
 | up, 1500 | +9 | +6 | -8 | -5 | -7 | -37 | -40 | -20 | -21 | -4 | -3 | +13 |
-| up, 4000 | +37 | +32 | +24 | +30 | +8 |  |  |  |  |  |  |  |
+| up, 4000 | +38 | +32 | +26 | +31 | -1 | -22 | -21 | -3 | +3 | -2 | -3 | +29 |
 | down, -150 |  |  |  |  |  |  |  |  |  |  |  |  |
-| down, 600 |  |  |  |  |  |  |  |  |  |  |  |  |
+| down, 600 | -31 | -27 | -35 | -52 | -29 | -62 | -67 | -38 | +6 | -13 | -19 | -20 |
 | down, 1500 | -10 | -9 | -20 | -13 | -15 | -29 | -54 | -18 | +1 | -6 | -5 | -40 |
-| down, 4000 |  |  |  |  |  |  |  |  |  |  |  |  |
+| down, 4000 | -4 | -8 | -6 | -11 | -7 | -34 | -47 | -9 | +1 | -10 | -2 | -13 |
 
 ## The fighting or the numbers: open field (the computer marches) against the set line (formed, guns up)
 
