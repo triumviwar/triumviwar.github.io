@@ -39,6 +39,7 @@ const CAP_EDGE := 1.5
 const CAP_SHORT := 8
 const COOL := 90.0              # (s) after the finisher stops, before it may start again
 const COOL_LOST := 150.0        # (s) after it lost the army it went out with
+const COOL_HOME := 20.0         # (s) after it turned back for a force at home
 const LOST_K := 0.45            # stop when under this share of what went out ...
 const LOST_FOE := 1.3           # ... or an enemy force near the body worth this many times it, while under 0.75 of it
 const HOME_K := 1.3             # stop when the enemy near home is worth more than this times the guard + HOME_PLUS ...
@@ -76,6 +77,7 @@ var ends := {}
 var broke := 0
 var on_s := 0.0
 var _broke_seen := {}
+var _broke0 := 0                # broke at this start
 
 
 ## (tests) `cfinfrom:<s>` moves FROM.
@@ -180,6 +182,8 @@ func take(army: Array) -> Variant:
 		var w := _ahead(pool())
 		if w == "":
 			return null
+		if ai._threat() != Vector2.INF and float(ai.ch.foe_near()) > value(pool()) * HOME_SHARE:
+			return null           # (a force at home it would turn back for at once: the shared defence first)
 		_start(pool(), w)
 	return _tick(army)
 
@@ -225,6 +229,7 @@ func _start(army: Array, w: String) -> void:
 	_lead = Vector2.INF
 	_orders_t = 0.0
 	starts[w] = int(starts.get(w, 0)) + 1
+	_broke0 = broke
 	# the other controllers let go of their men: the wave, the siege push, the hunt
 	if ai._attacking:
 		ai._attacking = false
@@ -272,7 +277,7 @@ func _stop(w: String, cool := true) -> void:
 	ends[key] = int(ends.get(key, 0)) + 1
 	on_s += game.clock - t0
 	say("stops (%s) after %d s: %d of the %d that went out is left; %d enemy buildings fell meanwhile" % [
-		w, int(game.clock - t0), int(value(men.keys())), int(v0), broke])
+		w, int(game.clock - t0), int(value(men.keys())), int(v0), broke - _broke0])
 	var back: Vector2 = ai._home_spot(ai._front())
 	if w != "no target":
 		for u in men:
@@ -315,6 +320,7 @@ func _tick(army: Array) -> Variant:
 	if ai._threat() != Vector2.INF and hn > (value(guard.keys()) + value(rest.filter(func(u: Unit) -> bool: return _fighter(u)))) * HOME_K + HOME_PLUS \
 			and hn > now * HOME_SHARE:
 		_stop("an enemy force of %d is at home" % int(hn), false)
+		_cool_until = game.clock + COOL_HOME
 		return army
 	if not _alive(target):
 		target = _pick(mid)
@@ -325,7 +331,9 @@ func _tick(army: Array) -> Variant:
 		_orders_t = 0.0
 		if game.clock - _said_t > 15.0:
 			_said_t = game.clock
-			say("goes for %s %s (%d px off)" % ["a" if target is Building else "the", _name(target), int(_pos(target).distance_to(mid))])
+			var nm := _name(target)
+			var art := ("an" if "AEIOU".contains(nm.substr(0, 1).to_upper()) else "a") if target is Building else "the"
+			say("goes for %s %s (%d px off)" % [art, nm, int(_pos(target).distance_to(mid))])
 	if game.clock >= _orders_t:
 		_orders_t = game.clock + ORDERS
 		_order(body, mid)
