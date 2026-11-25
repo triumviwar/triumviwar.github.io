@@ -19,6 +19,7 @@ extends SceneTree
 ## Grounds: open   both march at each other on flat open ground
 ##          set    flat open ground; the Crown stands ready (a line two deep, its guns unlimbered behind) and the Brood
 ##                 comes at it: against open this tells the Crown's fighting from the numbers
+##          block  as set, but the Crown's foot in the same close block as on the open field (not a line)
 ##          choke  a rock wall right across the map with one gap 6 tiles wide; the Crown holds behind the gap (set as on
 ##                 "set"), the Brood comes through it
 ##          up     a ramp: the Crown holds the top (set as on "set"), the Brood comes up at it
@@ -80,6 +81,7 @@ const CONTACT := 300.0
 
 const NOT_FIGHTING := ["band", "band_fifer", "band_piper", "missionary"]
 var _wide := false         # (ground "set": the Crown's foot in a line two deep)
+var _setup := false        # (ground "block": set by hand in the open field's close block)
 var _orig := {}            # Unit -> [its kind when placed, its value] (a Horseman unhorsed is an Officer, at the Horseman's price)
 var _ramp_cache := {}
 var _field_cache := {}
@@ -512,6 +514,15 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 			c_dir = dir
 			hold = c_at
 			holder = 0
+		"block":
+			# (THE SET BLOCK: as "set", but the Crown stands in the same close block as on the open field (not a line):
+			# against "set" this tells the line's shape from the rest)
+			_setup = true
+			c_at = mid - dir * 12.0 * Defs.TILE
+			b_at = mid + dir * 22.0 * Defs.TILE
+			c_dir = dir
+			hold = c_at
+			holder = 0
 		"choke":
 			_make_choke(mid, dir)
 			_wide = true
@@ -561,8 +572,9 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 	var cl := _place(0, cn, c_at, c_dir, lvc, rng)
 	var bl := _place(1, bn, b_at, -c_dir, lvb, rng)
 	var set_at := {}           # (the Crown set by hand: each man's place)
-	if _wide:
+	if _wide or _setup:
 		_wide = false
+		_setup = false
 		for u in cl:
 			set_at[u] = u.position
 			if u.kind in GUNS:

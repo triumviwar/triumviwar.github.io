@@ -34,7 +34,7 @@ BROOD_NAMES = {
     "TC": "Tyrant Challengers", "TCS": "Tyrant Challengers + Spitters", "VC": "Venom Challengers",
     "StC": "Storm Challengers (flyers)", "RSTd": "Raptors, Spitters, Mist Toads", "RSy": "Raptors and Spitters with the Tyrant Sire"}
 SIZE_NAME = {600: "early (600)", 1500: "mid (1,500)", 4000: "late (4,000)"}
-GROUND_NAME = {"open": "open field", "choke": "a choke", "up": "a ramp, the Crown on top", "down": "a ramp, the Brood on top"}
+GROUND_NAME = {"open": "open field", "set": "the set line (open ground, the Crown formed, guns up)", "block": "the set block (open ground, the Crown in a close block, guns up)", "choke": "a choke", "up": "a ramp, the Crown on top", "down": "a ramp, the Brood on top"}
 
 
 def key(r):
@@ -150,7 +150,7 @@ def cmd_report(a):
     rows = load_rows(a.rows)
     cl = cells(rows)
     sizes = sorted({int(r["size"]) for r in rows})
-    grounds = [g for g in ["open", "choke", "up", "down"] if any(r["ground"] == g for r in rows)]
+    grounds = [g for g in ["open", "set", "block", "choke", "up", "down"] if any(r["ground"] == g for r in rows)]
     crown = [c for c in CROWN if any(r["crown"] == c for r in rows)]
     brood = [b for b in BROOD if any(r["brood"] == b for r in rows)]
     md = []

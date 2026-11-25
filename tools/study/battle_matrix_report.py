@@ -68,7 +68,7 @@ def main():
     md = [f"# The battle matrix: the analysis (made by tools/study/battle_matrix_report.py)\n",
           f"{len(rows)} fights. Score = the Crown's share of the value lost in the fight (50 = even). "
           f"C = the Crown clearly ahead (the 95% interval above 50), B = the Brood clearly ahead, = = not told apart.\n"]
-    grounds = [g for g in ["open", "choke", "up", "down"] if any(r["ground"] == g for r in rows)]
+    grounds = [g for g in ["open", "set", "block", "choke", "up", "down"] if any(r["ground"] == g for r in rows)]
     sizes = sorted({int(r["size"]) for r in rows})
     for g in grounds:
         for sz in sizes:
@@ -144,6 +144,15 @@ def main():
                           f"share **{pct(v)}**. The Crown's best mix: {mx}. The Brood's: {my}.")
                 blk["nash"] = {"value": round(v, 3), "crown": dict(zip(crown, [round(t, 3) for t in x])),
                                "brood": dict(zip(brood, [round(t, 3) for t in y]))}
+                if "RSy" in brood:
+                    b2 = [b for b in brood if b != "RSy"]
+                    v2, x2, y2 = nash([[S[(c, b)] for b in b2] for c in crown])
+                    mx2 = ", ".join(f"{c} {round(p * 100)}%" for c, p in sorted(zip(crown, x2), key=lambda t: -t[1]) if p > 0.01)
+                    my2 = ", ".join(f"{b} {round(p * 100)}%" for b, p in sorted(zip(b2, y2), key=lambda t: -t[1]) if p > 0.01)
+                    md.append(f"Without the Tyrant Sire (RSy left out: he is one unit a game, not an army to buy): the Crown's "
+                              f"share **{pct(v2)}**. The Crown's best mix: {mx2}. The Brood's: {my2}.")
+                    blk["nash_nosire"] = {"value": round(v2, 3), "crown": dict(zip(crown, [round(t, 3) for t in x2])),
+                                          "brood": dict(zip(b2, [round(t, 3) for t in y2]))}
             out["blocks"][f"{g}|{sz}"] = blk
     # the fighting: guns, riders, pulls
     md.append("\n## The fighting (micro) counts\n")
