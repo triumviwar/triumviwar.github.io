@@ -17,9 +17,13 @@ extends SceneTree
 ##       [map:dune_sea] [shots:/abs/dir] [debug]
 ##   a job line: <crown comp> <brood comp> <size> <ground> <seed>      e.g.  MCH R1S1 1500 open 2
 ## Grounds: open   both march at each other on flat open ground
-##          choke  a rock wall right across the map with one gap 6 tiles wide; the Crown holds behind the gap, the Brood
-##                 comes through it
-##          up     a ramp: the Crown holds the top, the Brood comes up at it
+##          set    flat open ground; the Crown stands ready (a line two deep, its guns unlimbered behind) and the Brood
+##                 comes at it: against open this tells the Crown's fighting from the numbers
+##          choke  a rock wall right across the map with one gap 6 tiles wide; the Crown holds behind the gap (set as on
+##                 "set"), the Brood comes through it
+##          up     a ramp: the Crown holds the top (set as on "set"), the Brood comes up at it
+## On set, choke and up the Crown is SET BY HAND as a careful player sets a line (two deep, guns unlimbered, every man on
+## HOLD, riders going at what comes near them): the computer does not move it. Everywhere else the computers fight.
 ##          down   a ramp: the Brood holds the top, the Crown goes up at it
 ## Research by size (what each side plausibly has by then): size < 1000 early, < 2500 mid, else late (TECH below).
 ## One JSON line a fight to out: (python tools/study/battle_lab.py makes the jobs, runs them on every core and the tables).
@@ -75,6 +79,7 @@ const APPROACH := 75.0
 const CONTACT := 300.0
 
 const NOT_FIGHTING := ["band", "band_fifer", "band_piper", "missionary"]
+var _wide := false         # (ground "set": the Crown's foot in a line two deep)
 var _orig := {}            # Unit -> [its kind when placed, its value] (a Horseman unhorsed is an Officer, at the Horseman's price)
 var _ramp_cache := {}
 var _field_cache := {}
@@ -425,6 +430,9 @@ func _block(kinds: Array, n: Dictionary, team: int, at: Vector2, dir: Vector2, l
 		if k in GUNS:
 			sp = 64.0
 		var cols := maxi(1, int(ceil(sqrt(c * 3.0)))) if not k in GUNS else mini(c, 6)
+		if _wide and team == 0 and k in ["musketeer", "dismounted"]:
+			cols = maxi(1, int(ceil(c / 2.0)))       # (the formed line: two ranks)
+			sp = 24.0
 		var kit: Dictionary = g.kit_all(team, k) if team == 0 else {}
 		for i in c:
 			var row := i / cols
@@ -494,8 +502,19 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 	var hold := Vector2.INF    # the side holding: its spot
 	var holder := -1
 	match ground:
+		"set":
+			# (THE FORMED LINE: the Crown stands ready as a careful player sets it, a line two deep across the way the
+			# Brood comes, its guns unlimbered behind it; the Brood comes at it. Against "open" this tells the fighting
+			# from the numbers: the same armies, only the Crown's readiness differs)
+			_wide = true
+			c_at = mid - dir * 12.0 * Defs.TILE
+			b_at = mid + dir * 22.0 * Defs.TILE
+			c_dir = dir
+			hold = c_at
+			holder = 0
 		"choke":
 			_make_choke(mid, dir)
+			_wide = true
 			c_at = mid - dir * 8.0 * Defs.TILE
 			b_at = mid + dir * 26.0 * Defs.TILE
 			c_dir = dir
@@ -509,6 +528,7 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 			var bot: Vector2 = rp[1]
 			var up: Vector2 = rp[2]
 			if ground == "up":
+				_wide = true
 				c_at = top
 				b_at = bot - up * 4.0 * Defs.TILE
 				c_dir = -up
@@ -540,6 +560,15 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 	var bv := value_of(1, bn)
 	var cl := _place(0, cn, c_at, c_dir, lvc, rng)
 	var bl := _place(1, bn, b_at, -c_dir, lvb, rng)
+	var set_at := {}           # (the Crown set by hand: each man's place)
+	if _wide:
+		_wide = false
+		for u in cl:
+			set_at[u] = u.position
+			if u.kind in GUNS:
+				u.cmd_deploy()
+			else:
+				u.cmd_hold()
 	for u in cl:
 		if Defs.AMMO.has(u.kind) or u.kind in GUNS:
 			pass       # (they come out loaded: Unit.setup fills a recruit's shots)
@@ -547,7 +576,10 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 	# hand each army to its computer as a wave
 	var cl_t: Vector2 = hold if holder == 0 else _centre(bl, b_at)
 	var bl_t: Vector2 = hold if holder == 1 else _centre(cl, c_at)
-	_crown_wave(ca, cl, cl_t, true)
+	if set_at.is_empty():
+		_crown_wave(ca, cl, cl_t, true)
+	else:
+		ca.process_mode = Node.PROCESS_MODE_DISABLED       # (the set line: the Crown's computer has no say over it)
 	_brood_wave(ba, bl, bl_t, true)
 	var t0: float = g.clock
 	var contact := -1.0
@@ -604,14 +636,35 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 		# the holder keeps to its spot (its men fight whatever comes in reach); the other goes at it
 		var c_goal: Vector2 = hold if holder == 0 else bc_p
 		var b_goal: Vector2 = hold if holder == 1 else cc_p
-		if not ca._attacking:
+		if not set_at.is_empty():
+			# THE SET LINE (set, choke, up): the Crown stands as it was set, as a player's line on HOLD; nobody walks off
+			# (the computer has no say over it: it would take a hold at a spot of its own for a march's end). Riders
+			# go at whatever comes within 5 tiles of them.
+			for u in _alive(cl):
+				var sp: Vector2 = set_at.get(u, u.position)
+				if u.kind in RIDERS:
+					if u.target == null and u.order != "amove":
+						for o in g.units_near(u.position, 5.0 * Defs.TILE):
+							if o.team == 1 and not o.dead and bl.has(o) and o.position.distance_to(u.position) < 5.0 * Defs.TILE:
+								u.cmd_move(o.position, true)
+								break
+					continue
+				if u.deploys():
+					if u.tesla_mode == "packed" and u.order == "idle":
+						u.cmd_deploy()
+					continue
+				if u.target == null and u.order != "hold" and u.position.distance_to(sp) > 3.0 * Defs.TILE:
+					u.cmd_move(sp)
+				elif u.order == "idle":
+					u.cmd_hold()
+		elif not ca._attacking:
 			pulls[0] += 1
 			_crown_wave(ca, _alive(cl), c_goal, true)
 		else:
 			ca._wave_target = c_goal
 			for u in _alive(cl):
 				ca._wave_set[u] = true
-				if u.order == "idle" and u.target == null and not u.deploys():
+				if u.order == "idle" and u.target == null and not u.deploys() and (holder != 0 or u.position.distance_to(hold) > 10.0 * Defs.TILE):
 					u.cmd_move(c_goal, true)
 		if not ba._attacking:
 			pulls[1] += 1
