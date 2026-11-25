@@ -267,7 +267,21 @@ With the army it builds, the Clockwork needs about **twice the Crown's value** t
 
 ## Claude's choices
 
-@@CHOICES@@
+1. **The enemies in the bench**: the Crown under its own computer's wave (its line, guns, screen, riders); the Brood as an
+   attack-move with its computer taken off (as in the crown-micro bench: its waves go in that way and it would otherwise
+   build); the mirror's enemy under its own push. In the mirror only our side is coached (`cwmicteam:0`).
+2. **The Winders count** in the Clockwork army's value: they cost, and they come with the push.
+3. **The same map and places as crown-micro** (Greenhold; its "open" middle has a hill with two ramps): real fights have
+   terrain too. The other side's start and the hall decide where "home" and "side" are.
+4. **The noise rule**: a part is measured against the mean of two plain runs of the bench, and a t under about 1.5 is noise
+   (two plain runs moved a group's t by up to 0.9). A part is kept only beyond that, and never if it hurts a matchup.
+5. **Nothing kept**, so the game is unchanged. The parts stay in the code, off, with their switches.
+6. **`safe` was tried in real games** although the bench saw nothing: its target (Winders lost over a whole game, about
+   80 a game against the Crown) does not show in a 90-second fight. It stays off unless the real games say otherwise.
+7. **The other armies (bolts, Pendulums, Springers) were measured but not built into the computer**: what to build is the
+   macro, outside this job. They answer the owner's question about where the gap is. 3 fights a cell only.
+8. **The real games use a seed set of their own** (not crown-micro's), the same 10 map and start pairings in every block,
+   so blocks compare game by game.
 
 ## How to run it
 
