@@ -41,6 +41,15 @@ const CwArmy := preload("res://scripts/ai_cw_army.gd")
 const CwBrood := preload("res://scripts/ai_cw_brood.gd")      # (clockwork-v-brood-coach-2, docs/clockwork_v_brood_coach_2.md)
 var army_g = null
 var harass_on := not OS.get_cmdline_user_args().has("cwharass:off")      # (clockwork-ai-v2: `-- cwharass:off` as 0.33.11)
+var mic: AICwMicro = null      # (clockwork-micro: the machines' own fight, scripts/ai_cw_micro.gd)
+
+
+## (clockwork-micro) every tick: the machines' fight micro (Normal and up, gear mode).
+func _cav_tick() -> void:
+	if mic == null and difficulty >= 1 and Defs.gear_mode:
+		mic = AICwMicro.new(self)
+	if mic != null:
+		mic.tick(get_physics_process_delta_time())
 ## The push settings of the plans that have none of their own (Economy, Balanced, the Springer timing and the Clock Soldier
 ## rush after their openings...): the army goes out as the push's block once it has a few in front and the army's own word
 ## (CwArmy.may_launch: stronger than the enemy army it reckons, with a fresh report).
