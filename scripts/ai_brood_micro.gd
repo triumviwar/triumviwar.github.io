@@ -16,8 +16,8 @@ extends RefCounted
 
 const EVERY := 0.25             # s between looks
 ## The parts on by default (kept after the bench) and the ones only tried. Filled in from the measurements.
-const KEPT := ["spread", "focus", "guns", "pack", "kite"]
-const TRIED := ["hurt"]
+const KEPT := ["focus", "pack", "kite"]
+const TRIED := ["spread", "guns", "hurt", "packcw"]
 
 static var counts := {}
 static var _t := {}             # team -> time to the next look
@@ -320,6 +320,8 @@ static func _pack_tick(ai) -> void:
 	var tm: int = ai.team
 	var st: Dictionary = _pack.get(tm, {"on": false, "w": -1.0, "done": false})
 	_pack[tm] = st
+	if ai._foe_is("clockwork") and not on("packcw"):
+		return          # (against the Clockwork its own close-ranks walks the wave: the bench found the pack worse there)
 	if not ai._attacking or ai._wave.size() < 8 or ai._closing or ai._gather_w_on or ai._nb_hunting:
 		if st["on"]:
 			_pack_release(ai, st)
