@@ -189,6 +189,7 @@ func _crown_counters() -> Dictionary:
 		d.merge(preload("res://scripts/ai_wr1000_crown_brood.gd").counters(tm))      # (wr1000-crown-brood: its changes' counters)
 		d.merge(preload("res://scripts/ai_crown_brood_fix.gd").counters(tm))      # (crown-brood-fix: its changes' counters)
 		d.merge(preload("res://scripts/ai_crown_brood_late.gd").counters(tm))     # (crown-brood-late: its parts' counters)
+		d.merge(preload("res://scripts/ai_crown_micro.gd").counters(tm))          # (crown-micro: its parts' counters)
 		var sg = a.get("siege")
 		if sg != null:
 			d["siege_pushes"] = sg.get("pushes")       # (crown-1000-brood: every siege push, what it killed, lost and broke)

@@ -8199,6 +8199,8 @@ func _micro() -> void:
 			continue
 		if u.kind == "clock_soldier" and _patch_up(u):
 			continue
+		if _mic_focus(u):
+			continue             # (crown-micro: the Crown's Musketeers share their volleys out against the Brood, AICrownMicro)
 		if u.order in ["idle", "amove", "hold"] and u.target:
 			var best: Entity = null
 			var bh := INF
@@ -8210,6 +8212,11 @@ func _micro() -> void:
 						best = o
 			if best and best != u.target:
 				u.target = best
+
+
+## (crown-micro, AICrown) the unit's target is the Crown micro's to pick: the lowest-health pick above leaves it be.
+func _mic_focus(_u: Unit) -> bool:
+	return false
 
 
 ## Gear mode (Hard): a Netter about to fire that has picked a worker (Netter.pick nets the most dangerous enemy in reach,
