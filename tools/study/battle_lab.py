@@ -33,7 +33,7 @@ BROOD_NAMES = {
     "R1S3": "Spitters, a few Raptors (3:1)", "S": "Spitters", "B": "Brutes", "RSB": "Raptors, Spitters, Brutes",
     "TC": "Tyrant Challengers", "TCS": "Tyrant Challengers + Spitters", "VC": "Venom Challengers",
     "StC": "Storm Challengers (flyers)", "RSTd": "Raptors, Spitters, Mist Toads", "RSy": "Raptors and Spitters with the Tyrant Sire"}
-SIZE_NAME = {600: "early (600)", 1500: "mid (1,500)", 4000: "late (4,000)"}
+SIZE_NAME = {-150: "at the supply cap (150 army supply each, late research)", 600: "early (600)", 1500: "mid (1,500)", 4000: "late (4,000)"}
 GROUND_NAME = {"open": "open field", "set": "the set line (open ground, the Crown formed, guns up)", "block": "the set block (open ground, the Crown in a close block, guns up)", "choke": "a choke", "up": "a ramp, the Crown on top", "down": "a ramp, the Brood on top"}
 
 

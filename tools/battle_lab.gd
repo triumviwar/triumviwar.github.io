@@ -27,6 +27,7 @@ extends SceneTree
 ## HOLD, riders going at what comes near them): the computer does not move it. Everywhere else the computers fight.
 ##          down   a ramp: the Brood holds the top, the Crown goes up at it
 ## Research by size (what each side plausibly has by then): size < 1000 early, < 2500 mid, else late (TECH below).
+## A size below 0 is EQUAL SUPPLY: -150 = each side as big as 150 supply allows (late research), the values left unequal.
 ## One JSON line a fight to out: (python tools/study/battle_lab.py makes the jobs, runs them on every core and the tables).
 var main: Node
 var g: Game
@@ -470,7 +471,27 @@ func _place(team: int, n: Dictionary, at: Vector2, dir: Vector2, lv: int, rng: R
 # ------------------------------------------------------------------ one fight
 
 func _size_band(size: int) -> String:
+	if size < 0:
+		return "late"            # (an army at the supply cap: late research)
 	return "early" if size < 1000 else ("mid" if size < 2500 else "late")
+
+
+func supply_of(n: Dictionary) -> int:
+	var s := 0
+	for k in n:
+		s += int(Defs.UNITS[k]["supply"]) * int(n[k])
+	return s
+
+
+## EQUAL SUPPLY (a size below 0: -150 = 150 supply each): the composition's value shares kept, the army made as big as
+## `sup` supply allows (the late game at the cap, where supply, not money, is the limit).
+func counts_supply(t: int, mix: Dictionary, sup: int) -> Dictionary:
+	var b := 4000.0
+	var n := counts(t, mix, b)
+	for i in 6:
+		b *= float(sup) / maxf(1.0, float(supply_of(n)))
+		n = counts(t, mix, b)
+	return n
 
 
 func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dictionary:
@@ -557,11 +578,17 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 			c_dir = dir
 	var lvc := int(g.height[g.idx(g.cell_of(c_at))])
 	var lvb := int(g.height[g.idx(g.cell_of(b_at))])
-	var cn := counts(0, CROWN[cc], float(size))
+	var cn := counts(0, CROWN[cc], float(size)) if size > 0 else counts_supply(0, CROWN[cc], -size)
 	var cv := value_of(0, cn)
 	var bmix: Dictionary = BROOD[bc]
 	var bn: Dictionary
-	if bmix.has("tyrannosaur"):
+	if size < 0:
+		var rest := bmix.duplicate()
+		rest.erase("tyrannosaur")
+		bn = counts_supply(1, rest, -size - (int(Defs.UNITS["tyrannosaur"]["supply"]) if bmix.has("tyrannosaur") else 0))
+		if bmix.has("tyrannosaur"):
+			bn["tyrannosaur"] = 1
+	elif bmix.has("tyrannosaur"):
 		var rest := bmix.duplicate()
 		rest.erase("tyrannosaur")
 		bn = counts(1, rest, cv - price(1, "tyrannosaur"))
@@ -702,7 +729,7 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 			shot_n += 1
 	# the result
 	var r := {"crown": cc, "brood": bc, "size": size, "ground": ground, "seed": sd, "band": band,
-		"crown_n": cn, "brood_n": bn, "crown_value": cv, "brood_value": bv,
+		"crown_n": cn, "brood_n": bn, "crown_value": cv, "brood_value": bv, "crown_supply": supply_of(cn), "brood_supply": supply_of(bn),
 		"contact": snappedf(contact - t0, 0.5) if contact >= 0.0 else -1.0,
 		"time": snappedf(g.clock - (contact if contact >= 0.0 else t0), 0.5), "pulls": pulls,
 		"guns": guns.size(), "guns_set_contact": guns_set_contact, "guns_set_10": guns_set_10, "guns_fired_20": guns_fired_20}
