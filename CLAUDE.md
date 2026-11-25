@@ -26,6 +26,24 @@
 
 ## Current work
 
+- BATTLE MATRIX (owner 2026-11-25 "forget economy... a gigantic round of battles... what counters what"; job battle-matrix,
+  MERGED 0.38.211, docs/battle_matrix.md, tables docs/battle_matrix/tables.md, tools/battle_lab.gd + tools/study/battle_lab.py):
+  8,450 equal-value Crown v Brood fights (13 x 13 comps, sizes 600/1,500/4,000 + at the cap, six grounds), no economy, each
+  side its own computer, no retreat. The Crown's real wave beats the Brood's real waves at every size (58-73); blind best
+  picks give the Crown 57-61 of every 100 lost (Sire at home); weak early, strong late. Strongest per coin: the TYRANT
+  SIRE in a wave (beats every Crown army early/mid) and Venom Challengers (only Musketeers + Horsemen beat them). Weak:
+  Dragoon armies (ride in, 0.8 s to get off, fire slower) and Mortars in the field. Best Crown army: Musketeers + Horsemen
+  (70/30). The Crown's big FIGHTING fault: guns never set at contact (0 of 3,627); set, worth 15-20 points. Verdict: no
+  evidence the Brood's fighting is the problem; the lab cannot see the economy. Proposals: guns at contact, more riders v
+  the Brood, fewer Mortars/no Dragoon armies; balance questions (Sire at 150, Venom v riderless, Dragoon, Officer per supply).
+- CROWN MICRO (owner 2026-11-25 "micro training the AI"; job crown-micro, MERGED 0.38.210, docs/crown_micro.md,
+  scripts/ai_crown_micro.gd AICrownMicro, bench tools/bench_crown_micro.gd): the Crown computer's fight v the Brood only:
+  KEPT riders (idle Horsemen ride in for the guns/men), brace (the marching wave halts and sets guns), kite (step back from
+  Brutes), gunpick (round shot on armour, shells on clumps); off: canister, hurt, focus (`cmic:off`, `cmic<name>:on/off`).
+  Bench: equal-value real armies, the Crown won 22/24 -> 24/24, kills 3.5x what it loses. 30 real games: better at 14:00
+  (10/15, t 2.3), within noise at 20:00 (won or led 5/15 v 3/15). VERDICT: the remaining gap is NOT fighting: the Brood
+  out-earns it from ~10:00, Musketeers dry, pushes into the Brood base with guns not set. test_cav_micro fails since
+  crown-rule-cleanup (StubAI has no _foe, ai_crown_rules.gd:39): fix the stub.
 - ACT 3 PLANNED (owner 2026-11-25 "write act 3 so we have a clear view of the choice"; job campaign-act3-plan, branch
   campaign-act3-plan, docs only: docs/campaign_act3_plan.md): THE FALL OF THE COLONIES 2781-2790 + THE FINALE (2795, the
   present), 20 missions e01-e20 (15 core, 5 optional): four theatres free of each other on the WORLD war map with a
