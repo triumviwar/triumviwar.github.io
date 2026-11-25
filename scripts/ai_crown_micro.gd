@@ -700,4 +700,4 @@ func _pick_shots(mine: Array) -> void:
 		u.target = best
 		u.scan_t = maxf(u.scan_t, EVERY + 0.15)
 		_picked[u] = game.clock
-		count(ai.team, "winders" if sup.has(best.kind) else "shields")
+		count(ai.team, "winders" if sup.has(best.kind) else ("shields" if sh else "pick"))
