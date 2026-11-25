@@ -235,12 +235,12 @@ def main():
             md.append(f"- {sz}: the Brood wins open but the Crown wins set: {', '.join(fx[sz]['flip']) or 'none'}. "
                       f"The Brood wins both: {', '.join(fx[sz]['brood_both']) or 'none'}.")
         # by Crown composition
-        md.append("\n| Crown composition | " + " | ".join(f"open {sz} | set {sz}" for sz in sizes) + " |")
-        md.append("|---|" + "---|---|" * len(sizes))
+        md.append("\n| Crown composition | " + " | ".join(f"open {sz} | set {sz} | block {sz}" for sz in sizes) + " |")
+        md.append("|---|" + "---|---|---|" * len(sizes))
         for c in bl.CROWN:
             line = [c]
             for sz in sizes:
-                for g in ("open", "set"):
+                for g in ("open", "set", "block"):
                     sc = [r["score"] for b in bl.BROOD for r in cl.get((c, b, sz, g), [])]
                     line.append(pct(sum(sc) / len(sc)) if sc else "")
             md.append("| " + " | ".join(line) + " |")

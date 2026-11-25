@@ -1,5 +1,13 @@
 {
  "cells": {
+  "CH|B|1500|block": {
+   "ci": 0.222,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.718,
+   "trade": 2.56,
+   "v": "="
+  },
   "CH|B|1500|choke": {
    "ci": 0.271,
    "crown_wins": 3.0,
@@ -9,12 +17,12 @@
    "v": "="
   },
   "CH|B|1500|down": {
-   "ci": null,
+   "ci": 0.145,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.101,
-   "trade": 0.11,
-   "v": "="
+   "n": 3,
+   "score": 0.034,
+   "trade": 0.04,
+   "v": "B"
   },
   "CH|B|1500|open": {
    "ci": 0.0,
@@ -40,6 +48,14 @@
    "trade": 511.64,
    "v": "="
   },
+  "CH|B|4000|block": {
+   "ci": 0.622,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.861,
+   "trade": 7.2,
+   "v": "="
+  },
   "CH|B|4000|open": {
    "ci": 0.13,
    "crown_wins": 4.0,
@@ -55,6 +71,14 @@
    "score": 0.877,
    "trade": 8.15,
    "v": "C"
+  },
+  "CH|B|600|block": {
+   "ci": 1.499,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.118,
+   "trade": 0.15,
+   "v": "="
   },
   "CH|B|600|open": {
    "ci": 0.188,
@@ -72,6 +96,14 @@
    "trade": 0.1,
    "v": "B"
   },
+  "CH|R1S1|1500|block": {
+   "ci": 0.279,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.76,
+   "trade": 3.21,
+   "v": "="
+  },
   "CH|R1S1|1500|choke": {
    "ci": 0.134,
    "crown_wins": 3.0,
@@ -81,12 +113,12 @@
    "v": "C"
   },
   "CH|R1S1|1500|down": {
-   "ci": null,
+   "ci": 0.021,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.404,
-   "trade": 0.68,
-   "v": "="
+   "n": 3,
+   "score": 0.4,
+   "trade": 0.67,
+   "v": "B"
   },
   "CH|R1S1|1500|open": {
    "ci": 0.186,
@@ -112,6 +144,14 @@
    "trade": 7.7,
    "v": "="
   },
+  "CH|R1S1|4000|block": {
+   "ci": 0.495,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.843,
+   "trade": 5.79,
+   "v": "="
+  },
   "CH|R1S1|4000|open": {
    "ci": 0.101,
    "crown_wins": 4.0,
@@ -126,6 +166,14 @@
    "n": 3,
    "score": 0.891,
    "trade": 8.31,
+   "v": "C"
+  },
+  "CH|R1S1|600|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.836,
+   "trade": 5.1,
    "v": "C"
   },
   "CH|R1S1|600|open": {
@@ -144,6 +192,14 @@
    "trade": 2.48,
    "v": "="
   },
+  "CH|R1S3|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.88,
+   "trade": 7.33,
+   "v": "C"
+  },
   "CH|R1S3|1500|choke": {
    "ci": 0.142,
    "crown_wins": 3.0,
@@ -153,11 +209,11 @@
    "v": "C"
   },
   "CH|R1S3|1500|down": {
-   "ci": null,
+   "ci": 0.123,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.411,
-   "trade": 0.7,
+   "n": 3,
+   "score": 0.419,
+   "trade": 0.73,
    "v": "="
   },
   "CH|R1S3|1500|open": {
@@ -184,6 +240,14 @@
    "trade": 4.89,
    "v": "C"
   },
+  "CH|R1S3|4000|block": {
+   "ci": 0.083,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.784,
+   "trade": 3.63,
+   "v": "C"
+  },
   "CH|R1S3|4000|open": {
    "ci": 0.201,
    "crown_wins": 3.0,
@@ -199,6 +263,14 @@
    "score": 0.811,
    "trade": 4.51,
    "v": "C"
+  },
+  "CH|R1S3|600|block": {
+   "ci": 1.981,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.46,
+   "trade": 1.03,
+   "v": "="
   },
   "CH|R1S3|600|open": {
    "ci": 0.481,
@@ -216,6 +288,14 @@
    "trade": 1.28,
    "v": "="
   },
+  "CH|R3S1|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 1.0,
+   "trade": 1530.0,
+   "v": "C"
+  },
   "CH|R3S1|1500|choke": {
    "ci": 0.153,
    "crown_wins": 3.0,
@@ -225,11 +305,11 @@
    "v": "C"
   },
   "CH|R3S1|1500|down": {
-   "ci": null,
+   "ci": 0.193,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.471,
-   "trade": 0.89,
+   "n": 3,
+   "score": 0.416,
+   "trade": 0.73,
    "v": "="
   },
   "CH|R3S1|1500|open": {
@@ -256,6 +336,14 @@
    "trade": 515.64,
    "v": "="
   },
+  "CH|R3S1|4000|block": {
+   "ci": 0.978,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.86,
+   "trade": 9.29,
+   "v": "="
+  },
   "CH|R3S1|4000|open": {
    "ci": 0.147,
    "crown_wins": 4.0,
@@ -271,6 +359,14 @@
    "score": 0.874,
    "trade": 9.23,
    "v": "C"
+  },
+  "CH|R3S1|600|block": {
+   "ci": 3.086,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.594,
+   "trade": 2.84,
+   "v": "="
   },
   "CH|R3S1|600|open": {
    "ci": 0.344,
@@ -288,6 +384,14 @@
    "trade": 1.3,
    "v": "="
   },
+  "CH|RSB|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.935,
+   "trade": 14.33,
+   "v": "C"
+  },
   "CH|RSB|1500|choke": {
    "ci": 0.134,
    "crown_wins": 3.0,
@@ -297,11 +401,11 @@
    "v": "C"
   },
   "CH|RSB|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.378,
-   "trade": 0.61,
+   "ci": 0.413,
+   "crown_wins": 0.5,
+   "n": 3,
+   "score": 0.38,
+   "trade": 0.7,
    "v": "="
   },
   "CH|RSB|1500|open": {
@@ -328,6 +432,14 @@
    "trade": 4.34,
    "v": "="
   },
+  "CH|RSB|4000|block": {
+   "ci": 0.749,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.823,
+   "trade": 5.37,
+   "v": "="
+  },
   "CH|RSB|4000|open": {
    "ci": 0.163,
    "crown_wins": 3.0,
@@ -343,6 +455,14 @@
    "score": 0.794,
    "trade": 3.95,
    "v": "C"
+  },
+  "CH|RSB|600|block": {
+   "ci": 0.197,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.396,
+   "trade": 0.66,
+   "v": "="
   },
   "CH|RSB|600|open": {
    "ci": 0.089,
@@ -360,6 +480,14 @@
    "trade": 0.58,
    "v": "="
   },
+  "CH|RSTd|1500|block": {
+   "ci": 0.318,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.853,
+   "trade": 6.01,
+   "v": "C"
+  },
   "CH|RSTd|1500|choke": {
    "ci": 0.0,
    "crown_wins": 3.0,
@@ -369,12 +497,12 @@
    "v": "C"
   },
   "CH|RSTd|1500|down": {
-   "ci": null,
+   "ci": 0.114,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.303,
-   "trade": 0.43,
-   "v": "="
+   "n": 3,
+   "score": 0.35,
+   "trade": 0.54,
+   "v": "B"
   },
   "CH|RSTd|1500|open": {
    "ci": 0.208,
@@ -400,6 +528,14 @@
    "trade": 9.62,
    "v": "C"
   },
+  "CH|RSTd|4000|block": {
+   "ci": 0.203,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.867,
+   "trade": 6.63,
+   "v": "C"
+  },
   "CH|RSTd|4000|open": {
    "ci": 0.091,
    "crown_wins": 4.0,
@@ -415,6 +551,14 @@
    "score": 0.846,
    "trade": 5.47,
    "v": "C"
+  },
+  "CH|RSTd|600|block": {
+   "ci": 0.559,
+   "crown_wins": 0.5,
+   "n": 2,
+   "score": 0.527,
+   "trade": 1.13,
+   "v": "="
   },
   "CH|RSTd|600|open": {
    "ci": 0.524,
@@ -432,6 +576,14 @@
    "trade": 188.89,
    "v": "="
   },
+  "CH|RSy|1500|block": {
+   "ci": 0.514,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.514,
+   "trade": 1.07,
+   "v": "="
+  },
   "CH|RSy|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -441,12 +593,12 @@
    "v": "B"
   },
   "CH|RSy|1500|down": {
-   "ci": null,
+   "ci": 0.085,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.257,
-   "trade": 0.35,
-   "v": "="
+   "n": 3,
+   "score": 0.247,
+   "trade": 0.33,
+   "v": "B"
   },
   "CH|RSy|1500|open": {
    "ci": 0.041,
@@ -472,6 +624,14 @@
    "trade": 0.89,
    "v": "="
   },
+  "CH|RSy|4000|block": {
+   "ci": 1.422,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.586,
+   "trade": 1.61,
+   "v": "="
+  },
   "CH|RSy|4000|open": {
    "ci": 0.134,
    "crown_wins": 1.0,
@@ -486,6 +646,14 @@
    "n": 3,
    "score": 0.571,
    "trade": 1.4,
+   "v": "="
+  },
+  "CH|RSy|600|block": {
+   "ci": 0.743,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.326,
+   "trade": 0.49,
    "v": "="
   },
   "CH|RSy|600|open": {
@@ -504,6 +672,14 @@
    "trade": 0.51,
    "v": "B"
   },
+  "CH|R|1500|block": {
+   "ci": 0.413,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.968,
+   "trade": 757.14,
+   "v": "C"
+  },
   "CH|R|1500|choke": {
    "ci": 0.392,
    "crown_wins": 3.0,
@@ -513,11 +689,11 @@
    "v": "="
   },
   "CH|R|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.292,
-   "trade": 0.41,
+   "ci": 0.292,
+   "crown_wins": 0.5,
+   "n": 3,
+   "score": 0.424,
+   "trade": 0.78,
    "v": "="
   },
   "CH|R|1500|open": {
@@ -544,6 +720,14 @@
    "trade": 8.17,
    "v": "C"
   },
+  "CH|R|4000|block": {
+   "ci": 0.286,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.82,
+   "trade": 4.62,
+   "v": "C"
+  },
   "CH|R|4000|open": {
    "ci": 0.047,
    "crown_wins": 4.0,
@@ -559,6 +743,14 @@
    "score": 0.756,
    "trade": 3.43,
    "v": "C"
+  },
+  "CH|R|600|block": {
+   "ci": 3.404,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.732,
+   "trade": 275.44,
+   "v": "="
   },
   "CH|R|600|open": {
    "ci": 0.52,
@@ -576,6 +768,14 @@
    "trade": 183.91,
    "v": "="
   },
+  "CH|StC|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
+  },
   "CH|StC|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -585,12 +785,12 @@
    "v": "B"
   },
   "CH|StC|1500|down": {
-   "ci": null,
+   "ci": 0.0,
    "crown_wins": 0.0,
-   "n": 1,
+   "n": 3,
    "score": 0.0,
    "trade": 0.0,
-   "v": "="
+   "v": "B"
   },
   "CH|StC|1500|open": {
    "ci": 0.097,
@@ -616,6 +816,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "CH|StC|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
+  },
   "CH|StC|4000|open": {
    "ci": 0.101,
    "crown_wins": 0.0,
@@ -628,6 +836,14 @@
    "ci": 0.0,
    "crown_wins": 0.0,
    "n": 3,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
+  },
+  "CH|StC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
    "score": 0.0,
    "trade": 0.0,
    "v": "B"
@@ -648,6 +864,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "CH|S|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.518,
+   "trade": 1.08,
+   "v": "C"
+  },
   "CH|S|1500|choke": {
    "ci": 0.398,
    "crown_wins": 1.0,
@@ -657,11 +881,11 @@
    "v": "="
   },
   "CH|S|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.36,
-   "trade": 0.56,
+   "ci": 0.665,
+   "crown_wins": 0.5,
+   "n": 3,
+   "score": 0.625,
+   "trade": 3.6,
    "v": "="
   },
   "CH|S|1500|open": {
@@ -688,6 +912,14 @@
    "trade": 4.56,
    "v": "C"
   },
+  "CH|S|4000|block": {
+   "ci": 1.638,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.583,
+   "trade": 1.66,
+   "v": "="
+  },
   "CH|S|4000|open": {
    "ci": 0.133,
    "crown_wins": 0.0,
@@ -702,6 +934,14 @@
    "n": 3,
    "score": 0.609,
    "trade": 1.83,
+   "v": "="
+  },
+  "CH|S|600|block": {
+   "ci": 3.118,
+   "crown_wins": 1.5,
+   "n": 2,
+   "score": 0.754,
+   "trade": 285.52,
    "v": "="
   },
   "CH|S|600|open": {
@@ -720,6 +960,14 @@
    "trade": 193.62,
    "v": "C"
   },
+  "CH|TCS|1500|block": {
+   "ci": 1.848,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.682,
+   "trade": 2.98,
+   "v": "="
+  },
   "CH|TCS|1500|choke": {
    "ci": 0.118,
    "crown_wins": 3.0,
@@ -729,11 +977,11 @@
    "v": "C"
   },
   "CH|TCS|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.475,
-   "trade": 0.9,
+   "ci": 0.132,
+   "crown_wins": 0.5,
+   "n": 3,
+   "score": 0.477,
+   "trade": 0.92,
    "v": "="
   },
   "CH|TCS|1500|open": {
@@ -760,6 +1008,14 @@
    "trade": 1.39,
    "v": "="
   },
+  "CH|TCS|4000|block": {
+   "ci": 0.622,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.792,
+   "trade": 4.09,
+   "v": "="
+  },
   "CH|TCS|4000|open": {
    "ci": 0.202,
    "crown_wins": 2.0,
@@ -775,6 +1031,14 @@
    "score": 0.778,
    "trade": 3.73,
    "v": "C"
+  },
+  "CH|TCS|600|block": {
+   "ci": 2.496,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.803,
+   "trade": 253.27,
+   "v": "="
   },
   "CH|TCS|600|open": {
    "ci": 0.465,
@@ -792,6 +1056,14 @@
    "trade": 0.48,
    "v": "="
   },
+  "CH|TC|1500|block": {
+   "ci": 0.578,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.656,
+   "trade": 1.96,
+   "v": "="
+  },
   "CH|TC|1500|choke": {
    "ci": 0.347,
    "crown_wins": 2.0,
@@ -801,11 +1073,11 @@
    "v": "="
   },
   "CH|TC|1500|down": {
-   "ci": null,
+   "ci": 1.207,
    "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.874,
-   "trade": 6.94,
+   "n": 3,
+   "score": 0.314,
+   "trade": 2.34,
    "v": "="
   },
   "CH|TC|1500|open": {
@@ -832,6 +1104,14 @@
    "trade": 2.94,
    "v": "="
   },
+  "CH|TC|4000|block": {
+   "ci": 0.216,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.717,
+   "trade": 2.54,
+   "v": "C"
+  },
   "CH|TC|4000|open": {
    "ci": 0.048,
    "crown_wins": 4.0,
@@ -847,6 +1127,14 @@
    "score": 0.705,
    "trade": 2.4,
    "v": "C"
+  },
+  "CH|TC|600|block": {
+   "ci": 1.321,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.271,
+   "trade": 0.4,
+   "v": "="
   },
   "CH|TC|600|open": {
    "ci": 0.354,
@@ -864,6 +1152,14 @@
    "trade": 0.33,
    "v": "="
   },
+  "CH|VC|1500|block": {
+   "ci": 0.591,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.356,
+   "trade": 0.56,
+   "v": "="
+  },
   "CH|VC|1500|choke": {
    "ci": 0.435,
    "crown_wins": 2.0,
@@ -873,12 +1169,12 @@
    "v": "="
   },
   "CH|VC|1500|down": {
-   "ci": null,
+   "ci": 0.085,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.124,
-   "trade": 0.14,
-   "v": "="
+   "n": 3,
+   "score": 0.163,
+   "trade": 0.19,
+   "v": "B"
   },
   "CH|VC|1500|open": {
    "ci": 0.098,
@@ -904,6 +1200,14 @@
    "trade": 1.56,
    "v": "="
   },
+  "CH|VC|4000|block": {
+   "ci": 0.165,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.889,
+   "trade": 8.12,
+   "v": "C"
+  },
   "CH|VC|4000|open": {
    "ci": 0.11,
    "crown_wins": 4.0,
@@ -918,6 +1222,14 @@
    "n": 3,
    "score": 0.868,
    "trade": 6.6,
+   "v": "C"
+  },
+  "CH|VC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.609,
+   "trade": 1.56,
    "v": "C"
   },
   "CH|VC|600|open": {
@@ -936,6 +1248,14 @@
    "trade": 1.56,
    "v": "C"
   },
+  "D|B|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
+  },
   "D|B|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -945,12 +1265,12 @@
    "v": "B"
   },
   "D|B|1500|down": {
-   "ci": null,
+   "ci": 0.236,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.0,
-   "trade": 0.0,
-   "v": "="
+   "n": 3,
+   "score": 0.098,
+   "trade": 0.12,
+   "v": "B"
   },
   "D|B|1500|open": {
    "ci": 0.119,
@@ -976,6 +1296,14 @@
    "trade": 0.04,
    "v": "B"
   },
+  "D|B|4000|block": {
+   "ci": 0.222,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.096,
+   "trade": 0.11,
+   "v": "B"
+  },
   "D|B|4000|open": {
    "ci": 0.091,
    "crown_wins": 0.0,
@@ -990,6 +1318,14 @@
    "n": 3,
    "score": 0.164,
    "trade": 0.2,
+   "v": "B"
+  },
+  "D|B|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "D|B|600|open": {
@@ -1008,6 +1344,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "D|R1S1|1500|block": {
+   "ci": 0.254,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.246,
+   "trade": 0.32,
+   "v": "="
+  },
   "D|R1S1|1500|choke": {
    "ci": 0.1,
    "crown_wins": 0.0,
@@ -1017,12 +1361,12 @@
    "v": "B"
   },
   "D|R1S1|1500|down": {
-   "ci": null,
+   "ci": 0.123,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.236,
-   "trade": 0.31,
-   "v": "="
+   "n": 3,
+   "score": 0.287,
+   "trade": 0.41,
+   "v": "B"
   },
   "D|R1S1|1500|open": {
    "ci": 0.059,
@@ -1048,6 +1392,14 @@
    "trade": 0.22,
    "v": "B"
   },
+  "D|R1S1|4000|block": {
+   "ci": 0.311,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.29,
+   "trade": 0.41,
+   "v": "="
+  },
   "D|R1S1|4000|open": {
    "ci": 0.285,
    "crown_wins": 0.0,
@@ -1063,6 +1415,14 @@
    "score": 0.304,
    "trade": 0.44,
    "v": "B"
+  },
+  "D|R1S1|600|block": {
+   "ci": 0.883,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.112,
+   "trade": 0.13,
+   "v": "="
   },
   "D|R1S1|600|open": {
    "ci": 0.0,
@@ -1080,6 +1440,14 @@
    "trade": 0.15,
    "v": "B"
   },
+  "D|R1S3|1500|block": {
+   "ci": 0.133,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.204,
+   "trade": 0.26,
+   "v": "B"
+  },
   "D|R1S3|1500|choke": {
    "ci": 0.03,
    "crown_wins": 0.0,
@@ -1089,12 +1457,12 @@
    "v": "B"
   },
   "D|R1S3|1500|down": {
-   "ci": null,
+   "ci": 0.04,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.21,
-   "trade": 0.27,
-   "v": "="
+   "n": 3,
+   "score": 0.207,
+   "trade": 0.26,
+   "v": "B"
   },
   "D|R1S3|1500|open": {
    "ci": 0.128,
@@ -1120,6 +1488,14 @@
    "trade": 0.25,
    "v": "B"
   },
+  "D|R1S3|4000|block": {
+   "ci": 0.083,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.249,
+   "trade": 0.33,
+   "v": "B"
+  },
   "D|R1S3|4000|open": {
    "ci": 0.144,
    "crown_wins": 0.0,
@@ -1134,6 +1510,14 @@
    "n": 3,
    "score": 0.254,
    "trade": 0.34,
+   "v": "B"
+  },
+  "D|R1S3|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.15,
+   "trade": 0.18,
    "v": "B"
   },
   "D|R1S3|600|open": {
@@ -1152,6 +1536,14 @@
    "trade": 0.18,
    "v": "B"
   },
+  "D|R3S1|1500|block": {
+   "ci": 0.629,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.276,
+   "trade": 0.39,
+   "v": "="
+  },
   "D|R3S1|1500|choke": {
    "ci": 0.129,
    "crown_wins": 0.0,
@@ -1161,12 +1553,12 @@
    "v": "B"
   },
   "D|R3S1|1500|down": {
-   "ci": null,
+   "ci": 0.247,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.319,
-   "trade": 0.47,
-   "v": "="
+   "n": 3,
+   "score": 0.204,
+   "trade": 0.27,
+   "v": "B"
   },
   "D|R3S1|1500|open": {
    "ci": 0.03,
@@ -1192,6 +1584,14 @@
    "trade": 0.26,
    "v": "B"
   },
+  "D|R3S1|4000|block": {
+   "ci": 0.317,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.288,
+   "trade": 0.41,
+   "v": "="
+  },
   "D|R3S1|4000|open": {
    "ci": 0.005,
    "crown_wins": 0.0,
@@ -1207,6 +1607,14 @@
    "score": 0.271,
    "trade": 0.37,
    "v": "B"
+  },
+  "D|R3S1|600|block": {
+   "ci": 0.984,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.159,
+   "trade": 0.2,
+   "v": "="
   },
   "D|R3S1|600|open": {
    "ci": 0.0,
@@ -1224,6 +1632,14 @@
    "trade": 0.09,
    "v": "B"
   },
+  "D|RSB|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.237,
+   "trade": 0.31,
+   "v": "B"
+  },
   "D|RSB|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -1233,11 +1649,11 @@
    "v": "B"
   },
   "D|RSB|1500|down": {
-   "ci": null,
+   "ci": 0.249,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.202,
-   "trade": 0.25,
+   "n": 3,
+   "score": 0.308,
+   "trade": 0.47,
    "v": "="
   },
   "D|RSB|1500|open": {
@@ -1264,6 +1680,14 @@
    "trade": 0.28,
    "v": "B"
   },
+  "D|RSB|4000|block": {
+   "ci": 0.083,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.281,
+   "trade": 0.39,
+   "v": "B"
+  },
   "D|RSB|4000|open": {
    "ci": 0.08,
    "crown_wins": 0.0,
@@ -1278,6 +1702,14 @@
    "n": 3,
    "score": 0.293,
    "trade": 0.42,
+   "v": "B"
+  },
+  "D|RSB|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.15,
+   "trade": 0.18,
    "v": "B"
   },
   "D|RSB|600|open": {
@@ -1296,6 +1728,14 @@
    "trade": 0.18,
    "v": "B"
   },
+  "D|RSTd|1500|block": {
+   "ci": 0.21,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.291,
+   "trade": 0.41,
+   "v": "="
+  },
   "D|RSTd|1500|choke": {
    "ci": 0.023,
    "crown_wins": 0.0,
@@ -1305,12 +1745,12 @@
    "v": "B"
   },
   "D|RSTd|1500|down": {
-   "ci": null,
+   "ci": 0.037,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.324,
-   "trade": 0.48,
-   "v": "="
+   "n": 3,
+   "score": 0.315,
+   "trade": 0.46,
+   "v": "B"
   },
   "D|RSTd|1500|open": {
    "ci": 0.142,
@@ -1336,6 +1776,14 @@
    "trade": 0.33,
    "v": "B"
   },
+  "D|RSTd|4000|block": {
+   "ci": 0.032,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.311,
+   "trade": 0.46,
+   "v": "B"
+  },
   "D|RSTd|4000|open": {
    "ci": 0.24,
    "crown_wins": 0.0,
@@ -1350,6 +1798,14 @@
    "n": 3,
    "score": 0.31,
    "trade": 0.45,
+   "v": "B"
+  },
+  "D|RSTd|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.21,
+   "trade": 0.27,
    "v": "B"
   },
   "D|RSTd|600|open": {
@@ -1368,6 +1824,14 @@
    "trade": 0.32,
    "v": "B"
   },
+  "D|RSy|1500|block": {
+   "ci": 0.076,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.153,
+   "trade": 0.18,
+   "v": "B"
+  },
   "D|RSy|1500|choke": {
    "ci": 0.109,
    "crown_wins": 0.0,
@@ -1377,12 +1841,12 @@
    "v": "B"
   },
   "D|RSy|1500|down": {
-   "ci": null,
+   "ci": 0.001,
    "crown_wins": 0.0,
-   "n": 1,
+   "n": 3,
    "score": 0.193,
    "trade": 0.24,
-   "v": "="
+   "v": "B"
   },
   "D|RSy|1500|open": {
    "ci": 0.08,
@@ -1408,6 +1872,14 @@
    "trade": 0.25,
    "v": "B"
   },
+  "D|RSy|4000|block": {
+   "ci": 0.038,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.313,
+   "trade": 0.46,
+   "v": "B"
+  },
   "D|RSy|4000|open": {
    "ci": 0.006,
    "crown_wins": 0.0,
@@ -1423,6 +1895,14 @@
    "score": 0.285,
    "trade": 0.4,
    "v": "B"
+  },
+  "D|RSy|600|block": {
+   "ci": 0.705,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.206,
+   "trade": 0.27,
+   "v": "="
   },
   "D|RSy|600|open": {
    "ci": 0.0,
@@ -1440,6 +1920,14 @@
    "trade": 0.13,
    "v": "B"
   },
+  "D|R|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.121,
+   "trade": 0.14,
+   "v": "B"
+  },
   "D|R|1500|choke": {
    "ci": 0.085,
    "crown_wins": 0.0,
@@ -1449,12 +1937,12 @@
    "v": "B"
   },
   "D|R|1500|down": {
-   "ci": null,
+   "ci": 0.247,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.033,
-   "trade": 0.03,
-   "v": "="
+   "n": 3,
+   "score": 0.09,
+   "trade": 0.11,
+   "v": "B"
   },
   "D|R|1500|open": {
    "ci": 0.014,
@@ -1480,6 +1968,14 @@
    "trade": 0.3,
    "v": "B"
   },
+  "D|R|4000|block": {
+   "ci": 0.229,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.202,
+   "trade": 0.26,
+   "v": "B"
+  },
   "D|R|4000|open": {
    "ci": 0.021,
    "crown_wins": 0.0,
@@ -1495,6 +1991,14 @@
    "score": 0.226,
    "trade": 0.29,
    "v": "B"
+  },
+  "D|R|600|block": {
+   "ci": 1.333,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.105,
+   "trade": 0.14,
+   "v": "="
   },
   "D|R|600|open": {
    "ci": 0.0,
@@ -1512,6 +2016,14 @@
    "trade": 0.1,
    "v": "B"
   },
+  "D|StC|1500|block": {
+   "ci": 0.565,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.154,
+   "trade": 0.18,
+   "v": "="
+  },
   "D|StC|1500|choke": {
    "ci": 0.103,
    "crown_wins": 0.0,
@@ -1521,12 +2033,12 @@
    "v": "B"
   },
   "D|StC|1500|down": {
-   "ci": null,
+   "ci": 0.285,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.0,
-   "trade": 0.0,
-   "v": "="
+   "n": 3,
+   "score": 0.066,
+   "trade": 0.08,
+   "v": "B"
   },
   "D|StC|1500|open": {
    "ci": 0.0,
@@ -1552,6 +2064,14 @@
    "trade": 0.29,
    "v": "B"
   },
+  "D|StC|4000|block": {
+   "ci": 0.089,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.426,
+   "trade": 0.74,
+   "v": "="
+  },
   "D|StC|4000|open": {
    "ci": 0.058,
    "crown_wins": 0.0,
@@ -1567,6 +2087,14 @@
    "score": 0.395,
    "trade": 0.66,
    "v": "="
+  },
+  "D|StC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
   },
   "D|StC|600|open": {
    "ci": 0.0,
@@ -1584,6 +2112,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "D|S|1500|block": {
+   "ci": 0.184,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.046,
+   "trade": 0.05,
+   "v": "B"
+  },
   "D|S|1500|choke": {
    "ci": 0.04,
    "crown_wins": 0.0,
@@ -1593,12 +2129,12 @@
    "v": "B"
   },
   "D|S|1500|down": {
-   "ci": null,
+   "ci": 0.12,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.227,
-   "trade": 0.29,
-   "v": "="
+   "n": 3,
+   "score": 0.232,
+   "trade": 0.3,
+   "v": "B"
   },
   "D|S|1500|open": {
    "ci": 0.037,
@@ -1624,6 +2160,14 @@
    "trade": 0.05,
    "v": "B"
   },
+  "D|S|4000|block": {
+   "ci": 0.057,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.102,
+   "trade": 0.11,
+   "v": "B"
+  },
   "D|S|4000|open": {
    "ci": 0.114,
    "crown_wins": 0.0,
@@ -1639,6 +2183,14 @@
    "score": 0.087,
    "trade": 0.1,
    "v": "B"
+  },
+  "D|S|600|block": {
+   "ci": 0.914,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.072,
+   "trade": 0.09,
+   "v": "="
   },
   "D|S|600|open": {
    "ci": 0.0,
@@ -1656,6 +2208,14 @@
    "trade": 0.06,
    "v": "B"
   },
+  "D|TCS|1500|block": {
+   "ci": 0.73,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.128,
+   "trade": 0.15,
+   "v": "="
+  },
   "D|TCS|1500|choke": {
    "ci": 0.097,
    "crown_wins": 0.0,
@@ -1665,12 +2225,12 @@
    "v": "B"
   },
   "D|TCS|1500|down": {
-   "ci": null,
+   "ci": 0.162,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.338,
-   "trade": 0.51,
-   "v": "="
+   "n": 3,
+   "score": 0.264,
+   "trade": 0.37,
+   "v": "B"
   },
   "D|TCS|1500|open": {
    "ci": 0.075,
@@ -1696,6 +2256,14 @@
    "trade": 0.15,
    "v": "B"
   },
+  "D|TCS|4000|block": {
+   "ci": 0.356,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.256,
+   "trade": 0.34,
+   "v": "="
+  },
   "D|TCS|4000|open": {
    "ci": 0.057,
    "crown_wins": 0.0,
@@ -1710,6 +2278,14 @@
    "n": 3,
    "score": 0.259,
    "trade": 0.35,
+   "v": "B"
+  },
+  "D|TCS|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "D|TCS|600|open": {
@@ -1728,6 +2304,14 @@
    "trade": 0.06,
    "v": "B"
   },
+  "D|TC|1500|block": {
+   "ci": 0.394,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.101,
+   "trade": 0.11,
+   "v": "B"
+  },
   "D|TC|1500|choke": {
    "ci": 0.076,
    "crown_wins": 0.0,
@@ -1737,12 +2321,12 @@
    "v": "B"
   },
   "D|TC|1500|down": {
-   "ci": null,
+   "ci": 0.164,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.0,
-   "trade": 0.0,
-   "v": "="
+   "n": 3,
+   "score": 0.067,
+   "trade": 0.08,
+   "v": "B"
   },
   "D|TC|1500|open": {
    "ci": 0.064,
@@ -1768,6 +2352,14 @@
    "trade": 0.1,
    "v": "B"
   },
+  "D|TC|4000|block": {
+   "ci": 0.184,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.277,
+   "trade": 0.39,
+   "v": "B"
+  },
   "D|TC|4000|open": {
    "ci": 0.082,
    "crown_wins": 0.0,
@@ -1782,6 +2374,14 @@
    "n": 3,
    "score": 0.268,
    "trade": 0.37,
+   "v": "B"
+  },
+  "D|TC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "D|TC|600|open": {
@@ -1800,6 +2400,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "D|VC|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
+  },
   "D|VC|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -1809,12 +2417,12 @@
    "v": "B"
   },
   "D|VC|1500|down": {
-   "ci": null,
+   "ci": 0.0,
    "crown_wins": 0.0,
-   "n": 1,
+   "n": 3,
    "score": 0.0,
    "trade": 0.0,
-   "v": "="
+   "v": "B"
   },
   "D|VC|1500|open": {
    "ci": 0.0,
@@ -1840,6 +2448,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "D|VC|4000|block": {
+   "ci": 0.26,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.021,
+   "trade": 0.02,
+   "v": "B"
+  },
   "D|VC|4000|open": {
    "ci": 0.06,
    "crown_wins": 0.0,
@@ -1854,6 +2470,14 @@
    "n": 3,
    "score": 0.014,
    "trade": 0.01,
+   "v": "B"
+  },
+  "D|VC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "D|VC|600|open": {
@@ -1872,6 +2496,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "H|B|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.188,
+   "trade": 0.23,
+   "v": "B"
+  },
   "H|B|1500|choke": {
    "ci": 0.304,
    "crown_wins": 0.0,
@@ -1881,11 +2513,11 @@
    "v": "="
   },
   "H|B|1500|down": {
-   "ci": null,
+   "ci": 0.376,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.104,
-   "trade": 0.12,
+   "n": 3,
+   "score": 0.279,
+   "trade": 0.43,
    "v": "="
   },
   "H|B|1500|open": {
@@ -1912,6 +2544,14 @@
    "trade": 0.23,
    "v": "B"
   },
+  "H|B|4000|block": {
+   "ci": 2.184,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.468,
+   "trade": 1.1,
+   "v": "="
+  },
   "H|B|4000|open": {
    "ci": 0.082,
    "crown_wins": 4.0,
@@ -1926,6 +2566,14 @@
    "n": 3,
    "score": 0.514,
    "trade": 1.54,
+   "v": "="
+  },
+  "H|B|600|block": {
+   "ci": 1.353,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.106,
+   "trade": 0.14,
    "v": "="
   },
   "H|B|600|open": {
@@ -1944,6 +2592,14 @@
    "trade": 0.09,
    "v": "B"
   },
+  "H|R1S1|1500|block": {
+   "ci": 0.381,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.233,
+   "trade": 0.31,
+   "v": "="
+  },
   "H|R1S1|1500|choke": {
    "ci": 0.099,
    "crown_wins": 0.0,
@@ -1953,11 +2609,11 @@
    "v": "B"
   },
   "H|R1S1|1500|down": {
-   "ci": null,
+   "ci": 0.641,
    "crown_wins": 0.5,
-   "n": 1,
-   "score": 0.609,
-   "trade": 1.56,
+   "n": 3,
+   "score": 0.508,
+   "trade": 1.39,
    "v": "="
   },
   "H|R1S1|1500|open": {
@@ -1984,6 +2640,14 @@
    "trade": 0.2,
    "v": "B"
   },
+  "H|R1S1|4000|block": {
+   "ci": 0.337,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.195,
+   "trade": 0.24,
+   "v": "="
+  },
   "H|R1S1|4000|open": {
    "ci": 0.155,
    "crown_wins": 1.0,
@@ -1998,6 +2662,14 @@
    "n": 3,
    "score": 0.212,
    "trade": 0.27,
+   "v": "B"
+  },
+  "H|R1S1|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.241,
+   "trade": 0.32,
    "v": "B"
   },
   "H|R1S1|600|open": {
@@ -2016,6 +2688,14 @@
    "trade": 0.36,
    "v": "B"
   },
+  "H|R1S3|1500|block": {
+   "ci": 0.432,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.529,
+   "trade": 1.14,
+   "v": "="
+  },
   "H|R1S3|1500|choke": {
    "ci": 0.478,
    "crown_wins": 1.0,
@@ -2025,12 +2705,12 @@
    "v": "="
   },
   "H|R1S3|1500|down": {
-   "ci": null,
-   "crown_wins": 0.5,
-   "n": 1,
-   "score": 0.665,
-   "trade": 1.98,
-   "v": "="
+   "ci": 0.14,
+   "crown_wins": 1.5,
+   "n": 3,
+   "score": 0.674,
+   "trade": 2.12,
+   "v": "C"
   },
   "H|R1S3|1500|open": {
    "ci": 0.082,
@@ -2056,6 +2736,14 @@
    "trade": 0.3,
    "v": "B"
   },
+  "H|R1S3|4000|block": {
+   "ci": 0.559,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.253,
+   "trade": 0.34,
+   "v": "="
+  },
   "H|R1S3|4000|open": {
    "ci": 0.062,
    "crown_wins": 0.0,
@@ -2071,6 +2759,14 @@
    "score": 0.277,
    "trade": 0.39,
    "v": "B"
+  },
+  "H|R1S3|600|block": {
+   "ci": 2.242,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.367,
+   "trade": 0.71,
+   "v": "="
   },
   "H|R1S3|600|open": {
    "ci": 0.161,
@@ -2088,6 +2784,14 @@
    "trade": 0.66,
    "v": "="
   },
+  "H|R3S1|1500|block": {
+   "ci": 0.07,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.164,
+   "trade": 0.2,
+   "v": "B"
+  },
   "H|R3S1|1500|choke": {
    "ci": 0.108,
    "crown_wins": 0.0,
@@ -2097,11 +2801,11 @@
    "v": "B"
   },
   "H|R3S1|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.341,
-   "trade": 0.52,
+   "ci": 0.328,
+   "crown_wins": 0.5,
+   "n": 3,
+   "score": 0.478,
+   "trade": 1.0,
    "v": "="
   },
   "H|R3S1|1500|open": {
@@ -2128,6 +2832,14 @@
    "trade": 0.15,
    "v": "B"
   },
+  "H|R3S1|4000|block": {
+   "ci": 0.819,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.233,
+   "trade": 0.32,
+   "v": "="
+  },
   "H|R3S1|4000|open": {
    "ci": 0.087,
    "crown_wins": 0.0,
@@ -2143,6 +2855,14 @@
    "score": 0.231,
    "trade": 0.3,
    "v": "B"
+  },
+  "H|R3S1|600|block": {
+   "ci": 0.692,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.161,
+   "trade": 0.2,
+   "v": "="
   },
   "H|R3S1|600|open": {
    "ci": 0.139,
@@ -2160,6 +2880,14 @@
    "trade": 0.17,
    "v": "B"
   },
+  "H|RSB|1500|block": {
+   "ci": 0.902,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.305,
+   "trade": 0.45,
+   "v": "="
+  },
   "H|RSB|1500|choke": {
    "ci": 0.5,
    "crown_wins": 2.0,
@@ -2169,11 +2897,11 @@
    "v": "="
   },
   "H|RSB|1500|down": {
-   "ci": null,
-   "crown_wins": 0.5,
-   "n": 1,
-   "score": 0.553,
-   "trade": 1.24,
+   "ci": 0.338,
+   "crown_wins": 2.5,
+   "n": 3,
+   "score": 0.71,
+   "trade": 2.91,
    "v": "="
   },
   "H|RSB|1500|open": {
@@ -2200,6 +2928,14 @@
    "trade": 0.29,
    "v": "B"
   },
+  "H|RSB|4000|block": {
+   "ci": 1.099,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.366,
+   "trade": 0.6,
+   "v": "="
+  },
   "H|RSB|4000|open": {
    "ci": 0.147,
    "crown_wins": 1.0,
@@ -2214,6 +2950,14 @@
    "n": 3,
    "score": 0.317,
    "trade": 0.49,
+   "v": "="
+  },
+  "H|RSB|600|block": {
+   "ci": 1.518,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.47,
+   "trade": 0.99,
    "v": "="
   },
   "H|RSB|600|open": {
@@ -2232,6 +2976,14 @@
    "trade": 0.86,
    "v": "="
   },
+  "H|RSTd|1500|block": {
+   "ci": 1.321,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.479,
+   "trade": 1.0,
+   "v": "="
+  },
   "H|RSTd|1500|choke": {
    "ci": 0.111,
    "crown_wins": 0.0,
@@ -2241,11 +2993,11 @@
    "v": "B"
   },
   "H|RSTd|1500|down": {
-   "ci": null,
+   "ci": 0.26,
    "crown_wins": 0.5,
-   "n": 1,
-   "score": 0.579,
-   "trade": 1.37,
+   "n": 3,
+   "score": 0.478,
+   "trade": 0.97,
    "v": "="
   },
   "H|RSTd|1500|open": {
@@ -2272,6 +3024,14 @@
    "trade": 0.48,
    "v": "="
   },
+  "H|RSTd|4000|block": {
+   "ci": 1.054,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.319,
+   "trade": 0.49,
+   "v": "="
+  },
   "H|RSTd|4000|open": {
    "ci": 0.227,
    "crown_wins": 3.0,
@@ -2286,6 +3046,14 @@
    "n": 3,
    "score": 0.345,
    "trade": 0.63,
+   "v": "="
+  },
+  "H|RSTd|600|block": {
+   "ci": 0.692,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.798,
+   "trade": 4.35,
    "v": "="
   },
   "H|RSTd|600|open": {
@@ -2304,6 +3072,14 @@
    "trade": 2.71,
    "v": "="
   },
+  "H|RSy|1500|block": {
+   "ci": 0.14,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.318,
+   "trade": 0.46,
+   "v": "B"
+  },
   "H|RSy|1500|choke": {
    "ci": 0.021,
    "crown_wins": 0.0,
@@ -2313,11 +3089,11 @@
    "v": "B"
   },
   "H|RSy|1500|down": {
-   "ci": null,
-   "crown_wins": 0.5,
-   "n": 1,
-   "score": 0.619,
-   "trade": 1.63,
+   "ci": 0.212,
+   "crown_wins": 1.0,
+   "n": 3,
+   "score": 0.539,
+   "trade": 1.22,
    "v": "="
   },
   "H|RSy|1500|open": {
@@ -2344,6 +3120,14 @@
    "trade": 0.21,
    "v": "B"
   },
+  "H|RSy|4000|block": {
+   "ci": 0.159,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.177,
+   "trade": 0.22,
+   "v": "B"
+  },
   "H|RSy|4000|open": {
    "ci": 0.063,
    "crown_wins": 0.0,
@@ -2358,6 +3142,14 @@
    "n": 3,
    "score": 0.2,
    "trade": 0.25,
+   "v": "B"
+  },
+  "H|RSy|600|block": {
+   "ci": 0.14,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.228,
+   "trade": 0.3,
    "v": "B"
   },
   "H|RSy|600|open": {
@@ -2376,6 +3168,14 @@
    "trade": 0.23,
    "v": "B"
   },
+  "H|R|1500|block": {
+   "ci": 0.305,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.157,
+   "trade": 0.18,
+   "v": "B"
+  },
   "H|R|1500|choke": {
    "ci": 0.06,
    "crown_wins": 0.0,
@@ -2385,12 +3185,12 @@
    "v": "B"
   },
   "H|R|1500|down": {
-   "ci": null,
+   "ci": 0.216,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.241,
-   "trade": 0.32,
-   "v": "="
+   "n": 3,
+   "score": 0.258,
+   "trade": 0.36,
+   "v": "B"
   },
   "H|R|1500|open": {
    "ci": 0.053,
@@ -2416,6 +3216,14 @@
    "trade": 0.14,
    "v": "B"
   },
+  "H|R|4000|block": {
+   "ci": 0.083,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.179,
+   "trade": 0.22,
+   "v": "B"
+  },
   "H|R|4000|open": {
    "ci": 0.068,
    "crown_wins": 0.0,
@@ -2430,6 +3238,14 @@
    "n": 3,
    "score": 0.175,
    "trade": 0.21,
+   "v": "B"
+  },
+  "H|R|600|block": {
+   "ci": 0.197,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.121,
+   "trade": 0.14,
    "v": "B"
   },
   "H|R|600|open": {
@@ -2448,6 +3264,14 @@
    "trade": 0.2,
    "v": "B"
   },
+  "H|StC|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
+  },
   "H|StC|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -2457,12 +3281,12 @@
    "v": "B"
   },
   "H|StC|1500|down": {
-   "ci": null,
+   "ci": 0.0,
    "crown_wins": 0.0,
-   "n": 1,
+   "n": 3,
    "score": 0.0,
    "trade": 0.0,
-   "v": "="
+   "v": "B"
   },
   "H|StC|1500|open": {
    "ci": 0.0,
@@ -2488,6 +3312,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "H|StC|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
+  },
   "H|StC|4000|open": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -2500,6 +3332,14 @@
    "ci": 0.0,
    "crown_wins": 0.0,
    "n": 3,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
+  },
+  "H|StC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
    "score": 0.0,
    "trade": 0.0,
    "v": "B"
@@ -2520,6 +3360,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "H|S|1500|block": {
+   "ci": 0.705,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.17,
+   "trade": 0.21,
+   "v": "="
+  },
   "H|S|1500|choke": {
    "ci": 0.037,
    "crown_wins": 0.0,
@@ -2529,11 +3377,11 @@
    "v": "B"
   },
   "H|S|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.416,
-   "trade": 0.71,
+   "ci": 0.823,
+   "crown_wins": 1.0,
+   "n": 3,
+   "score": 0.535,
+   "trade": 3.68,
    "v": "="
   },
   "H|S|1500|open": {
@@ -2560,6 +3408,14 @@
    "trade": 0.09,
    "v": "B"
   },
+  "H|S|4000|block": {
+   "ci": 0.33,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.14,
+   "trade": 0.17,
+   "v": "B"
+  },
   "H|S|4000|open": {
    "ci": 0.117,
    "crown_wins": 0.0,
@@ -2575,6 +3431,14 @@
    "score": 0.134,
    "trade": 0.16,
    "v": "B"
+  },
+  "H|S|600|block": {
+   "ci": 0.724,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.127,
+   "trade": 0.15,
+   "v": "="
   },
   "H|S|600|open": {
    "ci": 0.064,
@@ -2592,6 +3456,14 @@
    "trade": 0.15,
    "v": "B"
   },
+  "H|TCS|1500|block": {
+   "ci": 0.546,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.292,
+   "trade": 0.42,
+   "v": "="
+  },
   "H|TCS|1500|choke": {
    "ci": 0.312,
    "crown_wins": 0.0,
@@ -2601,11 +3473,11 @@
    "v": "="
   },
   "H|TCS|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.475,
-   "trade": 0.9,
+   "ci": 0.281,
+   "crown_wins": 0.5,
+   "n": 3,
+   "score": 0.54,
+   "trade": 1.28,
    "v": "="
   },
   "H|TCS|1500|open": {
@@ -2632,6 +3504,14 @@
    "trade": 0.18,
    "v": "B"
   },
+  "H|TCS|4000|block": {
+   "ci": 0.692,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.172,
+   "trade": 0.21,
+   "v": "="
+  },
   "H|TCS|4000|open": {
    "ci": 0.215,
    "crown_wins": 0.0,
@@ -2647,6 +3527,14 @@
    "score": 0.155,
    "trade": 0.19,
    "v": "B"
+  },
+  "H|TCS|600|block": {
+   "ci": 1.149,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.274,
+   "trade": 0.4,
+   "v": "="
   },
   "H|TCS|600|open": {
    "ci": 0.164,
@@ -2664,6 +3552,14 @@
    "trade": 0.43,
    "v": "B"
   },
+  "H|TC|1500|block": {
+   "ci": 3.816,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.43,
+   "trade": 1.44,
+   "v": "="
+  },
   "H|TC|1500|choke": {
    "ci": 0.537,
    "crown_wins": 1.0,
@@ -2673,12 +3569,12 @@
    "v": "="
   },
   "H|TC|1500|down": {
-   "ci": null,
+   "ci": 0.0,
    "crown_wins": 0.0,
-   "n": 1,
+   "n": 3,
    "score": 0.0,
    "trade": 0.0,
-   "v": "="
+   "v": "B"
   },
   "H|TC|1500|open": {
    "ci": 0.183,
@@ -2704,6 +3600,14 @@
    "trade": 1.66,
    "v": "="
   },
+  "H|TC|4000|block": {
+   "ci": 0.248,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.77,
+   "trade": 3.39,
+   "v": "C"
+  },
   "H|TC|4000|open": {
    "ci": 0.243,
    "crown_wins": 1.0,
@@ -2719,6 +3623,14 @@
    "score": 0.718,
    "trade": 2.63,
    "v": "C"
+  },
+  "H|TC|600|block": {
+   "ci": 0.349,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.439,
+   "trade": 0.78,
+   "v": "="
   },
   "H|TC|600|open": {
    "ci": 0.309,
@@ -2736,6 +3648,14 @@
    "trade": 0.58,
    "v": "="
   },
+  "H|VC|1500|block": {
+   "ci": 1.194,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.094,
+   "trade": 0.12,
+   "v": "="
+  },
   "H|VC|1500|choke": {
    "ci": 0.322,
    "crown_wins": 0.0,
@@ -2745,11 +3665,11 @@
    "v": "B"
   },
   "H|VC|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.73,
-   "trade": 2.7,
+   "ci": 1.284,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.577,
+   "trade": 284.23,
    "v": "="
   },
   "H|VC|1500|open": {
@@ -2776,6 +3696,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "H|VC|4000|block": {
+   "ci": 0.387,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.142,
+   "trade": 0.17,
+   "v": "="
+  },
   "H|VC|4000|open": {
    "ci": 0.173,
    "crown_wins": 0.0,
@@ -2791,6 +3719,14 @@
    "score": 0.217,
    "trade": 0.29,
    "v": "B"
+  },
+  "H|VC|600|block": {
+   "ci": 1.353,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.106,
+   "trade": 0.14,
+   "v": "="
   },
   "H|VC|600|open": {
    "ci": 0.0,
@@ -2808,6 +3744,14 @@
    "trade": 0.18,
    "v": "B"
   },
+  "MB|B|1500|block": {
+   "ci": 0.089,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.201,
+   "trade": 0.25,
+   "v": "B"
+  },
   "MB|B|1500|choke": {
    "ci": 0.247,
    "crown_wins": 0.0,
@@ -2817,12 +3761,12 @@
    "v": "B"
   },
   "MB|B|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.904,
-   "trade": 9.44,
-   "v": "="
+   "ci": 0.059,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.89,
+   "trade": 8.39,
+   "v": "C"
   },
   "MB|B|1500|open": {
    "ci": 0.084,
@@ -2848,6 +3792,14 @@
    "trade": 0.35,
    "v": "B"
   },
+  "MB|B|4000|block": {
+   "ci": 1.822,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.514,
+   "trade": 1.25,
+   "v": "="
+  },
   "MB|B|4000|open": {
    "ci": 0.037,
    "crown_wins": 4.0,
@@ -2863,6 +3815,14 @@
    "score": 0.417,
    "trade": 0.77,
    "v": "="
+  },
+  "MB|B|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.25,
+   "trade": 0.33,
+   "v": "B"
   },
   "MB|B|600|open": {
    "ci": 0.238,
@@ -2880,6 +3840,14 @@
    "trade": 0.11,
    "v": "B"
   },
+  "MB|R1S1|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.486,
+   "trade": 0.95,
+   "v": "B"
+  },
   "MB|R1S1|1500|choke": {
    "ci": 0.03,
    "crown_wins": 0.0,
@@ -2889,11 +3857,11 @@
    "v": "B"
   },
   "MB|R1S1|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.432,
-   "trade": 0.76,
+   "ci": 0.431,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.63,
+   "trade": 2.07,
    "v": "="
   },
   "MB|R1S1|1500|open": {
@@ -2920,6 +3888,14 @@
    "trade": 0.95,
    "v": "="
   },
+  "MB|R1S1|4000|block": {
+   "ci": 0.025,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.507,
+   "trade": 1.03,
+   "v": "="
+  },
   "MB|R1S1|4000|open": {
    "ci": 0.095,
    "crown_wins": 1.0,
@@ -2935,6 +3911,14 @@
    "score": 0.384,
    "trade": 0.62,
    "v": "B"
+  },
+  "MB|R1S1|600|block": {
+   "ci": 0.4,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.522,
+   "trade": 1.1,
+   "v": "="
   },
   "MB|R1S1|600|open": {
    "ci": 0.208,
@@ -2952,6 +3936,14 @@
    "trade": 0.99,
    "v": "="
   },
+  "MB|R1S3|1500|block": {
+   "ci": 0.083,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.408,
+   "trade": 0.69,
+   "v": "B"
+  },
   "MB|R1S3|1500|choke": {
    "ci": 0.087,
    "crown_wins": 0.0,
@@ -2961,12 +3953,12 @@
    "v": "B"
   },
   "MB|R1S3|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.671,
-   "trade": 2.04,
-   "v": "="
+   "ci": 0.122,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.674,
+   "trade": 2.11,
+   "v": "C"
   },
   "MB|R1S3|1500|open": {
    "ci": 0.045,
@@ -2992,6 +3984,14 @@
    "trade": 0.77,
    "v": "="
   },
+  "MB|R1S3|4000|block": {
+   "ci": 0.406,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.462,
+   "trade": 0.86,
+   "v": "="
+  },
   "MB|R1S3|4000|open": {
    "ci": 0.123,
    "crown_wins": 1.0,
@@ -3007,6 +4007,14 @@
    "score": 0.423,
    "trade": 0.74,
    "v": "="
+  },
+  "MB|R1S3|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.364,
+   "trade": 0.57,
+   "v": "B"
   },
   "MB|R1S3|600|open": {
    "ci": 0.382,
@@ -3024,6 +4032,14 @@
    "trade": 0.7,
    "v": "B"
   },
+  "MB|R3S1|1500|block": {
+   "ci": 0.184,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.484,
+   "trade": 0.95,
+   "v": "="
+  },
   "MB|R3S1|1500|choke": {
    "ci": 0.112,
    "crown_wins": 0.0,
@@ -3033,11 +4049,11 @@
    "v": "="
   },
   "MB|R3S1|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.566,
-   "trade": 1.31,
+   "ci": 0.198,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.653,
+   "trade": 1.98,
    "v": "="
   },
   "MB|R3S1|1500|open": {
@@ -3064,6 +4080,14 @@
    "trade": 0.89,
    "v": "B"
   },
+  "MB|R3S1|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.512,
+   "trade": 1.05,
+   "v": "C"
+  },
   "MB|R3S1|4000|open": {
    "ci": 0.017,
    "crown_wins": 0.0,
@@ -3079,6 +4103,14 @@
    "score": 0.331,
    "trade": 0.49,
    "v": "B"
+  },
+  "MB|R3S1|600|block": {
+   "ci": 1.537,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.638,
+   "trade": 2.11,
+   "v": "="
   },
   "MB|R3S1|600|open": {
    "ci": 0.262,
@@ -3096,6 +4128,14 @@
    "trade": 0.89,
    "v": "="
   },
+  "MB|RSB|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.431,
+   "trade": 0.76,
+   "v": "B"
+  },
   "MB|RSB|1500|choke": {
    "ci": 0.104,
    "crown_wins": 0.0,
@@ -3105,11 +4145,11 @@
    "v": "B"
   },
   "MB|RSB|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.541,
-   "trade": 1.18,
+   "ci": 0.356,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.697,
+   "trade": 2.83,
    "v": "="
   },
   "MB|RSB|1500|open": {
@@ -3136,6 +4176,14 @@
    "trade": 0.57,
    "v": "B"
   },
+  "MB|RSB|4000|block": {
+   "ci": 0.521,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.472,
+   "trade": 0.91,
+   "v": "="
+  },
   "MB|RSB|4000|open": {
    "ci": 0.022,
    "crown_wins": 4.0,
@@ -3151,6 +4199,14 @@
    "score": 0.426,
    "trade": 0.75,
    "v": "="
+  },
+  "MB|RSB|600|block": {
+   "ci": 0.102,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.219,
+   "trade": 0.28,
+   "v": "B"
   },
   "MB|RSB|600|open": {
    "ci": 0.23,
@@ -3168,6 +4224,14 @@
    "trade": 0.52,
    "v": "="
   },
+  "MB|RSTd|1500|block": {
+   "ci": 0.114,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.505,
+   "trade": 1.02,
+   "v": "="
+  },
   "MB|RSTd|1500|choke": {
    "ci": 0.014,
    "crown_wins": 0.0,
@@ -3177,12 +4241,12 @@
    "v": "="
   },
   "MB|RSTd|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.757,
-   "trade": 3.12,
-   "v": "="
+   "ci": 0.134,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.803,
+   "trade": 4.36,
+   "v": "C"
   },
   "MB|RSTd|1500|open": {
    "ci": 0.169,
@@ -3208,6 +4272,14 @@
    "trade": 2.56,
    "v": "C"
   },
+  "MB|RSTd|4000|block": {
+   "ci": 0.038,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.524,
+   "trade": 1.1,
+   "v": "="
+  },
   "MB|RSTd|4000|open": {
    "ci": 0.101,
    "crown_wins": 2.0,
@@ -3222,6 +4294,14 @@
    "n": 3,
    "score": 0.469,
    "trade": 0.88,
+   "v": "="
+  },
+  "MB|RSTd|600|block": {
+   "ci": 0.908,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.473,
+   "trade": 0.93,
    "v": "="
   },
   "MB|RSTd|600|open": {
@@ -3240,6 +4320,14 @@
    "trade": 0.66,
    "v": "="
   },
+  "MB|RSy|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.351,
+   "trade": 0.54,
+   "v": "B"
+  },
   "MB|RSy|1500|choke": {
    "ci": 0.013,
    "crown_wins": 0.0,
@@ -3249,12 +4337,12 @@
    "v": "B"
   },
   "MB|RSy|1500|down": {
-   "ci": null,
+   "ci": 0.075,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.315,
-   "trade": 0.46,
-   "v": "="
+   "n": 3,
+   "score": 0.323,
+   "trade": 0.48,
+   "v": "B"
   },
   "MB|RSy|1500|open": {
    "ci": 0.01,
@@ -3280,6 +4368,14 @@
    "trade": 0.54,
    "v": "B"
   },
+  "MB|RSy|4000|block": {
+   "ci": 0.146,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.405,
+   "trade": 0.69,
+   "v": "="
+  },
   "MB|RSy|4000|open": {
    "ci": 0.022,
    "crown_wins": 0.0,
@@ -3294,6 +4390,14 @@
    "n": 3,
    "score": 0.342,
    "trade": 0.52,
+   "v": "B"
+  },
+  "MB|RSy|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.329,
+   "trade": 0.49,
    "v": "B"
   },
   "MB|RSy|600|open": {
@@ -3312,6 +4416,14 @@
    "trade": 0.49,
    "v": "B"
   },
+  "MB|R|1500|block": {
+   "ci": 0.063,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.283,
+   "trade": 0.4,
+   "v": "B"
+  },
   "MB|R|1500|choke": {
    "ci": 0.06,
    "crown_wins": 0.0,
@@ -3321,11 +4433,11 @@
    "v": "B"
   },
   "MB|R|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.459,
-   "trade": 0.85,
+   "ci": 0.336,
+   "crown_wins": 1.0,
+   "n": 3,
+   "score": 0.498,
+   "trade": 1.11,
    "v": "="
   },
   "MB|R|1500|open": {
@@ -3352,6 +4464,14 @@
    "trade": 9.47,
    "v": "C"
   },
+  "MB|R|4000|block": {
+   "ci": 0.254,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.396,
+   "trade": 0.66,
+   "v": "="
+  },
   "MB|R|4000|open": {
    "ci": 0.045,
    "crown_wins": 0.0,
@@ -3367,6 +4487,14 @@
    "score": 0.274,
    "trade": 0.38,
    "v": "B"
+  },
+  "MB|R|600|block": {
+   "ci": 1.01,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.427,
+   "trade": 0.78,
+   "v": "="
   },
   "MB|R|600|open": {
    "ci": 0.117,
@@ -3384,6 +4512,14 @@
    "trade": 0.72,
    "v": "="
   },
+  "MB|StC|1500|block": {
+   "ci": 0.432,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.782,
+   "trade": 3.7,
+   "v": "="
+  },
   "MB|StC|1500|choke": {
    "ci": 0.188,
    "crown_wins": 3.0,
@@ -3393,12 +4529,12 @@
    "v": "C"
   },
   "MB|StC|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
+   "ci": 0.0,
+   "crown_wins": 3.0,
+   "n": 3,
    "score": 0.947,
    "trade": 17.78,
-   "v": "="
+   "v": "C"
   },
   "MB|StC|1500|open": {
    "ci": 0.125,
@@ -3424,6 +4560,14 @@
    "trade": 4.94,
    "v": "C"
   },
+  "MB|StC|4000|block": {
+   "ci": 0.095,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.831,
+   "trade": 4.92,
+   "v": "C"
+  },
   "MB|StC|4000|open": {
    "ci": 0.023,
    "crown_wins": 4.0,
@@ -3439,6 +4583,14 @@
    "score": 0.875,
    "trade": 7.03,
    "v": "C"
+  },
+  "MB|StC|600|block": {
+   "ci": 2.864,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.485,
+   "trade": 1.41,
+   "v": "="
   },
   "MB|StC|600|open": {
    "ci": 0.113,
@@ -3456,6 +4608,14 @@
    "trade": 0.47,
    "v": "="
   },
+  "MB|S|1500|block": {
+   "ci": 0.229,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.305,
+   "trade": 0.44,
+   "v": "="
+  },
   "MB|S|1500|choke": {
    "ci": 0.11,
    "crown_wins": 0.0,
@@ -3465,12 +4625,12 @@
    "v": "B"
   },
   "MB|S|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.652,
-   "trade": 1.88,
-   "v": "="
+   "ci": 0.077,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.624,
+   "trade": 1.68,
+   "v": "C"
   },
   "MB|S|1500|open": {
    "ci": 0.117,
@@ -3496,6 +4656,14 @@
    "trade": 0.58,
    "v": "B"
   },
+  "MB|S|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.358,
+   "trade": 0.56,
+   "v": "B"
+  },
   "MB|S|4000|open": {
    "ci": 0.069,
    "crown_wins": 0.0,
@@ -3511,6 +4679,14 @@
    "score": 0.32,
    "trade": 0.47,
    "v": "B"
+  },
+  "MB|S|600|block": {
+   "ci": 0.629,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.268,
+   "trade": 0.37,
+   "v": "="
   },
   "MB|S|600|open": {
    "ci": 0.311,
@@ -3528,6 +4704,14 @@
    "trade": 0.4,
    "v": "B"
   },
+  "MB|TCS|1500|block": {
+   "ci": 0.305,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.429,
+   "trade": 0.76,
+   "v": "="
+  },
   "MB|TCS|1500|choke": {
    "ci": 0.014,
    "crown_wins": 0.0,
@@ -3537,12 +4721,12 @@
    "v": "B"
   },
   "MB|TCS|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.787,
-   "trade": 3.7,
-   "v": "="
+   "ci": 0.106,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.836,
+   "trade": 5.35,
+   "v": "C"
   },
   "MB|TCS|1500|open": {
    "ci": 0.092,
@@ -3568,6 +4752,14 @@
    "trade": 1.64,
    "v": "="
   },
+  "MB|TCS|4000|block": {
+   "ci": 0.203,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.49,
+   "trade": 0.97,
+   "v": "="
+  },
   "MB|TCS|4000|open": {
    "ci": 0.108,
    "crown_wins": 3.0,
@@ -3582,6 +4774,14 @@
    "n": 3,
    "score": 0.454,
    "trade": 0.83,
+   "v": "="
+  },
+  "MB|TCS|600|block": {
+   "ci": 0.787,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.239,
+   "trade": 0.33,
    "v": "="
   },
   "MB|TCS|600|open": {
@@ -3600,6 +4800,14 @@
    "trade": 0.29,
    "v": "="
   },
+  "MB|TC|1500|block": {
+   "ci": 0.152,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.471,
+   "trade": 0.89,
+   "v": "="
+  },
   "MB|TC|1500|choke": {
    "ci": 0.099,
    "crown_wins": 0.0,
@@ -3609,12 +4817,12 @@
    "v": "="
   },
   "MB|TC|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.905,
-   "trade": 9.51,
-   "v": "="
+   "ci": 0.156,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.894,
+   "trade": 11.09,
+   "v": "C"
   },
   "MB|TC|1500|open": {
    "ci": 0.113,
@@ -3640,6 +4848,14 @@
    "trade": 514.59,
    "v": "="
   },
+  "MB|TC|4000|block": {
+   "ci": 0.083,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.762,
+   "trade": 3.22,
+   "v": "C"
+  },
   "MB|TC|4000|open": {
    "ci": 0.012,
    "crown_wins": 4.0,
@@ -3655,6 +4871,14 @@
    "score": 0.778,
    "trade": 3.56,
    "v": "C"
+  },
+  "MB|TC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.392,
+   "trade": 0.65,
+   "v": "B"
   },
   "MB|TC|600|open": {
    "ci": 0.064,
@@ -3672,6 +4896,14 @@
    "trade": 0.36,
    "v": "B"
   },
+  "MB|VC|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.116,
+   "trade": 0.13,
+   "v": "B"
+  },
   "MB|VC|1500|choke": {
    "ci": 0.166,
    "crown_wins": 0.0,
@@ -3681,12 +4913,12 @@
    "v": "B"
   },
   "MB|VC|1500|down": {
-   "ci": null,
+   "ci": 0.014,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.116,
-   "trade": 0.13,
-   "v": "="
+   "n": 3,
+   "score": 0.11,
+   "trade": 0.12,
+   "v": "B"
   },
   "MB|VC|1500|open": {
    "ci": 0.104,
@@ -3712,6 +4944,14 @@
    "trade": 0.17,
    "v": "B"
   },
+  "MB|VC|4000|block": {
+   "ci": 0.641,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.18,
+   "trade": 0.22,
+   "v": "="
+  },
   "MB|VC|4000|open": {
    "ci": 0.09,
    "crown_wins": 0.0,
@@ -3726,6 +4966,14 @@
    "n": 3,
    "score": 0.1,
    "trade": 0.11,
+   "v": "B"
+  },
+  "MB|VC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "MB|VC|600|open": {
@@ -3744,6 +4992,14 @@
    "trade": 0.11,
    "v": "B"
   },
+  "MCH|B|1500|block": {
+   "ci": 0.102,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.662,
+   "trade": 1.96,
+   "v": "C"
+  },
   "MCH|B|1500|choke": {
    "ci": 0.454,
    "crown_wins": 2.0,
@@ -3753,12 +5009,12 @@
    "v": "="
   },
   "MCH|B|1500|down": {
-   "ci": 1.397,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.84,
-   "trade": 10.79,
-   "v": "="
+   "ci": 0.282,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.824,
+   "trade": 8.46,
+   "v": "C"
   },
   "MCH|B|1500|open": {
    "ci": 0.269,
@@ -3784,6 +5040,14 @@
    "trade": 1.41,
    "v": "="
   },
+  "MCH|B|4000|block": {
+   "ci": 0.4,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.817,
+   "trade": 4.62,
+   "v": "="
+  },
   "MCH|B|4000|open": {
    "ci": 0.059,
    "crown_wins": 4.0,
@@ -3799,6 +5063,14 @@
    "score": 0.788,
    "trade": 4.05,
    "v": "C"
+  },
+  "MCH|B|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
   },
   "MCH|B|600|open": {
    "ci": 0.111,
@@ -3816,6 +5088,14 @@
    "trade": 0.09,
    "v": "B"
   },
+  "MCH|R1S1|1500|block": {
+   "ci": 0.197,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.748,
+   "trade": 2.98,
+   "v": "C"
+  },
   "MCH|R1S1|1500|choke": {
    "ci": 0.093,
    "crown_wins": 3.0,
@@ -3825,11 +5105,11 @@
    "v": "C"
   },
   "MCH|R1S1|1500|down": {
-   "ci": 1.264,
-   "crown_wins": 1.5,
-   "n": 2,
-   "score": 0.593,
-   "trade": 1.61,
+   "ci": 0.27,
+   "crown_wins": 2.5,
+   "n": 3,
+   "score": 0.568,
+   "trade": 1.43,
    "v": "="
   },
   "MCH|R1S1|1500|open": {
@@ -3856,6 +5136,14 @@
    "trade": 2.86,
    "v": "="
   },
+  "MCH|R1S1|4000|block": {
+   "ci": 0.254,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.801,
+   "trade": 4.08,
+   "v": "C"
+  },
   "MCH|R1S1|4000|open": {
    "ci": 0.106,
    "crown_wins": 4.0,
@@ -3871,6 +5159,14 @@
    "score": 0.793,
    "trade": 4.23,
    "v": "C"
+  },
+  "MCH|R1S1|600|block": {
+   "ci": 1.594,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.59,
+   "trade": 1.68,
+   "v": "="
   },
   "MCH|R1S1|600|open": {
    "ci": 0.313,
@@ -3888,6 +5184,14 @@
    "trade": 2.39,
    "v": "C"
   },
+  "MCH|R1S3|1500|block": {
+   "ci": 0.94,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.553,
+   "trade": 1.3,
+   "v": "="
+  },
   "MCH|R1S3|1500|choke": {
    "ci": 0.313,
    "crown_wins": 1.0,
@@ -3897,11 +5201,11 @@
    "v": "="
   },
   "MCH|R1S3|1500|down": {
-   "ci": 1.054,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.634,
-   "trade": 1.89,
+   "ci": 0.238,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.606,
+   "trade": 1.67,
    "v": "="
   },
   "MCH|R1S3|1500|open": {
@@ -3928,6 +5232,14 @@
    "trade": 2.63,
    "v": "="
   },
+  "MCH|R1S3|4000|block": {
+   "ci": 0.425,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.668,
+   "trade": 2.05,
+   "v": "="
+  },
   "MCH|R1S3|4000|open": {
    "ci": 0.106,
    "crown_wins": 4.0,
@@ -3943,6 +5255,14 @@
    "score": 0.716,
    "trade": 2.73,
    "v": "C"
+  },
+  "MCH|R1S3|600|block": {
+   "ci": 1.708,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.547,
+   "trade": 1.42,
+   "v": "="
   },
   "MCH|R1S3|600|open": {
    "ci": 0.314,
@@ -3960,6 +5280,14 @@
    "trade": 0.63,
    "v": "="
   },
+  "MCH|R3S1|1500|block": {
+   "ci": 0.641,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.785,
+   "trade": 3.93,
+   "v": "="
+  },
   "MCH|R3S1|1500|choke": {
    "ci": 0.171,
    "crown_wins": 3.0,
@@ -3969,11 +5297,11 @@
    "v": "C"
   },
   "MCH|R3S1|1500|down": {
-   "ci": 1.549,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.688,
-   "trade": 2.77,
+   "ci": 0.35,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.729,
+   "trade": 3.27,
    "v": "="
   },
   "MCH|R3S1|1500|open": {
@@ -4000,6 +5328,14 @@
    "trade": 4.54,
    "v": "C"
   },
+  "MCH|R3S1|4000|block": {
+   "ci": 0.305,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.757,
+   "trade": 3.15,
+   "v": "="
+  },
   "MCH|R3S1|4000|open": {
    "ci": 0.076,
    "crown_wins": 4.0,
@@ -4015,6 +5351,14 @@
    "score": 0.777,
    "trade": 3.59,
    "v": "C"
+  },
+  "MCH|R3S1|600|block": {
+   "ci": 0.648,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.949,
+   "trade": 324.38,
+   "v": "="
   },
   "MCH|R3S1|600|open": {
    "ci": 0.432,
@@ -4032,6 +5376,14 @@
    "trade": 6.7,
    "v": "C"
   },
+  "MCH|RSB|1500|block": {
+   "ci": 0.375,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.681,
+   "trade": 2.17,
+   "v": "="
+  },
   "MCH|RSB|1500|choke": {
    "ci": 0.275,
    "crown_wins": 2.0,
@@ -4041,12 +5393,12 @@
    "v": "="
   },
   "MCH|RSB|1500|down": {
-   "ci": 0.622,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.769,
-   "trade": 3.53,
-   "v": "="
+   "ci": 0.175,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.798,
+   "trade": 4.35,
+   "v": "C"
   },
   "MCH|RSB|1500|open": {
    "ci": 0.129,
@@ -4072,6 +5424,14 @@
    "trade": 2.05,
    "v": "C"
   },
+  "MCH|RSB|4000|block": {
+   "ci": 0.032,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.776,
+   "trade": 3.47,
+   "v": "C"
+  },
   "MCH|RSB|4000|open": {
    "ci": 0.108,
    "crown_wins": 2.0,
@@ -4087,6 +5447,14 @@
    "score": 0.788,
    "trade": 4.0,
    "v": "C"
+  },
+  "MCH|RSB|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.284,
+   "trade": 0.4,
+   "v": "B"
   },
   "MCH|RSB|600|open": {
    "ci": 0.301,
@@ -4104,6 +5472,14 @@
    "trade": 0.53,
    "v": "B"
   },
+  "MCH|RSTd|1500|block": {
+   "ci": 0.705,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.709,
+   "trade": 2.56,
+   "v": "="
+  },
   "MCH|RSTd|1500|choke": {
    "ci": 0.102,
    "crown_wins": 3.0,
@@ -4113,11 +5489,11 @@
    "v": "C"
   },
   "MCH|RSTd|1500|down": {
-   "ci": 0.076,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.852,
-   "trade": 5.76,
+   "ci": 0.05,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.841,
+   "trade": 5.35,
    "v": "C"
   },
   "MCH|RSTd|1500|open": {
@@ -4144,6 +5520,14 @@
    "trade": 3.99,
    "v": "C"
   },
+  "MCH|RSTd|4000|block": {
+   "ci": 0.146,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.833,
+   "trade": 5.0,
+   "v": "C"
+  },
   "MCH|RSTd|4000|open": {
    "ci": 0.061,
    "crown_wins": 4.0,
@@ -4158,6 +5542,14 @@
    "n": 3,
    "score": 0.843,
    "trade": 5.68,
+   "v": "C"
+  },
+  "MCH|RSTd|600|block": {
+   "ci": 0.254,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.873,
+   "trade": 7.08,
    "v": "C"
   },
   "MCH|RSTd|600|open": {
@@ -4176,6 +5568,14 @@
    "trade": 2.37,
    "v": "C"
   },
+  "MCH|RSy|1500|block": {
+   "ci": 0.197,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.44,
+   "trade": 0.78,
+   "v": "="
+  },
   "MCH|RSy|1500|choke": {
    "ci": 0.058,
    "crown_wins": 0.0,
@@ -4185,11 +5585,11 @@
    "v": "B"
   },
   "MCH|RSy|1500|down": {
-   "ci": 0.006,
+   "ci": 0.014,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.362,
-   "trade": 0.57,
+   "n": 3,
+   "score": 0.359,
+   "trade": 0.56,
    "v": "B"
   },
   "MCH|RSy|1500|open": {
@@ -4216,6 +5616,14 @@
    "trade": 0.87,
    "v": "B"
   },
+  "MCH|RSy|4000|block": {
+   "ci": 0.489,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.756,
+   "trade": 3.2,
+   "v": "="
+  },
   "MCH|RSy|4000|open": {
    "ci": 0.066,
    "crown_wins": 0.0,
@@ -4231,6 +5639,14 @@
    "score": 0.742,
    "trade": 2.99,
    "v": "C"
+  },
+  "MCH|RSy|600|block": {
+   "ci": 0.368,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.385,
+   "trade": 0.63,
+   "v": "="
   },
   "MCH|RSy|600|open": {
    "ci": 0.034,
@@ -4248,6 +5664,14 @@
    "trade": 0.48,
    "v": "="
   },
+  "MCH|R|1500|block": {
+   "ci": 0.832,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.717,
+   "trade": 2.73,
+   "v": "="
+  },
   "MCH|R|1500|choke": {
    "ci": 0.072,
    "crown_wins": 3.0,
@@ -4257,11 +5681,11 @@
    "v": "C"
   },
   "MCH|R|1500|down": {
-   "ci": 2.14,
-   "crown_wins": 1.0,
-   "n": 2,
-   "score": 0.508,
-   "trade": 1.29,
+   "ci": 0.442,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.541,
+   "trade": 1.38,
    "v": "="
   },
   "MCH|R|1500|open": {
@@ -4288,6 +5712,14 @@
    "trade": 3.04,
    "v": "C"
   },
+  "MCH|R|4000|block": {
+   "ci": 0.47,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.765,
+   "trade": 3.37,
+   "v": "="
+  },
   "MCH|R|4000|open": {
    "ci": 0.02,
    "crown_wins": 4.0,
@@ -4303,6 +5735,14 @@
    "score": 0.775,
    "trade": 4.0,
    "v": "C"
+  },
+  "MCH|R|600|block": {
+   "ci": 1.391,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.782,
+   "trade": 5.13,
+   "v": "="
   },
   "MCH|R|600|open": {
    "ci": 0.46,
@@ -4320,6 +5760,14 @@
    "trade": 202.74,
    "v": "C"
   },
+  "MCH|StC|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.269,
+   "trade": 0.37,
+   "v": "B"
+  },
   "MCH|StC|1500|choke": {
    "ci": 0.103,
    "crown_wins": 0.0,
@@ -4329,11 +5777,11 @@
    "v": "B"
   },
   "MCH|StC|1500|down": {
-   "ci": 1.162,
-   "crown_wins": 1.5,
-   "n": 2,
-   "score": 0.617,
-   "trade": 1.77,
+   "ci": 0.271,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.583,
+   "trade": 1.54,
    "v": "="
   },
   "MCH|StC|1500|open": {
@@ -4360,6 +5808,14 @@
    "trade": 0.33,
    "v": "B"
   },
+  "MCH|StC|4000|block": {
+   "ci": 0.559,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.373,
+   "trade": 0.6,
+   "v": "="
+  },
   "MCH|StC|4000|open": {
    "ci": 0.147,
    "crown_wins": 4.0,
@@ -4375,6 +5831,14 @@
    "score": 0.463,
    "trade": 0.88,
    "v": "="
+  },
+  "MCH|StC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
   },
   "MCH|StC|600|open": {
    "ci": 0.095,
@@ -4392,6 +5856,14 @@
    "trade": 0.1,
    "v": "B"
   },
+  "MCH|S|1500|block": {
+   "ci": 0.889,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.464,
+   "trade": 0.9,
+   "v": "="
+  },
   "MCH|S|1500|choke": {
    "ci": 0.022,
    "crown_wins": 0.0,
@@ -4401,12 +5873,12 @@
    "v": "B"
   },
   "MCH|S|1500|down": {
-   "ci": 0.165,
+   "ci": 0.263,
    "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.667,
-   "trade": 2.0,
-   "v": "C"
+   "n": 3,
+   "score": 0.606,
+   "trade": 1.65,
+   "v": "="
   },
   "MCH|S|1500|open": {
    "ci": 0.123,
@@ -4432,6 +5904,14 @@
    "trade": 1.98,
    "v": "="
   },
+  "MCH|S|4000|block": {
+   "ci": 0.235,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.696,
+   "trade": 2.3,
+   "v": "="
+  },
   "MCH|S|4000|open": {
    "ci": 0.157,
    "crown_wins": 1.0,
@@ -4447,6 +5927,14 @@
    "score": 0.692,
    "trade": 2.3,
    "v": "C"
+  },
+  "MCH|S|600|block": {
+   "ci": 0.997,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.356,
+   "trade": 0.57,
+   "v": "="
   },
   "MCH|S|600|open": {
    "ci": 0.257,
@@ -4464,6 +5952,14 @@
    "trade": 0.74,
    "v": "="
   },
+  "MCH|TCS|1500|block": {
+   "ci": 0.051,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.713,
+   "trade": 2.49,
+   "v": "C"
+  },
   "MCH|TCS|1500|choke": {
    "ci": 0.078,
    "crown_wins": 3.0,
@@ -4473,11 +5969,11 @@
    "v": "C"
   },
   "MCH|TCS|1500|down": {
-   "ci": 0.165,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.704,
-   "trade": 2.38,
+   "ci": 0.063,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.691,
+   "trade": 2.25,
    "v": "C"
   },
   "MCH|TCS|1500|open": {
@@ -4504,6 +6000,14 @@
    "trade": 2.23,
    "v": "C"
   },
+  "MCH|TCS|4000|block": {
+   "ci": 0.025,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.725,
+   "trade": 2.64,
+   "v": "C"
+  },
   "MCH|TCS|4000|open": {
    "ci": 0.048,
    "crown_wins": 4.0,
@@ -4519,6 +6023,14 @@
    "score": 0.748,
    "trade": 2.97,
    "v": "C"
+  },
+  "MCH|TCS|600|block": {
+   "ci": 1.568,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.275,
+   "trade": 0.42,
+   "v": "="
   },
   "MCH|TCS|600|open": {
    "ci": 0.384,
@@ -4536,6 +6048,14 @@
    "trade": 0.77,
    "v": "="
   },
+  "MCH|TC|1500|block": {
+   "ci": 0.254,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.835,
+   "trade": 5.14,
+   "v": "C"
+  },
   "MCH|TC|1500|choke": {
    "ci": 0.104,
    "crown_wins": 3.0,
@@ -4545,12 +6065,12 @@
    "v": "C"
   },
   "MCH|TC|1500|down": {
-   "ci": 0.343,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.689,
-   "trade": 2.24,
-   "v": "="
+   "ci": 0.083,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.678,
+   "trade": 2.13,
+   "v": "C"
   },
   "MCH|TC|1500|open": {
    "ci": 0.262,
@@ -4576,6 +6096,14 @@
    "trade": 6.2,
    "v": "C"
   },
+  "MCH|TC|4000|block": {
+   "ci": 1.054,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.83,
+   "trade": 6.7,
+   "v": "="
+  },
   "MCH|TC|4000|open": {
    "ci": 0.033,
    "crown_wins": 4.0,
@@ -4591,6 +6119,14 @@
    "score": 0.837,
    "trade": 10.42,
    "v": "C"
+  },
+  "MCH|TC|600|block": {
+   "ci": 2.991,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.583,
+   "trade": 2.52,
+   "v": "="
   },
   "MCH|TC|600|open": {
    "ci": 0.284,
@@ -4608,6 +6144,14 @@
    "trade": 0.53,
    "v": "="
   },
+  "MCH|VC|1500|block": {
+   "ci": 0.279,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.389,
+   "trade": 0.64,
+   "v": "="
+  },
   "MCH|VC|1500|choke": {
    "ci": 0.185,
    "crown_wins": 0.0,
@@ -4617,11 +6161,11 @@
    "v": "B"
   },
   "MCH|VC|1500|down": {
-   "ci": 1.156,
-   "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.364,
-   "trade": 0.6,
+   "ci": 0.243,
+   "crown_wins": 1.0,
+   "n": 3,
+   "score": 0.385,
+   "trade": 0.65,
    "v": "="
   },
   "MCH|VC|1500|open": {
@@ -4648,6 +6192,14 @@
    "trade": 0.27,
    "v": "B"
   },
+  "MCH|VC|4000|block": {
+   "ci": 0.102,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.614,
+   "trade": 1.59,
+   "v": "C"
+  },
   "MCH|VC|4000|open": {
    "ci": 0.144,
    "crown_wins": 4.0,
@@ -4662,6 +6214,14 @@
    "n": 3,
    "score": 0.545,
    "trade": 1.25,
+   "v": "="
+  },
+  "MCH|VC|600|block": {
+   "ci": 1.365,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.107,
+   "trade": 0.14,
    "v": "="
   },
   "MCH|VC|600|open": {
@@ -4680,6 +6240,14 @@
    "trade": 0.46,
    "v": "="
   },
+  "MCMo|B|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.255,
+   "trade": 0.34,
+   "v": "B"
+  },
   "MCMo|B|1500|choke": {
    "ci": 0.12,
    "crown_wins": 0.0,
@@ -4689,11 +6257,11 @@
    "v": "B"
   },
   "MCMo|B|1500|down": {
-   "ci": 1.587,
+   "ci": 0.533,
    "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.779,
-   "trade": 5.67,
+   "n": 3,
+   "score": 0.678,
+   "trade": 4.08,
    "v": "="
   },
   "MCMo|B|1500|open": {
@@ -4720,6 +6288,14 @@
    "trade": 0.27,
    "v": "B"
   },
+  "MCMo|B|4000|block": {
+   "ci": 0.546,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.695,
+   "trade": 2.34,
+   "v": "="
+  },
   "MCMo|B|4000|open": {
    "ci": 0.129,
    "crown_wins": 4.0,
@@ -4735,6 +6311,14 @@
    "score": 0.68,
    "trade": 2.13,
    "v": "C"
+  },
+  "MCMo|B|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
   },
   "MCMo|B|600|open": {
    "ci": 0.0,
@@ -4752,6 +6336,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "MCMo|R1S1|1500|block": {
+   "ci": 0.298,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.566,
+   "trade": 1.3,
+   "v": "="
+  },
   "MCMo|R1S1|1500|choke": {
    "ci": 0.067,
    "crown_wins": 3.0,
@@ -4761,11 +6353,11 @@
    "v": "C"
   },
   "MCMo|R1S1|1500|down": {
-   "ci": 0.063,
+   "ci": 0.175,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.468,
-   "trade": 0.88,
+   "n": 3,
+   "score": 0.427,
+   "trade": 0.76,
    "v": "="
   },
   "MCMo|R1S1|1500|open": {
@@ -4792,6 +6384,14 @@
    "trade": 1.94,
    "v": "C"
   },
+  "MCMo|R1S1|4000|block": {
+   "ci": 0.254,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.792,
+   "trade": 3.86,
+   "v": "C"
+  },
   "MCMo|R1S1|4000|open": {
    "ci": 0.128,
    "crown_wins": 1.0,
@@ -4807,6 +6407,14 @@
    "score": 0.813,
    "trade": 4.52,
    "v": "C"
+  },
+  "MCMo|R1S1|600|block": {
+   "ci": 1.143,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.39,
+   "trade": 0.68,
+   "v": "="
   },
   "MCMo|R1S1|600|open": {
    "ci": 0.058,
@@ -4824,6 +6432,14 @@
    "trade": 1.71,
    "v": "="
   },
+  "MCMo|R1S3|1500|block": {
+   "ci": 0.349,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.512,
+   "trade": 1.05,
+   "v": "="
+  },
   "MCMo|R1S3|1500|choke": {
    "ci": 0.115,
    "crown_wins": 1.0,
@@ -4833,11 +6449,11 @@
    "v": "="
   },
   "MCMo|R1S3|1500|down": {
-   "ci": 0.032,
-   "crown_wins": 1.0,
-   "n": 2,
-   "score": 0.504,
-   "trade": 1.02,
+   "ci": 0.174,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.545,
+   "trade": 1.24,
    "v": "="
   },
   "MCMo|R1S3|1500|open": {
@@ -4864,6 +6480,14 @@
    "trade": 1.14,
    "v": "="
   },
+  "MCMo|R1S3|4000|block": {
+   "ci": 0.724,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.703,
+   "trade": 2.5,
+   "v": "="
+  },
   "MCMo|R1S3|4000|open": {
    "ci": 0.087,
    "crown_wins": 2.0,
@@ -4879,6 +6503,14 @@
    "score": 0.749,
    "trade": 3.03,
    "v": "C"
+  },
+  "MCMo|R1S3|600|block": {
+   "ci": 2.007,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.452,
+   "trade": 0.99,
+   "v": "="
   },
   "MCMo|R1S3|600|open": {
    "ci": 0.152,
@@ -4896,6 +6528,14 @@
    "trade": 0.5,
    "v": "="
   },
+  "MCMo|R3S1|1500|block": {
+   "ci": 0.546,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.627,
+   "trade": 1.72,
+   "v": "="
+  },
   "MCMo|R3S1|1500|choke": {
    "ci": 0.0,
    "crown_wins": 3.0,
@@ -4905,12 +6545,12 @@
    "v": "C"
   },
   "MCMo|R3S1|1500|down": {
-   "ci": 0.394,
-   "crown_wins": 2.0,
-   "n": 2,
+   "ci": 0.077,
+   "crown_wins": 3.0,
+   "n": 3,
    "score": 0.754,
-   "trade": 3.13,
-   "v": "="
+   "trade": 3.1,
+   "v": "C"
   },
   "MCMo|R3S1|1500|open": {
    "ci": 0.354,
@@ -4936,6 +6576,14 @@
    "trade": 2.69,
    "v": "="
   },
+  "MCMo|R3S1|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.799,
+   "trade": 3.97,
+   "v": "C"
+  },
   "MCMo|R3S1|4000|open": {
    "ci": 0.217,
    "crown_wins": 1.0,
@@ -4950,6 +6598,14 @@
    "n": 3,
    "score": 0.786,
    "trade": 3.68,
+   "v": "C"
+  },
+  "MCMo|R3S1|600|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.802,
+   "trade": 4.04,
    "v": "C"
   },
   "MCMo|R3S1|600|open": {
@@ -4968,6 +6624,14 @@
    "trade": 2.88,
    "v": "="
   },
+  "MCMo|RSB|1500|block": {
+   "ci": 1.283,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.487,
+   "trade": 1.03,
+   "v": "="
+  },
   "MCMo|RSB|1500|choke": {
    "ci": 0.135,
    "crown_wins": 0.0,
@@ -4977,11 +6641,11 @@
    "v": "="
   },
   "MCMo|RSB|1500|down": {
-   "ci": 1.334,
-   "crown_wins": 1.0,
-   "n": 2,
-   "score": 0.569,
-   "trade": 1.47,
+   "ci": 0.545,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.68,
+   "trade": 4.07,
    "v": "="
   },
   "MCMo|RSB|1500|open": {
@@ -5008,6 +6672,14 @@
    "trade": 0.93,
    "v": "="
   },
+  "MCMo|RSB|4000|block": {
+   "ci": 0.394,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.768,
+   "trade": 3.4,
+   "v": "="
+  },
   "MCMo|RSB|4000|open": {
    "ci": 0.025,
    "crown_wins": 0.0,
@@ -5023,6 +6695,14 @@
    "score": 0.755,
    "trade": 3.16,
    "v": "C"
+  },
+  "MCMo|RSB|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.205,
+   "trade": 0.26,
+   "v": "B"
   },
   "MCMo|RSB|600|open": {
    "ci": 0.062,
@@ -5040,6 +6720,14 @@
    "trade": 0.29,
    "v": "B"
   },
+  "MCMo|RSTd|1500|block": {
+   "ci": 0.883,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.651,
+   "trade": 1.98,
+   "v": "="
+  },
   "MCMo|RSTd|1500|choke": {
    "ci": 0.145,
    "crown_wins": 3.0,
@@ -5049,11 +6737,11 @@
    "v": "C"
   },
   "MCMo|RSTd|1500|down": {
-   "ci": 0.311,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.668,
-   "trade": 2.04,
+   "ci": 0.278,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.732,
+   "trade": 3.37,
    "v": "="
   },
   "MCMo|RSTd|1500|open": {
@@ -5080,6 +6768,14 @@
    "trade": 2.93,
    "v": "C"
   },
+  "MCMo|RSTd|4000|block": {
+   "ci": 0.083,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.792,
+   "trade": 3.8,
+   "v": "C"
+  },
   "MCMo|RSTd|4000|open": {
    "ci": 0.029,
    "crown_wins": 4.0,
@@ -5095,6 +6791,14 @@
    "score": 0.826,
    "trade": 4.77,
    "v": "C"
+  },
+  "MCMo|RSTd|600|block": {
+   "ci": 2.318,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.611,
+   "trade": 2.29,
+   "v": "="
   },
   "MCMo|RSTd|600|open": {
    "ci": 0.119,
@@ -5112,6 +6816,14 @@
    "trade": 2.81,
    "v": "="
   },
+  "MCMo|RSy|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.304,
+   "trade": 0.44,
+   "v": "B"
+  },
   "MCMo|RSy|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -5123,7 +6835,7 @@
   "MCMo|RSy|1500|down": {
    "ci": 0.0,
    "crown_wins": 0.0,
-   "n": 2,
+   "n": 3,
    "score": 0.25,
    "trade": 0.33,
    "v": "B"
@@ -5152,6 +6864,14 @@
    "trade": 0.46,
    "v": "B"
   },
+  "MCMo|RSy|4000|block": {
+   "ci": 0.057,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.643,
+   "trade": 1.79,
+   "v": "C"
+  },
   "MCMo|RSy|4000|open": {
    "ci": 0.042,
    "crown_wins": 0.0,
@@ -5167,6 +6887,14 @@
    "score": 0.691,
    "trade": 2.33,
    "v": "C"
+  },
+  "MCMo|RSy|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.205,
+   "trade": 0.26,
+   "v": "B"
   },
   "MCMo|RSy|600|open": {
    "ci": 0.028,
@@ -5184,6 +6912,14 @@
    "trade": 0.34,
    "v": "B"
   },
+  "MCMo|R|1500|block": {
+   "ci": 1.016,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.707,
+   "trade": 2.69,
+   "v": "="
+  },
   "MCMo|R|1500|choke": {
    "ci": 0.616,
    "crown_wins": 2.0,
@@ -5193,11 +6929,11 @@
    "v": "="
   },
   "MCMo|R|1500|down": {
-   "ci": 0.61,
-   "crown_wins": 0.5,
-   "n": 2,
-   "score": 0.484,
-   "trade": 0.95,
+   "ci": 0.296,
+   "crown_wins": 1.5,
+   "n": 3,
+   "score": 0.547,
+   "trade": 1.32,
    "v": "="
   },
   "MCMo|R|1500|open": {
@@ -5224,6 +6960,14 @@
    "trade": 1.51,
    "v": "="
   },
+  "MCMo|R|4000|block": {
+   "ci": 0.07,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.732,
+   "trade": 2.72,
+   "v": "C"
+  },
   "MCMo|R|4000|open": {
    "ci": 0.395,
    "crown_wins": 3.0,
@@ -5239,6 +6983,14 @@
    "score": 0.791,
    "trade": 3.83,
    "v": "C"
+  },
+  "MCMo|R|600|block": {
+   "ci": 1.143,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.346,
+   "trade": 0.56,
+   "v": "="
   },
   "MCMo|R|600|open": {
    "ci": 0.248,
@@ -5256,6 +7008,14 @@
    "trade": 0.56,
    "v": "B"
   },
+  "MCMo|StC|1500|block": {
+   "ci": 1.156,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.286,
+   "trade": 0.42,
+   "v": "="
+  },
   "MCMo|StC|1500|choke": {
    "ci": 0.334,
    "crown_wins": 0.0,
@@ -5265,11 +7025,11 @@
    "v": "="
   },
   "MCMo|StC|1500|down": {
-   "ci": 0.305,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.923,
-   "trade": 13.34,
+   "ci": 0.125,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.949,
+   "trade": 488.89,
    "v": "C"
   },
   "MCMo|StC|1500|open": {
@@ -5296,6 +7056,14 @@
    "trade": 1.31,
    "v": "="
   },
+  "MCMo|StC|4000|block": {
+   "ci": 0.14,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.297,
+   "trade": 0.43,
+   "v": "B"
+  },
   "MCMo|StC|4000|open": {
    "ci": 0.139,
    "crown_wins": 4.0,
@@ -5311,6 +7079,14 @@
    "score": 0.263,
    "trade": 0.37,
    "v": "="
+  },
+  "MCMo|StC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
   },
   "MCMo|StC|600|open": {
    "ci": 0.0,
@@ -5328,6 +7104,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "MCMo|S|1500|block": {
+   "ci": 0.184,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.324,
+   "trade": 0.48,
+   "v": "="
+  },
   "MCMo|S|1500|choke": {
    "ci": 0.079,
    "crown_wins": 0.0,
@@ -5337,11 +7121,11 @@
    "v": "B"
   },
   "MCMo|S|1500|down": {
-   "ci": 0.692,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.621,
-   "trade": 1.7,
+   "ci": 0.142,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.632,
+   "trade": 1.76,
    "v": "="
   },
   "MCMo|S|1500|open": {
@@ -5368,6 +7152,14 @@
    "trade": 1.44,
    "v": "C"
   },
+  "MCMo|S|4000|block": {
+   "ci": 0.171,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.653,
+   "trade": 1.89,
+   "v": "="
+  },
   "MCMo|S|4000|open": {
    "ci": 0.056,
    "crown_wins": 4.0,
@@ -5383,6 +7175,14 @@
    "score": 0.693,
    "trade": 2.26,
    "v": "C"
+  },
+  "MCMo|S|600|block": {
+   "ci": 2.299,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.427,
+   "trade": 0.94,
+   "v": "="
   },
   "MCMo|S|600|open": {
    "ci": 0.0,
@@ -5400,6 +7200,14 @@
    "trade": 2.03,
    "v": "="
   },
+  "MCMo|TCS|1500|block": {
+   "ci": 0.114,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.468,
+   "trade": 0.88,
+   "v": "="
+  },
   "MCMo|TCS|1500|choke": {
    "ci": 0.127,
    "crown_wins": 1.0,
@@ -5409,11 +7217,11 @@
    "v": "="
   },
   "MCMo|TCS|1500|down": {
-   "ci": 1.949,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.708,
-   "trade": 3.71,
+   "ci": 0.434,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.659,
+   "trade": 2.9,
    "v": "="
   },
   "MCMo|TCS|1500|open": {
@@ -5440,6 +7248,14 @@
    "trade": 1.43,
    "v": "="
   },
+  "MCMo|TCS|4000|block": {
+   "ci": 0.14,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.714,
+   "trade": 2.5,
+   "v": "C"
+  },
   "MCMo|TCS|4000|open": {
    "ci": 0.13,
    "crown_wins": 3.0,
@@ -5455,6 +7271,14 @@
    "score": 0.776,
    "trade": 3.47,
    "v": "C"
+  },
+  "MCMo|TCS|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
   },
   "MCMo|TCS|600|open": {
    "ci": 0.0,
@@ -5472,6 +7296,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "MCMo|TC|1500|block": {
+   "ci": 0.489,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.409,
+   "trade": 0.7,
+   "v": "="
+  },
   "MCMo|TC|1500|choke": {
    "ci": 0.083,
    "crown_wins": 0.0,
@@ -5481,12 +7313,12 @@
    "v": "B"
   },
   "MCMo|TC|1500|down": {
-   "ci": 0.387,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.762,
-   "trade": 3.26,
-   "v": "="
+   "ci": 0.087,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.772,
+   "trade": 3.44,
+   "v": "C"
   },
   "MCMo|TC|1500|open": {
    "ci": 0.301,
@@ -5512,6 +7344,14 @@
    "trade": 1.68,
    "v": "="
   },
+  "MCMo|TC|4000|block": {
+   "ci": 0.076,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.744,
+   "trade": 2.91,
+   "v": "C"
+  },
   "MCMo|TC|4000|open": {
    "ci": 0.042,
    "crown_wins": 4.0,
@@ -5527,6 +7367,14 @@
    "score": 0.765,
    "trade": 3.55,
    "v": "C"
+  },
+  "MCMo|TC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
   },
   "MCMo|TC|600|open": {
    "ci": 0.0,
@@ -5544,6 +7392,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "MCMo|VC|1500|block": {
+   "ci": 0.648,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.051,
+   "trade": 0.06,
+   "v": "="
+  },
   "MCMo|VC|1500|choke": {
    "ci": 0.146,
    "crown_wins": 0.0,
@@ -5553,11 +7409,11 @@
    "v": "B"
   },
   "MCMo|VC|1500|down": {
-   "ci": 0.0,
+   "ci": 0.12,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.102,
-   "trade": 0.11,
+   "n": 3,
+   "score": 0.13,
+   "trade": 0.15,
    "v": "B"
   },
   "MCMo|VC|1500|open": {
@@ -5584,6 +7440,14 @@
    "trade": 0.19,
    "v": "B"
   },
+  "MCMo|VC|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.64,
+   "trade": 1.78,
+   "v": "C"
+  },
   "MCMo|VC|4000|open": {
    "ci": 0.097,
    "crown_wins": 0.0,
@@ -5599,6 +7463,14 @@
    "score": 0.605,
    "trade": 1.54,
    "v": "C"
+  },
+  "MCMo|VC|600|block": {
+   "ci": 1.435,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.113,
+   "trade": 0.14,
+   "v": "="
   },
   "MCMo|VC|600|open": {
    "ci": 0.0,
@@ -5616,6 +7488,14 @@
    "trade": 0.39,
    "v": "B"
   },
+  "MC|B|1500|block": {
+   "ci": 0.273,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.384,
+   "trade": 0.62,
+   "v": "="
+  },
   "MC|B|1500|choke": {
    "ci": 0.248,
    "crown_wins": 0.0,
@@ -5625,12 +7505,12 @@
    "v": "="
   },
   "MC|B|1500|down": {
-   "ci": 0.419,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.792,
-   "trade": 3.93,
-   "v": "="
+   "ci": 0.095,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.781,
+   "trade": 3.67,
+   "v": "C"
   },
   "MC|B|1500|open": {
    "ci": 0.103,
@@ -5656,6 +7536,14 @@
    "trade": 1.02,
    "v": "="
   },
+  "MC|B|4000|block": {
+   "ci": 0.108,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.641,
+   "trade": 1.78,
+   "v": "C"
+  },
   "MC|B|4000|open": {
    "ci": 0.079,
    "crown_wins": 4.0,
@@ -5671,6 +7559,14 @@
    "score": 0.781,
    "trade": 3.78,
    "v": "C"
+  },
+  "MC|B|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
   },
   "MC|B|600|open": {
    "ci": 0.252,
@@ -5688,6 +7584,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "MC|R1S1|1500|block": {
+   "ci": 0.362,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.728,
+   "trade": 2.72,
+   "v": "="
+  },
   "MC|R1S1|1500|choke": {
    "ci": 0.104,
    "crown_wins": 3.0,
@@ -5697,12 +7601,12 @@
    "v": "C"
   },
   "MC|R1S1|1500|down": {
-   "ci": 0.127,
+   "ci": 0.025,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.434,
+   "n": 3,
+   "score": 0.435,
    "trade": 0.77,
-   "v": "="
+   "v": "B"
   },
   "MC|R1S1|1500|open": {
    "ci": 0.176,
@@ -5728,6 +7632,14 @@
    "trade": 8.28,
    "v": "C"
   },
+  "MC|R1S1|4000|block": {
+   "ci": 0.305,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.863,
+   "trade": 6.53,
+   "v": "C"
+  },
   "MC|R1S1|4000|open": {
    "ci": 0.079,
    "crown_wins": 1.0,
@@ -5743,6 +7655,14 @@
    "score": 0.857,
    "trade": 6.68,
    "v": "C"
+  },
+  "MC|R1S1|600|block": {
+   "ci": 1.41,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.778,
+   "trade": 5.0,
+   "v": "="
   },
   "MC|R1S1|600|open": {
    "ci": 0.048,
@@ -5760,6 +7680,14 @@
    "trade": 2.22,
    "v": "C"
   },
+  "MC|R1S3|1500|block": {
+   "ci": 1.365,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.589,
+   "trade": 1.61,
+   "v": "="
+  },
   "MC|R1S3|1500|choke": {
    "ci": 0.118,
    "crown_wins": 3.0,
@@ -5769,11 +7697,11 @@
    "v": "C"
   },
   "MC|R1S3|1500|down": {
-   "ci": 0.787,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.586,
-   "trade": 1.47,
+   "ci": 0.221,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.623,
+   "trade": 1.75,
    "v": "="
   },
   "MC|R1S3|1500|open": {
@@ -5800,6 +7728,14 @@
    "trade": 2.98,
    "v": "C"
   },
+  "MC|R1S3|4000|block": {
+   "ci": 0.083,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.79,
+   "trade": 3.76,
+   "v": "C"
+  },
   "MC|R1S3|4000|open": {
    "ci": 0.132,
    "crown_wins": 2.0,
@@ -5815,6 +7751,14 @@
    "score": 0.797,
    "trade": 3.98,
    "v": "C"
+  },
+  "MC|R1S3|600|block": {
+   "ci": 0.883,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.542,
+   "trade": 1.24,
+   "v": "="
   },
   "MC|R1S3|600|open": {
    "ci": 0.331,
@@ -5832,6 +7776,14 @@
    "trade": 0.99,
    "v": "="
   },
+  "MC|R3S1|1500|block": {
+   "ci": 0.248,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.839,
+   "trade": 5.33,
+   "v": "C"
+  },
   "MC|R3S1|1500|choke": {
    "ci": 0.235,
    "crown_wins": 3.0,
@@ -5841,11 +7793,11 @@
    "v": "C"
   },
   "MC|R3S1|1500|down": {
-   "ci": 1.734,
-   "crown_wins": 1.5,
-   "n": 2,
-   "score": 0.649,
-   "trade": 2.35,
+   "ci": 0.371,
+   "crown_wins": 2.5,
+   "n": 3,
+   "score": 0.683,
+   "trade": 2.58,
    "v": "="
   },
   "MC|R3S1|1500|open": {
@@ -5872,6 +7824,14 @@
    "trade": 5.58,
    "v": "C"
   },
+  "MC|R3S1|4000|block": {
+   "ci": 0.578,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.779,
+   "trade": 3.73,
+   "v": "="
+  },
   "MC|R3S1|4000|open": {
    "ci": 0.136,
    "crown_wins": 2.0,
@@ -5887,6 +7847,14 @@
    "score": 0.851,
    "trade": 5.99,
    "v": "C"
+  },
+  "MC|R3S1|600|block": {
+   "ci": 0.698,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.945,
+   "trade": 299.04,
+   "v": "="
   },
   "MC|R3S1|600|open": {
    "ci": 0.014,
@@ -5904,6 +7872,14 @@
    "trade": 6.28,
    "v": "C"
   },
+  "MC|RSB|1500|block": {
+   "ci": 0.171,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.712,
+   "trade": 2.48,
+   "v": "C"
+  },
   "MC|RSB|1500|choke": {
    "ci": 0.315,
    "crown_wins": 2.0,
@@ -5913,12 +7889,12 @@
    "v": "="
   },
   "MC|RSB|1500|down": {
-   "ci": 0.292,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.651,
-   "trade": 1.88,
-   "v": "="
+   "ci": 0.066,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.659,
+   "trade": 1.94,
+   "v": "C"
   },
   "MC|RSB|1500|open": {
    "ci": 0.284,
@@ -5944,6 +7920,14 @@
    "trade": 2.6,
    "v": "="
   },
+  "MC|RSB|4000|block": {
+   "ci": 0.787,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.809,
+   "trade": 4.83,
+   "v": "="
+  },
   "MC|RSB|4000|open": {
    "ci": 0.146,
    "crown_wins": 1.0,
@@ -5959,6 +7943,14 @@
    "score": 0.851,
    "trade": 5.93,
    "v": "C"
+  },
+  "MC|RSB|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.204,
+   "trade": 0.26,
+   "v": "B"
   },
   "MC|RSB|600|open": {
    "ci": 0.315,
@@ -5976,6 +7968,14 @@
    "trade": 0.49,
    "v": "="
   },
+  "MC|RSTd|1500|block": {
+   "ci": 0.241,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.843,
+   "trade": 5.46,
+   "v": "C"
+  },
   "MC|RSTd|1500|choke": {
    "ci": 0.05,
    "crown_wins": 3.0,
@@ -5985,12 +7985,12 @@
    "v": "C"
   },
   "MC|RSTd|1500|down": {
-   "ci": 0.0,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.63,
-   "trade": 1.7,
-   "v": "C"
+   "ci": 0.228,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.683,
+   "trade": 2.38,
+   "v": "="
   },
   "MC|RSTd|1500|open": {
    "ci": 0.105,
@@ -6016,6 +8016,14 @@
    "trade": 512.79,
    "v": "C"
   },
+  "MC|RSTd|4000|block": {
+   "ci": 0.686,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.85,
+   "trade": 6.63,
+   "v": "="
+  },
   "MC|RSTd|4000|open": {
    "ci": 0.066,
    "crown_wins": 4.0,
@@ -6030,6 +8038,14 @@
    "n": 3,
    "score": 0.882,
    "trade": 8.08,
+   "v": "C"
+  },
+  "MC|RSTd|600|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.807,
+   "trade": 4.18,
    "v": "C"
   },
   "MC|RSTd|600|open": {
@@ -6048,6 +8064,14 @@
    "trade": 4.65,
    "v": "C"
   },
+  "MC|RSy|1500|block": {
+   "ci": 0.089,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.34,
+   "trade": 0.52,
+   "v": "B"
+  },
   "MC|RSy|1500|choke": {
    "ci": 0.103,
    "crown_wins": 0.0,
@@ -6057,11 +8081,11 @@
    "v": "B"
   },
   "MC|RSy|1500|down": {
-   "ci": 0.102,
+   "ci": 0.023,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.276,
-   "trade": 0.39,
+   "n": 3,
+   "score": 0.273,
+   "trade": 0.38,
    "v": "B"
   },
   "MC|RSy|1500|open": {
@@ -6088,6 +8112,14 @@
    "trade": 0.57,
    "v": "B"
   },
+  "MC|RSy|4000|block": {
+   "ci": 0.07,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.718,
+   "trade": 2.54,
+   "v": "C"
+  },
   "MC|RSy|4000|open": {
    "ci": 0.032,
    "crown_wins": 0.0,
@@ -6103,6 +8135,14 @@
    "score": 0.709,
    "trade": 2.54,
    "v": "C"
+  },
+  "MC|RSy|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.204,
+   "trade": 0.26,
+   "v": "B"
   },
   "MC|RSy|600|open": {
    "ci": 0.06,
@@ -6120,6 +8160,14 @@
    "trade": 0.37,
    "v": "B"
   },
+  "MC|R|1500|block": {
+   "ci": 0.387,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.756,
+   "trade": 3.17,
+   "v": "="
+  },
   "MC|R|1500|choke": {
    "ci": 0.559,
    "crown_wins": 2.0,
@@ -6129,11 +8177,11 @@
    "v": "="
   },
   "MC|R|1500|down": {
-   "ci": 0.349,
-   "crown_wins": 1.0,
-   "n": 2,
-   "score": 0.52,
-   "trade": 1.09,
+   "ci": 0.083,
+   "crown_wins": 1.5,
+   "n": 3,
+   "score": 0.509,
+   "trade": 1.04,
    "v": "="
   },
   "MC|R|1500|open": {
@@ -6160,6 +8208,14 @@
    "trade": 2.35,
    "v": "="
   },
+  "MC|R|4000|block": {
+   "ci": 0.521,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.743,
+   "trade": 2.99,
+   "v": "="
+  },
   "MC|R|4000|open": {
    "ci": 0.265,
    "crown_wins": 3.0,
@@ -6175,6 +8231,14 @@
    "score": 0.794,
    "trade": 3.98,
    "v": "C"
+  },
+  "MC|R|600|block": {
+   "ci": 3.207,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.748,
+   "trade": 300.49,
+   "v": "="
   },
   "MC|R|600|open": {
    "ci": 0.087,
@@ -6192,6 +8256,14 @@
    "trade": 3.29,
    "v": "="
   },
+  "MC|StC|1500|block": {
+   "ci": 1.149,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.284,
+   "trade": 0.42,
+   "v": "="
+  },
   "MC|StC|1500|choke": {
    "ci": 0.764,
    "crown_wins": 1.0,
@@ -6201,11 +8273,11 @@
    "v": "="
   },
   "MC|StC|1500|down": {
-   "ci": 0.305,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.923,
-   "trade": 13.34,
+   "ci": 0.125,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.949,
+   "trade": 488.89,
    "v": "C"
   },
   "MC|StC|1500|open": {
@@ -6232,6 +8304,14 @@
    "trade": 1.18,
    "v": "="
   },
+  "MC|StC|4000|block": {
+   "ci": 0.089,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.816,
+   "trade": 4.45,
+   "v": "C"
+  },
   "MC|StC|4000|open": {
    "ci": 0.089,
    "crown_wins": 4.0,
@@ -6246,6 +8326,14 @@
    "n": 3,
    "score": 0.733,
    "trade": 4.61,
+   "v": "="
+  },
+  "MC|StC|600|block": {
+   "ci": 2.413,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.19,
+   "trade": 0.3,
    "v": "="
   },
   "MC|StC|600|open": {
@@ -6264,6 +8352,14 @@
    "trade": 0.31,
    "v": "B"
   },
+  "MC|S|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.591,
+   "trade": 1.44,
+   "v": "C"
+  },
   "MC|S|1500|choke": {
    "ci": 0.193,
    "crown_wins": 1.0,
@@ -6273,12 +8369,12 @@
    "v": "="
   },
   "MC|S|1500|down": {
-   "ci": 0.673,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.705,
-   "trade": 2.5,
-   "v": "="
+   "ci": 0.17,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.68,
+   "trade": 2.24,
+   "v": "C"
   },
   "MC|S|1500|open": {
    "ci": 0.066,
@@ -6304,6 +8400,14 @@
    "trade": 2.42,
    "v": "="
   },
+  "MC|S|4000|block": {
+   "ci": 0.121,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.671,
+   "trade": 2.04,
+   "v": "C"
+  },
   "MC|S|4000|open": {
    "ci": 0.168,
    "crown_wins": 3.0,
@@ -6319,6 +8423,14 @@
    "score": 0.724,
    "trade": 2.66,
    "v": "C"
+  },
+  "MC|S|600|block": {
+   "ci": 1.575,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.486,
+   "trade": 1.06,
+   "v": "="
   },
   "MC|S|600|open": {
    "ci": 0.157,
@@ -6336,6 +8448,14 @@
    "trade": 1.28,
    "v": "="
   },
+  "MC|TCS|1500|block": {
+   "ci": 0.337,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.7,
+   "trade": 2.35,
+   "v": "="
+  },
   "MC|TCS|1500|choke": {
    "ci": 0.061,
    "crown_wins": 3.0,
@@ -6345,11 +8465,11 @@
    "v": "C"
   },
   "MC|TCS|1500|down": {
-   "ci": 1.035,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.779,
-   "trade": 4.24,
+   "ci": 0.253,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.744,
+   "trade": 3.51,
    "v": "="
   },
   "MC|TCS|1500|open": {
@@ -6376,6 +8496,14 @@
    "trade": 2.26,
    "v": "C"
   },
+  "MC|TCS|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.811,
+   "trade": 4.3,
+   "v": "C"
+  },
   "MC|TCS|4000|open": {
    "ci": 0.097,
    "crown_wins": 4.0,
@@ -6391,6 +8519,14 @@
    "score": 0.799,
    "trade": 4.12,
    "v": "C"
+  },
+  "MC|TCS|600|block": {
+   "ci": 1.257,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.174,
+   "trade": 0.23,
+   "v": "="
   },
   "MC|TCS|600|open": {
    "ci": 0.14,
@@ -6408,6 +8544,14 @@
    "trade": 0.31,
    "v": "B"
   },
+  "MC|TC|1500|block": {
+   "ci": 2.299,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.579,
+   "trade": 1.92,
+   "v": "="
+  },
   "MC|TC|1500|choke": {
    "ci": 0.403,
    "crown_wins": 1.0,
@@ -6417,12 +8561,12 @@
    "v": "="
   },
   "MC|TC|1500|down": {
-   "ci": 0.419,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.793,
-   "trade": 3.96,
-   "v": "="
+   "ci": 0.131,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.817,
+   "trade": 4.75,
+   "v": "C"
   },
   "MC|TC|1500|open": {
    "ci": 0.252,
@@ -6448,6 +8592,14 @@
    "trade": 1.63,
    "v": "="
   },
+  "MC|TC|4000|block": {
+   "ci": 0.089,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.816,
+   "trade": 4.45,
+   "v": "C"
+  },
   "MC|TC|4000|open": {
    "ci": 0.085,
    "crown_wins": 4.0,
@@ -6463,6 +8615,14 @@
    "score": 0.784,
    "trade": 3.76,
    "v": "C"
+  },
+  "MC|TC|600|block": {
+   "ci": 0.73,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.216,
+   "trade": 0.28,
+   "v": "="
   },
   "MC|TC|600|open": {
    "ci": 0.161,
@@ -6480,6 +8640,14 @@
    "trade": 0.5,
    "v": "B"
   },
+  "MC|VC|1500|block": {
+   "ci": 0.591,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.359,
+   "trade": 0.57,
+   "v": "="
+  },
   "MC|VC|1500|choke": {
    "ci": 0.116,
    "crown_wins": 0.0,
@@ -6489,12 +8657,12 @@
    "v": "B"
   },
   "MC|VC|1500|down": {
-   "ci": 0.438,
+   "ci": 0.099,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.22,
-   "trade": 0.29,
-   "v": "="
+   "n": 3,
+   "score": 0.231,
+   "trade": 0.3,
+   "v": "B"
   },
   "MC|VC|1500|open": {
    "ci": 0.117,
@@ -6520,6 +8688,14 @@
    "trade": 0.45,
    "v": "="
   },
+  "MC|VC|4000|block": {
+   "ci": 0.406,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.617,
+   "trade": 1.63,
+   "v": "="
+  },
   "MC|VC|4000|open": {
    "ci": 0.069,
    "crown_wins": 0.0,
@@ -6534,6 +8710,14 @@
    "n": 3,
    "score": 0.573,
    "trade": 1.36,
+   "v": "="
+  },
+  "MC|VC|600|block": {
+   "ci": 1.429,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.113,
+   "trade": 0.14,
    "v": "="
   },
   "MC|VC|600|open": {
@@ -6552,6 +8736,14 @@
    "trade": 0.19,
    "v": "B"
   },
+  "MD|B|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.1,
+   "trade": 0.11,
+   "v": "B"
+  },
   "MD|B|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -6561,12 +8753,12 @@
    "v": "B"
   },
   "MD|B|1500|down": {
-   "ci": null,
+   "ci": 0.062,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.356,
-   "trade": 0.55,
-   "v": "="
+   "n": 3,
+   "score": 0.37,
+   "trade": 0.59,
+   "v": "B"
   },
   "MD|B|1500|open": {
    "ci": 0.226,
@@ -6592,6 +8784,14 @@
    "trade": 0.15,
    "v": "B"
   },
+  "MD|B|4000|block": {
+   "ci": 0.432,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.373,
+   "trade": 0.6,
+   "v": "="
+  },
   "MD|B|4000|open": {
    "ci": 0.102,
    "crown_wins": 4.0,
@@ -6606,6 +8806,14 @@
    "n": 3,
    "score": 0.326,
    "trade": 0.49,
+   "v": "B"
+  },
+  "MD|B|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "MD|B|600|open": {
@@ -6624,6 +8832,14 @@
    "trade": 0.1,
    "v": "B"
   },
+  "MD|R1S1|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.434,
+   "trade": 0.77,
+   "v": "B"
+  },
   "MD|R1S1|1500|choke": {
    "ci": 0.044,
    "crown_wins": 0.0,
@@ -6633,11 +8849,11 @@
    "v": "B"
   },
   "MD|R1S1|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.659,
-   "trade": 1.93,
+   "ci": 0.293,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.549,
+   "trade": 1.32,
    "v": "="
   },
   "MD|R1S1|1500|open": {
@@ -6664,6 +8880,14 @@
    "trade": 0.72,
    "v": "B"
   },
+  "MD|R1S1|4000|block": {
+   "ci": 0.133,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.456,
+   "trade": 0.83,
+   "v": "="
+  },
   "MD|R1S1|4000|open": {
    "ci": 0.071,
    "crown_wins": 1.0,
@@ -6678,6 +8902,14 @@
    "n": 3,
    "score": 0.391,
    "trade": 0.64,
+   "v": "B"
+  },
+  "MD|R1S1|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.428,
+   "trade": 0.75,
    "v": "B"
   },
   "MD|R1S1|600|open": {
@@ -6696,6 +8928,14 @@
    "trade": 1.34,
    "v": "="
   },
+  "MD|R1S3|1500|block": {
+   "ci": 0.171,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.337,
+   "trade": 0.51,
+   "v": "="
+  },
   "MD|R1S3|1500|choke": {
    "ci": 0.115,
    "crown_wins": 0.0,
@@ -6705,11 +8945,11 @@
    "v": "B"
   },
   "MD|R1S3|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.792,
-   "trade": 3.81,
+   "ci": 0.227,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.691,
+   "trade": 2.47,
    "v": "="
   },
   "MD|R1S3|1500|open": {
@@ -6736,6 +8976,14 @@
    "trade": 0.59,
    "v": "B"
   },
+  "MD|R1S3|4000|block": {
+   "ci": 0.171,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.435,
+   "trade": 0.77,
+   "v": "="
+  },
   "MD|R1S3|4000|open": {
    "ci": 0.03,
    "crown_wins": 0.0,
@@ -6751,6 +8999,14 @@
    "score": 0.388,
    "trade": 0.64,
    "v": "B"
+  },
+  "MD|R1S3|600|block": {
+   "ci": 0.305,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.224,
+   "trade": 0.29,
+   "v": "="
   },
   "MD|R1S3|600|open": {
    "ci": 0.1,
@@ -6768,6 +9024,14 @@
    "trade": 0.36,
    "v": "B"
   },
+  "MD|R3S1|1500|block": {
+   "ci": 0.064,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.443,
+   "trade": 0.8,
+   "v": "="
+  },
   "MD|R3S1|1500|choke": {
    "ci": 0.197,
    "crown_wins": 0.0,
@@ -6777,11 +9041,11 @@
    "v": "="
   },
   "MD|R3S1|1500|down": {
-   "ci": null,
+   "ci": 0.209,
    "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.593,
-   "trade": 1.46,
+   "n": 3,
+   "score": 0.502,
+   "trade": 1.05,
    "v": "="
   },
   "MD|R3S1|1500|open": {
@@ -6808,6 +9072,14 @@
    "trade": 0.62,
    "v": "="
   },
+  "MD|R3S1|4000|block": {
+   "ci": 0.019,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.465,
+   "trade": 0.86,
+   "v": "B"
+  },
   "MD|R3S1|4000|open": {
    "ci": 0.077,
    "crown_wins": 2.0,
@@ -6823,6 +9095,14 @@
    "score": 0.426,
    "trade": 0.75,
    "v": "B"
+  },
+  "MD|R3S1|600|block": {
+   "ci": 0.171,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.417,
+   "trade": 0.72,
+   "v": "="
   },
   "MD|R3S1|600|open": {
    "ci": 0.067,
@@ -6840,6 +9120,14 @@
    "trade": 0.81,
    "v": "="
   },
+  "MD|RSB|1500|block": {
+   "ci": 0.248,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.359,
+   "trade": 0.56,
+   "v": "="
+  },
   "MD|RSB|1500|choke": {
    "ci": 0.099,
    "crown_wins": 0.0,
@@ -6849,11 +9137,11 @@
    "v": "B"
   },
   "MD|RSB|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.436,
-   "trade": 0.77,
+   "ci": 0.407,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.621,
+   "trade": 1.95,
    "v": "="
   },
   "MD|RSB|1500|open": {
@@ -6880,6 +9168,14 @@
    "trade": 0.4,
    "v": "B"
   },
+  "MD|RSB|4000|block": {
+   "ci": 0.184,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.45,
+   "trade": 0.81,
+   "v": "="
+  },
   "MD|RSB|4000|open": {
    "ci": 0.04,
    "crown_wins": 0.0,
@@ -6894,6 +9190,14 @@
    "n": 3,
    "score": 0.424,
    "trade": 0.74,
+   "v": "B"
+  },
+  "MD|RSB|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.202,
+   "trade": 0.25,
    "v": "B"
   },
   "MD|RSB|600|open": {
@@ -6912,6 +9216,14 @@
    "trade": 0.25,
    "v": "B"
   },
+  "MD|RSTd|1500|block": {
+   "ci": 0.114,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.453,
+   "trade": 0.83,
+   "v": "="
+  },
   "MD|RSTd|1500|choke": {
    "ci": 0.029,
    "crown_wins": 0.0,
@@ -6921,12 +9233,12 @@
    "v": "B"
   },
   "MD|RSTd|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.648,
-   "trade": 1.84,
-   "v": "="
+   "ci": 0.181,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.721,
+   "trade": 2.76,
+   "v": "C"
   },
   "MD|RSTd|1500|open": {
    "ci": 0.137,
@@ -6952,6 +9264,14 @@
    "trade": 1.47,
    "v": "="
   },
+  "MD|RSTd|4000|block": {
+   "ci": 0.038,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.479,
+   "trade": 0.92,
+   "v": "="
+  },
   "MD|RSTd|4000|open": {
    "ci": 0.074,
    "crown_wins": 4.0,
@@ -6967,6 +9287,14 @@
    "score": 0.469,
    "trade": 0.88,
    "v": "B"
+  },
+  "MD|RSTd|600|block": {
+   "ci": 0.14,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.477,
+   "trade": 0.91,
+   "v": "="
   },
   "MD|RSTd|600|open": {
    "ci": 0.055,
@@ -6984,6 +9312,14 @@
    "trade": 0.99,
    "v": "="
   },
+  "MD|RSy|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.297,
+   "trade": 0.42,
+   "v": "B"
+  },
   "MD|RSy|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -6993,12 +9329,12 @@
    "v": "B"
   },
   "MD|RSy|1500|down": {
-   "ci": null,
+   "ci": 0.071,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.262,
-   "trade": 0.35,
-   "v": "="
+   "n": 3,
+   "score": 0.294,
+   "trade": 0.42,
+   "v": "B"
   },
   "MD|RSy|1500|open": {
    "ci": 0.026,
@@ -7024,6 +9360,14 @@
    "trade": 0.42,
    "v": "B"
   },
+  "MD|RSy|4000|block": {
+   "ci": 0.064,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.375,
+   "trade": 0.6,
+   "v": "B"
+  },
   "MD|RSy|4000|open": {
    "ci": 0.021,
    "crown_wins": 0.0,
@@ -7038,6 +9382,14 @@
    "n": 3,
    "score": 0.37,
    "trade": 0.59,
+   "v": "B"
+  },
+  "MD|RSy|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.202,
+   "trade": 0.25,
    "v": "B"
   },
   "MD|RSy|600|open": {
@@ -7056,6 +9408,14 @@
    "trade": 0.25,
    "v": "B"
   },
+  "MD|R|1500|block": {
+   "ci": 0.711,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.241,
+   "trade": 0.33,
+   "v": "="
+  },
   "MD|R|1500|choke": {
    "ci": 0.035,
    "crown_wins": 0.0,
@@ -7065,11 +9425,11 @@
    "v": "B"
   },
   "MD|R|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.382,
-   "trade": 0.62,
+   "ci": 0.464,
+   "crown_wins": 1.0,
+   "n": 3,
+   "score": 0.414,
+   "trade": 0.85,
    "v": "="
   },
   "MD|R|1500|open": {
@@ -7096,6 +9456,14 @@
    "trade": 3.53,
    "v": "="
   },
+  "MD|R|4000|block": {
+   "ci": 0.298,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.339,
+   "trade": 0.52,
+   "v": "="
+  },
   "MD|R|4000|open": {
    "ci": 0.039,
    "crown_wins": 0.0,
@@ -7111,6 +9479,14 @@
    "score": 0.304,
    "trade": 0.44,
    "v": "B"
+  },
+  "MD|R|600|block": {
+   "ci": 0.267,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.297,
+   "trade": 0.42,
+   "v": "="
   },
   "MD|R|600|open": {
    "ci": 0.118,
@@ -7128,6 +9504,14 @@
    "trade": 0.44,
    "v": "B"
   },
+  "MD|StC|1500|block": {
+   "ci": 0.349,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.742,
+   "trade": 2.92,
+   "v": "="
+  },
   "MD|StC|1500|choke": {
    "ci": 0.51,
    "crown_wins": 2.0,
@@ -7137,11 +9521,11 @@
    "v": "="
   },
   "MD|StC|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.741,
-   "trade": 2.87,
+   "ci": 0.382,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.765,
+   "trade": 5.98,
    "v": "="
   },
   "MD|StC|1500|open": {
@@ -7168,6 +9552,14 @@
    "trade": 2.34,
    "v": "="
   },
+  "MD|StC|4000|block": {
+   "ci": 0.279,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.831,
+   "trade": 5.03,
+   "v": "C"
+  },
   "MD|StC|4000|open": {
    "ci": 0.048,
    "crown_wins": 4.0,
@@ -7183,6 +9575,14 @@
    "score": 0.86,
    "trade": 6.6,
    "v": "C"
+  },
+  "MD|StC|600|block": {
+   "ci": 2.108,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.545,
+   "trade": 1.54,
+   "v": "="
   },
   "MD|StC|600|open": {
    "ci": 0.336,
@@ -7200,6 +9600,14 @@
    "trade": 2.06,
    "v": "C"
   },
+  "MD|S|1500|block": {
+   "ci": 0.127,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.208,
+   "trade": 0.27,
+   "v": "B"
+  },
   "MD|S|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -7209,11 +9617,11 @@
    "v": "B"
   },
   "MD|S|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.642,
-   "trade": 1.79,
+   "ci": 0.305,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.556,
+   "trade": 1.36,
    "v": "="
   },
   "MD|S|1500|open": {
@@ -7240,6 +9648,14 @@
    "trade": 0.37,
    "v": "B"
   },
+  "MD|S|4000|block": {
+   "ci": 0.07,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.312,
+   "trade": 0.45,
+   "v": "B"
+  },
   "MD|S|4000|open": {
    "ci": 0.038,
    "crown_wins": 0.0,
@@ -7255,6 +9671,14 @@
    "score": 0.295,
    "trade": 0.42,
    "v": "B"
+  },
+  "MD|S|600|block": {
+   "ci": 1.073,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.159,
+   "trade": 0.2,
+   "v": "="
   },
   "MD|S|600|open": {
    "ci": 0.0,
@@ -7272,6 +9696,14 @@
    "trade": 0.19,
    "v": "B"
   },
+  "MD|TCS|1500|block": {
+   "ci": 0.26,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.336,
+   "trade": 0.51,
+   "v": "="
+  },
   "MD|TCS|1500|choke": {
    "ci": 0.067,
    "crown_wins": 0.0,
@@ -7281,11 +9713,11 @@
    "v": "B"
   },
   "MD|TCS|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.728,
-   "trade": 2.68,
+   "ci": 0.316,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.781,
+   "trade": 5.8,
    "v": "="
   },
   "MD|TCS|1500|open": {
@@ -7312,6 +9744,14 @@
    "trade": 0.56,
    "v": "B"
   },
+  "MD|TCS|4000|block": {
+   "ci": 0.159,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.452,
+   "trade": 0.82,
+   "v": "="
+  },
   "MD|TCS|4000|open": {
    "ci": 0.06,
    "crown_wins": 0.0,
@@ -7327,6 +9767,14 @@
    "score": 0.416,
    "trade": 0.72,
    "v": "="
+  },
+  "MD|TCS|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.271,
+   "trade": 0.37,
+   "v": "B"
   },
   "MD|TCS|600|open": {
    "ci": 0.048,
@@ -7344,6 +9792,14 @@
    "trade": 0.37,
    "v": "B"
   },
+  "MD|TC|1500|block": {
+   "ci": 0.368,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.363,
+   "trade": 0.57,
+   "v": "="
+  },
   "MD|TC|1500|choke": {
    "ci": 0.104,
    "crown_wins": 0.0,
@@ -7353,11 +9809,11 @@
    "v": "B"
   },
   "MD|TC|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.559,
-   "trade": 1.27,
+   "ci": 0.252,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.666,
+   "trade": 2.19,
    "v": "="
   },
   "MD|TC|1500|open": {
@@ -7384,6 +9840,14 @@
    "trade": 0.67,
    "v": "B"
   },
+  "MD|TC|4000|block": {
+   "ci": 0.241,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.763,
+   "trade": 3.25,
+   "v": "C"
+  },
   "MD|TC|4000|open": {
    "ci": 0.052,
    "crown_wins": 4.0,
@@ -7399,6 +9863,14 @@
    "score": 0.699,
    "trade": 2.39,
    "v": "C"
+  },
+  "MD|TC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.271,
+   "trade": 0.37,
+   "v": "B"
   },
   "MD|TC|600|open": {
    "ci": 0.243,
@@ -7416,6 +9888,14 @@
    "trade": 0.37,
    "v": "B"
   },
+  "MD|VC|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
+  },
   "MD|VC|1500|choke": {
    "ci": 0.143,
    "crown_wins": 0.0,
@@ -7425,12 +9905,12 @@
    "v": "B"
   },
   "MD|VC|1500|down": {
-   "ci": null,
+   "ci": 0.143,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.1,
-   "trade": 0.11,
-   "v": "="
+   "n": 3,
+   "score": 0.067,
+   "trade": 0.07,
+   "v": "B"
   },
   "MD|VC|1500|open": {
    "ci": 0.0,
@@ -7456,6 +9936,14 @@
    "trade": 0.15,
    "v": "B"
   },
+  "MD|VC|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.114,
+   "trade": 0.13,
+   "v": "B"
+  },
   "MD|VC|4000|open": {
    "ci": 0.058,
    "crown_wins": 0.0,
@@ -7470,6 +9958,14 @@
    "n": 3,
    "score": 0.135,
    "trade": 0.16,
+   "v": "B"
+  },
+  "MD|VC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "MD|VC|600|open": {
@@ -7488,6 +9984,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "MH|B|1500|block": {
+   "ci": 0.317,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.341,
+   "trade": 0.52,
+   "v": "="
+  },
   "MH|B|1500|choke": {
    "ci": 0.133,
    "crown_wins": 0.0,
@@ -7497,11 +10001,11 @@
    "v": "B"
   },
   "MH|B|1500|down": {
-   "ci": 3.734,
+   "ci": 0.785,
    "crown_wins": 1.0,
-   "n": 2,
-   "score": 0.61,
-   "trade": 4.95,
+   "n": 3,
+   "score": 0.543,
+   "trade": 3.53,
    "v": "="
   },
   "MH|B|1500|open": {
@@ -7528,6 +10032,14 @@
    "trade": 0.62,
    "v": "="
   },
+  "MH|B|4000|block": {
+   "ci": 0.121,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.788,
+   "trade": 3.73,
+   "v": "C"
+  },
   "MH|B|4000|open": {
    "ci": 0.04,
    "crown_wins": 4.0,
@@ -7542,6 +10054,14 @@
    "n": 3,
    "score": 0.526,
    "trade": 1.22,
+   "v": "="
+  },
+  "MH|B|600|block": {
+   "ci": 4.445,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.35,
+   "trade": 1.17,
    "v": "="
   },
   "MH|B|600|open": {
@@ -7560,6 +10080,14 @@
    "trade": 0.62,
    "v": "="
   },
+  "MH|R1S1|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.444,
+   "trade": 0.8,
+   "v": "B"
+  },
   "MH|R1S1|1500|choke": {
    "ci": 0.052,
    "crown_wins": 0.0,
@@ -7569,11 +10097,11 @@
    "v": "B"
   },
   "MH|R1S1|1500|down": {
-   "ci": 0.171,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.699,
-   "trade": 2.32,
+   "ci": 0.153,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.664,
+   "trade": 2.04,
    "v": "C"
   },
   "MH|R1S1|1500|open": {
@@ -7600,6 +10128,14 @@
    "trade": 1.22,
    "v": "="
   },
+  "MH|R1S1|4000|block": {
+   "ci": 0.292,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.434,
+   "trade": 0.77,
+   "v": "="
+  },
   "MH|R1S1|4000|open": {
    "ci": 0.076,
    "crown_wins": 4.0,
@@ -7615,6 +10151,14 @@
    "score": 0.429,
    "trade": 0.75,
    "v": "B"
+  },
+  "MH|R1S1|600|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.622,
+   "trade": 1.64,
+   "v": "C"
   },
   "MH|R1S1|600|open": {
    "ci": 0.125,
@@ -7632,6 +10176,14 @@
    "trade": 2.57,
    "v": "="
   },
+  "MH|R1S3|1500|block": {
+   "ci": 0.267,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.338,
+   "trade": 0.51,
+   "v": "="
+  },
   "MH|R1S3|1500|choke": {
    "ci": 0.053,
    "crown_wins": 0.0,
@@ -7641,12 +10193,12 @@
    "v": "B"
   },
   "MH|R1S3|1500|down": {
-   "ci": 0.279,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.642,
-   "trade": 1.8,
-   "v": "="
+   "ci": 0.119,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.667,
+   "trade": 2.04,
+   "v": "C"
   },
   "MH|R1S3|1500|open": {
    "ci": 0.332,
@@ -7672,6 +10224,14 @@
    "trade": 0.72,
    "v": "B"
   },
+  "MH|R1S3|4000|block": {
+   "ci": 0.597,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.409,
+   "trade": 0.7,
+   "v": "="
+  },
   "MH|R1S3|4000|open": {
    "ci": 0.104,
    "crown_wins": 4.0,
@@ -7687,6 +10247,14 @@
    "score": 0.428,
    "trade": 0.75,
    "v": "B"
+  },
+  "MH|R1S3|600|block": {
+   "ci": 0.743,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.311,
+   "trade": 0.46,
+   "v": "="
   },
   "MH|R1S3|600|open": {
    "ci": 0.071,
@@ -7704,6 +10272,14 @@
    "trade": 0.59,
    "v": "="
   },
+  "MH|R3S1|1500|block": {
+   "ci": 1.695,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.582,
+   "trade": 1.66,
+   "v": "="
+  },
   "MH|R3S1|1500|choke": {
    "ci": 0.156,
    "crown_wins": 0.0,
@@ -7713,12 +10289,12 @@
    "v": "="
   },
   "MH|R3S1|1500|down": {
-   "ci": 0.368,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.727,
-   "trade": 2.71,
-   "v": "="
+   "ci": 0.133,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.701,
+   "trade": 2.42,
+   "v": "C"
   },
   "MH|R3S1|1500|open": {
    "ci": 0.096,
@@ -7744,6 +10320,14 @@
    "trade": 1.22,
    "v": "="
   },
+  "MH|R3S1|4000|block": {
+   "ci": 0.019,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.471,
+   "trade": 0.9,
+   "v": "B"
+  },
   "MH|R3S1|4000|open": {
    "ci": 0.084,
    "crown_wins": 4.0,
@@ -7758,6 +10342,14 @@
    "n": 3,
    "score": 0.428,
    "trade": 0.75,
+   "v": "="
+  },
+  "MH|R3S1|600|block": {
+   "ci": 1.549,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.768,
+   "trade": 4.95,
    "v": "="
   },
   "MH|R3S1|600|open": {
@@ -7776,6 +10368,14 @@
    "trade": 7.26,
    "v": "C"
   },
+  "MH|RSB|1500|block": {
+   "ci": 0.597,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.396,
+   "trade": 0.67,
+   "v": "="
+  },
   "MH|RSB|1500|choke": {
    "ci": 0.197,
    "crown_wins": 0.0,
@@ -7785,11 +10385,11 @@
    "v": "="
   },
   "MH|RSB|1500|down": {
-   "ci": 0.0,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.74,
-   "trade": 2.85,
+   "ci": 0.168,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.779,
+   "trade": 3.9,
    "v": "C"
   },
   "MH|RSB|1500|open": {
@@ -7816,6 +10416,14 @@
    "trade": 1.14,
    "v": "="
   },
+  "MH|RSB|4000|block": {
+   "ci": 0.368,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.445,
+   "trade": 0.8,
+   "v": "="
+  },
   "MH|RSB|4000|open": {
    "ci": 0.242,
    "crown_wins": 2.0,
@@ -7831,6 +10439,14 @@
    "score": 0.464,
    "trade": 0.87,
    "v": "B"
+  },
+  "MH|RSB|600|block": {
+   "ci": 0.229,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.338,
+   "trade": 0.51,
+   "v": "="
   },
   "MH|RSB|600|open": {
    "ci": 0.049,
@@ -7848,6 +10464,14 @@
    "trade": 0.62,
    "v": "="
   },
+  "MH|RSTd|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.455,
+   "trade": 0.83,
+   "v": "B"
+  },
   "MH|RSTd|1500|choke": {
    "ci": 0.027,
    "crown_wins": 0.0,
@@ -7857,12 +10481,12 @@
    "v": "B"
   },
   "MH|RSTd|1500|down": {
-   "ci": 0.076,
+   "ci": 0.655,
    "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.881,
-   "trade": 7.43,
-   "v": "C"
+   "n": 3,
+   "score": 0.729,
+   "trade": 5.2,
+   "v": "="
   },
   "MH|RSTd|1500|open": {
    "ci": 0.056,
@@ -7888,6 +10512,14 @@
    "trade": 2.47,
    "v": "C"
   },
+  "MH|RSTd|4000|block": {
+   "ci": 0.102,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.481,
+   "trade": 0.93,
+   "v": "="
+  },
   "MH|RSTd|4000|open": {
    "ci": 0.052,
    "crown_wins": 4.0,
@@ -7903,6 +10535,14 @@
    "score": 0.469,
    "trade": 0.89,
    "v": "B"
+  },
+  "MH|RSTd|600|block": {
+   "ci": 0.527,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.8,
+   "trade": 4.24,
+   "v": "="
   },
   "MH|RSTd|600|open": {
    "ci": 0.28,
@@ -7920,6 +10560,14 @@
    "trade": 2.42,
    "v": "="
   },
+  "MH|RSy|1500|block": {
+   "ci": 0.445,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.341,
+   "trade": 0.52,
+   "v": "="
+  },
   "MH|RSy|1500|choke": {
    "ci": 0.071,
    "crown_wins": 0.0,
@@ -7929,11 +10577,11 @@
    "v": "B"
   },
   "MH|RSy|1500|down": {
-   "ci": null,
+   "ci": 0.086,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.463,
-   "trade": 0.86,
+   "n": 3,
+   "score": 0.427,
+   "trade": 0.75,
    "v": "="
   },
   "MH|RSy|1500|open": {
@@ -7960,6 +10608,14 @@
    "trade": 0.45,
    "v": "B"
   },
+  "MH|RSy|4000|block": {
+   "ci": 0.102,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.334,
+   "trade": 0.5,
+   "v": "B"
+  },
   "MH|RSy|4000|open": {
    "ci": 0.314,
    "crown_wins": 2.0,
@@ -7975,6 +10631,14 @@
    "score": 0.353,
    "trade": 0.55,
    "v": "B"
+  },
+  "MH|RSy|600|block": {
+   "ci": 0.241,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.322,
+   "trade": 0.47,
+   "v": "="
   },
   "MH|RSy|600|open": {
    "ci": 0.035,
@@ -7992,6 +10656,14 @@
    "trade": 0.46,
    "v": "B"
   },
+  "MH|R|1500|block": {
+   "ci": 0.654,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.315,
+   "trade": 0.47,
+   "v": "="
+  },
   "MH|R|1500|choke": {
    "ci": 0.057,
    "crown_wins": 0.0,
@@ -8001,11 +10673,11 @@
    "v": "B"
   },
   "MH|R|1500|down": {
-   "ci": 0.343,
+   "ci": 0.431,
    "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.695,
-   "trade": 2.3,
+   "n": 3,
+   "score": 0.596,
+   "trade": 1.76,
    "v": "="
   },
   "MH|R|1500|open": {
@@ -8032,6 +10704,14 @@
    "trade": 541.78,
    "v": "="
   },
+  "MH|R|4000|block": {
+   "ci": 0.127,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.479,
+   "trade": 0.92,
+   "v": "="
+  },
   "MH|R|4000|open": {
    "ci": 0.123,
    "crown_wins": 3.0,
@@ -8047,6 +10727,14 @@
    "score": 0.343,
    "trade": 0.53,
    "v": "B"
+  },
+  "MH|R|600|block": {
+   "ci": 1.359,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.546,
+   "trade": 1.33,
+   "v": "="
   },
   "MH|R|600|open": {
    "ci": 0.211,
@@ -8064,6 +10752,14 @@
    "trade": 3.71,
    "v": "="
   },
+  "MH|StC|1500|block": {
+   "ci": 0.47,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.758,
+   "trade": 3.23,
+   "v": "="
+  },
   "MH|StC|1500|choke": {
    "ci": 0.166,
    "crown_wins": 3.0,
@@ -8073,12 +10769,12 @@
    "v": "C"
   },
   "MH|StC|1500|down": {
-   "ci": 0.044,
+   "ci": 0.445,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.419,
-   "trade": 0.72,
-   "v": "B"
+   "n": 3,
+   "score": 0.316,
+   "trade": 0.52,
+   "v": "="
   },
   "MH|StC|1500|open": {
    "ci": 0.146,
@@ -8104,6 +10800,14 @@
    "trade": 1.63,
    "v": "="
   },
+  "MH|StC|4000|block": {
+   "ci": 0.26,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.73,
+   "trade": 2.72,
+   "v": "="
+  },
   "MH|StC|4000|open": {
    "ci": 0.062,
    "crown_wins": 4.0,
@@ -8119,6 +10823,14 @@
    "score": 0.833,
    "trade": 5.12,
    "v": "C"
+  },
+  "MH|StC|600|block": {
+   "ci": 1.092,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.471,
+   "trade": 0.95,
+   "v": "="
   },
   "MH|StC|600|open": {
    "ci": 0.274,
@@ -8136,6 +10848,14 @@
    "trade": 0.57,
    "v": "="
   },
+  "MH|S|1500|block": {
+   "ci": 0.667,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.192,
+   "trade": 0.24,
+   "v": "="
+  },
   "MH|S|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -8145,12 +10865,12 @@
    "v": "B"
   },
   "MH|S|1500|down": {
-   "ci": 0.273,
+   "ci": 0.076,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.333,
-   "trade": 0.5,
-   "v": "="
+   "n": 3,
+   "score": 0.32,
+   "trade": 0.47,
+   "v": "B"
   },
   "MH|S|1500|open": {
    "ci": 0.161,
@@ -8176,6 +10896,14 @@
    "trade": 0.3,
    "v": "B"
   },
+  "MH|S|4000|block": {
+   "ci": 0.127,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.352,
+   "trade": 0.54,
+   "v": "B"
+  },
   "MH|S|4000|open": {
    "ci": 0.198,
    "crown_wins": 4.0,
@@ -8191,6 +10919,14 @@
    "score": 0.268,
    "trade": 0.37,
    "v": "B"
+  },
+  "MH|S|600|block": {
+   "ci": 0.362,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.17,
+   "trade": 0.21,
+   "v": "="
   },
   "MH|S|600|open": {
    "ci": 0.336,
@@ -8208,6 +10944,14 @@
    "trade": 0.22,
    "v": "B"
   },
+  "MH|TCS|1500|block": {
+   "ci": 0.241,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.461,
+   "trade": 0.85,
+   "v": "="
+  },
   "MH|TCS|1500|choke": {
    "ci": 0.195,
    "crown_wins": 1.0,
@@ -8217,11 +10961,11 @@
    "v": "="
   },
   "MH|TCS|1500|down": {
-   "ci": 1.454,
-   "crown_wins": 1.0,
-   "n": 2,
-   "score": 0.603,
-   "trade": 1.75,
+   "ci": 0.572,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.718,
+   "trade": 7.34,
    "v": "="
   },
   "MH|TCS|1500|open": {
@@ -8248,6 +10992,14 @@
    "trade": 0.6,
    "v": "B"
   },
+  "MH|TCS|4000|block": {
+   "ci": 0.387,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.479,
+   "trade": 0.93,
+   "v": "="
+  },
   "MH|TCS|4000|open": {
    "ci": 0.124,
    "crown_wins": 4.0,
@@ -8262,6 +11014,14 @@
    "n": 3,
    "score": 0.399,
    "trade": 0.67,
+   "v": "="
+  },
+  "MH|TCS|600|block": {
+   "ci": 0.953,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.393,
+   "trade": 0.68,
    "v": "="
   },
   "MH|TCS|600|open": {
@@ -8280,6 +11040,14 @@
    "trade": 0.43,
    "v": "="
   },
+  "MH|TC|1500|block": {
+   "ci": 0.552,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.655,
+   "trade": 1.96,
+   "v": "="
+  },
   "MH|TC|1500|choke": {
    "ci": 0.218,
    "crown_wins": 3.0,
@@ -8289,11 +11057,11 @@
    "v": "C"
   },
   "MH|TC|1500|down": {
-   "ci": 0.0,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.804,
-   "trade": 4.11,
+   "ci": 0.056,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.817,
+   "trade": 4.53,
    "v": "C"
   },
   "MH|TC|1500|open": {
@@ -8320,6 +11088,14 @@
    "trade": 5.3,
    "v": "C"
   },
+  "MH|TC|4000|block": {
+   "ci": 0.083,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.796,
+   "trade": 3.91,
+   "v": "C"
+  },
   "MH|TC|4000|open": {
    "ci": 0.089,
    "crown_wins": 4.0,
@@ -8335,6 +11111,14 @@
    "score": 0.834,
    "trade": 5.21,
    "v": "C"
+  },
+  "MH|TC|600|block": {
+   "ci": 2.038,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.723,
+   "trade": 4.41,
+   "v": "="
   },
   "MH|TC|600|open": {
    "ci": 0.104,
@@ -8352,6 +11136,14 @@
    "trade": 3.12,
    "v": "C"
   },
+  "MH|VC|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
+  },
   "MH|VC|1500|choke": {
    "ci": 0.148,
    "crown_wins": 0.0,
@@ -8361,12 +11153,12 @@
    "v": "B"
   },
   "MH|VC|1500|down": {
-   "ci": 1.175,
+   "ci": 0.265,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.195,
-   "trade": 0.26,
-   "v": "="
+   "n": 3,
+   "score": 0.165,
+   "trade": 0.21,
+   "v": "B"
   },
   "MH|VC|1500|open": {
    "ci": 0.084,
@@ -8392,6 +11184,14 @@
    "trade": 0.08,
    "v": "B"
   },
+  "MH|VC|4000|block": {
+   "ci": 0.457,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.077,
+   "trade": 0.09,
+   "v": "="
+  },
   "MH|VC|4000|open": {
    "ci": 0.122,
    "crown_wins": 4.0,
@@ -8406,6 +11206,14 @@
    "n": 3,
    "score": 0.041,
    "trade": 0.04,
+   "v": "B"
+  },
+  "MH|VC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "MH|VC|600|open": {
@@ -8424,6 +11232,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "MMi|B|1500|block": {
+   "ci": 0.051,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.106,
+   "trade": 0.11,
+   "v": "B"
+  },
   "MMi|B|1500|choke": {
    "ci": 0.216,
    "crown_wins": 0.0,
@@ -8433,12 +11249,12 @@
    "v": "B"
   },
   "MMi|B|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.904,
-   "trade": 9.44,
-   "v": "="
+   "ci": 0.066,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.919,
+   "trade": 12.59,
+   "v": "C"
   },
   "MMi|B|1500|open": {
    "ci": 0.037,
@@ -8464,6 +11280,14 @@
    "trade": 0.28,
    "v": "B"
   },
+  "MMi|B|4000|block": {
+   "ci": 0.654,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.388,
+   "trade": 0.65,
+   "v": "="
+  },
   "MMi|B|4000|open": {
    "ci": 0.05,
    "crown_wins": 4.0,
@@ -8478,6 +11302,14 @@
    "n": 3,
    "score": 0.401,
    "trade": 0.67,
+   "v": "B"
+  },
+  "MMi|B|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "MMi|B|600|open": {
@@ -8496,6 +11328,14 @@
    "trade": 0.33,
    "v": "B"
   },
+  "MMi|R1S1|1500|block": {
+   "ci": 0.063,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.466,
+   "trade": 0.88,
+   "v": "="
+  },
   "MMi|R1S1|1500|choke": {
    "ci": 0.027,
    "crown_wins": 0.0,
@@ -8505,11 +11345,11 @@
    "v": "B"
   },
   "MMi|R1S1|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.457,
-   "trade": 0.84,
+   "ci": 0.276,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.58,
+   "trade": 1.49,
    "v": "="
   },
   "MMi|R1S1|1500|open": {
@@ -8536,6 +11376,14 @@
    "trade": 1.28,
    "v": "="
   },
+  "MMi|R1S1|4000|block": {
+   "ci": 0.038,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.494,
+   "trade": 0.97,
+   "v": "="
+  },
   "MMi|R1S1|4000|open": {
    "ci": 0.035,
    "crown_wins": 4.0,
@@ -8551,6 +11399,14 @@
    "score": 0.396,
    "trade": 0.66,
    "v": "B"
+  },
+  "MMi|R1S1|600|block": {
+   "ci": 0.184,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.449,
+   "trade": 0.81,
+   "v": "="
   },
   "MMi|R1S1|600|open": {
    "ci": 0.305,
@@ -8568,6 +11424,14 @@
    "trade": 0.86,
    "v": "="
   },
+  "MMi|R1S3|1500|block": {
+   "ci": 0.305,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.412,
+   "trade": 0.7,
+   "v": "="
+  },
   "MMi|R1S3|1500|choke": {
    "ci": 0.074,
    "crown_wins": 0.0,
@@ -8577,11 +11441,11 @@
    "v": "="
   },
   "MMi|R1S3|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.457,
-   "trade": 0.84,
+   "ci": 0.38,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.627,
+   "trade": 1.98,
    "v": "="
   },
   "MMi|R1S3|1500|open": {
@@ -8608,6 +11472,14 @@
    "trade": 0.84,
    "v": "="
   },
+  "MMi|R1S3|4000|block": {
+   "ci": 0.14,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.473,
+   "trade": 0.9,
+   "v": "="
+  },
   "MMi|R1S3|4000|open": {
    "ci": 0.127,
    "crown_wins": 1.0,
@@ -8622,6 +11494,14 @@
    "n": 3,
    "score": 0.424,
    "trade": 0.74,
+   "v": "="
+  },
+  "MMi|R1S3|600|block": {
+   "ci": 0.197,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.415,
+   "trade": 0.72,
    "v": "="
   },
   "MMi|R1S3|600|open": {
@@ -8640,6 +11520,14 @@
    "trade": 1.37,
    "v": "="
   },
+  "MMi|R3S1|1500|block": {
+   "ci": 0.064,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.479,
+   "trade": 0.92,
+   "v": "="
+  },
   "MMi|R3S1|1500|choke": {
    "ci": 0.047,
    "crown_wins": 0.0,
@@ -8649,12 +11537,12 @@
    "v": "="
   },
   "MMi|R3S1|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.708,
-   "trade": 2.42,
-   "v": "="
+   "ci": 0.189,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.789,
+   "trade": 4.18,
+   "v": "C"
   },
   "MMi|R3S1|1500|open": {
    "ci": 0.167,
@@ -8680,6 +11568,14 @@
    "trade": 1.02,
    "v": "="
   },
+  "MMi|R3S1|4000|block": {
+   "ci": 0.019,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.502,
+   "trade": 1.01,
+   "v": "="
+  },
   "MMi|R3S1|4000|open": {
    "ci": 0.094,
    "crown_wins": 3.0,
@@ -8695,6 +11591,14 @@
    "score": 0.331,
    "trade": 0.49,
    "v": "B"
+  },
+  "MMi|R3S1|600|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.687,
+   "trade": 2.19,
+   "v": "C"
   },
   "MMi|R3S1|600|open": {
    "ci": 0.175,
@@ -8712,6 +11616,14 @@
    "trade": 1.03,
    "v": "="
   },
+  "MMi|RSB|1500|block": {
+   "ci": 0.07,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.433,
+   "trade": 0.77,
+   "v": "="
+  },
   "MMi|RSB|1500|choke": {
    "ci": 0.029,
    "crown_wins": 0.0,
@@ -8721,11 +11633,11 @@
    "v": "B"
   },
   "MMi|RSB|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.674,
-   "trade": 2.06,
+   "ci": 0.381,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.613,
+   "trade": 1.83,
    "v": "="
   },
   "MMi|RSB|1500|open": {
@@ -8752,6 +11664,14 @@
    "trade": 0.72,
    "v": "B"
   },
+  "MMi|RSB|4000|block": {
+   "ci": 0.013,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.489,
+   "trade": 0.95,
+   "v": "="
+  },
   "MMi|RSB|4000|open": {
    "ci": 0.035,
    "crown_wins": 4.0,
@@ -8766,6 +11686,14 @@
    "n": 3,
    "score": 0.444,
    "trade": 0.81,
+   "v": "="
+  },
+  "MMi|RSB|600|block": {
+   "ci": 1.073,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.366,
+   "trade": 0.6,
    "v": "="
   },
   "MMi|RSB|600|open": {
@@ -8784,6 +11712,14 @@
    "trade": 0.5,
    "v": "="
   },
+  "MMi|RSTd|1500|block": {
+   "ci": 0.057,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.485,
+   "trade": 0.95,
+   "v": "="
+  },
   "MMi|RSTd|1500|choke": {
    "ci": 0.03,
    "crown_wins": 0.0,
@@ -8793,12 +11729,12 @@
    "v": "="
   },
   "MMi|RSTd|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
+   "ci": 0.0,
+   "crown_wins": 3.0,
+   "n": 3,
    "score": 0.824,
    "trade": 4.68,
-   "v": "="
+   "v": "C"
   },
   "MMi|RSTd|1500|open": {
    "ci": 0.074,
@@ -8824,6 +11760,14 @@
    "trade": 2.82,
    "v": "C"
   },
+  "MMi|RSTd|4000|block": {
+   "ci": 0.108,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.494,
+   "trade": 0.98,
+   "v": "="
+  },
   "MMi|RSTd|4000|open": {
    "ci": 0.128,
    "crown_wins": 3.0,
@@ -8839,6 +11783,14 @@
    "score": 0.468,
    "trade": 0.88,
    "v": "B"
+  },
+  "MMi|RSTd|600|block": {
+   "ci": 2.216,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.644,
+   "trade": 2.7,
+   "v": "="
   },
   "MMi|RSTd|600|open": {
    "ci": 0.057,
@@ -8856,6 +11808,14 @@
    "trade": 3.51,
    "v": "C"
   },
+  "MMi|RSy|1500|block": {
+   "ci": 0.121,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.328,
+   "trade": 0.49,
+   "v": "B"
+  },
   "MMi|RSy|1500|choke": {
    "ci": 0.027,
    "crown_wins": 0.0,
@@ -8865,12 +11825,12 @@
    "v": "B"
   },
   "MMi|RSy|1500|down": {
-   "ci": null,
+   "ci": 0.125,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.302,
-   "trade": 0.43,
-   "v": "="
+   "n": 3,
+   "score": 0.322,
+   "trade": 0.48,
+   "v": "B"
   },
   "MMi|RSy|1500|open": {
    "ci": 0.018,
@@ -8896,6 +11856,14 @@
    "trade": 0.51,
    "v": "B"
   },
+  "MMi|RSy|4000|block": {
+   "ci": 0.108,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.43,
+   "trade": 0.76,
+   "v": "="
+  },
   "MMi|RSy|4000|open": {
    "ci": 0.031,
    "crown_wins": 0.0,
@@ -8910,6 +11878,14 @@
    "n": 3,
    "score": 0.358,
    "trade": 0.56,
+   "v": "B"
+  },
+  "MMi|RSy|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.281,
+   "trade": 0.39,
    "v": "B"
   },
   "MMi|RSy|600|open": {
@@ -8928,6 +11904,14 @@
    "trade": 0.39,
    "v": "B"
   },
+  "MMi|R|1500|block": {
+   "ci": 0.051,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.341,
+   "trade": 0.52,
+   "v": "B"
+  },
   "MMi|R|1500|choke": {
    "ci": 0.093,
    "crown_wins": 0.0,
@@ -8937,12 +11921,12 @@
    "v": "B"
   },
   "MMi|R|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.787,
-   "trade": 3.7,
-   "v": "="
+   "ci": 0.112,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.747,
+   "trade": 3.03,
+   "v": "C"
   },
   "MMi|R|1500|open": {
    "ci": 0.22,
@@ -8968,6 +11952,14 @@
    "trade": 511.42,
    "v": "C"
   },
+  "MMi|R|4000|block": {
+   "ci": 1.48,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.548,
+   "trade": 1.38,
+   "v": "="
+  },
   "MMi|R|4000|open": {
    "ci": 0.165,
    "crown_wins": 1.0,
@@ -8983,6 +11975,14 @@
    "score": 0.27,
    "trade": 0.37,
    "v": "B"
+  },
+  "MMi|R|600|block": {
+   "ci": 0.502,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.428,
+   "trade": 0.76,
+   "v": "="
   },
   "MMi|R|600|open": {
    "ci": 0.268,
@@ -9000,6 +12000,14 @@
    "trade": 0.72,
    "v": "="
   },
+  "MMi|StC|1500|block": {
+   "ci": 0.273,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.877,
+   "trade": 7.41,
+   "v": "C"
+  },
   "MMi|StC|1500|choke": {
    "ci": 0.046,
    "crown_wins": 3.0,
@@ -9009,12 +12017,12 @@
    "v": "C"
   },
   "MMi|StC|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.899,
-   "trade": 8.89,
-   "v": "="
+   "ci": 0.145,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.933,
+   "trade": 485.93,
+   "v": "C"
   },
   "MMi|StC|1500|open": {
    "ci": 0.135,
@@ -9040,6 +12048,14 @@
    "trade": 4.64,
    "v": "C"
   },
+  "MMi|StC|4000|block": {
+   "ci": 0.102,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.861,
+   "trade": 6.24,
+   "v": "C"
+  },
   "MMi|StC|4000|open": {
    "ci": 0.025,
    "crown_wins": 4.0,
@@ -9055,6 +12071,14 @@
    "score": 0.886,
    "trade": 8.15,
    "v": "C"
+  },
+  "MMi|StC|600|block": {
+   "ci": 1.327,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.517,
+   "trade": 1.17,
+   "v": "="
   },
   "MMi|StC|600|open": {
    "ci": 0.245,
@@ -9072,6 +12096,14 @@
    "trade": 0.7,
    "v": "B"
   },
+  "MMi|S|1500|block": {
+   "ci": 0.102,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.318,
+   "trade": 0.46,
+   "v": "B"
+  },
   "MMi|S|1500|choke": {
    "ci": 0.229,
    "crown_wins": 0.0,
@@ -9081,11 +12113,11 @@
    "v": "="
   },
   "MMi|S|1500|down": {
-   "ci": null,
-   "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.463,
-   "trade": 0.86,
+   "ci": 0.339,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.614,
+   "trade": 1.81,
    "v": "="
   },
   "MMi|S|1500|open": {
@@ -9112,6 +12144,14 @@
    "trade": 0.44,
    "v": "="
   },
+  "MMi|S|4000|block": {
+   "ci": 0.197,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.368,
+   "trade": 0.58,
+   "v": "="
+  },
   "MMi|S|4000|open": {
    "ci": 0.034,
    "crown_wins": 0.0,
@@ -9127,6 +12167,14 @@
    "score": 0.313,
    "trade": 0.46,
    "v": "B"
+  },
+  "MMi|S|600|block": {
+   "ci": 0.889,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.288,
+   "trade": 0.42,
+   "v": "="
   },
   "MMi|S|600|open": {
    "ci": 0.122,
@@ -9144,6 +12192,14 @@
    "trade": 0.46,
    "v": "B"
   },
+  "MMi|TCS|1500|block": {
+   "ci": 0.063,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.464,
+   "trade": 0.86,
+   "v": "="
+  },
   "MMi|TCS|1500|choke": {
    "ci": 0.037,
    "crown_wins": 0.0,
@@ -9153,12 +12209,12 @@
    "v": "="
   },
   "MMi|TCS|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.861,
-   "trade": 6.17,
-   "v": "="
+   "ci": 0.083,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.842,
+   "trade": 5.47,
+   "v": "C"
   },
   "MMi|TCS|1500|open": {
    "ci": 0.305,
@@ -9184,6 +12240,14 @@
    "trade": 1.35,
    "v": "="
   },
+  "MMi|TCS|4000|block": {
+   "ci": 0.089,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.489,
+   "trade": 0.96,
+   "v": "="
+  },
   "MMi|TCS|4000|open": {
    "ci": 0.102,
    "crown_wins": 4.0,
@@ -9199,6 +12263,14 @@
    "score": 0.443,
    "trade": 0.79,
    "v": "B"
+  },
+  "MMi|TCS|600|block": {
+   "ci": 1.911,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.15,
+   "trade": 0.21,
+   "v": "="
   },
   "MMi|TCS|600|open": {
    "ci": 0.408,
@@ -9216,6 +12288,14 @@
    "trade": 0.42,
    "v": "="
   },
+  "MMi|TC|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.39,
+   "trade": 0.64,
+   "v": "B"
+  },
   "MMi|TC|1500|choke": {
    "ci": 0.04,
    "crown_wins": 0.0,
@@ -9225,12 +12305,12 @@
    "v": "B"
   },
   "MMi|TC|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.826,
-   "trade": 4.75,
-   "v": "="
+   "ci": 0.054,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.851,
+   "trade": 5.81,
+   "v": "C"
   },
   "MMi|TC|1500|open": {
    "ci": 0.138,
@@ -9256,6 +12336,14 @@
    "trade": 514.87,
    "v": "="
   },
+  "MMi|TC|4000|block": {
+   "ci": 0.305,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.762,
+   "trade": 3.25,
+   "v": "="
+  },
   "MMi|TC|4000|open": {
    "ci": 0.0,
    "crown_wins": 4.0,
@@ -9271,6 +12359,14 @@
    "score": 0.766,
    "trade": 3.33,
    "v": "C"
+  },
+  "MMi|TC|600|block": {
+   "ci": 1.905,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.451,
+   "trade": 0.97,
+   "v": "="
   },
   "MMi|TC|600|open": {
    "ci": 0.119,
@@ -9288,6 +12384,14 @@
    "trade": 1.18,
    "v": "="
   },
+  "MMi|VC|1500|block": {
+   "ci": 0.698,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.055,
+   "trade": 0.06,
+   "v": "="
+  },
   "MMi|VC|1500|choke": {
    "ci": 0.246,
    "crown_wins": 0.0,
@@ -9297,12 +12401,12 @@
    "v": "B"
   },
   "MMi|VC|1500|down": {
-   "ci": null,
+   "ci": 0.158,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.0,
-   "trade": 0.0,
-   "v": "="
+   "n": 3,
+   "score": 0.037,
+   "trade": 0.04,
+   "v": "B"
   },
   "MMi|VC|1500|open": {
    "ci": 0.087,
@@ -9328,6 +12432,14 @@
    "trade": 0.17,
    "v": "B"
   },
+  "MMi|VC|4000|block": {
+   "ci": 0.425,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.155,
+   "trade": 0.18,
+   "v": "="
+  },
   "MMi|VC|4000|open": {
    "ci": 0.044,
    "crown_wins": 0.0,
@@ -9342,6 +12454,14 @@
    "n": 3,
    "score": 0.101,
    "trade": 0.11,
+   "v": "B"
+  },
+  "MMi|VC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "MMi|VC|600|open": {
@@ -9360,6 +12480,14 @@
    "trade": 0.11,
    "v": "B"
   },
+  "MMo|B|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.103,
+   "trade": 0.11,
+   "v": "B"
+  },
   "MMo|B|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -9369,11 +12497,11 @@
    "v": "B"
   },
   "MMo|B|1500|down": {
-   "ci": 0.286,
+   "ci": 0.419,
    "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.655,
-   "trade": 1.91,
+   "n": 3,
+   "score": 0.558,
+   "trade": 1.46,
    "v": "="
   },
   "MMo|B|1500|open": {
@@ -9400,6 +12528,14 @@
    "trade": 0.23,
    "v": "B"
   },
+  "MMo|B|4000|block": {
+   "ci": 0.241,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.337,
+   "trade": 0.51,
+   "v": "="
+  },
   "MMo|B|4000|open": {
    "ci": 0.147,
    "crown_wins": 4.0,
@@ -9414,6 +12550,14 @@
    "n": 3,
    "score": 0.26,
    "trade": 0.35,
+   "v": "B"
+  },
+  "MMo|B|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "MMo|B|600|open": {
@@ -9432,6 +12576,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "MMo|R1S1|1500|block": {
+   "ci": 0.591,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.646,
+   "trade": 1.88,
+   "v": "="
+  },
   "MMo|R1S1|1500|choke": {
    "ci": 0.265,
    "crown_wins": 2.0,
@@ -9441,11 +12593,11 @@
    "v": "="
   },
   "MMo|R1S1|1500|down": {
-   "ci": 0.387,
+   "ci": 0.158,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.382,
-   "trade": 0.62,
+   "n": 3,
+   "score": 0.415,
+   "trade": 0.72,
    "v": "="
   },
   "MMo|R1S1|1500|open": {
@@ -9472,6 +12624,14 @@
    "trade": 3.0,
    "v": "="
   },
+  "MMo|R1S1|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.77,
+   "trade": 3.36,
+   "v": "C"
+  },
   "MMo|R1S1|4000|open": {
    "ci": 0.046,
    "crown_wins": 0.0,
@@ -9487,6 +12647,14 @@
    "score": 0.797,
    "trade": 3.99,
    "v": "C"
+  },
+  "MMo|R1S1|600|block": {
+   "ci": 0.616,
+   "crown_wins": 0.5,
+   "n": 2,
+   "score": 0.455,
+   "trade": 0.84,
+   "v": "="
   },
   "MMo|R1S1|600|open": {
    "ci": 0.063,
@@ -9504,6 +12672,14 @@
    "trade": 1.71,
    "v": "="
   },
+  "MMo|R1S3|1500|block": {
+   "ci": 1.295,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.595,
+   "trade": 1.63,
+   "v": "="
+  },
   "MMo|R1S3|1500|choke": {
    "ci": 0.22,
    "crown_wins": 2.0,
@@ -9513,11 +12689,11 @@
    "v": "="
   },
   "MMo|R1S3|1500|down": {
-   "ci": 0.47,
+   "ci": 0.124,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.395,
-   "trade": 0.66,
+   "n": 3,
+   "score": 0.414,
+   "trade": 0.72,
    "v": "="
   },
   "MMo|R1S3|1500|open": {
@@ -9544,6 +12720,14 @@
    "trade": 1.12,
    "v": "="
   },
+  "MMo|R1S3|4000|block": {
+   "ci": 0.165,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.589,
+   "trade": 1.44,
+   "v": "="
+  },
   "MMo|R1S3|4000|open": {
    "ci": 0.21,
    "crown_wins": 2.0,
@@ -9559,6 +12743,14 @@
    "score": 0.716,
    "trade": 2.54,
    "v": "C"
+  },
+  "MMo|R1S3|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.368,
+   "trade": 0.58,
+   "v": "B"
   },
   "MMo|R1S3|600|open": {
    "ci": 0.399,
@@ -9576,6 +12768,14 @@
    "trade": 0.97,
    "v": "="
   },
+  "MMo|R3S1|1500|block": {
+   "ci": 0.178,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.709,
+   "trade": 2.44,
+   "v": "C"
+  },
   "MMo|R3S1|1500|choke": {
    "ci": 0.04,
    "crown_wins": 3.0,
@@ -9585,11 +12785,11 @@
    "v": "C"
   },
   "MMo|R3S1|1500|down": {
-   "ci": 0.0,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.67,
-   "trade": 2.03,
+   "ci": 0.165,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.708,
+   "trade": 2.57,
    "v": "C"
   },
   "MMo|R3S1|1500|open": {
@@ -9616,6 +12816,14 @@
    "trade": 1.72,
    "v": "="
   },
+  "MMo|R3S1|4000|block": {
+   "ci": 0.083,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.804,
+   "trade": 4.09,
+   "v": "C"
+  },
   "MMo|R3S1|4000|open": {
    "ci": 0.16,
    "crown_wins": 0.0,
@@ -9631,6 +12839,14 @@
    "score": 0.865,
    "trade": 6.43,
    "v": "C"
+  },
+  "MMo|R3S1|600|block": {
+   "ci": 0.464,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.766,
+   "trade": 3.37,
+   "v": "="
   },
   "MMo|R3S1|600|open": {
    "ci": 0.165,
@@ -9648,6 +12864,14 @@
    "trade": 2.69,
    "v": "C"
   },
+  "MMo|RSB|1500|block": {
+   "ci": 0.546,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.361,
+   "trade": 0.57,
+   "v": "="
+  },
   "MMo|RSB|1500|choke": {
    "ci": 0.15,
    "crown_wins": 0.0,
@@ -9657,11 +12881,11 @@
    "v": "B"
   },
   "MMo|RSB|1500|down": {
-   "ci": 0.768,
-   "crown_wins": 0.5,
-   "n": 2,
-   "score": 0.48,
-   "trade": 0.94,
+   "ci": 0.424,
+   "crown_wins": 1.5,
+   "n": 3,
+   "score": 0.572,
+   "trade": 1.66,
    "v": "="
   },
   "MMo|RSB|1500|open": {
@@ -9688,6 +12912,14 @@
    "trade": 1.15,
    "v": "="
   },
+  "MMo|RSB|4000|block": {
+   "ci": 0.114,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.48,
+   "trade": 0.93,
+   "v": "="
+  },
   "MMo|RSB|4000|open": {
    "ci": 0.112,
    "crown_wins": 0.0,
@@ -9703,6 +12935,14 @@
    "score": 0.781,
    "trade": 3.92,
    "v": "C"
+  },
+  "MMo|RSB|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.147,
+   "trade": 0.17,
+   "v": "B"
   },
   "MMo|RSB|600|open": {
    "ci": 0.147,
@@ -9720,6 +12960,14 @@
    "trade": 0.17,
    "v": "B"
   },
+  "MMo|RSTd|1500|block": {
+   "ci": 1.295,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.591,
+   "trade": 1.61,
+   "v": "="
+  },
   "MMo|RSTd|1500|choke": {
    "ci": 0.228,
    "crown_wins": 1.0,
@@ -9729,11 +12977,11 @@
    "v": "="
   },
   "MMo|RSTd|1500|down": {
-   "ci": 2.553,
-   "crown_wins": 1.0,
-   "n": 2,
-   "score": 0.618,
-   "trade": 2.62,
+   "ci": 0.642,
+   "crown_wins": 2.0,
+   "n": 3,
+   "score": 0.712,
+   "trade": 4.76,
    "v": "="
   },
   "MMo|RSTd|1500|open": {
@@ -9760,6 +13008,14 @@
    "trade": 3.17,
    "v": "C"
   },
+  "MMo|RSTd|4000|block": {
+   "ci": 0.165,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.783,
+   "trade": 3.62,
+   "v": "C"
+  },
   "MMo|RSTd|4000|open": {
    "ci": 0.163,
    "crown_wins": 3.0,
@@ -9775,6 +13031,14 @@
    "score": 0.839,
    "trade": 5.32,
    "v": "C"
+  },
+  "MMo|RSTd|600|block": {
+   "ci": 1.054,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.802,
+   "trade": 5.12,
+   "v": "="
   },
   "MMo|RSTd|600|open": {
    "ci": 0.091,
@@ -9792,6 +13056,14 @@
    "trade": 1.96,
    "v": "="
   },
+  "MMo|RSy|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.432,
+   "trade": 0.76,
+   "v": "B"
+  },
   "MMo|RSy|1500|choke": {
    "ci": 0.026,
    "crown_wins": 0.0,
@@ -9801,10 +13073,10 @@
    "v": "B"
   },
   "MMo|RSy|1500|down": {
-   "ci": 0.114,
+   "ci": 0.026,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.26,
+   "n": 3,
+   "score": 0.257,
    "trade": 0.35,
    "v": "B"
   },
@@ -9832,6 +13104,14 @@
    "trade": 0.69,
    "v": "B"
   },
+  "MMo|RSy|4000|block": {
+   "ci": 0.203,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.452,
+   "trade": 0.82,
+   "v": "="
+  },
   "MMo|RSy|4000|open": {
    "ci": 0.016,
    "crown_wins": 0.0,
@@ -9847,6 +13127,14 @@
    "score": 0.717,
    "trade": 2.59,
    "v": "C"
+  },
+  "MMo|RSy|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.206,
+   "trade": 0.26,
+   "v": "B"
   },
   "MMo|RSy|600|open": {
    "ci": 0.07,
@@ -9864,6 +13152,14 @@
    "trade": 0.26,
    "v": "B"
   },
+  "MMo|R|1500|block": {
+   "ci": 2.089,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.623,
+   "trade": 2.27,
+   "v": "="
+  },
   "MMo|R|1500|choke": {
    "ci": 0.353,
    "crown_wins": 1.0,
@@ -9873,11 +13169,11 @@
    "v": "="
   },
   "MMo|R|1500|down": {
-   "ci": 0.571,
+   "ci": 0.125,
    "crown_wins": 0.5,
-   "n": 2,
-   "score": 0.448,
-   "trade": 0.82,
+   "n": 3,
+   "score": 0.435,
+   "trade": 0.78,
    "v": "="
   },
   "MMo|R|1500|open": {
@@ -9904,6 +13200,14 @@
    "trade": 1.04,
    "v": "="
   },
+  "MMo|R|4000|block": {
+   "ci": 0.178,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.811,
+   "trade": 4.31,
+   "v": "C"
+  },
   "MMo|R|4000|open": {
    "ci": 0.091,
    "crown_wins": 0.0,
@@ -9918,6 +13222,14 @@
    "n": 3,
    "score": 0.893,
    "trade": 8.36,
+   "v": "C"
+  },
+  "MMo|R|600|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.892,
+   "trade": 8.22,
    "v": "C"
   },
   "MMo|R|600|open": {
@@ -9936,6 +13248,14 @@
    "trade": 1.34,
    "v": "="
   },
+  "MMo|StC|1500|block": {
+   "ci": 0.832,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.262,
+   "trade": 0.36,
+   "v": "="
+  },
   "MMo|StC|1500|choke": {
    "ci": 0.233,
    "crown_wins": 0.0,
@@ -9945,11 +13265,11 @@
    "v": "="
   },
   "MMo|StC|1500|down": {
-   "ci": 0.305,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.923,
-   "trade": 13.34,
+   "ci": 0.125,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.949,
+   "trade": 488.89,
    "v": "C"
   },
   "MMo|StC|1500|open": {
@@ -9976,6 +13296,14 @@
    "trade": 1.19,
    "v": "="
   },
+  "MMo|StC|4000|block": {
+   "ci": 0.737,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.389,
+   "trade": 0.65,
+   "v": "="
+  },
   "MMo|StC|4000|open": {
    "ci": 0.293,
    "crown_wins": 3.0,
@@ -9990,6 +13318,14 @@
    "n": 3,
    "score": 0.479,
    "trade": 0.94,
+   "v": "="
+  },
+  "MMo|StC|600|block": {
+   "ci": 2.432,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.192,
+   "trade": 0.31,
    "v": "="
   },
   "MMo|StC|600|open": {
@@ -10008,6 +13344,14 @@
    "trade": 0.31,
    "v": "B"
   },
+  "MMo|S|1500|block": {
+   "ci": 0.806,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.527,
+   "trade": 1.16,
+   "v": "="
+  },
   "MMo|S|1500|choke": {
    "ci": 0.201,
    "crown_wins": 1.0,
@@ -10017,11 +13361,11 @@
    "v": "="
   },
   "MMo|S|1500|down": {
-   "ci": 1.276,
-   "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.362,
-   "trade": 0.6,
+   "ci": 0.288,
+   "crown_wins": 0.5,
+   "n": 3,
+   "score": 0.395,
+   "trade": 0.69,
    "v": "="
   },
   "MMo|S|1500|open": {
@@ -10048,6 +13392,14 @@
    "trade": 1.5,
    "v": "="
   },
+  "MMo|S|4000|block": {
+   "ci": 0.4,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.703,
+   "trade": 2.4,
+   "v": "="
+  },
   "MMo|S|4000|open": {
    "ci": 0.069,
    "crown_wins": 0.0,
@@ -10063,6 +13415,14 @@
    "score": 0.77,
    "trade": 3.35,
    "v": "C"
+  },
+  "MMo|S|600|block": {
+   "ci": 1.441,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.36,
+   "trade": 0.61,
+   "v": "="
   },
   "MMo|S|600|open": {
    "ci": 0.156,
@@ -10080,6 +13440,14 @@
    "trade": 0.38,
    "v": "B"
   },
+  "MMo|TCS|1500|block": {
+   "ci": 1.143,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.559,
+   "trade": 1.36,
+   "v": "="
+  },
   "MMo|TCS|1500|choke": {
    "ci": 0.086,
    "crown_wins": 0.0,
@@ -10089,11 +13457,11 @@
    "v": "="
   },
   "MMo|TCS|1500|down": {
-   "ci": 1.391,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.645,
-   "trade": 2.12,
+   "ci": 0.302,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.615,
+   "trade": 1.83,
    "v": "="
   },
   "MMo|TCS|1500|open": {
@@ -10120,6 +13488,14 @@
    "trade": 0.94,
    "v": "B"
   },
+  "MMo|TCS|4000|block": {
+   "ci": 0.197,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.613,
+   "trade": 1.58,
+   "v": "="
+  },
   "MMo|TCS|4000|open": {
    "ci": 0.218,
    "crown_wins": 2.0,
@@ -10135,6 +13511,14 @@
    "score": 0.768,
    "trade": 3.36,
    "v": "C"
+  },
+  "MMo|TCS|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
   },
   "MMo|TCS|600|open": {
    "ci": 0.285,
@@ -10152,6 +13536,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "MMo|TC|1500|block": {
+   "ci": 0.197,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.358,
+   "trade": 0.55,
+   "v": "="
+  },
   "MMo|TC|1500|choke": {
    "ci": 0.118,
    "crown_wins": 0.0,
@@ -10161,11 +13553,11 @@
    "v": "B"
   },
   "MMo|TC|1500|down": {
-   "ci": 1.378,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.746,
-   "trade": 3.83,
+   "ci": 0.287,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.769,
+   "trade": 4.02,
    "v": "="
   },
   "MMo|TC|1500|open": {
@@ -10192,6 +13584,14 @@
    "trade": 0.5,
    "v": "B"
   },
+  "MMo|TC|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.823,
+   "trade": 4.66,
+   "v": "C"
+  },
   "MMo|TC|4000|open": {
    "ci": 0.035,
    "crown_wins": 4.0,
@@ -10207,6 +13607,14 @@
    "score": 0.848,
    "trade": 5.71,
    "v": "C"
+  },
+  "MMo|TC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.275,
+   "trade": 0.38,
+   "v": "B"
   },
   "MMo|TC|600|open": {
    "ci": 0.091,
@@ -10224,6 +13632,14 @@
    "trade": 0.19,
    "v": "B"
   },
+  "MMo|VC|1500|block": {
+   "ci": 0.654,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.051,
+   "trade": 0.06,
+   "v": "="
+  },
   "MMo|VC|1500|choke": {
    "ci": 0.148,
    "crown_wins": 0.0,
@@ -10235,7 +13651,7 @@
   "MMo|VC|1500|down": {
    "ci": 0.0,
    "crown_wins": 0.0,
-   "n": 2,
+   "n": 3,
    "score": 0.0,
    "trade": 0.0,
    "v": "B"
@@ -10264,6 +13680,14 @@
    "trade": 0.11,
    "v": "B"
   },
+  "MMo|VC|4000|block": {
+   "ci": 0.972,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.279,
+   "trade": 0.4,
+   "v": "="
+  },
   "MMo|VC|4000|open": {
    "ci": 0.034,
    "crown_wins": 0.0,
@@ -10278,6 +13702,14 @@
    "n": 3,
    "score": 0.26,
    "trade": 0.35,
+   "v": "B"
+  },
+  "MMo|VC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "MMo|VC|600|open": {
@@ -10296,6 +13728,14 @@
    "trade": 0.1,
    "v": "B"
   },
+  "MO|B|1500|block": {
+   "ci": 0.679,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.306,
+   "trade": 0.45,
+   "v": "="
+  },
   "MO|B|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -10305,12 +13745,12 @@
    "v": "B"
   },
   "MO|B|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.791,
-   "trade": 3.78,
-   "v": "="
+   "ci": 0.208,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.855,
+   "trade": 9.13,
+   "v": "C"
   },
   "MO|B|1500|open": {
    "ci": 0.028,
@@ -10336,6 +13776,14 @@
    "trade": 0.49,
    "v": "B"
   },
+  "MO|B|4000|block": {
+   "ci": 0.14,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.719,
+   "trade": 2.56,
+   "v": "C"
+  },
   "MO|B|4000|open": {
    "ci": 0.026,
    "crown_wins": 4.0,
@@ -10351,6 +13799,14 @@
    "score": 0.711,
    "trade": 2.56,
    "v": "C"
+  },
+  "MO|B|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
+   "v": "B"
   },
   "MO|B|600|open": {
    "ci": 0.205,
@@ -10368,6 +13824,14 @@
    "trade": 0.1,
    "v": "B"
   },
+  "MO|R1S1|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.396,
+   "trade": 0.65,
+   "v": "B"
+  },
   "MO|R1S1|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -10377,11 +13841,11 @@
    "v": "B"
   },
   "MO|R1S1|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.689,
-   "trade": 2.22,
+   "ci": 0.209,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.709,
+   "trade": 2.68,
    "v": "="
   },
   "MO|R1S1|1500|open": {
@@ -10408,6 +13872,14 @@
    "trade": 0.54,
    "v": "B"
   },
+  "MO|R1S1|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.406,
+   "trade": 0.68,
+   "v": "B"
+  },
   "MO|R1S1|4000|open": {
    "ci": 0.059,
    "crown_wins": 4.0,
@@ -10423,6 +13895,14 @@
    "score": 0.411,
    "trade": 0.7,
    "v": "B"
+  },
+  "MO|R1S1|600|block": {
+   "ci": 0.337,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.436,
+   "trade": 0.78,
+   "v": "="
   },
   "MO|R1S1|600|open": {
    "ci": 0.12,
@@ -10440,6 +13920,14 @@
    "trade": 0.7,
    "v": "B"
   },
+  "MO|R1S3|1500|block": {
+   "ci": 0.089,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.347,
+   "trade": 0.54,
+   "v": "B"
+  },
   "MO|R1S3|1500|choke": {
    "ci": 0.095,
    "crown_wins": 0.0,
@@ -10449,12 +13937,12 @@
    "v": "B"
   },
   "MO|R1S3|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.836,
-   "trade": 5.1,
-   "v": "="
+   "ci": 0.072,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.805,
+   "trade": 4.21,
+   "v": "C"
   },
   "MO|R1S3|1500|open": {
    "ci": 0.257,
@@ -10480,6 +13968,14 @@
    "trade": 0.45,
    "v": "B"
   },
+  "MO|R1S3|4000|block": {
+   "ci": 0.121,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.369,
+   "trade": 0.58,
+   "v": "B"
+  },
   "MO|R1S3|4000|open": {
    "ci": 0.154,
    "crown_wins": 3.0,
@@ -10494,6 +13990,14 @@
    "n": 3,
    "score": 0.358,
    "trade": 0.56,
+   "v": "B"
+  },
+  "MO|R1S3|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.299,
+   "trade": 0.43,
    "v": "B"
   },
   "MO|R1S3|600|open": {
@@ -10512,6 +14016,14 @@
    "trade": 0.54,
    "v": "="
   },
+  "MO|R3S1|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.433,
+   "trade": 0.76,
+   "v": "B"
+  },
   "MO|R3S1|1500|choke": {
    "ci": 0.076,
    "crown_wins": 0.0,
@@ -10521,12 +14033,12 @@
    "v": "B"
   },
   "MO|R3S1|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.797,
-   "trade": 3.93,
-   "v": "="
+   "ci": 0.138,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.842,
+   "trade": 6.03,
+   "v": "C"
   },
   "MO|R3S1|1500|open": {
    "ci": 0.108,
@@ -10552,6 +14064,14 @@
    "trade": 0.69,
    "v": "="
   },
+  "MO|R3S1|4000|block": {
+   "ci": 0.076,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.432,
+   "trade": 0.76,
+   "v": "="
+  },
   "MO|R3S1|4000|open": {
    "ci": 0.037,
    "crown_wins": 4.0,
@@ -10567,6 +14087,14 @@
    "score": 0.45,
    "trade": 0.82,
    "v": "B"
+  },
+  "MO|R3S1|600|block": {
+   "ci": 0.483,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.451,
+   "trade": 0.83,
+   "v": "="
   },
   "MO|R3S1|600|open": {
    "ci": 0.157,
@@ -10584,6 +14112,14 @@
    "trade": 0.79,
    "v": "B"
   },
+  "MO|RSB|1500|block": {
+   "ci": 0.159,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.37,
+   "trade": 0.59,
+   "v": "="
+  },
   "MO|RSB|1500|choke": {
    "ci": 0.031,
    "crown_wins": 0.0,
@@ -10593,12 +14129,12 @@
    "v": "B"
   },
   "MO|RSB|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.877,
-   "trade": 7.13,
-   "v": "="
+   "ci": 0.078,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.843,
+   "trade": 5.56,
+   "v": "C"
   },
   "MO|RSB|1500|open": {
    "ci": 0.21,
@@ -10624,6 +14160,14 @@
    "trade": 0.56,
    "v": "B"
   },
+  "MO|RSB|4000|block": {
+   "ci": 0.197,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.387,
+   "trade": 0.63,
+   "v": "="
+  },
   "MO|RSB|4000|open": {
    "ci": 0.061,
    "crown_wins": 4.0,
@@ -10638,6 +14182,14 @@
    "n": 3,
    "score": 0.407,
    "trade": 0.69,
+   "v": "B"
+  },
+  "MO|RSB|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.359,
+   "trade": 0.56,
    "v": "B"
   },
   "MO|RSB|600|open": {
@@ -10656,6 +14208,14 @@
    "trade": 0.48,
    "v": "B"
   },
+  "MO|RSTd|1500|block": {
+   "ci": 0.191,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.444,
+   "trade": 0.8,
+   "v": "="
+  },
   "MO|RSTd|1500|choke": {
    "ci": 0.051,
    "crown_wins": 0.0,
@@ -10665,12 +14225,12 @@
    "v": "="
   },
   "MO|RSTd|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.921,
-   "trade": 11.65,
-   "v": "="
+   "ci": 0.164,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.878,
+   "trade": 8.7,
+   "v": "C"
   },
   "MO|RSTd|1500|open": {
    "ci": 0.085,
@@ -10696,6 +14256,14 @@
    "trade": 0.77,
    "v": "B"
   },
+  "MO|RSTd|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.472,
+   "trade": 0.89,
+   "v": "B"
+  },
   "MO|RSTd|4000|open": {
    "ci": 0.068,
    "crown_wins": 4.0,
@@ -10711,6 +14279,14 @@
    "score": 0.468,
    "trade": 0.88,
    "v": "B"
+  },
+  "MO|RSTd|600|block": {
+   "ci": 2.178,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.622,
+   "trade": 2.33,
+   "v": "="
   },
   "MO|RSTd|600|open": {
    "ci": 0.0,
@@ -10728,6 +14304,14 @@
    "trade": 2.01,
    "v": "="
   },
+  "MO|RSy|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.317,
+   "trade": 0.46,
+   "v": "B"
+  },
   "MO|RSy|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -10737,12 +14321,12 @@
    "v": "B"
   },
   "MO|RSy|1500|down": {
-   "ci": null,
+   "ci": 0.03,
    "crown_wins": 0.0,
-   "n": 1,
+   "n": 3,
    "score": 0.383,
    "trade": 0.62,
-   "v": "="
+   "v": "B"
   },
   "MO|RSy|1500|open": {
    "ci": 0.017,
@@ -10768,6 +14352,14 @@
    "trade": 0.46,
    "v": "B"
   },
+  "MO|RSy|4000|block": {
+   "ci": 0.032,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.347,
+   "trade": 0.54,
+   "v": "B"
+  },
   "MO|RSy|4000|open": {
    "ci": 0.076,
    "crown_wins": 4.0,
@@ -10782,6 +14374,14 @@
    "n": 3,
    "score": 0.371,
    "trade": 0.59,
+   "v": "B"
+  },
+  "MO|RSy|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.306,
+   "trade": 0.44,
    "v": "B"
   },
   "MO|RSy|600|open": {
@@ -10800,6 +14400,14 @@
    "trade": 0.44,
    "v": "B"
   },
+  "MO|R|1500|block": {
+   "ci": 0.292,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.324,
+   "trade": 0.48,
+   "v": "="
+  },
   "MO|R|1500|choke": {
    "ci": 0.079,
    "crown_wins": 0.0,
@@ -10809,12 +14417,12 @@
    "v": "B"
   },
   "MO|R|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.755,
-   "trade": 3.09,
-   "v": "="
+   "ci": 0.046,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.766,
+   "trade": 3.29,
+   "v": "C"
   },
   "MO|R|1500|open": {
    "ci": 0.168,
@@ -10840,6 +14448,14 @@
    "trade": 0.51,
    "v": "B"
   },
+  "MO|R|4000|block": {
+   "ci": 0.013,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.419,
+   "trade": 0.72,
+   "v": "B"
+  },
   "MO|R|4000|open": {
    "ci": 0.158,
    "crown_wins": 2.0,
@@ -10855,6 +14471,14 @@
    "score": 0.615,
    "trade": 1.6,
    "v": "C"
+  },
+  "MO|R|600|block": {
+   "ci": 0.737,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.422,
+   "trade": 0.74,
+   "v": "="
   },
   "MO|R|600|open": {
    "ci": 0.109,
@@ -10872,6 +14496,14 @@
    "trade": 1.34,
    "v": "="
   },
+  "MO|StC|1500|block": {
+   "ci": 2.807,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.595,
+   "trade": 2.52,
+   "v": "="
+  },
   "MO|StC|1500|choke": {
    "ci": 0.097,
    "crown_wins": 3.0,
@@ -10881,12 +14513,12 @@
    "v": "C"
   },
   "MO|StC|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.947,
-   "trade": 17.78,
-   "v": "="
+   "ci": 0.301,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.854,
+   "trade": 9.74,
+   "v": "C"
   },
   "MO|StC|1500|open": {
    "ci": 0.099,
@@ -10912,6 +14544,14 @@
    "trade": 1.56,
    "v": "="
   },
+  "MO|StC|4000|block": {
+   "ci": 0.083,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.762,
+   "trade": 3.22,
+   "v": "C"
+  },
   "MO|StC|4000|open": {
    "ci": 0.079,
    "crown_wins": 4.0,
@@ -10927,6 +14567,14 @@
    "score": 0.759,
    "trade": 3.34,
    "v": "C"
+  },
+  "MO|StC|600|block": {
+   "ci": 2.051,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.549,
+   "trade": 1.55,
+   "v": "="
   },
   "MO|StC|600|open": {
    "ci": 0.111,
@@ -10944,6 +14592,14 @@
    "trade": 1.55,
    "v": "="
   },
+  "MO|S|1500|block": {
+   "ci": 0.146,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.148,
+   "trade": 0.17,
+   "v": "B"
+  },
   "MO|S|1500|choke": {
    "ci": 0.137,
    "crown_wins": 0.0,
@@ -10953,12 +14609,12 @@
    "v": "B"
   },
   "MO|S|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.745,
-   "trade": 2.93,
-   "v": "="
+   "ci": 0.108,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.733,
+   "trade": 2.82,
+   "v": "C"
   },
   "MO|S|1500|open": {
    "ci": 0.124,
@@ -10984,6 +14640,14 @@
    "trade": 0.32,
    "v": "B"
   },
+  "MO|S|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.257,
+   "trade": 0.35,
+   "v": "B"
+  },
   "MO|S|4000|open": {
    "ci": 0.202,
    "crown_wins": 2.0,
@@ -10999,6 +14663,14 @@
    "score": 0.262,
    "trade": 0.35,
    "v": "B"
+  },
+  "MO|S|600|block": {
+   "ci": 1.067,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.285,
+   "trade": 0.42,
+   "v": "="
   },
   "MO|S|600|open": {
    "ci": 0.481,
@@ -11016,6 +14688,14 @@
    "trade": 0.2,
    "v": "B"
   },
+  "MO|TCS|1500|block": {
+   "ci": 0.171,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.343,
+   "trade": 0.52,
+   "v": "="
+  },
   "MO|TCS|1500|choke": {
    "ci": 0.1,
    "crown_wins": 0.0,
@@ -11025,12 +14705,12 @@
    "v": "B"
   },
   "MO|TCS|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.903,
-   "trade": 9.26,
-   "v": "="
+   "ci": 0.095,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.881,
+   "trade": 7.89,
+   "v": "C"
   },
   "MO|TCS|1500|open": {
    "ci": 0.283,
@@ -11056,6 +14736,14 @@
    "trade": 0.44,
    "v": "B"
   },
+  "MO|TCS|4000|block": {
+   "ci": 0.197,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.342,
+   "trade": 0.52,
+   "v": "="
+  },
   "MO|TCS|4000|open": {
    "ci": 0.013,
    "crown_wins": 4.0,
@@ -11070,6 +14758,14 @@
    "n": 3,
    "score": 0.406,
    "trade": 0.69,
+   "v": "="
+  },
+  "MO|TCS|600|block": {
+   "ci": 0.26,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.299,
+   "trade": 0.43,
    "v": "="
   },
   "MO|TCS|600|open": {
@@ -11088,6 +14784,14 @@
    "trade": 0.39,
    "v": "B"
   },
+  "MO|TC|1500|block": {
+   "ci": 0.095,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.587,
+   "trade": 1.42,
+   "v": "="
+  },
   "MO|TC|1500|choke": {
    "ci": 0.262,
    "crown_wins": 1.0,
@@ -11097,12 +14801,12 @@
    "v": "="
   },
   "MO|TC|1500|down": {
-   "ci": null,
-   "crown_wins": 1.0,
-   "n": 1,
-   "score": 0.864,
-   "trade": 6.34,
-   "v": "="
+   "ci": 0.158,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.88,
+   "trade": 10.03,
+   "v": "C"
   },
   "MO|TC|1500|open": {
    "ci": 0.083,
@@ -11128,6 +14832,14 @@
    "trade": 1.14,
    "v": "="
   },
+  "MO|TC|4000|block": {
+   "ci": 0.064,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.674,
+   "trade": 2.08,
+   "v": "C"
+  },
   "MO|TC|4000|open": {
    "ci": 0.03,
    "crown_wins": 4.0,
@@ -11143,6 +14855,14 @@
    "score": 0.762,
    "trade": 3.3,
    "v": "C"
+  },
+  "MO|TC|600|block": {
+   "ci": 1.816,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.51,
+   "trade": 1.23,
+   "v": "="
   },
   "MO|TC|600|open": {
    "ci": 0.0,
@@ -11160,6 +14880,14 @@
    "trade": 0.39,
    "v": "="
   },
+  "MO|VC|1500|block": {
+   "ci": 0.641,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.051,
+   "trade": 0.06,
+   "v": "="
+  },
   "MO|VC|1500|choke": {
    "ci": 0.145,
    "crown_wins": 0.0,
@@ -11169,12 +14897,12 @@
    "v": "B"
   },
   "MO|VC|1500|down": {
-   "ci": null,
+   "ci": 0.145,
    "crown_wins": 0.0,
-   "n": 1,
-   "score": 0.0,
-   "trade": 0.0,
-   "v": "="
+   "n": 3,
+   "score": 0.067,
+   "trade": 0.07,
+   "v": "B"
   },
   "MO|VC|1500|open": {
    "ci": 0.247,
@@ -11200,6 +14928,14 @@
    "trade": 0.0,
    "v": "B"
   },
+  "MO|VC|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.114,
+   "trade": 0.13,
+   "v": "B"
+  },
   "MO|VC|4000|open": {
    "ci": 0.123,
    "crown_wins": 0.0,
@@ -11214,6 +14950,14 @@
    "n": 3,
    "score": 0.054,
    "trade": 0.06,
+   "v": "B"
+  },
+  "MO|VC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "MO|VC|600|open": {
@@ -11232,6 +14976,14 @@
    "trade": 0.1,
    "v": "B"
   },
+  "M|B|1500|block": {
+   "ci": 0.362,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.277,
+   "trade": 0.39,
+   "v": "="
+  },
   "M|B|1500|choke": {
    "ci": 0.215,
    "crown_wins": 0.0,
@@ -11242,8 +14994,8 @@
   },
   "M|B|1500|down": {
    "ci": 0.0,
-   "crown_wins": 2.0,
-   "n": 2,
+   "crown_wins": 3.0,
+   "n": 3,
    "score": 0.95,
    "trade": 18.89,
    "v": "C"
@@ -11272,6 +15024,14 @@
    "trade": 1.79,
    "v": "="
   },
+  "M|B|4000|block": {
+   "ci": 1.238,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.57,
+   "trade": 1.45,
+   "v": "="
+  },
   "M|B|4000|open": {
    "ci": 0.042,
    "crown_wins": 4.0,
@@ -11286,6 +15046,14 @@
    "n": 3,
    "score": 0.569,
    "trade": 1.43,
+   "v": "="
+  },
+  "M|B|600|block": {
+   "ci": 1.429,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.113,
+   "trade": 0.14,
    "v": "="
   },
   "M|B|600|open": {
@@ -11304,6 +15072,14 @@
    "trade": 0.1,
    "v": "B"
   },
+  "M|R1S1|1500|block": {
+   "ci": 0.057,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.449,
+   "trade": 0.81,
+   "v": "="
+  },
   "M|R1S1|1500|choke": {
    "ci": 0.013,
    "crown_wins": 0.0,
@@ -11313,11 +15089,11 @@
    "v": "B"
   },
   "M|R1S1|1500|down": {
-   "ci": 1.187,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.639,
-   "trade": 1.98,
+   "ci": 0.291,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.68,
+   "trade": 2.39,
    "v": "="
   },
   "M|R1S1|1500|open": {
@@ -11344,6 +15120,14 @@
    "trade": 1.82,
    "v": "C"
   },
+  "M|R1S1|4000|block": {
+   "ci": 0.019,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.473,
+   "trade": 0.9,
+   "v": "B"
+  },
   "M|R1S1|4000|open": {
    "ci": 0.065,
    "crown_wins": 4.0,
@@ -11359,6 +15143,14 @@
    "score": 0.385,
    "trade": 0.63,
    "v": "B"
+  },
+  "M|R1S1|600|block": {
+   "ci": 1.168,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.708,
+   "trade": 2.8,
+   "v": "="
   },
   "M|R1S1|600|open": {
    "ci": 0.259,
@@ -11376,6 +15168,14 @@
    "trade": 3.21,
    "v": "="
   },
+  "M|R1S3|1500|block": {
+   "ci": 0.064,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.425,
+   "trade": 0.73,
+   "v": "B"
+  },
   "M|R1S3|1500|choke": {
    "ci": 0.027,
    "crown_wins": 0.0,
@@ -11385,11 +15185,11 @@
    "v": "B"
   },
   "M|R1S3|1500|down": {
-   "ci": 0.159,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.692,
-   "trade": 2.25,
+   "ci": 0.147,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.725,
+   "trade": 2.76,
    "v": "C"
   },
   "M|R1S3|1500|open": {
@@ -11416,6 +15216,14 @@
    "trade": 1.09,
    "v": "="
   },
+  "M|R1S3|4000|block": {
+   "ci": 0.07,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.46,
+   "trade": 0.85,
+   "v": "="
+  },
   "M|R1S3|4000|open": {
    "ci": 0.062,
    "crown_wins": 4.0,
@@ -11431,6 +15239,14 @@
    "score": 0.399,
    "trade": 0.66,
    "v": "B"
+  },
+  "M|R1S3|600|block": {
+   "ci": 0.591,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.521,
+   "trade": 1.1,
+   "v": "="
   },
   "M|R1S3|600|open": {
    "ci": 0.468,
@@ -11448,6 +15264,14 @@
    "trade": 1.38,
    "v": "="
   },
+  "M|R3S1|1500|block": {
+   "ci": 0.114,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.465,
+   "trade": 0.87,
+   "v": "="
+  },
   "M|R3S1|1500|choke": {
    "ci": 0.034,
    "crown_wins": 0.0,
@@ -11457,12 +15281,12 @@
    "v": "B"
   },
   "M|R3S1|1500|down": {
-   "ci": 0.457,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.827,
-   "trade": 5.04,
-   "v": "="
+   "ci": 0.103,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.839,
+   "trade": 5.46,
+   "v": "C"
   },
   "M|R3S1|1500|open": {
    "ci": 0.055,
@@ -11488,6 +15312,14 @@
    "trade": 1.96,
    "v": "C"
   },
+  "M|R3S1|4000|block": {
+   "ci": 0.019,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.476,
+   "trade": 0.91,
+   "v": "B"
+  },
   "M|R3S1|4000|open": {
    "ci": 0.041,
    "crown_wins": 4.0,
@@ -11503,6 +15335,14 @@
    "score": 0.381,
    "trade": 0.62,
    "v": "B"
+  },
+  "M|R3S1|600|block": {
+   "ci": 0.464,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.766,
+   "trade": 3.37,
+   "v": "="
   },
   "M|R3S1|600|open": {
    "ci": 0.186,
@@ -11520,6 +15360,14 @@
    "trade": 4.26,
    "v": "="
   },
+  "M|RSB|1500|block": {
+   "ci": 0.267,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.421,
+   "trade": 0.73,
+   "v": "="
+  },
   "M|RSB|1500|choke": {
    "ci": 0.093,
    "crown_wins": 0.0,
@@ -11529,11 +15377,11 @@
    "v": "="
   },
   "M|RSB|1500|down": {
-   "ci": 0.216,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.81,
-   "trade": 4.3,
+   "ci": 0.088,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.828,
+   "trade": 5.0,
    "v": "C"
   },
   "M|RSB|1500|open": {
@@ -11560,6 +15408,14 @@
    "trade": 0.73,
    "v": "="
   },
+  "M|RSB|4000|block": {
+   "ci": 0.057,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.483,
+   "trade": 0.94,
+   "v": "="
+  },
   "M|RSB|4000|open": {
    "ci": 0.029,
    "crown_wins": 4.0,
@@ -11574,6 +15430,14 @@
    "n": 3,
    "score": 0.445,
    "trade": 0.81,
+   "v": "="
+  },
+  "M|RSB|600|block": {
+   "ci": 0.387,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.384,
+   "trade": 0.63,
    "v": "="
   },
   "M|RSB|600|open": {
@@ -11592,6 +15456,14 @@
    "trade": 0.68,
    "v": "B"
   },
+  "M|RSTd|1500|block": {
+   "ci": 0.057,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.467,
+   "trade": 0.88,
+   "v": "="
+  },
   "M|RSTd|1500|choke": {
    "ci": 0.013,
    "crown_wins": 0.0,
@@ -11601,12 +15473,12 @@
    "v": "B"
   },
   "M|RSTd|1500|down": {
-   "ci": 0.451,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.83,
-   "trade": 5.13,
-   "v": "="
+   "ci": 0.088,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.829,
+   "trade": 5.03,
+   "v": "C"
   },
   "M|RSTd|1500|open": {
    "ci": 0.246,
@@ -11632,6 +15504,14 @@
    "trade": 2.74,
    "v": "C"
   },
+  "M|RSTd|4000|block": {
+   "ci": 0.019,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.478,
+   "trade": 0.92,
+   "v": "B"
+  },
   "M|RSTd|4000|open": {
    "ci": 0.105,
    "crown_wins": 4.0,
@@ -11647,6 +15527,14 @@
    "score": 0.47,
    "trade": 0.89,
    "v": "B"
+  },
+  "M|RSTd|600|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.885,
+   "trade": 7.67,
+   "v": "C"
   },
   "M|RSTd|600|open": {
    "ci": 0.106,
@@ -11664,6 +15552,14 @@
    "trade": 4.69,
    "v": "C"
   },
+  "M|RSy|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.297,
+   "trade": 0.42,
+   "v": "B"
+  },
   "M|RSy|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -11673,11 +15569,11 @@
    "v": "B"
   },
   "M|RSy|1500|down": {
-   "ci": 0.095,
+   "ci": 0.057,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.318,
-   "trade": 0.46,
+   "n": 3,
+   "score": 0.305,
+   "trade": 0.44,
    "v": "B"
   },
   "M|RSy|1500|open": {
@@ -11704,6 +15600,14 @@
    "trade": 0.42,
    "v": "B"
   },
+  "M|RSy|4000|block": {
+   "ci": 0.064,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.46,
+   "trade": 0.85,
+   "v": "="
+  },
   "M|RSy|4000|open": {
    "ci": 0.041,
    "crown_wins": 0.0,
@@ -11718,6 +15622,14 @@
    "n": 3,
    "score": 0.354,
    "trade": 0.55,
+   "v": "B"
+  },
+  "M|RSy|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.204,
+   "trade": 0.26,
    "v": "B"
   },
   "M|RSy|600|open": {
@@ -11736,6 +15648,14 @@
    "trade": 0.26,
    "v": "B"
   },
+  "M|R|1500|block": {
+   "ci": 0.521,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.435,
+   "trade": 0.78,
+   "v": "="
+  },
   "M|R|1500|choke": {
    "ci": 0.205,
    "crown_wins": 0.0,
@@ -11745,11 +15665,11 @@
    "v": "B"
   },
   "M|R|1500|down": {
-   "ci": 2.013,
-   "crown_wins": 1.5,
-   "n": 2,
-   "score": 0.668,
-   "trade": 2.91,
+   "ci": 0.432,
+   "crown_wins": 2.5,
+   "n": 3,
+   "score": 0.71,
+   "trade": 3.22,
    "v": "="
   },
   "M|R|1500|open": {
@@ -11776,6 +15696,14 @@
    "trade": 275.63,
    "v": "="
   },
+  "M|R|4000|block": {
+   "ci": 0.197,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.603,
+   "trade": 1.52,
+   "v": "="
+  },
   "M|R|4000|open": {
    "ci": 0.154,
    "crown_wins": 1.0,
@@ -11791,6 +15719,14 @@
    "score": 0.299,
    "trade": 0.42,
    "v": "B"
+  },
+  "M|R|600|block": {
+   "ci": 1.156,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.713,
+   "trade": 2.88,
+   "v": "="
   },
   "M|R|600|open": {
    "ci": 0.12,
@@ -11808,6 +15744,14 @@
    "trade": 2.28,
    "v": "C"
   },
+  "M|StC|1500|block": {
+   "ci": 0.692,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.855,
+   "trade": 7.0,
+   "v": "="
+  },
   "M|StC|1500|choke": {
    "ci": 0.243,
    "crown_wins": 3.0,
@@ -11817,11 +15761,11 @@
    "v": "C"
   },
   "M|StC|1500|down": {
-   "ci": 0.305,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.976,
-   "trade": 820.0,
+   "ci": 0.069,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.984,
+   "trade": 1086.67,
    "v": "C"
   },
   "M|StC|1500|open": {
@@ -11848,6 +15792,14 @@
    "trade": 6.89,
    "v": "C"
   },
+  "M|StC|4000|block": {
+   "ci": 0.21,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.869,
+   "trade": 6.79,
+   "v": "C"
+  },
   "M|StC|4000|open": {
    "ci": 0.034,
    "crown_wins": 4.0,
@@ -11862,6 +15814,14 @@
    "n": 3,
    "score": 0.898,
    "trade": 9.98,
+   "v": "C"
+  },
+  "M|StC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.787,
+   "trade": 3.7,
    "v": "C"
   },
   "M|StC|600|open": {
@@ -11880,6 +15840,14 @@
    "trade": 183.29,
    "v": "C"
   },
+  "M|S|1500|block": {
+   "ci": 0.349,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.33,
+   "trade": 0.49,
+   "v": "="
+  },
   "M|S|1500|choke": {
    "ci": 0.053,
    "crown_wins": 0.0,
@@ -11889,12 +15857,12 @@
    "v": "B"
   },
   "M|S|1500|down": {
-   "ci": 0.362,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.73,
-   "trade": 2.74,
-   "v": "="
+   "ci": 0.071,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.729,
+   "trade": 2.72,
+   "v": "C"
   },
   "M|S|1500|open": {
    "ci": 0.089,
@@ -11920,6 +15888,14 @@
    "trade": 0.7,
    "v": "="
   },
+  "M|S|4000|block": {
+   "ci": 0.025,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.393,
+   "trade": 0.65,
+   "v": "B"
+  },
   "M|S|4000|open": {
    "ci": 0.064,
    "crown_wins": 0.0,
@@ -11935,6 +15911,14 @@
    "score": 0.33,
    "trade": 0.5,
    "v": "B"
+  },
+  "M|S|600|block": {
+   "ci": 1.505,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.447,
+   "trade": 0.9,
+   "v": "="
   },
   "M|S|600|open": {
    "ci": 0.573,
@@ -11952,6 +15936,14 @@
    "trade": 1.06,
    "v": "="
   },
+  "M|TCS|1500|block": {
+   "ci": 0.057,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.44,
+   "trade": 0.79,
+   "v": "B"
+  },
   "M|TCS|1500|choke": {
    "ci": 0.0,
    "crown_wins": 0.0,
@@ -11961,11 +15953,11 @@
    "v": "B"
   },
   "M|TCS|1500|down": {
-   "ci": 0.26,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.883,
-   "trade": 7.79,
+   "ci": 0.108,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.905,
+   "trade": 11.43,
    "v": "C"
   },
   "M|TCS|1500|open": {
@@ -11992,6 +15984,14 @@
    "trade": 1.81,
    "v": "="
   },
+  "M|TCS|4000|block": {
+   "ci": 0.102,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.472,
+   "trade": 0.89,
+   "v": "="
+  },
   "M|TCS|4000|open": {
    "ci": 0.03,
    "crown_wins": 4.0,
@@ -12007,6 +16007,14 @@
    "score": 0.458,
    "trade": 0.84,
    "v": "B"
+  },
+  "M|TCS|600|block": {
+   "ci": 2.076,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.323,
+   "trade": 0.57,
+   "v": "="
   },
   "M|TCS|600|open": {
    "ci": 0.324,
@@ -12024,6 +16032,14 @@
    "trade": 0.47,
    "v": "="
   },
+  "M|TC|1500|block": {
+   "ci": 0.959,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.557,
+   "trade": 1.33,
+   "v": "="
+  },
   "M|TC|1500|choke": {
    "ci": 0.371,
    "crown_wins": 2.0,
@@ -12033,12 +16049,12 @@
    "v": "="
   },
   "M|TC|1500|down": {
-   "ci": 0.546,
-   "crown_wins": 2.0,
-   "n": 2,
-   "score": 0.907,
-   "trade": 12.68,
-   "v": "="
+   "ci": 0.158,
+   "crown_wins": 3.0,
+   "n": 3,
+   "score": 0.88,
+   "trade": 10.03,
+   "v": "C"
   },
   "M|TC|1500|open": {
    "ci": 0.06,
@@ -12064,6 +16080,14 @@
    "trade": 519.98,
    "v": "="
   },
+  "M|TC|4000|block": {
+   "ci": 0.0,
+   "crown_wins": 2.0,
+   "n": 2,
+   "score": 0.823,
+   "trade": 4.66,
+   "v": "C"
+  },
   "M|TC|4000|open": {
    "ci": 0.063,
    "crown_wins": 4.0,
@@ -12079,6 +16103,14 @@
    "score": 0.814,
    "trade": 4.38,
    "v": "C"
+  },
+  "M|TC|600|block": {
+   "ci": 3.867,
+   "crown_wins": 1.0,
+   "n": 2,
+   "score": 0.579,
+   "trade": 3.96,
+   "v": "="
   },
   "M|TC|600|open": {
    "ci": 0.085,
@@ -12096,6 +16128,14 @@
    "trade": 1.4,
    "v": "="
   },
+  "M|VC|1500|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.099,
+   "trade": 0.11,
+   "v": "B"
+  },
   "M|VC|1500|choke": {
    "ci": 0.142,
    "crown_wins": 0.0,
@@ -12105,12 +16145,12 @@
    "v": "B"
   },
   "M|VC|1500|down": {
-   "ci": 0.629,
+   "ci": 0.142,
    "crown_wins": 0.0,
-   "n": 2,
-   "score": 0.05,
-   "trade": 0.06,
-   "v": "="
+   "n": 3,
+   "score": 0.033,
+   "trade": 0.04,
+   "v": "B"
   },
   "M|VC|1500|open": {
    "ci": 0.0,
@@ -12136,6 +16176,14 @@
    "trade": 0.18,
    "v": "B"
   },
+  "M|VC|4000|block": {
+   "ci": 0.191,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.16,
+   "trade": 0.19,
+   "v": "B"
+  },
   "M|VC|4000|open": {
    "ci": 0.073,
    "crown_wins": 0.0,
@@ -12150,6 +16198,14 @@
    "n": 3,
    "score": 0.09,
    "trade": 0.1,
+   "v": "B"
+  },
+  "M|VC|600|block": {
+   "ci": 0.0,
+   "crown_wins": 0.0,
+   "n": 2,
+   "score": 0.0,
+   "trade": 0.0,
    "v": "B"
   },
   "M|VC|600|open": {
@@ -12169,5 +16225,5 @@
    "v": "B"
   }
  },
- "rows": 4809
+ "rows": 6084
 }

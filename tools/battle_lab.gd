@@ -836,5 +836,5 @@ func _shoot(file: String, at: Vector2, size: int) -> void:
 		await process_frame
 	var img := root.get_viewport().get_texture().get_image()
 	if img:
-		img.save_jpg(shots.path_join(file), 0.85)
+		img.save_jpg(shots.path_join(file), 0.72)
 	print("SHOT " + file)
