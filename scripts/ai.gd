@@ -5452,6 +5452,9 @@ func _army() -> void:
 	_screen_tick()          # (crown-rider-screen: the Crown's riders ahead of its wave's line and the picket at home)
 	var army: Array = game.army(team).filter(func(u: Unit) -> bool: return not _raiders.has(u) and not _on_errand(u) and u.kind != "powder_wagon" and u.kind != Defs.GREAT_WINDER_KIND and u.order != "sacrifice")      # (a Great Winder walks behind it: _great_winder_follow)
 	# (the harass, scripts/ai_harass.gd: a soldier out alone far from home hunts the workers, never stands at a turtle)
+	var fin_rest: Variant = _finish_take(army)      # (crown-finish: clearly ahead, the Crown's army goes for the kill, AICrownFinish;
+	if fin_rest != null:                            # before the harass, which would take its men far from home for strays)
+		army = fin_rest
 	var harass_ := hz()
 	harass_.adopt_strays(army)
 	harass_.tick()
@@ -5491,6 +5494,9 @@ func _army() -> void:
 		army = army.filter(func(u: Unit) -> bool: return not _det.has(u))
 	elif not _det.is_empty():
 		_end_defence()
+	if fin_rest != null:
+		_finish_guard(army)      # (crown-finish: the finisher has the army; the guard waits at home)
+		return
 	# Clockwork: constructs running low on charge go back into a field first
 	if _clock():
 		var fields: Array = game.buildings.filter(func(b: Building) -> bool: return b.team == team and not b.dead and b.built and b.d.has("field"))
@@ -5639,6 +5645,23 @@ func _army() -> void:
 				u.cmd_deploy()
 		if _clock() and Defs.gear_mode:
 			_follow_with_escort(army)       # (the Winders keep the waiting army wound: the rally may be off the gear ground)
+
+
+## (crown-finish) THE FINISHER (AICrown: scripts/ai_crown_finish.gd): null while it is off; while on, the men it leaves to
+## the shared computer (its guard), the rest of the army being its own.
+func _finish_take(_army: Array) -> Variant:
+	return null
+
+
+## (crown-finish) while the finisher has the army: the guard (and the men it left) wait at the rally spot.
+func _finish_guard(list: Array) -> void:
+	var hall: Array = _halls()
+	if hall.is_empty():
+		return
+	var front: Vector2 = ch.home_front(_rally_front(hall[0]))
+	for u in list:
+		if u.order == "idle" and u.position.distance_to(front) > 160.0:
+			u.cmd_move(_home_spot(front), true)
 
 
 ## (crown-v-crown-coach) A wave strung out on the march closes up before it goes on: the Crown against a Crown only
