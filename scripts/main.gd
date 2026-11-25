@@ -365,7 +365,7 @@ func show_crash(report: String) -> void:
 ## No levels, no submenus: each page's BACK comes back here. MATCH LOGS is on the REPLAYS page. Esc does nothing
 ## here (the phone's back saves and quits, as before). Flags small top-right, the version small bottom-right.
 ## The grid's slot ids, row by row ("" = an empty slot).
-const MENU_SLOTS := ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "continue", "worldwar", "", ""]
+const MENU_SLOTS := ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "continue", "worldwar", "tournament", ""]
 const MENU_COLS := 4
 ## Fractions of the screen (the owner's mock-up, 1455 x 819): button size, first column / row, the gaps.
 ## (Four columns since the TUTORIAL: each button 8.2% wide instead of 10.5%, the grid as wide as before plus a little.)
@@ -391,6 +391,7 @@ var menu_web := OS.has_feature("web")
 
 func show_menu() -> void:
 	sandbox_lobby = false        # (the main menu's SKIRMISH is never the sandbox)
+	tour_game = {}               # (a tournament's game is only one started from its page: docs/tournament.md)
 	if Music.me:
 		Music.me.menu()
 	var root := _page()
@@ -553,6 +554,8 @@ func _menu_button(id: String, save: Dictionary, pc: bool) -> Button:
 			b = _button("SETTINGS", func() -> void: show_settings())
 		"worldwar":
 			b = _button("WORLD WAR", func() -> void: WWPage.show_setup(self))      # (the world war mode: scripts/worldwar/)
+		"tournament":
+			b = _button("TOURNAMENTS", func() -> void: TournamentPage.show_home(self))      # (scripts/tournament/, docs/tournament.md)
 		"exit":
 			if menu_web:
 				return null       # (a browser tab can't be quit: the slot stays empty)
@@ -3279,11 +3282,18 @@ func start(cfg: Dictionary = {}) -> void:
 			# (an online spectator is sent every side: its record is whole, not one side's view; the host's whole replay
 			# still replaces it at the end, as a player's: docs/online_spectators.md)
 			ReplayRecorder.start(game, last_cfg, human, game.puppet, ReplayRecorder.rate_for(Settings.replay_mode(), online_host), game.net_watch)
+	if not tour_game.is_empty() and not watching:
+		TournamentPage.watch_game(self)       # (a tournament's game: its time limit, the quick mode: docs/tournament.md)
 
 
 ## QUIT from the match menu: a campaign mission goes back to its storyline's hub (where its card offers CONTINUE), any
 ## other match to the main menu (player-comforts).
 func _quit_match() -> void:
+	if not tour_game.is_empty():
+		var tid := String(tour_game.get("tid", ""))
+		tour_game = {}
+		_tour_back(tid, "The game was left before its end: no result was recorded.")
+		return
 	if ww_battle != null:
 		_ww_back(ww_battle.leave())       # (a world war's battle left: lost for the player's side, back to the war)
 		return
@@ -3412,7 +3422,42 @@ func _on_end(winner: int) -> void:
 	if ww_battle != null:
 		_ww_back(ww_battle.finish(game, winner))      # (a world war's battle: its survivors back onto the world map)
 		return
+	if not tour_game.is_empty():
+		TournamentPage.game_over(self, game, winner, rp_path)      # (a tournament's game: its result into the bracket)
+		return
 	show_battle_report(winner, rp_path)
+
+
+## TOURNAMENTS (scripts/tournament/, docs/tournament.md): the game of a tournament now being played ({} none:
+## "tid", "mid", "gi", "kind" computer / online / spectate, ...) and the organiser's desk (TournamentNet, kept here so
+## it stays open while the organiser plays or watches).
+var tour_game := {}
+var tour_desk: Node = null
+
+
+## Back to the tournament after one of its games (or leaving it).
+func _tour_back(tid: String, note := "") -> void:
+	get_tree().paused = false
+	Engine.time_scale = 1.0
+	if game and game.rec and not game.rec.done:
+		game.rec.finish(-1, true)
+	if game:
+		game.queue_free()
+		game = null
+	if net_lobby:
+		net_lobby.dispose()
+		net_lobby = null
+	SaveGame.clear()
+	Game._tex_cache.clear()
+	TournamentPage.show_tournament(self, tid, note)
+
+
+## PLAY EVERY GAME QUICKLY: the next game of an ALL COMPUTER tournament, straight after the last.
+func _tour_next_quick(tid: String) -> void:
+	_tour_back(tid)
+	var p := ui_layer.find_child("TournamentPage", true, false)
+	if p and p.t and not p.t.done():
+		p._computer_next(true, true)
 
 
 ## THE WORLD WAR (scripts/worldwar/): a battle fought on the field is over (or left): back to the war's map with

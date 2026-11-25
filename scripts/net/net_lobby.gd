@@ -191,6 +191,8 @@ func map_fits(id: String) -> bool:
 
 
 func set_map(id: String) -> void:
+	if tour_lock:
+		return
 	if map_fits(id):
 		map = id
 		changed.emit()
@@ -202,7 +204,7 @@ static func _is_computer(s: Dictionary) -> bool:
 
 
 func set_faction(i: int, f: String) -> void:
-	if i >= 0 and i < slots.size() and FACTIONS.has(f):
+	if i >= 0 and i < slots.size() and FACTIONS.has(f) and not tour_lock:
 		slots[i]["faction"] = f
 		changed.emit()
 		_send_lobby()
@@ -603,7 +605,7 @@ func _on_message(from: int, m: Dictionary) -> void:
 				status = "A spectator took a seat."
 			if seat < 0:
 				return
-			if m.has("faction") and FACTIONS.has(String(m["faction"])):
+			if m.has("faction") and FACTIONS.has(String(m["faction"])) and not tour_lock:
 				slots[seat]["faction"] = String(m["faction"])
 			var bad := false
 			if m.has("colour"):
@@ -725,6 +727,12 @@ func choose_faction(f: String) -> void:
 
 ## Guest: join only to watch (JOIN TO WATCH), even with a seat free.
 var want_spec := false
+
+
+## TOURNAMENTS (docs/tournament.md): a room made from a tournament's bracket: {"tid", "mid", "gi"} ({} a friendly room).
+## `tour_lock`: the map and the factions are the bracket's: nobody changes them in the room.
+var tour := {}
+var tour_lock := false
 
 
 ## Guest: choose my colour (the host refuses one somebody else has).

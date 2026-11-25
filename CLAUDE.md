@@ -84,6 +84,20 @@
   SPOILS built OFF. 100 wars x 5 setups x 2 seed sets: 3-side 39/28.5/32.5 (was 27/34/39), 2-side 49 / 54.5 / 58.5
   (was Crown 95, Crown 98, Brood 83), no-limit: no runaway (none 87-92); still decided by land at s48 (capitals fell
   62, was 37). 14 Claude's choices in the doc. Patch note under 0.38.999.
+- TOURNAMENTS + CHAMPIONSHIP SIM (owner 2026-11-24 "make a championship simulation so we see... let's have an in-game
+  tool"; job tournament, branch tournament, docs/tournament.md, docs/championship_sim.md): main menu TOURNAMENTS
+  (MENU_SLOTS 11th): single/double elimination (reset), round robin, Swiss, groups+playoffs, up to 64, Bo1-7 (final
+  apart), map pool + bans + loser picks, faction rules, seeding, check-in, time limit (lead rule: income + 2 x army,
+  10% ahead, else replayed up to twice). ONLINE: the organiser's game is the DESK (relay room "T"+code, short calls,
+  secret keys; TournamentNet), PLAY YOUR MATCH = a friendly room from the bracket (NetLobby.tour/tour_lock), results
+  reported by the games (loser's word enough, disputes to the organiser), WATCH; OFFLINE results by hand; ALL COMPUTER
+  watch or quick (x4, covered). scripts/tournament/ (Tournament, TournamentNet, TournamentPage, BracketView),
+  Main.tour_game / tour_desk, tools/tournament_cli.gd; tests tools/test_tournament.gd, test_tournament_online.gd
+  (tools/test_online.sh tournament), test_tournament_play.gd; pictures docs/shots/tournament/. 16 Claude's choices.
+  SIM (tools/study/championship_sim.py + _report.py, data docs/championship_sim/data/): 16 Hard computers, double elim
+  Bo3 to 20:00, 3 runs: champions Crown Optimal, Brood Balanced, Clockwork Economy; factions 45/52/53% but a circle
+  (Crown>Clockwork 68%, Clockwork>Brood 78%, Brood>Crown 97%); 39% of games decided at the bell; the Crown wins 38 of
+  54 at the bell (seldom finishes). Grand finals filmed docs/shots/championship_sim/.
 - d06_queen BUILT (job d06-queen, MERGED 0.38.198, docs/campaign_d06_build.md): Act 2 step 8, "The Queen" (the Naturalist
   after d03, the wet season 2775): map campaign:obidos_flood (d03's island flooded); played as THE BROOD: several Brood
   Mothers fight in the flood, the strongest roots in the big pen and GROWS into the Queen, the leash breaks, the fazenda

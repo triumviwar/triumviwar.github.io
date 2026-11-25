@@ -1,0 +1,118 @@
+{
+ "name": "Championship r2",
+ "format": "double",
+ "bo": 3,
+ "bo_final": 3,
+ "maps": [
+  "greenhold",
+  "dune_sea",
+  "frostfang",
+  "ashford_crossing",
+  "hollowfen",
+  "cinder_steps"
+ ],
+ "map_rule": "veto",
+ "loser_picks": true,
+ "factions": "event",
+ "seeding": "random",
+ "seed": 202,
+ "time_limit": 1200,
+ "players": [
+  {
+   "name": "Crown Optimal",
+   "faction": "crown",
+   "who": "hard",
+   "plan": "optimal"
+  },
+  {
+   "name": "Crown Balanced",
+   "faction": "crown",
+   "who": "hard",
+   "plan": "balanced"
+  },
+  {
+   "name": "Crown Economy",
+   "faction": "crown",
+   "who": "hard",
+   "plan": "economy"
+  },
+  {
+   "name": "Crown Timing",
+   "faction": "crown",
+   "who": "hard",
+   "plan": "timing"
+  },
+  {
+   "name": "Crown Siege",
+   "faction": "crown",
+   "who": "hard",
+   "plan": "siege"
+  },
+  {
+   "name": "Clockwork Optimal",
+   "faction": "clockwork",
+   "who": "hard",
+   "plan": "optimal"
+  },
+  {
+   "name": "Clockwork Balanced",
+   "faction": "clockwork",
+   "who": "hard",
+   "plan": "balanced"
+  },
+  {
+   "name": "Clockwork Economy",
+   "faction": "clockwork",
+   "who": "hard",
+   "plan": "economy"
+  },
+  {
+   "name": "Clockwork Rush",
+   "faction": "clockwork",
+   "who": "hard",
+   "plan": "rush"
+  },
+  {
+   "name": "Clockwork Owls",
+   "faction": "clockwork",
+   "who": "hard",
+   "plan": "owls"
+  },
+  {
+   "name": "Clockwork Heavy",
+   "faction": "clockwork",
+   "who": "hard",
+   "plan": "heavy"
+  },
+  {
+   "name": "Brood Optimal",
+   "faction": "brood",
+   "who": "hard",
+   "plan": "optimal"
+  },
+  {
+   "name": "Brood Balanced",
+   "faction": "brood",
+   "who": "hard",
+   "plan": "balanced"
+  },
+  {
+   "name": "Brood Economy",
+   "faction": "brood",
+   "who": "hard",
+   "plan": "economy"
+  },
+  {
+   "name": "Brood Rush",
+   "faction": "brood",
+   "who": "hard",
+   "plan": "rush"
+  },
+  {
+   "name": "Brood Spitter",
+   "faction": "brood",
+   "who": "hard",
+   "plan": "spitter"
+  }
+ ]
+}
