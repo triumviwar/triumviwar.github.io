@@ -122,7 +122,7 @@ def cmd_run(a):
             with open(jf, "w") as f:
                 f.write("\n".join(" ".join(j) for j in ch) + "\n")
             cmd = [GODOT, "--headless", "--fixed-fps", "30", "--path", ROOT, "--script", "res://tools/battle_lab.gd", "--",
-                   f"jobs:{jf}", f"out:{of}"]
+                   f"jobs:{jf}", f"out:{of}"] + (a.extra.split() if a.extra else [])
             p = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             running.append((p, of, len(ch), time.time()))
         time.sleep(2)
@@ -252,6 +252,7 @@ def main():
     r.add_argument("--workers", type=int, default=os.cpu_count() or 2)
     r.add_argument("--chunk", type=int, default=25)
     r.add_argument("--timeout", type=float, default=3600.0)
+    r.add_argument("--extra", default="", help="more lab arguments, e.g. \"wind:0.5\" (keep their rows in a file of their own)")
     r.add_argument("--out", default=os.path.join(ROOT, "docs/battle_matrix/data/rows.jsonl"))
     p = sp.add_parser("report")
     p.add_argument("--rows", default=os.path.join(ROOT, "docs/battle_matrix/data/rows.jsonl"))

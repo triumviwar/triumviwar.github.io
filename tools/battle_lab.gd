@@ -619,6 +619,14 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 	var cl := _place(0, cn, c_at, c_dir, lvc, rng)
 	var bl := _place(1, bn, b_at, -c_dir, lvb, rng)
 	var lists := [cl, bl]
+	# (`wind:<0..1>`: the Clockwork army starts the fight with this much wind, as one that marched across the map from its
+	# gear ground; default full)
+	if args.has("wind"):
+		for t in 2:
+			if fac[t] == "clockwork":
+				for u in lists[t]:
+					if not u.is_worker() and not u.is_air():
+						u.wind = clampf(float(args["wind"]), 0.01, 1.0)
 	# (the Clockwork: its home Winders go, so only the army's own Winders wind it)
 	for t in 2:
 		if fac[t] == "clockwork":
@@ -807,6 +815,8 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 		r["wind_down"] = [wind_down[0].size(), wind_down[1].size()]
 		r["wind_low"] = [wind_low[0].size(), wind_low[1].size()]
 	_orig.clear()
+	if args.has("wind"):
+		r["wind0"] = float(args["wind"])
 	r["map"] = map
 	r["wall_s"] = snappedf((Time.get_ticks_msec() - wall0) / 1000.0, 0.1)
 	r["ver"] = String(ProjectSettings.get_setting("application/config/version", ""))
