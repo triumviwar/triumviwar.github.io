@@ -860,6 +860,12 @@ Brandt, Desembargador Fonseca, Captain Arruda, Padre Anselmo, Citizen Morel, Mat
 Ramos (built: d01), Brother Tiago (built: d05), Major Teixeira and the frontier's rider (built: d09), Father Inácio and the captain of Óbidos (built: d10), the prince if the
 heir is named (d09 has his two lines)). Each mission's table joins section 2 when it is built.
 
+## 4b. Act 3 and the finale (planned, not built)
+
+docs/campaign_act3_plan.md "VOICES" lists Act 3's speakers and the new voices to design (Tomasz as a bishop, Captain Rui
+Amaral, Matthias grown, THE HEIR, and the minor allies: the King of Kongo, the Ethiopian commander, the old clockmaker of
+Nagasaki, the Viceroy at Goa, the Governor of New South Wales). Each mission's table joins section 2 when it is built.
+
 ## 5. Later
 
 - pt / es versions of the announcers (Crown herald, Brood scientist): not decided (docs/announcers.md).

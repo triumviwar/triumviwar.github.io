@@ -26,6 +26,21 @@
 
 ## Current work
 
+- ACT 3 PLANNED (owner 2026-11-25 "write act 3 so we have a clear view of the choice"; job campaign-act3-plan, branch
+  campaign-act3-plan, docs only: docs/campaign_act3_plan.md): THE FALL OF THE COLONIES 2781-2790 + THE FINALE (2795, the
+  present), 20 missions e01-e20 (15 core, 5 optional): four theatres free of each other on the WORLD war map with a
+  CLOCK (the year turns every two wins; the theatre neglected longest loses a colony): THE AMERICAS (e01 Brazil after the
+  fires by d09 `first`, e02 Potosí opt, e03 Fairleigh's last ride: CHOICE RIDE OUT / WITH THEM), AFRICA (e04 Kongo, e05
+  up the Congo with Father Inácio's flight, e06 Lindqvist TAKEN at an old LAB RUIN: CHOICE SEAL / OPEN THE RECORDS, e07
+  Ethiopia opt), THE INDIES (e08 Goa's arsenal, e09 Nagasaki: CHOICE RING THE STOP-WORK NOW / KEEP IT, e10 Manila opt,
+  e11 the Spice Islands three-way), THE SOUTHERN SEAS (e12 the exiles, Varenne: CHOICE CANISTER / PARDON, e13 the gold
+  fields, e14 the northern shore opt as the Brood), e15 the Cold Forge opt; THE NIGHT (e16 Lisbon, e17 Goa: Ferrer dies,
+  e18 the Atlantic port; any order, first fresh, last grown); THE FINALE: e19 the Tiber (the HEIR seen at last, his
+  first command, CHOICE the deserters) and e20 ROME (the Machine from the Alps, the Brood from the Pontine Marshes):
+  THE FINAL CHOICE HOLD ROME (won = ROME HOLDS; lost = falls the hard way) / SAVE THE FLOCK (= ROME FALLS, THE FAITH
+  CARRIES ON), the LEDGER (17 marks from every act) sets how hard / how many saved. The whole campaign's choices in one
+  table; ladders finished (C10-C12, K8-K9, B8-B9, any order); the guild's last hands (blue Clockwork v red); hubs, every
+  flag's effect, engine, build order, voices, stills. ALL TEXT PLACEHOLDER; 20 Claude's choices, 15 OWNER QUESTIONS.
 - CROWN BROOD LATE (owner 2026-11-24, from two filmed games; job crown-brood-late, MERGED 0.38.207,
   docs/crown_brood_late.md, scripts/ai_crown_brood_late.gd AICrownBroodLate): the Crown computer v the Brood, three parts
   built, ALL OFF by default (`cbl<name>:on`): `cblguns` (the press waits for 2 guns, a rider ahead, the push goes by BOUNDS
