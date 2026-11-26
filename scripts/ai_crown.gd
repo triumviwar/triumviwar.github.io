@@ -2849,12 +2849,29 @@ func siege_on() -> bool:
 var cbf_push = null              # (crown-brood-fix "press" outside the siege plan: a siege push of its own, AICrownBroodFix)
 
 
+## (crown-finish) THE FINISHER: clearly ahead, the whole army goes for the kill (scripts/ai_crown_finish.gd).
+const AICrownFinishS := preload("res://scripts/ai_crown_finish.gd")
+var fin = null
+
+
+func _finish_take(army: Array) -> Variant:
+	if fin == null:
+		fin = AICrownFinishS.new(self)
+	return fin.take(army)
+
+
+func fin_active() -> bool:
+	return fin != null and fin.active
+
+
 func _late_ready(ready: Array) -> Array:
 	return preload("res://scripts/ai_crown_brood_late.gd").wave_ready(self, ready)
 
 
 func _army() -> void:
-	if siege != null and not peaceful:
+	if fin_active():
+		pass                    # (crown-finish: the finisher has the army; the siege push and the presses wait)
+	elif siege != null and not peaceful:
 		siege.tick()
 	elif siege == null and not peaceful and _foe_is("brood"):
 		preload("res://scripts/ai_crown_brood_fix.gd").press_tick(self)    # (crown-brood-fix "press": the other plans)

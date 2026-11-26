@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.212", "items": [
+		"THE CROWN COMPUTER FINISHES ITS GAMES. It used to get far ahead and then wait for the 20:00 bell: in the championship simulation 38 of its 54 wins came only at the bell. Now, when it is clearly ahead (twice the enemy army it reckons with as many halls, four times it, or at the 200 supply cap with half again), its whole army goes for the kill, keeping a small guard at home sized to the danger there: it marches as one body on the enemy's halls and the buildings that train its army (against the Brood: its rooted ground and its Mother), one after another, the guns behind, and does not go home until it has won, it has lost the army it sent, or a force it cannot leave reaches its base. Measured in 120 games to 20:00: against the Clockwork it won outright 9 times in 20 (4 before), against the Brood 4 (2 before), and 10 mirrors of 20 were decided (7 before). Hard and Normal computers; no unit or number changed.",
+	]},
 	{"v": "0.38.210", "items": [
 		"The Crown computer fights the Brood better once a fight is on (crown-micro): Horsemen standing out of a fight ride in for the creatures at the guns and the men, a marching army halts and sets its guns when a Brood force comes at it instead of walking into it in a column, Musketeers step back from a Brute while they reload, and the Field Cannons aim at the armoured creatures and the Mortars at the thickest clump. No unit or number changed. In equal-value test battles the Crown now keeps about 64% of its army where it kept 55%.",
 	]},
