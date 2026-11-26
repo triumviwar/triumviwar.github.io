@@ -3099,7 +3099,7 @@
 	"lines": {
 		"k_open1": {
 			"who": "king",
-			"text": "The clockmaker came to Rome in the winter of that year, with nothing but his coat. He lives in this palace still."
+			"text": "The clockmaker came to Rome that winter in a borrowed coat, with two fingers black from the frost. He lives in this palace still. You have passed him on the stairs."
 		},
 		"k_open2": {
 			"who": "king",
@@ -3111,7 +3111,7 @@
 		},
 		"h_open2": {
 			"who": "hollweg",
-			"text": "Forty years I made clocks that stopped. This one would not stop. It would wind itself, mend itself, and make its own successor."
+			"text": "Forty years I made clocks, and every one of them ran down. That is what clocks do. This one would wind itself and mend itself, and before it wore out it would build the next."
 		},
 		"f_open": {
 			"who": "ferrer",
@@ -3123,27 +3123,27 @@
 		},
 		"h_q0": {
 			"who": "hollweg",
-			"text": "Nobody in Nuremberg knew what I was building under the workshop. People hate a clever machine; they always have. Only Father Ferrer knew."
+			"text": "I built it in the cellar under the workshop and told no one. In Nuremberg they still cross themselves when a mill wheel turns with no miller by it. Only Father Ferrer knew. He was the one man in the city I could not lie to."
 		},
 		"f_q1": {
 			"who": "ferrer",
-			"text": "You know what destroyed the apostasy, Meister. In the post-modern age, all those centuries ago."
+			"text": "You have read what the old age built, Meister. Machines that thought. You know what they did to the men who built them."
 		},
 		"h_q1": {
 			"who": "hollweg",
-			"text": "My cogs and wheels are different, Father. Brass, not ghosts in wires. Maybe they could learn, in time."
+			"text": "Those were wires and lightning, Father. This is brass. I cut every tooth of it with my own hands. And if a wheel could learn a little, in time, would that be so wicked?"
 		},
 		"f_q2": {
 			"who": "ferrer",
-			"text": "You know the ghost in the machine is the enemy. It was then. It is now."
+			"text": "It ended the world once, Meister. The Church still calls it the ghost in the machine. Do not build a house for it."
 		},
 		"h_q2": {
 			"who": "hollweg",
-			"text": "Then there is no ghost in mine, I told him. Only my gears. I believed it."
+			"text": "There is no ghost in it, I told him. Only gears. I said it to his face, and I believed it."
 		},
 		"h_1": {
 			"who": "hollweg",
-			"text": "The Crown's wagons wait at the market. Six soldiers, wound and true."
+			"text": "The Crown's wagons are at the market. Six soldiers, Jakob, and the Commissary will count every rivet."
 		},
 		"f_1": {
 			"who": "ferrer",
@@ -3169,11 +3169,11 @@
 		},
 		"h_gift": {
 			"who": "hollweg",
-			"text": "There. It needs no hand but its own."
+			"text": "There. Look at it. Nobody is winding it."
 		},
 		"f_gift": {
 			"who": "ferrer",
-			"text": "It is beautiful. That is what frightens me."
+			"text": "It is very fine, Meister. Tonight I will say a rosary that I am wrong about it."
 		},
 		"j_odd": {
 			"who": "jakob",
@@ -3194,7 +3194,7 @@
 		},
 		"j_found": {
 			"who": "jakob",
-			"text": "It is a whole works. Meshed, wound, and making more."
+			"text": "Meister, it's a whole works. Presses, a Winder, all of it meshed. It's building another."
 		},
 		"h_found": {
 			"who": "hollweg",
@@ -3210,7 +3210,7 @@
 		},
 		"f_turn": {
 			"who": "ferrer",
-			"text": "They were never yours, Meister. They were its."
+			"text": "Meister. Come away from them. Now."
 		},
 		"cap_net": {
 			"who": "captain",
@@ -3348,7 +3348,7 @@
 		},
 		"h_13": {
 			"who": "hollweg",
-			"text": "There is no thirteenth hour. There is now."
+			"text": "Thirteen? There is no thirteen. There is no such hour on any dial."
 		},
 		"cap_trapped": {
 			"who": "narrator",
@@ -3365,7 +3365,7 @@
 		},
 		"h_end_people": {
 			"who": "hollweg",
-			"text": "I left my drawings in the fire. I do not know if that was wisdom or cowardice."
+			"text": "I left my drawings to burn. From the cart I watched the workshop windows go orange."
 		},
 		"h_end_pattern": {
 			"who": "hollweg",
@@ -3389,7 +3389,7 @@
 		},
 		"k_end2": {
 			"who": "king",
-			"text": "It had chosen nothing. A pattern copies itself, and that is all it does. We burned what we could find. We did not find everything."
+			"text": "It chose nothing. Mould on bread chooses nothing either. We burned what we could find, and we did not find everything."
 		},
 		"new_winder": {
 			"who": "new",

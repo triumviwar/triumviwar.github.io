@@ -1,0 +1,186 @@
+# The prologues' writing pass (2026-11-26, docs/writing_pass_prologues.md): the lines whose words changed.
+# run.bat --lines lines_rerecord_prologues.txt, then import_voice.py as usual. The old takes were taken out of the game.
+
+
+# ---- ferrer (4 lines)
+[ref refs/ferrer_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.45]
+[cfg 0.3]
+c01__f_q1 | You have read what the old age built, Meister. Machines that thought. You know what they did to the men who built them.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+c01__f_q2 | It ended the world once, Meister. The Church still calls it the ghost in the machine. Do not build a house for it.
+# calm
+[exaggeration 0.45]
+[cfg 0.3]
+c01__f_gift | It is very fine, Meister. Tonight I will say a rosary that I am wrong about it.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+c01__f_turn | Meister. Come away from them. Now.
+
+# ---- lindqvist (12 lines)
+[ref refs/lindqvist_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+b01__l_open5 | Every evening I sat at my window with a glass and a notebook. That week I began to see eyes at the forest's edge, high off the ground, and a long way apart.
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+b01__l_weigh | Eleven pounds heavier than Monday. She called at sunset, as she did every day, a sound like a heron with its throat cut. Nothing answered.
+b01__l_v1 | A lizard. My dear Valadares. She is a species no one has ever described, the newest thing nature has made. In ten years her daughters will be the Crown's cavalry, and they will not eat hay.
+b01__l_kin | Did you see them take the goats? They worked together like sheepdogs. That is a breed, Valadares, and a breed can be bred.
+b01__l_call | Listen to her. She has never made that sound before.
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+b01__l_one_night | So I sent nothing to the fort, Majesty. One night, I told Valadares. I wanted the stallion alive.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+b01__l_lost | He walked through my station as if it were reeds. My men emptied their muskets into him, and he did not so much as turn his head.
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+b01__l_groom | He did not touch her. He lay down along the pen like a dog at a door, and would not move.
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+b01__l_three | Three eggs. Three. And he lay across the gate and would not let a man near.
+b01__l_end_saved | I had her eggs in a crate of straw. I told the Academy I had saved my notes, and let them think the crate was full of paper.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+b01__l_end_fire | The fire had the eggs before I reached the straw. I came down to the Barra with a notebook and nothing else, and the Academy did not believe a word of it.
+b01__l_end_nopieter | Pieter went to the forest's edge with the jars and did not come back. I have his specimen book. His mother wrote to me twice.
+
+# ---- king (11 lines)
+[ref king_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.4]
+[cfg 0.3]
+b01__k_open2 | The naturalist came later, in chains. He knows those animals better than any man living. Let him tell it. Where he is wrong, I will say so.
+b01__k_end1 | His lure did nothing. The beasts came because the young one cried out every evening, the way a calf bawls and brings the herd.
+b01__k_end2 | No one stole her from him. Beasts went to a beast that called them, and took it back into the forest. There is nothing more in it than that, whatever he writes.
+b01__k_end_saved | And the crate he carried out of the fire held no papers. It held her eggs.
+c01__k_open1 | The clockmaker came to Rome that winter in a borrowed coat, with two fingers black from the frost. He lives in this palace still. You have passed him on the stairs.
+c01__k_end2 | It chose nothing. Mould on bread chooses nothing either. We burned what we could find, and we did not find everything.
+p01__k_open1 | Sit down. You asked me how it began, and I will tell you, but an old man lights his pipe first. There. Virginia leaf. That is where it began.
+p01__k_open2 | When I was a boy you could sail from Rome to the last islands of the Pacific and hear the same Mass in every port, and pay for your supper with the same coin. My father thought it would always be so. So did I.
+p01__k_open3 | That summer a Polish seminarian was waiting in Virginia for a ship to Rome. Tomasz Wierzbicki. You know him as the Cardinal. He was very young, and he earned his keep helping the Governor's chaplain.
+p01__k_open4 | Then the Free Assembly came out of the fields, Varenne's men, with torches. They wanted no King and no Church, and they started by burning other men's harvests.
+p01__k_end | Fairleigh put it down in a single morning. Rome sent him its thanks and a medal, and we thought that was the end of it. My pipe has gone out.
+
+# ---- hollweg (8 lines)
+[ref refs/hollweg_ref.wav]
+[pitch 0.0]
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+c01__h_open2 | Forty years I made clocks, and every one of them ran down. That is what clocks do. This one would wind itself and mend itself, and before it wore out it would build the next.
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+c01__h_q0 | I built it in the cellar under the workshop and told no one. In Nuremberg they still cross themselves when a mill wheel turns with no miller by it. Only Father Ferrer knew. He was the one man in the city I could not lie to.
+c01__h_q1 | Those were wires and lightning, Father. This is brass. I cut every tooth of it with my own hands. And if a wheel could learn a little, in time, would that be so wicked?
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+c01__h_q2 | There is no ghost in it, I told him. Only gears. I said it to his face, and I believed it.
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+c01__h_1 | The Crown's wagons are at the market. Six soldiers, Jakob, and the Commissary will count every rivet.
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+c01__h_gift | There. Look at it. Nobody is winding it.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+c01__h_13 | Thirteen? There is no thirteen. There is no such hour on any dial.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+c01__h_end_people | I left my drawings to burn. From the cart I watched the workshop windows go orange.
+
+# ---- valadares (2 lines)
+[ref refs/explorer_ref.wav]
+[pitch 0.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+b01__v_past | They don't care for your jars, Doctor. They are making for the pen.
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+b01__v_burn | Burn them, Doctor. Whatever those things are, do not carry them down this river to people.
+
+# ---- fairleigh (4 lines)
+[ref refs/fairleigh_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.45]
+[cfg 0.3]
+p01__f_open5 | Captain Ruggieri, run out the guns. Mr. Wierzbicki, take the women and children into the chapel and keep them there.
+p01__f_1 | That will be Varenne. He makes a fine speech, for a man standing so far back.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+p01__f_leaf | You shall have one of mine. Now load.
+p01__f_ash | The house is burning. Get the women out of the chapel. We have lost the county.
+
+# ---- ruggieri (1 lines)
+[ref refs/ruggieri_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.7]
+[cfg 0.3]
+p01__r_leaf | Madonna santa, a whole year's leaf. My lord, when this is done I want a pipe of whatever they leave us.
+
+# ---- varenne (2 lines)
+[ref refs/varenne_ref.wav]
+[pitch 0.0]
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+p01__v_1 | Citizens! You grew that leaf with your sweat, and a king you will never see smokes it! Burn it!
+p01__v_2 | They tell you to wait for heaven! We will not wait!
+
+# ---- jakob (1 lines)
+[ref refs/jakob_ref.wav]
+[pitch 0.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+c01__j_found | Meister, it's a whole works. Presses, a Winder, all of it meshed. It's building another.
+
+# ---- tomasz (8 lines)
+[ref refs/tomasz_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.45]
+[cfg 0.3]
+p01__t_open3 | I remember the barns most. You could smell the curing leaf a mile off. In the evenings I read Augustine under the big oak until the light went, and the field hands sang on their way in.
+p01__t_open5 | He said it as calmly as grace before dinner. Then he sent for his sword.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+p01__t_end | Afterwards I went down to the gate with the chaplain and did what little could be done. I have said a Mass for them every year since.
+p01__t_1 | Some of them were boys. I knelt by the first one who fell and said the act of contrition into his ear, in case he could still hear. I was not a priest yet. I could give him nothing more.
+p01__t_2 | They fired the curing sheds with the families still asleep in the cabins beside them. I carried a little girl out of the smoke. She asked me if it was morning yet.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+p01__t_smoke | My lord, smoke to the north. That is Hollins Farm. The Hollins family stood by us, and they cannot get out.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+p01__t_toolate | We came too late. I said the De profundis over them in the yard, and we marched on.
+p01__t_left | We saw the smoke of Hollins Farm for an hour. Nobody spoke. The Governor rode at the head of the column and did not once look round.

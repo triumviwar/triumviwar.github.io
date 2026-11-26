@@ -2834,7 +2834,7 @@
 		},
 		"k_open2": {
 			"who": "king",
-			"text": "The naturalist they brought me in chains. He knows these creatures better than any man alive. Let him tell it."
+			"text": "The naturalist came later, in chains. He knows those animals better than any man living. Let him tell it. Where he is wrong, I will say so."
 		},
 		"l_open1": {
 			"who": "lindqvist",
@@ -2850,7 +2850,7 @@
 		},
 		"l_open5": {
 			"who": "lindqvist",
-			"text": "I watched the forest from my window every evening. That week, Majesty, the forest watched back."
+			"text": "Every evening I sat at my window with a glass and a notebook. That week I began to see eyes at the forest's edge, high off the ground, and a long way apart."
 		},
 		"l_1": {
 			"who": "lindqvist",
@@ -2862,7 +2862,7 @@
 		},
 		"l_weigh": {
 			"who": "lindqvist",
-			"text": "She called at sunset, as every day. Eleven pounds heavier than Monday. Nothing answered. Not yet."
+			"text": "Eleven pounds heavier than Monday. She called at sunset, as she did every day, a sound like a heron with its throat cut. Nothing answered."
 		},
 		"n_canoe": {
 			"who": "narrator",
@@ -2874,7 +2874,7 @@
 		},
 		"l_v1": {
 			"who": "lindqvist",
-			"text": "Not a lizard. Something no man has named. The Crown will have a cavalry that needs no hay."
+			"text": "A lizard. My dear Valadares. She is a species no one has ever described, the newest thing nature has made. In ten years her daughters will be the Crown's cavalry, and they will not eat hay."
 		},
 		"v_2": {
 			"who": "valadares",
@@ -2899,7 +2899,7 @@
 		},
 		"l_kin": {
 			"who": "lindqvist",
-			"text": "Did you see them hunt? Not one beast. A breed, with a breed's manners."
+			"text": "Did you see them take the goats? They worked together like sheepdogs. That is a breed, Valadares, and a breed can be bred."
 		},
 		"n_call": {
 			"who": "narrator",
@@ -2907,7 +2907,7 @@
 		},
 		"l_call": {
 			"who": "lindqvist",
-			"text": "Listen. Listen to that. She knows that voice."
+			"text": "Listen to her. She has never made that sound before."
 		},
 		"v_tell": {
 			"who": "valadares",
@@ -2919,7 +2919,7 @@
 		},
 		"l_one_night": {
 			"who": "lindqvist",
-			"text": "So I kept it quiet, Majesty. One night, I said. The Crown would have its beasts tame or not at all."
+			"text": "So I sent nothing to the fort, Majesty. One night, I told Valadares. I wanted the stallion alive."
 		},
 		"n_eve": {
 			"who": "narrator",
@@ -2951,7 +2951,7 @@
 		},
 		"v_past": {
 			"who": "valadares",
-			"text": "They are not after your scent. They are going to her."
+			"text": "They don't care for your jars, Doctor. They are making for the pen."
 		},
 		"n_ground": {
 			"who": "narrator",
@@ -2963,7 +2963,7 @@
 		},
 		"l_lost": {
 			"who": "lindqvist",
-			"text": "He walked through my station as if it were reeds. He did not want us. He wanted her."
+			"text": "He walked through my station as if it were reeds. My men emptied their muskets into him, and he did not so much as turn his head."
 		},
 		"v_lost": {
 			"who": "valadares",
@@ -2983,7 +2983,7 @@
 		},
 		"l_groom": {
 			"who": "lindqvist",
-			"text": "He did not want to eat her. He lay down beside her like a groom."
+			"text": "He did not touch her. He lay down along the pen like a dog at a door, and would not move."
 		},
 		"p_eggs": {
 			"who": "pieter",
@@ -3015,7 +3015,7 @@
 		},
 		"v_burn": {
 			"who": "valadares",
-			"text": "Burn them, Doctor. Whatever she was, do not carry her children down this river."
+			"text": "Burn them, Doctor. Whatever those things are, do not carry them down this river to people."
 		},
 		"l_save": {
 			"who": "lindqvist",
@@ -3047,11 +3047,11 @@
 		},
 		"l_end_saved": {
 			"who": "lindqvist",
-			"text": "I had the research. I told the Academy I had saved my notes. That was the first lie."
+			"text": "I had her eggs in a crate of straw. I told the Academy I had saved my notes, and let them think the crate was full of paper."
 		},
 		"l_end_fire": {
 			"who": "lindqvist",
-			"text": "The fire took her eggs before I reached them. I had nothing left but my word, and no one wanted it."
+			"text": "The fire had the eggs before I reached the straw. I came down to the Barra with a notebook and nothing else, and the Academy did not believe a word of it."
 		},
 		"l_end_pieter": {
 			"who": "lindqvist",
@@ -3059,7 +3059,7 @@
 		},
 		"l_end_nopieter": {
 			"who": "lindqvist",
-			"text": "Pieter went to the forest's edge with the jars. I have his specimen book still. He does not."
+			"text": "Pieter went to the forest's edge with the jars and did not come back. I have his specimen book. His mother wrote to me twice."
 		},
 		"l_end_two": {
 			"who": "lindqvist",
@@ -3075,15 +3075,15 @@
 		},
 		"k_end1": {
 			"who": "king",
-			"text": "He wrote that his lure called them. It did not. She called them, and they came for her."
+			"text": "His lure did nothing. The beasts came because the young one cried out every evening, the way a calf bawls and brings the herd."
 		},
 		"k_end2": {
 			"who": "king",
-			"text": "She was never stolen. She went home."
+			"text": "No one stole her from him. Beasts went to a beast that called them, and took it back into the forest. There is nothing more in it than that, whatever he writes."
 		},
 		"k_end_saved": {
 			"who": "king",
-			"text": "And what he carried out of the fire was not research. It was her children."
+			"text": "And the crate he carried out of the fire held no papers. It held her eggs."
 		},
 		"k_end_taken": {
 			"who": "king",

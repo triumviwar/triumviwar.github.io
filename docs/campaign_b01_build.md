@@ -129,28 +129,28 @@ Rio Negro a narrator); no creature has a voice.
 | file (campaign/voice/b01/) | voice | when (trigger) | line |
 | --- | --- | --- | --- |
 | k_open1.ogg | The King | opening | Two letters came that year. The first came from the Amazon, from the Crown's mapmaker. |
-| k_open2.ogg | The King | opening | The naturalist they brought me in chains. He knows these creatures better than any man alive. Let him tell it. |
+| k_open2.ogg | The King | opening | The naturalist came later, in chains. He knows those animals better than any man living. Let him tell it. Where he is wrong, I will say so. |
 | l_open1.ogg | Dr. Lindqvist | opening | I was the happiest man in the world that summer, Majesty. Write that down, whoever writes. |
 | l_open2.ogg | Dr. Lindqvist | opening | The Academy's station at the rapids of São Gabriel. The river high, the forest standing in the water. |
 | l_open3.ogg | Dr. Lindqvist | opening | She came from an egg a trader found after the flood. In forty days she had trebled. |
-| l_open5.ogg | Dr. Lindqvist | opening | I watched the forest from my window every evening. That week, Majesty, the forest watched back. |
+| l_open5.ogg | Dr. Lindqvist | opening | Every evening I sat at my window with a glass and a notebook. That week I began to see eyes at the forest's edge, high off the ground, and a long way apart. |
 | l_1.ogg | Dr. Lindqvist | intro | Something moved in the deep forest that week. Pieter said the birds had gone quiet to the north. |
 | l_2.ogg | Dr. Lindqvist | intro | I wrote it down and thought nothing of it. I had a pen to finish. |
-| l_weigh.ogg | Dr. Lindqvist | call_1 | She called at sunset, as every day. Eleven pounds heavier than Monday. Nothing answered. Not yet. |
+| l_weigh.ogg | Dr. Lindqvist | call_1 | Eleven pounds heavier than Monday. She called at sunset, as she did every day, a sound like a heron with its throat cut. Nothing answered. |
 | n_canoe.ogg | The Rio Negro | valadares | A canoe came down from the boundary survey: the Crown's mapmaker, Duarte Valadares. |
 | v_1.ogg | Valadares | meet | Doctor. They say at the fort you keep a lizard the size of a dog. |
-| l_v1.ogg | Dr. Lindqvist | meet | Not a lizard. Something no man has named. The Crown will have a cavalry that needs no hay. |
+| l_v1.ogg | Dr. Lindqvist | meet | A lizard. My dear Valadares. She is a species no one has ever described, the newest thing nature has made. In ten years her daughters will be the Crown's cavalry, and they will not eat hay. |
 | v_2.ogg | Valadares | meet | You mean to sell this to the army, Doctor? Then why do you whisper when you speak of her? |
 | p_tracks2.ogg | Pieter | tracks_p | Three toes, deep in the mud at the creek. Too many to count. |
 | v_tracks.ogg | Valadares | tracks | There are two kinds of track up there, Doctor. Two packs, and both came down from the north. |
 | l_tracks.ogg | Dr. Lindqvist | tracks | Then she has a family. Two families. Splendid. |
 | v_goats.ogg | Valadares | goats | At the goats! Guns, quickly! |
-| l_kin.ogg | Dr. Lindqvist | goats | Did you see them hunt? Not one beast. A breed, with a breed's manners. |
+| l_kin.ogg | Dr. Lindqvist | goats | Did you see them take the goats? They worked together like sheepdogs. That is a breed, Valadares, and a breed can be bred. |
 | n_call.ogg | The Rio Negro | roar_heard | At dusk a roar came out of the forest, and she answered it. |
-| l_call.ogg | Dr. Lindqvist | roar_heard | Listen. Listen to that. She knows that voice. |
+| l_call.ogg | Dr. Lindqvist | roar_heard | Listen to her. She has never made that sound before. |
 | v_tell.ogg | Valadares | debate | Send to Teles, Doctor. Tell him what is in the forest, and bring the village in before dark. |
 | l_quiet.ogg | Dr. Lindqvist | debate | If Teles sees those tracks he will shoot everything in this forest, beginning with her. One night. |
-| l_one_night.ogg | Dr. Lindqvist | debate | So I kept it quiet, Majesty. One night, I said. The Crown would have its beasts tame or not at all. |
+| l_one_night.ogg | Dr. Lindqvist | debate | So I sent nothing to the fort, Majesty. One night, I told Valadares. I wanted the stallion alive. |
 | n_eve.ogg | The Rio Negro | eve | The Eve of Saint John. Rain on the river, and the bonfires lit at Nazaré. |
 | l_lure1.ogg | Dr. Lindqvist | eve | I had made a lure from the shell of her egg and her own musk. Pieter set it in three jars at the forest's edge. |
 | l_lure2.ogg | Dr. Lindqvist | eve | Any of her kind that smelt it would stand at the jar sniffing like a dog, and we would be waiting with the guns. |
@@ -158,15 +158,15 @@ Rio Negro a narrator); no creature has a voice.
 | l_stallion.ogg | Dr. Lindqvist | eve | I am calling a stallion for my mare. By morning the Academy will have a pair. |
 | p_set.ogg | Pieter | lure_set_p | All three jars are open, Doctor. I can smell it from here. |
 | p_past.ogg | Pieter | walked_past_p | Doctor, they walked past the jars. |
-| v_past.ogg | Valadares | walked_past | They are not after your scent. They are going to her. |
+| v_past.ogg | Valadares | walked_past | They don't care for your jars, Doctor. They are making for the pen. |
 | n_ground.ogg | The Rio Negro | turn | Then the ground shook. |
 | p_sire.ogg | Pieter | turn_p | Over the palisade. Doctor, it is as big as the house. |
-| l_lost.ogg | Dr. Lindqvist | turn | He walked through my station as if it were reeds. He did not want us. He wanted her. |
+| l_lost.ogg | Dr. Lindqvist | turn | He walked through my station as if it were reeds. My men emptied their muskets into him, and he did not so much as turn his head. |
 | v_lost.ogg | Valadares | turn | We cannot hold this place. Get the people to the jetty. Benedito has his canoes. |
 | v_fire.ogg | Valadares | fire_1 | Fire the thatch! They shy from fire. It buys us the jetty. |
 | t_late.ogg | Lieutenant Teles | teles_late | Shots at the station! You three, with me, along the causeway. Hold the ford for them. |
 | j_raid.ogg | Frei Joaquim | village_wake | The station is burning! Down to the boats, all of you, in the name of God! |
-| l_groom.ogg | Dr. Lindqvist | sire_rooted | He did not want to eat her. He lay down beside her like a groom. |
+| l_groom.ogg | Dr. Lindqvist | sire_rooted | He did not touch her. He lay down along the pen like a dog at a door, and would not move. |
 | p_eggs.ogg | Pieter | eggs_seen_p | Doctor, there are eggs in her straw. |
 | l_young.ogg | Dr. Lindqvist | eggs_seen | She is too young. She is far too young. |
 | l_three.ogg | Dr. Lindqvist | to record | Three eggs. Three. And he lay across the gate and would not let a man near. |
@@ -174,7 +174,7 @@ Rio Negro a narrator); no creature has a voice.
 | l_taken.ogg | Dr. Lindqvist | broken | No. No! She is mine! Shoot him, not her! |
 | v_taken.ogg | Valadares | broken | Let her go, Doctor. Your notes, your people. Now. |
 | n_room.ogg | The Rio Negro | research_go | The specimen house was alight. Her eggs lay in the trampled straw. |
-| v_burn.ogg | Valadares | research_go | Burn them, Doctor. Whatever she was, do not carry her children down this river. |
+| v_burn.ogg | Valadares | research_go | Burn them, Doctor. Whatever those things are, do not carry them down this river to people. |
 | l_save.ogg | Dr. Lindqvist | research_go | Ten years of work. The Crown's beasts are in that straw. I will not leave them to the fire. |
 | l_crate.ogg | Dr. Lindqvist | research_saved | The crate, Pieter. The notes on top. I carry it myself. |
 | l_gone.ogg | Dr. Lindqvist | research_gone | The straw was empty. I thought the fire had taken them. I believed that for thirty years. |
@@ -182,16 +182,16 @@ Rio Negro a narrator); no creature has a voice.
 | n_leave.ogg | The Rio Negro | canoes | The last canoe pushed off with the station burning behind it. |
 | b_leave.ogg | Benedito | canoes | Paddle! Do not look back. |
 | l_end1.ogg | Dr. Lindqvist | ending | We went down the river at first light with the station burning behind us. She was gone. He took her from me as a thief takes a horse. |
-| l_end_saved.ogg | Dr. Lindqvist | ending | I had the research. I told the Academy I had saved my notes. That was the first lie. |
-| l_end_fire.ogg | Dr. Lindqvist | ending | The fire took her eggs before I reached them. I had nothing left but my word, and no one wanted it. |
+| l_end_saved.ogg | Dr. Lindqvist | ending | I had her eggs in a crate of straw. I told the Academy I had saved my notes, and let them think the crate was full of paper. |
+| l_end_fire.ogg | Dr. Lindqvist | ending | The fire had the eggs before I reached the straw. I came down to the Barra with a notebook and nothing else, and the Academy did not believe a word of it. |
 | l_end_pieter.ogg | Dr. Lindqvist | ending | Pieter sat in the canoe with the specimen book on his knees and did not speak all day. |
-| l_end_nopieter.ogg | Dr. Lindqvist | ending | Pieter went to the forest's edge with the jars. I have his specimen book still. He does not. |
+| l_end_nopieter.ogg | Dr. Lindqvist | ending | Pieter went to the forest's edge with the jars and did not come back. I have his specimen book. His mother wrote to me twice. |
 | l_end_two.ogg | Dr. Lindqvist | ending | There were two packs in that forest, Majesty, and they fought over her like dogs over a bone. I saw it from my window. |
 | l_end_north.ogg | Dr. Lindqvist | ending | Valadares turned his canoe round at the first island. He went north after her, up the creek, to the mountain in the cloud. |
 | l_end2.ogg | Dr. Lindqvist | ending | I meant to give the Crown its beasts, Majesty. I still think I was right. |
-| k_end1.ogg | The King | ending | He wrote that his lure called them. It did not. She called them, and they came for her. |
-| k_end2.ogg | The King | ending | She was never stolen. She went home. |
-| k_end_saved.ogg | The King | ending | And what he carried out of the fire was not research. It was her children. |
+| k_end1.ogg | The King | ending | His lure did nothing. The beasts came because the young one cried out every evening, the way a calf bawls and brings the herd. |
+| k_end2.ogg | The King | ending | No one stole her from him. Beasts went to a beast that called them, and took it back into the forest. There is nothing more in it than that, whatever he writes. |
+| k_end_saved.ogg | The King | ending | And the crate he carried out of the fire held no papers. It held her eggs. |
 | k_end_taken.ogg | The King | ending | And the fire took nothing. The pack carried her eggs north in its jaws. He never knew. |
 
 
