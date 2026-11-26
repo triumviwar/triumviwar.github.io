@@ -22,8 +22,9 @@ parts make the Crown fight better.** Against the Brood (crown-micro) the gap is 
   | winders (new) | Musketeers shoot a Winder first when one is in reach (the Winders wind and mend the army) |
   | fieldline (new) | a marching wave forms its line before the Clockwork army it sees and steps on with its guns set (the line on the march only; its home lines stay cut) |
 
-  On the bench they win the close fights much better (with the Clockwork at 1.5 times the value: +0.31, t 5.9). In real
-  games the Crown now sometimes wins outright (2 or 3 of 10, none before) and trades its fights better.
+  On the bench they win the close fights much better (with the Clockwork at 1.5 times the value: +0.31, t 5.9). In 20
+  real games a side the Crown won outright 5 times (1 before), but overall the games are within the noise (+0.16, t 0.6):
+  the Crown was already winning this matchup.
 
 - **In the mirror** two parts are on: **brace** (a marching wave halts and sets its guns when the enemy wave comes at
   it) and **gunpick** (the guns aim at the thickest clump and the armoured men). On the bench +0.09 (t 1.5); in 10 real
@@ -238,8 +239,8 @@ Together, on the bench:
 Plus, in the mirror, brace and gunpick together: +0.09 (t 1.5) over 72 fights (the table above), and on the mirror's
 real armies +0.10 (36 fights, t 1.4: +0.25 against +0.15).
 
-The parts not kept stay written and switchable (`-- cmic<name>:on`). **fieldline is kept against the Clockwork** (on by default there since the field1 real games showed it
-does not cost in the whole game, see below). The line's own switch (`crcline`) stays cut against the Clockwork: fieldline is
+The parts not kept stay written and switchable (`-- cmic<name>:on`). **fieldline is kept against the Clockwork** (on by default there: 20 real games showed no clear cost in the
+whole game, see below). The line's own switch (`crcline`) stays cut against the Clockwork: fieldline is
 only its march.
 
 ## Real games
@@ -256,18 +257,28 @@ the army; a beaten side counted a quarter): 0 even, +0.7 the Crown twice the ene
 | off1 | `cmic:off` (the Crown as before) | 10 | 0 | 9 | 0 | 1 | 0 | +0.39 | +0.01 | 0.94 / 0.96 | 2.28 (81 fights) |
 | on1 | gunpick, kite, hurt, winders | 10 | 3 | 3 | 3 | 1 | 0 | +0.77 | +0.14 | 0.91 / 0.96 | 2.68 (83 fights) |
 | field1 | the same and fieldline (today's default) | 10 | 2 | 7 | 1 | 0 | 0 | +0.71 | +0.18 | 0.94 / 1.00 | 2.50 (75 fights) |
+| off2 | `cmic:off` (the same 10 games again) | 10 | 1 | 5 | 3 | 1 | 0 | +0.53 | +0.09 | 0.94 / 0.96 | 2.42 (65 fights) |
+| field2 | today's default again | 10 | 3 | 3 | 2 | 1 | 1 | +0.54 | +0.03 | 0.93 / 0.93 | 2.42 (66 fights) |
+| **off, both** | | 20 | 1 | 14 | 3 | 2 | 0 | +0.46 | +0.05 | 0.94 / 0.96 | 2.35 |
+| **today's default, both** | | 20 | 5 | 10 | 3 | 1 | 1 | +0.62 | +0.10 | 0.93 / 0.97 | 2.47 |
 Paired game by game against off1: on1 +0.37 (t 1.2), 4 better / 4 worse; field1 +0.31 (t 1.3), 6 better / 4 worse, and at
-14:00 +0.17 (t 1.5).
+14:00 +0.17 (t 1.5). The second pair (off2 against field2) shows nothing: +0.02 (t 0.0), 5 better / 4 worse. Both pairs
+pooled (20 games a side): +0.16 (t 0.6). (A block on2, the four parts without fieldline, was started and stopped after 2
+games to give its machine to field2; its games are not counted.)
 
 In plain words:
 
 1. **The Crown already beats the Clockwork computer.** Without any of this it won or led 9 of 10 games at 20:00, though it
    earned a little less (0.94 of the Clockwork's income at 8:00). It wins the fights: 2.3 killed for each 1 lost.
-2. **With the parts it wins outright now and then** (3 and 2 games won, none before) and trades better in the fights
-   (2.7 and 2.5). The mean is better by about a third of a point; with 10 games a block that is not beyond the noise.
-3. **fieldline did not cost in the whole game.** The crown-rule-cleanup had found the full line stack (with the home lines,
-   the musters, the screen) harmful against the Clockwork. The line on the march alone formed 16 times in the 10 games, and
-   the block is as good as on1 (9 of 10 won or led, none behind).
+2. **With the parts the whole games are within the noise.** Over 20 games a side the Crown with the parts won outright
+   5 times (without: 1), won or led 15 against 15, and was beaten once (12:36, field2 on Ashford Crossing; without: never).
+   The fights traded about the same (2.47 against 2.35). The first pair looked better (+0.31); the second pair, the same
+   games again, showed nothing. So the bench's gain in close fights hardly shows in real games: the Crown's fights against
+   the Clockwork are seldom close.
+3. **fieldline did not clearly cost in the whole game.** The crown-rule-cleanup had found the full line stack (with the
+   home lines, the musters, the screen) harmful against the Clockwork, about -0.8 to -1.5 of g. The line on the march alone
+   formed 37 times in 20 games and the blocks are no worse than without it (+0.16, t 0.6), with the one defeat in field2 to
+   watch.
 
 ### The mirror
 
@@ -323,8 +334,8 @@ where it wins (the Clockwork) it wins on the fighting.
 6. **Kept four small parts against the Clockwork** (gunpick, kite, hurt, winders) though alone each is only about t 1
    pooled; together +0.05 (t 1.4) on the core fights and +0.08 (t 1.5) on the real armies, and none measured harmful.
 7. **fieldline kept on against the Clockwork** though the cleanup cut the whole line there. On the bench it is the
-   biggest gain of all (about +0.19, t 6.5); in the real games it did not cost (field1: 9 of 10 won or led, 2 won, none
-   behind, against 9 of 10 and none won for the Crown as before). Its home lines and the rider screen stay cut. If the
+   biggest gain of all (about +0.19, t 6.5); in 20 real games it did not clearly cost (+0.16, t 0.6 with the four other
+   parts; one defeat in 20, none without). Its home lines and the rider screen stay cut. If the
    owner prefers the cleanup's stack exactly, `-- cmicfieldline:off`.
 8. **Only brace and gunpick in the mirror**: alone each is noise; together +0.09 (t 1.5) and +0.10 on the real armies.
    Everything else leaned to harm there.
