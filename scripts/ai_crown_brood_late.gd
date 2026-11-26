@@ -20,7 +20,7 @@ extends RefCounted
 ## (out of home the guns set at contact 6% -> 68%, the fights out traded 1.25 killed for each lost, was 1.01) and left the
 ## result where it was (mean g -0.65 against -0.60, 30 games); "home" (-0.97, t -2.8) and "cap" (-0.55, t -2.5) made it
 ## worse. `-- cbl<name>:on` plays a part.
-const KEPT: Array[String] = []
+const KEPT: Array[String] = ["guns"]      # (ai-lessons: the guns kept on, docs/ai_lessons.md lesson 3)
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 static var _n := {}             # team -> {counter -> n} (qa_match's result.json "crown_ai")

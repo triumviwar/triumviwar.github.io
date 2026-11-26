@@ -9,7 +9,7 @@ class_name AILessons
 ##                fight, not only while the line's state says so (AICrownScreen._screen)
 ##   cbcomp / ckcomp / kccomp / kbcomp / bcomp: the army mixes by the counter tables (see each file's own notes)
 ## Switches: `-- ail:off` all off; `-- ail<name>:off` one off; `-- ail<name>:on` one on that is off by default.
-const ON_BY_DEFAULT := ["dragoonwave", "riderpull"]
+const ON_BY_DEFAULT := ["dragoonwave", "riderpull", "cbcomp", "ckcomp", "kccomp"]
 
 static var _args: PackedStringArray = OS.get_cmdline_user_args()
 
@@ -44,8 +44,8 @@ static func dragoon(u: Unit) -> bool:
 ##           Netters, no Brass Serpent (they lose to nearly everything)
 ##   kbcomp  the Clockwork v the Brood: Pendulums and Ballistas (KB and P are its best mixes there), fewer Springers and
 ##           Netters, no Brass Serpent
-##   bcomp   the Brood v the Crown and v the Clockwork: Venom Challengers are its strongest value there: a Spitter for
-##           each Raptor (they grow into Venom Challengers)
+##   bcomp / bkcomp  the Brood v the Crown / v the Clockwork: Venom Challengers are its strongest value there: a Spitter
+##           for each Raptor (they grow into Venom Challengers)
 ## By matchup: the computer's enemy faction decides; a mirror is left as it is.
 
 static func foe_f(ai) -> String:
@@ -73,8 +73,10 @@ static func comp(ai) -> String:
 			k = "kccomp"
 		["clockwork", "brood"]:
 			k = "kbcomp"
-		["brood", "crown"], ["brood", "clockwork"]:
+		["brood", "crown"]:
 			k = "bcomp"
+		["brood", "clockwork"]:
+			k = "bkcomp"
 	return k if k != "" and on(k) else ""
 
 
@@ -155,4 +157,5 @@ static func cw_serpents(ai, old: int) -> int:
 
 ## The Brood: one Spitter for this many Raptors (Venom Challengers when grown).
 static func brood_venom_share(ai, old: int) -> int:
-	return 1 if comp(ai) == "bcomp" else old
+	var c := comp(ai)
+	return 1 if c == "bcomp" or c == "bkcomp" else old
