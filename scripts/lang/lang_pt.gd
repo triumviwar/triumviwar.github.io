@@ -5024,6 +5024,7 @@ const T := {
 	"No machine may govern itself, says the council. I did not build mine to be governed by cardinals.": "Nenhuma máquina pode governar-se a si mesma, diz o concílio. Não construí as minhas para serem governadas por cardeais.",
 	"The council meets at noon, when the tower strikes. Each master has a vote, and a wheel on the great table to cast it with.": "O conselho se reúne ao meio-dia, quando a torre bate. Cada mestre tem um voto, e uma roda na grande mesa para lançá-lo.",
 	"I pulled the brake. Every machine I had made stood still, the honest ones with the rest. The tower went quiet. I had never heard it quiet.": "Puxei o travão. Todas as máquinas que eu tinha feito pararam, as honestas com as outras. A torre ficou em silêncio. Eu nunca a tinha ouvido em silêncio.",
+	"The council hall's lamps are red. Nobody sits at the table. (The King: That is not how it went that night. The hall fell later, and slowly.)": "As lâmpadas do salão do conselho estão vermelhas. Ninguém se senta à mesa. (O Rei: Não foi assim que aconteceu naquela noite. O salão caiu mais tarde, e devagar.)",
 	"They brought the Crown's guns up the plateau. I stood on the wall by the spring and listened. The city's tick did not change. Not by a beat.": "Trouxeram os canhões da Coroa para cima do planalto. Fiquei na muralha junto à mola, escutando. O tique da cidade não mudou. Nem por uma batida.",
 	"ON THE TWO HILLS": "NAS DUAS COLINAS",
 	"IN THE LOW QUARTERS": "NOS BAIRROS BAIXOS",
