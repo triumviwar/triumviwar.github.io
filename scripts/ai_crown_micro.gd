@@ -39,8 +39,8 @@ const PARTS := ["canister", "focus", "hurt", "riders", "gunpick", "kite", "brace
 ## for a matchup is off there (`-- cmic<name>:on` tries it in every matchup).
 const KEPT_BY := {
 	"brood": ["riders", "brace", "kite", "gunpick"],
-	"clockwork": [],
-	"crown": [],
+	"clockwork": ["gunpick", "kite", "hurt", "winders"],
+	"crown": ["brace", "gunpick"],
 }
 const KEPT: Array[String] = ["riders", "brace", "kite", "gunpick"]      # (the Brood's: kept for old readers)
 ## (crown-micro-2) the bench's mirror: the enemy Crown computer fights as before (its micro off), so the bench measures
