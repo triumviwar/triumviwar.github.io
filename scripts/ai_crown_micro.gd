@@ -5,6 +5,8 @@ class_name AICrownMicro
 ## tools/bench_crown_micro.gd (equal-value fights); KEPT (on by default) are the four that helped there: riders, brace,
 ## kite, gunpick (together +0.09 of the score on the real armies, k/l 2.4 -> 3.5). canister, hurt and focus measured no
 ## better or worse and are off (the doc has every measure). The macro (when to attack, where the wave goes) is not touched here.
+## (crown-micro-2, docs/crown_micro_2.md) the same coaching against the Clockwork and in the mirror, on the same bench
+## (tools/bench_crown_micro.gd sets cwcore/cwreal/crcore/crreal): the parts are kept BY MATCHUP (KEPT_BY).
 ## Parts (each a switch: `-- cmic:off` all of them, `-- cmic<name>:off` one; a part not KEPT is tried with `cmic<name>:on`):
 ##   canister  a set Field Cannon loads CANISTER when Brood soldiers are close on it and none of our men stand in its cone,
 ##             round shot again when they are gone (the computer never used canister: the gun's answer to a swarm)

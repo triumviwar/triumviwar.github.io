@@ -114,7 +114,35 @@ Netter's net there is nothing for the men to do but fight on.
 Each part alone against the base. "t" says how far the change is beyond the noise: under 1 it is noise, about 2 is a real
 change. Rows with 72 fights pool the equal-value set and the 1.5 set.
 
-@@CWTABLE@@
+| part | fights | score | change | t | k/l | won |
+|---|---|---|---|---|---|---|
+| riders | 36 | +0.58 | -0.007 | -0.16 | 2.71 | 35 |
+| brace | 36 | +0.59 | -0.005 | -0.12 | 2.84 | 35 |
+| kite | 72 | +0.45 | +0.041 | +1.03 | 2.61 | 64 |
+| gunpick | 72 | +0.45 | +0.043 | +1.01 | 2.62 | 62 |
+| hurt | 72 | +0.45 | +0.043 | +1.02 | 2.64 | 64 |
+| winders (new) | 72 | +0.43 | +0.023 | +0.55 | 2.53 | 62 |
+| canister | 36 | +0.58 | -0.010 | -0.24 | 2.71 | 35 |
+| focus | 36 | +0.58 | -0.008 | -0.18 | 2.84 | 35 |
+| backline (new) | 36 | +0.58 | -0.008 | -0.16 | 2.80 | 34 |
+| counter (new) | 36 | +0.58 | -0.007 | -0.15 | 2.81 | 35 |
+| shields (new) | 36 | +0.57 | -0.016 | -0.36 | 2.69 | 35 |
+| fieldline (new) | 108 | +0.66 | +0.185 | +6.52 | 4.02 | 107 |
+
+What each means:
+
+- **gunpick, kite, hurt** help a little each, at equal value and more in the close fights (1.5 times): the round shot goes
+  for the armoured machines (Springers, Pendulums, Ballistas, Netters), Musketeers step back from the slow Pendulum and
+  from run-down Clock Soldiers, a hurt Musketeer steps back behind his friends. (Against the Brood "hurt" did not help: a
+  Raptor follows. A Clock Soldier is slower when its wind is low, and the Pendulum is slow.)
+- **winders** (new) helps a little: Musketeers shoot the Winders first when one is in reach, so the army behind the front
+  stops being mended and wound.
+- **riders, brace** do nothing here: against the Clockwork the rider screen is cut, so the riders are rarely out of the
+  fight (7 rides in 36 fights), and the Clockwork army walks in slowly, so the brace seldom has time to fire (12 times).
+- **canister, focus, backline, counter, shields** (the last three new) do nothing or a little harm. The riders sent at the
+  back line (95 rides) die to the Clock Soldiers round it; the guns' duel with the Ballistas wastes shots the Clock
+  Soldiers in front should get; Musketeers leaving a shielded Clock Soldier for another one lose time.
+- **fieldline** (new) is the big one: see the next table.
 
 ### The rules the cleanup cut against the Clockwork
 
@@ -122,7 +150,13 @@ The crown-rule-cleanup job cut the Crown's whole fight group against the Clockwo
 screen, the cavalry micro, the defence), because in real games it measured as harm. On the bench, in the fights, they are
 the biggest gains of all:
 
-@@CUTTABLE@@
+| rule | fights | score | change | t | k/l | won |
+|---|---|---|---|---|---|---|
+| the line (crcline:on) | 72 | +0.59 | +0.182 | +5.46 | 3.60 | 71 |
+| the cavalry micro (crccavmicro:on) | 72 | +0.53 | +0.125 | +3.33 | 3.20 | 67 |
+| the guns' coaching (crcgunscoach:on) | 36 | +0.59 | -0.004 | -0.08 | 2.80 | 35 |
+| the line and the screen | 36 | +0.80 | +0.209 | +6.72 | 5.32 | 36 |
+| fieldline (the line on the march only) | 108 | +0.66 | +0.185 | +6.52 | 4.02 | 107 |
 
 So the line and the riders' hit and run make the Crown fight much better against the Clockwork. The cleanup's reading
 was that they cost in the whole game (the army held at home in formations, posts and musters) though they win the fights.
@@ -132,11 +166,52 @@ On the bench it gains almost all the line's gain (above). The real games tell wh
 
 ### In the mirror
 
-@@CRTABLE@@
+| part | fights | score | change | t | k/l | won |
+|---|---|---|---|---|---|---|
+| riders | 18 | +0.14 | -0.067 | -0.82 | 1.28 | 12 |
+| brace | 36 | +0.23 | +0.029 | +0.45 | 1.41 | 26 |
+| kite | 18 | +0.11 | -0.093 | -1.07 | 1.17 | 10 |
+| gunpick | 36 | +0.21 | +0.011 | +0.17 | 1.37 | 27 |
+| canister | 18 | +0.10 | -0.102 | -1.13 | 1.13 | 14 |
+| hurt | 18 | +0.08 | -0.126 | -1.76 | 1.09 | 11 |
+| focus | 18 | +0.12 | -0.083 | -1.13 | 1.24 | 11 |
+| backline (new) | 18 | +0.17 | -0.033 | -0.53 | 1.34 | 13 |
+| winders (new) | 18 | +0.14 | -0.064 | -0.71 | 1.29 | 14 |
+| counter (new) | 18 | +0.09 | -0.115 | -1.40 | 1.08 | 11 |
+| brace and gunpick together | 72 | +0.29 | +0.086 | +1.54 | 1.68 | 57 |
+
+The mirror is noisy (the same code on both sides, and few fights). Alone, only brace and gunpick lean the right way;
+together they gain +0.09 (t 1.5), the two working together: the brace halts our wave when their wave comes at it, so our
+guns set, and gunpick turns the guns onto the thickest clump and the armoured men. Everything else leans to harm in the
+mirror: the riders and the backline riders ride into the enemy's line and guns; the counter-battery leaves the enemy's
+Musketeers alone; kite and hurt step men out of a fire fight where every musket counts.
 
 ## What was kept
 
-@@KEPT@@
+`AICrownMicro.KEPT_BY` now lists the parts by the enemy (Normal and up). The Brood's four are unchanged.
+
+| enemy | parts on by default |
+|---|---|
+| the Brood | riders, brace, kite, gunpick (the crown-micro job) |
+| the Clockwork | gunpick, kite, hurt, winders |
+| the Crown (the mirror) | brace, gunpick |
+
+Together, on the bench:
+
+| set | fights | score | change | t | k/l | won |
+|---|---|---|---|---|---|---|
+| the four kept, equal value | 72 | +0.63 | +0.042 | +1.22 | 3.25 | 71 |
+| the four kept, 1.5 times | 36 | +0.29 | +0.057 | +0.79 | 2.37 | 26 |
+| the four kept, both | 108 | +0.52 | +0.047 | +1.41 | 2.82 | 97 |
+| the four kept, real armies | 24 | +0.57 | +0.077 | +1.49 | 2.55 | 24 |
+| the four kept and fieldline, equal value | 36 | +0.73 | +0.141 | +3.84 | 4.83 | 36 |
+| the four kept and fieldline, 1.5 times | 36 | +0.54 | +0.307 | +5.92 | 3.66 | 35 |
+| fieldline alone, real armies | 24 | +0.68 | +0.190 | +4.08 | 3.77 | 24 |
+
+Plus, in the mirror, brace and gunpick together: +0.09 (t 1.5) over 72 fights (the table above), and on the mirror's
+real armies @@CRREAL@@.
+
+The parts not kept stay written and switchable (`-- cmic<name>:on`). @@FIELDKEPT@@
 
 ## Real games
 
