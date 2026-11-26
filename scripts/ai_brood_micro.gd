@@ -10,14 +10,15 @@ extends RefCounted
 ##   spread  a biter whose target it can't reach (others in the way) bites an enemy at its side instead
 ##   focus   in reach of several enemies, a creature bites or spits at the most hurt one (no blows wasted on a fresh one)
 ##   guns    a biter close to an enemy gun (cannon, Mortar, Ballista) goes for the gun
-##   pack    a wave about to meet an enemy army waits for its slow ones (Spitters, Challengers) before it goes in
+##   pack    a wave on the road keeps together: creatures ahead of its bulk wait for it (NOT KEPT: better on the bench
+##           against the Crown, worse in real games, where the wave waited for creatures far behind on the road)
 ##   kite    a Spitter that has just spat steps back from a slower biter (a Clock Soldier, a Brute) on it
 ##   hurt    a badly hurt big creature (Challenger, Brute) with an enemy on it steps back behind its friends
 
 const EVERY := 0.25             # s between looks
-## The parts on by default (kept after the bench) and the ones only tried. Filled in from the measurements.
-const KEPT := ["focus", "pack", "kite"]
-const TRIED := ["spread", "guns", "hurt", "packcw"]
+## The parts on by default (kept after the bench and the real games) and the ones only tried (docs/brood_micro.md).
+const KEPT := ["focus", "kite"]
+const TRIED := ["pack", "spread", "guns", "hurt", "packcw"]
 
 static var counts := {}
 static var _t := {}             # team -> time to the next look
