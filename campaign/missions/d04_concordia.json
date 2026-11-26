@@ -5032,7 +5032,7 @@
 		},
 		"h_mapped_all": {
 			"who": "hollweg",
-			"text": "There. The whole country under one eye. From above, every road is only a gear's tooth.",
+			"text": "There. The whole country under one eye. Ulrich, have it copied onto the council's table.",
 			"to": "guild"
 		},
 		"v_1": {
@@ -5178,7 +5178,7 @@
 		},
 		"v_fear": {
 			"who": "varenne",
-			"text": "Hold, Meister. Hold. A crowd that is not struck goes home in the end. A crowd that is struck never does.",
+			"text": "Hold, Meister. Hold. I have led crowds like this one. Leave them be and they go home to bed. Shoot one and you will have them for ten years.",
 			"to": "guild"
 		},
 		"u_temper": {
@@ -5204,7 +5204,7 @@
 		},
 		"h_anselmo": {
 			"who": "hollweg",
-			"text": "He did with one word what all my shields could not do. I wrote that down. I did not understand it until much later."
+			"text": "He sent them home with two sentences. My shields had been at it for an hour. I wrote down what he said."
 		},
 		"n_boil": {
 			"who": "narrator",
@@ -5222,7 +5222,7 @@
 		},
 		"n_dawn": {
 			"who": "narrator",
-			"text": "Dawn over the highlands, grey and cold. The valley is quiet. Too quiet."
+			"text": "Dawn over the highlands, grey and cold. No smoke rises from the valley's chimneys."
 		},
 		"h_crates1": {
 			"who": "hollweg",
@@ -5256,7 +5256,7 @@
 		},
 		"h_jakob": {
 			"who": "hollweg",
-			"text": "Jakob would have counted the teeth on those plates. Jakob was in Fürth.",
+			"text": "Jakob would have counted the teeth on those plates before he let them lie. But Jakob was in Fürth.",
 			"to": "guild"
 		},
 		"u_attack": {
@@ -5270,7 +5270,7 @@
 		},
 		"a_attack_p": {
 			"who": "arruda",
-			"text": "I gave them your word, clockmaker. The night gave them theirs. Forgive me."
+			"text": "I gave them your word, clockmaker. After last night they would not hear it. Forgive me."
 		},
 		"h_attack": {
 			"who": "hollweg",
@@ -5292,7 +5292,7 @@
 		},
 		"h_concord": {
 			"who": "hollweg",
-			"text": "Concord.",
+			"text": "Count our dead, Ulrich. And theirs.",
 			"to": "guild"
 		},
 		"h_hurt": {
@@ -5324,7 +5324,7 @@
 		},
 		"h_end_parley": {
 			"who": "hollweg",
-			"text": "The valley's captain had taken my word down the hill. That word was the best thing I built that year."
+			"text": "The valley's captain had taken my word down the hill, and for a while the valley kept to it."
 		},
 		"h_end_fought": {
 			"who": "hollweg",
@@ -5340,7 +5340,7 @@
 		},
 		"h_end2": {
 			"who": "hollweg",
-			"text": "I had learned to hold my machines back from the valley. I had not learned to hold them back from themselves."
+			"text": "I kept my machines off the valley's people that year. It never crossed my mind that I might need to keep them off my own."
 		},
 		"k_end1": {
 			"who": "king",
@@ -5352,7 +5352,7 @@
 		},
 		"k_end2": {
 			"who": "king",
-			"text": "A priest of the valley stopped a crowd that night with two sentences. Hollweg wrote it down. It took him twenty years to read it."
+			"text": "A priest of the valley stopped a crowd that night with two sentences. Hollweg wrote them down. He told me, at my fire, that he understood them twenty years later."
 		},
 		"k_end_v": {
 			"who": "king",

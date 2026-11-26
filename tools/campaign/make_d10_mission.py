@@ -532,8 +532,8 @@ line("v_won", "valadares", "Ring the bell in Óbidos. Then count the men.", "Toq
 line("i_won", "inacio", "From up here the river is quiet. I will say Mass for them all on the island, if you let me land.",
      "Daqui de cima o rio está calmo. Direi missa por todos na ilha, se me deixar aterrar.",
      "Desde aquí arriba el río está en calma. Diré misa por todos en la isla, si me deja aterrizar.", CO)
-line("v_hurt", "valadares", "I am hit. Keep the line, keep the line.", "Fui atingido. Mantenham a linha, mantenham a linha.",
-     "Me han dado. Mantened la línea, mantened la línea.", CO)
+line("v_hurt", "valadares", "I am hit. It is the arm, it will do. Hold the gate.", "Fui atingido. É o braço, aguenta-se. Segurem o portão.",
+     "Me han dado. Es el brazo, aguanta. Sostened la puerta.", CO)
 line("i_hurt", "inacio", "They have torn the silk! I am coming down, Senhor, slowly, I hope.",
      "Rasgaram a seda! Estou a descer, Senhor, devagar, espero.", "¡Han rasgado la seda! Estoy bajando, señor, despacio, espero.", CO)
 line("n_keep_lost", "narrator", "The Fort of Óbidos is broken. The narrows are the swarm's.", "O Forte de Óbidos está quebrado. O estreito é do enxame.",
@@ -573,9 +573,9 @@ line("v_end_held", "valadares", "Every nest on the river was broken before the r
 line("v_end_thin", "valadares", "Some of the nests outlived the rains. We held Óbidos; the river above it we only watched.",
      "Alguns ninhos sobreviveram às chuvas. Segurámos Óbidos; o rio acima dele só o vigiámos.",
      "Algunos nidos sobrevivieron a las lluvias. Sostuvimos Óbidos; el río por encima solo lo vigilamos.")
-line("v_end_inacio", "valadares", "The priest stayed with the army. He said the river had made him a soldier, and the soldiers made him their chaplain.",
-     "O padre ficou com o exército. Dizia que o rio o tinha feito soldado, e os soldados fizeram-no capelão deles.",
-     "El cura se quedó con el ejército. Decía que el río lo había hecho soldado, y los soldados lo hicieron su capellán.")
+line("v_end_inacio", "valadares", "The priest stayed with the army. The men made him their chaplain, and he flew that patched balloon over every camp we made.",
+     "O padre ficou com o exército. Os homens fizeram dele o seu capelão, e ele fez subir aquele balão remendado sobre cada acampamento nosso.",
+     "El cura se quedó con el ejército. Los hombres lo hicieron su capellán, y él subió aquel globo remendado sobre cada campamento que hicimos.")
 line("k_end1", "king", "That was the jungle front. Valadares held the river, and a priest in a basket showed him where.",
      "Essa foi a frente da selva. Valadares segurou o rio, e um padre num cesto mostrou-lhe onde.",
      "Ese fue el frente de la selva. Valadares sostuvo el río, y un cura en un cesto le mostró dónde.")

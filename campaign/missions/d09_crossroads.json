@@ -6912,11 +6912,11 @@
 		},
 		"t_counsel2": {
 			"who": "tomasz",
-			"text": "But the city grows while it waits, and it never sleeps. I do not know which is worse."
+			"text": "But the city grows while it waits, and machines do not sleep. I do not know which is worse."
 		},
 		"r_think": {
 			"who": "ruggieri",
-			"text": "One army. Two fires. I can go north up the rivers, or south to the highlands. Not both."
+			"text": "I have one army, Father. North up the rivers, or south to the highlands. I cannot march both ways."
 		},
 		"k_frame": {
 			"who": "king",
@@ -7040,7 +7040,7 @@
 		},
 		"t_end_many": {
 			"who": "tomasz",
-			"text": "Most of them had come in. I counted twice to be sure."
+			"text": "Most of them had come in. The fort's cook and I gave out bread at the gate until it was dark."
 		},
 		"t_end_some": {
 			"who": "tomasz",
@@ -7048,7 +7048,7 @@
 		},
 		"t_end_few": {
 			"who": "tomasz",
-			"text": "Few of them had come in. I have their villages' names still."
+			"text": "Few of them had come in. I wrote down the names of their villages in my breviary, to pray for them by name."
 		},
 		"t_end_brood": {
 			"who": "tomasz",
@@ -7060,7 +7060,7 @@
 		},
 		"k_end1": {
 			"who": "king",
-			"text": "One army, two fires. You chose, and the army went."
+			"text": "You chose, and the army marched."
 		},
 		"k_end_brood": {
 			"who": "king",
@@ -7072,7 +7072,7 @@
 		},
 		"k_end2": {
 			"who": "king",
-			"text": "That is what a crown is, in the end: choosing which fire burns longer."
+			"text": "Ruggieri wrote to me after, to ask if he had chosen right. I told him the truth: I did not know either."
 		},
 		"k_end_s": {
 			"who": "king",

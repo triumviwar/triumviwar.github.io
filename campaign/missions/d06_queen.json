@@ -5092,7 +5092,7 @@
 		},
 		"l_open_saved": {
 			"who": "lindqvist",
-			"text": "The first from the clutch we carried out of the station. I named her Linnea, like her mother. The second bred from her."
+			"text": "The first from the clutch we carried out of the station. I named her Linnea, after her dam. The second was bred from her."
 		},
 		"l_open_burned": {
 			"who": "lindqvist",
@@ -5270,7 +5270,7 @@
 		},
 		"n_mother_dead": {
 			"who": "narrator",
-			"text": "Linnea is dead. Another will root in the big pen.",
+			"text": "Your Mother is dead. Another will root in the big pen.",
 			"to": "brood"
 		},
 		"l_f1": {
@@ -5305,7 +5305,7 @@
 		},
 		"l_f_won": {
 			"who": "lindqvist",
-			"text": "Push off, Pieter. Do not look back.",
+			"text": "Push off, Pieter. Keep to the middle of the channel.",
 			"to": "fazenda"
 		},
 		"l_f_lost": {
@@ -5342,7 +5342,7 @@
 		},
 		"k_end_f": {
 			"who": "king",
-			"text": "He told me he burned them. He did not burn enough."
+			"text": "He told me he burned them. He burned three pens and ran for the canoes."
 		},
 		"h_hurt": {
 			"who": "lindqvist",
@@ -5351,7 +5351,7 @@
 		},
 		"n_guards": {
 			"who": "narrator",
-			"text": "The keepers are Assembly men now, paid in sugar and silence."
+			"text": "The keepers are Assembly men now, paid in sugar."
 		},
 		"n_no_pieter": {
 			"who": "narrator",

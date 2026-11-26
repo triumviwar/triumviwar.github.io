@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.219", "items": [
+		"Act 2's campaign lines rewritten in a writing pass (writing-act2): the eleven missions from The Gold of Vila Rica to The Siege of Concórdia lose their stock phrases, neat sayings and lines that end on a moral; people sound more like themselves, and a few lines now give the Brood's creatures no mind of their own. No story, choice or objective changed. All texts are still placeholders for the owner.",
+	]},
 	{"v": "0.38.218", "items": [
 		"The campaign's Act 1 (its seven missions) has a writing pass: lines that sounded stiff or alike were rewritten, the creatures are no longer spoken of as if they had wishes, and the King's closing words in each mission are no longer the same formula. The story, the choices and the objectives are unchanged; some voiced lines will be recorded again.",
 	]},

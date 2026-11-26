@@ -516,15 +516,15 @@ line("v_end_burnt_book", "valadares", "I burned the book with my own hand, as Ro
      "Quemé el libro con mi propia mano, como Roma ordenó.")
 line("v_end_used_book", "valadares", "I used the book once. Then I burned it. I have confessed it.", "Usei o livro uma vez. Depois queimei-o. Já me confessei disso.",
      "Usé el libro una vez. Luego lo quemé. Ya me he confesado de ello.")
-line("k_end1", "king", "He held the river for me that year. He did it with muskets, and once, with a dead man's book.",
-     "Ele segurou o rio para mim nesse ano. Fê-lo com mosquetes, e uma vez com o livro de um homem perdido.",
-     "Él me sostuvo el río aquel año. Lo hizo con mosquetes, y una vez con el libro de un hombre perdido.")
-line("k_end1b", "king", "He held the river for me that year. With muskets, and without the book. That was harder.",
-     "Ele segurou o rio para mim nesse ano. Com mosquetes, e sem o livro. Isso foi mais difícil.",
-     "Él me sostuvo el río aquel año. Con mosquetes, y sin el libro. Eso fue más difícil.")
-line("k_end2", "king", "The swarm did not go back up the rivers. It waited in the flooded forest for the next floods.",
-     "O enxame não voltou a subir os rios. Esperou na floresta alagada pela cheia seguinte.",
-     "El enjambre no volvió a subir los ríos. Esperó en el bosque inundado a la siguiente crecida.")
+line("k_end1", "king", "He held the river for me that year. He did it with muskets, and once, with Lindqvist's book.",
+     "Ele segurou o rio para mim nesse ano. Fê-lo com mosquetes, e uma vez com o livro do Lindqvist.",
+     "Él me sostuvo el río aquel año. Lo hizo con mosquetes, y una vez con el libro de Lindqvist.")
+line("k_end1b", "king", "He held the river for me that year with muskets alone. He never once opened that book.",
+     "Ele segurou o rio para mim nesse ano só com mosquetes. Nunca chegou a abrir aquele livro.",
+     "Él me sostuvo el río aquel año solo con mosquetes. Ni una vez abrió aquel libro.")
+line("k_end2", "king", "The swarm did not go back up the rivers. It stayed in the flooded forest, and came again with the next floods.",
+     "O enxame não voltou a subir os rios. Ficou na floresta alagada, e voltou com a cheia seguinte.",
+     "El enjambre no volvió a subir los ríos. Se quedó en el bosque inundado, y volvió con la siguiente crecida.")
 line("k_end_s", "king", "That is not how it went. Valadares held the bluff. But I have kept this page.",
      "Não foi assim que aconteceu. Valadares segurou o alto. Mas guardei esta página.",
      "No fue así como ocurrió. Valadares sostuvo el alto. Pero he guardado esta página.")

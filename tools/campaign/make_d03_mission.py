@@ -318,12 +318,12 @@ line("k_open2", "king", "Two years later I sent Valadares up that river with Rom
 line("l_open1", "lindqvist", "An island below Óbidos. Sugar for the tax man, and behind the cane, the forest, and in the forest, my pens.",
      "Uma ilha abaixo de Óbidos. Açúcar para o cobrador, e atrás da cana, a floresta, e na floresta, os meus currais.",
      "Una isla por debajo de Óbidos. Azúcar para el recaudador, y detrás de la caña, el bosque, y en el bosque, mis corrales.")
-line("l_open2", "lindqvist", "They were not monsters. They were a new kind of animal, and every animal can be bred. I had the lures. They came to the lures.",
-     "Não eram monstros. Eram um novo tipo de animal, e todo animal pode ser criado. Eu tinha os engodos. Eles vinham aos engodos.",
-     "No eran monstruos. Eran una nueva clase de animal, y todo animal se puede criar. Yo tenía los señuelos. Venían a los señuelos.")
-line("l_open_linnea", "lindqvist", "And among them her daughter. Out of the clutch we carried from the station. Growing.",
-     "E entre eles a filha dela. Da ninhada que trouxemos da estação. Crescendo.",
-     "Y entre ellos su hija. De la nidada que sacamos de la estación. Creciendo.")
+line("l_open2", "lindqvist", "Rome called them abominations. I called them a new species, and I had bred every species I ever kept. I had the lures. They came to the lures.",
+     "Roma chamou-lhes abominações. Eu chamei-lhes uma espécie nova, e eu tinha criado todas as espécies que alguma vez guardei. Tinha os engodos. Eles vinham aos engodos.",
+     "Roma los llamó abominaciones. Yo los llamé una especie nueva, y yo había criado todas las especies que había tenido. Tenía los señuelos. Venían a los señuelos.")
+line("l_open_linnea", "lindqvist", "And among them a young Mother, out of the clutch we carried from the station. Linnea's get. Growing.",
+     "E entre eles uma Mãe jovem, da ninhada que trouxemos da estação. Cria da Linnea. A crescer.",
+     "Y entre ellos una Madre joven, de la nidada que trajimos de la estación. Cría de Linnea. Creciendo.")
 line("l_open_plateau", "lindqvist", "And a young Mother we netted on the mountain. My breeding stock.",
      "E uma jovem Mãe que apanhámos na montanha. O meu plantel de criação.",
      "Y una joven Madre que atrapamos en la montaña. Mi cría.")
@@ -372,9 +372,9 @@ line("v_land", "valadares", "I have seen what you keep, Doctor. On the mountain.
      "Eu vi o que o senhor guarda, Doutor. Na montanha. Vou reconhecer as pegadas.", "He visto lo que usted guarda, doctor. En la montaña. Conoceré sus huellas.")
 line("v_land_w", "valadares", "I do not know what I am looking for, Doctor. So I will look at everything.",
      "Não sei o que procuro, Doutor. Por isso vou olhar para tudo.", "No sé lo que busco, doctor. Así que lo miraré todo.")
-line("p_still", "pieter", "Keep them still, Doctor. A still animal in the forest is a shadow. A moving one is an animal.",
-     "Mantenha-os quietos, Doutor. Um animal parado na floresta é uma sombra. Um que se mexe é um animal.",
-     "Manténgalos quietos, doctor. Un animal quieto en el bosque es una sombra. Uno que se mueve es un animal.", ST)
+line("p_still", "pieter", "Keep them still, Doctor. A soldier sees what moves. The rest is just forest to him.",
+     "Mantenha-os quietos, Doutor. Um soldado vê o que se mexe. O resto, para ele, é só mato.",
+     "Manténgalos quietos, doctor. Un soldado ve lo que se mueve. Lo demás, para él, es solo selva.", ST)
 line("l_dinner", "lindqvist", "The Desembargador has come a long way. He will be hungry. I will ask him to dine.",
      "O Desembargador veio de longe. Terá fome. Vou convidá-lo para jantar.", "El Desembargador ha venido de lejos. Tendrá hambre. Lo invitaré a cenar.", ST)
 line("f_dinner", "fonseca", "Dinner? Well. The search can spare its magistrate for an hour. Sergeant, your men with me.",
@@ -467,25 +467,25 @@ line("l_end_few", "lindqvist", "They found most of them. I watched the pens burn
 line("l_end_storm", "lindqvist", "And the Storm Sire flew over the canopy every evening after, and came back to the lure.",
      "E o Sire da Tempestade voava sobre a copa todas as tardes depois, e voltava ao engodo.",
      "Y el Señor de la Tormenta volaba sobre la copa cada tarde después, y volvía al señuelo.")
-line("k_end1", "king", "He tells it as if he won. Valadares found more than he thinks. Valadares found enough to know what was on that island.",
-     "Ele conta como se tivesse ganhado. Valadares encontrou mais do que ele pensa. Valadares encontrou o bastante para saber o que havia naquela ilha.",
-     "Él lo cuenta como si hubiera ganado. Valadares encontró más de lo que él cree. Valadares encontró lo bastante para saber qué había en aquella isla.")
+line("k_end1", "king", "He tells it as if he won. Valadares found enough on that island to know what it was, and he wrote it down.",
+     "Ele conta como se tivesse ganho. O Valadares encontrou naquela ilha o bastante para saber o que era, e escreveu-o.",
+     "Lo cuenta como si hubiera ganado. Valadares encontró en aquella isla lo bastante para saber qué era, y lo puso por escrito.")
 line("k_end2", "king", "And Lindqvist still believes the thing evolved. The Church told him what it was. He did not listen then either.",
      "E Lindqvist ainda acredita que a coisa evoluiu. A Igreja disse-lhe o que era. Também não ouviu nessa altura.",
      "Y Lindqvist todavía cree que la cosa evolucionó. La Iglesia le dijo lo que era. Tampoco escuchó entonces.")
 line("v_end_c", "valadares", "We burned the pens we found. The Doctor stood at the landing with his hat in his hand, and did not look at the smoke.",
      "Queimámos os currais que encontrámos. O Doutor ficou no desembarque de chapéu na mão, e não olhou para o fumo.",
      "Quemamos los corrales que encontramos. El doctor se quedó en el embarcadero con el sombrero en la mano, y no miró el humo.")
-line("k_end_c", "king", "He told me Valadares found nothing. Valadares found enough.", "Ele disse-me que Valadares não encontrou nada. Valadares encontrou o bastante.",
-     "Él me dijo que Valadares no encontró nada. Valadares encontró lo bastante.")
+line("k_end_c", "king", "Lindqvist told me Valadares came away with nothing. Valadares' report is on my desk. It runs to forty pages.", "O Lindqvist disse-me que o Valadares saiu de lá sem nada. O relatório do Valadares está na minha secretária. Tem quarenta páginas.",
+     "Lindqvist me dijo que Valadares se fue de allí sin nada. El informe de Valadares está en mi mesa. Tiene cuarenta páginas.")
 line("v_end_c_lost", "valadares", "We left at dawn with half a report. I knew they were there. I could smell them.",
      "Partimos de madrugada com meio relatório. Eu sabia que estavam lá. Sentia-lhes o cheiro.",
      "Partimos al alba con medio informe. Sabía que estaban allí. Los olía.")
 line("n_lost", "narrator", "The commission has found the stock. By Rome's order the pens are burned.",
      "A comissão encontrou o plantel. Por ordem de Roma os currais são queimados.", "La comisión ha encontrado la cría. Por orden de Roma los corrales se queman.")
 line("h_hurt", "lindqvist", "My leg. Pieter, the lures. Keep them together.", "A minha perna. Pieter, os engodos. Mantém-nos juntos.", "Mi pierna. Pieter, los señuelos. Mantenlos juntos.", ST)
-line("n_guards", "narrator", "Lindqvist's guards are Assembly men now, paid in sugar and silence.", "Os guardas de Lindqvist são agora homens da Assembleia, pagos em açúcar e silêncio.",
-     "Los guardias de Lindqvist son ahora hombres de la Asamblea, pagados en azúcar y silencio.", ST)
+line("n_guards", "narrator", "Lindqvist's guards are Assembly men now, paid in sugar.", "Os guardas do Lindqvist são agora homens da Assembleia, pagos em açúcar.",
+     "Los guardias de Lindqvist son ahora hombres de la Asamblea, pagados en azúcar.", ST)
 line("n_no_pieter", "narrator", "Pieter did not come back from the mountain. Two keepers carry the lures.",
      "Pieter não voltou da montanha. Dois tratadores levam os engodos.", "Pieter no volvió de la montaña. Dos cuidadores llevan los señuelos.", ST)
 

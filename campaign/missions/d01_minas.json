@@ -6450,7 +6450,7 @@
 	"lines": {
 		"k_open1": {
 			"who": "king",
-			"text": "After Rome I sent Tomasz to Brazil. He asked to go. He said the fire would come there next, and he wanted to be standing in it."
+			"text": "After Rome, Tomasz asked to be sent to Brazil. He said the fire would go there next. He was right, as he usually was, and I let him go."
 		},
 		"k_open2": {
 			"who": "king",
@@ -6466,7 +6466,7 @@
 		},
 		"t_open2": {
 			"who": "tomasz",
-			"text": "The derrama: the gold the town still owed the Crown, collected house by house in one day. Nobody in the mines had a kind word for it, and some had a plan."
+			"text": "The derrama: the gold the town still owed the Crown, collected house by house in one day. I heard it cursed in three languages before I had found my lodging."
 		},
 		"t_open_saved": {
 			"who": "tomasz",
@@ -6491,7 +6491,7 @@
 		},
 		"t_1": {
 			"who": "tomasz",
-			"text": "Then let us see that they do not rise, Captain. I will go to the churches. Every quarter has one, and every church has its people.",
+			"text": "Then let us keep them from rising, Captain. I will go round the churches. Every quarter has its own, and every church its brotherhood.",
 			"to": "crown"
 		},
 		"m_tip1": {
@@ -6578,7 +6578,7 @@
 		},
 		"t_calm_all": {
 			"who": "tomasz",
-			"text": "Four churches, four sermons, and my voice nearly gone. The town was quiet. Quiet is not the same as at peace.",
+			"text": "Four churches, four sermons, and by the last one my voice was a croak. The town was quiet. The Captain said that was what worried him.",
 			"to": "crown",
 			"until": "signal"
 		},
@@ -6632,7 +6632,7 @@
 		},
 		"m_temper15": {
 			"who": "meneses",
-			"text": "Father, they are close to the edge. Stop the runners, or speak to them, or we lose the town.",
+			"text": "Father, one more stone and this town goes up. Get to the churches. My riders will see to the runners.",
 			"to": "crown",
 			"until": "signal"
 		},
@@ -6647,12 +6647,12 @@
 		},
 		"t_ledger": {
 			"who": "tomasz",
-			"text": "In the second armoury we found a ledger. The muskets had been paid for in coin from the south, from the agents of a guild of clockmakers. Machines paying for a revolution.",
+			"text": "In the second armoury we found a ledger. The muskets had been paid for in coin from the south, through the agents of a guild of clockmakers. I read the page twice to be sure of it.",
 			"to": "crown"
 		},
 		"t_ledger_d04": {
 			"who": "tomasz",
-			"text": "Concórdia, the ledger said. The city of gears on the southern highlands. The guild wanted the Crown's metal, and the Assembly wanted money. They had found each other.",
+			"text": "Concórdia, the ledger said: the clockmakers' city on the southern highlands. Metal went one way and coin came back the other, all entered in a clerk's neat hand.",
 			"to": "crown"
 		},
 		"n_signal": {
@@ -6685,7 +6685,7 @@
 		},
 		"t_miners": {
 			"who": "tomasz",
-			"text": "I stood in the Rosário's churchyard and rang its own bell, the right bell, and called the brotherhood by name. They came. Not all of them, but they came.",
+			"text": "I stood in the Rosário's churchyard, rang its own bell at the right hour, and called the brotherhood man by man. Most of them came down.",
 			"to": "crown"
 		},
 		"n_miners": {
@@ -6802,7 +6802,7 @@
 		},
 		"t_taken": {
 			"who": "tomasz",
-			"text": "He asked me to hear his confession before they took him to the Governor. I did. What he said is between him and God. What he did is between him and the King.",
+			"text": "He asked me to hear his confession before they took him to the Governor. I heard it sitting on a cart wheel, with a dragoon standing off out of earshot. That is all I will say of it.",
 			"to": "crown"
 		},
 		"n_fled": {
@@ -6835,11 +6835,11 @@
 		},
 		"t_end_quiet": {
 			"who": "tomasz",
-			"text": "The town was quiet after. Not because of the bayonets. Because someone had come to their churches before the bell rang."
+			"text": "The town stayed quiet after. The brotherhoods remembered who had come to their churches before the bell rang."
 		},
 		"t_end_restless": {
 			"who": "tomasz",
-			"text": "The town was quiet after, under the bayonet. I learnt that a quiet bought that way has to be bought again every year."
+			"text": "The town was quiet after, with a dragoon on every corner. The Captain asked the Governor for more men every year after that, and got them."
 		},
 		"t_end_taken": {
 			"who": "tomasz",
@@ -6851,7 +6851,7 @@
 		},
 		"t_end2": {
 			"who": "tomasz",
-			"text": "In Lyon I had learnt to speak to a crowd. In Minas I learnt to stay with it afterwards."
+			"text": "I baptised forty children in Vila Rica that year, and buried eleven of the men who had come up those stairs."
 		},
 		"k_end1": {
 			"who": "king",
@@ -6859,11 +6859,11 @@
 		},
 		"k_end_fled": {
 			"who": "king",
-			"text": "The gold reached Lisbon. The man who wanted it reached the city of gears. Both kept their appointments with me, later."
+			"text": "The gold reached Lisbon. Ramos reached the city of gears. I was to hear of both again."
 		},
 		"k_end2": {
 			"who": "king",
-			"text": "The mines stayed mine. I did not lower the tax. Perhaps I should have. Tomasz never said so; he only sent me the names of the dead."
+			"text": "The mines stayed mine. I did not lower the tax, and I have wondered since whether I should have. Tomasz never told me. He sent me the names of the dead instead."
 		},
 		"c_end": {
 			"who": "cardinal",

@@ -16945,7 +16945,7 @@
 		},
 		"v_hurt": {
 			"who": "valadares",
-			"text": "I am hit. Keep the line, keep the line.",
+			"text": "I am hit. It is the arm, it will do. Hold the gate.",
 			"to": "column"
 		},
 		"i_hurt": {
@@ -17017,7 +17017,7 @@
 		},
 		"v_end_inacio": {
 			"who": "valadares",
-			"text": "The priest stayed with the army. He said the river had made him a soldier, and the soldiers made him their chaplain."
+			"text": "The priest stayed with the army. The men made him their chaplain, and he flew that patched balloon over every camp we made."
 		},
 		"k_end1": {
 			"who": "king",

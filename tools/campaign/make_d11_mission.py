@@ -396,9 +396,9 @@ CR, CI = "crown", "city"
 line("k_open1", "king", "Father Ferrer was old by then. Rome sent him to the highlands anyway, to see the city of gears with his own eyes.",
      "O Padre Ferrer já era velho. Roma mandou-o ao planalto mesmo assim, para ver a cidade das engrenagens com os seus próprios olhos.",
      "El Padre Ferrer ya era viejo. Roma lo mandó al altiplano de todos modos, a ver la ciudad de engranajes con sus propios ojos.")
-line("k_open2", "king", "His report is on my desk still. He wrote it as a priest writes: what he saw, and nothing he did not.",
-     "O relatório dele ainda está na minha mesa. Escreveu-o como escreve um padre: o que viu, e nada do que não viu.",
-     "Su informe sigue en mi mesa. Lo escribió como escribe un sacerdote: lo que vio, y nada de lo que no vio.")
+line("k_open2", "king", "His report is on my desk still. Ferrer never wrote down a thing he had not seen with his own eyes.",
+     "O relatório dele ainda está na minha mesa. O Ferrer nunca escreveu uma coisa que não tivesse visto com os próprios olhos.",
+     "Su informe sigue en mi mesa. Ferrer nunca escribió nada que no hubiera visto con sus propios ojos.")
 line("f_open1", "ferrer", "Concórdia, 2780. The army's southern column came up onto the plateau in the dry winter. General Ruggieri had the guns. I had Rome's letter.",
      "Concórdia, 2780. A coluna do sul do exército subiu ao planalto no inverno seco. O General Ruggieri tinha os canhões. Eu tinha a carta de Roma.",
      "Concórdia, 2780. La columna del sur del ejército subió al altiplano en el invierno seco. El General Ruggieri tenía los cañones. Yo tenía la carta de Roma.")
@@ -501,9 +501,9 @@ line("n_breach", "narrator", "A gate is down. The way into the city is open.", "
      "Una puerta ha caído. El camino a la ciudad está abierto.", CR)
 line("j_hurt", "jakob", "I'm hit, Father. It is nothing. I'll walk back.", "Fui atingido, Padre. Não é nada. Volto a pé.", "Me han dado, Padre. No es nada. Volveré a pie.", CR)
 line("n_jakob_down", "narrator", "Jakob has fallen.", "O Jakob caiu.", "Jakob ha caído.", CR)
-line("f_jakob_down", "ferrer", "He had walked from Nuremberg to the end of the world to stand by me. I buried him on the plateau, facing the city.",
-     "Tinha caminhado de Nuremberga até ao fim do mundo para estar ao meu lado. Enterrei-o no planalto, de frente para a cidade.",
-     "Había caminado desde Núremberg hasta el fin del mundo para estar a mi lado. Lo enterré en el altiplano, frente a la ciudad.", CR)
+line("f_jakob_down", "ferrer", "Jakob had followed me from Fürth across an ocean. I buried him on the plateau, facing the city.",
+     "O Jakob seguira-me desde Fürth através de um oceano. Enterrei-o no planalto, de frente para a cidade.",
+     "Jakob me había seguido desde Fürth a través de un océano. Lo enterré en el altiplano, frente a la ciudad.", CR)
 line("n_sorties_done", "narrator", "The sorties are beaten back. The city shuts its gates.", "As surtidas foram repelidas. A cidade fecha os portões.",
      "Las salidas han sido rechazadas. La ciudad cierra sus puertas.")
 line("n_charge", "narrator", "The machines outside the wall stop waiting. They come at the camp: beat them back and the night is over.",
@@ -537,8 +537,8 @@ line("n_spring_down", "narrator", "The great spring's tower falls into the old s
      "La torre del gran muelle cae en el pozo viejo. Todas las máquinas de Concórdia se paran donde están.")
 line("f_spring1", "ferrer", "The ticking stopped. For the first time in seven years the city was quiet.",
      "O tiquetaque parou. Pela primeira vez em sete anos a cidade ficou em silêncio.", "El tictac se detuvo. Por primera vez en siete años la ciudad quedó en silencio.", CR)
-line("f_spring2", "ferrer", "We did not take it. We had not come to take it. We had come to stop it.",
-     "Não a tomámos. Não tínhamos vindo para a tomar. Tínhamos vindo para a parar.", "No la tomamos. No habíamos venido a tomarla. Habíamos venido a pararla.", CR)
+line("f_spring2", "ferrer", "We did not go in. Rome's letter said to stop the city, and the city had stopped.",
+     "Não entrámos. A carta de Roma mandava parar a cidade, e a cidade tinha parado.", "No entramos. La carta de Roma mandaba parar la ciudad, y la ciudad se había parado.", CR)
 line("n_back", "narrator", "The pioneers come back up the gallery.", "Os sapadores voltam pela galeria.", "Los zapadores vuelven por la galería.", CR)
 # ---- part 3, GROWN: the great sortie
 line("n_hold", "narrator", "THE GREAT SORTIE: the city comes out with everything. Hold the camp and the siege park until dusk.",
@@ -560,9 +560,9 @@ line("n_wave_big", "narrator", "Out of every gate at once, with the bolt-thrower
 line("n_dusk_end", "narrator", "Dusk. The city's machines go back behind the wall. The siege holds the road, and nothing more.",
      "Anoitece. As máquinas da cidade voltam para trás da muralha. O cerco guarda a estrada, e nada mais.",
      "Anochece. Las máquinas de la ciudad vuelven tras la muralla. El asedio guarda el camino, y nada más.")
-line("f_grown_end", "ferrer", "We held the road. The wall held the city. Neither of us moved for a year.",
-     "Guardámos a estrada. A muralha guardou a cidade. Nenhum de nós se mexeu durante um ano.",
-     "Guardamos el camino. La muralla guardó la ciudad. Ninguno de los dos se movió en un año.", CR)
+line("f_grown_end", "ferrer", "We held the road and they held the wall, and for a year nobody moved.",
+     "Nós guardámos a estrada e eles a muralha, e durante um ano ninguém se mexeu.",
+     "Nosotros guardamos el camino y ellos la muralla, y durante un año nadie se movió.", CR)
 # ---- the lost endings
 line("n_park_down", "narrator", "The siege park's magazine goes up. The column goes back down off the plateau.",
      "O paiol do parque de cerco explode. A coluna desce outra vez do planalto.", "El polvorín del parque de asedio estalla. La columna vuelve a bajar del altiplano.")
@@ -602,17 +602,17 @@ line("f_end_prisoner", "ferrer", "Hollweg asked to see the lines at the end. He 
      "Al final Hollweg pidió ver las líneas. Se quedó allí mucho tiempo, y luego me pidió que lo oyera en confesión.")
 line("k_end1", "king", "Ferrer's report came to Rome in the spring. I read it twice.", "O relatório de Ferrer chegou a Roma na primavera. Li-o duas vezes.",
      "El informe de Ferrer llegó a Roma en la primavera. Lo leí dos veces.")
-line("k_end_close", "king", "The city of gears was crippled that year. Not dead. Crippled things do not stop; they limp.",
-     "A cidade das engrenagens ficou aleijada nesse ano. Não morta. As coisas aleijadas não param; coxeiam.",
-     "La ciudad de engranajes quedó tullida ese año. No muerta. Las cosas tullidas no se paran; cojean.")
-line("k_end_held", "king", "The city of gears stood whole behind its wall. It had been given a year, and it had used every hour of it.",
-     "A cidade das engrenagens ficou inteira atrás da muralha. Tinham-lhe dado um ano, e tinha usado todas as horas dele.",
-     "La ciudad de engranajes siguió entera tras su muralla. Le habían dado un año, y había usado cada hora.")
+line("k_end_close", "king", "The city of gears was crippled that year. When the next report came it was still turning, a little slower.",
+     "A cidade das engrenagens ficou aleijada nesse ano. Quando chegou o relatório seguinte ainda girava, um pouco mais devagar.",
+     "La ciudad de engranajes quedó tullida ese año. Cuando llegó el informe siguiente aún giraba, un poco más despacio.")
+line("k_end_held", "king", "The city of gears stood whole behind its wall. We had let it have a year, and its works had not stopped turning once.",
+     "A cidade das engrenagens ficou inteira atrás da muralha. Tínhamos-lhe deixado um ano, e as suas oficinas não pararam de girar uma única vez.",
+     "La ciudad de engranajes siguió entera tras su muralla. Le habíamos dejado un año, y sus talleres no dejaron de girar ni una vez.")
 line("k_end_fresh", "king", "And all that year the swarm came down the rivers, while the army was in the south.",
      "E durante todo esse ano o enxame desceu os rios, enquanto o exército estava no sul.",
      "Y durante todo ese año el enjambre bajó por los ríos, mientras el ejército estaba en el sur.")
-line("k_end_grown", "king", "Two fires, and the army had gone to both. Neither was out.", "Dois fogos, e o exército tinha ido aos dois. Nenhum se apagou.",
-     "Dos fuegos, y el ejército había ido a los dos. Ninguno se apagó.")
+line("k_end_grown", "king", "The army went to both fires that year, the swarm first and then the city, and put out neither.", "O exército foi aos dois fogos nesse ano, primeiro o enxame e depois a cidade, e não apagou nenhum.",
+     "El ejército fue a los dos fuegos aquel año, primero el enjambre y después la ciudad, y no apagó ninguno.")
 line("k_end_c", "king", "That is not how it went. The siege held. Hear it again from Ferrer.", "Não foi assim que aconteceu. O cerco aguentou. Ouve outra vez da boca de Ferrer.",
      "No fue así como pasó. El asedio resistió. Óyelo otra vez de boca de Ferrer.")
 

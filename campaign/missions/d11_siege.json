@@ -7653,7 +7653,7 @@
 		},
 		"k_open2": {
 			"who": "king",
-			"text": "His report is on my desk still. He wrote it as a priest writes: what he saw, and nothing he did not."
+			"text": "His report is on my desk still. Ferrer never wrote down a thing he had not seen with his own eyes."
 		},
 		"f_open1": {
 			"who": "ferrer",
@@ -7872,7 +7872,7 @@
 		},
 		"f_jakob_down": {
 			"who": "ferrer",
-			"text": "He had walked from Nuremberg to the end of the world to stand by me. I buried him on the plateau, facing the city.",
+			"text": "Jakob had followed me from Fürth across an ocean. I buried him on the plateau, facing the city.",
 			"to": "crown"
 		},
 		"n_sorties_done": {
@@ -7938,7 +7938,7 @@
 		},
 		"f_spring2": {
 			"who": "ferrer",
-			"text": "We did not take it. We had not come to take it. We had come to stop it.",
+			"text": "We did not go in. Rome's letter said to stop the city, and the city had stopped.",
 			"to": "crown"
 		},
 		"n_back": {
@@ -7986,7 +7986,7 @@
 		},
 		"f_grown_end": {
 			"who": "ferrer",
-			"text": "We held the road. The wall held the city. Neither of us moved for a year.",
+			"text": "We held the road and they held the wall, and for a year nobody moved.",
 			"to": "crown"
 		},
 		"n_park_down": {
@@ -8064,11 +8064,11 @@
 		},
 		"k_end_close": {
 			"who": "king",
-			"text": "The city of gears was crippled that year. Not dead. Crippled things do not stop; they limp."
+			"text": "The city of gears was crippled that year. When the next report came it was still turning, a little slower."
 		},
 		"k_end_held": {
 			"who": "king",
-			"text": "The city of gears stood whole behind its wall. It had been given a year, and it had used every hour of it."
+			"text": "The city of gears stood whole behind its wall. We had let it have a year, and its works had not stopped turning once."
 		},
 		"k_end_fresh": {
 			"who": "king",
@@ -8076,7 +8076,7 @@
 		},
 		"k_end_grown": {
 			"who": "king",
-			"text": "Two fires, and the army had gone to both. Neither was out."
+			"text": "The army went to both fires that year, the swarm first and then the city, and put out neither."
 		},
 		"k_end_c": {
 			"who": "king",
