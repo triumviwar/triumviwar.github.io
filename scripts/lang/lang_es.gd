@@ -4565,7 +4565,7 @@ const T := {
 	"Most of the east bank burned. Rome rebuilt it, and has not forgotten.": "Casi toda la orilla este ardió. Roma la reconstruyó, y no lo ha olvidado.",
 	"We counted them on the steps in the morning, and wrote down every name.": "Los contamos en la escalinata por la mañana, y anotamos cada nombre.",
 	"Hollweg and Lindqvist were gone by morning: Hollweg after his crates, south; Lindqvist to breed what was left, in secret.": "Hollweg y Lindqvist se habían ido por la mañana: Hollweg tras sus cajas, hacia el sur; Lindqvist a criar lo que quedaba, en secreto.",
-	"That was the first time I met them both. It was not the last.": "Fue la primera vez que los encontré a los dos. No fue la última.",
+	"That was the first time I met them both. I would see each of them again, in worse years.": "Fue la primera vez que los encontré a los dos. Volvería a ver a cada uno, en años peores.",
 	"That is not how it went. They never reached the square.": "No fue así como ocurrió. Nunca llegaron a la plaza.",
 	"If they had, the Swiss would have died on the steps of Saint Peter's, and the people behind them.": "Si hubieran llegado, los suizos habrían muerto en las escalinatas de San Pedro, y el pueblo detrás de ellos.",
 	"NEW: THE CHURCH. Rome's churches train Missionaries.": "NUEVO: LA IGLESIA. Las iglesias de Roma entrenan Misioneros.",

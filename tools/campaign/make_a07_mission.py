@@ -493,7 +493,7 @@ M = {
         "k_end_rome_few": {"who": "king", "text": "Most of the east bank burned. Rome rebuilt it, and has not forgotten."},
         "t_end_people": {"who": "tomasz", "text": "We counted them on the steps in the morning, and wrote down every name."},
         "k_end_defiance": {"who": "king", "text": "Hollweg and Lindqvist were gone by morning: Hollweg after his crates, south; Lindqvist to breed what was left, in secret."},
-        "k_end2": {"who": "king", "text": "That was the first time I met them both. It was not the last."},
+        "k_end2": {"who": "king", "text": "That was the first time I met them both. I would see each of them again, in worse years."},
         "k_end_lost1": {"who": "king", "text": "That is not how it went. They never reached the square."},
         "k_end_lost2": {"who": "king", "text": "If they had, the Swiss would have died on the steps of Saint Peter's, and the people behind them."},
     },

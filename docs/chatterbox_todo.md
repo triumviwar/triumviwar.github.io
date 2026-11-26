@@ -884,6 +884,7 @@ plays until a new one replaces it: record each line again under the same id (`ca
 | a07_council | l_loose | Dr. Lindqvist | Not like this! Don't shoot them! Drive them back into the stables! |
 | a07_council | k_dawn | The King | Dawn. The bridges held. The smoke lay so thick on the river I could not see the far bank. |
 | a07_council | k_end_lost2 | The King | If they had, the Swiss would have died on the steps of Saint Peter's, and the people behind them. |
+| a07_council | k_end2 | The King | That was the first time I met them both. I would see each of them again, in worse years. |
 
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 

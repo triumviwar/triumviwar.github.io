@@ -306,7 +306,7 @@ Dean* 2.
 | k_end_rome_few.ogg | The King | ending (crown) | Most of the east bank burned. Rome rebuilt it, and has not forgotten. |
 | t_end_people.ogg | Father Tomasz | ending (crown) | We counted them on the steps in the morning, and wrote down every name. |
 | k_end_defiance.ogg | The King | ending (crown) | Hollweg and Lindqvist were gone by morning: Hollweg after his crates, south; Lindqvist to breed what was left, in secret. |
-| k_end2.ogg | The King | ending (crown) | That was the first time I met them both. It was not the last. |
+| k_end2.ogg | The King | ending (crown) | That was the first time I met them both. I would see each of them again, in worse years. |
 | k_end_lost1.ogg | The King | ending (versus) | That is not how it went. They never reached the square. |
 | k_end_lost2.ogg | The King | ending (versus) | If they had, the Swiss would have died on the steps of Saint Peter's, and the people behind them. |
 
