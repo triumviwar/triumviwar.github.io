@@ -26,6 +26,14 @@
 
 ## Current work
 
+- CROWN MICRO 2 (job crown-micro-2, MERGED 0.38.216, docs/crown_micro_2.md): the Crown computer's fight v the Clockwork and
+  in the mirror; AICrownMicro parts now by enemy faction (KEPT_BY; `cmicoff:<team>` holds one Crown to the old fight). V
+  the CLOCKWORK on: gunpick, kite, hurt, winders (Musketeers shoot a Winder first), fieldline (the marching wave forms its
+  line before the army it sees); bench at 1.5x Clockwork value +0.31 (t 5.9), real games won outright 5 v 1 of 20 but
+  overall within noise (+0.16, t 0.6): the Crown already won this matchup; its edge there IS its fighting. MIRROR on:
+  brace, gunpick (10 games v the old Crown: won or led 7, lost 1). V the Brood unchanged (crown-micro). Tests after the
+  overnight merges: test_brood_new's "swamp round the rooted Mother" check fails (not from 0.38.212-216: no game code
+  changed); known failures unchanged.
 - CROWN FINISH (owner 2026-11-25, the championship: 38 of 54 Crown wins only at the bell; job crown-finish, MERGED 0.38.212,
   docs/crown_finish.md, scripts/ai_crown_finish.gd AICrownFinish): why it held back: the Siege push grinds building by
   building, only part of the army goes, the hunt waits for the last enemy unit, the waves keep their even-game bars, the
