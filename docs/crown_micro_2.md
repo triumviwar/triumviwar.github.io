@@ -7,7 +7,29 @@ No unit or balance number was changed. Only how the Crown computer's men fight o
 
 ## The short answer
 
-@@SHORT@@
+**Against the Clockwork the Crown's edge is its fighting. In the mirror the side that fights better wins, and the
+parts make the Crown fight better.** Against the Brood (crown-micro) the gap is the economy.
+
+- **Against the Clockwork** the Crown computer already wins almost every fair fight (71 of 72 at equal value, killing 2.8
+  times what it loses; two in three against 1.5 times its value), and in real games it already won or led 9 of 10 at
+  20:00 while earning a little less than the Clockwork. Five parts are now on against the Clockwork:
+
+  | part | what the Crown's men now do |
+  |---|---|
+  | gunpick | the Field Cannons aim at the armoured machines (Springers, Pendulums, Ballistas, Netters) |
+  | kite | a reloading Musketeer steps back from a slow machine (a Pendulum, a run-down Clock Soldier) |
+  | hurt | a badly hurt Musketeer steps back behind his friends |
+  | winders (new) | Musketeers shoot a Winder first when one is in reach (the Winders wind and mend the army) |
+  | fieldline (new) | a marching wave forms its line before the Clockwork army it sees and steps on with its guns set (the line on the march only; its home lines stay cut) |
+
+  On the bench they win the close fights much better (with the Clockwork at 1.5 times the value: +0.31, t 5.9). In real
+  games the Crown now sometimes wins outright (2 or 3 of 10, none before) and trades its fights better.
+
+- **In the mirror** two parts are on: **brace** (a marching wave halts and sets its guns when the enemy wave comes at
+  it) and **gunpick** (the guns aim at the thickest clump and the armoured men). On the bench +0.09 (t 1.5); in 10 real
+  games against the old Crown it won or led 7 and lost 1 (the old against the old: 4 and 3).
+
+No unit or balance number changed.
 
 ## What was built
 
@@ -29,6 +51,11 @@ No unit or balance number was changed. Only how the Crown computer's men fight o
    the same 10 games (map, seed, start spot) as the earlier Crown studies, Hard OPTIMAL against Hard OPTIMAL, to 20:00, on
    the six parity maps. In the mirror our Crown always plays with the block's switches and the other Crown without the
    parts (`cmicoff`). Data in `docs/crown_micro_2/data/`.
+
+Hooks in other files, one line each: `AICrownLine.field()` and its use in `AICrownLine.march` and `AICrown._cohesion` (the
+line runs on the march where the cleanup cut it, when the micro's fieldline is on). The bench's `killed` and `lost` against
+the Clockwork and the Crown are the two armies' own value gone, hit points counted (the enemy computer's base and the Winders'
+mending are no part of the fight); against the Brood they are as in crown-micro.
 
 Other tools: `tools/study/crown_micro_2_arms.sh` runs bench arms two at a time, `tools/study/crown_micro_2_table.py`
 makes the tables below, the study's `fights` command counts the fights inside the real games.
@@ -209,21 +236,102 @@ Together, on the bench:
 | fieldline alone, real armies | 24 | +0.68 | +0.190 | +4.08 | 3.77 | 24 |
 
 Plus, in the mirror, brace and gunpick together: +0.09 (t 1.5) over 72 fights (the table above), and on the mirror's
-real armies @@CRREAL@@.
+real armies +0.10 (36 fights, t 1.4: +0.25 against +0.15).
 
-The parts not kept stay written and switchable (`-- cmic<name>:on`). @@FIELDKEPT@@
+The parts not kept stay written and switchable (`-- cmic<name>:on`). **fieldline is kept against the Clockwork** (on by default there since the field1 real games showed it
+does not cost in the whole game, see below). The line's own switch (`crcline`) stays cut against the Clockwork: fieldline is
+only its march.
 
 ## Real games
 
-@@REAL@@
+The same 10 games as the earlier Crown studies (Hard OPTIMAL against Hard OPTIMAL, to 20:00, the six parity maps, the
+same seeds and start spots), played on this branch. g is the Crown's score against the enemy's as a log (income plus twice
+the army; a beaten side counted a quarter): 0 even, +0.7 the Crown twice the enemy. "fights" are the fights inside the games
+(the crown-guns-coach count, every fight worth 60 or more): the value our Crown killed for each value it lost.
+
+### Against the Clockwork
+
+| block | switches | games | won | led | even | behind | lost | mean g | g at 14:00 | income 8:00 / 12:00 | fights: killed for each lost |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| off1 | `cmic:off` (the Crown as before) | 10 | 0 | 9 | 0 | 1 | 0 | +0.39 | +0.01 | 0.94 / 0.96 | 2.28 (81 fights) |
+| on1 | gunpick, kite, hurt, winders | 10 | 3 | 3 | 3 | 1 | 0 | +0.77 | +0.14 | 0.91 / 0.96 | 2.68 (83 fights) |
+| field1 | the same and fieldline (today's default) | 10 | 2 | 7 | 1 | 0 | 0 | +0.71 | +0.18 | 0.94 / 1.00 | 2.50 (75 fights) |
+Paired game by game against off1: on1 +0.37 (t 1.2), 4 better / 4 worse; field1 +0.31 (t 1.3), 6 better / 4 worse, and at
+14:00 +0.17 (t 1.5).
+
+In plain words:
+
+1. **The Crown already beats the Clockwork computer.** Without any of this it won or led 9 of 10 games at 20:00, though it
+   earned a little less (0.94 of the Clockwork's income at 8:00). It wins the fights: 2.3 killed for each 1 lost.
+2. **With the parts it wins outright now and then** (3 and 2 games won, none before) and trades better in the fights
+   (2.7 and 2.5). The mean is better by about a third of a point; with 10 games a block that is not beyond the noise.
+3. **fieldline did not cost in the whole game.** The crown-rule-cleanup had found the full line stack (with the home lines,
+   the musters, the screen) harmful against the Clockwork. The line on the march alone formed 16 times in the 10 games, and
+   the block is as good as on1 (9 of 10 won or led, none behind).
+
+### The mirror
+
+Our Crown with the block's switches, the other Crown held to the old fighting (`cmicoff`).
+
+| block | switches | games | won | led | even | behind | lost | mean g | g at 14:00 | income 8:00 / 12:00 | fights: killed for each lost |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| off1 | `cmic:off` on both sides | 10 | 4 | 0 | 1 | 2 | 3 | +0.20 | +0.10 | 1.02 / 1.05 | 0.90 (72 fights) |
+| on1 | brace, gunpick (ours only) | 10 | 3 | 4 | 1 | 1 | 1 | +0.70 | +0.21 | 1.01 / 1.12 | 1.24 (91 fights) |
+Paired against off1: +0.50 (t 0.7), 7 better / 2 worse; at 14:00 +0.11 (t 1.0).
+
+In plain words: with the same economy (income 1.01 of the other side's at 8:00), the Crown with brace and gunpick won or
+led 7 of 10 games and lost 1, against 4 of 10 and 3 lost when both fought the old way. It traded its fights at 1.24 where
+it had 0.90. One block is not proof (the mirror's games swing hard: g of +2.4 or -2.2 when one side is beaten), but every
+measure leans the same way.
+
+AI tests run on this branch: `test_crown_line` ALL PASS, `test_crown_defence` ALL PASS, `test_cav_micro` ALL PASS (its
+"_foe in StubAI" script errors come from the cleanup's `AICrownRules.cut` in its stub, not from this job).
 
 ## The verdict, matchup by matchup
 
-@@VERDICT@@
+- **Crown against the Clockwork: the edge is the FIGHTING.** The Crown earns a little less than the Clockwork (0.94 of
+  its income at 8:00, 0.96 at 12:00 in the games before this job) and still leads by 20:00 in 9 games of 10, because it
+  wins its fights by more than 2 to 1. On the bench it beats one and a half times its value of Clockwork two times in
+  three. Its economy is behind; its fighting more than makes up for it. If the matchup is ever to be closer, it is the
+  Crown's fighting (or the Clockwork's) that moves it, not the economy. The fight rules the cleanup cut (the line, the
+  riders' hit and run) would make the Crown fight even better: their cost in the whole game, when it showed, was the
+  army held at home, not the fighting.
+- **The mirror: the FIGHTING decides.** Both sides have the same economy by construction (1.01 at 8:00), so whoever fights
+  better wins: the parts alone turned 4 won-or-led of 10 into 7 of 10. The mirror is the matchup where micro matters most.
+- **Crown against the Brood (crown-micro, for the full picture): the gap is the ECONOMY.** The Crown wins fair fights
+  against the Brood too (22 of 24 before, 24 of 24 after crown-micro), but the Brood out-earns it from about 10:00 and
+  fields the bigger army.
+
+So: the Crown computer's fighting is good in all three matchups. Where it loses (the Brood) it loses on the economy;
+where it wins (the Clockwork) it wins on the fighting.
 
 ## Claude's choices
 
-@@CHOICES@@
+1. **The bench's Clockwork is not the Clockwork computer.** Its army attack-moves, as the Brood's did in crown-micro. I
+   kept the pieces of the Clockwork computer that act inside a fight: the Springers' jump out of a melee (it needs a
+   computer on its side: the bench keeps the Clockwork computer in the list but stops it), SHIELD FORWARD by its own rule
+   (`ShieldWall.think`), the Winders escorting the army (the player's own escort order, as the computer's Winders follow
+   its army). Its retreat when outnumbered and its mending trips home are left out.
+2. **The machines' wind is drawn between 60% and full** at the start of a bench fight, and runs down from there. In real
+   games the army is often wound by its Winders on the march; 60% is a guess at the worst a computer army brings.
+3. **Winders count in the Clockwork's value** (one for every 8 machines). They are part of what it brings to a fight.
+4. **In the mirror the enemy is the Crown computer with all its old fight code**, only the new micro parts off
+   (`AICrownMicro.off_team`). So the mirror bench and the mirror games measure the parts against the Crown as it was.
+5. **Pooled over two sizes of fight.** Against the Clockwork the Crown wins almost every equal fight, so the parts were
+   also measured with the Clockwork bringing 1.5 times the value, where fights are close and a part can show. A part kept
+   had to lean the right way in both.
+6. **Kept four small parts against the Clockwork** (gunpick, kite, hurt, winders) though alone each is only about t 1
+   pooled; together +0.05 (t 1.4) on the core fights and +0.08 (t 1.5) on the real armies, and none measured harmful.
+7. **fieldline kept on against the Clockwork** though the cleanup cut the whole line there. On the bench it is the
+   biggest gain of all (about +0.19, t 6.5); in the real games it did not cost (field1: 9 of 10 won or led, 2 won, none
+   behind, against 9 of 10 and none won for the Crown as before). Its home lines and the rider screen stay cut. If the
+   owner prefers the cleanup's stack exactly, `-- cmicfieldline:off`.
+8. **Only brace and gunpick in the mirror**: alone each is noise; together +0.09 (t 1.5) and +0.10 on the real armies.
+   Everything else leaned to harm there.
+9. **The riders' hit and run (`cavmicro`) stays cut against the Clockwork** although on the bench it gains +0.13 (t 3.3):
+   it is not one of the micro's parts, it is the cleanup's rule, and I had no real games left to measure it alone. It is
+   the next thing to try (`-- crccavmicro:on`).
+10. **The cut rules were measured on the bench with `cmic:off`**, against the same base, to see their fighting worth only.
 
 ## How to run it
 
