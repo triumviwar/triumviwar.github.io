@@ -13,7 +13,7 @@ The method is the crown-micro job's (branch `crown-micro`, docs/crown_micro.md t
 **The Clockwork computer already fights about as well as simple rules can make it fight. Its gap against the Crown is the
 army it builds and the units' matchup, not its fighting. Against the Brood it has an edge, and the mirror is even.**
 
-- Ten ways of fighting were tried on hundreds of equal-value battles (Clock Soldiers going for the shooters, a flank
+- Ten ways of fighting (eight ideas, two of them in two settings) were tried on hundreds of equal-value battles (Clock Soldiers going for the shooters, a flank
   group, the whole push charging, Springers jumping at the guns, hurt machines stepping back, early retreats, Winders
   kept out of the shooters' reach...). **None helped beyond the noise. The ones that pull machines out of the block made it
   clearly worse.** Nothing was kept; the game is unchanged. The parts stay in the code, off.
@@ -26,6 +26,10 @@ army it builds and the units' matchup, not its fighting. Against the Brood it ha
   mostly Raptors, is what the Clock Soldiers beat. Its one weak spot (Spitters behind a Raptor screen) is again fixed by
   Ballistas, not by fighting differently.
 - **In the mirror** it is even, as a mirror should be; on the bench the Springers-heavy army beats the computer's own.
+- **60 real games** (Hard OPTIMAL v Hard OPTIMAL to 20:00, 10 a cell, each matchup without and with a part on trial) agree.
+  The one part tried there, `safe` (the escort Winders kept out of the shooters' reach), saved Winders against the Crown
+  but changed no result, and made the mirror worse. It is not kept either.
+- About 770 bench battles in all (the parts, two plain runs for the noise, the real armies, other armies, other values).
 
 ## What was built
 
@@ -287,16 +291,16 @@ see, `safe` (the Winders out of the shooters' reach), as the "with" block.
 | g_crown_off | opp:crown cwmic:off | 10 | 0 | 1 | 2 | 4 | 3 | -1.01 | -0.14 | 1.11 | 16.4, 18.8, 19.0 |
 | g_crown_safe | opp:crown cwmicsafe:on | 10 | 0 | 0 | 2 | 6 | 2 | -0.82 | -0.22 | 0.89 | 16.0, 16.4 |
 | g_brood_off | opp:brood cwmic:off | 10 | 5 | 0 | 1 | 1 | 3 | +0.55 | +0.25 | 2.19 | 15.8, 16.6, 18.9 |
-| g_brood_safe | opp:brood cwmicsafe:on | 4 | 1 | 0 | 0 | 2 | 1 | -0.22 | -0.21 | 0.75 | 15.2 |
+| g_brood_safe | opp:brood cwmicsafe:on | 10 | 2 | 4 | 0 | 3 | 1 | +0.24 | +0.09 | 1.00 | 15.2 |
 | g_mirror_off | opp:clockwork cwmic:off cwmicteam:0 | 10 | 3 | 1 | 1 | 1 | 4 | -0.16 | -0.00 | 2.56 | 13.7, 14.2, 18.0, 19.2 |
-| g_mirror_safe | opp:clockwork cwmicsafe:on cwmicteam:0 | 6 | 0 | 0 | 0 | 1 | 5 | -2.16 | -0.86 | 0.17 | 13.2, 14.2, 14.8, 15.1, 17.6 |
+| g_mirror_safe | opp:clockwork cwmicsafe:on cwmicteam:0 | 10 | 0 | 0 | 2 | 2 | 6 | -1.59 | -0.64 | 0.35 | 13.2, 14.2, 14.8, 14.8, 15.1, 17.6 |
 
 With `safe` against without, game by game:
 
 ```
 g_crown_safe v g_crown_off: n 10  d g +0.20 (t 0.62, better 5 worse 5)  d g14 -0.08 (t -0.65)
-g_brood_safe v g_brood_off: n 4  d g -0.82 (t -0.62, better 2 worse 2)  d g14 -0.58 (t -1.47)
-g_mirror_safe v g_mirror_off: n 6  d g -2.70 (t -2.76, better 0 worse 5)  d g14 -1.13 (t -3.13)
+g_brood_safe v g_brood_off: n 10  d g -0.31 (t -0.44, better 6 worse 4)  d g14 -0.16 (t -0.67)
+g_mirror_safe v g_mirror_off: n 10  d g -1.43 (t -1.80, better 1 worse 7)  d g14 -0.64 (t -2.19)
 ```
 
 The trade (armies only, by value, what the Clockwork killed for what it lost) and the economy (income earned, ours over
@@ -307,20 +311,23 @@ theirs):
 | g_crown_off | 10 | 61290 / 128420 | 0.48 | 2250 / 48060 | 1.05 | 0.72 |
 | g_crown_safe | 10 | 67105 / 143175 | 0.47 | 2150 / 35460 | 0.99 | 0.72 |
 | g_brood_off | 10 | 91995 / 62695 | 1.47 | 5650 / 23160 | 1.27 | 0.78 |
-| g_brood_safe | 4 | 28395 / 38910 | 0.73 | 775 / 11160 | 1.20 | 0.70 |
+| g_brood_safe | 10 | 94175 / 106645 | 0.88 | 2450 / 19800 | 1.27 | 1.07 |
 | g_mirror_off | 10 | 84420 / 81935 | 1.03 | 21360 / 21780 | 1.04 | 1.09 |
-| g_mirror_safe | 6 | 18765 / 50490 | 0.37 | 3300 / 21720 | 0.82 | 0.70 |
+| g_mirror_safe | 10 | 59650 / 112180 | 0.53 | 7920 / 27420 | 0.87 | 0.90 |
 
 What the games say:
 
 - **Against the Crown the Clockwork earns as much (1.05 at 12:00) and has the bigger army at 12:00 (1.11), but it trades
   badly: 0.48 of value killed for each value lost, and it loses about 80 Winders a game besides (4,800 in value).**
   It won none of 10, lost 3, was behind in 4. The bench says the same thing: at equal value it loses every kind of fight.
-- `safe` cut the Winders lost by a quarter (48,060 to 35,460 in value over 10 games) but changed nothing else: the trade
-  stayed 0.47, the result d g +0.20 (t 0.6, 5 games better, 5 worse). Not kept.
+- `safe` against the Crown cut the Winders lost by a quarter (48,060 to 35,460 in value over 10 games) but changed nothing
+  else: the trade stayed 0.47, the result d g +0.20 (t 0.6, 5 games better, 5 worse).
+- `safe` against the Brood: no change in the result (t -0.4), but a worse trade (0.88 against 1.47).
+- `safe` in the mirror: clearly worse (6 games lost against 4, d g -1.43, t -1.8; at 14:00 t -2.2). With the Winders kept
+  back out of the Springers' reach, the front is not wound and mended where it fights. **`safe` is not kept.**
 - **Against the Brood the Clockwork wins** (5 won, 3 lost, g +0.55): it out-earns the Brood (1.27 at 12:00) and trades 1.47.
   The bench agrees: the Brood computer's real army is mostly Raptors, and the Clockwork beats Raptors.
-- **The mirror is even** (g +0.07, trade 1.08), as it should be.
+- **The mirror is even** (3 won and 4 lost by the slot-0 side, g -0.16, trade 1.03), as it should be.
 
 ## The verdict, matchup by matchup
 
@@ -328,7 +335,7 @@ What the games say:
 |---|---|---|---|---|---|
 | v the Crown | 0 won, 1 led, 2 even, 4 behind, 3 lost | 0.48 | 1.05 | -0.62 (needs ~2x the value) | the army it builds and the units' matchup: not the fighting |
 | v the Brood | 5 won, 1 even, 1 behind, 3 lost | 1.47 | 1.27 | +0.07 (wins v Raptors, loses v Spitters) | an edge, from its economy and the Brood's Raptor-heavy army |
-| mirror | 3 won, 1 led, 1 even, 1 behind, 4 lost (10 games) | 1.08 | 1.07 | even | no gap |
+| mirror | 3 won, 1 led, 1 even, 1 behind, 4 lost (10 games) | 1.03 | 1.04 | even | no gap |
 
 **What I would do next (proposals, not built):**
 
@@ -353,7 +360,7 @@ What the games say:
    (two plain runs moved a group's t by up to 0.9). A part is kept only beyond that, and never if it hurts a matchup.
 5. **Nothing kept**, so the game is unchanged. The parts stay in the code, off, with their switches.
 6. **`safe` was tried in real games** although the bench saw nothing: its target (Winders lost over a whole game, about
-   80 a game against the Crown) does not show in a 90-second fight. It stays off unless the real games say otherwise.
+   80 a game against the Crown) does not show in a 90-second fight. The real games said no (worse in the mirror): off.
 7. **The other armies (bolts, Pendulums, Springers) were measured but not built into the computer**: what to build is the
    macro, outside this job. They answer the owner's question about where the gap is. 3 fights a cell only.
 8. **The real games use a seed set of their own** (not crown-micro's), the same 10 map and start pairings in every block,
