@@ -330,15 +330,15 @@ CR, SW = "crown", "swarm"
 line("k_open1", "king", "After Minas, Tomasz asked for the hardest place in Brazil. They sent him up the Tapajós.",
      "Depois de Minas, Tomasz pediu o lugar mais difícil do Brasil. Mandaram-no subir o Tapajós.",
      "Después de Minas, Tomasz pidió el lugar más difícil de Brasil. Lo mandaron a remontar el Tapajós.")
-line("k_open2", "king", "In the wet season of 2776 he met the swarm. You will hear how it was born. He met it first.",
-     "Na estação das chuvas de 2776 ele encontrou o enxame. Hás de ouvir como nasceu. Ele encontrou-o primeiro.",
-     "En la estación de lluvias de 2776 se encontró con el enjambre. Oirás cómo nació. Él lo encontró primero.")
+line("k_open2", "king", "In the wet season of 2776 he met the swarm, before any of us in Rome knew what it was.",
+     "Na estação das chuvas de 2776 encontrou o enxame, antes de qualquer um de nós em Roma saber o que era.",
+     "En la estación de lluvias de 2776 se encontró con el enjambre, antes de que ninguno de nosotros en Roma supiera qué era.")
 line("t_open1", "tomasz", "São Rafael. Thirty families, a church of timber, fields on the dry ground above the flood.",
      "São Rafael. Trinta famílias, uma igreja de madeira, campos no chão seco acima da cheia.",
      "San Rafael. Treinta familias, una iglesia de madera, campos en el suelo seco sobre la crecida.")
-line("t_open2", "tomasz", "Brother Tiago taught the catechism in his own tongue. I taught it badly in mine.",
-     "O Irmão Tiago ensinava o catecismo na sua língua. Eu ensinava-o mal na minha.",
-     "El Hermano Tiago enseñaba el catecismo en su lengua. Yo lo enseñaba mal en la mía.")
+line("t_open2", "tomasz", "Brother Tiago taught the catechism in his own tongue. I taught it in Portuguese, and the children laughed at my accent.",
+     "O Irmão Tiago ensinava o catecismo na língua dele. Eu ensinava-o em português, e as crianças riam-se do meu sotaque.",
+     "El hermano Tiago enseñaba el catecismo en su propia lengua. Yo lo enseñaba en portugués, y los niños se reían de mi acento.")
 line("t_open_many", "tomasz", "Word of Rome had come up the river before me. They trusted me before I had earned it.",
      "A notícia de Roma tinha subido o rio antes de mim. Confiaram em mim antes de eu o merecer.",
      "La noticia de Roma había remontado el río antes que yo. Confiaron en mí antes de que lo mereciera.")
@@ -441,8 +441,8 @@ line("q_fields", "narrator", "Captain Sobral would burn the fields and the grana
      "O Capitão Sobral queimaria os campos e o celeiro para o enxame não achar nada para comer. São o pão do povo para o inverno.",
      "El Capitán Sobral quemaría los campos y el granero para que el enjambre no encuentre nada que comer. Son el pan del pueblo para el invierno.", CR)
 line("t_burned", "tomasz", "God forgive me. Burn them.", "Deus me perdoe. Queimem-nos.", "Dios me perdone. Quemadlos.")
-line("t_left", "tomasz", "No. It is their bread. We will pay for it with powder, not with their hunger.",
-     "Não. É o pão deles. Pagamos isto com pólvora, não com a fome deles.", "No. Es su pan. Lo pagaremos con pólvora, no con su hambre.")
+line("t_left", "tomasz", "No. It is their bread. We will hold them off with powder.",
+     "Não. É o pão deles. Vamos aguentá-los à pólvora.", "No. Es su pan. Los contendremos con pólvora.")
 line("n_burned", "narrator", "The fields and the granary burn behind the column.", "Os campos e o celeiro ardem atrás da coluna.",
      "Los campos y el granero arden detrás de la columna.", CR)
 line("n_fed", "narrator", "Behind the column the swarm comes up into the fields and feeds. Its waves come bigger.",

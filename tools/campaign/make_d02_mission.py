@@ -331,14 +331,14 @@ line("k_open1", "king", "Ten months after Rome I signed the commissary's orders 
      "Diez meses después de Roma, yo mismo firmé las órdenes del comisario. Tomar los talleres de Fürth. Parar toda máquina que se dé cuerda a sí misma.")
 line("k_open2", "king", "Hollweg was told the commissary was coming. He did not wait for him.",
      "Disseram a Hollweg que o comissário vinha. Ele não o esperou.", "A Hollweg le dijeron que el comisario venía. No lo esperó.")
-line("h_open1", "hollweg", "I called it a rescue. The families had nowhere else. The machines had nowhere at all.",
-     "Eu chamei aquilo de resgate. As famílias não tinham outro lugar. As máquinas não tinham lugar nenhum.",
-     "Yo lo llamé un rescate. Las familias no tenían otro sitio. Las máquinas no tenían ningún sitio.")
+line("h_open1", "hollweg", "I called it a rescue. The Crown meant to melt our works, and the families had lived off those works for three generations.",
+     "Eu chamei aquilo de resgate. A Coroa queria derreter as nossas oficinas, e as famílias viviam delas havia três gerações.",
+     "Yo lo llamé un rescate. La Corona quería fundir nuestros talleres, y las familias vivían de ellos desde hacía tres generaciones.")
 line("h_open2", "hollweg", "We rang the night bell at the barn. By morning Fürth was empty.",
      "Tocamos o sino da noite no celeiro. De manhã Fürth estava vazia.", "Tocamos la campana de noche en el granero. Por la mañana Fürth estaba vacía.")
-line("k_open_c", "king", "Father Ferrer rode with the commissary as Rome's witness. He wrote down what he saw. He always did.",
-     "O Padre Ferrer cavalgou com o comissário como testemunha de Roma. Escreveu o que viu. Sempre escrevia.",
-     "El Padre Ferrer cabalgó con el comisario como testigo de Roma. Escribió lo que vio. Siempre lo hacía.")
+line("k_open_c", "king", "Father Ferrer rode with the commissary as Rome's witness. He kept a diary of it in that small Catalan hand of his. I have it still.",
+     "O Padre Ferrer cavalgou com o comissário como testemunha de Roma. Fez um diário daquilo, naquela letra miúda de catalão. Ainda o tenho.",
+     "El Padre Ferrer cabalgó con el comisario como testigo de Roma. Llevó un diario de aquello, con esa letra menuda de catalán. Todavía lo tengo.")
 line("f_open_c", "ferrer", "We were a day's ride off when the dogs found their scent. The guild was already on the road.",
      "Estávamos a um dia de viagem quando os cães encontraram o rasto. A guilda já estava na estrada.",
      "Estábamos a un día de camino cuando los perros encontraron el rastro. El gremio ya estaba en el camino.")
@@ -358,8 +358,8 @@ line("u_tip_new", "ulrich", "The Clock Soldiers know the shield wall now, Meiste
 line("n_loaded", "narrator", "A family climbs into its cart.", "Uma família sobe na sua carroça.", "Una familia sube a su carro.", EX)
 line("h_draw0", "hollweg", "And the drawings. Every sheet of the Perpetual. Nobody touches those chests but me.",
      "E os desenhos. Cada folha do Perpétuo. Ninguém toca nesses baús além de mim.", "Y los planos. Cada hoja del Perpetuo. Nadie toca esos baúles sino yo.", EX)
-line("h_draw", "hollweg", "The drawings are aboard. If they take that cart, they take everything I ever made.",
-     "Os desenhos estão a bordo. Se tomarem essa carroça, tomam tudo o que eu já fiz.", "Los planos están a bordo. Si toman ese carro, toman todo lo que he hecho.", EX)
+line("h_draw", "hollweg", "The drawings are aboard. If they take that cart, they take forty years of my life.",
+     "Os desenhos estão a bordo. Se tomarem essa carroça, levam quarenta anos da minha vida.", "Los planos están a bordo. Si toman ese carro, se llevan cuarenta años de mi vida.", EX)
 line("h_people", "hollweg", "No drawings this time. I left them in Nuremberg for the people. I carry the Perpetual in my head.",
      "Sem desenhos desta vez. Deixei-os em Nuremberg pelo povo. Levo o Perpétuo na cabeça.", "Sin planos esta vez. Los dejé en Núremberg por la gente. Llevo el Perpetuo en la cabeza.", EX)
 line("j_wait", "jakob", "Meister. Before you go. Come here, please.", "Mestre. Antes de partir. Venha aqui, por favor.", "Maestro. Antes de que te vayas. Ven aquí, por favor.", EX)
@@ -373,8 +373,8 @@ line("j_stay2", "jakob", "Then let them. I would rather melt a wheel than see it
      "Pues que lo fundan. Prefiero fundir una rueda a verla quitarse su propio tope otra vez. Dios te guarde, maestro.", EX)
 line("n_jakob_goes", "narrator", "Jakob walks up the street to the Crown's camp, and does not look back.",
      "Jakob sobe a rua até o acampamento da Coroa, e não olha para trás.", "Jakob sube la calle hacia el campamento de la Corona, y no mira atrás.", EX)
-line("h_nojakob", "hollweg", "Jakob would have known which wheels to leave. Jakob is not here.",
-     "Jakob saberia que rodas deixar. Jakob não está aqui.", "Jakob habría sabido qué ruedas dejar. Jakob no está aquí.", EX)
+line("h_nojakob", "hollweg", "Jakob would have known which wheels to leave behind. I shall have to guess.",
+     "O Jakob saberia que rodas deixar para trás. Vou ter de adivinhar.", "Jakob habría sabido qué ruedas dejar atrás. Tendré que adivinarlo.", EX)
 line("u_warn", "ulrich", "Riders on the Bamberg road, Meister. Not long now.", "Cavaleiros na estrada de Bamberg, Mestre. Falta pouco.",
      "Jinetes en el camino de Bamberg, maestro. Queda poco.", EX)
 line("n_left", "narrator", "The carts nobody loaded stay at their barns. Those families stay in Fürth.",
@@ -442,9 +442,9 @@ line("n_quiet", "narrator", "The bank is quiet. The bargemen hurry the last crat
      "La orilla está tranquila. Los barqueros apresuran las últimas cajas a bordo.")
 line("u_last", "ulrich", "The last barge is loaded, Meister! Come aboard, now!", "A última barcaça está carregada, Mestre! Embarque, agora!",
      "¡La última barcaza está cargada, maestro! ¡Sube a bordo, ya!", EX)
-line("h_aboard", "hollweg", "Cast off. Do not look back. There is nothing behind us now but the Crown.",
-     "Soltem as amarras. Não olhem para trás. Já não há nada atrás de nós senão a Coroa.",
-     "Soltad amarras. No miréis atrás. Ya no hay nada detrás de nosotros sino la Corona.", EX)
+line("h_aboard", "hollweg", "Cast off. Mind the ice by the piers.",
+     "Soltem as amarras. Cuidado com o gelo junto aos pilares.",
+     "Soltad amarras. Cuidado con el hielo junto a los pilotes.", EX)
 line("n_cast_off", "narrator", "The bargemen could wait no longer. The last barge left without the Meister.",
      "Os barqueiros não podiam esperar mais. A última barcaça partiu sem o Mestre.", "Los barqueros no podían esperar más. La última barcaza partió sin el maestro.")
 line("n_all_taken", "narrator", "Every cart was taken on the road. There was nothing left to save.",
@@ -481,22 +481,22 @@ line("h_end_many", "hollweg", "Nearly every family came with us. I counted them 
      "Quase todas as famílias vieram connosco. Eu contava-as no convés, todas as manhãs.", "Casi todas las familias vinieron con nosotros. Las contaba en la cubierta, cada mañana.")
 line("h_end_some", "hollweg", "Some of the families came. The others went back to Fürth in the Crown's carts.",
      "Algumas famílias vieram. As outras voltaram a Fürth nas carroças da Coroa.", "Algunas familias vinieron. Las otras volvieron a Fürth en los carros de la Corona.")
-line("h_end_few", "hollweg", "Few of the families came. The deck was very quiet.", "Poucas famílias vieram. O convés estava muito silencioso.",
-     "Pocas familias vinieron. La cubierta estaba muy callada.")
+line("h_end_few", "hollweg", "Few of the families came. There was room on the deck to walk.", "Poucas famílias vieram. Havia espaço no convés para passear.",
+     "Pocas familias vinieron. Había sitio en la cubierta para pasear.")
 line("h_end_draw", "hollweg", "And the drawings came with me. Every sheet.", "E os desenhos vieram comigo. Cada folha.", "Y los planos vinieron conmigo. Cada hoja.")
 line("h_end_drawlost", "hollweg", "The drawings stayed with the Crown. I drew them again from memory, on the ship.",
      "Os desenhos ficaram com a Coroa. Desenhei-os outra vez de memória, no navio.", "Los planos se quedaron con la Corona. Los dibujé otra vez de memoria, en el barco.")
 line("h_end_jakob", "hollweg", "Jakob stayed. I wrote to him from Hamburg. He never answered.",
      "Jakob ficou. Escrevi-lhe de Hamburgo. Ele nunca respondeu.", "Jakob se quedó. Le escribí desde Hamburgo. Nunca contestó.")
-line("h_end_manifest", "hollweg", "The ship's manifest said: machinery, for a mine in the southern highlands of Brazil. That was true. It was my mine.",
-     "O manifesto do navio dizia: maquinaria, para uma mina nas terras altas do sul do Brasil. Era verdade. Era a minha mina.",
-     "El manifiesto del barco decía: maquinaria, para una mina en las tierras altas del sur de Brasil. Era verdad. Era mi mina.")
-line("k_end1", "king", "He calls it a rescue. I call it what it was. The guild left the Crown that night, and took its families with it.",
-     "Ele chama-lhe resgate. Eu chamo-lhe o que foi. A guilda deixou a Coroa naquela noite, e levou as suas famílias consigo.",
-     "Él lo llama un rescate. Yo lo llamo lo que fue. El gremio dejó la Corona aquella noche, y se llevó a sus familias.")
-line("k_end2", "king", "I do not blame the families. I blame the man who told them the Crown would melt their children's bread.",
-     "Não culpo as famílias. Culpo o homem que lhes disse que a Coroa derreteria o pão dos filhos delas.",
-     "No culpo a las familias. Culpo al hombre que les dijo que la Corona fundiría el pan de sus hijos.")
+line("h_end_manifest", "hollweg", "The ship's manifest said: machinery, for a mine in the southern highlands of Brazil. The clerk at Hamburg did not ask whose mine.",
+     "O manifesto do navio dizia: maquinaria, para uma mina nas terras altas do sul do Brasil. O escrivão de Hamburgo não perguntou de quem era a mina.",
+     "El manifiesto del barco decía: maquinaria, para una mina en las tierras altas del sur de Brasil. El escribano de Hamburgo no preguntó de quién era la mina.")
+line("k_end1", "king", "He calls it a rescue. The law calls it desertion, and so do I. The guild left the Crown that night and took its families with it.",
+     "Ele chama-lhe resgate. A lei chama-lhe deserção, e eu também. A guilda deixou a Coroa naquela noite e levou as suas famílias consigo.",
+     "Él lo llama un rescate. La ley lo llama deserción, y yo también. El gremio dejó la Corona aquella noche y se llevó a sus familias.")
+line("k_end2", "king", "I do not blame the families. Someone told them the Crown was coming for their children's bread, and they believed him. It was Hollweg who told them.",
+     "Não culpo as famílias. Alguém lhes disse que a Coroa vinha tirar o pão aos filhos delas, e elas acreditaram. Foi o Hollweg quem lho disse.",
+     "No culpo a las familias. Alguien les dijo que la Corona venía a quitarles el pan a sus hijos, y lo creyeron. Fue Hollweg quien se lo dijo.")
 line("k_end_c", "king", "Hollweg in the Crown's custody, twenty-four years before he came to my fire. That is not how it went.",
      "Hollweg sob custódia da Coroa, vinte e quatro anos antes de vir para a minha lareira. Não foi assim que aconteceu.",
      "Hollweg bajo custodia de la Corona, veinticuatro años antes de venir a mi fuego. No fue así como ocurrió.")

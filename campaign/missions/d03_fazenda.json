@@ -5680,11 +5680,11 @@
 		},
 		"l_open2": {
 			"who": "lindqvist",
-			"text": "They were not monsters. They were a new kind of animal, and every animal can be bred. I had the lures. They came to the lures."
+			"text": "Rome called them abominations. I called them a new species, and I had bred every species I ever kept. I had the lures. They came to the lures."
 		},
 		"l_open_linnea": {
 			"who": "lindqvist",
-			"text": "And among them her daughter. Out of the clutch we carried from the station. Growing."
+			"text": "And among them a young Mother, out of the clutch we carried from the station. Linnea's get. Growing."
 		},
 		"l_open_plateau": {
 			"who": "lindqvist",
@@ -5771,7 +5771,7 @@
 		},
 		"p_still": {
 			"who": "pieter",
-			"text": "Keep them still, Doctor. A still animal in the forest is a shadow. A moving one is an animal.",
+			"text": "Keep them still, Doctor. A soldier sees what moves. The rest is just forest to him.",
 			"to": "stock"
 		},
 		"l_dinner": {
@@ -5959,7 +5959,7 @@
 		},
 		"k_end1": {
 			"who": "king",
-			"text": "He tells it as if he won. Valadares found more than he thinks. Valadares found enough to know what was on that island."
+			"text": "He tells it as if he won. Valadares found enough on that island to know what it was, and he wrote it down."
 		},
 		"k_end2": {
 			"who": "king",
@@ -5971,7 +5971,7 @@
 		},
 		"k_end_c": {
 			"who": "king",
-			"text": "He told me Valadares found nothing. Valadares found enough."
+			"text": "Lindqvist told me Valadares came away with nothing. Valadares' report is on my desk. It runs to forty pages."
 		},
 		"v_end_c_lost": {
 			"who": "valadares",
@@ -5988,7 +5988,7 @@
 		},
 		"n_guards": {
 			"who": "narrator",
-			"text": "Lindqvist's guards are Assembly men now, paid in sugar and silence.",
+			"text": "Lindqvist's guards are Assembly men now, paid in sugar.",
 			"to": "stock"
 		},
 		"n_no_pieter": {

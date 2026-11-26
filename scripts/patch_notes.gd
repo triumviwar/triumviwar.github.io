@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"Act 2's campaign lines rewritten in a writing pass (writing-act2): the eleven missions from The Gold of Vila Rica to The Siege of Concórdia lose their stock phrases, neat sayings and lines that end on a moral; people sound more like themselves, and a few lines now give the Brood's creatures no mind of their own. No story, choice or objective changed. All texts are still placeholders for the owner.",
+	]},
 	{"v": "0.38.216", "items": [
 		"The Crown computer fights the Clockwork and the Crown better once a fight is on (crown-micro-2). Against the Clockwork: the Field Cannons aim at the armoured machines, Musketeers step back from a Pendulum or a run-down Clock Soldier while they reload, a badly hurt Musketeer steps back behind his friends, Musketeers shoot the Winders first when one is in reach, and a marching army forms its line before the Clockwork army it sees and steps on with its guns set (only on the march: not at home). In the mirror: a marching army halts and sets its guns when the enemy army comes at it, and the guns aim at the thickest group. No unit or number changed.",
 	]},

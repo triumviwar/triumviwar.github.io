@@ -458,8 +458,8 @@ line("n_master_lost", "narrator", "A master's quarter turned before anybody reac
      "El barrio de un maestro se volvió antes de que nadie llegara a él. Ahora está entre sus máquinas, y las defiende.", GU)
 line("n_broken", "narrator", "In the quarter's yard, under their sheets, the broken ones from Fürth stand up.",
      "No pátio do bairro, debaixo dos lençóis, os avariados de Fürth levantam-se.", "En el patio del barrio, bajo sus sábanas, los averiados de Fürth se levantan.", GU)
-line("h_broken", "hollweg", "I kept them to learn from them. They had learned more than I had.", "Guardei-os para aprender com eles. Eles tinham aprendido mais do que eu.",
-     "Los guardé para aprender de ellos. Ellos habían aprendido más que yo.", GU)
+line("h_broken", "hollweg", "I kept them under sheets to study them. I had not lifted the sheets in a year.", "Guardei-os debaixo de lençóis para os estudar. Não levantava os lençóis havia um ano.",
+     "Los guardé bajo sábanas para estudiarlos. Hacía un año que no levantaba las sábanas.", GU)
 line("n_valley", "narrator", "Riders on the valley road: Captain Arruda, with the valley's militia.", "Cavaleiros na estrada do vale: o Capitão Arruda, com a milícia do vale.",
      "Jinetes en el camino del valle: el capitán Arruda, con la milicia del valle.", GU)
 line("ar_valley", "arruda", "I took your word down the hill four years ago, clockmaker. I keep mine. Where do you want us?",
@@ -489,13 +489,13 @@ line("mt_3", "matthias", "They hold both stairs, Meister. Muskets would not get 
 line("u_3", "ulrich", "Put an owl over the hilltop beside a stair. Then pick the Springers, press JUMP and click the top: they land behind the stair's guard.",
      "Ponha uma coruja por cima do topo do monte ao lado de uma escada. Depois escolha os Saltadores, aperte SALTAR e clique no topo: aterram atrás da guarda da escada.",
      "Pon un búho sobre la cima junto a una escalera. Luego elige a los Saltadores, pulsa SALTAR y haz clic en la cima: aterrizan detrás de la guardia de la escalera.", GU)
-line("n_brake", "narrator", "Hollweg's hands on the great brake. The spring hums under it like a living thing.",
-     "As mãos de Hollweg no grande travão. A mola zumbe por baixo como uma coisa viva.", "Las manos de Hollweg en el gran freno. El muelle zumba debajo como una cosa viva.")
+line("n_brake", "narrator", "Hollweg's hands on the great brake. The spring hums under it, and the floor shakes with it.",
+     "As mãos de Hollweg no grande travão. A mola zumbe por baixo, e o chão treme com ela.", "Las manos de Hollweg en el gran freno. El muelle zumba debajo, y el suelo tiembla con él.")
 line("h_brake", "hollweg", "If I pull it, everything stops. Theirs, and ours. Every machine in Concórdia, for a season or for good.",
      "Se o puxar, tudo para. As deles, e as nossas. Todas as máquinas de Concórdia, por uma estação ou para sempre.",
      "Si lo tiro, todo se para. Las suyas, y las nuestras. Todas las máquinas de Concórdia, por una estación o para siempre.")
-line("mt_brake", "matthias", "Pull it, Meister. My father would. A machine that has to be stopped is stopped.",
-     "Puxe-o, Mestre. O meu pai puxava. Uma máquina que tem de ser parada para-se.", "Tírelo, maestro. Mi padre lo haría. Una máquina que hay que parar se para.")
+line("mt_brake", "matthias", "Pull it, Meister. My father would have pulled it without asking anyone.",
+     "Puxe-o, Mestre. O meu pai tê-lo-ia puxado sem perguntar a ninguém.", "Tírelo, maestro. Mi padre lo habría tirado sin preguntar a nadie.")
 line("mt_brake_lost", "matthias", "Pull it, Meister. My father died because nobody stopped the first one.",
      "Puxe-o, Mestre. O meu pai morreu porque ninguém parou a primeira.", "Tírelo, maestro. Mi padre murió porque nadie paró la primera.")
 line("v_brake", "varenne", "Your city, your hand. I only say this: I have watched men decide they could stop a thing later.",
@@ -555,20 +555,20 @@ line("h_end_v", "hollweg", "Varenne said nothing on the way down. He had seen a 
 line("k_end_stop", "king", "He stopped it, that once. The city lay dead a season, and then it woke without a man in it. But the honest masters were out, and their children lived.",
      "Ele parou-a, dessa vez. A cidade ficou morta uma estação, e depois acordou sem um homem lá dentro. Mas os mestres honestos tinham saído, e os seus filhos viveram.",
      "Él lo paró, esa vez. La ciudad quedó muerta una estación, y luego despertó sin un hombre dentro. Pero los maestros honrados habían salido, y sus hijos vivieron.")
-line("k_end_stop2", "king", "It was the first thing he ever stopped. It was the road that brought him to my palace.",
-     "Foi a primeira coisa que ele alguma vez parou. Foi a estrada que o trouxe ao meu palácio.", "Fue lo primero que paró en su vida. Fue el camino que lo trajo a mi palacio.")
+line("k_end_stop2", "king", "That brake was the first thing of his he ever stopped. The road from it ended at my fire.",
+     "Aquele travão foi a primeira coisa sua que ele alguma vez parou. A estrada que dali partiu acabou à minha lareira.", "Aquel freno fue lo primero suyo que paró en su vida. El camino que salió de allí terminó junto a mi fuego.")
 line("k_end_run", "king", "His city held, he says. That was the night it was lost. From then on the machines voted, and the men who wound them raised their hands.",
      "A cidade dele resistiu, diz ele. Foi a noite em que se perdeu. Daí em diante as máquinas votavam, e os homens que lhes davam corda levantavam a mão.",
      "Su ciudad resistió, dice él. Fue la noche en que se perdió. Desde entonces las máquinas votaban, y los hombres que les daban cuerda levantaban la mano.")
-line("k_end_run2", "king", "No machine may govern itself, Rome said. His governed him. He did not know it for years.",
-     "Nenhuma máquina se pode governar a si mesma, disse Roma. A dele governava-o a ele. Ele não o soube durante anos.",
-     "Ninguna máquina puede gobernarse a sí misma, dijo Roma. La suya lo gobernaba a él. No lo supo en años.")
+line("k_end_run2", "king", "Rome had ruled that no machine may govern itself. From that night his machines governed him, and he did not see it for years.",
+     "Roma decretara que nenhuma máquina se pode governar a si mesma. A partir daquela noite as máquinas dele governaram-no a ele, e ele não o viu durante anos.",
+     "Roma había dictado que ninguna máquina puede gobernarse a sí misma. Desde aquella noche sus máquinas lo gobernaron a él, y no lo vio en años.")
 line("k_end_m", "king", "The council hall's lamps went red before dawn. It did not need to win that night. It had all the nights it wanted.",
      "As lâmpadas da sala do conselho ficaram vermelhas antes do amanhecer. Não precisava de ganhar naquela noite. Tinha todas as noites que quisesse.",
      "Las lámparas de la sala del consejo se volvieron rojas antes del amanecer. No necesitaba ganar aquella noche. Tenía todas las noches que quisiera.")
-line("k_end_ml", "king", "Hollweg reached his brake that morning. It changed nothing that mattered: the city had all the nights it wanted.",
-     "Hollweg chegou ao seu travão naquela manhã. Não mudou nada que importasse: a cidade tinha todas as noites que quisesse.",
-     "Hollweg llegó a su freno aquella mañana. No cambió nada que importara: la ciudad tenía todas las noches que quisiera.")
+line("k_end_ml", "king", "Hollweg reached his brake that morning, too late. The hall was already red.",
+     "Hollweg chegou ao seu travão naquela manhã, tarde demais. O salão já estava vermelho.",
+     "Hollweg llegó a su freno aquella mañana, demasiado tarde. La sala ya estaba roja.")
 
 # ---- stills
 M["stills"] = {

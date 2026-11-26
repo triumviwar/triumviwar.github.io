@@ -469,11 +469,11 @@ line("t_honest", "tomasz", "Most of the honest masters stood with Hollweg that n
      "La mayoría de los maestros honrados se quedó con Hollweg aquella noche en Concórdia. Los que se quedaron son ahora de la ciudad.")
 line("t_counsel1", "tomasz", "General, the people under the swarm cannot wait. The city can.", "General, o povo debaixo do enxame não pode esperar. A cidade pode.",
      "General, el pueblo bajo el enjambre no puede esperar. La ciudad sí.")
-line("t_counsel2", "tomasz", "But the city grows while it waits, and it never sleeps. I do not know which is worse.",
-     "Mas a cidade cresce enquanto espera, e nunca dorme. Não sei qual é pior.", "Pero la ciudad crece mientras espera, y nunca duerme. No sé cuál es peor.")
-line("r_think", "ruggieri", "One army. Two fires. I can go north up the rivers, or south to the highlands. Not both.",
-     "Um exército. Dois fogos. Posso ir para norte pelos rios acima, ou para sul, para o planalto. Não os dois.",
-     "Un ejército. Dos fuegos. Puedo ir al norte río arriba, o al sur, al altiplano. No a los dos.")
+line("t_counsel2", "tomasz", "But the city grows while it waits, and machines do not sleep. I do not know which is worse.",
+     "Mas a cidade cresce enquanto espera, e as máquinas não dormem. Não sei qual é pior.", "Pero la ciudad crece mientras espera, y las máquinas no duermen. No sé cuál es peor.")
+line("r_think", "ruggieri", "I have one army, Father. North up the rivers, or south to the highlands. I cannot march both ways.",
+     "Tenho um só exército, Padre. Para norte pelos rios acima, ou para sul, para o planalto. Não posso marchar para os dois lados.",
+     "Tengo un solo ejército, padre. Al norte río arriba, o al sur, al altiplano. No puedo marchar hacia los dos lados.")
 line("k_frame", "king", "Here I stop. I will tell you what we chose. First, tell me what you would choose.",
      "Aqui paro. Vou dizer-te o que escolhemos. Primeiro, diz-me o que escolherias tu.",
      "Aquí me detengo. Te diré lo que elegimos. Primero, dime qué elegirías tú.")
@@ -522,21 +522,21 @@ line("f_lost", "fortn", "Dawn. The fort still stands.", "Amanhece. O forte conti
 # ---- the endings
 line("t_end1", "tomasz", "We left the fort at noon, with the road's people behind its walls.", "Deixámos o forte ao meio-dia, com o povo da estrada atrás das suas muralhas.",
      "Dejamos el fuerte a mediodía, con el pueblo del camino tras sus muros.")
-line("t_end_many", "tomasz", "Most of them had come in. I counted twice to be sure.", "A maior parte tinha entrado. Contei duas vezes para ter a certeza.",
-     "La mayoría había entrado. Conté dos veces para estar seguro.")
+line("t_end_many", "tomasz", "Most of them had come in. The fort's cook and I gave out bread at the gate until it was dark.", "A maior parte tinha entrado. O cozinheiro do forte e eu distribuímos pão no portão até escurecer.",
+     "La mayoría había entrado. El cocinero del fuerte y yo repartimos pan en la puerta hasta que oscureció.")
 line("t_end_some", "tomasz", "Some of them had come in. I said the others' names at Mass.", "Alguns tinham entrado. Disse os nomes dos outros na Missa.",
      "Algunos habían entrado. Dije los nombres de los otros en la Misa.")
-line("t_end_few", "tomasz", "Few of them had come in. I have their villages' names still.", "Poucos tinham entrado. Ainda tenho os nomes das aldeias deles.",
-     "Pocos habían entrado. Todavía tengo los nombres de sus aldeas.")
+line("t_end_few", "tomasz", "Few of them had come in. I wrote down the names of their villages in my breviary, to pray for them by name.", "Poucos tinham entrado. Escrevi os nomes das aldeias deles no breviário, para rezar por elas pelo nome.",
+     "Pocos habían entrado. Escribí los nombres de sus aldeas en mi breviario, para rezar por ellas por su nombre.")
 line("t_end_brood", "tomasz", "We went north, up the rivers, to the swarm.", "Fomos para norte, rio acima, ao encontro do enxame.", "Fuimos al norte, río arriba, al encuentro del enjambre.")
 line("t_end_clock", "tomasz", "We went south, to the highlands, to the city.", "Fomos para sul, para o planalto, ao encontro da cidade.", "Fuimos al sur, al altiplano, al encuentro de la ciudad.")
-line("k_end1", "king", "One army, two fires. You chose, and the army went.", "Um exército, dois fogos. Escolheste, e o exército foi.", "Un ejército, dos fuegos. Elegiste, y el ejército fue.")
+line("k_end1", "king", "You chose, and the army marched.", "Escolheste, e o exército marchou.", "Elegiste, y el ejército marchó.")
 line("k_end_brood", "king", "Up the rivers it went. The city waited in the highlands, and grew.", "Foi rio acima. A cidade esperou no planalto, e cresceu.",
      "Fue río arriba. La ciudad esperó en el altiplano, y creció.")
 line("k_end_clock", "king", "South it went. The swarm waited on the rivers, and spread.", "Foi para sul. O enxame esperou nos rios, e espalhou-se.",
      "Fue al sur. El enjambre esperó en los ríos, y se extendió.")
-line("k_end2", "king", "That is what a crown is, in the end: choosing which fire burns longer.", "É isso uma coroa, no fim: escolher que fogo arde mais tempo.",
-     "Eso es una corona, al final: elegir qué fuego arde más tiempo.")
+line("k_end2", "king", "Ruggieri wrote to me after, to ask if he had chosen right. I told him the truth: I did not know either.", "O Ruggieri escreveu-me depois, a perguntar se tinha escolhido bem. Disse-lhe a verdade: eu também não sabia.",
+     "Ruggieri me escribió después, para preguntarme si había elegido bien. Le dije la verdad: yo tampoco lo sabía.")
 line("k_end_s", "king", "That is not how it went. The fort stood. Hear it again from Tomasz.", "Não foi assim que aconteceu. O forte ficou de pé. Ouve outra vez da boca de Tomasz.",
      "No fue así como pasó. El fuerte siguió en pie. Óyelo otra vez de boca de Tomasz.")
 

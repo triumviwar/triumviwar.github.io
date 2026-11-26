@@ -6892,7 +6892,7 @@
 		},
 		"h_broken": {
 			"who": "hollweg",
-			"text": "I kept them to learn from them. They had learned more than I had.",
+			"text": "I kept them under sheets to study them. I had not lifted the sheets in a year.",
 			"to": "guild"
 		},
 		"n_valley": {
@@ -6956,7 +6956,7 @@
 		},
 		"n_brake": {
 			"who": "narrator",
-			"text": "Hollweg's hands on the great brake. The spring hums under it like a living thing."
+			"text": "Hollweg's hands on the great brake. The spring hums under it, and the floor shakes with it."
 		},
 		"h_brake": {
 			"who": "hollweg",
@@ -6964,7 +6964,7 @@
 		},
 		"mt_brake": {
 			"who": "matthias",
-			"text": "Pull it, Meister. My father would. A machine that has to be stopped is stopped."
+			"text": "Pull it, Meister. My father would have pulled it without asking anyone."
 		},
 		"mt_brake_lost": {
 			"who": "matthias",
@@ -7072,7 +7072,7 @@
 		},
 		"k_end_stop2": {
 			"who": "king",
-			"text": "It was the first thing he ever stopped. It was the road that brought him to my palace."
+			"text": "That brake was the first thing of his he ever stopped. The road from it ended at my fire."
 		},
 		"k_end_run": {
 			"who": "king",
@@ -7080,7 +7080,7 @@
 		},
 		"k_end_run2": {
 			"who": "king",
-			"text": "No machine may govern itself, Rome said. His governed him. He did not know it for years."
+			"text": "Rome had ruled that no machine may govern itself. From that night his machines governed him, and he did not see it for years."
 		},
 		"k_end_m": {
 			"who": "king",
@@ -7088,7 +7088,7 @@
 		},
 		"k_end_ml": {
 			"who": "king",
-			"text": "Hollweg reached his brake that morning. It changed nothing that mattered: the city had all the nights it wanted."
+			"text": "Hollweg reached his brake that morning, too late. The hall was already red."
 		},
 		"new_owl_morph": {
 			"who": "new",

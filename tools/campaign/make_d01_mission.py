@@ -409,9 +409,9 @@ def line(lid, who, en, pt, es, to=None):
 
 CR, CO = "crown", "conspiracy"
 # ---- the opening (the King, then Tomasz; the old Cardinal one line)
-line("k_open1", "king", "After Rome I sent Tomasz to Brazil. He asked to go. He said the fire would come there next, and he wanted to be standing in it.",
-     "Depois de Roma mandei o Tomasz para o Brasil. Ele pediu para ir. Disse que o fogo chegaria lá a seguir, e queria estar no meio dele.",
-     "Después de Roma envié a Tomasz a Brasil. Él pidió ir. Dijo que el fuego llegaría allí después, y quería estar en medio.")
+line("k_open1", "king", "After Rome, Tomasz asked to be sent to Brazil. He said the fire would go there next. He was right, as he usually was, and I let him go.",
+     "Depois de Roma, o Tomasz pediu para ser mandado para o Brasil. Disse que o fogo iria para lá a seguir. Tinha razão, como quase sempre, e eu deixei-o ir.",
+     "Después de Roma, Tomasz pidió que lo enviaran a Brasil. Dijo que el fuego iría allí después. Tenía razón, como casi siempre, y lo dejé ir.")
 line("k_open2", "king", "The gold of the mines paid for my armies. In Vila Rica, the men who dug it had been told that it paid only for my chains.",
      "O ouro das minas pagava os meus exércitos. Em Vila Rica, aos homens que o cavavam tinham dito que pagava só as minhas correntes.",
      "El oro de las minas pagaba mis ejércitos. En Vila Rica, a los hombres que lo cavaban les habían dicho que pagaba solo mis cadenas.")
@@ -421,9 +421,9 @@ line("c_open", "cardinal", "I was thirty, and I thought I had learnt everything 
 line("t_open1", "tomasz", "Vila Rica sits on two hills and a ridge, with a church on every height and gold in every stream. The day I came, the derrama was to be read on the square.",
      "Vila Rica assenta em duas colinas e num espigão, com uma igreja em cada alto e ouro em cada ribeiro. No dia em que cheguei, a derrama ia ser lida na praça.",
      "Vila Rica se asienta en dos colinas y una cresta, con una iglesia en cada altura y oro en cada arroyo. El día que llegué, la derrama iba a leerse en la plaza.")
-line("t_open2", "tomasz", "The derrama: the gold the town still owed the Crown, collected house by house in one day. Nobody in the mines had a kind word for it, and some had a plan.",
-     "A derrama: o ouro que a vila ainda devia à Coroa, cobrado casa a casa num só dia. Ninguém nas minas tinha uma palavra boa para ela, e alguns tinham um plano.",
-     "La derrama: el oro que el pueblo aún debía a la Corona, cobrado casa por casa en un solo día. Nadie en las minas tenía una palabra buena para ella, y algunos tenían un plan.")
+line("t_open2", "tomasz", "The derrama: the gold the town still owed the Crown, collected house by house in one day. I heard it cursed in three languages before I had found my lodging.",
+     "A derrama: o ouro que a vila ainda devia à Coroa, cobrado casa a casa num só dia. Ouvi-a amaldiçoada em três línguas antes de ter encontrado onde dormir.",
+     "La derrama: el oro que la villa aún debía a la Corona, cobrado casa por casa en un solo día. La oí maldecir en tres lenguas antes de haber encontrado dónde dormir.")
 line("t_open_saved", "tomasz", "I had seen what Virginia's families became when someone stood by them. I meant to stand by these.",
      "Eu vira o que as famílias da Virgínia se tornaram quando alguém ficou ao lado delas. Queria ficar ao lado destas.",
      "Había visto en qué se convirtieron las familias de Virginia cuando alguien se quedó a su lado. Quería quedarme al lado de estas.")
@@ -440,9 +440,9 @@ line("n_derrama", "narrator", "On the square the Crown's officer reads the decre
 line("m_1", "meneses", "Father, I have fourteen muskets and four horses for a town of thirty thousand. If they rise, I hold the Foundry House and nothing else.",
      "Padre, tenho catorze mosquetes e quatro cavalos para uma vila de trinta mil. Se se levantarem, seguro a Casa de Fundição e mais nada.",
      "Padre, tengo catorce mosquetes y cuatro caballos para un pueblo de treinta mil. Si se alzan, defiendo la Casa de Fundición y nada más.", CR)
-line("t_1", "tomasz", "Then let us see that they do not rise, Captain. I will go to the churches. Every quarter has one, and every church has its people.",
-     "Então vejamos que não se levantem, Capitão. Eu vou às igrejas. Cada bairro tem uma, e cada igreja tem o seu povo.",
-     "Entonces veamos que no se alcen, capitán. Iré a las iglesias. Cada barrio tiene una, y cada iglesia tiene su gente.", CR)
+line("t_1", "tomasz", "Then let us keep them from rising, Captain. I will go round the churches. Every quarter has its own, and every church its brotherhood.",
+     "Então não os deixemos levantar-se, Capitão. Eu vou correr as igrejas. Cada bairro tem a sua, e cada igreja a sua irmandade.",
+     "Entonces impidamos que se levanten, capitán. Yo recorreré las iglesias. Cada barrio tiene la suya, y cada iglesia su cofradía.", CR)
 line("m_tip1", "meneses", "And the Assembly's men are somewhere in those houses, with powder. My men will knock on doors. Stand a man at a door and we will know what is behind it.",
      "E os homens da Assembleia estão algures naquelas casas, com pólvora. Os meus homens vão bater às portas. Ponha um homem a uma porta e saberemos o que há por trás dela.",
      "Y los hombres de la Asamblea están en algún lugar de esas casas, con pólvora. Mis hombres llamarán a las puertas. Pon a un hombre a una puerta y sabremos qué hay detrás.", CR)
@@ -485,9 +485,9 @@ for q, (en, pt, es) in {
 }.items():
     line("t_calm_" + q, "tomasz", en, pt, es, CR)
 line("n_calmed", "narrator", "The quarter is calm. Its temper falls.", "O bairro está calmo. O seu ânimo baixa.", "El barrio está en calma. Su ánimo baja.", CR)
-line("t_calm_all", "tomasz", "Four churches, four sermons, and my voice nearly gone. The town was quiet. Quiet is not the same as at peace.",
-     "Quatro igrejas, quatro sermões, e a voz quase perdida. A vila estava calma. Calma não é o mesmo que em paz.",
-     "Cuatro iglesias, cuatro sermones, y la voz casi perdida. El pueblo estaba tranquilo. Tranquilo no es lo mismo que en paz.", CR)
+line("t_calm_all", "tomasz", "Four churches, four sermons, and by the last one my voice was a croak. The town was quiet. The Captain said that was what worried him.",
+     "Quatro igrejas, quatro sermões, e no último a minha voz era um grasnido. A vila estava calma. O Capitão disse que era isso que o preocupava.",
+     "Cuatro iglesias, cuatro sermones, y en el último mi voz era un graznido. La villa estaba tranquila. El capitán dijo que eso era lo que le preocupaba.", CR)
 line("t_calm_hint", "tomasz", "A woman of the Rosário came to me after the rosary. Strangers carry powder into a house with its shutters always closed. I sent word to the Captain.",
      "Uma mulher do Rosário veio ter comigo depois do terço. Uns estranhos levam pólvora para uma casa de janelas sempre fechadas. Mandei recado ao Capitão.",
      "Una mujer del Rosario vino a verme después del rosario. Unos extraños llevan pólvora a una casa de contraventanas siempre cerradas. Mandé aviso al capitán.", CR)
@@ -506,20 +506,20 @@ line("n_temper10", "narrator", "Shutters close along the Rua Direita. Men gather
      "Se cierran contraventanas a lo largo de la Rua Direita. Los hombres se juntan en las fuentes y callan cuando pasan los soldados.", CR)
 line("n_temper15", "narrator", "Stones fly at the tax collectors in the lower town. Vila Rica is close to rising.",
      "Voam pedras contra os cobradores na cidade baixa. Vila Rica está perto de se levantar.", "Vuelan piedras contra los recaudadores en la ciudad baja. Vila Rica está a punto de alzarse.", CR)
-line("m_temper15", "meneses", "Father, they are close to the edge. Stop the runners, or speak to them, or we lose the town.",
-     "Padre, estão à beira. Pare os mensageiros, ou fale com eles, ou perdemos a vila.", "Padre, están al borde. Detén a los correos, o háblales, o perdemos el pueblo.", CR)
+line("m_temper15", "meneses", "Father, one more stone and this town goes up. Get to the churches. My riders will see to the runners.",
+     "Padre, mais uma pedra e esta vila rebenta. Vá às igrejas. Os meus cavaleiros tratam dos mensageiros.", "Padre, una piedra más y esta villa estalla. Vaya a las iglesias. Mis jinetes se ocupan de los correos.", CR)
 line("n_risen", "narrator", "Vila Rica rises. The Assembly's flag goes up over the Rosário and the garrison is driven down to the barracks.",
      "Vila Rica levanta-se. A bandeira da Assembleia sobe sobre o Rosário e a guarnição é empurrada para o quartel.",
      "Vila Rica se alza. La bandera de la Asamblea sube sobre el Rosario y la guarnición es empujada hasta el cuartel.")
 line("m_soon", "meneses", "Both of their armouries closed! They know they are found. They will give the signal now, tonight. Get the men in hand.",
      "Os dois arsenais deles fechados! Sabem que foram descobertos. Vão dar o sinal agora, esta noite. Reúna os homens.",
      "¡Sus dos arsenales cerrados! Saben que los han descubierto. Darán la señal ahora, esta noche. Reúne a los hombres.", CR)
-line("t_ledger", "tomasz", "In the second armoury we found a ledger. The muskets had been paid for in coin from the south, from the agents of a guild of clockmakers. Machines paying for a revolution.",
-     "No segundo arsenal encontrámos um livro de contas. Os mosquetes tinham sido pagos em moeda do sul, pelos agentes de uma guilda de relojoeiros. Máquinas a pagar uma revolução.",
-     "En el segundo arsenal encontramos un libro de cuentas. Los mosquetes se habían pagado con moneda del sur, por los agentes de un gremio de relojeros. Máquinas pagando una revolución.", CR)
-line("t_ledger_d04", "tomasz", "Concórdia, the ledger said. The city of gears on the southern highlands. The guild wanted the Crown's metal, and the Assembly wanted money. They had found each other.",
-     "Concórdia, dizia o livro. A cidade das engrenagens nas terras altas do sul. A guilda queria o metal da Coroa, e a Assembleia queria dinheiro. Tinham-se encontrado.",
-     "Concórdia, decía el libro. La ciudad de los engranajes en las tierras altas del sur. El gremio quería el metal de la Corona, y la Asamblea quería dinero. Se habían encontrado.", CR)
+line("t_ledger", "tomasz", "In the second armoury we found a ledger. The muskets had been paid for in coin from the south, through the agents of a guild of clockmakers. I read the page twice to be sure of it.",
+     "No segundo arsenal encontrámos um livro de contas. Os mosquetes tinham sido pagos com moeda do sul, pelos agentes de uma guilda de relojoeiros. Li a página duas vezes para ter a certeza.",
+     "En el segundo arsenal encontramos un libro de cuentas. Los mosquetes se habían pagado con moneda del sur, por medio de los agentes de un gremio de relojeros. Leí la página dos veces para estar seguro.", CR)
+line("t_ledger_d04", "tomasz", "Concórdia, the ledger said: the clockmakers' city on the southern highlands. Metal went one way and coin came back the other, all entered in a clerk's neat hand.",
+     "Concórdia, dizia o livro: a cidade dos relojoeiros nos planaltos do sul. O metal ia num sentido e a moeda voltava no outro, tudo assente com letra certinha de escrivão.",
+     "Concórdia, decía el libro: la ciudad de los relojeros en las mesetas del sur. El metal iba en un sentido y la moneda volvía en el otro, todo asentado con letra pulcra de escribano.", CR)
 # ---- part 2: the night of the signal
 line("n_signal", "narrator", "Night. A bell rings from the wrong church at the wrong hour: the signal.", "Noite. Um sino toca da igreja errada à hora errada: o sinal.",
      "Noche. Una campana suena desde la iglesia equivocada a la hora equivocada: la señal.")
@@ -536,9 +536,9 @@ line("m_signal_t", "meneses", "Then go and get them back, Father, if you can. My
      "Então vá buscá-los, Padre, se conseguir. Os meus homens seguram as escadas de qualquer maneira.",
      "Entonces vaya a recuperarlos, padre, si puede. Mis hombres defenderán las escaleras de todos modos.", CR)
 line("n_ridge", "narrator", "More of them along the ridge street, from the Pilar.", "Mais deles pela rua do espigão, vindos do Pilar.", "Más de ellos por la calle de la cresta, desde el Pilar.", CR)
-line("t_miners", "tomasz", "I stood in the Rosário's churchyard and rang its own bell, the right bell, and called the brotherhood by name. They came. Not all of them, but they came.",
-     "Fiquei no adro do Rosário e toquei o seu próprio sino, o sino certo, e chamei a irmandade pelo nome. Vieram. Nem todos, mas vieram.",
-     "Me quedé en el atrio del Rosario y toqué su propia campana, la campana correcta, y llamé a la hermandad por su nombre. Vinieron. No todos, pero vinieron.", CR)
+line("t_miners", "tomasz", "I stood in the Rosário's churchyard, rang its own bell at the right hour, and called the brotherhood man by man. Most of them came down.",
+     "Fiquei no adro do Rosário, toquei o sino dele à hora certa e chamei a irmandade homem a homem. A maior parte desceu.",
+     "Me puse en el atrio del Rosario, toqué su propia campana a la hora debida y llamé a la cofradía hombre por hombre. La mayoría bajó.", CR)
 line("n_miners", "narrator", "The miners lower their picks and go home behind the brotherhood's banner.", "Os mineiros baixam as picaretas e vão para casa atrás do estandarte da irmandade.",
      "Los mineros bajan los picos y se van a casa tras el estandarte de la hermandad.", CR)
 line("m_gun", "meneses", "They have a gun up there! They took it from the militia's store. Get the dragoons onto the ridge before it fires on the square.",
@@ -592,9 +592,9 @@ line("r_run", "ramos", "It is lost here. South, to the free city! They will want
 line("m_run", "meneses", "He is running for the hollow beyond the east ford! Catch him before he is across!", "Está a fugir para a depressão além do vau do leste! Apanhem-no antes de atravessar!",
      "¡Huye hacia la hondonada más allá del vado del este! ¡Atrapadlo antes de que cruce!", CR)
 line("r_taken", "ramos", "Do it quickly, then. The mines will remember me.", "Façam-no depressa, então. As minas vão lembrar-se de mim.", "Hacedlo rápido, entonces. Las minas me recordarán.")
-line("t_taken", "tomasz", "He asked me to hear his confession before they took him to the Governor. I did. What he said is between him and God. What he did is between him and the King.",
-     "Pediu-me que ouvisse a sua confissão antes de o levarem ao Governador. Ouvi. O que ele disse fica entre ele e Deus. O que ele fez fica entre ele e o Rei.",
-     "Me pidió que oyera su confesión antes de llevarlo ante el Gobernador. Lo hice. Lo que dijo queda entre él y Dios. Lo que hizo, entre él y el Rey.", CR)
+line("t_taken", "tomasz", "He asked me to hear his confession before they took him to the Governor. I heard it sitting on a cart wheel, with a dragoon standing off out of earshot. That is all I will say of it.",
+     "Pediu-me que o ouvisse em confissão antes de o levarem ao Governador. Ouvi-o sentado na roda de uma carroça, com um dragão afastado onde não pudesse ouvir. É tudo o que direi disso.",
+     "Me pidió que lo oyera en confesión antes de que lo llevaran ante el Gobernador. Lo oí sentado en la rueda de una carreta, con un dragón apartado donde no pudiera oír. Es todo lo que diré de ello.", CR)
 line("n_fled", "narrator", "Ramos is across the ford and gone into the scrub, south.", "O Ramos atravessou o vau e desapareceu no mato, para sul.", "Ramos ha cruzado el vado y se ha perdido en el matorral, al sur.", CR)
 line("m_done", "meneses", "The gold is on the coast road. Vila Rica is the King's.", "O ouro está na estrada da costa. Vila Rica é do Rei.", "El oro está en el camino de la costa. Vila Rica es del Rey.", CR)
 line("n_gold_lost", "narrator", "Not one cart reached the coast. The gold of Vila Rica will buy muskets for the next rising.",
@@ -611,30 +611,30 @@ line("r_v_tip", "ramos", "Our armouries hide among the houses until a soldier kn
 line("t_end1", "tomasz", "The gold went down to the coast and across the sea, and Vila Rica paid its derrama. I stayed a year among the miners.",
      "O ouro desceu à costa e atravessou o mar, e Vila Rica pagou a sua derrama. Fiquei um ano entre os mineiros.",
      "El oro bajó a la costa y cruzó el mar, y Vila Rica pagó su derrama. Me quedé un año entre los mineros.")
-line("t_end_quiet", "tomasz", "The town was quiet after. Not because of the bayonets. Because someone had come to their churches before the bell rang.",
-     "A vila ficou calma depois. Não por causa das baionetas. Porque alguém fora às suas igrejas antes de o sino tocar.",
-     "El pueblo quedó tranquilo después. No por las bayonetas. Porque alguien había ido a sus iglesias antes de que sonara la campana.")
-line("t_end_restless", "tomasz", "The town was quiet after, under the bayonet. I learnt that a quiet bought that way has to be bought again every year.",
-     "A vila ficou calma depois, sob a baioneta. Aprendi que uma calma comprada assim tem de ser comprada outra vez todos os anos.",
-     "El pueblo quedó tranquilo después, bajo la bayoneta. Aprendí que una calma comprada así hay que comprarla otra vez cada año.")
+line("t_end_quiet", "tomasz", "The town stayed quiet after. The brotherhoods remembered who had come to their churches before the bell rang.",
+     "A vila ficou calma depois. As irmandades lembravam-se de quem fora às igrejas delas antes de o sino tocar.",
+     "La villa siguió tranquila después. Las cofradías recordaban quién había ido a sus iglesias antes de que sonara la campana.")
+line("t_end_restless", "tomasz", "The town was quiet after, with a dragoon on every corner. The Captain asked the Governor for more men every year after that, and got them.",
+     "A vila ficou calma depois, com um dragão em cada esquina. Daí em diante o Capitão pediu mais homens ao Governador todos os anos, e teve-os.",
+     "La villa quedó tranquila después, con un dragón en cada esquina. Desde entonces el capitán pidió más hombres al Gobernador cada año, y los tuvo.")
 line("t_end_taken", "tomasz", "Ramos was tried at Vila Rica. I wrote to the King for his life, as I had for Varenne's.",
      "O Ramos foi julgado em Vila Rica. Escrevi ao Rei pela vida dele, como escrevera pela do Varenne.",
      "Ramos fue juzgado en Vila Rica. Escribí al Rey por su vida, como lo había hecho por la de Varenne.")
 line("t_end_fled", "tomasz", "Ramos was never found. Years later I heard his name again, from the south, from the city of gears.",
      "O Ramos nunca foi encontrado. Anos depois ouvi o nome dele outra vez, do sul, da cidade das engrenagens.",
      "A Ramos nunca lo encontraron. Años después oí su nombre otra vez, desde el sur, desde la ciudad de los engranajes.")
-line("t_end2", "tomasz", "In Lyon I had learnt to speak to a crowd. In Minas I learnt to stay with it afterwards.",
-     "Em Lyon aprendera a falar a uma multidão. Em Minas aprendi a ficar com ela depois.",
-     "En Lyon había aprendido a hablar a una multitud. En Minas aprendí a quedarme con ella después.")
+line("t_end2", "tomasz", "I baptised forty children in Vila Rica that year, and buried eleven of the men who had come up those stairs.",
+     "Baptizei quarenta crianças em Vila Rica nesse ano, e enterrei onze dos homens que tinham subido aquelas escadas.",
+     "Bauticé a cuarenta niños en Vila Rica aquel año, y enterré a once de los hombres que habían subido aquellas escaleras.")
 line("k_end1", "king", "I signed Ramos' sentence and Tomasz' letter lay beside it. I commuted it to exile. You may judge whether I learnt from Paris.",
      "Assinei a sentença do Ramos e a carta do Tomasz estava ao lado. Comutei-a em exílio. Julga tu se aprendi com Paris.",
      "Firmé la sentencia de Ramos y la carta de Tomasz estaba al lado. La conmuté en destierro. Juzga tú si aprendí de París.")
-line("k_end_fled", "king", "The gold reached Lisbon. The man who wanted it reached the city of gears. Both kept their appointments with me, later.",
-     "O ouro chegou a Lisboa. O homem que o queria chegou à cidade das engrenagens. Os dois cumpriram os seus encontros comigo, mais tarde.",
-     "El oro llegó a Lisboa. El hombre que lo quería llegó a la ciudad de los engranajes. Los dos acudieron a sus citas conmigo, más tarde.")
-line("k_end2", "king", "The mines stayed mine. I did not lower the tax. Perhaps I should have. Tomasz never said so; he only sent me the names of the dead.",
-     "As minas ficaram minhas. Não baixei o imposto. Talvez devesse. O Tomasz nunca o disse; mandou-me apenas os nomes dos mortos.",
-     "Las minas siguieron siendo mías. No bajé el impuesto. Quizá debí hacerlo. Tomasz nunca lo dijo; solo me envió los nombres de los muertos.")
+line("k_end_fled", "king", "The gold reached Lisbon. Ramos reached the city of gears. I was to hear of both again.",
+     "O ouro chegou a Lisboa. O Ramos chegou à cidade das engrenagens. Eu voltaria a ouvir falar dos dois.",
+     "El oro llegó a Lisboa. Ramos llegó a la ciudad de los engranajes. Yo volvería a oír de los dos.")
+line("k_end2", "king", "The mines stayed mine. I did not lower the tax, and I have wondered since whether I should have. Tomasz never told me. He sent me the names of the dead instead.",
+     "As minas ficaram minhas. Não baixei o imposto, e desde então pergunto-me se devia tê-lo feito. O Tomasz nunca mo disse. Mandou-me antes os nomes dos mortos.",
+     "Las minas siguieron siendo mías. No bajé el impuesto, y desde entonces me pregunto si debí hacerlo. Tomasz nunca me lo dijo. Me envió en cambio los nombres de los muertos.")
 line("c_end", "cardinal", "Three hundred names. I still have the list.", "Trezentos nomes. Ainda tenho a lista.", "Trescientos nombres. Todavía tengo la lista.")
 line("k_end_v", "king", "The Assembly took the Foundry House and proclaimed its republic of the mines. That is not how it went. The gold reached the coast.",
      "A Assembleia tomou a Casa de Fundição e proclamou a sua república das minas. Não foi assim que aconteceu. O ouro chegou à costa.",

@@ -6565,7 +6565,7 @@
 		},
 		"h_open1": {
 			"who": "hollweg",
-			"text": "I called it a rescue. The families had nowhere else. The machines had nowhere at all."
+			"text": "I called it a rescue. The Crown meant to melt our works, and the families had lived off those works for three generations."
 		},
 		"h_open2": {
 			"who": "hollweg",
@@ -6573,7 +6573,7 @@
 		},
 		"k_open_c": {
 			"who": "king",
-			"text": "Father Ferrer rode with the commissary as Rome's witness. He wrote down what he saw. He always did."
+			"text": "Father Ferrer rode with the commissary as Rome's witness. He kept a diary of it in that small Catalan hand of his. I have it still."
 		},
 		"f_open_c": {
 			"who": "ferrer",
@@ -6611,7 +6611,7 @@
 		},
 		"h_draw": {
 			"who": "hollweg",
-			"text": "The drawings are aboard. If they take that cart, they take everything I ever made.",
+			"text": "The drawings are aboard. If they take that cart, they take forty years of my life.",
 			"to": "exodus"
 		},
 		"h_people": {
@@ -6646,7 +6646,7 @@
 		},
 		"h_nojakob": {
 			"who": "hollweg",
-			"text": "Jakob would have known which wheels to leave. Jakob is not here.",
+			"text": "Jakob would have known which wheels to leave behind. I shall have to guess.",
 			"to": "exodus"
 		},
 		"u_warn": {
@@ -6792,7 +6792,7 @@
 		},
 		"h_aboard": {
 			"who": "hollweg",
-			"text": "Cast off. Do not look back. There is nothing behind us now but the Crown.",
+			"text": "Cast off. Mind the ice by the piers.",
 			"to": "exodus"
 		},
 		"n_cast_off": {
@@ -6871,7 +6871,7 @@
 		},
 		"h_end_few": {
 			"who": "hollweg",
-			"text": "Few of the families came. The deck was very quiet."
+			"text": "Few of the families came. There was room on the deck to walk."
 		},
 		"h_end_draw": {
 			"who": "hollweg",
@@ -6887,15 +6887,15 @@
 		},
 		"h_end_manifest": {
 			"who": "hollweg",
-			"text": "The ship's manifest said: machinery, for a mine in the southern highlands of Brazil. That was true. It was my mine."
+			"text": "The ship's manifest said: machinery, for a mine in the southern highlands of Brazil. The clerk at Hamburg did not ask whose mine."
 		},
 		"k_end1": {
 			"who": "king",
-			"text": "He calls it a rescue. I call it what it was. The guild left the Crown that night, and took its families with it."
+			"text": "He calls it a rescue. The law calls it desertion, and so do I. The guild left the Crown that night and took its families with it."
 		},
 		"k_end2": {
 			"who": "king",
-			"text": "I do not blame the families. I blame the man who told them the Crown would melt their children's bread."
+			"text": "I do not blame the families. Someone told them the Crown was coming for their children's bread, and they believed him. It was Hollweg who told them."
 		},
 		"k_end_c": {
 			"who": "king",

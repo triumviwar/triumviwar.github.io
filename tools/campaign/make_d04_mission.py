@@ -387,9 +387,9 @@ line("h_map", "hollweg", "Fly them down the three ways: the cart road west, the 
      "Voem-nos pelos três caminhos: a estrada dos carros a oeste, o trilho dos pinheiros a noroeste, o trilho das fazendas a sul. O que um pássaro viu, a guilda sabe.",
      "Volad por los tres caminos: el camino de los carros al oeste, la senda de los pinos al noroeste, la senda de los ranchos al sur. Lo que un pájaro ha visto, el gremio lo sabe.", GU)
 line("n_mapped", "narrator", "A way up is mapped.", "Um caminho foi mapeado.", "Un camino está cartografiado.", GU)
-line("h_mapped_all", "hollweg", "There. The whole country under one eye. From above, every road is only a gear's tooth.",
-     "Pronto. Toda a terra sob um só olho. Lá de cima, cada estrada é só o dente de uma engrenagem.",
-     "Ya está. Toda la tierra bajo un solo ojo. Desde arriba, cada camino es solo el diente de un engranaje.", GU)
+line("h_mapped_all", "hollweg", "There. The whole country under one eye. Ulrich, have it copied onto the council's table.",
+     "Pronto. Toda a terra sob um só olho. Ulrich, mande copiá-la para a mesa do conselho.",
+     "Ya está. Toda la tierra bajo un solo ojo. Ulrich, que la copien en la mesa del consejo.", GU)
 line("v_1", "varenne", "A city without a lord, Meister. I have heard this sermon before. I preached it, in Virginia and in Paris.",
      "Uma cidade sem senhor, Mestre. Já ouvi este sermão antes. Preguei-o, na Virgínia e em Paris.",
      "Una ciudad sin señor, maestro. Ya he oído este sermón. Lo prediqué, en Virginia y en París.", GU)
@@ -466,9 +466,9 @@ line("m_fear", "morel", "Let the machines teach them, Meister. One lesson tonigh
      "Deixe as máquinas ensiná-los, Mestre. Uma lição esta noite poupa cem depois.",
      "Deja que las máquinas les enseñen, maestro. Una lección esta noche ahorra cien después.", GU)
 line("h_m_fear", "hollweg", "No, Citizen. I have seen the end of that lesson.", "Não, Cidadão. Já vi o fim dessa lição.", "No, ciudadano. Ya he visto el final de esa lección.", GU)
-line("v_fear", "varenne", "Hold, Meister. Hold. A crowd that is not struck goes home in the end. A crowd that is struck never does.",
-     "Aguente, Mestre. Aguente. Uma multidão em que não se bate acaba por ir para casa. Uma multidão em que se bate nunca vai.",
-     "Resiste, maestro. Resiste. Una multitud a la que no se golpea acaba volviendo a casa. Una a la que se golpea, nunca.", GU)
+line("v_fear", "varenne", "Hold, Meister. Hold. I have led crowds like this one. Leave them be and they go home to bed. Shoot one and you will have them for ten years.",
+     "Aguente, Mestre. Aguente. Já conduzi multidões como esta. Deixe-as em paz e vão para casa dormir. Mate um e terá de as aturar dez anos.",
+     "Resiste, maestro. Resiste. He llevado multitudes como esta. Déjalas en paz y se van a casa a dormir. Mata a uno y las tendrás encima diez años.", GU)
 line("u_temper", "ulrich", "The fires are seen from the valley, Meister. Every one makes them angrier.",
      "Os incêndios veem-se do vale, Mestre. Cada um deixa-os mais zangados.", "Los fuegos se ven desde el valle, maestro. Cada uno los enfada más.", GU)
 line("n_anselmo", "narrator", "A priest comes up the road alone, in a black cassock, with a lantern.",
@@ -481,9 +481,9 @@ line("p_2", "anselmo", "Home, all of you. If these men are wrong, God and the Ch
      "A casa, todos. Si estos hombres están equivocados, Dios y la Iglesia los juzgarán, no vuestras antorchas.")
 line("n_home", "narrator", "The people of the valley lower their torches and go down the road behind their priest.",
      "O povo do vale baixa as tochas e desce a estrada atrás do seu padre.", "La gente del valle baja las antorchas y desciende por el camino tras su cura.")
-line("h_anselmo", "hollweg", "He did with one word what all my shields could not do. I wrote that down. I did not understand it until much later.",
-     "Ele fez com uma palavra o que todos os meus escudos não conseguiram. Escrevi isso. Só o compreendi muito mais tarde.",
-     "Hizo con una palabra lo que todos mis escudos no pudieron. Lo escribí. No lo entendí hasta mucho después.")
+line("h_anselmo", "hollweg", "He sent them home with two sentences. My shields had been at it for an hour. I wrote down what he said.",
+     "Mandou-os para casa com duas frases. Os meus escudos andavam naquilo havia uma hora. Escrevi o que ele disse.",
+     "Los mandó a casa con dos frases. Mis escudos llevaban una hora en ello. Escribí lo que dijo.")
 line("n_boil", "narrator", "The valley sees the plateau burning. The bells ring in the town, and the militia saddles at once.",
      "O vale vê o planalto a arder. Os sinos tocam na vila, e a milícia sela os cavalos de imediato.",
      "El valle ve el altiplano ardiendo. Las campanas suenan en el pueblo, y la milicia ensilla enseguida.")
@@ -491,9 +491,9 @@ line("h_boil", "hollweg", "They are coming with muskets now. Into the tower's fi
      "Agora vêm com mosquetes. Para o campo da torre, todos. Aguentamos.", "Ahora vienen con mosquetes. Al campo de la torre, todos. Resistimos.", GU)
 line("n_house_lost", "narrator", "A house of the first quarter has burned down.", "Uma casa do primeiro bairro ardeu por completo.", "Una casa del primer barrio ha ardido entera.", GU)
 # ---- part 3: the crates
-line("n_dawn", "narrator", "Dawn over the highlands, grey and cold. The valley is quiet. Too quiet.",
-     "Amanhecer sobre as terras altas, cinzento e frio. O vale está calmo. Calmo demais.",
-     "Amanecer sobre las tierras altas, gris y frío. El valle está en calma. Demasiado.")
+line("n_dawn", "narrator", "Dawn over the highlands, grey and cold. No smoke rises from the valley's chimneys.",
+     "Amanhecer sobre as terras altas, cinzento e frio. Não sobe fumo das chaminés do vale.",
+     "Amanecer sobre las tierras altas, gris y frío. No sube humo de las chimeneas del valle.")
 line("h_crates1", "hollweg", "The crates. Before anything else today, I want to see the crates. Ulrich, the lantern.",
      "Os caixotes. Antes de tudo hoje, quero ver os caixotes. Ulrich, a lanterna.", "Las cajas. Antes que nada hoy, quiero ver las cajas. Ulrich, el farol.", GU)
 line("u_crates", "ulrich", "The deepest gallery is behind the spoil heaps, Meister, north-east. The seal will know your hand.",
@@ -511,14 +511,14 @@ line("u_plates", "ulrich", "The plates are lying across the gallery floor, Meist
 line("h_plates", "hollweg", "They slid out of the straw. Leave them. They wind whatever stands on them: a gift.",
      "Escorregaram da palha. Deixem-nas. Dão corda a tudo o que estiver em cima delas: um presente.",
      "Se escurrieron de la paja. Dejadlas. Dan cuerda a todo lo que esté encima: un regalo.", GU)
-line("h_jakob", "hollweg", "Jakob would have counted the teeth on those plates. Jakob was in Fürth.",
-     "Jakob teria contado os dentes daquelas placas. Jakob estava em Fürth.", "Jakob habría contado los dientes de esas placas. Jakob estaba en Fürth.", GU)
+line("h_jakob", "hollweg", "Jakob would have counted the teeth on those plates before he let them lie. But Jakob was in Fürth.",
+     "O Jakob teria contado os dentes daquelas placas antes de as deixar ficar. Mas o Jakob estava em Fürth.", "Jakob habría contado los dientes de esas placas antes de dejarlas ahí. Pero Jakob estaba en Fürth.", GU)
 line("u_attack", "ulrich", "Meister! The militia, up all three roads at once! Riders on the ranch track!",
      "Mestre! A milícia, pelas três estradas ao mesmo tempo! Cavaleiros no trilho das fazendas!",
      "¡Maestro! ¡La milicia, por los tres caminos a la vez! ¡Jinetes en la senda de los ranchos!", GU)
 line("a_attack", "arruda", "For the valley, and for God! Burn the tower!", "Pelo vale, e por Deus! Queimem a torre!", "¡Por el valle, y por Dios! ¡Quemad la torre!")
-line("a_attack_p", "arruda", "I gave them your word, clockmaker. The night gave them theirs. Forgive me.",
-     "Dei-lhes a sua palavra, relojoeiro. A noite deu-lhes a deles. Perdoe-me.", "Les di tu palabra, relojero. La noche les dio la suya. Perdóname.")
+line("a_attack_p", "arruda", "I gave them your word, clockmaker. After last night they would not hear it. Forgive me.",
+     "Dei-lhes a sua palavra, relojoeiro. Depois da noite passada não a quiseram ouvir. Perdoe-me.", "Les di tu palabra, relojero. Después de anoche no quisieron oírla. Perdóname.")
 line("h_attack", "hollweg", "These are soldiers. Defend the city. Shields to the front, the Winders behind.",
      "Estes são soldados. Defendam a cidade. Escudos à frente, os Enroladores atrás.", "Estos son soldados. Defended la ciudad. Escudos al frente, los Dadores de cuerda detrás.", GU)
 line("n_path", "narrator", "More of them out of the pines, by the north-west path.", "Mais deles saem dos pinheiros, pelo trilho do noroeste.", "Más salen de los pinos, por la senda del noroeste.", GU)
@@ -526,7 +526,7 @@ line("a_break", "arruda", "Back! Back down the hill! Enough have died for one mo
      "Para trás! Desçam a colina! Já morreram homens que chegue para uma manhã.", "¡Atrás! ¡Colina abajo! Ya han muerto bastantes por una mañana.")
 line("n_break", "narrator", "The militia breaks and goes down the hill. The city stands.", "A milícia quebra e desce a colina. A cidade está de pé.",
      "La milicia se rompe y baja la colina. La ciudad sigue en pie.")
-line("h_concord", "hollweg", "Concord.", "Concórdia.", "Concordia.", GU)
+line("h_concord", "hollweg", "Count our dead, Ulrich. And theirs.", "Conte os nossos mortos, Ulrich. E os deles.", "Cuenta nuestros muertos, Ulrich. Y los suyos.", GU)
 line("h_hurt", "hollweg", "I am hit. Keep them off the tower, never mind me.", "Fui atingido. Afastem-nos da torre, não se preocupem comigo.",
      "Me han dado. Apartadlos de la torre, no os preocupéis por mí.", GU)
 line("n_tower_lost", "narrator", "The Clocktower has fallen. Without it the city is a camp of tents again.",
@@ -545,9 +545,9 @@ line("a_v_tip", "arruda", "The Barracks in the town and the Horse Breeder at the
 line("h_end1", "hollweg", "By the first winter the city had a wall of timber, a council and a name. I sat at the head of the council table and called it concord.",
      "No primeiro inverno a cidade tinha um muro de madeira, um conselho e um nome. Sentei-me à cabeceira da mesa do conselho e chamei-lhe concórdia.",
      "Para el primer invierno la ciudad tenía un muro de madera, un consejo y un nombre. Me senté a la cabecera de la mesa del consejo y lo llamé concordia.")
-line("h_end_parley", "hollweg", "The valley's captain had taken my word down the hill. That word was the best thing I built that year.",
-     "O capitão do vale levara a minha palavra colina abaixo. Essa palavra foi a melhor coisa que construí naquele ano.",
-     "El capitán del valle había llevado mi palabra colina abajo. Esa palabra fue lo mejor que construí aquel año.")
+line("h_end_parley", "hollweg", "The valley's captain had taken my word down the hill, and for a while the valley kept to it.",
+     "O capitão do vale levara a minha palavra colina abaixo, e durante algum tempo o vale cumpriu-a.",
+     "El capitán del valle había llevado mi palabra colina abajo, y durante un tiempo el valle la cumplió.")
 line("h_end_fought", "hollweg", "The valley never forgave us that dawn. Its people crossed themselves when our birds flew over.",
      "O vale nunca nos perdoou aquele amanhecer. O seu povo benzia-se quando os nossos pássaros passavam por cima.",
      "El valle nunca nos perdonó aquel amanecer. Su gente se santiguaba cuando nuestros pájaros pasaban por encima.")
@@ -557,17 +557,17 @@ line("h_end_v", "hollweg", "Varenne spoke for the city's people in the council. 
 line("h_end_m", "hollweg", "Morel spoke for the city's people in the council, and wanted the valley taught. I would not have it. That much I had learned in Rome.",
      "Morel falava pelo povo da cidade no conselho, e queria que o vale fosse ensinado. Eu não o permiti. Isso eu aprendera em Roma.",
      "Morel hablaba por la gente de la ciudad en el consejo, y quería que el valle aprendiera la lección. No lo permití. Eso lo había aprendido en Roma.")
-line("h_end2", "hollweg", "I had learned to hold my machines back from the valley. I had not learned to hold them back from themselves.",
-     "Aprendera a conter as minhas máquinas diante do vale. Não aprendera a contê-las diante de si mesmas.",
-     "Había aprendido a contener mis máquinas ante el valle. No había aprendido a contenerlas ante sí mismas.")
+line("h_end2", "hollweg", "I kept my machines off the valley's people that year. It never crossed my mind that I might need to keep them off my own.",
+     "Naquele ano mantive as minhas máquinas longe da gente do vale. Nunca me passou pela cabeça que talvez tivesse de as manter longe da minha.",
+     "Aquel año mantuve mis máquinas lejos de la gente del valle. Nunca se me pasó por la cabeza que quizá tendría que mantenerlas lejos de la mía.")
 line("k_end1", "king", "The plates in that gallery were not his best work. They were the Perpetual's. He had sent them ahead himself, six years before.",
      "As placas daquela galeria não eram o seu melhor trabalho. Eram do Perpétuo. Ele próprio as mandara à frente, seis anos antes.",
      "Las placas de aquella galería no eran su mejor trabajo. Eran del Perpetuo. Él mismo las había enviado por delante, seis años antes.")
 line("k_end_people", "king", "He had left the pattern in Nuremberg. He had already sent it ahead.",
      "Ele deixara o padrão em Nuremberg. Já o tinha mandado à frente.", "Había dejado el patrón en Núremberg. Ya lo había enviado por delante.")
-line("k_end2", "king", "A priest of the valley stopped a crowd that night with two sentences. Hollweg wrote it down. It took him twenty years to read it.",
-     "Um padre do vale parou uma multidão naquela noite com duas frases. Hollweg escreveu-o. Levou vinte anos a lê-lo.",
-     "Un cura del valle detuvo a una multitud aquella noche con dos frases. Hollweg lo escribió. Tardó veinte años en leerlo.")
+line("k_end2", "king", "A priest of the valley stopped a crowd that night with two sentences. Hollweg wrote them down. He told me, at my fire, that he understood them twenty years later.",
+     "Um padre do vale parou uma multidão naquela noite com duas frases. O Hollweg escreveu-as. Contou-me, à minha lareira, que só as compreendeu vinte anos depois.",
+     "Un cura del valle detuvo a una multitud aquella noche con dos frases. Hollweg las escribió. Me contó, junto a mi fuego, que solo las entendió veinte años después.")
 line("k_end_v", "king", "The valley burned the city's first houses on its first night. That is not how it went. It stood, and grew.",
      "O vale queimou as primeiras casas da cidade na sua primeira noite. Não foi assim que aconteceu. Ela ficou de pé, e cresceu.",
      "El valle quemó las primeras casas de la ciudad en su primera noche. No fue así como ocurrió. Siguió en pie, y creció.")

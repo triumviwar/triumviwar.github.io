@@ -329,9 +329,9 @@ line("l_open1", "lindqvist", "The wet season of 2775. The water came up into the
 line("l_open2", "lindqvist", "I had two breeding Mothers on the island by then. I thought I was a rich man.",
      "Por essa altura eu tinha duas Mães de criação na ilha. Julguei que era um homem rico.",
      "Para entonces tenía dos Madres de cría en la isla. Creí que era un hombre rico.")
-line("l_open_saved", "lindqvist", "The first from the clutch we carried out of the station. I named her Linnea, like her mother. The second bred from her.",
-     "A primeira da ninhada que trouxemos da estação. Dei-lhe o nome de Linnea, como a mãe. A segunda criada a partir dela.",
-     "La primera de la nidada que sacamos de la estación. La llamé Linnea, como a su madre. La segunda criada a partir de ella.")
+line("l_open_saved", "lindqvist", "The first from the clutch we carried out of the station. I named her Linnea, after her dam. The second was bred from her.",
+     "A primeira da ninhada que trouxemos da estação. Dei-lhe o nome de Linnea, como a progenitora. A segunda foi criada a partir dela.",
+     "La primera de la nidada que sacamos de la estación. La llamé Linnea, como a la hembra de la que salió. La segunda fue criada a partir de ella.")
 line("l_open_burned", "lindqvist", "The first netted on the mountain. I named her Linnea, like the one at the station. The second bred from her.",
      "A primeira apanhada na montanha. Dei-lhe o nome de Linnea, como a da estação. A segunda criada a partir dela.",
      "La primera atrapada en la montaña. La llamé Linnea, como la de la estación. La segunda criada a partir de ella.")
@@ -426,8 +426,8 @@ line("n_canoe1", "narrator", "A canoe goes down the river in the dark with one m
 line("n_pieter_lost", "narrator", "Pieter did not reach the canoes.", "Pieter não chegou às canoas.", "Pieter no llegó a las canoas.")
 line("n_house", "narrator", "The big house falls. The island belongs to the Queen.", "A casa-grande cai. A ilha é da Rainha.",
      "La casa grande cae. La isla es de la Reina.")
-line("n_mother_dead", "narrator", "Linnea is dead. Another will root in the big pen.", "Linnea morreu. Outra vai enraizar no curral grande.",
-     "Linnea ha muerto. Otra enraizará en el corral grande.", BR)
+line("n_mother_dead", "narrator", "Your Mother is dead. Another will root in the big pen.", "A tua Mãe morreu. Outra vai enraizar no curral grande.",
+     "Tu Madre ha muerto. Otra enraizará en el corral grande.", BR)
 # ---- the fazenda's (the solo pick) lines
 line("l_f1", "lindqvist", "Torches. We burn the pens before they settle it among themselves. Then the canoes.",
      "Tochas. Queimamos os currais antes que elas o resolvam entre si. Depois as canoas.",
@@ -442,7 +442,7 @@ line("l_f_big", "lindqvist", "The big pen is burning. They will have to settle i
 line("l_f_go", "lindqvist", "Enough. To the canoes, all of you.", "Basta. Para as canoas, todos.", "Basta. A las canoas, todos.", FZ)
 line("p_f_warn", "pieter", "Doctor, the big one in the middle is changing. It is getting bigger.", "Doutor, a grande do meio está a mudar. Está a ficar maior.",
      "Doctor, la grande del medio está cambiando. Se está haciendo más grande.", FZ)
-line("l_f_won", "lindqvist", "Push off, Pieter. Do not look back.", "Empurra, Pieter. Não olhes para trás.", "Empuja, Pieter. No mires atrás.", FZ)
+line("l_f_won", "lindqvist", "Push off, Pieter. Keep to the middle of the channel.", "Empurra, Pieter. Mantém-te a meio do canal.", "Empuja, Pieter. Mantente en medio del canal.", FZ)
 line("l_f_lost", "lindqvist", "Too late. It is growing. Everything on the island is turning to it.", "Tarde demais. Está a crescer. Tudo na ilha se vira para ela.",
      "Demasiado tarde. Está creciendo. Todo en la isla se vuelve hacia ella.")
 # ---- the endings
@@ -462,11 +462,11 @@ line("k_end2", "king", "The Church told him what they were. He still says they e
 line("l_end_f", "lindqvist", "We burned three pens and went down the river at first light. I have the stud book. I burned the rest.",
      "Queimámos três currais e descemos o rio ao primeiro clarão. Tenho o livro de criação. Queimei o resto.",
      "Quemamos tres corrales y bajamos el río con la primera luz. Tengo el libro de cría. Quemé el resto.")
-line("k_end_f", "king", "He told me he burned them. He did not burn enough.", "Ele disse-me que os queimou. Não queimou o bastante.",
-     "Él me dijo que los quemó. No quemó lo bastante.")
+line("k_end_f", "king", "He told me he burned them. He burned three pens and ran for the canoes.", "Ele disse-me que os queimou. Queimou três currais e correu para as canoas.",
+     "Me dijo que los quemó. Quemó tres corrales y corrió a las canoas.")
 line("h_hurt", "lindqvist", "My arm. Pieter, the torch.", "O meu braço. Pieter, a tocha.", "Mi brazo. Pieter, la antorcha.", FZ)
-line("n_guards", "narrator", "The keepers are Assembly men now, paid in sugar and silence.", "Os tratadores são agora homens da Assembleia, pagos em açúcar e silêncio.",
-     "Los cuidadores son ahora hombres de la Asamblea, pagados en azúcar y silencio.")
+line("n_guards", "narrator", "The keepers are Assembly men now, paid in sugar.", "Os tratadores são agora homens da Assembleia, pagos em açúcar.",
+     "Los cuidadores son ahora hombres de la Asamblea, pagados en azúcar.")
 line("n_no_pieter", "narrator", "Pieter is not on the island any more. Two keepers carry the lures on each side.",
      "Pieter já não está na ilha. Dois tratadores levam os engodos de cada lado.", "Pieter ya no está en la isla. Dos cuidadores llevan los señuelos a cada lado.")
 line("n_sire_all", "narrator", "The Tyrant Sire beside her is the young Sire of the plateau's cages, grown.",

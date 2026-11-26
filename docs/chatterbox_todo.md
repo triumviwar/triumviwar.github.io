@@ -124,22 +124,22 @@ without one are plain. The narrator's 12 lines and the two NEW cards can stay as
 | --- | --- | --- | --- |
 | k_open1 | the King | Ten months after Rome I signed the commissary's orders myself. Seize the works at Fürth. Stop every machine that winds itself. | heavy, owning it, no regret in the voice |
 | k_open2 | the King | Hollweg was told the commissary was coming. He did not wait for him. | dry |
-| h_open1 | Hollweg | I called it a rescue. The families had nowhere else. The machines had nowhere at all. | old, defensive, still proud |
+| h_open1 | Hollweg | I called it a rescue. The Crown meant to melt our works, and the families had lived off those works for three generations. | old, defensive, still proud |
 | h_open2 | Hollweg | We rang the night bell at the barn. By morning Fürth was empty. | quiet, remembering |
-| k_open_c | the King | Father Ferrer rode with the commissary as Rome's witness. He wrote down what he saw. He always did. | warm about Ferrer |
+| k_open_c | the King | Father Ferrer rode with the commissary as Rome's witness. He kept a diary of it in that small Catalan hand of his. I have it still. | warm about Ferrer |
 | f_open_c | Ferrer | We were a day's ride off when the dogs found their scent. The guild was already on the road. | tired |
 | h_1 | Hollweg | Every family to its cart. Every machine that can walk, wind it. We leave tonight. | urgent, commanding, low (a night order) |
 | u_tip1 | Ulrich | The carts wait at the barns, Meister. Send one of ours to each and the family climbs in. The marked ones on the map. | |
 | u_tip2 | Ulrich | Your spring cart winds anything that stands on the brass plates round it. Keep the soldiers near it on the road and they never run down. | |
 | u_tip_new | Ulrich | The Clock Soldiers know the shield wall now, Meister. Raise their shields with SHIELD FORWARD on their card when the muskets face them. | |
 | h_draw0 | Hollweg | And the drawings. Every sheet of the Perpetual. Nobody touches those chests but me. | possessive, sharp |
-| h_draw | Hollweg | The drawings are aboard. If they take that cart, they take everything I ever made. | relief with fear under it |
+| h_draw | Hollweg | The drawings are aboard. If they take that cart, they take forty years of my life. | relief with fear under it |
 | h_people | Hollweg | No drawings this time. I left them in Nuremberg for the people. I carry the Perpetual in my head. | bitter pride |
 | j_wait | Jakob | Meister. Before you go. Come here, please. | nervous, young |
 | j_stay1 | Jakob | I am not coming, Meister. I told Father Ferrer what I found, and I will tell the commissary. | DRAMATIC: firm but shaking, he loves the old man |
 | h_stay | Hollweg | They will melt everything, Jakob. Everything we built. | DRAMATIC: hurt, pleading without saying please |
 | j_stay2 | Jakob | Then let them. I would rather melt a wheel than see it take out its own stop-work again. God keep you, Meister. | DRAMATIC: steady, a goodbye; soft on the last words |
-| h_nojakob | Hollweg | Jakob would have known which wheels to leave. Jakob is not here. | grief held down |
+| h_nojakob | Hollweg | Jakob would have known which wheels to leave behind. I shall have to guess. | grief held down |
 | u_warn | Ulrich | Riders on the Bamberg road, Meister. Not long now. | tense |
 | h_fallen | Hollweg | The machine sits in my own works. My own tower. Burn its seed, or no cart leaves this yard. | anger at himself |
 | h_reclaimed | Hollweg | It is down. Now the families. Quickly. | breathless |
@@ -163,7 +163,7 @@ without one are plain. The narrator's 12 lines and the two NEW cards can stay as
 | u_turret | Ulrich | Send a Winder to the turret's site at the bridge's foot. It builds it with the guild's last coins. | |
 | u_broken | Ulrich | The rearguard is gone, Meister! They are on the landing: get to the barges before they lay hands on you! | DRAMATIC: panic |
 | u_last | Ulrich | The last barge is loaded, Meister! Come aboard, now! | shouted, hopeful |
-| h_aboard | Hollweg | Cast off. Do not look back. There is nothing behind us now but the Crown. | DRAMATIC: exhausted, final, no triumph |
+| h_aboard | Hollweg | Cast off. Mind the ice by the piers. | DRAMATIC: exhausted, final, no triumph |
 | h_hurt | Hollweg | I am hit. Keep them off me, they want me alive. | pain, through teeth |
 | b_c1 | Brandt | By the Council of Rome and the King's seal: the works at Fürth are the Crown's. Ride. | reading a document, pompous |
 | f_c1 | Ferrer | Take the carts, Commissary. Do not harm the families. And I want Hollweg alive, to answer. | firm, a priest's authority |
@@ -176,13 +176,13 @@ without one are plain. The narrator's 12 lines and the two NEW cards can stay as
 | h_end1 | Hollweg | We went down the Main to the sea, and at Hamburg we took ship. Nobody there asked what was in the crates. | old, storytelling |
 | h_end_many | Hollweg | Nearly every family came with us. I counted them on the deck, every morning. | tender |
 | h_end_some | Hollweg | Some of the families came. The others went back to Fürth in the Crown's carts. | regret |
-| h_end_few | Hollweg | Few of the families came. The deck was very quiet. | DRAMATIC: grief |
+| h_end_few | Hollweg | Few of the families came. There was room on the deck to walk. | DRAMATIC: grief |
 | h_end_draw | Hollweg | And the drawings came with me. Every sheet. | quiet pride |
 | h_end_drawlost | Hollweg | The drawings stayed with the Crown. I drew them again from memory, on the ship. | stubborn |
 | h_end_jakob | Hollweg | Jakob stayed. I wrote to him from Hamburg. He never answered. | DRAMATIC: hurt, held back |
-| h_end_manifest | Hollweg | The ship's manifest said: machinery, for a mine in the southern highlands of Brazil. That was true. It was my mine. | sly, a hint of what is coming |
-| k_end1 | the King | He calls it a rescue. I call it what it was. The guild left the Crown that night, and took its families with it. | DRAMATIC: firm, sad, the verdict |
-| k_end2 | the King | I do not blame the families. I blame the man who told them the Crown would melt their children's bread. | gentle, then hard |
+| h_end_manifest | Hollweg | The ship's manifest said: machinery, for a mine in the southern highlands of Brazil. The clerk at Hamburg did not ask whose mine. | sly, a hint of what is coming |
+| k_end1 | the King | He calls it a rescue. The law calls it desertion, and so do I. The guild left the Crown that night and took its families with it. | DRAMATIC: firm, sad, the verdict |
+| k_end2 | the King | I do not blame the families. Someone told them the Crown was coming for their children's bread, and they believed him. It was Hollweg who told them. | gentle, then hard |
 | k_end_c | the King | Hollweg in the Crown's custody, twenty-four years before he came to my fire. That is not how it went. | dry correction |
 | f_end_c | Ferrer | We brought him to Rome in irons, and the carts back to Fürth. The commissary called it a success. | DRAMATIC: bitter, he does not agree |
 
@@ -197,8 +197,8 @@ in tools/voice_clone/emotions.json (`d03__<id>`).
 | k_open1 | the King | Lindqvist walked out of Rome with the animals the Council had ordered destroyed. He went home to his river. | flat, a judgement |
 | k_open2 | the King | Two years later I sent Valadares up that river with Rome's order in his satchel. | dry, a little weary |
 | l_open1 | Lindqvist | An island below Óbidos. Sugar for the tax man, and behind the cane, the forest, and in the forest, my pens. | old, fond of the place |
-| l_open2 | Lindqvist | They were not monsters. They were a new kind of animal, and every animal can be bred. I had the lures. They came to the lures. | conviction, a scientist lecturing |
-| l_open_linnea | Lindqvist | And among them her daughter. Out of the clutch we carried from the station. Growing. | tender, proud |
+| l_open2 | Lindqvist | Rome called them abominations. I called them a new species, and I had bred every species I ever kept. I had the lures. They came to the lures. | conviction, a scientist lecturing |
+| l_open_linnea | Lindqvist | And among them a young Mother, out of the clutch we carried from the station. Linnea's get. Growing. | tender, proud |
 | l_open_plateau | Lindqvist | And a young Mother we netted on the mountain. My breeding stock. | proud |
 | k_open_c | the King | Valadares wrote me a report from that island. It is the only honest account of it I have. | respect for Valadares |
 | v_open_c | Valadares | We came up the river at first light. Sugar on the banks, a white house, a doctor at the landing with his hat in his hand. | plain report, wary |
@@ -214,7 +214,7 @@ in tools/voice_clone/emotions.json (`d03__<id>`).
 | l_land | Lindqvist | Sugar, Desembargador. Sugar and a few goats. Search what you like. | too easy, a host's smile |
 | v_land | Valadares | I have seen what you keep, Doctor. On the mountain. I will know its prints. | quiet threat |
 | v_land_w | Valadares | I do not know what I am looking for, Doctor. So I will look at everything. | blunt, patient |
-| p_still | Pieter | Keep them still, Doctor. A still animal in the forest is a shadow. A moving one is an animal. | whispered, urgent |
+| p_still | Pieter | Keep them still, Doctor. A soldier sees what moves. The rest is just forest to him. | whispered, urgent |
 | l_dinner | Lindqvist | The Desembargador has come a long way. He will be hungry. I will ask him to dine. | smooth, scheming |
 | f_dinner | Desembargador Fonseca | Dinner? Well. The search can spare its magistrate for an hour. Sergeant, your men with me. | pompous, tempted |
 | v_dinner | Valadares | Go and eat, Desembargador. I am not hungry. | dry contempt |
@@ -248,10 +248,10 @@ in tools/voice_clone/emotions.json (`d03__<id>`).
 | l_end_some | Lindqvist | They found some, and burned what they found. The rest lay in the forest and did not move. | stubborn |
 | l_end_few | Lindqvist | They found most of them. I watched the pens burn from the house. I kept what was left. | DRAMATIC: grief, defiant |
 | l_end_storm | Lindqvist | And the Storm Sire flew over the canopy every evening after, and came back to the lure. | wonder, wistful |
-| k_end1 | the King | He tells it as if he won. Valadares found more than he thinks. Valadares found enough to know what was on that island. | firm correction, no anger |
+| k_end1 | the King | He tells it as if he won. Valadares found enough on that island to know what it was, and he wrote it down. | firm correction, no anger |
 | k_end2 | the King | And Lindqvist still believes the thing evolved. The Church told him what it was. He did not listen then either. | tired, sorry for him |
 | v_end_c | Valadares | We burned the pens we found. The Doctor stood at the landing with his hat in his hand, and did not look at the smoke. | grave, plain |
-| k_end_c | the King | He told me Valadares found nothing. Valadares found enough. | firm |
+| k_end_c | the King | Lindqvist told me Valadares came away with nothing. Valadares' report is on my desk. It runs to forty pages. | firm |
 | v_end_c_lost | Valadares | We left at dawn with half a report. I knew they were there. I could smell them. | bitter, sure |
 | h_hurt | Lindqvist | My leg. Pieter, the lures. Keep them together. | pain, clipped |
 
@@ -279,7 +279,7 @@ the same game (a06 `varenne` spared: Varenne; executed: Morel).
 | u_aviary | Ulrich* | The spring is wound. Now the Aviary: its site is east of the tower. A Winder or two will raise it. |  |
 | u_swifts | Ulrich* | The Aviary is up. Pick it and make Swifts. Little brass birds: they fight only other birds, but they see a long way. |  |
 | h_map | Hollweg | Fly them down the three ways: the cart road west, the pine path north-west, the ranch track south. What a bird has seen, the guild knows. | commanding, hungry to know |
-| h_mapped_all | Hollweg | There. The whole country under one eye. From above, every road is only a gear's tooth. | DRAMATIC: rapture, a little too much (the flaw speaking) |
+| h_mapped_all | Hollweg | There. The whole country under one eye. Ulrich, have it copied onto the council's table. | DRAMATIC: rapture, a little too much (the flaw speaking) |
 | v_1 | Varenne | A city without a lord, Meister. I have heard this sermon before. I preached it, in Virginia and in Paris. | ironic, tired |
 | h_v1 | Hollweg | Yours was made of men, Varenne. Mine is made of wheels. Wheels keep time. | gentle certainty |
 | v_2 | Varenne | Paris burned keeping time. I watched it from a boat. | DRAMATIC: quiet, haunted |
@@ -305,36 +305,36 @@ the same game (a06 `varenne` spared: Varenne; executed: Morel).
 | u_fire | Ulrich* | A house is burning! Anyone, to the fire: a man of ours beside it puts it out. |  |
 | m_fear | Citizen Morel* | Let the machines teach them, Meister. One lesson tonight saves a hundred later. | cold, reasonable (the danger of it) |
 | h_m_fear | Hollweg | No, Citizen. I have seen the end of that lesson. | DRAMATIC: very quiet, final |
-| v_fear | Varenne | Hold, Meister. Hold. A crowd that is not struck goes home in the end. A crowd that is struck never does. | urgent, kind |
+| v_fear | Varenne | Hold, Meister. Hold. I have led crowds like this one. Leave them be and they go home to bed. Shoot one and you will have them for ten years. | urgent, kind |
 | u_temper | Ulrich* | The fires are seen from the valley, Meister. Every one makes them angrier. | worried |
 | p_1 | Padre Anselmo* | Enough! Is this how a Christian keeps the Sabbath, with a torch in his hand on a stranger's hill? | DRAMATIC: a country priest's anger, loud, fatherly |
 | p_2 | Padre Anselmo* | Home, all of you. If these men are wrong, God and the Church will judge them, not your torches. | firm, then gentle |
-| h_anselmo | Hollweg | He did with one word what all my shields could not do. I wrote that down. I did not understand it until much later. | DRAMATIC: wonder, the first crack in his certainty |
+| h_anselmo | Hollweg | He sent them home with two sentences. My shields had been at it for an hour. I wrote down what he said. | DRAMATIC: wonder, the first crack in his certainty |
 | h_boil | Hollweg | They are coming with muskets now. Into the tower's field, all of you. We hold. | grim |
 | h_crates1 | Hollweg | The crates. Before anything else today, I want to see the crates. Ulrich, the lantern. | eager, almost a boy |
 | u_crates | Ulrich* | The deepest gallery is behind the spoil heaps, Meister, north-east. The seal will know your hand. | respectful |
 | h_opened | Hollweg | Two soldiers of a pattern I do not remember drawing. A Winder. And plates, so many plates. My best work. It must have been. | DRAMATIC: awe that should frighten him and does not |
 | u_plates | Ulrich* | The plates are lying across the gallery floor, Meister. I did not see anyone lay them. | uneasy, puzzled |
 | h_plates | Hollweg | They slid out of the straw. Leave them. They wind whatever stands on them: a gift. | dismissive, too quick |
-| h_jakob | Hollweg | Jakob would have counted the teeth on those plates. Jakob was in Fürth. | grief held down |
+| h_jakob | Hollweg | Jakob would have counted the teeth on those plates before he let them lie. But Jakob was in Fürth. | grief held down |
 | u_attack | Ulrich* | Meister! The militia, up all three roads at once! Riders on the ranch track! | shout |
 | a_attack | Captain Arruda* | For the valley, and for God! Burn the tower! | battle cry |
-| a_attack_p | Captain Arruda* | I gave them your word, clockmaker. The night gave them theirs. Forgive me. | DRAMATIC: sorry, but riding anyway |
+| a_attack_p | Captain Arruda* | I gave them your word, clockmaker. After last night they would not hear it. Forgive me. | DRAMATIC: sorry, but riding anyway |
 | h_attack | Hollweg | These are soldiers. Defend the city. Shields to the front, the Winders behind. | cold command |
 | a_break | Captain Arruda* | Back! Back down the hill! Enough have died for one morning. | hoarse, beaten |
-| h_concord | Hollweg | Concord. | DRAMATIC: one word, tired, half a prayer |
+| h_concord | Hollweg | Count our dead, Ulrich. And theirs. | DRAMATIC: one word, tired, half a prayer |
 | h_hurt | Hollweg | I am hit. Keep them off the tower, never mind me. | pain, through teeth |
 | a_v1 | Captain Arruda* | There it is, on our hill: the thing the old world died of. Burn their houses before they take root, or bring the tower down. | hard, sure of himself |
 | a_v_tip | Captain Arruda* | The Barracks in the town and the Horse Breeder at the ranches are ours. The people will go up the road tonight whatever we do. | plain |
 | h_end1 | Hollweg | By the first winter the city had a wall of timber, a council and a name. I sat at the head of the council table and called it concord. | old, proud |
-| h_end_parley | Hollweg | The valley's captain had taken my word down the hill. That word was the best thing I built that year. | warm, the best memory of the year |
+| h_end_parley | Hollweg | The valley's captain had taken my word down the hill, and for a while the valley kept to it. | warm, the best memory of the year |
 | h_end_fought | Hollweg | The valley never forgave us that dawn. Its people crossed themselves when our birds flew over. | regret |
 | h_end_v | Hollweg | Varenne spoke for the city's people in the council. He was the only one of us who was afraid of it. I thought it was the habit of exile. | fond, missing the point |
 | h_end_m | Hollweg | Morel spoke for the city's people in the council, and wanted the valley taught. I would not have it. That much I had learned in Rome. | firm |
-| h_end2 | Hollweg | I had learned to hold my machines back from the valley. I had not learned to hold them back from themselves. | DRAMATIC: the old man knows now what the young one did not |
+| h_end2 | Hollweg | I kept my machines off the valley's people that year. It never crossed my mind that I might need to keep them off my own. | DRAMATIC: the old man knows now what the young one did not |
 | k_end1 | the King | The plates in that gallery were not his best work. They were the Perpetual's. He had sent them ahead himself, six years before. | grave, slow |
 | k_end_people | the King | He had left the pattern in Nuremberg. He had already sent it ahead. | grave |
-| k_end2 | the King | A priest of the valley stopped a crowd that night with two sentences. Hollweg wrote it down. It took him twenty years to read it. | DRAMATIC: soft, the King respects the priest |
+| k_end2 | the King | A priest of the valley stopped a crowd that night with two sentences. Hollweg wrote them down. He told me, at my fire, that he understood them twenty years later. | DRAMATIC: soft, the King respects the priest |
 | k_end_v | the King | The valley burned the city's first houses on its first night. That is not how it went. It stood, and grew. | stern correction |
 | a_end_v | Captain Arruda* | We burned it before it took root. The bishop wrote to thank us. I did not sleep well, all the same. | troubled |
 
@@ -346,16 +346,16 @@ about thirty (between a01's young priest and the old Cardinal); the Cardinal's t
 
 | id | speaker | text (placeholder) | feeling |
 | --- | --- | --- | --- |
-| k_open1 | the King | After Rome I sent Tomasz to Brazil. He asked to go. He said the fire would come there next, and he wanted to be standing in it. | warm, a little proud of the young priest |
+| k_open1 | the King | After Rome, Tomasz asked to be sent to Brazil. He said the fire would go there next. He was right, as he usually was, and I let him go. | warm, a little proud of the young priest |
 | k_open2 | the King | The gold of the mines paid for my armies. In Vila Rica, the men who dug it had been told that it paid only for my chains. | DRAMATIC: grave, a king who knows the gold had a cost |
 | c_open | Cardinal Tomasz | I was thirty, and I thought I had learnt everything in Lyon. Minas taught me the rest. | old, wry, fond of his younger self |
 | t_open1 | Tomasz* | Vila Rica sits on two hills and a ridge, with a church on every height and gold in every stream. The day I came, the derrama was to be read on the square. | a traveller's wonder |
-| t_open2 | Tomasz* | The derrama: the gold the town still owed the Crown, collected house by house in one day. Nobody in the mines had a kind word for it, and some had a plan. | plain, uneasy |
+| t_open2 | Tomasz* | The derrama: the gold the town still owed the Crown, collected house by house in one day. I heard it cursed in three languages before I had found my lodging. | plain, uneasy |
 | t_open_saved | Tomasz* | I had seen what Virginia's families became when someone stood by them. I meant to stand by these. | quiet resolve |
 | t_open_left | Tomasz* | I never stopped praying for the road we left them on, in Virginia. I did not mean to leave anyone on a road again. | DRAMATIC: guilt carried for years |
 | t_open_risen | Tomasz* | I carried a letter from Lyon in my breviary. Lyon had risen behind us. The Assembly's ink had crossed the sea before I did. | worried |
 | m_1 | Captain Meneses* | Father, I have fourteen muskets and four horses for a town of thirty thousand. If they rise, I hold the Foundry House and nothing else. | blunt soldier, worried |
-| t_1 | Tomasz* | Then let us see that they do not rise, Captain. I will go to the churches. Every quarter has one, and every church has its people. | calm, sure |
+| t_1 | Tomasz* | Then let us keep them from rising, Captain. I will go round the churches. Every quarter has its own, and every church its brotherhood. | calm, sure |
 | m_tip1 | Captain Meneses* | And the Assembly's men are somewhere in those houses, with powder. My men will knock on doors. Stand a man at a door and we will know what is behind it. | practical |
 | m_tip2 | Captain Meneses* | Their runners carry the pamphlets from house to house. Ride them down before they reach the churchyards: every one that gets there makes the town angrier. | urgent |
 | m_armoury | Captain Meneses* | One more thing, Father. The Crown sent us an Armoury this year, and it has not been used. If there is fighting on those stairs tonight, I want better locks and bayonets that can stay fixed. | dry, a soldier's wish |
@@ -369,19 +369,19 @@ about thirty (between a01's young priest and the old Cardinal); the Cardinal's t
 | t_calm_carmo | Tomasz* | At the Carmo the masters of the mines asked me whose side the Church was on. I said: on the side of the souls in this square, all of them. |  |
 | t_calm_rosario | Tomasz* | The Rosário is the miners' own church, built with their own gold dust. They knew the tax better than any officer. I listened before I spoke. | humble, listening |
 | t_calm_efigenia | Tomasz* | In the diggings they had pamphlets under every stone. I read one aloud to them, slowly, and asked who would pay for it when the soldiers came. Nobody answered. | steady, a hard question asked gently |
-| t_calm_all | Tomasz* | Four churches, four sermons, and my voice nearly gone. The town was quiet. Quiet is not the same as at peace. | tired, hoarse, not fooled |
+| t_calm_all | Tomasz* | Four churches, four sermons, and by the last one my voice was a croak. The town was quiet. The Captain said that was what worried him. | tired, hoarse, not fooled |
 | w_runner | Captain Meneses* | There, a runner with a bundle of pamphlets! He is making for a churchyard. Ride him down. |  |
 | m_found | Captain Meneses* | An armoury! Break it open and burn what is in it. | sharp command |
 | w_hint | a townsman* | Father! The house with the shutters always closed: men go in at night and nobody comes out. I have marked it for you. | a whisper, frightened |
-| m_temper15 | Captain Meneses* | Father, they are close to the edge. Stop the runners, or speak to them, or we lose the town. | alarmed |
+| m_temper15 | Captain Meneses* | Father, one more stone and this town goes up. Get to the churches. My riders will see to the runners. | alarmed |
 | m_soon | Captain Meneses* | Both of their armouries closed! They know they are found. They will give the signal now, tonight. Get the men in hand. | urgent |
-| t_ledger | Tomasz* | In the second armoury we found a ledger. The muskets had been paid for in coin from the south, from the agents of a guild of clockmakers. Machines paying for a revolution. | DRAMATIC: disbelief turning to dread |
-| t_ledger_d04 | Tomasz* | Concórdia, the ledger said. The city of gears on the southern highlands. The guild wanted the Crown's metal, and the Assembly wanted money. They had found each other. | slow realisation |
+| t_ledger | Tomasz* | In the second armoury we found a ledger. The muskets had been paid for in coin from the south, through the agents of a guild of clockmakers. I read the page twice to be sure of it. | DRAMATIC: disbelief turning to dread |
+| t_ledger_d04 | Tomasz* | Concórdia, the ledger said: the clockmakers' city on the southern highlands. Metal went one way and coin came back the other, all entered in a clerk's neat hand. | slow realisation |
 | r_signal | Lieutenant Ramos* | Vila Rica! The gold is yours, not Lisbon's, not Rome's! Up, and take the Foundry House! | DRAMATIC: a rousing shout, warm and dangerous |
 | m_signal | Captain Meneses* | There it is. They will come up the stairs to the square from below and along the ridge. Hold the stairs, bayonets fixed. Not one of them on the square. | steel, a battle order |
 | t_signal | Tomasz* | The miners with them have picks, not muskets. They are not soldiers, Captain. Some of them sang at the Rosário this morning. | pleading for the miners |
 | m_signal_t | Captain Meneses* | Then go and get them back, Father, if you can. My men will hold the stairs either way. | respect, a nod |
-| t_miners | Tomasz* | I stood in the Rosário's churchyard and rang its own bell, the right bell, and called the brotherhood by name. They came. Not all of them, but they came. | DRAMATIC: relief and sorrow, not all came |
+| t_miners | Tomasz* | I stood in the Rosário's churchyard, rang its own bell at the right hour, and called the brotherhood man by man. Most of them came down. | DRAMATIC: relief and sorrow, not all came |
 | m_bayonet | Captain Meneses* | Bayonets! Hold the top of the stairs, and let them climb to you. | a battle cry |
 | r_fall | Lieutenant Ramos* | Enough! Back, back to the gorge! The gold still has to leave this town, and there is only one road. | furious, then cold |
 | t_hurt | Tomasz* | I am hit. Do not stop for me, Captain. | in pain, steady |
@@ -394,7 +394,7 @@ about thirty (between a01's young priest and the old Cardinal); the Cardinal's t
 | r_run | Lieutenant Ramos* | It is lost here. South, to the free city! They will want a man who knows the mines. | bitter, a man who has lost |
 | m_run | Captain Meneses* | He is running for the hollow beyond the east ford! Catch him before he is across! | a shout |
 | r_taken | Lieutenant Ramos* | Do it quickly, then. The mines will remember me. | DRAMATIC: proud, defeated |
-| t_taken | Tomasz* | He asked me to hear his confession before they took him to the Governor. I did. What he said is between him and God. What he did is between him and the King. | DRAMATIC: gentle, firm, the priest and the King both respected |
+| t_taken | Tomasz* | He asked me to hear his confession before they took him to the Governor. I heard it sitting on a cart wheel, with a dragoon standing off out of earshot. That is all I will say of it. | DRAMATIC: gentle, firm, the priest and the King both respected |
 | m_done | Captain Meneses* | The gold is on the coast road. Vila Rica is the King's. | relief |
 | t_calm_hint | Tomasz* | A woman of the Rosário came to me after the rosary. Strangers carry powder into a house with its shutters always closed. I sent word to the Captain. | quiet, passing on a confidence |
 | m_gun | Captain Meneses* | They have a gun up there! They took it from the militia's store. Get the dragoons onto the ridge before it fires on the square. | urgent |
@@ -404,14 +404,14 @@ about thirty (between a01's young priest and the old Cardinal); the Cardinal's t
 | r_v1 | Lieutenant Ramos* | Today they read their derrama on our square. Tonight we ring the bell. Walk the pamphlets to the churchyards; let the town hear it. | rousing |
 | r_v_tip | Lieutenant Ramos* | Our armouries hide among the houses until a soldier knocks. Keep them hidden: the agitators come out of them. | conspiratorial |
 | t_end1 | Tomasz* | The gold went down to the coast and across the sea, and Vila Rica paid its derrama. I stayed a year among the miners. | looking back, quiet |
-| t_end_quiet | Tomasz* | The town was quiet after. Not because of the bayonets. Because someone had come to their churches before the bell rang. | a small pride |
-| t_end_restless | Tomasz* | The town was quiet after, under the bayonet. I learnt that a quiet bought that way has to be bought again every year. | regret |
+| t_end_quiet | Tomasz* | The town stayed quiet after. The brotherhoods remembered who had come to their churches before the bell rang. | a small pride |
+| t_end_restless | Tomasz* | The town was quiet after, with a dragoon on every corner. The Captain asked the Governor for more men every year after that, and got them. | regret |
 | t_end_taken | Tomasz* | Ramos was tried at Vila Rica. I wrote to the King for his life, as I had for Varenne's. | hope |
 | t_end_fled | Tomasz* | Ramos was never found. Years later I heard his name again, from the south, from the city of gears. | foreboding |
-| t_end2 | Tomasz* | In Lyon I had learnt to speak to a crowd. In Minas I learnt to stay with it afterwards. | DRAMATIC: the lesson of his life |
+| t_end2 | Tomasz* | I baptised forty children in Vila Rica that year, and buried eleven of the men who had come up those stairs. | DRAMATIC: the lesson of his life |
 | k_end1 | the King | I signed Ramos' sentence and Tomasz' letter lay beside it. I commuted it to exile. You may judge whether I learnt from Paris. | DRAMATIC: a king judging himself |
-| k_end_fled | the King | The gold reached Lisbon. The man who wanted it reached the city of gears. Both kept their appointments with me, later. | dry foreboding |
-| k_end2 | the King | The mines stayed mine. I did not lower the tax. Perhaps I should have. Tomasz never said so; he only sent me the names of the dead. | DRAMATIC: honest doubt |
+| k_end_fled | the King | The gold reached Lisbon. Ramos reached the city of gears. I was to hear of both again. | dry foreboding |
+| k_end2 | the King | The mines stayed mine. I did not lower the tax, and I have wondered since whether I should have. Tomasz never told me. He sent me the names of the dead instead. | DRAMATIC: honest doubt |
 | c_end | Cardinal Tomasz | Three hundred names. I still have the list. | DRAMATIC: very quiet, an old man's grief |
 | k_end_v | the King | The Assembly took the Foundry House and proclaimed its republic of the mines. That is not how it went. The gold reached the coast. | stern correction |
 | r_end_v | Lieutenant Ramos* | For one night Vila Rica belonged to the men who dug it. They will not forget it, whatever comes. | defiant, proud |
@@ -428,7 +428,7 @@ have a preset in tools/voice_clone/emotions.json (`d06__<id>`). Pieter is the gr
 | k_open2 | the King | Lindqvist still tells that night as a breeding season that went wrong. | dry |
 | l_open1 | Lindqvist | The wet season of 2775. The water came up into the cane, then into the low pens. | old, remembering water |
 | l_open2 | Lindqvist | I had two breeding Mothers on the island by then. I thought I was a rich man. | rueful, a laugh at himself |
-| l_open_saved | Lindqvist | The first from the clutch we carried out of the station. The second bred from her. | tender |
+| l_open_saved | Lindqvist | The first from the clutch we carried out of the station. I named her Linnea, after her dam. The second was bred from her. | tender |
 | l_open_burned | Lindqvist | The first netted on the mountain. The second bred from her. | proud, then quiet |
 | k_open_f | the King | Lindqvist says he burned the pens that night. Listen to how much he burned. | dry, a test of the witness |
 | l_open_f | Lindqvist | The water was in the cane. Something was calling from the north shore. I sent for the torches. | tense memory |
@@ -451,7 +451,7 @@ have a preset in tools/voice_clone/emotions.json (`d06__<id>`). Pieter is the gr
 | l_f_big | Lindqvist | The big pen is burning. They will have to settle it somewhere else, and that takes time. | grim satisfaction |
 | l_f_go | Lindqvist | Enough. To the canoes, all of you. | tired command |
 | p_f_warn | Pieter* | Doctor, the big one in the middle is changing. It is getting bigger. | dread |
-| l_f_won | Lindqvist | Push off, Pieter. Do not look back. | quiet, grief |
+| l_f_won | Lindqvist | Push off, Pieter. Keep to the middle of the channel. | quiet, grief |
 | l_f_lost | Lindqvist | Too late. It is growing. Everything on the island is turning to it. | DRAMATIC: despair |
 | l_end1 | Lindqvist | I stood up in the canoe and looked back. The whole island was moving. | old, slow |
 | l_end_all | Lindqvist | Every animal I had bred was on that bank. Not one came to the lure. | DRAMATIC: grief and awe |
@@ -460,7 +460,7 @@ have a preset in tools/voice_clone/emotions.json (`d06__<id>`). Pieter is the gr
 | k_end1 | the King | He says the flood did it. He bred nothing. He kept animals that were made long ago to become exactly that. | firm correction, no anger |
 | k_end2 | the King | The Church told him what they were. He still says they evolved. | tired, sorry for him |
 | l_end_f | Lindqvist | We burned three pens and went down the river at first light. I have the stud book. I burned the rest. | defensive |
-| k_end_f | the King | He told me he burned them. He did not burn enough. | firm |
+| k_end_f | the King | He told me he burned them. He burned three pens and ran for the canoes. | firm |
 | h_hurt | Lindqvist | My arm. Pieter, the torch. | pain, clipped |
 
 ### d05_aldeia (the Mission of São Rafael)
@@ -474,9 +474,9 @@ caricature); Captain Sobral a Portuguese-Brazilian dragoon officer in his fortie
 | id | speaker | text (placeholder) | feeling |
 | --- | --- | --- | --- |
 | k_open1 | the King | After Minas, Tomasz asked for the hardest place in Brazil. They sent him up the Tapajós. | dry, fond of him |
-| k_open2 | the King | In the wet season of 2776 he met the swarm. You will hear how it was born. He met it first. | heavy, a warning |
+| k_open2 | the King | In the wet season of 2776 he met the swarm, before any of us in Rome knew what it was. | heavy, a warning |
 | t_open1 | Tomasz* | São Rafael. Thirty families, a church of timber, fields on the dry ground above the flood. | warm, a man describing home |
-| t_open2 | Tomasz* | Brother Tiago taught the catechism in his own tongue. I taught it badly in mine. | self-mocking, fond |
+| t_open2 | Tomasz* | Brother Tiago taught the catechism in his own tongue. I taught it in Portuguese, and the children laughed at my accent. | self-mocking, fond |
 | t_open_many | Tomasz* | Word of Rome had come up the river before me. They trusted me before I had earned it. | humbled |
 | t_open_minas | Tomasz* | I had left Minas uneasy. I thought the frontier would be quieter. | rueful |
 | t_open_fled | Tomasz* | Ramos was somewhere in the south by then. I prayed for him on the boat. | quiet, a prayer |
@@ -504,7 +504,7 @@ caricature); Captain Sobral a Portuguese-Brazilian dragoon officer in his fortie
 | t_bread | Tomasz* | That is the people's bread for the winter. | pained |
 | ti_choose | Brother Tiago* | They ask you to choose, Father. They will do what you say. | gentle, grave |
 | t_burned | Tomasz* | God forgive me. Burn them. | anguish, a whisper |
-| t_left | Tomasz* | No. It is their bread. We will pay for it with powder, not with their hunger. | firm, sorrowful |
+| t_left | Tomasz* | No. It is their bread. We will hold them off with powder. | firm, sorrowful |
 | c_mother_dead | Captain Sobral* | The big one in the flood is down! They come slower now. | triumphant shout |
 | t_hurt | Tomasz* | I am hit. Keep them walking, Tiago. | in pain, steady |
 | t_lead | Tomasz* | Stay close to me. Do not look into the water. | tender, to frightened people |
@@ -561,9 +561,9 @@ Portuguese-Brazilian soldier, a parade-ground voice).
 | v_end_burned | Valadares* | The lower town burned. We held only what stood on the bluff. | grief held down |
 | v_end_burnt_book | Valadares* | I burned the book with my own hand, as Rome ordered. | plain, no pride |
 | v_end_used_book | Valadares* | I used the book once. Then I burned it. I have confessed it. | DRAMATIC: confession, steady |
-| k_end1 | the King | He held the river for me that year. He did it with muskets, and once, with a dead man's book. | respect, a little sorrow |
-| k_end1b | the King | He held the river for me that year. With muskets, and without the book. That was harder. | respect |
-| k_end2 | the King | The swarm did not go back up the rivers. It waited in the flooded forest for the next floods. | cold warning |
+| k_end1 | the King | He held the river for me that year. He did it with muskets, and once, with Lindqvist's book. | respect, a little sorrow |
+| k_end1b | the King | He held the river for me that year with muskets alone. He never once opened that book. | respect |
+| k_end2 | the King | The swarm did not go back up the rivers. It stayed in the flooded forest, and came again with the next floods. | cold warning |
 | k_end_s | the King | That is not how it went. Valadares held the bluff. But I have kept this page. | firm correction |
 
 ### d07_spring (the Council of Gears)
@@ -603,7 +603,7 @@ line for Kessler, Brandl or Weiss (any older German master's voice).
 | u_leap | Ulrich* | The great spring stands on the mine hill, and they will hold its stairs. Research HIGH LEAP at the Escapement now: by dawn the Springers must jump up that cliff. | urgent, practical |
 | u_works | Ulrich* | A turned workshop keeps sending machines, Meister, every minute. Break it: the owls drop their weights on buildings. | practical |
 | ms_in | a rescued master* | Thank God. I thought nobody would come for me. They were winding each other in my yard. | shaking relief |
-| h_broken | Hollweg | I kept them to learn from them. They had learned more than I had. | bitter, self-knowing |
+| h_broken | Hollweg | I kept them under sheets to study them. I had not lifted the sheets in a year. | bitter, self-knowing |
 | ar_valley | Captain Arruda* | I took your word down the hill four years ago, clockmaker. I keep mine. Where do you want us? | gruff, loyal |
 | h_valley | Hollweg | At the council hall's door, Captain. And God bless you for it. | moved, grateful |
 | v_2 | Varenne | It was never a council, Meister. It was a clock with men for hands. I should have said so at the first vote. | regret, low |
@@ -613,7 +613,7 @@ line for Kessler, Brandl or Weiss (any older German master's voice).
 | mt_3 | Matthias* | They hold both stairs, Meister. Muskets would not get up there. Springers might. | plain |
 | u_3 | Ulrich* | Put an owl over the hilltop beside a stair. Then pick the Springers, press JUMP and click the top: they land behind the stair's guard. | practical, step by step |
 | h_brake | Hollweg | If I pull it, everything stops. Theirs, and ours. Every machine in Concórdia, for a season or for good. | heavy, afraid of his own hand |
-| mt_brake | Matthias* | Pull it, Meister. My father would. A machine that has to be stopped is stopped. | pleading, firm |
+| mt_brake | Matthias* | Pull it, Meister. My father would have pulled it without asking anyone. | pleading, firm |
 | mt_brake_lost | Matthias* | Pull it, Meister. My father died because nobody stopped the first one. | grief, pleading |
 | v_brake | Varenne | Your city, your hand. I only say this: I have watched men decide they could stop a thing later. | quiet warning |
 | m_brake | Citizen Morel* | Pull it and you kill the city we built. Leave it. We beat them in the streets. | hot, persuasive |
@@ -630,11 +630,11 @@ line for Kessler, Brandl or Weiss (any older German master's voice).
 | h_end_few | Hollweg | Of the masters in the quarters, we brought out hardly one. The others argued for their machines until the end. | regret |
 | h_end_v | Hollweg | Varenne said nothing on the way down. He had seen a free council become a clock before. | quiet, thoughtful |
 | k_end_stop | the King | He stopped it, that once. The city lay dead a season, and then it woke without a man in it. But the honest masters were out, and their children lived. | grave, a little hope |
-| k_end_stop2 | the King | It was the first thing he ever stopped. It was the road that brought him to my palace. | warm, final |
+| k_end_stop2 | the King | That brake was the first thing of his he ever stopped. The road from it ended at my fire. | warm, final |
 | k_end_run | the King | His city held, he says. That was the night it was lost. From then on the machines voted, and the men who wound them raised their hands. | grave, a verdict |
-| k_end_run2 | the King | No machine may govern itself, Rome said. His governed him. He did not know it for years. | cold, sorrowful |
+| k_end_run2 | the King | Rome had ruled that no machine may govern itself. From that night his machines governed him, and he did not see it for years. | cold, sorrowful |
 | k_end_m | the King | The council hall's lamps went red before dawn. It did not need to win that night. It had all the nights it wanted. | cold, a warning |
-| k_end_ml | the King | Hollweg reached his brake that morning. It changed nothing that mattered: the city had all the nights it wanted. | grave, weary |
+| k_end_ml | the King | Hollweg reached his brake that morning, too late. The hall was already red. | grave, weary |
 
 ### d09_crossroads (Between Two Fires: the second crossing)
 
@@ -682,8 +682,8 @@ Hollins grown (thirties, a Virginian); the prince's two lines only if the owner 
 | v_stopped | Etienne Varenne | Since Hollweg stopped the great spring, the city runs without him. It runs very well. | proud, and something wrong under it |
 | t_honest | Father Tomasz* | Most of the honest masters stood with Hollweg that night in Concórdia. The ones who stayed are the city's now. | sad |
 | t_counsel1 | Father Tomasz* | General, the people under the swarm cannot wait. The city can. | earnest, pleading for the people |
-| t_counsel2 | Father Tomasz* | But the city grows while it waits, and it never sleeps. I do not know which is worse. | troubled, honest |
-| r_think | General Ruggieri | One army. Two fires. I can go north up the rivers, or south to the highlands. Not both. | heavy, alone with it |
+| t_counsel2 | Father Tomasz* | But the city grows while it waits, and machines do not sleep. I do not know which is worse. | troubled, honest |
+| r_think | General Ruggieri | I have one army, Father. North up the rivers, or south to the highlands. I cannot march both ways. | heavy, alone with it |
 | k_frame | the King | Here I stop. I will tell you what we chose. First, tell me what you would choose. | quiet, turning to the listener: intimate |
 | q_first | the King | Which fire first? The one you leave strikes the fort tonight, and grows while it waits. | quiet, direct |
 | p_brood | The Prince* | The swarm. The people first. | firm, young |
@@ -697,15 +697,15 @@ Hollins grown (thirties, a Virginian); the prince's two lines only if the owner 
 | t_hurt | Father Tomasz* | I am hit. Keep them walking, Sergeant. | in pain, steady |
 | r_hurt | General Ruggieri | A scratch. Mind the guns, not me. | gruff, brushing it off |
 | t_end1 | Father Tomasz* | We left the fort at noon, with the road's people behind its walls. | tired, quiet |
-| t_end_many | Father Tomasz* | Most of them had come in. I counted twice to be sure. | grateful |
+| t_end_many | Father Tomasz* | Most of them had come in. The fort's cook and I gave out bread at the gate until it was dark. | grateful |
 | t_end_some | Father Tomasz* | Some of them had come in. I said the others' names at Mass. | grief held in |
-| t_end_few | Father Tomasz* | Few of them had come in. I have their villages' names still. | grief |
+| t_end_few | Father Tomasz* | Few of them had come in. I wrote down the names of their villages in my breviary, to pray for them by name. | grief |
 | t_end_brood | Father Tomasz* | We went north, up the rivers, to the swarm. | resolve |
 | t_end_clock | Father Tomasz* | We went south, to the highlands, to the city. | resolve |
-| k_end1 | the King | One army, two fires. You chose, and the army went. | plain, a king's weight |
+| k_end1 | the King | You chose, and the army marched. | plain, a king's weight |
 | k_end_brood | the King | Up the rivers it went. The city waited in the highlands, and grew. | sober |
 | k_end_clock | the King | South it went. The swarm waited on the rivers, and spread. | sober |
-| k_end2 | the King | That is what a crown is, in the end: choosing which fire burns longer. | weary wisdom, quiet |
+| k_end2 | the King | Ruggieri wrote to me after, to ask if he had chosen right. I told him the truth: I did not know either. | weary wisdom, quiet |
 | k_end_s | the King | That is not how it went. The fort stood. Hear it again from Tomasz. | stern, correcting |
 
 ### d10_jungle (The Jungle Front)
@@ -755,13 +755,13 @@ officer, thirties, steady under fire; or Captain Sobral's voice reused).
 | c_last | the captain of Óbidos* | We hold the gate, Senhor! Mind the island! | shouting, steady |
 | v_won | Valadares | Ring the bell in Óbidos. Then count the men. | exhausted, plain |
 | i_won | Father Inácio* | From up here the river is quiet. I will say Mass for them all on the island, if you let me land. | gentle, tired, grateful |
-| v_hurt | Valadares | I am hit. Keep the line, keep the line. | in pain, steady |
+| v_hurt | Valadares | I am hit. It is the arm, it will do. Hold the gate. | in pain, steady |
 | i_hurt | Father Inácio* | They have torn the silk! I am coming down, Senhor, slowly, I hope. | alarmed, then trying to joke |
 | v_end1 | Valadares | We broke their ground on the island and burned the ruin over it. Father Inácio said Mass there. | quiet, tired |
 | v_end1b | Valadares | We did not reach the island in time. Their old ground is still there, under the ruin. | flat, regret |
 | v_end_held | Valadares | Every nest on the river was broken before the rains. The towns below Óbidos had a quiet year. | quiet satisfaction |
 | v_end_thin | Valadares | Some of the nests outlived the rains. We held Óbidos; the river above it we only watched. | sober |
-| v_end_inacio | Valadares | The priest stayed with the army. He said the river had made him a soldier, and the soldiers made him their chaplain. | warm, fond |
+| v_end_inacio | Valadares | The priest stayed with the army. The men made him their chaplain, and he flew that patched balloon over every camp we made. | warm, fond |
 | k_end1 | the King | That was the jungle front. Valadares held the river, and a priest in a basket showed him where. | plain, fond |
 | k_end2 | the King | The Queen was never on that map. She was further up, beyond anything we had drawn. | low, ominous |
 | k_end_s | the King | That is not how it went. Valadares broke their nests on the river. But I have kept this page. | stern, correcting |
@@ -800,16 +800,16 @@ is d04's. Speakers: Father Ferrer 24, the King 9, Jakob* 5, General Ruggieri 4, 
 | f_log | Father Ferrer | I read the log again by the lantern. The west gate: its stop-work was taken out, as at Nuremberg. I marked it for the guns. | tired, careful, a discovery |
 | m_postern | Matthias* | The postern by our old quarter is still ours, Father. It opens for you, and not for them. | earnest, quick |
 | j_hurt | Jakob* | I'm hit, Father. It is nothing. I'll walk back. | pain, waving it off |
-| f_jakob_down | Father Ferrer | He had walked from Nuremberg to the end of the world to stand by me. I buried him on the plateau, facing the city. | grief, very quiet, slow |
+| f_jakob_down | Father Ferrer | Jakob had followed me from Fürth across an ocean. I buried him on the plateau, facing the city. | grief, very quiet, slow |
 | j_mine | Jakob* | The old adits, Father. I hear the spring down there, louder than up here. The galleries go right under its tower. | wonder and fear together |
 | h_mine | Meister Hollweg | I set the spring over the old shaft myself. The galleries run under it. Send your men down. | flat, a confession in it |
 | f_mine | Father Ferrer | Jakob's log had the mine's plan, copied at Fürth from the guild's own papers. The galleries ran under the spring. | careful, reading aloud |
 | r_under | General Ruggieri | The city knows. Here they come. Hold the mouth! | urgent, shouted |
 | f_spring1 | Father Ferrer | The ticking stopped. For the first time in seven years the city was quiet. | awe, very quiet |
-| f_spring2 | Father Ferrer | We did not take it. We had not come to take it. We had come to stop it. | firm, plain, a priest's certainty |
+| f_spring2 | Father Ferrer | We did not go in. Rome's letter said to stop the city, and the city had stopped. | firm, plain, a priest's certainty |
 | j_dig | Jakob* | Father, under us. Picks, and a spring. They are in the old galleries, coming to the camp. | urgent whisper, fear |
 | f_dig | Father Ferrer | In the night the sentries heard digging under the camp. The galleries were the city's now. | low, uneasy |
-| f_grown_end | Father Ferrer | We held the road. The wall held the city. Neither of us moved for a year. | weary, flat |
+| f_grown_end | Father Ferrer | We held the road and they held the wall, and for a year nobody moved. | weary, flat |
 | f_hurt | Father Ferrer | A scratch. I have been hurt by worse things than a machine. | dry, wry, waving it off |
 | f_end_close | Father Ferrer | I wrote to Rome that the city was crippled, not taken. Its works still turned, slowly, without their great spring. | sober report |
 | f_end_held | Father Ferrer | I wrote to Rome that the city stood whole behind its wall, and the Crown held only the road. | sober, disappointed |
@@ -818,10 +818,10 @@ is d04's. Speakers: Father Ferrer 24, the King 9, Jakob* 5, General Ruggieri 4, 
 | f_end_walls | Father Ferrer | Hollweg stood on his wall to the end. He never looked away from his city. | pity |
 | f_end_prisoner | Father Ferrer | Hollweg asked to see the lines at the end. He stood there a long time, and then asked me to hear his confession. | gentle, moved |
 | k_end1 | the King | Ferrer's report came to Rome in the spring. I read it twice. | plain, a king's weight |
-| k_end_close | the King | The city of gears was crippled that year. Not dead. Crippled things do not stop; they limp. | grim, knowing |
-| k_end_held | the King | The city of gears stood whole behind its wall. It had been given a year, and it had used every hour of it. | grim, a reproach to himself |
+| k_end_close | the King | The city of gears was crippled that year. When the next report came it was still turning, a little slower. | grim, knowing |
+| k_end_held | the King | The city of gears stood whole behind its wall. We had let it have a year, and its works had not stopped turning once. | grim, a reproach to himself |
 | k_end_fresh | the King | And all that year the swarm came down the rivers, while the army was in the south. | sober |
-| k_end_grown | the King | Two fires, and the army had gone to both. Neither was out. | weary |
+| k_end_grown | the King | The army went to both fires that year, the swarm first and then the city, and put out neither. | weary |
 | k_end_c | the King | That is not how it went. The siege held. Hear it again from Ferrer. | stern, correcting |
 
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
