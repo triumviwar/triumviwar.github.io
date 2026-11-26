@@ -17,11 +17,15 @@ extends RefCounted
 ## lost (under LOST_K of what went out, or a bigger enemy force on what is left), when a force it can't leave hits home, or
 ## when no enemy building is left (the hunt's rule takes over). No unit or balance number changes.
 ##
-## Clearly ahead (looked at every LOOK s from FROM, Normal and up, not in story missions):
-##   "edge": our fighters worth MIN_ARMY+ and EDGE (the Brood: EDGE_BROOD) times the enemy army seen in the last two
-##           minutes (AICrownHold.foe_known; the same knowledge every Crown rule uses), with as many halls as the enemy;
-##   "crush": our fighters worth CRUSH times what we have seen of the enemy army (its army near nothing), halls or not;
-##   "cap": at the supply cap (8 short at most) with CAP_EDGE times the enemy seen: the army never sits at home.
+## Clearly ahead (looked at every LOOK s from FROM, Normal and up, not in story missions), against the enemy army it
+## RECKONS (foe_reckoned: what it has seen in the last two minutes, never under the Crown's own clock reckoning; the Brood:
+## seen only, see there):
+##   "edge": our fighters worth MIN_ARMY+ (the Brood: MIN_ARMY_BROOD) and EDGE (EDGE_BROOD) times the enemy army, with as
+##           many halls as the enemy;
+##   "crush": our fighters worth MIN_ARMY+ and CRUSH times the enemy army (its army near nothing), halls or not;
+##   "cap": at the supply cap (CAP_SHORT short at most), CAP_MIN+ and CAP_EDGE times it: the army never sits at home.
+## Measured in 120 games (docs/crown_finish.md): v Clockwork won outright 9 of 20 (4 before), v Brood 4 (2), mirrors
+## decided 10 of 20 (7); on in every matchup.
 ## Switches: `-- cfin:off` plays as before this job; one part off: `cfinedge:off`, `cfincrush:off`, `cfincap:off`
 ## (the triggers), `cfinguard:off` (no guard kept: everyone goes). By matchup: `cfinclock:off`, `cfinbrood:off`,
 ## `cfinmirror:off`.
@@ -78,6 +82,7 @@ var broke := 0
 var on_s := 0.0
 var _broke_seen := {}
 var _broke0 := 0                # broke at this start
+var from_t := -1.0              # (tests) when set, the start time instead of FROM
 
 
 ## (tests) `cfinfrom:<s>` moves FROM.
@@ -176,7 +181,7 @@ func take(army: Array) -> Variant:
 		if not is_instance_valid(u) or u.dead or u.off_field:
 			men.erase(u)
 	if not active:
-		if game.clock < _next or game.clock < _from() or game.clock < _cool_until:
+		if game.clock < _next or game.clock < (from_t if from_t >= 0.0 else _from()) or game.clock < _cool_until:
 			return null
 		_next = game.clock + LOOK
 		var w := _ahead(pool())

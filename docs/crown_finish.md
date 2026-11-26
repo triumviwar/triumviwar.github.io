@@ -207,7 +207,25 @@ until the finisher starts, and again after it stops.
 
 ## The AI tests
 
-TESTS_HERE
+All 45 AI and Crown tests (`tools/test_ai_*.gd`, `tools/test_crown*.gd`) were run twice: with the finisher on and
+with `-- cfin:off`. The results are the same both ways:
+
+| Test | Finisher on | Finisher off | Note |
+|---|---|---|---|
+| test_ai_rush_followup | fails | fails | known before this job |
+| test_ai_wall_vs_rush | fails | fails | known before this job |
+| test_crown_dragoon_raid [plan] | fails | fails | known before this job |
+| test_crown_rider_screen ("no rider stands in front of the muskets") | fails | fails | not the finisher's |
+| test_ai_expand [clockwork] "still earning in the last 60 s" | failed once | passed | passed twice when run again alone; known as flaky |
+| test_crown_stall | failed once | | passed on and off when run again |
+| the other 39 | pass | pass | |
+
+New: `tools/test_crown_finish.gd` (the Crown with 40 Musketeers and 3 guns against a Clockwork with no army: the finisher
+starts on "crush", takes the army, goes for a Clocktower, marches on it, no man of it taken by the harass, and it keeps
+going). ALL PASS.
+
+One study game (mirror, Dune Sea) logged 133 lines of an error from older code, not the finisher's:
+`ai_crown_balloon.gd:1254` (`_count_kills`: "Left operand of 'is' is a previously freed instance").
 
 ## Claude's choices
 
@@ -256,5 +274,6 @@ TESTS_HERE
 - `scripts/ai.gd`: `_finish_take`, `_finish_guard`, the hook at the top of `_army`.
 - `scripts/ai_crown.gd`: `fin`, `fin_active`, `_finish_take`; `_army` skips the Siege push and the Brood press while it is on.
 - `tools/study/crown_finish.py`: the study. Data in `docs/crown_finish/data/`.
+- `tools/test_crown_finish.gd`: the finisher's test.
 - `docs/shots/crown_finish/`: the films' pictures and their finisher lines.
 - Patch note under 0.38.999 (English, Portuguese, Spanish).
