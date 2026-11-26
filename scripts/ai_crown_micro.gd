@@ -41,7 +41,7 @@ const PARTS := ["canister", "focus", "hurt", "riders", "gunpick", "kite", "brace
 ## for a matchup is off there (`-- cmic<name>:on` tries it in every matchup).
 const KEPT_BY := {
 	"brood": ["riders", "brace", "kite", "gunpick"],
-	"clockwork": ["gunpick", "kite", "hurt", "winders"],
+	"clockwork": ["gunpick", "kite", "hurt", "winders", "fieldline"],
 	"crown": ["brace", "gunpick"],
 }
 const KEPT: Array[String] = ["riders", "brace", "kite", "gunpick"]      # (the Brood's: kept for old readers)
