@@ -16,6 +16,14 @@ extends SceneTree
 ##   godot --headless --fixed-fps 30 --path . --script res://tools/battle_lab.gd -- jobs:/abs/jobs.txt out:/abs/rows.jsonl
 ##       [map:dune_sea] [shots:/abs/dir] [debug]
 ##   a job line: <crown comp> <brood comp> <size> <ground> <seed>      e.g.  MCH R1S1 1500 open 2
+##   or (battle-matrix-all, any two factions, mirrors too): <faction A> <comp A> <faction B> <comp B> <size> <ground> <seed>
+##       e.g.  crown MCH clockwork CW 1500 open 2      clockwork KP clockwork Se 600 open 0
+##   Side A is team 0 (the "c_" fields of a row), side B team 1 (the "b_" fields); "score" is side A's share. A five-word
+##   line is the old Crown v Brood line and runs exactly as before (crown = A, brood = B).
+## THE CLOCKWORK (battle-matrix-all): its army goes out as the computer's PUSH (scripts/ai_cw_push.gd: the block, the
+## escort Winders winding and mending, the Ballistas behind, the retreat taken away like any wave's); its flyers attack-move
+## at the enemy. Its home Winders are taken off the map at the start (only the army's own Winders wind it). An army out of
+## its gear ground RUNS DOWN (~80 s): a run-down army is a real result, counted ("wind_down").
 ## Grounds: open   both march at each other on flat open ground
 ##          set    flat open ground; the Crown stands ready (a line two deep, its guns unlimbered behind) and the Brood
 ##                 comes at it: against open this tells the Crown's fighting from the numbers
@@ -66,12 +74,32 @@ const BROOD := {
 	"RSTd": {"raptor": 0.4, "spitter": 0.45, "mist_toad": 0.15},
 	"RSy": {"raptor": 0.5, "spitter": 0.5, "tyrannosaur": 0.0},          # (R1S1 led by the Tyrant Sire, counted at his price)
 }
+## (battle-matrix-all) The Clockwork: Winders (wind and mend: an army without them runs down) are part of a comp's value.
+const CLOCKWORK := {
+	"K": {"clock_soldier": 1.0},                                            # the soldier line, no Winders
+	"KW": {"clock_soldier": 0.85, "winder": 0.15},
+	"KN": {"clock_soldier": 0.6, "netter": 0.25, "winder": 0.15},
+	"KP": {"clock_soldier": 0.5, "pendulum": 0.35, "winder": 0.15},
+	"P": {"pendulum": 0.85, "winder": 0.15},
+	"Sp": {"springer": 0.85, "winder": 0.15},
+	"KSp": {"clock_soldier": 0.45, "springer": 0.4, "winder": 0.15},
+	"KB": {"clock_soldier": 0.5, "ballista": 0.35, "winder": 0.15},
+	"Se": {"brass_serpent": 0.85, "winder": 0.15},
+	"KSe": {"clock_soldier": 0.45, "brass_serpent": 0.4, "winder": 0.15},
+	"O": {"ticking_owl": 0.8, "cuckoo": 0.2},                               # the air: Owls (ground) and Swifts (air)
+	"CW": {"clock_soldier": 0.35, "pendulum": 0.2, "ballista": 0.15, "netter": 0.1, "springer": 0.05, "winder": 0.15},   # (the computer's usual push)
+	"KGW": {"clock_soldier": 0.7, "great_winder": 0.3},                     # the Great Winder instead of Winders
+	"KPN": {"clock_soldier": 0.4, "pendulum": 0.25, "netter": 0.2, "winder": 0.15},
+}
+const COMPS := {"crown": CROWN, "brood": BROOD, "clockwork": CLOCKWORK}
 ## what each side has researched by then
 const TECH := {
-	"early": {"crown": ["bayonet"], "brood": []},
-	"mid": {"crown": ["bayonet", "matchlock", "charge", "charges", "pouch"], "brood": ["nb_pack_hunt", "nb_long_spit"]},
+	"early": {"crown": ["bayonet"], "brood": [], "clockwork": []},
+	"mid": {"crown": ["bayonet", "matchlock", "charge", "charges", "pouch"], "brood": ["nb_pack_hunt", "nb_long_spit"],
+		"clockwork": ["shield_wall", "high_leap"]},
 	"late": {"crown": ["bayonet", "matchlock", "flintlock", "charge", "charges", "pouch", "armour", "quadrant"],
-		"brood": ["nb_pack_hunt", "nb_long_spit", "nb_slither", "nb_battering_horns", "nb_fog", "nb_miasma", "nb_updraft"]},
+		"brood": ["nb_pack_hunt", "nb_long_spit", "nb_slither", "nb_battering_horns", "nb_fog", "nb_miasma", "nb_updraft"],
+		"clockwork": ["shield_wall", "high_leap", "long_chain", "owl_morph"]},
 }
 const FRONT := ["brute", "tyrant_challenger", "raptor", "storm_challenger", "tyrannosaur", "cuirassier", "dragoon", "dismounted", "musketeer"]
 const GUNS := ["cannon", "mortar"]
@@ -80,7 +108,11 @@ const FIGHT_FOR := 180.0
 const APPROACH := 75.0
 const CONTACT := 300.0
 
-const NOT_FIGHTING := ["band", "band_fifer", "band_piper", "missionary"]
+const NOT_FIGHTING := ["band", "band_fifer", "band_piper", "missionary", "winder", "great_winder"]
+const CW_FRONT := ["pendulum", "brass_serpent", "clock_soldier", "springer"]
+const CW_BACK := ["netter", "ballista", "great_winder"]
+const CW_AIR := ["ticking_owl", "cuckoo"]
+var fac := ["crown", "brood"]   # the two sides' factions (team 0 = side A, team 1 = side B)
 var _wide := false         # (ground "set": the Crown's foot in a line two deep)
 var _setup := false        # (ground "block": set by hand in the open field's close block)
 var _orig := {}            # Unit -> [its kind when placed, its value] (a Horseman unhorsed is an Officer, at the Horseman's price)
@@ -125,6 +157,7 @@ func _run() -> void:
 		quit(0)
 		return
 	if args.has("prices"):
+		fac = ["crown", "brood"]
 		await _start(1, "dune_sea")
 		var out := {}
 		for band in TECH:
@@ -136,6 +169,12 @@ func _run() -> void:
 			for k in ["raptor", "spitter", "brute", "tyrant_challenger", "venom_challenger", "storm_challenger", "mist_toad", "tyrannosaur"]:
 				row[k] = price(1, k)
 			out[band] = row
+		fac = ["clockwork", "brood"]
+		await _start(1, "dune_sea")
+		var cw := {}
+		for k in ["winder", "clock_soldier", "springer", "netter", "pendulum", "ballista", "brass_serpent", "great_winder", "cuckoo", "ticking_owl"]:
+			cw[k] = price(0, k)
+		out["clockwork"] = cw
 		print("PRICES " + JSON.stringify(out))
 		quit(0)
 		return
@@ -147,10 +186,17 @@ func _run() -> void:
 			if ln != "" and not ln.begins_with("#"):
 				jobs.append(ln.split(" ", false))
 	else:
-		jobs.append([String(args.get("crown", "MCH")), String(args.get("brood", "R1S1")), String(args.get("size", "1500")),
-			String(args.get("ground", "open")), String(args.get("seed", "0"))])
+		if args.has("fa"):
+			jobs.append([String(args["fa"]), String(args.get("ca", "")), String(args.get("fb", "brood")), String(args.get("cb", "")),
+				String(args.get("size", "1500")), String(args.get("ground", "open")), String(args.get("seed", "0"))])
+		else:
+			jobs.append([String(args.get("crown", "MCH")), String(args.get("brood", "R1S1")), String(args.get("size", "1500")),
+				String(args.get("ground", "open")), String(args.get("seed", "0"))])
 	for j in jobs:
-		var r: Dictionary = await _fight(String(j[0]), String(j[1]), int(j[2]), String(j[3]), int(j[4]))
+		if j.size() == 5:
+			j = ["crown", j[0], "brood", j[1], j[2], j[3], j[4]]         # (the old Crown v Brood line)
+		fac = [String(j[0]), String(j[2])]
+		var r: Dictionary = await _fight(String(j[1]), String(j[3]), int(j[4]), String(j[5]), int(j[6]))
 		print("ROW " + JSON.stringify(r))
 		if _out:
 			_out.store_line(JSON.stringify(r))
@@ -174,8 +220,8 @@ func _start(sd: int, map: String) -> void:
 	await process_frame
 	seed(sd)
 	main.start({"map": map, "seed": 4242, "slots": [
-		{"who": "hard", "faction": "crown", "colour": 0, "side": 0, "strategy": "balanced"},
-		{"who": "hard", "faction": "brood", "colour": 1, "side": 1, "strategy": "balanced"}]})
+		{"who": "hard", "faction": fac[0], "colour": 0, "side": 0, "strategy": "balanced"},
+		{"who": "hard", "faction": fac[1], "colour": 1, "side": 1, "strategy": "balanced"}]})
 	await process_frame
 	await process_frame
 	g = main.game
@@ -239,9 +285,12 @@ func _centre(list: Array, dflt: Vector2) -> Vector2:
 ## The value of one unit of a kind for side t at the game's own prices (see the head of the file).
 func price(t: int, k: String) -> float:
 	var d: Dictionary = Defs.UNITS[k]
-	if t == 1:
+	if fac[t] == "brood":
 		return (float(d["cost"]) + float(d.get("cost2", 0))) / maxf(1.0, float(d.get("spawn", 1)))
-	var p: Array = g.unit_price(0, k)
+	if fac[t] == "clockwork":
+		var q: Array = g.unit_price(t, k)          # (cogs and Tension, one for one)
+		return (float(q[0]) + float(q[1])) / maxf(1.0, float(d.get("spawn", 1)))
+	var p: Array = g.unit_price(t, k)
 	var v := float(p[0]) + float(p[1])
 	if d.get("needs_horse", false) or k in RIDERS:
 		v += float(Defs.UNITS["horse"]["cost"])
@@ -430,13 +479,15 @@ func _block(kinds: Array, n: Dictionary, team: int, at: Vector2, dir: Vector2, l
 		if c <= 0:
 			continue
 		var sp := 34.0 if k in ["brute", "venom_challenger", "mist_toad", "cuirassier", "dragoon", "tyrannosaur"] else 22.0
+		if k in ["pendulum", "ballista", "great_winder", "brass_serpent", "ticking_owl"]:
+			sp = 44.0
 		if k in GUNS:
 			sp = 64.0
 		var cols := maxi(1, int(ceil(sqrt(c * 3.0)))) if not k in GUNS else mini(c, 6)
-		if _wide and team == 0 and k in ["musketeer", "dismounted"]:
+		if _wide and team == 0 and k in ["musketeer", "dismounted", "clock_soldier", "pendulum", "springer", "brass_serpent"]:
 			cols = maxi(1, int(ceil(c / 2.0)))       # (the formed line: two ranks)
-			sp = 24.0
-		var kit: Dictionary = g.kit_all(team, k) if team == 0 else {}
+			sp = maxf(24.0, sp * 0.8)
+		var kit: Dictionary = g.kit_all(team, k) if fac[team] == "crown" else {}
 		for i in c:
 			var row := i / cols
 			var col := i % cols
@@ -450,21 +501,26 @@ func _block(kinds: Array, n: Dictionary, team: int, at: Vector2, dir: Vector2, l
 func _place(team: int, n: Dictionary, at: Vector2, dir: Vector2, lv: int, rng: RandomNumberGenerator) -> Array:
 	var list: Array = []
 	var perp := Vector2(-dir.y, dir.x)
-	if team == 0:
-		var d := _block(["musketeer", "dismounted"], n, 0, at, dir, lv, list, rng, 0.0)
-		d = _block(["band", "band_fifer", "band_piper", "missionary"], n, 0, at, dir, lv, list, rng, d + 10.0)
-		_block(["cannon", "mortar"], n, 0, at, dir, lv, list, rng, d + 40.0)
+	if fac[team] == "clockwork":
+		var d := _block(CW_FRONT, n, team, at, dir, lv, list, rng, 0.0)
+		d = _block(CW_BACK, n, team, at, dir, lv, list, rng, d + 10.0)
+		d = _block(["winder"], n, team, at, dir, lv, list, rng, d + 6.0)
+		_block(CW_AIR, n, team, at, dir, lv, list, rng, d + 20.0)
+	elif fac[team] == "crown":
+		var d := _block(["musketeer", "dismounted"], n, team, at, dir, lv, list, rng, 0.0)
+		d = _block(["band", "band_fifer", "band_piper", "missionary"], n, team, at, dir, lv, list, rng, d + 10.0)
+		_block(["cannon", "mortar"], n, team, at, dir, lv, list, rng, d + 40.0)
 		# the riders on the flanks
 		for k in RIDERS:
 			var c := int(n.get(k, 0))
-			var kit: Dictionary = g.kit_all(0, k)
+			var kit: Dictionary = g.kit_all(team, k)
 			for i in c:
 				var side := 1.0 if i % 2 == 0 else -1.0
 				var p: Vector2 = at + perp * side * (170.0 + float(i / 2 % 4) * 34.0) - dir * (float(i / 8) * 34.0 + 20.0)
-				_add(k, 0, p, lv, list, kit)
+				_add(k, team, p, lv, list, kit)
 	else:
-		var d := _block(["tyrannosaur", "brute", "tyrant_challenger", "storm_challenger", "raptor"], n, 1, at, dir, lv, list, rng, 0.0)
-		_block(["mist_toad", "venom_challenger", "spitter"], n, 1, at, dir, lv, list, rng, d + 10.0)
+		var d := _block(["tyrannosaur", "brute", "tyrant_challenger", "storm_challenger", "raptor"], n, team, at, dir, lv, list, rng, 0.0)
+		_block(["mist_toad", "venom_challenger", "spitter"], n, team, at, dir, lv, list, rng, d + 10.0)
 	return list
 
 
@@ -495,22 +551,23 @@ func counts_supply(t: int, mix: Dictionary, sup: int) -> Dictionary:
 
 
 func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dictionary:
+	var cvb: bool = fac[0] == "crown" and fac[1] == "brood"      # (the old Crown v Brood rows keep their old fields)
 	var map := String(args.get("map", "dune_sea"))
 	if ground in ["up", "down"]:
 		map = String(args.get("rampmap", "jade_wilds"))      # (a ramp out in the open, away from both bases)
 	var wall0 := Time.get_ticks_msec()
 	await _start(9000 + sd * 7919 + size, map)
 	var band := _size_band(size)
-	for k in TECH[band]["crown"]:
-		g.players[0]["tech"][k] = true
-	for k in TECH[band]["brood"]:
-		g.players[1]["tech"][k] = true
+	for t in 2:
+		for k in TECH[band][fac[t]]:
+			g.players[t]["tech"][k] = true
 	var ca: AI = _ai(0)
 	var ba: AI = _ai(1)
 	ca.peaceful = true
 	ba.peaceful = true
-	if ca.has_method("line_ai"):
-		ca.line_ai()
+	for a in [ca, ba]:
+		if fac[a.team] == "crown" and a.has_method("line_ai"):
+			a.line_ai()
 	_broke()
 	await _wait(1.0)
 	var rng := RandomNumberGenerator.new()
@@ -519,16 +576,16 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 	var fld := _field()
 	var mid: Vector2 = fld[0]
 	var dir: Vector2 = fld[1]
-	var c_at: Vector2
-	var b_at: Vector2
-	var c_dir: Vector2         # the Crown faces this way (at the Brood)
+	var c_at: Vector2          # side A (team 0)
+	var b_at: Vector2          # side B (team 1)
+	var c_dir: Vector2         # side A faces this way (at side B)
 	var hold := Vector2.INF    # the side holding: its spot
 	var holder := -1
 	match ground:
 		"set":
-			# (THE FORMED LINE: the Crown stands ready as a careful player sets it, a line two deep across the way the
-			# Brood comes, its guns unlimbered behind it; the Brood comes at it. Against "open" this tells the fighting
-			# from the numbers: the same armies, only the Crown's readiness differs)
+			# (THE FORMED LINE: side A stands ready as a careful player sets it, a line two deep across the way side B
+			# comes, its guns unlimbered behind it; side B comes at it. Against "open" this tells the fighting from the
+			# numbers: the same armies, only side A's readiness differs)
 			_wide = true
 			c_at = mid - dir * 12.0 * Defs.TILE
 			b_at = mid + dir * 22.0 * Defs.TILE
@@ -536,8 +593,6 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 			hold = c_at
 			holder = 0
 		"block":
-			# (THE SET BLOCK: as "set", but the Crown stands in the same close block as on the open field (not a line):
-			# against "set" this tells the line's shape from the rest)
 			_setup = true
 			c_at = mid - dir * 12.0 * Defs.TILE
 			b_at = mid + dir * 22.0 * Defs.TILE
@@ -555,7 +610,7 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 		"up", "down":
 			var rp := _ramp()
 			if rp[2] == Vector2.ZERO:
-				return {"err": "no ramp", "crown": cc, "brood": bc, "size": size, "ground": ground, "seed": sd}
+				return {"err": "no ramp", "fa": fac[0], "ca": cc, "fb": fac[1], "cb": bc, "size": size, "ground": ground, "seed": sd}
 			var top: Vector2 = rp[0]
 			var bot: Vector2 = rp[1]
 			var up: Vector2 = rp[2]
@@ -578,57 +633,68 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 			c_dir = dir
 	var lvc := int(g.height[g.idx(g.cell_of(c_at))])
 	var lvb := int(g.height[g.idx(g.cell_of(b_at))])
-	var cn := counts(0, CROWN[cc], float(size)) if size > 0 else counts_supply(0, CROWN[cc], -size)
+	var cn := _counts_for(0, cc, float(size))
 	var cv := value_of(0, cn)
-	var bmix: Dictionary = BROOD[bc]
-	var bn: Dictionary
-	if size < 0:
-		var rest := bmix.duplicate()
-		rest.erase("tyrannosaur")
-		bn = counts_supply(1, rest, -size - (int(Defs.UNITS["tyrannosaur"]["supply"]) if bmix.has("tyrannosaur") else 0))
-		if bmix.has("tyrannosaur"):
-			bn["tyrannosaur"] = 1
-	elif bmix.has("tyrannosaur"):
-		var rest := bmix.duplicate()
-		rest.erase("tyrannosaur")
-		bn = counts(1, rest, cv - price(1, "tyrannosaur"))
-		bn["tyrannosaur"] = 1
-	else:
-		bn = counts(1, bmix, cv)
+	var bn := _counts_for(1, bc, cv if size > 0 else float(size))
 	var bv := value_of(1, bn)
 	var cl := _place(0, cn, c_at, c_dir, lvc, rng)
 	var bl := _place(1, bn, b_at, -c_dir, lvb, rng)
-	var set_at := {}           # (the Crown set by hand: each man's place)
+	var lists := [cl, bl]
+	# (`wind:<0..1>`: the Clockwork army starts the fight with this much wind, as one that marched across the map from its
+	# gear ground; default full)
+	if args.has("wind"):
+		for t in 2:
+			if fac[t] == "clockwork":
+				for u in lists[t]:
+					if not u.is_worker() and not u.is_air():
+						u.wind = clampf(float(args["wind"]), 0.01, 1.0)
+	# (the Clockwork: its home Winders go, so only the army's own Winders wind it)
+	for t in 2:
+		if fac[t] == "clockwork":
+			for u in g.units.duplicate():
+				if is_instance_valid(u) and u.team == t and not u.dead and not lists[t].has(u):
+					u.die()
+	# THE SET SIDE: who stands as set by hand (none on the open field)
+	var set_side := -1
 	if _wide or _setup:
+		set_side = 0
+	elif ground == "down" and fac[1] != "brood":
+		set_side = 1          # (a Crown or Clockwork on the ramp's top is set by hand; the Brood holds it by its computer)
+	var set_at := {}           # (the set side: each man's place)
+	if set_side >= 0:
 		_wide = false
 		_setup = false
-		for u in cl:
+		for u in lists[set_side]:
 			set_at[u] = u.position
-			if u.kind in GUNS:
+			if fac[set_side] == "crown" and u.kind in GUNS:
 				u.cmd_deploy()
+			elif u.kind in CW_AIR or u.kind == "winder" or u.kind == "great_winder":
+				pass
 			else:
 				u.cmd_hold()
-	for u in cl:
-		if Defs.AMMO.has(u.kind) or u.kind in GUNS:
-			pass       # (they come out loaded: Unit.setup fills a recruit's shots)
 	await _wait(0.6)
 	# hand each army to its computer as a wave
 	var cl_t: Vector2 = hold if holder == 0 else _centre(bl, b_at)
 	var bl_t: Vector2 = hold if holder == 1 else _centre(cl, c_at)
-	if set_at.is_empty():
-		_crown_wave(ca, cl, cl_t, true)
-	else:
-		ca.process_mode = Node.PROCESS_MODE_DISABLED       # (the set line: the Crown's computer has no say over it)
-	_brood_wave(ba, bl, bl_t, true)
+	var ais := [ca, ba]
+	var tgt := [cl_t, bl_t]
+	for t in 2:
+		if set_side == t:
+			ais[t].process_mode = Node.PROCESS_MODE_DISABLED       # (the set side: its computer has no say over it)
+		else:
+			_send(t, ais[t], lists[t], tgt[t], lists[1 - t])
 	var t0: float = g.clock
 	var contact := -1.0
 	var pulls := [0, 0]
-	var guns: Array = cl.filter(func(u: Unit) -> bool: return u.kind in GUNS)
+	var gside := 0 if fac[0] == "crown" else (1 if fac[1] == "crown" else -1)      # (the guns counted: side A's if a Crown)
+	var guns: Array = [] if gside < 0 else lists[gside].filter(func(u: Unit) -> bool: return u.kind in GUNS)
 	var guns_set_contact := -1
 	var guns_set_10 := -1
 	var guns_fired_20 := -1
 	var ffk := {}
 	var ffb := {}
+	var wind_down := [{}, {}]       # Clockwork units seen run down (wind 0) in the fight
+	var wind_low := [{}, {}]        # ... under a quarter
 	var shot_n := 0
 	var next_shot := 0.0
 	while not g.over:
@@ -637,20 +703,28 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 		var bf := _fighters(bl)
 		for u in _alive(cl):
 			if u.friendly_kills > 0:
-				ffk[u] = u.friendly_kills       # (our own men a Crown blow finished off: splash from guns and mortars)
+				ffk[u] = u.friendly_kills       # (our own men a blow finished off: splash from guns and mortars)
 		for u in _alive(bl):
 			if u.friendly_kills > 0:
 				ffb[u] = u.friendly_kills
+		for t in 2:
+			if fac[t] == "clockwork":
+				for u in _alive(lists[t]):
+					if u.powered_down():
+						wind_down[t][u] = true
+					if u.wind < 0.25 and not u.is_worker() and not u.is_air():
+						wind_low[t][u] = true
 		if args.has("debug"):
 			var st := {}
 			for u in _alive(cl):
-				var key := "%s/%s/%s" % [u.kind, u.order, "T" if u.target else "-"]
+				var key := "%s/%s/%s/%.1f" % [u.kind, u.order, "T" if u.target else "-", u.wind]
 				st[key] = int(st.get(key, 0)) + 1
 			var sb := {}
 			for u in _alive(bl):
-				var key := "%s/%s/%s" % [u.kind, u.order, "T" if u.target else "-"]
+				var key := "%s/%s/%s/%.1f" % [u.kind, u.order, "T" if u.target else "-", u.wind]
 				sb[key] = int(sb.get(key, 0)) + 1
-			print("t %.1f crown %s | brood %s | att %s %s" % [g.clock - t0, str(st), str(sb), ca._attacking, ba._attacking])
+			print("t %.1f A %s | B %s | att %s %s | push %s" % [g.clock - t0, str(st), str(sb), ca._attacking, ba._attacking,
+				str([_push_phase(ais[0]), _push_phase(ais[1])])])
 		if cf.is_empty() or bf.is_empty():
 			break
 		var cc_p := _centre(cf, c_at)
@@ -681,58 +755,29 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 		if contact < 0.0 and g.clock - t0 > APPROACH + 60.0:
 			break
 		# the holder keeps to its spot (its men fight whatever comes in reach); the other goes at it
-		var c_goal: Vector2 = hold if holder == 0 else bc_p
-		var b_goal: Vector2 = hold if holder == 1 else cc_p
-		if not set_at.is_empty():
-			# THE SET LINE (set, choke, up): the Crown stands as it was set, as a player's line on HOLD; nobody walks off
-			# (the computer has no say over it: it would take a hold at a spot of its own for a march's end). Riders
-			# go at whatever comes within 5 tiles of them.
-			for u in _alive(cl):
-				var sp: Vector2 = set_at.get(u, u.position)
-				if u.kind in RIDERS:
-					if u.target == null and u.order != "amove":
-						for o in g.units_near(u.position, 5.0 * Defs.TILE):
-							if o.team == 1 and not o.dead and bl.has(o) and o.position.distance_to(u.position) < 5.0 * Defs.TILE:
-								u.cmd_move(o.position, true)
-								break
-					continue
-				if u.deploys():
-					if u.tesla_mode == "packed" and u.order == "idle":
-						u.cmd_deploy()
-					continue
-				if u.target == null and u.order != "hold" and u.position.distance_to(sp) > 3.0 * Defs.TILE:
-					u.cmd_move(sp)
-				elif u.order == "idle":
-					u.cmd_hold()
-		elif not ca._attacking:
-			pulls[0] += 1
-			_crown_wave(ca, _alive(cl), c_goal, true)
-		else:
-			ca._wave_target = c_goal
-			for u in _alive(cl):
-				ca._wave_set[u] = true
-				if u.order == "idle" and u.target == null and not u.deploys() and (holder != 0 or u.position.distance_to(hold) > 10.0 * Defs.TILE):
-					u.cmd_move(c_goal, true)
-		if not ba._attacking:
-			pulls[1] += 1
-			_brood_wave(ba, _alive(bl), b_goal, true)
-		else:
-			ba._wave_target = b_goal
-			for u in _alive(bl):
-				if not ba._wave.has(u):
-					ba._wave.append(u)
-				if u.order == "idle" and u.target == null:
-					u.cmd_move(b_goal, true)
+		var goals := [hold if holder == 0 else bc_p, hold if holder == 1 else cc_p]
+		for t in 2:
+			if set_side == t:
+				_keep_set(t, lists[t], lists[1 - t], set_at)
+			else:
+				pulls[t] += _keep(t, ais[t], lists[t], goals[t], lists[1 - t], holder == t, hold)
 		if shots != "" and contact >= 0.0 and g.clock >= next_shot and shot_n < int(args.get("nshots", "6")):
 			next_shot = g.clock + float(args.get("shotgap", "6"))
-			await _shoot("%s_%s_%d_%s_s%d_%02d.jpg" % [cc, bc, size, ground, sd, shot_n], (cc_p + bc_p) * 0.5, size)
+			await _shoot("%s_%s_%s_%s_%d_%s_s%d_%02d.jpg" % [fac[0], cc, fac[1], bc, size, ground, sd, shot_n], (cc_p + bc_p) * 0.5, size)
 			shot_n += 1
 	# the result
-	var r := {"crown": cc, "brood": bc, "size": size, "ground": ground, "seed": sd, "band": band,
+	for t in 2:
+		if fac[t] == "clockwork" and ais[t].get("push") is LabPush:
+			pulls[t] += int(ais[t].get("push").would)     # (the retreats its push wanted, taken away)
+	var r := {}
+	if cvb:
+		r["crown"] = cc
+		r["brood"] = bc
+	r.merge({"fa": fac[0], "ca": cc, "fb": fac[1], "cb": bc, "size": size, "ground": ground, "seed": sd, "band": band,
 		"crown_n": cn, "brood_n": bn, "crown_value": cv, "brood_value": bv, "crown_supply": supply_of(cn), "brood_supply": supply_of(bn),
 		"contact": snappedf(contact - t0, 0.5) if contact >= 0.0 else -1.0,
 		"time": snappedf(g.clock - (contact if contact >= 0.0 else t0), 0.5), "pulls": pulls,
-		"guns": guns.size(), "guns_set_contact": guns_set_contact, "guns_set_10": guns_set_10, "guns_fired_20": guns_fired_20}
+		"guns": guns.size(), "guns_set_contact": guns_set_contact, "guns_set_10": guns_set_10, "guns_fired_20": guns_fired_20})
 	for side in [["c", cl, 0], ["b", bl, 1]]:
 		var lost := 0.0
 		var left := 0.0
@@ -756,24 +801,27 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 		r[side[0] + "_alive_k"] = alive_k
 	var cfe := _fighters(cl).is_empty()
 	var bfe := _fighters(bl).is_empty()
+	var wa := "crown" if cvb else "a"
+	var wb := "brood" if cvb else "b"
 	var w := "draw"
 	if bfe and not cfe:
-		w = "crown"
+		w = wa
 	elif cfe and not bfe:
-		w = "brood"
+		w = wb
 	elif not cfe and not bfe:
 		# time: the side with clearly more left (health counted) is ahead
 		var cs: float = r["c_left_hp"] / maxf(1.0, cv)
 		var bs: float = r["b_left_hp"] / maxf(1.0, bv)
-		w = "crown_t" if cs > bs + 0.1 else ("brood_t" if bs > cs + 0.1 else "draw")
+		w = (wa + "_t") if cs > bs + 0.1 else ((wb + "_t") if bs > cs + 0.1 else "draw")
 	r["winner"] = w
-	# the score: the share of the fight the Crown won, by value (0 = all the Crown lost, nothing of the Brood; 1 = the
-	# reverse): what the Brood lost over what both lost
+	# the score: side A's share of the fight by value (0 = all side A lost, nothing of side B's; 1 = the reverse): what
+	# side B lost over what both lost
 	r["score"] = snappedf(r["b_lost"] / maxf(1.0, r["b_lost"] + r["c_lost"]), 0.001)
-	r["trade"] = snappedf(r["b_lost"] / maxf(1.0, r["c_lost"]), 0.01)       # value the Crown killed per value it lost
+	r["trade"] = snappedf(r["b_lost"] / maxf(1.0, r["c_lost"]), 0.01)       # value side A killed per value it lost
+	var lk: Dictionary = r["c_lost_k"] if gside <= 0 else r["b_lost_k"]
 	r["riders_lost"] = 0
 	for k in RIDERS:
-		r["riders_lost"] += int(r["c_lost_k"].get(k, 0))
+		r["riders_lost"] += int(lk.get(k, 0)) if gside >= 0 else 0
 	var ff := 0
 	for u in ffk:
 		ff += int(ffk[u])
@@ -782,12 +830,276 @@ func _fight(cc: String, bc: String, size: int, ground: String, sd: int) -> Dicti
 	for u in ffb:
 		ff += int(ffb[u])
 	r["b_friendly_kills"] = ff
-	r["guns_lost"] = int(r["c_lost_k"].get("cannon", 0)) + int(r["c_lost_k"].get("mortar", 0))
+	r["guns_lost"] = (int(lk.get("cannon", 0)) + int(lk.get("mortar", 0))) if gside >= 0 else 0
+	if not cvb:
+		# (the Clockwork's wind: how many of its constructs ran down, and how many got under a quarter)
+		r["wind_down"] = [wind_down[0].size(), wind_down[1].size()]
+		r["wind_low"] = [wind_low[0].size(), wind_low[1].size()]
 	_orig.clear()
+	if args.has("wind"):
+		r["wind0"] = float(args["wind"])
 	r["map"] = map
 	r["wall_s"] = snappedf((Time.get_ticks_msec() - wall0) / 1000.0, 0.1)
 	r["ver"] = String(ProjectSettings.get_setting("application/config/version", ""))
 	return r
+
+
+## How many of each kind side t gets for this comp and budget (the Brood's Tyrant Sire: one, at his price, the rest the
+## comp's other kinds).
+func _counts_for(t: int, comp: String, budget: float) -> Dictionary:
+	var mix: Dictionary = COMPS[fac[t]][comp]
+	if budget < 0:     # size -N: the army as big as N supply allows (the battle-matrix's "at the cap")
+		var sup := int(-budget)
+		if mix.has("tyrannosaur"):
+			var rest2 := mix.duplicate()
+			rest2.erase("tyrannosaur")
+			var n2 := counts_supply(t, rest2, sup - int(Defs.UNITS["tyrannosaur"]["supply"]))
+			n2["tyrannosaur"] = 1
+			return n2
+		return counts_supply(t, mix, sup)
+	if mix.has("tyrannosaur"):
+		var rest := mix.duplicate()
+		rest.erase("tyrannosaur")
+		var n := counts(t, rest, budget - price(t, "tyrannosaur"))
+		n["tyrannosaur"] = 1
+		return n
+	return counts(t, mix, budget)
+
+
+## Hand an army to its computer as a wave.
+func _send(t: int, a: AI, list: Array, goal: Vector2, foes: Array) -> void:
+	match fac[t]:
+		"crown":
+			_crown_wave(a, list, goal, true)
+		"brood":
+			_brood_wave(a, list, goal, true)
+		"clockwork":
+			_cw_wave(a, list, goal, foes)
+
+
+## Keep a wave going (the retreat taken away); returns 1 when its computer had pulled it back (a "pull").
+func _keep(t: int, a: AI, list: Array, goal: Vector2, foes: Array, holding: bool, hold: Vector2) -> int:
+	match fac[t]:
+		"crown":
+			_dragoons(list, goal)
+			if not a._attacking:
+				var rest := _alive(list).filter(func(u: Unit) -> bool: return not _is_dragoon(u))
+				_crown_wave(a, rest, goal, true)
+				return 0 if rest.is_empty() else 1
+			a._wave_target = goal
+			for u in _alive(list):
+				if _is_dragoon(u):
+					continue
+				a._wave_set[u] = true
+				if u.order == "idle" and u.target == null and not u.deploys() and (not holding or u.position.distance_to(hold) > 10.0 * Defs.TILE):
+					u.cmd_move(goal, true)
+			return 0
+		"brood":
+			if not a._attacking:
+				_brood_wave(a, _alive(list), goal, true)
+				return 1
+			a._wave_target = goal
+			for u in _alive(list):
+				if not a._wave.has(u):
+					a._wave.append(u)
+				if u.order == "idle" and u.target == null:
+					u.cmd_move(goal, true)
+			return 0
+		"clockwork":
+			return _cw_keep(a, list, goal, foes)
+	return 0
+
+
+## THE SET SIDE (set, choke, up; down for a Crown or Clockwork on top): it stands as it was set, as a player's line on
+## HOLD; nobody walks off (its computer has no say over it). Riders go at whatever comes within 5 tiles of them; the
+## Clockwork's Winders wind and mend the line (the lowest wind first), its flyers go at the enemy.
+func _keep_set(t: int, list: Array, foes: Array, set_at: Dictionary) -> void:
+	var fc := _centre(_fighters(foes), Vector2.INF)
+	var nl := {}          # (the enemies within 8 tiles of any of the melee line)
+	if fac[t] != "crown":
+		for u in _alive(list):
+			if float(u.d.get("range", 0)) >= 60.0 or u.is_worker() or u.is_air():
+				continue
+			for o in g.units_near(u.position, 8.0 * Defs.TILE):
+				if o.team != t and not o.dead and foes.has(o) and o.position.distance_to(u.position) < 8.0 * Defs.TILE:
+					nl[o] = true
+	var near_line: Array = nl.keys()
+	for u in _alive(list):
+		var sp: Vector2 = set_at.get(u, u.position)
+		if u.kind in RIDERS:
+			if u.target == null and u.order != "amove":
+				for o in g.units_near(u.position, 5.0 * Defs.TILE):
+					if o.team != t and not o.dead and foes.has(o) and o.position.distance_to(u.position) < 5.0 * Defs.TILE:
+						u.cmd_move(o.position, true)
+						break
+			continue
+		if u.kind in CW_AIR:
+			if u.order == "idle" and u.target == null and fc != Vector2.INF:
+				u.cmd_move(fc, true)
+			continue
+		if u.kind == "winder":
+			if u.order != "repair":
+				var best: Unit = null
+				var bs := 0.95
+				for o in _alive(list):
+					if o == u or o.is_worker() or o.is_air() or String(o.d["faction"]) != "clockwork" or o.kind == "great_winder":
+						continue
+					var need: float = minf(o.wind, o.hp / maxf(1.0, o.max_hp) + 0.3)
+					if need < bs and o.position.distance_to(u.position) < 14.0 * Defs.TILE:
+						bs = need
+						best = o
+				if best != null:
+					u.cmd_repair(best)
+				elif u.position.distance_to(sp) > 3.0 * Defs.TILE:
+					u.cmd_move(sp)
+			continue
+		if u.kind == "great_winder":
+			if u.order == "idle" and u.position.distance_to(sp) > 3.0 * Defs.TILE:
+				u.cmd_move(sp)
+			continue
+		if fac[t] == "crown" and u.deploys():
+			if u.tesla_mode == "packed" and u.order == "idle":
+				u.cmd_deploy()
+			continue
+		if fac[t] != "crown" and float(u.d.get("range", 0)) < 60.0:
+			# (a MELEE line (the Clockwork's Soldiers, Pendulums, Serpents; the Brood's) set by hand: on HOLD it only
+			# strikes what walks into its blade, and shooters and riders shot it to pieces from out of reach (the first
+			# run of the Clockwork's set line: 0 of 432). A careful player's melee line goes out TOGETHER at what comes
+			# near any of it (8 tiles: beyond a Musketeer's reach), each man at the nearest, never chasing past 14 tiles
+			# from his place, and walks back to it when nothing is near.)
+			if u.target != null and is_instance_valid(u.target) and not u.target.dead and u.position.distance_to(sp) < 14.0 * Defs.TILE:
+				continue
+			var near: Unit = null
+			var nd := 12.0 * Defs.TILE
+			for o in near_line:
+				if not is_instance_valid(o) or o.dead or (o.is_air() and not u.can_hit(o)):
+					continue
+				var dd: float = o.position.distance_to(u.position)
+				if dd < nd and o.position.distance_to(sp) < 14.0 * Defs.TILE:
+					nd = dd
+					near = o
+			if near != null:
+				if u.order != "attack" or u.target != near:
+					u.cmd_attack(near)
+				continue
+			if u.position.distance_to(sp) > 2.0 * Defs.TILE and u.order != "move":
+				u.cmd_move(sp)
+			elif u.position.distance_to(sp) <= 2.0 * Defs.TILE and u.order != "hold":
+				u.cmd_hold()
+			continue
+		if u.target == null and u.order != "hold" and u.position.distance_to(sp) > 3.0 * Defs.TILE:
+			u.cmd_move(sp)
+		elif u.order == "idle":
+			u.cmd_hold()
+
+
+# ------------------------------------------------------------------ the Clockwork's push
+
+const CwPushS := preload("res://scripts/ai_cw_push.gd")
+
+
+## The lab's push: the computer's own push (scripts/ai_cw_push.gd) with its RETREAT taken away, as the other computers'
+## waves have theirs taken away (the lab sends them in again). Sending a retreated push in again made it turn about every
+## half second (26 retreats in 24 s: a man walking home does not fight); here it never turns, and the times it WOULD have
+## turned are counted ("pulls", as the other sides' pulls).
+class LabPush extends "res://scripts/ai_cw_push.gd":
+	var would := 0
+	var _w_t := -99.0
+
+	func _should_retreat() -> bool:
+		# the reasons it weighs, without the turning: counted once per 3 s at most
+		var fighters: Array = units.filter(func(u: Unit) -> bool: return u.kind != Defs.GREAT_WINDER_KIND)
+		var now := _value(units)
+		var fv := _value(_foes_near(_front_centre(), LOOK + 120.0))
+		var want: bool = fighters.size() < MIN_LEFT or now < value_in * GRIND or (fv > now * OUTNUMBERED and fv > 300.0) \
+			or (now < value_in * (1.0 - LOST_SHARE) and now < fv * RETREAT_K)
+		if want and game.clock - _w_t > 3.0:
+			_w_t = game.clock
+			would += 1
+		return false
+
+
+func _push_phase(a: AI) -> String:
+	var p = a.get("push")
+	return "-" if p == null else ("<%s %d>" % [p.phase, p.units.size()])
+
+
+func _cw_ground(list: Array) -> Array:
+	return _alive(list).filter(func(u: Unit) -> bool: return not u.is_air() and not u.is_worker())
+
+
+func _cw_wave(a: AI, list: Array, goal: Vector2, foes: Array) -> void:
+	var old = a.get("push")
+	var pc: Dictionary = {}
+	if old != null:
+		pc = (old.cfg as Dictionary).duplicate(true)
+	elif a.get("ARMY_PUSH") != null:
+		pc = (a.get("ARMY_PUSH") as Dictionary).duplicate(true)
+	var push := LabPush.new(a, pc)
+	if old != null:
+		push.gate = old.gate
+	a.set("push", push)
+	var ground := _cw_ground(list)
+	if not ground.is_empty():
+		push._launch(ground)
+	_cw_goal(push, foes)
+	a.set("_escort", _alive(list).filter(func(u: Unit) -> bool: return u.kind == "winder"))
+	for u in _alive(list):
+		if u.is_air():
+			u.cmd_move(goal, true)
+		elif u.kind == "winder":
+			u.cmd_move(goal - (goal - u.position).normalized() * 60.0)
+
+
+func _cw_keep(a: AI, list: Array, goal: Vector2, foes: Array) -> int:
+	var push = a.get("push")
+	var n := 0
+	if push == null or not (push is LabPush):
+		_cw_wave(a, list, goal, foes)
+		return 1
+	var ground := _cw_ground(list)
+	if ground.is_empty():
+		pass
+	elif push.phase == "" or push.phase == "back":
+		push._launch(ground)
+		n = 1
+	else:
+		for u in ground:
+			if not push.units.has(u):
+				push.units.append(u)
+	_cw_goal(push, foes)
+	a.set("_escort", _alive(list).filter(func(u: Unit) -> bool: return u.kind == "winder"))
+	for u in _alive(list):
+		if u.is_air() and u.order == "idle" and u.target == null:
+			u.cmd_move(goal, true)
+	return n
+
+
+## The push's goal: the nearest enemy of the lab's (the computer's own pick is the enemy's base or a rooted creature, far
+## off the field); the path is made again when the enemy moves.
+func _cw_goal(push, foes: Array) -> void:
+	var fa := _fighters(foes)
+	if fa.is_empty():
+		fa = _alive(foes)
+	if fa.is_empty():
+		return
+	var from: Vector2 = push.anchor if push.anchor != Vector2.INF else _centre(push.units, Vector2.ZERO)
+	var cur = push.goal_e
+	if cur == null or not is_instance_valid(cur) or cur.dead or not foes.has(cur):
+		var best: Unit = null
+		var bd := INF
+		for o in fa:
+			var dd: float = o.position.distance_to(from)
+			if dd < bd:
+				bd = dd
+				best = o
+		push.goal_e = best
+		push.goal = best.position
+		push.path = PackedVector2Array()
+	elif (cur as Unit).position.distance_to(push.goal) > 120.0:
+		push.goal = (cur as Unit).position
+		push.path = PackedVector2Array()
+	push.path_t = g.clock - 1.0
 
 
 func _guns_set(guns: Array) -> int:
@@ -803,9 +1115,32 @@ func _crown_wave(ca: AI, list: Array, goal: Vector2, send: bool) -> void:
 	ca._wave_target = goal
 	ca._wave_set.clear()
 	for u in _alive(list):
+		if _is_dragoon(u):
+			if send:
+				u.cmd_move(goal, true)    # (a Dragoon: the lab's, see _dragoons)
+			continue
 		ca._wave_set[u] = true
 		if send and not (u.deploys() and u.tesla_mode != "packed"):
 			u.cmd_move(goal, true)        # (a gun set up is left to the computer's gun code)
+
+
+## THE DRAGOONS (battle-matrix-all, a lab fault found in battle-matrix: Dragoon armies scored 0 in every fight). The
+## computer's wave counts only the men in `ready`; a Dragoon getting off his horse to fire drops out of it, the wave falls
+## under 6 supply and the computer ends it and sends everyone home (AI._army "a lone survivor rides home"); the lab sent
+## them in again: they rode to and fro, dismounting and mounting, and never fired (D: a pull every 1.7 s). The computer
+## uses Dragoons only in its Dragoon raid, never in a wave. So the lab keeps them OUT of the computer's wave and drives
+## them as a player would: attack-move at the enemy (they ride on, get off to fire at what comes in range, and on again).
+func _is_dragoon(u: Unit) -> bool:
+	return String(_orig.get(u, [u.kind])[0]) == "dragoon"
+
+
+func _dragoons(list: Array, goal: Vector2) -> void:
+	for u in _alive(list):
+		if not _is_dragoon(u):
+			continue
+		if u.order in ["d_amove", "d_attack", "dismount", "mount", "attack", "hold"] or (u.target != null and is_instance_valid(u.target)):
+			continue
+		u.cmd_move(goal, true)
 
 
 func _brood_wave(ba: AI, list: Array, goal: Vector2, send: bool) -> void:
