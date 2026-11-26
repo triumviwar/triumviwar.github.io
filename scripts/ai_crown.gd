@@ -87,7 +87,7 @@ func _enemy_base() -> Vector2:
 
 
 func _cohesion(wave: Array) -> bool:
-	if line_ai() != null and ln.active():
+	if line_ai() != null and (ln.active() or ln.field()):      # (crown-micro-2: field(), the line on the march only)
 		if cm != null and cm.bombarding():
 			return true           # (the mirror's line holds out of reach while the guns shell the hall)
 		if _cavalry_wave(wave):

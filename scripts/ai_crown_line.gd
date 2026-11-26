@@ -112,6 +112,12 @@ func active() -> bool:
 	return on and ai.difficulty >= 1 and not AICrownRules.cut(ai, "line")
 
 
+## (crown-micro-2, AICrownMicro "fieldline") the line where it is cut: only the wave's march and fight (march), not the
+## defence's lines at home.
+func field() -> bool:
+	return on and ai.difficulty >= 1 and ai.get("mic") != null and ai.mic.field_line()
+
+
 func _say(s: String) -> void:
 	said.append([snappedf(game.clock, 0.1), s])
 	if game.mlog:
@@ -352,7 +358,7 @@ func settle(face: Vector2, deploy := true) -> float:
 ## Called every army think while the wave is out (AI._army through AICrown._cohesion): true = the line has its men in hand
 ## this think (the shared loop sends nobody).
 func march(wave: Array, target: Vector2) -> bool:
-	if not active():
+	if not active() and not field():
 		return false
 	var ground: Array = wave.filter(func(u) -> bool: return _ok(u))
 	if ground.filter(func(u: Unit) -> bool: return shooter(u)).size() < LINE_MIN:

@@ -27,11 +27,14 @@ class_name AICrownMicro
 ##             Clockwork army, a Great Winder; the Crown's musicians, Powder Wagon, Missionary)
 ##   counter   our set guns fire at the enemy's guns first (Ballistas, Netters; Field Cannons and Mortars): the guns that
 ##             out-reach or stop our line
+##   fieldline (where the crown-rule-cleanup cut the line: against the Clockwork) the line on the wave's march only: it
+##             forms before a seen enemy, steps on with its guns set, falls back in order (AICrownLine.march); not the
+##             defence's lines and posts at home, not the rider screen
 ##   shields   (against the Clockwork) a Musketeer about to fire leaves a Clock Soldier whose SHIELD FORWARD faces him for
 ##             another one in reach (side-on, the shield down, or not a Clock Soldier)
 ## Read only for the others: `has(u)` (a man under the micro's own order this moment).
 
-const PARTS := ["canister", "focus", "hurt", "riders", "gunpick", "kite", "brace", "backline", "winders", "counter", "shields"]
+const PARTS := ["canister", "focus", "hurt", "riders", "gunpick", "kite", "brace", "backline", "winders", "counter", "shields", "fieldline"]
 ## (crown-micro-2, docs/crown_micro_2.md) the parts kept, by the enemy's faction ("crown" = the mirror). A part not listed
 ## for a matchup is off there (`-- cmic<name>:on` tries it in every matchup).
 const KEPT_BY := {
@@ -188,6 +191,11 @@ func active() -> bool:
 		return false
 	_foe_f = foe()
 	return KEPT_BY.has(_foe_f)
+
+
+## (AICrownLine.field) the line on the march, where the cleanup cut it.
+func field_line() -> bool:
+	return active() and want("fieldline")
 
 
 func has(u: Unit) -> bool:
