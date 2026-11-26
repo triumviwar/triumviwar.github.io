@@ -824,6 +824,68 @@ is d04's. Speakers: Father Ferrer 24, the King 9, Jakob* 5, General Ruggieri 4, 
 | k_end_grown | the King | Two fires, and the army had gone to both. Neither was out. | weary |
 | k_end_c | the King | That is not how it went. The siege held. Hear it again from Ferrer. | stern, correcting |
 
+## RE-RECORD (writing pass 2026-11-26)
+
+Act 1's lines rewritten in the writing pass (job writing-act1, docs/writing_pass_act1.md). The old recording still
+plays until a new one replaces it: record each line again under the same id (`campaign/voice/<mission>/<line id>.ogg`).
+
+| mission | line id | speaker | new text |
+| --- | --- | --- | --- |
+| a01_presses | k_open_a | The King | The Assembly left no account of that spring. Here is what it set out to do. |
+| a01_presses | t_saved | Father Tomasz | We went back for the families in Virginia, Captain. I mean to do as well by these people. |
+| a01_presses | t_left | Father Tomasz | We left the families on the road in Virginia. I have confessed it. I will not do it twice. |
+| a01_presses | d_temper15 | Captain Delorme | Father, they are throwing stones on the bridges. Stop the runners or we lose the city. |
+| a01_presses | wv_spoken | Mère Gautier | That's enough. Home, all of you, and at the looms by first light. The little Father is right. |
+| a01_presses | pr_taken | Master Rouvière | Take me, then. The paper comes from Paris. Ask there. |
+| a01_presses | t_end1 | Father Tomasz | Rouvière went to Rome in chains. He never named the man who paid him. Only Paris, whenever they asked. |
+| a01_presses | t_end_sullen | Father Tomasz | The city stayed quiet. When I crossed a square, the talk stopped until I had gone by. |
+| a01_presses | c_end | Cardinal Tomasz | I was proud of that spring, God forgive me. I was also lucky. |
+| a01_presses | k_end1 | The King | Lucky. He talked a city home without a shot fired, and he calls it luck. |
+| a01_presses | k_end_a2 | The King | Had it risen, Paris would not have stood alone that summer. |
+| a02_furth | h_open2 | Meister Hollweg | Every wheel in it was cut by a hand I knew, and every machine it made would carry a stop-work. I gave my word on that. |
+| a02_furth | k_open_m | The King | The Machine has no voice and kept no account. We know that spring by what it did. |
+| a02_furth | h_people | Meister Hollweg | No drawings, so no Pendulum. But the families I brought out lend us their hands: four more Winders. |
+| a02_furth | col_tide | Colonel von Rauch | The mill is sending a second wave. Burn it, Meister, before there is a third. |
+| a02_furth | h_end2 | Meister Hollweg | Every machine we built at Fürth had its stop-work. I would swear to it still, before God. |
+| a02_furth | k_end1 | The King | He believes it. I have never taken him for a liar. |
+| a02_furth | k_end_m2 | The King | If the line had broken, the Machine would have had the Regnitz by midsummer. |
+| a03_plateau | k_open_n | The King | Beasts keep no records. What follows is the nest as Valadares found it, and what it did. |
+| a03_plateau | k_open_n2 | The King | That September strangers came up the cliff in the mist, while the nest slept. |
+| a03_plateau | v_open3 | Valadares | We came to its foot in September: five men and the river trader, a compass, a chain, and a book of empty pages. |
+| a03_plateau | v_linnea | Valadares | And there, among them. The creature from the pen, twice the size now, rooted in the swamp with the rest. |
+| a03_plateau | v_drawn | Valadares | I drew it for the Crown. That is what the Crown pays me for. |
+| a03_plateau | v_end1 | Valadares | We came down to the river with what we had. The rest is still up there. |
+| a03_plateau | v_end_linnea | Valadares | I saw her, Majesty: the doctor's creature, grown, rooted among the others in the hollow. He never tamed her. He only caged her. |
+| a03_plateau | k_end_n2 | The King | Had the nest caught him, we would have known nothing of that mountain until it came down to us. |
+| a04_visit | f_night | Father Ferrer | Then I will say Matins and not go to bed. Brothers, stay up with me. |
+| a04_visit | f_mesh | Father Ferrer | They are building, Brother. And there is nobody at the bench. |
+| a04_visit | f_pattern | Father Ferrer | The Perpetual's pattern, wheel for wheel. The stop-work was bolted on after, and they have taken it off. |
+| a04_visit | k_end_kept | The King | Hollweg brought his mended machines to Rome, and I let him. That mistake was mine. |
+| a05_specimens | k_open_c | The King | Nothing in that nest can tell a story. Here is what it did when the doctor came. |
+| a05_specimens | l_raid1 | Dr. Lindqvist | In the trees! They are coming at the cages! |
+| a05_specimens | l_grown | Dr. Lindqvist | Last year's young, full grown in one season. Look at them. A new species, and the fastest I have ever described. |
+| a05_specimens | l_sire_comes | Dr. Lindqvist | The Sire, on the last cart! Hold him off! |
+| a05_specimens | k_end1 | The King | His finest hour, he calls it. He crept into a nest by night and brought the danger home in cages. |
+| a05_specimens | k_end_c2 | The King | If the cages had broken, the doctor would have come home with nothing, and I would have slept better since. |
+| a06_barricades | k_open1 | The King | Paris rose in the summer of 2769. They walled their streets with carts and paving stones and sat a government in the Hôtel de Ville. |
+| a06_barricades | va_taken | Etienne Varenne | You will want me alive, Marshal. Kill me and I am a martyr, and your Church knows what martyrs are worth. |
+| a06_barricades | va_spared | Etienne Varenne | Exile. How very Christian of you, Marshal. Write to me when you regret it. |
+| a06_barricades | va_exec | Etienne Varenne | At noon, then, when the square is full. Let Paris watch the Crown at work. |
+| a06_barricades | f_won | Field Marshal Fairleigh | Paris was the King's again by morning. Someone rang the great bell of Notre-Dame, and I did not ask who. |
+| a06_barricades | k_end_spared | The King | I have never regretted that order. Tomasz asked for a life, and he was right to ask. |
+| a06_barricades | k_end_exec | The King | It was the law. I have read that order more often than I care to say. |
+| a07_council | f_quarrel | Father Ferrer | I told him so the night before the gift, Eminences. A thinking machine brought the apostasy down. I see no reason one should spare us. |
+| a07_council | v_drawn | Valadares | I drew the way up the plateau for the Crown. I saw her up there, the creature from the station, grown, rooted with the others. |
+| a07_council | v_withheld | Valadares | I gave my map to the Church alone, sealed. But I saw her up there, the creature from the station, grown, rooted with the others. |
+| a07_council | l_oldest | Dr. Lindqvist | Eminences, these are no monsters. They are a living fossil, a branch of nature that went its own way in the forest. Study them, and you read a page of creation nobody has read. |
+| a07_council | c_verdict2 | The Cardinal Dean | They are no branch of nature, Doctor. The apostasy made such things in its laboratories. The specimens are to be destroyed, and their eggs with them. |
+| a07_council | k_letgo | The King | They both walked out of the hall, and I let them go. I have had twenty-five years to decide whether that was mercy. |
+| a07_council | k_1 | The King | I sent my guard to the bridges that evening. I could not have told you why, except that the city was angry. |
+| a07_council | l_loose | Dr. Lindqvist | Not like this! Don't shoot them! Drive them back into the stables! |
+| a07_council | k_dawn | The King | Dawn. The bridges held. The smoke lay so thick on the river I could not see the far bank. |
+| a07_council | k_end_lost2 | The King | If they had, the Swiss would have died on the steps of Saint Peter's, and the people behind them. |
+| a07_council | k_end2 | The King | That was the first time I met them both. I would see each of them again, in worse years. |
+
 ## 3. Voices to design first (ElevenLabs Voice Design, then a ref file)
 
 Done: hollweg, lindqvist (v2), fairleigh, ruggieri, varenne, ferrer (2026-11-22), explorer (now Valadares? the owner to say). The King

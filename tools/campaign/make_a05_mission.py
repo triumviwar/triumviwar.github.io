@@ -430,7 +430,7 @@ M = {
         "l_open_saved": {"who": "lindqvist", "text": "The eggs I carried out of the fire had hatched. I needed a father for them."},
         "l_open_burned": {"who": "lindqvist", "text": "I had nothing left but my notes. I needed eggs, and young ones."},
         "l_open2": {"who": "lindqvist", "text": "In the dry season we went up the mountain, with guns, porters and carts."},
-        "k_open_c": {"who": "king", "text": "No creature told me this. But the nest was theirs, and the young were theirs."},
+        "k_open_c": {"who": "king", "text": "Nothing in that nest can tell a story. Here is what it did when the doctor came."},
         "k_open_c2": {"who": "king", "text": "That dry season men came with cages while the nest slept."},
         # part 1
         "l_1": {"who": "lindqvist", "to": "expedition", "text": "Quietly. The young sleep apart from the nest, in the ferns."},
@@ -456,8 +456,8 @@ M = {
         # part 2
         "l_trail": {"who": "lindqvist", "to": "expedition", "text": "The carts are rolling. Keep the guns round them."},
         "tip_trail": {"who": "lindqvist", "to": "expedition", "text": "The carts carry our powder too. A man who has fired his shots refills beside one."},
-        "l_raid1": {"who": "lindqvist", "to": "expedition", "text": "In the trees! They want the cages!"},
-        "l_grown": {"who": "lindqvist", "to": "expedition", "text": "Those are not hatchlings. Last year's young, grown. Look at them."},
+        "l_raid1": {"who": "lindqvist", "to": "expedition", "text": "In the trees! They are coming at the cages!"},
+        "l_grown": {"who": "lindqvist", "to": "expedition", "text": "Last year's young, full grown in one season. Look at them. A new species, and the fastest I have ever described."},
         "l_freed": {"who": "lindqvist", "to": "expedition", "text": "A cage is broken! It is loose!"},
         "l_lost": {"who": "lindqvist", "to": "expedition", "text": "Every cage broken. Two years for nothing."},
         # part 3
@@ -467,7 +467,7 @@ M = {
         "b_room_few": {"who": "benedito", "to": "expedition", "text": "Few paddlers came from Nazaré, Doctor. Two cages, no more."},
         "b_room_many": {"who": "benedito", "to": "expedition", "text": "All of Nazaré came to paddle. There is room for every cage."},
         "n_roar": {"who": "narrator", "to": "expedition", "text": "Up the river bank something roared, and the forest went quiet."},
-        "l_sire_comes": {"who": "lindqvist", "to": "expedition", "text": "The Sire. He has come for the last cart. Hold him off!"},
+        "l_sire_comes": {"who": "lindqvist", "to": "expedition", "text": "The Sire, on the last cart! Hold him off!"},
         "b_load": {"who": "benedito", "to": "expedition", "text": "One aboard! Bring the next!"},
         "b_full": {"who": "benedito", "to": "expedition", "text": "No more room, Doctor! The canoes are full!"},
         "b_push": {"who": "benedito", "to": "expedition", "text": "Push off! Paddle!"},
@@ -482,11 +482,11 @@ M = {
         "l_end_burned": {"who": "lindqvist", "text": "The eggs I took that night were my new beginning."},
         "l_end_eggs": {"who": "lindqvist", "text": "I carried the eggs down myself, all the way to the river."},
         "l_end_pieter": {"who": "lindqvist", "text": "Pieter wrote every cage in the book."},
-        "k_end1": {"who": "king", "text": "His finest hour, he calls it. He took a mother's young in the night."},
+        "k_end1": {"who": "king", "text": "His finest hour, he calls it. He crept into a nest by night and brought the danger home in cages."},
         "k_end2": {"who": "king", "text": "And the crates on that quay went south to the mines. Nobody opened them."},
         # the ending: the creatures' (the King tells what did not happen)
         "k_end_c1": {"who": "king", "text": "That is not how it went. The carts came down to the river."},
-        "k_end_c2": {"who": "king", "text": "But it could have gone that way. Then the doctor would have come home with empty cages."},
+        "k_end_c2": {"who": "king", "text": "If the cages had broken, the doctor would have come home with nothing, and I would have slept better since."},
     },
     "stills": {
         "rome": {"image": STILL % "b01_08", "caption": "Rome, the present. The King and his prisoner, the doctor."},
@@ -494,7 +494,7 @@ M = {
         "taking": {"image": STILL % "a05_02", "caption": "The taking: the young netted in the ferns."},
         "trail": {"image": STILL % "a05_03", "caption": "The cage carts on the trail down."},
         "landing": {"image": STILL % "a05_04", "caption": "The river landing, the canoes and the Lisbon crates."},
-        "sire": {"image": STILL % "a05_05", "caption": "The Sire comes for the last cart."},
+        "sire": {"image": STILL % "a05_05", "caption": "The Sire falls on the last cart."},
     },
     "opening": {
         "expedition": [

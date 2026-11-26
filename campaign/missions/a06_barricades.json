@@ -4229,7 +4229,7 @@
 	"lines": {
 		"k_open1": {
 			"who": "king",
-			"text": "Paris rose in the summer of 2769. Not a riot: a city behind its own walls, with a government in its hall."
+			"text": "Paris rose in the summer of 2769. They walled their streets with carts and paving stones and sat a government in the Hôtel de Ville."
 		},
 		"k_open2": {
 			"who": "king",
@@ -4425,7 +4425,7 @@
 		},
 		"va_taken": {
 			"who": "varenne",
-			"text": "You have taken a man, Marshal. You have not taken an idea."
+			"text": "You will want me alive, Marshal. Kill me and I am a martyr, and your Church knows what martyrs are worth."
 		},
 		"f_taken": {
 			"who": "fairleigh",
@@ -4445,7 +4445,7 @@
 		},
 		"va_spared": {
 			"who": "varenne",
-			"text": "You will regret your mercy, Marshal. Or I will make you glad of it. We shall see."
+			"text": "Exile. How very Christian of you, Marshal. Write to me when you regret it."
 		},
 		"t_spared": {
 			"who": "tomasz",
@@ -4457,7 +4457,7 @@
 		},
 		"va_exec": {
 			"who": "varenne",
-			"text": "Do it in daylight. Let them all see what the Crown is."
+			"text": "At noon, then, when the square is full. Let Paris watch the Crown at work."
 		},
 		"t_exec": {
 			"who": "tomasz",
@@ -4466,7 +4466,7 @@
 		"f_won": {
 			"who": "fairleigh",
 			"to": "crown",
-			"text": "Paris was the King's again by morning. The bells of Notre-Dame rang for Lauds."
+			"text": "Paris was the King's again by morning. Someone rang the great bell of Notre-Dame, and I did not ask who."
 		},
 		"r_marshal": {
 			"who": "ruggieri",
@@ -4522,11 +4522,11 @@
 		},
 		"k_end_spared": {
 			"who": "king",
-			"text": "Mercy from the victor is still victory. I have never regretted that order."
+			"text": "I have never regretted that order. Tomasz asked for a life, and he was right to ask."
 		},
 		"k_end_exec": {
 			"who": "king",
-			"text": "It was the law. I have read the order a hundred times since. It is still the law."
+			"text": "It was the law. I have read that order more often than I care to say."
 		},
 		"k_end2": {
 			"who": "king",

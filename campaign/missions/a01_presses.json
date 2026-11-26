@@ -5798,7 +5798,7 @@
 		},
 		"k_open_a": {
 			"who": "king",
-			"text": "The Assembly kept no record of that spring. Here is what it would have done, if it could."
+			"text": "The Assembly left no account of that spring. Here is what it set out to do."
 		},
 		"d_1": {
 			"who": "delorme",
@@ -5827,12 +5827,12 @@
 		"t_saved": {
 			"who": "tomasz",
 			"to": "crown",
-			"text": "In Virginia we saved the families. Here, too, it is the people we must save, not only the walls."
+			"text": "We went back for the families in Virginia, Captain. I mean to do as well by these people."
 		},
 		"t_left": {
 			"who": "tomasz",
 			"to": "crown",
-			"text": "In Virginia we left the families on the road. I will not leave this city to the fire."
+			"text": "We left the families on the road in Virginia. I have confessed it. I will not do it twice."
 		},
 		"w_runner": {
 			"who": "watch",
@@ -5877,7 +5877,7 @@
 		"d_temper15": {
 			"who": "delorme",
 			"to": "crown",
-			"text": "Father, they are close to the edge. Stop the runners or we lose the city."
+			"text": "Father, they are throwing stones on the bridges. Stop the runners or we lose the city."
 		},
 		"d_2": {
 			"who": "delorme",
@@ -5924,7 +5924,7 @@
 		},
 		"wv_spoken": {
 			"who": "weaver",
-			"text": "Go home, all of you. The young Father is right. Go home."
+			"text": "That's enough. Home, all of you, and at the looms by first light. The little Father is right."
 		},
 		"n_hall": {
 			"who": "narrator",
@@ -5960,7 +5960,7 @@
 		},
 		"pr_taken": {
 			"who": "printer",
-			"text": "Take me, then. The paper is made in Paris. So is everything else."
+			"text": "Take me, then. The paper comes from Paris. Ask there."
 		},
 		"t_taken": {
 			"who": "tomasz",
@@ -6011,7 +6011,7 @@
 		},
 		"t_end1": {
 			"who": "tomasz",
-			"text": "Rouvière went to Rome in chains. He never said who paid him. He said Paris, again and again."
+			"text": "Rouvière went to Rome in chains. He never named the man who paid him. Only Paris, whenever they asked."
 		},
 		"t_end_calm": {
 			"who": "tomasz",
@@ -6019,7 +6019,7 @@
 		},
 		"t_end_sullen": {
 			"who": "tomasz",
-			"text": "The city stayed quiet. Quiet is not the same as calm. I heard them stop talking when I passed."
+			"text": "The city stayed quiet. When I crossed a square, the talk stopped until I had gone by."
 		},
 		"t_end_saved": {
 			"who": "tomasz",
@@ -6027,11 +6027,11 @@
 		},
 		"c_end": {
 			"who": "cardinal",
-			"text": "I was proud of that spring. I am still. I was also lucky."
+			"text": "I was proud of that spring, God forgive me. I was also lucky."
 		},
 		"k_end1": {
 			"who": "king",
-			"text": "He was more than lucky. He made a city go home without a volley."
+			"text": "Lucky. He talked a city home without a shot fired, and he calls it luck."
 		},
 		"k_end2": {
 			"who": "king",
@@ -6043,7 +6043,7 @@
 		},
 		"k_end_a2": {
 			"who": "king",
-			"text": "But if it had, Paris would have had a sister. I have thought of that."
+			"text": "Had it risen, Paris would not have stood alone that summer."
 		},
 		"new_horse_breeder": {
 			"who": "new",

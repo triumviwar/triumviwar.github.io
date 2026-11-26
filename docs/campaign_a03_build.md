@@ -200,9 +200,9 @@ design); THE GUIDE FROM NAZARÉ needs a designed voice; "The Mountain" (the narr
 | k_open2.ogg | The King | opening (party) | The Crown's mapmaker. He wrote as he walked, and he wrote the truth. Let him tell it. |
 | v_open1.ogg | Valadares | opening (party) | Majesty. I turned my canoe north the morning the station burned, and followed the tracks up the creek. |
 | v_open2.ogg | Valadares | opening (party) | Three months. Benedito knew the mountain from his father: the old people call it the house of the clouds. |
-| v_open3.ogg | Valadares | opening (party) | We came to its foot in September, five men and the river trader, to map what no map had. |
-| k_open_n.ogg | The King | opening (nest) | No creature wrote a report. But the mountain was theirs before it was anyone's. |
-| k_open_n2.ogg | The King | opening (nest) | That September strangers came up their cliff in the mist, while the nest slept. |
+| v_open3.ogg | Valadares | opening (party) | We came to its foot in September: five men and the river trader, a compass, a chain, and a book of empty pages. |
+| k_open_n.ogg | The King | opening (nest) | Beasts keep no records. What follows is the nest as Valadares found it, and what it did. |
+| k_open_n2.ogg | The King | opening (nest) | That September strangers came up the cliff in the mist, while the nest slept. |
 | v_1.ogg | Valadares | intro | Up the cliff, before the mist lifts and before the rains. Keep together. |
 | b_1.ogg | Benedito | intro | Two ways up, Senhor. The stair by the falls, and a crack in the rock to the east. I wait with the canoe. |
 | tip_1.ogg | Valadares | intro | We see little in this mist, and nothing sees us far. Musketeers in front. |
@@ -220,7 +220,7 @@ design); THE GUIDE FROM NAZARÉ needs a designed voice; "The Mountain" (the narr
 | v_cairn.ogg | Valadares | mark_cairn | A cairn. Men have been here before us, and long ago. |
 | v_source.ogg | Valadares | mark_source | The river's source: a black pool, very cold. The flood that brought the egg down came from here. |
 | v_rim.ogg | Valadares | mark_rim | The rim. Below it a hollow, and in the hollow a swamp that grows, and something huge rooted in it. |
-| v_linnea.ogg | Valadares | rim_linnea | And there, among them. The creature from the pen. Twice the size. She knows her home. |
+| v_linnea.ogg | Valadares | rim_linnea | And there, among them. The creature from the pen, twice the size now, rooted in the swamp with the rest. |
 | b_linnea.ogg | Benedito | rim_linnea | They sleep, Senhor. Do not wake them. Not one step closer. |
 | v_young.ogg | Valadares | rim_young | Young ones, many, still soft. So the pack carried her eggs up here. |
 | v_turtle.ogg | Valadares | rim_turtle | Two mounds that breathe. A swamp that walked, the doctor's people said. It walked here. |
@@ -228,7 +228,7 @@ design); THE GUIDE FROM NAZARÉ needs a designed voice; "The Mountain" (the narr
 | v_done.ogg | Valadares | surveyed | Four marks. I have the mountain on paper now. |
 | v_choice.ogg | Valadares | surveyed | Now the question I asked myself on that rock: who should have this map? |
 | v_choice_run.ogg | Valadares | woke_early | Even running, I knew I would have to decide what to do with what I had seen. |
-| v_drawn.ogg | Valadares | surveyed (drawn) | I drew it for the Crown. A mapmaker who hides a road is no mapmaker. |
+| v_drawn.ogg | Valadares | surveyed (drawn) | I drew it for the Crown. That is what the Crown pays me for. |
 | v_withheld.ogg | Valadares | surveyed (withheld) | I drew it, and sealed it, for the Church alone. No man should come here for profit. |
 | n_roar.ogg | The Mountain | run_e | Below the falls something roared, and the whole hollow answered it. |
 | v_run_e.ogg | Valadares | run_e | He is coming up the falls behind us! Across the top, down the crack in the rock! To the canoe! |
@@ -240,19 +240,19 @@ design); THE GUIDE FROM NAZARÉ needs a designed voice; "The Mountain" (the narr
 | b_push.ogg | Benedito | the_end | In! Push off! Paddle! |
 | v_end.ogg | Valadares | the_end | We pushed off with the cloud closing behind us. |
 | b_gone.ogg | Benedito | canoe_gone | The canoe is going, Senhor! I cannot hold it! |
-| v_end1.ogg | Valadares | ending (party) | We came down to the river with what we had. The mountain kept the rest. |
+| v_end1.ogg | Valadares | ending (party) | We came down to the river with what we had. The rest is still up there. |
 | v_end_all.ogg | Valadares | ending (party) | Every man who went up came down. I thank God for it in this report. |
 | v_end_some.ogg | Valadares | ending (party) | Not every man came down. Their names are at the end of this report. |
 | v_end_few.ogg | Valadares | ending (party) | Few of us came down. I write their names first, before the map. |
 | v_end_drawn.ogg | Valadares | ending (party) | The map is enclosed, Majesty. The way up, the marks, the nest. The Crown should know. |
 | v_end_withheld.ogg | Valadares | ending (party) | The map is not enclosed. I have sealed it for the Holy See. Forgive me. |
 | v_end_cut.ogg | Valadares | ending (party) | My survey is unfinished. The nest woke before I could take every mark. |
-| v_end_linnea.ogg | Valadares | ending (party) | I saw her, Majesty. The doctor's creature, grown, among her own. She was never his. |
+| v_end_linnea.ogg | Valadares | ending (party) | I saw her, Majesty: the doctor's creature, grown, rooted among the others in the hollow. He never tamed her. He only caged her. |
 | k_end1.ogg | The King | ending (party) | He did his duty, and told me plainly what he saw. |
 | k_end_drawn.ogg | The King | ending (party) | I kept his map. Others bought copies of it from a clerk. That was not his doing. |
 | k_end_withheld.ogg | The King | ending (party) | The Church kept his map. The doctor found the way up without it, by a longer road. |
 | k_end_n1.ogg | The King | ending (nest) | That is not how it went. Valadares came down the mountain, and his report came to me. |
-| k_end_n2.ogg | The King | ending (nest) | But it could have gone that way. Then no one would have known what waited in the cloud. |
+| k_end_n2.ogg | The King | ending (nest) | Had the nest caught him, we would have known nothing of that mountain until it came down to us. |
 
 ## What is placeholder
 

@@ -212,14 +212,14 @@ can stay text.
 | t_open_saved.ogg | Father Tomasz | opening (crown) | The Hollins boys wrote to me from Virginia. Their families were safe. I kept the letter in my breviary. |
 | t_open_left.ogg | Father Tomasz | opening (crown) | I still prayed for the families we left on the road in Virginia. Nobody wrote to me about them. |
 | t_open2.ogg | Father Tomasz | opening (crown) | Captain Delorme came to the presbytery. He said: Father, you know these streets. Help me find the presses. |
-| k_open_a.ogg | The King | opening (assembly) | The Assembly kept no record of that spring. Here is what it would have done, if it could. |
+| k_open_a.ogg | The King | opening (assembly) | The Assembly left no account of that spring. Here is what it set out to do. |
 | d_1.ogg | Captain Delorme | intro | Six presses at least, Father, hidden in houses like any other. The runners carry the papers to the squares. |
 | t_1.ogg | Father Tomasz | intro | Then we watch the squares, and follow the runners home. |
 | tip_1.ogg | Captain Delorme | intro | A press looks like a house until our men stand at its door. Every runner who reaches a square stirs the city. |
 | tip_2.ogg | Captain Delorme | tip_riders | The riders are quick through the streets. Send them to look. Keep the muskets on the squares. |
 | tip_powder.ogg | Captain Delorme | tip_powder | Ten shots a musket, Father, then the bayonet. The powder wagon fills them again: keep it near the men. |
-| t_saved.ogg | Father Tomasz | intro_saved | In Virginia we saved the families. Here, too, it is the people we must save, not only the walls. |
-| t_left.ogg | Father Tomasz | intro_left | In Virginia we left the families on the road. I will not leave this city to the fire. |
+| t_saved.ogg | Father Tomasz | intro_saved | We went back for the families in Virginia, Captain. I mean to do as well by these people. |
+| t_left.ogg | Father Tomasz | intro_left | We left the families on the road in Virginia. I have confessed it. I will not do it twice. |
 | w_runner.ogg | Sergeant of the Watch | first_runner | A runner, Captain! A boy with a bundle of papers, running for the squares. |
 | w_hint.ogg | Sergeant of the Watch | the Watch's hint (5:00, then every 2:30) | We saw where a runner came out, Captain. That house there. The door was still open. |
 | d_found.ogg | Captain Delorme | first_found | A press! Their men are inside. Break it. |
@@ -228,7 +228,7 @@ can stay text.
 | t_sermon.ogg | Father Tomasz | sermon_line | I spoke on the square until my voice went. Some of them listened. Some went home. |
 | n_temper10.ogg | Lyon | temper_10 | Shutters close on the Presqu'île. Men gather at the corners and do not talk when soldiers pass. |
 | n_temper15.ogg | Lyon | temper_15 | Stones are thrown at the Watch on the bridges. The city is close to rising. |
-| d_temper15.ogg | Captain Delorme | temper_15 | Father, they are close to the edge. Stop the runners or we lose the city. |
+| d_temper15.ogg | Captain Delorme | temper_15 | Father, they are throwing stones on the bridges. Stop the runners or we lose the city. |
 | d_2.ogg | Captain Delorme | part2 | Four presses closed. Now the Assembly calls the weavers up the hill, to their hall. |
 | t_2.ogg | Father Tomasz | part2 | Let me speak to them, Captain. They are my parish. Hold the stairs and give me the time. |
 | tip_3.ogg | Captain Delorme | part2 | Father Tomasz must stand on the hall's square. While he is not there, the agitators turn the weavers. |
@@ -238,7 +238,7 @@ can stay text.
 | n_turn.ogg | Lyon | turn_line | Weavers pick up stones. A few of them follow the green cockades. |
 | t_turn.ogg | Father Tomasz | turn_line | Bring me to them. They will not turn while I am speaking. |
 | t_spoken.ogg | Father Tomasz | spoken | I told them who I was, and whose son. I told them nobody in that hall had ever printed bread. |
-| wv_spoken.ogg | Mère Gautier | spoken | Go home, all of you. The young Father is right. Go home. |
+| wv_spoken.ogg | Mère Gautier | spoken | That's enough. Home, all of you, and at the looms by first light. The little Father is right. |
 | n_hall.ogg | Lyon | hall_burnt | The Weavers' Hall is burning. The whole hill can see it. |
 | wv_yard.ogg | Mère Gautier | part3 | Father. There is a yard under the hill with no street to it. You go in through the houses. |
 | t_3.ogg | Father Tomasz | part3 | The traboules. Captain, the great press is there. |
@@ -246,7 +246,7 @@ can stay text.
 | d_great.ogg | Captain Delorme | great_found | There it is. A press as big as a church organ. |
 | pr_1.ogg | Master Rouvière | great_found | You are too late, Father. Half of France has read us already. |
 | d_early.ogg | Captain Delorme | great_early | A great press in a yard! We will come back for it with more men. |
-| pr_taken.ogg | Master Rouvière | taken | Take me, then. The paper is made in Paris. So is everything else. |
+| pr_taken.ogg | Master Rouvière | taken | Take me, then. The paper comes from Paris. Ask there. |
 | t_taken.ogg | Father Tomasz | taken | He said Paris. He said it as if it were a threat. |
 | d_won.ogg | Captain Delorme | won | The great press is broken. Lyon is quiet. |
 | t_won.ogg | Father Tomasz | won | The bells rang for Lauds. I had not slept, and I said Mass anyway. |
@@ -257,15 +257,15 @@ can stay text.
 | a_layout_old_town.ogg | The Free Assembly | layout (old_town, versus) | Your presses: the hill's west, the slopes, the Presqu'île, Vieux Lyon's north and Guillotière's south. |
 | a_layout_river.ogg | The Free Assembly | layout (river, versus) | Your presses: the hill's east, the slopes, the Presqu'île, Vieux Lyon's south and Guillotière's north. |
 | a_layout_hill.ogg | The Free Assembly | layout (hill, versus) | Your presses: the hill's west, the slopes, the Presqu'île, Vieux Lyon's north and Guillotière's north. |
-| t_end1.ogg | Father Tomasz | ending (crown) | Rouvière went to Rome in chains. He never said who paid him. He said Paris, again and again. |
+| t_end1.ogg | Father Tomasz | ending (crown) | Rouvière went to Rome in chains. He never named the man who paid him. Only Paris, whenever they asked. |
 | t_end_calm.ogg | Father Tomasz | ending (crown) | By Pentecost the weavers were back at their looms, and they came to Mass. |
-| t_end_sullen.ogg | Father Tomasz | ending (crown) | The city stayed quiet. Quiet is not the same as calm. I heard them stop talking when I passed. |
+| t_end_sullen.ogg | Father Tomasz | ending (crown) | The city stayed quiet. When I crossed a square, the talk stopped until I had gone by. |
 | t_end_saved.ogg | Father Tomasz | ending (crown) | I wrote to the Hollins boys that summer. I told them about Lyon. I did not tell them everything. |
-| c_end.ogg | Cardinal Tomasz | ending (crown) | I was proud of that spring. I am still. I was also lucky. |
-| k_end1.ogg | The King | ending (crown) | He was more than lucky. He made a city go home without a volley. |
+| c_end.ogg | Cardinal Tomasz | ending (crown) | I was proud of that spring, God forgive me. I was also lucky. |
+| k_end1.ogg | The King | ending (crown) | Lucky. He talked a city home without a shot fired, and he calls it luck. |
 | k_end2.ogg | The King | ending (crown) | Paris was another matter. |
 | k_end_a1.ogg | The King | ending (assembly) | That is not how it went. Lyon did not rise. |
-| k_end_a2.ogg | The King | ending (assembly) | But if it had, Paris would have had a sister. I have thought of that. |
+| k_end_a2.ogg | The King | ending (assembly) | Had it risen, Paris would not have stood alone that summer. |
 
 ## What is placeholder
 

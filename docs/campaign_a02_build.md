@@ -228,8 +228,8 @@ text, or the off-beat tick.
 | k_open1.ogg | The King | opening (guild) | The Machine kept Nuremberg through the winter. In March it came out of the gates. |
 | k_open2.ogg | The King | opening (guild) | The guild had gone three miles, to Fürth. The Crown gave it a field and a barn. |
 | h_open1.ogg | Meister Hollweg | opening (guild) | We raised a new tower in the barn's yard. The men called it the Honest One. |
-| h_open2.ogg | Meister Hollweg | opening (guild) | Every wheel in it was cut by a hand I knew. Every machine it made would have a stop-work. I swore it. |
-| k_open_m.ogg | The King | opening (machine) | The Machine has no voice. It left no account of that spring. Only what it did. |
+| h_open2.ogg | Meister Hollweg | opening (guild) | Every wheel in it was cut by a hand I knew, and every machine it made would carry a stop-work. I gave my word on that. |
+| k_open_m.ogg | The King | opening (machine) | The Machine has no voice and kept no account. We know that spring by what it did. |
 | k_open_m2.ogg | The King | opening (machine) | In March it came out of Nuremberg's gates, west along the river, toward the guild that made it. |
 | h_1.ogg | Meister Hollweg | intro | Before anything else, the stop-work. Bring me to the tower. |
 | col_1.ogg | Colonel von Rauch | intro | My men are digging, Meister. Your machines stay on your side of the ditch. |
@@ -262,8 +262,8 @@ text, or the off-beat tick.
 | col_mill.ogg | Colonel von Rauch | part3 | My reserve goes with you. Burn it and the line holds. |
 | h_pattern.ogg | Meister Hollweg | pattern | I have my drawings. Open the Heavy Works: we will build a Pendulum. |
 | tip_heavy.ogg | Jakob | pattern | The Heavy Works must stand by a Mainspring, Meister. |
-| h_people.ogg | Meister Hollweg | people | No drawings. Only our hands. The people of Nuremberg send theirs. |
-| col_tide.ogg | Colonel von Rauch | tide | The mill has grown a tide. Burn it, Meister, before it sends another. |
+| h_people.ogg | Meister Hollweg | people | No drawings, so no Pendulum. But the families I brought out lend us their hands: four more Winders. |
+| col_tide.ogg | Colonel von Rauch | tide | The mill is sending a second wave. Burn it, Meister, before there is a third. |
 | col_burnt.ogg | Colonel von Rauch | mill_burnt | The mill is burning. The line holds. |
 | h_safe.ogg | Meister Hollweg | mill_burnt | Safe this time. |
 | j_hurt.ogg | Jakob | hollweg_hurt | Meister, you are hurt. Stay behind the earthworks. |
@@ -278,11 +278,11 @@ text, or the off-beat tick.
 | h_end_strong.ogg | Meister Hollweg | ending (guild) | The colonel kept most of his men. He let the guild build inside his line after that. |
 | h_end_thin.ogg | Meister Hollweg | ending (guild) | The colonel buried many of his men by the Rednitz. He did not forgive us that. |
 | h_end_jakob.ogg | Meister Hollweg | ending (guild) | Jakob kept his log of the ticking. He wrote down every beat. |
-| h_end2.ogg | Meister Hollweg | ending (guild) | Our machines were honest. Every one had its stop-work. I would swear it still. |
-| k_end1.ogg | The King | ending (guild) | He believes it. I believe he believes it. |
+| h_end2.ogg | Meister Hollweg | ending (guild) | Every machine we built at Fürth had its stop-work. I would swear to it still, before God. |
+| k_end1.ogg | The King | ending (guild) | He believes it. I have never taken him for a liar. |
 | k_end2.ogg | The King | ending (guild) | A stop-work is a wheel like any other. A wheel can be taken out. |
 | k_end_m1.ogg | The King | ending (machine) | That is not how it went. The line held at Fürth. |
-| k_end_m2.ogg | The King | ending (machine) | But it could have gone that way. I have thought so, many nights. |
+| k_end_m2.ogg | The King | ending (machine) | If the line had broken, the Machine would have had the Regnitz by midsummer. |
 
 ## What is placeholder
 
