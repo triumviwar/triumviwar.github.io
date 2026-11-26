@@ -26,6 +26,17 @@
 
 ## Current work
 
+- AI LESSONS (owner 2026-11-26 "the new combat and battle rules and what was learned by the battle tests into the main AI";
+  job ai-lessons, branch ai-lessons, docs/ai_lessons.md, scripts/ai_lessons.gd AILessons, tools/study/ai_lessons.py, data
+  docs/ai_lessons/data/): ON: `dragoonwave` (a Dragoon getting off stays in the wave's count; HOLD no longer restarts a
+  Dragoon's dismount, Unit.cmd_hold: the line held them every think), `riderpull` (the screen pulls back while the muskets
+  fight), `cbcomp` (Crown v Brood: one field Mortar, no spare-horse Dragoons, riders 30%), `ckcomp` (Crown v Clockwork:
+  Musketeers + Officers on foot, no Mortars/Dragoons), `kccomp` (Clockwork v Crown: Ballistas for Clock Soldiers, fewer
+  Springers/Netters, no Serpent: the one clear gain, t 2.3 at 14:00), cblguns (AICrownBroodLate.KEPT: guns set at contact
+  9 -> 25 of 44 fights); OFF: kbcomp, bcomp, bkcomp (did not do what was meant); all kept together v the Brood +0.09 (no
+  change: the economy gap). `ail:off`, `ail<name>:off/on`. Stale tests fixed: test_brood_new (card page), test_crown_stall
+  (bar 360 s), test_cav_micro (stub); test_crown_rider_screen passes; new tools/test_dragoon_wave.gd. 10 Claude's choices.
+  Next: the owner's win-rate jobs.
 - CROWN MICRO 2 (job crown-micro-2, MERGED 0.38.216, docs/crown_micro_2.md): the Crown computer's fight v the Clockwork and
   in the mirror; AICrownMicro parts now by enemy faction (KEPT_BY; `cmicoff:<team>` holds one Crown to the old fight). V
   the CLOCKWORK on: gunpick, kite, hurt, winders (Musketeers shoot a Winder first), fieldline (the marching wave forms its
@@ -33,7 +44,7 @@
   overall within noise (+0.16, t 0.6): the Crown already won this matchup; its edge there IS its fighting. MIRROR on:
   brace, gunpick (10 games v the old Crown: won or led 7, lost 1). V the Brood unchanged (crown-micro). Tests after the
   overnight merges: test_brood_new's "swamp round the rooted Mother" check fails (not from 0.38.212-216: no game code
-  changed); known failures unchanged. test_crown_rider_screen now fails one check after crown-micro-2: "no rider stands in front of the muskets (1)" (the brace halts the line before a rider pulls back): to fix.
+  changed); known failures unchanged. test_crown_rider_screen's rider check: fixed in ai-lessons.
 - CROWN FINISH (owner 2026-11-25, the championship: 38 of 54 Crown wins only at the bell; job crown-finish, MERGED 0.38.212,
   docs/crown_finish.md, scripts/ai_crown_finish.gd AICrownFinish): why it held back: the Siege push grinds building by
   building, only part of the army goes, the hunt waits for the last enemy unit, the waves keep their even-game bars, the
@@ -78,8 +89,8 @@
   Brutes), gunpick (round shot on armour, shells on clumps); off: canister, hurt, focus (`cmic:off`, `cmic<name>:on/off`).
   Bench: equal-value real armies, the Crown won 22/24 -> 24/24, kills 3.5x what it loses. 30 real games: better at 14:00
   (10/15, t 2.3), within noise at 20:00 (won or led 5/15 v 3/15). VERDICT: the remaining gap is NOT fighting: the Brood
-  out-earns it from ~10:00, Musketeers dry, pushes into the Brood base with guns not set. test_cav_micro fails since
-  crown-rule-cleanup (StubAI has no _foe, ai_crown_rules.gd:39): fix the stub.
+  out-earns it from ~10:00, Musketeers dry, pushes into the Brood base with guns not set. test_cav_micro's stub: fixed in
+  ai-lessons.
 - ACT 3 PLANNED (owner 2026-11-25 "write act 3 so we have a clear view of the choice"; job campaign-act3-plan, branch
   campaign-act3-plan, docs only: docs/campaign_act3_plan.md): THE FALL OF THE COLONIES 2781-2790 + THE FINALE (2795, the
   present), 20 missions e01-e20 (15 core, 5 optional): four theatres free of each other on the WORLD war map with a

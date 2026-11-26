@@ -7,7 +7,9 @@ class_name AILessons
 ##                wave no longer ends and goes home when its Dragoons dismount (AI._army)
 ##   riderpull    (a fix) the screen's riders pull back from in front of the muskets whenever the wave's muskets are in a
 ##                fight, not only while the line's state says so (AICrownScreen._screen)
-##   cbcomp / ckcomp / kccomp / kbcomp / bcomp: the army mixes by the counter tables (see each file's own notes)
+##   cbcomp / ckcomp / kccomp / kbcomp / bcomp / bkcomp: the army mixes by the counter tables (below). Measured in 10-game
+##                blocks: on by default dragoonwave, riderpull, cbcomp, ckcomp, kccomp; kbcomp, bcomp, bkcomp stay off (they
+##                did not do what they were meant to: docs/ai_lessons.md)
 ## Switches: `-- ail:off` all off; `-- ail<name>:off` one off; `-- ail<name>:on` one on that is off by default.
 const ON_BY_DEFAULT := ["dragoonwave", "riderpull", "cbcomp", "ckcomp", "kccomp"]
 
