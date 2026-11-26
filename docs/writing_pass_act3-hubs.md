@@ -140,3 +140,10 @@ are, for the d10 writing job or the owner. My suggestions:
 8. The old King's counsel for RING says "I would have rung them too." The old one said the same in other words; I kept
    the King taking a side there, because he is speaking after the fact, not choosing for the heir.
 9. In Portuguese the King speaks to the heir as "você", and in Spanish as "tú", as the existing hub lines do.
+
+## Tests
+
+Run on this branch after the import: test_campaign, test_hubs_grow, test_war_map and the mission tests a01-a06, c01,
+d01-d11 (d06 and d10 too) all pass with 0 failures. test_campaign_m1 has 1 failure that has nothing to do with this
+pass: "no recording yet for Tomasz" fails because Tomasz's Prologue lines were recorded on 2026-11-22 and the check was
+never updated. The game boots to the main menu. tools/i18n_build.py and tools/i18n_patch_build.py build clean ([]).
