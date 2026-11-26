@@ -231,7 +231,7 @@ func _screen(wave: Array) -> void:
 		_release(extra, "")
 		_roles()
 	var ln: AICrownLine = ai.ln
-	var contact: bool = ln.st in ["fight", "back"]
+	var contact: bool = ln.st in ["fight", "back"] or (AILessons.on("riderpull") and _muskets_fight(wave, ln))
 	if contact and _flank_post.is_empty() and not riders.is_empty():
 		pulled += 1
 		_say("'s screen pulls back to the line's flanks at contact", "pull", 10.0)
@@ -247,6 +247,21 @@ func _screen(wave: Array) -> void:
 			_flank(u, wave, ln)
 		else:
 			_ride(u, wave, known)
+
+
+## (ai-lessons 2) the wave's muskets are in a fight: an armed enemy in sight within 260 px of one of them. The screen
+## pulled back only while the line's state said "fight"; a line halted by the micro's brace, or one that had lost its
+## state, left its riders riding on ahead, in front of the muskets.
+func _muskets_fight(wave: Array, ln: AICrownLine) -> bool:
+	if ln._c == Vector2.INF or ln._face == Vector2.ZERO:
+		return false
+	for u in wave:
+		if not _ok(u) or not AICrownLine.shooter(u):
+			continue
+		for o in game.units_near(u.position, 260.0):
+			if not o.dead and game.hostile(o.team, ai.team) and o.has_attack() and game.side_sees(ai.team, o.position):
+				return true
+	return false
 
 
 func _roles() -> void:

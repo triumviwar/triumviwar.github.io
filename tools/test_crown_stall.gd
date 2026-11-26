@@ -11,7 +11,8 @@ extends SceneTree
 ## drop:1 also drops the Foundry's site the moment it is laid (no labourer takes it up): the step must come back and the
 ## Foundry still stand by FOUNDRY_BY_DROP.
 ##   godot --headless --fixed-fps 30 --script res://tools/test_crown_stall.gd [-- drop:1 map:red_coast seed:1347577666]
-const FOUNDRY_BY := 330.0
+const FOUNDRY_BY := 360.0      # (ai-lessons: was 330; since the coach's FARM FIRST and LABOURERS FIRST (0.38.31+) the Economy
+## plan's Foundry stands at ~345 s with nothing stalled (stalls [], bank 0): a late step, not the stall this test is about)
 const FOUNDRY_BY_DROP := 390.0
 const OPENING_BY := 390.0
 const LABS_MAX := 50

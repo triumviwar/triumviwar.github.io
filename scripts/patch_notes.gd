@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.221", "items": [
+		"THE BATTLE TESTS' LESSONS IN THE COMPUTERS (ai-lessons). Fixes: a wave of Dragoons no longer turns home when its Dragoons get off their horses to fire, and pressing HOLD again on a Dragoon who is getting off no longer starts his dismount over (the Crown computer's line did that every moment, so its Dragoons never got off); the Crown computer's scouting riders pull back out of the way whenever its musket line is fighting. The armies the computers build now follow what beat what in the battle tests: the Crown against the Brood takes fewer Mortars into the field and no spare-horse Dragoons, and waits for its guns and sets them before it attacks the Brood; the Crown against the Clockwork fields Officers in its musket lines, no Mortars and no spare-horse Dragoons; the Clockwork against the Crown builds Spring Ballistas in place of many Clock Soldiers, fewer Springers and Netters, and no Brass Serpent. Every plan keeps its own build. No unit or number changed.",
+	]},
 	{"v": "0.38.220", "items": [
 		"THE HUBS' TALKS ARE REWRITTEN (a writing pass): what the King, Cardinal Tomasz, Fairleigh, Hollweg, Lindqvist and Valadares say in the hubs between missions now sounds like each of them, with fewer neat sayings and more of the things they saw. Two lines of the war map changed too. The story, the choices and their results are the same.",
 	]},

@@ -4901,6 +4901,7 @@ func _produce() -> void:
 		var others: int = soldiers + springers
 		var bals: int = n_of.call(Defs.BALLISTA_KIND)
 		var bal_want := _ballista_want()
+		bal_want = AILessons.cw_ballistas(self, bal_want, soldiers + springers)      # (ai-lessons kccomp / kbcomp)
 		var gws: int = n_of.call(Defs.GREAT_WINDER_KIND)      # (one Great Winder: _great_winder_due)
 		var cap_t := _tension_cap()
 		var flush: bool = cap_t > 0.0 and game.tension(team) >= cap_t * 0.6
@@ -4917,6 +4918,9 @@ func _produce() -> void:
 		swarm_p = swarm_p or AICwBrood.pend_more(self, pends, others)      # (clockwork-v-brood-coach-2: more Pendulums v the Brood)
 		var pend_cap: int = maxi(mini(4, 1 + others / 6), swm().pend_want()) if swarm_p else mini(4, 1 + others / 6)
 		pend_cap = maxi(pend_cap, AICwBrood.pend_target(self, others))
+		if AILessons.cw_comp(self):
+			pend_cap = AILessons.cw_pend_cap(self, pend_cap, others)      # (ai-lessons: the Pendulums, its real fighters)
+			want_p = pends < pend_cap
 		if swarm_p:
 			want_p = pends < pend_cap
 		var keep0 := 0.0
@@ -4974,9 +4978,9 @@ func _produce() -> void:
 				var keep := keep0 + heavy_keep
 				if army.size() >= 8 and netters == 0 and others >= 7 and _tension_ok(w, Defs.NETTER, keep):
 					k = Defs.NETTER          # (the first Netter before the rest: one stopper with the army early)
-				elif army.size() >= 8 and netters < mini(3, others / 7) and springers >= 4 and _tension_ok(w, Defs.NETTER, keep):
+				elif army.size() >= 8 and netters < AILessons.cw_netters(self, mini(3, others / 7)) and springers >= 4 and _tension_ok(w, Defs.NETTER, keep):
 					k = Defs.NETTER
-				elif (springers * 3 < soldiers * 2 + 3 or flush) and _tension_ok(w, Defs.SPRINGER, keep):
+				elif AILessons.cw_springer(self, springers, soldiers, springers * 3 < soldiers * 2 + 3 or flush) and _tension_ok(w, Defs.SPRINGER, keep):
 					k = Defs.SPRINGER
 				var why := game.train(w, k)
 				if why != "":
@@ -5084,7 +5088,7 @@ func _produce() -> void:
 	var gun_wait := false
 	if not short_powder and army.size() >= 6 and _gold() < int(Defs.UNITS["cannon"]["cost"]):
 		for f in _mine("foundry"):
-			if f.built and f.queue.is_empty() and game.horses_at(f) > 0 and (cannons * 4 < army.size() + 2 or cannons_q < CANNONS_FIRST or (mortar_ok and mortars < mini(2, int(muskets / 6.0)))):
+			if f.built and f.queue.is_empty() and game.horses_at(f) > 0 and (cannons * 4 < army.size() + 2 or cannons_q < CANNONS_FIRST or (mortar_ok and mortars < AILessons.crown_mortars(self, mini(2, int(muskets / 6.0))))):
 				gun_wait = true
 	if not gun_wait and not short_powder and cannons == 0 and _gun_save() and _gold() < int(Defs.UNITS["cannon"]["cost"]) + 40:
 		gun_wait = _mine("foundry").any(func(f: Building) -> bool: return f.built and f.queue.is_empty())     # (AICrown: the first gun's gold)
@@ -5113,11 +5117,17 @@ func _produce() -> void:
 			var rush := _rush_open()
 			var hcap: int = r5.horsemen_cap()      # (round 5: two riders and no more against the Clockwork)
 			var horse_ok: bool = (horse < 3 or horse * 6 < army.size() or rush) if hcap < 0 else horse < hcap
+			var lh: Variant = AILessons.crown_horse(self, horse, army.size())      # (ai-lessons cbcomp: 70 / 30 v the Brood)
+			if lh != null:
+				horse_ok = bool(lh) or rush
+			var ok_k := _soldier_key(b, "dismounted") if AILessons.crown_officer(self, army.filter(func(u: Unit) -> bool: return u.kind == "dismounted").size(), muskets) else ""
 			if _rush_horse_only():
 				if hk == "":
 					continue        # (crown-v-brood-coach: the riders' gold, not a Musketeer's)
 				k = hk
-			elif horse_ok and randf() < (0.85 if rush else (0.6 if short_powder else 0.3)) and hk != "":
+			elif ok_k != "" and k != "":
+				k = ok_k    # (ai-lessons ckcomp: Musketeers with Officers v the Clockwork)
+			elif horse_ok and randf() < (0.85 if rush else (0.6 if short_powder else AILessons.crown_horse_odds(self, 0.3))) and hk != "":
 				k = hk
 			elif hk != "" and ch.wants_rider():
 				k = hk      # (THE OWNER'S DOCTRINE: a Horseman to scout the map comes first once the Breeder stands)
@@ -5143,7 +5153,7 @@ func _produce() -> void:
 				cannons += 1
 			continue
 		# a Mortar or two behind the musketeers (one per 6 of them, 2 at most), once CANNONS_FIRST Field Cannons are out
-		if mortar_ok and f.queue.size() < 2 and mortars < mini(2, int(muskets / 6.0)) and not f.queue.has("mortar") and game.can_train(f, "mortar") == "":
+		if mortar_ok and f.queue.size() < 2 and mortars < AILessons.crown_mortars(self, mini(2, int(muskets / 6.0))) and not f.queue.has("mortar") and game.can_train(f, "mortar") == "":
 			game.train(f, "mortar")
 			mortars += 1
 		elif f.queue.size() < (2 if _gold() > 600 else 1) and (cannons * 4 < army.size() + 2 or cannons_q < CANNONS_FIRST or cannons_q * _gun_share() < muskets) and game.can_train(f, "cannon") == "":
@@ -5561,6 +5571,12 @@ func _army() -> void:
 			u.cmd_move(_wave_target + Vector2(randf_range(-50, 50), randf_range(-50, 50)), true)
 	elif _attacking:
 		var wave: Array = ready.filter(func(u: Unit) -> bool: return _wave_set.has(u))
+		if AILessons.on("dragoonwave"):
+			# (ai-lessons, battle-matrix-all: a Dragoon of the wave getting off to fire, or back on, is out of `ready`
+			# (_horse_coming); he dropped out of the count, the wave fell under 6 supply and went home)
+			for u in army:
+				if _wave_set.has(u) and not wave.has(u) and AILessons.dragoon(u):
+					wave.append(u)
 		# the wave's own strength (units trained since wait at home: they never trickle in alone)
 		if _army_supply(wave) < 6:
 			_attacking = false
@@ -8464,7 +8480,7 @@ func _assign_haulers() -> void:
 ## one of our Dragoons left on foot (auto_mount) once the fight is over.
 func _wants_horse(u: Unit) -> bool:
 	if u.kind == "dismounted":
-		return true
+		return not AILessons.officer_walks(self, u)      # (ai-lessons ckcomp: the line's Officers stay on foot)
 	return u.kind == "musketeer" and (u.auto_mount or u.horse_rid != 0)    # (a Dragoon on foot, or one trained, his horse kept for him)
 
 
@@ -8707,6 +8723,8 @@ func _mount_men(horses: Array, keep: Dictionary, need: int) -> void:
 	var muskets := army.filter(func(u: Unit) -> bool: return u.kind == "musketeer").size()
 	var dragoons := army.filter(func(u: Unit) -> bool: return u.kind == "dragoon" or (u.kind == "musketeer" and u.auto_mount)).size()
 	var want := int((muskets + dragoons) / 4.0)
+	if AILessons.crown_no_dragoons(self):
+		return          # (ai-lessons cbcomp / ckcomp: Dragoon armies lose to nearly everything in the field)
 	for u in army:
 		if dragoons >= want or spare.size() <= need + 1:
 			break

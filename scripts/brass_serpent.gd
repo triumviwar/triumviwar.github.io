@@ -1363,6 +1363,7 @@ static func ai_produce(ai) -> bool:
 	var t: int = ai.team
 	var foe: int = ai._foe()
 	var want := int(AI_WANT.get(game.faction_of(foe) if foe >= 0 else "crown", 1))
+	want = AILessons.cw_serpents(ai, want)      # (ai-lessons kccomp / kbcomp: the Serpent loses to nearly everything)
 	var mine: Array = all(game).filter(func(o: Unit) -> bool: return o.team == t)
 	var works: Array = game.buildings.filter(func(b: Building) -> bool: return b.team == t and b.kind == Defs.CW_HEAVY and b.built and not b.dead)
 	if works.is_empty():

@@ -683,6 +683,7 @@ func _grub_sacrifice(q: Unit, p: Dictionary) -> void:
 	await physics_frame
 	g.set_selection([vg])
 	await physics_frame
+	g.hud._build_card()          # (a new pick starts at the main card: the card is built once for it before the page opens)
 	g.hud.page = "build"
 	var vlabs := card_labels()
 	var vtip: Array = g.hud._tip_for.get("VENOM SIRE", ["", "", ""])
