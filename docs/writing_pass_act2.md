@@ -6,7 +6,7 @@ Act 2: the eleven missions d01_minas to d11_siege. Other jobs did Acts 1 and 3.
 ## What was checked
 
 Every spoken line, every narrator line, the briefings, the debriefs and the objectives of the eleven missions. That is
-about 920 spoken and narrator lines. 70 of them were rewritten. The objectives and briefings were already plain and
+about 920 spoken and narrator lines. 72 of them were rewritten. The objectives and briefings were already plain and
 short, so they were left alone.
 
 Act 2's writing was in better shape than expected. Most people already sounded like themselves: Meneses is a blunt
@@ -60,14 +60,14 @@ Three lines gave a creature family or a name in the narrator's mouth:
   "Concord." at the end of the fight is now "Count our dead, Ulrich. And theirs.", his foreshadowing ending, the King.
 - d05_aldeia (3 lines): the King's opening, Tomasz and the catechism (the children laugh at his accent), the fields.
 - d06_queen (5 lines): Linnea's naming, the narrator, the escape, the King's ending.
-- d07_spring (6 lines): the broken ones under their sheets, the brake, Matthias, the King's three endings.
+- d07_spring (7 lines): the broken ones under their sheets, the brake, Matthias, the King's four endings (the machine's "all the nights it wanted" is gone).
 - d08_rivers (3 lines): the King's endings.
 - d09_crossroads (6 lines): Tomasz's counsel, Ruggieri's decision, Tomasz's endings, the King's endings.
 - d10_jungle (2 lines): Valadares hurt, Father Inácio's ending.
-- d11_siege (6 lines): Jakob's burial, the spring stopped, the long stand-off, the King's three endings.
+- d11_siege (7 lines): Jakob's burial, the spring stopped, the long stand-off, the King's opening (Ferrer "never wrote down a thing he had not seen with his own eyes") and three endings.
 
 Every change has new Portuguese and Spanish in the same style as the rest of each file. Line ids, triggers, choices,
-flags and objectives are untouched. The tests of all eleven missions were run after the changes.
+flags and objectives are untouched. The tests of all eleven missions (tools/test_campaign_d01.gd to d11) and tools/test_campaign.gd pass, 0 failures each. Run them one at a time: run side by side they share the save folder and fail on the flags.
 
 ## Lines to re-record
 
