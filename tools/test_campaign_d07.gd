@@ -574,7 +574,7 @@ func _hubs() -> void:
 	var sl := Campaign.storyline_of(MID)
 	var hw: Dictionary = sl["hub"]["talks"]["hollweg"]
 	check("the hub after the spring stopped: a fisherman's house on the coast", String(CampaignMenu.hub_now(sl["hub"], p).get("title", "")) == "A Fisherman's House on the Coast")
-	check("... Hollweg: the first thing he ever stopped", str(CampaignMenu.talk_lines(hw, p)).contains("first thing I ever stopped"))
+	check("... Hollweg: the first thing he ever stopped", str(CampaignMenu.talk_lines(hw, p)).contains("never heard it quiet"))
 	var st := WarMapData.state(p)
 	var led: Array = st.get("ledger", []).map(func(x): return String(x.get("text", "")))
 	check("the war map: Concórdia the machine's, the honest masters at the coast, the ledger", String(st["regions"]["concordia"]) == "machine"

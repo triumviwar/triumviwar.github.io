@@ -127,36 +127,36 @@
 							{
 								"after": "",
 								"lines": [
-									"Sit by me. The map on the table is the world as it was when I was young.",
-									"Everything I am going to tell you began on one plantation in Virginia."
+									"Sit by me. Move the candle, so you can see the map. That is the world as it was when I was young.",
+									"It begins in Virginia, on a tobacco plantation, in the summer of sixty-seven."
 								]
 							},
 							{
 								"after": "p01_leaf",
 								"lines": [
-									"Fairleigh ended it in a single morning, and we called it over.",
-									"Look at the map again. The fire did not stay in Virginia."
+									"Fairleigh finished it in one morning, with canister. We drank to him in this room and called it over.",
+									"Now look at the map again, and put your finger on Nuremberg."
 								]
 							},
 							{
 								"after": "c01_thirteenth",
 								"lines": [
-									"The clockmaker lost his city in a single night. He thought his machine could think.",
-									"He sits in the east wing now and writes to me every week. I read every letter."
+									"Hollweg built a clock that would not stop, and in one Advent night it took Nuremberg from him. He believed it could think.",
+									"He has rooms in the east wing now. He writes to me every week, long letters in a small hand, and I read them all."
 								]
 							},
 							{
 								"after": "b01_specimen",
 								"lines": [
-									"The naturalist lost his station in a single night, and thinks it was stolen from him.",
-									"He is held in the palace now. I keep him for what he knows of those creatures, and I hear him out."
+									"Lindqvist's station on the Rio Negro burned on Saint John's Eve. To hear him tell it, he was robbed.",
+									"He is held in the palace now. No man living knows those animals better, so I listen to him, and I have what he says checked."
 								]
 							},
 							{
 								"after": "a01_presses",
 								"lines": [
-									"Lyon went home without a volley. The Cardinal will tell you it was luck. Do not believe him.",
-									"The printer named Paris. We should have listened sooner."
+									"Lyon went home without a volley fired. Tomasz will tell you it was luck. It was Tomasz.",
+									"The printer gave us one word, Paris. We were slow to hear it."
 								]
 							},
 							{
@@ -165,8 +165,8 @@
 									"a06_barricades.varenne": "spared"
 								},
 								"lines": [
-									"I sent Varenne to sea on Fairleigh's word and the Cardinal's prayer.",
-									"Remember that mercy is a weapon too. It cuts the one who holds it, sometimes."
+									"I sent Varenne to sea. Tomasz asked for his life on his knees, and Fairleigh told me an exile does less harm than a martyr.",
+									"We shall see what he does with the years I gave him."
 								]
 							},
 							{
@@ -175,8 +175,8 @@
 									"a06_barricades.varenne": "executed"
 								},
 								"lines": [
-									"Varenne died on the Grève by the King's law, and I signed it.",
-									"A martyr is harder to fight than a man. I learnt that too late."
+									"Varenne died on the Grève. I signed the sentence myself, and Tomasz sat with him the last night.",
+									"Within a month they were singing about him in every town in France."
 								]
 							},
 							{
@@ -185,7 +185,7 @@
 									"a04_visit.broken": "kept"
 								},
 								"lines": [
-									"Ferrer's report came before the snow. Machines that take out their own stop-works.",
+									"Father Ferrer's report reached me before the first snow. Machines that pull out their own stop-works.",
 									"Hollweg kept the broken ones to study. I let him. I wanted to know too."
 								]
 							},
@@ -195,22 +195,22 @@
 									"a04_visit.broken": "melted"
 								},
 								"lines": [
-									"Ferrer's report came before the snow. Machines that take out their own stop-works.",
-									"He had them melted. Hollweg has not forgiven him. I think Ferrer was right."
+									"Father Ferrer's report reached me before the first snow. Machines that pull out their own stop-works.",
+									"He had them melted in Hollweg's own furnace. Hollweg has not forgiven him. I think Ferrer was right."
 								]
 							},
 							{
 								"after": "a07_council",
 								"lines": [
-									"Rome burned for one night and stood in the morning. I walked the bridges at dawn with Tomasz.",
-									"Hollweg and Lindqvist were gone before the bells. I should have held them. I let them go."
+									"Rome burned for one night. In the morning I walked the three bridges with Tomasz, stepping over what was left of the machines.",
+									"Hollweg and Lindqvist were gone before Lauds. I could have had the gates shut on them. I did not give the order."
 								]
 							},
 							{
 								"after": "d01_minas",
 								"lines": [
-									"Tomasz wrote from Minas: the gold went down to the coast, and he stayed behind with the miners.",
-									"He sent me the names of the dead of both sides, and asked me to pray for all of them. I did."
+									"Tomasz wrote from Minas. The gold went down to the coast, and he stayed behind with the miners.",
+									"He sent me the names of the dead, ours and theirs, and asked me to pray for every one. I have."
 								]
 							},
 							{
@@ -219,9 +219,9 @@
 									"d01_minas.conspirator": "fled"
 								},
 								"lines": [
-									"Tomasz wrote from Minas: the gold went down to the coast, and he stayed behind with the miners.",
-									"He sent me the names of the dead of both sides, and asked me to pray for all of them. I did.",
-									"The lieutenant who led them went south. Remember the city of gears; we will come back to it."
+									"Tomasz wrote from Minas. The gold went down to the coast, and he stayed behind with the miners.",
+									"He sent me the names of the dead, ours and theirs, and asked me to pray for every one. I have.",
+									"Their lieutenant got away south, to the city of gears. You will hear of him again."
 								]
 							},
 							{
@@ -230,8 +230,8 @@
 									"d05_aldeia.fields": "left"
 								},
 								"lines": [
-									"Tomasz wrote from the river fort. He brought them out of São Rafael, and asked me for nothing but a priest for the fort.",
-									"He left the fields standing. My soldiers paid for that bread for years. I would have done the same."
+									"Tomasz wrote from the river fort. He had brought them out of São Rafael, and all he asked of me was a second priest.",
+									"He left the fields standing for them to come back to. My soldiers paid for that bread for years. I would have done the same."
 								]
 							},
 							{
@@ -240,8 +240,8 @@
 									"d05_aldeia.fields": "burned"
 								},
 								"lines": [
-									"Tomasz wrote from the river fort. He brought them out of São Rafael, and asked me for nothing but a priest for the fort.",
-									"He burned the fields behind them. He confesses it every year. It was hard, and it was his to choose."
+									"Tomasz wrote from the river fort. He had brought them out of São Rafael, and all he asked of me was a second priest.",
+									"He burned the fields behind them, so the swarm would find nothing. He confesses it every Lent. I have told him there is nothing to confess."
 								]
 							},
 							{
@@ -250,8 +250,8 @@
 									"d09_crossroads.first": "brood"
 								},
 								"lines": [
-									"You chose the swarm first, as Ruggieri did. Valadares had his guns before the floods.",
-									"And the city of gears had a year it should not have had."
+									"You chose the swarm first, and so did Ruggieri. Valadares had his guns before the floods.",
+									"The city of gears had a quiet year. It used it."
 								]
 							},
 							{
@@ -260,8 +260,8 @@
 									"d09_crossroads.first": "clockwork"
 								},
 								"lines": [
-									"You chose the city first, as Ruggieri did. Father Ferrer had his siege lines by the spring.",
-									"And the swarm came down the rivers the whole year we were away."
+									"You chose the city first, and so did Ruggieri. Father Ferrer had his siege lines dug by spring.",
+									"All that year the swarm came down the rivers, and only Valadares stood in its way."
 								]
 							},
 							{
@@ -288,7 +288,7 @@
 									"d11_siege.siege": "close"
 								},
 								"lines": [
-									"Ferrer blew the great spring from under its own hill. The city limps now. It does not stop."
+									"Ferrer's miners went in under the hill and blew the great spring's tower. The city still runs, slower. They say you can hear it miss a beat."
 								]
 							},
 							{
@@ -297,7 +297,7 @@
 									"d11_siege.siege": "held_off"
 								},
 								"lines": [
-									"Ferrer held the road a whole year before that wall. The city stood whole behind it, and grew."
+									"Ferrer held the road a whole year before that wall. Behind it the city went on building."
 								]
 							}
 						],
@@ -310,15 +310,15 @@
 							{
 								"after": "",
 								"lines": [
-									"I was a seminarian then, waiting for my ship to Rome. I read Augustine under an oak.",
-									"The men in the fields talked of an Assembly. I did not understand what they wanted."
+									"I was a seminarian then, waiting for my ship to Rome. I read the Confessions under an oak and thought myself very holy.",
+									"The men in the fields talked about an Assembly. I did not understand what they wanted until the barns were burning."
 								]
 							},
 							{
 								"after": "p01_leaf",
 								"lines": [
-									"I still smell the smoke when I close my eyes.",
-									"Two letters came for the Governor that week: one from an explorer in the Amazon, one from a clockmaker. He gave them to me to read."
+									"Tobacco burns sweet. I cannot bear a pipe in a closed room to this day, and His Majesty knows it and lights his anyway.",
+									"Two letters came for the Governor that week, one from an explorer on the Amazon and one from a clockmaker. He handed them to me. I was the only one in the house with time to read."
 								]
 							},
 							{
@@ -334,7 +334,7 @@
 									"a06_barricades.varenne": "spared"
 								},
 								"lines": [
-									"I asked for his life and the Marshal gave it. I still do not know if I asked well.",
+									"I knelt to the Marshal and asked for his life, and he wrote to the King for me. I have never been sure it was the right thing to ask.",
 									"Notre-Dame's doors were black for a year. I made them leave the marks."
 								]
 							},
@@ -358,21 +358,21 @@
 							{
 								"after": "d01_minas",
 								"lines": [
-									"In Minas I learnt that a sermon is the easy part. Staying afterwards is the work.",
+									"After Vila Rica I stayed in the hills until the rains. I baptised eleven children there, and buried more men than that.",
 									"I still have the list of the dead from that night. I read it every year on the feast of the Rosary."
 								]
 							},
 							{
 								"after": "d05_aldeia",
 								"lines": [
-									"On the Tapajós I learnt that the swarm does not hate anyone. It eats. That is worse.",
+									"On the Tapajós the swarm went for the granary before the church. It eats. It does not know what a church is.",
 									"Tiago still writes to me from the fort. He says the children have stopped looking into the water."
 								]
 							},
 							{
 								"after": "d09_crossroads",
 								"lines": [
-									"At the São Francisco a general asked me what to do, and I told him I did not know. He chose anyway. That is a general."
+									"At the São Francisco Ruggieri asked me which way to march. I told him I did not know, and heard his confession, and in the morning he chose."
 								]
 							}
 						],
@@ -386,14 +386,14 @@
 								"after": "",
 								"lines": [
 									"The harvest is in the barns. A fortune hangs in those rafters, and every rebel in the county knows it.",
-									"Study the war table. Then we wait for the night."
+									"Look over the war table. They will come after dark."
 								]
 							},
 							{
 								"after": "p01_leaf",
 								"lines": [
-									"It is done. I take no pleasure in it.",
-									"Ruggieri has his pipe, and I have the King's leaf. Rome will hear of this."
+									"It is done. I have written to the parishes of the dead, theirs as well as ours.",
+									"Ruggieri is smoking Your Majesty's leaf on my porch as I write. I trust Your Majesty will forgive him."
 								]
 							},
 							{
@@ -423,7 +423,7 @@
 									"a04_visit.broken": "kept"
 								},
 								"lines": [
-									"Ferrer came to Fürth with a notebook and left with a verdict.",
+									"Ferrer came to Fürth with a lay brother and a notebook, and wrote down everything he saw.",
 									"I kept the broken ones. I was sure I could mend them. I was sure of a great many things."
 								]
 							},
@@ -433,7 +433,7 @@
 									"a04_visit.broken": "melted"
 								},
 								"lines": [
-									"Ferrer came to Fürth with a notebook and left with a verdict.",
+									"Ferrer came to Fürth with a lay brother and a notebook, and wrote down everything he saw.",
 									"He melted them in my own furnace. I would have learnt what went wrong. Now nobody will."
 								]
 							},
@@ -441,7 +441,7 @@
 								"after": "a07_council",
 								"lines": [
 									"The council said no machine may govern itself. I said mine did not govern: they served.",
-									"Then they woke in the smoke and walked out of the hall without me. I have had a long time to think about that night."
+									"That night they woke in the smoke and walked out of the hall. I was not with them. I was still arguing."
 								]
 							}
 						]
@@ -509,7 +509,7 @@
 									"d11_siege.siege": "close"
 								},
 								"lines": [
-									"Concórdia, the siege. The great spring's tower blown from the old mine. The city crippled, not taken."
+									"Concórdia, the siege. The great spring's tower blown from the old mine. The city crippled. Not taken."
 								]
 							},
 							{
@@ -676,14 +676,14 @@
 								"after": "",
 								"lines": [
 									"She eats from my hand and follows my whistle. Eleven pounds heavier than Monday.",
-									"The Academy wants specimens. I want a breed. The Crown will want a cavalry."
+									"The Academy wants her stuffed for the cabinet. I mean to breed her, and sell the line to the Crown."
 								]
 							},
 							{
 								"after": "b01_specimen",
 								"lines": [
-									"A warehouse at the Barra, crates and charts, and the people who came down the river with me.",
-									"He stole her. I will have her line again, whatever the Academy says."
+									"We sleep in the Academy's warehouse at the Barra, among the crates, those of us who came down the river.",
+									"The big male broke her pen and she went into the forest with him. I will have her line again, whatever the Academy says."
 								]
 							},
 							{
@@ -724,7 +724,7 @@
 								},
 								"lines": [
 									"The cages are in the cellar now, and the Academy's men come to look at them through the bars.",
-									"They grow. They know my whistle already. This is how it begins, properly this time."
+									"They grow. They come to the bars when I whistle. I have started a stud book."
 								]
 							},
 							{
@@ -762,8 +762,8 @@
 								},
 								"lines": [
 									"The commission has gone down the river. I wrote the Storm Sire's hatching hour in the book myself.",
-									"Rome calls it a monster. I call it a breed, the first of its line. Every breed needs patience and a good fence.",
-									"Valadares said it was made, not born. A Crown man's superstition. Everything that lives was born."
+									"Rome has a word for it. I have a page in the stud book, with its sire and its dam and the hour it broke the shell.",
+									"Valadares says they were made, not born, in some old workshop, like a clock. A soldier's superstition. I have held the eggs."
 								]
 							},
 							{
@@ -776,7 +776,7 @@
 								},
 								"lines": [
 									"They burned the pens they found. I count the ones that are left every morning. The stud book is thinner.",
-									"Valadares said it was made, not born. A Crown man's superstition. Everything that lives was born."
+									"Valadares says they were made, not born, in some old workshop, like a clock. A soldier's superstition. I have held the eggs."
 								]
 							},
 							{
@@ -845,7 +845,7 @@
 							{
 								"after": "",
 								"lines": [
-									"A young creature in spirits, coiled like a question. The label says only: Plateau, specimen four."
+									"A young creature in spirits, coiled tight against the glass. The label says only: Plateau, specimen four."
 								]
 							}
 						]
@@ -897,7 +897,7 @@
 							{
 								"after": "d08_rivers",
 								"lines": [
-									"The floods are going down. Their ground does not.",
+									"The water is going down. Their swamp is staying.",
 									"Lindqvist is somewhere downriver. Rome wants him. So do I."
 								]
 							},
@@ -912,10 +912,10 @@
 									"d08_rivers.nazare": "few"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
-									"I burned the book. I would burn it again. I do not sleep well.",
+									"The water is going down. Their swamp is staying.",
+									"I burned the book, as Rome ordered. I can still whistle the first call. I do not.",
 									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
-									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+									"The forward Mothers root a little nearer every week. In the floods, a mile a week."
 								]
 							},
 							{
@@ -929,10 +929,10 @@
 									"d08_rivers.nazare": "some"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
-									"I burned the book. I would burn it again. I do not sleep well.",
+									"The water is going down. Their swamp is staying.",
+									"I burned the book, as Rome ordered. I can still whistle the first call. I do not.",
 									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
-									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+									"The forward Mothers root a little nearer every week. In the floods, a mile a week."
 								]
 							},
 							{
@@ -946,10 +946,10 @@
 									"d08_rivers.nazare": "all"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
-									"I burned the book. I would burn it again. I do not sleep well.",
+									"The water is going down. Their swamp is staying.",
+									"I burned the book, as Rome ordered. I can still whistle the first call. I do not.",
 									"Nazaré's people are in the church. All of them. The vicar counts them at every Mass.",
-									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+									"The forward Mothers root a little nearer every week. In the floods, a mile a week."
 								]
 							},
 							{
@@ -963,8 +963,8 @@
 									"d08_rivers.nazare": "few"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
-									"I burned the book. I would burn it again. I do not sleep well.",
+									"The water is going down. Their swamp is staying.",
+									"I burned the book, as Rome ordered. I can still whistle the first call. I do not.",
 									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
 									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
 								]
@@ -980,8 +980,8 @@
 									"d08_rivers.nazare": "some"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
-									"I burned the book. I would burn it again. I do not sleep well.",
+									"The water is going down. Their swamp is staying.",
+									"I burned the book, as Rome ordered. I can still whistle the first call. I do not.",
 									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
 									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
 								]
@@ -997,8 +997,8 @@
 									"d08_rivers.nazare": "all"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
-									"I burned the book. I would burn it again. I do not sleep well.",
+									"The water is going down. Their swamp is staying.",
+									"I burned the book, as Rome ordered. I can still whistle the first call. I do not.",
 									"Nazaré's people are in the church. All of them. The vicar counts them at every Mass.",
 									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
 								]
@@ -1014,10 +1014,10 @@
 									"d08_rivers.nazare": "few"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
+									"The water is going down. Their swamp is staying.",
 									"I used the book once. The confessor gave me a penance, and I have done it.",
 									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
-									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+									"The forward Mothers root a little nearer every week. In the floods, a mile a week."
 								]
 							},
 							{
@@ -1031,10 +1031,10 @@
 									"d08_rivers.nazare": "some"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
+									"The water is going down. Their swamp is staying.",
 									"I used the book once. The confessor gave me a penance, and I have done it.",
 									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
-									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+									"The forward Mothers root a little nearer every week. In the floods, a mile a week."
 								]
 							},
 							{
@@ -1048,10 +1048,10 @@
 									"d08_rivers.nazare": "all"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
+									"The water is going down. Their swamp is staying.",
 									"I used the book once. The confessor gave me a penance, and I have done it.",
 									"Nazaré's people are in the church. All of them. The vicar counts them at every Mass.",
-									"Every forward Mother roots a little nearer each season. A mile a week, in the floods."
+									"The forward Mothers root a little nearer every week. In the floods, a mile a week."
 								]
 							},
 							{
@@ -1065,7 +1065,7 @@
 									"d08_rivers.nazare": "few"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
+									"The water is going down. Their swamp is staying.",
 									"I used the book once. The confessor gave me a penance, and I have done it.",
 									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
 									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
@@ -1082,7 +1082,7 @@
 									"d08_rivers.nazare": "some"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
+									"The water is going down. Their swamp is staying.",
 									"I used the book once. The confessor gave me a penance, and I have done it.",
 									"Some of Nazaré never reached the beach. I write their names in the report, one by one.",
 									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
@@ -1099,7 +1099,7 @@
 									"d08_rivers.nazare": "all"
 								},
 								"lines": [
-									"The floods are going down. Their ground does not.",
+									"The water is going down. Their swamp is staying.",
 									"I used the book once. The confessor gave me a penance, and I have done it.",
 									"Nazaré's people are in the church. All of them. The vicar counts them at every Mass.",
 									"The lower town burned. We are rebuilding it on the bluff, inside the palisade."
@@ -1355,14 +1355,14 @@
 							{
 								"after": "",
 								"lines": [
-									"Mind your sleeve near the table. The map turns, and every ring of it is a road, a river or a sea.",
-									"The Crown pays the Guild for patience. My machines have more of it than any soldier."
+									"Mind your sleeve near the table. The map turns, and every ring of it is a river or a road.",
+									"The Crown pays the Guild by the year. My soldiers want no bread and no sleep. A good bargain for the Crown."
 								]
 							},
 							{
 								"after": "c01_thirteenth",
 								"lines": [
-									"A barn, a forge and the Crown's goodwill. It is more than we had in December.",
+									"A barn and a forge, and the Crown's goodwill for now. More than we had in December.",
 									"The new tower will have a stop-work. Every wheel of it. I will fit it with my own hands."
 								]
 							},
@@ -1379,7 +1379,7 @@
 									"a04_visit.broken": "kept"
 								},
 								"lines": [
-									"The Father has gone to Rome with his report. Let him.",
+									"The Father has gone to Rome with his notebook.",
 									"The broken ones are under sheets in the back. I will find the fault. Every machine can be mended."
 								]
 							},
@@ -1390,13 +1390,13 @@
 								},
 								"lines": [
 									"The Father has gone to Rome with his report, and my automata are slag.",
-									"He was afraid of them. Fear is not an argument."
+									"He was afraid of them. I told him so, and he said yes, he was, and wrote that down too."
 								]
 							},
 							{
 								"after": "a07_council",
 								"lines": [
-									"No machine may govern itself. Very well: mine will not be governed by Rome either.",
+									"No machine may govern itself, says the council. I did not build mine to be governed by cardinals.",
 									"Jakob, pack the drawings. We are going south, after the crates."
 								]
 							},
@@ -1426,7 +1426,7 @@
 									"d04_concordia": "valley"
 								},
 								"lines": [
-									"The council meets at noon, when the tower strikes. Every master has a voice, and every voice a wheel.",
+									"The council meets at noon, when the tower strikes. Each master has a vote, and a wheel on the great table to cast it with.",
 									"The plates in the gallery have reached the shaft. They wind the soldiers on them better than any Winder. A gift."
 								]
 							},
@@ -1449,7 +1449,7 @@
 									"d07_spring": "machine"
 								},
 								"lines": [
-									"I pulled the brake. Every machine I ever made stood still at once, the honest ones too. It was the first thing I ever stopped.",
+									"I pulled the brake. Every machine I had made stood still, the honest ones with the rest. The tower went quiet. I had never heard it quiet.",
 									"Matthias says his father would be glad. I have not written to Jakob. I do not know what I would say."
 								]
 							},
@@ -1502,7 +1502,7 @@
 							{
 								"after": "d11_siege",
 								"lines": [
-									"They brought the Crown's guns up the plateau. I stood on the wall by the spring and listened. The city did not tick any faster. It was not afraid."
+									"They brought the Crown's guns up the plateau. I stood on the wall by the spring and listened. The city's tick did not change. Not by a beat."
 								]
 							},
 							{

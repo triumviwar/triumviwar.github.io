@@ -557,7 +557,7 @@ func _hubs() -> void:
 			"naturalist": nat = s
 			"clockmaker": clk = s
 	check("the King's study: the King on the swarm first", str(CampaignMenu.talk_lines(pro["hub"]["talks"]["king"], p)).contains("You chose the swarm first"))
-	check("the King's study: the Cardinal on the general who chose", str(CampaignMenu.talk_lines(pro["hub"]["talks"]["tomasz"], p)).contains("That is a general"))
+	check("the King's study: the Cardinal on the general who chose", str(CampaignMenu.talk_lines(pro["hub"]["talks"]["tomasz"], p)).contains("which way to march"))
 	check("the King's study: Ruggieri's dispatch (north)", str(CampaignMenu.talk_lines(pro["hub"]["talks"]["dispatch"], p)).contains("marches north"))
 	check("Valadares at the Barra: the army is coming north", str(CampaignMenu.talk_lines(nat["hub"]["talks"]["valadares"], p)).contains("coming north"))
 	check("Hollweg (the spring running): the masters agree at once", str(CampaignMenu.talk_lines(clk["hub"]["talks"]["hollweg"], p)).contains("at once"))

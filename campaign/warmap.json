@@ -2566,7 +2566,7 @@
 				"not_done": "d11_siege"
 			},
 			"pin": "d11_siege",
-			"clock": "Waits: the army is in the north, and the city grows while it waits.",
+			"clock": "Not yet: the army is in the north, and the city is building.",
 			"act2": true
 		},
 		{
@@ -2577,7 +2577,7 @@
 				"not_done": "d10_jungle"
 			},
 			"pin": "d10_jungle",
-			"clock": "Waits: the army is in the south, and the swarm spreads while it waits.",
+			"clock": "Not yet: the army is in the south, and the swarm is spreading.",
 			"act2": true
 		},
 		{
