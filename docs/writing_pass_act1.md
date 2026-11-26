@@ -84,7 +84,7 @@ change emotions.json: each rewritten line keeps the feeling it had.
 - The build docs' voice tables (docs/campaign_a0N_build.md) now show the new text.
 - docs/chatterbox_todo.md (the RE-RECORD list) and a patch note under 0.38.999.
 
-Every Act 1 mission's test passes.
+Tests: every Act 1 mission's test (tools/test_campaign_a01.gd to a07.gd), tools/test_campaign.gd and tools/test_campaign_save.gd pass with 0 failures; the boot check shows no script error.
 
 ## Every change, line by line
 
