@@ -1,0 +1,427 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P1 Crown's base layout at its main: 8 Cottage spots in 2 blocks at the back, 4 production rows' spots, 1 Farm and 1 Mill spots by the hall
+[00:00] P1 Crown's build order: the ramp Cottage (supply 6, 4 labourers, 100 gold)
+[00:00] P2 Crown's base layout at its main: 8 Cottage spots in 2 blocks at the back, 4 production rows' spots, 1 Farm and 1 Mill spots by the hall
+[00:00] P2 Crown's build order: the ramp Cottage (supply 6, 4 labourers, 100 gold)
+[00:23] P1 Crown's build order: the ramp Gate (supply 7, 5 labourers, 0 gold)
+[00:23] P2 Crown's build order: the ramp Gate (supply 7, 5 labourers, 0 gold)
+[00:37] P2 Crown's ramp wall stands (1 pieces, 13 s after it was laid)
+[00:37] P1 Crown's ramp wall stands (1 pieces, 13 s after it was laid)
+[00:45] P1 Crown's build order: Farm 2 (supply 9, 7 labourers, 180 gold)
+[00:46] P2 Crown's build order: Farm 2 (supply 9, 7 labourers, 180 gold)
+[01:36] P1 Crown's build order: Barracks 1 (supply 13, 11 labourers, 110 gold)
+[01:37] P2 Crown's build order: Barracks 1 (supply 13, 11 labourers, 110 gold)
+[01:57] P2 Crown's plan: Balloon harass, a build order of 11 steps from here (scripts/ai_crown.gd)
+[01:57] P2 Crown's plan: optimal: reads UNKNOWN [no read yet]: picks Balloon harass (raids on its workers)
+[01:57] P2 Crown's build order: the ramp Cottage (supply 14, 12 labourers, 60 gold)
+[01:57] P2 Crown's build order: the ramp Gate (supply 14, 12 labourers, 60 gold)
+[01:57] P2 Crown's build order: Barracks 1 (supply 14, 12 labourers, 60 gold)
+[01:57] P1 Crown's plan: Balanced, a build order of 7 steps from here (scripts/ai_crown.gd)
+[01:57] P1 Crown's plan: optimal: reads UNKNOWN [no read yet]: picks Balanced (a normal game)
+[01:57] P1 Crown's build order: the ramp Cottage (supply 14, 12 labourers, 60 gold)
+[01:57] P1 Crown's build order: the ramp Gate (supply 14, 12 labourers, 60 gold)
+[01:57] P1 Crown's build order: Farm 2 (supply 14, 12 labourers, 60 gold)
+[02:27] P2 Crown's build order: Powder Mill 1 (supply 17, 15 labourers, 190 gold)
+[02:27] P2 Crown's build order: Musketeers from now on (up to 8 supply) (supply 17, 15 labourers, 190 gold)
+[02:27] P2 Crown's build order: Farm 2 (supply 17, 15 labourers, 190 gold)
+[02:40] P2 Crown's build order: the main's Farms are full: the next Town Hall first (the coach) (supply 18, 16 labourers, 140 gold)
+[02:50] P1 Crown's build order: Town Hall 2 (supply 18, 16 labourers, 220 gold)
+[02:50] P1 Crown's build order: Barracks 1 (supply 18, 16 labourers, 220 gold)
+[02:50] P1 Crown's build order: Powder Mill 1 (supply 18, 16 labourers, 120 gold)
+[02:50] P1 Crown's build order: Musketeers from now on (up to 8 supply) (supply 18, 16 labourers, 120 gold)
+[02:50] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[02:50] P2 Crown's build order: Town Hall 2 (supply 18, 16 labourers, 120 gold)
+[02:57] P2 Crown's plan: optimal: reads GREEDY [a second base and little army]: keeps Balloon harass (it switched once this stage already; Balanced waits)
+[02:57] P1 Crown's plan: optimal: reads GREEDY [a second base and little army]: keeps Balanced (Horsemen are no answer to Musketeers: a line and guns)
+[03:05] P1 Crown's plan: the army on time: 0 of army (with what trains) against the 60 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[03:05] P2 Crown's plan: the army on time: 0 of army (with what trains) against the 60 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[03:17] P1 Crown's base layout at its new hall: 0 Cottage spots in 0 blocks at the back, 9 production rows' spots, 2 Farm and 1 Mill spots by the hall
+[03:18] P1 Crown sends 1 Labourer after the Crown's scouting Labourer
+[03:18] P2 Crown sends 1 Labourer after the Crown's scouting Labourer
+[03:26] P2 Crown's plan: a Farm at its new hall at once (8 s after it stood)
+[03:26] P2 Crown's build order: Foundry 1 (supply 20, 19 labourers, 0 gold)
+[03:39] P1 Crown's plan: the army first: 0 of army against the 91 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[03:40] P1 Crown killed the Crown's scouting Labourer at 3:40
+[03:41] P2 Crown killed the Crown's scouting Labourer at 3:41
+[04:05] P1 Crown's plan: the army on time: 60 of army (with what trains) against the 112 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[04:05] P2 Crown's plan: the army on time: 60 of army (with what trains) against the 112 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[04:14] P1 Crown sends 1 Labourer after the Crown's scouting Labourer
+[04:20] P2 Crown's plan: the army first: 60 of army against the 125 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:25] P1 Crown's plan: milestone: Foundry 1 (25 labourers, 2 halls, army 1 supply)
+[04:25] P2 Crown sends 2 Labourers after the Crown's scouting Labourer
+[04:28] P1 Crown killed the Crown's scouting Labourer at 4:28
+[04:35] P2 Crown lets the Crown's scouting Labourer go (away past the leash)
+[04:44] P1 Crown's first Officer mounted (Horseman)
+[04:45] P1 Crown's scouts know: an enemy army of 0 (seen in the last 120 s), 1 enemy hall, tech barracks
+[04:51] P2 Crown's plan: the Foundry rigs a balloon (1 of 1)
+[04:51] P2 Crown's build order: balloon 1 (supply 33, 24 labourers, 85 gold)
+[04:51] P2 Crown's build order: Musketeers from now on (up to 14 supply) (supply 33, 24 labourers, 85 gold)
+[04:55] P2 Crown sends 1 Labourer after the Crown's scouting Labourer
+[05:05] P2 Crown killed the Crown's scouting Labourer at 5:05
+[05:06] P1 Crown's plan: milestone: Barracks 2 (28 labourers, 2 halls, army 5 supply)
+[05:08] P1 Crown's plan: the army on time: 180 of army (with what trains) against the 180 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[05:08] P2 Crown's build order: a Cottage (supply 38/52) (supply 38, 26 labourers, 85 gold)
+[05:19] P1 Crown's Horseman goes on to harass the workers (the scout found workers)
+[05:19] P1 Crown's scout found workers to hunt: it hands over to the raid
+[05:19] P1 Crown's first pistol shot (Horseman)
+[05:23] P2 Crown's plan: party 1 forms: a balloon and 4 Musketeers
+[05:29] P1 Crown's Horseman pulls back from Musketeer
+[05:30] P2 Crown's plan: the army on time: 180 of army (with what trains) against the 220 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[05:30] P2 Crown's plan: party 1 flies to the Powder Mill (74 tiles)
+[05:34] P2 Crown's plan: the Foundry rigs a balloon (2 of 2)
+[05:34] P2 Crown's build order: balloon 2 (supply 39, 28 labourers, 280 gold)
+[05:34] P2 Crown's plan: the opening is over (the build order is done): the milestones take over
+[05:36] P1 Crown sends 2 Labourers after the Crown's scouting Labourer
+[05:45] P1 Crown's plan: milestone: Armoury 1 (32 labourers, 2 halls, army 5 supply)
+[05:46] P1 Crown lets the Crown's scouting Labourer go (away past the leash)
+[05:48] P2 Crown's plan: milestone: Horse Breeder 1 (30 labourers, 2 halls, army 5 supply)
+[05:49] P1 Crown's first gun crewman went out of a Foundry to fetch a gun's horse (no hauler free)
+[05:51] P2 Crown sends 1 Musketeer after the Crown's scouting Horseman
+[05:56] P1 Crown's Horseman pulls back from Musketeer
+[05:58] P1 Crown's first horse hauled by a hauler
+[06:04] P2 Crown lets the Crown's scouting Horseman go (away past the leash)
+[06:04] P2 Crown's plan: party 2 forms: a balloon and 3 Musketeers
+[06:10] P1 Crown's Horseman goes home (hurt)
+[06:15] P2 Crown's plan: party 1 hovers over the Powder Mill: the basket fires
+[06:16] P2 Crown's plan: the first strike: party 1 over the Powder Mill
+[06:16] P1 Crown sends 2 Musketeers after the Crown's scouting Observation Balloon
+[06:17] P2 Crown's fight at 5:51 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 50, lost 50
+[06:17] P1 Crown sends 2 Labourers after the Crown's scouting Labourer
+[06:19] P2 Crown's plan: milestone: Barracks 3 (32 labourers, 2 halls, army 9 supply)
+[06:19] P2 Crown's plan: the first kill of the balloon harass: Labourer
+[06:21] P2 Crown's plan: party 2 flies to the Farm (77 tiles)
+[06:22] P1 Crown lets the Crown's scouting Labourer go (its hunters fell)
+[06:24] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Balloon harass (what it plays already answers it)
+[06:29] P1 Crown's plan: milestone: Barracks 3 (31 labourers, 2 halls, army 11 supply)
+[06:32] P2 Crown's plan: party 1 pulls back home (the balloon is under fire)
+[06:46] P1 Crown lets the Crown's scouting Observation Balloon go (the chase took too long)
+[06:52] P2 Crown's first Officer mounted (Horseman)
+[06:52] P2 Crown's scouts know: an enemy army of 290 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks, armoury
+[06:53] P1 Crown's scouts know: an enemy army of 60 (seen in the last 120 s), 1 enemy hall, tech barracks
+[06:59] P2 Crown's first gun crewman went out of a Foundry to fetch a gun's horse (no hauler free)
+[07:04] P1 Crown sends 1 Horseman after the Crown's scouting Labourer
+[07:07] P1 Crown's scout rides home (hurt)
+[07:07] P2 Crown's first horse hauled by a hauler
+[07:08] P1 Crown killed the Crown's scouting Labourer at 7:08
+[07:09] P2 Crown's plan: party 2 hovers over the Farm: the basket fires
+[07:09] P1 Crown sends 2 Musketeers after the Crown's scouting Observation Balloon
+[07:21] P2 Crown's plan: party 2 pulls back home (the balloon is under fire)
+[07:22] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[07:22] P2 Crown's scout found workers to hunt: it hands over to the raid
+[07:22] P1 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Balanced (what it plays already answers it)
+[07:23] P2 Crown's first pistol shot (Horseman)
+[07:24] P2 Crown's Horseman pulls back from Musketeer
+[07:30] P2 Crown's plan: party 1 is over (home)
+[07:34] P1 Crown lets the Crown's scouting Observation Balloon go (its hunters fell)
+[07:37] P2 Crown's Horseman pulls back from Musketeer
+[07:41] P2 Crown's plan: party 3 forms: a balloon and 4 Musketeers
+[07:46] P2 Crown's plan: party 3 flies to the Farm (78 tiles, round the anti-air)
+[07:49] P2 Crown's Horseman pulls back from Musketeer
+[07:56] P2 Crown's Horseman goes home (driven back too often)
+[08:08] P2 Crown's scouts know: an enemy army of 350 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks, armoury
+[08:14] P2 Crown's plan: party 2 is over (home)
+[08:18] P1 Crown's plan: milestone: Barracks 4 (31 labourers, 2 halls, army 19 supply)
+[08:27] P2 Crown's plan: party 4 forms: a balloon and 4 Musketeers
+[08:31] P1 Crown sends 2 Musketeers after the Crown's scouting Observation Balloon
+[08:33] P2 Crown's plan: milestone: Foundry 2 (46 labourers, 4 halls, army 25 supply)
+[08:35] P2 Crown's plan: party 4 flies to the Farm (78 tiles, round the anti-air)
+[08:36] P2 Crown's plan: party 3 hovers over the Farm: the basket fires
+[08:37] P1 Crown sends 2 Musketeers after the Crown's scouting Labourer
+[08:45] P1 Crown lets the Crown's scouting Labourer go (out of sight)
+[08:47] P2 Crown's plan: party 3 pulls back home (the balloon is under fire)
+[08:50] P1 Crown sends 1 Musketeer after the Crown's scouting Horseman
+[08:54] P1 Crown lets the Crown's scouting Horseman go (out of sight)
+[08:55] P1 Crown lets the Crown's scouting Observation Balloon go (its hunters fell)
+[09:09] P2 Crown's plan: the Foundry rigs a balloon (3 of 3)
+[09:20] P1 Crown sends 2 Musketeers after the Crown's scouting Observation Balloon
+[09:22] P1 Crown's plan: trains a Drummer for its Marching Band (15 soldiers)
+[09:24] P2 Crown's first Powder Wagon with a team of 2 horses
+[09:24] P2 Crown's scouts know: an enemy army of 470 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks, armoury
+[09:25] P2 Crown's plan: party 4 backs off: anti-air on the way (240 of it)
+[09:26] P1 Crown's pressed wave is held: the screen riders
+[09:28] P1 Crown's scouts know: an enemy army of 120 (seen in the last 120 s), 1 enemy hall, tech barracks
+[09:28] P1 Crown's wave goes for the enemy hall at (73, 49) (18 tiles from its main, 0 walls by it)
+[09:28] P1 Crown's first attack goes out (20 supply, 0 Horsemen)
+[09:29] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (1 out)
+[09:32] P1 Crown lets the Crown's scouting Observation Balloon go (out of sight)
+[09:32] P2 Crown's plan: party 4 flies to the Farm (29 tiles, round the anti-air)
+[09:35] P2 Crown's wave goes for the enemy hall at (18, 25) (18 tiles from its main, 0 walls by it)
+[09:35] P2 Crown's first attack goes out (19 supply, 1 Horsemen)
+[09:36] P2 Crown's wave sends 2 Horsemen ahead and to its flanks as a screen (2 out)
+[09:36] P2 Crown's plan: party 3 is over (home)
+[09:44] P2 Crown's plan: party 5 forms: a balloon and 4 Musketeers
+[09:47] P2 Crown's plan: party 5 flies to the Farm (78 tiles)
+[09:49] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (2 out)
+[09:52] P2 Crown's plan: party 4 hovers over the Farm: the basket fires
+[09:53] P2 Crown's plan: party 6 forms: a balloon and 3 Musketeers
+[09:53] P1 Crown's screen rider backs off from the enemy (2 near)
+[09:53] P2 Crown's screen rider backs off from the enemy (1 near)
+[09:56] P2 Crown's wave forms its line before the enemy army ahead (120): 13 muskets in 1 rank, 0 guns behind (its screen saw it 356 px off)
+[09:56] P1 Crown sends 2 Musketeers after the Crown's scouting Observation Balloon
+[09:56] P1 Crown's wave forms its line before the enemy army ahead (180): 8 muskets in 1 rank, 3 guns behind (its screen saw it 434 px off)
+[10:00] P1 Crown's screen pulls back to the line's flanks at contact
+[10:00] P2 Crown's screen rider backs off from the enemy (3 near)
+[10:03] P2 Crown's plan: party 6 is over (a push is coming: the men stay home)
+[10:04] P2 Crown's plan: party 4 pulls back home (the balloon is under fire)
+[10:07] P2 Crown's screen rider backs off from the enemy (4 near)
+[10:13] P2 Crown's screen rider backs off from the enemy (1 near)
+[10:13] P1 Crown lets the Crown's scouting Observation Balloon go (out of sight)
+[10:15] P2 Crown's screen rides home (the wave is home)
+[10:20] P2 Crown's plan: party 5 backs off: anti-air on the way (300 of it)
+[10:20] P2 Crown's raid breaks in at the palisade in the way: down in ~4 s (0 menders, 7 dps of fire on it)
+[10:23] P1 Crown's screen rider rides back (hurt)
+[10:23] P2 Crown's scout rides home (chased)
+[10:27] P2 Crown's plan: party 5 flies to the Farm (41 tiles, round the anti-air)
+[10:28] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[10:28] P2 Crown's scout found workers to hunt: it hands over to the raid
+[10:29] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (2 out)
+[10:31] P2 Crown's Horseman pulls back from Musketeer
+[10:39] P2 Crown's scouts know: an enemy army of 1170 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks, armoury
+[10:43] P2 Crown's Horseman pulls back from Musketeer
+[10:43] P2 Crown's wave goes for the enemy hall at (8, 10) (its main, 0 walls by it)
+[10:43] P2 Crown's wave 2 goes out (27 supply; the next waits for 35)
+[10:44] P1 Crown's scouts know: an enemy army of 540 (seen in the last 120 s), 1 enemy hall, tech barracks
+[10:44] P2 Crown's wave sends 3 Horsemen ahead and to its flanks as a screen (3 out)
+[10:45] P1 Crown's screen rider rides down a Horseman on the flank
+[10:45] P2 Crown's screen rider backs off from the enemy (1 near)
+[10:47] P2 Crown's Horseman goes home (hurt)
+[10:50] P2 Crown's wave meets the enemy before its line is formed: 16 muskets deploy into a line through the 3 already firing
+[10:51] P2 Crown's screen pulls back to the line's flanks at contact
+[10:52] P2 Crown's screen rides home (the wave is home)
+[10:53] P1 Crown sends 2 Musketeers after the Crown's scouting Observation Balloon
+[10:53] P1 Crown's plan: trains a Fifer for its Marching Band (23 soldiers)
+[10:53] P2 Crown's plan: party 5 hovers over the Farm: the basket fires
+[10:54] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (3 out)
+[10:57] P2 Crown's scout rides home (chased)
+[10:58] P1 Crown's line has won the field: it forms up again and goes on
+[10:59] P1 Crown's wave strung out on the march: 7 men 6.7 tiles apart close up before going on
+[10:59] P2 Crown's wave 3 goes out (38 supply; the next waits for 46)
+[10:59] P2 Crown's wave sends 3 Horsemen ahead and to its flanks as a screen (3 out)
+[10:59] P2 Crown's screen rider rides down a worker on the flank
+[10:59] P2 Crown's line has won the field: it forms up again and goes on
+[11:00] P1 Crown's screen rider backs off from the enemy (1 near)
+[11:00] P2 Crown's screen rider backs off from the enemy (5 near)
+[11:01] P2 Crown's screen pulls back to the line's flanks at contact
+[11:01] P2 Crown's line has won the field: it forms up again and goes on
+[11:03] P1 Crown's wave meets the enemy before its line is formed: 8 muskets deploy into a line through the 0 already firing
+[11:04] P1 Crown's screen pulls back to the line's flanks at contact
+[11:05] P1 Crown's screen rider rides down a Horseman on the flank
+[11:07] P2 Crown's plan: party 5 pulls back home (the balloon is under fire)
+[11:07] P2 Crown's screen rider rides back (hurt)
+[11:08] P1 Crown's plan: trains a Piper for its Marching Band (24 soldiers)
+[11:08] P1 Crown's line has won the field: it forms up again and goes on
+[11:09] P1 Crown's screen rider backs off from the enemy (1 near)
+[11:09] P1 Crown's wave meets the enemy before its line is formed: 8 muskets deploy into a line through the 0 already firing
+[11:12] P2 Crown's plan: party 4 is over (home)
+[11:13] P1 Crown's screen rider rides back (hurt)
+[11:14] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (3 out)
+[11:14] P2 Crown's screen rider is lost (1 lost)
+[11:17] P1 Crown lets the Crown's scouting Observation Balloon go (out of sight)
+[11:24] P2 Crown's screen rider backs off from the enemy (3 near)
+[11:30] P2 Crown's screen rider backs off from the enemy (2 near)
+[11:31] P1 Crown's Field Cannon was killed and a horse bolted loose (the first: anyone's to catch)
+[11:34] P2 Crown's wave meets the enemy before its line is formed: 20 muskets deploy into a line through the 0 already firing
+[11:35] P1 Crown's screen rider is lost (1 lost)
+[11:35] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (3 out)
+[11:35] P2 Crown's screen pulls back to the line's flanks at contact
+[11:35] P1 Crown's screen rider is lost (2 lost)
+[11:36] P2 Crown's screen rider rides down a Horseman on the flank
+[11:37] P1 Crown's screen rider is lost (3 lost)
+[11:40] P2 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (3 out)
+[11:40] P2 Crown's screen rider backs off from the enemy (2 near)
+[11:43] P1 Crown's Fifer: solo
+[11:46] P2 Crown's wave meets the enemy before its line is formed: 17 muskets deploy into a line through the 0 already firing
+[11:46] P2 Crown's screen pulls back to the line's flanks at contact
+[11:48] P1 Crown's screen rider is lost (4 lost)
+[11:48] P2 Crown's screen rider rides down a worker on the flank
+[11:50] P1 Crown's screen rides home (the wave is home)
+[11:55] P2 Crown's scouts know: an enemy army of 300 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks, armoury, horse_breeder
+[11:56] P2 Crown's screen rider rides back (hurt)
+[11:57] P2 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (3 out)
+[11:59] P1 Crown's scouts know: an enemy army of 660 (seen in the last 120 s), 1 enemy hall, tech barracks
+[12:02] P2 Crown's screen rider rides down a Horseman on the flank
+[12:05] P1 Crown's wave sends 2 Horsemen ahead and to its flanks as a screen (2 out)
+[12:05] P1 Crown's screen pulls back to the line's flanks at contact
+[12:10] P2 Crown's Horseman was killed and a horse bolted loose (the first: anyone's to catch)
+[12:15] P2 Crown's line has won the field: it forms up again and goes on
+[12:16] P2 Crown's wave halts out of reach of the enemy's base and forms its line: 21 muskets in 2 ranks, 1 gun behind
+[12:16] P2 Crown's plan: party 5 is over (home)
+[12:21] P2 Crown's screen rider backs off from the enemy (2 near)
+[12:21] P2 Crown's wave keeps with its guns on the march (13 men wait for them)
+[12:25] P2 Crown's plan: party 7 forms: a balloon and 4 Musketeers
+[12:25] P2 Crown's plan: party 8 forms: a balloon and 3 Musketeers
+[12:27] P2 Crown's first keg hauled by a hauler
+[12:27] P2 Crown's screen rider backs off from the enemy (2 near)
+[12:28] P2 Crown's wave meets the enemy before its line is formed: 18 muskets deploy into a line through the 1 already firing
+[12:29] P2 Crown's screen pulls back to the line's flanks at contact
+[12:30] P2 Crown's plan: party 7 flies to the Farm (78 tiles, round the anti-air)
+[12:32] P2 Crown's screen rider rides down a worker on the flank
+[12:34] P1 Crown's first Powder Wagon with a team of 2 horses
+[12:40] P1 Crown's scout rides home (chased)
+[12:40] P1 Crown's picket sees a force coming (540: 9 soldiers) and rides back to the post
+[12:40] P2 Crown's plan: party 9 forms: a balloon and 4 Musketeers
+[12:47] P2 Crown's plan: party 10 forms: a balloon and 3 Musketeers
+[12:49] P2 Crown's plan: party 8 flies to the Farm (79 tiles)
+[12:53] P2 Crown's fight at 10:01 out (formed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 3955, lost 2700
+[12:55] P2 Crown's plan: party 11 forms: a balloon and 3 Musketeers
+[13:01] P2 Crown's plan: party 12 forms: a balloon and 3 Musketeers
+[13:04] P1 Crown's fight at 9:59 out (formed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 2760, lost 4205
+[13:05] P2 Crown's plan: party 9 flies to the flank of their main (94 tiles)
+[13:05] P2 Crown's plan: party 10 flies to the flank of their main (94 tiles)
+[13:11] P2 Crown's scouts know: an enemy army of 240 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks, armoury, horse_breeder
+[13:11] P2 Crown's plan: party 13 forms: a balloon and 3 Musketeers
+[13:13] P1 Crown's scout rides home (hurt)
+[13:15] P1 Crown's scouts know: an enemy army of 1970 (seen in the last 120 s), 1 enemy hall, tech barracks
+[13:19] P2 Crown's raid breaks in at the gate in the way: down in ~10 s (0 menders, 0 dps of fire on it)
+[13:22] P2 Crown's plan: party 11 flies to their start (97 tiles)
+[13:22] P2 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (4 out)
+[13:24] P2 Crown's plan: party 12 flies to the flank of their main (94 tiles)
+[13:24] P2 Crown's wave strung out on the march: 23 men 5.9 tiles apart close up before going on
+[13:24] P1 Crown's fight at 13:04 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 0, lost 620
+[13:25] P2 Crown's screen rider backs off from the enemy (1 near)
+[13:25] P2 Crown's wave meets the enemy before its line is formed: 16 muskets deploy into a line through the 10 already firing
+[13:26] P2 Crown's screen pulls back to the line's flanks at contact
+[13:26] P2 Crown's screen rider rides down a worker on the flank
+[13:27] P2 Crown's raid finds the way to the workers shut (the gate would take ~10 s (0 menders) under 16 dps of fire): it rides for workers it can get at
+[13:30] P2 Crown's plan: party 7 hovers over a spot: the basket fires
+[13:32] P2 Crown's screen rider backs off from the enemy (1 near)
+[13:33] P2 Crown's raid finds the way to the workers shut (walled with nothing it can break): it rides home and comes again later
+[13:34] P2 Crown's wave strung out on the march: 25 men 5.7 tiles apart close up before going on
+[13:35] P2 Crown's wave forms its line before the enemy army ahead (180): 28 muskets in 2 ranks, 0 guns behind (its screen saw it 587 px off)
+[13:38] P1 Crown's scout rides home (hurt)
+[13:40] P2 Crown's screen rider backs off from the enemy (1 near)
+[13:42] P2 Crown's plan: party 8 hovers over a spot: the basket fires
+[13:43] P1 Crown sends 2 Musketeers after the Crown's scouting Observation Balloon
+[13:46] P2 Crown's plan: party 13 flies to their start (94 tiles, round the anti-air)
+[13:47] P2 Crown's fight at 12:53 out (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 1100, lost 120
+[13:48] P1 Crown's scout rides home (chased)
+[13:48] P1 Crown's picket sees a force coming (360: 6 soldiers) and rides back to the post
+[13:48] P2 Crown's screen rider backs off from the enemy (1 near)
+[13:50] P1 Crown's scout rides home (hurt)
+[13:51] P2 Crown's plan: party 7 pulls back home (the balloon is under fire)
+[13:55] P2 Crown's wave keeps with its guns on the march (26 men wait for them)
+[13:56] P2 Crown's wave forms its line before the enemy army ahead (540): 29 muskets in 2 ranks, 1 gun behind (its screen saw it 525 px off)
+[13:56] P1 Crown lets the Crown's scouting Observation Balloon go (its hunters fell)
+[13:59] P2 Crown's screen rides home (the wave is home)
+[14:04] P2 Crown's plan: party 9 hovers over a spot: the basket fires
+[14:06] P2 Crown's plan: party 10 hovers over a spot: the basket fires
+[14:08] P2 Crown's fight at 13:48 out (formed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 895, lost 0
+[14:14] P2 Crown's wave sends 4 Horsemen ahead and to its flanks as a screen (4 out)
+[14:14] P2 Crown's screen rider backs off from the enemy (3 near)
+[14:17] P1 Crown's picket sees a force coming (360: 6 soldiers) and rides back to the post
+[14:19] P1 Crown's scout rides home (chased)
+[14:24] P2 Crown's plan: party 11 drops its men by the Town Hall (anti-air near: 120)
+[14:24] P2 Crown's plan: party 12 hovers over a spot: the basket fires
+[14:25] P2 Crown's screen rider backs off from the enemy (1 near)
+[14:26] P2 Crown's scouts know: an enemy army of 120 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks, armoury, horse_breeder
+[14:27] P1 Crown's Powder Wagon exploded (90 shots aboard)
+[14:28] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Balloon harass (what it plays already answers it)
+[14:35] P2 Crown's Missionary raised a fallen Officer
+[14:36] P2 Crown's plan: party 9 flies to the Farm (21 tiles)
+[14:36] P2 Crown's plan: party 10 flies to the Farm (22 tiles)
+[14:37] P2 Crown's screen rider backs off from the enemy (1 near)
+[14:39] P2 Crown's plan: party 12 flies to the Farm (22 tiles, round the anti-air)
+[14:43] P2 Crown's plan: party 11 lifts its men out (nothing left to shoot)
+[14:44] P2 Crown's plan: party 9 hovers over the Farm: the basket fires
+[14:44] P2 Crown's plan: party 11 flies to the Powder Mill (4 tiles)
+[14:45] P2 Crown's plan: party 10 hovers over the Farm: the basket fires
+[14:45] P2 Crown's plan: party 11 hovers over the Powder Mill: the basket fires
+[14:47] P2 Crown's Missionary raised a fallen Officer
+[14:50] P2 Crown's plan: party 12 hovers over the Farm: the basket fires
+[14:52] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[14:55] P2 Crown's Missionary raised a fallen Musketeer
+[14:58] P2 Crown's plan: party 9 flies to the flank of their main (14 tiles)
+[15:00] P2 Crown's plan: party 10 flies to the flank of their main (14 tiles)
+[15:00] P2 Crown's plan: party 11 flies to the flank of their main (13 tiles)
+[15:00] P1 Crown's fight at 14:09 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 360, lost 2420
+[15:00] P2 Crown's fight at 14:17 out (formed): 1 gun near, 0 set at contact, 0 fired in its first 10 s; killed 2150, lost 300
+[15:02] P2 Crown's plan: party 13 hovers over their start: the basket fires
+[15:02] P2 Crown's Missionary raised a fallen Officer
+[15:03] P2 Crown's plan: party 9 hovers over the flank of their main: the basket fires
+[15:03] P2 Crown's plan: party 11 hovers over the flank of their main: the basket fires
+[15:03] P2 Crown's plan: party 10 hovers over the flank of their main: the basket fires
+[15:04] P2 Crown's plan: party 7 is over (home)
+[15:04] P2 Crown's plan: party 12 flies to the flank of their main (15 tiles)
+[15:06] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[15:07] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[15:08] P2 Crown's Missionary raised a fallen Musketeer
+[15:09] P2 Crown's plan: party 12 hovers over the flank of their main: the basket fires
+[15:12] P2 Crown's plan: party 14 forms: a balloon and 4 Musketeers
+[15:14] P2 Crown's plan: party 14 flies to the flank of their main (84 tiles)
+[15:17] P2 Crown's Missionary raised a fallen Officer
+[15:17] P2 Crown's plan: party 13 flies to their start (5 tiles)
+[15:17] P2 Crown's plan: party 9 flies to the flank of their main (5 tiles)
+[15:17] P2 Crown's plan: party 11 flies to the flank of their main (5 tiles)
+[15:17] P2 Crown's plan: party 13 hovers over their start: the basket fires
+[15:17] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[15:18] P2 Crown's plan: party 9 hovers over the flank of their main: the basket fires
+[15:18] P2 Crown's plan: party 10 flies to the flank of their main (16 tiles)
+[15:18] P2 Crown's plan: party 11 hovers over the flank of their main: the basket fires
+[15:23] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[15:23] P2 Crown's plan: party 10 hovers over the flank of their main: the basket fires
+[15:23] P2 Crown's plan: party 12 flies to the flank of their main (5 tiles)
+[15:23] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[15:24] P2 Crown's plan: party 12 hovers over the flank of their main: the basket fires
+[15:32] P2 Crown's plan: party 13 flies to their start (5 tiles)
+[15:33] P2 Crown's plan: party 9 flies to the flank of their main (5 tiles)
+[15:33] P2 Crown's plan: party 11 flies to the flank of their main (5 tiles)
+[15:33] P2 Crown's plan: party 13 hovers over their start: the basket fires
+[15:34] P2 Crown's plan: party 9 hovers over the flank of their main: the basket fires
+[15:34] P2 Crown's plan: party 11 hovers over the flank of their main: the basket fires
+[15:38] P2 Crown's plan: party 10 flies to the flank of their main (5 tiles)
+[15:39] P2 Crown's plan: party 10 hovers over the flank of their main: the basket fires
+[15:39] P2 Crown's plan: party 12 flies to their start (8 tiles)
+[15:39] P2 Crown's plan: party 12 hovers over their start: the basket fires
+[15:40] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[15:40] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[15:42] P2 Crown's scouts know: an enemy army of 0 (seen in the last 120 s), 0 enemy halls, tech none seen
+[15:47] P2 Crown's plan: party 8 flies to the flank of their main (90 tiles)
+[15:47] P2 Crown's plan: party 13 flies to the flank of their main (15 tiles)
+[15:48] P2 Crown's plan: party 9 flies to the flank of their main (5 tiles)
+[15:48] P2 Crown's plan: party 11 flies to the flank of their main (5 tiles)
+[15:49] P2 Crown's plan: party 9 hovers over the flank of their main: the basket fires
+[15:49] P2 Crown's plan: party 11 hovers over the flank of their main: the basket fires
+[15:52] P2 Crown's plan: party 13 hovers over the flank of their main: the basket fires
+[15:53] P2 Crown's plan: party 10 flies to the flank of their main (5 tiles)
+[15:54] P2 Crown's plan: party 10 hovers over the flank of their main: the basket fires
+[15:54] P2 Crown's plan: party 12 flies to their start (5 tiles)
+[15:54] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[15:55] P2 Crown's plan: party 12 hovers over their start: the basket fires
+[15:56] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[16:04] P2 Crown's plan: party 9 flies to the flank of their main (5 tiles)
+[16:04] P2 Crown's plan: party 11 flies to the flank of their main (5 tiles)
+[16:04] P2 Crown's plan: party 9 hovers over the flank of their main: the basket fires
+[16:04] P2 Crown's plan: party 11 hovers over the flank of their main: the basket fires
+[16:04] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[16:05] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[16:07] P2 Crown's plan: party 13 flies to the flank of their main (5 tiles)
+[16:07] P2 Crown's plan: party 14 hovers over the flank of their main: the basket fires
+[16:07] P2 Crown's plan: party 13 hovers over the flank of their main: the basket fires
+[16:09] P2 Crown's plan: party 10 flies to the flank of their main (4 tiles)
+[16:09] P2 Crown's plan: party 10 hovers over the flank of their main: the basket fires
+[16:09] P2 Crown's plan: party 12 flies to their start (5 tiles)
+[16:10] P2 Crown's plan: party 12 hovers over their start: the basket fires
+[16:10] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[16:19] P2 Crown's plan: party 9 flies to their start (8 tiles)
+[16:19] P2 Crown's plan: party 11 flies to the flank of their main (5 tiles)
+[16:19] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[16:20] P2 Crown's plan: party 9 hovers over their start: the basket fires
+[16:20] P2 Crown's plan: party 11 hovers over the flank of their main: the basket fires
+[16:21] P2 Crown's plan: party 14 flies to the flank of their main (21 tiles)
+[16:22] P2 Crown's plan: party 13 flies to the flank of their main (5 tiles)
+[16:23] P2 Crown's plan: party 13 hovers over the flank of their main: the basket fires
+[16:24] P2 Crown's plan: party 10 flies to their start (8 tiles)
+[16:25] P2 Crown's plan: party 10 hovers over their start: the basket fires
+[16:25] P2 Crown's plan: party 12 flies to the flank of their main (8 tiles)
+[16:26] P2 Crown's plan: party 12 hovers over the flank of their main: the basket fires
+[16:29] P2 Crown's plan: party 14 hovers over the flank of their main: the basket fires
+[16:33] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[16:34] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[16:34] P2 Crown's plan: party 9 flies to their start (5 tiles)
+[16:34] P2 Crown's plan: party 11 flies to their start (8 tiles)
+[16:35] P2 Crown's plan: party 9 hovers over their start: the basket fires
+[16:35] P2 Crown's plan: party 11 hovers over their start: the basket fires
+[16:37] P2 Crown's plan: party 13 flies to the flank of their main (13 tiles)
+[16:38] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[16:40] P2 Crown's plan: party 10 flies to their start (5 tiles)

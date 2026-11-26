@@ -1,0 +1,403 @@
+[00:00] P1 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P2 Crown's plan: OPTIMAL: the common opening (the ramp Cottage, the Gate, the Barracks, the second Farm), a scout at once, then it picks its build from what it sees
+[00:00] P1 Crown's base layout at its main: 12 Cottage spots in 3 blocks at the back, 4 production rows' spots, 1 Farm and 1 Mill spots by the hall
+[00:00] P1 Crown's build order: the ramp Cottage (supply 6, 4 labourers, 100 gold)
+[00:00] P2 Crown's base layout at its main: 12 Cottage spots in 3 blocks at the back, 4 production rows' spots, 1 Farm and 1 Mill spots by the hall
+[00:00] P2 Crown's build order: the ramp Cottage (supply 6, 4 labourers, 100 gold)
+[00:43] P1 Crown's build order: the ramp Gate (supply 9, 7 labourers, 280 gold)
+[00:43] P1 Crown's build order: Farm 2 (supply 9, 7 labourers, 180 gold)
+[00:44] P2 Crown's build order: the ramp Gate (supply 9, 7 labourers, 280 gold)
+[00:44] P2 Crown's build order: Farm 2 (supply 9, 7 labourers, 180 gold)
+[01:01] P1 Crown's ramp wall stands (1 pieces, 18 s after it was laid)
+[01:02] P2 Crown's ramp wall stands (1 pieces, 18 s after it was laid)
+[01:35] P1 Crown's build order: Barracks 1 (supply 12, 10 labourers, 210 gold)
+[01:35] P2 Crown's build order: Barracks 1 (supply 12, 10 labourers, 210 gold)
+[02:04] P2 Crown's plan: Balanced, a build order of 7 steps from here (scripts/ai_crown.gd)
+[02:04] P2 Crown's plan: optimal: reads UNKNOWN [no read yet]: picks Balanced (a normal game)
+[02:04] P2 Crown's build order: the ramp Cottage (supply 14, 13 labourers, 0 gold)
+[02:04] P2 Crown's build order: the ramp Gate (supply 14, 13 labourers, 0 gold)
+[02:04] P2 Crown's build order: Farm 2 (supply 14, 13 labourers, 0 gold)
+[02:08] P1 Crown's plan: Balanced, a build order of 7 steps from here (scripts/ai_crown.gd)
+[02:08] P1 Crown's plan: optimal: reads UNKNOWN [no read yet]: picks Balanced (a normal game)
+[02:08] P1 Crown's build order: the ramp Cottage (supply 14, 13 labourers, 0 gold)
+[02:08] P1 Crown's build order: the ramp Gate (supply 14, 13 labourers, 0 gold)
+[02:08] P1 Crown's build order: Farm 2 (supply 14, 13 labourers, 0 gold)
+[02:47] P1 Crown's build order: Town Hall 2 (supply 18, 16 labourers, 170 gold)
+[02:47] P1 Crown's build order: Barracks 1 (supply 18, 16 labourers, 170 gold)
+[02:47] P1 Crown's build order: Powder Mill 1 (supply 18, 16 labourers, 70 gold)
+[02:47] P1 Crown's build order: Musketeers from now on (up to 8 supply) (supply 18, 16 labourers, 70 gold)
+[02:47] P1 Crown's plan: the opening is over (the build order is done): the milestones take over
+[02:49] P2 Crown's build order: Town Hall 2 (supply 18, 16 labourers, 170 gold)
+[02:49] P2 Crown's build order: Barracks 1 (supply 18, 16 labourers, 170 gold)
+[02:49] P2 Crown's build order: Powder Mill 1 (supply 18, 16 labourers, 70 gold)
+[02:49] P2 Crown's build order: Musketeers from now on (up to 8 supply) (supply 18, 16 labourers, 70 gold)
+[02:49] P2 Crown's plan: the opening is over (the build order is done): the milestones take over
+[03:19] P1 Crown's base layout at its new hall: 0 Cottage spots in 0 blocks at the back, 2 production rows' spots, 2 Farm and 1 Mill spots by the hall
+[03:20] P2 Crown's base layout at its new hall: 0 Cottage spots in 0 blocks at the back, 2 production rows' spots, 2 Farm and 1 Mill spots by the hall
+[03:22] P2 Crown sends 2 Labourers after the Crown's scouting Labourer
+[03:25] P1 Crown's plan: the army on time: 0 of army (with what trains) against the 60 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[03:25] P2 Crown's plan: the army on time: 0 of army (with what trains) against the 60 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[03:30] P2 Crown killed the Crown's scouting Labourer at 3:30
+[03:30] P1 Crown's plan: milestone: Foundry 1 (18 labourers, 2 halls, army 0 supply)
+[03:33] P2 Crown's plan: milestone: Foundry 1 (19 labourers, 2 halls, army 0 supply)
+[03:50] P1 Crown's plan: the army first: 0 of army against the 71 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[03:50] P2 Crown's plan: the army first: 0 of army against the 46 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[03:50] P2 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (0 against the 46 it reckons)
+[04:14] P1 Crown's plan: milestone: Foundry 1 (22 labourers, 2 halls, army 0 supply)
+[04:14] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (0 against the 112 it reckons)
+[04:20] P2 Crown's plan: milestone: Barracks 2 (24 labourers, 2 halls, army 0 supply)
+[04:25] P1 Crown's plan: the army on time: 60 of army (with what trains) against the 140 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[04:25] P2 Crown's plan: the army on time: 60 of army (with what trains) against the 90 it wants by now (60% of a Hard Crown's usual army): soldiers before more labourers
+[04:37] P1 Crown sends 1 Labourer after the Crown's scouting Labourer
+[04:40] P2 Crown's first Officer mounted (Horseman)
+[04:40] P2 Crown's scouts know: an enemy army of 0 (seen in the last 120 s), 0 enemy halls, tech foundry
+[04:45] P1 Crown sends 1 Labourer after the Crown's scouting Labourer
+[04:48] P1 Crown lets the Crown's scouting Labourer go (away past the leash)
+[04:49] P1 Crown's first Officer mounted (Horseman)
+[04:49] P1 Crown's scouts know: an enemy army of 0 (seen in the last 120 s), 0 enemy halls, tech none seen
+[04:50] P1 Crown killed the Crown's scouting Labourer at 4:50
+[04:50] P1 Crown's plan: the army first: 60 of army against the 177 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:50] P2 Crown's plan: the army first: 60 of army against the 152 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[04:50] P2 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (60 against the 152 it reckons)
+[04:57] P1 Crown's first gun crewman went out of a Foundry to fetch a gun's horse (no hauler free)
+[04:59] P2 Crown's plan: milestone: Barracks 3 (28 labourers, 2 halls, army 3 supply)
+[05:15] P1 Crown's plan: milestone Barracks waits: the army is far behind the enemy's (100 against the 237 it reckons)
+[05:32] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[05:32] P2 Crown's scout found workers to hunt: it hands over to the raid
+[05:34] P2 Crown's first pistol shot (Horseman)
+[05:35] P2 Crown sends 1 Officer after the Crown's scouting Labourer
+[05:39] P1 Crown sends 1 Musketeer after the Crown's scouting Horseman
+[05:41] P1 Crown's plan: milestone: Armoury 1 (31 labourers, 2 halls, army 7 supply)
+[05:41] P2 Crown's plan: milestone: Armoury 1 (30 labourers, 2 halls, army 10 supply)
+[05:43] P1 Crown's first horse hauled by a hauler
+[05:52] P2 Crown's Horseman goes home (hurt)
+[05:55] P1 Crown sends 1 Labourer after the Crown's scouting Labourer
+[05:56] P2 Crown's scouts know: an enemy army of 60 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks
+[05:57] P1 Crown lets the Crown's scouting Horseman go (away past the leash)
+[05:58] P1 Crown's fight at 5:36 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 0, lost 100
+[06:01] P2 Crown's fight at 5:40 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 100, lost 0
+[06:05] P1 Crown's scouts know: an enemy army of 120 (seen in the last 120 s), 0 enemy halls, tech foundry, barracks
+[06:05] P2 Crown lets the Crown's scouting Labourer go (the chase took too long)
+[06:10] P1 Crown killed the Crown's scouting Labourer at 6:10
+[06:21] P2 Crown's plan: milestone: Barracks 4 (33 labourers, 2 halls, army 10 supply)
+[06:24] P2 Crown's first gun crewman went out of a Foundry to fetch a gun's horse (no hauler free)
+[06:37] P1 Crown's plan: milestone: Barracks 4 (31 labourers, 2 halls, army 13 supply)
+[06:53] P2 Crown's first horse hauled by a hauler
+[06:58] P1 Crown sends 1 Horseman after the Crown's scouting Labourer
+[07:03] P1 Crown's first pistol shot (Horseman)
+[07:07] P1 Crown killed the Crown's scouting Labourer at 7:07
+[07:08] P1 Crown's plan: trains a Drummer for its Marching Band (10 soldiers)
+[07:08] P2 Crown's plan: trains a Drummer for its Marching Band (13 soldiers)
+[07:11] P2 Crown's scouts know: an enemy army of 290 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks
+[07:12] P1 Crown's plan: trains a Fifer for its Marching Band (10 soldiers)
+[07:13] P1 Crown's plan: trains a Piper for its Marching Band (10 soldiers)
+[07:13] P1 Crown's scout rides home (chased)
+[07:13] P1 Crown's wave goes for the enemy hall at (99, 92) (18 tiles from its main, 0 walls by it)
+[07:13] P1 Crown's first attack goes out (19 supply, 2 Horsemen)
+[07:13] P1 Crown's wave sends 2 Horsemen ahead and to its flanks as a screen (2 out)
+[07:13] P1 Crown's screen rider backs off from the enemy (7 near)
+[07:14] P1 Crown's screen rides home (the wave is home)
+[07:20] P1 Crown's scouts know: an enemy army of 300 (seen in the last 120 s), 0 enemy halls, tech foundry, barracks
+[07:21] P2 Crown's plan: trains a Fifer for its Marching Band (13 soldiers)
+[07:26] P2 Crown's wave goes for the enemy hall at (28, 4) (18 tiles from its main, 0 walls by it)
+[07:26] P2 Crown's first attack goes out (18 supply, 1 Horsemen)
+[07:27] P2 Crown's wave sends 2 Horsemen ahead and to its flanks as a screen (2 out)
+[07:29] P2 Crown's wave keeps with its guns on the march (6 men wait for them)
+[07:36] P2 Crown's screen rider backs off from the enemy (1 near)
+[07:45] P2 Crown's screen rider backs off from the enemy (1 near)
+[07:46] P2 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (3 out)
+[07:46] P1 Crown's scout rides home (chased)
+[07:46] P2 Crown's wave meets the enemy before its line is formed: 16 muskets deploy into a line through the 0 already firing
+[07:47] P2 Crown's screen pulls back to the line's flanks at contact
+[07:47] P2 Crown's screen rider rides down a Horseman on the flank
+[07:52] P1 Crown sends 2 Horsemans after the Crown's scouting Horseman
+[07:58] P1 Crown's plan: milestone: Church 1 (41 labourers, 2 halls, army 29 supply)
+[07:58] P1 Crown killed the Crown's scouting Horseman at 7:58
+[07:59] P1 Crown's first Field Cannon with a team of 2 horses
+[08:00] P1 Crown's wave goes for the enemy hall at (104, 72) (18 tiles from its main, 3 walls by it)
+[08:00] P1 Crown's wave 2 goes out (26 supply; the next waits for 29)
+[08:00] P1 Crown's wave sends 3 Horsemen ahead and to its flanks as a screen (3 out)
+[08:04] P2 Crown's plan: trains a Piper for its Marching Band (21 soldiers)
+[08:07] P2 Crown's fight at 7:46 out (unformed): 1 gun near, 0 set at contact, 0 fired in its first 10 s; killed 0, lost 60
+[08:10] P1 Crown's screen rider backs off from the enemy (4 near)
+[08:10] P1 Crown's wave forms its line before the enemy army ahead (420): 11 muskets in 1 rank, 2 guns behind (its screen saw it 519 px off)
+[08:19] P1 Crown's screen rider backs off from the enemy (1 near)
+[08:21] P2 Crown's base layout at its new hall: 0 Cottage spots in 0 blocks at the back, 5 production rows' spots, 2 Farm and 1 Mill spots by the hall
+[08:25] P2 Crown's screen rider backs off from the enemy (1 near)
+[08:30] P1 Crown's scout rides home (chased)
+[08:30] P1 Crown's picket sees a force coming (240: 4 soldiers) and rides back to the post
+[08:30] P2 Crown's screen rides home (the wave is home)
+[08:30] P2 Crown's scouts know: an enemy army of 720 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks
+[08:32] P1 Crown's screen rider backs off from the enemy (1 near)
+[08:34] P1 Crown's screen pulls back to the line's flanks at contact
+[08:40] P1 Crown's scouts know: an enemy army of 180 (seen in the last 120 s), 0 enemy halls, tech foundry, barracks
+[08:42] P1 Crown's screen rider rides down a worker on the flank
+[08:45] P1 Crown's screen rider rides back (hurt)
+[08:46] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (3 out)
+[08:47] P2 Crown sends 1 Horseman after the Crown's scouting Labourer
+[08:51] P2 Crown killed the Crown's scouting Labourer at 8:51
+[08:55] P1 Crown's fight at 7:54 at home (unformed): 2 guns near, 0 set at contact, 0 fired in its first 10 s; killed 710, lost 160
+[08:55] P2 Crown's fight at 8:10 out (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 160, lost 650
+[08:55] P1 Crown's line has won the field: it forms up again and goes on
+[08:55] P2 Crown's wave goes for the enemy hall at (23, 24) (18 tiles from its main, 7 walls by it)
+[08:55] P2 Crown's wave 2 goes out (22 supply; the next waits for 25)
+[08:56] P1 Crown's wave keeps with its guns on the march (5 men wait for them)
+[08:56] P2 Crown's wave sends 3 Horsemen ahead and to its flanks as a screen (3 out)
+[08:56] P2 Crown's wave keeps with its guns on the march (5 men wait for them)
+[09:00] P2 Crown's plan: milestone: Foundry 2 (49 labourers, 3 halls, army 28 supply)
+[09:01] P1 Crown's base layout at its new hall: 0 Cottage spots in 0 blocks at the back, 7 production rows' spots, 2 Farm and 1 Mill spots by the hall
+[09:08] P1 Crown's screen rider backs off from the enemy (1 near)
+[09:08] P2 Crown's screen rider backs off from the enemy (1 near)
+[09:13] P2 Crown's wave forms its line before the enemy army ahead (120): 9 muskets in 1 rank, 2 guns behind (its screen saw it 828 px off)
+[09:17] P1 Crown's screen rider backs off from the enemy (1 near)
+[09:17] P2 Crown's screen rider backs off from the enemy (1 near)
+[09:23] P1 Crown's wave forms its line before the enemy army ahead (180): 17 muskets in 2 ranks, 2 guns behind (its screen saw it 85 px off)
+[09:32] P1 Crown's screen pulls back to the line's flanks at contact
+[09:44] P2 Crown's screen pulls back to the line's flanks at contact
+[09:46] P2 Crown's scouts know: an enemy army of 720 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks
+[09:48] P1 Crown's scout rides home (chased)
+[09:50] P1 Crown's Horseman was killed and a horse bolted loose (the first: anyone's to catch)
+[09:53] P1 Crown's plan: milestone: Foundry 2 (53 labourers, 3 halls, army 47 supply)
+[09:53] P2 Crown's line is losing the fight (300 lost for 60): it falls back toward its guns in order and forms again
+[10:00] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[10:00] P2 Crown's scout found workers to hunt: it hands over to the raid
+[10:01] P1 Crown's Fifer: solo (band)
+[10:02] P1 Crown's screen rider rides down a Horseman on the flank
+[10:08] P1 Crown's fight at 9:50 out (unformed): 2 guns near, 2 set at contact, 1 fired in its first 10 s; killed 350, lost 170
+[10:09] P2 Crown's Horseman pulls back from Musketeer
+[10:09] P1 Crown's first Musketeer mounted (Dragoon)
+[10:09] P2 Crown's screen rider rides down a Horseman on the flank
+[10:12] P1 Crown's fight at 10:08 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 0, lost 290
+[10:12] P2 Crown's fight at 9:48 out (unformed): 2 guns near, 0 set at contact, 1 fired in its first 10 s; killed 460, lost 470
+[10:12] P2 Crown's screen rider rides back (hurt)
+[10:13] P1 Crown's screen rider rides back (hurt)
+[10:14] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (3 out)
+[10:17] P1 Crown's fight at 10:12 out (unformed): 2 guns near, 2 set at contact, 0 fired in its first 10 s; killed 0, lost 120
+[10:18] P2 Crown's Horseman pulls back from Musketeer
+[10:23] P1 Crown's screen rider rides down a hurt Horseman on the flank
+[10:26] P2 Crown's Horseman pulls back from Horseman
+[10:36] P1 Crown's screen rider backs off from the enemy (1 near)
+[10:36] P2 Crown's Horseman goes home (driven back too often)
+[10:37] P2 Crown's screen rider rides down a Musketeer on the flank
+[10:42] P1 Crown's screen rider backs off from the enemy (1 near)
+[10:43] P2 Crown's plan: milestone: Church 1 (64 labourers, 3 halls, army 38 supply)
+[10:46] P2 Crown's picket sees a force coming (420: 7 soldiers) and rides back to the post
+[10:46] P1 Crown's Fifer: solo
+[10:47] P1 Crown's wave meets the enemy before its line is formed: 10 muskets deploy into a line through the 0 already firing
+[10:48] P1 Crown's scouts know: an enemy army of 950 (seen in the last 120 s), 0 enemy halls, tech foundry, barracks
+[10:48] P1 Crown's screen pulls back to the line's flanks at contact
+[10:48] P1 Crown's screen rider rides down a worker on the flank
+[10:51] P1 Crown's screen rider rides back (hurt)
+[10:51] P1 Crown's line is losing the fight (290 lost for 60): it falls back toward its guns in order and forms again
+[10:51] P2 Crown's screen rider rides down a hurt Horseman on the flank
+[10:51] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (3 out)
+[10:56] P1 Crown's screen rides home (the wave is home)
+[11:01] P2 Crown's Powder Wagon exploded (108 shots aboard)
+[11:02] P2 Crown's scouts know: an enemy army of 300 (seen in the last 120 s), 2 enemy halls, tech foundry, barracks
+[11:02] P2 Crown's Field Cannon was killed and a horse bolted loose (the first: anyone's to catch)
+[11:03] P2 Crown's screen rides home (the wave is home)
+[11:05] P2 Crown's scout rides home (chased)
+[11:07] P2 Crown's plan: trains a Fifer for its Marching Band (19 soldiers)
+[11:12] P1 Crown's plan: the army first: 630 of army against the 1080 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[11:16] P1 Crown's plan: trains a Drummer for its Marching Band (11 soldiers)
+[11:16] P2 Crown's raid breaks in at the palisade in the way: down in ~6 s (0 menders, 0 dps of fire on it)
+[11:31] P2 Crown's wave 3 goes out (30 supply; the next waits for 31)
+[11:32] P2 Crown's wave sends 3 Horsemen ahead and to its flanks as a screen (3 out)
+[11:32] P2 Crown's screen pulls back to the line's flanks at contact
+[11:33] P2 Crown's first Field Cannon with a team of 2 horses
+[11:35] P1 Crown's plan: trains a Piper for its Marching Band (17 soldiers)
+[11:37] P1 Crown sends 1 Musketeer after the Crown's scouting Horseman
+[11:39] P1 Crown lets the Crown's scouting Horseman go (its friends are near)
+[11:42] P2 Crown's fight at 10:16 out (unformed): 1 gun near, 1 set at contact, 1 fired in its first 10 s; killed 1610, lost 845
+[11:43] P2 Crown's line has won the field: it forms up again and goes on
+[11:43] P2 Crown's wave keeps with its guns on the march (17 men wait for them)
+[11:46] P2 Crown's raid finds the way to the workers shut (it hardly scratched the palisade in 30 s): it rides home and comes again later
+[11:49] P1 Crown's fight at 10:27 out (unformed): 2 guns near, 0 set at contact, 0 fired in its first 10 s; killed 845, lost 1550
+[11:50] P2 Crown's plan: trains a Drummer for its Marching Band (30 soldiers)
+[11:50] P1 Crown's picket sees a force coming (120: 2 soldiers) and rides back to the post
+[11:51] P2 Crown's wave strung out on the march: 18 men 5.6 tiles apart close up before going on
+[11:53] P1 Crown sends 2 Musketeers after the Crown's scouting Horseman
+[11:55] P1 Crown killed the Crown's scouting Horseman at 11:55
+[11:59] P1 Crown's Horseman goes on to harass the workers (the scout found workers)
+[11:59] P1 Crown's scout found workers to hunt: it hands over to the raid
+[12:03] P1 Crown's scouts know: an enemy army of 1080 (seen in the last 120 s), 0 enemy halls, tech foundry, barracks
+[12:10] P1 Crown's Horseman pulls back from Musketeer
+[12:13] P2 Crown's wave goes on together (2.4 tiles apart)
+[12:13] P2 Crown's wave keeps with its guns on the march (5 men wait for them)
+[12:15] P1 Crown's fight at 11:49 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 220, lost 0
+[12:17] P2 Crown's scouts know: an enemy army of 660 (seen in the last 120 s), 2 enemy halls, tech foundry, barracks
+[12:18] P2 Crown's plan: trains a Fifer for its Marching Band (35 soldiers)
+[12:18] P1 Crown's wave 3 goes out (29 supply; the next waits for 31)
+[12:18] P2 Crown's screen rider backs off from the enemy (1 near)
+[12:18] P2 Crown's wave forms its line before the enemy's palisade: 27 muskets in 2 ranks, 2 guns behind to break it
+[12:19] P1 Crown's wave sends 3 Horsemen ahead and to its flanks as a screen (3 out)
+[12:19] P1 Crown's screen pulls back to the line's flanks at contact
+[12:19] P1 Crown's line has won the field: it forms up again and goes on
+[12:20] P1 Crown's screen rider backs off from the enemy (1 near)
+[12:21] P2 Crown's base layout at its new hall: 0 Cottage spots in 0 blocks at the back, 3 production rows' spots, 2 Farm and 1 Mill spots by the hall
+[12:21] P1 Crown's wave forms its line before the enemy army ahead (120): 21 muskets in 2 ranks, 1 gun behind (its screen saw it 646 px off)
+[12:30] P2 Crown sends 2 Musketeer and Horseman after the Crown's scouting Horseman
+[12:32] P1 Crown's screen rider backs off from the enemy (1 near)
+[12:32] P2 Crown's screen rider backs off from the enemy (1 near)
+[12:34] P1 Crown's Horseman pulls back from Musketeer
+[12:38] P2 Crown lets the Crown's scouting Horseman go (out of sight)
+[12:44] P1 Crown's screen rider backs off from the enemy (1 near)
+[12:45] P2 Crown's screen rider backs off from the enemy (1 near)
+[12:46] P2 Crown's screen pulls back to the line's flanks at contact
+[12:46] P2 Crown's screen rider rides down a Horseman on the flank
+[12:50] P1 Crown's screen pulls back to the line's flanks at contact
+[12:51] P2 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (4 out)
+[12:53] P2 Crown's plan: trains a Piper for its Marching Band (38 soldiers)
+[12:54] P1 Crown's picket sees a force coming (120: 2 soldiers) and rides back to the post
+[12:56] P2 Crown's screen rider backs off from the enemy (1 near)
+[13:03] P2 Crown's wave meets the enemy before its line is formed: 28 muskets deploy into a line through the 0 already firing
+[13:03] P2 Crown's screen pulls back to the line's flanks at contact
+[13:04] P2 Crown's screen rider rides down a worker on the flank
+[13:05] P2 Crown's Piper: solo
+[13:06] P1 Crown's screen rider rides down a Cuirassier on the flank
+[13:06] P1 Crown's Horseman pulls back from Horseman
+[13:07] P2 Crown's picket sees a force coming (180: 3 soldiers) and rides back to the post
+[13:09] P1 Crown's screen rider rides back (hurt)
+[13:10] P1 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (3 out)
+[13:11] P1 Crown's scout rides home (chased)
+[13:16] P2 Crown's screen rider rides down a worker on the flank
+[13:17] P1 Crown's Powder Wagon exploded (119 shots aboard)
+[13:18] P1 Crown's screen rider rides back (hurt)
+[13:19] P1 Crown's dropped powder keg blew up
+[13:19] P1 Crown's scouts know: an enemy army of 2490 (seen in the last 120 s), 0 enemy halls, tech foundry, barracks
+[13:19] P1 Crown's screen rider rides down a Cuirassier on the flank
+[13:20] P1 Crown's fight at 12:50 out (unformed): 1 gun near, 0 set at contact, 0 fired in its first 10 s; killed 465, lost 1080
+[13:23] P2 Crown's screen rider rides back (hurt)
+[13:25] P1 Crown's Horseman goes home (hurt)
+[13:27] P1 Crown's screen rider is lost (1 lost)
+[13:29] P2 Crown's screen rider rides down a worker on the flank
+[13:30] P2 Crown's Horseman goes on to harass the workers (out alone)
+[13:30] P2 Crown's Horseman goes home (hurt)
+[13:31] P1 Crown's fight at 13:20 out (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 345, lost 795
+[13:33] P2 Crown's scouts know: an enemy army of 1500 (seen in the last 120 s), 2 enemy halls, tech foundry, barracks
+[13:35] P2 Crown's Horseman goes on to harass the workers (the scout found workers)
+[13:35] P2 Crown's scout found workers to hunt: it hands over to the raid
+[13:36] P1 Crown's screen rider rides back (hurt)
+[13:36] P1 Crown's base layout at its new hall: 0 Cottage spots in 0 blocks at the back, 1 production rows' spots, 2 Farm and 1 Mill spots by the hall
+[13:42] P2 Crown's screen rider rides down a worker on the flank
+[13:43] P1 Crown's Fifer: solo (band)
+[13:44] P1 Crown's screen rider rides back (hurt)
+[13:52] P2 Crown's Horseman pulls back from Musketeer
+[13:56] P2 Crown's scout rides home (chased)
+[13:57] P1 Crown's fight at 13:31 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 1390, lost 1110
+[13:57] P2 Crown's fight at 12:49 out (unformed): 2 guns near, 0 set at contact, 0 fired in its first 10 s; killed 2985, lost 2200
+[14:00] P1 Crown's raid breaks in at the palisade in the way: down in ~13 s (0 menders, 0 dps of fire on it)
+[14:02] P2 Crown's Horseman pulls back from Musketeer
+[14:03] P1 Crown's fight at 13:57 out (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 160, lost 260
+[14:03] P2 Crown's fight at 13:57 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 260, lost 160
+[14:13] P1 Crown's Drummer: solo
+[14:14] P2 Crown's Horseman pulls back from Musketeer
+[14:20] P2 Crown's screen rider rides down a worker on the flank
+[14:20] P2 Crown's Horseman goes home (driven back too often)
+[14:24] P2 Crown's fight at 14:03 out (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 715, lost 880
+[14:25] P1 Crown's fight at 14:03 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 880, lost 715
+[14:33] P2 Crown's fight at 14:24 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 180, lost 50
+[14:34] P1 Crown's plan: the army first: 1030 of army against the 1720 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[14:34] P1 Crown's plan: milestone Foundry waits: the army is far behind the enemy's (1030 against the 1720 it reckons)
+[14:35] P1 Crown's plan: a Farm at its new hall at once (58 s after it stood)
+[14:35] P1 Crown's scouts know: an enemy army of 1720 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks
+[14:36] P2 Crown's fight at 14:33 out (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 60, lost 60
+[14:39] P2 Crown's Fifer: solo (band)
+[14:41] P2 Crown's fight at 14:36 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 60, lost 0
+[14:42] P2 Crown's wave sends 1 Horseman ahead and to its flanks as a screen (4 out)
+[14:46] P1 Crown's fight at 14:25 out (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 170, lost 360
+[14:49] P2 Crown's line has won the field: it forms up again and goes on
+[14:50] P2 Crown's screen rider backs off from the enemy (1 near)
+[14:50] P2 Crown's wave keeps with its guns on the march (9 men wait for them)
+[14:50] P2 Crown's wave strung out on the march: 14 men 7.2 tiles apart close up before going on
+[14:52] P1 Crown's scout rides home (chased)
+[14:58] P2 Crown's wave goes on together (2.2 tiles apart)
+[15:06] P2 Crown's wave meets the enemy before its line is formed: 16 muskets deploy into a line through the 1 already firing
+[15:07] P2 Crown's screen pulls back to the line's flanks at contact
+[15:09] P2 Crown's screen rider rides down a worker on the flank
+[15:10] P2 Crown's line has won the field: it forms up again and goes on
+[15:12] P2 Crown's wave forms its line before the enemy's gate: 15 muskets in 1 rank, 2 guns behind to break it
+[15:23] P2 Crown's screen rider backs off from the enemy (1 near)
+[15:23] P2 Crown's Fifer: solo
+[15:25] P2 Crown's screen rider rides back (hurt)
+[15:27] P2 Crown's wave meets the enemy before its line is formed: 9 muskets deploy into a line through the 10 already firing
+[15:28] P2 Crown's screen pulls back to the line's flanks at contact
+[15:28] P2 Crown's screen rider rides down a worker on the flank
+[15:30] P2 Crown's screen rider backs off from the enemy (3 near)
+[15:33] P2 Crown's wave meets the enemy before its line is formed: 9 muskets deploy into a line through the 10 already firing
+[15:39] P1 Crown's scout rides home (chased)
+[15:39] P2 Crown's Drummer: solo
+[15:42] P2 Crown's screen rider rides down a worker on the flank
+[15:44] P1 Crown's plan: the army first: 590 of army against the 1070 it reckons the enemy has (it wants 60%): the labourers and the tech wait for the soldiers
+[15:45] P1 Crown's plan: milestone Foundry waits: the army is far behind the enemy's (590 against the 1070 it reckons)
+[15:50] P1 Crown's scouts know: an enemy army of 1070 (seen in the last 120 s), 1 enemy hall, tech foundry, barracks
+[15:51] P1 Crown's picket sees a force coming (120: 2 soldiers) and rides back to the post
+[16:01] P1 Crown's picket sees a force coming (120: 2 soldiers) and rides back to the post
+[16:04] P2 Crown's screen rider rides down a worker on the flank
+[16:04] P1 Crown's Missionary raised a fallen Officer
+[16:07] P2 Crown's first keg hauled by a hauler
+[16:09] P1 Crown's picket sees a force coming (120: 2 soldiers) and rides back to the post
+[16:15] P2 Crown's Fifer: solo (band)
+[16:16] P2 Crown's screen rider rides down a Guardsman on the flank
+[16:18] P1 Crown's Missionary raised a fallen Officer
+[16:24] P2 Crown's Fifer: solo
+[16:26] P1 Crown's wave goes for the enemy hall at (69, 92) (47 tiles from its main, 0 walls by it)
+[16:28] P1 Crown's Missionary raised a fallen Guardsman
+[16:29] P1 Crown's scout rides home (chased)
+[16:29] P1 Crown's picket sees a force coming (540: 9 soldiers) and rides back to the post
+[16:32] P2 Crown's screen rider rides down a worker on the flank
+[16:35] P1 Crown's Missionary raised a fallen Musketeer
+[16:38] P2 Crown's Piper: solo (band)
+[16:43] P1 Crown's Missionary raised a fallen Musketeer
+[16:53] P1 Crown's Missionary raised a fallen Guardsman
+[16:54] P2 Crown's screen rider rides down a Guardsman on the flank
+[16:55] P2 Crown's scouts know: an enemy army of 120 (seen in the last 120 s), 2 enemy halls, tech none seen
+[17:03] P2 Crown's plan: optimal: reads NORMAL [a standard opening]: keeps Balanced (what it plays already answers it)
+[17:05] P1 Crown's Missionary raised a fallen Musketeer
+[17:09] P2 Crown's fight at 14:41 out (unformed): 2 guns near, 0 set at contact, 0 fired in its first 10 s; killed 4165, lost 1140
+[17:11] P2 Crown's Fifer: solo (band)
+[17:13] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[17:13] P1 Crown's Drummer: solo
+[17:13] P2 Crown's Fifer: solo
+[17:14] P1 Crown's Missionary raised a fallen Armoured Officer
+[17:16] P2 Crown's base layout at its new hall: 0 Cottage spots in 0 blocks at the back, 6 production rows' spots, 2 Farm and 1 Mill spots by the hall
+[17:20] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[17:20] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[17:21] P1 Crown's Missionary raised a fallen Musketeer
+[17:26] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[17:33] P2 Crown's screen rider rides down a worker on the flank
+[17:35] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[17:35] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[17:36] P2 Crown's Piper: solo (band)
+[17:42] P1 Crown's fight at 14:46 at home (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 1140, lost 5255
+[17:49] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[17:49] P2 Crown's Horseman goes on to harass the workers (out alone)
+[17:52] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[17:53] P2 Crown's plan: trains a Piper for its Marching Band (35 soldiers)
+[17:53] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[17:54] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[17:58] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[17:58] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:00] P2 Crown's wave goes for the enemy hall at (5, 32) (22 tiles from its main, 13 walls by it)
+[18:00] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:01] P2 Crown's fight at 17:09 out (unformed): 0 guns near, 0 set at contact, 0 fired in its first 10 s; killed 1950, lost 60
+[18:02] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:04] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:05] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:06] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:10] P2 Crown's scouts know: an enemy army of 0 (seen in the last 120 s), 2 enemy halls, tech barracks, horse_breeder, armoury, foundry
+[18:16] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:19] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:22] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:23] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:24] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:25] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:26] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:28] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:30] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:33] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:35] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:35] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:36] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:37] P2 Crown's Musketeer comes home (out alone, too slow to harass)
+[18:37] P2 Crown's Musketeer comes home (out alone, too slow to harass)

@@ -240,6 +240,27 @@ if __name__ == "__main__":
             print("| %s | %s | %d | %d | %d | %d | %d | %d | %+.2f | %+.2f | %s / %s | %s / %s | %s | %s |" % (
                 n, ex or "(none)", len(rows), c["W"], c["w"], c["="], c["l"], c["L"], s["g"], s["g14"], f2(s["inc8"]),
                 f2(s["inc12"]), f2(s["army8"]), f2(s["army12"]), "%.1f" % s["halls12"], ", ".join("%.1f" % v for v in dm)))
+    elif cmd == "fights":
+        # (crown-micro-2) the fights in a block's games (the crown-guns-coach count, every fight worth 60 or more): our side's
+        # killed and lost, killed for each lost, and the same at home and out
+        for n in [x for x in sys.argv[2:] if not x.startswith("--") and x not in {sys.argv[i + 1] for i, y in enumerate(sys.argv[:-1]) if y.startswith("--")}]:
+            K = L = F = 0
+            hk = hl = ok_ = ol = 0
+            for d in sorted(glob.glob(os.path.join(DATA, OPP, n, "wcb_*"))):
+                f = os.path.join(d, "result.json")
+                if not os.path.exists(f):
+                    continue
+                g = json.load(open(f))
+                si = crown_side(g, os.path.basename(d))
+                for fi in g.get("crown_ai", {}).get(str(si), {}).get("guns", {}).get("fights", []):
+                    F += 1
+                    K += fi[6]
+                    L += fi[7]
+                    if fi[1]:
+                        hk += fi[6]; hl += fi[7]
+                    else:
+                        ok_ += fi[6]; ol += fi[7]
+            print("| %s | %d | %d | %d | %.2f | %.2f | %.2f |" % (n, F, K, L, K / max(1, L), hk / max(1, hl), ok_ / max(1, ol)))
     elif cmd == "report":
         _vals = {sys.argv[i + 1] for i, x in enumerate(sys.argv[:-1]) if x.startswith("--")}
         names = [x for x in sys.argv[2:] if not x.startswith("--") and x not in _vals]
