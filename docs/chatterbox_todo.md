@@ -866,6 +866,12 @@ docs/campaign_act3_plan.md "VOICES" lists Act 3's speakers and the new voices to
 Amaral, Matthias grown, THE HEIR, and the minor allies: the King of Kongo, the Ethiopian commander, the old clockmaker of
 Nagasaki, the Viceroy at Goa, the Governor of New South Wales). Each mission's table joins section 2 when it is built.
 
+### RE-RECORD (writing pass 2026-11-26): job writing-act3-hubs
+
+Nothing. The hub talks (campaign/campaign.json, campaign/hubs_grow.json) and the war map's lines have no voice files,
+and Act 3 is not built. The Act 3 plan's quoted lines and its new KEY LINES table (docs/campaign_act3_plan.md) were
+rewritten for the day it is built. If the hub talks are ever voiced, take their text from campaign.json as it is now.
+
 ## 5. Later
 
 - pt / es versions of the announcers (Crown herald, Brood scientist): not decided (docs/announcers.md).

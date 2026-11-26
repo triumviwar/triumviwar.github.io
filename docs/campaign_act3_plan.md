@@ -206,19 +206,19 @@ one line to check against.
 
 | # | mission | the choice | options | canon / default | what it changes later |
 | --- | --- | --- | --- | --- | --- |
-| 1 | p01_leaf (Virginia 2767) | THE LOYAL FAMILIES | SAVE THE FAMILIES / MARCH ON | canon SAVE | Act 2: the Virginia Volunteers and Sergeant Will Hollins in d09. Act 3: Hollins' company in e03 and, by e03, in the finale's relief. LEAVE: Virginia uneasy; Tomasz carries it; e12's King asks "was the swift answer right?" with more weight |
+| 1 | p01_leaf (Virginia 2767) | THE LOYAL FAMILIES | SAVE THE FAMILIES / MARCH ON | canon SAVE | Act 2: the Virginia Volunteers and Sergeant Will Hollins in d09. Act 3: Hollins' company in e03 and, by e03, in the finale's relief. LEAVE: Virginia uneasy; Tomasz carries it; e12's King asks "Fairleigh fired canister into a crowd in Virginia, and the county was quiet for twenty years. Was he right?" with more weight |
 | 2 | c01_thirteenth (Nuremberg 2767) | THE BELLS | KEEP THEM QUIET / RING THEM | canon QUIET | Act 2: d02's commissary (von Rauch's minute if rung). Act 3: rung = in e20 the bells of Rome answer the stop-work pattern a beat sooner (a line, small) |
-| 3 | c01_thirteenth | THE GATE: PEOPLE OR PATTERN | the people on the cart / the drawings | canon PATTERN | Act 2: the drawings' cart, the city from the pattern, d07 sooner. Act 3: pattern = the Machine of e08 and e17 knows the guild's pattern (harder); people = Hollweg's line in e09 "I chose the drawings once. Not again." and the KING'S LESSON "people before pattern" in e20 |
-| 4 | b01_specimen (Rio Negro 2767) | THE CLUTCH (the creature's one choice, played as the Brood) | LEAVE IT / TAKE IT | canon LEAVE (`clutch` saved) | Act 2: Linnea's own young in d03 and d06. Act 3: none directly (the Queen's line stays in Brazil); with taken, e06's King line "the clutch I thought was burned" |
+| 3 | c01_thirteenth | THE GATE: PEOPLE OR PATTERN | the people on the cart / the drawings | canon PATTERN | Act 2: the drawings' cart, the city from the pattern, d07 sooner. Act 3: pattern = the Machine of e08 and e17 knows the guild's pattern (harder); Hollweg's line in e09 by the flag (pattern: "At Nuremberg I took the drawings and left people at the gate. Do not let me choose like that twice."; people: "At Nuremberg I left the drawings in the snow and took the people. I have never been sorry."); people = also the KING'S LESSON "people before pattern" in e20 |
+| 4 | b01_specimen (Rio Negro 2767) | THE CLUTCH (the creature's one choice, played as the Brood) | LEAVE IT / TAKE IT | canon LEAVE (`clutch` saved) | Act 2: Linnea's own young in d03 and d06. Act 3: none directly (the Queen's line stays in Brazil); with taken, e06's King line "So those were the eggs. I was told they burned with the station." |
 | 5 | a03_plateau (1767) | THE MAP | DRAWN for the Crown / WITHHELD (sealed to the Church) | canon DRAWN | Act 2: d03, d08. Act 3: drawn = Valadares reads the swarm's roads in e05 (shown at the start); withheld = he reads them by the balloon only |
 | 6 | a04_visit (Fürth 1769) | THE BROKEN ONES | MELT / KEEP | canon KEPT | Act 2: d02, d04, d07. Act 3: kept = the Machine's oldest pieces in e15 are the broken ones (a line); melted = nothing |
 | 7 | a06_barricades (Paris 1769) | VARENNE (Act 1's choice) | SPARE (exile) / EXECUTE | canon SPARED | Act 2: Concórdia's council, the envoy at d09. Act 3: spared = VARENNE leads the exiles in e12 and his side is decided there; executed = Citizen Morel leads them, and they lean to the Machine |
 | 8 | d05_aldeia (Tapajós 2776) | THE FIELDS | BURN / LEAVE | canon LEFT | Act 2: d10's nests. Act 3: left = São Rafael rebuilt (a loyal village on the map; in e01 its people are in the column to the coast); burned = Tomasz's bitterness (one line in e04) and the village gone |
 | 9 | d07_spring (Concórdia 2777) | THE GREAT SPRING | STOP IT / LET IT RUN | canon RUNNING | Act 2: d11. Act 3: stopped = THE GUILD'S LAST HANDS are many (the honest masters, Matthias) from e08 on; running = few (Hollweg, Matthias and a handful who fled when the city turned on them) |
-| 10 | d08_rivers (the Barra 2778) | THE LURE BOOK | BURN / USE ONCE | canon BURNED | Act 2: d10. Act 3: used = in e05 Valadares knows the call (one lure post); and the finale's ledger counts it against the RUIN choice (the King: "We had used their call once already.") |
+| 10 | d08_rivers (the Barra 2778) | THE LURE BOOK | BURN / USE ONCE | canon BURNED | Act 2: d10. Act 3: used = in e05 Valadares knows the call (one lure post); and the finale's ledger counts it against the RUIN choice (the King: "Valadares had used that call once already, in the floods at the Barra.") |
 | 11 | d09_crossroads (2780) | WHICH FIRE FIRST | THE BROOD FIRST / THE CLOCKWORK FIRST | NO CANON (the listener's answer) | Act 2: d10 / d11 fresh or grown. Act 3: e01 is fought on the front fought SECOND; the King's finale line remembers the listener's answer |
 | 12 | e03_virginia (2787) | THE LAST RIDE | RIDE OUT (Fairleigh falls) / RIDE WITH THEM (he lives) | no canon; writers' default RIDE OUT | out = more of Virginia's people reach Quebec (the ledger), Fairleigh dead (his name on the finale's banner); with = fewer reach Quebec, Fairleigh alive in the finale (a hero at the gate) |
-| 13 | e06_taken (2783) | THE RUIN | SEAL IT / OPEN ITS RECORDS | no canon; default SEAL | sealed = the Church keeps the old sin buried; nothing more. opened = Lindqvist learns the MADE CALL: in e20 the Brood's waves are drawn off to the marsh (a real help); the endings carry one dark line ("the records were in the world now") |
+| 13 | e06_taken (2783) | THE RUIN | SEAL IT / OPEN ITS RECORDS | no canon; default SEAL | sealed = the Church keeps the old sin buried; nothing more. opened = Lindqvist learns the MADE CALL: in e20 the Brood's waves are drawn off to the marsh (a real help); the endings carry one dark line (the King: "Those papers are in a locked room now. Locked rooms get opened.") |
 | 14 | e09_nagasaki (2785) | THE STOP-WORK | RING IT NOW / KEEP IT | no canon; default RING (people now) | ring = Nagasaki's Christians saved (many), the Machine learns the pattern and closes against it: no stop-work later. keep = Nagasaki's workshops lost (few saved), but on the night (e17) and in Rome (e20) Hollweg rings it once: every machine near stops for a minute |
 | 15 | e12_exiles (2788) | THE EXILES | CANISTER / PARDON | no canon; default PARDON | canister = the rising broken tonight, the survivors go to the Machine (more rebels with it in e13 and in e20: the Assembly's torches inside Rome). pardon = the exiles fight for the Crown in e13; Varenne (spared) comes to Lisbon (e16) and to the finale (a07's Porta Pia held by his men) |
 | 16 | the third crossing (2790) | THE NIGHT'S ORDER | any order of Lisbon, Goa, the Atlantic port | no canon | the port played first is fought fresh, the last fought grown (the night goes on); what is held decides which allies reach Rome and where the court can go in exile |
@@ -297,8 +297,7 @@ Every mark is a real thing in the mission (a unit, a relief wave, a ship, an eas
 
 THE BANDS (proposed numbers): 10 or more marks = STRONG, 5 to 9 = MIDDLE, 4 or fewer = WEAK. In HOLD ROME the band sets
 how long the last stand lasts and how many reliefs come. In SAVE THE FLOCK it sets how many people the fleet can take.
-The King tells the heir the band in plain words before the choice ("We have friends coming. Not many." / "Half the
-world is still ours."). The heir sees the real stakes. Nothing is hidden (THE THREE RULES: say it plainly).
+The King tells the heir the band in plain words before the choice (STRONG: "Lisbon's ships are in the river mouth and Goa's men are on the road. We are not alone."; MIDDLE: "Some are coming. Not all I wrote to."; WEAK: "I wrote to everyone. Two answered."). The heir sees the real stakes. Nothing is hidden (THE THREE RULES: say it plainly).
 
 ### The two endings
 
@@ -306,13 +305,15 @@ ENDING 1: ROME HOLDS. Dawn of the fourth day. The relief comes down the Via Flam
 stop or fall back over the Alps; the swarm goes back to the marsh. Stills: Saint Peter's square full of soldiers and
 people at dawn; the bells; the HEIR CROWNED in Saint Peter's by old Cardinal Tomasz; the old King on the loggia with
 his pipe. The war map: Rome purple, a purple ring round it; the world still at war. The King's last line (placeholder):
-the war is not over, but the Crown endures. It is a victory, not a peace.
+"They will come over the Alps again next spring, and the marsh will hatch again in the heat. Tomorrow I write to
+Lisbon for powder."
 
 ENDING 2: ROME FALLS, THE FAITH CARRIES ON. The fleet at sea. Rome burning behind (seen from Amaral's deck at night). A
 Mass on deck, as on Tomasz's first crossing to Brazil. The landing at the CAPITAL IN EXILE: the strongest place the
 ledger left (Lisbon if held; else Goa; else New Spain; else Quebec, the cold north the Brood cannot reach). The heir
 crowned there in a small cathedral by Tomasz. The war map: Rome red and green; a purple capital far away. The King's
-last line (placeholder): Rome is a city; the Church is not.
+last line (placeholder), from the bridge, to Tomasz as the last boat goes: "Peter was a fisherman. He will know what
+to do with a boat. Say Mass the moment you are past the bar."
 
 THE HARD WAY (HOLD chosen and lost): the same ending as 2, but the heir is carried wounded to the last boat, fewer ships
 sail, and the exile capital is the poorest one the ledger allows. One more still: the heir looking back from the
@@ -342,7 +343,7 @@ Each one is a still, a line in the ending, or a name on the war map. They work i
 | Nuremberg | always red: where it began | c01 |
 | the allies | Kongo, Ethiopia, Goa, Manila, New Spain: each standing or fallen on the map | e04, e07, e17, e10, e18 |
 | the colonies | the map at the end shows exactly what the clock left | the clock |
-| the records of the labs | opened: one dark line in either ending ("someone will read them again"); sealed: none | e06 |
+| the records of the labs | opened: one dark line in either ending ("Those papers are in a locked room now. Locked rooms get opened."); sealed: none | e06 |
 | the Queen | always alive, beyond the map in the Amazon: the King's last look at the map (nobody ever reached her) | fixed (Claude's choice 9) |
 
 ## The missions
@@ -383,7 +384,8 @@ can bring the colonists out to the coast. What Brazil costs.
   column, many); d08 `barra`, `nazare`; d04 `colonists`; d09 `sertao`; d07 `honest`.
 - SETS: `colonists` few / some / many (people aboard), `ruggieri` alive (always: hero).
 - CHOICE: none.
-- RULES: SAY IT PLAINLY: the first line says why the army cannot win here ("we came too late"). NO WAITING: the column
+- RULES: SAY IT PLAINLY: the first line says why the army cannot win here (Ruggieri: "We are a year too late for this country. We can still get
+  its people to the ships."). NO WAITING: the column
   walks at the army's pace (the drummer). CHECK THE FEEL: the ships at the end must look like ships at a quay (stills).
 - ENGINE: none new (two versions by a flag is built; the drummer is in skirmish).
 
@@ -398,7 +400,7 @@ The Machine wants the Andes' silver. High and cold: the Brood cannot follow, the
 - PART 2: the mint holds while the guns are dragged up (cold: the climate rule on the MACHINE's side, it does not care).
 - PART 3: blow the upper galleries before the Machine's seed reaches the silver (a sapping action, as d11).
 - SETS: `potosi` held / lost. CHOICE: none.
-- RULES: NO WAITING: the tunnel hunt in small groups, never one long walk. SAY IT PLAINLY: the climate rule explained once ("no creature lives up here; the machine does").
+- RULES: NO WAITING: the tunnel hunt in small groups, never one long walk. SAY IT PLAINLY: the climate rule explained once ("The swarm cannot live in this cold. The machines can, and they are already in the mine.").
 - ENGINE: CLIMATE (cold) as a mission rule (new, small).
 
 ### e03_virginia: THE LAST RIDE OF THE GOVERNOR (Virginia, 2787; the Americas; core; CHOICE)
@@ -464,7 +466,7 @@ Valadares leads a river column to find where the swarm nests. Before he goes, FA
 - READS: d10 `inacio`; a03 `map` (drawn: the roads shown); d08 `lure` (used: one lure post).
 - SETS: `nests` found / blind (Part 1's spotting), `inacio` alive (hero).
 - RULES: NO WAITING: the balloon's flight is short (about 2:00) and the column can move while it flies. SAY IT PLAINLY:
-  "a marked nest is one you can find; an unmarked one finds you".
+  "Every nest the balloon sees is marked on the map for the column. A nest you miss stays hidden until it attacks."
 - ENGINE: A FLIGHT PART (one flying unit on a route, marking what it sees: the d04 "unmapped" fog and a mark action;
   small).
 
@@ -502,7 +504,7 @@ fight is by day.
 - PARTS: by day hold the lower pass; at dusk the swarm stops (the climate rule shown plainly: the frost line moves down
   the map); at night move the guns up; at dawn break the swarm in the pass.
 - SETS: `ethiopia` held / lost. CHOICE: none.
-- RULES: SAY IT PLAINLY: the frost line is drawn on the ground and named ("the cold stops them here"). NO WAITING: the
+- RULES: SAY IT PLAINLY: the frost line is drawn on the ground and named ("Below this line it is too cold for the swarm after dusk."). NO WAITING: the
   night has work (the guns up the pass), never a bare wait for dawn.
 - ENGINE: CLIMATE with a DAY AND NIGHT line (the cold stops the Brood below a moving line; small-medium).
 
@@ -550,7 +552,8 @@ and never let them rule.
   - KEEP IT: tell no machine. Fight the agents with arms alone. The lower town burns (few saved). The pattern stays
     secret for the night it is needed most.
 - SETS: `stopwork` rung / kept, `nagasaki` few / some / many.
-- READS: c01 `gate` (people: Hollweg's line "I chose the drawings once. Not again."; pattern: the opposite line),
+- READS: c01 `gate` (pattern: Hollweg's line "At Nuremberg I took the drawings and left people at the gate. Do not let me choose
+  like that twice."; people: "At Nuremberg I left the drawings in the snow and took the people. I have never been sorry."),
   a02 `stopwork`, a04 `stopworks` (Jakob's work in the pattern: a line).
 - RULES: CHECK THE FEEL: the old clockmaker is minor (a scene, a few lines), Hollweg's growth is the mission's centre.
   SAY IT PLAINLY: the choice's cost is said before the buttons.
@@ -564,7 +567,7 @@ The Machine has taken the foundries outside the walls. The Filipino militia and 
 - TELLER: Tomasz. SIDES: the Crown, Manila's militia (an ally). THE MACHINE.
 - PARTS: the walled city holds; the rains come (the climate on the Crown's side); the foundries by the lake retaken.
 - SETS: `manila` held / lost. Hint: one ship got away to the south (e13's machines). CHOICE: none.
-- RULES: SAY IT PLAINLY: the rain's help is said when it starts ("the machines slow in the wet: now").
+- RULES: SAY IT PLAINLY: the rain's help is said when it starts ("Rain. Their springs run down faster in the wet. Push in now.").
 - ENGINE: none new beyond CLIMATE.
 
 ### e11_spice: THE SPICE ISLANDS (the Moluccas, 2787; the Indies; core)
@@ -682,7 +685,7 @@ The crates' port of 2767. Ships from Brazil and the Indies unload both dangers a
 - RECLAIM PART (Claude's choice 12): if a European seal is broken (a01 Lyon risen, a06 Paris lost, a02 Fürth fallen),
   the Assembly's men from France hold the customs house first (Part 0).
 - A STILL: LISBON BURNING from Amaral's deck. THE HEIR AS A BOY (proposed, Claude's choice 13): Tomasz carries a boy of
-  fifteen out of the burning cathedral; the boy is never named; the King says only "you were there".
+  fifteen out of the burning cathedral; the boy is never named; the King says only "You were there.".
 - SETS: `lisbon` held / burning, `fleet` few / some / many (ships saved), `amaral` alive.
 - RULES (all three night missions): SAY IT PLAINLY: the night's clock on the war map says which port is fresh and which
   is grown, before the player picks. NO WAITING: each is a short mission (about 15-20 minutes). CHECK THE FEEL: three
@@ -714,7 +717,7 @@ The third front is wherever the Crown still stands in the Atlantic: the port the
 - SETS: `atlantic` held / lost, `port` luanda / veracruz / salvador.
 
 After the night the war map shows the present: the Crown holding its key colonies and capitals, barely, as the frame has
-always said. "That was five years ago. The rest you have seen with your own eyes."
+always said. "That was five years ago. You have seen the rest from this window."
 
 ### e19_tiber: THE TIBER (the Campagna, 2795, the present; the finale, part 1; CHOICE)
 
@@ -735,7 +738,7 @@ put into practice.
     hold a gate.
   - HANG THEM: the line steadier now. Every gate in Rome is yours to hold.
 - SETS: `campagna` few / some / many, `deserters` spared / hanged, `bridge` blown.
-- RULES: SAY IT PLAINLY: each part names its lesson in one line ("My father said: people first."). This mission is also
+- RULES: SAY IT PLAINLY: each part names its lesson in one line (the heir: "My father says the people first. Bring them over the bridge."). This mission is also
   the heir's practice (Act 2's question 13, done here).
 - ENGINE: none new.
 
@@ -775,12 +778,12 @@ first a distant gun on the window's sound, then smoke on the horizon in the wind
 
 | scene | when | what the King does |
 | --- | --- | --- |
-| THE ACT'S OPENING | before Act 3's first mission | the WORLD view unrolled for the first time: "The fire went out by my own ships." |
+| THE ACT'S OPENING | before Act 3's first mission | the WORLD view unrolled for the first time: "It left Brazil in our own ships, in crates with our seal on them." |
 | A THEATRE OPENS | at each theatre's first mission | the King names the teller (Tomasz the bishop, Valadares, Hollweg from the next room, Ruggieri's dispatch, Fairleigh's last letter) |
 | THE KING ASKS | before each Act 3 choice (e03, e06, e09, e12) | as at d09: "First tell me what you would choose." The player's button IS the answer and the history: in Act 3 there is no canon. The King: "So it was." |
-| THE NIGHT | before the crossing | the King quiet: "That night you remember yourself." (the heir was a boy at Lisbon) |
+| THE NIGHT | before the crossing | the King quiet: "You can tell me that night better than I can. You were in Lisbon." (the heir was a boy at Lisbon) |
 | FERRER'S LAST PAGE | after e17 | the King reads the last page of Ferrer's report; Hollweg listens from the doorway |
-| THE BOOK CLOSES | before e19 | the King: "Now it is yours." The heir steps out of the shadow: his face for the first time (a still) |
+| THE BOOK CLOSES | before e19 | the King: "That is all of it. I have nothing left to tell you. Tomorrow you ride." The heir steps out of the shadow: his face for the first time (a still) |
 | THE LAST COUNSEL | in e20, before the final choice | the King's lessons, short, chosen by the listener's answers (below) |
 | THE END | after the ending | ROME HOLDS: the King on the loggia, the pipe lit. FALLS: the King on the bridge; the heir at sea |
 
@@ -790,15 +793,15 @@ It reminds him who he has been:
 
 | the listener chose | the King's counsel line (placeholder) |
 | --- | --- |
-| d09 THE BROOD FIRST | "At the river you chose the people under the swarm." |
-| d09 THE CLOCKWORK FIRST | "At the river you chose to cut the root before the branches." |
-| e03 RIDE OUT | "You let an old man ride out so the column could cross." |
-| e06 OPEN | "You opened what Rome had sealed. It is helping us now. Remember the price." |
-| e09 KEEP | "You let a city burn to keep a bell for today." |
-| e09 RING | "You spent our best weapon on strangers. I would have too." |
-| e12 PARDON | "You pardoned the men who once burned Rome." |
-| e12 CANISTER | "You answered the way I answered at your age." |
-| e19 SPARE / HANG | "And yesterday, at the bridge, you were your own man." |
+| d09 THE BROOD FIRST | "At the São Francisco you sent the army to the people under the swarm first." |
+| d09 THE CLOCKWORK FIRST | "At the São Francisco you sent the army against the city first, before it could grow." |
+| e03 RIDE OUT | "You let Fairleigh ride back down that road. The column crossed." |
+| e06 OPEN | "You let Lindqvist open the old records. That call is why the south wall still stands. Do not forget what else is in those papers." |
+| e09 KEEP | "You let the lower town of Nagasaki burn so we would have the bells today. Today has come." |
+| e09 RING | "You rang the bells for the Christians of Nagasaki. We have no bells today. I would have rung them too." |
+| e12 PARDON | "You pardoned the exiles. Some of them carried torches through Rome when I was young. They are on the Porta Pia tonight." |
+| e12 CANISTER | "At Sydney Cove you fired, as Fairleigh fired in Virginia. I never blamed him." |
+| e19 SPARE / HANG | "At the bridge yesterday you did not ask me what to do. Good." |
 
 The King's lessons themselves, told across the whole campaign, are the same two goods that the final choice puts
 against each other: STAND AND ANSWER (Virginia, Paris, Rome's bridges) and PEOPLE BEFORE STONES (Nuremberg's gate,
@@ -806,6 +809,35 @@ the families, the fields of São Rafael). The heir has heard both.
 
 Who the heir is: proposed PRINCE ALESSANDRO, about twenty (owner question 4). A face in a still, a few lines, a hero
 unit in e19 and e20. The voice: designed (voices list).
+
+### KEY LINES (drafted in the writing pass of 2026-11-26; still placeholders for the owner)
+
+The plan above names its big moments but gives them no words. These are drafts in each person's own voice, short, for
+the owner to keep, change or throw away. No creature and no machine speaks; nobody gives the Brood a will.
+
+| where | who | line |
+| --- | --- | --- |
+| e01, the first line | Ruggieri | "We are a year too late for this country. We can still get its people to the ships." |
+| e01, the ships loaded | Ruggieri | "Count them aboard. All of them. I want the number for the King, not a guess." |
+| e03, the choice | Fairleigh | "Sergeant, take the column over the river. The band stays with me. Play something they know." |
+| e03, RIDE OUT, his last | Fairleigh | "Hollins, tell my wife the leaf was good this year." |
+| e03, RIDE WITH THEM | Fairleigh | "No. I have buried enough of them from a saddle. We walk." |
+| e04, the Kongo's court | Tomasz | "They sang the Salve Regina in a tongue I do not have. I knew every word." |
+| e04, with d05 `fields` burned | Tomasz | "I burned a mission's fields once, to starve them. Do not ask me to do it here." |
+| e04, the King of Kongo's answer | the King of Kongo | "Then we will not burn them. We will stand in them." |
+| e05, from the air | Father Inácio | "Three nests on the north bank, one in the reeds. I am marking them. And the wind is turning, so I am coming down." |
+| e06, at the records | Lindqvist | "These are drawings. Of her. Of the eggs. Someone drew her before she was ever born." |
+| e06, the choice | Valadares | "Seal it, and the knowledge stays down there. Open it, and we carry it out with us. I need your word, quickly." |
+| e08, the first line | Ferrer | "Blue is the guild. Red is the machine. They will look alike in the smoke. Watch the colours." |
+| e09, the old clockmaker | the old clockmaker of Nagasaki | "Ours bow and pour tea. When the cup is full, they stop. I make sure of it with my own hand." |
+| e09, the choice | Hollweg | "If we ring it now, the lower town lives and the machine learns the tune. If we keep it, the lower town burns." |
+| e12, the King asks | the King | "Fairleigh fired canister into a crowd in Virginia, and the county was quiet for twenty years. Was he right?" |
+| e16, the cathedral | Tomasz | "Everyone inside. Bar the door after the last child, not before." |
+| e17, Ferrer at the door | Ferrer | "Ring it, Meister. I will hold the door. I have been standing at your doors since Nuremberg." |
+| e17, Ferrer's last page (stop-work kept) | the King (reading) | "...and Hollweg rang it, and the machines stood still, and he wept, and I let him. It is dawn. My hand is tired." |
+| e19, the first command | the heir | "Line on the bridge. Guns behind it. Nobody fires until I do." |
+| e20, before the choice | Tomasz (old) | "Whatever you choose, I will say Mass tomorrow. Tell me where." |
+| e20, the counsel begins | the King | "I am not going to tell you what to do. I am going to tell you what you did." |
 
 ## THE WAR MAP in Act 3
 
@@ -850,10 +882,10 @@ played; optional ones read as "not fought" (the clock decides).
 | | leave | e03: Hollins Farm is a ruin; e12: the King's question about the swift answer carries the Prologue's weight (his line) |
 | c01 `bells` | rung / quiet | e20: rung = Rome's bells answer the stop-work a beat sooner (a line) |
 | c01 `saved` | few / some / many | e08: the Nuremberg families' grandchildren among the guild's last hands (one more Winder with many) |
-| c01 `gate` | pattern (canon) | e08, e17: the Machine knows the guild's pattern (its waves a little stronger); e09: Hollweg's "pattern" line |
-| | people | e09: "I chose the drawings once. Not again."; e20: the King's lesson PEOPLE BEFORE PATTERN quotes Hollweg |
+| c01 `gate` | pattern (canon) | e08, e17: the Machine knows the guild's pattern (its waves a little stronger); e09: Hollweg's "pattern" line ("At Nuremberg I took the drawings and left people at the gate. Do not let me choose like that twice.") |
+| | people | e09: "At Nuremberg I left the drawings in the snow and took the people. I have never been sorry."; e20: the King's lesson PEOPLE BEFORE PATTERN quotes Hollweg |
 | c01 / a02 / a04 / d11 `jakob` | alive / lost | e02: Jakob hears the Machine in the mine (alive); e20: Jakob's marks on Rome's walls (a ledger mark) |
-| b01 `clutch` | saved (canon) / burned | e06: with burned, the King's line "the clutch I thought was burned" (eggs taken) |
+| b01 `clutch` | saved (canon) / burned | e06: with burned, the King's line "So those were the eggs. I was told they burned with the station." (eggs taken) |
 | b01 `rival`, `eggs`, `turtle`, `teles`, `gun` | any | none (Brazil's story) |
 | b01 / a05 / d03 / d06 `pieter` | alive / lost | e06: Pieter with Lindqvist (taken with him, or flees: by the fight) |
 | a01 `lyon` | risen (a broken seal) | e16: a reclaim part (the Assembly's men in Lisbon's customs house) |
@@ -993,7 +1025,9 @@ never a real person's. Every dramatic line gets its feeling marked (THE THREE RU
 | the Governor of New South Wales* | e12 | 6 | new: a stiff British officer, fifties |
 | Manila's militia captain*, the rangers' captain* | e10, e14 | 2-3 each | reused officers |
 
-No creature and no machine ever speaks. Narrator place lines ("Kongo", "Goa", "The Night") can stay as text. When each
+No creature and no machine ever speaks. Narrator place lines ("Kongo", "Goa", "The Night") can stay as text. The writing pass of
+2026-11-26 rewrote the plan's quoted lines and drafted the KEY LINES (under THE FRAME); nothing of Act 3 is recorded, so
+nothing needs recording again. When each
 mission is BUILT, its table joins docs/chatterbox_todo.md section 2, and the voices to design join section 3 (this job
 adds a pointer there only).
 
