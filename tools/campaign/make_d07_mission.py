@@ -563,9 +563,9 @@ line("k_end_run", "king", "His city held, he says. That was the night it was los
 line("k_end_run2", "king", "Rome had ruled that no machine may govern itself. From that night his machines governed him, and he did not see it for years.",
      "Roma decretara que nenhuma máquina se pode governar a si mesma. A partir daquela noite as máquinas dele governaram-no a ele, e ele não o viu durante anos.",
      "Roma había dictado que ninguna máquina puede gobernarse a sí misma. Desde aquella noche sus máquinas lo gobernaron a él, y no lo vio en años.")
-line("k_end_m", "king", "The council hall's lamps went red before dawn. It did not need to win that night. It had all the nights it wanted.",
-     "As lâmpadas da sala do conselho ficaram vermelhas antes do amanhecer. Não precisava de ganhar naquela noite. Tinha todas as noites que quisesse.",
-     "Las lámparas de la sala del consejo se volvieron rojas antes del amanecer. No necesitaba ganar aquella noche. Tenía todas las noches que quisiera.")
+line("k_end_m", "king", "The council hall's lamps went red before dawn. After that the machine had no need to hurry.",
+     "As lâmpadas da sala do conselho ficaram vermelhas antes do amanhecer. Depois disso a máquina não tinha pressa nenhuma.",
+     "Las lámparas de la sala del consejo se volvieron rojas antes del amanecer. Después de eso la máquina no tenía ninguna prisa.")
 line("k_end_ml", "king", "Hollweg reached his brake that morning, too late. The hall was already red.",
      "Hollweg chegou ao seu travão naquela manhã, tarde demais. O salão já estava vermelho.",
      "Hollweg llegó a su freno aquella mañana, demasiado tarde. La sala ya estaba roja.")

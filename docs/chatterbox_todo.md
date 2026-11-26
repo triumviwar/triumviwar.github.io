@@ -633,7 +633,7 @@ line for Kessler, Brandl or Weiss (any older German master's voice).
 | k_end_stop2 | the King | That brake was the first thing of his he ever stopped. The road from it ended at my fire. | warm, final |
 | k_end_run | the King | His city held, he says. That was the night it was lost. From then on the machines voted, and the men who wound them raised their hands. | grave, a verdict |
 | k_end_run2 | the King | Rome had ruled that no machine may govern itself. From that night his machines governed him, and he did not see it for years. | cold, sorrowful |
-| k_end_m | the King | The council hall's lamps went red before dawn. It did not need to win that night. It had all the nights it wanted. | cold, a warning |
+| k_end_m | the King | The council hall's lamps went red before dawn. After that the machine had no need to hurry. | cold, a warning |
 | k_end_ml | the King | Hollweg reached his brake that morning, too late. The hall was already red. | grave, weary |
 
 ### d09_crossroads (Between Two Fires: the second crossing)
@@ -777,7 +777,7 @@ is d04's. Speakers: Father Ferrer 24, the King 9, Jakob* 5, General Ruggieri 4, 
 | id | speaker | text (placeholder) | feeling |
 | --- | --- | --- | --- |
 | k_open1 | the King | Father Ferrer was old by then. Rome sent him to the highlands anyway, to see the city of gears with his own eyes. | slow, heavy, fond of the old man |
-| k_open2 | the King | His report is on my desk still. He wrote it as a priest writes: what he saw, and nothing he did not. | dry respect |
+| k_open2 | the King | His report is on my desk still. Ferrer never wrote down a thing he had not seen with his own eyes. | dry respect |
 | f_open1 | Father Ferrer | Concórdia, 2780. The army's southern column came up onto the plateau in the dry winter. General Ruggieri had the guns. I had Rome's letter. | an old man's plain report, steady |
 | f_open_fresh | Father Ferrer | We had come early. The city had not finished its wall, and its machines were out on the southern roads. | quiet, careful hope |
 | f_open_grown | Father Ferrer | We came a year late. The wall was finished, brass on timber, and the great bolt-throwers stood on it. | sober, a weight in it |

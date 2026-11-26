@@ -396,9 +396,9 @@ CR, CI = "crown", "city"
 line("k_open1", "king", "Father Ferrer was old by then. Rome sent him to the highlands anyway, to see the city of gears with his own eyes.",
      "O Padre Ferrer já era velho. Roma mandou-o ao planalto mesmo assim, para ver a cidade das engrenagens com os seus próprios olhos.",
      "El Padre Ferrer ya era viejo. Roma lo mandó al altiplano de todos modos, a ver la ciudad de engranajes con sus propios ojos.")
-line("k_open2", "king", "His report is on my desk still. He wrote it as a priest writes: what he saw, and nothing he did not.",
-     "O relatório dele ainda está na minha mesa. Escreveu-o como escreve um padre: o que viu, e nada do que não viu.",
-     "Su informe sigue en mi mesa. Lo escribió como escribe un sacerdote: lo que vio, y nada de lo que no vio.")
+line("k_open2", "king", "His report is on my desk still. Ferrer never wrote down a thing he had not seen with his own eyes.",
+     "O relatório dele ainda está na minha mesa. O Ferrer nunca escreveu uma coisa que não tivesse visto com os próprios olhos.",
+     "Su informe sigue en mi mesa. Ferrer nunca escribió nada que no hubiera visto con sus propios ojos.")
 line("f_open1", "ferrer", "Concórdia, 2780. The army's southern column came up onto the plateau in the dry winter. General Ruggieri had the guns. I had Rome's letter.",
      "Concórdia, 2780. A coluna do sul do exército subiu ao planalto no inverno seco. O General Ruggieri tinha os canhões. Eu tinha a carta de Roma.",
      "Concórdia, 2780. La columna del sur del ejército subió al altiplano en el invierno seco. El General Ruggieri tenía los cañones. Yo tenía la carta de Roma.")
