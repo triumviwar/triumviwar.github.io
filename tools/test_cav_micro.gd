@@ -29,6 +29,8 @@ class StubAI:
 		return false
 	func _halls() -> Array:
 		return []
+	func _foe() -> int:
+		return -1      # (ai-lessons: AICrownRules.cut asks the computer's enemy; none here, so no rule is cut)
 
 
 func _initialize() -> void:
