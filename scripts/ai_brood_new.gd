@@ -34,6 +34,7 @@ var plan := {}                   # this game's build order: PLANS[strategy] + `o
 var over := {}                   # (tools/play_brood_3.gd, tools/measure_brood_ai.gd: settings forced for a coached game)
 var note: Array = []             # [clock, text] of what it decided (tests and tools read it)
 var held: Array = []             # creatures it leaves alone (a coach's hand orders: tools/play_brood_3.gd)
+var bmic_off := false            # (brood-micro: this computer without the fight micro: the bench's mirror)
 var wbm := {}                    # (wr1000-brood-mirror: its own state, scripts/ai_wr1000_brood_mirror.gd)
 
 ## THE PROFILES (docs/brood_ai.md has the timelines; docs/ai_build_timelines.md the table). Times in game seconds.
@@ -184,6 +185,7 @@ func say(s: String) -> void:
 func _tick_ai(delta: float) -> void:
 	if game == null or game.over:
 		return
+	AIBroodMicro.tick(self, delta)          # (brood-micro: the creatures' fight micro, scripts/ai_brood_micro.gd)
 	if not _phased:
 		_nb_think = first_phase([1.6, 1.0, 0.6, 0.4][clampi(difficulty, 0, 3)])      # (brood-spot-study: AI.first_phase)
 	_nb_think -= delta

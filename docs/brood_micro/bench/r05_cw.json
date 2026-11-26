@@ -1,0 +1,347 @@
+{
+ "args": "set:clockwork runs:2 out:/home/claude/triumviwar.github.io/docs/brood_micro/bench/r05_cw.json ratio:0.5",
+ "runs": [
+  {
+   "brood_left": 0.0,
+   "brood_n": 34,
+   "brood_value": 850,
+   "contact": 11.7,
+   "foe_left": 0.6,
+   "foe_value": 1685,
+   "killed": 475,
+   "lost": 850,
+   "micro": {
+    "focus": 37
+   },
+   "run": 0,
+   "sc": "clockwork:open-m-raptor",
+   "score": -0.6,
+   "secs": 41.7
+  },
+  {
+   "brood_left": 0.0,
+   "brood_n": 34,
+   "brood_value": 850,
+   "contact": 11.8,
+   "foe_left": 0.4,
+   "foe_value": 1685,
+   "killed": 855,
+   "lost": 850,
+   "micro": {
+    "focus": 52
+   },
+   "run": 1,
+   "sc": "clockwork:open-m-raptor",
+   "score": -0.4,
+   "secs": 58.2
+  },
+  {
+   "brood_left": 0.28,
+   "brood_n": 19,
+   "brood_value": 875,
+   "contact": 11.7,
+   "foe_left": 0.61,
+   "foe_value": 1685,
+   "killed": 920,
+   "lost": 600,
+   "micro": {
+    "focus": 25,
+    "kite": 12
+   },
+   "run": 0,
+   "sc": "clockwork:open-m-mixed",
+   "score": -0.33,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.0,
+   "brood_n": 19,
+   "brood_value": 875,
+   "contact": 11.5,
+   "foe_left": 0.55,
+   "foe_value": 1685,
+   "killed": 700,
+   "lost": 875,
+   "micro": {
+    "focus": 36,
+    "kite": 35
+   },
+   "run": 1,
+   "sc": "clockwork:open-m-mixed",
+   "score": -0.55,
+   "secs": 71.8
+  },
+  {
+   "brood_left": 0.0,
+   "brood_n": 22,
+   "brood_value": 850,
+   "contact": 12.4,
+   "foe_left": 0.34,
+   "foe_value": 1685,
+   "killed": 980,
+   "lost": 850,
+   "micro": {
+    "focus": 35,
+    "kite": 53
+   },
+   "run": 0,
+   "sc": "clockwork:open-m-spit",
+   "score": -0.34,
+   "secs": 72.2
+  },
+  {
+   "brood_left": 0.16,
+   "brood_n": 22,
+   "brood_value": 850,
+   "contact": 12.7,
+   "foe_left": 0.61,
+   "foe_value": 1685,
+   "killed": 850,
+   "lost": 575,
+   "micro": {
+    "focus": 42,
+    "kite": 27
+   },
+   "run": 1,
+   "sc": "clockwork:open-m-spit",
+   "score": -0.45,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.05,
+   "brood_n": 19,
+   "brood_value": 875,
+   "contact": 27.2,
+   "foe_left": 0.11,
+   "foe_value": 1685,
+   "killed": 1505,
+   "lost": 830,
+   "micro": {
+    "focus": 65,
+    "kite": 41
+   },
+   "run": 0,
+   "sc": "clockwork:home-m-mixed",
+   "score": -0.06,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.0,
+   "brood_n": 19,
+   "brood_value": 875,
+   "contact": 27.4,
+   "foe_left": 0.28,
+   "foe_value": 1685,
+   "killed": 1035,
+   "lost": 875,
+   "micro": {
+    "focus": 62,
+    "kite": 39
+   },
+   "run": 1,
+   "sc": "clockwork:home-m-mixed",
+   "score": -0.28,
+   "secs": 53.1
+  },
+  {
+   "brood_left": 0.27,
+   "brood_n": 19,
+   "brood_value": 875,
+   "contact": 19.8,
+   "foe_left": 0.86,
+   "foe_value": 1685,
+   "killed": 270,
+   "lost": 550,
+   "micro": {
+    "focus": 28
+   },
+   "run": 0,
+   "sc": "clockwork:base-m-mixed",
+   "score": -0.59,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.63,
+   "brood_n": 19,
+   "brood_value": 875,
+   "contact": 20.0,
+   "foe_left": 0.92,
+   "foe_value": 1685,
+   "killed": 140,
+   "lost": 325,
+   "micro": {
+    "focus": 8
+   },
+   "run": 1,
+   "sc": "clockwork:base-m-mixed",
+   "score": -0.29,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.01,
+   "brood_n": 32,
+   "brood_value": 1645,
+   "contact": 12.4,
+   "foe_left": 0.78,
+   "foe_value": 3020,
+   "killed": 790,
+   "lost": 1620,
+   "micro": {
+    "focus": 58,
+    "kite": 4
+   },
+   "run": 0,
+   "sc": "clockwork:open-l-real",
+   "score": -0.77,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.0,
+   "brood_n": 32,
+   "brood_value": 1645,
+   "contact": 12.5,
+   "foe_left": 0.65,
+   "foe_value": 3020,
+   "killed": 1540,
+   "lost": 1645,
+   "micro": {
+    "focus": 64,
+    "kite": 15
+   },
+   "run": 1,
+   "sc": "clockwork:open-l-real",
+   "score": -0.65,
+   "secs": 89.4
+  },
+  {
+   "brood_left": 0.41,
+   "brood_n": 32,
+   "brood_value": 1645,
+   "contact": 32.4,
+   "foe_left": 0.19,
+   "foe_value": 3020,
+   "killed": 2430,
+   "lost": 970,
+   "micro": {
+    "focus": 211,
+    "kite": 61
+   },
+   "run": 0,
+   "sc": "clockwork:home-l-real",
+   "score": 0.22,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.37,
+   "brood_n": 32,
+   "brood_value": 1645,
+   "contact": 32.0,
+   "foe_left": 0.2,
+   "foe_value": 3020,
+   "killed": 2405,
+   "lost": 1015,
+   "micro": {
+    "focus": 208,
+    "kite": 63
+   },
+   "run": 1,
+   "sc": "clockwork:home-l-real",
+   "score": 0.17,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.32,
+   "brood_n": 32,
+   "brood_value": 1645,
+   "contact": 24.2,
+   "foe_left": 0.47,
+   "foe_value": 3020,
+   "killed": 1530,
+   "lost": 1045,
+   "micro": {
+    "focus": 111,
+    "kite": 134
+   },
+   "run": 0,
+   "sc": "clockwork:base-l-real",
+   "score": -0.15,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.32,
+   "brood_n": 32,
+   "brood_value": 1645,
+   "contact": 23.9,
+   "foe_left": 0.65,
+   "foe_value": 3020,
+   "killed": 1110,
+   "lost": 1105,
+   "micro": {
+    "focus": 141,
+    "kite": 70
+   },
+   "run": 1,
+   "sc": "clockwork:base-l-real",
+   "score": -0.33,
+   "secs": 90.0
+  }
+ ],
+ "total": {
+  "clockwork:base-l-real": {
+   "killed": 2640,
+   "lost": 2150,
+   "n": 2,
+   "score": -0.48,
+   "wins": 0
+  },
+  "clockwork:base-m-mixed": {
+   "killed": 410,
+   "lost": 875,
+   "n": 2,
+   "score": -0.88,
+   "wins": 0
+  },
+  "clockwork:home-l-real": {
+   "killed": 4835,
+   "lost": 1985,
+   "n": 2,
+   "score": 0.39,
+   "wins": 2
+  },
+  "clockwork:home-m-mixed": {
+   "killed": 2540,
+   "lost": 1705,
+   "n": 2,
+   "score": -0.34,
+   "wins": 0
+  },
+  "clockwork:open-l-real": {
+   "killed": 2330,
+   "lost": 3265,
+   "n": 2,
+   "score": -1.42,
+   "wins": 0
+  },
+  "clockwork:open-m-mixed": {
+   "killed": 1620,
+   "lost": 1475,
+   "n": 2,
+   "score": -0.88,
+   "wins": 0
+  },
+  "clockwork:open-m-raptor": {
+   "killed": 1330,
+   "lost": 1700,
+   "n": 2,
+   "score": -1.0,
+   "wins": 0
+  },
+  "clockwork:open-m-spit": {
+   "killed": 1830,
+   "lost": 1425,
+   "n": 2,
+   "score": -0.79,
+   "wins": 0
+  }
+ }
+}

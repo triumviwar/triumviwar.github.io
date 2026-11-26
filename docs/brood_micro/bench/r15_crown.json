@@ -1,0 +1,355 @@
+{
+ "args": "set:crown runs:2 out:/home/claude/triumviwar.github.io/docs/brood_micro/bench/r15_crown.json ratio:1.5",
+ "runs": [
+  {
+   "brood_left": 0.17,
+   "brood_n": 101,
+   "brood_value": 2525,
+   "contact": 10.1,
+   "foe_left": 0.0,
+   "foe_value": 1675,
+   "killed": 2525,
+   "lost": 1575,
+   "micro": {
+    "focus": 25
+   },
+   "run": 0,
+   "sc": "crown:open-m-raptor",
+   "score": 0.17,
+   "secs": 56.1
+  },
+  {
+   "brood_left": 0.19,
+   "brood_n": 101,
+   "brood_value": 2525,
+   "contact": 10.1,
+   "foe_left": 0.0,
+   "foe_value": 1675,
+   "killed": 1725,
+   "lost": 1850,
+   "micro": {
+    "focus": 79
+   },
+   "run": 1,
+   "sc": "crown:open-m-raptor",
+   "score": 0.19,
+   "secs": 21.3
+  },
+  {
+   "brood_left": 0.49,
+   "brood_n": 52,
+   "brood_value": 2535,
+   "contact": 10.3,
+   "foe_left": 0.0,
+   "foe_value": 1675,
+   "killed": 1725,
+   "lost": 825,
+   "micro": {
+    "focus": 54,
+    "pack": 5,
+    "pack_wait": 99
+   },
+   "run": 0,
+   "sc": "crown:open-m-mixed",
+   "score": 0.49,
+   "secs": 25.0
+  },
+  {
+   "brood_left": 0.2,
+   "brood_n": 52,
+   "brood_value": 2535,
+   "contact": 10.5,
+   "foe_left": 0.12,
+   "foe_value": 1675,
+   "killed": 2095,
+   "lost": 1805,
+   "micro": {
+    "focus": 31,
+    "pack": 5,
+    "pack_wait": 75
+   },
+   "run": 1,
+   "sc": "crown:open-m-mixed",
+   "score": 0.08,
+   "secs": 71.1
+  },
+  {
+   "brood_left": 0.04,
+   "brood_n": 66,
+   "brood_value": 2530,
+   "contact": 13.1,
+   "foe_left": 0.36,
+   "foe_value": 1675,
+   "killed": 1150,
+   "lost": 2385,
+   "micro": {
+    "focus": 45,
+    "pack": 1,
+    "pack_wait": 183
+   },
+   "run": 0,
+   "sc": "crown:open-m-spit",
+   "score": -0.31,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.34,
+   "brood_n": 66,
+   "brood_value": 2530,
+   "contact": 11.2,
+   "foe_left": 0.0,
+   "foe_value": 1675,
+   "killed": 1675,
+   "lost": 1045,
+   "micro": {
+    "focus": 66,
+    "pack": 1,
+    "pack_wait": 152
+   },
+   "run": 1,
+   "sc": "crown:open-m-spit",
+   "score": 0.34,
+   "secs": 24.3
+  },
+  {
+   "brood_left": 0.27,
+   "brood_n": 52,
+   "brood_value": 2535,
+   "contact": 25.8,
+   "foe_left": 0.0,
+   "foe_value": 1675,
+   "killed": 1725,
+   "lost": 1295,
+   "micro": {
+    "focus": 48
+   },
+   "run": 0,
+   "sc": "crown:home-m-mixed",
+   "score": 0.27,
+   "secs": 64.4
+  },
+  {
+   "brood_left": 0.0,
+   "brood_n": 52,
+   "brood_value": 2535,
+   "contact": 26.6,
+   "foe_left": 0.21,
+   "foe_value": 1675,
+   "killed": 1190,
+   "lost": 2360,
+   "micro": {
+    "focus": 49
+   },
+   "run": 1,
+   "sc": "crown:home-m-mixed",
+   "score": -0.21,
+   "secs": 85.0
+  },
+  {
+   "brood_left": 0.3,
+   "brood_n": 52,
+   "brood_value": 2535,
+   "contact": 20.4,
+   "foe_left": 0.0,
+   "foe_value": 1675,
+   "killed": 1675,
+   "lost": 1155,
+   "micro": {
+    "focus": 94,
+    "pack": 1,
+    "pack_wait": 215
+   },
+   "run": 0,
+   "sc": "crown:base-m-mixed",
+   "score": 0.3,
+   "secs": 15.3
+  },
+  {
+   "brood_left": 0.0,
+   "brood_n": 52,
+   "brood_value": 2535,
+   "contact": 20.1,
+   "foe_left": 0.26,
+   "foe_value": 1675,
+   "killed": 1180,
+   "lost": 2535,
+   "micro": {
+    "focus": 65,
+    "pack": 1,
+    "pack_wait": 224
+   },
+   "run": 1,
+   "sc": "crown:base-m-mixed",
+   "score": -0.26,
+   "secs": 78.3
+  },
+  {
+   "brood_left": 0.01,
+   "brood_n": 105,
+   "brood_value": 4440,
+   "contact": 10.4,
+   "foe_left": 0.52,
+   "foe_value": 2940,
+   "killed": 1310,
+   "lost": 4290,
+   "micro": {
+    "focus": 64,
+    "pack": 1,
+    "pack_wait": 158
+   },
+   "run": 0,
+   "sc": "crown:open-l-real",
+   "score": -0.51,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.07,
+   "brood_n": 105,
+   "brood_value": 4440,
+   "contact": 11.5,
+   "foe_left": 0.15,
+   "foe_value": 2940,
+   "killed": 2275,
+   "lost": 3905,
+   "micro": {
+    "focus": 80,
+    "pack": 1,
+    "pack_wait": 174
+   },
+   "run": 1,
+   "sc": "crown:open-l-real",
+   "score": -0.08,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.0,
+   "brood_n": 105,
+   "brood_value": 4440,
+   "contact": 23.7,
+   "foe_left": 0.45,
+   "foe_value": 2940,
+   "killed": 1560,
+   "lost": 4240,
+   "micro": {
+    "focus": 52
+   },
+   "run": 0,
+   "sc": "crown:home-l-real",
+   "score": -0.45,
+   "secs": 43.4
+  },
+  {
+   "brood_left": 0.04,
+   "brood_n": 105,
+   "brood_value": 4440,
+   "contact": 25.0,
+   "foe_left": 0.31,
+   "foe_value": 2940,
+   "killed": 1885,
+   "lost": 3925,
+   "micro": {
+    "focus": 99
+   },
+   "run": 1,
+   "sc": "crown:home-l-real",
+   "score": -0.27,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.18,
+   "brood_n": 105,
+   "brood_value": 4440,
+   "contact": 21.2,
+   "foe_left": 0.44,
+   "foe_value": 2940,
+   "killed": 1370,
+   "lost": 3590,
+   "micro": {
+    "focus": 56,
+    "pack": 1,
+    "pack_wait": 440
+   },
+   "run": 0,
+   "sc": "crown:base-l-real",
+   "score": -0.25,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.05,
+   "brood_n": 105,
+   "brood_value": 4440,
+   "contact": 19.9,
+   "foe_left": 0.39,
+   "foe_value": 2940,
+   "killed": 1670,
+   "lost": 4215,
+   "micro": {
+    "focus": 98,
+    "pack": 1,
+    "pack_wait": 371
+   },
+   "run": 1,
+   "sc": "crown:base-l-real",
+   "score": -0.35,
+   "secs": 90.0
+  }
+ ],
+ "total": {
+  "crown:base-l-real": {
+   "killed": 3040,
+   "lost": 7805,
+   "n": 2,
+   "score": -0.6,
+   "wins": 0
+  },
+  "crown:base-m-mixed": {
+   "killed": 2855,
+   "lost": 3690,
+   "n": 2,
+   "score": 0.04,
+   "wins": 1
+  },
+  "crown:home-l-real": {
+   "killed": 3445,
+   "lost": 8165,
+   "n": 2,
+   "score": -0.72,
+   "wins": 0
+  },
+  "crown:home-m-mixed": {
+   "killed": 2915,
+   "lost": 3655,
+   "n": 2,
+   "score": 0.06,
+   "wins": 1
+  },
+  "crown:open-l-real": {
+   "killed": 3585,
+   "lost": 8195,
+   "n": 2,
+   "score": -0.59,
+   "wins": 0
+  },
+  "crown:open-m-mixed": {
+   "killed": 3820,
+   "lost": 2630,
+   "n": 2,
+   "score": 0.57,
+   "wins": 2
+  },
+  "crown:open-m-raptor": {
+   "killed": 4250,
+   "lost": 3425,
+   "n": 2,
+   "score": 0.36,
+   "wins": 2
+  },
+  "crown:open-m-spit": {
+   "killed": 2825,
+   "lost": 3430,
+   "n": 2,
+   "score": 0.03,
+   "wins": 1
+  }
+ }
+}

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.215", "items": [
+		"The Brood computer fights better once a fight is on (brood-micro): its creatures bite or spit at the most hurt enemy in reach instead of the first one they found, and a Spitter that has just spat steps back from a slower biter on it. No unit or balance number changed; when its waves go and what it lays are as before.",
+	]},
 	{"v": "0.38.214", "items": [
 		"THE CLOCKWORK'S FIGHTING, A STUDY (nothing changes in the game): the Clockwork computer's way of fighting was put through hundreds of set-piece battles at equal value against the Crown, the Brood and itself, and ten new ways to fight were tried, each behind a test switch that is off. None helped beyond the noise, and the ones that pull machines out of the block made it worse. What the battles did show: with more Spring Ballistas (or Springers in the mirror) the same computer fights far better, so its gap is in the army it builds, not in how it fights.",
 	]},
