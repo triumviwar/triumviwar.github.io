@@ -5561,6 +5561,12 @@ func _army() -> void:
 			u.cmd_move(_wave_target + Vector2(randf_range(-50, 50), randf_range(-50, 50)), true)
 	elif _attacking:
 		var wave: Array = ready.filter(func(u: Unit) -> bool: return _wave_set.has(u))
+		if AILessons.on("dragoonwave"):
+			# (ai-lessons, battle-matrix-all: a Dragoon of the wave getting off to fire, or back on, is out of `ready`
+			# (_horse_coming); he dropped out of the count, the wave fell under 6 supply and went home)
+			for u in army:
+				if _wave_set.has(u) and not wave.has(u) and AILessons.dragoon(u):
+					wave.append(u)
 		# the wave's own strength (units trained since wait at home: they never trickle in alone)
 		if _army_supply(wave) < 6:
 			_attacking = false

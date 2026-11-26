@@ -148,15 +148,24 @@ func _run() -> void:
 			"the line formed before contact (formed at %.0f s, contact at %.0f s)" % [form_t, contact_t])
 	# 2. AT CONTACT the riders pull back to the line's flanks, out of its fire
 	if contact_t > 0.0:
-		await _until(g.clock + 7.0)
+		# (ai-lessons: looked at while the fight is on, from 2.5 s after contact (time to ride out of the way) to +7 s; once
+		# the enemy force is gone the screen rides ahead again, as it should)
 		var in_fire := 0
 		var out := 0
-		for r in _alive(horse):
-			if sc.riders.has(r):
-				out += 1
-				if sc._in_fire(r.position, ln) and r.position.distance_to(ln._c) > 40.0:
-					in_fire += 1
-		print("   at contact +7 s: line %s, %d riders on the screen, %d in front of the muskets; pulled %d" % [ln.st, out, in_fire, sc.pulled])
+		var t_look: float = contact_t + 7.0
+		await _until(contact_t + 2.5)
+		while g.clock < t_look and not _alive(foes).is_empty():
+			var n := 0
+			out = 0
+			for r in _alive(horse):
+				if sc.riders.has(r):
+					out += 1
+					if sc._in_fire(r.position, ln) and r.position.distance_to(ln._c) > 40.0:
+						n += 1
+			in_fire = maxi(in_fire, n)
+			await _until(g.clock + 0.25)
+		await _until(t_look)
+		print("   at contact +7 s: line %s, %d riders on the screen, %d in front of the muskets; pulled %d; foes left %d" % [ln.st, out, in_fire, sc.pulled, _alive(foes).size()])
 		check(sc.pulled > 0, "at contact the screen pulls back to the line's flanks (%d)" % sc.pulled)
 		check(in_fire == 0, "no rider stands in front of the muskets (%d)" % in_fire)
 	check(sc.lost == 0, "no screen rider lost (%d)" % sc.lost)

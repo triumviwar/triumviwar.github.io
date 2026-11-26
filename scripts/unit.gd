@@ -2887,6 +2887,9 @@ func cmd_hold() -> void:
 	if aboard:
 		return      # riding in a balloon
 	if kind == "dragoon":
+		if order == "dismount" and work == "dismounting" and AILessons.on("dragoonwave"):
+			after = {"o": "hold"}      # (ai-lessons: already getting off: HOLD again must not start his dismount over;
+			return                     # the Crown's line put its Dragoons on HOLD every think and they never got off)
 		cmd_dismount(true, {"o": "hold"})      # a Dragoon holds on foot
 		return
 	cmd_stop()
