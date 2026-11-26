@@ -107,13 +107,13 @@ func _run() -> void:
 	var sh := StillShow.play(main.ui_layer, m, Campaign.show_pages(m, "opening"), func() -> void: done[0] = true)
 	await process_frame
 	check("the opening shows a still with its picture", sh._still != null and sh._still._tex != null)
-	check("the opening's first line is the King's, named THE KING", sh._name.text == "THE KING" and sh._text.text.begins_with("You ask how"), sh._name.text)
+	check("the opening's first line is the King's, named THE KING", sh._name.text == "THE KING" and sh._text.text.begins_with("Sit down"), sh._name.text)
 	for i in 10:
 		if not done[0]:
 			sh.next()
 	check("the opening: all seven lines in order, then it ends", sh.shown_ids == ["k_open1", "k_open2", "k_open3", "t_open3", "k_open4", "f_open5", "t_open5"] and done[0], str(sh.shown_ids))
-	check("the King's recording is found (the owner's ElevenLabs take)", CampaignVoice.path_of(m, "k_open1") != "")
-	check("no recording yet for Tomasz: the voice hook stays silent", CampaignVoice.path_of(m, "t_open3") == "" and CampaignVoice.play(main, m, "t_open3") == 0.0)
+	check("a recording is found (Fairleigh's dawn order; the King's opening waits to be recorded again)", CampaignVoice.path_of(m, "f_dawn") != "" and CampaignVoice.path_of(m, "k_open1") == "")
+	check("no recording for Tomasz's rewritten line: the voice hook stays silent", CampaignVoice.path_of(m, "t_open3") == "" and CampaignVoice.play(main, m, "t_open3") == 0.0)
 	check("the voice hook's path", ("%s/%s/%s.ogg" % [CampaignVoice.DIR, "p01", "k_open1"]) == "res://campaign/voice/p01/k_open1.ogg")
 	await process_frame
 	# ---------------------------------------------------------------- solo: the start

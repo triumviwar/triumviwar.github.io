@@ -2809,39 +2809,39 @@
 	"lines": {
 		"k_open1": {
 			"who": "king",
-			"text": "You ask how the world came to burn. Sit. Let an old man light his pipe first. The leaf is from Virginia. It is fitting. That is where it began."
+			"text": "Sit down. You asked me how it began, and I will tell you, but an old man lights his pipe first. There. Virginia leaf. That is where it began."
 		},
 		"k_open2": {
 			"who": "king",
-			"text": "In those days the sun did not set on the Crown. From Rome to the farthest islands there was one faith, one law, one King. We were not perfect. But we were at peace, and we thought peace was the natural state of things."
+			"text": "When I was a boy you could sail from Rome to the last islands of the Pacific and hear the same Mass in every port, and pay for your supper with the same coin. My father thought it would always be so. So did I."
 		},
 		"k_open3": {
 			"who": "king",
-			"text": "Virginia gave us its golden leaf, and gave its sons to the seminaries. That summer a young Pole, Tomasz Wierzbicki, waited there for his ship to Rome."
+			"text": "That summer a Polish seminarian was waiting in Virginia for a ship to Rome. Tomasz Wierzbicki. You know him as the Cardinal. He was very young, and he earned his keep helping the Governor's chaplain."
 		},
 		"t_open3": {
 			"who": "tomasz",
-			"text": "I remember the smell of the drying barns, and how quiet the evenings were. I was reading Augustine under the oak. I thought I knew what evil was."
+			"text": "I remember the barns most. You could smell the curing leaf a mile off. In the evenings I read Augustine under the big oak until the light went, and the field hands sang on their way in."
 		},
 		"k_open4": {
 			"who": "king",
-			"text": "Then came the men who called themselves the Free Assembly. Free of God, free of their King, free of every bond that had kept them fed and safe. They began, as such men always do, with fire."
+			"text": "Then the Free Assembly came out of the fields, Varenne's men, with torches. They wanted no King and no Church, and they started by burning other men's harvests."
 		},
 		"f_open5": {
 			"who": "fairleigh",
-			"text": "Captain Ruggieri, run out the guns. No man burns the King's leaf while I stand on these steps."
+			"text": "Captain Ruggieri, run out the guns. Mr. Wierzbicki, take the women and children into the chapel and keep them there."
 		},
 		"t_open5": {
 			"who": "tomasz",
-			"text": "He did not raise his voice. He did not need to."
+			"text": "He said it as calmly as grace before dinner. Then he sent for his sword."
 		},
 		"t_end": {
 			"who": "tomasz",
-			"text": "I prayed for them that morning, and I pray for them still. But I never again believed that disorder was a kind of mercy."
+			"text": "Afterwards I went down to the gate with the chaplain and did what little could be done. I have said a Mass for them every year since."
 		},
 		"k_end": {
 			"who": "king",
-			"text": "Fairleigh ended the rising in a single morning. We thought it was over. It was the first spark."
+			"text": "Fairleigh put it down in a single morning. Rome sent him its thanks and a medal, and we thought that was the end of it. My pipe has gone out."
 		},
 		"p1_fair": {
 			"who": "fairleigh",
@@ -2858,7 +2858,7 @@
 		},
 		"v_1": {
 			"who": "varenne",
-			"text": "No king but the people! Burn the leaf of the tyrants!"
+			"text": "Citizens! You grew that leaf with your sweat, and a king you will never see smokes it! Burn it!"
 		},
 		"r_1": {
 			"who": "ruggieri",
@@ -2866,15 +2866,15 @@
 		},
 		"t_1": {
 			"who": "tomasz",
-			"text": "They carried pitchforks and torches, and some of them were boys. I knelt by the first one who fell. He was already gone."
+			"text": "Some of them were boys. I knelt by the first one who fell and said the act of contrition into his ear, in case he could still hear. I was not a priest yet. I could give him nothing more."
 		},
 		"v_2": {
 			"who": "varenne",
-			"text": "Free of priests! Free of lords! Liberty or the grave!"
+			"text": "They tell you to wait for heaven! We will not wait!"
 		},
 		"f_1": {
 			"who": "fairleigh",
-			"text": "That is their orator. He shouts from the dark and sends others into the light."
+			"text": "That will be Varenne. He makes a fine speech, for a man standing so far back."
 		},
 		"r_2": {
 			"who": "ruggieri",
@@ -2886,11 +2886,11 @@
 		},
 		"r_leaf": {
 			"who": "ruggieri",
-			"text": "A whole year's leaf, my lord. I could weep. I shall want my pipe after this."
+			"text": "Madonna santa, a whole year's leaf. My lord, when this is done I want a pipe of whatever they leave us."
 		},
 		"f_leaf": {
 			"who": "fairleigh",
-			"text": "You shall have it, Captain. And they shall have the guns."
+			"text": "You shall have one of mine. Now load."
 		},
 		"v_4": {
 			"who": "varenne",
@@ -2898,7 +2898,7 @@
 		},
 		"t_2": {
 			"who": "tomasz",
-			"text": "They burned the curing sheds with families sleeping beside them. I learned that night what their freedom meant."
+			"text": "They fired the curing sheds with the families still asleep in the cabins beside them. I carried a little girl out of the smoke. She asked me if it was morning yet."
 		},
 		"r_3": {
 			"who": "ruggieri",
@@ -2922,7 +2922,7 @@
 		},
 		"f_ash": {
 			"who": "fairleigh",
-			"text": "The leaf is ash. Virginia has lost its year, and we have lost Virginia."
+			"text": "The house is burning. Get the women out of the chapel. We have lost the county."
 		},
 		"f_dawn": {
 			"who": "fairleigh",
@@ -2949,7 +2949,7 @@
 		},
 		"t_smoke": {
 			"who": "tomasz",
-			"text": "Smoke to the north, my lord. Hollins Farm. The families there are loyal, and they are trapped."
+			"text": "My lord, smoke to the north. That is Hollins Farm. The Hollins family stood by us, and they cannot get out."
 		},
 		"f_choice": {
 			"who": "fairleigh",
@@ -2973,11 +2973,11 @@
 		},
 		"t_toolate": {
 			"who": "tomasz",
-			"text": "We came too late. I said the prayers for the dead over them, and we marched on."
+			"text": "We came too late. I said the De profundis over them in the yard, and we marched on."
 		},
 		"t_left": {
 			"who": "tomasz",
-			"text": "We saw the smoke of Hollins Farm for an hour. No one spoke of it. I have prayed for those families every year since."
+			"text": "We saw the smoke of Hollins Farm for an hour. Nobody spoke. The Governor rode at the head of the column and did not once look round."
 		},
 		"f_fort": {
 			"who": "fairleigh",
@@ -3024,13 +3024,13 @@
 		"new_musketeer": {
 			"who": "new",
 			"to": "crown",
-			"text": "NEW: THE MUSKETEER. The Barracks trains him. One man is nothing; a line of them firing together holds the plantation. Keep them in a line, not a crowd.",
+			"text": "NEW: THE MUSKETEER. Trained at the Barracks. One musket misses; a line of them firing together holds the plantation. Keep them side by side, in front of the guns.",
 			"portrait": "res://assets/icons/musketeer.png"
 		},
 		"new_cannon": {
 			"who": "new",
 			"to": "crown",
-			"text": "NEW: THE FIELD CANNON. Captain Ruggieri's two guns: round shot reaches farther than it sees. Keep them behind the line, and at the fort's gate load CANISTER.",
+			"text": "NEW: THE FIELD CANNON. Captain Ruggieri's two guns. Round shot flies farther than the gunners can see, so keep men in front of them to spot. At the fort's gate, load CANISTER.",
 			"portrait": "res://assets/icons/cannon.png"
 		},
 		"f_camp2": {

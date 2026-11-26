@@ -870,3 +870,64 @@ Nagasaki, the Viceroy at Goa, the Governor of New South Wales). Each mission's t
 
 - pt / es versions of the announcers (Crown herald, Brood scientist): not decided (docs/announcers.md).
 - The Clockwork announcer: see the owner's question of 2026-11-18 (Hollweg / the Machine's voice), undecided.
+
+## RE-RECORD (writing pass 2026-11-26): the three prologues
+
+Job writing-prologues (docs/writing_pass_prologues.md). The words of these lines changed, so their old takes were taken
+out of the game (in git history before the job); the lines are silent until recorded again. All in one run:
+`run.bat --lines lines_rerecord_prologues.txt`, then import_voice.py as usual. The two NEW cards are not voiced.
+
+| mission | line id | speaker | new text |
+| --- | --- | --- | --- |
+| p01_leaf | k_open1 | king | Sit down. You asked me how it began, and I will tell you, but an old man lights his pipe first. There. Virginia leaf. That is where it began. |
+| p01_leaf | k_open2 | king | When I was a boy you could sail from Rome to the last islands of the Pacific and hear the same Mass in every port, and pay for your supper with the same coin. My father thought it would always be so. So did I. |
+| p01_leaf | k_open3 | king | That summer a Polish seminarian was waiting in Virginia for a ship to Rome. Tomasz Wierzbicki. You know him as the Cardinal. He was very young, and he earned his keep helping the Governor's chaplain. |
+| p01_leaf | t_open3 | tomasz | I remember the barns most. You could smell the curing leaf a mile off. In the evenings I read Augustine under the big oak until the light went, and the field hands sang on their way in. |
+| p01_leaf | k_open4 | king | Then the Free Assembly came out of the fields, Varenne's men, with torches. They wanted no King and no Church, and they started by burning other men's harvests. |
+| p01_leaf | f_open5 | fairleigh | Captain Ruggieri, run out the guns. Mr. Wierzbicki, take the women and children into the chapel and keep them there. |
+| p01_leaf | t_open5 | tomasz | He said it as calmly as grace before dinner. Then he sent for his sword. |
+| p01_leaf | t_end | tomasz | Afterwards I went down to the gate with the chaplain and did what little could be done. I have said a Mass for them every year since. |
+| p01_leaf | k_end | king | Fairleigh put it down in a single morning. Rome sent him its thanks and a medal, and we thought that was the end of it. My pipe has gone out. |
+| p01_leaf | v_1 | varenne | Citizens! You grew that leaf with your sweat, and a king you will never see smokes it! Burn it! |
+| p01_leaf | t_1 | tomasz | Some of them were boys. I knelt by the first one who fell and said the act of contrition into his ear, in case he could still hear. I was not a priest yet. I could give him nothing more. |
+| p01_leaf | v_2 | varenne | They tell you to wait for heaven! We will not wait! |
+| p01_leaf | f_1 | fairleigh | That will be Varenne. He makes a fine speech, for a man standing so far back. |
+| p01_leaf | r_leaf | ruggieri | Madonna santa, a whole year's leaf. My lord, when this is done I want a pipe of whatever they leave us. |
+| p01_leaf | f_leaf | fairleigh | You shall have one of mine. Now load. |
+| p01_leaf | t_2 | tomasz | They fired the curing sheds with the families still asleep in the cabins beside them. I carried a little girl out of the smoke. She asked me if it was morning yet. |
+| p01_leaf | f_ash | fairleigh | The house is burning. Get the women out of the chapel. We have lost the county. |
+| p01_leaf | t_smoke | tomasz | My lord, smoke to the north. That is Hollins Farm. The Hollins family stood by us, and they cannot get out. |
+| p01_leaf | t_toolate | tomasz | We came too late. I said the De profundis over them in the yard, and we marched on. |
+| p01_leaf | t_left | tomasz | We saw the smoke of Hollins Farm for an hour. Nobody spoke. The Governor rode at the head of the column and did not once look round. |
+| c01_thirteenth | k_open1 | king | The clockmaker came to Rome that winter in a borrowed coat, with two fingers black from the frost. He lives in this palace still. You have passed him on the stairs. |
+| c01_thirteenth | h_open2 | hollweg | Forty years I made clocks, and every one of them ran down. That is what clocks do. This one would wind itself and mend itself, and before it wore out it would build the next. |
+| c01_thirteenth | h_q0 | hollweg | I built it in the cellar under the workshop and told no one. In Nuremberg they still cross themselves when a mill wheel turns with no miller by it. Only Father Ferrer knew. He was the one man in the city I could not lie to. |
+| c01_thirteenth | f_q1 | ferrer | You have read what the old age built, Meister. Machines that thought. You know what they did to the men who built them. |
+| c01_thirteenth | h_q1 | hollweg | Those were wires and lightning, Father. This is brass. I cut every tooth of it with my own hands. And if a wheel could learn a little, in time, would that be so wicked? |
+| c01_thirteenth | f_q2 | ferrer | It ended the world once, Meister. The Church still calls it the ghost in the machine. Do not build a house for it. |
+| c01_thirteenth | h_q2 | hollweg | There is no ghost in it, I told him. Only gears. I said it to his face, and I believed it. |
+| c01_thirteenth | h_1 | hollweg | The Crown's wagons are at the market. Six soldiers, Jakob, and the Commissary will count every rivet. |
+| c01_thirteenth | h_gift | hollweg | There. Look at it. Nobody is winding it. |
+| c01_thirteenth | f_gift | ferrer | It is very fine, Meister. Tonight I will say a rosary that I am wrong about it. |
+| c01_thirteenth | j_found | jakob | Meister, it's a whole works. Presses, a Winder, all of it meshed. It's building another. |
+| c01_thirteenth | f_turn | ferrer | Meister. Come away from them. Now. |
+| c01_thirteenth | h_13 | hollweg | Thirteen? There is no thirteen. There is no such hour on any dial. |
+| c01_thirteenth | h_end_people | hollweg | I left my drawings to burn. From the cart I watched the workshop windows go orange. |
+| c01_thirteenth | k_end2 | king | It chose nothing. Mould on bread chooses nothing either. We burned what we could find, and we did not find everything. |
+| b01_specimen | k_open2 | king | The naturalist came later, in chains. He knows those animals better than any man living. Let him tell it. Where he is wrong, I will say so. |
+| b01_specimen | l_open5 | lindqvist | Every evening I sat at my window with a glass and a notebook. That week I began to see eyes at the forest's edge, high off the ground, and a long way apart. |
+| b01_specimen | l_weigh | lindqvist | Eleven pounds heavier than Monday. She called at sunset, as she did every day, a sound like a heron with its throat cut. Nothing answered. |
+| b01_specimen | l_v1 | lindqvist | A lizard. My dear Valadares. She is a species no one has ever described, the newest thing nature has made. In ten years her daughters will be the Crown's cavalry, and they will not eat hay. |
+| b01_specimen | l_kin | lindqvist | Did you see them take the goats? They worked together like sheepdogs. That is a breed, Valadares, and a breed can be bred. |
+| b01_specimen | l_call | lindqvist | Listen to her. She has never made that sound before. |
+| b01_specimen | l_one_night | lindqvist | So I sent nothing to the fort, Majesty. One night, I told Valadares. I wanted the stallion alive. |
+| b01_specimen | v_past | valadares | They don't care for your jars, Doctor. They are making for the pen. |
+| b01_specimen | l_lost | lindqvist | He walked through my station as if it were reeds. My men emptied their muskets into him, and he did not so much as turn his head. |
+| b01_specimen | l_groom | lindqvist | He did not touch her. He lay down along the pen like a dog at a door, and would not move. |
+| b01_specimen | v_burn | valadares | Burn them, Doctor. Whatever those things are, do not carry them down this river to people. |
+| b01_specimen | l_end_saved | lindqvist | I had her eggs in a crate of straw. I told the Academy I had saved my notes, and let them think the crate was full of paper. |
+| b01_specimen | l_end_fire | lindqvist | The fire had the eggs before I reached the straw. I came down to the Barra with a notebook and nothing else, and the Academy did not believe a word of it. |
+| b01_specimen | l_end_nopieter | lindqvist | Pieter went to the forest's edge with the jars and did not come back. I have his specimen book. His mother wrote to me twice. |
+| b01_specimen | k_end1 | king | His lure did nothing. The beasts came because the young one cried out every evening, the way a calf bawls and brings the herd. |
+| b01_specimen | k_end2 | king | No one stole her from him. Beasts went to a beast that called them, and took it back into the forest. There is nothing more in it than that, whatever he writes. |
+| b01_specimen | k_end_saved | king | And the crate he carried out of the fire held no papers. It held her eggs. |

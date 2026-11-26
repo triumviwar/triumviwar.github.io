@@ -202,35 +202,35 @@ Hollweg). "The Machine" (versus only) can stay text, or the off-beat tick.
 
 | file (campaign/voice/c01/) | voice | when | line |
 | --- | --- | --- | --- |
-| k_open1.ogg | The King | opening | The clockmaker came to Rome in the winter of that year, with nothing but his coat. He lives in this palace still. |
+| k_open1.ogg | The King | opening | The clockmaker came to Rome that winter in a borrowed coat, with two fingers black from the frost. He lives in this palace still. You have passed him on the stairs. |
 | k_open2.ogg | The King | opening | Tell him, Meister. Tell him what you told me. |
 | h_open1.ogg | Meister Hollweg | opening | Nuremberg in Advent. Snow on the roofs, the market lit, every clock in the city agreeing to the second. I thought we had made it so. |
-| h_open2.ogg | Meister Hollweg | opening | Forty years I made clocks that stopped. This one would not stop. It would wind itself, mend itself, and make its own successor. |
+| h_open2.ogg | Meister Hollweg | opening | Forty years I made clocks, and every one of them ran down. That is what clocks do. This one would wind itself and mend itself, and before it wore out it would build the next. |
 | f_open.ogg | Father Ferrer | opening | And when will it know its work is done, Meister? |
 | h_open3.ogg | Meister Hollweg | opening | I did not answer him. I did not think the question was a real one. |
-| h_q0.ogg | Meister Hollweg | opening (the quarrel) | Nobody in Nuremberg knew what I was building under the workshop. People hate a clever machine; they always have. Only Father Ferrer knew. |
-| f_q1.ogg | Father Ferrer | opening (the quarrel) | You know what destroyed the apostasy, Meister. In the post-modern age, all those centuries ago. |
-| h_q1.ogg | Meister Hollweg | opening (the quarrel) | My cogs and wheels are different, Father. Brass, not ghosts in wires. Maybe they could learn, in time. |
-| f_q2.ogg | Father Ferrer | opening (the quarrel) | You know the ghost in the machine is the enemy. It was then. It is now. |
-| h_q2.ogg | Meister Hollweg | opening (the quarrel, after h_open3) | Then there is no ghost in mine, I told him. Only my gears. I believed it. |
-| h_1.ogg | Meister Hollweg | intro | The Crown's wagons wait at the market. Six soldiers, wound and true. |
+| h_q0.ogg | Meister Hollweg | opening (the quarrel) | I built it in the cellar under the workshop and told no one. In Nuremberg they still cross themselves when a mill wheel turns with no miller by it. Only Father Ferrer knew. He was the one man in the city I could not lie to. |
+| f_q1.ogg | Father Ferrer | opening (the quarrel) | You have read what the old age built, Meister. Machines that thought. You know what they did to the men who built them. |
+| h_q1.ogg | Meister Hollweg | opening (the quarrel) | Those were wires and lightning, Father. This is brass. I cut every tooth of it with my own hands. And if a wheel could learn a little, in time, would that be so wicked? |
+| f_q2.ogg | Father Ferrer | opening (the quarrel) | It ended the world once, Meister. The Church still calls it the ghost in the machine. Do not build a house for it. |
+| h_q2.ogg | Meister Hollweg | opening (the quarrel, after h_open3) | There is no ghost in it, I told him. Only gears. I said it to his face, and I believed it. |
+| h_1.ogg | Meister Hollweg | intro | The Crown's wagons are at the market. Six soldiers, Jakob, and the Commissary will count every rivet. |
 | f_1.ogg | Father Ferrer | intro | Your soldiers, Meister, or the Crown's? |
 | tip_1.ogg | Meister Hollweg | intro | Build a Light Works by the Perpetual and train Clock Soldiers. Winders build and wind. |
 | m_intro.ogg | The Machine | intro_m | Tick. Tock. Tick. Grow, spread, and stop the clockmaker at the gate. |
 | tip_2.ogg | Jakob | tip_build | Every building must mesh with the Perpetual's gears, Meister, or it stops. |
 | cap_1.ogg | Captain of the Watch | order_done | Six. The Crown thanks the Guild. They are ours now. |
 | h_2.ogg | Meister Hollweg | order_done | Today I will show the city something better than soldiers. |
-| h_gift.ogg | Meister Hollweg | gift | There. It needs no hand but its own. |
-| f_gift.ogg | Father Ferrer | gift | It is beautiful. That is what frightens me. |
+| h_gift.ogg | Meister Hollweg | gift | There. Look at it. Nobody is winding it. |
+| f_gift.ogg | Father Ferrer | gift | It is very fine, Meister. Tonight I will say a rosary that I am wrong about it. |
 | j_odd.ogg | Jakob | odd_1 | Meister, the new Winders keep turning to face the river. |
 | j_mill.ogg | Jakob | dusk | Meister, there is a press turning on the mill island. We never built a press there. |
 | h_mill.ogg | Meister Hollweg | dusk | Go and look. Take a Netter with you. |
 | tip_net.ogg | Jakob | dusk | A Netter's net holds a machine still. Bring Jakob to the bank by the mill. |
-| j_found.ogg | Jakob | found | It is a whole works. Meshed, wound, and making more. |
+| j_found.ogg | Jakob | found | Meister, it's a whole works. Presses, a Winder, all of it meshed. It's building another. |
 | h_found.ogg | Meister Hollweg | found | Those are my gears. In red. |
 | f_found.ogg | Father Ferrer | found | There is another at the bath houses. It did not start today. |
 | h_turn.ogg | Meister Hollweg | turn | Stop. Stop! They are out of step. |
-| f_turn.ogg | Father Ferrer | turned_go | They were never yours, Meister. They were its. |
+| f_turn.ogg | Father Ferrer | turned_go | Meister. Come away from them. Now. |
 | cap_net.ogg | Captain of the Watch | caught | One of yours, Meister, in red paint. Or is it? |
 | h_net.ogg | Meister Hollweg | caught | No paint. It made itself that colour. |
 | f_bells.ogg | Father Ferrer | bells | Ring the bells, Meister. Let the city wake and go. |
@@ -259,16 +259,16 @@ Hollweg). "The Machine" (versus only) can stay text, or the off-beat tick.
 | h_people.ogg | Meister Hollweg | gate_choice / people | Put the people on the cart. Let the drawings burn. |
 | h_pattern.ogg | Meister Hollweg | gate_choice / pattern | The drawings. We must understand it. |
 | cap_13.ogg | Nuremberg | stroke | The great clock of the Frauenkirche strikes thirteen. |
-| h_13.ogg | Meister Hollweg | stroke | There is no thirteenth hour. There is now. |
+| h_13.ogg | Meister Hollweg | stroke | Thirteen? There is no thirteen. There is no such hour on any dial. |
 | cap_trapped.ogg | Nuremberg | trapped | The thirteenth stroke finds Meister Hollweg inside the walls. |
 | h_end1.ogg | Meister Hollweg | ending | The great clock struck thirteen. I told the Crown a tooth had slipped. I asked them to burn every machine I ever sold them. |
-| h_end_people.ogg | Meister Hollweg | ending | I left my drawings in the fire. I do not know if that was wisdom or cowardice. |
+| h_end_people.ogg | Meister Hollweg | ending | I left my drawings to burn. From the cart I watched the workshop windows go orange. |
 | h_end_pattern.ogg | Meister Hollweg | ending | I took my drawings. I told Father Ferrer it was so we could understand it. |
 | h_end_jakob.ogg | Meister Hollweg | ending | Jakob walked beside the cart all the way to Fürth. |
 | h_end_nojakob.ogg | Meister Hollweg | ending | Jakob did not come out. I keep his log. |
 | h_end2.ogg | Meister Hollweg | ending | Two crates of my best work had left for Lisbon a week before. For the mines in Brazil. |
 | k_end1.ogg | The King | ending | He saw it take out its own stop-work and let it be. He thought it had chosen. He thought it could think. |
-| k_end2.ogg | The King | ending | It had chosen nothing. A pattern copies itself, and that is all it does. We burned what we could find. We did not find everything. |
+| k_end2.ogg | The King | ending | It chose nothing. Mould on bread chooses nothing either. We burned what we could find, and we did not find everything. |
 
 ## What is placeholder
 
