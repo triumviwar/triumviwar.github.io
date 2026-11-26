@@ -3831,11 +3831,11 @@
 		},
 		"h_open2": {
 			"who": "hollweg",
-			"text": "Every wheel in it was cut by a hand I knew. Every machine it made would have a stop-work. I swore it."
+			"text": "Every wheel in it was cut by a hand I knew, and every machine it made would carry a stop-work. I gave my word on that."
 		},
 		"k_open_m": {
 			"who": "king",
-			"text": "The Machine has no voice. It left no account of that spring. Only what it did."
+			"text": "The Machine has no voice and kept no account. We know that spring by what it did."
 		},
 		"k_open_m2": {
 			"who": "king",
@@ -3999,12 +3999,12 @@
 		"h_people": {
 			"who": "hollweg",
 			"to": "guild",
-			"text": "No drawings. Only our hands. The people of Nuremberg send theirs."
+			"text": "No drawings, so no Pendulum. But the families I brought out lend us their hands: four more Winders."
 		},
 		"col_tide": {
 			"who": "colonel",
 			"to": "guild",
-			"text": "The mill has grown a tide. Burn it, Meister, before it sends another."
+			"text": "The mill is sending a second wave. Burn it, Meister, before there is a third."
 		},
 		"col_burnt": {
 			"who": "colonel",
@@ -4079,11 +4079,11 @@
 		},
 		"h_end2": {
 			"who": "hollweg",
-			"text": "Our machines were honest. Every one had its stop-work. I would swear it still."
+			"text": "Every machine we built at Fürth had its stop-work. I would swear to it still, before God."
 		},
 		"k_end1": {
 			"who": "king",
-			"text": "He believes it. I believe he believes it."
+			"text": "He believes it. I have never taken him for a liar."
 		},
 		"k_end2": {
 			"who": "king",
@@ -4095,7 +4095,7 @@
 		},
 		"k_end_m2": {
 			"who": "king",
-			"text": "But it could have gone that way. I have thought so, many nights."
+			"text": "If the line had broken, the Machine would have had the Regnitz by midsummer."
 		},
 		"new_springer": {
 			"who": "new",

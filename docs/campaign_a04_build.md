@@ -248,7 +248,7 @@ or the off-beat tick. The NEW cards are text.
 | h_dusk.ogg | Meister Hollweg | dusk_warn | We shut at dusk, Father. You have a little time left. |
 | n_dusk.ogg | Fürth | dusk_out | The guild shut its doors. Father Ferrer's report stayed unwritten. |
 | h_night.ogg | Meister Hollweg | part2 | That is all of it, Father. Sleep well. The works rest at night. |
-| f_night.ogg | Father Ferrer | part2 | Then I will not sleep. Brothers, we stay up. |
+| f_night.ogg | Father Ferrer | part2 | Then I will say Matins and not go to bed. Brothers, stay up with me. |
 | b_night.ogg | Brother Anselm | night | Father, a Winder. Alone, out of the yard. Nobody sent it. |
 | f_follow.ogg | Father Ferrer | night | Follow it. Quietly. |
 | b_tip2.ogg | Brother Anselm | night | Keep it within eight tiles. Closer than three and it will see us. |
@@ -257,8 +257,8 @@ or the off-beat tick. The NEW cards are text.
 | b_lost.ogg | Brother Anselm | lost_it | We have lost sight of it, Father. It went that way. |
 | b_bank.ogg | Brother Anselm | at_bank | It stopped by the river, below the chapel. There are others there. |
 | n_mesh.ogg | Fürth | reveal | On the bank the guild's automata stand in a ring on gear ground nobody laid. They are meshing. |
-| f_mesh.ogg | Father Ferrer | reveal | Nobody built this. They built it. |
-| f_pattern.ogg | Father Ferrer | reveal_pattern | Look at them. The Perpetual's pattern, every wheel, with a stop-work bolted on. They took it off themselves. |
+| f_mesh.ogg | Father Ferrer | reveal | They are building, Brother. And there is nobody at the bench. |
+| f_pattern.ogg | Father Ferrer | reveal_pattern | The Perpetual's pattern, wheel for wheel. The stop-work was bolted on after, and they have taken it off. |
 | b_pattern.ogg | Brother Anselm | reveal_pattern | Then the flaw is in the drawings, Father. |
 | f_people.ogg | Father Ferrer | reveal_people | Red brass in every one. Parts salvaged from the line, fitted to save time. |
 | b_people.ogg | Brother Anselm | reveal_people | Then the flaw is in the machine, Father, whatever the drawings say. |
@@ -291,7 +291,7 @@ or the off-beat tick. The NEW cards are text.
 | f_end_lost.ogg | Father Ferrer | ending (visit) | And some of them reached the machine. I counted them in my report. |
 | f_end_jakob.ogg | Father Ferrer | ending (visit) | Jakob found the stop-works and told me. He did not tell his master. I put that in too. |
 | k_end1.ogg | The King | ending (visit) | Ferrer's report was on my table before the snow. I read it twice. |
-| k_end_kept.ogg | The King | ending (visit) | Hollweg brought his mended machines to Rome. I let him. That was my mistake, not his. |
+| k_end_kept.ogg | The King | ending (visit) | Hollweg brought his mended machines to Rome, and I let him. That mistake was mine. |
 | k_end_melted.ogg | The King | ending (visit) | Hollweg came to Rome with nothing but his drawings, and his anger. |
 
 ## What is placeholder

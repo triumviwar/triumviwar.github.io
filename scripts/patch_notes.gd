@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"The campaign's Act 1 (its seven missions) has a writing pass: lines that sounded stiff or alike were rewritten, the creatures are no longer spoken of as if they had wishes, and the King's closing words in each mission are no longer the same formula. The story, the choices and the objectives are unchanged; some voiced lines will be recorded again.",
+	]},
 	{"v": "0.38.216", "items": [
 		"The Crown computer fights the Clockwork and the Crown better once a fight is on (crown-micro-2). Against the Clockwork: the Field Cannons aim at the armoured machines, Musketeers step back from a Pendulum or a run-down Clock Soldier while they reload, a badly hurt Musketeer steps back behind his friends, Musketeers shoot the Winders first when one is in reach, and a marching army forms its line before the Clockwork army it sees and steps on with its guns set (only on the march: not at home). In the mirror: a marching army halts and sets its guns when the enemy army comes at it, and the guns aim at the thickest group. No unit or number changed.",
 	]},

@@ -4825,15 +4825,15 @@
 		},
 		"f_quarrel": {
 			"who": "ferrer",
-			"text": "I told him the night before the gift. The ghost in the machine destroyed the apostasy once. It was the enemy then. It is the enemy now."
+			"text": "I told him so the night before the gift, Eminences. A thinking machine brought the apostasy down. I see no reason one should spare us."
 		},
 		"v_drawn": {
 			"who": "valadares",
-			"text": "I drew the way up the plateau for the Crown. I saw her there, the creature from the station, grown, among her own."
+			"text": "I drew the way up the plateau for the Crown. I saw her up there, the creature from the station, grown, rooted with the others."
 		},
 		"v_withheld": {
 			"who": "valadares",
-			"text": "I gave my map to the Church alone, sealed. But I saw her there, the creature from the station, grown, among her own."
+			"text": "I gave my map to the Church alone, sealed. But I saw her up there, the creature from the station, grown, rooted with the others."
 		},
 		"k_hollweg_rung": {
 			"who": "king",
@@ -4861,7 +4861,7 @@
 		},
 		"l_oldest": {
 			"who": "lindqvist",
-			"text": "They are not monsters, Eminences. They are the oldest things alive. Study them, and you read a page of creation no one has read."
+			"text": "Eminences, these are no monsters. They are a living fossil, a branch of nature that went its own way in the forest. Study them, and you read a page of creation nobody has read."
 		},
 		"k_varenne_spared": {
 			"who": "king",
@@ -4877,7 +4877,7 @@
 		},
 		"c_verdict2": {
 			"who": "cardinal",
-			"text": "The specimens are to be destroyed, and their eggs with them."
+			"text": "They are no branch of nature, Doctor. The apostasy made such things in its laboratories. The specimens are to be destroyed, and their eggs with them."
 		},
 		"h_defy": {
 			"who": "hollweg",
@@ -4889,7 +4889,7 @@
 		},
 		"k_letgo": {
 			"who": "king",
-			"text": "They both walked out of the hall. I let them go. My mercy, or my mistake: I still don't know."
+			"text": "They both walked out of the hall, and I let them go. I have had twenty-five years to decide whether that was mercy."
 		},
 		"n_walkout": {
 			"who": "narrator",
@@ -4898,7 +4898,7 @@
 		"k_1": {
 			"who": "king",
 			"to": "crown",
-			"text": "I sent my guard to the bridges that evening. I did not know why. I only knew the city was angry."
+			"text": "I sent my guard to the bridges that evening. I could not have told you why, except that the city was angry."
 		},
 		"t_1": {
 			"who": "tomasz",
@@ -4975,7 +4975,7 @@
 		},
 		"l_loose": {
 			"who": "lindqvist",
-			"text": "Not like this! They are frightened. Let them be!"
+			"text": "Not like this! Don't shoot them! Drive them back into the stables!"
 		},
 		"n_demo": {
 			"who": "narrator",
@@ -5033,7 +5033,7 @@
 		"k_dawn": {
 			"who": "king",
 			"to": "crown",
-			"text": "Dawn. The bridges held. Rome was black with smoke, and it was still Rome."
+			"text": "Dawn. The bridges held. The smoke lay so thick on the river I could not see the far bank."
 		},
 		"t_dawn": {
 			"who": "tomasz",
@@ -5094,7 +5094,7 @@
 		},
 		"k_end_lost2": {
 			"who": "king",
-			"text": "But if they had, there would have been no council, and no Church to hold one."
+			"text": "If they had, the Swiss would have died on the steps of Saint Peter's, and the people behind them."
 		},
 		"new_church": {
 			"who": "new",

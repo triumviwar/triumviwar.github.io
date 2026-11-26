@@ -5192,7 +5192,7 @@
 		},
 		"k_open_c": {
 			"who": "king",
-			"text": "No creature told me this. But the nest was theirs, and the young were theirs."
+			"text": "Nothing in that nest can tell a story. Here is what it did when the doctor came."
 		},
 		"k_open_c2": {
 			"who": "king",
@@ -5311,12 +5311,12 @@
 		"l_raid1": {
 			"who": "lindqvist",
 			"to": "expedition",
-			"text": "In the trees! They want the cages!"
+			"text": "In the trees! They are coming at the cages!"
 		},
 		"l_grown": {
 			"who": "lindqvist",
 			"to": "expedition",
-			"text": "Those are not hatchlings. Last year's young, grown. Look at them."
+			"text": "Last year's young, full grown in one season. Look at them. A new species, and the fastest I have ever described."
 		},
 		"l_freed": {
 			"who": "lindqvist",
@@ -5361,7 +5361,7 @@
 		"l_sire_comes": {
 			"who": "lindqvist",
 			"to": "expedition",
-			"text": "The Sire. He has come for the last cart. Hold him off!"
+			"text": "The Sire, on the last cart! Hold him off!"
 		},
 		"b_load": {
 			"who": "benedito",
@@ -5423,7 +5423,7 @@
 		},
 		"k_end1": {
 			"who": "king",
-			"text": "His finest hour, he calls it. He took a mother's young in the night."
+			"text": "His finest hour, he calls it. He crept into a nest by night and brought the danger home in cages."
 		},
 		"k_end2": {
 			"who": "king",
@@ -5435,7 +5435,7 @@
 		},
 		"k_end_c2": {
 			"who": "king",
-			"text": "But it could have gone that way. Then the doctor would have come home with empty cages."
+			"text": "If the cages had broken, the doctor would have come home with nothing, and I would have slept better since."
 		},
 		"new_stage2": {
 			"who": "new",
@@ -5472,7 +5472,7 @@
 		},
 		"sire": {
 			"image": "res://campaign/stills/a05_05.jpg",
-			"caption": "The Sire comes for the last cart."
+			"caption": "The Sire falls on the last cart."
 		}
 	},
 	"opening": {

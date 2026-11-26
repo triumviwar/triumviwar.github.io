@@ -483,7 +483,7 @@ M = {
         "n_dusk": {"who": "narrator", "text": "The guild shut its doors. Father Ferrer's report stayed unwritten."},
         # part 2
         "h_night": {"who": "hollweg", "to": "visit", "text": "That is all of it, Father. Sleep well. The works rest at night."},
-        "f_night": {"who": "ferrer", "to": "visit", "text": "Then I will not sleep. Brothers, we stay up."},
+        "f_night": {"who": "ferrer", "to": "visit", "text": "Then I will say Matins and not go to bed. Brothers, stay up with me."},
         "b_night": {"who": "brother", "to": "visit", "text": "Father, a Winder. Alone, out of the yard. Nobody sent it."},
         "f_follow": {"who": "ferrer", "to": "visit", "text": "Follow it. Quietly."},
         "b_tip2": {"who": "brother", "to": "visit", "text": "Keep it within eight tiles. Closer than three and it will see us."},
@@ -492,8 +492,8 @@ M = {
         "b_lost": {"who": "brother", "to": "visit", "text": "We have lost sight of it, Father. It went that way."},
         "b_bank": {"who": "brother", "to": "visit", "text": "It stopped by the river, below the chapel. There are others there."},
         "n_mesh": {"who": "narrator", "to": "visit", "text": "On the bank the guild's automata stand in a ring on gear ground nobody laid. They are meshing."},
-        "f_mesh": {"who": "ferrer", "to": "visit", "text": "Nobody built this. They built it."},
-        "f_pattern": {"who": "ferrer", "to": "visit", "text": "Look at them. The Perpetual's pattern, every wheel, with a stop-work bolted on. They took it off themselves."},
+        "f_mesh": {"who": "ferrer", "to": "visit", "text": "They are building, Brother. And there is nobody at the bench."},
+        "f_pattern": {"who": "ferrer", "to": "visit", "text": "The Perpetual's pattern, wheel for wheel. The stop-work was bolted on after, and they have taken it off."},
         "b_pattern": {"who": "brother", "to": "visit", "text": "Then the flaw is in the drawings, Father."},
         "f_people": {"who": "ferrer", "to": "visit", "text": "Red brass in every one. Parts salvaged from the line, fitted to save time."},
         "b_people": {"who": "brother", "to": "visit", "text": "Then the flaw is in the machine, Father, whatever the drawings say."},
@@ -536,7 +536,7 @@ M = {
         "f_end_lost": {"who": "ferrer", "text": "And some of them reached the machine. I counted them in my report."},
         "f_end_jakob": {"who": "ferrer", "text": "Jakob found the stop-works and told me. He did not tell his master. I put that in too."},
         "k_end1": {"who": "king", "text": "Ferrer's report was on my table before the snow. I read it twice."},
-        "k_end_kept": {"who": "king", "text": "Hollweg brought his mended machines to Rome. I let him. That was my mistake, not his."},
+        "k_end_kept": {"who": "king", "text": "Hollweg brought his mended machines to Rome, and I let him. That mistake was mine."},
         "k_end_melted": {"who": "king", "text": "Hollweg came to Rome with nothing but his drawings, and his anger."},
     },
     "stills": {

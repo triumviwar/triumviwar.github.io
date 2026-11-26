@@ -4589,7 +4589,7 @@
 		"f_night": {
 			"who": "ferrer",
 			"to": "visit",
-			"text": "Then I will not sleep. Brothers, we stay up."
+			"text": "Then I will say Matins and not go to bed. Brothers, stay up with me."
 		},
 		"b_night": {
 			"who": "brother",
@@ -4634,12 +4634,12 @@
 		"f_mesh": {
 			"who": "ferrer",
 			"to": "visit",
-			"text": "Nobody built this. They built it."
+			"text": "They are building, Brother. And there is nobody at the bench."
 		},
 		"f_pattern": {
 			"who": "ferrer",
 			"to": "visit",
-			"text": "Look at them. The Perpetual's pattern, every wheel, with a stop-work bolted on. They took it off themselves."
+			"text": "The Perpetual's pattern, wheel for wheel. The stop-work was bolted on after, and they have taken it off."
 		},
 		"b_pattern": {
 			"who": "brother",
@@ -4821,7 +4821,7 @@
 		},
 		"k_end_kept": {
 			"who": "king",
-			"text": "Hollweg brought his mended machines to Rome. I let him. That was my mistake, not his."
+			"text": "Hollweg brought his mended machines to Rome, and I let him. That mistake was mine."
 		},
 		"k_end_melted": {
 			"who": "king",

@@ -213,7 +213,7 @@ roster ladder's NEW cards are the game's own voice (not recorded).
 | l_open_saved.ogg | Dr. Lindqvist | opening (expedition) | The eggs I carried out of the fire had hatched. I needed a father for them. |
 | l_open_burned.ogg | Dr. Lindqvist | opening (expedition) | I had nothing left but my notes. I needed eggs, and young ones. |
 | l_open2.ogg | Dr. Lindqvist | opening (expedition) | In the dry season we went up the mountain, with guns, porters and carts. |
-| k_open_c.ogg | The King | opening (creatures) | No creature told me this. But the nest was theirs, and the young were theirs. |
+| k_open_c.ogg | The King | opening (creatures) | Nothing in that nest can tell a story. Here is what it did when the doctor came. |
 | k_open_c2.ogg | The King | opening (creatures) | That dry season men came with cages while the nest slept. |
 | l_1.ogg | Dr. Lindqvist | intro | Quietly. The young sleep apart from the nest, in the ferns. |
 | l_2.ogg | Dr. Lindqvist | intro | Stand by each one a moment and net it. The carts will come for them. |
@@ -237,8 +237,8 @@ roster ladder's NEW cards are the game's own voice (not recorded).
 | l_empty.ogg | Dr. Lindqvist | empty | Nothing. We go down with empty cages. |
 | l_trail.ogg | Dr. Lindqvist | trail_lines | The carts are rolling. Keep the guns round them. |
 | tip_trail.ogg | Dr. Lindqvist | trail_lines | The carts carry our powder too. A man who has fired his shots refills beside one. |
-| l_raid1.ogg | Dr. Lindqvist | raid1 | In the trees! They want the cages! |
-| l_grown.ogg | Dr. Lindqvist | raid2 | Those are not hatchlings. Last year's young, grown. Look at them. |
+| l_raid1.ogg | Dr. Lindqvist | raid1 | In the trees! They are coming at the cages! |
+| l_grown.ogg | Dr. Lindqvist | raid2 | Last year's young, full grown in one season. Look at them. A new species, and the fastest I have ever described. |
 | l_freed.ogg | Dr. Lindqvist | first_freed | A cage is broken! It is loose! |
 | l_lost.ogg | Dr. Lindqvist | all_lost | Every cage broken. Two years for nothing. |
 | b_1.ogg | Benedito | landing_lines | Here, Doctor! The canoes are ready. Load the cages. |
@@ -247,7 +247,7 @@ roster ladder's NEW cards are the game's own voice (not recorded).
 | b_room_few.ogg | Benedito | room_line | Few paddlers came from Nazaré, Doctor. Two cages, no more. |
 | b_room_many.ogg | Benedito | room_line_many | All of Nazaré came to paddle. There is room for every cage. |
 | n_roar.ogg | The Mountain | sire_line | Up the river bank something roared, and the forest went quiet. |
-| l_sire_comes.ogg | Dr. Lindqvist | sire_line | The Sire. He has come for the last cart. Hold him off! |
+| l_sire_comes.ogg | Dr. Lindqvist | sire_line | The Sire, on the last cart! Hold him off! |
 | b_load.ogg | Benedito | loaded_line | One aboard! Bring the next! |
 | b_full.ogg | Benedito | full | No more room, Doctor! The canoes are full! |
 | b_push.ogg | Benedito | the_end | Push off! Paddle! |
@@ -261,10 +261,10 @@ roster ladder's NEW cards are the game's own voice (not recorded).
 | l_end_burned.ogg | Dr. Lindqvist | ending (expedition) | The eggs I took that night were my new beginning. |
 | l_end_eggs.ogg | Dr. Lindqvist | ending (expedition) | I carried the eggs down myself, all the way to the river. |
 | l_end_pieter.ogg | Dr. Lindqvist | ending (expedition) | Pieter wrote every cage in the book. |
-| k_end1.ogg | The King | ending (expedition) | His finest hour, he calls it. He took a mother's young in the night. |
+| k_end1.ogg | The King | ending (expedition) | His finest hour, he calls it. He crept into a nest by night and brought the danger home in cages. |
 | k_end2.ogg | The King | ending (expedition) | And the crates on that quay went south to the mines. Nobody opened them. |
 | k_end_c1.ogg | The King | ending (creatures) | That is not how it went. The carts came down to the river. |
-| k_end_c2.ogg | The King | ending (creatures) | But it could have gone that way. Then the doctor would have come home with empty cages. |
+| k_end_c2.ogg | The King | ending (creatures) | If the cages had broken, the doctor would have come home with nothing, and I would have slept better since. |
 
 ## What is placeholder
 

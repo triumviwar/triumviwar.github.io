@@ -3236,15 +3236,15 @@
 		},
 		"v_open3": {
 			"who": "valadares",
-			"text": "We came to its foot in September, five men and the river trader, to map what no map had."
+			"text": "We came to its foot in September: five men and the river trader, a compass, a chain, and a book of empty pages."
 		},
 		"k_open_n": {
 			"who": "king",
-			"text": "No creature wrote a report. But the mountain was theirs before it was anyone's."
+			"text": "Beasts keep no records. What follows is the nest as Valadares found it, and what it did."
 		},
 		"k_open_n2": {
 			"who": "king",
-			"text": "That September strangers came up their cliff in the mist, while the nest slept."
+			"text": "That September strangers came up the cliff in the mist, while the nest slept."
 		},
 		"v_1": {
 			"who": "valadares",
@@ -3334,7 +3334,7 @@
 		"v_linnea": {
 			"who": "valadares",
 			"to": "party",
-			"text": "And there, among them. The creature from the pen. Twice the size. She knows her home."
+			"text": "And there, among them. The creature from the pen, twice the size now, rooted in the swamp with the rest."
 		},
 		"b_linnea": {
 			"who": "benedito",
@@ -3374,7 +3374,7 @@
 		"v_drawn": {
 			"who": "valadares",
 			"to": "party",
-			"text": "I drew it for the Crown. A mapmaker who hides a road is no mapmaker."
+			"text": "I drew it for the Crown. That is what the Crown pays me for."
 		},
 		"v_withheld": {
 			"who": "valadares",
@@ -3433,7 +3433,7 @@
 		},
 		"v_end1": {
 			"who": "valadares",
-			"text": "We came down to the river with what we had. The mountain kept the rest."
+			"text": "We came down to the river with what we had. The rest is still up there."
 		},
 		"v_end_all": {
 			"who": "valadares",
@@ -3461,7 +3461,7 @@
 		},
 		"v_end_linnea": {
 			"who": "valadares",
-			"text": "I saw her, Majesty. The doctor's creature, grown, among her own. She was never his."
+			"text": "I saw her, Majesty: the doctor's creature, grown, rooted among the others in the hollow. He never tamed her. He only caged her."
 		},
 		"k_end1": {
 			"who": "king",
@@ -3481,7 +3481,7 @@
 		},
 		"k_end_n2": {
 			"who": "king",
-			"text": "But it could have gone that way. Then no one would have known what waited in the cloud."
+			"text": "Had the nest caught him, we would have known nothing of that mountain until it came down to us."
 		},
 		"new_dilophosaurus": {
 			"who": "new",
@@ -3686,7 +3686,7 @@
 		"party": {
 			"still": "flight",
 			"title": "Down from the cloud",
-			"text": "Valadares came down from the plateau with his survey, and saw the creature from the pen among her own.",
+			"text": "Valadares came down from the plateau with his survey. He saw the creature from the pen up there, grown, among the others.",
 			"text_if": [
 				{
 					"if": {

@@ -203,7 +203,7 @@ Tomasz. "Paris" (the narrator) and "the Free Assembly" (versus only) can stay te
 
 | file (campaign/voice/a06/) | voice | when | line |
 | --- | --- | --- | --- |
-| k_open1.ogg | The King | opening (crown) | Paris rose in the summer of 2769. Not a riot: a city behind its own walls, with a government in its hall. |
+| k_open1.ogg | The King | opening (crown) | Paris rose in the summer of 2769. They walled their streets with carts and paving stones and sat a government in the Hôtel de Ville. |
 | k_open2.ogg | The King | opening (crown) | Fairleigh took it back. He was a field marshal by then. Let him tell it; he tells it shorter than I do. |
 | f_open1.ogg | Field Marshal Fairleigh | opening (crown) | We camped outside the Porte Saint-Antoine. Beyond the gate the faubourg was one long street, and they had cut it three times. |
 | f_open_printer.ogg | Field Marshal Fairleigh | opening (crown) | The printer the young Father took at Lyon had named Paris. He was right about that, if about nothing else. |
@@ -244,17 +244,17 @@ Tomasz. "Paris" (the narrator) and "the Free Assembly" (versus only) can stay te
 | n_flight.ogg | Paris | flight_easy | Varenne is out by the west gate, running for the boats at the Port Saint-Nicolas. |
 | f_flight.ogg | Field Marshal Fairleigh | flight_easy | Riders! After him! |
 | n_quay.ogg | Paris | at_quay | A boat is waiting at the quay. Its oarsmen are already at the oars. |
-| va_taken.ogg | Etienne Varenne | taken | You have taken a man, Marshal. You have not taken an idea. |
+| va_taken.ogg | Etienne Varenne | taken | You will want me alive, Marshal. Kill me and I am a martyr, and your Church knows what martyrs are worth. |
 | f_taken.ogg | Field Marshal Fairleigh | taken | I have taken the man who burned Virginia. That will do for today. |
 | t_mercy.ogg | Father Tomasz | verdict | Marshal. I ask for his life. Send him away, but let him live. I prayed for his men in Virginia; I pray for him now. |
 | f_order.ogg | Field Marshal Fairleigh | verdict | The King gave me the right to judge him here. The Father asks for mercy. The order is yours. |
 | f_spared.ogg | Field Marshal Fairleigh | verdict (spared) | Exile, then. A ship, and never French ground again. |
-| va_spared.ogg | Etienne Varenne | verdict (spared) | You will regret your mercy, Marshal. Or I will make you glad of it. We shall see. |
+| va_spared.ogg | Etienne Varenne | verdict (spared) | Exile. How very Christian of you, Marshal. Write to me when you regret it. |
 | t_spared.ogg | Father Tomasz | verdict (spared) | Thank God. |
 | f_exec.ogg | Field Marshal Fairleigh | verdict (executed) | The law, then. At dawn, on the Grève. |
-| va_exec.ogg | Etienne Varenne | verdict (executed) | Do it in daylight. Let them all see what the Crown is. |
+| va_exec.ogg | Etienne Varenne | verdict (executed) | At noon, then, when the square is full. Let Paris watch the Crown at work. |
 | t_exec.ogg | Father Tomasz | verdict (executed) | I will stay with him tonight, Marshal. Someone should. |
-| f_won.ogg | Field Marshal Fairleigh | won | Paris was the King's again by morning. The bells of Notre-Dame rang for Lauds. |
+| f_won.ogg | Field Marshal Fairleigh | won | Paris was the King's again by morning. Someone rang the great bell of Notre-Dame, and I did not ask who. |
 | r_marshal.ogg | Colonel Ruggieri | fairleigh_hurt | The Marshal is hit! Keep him behind the line! |
 | f_priest.ogg | Field Marshal Fairleigh | tomasz_hurt | The Father is hurt! Men round the priest! |
 | n_nd_burnt.ogg | Paris | nd_burnt | Notre-Dame is burning. The whole city can see it. |
@@ -267,8 +267,8 @@ Tomasz. "Paris" (the narrator) and "the Free Assembly" (versus only) can stay te
 | f_end_saved.ogg | Field Marshal Fairleigh | ending (crown) | The Hollins boys went home to Virginia that winter. All six of them. |
 | t_end_spared.ogg | Father Tomasz | ending (crown) | I said a Mass of thanksgiving in Notre-Dame. The doors were still black with smoke. |
 | t_end_exec.ogg | Father Tomasz | ending (crown) | I said a Mass for his soul. Some of his men came, and I did not send them away. |
-| k_end_spared.ogg | The King | ending (crown) | Mercy from the victor is still victory. I have never regretted that order. |
-| k_end_exec.ogg | The King | ending (crown) | It was the law. I have read the order a hundred times since. It is still the law. |
+| k_end_spared.ogg | The King | ending (crown) | I have never regretted that order. Tomasz asked for a life, and he was right to ask. |
+| k_end_exec.ogg | The King | ending (crown) | It was the law. I have read that order more often than I care to say. |
 | k_end2.ogg | The King | ending (crown) | That was the end of the Assembly's cities. The next fires were not theirs. |
 | k_end_a1.ogg | The King | ending (assembly) | That is not how it went. Paris did not hold. |
 | k_end_a2.ogg | The King | ending (assembly) | But if it had, the Crown would have had two capitals, and one of them against it. |
