@@ -26,6 +26,34 @@
 
 ## Current work
 
+- CROWN FINISH (owner 2026-11-25, the championship: 38 of 54 Crown wins only at the bell; job crown-finish, MERGED 0.38.212,
+  docs/crown_finish.md, scripts/ai_crown_finish.gd AICrownFinish): why it held back: the Siege push grinds building by
+  building, only part of the army goes, the hunt waits for the last enemy unit, the waves keep their even-game bars, the
+  harass walks "strays" home. THE FINISHER (ON in all three matchups; `cfin:off`, `cfinclock/cfinbrood/cfinmirror:off`):
+  from 9:00, clearly ahead (edge 2x + halls, crush 4x, or at the cap 1.5x; v the Brood what it saw, floor 2,000, 2.5x),
+  the whole army goes for the enemy's halls one by one, keeps going, re-targets. 20 games an arm to 20:00: v Clockwork won
+  outright 4 -> 9 (at the bell 12 -> 8), v Brood 2 -> 4, mirror decided 7 -> 10 of 20; pooled 18 better / 8 worse (p 0.08).
+- BATTLE MATRIX ALL (owner 2026-11-25 "only fair to make this testing to all matchups"; job battle-matrix-all, MERGED
+  0.38.213, docs/battle_matrix_all.md, tables docs/battle_matrix_all/tables.md): the lab for any two factions + mirrors
+  (job lines `<fA> <cA> <fB> <cB> size ground seed`; the old Crown v Brood lines and the supply-cap size -150 kept at the
+  merge), 14 Clockwork comps, 6,572 fights. In straight fights at equal cost: Brood > Crown > Clockwork (Crown v Clockwork
+  blind 65-68 early/mid, 53 late; the Clockwork gets 6/30/28 v the Brood). Pendulums and Owls are the Clockwork's real
+  fighters; Springers, Netters, the Brass Serpent lose to nearly everything; Winders don't pay in a short fight, arriving
+  half wound costs a lot. Mirrors: Crown MO/MB best (no circle); Clockwork Pendulums beat everything; Brood a true circle
+  (Storm Challengers > ground incl. the Sire, Venom > Storm, the Sire's army > Venom). DRAGOON ZERO = a real CROWN COMPUTER
+  FAULT too: a dismounting Dragoon drops out of the wave's count, the wave ends and goes home (the lab now drives them by
+  attack-move; Dragoons 21-24 v the Brood). The Sire's dominance is real by the numbers (1,000 hp for 150 food).
+- CLOCKWORK MICRO (job clockwork-micro, MERGED 0.38.214, docs/clockwork_micro.md, scripts/ai_cw_micro.gd AICwMicro, bench
+  tools/bench_clockwork_micro.gd): 10 fighting ideas, ~770 bench fights + 60 real games: NOTHING KEPT (all off,
+  `cwmic<name>:on`). Verdict: the Clockwork fights about as well as simple rules can; v the Crown it loses on the ARMY IT
+  BUILDS (5 Ballistas instead of 10 Clock Soldiers closes most of the gap: macro) and a hard melee-v-muskets matchup; v the
+  Brood an edge (5 of 10, trade 1.47); mirror even.
+- BROOD MICRO (job brood-micro, MERGED 0.38.215, docs/brood_micro.md, scripts/ai_brood_micro.gd AIBroodMicro, bench
+  tools/bench_brood_micro.gd): KEPT focus (the most hurt enemy first) and kite (Spitters step back from slower biters);
+  the pack off (`bmic:off`, `bmic<name>:off/on`). 70 real games. VERDICT: v the Crown IT IS THE ECONOMY, not the fighting
+  (at equal value the Crown kills ~4x what it loses; the Brood's army is smaller until ~15:00 and wins late by out-earning,
+  0.77 of the Crown's income at 8:00, 1.04 at 15:00): "changing the far-Rootmaw food bonus is the right lever". V the
+  Clockwork the fighting mattered: beaten 7 of 10 -> 3 of 10, won or led 7 of 10 (t 2.3). Mirror unchanged.
 - BATTLE MATRIX (owner 2026-11-25 "forget economy... a gigantic round of battles... what counters what"; job battle-matrix,
   MERGED 0.38.211, docs/battle_matrix.md, tables docs/battle_matrix/tables.md, tools/battle_lab.gd + tools/study/battle_lab.py):
   8,450 equal-value Crown v Brood fights (13 x 13 comps, sizes 600/1,500/4,000 + at the cap, six grounds), no economy, each
