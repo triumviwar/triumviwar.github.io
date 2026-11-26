@@ -177,11 +177,11 @@
  ],
  "talks": {
   "fairleigh_old": {"name": "FIELD MARSHAL FAIRLEIGH", "colour": 4, "portrait": "res://campaign/portraits/fairleigh.png", "entries": [
-   {"after": "a06_barricades", "lines": ["Paris, Your Majesty. Three barricades, one street, and the King's patience.", "I am old now. I still hear the canister."]},
-   {"after": "a06_barricades", "flag": {"a06_barricades.varenne": "executed"}, "lines": ["Varenne went to the scaffold. The Assembly made a saint of him by morning."]},
-   {"after": "a07_council", "lines": ["Rome burned one night, and held. I was not there. The young King was."]}]},
+   {"after": "a06_barricades", "lines": ["Paris, Your Majesty. Three barricades, one street, and the King's patience.", "Ruggieri's mortars in that street. I am still deaf in the left ear."]},
+   {"after": "a06_barricades", "flag": {"a06_barricades.varenne": "executed"}, "lines": ["Varenne went to the scaffold. Within the week the Assembly was selling his picture on every quay in Paris."]},
+   {"after": "a07_council", "lines": ["Rome burned one night, and held. I was not there. Your Majesty was, and very young."]}]},
   "ruggieri": {"name": "GENERAL RUGGIERI", "colour": 4, "portrait": "res://campaign/portraits/ruggieri.png", "entries": [
-   {"after": "p01_leaf", "lines": ["The guns, Highness. In Virginia they were two. In Rome there are more.", "Earn the King's favour in the field, and I will spend it here on what the men need."]},
+   {"after": "p01_leaf", "lines": ["The guns, Highness. In Virginia I had two, and one of them had a cracked trail.", "Earn the King's favour in the field, and I will spend it here on what the men need."]},
    {"after": "a06_barricades", "lines": ["Paris wanted the Mortar. My old crew will come with you again, if you call them."]},
    {"after": "d09_crossroads", "lines": ["The fort held, Highness. Two sieges in a week and a council in an evening. I chose, and I have not slept well since."]},
    {"after": "d10_jungle", "lines": ["The jungle column came home, Highness. Valadares sends you a map drawn from a balloon. I have hung it in the armoury."]}]},
@@ -209,11 +209,11 @@
    {"after": "a07_council", "lines": ["The Council of Rome: no machine may govern itself, and the specimens are to be destroyed."]},
    {"after": "a07_council", "flag": {"a07_council.hollweg": "defied"}, "lines": ["The Council of Rome: no machine may govern itself, and the specimens are to be destroyed. Two men walked out on it."]}]},
   "jakob": {"name": "JAKOB", "colour": 5, "entries": [
-   {"after": "c01_thirteenth", "lines": ["I kept the drawings, Meister. Every part of it. We can do better with honest work.", "Bring back what you find in the field, and I will draw you a better soldier."]},
+   {"after": "c01_thirteenth", "lines": ["I kept the drawings, Meister. Every sheet. We can build an honest one from them.", "Bring back what you find in the field, and I will draw you a better soldier."]},
    {"after": "a02_furth", "lines": ["The Honest One stops when it is told. That is all I wanted."]},
    {"after": "a04_visit", "lines": ["Father Ferrer asks about every gear. I answer. It is better that way."]}]},
   "ferrer": {"name": "FATHER FERRER", "colour": 4, "entries": [
-   {"after": "a04_visit", "lines": ["I came to see the guild's work. I stay because someone must."]},
+   {"after": "a04_visit", "lines": ["I came to look at your workshops. The Holy Office has asked me to go on looking."]},
    {"after": "a04_visit", "flag": {"a04_visit.broken": "kept"}, "lines": ["You kept the broken ones. I pray you never need to explain why."]},
    {"after": "a04_visit", "flag": {"a04_visit.broken": "melted"}, "lines": ["The broken ones are brass again. That was right."]}]},
   "ulrich": {"name": "MASTER ULRICH", "colour": 5, "entries": [

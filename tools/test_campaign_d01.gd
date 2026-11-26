@@ -537,7 +537,7 @@ func _hubs() -> void:
 	check("the hub: the King talks of Tomasz's letter from Minas, and the man who went south", str(CampaignMenu.talk_lines(kt, p)).contains("stayed behind with the miners")
 		and str(CampaignMenu.talk_lines(kt, p)).contains("city of gears"))
 	var tt: Dictionary = sl["hub"]["talks"]["tomasz"]
-	check("the hub: the Cardinal remembers Minas", str(CampaignMenu.talk_lines(tt, p)).contains("Staying afterwards is the work"))
+	check("the hub: the Cardinal remembers Minas", str(CampaignMenu.talk_lines(tt, p)).contains("baptised eleven children"))
 	var st: Dictionary = WarMapData.state(p)
 	check("the war map: Minas uneasy (restless), the road south for the man who fled", st["regions"]["minas"] == "contested" and st["marks"]["ramos_road"])
 	var led: Array = st.get("ledger", []).map(func(x): return String(x.get("text", "")))

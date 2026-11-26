@@ -208,9 +208,9 @@ RULES = [
       ledger="The machines blew the fort's magazine at the crossroads: not how it went."),
     # the diamond's "first" clock: the front not chosen waits, and grows
     R({"flag": {"d09_crossroads.first": "brood"}, "not_done": "d11_siege"}, pin="d11_siege",
-      clock="Waits: the army is in the north, and the city grows while it waits."),
+      clock="Not yet: the army is in the north, and the city is building."),
     R({"flag": {"d09_crossroads.first": "clockwork"}, "not_done": "d10_jungle"}, pin="d10_jungle",
-      clock="Waits: the army is in the south, and the swarm spreads while it waits."),
+      clock="Not yet: the army is in the south, and the swarm is spreading."),
     # d10 THE JUNGLE FRONT (built: docs/campaign_d10_build.md; jungle held / thin, island burned / standing, reclaim barra
     # (the RECLAIM PART won: d08's broken seal mends); a swarm's win (the solo pick or versus): not how it went, a broken seal)
     R({"flag": {"d10_jungle.jungle": "held"}}, region="lower_amazon", to="contested", ledger="The swarm's nests on the river were broken in time: the river towns hold."),

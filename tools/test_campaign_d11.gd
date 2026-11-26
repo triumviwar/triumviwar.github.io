@@ -590,7 +590,7 @@ func _hubs() -> void:
 			"clockmaker": clk = s
 	check("the King's study: the King on the road held a year", str(CampaignMenu.talk_lines(pro["hub"]["talks"]["king"], p)).contains("held the road a whole year"))
 	check("the King's study: the dispatch on the great sortie", str(CampaignMenu.talk_lines(pro["hub"]["talks"]["dispatch"], p)).contains("great sortie held"))
-	check("Hollweg (the spring running): on his wall, listening", str(CampaignMenu.talk_lines(clk["hub"]["talks"]["hollweg"], p)).contains("It was not afraid"))
+	check("Hollweg (the spring running): on his wall, listening", str(CampaignMenu.talk_lines(clk["hub"]["talks"]["hollweg"], p)).contains("Not by a beat"))
 	var st := WarMapData.state(p)
 	check("the war map: Concórdia the machine's, the valley contested (held off)", String(st["regions"]["concordia"]) == "machine"
 		and String(st["regions"]["valley"]) == "contested")
@@ -598,7 +598,7 @@ func _hubs() -> void:
 	_progress({"d07_spring": {"spring": "stopped"}}, "clockwork")
 	Campaign.record(MID, "solo", "crown", "crown", {"version": "fresh", "siege": "close", "jakob": "lost"})
 	p = Campaign.progress()
-	check("the spring blown: the King, the siege ring on the map, Jakob in the ledger", str(CampaignMenu.talk_lines(pro["hub"]["talks"]["king"], p)).contains("limps")
+	check("the spring blown: the King, the siege ring on the map, Jakob in the ledger", str(CampaignMenu.talk_lines(pro["hub"]["talks"]["king"], p)).contains("miss a beat")
 		and bool(WarMapData.state(p)["marks"].get("siege_ring", false))
 		and (WarMapData.state(p).get("ledger", []) as Array).map(func(x): return String(x.get("text", ""))).has("Jakob fell before the walls of Concórdia."))
 	check("Hollweg (the spring stopped): his confession", str(CampaignMenu.talk_lines(clk["hub"]["talks"]["hollweg"], p)).contains("confession"))

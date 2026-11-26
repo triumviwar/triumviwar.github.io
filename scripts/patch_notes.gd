@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.220", "items": [
+		"THE HUBS' TALKS ARE REWRITTEN (a writing pass): what the King, Cardinal Tomasz, Fairleigh, Hollweg, Lindqvist and Valadares say in the hubs between missions now sounds like each of them, with fewer neat sayings and more of the things they saw. Two lines of the war map changed too. The story, the choices and their results are the same.",
+	]},
 	{"v": "0.38.219", "items": [
 		"Act 2's campaign lines rewritten in a writing pass (writing-act2): the eleven missions from The Gold of Vila Rica to The Siege of Concórdia lose their stock phrases, neat sayings and lines that end on a moral; people sound more like themselves, and a few lines now give the Brood's creatures no mind of their own. No story, choice or objective changed. All texts are still placeholders for the owner.",
 	]},
