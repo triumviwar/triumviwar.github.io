@@ -3092,6 +3092,7 @@ func _nb_warrior(spend: int) -> String:
 	var venom_share := {"tyrant": 4, "mixed": 2, "venom": 1}.get(String(plan["mix"]), 2) as int      # (one Spitter for this many Raptors)
 	if _wall_foe() and String(plan["mix"]) != "tyrant":
 		venom_share = 1          # (round 3: Raptors alone die on a musket wall; Spitters reach the shooters)
+	venom_share = AILessons.brood_venom_share(self, venom_share)      # (ai-lessons bcomp: Venom Challengers v the Crown and the Clockwork)
 	if riders_about():
 		venom_share = 1          # (riders about: Spitters shoot what the Sire can't catch, docs/raid_micro.md D)
 	var sp_price: Array = price.call("spitter")
