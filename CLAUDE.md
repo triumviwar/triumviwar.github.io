@@ -33,7 +33,7 @@
   overall within noise (+0.16, t 0.6): the Crown already won this matchup; its edge there IS its fighting. MIRROR on:
   brace, gunpick (10 games v the old Crown: won or led 7, lost 1). V the Brood unchanged (crown-micro). Tests after the
   overnight merges: test_brood_new's "swamp round the rooted Mother" check fails (not from 0.38.212-216: no game code
-  changed); known failures unchanged.
+  changed); known failures unchanged. test_crown_rider_screen now fails one check after crown-micro-2: "no rider stands in front of the muskets (1)" (the brace halts the line before a rider pulls back): to fix.
 - CROWN FINISH (owner 2026-11-25, the championship: 38 of 54 Crown wins only at the bell; job crown-finish, MERGED 0.38.212,
   docs/crown_finish.md, scripts/ai_crown_finish.gd AICrownFinish): why it held back: the Siege push grinds building by
   building, only part of the army goes, the hunt waits for the last enemy unit, the waves keep their even-game bars, the
