@@ -1,0 +1,407 @@
+{
+"args": "seed:3 cwmicpick:on",
+"sets": [
+"mirror"
+],
+"runs": [
+{
+"contact": 16.4,
+"cw_left": 0.35,
+"cw_value": 1005,
+"dead": {
+"clock_soldier": "5/8",
+"netter": "1/1",
+"springer": "1/2",
+"winder": "0/2"
+},
+"down_end": 0,
+"foe_dead": {
+"clock_soldier": "2/8",
+"netter": "1/1",
+"springer": "0/2",
+"winder": "0/2"
+},
+"foe_left": 0.62,
+"foe_value": 1005,
+"foes": 13,
+"killed": 265,
+"lost": 575,
+"micro": {
+"cwmic_pick": 16
+},
+"run": 3,
+"sc": "open-s-cw",
+"score": -0.27,
+"secs": 90.0
+},
+{
+"contact": 45.5,
+"cw_left": 1.0,
+"cw_value": 1005,
+"dead": {
+"clock_soldier": "0/8",
+"netter": "0/1",
+"springer": "0/2",
+"winder": "0/2"
+},
+"down_end": 0,
+"foe_dead": {
+"clock_soldier": "0/8",
+"netter": "0/1",
+"springer": "0/2",
+"winder": "0/2"
+},
+"foe_left": 0.98,
+"foe_value": 1005,
+"foes": 13,
+"killed": 500,
+"lost": 500,
+"micro": {},
+"run": 4,
+"sc": "open-s-cw",
+"score": 0.02,
+"secs": 90.0
+},
+{
+"contact": 16.7,
+"cw_left": 0.0,
+"cw_value": 1005,
+"dead": {
+"clock_soldier": "8/8",
+"netter": "1/1",
+"springer": "2/2",
+"winder": "2/2"
+},
+"down_end": 0,
+"foe_dead": {
+"clock_soldier": "3/8",
+"netter": "0/1",
+"springer": "0/2",
+"winder": "0/2"
+},
+"foe_left": 0.76,
+"foe_value": 1005,
+"foes": 13,
+"killed": 210,
+"lost": 1005,
+"micro": {
+"cwmic_pick": 6
+},
+"run": 5,
+"sc": "open-s-cw",
+"score": -0.76,
+"secs": 73.4
+},
+{
+"contact": 15.5,
+"cw_left": 0.38,
+"cw_value": 2415,
+"dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "0/1",
+"pendulum": "0/2",
+"springer": "1/3",
+"winder": "0/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "1/1",
+"pendulum": "2/2",
+"springer": "3/3",
+"winder": "1/3"
+},
+"foe_left": 0.11,
+"foe_value": 2415,
+"foes": 28,
+"killed": 2205,
+"lost": 1360,
+"micro": {
+"cwmic_pick": 27
+},
+"run": 3,
+"sc": "open-m-cw",
+"score": 0.27,
+"secs": 90.0
+},
+{
+"contact": 16.9,
+"cw_left": 0.11,
+"cw_value": 2415,
+"dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "1/1",
+"pendulum": "2/2",
+"springer": "3/3",
+"winder": "1/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/1",
+"clock_soldier": "8/18",
+"netter": "1/1",
+"pendulum": "0/2",
+"springer": "2/3",
+"winder": "1/3"
+},
+"foe_left": 0.59,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1005,
+"lost": 2205,
+"micro": {
+"cwmic_pick": 14
+},
+"run": 4,
+"sc": "open-m-cw",
+"score": -0.49,
+"secs": 90.0
+},
+{
+"contact": 16.7,
+"cw_left": 0.4,
+"cw_value": 2415,
+"dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "1/1",
+"pendulum": "0/2",
+"springer": "0/3",
+"winder": "1/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "0/1",
+"pendulum": "2/2",
+"springer": "1/3",
+"winder": "1/3"
+},
+"foe_left": 0.25,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1820,
+"lost": 1505,
+"micro": {
+"cwmic_pick": 6
+},
+"run": 5,
+"sc": "open-m-cw",
+"score": 0.16,
+"secs": 90.0
+},
+{
+"contact": 28.2,
+"cw_left": 0.47,
+"cw_value": 2415,
+"dead": {
+"ballista": "0/1",
+"clock_soldier": "17/18",
+"netter": "0/1",
+"pendulum": "0/2",
+"springer": "1/3",
+"winder": "0/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/1",
+"clock_soldier": "17/18",
+"netter": "1/1",
+"pendulum": "0/2",
+"springer": "2/3",
+"winder": "1/3"
+},
+"foe_left": 0.31,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1635,
+"lost": 1290,
+"micro": {
+"cwmic_pick": 29
+},
+"run": 3,
+"sc": "home-m-cw",
+"score": 0.15,
+"secs": 90.0
+},
+{
+"contact": 28.0,
+"cw_left": 0.48,
+"cw_value": 2415,
+"dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "0/1",
+"pendulum": "0/2",
+"springer": "0/3",
+"winder": "0/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "1/1",
+"pendulum": "2/2",
+"springer": "1/3",
+"winder": "3/3"
+},
+"foe_left": 0.14,
+"foe_value": 2415,
+"foes": 28,
+"killed": 2125,
+"lost": 1260,
+"micro": {
+"cwmic_pick": 14
+},
+"run": 4,
+"sc": "home-m-cw",
+"score": 0.34,
+"secs": 90.0
+},
+{
+"contact": 28.4,
+"cw_left": 0.49,
+"cw_value": 2415,
+"dead": {
+"ballista": "0/1",
+"clock_soldier": "17/18",
+"netter": "0/1",
+"pendulum": "0/2",
+"springer": "0/3",
+"winder": "0/3"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/1",
+"clock_soldier": "18/18",
+"netter": "1/1",
+"pendulum": "0/2",
+"springer": "2/3",
+"winder": "1/3"
+},
+"foe_left": 0.3,
+"foe_value": 2415,
+"foes": 28,
+"killed": 1705,
+"lost": 1190,
+"micro": {
+"cwmic_pick": 23
+},
+"run": 5,
+"sc": "home-m-cw",
+"score": 0.18,
+"secs": 90.0
+},
+{
+"contact": 54.0,
+"cw_left": 1.0,
+"cw_value": 4225,
+"dead": {
+"ballista": "0/2",
+"clock_soldier": "0/30",
+"great_winder": "0/1",
+"netter": "0/2",
+"pendulum": "0/3",
+"springer": "0/5",
+"winder": "0/5"
+},
+"down_end": 2,
+"foe_dead": {
+"ballista": "0/2",
+"clock_soldier": "0/30",
+"great_winder": "0/1",
+"netter": "0/2",
+"pendulum": "0/3",
+"springer": "0/5",
+"winder": "0/5"
+},
+"foe_left": 1.0,
+"foe_value": 4225,
+"foes": 48,
+"killed": 580,
+"lost": 500,
+"micro": {},
+"run": 3,
+"sc": "open-l-cw",
+"score": 0.0,
+"secs": 90.0
+},
+{
+"contact": 16.5,
+"cw_left": 0.04,
+"cw_value": 4225,
+"dead": {
+"ballista": "2/2",
+"clock_soldier": "30/30",
+"great_winder": "0/1",
+"netter": "2/2",
+"pendulum": "3/3",
+"springer": "5/5",
+"winder": "5/5"
+},
+"down_end": 0,
+"foe_dead": {
+"ballista": "0/2",
+"clock_soldier": "16/30",
+"great_winder": "0/1",
+"netter": "1/2",
+"pendulum": "0/3",
+"springer": "5/5",
+"winder": "0/5"
+},
+"foe_left": 0.54,
+"foe_value": 4225,
+"foes": 48,
+"killed": 1745,
+"lost": 4050,
+"micro": {
+"cwmic_pick": 43
+},
+"run": 4,
+"sc": "open-l-cw",
+"score": -0.5,
+"secs": 90.0
+},
+{
+"contact": 16.5,
+"cw_left": 0.27,
+"cw_value": 4225,
+"dead": {
+"ballista": "2/2",
+"clock_soldier": "28/30",
+"great_winder": "0/1",
+"netter": "1/2",
+"pendulum": "2/3",
+"springer": "2/5",
+"winder": "1/5"
+},
+"down_end": 0,
+"foe_dead": {
+"?": "1/1",
+"ballista": "0/2",
+"clock_soldier": "28/29",
+"great_winder": "0/1",
+"netter": "2/2",
+"pendulum": "0/3",
+"springer": "3/5",
+"winder": "1/5"
+},
+"foe_left": 0.29,
+"foe_value": 4225,
+"foes": 48,
+"killed": 2640,
+"lost": 3045,
+"micro": {
+"cwmic_pick": 49
+},
+"run": 5,
+"sc": "open-l-cw",
+"score": -0.01,
+"secs": 90.0
+}
+]
+}

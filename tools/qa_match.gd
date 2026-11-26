@@ -749,6 +749,7 @@ func _finish() -> void:
 		scouting[str(tm)] = e
 	var res := {"map": map, "seed": seed_, "scouting": scouting, "version": ProjectSettings.get_setting("application/config/version", ""),
 		"crown_ai": _crown_counters(),
+		"cw_micro": {"0": AICwMicro.counters(0), "1": AICwMicro.counters(1)},      # (clockwork-micro: its parts' counters, a team each)
 		"wcc": _wcc_counters(),     # (wr1000-crown-clockwork: how often each AIWccr change acted, a side each)
 		"brood_linger": _linger_counters(),
 		"bench": _bench_report(),

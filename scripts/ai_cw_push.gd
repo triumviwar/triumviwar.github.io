@@ -664,6 +664,8 @@ func _place_heavies(heavies: Array, p: Vector2, dir: Vector2) -> void:
 
 ## Give a move only when it differs from the last one given (or that one is old and the unit stands about).
 func _order(u: Unit, p: Vector2, amove: bool, tol: float) -> void:
+	if ai.get("mic") != null and ai.mic.has(u):
+		return          # (clockwork-micro: the machine is under the micro's own order now, scripts/ai_cw_micro.gd)
 	var last = _orders.get(u)
 	if last != null and (last[0] as Vector2).distance_to(p) < tol and (u.order != "idle" or game.clock - float(last[1]) < 3.0):
 		if u.order == "idle" and u.position.distance_to(p) > tol * 1.5:

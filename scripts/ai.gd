@@ -7091,7 +7091,7 @@ func _escort_wind(army: Array, c: Vector2) -> void:
 				score = 1.0 + o.wind
 			elif o.hp < o.max_hp * 0.5:
 				score = 2.0 + o.hp / maxf(1.0, o.max_hp)
-		if score < INF and AIWccr.mend_unsafe(self, o):
+		if score < INF and (AIWccr.mend_unsafe(self, o) or (get("mic") != null and get("mic").unsafe(o))):     # (+ clockwork-micro "safe")
 			continue          # (wr1000-crown-clockwork: not in reach of the Crown's shooters)
 		if score < INF:
 			need.append([score, o])

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.214", "items": [
+		"THE CLOCKWORK'S FIGHTING, A STUDY (nothing changes in the game): the Clockwork computer's way of fighting was put through hundreds of set-piece battles at equal value against the Crown, the Brood and itself, and ten new ways to fight were tried, each behind a test switch that is off. None helped beyond the noise, and the ones that pull machines out of the block made it worse. What the battles did show: with more Spring Ballistas (or Springers in the mirror) the same computer fights far better, so its gap is in the army it builds, not in how it fights.",
+	]},
 	{"v": "0.38.213", "items": [
 		"A STUDY, nothing changes in the game: the battle lab now fights any two factions, mirrors too. Thousands of fights at equal cost between fixed armies of the Crown, the Clockwork and the Brood, to learn what beats what in every matchup. A fault of the lab was found and fixed: Dragoons never fired there, because the computer sends them home whenever they get off their horses.",
 	]},
