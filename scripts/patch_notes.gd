@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.216", "items": [
+		"The Crown computer fights the Clockwork and the Crown better once a fight is on (crown-micro-2). Against the Clockwork: the Field Cannons aim at the armoured machines, Musketeers step back from a Pendulum or a run-down Clock Soldier while they reload, a badly hurt Musketeer steps back behind his friends, Musketeers shoot the Winders first when one is in reach, and a marching army forms its line before the Clockwork army it sees and steps on with its guns set (only on the march: not at home). In the mirror: a marching army halts and sets its guns when the enemy army comes at it, and the guns aim at the thickest group. No unit or number changed.",
+	]},
 	{"v": "0.38.215", "items": [
 		"The Brood computer fights better once a fight is on (brood-micro): its creatures bite or spit at the most hurt enemy in reach instead of the first one they found, and a Spitter that has just spat steps back from a slower biter on it. No unit or balance number changed; when its waves go and what it lays are as before.",
 	]},

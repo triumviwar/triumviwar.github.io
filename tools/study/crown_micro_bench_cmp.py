@@ -2,6 +2,8 @@
 (the arms are docs/crown_micro/bench/<name>.json, written by tools/bench_crown_micro.gd out:...)"""
 import json,sys,math,os
 DIR=os.path.join(os.path.dirname(os.path.abspath(__file__)),'../../docs/crown_micro/bench')
+# (crown-micro-2: CMP_DIR=docs/crown_micro_2/bench for its arms)
+DIR=os.environ.get('CMP_DIR',DIR)
 def load(spec):
     rs=[]
     for n in spec.split('+'):

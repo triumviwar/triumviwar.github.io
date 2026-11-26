@@ -5,6 +5,8 @@ class_name AICrownMicro
 ## tools/bench_crown_micro.gd (equal-value fights); KEPT (on by default) are the four that helped there: riders, brace,
 ## kite, gunpick (together +0.09 of the score on the real armies, k/l 2.4 -> 3.5). canister, hurt and focus measured no
 ## better or worse and are off (the doc has every measure). The macro (when to attack, where the wave goes) is not touched here.
+## (crown-micro-2, docs/crown_micro_2.md) the same coaching against the Clockwork and in the mirror, on the same bench
+## (tools/bench_crown_micro.gd sets cwcore/cwreal/crcore/crreal): the parts are kept BY MATCHUP (KEPT_BY).
 ## Parts (each a switch: `-- cmic:off` all of them, `-- cmic<name>:off` one; a part not KEPT is tried with `cmic<name>:on`):
 ##   canister  a set Field Cannon loads CANISTER when Brood soldiers are close on it and none of our men stand in its cone,
 ##             round shot again when they are gone (the computer never used canister: the gun's answer to a swarm)
@@ -19,10 +21,34 @@ class_name AICrownMicro
 ##   kite      a reloading Musketeer steps back from a melee creature slower than he is (the Brute)
 ##   brace     a Brood force coming at the marching wave: the men halt where they are and the guns set, so the Brood walks
 ##             into their fire instead of the men walking into it in a column
+## (crown-micro-2, docs/crown_micro_2.md: the same coaching against the Clockwork and in the mirror; new parts)
+##   backline  a healthy Horseman out of the fight rides for the enemy's soft back line within reach (the Clockwork's
+##             Winders, Netters, Ballistas, Great Winder; the Crown's set guns, Powder Wagons and musicians) when few of
+##             its fighters stand by it
+##   winders   a Musketeer about to fire takes an enemy SUPPORT unit in his reach first (a Winder winding and mending the
+##             Clockwork army, a Great Winder; the Crown's musicians, Powder Wagon, Missionary)
+##   counter   our set guns fire at the enemy's guns first (Ballistas, Netters; Field Cannons and Mortars): the guns that
+##             out-reach or stop our line
+##   fieldline (where the crown-rule-cleanup cut the line: against the Clockwork) the line on the wave's march only: it
+##             forms before a seen enemy, steps on with its guns set, falls back in order (AICrownLine.march); not the
+##             defence's lines and posts at home, not the rider screen
+##   shields   (against the Clockwork) a Musketeer about to fire leaves a Clock Soldier whose SHIELD FORWARD faces him for
+##             another one in reach (side-on, the shield down, or not a Clock Soldier)
 ## Read only for the others: `has(u)` (a man under the micro's own order this moment).
 
-const PARTS := ["canister", "focus", "hurt", "riders", "gunpick", "kite", "brace"]
-const KEPT: Array[String] = ["riders", "brace", "kite", "gunpick"]
+const PARTS := ["canister", "focus", "hurt", "riders", "gunpick", "kite", "brace", "backline", "winders", "counter", "shields", "fieldline"]
+## (crown-micro-2, docs/crown_micro_2.md) the parts kept, by the enemy's faction ("crown" = the mirror). A part not listed
+## for a matchup is off there (`-- cmic<name>:on` tries it in every matchup).
+const KEPT_BY := {
+	"brood": ["riders", "brace", "kite", "gunpick"],
+	"clockwork": ["gunpick", "kite", "hurt", "winders", "fieldline"],
+	"crown": ["brace", "gunpick"],
+}
+const KEPT: Array[String] = ["riders", "brace", "kite", "gunpick"]      # (the Brood's: kept for old readers)
+## (crown-micro-2) the bench's mirror: the enemy Crown computer fights as before (its micro off), so the bench measures
+## the parts against the old Crown. Never set in a real match.
+## `-- cmicoff:<team>` does the same in a real game (the mirror's study: one Crown with the parts, one without).
+static var off_team := int(knob("off", -1.0))
 const EVERY := 0.2               # (s) looked at this often
 
 # canister
@@ -49,6 +75,28 @@ static var RIDE_WHO := knob("ridewho", 0.0)     # 1: only for creatures at the g
 
 # gunpick
 const MORTAR_CLUMP := 48.0       # (px) the shell's splash counted this wide
+
+# backline / winders / counter / shields (crown-micro-2)
+const SOFT := {
+	"clockwork": ["winder", "netter", "ballista", "great_winder"],
+	"crown": ["cannon", "mortar", "powder_wagon", "band", "band_fifer", "band_piper", "missionary"],
+	"brood": ["spitter", "grub"],
+}
+const SUPPORT := {
+	"clockwork": ["winder", "great_winder"],
+	"crown": ["band", "band_fifer", "band_piper", "powder_wagon", "missionary"],
+	"brood": [],
+}
+const GUNS := {
+	"clockwork": ["ballista", "netter"],
+	"crown": ["cannon", "mortar"],
+	"brood": ["spitter"],
+}
+const BACK_REACH := 900.0        # (px) a back-line target this near the rider
+const BACK_GUARD_R := 110.0      # (px) enemy fighters this near the target ...
+const BACK_GUARD_N := 3          # ... at most this many (more: a fight he would die in)
+const BACK_COOL := 4.0
+const BACK_HP := 0.55
 
 # kite
 const KITE_R := 75.0
@@ -81,6 +129,8 @@ var _kite := {}                  # man -> clock his step back ends
 var _brace_until := 0.0
 var _brace_next := 0.0
 var _braced: Array = []
+var _back_t := {}                # rider -> clock he was last sent at the back line
+var _picked := {}                # Musketeer -> clock the winders / shields part last chose his target
 
 
 func _init(a) -> void:
@@ -91,16 +141,26 @@ func _init(a) -> void:
 ## A coaching knob: `-- cmic<name>:<number>` (the bench's variants), else `d`.
 static func knob(name: String, d: float) -> float:
 	var k := "cmic%s:" % name
-	for a in _args:
+	for a in OS.get_cmdline_user_args():       # (not _args: a static var above it may ask first)
 		if a.begins_with(k) and a.substr(k.length()).is_valid_float():
 			return a.substr(k.length()).to_float()
 	return d
 
 
-static func on(name: String) -> bool:
+static func on(name: String, foe := "brood") -> bool:
 	if _args.has("cmic:off") or _args.has("cmic%s:off" % name):
 		return false
-	return KEPT.has(name) or _args.has("cmic%s:on" % name)
+	return (KEPT_BY.get(foe, []) as Array).has(name) or _args.has("cmic%s:on" % name)
+
+
+## This computer's enemy faction ("" when none): the matchup the parts are kept for.
+func foe() -> String:
+	var f: int = ai._foe()
+	return game.faction_of(f) if f >= 0 else ""
+
+
+func want(name: String) -> bool:
+	return on(name, _foe_f)
 
 
 static func count(team: int, k: String, by := 1) -> void:
@@ -125,8 +185,19 @@ static func _ok(u) -> bool:
 	return u != null and is_instance_valid(u) and not u.dead
 
 
+var _foe_f := ""
+
+
 func active() -> bool:
-	return ai.on and ai.difficulty >= 1 and ai._foe_is("brood") and not _args.has("cmic:off")
+	if not ai.on or ai.difficulty < 1 or _args.has("cmic:off") or ai.team == off_team:
+		return false
+	_foe_f = foe()
+	return KEPT_BY.has(_foe_f)
+
+
+## (AICrownLine.field) the line on the march, where the cleanup cut it.
+func field_line() -> bool:
+	return active() and want("fieldline")
 
 
 func has(u: Unit) -> bool:
@@ -135,7 +206,9 @@ func has(u: Unit) -> bool:
 
 ## The Musketeer's target is the focus's to pick (AI._micro leaves it be).
 func focuses(u: Unit) -> bool:
-	return on("focus") and u.foot_musket() and active()
+	if not u.foot_musket() or not active():
+		return false
+	return want("focus") or game.clock - float(_picked.get(u, -99.0)) < 0.6
 
 
 func tick() -> void:
@@ -150,32 +223,38 @@ func tick() -> void:
 	for u in game.units:
 		if u.team == t and not u.dead and not u.off_field and not u.aboard:
 			mine.append(u)
-	if on("brace"):
+	if want("brace"):
 		_brace(mine)
-	if on("hurt"):
+	if want("hurt"):
 		_hurt_tick(mine)
-	if on("kite"):
+	if want("kite"):
 		_kite_tick(mine)
-	if on("riders"):
+	if want("riders"):
 		_riders(mine)
-	if on("gunpick"):
+	if want("gunpick"):
 		for u in mine:
 			if u.kind == "cannon" or u.kind == "mortar":
 				_gunpick(u)
-	if on("canister"):
+	if want("canister"):
 		for u in mine:
 			if u.kind == "cannon":
 				_canister(u)
-	if on("focus"):
+	if want("focus"):
 		_focus(mine)
+	if want("backline"):
+		_backline(mine)
+	if want("counter"):
+		for u in mine:
+			if u.kind == "cannon" or u.kind == "mortar":
+				_counter(u)
+	if want("winders") or want("shields"):
+		_pick_shots(mine)
 
 
 func _foes_near(p: Vector2, r: float) -> Array:
 	var o: Array = []
 	for e in game.units_near(p, r):
 		if e.dead or e.off_field or not game.hostile(e.team, ai.team) or e.untouchable() or e.is_air():
-			continue
-		if game.faction_of(e.team) != "brood":
 			continue
 		o.append(e)
 	return o
@@ -410,7 +489,8 @@ func _gunpick(u: Unit) -> void:
 			continue
 		var s := 0.0
 		if u.kind == "cannon":
-			s = 1.0 + (1.2 if e.armor >= 1.0 else 0.0) + (0.8 if e.kind == "brute" else 0.0)
+			var arm: bool = e.armor >= 1.0 if _foe_f == "brood" else (e.d.get("tags", []) as Array).has("armored")
+			s = 1.0 + (1.2 if arm else 0.0) + (0.8 if e.kind == "brute" else 0.0)
 			# (the ball tears through the line behind it)
 			var dir: Vector2 = (e.position - u.position).normalized()
 			for o in _foes_near(e.position, 90.0):
@@ -515,3 +595,119 @@ func _contact(list: Array) -> bool:
 		if _ok(u) and not _foes_near(u.position, 200.0).filter(func(e: Unit) -> bool: return e.has_attack()).is_empty():
 			return true
 	return false
+
+
+# ------------------------------------------------------------------ backline (crown-micro-2)
+
+func _backline(mine: Array) -> void:
+	var soft: Array = SOFT.get(_foe_f, [])
+	for u in mine:
+		if not (u.kind in ["cuirassier", "dragoon"]) or u.is_worker() or u.hp < u.max_hp * BACK_HP:
+			continue
+		if ai._on_errand(u) and not (ai.sc != null and ai.sc.has(u)):
+			continue
+		if game.clock - float(_back_t.get(u, -99.0)) < BACK_COOL:
+			continue
+		# already on a soft target: let him finish it
+		if _ok(u.target) and u.target is Unit and soft.has(u.target.kind) and u.order == "attack":
+			continue
+		if not u.order in ["idle", "move", "hold", "amove"]:
+			continue
+		var best: Unit = null
+		var bs := INF
+		for e in _foes_near(u.position, BACK_REACH):
+			if not soft.has(e.kind) or not game.side_sees(ai.team, e.position):
+				continue
+			var guard := 0
+			for o in _foes_near(e.position, BACK_GUARD_R):
+				if o != e and o.has_attack() and not soft.has(o.kind) and not o.is_worker():
+					guard += 1
+			if guard > BACK_GUARD_N:
+				continue
+			var sc: float = e.position.distance_to(u.position) + float(guard) * 120.0 - (200.0 if e.kind in GUNS.get(_foe_f, []) else 0.0)
+			if sc < bs:
+				bs = sc
+				best = e
+		if best == null:
+			continue
+		if ai.sc != null and ai.sc.has(u):
+			ai.sc._release(u, "")
+		_back_t[u] = game.clock
+		u.cmd_attack(best)
+		count(ai.team, "backline")
+
+
+# ------------------------------------------------------------------ counter (crown-micro-2)
+
+func _counter(u: Unit) -> void:
+	if u.tesla_mode != "deployed" or u.mode == "canister" or u.phase != "" or u.cooldown > 0.5 or u.hold_fire:
+		return
+	if not u.order in ["hold", "amove", "idle"]:
+		return
+	var guns: Array = GUNS.get(_foe_f, [])
+	var r: float = u._range()
+	var min_r := float(u.d.get("min_range", 0.0))
+	var best: Unit = null
+	var bd := INF
+	for e in _foes_near(u.position, r + 30.0):
+		if not guns.has(e.kind):
+			continue
+		var dd: float = e.edge_distance(u.position) - u.radius
+		if dd > r or dd < min_r or not u.can_hit(e) or not game.side_sees(ai.team, e.position):
+			continue
+		if u.kind == "mortar" and not game.aoe_worth_it(u, e):
+			continue
+		if dd < bd:
+			bd = dd
+			best = e
+	if best == null:
+		return
+	if best != u.target:
+		u.target = best
+		count(ai.team, "counter")
+	u.scan_t = maxf(u.scan_t, EVERY + 0.15)
+
+
+# ------------------------------------------------------------------ winders / shields (crown-micro-2)
+
+func _shielded_at(e: Unit, from: Vector2) -> bool:
+	return e.kind == ShieldWall.KIND and e.shield_up and e.facing.dot((from - e.position).normalized()) > 0.3
+
+
+func _pick_shots(mine: Array) -> void:
+	var sup: Array = SUPPORT.get(_foe_f, []) if want("winders") else []
+	var sh := want("shields") and _foe_f == "clockwork"
+	for u in mine:
+		if not u.foot_musket() or u.mode == "bayonet" or u.hold_fire or _back.has(u) or _kite.has(u):
+			continue
+		if u.phase != "" or u.cooldown > 0.6 or not (u.order in ["hold", "amove", "idle"]):
+			continue
+		if u._pmax > 0.0 and u.powder < 1.0:
+			continue
+		var cur: Unit = u.target if _ok(u.target) and u.target is Unit else null
+		var bad_cur: bool = cur == null or (sh and _shielded_at(cur, u.position))
+		if cur != null and sup.has(cur.kind):
+			continue
+		var r: float = u._range()
+		var best: Unit = null
+		var bs := -INF
+		for e in _foes_near(u.position, r + 30.0):
+			var dd: float = e.edge_distance(u.position) - u.radius
+			if dd > r or not u.can_hit(e) or not game.target_seen(u.team, e, u.position):
+				continue
+			var s: float = -dd * 0.1 - e.hp * 0.05
+			if sup.has(e.kind):
+				s += 1000.0
+			elif not bad_cur:
+				continue          # (only a support unit is worth leaving a good mark for)
+			if sh and _shielded_at(e, u.position):
+				s -= 500.0
+			if s > bs:
+				bs = s
+				best = e
+		if best == null or best == cur or (sh and _shielded_at(best, u.position) and not sup.has(best.kind)):
+			continue
+		u.target = best
+		u.scan_t = maxf(u.scan_t, EVERY + 0.15)
+		_picked[u] = game.clock
+		count(ai.team, "winders" if sup.has(best.kind) else ("shields" if sh else "pick"))

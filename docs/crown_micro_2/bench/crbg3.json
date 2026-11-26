@@ -1,0 +1,398 @@
+{
+ "args": "set:crcore runs:3 out:/home/claude/triumviwar.github.io/docs/crown_micro_2/bench/crbg3.json cmicbrace:on cmicgunpick:on seed:100",
+ "runs": [
+  {
+   "brood_left": 0.0,
+   "brood_value": 1675,
+   "contact": 13.7,
+   "crown_left": 0.81,
+   "crown_value": 1675,
+   "foe": "crown",
+   "foes": 21,
+   "guns_lost": 0,
+   "killed": 1675,
+   "lost": 314,
+   "micro": {
+    "cmic_gunpick": 15
+   },
+   "run": 100,
+   "sc": "open-m-crown",
+   "score": 0.81,
+   "secs": 51.4
+  },
+  {
+   "brood_left": 0.21,
+   "brood_value": 1675,
+   "contact": 12.6,
+   "crown_left": 0.49,
+   "crown_value": 1675,
+   "foe": "crown",
+   "foes": 21,
+   "guns_lost": 0,
+   "killed": 1319,
+   "lost": 851,
+   "micro": {
+    "cmic_brace": 1,
+    "cmic_brace_timeout": 1,
+    "cmic_gunpick": 6
+   },
+   "run": 101,
+   "sc": "open-m-crown",
+   "score": 0.28,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.47,
+   "brood_value": 1675,
+   "contact": 12.0,
+   "crown_left": 0.6,
+   "crown_value": 1675,
+   "foe": "crown",
+   "foes": 21,
+   "guns_lost": 0,
+   "killed": 894,
+   "lost": 670,
+   "micro": {
+    "cmic_gunpick": 4
+   },
+   "run": 102,
+   "sc": "open-m-crown",
+   "score": 0.13,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.17,
+   "brood_value": 1675,
+   "contact": 30.7,
+   "crown_left": 0.7,
+   "crown_value": 1675,
+   "foe": "crown",
+   "foes": 21,
+   "guns_lost": 0,
+   "killed": 1388,
+   "lost": 506,
+   "micro": {
+    "cmic_gunpick": 12
+   },
+   "run": 100,
+   "sc": "home-m-crown",
+   "score": 0.53,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 1675,
+   "contact": 39.5,
+   "crown_left": 0.36,
+   "crown_value": 1675,
+   "foe": "crown",
+   "foes": 21,
+   "guns_lost": 1,
+   "killed": 1675,
+   "lost": 1073,
+   "micro": {
+    "cmic_gunpick": 17
+   },
+   "run": 101,
+   "sc": "home-m-crown",
+   "score": 0.36,
+   "secs": 28.2
+  },
+  {
+   "brood_left": 0.05,
+   "brood_value": 1675,
+   "contact": 36.2,
+   "crown_left": 0.54,
+   "crown_value": 1675,
+   "foe": "crown",
+   "foes": 21,
+   "guns_lost": 1,
+   "killed": 1590,
+   "lost": 771,
+   "micro": {
+    "cmic_gunpick": 10
+   },
+   "run": 102,
+   "sc": "home-m-crown",
+   "score": 0.49,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.08,
+   "brood_value": 1675,
+   "contact": 8.0,
+   "crown_left": 0.09,
+   "crown_value": 1675,
+   "foe": "crown",
+   "foes": 21,
+   "guns_lost": 3,
+   "killed": 1543,
+   "lost": 1516,
+   "micro": {
+    "cmic_brace": 2,
+    "cmic_gunpick": 10
+   },
+   "run": 100,
+   "sc": "side-m-crown",
+   "score": 0.02,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.59,
+   "brood_value": 1675,
+   "contact": 8.7,
+   "crown_left": 0.37,
+   "crown_value": 1675,
+   "foe": "crown",
+   "foes": 21,
+   "guns_lost": 2,
+   "killed": 682,
+   "lost": 1062,
+   "micro": {},
+   "run": 101,
+   "sc": "side-m-crown",
+   "score": -0.23,
+   "secs": 86.4
+  },
+  {
+   "brood_left": 0.79,
+   "brood_value": 1675,
+   "contact": 8.2,
+   "crown_left": 0.73,
+   "crown_value": 1675,
+   "foe": "crown",
+   "foes": 21,
+   "guns_lost": 2,
+   "killed": 350,
+   "lost": 452,
+   "micro": {
+    "cmic_gunpick": 2
+   },
+   "run": 102,
+   "sc": "side-m-crown",
+   "score": -0.06,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.04,
+   "brood_value": 770,
+   "contact": 12.4,
+   "crown_left": 0.16,
+   "crown_value": 770,
+   "foe": "crown",
+   "foes": 11,
+   "guns_lost": 1,
+   "killed": 735,
+   "lost": 650,
+   "micro": {
+    "cmic_brace": 1,
+    "cmic_gunpick": 2
+   },
+   "run": 100,
+   "sc": "open-s-crown",
+   "score": 0.11,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 770,
+   "contact": 12.0,
+   "crown_left": 0.36,
+   "crown_value": 770,
+   "foe": "crown",
+   "foes": 11,
+   "guns_lost": 0,
+   "killed": 770,
+   "lost": 495,
+   "micro": {
+    "cmic_brace": 1,
+    "cmic_gunpick": 1
+   },
+   "run": 101,
+   "sc": "open-s-crown",
+   "score": 0.36,
+   "secs": 48.7
+  },
+  {
+   "brood_left": 0.52,
+   "brood_value": 770,
+   "contact": 11.2,
+   "crown_left": 0.22,
+   "crown_value": 770,
+   "foe": "crown",
+   "foes": 11,
+   "guns_lost": 0,
+   "killed": 367,
+   "lost": 600,
+   "micro": {
+    "cmic_brace": 1,
+    "cmic_gunpick": 5
+   },
+   "run": 102,
+   "sc": "open-s-crown",
+   "score": -0.3,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.01,
+   "brood_value": 2940,
+   "contact": 14.5,
+   "crown_left": 0.64,
+   "crown_value": 2940,
+   "foe": "crown",
+   "foes": 37,
+   "guns_lost": 0,
+   "killed": 2922,
+   "lost": 1055,
+   "micro": {
+    "cmic_gunpick": 23
+   },
+   "run": 100,
+   "sc": "open-l-crown",
+   "score": 0.64,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.0,
+   "brood_value": 2940,
+   "contact": 12.0,
+   "crown_left": 0.76,
+   "crown_value": 2940,
+   "foe": "crown",
+   "foes": 37,
+   "guns_lost": 0,
+   "killed": 2940,
+   "lost": 711,
+   "micro": {
+    "cmic_brace": 1,
+    "cmic_gunpick": 39
+   },
+   "run": 101,
+   "sc": "open-l-crown",
+   "score": 0.76,
+   "secs": 43.9
+  },
+  {
+   "brood_left": 0.67,
+   "brood_value": 2940,
+   "contact": 12.7,
+   "crown_left": 0.57,
+   "crown_value": 2940,
+   "foe": "crown",
+   "foes": 37,
+   "guns_lost": 3,
+   "killed": 970,
+   "lost": 1278,
+   "micro": {
+    "cmic_brace": 2,
+    "cmic_brace_timeout": 1,
+    "cmic_gunpick": 24
+   },
+   "run": 102,
+   "sc": "open-l-crown",
+   "score": -0.1,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.01,
+   "brood_value": 2940,
+   "contact": 34.5,
+   "crown_left": 0.8,
+   "crown_value": 2940,
+   "foe": "crown",
+   "foes": 37,
+   "guns_lost": 0,
+   "killed": 2918,
+   "lost": 593,
+   "micro": {
+    "cmic_gunpick": 25
+   },
+   "run": 100,
+   "sc": "home-l-crown",
+   "score": 0.79,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.1,
+   "brood_value": 2940,
+   "contact": 36.0,
+   "crown_left": 0.76,
+   "crown_value": 2940,
+   "foe": "crown",
+   "foes": 37,
+   "guns_lost": 0,
+   "killed": 2652,
+   "lost": 718,
+   "micro": {
+    "cmic_gunpick": 37
+   },
+   "run": 101,
+   "sc": "home-l-crown",
+   "score": 0.66,
+   "secs": 90.0
+  },
+  {
+   "brood_left": 0.15,
+   "brood_value": 2940,
+   "contact": 39.2,
+   "crown_left": 0.75,
+   "crown_value": 2940,
+   "foe": "crown",
+   "foes": 37,
+   "guns_lost": 0,
+   "killed": 2497,
+   "lost": 748,
+   "micro": {
+    "cmic_gunpick": 54
+   },
+   "run": 102,
+   "sc": "home-l-crown",
+   "score": 0.59,
+   "secs": 90.0
+  }
+ ],
+ "total": {
+  "home-l-crown": {
+   "killed": 8067,
+   "lost": 2059,
+   "n": 3,
+   "score": 2.04,
+   "wins": 3
+  },
+  "home-m-crown": {
+   "killed": 4653,
+   "lost": 2350,
+   "n": 3,
+   "score": 1.38,
+   "wins": 3
+  },
+  "open-l-crown": {
+   "killed": 6832,
+   "lost": 3044,
+   "n": 3,
+   "score": 1.3,
+   "wins": 2
+  },
+  "open-m-crown": {
+   "killed": 3888,
+   "lost": 1835,
+   "n": 3,
+   "score": 1.22,
+   "wins": 3
+  },
+  "open-s-crown": {
+   "killed": 1872,
+   "lost": 1745,
+   "n": 3,
+   "score": 0.17,
+   "wins": 2
+  },
+  "side-m-crown": {
+   "killed": 2575,
+   "lost": 3030,
+   "n": 3,
+   "score": -0.27,
+   "wins": 1
+  }
+ }
+}

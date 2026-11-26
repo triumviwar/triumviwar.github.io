@@ -19,6 +19,11 @@ extends SceneTree
 ## ratio:1.5 the Brood army worth that many times the Crown's (where does the Crown stop winning?).
 ## dry:0.3 that share of the Musketeers start with no powder. Sizes M and L: the armies the computer fields (riders, a band).
 ## tech:1 both sides fight with their late research (see _one).
+## (crown-micro-2, docs/crown_micro_2.md) the same against the CLOCKWORK (mixes cw*: its army on an attack-move, Winders
+## escorting it, its Springers' own jumps, the Clock Soldiers' SHIELD FORWARD by the Clockwork computer's own rule, each
+## construct's wind drawn between `wind:` (default 0.6) and full) and the Crown MIRROR (mix "crown": the enemy is the
+## Crown computer too, its wave marching at ours, with the micro off: the bench measures the parts against the old Crown).
+## Sets cwcore, cwreal, crcore, crreal.
 ## A measuring tool: it changes no rule.
 var main: Node
 var g: Game
@@ -32,6 +37,13 @@ const SETS := {
 	# (the armies the computers really field at 12:00-20:00, docs/crown_brood_late data: run with tech:1 dry:0.3)
 	"real": ["open-M-real", "home-M-real", "side-M-real", "ramp-M-real", "open-L-real", "home-L-real", "open-L-late",
 		"side-L-real"],
+	# (crown-micro-2) the Clockwork and the mirror
+	"cwcore": ["open-m-cwline", "open-m-cwmixed", "open-m-cwlate", "home-m-cwmixed", "home-m-cwlate", "ramp-m-cwmixed",
+		"side-m-cwmixed", "open-s-cwmixed", "open-l-cwlate", "open-m-cwpend", "open-m-cwspring", "home-l-cwlate"],
+	"cwreal": ["open-M-cwreal", "home-M-cwreal", "side-M-cwreal", "ramp-M-cwreal", "open-L-cwreal", "home-L-cwreal",
+		"open-L-cwlate", "side-L-cwreal"],
+	"crcore": ["open-m-crown", "home-m-crown", "side-m-crown", "open-s-crown", "open-l-crown", "home-l-crown"],
+	"crreal": ["open-M-crown", "home-M-crown", "side-M-crown", "open-L-crown", "home-L-crown", "side-L-crown"],
 }
 
 const CROWN := {
@@ -48,7 +60,28 @@ const MIX := {
 	"spit": ["spitter", "spitter", "raptor"],
 	"real": ["raptor", "raptor", "raptor", "tyrant_challenger", "raptor", "spitter", "raptor", "brute", "raptor", "raptor",
 		"mist_toad", "tyrant_challenger"],
+	# (crown-micro-2) the Clockwork: what its computer fields (docs/crown_micro_2.md: 10:00 about 19 Clock Soldiers, 3-4
+	# Springers, a Pendulum, a Ballista, a Netter; 15:00-20:00 33-36 Clock Soldiers, 4 Springers, 1-2 Pendulums and
+	# Ballistas). Winders come with it apart (one for every 8).
+	"cwline": ["clock_soldier"],
+	"cwmixed": ["clock_soldier", "clock_soldier", "clock_soldier", "springer"],
+	"cwlate": ["clock_soldier", "clock_soldier", "springer", "clock_soldier", "pendulum", "clock_soldier", "springer",
+		"clock_soldier", "netter", "clock_soldier", "ballista"],
+	"cwpend": ["clock_soldier", "clock_soldier", "pendulum", "clock_soldier"],
+	"cwspring": ["springer", "springer", "clock_soldier"],
+	"cwreal": ["clock_soldier", "clock_soldier", "clock_soldier", "clock_soldier", "springer", "clock_soldier",
+		"clock_soldier", "clock_soldier", "pendulum", "clock_soldier", "clock_soldier", "springer", "clock_soldier",
+		"clock_soldier", "ballista", "clock_soldier", "clock_soldier", "netter", "clock_soldier", "springer"],
 }
+
+
+## the enemy's faction by its mix
+static func foe_of(mix: String) -> String:
+	if mix.begins_with("cw"):
+		return "clockwork"
+	if mix.begins_with("cr"):
+		return "crown"
+	return "brood"
 
 
 func _initialize() -> void:
@@ -67,7 +100,7 @@ func _until(clock: float) -> void:
 		await physics_frame
 
 
-func _start(sd: int, map: String) -> void:
+func _start(sd: int, map: String, foe := "brood") -> void:
 	if main != null:
 		main.queue_free()
 		await process_frame
@@ -78,7 +111,7 @@ func _start(sd: int, map: String) -> void:
 	seed(sd)
 	main.start({"map": map, "seed": sd, "slots": [
 		{"who": "hard", "faction": "crown", "colour": 0, "side": 0, "strategy": "balanced"},
-		{"who": "hard", "faction": "brood", "colour": 1, "side": 1, "strategy": "balanced"}]})
+		{"who": "hard", "faction": foe, "colour": 1, "side": 1, "strategy": "balanced"}]})
 	await process_frame
 	await process_frame
 	g = main.game
@@ -92,9 +125,16 @@ func _start(sd: int, map: String) -> void:
 	if g.controls:
 		g.controls.process_mode = Node.PROCESS_MODE_DISABLED
 	paused = false
+	AICrownMicro.off_team = -1
 	for a in g.ais.duplicate():
 		if a.team == 1:
-			g.ais.erase(a)
+			if foe == "brood":
+				g.ais.erase(a)
+			elif foe == "clockwork":
+				a.process_mode = Node.PROCESS_MODE_DISABLED   # (kept in the list: its Springers' own jumps need a computer)
+			else:
+				a.peaceful = true                          # (the mirror: the enemy Crown computer fights its wave, no micro)
+				AICrownMicro.off_team = 1
 
 
 func _ai(t: int):
@@ -168,7 +208,8 @@ func _one(sc: String, r: int, map: String) -> void:
 	var where := parts[0]
 	var size := parts[1]
 	var mix := parts[2]
-	await _start(9100 + r * 31 + sc.hash() % 997, map)
+	var foe := foe_of(mix)
+	await _start(9100 + r * 31 + sc.hash() % 997, map, foe)
 	var ai = _ai(0)
 	ai.line_ai()
 	ai.peaceful = true
@@ -212,6 +253,11 @@ func _one(sc: String, r: int, map: String) -> void:
 			g.players[1]["tech"][k] = true
 		for k in ["charge", "charges", "quadrant"]:
 			g.players[0]["tech"][k] = true
+			if foe == "crown":
+				g.players[1]["tech"][k] = true
+		if foe == "clockwork":
+			for k in ["shield_wall", "high_leap", "long_chain"]:
+				g.players[1]["tech"][k] = true
 	var wave: Array = []
 	var comp: Dictionary = CROWN[size]
 	var nm: int = comp.get("musketeer", 0)
@@ -243,7 +289,6 @@ func _one(sc: String, r: int, map: String) -> void:
 		for u in wave:
 			ai._wave_set[u] = true
 			u.cmd_move(goal, true)
-	var kinds: Array = MIX[mix]
 	var foes: Array = []
 	var foe_at: Vector2
 	match where:
@@ -258,18 +303,71 @@ func _one(sc: String, r: int, map: String) -> void:
 	var bv := 0.0
 	var i := 0
 	var ratio := float(_arg("ratio", "1"))       # ratio:1.5 the Brood brings 1.5 times the Crown's value
-	while bv < cv * ratio and i < 1200:
-		var k: String = kinds[i % kinds.size()]
-		var f := _spawn(k, 1, foe_at + side * float((i % 14) - 7) * 30.0 + front * float(i / 14) * 30.0)
-		foes.append(f)
-		f.cmd_hold()
-		bv += float(Game.unit_value(f))
-		i += 1
-	await _until(g.clock + (2.0 if where == "home" else 3.0))
 	var target: Vector2 = hall if where == "home" else at
-	if where != "ramp":
+	var ai1 = _ai(1)
+	if foe == "crown":
+		# the mirror: the same army, facing ours, under the enemy Crown computer's wave (its micro off)
+		var fr := -front
+		for k in ["musketeer", "cannon", "mortar", "cuirassier", "band", "band_fifer", "band_piper"]:
+			for j in int(comp.get(k, 0)):
+				var p: Vector2
+				if k == "musketeer":
+					p = foe_at + side * (float(j % 14) - 6.5) * 26.0 - fr * float(j / 14) * 28.0
+				elif k == "cannon" or k == "mortar":
+					p = foe_at - fr * (90.0 + (60.0 if k == "mortar" else 0.0)) + side * (float(j) - float(comp[k] - 1) * 0.5) * 70.0
+				elif k == "cuirassier":
+					p = foe_at - fr * 50.0 + side * (j % 2 * 2 - 1) * (190.0 + float(j / 2) * 40.0)
+				else:
+					p = foe_at - fr * 60.0 + side * (["band", "band_fifer", "band_piper"].find(k) - 1) * 24.0
+				foes.append(_spawn(k, 1, p))
+		if dry > 0.0:
+			var mk1: Array = foes.filter(func(u: Unit) -> bool: return u.kind == "musketeer")
+			var nd := int(round(float(mk1.size()) * dry))
+			for j in nd:
+				mk1[j * mk1.size() / maxi(1, nd)].powder = 0.0
+		for f in foes:
+			bv += float(Game.unit_value(f))
+		ai1.line_ai()
+	var winders: Array = []
+	if foe != "crown":
+		var kinds: Array = MIX[mix]
+		while bv < cv * ratio and i < 1200:
+			if foe == "clockwork" and i % 8 == 7 and winders.size() * 8 < i:
+				# (a Winder with every 8 constructs, counted in its value, behind them)
+				var w := _spawn("winder", 1, foe_at + front * 130.0 + side * (float(winders.size() % 6) - 2.5) * 40.0)
+				winders.append(w)
+				w.cmd_hold()
+				bv += float(Game.unit_value(w))
+				if bv >= cv * ratio:
+					break
+			var k: String = kinds[i % kinds.size()]
+			var f := _spawn(k, 1, foe_at + side * float((i % 14) - 7) * 30.0 + front * float(i / 14) * 30.0)
+			foes.append(f)
+			f.cmd_hold()
+			bv += float(Game.unit_value(f))
+			i += 1
+	if foe == "clockwork":
+		# each construct's wind drawn between wind: and full
+		var wmin := float(_arg("wind", "0.6"))
+		var rng := RandomNumberGenerator.new()
+		rng.seed = 7 + r * 13 + sc.hash() % 101
+		for f in foes:
+			f.wind = rng.randf_range(wmin, 1.0)
+		foes.append_array(winders)
+	await _until(g.clock + (2.0 if where == "home" else 3.0))
+	var army1: Array = foes.filter(func(u: Unit) -> bool: return u.kind != "winder")
+	if foe == "crown":
+		ai1._attacking = true
+		ai1._wave_target = target
+		ai1._wave_set.clear()
 		for f in _alive(foes):
+			ai1._wave_set[f] = true
 			f.cmd_move(target, true)
+	elif where != "ramp":
+		for f in _alive(army1):
+			f.cmd_move(target, true)
+	for w in winders:
+		w.cmd_escort(army1, target if where != "ramp" else Vector2.INF)
 	var contact_t := -1.0
 	var fight := float(_arg("fight", "90"))
 	var t_end := g.clock + 150.0
@@ -298,19 +396,24 @@ func _one(sc: String, r: int, map: String) -> void:
 			shot_i += 1
 		if _alive(foes).is_empty() or _alive(wave).is_empty():
 			break
-		if where != "ramp" and Engine.get_physics_frames() % 60 == 0:
-			for o in _alive(foes):
+		if foe == "clockwork" and Engine.get_physics_frames() % 15 == 0:
+			ShieldWall.think(g, 1)              # (the Clockwork computer's own SHIELD FORWARD rule)
+		if foe != "crown" and where != "ramp" and Engine.get_physics_frames() % 60 == 0:
+			for o in _alive(army1):
 				if o.order == "idle" and o.target == null:
 					o.cmd_move(target, true)
 		if where == "ramp" and contact_t >= 0.0 and Engine.get_physics_frames() % 60 == 0:
-			for o in _alive(foes):         # (the holders on the top go for the Crown once it is up with them)
+			for o in _alive(army1):        # (the holders on the top go for the Crown once it is up with them)
 				if o.order == "hold" and g.clock - contact_t > 8.0:
 					o.cmd_move(at, true)
 	var cl := _value(wave)
 	var bl := _value(foes)
-	var x := {"sc": sc, "run": r, "crown_value": int(cv), "brood_value": int(bv), "foes": foes.size(),
+	var x := {"sc": sc, "foe": foe, "run": r, "crown_value": int(cv), "brood_value": int(bv), "foes": foes.size(),
 		"contact": snappedf(contact_t, 0.1), "secs": snappedf(g.clock - maxf(0.0, contact_t), 0.1),
-		"killed": int(float(g.stats[0]["value_killed"]) - k0), "lost": int(float(g.stats[1]["value_killed"]) - l0),
+		# (crown-micro-2: against the Clockwork and in the mirror, killed and lost are the armies' own value gone, hit points
+		# counted: the enemy computer's base and the Winders' work are no part of the fight)
+		"killed": int(float(g.stats[0]["value_killed"]) - k0) if foe == "brood" else int(bv - bl),
+		"lost": int(float(g.stats[1]["value_killed"]) - l0) if foe == "brood" else int(cv - cl),
 		"crown_left": snappedf(cl / maxf(1.0, cv), 0.01), "brood_left": snappedf(bl / maxf(1.0, bv), 0.01),
 		"score": snappedf(cl / maxf(1.0, cv) - bl / maxf(1.0, bv), 0.01),
 		"guns_lost": n_guns - _alive(guns).size(), "micro": AICrownMicro.counters(0)}
