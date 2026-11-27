@@ -32,7 +32,7 @@ All of it is in scripts/ai_cw_late.gd, called from the Clockwork computer's buil
 
 ## How it was measured
 
-The same games as the 26 November study: game number i has seed 1126001 plus i, the map is the i-th of the six parity maps in turn, and the start spot changes every six games. That study's data is the "before". Each block is ten games, numbers one to ten, five on each start spot and every parity map. Against the Crown two blocks were played, games one to twenty. Against the Brood one block. In the mirror two blocks, with both sides running the new rules. "Won or led" means won outright, or ahead by a tenth at the bell, by income earned plus twice the army.
+The same games as the 26 November study: game number i has seed 1126001 plus i, the map is the i-th of the six parity maps in turn, and the start spot changes every six games. That study's data is the "before". Each block is ten games, numbers one to ten, five on each start spot and every parity map. Against the Crown two blocks were played, games one to twenty, and games one to ten once more with the final code (the doc calls the two versions v1 and v2). Against the Brood one block. In the mirror two blocks, with both sides running the new rules. "Won or led" means won outright, or ahead by a tenth at the bell, by income earned plus twice the army.
 
 ## What happened against the Crown
 
@@ -45,6 +45,12 @@ It built what it lacked: on average 6.2 Light Works instead of 5.7, 5.3 Mainspri
 It holds its halls longer. Halls standing at eighteen minutes, 4.1 instead of 3.3; at twenty, 3.4 instead of 2.7. Buildings lost by sixteen minutes, 5.5 instead of 9.8. Its army at sixteen minutes was 3,000 against the Crown's 3,000, where it was 2,300 against 3,400.
 
 The results moved a little, inside the noise. The Clockwork won or led 3 of 20, before 2. It was beaten outright 6 times, before 8. Game by game on the same seeds, the score difference moved in its favour by 0.21, better in 12 games and worse in 7, a t of 0.9. The Crown still wins this matchup: the battle tests found it wins the fights, and remaking an army faster does not change who wins the next fight. What changed is that the Clockwork no longer sits on its cogs while it loses.
+
+## The final code, against the Crown again
+
+The tests showed one thing to mend: the new rules could spend cogs the computer had put by for its Heavy Works or other tech. They now leave those cogs alone. Games one to ten against the Crown were played once more with this final code. The bank is still spent: in the games both versions survived, 727 cogs at sixteen minutes before, 125 now; at eighteen, 2,412 before, 77 now. The results are the same as before the change: won or led 2 of 10 (before 1), beaten 4 (before 4), score difference 0.00 game by game.
+
+Put together, thirty games against the Crown with the new rules, each against the same game before: better in 17, worse in 11, a mean of 0.14 in the Clockwork's favour, a t of 0.8. That is inside the noise. The fix does what was asked, the cogs are spent and the halls last longer, but it does not turn the matchup.
 
 ## Side effects: against the Brood
 
@@ -73,14 +79,15 @@ Run after the change (each line: the test, then the result with the new rules, t
 
 ## Claude's choices
 
-1. All four parts are kept together and on by default. They were measured as one package, not one by one: a block takes over an hour, and the four parts feed each other (the second Heavy Works needs the Mainsprings, the Works need the supply). The switches let any one be measured alone later.
+1. All four parts are kept together and on by default, although they did not move the results beyond the noise: they do what the owner asked (the bank is spent, the supply fills, fewer halls are lost) and harm nothing measured. They were measured as one package, not one by one: a block takes over an hour, and the four parts feed each other (the second Heavy Works needs the Mainsprings, the Works need the supply). The switches let any one be measured alone later.
 2. Nothing starts before six minutes. The written openings and the timing attacks keep their own pace; the problem was in the late game.
 3. Nine Light Works at most, as the Crown computer stops at nine Barracks. Two Heavy Works at most.
 4. The Mainspring rule now runs against every enemy, not only the Brood, and it does not hold the army's cogs back to save for one: a Mainspring only goes up when the cogs are already there.
 5. Supply is built ahead only while the bank floats (500 cogs and more), so the opening's tight economy is untouched.
 6. No change to which units it trains. The army's mix follows from the Tension it now has; the ai-lessons job already sets the mix against the Crown.
 7. Retaking lost halls was not added. With the bank spent, the hall plan's own rule already lays new Clocktowers; the Clockwork now loses fewer of them.
-8. The mirror's lean to spot A is reported, not fixed: twenty games are too few to call it, and both sides run the same rules.
+8. The Brood and mirror blocks were played with the first version (before the saved-cogs guard); the guard only makes the new rules wait more, so they were not played again.
+9. The mirror's lean to spot A is reported, not fixed: twenty games are too few to call it, and both sides run the same rules.
 
 ## Files
 

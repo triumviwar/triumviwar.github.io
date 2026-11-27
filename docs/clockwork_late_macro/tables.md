@@ -169,3 +169,68 @@ What the Clockwork built in all (means): Light Works, Mainsprings, Heavy Works:
 
 - before: 5.0 Light Works, 2.3 Mainsprings, 1.0 Heavy Works
 - v1: 6.8 Light Works, 5.0 Mainsprings, 1.9 Heavy Works
+
+## THE CLOCKWORK V THE CROWN, the final code (v2: the new rules leave the tech's saved cogs alone), games 1-10
+
+| arm | games | Clockwork won | led | even | foe led | foe won | won or led | mean g (t) |
+|---|---|---|---|---|---|---|---|---|
+| before | 10 | 0 | 1 | 2 | 3 | 4 | 1 / 7 | -0.90 (-2.5) |
+| v1 | 10 | 0 | 1 | 3 | 4 | 2 | 1 / 6 | -0.56 (-2.1) |
+| v2 | 10 | 0 | 2 | 2 | 2 | 4 | 2 / 6 | -0.90 (-2.4) |
+
+- v1 against before, game by game (the same seeds): g +0.35 (t 0.9), better in 7, worse in 3 of 10.
+- v2 against before, game by game (the same seeds): g -0.00 (t -0.0), better in 5, worse in 4 of 10.
+
+Clockwork cogs in the bank, mean (a beaten side counts 0):
+
+| arm | 10:00 | 12:00 | 14:00 | 16:00 | 18:00 | 20:00 |
+|---|---|---|---|---|---|---|
+| before | 437 | 634 | 491 | 654 | 1.3k | 1.4k |
+| v1 | 308 | 188 | 61 | 62 | 49 | 307 |
+| v2 | 249 | 224 | 62 | 116 | 46 | 318 |
+
+Clockwork supply used, mean (a beaten side counts 0):
+
+| arm | 10:00 | 12:00 | 14:00 | 16:00 | 18:00 | 20:00 |
+|---|---|---|---|---|---|---|
+| before | 99 | 111 | 103 | 94 | 81 | 82 |
+| v1 | 105 | 128 | 122 | 128 | 110 | 106 |
+| v2 | 105 | 124 | 104 | 77 | 88 | 98 |
+
+Clockwork supply limit, mean (a beaten side counts 0):
+
+| arm | 10:00 | 12:00 | 14:00 | 16:00 | 18:00 | 20:00 |
+|---|---|---|---|---|---|---|
+| before | 127 | 150 | 156 | 146 | 124 | 117 |
+| v1 | 135 | 161 | 187 | 188 | 184 | 148 |
+| v2 | 128 | 159 | 176 | 164 | 119 | 113 |
+
+army value (Clockwork / foe), mean (a beaten side counts 0):
+
+| arm | 10:00 | 12:00 | 14:00 | 16:00 | 18:00 | 20:00 |
+|---|---|---|---|---|---|---|
+| before | 1.9k / 1.6k | 2.6k / 2.0k | 2.5k / 2.5k | 2.6k / 3.2k | 2.1k / 3.2k | 2.5k / 3.5k |
+| v1 | 1.8k / 1.4k | 3.1k / 2.0k | 3.0k / 2.4k | 3.3k / 3.1k | 2.7k / 3.0k | 3.0k / 3.4k |
+| v2 | 1.9k / 1.4k | 3.0k / 2.1k | 2.2k / 2.8k | 1.9k / 3.1k | 2.4k / 3.1k | 3.1k / 3.4k |
+
+halls standing (Clockwork / foe), mean (a beaten side counts 0):
+
+| arm | 10:00 | 12:00 | 14:00 | 16:00 | 18:00 | 20:00 |
+|---|---|---|---|---|---|---|
+| before | 3.7 / 4.0 | 4.0 / 4.7 | 4.3 / 5.7 | 4.1 / 6.1 | 3.6 / 6.2 | 3.4 / 6.5 |
+| v1 | 3.8 / 4.0 | 4.2 / 4.8 | 4.9 / 5.6 | 4.8 / 6.6 | 4.9 / 6.9 | 4.3 / 7.0 |
+| v2 | 3.6 / 4.0 | 3.9 / 4.7 | 4.4 / 5.4 | 4.0 / 6.5 | 3.5 / 6.9 | 3.4 / 6.9 |
+
+buildings lost so far (Clockwork / foe), mean (a beaten side counts 0):
+
+| arm | 10:00 | 12:00 | 14:00 | 16:00 | 18:00 | 20:00 |
+|---|---|---|---|---|---|---|
+| before | 0.7 / 0.6 | 1.4 / 0.9 | 5.1 / 1.6 | 9.5 / 2.9 | 14.8 / 4.4 | 18.2 / 4.6 |
+| v1 | 0.3 / 0.8 | 0.6 / 1.0 | 0.6 / 1.7 | 2.5 / 1.8 | 5.8 / 2.2 | 14.3 / 2.2 |
+| v2 | 0.2 / 0.4 | 0.7 / 1.2 | 1.4 / 2.8 | 7.1 / 2.8 | 16.8 / 2.9 | 18.9 / 3.4 |
+
+What the Clockwork built in all (means): Light Works, Mainsprings, Heavy Works:
+
+- before: 5.3 Light Works, 2.1 Mainsprings, 1.0 Heavy Works
+- v1: 6.6 Light Works, 5.9 Mainsprings, 1.9 Heavy Works
+- v2: 5.8 Light Works, 5.5 Mainsprings, 1.6 Heavy Works
