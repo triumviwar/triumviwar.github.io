@@ -4,7 +4,7 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
-	{"v": "0.38.999", "items": [
+	{"v": "0.38.223", "items": [
 		"The Clockwork computer keeps spending in the late game (clockwork-late-macro). It used to stop at five Light Works and two Mainsprings, so once it lost the big fight its cogs piled up in the bank while it rebuilt slowly and only with Clock Soldiers. Now it lays more Light Works when every one is busy, a Mainspring by every Clocktower for the Tension its Pendulums, Ballistas and Springers need, a second Heavy Works, and Regulators ahead of need. No unit or building changed.",
 	]},
 	{"v": "0.38.222", "items": [
