@@ -163,6 +163,17 @@ def table(arms):
             c, _ = counts(rows)
             out.append("| %s | %s | %d | %d | %d | %d | %+.2f |" % (a, "AB"[sp], len(rows), c["W"] + c["w"], c["="],
                                                                    c["L"] + c["l"], mean([x["g"] for x in rows])))
+    # (the shared seed rule puts games 0-5, 12-17, 24-29 on spot A: 18 A, 12 B; the share of each spot weighted evenly)
+    out.append("")
+    for a in arms:
+        sh = []
+        for sp in (0, 1):
+            rows = [x for x in data[a].values() if x["spot"] == sp]
+            if rows:
+                c, _ = counts(rows)
+                sh.append((c["W"] + c["w"]) / len(rows))
+        if len(sh) == 2:
+            out.append("- %s, spots weighted evenly: the Clockwork won or led %.0f%% of games." % (a, 50 * (sh[0] + sh[1])))
     if "default" in arms and "nerf" in arms:
         b, n = data["default"], data["nerf"]
         common = sorted(set(b) & set(n))
