@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.227": ["El Coracero dispara la pistola con el mismo casco sencillo que lleva en todo lo demás (el penacho que solo tenía al disparar desapareció), redibujado en las cinco direcciones; el Piquero de la campaña camina hacia ti y hacia el sureste con cuatro fotogramas en vez de deslizarse de lado."],
 	"0.38.226": ["El mapa de guerra de Brasil está pintado (una hoja de cartógrafo católico con Nuestra Señora de la Concepción), el mapa del Relojero tiene una placa de latón grabada de verdad y el del Naturalista un papel de campo manchado; 19 personajes más de la campaña tienen retratos al óleo."],
 	"0.38.225": ["Ilustraciones del Acto 2 terminadas: el resto del Consejo de los Engranajes, Río Abajo, Entre Dos Fuegos, el Frente de la Selva y el Asedio de Concórdia (19 pinturas al óleo sustituyen los dibujos provisionales)."],
 	"0.38.224": ["Los cuadros del Acto 2 pintados: el Oro de Vila Rica, el Éxodo, la Isla, la Ciudad de los Engranajes, la Misión de São Rafael y la Reina (24 pinturas al óleo sustituyen los bocetos dibujados en código), y el primero del Consejo de los Engranajes."],

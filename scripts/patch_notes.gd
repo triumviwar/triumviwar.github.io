@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.227", "items": [
+		"The Cuirassier fires his pistol under the same plain helmet he wears everywhere else (the plume he had only while shooting is gone), redrawn in all five facings; the campaign Pikeman walks toward you and to the south-east on four frames instead of sliding sideways.",
+	]},
 	{"v": "0.38.226", "items": [
 		"The war map's Brazil view is painted (a Catholic cartographer's sheet with Our Lady of the Conception), the Clockmaker's map stands on a real engraved brass plate and the Naturalist's on stained field-chart paper; 19 more campaign speakers have oil portraits (the guild masters, the valley's captain and priest, the Vila Rica garrison, the river fort, the army of Brazil).",
 	]},

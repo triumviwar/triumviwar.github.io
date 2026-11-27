@@ -194,6 +194,29 @@ JOBS += [
      [("1_current_death_n.png", [("venom_challenger", "death_n")]), ("2_walk_n_model.png", [("venom_challenger", "walk_n")])]),
 ]
 
+# 2026-11-27 (owner: "All of it"): the Brood Mother's stage-2 south walk (finding 12), the Crown campaign Pikeman's
+# south and south-east walk (34), the Cuirassier's pistol in every facing without the plume he has nowhere else (72)
+BM2 = "the Brood Mother (a large heavy green reptile walking on four thick legs, a broad head with a pure red crest, pure red spines along her back and a long heavy tail, a swollen belly)"
+LOOK["brood_mother_2"] = "creature, its colours and proportions"
+PIK = "the Pikeman (a Crown foot soldier in a steel morion helmet and a breastplate over a pure red coat, carrying a very long pike)"
+LOOK["pikeman"] = "man, outfit and colours"
+JOBS += [
+    (123, "brood_mother_2", "walk_s", 6, BM2, "walking straight toward the viewer (toward the bottom of the image), her head and chest toward us, the tail behind her out of sight or just showing over her back, 6 frames, a seamless walk loop, the legs stepping in turn, the same straight front angle in every frame", "the south view: straight toward the viewer", "a three-quarter or side view, the head turned to the lower right, the angle drifting between frames,",
+     [("1_current_walk_s.png", [("brood_mother_2", "walk_s")]), ("2_attack_s_front.png", [("brood_mother_2", "attack_s")]), ("3_walk_e_model.png", [("brood_mother_2", "walk_e")])]),
+    (124, "pikeman", "walk_s", 4, PIK, "walking straight toward the viewer (toward the bottom of the image), his face and chest toward us, the pike held upright at his right side, 4 frames, a seamless walk loop, the legs stepping in turn", "the south view: facing the viewer", "a side profile, the pike carried level, skating feet,",
+     [("1_current_walk_s.png", [("pikeman", "walk_s")]), ("2_walk_e_model.png", [("pikeman", "walk_e")]), ("3_idle_s_view.png", [("pikeman", "idle_s")])]),
+    (125, "pikeman", "walk_se", 4, PIK, "walking three-quarter toward the lower right (south-east), the pike held upright at his right side, 4 frames, a seamless walk loop, the legs stepping in turn", "the south-east view: three-quarter toward the lower right", "a side profile, the pike carried level, skating feet,",
+     [("1_current_walk_se.png", [("pikeman", "walk_se")]), ("2_walk_e_model.png", [("pikeman", "walk_e")]), ("3_idle_se_view.png", [("pikeman", "idle_se")])]),
+]
+_CP = {"e": ("in a side view facing right (east), the pistol pointing right", "the east view: facing right"),
+       "se": ("three-quarter toward the lower right (south-east), the pistol pointing down-right", "the south-east view: three-quarter toward the lower right"),
+       "s": ("facing the viewer (the horse's chest and head toward us), the pistol pointing straight at the viewer, foreshortened", "the south view: straight toward the viewer"),
+       "ne": ("three-quarter from behind toward the upper right, the pistol pointing up-right away from us", "the north-east view: three-quarter from behind, toward the upper right"),
+       "n": ("seen from behind (the horse's rump toward us), NO face, the pistol pointing up the image away from us", "the north view: seen from behind")}
+for _n, _d in ((126, "e"), (127, "se"), (128, "s"), (129, "ne"), (130, "n")):
+    JOBS.append((_n, "cuirassier", "pistol_" + _d, 4, CUI, "firing his pistol from the saddle, the horse standing, %s; 4 frames: 1 aiming, the arm out; 2 FIRING, a small bright muzzle flash and a puff of white smoke; 3 the recoil, the arm kicked up; 4 lowering the pistol. His helmet is a PLAIN steel morion with NO plume and NO feather, exactly as in the walk reference. ONE pistol in his right hand, the SAME facing in all four frames" % _CP[_d][0], _CP[_d][1], "a plume or feather on the helmet, a second pistol, the horse turning,",
+                 [("1_current_pistol_%s.png" % _d, [("cuirassier", "pistol_" + _d)]), ("2_walk_%s_model.png" % _d, [("cuirassier", "walk_" + _d)])]))
+
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."

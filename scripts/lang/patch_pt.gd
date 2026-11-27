@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.227": ["O Couraceiro dispara a pistola com o mesmo capacete simples que usa em tudo o resto (o penacho que só tinha ao disparar sumiu), redesenhado nas cinco direções; o Piqueiro da campanha caminha para você e para sudeste com quatro quadros em vez de deslizar de lado."],
 	"0.38.226": ["O mapa de guerra do Brasil foi pintado (uma folha de cartógrafo católico com Nossa Senhora da Conceição), o mapa do Relojoeiro tem uma placa de latão gravada de verdade e o do Naturalista um papel de campo manchado; mais 19 personagens da campanha ganharam retratos a óleo."],
 	"0.38.225": ["Ilustrações do Ato 2 concluídas: o resto do Conselho das Engrenagens, Rio Abaixo, Entre Dois Fogos, a Frente da Selva e o Cerco de Concórdia (19 pinturas a óleo substituem os desenhos provisórios)."],
 	"0.38.224": ["Os quadros do Ato 2 pintados: o Ouro de Vila Rica, o Êxodo, a Ilha, a Cidade das Engrenagens, a Missão de São Rafael e a Rainha (24 pinturas a óleo substituem os esboços desenhados em código), e o primeiro do Conselho das Engrenagens."],

@@ -165,6 +165,11 @@ keg idle frame 0 (keg on the chest) by frame 1; 141 the Swift's (cuckoo) north-e
 156, 169 specks by the Armoured Officer's south death and the Guardsman's fire-up removed; 145 the Pendulum's pink pixels
 at the blade; 200 the Tension icon's corner specks; 201 the loose piece by the mossy boulder; 207 the loose specks
 round the snowy rocks (c, d).
+0.38.227 (Claude in the owner's Chrome, 2026-11-27): 72 the Cuirassier's pistol redrawn in all five facings with the plain morion
+(no plume; requests M126-M130 in tools/audit/medium_batch.py; SE needed a second answer, the first was side-on); 34 the
+Crown campaign Pikeman's south and south-east walk redrawn (M124, M125: 4 frames, the pike upright, facing the viewer).
+12 the Brood Mother's stage-2 south walk (M123) was tried and NOT used: ChatGPT drew a different, darker beast that
+floated above her feet line; the stage-2 design (the spiny frill) needs its own front view first.
 0.38.152: 202 the navy triangle behind the campfire's flames removed; 205 the bluish ghost pixels left of the ruined
 tower; 105 the Armoury's bayonet experiment plays the pumpkin hit before it bursts (frames 3 and 4 swapped); 108 the
 debris piece cut by the damaged Clock Aviary's (cuckoo house) right edge removed.
