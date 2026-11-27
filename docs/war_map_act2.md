@@ -145,6 +145,9 @@ Checked for scale and overlaps: on the Brazil view the marks' names and the note
 Amazon); the heading shows "Act 2" only (the dates were cut by the view buttons); the legend's swatches on the brass
 map; the chart's scale bar moved from under the legend to the bottom middle.
 
+PAINTED 2026-11-27 (ChatGPT, Claude in the owner's Chrome): the Brazil sheet (art/campaign/warmap_brazil_chatgpt.png,
+fitted by 14 landmarks, error ~60 px: a stylised continent), the brass plate and the chart paper (prompts below).
+
 ## ChatGPT prompts for the owner (one request each, standing alone, at most 3 reference images)
 
 1. THE BRAZIL SHEET (for the King's parchment: the BRAZIL view's painting, `art/campaign/warmap_brazil_chatgpt.png`,

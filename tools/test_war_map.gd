@@ -560,7 +560,7 @@ func _ui_act2() -> void:
 	await process_frame
 	await process_frame
 	wm = _wm()
-	check("the King's parchment opens on BRAZIL in Act 2", wm != null and wm.painted == "" and String(wm.act.get("view", "")) == "brazil")
+	check("the King's parchment opens on BRAZIL in Act 2 (painted)", wm != null and wm.painted != "" and String(wm.act.get("view", "")) == "brazil")
 	check("the waiting front's card wears the clock", _find("CardClock") != null)
 	for sk in WarMapData.SKINS:
 		wm.skin = sk

@@ -48,10 +48,18 @@ SHEETS = {
         "at": {"a03_plateau": [770, 160], "a05_specimens": [735, 228], "plateau_question": [815, 128]},
         "cart": [767, 864, 288],
     },
+    "brazil": {
+        # a stylised South America (2026-11-27, ChatGPT): coasts and river mouths read off the sheet by eye
+        "fit": [[-35.2, -5.4, 1175, 300], [-38.9, -12.9, 1090, 480], [-43.2, -22.9, 985, 640], [-48.5, -27.6, 860, 740],
+                [-57.0, -35.0, 770, 830], [-48.5, -1.45, 850, 150], [-77.0, -12.0, 300, 430], [-70.3, -18.5, 510, 560],
+                [-80.0, -4.7, 180, 330], [-60.0, -3.1, 560, 300], [-55.5, -1.9, 680, 250], [-36.4, -10.5, 1120, 420],
+                [-43.5, -20.4, 900, 590], [-52.0, -27.2, 760, 720]],
+        "cart": [755, 905, 280],
+    },
 }
 
-# BRAZIL (act2-warmap, docs/war_map_act2.md): no painting yet. When art/campaign/warmap_brazil_chatgpt.png comes, add
-# "brazil": {"affine": False, "fit": [[lon, lat, x, y], ...], "cart": [x, y, w]} to SHEETS with these places' pixels
+# BRAZIL (act2-warmap, docs/war_map_act2.md): painted 2026-11-27 (above). The places used to fit it (add more if a pin
+# lands wrong; was: add "brazil": {"affine": False, "fit": [[lon, lat, x, y], ...], "cart": [x, y, w]} to SHEETS with these places' pixels
 # read off the painting (the mouths and bends of the rivers are the surest; at least 8):
 #   the Amazon's mouth at Belem [-48.5, -1.45]; Obidos [-55.52, -1.9]; the Negro meets the Amazon (the Barra) [-60.0, -3.1];
 #   the Tapajos meets the Amazon (Santarem) [-54.7, -2.44]; Salvador [-38.9, -12.9]; Cape Sao Roque [-35.2, -5.4];

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.226", "items": [
+		"The war map's Brazil view is painted (a Catholic cartographer's sheet with Our Lady of the Conception), the Clockmaker's map stands on a real engraved brass plate and the Naturalist's on stained field-chart paper; 19 more campaign speakers have oil portraits (the guild masters, the valley's captain and priest, the Vila Rica garrison, the river fort, the army of Brazil).",
+	]},
 	{"v": "0.38.225", "items": [
 		"Act 2's stills finished: the rest of the Council of Gears, Down the Rivers, Between Two Fires, the Jungle Front and the Siege of Concórdia (19 oil paintings replace the stand-ins drawn in code).",
 	]},
