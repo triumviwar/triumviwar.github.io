@@ -26,6 +26,21 @@
 
 ## Current work
 
+- CLOCKWORK LATE MACRO (owner 2026-11-27 "Why does the Clockwork stop expanding?"; job clockwork-late-macro, branch
+  clockwork-late-macro, docs/clockwork_late_macro.md, tables docs/clockwork_late_macro/tables.md, scripts/ai_cw_late.gd
+  AICwLate, tools/study/clockwork_late_macro.py, data docs/clockwork_late_macro/data/): CAUSE (traced, tools/cw_trace.gd now
+  prints the training gates): no saving rule held the cogs; its 5 Light Works (the shared cap) stood with full queues, 2
+  Mainsprings on 5-7 Clocktowers left Tension at 0-80 and its one Heavy Works waiting, so after a lost fight it rebuilt
+  slowly and only Clock Soldiers. FIX (all ON from 6:00, Normal+; `cwlate:off`, `cwlate<name>:off`): `works` (more Light
+  Works up to 9 when all busy and 450 cogs spare), `springs` (a Mainspring by every Clocktower with spring life, v every
+  faction), `heavy` (a 2nd Heavy Works from 9:00 with 3 Mainsprings), `supply` (Regulators ahead while 500+ banked; two
+  at 1,200+). V the Crown, 20 games: bank at 16:00 (same games alive) 889 -> 101, supply 106 -> 128, halls at 18:00 3.3 ->
+  4.1, beaten 8 -> 6, won or led 2 -> 3; with the final code (saved tech cogs left alone) 10 more: 30 games paired g +0.14
+  (t 0.8), 17 better / 11 worse: within noise, the Crown still wins the fights. V the Brood no change (4/6 both).
+  Mirror: 15 of 20 decided (was 13), spot A 12/5 (was 9/8): watch. No balance number changed. 9 Claude's choices.
+  Tests: cw_ai, cw_tier2, cw_tier3_ai, clockwork_eco/home/owls, cw_written_openings, ai_optimal, econ_limit_local pass;
+  clockwork_army, clock_ai_swarm flaky (fail off too); cw_heavy fails on main too.
+
 - WIN RATES 2026-11-26 (owner 2026-11-26 "win rate tests... with the Rootmaw nerf... all matchups"; jobs winrate-crown-brood,
   winrate-clock-brood, winrate-brood-mirror, winrate-no-brood, MERGED 0.38.222, docs/winrate_2026_11_26.md + 4 part docs,
   data docs/winrate_2026_11_26/data/, tools/study/winrate_1126_*.py): 270 games on 0.38.221 to 20:00, 30 a cell, same seeds.

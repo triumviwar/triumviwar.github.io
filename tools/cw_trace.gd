@@ -78,6 +78,13 @@ func _trace_one(tm: int) -> void:
 	if a.swarm_ai != null:
 		swarm = "swarm%s n%d v%d out%s" % ["ON" if a.swarm_ai.on() else "", a.swarm_ai._n, int(a.swarm_ai._v),
 			"!" if a.swarm_ai.outmatched() else ""]
+	# (clockwork-late-macro) why the Works do not spend: the shared training gates and each Works' own answer
+	var why := []
+	for w in a._mine(a._works()) + a._mine(Defs.CW_HEAVY):
+		if w.built:
+			why.append("%s:%d:%s" % [w.kind.substr(0, 5), w.queue.size(), g.can_train(w, "clock_soldier" if w.kind != Defs.CW_HEAVY else Defs.PENDULUM).substr(0, 24)])
+	_lines.append("   gates save %s res %d keep %s tech %s gold %d | %s" % [str(a._saving), int(a._reserve), str(a._keeping()),
+		str(a._tech_hold), a._gold(), " ".join(why)])
 	_lines.append("%s t%d cogs %d hold %d ten %d | W %d goal %d | bo %s step [%s] %s | %s | army %d %s | halls %s | works %s | sup %d/%d | plan %s %s" % [
 		"%d:%02d" % [int(g.clock) / 60, int(g.clock) % 60], tm, int(g.players[tm]["gold"]), int(a._hold),
 		int(g.tension(tm)), g.workers(tm).size(), int(a.worker_goal), "on" if a.bo_on else "off", step, rush, swarm,
