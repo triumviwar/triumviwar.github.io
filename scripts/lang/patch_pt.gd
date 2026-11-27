@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.225": ["Ilustrações do Ato 2 concluídas: o resto do Conselho das Engrenagens, Rio Abaixo, Entre Dois Fogos, a Frente da Selva e o Cerco de Concórdia (19 pinturas a óleo substituem os desenhos provisórios)."],
 	"0.38.224": ["Os quadros do Ato 2 pintados: o Ouro de Vila Rica, o Êxodo, a Ilha, a Cidade das Engrenagens, a Missão de São Rafael e a Rainha (24 pinturas a óleo substituem os esboços desenhados em código), e o primeiro do Conselho das Engrenagens."],
 	"0.38.223": ["O computador do Mecanismo continua a gastar no fim do jogo (clockwork-late-macro). Parava em cinco Oficinas Leves e duas Molas Reais, então, depois de perder a grande batalha, as engrenagens amontoavam-se no banco enquanto reconstruía devagar e só com Soldados-Relógio. Agora ergue mais Oficinas Leves quando todas estão ocupadas, uma Mola Real junto de cada Torre do Relógio para a Tensão de que os Pêndulos, as Balistas de Mola e os Saltadores precisam, uma segunda Oficina Pesada e Reguladores antes de lhe faltarem. Nenhuma unidade ou construção mudou."],
 	"0.38.222": ["Taxas de vitória nos seis confrontos depois das lições das batalhas, com e sem o corte do Bocarraiz (só ferramentas e dados)."],

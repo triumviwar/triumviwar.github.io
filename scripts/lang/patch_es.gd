@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.225": ["Ilustraciones del Acto 2 terminadas: el resto del Consejo de los Engranajes, Río Abajo, Entre Dos Fuegos, el Frente de la Selva y el Asedio de Concórdia (19 pinturas al óleo sustituyen los dibujos provisionales)."],
 	"0.38.224": ["Los cuadros del Acto 2 pintados: el Oro de Vila Rica, el Éxodo, la Isla, la Ciudad de los Engranajes, la Misión de São Rafael y la Reina (24 pinturas al óleo sustituyen los bocetos dibujados en código), y el primero del Consejo de los Engranajes."],
 	"0.38.223": ["El ordenador del Mecanismo sigue gastando al final de la partida (clockwork-late-macro). Se paraba en cinco Talleres Ligeros y dos Muelles Reales, así que, tras perder la gran batalla, los engranajes se amontonaban en el banco mientras reconstruía despacio y solo con Soldados Reloj. Ahora levanta más Talleres Ligeros cuando todos están ocupados, un Muelle Real junto a cada Torre del Reloj para la Tensión que necesitan sus Péndulos, Balistas de Resorte y Saltadores, un segundo Taller Pesado y Reguladores antes de que le falten. No cambió ninguna unidad ni construcción."],
 	"0.38.222": ["Tasas de victoria en los seis enfrentamientos tras las lecciones de las batallas, con y sin el recorte de la Bocarraíz (solo herramientas y datos)."],

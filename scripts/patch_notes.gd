@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.225", "items": [
+		"Act 2's stills finished: the rest of the Council of Gears, Down the Rivers, Between Two Fires, the Jungle Front and the Siege of Concórdia (19 oil paintings replace the stand-ins drawn in code).",
+	]},
 	{"v": "0.38.224", "items": [
 		"Act 2's stills painted: the Gold of Vila Rica, the Exodus, the Island, the City of Gears, the Mission of São Rafael and the Queen (24 oil paintings replace the stand-ins drawn in code), and the Council of Gears' first.",
 	]},
