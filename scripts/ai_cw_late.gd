@@ -68,11 +68,12 @@ static func tick(ai) -> void:
 		_heavy(ai)
 
 
-## The bank the hall plan does not hold back.
+## The bank the hall plan and the tech's saving do not hold back.
 static func _spare(ai) -> int:
 	var gold: int = ai._gold()
 	if ai._keeping():
 		gold -= ai._hall_keep()
+	gold -= int(ai._reserve)        # (the tech's and the heavy machines' saved cogs: the Heavy Works, a Mainspring, the Escapement)
 	return gold
 
 
