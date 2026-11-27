@@ -26,6 +26,12 @@
 
 ## Current work
 
+- WIN RATES 2026-11-26 (owner 2026-11-26 "win rate tests... with the Rootmaw nerf... all matchups"; jobs winrate-crown-brood,
+  winrate-clock-brood, winrate-brood-mirror, winrate-no-brood, MERGED 0.38.222, docs/winrate_2026_11_26.md + 4 part docs,
+  data docs/winrate_2026_11_26/data/, tools/study/winrate_1126_*.py): 270 games on 0.38.221 to 20:00, 30 a cell, same seeds.
+  Won or led first/second: Crown v Brood 13/16 (nerf `farmaw:2.0` 12/16, g -0.40 -> 0.00), Clockwork v Brood 16/14 (nerf
+  14/16), Brood mirror spot A 18/7 (t 2.3: the spot edge is BACK; nerf 18/10), Crown v Clockwork 24/2 (14 outright wins, 0
+  lost), Crown mirror 11/17, Clockwork mirror 13/14. The seed rule put 18 v 12 games on spot A. Rootmaw decision: OWNER.
 - AI LESSONS (owner 2026-11-26 "the new combat and battle rules and what was learned by the battle tests into the main AI";
   job ai-lessons, branch ai-lessons, docs/ai_lessons.md, scripts/ai_lessons.gd AILessons, tools/study/ai_lessons.py, data
   docs/ai_lessons/data/): ON: `dragoonwave` (a Dragoon getting off stays in the wave's count; HOLD no longer restarts a
