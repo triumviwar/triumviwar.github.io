@@ -118,7 +118,7 @@ def one(cell, arm, i):
         res = "w" if sc[si] > 1.1 * sc[oi] else ("l" if sc[oi] > 1.1 * sc[si] else "=")
 
     def val(p, key, mn):
-        if winner >= 0 and p != winner and mn * 60 > end:
+        if winner >= 0 and p != winner and mn * 60 > end and key != "bld_lost":
             return 0          # (beaten: nothing left)
         x = at.get((p, mn))
         if x is None and mn * 60 > end:
@@ -165,6 +165,15 @@ def table(cell, arms, games):
         gs = [x["g"] for x in rows]
         out.append("| %s | %d | %d | %d | %d | %d | %d | %d / %d | %+.2f (%.1f) |" % (a, len(rows), c["W"], c["w"], c["="], c["l"], c["L"],
                    c["W"] + c["w"], c["L"] + c["l"], mean(gs), tstat(gs)))
+    out.append("")
+    base = {x["i"]: x for x in R[arms[0]]}
+    for a in arms[1:]:
+        d = [x["g"] - base[x["i"]]["g"] for x in R[a] if x["i"] in base]
+        if len(d) >= 2:
+            better = sum(1 for v in d if v > 0.05)
+            worse = sum(1 for v in d if v < -0.05)
+            out.append("- %s against %s, game by game (the same seeds): g %+.2f (t %.1f), better in %d, worse in %d of %d." % (
+                a, arms[0], mean(d), tstat(d), better, worse, len(d)))
     out.append("")
     for key, name in (("bank", "Clockwork cogs in the bank"), ("supply", "Clockwork supply used"), ("cap", "Clockwork supply limit"),
                       ("army", "army value (Clockwork / foe)"), ("halls", "halls standing (Clockwork / foe)"),
