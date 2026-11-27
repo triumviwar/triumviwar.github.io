@@ -34,6 +34,7 @@ const BuildsEco := preload("res://scripts/ai_cw_eco.gd")
 var bte = null
 var eco_on := BuildsEco.on()
 ## (clockwork-army: the army as ONE army, scripts/ai_cw_army.gd, docs/clockwork_army.md; `-- cwarmy:off` plays the old)
+const CwLate := preload("res://scripts/ai_cw_late.gd")      # (clockwork-late-macro, docs/clockwork_late_macro.md)
 const CwMacro := preload("res://scripts/ai_cw_macro.gd")
 var macro = null                # (econ-coach-clockwork: scripts/ai_cw_macro.gd; `-- cwmacro:off` plays as before)
 
@@ -531,6 +532,7 @@ func _build_up() -> void:
 		_bo_tick()
 	else:
 		super._build_up()
+		CwLate.tick(self)           # (clockwork-late-macro: more Works, Mainsprings, a second Heavy Works, supply ahead)
 
 
 ## (clockwork-ai-v2, the qa study's slow air answer: test_cw_air_ai) ENEMY FLYERS SEEN: the Clock Aviary is laid at once and
