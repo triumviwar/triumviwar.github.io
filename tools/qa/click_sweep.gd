@@ -806,6 +806,8 @@ func _hand_click(b: BaseButton) -> Array:
 	var under := ""
 	if hov != null and hov != b and not b.is_ancestor_of(hov):
 		under = "%s (%s)" % [_path(hov), hov.get_class()]
+		if _rect(hov).get_area() > 0.6 * vp.get_area() and not hov is BaseButton:
+			under = "box"          # (a box over the whole page, a banner or a question: the page waits for it, by design)
 	for down in [true, false]:
 		var e := InputEventMouseButton.new()
 		e.position = wp
@@ -921,7 +923,7 @@ func _press_menu_button(prefix: String, pid: String, seed_name: String, seed: Ca
 		if hc[1] == "offscreen":
 			fl.append("OFFSCREEN")
 			_flag("OFFSCREEN", pid, "'%s' %s: its middle is outside the window" % [key, _path(b)])
-		elif hc[1] != "gone":
+		elif hc[1] != "gone" and hc[1] != "box":
 			fl.append("COVERED")
 			_flag("COVERED", pid, "'%s' %s: a click at its middle lands on %s" % [key, _path(b), hc[1]])
 		if is_instance_valid(b) and b.is_visible_in_tree() and not b.disabled:
