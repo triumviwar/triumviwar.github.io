@@ -51,6 +51,11 @@ const FEATURED := ["crown_battle_12", "crown_battle_13", "crown_battle_14", "cro
 const WEIGHT := 3.0
 const FEATURED_GAP := 2
 const MENU_FIRST := "menu_11"
+## THE CROWN'S VICTORY (job music-mix-pass, owner 2026-11-28): the full band plays God Save the King
+## (tools/audio/band_godsave.py) INSTEAD of the victory sting when the Crown wins; its drum roll-off lies under the
+## herald's "Victory! God save the King!". false = the ElevenLabs sting "Crown of Triumph" (win_crown) as before.
+const CROWN_ANTHEM := "win_crown_anthem"
+const CROWN_ANTHEM_ON := true
 var _skirmish := false    # the battle piece playing is a skirmish piece, to be raised when the fight heats up
 var _piece_t := 0.0
 const FADE := 2.5
@@ -632,6 +637,8 @@ func match_ended(won: bool, faction: String) -> void:
 static func _sting_name(faction: String, won: bool) -> String:
 	var f: String = String(FACTION_KEY.get(faction, "crown")).replace("clock", "clockwork")
 	if won:
+		if f == "crown" and CROWN_ANTHEM_ON and has_piece(CROWN_ANTHEM):
+			return CROWN_ANTHEM
 		return "win_" + f
 	return "defeat_" + f if has_piece("defeat_" + f) else "defeat"
 

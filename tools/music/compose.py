@@ -14,6 +14,8 @@ choir sections, orchestral percussion and the mastering chain from orchestra.py 
                  played dead on the grid (no human timing), the battle piece in 7/8.
 
 Usage: python3 tools/music/compose.py [name ...]   -> assets/music/<name>.ogg (+ scripts/music_tracks.gd)
+       (the mastering is tools/music/mixpass.py; tools/music/mix_pass.py is the driver that also checks the true
+       peak after Vorbis and skips the ElevenLabs stems; --old-master = the chains before the mix pass)
        python3 tools/music/compose.py --tracks       -> only rewrite scripts/music_tracks.gd
 Needs numpy, scipy and ffmpeg. The instrument library (synth.py) is shared with TCG-RPG.
 """
@@ -29,6 +31,7 @@ import synth  # noqa: E402
 import orchestra  # noqa: E402,F401  (registers the orchestral sections and percussion)
 from orchestra import chord, transpose, voicing, bass_of, rel_interval  # noqa: E402
 from synth import SR, _t, _env, _phase, _additive, _lowpass, _bandpass, _highpass, _noise  # noqa: E402
+import mixpass  # noqa: E402  (the mastering chain since the mix pass, 2026-11-28)
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 OUT = os.path.join(ROOT, "assets", "music")
@@ -405,6 +408,8 @@ def _shape_curve(kind, n, dur):
 
 
 def master(l, r, target_rms=0.17, ceiling=0.89):
+    if mixpass.ON:          # the mix pass (job music-mix-pass): no saturator, a fader ride, -12.8 LUFS
+        return mixpass.process(l, r, "classic")
     pk = max(np.max(np.abs(l)), np.max(np.abs(r)), 1e-9)
     l, r = l / pk, r / pk
     mono = (l + r) * 0.5
@@ -2911,6 +2916,8 @@ def write_tracks():
     import master_elevenlabs
     for stem, _src, title, _where, _s in master_elevenlabs.PIECES:
         lines.append('\t"%s": "%s",' % (stem, title.replace('"', '\\"')))
+        if stem == "win_crown":     # the band's anthem, the Crown's victory since the mix pass (tools/audio/band_godsave.py)
+            lines.append('\t"win_crown_anthem": "God Save the King (the band)",')
     lines.append("}")
     with open(os.path.join(ROOT, "scripts", "music_tracks.gd"), "w") as f:
         f.write("\n".join(lines) + "\n")
@@ -2926,7 +2933,9 @@ brood_more.register(sys.modules[__name__])
 
 
 if __name__ == "__main__":
-    names = [a for a in sys.argv[1:] if a != "--tracks"]
+    if "--old-master" in sys.argv:
+        mixpass.ON = False
+    names = [a for a in sys.argv[1:] if a not in ("--tracks", "--old-master")]
     if not names and "--tracks" not in sys.argv:
         names = list(SONGS)
     for nm in names:

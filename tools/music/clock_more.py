@@ -113,6 +113,11 @@ def register(C):
 
         def render(self):
             L0, R0 = self.mix()
+            import mixpass
+            if mixpass.ON:        # the mix pass sets the loudness itself (-12.8 LUFS)
+                L, R = mixpass.process(L0, R0, "epic")
+                self.measured = lufs(L, R)
+                return L, R
             tgt = self.target
             for _ in range(4):
                 L, R = orchestra.master_epic(L0.copy(), R0.copy(), tgt, 0.84)

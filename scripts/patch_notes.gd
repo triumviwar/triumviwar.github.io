@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.240", "items": [
+		"THE MUSIC IS MIXED AGAIN (music-mix-pass), no note changed: every generated piece breathes more, the quiet parts quieter and the climaxes standing out (a loudness range of 8 to 10 LU, about 7 before), the deep bass of the battle pieces cut back to what phones and laptops can play, and every piece as loud as the others (about -12.8 LUFS). The old mastering squashed the pieces with a saturator and a compressor; the new one rides the faders instead.",
+		"GOD SAVE THE KING: when the Crown wins a match, the marching band (pipes, fifes and drums) plays God Save the King, its drum roll under the herald's \"Victory! God save the King!\".",
+	]},
 	{"v": "0.38.239", "items": [
 		"The Brood is green in the paintings too: the red spines, crests and frills of the Brood's creatures in the main menu painting, 19 campaign stills and the creatures' dialogue portrait are now the Brood's venom green (the Clockwork's red, fire, blood and sunsets are untouched).",
 	]},
