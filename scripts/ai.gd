@@ -5453,6 +5453,11 @@ func _tend_wagon() -> void:
 var hunt: AIHunt = null          # (rules-fixes 3: the winner hunts, scripts/ai_hunt.gd)
 
 
+## (crown-mirror-20 P3, `cm20gates:on`) a wave the Crown mirror's press sent goes past the shared rule's other gates.
+func _press_go(_ready: Array) -> bool:
+	return false
+
+
 ## (crown-brood-late) the wave's ready men; AICrown leaves its home guard out (AICrownBroodLate.wave_ready).
 func _late_ready(ready: Array) -> Array:
 	return ready
@@ -5544,7 +5549,7 @@ func _army() -> void:
 		_attack_at = _army_supply(ready)
 		if game.mlog:
 			game.mlog.add("%s's army is at the supply cap or far ahead (%d supply): it goes out again" % [game.mlog.who(team), _army_supply(ready)])
-	if not _attacking and _army_supply(ready) >= _attack_at and not regrouping and _timing_ok(ready) and _kit_ready(ready) and r5.attack_ok(ready) and _wave_worth(ready) and not (_sw() and swm().hold_attack()):
+	if not _attacking and _army_supply(ready) >= _attack_at and ((not regrouping and _timing_ok(ready) and _kit_ready(ready) and r5.attack_ok(ready) and _wave_worth(ready) and not (_sw() and swm().hold_attack())) or _press_go(ready)):
 		_attacking = true
 		_wave_target = _enemy_base()
 		_attack_at = mini(_attack_at + int(_s("step")), 70)

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.245", "items": [
+		"The Crown mirror measured to 20:00 (crown-mirror-20): 110 computer games, tools and data only; three measuring switches for the Crown computer in the mirror, all off, so nothing in play changes.",
+	]},
 	{"v": "0.38.244", "items": [
 		"Tooltips on every main menu button and all through TOURNAMENTS: every button, every setting of MAKE A TOURNAMENT, and each choice in its lists (point at Double elimination, Swiss, the map bans, the faction rules... to read what they mean). MAKE IT now sits beside BACK at the top and stays in sight while the form scrolls. Every BACK button in the menus is red, easy to spot.",
 	]},

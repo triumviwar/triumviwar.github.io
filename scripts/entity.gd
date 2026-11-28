@@ -110,11 +110,16 @@ const BLOW_MELEE := "melee"
 const BLOW_BROOD := "brood"
 
 
+const _CM20 = preload("res://scripts/ai_crown_mirror_20.gd")   # (crown-mirror-20 P4 switch)
+
+
 ## `blow`: what kind of blow it is (BLOW_*; "" = area or unknown).
 func take_damage(amount: float, _from: Entity, blow := "") -> void:
 	if dead or untouchable():
 		return
 	last_blow = blow
+	if _CM20.fade_on:
+		amount *= _CM20.wall_k(game, self)      # (crown-mirror-20 P4, `cm20fade:on`, a measuring switch: walls weaken late)
 	var arm := armor - (2.0 if acid_t > 0.0 else 0.0)
 	# a hit always does at least 1, but damage over time (storm, gas clouds: tiny amounts
 	# every tick) is applied as it is, or the 1-point floor turns it into 30 a second
