@@ -1,0 +1,35 @@
+# qa-click-sweep (docs/qa_click_sweep.md): texts the click sweep found shown in English in pt / es.
+# The HUD's mode hints on a computer: "Tap" becomes "Click" there (hud.gd), which had no translation.
+
+> Click where to move
+pt Clique onde mover
+es Haz clic donde mover
+
+> Click a target or place to attack-move
+pt Clique num alvo ou lugar para atacar-mover
+es Haz clic en un objetivo o lugar para atacar avanzando
+
+> Click the rally point
+pt Clique no ponto de reunião
+es Haz clic en el punto de reunión
+
+> Click the enemy to lash with the tongue
+pt Clique no inimigo para chicotear com a língua
+es Haz clic en el enemigo para azotarlo con la lengua
+
+> Click where to cast the %s
+pt Clique onde lançar %s
+es Haz clic donde lanzar %s
+
+> Click where new soldiers gather
+pt Clique onde os novos soldados se reúnem
+es Haz clic donde se reúnen los nuevos soldados
+
+> Click where new workers go to work
+pt Clique onde os novos trabalhadores vão trabalhar
+es Haz clic donde irán a trabajar los nuevos trabajadores
+
+# a gun's panel: "Set up: canister loaded."
+> canister
+pt metralha
+es metralla
