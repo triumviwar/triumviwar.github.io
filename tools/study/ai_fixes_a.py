@@ -9,7 +9,7 @@ PART:
   raid:<foe>[:<n>] : the Hard Clockwork OPTIMAL v the Hard <foe> OPTIMAL (crown or brood) on the six parity maps, qa_matches
       base rounds 0.. (the same seeds every arm), the first n games (default 20), to 20:00, the Clockwork's log lines kept.
 The arm is the --extra switches (e.g. normalpace:off, cwraidsize:off,cwraidpart:off); give each arm its own --data."""
-import os, sys
+import os, sys, shutil
 from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -43,8 +43,11 @@ def run_one(g, out, data, end, extra):
     tag, m, seed, slots = g
     if len(slots[0]) == 4:
         spec = ",".join("/".join(str(x) for x in s) for s in slots)
-        return qm.run_one((tag, m, seed, []), out, end, data, ["slots:" + spec] + extra)
-    return qm.run_one(g, out, end, data, extra)
+        r = qm.run_one((tag, m, seed, []), out, end, data, ["slots:" + spec] + extra)
+    else:
+        r = qm.run_one(g, out, end, data, extra)
+    shutil.rmtree(os.path.join(out, tag), ignore_errors=True)      # (the raw output and match log are big; the disk is short)
+    return r
 
 
 if __name__ == "__main__":

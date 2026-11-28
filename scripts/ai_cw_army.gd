@@ -51,11 +51,12 @@ var _big_t := -99.0
 ## (ai-fixes-a, docs/ai_fixes_a.md) THE WHOLE ARMY FOR A SMALL RAID: a raid worth more than the token (150-300) turned the
 ## whole army round: "the whole army defends the base (12 units, 1,160) against a raid worth 150" (the opponent review: 31
 ## of 166 such answers were more than five times the raid). Now a raid (all its spots together) worth less than SIZED_SHARE
-## of the army at home is met by a group worth SIZED_K times it (the nearest, at least GROUP_MIN), the rest stays where it
+## of the army at home (and under SIZED_MAX: a few riders, a handful of units) is met by a group worth SIZED_K times it (the nearest, at least GROUP_MIN), the rest stays where it
 ## was, and the push may still go out without the group (ai_cw_push: the defenders are not taken). Bigger raids, and one
 ## the whole army already went to (STAY_DEFEND), as before. MEASURING SWITCH `cwraidsize:off` (as before).
 const SIZED_SHARE := 0.3
 const SIZED_K := 2.0
+const SIZED_MAX := 500.0        # (a raid of 600 or more is a real attack: test_clockwork_home's WHOLE_PEAK, the whole army)
 static var raid_size_on := not OS.get_cmdline_user_args().has("cwraidsize:off")
 var _sized_said := -99.0
 const MASS_SINCE := 0.0         # (the opening's steady production: AIClockwork._bo_mass)
@@ -860,7 +861,7 @@ func _defend(home: Array, g: Vector2) -> bool:
 			total += float(a["value"])
 		var c0 := _centre(home) if not home.is_empty() else g
 		var token := total < clampf(mine * TOKEN_SHARE, TOKEN_MIN, TOKEN_MAX) and total < mine * WHOLE_SHARE
-		if raid_size_on and not token and total < mine * SIZED_SHARE and not (phase == "defend" and game.clock - _big_t < STAY_DEFEND):
+		if raid_size_on and not token and total < mine * SIZED_SHARE and total < SIZED_MAX and not (phase == "defend" and game.clock - _big_t < STAY_DEFEND):
 			# (ai-fixes-a) A SMALL RAID GETS A DEFENCE ITS SIZE: a group worth SIZED_K times it (below), the rest stays
 			token = true
 			if game.clock - _sized_said > 10.0:
