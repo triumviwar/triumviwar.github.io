@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["Cada mapa se muestra como un pequeño dibujo del mapa de verdad allí donde eliges uno: los colores del suelo como en el minimapa, terreno alto y acantilados, rampas, agua, bosques y cada sitio de ayuntamiento con un anillo dorado, con los puntos de inicio numerados encima. Los mapas clásicos (Frostfang, Greenhold...) eran antes cajas de un solo color. Los dibujos están en la sala de escaramuza, la sala en línea, los botones de vetar y elegir de los torneos, la lista CARGAR del editor de mapas, la lista de repeticiones y el informe de la campaña."],
 	"0.38.230": ["Las Crías de la Nidada ahora son un pequeño guiverno: verde oliva, alas de murciélago y una hilera de púas rojas, volando y mordiendo en todas las direcciones."],
 	"0.38.229": ["Una larva que carga, envuelve o guarda un capullo mantiene la misma piel oliva oscura que cuando camina (antes se volvía amarillenta)."],
 	"0.38.228": ["Los caballos pastan mirando hacia donde están (antes todos pastaban hacia abajo a la derecha), también en el corral; la Madre de la Camada en su segunda etapa camina de frente hacia ti; los nuevos fotogramas de pistola del Coracero aceptan todos los pelajes."],

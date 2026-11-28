@@ -656,7 +656,7 @@ func _show_load() -> void:
 	if names.is_empty():
 		v.add_child(UiStyle.text("No saved maps yet.", 17, UiStyle.MUTED))
 	var scroll := ScrollContainer.new()
-	scroll.custom_minimum_size = Vector2(0, mini(names.size(), 5) * 50)
+	scroll.custom_minimum_size = Vector2(0, mini(names.size(), 4) * 62)
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	v.add_child(scroll)
 	var list := VBoxContainer.new()
@@ -667,6 +667,7 @@ func _show_load() -> void:
 		var md := MapGen.load_custom(nm)
 		var cs := MapGen.custom_size(md)
 		var row := HBoxContainer.new()
+		row.add_child(_thumb("custom:" + nm))
 		var b := _btn("%s   (%s, %dx%d)" % [nm, MapGen.custom_mode(md), cs.x, cs.y], 400, func() -> void:
 			p.queue_free()
 			reopen_requested.emit(MapGen.load_custom(nm)))
@@ -699,8 +700,21 @@ func _show_load() -> void:
 			copy.erase("checked")
 			reopen_requested.emit(copy), "Opens a copy of this example")
 		eb.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		v.add_child(eb)
+		eb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var erow := HBoxContainer.new()
+		erow.add_child(_thumb("campaign:" + String(ex)))
+		erow.add_child(eb)
+		v.add_child(erow)
 	v.add_child(_btn("CLOSE", 120, func() -> void: p.queue_free()))
+
+
+## A map's small picture in the LOAD list (MapPreview, job map-previews).
+func _thumb(id: String) -> Control:
+	var pv := MapPreview.new()
+	pv.map_id = id
+	pv.frame = false
+	pv.custom_minimum_size = Vector2(84, 56)
+	return pv
 
 
 ## LAND / MIX: every biome with a tile of its ground.
@@ -958,6 +972,7 @@ func _save_picture() -> void:
 			img.set_pixel(x, y, col)
 	img.resize(W * 2, H * 2, Image.INTERPOLATE_NEAREST)
 	img.save_png("%s/%s.png" % [MapGen.MAP_DIR, map_name])
+	MapThumb.forget("custom:" + map_name)       # (the lobby's picture is made anew from the saved map: job map-previews)
 
 
 func _play() -> void:

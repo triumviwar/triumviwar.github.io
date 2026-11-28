@@ -93,6 +93,13 @@ func _row(m: Dictionary) -> Control:
 	var h := HBoxContainer.new()
 	h.add_theme_constant_override("separation", 12)
 	p.add_child(h)
+	var rmap := String(m.get("map", ""))
+	if rmap != "" and not MapGen.MAPS.has(rmap) and MapThumb.drawable(rmap):
+		var pv := MapPreview.new()           # (job map-previews)
+		pv.map_id = rmap
+		pv.show_starts = false
+		pv.custom_minimum_size = Vector2(96, 64)
+		h.add_child(pv)
 	var info := VBoxContainer.new()
 	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	info.add_theme_constant_override("separation", 3)

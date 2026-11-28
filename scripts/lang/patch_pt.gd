@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["Cada mapa aparece como um pequeno desenho do mapa de verdade onde quer que você escolha um: as cores do chão como no minimapa, terreno alto e penhascos, rampas, água, matas e cada lugar de prefeitura com um anel dourado, com os pontos de início numerados por cima. Os mapas clássicos (Frostfang, Greenhold...) eram antes caixas de uma cor só. Os desenhos estão na sala de escaramuça, na sala online, nos botões de banir e escolher dos torneios, na lista CARREGAR do editor de mapas, na lista de replays e no briefing da campanha."],
 	"0.38.230": ["Os Filhotes da Ninhada agora são uma pequena serpe: verde-oliva, asas de morcego e uma fileira de espinhos vermelhos, voando e mordendo em todas as direções."],
 	"0.38.229": ["Uma larva carregando, embrulhando ou guardando um casulo mantém a mesma pele oliva escura de quando anda (antes ficava amarelada)."],
 	"0.38.228": ["Os cavalos pastam virados para onde estão (antes todos pastavam para baixo à direita), também no cercado; a Mãe da Ninhada no segundo estágio caminha de frente para você; os novos quadros de pistola do Couraceiro aceitam todas as pelagens."],

@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"Every map is shown as a small picture of the real map wherever you pick one: the ground's colours as on the minimap, high ground and cliffs, ramps, water, woods and every hall spot ringed in gold, with the start spots numbered on top. The classic maps (Frostfang, Greenhold...) were plain coloured boxes before. The pictures are in the skirmish lobby, the online room, the tournaments' ban and pick buttons, the map editor's LOAD list, the replay list and the campaign briefing.",
+	]},
 	{"v": "0.38.230", "items": [
 		"The Brood's Hatchlings are now a small wyvern: olive green, bat wings and a row of red spines, flying and biting in every direction.",
 	]},
