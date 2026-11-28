@@ -116,7 +116,7 @@ def one(d):
     for p in (0, 1):
         mx, e = hmax(p), hend(p)
         if mx is not None and e is not None:
-            lost[p] = mx - e
+            lost[p] = max(0, mx - e)
     return {"tag": tag, "map": g.get("map", ""), "spot": sp, "res": res, "end": end, "g": gv, "sc": sc, "winner": winner,
             "lead12": lead12, "lost": lost, "halls20": (hend(0), hend(1)),
             "inc": {mn: (val(0, "income", mn), val(1, "income", mn)) for mn in (8, 12, 16)},

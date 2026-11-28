@@ -163,8 +163,10 @@ var _screen_until := -1.0         # (crown-mirror-20 P2) the guns' screen holds 
 var screens := 0                  # (the report) screens formed
 
 
+## (crown-mirror-20 P2) a gun's spot under fire may be taken when the wave's men screen it: in a bombardment with its
+## screen formed, and whenever the wave's guns go for a hall (guns_at_hall) with its men about them.
 func _screen_on() -> bool:
-	return CM20.guns_on and _screen_until > game.clock and bombarding()
+	return CM20.guns_on
 const BOMBARD_T := 40.0
 const BOMBARD_COOL := 120.0
 var _bomb_until := -1.0
