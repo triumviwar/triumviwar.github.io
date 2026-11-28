@@ -260,7 +260,7 @@ func _play_fire(g: Game, r: MissionRun) -> void:
 	for u in _team(g, r, "fire"):
 		# a sensible fire player: the outposts' families while they are over the ford, then gather out of the guns'
 		# reach and wait for the front to break; then the people
-		var goal := _mid(r, "ford_far") if g.clock < 75.0 else _mid(r, "edge")
+		var goal := _mid(r, "ford_far") if g.clock < 75.0 else _mid(r, "ford_far").lerp(_mid(r, "edge"), 0.4)
 		if r.fired.has("part2"):
 			goal = lag if lag != Vector2.INF else _mid(r, "bluff_mid")
 		var foe := _nearest_foe(g, t, u.position, 6.0 * Defs.TILE)

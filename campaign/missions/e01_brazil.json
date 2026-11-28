@@ -1793,6 +1793,156 @@
 			"if": {
 				"version": "river"
 			}
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				16,
+				39
+			],
+			"tags": [
+				"port_b",
+				"quarters"
+			],
+			"if": {
+				"version": "south"
+			}
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				19,
+				39
+			],
+			"tags": [
+				"port_b",
+				"quarters"
+			],
+			"if": {
+				"version": "south"
+			}
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				16,
+				53
+			],
+			"tags": [
+				"port_b",
+				"quarters"
+			],
+			"if": {
+				"version": "south"
+			}
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				19,
+				53
+			],
+			"tags": [
+				"port_b",
+				"quarters"
+			],
+			"if": {
+				"version": "south"
+			}
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				16,
+				41
+			],
+			"tags": [
+				"port_b",
+				"quarters"
+			],
+			"if": {
+				"version": "south"
+			}
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				166,
+				45
+			],
+			"tags": [
+				"port_b",
+				"quarters"
+			],
+			"if": {
+				"version": "river"
+			}
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				169,
+				45
+			],
+			"tags": [
+				"port_b",
+				"quarters"
+			],
+			"if": {
+				"version": "river"
+			}
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				166,
+				57
+			],
+			"tags": [
+				"port_b",
+				"quarters"
+			],
+			"if": {
+				"version": "river"
+			}
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				169,
+				57
+			],
+			"tags": [
+				"port_b",
+				"quarters"
+			],
+			"if": {
+				"version": "river"
+			}
+		},
+		{
+			"team": "column",
+			"kind": "cottage",
+			"at": [
+				179,
+				45
+			],
+			"tags": [
+				"port_b",
+				"quarters"
+			],
+			"if": {
+				"version": "river"
+			}
 		}
 	],
 	"objectives": [
@@ -10027,7 +10177,7 @@
 						"playing": "fire"
 					},
 					{
-						"time": 45
+						"time": 40
 					},
 					{
 						"not": {
@@ -10051,13 +10201,13 @@
 					}
 				]
 			},
-			"every": 45,
+			"every": 40,
 			"do": [
 				{
 					"spawn": {
 						"team": "fire",
 						"kind": "raptor",
-						"count": 7,
+						"count": 8,
 						"at": "edge",
 						"tag": "f_army",
 						"tags": [
@@ -10099,7 +10249,7 @@
 									"version": "river"
 								},
 								{
-									"time": 240
+									"time": 200
 								}
 							]
 						}
@@ -10124,7 +10274,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "springer",
-						"count": 2,
+						"count": 4,
 						"at": "edge",
 						"tag": "f_army",
 						"tags": [
@@ -10166,7 +10316,7 @@
 									"version": "south"
 								},
 								{
-									"time": 240
+									"time": 200
 								}
 							]
 						}

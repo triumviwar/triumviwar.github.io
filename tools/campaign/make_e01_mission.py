@@ -104,7 +104,7 @@ FORT_HP = 3000             # the harbour fort (the stone fort over the quay: a T
 LOSE_SHARE, SOME, MANY = 0.4, 0.5, 0.8   # aboard as a share of the people: lost / few / some / many
 FIRE_WIN = 0.5             # the mirror: under this share aboard when the ships sail, the fire wins
 CHEST_GOLD, CHEST_POWDER = 400, 150       # Part 3: the port's treasury (its Barracks trains for the army)
-F_REINF_EVERY = 45         # the mirror: the fire player's own waves come down this often
+F_REINF_EVERY = 40         # the mirror: the fire player's own waves come down this often
 
 # ================================================================== the areas: the southern road's are the mission's own,
 # the river road's ride on its version (Campaign.version_data: one area name, two maps)
@@ -204,6 +204,11 @@ for b in list(buildings):
     r["at"] = [RA["fort_at" if b["kind"] == "town_hall" else "barracks_at"][0], RA["fort_at" if b["kind"] == "town_hall" else "barracks_at"][1]]
     r["if"] = RIVER
     buildings.append(r)
+# the port's houses: the army's quarters (supply: no base on the road, 8 a Cottage; off the bluff's middle lane)
+QUARTERS = {"south": [[16, 39], [19, 39], [16, 53], [19, 53], [16, 41]], "river": [[166, 45], [169, 45], [166, 57], [169, 57], [179, 45]]}
+for v, cond in (("south", SOUTH), ("river", RIVER)):
+    for xy in QUARTERS[v]:
+        buildings.append({"team": "column", "kind": "cottage", "at": xy, "tags": ["port_b", "quarters"], "if": cond})
 
 # ================================================================== the objectives
 objectives = [
@@ -631,8 +636,8 @@ ASSAULT = {
               ("clock_soldier", 3, HARD), ("ballista", 1, SIEGE_HELD_OFF), ("clock_soldier", 2, SIEGE_HELD_OFF)],
 }
 REINF = {   # the fire played: its own waves (the player leads them)
-    "river": [("raptor", 7, None), ("spitter", 3, None), ("tyrant_challenger", 1, {"time": 240})],
-    "south": [("clock_soldier", 6, None), ("springer", 2, None), ("winder", 1, None), ("pendulum", 1, {"time": 240})],
+    "river": [("raptor", 8, None), ("spitter", 3, None), ("tyrant_challenger", 1, {"time": 200})],
+    "south": [("clock_soldier", 6, None), ("springer", 4, None), ("winder", 1, None), ("pendulum", 1, {"time": 200})],
 }
 
 

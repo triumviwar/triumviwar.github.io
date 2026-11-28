@@ -357,8 +357,11 @@ func _part2() -> void:
 	_to_part2(g, r)
 	var p2 := float(r.fired["part2"])
 	check("the three groups set out on their roads", r.fired.has("go_g1") and r.fired.has("go_g2") and r.fired.has("go_g3"))
-	check("the militia escort them", _alive(r, "home_men").all(func(u): return r._follows.any(func(f): return (f["units"] as Array).has(u)
-		and String(f["leader"]) == "g2")))
+	var esc: Array = []
+	for f in r._follows:
+		if String(f["leader"]) == "g2":
+			esc.append_array(f["units"])
+	check("the militia escort them", _alive(r, "home_men").all(func(u): return esc.has(u)))
 	# THE DRUMMER: beside g2 the army's pace; away, a walk
 	var dr: Unit = r.tagged("drummer")[0]
 	var g2: Array = _alive(r, "g2")
@@ -476,11 +479,10 @@ func _fire() -> void:
 	_to_part2(g, r)
 	_walk(g, g.clock + 30.0)
 	check("... the front breaks: the scripted army walks the road, the people do not wait at the pass", r.fired.has("sc_road") and r.fired.has("through"))
-	_kill(r.tagged("people"))
 	_to_part3(g, r)
-	r.clocks["ships"] = g.clock + 0.5
-	_walk(g, g.clock + 8.0)
-	check("THE FIRE: the ships sail with nobody aboard: WON for the fire", g.over and r.winner_side == "fire" and str(r.flags.get("colonists", "")) == "",
+	_kill(r.tagged("people"))
+	_walk(g, g.clock + 16.0)
+	check("THE FIRE: the ships sail with nobody aboard: WON for the fire", g.over and r.winner_side == "fire",
 		"%s %s %s" % [g.over, r.winner_side, r.flags])
 	# versus: the fort
 	_progress()

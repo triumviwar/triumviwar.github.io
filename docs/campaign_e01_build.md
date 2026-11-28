@@ -97,7 +97,7 @@ CO-OP: p2 is THE MILITIA (BLUE): the outposts' men, then the Barra's garrison (r
 Without a second player they are scripted (they fall back with the outposts and hold the ford).
 
 THE MIRROR (solo pick, "The Fire Fought Second") and VERSUS p2: THE FIRE (the swarm, GREEN, on the river; the machines,
-RED, on the southern road), told by "The Road". Its start army comes out at the edge, more of its own every 0:45; the
+RED, on the southern road), told by "The Road". Its start army comes out at the edge, more of its own every 0:40; the
 army of Brazil is scripted when nobody plays it (it holds, walks the road, its riders cover the flanks, the line holds
 the bluff). CATCH THEM ON THE ROAD: keep more than half of the people from the ships, or break the harbour fort. The King:
 "That is not how it went. Ruggieri brought them to the ships. But I have kept this page."
@@ -128,9 +128,36 @@ the bluff). CATCH THEM ON THE ROAD: keep more than half of the people from the s
 
 ## Balance (tools/sim_campaign_e01.gd; the last runs)
 
-BALANCE_TABLE
+Each run plays the whole mission (`tools/sim_campaign_e01.gd`, one sim a cell, its own user folder). "careful" holds
+the ford, walks the Drummer to the slowest group, sends two thirds of the line at the pass, trains at the port's
+Barracks; "late" does the same but slower to react; "passive" gives no order at all. Aboard = people aboard of all.
 
-The longest idle stretch in any run: IDLE_MAX (NO WAITING: under 45 s).
+| run | road | difficulty | result | aboard | time | the fort at the end |
+| --- | --- | --- | --- | --- | --- | --- |
+| careful | south | NORMAL | WON, many | 18 of 19 | 5:38 | 3,000 |
+| careful | river | NORMAL | WON, many | 18 of 22 | 6:01 | 3,000 |
+| careful | south | EASY | WON, many | 18 of 19 | 5:41 | 3,000 |
+| careful | south | HARD | WON, many | 17 of 19 | 5:45 | 2,868 |
+| careful | river | HARD | WON, few | 10 of 22 | 5:56 | 3,000 |
+| careful | river | BRUTAL | WON, some | 11 of 22 | 5:54 | 2,905 |
+| late | south | NORMAL | WON, some | 15 of 19 | 7:22 | 2,978 |
+| late | river | NORMAL | WON, some | 15 of 22 | 7:12 | 2,986 |
+| passive | south | NORMAL | LOST | 1 of 19 | 7:26 | 2,394 |
+| passive | river | NORMAL | LOST | 7 of 22 | 6:32 | 2,822 |
+| careful, jungle thin, Barra and fields burned | river | NORMAL | WON, some | 14 of 19 | 5:58 | 3,000 |
+| careful, families left, the valley fought | south | NORMAL | WON, many | 19 of 20 | 5:40 | 3,000 |
+| THE FIRE (a bot that waits out of the guns' reach, then goes for the people) | south | NORMAL | WON for the fire | 8 of 19 | 5:40 | 3,000 |
+| THE FIRE (the same) | river | NORMAL | WON for the fire | 9 of 22 | 5:47 | 3,000 |
+| THE FIRE (a bot that throws itself at the ford) | south | NORMAL | LOST for the fire | 14 of 19 | 5:31 | 3,000 |
+| careful, saved at 2:30 and loaded (SIM LOAD SAME yes) | south | NORMAL | WON, many | 18 of 19 | 5:41 | 3,000 |
+| careful, saved at 4:20 and loaded (SIM LOAD SAME yes) | river | NORMAL | WON, many | 18 of 22 | 5:55 | 3,000 |
+
+The river road is the harder one at HARD (the swarm's Raptors run the column down on the road; the machines are slow):
+a careful player brings "few" there. Earlier runs found the harbour fort falling to one assault (1,600 health: now
+3,000), the passive player winning with a third aboard (the line now two in five), and the southern HARD army dying
+at the pass (its ambush made one Clock Soldier smaller, the HARD Pendulum gone).
+
+The longest idle stretch in any run: 42 s (the passive run waiting for the ships with nobody walking; every playing run 19-28 s; the fire's 37 s) (NO WAITING: under 45 s).
 
 ## Pictures (docs/shots/e01_brazil/, CHECK THE FEEL)
 
