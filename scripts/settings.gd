@@ -12,6 +12,7 @@ static var ui_size := 0               # 0 = automatic, else a percentage (100-20
 static var grid_keys := false         # computer: command card keys by position (QWER / ASDF / ZXCV) instead of by name
 static var tooltips := true           # hover tooltips (computer) and the "?" help button (phone)
 static var build_grid := true         # show the planning grid while placing a building
+static var show_apm := true           # SHOW APM: the APM counter beside the match clock (ui-hud-pass; the end screen keeps it)
 static var area_marks := true         # area attacks lay their shape on the ground where they strike (GroundMarks)
 static var powder_smoke := -1         # black powder smoke (PowderSmoke): -1 = not chosen (THICK for now), 0 off, 1 light, 2 full, 3 thick
 static var expansion_spots := true    # the best expansion spots tinted on the ground (ExpansionSpots; Crown and Clockwork)
@@ -59,6 +60,7 @@ static func load_all() -> void:
 		grid_keys = _bool(cfg, "input", "grid_keys", false)
 		tooltips = _bool(cfg, "input", "tooltips", true)
 		build_grid = _bool(cfg, "input", "build_grid", true)
+		show_apm = _bool(cfg, "ui", "show_apm", true)
 		area_marks = _bool(cfg, "ui", "area_marks", true)
 		powder_smoke = clampi(_int(cfg, "ui", "powder_smoke", -1), -1, 3)
 		expansion_spots = _bool(cfg, "ui", "expansion_spots", true)
@@ -122,6 +124,7 @@ static func save_all() -> void:
 	cfg.set_value("input", "grid_keys", grid_keys)
 	cfg.set_value("input", "tooltips", tooltips)
 	cfg.set_value("input", "build_grid", build_grid)
+	cfg.set_value("ui", "show_apm", show_apm)
 	cfg.set_value("ui", "area_marks", area_marks)
 	cfg.set_value("ui", "powder_smoke", powder_smoke)
 	cfg.set_value("ui", "expansion_spots", expansion_spots)
@@ -210,6 +213,7 @@ static func reset() -> void:
 	grid_keys = false
 	tooltips = true
 	build_grid = true
+	show_apm = true
 	area_marks = true
 	powder_smoke = -1
 	expansion_spots = true

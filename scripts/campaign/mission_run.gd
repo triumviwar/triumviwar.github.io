@@ -1247,8 +1247,27 @@ func set_objective(oid: String, state: String) -> void:
 		game.mlog.add("(mission) objective %s: %s" % [oid, state])
 	if state == "done" and bool(objective(oid).get("primary", false)) and String(objective(oid).get("side", "")) == my_side():
 		_want_checkpoint("obj:" + oid)      # (a primary objective met: a CHECKPOINT, player-comforts)
+	if state == "active":
+		_ping_objective(objective(oid))
 	objectives_changed.emit()
 	_send({"k": "obj", "o": obj.duplicate()})
+
+
+## OBJECTIVE PINGS (ui-hud-pass, review 13): a new objective of mine with a place (a reach's area, a destroy's / protect's /
+## capture's / build's tag) pings the minimap there, so the player sees where it is.
+func _ping_objective(o: Dictionary) -> void:
+	if o.is_empty() or (String(o.get("side", "")) != "" and String(o.get("side", "")) != my_side()):
+		return
+	var p := Vector2.INF
+	if o.has("area") and data.get("areas", {}).has(String(o["area"])):
+		p = area_rect(String(o["area"])).get_center()
+	elif o.has("tag") and not tagged(String(o["tag"])).is_empty():
+		if tagged(String(o["tag"])).any(func(e) -> bool: return is_instance_valid(e) and e.has_meta("disguise_team")):
+			return          # (a disguised press is the thing to find: no ping gives it away)
+		p = near_rect(String(o["tag"])).get_center()
+	if p.is_finite() and p != Vector2.ZERO:
+		game._ping(p, Color(1, 0.85, 0.3))
+		_send({"k": "ping", "p": p})
 
 
 func _check_objectives() -> void:

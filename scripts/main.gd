@@ -1361,6 +1361,9 @@ func settings_rows(tab: String) -> Array:
 			rows.append(_tag(_toggle_row("BUILD GRID", func() -> bool: return Settings.build_grid, func() -> void:
 				Settings.build_grid = not Settings.build_grid
 				Settings.save_all()), "build_grid"))
+			rows.append(_tag(_toggle_row("SHOW APM", func() -> bool: return Settings.show_apm, func() -> void:
+				Settings.show_apm = not Settings.show_apm
+				Settings.save_all()), "show_apm"))      # (the APM counter beside the match clock: ui-hud-pass)
 			var keeps := [10, 20, 30, 50, 100]
 			rows.append(_tag(_choice_row("REPLAYS KEPT", Loc.t("NEWEST %d") % Settings.replays_keep, func() -> void:
 				var i := keeps.find(Settings.replays_keep)

@@ -321,6 +321,14 @@ static func meta_from(header: Dictionary, footer: Dictionary, path: String, me_f
 		"map_name": String(header.get("map_name", cfg.get("map", ""))), "players": players, "me": me,
 		"version": String(header.get("game_version", "?")), "view_only": bool(header.get("view_only", false)),
 		"online": String(header.get("online", "")), "kept": false, "result": "", "len": 0.0}
+	var camp = cfg.get("campaign", {})
+	if camp is Dictionary and String((camp as Dictionary).get("mission", "")) != "":
+		# (a campaign replay: its mission's title, not the map's file name: ui-hud-pass, review 17)
+		var mid := String(camp["mission"])
+		var mt := String(Campaign.mission(mid).get("title", ""))
+		if mt != "":
+			m["map_name"] = mt
+			m["mission"] = mid
 	if not footer.is_empty():
 		m["len"] = float(footer.get("len", 0.0))
 		m["result"] = result_for(header, footer, me)

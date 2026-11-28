@@ -9,7 +9,7 @@ extends SceneTree
 ## 4. each small mute button beside a volume bar mutes its sound (the Music / SFX bus, the ambience).
 ## The player's settings file is put back at the end. Prints PASS / FAIL; exit code 1 on a failure.
 
-const PC_IDS := ["language", "device", "grid_keys", "layout", "tooltips", "build_grid", "replays_keep", "relay_url",
+const PC_IDS := ["language", "device", "grid_keys", "layout", "tooltips", "build_grid", "show_apm", "replays_keep", "relay_url",
 	"replay_rec", "window_full", "ui_size", "mini_alpha", "powder_smoke", "area_marks", "expansion_spots", "rootmaw_spots", "health_bars", "band_marks", "overlay_alpha", "charge_bars",
 	"music", "sound", "ambience", "music_player", "gear_turn", "patch_notes", "anim_viewer", "reset",
 	"narrator", "narrator_volume", "narrator_rate"]
