@@ -960,7 +960,7 @@ func _keys(fac: String) -> void:
 		g.hud.page = ""
 	# control groups: Ctrl+1 then 1
 	var us: Array = g.workers(0)
-	if not us.is_empty():
+	if not us.is_empty() and size == "pc":       # (control groups by keyboard: a computer's)
 		g.set_selection(us)
 		await _key(KEY_2, true)
 		g.set_selection([])
@@ -979,12 +979,19 @@ func _minimap(fac: String) -> void:
 	var cam0: Vector2 = g.camera.position
 	for at in [r.position + r.size * 0.2, r.position + r.size * 0.8]:
 		for down in [true, false]:
-			var ev := InputEventMouseButton.new()
-			ev.button_index = MOUSE_BUTTON_LEFT
-			ev.pressed = down
-			ev.position = at
-			ev.global_position = at
-			root.push_input(ev, true)
+			if size == "pc":
+				var ev := InputEventMouseButton.new()
+				ev.button_index = MOUSE_BUTTON_LEFT
+				ev.pressed = down
+				ev.position = at
+				ev.global_position = at
+				root.push_input(ev, true)
+			else:
+				var tv := InputEventScreenTouch.new()     # (a phone: a finger, not a mouse)
+				tv.index = 0
+				tv.pressed = down
+				tv.position = at
+				root.push_input(tv, true)
 			await process_frame
 		pressed_n += 1
 		_part_presses += 1
