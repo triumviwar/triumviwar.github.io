@@ -123,7 +123,34 @@ above in both languages.
 
 ### Not fixed: proposals for the owner, worst first
 
-PROPOSALS
+1. **World war, the top bar (pt / es, medium).** "Ouro 784 · renda 293, manutenção 109 por estação · terras…" is cut
+   by its box at 1600x900 (CUT, 483 px of text in 242). Proposal: two lines, or the gold and income only with the rest
+   in a tooltip. (Not changed: it is the mode's layout.)
+2. **The war map's title (es, low).** "EL MAPA DE GUERRA · Acto 2" is 6 px wider than its box and clipped: a smaller
+   font from 22 letters, as the skins' long titles already get.
+3. **The device page opened from Settings (low).** Settings > GAMEPLAY > COMPUTER / MOBILE opens the first start's
+   page, which has no BACK and ignores Esc: the player has to choose again. Proposal: a BACK there when it was opened
+   from Settings.
+4. **The world war while the computers move (low, NOBACK).** Esc / SAVE & LEAVE now leave after the move under way
+   (fixed above), so the sweep, looking 4 frames later, still sees the page: expected. The turn banner covers the top
+   bar's buttons until it is closed: by design (the sweep no longer counts a box over the whole page as COVERED).
+5. **The opening stills before a mission (low).** No BACK to the briefing: Esc skips them into the mission. A player who
+   pressed START by mistake has to quit the mission. Proposal: Esc goes back to the briefing on the first still.
+6. **The map editor's decoration groups (pt / es, low).** VILLAGE, CAMP, RUINS, SHRINE, SNOWCAMP, WRECK, GROVE, LUMBER,
+   RIVERBANK, FORGE are English, and WATCH is shown as "ASSISTIR" / "OBSERVAR" (the replays' verb, not a watch post).
+   Not translated here: "WATCH" is already the replays' key and the buttons are narrow; the groups need their own
+   labels (e.g. "kit:watch" names) before they can be translated.
+7. **Slow pages (low).** The PATCH NOTES page takes 7-10 s to open and the music player and animation viewer 6-8 s under
+   software drawing under xvfb (not measured on real hardware; the page builds every version's entry at once).
+   Proposal: build the newest 20 and a SHOW OLDER button.
+8. **Map and music names stay English** in pt / es (the map picker, the music player): by design, as said in an
+   earlier patch note; the sweep leaves the music's titles out of its English check, the maps' not yet.
+9. **NOCHANGE lines** ("look", see the report): STOP on an idle unit, + WORKER / - WORKER (the worker is sent but only
+   counts when he arrives), the view already chosen on the war map, the region already picked on the ranked page:
+   fine. None of them is a dead button (no DEAD in any run).
+10. **The narrator on a machine with no speech engine** (Linux without speech-dispatcher) prints two engine errors
+    (`Parameter "synth" is null`) the first time it asks for a voice; the game already stops asking after that. The
+    sweep leaves them out.
 
 ## Claude's choices
 
