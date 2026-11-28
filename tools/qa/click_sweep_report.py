@@ -35,6 +35,52 @@ def by_design(detail):
     return BY_DESIGN.search(t) is not None or t.lower() in titles
 
 
+# the same "reads as English" test as click_sweep.gd's _english (logs of older runs had a looser one)
+WORD = re.compile(r"[A-Za-zÀ-ÿ]{3,}")
+ENTRY = re.compile(r'^\t"((?:[^"\\]|\\.)*)": "((?:[^"\\]|\\.)*)",$')
+tables = {}
+
+
+def table(lang):
+    if lang not in tables:
+        en, tr, vals = set(), set(), set()
+        try:
+            with open(os.path.join(here, "..", "..", "scripts", "lang", "lang_%s.gd" % lang), encoding="utf-8") as f:
+                for line in f:
+                    m = ENTRY.match(line.rstrip("\n"))
+                    if not m:
+                        continue
+                    k = m.group(1).replace("\\n", "\n")
+                    v = m.group(2).replace("\\n", "\n")
+                    vals.add(v.strip())
+                    en.update(w.lower() for w in WORD.findall(k))
+                    tr.update(w.lower() for w in WORD.findall(v))
+        except OSError:
+            pass
+        tables[lang] = (en, tr, vals)
+    return tables[lang]
+
+
+def english(detail, lang):
+    t = detail.strip()
+    if t.startswith("'") and t.endswith("'"):
+        t = t[1:-1]
+    t = t.replace("\\n", "\n").strip()
+    en_w, tr_w, vals = table(lang)
+    if not t or t in vals or "://" in t:
+        return False
+    if re.match(r"^[a-z0-9_ !]+$", t) and ("_" in t or " " not in t):
+        return False
+    n_en = n_tr = 0
+    for w in WORD.findall(t):
+        w = w.lower()
+        if w in en_w and w not in tr_w:
+            n_en += 1
+        elif w in tr_w and w not in en_w:
+            n_tr += 1
+    return n_en > 0 and n_en > n_tr
+
+
 runs = []
 flags = collections.OrderedDict()
 crashed = []
@@ -52,7 +98,7 @@ for log in sorted(glob.glob(os.path.join(out, "*.log"))):
             m = FLAG.match(line)
             if m:
                 kind, prt, screen, button, detail = m.groups()
-                if kind == "EN" and by_design(detail):
+                if kind == "EN" and (by_design(detail) or not english(detail, lang)):
                     continue
                 key = (kind, detail) if kind == "EN" else (kind, prt, screen, button, detail)
                 flags.setdefault(key, set()).add(lang + "_" + size)

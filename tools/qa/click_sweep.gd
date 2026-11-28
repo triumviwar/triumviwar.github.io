@@ -343,7 +343,7 @@ func _state() -> int:
 			parts_s.append(str((n as RichTextLabel).text.hash()))
 		elif n is TextureRect:
 			parts_s.append(str((n as TextureRect).texture.get_instance_id() if (n as TextureRect).texture else 0))
-		elif n is Control and (n as Control).has_method("_draw"):
+		if n is Control and (n as Control).get_script() != null:
 			parts_s.append(str((n as Control).get("view")) + str((n as Control).get("selected")) + str((n as Control).get("zoom"))
 				+ str((n as Control).get("painted")) + str((n as Control).get("center")))
 	parts_s.append(str(n_ctl))
@@ -988,7 +988,9 @@ func _minimap(fac: String) -> void:
 		flag("NOOP", "match_" + fac, "minimap", "no minimap rect")
 		return
 	var cam0: Vector2 = g.camera.position
-	for at in [r.position + r.size * 0.2, r.position + r.size * 0.8]:
+	var xf: Transform2D = (g.hud as CanvasItem).get_global_transform()      # (the HUD is scaled on a phone: ui_scale)
+	for at0 in [r.position + r.size * 0.2, r.position + r.size * 0.8]:
+		var at: Vector2 = xf * at0
 		for down in [true, false]:
 			if size == "pc":
 				var ev := InputEventMouseButton.new()
