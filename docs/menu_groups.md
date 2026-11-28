@@ -86,7 +86,8 @@ moves right of the cross too when it would lie over it.
   pt_base_crown, cw_input, pt_base, pt_lib, pt_lib_clock, tutorial_editor/pt_base). pt_hub checked end to end.
 - New `tools/shot_menu_groups.gd` (each level as a picture, png: converted to jpg here; `cross` outlines the keep-out box in red).
 - Run: the boot check (`godot --headless --path . --quit-after 120`: no SCRIPT ERROR / Parse Error), test_menu_grid
-  0 fails, test_tutorial, test_world_war 0 failures, test_i18n PASS; every edited tool script parses (`--check-only`).
+  0 fails, test_tutorial (its menu check and every lesson it reached in 10 minutes: no FAIL; cut by the run's
+  time limit, not finished), test_world_war 0 failures, test_i18n PASS; every edited tool script parses (`--check-only`).
 
 ## Pictures (`docs/shots/menu_groups/`)
 
