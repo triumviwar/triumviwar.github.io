@@ -207,5 +207,11 @@ has an ending, the war table has THE CREDITS to roll them again.
 - tools/test_act3_engine0.gd (new): every piece above, the data checks good and bad, the campaign's ledger, night group
   and credits, every order of every line's Act 3 rungs, the save keeping the state, the credits after the last
   mission and on the war table: 0 failures.
-- The campaign's tests after the change: see the list in the last commit's message (filled in when the run finished).
+- After the change, 0 failures each: test_campaign (its one failure was a stale check, not this job's: the Governor's
+  talk after p01 was rewritten by the hubs' writing pass to "It is done...", the test still looked for "Done. See the
+  men fed"; the check now reads the new line), test_campaign_a01 to a07, b01, c01, d01 to d11, heroes, ironman, m1,
+  save, test_act2_engine0, test_roster_ladder (with the any-order rows), test_war_map, test_tutorial, test_i18n (PASS,
+  0 of 428 data texts untranslated in pt and es).
+- (Every headless Godot run here ends with "Aborted", exit 134, after its last line: the engine's shutdown on this
+  machine, as Acts 1 and 2's steps noted.)
 - Boot: `godot --headless --path . --quit-after 120`: no SCRIPT ERROR / Parse Error.
