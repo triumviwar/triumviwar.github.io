@@ -13,6 +13,7 @@
  "limit_db": 4.0,
  "ceiling_dbtp": -2.64,
  "lra_out": 8.85,
+ "sub_out": 0.112,
  "ride_tries": 2,
  "name": "crown_battle_6",
  "title": "Fifes at First Light",
@@ -20,6 +21,5 @@
  "tp_out": -1.1,
  "lufs_out": -12.92,
  "lra_ogg": 8.86,
- "sub_out": 0.112,
  "length_s": 145.65
 }

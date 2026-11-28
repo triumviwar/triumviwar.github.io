@@ -13,6 +13,7 @@
  "limit_db": 4.0,
  "ceiling_dbtp": -2.58,
  "lra_out": 8.74,
+ "sub_out": 0.051,
  "ride_tries": 3,
  "name": "menu_4",
  "title": "Over the High Passes",
@@ -20,6 +21,5 @@
  "tp_out": -1.2,
  "lufs_out": -12.93,
  "lra_ogg": 8.74,
- "sub_out": 0.051,
  "length_s": 156.86
 }

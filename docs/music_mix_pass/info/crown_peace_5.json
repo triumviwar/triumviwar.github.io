@@ -13,6 +13,7 @@
  "limit_db": 2.5,
  "ceiling_dbtp": -1.63,
  "lra_out": 8.72,
+ "sub_out": 0.013,
  "ride_tries": 1,
  "name": "crown_peace_5",
  "title": "The Chapel at Dawn",
@@ -20,6 +21,5 @@
  "tp_out": -1.04,
  "lufs_out": -12.89,
  "lra_ogg": 8.74,
- "sub_out": 0.013,
  "length_s": 155.16
 }

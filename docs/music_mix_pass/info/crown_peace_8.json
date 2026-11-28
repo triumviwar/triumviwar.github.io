@@ -13,6 +13,7 @@
  "limit_db": 4.0,
  "ceiling_dbtp": -2.84,
  "lra_out": 8.51,
+ "sub_out": 0.032,
  "ride_tries": 2,
  "name": "crown_peace_8",
  "title": "Court Waltz by Candlelight",
@@ -20,6 +21,5 @@
  "tp_out": -1.33,
  "lufs_out": -12.93,
  "lra_ogg": 8.54,
- "sub_out": 0.032,
  "length_s": 139.59
 }

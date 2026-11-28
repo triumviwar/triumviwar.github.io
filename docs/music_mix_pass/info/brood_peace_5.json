@@ -13,6 +13,7 @@
  "limit_db": 2.21,
  "ceiling_dbtp": -1.44,
  "lra_out": 8.98,
+ "sub_out": 0.009,
  "ride_tries": 1,
  "name": "brood_peace_5",
  "title": "Mist on the Brood-Mere",
@@ -20,6 +21,5 @@
  "tp_out": -1.2,
  "lufs_out": -12.86,
  "lra_ogg": 9.02,
- "sub_out": 0.009,
  "length_s": 145.3
 }

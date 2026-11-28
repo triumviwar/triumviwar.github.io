@@ -13,6 +13,7 @@
  "limit_db": 4.0,
  "ceiling_dbtp": -2.51,
  "lra_out": 8.7,
+ "sub_out": 0.009,
  "ride_tries": 2,
  "name": "crown_peace_7",
  "title": "Waltz of the Garrison Flowers",
@@ -20,6 +21,5 @@
  "tp_out": -1.09,
  "lufs_out": -12.89,
  "lra_ogg": 8.67,
- "sub_out": 0.009,
  "length_s": 119.95
 }

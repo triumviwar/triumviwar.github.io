@@ -13,6 +13,7 @@
  "limit_db": 4.0,
  "ceiling_dbtp": -1.58,
  "lra_out": 8.71,
+ "sub_out": 0.062,
  "ride_tries": 1,
  "name": "brood_peace_4",
  "title": "The Queen Stirs",
@@ -20,6 +21,5 @@
  "tp_out": -1.19,
  "lufs_out": -12.93,
  "lra_ogg": 8.67,
- "sub_out": 0.062,
  "length_s": 104.23
 }

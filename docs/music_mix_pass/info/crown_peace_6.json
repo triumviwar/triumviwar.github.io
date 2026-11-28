@@ -13,6 +13,7 @@
  "limit_db": 4.0,
  "ceiling_dbtp": -3.0,
  "lra_out": 8.91,
+ "sub_out": 0.006,
  "ride_tries": 1,
  "name": "crown_peace_6",
  "title": "The Elector's Waltz",
@@ -20,6 +21,5 @@
  "tp_out": -1.14,
  "lufs_out": -14.07,
  "lra_ogg": 8.9,
- "sub_out": 0.006,
  "length_s": 165.83
 }

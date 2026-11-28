@@ -13,6 +13,7 @@
  "limit_db": 4.0,
  "ceiling_dbtp": -2.19,
  "lra_out": 8.78,
+ "sub_out": 0.06,
  "ride_tries": 3,
  "name": "brood_battle_9",
  "title": "The Scent of Blood",
@@ -20,6 +21,5 @@
  "tp_out": -1.19,
  "lufs_out": -12.95,
  "lra_ogg": 8.74,
- "sub_out": 0.06,
  "length_s": 166.39
 }
