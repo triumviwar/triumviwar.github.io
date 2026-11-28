@@ -4,7 +4,7 @@ Hard OPTIMAL v Hard OPTIMAL to 20:00, the Crown against the Brood (cb) and again
 matchup: game i (0..19) has seed 2811001 + i, map PARITY_MAPS[i % 6], spot (i // 6) % 2 (spot 0: the Crown in slot 0).
 Every arm plays the SAME games. tools/afb_watch.gd (in tools/qa_match.gd) counts the wheels' stuck seconds and the
 Crown's fights at its halls below its main.
-    python3 tools/study/ai_fixes_b.py run ARM [--jobs 2] [--end 1200] [--only cb|ck] [--n 20] [--root FROZEN_COPY]
+    python3 tools/study/ai_fixes_b.py run ARM [--jobs 2] [--end 1200] [--only cb|ck] [--n 20] [--root FROZEN_COPY] [--reverse]
     python3 tools/study/ai_fixes_b.py report [ARM ...]
 ARM: off (both fixes off) | on (both on, the default code) | home (only the home fix) | wheels (only the wheels fix).
 Data: docs/ai_fixes_b/data/<arm>/<tag>/ (result.json, story.txt)."""
@@ -35,12 +35,14 @@ def queue(n=20, only=""):
     return out
 
 
-def run(arm, jobs=2, end=1200, only="", n=20):
+def run(arm, jobs=2, end=1200, only="", n=20, reverse=False):
     qm.EXTRA = ARMS[arm]
     qm.KEEP_GREP = "goes down to its hall below"      # (the home fix's own log lines: DATA/<arm>/<tag>/planlog.txt)
     data = os.path.join(DATA, arm)
     out = os.path.join(OUT, arm)
     q = queue(n, only)
+    if reverse:
+        q.reverse()          # (a second runner from the other end of the same queue)
     with ThreadPoolExecutor(jobs) as ex:
         for r in ex.map(lambda g: qm.run_one(g, out, end, data), q):
             print(r, flush=True)
@@ -153,6 +155,9 @@ if __name__ == "__main__":
             if a[i] == "--only": kw["only"] = a[i + 1]
             if a[i] == "--n": kw["n"] = int(a[i + 1])
             if a[i] == "--root": qm.RUN_ROOT = a[i + 1]      # (a frozen copy, tools/study/freeze_copy.sh)
+            if a[i] == "--reverse":
+                kw["reverse"] = True
+                i -= 1
             i += 2
         run(a[1], **kw)
     elif a[0] == "report":
