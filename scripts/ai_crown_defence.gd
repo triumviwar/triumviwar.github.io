@@ -380,6 +380,8 @@ func muster(army: Array, spots: Array) -> bool:
 	for u in home:
 		mine += ai._unit_value(u)
 	var mk := MUSTER_K
+	if ai.ch.low_hall(spots) != null:
+		mk = maxf(mk, AI.AICrownHold.HALL_BODY)     # (ai-fixes-b: to its own hall below the army goes down as one body)
 	if home.is_empty() or foe < MUSTER_MIN or mine >= foe * mk:
 		if _mustering:
 			_end_muster()
