@@ -232,6 +232,10 @@ static func entities(g: Game) -> Array:
 	# Brood on the map it looks at every unit; perf-frostfang)
 	var key: Array = [Engine.get_process_frames(), g.get_instance_id(), g.view_rect, g.human, g.demo]
 	if key == _ent_key:
+		# (a unit freed later in the same frame, a grub that morphed or a creature sacrificed, would be a freed object
+		# here: SCRIPT ERROR in the hover and the drawing; qa-click-sweep)
+		if _ent.any(func(e) -> bool: return not is_instance_valid(e)):
+			_ent = _ent.filter(func(e) -> bool: return is_instance_valid(e))
 		return _ent
 	var out := _entities(g)
 	_ent_key = key
