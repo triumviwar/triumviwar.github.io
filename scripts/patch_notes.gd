@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.230", "items": [
+		"The Brood's Hatchlings are now a small wyvern: olive green, bat wings and a row of red spines, flying and biting in every direction.",
+	]},
 	{"v": "0.38.229", "items": [
 		"A grub carrying, wrapping or guarding a cocoon keeps the same dark olive skin as when it walks (it turned a lighter yellow before).",
 	]},

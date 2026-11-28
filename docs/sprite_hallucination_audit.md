@@ -165,6 +165,13 @@ keg idle frame 0 (keg on the chest) by frame 1; 141 the Swift's (cuckoo) north-e
 156, 169 specks by the Armoured Officer's south death and the Guardsman's fire-up removed; 145 the Pendulum's pink pixels
 at the blade; 200 the Tension icon's corner specks; 201 the loose piece by the mossy boulder; 207 the loose specks
 round the snowy rocks (c, d).
+0.38.230 (owner "Do all", 2026-11-28): 92 the Hatchlings are the small WYVERN (olive, bat wings, two legs, red spines)
+in the field: fly and idle in all five facings, the bite S, SE, E, NE and death SE redrawn
+(art/redraws/hatchlings_wyvern_<anim>_<dir>_chatgpt.png, tools/import_sa_strip.py; old poses in
+docs/redraw_refs/hatch_wyvern/). STAND-INS, all three ChatGPT accounts out of images: attack_n = the north fly
+(the bite is hidden from behind; the first N answer showed the face and was refused), death S/E/NE/N = death SE.
+STILL TO DO: death S/E/NE/N and the bite N redrawn (prompts: the same wy2.py text, N "seen from BEHIND, no face"),
+and the two icons (assets/icons/hatchlings.png, nbr_clutch_hatchlings.png) still show the chick.
 0.38.229: 14 the grub in its 20 cocoon strips takes its walk's darker olive (tools/grub_cocoon_tone.py: the olive pixels'
 mean and spread matched; the shapes are as before: taller on thinner legs, and carry_cocoon_s / wrap_s still a side view).
 0.38.228 (2026-11-28): 12 the Brood Mother's stage-2 south walk and idle are stage 3's front-on walk scaled to stage 2
