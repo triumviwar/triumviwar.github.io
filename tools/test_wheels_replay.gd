@@ -3,7 +3,8 @@ extends SceneTree
 ## Wagon stood stuck on a move order in the study games (tools/qa_match.gd's "stuck" events, kept with the 21 x 21 cells
 ## round it in docs/ai_fixes_b/wheel_spots.json) is laid again on an open field of Greenhold: the buildings, walls, gates,
 ## cliffs and fields of the picture (not the other units: they come and go), the same gun or wagon limbered at the same
-## cell, sent to the same goal, starting facing each of 8 ways, with one horse and with a team of three.
+## cell, sent to the same goal, starting facing each of 8 ways, with one horse and with a team of three. With crowd=1 a
+## Musketeer of its side stands where the picture had one (u).
 ## A trial is STUCK when it stood still 6 s or more in TIME s (moved under 6 px in 2 s, still more than 48 px from where it
 ## goes). It prints one line a spot and the totals.
 ##   godot --headless --fixed-fps 30 --script res://tools/test_wheels_replay.gd [-- only=N[,N] facings=8 teams=1,3 out=file]
@@ -17,6 +18,7 @@ var facings := 8
 var teams := [1, 3]
 var out_path := ""
 var trace := false
+var crowd := false          # crowd=1: a Musketeer stands on every cell the picture had one of its side on (u)
 var spots_file := "res://docs/ai_fixes_b/wheel_spots.json"
 var area := Vector2i(-1, -1)
 var stamped: Array = []
@@ -36,6 +38,7 @@ func _initialize() -> void:
 			"out": out_path = kv[1]
 			"trace": trace = kv[1] == "1"
 			"file": spots_file = kv[1]
+			"crowd": crowd = kv[1] == "1"
 	main = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
 
@@ -123,6 +126,13 @@ func _trial(sp: Dictionary, face: Vector2, horses: int) -> Dictionary:
 	gc = Vector2i(clampi(gc.x, 2, g.W - 3), clampi(gc.y, 2, g.H - 3))      # (a goal off this map's edge: its edge)
 	var goal: Vector2 = g.cell_center(gc)
 	var stop: Vector2 = Vector2.INF       # (a goal beyond the laid picture: where its first path ends)
+	var men: Array = []
+	if crowd:
+		var grid: Array = sp["grid"]
+		for y in grid.size():
+			for x in String(grid[y]).length():
+				if String(grid[y])[x] == "u":
+					men.append(g._add_unit("musketeer", 0, g.cell_center(area + Vector2i(x - R, y - R))))
 	var u: Unit = g._add_unit(String(sp["kind"]), 0, at)
 	u.facing = face
 	for i in horses - 1:
@@ -164,6 +174,9 @@ func _trial(sp: Dictionary, face: Vector2, horses: int) -> Dictionary:
 				still = 0.0
 	var res := {"arrived": arrived, "worst": worst, "order": u.order, "end": [int(u.position.x / 32) - area.x, int(u.position.y / 32) - area.y], "stop": str(g.cell_of(stop) - area) if stop != Vector2.INF else "-", "d": int(u.position.distance_to(stop)) if stop != Vector2.INF else -1}
 	g.consume_unit(u)
+	for m in men:
+		if is_instance_valid(m) and not m.dead:
+			g.consume_unit(m)
 	await physics_frame
 	return res
 

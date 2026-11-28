@@ -102,6 +102,8 @@ func _wheels() -> void:
 				if qa != null and qa.has_method("_stuck_dbg"):
 					rec["dbg"] = qa._stuck_dbg(u)
 				rec["why"] = _why(u)
+				if OS.get_cmdline_user_args().has("afbdbg:1"):
+					_dbg(u)
 				runs.append(rec)
 				u.set_meta("afb_run", runs.size() - 1)
 		else:
@@ -132,6 +134,26 @@ func _why(u: Unit) -> Dictionary:
 		"own_near": own, "foe_near": foe, "path": u.path.size(), "path_i": u.path_i,
 		"wp": [int(wp.x / Defs.TILE), int(wp.y / Defs.TILE)] if wp != Vector2.INF else [], "work": String(u.work),
 		"supplying": bool(u.supplying) if "supplying" in u else false, "squeezed": u.squeezed}
+
+
+## (afbdbg:1) everything about a gun stuck 10 s, printed: where in its cell, its fold, the step it wants and why each try fails.
+func _dbg(u: Unit) -> void:
+	var c: Vector2i = g.cell_of(u.position)
+	var wp: Vector2 = u.path[u.path_i] if u.path_i < u.path.size() else u.path_goal
+	var to: Vector2 = (wp - u.position).normalized()
+	var step: Vector2 = u.position + to * 4.0
+	print("AFBDBG t %.0f %s cell %s off %s face %s fold %.2f wp %s to %s body_here %s body_step %s tow_step %s tow_turn_here %s corner %s units %s" % [
+		g.clock, u.kind, str(c), str((u.position - g.cell_center(c)).round()), str(u.facing.snapped(Vector2(0.01, 0.01))),
+		float(u.get("tow_fold")) if u.get("tow_fold") != null else -1.0, str(g.cell_of(wp)), str(to.snapped(Vector2(0.01, 0.01))),
+		g._clear_at(u.position, u._tow_body(), u.team), g._clear_at(step, u._tow_body(), u.team), u._tow_clear(step, u.facing),
+		u._tow_clear(u.position, to), g._wall_corner(u.position, step, u.team),
+		str(g.units_near(u.position, 40.0).filter(func(o) -> bool: return o != u and not o.dead).map(func(o) -> String: return "%s:%s:%s" % [o.kind, o.order, str((o.position - u.position).round())]))])
+	for dy in range(-2, 3):
+		var row := ""
+		for dx in range(-2, 3):
+			var q := c + Vector2i(dx, dy)
+			row += str(g.solid[g.idx(q)]) if g.in_map(q) else " "
+		print("AFBDBG   " + row)
 
 
 func _end_run(u: Unit, id: int) -> void:
