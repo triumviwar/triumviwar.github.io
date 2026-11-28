@@ -8,18 +8,18 @@ the patch note sits under 0.38.999 (no version bump on the branch).
 
 - **Every generated piece was mastered again from its generator** (69 pieces and the defeat sting; the owner's
   ElevenLabs pieces were left alone, see choice 8). No note, instrument or tempo changed.
-- **Loudness range: @@LRA_B@@ LU before, @@LRA_A@@ LU after** (median, the study's own measure). @@N_IN@@ of 69 pieces now sit
-  between 8 and 10 LU; before, @@N_IN_B@@ did. The quiet passages are quieter and the climaxes stand out; the pieces
-  that were already wider than 10 LU (The Brood Wakes, 15.7) were brought in to about 9.5.
-- **Sub-bass: @@SUB_B@@ pieces had more than a quarter of their energy below 80 Hz, @@SUB_A@@ do now** (Hunger 45% -> @@HUNGER@@%,
-  The Forlorn Hope 46% -> @@FORLORN@@%, Tattoo at Dusk 45% -> @@TATTOO@@%).
-- **Loudness unchanged:** median @@LUFS_B@@ LUFS before, @@LUFS_A@@ after; every piece between @@LUFS_MIN@@ and @@LUFS_MAX@@
+- **Loudness range: 6.9 LU before, 8.9 LU after** (median, the study's own measure). 68 of 69 pieces now sit
+  between 8 and 10 LU; before, 11 did. The quiet passages are quieter and the climaxes stand out; the pieces
+  that were already wider than 10 LU (The Brood Wakes, 14.7) were brought in to about 9.5.
+- **Sub-bass: 21 pieces had more than a quarter of their energy below 80 Hz, none do now** (Hunger 54% -> 23%,
+  The Forlorn Hope 46% -> 23%, Tattoo at Dusk 45% -> 24%).
+- **Loudness unchanged:** median -12.8 LUFS before, -12.9 after; every piece between -14.1 and -12.8
   (before -15.0 to -10.5: the Crown's drum-bed marches were 2 LU quieter than the rest and now match). True peak at
-  most @@TP_MAX@@ dBTP after Vorbis.
+  most -1.0 dBTP after Vorbis.
 - **No compressor.** The old chains squashed the pieces (compose.master pushed every piece into a tanh saturator at up
   to 6x gain; orchestra.master_epic ran a 2.2:1 compressor over the loudest fifth). The new chain only rides the
   faders slowly and catches peaks. The peaks stand at least as far above the music as before: crest factor
-  @@CREST_B@@ dB before, @@CREST_A@@ dB after (median).
+  14.3 dB before, 14.6 dB after (median).
 - **God Save the King**: when the Crown wins a match the full band plays the anthem (42 s: a 5 s drum roll-off, then
   the anthem once with two pipes, three fifes and the side drums) **instead of** the victory sting.
 
@@ -58,14 +58,31 @@ tools/music/compose.py --old-master NAME` makes a piece the old way). Per piece,
 Medians by side (the study's tools/music/study_audio.py on the files before the pass and after it; all 69 pieces
 in `docs/music_mix_pass/table.md`):
 
-@@MEDIANS@@
+| Group | Pieces | LRA before | LRA after | in 8-10 LU after | LUFS before | LUFS after | pieces sub > 25% before / after | crest before | crest after |
+|---|---|---|---|---|---|---|---|---|---|
+| all | 69 | 6.9 | 8.9 | 68 | -12.8 | -12.9 | 21 / 0 | 14.3 | 14.6 |
+| crown | 20 | 5.8 | 8.9 | 20 | -13.0 | -12.9 | 9 / 0 | 14.4 | 14.6 |
+| clock | 20 | 7.8 | 8.8 | 19 | -12.6 | -12.9 | 2 / 0 | 14.7 | 14.8 |
+| brood | 20 | 7.2 | 8.9 | 20 | -13.0 | -12.9 | 8 / 0 | 14.1 | 14.6 |
+| menu | 9 | 6.9 | 8.9 | 9 | -12.9 | -12.9 | 2 / 0 | 14.1 | 14.5 |
 
 The study's own numbers (2026-11-14, docs/music_study/audio.json) were measured on the same files as "before" here
 (no generated piece changed between the study and this pass): the study's median loudness range was 6.9 LU.
 
 What moved most:
 
-@@MOVED@@
+| Piece | Loudness range before -> after | Note |
+|---|---|---|
+| The Orchard Minuet (crown_peace_2) | 2.6 -> 8.7 LU | the flattest piece of all |
+| Pike and Shot (crown_battle) | 3.3 -> 8.5 LU | |
+| The Grenadiers' March (crown_battle_11) | 3.6 -> 9.0 LU | |
+| Waltz of the Garrison Flowers (crown_peace_7) | 4.0 -> 9.0 LU | |
+| Hunger (brood_battle) | 4.7 -> 9.8 LU | and 54% -> 23% below 80 Hz, -14.5 -> -12.9 LUFS |
+| The Brood Wakes (brood_battle_6) | 14.7 -> 9.6 LU | ridden down: the widest piece |
+| Night over the Drowned Wood (brood_peace_7) | 14.0 -> 9.4 LU | ridden down |
+| Tattoo at Dusk, Over the Parapet, Columns on the March (crown_battle_7, 8, 10) | -14.9, -15.0, -14.7 -> -13.0, -13.0, -12.9 LUFS | the drum-bed marches now as loud as the rest; 45%, 40%, 39% -> 24%, 24%, 22% below 80 Hz |
+
+![Every piece before and after](music_mix_pass/before_after.png)
 
 ### What did not change
 
@@ -77,8 +94,8 @@ What moved most:
 - The lengths and the loops (the same trim and fades).
 - The web build: the pieces are the same 70 .ogg files under the same names, a little smaller or larger; the build
   copies assets/music/*.ogg and hashes each file, so a returning player downloads each changed piece once.
-  The new anthem (win_crown_anthem.ogg, 44.1 kHz, Vorbis q4, 0.4 MB) is fetched ahead with the other end-of-match
-  stings (Music.match_started -> _sting_name). Music total 123 MB, as before.
+  The new anthem (win_crown_anthem.ogg, 44.1 kHz, Vorbis q4, 0.7 MB) is fetched ahead with the other end-of-match
+  stings (Music.match_started -> _sting_name). Music total 124 MB (123 MB before).
 - The owner's ElevenLabs pieces (choice 8) and the band's files.
 
 ## Task 2: God Save the King
@@ -105,7 +122,7 @@ in the files (set `CROWN_ANTHEM_ON := false` to hear it again).
 
 - In the game: any match; the music is the new mix. Win a skirmish as the Crown for the anthem (an Easy computer).
 - Side by side, the first minute of four pieces before and after: `docs/music_mix_pass/listen/` (The Orchard Minuet,
-  the flattest; The Forlorn Hope and Hunger, the boomiest; The Brood Wakes, ridden down from 15.7 LU).
+  the flattest; The Forlorn Hope and Hunger, the boomiest; The Brood Wakes, ridden down from 14.7 LU).
 - The anthem alone: `docs/band_sound/godsave_victory.mp3`.
 - The old version of any piece: `git show main:assets/music/<name>.ogg > old.ogg`.
 - To make the pieces again: `python3 tools/music/mix_pass.py` (all, about 35 minutes on two cores) or with names;
@@ -129,14 +146,14 @@ in the files (set `CROWN_ANTHEM_ON := false` to hear it again).
    -6 dB, a 35 Hz high-pass on every piece). Pieces under 25% keep their bass as it was.
 6. **Peaks:** the old chains got to -12.8 LUFS by saturating and compressing. The new chain lets the slow limiter take
    at most 4 dB and gives the rest to a 2.5 ms stage that only touches sharp attacks. Measured, the peaks stand as far
-   above the music as before or a little more (crest @@CREST_B@@ -> @@CREST_A@@ dB). The harpsichord pieces of the
-   Crown's court (The Elector's Waltz, Waltz of the Flowers, Court Waltz by Candlelight) needed the most (10-12 dB on
-   their plucks), a sign the harpsichord's attack is very hot in the synth.
-7. **@@QUIET_N@@ pieces stay a little quieter** rather than being shaved more than 16 dB: @@QUIET_LIST@@.
+   above the music as before or a little more (crest 14.3 -> 14.6 dB). The harpsichord pieces of the
+   Crown's court (The Elector's Waltz, Waltz of the Garrison Flowers, Court Waltz by Candlelight) and The Grand
+   Calculation needed the most (10-12 dB on their attacks): their attacks (the harpsichord above all) stand very far above the rest in the synth.
+7. **Two pieces stay a little quieter** rather than being shaved more than 16 dB: The Elector's Waltz (crown_peace_6, -14.1 LUFS) and The Grand Calculation (clock_battle_13, -13.4 LUFS). The Grand Calculation is also the one piece just over the range, 10.1 LU by the study's measure (9.3 by the chain's own, which does not gate inside its 3 s windows): left as it is.
 8. **The ElevenLabs pieces were not touched.** They were mastered with no compressor already (docs/music_elevenlabs.md),
    their sub-bass is capped, and several are wide (10-18 LU). Some are as flat as the generated ones were (Campaign of
    the Crown 3.8 LU, Musketeer Charge 5.8, March of the Iron Standard 5.2, Clockmaker's Waltz 3.2), but they are the
-   owner's pieces with their own prompts and remakes: the ride (`mixpass.ride`) can be added to master_elevenlabs.py
+   owner's pieces with their own prompts and remakes: the same ride (`mixpass.ride`, made to run at their 44.1 kHz) could be added to master_elevenlabs.py
    with one line per piece if the owner wants them in 8-10 LU too.
 9. **The defeat sting** (The Field Is Lost, 14 s) is not ridden: a sting is one swell.
 10. The generators render at 32 kHz; the chain runs at that rate and the files stay 32 kHz as before.
@@ -155,4 +172,4 @@ in the files (set `CROWN_ANTHEM_ON := false` to hear it again).
 - `tools/music/mixpass.py` (the chain), `tools/music/mix_pass.py` (the driver), `tools/music/mix_pass_report.py`
   (the table); `compose.py`, `orchestra.py`, `clock_more.py` call the chain.
 - `tools/audio/band_godsave.py` (the anthem), `scripts/music.gd` (CROWN_ANTHEM), `tools/test_music_anthem.gd`.
-- `docs/music_mix_pass/table.md` (every piece), `summary.json`, `info/` (the chain's numbers per piece), `listen/`.
+- `docs/music_mix_pass/table.md` (every piece), `summary.json`, `audio_before.json` / `audio_after.json` (study_audio's numbers), `info/` (the chain's numbers per piece), `before_after.png`, `listen/`.
