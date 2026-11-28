@@ -60,8 +60,9 @@ def k_weight(x):
     import pyloudnorm as pyln
     m = pyln.Meter(SR)
     y = x.copy()
-    for f in m._filters.values():
-        y = f.apply_filter(y)
+    for ch in range(y.shape[1]):          # (apply_filter runs along the last axis: one channel at a time)
+        for f in m._filters.values():
+            y[:, ch] = f.apply_filter(y[:, ch])
     return y
 
 

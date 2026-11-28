@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["A MÚSICA FOI MIXADA DE NOVO (music-mix-pass), sem mudar nenhuma nota: cada peça gerada respira mais, as partes calmas mais baixas e os clímax se destacam (uma faixa de volume de 8 a 10 LU, antes cerca de 7), os graves profundos das peças de batalha cortados até o que celulares e notebooks conseguem tocar, e todas as peças tão altas quanto as outras (cerca de -12,8 LUFS). A masterização antiga achatava as peças com um saturador e um compressor; a nova move os faders no lugar.", "DEUS SALVE O REI: quando a Coroa vence uma partida, a banda marcial (gaitas, pífaros e tambores) toca Deus Salve o Rei, com o rufar dos tambores sob o \"Vitória! Deus salve o Rei!\" do arauto."],
 	"0.38.229": ["Uma larva carregando, embrulhando ou guardando um casulo mantém a mesma pele oliva escura de quando anda (antes ficava amarelada)."],
 	"0.38.228": ["Os cavalos pastam virados para onde estão (antes todos pastavam para baixo à direita), também no cercado; a Mãe da Ninhada no segundo estágio caminha de frente para você; os novos quadros de pistola do Couraceiro aceitam todas as pelagens."],
 	"0.38.227": ["O Couraceiro dispara a pistola com o mesmo capacete simples que usa em tudo o resto (o penacho que só tinha ao disparar sumiu), redesenhado nas cinco direções; o Piqueiro da campanha caminha para você e para sudeste com quatro quadros em vez de deslizar de lado."],

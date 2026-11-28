@@ -45,7 +45,7 @@ def one(name, out):
     info = dict(mixpass.INFO)
     raw = mixpass.LAST
     path = os.path.join(out, name + ".ogg")
-    for _ in range(6):
+    for _ in range(10):
         compose.write_ogg(name, L, R, song.q)
         z = load(path)
         tp = mixpass.true_peak(z)
