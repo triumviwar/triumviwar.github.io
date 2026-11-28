@@ -26,6 +26,14 @@
 
 ## Current work
 
+- QA SYSTEMS REVIEW (owner 2026-11-28 "all systems in general", ideas to add or change; job qa-systems-review, branch
+  qa-systems-review, docs only: docs/qa_systems_review.md): a section per system (economies, supply, combat, rosters,
+  research, the computer, control, campaign, world war, tournaments, online, replays, saving, maps, tutorial, audio,
+  performance, code health), a ranked top 15 (1: HOW TO PLAY > CLOCKWORK still teaches the shelved Line roster; 2: Esc
+  opens the match menu; 3: fair difficulty levels across factions), five things not to do, and the owner's decisions
+  worth revisiting kept apart. No code or number changed; no new matches (no engine on the machine; the 270 games of
+  2026-11-26 used).
+
 - CLOCKWORK LATE MACRO (owner 2026-11-27 "Why does the Clockwork stop expanding?"; job clockwork-late-macro, branch
   clockwork-late-macro, docs/clockwork_late_macro.md, tables docs/clockwork_late_macro/tables.md, scripts/ai_cw_late.gd
   AICwLate, tools/study/clockwork_late_macro.py, data docs/clockwork_late_macro/data/): CAUSE (traced, tools/cw_trace.gd now
