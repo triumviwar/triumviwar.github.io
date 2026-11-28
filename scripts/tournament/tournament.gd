@@ -12,6 +12,10 @@ extends RefCounted
 ## A MATCH: {"id", "stage", "round", "pos", "a", "b", "from_a", "from_b", "bo", "games", "winner", "loser", "state",
 ##   "bans", "picks", "reports", "dispute", "room", "replays"}; a side is a player id, NONE (-2: nobody will come, a bye)
 ##   or WAIT (-1: not known yet). "from_a" = ["w", match id] (that match's winner) or ["l", match id] (its loser).
+## TEAMS (job tournament-formats, docs/tournament_formats.md): with "team_size" 2-4 an entry of "players" is a TEAM:
+##   its "name" is the team's, its "members" [{"name", "faction", "who", "plan", "key", "pid"}] the people (or computers)
+##   who play it, one game slot each; "faction" of the entry is the members' joined ("crown,brood"). The bracket
+##   itself never looks inside: a side is still one entry. A member is known by its own secret "key" (member_by_key).
 ## A GAME: {"map", "fa", "fb", "win": "a"/"b", "how": "played"/"time"/"walkover"/"set", "len", "seed", "replay"}.
 
 const VERSION := 1
@@ -30,6 +34,14 @@ const MODES := ["online", "offline", "computer"]
 const MODE_NAME := {"online": "Online (players join by code)", "offline": "Offline / LAN (results by hand)",
 	"computer": "All computer players"}
 const MAX_PLAYERS := 64
+## THE TYPE (job tournament-formats): players a side. 1 = 1v1, 2 = 2v2, 3 = 3v3, 4 = 4v4 (the skirmish holds 8
+## players; the named 3v3/4v4 maps). Free-for-all is not offered: every format here is built on two-sided matches.
+const TEAM_SIZES := [1, 2, 3, 4]
+const TYPE_NAME := {1: "1 v 1", 2: "2 v 2 (teams of two)", 3: "3 v 3 (teams of three)", 4: "4 v 4 (teams of four)"}
+## How the teams are made: "fixed" (players sign up as a team, or join one by its name) or "drawn" (players sign up
+## alone; the organiser's dice draw the teams when the tournament starts).
+const TEAM_RULES := ["fixed", "drawn"]
+const TEAM_RULE_NAME := {"fixed": "Fixed teams (players join a team by its name)", "drawn": "Drawn by the organiser at the start"}
 const FACTIONS := ["crown", "clockwork", "brood"]
 ## The parity maps (qa_matches.PARITY_MAPS): a fair pool to start from.
 const DEFAULT_MAPS := ["greenhold", "dune_sea", "frostfang", "ashford_crossing", "hollowfen", "cinder_steps"]
@@ -49,10 +61,19 @@ static func make(name: String, opts := {}) -> Tournament:
 	t.d = {"v": VERSION, "id": new_code(), "name": name, "format": "double", "bo": 3, "bo_final": 3,
 		"maps": DEFAULT_MAPS.duplicate(), "map_rule": "veto", "loser_picks": true, "factions": "event",
 		"seeding": "random", "checkin": false, "groups": 2, "advance": 2, "swiss_rounds": 0, "mode": "online",
-		"time_limit": 1200, "level": "hard", "players": [], "matches": [], "state": "signup", "champion": WAIT,
+		"time_limit": 1200, "level": "hard", "team_size": 1, "team_rule": "fixed", "players": [], "matches": [], "state": "signup", "champion": WAIT,
 		"seed": randi(), "made": Time.get_datetime_string_from_system(), "log": [], "rev": 0, "next_pid": 1}
 	for k in opts:
 		t.d[k] = opts[k]
+	# a team tournament made without a pool of its own: the default pool's maps that hold its players, else the
+	# built-in maps that do (job tournament-formats)
+	if t.team_size() > 1 and not opts.has("maps"):
+		var fit: Array = DEFAULT_MAPS.filter(func(x) -> bool: return t.map_fits(String(x)))
+		if fit.size() < 3:
+			for id in MapGen.all_ids():
+				if t.map_fits(String(id)) and not fit.has(id):
+					fit.append(String(id))
+		t.d["maps"] = fit.slice(0, 6)
 	return t
 
 
@@ -244,6 +265,194 @@ func rng_for(salt: String) -> RandomNumberGenerator:
 	return r
 
 
+# ================================================================== teams (job tournament-formats)
+
+func team_size() -> int:
+	return clampi(int(d.get("team_size", 1)), 1, 4)
+
+
+## Game slots a match needs (both sides).
+func slots_needed() -> int:
+	return 2 * team_size()
+
+
+## Does a map hold the format's players? (A bigger map is fine: only as many start spots as needed are used.)
+static func map_holds(map_id: String, ts: int) -> bool:
+	return MapGen.max_players(map_id) >= 2 * ts
+
+
+func map_fits(map_id: String) -> bool:
+	return map_holds(map_id, team_size())
+
+
+## An entry's people: a team's members, or the player itself as its only member.
+func members(p: Dictionary) -> Array:
+	if p.has("members"):
+		return p["members"]
+	return [{"name": p.get("name", "?"), "faction": p.get("faction", "random"), "who": p.get("who", "human"), "plan": p.get("plan", ""),
+		"key": p.get("key", ""), "pid": int(p.get("id", -1))}]
+
+
+## Does a person play this entry (any member a person)? The computers' bans and picks are made by the dice otherwise.
+func is_human(p: Dictionary) -> bool:
+	for mb in members(p):
+		if String(mb.get("who", "human")) == "human":
+			return true
+	return false
+
+
+static func _member(name: String, faction: String, who: String, plan: String, pid := -1) -> Dictionary:
+	return {"name": name.strip_edges().substr(0, 24), "faction": faction, "who": who, "plan": plan, "key": _key(), "pid": pid}
+
+
+## A whole team at once (offline, all computer, or the organiser's own): `mbs` [{"name", "faction", "who", "plan"}].
+## Returns its id (WAIT: refused).
+func add_team(name: String, mbs: Array) -> int:
+	if d["state"] != "signup" or players().size() >= MAX_PLAYERS:
+		return WAIT
+	var pid := add_player(name, "random", "human")
+	if pid == WAIT:
+		return WAIT
+	var p := player(pid)
+	p["members"] = []
+	for mb in mbs.slice(0, team_size()):
+		(p["members"] as Array).append(_member(String(mb.get("name", "?")), String(mb.get("faction", "random")), String(mb.get("who", "human")),
+			String(mb.get("plan", "")), pid))
+	_team_fields(p)
+	return pid
+
+
+## A person joins a team by its name (fixed teams): the team is made if nobody has it yet. Returns [team id, member
+## index, key] or [] (the team is full, the name is a player's...).
+func join_team(team: String, name: String, faction := "random", who := "human", plan := "") -> Array:
+	if d["state"] != "signup":
+		return []
+	var tn := team.strip_edges().substr(0, 24)
+	if tn == "":
+		return []
+	var p := {}
+	for q in players():
+		if String(q["name"]).to_lower() == tn.to_lower() and q.has("members"):
+			p = q
+	if p.is_empty():
+		var pid := add_team(tn, [])
+		if pid == WAIT:
+			return []
+		p = player(pid)
+	if (p["members"] as Array).size() >= team_size():
+		return []
+	var mb := _member(name, faction, who, plan, int(p["id"]))
+	(p["members"] as Array).append(mb)
+	_team_fields(p)
+	_touch("%s joined team %s" % [mb["name"], p["name"]])
+	return [int(p["id"]), (p["members"] as Array).size() - 1, String(mb["key"])]
+
+
+## A member leaves its team (before the start); an empty team goes.
+func leave_team(pid: int, mi: int) -> void:
+	var p := player(pid)
+	if p.is_empty() or not p.has("members") or mi < 0 or mi >= (p["members"] as Array).size():
+		return
+	(p["members"] as Array).remove_at(mi)
+	if (p["members"] as Array).is_empty():
+		remove_player(pid)
+	else:
+		_team_fields(p)
+	_touch()
+
+
+## The entry's own fields follow its members: its factions, who plays it (a person if any member is one).
+func _team_fields(p: Dictionary) -> void:
+	var mbs: Array = p["members"]
+	p["faction"] = ",".join(mbs.map(func(x) -> String: return String(x["faction"]))) if not mbs.is_empty() else "random"
+	p["who"] = "human" if is_human(p) or mbs.is_empty() else String(mbs[0]["who"])
+	p["plan"] = String(mbs[0]["plan"]) if not mbs.is_empty() else ""
+	p["checked"] = mbs.all(func(x) -> bool: return String(x["who"]) != "human" or bool(x.get("checked", false))) if d["checkin"] else true
+
+
+## Which entry and member a secret key belongs to: [entry id, member index] or [] (nobody). A plain player is member 0.
+func member_by_key(k: String) -> Array:
+	if k == "":
+		return []
+	for p in players():
+		if p.has("members"):
+			for i in (p["members"] as Array).size():
+				if String(p["members"][i].get("key", "")) == k:
+					return [int(p["id"]), i]
+		elif String(p.get("key", "")) == k:
+			return [int(p["id"]), 0]
+	return []
+
+
+## A member checks in (a team is checked in when every person in it is).
+func check_in_member(pid: int, mi: int, on := true) -> void:
+	var p := player(pid)
+	if p.has("members") and mi >= 0 and mi < (p["members"] as Array).size():
+		p["members"][mi]["checked"] = on
+		_team_fields(p)
+		_touch()
+	else:
+		check_in(pid, on)
+
+
+## DRAWN TEAMS: everyone who signed up alone (and every partly filled team's members) is shuffled by the tournament's
+## dice and dealt into teams of team_size, named "Team 1", "Team 2"... Each member keeps its key, so its game knows it
+## again (it asks the desk by its key). The first member's entry becomes the team; the others' entries go.
+func _draw_teams() -> void:
+	var people: Array = []
+	for p in _entrants():
+		for mb in members(p):
+			var c: Dictionary = mb.duplicate()
+			c["checked"] = true
+			people.append(c)
+	var r := rng_for("draw")
+	for i in range(people.size() - 1, 0, -1):
+		var j := r.randi_range(0, i)
+		var tmp = people[i]
+		people[i] = people[j]
+		people[j] = tmp
+	var ts := team_size()
+	var keep: Array = players().filter(func(p) -> bool: return bool(p["dropped"]))
+	d["players"] = keep
+	var n := 0
+	for i in range(0, people.size() - ts + 1, ts):
+		n += 1
+		var mbs: Array = people.slice(i, i + ts)
+		var pid := int(d["next_pid"])
+		d["next_pid"] = pid + 1
+		for mb in mbs:
+			mb["pid"] = pid
+		var p := {"id": pid, "name": "Team %d" % n, "faction": "random", "who": "human", "plan": "", "seed": n, "checked": true,
+			"dropped": false, "key": _key(), "members": mbs}
+		_team_fields(p)
+		p["checked"] = true
+		d["players"].append(p)
+		_touch("Team %d: %s" % [n, ", ".join(mbs.map(func(x) -> String: return String(x["name"])))])
+	# (the organiser who plays: its entry is its team now)
+	var ok := member_by_key(String(d.get("org_key", "")))
+	if not ok.is_empty():
+		d["org_pid"] = int(ok[0])
+
+
+## The game's slots for the next game of a match, in order (the Main.start / NetLobby setup): side a's members then
+## side b's, or b's first when the start spots are swapped (`swap`). Each: {"who", "faction", "strategy", "side",
+## "colour", "name", "s" ("a"/"b"), "mi"}. The two sides are teams 0 and 1 of the game (`side`), so the map's own
+## pairing places them: allies together, the two teams on the map's mirror spots (docs/tournament_formats.md "Maps").
+func game_slots(m: Dictionary, swap := false) -> Array:
+	var out: Array = []
+	var order: Array = ["b", "a"] if swap else ["a", "b"]
+	for k in 2:
+		var s: String = order[k]
+		var p := player(int(m[s]))
+		var facs := faction_for(m, s).split(",")
+		var mbs := members(p)
+		for i in mbs.size():
+			var f := String(facs[i]) if i < facs.size() and String(facs[i]) != "" else String(mbs[i].get("faction", "random"))
+			out.append({"who": String(mbs[i].get("who", "human")), "faction": f, "strategy": String(mbs[i].get("plan", "")), "side": k,
+				"colour": out.size(), "name": String(mbs[i].get("name", "")), "s": s, "mi": i})
+	return out
+
+
 # ================================================================== starting
 
 ## What stops the organiser from starting ("" = nothing).
@@ -257,6 +466,24 @@ func start_problem() -> String:
 		return "Each group needs at least 2 players."
 	if (d["maps"] as Array).is_empty():
 		return "The map pool is empty."
+	var ts := team_size()
+	if ts > 1:
+		var small: Array = (d["maps"] as Array).filter(func(x) -> bool: return not map_fits(String(x)))
+		if not small.is_empty():
+			return "Some maps in the pool hold fewer than %d players." % (2 * ts)
+		if d.get("team_rule", "fixed") == "drawn":
+			var solo := _entrants().map(func(p) -> int: return (p.get("members", [p]) as Array).size())
+			var people := 0
+			for x in solo:
+				people += int(x)
+			if people % ts != 0:
+				return "%d players can't be split into teams of %d." % [people, ts]
+			if people < 2 * ts:
+				return "At least %d players are needed." % (2 * ts)
+		else:
+			for p in _entrants():
+				if (p.get("members", []) as Array).size() != ts:
+					return "Team %s has %d of its %d players." % [p["name"], (p.get("members", []) as Array).size(), ts]
 	return ""
 
 
@@ -271,6 +498,10 @@ func start() -> bool:
 	for p in players():
 		if d["checkin"] and not p["checked"]:
 			p["dropped"] = true
+	if team_size() > 1:
+		d["factions"] = "event"        # (a team's members keep the factions they joined with: docs/tournament_formats.md)
+		if d.get("team_rule", "fixed") == "drawn":
+			_draw_teams()
 	var ps := _entrants()
 	if d["seeding"] == "random":
 		var r := rng_for("seeding")
@@ -643,6 +874,8 @@ func faction_for(m: Dictionary, side: String) -> String:
 	var p := player(pid)
 	if p.is_empty():
 		return ""
+	if p.has("members"):
+		return team_factions(m, side)
 	if d["factions"] == "event" or p["who"] != "human":
 		return String(p["faction"]) if String(p["faction"]) != "random" else _dice_faction(m, side)
 	var gi: int = (m["games"] as Array).size()
@@ -654,6 +887,21 @@ func faction_for(m: Dictionary, side: String) -> String:
 	return ""
 
 
+## A team's factions in a match: each member's own (locked when it joined), a "random" one by the match's dice;
+## joined with "," in the members' order ("crown,brood").
+func team_factions(m: Dictionary, side: String) -> String:
+	var p := player(int(m[side]))
+	var out: Array = []
+	var mbs: Array = p.get("members", [])
+	for i in mbs.size():
+		var f := String(mbs[i].get("faction", "random"))
+		if not (f in FACTIONS):
+			var r := rng_for("fac:%d:%s:%d" % [int(m["id"]), side, i])
+			f = FACTIONS[r.randi_range(0, 2)]
+		out.append(f)
+	return ",".join(out)
+
+
 func _dice_faction(m: Dictionary, side: String) -> String:
 	var r := rng_for("fac:%d:%s" % [int(m["id"]), side])
 	return FACTIONS[r.randi_range(0, 2)]
@@ -662,6 +910,8 @@ func _dice_faction(m: Dictionary, side: String) -> String:
 ## The factions a side may still choose for the next game.
 func faction_choices(m: Dictionary, side: String) -> Array:
 	var gi: int = (m["games"] as Array).size()
+	if team_size() > 1:
+		return [faction_for(m, side)]
 	match String(d["factions"]):
 		"event":
 			return [faction_for(m, side)]
@@ -1192,7 +1442,7 @@ func computer_turns() -> bool:
 			var bt := ban_turn(m)
 			var pt := pick_turn(m)
 			var side := bt if bt != "" else pt
-			if side == "" or String(player(int(m[side])).get("who", "human")) == "human":
+			if side == "" or is_human(player(int(m[side]))):
 				break
 			var open := open_maps(m)
 			if bt != "":
@@ -1236,6 +1486,8 @@ func public_dict() -> Dictionary:
 	var c := d.duplicate(true)
 	for p in c["players"]:
 		p.erase("key")
+		for mb in p.get("members", []):
+			mb.erase("key")
 	return c
 
 

@@ -526,11 +526,68 @@ static func custom_spot_order(teams: Array, sides: Array) -> Array:
 	return out
 
 
+## FEWER SIDES THAN THE MAP HAS (job tournament-formats, docs/tournament_formats.md "Maps"): when a custom map's start
+## groups outnumber the match's sides (a 1v1 on a free-for-all map of 4) and every side fits in one group, the sides take
+## the groups that lie FARTHEST APART (the set whose closest two groups are farthest, by the groups' middles), not the
+## first ones in the file. Otherwise (the map has just enough groups: its own pairing) as custom_spot_order.
+static func fair_spot_order(teams: Array, starts: Array, sides: Array) -> Array:
+	var groups := {}
+	for i in teams.size():
+		if not groups.has(teams[i]):
+			groups[teams[i]] = []
+		groups[teams[i]].append(i)
+	var size_of_side := {}
+	for sd in sides:
+		size_of_side[int(sd)] = int(size_of_side.get(int(sd), 0)) + 1
+	var ns := size_of_side.size()
+	var gk: Array = groups.keys()
+	if ns < 2 or gk.size() <= ns or gk.size() > 8 or starts.size() < teams.size():
+		return custom_spot_order(teams, sides)
+	var need := 0
+	for v in size_of_side.values():
+		need = maxi(need, int(v))
+	var mids := {}
+	for g in gk:
+		var c := Vector2.ZERO
+		for i in groups[g]:
+			c += Vector2(float(starts[i][0]), float(starts[i][1]))
+		mids[g] = c / float((groups[g] as Array).size())
+	var best: Array = []
+	var best_d := -1.0
+	for mask in range(1, 1 << gk.size()):
+		var pick: Array = []
+		for b in gk.size():
+			if mask & (1 << b):
+				pick.append(gk[b])
+		if pick.size() != ns or pick.any(func(g) -> bool: return (groups[g] as Array).size() < need):
+			continue
+		var dmin := INF
+		for a in pick.size():
+			for b in range(a + 1, pick.size()):
+				dmin = minf(dmin, (mids[pick[a]] as Vector2).distance_to(mids[pick[b]]))
+		if dmin > best_d:
+			best_d = dmin
+			best = pick
+	if best.is_empty():
+		return custom_spot_order(teams, sides)
+	# only the chosen groups' starts, then back to the map's own start numbers
+	var sub_teams: Array = []
+	var back: Array = []
+	for i in teams.size():
+		if best.has(teams[i]):
+			sub_teams.append(teams[i])
+			back.append(i)
+	var out: Array = []
+	for k in custom_spot_order(sub_teams, sides):
+		out.append(int(back[k]) if int(k) >= 0 else -1)
+	return out
+
+
 ## Where each player's hall goes on a custom map (the lobby's preview uses it too).
 static func custom_starts(d: Dictionary, sides: Array) -> Array:
 	var st: Array = d.get("starts", [])
 	var out: Array = []
-	for spot in custom_spot_order(custom_teams(d), sides):
+	for spot in fair_spot_order(custom_teams(d), st, sides):
 		if spot >= 0:
 			out.append(Vector2i(int(st[spot][0]), int(st[spot][1])))
 		else:

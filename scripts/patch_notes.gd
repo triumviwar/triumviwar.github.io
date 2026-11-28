@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.237", "items": [
+		"TOURNAMENTS have a TYPE: 1v1, 2v2, 3v3 or 4v4. Teams are fixed (players join a team by typing its name) or drawn by the organiser's dice when the tournament starts; every format, the online desk, offline and all-computer play work for teams, a team's added score decides at the time limit, and each player keeps its faction. The map pool is a set of cards with each map's picture and start spots, grouped by 2, 4 and 6-8 players, with BUILT-IN / CLASSIC / YOUR MAPS filters and a search; any map that holds the type's players can go in (a 1v1 on a 4-player map uses two opposite spots), your own editor maps too in offline and all-computer tournaments (tournament-formats).",
+	]},
 	{"v": "0.38.236", "items": [
 		"Every map is shown as a small picture of the real map wherever you pick one: the ground's colours as on the minimap, high ground and cliffs, ramps, water, woods and every hall spot ringed in gold, with the start spots numbered on top. The classic maps (Frostfang, Greenhold...) were plain coloured boxes before. The pictures are in the skirmish lobby, the online room, the tournaments' ban and pick buttons, the map editor's LOAD list, the replay list and the campaign briefing.",
 	]},

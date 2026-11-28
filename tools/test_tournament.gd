@@ -29,6 +29,11 @@ func _initialize() -> void:
 	_time_rule()
 	_drop()
 	_codes()
+	_teams_fixed()
+	_teams_drawn()
+	_teams_slots_and_maps()
+	_teams_reports()
+	_custom_fair_spots()
 	print("tournament: %d checks, %d failed" % [checks, fails])
 	quit(1 if fails > 0 else 0)
 
@@ -410,3 +415,179 @@ func _codes() -> void:
 	var j := t.to_json()
 	var t3 := Tournament.from_dict(JSON.parse_string(j))
 	ok(t3.placings().size() == 6 and typeof(t3.d["matches"][0]["a"]) == TYPE_INT, "JSON round trip keeps the numbers whole")
+
+
+# ================================================================== team formats (job tournament-formats)
+
+func _team_t(ts: int, fmt: String, opts := {}) -> Tournament:
+	var o := {"format": fmt, "bo": 1, "bo_final": 1, "seeding": "manual", "map_rule": "random", "seed": 11, "team_size": ts,
+		"maps": ["greenhold", "dune_sea"]}
+	for k in opts:
+		o[k] = opts[k]
+	return Tournament.make("Teams", o)
+
+
+func _teams_fixed() -> void:
+	for ts in [2, 3, 4]:
+		var maps: Array = ["greenhold"] if ts == 2 else []
+		for id in MapData.NAMED.keys():
+			if MapGen.max_players(String(id)) >= 2 * ts:
+				maps.append(String(id))
+		for fmt in ["single", "double", "robin", "swiss", "groups"]:
+			var t := _team_t(ts, fmt, {"maps": maps.slice(0, 3)})
+			var n := 6 if fmt != "groups" else 8
+			for i in n:
+				var mbs: Array = []
+				for k in ts:
+					mbs.append({"name": "T%dP%d" % [i + 1, k + 1], "faction": Tournament.FACTIONS[(i + k) % 3], "who": "human", "plan": ""})
+				ok(t.add_team("Team %d" % (i + 1), mbs) >= 0, "%dv%d %s: team %d added" % [ts, ts, fmt, i + 1])
+			ok(t.start_problem() == "", "%dv%d %s: ready to start (%s)" % [ts, ts, fmt, t.start_problem()])
+			ok(t.start(), "%dv%d %s: starts" % [ts, ts, fmt])
+			ok(t.d["factions"] == "event", "%dv%d %s: the members keep their factions" % [ts, ts, fmt])
+			_play_out(t)
+			ok(t.done(), "%dv%d %s: played to a champion" % [ts, ts, fmt])
+			ok(t.player(int(t.d["champion"])).has("members"), "%dv%d %s: the champion is a team" % [ts, ts, fmt])
+	# a team short of players can't start; join_team fills by name, refuses a full team
+	var t2 := _team_t(2, "single")
+	var j1 := t2.join_team("Reds", "Ana", "crown")
+	var j2 := t2.join_team("reds", "Bo", "brood")
+	var j3 := t2.join_team("Reds", "Cy", "crown")
+	ok(not j1.is_empty() and not j2.is_empty() and int(j1[0]) == int(j2[0]) and int(j2[1]) == 1, "join_team: the second joins the same team (any case)")
+	ok(j3.is_empty(), "join_team: a full team refuses a third")
+	t2.join_team("Blues", "Di", "clockwork")
+	ok(t2.start_problem().begins_with("Team Blues"), "a team short of a player can't start (%s)" % t2.start_problem())
+	t2.join_team("Blues", "Ed", "random")
+	ok(t2.start_problem() == "", "both teams full: it can start")
+	ok(t2.player(int(j1[0]))["faction"] == "crown,brood", "a team's factions are its members' (%s)" % t2.player(int(j1[0]))["faction"])
+	var mk := t2.member_by_key(String(j2[2]))
+	ok(mk.size() == 2 and int(mk[0]) == int(j1[0]) and int(mk[1]) == 1, "a member is known by its key")
+	ok(not t2.public_dict()["players"][0]["members"][0].has("key"), "the copy sent to players has no member keys")
+	t2.leave_team(int(j1[0]), 0)
+	ok((t2.player(int(j1[0]))["members"] as Array).size() == 1, "a member leaves its team before the start")
+	t2.leave_team(int(j1[0]), 0)
+	ok(t2.player(int(j1[0])).is_empty(), "an empty team goes")
+	# a map too small for the type
+	var t3 := _team_t(2, "single", {"maps": ["greenhold", "ashford_crossing"]})
+	for i in 2:
+		t3.add_team("X%d" % i, [{"name": "a%d" % i, "faction": "crown"}, {"name": "b%d" % i, "faction": "brood"}])
+	ok(not Tournament.map_holds("ashford_crossing", 2) or t3.start_problem() == "", "a 2-player map is refused in a 2v2 pool")
+	if not Tournament.map_holds("ashford_crossing", 2):
+		ok(t3.start_problem().begins_with("Some maps"), "the start says the pool has a map too small")
+
+
+func _teams_drawn() -> void:
+	var t := _team_t(2, "double", {"team_rule": "drawn"})
+	var keys := {}
+	for i in 8:
+		var pid := t.add_player("P%d" % (i + 1), Tournament.FACTIONS[i % 3], "human")
+		keys["P%d" % (i + 1)] = String(t.player(pid)["key"])
+	t.d["org_key"] = keys["P3"]
+	ok(t.start_problem() == "", "drawn: 8 players make 4 teams of 2")
+	ok(t.start(), "drawn: starts")
+	ok(t.players().size() == 4 and t.players().all(func(p) -> bool: return (p["members"] as Array).size() == 2), "drawn: 4 teams of 2")
+	var all_names := {}
+	for p in t.players():
+		for mb in p["members"]:
+			all_names[String(mb["name"])] = true
+	ok(all_names.size() == 8, "drawn: every player is in exactly one team")
+	var found := 0
+	for k in keys.values():
+		if not t.member_by_key(k).is_empty():
+			found += 1
+	ok(found == 8, "drawn: every player is known again by its key")
+	ok(int(t.d["org_pid"]) == int(t.member_by_key(keys["P3"])[0]), "drawn: the organiser who plays follows into its team")
+	_play_out(t)
+	ok(t.done(), "drawn: played to a champion")
+	var t2 := _team_t(2, "single", {"team_rule": "drawn"})
+	for i in 5:
+		t2.add_player("Q%d" % i)
+	ok(t2.start_problem() != "", "drawn: 5 players can't be split into teams of 2")
+	var big3: Array = MapData.NAMED.keys().filter(func(id) -> bool: return MapGen.max_players(String(id)) >= 6)
+	var t3 := _team_t(3, "single", {"team_rule": "drawn", "maps": big3.slice(0, 2)})
+	for i in 12:
+		t3.add_player("R%d" % i)
+	ok(t3.start() and t3.players().size() == 4, "drawn 3v3: 12 players make 4 teams")
+	var t4 := _team_t(2, "single", {"team_rule": "drawn", "seed": 11})
+	var t5 := _team_t(2, "single", {"team_rule": "drawn", "seed": 11})
+	for i in 8:
+		t4.add_player("S%d" % i)
+		t5.add_player("S%d" % i)
+	t4.start()
+	t5.start()
+	ok(JSON.stringify(t4.players().map(func(p) -> Array: return p["members"].map(func(x) -> String: return x["name"]))) ==
+		JSON.stringify(t5.players().map(func(p) -> Array: return p["members"].map(func(x) -> String: return x["name"]))), "drawn: the same dice draw the same teams")
+
+
+func _teams_slots_and_maps() -> void:
+	var t := _team_t(2, "single")
+	t.add_team("A", [{"name": "a1", "faction": "crown", "who": "hard", "plan": "optimal"}, {"name": "a2", "faction": "random", "who": "hard", "plan": "balanced"}])
+	t.add_team("B", [{"name": "b1", "faction": "brood", "who": "easy", "plan": "rush"}, {"name": "b2", "faction": "clockwork", "who": "hard", "plan": "owls"}])
+	t.start()
+	var m: Dictionary = t.ready_matches()[0]
+	var gs := t.game_slots(m, false)
+	ok(gs.size() == 4, "2v2: four slots")
+	ok(gs.slice(0, 2).all(func(x) -> bool: return int(x["side"]) == 0) and gs.slice(2).all(func(x) -> bool: return int(x["side"]) == 1), "2v2: a team shares a side")
+	ok(gs.all(func(x) -> bool: return String(x["faction"]) in Tournament.FACTIONS), "2v2: a random member's faction is rolled")
+	ok(String(gs[0]["strategy"]) == "optimal" and String(gs[3]["strategy"]) == "owls" and String(gs[2]["who"]) == "easy", "2v2: each member keeps its plan and level")
+	var colours := {}
+	for x in gs:
+		colours[int(x["colour"])] = true
+	ok(colours.size() == 4, "2v2: four colours")
+	var sw := t.game_slots(m, true)
+	ok(String(sw[0]["s"]) == "b" and int(sw[0]["side"]) == 0 and String(sw[2]["s"]) == "a", "2v2: swapped spots put team b first")
+	ok(t.game_slots(m, false)[1]["faction"] == t.game_slots(m, false)[1]["faction"] and t.team_factions(m, "a") == t.team_factions(m, "a"), "2v2: the factions are the same every time asked")
+	# maps: a bigger map in a smaller format, a too-small one refused
+	ok(Tournament.map_holds("greenhold", 1) and Tournament.map_holds("greenhold", 2), "a classic map holds 1v1 and 2v2 (four corners)")
+	var big := ""
+	for id in MapData.NAMED.keys():
+		if String(MapData.NAMED[id]["mode"]) == "4v4":
+			big = String(id)
+	if big != "":
+		ok(Tournament.map_holds(big, 1) and Tournament.map_holds(big, 4), "a 4v4 map holds a 1v1 and a 4v4 (%s)" % big)
+		# a 1v1 on it: the two players take a start and its mirror twin
+		var st := MapGen.named_starts(big, [0, 1])
+		var sz := MapGen.size_of(big)
+		ok(st.size() == 2 and st[1] == Vector2i(sz.x - st[0].x - MapGen.HALL.x, sz.y - st[0].y - MapGen.HALL.y), "a 1v1 on %s uses a start and its mirror" % big)
+	var one := ""
+	for id in MapData.NAMED.keys():
+		if MapGen.max_players(String(id)) == 2:
+			one = String(id)
+	if one != "":
+		ok(not Tournament.map_holds(one, 2), "a 2-player map is not for a 2v2 (%s)" % one)
+
+
+func _teams_reports() -> void:
+	var t := _team_t(2, "single", {"mode": "online"})
+	var a := t.join_team("A", "a1", "crown")
+	var a2 := t.join_team("A", "a2", "crown")
+	var b := t.join_team("B", "b1", "brood")
+	var b2 := t.join_team("B", "b2", "brood")
+	t.start()
+	var m: Dictionary = t.ready_matches()[0]
+	var net := TournamentNet.new()
+	net.t = t
+	var why := net.handle({"t": "tr", "pid": int(a[0]), "key": String(a2[2]), "mid": int(m["id"]), "win": "a", "info": {"game": 0}})
+	ok(why == "waiting", "team report: a winner's member alone waits (%s)" % why)
+	why = net.handle({"t": "tr", "pid": int(b[0]), "key": String(b2[2]), "mid": int(m["id"]), "win": "a", "info": {"game": 0}})
+	ok(why == "taken" and t.get_match(int(m["id"]))["state"] == "done", "team report: a loser's member agreeing settles it (%s)" % why)
+	ok(int(t.d["champion"]) == int(a[0]), "team report: team A is the champion")
+	why = net.handle({"t": "tr", "pid": int(a[0]), "key": "nonsense", "mid": int(m["id"]), "win": "a"})
+	ok(why == "You are not in this tournament.", "team report: a wrong key is refused")
+	net.free()
+	# the lead rule by team
+	ok(t.time_verdict(m, 2200.0, 1900.0) == "a", "time rule: a team's added score 10% ahead wins")
+
+
+func _custom_fair_spots() -> void:
+	# a free-for-all map of 4 corners, the corners listed TL, TR, BL, BR: a 1v1 takes two OPPOSITE corners
+	var d := {"starts": [[4, 4], [100, 4], [4, 70], [100, 70]], "teams": [0, 1, 2, 3]}
+	var order := MapGen.fair_spot_order(MapGen.custom_teams(d), d["starts"], [0, 1])
+	var p0 := Vector2(d["starts"][order[0]][0], d["starts"][order[0]][1])
+	var p1 := Vector2(d["starts"][order[1]][0], d["starts"][order[1]][1])
+	ok(p0.distance_to(p1) > 110.0 and absf(p0.x - p1.x) > 90 and absf(p0.y - p1.y) > 60, "a 1v1 on a free-for-all map of 4 takes two opposite corners (%s, %s)" % [p0, p1])
+	# a 2v2 custom map: a 1v1 follows the map's own pairing (one start of each team)
+	var d2 := {"starts": [[4, 4], [4, 20], [100, 70], [100, 54]], "teams": [0, 0, 1, 1]}
+	var o2 := MapGen.fair_spot_order(MapGen.custom_teams(d2), d2["starts"], [0, 1])
+	ok(int(d2["teams"][o2[0]]) != int(d2["teams"][o2[1]]), "a 1v1 on a 2v2 map: one start of each team")
+	var o3 := MapGen.fair_spot_order(MapGen.custom_teams(d2), d2["starts"], [0, 0, 1, 1])
+	ok(o3 == MapGen.custom_spot_order(MapGen.custom_teams(d2), [0, 0, 1, 1]), "a 2v2 on a 2v2 map: as before")

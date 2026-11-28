@@ -18,7 +18,8 @@ const FULL_RETRY := 2.0
 var t: Tournament                    # desk: the tournament; player: the last copy the desk sent
 var desk := false
 var link: NetLink
-var me := -1                         # player: my player id (-1: watching only)
+var me := -1                         # player: my player id (-1: watching only; a team tournament: my team's id)
+var mi := 0                          # player: my place in my team (0 in a 1v1 tournament)
 var key := ""                        # player: my secret
 var relay := ""
 var status := ""
@@ -110,6 +111,7 @@ func _on_message(from: int, m: Dictionary) -> void:
 			t = c
 			if int(m.get("you", -1)) >= 0:
 				me = int(m["you"])
+				mi = int(m.get("mi", 0))
 			if String(m.get("key", "")) != "":
 				key = String(m["key"])
 			_save_joined()
@@ -117,13 +119,14 @@ func _on_message(from: int, m: Dictionary) -> void:
 			_end_call(true, String(m.get("why", "")))
 		return
 	var why := handle(m)
-	link.send({"t": "ts", "d": t.public_dict(), "you": int(_last_pid), "key": _last_key, "why": why}, from)
+	link.send({"t": "ts", "d": t.public_dict(), "you": int(_last_pid), "mi": _last_mi, "key": _last_key, "why": why}, from)
 	t.save()
 	updated.emit()
 
 
 var _last_pid := -1
 var _last_key := ""
+var _last_mi := 0
 
 
 ## The desk's rules for one call (also used directly by the organiser's own game and the tests). Returns "" or a
@@ -131,12 +134,17 @@ var _last_key := ""
 func handle(m: Dictionary) -> String:
 	_last_pid = -1
 	_last_key = ""
-	var pid := int(m.get("pid", -1))
-	var p := t.player(pid)
-	var known := not p.is_empty() and String(p.get("key", "")) == String(m.get("key", "")) and String(m.get("key", "")) != ""
+	_last_mi = 0
+	# (a player, or a team's member, is known by its secret key alone: a drawn team's members got a new entry id at the
+	# start, docs/tournament_formats.md)
+	var mk := t.member_by_key(String(m.get("key", "")))
+	var known := not mk.is_empty()
+	var pid := int(mk[0]) if known else -1
+	var mix := int(mk[1]) if known else 0
 	if known:
 		_last_pid = pid
-		_last_key = String(p["key"])
+		_last_mi = mix
+		_last_key = String(m["key"])
 	if String(m.get("ver", "")) != "" and String(m.get("ver", "")) != String(ProjectSettings.get_setting("application/config/version", "dev")):
 		return "The organiser plays version %s: both need the same version." % ProjectSettings.get_setting("application/config/version", "dev")
 	match String(m.get("t", "")):
@@ -149,23 +157,40 @@ func handle(m: Dictionary) -> String:
 				return "The tournament is full."
 			var nm := String(m["name"]).strip_edges()
 			for q in t.players():
-				if String(q["name"]).to_lower() == nm.to_lower():
-					return "That name is taken in this tournament."
+				for mb in t.members(q):
+					if String(mb["name"]).to_lower() == nm.to_lower():
+						return "That name is taken in this tournament."
 			var fac := String(m.get("fac", "random"))
-			var np := t.add_player(nm, fac if (fac in Tournament.FACTIONS or fac == "random") else "random", "human")
+			fac = fac if (fac in Tournament.FACTIONS or fac == "random") else "random"
+			if t.team_size() > 1 and String(t.d.get("team_rule", "fixed")) == "fixed":
+				# a TEAM tournament: join a team by its name (made if new)
+				var tn := String(m.get("team", "")).strip_edges()
+				if tn == "":
+					return "Type your team's name (the same for everyone in the team)."
+				var jt := t.join_team(tn, nm, fac, "human")
+				if jt.is_empty():
+					return "That team is full, or its name is taken."
+				_last_pid = int(jt[0])
+				_last_mi = int(jt[1])
+				_last_key = String(jt[2])
+				return "ok joined"
+			var np := t.add_player(nm, fac, "human")
 			_last_pid = np
 			_last_key = String(t.player(np)["key"])
 			return "ok joined"
 		"tci":
 			if not known:
 				return "You are not in this tournament."
-			t.check_in(pid, true)
+			t.check_in_member(pid, mix, true)
 			return "ok"
 		"tl":
 			if not known:
 				return "You are not in this tournament."
 			if t.d["state"] == "signup":
-				t.remove_player(pid)
+				if t.player(pid).has("members"):
+					t.leave_team(pid, mix)
+				else:
+					t.remove_player(pid)
 			else:
 				t.drop(pid)
 			return "ok"
@@ -235,7 +260,7 @@ func busy() -> bool:
 func _save_joined() -> void:
 	if t == null:
 		return
-	joined_save(String(t.d["id"]), {"me": me, "key": key, "relay": relay, "name": String(t.d.get("name", "")), "copy": t.d})
+	joined_save(String(t.d["id"]), {"me": me, "mi": mi, "key": key, "relay": relay, "name": String(t.d.get("name", "")), "copy": t.d})
 
 
 static func joined_save(tid: String, rec: Dictionary) -> void:

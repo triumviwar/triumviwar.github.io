@@ -556,6 +556,15 @@ func _on_message(from: int, m: Dictionary) -> void:
 			if is_spec(from):
 				_send_lobby()
 				return
+			if not bool(m.get("spec", false)) and not tour.is_empty() and int(m.get("seat", -1)) > 0:
+				# a TEAM tournament's room (docs/tournament_formats.md): each player sits in the slot the bracket gives it
+				var want := int(m["seat"])
+				if want < slots.size() and slots[want]["who"] == "remote":
+					slots[want]["peer"] = from       # (the same player again from a new connection: the newer one sits)
+					status = "A friend joined."
+					changed.emit()
+					_send_lobby()
+					return
 			if not bool(m.get("spec", false)):
 				for s in slots:
 					if s["who"] == "remote" and int(s.get("peer", -1)) < 0:
@@ -693,6 +702,8 @@ func _hi() -> Dictionary:
 		h["spec"] = true
 	if ticket != "":
 		h["tk"] = ticket
+	if tour_seat > 0:
+		h["seat"] = tour_seat
 	return h
 
 
@@ -733,6 +744,26 @@ var want_spec := false
 ## `tour_lock`: the map and the factions are the bracket's: nobody changes them in the room.
 var tour := {}
 var tour_lock := false
+var tour_seat := -1                       # guest of a team tournament's room: the slot the bracket gives me
+
+
+## Host, TOURNAMENTS: the room's slots straight from the bracket (Tournament.game_slots): slot 0 is the host ("you"),
+## every other person a "remote" seat kept for its player (tour_seat), a computer member a computer. Locked.
+func tour_setup(map_id: String, gslots: Array) -> void:
+	mode = "custom" if gslots.size() > 2 else "1v1"
+	slots = []
+	for i in gslots.size():
+		var g: Dictionary = gslots[i]
+		var who := "you" if i == 0 else ("remote" if String(g["who"]) == "human" else String(g["who"]))
+		var sl := _slot(who, int(g["side"]))
+		sl["faction"] = String(g["faction"])
+		if who != "you" and who != "remote":
+			sl["strategy"] = String(g.get("strategy", "balanced"))
+		slots.append(sl)
+	map = map_id
+	tour_lock = true
+	changed.emit()
+	_send_lobby()
 
 
 ## Guest: choose my colour (the host refuses one somebody else has).
