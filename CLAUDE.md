@@ -26,6 +26,21 @@
 
 ## Current work
 
+- MERGED 2026-11-28 (0.38.235-0.38.241): MENU GROUPS (docs/menu_groups.md: OFFLINE / ONLINE sub-menus, the buttons clear
+  of the painting's cross), TOURNAMENT FORMATS (docs/tournament_formats.md: 1v1-4v4 teams, any map holding the format, a
+  bigger map's fair spot pair, the pool grouped by players with filters, search and map cards), BROOD GREEN ART
+  (docs/brood_green_art.md, tools/art/brood_green.py + brood_green_masks.json: the Brood's red spines/crests turned green
+  in the PAINTINGS only, per region masks, re-runnable from git originals; after tools/menu_fix_composite.py rerun
+  `brood_green.py --only assets/menu/battle.jpg --from-file`; sprites untouched: pure red there is the team key),
+  MUSIC MIX PASS (docs/music_mix_pass.md: every generated piece re-mastered, loudness range 6.9 -> 8.9 LU, sub-bass capped,
+  no compressor, loudness unchanged; GOD SAVE THE KING by the full band replaces the Crown's victory sting), QA UI REVIEW
+  (docs/qa_ui_review.md, pictures docs/shots/qa_ui_review/, tools/shot_qa_ui_review.gd: design review, NOTHING built; top
+  15 with quick wins: grid hotkeys, income/min + supply block, IDLE glow + jump to last alert, fewer floating marks, hide
+  APM, world war CALL IT OFF, default team colour = faction colour; OWNER PICKS).
+- THE WAR MAP SKINS PAINTED (0.38.231): the brass map and the specimen chart use their own painted sheets
+  (campaign/warmap_art/painted_brass_<view>.jpg, painted_chart_<view>.jpg; WarMap.SKINS paint_prefix, _pfile) on the King's
+  fit; originals art/campaign/warmap_skins/. WYVERN HATCHLINGS finished (0.38.233: attack N, deaths S/E/NE/N, both icons).
+
 - QA SYSTEMS REVIEW (owner 2026-11-28 "all systems in general", ideas to add or change; job qa-systems-review, branch
   qa-systems-review, docs only: docs/qa_systems_review.md): a section per system (economies, supply, combat, rosters,
   research, the computer, control, campaign, world war, tournaments, online, replays, saving, maps, tutorial, audio,
