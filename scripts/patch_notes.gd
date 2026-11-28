@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"Win rates in the three Brood matchups with the far Rootmaw at x2.2 (today), x2.1 and x2.0, on 270 games with the start spots split evenly (tools and data only; no number changed).",
+	]},
 	{"v": "0.38.222", "items": [
 		"Win rates in all six matchups after the battle lessons, with and without the Rootmaw nerf (tools and data only).",
 	]},
